@@ -9,14 +9,13 @@ import service from './service';
 const moduleName = 'cucCurrency';
 
 angular
-  .module(moduleName, [
-    cucConfig,
-    'ovh-api-services',
-  ])
+  .module(moduleName, [cucConfig, 'ovh-api-services'])
   .filter('cucUcentsToCurrency', filter)
   .service('CucCurrencyService', service)
-  .run(/* @ngInject */(CucCurrencyService) => {
-    CucCurrencyService.loadCurrency();
-  });
+  .run(
+    /* @ngInject */ (CucCurrencyService) => {
+      CucCurrencyService.loadCurrency();
+    },
+  );
 
 export default moduleName;

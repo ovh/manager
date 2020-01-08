@@ -7,19 +7,27 @@
         data-selected="$ctrl.selectedDatabase.name === database.name"
         data-disabled="!database.isAvailable || !$ctrl.allowEdit"
         data-on-change="$ctrl.onDatabaseSelect(modelValue)"
-        data-image="{{ ::database.iconURL }}">
+        data-image="{{ ::database.iconURL }}"
+    >
         <enterprise-cloud-database-card-footer>
-            <span data-ng-if="!database.isAvailable" data-translate="enterprise_cloud_database_coming_soon"></span>
-            <select id="versions"
-                    name="versions"
-                    class="border-0"
-                    data-ng-if="database.isAvailable"
-                    data-ng-model="database.selectedVersion"
-                    data-ng-change="$ctrl.onVersionChange()">
-                <option data-ng-repeat="version in database.versions track by version"
-                        data-ng-value="version"
-                        data-ng-bind="version"
-                        data-selected="version === database.selectedVersion">
+            <span
+                data-ng-if="!database.isAvailable"
+                data-translate="enterprise_cloud_database_coming_soon"
+            ></span>
+            <select
+                id="versions"
+                name="versions"
+                class="border-0"
+                data-ng-if="database.isAvailable"
+                data-ng-model="database.selectedVersion"
+                data-ng-change="$ctrl.onVersionChange()"
+            >
+                <option
+                    data-ng-repeat="version in database.versions track by version"
+                    data-ng-value="version"
+                    data-ng-bind="version"
+                    data-selected="version === database.selectedVersion"
+                >
                 </option>
             </select>
         </enterprise-cloud-database-card-footer>

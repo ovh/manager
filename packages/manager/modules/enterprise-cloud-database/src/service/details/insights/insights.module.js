@@ -8,7 +8,10 @@ const moduleName = 'enterpriseCloudDatabaseServiceDetailsInsights';
 angular
   .module(moduleName, [])
   .config(routing)
-  .component('enterpriseCloudDatabaseServiceDetailsInsightsComponent', enterpriseCloudDatabaseServiceDetailsInsightsComponent)
+  .component(
+    'enterpriseCloudDatabaseServiceDetailsInsightsComponent',
+    enterpriseCloudDatabaseServiceDetailsInsightsComponent,
+  )
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

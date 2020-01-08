@@ -40,13 +40,11 @@ export default class PciStoragesContainersService {
   }
 
   getAccessAndToken(projectId) {
-    return this.OvhApiCloudProjectStorage
-      .v6()
+    return this.OvhApiCloudProjectStorage.v6()
       .access({
         projectId,
       })
-      .$promise
-      .then(({ token, endpoints }) => ({
+      .$promise.then(({ token, endpoints }) => ({
         token,
         endpoints: reduce(
           endpoints,
@@ -60,25 +58,20 @@ export default class PciStoragesContainersService {
   }
 
   getArchivePassword(projectId, { region }) {
-    return this.OvhApiCloudProjectUser
-      .v6()
+    return this.OvhApiCloudProjectUser.v6()
       .query({
         serviceName: projectId,
       })
-      .$promise
-      .then((users) => {
+      .$promise.then((users) => {
         const promises = {
           users,
         };
         if (users.length > 0) {
-          promises.openrc = this.OvhApiCloudProjectUser
-            .Aapi()
-            .openrc({
-              serviceName: projectId,
-              userId: users[0].id,
-              region,
-            })
-            .$promise;
+          promises.openrc = this.OvhApiCloudProjectUser.Aapi().openrc({
+            serviceName: projectId,
+            userId: users[0].id,
+            region,
+          }).$promise;
         }
         return this.$q.all(promises);
       })
@@ -131,80 +124,91 @@ export default class PciStoragesContainersService {
       queryParams.archive = false;
     }
 
-    return this.OvhApiCloudProjectStorage
-      .Aapi()
+    return this.OvhApiCloudProjectStorage.Aapi()
       .query(queryParams)
-      .$promise
-      .then((containers) => map(containers, (container) => new Container(container)));
+      .$promise.then((containers) =>
+        map(containers, (container) => new Container(container)),
+      );
   }
 
   getContainer(projectId, containerId) {
-    return this.OvhApiCloudProjectStorage
-      .v6()
+    return this.OvhApiCloudProjectStorage.v6()
       .get({
         projectId,
         containerId,
       })
-      .$promise
-      .then((container) => this.$q.all({
-        container,
-        publicUrl: this.getContainerUrl(projectId, container),
-      }))
-      .then(({ container, publicUrl }) => new Container({
-        ...container,
-        objects: map(container.objects, (object) => new ContainerObject(object)),
-        id: containerId,
-        publicUrl,
-        storageGateway: STORAGE_GATEWAY[this.coreConfig.getRegion()].replace(
-          'REGION',
-          container.region.toLowerCase(),
-        ),
-      }));
+      .$promise.then((container) =>
+        this.$q.all({
+          container,
+          publicUrl: this.getContainerUrl(projectId, container),
+        }),
+      )
+      .then(
+        ({ container, publicUrl }) =>
+          new Container({
+            ...container,
+            objects: map(
+              container.objects,
+              (object) => new ContainerObject(object),
+            ),
+            id: containerId,
+            publicUrl,
+            storageGateway: STORAGE_GATEWAY[
+              this.coreConfig.getRegion()
+            ].replace('REGION', container.region.toLowerCase()),
+          }),
+      );
   }
 
   getContainerUrl(projectId, container, file = null) {
-    return this.getAccessAndToken(projectId)
-      .then(({ endpoints }) => {
-        const url = `${endpoints[container.region.toLowerCase()]}/${encodeURIComponent(container.name)}`;
-        if (file) {
-          return `${url}/${encodeURIComponent(file)}`;
-        }
-        return url;
-      });
+    return this.getAccessAndToken(projectId).then(({ endpoints }) => {
+      const url = `${
+        endpoints[container.region.toLowerCase()]
+      }/${encodeURIComponent(container.name)}`;
+      if (file) {
+        return `${url}/${encodeURIComponent(file)}`;
+      }
+      return url;
+    });
   }
 
   requestContainer(projectId, container, optsParam = {}) {
     const opts = pickBy(optsParam, (value, key) => key !== 'file');
     return this.getAccessAndToken(projectId)
-      .then((accessToken) => this.$q.all({
-        accessToken,
-        url: this.getContainerUrl(projectId, container, optsParam.file),
-      }))
-      .then(({ accessToken, url }) => this.$http(angular.merge({
-        method: 'GET',
-        url,
-        headers: {
-          [X_AUTH_TOKEN]: accessToken.token,
-        },
-      }, opts)));
+      .then((accessToken) =>
+        this.$q.all({
+          accessToken,
+          url: this.getContainerUrl(projectId, container, optsParam.file),
+        }),
+      )
+      .then(({ accessToken, url }) =>
+        this.$http(
+          angular.merge(
+            {
+              method: 'GET',
+              url,
+              headers: {
+                [X_AUTH_TOKEN]: accessToken.token,
+              },
+            },
+            opts,
+          ),
+        ),
+      );
   }
 
   getContainerMetaData(projectId, container) {
-    return this.requestContainer(projectId, container, { method: 'HEAD' })
-      .then((metadata) => pickBy(
-        metadata.headers(),
-        (value, key) => X_CONTAINER_HEADERS_REGEX.test(key),
-      ));
+    return this.requestContainer(projectId, container, {
+      method: 'HEAD',
+    }).then((metadata) =>
+      pickBy(metadata.headers(), (value, key) =>
+        X_CONTAINER_HEADERS_REGEX.test(key),
+      ),
+    );
   }
 
-  addContainer(projectId, {
-    archive,
-    containerType,
-    name,
-    region,
-  }) {
-    return this.OvhApiCloudProjectStorage
-      .v6()
+  addContainer(projectId, { archive, containerType, name, region }) {
+    return this.OvhApiCloudProjectStorage.v6()
       .save(
         {
           projectId,
@@ -215,8 +219,7 @@ export default class PciStoragesContainersService {
           region: region.name,
         },
       )
-      .$promise
-      .then((container) => {
+      .$promise.then((container) => {
         let returnPromise = this.$q.resolve();
         if (containerType === OBJECT_CONTAINER_TYPE_STATIC) {
           returnPromise = this.setContainerAsStatic(projectId, container);
@@ -228,44 +231,46 @@ export default class PciStoragesContainersService {
   }
 
   setContainerAsStatic(projectId, container) {
-    return this.OvhApiCloudProjectStorage
-      .v6()
-      .static({
+    return this.OvhApiCloudProjectStorage.v6().static(
+      {
         projectId,
         containerId: container.id,
-      }, {})
-      .$promise;
+      },
+      {},
+    ).$promise;
   }
 
   setContainerAsPublic(projectId, container) {
-    return this.getContainerMetaData(projectId, container)
-      .then((metadata) => {
-        if (metadata[X_CONTAINER_READ] !== X_CONTAINER_READ_PUBLIC_VALUE) {
-          return this.requestContainer(projectId, container, {
-            method: 'PUT',
-            headers: {
-              [X_CONTAINER_READ]: X_CONTAINER_READ_PUBLIC_VALUE,
-            },
-          });
-        }
-        return $.resolve();
-      });
+    return this.getContainerMetaData(projectId, container).then((metadata) => {
+      if (metadata[X_CONTAINER_READ] !== X_CONTAINER_READ_PUBLIC_VALUE) {
+        return this.requestContainer(projectId, container, {
+          method: 'PUT',
+          headers: {
+            [X_CONTAINER_READ]: X_CONTAINER_READ_PUBLIC_VALUE,
+          },
+        });
+      }
+      return $.resolve();
+    });
   }
 
   deleteContainer(projectId, container) {
-    const promises = reduce(container.objects, (result, object) => [
-      ...result,
-      this.deleteObject(projectId, container, object),
-    ], []);
+    const promises = reduce(
+      container.objects,
+      (result, object) => [
+        ...result,
+        this.deleteObject(projectId, container, object),
+      ],
+      [],
+    );
 
-    return this.$q.all(promises)
-      .then(() => this.OvhApiCloudProjectStorage
-        .v6()
-        .delete({
+    return this.$q.all(promises).then(
+      () =>
+        this.OvhApiCloudProjectStorage.v6().delete({
           projectId,
           containerId: container.id,
-        })
-        .$promise);
+        }).$promise,
+    );
   }
 
   static getFilePath(filePrefix, file) {
@@ -283,10 +288,11 @@ export default class PciStoragesContainersService {
   }
 
   addObjects(projectId, container, filePrefix, files) {
-    return this.$q.all(map(
-      files,
-      (file) => this.addObject(projectId, container, filePrefix, file),
-    ));
+    return this.$q.all(
+      map(files, (file) =>
+        this.addObject(projectId, container, filePrefix, file),
+      ),
+    );
   }
 
   addObject(projectId, container, filePrefix, file) {
@@ -297,29 +303,25 @@ export default class PciStoragesContainersService {
       data: file,
     };
 
-    return this.$q.all({
-      url: this.getContainerUrl(
-        projectId,
-        container,
-        PciStoragesContainersService.getFilePath(filePrefix, file),
-      ),
-      accessToken: this.getAccessAndToken(projectId),
-    })
+    return this.$q
+      .all({
+        url: this.getContainerUrl(
+          projectId,
+          container,
+          PciStoragesContainersService.getFilePath(filePrefix, file),
+        ),
+        accessToken: this.getAccessAndToken(projectId),
+      })
       .then(({ accessToken, url }) => this.upload(url, config, accessToken));
   }
 
-
   upload(url, config, accessToken) {
-    return this.$http.put(
-      url,
-      config.data,
-      {
-        headers: {
-          ...config.headers,
-          [X_AUTH_TOKEN]: accessToken.token,
-        },
+    return this.$http.put(url, config.data, {
+      headers: {
+        ...config.headers,
+        [X_AUTH_TOKEN]: accessToken.token,
       },
-    );
+    });
   }
 
   deleteObject(projectId, container, object) {
@@ -330,17 +332,21 @@ export default class PciStoragesContainersService {
   }
 
   getObjectUrl(projectId, containerId, object) {
-    const expirationDate = moment().add(1, 'week').toISOString();
-    return this.OvhApiCloudProjectStorage
-      .v6()
-      .getURL({
-        projectId,
-        containerId,
-      }, {
-        expirationDate,
-        objectName: object.name,
-      }).$promise
-      .then((resp) => resp.getURL);
+    const expirationDate = moment()
+      .add(1, 'week')
+      .toISOString();
+    return this.OvhApiCloudProjectStorage.v6()
+      .getURL(
+        {
+          projectId,
+          containerId,
+        },
+        {
+          expirationDate,
+          objectName: object.name,
+        },
+      )
+      .$promise.then((resp) => resp.getURL);
   }
 
   downloadObject(projectId, containerId, object) {

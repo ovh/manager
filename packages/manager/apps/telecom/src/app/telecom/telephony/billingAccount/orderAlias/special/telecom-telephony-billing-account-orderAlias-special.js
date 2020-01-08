@@ -3,11 +3,15 @@ angular.module('managerApp').config(($stateProvider) => {
     url: '/special',
     views: {
       'telecomTelephonyBillingAccountOrderAliasView@telecom.telephony.billingAccount.orderAlias': {
-        templateUrl: 'app/telecom/telephony/billingAccount/orderAlias/special/telecom-telephony-billing-account-orderAlias-special.html',
+        templateUrl:
+          'app/telecom/telephony/billingAccount/orderAlias/special/telecom-telephony-billing-account-orderAlias-special.html',
         controller: 'TelecomTelephonyAliasOrderSpecialCtrl',
         controllerAs: 'AliasOrderSpecialCtrl',
       },
     },
-    translations: { value: ['.', '../../../alias/special/rsva'], format: 'json' },
+    translations: {
+      value: ['.', '../../../alias/special/rsva'],
+      format: 'json',
+    },
   });
 });

@@ -33,21 +33,26 @@ export default class {
    *  @return {Promise}   That return a `TucVoipLineFeature` instance.
    */
   fetchFeature(service) {
-    return this.OvhApiTelephony.Fax().v6().get({
-      billingAccount: service.billingAccount,
-      serviceName: service.serviceName,
-    }).$promise.then((featureOptions) => {
-      // create an instance of the feature with it's options
-      const feature = new this.TucVoipLineFeature(angular.extend(featureOptions, {
+    return this.OvhApiTelephony.Fax()
+      .v6()
+      .get({
         billingAccount: service.billingAccount,
-        featureType: service.featureType,
-      }));
+        serviceName: service.serviceName,
+      })
+      .$promise.then((featureOptions) => {
+        // create an instance of the feature with it's options
+        const feature = new this.TucVoipLineFeature(
+          angular.extend(featureOptions, {
+            billingAccount: service.billingAccount,
+            featureType: service.featureType,
+          }),
+        );
 
-      // set service feature with TucVoipLineFeature instance previously created
-      set(service, 'feature', feature);
+        // set service feature with TucVoipLineFeature instance previously created
+        set(service, 'feature', feature);
 
-      return service.feature;
-    });
+        return service.feature;
+      });
   }
 
   /**
@@ -65,12 +70,18 @@ export default class {
    *  @return {Promise}   That return the `TucVoipLineFeature` instance with saved value.
    */
   saveFeature(feature, featureOptions) {
-    return this.OvhApiTelephony.Fax().v6().edit({
-      billingAccount: feature.billingAccount,
-      serviceName: feature.serviceName,
-    }, featureOptions).$promise.then(() => {
-      // set the new options saved
-      feature.setOptions(featureOptions);
-    });
+    return this.OvhApiTelephony.Fax()
+      .v6()
+      .edit(
+        {
+          billingAccount: feature.billingAccount,
+          serviceName: feature.serviceName,
+        },
+        featureOptions,
+      )
+      .$promise.then(() => {
+        // set the new options saved
+        feature.setOptions(featureOptions);
+      });
   }
 }

@@ -13,5 +13,6 @@
   "mxPlan_price_without_tax": "Preço s/ IVA: ",
   "mxPlan_price_with_tax": "Preço c/ IVA: ",
   "mxPlan_order_action": "Encomendar",
-  "mxPlan_order_error_payment": "Ocorreu um erro ao carregar os métodos de pagamento disponíveis"
+  "mxPlan_order_error_payment": "Ocorreu um erro ao carregar os métodos de pagamento disponíveis",
+  "mxPlan_order_activate": "Ativar"
 }

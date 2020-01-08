@@ -4,7 +4,14 @@ import pick from 'lodash/pick';
 
 export default class {
   /* @ngInject */
-  constructor($q, $stateParams, $timeout, $uibModalInstance, OvhApiSms, receiver) {
+  constructor(
+    $q,
+    $stateParams,
+    $timeout,
+    $uibModalInstance,
+    OvhApiSms,
+    receiver,
+  ) {
     this.$q = $q;
     this.$stateParams = $stateParams;
     this.$timeout = $timeout;
@@ -29,25 +36,33 @@ export default class {
   }
 
   /**
-     * Edit receivers' list.
-     * @return {Promise}
-     */
+   * Edit receivers' list.
+   * @return {Promise}
+   */
   edit() {
     this.loading.editReceiver = true;
-    return this.$q.all([
-      this.api.sms.receivers.edit({
-        serviceName: this.$stateParams.serviceName,
-        slotId: this.model.receiver.slotId,
-      }, pick(this.model.receiver, this.attributes)).$promise,
-      this.$timeout(angular.noop, 1000),
-    ]).then(() => {
-      this.loading.editReceiver = false;
-      this.edited = true;
-      return this.$timeout(() => this.close(), 1000);
-    }).catch((error) => this.cancel({
-      type: 'API',
-      msg: error,
-    }));
+    return this.$q
+      .all([
+        this.api.sms.receivers.edit(
+          {
+            serviceName: this.$stateParams.serviceName,
+            slotId: this.model.receiver.slotId,
+          },
+          pick(this.model.receiver, this.attributes),
+        ).$promise,
+        this.$timeout(angular.noop, 1000),
+      ])
+      .then(() => {
+        this.loading.editReceiver = false;
+        this.edited = true;
+        return this.$timeout(() => this.close(), 1000);
+      })
+      .catch((error) =>
+        this.cancel({
+          type: 'API',
+          msg: error,
+        }),
+      );
   }
 
   cancel(message) {
@@ -59,9 +74,9 @@ export default class {
   }
 
   /**
-     * Has changed helper.
-     * @return {Boolean}
-     */
+   * Has changed helper.
+   * @return {Boolean}
+   */
   hasChanged() {
     return !isEqual(
       pick(this.model.receiver, this.attributes),

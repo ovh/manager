@@ -1,4 +1,5 @@
-angular.module('managerApp')
+angular
+  .module('managerApp')
   .controller('XdslDeconsolidationCtrl', function XdslDeconsolidationCtrl(
     $scope,
     $state,
@@ -25,7 +26,8 @@ angular.module('managerApp')
     this.openConfirmModal = function openConfirmModal() {
       const modal = $uibModal.open({
         animation: true,
-        templateUrl: 'app/telecom/pack/xdsl/access/deconsolidation/contract/pack-xdsl-access-deconsolidation-contract.modal.html',
+        templateUrl:
+          'app/telecom/pack/xdsl/access/deconsolidation/contract/pack-xdsl-access-deconsolidation-contract.modal.html',
         controller: 'XdslDeconsolidationContractCtrl',
         controllerAs: 'XdslDeconsolidationContract',
         resolve: {
@@ -41,7 +43,9 @@ angular.module('managerApp')
         if (result.status === 'todo' || result.status === 'doing') {
           $scope.access.tasks.current[result.function] = true;
         }
-        TucToast.success($translate.instant('xdsl_access_deconsolidation_success'));
+        TucToast.success(
+          $translate.instant('xdsl_access_deconsolidation_success'),
+        );
         $timeout(() => {
           $state.go('telecom.packs.pack.xdsl');
         }, 3000);
@@ -53,18 +57,20 @@ angular.module('managerApp')
     };
 
     this.checkRioCode = function checkRioCode() {
-      this.rioCodeIsValid = tucValidator.tucIsRio(self.model.rio, $stateParams.number);
+      this.rioCodeIsValid = tucValidator.tucIsRio(
+        self.model.rio,
+        $stateParams.number,
+      );
     };
 
     function updateIsLegacyOffer() {
-      return OvhApiPackXdsl.v6().get({
-        packId: $stateParams.packName,
-      }).$promise.then(
-        (data) => {
+      return OvhApiPackXdsl.v6()
+        .get({
+          packId: $stateParams.packName,
+        })
+        .$promise.then((data) => {
           self.isLegacyOffer = data.capabilities.isLegacyOffer;
-        },
-        TucToastError,
-      );
+        }, TucToastError);
     }
 
     function init() {

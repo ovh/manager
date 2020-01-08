@@ -1,42 +1,88 @@
-<p class="mb-4" data-translate="hosting_tab_DOMAINS_configuration_add_step2_mode_EXTERNAL_question"></p>
+<p
+    class="mb-4"
+    data-translate="hosting_tab_DOMAINS_configuration_add_step2_mode_EXTERNAL_question"
+></p>
 
-<form class="form-horizontal" name="domainAttacheModeExternalForm"
-      data-ng-controller="HostingDomainAttachModeExternalCtrl">
-
-    <div class="form-group" data-ng-class="{'has-error': domainsAlreadyExists() || domainIsNotValid() }">
-        <label class="control-label col-md-4" for="domainAttacheModeExternalFormSelectedDomain"
-               data-translate="hosting_tab_DOMAINS_configuration_add_step2_mode_EXTERNAL_domain_name"></label>
+<form
+    class="form-horizontal"
+    name="domainAttacheModeExternalForm"
+    data-ng-controller="HostingDomainAttachModeExternalCtrl"
+>
+    <div
+        class="form-group"
+        data-ng-class="{'has-error': domainsAlreadyExists() || domainIsNotValid() }"
+    >
+        <label
+            class="control-label col-md-4"
+            for="domainAttacheModeExternalFormSelectedDomain"
+            data-translate="hosting_tab_DOMAINS_configuration_add_step2_mode_EXTERNAL_domain_name"
+        ></label>
         <div class="col-md-6">
-            <input type="text" class="form-control" id="domainAttacheModeExternalFormSelectedDomain" placeholder="{{ 'hosting_tab_DOMAINS_configuration_add_step2_mode_EXTERNAL_domain_name_placeholder' | translate }}" required
-                   data-ng-model="selected.domain"
-                   data-ng-pattern="/.+\..+/">
-            <small class="help-block"
-                   data-translate="hosting_tab_DOMAINS_configuration_add_step2_common_domain_exists"
-                   data-ng-if="domainsAlreadyExists()"></small>
-            <small class="help-block"
-                   data-translate="hosting_tab_DOMAINS_configuration_add_step2_common_domain_invalid"
-                   data-ng-if="domainIsNotValid()"></small>
+            <input
+                type="text"
+                class="form-control"
+                id="domainAttacheModeExternalFormSelectedDomain"
+                placeholder="{{ 'hosting_tab_DOMAINS_configuration_add_step2_mode_EXTERNAL_domain_name_placeholder' | translate }}"
+                required
+                data-ng-model="selected.domain"
+                data-ng-pattern="/.+\..+/"
+            />
+            <small
+                class="help-block"
+                data-translate="hosting_tab_DOMAINS_configuration_add_step2_common_domain_exists"
+                data-ng-if="domainsAlreadyExists()"
+            ></small>
+            <small
+                class="help-block"
+                data-translate="hosting_tab_DOMAINS_configuration_add_step2_common_domain_invalid"
+                data-ng-if="domainIsNotValid()"
+            ></small>
         </div>
 
-        <div class="col-md-8 col-md-offset-4"
-             data-ng-show="selected.domain && selected.domain !== selected.domainWww">
+        <div
+            class="col-md-8 col-md-offset-4"
+            data-ng-show="selected.domain && selected.domain !== selected.domainWww"
+        >
             <div class="oui-checkbox mt-3 mb-0">
-                <input type="checkbox" class="oui-checkbox__input" id="domainWwwNeeded"
-                       data-ng-disabled="selected.domain == selected.domainWww || domainsAlreadyExists(true)"
-                       data-ng-model="selected.domainWwwNeeded">
-                <label class="oui-checkbox__label-container" for="domainWwwNeeded">
+                <input
+                    type="checkbox"
+                    class="oui-checkbox__input"
+                    id="domainWwwNeeded"
+                    data-ng-disabled="selected.domain == selected.domainWww || domainsAlreadyExists(true)"
+                    data-ng-model="selected.domainWwwNeeded"
+                />
+                <label
+                    class="oui-checkbox__label-container"
+                    for="domainWwwNeeded"
+                >
                     <span class="oui-checkbox__label">
-                        <span data-translate="hosting_tab_DOMAINS_configuration_add_step2_mode_EXTERNAL_domain_name_www_question"
-                              data-translate-values="{ t0: getSelectedDomainToDisplay(true) }"
-                              data-ng-if="!domainsAlreadyExists(true)"></span>
-                        <span data-translate="hosting_tab_DOMAINS_configuration_add_step2_common_domain_exists_with_name"
-                              data-translate-values="{ t0: getSelectedDomainToDisplay(true) }"
-                              data-ng-if="domainsAlreadyExists(true)"></span>
+                        <span
+                            data-translate="hosting_tab_DOMAINS_configuration_add_step2_mode_EXTERNAL_domain_name_www_question"
+                            data-translate-values="{ t0: getSelectedDomainToDisplay(true) }"
+                            data-ng-if="!domainsAlreadyExists(true)"
+                        ></span>
+                        <span
+                            data-translate="hosting_tab_DOMAINS_configuration_add_step2_common_domain_exists_with_name"
+                            data-translate-values="{ t0: getSelectedDomainToDisplay(true) }"
+                            data-ng-if="domainsAlreadyExists(true)"
+                        ></span>
                         <span class="oui-checkbox__icon">
-                            <span class="oui-icon oui-icon-checkbox-unchecked" aria-hidden="true"></span>
-                            <span class="oui-icon oui-icon-checkbox-checked" aria-hidden="true"></span>
-                            <span class="oui-icon oui-icon-checkbox-checkmark" aria-hidden="true"></span>
-                            <span class="oui-icon oui-icon-checkbox-indeterminate" aria-hidden="true"></span>
+                            <span
+                                class="oui-icon oui-icon-checkbox-unchecked"
+                                aria-hidden="true"
+                            ></span>
+                            <span
+                                class="oui-icon oui-icon-checkbox-checked"
+                                aria-hidden="true"
+                            ></span>
+                            <span
+                                class="oui-icon oui-icon-checkbox-checkmark"
+                                aria-hidden="true"
+                            ></span>
+                            <span
+                                class="oui-icon oui-icon-checkbox-indeterminate"
+                                aria-hidden="true"
+                            ></span>
                         </span>
                     </span>
                 </label>
@@ -45,52 +91,99 @@
     </div>
 
     <div class="form-group" data-ng-class="{'has-error': !isPathValid()}">
-        <label class="control-label col-md-4" for="domainAttacheModeExternalFormSelectedPath"
-               data-translate="hosting_tab_DOMAINS_configuration_add_step2_mode_EXTERNAL_home"></label>
+        <label
+            class="control-label col-md-4"
+            for="domainAttacheModeExternalFormSelectedPath"
+            data-translate="hosting_tab_DOMAINS_configuration_add_step2_mode_EXTERNAL_home"
+        ></label>
         <div class="col-md-6">
             <div class="input-group">
                 <span class="input-group-addon">./</span>
-                <input type="text" class="form-control" id="domainAttacheModeExternalFormSelectedPath" name="selectedPath"
-                       data-ng-model="selected.path">
+                <input
+                    type="text"
+                    class="form-control"
+                    id="domainAttacheModeExternalFormSelectedPath"
+                    name="selectedPath"
+                    data-ng-model="selected.path"
+                />
             </div>
-            <small class="help-block"
-                   data-translate="hosting_common_path_help_inline"
-                   data-ng-if="!isPathValid()"></small>
+            <small
+                class="help-block"
+                data-translate="hosting_common_path_help_inline"
+                data-ng-if="!isPathValid()"
+            ></small>
         </div>
     </div>
 
     <div class="form-group" data-ng-if="hosting.isCloudWeb">
-        <label class="control-label col-md-4" for="selectedRuntime" data-translate="hosting_tab_DOMAINS_configuration_modify_step1_runtime"></label>
+        <label
+            class="control-label col-md-4"
+            for="selectedRuntime"
+            data-translate="hosting_tab_DOMAINS_configuration_modify_step1_runtime"
+        ></label>
         <div data-ng-if="loaders.runtimes">
             <oui-spinner data-size="s"></oui-spinner>
         </div>
 
         <div class="col-md-8" data-ng-if="!loaders.runtimes">
             <div class="oui-select oui-select_inline mb-0">
-                <select class="oui-select__input" id="selectedRuntime" required
-                        data-ng-model="selected.runtime"
-                        data-ng-options="runtime.name for runtime in model.runtimes track by runtime.name">
-                    <option value="" data-translate="select_placeholder" disabled></option>
+                <select
+                    class="oui-select__input"
+                    id="selectedRuntime"
+                    required
+                    data-ng-model="selected.runtime"
+                    data-ng-options="runtime.name for runtime in model.runtimes track by runtime.name"
+                >
+                    <option
+                        value=""
+                        data-translate="select_placeholder"
+                        disabled
+                    ></option>
                 </select>
-                <span class="oui-icon oui-icon-chevron-down" aria-hidden="true"></span>
+                <span
+                    class="oui-icon oui-icon-chevron-down"
+                    aria-hidden="true"
+                ></span>
             </div>
         </div>
     </div>
 
     <div class="form-group">
-        <label class="control-label col-md-4" for="domainAttacheModeExternalFormSelectedIpv6"
-               data-translate="hosting_tab_DOMAINS_configuration_add_step2_mode_EXTERNAL_ipv6"></label>
+        <label
+            class="control-label col-md-4"
+            for="domainAttacheModeExternalFormSelectedIpv6"
+            data-translate="hosting_tab_DOMAINS_configuration_add_step2_mode_EXTERNAL_ipv6"
+        ></label>
         <div class="col-md-6">
             <div class="oui-checkbox mt-3 mb-0">
-                <input type="checkbox" class="oui-checkbox__input" id="domainAttacheModeExternalFormSelectedIpv6"
-                       data-ng-model="selected.ipv6Needed">
-                <label class="oui-checkbox__label-container" for="domainAttacheModeExternalFormSelectedIpv6">
+                <input
+                    type="checkbox"
+                    class="oui-checkbox__input"
+                    id="domainAttacheModeExternalFormSelectedIpv6"
+                    data-ng-model="selected.ipv6Needed"
+                />
+                <label
+                    class="oui-checkbox__label-container"
+                    for="domainAttacheModeExternalFormSelectedIpv6"
+                >
                     <span class="oui-checkbox__label">
                         <span class="oui-checkbox__icon">
-                            <span class="oui-icon oui-icon-checkbox-unchecked" aria-hidden="true"></span>
-                            <span class="oui-icon oui-icon-checkbox-checked" aria-hidden="true"></span>
-                            <span class="oui-icon oui-icon-checkbox-checkmark" aria-hidden="true"></span>
-                            <span class="oui-icon oui-icon-checkbox-indeterminate" aria-hidden="true"></span>
+                            <span
+                                class="oui-icon oui-icon-checkbox-unchecked"
+                                aria-hidden="true"
+                            ></span>
+                            <span
+                                class="oui-icon oui-icon-checkbox-checked"
+                                aria-hidden="true"
+                            ></span>
+                            <span
+                                class="oui-icon oui-icon-checkbox-checkmark"
+                                aria-hidden="true"
+                            ></span>
+                            <span
+                                class="oui-icon oui-icon-checkbox-indeterminate"
+                                aria-hidden="true"
+                            ></span>
                         </span>
                     </span>
                 </label>
@@ -98,4 +191,3 @@
         </div>
     </div>
 </form>
-

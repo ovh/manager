@@ -3,9 +3,9 @@ import has from 'lodash/has';
 import includes from 'lodash/includes';
 import isEmpty from 'lodash/isEmpty';
 
-angular
-  .module('Billing.services')
-  .service('billingRenewHelper', class BillingrenewHelper {
+angular.module('Billing.services').service(
+  'billingRenewHelper',
+  class BillingrenewHelper {
     constructor($filter, $translate) {
       this.$filter = $filter;
       this.$translate = $translate;
@@ -14,15 +14,23 @@ angular
     getRenewDateFormated(service) {
       if (!service) {
         return '';
-      } if (this.serviceHasAutomaticRenew(service)) {
-        return upperFirst(this.$filter('date')(service.expiration, 'MMMM yyyy'));
+      }
+      if (this.serviceHasAutomaticRenew(service)) {
+        return upperFirst(
+          this.$filter('date')(service.expiration, 'MMMM yyyy'),
+        );
       }
 
-      const translationId = moment().isAfter(moment(service.expiration)) ? 'autorenew_service_after_expiration_date' : 'autorenew_service_expiration_date';
+      const translationId = moment().isAfter(moment(service.expiration))
+        ? 'autorenew_service_after_expiration_date'
+        : 'autorenew_service_expiration_date';
 
       // Prevent accent sanitization issue with angular-translate
       // https://github.com/angular-translate/angular-translate/issues/1101
-      return `${this.$translate.instant(translationId)} ${this.$filter('date')(service.expiration, 'mediumDate')}`;
+      return `${this.$translate.instant(translationId)} ${this.$filter('date')(
+        service.expiration,
+        'mediumDate',
+      )}`;
     }
 
     getRenewLabel(service) {
@@ -53,7 +61,11 @@ angular
 
     /* eslint-disable class-methods-use-this */
     serviceHasAutomaticRenew(service) {
-      return has(service, 'renew') && (service.renew.forced || service.renew.automatic) && !(service.renew.deleteAtExpiration || service.status === 'EXPIRED');
+      return (
+        has(service, 'renew') &&
+        (service.renew.forced || service.renew.automatic) &&
+        !(service.renew.deleteAtExpiration || service.status === 'EXPIRED')
+      );
     }
     /* eslint-enable class-methods-use-this */
 
@@ -80,4 +92,5 @@ angular
 
       return txt;
     }
-  });
+  },
+);

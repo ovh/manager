@@ -21,10 +21,18 @@ class LogsStreamsService {
     this.$q = $q;
     this.$translate = $translate;
     this.LogsApiService = OvhApiDbaas.Logs().v6();
-    this.StreamsApiService = OvhApiDbaas.Logs().Stream().v6();
-    this.StreamsAapiService = OvhApiDbaas.Logs().Stream().Aapi();
-    this.AccountingAapiService = OvhApiDbaas.Logs().Accounting().Aapi();
-    this.DetailsAapiService = OvhApiDbaas.Logs().Details().Aapi();
+    this.StreamsApiService = OvhApiDbaas.Logs()
+      .Stream()
+      .v6();
+    this.StreamsAapiService = OvhApiDbaas.Logs()
+      .Stream()
+      .Aapi();
+    this.AccountingAapiService = OvhApiDbaas.Logs()
+      .Accounting()
+      .Aapi();
+    this.DetailsAapiService = OvhApiDbaas.Logs()
+      .Details()
+      .Aapi();
     this.LogsHomeService = LogsHomeService;
     this.LogsOptionsService = LogsOptionsService;
     this.LogsStreamsAlertsService = LogsStreamsAlertsService;
@@ -115,8 +123,12 @@ class LogsStreamsService {
    */
   getStreams(serviceName) {
     return this.getStreamDetails(serviceName)
-      .then((streams) => streams.map((stream) => this.transformStream(serviceName, stream)))
-      .catch((err) => this.LogsHelperService.handleError('logs_streams_get_error', err, {}));
+      .then((streams) =>
+        streams.map((stream) => this.transformStream(serviceName, stream)),
+      )
+      .catch((err) =>
+        this.LogsHelperService.handleError('logs_streams_get_error', err, {}),
+      );
   }
 
   /**
@@ -129,8 +141,12 @@ class LogsStreamsService {
    */
   getOwnStreams(serviceName) {
     return this.getStreamDetails(serviceName)
-      .then((streams) => streams.filter((aapiStream) => aapiStream.info.isEditable))
-      .catch((err) => this.LogsHelperService.handleError('logs_streams_get_error', err, {}));
+      .then((streams) =>
+        streams.filter((aapiStream) => aapiStream.info.isEditable),
+      )
+      .catch((err) =>
+        this.LogsHelperService.handleError('logs_streams_get_error', err, {}),
+      );
   }
 
   /**
@@ -143,8 +159,12 @@ class LogsStreamsService {
    */
   getShareableStreams(serviceName) {
     return this.getStreamDetails(serviceName)
-      .then((streams) => streams.filter((aapiStream) => aapiStream.info.isShareable))
-      .catch((err) => this.LogsHelperService.handleError('logs_streams_get_error', err, {}));
+      .then((streams) =>
+        streams.filter((aapiStream) => aapiStream.info.isShareable),
+      )
+      .catch((err) =>
+        this.LogsHelperService.handleError('logs_streams_get_error', err, {}),
+      );
   }
 
   /**
@@ -155,11 +175,12 @@ class LogsStreamsService {
    * @memberof LogsStreamsService
    */
   getStreamDetails(serviceName) {
-    return this.getAllStreams(serviceName)
-      .then((streams) => {
-        const promises = streams.map((stream) => this.getAapiStream(serviceName, stream));
-        return this.$q.all(promises);
-      });
+    return this.getAllStreams(serviceName).then((streams) => {
+      const promises = streams.map((stream) =>
+        this.getAapiStream(serviceName, stream),
+      );
+      return this.$q.all(promises);
+    });
   }
 
   /**
@@ -171,9 +192,12 @@ class LogsStreamsService {
    * @memberof LogsStreamsService
    */
   getStream(serviceName, streamId) {
-    return this.StreamsApiService.get({ serviceName, streamId })
-      .$promise
-      .catch((err) => this.LogsHelperService.handleError('logs_stream_get_error', err, {}));
+    return this.StreamsApiService.get({
+      serviceName,
+      streamId,
+    }).$promise.catch((err) =>
+      this.LogsHelperService.handleError('logs_stream_get_error', err, {}),
+    );
   }
 
   /**
@@ -185,9 +209,12 @@ class LogsStreamsService {
    * @memberof LogsStreamsService
    */
   getAapiStream(serviceName, streamId) {
-    return this.StreamsAapiService.get({ serviceName, streamId })
-      .$promise
-      .catch((err) => this.LogsHelperService.handleError('logs_stream_get_error', err, {}));
+    return this.StreamsAapiService.get({
+      serviceName,
+      streamId,
+    }).$promise.catch((err) =>
+      this.LogsHelperService.handleError('logs_stream_get_error', err, {}),
+    );
   }
 
   /**
@@ -199,13 +226,24 @@ class LogsStreamsService {
    * @memberof LogsStreamsService
    */
   deleteStream(serviceName, stream) {
-    return this.StreamsApiService.delete({ serviceName, streamId: stream.streamId }, stream)
-      .$promise
-      .then((operation) => {
+    return this.StreamsApiService.delete(
+      { serviceName, streamId: stream.streamId },
+      stream,
+    )
+      .$promise.then((operation) => {
         this.resetAllCache();
-        return this.LogsHelperService.handleOperation(serviceName, operation.data || operation, 'logs_stream_delete_success', { streamName: stream.title });
+        return this.LogsHelperService.handleOperation(
+          serviceName,
+          operation.data || operation,
+          'logs_stream_delete_success',
+          { streamName: stream.title },
+        );
       })
-      .catch((err) => this.LogsHelperService.handleError('logs_stream_delete_error', err, { streamName: stream.title }));
+      .catch((err) =>
+        this.LogsHelperService.handleError('logs_stream_delete_error', err, {
+          streamName: stream.title,
+        }),
+      );
   }
 
   /**
@@ -217,7 +255,8 @@ class LogsStreamsService {
    * @memberof LogsStreamsService
    */
   createStream(serviceName, stream) {
-    return this.StreamsApiService.create({ serviceName },
+    return this.StreamsApiService.create(
+      { serviceName },
       {
         coldStorageCompression: stream.coldStorageCompression,
         coldStorageContent: stream.coldStorageContent,
@@ -230,13 +269,22 @@ class LogsStreamsService {
         optionId: stream.optionId,
         title: stream.title,
         webSocketEnabled: stream.webSocketEnabled,
-      })
-      .$promise
-      .then((operation) => {
+      },
+    )
+      .$promise.then((operation) => {
         this.resetAllCache();
-        return this.LogsHelperService.handleOperation(serviceName, operation.data || operation, 'logs_stream_create_success', { streamName: stream.title });
+        return this.LogsHelperService.handleOperation(
+          serviceName,
+          operation.data || operation,
+          'logs_stream_create_success',
+          { streamName: stream.title },
+        );
       })
-      .catch((err) => this.LogsHelperService.handleError('logs_stream_create_error', err, { streamName: stream.title }));
+      .catch((err) =>
+        this.LogsHelperService.handleError('logs_stream_create_error', err, {
+          streamName: stream.title,
+        }),
+      );
   }
 
   /**
@@ -248,7 +296,8 @@ class LogsStreamsService {
    * @memberof LogsStreamsService
    */
   updateStream(serviceName, stream) {
-    return this.StreamsApiService.update({ serviceName, streamId: stream.streamId },
+    return this.StreamsApiService.update(
+      { serviceName, streamId: stream.streamId },
       {
         coldStorageCompression: stream.coldStorageCompression,
         coldStorageContent: stream.coldStorageContent,
@@ -261,13 +310,22 @@ class LogsStreamsService {
         optionId: stream.optionId,
         title: stream.title,
         webSocketEnabled: stream.webSocketEnabled,
-      })
-      .$promise
-      .then((operation) => {
+      },
+    )
+      .$promise.then((operation) => {
         this.resetAllCache();
-        return this.LogsHelperService.handleOperation(serviceName, operation.data || operation, 'logs_stream_update_success', { streamName: stream.title });
+        return this.LogsHelperService.handleOperation(
+          serviceName,
+          operation.data || operation,
+          'logs_stream_update_success',
+          { streamName: stream.title },
+        );
       })
-      .catch((err) => this.LogsHelperService.handleError('logs_stream_update_error', err, { streamName: stream.title }));
+      .catch((err) =>
+        this.LogsHelperService.handleError('logs_stream_update_error', err, {
+          streamName: stream.title,
+        }),
+      );
   }
 
   /**
@@ -290,24 +348,38 @@ class LogsStreamsService {
    * @memberof LogsStreamsService
    */
   getQuota(serviceName) {
-    return this.AccountingAapiService.me({ serviceName }).$promise
-      .then((me) => {
+    return this.AccountingAapiService.me({ serviceName })
+      .$promise.then((me) => {
         const quota = {
           max: me.total.maxNbStream,
           configured: me.total.curNbStream,
           currentUsage: (me.total.curNbStream * 100) / me.total.maxNbStream,
         };
         return quota;
-      }).catch((err) => this.LogsHelperService.handleError('logs_streams_quota_get_error', err, {}));
+      })
+      .catch((err) =>
+        this.LogsHelperService.handleError(
+          'logs_streams_quota_get_error',
+          err,
+          {},
+        ),
+      );
   }
 
   getMainOffer(serviceName) {
-    return this.AccountingAapiService.me({ serviceName }).$promise
-      .then((me) => ({
+    return this.AccountingAapiService.me({ serviceName })
+      .$promise.then((me) => ({
         max: me.offer.maxNbStream,
         current: me.offer.curNbStream,
         planCode: me.offer.reference,
-      })).catch((err) => this.LogsHelperService.handleError('logs_main_offer_get_error', err, {}));
+      }))
+      .catch((err) =>
+        this.LogsHelperService.handleError(
+          'logs_main_offer_get_error',
+          err,
+          {},
+        ),
+      );
   }
 
   getCompressionAlgorithms() {
@@ -363,9 +435,16 @@ class LogsStreamsService {
    * @memberof LogsStreamsService
    */
   getStreamGraylogUrl(stream) {
-    const url = this.CucUrlHelper.constructor.findUrl(stream, this.LogsConstants.GRAYLOG_WEBUI);
+    const url = this.CucUrlHelper.constructor.findUrl(
+      stream,
+      this.LogsConstants.GRAYLOG_WEBUI,
+    );
     if (stream.indexingEnabled && !url) {
-      this.CucCloudMessage.error(this.$translate.instant('logs_streams_get_graylog_url_error', { stream: stream.info.title }));
+      this.CucCloudMessage.error(
+        this.$translate.instant('logs_streams_get_graylog_url_error', {
+          stream: stream.info.title,
+        }),
+      );
     }
     return url;
   }
@@ -382,12 +461,16 @@ class LogsStreamsService {
     if (token) {
       const error = this.CucControllerHelper.constructor.copyToClipboard(token);
       if (error) {
-        this.CucCloudMessage.error(this.$translate.instant('logs_streams_copy_token_error', {
-          stream: stream.info.title,
-          token_value: token,
-        }));
+        this.CucCloudMessage.error(
+          this.$translate.instant('logs_streams_copy_token_error', {
+            stream: stream.info.title,
+            token_value: token,
+          }),
+        );
       } else {
-        this.CucCloudMessage.info(this.$translate.instant('logs_streams_copy_token_success'));
+        this.CucCloudMessage.info(
+          this.$translate.instant('logs_streams_copy_token_success'),
+        );
       }
     }
   }
@@ -401,7 +484,11 @@ class LogsStreamsService {
   getStreamToken(stream) {
     const token = this.findStreamTokenValue(stream);
     if (!token) {
-      this.CucCloudMessage.error(this.$translate.instant('logs_streams_find_token_error', { stream: stream.info.title }));
+      this.CucCloudMessage.error(
+        this.$translate.instant('logs_streams_find_token_error', {
+          stream: stream.info.title,
+        }),
+      );
     }
     return token;
   }
@@ -412,7 +499,10 @@ class LogsStreamsService {
    * @return {string} stream token if found, empty string otherwise
    */
   findStreamTokenValue(stream) {
-    const ruleObj = find(stream.rules, (rule) => rule.field === this.LogsConstants.X_OVH_TOKEN);
+    const ruleObj = find(
+      stream.rules,
+      (rule) => rule.field === this.LogsConstants.X_OVH_TOKEN,
+    );
     return get(ruleObj, 'value');
   }
 
@@ -439,15 +529,19 @@ class LogsStreamsService {
     set(stream, 'info.notifications', []);
     set(stream, 'info.archives', []);
     // asynchronously fetch all notification of a stream
-    this.LogsStreamsAlertsService.getAlertIds(serviceName, stream.info.streamId)
-      .then((notifications) => {
-        set(stream, 'info.notifications', notifications);
-      });
+    this.LogsStreamsAlertsService.getAlertIds(
+      serviceName,
+      stream.info.streamId,
+    ).then((notifications) => {
+      set(stream, 'info.notifications', notifications);
+    });
     // asynchronously fetch all archives of a stream
-    this.LogsStreamsArchivesService.getArchiveIds(serviceName, stream.info.streamId)
-      .then((archives) => {
-        set(stream, 'info.archives', archives);
-      });
+    this.LogsStreamsArchivesService.getArchiveIds(
+      serviceName,
+      stream.info.streamId,
+    ).then((archives) => {
+      set(stream, 'info.archives', archives);
+    });
     return stream;
   }
 

@@ -7,12 +7,10 @@ import IplbHeaderTemplate from '../header/iplb-dashboard-header.html';
 const moduleName = 'ovhManagerIplbGraph';
 
 angular
-  .module(moduleName, [
-    'ui.router',
-  ])
-  .config(/* @ngInject */($stateProvider) => {
-    $stateProvider
-      .state('network.iplb.detail.graph', {
+  .module(moduleName, ['ui.router'])
+  .config(
+    /* @ngInject */ ($stateProvider) => {
+      $stateProvider.state('network.iplb.detail.graph', {
         url: '/graph',
         views: {
           iplbHeader: {
@@ -31,8 +29,12 @@ angular
           format: 'json',
         },
       });
-  })
-  .controller('IpLoadBalancerDashboardHeaderCtrl', IpLoadBalancerDashboardHeaderCtrl)
+    },
+  )
+  .controller(
+    'IpLoadBalancerDashboardHeaderCtrl',
+    IpLoadBalancerDashboardHeaderCtrl,
+  )
   .controller('IpLoadBalancerGraphCtrl', IpLoadBalancerGraphCtrl)
   .run(/* @ngTranslationsInject:json ./translations */);
 

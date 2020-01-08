@@ -7,7 +7,9 @@ export default function groupPortaByNumbers(portabilities) {
     numbers = portability.numbersList.map((number) => ({
       number,
       portability,
-      lastStepDone: find(portability.steps.slice().reverse(), { status: 'done' }),
+      lastStepDone: find(portability.steps.slice().reverse(), {
+        status: 'done',
+      }),
     }));
   });
   return numbers;

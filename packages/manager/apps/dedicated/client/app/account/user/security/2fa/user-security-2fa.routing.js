@@ -1,6 +1,5 @@
-angular
-  .module('UserAccount')
-  .config(/* @ngInject */($stateProvider) => {
+angular.module('UserAccount').config(
+  /* @ngInject */ ($stateProvider) => {
     $stateProvider.state('app.account.user.security.mfa', {
       url: '/mfa',
       templateUrl: 'account/user/security/2fa/user-security-2fa.html',
@@ -13,4 +12,5 @@ angular
       },
       toChilds: true,
     });
-  });
+  },
+);

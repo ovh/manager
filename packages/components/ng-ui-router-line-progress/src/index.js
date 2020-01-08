@@ -7,10 +7,6 @@ import './ng-ui-router-line-progress.less';
 
 const moduleName = 'ngUiRouterLineProgress';
 
-angular
-  .module(moduleName, [
-    'ui.router',
-  ])
-  .run(config);
+angular.module(moduleName, ['ui.router']).run(config);
 
 export default moduleName;

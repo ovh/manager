@@ -15,7 +15,8 @@ angular.module('managerApp').config(($stateProvider) => {
       url: '/',
       views: {
         logsAlerts: {
-          templateUrl: 'app/dbaas/logs/detail/streams/alerts/home/alerts-home.html',
+          templateUrl:
+            'app/dbaas/logs/detail/streams/alerts/home/alerts-home.html',
           controller: 'LogsStreamsAlertsHomeCtrl',
           controllerAs: 'ctrl',
         },
@@ -25,7 +26,8 @@ angular.module('managerApp').config(($stateProvider) => {
       url: '/add/:type',
       views: {
         logsAlerts: {
-          templateUrl: 'app/dbaas/logs/detail/streams/alerts/add/alerts-add.html',
+          templateUrl:
+            'app/dbaas/logs/detail/streams/alerts/add/alerts-add.html',
           controller: 'LogsStreamsAlertsAddCtrl',
           controllerAs: 'ctrl',
         },
@@ -35,7 +37,8 @@ angular.module('managerApp').config(($stateProvider) => {
       url: '/:alertId',
       views: {
         logsAlerts: {
-          templateUrl: 'app/dbaas/logs/detail/streams/alerts/add/alerts-add.html',
+          templateUrl:
+            'app/dbaas/logs/detail/streams/alerts/add/alerts-add.html',
           controller: 'LogsStreamsAlertsAddCtrl',
           controllerAs: 'ctrl',
         },

@@ -2,11 +2,7 @@ import get from 'lodash/get';
 
 export default class PciInstanceDeleteController {
   /* @ngInject */
-  constructor(
-    $translate,
-    CucCloudMessage,
-    PciProjectsProjectInstanceService,
-  ) {
+  constructor($translate, CucCloudMessage, PciProjectsProjectInstanceService) {
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
     this.PciProjectsProjectInstanceService = PciProjectsProjectInstanceService;
@@ -18,26 +14,32 @@ export default class PciInstanceDeleteController {
 
   deleteInstance() {
     this.isLoading = true;
-    return this.PciProjectsProjectInstanceService
-      .delete(this.projectId, this.instance)
-      .then(() => this.goBack(
-        this.$translate.instant(
-          'pci_projects_project_instances_instance_delete_success_message',
-          {
-            instance: this.instance.name,
-          },
+    return this.PciProjectsProjectInstanceService.delete(
+      this.projectId,
+      this.instance,
+    )
+      .then(() =>
+        this.goBack(
+          this.$translate.instant(
+            'pci_projects_project_instances_instance_delete_success_message',
+            {
+              instance: this.instance.name,
+            },
+          ),
         ),
-      ))
-      .catch((err) => this.goBack(
-        this.$translate.instant(
-          'pci_projects_project_instances_instance_delete_error_delete',
-          {
-            message: get(err, 'data.message', null),
-            instance: this.instance.name,
-          },
+      )
+      .catch((err) =>
+        this.goBack(
+          this.$translate.instant(
+            'pci_projects_project_instances_instance_delete_error_delete',
+            {
+              message: get(err, 'data.message', null),
+              instance: this.instance.name,
+            },
+          ),
+          'error',
         ),
-        'error',
-      ))
+      )
       .finally(() => {
         this.isLoading = false;
       });

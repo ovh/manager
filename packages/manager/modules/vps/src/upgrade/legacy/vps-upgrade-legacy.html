@@ -1,19 +1,29 @@
-<section class="cui-page__content cui-page__content-flex cui-page__content-narrow">
-    <oui-back-button data-heading="{{ ::'vps_configuration_upgradevps_title' | translate }}"
-                     data-on-click="$ctrl.cancel()">
+<section
+    class="cui-page__content cui-page__content-flex cui-page__content-narrow"
+>
+    <oui-back-button
+        data-heading="{{ ::'vps_configuration_upgradevps_title' | translate }}"
+        data-on-click="$ctrl.cancel()"
+    >
     </oui-back-button>
 
-    <oui-stepper data-linear
+    <oui-stepper
+        data-linear
         data-on-init="$ctrl.loadUpgradesList()"
-        data-on-finish="$ctrl.confirm()">
-        <oui-step-form data-header="{{ ::'vps_configuration_upgradevps_step1_title' | translate }}"
+        data-on-finish="$ctrl.confirm()"
+    >
+        <oui-step-form
+            data-header="{{ ::'vps_configuration_upgradevps_step1_title' | translate }}"
             data-loading="$ctrl.loaders.step1"
             data-on-focus="$ctrl.completed.step1 = false"
-            data-on-submit="$ctrl.validateStep1()">
+            data-on-submit="$ctrl.validateStep1()"
+        >
             <div class="cui-grid-list">
-                <div class="cui-grid-list-item cui-grid-cell"
-                     data-ng-repeat="upgrade in $ctrl.upgradesList track by $index"
-                     data-ng-if="!$ctrl.completed.step1 || (upgrade.model === $ctrl.selectedModel.model)">
+                <div
+                    class="cui-grid-list-item cui-grid-cell"
+                    data-ng-repeat="upgrade in $ctrl.upgradesList track by $index"
+                    data-ng-if="!$ctrl.completed.step1 || (upgrade.model === $ctrl.selectedModel.model)"
+                >
                     <oui-radio
                         id="{{upgrade.model + ':' + upgrade.name}}"
                         name="{{upgrade.model + ':' + upgrade.name}}"
@@ -22,47 +32,69 @@
                         data-value="upgrade.model + ':' + upgrade.name"
                         data-thumbnail="true"
                         data-disabled="!upgrade.isAvailable || upgrade.isCurrentModel"
-                        required>
+                        required
+                    >
                         <span class="oui-radio__section">
                             <span class="d-flex flex-wrap">
-                                <span data-translate="vps_configuration_upgradevps_label_core"></span>
-                                <span class="ml-auto"
-                                data-ng-bind="upgrade.vcore + ' ' + ('vps_configuration_upgradevps_step1_table_vcore_' + (upgrade.vcore > 1 ? 'other' : '1') | translate)">
+                                <span
+                                    data-translate="vps_configuration_upgradevps_label_core"
+                                ></span>
+                                <span
+                                    class="ml-auto"
+                                    data-ng-bind="upgrade.vcore + ' ' + ('vps_configuration_upgradevps_step1_table_vcore_' + (upgrade.vcore > 1 ? 'other' : '1') | translate)"
+                                >
                                 </span>
                             </span>
                             <span class="d-flex flex-wrap">
-                                <span data-translate="vps_configuration_upgradevps_label_ram"></span>
+                                <span
+                                    data-translate="vps_configuration_upgradevps_label_ram"
+                                ></span>
                                 <span class="ml-auto">
-                                    {{ upgrade.ram.value }} {{ 'unit_size_' + upgrade.ram.unit | translate }}
+                                    {{ upgrade.ram.value }} {{ 'unit_size_' +
+                                    upgrade.ram.unit | translate }}
                                 </span>
                             </span>
                             <span class="d-flex flex-wrap">
-                                <span data-translate="vps_configuration_upgradevps_label_disk"></span>
+                                <span
+                                    data-translate="vps_configuration_upgradevps_label_disk"
+                                ></span>
                                 <span class="ml-auto">
-                                    {{ upgrade.disk.value }} {{ 'unit_size_' + upgrade.disk.unit | translate }}
+                                    {{ upgrade.disk.value }} {{ 'unit_size_' +
+                                    upgrade.disk.unit | translate }}
                                 </span>
                             </span>
                         </span>
                         <span class="oui-radio__section text-right">
                             <strong class="d-block">
-                                {{ upgrade.monthPrice }} {{ ::'vps_configuration_upgradevps_step1_table_price_monthly' | translate }}
+                                {{ upgrade.monthPrice }} {{
+                                ::'vps_configuration_upgradevps_step1_table_price_monthly'
+                                | translate }}
                             </strong>
                         </span>
                     </oui-radio>
                 </div>
             </div>
         </oui-step-form>
-        <oui-step-form data-header="{{:: 'vps_configuration_upgradevps_step2_title' | translate }}"
+        <oui-step-form
+            data-header="{{:: 'vps_configuration_upgradevps_step2_title' | translate }}"
             data-loading="$ctrl.loaders.step2"
-            data-on-focus="$ctrl.initVpsConditions()">
-            <div data-ng-repeat="contract in $ctrl.order.contracts track by $index">
-                <a target="_blank"
+            data-on-focus="$ctrl.initVpsConditions()"
+        >
+            <div
+                data-ng-repeat="contract in $ctrl.order.contracts track by $index"
+            >
+                <a
+                    target="_blank"
                     rel="noopener"
                     class="oui-link oui-link_icon"
                     title="{{ contract.name + ' (' + ('vps_common_new_window' | translate) + ')' }}"
-                    data-ng-href="{{ contract.url }}">
+                    data-ng-href="{{ contract.url }}"
+                >
                     <span data-ng-bind="contract.name"></span>
-                    <span class="oui-icon oui-icon-external_link" aria-hidden="true"></span>
+                    <span
+                        class="oui-icon oui-icon-external_link"
+                        aria-hidden="true"
+                    ></span>
                 </a>
             </div>
             <oui-checkbox
@@ -70,30 +102,46 @@
                 id="contractsValidated"
                 name="contractsValidated"
                 data-model="$ctrl.conditionsAgree"
-                required>
+                required
+            >
             </oui-checkbox>
         </oui-step-form>
-        <oui-step-form data-header="{{ ::'vps_configuration_upgradevps_step3_title' | translate }}"
-            data-submit-text="{{ ::'vps_configuration_upgradevps_order' | translate }}">
+        <oui-step-form
+            data-header="{{ ::'vps_configuration_upgradevps_step3_title' | translate }}"
+            data-submit-text="{{ ::'vps_configuration_upgradevps_order' | translate }}"
+        >
             <dl class="vps-dl-horizontal">
-                <dt class="vps-item-horizontal"
+                <dt
+                    class="vps-item-horizontal"
                     data-translate="vps_configuration_upgradevps_step2_price1"
-                    data-translate-values="{ duration: $ctrl.selectedModelForUpgrade.duration.dateFormatted}"></dt>
+                    data-translate-values="{ duration: $ctrl.selectedModelForUpgrade.duration.dateFormatted}"
+                ></dt>
                 <dd class="vps-item-horizontal">
-                    <span data-ng-bind="$ctrl.order.prices.withoutTax.text"></span>
+                    <span
+                        data-ng-bind="$ctrl.order.prices.withoutTax.text"
+                    ></span>
                 </dd>
-                <dt class="vps-item-horizontal"
-                    data-translate="vps_configuration_upgradevps_step2_price2"></dt>
+                <dt
+                    class="vps-item-horizontal"
+                    data-translate="vps_configuration_upgradevps_step2_price2"
+                ></dt>
                 <dd class="vps-item-horizontal">
-                    <span data-ng-bind="$ctrl.selectedModelForUpgrade.monthPrice"></span>
-                    <span data-translate="vps_configuration_upgradevps_step1_table_price_monthly"></span>
+                    <span
+                        data-ng-bind="$ctrl.selectedModelForUpgrade.monthPrice"
+                    ></span>
+                    <span
+                        data-translate="vps_configuration_upgradevps_step1_table_price_monthly"
+                    ></span>
                 </dd>
             </dl>
             <div class="mb-4">
-                <span data-translate="vps_configuration_upgradevps_step2_explication2"></span>
-                <span data-translate="vps_configuration_upgradevps_step2_explication3"></span>
+                <span
+                    data-translate="vps_configuration_upgradevps_step2_explication2"
+                ></span>
+                <span
+                    data-translate="vps_configuration_upgradevps_step2_explication3"
+                ></span>
             </div>
         </oui-step-form>
     </oui-stepper>
-
 </section>

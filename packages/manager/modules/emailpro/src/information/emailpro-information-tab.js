@@ -4,7 +4,15 @@ import set from 'lodash/set';
 
 export default class EmailProTabInformationCtrl {
   /* @ngInject */
-  constructor($q, $scope, $translate, Alerter, EmailPro, EmailProMXPlanMailingLists, WucEmails) {
+  constructor(
+    $q,
+    $scope,
+    $translate,
+    Alerter,
+    EmailPro,
+    EmailProMXPlanMailingLists,
+    WucEmails,
+  ) {
     this.$q = $q;
     this.$scope = $scope;
     this.$translate = $translate;
@@ -36,7 +44,9 @@ export default class EmailProTabInformationCtrl {
 
   getQuotas() {
     this.loading.quotas = true;
-    return this.WucEmails.getQuotas(get(this.$scope, 'exchange.associatedDomainName'))
+    return this.WucEmails.getQuotas(
+      get(this.$scope, 'exchange.associatedDomainName'),
+    )
       .then((quotas) => {
         this.$scope.quotas = quotas;
       })
@@ -56,17 +66,22 @@ export default class EmailProTabInformationCtrl {
   getAccountsConfigured() {
     this.EmailPro.getAccountIds({
       exchangeService: this.$scope.exchange.domain,
-    }).then((accounts) => {
-      const accountsConfigured = filter(accounts, (account) => !/.*configureme\.me$/.test(account));
-      this.$scope.accountsConfigured = accountsConfigured;
-    }).catch((err) => {
-      set(err, 'type', err.type || 'ERROR');
-      this.Alerter.alertFromSWS(
-        this.$translate.instant('mailing_list_tab_modal_get_lists_error'),
-        err,
-        this.$scope.alerts.main,
-      );
     })
+      .then((accounts) => {
+        const accountsConfigured = filter(
+          accounts,
+          (account) => !/.*configureme\.me$/.test(account),
+        );
+        this.$scope.accountsConfigured = accountsConfigured;
+      })
+      .catch((err) => {
+        set(err, 'type', err.type || 'ERROR');
+        this.Alerter.alertFromSWS(
+          this.$translate.instant('mailing_list_tab_modal_get_lists_error'),
+          err,
+          this.$scope.alerts.main,
+        );
+      })
       .finally(() => {
         this.loading.accounts = false;
       });
@@ -74,11 +89,13 @@ export default class EmailProTabInformationCtrl {
 
   getMailingLists() {
     this.loading.mailingLists = true;
-    return this.EmailProMXPlanMailingLists
-      .getEmailProMXPlanMailingLists(get(this.$scope, 'exchange.associatedDomainName'), {
+    return this.EmailProMXPlanMailingLists.getEmailProMXPlanMailingLists(
+      get(this.$scope, 'exchange.associatedDomainName'),
+      {
         name: '%',
         forceRefresh: true,
-      })
+      },
+    )
       .then((data) => {
         this.$scope.mailingLists = data;
       })
@@ -97,15 +114,19 @@ export default class EmailProTabInformationCtrl {
 
   getRedirections() {
     this.loading.redirections = true;
-    return this.WucEmails.getRedirections(get(this.$scope, 'exchange.associatedDomainName'))
+    return this.WucEmails.getRedirections(
+      get(this.$scope, 'exchange.associatedDomainName'),
+    )
       .then((data) => {
         this.$scope.redirections = data.map((id) => ({ id }));
       })
-      .catch((err) => this.Alerter.alertFromSWS(
-        this.$translate.instant('mailing_list_tab_modal_get_lists_error'),
-        set(err, 'type', err.type || 'ERROR'),
-        this.$scope.alerts.main,
-      ))
+      .catch((err) =>
+        this.Alerter.alertFromSWS(
+          this.$translate.instant('mailing_list_tab_modal_get_lists_error'),
+          set(err, 'type', err.type || 'ERROR'),
+          this.$scope.alerts.main,
+        ),
+      )
       .finally(() => {
         this.loading.redirections = false;
       });
@@ -113,15 +134,19 @@ export default class EmailProTabInformationCtrl {
 
   getEmailsDomain() {
     this.loading.email = false;
-    return this.WucEmails.getDomain(get(this.$scope, 'exchange.associatedDomainName'))
+    return this.WucEmails.getDomain(
+      get(this.$scope, 'exchange.associatedDomainName'),
+    )
       .then((data) => {
         this.$scope.emailDomain = data;
       })
-      .catch((err) => this.Alerter.alertFromSWS(
-        this.$translate.instant('mailing_list_tab_modal_get_lists_error'),
-        set(err, 'type', err.type || 'ERROR'),
-        this.$scope.alerts.main,
-      ))
+      .catch((err) =>
+        this.Alerter.alertFromSWS(
+          this.$translate.instant('mailing_list_tab_modal_get_lists_error'),
+          set(err, 'type', err.type || 'ERROR'),
+          this.$scope.alerts.main,
+        ),
+      )
       .finally(() => {
         this.loading.email = false;
       });

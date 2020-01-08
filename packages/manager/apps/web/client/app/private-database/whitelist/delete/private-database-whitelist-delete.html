@@ -1,11 +1,14 @@
 <div data-ng-controller="PrivateDatabaseDeleteWhitelistCtrl as deleteCtrl">
-    <div data-wizard
-         data-wizard-on-cancel="resetAction"
-         data-wizard-on-finish="deleteWhitelist"
-         data-wizard-title="'privateDatabase_modale_whitelist_delete_title' | translate">
-
+    <div
+        data-wizard
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="deleteWhitelist"
+        data-wizard-title="'privateDatabase_modale_whitelist_delete_title' | translate"
+    >
         <div data-wizard-step>
-            <p data-ng-bind-html="'privateDatabase_modale_whitelist_delete_info' | translate: { t0: '<strong>' + deleteCtrl.whitelistToDelete.ip + '</strong>' }"></p>
+            <p
+                data-ng-bind-html="'privateDatabase_modale_whitelist_delete_info' | translate: { t0: '<strong>' + deleteCtrl.whitelistToDelete.ip + '</strong>' }"
+            ></p>
         </div>
     </div>
 </div>

@@ -16,14 +16,7 @@ export default /* @ngInject */ {
     disableNature: '@',
   },
   template,
-  controller(
-    $q,
-    $translate,
-    $uibModal,
-    TucToast,
-    TucToastError,
-    TucCsvParser,
-  ) {
+  controller($q, $translate, $uibModal, TucToast, TucToastError, TucCsvParser) {
     'ngInject';
 
     const self = this;
@@ -48,18 +41,24 @@ export default /* @ngInject */ {
       if (self.isScreenListsAlreadyExisting()) {
         return $q.when(false);
       }
-      return self.addScreenList({
-        screen: self.screenListToAdd,
-      }).then(() => {
-        if (self.onScreenListAdded) {
-          self.onScreenListAdded();
-        }
-        form.$setPristine();
-        self.screenListToAdd.callNumber = '';
-        TucToast.success($translate.instant('telephony_calls_filtering_add_success'));
-      }).catch((err) => new TucToastError(err)).finally(() => {
-        self.isAdding = false;
-      });
+      return self
+        .addScreenList({
+          screen: self.screenListToAdd,
+        })
+        .then(() => {
+          if (self.onScreenListAdded) {
+            self.onScreenListAdded();
+          }
+          form.$setPristine();
+          self.screenListToAdd.callNumber = '';
+          TucToast.success(
+            $translate.instant('telephony_calls_filtering_add_success'),
+          );
+        })
+        .catch((err) => new TucToastError(err))
+        .finally(() => {
+          self.isAdding = false;
+        });
     };
 
     self.isScreenListsAlreadyExisting = function isScreenListsAlreadyExisting() {
@@ -89,12 +88,13 @@ export default /* @ngInject */ {
       return angular.isDefined(found) && found.status !== 'delete';
     };
 
-
     self.checkValidCSV = function checkValidCSV(file) {
       const fileName = file ? file.name : '';
       const found = endsWith(fileName, 'csv');
       if (!found) {
-        TucToastError($translate.instant('telephony_calls_filtering_add_csv_invalid'));
+        TucToastError(
+          $translate.instant('telephony_calls_filtering_add_csv_invalid'),
+        );
       }
       return found;
     };
@@ -110,20 +110,34 @@ export default /* @ngInject */ {
         }
         csvArray = csvArray.slice(1); // trim header
       } catch (err) {
-        return $q.when(new TucToastError($translate.instant('telephony_calls_filtering_add_csv_parse_error'), err));
+        return $q.when(
+          new TucToastError(
+            $translate.instant('telephony_calls_filtering_add_csv_parse_error'),
+            err,
+          ),
+        );
       }
-      TucToast.info($translate.instant('telephony_calls_filtering_add_csv_import_success'));
-      return $q.all(map(csvArray, (line) => self.addScreenList({
-        screen: {
-          callNumber: line[0],
-          nature: line[1],
-          type: line[2],
-        },
-      }))).then(() => {
-        if (self.onScreenListAdded) {
-          self.onScreenListAdded();
-        }
-      }).catch((err) => new TucToastError(err));
+      TucToast.info(
+        $translate.instant('telephony_calls_filtering_add_csv_import_success'),
+      );
+      return $q
+        .all(
+          map(csvArray, (line) =>
+            self.addScreenList({
+              screen: {
+                callNumber: line[0],
+                nature: line[1],
+                type: line[2],
+              },
+            }),
+          ),
+        )
+        .then(() => {
+          if (self.onScreenListAdded) {
+            self.onScreenListAdded();
+          }
+        })
+        .catch((err) => new TucToastError(err));
     };
 
     self.getNumberValidationPattern = (function getNumberValidationPattern() {
@@ -134,9 +148,11 @@ export default /* @ngInject */ {
         if (self.disableNature) {
           return validAll;
         }
-        return self.screenListToAdd.nature === 'special' ? shortNumber : internationalNumber;
+        return self.screenListToAdd.nature === 'special'
+          ? shortNumber
+          : internationalNumber;
       };
-    }());
+    })();
 
     self.openHelper = function openHelper() {
       self.helperModalOpened = true;
@@ -154,13 +170,15 @@ export default /* @ngInject */ {
           },
         },
       });
-      modal.result.then(() => {
-        if (self.onScreenListAdded) {
-          self.onScreenListAdded();
-        }
-      }).finally(() => {
-        self.helperModalOpened = false;
-      });
+      modal.result
+        .then(() => {
+          if (self.onScreenListAdded) {
+            self.onScreenListAdded();
+          }
+        })
+        .finally(() => {
+          self.helperModalOpened = false;
+        });
       return modal;
     };
   },

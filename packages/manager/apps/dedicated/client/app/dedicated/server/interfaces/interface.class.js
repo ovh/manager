@@ -1,9 +1,6 @@
 import isEmpty from 'lodash/isEmpty';
 
-import {
-  PHYSICAL_TYPE,
-  VIRTUAL_TYPE,
-} from './interfaces.constants';
+import { PHYSICAL_TYPE, VIRTUAL_TYPE } from './interfaces.constants';
 
 export default class Interface {
   constructor(resource) {
@@ -23,10 +20,7 @@ export default class Interface {
   }
 
   isPublic() {
-    return [
-      PHYSICAL_TYPE.public,
-      VIRTUAL_TYPE.public,
-    ].includes(this.type);
+    return [PHYSICAL_TYPE.public, VIRTUAL_TYPE.public].includes(this.type);
   }
 
   isPrivate() {

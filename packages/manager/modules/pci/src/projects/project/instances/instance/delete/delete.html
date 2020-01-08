@@ -6,14 +6,19 @@
     data-secondary-action="$ctrl.goBack()"
     data-secondary-label="{{:: 'pci_projects_project_instances_instance_delete_cancel_label' | translate }}"
     data-on-dismiss="$ctrl.goBack()"
-    data-loading="$ctrl.isLoading">
+    data-loading="$ctrl.isLoading"
+>
+    <p
+        data-translate="pci_projects_project_instances_instance_delete_content"
+        data-translate-values="{ instance: $ctrl.instance.name }"
+    ></p>
 
-    <p data-translate="pci_projects_project_instances_instance_delete_content"
-        data-translate-values="{ instance: $ctrl.instance.name }"></p>
-
-    <oui-message data-type="warning" data-ng-if="$ctrl.instance.isMonthlyBillingEnabled()">
-        <span data-translate="pci_projects_project_instances_instance_delete_monthlyBilling_alert"></span>
+    <oui-message
+        data-type="warning"
+        data-ng-if="$ctrl.instance.isMonthlyBillingEnabled()"
+    >
+        <span
+            data-translate="pci_projects_project_instances_instance_delete_monthlyBilling_alert"
+        ></span>
     </oui-message>
-
-
 </oui-modal>

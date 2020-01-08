@@ -13,9 +13,7 @@ import tucWordsFilter from './words/words.filter';
 const moduleName = 'tucFilters';
 
 angular
-  .module(moduleName, [
-    translate,
-  ])
+  .module(moduleName, [translate])
   .filter('tucCapitalize', tucCapitalizeFilter)
   .filter('tucDuration', tucDurationFilter)
   .filter('tucErrorMessage', tucErrorMessageFilter)

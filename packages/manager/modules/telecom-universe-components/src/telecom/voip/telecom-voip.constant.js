@@ -1,5 +1,13 @@
 export const TELEPHONY_ALIAS_FEATURE_TYPES = {
-  contactCenterSolution: ['contactCenterSolution', 'easyHunting', 'cloudHunting', 'easyPabx', 'miniPabx', 'oldPabx', 'ovhPabx'],
+  contactCenterSolution: [
+    'contactCenterSolution',
+    'easyHunting',
+    'cloudHunting',
+    'easyPabx',
+    'miniPabx',
+    'oldPabx',
+    'ovhPabx',
+  ],
 };
 
 export const TELEPHONY_ALIAS_SPECIAL_NUMBER = {

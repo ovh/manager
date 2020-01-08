@@ -11,10 +11,8 @@ export default /* @ngInject */ ($stateProvider) => {
     layout: 'modal',
     translations: { value: ['.'], format: 'json' },
     resolve: {
-      activateAutorenew: /* @ngInject */ (
-        BillingAutoRenew,
-        nicRenew,
-      ) => () => BillingAutoRenew.enableAutorenew(head(nicRenew.renewDays)),
+      activateAutorenew: /* @ngInject */ (BillingAutoRenew, nicRenew) => () =>
+        BillingAutoRenew.enableAutorenew(head(nicRenew.renewDays)),
       goBack: /* @ngInject */ (goToAutorenew) => goToAutorenew,
     },
   });

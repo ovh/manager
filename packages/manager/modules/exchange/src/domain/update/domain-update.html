@@ -1,71 +1,107 @@
 <div data-ng-controller="ExchangeUpdateDomainCtrl as ctrl">
-    <div data-wizard
-         data-wizard-bread-crumb
-         data-wizard-on-cancel="cancel"
-         data-wizard-on-finish="submit"
-         data-wizard-title="'exchange_tab_domain_modify_domain' | translate">
-
-        <div data-wizard-step
-             data-wizard-step-valid="isValid()">
-
+    <div
+        data-wizard
+        data-wizard-bread-crumb
+        data-wizard-on-cancel="cancel"
+        data-wizard-on-finish="submit"
+        data-wizard-title="'exchange_tab_domain_modify_domain' | translate"
+    >
+        <div data-wizard-step data-wizard-step-valid="isValid()">
             <form class="form-horizontal">
                 <div class="form-group">
-                    <label class="control-label col-md-4" data-translate="exchange_tab_domain_domain"></label>
+                    <label
+                        class="control-label col-md-4"
+                        data-translate="exchange_tab_domain_domain"
+                    ></label>
                     <div class="col-md-8">
-                        <span class="d-block form-control-static" data-ng-bind="ctrl.originalValue.displayName"></span>
+                        <span
+                            class="d-block form-control-static"
+                            data-ng-bind="ctrl.originalValue.displayName"
+                        ></span>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-md-4" for="domainType"
-                           data-translate="exchange_tab_domain_type"></label>
+                    <label
+                        class="control-label col-md-4"
+                        for="domainType"
+                        data-translate="exchange_tab_domain_type"
+                    ></label>
                     <div class="col-md-6">
                         <div class="oui-select">
-                            <select class="oui-select__input" id="domainType"
-                                    data-ng-change="ctrl.checkMxRelay()"
-                                    data-ng-model="ctrl.selectedDomain.type"
-                                    data-ng-options="('exchange_tab_domain_' + type) | translate for type in ctrl.domainTypes track by type">
+                            <select
+                                class="oui-select__input"
+                                id="domainType"
+                                data-ng-change="ctrl.checkMxRelay()"
+                                data-ng-model="ctrl.selectedDomain.type"
+                                data-ng-options="('exchange_tab_domain_' + type) | translate for type in ctrl.domainTypes track by type"
+                            >
                             </select>
-                            <span class="oui-icon oui-icon-chevron-down" aria-hidden="true"></span>
+                            <span
+                                class="oui-icon oui-icon-chevron-down"
+                                aria-hidden="true"
+                            ></span>
                         </div>
                     </div>
                 </div>
 
-                <div class="form-group"
-                     data-ng-class="{'has-error': !ctrl.isValidMxRelay() || ctrl.checkLoopWarning() || ctrl.checkLengthWarning()}"
-                     data-ng-if="ctrl.isMxRelayVisible() && ctrl.selectedDomain.type === 'NON_AUTHORITATIVE'">
-                    <label class="control-label col-md-4 required" for="selectedDomain"
-                           data-translate="exchange_tab_domain_add_step2_mx_replay"></label>
+                <div
+                    class="form-group"
+                    data-ng-class="{'has-error': !ctrl.isValidMxRelay() || ctrl.checkLoopWarning() || ctrl.checkLengthWarning()}"
+                    data-ng-if="ctrl.isMxRelayVisible() && ctrl.selectedDomain.type === 'NON_AUTHORITATIVE'"
+                >
+                    <label
+                        class="control-label col-md-4 required"
+                        for="selectedDomain"
+                        data-translate="exchange_tab_domain_add_step2_mx_replay"
+                    ></label>
                     <div class="col-md-6">
-                        <input type="text" class="form-control" id="selectedDomain" maxlength="256"
-                               data-ng-model="ctrl.selectedDomain.mxRelay"
-                               data-ng-pattern="/^([-a-zA-Z0-9\.])+$/"
-                               data-oui-tooltip="{{'exchange_tab_domain_add_step2_mx_replay_tooltip' | translate}}">
-                        <small class="help-block"
-                               data-translate="exchange_tab_domain_modify_domain_warning"
-                               data-ng-if="!ctrl.isValidMxRelay()"></small>
-                        <small class="help-block"
-                               data-translate="exchange_tab_domain_modify_loop_warning"
-                               data-ng-if="ctrl.checkLoopWarning()"></small>
-                        <small class="help-block"
-                               data-translate="exchange_tab_domain_modify_length_warning"
-                               data-ng-if="ctrl.checkLengthWarning()"></small>
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="selectedDomain"
+                            maxlength="256"
+                            data-ng-model="ctrl.selectedDomain.mxRelay"
+                            data-ng-pattern="/^([-a-zA-Z0-9\.])+$/"
+                            data-oui-tooltip="{{'exchange_tab_domain_add_step2_mx_replay_tooltip' | translate}}"
+                        />
+                        <small
+                            class="help-block"
+                            data-translate="exchange_tab_domain_modify_domain_warning"
+                            data-ng-if="!ctrl.isValidMxRelay()"
+                        ></small>
+                        <small
+                            class="help-block"
+                            data-translate="exchange_tab_domain_modify_loop_warning"
+                            data-ng-if="ctrl.checkLoopWarning()"
+                        ></small>
+                        <small
+                            class="help-block"
+                            data-translate="exchange_tab_domain_modify_length_warning"
+                            data-ng-if="ctrl.checkLengthWarning()"
+                        ></small>
                     </div>
                 </div>
             </form>
 
-            <p data-ng-bind-html="'exchange_tab_domain_modify_domain_tooltip' | translate:{
+            <p
+                data-ng-bind-html="'exchange_tab_domain_modify_domain_tooltip' | translate:{
                 t0: ctrl.nonAuthoritativeEmail[0],
                 t1: ctrl.nonAuthoritativeEmail[1],
                 t2: ctrl.nonAuthoritativeEmail[2],
                 t3: ctrl.nonAuthoritativeEmail[3],
                 t4: ctrl.exchange.hostname
             }"
-               data-ng-if="ctrl.selectedDomain.type === 'NON_AUTHORITATIVE'"></p>
+                data-ng-if="ctrl.selectedDomain.type === 'NON_AUTHORITATIVE'"
+            ></p>
 
             <div data-wizard-step-help>
                 <h3 data-translate="exchange_tab_domain_modify_domain"></h3>
-                <h4 data-translate="exchange_tab_domain_modify_wizard_subtitle"></h4>
-                <p data-ng-bind-html="'exchange_tab_domain_modify_wizard_text' | translate"></p>
+                <h4
+                    data-translate="exchange_tab_domain_modify_wizard_subtitle"
+                ></h4>
+                <p
+                    data-ng-bind-html="'exchange_tab_domain_modify_wizard_text' | translate"
+                ></p>
             </div>
         </div>
 
@@ -74,26 +110,37 @@
 
             <dl class="dl-horizontal dl-lg">
                 <dt data-translate="exchange_tab_domain_domain"></dt>
-                <dd class="word-break"
-                    data-ng-bind="ctrl.originalValue.displayName | wucSliceContent: 150"></dd>
+                <dd
+                    class="word-break"
+                    data-ng-bind="ctrl.originalValue.displayName | wucSliceContent: 150"
+                ></dd>
 
-                <dt data-ng-if="ctrl.isMxRelayVisible() && ctrl.selectedDomain.type === 'NON_AUTHORITATIVE' && ctrl.selectedDomain.mxRelay"
-                    data-translate="exchange_tab_domain_add_step2_mx_replay"></dt>
-                <dd data-ng-if="ctrl.isMxRelayVisible() && ctrl.selectedDomain.type === 'NON_AUTHORITATIVE' && ctrl.selectedDomain.mxRelay"
-                    data-ng-bind="ctrl.selectedDomain.mxRelay | wucSliceContent: 150" class="word-break"></dd>
+                <dt
+                    data-ng-if="ctrl.isMxRelayVisible() && ctrl.selectedDomain.type === 'NON_AUTHORITATIVE' && ctrl.selectedDomain.mxRelay"
+                    data-translate="exchange_tab_domain_add_step2_mx_replay"
+                ></dt>
+                <dd
+                    data-ng-if="ctrl.isMxRelayVisible() && ctrl.selectedDomain.type === 'NON_AUTHORITATIVE' && ctrl.selectedDomain.mxRelay"
+                    data-ng-bind="ctrl.selectedDomain.mxRelay | wucSliceContent: 150"
+                    class="word-break"
+                ></dd>
 
                 <dt data-translate="exchange_tab_domain_type"></dt>
-                <dd data-ng-bind="('exchange_tab_domain_' + ctrl.selectedDomain.type) | translate"></dd>
+                <dd
+                    data-ng-bind="('exchange_tab_domain_' + ctrl.selectedDomain.type) | translate"
+                ></dd>
             </dl>
 
-            <p data-ng-bind-html="'exchange_tab_domain_modify_domain_tooltip' | translate:{
+            <p
+                data-ng-bind-html="'exchange_tab_domain_modify_domain_tooltip' | translate:{
                 t0: ctrl.nonAuthoritativeEmail[0],
                 t1: ctrl.nonAuthoritativeEmail[1],
                 t2: ctrl.nonAuthoritativeEmail[2],
                 t3: ctrl.nonAuthoritativeEmail[3],
                 t4: ctrl.exchange.hostname
             }"
-               data-ng-if="ctrl.selectedDomain.type === 'NON_AUTHORITATIVE'"></p>
+                data-ng-if="ctrl.selectedDomain.type === 'NON_AUTHORITATIVE'"
+            ></p>
         </div>
     </div>
 </div>

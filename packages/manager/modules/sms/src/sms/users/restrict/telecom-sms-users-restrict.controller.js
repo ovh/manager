@@ -30,33 +30,43 @@ export default class {
       user: angular.copy(this.user),
     };
 
-    while (this.model.user.ipRestrictions.length < this.ipRestrictions.threshold) {
+    while (
+      this.model.user.ipRestrictions.length < this.ipRestrictions.threshold
+    ) {
       this.model.user.ipRestrictions.push('');
     }
   }
 
   /**
-     * Set sms api user restrict.
-     * @return {Promise}
-     */
+   * Set sms api user restrict.
+   * @return {Promise}
+   */
   restrict() {
     this.loading.restrictByIpUser = true;
-    return this.$q.all([
-      this.api.sms.users.edit({
-        serviceName: this.$stateParams.serviceName,
-        login: this.model.user.login,
-      }, {
-        ipRestrictions: without(this.model.user.ipRestrictions, ''),
-      }).$promise,
-      this.$timeout(angular.noop, 1000),
-    ]).then(() => {
-      this.loading.restrictByIpUser = false;
-      this.restricted = true;
-      return this.$timeout(() => this.close(), 1000);
-    }).catch((error) => this.cancel({
-      type: 'API',
-      msg: error,
-    }));
+    return this.$q
+      .all([
+        this.api.sms.users.edit(
+          {
+            serviceName: this.$stateParams.serviceName,
+            login: this.model.user.login,
+          },
+          {
+            ipRestrictions: without(this.model.user.ipRestrictions, ''),
+          },
+        ).$promise,
+        this.$timeout(angular.noop, 1000),
+      ])
+      .then(() => {
+        this.loading.restrictByIpUser = false;
+        this.restricted = true;
+        return this.$timeout(() => this.close(), 1000);
+      })
+      .catch((error) =>
+        this.cancel({
+          type: 'API',
+          msg: error,
+        }),
+      );
   }
 
   cancel(message) {
@@ -68,10 +78,13 @@ export default class {
   }
 
   /**
-     * Has changed helper.
-     * @return {Boolean}
-     */
+   * Has changed helper.
+   * @return {Boolean}
+   */
   hasChanged() {
-    return !isEqual(without(this.model.user.ipRestrictions, ''), this.user.ipRestrictions);
+    return !isEqual(
+      without(this.model.user.ipRestrictions, ''),
+      this.user.ipRestrictions,
+    );
   }
 }

@@ -1,50 +1,66 @@
 <div data-ng-controller="ExchangeExportAsPstCtrl as ctrl">
-    <div data-wizard
-         data-wizard-confirm-button-text="confirmBtnTitle()"
-         data-wizard-on-cancel="closeExportWindow"
-         data-wizard-on-finish="confirmBtnAction"
-         data-wizard-title="'exchange_ACTION_add_pst_title' | translate">
-
+    <div
+        data-wizard
+        data-wizard-confirm-button-text="confirmBtnTitle()"
+        data-wizard-on-cancel="closeExportWindow"
+        data-wizard-on-finish="confirmBtnAction"
+        data-wizard-title="'exchange_ACTION_add_pst_title' | translate"
+    >
         <div data-wizard-step>
-
             <div data-ng-show="ctrl.exportStep === 1">
-                <p data-translate="exchange_ACTION_display_pst_check_existing_export"></p>
+                <p
+                    data-translate="exchange_ACTION_display_pst_check_existing_export"
+                ></p>
                 <oui-spinner></oui-spinner>
             </div>
 
-            <p data-translate="exchange_ACTION_display_pst_wait_label"
-               data-ng-show="ctrl.exportStep === 2"></p>
+            <p
+                data-translate="exchange_ACTION_display_pst_wait_label"
+                data-ng-show="ctrl.exportStep === 2"
+            ></p>
 
             <div data-ng-show="ctrl.exportStep === 3">
                 <p data-translate="exchange_ACTION_display_pst_wait_label"></p>
-                <p class="font-weight-bold"
-                   data-ng-bind="ctrl.progress"></p>
+                <p class="font-weight-bold" data-ng-bind="ctrl.progress"></p>
                 <oui-spinner></oui-spinner>
             </div>
 
-            <p data-translate="exchange_ACTION_display_pst_export_done"
-               data-ng-show="ctrl.exportStep === 4"></p>
+            <p
+                data-translate="exchange_ACTION_display_pst_export_done"
+                data-ng-show="ctrl.exportStep === 4"
+            ></p>
 
             <div data-ng-show="ctrl.exportStep === 5">
-                <p data-translate="exchange_ACTION_display_pst_genlink_progress"></p>
+                <p
+                    data-translate="exchange_ACTION_display_pst_genlink_progress"
+                ></p>
                 <oui-spinner></oui-spinner>
             </div>
 
             <div data-ng-show="ctrl.exportStep === 6">
                 <p data-translate="exchange_ACTION_display_pst_get_file"></p>
-                <a class="word-break" target="_blank"
-                   data-ng-bind="ctrl.exportURL.url"
-                   data-ng-href="{{ctrl.exportURL.url}}"
-                   data-ng-if="ctrl.exportURL.url"></a>
-                <p class="font-weight-bold mt-4"
-                   data-translate="exchange_ACTION_display_pst_ask_generate_new"></p>
-                <div class="alert alert-warning" role="alert"
-                     data-translate="exchange_ACTION_display_pst_warning_erase">
-                </div>
+                <a
+                    class="word-break"
+                    target="_blank"
+                    data-ng-bind="ctrl.exportURL.url"
+                    data-ng-href="{{ctrl.exportURL.url}}"
+                    data-ng-if="ctrl.exportURL.url"
+                ></a>
+                <p
+                    class="font-weight-bold mt-4"
+                    data-translate="exchange_ACTION_display_pst_ask_generate_new"
+                ></p>
+                <div
+                    class="alert alert-warning"
+                    role="alert"
+                    data-translate="exchange_ACTION_display_pst_warning_erase"
+                ></div>
             </div>
 
             <div data-ng-show="ctrl.exportStep === 7">
-                <p data-translate="exchange_ACTION_display_pst_delete_file_progress"></p>
+                <p
+                    data-translate="exchange_ACTION_display_pst_delete_file_progress"
+                ></p>
                 <oui-spinner></oui-spinner>
             </div>
         </div>

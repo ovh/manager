@@ -15,29 +15,34 @@ angular
     ngAtInternet,
     ngAtInternetUiRouterPlugin,
   ])
-  .config(/* @ngInject */ (atInternetProvider, atInternetUiRouterPluginProvider) => {
-    const trackingEnabled = __NODE_ENV__ === 'production';
+  .config(
+    /* @ngInject */ (atInternetProvider, atInternetUiRouterPluginProvider) => {
+      const trackingEnabled = __NODE_ENV__ === 'production';
 
-    atInternetProvider.setEnabled(trackingEnabled);
-    atInternetProvider.setDebug(!trackingEnabled);
+      atInternetProvider.setEnabled(trackingEnabled);
+      atInternetProvider.setDebug(!trackingEnabled);
 
-    atInternetUiRouterPluginProvider.setTrackStateChange(true);
-    atInternetUiRouterPluginProvider.addStateNameFilter((routeName) => {
-      const prefix = 'public-cloud';
-      const route = routeName ? routeName.replace(/\./g, '::') : '';
-      return `${prefix}::${route}`;
-    });
-  })
-  .run(/* @ngInject */ (atInternet, coreConfig, OvhApiMe) => {
-    const config = TRACKING[coreConfig.getRegion()] || {};
-
-    OvhApiMe.v6().get().$promise
-      .then((me) => {
-        config.countryCode = me.country;
-        config.currencyCode = me.currency && me.currency.code;
-        config.visitorId = me.customerCode;
-        atInternet.setDefaults(config);
+      atInternetUiRouterPluginProvider.setTrackStateChange(true);
+      atInternetUiRouterPluginProvider.addStateNameFilter((routeName) => {
+        const prefix = 'public-cloud';
+        const route = routeName ? routeName.replace(/\./g, '::') : '';
+        return `${prefix}::${route}`;
       });
-  });
+    },
+  )
+  .run(
+    /* @ngInject */ (atInternet, coreConfig, OvhApiMe) => {
+      const config = TRACKING[coreConfig.getRegion()] || {};
+
+      OvhApiMe.v6()
+        .get()
+        .$promise.then((me) => {
+          config.countryCode = me.country;
+          config.currencyCode = me.currency && me.currency.code;
+          config.visitorId = me.customerCode;
+          atInternet.setDefaults(config);
+        });
+    },
+  );
 
 export default moduleName;

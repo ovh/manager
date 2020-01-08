@@ -1,17 +1,24 @@
 <div data-ng-controller="DomainZoneRecordCtrl as ctrl">
-    <div data-wizard
-         data-wizard-on-cancel="resetAction"
-         data-wizard-on-finish="editDnsEntry"
-         data-wizard-title="'domain_configuration_dns_entry_edit_title' | translate">
-
-        <div data-wizard-step
-             data-wizard-step-valid="ctrl.zoneRecordForm.$valid">
-            <div data-ng-include="'domain/zone/record/' + ctrl.model.fieldType + '/domain-zone-record-' + ctrl.model.fieldType + '.html'"></div>
+    <div
+        data-wizard
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="editDnsEntry"
+        data-wizard-title="'domain_configuration_dns_entry_edit_title' | translate"
+    >
+        <div
+            data-wizard-step
+            data-wizard-step-valid="ctrl.zoneRecordForm.$valid"
+        >
+            <div
+                data-ng-include="'domain/zone/record/' + ctrl.model.fieldType + '/domain-zone-record-' + ctrl.model.fieldType + '.html'"
+            ></div>
         </div>
 
-        <div data-wizard-step
-             data-wizard-step-on-load="checkIfRecordCanBeAdd"
-             data-wizard-step-valid="!ctrl.loading.resume && ctrl.recordConflicts">
+        <div
+            data-wizard-step
+            data-wizard-step-on-load="checkIfRecordCanBeAdd"
+            data-wizard-step-valid="!ctrl.loading.resume && ctrl.recordConflicts"
+        >
             <div data-ng-include="'domain/zone/record/resume.html'"></div>
         </div>
     </div>

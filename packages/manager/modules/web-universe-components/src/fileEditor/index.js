@@ -11,11 +11,7 @@ import './file-editor.less';
 const moduleName = 'wucFileEditor';
 
 angular
-  .module(moduleName, [
-    'ngTranslateAsyncLoader',
-    translate,
-    'xeditable',
-  ])
+  .module(moduleName, ['ngTranslateAsyncLoader', translate, 'xeditable'])
   .directive('wucFileEditor', wucFileEditorDirective)
   .run(/* @ngTranslationsInject:json ./translations */);
 

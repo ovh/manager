@@ -7,12 +7,6 @@ import routing from './add.routing';
 
 const moduleName = 'ovhManagerPciUsersAdd';
 
-angular
-  .module(moduleName, [
-    roles,
-    userAdd,
-    'ui.router',
-  ])
-  .config(routing);
+angular.module(moduleName, [roles, userAdd, 'ui.router']).config(routing);
 
 export default moduleName;

@@ -1,35 +1,50 @@
-<div class="oui-tile oui-tile_collapsible mb-5"
-     data-ng-if="!!guideConfiguration && guideConfiguration.length > 0">
-    <h3 class="oui-header_4 oui-tile__title"
-        data-ng-bind="wucGuidesTitle">
-    </h3>
+<div
+    class="oui-tile oui-tile_collapsible mb-5"
+    data-ng-if="!!guideConfiguration && guideConfiguration.length > 0"
+>
+    <h3 class="oui-header_4 oui-tile__title" data-ng-bind="wucGuidesTitle"></h3>
     <div class="oui-tile__body">
-        <div class="oui-tile__item oui-tile__item_button"
-             data-ng-repeat="guideSection in guideConfiguration track by $index">
-            <button type="button"
-                    class="oui-tile__button oui-button oui-button_link oui-button_full-width d-flex text-wrap"
-                    data-ng-click="toggleGuides($index)">
+        <div
+            class="oui-tile__item oui-tile__item_button"
+            data-ng-repeat="guideSection in guideConfiguration track by $index"
+        >
+            <button
+                type="button"
+                class="oui-tile__button oui-button oui-button_link oui-button_full-width d-flex text-wrap"
+                data-ng-click="toggleGuides($index)"
+            >
                 <span data-ng-bind="guideSection.title | translate"></span>
-                <span class="fa fa-chevron-up my-auto ml-auto"
-                      data-ng-show="showGuidesStatus[$index]">
+                <span
+                    class="fa fa-chevron-up my-auto ml-auto"
+                    data-ng-show="showGuidesStatus[$index]"
+                >
                 </span>
-                <span class="fa fa-chevron-down my-auto ml-auto"
-                      data-ng-show="!showGuidesStatus[$index]">
+                <span
+                    class="fa fa-chevron-down my-auto ml-auto"
+                    data-ng-show="!showGuidesStatus[$index]"
+                >
                 </span>
             </button>
-            <div class="oui-tile__definition animated fadeIn mt-3"
-                 data-ng-show="showGuidesStatus[$index]">
-                <p data-ng-if="!!guideSection.description"
-                   data-ng-bind="guideSection.description | translate">
-                </p>
+            <div
+                class="oui-tile__definition animated fadeIn mt-3"
+                data-ng-show="showGuidesStatus[$index]"
+            >
+                <p
+                    data-ng-if="!!guideSection.description"
+                    data-ng-bind="guideSection.description | translate"
+                ></p>
                 <ul class="list-unstyled">
-                    <li data-ng-repeat="guideDocument in guideSection.list track by $index">
-                        <a class="d-block mb-2"
-                           target="_blank"
-                           rel="noopener"
-                           title="{{ guideDocument.title | translate }} ({{ 'guides_core_new_window' | translate }})"
-                           data-ng-href="{{ guideDocument.url }}"
-                           data-ng-bind="guideDocument.title | translate">
+                    <li
+                        data-ng-repeat="guideDocument in guideSection.list track by $index"
+                    >
+                        <a
+                            class="d-block mb-2"
+                            target="_blank"
+                            rel="noopener"
+                            title="{{ guideDocument.title | translate }} ({{ 'guides_core_new_window' | translate }})"
+                            data-ng-href="{{ guideDocument.url }}"
+                            data-ng-bind="guideDocument.title | translate"
+                        >
                         </a>
                     </li>
                 </ul>

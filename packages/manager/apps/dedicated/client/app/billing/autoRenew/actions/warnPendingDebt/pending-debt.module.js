@@ -3,9 +3,8 @@ import routing from './pending-debt.routing';
 
 const moduleName = 'ovhManagerBillingAutorenewWarnPendingDebt';
 
-angular.module(moduleName, [
-  'ui.router',
-])
+angular
+  .module(moduleName, ['ui.router'])
   .config(routing)
   .component('billingAutorenewWarnPendingDebt', component);
 

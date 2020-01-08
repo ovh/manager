@@ -4,8 +4,12 @@ import some from 'lodash/some';
 export default class SharepointUpdatePasswordCtrl {
   /* @ngInject */
   constructor(
-    $scope, $stateParams, $translate,
-    Alerter, ExchangePassword, MicrosoftSharepointLicenseService,
+    $scope,
+    $stateParams,
+    $translate,
+    Alerter,
+    ExchangePassword,
+    MicrosoftSharepointLicenseService,
   ) {
     this.$scope = $scope;
     this.$stateParams = $stateParams;
@@ -22,21 +26,43 @@ export default class SharepointUpdatePasswordCtrl {
 
     this.retrievingMSService();
 
-    this.microsoftSharepointLicense.getAssociatedExchangeService(this.exchangeId)
+    this.microsoftSharepointLicense
+      .getAssociatedExchangeService(this.exchangeId)
       .then(() => {
         this.hasAssociatedExchange = true;
       });
 
-    this.$scope.updatingSharepointPassword = () => this.updatingSharepointPassword();
+    this.$scope.updatingSharepointPassword = () =>
+      this.updatingSharepointPassword();
   }
 
   updatingSharepointPassword() {
     return this.microsoftSharepointLicense
-      .updatingSharepointPasswordAccount(this.exchangeId, this.account.userPrincipalName, {
-        password: this.account.password,
-      })
-      .then(() => this.alerter.success(this.$translate.instant('sharepoint_ACTION_update_password_confirm_message_text', { t0: this.account.userPrincipalName }), this.$scope.alerts.main))
-      .catch((err) => this.alerter.alertFromSWS(this.$translate.instant('sharepoint_ACTION_update_password_error_message_text'), err, this.$scope.alerts.main))
+      .updatingSharepointPasswordAccount(
+        this.exchangeId,
+        this.account.userPrincipalName,
+        {
+          password: this.account.password,
+        },
+      )
+      .then(() =>
+        this.alerter.success(
+          this.$translate.instant(
+            'sharepoint_ACTION_update_password_confirm_message_text',
+            { t0: this.account.userPrincipalName },
+          ),
+          this.$scope.alerts.main,
+        ),
+      )
+      .catch((err) =>
+        this.alerter.alertFromSWS(
+          this.$translate.instant(
+            'sharepoint_ACTION_update_password_error_message_text',
+          ),
+          err,
+          this.$scope.alerts.main,
+        ),
+      )
       .finally(() => {
         this.$scope.resetAction();
       });
@@ -52,7 +78,9 @@ export default class SharepointUpdatePasswordCtrl {
   }
 
   setPasswordTooltipMessage() {
-    const messageId = this.exchange.complexityEnabled ? 'sharepoint_ACTION_update_password_complexity_message_all' : 'sharepoint_ACTION_update_password_complexity_message_length';
+    const messageId = this.exchange.complexityEnabled
+      ? 'sharepoint_ACTION_update_password_complexity_message_all'
+      : 'sharepoint_ACTION_update_password_complexity_message_length';
     this.passwordTooltip = this.$translate.instant(messageId, {
       t0: this.exchange.minPasswordLength,
     });
@@ -65,7 +93,11 @@ export default class SharepointUpdatePasswordCtrl {
     this.containsSameAccountNameFlag = false;
 
     set(selectedAccount, 'password', selectedAccount.password || '');
-    set(selectedAccount, 'passwordConfirmation', selectedAccount.passwordConfirmation || '');
+    set(
+      selectedAccount,
+      'passwordConfirmation',
+      selectedAccount.passwordConfirmation || '',
+    );
 
     if (selectedAccount.password !== selectedAccount.passwordConfirmation) {
       this.differentPasswordFlag = true;
@@ -81,8 +113,11 @@ export default class SharepointUpdatePasswordCtrl {
       // see the password complexity requirements of Windows Server (like Exchange)
       // https://technet.microsoft.com/en-us/library/hh994562%28v=ws.10%29.aspx
       if (this.exchange.complexityEnabled) {
-        this.simplePasswordFlag = this.simplePasswordFlag
-          || !this.exchangePassword.passwordComplexityCheck(selectedAccount.password);
+        this.simplePasswordFlag =
+          this.simplePasswordFlag ||
+          !this.exchangePassword.passwordComplexityCheck(
+            selectedAccount.password,
+          );
 
         if (selectedAccount.displayName) {
           this.containsNameFlag = this.exchangePassword.passwordContainsName(
@@ -97,10 +132,15 @@ export default class SharepointUpdatePasswordCtrl {
           }
         }
 
-        if (selectedAccount.samaccountName
-          && some(selectedAccount.password, selectedAccount.samaccountName)) {
+        if (
+          selectedAccount.samaccountName &&
+          some(selectedAccount.password, selectedAccount.samaccountName)
+        ) {
           if (!this.containsSamAccountNameLabel) {
-            this.containsSamAccountNameLabel = this.$translate.instant('exchange_ACTION_update_account_step1_password_contains_samaccount_name', { t0: selectedAccount.samaccountName });
+            this.containsSamAccountNameLabel = this.$translate.instant(
+              'exchange_ACTION_update_account_step1_password_contains_samaccount_name',
+              { t0: selectedAccount.samaccountName },
+            );
           }
 
           this.containsSamAccountNameFlag = true;

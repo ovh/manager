@@ -1,2 +1,1 @@
-angular.module('App')
-  .controller('SecurityPolicyUpdateCtrl', () => {});
+angular.module('App').controller('SecurityPolicyUpdateCtrl', () => {});

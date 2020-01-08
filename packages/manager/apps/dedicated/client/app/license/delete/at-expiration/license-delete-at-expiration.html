@@ -1,21 +1,21 @@
 <div data-ng-controller="Module.license.deleteAtExpirationCtrl">
-
-    <div data-wizard
-         data-wizard-on-cancel="resetAction"
-         data-wizard-on-finish="toggleDeleteAtExpiration"
-         data-wizard-title=":: 'license_details_title_delete_at_expiration' | translate">
-
+    <div
+        data-wizard
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="toggleDeleteAtExpiration"
+        data-wizard-title=":: 'license_details_title_delete_at_expiration' | translate"
+    >
         <div data-wizard-step>
-
-            <strong data-ng-if="license.renew.deleteAtExpiration"
-                    data-translate="license_details_title_delete_at_expiration_confirm_desactivation">
+            <strong
+                data-ng-if="license.renew.deleteAtExpiration"
+                data-translate="license_details_title_delete_at_expiration_confirm_desactivation"
+            >
             </strong>
-            <strong data-ng-if="!license.renew.deleteAtExpiration"
-                    data-translate="license_details_title_delete_at_expiration_confirm_activation">
+            <strong
+                data-ng-if="!license.renew.deleteAtExpiration"
+                data-translate="license_details_title_delete_at_expiration_confirm_activation"
+            >
             </strong>
-
         </div>
-
     </div>
-
 </div>

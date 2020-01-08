@@ -23,7 +23,15 @@ angular.module('App').controller(
     }
 
     subDomainCheck(input) {
-      input.$setValidity('subdomain', this.model.subdomain === null || this.model.subdomain === '' || this.DomainValidator.isValidTarget(`${this.model.subdomain}.${this.domain.displayName}`, 'CNAME'));
+      input.$setValidity(
+        'subdomain',
+        this.model.subdomain === null ||
+          this.model.subdomain === '' ||
+          this.DomainValidator.isValidTarget(
+            `${this.model.subdomain}.${this.domain.displayName}`,
+            'CNAME',
+          ),
+      );
     }
 
     actionRedirect() {
@@ -35,12 +43,24 @@ angular.module('App').controller(
             name: 'domain-add-subdomain',
             type: 'action',
           });
-          return this.$scope.setAction('redirection/add/domain-redirection-add', domain);
+          return this.$scope.setAction(
+            'redirection/add/domain-redirection-add',
+            domain,
+          );
         }
         case 'addRecord':
-          return this.Domain.getTabZoneDns(this.domain.name).then((zone) => this.$scope.setAction('zone/record/add/domain-zone-record-add', { domain: this.domain, fieldTypes: zone.fieldsTypes, subdomainPreset: this.model.subdomain }));
+          return this.Domain.getTabZoneDns(this.domain.name).then((zone) =>
+            this.$scope.setAction('zone/record/add/domain-zone-record-add', {
+              domain: this.domain,
+              fieldTypes: zone.fieldsTypes,
+              subdomainPreset: this.model.subdomain,
+            }),
+          );
         case 'addToMutu':
-          return this.$scope.setAction('subdomain/add/domain-subdomain-add-hosting-choice', { domain: this.domain, subdomain: this.model.subdomain });
+          return this.$scope.setAction(
+            'subdomain/add/domain-subdomain-add-hosting-choice',
+            { domain: this.domain, subdomain: this.model.subdomain },
+          );
         default:
           return null;
       }

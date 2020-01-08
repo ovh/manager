@@ -1,31 +1,40 @@
-<form name="relaunchSmsTemplateForm"
-      id="relaunchSmsTemplateForm"
-      data-ng-submit="TemplateRelaunchCtrl.relaunch()">
-
+<form
+    name="relaunchSmsTemplateForm"
+    id="relaunchSmsTemplateForm"
+    data-ng-submit="TemplateRelaunchCtrl.relaunch()"
+>
     <div class="modal-header">
         <button
             type="button"
             class="close float-right"
             aria-label="{{ ::'sms_cancel' | translate }}"
-            data-ng-click="TemplateRelaunchCtrl.cancel()">
+            data-ng-click="TemplateRelaunchCtrl.cancel()"
+        >
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
 
-    <div class="modal-body"
-         data-ng-if="!TemplateRelaunchCtrl.loading.relaunchTemplate && !TemplateRelaunchCtrl.relaunched">
-        <h3 class="modal-title"
-            data-translate="sms_sms_templates_relaunch">
-        </h3>
+    <div
+        class="modal-body"
+        data-ng-if="!TemplateRelaunchCtrl.loading.relaunchTemplate && !TemplateRelaunchCtrl.relaunched"
+    >
+        <h3
+            class="modal-title"
+            data-translate="sms_sms_templates_relaunch"
+        ></h3>
 
         <!-- NAME -->
-        <div class="form-group"
-             data-ng-class="{
+        <div
+            class="form-group"
+            data-ng-class="{
                  'has-error': relaunchSmsTemplateForm.name.$touched && relaunchSmsTemplateForm.name.$invalid
-             }">
-            <label for="name"
-                   class="control-label"
-                   data-translate="sms_sms_templates_add_name_label">
+             }"
+        >
+            <label
+                for="name"
+                class="control-label"
+                data-translate="sms_sms_templates_add_name_label"
+            >
             </label>
             <input
                 type="text"
@@ -36,25 +45,34 @@
                 readonly
                 data-ng-model="TemplateRelaunchCtrl.template.name"
                 data-ng-maxlength="249"
-                data-translatea-attr="{ placeholder: 'sms_sms_templates_add_name_placeholder' }" />
-            <span class="help-block"
-                  role="alert"
-                  data-ng-if="relaunchSmsTemplateForm.name.$touched"
-                  data-ng-messages="relaunchSmsTemplateForm.name.$error">
-                <span data-ng-message="maxlength"
-                      data-translate="sms_sms_templates_add_name_error_maxlength">
+                data-translatea-attr="{ placeholder: 'sms_sms_templates_add_name_placeholder' }"
+            />
+            <span
+                class="help-block"
+                role="alert"
+                data-ng-if="relaunchSmsTemplateForm.name.$touched"
+                data-ng-messages="relaunchSmsTemplateForm.name.$error"
+            >
+                <span
+                    data-ng-message="maxlength"
+                    data-translate="sms_sms_templates_add_name_error_maxlength"
+                >
                 </span>
             </span>
         </div>
 
         <!-- DESCRIPTION -->
-        <div class="form-group"
-             data-ng-class="{
+        <div
+            class="form-group"
+            data-ng-class="{
                  'has-error': relaunchSmsTemplateForm.description.$touched && relaunchSmsTemplateForm.description.$invalid
-             }">
-            <label for="description"
-                   class="control-label"
-                   data-translate="sms_sms_templates_add_description_label">
+             }"
+        >
+            <label
+                for="description"
+                class="control-label"
+                data-translate="sms_sms_templates_add_description_label"
+            >
             </label>
             <input
                 type="text"
@@ -66,28 +84,39 @@
                 autofocus
                 data-ng-model="TemplateRelaunchCtrl.template.description"
                 data-ng-maxlength="249"
-                data-ng-minlength="31" />
-            <span class="help-block"
-                  role="alert"
-                  data-ng-if="relaunchSmsTemplateForm.description.$touched"
-                  data-ng-messages="relaunchSmsTemplateForm.description.$error">
-                <span data-ng-message="maxlength"
-                      data-translate="sms_sms_templates_add_description_error_maxlength">
+                data-ng-minlength="31"
+            />
+            <span
+                class="help-block"
+                role="alert"
+                data-ng-if="relaunchSmsTemplateForm.description.$touched"
+                data-ng-messages="relaunchSmsTemplateForm.description.$error"
+            >
+                <span
+                    data-ng-message="maxlength"
+                    data-translate="sms_sms_templates_add_description_error_maxlength"
+                >
                 </span>
-                <span data-ng-message="minlength"
-                      data-translate="sms_sms_templates_add_description_error_minlength">
+                <span
+                    data-ng-message="minlength"
+                    data-translate="sms_sms_templates_add_description_error_minlength"
+                >
                 </span>
             </span>
         </div>
 
         <!-- MESSAGE -->
-        <div class="form-group"
-             data-ng-class="{
+        <div
+            class="form-group"
+            data-ng-class="{
                  'has-error': relaunchSmsTemplateForm.message.$touched && relaunchSmsTemplateForm.message.$invalid
-             }">
-            <label for="message"
-                   class="control-label"
-                   data-translate="sms_sms_templates_add_message_label">
+             }"
+        >
+            <label
+                for="message"
+                class="control-label"
+                data-translate="sms_sms_templates_add_message_label"
+            >
             </label>
             <textarea
                 name="message"
@@ -98,32 +127,41 @@
                 data-ng-model="TemplateRelaunchCtrl.template.message"
                 data-ng-maxlength="249"
                 data-ng-minlength="31"
-                data-translate-attr="{ placeholder: 'sms_sms_templates_add_message_placeholder' }">
+                data-translate-attr="{ placeholder: 'sms_sms_templates_add_message_placeholder' }"
+            >
             </textarea>
-            <span class="help-block"
-                  role="alert"
-                  data-ng-if="relaunchSmsTemplateForm.message.$touched"
-                  data-ng-messages="relaunchSmsTemplateForm.message.$error">
-                <span data-ng-message="maxlength"
-                      data-translate="sms_sms_templates_add_message_error_maxlength">
+            <span
+                class="help-block"
+                role="alert"
+                data-ng-if="relaunchSmsTemplateForm.message.$touched"
+                data-ng-messages="relaunchSmsTemplateForm.message.$error"
+            >
+                <span
+                    data-ng-message="maxlength"
+                    data-translate="sms_sms_templates_add_message_error_maxlength"
+                >
                 </span>
-                <span data-ng-message="minlength"
-                      data-translate="sms_sms_templates_add_message_error_minlength">
+                <span
+                    data-ng-message="minlength"
+                    data-translate="sms_sms_templates_add_message_error_minlength"
+                >
                 </span>
             </span>
         </div>
-
     </div>
 
-    <div class="modal-body text-center"
-         data-ng-if="TemplateRelaunchCtrl.loading.relaunchTemplate && !TemplateRelaunchCtrl.relaunched">
+    <div
+        class="modal-body text-center"
+        data-ng-if="TemplateRelaunchCtrl.loading.relaunchTemplate && !TemplateRelaunchCtrl.relaunched"
+    >
         <oui-spinner></oui-spinner>
         <h4 data-translate="sms_sms_templates_relaunching"></h4>
     </div>
 
-    <div class="modal-body"
-         data-ng-if="TemplateRelaunchCtrl.relaunched">
-        <tuc-success-drawing-check data-draw-success-check="TemplateRelaunchCtrl.relaunched">
+    <div class="modal-body" data-ng-if="TemplateRelaunchCtrl.relaunched">
+        <tuc-success-drawing-check
+            data-draw-success-check="TemplateRelaunchCtrl.relaunched"
+        >
             <h4 data-translate="sms_sms_templates_relaunched"></h4>
         </tuc-success-drawing-check>
     </div>
@@ -134,15 +172,15 @@
             class="btn btn-default"
             data-ng-click="TemplateRelaunchCtrl.cancel()"
             data-ng-disabled="TemplateRelaunchCtrl.loading.relaunchTemplate || TemplateRelaunchCtrl.relaunched"
-            data-translate="sms_cancel">
-        </button>
+            data-translate="sms_cancel"
+        ></button>
         <button
             type="submit"
             class="btn btn-primary"
             data-ng-disabled="relaunchSmsTemplateForm.$invalid ||
                               TemplateRelaunchCtrl.loading.relaunchTemplate ||
                               TemplateRelaunchCtrl.relaunched"
-            data-translate="sms_submit">
-        </button>
+            data-translate="sms_submit"
+        ></button>
     </div>
 </form>

@@ -1,20 +1,25 @@
-<oui-field data-label="{{ :: 'pci_workflow_create_workflow_name' | translate }}"
+<oui-field
+    data-label="{{ :: 'pci_workflow_create_workflow_name' | translate }}"
     data-size="xl"
-    data-help-text="{{ ::'pci_workflow_create_name_help' | translate }}">
-    <input 
+    data-help-text="{{ ::'pci_workflow_create_name_help' | translate }}"
+>
+    <input
         class="oui-input"
         type="text"
         id="workflow-name"
         name="workflow-name"
         data-ng-pattern="$ctrl.namePattern"
         data-ng-model="$ctrl.workflowName"
-        required>
+        required
+    />
 </oui-field>
-<p> 
-    <span data-translate="pci_workflow_create_price_title"></span> 
+<p>
+    <span data-translate="pci_workflow_create_price_title"></span>
     <strong data-ng-if="$ctrl.price">
-        <span data-translate="pci_workflow_create_price"
-            data-translate-values="{ price: $ctrl.price.totalPrice.text }"></span>
+        <span
+            data-translate="pci_workflow_create_price"
+            data-translate-values="{ price: $ctrl.price.totalPrice.text }"
+        ></span>
     </strong>
     <strong data-ng-if="!$ctrl.price" class="text-danger">
         <span data-translate="pci_workflow_create_price_not_available"></span>

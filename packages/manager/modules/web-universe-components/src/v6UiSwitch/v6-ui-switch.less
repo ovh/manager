@@ -1,6 +1,6 @@
-@import "bootstrap/less/variables";
-@import "ovh-ui-kit/packages/oui-color/_variables";
-@import "ovh-ui-kit/packages/oui-switch/_variables";
+@import 'bootstrap/less/variables';
+@import 'ovh-ui-kit/packages/oui-color/_variables';
+@import 'ovh-ui-kit/packages/oui-switch/_variables';
 
 /* stylelint-disable-next-line */
 wuc-v6-ui-switch,
@@ -92,10 +92,7 @@ wuc-v6-ui-switch,
     &.checked,
     &.partial {
       small {
-        left:
-          calc(
-            @component-width - @component-height + @component-gutter
-          );
+        left: calc(@component-width - @component-height + @component-gutter);
       }
 
       .v6us-off,

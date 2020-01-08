@@ -42,25 +42,36 @@ export default class Exchange {
       exchangeDetails: null,
     };
 
-    this.tasksCache = $cacheFactory.get('UNIVERS_WEB_EXCHANGE_TASKS')
-      || $cacheFactory('UNIVERS_WEB_EXCHANGE_TASKS');
-    this.delegationRightsCache = $cacheFactory.get('UNIVERS_WEB_EXCHANGE_DELEGATION_RIGHTS')
-      || $cacheFactory('UNIVERS_WEB_EXCHANGE_DELEGATION_RIGHTS');
-    this.disclaimersCache = $cacheFactory.get('UNIVERS_WEB_EXCHANGE_DISCLAIMERS')
-      || $cacheFactory('UNIVERS_WEB_EXCHANGE_DISCLAIMERS');
-    this.exchangeCache = $cacheFactory.get('UNIVERS_WEB_EXCHANGE') || $cacheFactory('UNIVERS_WEB_EXCHANGE');
-    this.domainsCache = $cacheFactory.get('UNIVERS_WEB_EXCHANGE_DOMAINS')
-      || $cacheFactory('UNIVERS_WEB_EXCHANGE_DOMAINS');
-    this.accountsCache = $cacheFactory.get('UNIVERS_WEB_EXCHANGE_ACCOUNTS')
-      || $cacheFactory('UNIVERS_WEB_EXCHANGE_ACCOUNTS');
-    this.sharedAccountsCache = $cacheFactory.get('UNIVERS_WEB_EXCHANGE_SHARED_ACCOUNTS')
-      || $cacheFactory('UNIVERS_WEB_EXCHANGE_SHARED_ACCOUNTS');
-    this.resourcesCache = $cacheFactory.get('UNIVERS_WEB_EXCHANGE_RESOURCES')
-      || $cacheFactory('UNIVERS_WEB_EXCHANGE_RESOURCES');
-    this.groupsCache = $cacheFactory.get('UNIVERS_WEB_EXCHANGE_GROUPS')
-      || $cacheFactory('UNIVERS_WEB_EXCHANGE_GROUPS');
-    this.publicFolderCache = $cacheFactory.get('UNIVERS_WEB_EXCHANGE_PUBLIC_FOLDERS')
-      || $cacheFactory('UNIVERS_WEB_EXCHANGE_PUBLIC_FOLDERS');
+    this.tasksCache =
+      $cacheFactory.get('UNIVERS_WEB_EXCHANGE_TASKS') ||
+      $cacheFactory('UNIVERS_WEB_EXCHANGE_TASKS');
+    this.delegationRightsCache =
+      $cacheFactory.get('UNIVERS_WEB_EXCHANGE_DELEGATION_RIGHTS') ||
+      $cacheFactory('UNIVERS_WEB_EXCHANGE_DELEGATION_RIGHTS');
+    this.disclaimersCache =
+      $cacheFactory.get('UNIVERS_WEB_EXCHANGE_DISCLAIMERS') ||
+      $cacheFactory('UNIVERS_WEB_EXCHANGE_DISCLAIMERS');
+    this.exchangeCache =
+      $cacheFactory.get('UNIVERS_WEB_EXCHANGE') ||
+      $cacheFactory('UNIVERS_WEB_EXCHANGE');
+    this.domainsCache =
+      $cacheFactory.get('UNIVERS_WEB_EXCHANGE_DOMAINS') ||
+      $cacheFactory('UNIVERS_WEB_EXCHANGE_DOMAINS');
+    this.accountsCache =
+      $cacheFactory.get('UNIVERS_WEB_EXCHANGE_ACCOUNTS') ||
+      $cacheFactory('UNIVERS_WEB_EXCHANGE_ACCOUNTS');
+    this.sharedAccountsCache =
+      $cacheFactory.get('UNIVERS_WEB_EXCHANGE_SHARED_ACCOUNTS') ||
+      $cacheFactory('UNIVERS_WEB_EXCHANGE_SHARED_ACCOUNTS');
+    this.resourcesCache =
+      $cacheFactory.get('UNIVERS_WEB_EXCHANGE_RESOURCES') ||
+      $cacheFactory('UNIVERS_WEB_EXCHANGE_RESOURCES');
+    this.groupsCache =
+      $cacheFactory.get('UNIVERS_WEB_EXCHANGE_GROUPS') ||
+      $cacheFactory('UNIVERS_WEB_EXCHANGE_GROUPS');
+    this.publicFolderCache =
+      $cacheFactory.get('UNIVERS_WEB_EXCHANGE_PUBLIC_FOLDERS') ||
+      $cacheFactory('UNIVERS_WEB_EXCHANGE_PUBLIC_FOLDERS');
 
     this.updateAccountAction = 'UPDATE_ACCOUNT';
     this.changePasswordAction = 'CHANGE_PASSWORD';
@@ -96,8 +107,8 @@ export default class Exchange {
   }
 
   /*
-        * Private function to reset the cache
-        */
+   * Private function to reset the cache
+   */
   resetCache(key) {
     if (key != null) {
       if (this.requests[key] != null) {
@@ -181,20 +192,24 @@ export default class Exchange {
   }
 
   getSuccessDataOrReject(response) {
-    return response.status < 300 ? response.data : this.services.$q.reject(response);
+    return response.status < 300
+      ? response.data
+      : this.services.$q.reject(response);
   }
 
   static isEmailValid(email) {
     return (
-      email
-      && email.match(
+      email &&
+      email.match(
         /^[\w!#$%&'*+/=?^`{|}~-]+(?:\.[\w!#$%&'*+/=?^`{|}~-]+)*@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+[a-zA-Z0-9]{2}(?:[a-zA-Z0-9-]*[a-zA-Z0-9])?$/,
       )
     );
   }
 
   retrievingWizardPreference() {
-    return this.services.ovhUserPref.getValue('WIZARD_HOSTED_CREATION_OPENING_PREFERENCE');
+    return this.services.ovhUserPref.getValue(
+      'WIZARD_HOSTED_CREATION_OPENING_PREFERENCE',
+    );
   }
 
   currentUserHasConfigurationRights() {
@@ -205,36 +220,45 @@ export default class Exchange {
   }
 
   getExchangeServices() {
-    return this.services.OvhApiEmailExchange.service().v7()
+    return this.services.OvhApiEmailExchange.service()
+      .v7()
       .query()
       .expand(false)
       .aggregate('displayName')
       .execute({ organizationName: '*' })
-      .$promise
-      .then((services) => filter(services, (service) => has(service, 'value.displayName') && has(service, 'value.offer')))
-      .then((services) => map(
-        services, (service) => ({
+      .$promise.then((services) =>
+        filter(
+          services,
+          (service) =>
+            has(service, 'value.displayName') && has(service, 'value.offer'),
+        ),
+      )
+      .then((services) =>
+        map(services, (service) => ({
           name: service.key,
           displayName: service.value.displayName,
           organization: get(service.path.split('/'), '[3]'),
           type: `EXCHANGE_${service.value.offer.toUpperCase()}`,
-        }),
-      ));
+        })),
+      );
   }
 
   getExchange(organization, exchangeId) {
-    return this.getExchangeServices()
-      .then((services) => find(services, {
+    return this.getExchangeServices().then((services) =>
+      find(services, {
         name: exchangeId,
         organization,
-      }));
+      }),
+    );
   }
 
   getExchangeDetails(organization, exchangeName) {
-    return this.services.OvhApiEmailExchange.service().Aapi().get({
-      organization,
-      exchange: exchangeName,
-    }).$promise;
+    return this.services.OvhApiEmailExchange.service()
+      .Aapi()
+      .get({
+        organization,
+        exchange: exchangeName,
+      }).$promise;
   }
 
   /**
@@ -283,38 +307,46 @@ export default class Exchange {
   }
 
   setConfiguration(organization, serviceName, data) {
-    return this.services.APIExchange.put('/{organizationName}/service/{exchangeService}', {
-      urlParams: {
-        organizationName: organization,
-        exchangeService: serviceName,
-      },
-      data,
-    }).then(() => this.services.APIExchange.post(
-      '/{organizationName}/service/{exchangeService}/updateFlagsOnAllAccounts',
+    return this.services.APIExchange.put(
+      '/{organizationName}/service/{exchangeService}',
       {
         urlParams: {
           organizationName: organization,
           exchangeService: serviceName,
         },
+        data,
       },
-    ));
+    ).then(() =>
+      this.services.APIExchange.post(
+        '/{organizationName}/service/{exchangeService}/updateFlagsOnAllAccounts',
+        {
+          urlParams: {
+            organizationName: organization,
+            exchangeService: serviceName,
+          },
+        },
+      ),
+    );
   }
 
   /**
    * Return the last 2 days task list for the selected exchange
    */
   getTasks(organization, serviceName, count = 10, offset = 0) {
-    return this.services.OvhHttp.get('/sws/exchange/{organization}/{exchange}/tasks', {
-      rootPath: '2api',
-      urlParams: {
-        organization,
-        exchange: serviceName,
+    return this.services.OvhHttp.get(
+      '/sws/exchange/{organization}/{exchange}/tasks',
+      {
+        rootPath: '2api',
+        urlParams: {
+          organization,
+          exchange: serviceName,
+        },
+        params: {
+          count,
+          offset,
+        },
       },
-      params: {
-        count,
-        offset,
-      },
-    });
+    );
   }
 
   /**
@@ -371,15 +403,17 @@ export default class Exchange {
    *                           and creating/deleting ones
    */
   getAccounts(pageSize, offset, search, configurableOnly, type, timeout) {
-    return this.getSelected().then((exchange) => this.getAccountsForExchange(
-      exchange,
-      pageSize,
-      offset,
-      search,
-      configurableOnly,
-      type,
-      timeout,
-    ));
+    return this.getSelected().then((exchange) =>
+      this.getAccountsForExchange(
+        exchange,
+        pageSize,
+        offset,
+        search,
+        configurableOnly,
+        type,
+        timeout,
+      ),
+    );
   }
 
   /**
@@ -403,21 +437,24 @@ export default class Exchange {
     type = '',
     timeout = null,
   ) {
-    return this.services.OvhHttp.get('/sws/exchange/{organization}/{exchange}/accounts', {
-      rootPath: '2api',
-      urlParams: {
-        organization: exchange.organization,
-        exchange: exchange.domain,
+    return this.services.OvhHttp.get(
+      '/sws/exchange/{organization}/{exchange}/accounts',
+      {
+        rootPath: '2api',
+        urlParams: {
+          organization: exchange.organization,
+          exchange: exchange.domain,
+        },
+        params: {
+          count,
+          offset,
+          search,
+          configurableOnly,
+          typeLicence: type,
+        },
+        timeout,
       },
-      params: {
-        count,
-        offset,
-        search,
-        configurableOnly,
-        typeLicence: type,
-      },
-      timeout,
-    });
+    );
   }
 
   fetchAccounts(
@@ -545,7 +582,9 @@ export default class Exchange {
         },
         params: {
           number: params.accountsNumber || '1',
-          licence: params.accountLicense ? camelCase(params.accountLicense) : 'standard',
+          licence: params.accountLicense
+            ? camelCase(params.accountLicense)
+            : 'standard',
           storageQuota: params.storageQuota || '50',
         },
       },
@@ -562,7 +601,9 @@ export default class Exchange {
     delete data.accountsNumber;
     const { duration } = data;
     delete data.duration;
-    data.licence = data.accountLicense ? camelCase(data.accountLicense) : 'standard';
+    data.licence = data.accountLicense
+      ? camelCase(data.accountLicense)
+      : 'standard';
     delete data.accountLicense;
     data.storageQuota = data.storageQuota || '50';
 
@@ -589,14 +630,22 @@ export default class Exchange {
     const accountToUpdate = angular.copy(account);
     accountToUpdate.outlookLicense = accountToUpdate.outlook;
     delete accountToUpdate.outlook;
-    set(accountToUpdate, 'deleteOutlookAtExpiration', accountToUpdate.outlookLicense && accountToUpdate.deleteOutlook);
+    set(
+      accountToUpdate,
+      'deleteOutlookAtExpiration',
+      accountToUpdate.outlookLicense && accountToUpdate.deleteOutlook,
+    );
     delete accountToUpdate.deleteOutlook;
 
-    accountToUpdate.displayName = account.displayName ? account.displayName.trim() : undefined;
+    accountToUpdate.displayName = account.displayName
+      ? account.displayName.trim()
+      : undefined;
     const { password } = accountToUpdate;
     delete accountToUpdate.password;
     if (accountToUpdate.accountLicense) {
-      accountToUpdate.accountLicense = camelCase(accountToUpdate.accountLicense);
+      accountToUpdate.accountLicense = camelCase(
+        accountToUpdate.accountLicense,
+      );
     }
     const promises = [
       this.services.OvhHttp.put(
@@ -647,7 +696,10 @@ export default class Exchange {
 
       return {
         messages: data,
-        state: data.filter((message) => message.type === 'ERROR').length > 0 ? 'ERROR' : 'OK',
+        state:
+          data.filter((message) => message.type === 'ERROR').length > 0
+            ? 'ERROR'
+            : 'OK',
       };
     });
   }
@@ -656,26 +708,32 @@ export default class Exchange {
    * Get order list
    */
   getOrderList(organization, serviceName) {
-    return this.services.OvhHttp.get('/sws/exchange/{organization}/{exchange}/accounts/orders', {
-      rootPath: '2api',
-      urlParams: {
-        organization,
-        exchange: serviceName,
+    return this.services.OvhHttp.get(
+      '/sws/exchange/{organization}/{exchange}/accounts/orders',
+      {
+        rootPath: '2api',
+        urlParams: {
+          organization,
+          exchange: serviceName,
+        },
       },
-    });
+    );
   }
 
   updateRenew(organization, serviceName, accounts) {
-    return this.services.OvhHttp.put('/sws/exchange/{organization}/{exchange}/accounts/renew', {
-      rootPath: '2api',
-      urlParams: {
-        organization,
-        exchange: serviceName,
+    return this.services.OvhHttp.put(
+      '/sws/exchange/{organization}/{exchange}/accounts/renew',
+      {
+        rootPath: '2api',
+        urlParams: {
+          organization,
+          exchange: serviceName,
+        },
+        data: {
+          modelList: accounts,
+        },
       },
-      data: {
-        modelList: accounts,
-      },
-    });
+    );
   }
 
   /**
@@ -704,12 +762,14 @@ export default class Exchange {
    * Remove account if dedicated or provider 2010 is true, else reset it
    */
   removeAccountInsteadOfReset() {
-    const isDedicatedOrCluster = this.value.offer.toUpperCase() === 'DEDICATED'
-      || this.value.offer.toUpperCase() === 'DEDICATED_CLUSTER';
+    const isDedicatedOrCluster =
+      this.value.offer.toUpperCase() === 'DEDICATED' ||
+      this.value.offer.toUpperCase() === 'DEDICATED_CLUSTER';
     const isProvider = this.value.offer.toUpperCase() === 'PROVIDER';
     return (
-      isDedicatedOrCluster
-      || (isProvider && includes(this.value.serverDiagnostic.commercialVersion, 2010))
+      isDedicatedOrCluster ||
+      (isProvider &&
+        includes(this.value.serverDiagnostic.commercialVersion, 2010))
     );
   }
 
@@ -769,7 +829,13 @@ export default class Exchange {
   /**
    * Get Exchange accounts aliases
    */
-  getAliases(organizationName, exchangeService, account, count = 10, offset = 0) {
+  getAliases(
+    organizationName,
+    exchangeService,
+    account,
+    count = 10,
+    offset = 0,
+  ) {
     return this.services.OvhHttp.get(
       `/sws/exchange/${organizationName}/${exchangeService}/accounts/${account}/alias`,
       {
@@ -786,17 +852,20 @@ export default class Exchange {
    * Data necessary for new alias creation
    */
   getNewAliasOptions(organization, serviceName, email = null, type = null) {
-    return this.services.OvhHttp.get('/sws/exchange/{organization}/{exchange}/aliasOptions', {
-      rootPath: '2api',
-      urlParams: {
-        organization,
-        exchange: serviceName,
+    return this.services.OvhHttp.get(
+      '/sws/exchange/{organization}/{exchange}/aliasOptions',
+      {
+        rootPath: '2api',
+        urlParams: {
+          organization,
+          exchange: serviceName,
+        },
+        params: {
+          emailAddress: email,
+          subType: type,
+        },
       },
-      params: {
-        emailAddress: email,
-        subType: type,
-      },
-    }).then((data) => {
+    ).then((data) => {
       this.resetCache();
       return data;
     });
@@ -890,7 +959,13 @@ export default class Exchange {
 
   prepareGroupsForCsv(organization, serviceName, opts, offset) {
     const queue = [];
-    return this.getGroups(organization, serviceName, opts.count, offset, opts.search).then(
+    return this.getGroups(
+      organization,
+      serviceName,
+      opts.count,
+      offset,
+      opts.search,
+    ).then(
       (accounts) => {
         angular.forEach(accounts.list.results, (account) => {
           if (account.aliases > 0) {
@@ -903,7 +978,11 @@ export default class Exchange {
                 this.aliasMaxLimit,
                 offset,
               ).then((aliases) => {
-                set(account, 'aliases', aliases.list.results.map((alias) => alias.displayName));
+                set(
+                  account,
+                  'aliases',
+                  aliases.list.results.map((alias) => alias.displayName),
+                );
               }),
             );
           } else {
@@ -917,7 +996,13 @@ export default class Exchange {
                 serviceName,
                 account.mailingListAddress,
               ).then((managers) => {
-                set(account, 'managers', managers.list.results.map((manager) => manager.displayAddress));
+                set(
+                  account,
+                  'managers',
+                  managers.list.results.map(
+                    (manager) => manager.displayAddress,
+                  ),
+                );
               }),
             );
           } else {
@@ -931,7 +1016,11 @@ export default class Exchange {
                 serviceName,
                 account.mailingListAddress,
               ).then((members) => {
-                set(account, 'members', members.list.results.map((member) => member.displayAddress));
+                set(
+                  account,
+                  'members',
+                  members.list.results.map((member) => member.displayAddress),
+                );
               }),
             );
           } else {
@@ -939,12 +1028,10 @@ export default class Exchange {
           }
         });
 
-        return this.services.$q.all(queue).then(
-          () => ({
-            accounts: accounts.list.results,
-            headers: keys(accounts.list.results[0]),
-          }),
-        );
+        return this.services.$q.all(queue).then(() => ({
+          accounts: accounts.list.results,
+          headers: keys(accounts.list.results[0]),
+        }));
       },
       () => null,
     );
@@ -954,19 +1041,22 @@ export default class Exchange {
    * Get groups this Exchange account belongs to
    */
   getGroups(organization, serviceName, count = 10, offset = 0, search = '') {
-    return this.services.OvhHttp.get('/sws/exchange/{organization}/{exchange}/groups', {
-      rootPath: '2api',
-      clearCache: true,
-      urlParams: {
-        organization,
-        exchange: serviceName,
+    return this.services.OvhHttp.get(
+      '/sws/exchange/{organization}/{exchange}/groups',
+      {
+        rootPath: '2api',
+        clearCache: true,
+        urlParams: {
+          organization,
+          exchange: serviceName,
+        },
+        params: {
+          count,
+          offset,
+          search,
+        },
       },
-      params: {
-        count,
-        offset,
-        search,
-      },
-    });
+    );
   }
 
   /**
@@ -1051,7 +1141,14 @@ export default class Exchange {
   /**
    * Get accounts by group
    */
-  getAccountsByGroup(organization, serviceName, groupName, count = 10, offset = 0, search = '') {
+  getAccountsByGroup(
+    organization,
+    serviceName,
+    groupName,
+    count = 10,
+    offset = 0,
+    search = '',
+  ) {
     return this.services.OvhHttp.get(
       '/sws/exchange/{organization}/{exchange}/groups/{mailinglist}/accounts',
       {
@@ -1075,14 +1172,17 @@ export default class Exchange {
    * Add a new Exchange group (mailing list)
    */
   addExchangeGroup(organization, serviceName, groupToAdd) {
-    return this.services.OvhHttp.post('/sws/exchange/{organization}/{exchange}/groups-add', {
-      rootPath: '2api',
-      urlParams: {
-        organization,
-        exchange: serviceName,
+    return this.services.OvhHttp.post(
+      '/sws/exchange/{organization}/{exchange}/groups-add',
+      {
+        rootPath: '2api',
+        urlParams: {
+          organization,
+          exchange: serviceName,
+        },
+        data: groupToAdd,
       },
-      data: groupToAdd,
-    }).then((data) => {
+    ).then((data) => {
       this.resetGroups();
       this.resetTasks();
 
@@ -1117,7 +1217,8 @@ export default class Exchange {
    * Remove an Exchange group member
    */
   removeMember(organization, serviceName, groupName, accountId, type) {
-    let url = '/email/exchange/{organization}/service/{exchange}/mailingList/{mailingListAddress}/member';
+    let url =
+      '/email/exchange/{organization}/service/{exchange}/mailingList/{mailingListAddress}/member';
     switch (type) {
       case 'ACCOUNT':
         url += '/account/{accountId}';
@@ -1187,7 +1288,13 @@ export default class Exchange {
   /**
    * Get group aliases
    */
-  getGroupAliasList(organization, serviceName, groupName, count = 10, offset = 0) {
+  getGroupAliasList(
+    organization,
+    serviceName,
+    groupName,
+    count = 10,
+    offset = 0,
+  ) {
     return this.services.OvhHttp.get(
       '/sws/exchange/{organization}/{exchange}/group/{group}/alias',
       {
@@ -1259,17 +1366,20 @@ export default class Exchange {
    * Return disclaimers list for a given Exchange service
    */
   getDisclaimers(organization, serviceName, count = 10, offset = 0) {
-    return this.services.OvhHttp.get('/sws/exchange/{organization}/{exchange}/disclaimers', {
-      rootPath: '2api',
-      urlParams: {
-        organization,
-        exchange: serviceName,
+    return this.services.OvhHttp.get(
+      '/sws/exchange/{organization}/{exchange}/disclaimers',
+      {
+        rootPath: '2api',
+        urlParams: {
+          organization,
+          exchange: serviceName,
+        },
+        params: {
+          count,
+          offset,
+        },
       },
-      params: {
-        count,
-        offset,
-      },
-    });
+    );
   }
 
   /**
@@ -1457,7 +1567,8 @@ export default class Exchange {
    */
   orderAccountUpgrade(organization, serviceName, options) {
     const { duration } = options;
-    delete options.duration; // eslint-disable-line
+    // eslint-disable-next-line no-param-reassign
+    delete options.duration;
 
     return this.services.OvhHttp.post(
       '/order/email/exchange/{organization}/service/{exchange}/accountUpgrade/{duration}',
@@ -1480,7 +1591,14 @@ export default class Exchange {
   prepareForCsv(organization, serviceName, opts, offset, timeout) {
     const queue = [];
 
-    return this.getAccounts(opts.count, offset, opts.search, false, opts.filter, timeout).then(
+    return this.getAccounts(
+      opts.count,
+      offset,
+      opts.search,
+      false,
+      opts.filter,
+      timeout,
+    ).then(
       (accounts) => {
         angular.forEach(accounts.list.results, (account) => {
           if (account.aliases > 0) {
@@ -1541,19 +1659,21 @@ export default class Exchange {
   doSharepointBeta(opts) {
     const { primaryEmailAddress, subDomain } = opts;
 
-    return this.getSelected().then((exchange) => this.services.$http.post(
-      [
-        'apiv6/email/exchange',
-        exchange.organization,
-        'service',
-        exchange.domain,
-        'activateSharepoint',
-      ].join('/'),
-      {
-        primaryEmailAddress,
-        subDomain,
-      },
-    ));
+    return this.getSelected().then((exchange) =>
+      this.services.$http.post(
+        [
+          'apiv6/email/exchange',
+          exchange.organization,
+          'service',
+          exchange.domain,
+          'activateSharepoint',
+        ].join('/'),
+        {
+          primaryEmailAddress,
+          subDomain,
+        },
+      ),
+    );
   }
 
   getAccountIds(opts) {
@@ -1642,7 +1762,9 @@ export default class Exchange {
    * Return information related to sharepoint order
    */
   getSharepointService() {
-    return this.getSelected().then((exchange) => this.getSharepointServiceForExchange(exchange));
+    return this.getSelected().then((exchange) =>
+      this.getSharepointServiceForExchange(exchange),
+    );
   }
 
   getSharepointServiceForExchange(exchange) {
@@ -1665,6 +1787,9 @@ export default class Exchange {
    * @returns {string} The localized price according to the subsidiary
    */
   static getLocalizedPrice(ovhSubsidiary, price, currencyCode) {
-    return price.toLocaleString(ovhSubsidiary, { style: 'currency', currency: currencyCode });
+    return price.toLocaleString(ovhSubsidiary, {
+      style: 'currency',
+      currency: currencyCode,
+    });
   }
 }

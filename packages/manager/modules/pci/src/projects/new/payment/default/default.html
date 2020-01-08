@@ -1,22 +1,33 @@
 <div class="pci-projects-new-payment-default">
-    <h2 class="oui-heading_underline"
-        data-translate="pci_projects_new_payment_default_title">
-    </h2>
+    <h2
+        class="oui-heading_underline"
+        data-translate="pci_projects_new_payment_default_title"
+    ></h2>
 
-    <p data-translate="pci_projects_new_payment_default_explain"
-       data-translate-values="{ 'href': $ctrl.paymentMethodUrl }">
-    </p>
+    <p
+        data-translate="pci_projects_new_payment_default_explain"
+        data-translate-values="{ 'href': $ctrl.paymentMethodUrl }"
+    ></p>
 
     <p>
-        <img class="d-inline-block vertical-middle"
-             data-ng-if="$ctrl.defaultPaymentMethod.icon.data"
-             data-ng-src="{{ $ctrl.defaultPaymentMethod.icon.data }}"
-             alt="" />
-        <span class="d-inline-block vertical-middle"
-              data-ng-bind="$ctrl.defaultPaymentMethod.label">
+        <img
+            class="d-inline-block vertical-middle"
+            data-ng-if="$ctrl.defaultPaymentMethod.icon.data"
+            data-ng-src="{{ $ctrl.defaultPaymentMethod.icon.data }}"
+            alt=""
+        />
+        <span
+            class="d-inline-block vertical-middle"
+            data-ng-bind="$ctrl.defaultPaymentMethod.label"
+        >
         </span>
-        <span class="text-success font-weight-bold d-inline-block vertical-middle">
-            [<span data-translate="pci_projects_new_payment_default_payment_method"></span>]
+        <span
+            class="text-success font-weight-bold d-inline-block vertical-middle"
+        >
+            [<span
+                data-translate="pci_projects_new_payment_default_payment_method"
+            ></span
+            >]
         </span>
     </p>
 </div>

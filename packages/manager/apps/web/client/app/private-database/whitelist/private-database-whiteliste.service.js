@@ -22,7 +22,9 @@ angular.module('services').service(
      */
     getWhitelistIds(serviceName) {
       return this.$http
-        .get(`${this.rootPath}/${this.swsProxypassPath}/${serviceName}/whitelist`)
+        .get(
+          `${this.rootPath}/${this.swsProxypassPath}/${serviceName}/whitelist`,
+        )
         .then((res) => res.data);
     }
 
@@ -96,9 +98,11 @@ angular.module('services').service(
      */
     getWhitelist(serviceName, whitelistId) {
       return this.$http
-        .get(`${this.rootPath}/${
-          this.swsProxypassPath
-        }/${serviceName}/whitelist/${encodeURIComponent(whitelistId)}`)
+        .get(
+          `${this.rootPath}/${
+            this.swsProxypassPath
+          }/${serviceName}/whitelist/${encodeURIComponent(whitelistId)}`,
+        )
         .then((res) => res.data);
     }
 
@@ -134,9 +138,11 @@ angular.module('services').service(
      */
     deleteWhitelist(serviceName, whitelistId) {
       return this.$http
-        .delete(`${this.rootPath}/${
-          this.swsProxypassPath
-        }/${serviceName}/whitelist/${encodeURIComponent(whitelistId)}`)
+        .delete(
+          `${this.rootPath}/${
+            this.swsProxypassPath
+          }/${serviceName}/whitelist/${encodeURIComponent(whitelistId)}`,
+        )
         .then((res) => {
           this.pollwhitelistdelete(serviceName, {
             taskId: res.data.id,

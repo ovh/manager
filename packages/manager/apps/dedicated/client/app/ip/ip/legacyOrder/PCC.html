@@ -1,5 +1,8 @@
 <form name="orderIpPCC">
-    <oui-field data-label="{{:: 'ip_order_ipblocksize' | translate }}" data-size="xl">
+    <oui-field
+        data-label="{{:: 'ip_order_ipblocksize' | translate }}"
+        data-size="xl"
+    >
         <label class="oui-select">
             <select
                 id="sizeSelect"
@@ -7,18 +10,26 @@
                 data-ng-model="model.params.size"
                 class="oui-select__input"
                 data-ng-options="size as ('/'+size) for size in orderableIp.size"
-                data-required>
+                data-required
+            >
                 <option
                     data-value=""
                     data-ng-disabled="true"
-                    data-translate="global_select">
+                    data-translate="global_select"
+                >
                 </option>
             </select>
-            <span class="oui-icon oui-icon-chevron-down" aria-hidden="true"></span>
+            <span
+                class="oui-icon oui-icon-chevron-down"
+                aria-hidden="true"
+            ></span>
         </label>
     </oui-field>
 
-    <oui-field data-label="{{:: 'ip_order_country' | translate }}" data-size="xl">
+    <oui-field
+        data-label="{{:: 'ip_order_country' | translate }}"
+        data-size="xl"
+    >
         <label class="oui-select">
             <select
                 id="countrySelect"
@@ -26,36 +37,57 @@
                 data-ng-model="model.params.country"
                 class="oui-select__input"
                 data-ng-options="country.code as country.displayValue for country in orderableIp.countries | orderBy:'displayValue' track by country.code"
-                data-required>
+                data-required
+            >
                 <option
                     data-value=""
                     data-ng-disabled="true"
-                    data-translate="global_select">
+                    data-translate="global_select"
+                >
                 </option>
             </select>
-            <span class="oui-icon oui-icon-chevron-down" aria-hidden="true"></span>
+            <span
+                class="oui-icon oui-icon-chevron-down"
+                aria-hidden="true"
+            ></span>
         </label>
     </oui-field>
 
-    <oui-field data-label="{{:: 'ip_order_networkname' | translate }}" label-popover="{{:: 'ip_order_networkname_help' | translate }}">
-        <input type="text" class="oui-input"
-               data-ng-pattern="/^[a-zA-Z]+\w+$/"
-               data-ng-model="model.params.networkName"
-               name="networkName"
-               id="networkName"
-               data-maxlength="20">
+    <oui-field
+        data-label="{{:: 'ip_order_networkname' | translate }}"
+        label-popover="{{:: 'ip_order_networkname_help' | translate }}"
+    >
+        <input
+            type="text"
+            class="oui-input"
+            data-ng-pattern="/^[a-zA-Z]+\w+$/"
+            data-ng-model="model.params.networkName"
+            name="networkName"
+            id="networkName"
+            data-maxlength="20"
+        />
     </oui-field>
 
-    <oui-field data-label="{{:: 'ip_order_estimatedclientsnumber' | translate }}" label-popover="{{:: 'ip_order_estimatedclientsnumber_help' | translate }}" data-ng-if="model.service.usesLegacyOrder">
-        <input type="number" class="oui-input"
-               data-ng-model="model.params.estimatedClientsNumber"
-               name="estimatedClientsNumber"
-               id="estimatedClientsNumber"
-               min="1"
-               data-required>
+    <oui-field
+        data-label="{{:: 'ip_order_estimatedclientsnumber' | translate }}"
+        label-popover="{{:: 'ip_order_estimatedclientsnumber_help' | translate }}"
+        data-ng-if="model.service.usesLegacyOrder"
+    >
+        <input
+            type="number"
+            class="oui-input"
+            data-ng-model="model.params.estimatedClientsNumber"
+            name="estimatedClientsNumber"
+            id="estimatedClientsNumber"
+            min="1"
+            data-required
+        />
     </oui-field>
 
-    <oui-field data-label="{{:: 'ip_order_description' | translate }}" label-popover="{{:: 'ip_order_description_help' | translate }}">
+    <oui-field
+        data-label="{{:: 'ip_order_description' | translate }}"
+        label-popover="{{:: 'ip_order_description_help' | translate }}"
+    >
         <oui-textarea
             class="w-100"
             data-rows="3"
@@ -65,16 +97,23 @@
             data-minlength="3"
             data-ng-pattern="/^[a-zA-Z0-9\.,\-'!\?:;\(\)\+\/=\s]*$/"
             data-model="model.params.description"
-            data-required>
+            data-required
+        >
         </oui-textarea>
     </oui-field>
 
-    <oui-field data-label="{{:: 'ip_order_usage' | translate }}" label-popover="{{:: 'ip_order_usage_help' | translate }}" data-ng-if="model.service.usesLegacyOrder">
-        <input type="text" class="oui-input"
-               data-ng-model="model.params.usage"
-               name="usage"
-               id="usage"
-               required>
+    <oui-field
+        data-label="{{:: 'ip_order_usage' | translate }}"
+        label-popover="{{:: 'ip_order_usage_help' | translate }}"
+        data-ng-if="model.service.usesLegacyOrder"
+    >
+        <input
+            type="text"
+            class="oui-input"
+            data-ng-model="model.params.usage"
+            name="usage"
+            id="usage"
+            required
+        />
     </oui-field>
-
 </form>

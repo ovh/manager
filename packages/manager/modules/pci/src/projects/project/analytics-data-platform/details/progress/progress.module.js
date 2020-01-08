@@ -7,9 +7,7 @@ import progressComponent from './progress.component';
 const moduleName = 'ovhManagerAnalyticsDataPlatformProgressComponent';
 
 angular
-  .module(moduleName, [
-    'ui.router',
-  ])
+  .module(moduleName, ['ui.router'])
   .config(routing)
   .component('analyticsDataPlatformDetailsProgressComponent', progressComponent)
   .run(/* @ngTranslationsInject:json ./translations */);

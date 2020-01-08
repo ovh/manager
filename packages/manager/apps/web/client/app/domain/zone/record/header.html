@@ -3,59 +3,107 @@
     <small data-translate="required_fields"></small>
 </p>
 
-<div class="form-group" data-ng-class="{
+<div
+    class="form-group"
+    data-ng-class="{
     'has-error': ctrl.zoneRecordForm.subDomainToDisplay.$dirty && ctrl.zoneRecordForm.subDomainToDisplay.$invalid,
-    'has-warning': ctrl.existingSubDomain && ctrl.existingSubDomain.length > 0 }">
-    <label class="control-label col-md-3" for="subDomainToDisplay"
-           data-translate="domain_configuration_dns_entry_add_subdomain"
-           data-ng-class="{ 'required': ctrl.model.fieldType === 'NS' }"></label>
+    'has-warning': ctrl.existingSubDomain && ctrl.existingSubDomain.length > 0 }"
+>
+    <label
+        class="control-label col-md-3"
+        for="subDomainToDisplay"
+        data-translate="domain_configuration_dns_entry_add_subdomain"
+        data-ng-class="{ 'required': ctrl.model.fieldType === 'NS' }"
+    ></label>
     <div class="col-md-9">
         <div class="input-group">
-            <input type="text" class="form-control" id="subDomainToDisplay" name="subDomainToDisplay"
-                   data-ng-maxlength="255" maxlength="255"
-                   data-ng-change="ctrl.checkSubDomainToDisplay(ctrl.zoneRecordForm.subDomainToDisplay)"
-                   data-ng-model="ctrl.model.subDomainToDisplay"
-                   data-ng-required="ctrl.model.fieldType === 'NS'">
-            <span class="input-group-addon" title=".{{ctrl.domain.displayName}}."
-                  data-ng-bind-template=".{{ctrl.domain.displayName}}."></span>
+            <input
+                type="text"
+                class="form-control"
+                id="subDomainToDisplay"
+                name="subDomainToDisplay"
+                data-ng-maxlength="255"
+                maxlength="255"
+                data-ng-change="ctrl.checkSubDomainToDisplay(ctrl.zoneRecordForm.subDomainToDisplay)"
+                data-ng-model="ctrl.model.subDomainToDisplay"
+                data-ng-required="ctrl.model.fieldType === 'NS'"
+            />
+            <span
+                class="input-group-addon"
+                title=".{{ctrl.domain.displayName}}."
+                data-ng-bind-template=".{{ctrl.domain.displayName}}."
+            ></span>
         </div>
-        <small class="help-block"
-               data-translate="domain_configuration_dns_entry_add_subdomain_already_configured"
-               data-ng-if="ctrl.existingSubDomain && ctrl.existingSubDomain.length > 0"></small>
+        <small
+            class="help-block"
+            data-translate="domain_configuration_dns_entry_add_subdomain_already_configured"
+            data-ng-if="ctrl.existingSubDomain && ctrl.existingSubDomain.length > 0"
+        ></small>
     </div>
 </div>
 
-<div class="form-group" data-ng-class="{ 'has-error': ctrl.zoneRecordForm.ttl.$dirty && ctrl.zoneRecordForm.ttl.$invalid}">
-    <label class="control-label col-md-3" for="ttlSelect"
-           data-translate="domain_configuration_dns_entry_add_ttl"></label>
+<div
+    class="form-group"
+    data-ng-class="{ 'has-error': ctrl.zoneRecordForm.ttl.$dirty && ctrl.zoneRecordForm.ttl.$invalid}"
+>
+    <label
+        class="control-label col-md-3"
+        for="ttlSelect"
+        data-translate="domain_configuration_dns_entry_add_ttl"
+    ></label>
     <div class="col-md-9">
         <div class="col-xs-8 pl-0">
             <div class="oui-select mb-0">
-                <select class="oui-select__input" id="ttlSelect" name="ttlSelect"
-                        data-ng-change="ctrl.setTtlConfiguration()"
-                        data-ng-model="ctrl.model.ttlSelect">
-                    <option value="global" data-translate="domain_configuration_dns_entry_add_ttl_global"></option>
-                    <option value="custom" data-translate="domain_configuration_dns_entry_add_ttl_custom"></option>
+                <select
+                    class="oui-select__input"
+                    id="ttlSelect"
+                    name="ttlSelect"
+                    data-ng-change="ctrl.setTtlConfiguration()"
+                    data-ng-model="ctrl.model.ttlSelect"
+                >
+                    <option
+                        value="global"
+                        data-translate="domain_configuration_dns_entry_add_ttl_global"
+                    ></option>
+                    <option
+                        value="custom"
+                        data-translate="domain_configuration_dns_entry_add_ttl_custom"
+                    ></option>
                 </select>
-                <span class="oui-icon oui-icon-chevron-down" aria-hidden="true"></span>
+                <span
+                    class="oui-icon oui-icon-chevron-down"
+                    aria-hidden="true"
+                ></span>
             </div>
         </div>
         <div class="col-xs-4" data-ng-if="ctrl.model.ttlSelect === 'custom'">
             <div class="input-group">
-                <input type="number" class="form-control" id="ttl" name="ttl" step="1"
-                       data-ng-change="ctrl.isCustomTtlWithValueZero()"
-                       data-ng-model="ctrl.model.ttl"
-                       data-ng-max="2147483647" max="2147483647"
-                       data-ng-min="60" min="60"
-                       data-ng-pattern="/^\d+$/">
+                <input
+                    type="number"
+                    class="form-control"
+                    id="ttl"
+                    name="ttl"
+                    step="1"
+                    data-ng-change="ctrl.isCustomTtlWithValueZero()"
+                    data-ng-model="ctrl.model.ttl"
+                    data-ng-max="2147483647"
+                    max="2147483647"
+                    data-ng-min="60"
+                    min="60"
+                    data-ng-pattern="/^\d+$/"
+                />
                 <span class="input-group-addon">s.</span>
             </div>
         </div>
-        <small class="help-block"
-               data-translate="domain_configuration_dns_entry_add_ttl_low_value"
-               data-ng-if="ctrl.zoneRecordForm.ttl.$dirty && ctrl.zoneRecordForm.ttl.$invalid"></small>
-        <p class="help-block"
-           data-ng-if="ctrl.ttlZero"
-           data-translate="domain_configuration_dns_entry_add_ttl_default_hint"></p>
+        <small
+            class="help-block"
+            data-translate="domain_configuration_dns_entry_add_ttl_low_value"
+            data-ng-if="ctrl.zoneRecordForm.ttl.$dirty && ctrl.zoneRecordForm.ttl.$invalid"
+        ></small>
+        <p
+            class="help-block"
+            data-ng-if="ctrl.ttlZero"
+            data-translate="domain_configuration_dns_entry_add_ttl_default_hint"
+        ></p>
     </div>
 </div>

@@ -3,7 +3,8 @@ angular.module('managerApp').config(($stateProvider) => {
     url: '/repayments',
     views: {
       'aliasInnerView@telecom.telephony.billingAccount.alias': {
-        templateUrl: 'app/telecom/telephony/alias/special/repayments/telecom-telephony-alias-special-repayments.html',
+        templateUrl:
+          'app/telecom/telephony/alias/special/repayments/telecom-telephony-alias-special-repayments.html',
         controller: 'TelecomTelephonyAliasSpecialRepaymentsCtrl',
         controllerAs: '$ctrl',
       },

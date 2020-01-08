@@ -1,8 +1,16 @@
 import get from 'lodash/get';
 
 class ServerConsumptionCtrl {
-  constructor($q, $scope, $stateParams, $filter, Alerter, ServerTrafficService,
-    ServerOrderTrafficService, Server) {
+  constructor(
+    $q,
+    $scope,
+    $stateParams,
+    $filter,
+    Alerter,
+    ServerTrafficService,
+    ServerOrderTrafficService,
+    Server,
+  ) {
     this.$q = $q;
     this.$scope = $scope;
     this.$stateParams = $stateParams;
@@ -69,7 +77,15 @@ class ServerConsumptionCtrl {
   }
 
   initTrafficOrder() {
-    this.$q.all([this.initTrafficOption(), this.initTrafficOrderables()]).catch((data) => this.Alerter.alertFromSWS(this.$translate.instant('server_traffic_loading_error'), data.data, 'trafficError'));
+    this.$q
+      .all([this.initTrafficOption(), this.initTrafficOrderables()])
+      .catch((data) =>
+        this.Alerter.alertFromSWS(
+          this.$translate.instant('server_traffic_loading_error'),
+          data.data,
+          'trafficError',
+        ),
+      );
   }
 
   initTrafficOption() {
@@ -90,7 +106,9 @@ class ServerConsumptionCtrl {
 
   initTrafficOrderables() {
     this.trafficOrderables.loading = true;
-    return this.ServerOrderTrafficService.getOrderables(this.$stateParams.productId)
+    return this.ServerOrderTrafficService.getOrderables(
+      this.$stateParams.productId,
+    )
       .then((trafficOrderables) => {
         this.trafficOrderables.data = trafficOrderables.data;
         this.trafficOrderables.hasErrors = false;
@@ -109,7 +127,11 @@ class ServerConsumptionCtrl {
   }
 
   canOrderMoreTraffic() {
-    return !this.server.data.isExpired && this.server.data.canOrderQuota && get(this.trafficOrderables, 'data.length');
+    return (
+      !this.server.data.isExpired &&
+      this.server.data.canOrderQuota &&
+      get(this.trafficOrderables, 'data.length')
+    );
   }
 
   // function quotaStatus () {
@@ -132,4 +154,6 @@ class ServerConsumptionCtrl {
   // }
 }
 
-angular.module('App').controller('ServerConsumptionCtrl', ServerConsumptionCtrl);
+angular
+  .module('App')
+  .controller('ServerConsumptionCtrl', ServerConsumptionCtrl);

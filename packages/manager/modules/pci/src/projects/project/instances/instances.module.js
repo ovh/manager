@@ -4,7 +4,6 @@ import '@ovh-ux/ng-translate-async-loader';
 import 'angular-translate';
 import 'ovh-api-services';
 
-
 import activeMonthlyBilling from './active-monthly-billing';
 import add from './add';
 import backup from './backup';

@@ -7,7 +7,11 @@ import services from './emailproServices.module';
 
 import './css/exchangeDiagnostic.css';
 
-import { EMAILPRO_MX_CONFIG, EMAILPRO_CONFIG_URL, EMAILPRO_CONFIG } from './emailpro.constants';
+import {
+  EMAILPRO_MX_CONFIG,
+  EMAILPRO_CONFIG_URL,
+  EMAILPRO_CONFIG,
+} from './emailpro.constants';
 
 const moduleName = 'Module.emailpro';
 

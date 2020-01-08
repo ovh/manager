@@ -1,10 +1,14 @@
 <div class="popover-menu">
-    <button class="btn btn-link" type="button"
-            data-translate="table_modify_entry"
-            data-ng-click="setAction('dynhost/edit/domain-dynhost-edit', {dynHost: dynHost, product: ctrlDomainDynHost.product})">
-    </button>
-    <button class="btn btn-link" type="button"
-            data-translate="table_delete_entry"
-            data-ng-click="setAction('dynhost/delete/domain-dynhost-delete', {dynHost: dynHost, zoneName: ctrlDomainDynHost.product.name})">
-    </button>
+    <button
+        class="btn btn-link"
+        type="button"
+        data-translate="table_modify_entry"
+        data-ng-click="setAction('dynhost/edit/domain-dynhost-edit', {dynHost: dynHost, product: ctrlDomainDynHost.product})"
+    ></button>
+    <button
+        class="btn btn-link"
+        type="button"
+        data-translate="table_delete_entry"
+        data-ng-click="setAction('dynhost/delete/domain-dynhost-delete', {dynHost: dynHost, zoneName: ctrlDomainDynHost.product.name})"
+    ></button>
 </div>

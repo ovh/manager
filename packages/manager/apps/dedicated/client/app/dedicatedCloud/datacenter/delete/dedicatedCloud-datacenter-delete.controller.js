@@ -9,13 +9,26 @@ class DedicatedCloudSubDatacentersDeleteCtrl {
 
     this.$scope.deleteDatacenter = () => {
       this.$scope.loading = true;
-      this.DedicatedCloud.deleteDatacenter($stateParams.productId, this.datacenterId)
+      this.DedicatedCloud.deleteDatacenter(
+        $stateParams.productId,
+        this.datacenterId,
+      )
         .then(() => {
-          this.$scope.setMessage($translate.instant('dedicatedCloud_datacenter_delete_success', { t0: this.datacenterId }), true);
+          this.$scope.setMessage(
+            $translate.instant('dedicatedCloud_datacenter_delete_success', {
+              t0: this.datacenterId,
+            }),
+            true,
+          );
         })
         .catch((err) => {
           const data = { ...err, type: 'ERROR' };
-          this.$scope.setMessage($translate.instant('dedicatedCloud_datacenter_delete_error', { t0: this.datacenterId }), data);
+          this.$scope.setMessage(
+            $translate.instant('dedicatedCloud_datacenter_delete_error', {
+              t0: this.datacenterId,
+            }),
+            data,
+          );
         })
         .finally(() => {
           this.$scope.resetAction();
@@ -25,4 +38,9 @@ class DedicatedCloudSubDatacentersDeleteCtrl {
   }
 }
 
-angular.module('App').controller('DedicatedCloudSubDatacentersDeleteCtrl', DedicatedCloudSubDatacentersDeleteCtrl);
+angular
+  .module('App')
+  .controller(
+    'DedicatedCloudSubDatacentersDeleteCtrl',
+    DedicatedCloudSubDatacentersDeleteCtrl,
+  );

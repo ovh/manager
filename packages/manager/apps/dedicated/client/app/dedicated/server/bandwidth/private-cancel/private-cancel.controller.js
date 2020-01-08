@@ -4,7 +4,14 @@ import set from 'lodash/set';
 
 export default class {
   /* @ngInject */
-  constructor($scope, $stateParams, $rootScope, User, Server, BandwidthVrackOrderService) {
+  constructor(
+    $scope,
+    $stateParams,
+    $rootScope,
+    User,
+    Server,
+    BandwidthVrackOrderService,
+  ) {
     this.setMessage = $scope.setMessage;
     this.$stateParams = $stateParams;
     this.$rootScope = $rootScope;
@@ -25,8 +32,11 @@ export default class {
       {
         isValid: () => !this.user.loading,
         isLoading: () => this.user.loading || this.cancelAction.loading,
-        load: () => this.handleAPIGet(() => this.User.getUser()
-          .then((user) => ({ data: user })), this.user),
+        load: () =>
+          this.handleAPIGet(
+            () => this.User.getUser().then((user) => ({ data: user })),
+            this.user,
+          ),
       },
     ];
 
@@ -34,9 +44,16 @@ export default class {
   }
 
   cancelOption() {
-    this.handleAPIGet(() => this.BandwidthVrackOrderService
-      .cancelBandwidthOption(this.$stateParams.productId), this.cancelAction)
-      .then(() => this.$rootScope.$broadcast('dedicated.informations.bandwidth'))
+    this.handleAPIGet(
+      () =>
+        this.BandwidthVrackOrderService.cancelBandwidthOption(
+          this.$stateParams.productId,
+        ),
+      this.cancelAction,
+    )
+      .then(() =>
+        this.$rootScope.$broadcast('dedicated.informations.bandwidth'),
+      )
       .finally(() => this.goBack());
   }
 

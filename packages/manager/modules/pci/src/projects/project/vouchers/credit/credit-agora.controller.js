@@ -36,30 +36,44 @@ export default class CloudProjectBillingVouchersAddcreditAgoraCtrl {
   $onInit() {
     this.amount = 10;
     this.loading = true;
-    return this.OvhApiMe.v6().get().$promise
-      .then((me) => this.OvhApiOrderCatalogPublic.v6()
-        .get({ productName: 'cloud', ovhSubsidiary: me.ovhSubsidiary }).$promise.then((result) => {
-          const pricing = head(
-            filter(
-              get(
-                head(
-                  filter(
-                    get(result, 'plans'),
-                    (p) => p.planCode === 'credit' && p.pricingType === 'purchase',
+    return this.OvhApiMe.v6()
+      .get()
+      .$promise.then((me) =>
+        this.OvhApiOrderCatalogPublic.v6()
+          .get({ productName: 'cloud', ovhSubsidiary: me.ovhSubsidiary })
+          .$promise.then((result) => {
+            const pricing = head(
+              filter(
+                get(
+                  head(
+                    filter(
+                      get(result, 'plans'),
+                      (p) =>
+                        p.planCode === 'credit' && p.pricingType === 'purchase',
+                    ),
                   ),
+                  'pricings',
                 ),
-                'pricings',
+                (p) => p.capacities.includes('installation'),
               ),
-              (p) => p.capacities.includes('installation'),
-            ),
-          );
-          this.price = pricing ? {
-            currencyCode: get(result, 'locale.currencyCode'),
-            value: this.CucCurrencyService.convertUcentsToCurrency(pricing.price),
-          } : undefined;
-        }))
+            );
+            this.price = pricing
+              ? {
+                  currencyCode: get(result, 'locale.currencyCode'),
+                  value: this.CucCurrencyService.convertUcentsToCurrency(
+                    pricing.price,
+                  ),
+                }
+              : undefined;
+          }),
+      )
       .catch((err) => {
-        this.CucCloudMessage.error([this.$translate.instant('cpb_vouchers_add_credit_load_err'), get(err, 'data.message', '')].join(' '));
+        this.CucCloudMessage.error(
+          [
+            this.$translate.instant('cpb_vouchers_add_credit_load_err'),
+            get(err, 'data.message', ''),
+          ].join(' '),
+        );
         return this.cancel();
       })
       .finally(() => {
@@ -73,12 +87,19 @@ export default class CloudProjectBillingVouchersAddcreditAgoraCtrl {
       productId: 'cloud',
       pricingMode: 'default',
       quantity: Math.floor(this.amount / this.price.value),
-      configuration: [{
-        label: 'type',
-        value: 'public_cloud',
-      }],
+      configuration: [
+        {
+          label: 'type',
+          value: 'public_cloud',
+        },
+      ],
     };
-    this.$window.open(`https://us.ovhcloud.com/order/express/#/express/review?products=${stringify([order])}`, '_blank');
+    this.$window.open(
+      `https://us.ovhcloud.com/order/express/#/express/review?products=${stringify(
+        [order],
+      )}`,
+      '_blank',
+    );
     this.cancel();
   }
 

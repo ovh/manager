@@ -7,11 +7,11 @@ import nextStepsComponent from './next-steps.component';
 const moduleName = 'enterpriseCloudDatabaseServiceGetStartedNextStepsComponent';
 
 angular
-  .module(moduleName, [
-    flags,
-    maintenanceWindow,
-  ])
-  .component('enterpriseCloudDatabaseServiceGetStartedNextStepsComponent', nextStepsComponent)
+  .module(moduleName, [flags, maintenanceWindow])
+  .component(
+    'enterpriseCloudDatabaseServiceGetStartedNextStepsComponent',
+    nextStepsComponent,
+  )
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

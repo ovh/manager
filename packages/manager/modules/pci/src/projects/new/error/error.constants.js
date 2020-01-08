@@ -19,9 +19,11 @@ export const IMAGE_ASSETS = {
 };
 
 export const PAY_DEBT_URL = {
-  EU: 'https://www.ovh.com/manager/dedicated/index.html#/billing/history/debt/all/pay',
+  EU:
+    'https://www.ovh.com/manager/dedicated/index.html#/billing/history/debt/all/pay',
   CA: 'https://ca.ovh.com/manager/index.html#/billing/history/debt/all/pay',
-  US: 'https://us.ovhcloud.com/manager/dedicated/index.html#/billing/history/balance',
+  US:
+    'https://us.ovhcloud.com/manager/dedicated/index.html#/billing/history/balance',
 };
 
 export default {

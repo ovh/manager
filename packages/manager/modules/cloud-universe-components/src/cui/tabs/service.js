@@ -61,10 +61,13 @@ export default class CuiTabsService {
     //  2- We are in the presence of an orphan state (no tab corresponds to the state).
     //  We try to find the current active and make sure is is active.
     //  3- If, however, no tabs are active, we activate the first tab.
-    const newActiveTab = find(
-      this.registeredTabs,
-      (tab) => tab.state && this.$state.includes(tab.state),
-    ) || previousActiveTab || this.registeredTabs[0];
+    const newActiveTab =
+      find(
+        this.registeredTabs,
+        (tab) => tab.state && this.$state.includes(tab.state),
+      ) ||
+      previousActiveTab ||
+      this.registeredTabs[0];
 
     if (newActiveTab && previousActiveTab !== newActiveTab) {
       if (previousActiveTab) {

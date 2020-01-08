@@ -3,33 +3,37 @@
         name="updateDefaultTtlForm"
         id="updateDefaultTtlForm"
         data-ng-submit="updateDefaultTtlForm.$valid && ctrl.updateDefaultTTL()"
-        novalidate>
-
+        novalidate
+    >
         <oui-modal
             data-title="{{:: 'domain_tab_ZONE_default_ttl_button' | translate }}"
             data-primary-label="{{:: 'wizard_modify' | translate }}"
             data-secondary-action="resetAction()"
             data-secondary-label="{{:: 'wizard_cancel' | translate }}"
             data-on-dismiss="resetAction()"
-            data-loading="ctrl.loading" >
-
+            data-loading="ctrl.loading"
+        >
             <p data-translate="domain_tab_ZONE_default_ttl_info"></p>
-            <p data-ng-bind-html=":: 'domain_tab_ZONE_default_ttl_heading' | translate: { t0: '<strong>' + ctrl.domain.displayName + '</strong>' }"></p>
+            <p
+                data-ng-bind-html=":: 'domain_tab_ZONE_default_ttl_heading' | translate: { t0: '<strong>' + ctrl.domain.displayName + '</strong>' }"
+            ></p>
 
             <oui-field
                 data-label="{{:: 'domain_tab_ZONE_default_ttl_default_value' | translate }}"
                 data-help-text="{{:: 'domain_tab_ZONE_default_ttl_help' | translate }}"
-                data-size="s">
-                <input id="nb-ttl"
+                data-size="s"
+            >
+                <input
+                    id="nb-ttl"
                     type="number"
                     class="oui-input"
                     name="ttl"
                     data-ng-model="ctrl.zoneSOA.ttl"
                     required
                     data-ng-min="ctrl.autorizedValues.min"
-                    data-ng-max="ctrl.autorizedValues.max">
+                    data-ng-max="ctrl.autorizedValues.max"
+                />
             </oui-field>
-
         </oui-modal>
     </form>
 </div>

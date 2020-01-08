@@ -21,9 +21,9 @@ angular.module('App').controller(
 
     isValid() {
       return (
-        isObject(this.editEnvvarForm)
-        && this.editEnvvarForm.$dirty
-        && this.editEnvvarForm.$valid
+        isObject(this.editEnvvarForm) &&
+        this.editEnvvarForm.$dirty &&
+        this.editEnvvarForm.$valid
       );
     }
 
@@ -41,7 +41,8 @@ angular.module('App').controller(
         })
         .catch((err) => {
           this.Alerter.error(
-            this.$translate.instant('hosting_tab_ENVVARS_edit_error') + err.message,
+            this.$translate.instant('hosting_tab_ENVVARS_edit_error') +
+              err.message,
             this.$scope.alerts.main,
           );
         })

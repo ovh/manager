@@ -1,19 +1,16 @@
 <div data-ng-controller="CdnDeleteDomainCtrl">
-
-    <div data-wizard
-         data-wizard-on-cancel="resetAction"
-         data-wizard-on-finish="deleteEntry"
-         data-wizard-title=":: 'cdn_configuration_delete_domain_title' | translate">
-
+    <div
+        data-wizard
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="deleteEntry"
+        data-wizard-title=":: 'cdn_configuration_delete_domain_title' | translate"
+    >
         <div data-wizard-step>
-
-            <p class="font-weight-bold text-danger"
-               data-translate="cdn_configuration_delete_domain_question"
-               data-translate-values="{ t0: domain }">
-            </p>
-
+            <p
+                class="font-weight-bold text-danger"
+                data-translate="cdn_configuration_delete_domain_question"
+                data-translate-values="{ t0: domain }"
+            ></p>
         </div>
-
     </div>
-
 </div>

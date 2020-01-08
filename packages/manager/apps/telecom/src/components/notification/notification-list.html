@@ -1,32 +1,47 @@
-<div class="text-ceter"
-    data-ng-if="NotificationListCtrl.loading">
+<div class="text-ceter" data-ng-if="NotificationListCtrl.loading">
     <oui-spinner data-size="l"></oui-spinner>
     <h2 data-translate="components_notification_loading"></h2>
 </div>
 
-<div class="table-responsive-vertical"
-     data-ng-hide="NotificationListCtrl.loading">
-    <button class="btn btn-default mb-3"
-            type="button"
-            data-ng-click="NotificationListCtrl.addElement()">
+<div
+    class="table-responsive-vertical"
+    data-ng-hide="NotificationListCtrl.loading"
+>
+    <button
+        class="btn btn-default mb-3"
+        type="button"
+        data-ng-click="NotificationListCtrl.addElement()"
+    >
         <i class="oui-icon oui-icon-add mr-2" aria-hidden="true"></i>
         <span data-translate="components_notification_add"></span>
     </button>
     <table class="table table-hover">
         <thead>
-            <tr class="sort" data-tuc-table-sort="NotificationListCtrl.sortElements(SORT)">
+            <tr
+                class="sort"
+                data-tuc-table-sort="NotificationListCtrl.sortElements(SORT)"
+            >
                 <th scope="col">
-                    <tuc-col-sort data-field-name="type" data-title="{{:: 'table_sort' | translate}}">
+                    <tuc-col-sort
+                        data-field-name="type"
+                        data-title="{{:: 'table_sort' | translate}}"
+                    >
                         {{:: 'components_notification_type' | translate }}
                     </tuc-col-sort>
                 </th>
                 <th scope="col">
-                    <tuc-col-sort data-field-name="contact" data-title="{{:: 'table_sort' | translate}}">
+                    <tuc-col-sort
+                        data-field-name="contact"
+                        data-title="{{:: 'table_sort' | translate}}"
+                    >
                         {{:: 'components_notification_contact' | translate }}
                     </tuc-col-sort>
                 </th>
                 <th scope="col">
-                    <tuc-col-sort data-field-name="frequency" data-title="{{:: 'table_sort' | translate}}">
+                    <tuc-col-sort
+                        data-field-name="frequency"
+                        data-title="{{:: 'table_sort' | translate}}"
+                    >
                         {{:: 'components_notification_frequency' | translate }}
                     </tuc-col-sort>
                 </th>
@@ -35,104 +50,168 @@
         </thead>
         <tbody>
             <tr data-ng-if="NotificationListCtrl.ngModel.length === 0">
-                <td class="text-center" colspan="4" data-translate="components_notification_noNotification"></td>
+                <td
+                    class="text-center"
+                    colspan="4"
+                    data-translate="components_notification_noNotification"
+                ></td>
             </tr>
-            <tr data-ng-repeat="element in NotificationListCtrl.ngModel track by element.id">
+            <tr
+                data-ng-repeat="element in NotificationListCtrl.ngModel track by element.id"
+            >
                 <!-- Type -->
-                <td class="form-group"
+                <td
+                    class="form-group"
                     data-ng-hide="element.editMode"
-                    data-title="{{ 'components_notification_type' | translate }}">
+                    data-title="{{ 'components_notification_type' | translate }}"
+                >
                     {{ 'components_notification_' + element.type | translate }}
                 </td>
                 <!-- Contact -->
-                <td class="form-group" data-ng-hide="element.editMode" data-title="{{ 'components_notification_contact' | translate }}">
+                <td
+                    class="form-group"
+                    data-ng-hide="element.editMode"
+                    data-title="{{ 'components_notification_contact' | translate }}"
+                >
                     <span>{{ element.email || element.phone }}</span>
                 </td>
                 <!-- Frequency -->
-                <td class="form-group" data-ng-hide="element.editMode" data-title="{{ 'components_notification_frequency' | translate }}">
-                    <span>{{ 'components_notification_' + element.frequency | translate}}</span>
+                <td
+                    class="form-group"
+                    data-ng-hide="element.editMode"
+                    data-title="{{ 'components_notification_frequency' | translate }}"
+                >
+                    <span
+                        >{{ 'components_notification_' + element.frequency |
+                        translate}}</span
+                    >
                 </td>
                 <!-- Buttons -->
-                <td class="form-group col-mobile-button-big text-center" data-ng-hide="element.editMode">
-                    <button type="button"
-                            class="btn btn-ovh-danger btn-link"
-                            title="{{'components_notification_delete' | translate}}"
-                            data-ng-really-click="NotificationListCtrl.destroyElement(element)"
-                            data-ng-really-message="{{ 'components_notification_confirm' | translate: {contact:element.phone || element.email, service: element.xdslService} }}"
-                            data-ng-really-confirm="{{ 'ok' | translate }}"
-                            data-ng-really-cancel="{{ 'cancel' | translate }}"
-                            data-ng-really-window-class="revert-really-buttons"
-                            data-ng-disabled="element.frozen">
+                <td
+                    class="form-group col-mobile-button-big text-center"
+                    data-ng-hide="element.editMode"
+                >
+                    <button
+                        type="button"
+                        class="btn btn-ovh-danger btn-link"
+                        title="{{'components_notification_delete' | translate}}"
+                        data-ng-really-click="NotificationListCtrl.destroyElement(element)"
+                        data-ng-really-message="{{ 'components_notification_confirm' | translate: {contact:element.phone || element.email, service: element.xdslService} }}"
+                        data-ng-really-confirm="{{ 'ok' | translate }}"
+                        data-ng-really-cancel="{{ 'cancel' | translate }}"
+                        data-ng-really-window-class="revert-really-buttons"
+                        data-ng-disabled="element.frozen"
+                    >
                         <i class="ovh-font ovh-font-bin"></i>
                     </button>
                 </td>
 
                 <!-- Type (edit mode)-->
-                <td data-title="{{ 'components_notification_type' | translate }}"
+                <td
+                    data-title="{{ 'components_notification_type' | translate }}"
                     data-ng-hide="!element.editMode"
-                    class="form-group">
-                    <span data-translate="components_notification_error_noSmsAccount"
-                          data-ng-hide="NotificationListCtrl.isTypeValid(element.type)"
-                          class="red">
+                    class="form-group"
+                >
+                    <span
+                        data-translate="components_notification_error_noSmsAccount"
+                        data-ng-hide="NotificationListCtrl.isTypeValid(element.type)"
+                        class="red"
+                    >
                     </span>
-                    <select class="form-control"
-                            data-ng-model="element.type"
-                            data-ui-validate="'NotificationListCtrl.isTypeValid($value)'">
-                        <option data-ng-repeat="notifType in NotificationListCtrl.types" value="{{ notifType.name }}">{{ notifType.label | translate }}</option>
+                    <select
+                        class="form-control"
+                        data-ng-model="element.type"
+                        data-ui-validate="'NotificationListCtrl.isTypeValid($value)'"
+                    >
+                        <option
+                            data-ng-repeat="notifType in NotificationListCtrl.types"
+                            value="{{ notifType.name }}"
+                            >{{ notifType.label | translate }}</option
+                        >
                     </select>
                     <div data-ng-if="element.type === 'sms' ">
-                        <div data-ng-show="NotificationListCtrl.accounts.length > 1">
-                            <label class="control-label"
-                                   data-translate="components_notification_account"
-                                   for="account"></label>
-                            <select id="account"
-                                    class="form-control"
-                                    data-ng-model="element.smsAccount">
-                                <option data-ng-repeat="account in NotificationListCtrl.accounts" value="{{ account }}">{{ account | translate }}</option>
+                        <div
+                            data-ng-show="NotificationListCtrl.accounts.length > 1"
+                        >
+                            <label
+                                class="control-label"
+                                data-translate="components_notification_account"
+                                for="account"
+                            ></label>
+                            <select
+                                id="account"
+                                class="form-control"
+                                data-ng-model="element.smsAccount"
+                            >
+                                <option
+                                    data-ng-repeat="account in NotificationListCtrl.accounts"
+                                    value="{{ account }}"
+                                    >{{ account | translate }}</option
+                                >
                             </select>
                         </div>
                     </div>
                 </td>
                 <!-- Contact (edit mode)-->
-                <td data-title="{{ 'components_notification_contact' | translate }}"
+                <td
+                    data-title="{{ 'components_notification_contact' | translate }}"
                     data-ng-hide="!element.editMode"
-                    class="form-group">
-                    <input type="email"
-                           class="form-control"
-                           data-ng-model="element.email"
-                           data-ng-hide="element.type === 'sms' "/>
-                    <input type="text"
-                           class="form-control"
-                           placeholder="0033 ..."
-                           data-ng-model="element.phone"
-                           ovh-validate="phone"
-                           data-ng-show="element.type === 'sms' "/>
+                    class="form-group"
+                >
+                    <input
+                        type="email"
+                        class="form-control"
+                        data-ng-model="element.email"
+                        data-ng-hide="element.type === 'sms' "
+                    />
+                    <input
+                        type="text"
+                        class="form-control"
+                        placeholder="0033 ..."
+                        data-ng-model="element.phone"
+                        ovh-validate="phone"
+                        data-ng-show="element.type === 'sms' "
+                    />
                 </td>
                 <!-- Frequency (edit mode)-->
-                <td data-title="{{ 'components_notification_frequency' | translate }}"
+                <td
+                    data-title="{{ 'components_notification_frequency' | translate }}"
                     data-ng-hide="!element.editMode"
-                    class="form-group">
-                    <select class="form-control"
-                            data-ng-model="element.frequency">
-                        <option data-ng-repeat="fre in NotificationListCtrl.frequencies"
-                                value="{{fre.name}}">{{fre.label | translate}}</option>
+                    class="form-group"
+                >
+                    <select
+                        class="form-control"
+                        data-ng-model="element.frequency"
+                    >
+                        <option
+                            data-ng-repeat="fre in NotificationListCtrl.frequencies"
+                            value="{{fre.name}}"
+                            >{{fre.label | translate}}</option
+                        >
                     </select>
                 </td>
 
                 <!-- Buttons (edit mode)-->
-                <td class="form-group actions col-mobile-button-big text-center" data-ng-hide="!element.editMode">
-                    <button type="submit"
-                            title="{{ 'submit' | translate }}"
-                            class="btn btn-primary"
-                            data-ng-click="NotificationListCtrl.submitElement(element)"
-                            data-ng-disabled="!element.isValid() || element.frozen">
+                <td
+                    class="form-group actions col-mobile-button-big text-center"
+                    data-ng-hide="!element.editMode"
+                >
+                    <button
+                        type="submit"
+                        title="{{ 'submit' | translate }}"
+                        class="btn btn-primary"
+                        data-ng-click="NotificationListCtrl.submitElement(element)"
+                        data-ng-disabled="!element.isValid() || element.frozen"
+                    >
                         <i class="fa fa-check"></i>
                     </button>
-                    <button title="{{ 'cancel' | translate }}"
-                            type="reset"
-                            class="btn btn-default"
-                            data-ng-click="NotificationListCtrl.removeElement(element)"
-                            data-ng-disabled="element.frozen">
+                    <button
+                        title="{{ 'cancel' | translate }}"
+                        type="reset"
+                        class="btn btn-default"
+                        data-ng-click="NotificationListCtrl.removeElement(element)"
+                        data-ng-disabled="element.frozen"
+                    >
                         <i class="fa fa-times"></i>
                     </button>
                 </td>

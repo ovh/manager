@@ -6,9 +6,7 @@ import './user-dashboard.less';
 const moduleName = 'ovhManagerDedicatedUserAccountDashboard';
 
 angular
-  .module(moduleName, [
-    'ui.router',
-  ])
+  .module(moduleName, ['ui.router'])
   .config(routing)
   .component('userAccountDashboard', component);
 

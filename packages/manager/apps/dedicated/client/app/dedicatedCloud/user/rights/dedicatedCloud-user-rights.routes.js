@@ -3,7 +3,8 @@ angular.module('App').config(($stateProvider) => {
     url: '/:userId/rights',
     views: {
       pccUserView: {
-        templateUrl: 'dedicatedCloud/user/rights/dedicatedCloud-user-rights.html',
+        templateUrl:
+          'dedicatedCloud/user/rights/dedicatedCloud-user-rights.html',
         controller: 'DedicatedCloudUserRightsCtrl',
         controllerAs: '$ctrl',
       },

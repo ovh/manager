@@ -1,20 +1,29 @@
 <div data-ng-controller="ExchangeRemoveManagerCtrl as ctrl">
-    <div data-wizard
-         data-wizard-on-cancel="resetAction"
-         data-wizard-on-finish="submit"
-         data-wizard-title="'exchange_GROUPS_remove_manager_title' | translate">
-
+    <div
+        data-wizard
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="submit"
+        data-wizard-title="'exchange_GROUPS_remove_manager_title' | translate"
+    >
         <div data-wizard-step>
             <p data-translate="exchange_GROUPS_remove_manager_question"></p>
 
             <dl class="dl-horizontal dl-lg">
-                <dt data-translate="exchange_GROUPS_remove_manager_group_label"></dt>
-                <dd class="word-break"
-                    data-ng-bind="ctrl.group.mailingListDisplayName | wucSliceContent: 150"></dd>
+                <dt
+                    data-translate="exchange_GROUPS_remove_manager_group_label"
+                ></dt>
+                <dd
+                    class="word-break"
+                    data-ng-bind="ctrl.group.mailingListDisplayName | wucSliceContent: 150"
+                ></dd>
 
-                <dt data-translate="exchange_GROUPS_remove_manager_manager_label"></dt>
-                <dd class="word-break"
-                    data-ng-bind="ctrl.manager.displayAddress | wucSliceContent: 150"></dd>
+                <dt
+                    data-translate="exchange_GROUPS_remove_manager_manager_label"
+                ></dt>
+                <dd
+                    class="word-break"
+                    data-ng-bind="ctrl.manager.displayAddress | wucSliceContent: 150"
+                ></dd>
             </dl>
         </div>
     </div>

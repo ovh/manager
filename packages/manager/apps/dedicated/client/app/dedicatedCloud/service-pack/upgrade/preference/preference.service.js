@@ -7,18 +7,14 @@ export const name = 'servicePackUpgradePreferenceService';
 
 export const PreferenceService = class {
   /* @ngInject */
-  constructor(
-    ovhUserPref,
-  ) {
+  constructor(ovhUserPref) {
     this.ovhUserPref = ovhUserPref;
   }
 
   savePreference(serviceName, values) {
-    return this
-      .ovhUserPref
-      .assign(PREFERENCE_NAME, {
-        [serviceName]: values,
-      });
+    return this.ovhUserPref.assign(PREFERENCE_NAME, {
+      [serviceName]: values,
+    });
   }
 
   async doesPreferenceExists(serviceName) {
@@ -38,23 +34,23 @@ export const PreferenceService = class {
   }
 
   getPreferenceForService(serviceName) {
-    return this
-      .ovhUserPref
+    return this.ovhUserPref
       .getValue(PREFERENCE_NAME)
-      .then((preference) => (isObject(preference[serviceName])
-        ? preference[serviceName]
-        : this.$q.reject({ status: 404 })));
+      .then((preference) =>
+        isObject(preference[serviceName])
+          ? preference[serviceName]
+          : this.$q.reject({ status: 404 }),
+      );
   }
 
   removePreference(serviceName) {
-    return this
-      .getPreferenceForService(serviceName)
-      .then((preference) => this.updatePreference(omit(preference, serviceName)));
+    return this.getPreferenceForService(serviceName).then((preference) =>
+      this.updatePreference(omit(preference, serviceName)),
+    );
   }
 
   updatePreference(preference) {
-    return this
-      .ovhUserPref
+    return this.ovhUserPref
       .remove(PREFERENCE_NAME)
       .then(() => this.ovhUserPref.assign(preference));
   }

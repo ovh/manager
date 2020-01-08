@@ -4,9 +4,9 @@ import isEmpty from 'lodash/isEmpty';
 
 import config from '../../../../config/config';
 
-angular
-  .module('App')
-  .controller('ovhManagerPccDatacenterBackupEnable', class {
+angular.module('App').controller(
+  'ovhManagerPccDatacenterBackupEnable',
+  class {
     /* @ngInject */
     constructor(
       $q,
@@ -66,37 +66,39 @@ angular
 
       return this.$q
         .all({
-          currentService: this.DedicatedCloud
-            .getSelected(this.$stateParams.productId, true),
-          datacenter: this.DedicatedCloud
-            .getDatacenterInfoProxy(this.$stateParams.productId, this.$stateParams.datacenterId),
-          expressURL: this.User
-            .getUrlOf('express_order'),
-          hosts: this.DedicatedCloud
-            .getHosts(this.$stateParams.productId, this.$stateParams.datacenterId),
-          user: this.User
-            .getUser(),
+          currentService: this.DedicatedCloud.getSelected(
+            this.$stateParams.productId,
+            true,
+          ),
+          datacenter: this.DedicatedCloud.getDatacenterInfoProxy(
+            this.$stateParams.productId,
+            this.$stateParams.datacenterId,
+          ),
+          expressURL: this.User.getUrlOf('express_order'),
+          hosts: this.DedicatedCloud.getHosts(
+            this.$stateParams.productId,
+            this.$stateParams.datacenterId,
+          ),
+          user: this.User.getUser(),
         })
-        .then(({
-          currentService,
-          datacenter,
-          expressURL,
-          hosts,
-          user,
-        }) => {
+        .then(({ currentService, datacenter, expressURL, hosts, user }) => {
           this.currentService = currentService;
           this.datacenter = datacenter;
           this.expressURL = expressURL;
           this.updateAvailableHosts(hosts);
           this.user = user;
-          const urlBaseToUse = get(config.constants.URLS, this.user.ovhSubsidiary)
-            || config.constants.URLS.FR;
+          const urlBaseToUse =
+            get(config.constants.URLS, this.user.ovhSubsidiary) ||
+            config.constants.URLS.FR;
           this.veeamPresentationURL = urlBaseToUse.presentations.veeam;
         })
-        .then(() => (this.user.ovhSubsidiary === 'US'
-          ? this.ovhManagerPccDatacenterBackupEnableService
-            .fetchBackupOffers(this.$stateParams.productId)
-          : null))
+        .then(() =>
+          this.user.ovhSubsidiary === 'US'
+            ? this.ovhManagerPccDatacenterBackupEnableService.fetchBackupOffers(
+                this.$stateParams.productId,
+              )
+            : null,
+        )
         .then((offers) => {
           this.updateAvailableOffers(get(offers, 'prices'));
         })
@@ -106,7 +108,11 @@ angular
           this.updateSecondaryLabel();
         })
         .catch((error) => {
-          this.Alerter.error(`${this.$translate.instant('dedicatedCloud_tab_veeam_enable_fail')}. ${get(error, 'message', '')}`.trim());
+          this.Alerter.error(
+            `${this.$translate.instant(
+              'dedicatedCloud_tab_veeam_enable_fail',
+            )}. ${get(error, 'message', '')}`.trim(),
+          );
         })
         .finally(() => {
           this.bindings.isFetchingInitialData = false;
@@ -126,37 +132,46 @@ angular
     }
 
     updateType() {
-      this.bindings.isWarning = this.bindings.availableHosts.warning.isDisplayed
-          || this.bindings.availableOffers.warning.isDisplayed;
+      this.bindings.isWarning =
+        this.bindings.availableHosts.warning.isDisplayed ||
+        this.bindings.availableOffers.warning.isDisplayed;
     }
 
     updateAvailableHosts(availableHosts) {
       this.bindings.availableHosts.value = availableHosts;
 
-      this.bindings.availableHosts.warning.isDisplayed = !isArray(availableHosts)
-        || isEmpty(availableHosts);
+      this.bindings.availableHosts.warning.isDisplayed =
+        !isArray(availableHosts) || isEmpty(availableHosts);
 
-      this.bindings.availableHosts.warning.text = this.bindings.availableHosts.warning.isDisplayed
-        ? this.$translate.instant('dedicatedCloud_tab_veeam_on_disabled', { name: this.datacenter.name })
+      this.bindings.availableHosts.warning.text = this.bindings.availableHosts
+        .warning.isDisplayed
+        ? this.$translate.instant('dedicatedCloud_tab_veeam_on_disabled', {
+            name: this.datacenter.name,
+          })
         : '';
     }
 
     updateAvailableOffers(availableOffers) {
       this.bindings.availableOffers.value = availableOffers;
 
-      this.bindings.availableOffers.warning.canExist = this.user.ovhSubsidiary === 'US';
+      this.bindings.availableOffers.warning.canExist =
+        this.user.ovhSubsidiary === 'US';
 
-      const isDisplayed = this.bindings.availableOffers.warning.canExist
-        && (!isArray(availableOffers)
-          || isEmpty(availableOffers));
+      const isDisplayed =
+        this.bindings.availableOffers.warning.canExist &&
+        (!isArray(availableOffers) || isEmpty(availableOffers));
       this.bindings.availableOffers.warning.isDisplayed = isDisplayed;
 
-      this.bindings.availableOffers.warning.text = this.bindings.availableOffers.warning.isDisplayed
-        ? this.$translate.instant('dedicatedCloud_datacenter_backup_enable_no_offer', { name: this.datacenter.name })
+      this.bindings.availableOffers.warning.text = this.bindings.availableOffers
+        .warning.isDisplayed
+        ? this.$translate.instant(
+            'dedicatedCloud_datacenter_backup_enable_no_offer',
+            { name: this.datacenter.name },
+          )
         : null;
 
-      this.bindings.availableOffers.selection.isDisplayed = isArray(availableOffers)
-        && !isEmpty(availableOffers);
+      this.bindings.availableOffers.selection.isDisplayed =
+        isArray(availableOffers) && !isEmpty(availableOffers);
 
       this.bindings.availableOffers.selection.value = 'classic';
     }
@@ -171,8 +186,8 @@ angular
       }
 
       if (
-        this.bindings.availableOffers.selection.isDisplayed
-          && !this.bindings.availableOffers.selection.value
+        this.bindings.availableOffers.selection.isDisplayed &&
+        !this.bindings.availableOffers.selection.value
       ) {
         return null;
       }
@@ -188,19 +203,25 @@ angular
         duration: 'P1M',
         pricingMode: `pcc-servicepack-${this.currentService.servicePackName}`,
         quantity: 1,
-        configuration: [{
-          label: 'datacenter_id',
-          value: this.datacenter.datacenterId,
-        }, {
-          label: 'offer_type',
-          value: offerType,
-        }],
+        configuration: [
+          {
+            label: 'datacenter_id',
+            value: this.datacenter.datacenterId,
+          },
+          {
+            label: 'offer_type',
+            value: offerType,
+          },
+        ],
       };
 
-      const orderURL = `${this.expressURL}review?products=${JSURL.stringify([productToOrder])}`;
+      const orderURL = `${this.expressURL}review?products=${JSURL.stringify([
+        productToOrder,
+      ])}`;
 
       this.$window.open(orderURL, '_blank');
 
       return this.closeModal();
     }
-  });
+  },
+);

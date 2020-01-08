@@ -28,24 +28,27 @@ angular.module('App').controller(
       return this.incident.getOvhTasks().then((informations) => {
         this.informations = informations;
 
-        this.informations.tasks = map(this.informations.tasks, (originalTask) => {
-          const task = clone(originalTask);
+        this.informations.tasks = map(
+          this.informations.tasks,
+          (originalTask) => {
+            const task = clone(originalTask);
 
-          task.detailed_desc = task.detailed_desc.replace(/\\'/g, "'");
-          task.detailed_desc = task.detailed_desc.replace(/\\"/g, '"');
+            task.detailed_desc = task.detailed_desc.replace(/\\'/g, "'");
+            task.detailed_desc = task.detailed_desc.replace(/\\"/g, '"');
 
-          task.comments = map(task.comments, (originalComment) => {
-            const comment = clone(originalComment);
-            comment.comment_text = comment.comment_text.replace(/\\'/g, "'");
-            comment.comment_text = comment.comment_text.replace(/\\"/g, '"');
+            task.comments = map(task.comments, (originalComment) => {
+              const comment = clone(originalComment);
+              comment.comment_text = comment.comment_text.replace(/\\'/g, "'");
+              comment.comment_text = comment.comment_text.replace(/\\"/g, '"');
 
-            return comment;
-          });
+              return comment;
+            });
 
-          task.comments = task.comments.reverse();
+            task.comments = task.comments.reverse();
 
-          return task;
-        });
+            return task;
+          },
+        );
       });
     }
   },

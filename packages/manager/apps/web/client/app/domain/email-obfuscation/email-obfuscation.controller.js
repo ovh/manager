@@ -10,14 +10,7 @@ import { EXCLUDED_CONTACTS } from './email-obfuscation.constant';
 
 export default class DomainEmailObfuscationCtrl {
   /* @ngInject */
-  constructor(
-    $state,
-    $stateParams,
-    $translate,
-    Alerter,
-    OvhApiDomain,
-    DOMAIN,
-  ) {
+  constructor($state, $stateParams, $translate, Alerter, OvhApiDomain, DOMAIN) {
     this.$state = $state;
     this.$stateParams = $stateParams;
     this.$translate = $translate;
@@ -38,7 +31,10 @@ export default class DomainEmailObfuscationCtrl {
     return this.getObfuscationRules()
       .then(() => this.getObfuscationConfiguration())
       .catch(() => {
-        this.Alerter.error('domain_email_obfuscation_error', this.DOMAIN.ALERTS.tabs);
+        this.Alerter.error(
+          'domain_email_obfuscation_error',
+          this.DOMAIN.ALERTS.tabs,
+        );
       })
       .finally(() => {
         this.loading.contacts = false;
@@ -46,13 +42,17 @@ export default class DomainEmailObfuscationCtrl {
   }
 
   getObfuscationRules() {
-    return this.OvhApiDomain.Rules().EmailsObfuscation().v6()
+    return this.OvhApiDomain.Rules()
+      .EmailsObfuscation()
+      .v6()
       .query({
         serviceName: this.domain,
-      }).$promise
-      .then((contactTypes) => {
+      })
+      .$promise.then((contactTypes) => {
         this.contactTypes = sortBy(
-          contactTypes.filter((contact) => !EXCLUDED_CONTACTS.includes(contact)),
+          contactTypes.filter(
+            (contact) => !EXCLUDED_CONTACTS.includes(contact),
+          ),
           (contact) => indexOf(CONTACTS_TYPES, contact),
         );
         return contactTypes;
@@ -60,15 +60,20 @@ export default class DomainEmailObfuscationCtrl {
   }
 
   getObfuscationConfiguration() {
-    return this.OvhApiDomain.Configurations().ObfuscatedEmails().v6()
+    return this.OvhApiDomain.Configurations()
+      .ObfuscatedEmails()
+      .v6()
       .query({
         serviceName: this.domain,
-      }).$promise
-      .then((configuration) => {
-        this.configuration = this.contactTypes.reduce((previousConfiguration, contact) => ({
-          ...previousConfiguration,
-          [contact]: configuration.some(({ type }) => type === contact),
-        }), {});
+      })
+      .$promise.then((configuration) => {
+        this.configuration = this.contactTypes.reduce(
+          (previousConfiguration, contact) => ({
+            ...previousConfiguration,
+            [contact]: configuration.some(({ type }) => type === contact),
+          }),
+          {},
+        );
         this.model = clone(this.configuration);
       });
   }
@@ -84,32 +89,56 @@ export default class DomainEmailObfuscationCtrl {
   regenerateEmails() {
     this.loading.contacts = true;
 
-    const contactToObfuscate = reduce(this.model, (contacts, obfuscate, contactType) => {
-      if (obfuscate) {
-        return [...contacts, contactType];
-      }
+    const contactToObfuscate = reduce(
+      this.model,
+      (contacts, obfuscate, contactType) => {
+        if (obfuscate) {
+          return [...contacts, contactType];
+        }
 
-      return contacts;
-    }, []);
-    return this.OvhApiDomain.Configurations().ObfuscatedEmails().v6().put({
-      serviceName: this.domain,
-    }, {
-      contacts: contactToObfuscate,
-    }).$promise
-      .then(() => this.OvhApiDomain.Configurations().ObfuscatedEmails().v6().refresh({
-        serviceName: this.domain,
-      }, {
-        contacts: this
-          .contactsToRegenerate
-          .filter((contact) => contactToObfuscate.includes(contact)),
-      }).$promise)
+        return contacts;
+      },
+      [],
+    );
+    return this.OvhApiDomain.Configurations()
+      .ObfuscatedEmails()
+      .v6()
+      .put(
+        {
+          serviceName: this.domain,
+        },
+        {
+          contacts: contactToObfuscate,
+        },
+      )
+      .$promise.then(
+        () =>
+          this.OvhApiDomain.Configurations()
+            .ObfuscatedEmails()
+            .v6()
+            .refresh(
+              {
+                serviceName: this.domain,
+              },
+              {
+                contacts: this.contactsToRegenerate.filter((contact) =>
+                  contactToObfuscate.includes(contact),
+                ),
+              },
+            ).$promise,
+      )
       .then(() => {
-        this.Alerter.success(this.$translate.instant('domain_email_obfuscation_refresh_success'), this.DOMAIN.ALERTS.tabs);
+        this.Alerter.success(
+          this.$translate.instant('domain_email_obfuscation_refresh_success'),
+          this.DOMAIN.ALERTS.tabs,
+        );
         return this.$state.go('^.information', this.$stateParams);
       })
       .catch((error) => {
         this.Alerter.error(
-          this.$translate.instant('domain_email_obfuscation_refresh_error', { message: get(error, 'message', '') }),
+          this.$translate.instant('domain_email_obfuscation_refresh_error', {
+            message: get(error, 'message', ''),
+          }),
           this.DOMAIN.ALERTS.tabs,
         );
       })

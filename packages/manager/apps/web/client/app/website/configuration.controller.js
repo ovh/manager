@@ -71,11 +71,13 @@ import get from 'lodash/get';
           );
           self.hostingInfos = response.info;
 
-          self.canBeCreated = databaseCapabilites || privateDatabaseCapabilities;
-          const haveEnoughRemaining = Hosting.constructor.getRemainingQuota(
-            self.hostingInfos.quotaSize,
-            self.hostingInfos.quotaUsed,
-          ) >= 219;
+          self.canBeCreated =
+            databaseCapabilites || privateDatabaseCapabilities;
+          const haveEnoughRemaining =
+            Hosting.constructor.getRemainingQuota(
+              self.hostingInfos.quotaSize,
+              self.hostingInfos.quotaUsed,
+            ) >= 219;
           self.canBeCreated = self.canBeCreated && haveEnoughRemaining;
         })
         .catch((err) => {
@@ -103,17 +105,18 @@ import get from 'lodash/get';
       }
 
       return (
-        self.site.config.domain
-        && self.site.config.hosting
-        && self.site.config.type
-        && moduleConfiguration
+        self.site.config.domain &&
+        self.site.config.hosting &&
+        self.site.config.type &&
+        moduleConfiguration
       );
     };
 
-    self.checkWebsiteConfiguration = () => self.site.config.type !== 'classic'
-      && (self.site.config.module.adminPasswordConfirm
-        !== self.site.config.module.adminPassword
-        || !self.isPasswordValid(self.site.config.module.adminPassword));
+    self.checkWebsiteConfiguration = () =>
+      self.site.config.type !== 'classic' &&
+      (self.site.config.module.adminPasswordConfirm !==
+        self.site.config.module.adminPassword ||
+        !self.isPasswordValid(self.site.config.module.adminPassword));
 
     function createModule() {
       const data = assign({}, self.site.config.module);
@@ -125,9 +128,10 @@ import get from 'lodash/get';
     }
 
     self.createWebSite = () => {
-      const path = self.site.config.type === 'classic'
-        ? './www'
-        : `./${self.site.config.domain}`;
+      const path =
+        self.site.config.type === 'classic'
+          ? './www'
+          : `./${self.site.config.domain}`;
       const promises = [
         HostingDomain.addDomain(
           self.site.config.domain,
@@ -155,21 +159,24 @@ import get from 'lodash/get';
       $q.all(promises)
         .then(
           () => {
-            $location.url([
-              '/website/configuration',
-              self.site.config.domain,
-              self.site.config.hosting,
-              'success',
-              self.site.config.type,
-            ].join('/'));
+            $location.url(
+              [
+                '/website/configuration',
+                self.site.config.domain,
+                self.site.config.hosting,
+                'success',
+                self.site.config.type,
+              ].join('/'),
+            );
           },
           (err) => {
             let traduction = 'website_creation_error';
             errorLoad = true;
             if (err.data) {
-              traduction = err.data.split(':')[0] === '402'
-                ? 'website_creation_error_quotas'
-                : 'website_creation_error';
+              traduction =
+                err.data.split(':')[0] === '402'
+                  ? 'website_creation_error_quotas'
+                  : 'website_creation_error';
             }
 
             Alerter.alertFromSWS(
@@ -215,9 +222,7 @@ import get from 'lodash/get';
       $scope.currentActionData = data;
 
       if (action) {
-        $scope.stepPath = `views/configuration/hosting/actions/${
-          $scope.currentAction
-        }.html`;
+        $scope.stepPath = `views/configuration/hosting/actions/${$scope.currentAction}.html`;
         $('#currentAction').modal({
           keyboard: true,
           backdrop: 'static',

@@ -1,6 +1,4 @@
-<h2
-    class="sr-only"
-    data-translate="ovhManagerComponentStepper_header"></h2>
+<h2 class="sr-only" data-translate="ovhManagerComponentStepper_header"></h2>
 
 <div class="oui-progress-tracker">
     <ol class="oui-progress-tracker__steps">
@@ -11,11 +9,13 @@
                 'oui-progress-tracker__step_complete' : step.isComplete
             }"
             class="oui-progress-tracker__step"
-            data-ng-attr-aria-current="{{ step.isActive ? 'step' : 'false' }}">
+            data-ng-attr-aria-current="{{ step.isActive ? 'step' : 'false' }}"
+        >
             <span class="oui-progress-tracker__status">
                 <span
                     class="oui-progress-tracker__label"
-                    data-translate="{{ step.header.displayValue }}"></span>
+                    data-translate="{{ step.header.displayValue }}"
+                ></span>
             </span>
         </li>
     </ol>

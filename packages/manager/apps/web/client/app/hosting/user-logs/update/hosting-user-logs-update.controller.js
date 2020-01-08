@@ -28,13 +28,17 @@ angular.module('App').controller(
       )
         .then(() => {
           this.Alerter.success(
-            this.$translate.instant('hosting_tab_USER_LOGS_configuration_user_modify_success'),
+            this.$translate.instant(
+              'hosting_tab_USER_LOGS_configuration_user_modify_success',
+            ),
             this.$scope.alerts.main,
           );
         })
         .catch((err) => {
           this.Alerter.alertFromSWS(
-            this.$translate.instant('hosting_tab_USER_LOGS_configuration_user_modify_fail'),
+            this.$translate.instant(
+              'hosting_tab_USER_LOGS_configuration_user_modify_fail',
+            ),
             get(err, 'data', err),
             this.$scope.alerts.main,
           );

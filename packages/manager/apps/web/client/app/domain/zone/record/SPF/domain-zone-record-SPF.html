@@ -1,178 +1,313 @@
 <form class="form-horizontal" name="ctrl.zoneRecordForm">
-
-    <p data-translate="domain_configuration_dns_entry_add_spf_ovh_title" data-translate-values="{ t0: ctrl.domain.displayName }"></p>
-    <code data-ng-bind="ctrl.domain.displayName + '. IN TXT &quot;v=spf1 include:mx.ovh.com ~all&quot;'"></code>
+    <p
+        data-translate="domain_configuration_dns_entry_add_spf_ovh_title"
+        data-translate-values="{ t0: ctrl.domain.displayName }"
+    ></p>
+    <code
+        data-ng-bind="ctrl.domain.displayName + '. IN TXT &quot;v=spf1 include:mx.ovh.com ~all&quot;'"
+    ></code>
     <div class="mt-3">
-        <button class="btn btn-default" type="button"
-                data-translate="domain_configuration_dns_entry_add_spf_ovh_btn"
-                data-ng-click="ctrl.useSpfOvh()"></button>
+        <button
+            class="btn btn-default"
+            type="button"
+            data-translate="domain_configuration_dns_entry_add_spf_ovh_btn"
+            data-ng-click="ctrl.useSpfOvh()"
+        ></button>
     </div>
 
     <div class="mt-5" data-ng-include="'domain/zone/record/header.html'"></div>
 
     <fieldset class="mt-4">
-        <span data-translate="domain_configuration_dns_entry_add_spf_a_title" data-translate-values="{ t0: ctrl.domain.displayName }"></span>
+        <span
+            data-translate="domain_configuration_dns_entry_add_spf_a_title"
+            data-translate-values="{ t0: ctrl.domain.displayName }"
+        ></span>
         <div class="col-md-9 col-md-offset-3">
             <div class="oui-radio oui-radio_inline">
-                <input type="radio" class="oui-radio__input" id="aSender-yes" name="aSender"
-                       data-ng-change="ctrl.setTargetValue('SPF')"
-                       data-ng-model="ctrl.model.target.aSender"
-                       data-ng-value="true">
+                <input
+                    type="radio"
+                    class="oui-radio__input"
+                    id="aSender-yes"
+                    name="aSender"
+                    data-ng-change="ctrl.setTargetValue('SPF')"
+                    data-ng-model="ctrl.model.target.aSender"
+                    data-ng-value="true"
+                />
                 <label class="oui-radio__label-container" for="aSender-yes">
-                    <span class="oui-radio__label"
-                          data-translate="common_yes"></span>
+                    <span
+                        class="oui-radio__label"
+                        data-translate="common_yes"
+                    ></span>
                 </label>
             </div>
             <div class="oui-radio oui-radio_inline ml-4">
-                <input type="radio" class="oui-radio__input" id="aSender-no" name="aSender"
-                       data-ng-change="ctrl.setTargetValue('SPF')"
-                       data-ng-model="ctrl.model.target.aSender"
-                       data-ng-value="false">
+                <input
+                    type="radio"
+                    class="oui-radio__input"
+                    id="aSender-no"
+                    name="aSender"
+                    data-ng-change="ctrl.setTargetValue('SPF')"
+                    data-ng-model="ctrl.model.target.aSender"
+                    data-ng-value="false"
+                />
                 <label class="oui-radio__label-container" for="aSender-no">
-                    <span class="oui-radio__label"
-                          data-translate="common_no"></span>
+                    <span
+                        class="oui-radio__label"
+                        data-translate="common_no"
+                    ></span>
                 </label>
             </div>
         </div>
     </fieldset>
 
     <fieldset class="mt-4">
-        <span data-translate="domain_configuration_dns_entry_add_spf_mx_title" data-translate-values="{ t0: ctrl.domain.displayName }"></span>
+        <span
+            data-translate="domain_configuration_dns_entry_add_spf_mx_title"
+            data-translate-values="{ t0: ctrl.domain.displayName }"
+        ></span>
         <div class="col-md-9 col-md-offset-3">
             <div class="oui-radio oui-radio_inline">
-                <input type="radio" class="oui-radio__input" id="mxSender-yes" name="mxSender"
-                       data-ng-change="ctrl.setTargetValue('SPF')"
-                       data-ng-model="ctrl.model.target.mxSender"
-                       data-ng-value="true">
+                <input
+                    type="radio"
+                    class="oui-radio__input"
+                    id="mxSender-yes"
+                    name="mxSender"
+                    data-ng-change="ctrl.setTargetValue('SPF')"
+                    data-ng-model="ctrl.model.target.mxSender"
+                    data-ng-value="true"
+                />
                 <label class="oui-radio__label-container" for="mxSender-yes">
-                    <span class="oui-radio__label"
-                          data-translate="common_yes"></span>
+                    <span
+                        class="oui-radio__label"
+                        data-translate="common_yes"
+                    ></span>
                 </label>
             </div>
             <div class="oui-radio oui-radio_inline ml-4">
-                <input type="radio" class="oui-radio__input" id="mxSender-no" name="mxSender"
-                       data-ng-change="ctrl.setTargetValue('SPF')"
-                       data-ng-model="ctrl.model.target.mxSender"
-                       data-ng-value="false">
+                <input
+                    type="radio"
+                    class="oui-radio__input"
+                    id="mxSender-no"
+                    name="mxSender"
+                    data-ng-change="ctrl.setTargetValue('SPF')"
+                    data-ng-model="ctrl.model.target.mxSender"
+                    data-ng-value="false"
+                />
                 <label class="oui-radio__label-container" for="mxSender-no">
-                    <span class="oui-radio__label"
-                          data-translate="common_no"></span>
+                    <span
+                        class="oui-radio__label"
+                        data-translate="common_no"
+                    ></span>
                 </label>
             </div>
         </div>
     </fieldset>
 
     <fieldset class="mt-4">
-        <span data-translate="domain_configuration_dns_entry_add_spf_ptr_title" data-translate-values="{ t0: ctrl.domain.displayName }"></span>
+        <span
+            data-translate="domain_configuration_dns_entry_add_spf_ptr_title"
+            data-translate-values="{ t0: ctrl.domain.displayName }"
+        ></span>
         <div class="col-md-9 col-md-offset-3">
             <div class="oui-radio oui-radio_inline">
-                <input type="radio" class="oui-radio__input" id="ptrSender-yes" name="ptrSender"
-                       data-ng-change="ctrl.setTargetValue('SPF')"
-                       data-ng-model="ctrl.model.target.ptrSender"
-                       data-ng-value="true">
+                <input
+                    type="radio"
+                    class="oui-radio__input"
+                    id="ptrSender-yes"
+                    name="ptrSender"
+                    data-ng-change="ctrl.setTargetValue('SPF')"
+                    data-ng-model="ctrl.model.target.ptrSender"
+                    data-ng-value="true"
+                />
                 <label class="oui-radio__label-container" for="ptrSender-yes">
-                    <span class="oui-radio__label"
-                          data-translate="common_yes"></span>
+                    <span
+                        class="oui-radio__label"
+                        data-translate="common_yes"
+                    ></span>
                 </label>
             </div>
             <div class="oui-radio oui-radio_inline ml-4">
-                <input type="radio" class="oui-radio__input" id="ptrSender-no" name="ptrSender"
-                       data-ng-change="ctrl.setTargetValue('SPF')"
-                       data-ng-model="ctrl.model.target.ptrSender"
-                       data-ng-value="false">
+                <input
+                    type="radio"
+                    class="oui-radio__input"
+                    id="ptrSender-no"
+                    name="ptrSender"
+                    data-ng-change="ctrl.setTargetValue('SPF')"
+                    data-ng-model="ctrl.model.target.ptrSender"
+                    data-ng-value="false"
+                />
                 <label class="oui-radio__label-container" for="ptrSender-no">
-                    <span class="oui-radio__label"
-                          data-translate="common_no"></span>
+                    <span
+                        class="oui-radio__label"
+                        data-translate="common_no"
+                    ></span>
                 </label>
             </div>
         </div>
     </fieldset>
 
     <fieldset class="mt-4">
-        <span data-translate="domain_configuration_dns_entry_add_spf_fields_title" data-translate-values="{ t0: ctrl.domain.displayName }"></span>
-        <div class="form-group mt-2" data-ng-class="{ 'has-error': ctrl.zoneRecordForm.a.$dirty && ctrl.zoneRecordForm.a.$invalid }">
+        <span
+            data-translate="domain_configuration_dns_entry_add_spf_fields_title"
+            data-translate-values="{ t0: ctrl.domain.displayName }"
+        ></span>
+        <div
+            class="form-group mt-2"
+            data-ng-class="{ 'has-error': ctrl.zoneRecordForm.a.$dirty && ctrl.zoneRecordForm.a.$invalid }"
+        >
             <label class="control-label col-md-3" for="a">a:</label>
             <div class="col-md-8">
-                <textarea class="form-control" id="a" name="a"
-                          data-ng-change="ctrl.checkSpfField(ctrl.zoneRecordForm.a, 'a'); ctrl.setTargetValue('SPF')"
-                          data-ng-model="ctrl.model.target.a"></textarea>
+                <textarea
+                    class="form-control"
+                    id="a"
+                    name="a"
+                    data-ng-change="ctrl.checkSpfField(ctrl.zoneRecordForm.a, 'a'); ctrl.setTargetValue('SPF')"
+                    data-ng-model="ctrl.model.target.a"
+                ></textarea>
             </div>
         </div>
-        <div class="form-group mt-2" data-ng-class="{ 'has-error': ctrl.zoneRecordForm.mx.$dirty && ctrl.zoneRecordForm.mx.$invalid }">
+        <div
+            class="form-group mt-2"
+            data-ng-class="{ 'has-error': ctrl.zoneRecordForm.mx.$dirty && ctrl.zoneRecordForm.mx.$invalid }"
+        >
             <label class="control-label col-md-3" for="mx">mx:</label>
             <div class="col-md-8">
-                <textarea class="form-control" id="mx" name="mx"
-                          data-ng-change="ctrl.checkSpfField(ctrl.zoneRecordForm.mx, 'mx'); ctrl.setTargetValue('SPF')"
-                          data-ng-model="ctrl.model.target.mx"></textarea>
+                <textarea
+                    class="form-control"
+                    id="mx"
+                    name="mx"
+                    data-ng-change="ctrl.checkSpfField(ctrl.zoneRecordForm.mx, 'mx'); ctrl.setTargetValue('SPF')"
+                    data-ng-model="ctrl.model.target.mx"
+                ></textarea>
             </div>
         </div>
-        <div class="form-group mt-2" data-ng-class="{ 'has-error': ctrl.zoneRecordForm.ptr.$dirty && ctrl.zoneRecordForm.ptr.$invalid }">
+        <div
+            class="form-group mt-2"
+            data-ng-class="{ 'has-error': ctrl.zoneRecordForm.ptr.$dirty && ctrl.zoneRecordForm.ptr.$invalid }"
+        >
             <label class="control-label col-md-3" for="ptr">ptr:</label>
             <div class="col-md-8">
-                <textarea class="form-control" id="ptr" name="ptr"
-                          data-ng-change="ctrl.checkSpfField(ctrl.zoneRecordForm.ptr, 'ptr'); ctrl.setTargetValue('SPF')"
-                          data-ng-model="ctrl.model.target.ptr"></textarea>
+                <textarea
+                    class="form-control"
+                    id="ptr"
+                    name="ptr"
+                    data-ng-change="ctrl.checkSpfField(ctrl.zoneRecordForm.ptr, 'ptr'); ctrl.setTargetValue('SPF')"
+                    data-ng-model="ctrl.model.target.ptr"
+                ></textarea>
             </div>
         </div>
-        <div class="form-group mt-2" data-ng-class="{ 'has-error': ctrl.zoneRecordForm.ip4.$dirty && ctrl.zoneRecordForm.ip4.$invalid }">
+        <div
+            class="form-group mt-2"
+            data-ng-class="{ 'has-error': ctrl.zoneRecordForm.ip4.$dirty && ctrl.zoneRecordForm.ip4.$invalid }"
+        >
             <label class="control-label col-md-3" for="ip4">ip4:</label>
             <div class="col-md-8">
-                <textarea class="form-control" id="ip4" name="ip4"
-                          data-ng-change="ctrl.checkSpfField(ctrl.zoneRecordForm.ip4, 'ip4'); ctrl.setTargetValue('SPF')"
-                          data-ng-model="ctrl.model.target.ip4"></textarea>
+                <textarea
+                    class="form-control"
+                    id="ip4"
+                    name="ip4"
+                    data-ng-change="ctrl.checkSpfField(ctrl.zoneRecordForm.ip4, 'ip4'); ctrl.setTargetValue('SPF')"
+                    data-ng-model="ctrl.model.target.ip4"
+                ></textarea>
             </div>
         </div>
-        <div class="form-group mt-2" data-ng-class="{ 'has-error': ctrl.zoneRecordForm.ip6.$dirty && ctrl.zoneRecordForm.ip6.$invalid }">
+        <div
+            class="form-group mt-2"
+            data-ng-class="{ 'has-error': ctrl.zoneRecordForm.ip6.$dirty && ctrl.zoneRecordForm.ip6.$invalid }"
+        >
             <label class="control-label col-md-3" for="ip6">ip6:</label>
             <div class="col-md-8">
-                <textarea class="form-control" id="ip6" name="ip6"
-                          data-ng-change="ctrl.checkSpfField(ctrl.zoneRecordForm.ip6, 'ip6'); ctrl.setTargetValue('SPF')"
-                          data-ng-model="ctrl.model.target.ip6"></textarea>
+                <textarea
+                    class="form-control"
+                    id="ip6"
+                    name="ip6"
+                    data-ng-change="ctrl.checkSpfField(ctrl.zoneRecordForm.ip6, 'ip6'); ctrl.setTargetValue('SPF')"
+                    data-ng-model="ctrl.model.target.ip6"
+                ></textarea>
             </div>
         </div>
     </fieldset>
 
     <fieldset class="mt-4">
-        <span data-translate="domain_configuration_dns_entry_add_spf_others_title" data-translate-values="{ t0: ctrl.domain.displayName }"></span>
-        <div class="form-group mt-2" data-ng-class="{ 'has-error': ctrl.zoneRecordForm.include.$dirty && ctrl.zoneRecordForm.include.$invalid }">
+        <span
+            data-translate="domain_configuration_dns_entry_add_spf_others_title"
+            data-translate-values="{ t0: ctrl.domain.displayName }"
+        ></span>
+        <div
+            class="form-group mt-2"
+            data-ng-class="{ 'has-error': ctrl.zoneRecordForm.include.$dirty && ctrl.zoneRecordForm.include.$invalid }"
+        >
             <label class="control-label col-md-3" for="include">include:</label>
             <div class="col-md-8">
-                <input type="text" class="form-control" id="include" name="include" maxlength="255"
-                       data-ng-change="ctrl.checkSpfField(ctrl.zoneRecordForm.include, 'include'); ctrl.setTargetValue('SPF')"
-                       data-ng-maxlength="255"
-                       data-ng-model="ctrl.model.target.include">
+                <input
+                    type="text"
+                    class="form-control"
+                    id="include"
+                    name="include"
+                    maxlength="255"
+                    data-ng-change="ctrl.checkSpfField(ctrl.zoneRecordForm.include, 'include'); ctrl.setTargetValue('SPF')"
+                    data-ng-maxlength="255"
+                    data-ng-model="ctrl.model.target.include"
+                />
             </div>
         </div>
     </fieldset>
 
     <fieldset class="mt-4">
-        <span data-translate="domain_configuration_dns_entry_add_spf_all_title" data-translate-values="{ t0: ctrl.domain.displayName }"></span>
+        <span
+            data-translate="domain_configuration_dns_entry_add_spf_all_title"
+            data-translate-values="{ t0: ctrl.domain.displayName }"
+        ></span>
         <div class="col-md-9 col-md-offset-3">
             <div class="oui-radio">
-                <input type="radio" class="oui-radio__input" id="all-sure" name="all" value="-all"
-                       data-ng-change="ctrl.setTargetValue('SPF')"
-                       data-ng-model="ctrl.model.target.all">
+                <input
+                    type="radio"
+                    class="oui-radio__input"
+                    id="all-sure"
+                    name="all"
+                    value="-all"
+                    data-ng-change="ctrl.setTargetValue('SPF')"
+                    data-ng-model="ctrl.model.target.all"
+                />
                 <label class="oui-radio__label-container" for="all-sure">
-                    <span class="oui-radio__label"
-                          data-translate="domain_configuration_dns_entry_add_spf_all_title_yes"></span>
+                    <span
+                        class="oui-radio__label"
+                        data-translate="domain_configuration_dns_entry_add_spf_all_title_yes"
+                    ></span>
                 </label>
             </div>
             <div class="oui-radio">
-                <input type="radio" class="oui-radio__input" id="all-safe" name="all" value="~all"
-                       data-ng-change="ctrl.setTargetValue('SPF')"
-                       data-ng-model="ctrl.model.target.all">
+                <input
+                    type="radio"
+                    class="oui-radio__input"
+                    id="all-safe"
+                    name="all"
+                    value="~all"
+                    data-ng-change="ctrl.setTargetValue('SPF')"
+                    data-ng-model="ctrl.model.target.all"
+                />
                 <label class="oui-radio__label-container" for="all-safe">
-                    <span class="oui-radio__label"
-                          data-translate="domain_configuration_dns_entry_add_spf_all_title_safe"></span>
+                    <span
+                        class="oui-radio__label"
+                        data-translate="domain_configuration_dns_entry_add_spf_all_title_safe"
+                    ></span>
                 </label>
             </div>
             <div class="oui-radio">
-                <input type="radio" class="oui-radio__input" id="all-no" name="all" value="?all"
-                       data-ng-change="ctrl.setTargetValue('SPF')"
-                       data-ng-model="ctrl.model.target.all">
+                <input
+                    type="radio"
+                    class="oui-radio__input"
+                    id="all-no"
+                    name="all"
+                    value="?all"
+                    data-ng-change="ctrl.setTargetValue('SPF')"
+                    data-ng-model="ctrl.model.target.all"
+                />
                 <label class="oui-radio__label-container" for="all-no">
-                    <span class="oui-radio__label"
-                          data-translate="domain_configuration_dns_entry_add_spf_all_title_no"></span>
+                    <span
+                        class="oui-radio__label"
+                        data-translate="domain_configuration_dns_entry_add_spf_all_title_no"
+                    ></span>
                 </label>
             </div>
         </div>

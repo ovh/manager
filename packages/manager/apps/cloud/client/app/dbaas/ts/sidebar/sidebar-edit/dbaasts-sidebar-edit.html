@@ -8,7 +8,8 @@
     data-ng-submit="saveName()"
     data-ng-keydown="watchForEscapeKey($event)"
     data-ng-if="!loader.save"
-    novalidate>
+    novalidate
+>
     <div class="input-group">
         <input
             class="form-control"
@@ -17,19 +18,14 @@
             data-ng-model="model.name"
             cuc-autofocus
             cuc-autoselect
-            required />
+            required
+        />
         <div class="input-group-btn">
-            <button
-                class="btn"
-                type="reset"
-                data-ng-click="cancelEdition()">
+            <button class="btn" type="reset" data-ng-click="cancelEdition()">
                 <i class="fa fa-times"></i>
             </button>
-            <button
-                class="btn"
-                type="submit"
-                data-ng-click="saveDescription()">
-                    <i class="fa fa-check"></i>
+            <button class="btn" type="submit" data-ng-click="saveDescription()">
+                <i class="fa fa-check"></i>
             </button>
         </div>
     </div>

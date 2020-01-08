@@ -1,126 +1,186 @@
 <section class="telecom-sms-users">
-
     <div class="widget-presentation mb-3">
-        <h2 class="widget-presentation-title"
-            data-translate="sms_users_manage_title">
-        </h2>
+        <h2
+            class="widget-presentation-title"
+            data-translate="sms_users_manage_title"
+        ></h2>
 
         <div class="mb-3 clearfix">
-            <div class="btn-group float-left mr-3"
-                 data-uib-dropdown
-                 data-dropdown-append-to-body>
-                <button id="btn-sms-users-actions"
-                        type="button"
-                        class="btn btn-default"
-                        data-uib-dropdown-toggle>
+            <div
+                class="btn-group float-left mr-3"
+                data-uib-dropdown
+                data-dropdown-append-to-body
+            >
+                <button
+                    id="btn-sms-users-actions"
+                    type="button"
+                    class="btn btn-default"
+                    data-uib-dropdown-toggle
+                >
                     <span class="fa fa-bars" aria-hidden="true"></span>
                     <span data-translate="sms_common_actions"></span>
-                    <span class="ovh-font ovh-font-small-arrow-down" aria-hidden="true"></span>
+                    <span
+                        class="ovh-font ovh-font-small-arrow-down"
+                        aria-hidden="true"
+                    ></span>
                 </button>
-                <ul class="dropdown-menu"
+                <ul
+                    class="dropdown-menu"
                     role="menu"
                     aria-labelledby="btn-sms-users-actions"
-                    data-uib-dropdown-menu>
+                    data-uib-dropdown-menu
+                >
                     <li role="menuitem">
-                        <i class="ovh-font ovh-font-add-circle" aria-hidden="true"></i>
+                        <i
+                            class="ovh-font ovh-font-add-circle"
+                            aria-hidden="true"
+                        ></i>
                         <button
                             type="button"
                             class="btn btn-link"
                             data-ng-click="SmsUsersCtrl.add()"
-                            data-translate="sms_common_add">
-                        </button>
+                            data-translate="sms_common_add"
+                        ></button>
                     </li>
                     <li role="menuitem">
-                        <i class="ovh-font ovh-font-warning" aria-hidden="true"></i>
+                        <i
+                            class="ovh-font ovh-font-warning"
+                            aria-hidden="true"
+                        ></i>
                         <button
                             type="button"
                             class="btn btn-link"
                             data-ng-click="SmsUsersCtrl.templates()"
                             data-translate="sms_users_actions_templates"
                             data-oui-tooltip="{{:: 'sms_users_templates_title' | translate }}"
-                            data-oui-tooltip-placement="right">
-                        </button>
+                            data-oui-tooltip-placement="right"
+                        ></button>
                     </li>
                     <li role="menuitem">
-                        <i class="ovh-font ovh-font-arrow-rotate" aria-hidden="true"></i>
+                        <i
+                            class="ovh-font ovh-font-arrow-rotate"
+                            aria-hidden="true"
+                        ></i>
                         <button
                             type="button"
                             class="btn btn-link"
                             data-ng-click="SmsUsersCtrl.refresh()"
-                            data-translate="sms_common_refresh">
-                        </button>
+                            data-translate="sms_common_refresh"
+                        ></button>
                     </li>
                 </ul>
             </div>
         </div>
 
         <oui-datagrid data-rows="SmsUsersCtrl.users.sorted">
-            <oui-column data-title="'sms_users_label_id' | translate" data-property="login" data-sortable>
+            <oui-column
+                data-title="'sms_users_label_id' | translate"
+                data-property="login"
+                data-sortable
+            >
                 <span data-ng-if="$row.login.length >= 25">
-                    <span data-ng-bind="$row.login | limitTo: 25"
-                            data-oui-tooltip="{{:: $row.login }}">
-                    </span>...
+                    <span
+                        data-ng-bind="$row.login | limitTo: 25"
+                        data-oui-tooltip="{{:: $row.login }}"
+                    >
+                    </span
+                    >...
                 </span>
-                <span data-ng-if="$row.login.length < 25"
-                      data-ng-bind="$row.login">
-                </span>
-            </oui-column>
-            <oui-column data-title="'sms_users_label_quota_status' | translate"
-                        data-property="quotaInformations.quotaStatus"
-                        data-sortable>
-                <span class="text-capitalize"
-                      data-ng-if="$row.quotaInformations.quotaStatus === 'active'"
-                      data-translate="sms_yes" >
-                </span>
-                <span data-ng-if="$row.quotaInformations.quotaStatus === 'inactive'"
-                      data-translate="sms_no" class="text-capitalize">
+                <span
+                    data-ng-if="$row.login.length < 25"
+                    data-ng-bind="$row.login"
+                >
                 </span>
             </oui-column>
-            <oui-column data-title="'sms_users_label_quota' | translate"
-                        data-property="quotaInformations.quotaLeft"
-                        data-sortable>
+            <oui-column
+                data-title="'sms_users_label_quota_status' | translate"
+                data-property="quotaInformations.quotaStatus"
+                data-sortable
+            >
+                <span
+                    class="text-capitalize"
+                    data-ng-if="$row.quotaInformations.quotaStatus === 'active'"
+                    data-translate="sms_yes"
+                >
+                </span>
+                <span
+                    data-ng-if="$row.quotaInformations.quotaStatus === 'inactive'"
+                    data-translate="sms_no"
+                    class="text-capitalize"
+                >
+                </span>
+            </oui-column>
+            <oui-column
+                data-title="'sms_users_label_quota' | translate"
+                data-property="quotaInformations.quotaLeft"
+                data-sortable
+            >
                 {{$row.quotaInformations.quotaLeft | number : 2}}
             </oui-column>
-            <oui-column data-title="'sms_users_label_alert' | translate"
-                        data-property="alertThresholdInformations.alertThreshold" data-sortable>
-                <span class="text-capitalize"
-                      data-translate="{{:: ($row.alertThresholdInformations.alertThreshold === -1) ? 'sms_no' : 'sms_yes' }}">
+            <oui-column
+                data-title="'sms_users_label_alert' | translate"
+                data-property="alertThresholdInformations.alertThreshold"
+                data-sortable
+            >
+                <span
+                    class="text-capitalize"
+                    data-translate="{{:: ($row.alertThresholdInformations.alertThreshold === -1) ? 'sms_no' : 'sms_yes' }}"
+                >
                 </span>
             </oui-column>
-            <oui-column data-title="'sms_users_label_threshold' | translate"
-                        data-property="alertThresholdInformations.alertThreshold" data-sortable>
-                <span data-ng-bind="($row.alertThresholdInformations.alertThreshold === -1) ? '-' : $row.alertThresholdInformations.alertThreshold">
+            <oui-column
+                data-title="'sms_users_label_threshold' | translate"
+                data-property="alertThresholdInformations.alertThreshold"
+                data-sortable
+            >
+                <span
+                    data-ng-bind="($row.alertThresholdInformations.alertThreshold === -1) ? '-' : $row.alertThresholdInformations.alertThreshold"
+                >
                 </span>
             </oui-column>
-            <oui-column data-title="'sms_users_label_notification' | translate"
-                        data-property="alertThresholdInformations.support"
-                        data-sortable>
-                <span data-ng-if="$row.alertThresholdInformations.alertEmail.length > 0" data-ng-bind="::'sms_users_limit_user_support_' + $row.alertThresholdInformations.support | translate"
-                      data-oui-tooltip="{{:: $row.alertThresholdInformations.alertEmail }}"></span>
-                <span data-ng-if="$row.alertThresholdInformations.alertEmail.length < 1" data-ng-bind="::'sms_users_limit_user_support_' + $row.alertThresholdInformations.support | translate"></span>
+            <oui-column
+                data-title="'sms_users_label_notification' | translate"
+                data-property="alertThresholdInformations.support"
+                data-sortable
+            >
+                <span
+                    data-ng-if="$row.alertThresholdInformations.alertEmail.length > 0"
+                    data-ng-bind="::'sms_users_limit_user_support_' + $row.alertThresholdInformations.support | translate"
+                    data-oui-tooltip="{{:: $row.alertThresholdInformations.alertEmail }}"
+                ></span>
+                <span
+                    data-ng-if="$row.alertThresholdInformations.alertEmail.length < 1"
+                    data-ng-bind="::'sms_users_limit_user_support_' + $row.alertThresholdInformations.support | translate"
+                ></span>
             </oui-column>
-            <oui-action-menu data-align="end"
-                             data-compact>
-                    <oui-action-menu-item on-click="SmsUsersCtrl.changePassword($row)">
-                        <span data-translate="sms_users_action_change_password_label"></span>
-                    </oui-action-menu-item>
-                    <oui-action-menu-item on-click="SmsUsersCtrl.quota($row)">
-                        <span data-translate="sms_users_action_quota"></span>
-                    </oui-action-menu-item>
-                    <oui-action-menu-item on-click="SmsUsersCtrl.limit($row)">
-                        <span data-translate="sms_users_action_limit"></span>
-                    </oui-action-menu-item>
-                    <oui-action-menu-item on-click="SmsUsersCtrl.restrict($row)">
-                        <span data-translate="sms_users_action_restriction_ip_label"></span>
-                    </oui-action-menu-item>
-                    <oui-action-menu-item on-click="SmsUsersCtrl.callback($row)">
-                        <span data-translate="sms_users_action_url_callback_label"></span>
-                    </oui-action-menu-item>
-                    <oui-action-menu-item on-click="SmsUsersCtrl.remove($row)">
-                        <span data-translate="sms_delete"></span>
-                    </oui-action-menu-item>
+            <oui-action-menu data-align="end" data-compact>
+                <oui-action-menu-item
+                    on-click="SmsUsersCtrl.changePassword($row)"
+                >
+                    <span
+                        data-translate="sms_users_action_change_password_label"
+                    ></span>
+                </oui-action-menu-item>
+                <oui-action-menu-item on-click="SmsUsersCtrl.quota($row)">
+                    <span data-translate="sms_users_action_quota"></span>
+                </oui-action-menu-item>
+                <oui-action-menu-item on-click="SmsUsersCtrl.limit($row)">
+                    <span data-translate="sms_users_action_limit"></span>
+                </oui-action-menu-item>
+                <oui-action-menu-item on-click="SmsUsersCtrl.restrict($row)">
+                    <span
+                        data-translate="sms_users_action_restriction_ip_label"
+                    ></span>
+                </oui-action-menu-item>
+                <oui-action-menu-item on-click="SmsUsersCtrl.callback($row)">
+                    <span
+                        data-translate="sms_users_action_url_callback_label"
+                    ></span>
+                </oui-action-menu-item>
+                <oui-action-menu-item on-click="SmsUsersCtrl.remove($row)">
+                    <span data-translate="sms_delete"></span>
+                </oui-action-menu-item>
             </oui-action-menu>
         </oui-datagrid>
-
     </div>
 </section>

@@ -1,4 +1,7 @@
-<div class="d-inline-flex oui-navbar-link oui-navbar-link_icon py-0" data-ng-if="$ctrl.isLoading">
+<div
+    class="d-inline-flex oui-navbar-link oui-navbar-link_icon py-0"
+    data-ng-if="$ctrl.isLoading"
+>
     <span class="oui-icon oui-icon-help"></span>
     <oui-spinner data-size="s"></oui-spinner>
 </div>
@@ -6,7 +9,8 @@
     data-ng-if="!$ctrl.isLoading"
     name="assistance"
     data-text="{{:: $ctrl.menuTitle }}"
-    data-icon-class="oui-icon oui-icon-help">
+    data-icon-class="oui-icon oui-icon-help"
+>
     <oui-navbar-menu
         data-ng-if="$ctrl.isSupportLevelAvailable"
         data-header-breadcrumb="{{:: 'navbar_assistance_support_level' | translate }}"
@@ -14,12 +18,14 @@
         data-header-title="{{:: $ctrl.supportLevel.displayedLevel }}"
         data-links="::$ctrl.sublinks"
         data-align="end"
-        data-fixed>
+        data-fixed
+    >
     </oui-navbar-menu>
     <oui-navbar-menu
         data-ng-if="!$ctrl.isSupportLevelAvailable"
         data-links="::$ctrl.sublinks"
         data-align="end"
-        data-fixed>
+        data-fixed
+    >
     </oui-navbar-menu>
 </oui-navbar-dropdown>

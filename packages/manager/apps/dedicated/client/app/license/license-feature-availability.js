@@ -1,8 +1,8 @@
 import includes from 'lodash/includes';
 
-angular
-  .module('Module.license')
-  .service('licenseFeatureAvailability', class {
+angular.module('Module.license').service(
+  'licenseFeatureAvailability',
+  class {
     /* @ngInject */
     constructor(coreConfig) {
       this.target = coreConfig.getRegion();
@@ -13,7 +13,22 @@ angular
     }
 
     allowLicenseTypeAgoraOrder(licenseType) {
-      return this.allowLicenseAgoraOrder() && includes(['CLOUDLINUX', 'CPANEL', 'DIRECTADMIN', 'SQLSERVER', 'WINDOWS', 'WORKLIGHT', 'PLESK', 'VIRTUOZZO'], licenseType);
+      return (
+        this.allowLicenseAgoraOrder() &&
+        includes(
+          [
+            'CLOUDLINUX',
+            'CPANEL',
+            'DIRECTADMIN',
+            'SQLSERVER',
+            'WINDOWS',
+            'WORKLIGHT',
+            'PLESK',
+            'VIRTUOZZO',
+          ],
+          licenseType,
+        )
+      );
     }
 
     allow(...args) {
@@ -23,4 +38,5 @@ angular
     deny(...args) {
       return Array.from(args).indexOf(this.target) === -1;
     }
-  });
+  },
+);

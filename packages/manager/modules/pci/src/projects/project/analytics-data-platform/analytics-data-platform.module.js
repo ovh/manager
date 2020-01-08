@@ -12,12 +12,7 @@ import onboarding from './onboarding';
 const moduleName = 'ovhManagerAnalyticsDataPlatformComponent';
 
 angular
-  .module(moduleName, [
-    deploy,
-    details,
-    'ngOvhSwimmingPoll',
-    onboarding,
-  ])
+  .module(moduleName, [deploy, details, 'ngOvhSwimmingPoll', onboarding])
   .config(routing)
   .component('analyticsDataPlatformComponent', analyticsDataPlatformComponent)
   .service('analyticsDataPlatformService', analyticsDataPlatformService)

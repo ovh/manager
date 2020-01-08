@@ -6,8 +6,13 @@ import {
 
 export default class {
   /* @ngInject */
-  constructor(analyticsDataPlatformService,
-    CucControllerHelper, CucCloudMessage, CucRegionService, CucServiceHelper) {
+  constructor(
+    analyticsDataPlatformService,
+    CucControllerHelper,
+    CucCloudMessage,
+    CucRegionService,
+    CucServiceHelper,
+  ) {
     this.analyticsDataPlatformService = analyticsDataPlatformService;
     this.cucControllerHelper = CucControllerHelper;
     this.cucServiceHelper = CucServiceHelper;
@@ -27,7 +32,9 @@ export default class {
   }
 
   subscribeToMessages() {
-    this.cucCloudMessage.unSubscribe('pci.projects.project.analytics-data-platform.details.service');
+    this.cucCloudMessage.unSubscribe(
+      'pci.projects.project.analytics-data-platform.details.service',
+    );
     this.messageHandler = this.cucCloudMessage.subscribe(
       'pci.projects.project.analytics-data-platform.details.service',
       { onMessage: () => this.refreshMessage() },
@@ -42,9 +49,11 @@ export default class {
    * @returns constructed url to manage analyticsDataPlatform cluster services
    */
   getAnalyticsDataPlatformServiceUrl(
-    analyticsDataPlatformServiceName, analyticsDataPlatformClusterServiceName,
+    analyticsDataPlatformServiceName,
+    analyticsDataPlatformClusterServiceName,
   ) {
-    return this.ANALYTICS_DATA_PLATFORM_CLUSTER_MANAGE[analyticsDataPlatformServiceName]
-      .replace('serviceName', analyticsDataPlatformClusterServiceName);
+    return this.ANALYTICS_DATA_PLATFORM_CLUSTER_MANAGE[
+      analyticsDataPlatformServiceName
+    ].replace('serviceName', analyticsDataPlatformClusterServiceName);
   }
 }

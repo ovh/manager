@@ -1,12 +1,19 @@
-<div data-modal-render="{{$isRendered}}" tabindex="-1" role="dialog" class="modal"
-     data-uib-modal-animation-class="fade"
-     data-modal-in-class="in"
-     data-ng-style="{'z-index': 1050 + index*10, display: 'block'}">
+<div
+    data-modal-render="{{$isRendered}}"
+    tabindex="-1"
+    role="dialog"
+    class="modal"
+    data-uib-modal-animation-class="fade"
+    data-modal-in-class="in"
+    data-ng-style="{'z-index': 1050 + index*10, display: 'block'}"
+>
     <div class="modal-dialog {{size ? 'modal-' + size : ''}}">
-        <form class="modal-content"
-              novalidate
-              data-ng-submit="($parent.$ctrl.primaryAction && $parent.$ctrl.primaryAction())
-                || ($parent.$ctrl.resolve.primaryAction && $parent.$ctrl.resolve.primaryAction())">
+        <form
+            class="modal-content"
+            novalidate
+            data-ng-submit="($parent.$ctrl.primaryAction && $parent.$ctrl.primaryAction())
+                || ($parent.$ctrl.resolve.primaryAction && $parent.$ctrl.resolve.primaryAction())"
+        >
             <oui-modal
                 data-heading="{{ $parent.$ctrl.heading || $parent.$ctrl.resolve.heading }}"
                 data-type="{{ $parent.$ctrl.type || $parent.$ctrl.resolve.type }}"
@@ -28,7 +35,8 @@
                     || ($parent.$ctrl.modalInstance && $parent.$ctrl.modalInstance.dismiss())"
                 data-loading="
                     ($parent.$ctrl.loading && $parent.$ctrl.loading())
-                    || ($parent.$ctrl.resolve.loading && $parent.$ctrl.resolve.loading())">
+                    || ($parent.$ctrl.resolve.loading && $parent.$ctrl.resolve.loading())"
+            >
                 <div data-ng-transclude></div>
             </oui-modal>
         </form>

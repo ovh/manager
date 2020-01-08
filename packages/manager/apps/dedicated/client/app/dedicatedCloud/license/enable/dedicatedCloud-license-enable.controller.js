@@ -1,8 +1,8 @@
 import head from 'lodash/head';
 
-angular
-  .module('App')
-  .controller('ovhManagerPccLicenseEnable', class {
+angular.module('App').controller(
+  'ovhManagerPccLicenseEnable',
+  class {
     /* @ngInject */
     constructor(
       $state,
@@ -51,7 +51,12 @@ angular
         .then(() => this.fetchOffers())
         .then(() => this.fetchContracts())
         .catch((error) => {
-          this.Alerter.error(this.$translate.instant('dedicatedCloud_tab_licences_active_spla_load_fail'), error);
+          this.Alerter.error(
+            this.$translate.instant(
+              'dedicatedCloud_tab_licences_active_spla_load_fail',
+            ),
+            error,
+          );
 
           return this.$state.go('^');
         })
@@ -61,19 +66,15 @@ angular
     }
 
     fetchExpressOrderURL() {
-      return this.User
-        .getUrlOf('express_order')
-        .then((url) => {
-          this.expressOrderUrl = url;
-        });
+      return this.User.getUrlOf('express_order').then((url) => {
+        this.expressOrderUrl = url;
+      });
     }
 
     fetchOVHSubsidiary() {
-      return this.User
-        .getUser()
-        .then(({ ovhSubsidiary }) => {
-          this.ovhSubsidiary = ovhSubsidiary;
-        });
+      return this.User.getUser().then(({ ovhSubsidiary }) => {
+        this.ovhSubsidiary = ovhSubsidiary;
+      });
     }
 
     fetchOffers() {
@@ -88,7 +89,11 @@ angular
 
     fetchContracts() {
       return this.ovhManagerPccLicenseEnableService
-        .fetchContracts(head(this.bindings.offers.value), this.serviceName, this.ovhSubsidiary)
+        .fetchContracts(
+          head(this.bindings.offers.value),
+          this.serviceName,
+          this.ovhSubsidiary,
+        )
         .then((contracts) => {
           this.bindings.contracts.value = contracts;
         });
@@ -99,7 +104,10 @@ angular
     }
 
     isOrderButtonAvailable() {
-      return this.bindings.offers.selected != null && this.bindings.contracts.areSigned;
+      return (
+        this.bindings.offers.selected != null &&
+        this.bindings.contracts.areSigned
+      );
     }
 
     getOrderUrl() {
@@ -109,17 +117,20 @@ angular
 
       const price = head(this.bindings.offers.selected.prices);
 
-      return `${this.expressOrderUrl}review?products=${JSURL.stringify([{
-        productId: 'privateCloud',
-        serviceName: this.serviceName,
-        planCode: this.bindings.offers.selected.planCode,
-        duration: price.duration,
-        pricingMode: price.pricingMode,
-        quantity: 1,
-      }])}`;
+      return `${this.expressOrderUrl}review?products=${JSURL.stringify([
+        {
+          productId: 'privateCloud',
+          serviceName: this.serviceName,
+          planCode: this.bindings.offers.selected.planCode,
+          duration: price.duration,
+          pricingMode: price.pricingMode,
+          quantity: 1,
+        },
+      ])}`;
     }
 
     onCancelBtnClick() {
       return this.$state.go('^');
     }
-  });
+  },
+);

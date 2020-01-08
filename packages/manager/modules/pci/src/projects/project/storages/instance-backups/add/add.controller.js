@@ -41,7 +41,9 @@ export default class PciInstancesAddController {
 
     const defaultPrivateNetwork = {
       id: '',
-      name: this.$translate.instant('pci_projects_project_instances_backup_add_private_network_none'),
+      name: this.$translate.instant(
+        'pci_projects_project_instances_backup_add_private_network_none',
+      ),
     };
 
     this.model = {
@@ -53,7 +55,10 @@ export default class PciInstancesAddController {
     };
 
     this.instanceNamePattern = PATTERN;
-    this.availablePrivateNetworks = [defaultPrivateNetwork, ...this.privateNetworks];
+    this.availablePrivateNetworks = [
+      defaultPrivateNetwork,
+      ...this.privateNetworks,
+    ];
 
     this.loadMessages();
   }
@@ -72,14 +77,20 @@ export default class PciInstancesAddController {
   }
 
   generateInstanceName() {
-    if (!has(this.instance, 'name') || get(this.instance, 'name') === this.defaultInstanceName) {
+    if (
+      !has(this.instance, 'name') ||
+      get(this.instance, 'name') === this.defaultInstanceName
+    ) {
       this.defaultInstanceName = `${this.flavor.name}-${this.instance.region}`.toLowerCase();
       this.instance.name = this.defaultInstanceName;
     }
   }
 
   onFlexChange(isFlex) {
-    this.flavor = this.model.flavorGroup.getFlavorByOsType(this.backup.type, isFlex);
+    this.flavor = this.model.flavorGroup.getFlavorByOsType(
+      this.backup.type,
+      isFlex,
+    );
 
     this.instance.flavorId = this.model.flavorGroup.getFlavorId(
       this.backup.type,
@@ -91,16 +102,21 @@ export default class PciInstancesAddController {
 
   canSwitchToFlex() {
     if (this.model.flavorGroup) {
-      return this.model.flavorGroup.hasFlexOption()
-       && this.backup.minDisk <= this.model.flavorGroup
-         .getFlavorByOsType(this.backup.type, true).disk;
+      return (
+        this.model.flavorGroup.hasFlexOption() &&
+        this.backup.minDisk <=
+          this.model.flavorGroup.getFlavorByOsType(this.backup.type, true).disk
+      );
     }
 
     return false;
   }
 
   loadMessages() {
-    this.messageHandler = this.CucCloudMessage.subscribe('pci.projects.project.storages.instance-backups.add', { onMessage: () => this.refreshMessages() });
+    this.messageHandler = this.CucCloudMessage.subscribe(
+      'pci.projects.project.storages.instance-backups.add',
+      { onMessage: () => this.refreshMessages() },
+    );
   }
 
   refreshMessages() {
@@ -109,9 +125,13 @@ export default class PciInstancesAddController {
 
   onPrivateNetworkChange(modelValue) {
     const networkId = get(modelValue, 'id');
-    this.instance.networks = networkId ? [{
-      networkId,
-    }] : [];
+    this.instance.networks = networkId
+      ? [
+          {
+            networkId,
+          },
+        ]
+      : [];
   }
 
   create() {
@@ -123,15 +143,23 @@ export default class PciInstancesAddController {
 
     this.instance.sshKeyId = get(this.model.sshKey, 'id');
 
-    return this.PciProjectsProjectInstanceService
-      .save(this.projectId, this.instance, this.model.number)
+    return this.PciProjectsProjectInstanceService.save(
+      this.projectId,
+      this.instance,
+      this.model.number,
+    )
       .then(() => {
-        const message = (this.model.number === 1)
-          ? this.$translate.instant('pci_projects_project_instances_backup_add_success_message',
-            {
-              instance: this.instance.name,
-            })
-          : this.$translate.instant('pci_projects_project_instances_backup_add_success_multiple_message');
+        const message =
+          this.model.number === 1
+            ? this.$translate.instant(
+                'pci_projects_project_instances_backup_add_success_message',
+                {
+                  instance: this.instance.name,
+                },
+              )
+            : this.$translate.instant(
+                'pci_projects_project_instances_backup_add_success_multiple_message',
+              );
         return this.goBack(message);
       })
       .catch((error) => {
@@ -152,7 +180,10 @@ export default class PciInstancesAddController {
             },
           );
         }
-        this.CucCloudMessage.error(message, 'pci.projects.project.instances.add');
+        this.CucCloudMessage.error(
+          message,
+          'pci.projects.project.instances.add',
+        );
       })
       .finally(() => {
         this.isLoading = false;

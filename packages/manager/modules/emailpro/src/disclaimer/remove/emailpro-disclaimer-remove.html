@@ -1,18 +1,27 @@
 <div data-ng-controller="EmailProRemoveDisclaimerCtrl">
-    <div data-wizard
-         data-wizard-on-cancel="resetAction"
-         data-wizard-on-finish="submit"
-         data-wizard-title="'emailpro_ACTION_delete_disclaimer_title' | translate">
-
+    <div
+        data-wizard
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="submit"
+        data-wizard-title="'emailpro_ACTION_delete_disclaimer_title' | translate"
+    >
         <div data-wizard-step>
-            <p data-translate="{{ exchange.billingPlan + '_ACTION_delete_disclaimer_question' }}"></p>
+            <p
+                data-translate="{{ exchange.billingPlan + '_ACTION_delete_disclaimer_question' }}"
+            ></p>
 
             <dl class="dl-horizontal mt-5">
-                <dt data-translate="emailpro_ACTION_disclaimer_associated_domains"></dt>
+                <dt
+                    data-translate="emailpro_ACTION_disclaimer_associated_domains"
+                ></dt>
                 <dd data-ng-bind="disclaimer.domain.displayName"></dd>
 
-                <dt data-translate="emailpro_ACTION_add_disclaimer_content"></dt>
-                <dd data-ng-bind-html="disclaimer.content | wucSliceContent:250"></dd>
+                <dt
+                    data-translate="emailpro_ACTION_add_disclaimer_content"
+                ></dt>
+                <dd
+                    data-ng-bind-html="disclaimer.content | wucSliceContent:250"
+                ></dd>
             </dl>
         </div>
     </div>

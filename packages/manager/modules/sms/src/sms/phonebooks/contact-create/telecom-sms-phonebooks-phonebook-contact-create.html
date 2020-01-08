@@ -1,31 +1,40 @@
-<form name="createPhonecontactForm"
-      id="createPhonecontactForm"
-      data-ng-submit="ContactCreateCtrl.create()">
-
+<form
+    name="createPhonecontactForm"
+    id="createPhonecontactForm"
+    data-ng-submit="ContactCreateCtrl.create()"
+>
     <div class="modal-header">
         <button
             type="button"
             class="close float-right"
             aria-label="{{ ::'sms_cancel' | translate }}"
-            data-ng-click="ContactCreateCtrl.cancel()">
+            data-ng-click="ContactCreateCtrl.cancel()"
+        >
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
     <!-- /.modal-header -->
 
-    <div class="modal-body"
-         data-ng-if="!ContactCreateCtrl.phonecontactForm.isCreating && !ContactCreateCtrl.phonecontactForm.hasBeenCreated">
-        <h3 class="modal-title"
-            data-translate="sms_phonebooks_phonebook_contact_create">
-        </h3>
+    <div
+        class="modal-body"
+        data-ng-if="!ContactCreateCtrl.phonecontactForm.isCreating && !ContactCreateCtrl.phonecontactForm.hasBeenCreated"
+    >
+        <h3
+            class="modal-title"
+            data-translate="sms_phonebooks_phonebook_contact_create"
+        ></h3>
         <!-- SURNAME -->
-        <div class="form-group"
-             data-ng-class="{
+        <div
+            class="form-group"
+            data-ng-class="{
                  'has-error': createPhonecontactForm.surname.$touched && createPhonecontactForm.surname.$invalid
-             }">
-            <label for="surname"
-                   class="control-label"
-                   data-translate="sms_phonebooks_phonebook_contact_column_surname">
+             }"
+        >
+            <label
+                for="surname"
+                class="control-label"
+                data-translate="sms_phonebooks_phonebook_contact_column_surname"
+            >
             </label>
             <input
                 type="text"
@@ -36,28 +45,39 @@
                 required
                 data-ng-model="ContactCreateCtrl.phonecontactForm.surname"
                 data-ng-maxlength="246"
-                data-translate-attr="{ placeholder: 'sms_phonebooks_phonebook_contact_create_surname_placeholder' }" />
-            <span class="help-block"
-                  role="alert"
-                  data-ng-if="createPhonecontactForm.surname.$touched"
-                  data-ng-messages="createPhonecontactForm.surname.$error">
-                <span data-ng-message="required"
-                      data-translate="sms_phonebooks_phonebook_contact_create_surname_error_required">
+                data-translate-attr="{ placeholder: 'sms_phonebooks_phonebook_contact_create_surname_placeholder' }"
+            />
+            <span
+                class="help-block"
+                role="alert"
+                data-ng-if="createPhonecontactForm.surname.$touched"
+                data-ng-messages="createPhonecontactForm.surname.$error"
+            >
+                <span
+                    data-ng-message="required"
+                    data-translate="sms_phonebooks_phonebook_contact_create_surname_error_required"
+                >
                 </span>
-                <span data-ng-message="maxlength"
-                      data-translate="sms_phonebooks_phonebook_contact_create_surname_error_maxlength">
+                <span
+                    data-ng-message="maxlength"
+                    data-translate="sms_phonebooks_phonebook_contact_create_surname_error_maxlength"
+                >
                 </span>
             </span>
         </div>
 
         <!-- NAME -->
-        <div class="form-group"
-             data-ng-class="{
+        <div
+            class="form-group"
+            data-ng-class="{
                  'has-error': createPhonecontactForm.name.$touched && createPhonecontactForm.name.$invalid
-             }">
-            <label for="name"
-                   class="control-label"
-                   data-translate="sms_phonebooks_phonebook_contact_column_name">
+             }"
+        >
+            <label
+                for="name"
+                class="control-label"
+                data-translate="sms_phonebooks_phonebook_contact_column_name"
+            >
             </label>
             <input
                 type="text"
@@ -67,30 +87,43 @@
                 required
                 data-ng-model="ContactCreateCtrl.phonecontactForm.name"
                 data-ng-maxlength="246"
-                data-translate-attr="{ placeholder: 'sms_phonebooks_phonebook_contact_create_name_placeholder' }" />
-            <span class="help-block"
-                  role="alert"
-                  data-ng-if="createPhonecontactForm.name.$touched"
-                  data-ng-messages="createPhonecontactForm.name.$error">
-                <span data-ng-message="required"
-                      data-translate="sms_phonebooks_phonebook_contact_create_name_error_required">
+                data-translate-attr="{ placeholder: 'sms_phonebooks_phonebook_contact_create_name_placeholder' }"
+            />
+            <span
+                class="help-block"
+                role="alert"
+                data-ng-if="createPhonecontactForm.name.$touched"
+                data-ng-messages="createPhonecontactForm.name.$error"
+            >
+                <span
+                    data-ng-message="required"
+                    data-translate="sms_phonebooks_phonebook_contact_create_name_error_required"
+                >
                 </span>
-                <span data-ng-message="maxlength"
-                      data-translate="sms_phonebooks_phonebook_contact_create_name_error_maxlength">
+                <span
+                    data-ng-message="maxlength"
+                    data-translate="sms_phonebooks_phonebook_contact_create_name_error_maxlength"
+                >
                 </span>
             </span>
         </div>
 
         <!-- GROUP -->
-        <div class="form-group"
-             data-ng-class="{
+        <div
+            class="form-group"
+            data-ng-class="{
                  'has-error': createPhonecontactForm.group.$touched && createPhonecontactForm.group.$invalid
-             }">
-            <label for="group"
-                   class="control-label"
-                   data-translate="sms_phonebooks_phonebook_contact_column_group">
+             }"
+        >
+            <label
+                for="group"
+                class="control-label"
+                data-translate="sms_phonebooks_phonebook_contact_column_group"
+            >
             </label>
-            <div data-ng-class="{ 'input-group': ContactCreateCtrl.groupsAvailable.length }">
+            <div
+                data-ng-class="{ 'input-group': ContactCreateCtrl.groupsAvailable.length }"
+            >
                 <input
                     type="text"
                     name="group"
@@ -98,57 +131,82 @@
                     class="form-control"
                     data-ng-model="ContactCreateCtrl.phonecontactForm.group"
                     data-ng-maxlength="50"
-                    data-translate-attr="{ placeholder: 'sms_phonebooks_phonebook_contact_column_group' }" />
-                <div class="input-group-btn"
-                     style="width: auto;"
-                     data-uib-dropdown
-                     data-ng-if="ContactCreateCtrl.groupsAvailable.length">
+                    data-translate-attr="{ placeholder: 'sms_phonebooks_phonebook_contact_column_group' }"
+                />
+                <div
+                    class="input-group-btn"
+                    style="width: auto;"
+                    data-uib-dropdown
+                    data-ng-if="ContactCreateCtrl.groupsAvailable.length"
+                >
                     <button
                         type="button"
                         class="btn btn-default w-100"
-                        data-uib-dropdown-toggle>
-                        <span data-translate="sms_phonebooks_phonebook_contact_create_group_select"></span>
-                        <i class="ovh-font ovh-font-select-arrow-down ml-2" aria-hidden="true"></i>
+                        data-uib-dropdown-toggle
+                    >
+                        <span
+                            data-translate="sms_phonebooks_phonebook_contact_create_group_select"
+                        ></span>
+                        <i
+                            class="ovh-font ovh-font-select-arrow-down ml-2"
+                            aria-hidden="true"
+                        ></i>
                     </button>
-                    <ul class="dropdown-menu dropdown-menu-right w-100"
+                    <ul
+                        class="dropdown-menu dropdown-menu-right w-100"
                         role="menu"
-                        data-uib-dropdown-menu>
-                        <li role="menuitem"
-                            data-ng-repeat="group in ContactCreateCtrl.groupsAvailable | orderBy:'' track by $index">
-                            <a href="#"
-                               data-ng-click="ContactCreateCtrl.setGroup($event, group)"
-                               data-ng-bind="group"
-                               data-translate-attr="{ 'title': group }">
+                        data-uib-dropdown-menu
+                    >
+                        <li
+                            role="menuitem"
+                            data-ng-repeat="group in ContactCreateCtrl.groupsAvailable | orderBy:'' track by $index"
+                        >
+                            <a
+                                href="#"
+                                data-ng-click="ContactCreateCtrl.setGroup($event, group)"
+                                data-ng-bind="group"
+                                data-translate-attr="{ 'title': group }"
+                            >
                             </a>
                         </li>
                     </ul>
                 </div>
             </div>
-            <span class="help-block"
-                  role="alert"
-                  data-ng-if="createPhonecontactForm.group.$touched"
-                  data-ng-messages="createPhonecontactForm.group.$error">
-                <span data-ng-message="maxlength"
-                      data-translate="sms_phonebooks_phonebook_contact_create_group_error_maxlength">
+            <span
+                class="help-block"
+                role="alert"
+                data-ng-if="createPhonecontactForm.group.$touched"
+                data-ng-messages="createPhonecontactForm.group.$error"
+            >
+                <span
+                    data-ng-message="maxlength"
+                    data-translate="sms_phonebooks_phonebook_contact_create_group_error_maxlength"
+                >
                 </span>
             </span>
         </div>
 
         <p class="text-info">
             <i class="ovh-font ovh-font-info mr-2" aria-hidden="true"></i>
-            <span data-translate="sms_phonebooks_phonebook_contact_create_error_numbers"></span>
+            <span
+                data-translate="sms_phonebooks_phonebook_contact_create_error_numbers"
+            ></span>
         </p>
 
         <div class="row">
             <div class="col-sm-6">
                 <!-- HOMEPHONE -->
-                <div class="form-group"
-                     data-ng-class="{
+                <div
+                    class="form-group"
+                    data-ng-class="{
                          'has-error': createPhonecontactForm.homePhone.$touched && createPhonecontactForm.homePhone.$invalid
-                     }">
-                    <label for="homePhone"
-                           class="control-label"
-                           data-translate="sms_phonebooks_phonebook_contact_column_home_phone">
+                     }"
+                >
+                    <label
+                        for="homePhone"
+                        class="control-label"
+                        data-translate="sms_phonebooks_phonebook_contact_column_home_phone"
+                    >
                     </label>
                     <input
                         type="text"
@@ -158,26 +216,35 @@
                         data-ng-model="ContactCreateCtrl.phonecontactForm.homePhone"
                         data-ng-change="ContactCreateCtrl.handleContactPhoneNumber()"
                         data-ui-validate="{ phoneNumber: 'ContactCreateCtrl.isValidNumber($value)' }"
-                        data-translate-attr="{ placeholder: 'sms_phonebooks_phonebook_contact_column_home_phone_title' }" />
-                    <span class="help-block"
-                          role="alert"
-                          data-ng-if="createPhonecontactForm.homePhone.$touched"
-                          data-ng-messages="createPhonecontactForm.homePhone.$error">
-                        <span data-ng-message="phoneNumber"
-                              data-translate="sms_phonebooks_phonebook_contact_create_error_phonenumber">
+                        data-translate-attr="{ placeholder: 'sms_phonebooks_phonebook_contact_column_home_phone_title' }"
+                    />
+                    <span
+                        class="help-block"
+                        role="alert"
+                        data-ng-if="createPhonecontactForm.homePhone.$touched"
+                        data-ng-messages="createPhonecontactForm.homePhone.$error"
+                    >
+                        <span
+                            data-ng-message="phoneNumber"
+                            data-translate="sms_phonebooks_phonebook_contact_create_error_phonenumber"
+                        >
                         </span>
                     </span>
                 </div>
             </div>
             <div class="col-sm-6">
                 <!-- HOMEMOBILE -->
-                <div class="form-group"
-                     data-ng-class="{
+                <div
+                    class="form-group"
+                    data-ng-class="{
                          'has-error': createPhonecontactForm.homeMobile.$touched && createPhonecontactForm.homeMobile.$invalid
-                     }">
-                    <label for="homeMobile"
-                           class="control-label"
-                           data-translate="sms_phonebooks_phonebook_contact_column_home_mobile">
+                     }"
+                >
+                    <label
+                        for="homeMobile"
+                        class="control-label"
+                        data-translate="sms_phonebooks_phonebook_contact_column_home_mobile"
+                    >
                     </label>
                     <input
                         type="text"
@@ -187,13 +254,18 @@
                         data-ng-model="ContactCreateCtrl.phonecontactForm.homeMobile"
                         data-ng-change="ContactCreateCtrl.handleContactPhoneNumber()"
                         data-ui-validate="{ phoneNumber: 'ContactCreateCtrl.isValidNumber($value)' }"
-                        data-translate-attr="{ placeholder: 'sms_phonebooks_phonebook_contact_column_home_mobile_title' }" />
-                    <span class="help-block"
-                          role="alert"
-                          data-ng-if="createPhonecontactForm.homeMobile.$touched"
-                          data-ng-messages="createPhonecontactForm.homeMobile.$error">
-                        <span data-ng-message="phoneNumber"
-                              data-translate="sms_phonebooks_phonebook_contact_create_error_phonenumber">
+                        data-translate-attr="{ placeholder: 'sms_phonebooks_phonebook_contact_column_home_mobile_title' }"
+                    />
+                    <span
+                        class="help-block"
+                        role="alert"
+                        data-ng-if="createPhonecontactForm.homeMobile.$touched"
+                        data-ng-messages="createPhonecontactForm.homeMobile.$error"
+                    >
+                        <span
+                            data-ng-message="phoneNumber"
+                            data-translate="sms_phonebooks_phonebook_contact_create_error_phonenumber"
+                        >
                         </span>
                     </span>
                 </div>
@@ -203,13 +275,17 @@
         <div class="row">
             <div class="col-sm-6">
                 <!-- WORKPHONE -->
-                <div class="form-group"
-                     data-ng-class="{
+                <div
+                    class="form-group"
+                    data-ng-class="{
                          'has-error': createPhonecontactForm.workPhone.$touched && createPhonecontactForm.workPhone.$invalid
-                     }">
-                    <label for="workPhone"
-                           class="control-label"
-                           data-translate="sms_phonebooks_phonebook_contact_column_work_phone">
+                     }"
+                >
+                    <label
+                        for="workPhone"
+                        class="control-label"
+                        data-translate="sms_phonebooks_phonebook_contact_column_work_phone"
+                    >
                     </label>
                     <input
                         type="text"
@@ -219,26 +295,35 @@
                         data-ng-model="ContactCreateCtrl.phonecontactForm.workPhone"
                         data-ng-change="ContactCreateCtrl.handleContactPhoneNumber()"
                         data-ui-validate="{ phoneNumber: 'ContactCreateCtrl.isValidNumber($value)' }"
-                        data-translate-attr="{ placeholder: 'sms_phonebooks_phonebook_contact_column_work_phone_title' }" />
-                    <span class="help-block"
-                          role="alert"
-                          data-ng-if="createPhonecontactForm.workPhone.$touched"
-                          data-ng-messages="createPhonecontactForm.workPhone.$error">
-                        <span data-ng-message="phoneNumber"
-                              data-translate="sms_phonebooks_phonebook_contact_create_error_phonenumber">
+                        data-translate-attr="{ placeholder: 'sms_phonebooks_phonebook_contact_column_work_phone_title' }"
+                    />
+                    <span
+                        class="help-block"
+                        role="alert"
+                        data-ng-if="createPhonecontactForm.workPhone.$touched"
+                        data-ng-messages="createPhonecontactForm.workPhone.$error"
+                    >
+                        <span
+                            data-ng-message="phoneNumber"
+                            data-translate="sms_phonebooks_phonebook_contact_create_error_phonenumber"
+                        >
                         </span>
                     </span>
                 </div>
             </div>
             <div class="col-sm-6">
                 <!-- WORKMOBILE -->
-                <div class="form-group"
-                     data-ng-class="{
+                <div
+                    class="form-group"
+                    data-ng-class="{
                          'has-error': createPhonecontactForm.workMobile.$touched && createPhonecontactForm.workMobile.$invalid
-                     }">
-                    <label for="workMobile"
-                           class="control-label"
-                           data-translate="sms_phonebooks_phonebook_contact_column_work_mobile">
+                     }"
+                >
+                    <label
+                        for="workMobile"
+                        class="control-label"
+                        data-translate="sms_phonebooks_phonebook_contact_column_work_mobile"
+                    >
                     </label>
                     <input
                         type="text"
@@ -248,13 +333,18 @@
                         data-ng-model="ContactCreateCtrl.phonecontactForm.workMobile"
                         data-ng-change="ContactCreateCtrl.handleContactPhoneNumber()"
                         data-ui-validate="{ phoneNumber: 'ContactCreateCtrl.isValidNumber($value)' }"
-                        data-translate-attr="{ placeholder: 'sms_phonebooks_phonebook_contact_column_work_mobile_title' }" />
-                    <span class="help-block"
-                          role="alert"
-                          data-ng-if="createPhonecontactForm.workMobile.$touched"
-                          data-ng-messages="createPhonecontactForm.workMobile.$error">
-                        <span data-ng-message="phoneNumber"
-                              data-translate="sms_phonebooks_phonebook_contact_create_error_phonenumber">
+                        data-translate-attr="{ placeholder: 'sms_phonebooks_phonebook_contact_column_work_mobile_title' }"
+                    />
+                    <span
+                        class="help-block"
+                        role="alert"
+                        data-ng-if="createPhonecontactForm.workMobile.$touched"
+                        data-ng-messages="createPhonecontactForm.workMobile.$error"
+                    >
+                        <span
+                            data-ng-message="phoneNumber"
+                            data-translate="sms_phonebooks_phonebook_contact_create_error_phonenumber"
+                        >
                         </span>
                     </span>
                 </div>
@@ -263,16 +353,22 @@
     </div>
     <!-- /.modal-body -->
 
-    <div class="modal-body text-center"
-         data-ng-if="ContactCreateCtrl.phonecontactForm.isCreating">
+    <div
+        class="modal-body text-center"
+        data-ng-if="ContactCreateCtrl.phonecontactForm.isCreating"
+    >
         <oui-spinner></oui-spinner>
         <h4 data-translate="sms_phonebooks_phonebook_contact_creating"></h4>
     </div>
     <!-- /.modal-body -->
 
-    <div class="modal-body"
-         data-ng-if="ContactCreateCtrl.phonecontactForm.hasBeenCreated">
-        <tuc-success-drawing-check data-draw-success-check="ContactCreateCtrl.phonecontactForm.hasBeenCreated">
+    <div
+        class="modal-body"
+        data-ng-if="ContactCreateCtrl.phonecontactForm.hasBeenCreated"
+    >
+        <tuc-success-drawing-check
+            data-draw-success-check="ContactCreateCtrl.phonecontactForm.hasBeenCreated"
+        >
             <h4 data-translate="sms_phonebooks_phonebook_contact_created"></h4>
         </tuc-success-drawing-check>
     </div>
@@ -285,8 +381,8 @@
             data-ng-click="ContactCreateCtrl.cancel()"
             data-translate="sms_cancel"
             data-ng-disabled="ContactCreateCtrl.phonecontactForm.isCreating ||
-                              ContactCreateCtrl.phonecontactForm.hasBeenCreated">
-        </button>
+                              ContactCreateCtrl.phonecontactForm.hasBeenCreated"
+        ></button>
         <button
             type="submit"
             class="btn btn-primary"
@@ -294,8 +390,8 @@
                               !ContactCreateCtrl.handleContactPhoneNumber() ||
                               ContactCreateCtrl.phonecontactForm.isCreating ||
                               ContactCreateCtrl.phonecontactForm.hasBeenCreated"
-            data-translate="sms_submit">
-        </button>
+            data-translate="sms_submit"
+        ></button>
     </div>
     <!-- /.modal-footer -->
 </form>

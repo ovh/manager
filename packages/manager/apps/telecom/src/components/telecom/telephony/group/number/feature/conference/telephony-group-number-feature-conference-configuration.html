@@ -1,14 +1,18 @@
-<form class="telephony-number-conference-config popover-pages"
-      name="$ctrl.conferenceSettingsForm"
-      novalidate
-      data-ng-submit="$ctrl.onPopoverValidate()">
-
-    <div class="popover-pages-wrapper"
-         data-ng-class="{ move: $ctrl.status.move }">
-
+<form
+    class="telephony-number-conference-config popover-pages"
+    name="$ctrl.conferenceSettingsForm"
+    novalidate
+    data-ng-submit="$ctrl.onPopoverValidate()"
+>
+    <div
+        class="popover-pages-wrapper"
+        data-ng-class="{ move: $ctrl.status.move }"
+    >
         <section class="popover-page page-left page-section">
             <header>
-                <h2 data-translate="telephony_number_feature_conference_popover_title"></h2>
+                <h2
+                    data-translate="telephony_number_feature_conference_popover_title"
+                ></h2>
             </header>
 
             <section>
@@ -16,122 +20,179 @@
                     <!-- LANGUAGE -->
                     <div class="section-item">
                         <div class="form-group mb-0">
-                            <label class="control-label"
-                                   for="conferenceSettingsLanguage"
-                                   data-translate="telephony_number_feature_conference_general_settings_language">
+                            <label
+                                class="control-label"
+                                for="conferenceSettingsLanguage"
+                                data-translate="telephony_number_feature_conference_general_settings_language"
+                            >
                             </label>
-                            <select class="form-control"
-                                    name="conferenceSettingsLanguage"
-                                    id="conferenceSettingsLanguage"
-                                    data-ng-model="$ctrl.numberCtrl.number.feature.language"
-                                    data-ng-options="language.value as language.label for language in $ctrl.availableLanguages | orderBy: 'label'">
+                            <select
+                                class="form-control"
+                                name="conferenceSettingsLanguage"
+                                id="conferenceSettingsLanguage"
+                                data-ng-model="$ctrl.numberCtrl.number.feature.language"
+                                data-ng-options="language.value as language.label for language in $ctrl.availableLanguages | orderBy: 'label'"
+                            >
                             </select>
                         </div>
-                    </div> <!-- LANGUAGE -->
+                    </div>
+                    <!-- LANGUAGE -->
 
                     <!-- PIN -->
                     <div class="section-item">
-                        <div class="form-group mb-0"
-                             data-ng-class="{
+                        <div
+                            class="form-group mb-0"
+                            data-ng-class="{
                                  'has-error': $ctrl.conferenceSettingsForm.conferenceSettingsPin.$invalid && $ctrl.conferenceSettingsForm.conferenceSettingsPin.$touched
-                             }">
-                            <label class="control-label"
-                                   for="conferenceSettingsPin"
-                                   data-translate="telephony_number_feature_conference_general_settings_pin">
+                             }"
+                        >
+                            <label
+                                class="control-label"
+                                for="conferenceSettingsPin"
+                                data-translate="telephony_number_feature_conference_general_settings_pin"
+                            >
                             </label>
-                            <input type="text"
-                                   class="form-control"
-                                   name="conferenceSettingsPin"
-                                   id="conferenceSettingsPin"
-                                   aria-describedby="conferenceSettingsPinHelp"
-                                   data-translate-attr="{ placeholder: 'telephony_number_feature_conference_general_settings_pin' }"
-                                   data-ng-model="$ctrl.numberCtrl.number.feature.pin"
-                                   data-ng-pattern="/^\d{1,8}$/" />
-                            <span class="help-block"
-                                  role="alert"
-                                  id="conferenceSettingsPinHelp">
-                                <span data-translate="telephony_number_feature_conference_general_settings_pin_help"></span><br>
-                                <span data-ng-if="$ctrl.conferenceSettingsForm.conferenceSettingsPin.$touched"
-                                      data-ng-messages="$ctrl.conferenceSettingsForm.conferenceSettingsPin.$error">
-                                    <span data-ng-message="pattern"
-                                          data-translate="telephony_number_feature_conference_general_settings_pin_invalid">
+                            <input
+                                type="text"
+                                class="form-control"
+                                name="conferenceSettingsPin"
+                                id="conferenceSettingsPin"
+                                aria-describedby="conferenceSettingsPinHelp"
+                                data-translate-attr="{ placeholder: 'telephony_number_feature_conference_general_settings_pin' }"
+                                data-ng-model="$ctrl.numberCtrl.number.feature.pin"
+                                data-ng-pattern="/^\d{1,8}$/"
+                            />
+                            <span
+                                class="help-block"
+                                role="alert"
+                                id="conferenceSettingsPinHelp"
+                            >
+                                <span
+                                    data-translate="telephony_number_feature_conference_general_settings_pin_help"
+                                ></span
+                                ><br />
+                                <span
+                                    data-ng-if="$ctrl.conferenceSettingsForm.conferenceSettingsPin.$touched"
+                                    data-ng-messages="$ctrl.conferenceSettingsForm.conferenceSettingsPin.$error"
+                                >
+                                    <span
+                                        data-ng-message="pattern"
+                                        data-translate="telephony_number_feature_conference_general_settings_pin_invalid"
+                                    >
                                     </span>
                                 </span>
                             </span>
                         </div>
-                    </div> <!-- PIN -->
+                    </div>
+                    <!-- PIN -->
 
                     <div class="section-item" style="overflow: hidden;">
                         <div class="row mb-3">
                             <div class="col-xs-6">
                                 <!-- ANNOUCEMENT -->
                                 <div class="form-group mb-0">
-                                    <label class="control-label"
-                                           for="conferenceSettingsAnnoucement"
-                                           data-translate="telephony_number_feature_conference_general_settings_annoucement">
+                                    <label
+                                        class="control-label"
+                                        for="conferenceSettingsAnnoucement"
+                                        data-translate="telephony_number_feature_conference_general_settings_annoucement"
+                                    >
                                     </label>
-                                    <oui-radio-toggle-group data-model="$ctrl.numberCtrl.number.feature.announceFile">
+                                    <oui-radio-toggle-group
+                                        data-model="$ctrl.numberCtrl.number.feature.announceFile"
+                                    >
                                         <oui-radio data-value="true">
-                                            <span data-translate="common_yes_capitalized"></span>
+                                            <span
+                                                data-translate="common_yes_capitalized"
+                                            ></span>
                                         </oui-radio>
                                         <oui-radio data-value="false">
-                                            <span data-translate="common_no_capitalized"></span>
+                                            <span
+                                                data-translate="common_no_capitalized"
+                                            ></span>
                                         </oui-radio>
                                     </oui-radio-toggle-group>
-                                </div> <!-- ANNOUCEMENT -->
+                                </div>
+                                <!-- ANNOUCEMENT -->
                             </div>
                             <div class="col-xs-6">
                                 <!-- RECORD -->
                                 <div class="form-group mb-0">
-                                    <label class="control-label"
-                                           for="conferenceSettingsRecord"
-                                           data-translate="telephony_number_feature_conference_general_settings_record">
+                                    <label
+                                        class="control-label"
+                                        for="conferenceSettingsRecord"
+                                        data-translate="telephony_number_feature_conference_general_settings_record"
+                                    >
                                     </label>
-                                    <oui-radio-toggle-group data-model="$ctrl.numberCtrl.number.feature.recordStatus">
+                                    <oui-radio-toggle-group
+                                        data-model="$ctrl.numberCtrl.number.feature.recordStatus"
+                                    >
                                         <oui-radio data-value="true">
-                                            <span data-translate="common_yes_capitalized"></span>
+                                            <span
+                                                data-translate="common_yes_capitalized"
+                                            ></span>
                                         </oui-radio>
                                         <oui-radio data-value="false">
-                                            <span data-translate="common_no_capitalized"></span>
+                                            <span
+                                                data-translate="common_no_capitalized"
+                                            ></span>
                                         </oui-radio>
                                     </oui-radio-toggle-group>
-                                </div> <!-- RECORD -->
+                                </div>
+                                <!-- RECORD -->
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-xs-6">
                                 <!-- ENTER MUTED -->
                                 <div class="form-group mb-0">
-                                    <label class="control-label"
-                                           for="conferenceSettingsEnterMuted"
-                                           data-translate="telephony_number_feature_conference_general_settings_enter_muted">
+                                    <label
+                                        class="control-label"
+                                        for="conferenceSettingsEnterMuted"
+                                        data-translate="telephony_number_feature_conference_general_settings_enter_muted"
+                                    >
                                     </label>
-                                    <oui-radio-toggle-group data-model="$ctrl.numberCtrl.number.feature.enterMuted">
+                                    <oui-radio-toggle-group
+                                        data-model="$ctrl.numberCtrl.number.feature.enterMuted"
+                                    >
                                         <oui-radio data-value="true">
-                                            <span data-translate="common_yes_capitalized"></span>
+                                            <span
+                                                data-translate="common_yes_capitalized"
+                                            ></span>
                                         </oui-radio>
                                         <oui-radio data-value="false">
-                                            <span data-translate="common_no_capitalized"></span>
+                                            <span
+                                                data-translate="common_no_capitalized"
+                                            ></span>
                                         </oui-radio>
                                     </oui-radio-toggle-group>
-                                </div> <!-- ENTER MUTED -->
+                                </div>
+                                <!-- ENTER MUTED -->
                             </div>
                             <div class="col-xs-6">
                                 <!-- REJECT ANONYMOUS -->
                                 <div class="form-group mb-0">
-                                    <label class="control-label"
-                                           for="conferenceSettingsRejectAnonymous"
-                                           data-translate="telephony_number_feature_conference_general_settings_reject_anonymous">
+                                    <label
+                                        class="control-label"
+                                        for="conferenceSettingsRejectAnonymous"
+                                        data-translate="telephony_number_feature_conference_general_settings_reject_anonymous"
+                                    >
                                     </label>
-                                    <oui-radio-toggle-group data-model="$ctrl.numberCtrl.number.feature.anonymousRejection">
+                                    <oui-radio-toggle-group
+                                        data-model="$ctrl.numberCtrl.number.feature.anonymousRejection"
+                                    >
                                         <oui-radio data-value="true">
-                                            <span data-translate="common_yes_capitalized"></span>
+                                            <span
+                                                data-translate="common_yes_capitalized"
+                                            ></span>
                                         </oui-radio>
                                         <oui-radio data-value="false">
-                                            <span data-translate="common_no_capitalized"></span>
+                                            <span
+                                                data-translate="common_no_capitalized"
+                                            ></span>
                                         </oui-radio>
-                                    </oui-radio-toggle-group>                                    
-                                </div> <!-- REJECT ANONYMOUS -->
+                                    </oui-radio-toggle-group>
+                                </div>
+                                <!-- REJECT ANONYMOUS -->
                             </div>
                         </div>
                     </div>
@@ -140,151 +201,195 @@
                     <button
                         type="button"
                         class="section-item large-popover-item text-left"
-                        data-ng-click="$ctrl.status.move = true; $ctrl.status.toShow = 'webAccess';">
-                        <label data-translate="telephony_number_feature_conference_general_settings_public_address_label"></label>
+                        data-ng-click="$ctrl.status.move = true; $ctrl.status.toShow = 'webAccess';"
+                    >
+                        <label
+                            data-translate="telephony_number_feature_conference_general_settings_public_address_label"
+                        ></label>
                         <div class="chevron-right">
                             <div class="chevron-wrapper">
-                                <i class="ovh-font ovh-font-arrow-right" aria-hidden="true"></i>
+                                <i
+                                    class="ovh-font ovh-font-arrow-right"
+                                    aria-hidden="true"
+                                ></i>
                             </div>
                         </div>
-                    </button> <!-- WEBACCESS BUTTON -->
+                    </button>
+                    <!-- WEBACCESS BUTTON -->
 
                     <!-- ANNOUNCEMENT BUTTON -->
                     <button
                         type="button"
                         class="section-item large-popover-item text-left"
-                        data-ng-click="$ctrl.status.move = true; $ctrl.status.toShow = 'announcement';">
-                        <label data-translate="telephony_number_feature_conference_announcement"></label>
+                        data-ng-click="$ctrl.status.move = true; $ctrl.status.toShow = 'announcement';"
+                    >
+                        <label
+                            data-translate="telephony_number_feature_conference_announcement"
+                        ></label>
                         <div class="chevron-right">
                             <div class="chevron-wrapper">
-                                <i class="ovh-font ovh-font-arrow-right" aria-hidden="true"></i>
+                                <i
+                                    class="ovh-font ovh-font-arrow-right"
+                                    aria-hidden="true"
+                                ></i>
                             </div>
                         </div>
-                    </button> <!-- ANNOUNCEMENT BUTTON -->
+                    </button>
+                    <!-- ANNOUNCEMENT BUTTON -->
 
                     <!-- REPORT BUTTON -->
                     <button
                         type="button"
                         class="section-item large-popover-item text-left"
-                        data-ng-click="$ctrl.status.move = true; $ctrl.status.toShow = 'report';">
-                        <label data-translate="telephony_number_feature_conference_report"></label>
+                        data-ng-click="$ctrl.status.move = true; $ctrl.status.toShow = 'report';"
+                    >
+                        <label
+                            data-translate="telephony_number_feature_conference_report"
+                        ></label>
                         <div class="chevron-right">
                             <div class="chevron-wrapper">
-                                <i class="ovh-font ovh-font-arrow-right" aria-hidden="true"></i>
+                                <i
+                                    class="ovh-font ovh-font-arrow-right"
+                                    aria-hidden="true"
+                                ></i>
                             </div>
                         </div>
-                    </button> <!-- REPORT BUTTON -->
+                    </button>
+                    <!-- REPORT BUTTON -->
                 </div>
             </section>
 
             <footer class="text-right">
-                <button type="submit"
-                        class="btn btn-primary float-right ml-md-2"
-                        data-ng-disabled="$ctrl.conferenceSettingsForm.$invalid || !$ctrl.numberCtrl.number.feature.hasChange()"
-                        data-translate="submit">
-                </button>
-                <button type="button"
-                        class="btn btn-default"
-                        data-ng-click="$ctrl.onPopoverCancel()"
-                        data-translate="cancel">
-                </button>
+                <button
+                    type="submit"
+                    class="btn btn-primary float-right ml-md-2"
+                    data-ng-disabled="$ctrl.conferenceSettingsForm.$invalid || !$ctrl.numberCtrl.number.feature.hasChange()"
+                    data-translate="submit"
+                ></button>
+                <button
+                    type="button"
+                    class="btn btn-default"
+                    data-ng-click="$ctrl.onPopoverCancel()"
+                    data-translate="cancel"
+                ></button>
             </footer>
-
         </section>
 
         <section class="popover-page page-right page-section">
-
             <header>
-                <button type="button"
-                        class="btn btn-link"
-                        data-ng-click="$ctrl.status.move = false"
-                        data-ng-disabled="$ctrl.conferenceSettingsForm.$invalid"
-                        data-translate-attr="{ title: 'back' }">
+                <button
+                    type="button"
+                    class="btn btn-link"
+                    data-ng-click="$ctrl.status.move = false"
+                    data-ng-disabled="$ctrl.conferenceSettingsForm.$invalid"
+                    data-translate-attr="{ title: 'back' }"
+                >
                     <i class="ovh-font ovh-font-arrow-left"></i>
                 </button>
-                <h2 data-ng-if="$ctrl.status.toShow === 'webAccess'"
-                    data-translate="telephony_number_feature_conference_general_settings_public_address_label">
-                </h2>
-                <h2 data-ng-if="$ctrl.status.toShow === 'announcement'"
-                    data-translate="telephony_number_feature_conference_announcement">
-                </h2>
-                <h2 data-ng-if="$ctrl.status.toShow === 'report'"
-                    data-translate="telephony_number_feature_conference_report">
-                </h2>
+                <h2
+                    data-ng-if="$ctrl.status.toShow === 'webAccess'"
+                    data-translate="telephony_number_feature_conference_general_settings_public_address_label"
+                ></h2>
+                <h2
+                    data-ng-if="$ctrl.status.toShow === 'announcement'"
+                    data-translate="telephony_number_feature_conference_announcement"
+                ></h2>
+                <h2
+                    data-ng-if="$ctrl.status.toShow === 'report'"
+                    data-translate="telephony_number_feature_conference_report"
+                ></h2>
             </header>
 
             <section data-ng-if="$ctrl.status.toShow === 'webAccess'">
                 <div class="section-group">
                     <div class="section-item">
                         <div class="form-group">
-                            <label for="conferenceSettingsPublicAddress"
-                                   class="d-block radio-label-main"
-                                   data-translate="telephony_number_feature_conference_general_settings_public_address">
+                            <label
+                                for="conferenceSettingsPublicAddress"
+                                class="d-block radio-label-main"
+                                data-translate="telephony_number_feature_conference_general_settings_public_address"
+                            >
                             </label>
-                            <a class="word-break"
-                               target="_blank"
-                               rel="noopener"
-                               data-ng-if="$ctrl.numberCtrl.number.feature.webAccess.read"
-                               data-ng-href="{{ $ctrl.numberCtrl.number.feature.webAccess.read.url }}"
-                               data-ng-bind="$ctrl.numberCtrl.number.feature.webAccess.read.url">
+                            <a
+                                class="word-break"
+                                target="_blank"
+                                rel="noopener"
+                                data-ng-if="$ctrl.numberCtrl.number.feature.webAccess.read"
+                                data-ng-href="{{ $ctrl.numberCtrl.number.feature.webAccess.read.url }}"
+                                data-ng-bind="$ctrl.numberCtrl.number.feature.webAccess.read.url"
+                            >
                             </a>
-                            <span class="block"
-                                  data-ng-if="!$ctrl.loading.webAccess && !$ctrl.numberCtrl.number.feature.webAccess.read"
-                                  data-translate="none">
+                            <span
+                                class="block"
+                                data-ng-if="!$ctrl.loading.webAccess && !$ctrl.numberCtrl.number.feature.webAccess.read"
+                                data-translate="none"
+                            >
                             </span>
                             <div data-ng-if="$ctrl.loading.webAccess">
-                                <oui-spinner class="mr-2"
-                                             data-size="s">
+                                <oui-spinner class="mr-2" data-size="s">
                                 </oui-spinner>
-                                <span data-translate="telephony_number_feature_conference_general_settings_public_address_generating"></span>
+                                <span
+                                    data-translate="telephony_number_feature_conference_general_settings_public_address_generating"
+                                ></span>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="conferenceSettingsPublicAddress"
-                                   class="d-block radio-label-main"
-                                   data-translate="telephony_number_feature_conference_general_settings_public_control_address">
+                            <label
+                                for="conferenceSettingsPublicAddress"
+                                class="d-block radio-label-main"
+                                data-translate="telephony_number_feature_conference_general_settings_public_control_address"
+                            >
                             </label>
-                            <a class="word-break"
-                               target="_blank"
-                               rel="noopener"
-                               data-ng-if="$ctrl.numberCtrl.number.feature.webAccess.write"
-                               data-ng-href="{{ $ctrl.numberCtrl.number.feature.webAccess.write.url }}"
-                               data-ng-bind="$ctrl.numberCtrl.number.feature.webAccess.write.url">
+                            <a
+                                class="word-break"
+                                target="_blank"
+                                rel="noopener"
+                                data-ng-if="$ctrl.numberCtrl.number.feature.webAccess.write"
+                                data-ng-href="{{ $ctrl.numberCtrl.number.feature.webAccess.write.url }}"
+                                data-ng-bind="$ctrl.numberCtrl.number.feature.webAccess.write.url"
+                            >
                             </a>
-                            <span class="block"
-                                  data-ng-if="!$ctrl.loading.webAccess && !$ctrl.numberCtrl.number.feature.webAccess.write"
-                                  data-translate="none">
+                            <span
+                                class="block"
+                                data-ng-if="!$ctrl.loading.webAccess && !$ctrl.numberCtrl.number.feature.webAccess.write"
+                                data-translate="none"
+                            >
                             </span>
                             <div data-ng-if="$ctrl.loading.webAccess">
-                                <oui-spinner class="mr-2"
-                                             data-size="s">
+                                <oui-spinner class="mr-2" data-size="s">
                                 </oui-spinner>
-                                <span data-translate="telephony_number_feature_conference_general_settings_public_address_generating"></span>
+                                <span
+                                    data-translate="telephony_number_feature_conference_general_settings_public_address_generating"
+                                ></span>
                             </div>
                         </div>
                         <div class="text-center">
-                            <div data-ng-if="!$ctrl.numberCtrl.number.feature.webAccess.read || !$ctrl.numberCtrl.number.feature.webAccess.write">
+                            <div
+                                data-ng-if="!$ctrl.numberCtrl.number.feature.webAccess.read || !$ctrl.numberCtrl.number.feature.webAccess.write"
+                            >
                                 <button
                                     type="button"
                                     class="btn btn-default"
                                     data-ng-click="$ctrl.generateWebAccess()"
-                                    data-translate="telephony_number_feature_conference_general_settings_public_address_generate">
-                                </button>
+                                    data-translate="telephony_number_feature_conference_general_settings_public_address_generate"
+                                ></button>
                             </div>
-                            <div class="btn-group"
-                                 data-ng-if="$ctrl.numberCtrl.number.feature.webAccess.read && $ctrl.numberCtrl.number.feature.webAccess.write">
+                            <div
+                                class="btn-group"
+                                data-ng-if="$ctrl.numberCtrl.number.feature.webAccess.read && $ctrl.numberCtrl.number.feature.webAccess.write"
+                            >
                                 <button
                                     type="button"
                                     class="btn btn-default"
                                     data-ng-click="$ctrl.regenerateWebAccess()"
-                                    data-translate="telephony_number_feature_conference_general_settings_public_address_regenerate">
-                                </button>
+                                    data-translate="telephony_number_feature_conference_general_settings_public_address_regenerate"
+                                ></button>
                                 <button
                                     type="button"
                                     class="btn btn-default"
                                     data-ng-click="$ctrl.numberCtrl.number.feature.deleteWebAccess()"
-                                    data-translate="delete">
-                                </button>
+                                    data-translate="delete"
+                                ></button>
                             </div>
                         </div>
                     </div>
@@ -294,51 +399,72 @@
             <!-- ANNOUNCEMENT -->
             <section data-ng-if="$ctrl.status.toShow === 'announcement'">
                 <div class="section-group">
-                    <div class="alert alert-info mb-0"
-                         role="alert"
-                         data-translate="telephony_number_feature_conference_announcement_info">
-                    </div>
+                    <div
+                        class="alert alert-info mb-0"
+                        role="alert"
+                        data-translate="telephony_number_feature_conference_announcement_info"
+                    ></div>
                     <div class="section-item">
                         <div class="form-group p-0 m-0">
-                            <label class="control-label"
-                                   for="conferenceAnnouncementFile"
-                                   data-translate="telephony_number_feature_conference_announcement_file_label">
+                            <label
+                                class="control-label"
+                                for="conferenceAnnouncementFile"
+                                data-translate="telephony_number_feature_conference_announcement_file_label"
+                            >
                             </label>
                             <div>
-                                <span data-ng-if="!$ctrl.numberCtrl.number.feature.announceFilename"
-                                      data-translate="telephony_number_feature_conference_announcement_file_empty">
+                                <span
+                                    data-ng-if="!$ctrl.numberCtrl.number.feature.announceFilename"
+                                    data-translate="telephony_number_feature_conference_announcement_file_empty"
+                                >
                                 </span>
-                                <span data-ng-if="$ctrl.numberCtrl.number.feature.announceFilename"
-                                      data-ng-bind="$ctrl.numberCtrl.number.feature.announceFilename">
+                                <span
+                                    data-ng-if="$ctrl.numberCtrl.number.feature.announceFilename"
+                                    data-ng-bind="$ctrl.numberCtrl.number.feature.announceFilename"
+                                >
                                 </span>
                             </div>
                         </div>
                     </div>
-                    <label class="section-item large-popover-item input-file"
-                           data-ng-class="{ 'text-danger': $ctrl.model.soundFile && $ctrl.hasSoundFileError() }">
-                        <input type="file"
-                               accept="audio/*"
-                               data-ng-model="$ctrl.model.announceUploadedFile"
-                               data-tuc-input-file-change="$ctrl.onSoundFileChoosed" />
+                    <label
+                        class="section-item large-popover-item input-file"
+                        data-ng-class="{ 'text-danger': $ctrl.model.soundFile && $ctrl.hasSoundFileError() }"
+                    >
+                        <input
+                            type="file"
+                            accept="audio/*"
+                            data-ng-model="$ctrl.model.announceUploadedFile"
+                            data-tuc-input-file-change="$ctrl.onSoundFileChoosed"
+                        />
                         <div class="d-table">
                             <div class="d-table-cell align-middle px-3">
-                                <i class="ovh-font ovh-font-upload fs18" data-ng-if="!$ctrl.loading.announceUpload"></i>
-                                <oui-spinner data-ng-if="$ctrl.loading.announceUpload"
-                                             data-size="s">
+                                <i
+                                    class="ovh-font ovh-font-upload fs18"
+                                    data-ng-if="!$ctrl.loading.announceUpload"
+                                ></i>
+                                <oui-spinner
+                                    data-ng-if="$ctrl.loading.announceUpload"
+                                    data-size="s"
+                                >
                                 </oui-spinner>
                             </div>
                             <div class="d-table-cell align-middle">
-                                <span class="d-block radio-label-main"
-                                      data-translate="telephony_number_feature_conference_announcement_file_upload">
+                                <span
+                                    class="d-block radio-label-main"
+                                    data-translate="telephony_number_feature_conference_announcement_file_upload"
+                                >
                                 </span>
-                                <span class="small font-weight-normal"
-                                      data-translate="telephony_number_feature_conference_announcement_file_supported">
+                                <span
+                                    class="small font-weight-normal"
+                                    data-translate="telephony_number_feature_conference_announcement_file_supported"
+                                >
                                 </span>
                             </div>
                         </div>
                     </label>
                 </div>
-            </section> <!-- ANNOUNCEMENT -->
+            </section>
+            <!-- ANNOUNCEMENT -->
 
             <!-- REPORT -->
             <section data-ng-if="$ctrl.status.toShow === 'report'">
@@ -346,85 +472,115 @@
                     <!-- STATUS -->
                     <div class="section-item">
                         <div class="form-group mb-0">
-                            <label class="control-label"
-                                   for="conferenceReportStatus"
-                                   data-translate="telephony_number_feature_conference_report_status">
+                            <label
+                                class="control-label"
+                                for="conferenceReportStatus"
+                                data-translate="telephony_number_feature_conference_report_status"
+                            >
                             </label>
-                            <select class="form-control"
-                                    name="conferenceReportStatus"
-                                    id="conferenceReportStatus"
-                                    data-ng-model="$ctrl.numberCtrl.number.feature.reportStatus"
-                                    data-ng-options="status.value as status.label for status in $ctrl.availableReportStatus">
+                            <select
+                                class="form-control"
+                                name="conferenceReportStatus"
+                                id="conferenceReportStatus"
+                                data-ng-model="$ctrl.numberCtrl.number.feature.reportStatus"
+                                data-ng-options="status.value as status.label for status in $ctrl.availableReportStatus"
+                            >
                             </select>
                         </div>
-                    </div> <!-- STATUS -->
+                    </div>
+                    <!-- STATUS -->
 
                     <!-- EMAIL -->
-                    <div class="section-item"
-                         data-ng-if="$ctrl.numberCtrl.number.feature.reportStatus === 'other'">
-                        <div class="form-group mb-0"
-                             data-ng-class="{
+                    <div
+                        class="section-item"
+                        data-ng-if="$ctrl.numberCtrl.number.feature.reportStatus === 'other'"
+                    >
+                        <div
+                            class="form-group mb-0"
+                            data-ng-class="{
                                  'has-error': $ctrl.conferenceSettingsForm.conferenceReportEmail.$invalid && $ctrl.conferenceSettingsForm.conferenceReportEmail.$touched
-                             }">
-                            <label class="control-label"
-                                   for="conferenceReportEmail"
-                                   data-translate="telephony_number_feature_conference_report_email">
+                             }"
+                        >
+                            <label
+                                class="control-label"
+                                for="conferenceReportEmail"
+                                data-translate="telephony_number_feature_conference_report_email"
+                            >
                             </label>
-                            <input type="email"
-                                   class="form-control"
-                                   name="conferenceReportEmail"
-                                   id="conferenceReportEmail"
-                                   data-translate-attr="{ placeholder: 'telephony_number_feature_conference_report_email' }"
-                                   data-ng-model="$ctrl.numberCtrl.number.feature.reportEmail"
-                                   data-ng-required="$ctrl.numberCtrl.number.feature.reportStatus === 'other'" />
-                            <span class="help-block"
-                                  role="alert"
-                                  data-ng-if="$ctrl.conferenceSettingsForm.conferenceReportEmail.$touched"
-                                  data-ng-messages="$ctrl.conferenceSettingsForm.conferenceReportEmail.$error">
-                                <span data-ng-message="required"
-                                      data-translate="telephony_number_feature_conference_report_email_required">
+                            <input
+                                type="email"
+                                class="form-control"
+                                name="conferenceReportEmail"
+                                id="conferenceReportEmail"
+                                data-translate-attr="{ placeholder: 'telephony_number_feature_conference_report_email' }"
+                                data-ng-model="$ctrl.numberCtrl.number.feature.reportEmail"
+                                data-ng-required="$ctrl.numberCtrl.number.feature.reportStatus === 'other'"
+                            />
+                            <span
+                                class="help-block"
+                                role="alert"
+                                data-ng-if="$ctrl.conferenceSettingsForm.conferenceReportEmail.$touched"
+                                data-ng-messages="$ctrl.conferenceSettingsForm.conferenceReportEmail.$error"
+                            >
+                                <span
+                                    data-ng-message="required"
+                                    data-translate="telephony_number_feature_conference_report_email_required"
+                                >
                                 </span>
-                                <span data-ng-message="email"
-                                      data-translate="telephony_number_feature_conference_report_email_bad">
+                                <span
+                                    data-ng-message="email"
+                                    data-translate="telephony_number_feature_conference_report_email_bad"
+                                >
                                 </span>
                             </span>
                         </div>
-                    </div> <!-- EMAIL -->
+                    </div>
+                    <!-- EMAIL -->
 
                     <!-- WHITE LABEL -->
-                    <div class="section-item"
-                         data-ng-if="$ctrl.numberCtrl.number.feature.reportStatus === 'customer' || $ctrl.numberCtrl.number.feature.reportStatus === 'other'">
+                    <div
+                        class="section-item"
+                        data-ng-if="$ctrl.numberCtrl.number.feature.reportStatus === 'customer' || $ctrl.numberCtrl.number.feature.reportStatus === 'other'"
+                    >
                         <div class="form-group">
-                            <label class="control-label"
-                                   for="conferenceReportWhiteLabel"
-                                   data-translate="telephony_number_feature_conference_report_white_label">
+                            <label
+                                class="control-label"
+                                for="conferenceReportWhiteLabel"
+                                data-translate="telephony_number_feature_conference_report_white_label"
+                            >
                             </label>
-                            <oui-radio-toggle-group data-model="$ctrl.numberCtrl.number.feature.whiteLabelReport">
+                            <oui-radio-toggle-group
+                                data-model="$ctrl.numberCtrl.number.feature.whiteLabelReport"
+                            >
                                 <oui-radio data-value="true">
-                                    <span data-translate="common_yes_capitalized"></span>
+                                    <span
+                                        data-translate="common_yes_capitalized"
+                                    ></span>
                                 </oui-radio>
                                 <oui-radio data-value="false">
-                                    <span data-translate="common_no_capitalized"></span>
+                                    <span
+                                        data-translate="common_no_capitalized"
+                                    ></span>
                                 </oui-radio>
                             </oui-radio-toggle-group>
                         </div>
                     </div>
-
                 </div>
-            </section> <!-- REPORT -->
+            </section>
+            <!-- REPORT -->
 
-            <footer class="text-right"
-                    data-ng-if="$ctrl.status.toShow === 'report'">
-                <button type="button"
-                        class="btn btn-primary"
-                        data-ng-click="$ctrl.status.move = false"
-                        data-ng-disabled="$ctrl.conferenceSettingsForm.$invalid"
-                        data-translate="common_confirm">
-                </button>
+            <footer
+                class="text-right"
+                data-ng-if="$ctrl.status.toShow === 'report'"
+            >
+                <button
+                    type="button"
+                    class="btn btn-primary"
+                    data-ng-click="$ctrl.status.move = false"
+                    data-ng-disabled="$ctrl.conferenceSettingsForm.$invalid"
+                    data-translate="common_confirm"
+                ></button>
             </footer>
-
         </section>
-
     </div>
-
 </form>

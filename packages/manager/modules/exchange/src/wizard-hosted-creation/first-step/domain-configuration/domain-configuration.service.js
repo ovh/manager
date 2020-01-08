@@ -82,9 +82,7 @@ export default class wizardHostedCreationDomainConfiguration {
           }
 
           return this.OvhHttp.get(
-            `/email/exchange/${organizationName}/service/${exchangeService}/task/${
-              domain.taskPendingId
-            }`,
+            `/email/exchange/${organizationName}/service/${exchangeService}/task/${domain.taskPendingId}`,
             {
               rootPath: 'apiv6',
             },
@@ -93,21 +91,24 @@ export default class wizardHostedCreationDomainConfiguration {
         .then((task) => {
           if (!isEmpty(task)) {
             this.$timeout(
-              () => this.pollingCNAMEToCheck(
-                organizationName,
-                exchangeService,
-                domainName,
-                task,
-                localDeferred,
-              ),
+              () =>
+                this.pollingCNAMEToCheck(
+                  organizationName,
+                  exchangeService,
+                  domainName,
+                  task,
+                  localDeferred,
+                ),
               5000,
             );
           }
         });
     } else {
-      this.retrievingDomain(organizationName, exchangeService, domainName).then((domain) => {
-        localDeferred.resolve(domain);
-      });
+      this.retrievingDomain(organizationName, exchangeService, domainName).then(
+        (domain) => {
+          localDeferred.resolve(domain);
+        },
+      );
     }
 
     return localDeferred.promise;

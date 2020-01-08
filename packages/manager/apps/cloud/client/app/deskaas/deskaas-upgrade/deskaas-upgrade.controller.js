@@ -1,6 +1,13 @@
 class DeskaasUpgradeCtrl {
-  constructor($translate, $q, $state, $stateParams, CucControllerHelper, DeskaasService,
-    OvhApiDeskaasService) {
+  constructor(
+    $translate,
+    $q,
+    $state,
+    $stateParams,
+    CucControllerHelper,
+    DeskaasService,
+    OvhApiDeskaasService,
+  ) {
     this.$translate = $translate;
     this.$q = $q;
     this.$state = $state;
@@ -30,7 +37,9 @@ class DeskaasUpgradeCtrl {
       .then(() => this.DeskaasService.getDetails(this.serviceName))
       .then((details) => {
         this.details = details;
-        this.references = this.DeskaasService.getUpgradeOptions(details.planCode);
+        this.references = this.DeskaasService.getUpgradeOptions(
+          details.planCode,
+        );
       })
       .finally(() => {
         this.flags.init = false;
@@ -39,17 +48,29 @@ class DeskaasUpgradeCtrl {
 
   confirmUpgrade() {
     this.saving = true;
-    return this.CucControllerHelper.modal.showConfirmationModal({
-      titleText: this.$translate.instant('vdi_btn_popup_upgrade'),
-      textHtml: this.$translate.instant('vdi_confirm_upgrade', { plan: this.deskaasOffer.name, price: this.deskaasOffer.priceText }),
-    })
-      .then(() => this.OvhApiDeskaasService.v6().upgradeService({
-        serviceName: this.serviceName,
-      }, {
-        planCode: this.deskaasOffer.planCode,
-      }))
+    return this.CucControllerHelper.modal
+      .showConfirmationModal({
+        titleText: this.$translate.instant('vdi_btn_popup_upgrade'),
+        textHtml: this.$translate.instant('vdi_confirm_upgrade', {
+          plan: this.deskaasOffer.name,
+          price: this.deskaasOffer.priceText,
+        }),
+      })
+      .then(() =>
+        this.OvhApiDeskaasService.v6().upgradeService(
+          {
+            serviceName: this.serviceName,
+          },
+          {
+            planCode: this.deskaasOffer.planCode,
+          },
+        ),
+      )
       .then((taskId) => {
-        this.$state.go('deskaas.details', { serviceName: this.serviceName, followTask: taskId });
+        this.$state.go('deskaas.details', {
+          serviceName: this.serviceName,
+          followTask: taskId,
+        });
       })
       .finally(() => {
         this.saving = false;
@@ -57,4 +78,6 @@ class DeskaasUpgradeCtrl {
   }
 }
 
-angular.module('managerApp').controller('DeskaasUpgradeCtrl', DeskaasUpgradeCtrl);
+angular
+  .module('managerApp')
+  .controller('DeskaasUpgradeCtrl', DeskaasUpgradeCtrl);

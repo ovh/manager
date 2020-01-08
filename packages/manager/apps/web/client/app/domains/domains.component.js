@@ -1,5 +1,4 @@
-angular.module('App')
-  .component('domains', {
-    templateUrl: 'domains/domains.html',
-    controller: 'DomainsCtrl',
-  });
+angular.module('App').component('domains', {
+  templateUrl: 'domains/domains.html',
+  controller: 'DomainsCtrl',
+});

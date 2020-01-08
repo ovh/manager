@@ -14,9 +14,12 @@ export default class VeeamCloudConnectCtrl {
     this.loadData();
 
     this.pendingTasksMessages = {};
-    this.$scope.$watch(() => this.VeeamCloudConnectService.unitOfWork.tasks.length, () => {
-      this.pendingTasksMessages = this.VeeamCloudConnectService.getPendingTasksMessages();
-    });
+    this.$scope.$watch(
+      () => this.VeeamCloudConnectService.unitOfWork.tasks.length,
+      () => {
+        this.pendingTasksMessages = this.VeeamCloudConnectService.getPendingTasksMessages();
+      },
+    );
   }
 
   hasTaskMessages() {

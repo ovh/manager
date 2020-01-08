@@ -60,13 +60,14 @@ export default class PrivateDatabaseTabsCtrl {
     };
 
     if (
-      this.currentTab
-      && this.$scope.tabs.indexOf(
-        isString(this.currentTab)
-        && this.currentTab.toUpperCase(),
+      this.currentTab &&
+      this.$scope.tabs.indexOf(
+        isString(this.currentTab) && this.currentTab.toUpperCase(),
       ) !== -1
     ) {
-      this.$scope.setSelectedTab(isString(this.currentTab) && this.currentTab.toUpperCase());
+      this.$scope.setSelectedTab(
+        isString(this.currentTab) && this.currentTab.toUpperCase(),
+      );
     } else {
       this.$scope.setSelectedTab(this.defaultTab);
     }

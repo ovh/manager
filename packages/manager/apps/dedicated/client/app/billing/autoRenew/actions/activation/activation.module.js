@@ -3,9 +3,8 @@ import routing from './activation.routing';
 
 const moduleName = 'ovhManagerBillingAutorenewActivation';
 
-angular.module(moduleName, [
-  'ui.router',
-])
+angular
+  .module(moduleName, ['ui.router'])
   .config(routing)
   .component('billingAutorenewActivation', component);
 

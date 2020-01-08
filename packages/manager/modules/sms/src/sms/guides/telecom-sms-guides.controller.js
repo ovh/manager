@@ -21,19 +21,27 @@ export default class {
     this.count = null;
 
     this.loading.init = true;
-    return this.TucSmsMediator.initDeferred.promise.then(() => {
-      this.guides = this.constant.SMS_GUIDES;
-      if (localStorage['univers-selected-language']) {
-        this.language = localStorage['univers-selected-language'].replace(/-.*$|_.*$/, '');
-      } else if (navigator.language || navigator.userLanguage) {
-        this.language = (navigator.language || navigator.userLanguage).replace(/-.*$|_.*$/, '');
-      }
-      this.injectTitleInUrl();
-    }).catch((err) => {
-      this.TucToastError(err);
-    }).finally(() => {
-      this.loading.init = false;
-    });
+    return this.TucSmsMediator.initDeferred.promise
+      .then(() => {
+        this.guides = this.constant.SMS_GUIDES;
+        if (localStorage['univers-selected-language']) {
+          this.language = localStorage['univers-selected-language'].replace(
+            /-.*$|_.*$/,
+            '',
+          );
+        } else if (navigator.language || navigator.userLanguage) {
+          this.language = (
+            navigator.language || navigator.userLanguage
+          ).replace(/-.*$|_.*$/, '');
+        }
+        this.injectTitleInUrl();
+      })
+      .catch((err) => {
+        this.TucToastError(err);
+      })
+      .finally(() => {
+        this.loading.init = false;
+      });
   }
 
   /**
@@ -45,7 +53,8 @@ export default class {
         if (has(section, 'guides')) {
           forEach(section.guides, (guide) => {
             if (has(guide, ['url', this.language]) && isString(guide.label)) {
-              guide.url[this.language] = guide.url[this.language].replace( // eslint-disable-line
+              // eslint-disable-next-line no-param-reassign
+              guide.url[this.language] = guide.url[this.language].replace(
                 '{title}',
                 snakeCase(this.$translate.instant(guide.label)),
               );

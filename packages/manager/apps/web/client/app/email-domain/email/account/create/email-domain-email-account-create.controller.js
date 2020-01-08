@@ -15,7 +15,15 @@ angular.module('App').controller(
      * @param WucEmails
      * @param User
      */
-    constructor($scope, $q, $stateParams, $translate, Alerter, WucEmails, User) {
+    constructor(
+      $scope,
+      $q,
+      $stateParams,
+      $translate,
+      Alerter,
+      WucEmails,
+      User,
+    ) {
       this.$scope = $scope;
       this.$stateParams = $stateParams;
       this.$q = $q;
@@ -163,19 +171,21 @@ angular.module('App').controller(
     accountDescriptionCheck(input) {
       input.$setValidity(
         'descriptionCheck',
-        !this.account.description
-          || punycode.toASCII(this.account.description).length
-            <= this.constants.descMaxLength,
+        !this.account.description ||
+          punycode.toASCII(this.account.description).length <=
+            this.constants.descMaxLength,
       );
     }
 
     accountPasswordCheck(input) {
       input.$setValidity(
         'passwordCheck',
-        !!this.account.password
-          && (!/^\s/.test(this.account.password)
-            && !/\s$/.test(this.account.password))
-          && !this.account.password.match(/[ÂÃÄÀÁÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõöøùúûüýþÿ]/),
+        !!this.account.password &&
+          !/^\s/.test(this.account.password) &&
+          !/\s$/.test(this.account.password) &&
+          !this.account.password.match(
+            /[ÂÃÄÀÁÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõöøùúûüýþÿ]/,
+          ),
       );
     }
 
@@ -183,15 +193,19 @@ angular.module('App').controller(
       this.account.accountName = trim(this.account.accountName);
 
       this.WucEmails.createAccount(this.$stateParams.productId, this.account)
-        .then(() => this.Alerter.success(
-          this.$translate.instant('email_tab_modal_create_account_success'),
-          this.$scope.alerts.main,
-        ))
-        .catch((err) => this.Alerter.alertFromSWS(
-          this.$translate.instant('email_tab_modal_create_account_error'),
-          err,
-          this.$scope.alerts.main,
-        ))
+        .then(() =>
+          this.Alerter.success(
+            this.$translate.instant('email_tab_modal_create_account_success'),
+            this.$scope.alerts.main,
+          ),
+        )
+        .catch((err) =>
+          this.Alerter.alertFromSWS(
+            this.$translate.instant('email_tab_modal_create_account_error'),
+            err,
+            this.$scope.alerts.main,
+          ),
+        )
         .finally(() => this.$scope.resetAction());
     }
 
@@ -210,18 +224,20 @@ angular.module('App').controller(
           this.allowedAccountSize = domain.allowedAccountSize;
 
           if (
-            quotas.account === emails.length
-            && emails.indexOf('postmaster') === -1
+            quotas.account === emails.length &&
+            emails.indexOf('postmaster') === -1
           ) {
             this.account.accountName = 'postmaster';
             this.validation.postmaster = true;
           }
         })
-        .catch((err) => this.Alerter.alertFromSWS(
-          this.$translate.instant('email_tab_error'),
-          err.data,
-          this.$scope.alerts.main,
-        ))
+        .catch((err) =>
+          this.Alerter.alertFromSWS(
+            this.$translate.instant('email_tab_error'),
+            err.data,
+            this.$scope.alerts.main,
+          ),
+        )
         .finally(() => {
           this.loading.accountSize = false;
         });

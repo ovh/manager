@@ -62,85 +62,88 @@ Environment.setRegion(__WEBPACK_REGION__);
 Environment.setVersion(__VERSION__);
 
 angular
-  .module('App', [
-    __NG_APP_INJECTIONS__,
-    account,
-    ovhManagerCore,
-    'Billing',
-    'chart.js',
-    'controllers',
-    contactsService,
-    dedicatedCloudDatacenterDrp,
-    dedicatedServerBandwidth,
-    dedicatedServerInterfaces,
-    dedicatedCloudDatacenterDashboardDeleteDrp,
-    dedicatedServerServers,
-    dedicatedUniverseComponents,
-    'directives',
-    errorPage,
-    'filters',
-    'internationalPhoneNumber',
-    'Module.download',
-    Environment.getRegion() === 'CA' ? moduleExchange : undefined,
-    'Module.ip',
-    'Module.license',
-    'Module.otrs',
-    ovhManagerMfaEnrollment,
-    'ng.ckeditor',
-    'ngMessages',
-    ngAtInternet,
-    ngAtInternetUiRouterPlugin,
-    ngOvhApiWrappers,
-    ngOvhBrowserAlert,
-    ngOvhChatbot,
-    ngOvhHttp,
-    ngOvhOtrs,
-    ngOvhProxyRequest,
-    ngOvhSsoAuth,
-    ngOvhSsoAuthModalPlugin,
-    ngOvhSwimmingPoll,
-    ngOvhUiRouterLayout,
-    ngOvhUserPref,
-    ngOvhUtils,
-    ngOvhWebUniverseComponents,
-    'ngRoute',
-    'ngSanitize',
-    ngTranslateAsyncLoader,
-    ngUirouterLineProgress,
-    'oui',
-    ngOvhExportCsv,
-    ngPaginationFront,
-    ngQAllSettled,
-    'ovh-angular-responsive-tabs',
-    'ovh-api-services',
-    ovhManagerPccDashboard,
-    ovhManagerIplb,
-    ovhManagerPccResourceUpgrade,
-    ovhManagerServerSidebar,
-    ovhManagerSupport,
-    ovhManagerVeeamEnterprise,
-    ovhManagerVeeamCloudConnect,
-    ngTailLogs,
-    ovhContacts,
-    ovhManagerBanner,
-    ovhManagerEnterpriseCloudDatabase,
-    ovhManagerNasha,
-    ovhManagerNavbar,
-    ovhManagerVps,
-    ovhManagerVrack,
-    ovhPaymentMethod,
-    'pascalprecht.translate',
-    preload,
-    'services',
-    'ui.bootstrap',
-    'ui.router',
-    'ui.select',
-    'ui.utils',
-    'ui.validate',
-    uiRouter,
-    'UserAccount',
-    'xeditable',
-  ].filter(isString))
+  .module(
+    'App',
+    [
+      __NG_APP_INJECTIONS__,
+      account,
+      ovhManagerCore,
+      'Billing',
+      'chart.js',
+      'controllers',
+      contactsService,
+      dedicatedCloudDatacenterDrp,
+      dedicatedServerBandwidth,
+      dedicatedServerInterfaces,
+      dedicatedCloudDatacenterDashboardDeleteDrp,
+      dedicatedServerServers,
+      dedicatedUniverseComponents,
+      'directives',
+      errorPage,
+      'filters',
+      'internationalPhoneNumber',
+      'Module.download',
+      Environment.getRegion() === 'CA' ? moduleExchange : undefined,
+      'Module.ip',
+      'Module.license',
+      'Module.otrs',
+      ovhManagerMfaEnrollment,
+      'ng.ckeditor',
+      'ngMessages',
+      ngAtInternet,
+      ngAtInternetUiRouterPlugin,
+      ngOvhApiWrappers,
+      ngOvhBrowserAlert,
+      ngOvhChatbot,
+      ngOvhHttp,
+      ngOvhOtrs,
+      ngOvhProxyRequest,
+      ngOvhSsoAuth,
+      ngOvhSsoAuthModalPlugin,
+      ngOvhSwimmingPoll,
+      ngOvhUiRouterLayout,
+      ngOvhUserPref,
+      ngOvhUtils,
+      ngOvhWebUniverseComponents,
+      'ngRoute',
+      'ngSanitize',
+      ngTranslateAsyncLoader,
+      ngUirouterLineProgress,
+      'oui',
+      ngOvhExportCsv,
+      ngPaginationFront,
+      ngQAllSettled,
+      'ovh-angular-responsive-tabs',
+      'ovh-api-services',
+      ovhManagerPccDashboard,
+      ovhManagerIplb,
+      ovhManagerPccResourceUpgrade,
+      ovhManagerServerSidebar,
+      ovhManagerSupport,
+      ovhManagerVeeamEnterprise,
+      ovhManagerVeeamCloudConnect,
+      ngTailLogs,
+      ovhContacts,
+      ovhManagerBanner,
+      ovhManagerEnterpriseCloudDatabase,
+      ovhManagerNasha,
+      ovhManagerNavbar,
+      ovhManagerVps,
+      ovhManagerVrack,
+      ovhPaymentMethod,
+      'pascalprecht.translate',
+      preload,
+      'services',
+      'ui.bootstrap',
+      'ui.router',
+      'ui.select',
+      'ui.utils',
+      'ui.validate',
+      uiRouter,
+      'UserAccount',
+      'xeditable',
+    ].filter(isString),
+  )
   .constant('constants', {
     prodMode: config.prodMode,
     swsProxyRootPath: config.swsProxyRootPath,
@@ -161,15 +164,19 @@ angular
     SUPPORT: config.constants.SUPPORT,
   })
   .constant('website_url', config.constants.website_url)
-  .config(/* @ngInject */(ovhProxyRequestProvider) => {
-    ovhProxyRequestProvider.proxy('$http');
-    ovhProxyRequestProvider.pathPrefix('apiv6');
-  })
+  .config(
+    /* @ngInject */ (ovhProxyRequestProvider) => {
+      ovhProxyRequestProvider.proxy('$http');
+      ovhProxyRequestProvider.pathPrefix('apiv6');
+    },
+  )
   .config(($locationProvider) => {
     $locationProvider.hashPrefix('');
   })
   .config((tmhDynamicLocaleProvider) => {
-    tmhDynamicLocaleProvider.localeLocationPattern('resources/angular/i18n/angular-locale_{{locale}}.js');
+    tmhDynamicLocaleProvider.localeLocationPattern(
+      'resources/angular/i18n/angular-locale_{{locale}}.js',
+    );
   })
   .config((OvhHttpProvider, constants) => {
     set(OvhHttpProvider, 'rootPath', constants.swsProxyPath);
@@ -182,12 +189,19 @@ angular
   })
   /* ========== AT-INTERNET ========== */
   .config((atInternetProvider, atInternetUiRouterPluginProvider, constants) => {
-    atInternetProvider.setEnabled(constants.prodMode && window.location.port.length <= 3);
+    atInternetProvider.setEnabled(
+      constants.prodMode && window.location.port.length <= 3,
+    );
     atInternetProvider.setDebug(!constants.prodMode);
 
-    atInternetUiRouterPluginProvider.setTrackStateChange(constants.prodMode
-      && window.location.port.length <= 3);
-    atInternetUiRouterPluginProvider.addStateNameFilter((routeName) => (routeName ? routeName.replace(/^app/, 'dedicated').replace(/\./g, '::') : ''));
+    atInternetUiRouterPluginProvider.setTrackStateChange(
+      constants.prodMode && window.location.port.length <= 3,
+    );
+    atInternetUiRouterPluginProvider.addStateNameFilter((routeName) =>
+      routeName
+        ? routeName.replace(/^app/, 'dedicated').replace(/\./g, '::')
+        : '',
+    );
   })
   .constant('REGEX', {
     ROUTABLE_BLOCK: /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\/(\d|[1-2]\d|3[0-2]))$/,
@@ -197,33 +211,45 @@ angular
   .run((ssoAuthentication, User) => {
     ssoAuthentication.login().then(() => User.getUser());
   })
-  .run(/* @ngInject */ ($rootScope, $state, $transitions, coreConfig) => {
-    $rootScope.$on('$locationChangeStart', () => {
-      delete $rootScope.isLeftMenuVisible; // eslint-disable-line
-    });
+  .run(
+    /* @ngInject */ ($rootScope, $state, $transitions, coreConfig) => {
+      $rootScope.$on('$locationChangeStart', () => {
+        // eslint-disable-next-line no-param-reassign
+        delete $rootScope.isLeftMenuVisible;
+      });
 
-    // manage restriction on billing section for enterprise account
-    // see src/billing/billingApp.js for resolve restriction on billing states
-    $transitions.onError({}, (transition) => {
-      const error = transition.error();
-      if (get(error, 'status') === 403 && get(error, 'code') === 'FORBIDDEN_BILLING_ACCESS') {
-        $state.go('app.error', { error });
-      }
-    });
+      // manage restriction on billing section for enterprise account
+      // see src/billing/billingApp.js for resolve restriction on billing states
+      $transitions.onError({}, (transition) => {
+        const error = transition.error();
+        if (
+          get(error, 'status') === 403 &&
+          get(error, 'code') === 'FORBIDDEN_BILLING_ACCESS'
+        ) {
+          $state.go('app.error', { error });
+        }
+      });
 
-    $state.defaultErrorHandler((error) => {
-      if (error.type === RejectType.ERROR) {
-        $state.go('error', {
-          detail: {
-            message: get(error.detail, 'data.message'),
-            code: has(error.detail, 'headers') ? error.detail.headers('x-ovh-queryId') : null,
-          },
-        }, { location: false });
-      }
-    });
+      $state.defaultErrorHandler((error) => {
+        if (error.type === RejectType.ERROR) {
+          $state.go(
+            'error',
+            {
+              detail: {
+                message: get(error.detail, 'data.message'),
+                code: has(error.detail, 'headers')
+                  ? error.detail.headers('x-ovh-queryId')
+                  : null,
+              },
+            },
+            { location: false },
+          );
+        }
+      });
 
-    set($rootScope, 'worldPart', coreConfig.getRegion());
-  })
+      set($rootScope, 'worldPart', coreConfig.getRegion());
+    },
+  )
   .run(($location) => {
     const queryParams = $location.search();
 
@@ -243,7 +269,9 @@ angular
     $qProvider.errorOnUnhandledRejections(false);
   })
   .config((OtrsPopupProvider, constants) => {
-    OtrsPopupProvider.setBaseUrlTickets(get(constants, 'REDIRECT_URLS.listTicket', null));
+    OtrsPopupProvider.setBaseUrlTickets(
+      get(constants, 'REDIRECT_URLS.listTicket', null),
+    );
   })
   .run(($translate) => {
     moment.locale(head($translate.use().split('_')));
@@ -251,8 +279,9 @@ angular
   .run((constants, atInternet, OvhApiMe) => {
     const level2 = constants.target === 'US' ? '57' : '10';
 
-    OvhApiMe.v6().get().$promise
-      .then((me) => {
+    OvhApiMe.v6()
+      .get()
+      .$promise.then((me) => {
         atInternet.setDefaults({
           level2,
           countryCode: me.country,

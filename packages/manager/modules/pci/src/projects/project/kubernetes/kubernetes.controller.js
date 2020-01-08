@@ -1,10 +1,6 @@
 export default class {
   /* @ngInject */
-  constructor(
-    $translate,
-    CucCloudMessage,
-    OvhApiCloudProjectKube,
-  ) {
+  constructor($translate, CucCloudMessage, OvhApiCloudProjectKube) {
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
     this.OvhApiCloudProjectKube = OvhApiCloudProjectKube;
@@ -16,7 +12,9 @@ export default class {
 
   loadMessages() {
     this.CucCloudMessage.unSubscribe('kubernetes');
-    this.messageHandler = this.CucCloudMessage.subscribe('kubernetes', { onMessage: () => this.refreshMessages() });
+    this.messageHandler = this.CucCloudMessage.subscribe('kubernetes', {
+      onMessage: () => this.refreshMessages(),
+    });
   }
 
   refreshMessages() {

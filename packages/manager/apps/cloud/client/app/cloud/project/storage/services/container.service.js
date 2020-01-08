@@ -33,23 +33,28 @@ angular.module('managerApp').service('CloudStorageContainer', [
 
       const getAccessAndTokenPromise = cacheValue
         ? $q.resolve(cacheValue)
-        : OvhApiCloudProjectStorage.v6().access({
-          projectId,
-        }, {}).$promise;
+        : OvhApiCloudProjectStorage.v6().access(
+            {
+              projectId,
+            },
+            {},
+          ).$promise;
 
-      return getAccessAndTokenPromise
-        .then((accessResult) => {
-          if (!cacheValue) {
-            accessCache.put(projectId, accessResult);
-          }
-          self.token = accessResult.token;
-          self.endpoints = accessResult.endpoints.reduce((resultParam, endpoint) => {
+      return getAccessAndTokenPromise.then((accessResult) => {
+        if (!cacheValue) {
+          accessCache.put(projectId, accessResult);
+        }
+        self.token = accessResult.token;
+        self.endpoints = accessResult.endpoints.reduce(
+          (resultParam, endpoint) => {
             const result = resultParam;
             result[endpoint.region.toLowerCase()] = endpoint.url;
             return result;
-          }, {});
-          return accessResult;
-        });
+          },
+          {},
+        );
+        return accessResult;
+      });
     }
 
     function ensureAccess(projectId) {
@@ -59,11 +64,20 @@ angular.module('managerApp').service('CloudStorageContainer', [
     // Improvement:
     // Avoid listing all containers to get metadata.
     function getContainerMeta(projectId, containerId) {
-      const containerMeta = storageContainerConfig.containerMetaCache.get(projectId, containerId);
+      const containerMeta = storageContainerConfig.containerMetaCache.get(
+        projectId,
+        containerId,
+      );
       return containerMeta
         ? $q.resolve(containerMeta)
-        : self.list(projectId, containerId)
-          .then(() => storageContainerConfig.containerMetaCache.get(projectId, containerId));
+        : self
+            .list(projectId, containerId)
+            .then(() =>
+              storageContainerConfig.containerMetaCache.get(
+                projectId,
+                containerId,
+              ),
+            );
     }
 
     function getContainerUrl(baseUrl, containerName, file) {
@@ -86,15 +100,20 @@ angular.module('managerApp').service('CloudStorageContainer', [
     function requestContainer(baseUrl, containerName, optsParam) {
       const opts = optsParam || {};
       const url = getContainerUrl(baseUrl, containerName, opts.file);
-      delete opts.file; // eslint-disable-line
+      delete opts.file;
 
-      return $http(angular.merge({
-        method: 'GET',
-        url,
-        headers: {
-          'X-Auth-Token': self.token,
-        },
-      }, opts));
+      return $http(
+        angular.merge(
+          {
+            method: 'GET',
+            url,
+            headers: {
+              'X-Auth-Token': self.token,
+            },
+          },
+          opts,
+        ),
+      );
     }
 
     /**
@@ -106,12 +125,18 @@ angular.module('managerApp').service('CloudStorageContainer', [
     self.getMetaData = function getMetaData(projectId, containerId) {
       return ensureAccess(projectId)
         .then(() => getContainerMeta(projectId, containerId))
-        .then((containerMeta) => requestContainer(
-          self.endpoints[containerMeta.region.toLowerCase()],
-          containerMeta.name,
-          { method: 'HEAD' },
-        ))
-        .then((data) => pickBy(data.headers(), (value, key) => /^(X-Container|X-Storage)/i.test(key)))
+        .then((containerMeta) =>
+          requestContainer(
+            self.endpoints[containerMeta.region.toLowerCase()],
+            containerMeta.name,
+            { method: 'HEAD' },
+          ),
+        )
+        .then((data) =>
+          pickBy(data.headers(), (value, key) =>
+            /^(X-Container|X-Storage)/i.test(key),
+          ),
+        )
         .then((data) => {
           // Guess storage type
           if (data[xStoragePolicy] === 'PCS') {
@@ -136,12 +161,17 @@ angular.module('managerApp').service('CloudStorageContainer', [
      * @return {Promise<Object>}      object containing the list of objects
      */
     self.list = function list(projectId, containerId) {
-      return OvhApiCloudProjectStorage.v6().get({
-        projectId,
-        containerId,
-      }).$promise
-        .then((containerData) => {
-          storageContainerConfig.containerMetaCache.set(projectId, containerId, pick(containerData, ['name', 'region']));
+      return OvhApiCloudProjectStorage.v6()
+        .get({
+          projectId,
+          containerId,
+        })
+        .$promise.then((containerData) => {
+          storageContainerConfig.containerMetaCache.set(
+            projectId,
+            containerId,
+            pick(containerData, ['name', 'region']),
+          );
           return containerData;
         });
     };
@@ -166,7 +196,8 @@ angular.module('managerApp').service('CloudStorageContainer', [
 
       const uploadComplete = function uploadComplete(e) {
         const xhr = e.srcElement || e.target;
-        if (xhr.status >= 200 && xhr.status < 300) { // successful upload
+        if (xhr.status >= 200 && xhr.status < 300) {
+          // successful upload
           deferred.resolve(xhr);
         } else {
           deferred.reject(xhr);
@@ -192,9 +223,12 @@ angular.module('managerApp').service('CloudStorageContainer', [
       xhr.open('PUT', url, true);
 
       let headers = config.headers || {};
-      headers = angular.extend({
-        'X-Auth-Token': self.token,
-      }, headers);
+      headers = angular.extend(
+        {
+          'X-Auth-Token': self.token,
+        },
+        headers,
+      );
 
       angular.forEach(headers, (header, id) => {
         xhr.setRequestHeader(id, header);
@@ -212,28 +246,31 @@ angular.module('managerApp').service('CloudStorageContainer', [
      * @return {Promise}
      */
     self.download = function download(projectId, containerId, file) {
-      const weekDurationInMilliseconds = 6.048e+8;
+      const weekDurationInMilliseconds = 6.048e8;
       const expiration = new Date(Date.now() + weekDurationInMilliseconds);
 
       function unseal(url) {
-        return $http.get(url)
-          .catch((err) => {
-            // This call make a CORS error, but still initiate the process,
-            // swallow status -1 which is what we get when cors fail.
-            if (err.status !== -1) {
-              throw err;
-            }
-          });
+        return $http.get(url).catch((err) => {
+          // This call make a CORS error, but still initiate the process,
+          // swallow status -1 which is what we get when cors fail.
+          if (err.status !== -1) {
+            throw err;
+          }
+        });
       }
 
-      return OvhApiCloudProjectStorage.v6().getURL({
-        projectId,
-        containerId,
-      }, {
-        expirationDate: expiration.toISOString(),
-        objectName: file.name,
-      }).$promise
-        .then((resp) => {
+      return OvhApiCloudProjectStorage.v6()
+        .getURL(
+          {
+            projectId,
+            containerId,
+          },
+          {
+            expirationDate: expiration.toISOString(),
+            objectName: file.name,
+          },
+        )
+        .$promise.then((resp) => {
           if (file.retrievalState === CLOUD_PCA_FILE_STATE.SEALED) {
             return unseal(resp.getURL);
           }
@@ -287,14 +324,16 @@ angular.module('managerApp').service('CloudStorageContainer', [
     self.delete = function deleteFn(projectId, containerId, file) {
       return ensureAccess(projectId)
         .then(() => getContainerMeta(projectId, containerId))
-        .then((containerMeta) => requestContainer(
-          self.endpoints[containerMeta.region.toLowerCase()],
-          containerMeta.name,
-          {
-            method: 'DELETE',
-            file,
-          },
-        ));
+        .then((containerMeta) =>
+          requestContainer(
+            self.endpoints[containerMeta.region.toLowerCase()],
+            containerMeta.name,
+            {
+              method: 'DELETE',
+              file,
+            },
+          ),
+        );
     };
 
     /**
@@ -324,4 +363,5 @@ angular.module('managerApp').service('CloudStorageContainer', [
     };
 
     self.getAccessAndToken = getAccessAndToken;
-  }]);
+  },
+]);

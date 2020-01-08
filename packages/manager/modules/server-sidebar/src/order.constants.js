@@ -21,21 +21,36 @@ export const ORDER_URLS = {
       TN: 'https://www.ovh.com/tn/sddc/',
     },
     vrack: {
-      CZ: 'https://www.ovh.cz/order/express/#/new/express/resume?products=~(~(planCode~\'vrack~quantity~1~productId~\'vrack))',
-      DE: 'https://www.ovh.de/order/express/#/new/express/resume?products=~(~(planCode~\'vrack~quantity~1~productId~\'vrack))',
-      ES: 'https://www.ovh.es/order/express/#/new/express/resume?products=~(~(planCode~\'vrack~quantity~1~productId~\'vrack))',
-      FI: 'https://www.ovh-hosting.fi/order/express/#/new/express/resume?products=~(~(planCode~\'vrack~quantity~1~productId~\'vrack))',
-      FR: 'https://www.ovh.com/fr/order/express/#/new/express/resume?products=~(~(planCode~\'vrack~quantity~1~productId~\'vrack))',
-      GB: 'https://www.ovh.co.uk/order/express/#/new/express/resume?products=~(~(planCode~\'vrack~quantity~1~productId~\'vrack))',
-      IE: 'https://www.ovh.ie/order/express/#/new/express/resume?products=~(~(planCode~\'vrack~quantity~1~productId~\'vrack))',
-      IT: 'https://www.ovh.it/order/express/#/new/express/resume?products=~(~(planCode~\'vrack~quantity~1~productId~\'vrack))',
-      LT: 'https://www.ovh.lt/order/express/#/new/express/resume?products=~(~(planCode~\'vrack~quantity~1~productId~\'vrack))',
-      MA: 'https://www.ovh.ma/order/express/#/new/express/resume?products=~(~(planCode~\'vrack~quantity~1~productId~\'vrack))',
-      NL: 'https://www.ovh.nl/order/express/#/new/express/resume?products=~(~(planCode~\'vrack~quantity~1~productId~\'vrack))',
-      PL: 'https://www.ovh.pl/order/express/#/new/express/resume?products=~(~(planCode~\'vrack~quantity~1~productId~\'vrack))',
-      PT: 'https://www.ovh.pt/order/express/#/new/express/resume?products=~(~(planCode~\'vrack~quantity~1~productId~\'vrack))',
-      SN: 'https://www.ovh.sn/order/express/#/new/express/resume?products=~(~(planCode~\'vrack~quantity~1~productId~\'vrack))',
-      TN: 'https://www.ovh.com/tn/order/express/#/new/express/resume?products=~(~(planCode~\'vrack~quantity~1~productId~\'vrack))',
+      CZ:
+        "https://www.ovh.cz/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
+      DE:
+        "https://www.ovh.de/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
+      ES:
+        "https://www.ovh.es/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
+      FI:
+        "https://www.ovh-hosting.fi/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
+      FR:
+        "https://www.ovh.com/fr/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
+      GB:
+        "https://www.ovh.co.uk/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
+      IE:
+        "https://www.ovh.ie/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
+      IT:
+        "https://www.ovh.it/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
+      LT:
+        "https://www.ovh.lt/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
+      MA:
+        "https://www.ovh.ma/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
+      NL:
+        "https://www.ovh.nl/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
+      PL:
+        "https://www.ovh.pl/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
+      PT:
+        "https://www.ovh.pt/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
+      SN:
+        "https://www.ovh.sn/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
+      TN:
+        "https://www.ovh.com/tn/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
     },
     cloud_disk_array: {
       FR: 'https://www.ovh.com/fr/cloud/cloud-disk-array/',
@@ -145,10 +160,12 @@ export const ORDER_URLS = {
       FR: 'https://www.ovh.com/manager/public-cloud/#/pci/projects/new',
     },
     publicCloudKubernetes: {
-      FR: 'https://www.ovh.com/manager/public-cloud/#/pci/projects/default/kubernetes/new',
+      FR:
+        'https://www.ovh.com/manager/public-cloud/#/pci/projects/default/kubernetes/new',
     },
     orderSql: {
-      FR: 'https://www.ovh.com/manager/web/#/configuration/sql_order?orderType=dbaas',
+      FR:
+        'https://www.ovh.com/manager/web/#/configuration/sql_order?orderType=dbaas',
     },
     orderDomain: {
       CZ: 'https://www.ovh.cz/cgi-bin/newOrder/order.cgi',
@@ -255,22 +272,27 @@ export const ORDER_URLS = {
       WE: 'https://www.ovh.com/world/sddc/',
       WS: 'https://www.ovh.com/world/es/sddc/',
     },
-    cloud_disk_array: {
-    },
-    veeam: {
-    },
+    cloud_disk_array: {},
+    veeam: {},
     veeam_enterprise: {
       CA: 'https://www.ovh.com/ca/en/storage-solutions/veeam-enterprise.xml',
       QC: 'https://www.ovh.com/ca/fr/storage-solutions/veeam-enterprise.xml',
     },
     vrack: {
-      ASIA: 'https://ca.ovh.com/asia/order/express/#/new/express/resume?products=~(~(planCode~\'vrack~quantity~1~productId~\'vrack))',
-      AU: 'https://ca.ovh.com/au/order/express/#/new/express/resume?products=~(~(planCode~\'vrack~quantity~1~productId~\'vrack))',
-      CA: 'https://ca.ovh.com/en/order/express/#/new/express/resume?products=~(~(planCode~\'vrack~quantity~1~productId~\'vrack))',
-      QC: 'https://ca.ovh.com/fr/order/express/#/new/express/resume?products=~(~(planCode~\'vrack~quantity~1~productId~\'vrack))',
-      SG: 'https://ca.ovh.com/sg/order/express/#/new/express/resume?products=~(~(planCode~\'vrack~quantity~1~productId~\'vrack))',
-      WE: 'https://us.ovh.com/us/order/express/#/new/express/resume?products=~(~(planCode~\'vrack~quantity~1~productId~\'vrack))',
-      WS: 'https://us.ovh.com/es/order/express/#/new/express/resume?products=~(~(planCode~\'vrack~quantity~1~productId~\'vrack))',
+      ASIA:
+        "https://ca.ovh.com/asia/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
+      AU:
+        "https://ca.ovh.com/au/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
+      CA:
+        "https://ca.ovh.com/en/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
+      QC:
+        "https://ca.ovh.com/fr/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
+      SG:
+        "https://ca.ovh.com/sg/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
+      WE:
+        "https://us.ovh.com/us/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
+      WS:
+        "https://us.ovh.com/es/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
     },
     cloud_desktop: {},
     load_balancer: {
@@ -309,8 +331,7 @@ export const ORDER_URLS = {
       WE: 'https://ca.ovh.com/manager/public-cloud/#/pci/projects/new',
       WS: 'https://ca.ovh.com/manager/public-cloud/#/pci/projects/new',
     },
-    publicCloudKubernetes: {
-    },
+    publicCloudKubernetes: {},
     express_review_base: {
       ASIA: 'https://ca.ovh.com/asia/order/express/#/express/review',
       AU: 'https://ca.ovh.com/au/order/express/#/express/review',
@@ -338,18 +359,16 @@ export const ORDER_URLS = {
     cloud_disk_array: {
       US: 'https://us.ovhcloud.com/cloud/cloud-disk-array/',
     },
-    veeam: {
-    },
-    veeam_enterprise: {
-    },
+    veeam: {},
+    veeam_enterprise: {},
     dbaas: {
       US: 'https://us.ovhcloud.com/dbaas/timeseries/',
     },
     vrack: {
-      US: 'https://us.ovhcloud.com/order/express/#/express/review?products=~(~(planCode~\'vrack~quantity~1~productId~\'vrack))',
+      US:
+        "https://us.ovhcloud.com/order/express/#/express/review?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
     },
-    cloud_desktop: {
-    },
+    cloud_desktop: {},
     load_balancer: {
       US: 'https://us.ovhcloud.com/solutions/ip-load-balancing/',
     },
@@ -362,8 +381,7 @@ export const ORDER_URLS = {
     publicCloudProjectOrder: {
       FR: 'https://us.ovhcloud.com/manager/public-cloud/#!/pci/projects/new',
     },
-    publicCloudKubernetes: {
-    },
+    publicCloudKubernetes: {},
     express_review_base: {
       US: 'https://us.ovhcloud.com/order/express/#/express/review',
     },
@@ -564,6 +582,5 @@ export const SIDEBAR_ORDER_CONFIG = [
     regions: ['EU'],
   },
 ];
-
 
 export default { ORDER_URLS, SIDEBAR_ORDER_CONFIG };

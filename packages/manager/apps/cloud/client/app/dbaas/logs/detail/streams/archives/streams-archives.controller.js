@@ -1,8 +1,17 @@
 import clone from 'lodash/clone';
 
 class LogsStreamsArchivesCtrl {
-  constructor($interval, $state, $stateParams, $translate, CucCloudMessage, CucControllerHelper,
-    LogsStreamsService, LogsConstants, LogsStreamsArchivesService) {
+  constructor(
+    $interval,
+    $state,
+    $stateParams,
+    $translate,
+    CucCloudMessage,
+    CucControllerHelper,
+    LogsStreamsService,
+    LogsConstants,
+    LogsStreamsArchivesService,
+  ) {
     this.$interval = $interval;
     this.$state = $state;
     this.$stateParams = $stateParams;
@@ -36,11 +45,13 @@ class LogsStreamsArchivesCtrl {
    * @memberof LogsStreamsArchivesHomeCtrl
    */
   getNotificationIndex(archive) {
-    return this.notifications
-      .reduce(
-        (matchedIndex, currentNotification, currentIndex) => (currentNotification.archive
-          .archiveId === archive.archiveId ? currentIndex : matchedIndex), -1,
-      );
+    return this.notifications.reduce(
+      (matchedIndex, currentNotification, currentIndex) =>
+        currentNotification.archive.archiveId === archive.archiveId
+          ? currentIndex
+          : matchedIndex,
+      -1,
+    );
   }
 
   /**
@@ -50,11 +61,15 @@ class LogsStreamsArchivesCtrl {
    */
   initLoaders() {
     this.archiveIds = this.CucControllerHelper.request.getArrayLoader({
-      loaderFunction: () => this.LogsStreamsArchivesService
-        .getArchiveIds(this.serviceName, this.streamId),
+      loaderFunction: () =>
+        this.LogsStreamsArchivesService.getArchiveIds(
+          this.serviceName,
+          this.streamId,
+        ),
     });
     this.stream = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () => this.LogsStreamsService.getStream(this.serviceName, this.streamId),
+      loaderFunction: () =>
+        this.LogsStreamsService.getStream(this.serviceName, this.streamId),
     });
   }
 
@@ -67,23 +82,23 @@ class LogsStreamsArchivesCtrl {
    */
   reloadArchiveDetail(archiveId) {
     this.archiveReload = this.CucControllerHelper.request.getArrayLoader({
-      loaderFunction: () => this.LogsStreamsArchivesService.getArchives(
-        this.serviceName,
-        this.streamId,
-        [archiveId],
-      ),
+      loaderFunction: () =>
+        this.LogsStreamsArchivesService.getArchives(
+          this.serviceName,
+          this.streamId,
+          [archiveId],
+        ),
     });
 
-    return this.archiveReload.load()
-      .then((archives) => {
-        const archive = archives[0];
-        this.archives.data.forEach((archiveItem, archiveIndex) => {
-          if (archiveItem.archiveId === archive.archiveId) {
-            this.archives.data[archiveIndex] = archive;
-          }
-        });
-        return archive;
+    return this.archiveReload.load().then((archives) => {
+      const archive = archives[0];
+      this.archives.data.forEach((archiveItem, archiveIndex) => {
+        if (archiveItem.archiveId === archive.archiveId) {
+          this.archives.data[archiveIndex] = archive;
+        }
       });
+      return archive;
+    });
   }
 
   /**
@@ -95,7 +110,10 @@ class LogsStreamsArchivesCtrl {
    */
   removeNotification(archive) {
     const notificationIndex = this.getNotificationIndex(archive);
-    return this.notifications.splice(notificationIndex, notificationIndex >= 0 ? 1 : 0);
+    return this.notifications.splice(
+      notificationIndex,
+      notificationIndex >= 0 ? 1 : 0,
+    );
   }
 
   /**
@@ -105,7 +123,10 @@ class LogsStreamsArchivesCtrl {
    * @memberof LogsStreamsArchivesHomeCtrl
    */
   startRetrievalDelayUpdate() {
-    this.retrievalDelayUpdater = this.$interval(() => this.updateRetrievalDelay(), 1000);
+    this.retrievalDelayUpdater = this.$interval(
+      () => this.updateRetrievalDelay(),
+      1000,
+    );
   }
 
   /**
@@ -146,9 +167,10 @@ class LogsStreamsArchivesCtrl {
   updateRetrievalDelay() {
     clone(this.notifications).forEach((notification) => {
       const { archive } = notification;
-      archive.retrievalDelay = archive.retrievalDelay > 0
-        ? archive.retrievalDelay -= 1
-        : archive.retrievalDelay;
+      archive.retrievalDelay =
+        archive.retrievalDelay > 0
+          ? (archive.retrievalDelay -= 1)
+          : archive.retrievalDelay;
       if (archive.retrievalState === this.LogsConstants.state.UNSEALING) {
         if (archive.retrievalDelay === 0) {
           archive.retrievalState = this.LogsConstants.state.UNSEALED;
@@ -169,14 +191,18 @@ class LogsStreamsArchivesCtrl {
    */
   updateUnfreezingNotification(archive) {
     return archive.retrievalState === this.LogsConstants.state.UNSEALING
-      ? [this.updateNotification({
-        text: this.$translate.instant('streams_archives_unfreezing', {
-          name: archive.filename,
-          time: moment.utc(archive.retrievalDelay * 1000).format('HH:mm:ss'),
-        }),
-        type: 'info',
-        archive,
-      })]
+      ? [
+          this.updateNotification({
+            text: this.$translate.instant('streams_archives_unfreezing', {
+              name: archive.filename,
+              time: moment
+                .utc(archive.retrievalDelay * 1000)
+                .format('HH:mm:ss'),
+            }),
+            type: 'info',
+            archive,
+          }),
+        ]
       : this.removeNotification(archive);
   }
 
@@ -196,15 +222,18 @@ class LogsStreamsArchivesCtrl {
     });
     this.CucControllerHelper.scrollPageToTop();
     this.archiveDownload = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () => this.LogsStreamsArchivesService
-        .getDownloadUrl(this.serviceName, this.streamId, archive.archiveId),
+      loaderFunction: () =>
+        this.LogsStreamsArchivesService.getDownloadUrl(
+          this.serviceName,
+          this.streamId,
+          archive.archiveId,
+        ),
     });
 
-    this.archiveDownload.load()
-      .then((urlInfo) => {
-        this.removeNotification(archive);
-        this.CucControllerHelper.constructor.downloadUrl(urlInfo.url);
-      });
+    this.archiveDownload.load().then((urlInfo) => {
+      this.removeNotification(archive);
+      this.CucControllerHelper.constructor.downloadUrl(urlInfo.url);
+    });
   }
 
   /**
@@ -219,13 +248,15 @@ class LogsStreamsArchivesCtrl {
   loadArchives({ offset, pageSize }) {
     this.stopRetrievalDelayUpdate();
     this.archives = this.CucControllerHelper.request.getArrayLoader({
-      loaderFunction: () => this.LogsStreamsArchivesService.getArchives(
-        this.serviceName,
-        this.streamId,
-        this.archiveIds.data.slice(offset - 1, offset + pageSize - 1),
-      ),
+      loaderFunction: () =>
+        this.LogsStreamsArchivesService.getArchives(
+          this.serviceName,
+          this.streamId,
+          this.archiveIds.data.slice(offset - 1, offset + pageSize - 1),
+        ),
     });
-    return this.archives.load()
+    return this.archives
+      .load()
       .then((archives) => ({
         data: archives,
         meta: {
@@ -234,7 +265,9 @@ class LogsStreamsArchivesCtrl {
       }))
       .then(this.startRetrievalDelayUpdate())
       .then((archivesData) => {
-        archivesData.data.forEach((archive) => this.updateUnfreezingNotification(archive));
+        archivesData.data.forEach((archive) =>
+          this.updateUnfreezingNotification(archive),
+        );
         return archivesData;
       });
   }
@@ -261,7 +294,9 @@ class LogsStreamsArchivesCtrl {
       archive.archiveId,
     )
       .then(() => this.reloadArchiveDetail(archive.archiveId))
-      .then((updatedArchive) => this.updateUnfreezingNotification(updatedArchive))
+      .then((updatedArchive) =>
+        this.updateUnfreezingNotification(updatedArchive),
+      )
       .catch((err) => {
         this.updateNotification({
           text: this.$translate.instant('streams_archives_url_load_error', {
@@ -275,4 +310,6 @@ class LogsStreamsArchivesCtrl {
   }
 }
 
-angular.module('managerApp').controller('LogsStreamsArchivesCtrl', LogsStreamsArchivesCtrl);
+angular
+  .module('managerApp')
+  .controller('LogsStreamsArchivesCtrl', LogsStreamsArchivesCtrl);

@@ -1,4 +1,3 @@
-
 /**
  *  Awesome directive that display an asterisk (*).
  *  Due to translation process &#42; codes are transformed to *.

@@ -2,12 +2,7 @@ import isString from 'lodash/isString';
 
 export default class WebAppCtrl {
   /* @ngInject */
-  constructor(
-    $document,
-    $scope,
-    $timeout,
-    $translate,
-  ) {
+  constructor($document, $scope, $timeout, $translate) {
     this.$document = $document;
     this.$scope = $scope;
     this.$timeout = $timeout;
@@ -17,14 +12,16 @@ export default class WebAppCtrl {
   }
 
   $onInit() {
-    this.$scope.$watch(() => this.$translate.instant('global_app_title'), () => {
-      document.title = this.$translate.instant('global_app_title');
-    });
+    this.$scope.$watch(
+      () => this.$translate.instant('global_app_title'),
+      () => {
+        document.title = this.$translate.instant('global_app_title');
+      },
+    );
 
     this.$scope.$on('navbar.loaded', () => {
       this.isNavbarLoaded = true;
     });
-
 
     // Scroll to anchor id
     this.$scope.scrollTo = (id) => {
@@ -44,9 +41,4 @@ export default class WebAppCtrl {
   }
 }
 
-angular
-  .module('App')
-  .controller(
-    'WebAppCtrl',
-    WebAppCtrl,
-  );
+angular.module('App').controller('WebAppCtrl', WebAppCtrl);

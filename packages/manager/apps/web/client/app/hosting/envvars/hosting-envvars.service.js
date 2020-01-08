@@ -25,10 +25,12 @@ angular.module('services').service(
         filtersAsArray = [filters];
       }
 
-      const promises = filtersAsArray.map((filter) => this.OvhHttp.get(`/hosting/web/${serviceName}/envVar`, {
-        rootPath: 'apiv6',
-        params: filter,
-      }));
+      const promises = filtersAsArray.map((filter) =>
+        this.OvhHttp.get(`/hosting/web/${serviceName}/envVar`, {
+          rootPath: 'apiv6',
+          params: filter,
+        }),
+      );
 
       return this.$q.allSettled(promises).then((data) => {
         let dataAsArray = data;
@@ -39,9 +41,8 @@ angular.module('services').service(
 
         return uniq(
           flatten(
-            map(
-              dataAsArray,
-              (datum) => (isArray(datum) ? flatten(datum) : datum),
+            map(dataAsArray, (datum) =>
+              isArray(datum) ? flatten(datum) : datum,
             ),
           ),
         );

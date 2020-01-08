@@ -4,21 +4,19 @@ import 'oclazyload';
 
 const moduleName = 'ovhManagerPciStoragesSnapshotsLazyLoading';
 
-angular
-  .module(moduleName, [
-    'ui.router',
-    'oc.lazyLoad',
-  ])
-  .config(/* @ngInject */($stateProvider) => {
+angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
+  /* @ngInject */ ($stateProvider) => {
     $stateProvider.state('pci.projects.project.storages.snapshots.**', {
       url: '/volume-snapshots',
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-        return import('./snapshots.module')
-          .then((mod) => $ocLazyLoad.inject(mod.default || mod));
+        return import('./snapshots.module').then((mod) =>
+          $ocLazyLoad.inject(mod.default || mod),
+        );
       },
     });
-  });
+  },
+);
 
 export default moduleName;

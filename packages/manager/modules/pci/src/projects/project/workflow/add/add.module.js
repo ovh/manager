@@ -14,19 +14,23 @@ import workflowType from './type';
 
 const moduleName = 'ovhManagerPciProjectWorkflowAddModule';
 
-angular.module(moduleName, [
-  generalInfo,
-  resources,
-  schedule,
-  workflowType,
-  'ngOvhCloudUniverseComponents',
-  'ngOvhSwimmingPoll',
-  'oui',
-  'ovh-api-services',
-])
+angular
+  .module(moduleName, [
+    generalInfo,
+    resources,
+    schedule,
+    workflowType,
+    'ngOvhCloudUniverseComponents',
+    'ngOvhSwimmingPoll',
+    'oui',
+    'ovh-api-services',
+  ])
   .config(routing)
   .component('ovhManagerPciProjectWorkflowAdd', component)
-  .service('PciProjectsProjectInstanceService', pciProjectsProjectInstanceService)
+  .service(
+    'PciProjectsProjectInstanceService',
+    pciProjectsProjectInstanceService,
+  )
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

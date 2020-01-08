@@ -9,9 +9,7 @@ import './vrack-add.less';
 const moduleName = 'ovhManagerVrackAdd';
 
 angular
-  .module(moduleName, [
-    'ui.router',
-  ])
+  .module(moduleName, ['ui.router'])
   .config(routing)
   .controller('VrackAddCtrl', controller);
 

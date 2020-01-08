@@ -1,6 +1,6 @@
 import angular from 'angular';
 
-export default /* @ngInject */ function (
+export default /* @ngInject */ function(
   $q,
   OvhApiSms,
   TucSmsService,
@@ -24,10 +24,12 @@ export default /* @ngInject */ function (
 
   self.getApiScheme = function getApiScheme() {
     if (!self.apiScheme) {
-      return OvhApiSms.v6().schema().$promise.then((scheme) => {
-        self.apiScheme = scheme;
-        return self.apiScheme;
-      });
+      return OvhApiSms.v6()
+        .schema()
+        .$promise.then((scheme) => {
+          self.apiScheme = scheme;
+          return self.apiScheme;
+        });
     }
     return $q.when(self.apiScheme);
   };
@@ -48,7 +50,9 @@ export default /* @ngInject */ function (
   };
 
   self.getCurrentSmsService = function getCurrentSmsService() {
-    if (!currentSms) { throw new Error('SMS service is not set'); }
+    if (!currentSms) {
+      throw new Error('SMS service is not set');
+    }
     return currentSms;
   };
 
@@ -72,7 +76,9 @@ export default /* @ngInject */ function (
 
   self.getCount = function getCount() {
     // return OvhApiSms.v7().query().execute().$promise.then(function (smsIds) {
-    return OvhApiSms.v6().query().$promise.then((smsIds) => smsIds.length);
+    return OvhApiSms.v6()
+      .query()
+      .$promise.then((smsIds) => smsIds.length);
   };
 
   /* -----  End of COUNT  ------*/
@@ -81,11 +87,16 @@ export default /* @ngInject */ function (
         =            GET SMS INFO TEXT            =
         ========================================= */
 
-  self.getSmsInfoText = function getSmsInfoText(messageParam, suffix, threshold) {
+  self.getSmsInfoText = function getSmsInfoText(
+    messageParam,
+    suffix,
+    threshold,
+  ) {
     const message = messageParam || '';
     smsText.threshold = threshold || 255;
 
-    const length = message.length + (suffix ? TUC_SMS_STOP_CLAUSE.value.length : 0);
+    const length =
+      message.length + (suffix ? TUC_SMS_STOP_CLAUSE.value.length : 0);
 
     if (message.match(TUC_SMS_REGEX.default7bitGSMAlphabet)) {
       smsText.coding = '7bit';
@@ -100,7 +111,8 @@ export default /* @ngInject */ function (
       } else {
         smsText.defaultSize = 153;
         smsText.equivalence = Math.ceil(length / smsText.defaultSize);
-        smsText.remainingCharacters = (smsText.defaultSize * smsText.equivalence) - length;
+        smsText.remainingCharacters =
+          smsText.defaultSize * smsText.equivalence - length;
       }
     } else {
       smsText.coding = '8bit';
@@ -115,15 +127,16 @@ export default /* @ngInject */ function (
       } else {
         smsText.defaultSize = 67;
         smsText.equivalence = Math.ceil(length / smsText.defaultSize);
-        smsText.remainingCharacters = (smsText.defaultSize * smsText.equivalence) - length;
+        smsText.remainingCharacters =
+          smsText.defaultSize * smsText.equivalence - length;
       }
     }
 
     if (smsText.equivalence > smsText.threshold) {
       if (smsText.coding === '7bit') {
-        smsText.maxlength = ((smsText.threshold - 1) * 153) + 160;
+        smsText.maxlength = (smsText.threshold - 1) * 153 + 160;
       } else {
-        smsText.maxlength = ((smsText.threshold - 1) * 64) + 70;
+        smsText.maxlength = (smsText.threshold - 1) * 64 + 70;
       }
       smsText.maxLengthReached = true;
     } else {
@@ -147,15 +160,21 @@ export default /* @ngInject */ function (
 
     self.initDeferred = $q.defer();
 
-    OvhApiSms.v6().query().$promise.then((smsIds) => OvhApiSms.Aapi().detail({
-      smsIds,
-    }).$promise.then((smsDetails) => {
-      angular.forEach(smsDetails, (smsDetail) => {
-        addSmsService(smsDetail);
-      });
+    OvhApiSms.v6()
+      .query()
+      .$promise.then((smsIds) =>
+        OvhApiSms.Aapi()
+          .detail({
+            smsIds,
+          })
+          .$promise.then((smsDetails) => {
+            angular.forEach(smsDetails, (smsDetail) => {
+              addSmsService(smsDetail);
+            });
 
-      self.initDeferred.resolve(self.smsServices);
-    }));
+            self.initDeferred.resolve(self.smsServices);
+          }),
+      );
 
     return self.initDeferred.promise;
   };

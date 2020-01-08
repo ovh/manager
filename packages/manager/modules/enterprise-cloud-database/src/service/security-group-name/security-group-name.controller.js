@@ -1,6 +1,4 @@
-import {
-  ENTERPRISE_CLOUD_DATABASE_SECURITY_GROUP_PATTERN,
-} from './security-group-name.constants';
+import { ENTERPRISE_CLOUD_DATABASE_SECURITY_GROUP_PATTERN } from './security-group-name.constants';
 
 export default class EnterpriseCloudDatabaseServiceSecurityGroupNameCtrl {
   /* @ngInject */

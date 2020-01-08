@@ -10,7 +10,8 @@ export default () => ({
     value: '=strength',
   },
   replace: true,
-  template: '<div class="ovh-password-strength-bar {{ getClass(value) }}"><progressbar value="getRoundValue(value)" animate="false"></progressbar></div>',
+  template:
+    '<div class="ovh-password-strength-bar {{ getClass(value) }}"><progressbar value="getRoundValue(value)" animate="false"></progressbar></div>',
   link($scope) {
     function strReverse(str) {
       let reverse = '';
@@ -83,20 +84,25 @@ export default () => ({
 
         counts.pos.lower = matches.pos.lower ? matches.pos.lower.length : 0;
         counts.pos.upper = matches.pos.upper ? matches.pos.upper.length : 0;
-        counts.pos.numbers = matches.pos.numbers ? matches.pos.numbers.length : 0;
-        counts.pos.symbols = matches.pos.symbols ? matches.pos.symbols.length : 0;
+        counts.pos.numbers = matches.pos.numbers
+          ? matches.pos.numbers.length
+          : 0;
+        counts.pos.symbols = matches.pos.symbols
+          ? matches.pos.symbols.length
+          : 0;
 
-        tmp = reduce(
-          counts.pos, (memo, val) => memo + Math.min(1, val),
-          0,
-        );
+        tmp = reduce(counts.pos, (memo, val) => memo + Math.min(1, val), 0);
 
         counts.pos.numChars = p.length;
         tmp += counts.pos.numChars >= 8 ? 1 : 0;
 
         counts.pos.requirements = tmp >= 3 ? tmp : 0;
-        counts.pos.middleNumber = matches.pos.middleNumber ? matches.pos.middleNumber.length : 0;
-        counts.pos.middleSymbol = matches.pos.middleSymbol ? matches.pos.middleSymbol.length : 0;
+        counts.pos.middleNumber = matches.pos.middleNumber
+          ? matches.pos.middleNumber.length
+          : 0;
+        counts.pos.middleSymbol = matches.pos.middleSymbol
+          ? matches.pos.middleSymbol.length
+          : 0;
 
         // Deductions
         matches.neg.consecLower = p.match(/(?=([a-z]{2}))/g);
@@ -105,9 +111,15 @@ export default () => ({
         matches.neg.onlyNumbers = p.match(/^[0-9]*$/g);
         matches.neg.onlyLetters = p.match(/^([a-z]|[A-Z])*$/g);
 
-        counts.neg.consecLower = matches.neg.consecLower ? matches.neg.consecLower.length : 0;
-        counts.neg.consecUpper = matches.neg.consecUpper ? matches.neg.consecUpper.length : 0;
-        counts.neg.consecNumbers = matches.neg.consecNumbers ? matches.neg.consecNumbers.length : 0;
+        counts.neg.consecLower = matches.neg.consecLower
+          ? matches.neg.consecLower.length
+          : 0;
+        counts.neg.consecUpper = matches.neg.consecUpper
+          ? matches.neg.consecUpper.length
+          : 0;
+        counts.neg.consecNumbers = matches.neg.consecNumbers
+          ? matches.neg.consecNumbers.length
+          : 0;
 
         // sequential letters (back and forth)
         for (i = 0; i < letters.length - 2; i += 1) {
@@ -141,10 +153,7 @@ export default () => ({
         // repeated chars
         counts.neg.repeated = reduce(
           reject(
-            countBy(
-              p.toLowerCase().split(''),
-              (val) => val,
-            ),
+            countBy(p.toLowerCase().split(''), (val) => val),
             (val) => val === 1,
           ),
           (memo, val) => memo + val,

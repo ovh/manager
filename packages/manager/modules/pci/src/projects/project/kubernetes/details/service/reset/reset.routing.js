@@ -1,6 +1,7 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider
-    .state('pci.projects.project.kubernetes.details.service.reset', {
+  $stateProvider.state(
+    'pci.projects.project.kubernetes.details.service.reset',
+    {
       url: '/reset',
       views: {
         modal: {
@@ -9,8 +10,10 @@ export default /* @ngInject */ ($stateProvider) => {
       },
       layout: 'modal',
       resolve: {
-        goBack: /* @ngInject */ (goToKubernetesDetails) => goToKubernetesDetails,
+        goBack: /* @ngInject */ (goToKubernetesDetails) =>
+          goToKubernetesDetails,
         breadcrumb: () => null,
       },
-    });
+    },
+  );
 };

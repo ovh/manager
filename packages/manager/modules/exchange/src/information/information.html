@@ -1,132 +1,205 @@
-<div class="container-fluid px-0" data-ng-controller="ExchangeTabInformationCtrl as ctrl">
+<div
+    class="container-fluid px-0"
+    data-ng-controller="ExchangeTabInformationCtrl as ctrl"
+>
     <office-attach data-ng-if="ctrl.worldPart === 'EU'"></office-attach>
     <div class="row">
         <div class="col-md-9">
             <div class="row d-md-flex">
                 <div class="col-sm-6 mb-5">
-                    <oui-tile class="h-100" data-heading="{{:: 'exchange_tab_INFORMATIONS_summary' | translate}}">
-                        <oui-tile-definition data-term="{{:: 'exchange_tab_INFORMATIONS_infrastructure' | translate}}"
-                                             data-description="{{:: (('exchange_offer_type_' + ctrl.exchange.offer) | translate) || ctrl.exchange.offer}}">
+                    <oui-tile
+                        class="h-100"
+                        data-heading="{{:: 'exchange_tab_INFORMATIONS_summary' | translate}}"
+                    >
+                        <oui-tile-definition
+                            data-term="{{:: 'exchange_tab_INFORMATIONS_infrastructure' | translate}}"
+                            data-description="{{:: (('exchange_offer_type_' + ctrl.exchange.offer) | translate) || ctrl.exchange.offer}}"
+                        >
                         </oui-tile-definition>
-                        <oui-tile-definition data-term="{{:: 'exchange_tab_INFORMATIONS_version' | translate}}"
-                                             data-description="{{:: (('exchange_server_commercial_version' + ctrl.exchange.serverDiagnostic.commercialVersion) | translate) || ctrl.exchange.serverDiagnostic.commercialVersion}}">
-                            <oui-action-menu data-compact
-                                             data-align="end"
-                                             data-ng-if="ctrl.shouldDisplayMigration2016()">
-                                <oui-action-menu-item data-on-click="setAction('exchange/information/migration-2016/service-migration-2016', ctrl.exchange)">
-                                    <span data-translate="exchange_upgrade_button_title"></span>
+                        <oui-tile-definition
+                            data-term="{{:: 'exchange_tab_INFORMATIONS_version' | translate}}"
+                            data-description="{{:: (('exchange_server_commercial_version' + ctrl.exchange.serverDiagnostic.commercialVersion) | translate) || ctrl.exchange.serverDiagnostic.commercialVersion}}"
+                        >
+                            <oui-action-menu
+                                data-compact
+                                data-align="end"
+                                data-ng-if="ctrl.shouldDisplayMigration2016()"
+                            >
+                                <oui-action-menu-item
+                                    data-on-click="setAction('exchange/information/migration-2016/service-migration-2016', ctrl.exchange)"
+                                >
+                                    <span
+                                        data-translate="exchange_upgrade_button_title"
+                                    ></span>
                                 </oui-action-menu-item>
                             </oui-action-menu>
                         </oui-tile-definition>
-                        <oui-tile-definition data-term="{{:: 'exchange_dashboard_name' | translate}}"
-                                             data-description="{{:: ctrl.exchange.domain}}">
+                        <oui-tile-definition
+                            data-term="{{:: 'exchange_dashboard_name' | translate}}"
+                            data-description="{{:: ctrl.exchange.domain}}"
+                        >
                         </oui-tile-definition>
-                        <oui-tile-definition data-term="{{:: 'exchange_dashboard_diag' | translate}}"
-                                             data-ng-if="ctrl.shouldDisplayDiagnostic()">
+                        <oui-tile-definition
+                            data-term="{{:: 'exchange_dashboard_diag' | translate}}"
+                            data-ng-if="ctrl.shouldDisplayDiagnostic()"
+                        >
                             <oui-tile-description>
-                                <button class="oui-status" type="button"
-                                        data-translate="exchange_dashboard_diag_a_label"
-                                        data-ng-class="{'oui-status_success': ctrl.exchange.serverDiagnostic.isAValid, 'oui-status_warning': !ctrl.exchange.serverDiagnostic.isAValid}"
-                                        data-ng-if="!ctrl.exchangeServiceInfrastructure.isProvider()"
-                                        data-simplepopover="{{ctrl.exchange.serverDiagnostic.aTooltip}}"
-                                        data-simplepopover-title="{{'exchange_dashboard_diag_a_tooltip_title' | translate}}"
-                                        data-simplepopover-placement="right"
-                                        data-simplepopover-single="true">
-                                </button>
-                                <button class="oui-status" type="button"
-                                        data-translate="exchange_dashboard_diag_aaaa_label"
-                                        data-ng-class="{'oui-status_success': ctrl.exchange.serverDiagnostic.isAaaaValid, 'oui-status_warning': !ctrl.exchange.serverDiagnostic.isAaaaValid}"
-                                        data-ng-if="ctrl.exchangeServiceInfrastructure.isDedicated() || ctrl.exchangeServiceInfrastructure.isDedicatedCluster()"
-                                        data-simplepopover="{{ctrl.exchange.serverDiagnostic.aaaaTooltip}}"
-                                        data-simplepopover-title="{{'exchange_dashboard_diag_aaaa_tooltip_title' | translate}}"
-                                        data-simplepopover-placement="right"
-                                        data-simplepopover-single="true">
-                                </button>
-                                <button class="oui-status" type="button"
-                                        data-translate="exchange_dashboard_diag_ptr_label"
-                                        data-ng-class="{'oui-status_success': ctrl.exchange.serverDiagnostic.isPtrValid, 'oui-status_warning': !ctrl.exchange.serverDiagnostic.isPtrValid}"
-                                        data-ng-if="ctrl.exchangeServiceInfrastructure.isDedicated() || ctrl.exchangeServiceInfrastructure.isDedicatedCluster()"
-                                        data-simplepopover="{{ctrl.exchange.serverDiagnostic.ptrTooltip}}"
-                                        data-simplepopover-title="{{'exchange_dashboard_diag_ptr_tooltip_title' | translate}}"
-                                        data-simplepopover-placement="right"
-                                        data-simplepopover-single="true">
-                                </button>
-                                <button class="oui-status" type="button"
-                                        data-translate="exchange_dashboard_diag_ptrv6_label"
-                                        data-ng-class="{'oui-status_success': ctrl.exchange.serverDiagnostic.isPtrV6Valid, 'oui-status_warning': !ctrl.exchange.serverDiagnostic.isPtrV6Valid}"
-                                        data-ng-if="ctrl.exchangeServiceInfrastructure.isDedicated() || ctrl.exchangeServiceInfrastructure.isDedicatedCluster()"
-                                        data-simplepopover="{{ctrl.exchange.serverDiagnostic.ptrv6Tooltip}}"
-                                        data-simplepopover-title="{{'exchange_dashboard_diag_ptrv6_tooltip_title' | translate}}"
-                                        data-simplepopover-placement="right"
-                                        data-simplepopover-single="true">
-                                </button>
+                                <button
+                                    class="oui-status"
+                                    type="button"
+                                    data-translate="exchange_dashboard_diag_a_label"
+                                    data-ng-class="{'oui-status_success': ctrl.exchange.serverDiagnostic.isAValid, 'oui-status_warning': !ctrl.exchange.serverDiagnostic.isAValid}"
+                                    data-ng-if="!ctrl.exchangeServiceInfrastructure.isProvider()"
+                                    data-simplepopover="{{ctrl.exchange.serverDiagnostic.aTooltip}}"
+                                    data-simplepopover-title="{{'exchange_dashboard_diag_a_tooltip_title' | translate}}"
+                                    data-simplepopover-placement="right"
+                                    data-simplepopover-single="true"
+                                ></button>
+                                <button
+                                    class="oui-status"
+                                    type="button"
+                                    data-translate="exchange_dashboard_diag_aaaa_label"
+                                    data-ng-class="{'oui-status_success': ctrl.exchange.serverDiagnostic.isAaaaValid, 'oui-status_warning': !ctrl.exchange.serverDiagnostic.isAaaaValid}"
+                                    data-ng-if="ctrl.exchangeServiceInfrastructure.isDedicated() || ctrl.exchangeServiceInfrastructure.isDedicatedCluster()"
+                                    data-simplepopover="{{ctrl.exchange.serverDiagnostic.aaaaTooltip}}"
+                                    data-simplepopover-title="{{'exchange_dashboard_diag_aaaa_tooltip_title' | translate}}"
+                                    data-simplepopover-placement="right"
+                                    data-simplepopover-single="true"
+                                ></button>
+                                <button
+                                    class="oui-status"
+                                    type="button"
+                                    data-translate="exchange_dashboard_diag_ptr_label"
+                                    data-ng-class="{'oui-status_success': ctrl.exchange.serverDiagnostic.isPtrValid, 'oui-status_warning': !ctrl.exchange.serverDiagnostic.isPtrValid}"
+                                    data-ng-if="ctrl.exchangeServiceInfrastructure.isDedicated() || ctrl.exchangeServiceInfrastructure.isDedicatedCluster()"
+                                    data-simplepopover="{{ctrl.exchange.serverDiagnostic.ptrTooltip}}"
+                                    data-simplepopover-title="{{'exchange_dashboard_diag_ptr_tooltip_title' | translate}}"
+                                    data-simplepopover-placement="right"
+                                    data-simplepopover-single="true"
+                                ></button>
+                                <button
+                                    class="oui-status"
+                                    type="button"
+                                    data-translate="exchange_dashboard_diag_ptrv6_label"
+                                    data-ng-class="{'oui-status_success': ctrl.exchange.serverDiagnostic.isPtrV6Valid, 'oui-status_warning': !ctrl.exchange.serverDiagnostic.isPtrV6Valid}"
+                                    data-ng-if="ctrl.exchangeServiceInfrastructure.isDedicated() || ctrl.exchangeServiceInfrastructure.isDedicatedCluster()"
+                                    data-simplepopover="{{ctrl.exchange.serverDiagnostic.ptrv6Tooltip}}"
+                                    data-simplepopover-title="{{'exchange_dashboard_diag_ptrv6_tooltip_title' | translate}}"
+                                    data-simplepopover-placement="right"
+                                    data-simplepopover-single="true"
+                                ></button>
                             </oui-tile-description>
                         </oui-tile-definition>
-                        <oui-tile-definition data-term="{{:: 'exchange_dashboard_ssl_expiration' | translate}}"
-                                             data-ng-if="ctrl.exchange.sslExpirationDate">
+                        <oui-tile-definition
+                            data-term="{{:: 'exchange_dashboard_ssl_expiration' | translate}}"
+                            data-ng-if="ctrl.exchange.sslExpirationDate"
+                        >
                             <oui-tile-description>
-                                <span data-ng-bind="ctrl.exchange.sslExpirationDate | date:'mediumDate'"></span>
-                                <oui-message data-type="info"
-                                             data-dismissable="false"
-                                             data-ng-if="ctrl.messageSSL"
-                                             class="oui-paragraph">
+                                <span
+                                    data-ng-bind="ctrl.exchange.sslExpirationDate | date:'mediumDate'"
+                                ></span>
+                                <oui-message
+                                    data-type="info"
+                                    data-dismissable="false"
+                                    data-ng-if="ctrl.messageSSL"
+                                    class="oui-paragraph"
+                                >
                                     <span data-ng-bind="ctrl.messageSSL"></span>
                                 </oui-message>
                             </oui-tile-description>
-                            <oui-action-menu data-compact
-                                             data-align="end"
-                                             data-disabled="ctrl.hasSSLTask"
-                                             data-ng-if="ctrl.shouldDisplaySSLRenewValue">
-                                <oui-action-menu-item data-on-click="ctrl.sslRenew()">
-                                    <span data-translate="exchange_action_renew_ssl"></span>
+                            <oui-action-menu
+                                data-compact
+                                data-align="end"
+                                data-disabled="ctrl.hasSSLTask"
+                                data-ng-if="ctrl.shouldDisplaySSLRenewValue"
+                            >
+                                <oui-action-menu-item
+                                    data-on-click="ctrl.sslRenew()"
+                                >
+                                    <span
+                                        data-translate="exchange_action_renew_ssl"
+                                    ></span>
                                 </oui-action-menu-item>
                             </oui-action-menu>
                         </oui-tile-definition>
-                        <oui-tile-definition data-term="{{:: 'exchange_dashboard_expiration' | translate}}"
-                                             data-description="{{:: ctrl.exchange.expiration | date:'mediumDate'}}"
-                                             data-ng-if="ctrl.displayRenewDate()">
+                        <oui-tile-definition
+                            data-term="{{:: 'exchange_dashboard_expiration' | translate}}"
+                            data-description="{{:: ctrl.exchange.expiration | date:'mediumDate'}}"
+                            data-ng-if="ctrl.displayRenewDate()"
+                        >
                         </oui-tile-definition>
                     </oui-tile>
                 </div>
                 <div class="col-sm-6 mb-5">
-                    <oui-tile class="h-100" data-heading="{{:: 'exchange_tab_INFORMATIONS_stats' | translate}}">
-                        <oui-tile-definition data-term="{{:: 'exchange_dashboard_domains' | translate}}"
-                                             data-description="{{:: ctrl.exchange.domainsNumber}}">
+                    <oui-tile
+                        class="h-100"
+                        data-heading="{{:: 'exchange_tab_INFORMATIONS_stats' | translate}}"
+                    >
+                        <oui-tile-definition
+                            data-term="{{:: 'exchange_dashboard_domains' | translate}}"
+                            data-description="{{:: ctrl.exchange.domainsNumber}}"
+                        >
                         </oui-tile-definition>
-                        <oui-tile-definition data-term="{{:: 'exchange_dashboard_accounts' | translate}}"
-                                             data-description="{{:: ctrl.exchange.accountsNumber}}">
+                        <oui-tile-definition
+                            data-term="{{:: 'exchange_dashboard_accounts' | translate}}"
+                            data-description="{{:: ctrl.exchange.accountsNumber}}"
+                        >
                         </oui-tile-definition>
-                        <oui-tile-definition data-term="{{:: 'exchange_dashboard_tasks' | translate}}"
-                                             data-description="{{:: ctrl.exchange.tasksNumber}}">
+                        <oui-tile-definition
+                            data-term="{{:: 'exchange_dashboard_tasks' | translate}}"
+                            data-description="{{:: ctrl.exchange.tasksNumber}}"
+                        >
                         </oui-tile-definition>
-                        <oui-tile-definition data-term="{{:: 'exchange_dashboard_disk_usage' | translate}}"
-                                             data-ng-if="ctrl.exchange.diskPercent"
-                                             data-term-popover="{{:: 'exchange_action_order_space_disk_tooltip' | translate}}">
+                        <oui-tile-definition
+                            data-term="{{:: 'exchange_dashboard_disk_usage' | translate}}"
+                            data-ng-if="ctrl.exchange.diskPercent"
+                            data-term-popover="{{:: 'exchange_action_order_space_disk_tooltip' | translate}}"
+                        >
                             <oui-tile-description>
-                                <oui-progress data-min-value="0"
-                                              data-max-value="100">
-                                    <oui-progress-bar data-ng-if="ctrl.exchange.diskPercent < 51"
-                                                      data-type="success"
-                                                      data-value="ctrl.exchange.diskPercent">
-                                        <span data-ng-bind="ctrl.getFormattedDiskUsage()"></span>
+                                <oui-progress
+                                    data-min-value="0"
+                                    data-max-value="100"
+                                >
+                                    <oui-progress-bar
+                                        data-ng-if="ctrl.exchange.diskPercent < 51"
+                                        data-type="success"
+                                        data-value="ctrl.exchange.diskPercent"
+                                    >
+                                        <span
+                                            data-ng-bind="ctrl.getFormattedDiskUsage()"
+                                        ></span>
                                     </oui-progress-bar>
-                                    <oui-progress-bar data-ng-if="ctrl.exchange.diskPercent > 50 && ctrl.exchange.diskPercent < 81"
-                                                      data-type="warning"
-                                                      data-value="ctrl.exchange.diskPercent">
-                                        <span data-ng-bind="ctrl.getFormattedDiskUsage()"></span>
+                                    <oui-progress-bar
+                                        data-ng-if="ctrl.exchange.diskPercent > 50 && ctrl.exchange.diskPercent < 81"
+                                        data-type="warning"
+                                        data-value="ctrl.exchange.diskPercent"
+                                    >
+                                        <span
+                                            data-ng-bind="ctrl.getFormattedDiskUsage()"
+                                        ></span>
                                     </oui-progress-bar>
-                                    <oui-progress-bar data-ng-if="ctrl.exchange.diskPercent > 80"
-                                                      data-type="error"
-                                                      data-value="ctrl.exchange.diskPercent">
-                                        <span data-ng-bind="ctrl.getFormattedDiskUsage()"></span>
+                                    <oui-progress-bar
+                                        data-ng-if="ctrl.exchange.diskPercent > 80"
+                                        data-type="error"
+                                        data-value="ctrl.exchange.diskPercent"
+                                    >
+                                        <span
+                                            data-ng-bind="ctrl.getFormattedDiskUsage()"
+                                        ></span>
                                     </oui-progress-bar>
                                 </oui-progress>
                             </oui-tile-description>
-                            <oui-action-menu data-compact
-                                             data-align="end"
-                                             data-ng-if="ctrl.displayOrderDiskSpace()">
-                                <oui-action-menu-item data-on-click="ctrl.orderDiskSpace()">
-                                    <span data-translate="exchange_action_order_space_disk"></span>
+                            <oui-action-menu
+                                data-compact
+                                data-align="end"
+                                data-ng-if="ctrl.displayOrderDiskSpace()"
+                            >
+                                <oui-action-menu-item
+                                    data-on-click="ctrl.orderDiskSpace()"
+                                >
+                                    <span
+                                        data-translate="exchange_action_order_space_disk"
+                                    ></span>
                                 </oui-action-menu-item>
                             </oui-action-menu>
                         </oui-tile-definition>
@@ -135,57 +208,105 @@
             </div>
         </div>
         <div class="col-md-3">
-            <oui-tile class="h-100 mb-5" data-heading="{{:: 'exchange_tab_INFORMATIONS_connexion' | translate}}">
-                <oui-tile-definition data-term="{{:: 'exchange_tab_INFORMATIONS_server' | translate}}"
-                                     data-description="{{:: ctrl.exchange.webUrl}}"
-                                     data-ng-if="ctrl.exchangeServiceInfrastructure.isHosted()">
+            <oui-tile
+                class="h-100 mb-5"
+                data-heading="{{:: 'exchange_tab_INFORMATIONS_connexion' | translate}}"
+            >
+                <oui-tile-definition
+                    data-term="{{:: 'exchange_tab_INFORMATIONS_server' | translate}}"
+                    data-description="{{:: ctrl.exchange.webUrl}}"
+                    data-ng-if="ctrl.exchangeServiceInfrastructure.isHosted()"
+                >
                 </oui-tile-definition>
-                <oui-tile-definition data-term="{{:: 'exchange_tab_INFORMATIONS_webmail' | translate}}">
+                <oui-tile-definition
+                    data-term="{{:: 'exchange_tab_INFORMATIONS_webmail' | translate}}"
+                >
                     <oui-tile-description>
-                        <a class="word-break oui-link_icon"
-                           target="_blank"
-                           rel="noopener"
-                           data-ng-href="https://{{:: ctrl.exchange.webUrl}}">
-                           https://<span data-ng-bind=":: ctrl.exchange.webUrl"></span>
-                           <span class="oui-icon oui-icon-external_link" aria-hidden="true"></span>
-                           <span class="sr-only" data-translate="common_newtab"></span>
+                        <a
+                            class="word-break oui-link_icon"
+                            target="_blank"
+                            rel="noopener"
+                            data-ng-href="https://{{:: ctrl.exchange.webUrl}}"
+                        >
+                            https://<span
+                                data-ng-bind=":: ctrl.exchange.webUrl"
+                            ></span>
+                            <span
+                                class="oui-icon oui-icon-external_link"
+                                aria-hidden="true"
+                            ></span>
+                            <span
+                                class="sr-only"
+                                data-translate="common_newtab"
+                            ></span>
                         </a>
                     </oui-tile-description>
                 </oui-tile-definition>
-                <oui-tile-definition data-term="{{:: 'exchange_tab_INFORMATIONS_messaging' | translate}}">
+                <oui-tile-definition
+                    data-term="{{:: 'exchange_tab_INFORMATIONS_messaging' | translate}}"
+                >
                     <oui-tile-description>
-                        <a class="oui-link"
-                           data-ng-href="{{ctrl.displayGuides}}"
-                           target="_blank"
-                           rel="noopener">
-                           <span class="sr-only" data-translate="common_newtab"></span>
-                           <span data-translate="exchange_dashboard_guides_url"></span>
-                           <span class="fa fa-external-link" aria-hidden="true"></span>
+                        <a
+                            class="oui-link"
+                            data-ng-href="{{ctrl.displayGuides}}"
+                            target="_blank"
+                            rel="noopener"
+                        >
+                            <span
+                                class="sr-only"
+                                data-translate="common_newtab"
+                            ></span>
+                            <span
+                                data-translate="exchange_dashboard_guides_url"
+                            ></span>
+                            <span
+                                class="fa fa-external-link"
+                                aria-hidden="true"
+                            ></span>
                         </a>
                     </oui-tile-description>
                 </oui-tile-definition>
             </oui-tile>
             <oui-spinner data-ng-if="ctrl.loading.sharePoint"></oui-spinner>
-            <oui-tile class="h-100 mb-5" data-heading="{{:: 'exchange_tab_INFORMATIONS_sharepoint' | translate}}"
-                      data-ng-if="!ctrl.loading.sharePoint && ctrl.sharepoint">
-                <oui-tile-definition data-term="{{:: 'exchange_tab_INFORMATIONS_sharepoint_url' | translate}}">
+            <oui-tile
+                class="h-100 mb-5"
+                data-heading="{{:: 'exchange_tab_INFORMATIONS_sharepoint' | translate}}"
+                data-ng-if="!ctrl.loading.sharePoint && ctrl.sharepoint"
+            >
+                <oui-tile-definition
+                    data-term="{{:: 'exchange_tab_INFORMATIONS_sharepoint_url' | translate}}"
+                >
                     <oui-tile-description>
-                        <a class="word-break oui-link"
-                           target="_blank"
-                           rel="noopener"
-                           data-ng-href="https://{{ctrl.sharepoint.url}}"
-                           data-ng-if="ctrl.sharepoint.state !== 'creating'">
-                           <span class="sr-only" data-translate="common_newtab"></span>
-                           <span data-ng-bind="'https://' + ctrl.sharepoint.url"></span>
-                           <span class="fa fa-external-link" aria-hidden="true"></span>
+                        <a
+                            class="word-break oui-link"
+                            target="_blank"
+                            rel="noopener"
+                            data-ng-href="https://{{ctrl.sharepoint.url}}"
+                            data-ng-if="ctrl.sharepoint.state !== 'creating'"
+                        >
+                            <span
+                                class="sr-only"
+                                data-translate="common_newtab"
+                            ></span>
+                            <span
+                                data-ng-bind="'https://' + ctrl.sharepoint.url"
+                            ></span>
+                            <span
+                                class="fa fa-external-link"
+                                aria-hidden="true"
+                            ></span>
                         </a>
-                         <span data-translate="exchange_tab_INFORMATIONS_wait_activation"
-                               data-ng-if="ctrl.sharepoint.state === 'creating'"></span>
-                         <div class="mt-3">
-                             <a class="oui-link"
+                        <span
+                            data-translate="exchange_tab_INFORMATIONS_wait_activation"
+                            data-ng-if="ctrl.sharepoint.state === 'creating'"
+                        ></span>
+                        <div class="mt-3">
+                            <a
+                                class="oui-link"
                                 data-ng-href="#/configuration/sharepoint/{{ctrl.exchange.domain}}/{{ctrl.sharepoint.domain}}"
-                                data-translate="exchange_tab_INFORMATIONS_service_url"></a>
-                         </div>
+                                data-translate="exchange_tab_INFORMATIONS_service_url"
+                            ></a>
+                        </div>
                     </oui-tile-description>
                 </oui-tile-definition>
             </oui-tile>

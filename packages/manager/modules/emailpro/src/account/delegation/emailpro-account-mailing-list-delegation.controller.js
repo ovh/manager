@@ -1,13 +1,22 @@
 import angular from 'angular';
 import set from 'lodash/set';
 
-export default /* @ngInject */ ($scope, $stateParams, EmailPro, $timeout, $translate) => {
+export default /* @ngInject */ (
+  $scope,
+  $stateParams,
+  EmailPro,
+  $timeout,
+  $translate,
+) => {
   const init = function init() {
     $scope.selectedGroup = $scope.currentActionData;
     $scope.form = { search: null };
   };
 
-  const recordChangeOperations = function recordChangeOperations(account, changesList) {
+  const recordChangeOperations = function recordChangeOperations(
+    account,
+    changesList,
+  ) {
     // record the operation to be done for sendAs rights:
     if (account.newSendAsValue !== account.sendAs) {
       changesList.sendRights.push({
@@ -45,7 +54,10 @@ export default /* @ngInject */ ($scope, $stateParams, EmailPro, $timeout, $trans
   $scope.hasChanged = function hasChanged() {
     const changesList = getChanges();
     if (changesList) {
-      return changesList.sendRights.length > 0 || changesList.sendOnBehalfToRights.length > 0;
+      return (
+        changesList.sendRights.length > 0 ||
+        changesList.sendOnBehalfToRights.length > 0
+      );
     }
     return false;
   };
@@ -54,14 +66,13 @@ export default /* @ngInject */ ($scope, $stateParams, EmailPro, $timeout, $trans
     $scope.setMessage(null);
     $scope.loading = true;
 
-    EmailPro
-      .getMailingListDelegationRights(
-        $stateParams.productId,
-        $scope.selectedGroup.mailingListName,
-        count,
-        offset,
-        $scope.form.search,
-      )
+    EmailPro.getMailingListDelegationRights(
+      $stateParams.productId,
+      $scope.selectedGroup.mailingListName,
+      count,
+      offset,
+      $scope.form.search,
+    )
       .then((accounts) => {
         $scope.loading = false;
 
@@ -76,7 +87,10 @@ export default /* @ngInject */ ($scope, $stateParams, EmailPro, $timeout, $trans
       })
       .catch((failure) => {
         $scope.loading = false;
-        $scope.setMessage($translate.instant('emailpro_tab_GROUPS_error_message'), failure.data);
+        $scope.setMessage(
+          $translate.instant('emailpro_tab_GROUPS_error_message'),
+          failure.data,
+        );
       });
   };
 
@@ -84,27 +98,45 @@ export default /* @ngInject */ ($scope, $stateParams, EmailPro, $timeout, $trans
     $scope.$broadcast('paginationServerSide.reload', 'delegationTable');
   });
 
-  $scope.$watch('form.search', (search) => {
-    if ($scope.form.search !== null) {
-      $timeout(() => {
-        if ($scope.form.search === search) {
-          $scope.$broadcast('paginationServerSide.loadPage', 1, 'delegationTable');
-        }
-      }, 1500);
-    }
-  }, true);
+  $scope.$watch(
+    'form.search',
+    (search) => {
+      if ($scope.form.search !== null) {
+        $timeout(() => {
+          if ($scope.form.search === search) {
+            $scope.$broadcast(
+              'paginationServerSide.loadPage',
+              1,
+              'delegationTable',
+            );
+          }
+        }, 1500);
+      }
+    },
+    true,
+  );
 
   $scope.updateDelegationRight = function updateDelegationRight() {
     $scope.resetAction();
-    $scope.setMessage($translate.instant('emailpro_GROUPS_delegation_doing_message'));
+    $scope.setMessage(
+      $translate.instant('emailpro_GROUPS_delegation_doing_message'),
+    );
 
-    EmailPro
-      .updateMailingListDelegationRights($stateParams.productId, getChanges())
+    EmailPro.updateMailingListDelegationRights(
+      $stateParams.productId,
+      getChanges(),
+    )
       .then((data) => {
-        $scope.setMessage($translate.instant('emailpro_GROUPS_delegation_success_message'), data);
+        $scope.setMessage(
+          $translate.instant('emailpro_GROUPS_delegation_success_message'),
+          data,
+        );
       })
       .catch((failure) => {
-        $scope.setMessage($translate.instant('emailpro_GROUPS_delegation_error_message'), failure.data);
+        $scope.setMessage(
+          $translate.instant('emailpro_GROUPS_delegation_error_message'),
+          failure.data,
+        );
       });
   };
 

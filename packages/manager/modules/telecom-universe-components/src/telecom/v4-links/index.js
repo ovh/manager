@@ -9,9 +9,7 @@ import './telecom-v4-links.less';
 const moduleName = 'tucTelecomV4Links';
 
 angular
-  .module(moduleName, [
-    uiRouter,
-  ])
+  .module(moduleName, [uiRouter])
   .component('tucTelecomV4Links', tucTelecomV4Links)
   .component('tucTelecomV4Link', tucTelecomV4Link);
 

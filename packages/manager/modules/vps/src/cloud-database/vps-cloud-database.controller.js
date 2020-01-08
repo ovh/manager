@@ -41,8 +41,18 @@ export default class {
 
     this.statusFilterOptions = {
       values: reduce(
-        ['detached', 'restartPending', 'startPending', 'started', 'stopPending', 'stopped'],
-        (result, key) => ({ ...result, [key]: this.$translate.instant(`vps_database_status_${key}`) }),
+        [
+          'detached',
+          'restartPending',
+          'startPending',
+          'started',
+          'stopPending',
+          'stopped',
+        ],
+        (result, key) => ({
+          ...result,
+          [key]: this.$translate.instant(`vps_database_status_${key}`),
+        }),
         {},
       ),
     };
@@ -60,13 +70,7 @@ export default class {
         if (isString(results)) {
           throw new Error('Temporary error from the API');
         }
-        this.ipv4 = get(
-          find(
-            results,
-            { version: 'v4' },
-          ),
-          'ipAddress',
-        );
+        this.ipv4 = get(find(results, { version: 'v4' }), 'ipAddress');
       })
       .then(() => this.loadDatabases())
       .then((databases) => {
@@ -80,37 +84,51 @@ export default class {
   }
 
   loadDatabases() {
-    return this.ApiPrivateDb.query().$promise
-      .then((serviceNames) => this.$q.all(
-        map(
-          serviceNames,
-          (serviceName) => this.ApiPrivateDb.get({ serviceName }).$promise,
+    return this.ApiPrivateDb.query()
+      .$promise.then((serviceNames) =>
+        this.$q.all(
+          map(
+            serviceNames,
+            (serviceName) => this.ApiPrivateDb.get({ serviceName }).$promise,
+          ),
         ),
-      ))
+      )
       .then((databases) => filter(databases, { offer: 'public' }))
-      .then((databases) => this.$q.all(
-        map(
-          databases,
-          (database) => this.isVpsAuthorized(database.serviceName)
-            .then((vpsAuthorized) => defaults({ vpsAuthorized }, database)),
+      .then((databases) =>
+        this.$q.all(
+          map(databases, (database) =>
+            this.isVpsAuthorized(database.serviceName).then((vpsAuthorized) =>
+              defaults({ vpsAuthorized }, database),
+            ),
+          ),
         ),
-      ))
-      .then((databases) => map(databases, (database) => defaults(
-        {
-          name: database.displayName || database.serviceName,
-        }, database,
-      )))
+      )
+      .then((databases) =>
+        map(databases, (database) =>
+          defaults(
+            {
+              name: database.displayName || database.serviceName,
+            },
+            database,
+          ),
+        ),
+      )
       .catch((error) => {
-        this.CucCloudMessage.error([
-          this.$translate.instant('vps_tab_cloud_database_fetch_error'),
-          get(error, 'data.message', ''),
-        ].join(' '));
+        this.CucCloudMessage.error(
+          [
+            this.$translate.instant('vps_tab_cloud_database_fetch_error'),
+            get(error, 'data.message', ''),
+          ].join(' '),
+        );
       });
   }
 
   isVpsAuthorized(serviceName) {
-    return this.ApiWhitelist.query({ serviceName, ip: this.ipv4, service: true }).$promise
-      .then((whitelist) => !isEmpty(whitelist));
+    return this.ApiWhitelist.query({
+      serviceName,
+      ip: this.ipv4,
+      service: true,
+    }).$promise.then((whitelist) => !isEmpty(whitelist));
   }
 
   addAuthorizedIp(database) {
@@ -126,43 +144,61 @@ export default class {
         service: true,
         sftp: false,
       },
-    ).$promise
-      .then(() => {
+    )
+      .$promise.then(() => {
         this.$timeout(() => {
-          this.CucCloudMessage.success(this.$translate.instant('vps_tab_cloud_database_whitelist_add_success'));
+          this.CucCloudMessage.success(
+            this.$translate.instant(
+              'vps_tab_cloud_database_whitelist_add_success',
+            ),
+          );
           this.refresh();
         }, 2000);
       })
       .catch((error) => {
-        this.CucCloudMessage.error([
-          this.$translate.instant('vps_tab_cloud_database_whitelist_add_error'),
-          get(error, 'data.message', ''),
-        ].join(' '));
+        this.CucCloudMessage.error(
+          [
+            this.$translate.instant(
+              'vps_tab_cloud_database_whitelist_add_error',
+            ),
+            get(error, 'data.message', ''),
+          ].join(' '),
+        );
       });
   }
 
   removeAuthorizedIp(database) {
     const { serviceName } = database;
-    return this.ApiWhitelist.deleteIp({ serviceName }, { ip: this.ipv4 }).$promise
-      .then(() => {
+    return this.ApiWhitelist.deleteIp({ serviceName }, { ip: this.ipv4 })
+      .$promise.then(() => {
         this.$timeout(() => {
-          this.CucCloudMessage.success(this.$translate.instant('vps_tab_cloud_database_whitelist_remove_success'));
+          this.CucCloudMessage.success(
+            this.$translate.instant(
+              'vps_tab_cloud_database_whitelist_remove_success',
+            ),
+          );
           this.refresh();
         }, 2000);
       })
       .catch((error) => {
-        this.CucCloudMessage.error([
-          this.$translate.instant('vps_tab_cloud_database_whitelist_remove_error'),
-          get(error, 'data.message', ''),
-        ].join(' '));
+        this.CucCloudMessage.error(
+          [
+            this.$translate.instant(
+              'vps_tab_cloud_database_whitelist_remove_error',
+            ),
+            get(error, 'data.message', ''),
+          ].join(' '),
+        );
       });
   }
 
   goToCloudDatabase(database) {
     const { serviceName } = database;
-    this.$window.open(this.CucControllerHelper.navigation.constructor.getUrl(
-      get(PRIVATE_DATABASE_URL, this.coreConfig.getRegion()),
-      { serviceName },
-    ));
+    this.$window.open(
+      this.CucControllerHelper.navigation.constructor.getUrl(
+        get(PRIVATE_DATABASE_URL, this.coreConfig.getRegion()),
+        { serviceName },
+      ),
+    );
   }
 }

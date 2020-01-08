@@ -1,67 +1,81 @@
 <div class="telecom-telephony-line-assist-troubleshooting-procedure">
-
     <!-- UPGRADE -->
     <div data-ng-if="ProcedureCtrl.process.problem === 'upgrade'">
-
         <div class="row mb-3">
-
             <div class="col-md-6">
                 <div class="content-container">
-                    <p class="mb-3"
-                       data-translate="telephony_line_assist_troubleshooting_procedure_gigaset_upgrade_main_explain">
-                    </p>
+                    <p
+                        class="mb-3"
+                        data-translate="telephony_line_assist_troubleshooting_procedure_gigaset_upgrade_main_explain"
+                    ></p>
 
-                    <p data-translate="telephony_line_assist_troubleshooting_procedure_gigaset_upgrade_step1"></p>
+                    <p
+                        data-translate="telephony_line_assist_troubleshooting_procedure_gigaset_upgrade_step1"
+                    ></p>
                 </div>
             </div>
 
             <div class="col-md-6 text-center">
                 <div class="image-container">
-                    <img data-ng-src="assets/images/troubleshooting/gigaset/de410_waiting_upgrade.jpg"
-                         alt=""
-                         data-ng-attr-alt="{{ :: ProcedureCtrl.process.line.phone.description }}"
-                         data-ng-attr-title="{{ :: ProcedureCtrl.process.line.phone.description }}" />
+                    <img
+                        data-ng-src="assets/images/troubleshooting/gigaset/de410_waiting_upgrade.jpg"
+                        alt=""
+                        data-ng-attr-alt="{{ :: ProcedureCtrl.process.line.phone.description }}"
+                        data-ng-attr-title="{{ :: ProcedureCtrl.process.line.phone.description }}"
+                    />
                 </div>
             </div>
-
         </div>
-
-    </div> <!-- UPGRADE -->
+    </div>
+    <!-- UPGRADE -->
 
     <!-- CALLIN -->
     <div data-ng-if="ProcedureCtrl.process.problem === 'callin'">
-
-        <p data-translate="telephony_line_assist_troubleshooting_procedure_gigaset_callin_main_explain"></p>
+        <p
+            data-translate="telephony_line_assist_troubleshooting_procedure_gigaset_callin_main_explain"
+        ></p>
 
         <p>
-            <span data-translate="telephony_line_assist_troubleshooting_procedure_gigaset_callin_step1"></span>
-            <img src="assets/images/troubleshooting/gigaset/dnd.png"
-                 alt=""/>
+            <span
+                data-translate="telephony_line_assist_troubleshooting_procedure_gigaset_callin_step1"
+            ></span>
+            <img src="assets/images/troubleshooting/gigaset/dnd.png" alt="" />
         </p>
 
-        <p data-translate="telephony_line_assist_troubleshooting_procedure_gigaset_callin_step2"></p>
+        <p
+            data-translate="telephony_line_assist_troubleshooting_procedure_gigaset_callin_step2"
+        ></p>
         <ul class="troubleshooting-list">
             <li>
-                <span data-translate="telephony_line_assist_troubleshooting_procedure_common_network_check1"></span>
+                <span
+                    data-translate="telephony_line_assist_troubleshooting_procedure_common_network_check1"
+                ></span>
                 <ul>
                     <li>
-                        <span data-translate="telephony_line_assist_troubleshooting_procedure_common_network_check1_step1"></span>
+                        <span
+                            data-translate="telephony_line_assist_troubleshooting_procedure_common_network_check1_step1"
+                        ></span>
                     </li>
                 </ul>
             </li>
             <li>
-                <span data-translate="telephony_line_assist_troubleshooting_procedure_common_network_check2"></span>
+                <span
+                    data-translate="telephony_line_assist_troubleshooting_procedure_common_network_check2"
+                ></span>
                 <ul>
                     <li>
-                        <span data-translate="telephony_line_assist_troubleshooting_procedure_common_network_check2_step1"></span>
+                        <span
+                            data-translate="telephony_line_assist_troubleshooting_procedure_common_network_check2_step1"
+                        ></span>
                     </li>
                     <li>
-                        <span data-translate="telephony_line_assist_troubleshooting_procedure_common_network_check2_step2"></span>
+                        <span
+                            data-translate="telephony_line_assist_troubleshooting_procedure_common_network_check2_step2"
+                        ></span>
                     </li>
                 </ul>
             </li>
         </ul>
-
-    </div> <!-- CALLIN -->
-
+    </div>
+    <!-- CALLIN -->
 </div>

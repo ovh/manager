@@ -5,18 +5,16 @@ import 'oclazyload';
 const moduleName = 'ovhManagerSmsOrder';
 
 angular
-  .module(moduleName, [
-    'ui.router',
-    'oc.lazyLoad',
-  ])
+  .module(moduleName, ['ui.router', 'oc.lazyLoad'])
   .config(($stateProvider) => {
     $stateProvider.state('sms.service.order.**', {
       url: '/order',
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-        return import('./telecom-sms-order.component')
-          .then((mod) => $ocLazyLoad.inject(mod.default || mod));
+        return import('./telecom-sms-order.component').then((mod) =>
+          $ocLazyLoad.inject(mod.default || mod),
+        );
       },
     });
 
@@ -25,8 +23,9 @@ angular
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-        return import('./telecom-sms-order.component')
-          .then((mod) => $ocLazyLoad.inject(mod.default || mod));
+        return import('./telecom-sms-order.component').then((mod) =>
+          $ocLazyLoad.inject(mod.default || mod),
+        );
       },
     });
   });

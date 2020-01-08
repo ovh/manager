@@ -4,60 +4,84 @@
             type="button"
             class="close float-right"
             aria-label="{{ ::'cancel' | translate }}"
-            data-ng-click="ctrl.cancel()">
+            data-ng-click="ctrl.cancel()"
+        >
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
     <div class="text-center pt-4" data-ng-if="ctrl.loading" data-spinner></div>
     <div class="modal-body" data-ng-if="!ctrl.loading">
-        <h3 class="modal-title"
-            data-translate="pack_xdsl_access_ip_order_title">
-        </h3>
+        <h3
+            class="modal-title"
+            data-translate="pack_xdsl_access_ip_order_title"
+        ></h3>
         <p class="mb-3">
-            <span data-translate="pack_xdsl_access_ip_order_operation_title"></span>
-            <strong data-translate="pack_xdsl_access_ip_order_operation"
-                    data-translate-values="{amountIp: ctrl.constants.amountIpOrdered}"></strong>
+            <span
+                data-translate="pack_xdsl_access_ip_order_operation_title"
+            ></span>
+            <strong
+                data-translate="pack_xdsl_access_ip_order_operation"
+                data-translate-values="{amountIp: ctrl.constants.amountIpOrdered}"
+            ></strong>
         </p>
         <p class="mb-3">
-            <span data-translate="pack_xdsl_access_ip_order_service_title"></span>
+            <span
+                data-translate="pack_xdsl_access_ip_order_service_title"
+            ></span>
             <strong data-ng-bind="ctrl.constants.xdslId"></strong>
         </p>
-        <p class="mb-4"
+        <p
+            class="mb-4"
             data-translate="pack_xdsl_access_ip_order_disclaim"
             data-translate-values="{
                 price: ctrl.constants.price,
                 hoursBeforeCollected: ctrl.constants.hoursBeforeCollected,
                 hoursBeforeActivation: ctrl.constants.hoursBeforeActivation,
                 engagementMinimumMonths: ctrl.constants.engagementMinimumMonths
-                }">
-        </p>
+                }"
+        ></p>
         <ul class="list-unstyled">
             <li>
                 <div class="mr-3 checkbox">
                     <label for="confirm1">
-                        <input type="checkbox"
-                               id="confirm1"
-                               name="confirm1"
-                               data-ng-model="ctrl.checkbox.userAcceptImmediateExecution">
-                        <span data-translate="pack_xdsl_access_ip_order_immediate_execution"></span>
+                        <input
+                            type="checkbox"
+                            id="confirm1"
+                            name="confirm1"
+                            data-ng-model="ctrl.checkbox.userAcceptImmediateExecution"
+                        />
+                        <span
+                            data-translate="pack_xdsl_access_ip_order_immediate_execution"
+                        ></span>
                     </label>
                 </div>
             </li>
             <li>
                 <div class="mr-3 checkbox">
                     <label for="confirm2">
-                        <input type="checkbox"
+                        <input
+                            type="checkbox"
                             id="confirm2"
                             name="confirm2"
-                            data-ng-model="ctrl.checkbox.userAcceptModalities">
-                        <span data-translate="pack_xdsl_access_ip_order_accept_conditions"></span>
-                        (<a data-ng-href="{{ctrl.constants.contractUrl}}"
-                                title="{{::'pack_xdsl_access_ip_order_accept_conditions_contract' | translate}} {{::'common_newtab' | translate}}"
-                                target="_blank"
-                                rel="nofollow">
-                            <span data-translate="pack_xdsl_access_ip_order_accept_conditions_contract"></span>
-                            <span class="ovh-font ovh-font-newtab" aria-hidden="true"></span>
-                        </a>)
+                            data-ng-model="ctrl.checkbox.userAcceptModalities"
+                        />
+                        <span
+                            data-translate="pack_xdsl_access_ip_order_accept_conditions"
+                        ></span>
+                        (<a
+                            data-ng-href="{{ctrl.constants.contractUrl}}"
+                            title="{{::'pack_xdsl_access_ip_order_accept_conditions_contract' | translate}} {{::'common_newtab' | translate}}"
+                            target="_blank"
+                            rel="nofollow"
+                        >
+                            <span
+                                data-translate="pack_xdsl_access_ip_order_accept_conditions_contract"
+                            ></span>
+                            <span
+                                class="ovh-font ovh-font-newtab"
+                                aria-hidden="true"
+                            ></span> </a
+                        >)
                     </label>
                 </div>
             </li>
@@ -65,20 +89,22 @@
     </div>
 
     <div class="modal-footer text-left" role="group">
-        <button type="submit"
-                data-ng-disabled="ctrl.loading"
-                class="btn btn-primary"
-                data-ng-if="
+        <button
+            type="submit"
+            data-ng-disabled="ctrl.loading"
+            class="btn btn-primary"
+            data-ng-if="
                     ctrl.checkbox.userAcceptImmediateExecution &&
                     ctrl.checkbox.userAcceptModalities &&
                     !ctrl.loading"
-                data-translate="pack_xdsl_access_ip_order_yes">
-        </button>
-        <button type="button"
-                class="btn btn-default"
-                data-ng-disabled="ctrl.loading"
-                data-ng-click="ctrl.cancel()"
-                data-translate="pack_xdsl_access_ip_order_no">
-        </button>
+            data-translate="pack_xdsl_access_ip_order_yes"
+        ></button>
+        <button
+            type="button"
+            class="btn btn-default"
+            data-ng-disabled="ctrl.loading"
+            data-ng-click="ctrl.cancel()"
+            data-translate="pack_xdsl_access_ip_order_no"
+        ></button>
     </div>
 </form>

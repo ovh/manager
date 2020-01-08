@@ -1,4 +1,4 @@
-export default /* @ngInject */($stateProvider) => {
+export default /* @ngInject */ ($stateProvider) => {
   [
     {
       abstract: true,
@@ -9,6 +9,5 @@ export default /* @ngInject */($stateProvider) => {
       name: 'app.account.service',
       template: '<ui-view/>',
     },
-  ]
-    .forEach((state) => $stateProvider.state(state.name, state));
+  ].forEach((state) => $stateProvider.state(state.name, state));
 };

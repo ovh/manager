@@ -2,9 +2,20 @@ import get from 'lodash/get';
 
 (() => {
   class MetricsDashboardCtrl {
-    constructor($scope, $stateParams, $q, $translate, CucCloudMessage, CucControllerHelper,
-      CucFeatureAvailabilityService, MetricService, METRICS_ENDPOINTS,
-      CucRegionService, SidebarMenu, REDIRECT_URLS) {
+    constructor(
+      $scope,
+      $stateParams,
+      $q,
+      $translate,
+      CucCloudMessage,
+      CucControllerHelper,
+      CucFeatureAvailabilityService,
+      MetricService,
+      METRICS_ENDPOINTS,
+      CucRegionService,
+      SidebarMenu,
+      REDIRECT_URLS,
+    ) {
       this.$scope = $scope;
       this.$stateParams = $stateParams;
       this.$q = $q;
@@ -80,17 +91,25 @@ import get from 'lodash/get';
     }
 
     initMessages() {
-      if (this.constructor.computeUsage(
-        this.usage.conso.mads,
-        this.usage.quota.mads,
-      ) > this.limit.warning) {
-        this.CucCloudMessage.warning(this.$translate.instant('metrics_quota_mads_warning_message'));
+      if (
+        this.constructor.computeUsage(
+          this.usage.conso.mads,
+          this.usage.quota.mads,
+        ) > this.limit.warning
+      ) {
+        this.CucCloudMessage.warning(
+          this.$translate.instant('metrics_quota_mads_warning_message'),
+        );
       }
-      if (this.constructor.computeUsage(
-        this.usage.conso.ddp,
-        this.usage.quota.ddp,
-      ) > this.limit.warning) {
-        this.CucCloudMessage.warning(this.$translate.instant('metrics_quota_ddp_warning_message'));
+      if (
+        this.constructor.computeUsage(
+          this.usage.conso.ddp,
+          this.usage.quota.ddp,
+        ) > this.limit.warning
+      ) {
+        this.CucCloudMessage.warning(
+          this.$translate.instant('metrics_quota_ddp_warning_message'),
+        );
       }
     }
 
@@ -98,13 +117,20 @@ import get from 'lodash/get';
       this.actions = {
         autorenew: {
           text: this.$translate.instant('common_manage'),
-          href: this.CucControllerHelper.navigation.constructor.getUrl(get(this.REDIRECT_URLS, 'renew'), { serviceName: this.serviceName, serviceType: 'METRICS' }),
+          href: this.CucControllerHelper.navigation.constructor.getUrl(
+            get(this.REDIRECT_URLS, 'renew'),
+            { serviceName: this.serviceName, serviceType: 'METRICS' },
+          ),
           isAvailable: () => true,
         },
         contacts: {
           text: this.$translate.instant('common_manage'),
-          href: this.CucControllerHelper.navigation.constructor.getUrl(get(this.REDIRECT_URLS, 'contacts'), { serviceName: this.serviceName }),
-          isAvailable: () => this.CucFeatureAvailabilityService.hasFeature('CONTACTS', 'manage'),
+          href: this.CucControllerHelper.navigation.constructor.getUrl(
+            get(this.REDIRECT_URLS, 'contacts'),
+            { serviceName: this.serviceName },
+          ),
+          isAvailable: () =>
+            this.CucFeatureAvailabilityService.hasFeature('CONTACTS', 'manage'),
         },
         editName: {
           text: this.$translate.instant('metrics_tiles_modify'),
@@ -131,7 +157,8 @@ import get from 'lodash/get';
       const red = '#B04020';
       if (this.constructor.computeUsage(value, total) > this.limit.danger) {
         return red;
-      } if (this.constructor.computeUsage(value, total) > this.limit.warning) {
+      }
+      if (this.constructor.computeUsage(value, total) > this.limit.warning) {
         return yellow;
       }
       return green;
@@ -139,18 +166,24 @@ import get from 'lodash/get';
 
     transformRegion(regionCode) {
       const region = this.CucRegionService.getRegion(regionCode);
-      return { name: region.microRegion.text, country: region.country, flag: region.icon };
+      return {
+        name: region.microRegion.text,
+        country: region.country,
+        flag: region.icon,
+      };
     }
 
     updateName(newDisplayName) {
-      return this.MetricService.setServiceDescription(this.serviceName, newDisplayName)
-        .then((result) => {
-          this.configuration.description = result.data.description;
-          this.$scope.$emit('changeDescription', this.configuration.description);
+      return this.MetricService.setServiceDescription(
+        this.serviceName,
+        newDisplayName,
+      ).then((result) => {
+        this.configuration.description = result.data.description;
+        this.$scope.$emit('changeDescription', this.configuration.description);
 
-          const menuItem = this.SidebarMenu.getItemById(this.serviceName);
-          menuItem.title = this.configuration.description;
-        });
+        const menuItem = this.SidebarMenu.getItemById(this.serviceName);
+        menuItem.title = this.configuration.description;
+      });
     }
 
     showEditName(name) {
@@ -162,5 +195,7 @@ import get from 'lodash/get';
     }
   }
 
-  angular.module('managerApp').controller('MetricsDashboardCtrl', MetricsDashboardCtrl);
+  angular
+    .module('managerApp')
+    .controller('MetricsDashboardCtrl', MetricsDashboardCtrl);
 })();

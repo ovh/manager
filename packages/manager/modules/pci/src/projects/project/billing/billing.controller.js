@@ -20,19 +20,21 @@ export default class CloudProjectBillingConsumptionCurrentCtrl {
     this.loading = true;
 
     this.loadMessages();
-    OvhApiCloudProjectUsageCurrent
-      .v6()
+    OvhApiCloudProjectUsageCurrent.v6()
       .get({ serviceName: projectId })
-      .$promise
-      .then((billingInfo) => CloudProjectBilling.getConsumptionDetails(
-        billingInfo,
-        billingInfo,
-      ))
+      .$promise.then((billingInfo) =>
+        CloudProjectBilling.getConsumptionDetails(billingInfo, billingInfo),
+      )
       .then((data) => {
         this.data = data;
       })
       .catch((err) => {
-        this.CucCloudMessage.error([$translate.instant('cpb_error_message'), (err.data && err.data.message) || ''].join(' '));
+        this.CucCloudMessage.error(
+          [
+            $translate.instant('cpb_error_message'),
+            (err.data && err.data.message) || '',
+          ].join(' '),
+        );
         return $q.reject(err);
       })
       .finally(() => {

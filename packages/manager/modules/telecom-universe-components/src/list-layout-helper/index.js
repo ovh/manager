@@ -15,18 +15,19 @@ const FILTER_OPERATORS = {
   endsWith: 'like',
 };
 
-const mapFilterForIceberg = (comparator, reference) => reference.map((val) => {
-  switch (comparator.toUpperCase()) {
-    case 'CONTAINS':
-      return `%25${val}%25`;
-    case 'STARTSWITH':
-      return `${val}%25`;
-    case 'ENDSWITH':
-      return `%25${val}`;
-    default:
-      return val;
-  }
-});
+const mapFilterForIceberg = (comparator, reference) =>
+  reference.map((val) => {
+    switch (comparator.toUpperCase()) {
+      case 'CONTAINS':
+        return `%25${val}%25`;
+      case 'STARTSWITH':
+        return `${val}%25`;
+      case 'ENDSWITH':
+        return `%25${val}`;
+      default:
+        return val;
+    }
+  });
 
 /**
  * Contains resolve object that allows to handle a paginated datagrid with url params
@@ -41,14 +42,9 @@ const mapFilterForIceberg = (comparator, reference) => reference.map((val) => {
  * @sort: property to sort
  * @sortOrder: ASC or DESC, sorting order
  */
-export const stateResolves = ({
+export const stateResolves = {
   resources: /* @ngInject */ ($transition$, apiPath, iceberg) => {
-    const {
-      filter,
-      pageSize,
-      sort,
-      sortOrder,
-    } = $transition$.params();
+    const { filter, pageSize, sort, sortOrder } = $transition$.params();
     let { page } = $transition$.params();
     const filtersParsed = JSON.parse(filter);
 
@@ -79,31 +75,24 @@ export const stateResolves = ({
     return request.execute(null).$promise;
   },
 
-  paginationNumber: /* @ngInject */ (resources) => parseInt(
-    get(resources.headers, 'x-pagination-number'),
-    10,
-  ),
-  paginationSize: /* @ngInject */ (resources) => parseInt(
-    get(resources.headers, 'x-pagination-size'),
-    10,
-  ),
-  paginationTotalCount: /* @ngInject */ (resources) => parseInt(
-    get(resources.headers, 'x-pagination-elements'),
-    10,
-  ),
-  onListParamsChange: /* @ngInject */ ($state) => (params) => $state.go(
-    '.',
-    params,
-    {
+  paginationNumber: /* @ngInject */ (resources) =>
+    parseInt(get(resources.headers, 'x-pagination-number'), 10),
+  paginationSize: /* @ngInject */ (resources) =>
+    parseInt(get(resources.headers, 'x-pagination-size'), 10),
+  paginationTotalCount: /* @ngInject */ (resources) =>
+    parseInt(get(resources.headers, 'x-pagination-elements'), 10),
+  onListParamsChange: /* @ngInject */ ($state) => (params) =>
+    $state.go('.', params, {
       notify: false,
-    },
-  ),
+    }),
 
   filter: /* @ngInject */ ($transition$) => $transition$.params().filter,
 
-  sort: /* @ngInject */ (resources) => get(resources.headers, 'x-pagination-sort'),
-  sortOrder: /* @ngInject */ (resources) => get(resources.headers, 'x-pagination-sort-order'),
-});
+  sort: /* @ngInject */ (resources) =>
+    get(resources.headers, 'x-pagination-sort'),
+  sortOrder: /* @ngInject */ (resources) =>
+    get(resources.headers, 'x-pagination-sort-order'),
+};
 
 export const stateParams = {
   page: {

@@ -1,69 +1,83 @@
 <div class="line-phone-configuration line-phone-configuration-user-interface">
-
     <!-- OTHER CONFIGS - IF SOME -->
-    <line-phone-configuration data-ng-if="$ctrl.fakeConfigGroup"
-                              data-line-phone-configuration-group="$ctrl.fakeConfigGroup"
-                              data-line-phone-configuration-edit-mode="$ctrl.editMode"
-                              data-line-phone-configuration-expert-mode="$ctrl.expertMode">
+    <line-phone-configuration
+        data-ng-if="$ctrl.fakeConfigGroup"
+        data-line-phone-configuration-group="$ctrl.fakeConfigGroup"
+        data-line-phone-configuration-edit-mode="$ctrl.editMode"
+        data-line-phone-configuration-expert-mode="$ctrl.expertMode"
+    >
     </line-phone-configuration>
 
     <!-- SCREEN CHOICE -->
-    <div class="mb-3"
-         data-ng-if="$ctrl.screenPages.length > 1">
+    <div class="mb-3" data-ng-if="$ctrl.screenPages.length > 1">
         <oui-radio-toggle-group data-model="$ctrl.currentScreenPage">
-            <oui-radio data-ng-repeat="screen in $ctrl.screenPages track by $index"
-                        data-value="$index">
-                <span data-translate="telephony_line_phone_configuration_user_interface_screen"
-                        data-translate-values="{ number: $index + 1 }"></span>
+            <oui-radio
+                data-ng-repeat="screen in $ctrl.screenPages track by $index"
+                data-value="$index"
+            >
+                <span
+                    data-translate="telephony_line_phone_configuration_user_interface_screen"
+                    data-translate-values="{ number: $index + 1 }"
+                ></span>
             </oui-radio>
         </oui-radio-toggle-group>
     </div>
 
     <!-- CONSULT MODE -->
     <dl data-ng-if="!$ctrl.editMode">
-        <dt data-ng-repeat-start="config in $ctrl.screenPages[$ctrl.currentScreenPage] track by $index"
+        <dt
+            data-ng-repeat-start="config in $ctrl.screenPages[$ctrl.currentScreenPage] track by $index"
             data-translate="telephony_line_phone_configuration_config_user_interface_key"
             data-translate-values="{ number: ($index + ($ctrl.currentScreenPage * $ctrl.configGroup.keysPerScreen) + 1) }"
-            data-ng-if="$ctrl.expertMode || (!$ctrl.expertMode && config.level === null)">
-        </dt>
-        <dd data-ng-repeat-end
+            data-ng-if="$ctrl.expertMode || (!$ctrl.expertMode && config.level === null)"
+        ></dt>
+        <dd
+            data-ng-repeat-end
             class="mb-2"
             data-ng-bind="config.value || '-'"
-            data-ng-if="$ctrl.expertMode || (!$ctrl.expertMode && config.level === null)">
-        </dd>
+            data-ng-if="$ctrl.expertMode || (!$ctrl.expertMode && config.level === null)"
+        ></dd>
     </dl>
 
     <!-- EDIT MODE -->
     <div data-ng-if="$ctrl.editMode">
-        <div class="form-group"
-             data-ng-if="$ctrl.expertMode || (!$ctrl.expertMode && config.level === null)"
-             data-ng-repeat="config in $ctrl.screenPages[$ctrl.currentScreenPage] track by $index"
-             data-ng-class="{
+        <div
+            class="form-group"
+            data-ng-if="$ctrl.expertMode || (!$ctrl.expertMode && config.level === null)"
+            data-ng-repeat="config in $ctrl.screenPages[$ctrl.currentScreenPage] track by $index"
+            data-ng-class="{
                  'has-error': $ctrl.configForm[config.name].$touched && $ctrl.configForm[config.name].$invalid
-             }">
-            <label for="{{ config.name }}"
-                   class="control-label"
-                   data-translate="telephony_line_phone_configuration_config_user_interface_key"
-                   data-translate-values="{ number: ($index + ($ctrl.currentScreenPage * $ctrl.configGroup.keysPerScreen) + 1) }">
+             }"
+        >
+            <label
+                for="{{ config.name }}"
+                class="control-label"
+                data-translate="telephony_line_phone_configuration_config_user_interface_key"
+                data-translate-values="{ number: ($index + ($ctrl.currentScreenPage * $ctrl.configGroup.keysPerScreen) + 1) }"
+            >
             </label>
-            <input type="text"
-                   id="{{ config.name }}"
-                   class="form-control"
-                   name="{{ config.name }}"
-                   placeholder="{{ 'telephony_line_phone_configuration_config_user_interface_key' | translate:$ctrl.getKeyIndex($index) }}"
-                   data-ng-model="config.value"
-                   data-ng-maxlength="{{ config.maxlength }}">
-            <span class="help-block"
-                  role="alert"
-                  data-ng-if="$ctrl.configForm[config.name].$touched"
-                  data-ng-messages="$ctrl.configForm[config.name].$error">
-                <span data-ng-message="maxlength"
-                      data-translate="telephony_line_phone_configuration_maxlength_invalid"
-                      data-translate-values="{ maxlength: config.maxlength }">
+            <input
+                type="text"
+                id="{{ config.name }}"
+                class="form-control"
+                name="{{ config.name }}"
+                placeholder="{{ 'telephony_line_phone_configuration_config_user_interface_key' | translate:$ctrl.getKeyIndex($index) }}"
+                data-ng-model="config.value"
+                data-ng-maxlength="{{ config.maxlength }}"
+            />
+            <span
+                class="help-block"
+                role="alert"
+                data-ng-if="$ctrl.configForm[config.name].$touched"
+                data-ng-messages="$ctrl.configForm[config.name].$error"
+            >
+                <span
+                    data-ng-message="maxlength"
+                    data-translate="telephony_line_phone_configuration_maxlength_invalid"
+                    data-translate-values="{ maxlength: config.maxlength }"
+                >
                 </span>
             </span>
-
         </div>
     </div>
-
 </div>

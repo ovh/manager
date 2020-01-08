@@ -1,21 +1,45 @@
-<oui-modal data-title="{{ 'logs_home_formatsports_title' | translate : {entryPoint: ctrl.accountDetails.graylogEntryPoint} }}"
-           data-on-dismiss="ctrl.cancel()">
-    <oui-table class="table-without-pagination" data-rows="ctrl.accountDetails.portsAndMessages">
-        <column title="'logs_home_formatsports_name' | translate" property="name"></column>
-        <column title="ctrl.LogsConstants.MESSAGE_TYPES.RFC5424" property="RFC5424">
-            {{$row.RFC5424 || 'logs_home_formatsports_not_supported' | translate}}
+<oui-modal
+    data-title="{{ 'logs_home_formatsports_title' | translate : {entryPoint: ctrl.accountDetails.graylogEntryPoint} }}"
+    data-on-dismiss="ctrl.cancel()"
+>
+    <oui-table
+        class="table-without-pagination"
+        data-rows="ctrl.accountDetails.portsAndMessages"
+    >
+        <column
+            title="'logs_home_formatsports_name' | translate"
+            property="name"
+        ></column>
+        <column
+            title="ctrl.LogsConstants.MESSAGE_TYPES.RFC5424"
+            property="RFC5424"
+        >
+            {{$row.RFC5424 || 'logs_home_formatsports_not_supported' |
+            translate}}
         </column>
         <column title="ctrl.LogsConstants.MESSAGE_TYPES.GELF" property="GELF">
             {{$row.GELF || 'logs_home_formatsports_not_supported' | translate}}
         </column>
-        <column title="ctrl.LogsConstants.MESSAGE_TYPES.LTSV_LINE" property="LTSV_LINE">
-            {{$row.LTSV_LINE || 'logs_home_formatsports_not_supported' | translate}}
+        <column
+            title="ctrl.LogsConstants.MESSAGE_TYPES.LTSV_LINE"
+            property="LTSV_LINE"
+        >
+            {{$row.LTSV_LINE || 'logs_home_formatsports_not_supported' |
+            translate}}
         </column>
-        <column title="ctrl.LogsConstants.MESSAGE_TYPES.LTSV_NUL" property="LTSV_NUL">
-            {{$row.LTSV_NUL || 'logs_home_formatsports_not_supported' | translate}}
+        <column
+            title="ctrl.LogsConstants.MESSAGE_TYPES.LTSV_NUL"
+            property="LTSV_NUL"
+        >
+            {{$row.LTSV_NUL || 'logs_home_formatsports_not_supported' |
+            translate}}
         </column>
-        <column title="ctrl.LogsConstants.MESSAGE_TYPES.CAP_N_PROTO" property="CAP_N_PROTO">
-            {{$row.CAP_N_PROTO || 'logs_home_formatsports_not_supported' | translate}}
+        <column
+            title="ctrl.LogsConstants.MESSAGE_TYPES.CAP_N_PROTO"
+            property="CAP_N_PROTO"
+        >
+            {{$row.CAP_N_PROTO || 'logs_home_formatsports_not_supported' |
+            translate}}
         </column>
     </oui-table>
 </oui-modal>

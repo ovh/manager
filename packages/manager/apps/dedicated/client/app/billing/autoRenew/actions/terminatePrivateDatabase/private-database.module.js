@@ -3,9 +3,8 @@ import routing from './private-database.routing';
 
 const moduleName = 'ovhManagerBillingAutorenewTerminatePrivateDatabase';
 
-angular.module(moduleName, [
-  'ui.router',
-])
+angular
+  .module(moduleName, ['ui.router'])
   .config(routing)
   .component('billingAutorenewTerminatePrivateDatabase', component);
 

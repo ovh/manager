@@ -1,6 +1,13 @@
 export default class ExchangeExternalContactsDeleteCtrl {
   /* @ngInject */
-  constructor($scope, Exchange, ExchangeExternalContacts, navigation, $translate, messaging) {
+  constructor(
+    $scope,
+    Exchange,
+    ExchangeExternalContacts,
+    navigation,
+    $translate,
+    messaging,
+  ) {
     this.services = {
       $scope,
       Exchange,

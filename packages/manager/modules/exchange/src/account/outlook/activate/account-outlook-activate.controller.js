@@ -1,6 +1,13 @@
 export default class ExchangeActivateOutlookCtrl {
   /* @ngInject */
-  constructor($scope, Exchange, exchangeAccountOutlook, navigation, messaging, $translate) {
+  constructor(
+    $scope,
+    Exchange,
+    exchangeAccountOutlook,
+    navigation,
+    messaging,
+    $translate,
+  ) {
     this.services = {
       $scope,
       Exchange,
@@ -13,17 +20,24 @@ export default class ExchangeActivateOutlookCtrl {
     this.$routerParams = Exchange.getParams();
     this.account = navigation.currentActionData;
 
-    $scope.activateOutlookExchangeAccount = () => this.activateOutlookExchangeAccount();
+    $scope.activateOutlookExchangeAccount = () =>
+      this.activateOutlookExchangeAccount();
   }
 
   activateOutlookExchangeAccount() {
     this.services.exchangeAccountOutlook
-      .activateOutlook(this.$routerParams.organization, this.$routerParams.productId, {
-        primaryEmailAddress: this.account.primaryEmailAddress,
-      })
+      .activateOutlook(
+        this.$routerParams.organization,
+        this.$routerParams.productId,
+        {
+          primaryEmailAddress: this.account.primaryEmailAddress,
+        },
+      )
       .then(() => {
         this.services.messaging.writeSuccess(
-          this.services.$translate.instant('exchange_ACTION_update_account_success_message'),
+          this.services.$translate.instant(
+            'exchange_ACTION_update_account_success_message',
+          ),
         );
       })
       .catch((error) => {

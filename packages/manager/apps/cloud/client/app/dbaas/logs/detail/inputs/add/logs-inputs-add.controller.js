@@ -26,7 +26,8 @@ class LogsInputsAddCtrl {
   initLoaders() {
     if (this.editMode) {
       this.input = this.CucControllerHelper.request.getHashLoader({
-        loaderFunction: () => this.LogsInputsService.getInput(this.serviceName, this.inputId),
+        loaderFunction: () =>
+          this.LogsInputsService.getInput(this.serviceName, this.inputId),
       });
     }
   }

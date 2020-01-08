@@ -1,16 +1,10 @@
 import get from 'lodash/get';
 
-angular
-  .module('App')
-  .controller('NameEditionCtrl', class NameEditionCtrl {
+angular.module('App').controller(
+  'NameEditionCtrl',
+  class NameEditionCtrl {
     /* @ngInject */
-    constructor(
-      $translate,
-      $uibModalInstance,
-      Alerter,
-      DedicatedCloud,
-      data,
-    ) {
+    constructor($translate, $uibModalInstance, Alerter, DedicatedCloud, data) {
       this.$translate = $translate;
       this.$uibModalInstance = $uibModalInstance;
       this.Alerter = Alerter;
@@ -24,17 +18,26 @@ angular
       return this.updateName()
         .then(() => {
           if (this.data.successText) {
-            this.Alerter.success(this.data.successText, this.data.destinationId);
+            this.Alerter.success(
+              this.data.successText,
+              this.data.destinationId,
+            );
           }
 
           this.$uibModalInstance.close(this.newValue);
         })
         .catch((err) => {
-          const message = this.$translate.instant(`${this.modalContextTitle}_edit_error`, {
-            t0: this.newValue,
-          });
+          const message = this.$translate.instant(
+            `${this.modalContextTitle}_edit_error`,
+            {
+              t0: this.newValue,
+            },
+          );
           const errorMessage = get(err, 'message', '');
-          this.Alerter.error(`${message}. ${errorMessage}`.trim(), this.data.destinationId);
+          this.Alerter.error(
+            `${message}. ${errorMessage}`.trim(),
+            this.data.destinationId,
+          );
           this.$uibModalInstance.dismiss();
         })
         .finally(() => {
@@ -49,26 +52,29 @@ angular
       switch (this.data.contextTitle) {
         case 'dedicatedCloud_description':
           this.modalContextTitle = 'dedicatedCloud_description';
-          this.updateName = () => this.DedicatedCloud.updateDescription(
-            this.data.productId,
-            this.newValue,
-          );
+          this.updateName = () =>
+            this.DedicatedCloud.updateDescription(
+              this.data.productId,
+              this.newValue,
+            );
           break;
         case 'dedicatedCloud_datacenter_name':
           this.modalContextTitle = 'dedicatedCloud_datacenter_name';
-          this.updateName = () => this.DedicatedCloud.updateDatacenterName(
-            this.data.productId,
-            this.data.datacenterId,
-            this.newValue,
-          );
+          this.updateName = () =>
+            this.DedicatedCloud.updateDatacenterName(
+              this.data.productId,
+              this.data.datacenterId,
+              this.newValue,
+            );
           break;
         case 'dedicatedCloud_datacenter_description':
           this.modalContextTitle = 'dedicatedCloud_datacenter_description';
-          this.updateName = () => this.DedicatedCloud.updateDatacenterDescription(
-            this.data.productId,
-            this.data.datacenterId,
-            this.newValue,
-          );
+          this.updateName = () =>
+            this.DedicatedCloud.updateDatacenterDescription(
+              this.data.productId,
+              this.data.datacenterId,
+              this.newValue,
+            );
           break;
         default:
           this.modalContextTitle = 'description';
@@ -76,4 +82,5 @@ angular
           break;
       }
     }
-  });
+  },
+);

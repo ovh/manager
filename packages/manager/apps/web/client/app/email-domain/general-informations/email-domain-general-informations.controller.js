@@ -4,8 +4,18 @@ angular.module('App').controller(
   'EmailTabGeneralInformationsCtrl',
   class EmailTabGeneralInformationsCtrl {
     /* @ngInject */
-    constructor($q, $scope, $state, $stateParams, $translate,
-      Alerter, constants, OvhApiEmailDomain, User, WucEmails) {
+    constructor(
+      $q,
+      $scope,
+      $state,
+      $stateParams,
+      $translate,
+      Alerter,
+      constants,
+      OvhApiEmailDomain,
+      User,
+      WucEmails,
+    ) {
       this.$q = $q;
       this.$scope = $scope;
       this.$state = $state;
@@ -33,13 +43,12 @@ angular.module('App').controller(
       };
 
       this.$scope.$on('domain.dashboard.refresh', () => this.loadDomain());
-      return this.$q
-        .all(
-          this.loadDomain(),
-          this.loadQuotas(),
-          this.loadServiceInfos(),
-          this.loadUrls(),
-        );
+      return this.$q.all(
+        this.loadDomain(),
+        this.loadQuotas(),
+        this.loadServiceInfos(),
+        this.loadUrls(),
+      );
     }
 
     gotoMxPlans() {
@@ -52,8 +61,12 @@ angular.module('App').controller(
       return this.$q
         .all({
           domain: this.WucEmails.getDomain(this.$stateParams.productId),
-          dnsFilter: this.WucEmails.getDnsFilter(this.$stateParams.productId).catch(() => null),
-          mxRecords: this.WucEmails.getMxRecords(this.$stateParams.productId).catch(() => null),
+          dnsFilter: this.WucEmails.getDnsFilter(
+            this.$stateParams.productId,
+          ).catch(() => null),
+          mxRecords: this.WucEmails.getMxRecords(
+            this.$stateParams.productId,
+          ).catch(() => null),
         })
         .then(({ domain, dnsFilter, mxRecords }) => {
           this.domain = domain;
@@ -75,8 +88,8 @@ angular.module('App').controller(
     loadServiceInfos() {
       this.loading.serviceInfos = true;
       return this.OvhApiEmailDomain.v6()
-        .serviceInfos({ serviceName: this.$stateParams.productId }).$promise
-        .then((serviceInfos) => {
+        .serviceInfos({ serviceName: this.$stateParams.productId })
+        .$promise.then((serviceInfos) => {
           this.serviceInfos = serviceInfos;
         })
         .catch((err) => {
@@ -119,11 +132,13 @@ angular.module('App').controller(
       this.loading.urls = true;
       this.urls.delete = `${this.constants.AUTORENEW_URL}?selectedType=EMAIL_DOMAIN&searchText=${this.$stateParams.productId}`;
       this.urls.manageContacts = `#/useraccount/contacts?tab=SERVICES&serviceName=${this.$stateParams.productId}`;
-      return this.User.getUrlOf('changeOwner').then((link) => {
-        this.urls.changeOwner = link;
-      }).finally(() => {
-        this.loading.urls = false;
-      });
+      return this.User.getUrlOf('changeOwner')
+        .then((link) => {
+          this.urls.changeOwner = link;
+        })
+        .finally(() => {
+          this.loading.urls = false;
+        });
     }
   },
 );

@@ -1,28 +1,39 @@
 <div data-ng-controller="HostingLocalSeoDeleteCtrl as ctrl">
-    <div data-wizard
-         data-wizard-on-cancel="resetAction"
-         data-wizard-on-finish="ctrl.deleteLocation.bind(ctrl)"
-         data-wizard-confirm-button-text="'hosting_tab_LOCAL_SEO_delete' | translate"
-         data-wizard-title="'hosting_tab_LOCAL_SEO_delete' | translate">
-
-        <div data-wizard-step
-             data-wizard-step-valid="!ctrl.loading">
-
+    <div
+        data-wizard
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="ctrl.deleteLocation.bind(ctrl)"
+        data-wizard-confirm-button-text="'hosting_tab_LOCAL_SEO_delete' | translate"
+        data-wizard-title="'hosting_tab_LOCAL_SEO_delete' | translate"
+    >
+        <div data-wizard-step data-wizard-step-valid="!ctrl.loading">
             <div class="text-center" data-ng-if="ctrl.loading">
                 <oui-loader inline="true"></oui-loader>
             </div>
 
-            <p data-translate="hosting_tab_LOCAL_SEO_delete_confirm"
-               data-ng-if="!ctrl.loading"></p>
+            <p
+                data-translate="hosting_tab_LOCAL_SEO_delete_confirm"
+                data-ng-if="!ctrl.loading"
+            ></p>
 
             <dl class="dl-horizontal">
-                <dt data-translate="hosting_tab_LOCAL_SEO_table_header_name"></dt>
-                <dd data-ng-bind="ctrl.location.name || ('hosting_tab_LOCAL_SEO_table_value_undefined' | translate)"></dd>
+                <dt
+                    data-translate="hosting_tab_LOCAL_SEO_table_header_name"
+                ></dt>
+                <dd
+                    data-ng-bind="ctrl.location.name || ('hosting_tab_LOCAL_SEO_table_value_undefined' | translate)"
+                ></dd>
 
-                <dt data-translate="hosting_tab_LOCAL_SEO_table_header_address"></dt>
-                <dd data-ng-bind="ctrl.location.address || ('hosting_tab_LOCAL_SEO_table_value_undefined' | translate)"></dd>
+                <dt
+                    data-translate="hosting_tab_LOCAL_SEO_table_header_address"
+                ></dt>
+                <dd
+                    data-ng-bind="ctrl.location.address || ('hosting_tab_LOCAL_SEO_table_value_undefined' | translate)"
+                ></dd>
 
-                <dt data-translate="hosting_tab_LOCAL_SEO_table_header_email"></dt>
+                <dt
+                    data-translate="hosting_tab_LOCAL_SEO_table_header_email"
+                ></dt>
                 <dd data-ng-bind="ctrl.location.account.email"></dd>
             </dl>
         </div>

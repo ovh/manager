@@ -13,7 +13,14 @@ angular.module('App').controller(
      * @param WucEmails
      * @param UserSessionService
      */
-    constructor($scope, $stateParams, $translate, Alerter, WucEmails, UserSessionService) {
+    constructor(
+      $scope,
+      $stateParams,
+      $translate,
+      Alerter,
+      WucEmails,
+      UserSessionService,
+    ) {
       this.$scope = $scope;
       this.$stateParams = $stateParams;
       this.$translate = $translate;
@@ -30,7 +37,9 @@ angular.module('App').controller(
         to: (this.responder.to && moment(this.responder.to)) || '',
         content: this.responder.content,
         responderDuration:
-          !this.responder.from && !this.responder.to ? 'permanent' : 'temporary',
+          !this.responder.from && !this.responder.to
+            ? 'permanent'
+            : 'temporary',
       };
 
       this.$scope.updateResponder = () => this.updateResponder();
@@ -38,11 +47,11 @@ angular.module('App').controller(
 
     responderDurationCheck() {
       return (
-        this.model.responderDuration === 'permanent'
-        || (!!this.model.from
-          && !!this.model.to
-          && moment(this.model.to).isAfter(this.model.from)
-          && moment(this.model.to).isAfter(new Date()))
+        this.model.responderDuration === 'permanent' ||
+        (!!this.model.from &&
+          !!this.model.to &&
+          moment(this.model.to).isAfter(this.model.from) &&
+          moment(this.model.to).isAfter(new Date()))
       );
     }
 
@@ -57,8 +66,8 @@ angular.module('App').controller(
       }
       input.$setValidity(
         'date',
-        !!this.model.from
-          && (!this.model.to || moment(this.model.from).isBefore(this.model.to)),
+        !!this.model.from &&
+          (!this.model.to || moment(this.model.from).isBefore(this.model.to)),
       );
     }
 
@@ -68,10 +77,10 @@ angular.module('App').controller(
       }
       input.$setValidity(
         'date',
-        !!this.model.to
-          && (!this.model.from
-            || moment(this.model.to).isAfter(this.model.from))
-          && moment(this.model.to).isAfter(new Date()),
+        !!this.model.to &&
+          (!this.model.from ||
+            moment(this.model.to).isAfter(this.model.from)) &&
+          moment(this.model.to).isAfter(new Date()),
       );
     }
 
@@ -105,15 +114,19 @@ angular.module('App').controller(
       }
 
       return promise
-        .then(() => this.Alerter.success(
-          this.$translate.instant('email_tab_modal_update_responder_success'),
-          this.$scope.alerts.main,
-        ))
-        .catch((err) => this.Alerter.alertFromSWS(
-          this.$translate.instant('email_tab_modal_update_responder_error'),
-          get(err, 'data', err),
-          this.$scope.alerts.main,
-        ))
+        .then(() =>
+          this.Alerter.success(
+            this.$translate.instant('email_tab_modal_update_responder_success'),
+            this.$scope.alerts.main,
+          ),
+        )
+        .catch((err) =>
+          this.Alerter.alertFromSWS(
+            this.$translate.instant('email_tab_modal_update_responder_error'),
+            get(err, 'data', err),
+            this.$scope.alerts.main,
+          ),
+        )
         .finally(() => {
           this.loading = false;
           this.$scope.resetAction();

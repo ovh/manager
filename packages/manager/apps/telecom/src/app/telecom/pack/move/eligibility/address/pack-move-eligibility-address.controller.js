@@ -9,8 +9,16 @@ import { AUTHORIZED_ABBREVIATIONS } from './pack-move-eligibility-address.consta
 export default class {
   /* @ngInject */
   constructor(
-    $filter, $q, $scope, $stateParams, $translate,
-    OvhApiXdslEligibility, OvhApiPackXdslMove, TucToast, tucValidator, costs,
+    $filter,
+    $q,
+    $scope,
+    $stateParams,
+    $translate,
+    OvhApiXdslEligibility,
+    OvhApiPackXdslMove,
+    TucToast,
+    tucValidator,
+    costs,
   ) {
     this.$filter = $filter;
     this.$q = $q;
@@ -41,20 +49,28 @@ export default class {
     if (this.validator.tucIsZipcode(zipCode, ['metropolitanFrance'])) {
       this.loaders.cities = true;
       this.loading = true;
-      return this.OvhApiXdslEligibility.v6().getCities({
-        zipCode,
-      }).$promise.then((cities) => {
-        this.cities = cities;
-        if (this.cities.length === 1) {
-          [this.address.city] = this.cities;
-        }
-      }).catch((error) => {
-        this.TucToast.error(this.$translate.instant('pack_move_eligibility_zipcode_error', { zipCode }));
-        return this.$q.reject(error);
-      }).finally(() => {
-        delete this.loaders.cities;
-        this.loading = false;
-      });
+      return this.OvhApiXdslEligibility.v6()
+        .getCities({
+          zipCode,
+        })
+        .$promise.then((cities) => {
+          this.cities = cities;
+          if (this.cities.length === 1) {
+            [this.address.city] = this.cities;
+          }
+        })
+        .catch((error) => {
+          this.TucToast.error(
+            this.$translate.instant('pack_move_eligibility_zipcode_error', {
+              zipCode,
+            }),
+          );
+          return this.$q.reject(error);
+        })
+        .finally(() => {
+          delete this.loaders.cities;
+          this.loading = false;
+        });
     }
 
     return null;
@@ -67,20 +83,30 @@ export default class {
   getStreets(partial) {
     this.streets = [];
     const partialStreet = partial.replace(/^[\d\s,]*/, '');
-    if (partialStreet.length > 2 || AUTHORIZED_ABBREVIATIONS.includes(partialStreet)) {
+    if (
+      partialStreet.length > 2 ||
+      AUTHORIZED_ABBREVIATIONS.includes(partialStreet)
+    ) {
       this.loaders.streets = true;
       this.loading = true;
-      return this.OvhApiXdslEligibility.v6().getStreets({
-        inseeCode: this.address.city.inseeCode,
-        partialName: partialStreet,
-      }).$promise
-        .then((streets) => {
+      return this.OvhApiXdslEligibility.v6()
+        .getStreets({
+          inseeCode: this.address.city.inseeCode,
+          partialName: partialStreet,
+        })
+        .$promise.then((streets) => {
           this.streets = streets;
           return streets;
-        }).catch((error) => {
-          this.TucToast.error(this.$translate.instant('pack_move_eligibility_street_error', { city: this.address.city }));
+        })
+        .catch((error) => {
+          this.TucToast.error(
+            this.$translate.instant('pack_move_eligibility_street_error', {
+              city: this.address.city,
+            }),
+          );
           return this.$q.reject(error);
-        }).finally(() => {
+        })
+        .finally(() => {
           delete this.loaders.streets;
           this.loading = false;
         });
@@ -102,14 +128,23 @@ export default class {
     this.loading = true;
     this.submited();
 
-    return this.OvhApiPackXdslMove.v6().pollElligibility(this.$scope, {
-      packName: this.$stateParams.packName,
-      address: this.address,
-    })
+    return this.OvhApiPackXdslMove.v6()
+      .pollElligibility(this.$scope, {
+        packName: this.$stateParams.packName,
+        address: this.address,
+      })
       .then((data) => {
         if (data.error) {
           this.offersChange({ OFFERS: [] });
-          this.TucToast.error(this.$translate.instant(`pack_move_eligibility_address_error${data.error.includes('error_looking_for_neighbour_number') ? '_neighbour' : '_pairs'}`));
+          this.TucToast.error(
+            this.$translate.instant(
+              `pack_move_eligibility_address_error${
+                data.error.includes('error_looking_for_neighbour_number')
+                  ? '_neighbour'
+                  : '_pairs'
+              }`,
+            ),
+          );
           return this.$q.reject(data.error);
         }
         if (data.result.offers.length) {
@@ -118,14 +153,23 @@ export default class {
           this.offers.forEach((offer) => {
             set(offer, 'installationPrice', this.costs.packMove.lineCreation);
             if (offer.meetingSlots) {
-              set(offer, 'meetingSlots.calendarData', [offer.meetingSlots.meetingSlots.map((slot) => ({
-                tooltip: `${this.$filter('date')(slot.startDate, 'HH:mm')} - ${this.$filter('date')(slot.endDate, 'HH:mm')}`,
-                title: '',
-                start: slot.startDate,
-                end: slot.endDate,
-                data: slot,
-              }))]);
-              set(offer, 'meetingSlots.firstSlot', head(sortBy(offer.meetingSlots.meetingSlots, ['startDate'])));
+              set(offer, 'meetingSlots.calendarData', [
+                offer.meetingSlots.meetingSlots.map((slot) => ({
+                  tooltip: `${this.$filter('date')(
+                    slot.startDate,
+                    'HH:mm',
+                  )} - ${this.$filter('date')(slot.endDate, 'HH:mm')}`,
+                  title: '',
+                  start: slot.startDate,
+                  end: slot.endDate,
+                  data: slot,
+                })),
+              ]);
+              set(
+                offer,
+                'meetingSlots.firstSlot',
+                head(sortBy(offer.meetingSlots.meetingSlots, ['startDate'])),
+              );
             }
           });
         }

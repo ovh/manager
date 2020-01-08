@@ -25,4 +25,9 @@ class CloudProjectBillingVouchersAddcreditCtrl {
   }
 }
 
-angular.module('managerApp').controller('CloudProjectBillingVouchersAddcreditCtrl', CloudProjectBillingVouchersAddcreditCtrl);
+angular
+  .module('managerApp')
+  .controller(
+    'CloudProjectBillingVouchersAddcreditCtrl',
+    CloudProjectBillingVouchersAddcreditCtrl,
+  );

@@ -10,9 +10,7 @@ import template from './overTheBox-details.html';
 const moduleName = 'ovhManagerOtbDetails';
 
 angular
-  .module(moduleName, [
-    ovhManagerOtbWarning,
-  ])
+  .module(moduleName, [ovhManagerOtbWarning])
   .constant('OVERTHEBOX_DETAILS', constant)
   .config(($stateProvider) => {
     $stateProvider.state('overTheBoxes.overTheBox.details', {

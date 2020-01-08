@@ -1,5 +1,5 @@
 module.exports = {
-   globals: {
-    angular: true
-  }
-}
+  globals: {
+    angular: true,
+  },
+};

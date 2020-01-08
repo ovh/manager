@@ -1,14 +1,27 @@
 <form novalidate name="inputForm" data-ng-submit="$ctrl.submit()">
-    <cui-message-container data-messages="$ctrl.messages"></cui-message-container>
-    <oui-field label="{{ ::'pci_projects_project_edit_project_name' | translate }}" size="xl">
-        <input class="oui-input" type="text" id="description" name="description" ng-model="$ctrl.project.description" required>
+    <cui-message-container
+        data-messages="$ctrl.messages"
+    ></cui-message-container>
+    <oui-field
+        label="{{ ::'pci_projects_project_edit_project_name' | translate }}"
+        size="xl"
+    >
+        <input
+            class="oui-input"
+            type="text"
+            id="description"
+            name="description"
+            ng-model="$ctrl.project.description"
+            required
+        />
     </oui-field>
     <oui-field>
         <oui-checkbox
             name="isDefault"
             text="{{ ::'pci_projects_project_edit_default_project' | translate }}"
             description="{{ ::'pci_projects_project_edit_default_project_description' | translate }}"
-            model="$ctrl.isDefault">
+            model="$ctrl.isDefault"
+        >
         </oui-checkbox>
     </oui-field>
     <oui-button variant="primary" type="submit" disabled="$ctrl.loading.submit">
@@ -18,5 +31,9 @@
 <div class="mt-4 pt-4 border-top">
     <h2 data-translate="pci_projects_project_edit_remove"></h2>
     <p data-translate="pci_projects_project_edit_remove_description"></p>
-    <a class="oui-button oui-button_secondary" data-ui-sref="pci.projects.project.edit.remove" data-translate="pci_projects_project_edit_remove"></a>
+    <a
+        class="oui-button oui-button_secondary"
+        data-ui-sref="pci.projects.project.edit.remove"
+        data-translate="pci_projects_project_edit_remove"
+    ></a>
 </div>

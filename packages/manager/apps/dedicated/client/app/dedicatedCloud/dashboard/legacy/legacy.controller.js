@@ -35,42 +35,51 @@ export default class {
   }
 
   $onInit() {
-    this.allowDedicatedServerComplianceOptions = this.coreConfig.getRegion() !== 'US';
+    this.allowDedicatedServerComplianceOptions =
+      this.coreConfig.getRegion() !== 'US';
 
-    this.setAction = (action, data) => this.$scope.$parent.setAction(action, data);
+    this.setAction = (action, data) =>
+      this.$scope.$parent.setAction(action, data);
     this.getDrpStatus();
   }
 
   getDrpStatus() {
     this.drpStatus = this.currentDrp.state;
-    this.drpRemotePccStatus = this.currentDrp.drpType === this.DRP_OPTIONS.ovh
-      ? this.dedicatedCloudDrp.constructor.formatStatus(get(this.currentDrp, 'remoteSiteInformation.state'))
-      : this.DRP_STATUS.delivered;
+    this.drpRemotePccStatus =
+      this.currentDrp.drpType === this.DRP_OPTIONS.ovh
+        ? this.dedicatedCloudDrp.constructor.formatStatus(
+            get(this.currentDrp, 'remoteSiteInformation.state'),
+          )
+        : this.DRP_STATUS.delivered;
   }
 
   openModalToEditDescription() {
-    return this.$uibModal
-      .open({
-        animation: true,
-        templateUrl: 'components/name-edition/name-edition.html',
-        controller: 'NameEditionCtrl',
-        controllerAs: '$ctrl',
-        resolve: {
-          data: () => ({
-            contextTitle: 'dedicatedCloud_description',
-            productId: this.$stateParams.productId,
-            successText: this.$translate.instant('dedicatedCloud_dashboard_nameModifying_success'),
-            value: this.currentService.description,
-          }),
-        },
-      }).result;
+    return this.$uibModal.open({
+      animation: true,
+      templateUrl: 'components/name-edition/name-edition.html',
+      controller: 'NameEditionCtrl',
+      controllerAs: '$ctrl',
+      resolve: {
+        data: () => ({
+          contextTitle: 'dedicatedCloud_description',
+          productId: this.$stateParams.productId,
+          successText: this.$translate.instant(
+            'dedicatedCloud_dashboard_nameModifying_success',
+          ),
+          value: this.currentService.description,
+        }),
+      },
+    }).result;
   }
 
   buildDescription() {
-    const productName = this.$translate.instant(`dedicatedCloud_type_${this.currentService.solution}`);
-    const versionDisplayValue = this.currentService.solution === 'VSPHERE' && this.currentService.version
-      ? ` ${this.currentService.version.major}`
-      : '';
+    const productName = this.$translate.instant(
+      `dedicatedCloud_type_${this.currentService.solution}`,
+    );
+    const versionDisplayValue =
+      this.currentService.solution === 'VSPHERE' && this.currentService.version
+        ? ` ${this.currentService.version.major}`
+        : '';
 
     return `${productName}${versionDisplayValue}`;
   }
@@ -80,7 +89,9 @@ export default class {
     const formattedPolicy = snakeCase(policy).toUpperCase();
 
     return isString(formattedPolicy) && !isEmpty(formattedPolicy)
-      ? this.$translate.instant(`dedicatedCloud_user_access_policy_${formattedPolicy}`)
+      ? this.$translate.instant(
+          `dedicatedCloud_user_access_policy_${formattedPolicy}`,
+        )
       : '-';
   }
 

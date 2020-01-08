@@ -10,8 +10,12 @@ import {
 export default class {
   /* @ngInject */
   constructor(
-    $state, $timeout, $translate, $window,
-    dedicatedCloudDrp, ovhUserPref,
+    $state,
+    $timeout,
+    $translate,
+    $window,
+    dedicatedCloudDrp,
+    ovhUserPref,
     DEDICATED_CLOUD_CONSTANTS,
   ) {
     this.$state = $state;
@@ -34,10 +38,11 @@ export default class {
   validateConfiguration() {
     this.isValidating = true;
 
-    return this.dedicatedCloudDrp.enableDrp(
-      this.drpInformations,
-      this.drpInformations.primaryPcc.generation !== this.PCC_NEW_GENERATION,
-    )
+    return this.dedicatedCloudDrp
+      .enableDrp(
+        this.drpInformations,
+        this.drpInformations.primaryPcc.generation !== this.PCC_NEW_GENERATION,
+      )
       .then((enableDrp) => {
         if (enableDrp.url !== undefined) {
           this.storeZertoOptionOrderInUserPref(this.drpInformations, enableDrp);
@@ -46,23 +51,33 @@ export default class {
           }
         }
 
-        return this.goToPccDashboard(true)
-          .then(() => {
-            // $timeout necessary to display alerter message
-            this.$timeout(() => {
-              if (!enableDrp.hasAutoPay) {
-                this.displaySuccessMessage(`${this.$translate.instant('dedicatedCloud_datacenter_drp_confirm_order', { billUrl: enableDrp.url })}`);
-              } else {
-                this.displayInfoMessage(`
-                    ${this.$translate.instant('dedicatedCloud_datacenter_drp_confirm_creation_pending')} ${this.$translate.instant('dedicatedCloud_datacenter_drp_confirm_creation_pending_task')}
+        return this.goToPccDashboard(true).then(() => {
+          // $timeout necessary to display alerter message
+          this.$timeout(() => {
+            if (!enableDrp.hasAutoPay) {
+              this.displaySuccessMessage(
+                `${this.$translate.instant(
+                  'dedicatedCloud_datacenter_drp_confirm_order',
+                  { billUrl: enableDrp.url },
+                )}`,
+              );
+            } else {
+              this.displayInfoMessage(`
+                    ${this.$translate.instant(
+                      'dedicatedCloud_datacenter_drp_confirm_creation_pending',
+                    )} ${this.$translate.instant(
+                'dedicatedCloud_datacenter_drp_confirm_creation_pending_task',
+              )}
                 `);
-              }
-            });
+            }
           });
+        });
       })
       .catch((error) => {
         this.displayErrorMessage(
-          `${this.$translate.instant('dedicatedCloud_datacenter_drp_confirm_create_error')} ${get(error, 'data.message', error.message)}`,
+          `${this.$translate.instant(
+            'dedicatedCloud_datacenter_drp_confirm_create_error',
+          )} ${get(error, 'data.message', error.message)}`,
         );
       })
       .finally(() => {

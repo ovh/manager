@@ -9,7 +9,10 @@ export default /* @ngInject */ ($stateProvider) => {
     controller: 'BillingCtrl',
     resolve: {
       denyEnterprise: ($q, $state, currentUser) => {
-        if (currentUser.isEnterprise && $state.transition.to().name !== 'app.account.billing.autorenew.ssh') {
+        if (
+          currentUser.isEnterprise &&
+          $state.transition.to().name !== 'app.account.billing.autorenew.ssh'
+        ) {
           return $q.reject({
             status: 403,
             message: 'Access forbidden for enterprise accounts',
@@ -19,7 +22,8 @@ export default /* @ngInject */ ($stateProvider) => {
 
         return false;
       },
-      goToOrders: /* @ngInject */ ($state) => () => $state.go('app.account.billing.orders'),
+      goToOrders: /* @ngInject */ ($state) => () =>
+        $state.go('app.account.billing.orders'),
     },
   });
 };

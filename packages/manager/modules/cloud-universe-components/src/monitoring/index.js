@@ -6,8 +6,6 @@ import './index.less';
 
 const moduleName = 'cucCloudMonitoring';
 
-angular
-  .module(moduleName, [])
-  .directive('cucMonitoringChart', directive);
+angular.module(moduleName, []).directive('cucMonitoringChart', directive);
 
 export default moduleName;

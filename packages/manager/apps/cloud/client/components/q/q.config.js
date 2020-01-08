@@ -1,4 +1,5 @@
-angular.module('managerApp')
-  .config(/* @ngInject */($qProvider) => {
+angular.module('managerApp').config(
+  /* @ngInject */ ($qProvider) => {
     $qProvider.errorOnUnhandledRejections(false);
-  });
+  },
+);

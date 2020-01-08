@@ -6,9 +6,11 @@
         data-header="{{:: 'pci_workflow_create_type_title' | translate }}"
         data-editable="!$ctrl.isAdding"
         data-valid="$ctrl.workflow.type"
-        data-navigation="$ctrl.workflow.type">
+        data-navigation="$ctrl.workflow.type"
+    >
         <pci-projects-project-workflow-type
-            data-selected-type="$ctrl.workflow.type">
+            data-selected-type="$ctrl.workflow.type"
+        >
         </pci-projects-project-workflow-type>
     </oui-step-form>
     <oui-step-form
@@ -18,19 +20,23 @@
         data-valid="$ctrl.workflow.resource"
         data-navigation="$ctrl.workflow.resource"
         data-on-focus="$ctrl.onResourceFocus()"
-        data-on-submit="$ctrl.onResourceSubmit(form)">
+        data-on-submit="$ctrl.onResourceSubmit(form)"
+    >
         <pci-projects-project-workflow-resources
             data-selected-resource="$ctrl.workflow.resource"
             data-instances="$ctrl.instances"
             data-project-id="$ctrl.projectId"
             data-selected-instance="$ctrl.selectedInstance"
             data-go-to-instance-page="$ctrl.goToInstancePage"
-            data-is-edit-mode="$ctrl.isEditingResource">
+            data-is-edit-mode="$ctrl.isEditingResource"
+        >
         </pci-projects-project-workflow-resources>
-        <p class="text-danger"
+        <p
+            class="text-danger"
             data-ng-if="$ctrl.showRegionNotSupportedError"
             data-translate="pci_workflow_create_region_not_supported"
-            data-translate-values="{ regionName: $ctrl.CucRegionService.getTranslatedMicroRegion($ctrl.workflow.resource.region) }"></p>
+            data-translate-values="{ regionName: $ctrl.CucRegionService.getTranslatedMicroRegion($ctrl.workflow.resource.region) }"
+        ></p>
     </oui-step-form>
     <oui-step-form
         name="workflow_schedule"
@@ -39,10 +45,12 @@
         data-valid="$ctrl.workflow.schedule && $ctrl.workflow.schedule.valid"
         data-navigation="$ctrl.workflow.schedule"
         data-on-focus="$ctrl.onScheduleFocus()"
-        data-on-submit="$ctrl.onScheduleSubmit()">
+        data-on-submit="$ctrl.onScheduleSubmit()"
+    >
         <pci-projects-project-workflow-schedule
             data-schedule="$ctrl.workflow.schedule"
-            data-is-edit-mode="$ctrl.isEditingSchedule || initialStep === 2 ">
+            data-is-edit-mode="$ctrl.isEditingSchedule || initialStep === 2 "
+        >
         </pci-projects-project-workflow-schedule>
     </oui-step-form>
     <oui-step-form
@@ -55,10 +63,12 @@
         data-cancel-href="{{$ctrl.cancelLink}}"
         data-on-submit="$ctrl.add()"
         data-navigation="$ctrl.workflow.name && !$ctrl.isAdding"
-        data-loading="$ctrl.isLoadingPriceEstimate">
+        data-loading="$ctrl.isLoadingPriceEstimate"
+    >
         <pci-projects-project-workflow-general-info
             data-workflow-name="$ctrl.workflow.name"
-            data-price="$ctrl.price">
+            data-price="$ctrl.price"
+        >
         </pci-projects-project-workflow-general-info>
         <div data-ng-if="$ctrl.isAdding" class="d-flex align-items-center">
             <oui-spinner data-size="m"></oui-spinner>

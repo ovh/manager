@@ -4,7 +4,7 @@ import filter from 'lodash/filter';
 import map from 'lodash/map';
 import reduce from 'lodash/reduce';
 
-export default /* @ngInject */ function (
+export default /* @ngInject */ function(
   $scope,
   $q,
   $timeout,
@@ -18,7 +18,9 @@ export default /* @ngInject */ function (
   function readerLoaded(e) {
     if (e.loaded > 50000) {
       // Over 50ko, stop to avoid browser crash
-      self.errorLoading = $translate.instant('telephony_abbreviated_numbers_import_loading_oversize');
+      self.errorLoading = $translate.instant(
+        'telephony_abbreviated_numbers_import_loading_oversize',
+      );
       $scope.$digest();
       return;
     }
@@ -57,14 +59,18 @@ export default /* @ngInject */ function (
       $scope.$digest();
     } catch (err) {
       if (err) {
-        self.errorLoading = $translate.instant('telephony_abbreviated_numbers_import_loading_bad_content');
+        self.errorLoading = $translate.instant(
+          'telephony_abbreviated_numbers_import_loading_bad_content',
+        );
       }
     }
     CSV.DETECT_TYPES = csvDetectType;
   }
 
   function readerError() {
-    self.errorLoading = $translate.instant('telephony_abbreviated_numbers_import_loading_fatal');
+    self.errorLoading = $translate.instant(
+      'telephony_abbreviated_numbers_import_loading_fatal',
+    );
     $scope.$digest();
   }
 
@@ -112,7 +118,9 @@ export default /* @ngInject */ function (
         reader.onloadstart = readerProgress;
         reader.readAsText(file, 'UTF-8');
       } else {
-        this.errorLoading = $translate.instant('telephony_abbreviated_numbers_import_loading_error');
+        this.errorLoading = $translate.instant(
+          'telephony_abbreviated_numbers_import_loading_error',
+        );
       }
     } else {
       this.loading.getFile = false;
@@ -123,15 +131,12 @@ export default /* @ngInject */ function (
   this.send = function send() {
     this.importing = true;
     this.imported = [];
-    const validData = map(
-      filter(this.sample, 'isValid'),
-      (elt) => ({
-        abbreviatedNumber: elt.abbreviatedNumber.value,
-        destinationNumber: elt.destinationNumber.value,
-        name: elt.name.value,
-        surname: elt.surname.value,
-      }),
-    );
+    const validData = map(filter(this.sample, 'isValid'), (elt) => ({
+      abbreviatedNumber: elt.abbreviatedNumber.value,
+      destinationNumber: elt.destinationNumber.value,
+      name: elt.name.value,
+      surname: elt.surname.value,
+    }));
     this.total = validData.length;
     this.rejected = this.sample.length - this.total;
     this.progress = this.rejected;
@@ -146,16 +151,26 @@ export default /* @ngInject */ function (
       const chunk = remaining.slice(0, chunkSize);
       const rest = remaining.slice(chunkSize);
       return $timeout(
-        () => $q.all(map(chunk, callback))
-          .then((result) => (rest.length ? result.concat(chunkedMap(rest, callback)) : result)),
+        () =>
+          $q
+            .all(map(chunk, callback))
+            .then((result) =>
+              rest.length ? result.concat(chunkedMap(rest, callback)) : result,
+            ),
         chunkDelay,
       );
     };
 
-    const saveElement = (elt) => $q.when(self.saveCallback({ value: elt }))
-      .then(() => self.imported.push(elt))
-      .catch(() => { self.rejected += 1; })
-      .finally(() => { self.progress += 1; });
+    const saveElement = (elt) =>
+      $q
+        .when(self.saveCallback({ value: elt }))
+        .then(() => self.imported.push(elt))
+        .catch(() => {
+          self.rejected += 1;
+        })
+        .finally(() => {
+          self.progress += 1;
+        });
 
     return chunkedMap(validData, saveElement).finally(() => {
       self.done = true;

@@ -3,7 +3,15 @@ import indexOf from 'lodash/indexOf';
 
 export default class EmailProMXPlanMailingListsCreateCtrl {
   /* @ngInject */
-  constructor($scope, $q, $stateParams, $translate, Alerter, EmailProMXPlanMailingLists, User) {
+  constructor(
+    $scope,
+    $q,
+    $stateParams,
+    $translate,
+    Alerter,
+    EmailProMXPlanMailingLists,
+    User,
+  ) {
     this.$scope = $scope;
     this.$q = $q;
     this.$stateParams = $stateParams;
@@ -52,7 +60,9 @@ export default class EmailProMXPlanMailingListsCreateCtrl {
     return this.$q
       .all({
         models: this.EmailProMXPlanMailingLists.getModels(),
-        limits: this.EmailProMXPlanMailingLists.getMailingListLimits(this.model.mlModerationMsg),
+        limits: this.EmailProMXPlanMailingLists.getMailingListLimits(
+          this.model.mlModerationMsg,
+        ),
       })
       .then(({ models, limits }) => {
         this.languages = models.models['domain.DomainMlLanguageEnum'].enum;
@@ -74,8 +84,8 @@ export default class EmailProMXPlanMailingListsCreateCtrl {
   mlNameCheck(input) {
     input.$setValidity(
       'unique',
-      this.mailingLists.length === 0
-        || indexOf(this.mailingLists, this.model.mlName) === -1,
+      this.mailingLists.length === 0 ||
+        indexOf(this.mailingLists, this.model.mlName) === -1,
     );
   }
 
@@ -87,9 +97,10 @@ export default class EmailProMXPlanMailingListsCreateCtrl {
   }
 
   selectReplyTo() {
-    this.model.replyTo = this.replyToSelector === this.constants.REPLY_TO_EMAIL
-      ? ''
-      : this.replyToSelector;
+    this.model.replyTo =
+      this.replyToSelector === this.constants.REPLY_TO_EMAIL
+        ? ''
+        : this.replyToSelector;
   }
 
   selectModerationMsg() {
@@ -126,29 +137,36 @@ export default class EmailProMXPlanMailingListsCreateCtrl {
   //------------------------
 
   createMailingList() {
-    return this.EmailProMXPlanMailingLists.createMailingList(get(this.$scope, 'exchange.associatedDomainName'), {
-      name: this.model.mlName,
-      language: this.model.mlLanguage,
-      ownerEmail: this.model.mlOwner,
-      replyTo: this.model.replyTo,
-      options: {
-        moderatorMessage: !!this.model.mlModerationMsg,
-        usersPostOnly:
-          this.model.mlModerationMsg === null
-            ? false
-            : !this.model.mlModerationMsg,
-        subscribeByModerator: this.model.mlSubscribersModeration,
+    return this.EmailProMXPlanMailingLists.createMailingList(
+      get(this.$scope, 'exchange.associatedDomainName'),
+      {
+        name: this.model.mlName,
+        language: this.model.mlLanguage,
+        ownerEmail: this.model.mlOwner,
+        replyTo: this.model.replyTo,
+        options: {
+          moderatorMessage: !!this.model.mlModerationMsg,
+          usersPostOnly:
+            this.model.mlModerationMsg === null
+              ? false
+              : !this.model.mlModerationMsg,
+          subscribeByModerator: this.model.mlSubscribersModeration,
+        },
       },
-    })
-      .then(() => this.Alerter.success(
-        this.$translate.instant('mailing_list_tab_modal_create_list_success'),
-        this.$scope.alerts.main,
-      ))
-      .catch((err) => this.Alerter.alertFromSWS(
-        this.$translate.instant('mailing_list_tab_modal_create_list_error'),
-        err,
-        this.$scope.alerts.main,
-      ))
+    )
+      .then(() =>
+        this.Alerter.success(
+          this.$translate.instant('mailing_list_tab_modal_create_list_success'),
+          this.$scope.alerts.main,
+        ),
+      )
+      .catch((err) =>
+        this.Alerter.alertFromSWS(
+          this.$translate.instant('mailing_list_tab_modal_create_list_error'),
+          err,
+          this.$scope.alerts.main,
+        ),
+      )
       .finally(() => this.$scope.resetAction());
   }
 }

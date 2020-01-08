@@ -31,7 +31,9 @@ angular
               $scope.isOrderable = true;
             }
             $scope.loading.model = true;
-            HostingOptionOrder.getOrderEnums('hosting.web.database.SqlPersoOfferEnum')
+            HostingOptionOrder.getOrderEnums(
+              'hosting.web.database.SqlPersoOfferEnum',
+            )
               .then((models) => {
                 $scope.availableOffers = models;
               })
@@ -58,13 +60,15 @@ angular
 
           $scope.loading.details = true;
           forEach($scope.durations, (duration) => {
-            queue.push(HostingOptionOrder.getOrderDetailsForDuration(
-              'extraSqlPerso',
-              duration,
-              { offer: $scope.model.offer },
-            ).then((details) => {
-              $scope.details[duration] = details;
-            }));
+            queue.push(
+              HostingOptionOrder.getOrderDetailsForDuration(
+                'extraSqlPerso',
+                duration,
+                { offer: $scope.model.offer },
+              ).then((details) => {
+                $scope.details[duration] = details;
+              }),
+            );
           });
           $q.all(queue).then(() => {
             $scope.loading.details = false;
@@ -81,15 +85,15 @@ angular
             );
           case 2:
             return (
-              $scope.model.offer
-              && $scope.model.duration
-              && !$scope.loading.details
+              $scope.model.offer &&
+              $scope.model.duration &&
+              !$scope.loading.details
             );
           case 3:
             return (
-              $scope.model.offer
-              && $scope.model.duration
-              && $scope.model.contract
+              $scope.model.offer &&
+              $scope.model.duration &&
+              $scope.model.contract
             );
           default:
             return false;
@@ -103,10 +107,13 @@ angular
         }).then((order) => {
           $scope.resetAction();
           Alerter.success(
-            $translate.instant('hosting_tab_DATABASES_configuration_order_success', {
-              t0: order.url,
-              t1: order.orderId,
-            }),
+            $translate.instant(
+              'hosting_tab_DATABASES_configuration_order_success',
+              {
+                t0: order.url,
+                t1: order.orderId,
+              },
+            ),
             $scope.alerts.main,
           );
           $window.open(order.url, '_blank');

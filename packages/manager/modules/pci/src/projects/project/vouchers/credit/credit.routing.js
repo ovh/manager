@@ -12,7 +12,8 @@ export default /* @ngInject */ ($stateProvider) => {
     layout: 'modal',
     views: {
       modal: {
-        controller: Environment.getRegion() === 'US' ? controllerAgora : controller,
+        controller:
+          Environment.getRegion() === 'US' ? controllerAgora : controller,
         controllerAs: '$ctrl',
         template: Environment.getRegion() === 'US' ? templateAgora : template,
       },

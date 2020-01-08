@@ -1,7 +1,7 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="utf-8">
+        <meta charset="utf-8" />
         <title>@ovh-ux/ng-ui-router-breadcrumb</title>
     </head>
     <body ng-app="myApp">
@@ -18,33 +18,33 @@
         <script>
             var myApp = angular
                 .module('myApp', ['ui.router', 'ngUiRouterBreadcrumb'])
-                .config(function ($stateProvider) {
+                .config(function($stateProvider) {
                     $stateProvider.state('foo', {
                         url: '/foo',
                         template: '<h2>Foo</h2>',
                         resolve: {
-                            breadcrumb: function () {
+                            breadcrumb: function() {
                                 return 'foo';
-                            }
-                        }
+                            },
+                        },
                     });
                     $stateProvider.state('foo.bar', {
                         url: '/bar',
                         template: '<h2>Bar</h2>',
                         resolve: {
-                            breadcrumb: function () {
+                            breadcrumb: function() {
                                 return 'bar';
-                            }
-                        }
+                            },
+                        },
                     });
                     $stateProvider.state('foo.bar.baz', {
                         url: '/baz',
                         template: '<h2>Baz</h2>',
                         resolve: {
-                            breadcrumb: function () {
+                            breadcrumb: function() {
                                 return 'baz';
-                            }
-                        }
+                            },
+                        },
                     });
                 });
         </script>

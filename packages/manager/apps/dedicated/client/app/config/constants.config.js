@@ -2,7 +2,8 @@ import defaults from 'lodash/defaults';
 
 const constants = {
   EU: {
-    RENEW_URL: 'https://eu.ovh.com/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
+    RENEW_URL:
+      'https://eu.ovh.com/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
     vmsUrl: 'http://travaux.ovh.net/vms/',
     travauxUrl: 'http://travaux.ovh.net/',
     UNIVERS: 'dedicated',
@@ -22,10 +23,14 @@ const constants = {
           vrops: 'https://www.ovh.cz/private-cloud/moznosti/vrops.xml',
         },
         vpsCloud: 'http://www.ovh.cz/vps/vps-cloud.xml',
-        dedicatedIpmi: 'https://docs.ovh.com/cz/cs/dedicated/pouziti-ipmi-dedikovane-servery/',
-        RealTimeMonitoring: 'https://docs.ovh.com/cz/cs/dedicated/instalace-rtm',
-        changeOwner: 'https://www.ovh.cz/cgi-bin/procedure/procedureChangeOwner.cgi',
-        domainOrderTrade: "https://www.ovh.cz/order/domain/#/legacy/domain/trade/informations?options=~~(domain~~'{domain})",
+        dedicatedIpmi:
+          'https://docs.ovh.com/cz/cs/dedicated/pouziti-ipmi-dedikovane-servery/',
+        RealTimeMonitoring:
+          'https://docs.ovh.com/cz/cs/dedicated/instalace-rtm',
+        changeOwner:
+          'https://www.ovh.cz/cgi-bin/procedure/procedureChangeOwner.cgi',
+        domainOrderTrade:
+          "https://www.ovh.cz/order/domain/#/legacy/domain/trade/informations?options=~~(domain~~'{domain})",
         exchangeOrder: 'https://www.ovh.cz/emails/hosted-exchange-2013/',
         faq: 'https://www.ovh.cz/dedikovane_servery/faq.xml',
         faqVps: 'https://www.ovh.cz/vps/pomoc-faq.xml',
@@ -39,10 +44,12 @@ const constants = {
         guides: {
           home: 'http://hilfe.ovh.de/',
           privateCloudHome: 'https://docs.ovh.com/de/private-cloud/',
-          autoRenew: 'https://www.ovh.de/g1271.anleitung_zur_nutzung_der_automatischen_verlangerung_bei_ovh',
+          autoRenew:
+            'https://www.ovh.de/g1271.anleitung_zur_nutzung_der_automatischen_verlangerung_bei_ovh',
           ipv6Vps: 'https://www.ovh.de/g2365.vps-ipv6',
           sshCreate: 'https://www.ovh.de/g1769.creating_ssh_keys',
-          sshChange: 'https://www.ovh.de/g2069.replacing_your_lost_ssh_key_pair',
+          sshChange:
+            'https://www.ovh.de/g2069.replacing_your_lost_ssh_key_pair',
           billing: 'https://docs.ovh.com/de/billing/',
         },
         presentations: {
@@ -52,10 +59,14 @@ const constants = {
           vrops: 'https://www.ovh.de/private-cloud/optionen/vrops.xml',
         },
         vpsCloud: 'http://www.ovh.de/virtual_server/vps-cloud.xml',
-        dedicatedIpmi: 'https://docs.ovh.com/de/dedicated/verwendung-ipmi-dedicated-server/',
-        RealTimeMonitoring: 'https://docs.ovh.com/de/dedicated/rtm-installieren/',
-        changeOwner: 'https://www.ovh.de/cgi-bin/procedure/procedureChangeOwner.cgi',
-        domainOrderTrade: "https://www.ovh.de/order/domain/#/legacy/domain/trade/informations?options=~~(domain~~'{domain})",
+        dedicatedIpmi:
+          'https://docs.ovh.com/de/dedicated/verwendung-ipmi-dedicated-server/',
+        RealTimeMonitoring:
+          'https://docs.ovh.com/de/dedicated/rtm-installieren/',
+        changeOwner:
+          'https://www.ovh.de/cgi-bin/procedure/procedureChangeOwner.cgi',
+        domainOrderTrade:
+          "https://www.ovh.de/order/domain/#/legacy/domain/trade/informations?options=~~(domain~~'{domain})",
         exchangeOrder: 'https://www.ovh.de/emails/hosted-exchange/',
         faq: 'https://www.ovh.de/dedicated_server/faq.xml',
         faqVps: 'https://www.ovh.de/virtual_server/faq-hilfe.xml',
@@ -73,7 +84,8 @@ const constants = {
           ipv6Vps: 'https://www.ovh.es/g2365.vps-ipv6',
           sshCreate: 'https://www.ovh.es/g1769.creating_ssh_keys',
           sshAdd: 'https://www.ovh.es/g1924.configuring_additionnal_ssh_key',
-          sshChange: 'https://www.ovh.es/g2069.replacing_your_lost_ssh_key_pair',
+          sshChange:
+            'https://www.ovh.es/g2069.replacing_your_lost_ssh_key_pair',
           billing: 'https://docs.ovh.com/es/billing/',
         },
         presentations: {
@@ -83,9 +95,11 @@ const constants = {
           vrops: 'https://www.ovh.es/private-cloud/opciones/vrops.xml',
         },
         vpsCloud: 'http://www.ovh.es/vps/vps-cloud.xml',
-        dedicatedIpmi: 'https://docs.ovh.com/es/dedicated/utilizar-ipmi-servidor-dedicado/',
+        dedicatedIpmi:
+          'https://docs.ovh.com/es/dedicated/utilizar-ipmi-servidor-dedicado/',
         RealTimeMonitoring: 'https://docs.ovh.com/gb/en/dedicated/install-rtm/',
-        changeOwner: 'https://www.ovh.es/cgi-bin/procedure/procedureChangeOwner.cgi',
+        changeOwner:
+          'https://www.ovh.es/cgi-bin/procedure/procedureChangeOwner.cgi',
         dedicated2016News: 'http://www.ovh.es/a1837.news',
         exchangeOrder: 'https://www.ovh.es/emails/hosted-exchange/',
         faq: 'https://www.ovh.es/servidores_dedicados/faq.xml',
@@ -101,22 +115,29 @@ const constants = {
           home: 'http://ohjeet.ovh-hosting.fi/',
           privateCloudHome: 'https://docs.ovh.com/fi/private-cloud/',
           autoRenew: 'https://www.ovh-hosting.fi/g1271.automaattinen-uusinta',
-          reinitPassword: 'https://www.ovh-hosting.fi/g2366.virtuaalikoneen_root-salasanan_vaihto',
+          reinitPassword:
+            'https://www.ovh-hosting.fi/g2366.virtuaalikoneen_root-salasanan_vaihto',
           ipv6Vps: 'https://www.ovh-hosting.fi/g2365.vps-ipv6',
           billing: 'https://docs.ovh.com/fi/billing/',
         },
         presentations: {
           home: 'https://www.ovh-hosting.fi/private-cloud/',
           nsx: 'https://www.ovh-hosting.fi/private-cloud/lisapalvelut/nsx.xml',
-          veeam: 'https://www.ovh-hosting.fi/private-cloud/lisapalvelut/veeam.xml',
-          vrops: 'https://www.ovh-hosting.fi/private-cloud/lisapalvelut/vrops.xml',
+          veeam:
+            'https://www.ovh-hosting.fi/private-cloud/lisapalvelut/veeam.xml',
+          vrops:
+            'https://www.ovh-hosting.fi/private-cloud/lisapalvelut/vrops.xml',
         },
         vpsCloud: 'http://www.ovh-hosting.fi/vps/vps-cloud.xml',
-        dedicatedIpmi: 'https://docs.ovh.com/fi/dedicated/ipmi-konsolin-kaytto-dedikoidut-palvelimet/',
+        dedicatedIpmi:
+          'https://docs.ovh.com/fi/dedicated/ipmi-konsolin-kaytto-dedikoidut-palvelimet/',
         RealTimeMonitoring: 'https://docs.ovh.com/fi/dedicated/rtm-asennus/',
-        changeOwner: 'https://www.ovh.com/cgi-bin/fi/procedure/procedureChangeOwner.cgi',
-        domainOrderTrade: "https://www.ovh-hosting.fi/order/domain/#/legacy/domain/trade/informations?options=~~(domain~~'{domain})",
-        exchangeOrder: 'https://www.ovh-hosting.fi/sahkopostit/hosted-exchange/',
+        changeOwner:
+          'https://www.ovh.com/cgi-bin/fi/procedure/procedureChangeOwner.cgi',
+        domainOrderTrade:
+          "https://www.ovh-hosting.fi/order/domain/#/legacy/domain/trade/informations?options=~~(domain~~'{domain})",
+        exchangeOrder:
+          'https://www.ovh-hosting.fi/sahkopostit/hosted-exchange/',
         faq: 'https://www.ovh-hosting.fi/dedikoidut_palvelimet/ukk.xml',
         faqVps: 'https://www.ovh-hosting.fi/vps/faq-help.xml',
         dedicatedOrder: 'https://www.ovh-hosting.fi/dedikoidut_palvelimet',
@@ -129,17 +150,26 @@ const constants = {
         guides: {
           home: 'https://docs.ovh.com',
           privateCloudHome: 'https://docs.ovh.com/fr/private-cloud/',
-          autoRenew: 'https://www.ovh.com/fr/g1271.guide_dutilisation_du_renouvellement_automatique_ovh',
-          additionalDisksGuide: 'https://www.ovh.com/fr/g2181.Commande_et_utilisation_d_un_disque_additionnel',
+          autoRenew:
+            'https://www.ovh.com/fr/g1271.guide_dutilisation_du_renouvellement_automatique_ovh',
+          additionalDisksGuide:
+            'https://www.ovh.com/fr/g2181.Commande_et_utilisation_d_un_disque_additionnel',
           all: 'https://www.ovh.com/fr/support/knowledge/',
-          reinitPassword: 'https://www.ovh.com/fr/g2366.changer_le_mot_de_passe_root_sur_un_vps',
+          reinitPassword:
+            'https://www.ovh.com/fr/g2366.changer_le_mot_de_passe_root_sur_un_vps',
           ipv6Vps: 'https://www.ovh.fr/g2365.vps-ipv6',
-          sshCreate: 'https://docs.ovh.com/fr/public-cloud/creation-des-cles-ssh/',
-          sshAdd: 'https://docs.ovh.com/fr/public-cloud/configurer-des-cles-ssh-supplementaires/',
-          sshChange: 'https://docs.ovh.com/fr/public-cloud/changer-sa-cle-ssh-en-cas-de-perte/',
-          megaRaidLED: 'https://docs.ovh.com/fr/fr/cloud/dedicated/hotswap-raid-hard/',
-          noMegaRaidLED: 'https://docs.ovh.com/fr/fr/cloud/dedicated/hotswap-raid-soft/',
-          diskSerial: 'http://docs.ovh.com/fr/fr/cloud/dedicated/find-disk-serial-number/',
+          sshCreate:
+            'https://docs.ovh.com/fr/public-cloud/creation-des-cles-ssh/',
+          sshAdd:
+            'https://docs.ovh.com/fr/public-cloud/configurer-des-cles-ssh-supplementaires/',
+          sshChange:
+            'https://docs.ovh.com/fr/public-cloud/changer-sa-cle-ssh-en-cas-de-perte/',
+          megaRaidLED:
+            'https://docs.ovh.com/fr/fr/cloud/dedicated/hotswap-raid-hard/',
+          noMegaRaidLED:
+            'https://docs.ovh.com/fr/fr/cloud/dedicated/hotswap-raid-soft/',
+          diskSerial:
+            'http://docs.ovh.com/fr/fr/cloud/dedicated/find-disk-serial-number/',
           vmEncryption: 'https://docs.ovh.com/fr/private-cloud/vm-encrypt/',
           billing: 'https://docs.ovh.com/fr/billing/',
         },
@@ -150,18 +180,24 @@ const constants = {
           vrops: 'https://www.ovh.com/fr/private-cloud/options/vrops.xml',
         },
         vpsCloud: 'https://www.ovh.com/fr/vps/vps-cloud.xml',
-        dedicatedIpmi: 'https://docs.ovh.com/fr/dedicated/utilisation-ipmi-serveurs-dedies/',
+        dedicatedIpmi:
+          'https://docs.ovh.com/fr/dedicated/utilisation-ipmi-serveurs-dedies/',
         RealTimeMonitoring: 'https://docs.ovh.com/gb/en/dedicated/install-rtm/',
-        changeOwner: 'https://www.ovh.com/cgi-bin/fr/procedure/procedureChangeOwner.cgi',
-        domainOrderTrade: "https://www.ovh.com/order/domain/#/legacy/domain/trade/informations?options=~~(domain~~'{domain})",
-        dedicated2016News: 'https://www.ovh.com/fr/news/a1837.nouveaux-serveurs-dedies-2016',
+        changeOwner:
+          'https://www.ovh.com/cgi-bin/fr/procedure/procedureChangeOwner.cgi',
+        domainOrderTrade:
+          "https://www.ovh.com/order/domain/#/legacy/domain/trade/informations?options=~~(domain~~'{domain})",
+        dedicated2016News:
+          'https://www.ovh.com/fr/news/a1837.nouveaux-serveurs-dedies-2016',
         exchangeOrder: 'https://www.ovh.com/fr/emails/hosted-exchange/',
         housingPhoneSupport: '09 72 10 00 70',
         faq: 'https://www.ovh.com/fr/serveurs_dedies/faq.xml',
         faqVps: 'https://www.ovh.com/fr/vps/aide-faq.xml',
-        faqDedicatedCloud: 'https://pccdocs.ovh.net/pages/viewpage.action?pageId=7766169',
+        faqDedicatedCloud:
+          'https://pccdocs.ovh.net/pages/viewpage.action?pageId=7766169',
         dedicatedOrder: 'https://www.ovh.com/fr/serveurs_dedies',
-        cloudProjectOrder: 'https://www.ovh.com/manager/cloud/#/iaas/pci/project/new',
+        cloudProjectOrder:
+          'https://www.ovh.com/manager/cloud/#/iaas/pci/project/new',
         iplbOrder: 'https://www.ovh.com/fr/solutions/load-balancer/',
       },
       GB: {
@@ -171,17 +207,23 @@ const constants = {
         guides: {
           home: 'http://help.ovh.co.uk/',
           privateCloudHome: 'https://docs.ovh.com/gb/en/private-cloud/',
-          autoRenew: 'https://www.ovh.co.uk/g1271.how_to_use_automatic_renewal_at_ovh',
+          autoRenew:
+            'https://www.ovh.co.uk/g1271.how_to_use_automatic_renewal_at_ovh',
           all: 'https://www.ovh.co.uk/community/knowledge/',
           nsx: 'https://www.ovh.co.uk/private-cloud/options/nsx.xml',
           vrops: 'https://www.ovh.co.uk/private-cloud/options/vrops.xml',
-          pcidss: 'https://www.ovh.co.uk/private-cloud/payment-infrastructure/pci-dss.xml',
+          pcidss:
+            'https://www.ovh.co.uk/private-cloud/payment-infrastructure/pci-dss.xml',
           hds: 'https://www.ovh.co.uk/private-cloud/healthcare/agrement.xml',
-          reinitPassword: 'https://www.ovh.co.uk/g2366.change_the_root_password_on_a_vps_linux',
+          reinitPassword:
+            'https://www.ovh.co.uk/g2366.change_the_root_password_on_a_vps_linux',
           ipv6Vps: 'https://www.ovh.co.uk/g2365.vps-ipv6',
-          sshCreate: 'https://docs.ovh.com/gb/en/public-cloud/configuring_additional_ssh_keys/',
-          sshAdd: 'https://docs.ovh.com/gb/en/public-cloud/configuring_additional_ssh_keys/',
-          sshChange: 'https://docs.ovh.com/gb/en/public-cloud/replacing_your_lost_ssh_key_pair/',
+          sshCreate:
+            'https://docs.ovh.com/gb/en/public-cloud/configuring_additional_ssh_keys/',
+          sshAdd:
+            'https://docs.ovh.com/gb/en/public-cloud/configuring_additional_ssh_keys/',
+          sshChange:
+            'https://docs.ovh.com/gb/en/public-cloud/replacing_your_lost_ssh_key_pair/',
           vmEncryption: 'https://docs.ovh.com/gb/en/private-cloud/vm-encrypt/',
           billing: 'https://docs.ovh.com/gb/en/billing/',
         },
@@ -192,10 +234,13 @@ const constants = {
           vrops: 'https://www.ovh.co.uk/private-cloud/options/vrops.xml',
         },
         vpsCloud: 'http://www.ovh.co.uk/vps/vps-cloud.xml',
-        dedicatedIpmi: 'https://docs.ovh.com/gb/en/dedicated/use-ipmi-dedicated-servers/',
+        dedicatedIpmi:
+          'https://docs.ovh.com/gb/en/dedicated/use-ipmi-dedicated-servers/',
         RealTimeMonitoring: 'https://docs.ovh.com/gb/en/dedicated/install-rtm/',
-        changeOwner: 'https://www.ovh.co.uk/cgi-bin/procedure/procedureChangeOwner.cgi',
-        domainOrderTrade: "https://www.ovh.co.uk/order/domain/#/legacy/domain/trade/informations?options=~~(domain~~'{domain})",
+        changeOwner:
+          'https://www.ovh.co.uk/cgi-bin/procedure/procedureChangeOwner.cgi',
+        domainOrderTrade:
+          "https://www.ovh.co.uk/order/domain/#/legacy/domain/trade/informations?options=~~(domain~~'{domain})",
         exchangeOrder: 'https://www.ovh.co.uk/emails/hosted-exchange/',
         faq: 'https://www.ovh.co.uk/dedicated_servers/faq.xml',
         faqVps: 'https://www.ovh.co.uk/vps/faq-help.xml',
@@ -209,12 +254,15 @@ const constants = {
         guides: {
           home: 'http://guida.ovh.it/',
           privateCloudHome: 'https://docs.ovh.com/it/private-cloud/',
-          autoRenew: 'https://www.ovh.it/g1271.imposta_il_rinnovo_automatico_dei_tuoi_servizi_ovh',
-          reinitPassword: 'https://www.ovh.it/g2366.modifica_la_password_di_root_su_un_vps_linux',
+          autoRenew:
+            'https://www.ovh.it/g1271.imposta_il_rinnovo_automatico_dei_tuoi_servizi_ovh',
+          reinitPassword:
+            'https://www.ovh.it/g2366.modifica_la_password_di_root_su_un_vps_linux',
           ipv6Vps: 'https://www.ovh.it/g2365.vps-ipv6',
           sshCreate: 'https://www.ovh.it/g1769.creating_ssh_keys',
           sshAdd: 'https://www.ovh.it/g1924.configuring_additionnal_ssh_key',
-          sshChange: 'https://www.ovh.it/g2069.replacing_your_lost_ssh_key_pair',
+          sshChange:
+            'https://www.ovh.it/g2069.replacing_your_lost_ssh_key_pair',
           billing: 'https://docs.ovh.com/it/billing/',
         },
         presentations: {
@@ -224,10 +272,13 @@ const constants = {
           vrops: 'https://www.ovh.it/private-cloud/opzioni/vrops.xml',
         },
         vpsCloud: 'http://www.ovh.it/vps/vps-cloud.xml',
-        dedicatedIpmi: 'https://docs.ovh.com/it/dedicated/utilizzo-ipmi-server-dedicati/',
+        dedicatedIpmi:
+          'https://docs.ovh.com/it/dedicated/utilizzo-ipmi-server-dedicati/',
         RealTimeMonitoring: 'https://docs.ovh.com/it/dedicated/installare-rtm/',
-        changeOwner: 'https://www.ovh.it/cgi-bin/procedure/procedureChangeOwner.cgi',
-        domainOrderTrade: "https://www.ovh.it/order/domain/#/legacy/domain/trade/informations?options=~~(domain~~'{domain})",
+        changeOwner:
+          'https://www.ovh.it/cgi-bin/procedure/procedureChangeOwner.cgi',
+        domainOrderTrade:
+          "https://www.ovh.it/order/domain/#/legacy/domain/trade/informations?options=~~(domain~~'{domain})",
         dedicated2016News: 'http://www.ovh.it/a1837.news',
         exchangeOrder: 'https://www.ovh.it/emails/hosted-exchange/',
         faq: 'https://www.ovh.it/server_dedicati/faq.xml',
@@ -242,11 +293,14 @@ const constants = {
         guides: {
           home: 'http://gidai.ovh.lt/',
           privateCloudHome: 'https://docs.ovh.com/lt/private-cloud/',
-          autoRenew: 'https://www.ovh.lt/g1271.automatinis_ovh_paslaugu_galiojimo_pratesimas',
-          reinitPassword: 'https://www.ovh.lt/g2366.root_slaptazodzio_keitimas_vps_linux',
+          autoRenew:
+            'https://www.ovh.lt/g1271.automatinis_ovh_paslaugu_galiojimo_pratesimas',
+          reinitPassword:
+            'https://www.ovh.lt/g2366.root_slaptazodzio_keitimas_vps_linux',
           ipv6Vps: 'https://www.ovh.lt/g2365.vps-ipv6',
           sshCreate: 'https://www.ovh.lt/g1769.creating_ssh_keys',
-          sshChange: 'https://www.ovh.lt/g2069.replacing_your_lost_ssh_key_pair',
+          sshChange:
+            'https://www.ovh.lt/g2069.replacing_your_lost_ssh_key_pair',
           billing: 'https://docs.ovh.com/lt/billing/',
         },
         presentations: {
@@ -256,10 +310,13 @@ const constants = {
           vrops: 'https://www.ovh.lt/private-cloud/parinktys/vrops.xml',
         },
         vpsCloud: 'http://www.ovh.lt/vps/vps-cloud.xml',
-        dedicatedIpmi: 'https://docs.ovh.com/lt/dedicated/use-ipmi-dedicated-servers/',
+        dedicatedIpmi:
+          'https://docs.ovh.com/lt/dedicated/use-ipmi-dedicated-servers/',
         RealTimeMonitoring: 'https://docs.ovh.com/gb/en/dedicated/install-rtm/',
-        changeOwner: 'https://www.ovh.com/cgi-bin/lt/procedure/procedureChangeOwner.cgi',
-        domainOrderTrade: "https://www.ovh.lt/order/domain/#/legacy/domain/trade/informations?options=~~(domain~~'{domain})",
+        changeOwner:
+          'https://www.ovh.com/cgi-bin/lt/procedure/procedureChangeOwner.cgi',
+        domainOrderTrade:
+          "https://www.ovh.lt/order/domain/#/legacy/domain/trade/informations?options=~~(domain~~'{domain})",
         dedicated2016News: 'http://www.ovh.lt/a1837.news',
         exchangeOrder: 'https://www.ovh.lt/El_pastas/hosted-exchange/',
         faq: 'https://www.ovh.lt/dedikuoti_serveriai/duk.xml',
@@ -274,10 +331,12 @@ const constants = {
         guides: {
           home: 'http://gids.ovh.nl/',
           privateCloudHome: 'https://docs.ovh.com/nl/private-cloud/',
-          autoRenew: 'https://www.ovh.nl/g1271.ovh_handleiding_voor_het_gebruik_van_de_automatische_verlenging',
+          autoRenew:
+            'https://www.ovh.nl/g1271.ovh_handleiding_voor_het_gebruik_van_de_automatische_verlenging',
           ipv6Vps: 'https://www.ovh.nl/g2365.vps-ipv6',
           sshCreate: 'https://www.ovh.nl/g1769.creating_ssh_keys',
-          sshChange: 'https://www.ovh.nl/g2069.replacing_your_lost_ssh_key_pair',
+          sshChange:
+            'https://www.ovh.nl/g2069.replacing_your_lost_ssh_key_pair',
           billing: 'https://docs.ovh.com/nl/billing/',
         },
         presentations: {
@@ -287,9 +346,12 @@ const constants = {
           vrops: 'https://www.ovh.nl/private-cloud/opties/vrops.xml',
         },
         vpsCloud: 'http://www.ovh.nl/vps/vps-cloud.xml',
-        dedicatedIpmi: 'https://docs.ovh.com/nl/dedicated/gebruik-ipmi-dedicated-servers/',
-        changeOwner: 'https://www.ovh.nl/cgi-bin/procedure/procedureChangeOwner.cgi',
-        domainOrderTrade: "https://www.ovh.nl/order/domain/#/legacy/domain/trade/informations?options=~~(domain~~'{domain})",
+        dedicatedIpmi:
+          'https://docs.ovh.com/nl/dedicated/gebruik-ipmi-dedicated-servers/',
+        changeOwner:
+          'https://www.ovh.nl/cgi-bin/procedure/procedureChangeOwner.cgi',
+        domainOrderTrade:
+          "https://www.ovh.nl/order/domain/#/legacy/domain/trade/informations?options=~~(domain~~'{domain})",
         dedicated2016News: 'http://www.ovh.nl/a1837.news',
         exchangeOrder: 'https://www.ovh.nl/emails/hosted-exchange/',
         faq: 'https://www.ovh.nl/dedicated_servers/faq.xml',
@@ -304,12 +366,15 @@ const constants = {
         guides: {
           home: 'http://pomoc.ovh.pl/',
           privateCloudHome: 'https://docs.ovh.com/pl/private-cloud/',
-          autoRenew: 'https://www.ovh.pl/g1271.przewodnik_dotyczacy_opcji_automatycznego_odnawiania_uslug_w_ovh',
-          reinitPassword: 'https://www.ovh.pl/g2366.Zmiana_hasla_root_na_serwerze_vps_linux',
+          autoRenew:
+            'https://www.ovh.pl/g1271.przewodnik_dotyczacy_opcji_automatycznego_odnawiania_uslug_w_ovh',
+          reinitPassword:
+            'https://www.ovh.pl/g2366.Zmiana_hasla_root_na_serwerze_vps_linux',
           ipv6Vps: 'https://www.ovh.pl/g2365.vps-ipv6',
           sshCreate: 'https://www.ovh.pl/g1769.creating_ssh_keys',
           sshAdd: 'https://www.ovh.pl/g1924.configuring_additionnal_ssh_key',
-          shhChange: 'https://www.ovh.pl/g2069.replacing_your_lost_ssh_key_pair',
+          shhChange:
+            'https://www.ovh.pl/g2069.replacing_your_lost_ssh_key_pair',
           billing: 'https://docs.ovh.com/pl/billing/',
         },
         presentations: {
@@ -319,10 +384,13 @@ const constants = {
           vrops: 'https://www.ovh.pl/private-cloud/opcje/vrops.xml',
         },
         vpsCloud: 'https://www.ovh.pl/vps/vps-cloud.xml',
-        dedicatedIpmi: 'https://docs.ovh.com/pl/dedicated/uzywanie-ipmi-serwery-dedykowane/',
+        dedicatedIpmi:
+          'https://docs.ovh.com/pl/dedicated/uzywanie-ipmi-serwery-dedykowane/',
         RealTimeMonitoring: 'https://docs.ovh.com/pl/dedicated/instalacja-rtm/',
-        changeOwner: 'https://www.ovh.pl/cgi-bin/procedure/procedureChangeOwner.cgi',
-        domainOrderTrade: "https://www.ovh.pl/order/domain/#/legacy/domain/trade/informations?options=~~(domain~~'{domain})",
+        changeOwner:
+          'https://www.ovh.pl/cgi-bin/procedure/procedureChangeOwner.cgi',
+        domainOrderTrade:
+          "https://www.ovh.pl/order/domain/#/legacy/domain/trade/informations?options=~~(domain~~'{domain})",
         dedicated2016News: 'http://www.ovh.pl/a1837.news',
         exchangeOrder: 'https://www.ovh.pl/emaile/hosted-exchange/',
         faq: 'https://www.ovh.pl/serwery_dedykowane/faq.xml',
@@ -337,12 +405,15 @@ const constants = {
         guides: {
           home: 'http://guias.ovh.pt/',
           privateCloudHome: 'https://docs.ovh.com/pt/private-cloud/',
-          autoRenew: 'https://www.ovh.pt/g1271.guia_de_utilizacao_da_renovacao_automatica_da_ovh',
-          reinitPassword: 'https://www.ovh.pt/g2366.alterar_a_password_root_num_servidor_vps_linux',
+          autoRenew:
+            'https://www.ovh.pt/g1271.guia_de_utilizacao_da_renovacao_automatica_da_ovh',
+          reinitPassword:
+            'https://www.ovh.pt/g2366.alterar_a_password_root_num_servidor_vps_linux',
           ipv6Vps: 'https://www.ovh.pt/g2365.vps-ipv6',
           sshCreate: 'https://www.ovh.pt/g1769.creating_ssh_keys',
           sshAdd: 'https://www.ovh.pt/g1924.configuring_additionnal_ssh_key',
-          sshChange: 'https://www.ovh.pt/g2069.replacing_your_lost_ssh_key_pair',
+          sshChange:
+            'https://www.ovh.pt/g2069.replacing_your_lost_ssh_key_pair',
           billing: 'https://docs.ovh.com/pt/billing/',
         },
         presentations: {
@@ -352,10 +423,13 @@ const constants = {
           vrops: 'https://www.ovh.pt/private-cloud/opcoes/vrops.xml',
         },
         vpsCloud: 'http://www.ovh.pt/vps/vps-cloud.xml',
-        dedicatedIpmi: 'https://docs.ovh.com/pt/dedicated/usar-ipmi-servidores-dedicados/',
+        dedicatedIpmi:
+          'https://docs.ovh.com/pt/dedicated/usar-ipmi-servidores-dedicados/',
         RealTimeMonitoring: 'https://docs.ovh.com/pt/dedicated/instalar-rtm/',
-        changeOwner: 'https://www.ovh.pt/cgi-bin/procedure/procedureChangeOwner.cgi',
-        domainOrderTrade: "https://www.ovh.pt/order/domain/#/legacy/domain/trade/informations?options=~~(domain~~'{domain})",
+        changeOwner:
+          'https://www.ovh.pt/cgi-bin/procedure/procedureChangeOwner.cgi',
+        domainOrderTrade:
+          "https://www.ovh.pt/order/domain/#/legacy/domain/trade/informations?options=~~(domain~~'{domain})",
         dedicated2016News: 'http://www.ovh.pt/a1837.news',
         exchangeOrder: 'https://www.ovh.pt/emails/hosted-exchange-2013/',
         faq: 'https://www.ovh.pt/servidores_dedicados/faq.xml ',
@@ -370,12 +444,14 @@ const constants = {
         guides: {
           home: 'http://help.ovh.ie/',
           privateCloudHome: 'https://docs.ovh.com/ie/en/private-cloud/',
-          autoRenew: 'https://www.ovh.ie/g1271.how_to_use_automatic_renewal_at_ovh',
+          autoRenew:
+            'https://www.ovh.ie/g1271.how_to_use_automatic_renewal_at_ovh',
           all: 'https://www.ovh.ie/community/knowledge/',
           nsx: 'https://www.ovh.ie/private-cloud/options/nsx.xml',
           vrops: 'https://www.ovh.ie/private-cloud/options/vrops.xml',
           sshAdd: 'https://www.ovh.ie/g1924.configuring_additionnal_ssh_key',
-          sshChange: 'https://www.ovh.ie/g2069.replacing_your_lost_ssh_key_pair',
+          sshChange:
+            'https://www.ovh.ie/g2069.replacing_your_lost_ssh_key_pair',
           billing: 'https://docs.ovh.com/ie/en/billing/',
         },
         presentations: {
@@ -385,9 +461,12 @@ const constants = {
           vrops: 'https://www.ovh.ie/private-cloud/options/vrops.xml',
         },
         vpsCloud: 'http://www.ovh.ie/vps/vps-cloud.xml',
-        dedicatedIpmi: 'https://docs.ovh.com/ie/en/dedicated/use-ipmi-dedicated-servers/',
-        changeOwner: 'https://www.ovh.ie/cgi-bin/procedure/procedureChangeOwner.cgi',
-        domainOrderTrade: "https://www.ovh.ie/order/domain/#/legacy/domain/trade/informations?options=~~(domain~~'{domain})",
+        dedicatedIpmi:
+          'https://docs.ovh.com/ie/en/dedicated/use-ipmi-dedicated-servers/',
+        changeOwner:
+          'https://www.ovh.ie/cgi-bin/procedure/procedureChangeOwner.cgi',
+        domainOrderTrade:
+          "https://www.ovh.ie/order/domain/#/legacy/domain/trade/informations?options=~~(domain~~'{domain})",
         dedicated2016News: 'http://www.ovh.ie/a1837.news',
         exchangeOrder: 'https://www.ovh.ie/emails/hosted-exchange-2013/',
         faq: 'https://www.ovh.ie/dedicated_servers/faq.xml',
@@ -452,35 +531,44 @@ const constants = {
           {
             title: 'core_sd_top_guide_1_title',
             atInternetClickTag: 'TopGuide-DedicatedServers-1',
-            url: 'https://docs.ovh.com/fr/dedicated/premiers-pas-serveur-dedie/',
-          }, {
+            url:
+              'https://docs.ovh.com/fr/dedicated/premiers-pas-serveur-dedie/',
+          },
+          {
             title: 'core_sd_top_guide_2_title',
             atInternetClickTag: 'TopGuide-DedicatedServers-2',
             url: 'https://www.ovh.com/fr/g845.netboot',
-          }, {
+          },
+          {
             title: 'core_sd_top_guide_3_title',
             atInternetClickTag: 'TopGuide-DedicatedServers-3',
             url: 'https://www.ovh.com/fr/g849.configurer_le_reverse',
-          }, {
+          },
+          {
             title: 'core_sd_top_guide_firewall_title',
             atInternetClickTag: 'TopGuide-DedicatedServers-Firewall',
             url: 'https://docs.ovh.com/fr/dedicated/firewall-network/',
-          }, {
+          },
+          {
             title: 'core_sd_top_guide_5_title',
             atInternetClickTag: 'TopGuide-DedicatedServers-5',
             url: 'https://docs.ovh.com/fr/dedicated/network-virtual-mac/',
-          }, {
+          },
+          {
             title: 'core_sd_top_guide_6_title',
             atInternetClickTag: 'TopGuide-DedicatedServers-6',
             url: 'https://docs.ovh.com/fr/dedicated/network-ipaliasing/',
-          }, {
+          },
+          {
             title: 'core_sd_top_guide_7_title',
             atInternetClickTag: 'TopGuide-DedicatedServers-7',
             url: 'https://docs.ovh.com/fr/dedicated/ovh-rescue/',
-          }, {
+          },
+          {
             title: 'core_sd_top_guide_8_title',
             atInternetClickTag: 'TopGuide-DedicatedServers-8',
-            url: 'https://docs.ovh.com/fr/dedicated/find-disk-serial-number/#pour-un-raid-materiel_1',
+            url:
+              'https://docs.ovh.com/fr/dedicated/find-disk-serial-number/#pour-un-raid-materiel_1',
           },
         ],
         en_GB: [
@@ -496,32 +584,43 @@ const constants = {
           {
             title: 'core_pcc_top_guide_1_title',
             atInternetClickTag: 'TopGuide-PrivateCloud-1',
-            url: 'https://docs.ovh.com/fr/private-cloud/connexion-interface-vsphere/',
-          }, {
+            url:
+              'https://docs.ovh.com/fr/private-cloud/connexion-interface-vsphere/',
+          },
+          {
             title: 'core_pcc_top_guide_2_title',
             atInternetClickTag: 'TopGuide-PrivateCloud-2',
-            url: 'https://docs.ovh.com/fr/private-cloud/deploiement-d-une-machine-virtuelle/',
-          }, {
+            url:
+              'https://docs.ovh.com/fr/private-cloud/deploiement-d-une-machine-virtuelle/',
+          },
+          {
             title: 'core_pcc_top_guide_3_title',
             atInternetClickTag: 'TopGuide-PrivateCloud-3',
-            url: 'https://docs.ovh.com/fr/private-cloud/configuration-ip-machine-virtuelle/',
-          }, {
+            url:
+              'https://docs.ovh.com/fr/private-cloud/configuration-ip-machine-virtuelle/',
+          },
+          {
             title: 'core_pcc_top_guide_4_title',
             atInternetClickTag: 'TopGuide-PrivateCloud-4',
-            url: 'https://docs.ovh.com/fr/private-cloud/modification-des-ressources-d-une-machine-virtuelle/',
-          }, {
+            url:
+              'https://docs.ovh.com/fr/private-cloud/modification-des-ressources-d-une-machine-virtuelle/',
+          },
+          {
             title: 'core_pcc_top_guide_5_title',
             atInternetClickTag: 'TopGuide-PrivateCloud-5',
             url: 'https://docs.ovh.com/fr/private-cloud/connexion-en-sftp/',
-          }, {
+          },
+          {
             title: 'core_pcc_top_guide_6_title',
             atInternetClickTag: 'TopGuide-PrivateCloud-6',
             url: 'https://www.vmware.com/support/pubs/',
-          }, {
+          },
+          {
             title: 'core_pcc_top_guide_7_title',
             atInternetClickTag: 'TopGuide-PrivateCloud-7',
             url: 'https://docs.ovh.com/fr/private-cloud/suppression-d-un-hote/',
-          }, {
+          },
+          {
             title: 'core_pcc_top_guide_10_title',
             atInternetClickTag: 'TopGuide-PrivateCloud-10',
             url: 'http://pubs.vmware.com/NSX-62/index.jsp?lang=fr',
@@ -531,28 +630,36 @@ const constants = {
           {
             title: 'core_pcc_top_guide_3_title',
             atInternetClickTag: 'TopGuide-PrivateCloud-3',
-            url: 'https://www.ovh.co.uk/g582.configure_an_ip_address_on_a_virtual_machine',
-          }, {
+            url:
+              'https://www.ovh.co.uk/g582.configure_an_ip_address_on_a_virtual_machine',
+          },
+          {
             title: 'core_pcc_top_guide_4_title',
             atInternetClickTag: 'TopGuide-PrivateCloud-4',
-            url: 'https://www.ovh.co.uk/g587.modify_the_hardware_configuration_of_your_virtual_machine',
-          }, {
+            url:
+              'https://www.ovh.co.uk/g587.modify_the_hardware_configuration_of_your_virtual_machine',
+          },
+          {
             title: 'core_pcc_top_guide_5_title',
             atInternetClickTag: 'TopGuide-PrivateCloud-5',
             url: 'https://www.ovh.co.uk/g589.sftp_connection',
-          }, {
+          },
+          {
             title: 'core_pcc_top_guide_6_title',
             atInternetClickTag: 'TopGuide-PrivateCloud-6',
             url: 'https://www.vmware.com/support/pubs/',
-          }, {
+          },
+          {
             title: 'core_pcc_top_guide_7_title',
             atInternetClickTag: 'TopGuide-PrivateCloud-7',
             url: 'https://pccdocs.ovh.net/display/VS/Remove+a+host',
-          }, {
+          },
+          {
             title: 'core_pcc_top_guide_9_title',
             atInternetClickTag: 'TopGuide-PrivateCloud-9',
             url: 'https://pccdocs.ovh.net/display/ND/Getting+Started+with+NSX',
-          }, {
+          },
+          {
             title: 'core_pcc_top_guide_10_title',
             atInternetClickTag: 'TopGuide-PrivateCloud-10',
             url: 'http://pubs.vmware.com/NSX-62/index.jsp?lang=en',
@@ -578,26 +685,46 @@ const constants = {
       TN: 'https://www.ovh.com/auth/signup/#/?ovhCompany=ovh&ovhSubsidiary=tn',
     },
     billingRenew: {
-      CA: 'https://ca.ovh.com/fr/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
-      CZ: 'https://www.ovh.cz/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
-      DE: 'https://www.ovh.de/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
-      EN: 'https://www.ovh.co.uk/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
-      ES: 'https://www.ovh.es/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
-      FI: 'https://www.ovh-hosting.fi/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
-      FR: 'https://eu.ovh.com/fr/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
-      GB: 'https://www.ovh.co.uk/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
-      IE: 'https://www.ovh.ie/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
-      IT: 'https://www.ovh.it/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
-      LT: 'https://www.ovh.lt/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
-      MA: 'https://www.ovh.com/ma/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
-      NL: 'https://www.ovh.nl/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
-      PL: 'https://www.ovh.pl/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
-      PT: 'https://www.ovh.pt/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
-      QC: 'https://ca.ovh.com/fr/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
-      RU: 'https://www.ovh.co.uk/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
-      SN: 'https://www.ovh.sn/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
-      TN: 'https://www.ovh.com/tn/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
-      WE: 'https://ca.ovh.com/fr/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
+      CA:
+        'https://ca.ovh.com/fr/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
+      CZ:
+        'https://www.ovh.cz/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
+      DE:
+        'https://www.ovh.de/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
+      EN:
+        'https://www.ovh.co.uk/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
+      ES:
+        'https://www.ovh.es/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
+      FI:
+        'https://www.ovh-hosting.fi/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
+      FR:
+        'https://eu.ovh.com/fr/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
+      GB:
+        'https://www.ovh.co.uk/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
+      IE:
+        'https://www.ovh.ie/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
+      IT:
+        'https://www.ovh.it/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
+      LT:
+        'https://www.ovh.lt/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
+      MA:
+        'https://www.ovh.com/ma/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
+      NL:
+        'https://www.ovh.nl/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
+      PL:
+        'https://www.ovh.pl/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
+      PT:
+        'https://www.ovh.pt/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
+      QC:
+        'https://ca.ovh.com/fr/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
+      RU:
+        'https://www.ovh.co.uk/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
+      SN:
+        'https://www.ovh.sn/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
+      TN:
+        'https://www.ovh.com/tn/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
+      WE:
+        'https://ca.ovh.com/fr/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
     },
     REDIRECT_URLS: {
       listTicket: 'https://www.ovh.com/manager/dedicated/index.html#/ticket',
@@ -618,7 +745,8 @@ const constants = {
     },
   },
   CA: {
-    RENEW_URL: 'https://ca.ovh.com/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
+    RENEW_URL:
+      'https://ca.ovh.com/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
     vmsUrl: 'http://status.ovh.net/vms/',
     travauxUrl: 'http://status.ovh.net/',
     UNIVERS: 'dedicated',
@@ -630,11 +758,14 @@ const constants = {
         guides: {
           home: 'https://docs.ovh.com/ca/en/',
           privateCloudHome: 'https://docs.ovh.com/ca/en/private-cloud/',
-          reinitPassword: 'http://docs.ovh.ca/en/faqs-server-issues.html#server-password-lost-forgotten',
+          reinitPassword:
+            'http://docs.ovh.ca/en/faqs-server-issues.html#server-password-lost-forgotten',
           ipv6Vps: 'https://www.ovh.com/us/g2365.vps-ipv6',
           sshCreate: 'https://www.ovh.com/ca/en/g1769.creating_ssh_keys',
-          sshAdd: 'https://www.ovh.com/ca/en/g1924.configuring_additionnal_ssh_key',
-          sshChange: 'https://www.ovh.com/ca/en/g2069.replacing_your_lost_ssh_key_pair',
+          sshAdd:
+            'https://www.ovh.com/ca/en/g1924.configuring_additionnal_ssh_key',
+          sshChange:
+            'https://www.ovh.com/ca/en/g2069.replacing_your_lost_ssh_key_pair',
         },
         presentations: {
           home: 'https://www.ovh.com/asia/private-cloud/',
@@ -643,15 +774,19 @@ const constants = {
           vrops: 'https://www.ovh.com/asia/private-cloud/options/vrops.xml',
         },
         vpsCloud: 'https://www.ovh.com/ca/en/vps/vps-cloud.xml',
-        dedicatedIpmi: 'https://docs.ovh.com/gb/en/dedicated/use-ipmi-dedicated-servers/',
-        changeOwner: 'https://www.ovh.co.uk/cgi-bin/procedure/procedureChangeOwner.cgi',
-        domainOrderTrade: "https://www.ovh.co.uk/order/domain/#/legacy/domain/trade/informations?options=~~(domain~~'{domain})",
+        dedicatedIpmi:
+          'https://docs.ovh.com/gb/en/dedicated/use-ipmi-dedicated-servers/',
+        changeOwner:
+          'https://www.ovh.co.uk/cgi-bin/procedure/procedureChangeOwner.cgi',
+        domainOrderTrade:
+          "https://www.ovh.co.uk/order/domain/#/legacy/domain/trade/informations?options=~~(domain~~'{domain})",
         RealTimeMonitoring: 'https://docs.ovh.com/gb/en/dedicated/install-rtm/',
         exchangeOrder: 'https://www.ovh.com/us/emails/hosted-exchange/',
         faq: 'https://www.ovh.com/ca/en/dedicated-servers/faq.xml',
         faqVps: 'https://www.ovh.com/us/vps/faq-help.xml',
         dedicatedOrder: 'https://www.ovh.com/asia/dedicated-servers',
-        cloudProjectOrder: 'https://ca.ovh.com/manager/cloud/index.html#/iaas/pci/project/new',
+        cloudProjectOrder:
+          'https://ca.ovh.com/manager/cloud/index.html#/iaas/pci/project/new',
         iplbOrder: 'https://www.ovh.com/world/solutions/load-balancer/',
       },
       AU: {
@@ -661,11 +796,14 @@ const constants = {
         guides: {
           home: 'https://docs.ovh.com/ca/en/',
           privateCloudHome: 'https://docs.ovh.com/au/en/private-cloud/',
-          reinitPassword: 'http://docs.ovh.ca/en/faqs-server-issues.html#server-password-lost-forgotten',
+          reinitPassword:
+            'http://docs.ovh.ca/en/faqs-server-issues.html#server-password-lost-forgotten',
           ipv6Vps: 'https://www.ovh.com/us/g2365.vps-ipv6',
           sshCreate: 'https://www.ovh.com/ca/en/g1769.creating_ssh_keys',
-          sshAdd: 'https://www.ovh.com/ca/en/g1924.configuring_additionnal_ssh_key',
-          sshChange: 'https://www.ovh.com/ca/en/g2069.replacing_your_lost_ssh_key_pair',
+          sshAdd:
+            'https://www.ovh.com/ca/en/g1924.configuring_additionnal_ssh_key',
+          sshChange:
+            'https://www.ovh.com/ca/en/g2069.replacing_your_lost_ssh_key_pair',
           billing: 'https://docs.ovh.com/au/en/billing/',
         },
         presentations: {
@@ -675,29 +813,37 @@ const constants = {
           vrops: 'https://www.ovh.com.au/private-cloud/options/vrops.xml',
         },
         vpsCloud: 'https://www.ovh.com/ca/en/vps/vps-cloud.xml',
-        dedicatedIpmi: 'https://docs.ovh.com/gb/en/dedicated/use-ipmi-dedicated-servers/',
-        changeOwner: 'https://www.ovh.co.uk/cgi-bin/procedure/procedureChangeOwner.cgi',
-        domainOrderTrade: "https://www.ovh.co.uk/order/domain/#/legacy/domain/trade/informations?options=~~(domain~~'{domain})",
+        dedicatedIpmi:
+          'https://docs.ovh.com/gb/en/dedicated/use-ipmi-dedicated-servers/',
+        changeOwner:
+          'https://www.ovh.co.uk/cgi-bin/procedure/procedureChangeOwner.cgi',
+        domainOrderTrade:
+          "https://www.ovh.co.uk/order/domain/#/legacy/domain/trade/informations?options=~~(domain~~'{domain})",
         RealTimeMonitoring: 'https://docs.ovh.com/gb/en/dedicated/install-rtm/',
         exchangeOrder: 'https://www.ovh.com/us/emails/hosted-exchange/',
         faq: 'https://www.ovh.com/ca/en/dedicated-servers/faq.xml',
         faqVps: 'https://www.ovh.com/us/vps/faq-help.xml',
         dedicatedOrder: 'https://www.ovh.com.au/dedicated-servers',
-        cloudProjectOrder: 'https://ca.ovh.com/manager/cloud/index.html#/iaas/pci/project/new',
+        cloudProjectOrder:
+          'https://ca.ovh.com/manager/cloud/index.html#/iaas/pci/project/new',
         iplbOrder: 'https://www.ovh.com/world/solutions/load-balancer/',
       },
-      CA: { // eq to en_CA
+      CA: {
+        // eq to en_CA
         express_order: 'https://ca.ovh.com/en/order/express/#/express/',
         support: 'http://www.ovh.co.uk/support/',
         support_contact: 'https://www.ovh.com/ca/en/support/',
         guides: {
           home: 'https://docs.ovh.com/ca/en/',
           privateCloudHome: 'https://docs.ovh.com/ca/en/private-cloud/',
-          reinitPassword: 'http://docs.ovh.ca/en/faqs-server-issues.html#server-password-lost-forgotten',
+          reinitPassword:
+            'http://docs.ovh.ca/en/faqs-server-issues.html#server-password-lost-forgotten',
           ipv6Vps: 'https://www.ovh.com/ca/en/g2365.vps-ipv6',
           sshCreate: 'https://www.ovh.com/ca/en/g1769.creating_ssh_keys',
-          sshAdd: 'https://www.ovh.com/ca/en/g1924.configuring_additionnal_ssh_key',
-          sshChange: 'https://www.ovh.com/ca/en/g2069.replacing_your_lost_ssh_key_pair',
+          sshAdd:
+            'https://www.ovh.com/ca/en/g1924.configuring_additionnal_ssh_key',
+          sshChange:
+            'https://www.ovh.com/ca/en/g2069.replacing_your_lost_ssh_key_pair',
           billing: 'https://docs.ovh.com/ca/en/billing/',
         },
         presentations: {
@@ -707,29 +853,37 @@ const constants = {
           vrops: 'https://www.ovh.com/ca/en/private-cloud/options/vrops.xml',
         },
         vpsCloud: 'https://www.ovh.com/ca/en/vps/vps-cloud.xml',
-        dedicatedIpmi: 'https://docs.ovh.com/gb/en/dedicated/use-ipmi-dedicated-servers/',
-        changeOwner: 'https://www.ovh.co.uk/cgi-bin/procedure/procedureChangeOwner.cgi',
-        domainOrderTrade: "https://www.ovh.co.uk/order/domain/#/legacy/domain/trade/informations?options=~~(domain~~'{domain})",
+        dedicatedIpmi:
+          'https://docs.ovh.com/gb/en/dedicated/use-ipmi-dedicated-servers/',
+        changeOwner:
+          'https://www.ovh.co.uk/cgi-bin/procedure/procedureChangeOwner.cgi',
+        domainOrderTrade:
+          "https://www.ovh.co.uk/order/domain/#/legacy/domain/trade/informations?options=~~(domain~~'{domain})",
         RealTimeMonitoring: 'https://docs.ovh.com/gb/en/dedicated/install-rtm/',
         exchangeOrder: 'https://www.ovh.com/ca/en/emails/hosted-exchange/',
         faq: 'https://www.ovh.com/ca/en/dedicated-servers/faq.xml',
         faqVps: 'https://www.ovh.com/ca/en/vps/faq-help.xml',
         dedicatedOrder: 'https://www.ovh.com/ca/en/dedicated-servers',
-        cloudProjectOrder: 'https://ca.ovh.com/manager/cloud/index.html#/iaas/pci/project/new',
+        cloudProjectOrder:
+          'https://ca.ovh.com/manager/cloud/index.html#/iaas/pci/project/new',
         iplbOrder: 'https://www.ovh.com/ca/en/solutions/load-balancer/',
       },
-      QC: { // eq to fr_CA
+      QC: {
+        // eq to fr_CA
         express_order: 'https://ca.ovh.com/fr/order/express/#/express/',
         support: 'https://www.ovh.com/fr/support/',
         support_contact: 'https://www.ovh.com/ca/fr/support/',
         guides: {
           home: 'https://docs.ovh.com/ca/fr/',
           privateCloudHome: 'https://docs.ovh.com/ca/fr/private-cloud/',
-          reinitPassword: 'http://docs.ovh.ca/fr/faqs-server-issues.html#server-password-lost-forgotten',
+          reinitPassword:
+            'http://docs.ovh.ca/fr/faqs-server-issues.html#server-password-lost-forgotten',
           ipv6Vps: 'https://www.ovh.com/ca/fr/g2365.vps-ipv6',
           sshCreate: 'https://www.ovh.com/ca/fr/g1769.creation_des_cles_ssh',
-          sshAdd: 'https://www.ovh.com/ca/fr/g1924.configurer_des_cles_ssh_supplementaires',
-          sshChange: 'https://www.ovh.com/ca/fr/g2069.changer_sa_cle_ssh_en_cas_de_perte',
+          sshAdd:
+            'https://www.ovh.com/ca/fr/g1924.configurer_des_cles_ssh_supplementaires',
+          sshChange:
+            'https://www.ovh.com/ca/fr/g2069.changer_sa_cle_ssh_en_cas_de_perte',
           billing: 'https://docs.ovh.com/ca/fr/billing/',
         },
         presentations: {
@@ -739,15 +893,19 @@ const constants = {
           vrops: 'https://www.ovh.com/ca/fr/private-cloud/options/vrops.xml',
         },
         vpsCloud: 'https://www.ovh.com/ca/fr/vps/vps-cloud.xml',
-        dedicatedIpmi: 'https://docs.ovh.com/fr/dedicated/utilisation-ipmi-serveurs-dedies/',
-        changeOwner: 'https://www.ovh.com/cgi-bin/fr/procedure/procedureChangeOwner.cgi',
-        domainOrderTrade: "https://www.ovh.com/order/domain/#/legacy/domain/trade/informations?options=~~(domain~~'{domain})",
+        dedicatedIpmi:
+          'https://docs.ovh.com/fr/dedicated/utilisation-ipmi-serveurs-dedies/',
+        changeOwner:
+          'https://www.ovh.com/cgi-bin/fr/procedure/procedureChangeOwner.cgi',
+        domainOrderTrade:
+          "https://www.ovh.com/order/domain/#/legacy/domain/trade/informations?options=~~(domain~~'{domain})",
         RealTimeMonitoring: 'https://docs.ovh.com/gb/en/dedicated/install-rtm/',
         exchangeOrder: 'https://www.ovh.com/ca/fr/emails/hosted-exchange/',
         faq: 'https://www.ovh.com/ca/fr/serveurs-dedies/faq.xml',
         faqVps: 'https://www.ovh.com/ca/fr/vps/aide-faq.xml',
         dedicatedOrder: 'https://www.ovh.com/ca/fr/serveurs-dedies',
-        cloudProjectOrder: 'https://ca.ovh.com/manager/cloud/index.html#/iaas/pci/project/new',
+        cloudProjectOrder:
+          'https://ca.ovh.com/manager/cloud/index.html#/iaas/pci/project/new',
         iplbOrder: 'https://www.ovh.com/ca/fr/solutions/load-balancer/',
       },
       SG: {
@@ -757,11 +915,14 @@ const constants = {
         guides: {
           home: 'https://docs.ovh.com/ca/en/',
           privateCloudHome: 'https://docs.ovh.com/sg/en/private-cloud/',
-          reinitPassword: 'http://docs.ovh.ca/en/faqs-server-issues.html#server-password-lost-forgotten',
+          reinitPassword:
+            'http://docs.ovh.ca/en/faqs-server-issues.html#server-password-lost-forgotten',
           ipv6Vps: 'https://www.ovh.com/us/g2365.vps-ipv6',
           sshCreate: 'https://www.ovh.com/ca/en/g1769.creating_ssh_keys',
-          sshAdd: 'https://www.ovh.com/ca/en/g1924.configuring_additionnal_ssh_key',
-          sshChange: 'https://www.ovh.com/ca/en/g2069.replacing_your_lost_ssh_key_pair',
+          sshAdd:
+            'https://www.ovh.com/ca/en/g1924.configuring_additionnal_ssh_key',
+          sshChange:
+            'https://www.ovh.com/ca/en/g2069.replacing_your_lost_ssh_key_pair',
         },
         presentations: {
           home: 'https://www.ovh.com/sg/private-cloud/',
@@ -770,15 +931,19 @@ const constants = {
           vrops: 'https://www.ovh.com/sg/private-cloud/options/vrops.xml',
         },
         vpsCloud: 'https://www.ovh.com/ca/en/vps/vps-cloud.xml',
-        dedicatedIpmi: 'https://docs.ovh.com/gb/en/dedicated/use-ipmi-dedicated-servers/',
-        changeOwner: 'https://www.ovh.co.uk/cgi-bin/procedure/procedureChangeOwner.cgi',
-        domainOrderTrade: "https://www.ovh.co.uk/order/domain/#/legacy/domain/trade/informations?options=~~(domain~~'{domain})",
+        dedicatedIpmi:
+          'https://docs.ovh.com/gb/en/dedicated/use-ipmi-dedicated-servers/',
+        changeOwner:
+          'https://www.ovh.co.uk/cgi-bin/procedure/procedureChangeOwner.cgi',
+        domainOrderTrade:
+          "https://www.ovh.co.uk/order/domain/#/legacy/domain/trade/informations?options=~~(domain~~'{domain})",
         RealTimeMonitoring: 'https://docs.ovh.com/gb/en/dedicated/install-rtm/',
         exchangeOrder: 'https://www.ovh.com/us/emails/hosted-exchange/',
         faq: 'https://www.ovh.es/servidores_dedicados/faq.xml',
         faqVps: 'https://www.ovh.com/us/vps/faq-help.xml',
         dedicatedOrder: 'https://www.ovh.com/sg/dedicated-servers',
-        cloudProjectOrder: 'https://ca.ovh.com/manager/cloud/index.html#/iaas/pci/project/new',
+        cloudProjectOrder:
+          'https://ca.ovh.com/manager/cloud/index.html#/iaas/pci/project/new',
         iplbOrder: 'https://www.ovh.com/world/solutions/load-balancer/',
       },
       WE: {
@@ -788,11 +953,14 @@ const constants = {
         guides: {
           home: 'https://docs.ovh.com/ca/en/',
           privateCloudHome: 'https://docs.ovh.com/ca/en/private-cloud/',
-          reinitPassword: 'http://docs.ovh.ca/en/faqs-server-issues.html#server-password-lost-forgotten',
+          reinitPassword:
+            'http://docs.ovh.ca/en/faqs-server-issues.html#server-password-lost-forgotten',
           ipv6Vps: 'https://www.ovh.com/us/g2365.vps-ipv6',
           sshCreate: 'https://www.ovh.com/ca/en/g1769.creating_ssh_keys',
-          sshAdd: 'https://www.ovh.com/ca/en/g1924.configuring_additionnal_ssh_key',
-          sshChange: 'https://www.ovh.com/ca/en/g2069.replacing_your_lost_ssh_key_pair',
+          sshAdd:
+            'https://www.ovh.com/ca/en/g1924.configuring_additionnal_ssh_key',
+          sshChange:
+            'https://www.ovh.com/ca/en/g2069.replacing_your_lost_ssh_key_pair',
         },
         presentations: {
           home: 'https://www.ovh.com/world/private-cloud/',
@@ -801,28 +969,36 @@ const constants = {
           vrops: 'https://www.ovh.com/world/private-cloud/options/vrops.xml',
         },
         vpsCloud: 'https://www.ovh.com/ca/en/vps/vps-cloud.xml',
-        dedicatedIpmi: 'https://docs.ovh.com/gb/en/dedicated/use-ipmi-dedicated-servers/',
-        changeOwner: 'https://www.ovh.co.uk/cgi-bin/procedure/procedureChangeOwner.cgi',
-        domainOrderTrade: "https://www.ovh.co.uk/order/domain/#/legacy/domain/trade/informations?options=~~(domain~~'{domain})",
+        dedicatedIpmi:
+          'https://docs.ovh.com/gb/en/dedicated/use-ipmi-dedicated-servers/',
+        changeOwner:
+          'https://www.ovh.co.uk/cgi-bin/procedure/procedureChangeOwner.cgi',
+        domainOrderTrade:
+          "https://www.ovh.co.uk/order/domain/#/legacy/domain/trade/informations?options=~~(domain~~'{domain})",
         RealTimeMonitoring: 'https://docs.ovh.com/gb/en/dedicated/install-rtm/',
         exchangeOrder: 'https://www.ovh.com/us/emails/hosted-exchange/',
         faq: 'https://www.ovh.es/servidores_dedicados/faq.xml',
         faqVps: 'https://www.ovh.com/us/vps/faq-help.xml',
         dedicatedOrder: 'https://www.ovh.com/world/dedicated-servers',
-        cloudProjectOrder: 'https://ca.ovh.com/manager/cloud/index.html#/iaas/pci/project/new',
+        cloudProjectOrder:
+          'https://ca.ovh.com/manager/cloud/index.html#/iaas/pci/project/new',
         iplbOrder: 'https://www.ovh.com/world/solutions/load-balancer/',
       },
-      WS: { // eq to es_US
+      WS: {
+        // eq to es_US
         express_order: 'https://ca.ovh.com/en/order/express/#/express/',
         support: 'https://www.ovh.com/fr/support/',
         support_contact: 'https://www.ovh.com/ca/en/support/',
         guides: {
           home: 'https://docs.ovh.com/ca/en/',
           privateCloudHome: 'https://docs.ovh.com/ca/en/private-cloud/',
-          reinitPassword: 'http://docs.ovh.ca/en/faqs-server-issues.html#server-password-lost-forgotten',
+          reinitPassword:
+            'http://docs.ovh.ca/en/faqs-server-issues.html#server-password-lost-forgotten',
           sshCreate: 'https://www.ovh.com/ca/en/g1769.creating_ssh_keys',
-          sshAdd: 'https://www.ovh.com/ca/en/g1924.configuring_additionnal_ssh_key',
-          sshChange: 'https://www.ovh.com/ca/en/g2069.replacing_your_lost_ssh_key_pair',
+          sshAdd:
+            'https://www.ovh.com/ca/en/g1924.configuring_additionnal_ssh_key',
+          sshChange:
+            'https://www.ovh.com/ca/en/g2069.replacing_your_lost_ssh_key_pair',
         },
         presentations: {
           home: 'https://www.ovh.com/world/es/private-cloud/',
@@ -831,15 +1007,19 @@ const constants = {
           vrops: 'https://www.ovh.com/world/es/private-cloud/options/vrops.xml',
         },
         vpsCloud: 'https://www.ovh.com/us/es/vps/vps-cloud.xml',
-        dedicatedIpmi: 'https://docs.ovh.com/gb/en/dedicated/use-ipmi-dedicated-servers/',
-        changeOwner: 'https://www.ovh.es/cgi-bin/procedure/procedureChangeOwner.cgi',
-        domainOrderTrade: "https://www.ovh.es/order/domain/#/legacy/domain/trade/informations?options=~~(domain~~'{domain})",
+        dedicatedIpmi:
+          'https://docs.ovh.com/gb/en/dedicated/use-ipmi-dedicated-servers/',
+        changeOwner:
+          'https://www.ovh.es/cgi-bin/procedure/procedureChangeOwner.cgi',
+        domainOrderTrade:
+          "https://www.ovh.es/order/domain/#/legacy/domain/trade/informations?options=~~(domain~~'{domain})",
         RealTimeMonitoring: 'https://docs.ovh.com/gb/en/dedicated/install-rtm/',
         exchangeOrder: 'https://www.ovh.com/us/es/emails/hosted-exchange/',
         faq: 'https://www.ovh.com/us/es/servidores-dedicados/faq.xml',
         faqVps: 'https://www.ovh.com/us/es/vps/ayuda-faq.xml',
         dedicatedOrder: 'https://www.ovh.com/world/dedicated-servers',
-        cloudProjectOrder: 'https://ca.ovh.com/manager/cloud/index.html#/iaas/pci/project/new',
+        cloudProjectOrder:
+          'https://ca.ovh.com/manager/cloud/index.html#/iaas/pci/project/new',
         iplbOrder: 'https://www.ovh.com/world/es/soluciones/load-balancer/',
       },
     },
@@ -897,26 +1077,46 @@ const constants = {
       CZ: 'http://www.ovh.cz/podpora/new_nic.xml',
     },
     billingRenew: {
-      CA: 'https://ca.ovh.com/fr/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
-      CZ: 'https://www.ovh.cz/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
-      DE: 'https://www.ovh.de/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
-      EN: 'https://www.ovh.co.uk/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
-      ES: 'https://www.ovh.es/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
-      FI: 'https://www.ovh-hosting.fi/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
-      FR: 'https://eu.ovh.com/fr/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
-      GB: 'https://www.ovh.co.uk/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
-      IE: 'https://www.ovh.ie/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
-      IT: 'https://www.ovh.it/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
-      LT: 'https://www.ovh.lt/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
-      MA: 'https://www.ovh.com/ma/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
-      NL: 'https://www.ovh.nl/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
-      PL: 'https://www.ovh.pl/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
-      PT: 'https://www.ovh.pt/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
-      QC: 'https://ca.ovh.com/fr/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
-      RU: 'https://www.ovh.co.uk/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
-      SN: 'https://www.ovh.sn/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
-      TN: 'https://www.ovh.com/tn/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
-      WE: 'https://ca.ovh.com/fr/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
+      CA:
+        'https://ca.ovh.com/fr/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
+      CZ:
+        'https://www.ovh.cz/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
+      DE:
+        'https://www.ovh.de/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
+      EN:
+        'https://www.ovh.co.uk/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
+      ES:
+        'https://www.ovh.es/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
+      FI:
+        'https://www.ovh-hosting.fi/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
+      FR:
+        'https://eu.ovh.com/fr/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
+      GB:
+        'https://www.ovh.co.uk/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
+      IE:
+        'https://www.ovh.ie/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
+      IT:
+        'https://www.ovh.it/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
+      LT:
+        'https://www.ovh.lt/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
+      MA:
+        'https://www.ovh.com/ma/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
+      NL:
+        'https://www.ovh.nl/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
+      PL:
+        'https://www.ovh.pl/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
+      PT:
+        'https://www.ovh.pt/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
+      QC:
+        'https://ca.ovh.com/fr/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
+      RU:
+        'https://www.ovh.co.uk/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
+      SN:
+        'https://www.ovh.sn/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
+      TN:
+        'https://www.ovh.com/tn/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
+      WE:
+        'https://ca.ovh.com/fr/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
     },
     REDIRECT_URLS: {
       listTicket: 'https://ca.ovh.com/manager/index.html#/ticket',
@@ -946,32 +1146,49 @@ const constants = {
           all: 'https://support.us.ovhcloud.com/hc/en-us',
           home: 'https://support.us.ovhcloud.com/hc/en-us',
           privateCloudHome: 'https://docs.ovh.com/us/en/private-cloud/',
-          reinitPassword: 'http://docs.ovh.ca/en/faqs-server-issues.html#server-password-lost-forgotten',
+          reinitPassword:
+            'http://docs.ovh.ca/en/faqs-server-issues.html#server-password-lost-forgotten',
           ipv6Vps: 'https://www.ovh.com/ca/en/g2365.vps-ipv6',
-          sshCreate: 'http://support.us.ovhcloud.com/hc/en-us/articles/115001588250-SSH-Key-Management',
-          sshAdd: 'http://support.us.ovhcloud.com/hc/en-us/articles/115001588250-SSH-Key-Management',
-          sshChange: 'http://support.us.ovhcloud.com/hc/en-us/articles/115001588250-SSH-Key-Management',
-          nsx: 'https://us.ovhcloud.com/products/hosted-private-cloud/vmware-nsx',
-          vrops: 'https://us.ovhcloud.com/products/hosted-private-cloud/vmware-vrealize-operations',
+          sshCreate:
+            'http://support.us.ovhcloud.com/hc/en-us/articles/115001588250-SSH-Key-Management',
+          sshAdd:
+            'http://support.us.ovhcloud.com/hc/en-us/articles/115001588250-SSH-Key-Management',
+          sshChange:
+            'http://support.us.ovhcloud.com/hc/en-us/articles/115001588250-SSH-Key-Management',
+          nsx:
+            'https://us.ovhcloud.com/products/hosted-private-cloud/vmware-nsx',
+          vrops:
+            'https://us.ovhcloud.com/products/hosted-private-cloud/vmware-vrealize-operations',
         },
         presentations: {
           home: 'https://us.ovhcloud.com/products/hosted-private-cloud/',
-          nsx: 'https://us.ovhcloud.com/products/hosted-private-cloud/vmware-nsx',
-          veeam: 'https://us.ovhcloud.com/products/hosted-private-cloud/managed-veeam-backup',
-          vrops: 'https://us.ovhcloud.com/products/hosted-private-cloud/vmware-vrealize-operations',
+          nsx:
+            'https://us.ovhcloud.com/products/hosted-private-cloud/vmware-nsx',
+          veeam:
+            'https://us.ovhcloud.com/products/hosted-private-cloud/managed-veeam-backup',
+          vrops:
+            'https://us.ovhcloud.com/products/hosted-private-cloud/vmware-vrealize-operations',
         },
         vpsCloud: 'https://www.ovh.com/ca/en/vps/vps-cloud.xml',
-        dedicatedIpmi: 'https://docs.ovh.com/gb/en/dedicated/use-ipmi-dedicated-servers/#testing-and-rebooting-the-ipmi',
-        changeOwner: 'https://www.ovh.co.uk/cgi-bin/procedure/procedureChangeOwner.cgi',
-        domainOrderTrade: "https://www.ovh.co.uk/order/domain/#/legacy/domain/trade/informations?options=~~(domain~~'{domain})",
-        RealTimeMonitoring: 'https://support.us.ovhcloud.com/hc/en-us/articles/115001821044-Learning-About-OVH-US-Monitoring',
+        dedicatedIpmi:
+          'https://docs.ovh.com/gb/en/dedicated/use-ipmi-dedicated-servers/#testing-and-rebooting-the-ipmi',
+        changeOwner:
+          'https://www.ovh.co.uk/cgi-bin/procedure/procedureChangeOwner.cgi',
+        domainOrderTrade:
+          "https://www.ovh.co.uk/order/domain/#/legacy/domain/trade/informations?options=~~(domain~~'{domain})",
+        RealTimeMonitoring:
+          'https://support.us.ovhcloud.com/hc/en-us/articles/115001821044-Learning-About-OVH-US-Monitoring',
         exchangeOrder: 'https://www.ovh.com/ca/en/emails/hosted-exchange/',
         faq: 'https://www.ovh.com/ca/en/dedicated-servers/faq.xml',
         faqVps: 'https://www.ovh.com/ca/en/vps/faq-help.xml',
-        dedicatedOrder: 'https://us.ovhcloud.com/order/dedicated/#/dedicated/select',
-        vrackOrder: "https://us.ovhcloud.com/order/express/#/express/review?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
-        cloudProjectOrder: 'https://us.ovhcloud.com/manager/cloud/#/iaas/pci/offer',
-        veeamBackup: 'https://us.ovhcloud.com/products/hosted-private-cloud/managed-veeam-backup',
+        dedicatedOrder:
+          'https://us.ovhcloud.com/order/dedicated/#/dedicated/select',
+        vrackOrder:
+          "https://us.ovhcloud.com/order/express/#/express/review?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
+        cloudProjectOrder:
+          'https://us.ovhcloud.com/manager/cloud/#/iaas/pci/offer',
+        veeamBackup:
+          'https://us.ovhcloud.com/products/hosted-private-cloud/managed-veeam-backup',
         iplbOrder: 'https://www.ovh.com/ca/en/solutions/load-balancer/',
       },
     },
@@ -1002,7 +1219,8 @@ const constants = {
     MANAGER_URLS: {
       dedicated: 'https://www.us.ovhcloud.com/manager/dedicated/',
       cloud: 'https://www.us.ovhcloud.com/manager/cloud/repsac',
-      publicCloud: 'https://www.us.ovhcloud.com/manager/public-cloud/index.html#/',
+      publicCloud:
+        'https://www.us.ovhcloud.com/manager/public-cloud/index.html#/',
     },
     TOP_GUIDES: {
       sd: {
@@ -1010,7 +1228,8 @@ const constants = {
           {
             title: 'core_sd_top_guide_7_title',
             atInternetClickTag: 'TopGuide-DedicatedServers-7',
-            url: 'https://support.us.ovhcloud.com/hc/en-us/articles/115001754490-Rescue-Mode',
+            url:
+              'https://support.us.ovhcloud.com/hc/en-us/articles/115001754490-Rescue-Mode',
           },
         ],
       },
@@ -1019,29 +1238,50 @@ const constants = {
       default: 'https://us.ovhcloud.com/auth/signup/',
     },
     billingRenew: {
-      CA: 'https://ca.ovh.com/fr/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
-      CZ: 'https://www.ovh.cz/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
-      DE: 'https://www.ovh.de/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
-      EN: 'https://www.ovh.co.uk/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
-      ES: 'https://www.ovh.es/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
-      FI: 'https://www.ovh-hosting.fi/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
-      FR: 'https://eu.ovh.com/fr/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
-      GB: 'https://www.ovh.co.uk/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
-      IE: 'https://www.ovh.ie/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
-      IT: 'https://www.ovh.it/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
-      LT: 'https://www.ovh.lt/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
-      MA: 'https://www.ovh.com/ma/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
-      NL: 'https://www.ovh.nl/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
-      PL: 'https://www.ovh.pl/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
-      PT: 'https://www.ovh.pt/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
-      QC: 'https://ca.ovh.com/fr/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
-      RU: 'https://www.ovh.co.uk/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
-      SN: 'https://www.ovh.sn/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
-      TN: 'https://www.ovh.com/tn/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
-      WE: 'https://ca.ovh.com/fr/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
+      CA:
+        'https://ca.ovh.com/fr/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
+      CZ:
+        'https://www.ovh.cz/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
+      DE:
+        'https://www.ovh.de/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
+      EN:
+        'https://www.ovh.co.uk/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
+      ES:
+        'https://www.ovh.es/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
+      FI:
+        'https://www.ovh-hosting.fi/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
+      FR:
+        'https://eu.ovh.com/fr/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
+      GB:
+        'https://www.ovh.co.uk/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
+      IE:
+        'https://www.ovh.ie/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
+      IT:
+        'https://www.ovh.it/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
+      LT:
+        'https://www.ovh.lt/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
+      MA:
+        'https://www.ovh.com/ma/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
+      NL:
+        'https://www.ovh.nl/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
+      PL:
+        'https://www.ovh.pl/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
+      PT:
+        'https://www.ovh.pt/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
+      QC:
+        'https://ca.ovh.com/fr/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
+      RU:
+        'https://www.ovh.co.uk/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
+      SN:
+        'https://www.ovh.sn/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
+      TN:
+        'https://www.ovh.com/tn/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
+      WE:
+        'https://ca.ovh.com/fr/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
     },
     REDIRECT_URLS: {
-      listTicket: 'https://us.ovhcloud.com/manager/dedicated/index.html#/ticket',
+      listTicket:
+        'https://us.ovhcloud.com/manager/dedicated/index.html#/ticket',
     },
     SUPPORT: {
       US: '1-855-684-5463',
@@ -1078,7 +1318,13 @@ for (var lang in constants.US.URLS) {
 /* eslint-enable no-restricted-syntax, vars-on-top, no-var, block-scoped-var,
 no-prototype-builtins, no-redeclare */
 
-constants.CA.TOP_GUIDES = defaults(constants.CA.TOP_GUIDES, constants.EU.TOP_GUIDES);
-constants.US.TOP_GUIDES = defaults(constants.US.TOP_GUIDES, constants.EU.TOP_GUIDES);
+constants.CA.TOP_GUIDES = defaults(
+  constants.CA.TOP_GUIDES,
+  constants.EU.TOP_GUIDES,
+);
+constants.US.TOP_GUIDES = defaults(
+  constants.US.TOP_GUIDES,
+  constants.EU.TOP_GUIDES,
+);
 
 export default constants;

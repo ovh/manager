@@ -20,7 +20,9 @@ export default () => {
       // check for mandatory options
       mandatoryOptions.forEach((option) => {
         if (!options[option]) {
-          throw new Error(`${option} option must be specified when creating a new TucVoipLinePhone`);
+          throw new Error(
+            `${option} option must be specified when creating a new TucVoipLinePhone`,
+          );
         }
       });
 

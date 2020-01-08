@@ -5,8 +5,15 @@ import pick from 'lodash/pick';
 export default class {
   /* @ngInject */
   constructor(
-    $q, $stateParams, $timeout, $translate, $uibModalInstance,
-    OvhApiSms, TucSmsMediator, template, TucToastError,
+    $q,
+    $stateParams,
+    $timeout,
+    $translate,
+    $uibModalInstance,
+    OvhApiSms,
+    TucSmsMediator,
+    template,
+    TucToastError,
   ) {
     this.$q = $q;
     this.$stateParams = $stateParams;
@@ -36,13 +43,16 @@ export default class {
     this.attributes = ['name', 'activity', 'description', 'message', 'status'];
 
     this.loading.init = true;
-    return this.TucSmsMediator.getApiScheme().then((schema) => {
-      this.availableActivities = schema.models['sms.TypeTemplateEnum'].enum;
-    }).catch((err) => {
-      this.TucToastError(err);
-    }).finally(() => {
-      this.loading.init = false;
-    });
+    return this.TucSmsMediator.getApiScheme()
+      .then((schema) => {
+        this.availableActivities = schema.models['sms.TypeTemplateEnum'].enum;
+      })
+      .catch((err) => {
+        this.TucToastError(err);
+      })
+      .finally(() => {
+        this.loading.init = false;
+      });
   }
 
   /**
@@ -51,20 +61,28 @@ export default class {
    */
   edit() {
     this.loading.edit = true;
-    return this.$q.all([
-      this.api.sms.templates.edit({
-        serviceName: this.$stateParams.serviceName,
-        name: this.model.template.name,
-      }, this.model.template).$promise,
-      this.$timeout(angular.noop, 1000),
-    ]).then(() => {
-      this.loading.add = false;
-      this.edited = true;
-      return this.$timeout(() => this.close(), 1500);
-    }).catch((error) => this.cancel({
-      type: 'API',
-      msg: error,
-    }));
+    return this.$q
+      .all([
+        this.api.sms.templates.edit(
+          {
+            serviceName: this.$stateParams.serviceName,
+            name: this.model.template.name,
+          },
+          this.model.template,
+        ).$promise,
+        this.$timeout(angular.noop, 1000),
+      ])
+      .then(() => {
+        this.loading.add = false;
+        this.edited = true;
+        return this.$timeout(() => this.close(), 1500);
+      })
+      .catch((error) =>
+        this.cancel({
+          type: 'API',
+          msg: error,
+        }),
+      );
   }
 
   cancel(message) {

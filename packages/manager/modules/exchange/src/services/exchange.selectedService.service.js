@@ -13,7 +13,9 @@ export default class ExchangeSelectedService {
      */
     this.ACCOUNT_CREATION_METHODS = {
       ADDING: this.$translate.instant('exchange_accountCreationMethods_adding'),
-      ORDERING: this.$translate.instant('exchange_accountCreationMethods_ordering'),
+      ORDERING: this.$translate.instant(
+        'exchange_accountCreationMethods_ordering',
+      ),
     };
 
     /**
@@ -35,7 +37,9 @@ export default class ExchangeSelectedService {
        * Pay as you go services can add new functionnal (not configureme.me) accounts
        */
       PAY_AS_YOU_GO: {
-        displayValue: this.$translate.instant('exchange_contractTypes_payAsYouGo'),
+        displayValue: this.$translate.instant(
+          'exchange_contractTypes_payAsYouGo',
+        ),
         accountCreationMethod: this.ACCOUNT_CREATION_METHODS.ORDERING,
       },
     };
@@ -45,8 +49,9 @@ export default class ExchangeSelectedService {
    * @returns {ExchangeServiceContractTypes} The contract type the current service is linked to
    */
   getContractType() {
-    return this.exchangeServiceInfrastructure.isHosted()
-      || (this.exchangeServiceInfrastructure.isProvider() && this.exchangeVersion.isAfter(2010))
+    return this.exchangeServiceInfrastructure.isHosted() ||
+      (this.exchangeServiceInfrastructure.isProvider() &&
+        this.exchangeVersion.isAfter(2010))
       ? this.CONTRACT_TYPES.PREPAID
       : this.CONTRACT_TYPES.PAY_AS_YOU_GO;
   }
@@ -64,8 +69,9 @@ export default class ExchangeSelectedService {
    */
   canUpgradeTo300Gb() {
     return (
-      this.exchangeServiceInfrastructure.isHosted()
-      || (this.exchangeServiceInfrastructure.isProvider() && this.exchangeVersion.isAfter(2010))
+      this.exchangeServiceInfrastructure.isHosted() ||
+      (this.exchangeServiceInfrastructure.isProvider() &&
+        this.exchangeVersion.isAfter(2010))
     );
   }
 }

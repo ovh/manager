@@ -46,7 +46,9 @@ angular.module('App').controller(
           })
           .catch(() => {
             this.Alerter.error(
-              this.$translate.instant('hosting_tab_DOMAINS_multisite_logs_generation_error'),
+              this.$translate.instant(
+                'hosting_tab_DOMAINS_multisite_logs_generation_error',
+              ),
               this.$scope.alerts.main,
             );
           })

@@ -4,9 +4,12 @@ class CloudProjectSSHKeyService {
   }
 
   createSSHKey(serviceName, sshKey) {
-    return this.OvhApiCloudProjectSshKey.v6().save({
-      serviceName,
-    }, sshKey).$promise;
+    return this.OvhApiCloudProjectSshKey.v6().save(
+      {
+        serviceName,
+      },
+      sshKey,
+    ).$promise;
   }
 
   getSSHKeys(serviceName) {
@@ -16,4 +19,6 @@ class CloudProjectSSHKeyService {
   }
 }
 
-angular.module('managerApp').service('CloudProjectSSHKeyService', CloudProjectSSHKeyService);
+angular
+  .module('managerApp')
+  .service('CloudProjectSSHKeyService', CloudProjectSSHKeyService);

@@ -24,8 +24,6 @@ angular
   .component('ovhManagerOverTheBoxes', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
-export {
-  OTB_AVAILABILITY,
-};
+export { OTB_AVAILABILITY };
 
 export default moduleName;

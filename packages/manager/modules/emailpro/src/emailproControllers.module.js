@@ -61,7 +61,8 @@ import emailproToolboxDisclaimerCtrl from './emailpro-toolbox-disclaimer.control
 
 const moduleName = 'Module.emailpro.controllers';
 
-angular.module(moduleName, [])
+angular
+  .module(moduleName, [])
   .controller('EmailProCtrl', emailproCtrl)
   .controller('EmailProTabsCtrl', emailproTabsCtrl)
   .controller('EmailProTabAccountsCtrl', emailproTabsAccountCtrl)
@@ -73,7 +74,10 @@ angular.module(moduleName, [])
   .controller('EmailProAddGroupAliasCtrl', emailproAddGroupAliasCtrl)
   .controller('EmailProRemoveGroupAliasCtrl', emailproRemoveGroupAliasCtrl)
   .controller('EmailProAccountDelegationCtrl', emailproAccountDelegationCtrl)
-  .controller('EmailProMailingListDelegationCtrl', emailproMailingListDelegationCtrl)
+  .controller(
+    'EmailProMailingListDelegationCtrl',
+    emailproMailingListDelegationCtrl,
+  )
   .controller('EmailProDelegationSettingsCtrl', emailproDelegationSettingsCtrl)
   .controller('EmailProOrderAccountCtrl', emailproOrderAccountCtrl)
   .controller('EmailProRemoveAccountCtrl', emailproRemoveAccountCtrl)
@@ -86,34 +90,103 @@ angular.module(moduleName, [])
   .controller('EmailProAddDomainController', emailproAddDomainCtrl)
   .controller('EmailProDomainMxAutoconfigCtrl', emailproDomainMxAutoconfigCtrl)
   .controller('EmailProRemoveDomainCtrl', emailproRemoveDomainCtrl)
-  .controller('EmailProDomainSrvAutoconfigCtrl', emailproDomainSrvAutoconfigCtrl)
+  .controller(
+    'EmailProDomainSrvAutoconfigCtrl',
+    emailproDomainSrvAutoconfigCtrl,
+  )
   .controller('EmailProUpdateDomainCtrl', emailproUpdateDomainCtrl)
-  .controller('EmailProTabExternalContactsCtrl', emailproTabExternalContactsCtrl)
+  .controller(
+    'EmailProTabExternalContactsCtrl',
+    emailproTabExternalContactsCtrl,
+  )
   .controller('EmailProAddExternalContactCtrl', emailproAddExternalContactCtrl)
-  .controller('EmailProExternalContactsModifyCtrl', emailproExternalContactsModifyCtrl)
-  .controller('EmailProExternalContactsDeleteCtrl', emailproExternalContactsDeleteCtrl)
+  .controller(
+    'EmailProExternalContactsModifyCtrl',
+    emailproExternalContactsModifyCtrl,
+  )
+  .controller(
+    'EmailProExternalContactsDeleteCtrl',
+    emailproExternalContactsDeleteCtrl,
+  )
   .controller('EmailProTabInformationCtrl', emailproTabInformationCtrl)
   .controller('EmailProLicenseHistoryCtrl', emailproLicenseHistoryCtrl)
-  .controller('EmailMXPlanEmailRedirectionCtrl', emailproMxPlanEmailRedirectionCtrl)
-  .controller('EmailMXPlanCreateRedirectionCtrl', emailproMxPlanCreateRedirectionCtrl)
-  .controller('EmailMXPlanDeleteRedirectionCtrl', emailproMxPlanDeleteRedirectionCtrl)
-  .controller('EmailMXPlanUpdateRedirectionCtrl', emailproMxPlanUpdateRedirectionCtrl)
+  .controller(
+    'EmailMXPlanEmailRedirectionCtrl',
+    emailproMxPlanEmailRedirectionCtrl,
+  )
+  .controller(
+    'EmailMXPlanCreateRedirectionCtrl',
+    emailproMxPlanCreateRedirectionCtrl,
+  )
+  .controller(
+    'EmailMXPlanDeleteRedirectionCtrl',
+    emailproMxPlanDeleteRedirectionCtrl,
+  )
+  .controller(
+    'EmailMXPlanUpdateRedirectionCtrl',
+    emailproMxPlanUpdateRedirectionCtrl,
+  )
   .controller('EmailProServicesConfigureCtrl', emailproServicesConfigureCtrl)
-  .controller('EmailProServicesConfigureFormCtrl', emailproServicesConfigureFormCtrl)
-  .controller('EmailProMXPlanMailingListsTabModulesCtrl', emailproMxPlanMailingListsTabsModulesCtrl)
-  .controller('EmailProMXPlanMailingListsTabViewController', emailproMxPlanMailingListsTabViewCtrl)
-  .controller('EmailProMXPlanMailingListsCreateCtrl', emailproMxPlanMailingListsCreateCtrl)
-  .controller('EmailProMXPlanMailingListsDeleteCtrl', emailproMxPlanMailingListsDeleteCtrl)
-  .controller('EmailProMXPlanMailingListsDeleteModeratorCtrl', emailproMxPlanMailingListsDeleteModeratorCtrl)
-  .controller('EmailProMXPlanMailingListsModeratorsCtrl', emailproMxPlanMailingListsModeratorsCtrl)
-  .controller('EmailProMXPlanMailingListsCreateModeratorCtrl', emailproMxPlanMailingListsCreateModeratorCtrl)
-  .controller('EmailProMXPlanMailingListsCreateModeratorsCtrl', emailproMxPlanMailingListsCreateModeratorsCtrl)
-  .controller('EmailProMXPlanMailingListsSendListByEmailCtrl', emailproMxPlanMailingListsSendListsByEmailCtrl)
-  .controller('EmailProMXPlanMailingListsDeleteSubscriberCtrl', emailproMxPlanMailingListsDeleteSubscriberCtrl)
-  .controller('EmailProMXPlanMailingListsSubscribersCtrl', emailproMxPlanMailingListsSubscribersCtrl)
-  .controller('EmailProMXPlanMailingListsCreateSubscriberCtrl', emailproMxPlanMailingListsCreateSubscriberCtrl)
-  .controller('EmailProMXPlanMailingListsDeleteSubscribersCtrl', emailproMxPlanMailingListsDeleteSubscribersCtrl)
-  .controller('EmailProMXPlanMailingListsUpdateCtrl', emailproMxPlanMailingListsUpdateCtrl)
+  .controller(
+    'EmailProServicesConfigureFormCtrl',
+    emailproServicesConfigureFormCtrl,
+  )
+  .controller(
+    'EmailProMXPlanMailingListsTabModulesCtrl',
+    emailproMxPlanMailingListsTabsModulesCtrl,
+  )
+  .controller(
+    'EmailProMXPlanMailingListsTabViewController',
+    emailproMxPlanMailingListsTabViewCtrl,
+  )
+  .controller(
+    'EmailProMXPlanMailingListsCreateCtrl',
+    emailproMxPlanMailingListsCreateCtrl,
+  )
+  .controller(
+    'EmailProMXPlanMailingListsDeleteCtrl',
+    emailproMxPlanMailingListsDeleteCtrl,
+  )
+  .controller(
+    'EmailProMXPlanMailingListsDeleteModeratorCtrl',
+    emailproMxPlanMailingListsDeleteModeratorCtrl,
+  )
+  .controller(
+    'EmailProMXPlanMailingListsModeratorsCtrl',
+    emailproMxPlanMailingListsModeratorsCtrl,
+  )
+  .controller(
+    'EmailProMXPlanMailingListsCreateModeratorCtrl',
+    emailproMxPlanMailingListsCreateModeratorCtrl,
+  )
+  .controller(
+    'EmailProMXPlanMailingListsCreateModeratorsCtrl',
+    emailproMxPlanMailingListsCreateModeratorsCtrl,
+  )
+  .controller(
+    'EmailProMXPlanMailingListsSendListByEmailCtrl',
+    emailproMxPlanMailingListsSendListsByEmailCtrl,
+  )
+  .controller(
+    'EmailProMXPlanMailingListsDeleteSubscriberCtrl',
+    emailproMxPlanMailingListsDeleteSubscriberCtrl,
+  )
+  .controller(
+    'EmailProMXPlanMailingListsSubscribersCtrl',
+    emailproMxPlanMailingListsSubscribersCtrl,
+  )
+  .controller(
+    'EmailProMXPlanMailingListsCreateSubscriberCtrl',
+    emailproMxPlanMailingListsCreateSubscriberCtrl,
+  )
+  .controller(
+    'EmailProMXPlanMailingListsDeleteSubscribersCtrl',
+    emailproMxPlanMailingListsDeleteSubscribersCtrl,
+  )
+  .controller(
+    'EmailProMXPlanMailingListsUpdateCtrl',
+    emailproMxPlanMailingListsUpdateCtrl,
+  )
   .controller('EmailProRemoveEmailProCtrl', emailproRemoveEmailProCtrl)
   .controller('EmailProTabTasksCtrl', emailproTabTasksCtrl)
   .controller('EmailProUpdateRenewCtrl', emailproUpdateRenewCtrl)

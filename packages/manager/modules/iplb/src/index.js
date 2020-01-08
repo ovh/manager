@@ -71,10 +71,16 @@ angular
     IplbConfigurationModule,
   ])
   .config(routing)
-  .config(/* @ngInject */($qProvider, ovhDocUrlProvider, TranslateServiceProvider) => {
-    ovhDocUrlProvider.setUserLocale(TranslateServiceProvider.getUserLocale());
-    $qProvider.errorOnUnhandledRejections(false);
-  })
+  .config(
+    /* @ngInject */ (
+      $qProvider,
+      ovhDocUrlProvider,
+      TranslateServiceProvider,
+    ) => {
+      ovhDocUrlProvider.setUserLocale(TranslateServiceProvider.getUserLocale());
+      $qProvider.errorOnUnhandledRejections(false);
+    },
+  )
   .controller('IpLoadBalancerDetailCtrl', IpLoadBalancerDetailCtrl)
   .service('IpLoadBalancerActionService', IpLoadBalancerActionService)
   .service('IpLoadBalancerCipherService', IpLoadBalancerCipherService)
@@ -84,7 +90,10 @@ angular
   .service('IpLoadBalancerZoneService', IpLoadBalancerZoneService)
   .constant('IpLoadBalancerConstant', IpLoadBalancerConstant)
   .controller('IpLoadBalancerNatIpDetailCtrl', IpLoadBalancerNatIpDetailCtrl)
-  .controller('IpLoadBalancerFailoverIpDetailCtrl', IpLoadBalancerFailoverIpDetailCtrl)
+  .controller(
+    'IpLoadBalancerFailoverIpDetailCtrl',
+    IpLoadBalancerFailoverIpDetailCtrl,
+  )
   .controller('IpLoadBalancerCipherChangeCtrl', IpLoadBalancerCipherChangeCtrl)
   .run(/* @ngTranslationsInject:json ./translations */);
 

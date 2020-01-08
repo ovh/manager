@@ -1,67 +1,82 @@
 <section class="telecom-sms-options-recredit">
-
     <header>
-        <tuc-section-back-link data-tuc-section-back-link-to-state="sms.service.options"
-                           data-tuc-section-back-link-title="{{ 'sms_section_back_link' | translate }}">
+        <tuc-section-back-link
+            data-tuc-section-back-link-to-state="sms.service.options"
+            data-tuc-section-back-link-title="{{ 'sms_section_back_link' | translate }}"
+        >
         </tuc-section-back-link>
         <h1 data-translate="sms_options_recredit_title"></h1>
     </header>
 
-    <main class="telecom-section-content"
-          role="main">
-
+    <main class="telecom-section-content" role="main">
         <tuc-toast-message></tuc-toast-message>
 
         <div class="row">
             <div class="col-md-6 widget-presentation">
-
                 <header class="widget-presentation-header">
-                    <h2 class="widget-presentation-title"
-                        data-translate="sms_options_recredit_information_title">
-                    </h2>
+                    <h2
+                        class="widget-presentation-title"
+                        data-translate="sms_options_recredit_information_title"
+                    ></h2>
                 </header>
 
                 <p data-translate="sms_options_recredit_information_text"></p>
                 <p data-translate="sms_options_recredit_information_note"></p>
-
             </div>
 
             <div class="col-md-6 widget-presentation">
-
                 <header class="widget-presentation-header">
-                    <h2 class="widget-presentation-title"
-                        data-translate="sms_options_recredit_manage_title">
-                    </h2>
+                    <h2
+                        class="widget-presentation-title"
+                        data-translate="sms_options_recredit_manage_title"
+                    ></h2>
                 </header>
 
-                <div class="text-center" data-ng-if="TelecomSmsOptionsRecreditCtrl.loading.init">
+                <div
+                    class="text-center"
+                    data-ng-if="TelecomSmsOptionsRecreditCtrl.loading.init"
+                >
                     <oui-spinner></oui-spinner>
                 </div>
 
                 <dl data-ng-if="!TelecomSmsOptionsRecreditCtrl.loading.init">
-                    <dt data-translate="sms_options_recredit_manage_threshold_label"></dt>
+                    <dt
+                        data-translate="sms_options_recredit_manage_threshold_label"
+                    ></dt>
                     <dd>
-                        <span data-translate="sms_options_recredit_manage_threshold_text"
-                              data-translate-values="{ creditThresholdForAutomaticRecredit: TelecomSmsOptionsRecreditCtrl.service.creditThresholdForAutomaticRecredit }">
+                        <span
+                            data-translate="sms_options_recredit_manage_threshold_text"
+                            data-translate-values="{ creditThresholdForAutomaticRecredit: TelecomSmsOptionsRecreditCtrl.service.creditThresholdForAutomaticRecredit }"
+                        >
                         </span>
                     </dd>
-                    <dt data-translate="sms_options_recredit_manage_quantity_label"></dt>
+                    <dt
+                        data-translate="sms_options_recredit_manage_quantity_label"
+                    ></dt>
                     <dd>
-                        <span data-ng-if="TelecomSmsOptionsRecreditCtrl.service.automaticRecreditAmount"
-                              data-translate="sms_options_recredit_manage_quantity_text"
-                              data-translate-values="{ automaticRecreditAmount: TelecomSmsOptionsRecreditCtrl.service.automaticRecreditAmount }">
+                        <span
+                            data-ng-if="TelecomSmsOptionsRecreditCtrl.service.automaticRecreditAmount"
+                            data-translate="sms_options_recredit_manage_quantity_text"
+                            data-translate-values="{ automaticRecreditAmount: TelecomSmsOptionsRecreditCtrl.service.automaticRecreditAmount }"
+                        >
                         </span>
-                        <span data-ng-if="!TelecomSmsOptionsRecreditCtrl.service.automaticRecreditAmount"
-                              data-translate="sms_options_recredit_manage_quantity_empty_text">
+                        <span
+                            data-ng-if="!TelecomSmsOptionsRecreditCtrl.service.automaticRecreditAmount"
+                            data-translate="sms_options_recredit_manage_quantity_empty_text"
+                        >
                         </span>
 
-                        <span data-ng-if="!TelecomSmsOptionsRecreditCtrl.loading.price && TelecomSmsOptionsRecreditCtrl.service.price"
-                              data-translate="sms_options_recredit_manage_quantity_price_text"
-                              data-translate-values="{ price: TelecomSmsOptionsRecreditCtrl.service.price.text }">
+                        <span
+                            data-ng-if="!TelecomSmsOptionsRecreditCtrl.loading.price && TelecomSmsOptionsRecreditCtrl.service.price"
+                            data-translate="sms_options_recredit_manage_quantity_price_text"
+                            data-translate-values="{ price: TelecomSmsOptionsRecreditCtrl.service.price.text }"
+                        >
                         </span>
-                        <oui-spinner class="ml-2"
-                                     data-ng-if="TelecomSmsOptionsRecreditCtrl.loading.price"
-                                     data-size="s">
+                        <oui-spinner
+                            class="ml-2"
+                            data-ng-if="TelecomSmsOptionsRecreditCtrl.loading.price"
+                            data-size="s"
+                        >
                         </oui-spinner>
                     </dd>
                 </dl>
@@ -71,15 +86,12 @@
                     class="btn btn-primary"
                     data-ng-if="!TelecomSmsOptionsRecreditCtrl.loading.init"
                     data-ng-click="TelecomSmsOptionsRecreditCtrl.update(TelecomSmsOptionsRecreditCtrl.service)"
-                    data-translate="sms_modify">
-                </button>
-
+                    data-translate="sms_modify"
+                ></button>
             </div>
         </div>
         <!-- /.row -->
-
     </main>
     <!-- /.telecom-section-content -->
-
 </section>
 <!-- /.telecom-sms-options-recredit -->

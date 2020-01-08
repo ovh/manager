@@ -9,11 +9,7 @@ import TucToastError from './toast-error.service';
 const moduleName = 'tucToastError';
 
 angular
-  .module(moduleName, [
-    'ngTranslateAsyncLoader',
-    translate,
-    TucToast,
-  ])
+  .module(moduleName, ['ngTranslateAsyncLoader', translate, TucToast])
   .service('TucToastError', TucToastError)
   .run(/* @ngTranslationsInject:json ./translations */);
 

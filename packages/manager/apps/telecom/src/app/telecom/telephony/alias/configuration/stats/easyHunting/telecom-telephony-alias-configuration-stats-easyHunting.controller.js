@@ -1,9 +1,16 @@
-angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationStatsEasyHuntingCtrl', function TelecomTelephonyAliasConfigurationStatsEasyHuntingCtrl(OvhApiTelephony) {
-  const self = this;
+angular
+  .module('managerApp')
+  .controller(
+    'TelecomTelephonyAliasConfigurationStatsEasyHuntingCtrl',
+    function TelecomTelephonyAliasConfigurationStatsEasyHuntingCtrl(
+      OvhApiTelephony,
+    ) {
+      const self = this;
 
-  function init() {
-    self.apiEndpoint = OvhApiTelephony.EasyHunting();
-  }
+      function init() {
+        self.apiEndpoint = OvhApiTelephony.EasyHunting();
+      }
 
-  init();
-});
+      init();
+    },
+  );

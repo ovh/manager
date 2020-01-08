@@ -9,11 +9,6 @@ import routing from './endpoints.routing';
 
 const moduleName = 'ovhManagerTelecomCarrierSipDashboardEndpoints';
 
-angular
-  .module(moduleName, [
-    ovhManagerCarrierSip,
-    uiRouter,
-  ])
-  .config(routing);
+angular.module(moduleName, [ovhManagerCarrierSip, uiRouter]).config(routing);
 
 export default moduleName;

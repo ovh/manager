@@ -1,6 +1,6 @@
-angular
-  .module('services')
-  .service('HostingLocalSeo', class HostingLocalSeo {
+angular.module('services').service(
+  'HostingLocalSeo',
+  class HostingLocalSeo {
     constructor($window, OvhHttp, User) {
       this.$window = $window;
       this.OvhHttp = OvhHttp;
@@ -14,15 +14,21 @@ angular
     }
 
     getAccount(serviceName, accountId) {
-      return this.OvhHttp.get(`/hosting/web/${serviceName}/localSeo/account/${accountId}`, {
-        rootPath: 'apiv6',
-      });
+      return this.OvhHttp.get(
+        `/hosting/web/${serviceName}/localSeo/account/${accountId}`,
+        {
+          rootPath: 'apiv6',
+        },
+      );
     }
 
     login(serviceName, accountId) {
-      return this.OvhHttp.post(`/hosting/web/${serviceName}/localSeo/account/${accountId}/login`, {
-        rootPath: 'apiv6',
-      });
+      return this.OvhHttp.post(
+        `/hosting/web/${serviceName}/localSeo/account/${accountId}/login`,
+        {
+          rootPath: 'apiv6',
+        },
+      );
     }
 
     getLocations(serviceName) {
@@ -32,9 +38,12 @@ angular
     }
 
     getLocation(serviceName, locationId) {
-      return this.OvhHttp.get(`/hosting/web/${serviceName}/localSeo/location/${locationId}`, {
-        rootPath: 'apiv6',
-      });
+      return this.OvhHttp.get(
+        `/hosting/web/${serviceName}/localSeo/location/${locationId}`,
+        {
+          rootPath: 'apiv6',
+        },
+      );
     }
 
     deleteLocation(serviceName, locationId) {
@@ -47,22 +56,25 @@ angular
     goToLocalSeoOrder(serviceName) {
       const win = this.$window.open('', '_blank');
       win.opener = null;
-      return this.User.getUrlOfEndsWithSubsidiary('localseo_order_options_service')
-        .then((url) => {
-          win.location = url.replace('{serviceName}', serviceName);
-        });
+      return this.User.getUrlOfEndsWithSubsidiary(
+        'localseo_order_options_service',
+      ).then((url) => {
+        win.location = url.replace('{serviceName}', serviceName);
+      });
     }
 
     goToVisibilityChecker() {
       const win = this.$window.open('', '_blank');
       win.opener = null;
-      return this.getVisibilityCheckerURL()
-        .then((url) => {
-          win.location = url;
-        });
+      return this.getVisibilityCheckerURL().then((url) => {
+        win.location = url;
+      });
     }
 
     getVisibilityCheckerURL() {
-      return this.User.getUrlOfEndsWithSubsidiary('localseo_visibility_checker');
+      return this.User.getUrlOfEndsWithSubsidiary(
+        'localseo_visibility_checker',
+      );
     }
-  });
+  },
+);

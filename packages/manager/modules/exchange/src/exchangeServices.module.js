@@ -56,7 +56,13 @@ angular
   .service('exchangeVersion', exchangeVersion)
   .service('ExchangeSharedAccounts', ExchangeSharedAccounts)
   .service('ExchangePublicFolders', ExchangePublicFolders)
-  .service('wizardHostedCreationDomainConfiguration', wizardHostedCreationDomainConfiguration)
-  .service('wizardHostedCreationEmailCreation', wizardHostedCreationEmailCreation);
+  .service(
+    'wizardHostedCreationDomainConfiguration',
+    wizardHostedCreationDomainConfiguration,
+  )
+  .service(
+    'wizardHostedCreationEmailCreation',
+    wizardHostedCreationEmailCreation,
+  );
 
 export default moduleName;

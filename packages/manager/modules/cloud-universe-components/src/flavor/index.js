@@ -13,9 +13,7 @@ import service from './service';
 const moduleName = 'cucFlavor';
 
 angular
-  .module(moduleName, [
-    cucBytes,
-  ])
+  .module(moduleName, [cucBytes])
   .constant('CUC_FLAVOR_FLAVORTYPE_CATEGORY', FLAVORTYPE_CATEGORY)
   .constant('CUC_FLAVOR_INSTANCE_CPU_FREQUENCY', INSTANCE_CPU_FREQUENCY)
   .constant('CUC_FLAVOR_INSTANCE_NUMBER_OF_GPUS', INSTANCE_NUMBER_OF_GPUS)

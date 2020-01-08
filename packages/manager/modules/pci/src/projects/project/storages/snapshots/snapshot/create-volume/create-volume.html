@@ -1,5 +1,7 @@
 <section>
-    <cui-message-container data-messages="$ctrl.messages"></cui-message-container>
+    <cui-message-container
+        data-messages="$ctrl.messages"
+    ></cui-message-container>
 
     <pci-project-storage-volume-edit
         data-ng-if="$ctrl.storage"
@@ -10,6 +12,7 @@
         data-submit-label="'pci_projects_project_storages_snapshots_snapshot_create-volume_submit_label' | translate"
         data-on-cancel="$ctrl.goBack()"
         data-on-submit="$ctrl.save()"
-        data-show-loading="$ctrl.isLoading">
+        data-show-loading="$ctrl.isLoading"
+    >
     </pci-project-storage-volume-edit>
 </section>

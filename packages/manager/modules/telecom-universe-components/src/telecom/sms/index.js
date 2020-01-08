@@ -11,10 +11,7 @@ import tucCsvParser from '../../csv-parser';
 const moduleName = 'tucTelecomSms';
 
 angular
-  .module(moduleName, [
-    'ovh-api-services',
-    tucCsvParser,
-  ])
+  .module(moduleName, ['ovh-api-services', tucCsvParser])
   .constant('TUC_SMS_REGEX', TUC_SMS_REGEX)
   .constant('TUC_SMS_STOP_CLAUSE', TUC_SMS_STOP_CLAUSE)
   .factory('TucSmsService', TucSmsService)

@@ -1,55 +1,74 @@
-<form name="removeResponseOptionForm"
-      id="removeResponseOptionForm"
-      data-ng-submit="OptionsResponseRemoveCtrl.remove()">
-
+<form
+    name="removeResponseOptionForm"
+    id="removeResponseOptionForm"
+    data-ng-submit="OptionsResponseRemoveCtrl.remove()"
+>
     <div class="modal-header">
         <button
             type="button"
             class="close float-right"
             aria-label="{{ ::'sms_cancel' | translate }}"
-            data-ng-click="OptionsResponseRemoveCtrl.cancel()">
+            data-ng-click="OptionsResponseRemoveCtrl.cancel()"
+        >
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
 
-    <div class="modal-body"
-         data-ng-if="!OptionsResponseRemoveCtrl.loading.removeTrackingOption && !OptionsResponseRemoveCtrl.removed">
-        <h3 class="modal-title"
-            data-translate="sms_options_response_tracking_remove_title">
-        </h3>
+    <div
+        class="modal-body"
+        data-ng-if="!OptionsResponseRemoveCtrl.loading.removeTrackingOption && !OptionsResponseRemoveCtrl.removed"
+    >
+        <h3
+            class="modal-title"
+            data-translate="sms_options_response_tracking_remove_title"
+        ></h3>
         <p data-translate="sms_options_response_tracking_remove_confirm"></p>
         <dl class="dl-horizontal">
             <!-- MEDIA -->
-            <dt data-translate="sms_options_response_tracking_add_media_label"></dt>
-            <dd class="text-capitalize"
-                data-ng-bind="OptionsResponseRemoveCtrl.option.media">
-            </dd>
+            <dt
+                data-translate="sms_options_response_tracking_add_media_label"
+            ></dt>
+            <dd
+                class="text-capitalize"
+                data-ng-bind="OptionsResponseRemoveCtrl.option.media"
+            ></dd>
 
             <!-- SENDER -->
-            <dt data-translate="sms_options_response_tracking_add_sender_email_label"></dt>
+            <dt
+                data-translate="sms_options_response_tracking_add_sender_email_label"
+            ></dt>
             <dd data-ng-bind="OptionsResponseRemoveCtrl.option.sender"></dd>
 
             <!-- TARGET -->
-            <dt data-ng-if="OptionsResponseRemoveCtrl.option.media === 'email'"
-                data-translate="sms_options_response_tracking_add_target_email_label">
-            </dt>
-            <dt data-ng-if="OptionsResponseRemoveCtrl.option.media === 'sms'"
-                data-translate="sms_options_response_tracking_add_target_number_label">
-            </dt>
+            <dt
+                data-ng-if="OptionsResponseRemoveCtrl.option.media === 'email'"
+                data-translate="sms_options_response_tracking_add_target_email_label"
+            ></dt>
+            <dt
+                data-ng-if="OptionsResponseRemoveCtrl.option.media === 'sms'"
+                data-translate="sms_options_response_tracking_add_target_number_label"
+            ></dt>
             <dd data-ng-bind="OptionsResponseRemoveCtrl.option.target"></dd>
         </dl>
     </div>
 
-    <div class="modal-body text-center"
-         data-ng-if="OptionsResponseRemoveCtrl.loading.removeTrackingOption">
+    <div
+        class="modal-body text-center"
+        data-ng-if="OptionsResponseRemoveCtrl.loading.removeTrackingOption"
+    >
         <oui-spinner></oui-spinner>
-        <h4 data-translate="sms_options_response_tracking_remove_option_removing"></h4>
+        <h4
+            data-translate="sms_options_response_tracking_remove_option_removing"
+        ></h4>
     </div>
 
-    <div class="modal-body"
-         data-ng-if="OptionsResponseRemoveCtrl.removed">
-        <tuc-success-drawing-check data-draw-success-check="OptionsResponseRemoveCtrl.removed">
-            <h4 data-translate="sms_options_response_tracking_remove_option_removed"></h4>
+    <div class="modal-body" data-ng-if="OptionsResponseRemoveCtrl.removed">
+        <tuc-success-drawing-check
+            data-draw-success-check="OptionsResponseRemoveCtrl.removed"
+        >
+            <h4
+                data-translate="sms_options_response_tracking_remove_option_removed"
+            ></h4>
         </tuc-success-drawing-check>
     </div>
 
@@ -60,15 +79,14 @@
             data-ng-click="OptionsResponseRemoveCtrl.cancel()"
             data-translate="sms_cancel"
             data-ng-disabled="OptionsResponseRemoveCtrl.loading.removeTrackingOption ||
-                              OptionsResponseRemoveCtrl.removed">
-        </button>
+                              OptionsResponseRemoveCtrl.removed"
+        ></button>
         <button
             type="submit"
             class="btn btn-primary"
             data-translate="sms_submit"
             data-ng-disabled="OptionsResponseRemoveCtrl.loading.removeTrackingOption ||
-                              OptionsResponseRemoveCtrl.removed">
-        </button>
+                              OptionsResponseRemoveCtrl.removed"
+        ></button>
     </div>
-
 </form>

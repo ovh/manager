@@ -1,61 +1,62 @@
+angular
+  .module('managerApp')
+  .service(
+    'CloudProjectBillingDetailsDisplayHelper',
+    function CloudProjectBillingDetailsDisplayHelper() {
+      let activeDayInfo = null;
 
-angular.module('managerApp').service('CloudProjectBillingDetailsDisplayHelper', function CloudProjectBillingDetailsDisplayHelper() {
-  let activeDayInfo = null;
+      let firstDayInfo = null;
 
+      let lastDayInfo = null;
 
-  let firstDayInfo = null;
+      let hoveredDayInfo = null;
 
-
-  let lastDayInfo = null;
-
-
-  let hoveredDayInfo = null;
-
-  /*= =====================================
+      /*= =====================================
     =            Active day dot            =
     ====================================== */
 
-  this.setActiveDayInfo = function setActiveDayInfo(info) {
-    activeDayInfo = info;
-  };
+      this.setActiveDayInfo = function setActiveDayInfo(info) {
+        activeDayInfo = info;
+      };
 
-  this.getActiveDayInfo = function getActiveDayInfo() {
-    return activeDayInfo;
-  };
+      this.getActiveDayInfo = function getActiveDayInfo() {
+        return activeDayInfo;
+      };
 
-  /*= ====================================
+      /*= ====================================
     =            First day dot            =
     ===================================== */
 
-  this.setFirstDayInfo = function setFirstDayInfo(info) {
-    firstDayInfo = info;
-  };
+      this.setFirstDayInfo = function setFirstDayInfo(info) {
+        firstDayInfo = info;
+      };
 
-  this.getFirstDayInfo = function getFirstDayInfo() {
-    return firstDayInfo;
-  };
+      this.getFirstDayInfo = function getFirstDayInfo() {
+        return firstDayInfo;
+      };
 
-  /*= ===================================
+      /*= ===================================
     =            Last day dot            =
     ==================================== */
 
-  this.setLastDayInfo = function setLastDayInfo(info) {
-    lastDayInfo = info;
-  };
+      this.setLastDayInfo = function setLastDayInfo(info) {
+        lastDayInfo = info;
+      };
 
-  this.getLastDayInfo = function getLastDayInfo() {
-    return lastDayInfo;
-  };
+      this.getLastDayInfo = function getLastDayInfo() {
+        return lastDayInfo;
+      };
 
-  /*= ======================================
+      /*= ======================================
     =            Hovered day dot            =
     ======================================= */
 
-  this.setHoveredDayInfo = function setHoveredDayInfo(info) {
-    hoveredDayInfo = info;
-  };
+      this.setHoveredDayInfo = function setHoveredDayInfo(info) {
+        hoveredDayInfo = info;
+      };
 
-  this.getHoveredDayInfo = function getHoveredDayInfo() {
-    return hoveredDayInfo;
-  };
-});
+      this.getHoveredDayInfo = function getHoveredDayInfo() {
+        return hoveredDayInfo;
+      };
+    },
+  );

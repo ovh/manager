@@ -1,26 +1,54 @@
-<div class="container-fluid px-0" data-ng-controller="ExchangeTabExternalContactsCtrl as ctrl">
+<div
+    class="container-fluid px-0"
+    data-ng-controller="ExchangeTabExternalContactsCtrl as ctrl"
+>
     <div class="row">
         <div class="col-md-9">
-
-            <form class="form-inline d-md-flex justify-content-md-end mb-3" name="searchExternalContactForm">
+            <form
+                class="form-inline d-md-flex justify-content-md-end mb-3"
+                name="searchExternalContactForm"
+            >
                 <div class="form-group">
-                    <label class="sr-only" for="externalContactSearch"
-                           data-translate="common_search"></label>
+                    <label
+                        class="sr-only"
+                        for="externalContactSearch"
+                        data-translate="common_search"
+                    ></label>
                     <div class="input-group">
-                        <input type="text" class="form-control" id="externalContactSearch" maxlength="256" name="externalContactSearch" placeholder="{{::'exchange_tab_EXTERNAL_CONTACTS_search_placeholder' | translate}}"
-                               data-ng-change="ctrl.onSearchValueChange()"
-                               data-ng-disabled="ctrl.contactsLoading"
-                               data-ng-model="ctrl.filter"
-                               data-ng-model-options="{ debounce: 800 }">
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="externalContactSearch"
+                            maxlength="256"
+                            name="externalContactSearch"
+                            placeholder="{{::'exchange_tab_EXTERNAL_CONTACTS_search_placeholder' | translate}}"
+                            data-ng-change="ctrl.onSearchValueChange()"
+                            data-ng-disabled="ctrl.contactsLoading"
+                            data-ng-model="ctrl.filter"
+                            data-ng-model-options="{ debounce: 800 }"
+                        />
                         <div class="input-group-btn" data-ng-if="ctrl.filter">
-                            <button class="btn btn-default" type="button" aria-label="{{'common_cancel' | translate}}"
-                                    data-ng-click="ctrl.filter = '';ctrl.onSearchValueChange()"
-                                    data-ng-disabled="ctrl.contactsLoading">
-                                <span class="fa fa-times" aria-hidden="true"></span>
+                            <button
+                                class="btn btn-default"
+                                type="button"
+                                aria-label="{{'common_cancel' | translate}}"
+                                data-ng-click="ctrl.filter = '';ctrl.onSearchValueChange()"
+                                data-ng-disabled="ctrl.contactsLoading"
+                            >
+                                <span
+                                    class="fa fa-times"
+                                    aria-hidden="true"
+                                ></span>
                             </button>
                         </div>
-                        <span class="input-group-addon" data-ng-if="!ctrl.filter">
-                            <span class="fa fa-search" aria-hidden="true"></span>
+                        <span
+                            class="input-group-addon"
+                            data-ng-if="!ctrl.filter"
+                        >
+                            <span
+                                class="fa fa-search"
+                                aria-hidden="true"
+                            ></span>
                         </span>
                     </div>
                 </div>
@@ -30,11 +58,29 @@
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th scope="col" data-translate="exchange_tab_EXTERNAL_CONTACTS_table_headers_externalEmailAddress"></th>
-                            <th scope="col" data-translate="exchange_tab_EXTERNAL_CONTACTS_table_headers_displayName"></th>
-                            <th class="text-center" scope="col" data-translate="exchange_tab_EXTERNAL_CONTACTS_table_headers_creationDate"></th>
-                            <th class="text-center" scope="col" data-translate="exchange_tab_EXTERNAL_CONTACTS_table_headers_hiddenFromGAL"></th>
-                            <th class="text-center" scope="col" data-translate="exchange_tab_EXTERNAL_CONTACTS_table_headers_state"></th>
+                            <th
+                                scope="col"
+                                data-translate="exchange_tab_EXTERNAL_CONTACTS_table_headers_externalEmailAddress"
+                            ></th>
+                            <th
+                                scope="col"
+                                data-translate="exchange_tab_EXTERNAL_CONTACTS_table_headers_displayName"
+                            ></th>
+                            <th
+                                class="text-center"
+                                scope="col"
+                                data-translate="exchange_tab_EXTERNAL_CONTACTS_table_headers_creationDate"
+                            ></th>
+                            <th
+                                class="text-center"
+                                scope="col"
+                                data-translate="exchange_tab_EXTERNAL_CONTACTS_table_headers_hiddenFromGAL"
+                            ></th>
+                            <th
+                                class="text-center"
+                                scope="col"
+                                data-translate="exchange_tab_EXTERNAL_CONTACTS_table_headers_state"
+                            ></th>
                             <th class="min-width text-center"></th>
                         </tr>
                     </thead>
@@ -47,61 +93,99 @@
                         </tr>
                     </tbody>
 
-                    <tbody data-ng-if="!ctrl.contactsLoading && ctrl.contacts.list.results.length === 0">
+                    <tbody
+                        data-ng-if="!ctrl.contactsLoading && ctrl.contacts.list.results.length === 0"
+                    >
                         <tr>
-                            <td class="text-center" colspan="6"
-                                data-translate="exchange_tab_EXTERNAL_CONTACTS_table_empty"></td>
+                            <td
+                                class="text-center"
+                                colspan="6"
+                                data-translate="exchange_tab_EXTERNAL_CONTACTS_table_empty"
+                            ></td>
                         </tr>
                     </tbody>
 
                     <tbody data-ng-if="!ctrl.contactsLoading">
-                        <tr data-ng-repeat="element in ctrl.contacts.list.results track by $index">
-                            <th class="word-break" scope="row"
-                                data-ng-bind="element.externalEmailAddress | wucSliceContent: 150"></th>
-                            <td class="word-break"
-                                data-ng-bind="element.displayName | wucSliceContent: 150"></td>
-                            <td class="text-center text-nowrap"
-                                data-ng-bind="element.creationDate | date:'mediumDate'"></td>
+                        <tr
+                            data-ng-repeat="element in ctrl.contacts.list.results track by $index"
+                        >
+                            <th
+                                class="word-break"
+                                scope="row"
+                                data-ng-bind="element.externalEmailAddress | wucSliceContent: 150"
+                            ></th>
+                            <td
+                                class="word-break"
+                                data-ng-bind="element.displayName | wucSliceContent: 150"
+                            ></td>
+                            <td
+                                class="text-center text-nowrap"
+                                data-ng-bind="element.creationDate | date:'mediumDate'"
+                            ></td>
                             <td class="text-center">
-                                <span class="oui-icon" aria-hidden="true"
-                                      data-ng-class="{'oui-icon-success text-success': !element.hiddenFromGAL, 'oui-icon-error text-danger': element.hiddenFromGAL}"
-                                      data-oui-tooltip="{{('exchange_tab_EXTERNAL_CONTACTS_table_tooltip_GAL_' + element.hiddenFromGAL) | translate}}"></span>
+                                <span
+                                    class="oui-icon"
+                                    aria-hidden="true"
+                                    data-ng-class="{'oui-icon-success text-success': !element.hiddenFromGAL, 'oui-icon-error text-danger': element.hiddenFromGAL}"
+                                    data-oui-tooltip="{{('exchange_tab_EXTERNAL_CONTACTS_table_tooltip_GAL_' + element.hiddenFromGAL) | translate}}"
+                                ></span>
                             </td>
 
                             <td class="text-center">
-                                <span class="oui-status oui-status_info"
-                                      data-translate="exchange_tab_EXTERNAL_CONTACTS_table_headers_state_MODIFYING"
-                                      data-ng-if="ctrl.services.exchangeStates.constructor.isOk(element) && element.taskPendingId !== 0"></span>
-                                <span class="oui-status oui-status_info"
-                                      data-translate="exchange_tab_EXTERNAL_CONTACTS_table_headers_state_CREATING"
-                                      data-ng-if="ctrl.services.exchangeStates.constructor.isCreating(element)"></span>
-                                <span class="oui-status oui-status_info"
-                                      data-translate="exchange_tab_EXTERNAL_CONTACTS_table_headers_state_DELETING"
-                                      data-ng-if="ctrl.services.exchangeStates.constructor.isDeleting(element)"></span>
-                                <span class="oui-status oui-status_warning"
-                                      data-translate="exchange_tab_EXTERNAL_CONTACTS_table_headers_state_SUSPENDED"
-                                      data-ng-if="ctrl.services.exchangeStates.constructor.isSuspended(element)"></span>
-                                <span class="oui-status oui-status_warning"
-                                      data-translate="exchange_tab_EXTERNAL_CONTACTS_table_headers_state_SUSPENDING"
-                                      data-ng-if="ctrl.services.exchangeStates.constructor.isSuspending(element)"></span>
-                                <span class="oui-status oui-status_info"
-                                      data-translate="exchange_tab_EXTERNAL_CONTACTS_table_headers_state_REOPENING"
-                                      data-ng-if="ctrl.services.exchangeStates.constructor.isReopening(element)"></span>
-                                <span class="oui-status oui-status_success"
-                                      data-translate="exchange_tab_EXTERNAL_CONTACTS_table_headers_state_OK"
-                                      data-ng-if="ctrl.services.exchangeStates.constructor.isOk(element) && element.taskPendingId === 0"></span>
+                                <span
+                                    class="oui-status oui-status_info"
+                                    data-translate="exchange_tab_EXTERNAL_CONTACTS_table_headers_state_MODIFYING"
+                                    data-ng-if="ctrl.services.exchangeStates.constructor.isOk(element) && element.taskPendingId !== 0"
+                                ></span>
+                                <span
+                                    class="oui-status oui-status_info"
+                                    data-translate="exchange_tab_EXTERNAL_CONTACTS_table_headers_state_CREATING"
+                                    data-ng-if="ctrl.services.exchangeStates.constructor.isCreating(element)"
+                                ></span>
+                                <span
+                                    class="oui-status oui-status_info"
+                                    data-translate="exchange_tab_EXTERNAL_CONTACTS_table_headers_state_DELETING"
+                                    data-ng-if="ctrl.services.exchangeStates.constructor.isDeleting(element)"
+                                ></span>
+                                <span
+                                    class="oui-status oui-status_warning"
+                                    data-translate="exchange_tab_EXTERNAL_CONTACTS_table_headers_state_SUSPENDED"
+                                    data-ng-if="ctrl.services.exchangeStates.constructor.isSuspended(element)"
+                                ></span>
+                                <span
+                                    class="oui-status oui-status_warning"
+                                    data-translate="exchange_tab_EXTERNAL_CONTACTS_table_headers_state_SUSPENDING"
+                                    data-ng-if="ctrl.services.exchangeStates.constructor.isSuspending(element)"
+                                ></span>
+                                <span
+                                    class="oui-status oui-status_info"
+                                    data-translate="exchange_tab_EXTERNAL_CONTACTS_table_headers_state_REOPENING"
+                                    data-ng-if="ctrl.services.exchangeStates.constructor.isReopening(element)"
+                                ></span>
+                                <span
+                                    class="oui-status oui-status_success"
+                                    data-translate="exchange_tab_EXTERNAL_CONTACTS_table_headers_state_OK"
+                                    data-ng-if="ctrl.services.exchangeStates.constructor.isOk(element) && element.taskPendingId === 0"
+                                ></span>
                             </td>
 
                             <td class="text-center">
-                                <oui-action-menu data-compact
-                                                 data-align="end">
-                                    <oui-action-menu-item data-on-click="setAction('exchange/external-contact/update/external-contact-update', element)"
-                                                          data-disabled="!ctrl.services.exchangeStates.constructor.isOk(element)">
-                                        <span data-translate="exchange_tab_EXTERNAL_CONTACTS_table_actions_menu_modify"></span>
+                                <oui-action-menu data-compact data-align="end">
+                                    <oui-action-menu-item
+                                        data-on-click="setAction('exchange/external-contact/update/external-contact-update', element)"
+                                        data-disabled="!ctrl.services.exchangeStates.constructor.isOk(element)"
+                                    >
+                                        <span
+                                            data-translate="exchange_tab_EXTERNAL_CONTACTS_table_actions_menu_modify"
+                                        ></span>
                                     </oui-action-menu-item>
-                                    <oui-action-menu-item data-on-click="setAction('exchange/external-contact/remove/external-contact-remove', element.externalEmailAddress)"
-                                                          data-disabled="!ctrl.services.exchangeStates.constructor.isOk(element)">
-                                        <span data-translate="exchange_tab_EXTERNAL_CONTACTS_table_actions_menu_delete"></span>
+                                    <oui-action-menu-item
+                                        data-on-click="setAction('exchange/external-contact/remove/external-contact-remove', element.externalEmailAddress)"
+                                        data-disabled="!ctrl.services.exchangeStates.constructor.isOk(element)"
+                                    >
+                                        <span
+                                            data-translate="exchange_tab_EXTERNAL_CONTACTS_table_actions_menu_delete"
+                                        ></span>
                                     </oui-action-menu-item>
                                 </oui-action-menu>
                             </td>
@@ -110,24 +194,29 @@
                 </table>
             </div>
 
-            <div class="clearfix"
-                 data-ng-show="!ctrl.contactsLoading && ctrl.contacts.list.results.length > 0"
-                 data-pagination-server-side="externalContactsTable"
-                 data-pagination-server-side-function="loadContacts"
-                 data-pagination-server-side-paginated-stuff="getContacts()"
-                 data-pagination-server-side-table-loading="getContactsLoading()">
-            </div>
+            <div
+                class="clearfix"
+                data-ng-show="!ctrl.contactsLoading && ctrl.contacts.list.results.length > 0"
+                data-pagination-server-side="externalContactsTable"
+                data-pagination-server-side-function="loadContacts"
+                data-pagination-server-side-paginated-stuff="getContacts()"
+                data-pagination-server-side-table-loading="getContactsLoading()"
+            ></div>
         </div>
         <div class="col-md-3 mt-5 mt-lg-0">
-            <button class="oui-button oui-button_secondary w-100" type="button"
-                    data-translate="exchange_tab_EXTERNAL_CONTACTS_configuration_contact_add_title_button"
-                    data-ng-click="setAction('exchange/external-contact/add/external-contact-add')">
-            </button>
-            <button class="oui-button oui-button_secondary w-100 mt-2"
-                    type="button"
-                    data-ng-click="ctrl.services.navigation.setAction('exchange/account/export-as-csv/account-export-as-csv', { search : ctrl.filter, total : ctrl.contacts.list.results.length, exchange : ctrl.exchange, csvExportType: 'external' })"
-                    data-ng-disabled="ctrl.mailingLists.list.results.count === 0"
-                    data-translate="exchange_tab_EXTERNAL_CONTACTS_export_csv"></button>
+            <button
+                class="oui-button oui-button_secondary w-100"
+                type="button"
+                data-translate="exchange_tab_EXTERNAL_CONTACTS_configuration_contact_add_title_button"
+                data-ng-click="setAction('exchange/external-contact/add/external-contact-add')"
+            ></button>
+            <button
+                class="oui-button oui-button_secondary w-100 mt-2"
+                type="button"
+                data-ng-click="ctrl.services.navigation.setAction('exchange/account/export-as-csv/account-export-as-csv', { search : ctrl.filter, total : ctrl.contacts.list.results.length, exchange : ctrl.exchange, csvExportType: 'external' })"
+                data-ng-disabled="ctrl.mailingLists.list.results.count === 0"
+                data-translate="exchange_tab_EXTERNAL_CONTACTS_export_csv"
+            ></button>
         </div>
     </div>
 </div>

@@ -1,34 +1,36 @@
 <div>
-
     <!-- input file selector -->
-    <div data-ng-show="!selected"
-         class="input-file btn btn-default">
-        <input type="file" accept="{{ ngAccept }}">
+    <div data-ng-show="!selected" class="input-file btn btn-default">
+        <input type="file" accept="{{ ngAccept }}" />
         <ng-transclude></ng-transclude>
     </div>
 
-    <em data-ng-if="!selected && fileExplain"
-        data-ng-bind="fileExplain">
-    </em>
+    <em data-ng-if="!selected && fileExplain" data-ng-bind="fileExplain"> </em>
 
     <!-- display selected file name -->
     <div data-ng-show="selected">
         <div class="input-group">
             <!-- file name -->
-            <input class="form-control"
-                   type="text"
-                   data-ng-model="ngModel.name"
-                   readonly />
+            <input
+                class="form-control"
+                type="text"
+                data-ng-model="ngModel.name"
+                readonly
+            />
             <!-- clear file button -->
             <span class="input-group-btn">
-                <button type="button"
-                        class="btn btn-default"
-                        data-ng-click="clearFile()">
+                <button
+                    type="button"
+                    class="btn btn-default"
+                    data-ng-click="clearFile()"
+                >
                     <i class="close" aria-hidden="true"></i>
-                    <span class="sr-only" data-translate="input_file_delete"></span>
+                    <span
+                        class="sr-only"
+                        data-translate="input_file_delete"
+                    ></span>
                 </button>
             </span>
         </div>
     </div>
-
 </div>

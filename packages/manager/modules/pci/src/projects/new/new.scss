@@ -1,9 +1,9 @@
 $step-dimension: 40px;
 
-pci-project-new { /* stylelint-disable-line */
+pci-project-new {
   @import '~bootstrap4/scss/_functions';
   @import '~bootstrap4/scss/_variables';
-  @import "~bootstrap4/scss/mixins/_breakpoints";
+  @import '~bootstrap4/scss/mixins/_breakpoints';
 
   .pci-projects-new {
     background-color: rgb(241, 249, 253);

@@ -10,7 +10,11 @@ import set from 'lodash/set';
 import toUpper from 'lodash/toUpper';
 
 import {
-  ERROR_STATUS, PROCESSING_STATUS, OFFERS, STATUS, SUCCESS_STATUS,
+  ERROR_STATUS,
+  PROCESSING_STATUS,
+  OFFERS,
+  STATUS,
+  SUCCESS_STATUS,
 } from './enterprise-cloud-database.constants';
 
 export default class EnterpriseCloudDatabaseService {
@@ -27,17 +31,27 @@ export default class EnterpriseCloudDatabaseService {
     this.OvhApiCloudDBEnterpriseMaintenance = OvhApiCloudDBEnterprise.Maintenance().v6();
     this.OvhApiCloudDBEnterpriseRegion = OvhApiCloudDBEnterprise.Region().v6();
     this.OvhApiCloudDBEnterpriseRestore = OvhApiCloudDBEnterprise.Restore().v6();
-    this.OvhApiCloudDBEnterpriseRule = OvhApiCloudDBEnterprise.SecurityGroup().Rule().v6();
+    this.OvhApiCloudDBEnterpriseRule = OvhApiCloudDBEnterprise.SecurityGroup()
+      .Rule()
+      .v6();
     this.OvhApiCloudDBEnterpriseSecurityGroup = OvhApiCloudDBEnterprise.SecurityGroup().v6();
     this.OvhApiCloudDBEnterpriseServiceInfos = OvhApiCloudDBEnterprise.ServiceInfos().v6();
     this.OvhApiCloudDBEnterpriseUser = OvhApiCloudDBEnterprise.User().v6();
     this.OvhApiCloudDBEnterpriseWindow = OvhApiCloudDBEnterprise.MaintenanceWindow().v6();
-    this.OvhApiOrderEnterpriseCloudDB = OvhApiOrder.Catalog().Public().v6();
+    this.OvhApiOrderEnterpriseCloudDB = OvhApiOrder.Catalog()
+      .Public()
+      .v6();
     this.OvhApiOrderCart = OvhApiOrder.Cart().v6();
-    this.OvhApiOrderCartProduct = OvhApiOrder.Cart().Product().v6();
-    this.OvhApiOrderCartConfig = OvhApiOrder.Cart().Item().Configuration().v6();
+    this.OvhApiOrderCartProduct = OvhApiOrder.Cart()
+      .Product()
+      .v6();
+    this.OvhApiOrderCartConfig = OvhApiOrder.Cart()
+      .Item()
+      .Configuration()
+      .v6();
     this.OvhApiOrderCartServiceOption = OvhApiOrder.CartServiceOption()
-      .EnterpriseCloudDatabases().v6();
+      .EnterpriseCloudDatabases()
+      .v6();
     this.OvhApiMeOrder = OvhApiMe.Order().v6();
     this.OvhApiMe = OvhApiMe;
   }
@@ -47,37 +61,54 @@ export default class EnterpriseCloudDatabaseService {
   }
 
   createMaintenanceWindow(clusterId, windowData) {
-    return this.OvhApiCloudDBEnterpriseWindow.create({ clusterId }, windowData).$promise;
+    return this.OvhApiCloudDBEnterpriseWindow.create({ clusterId }, windowData)
+      .$promise;
   }
 
   createRule(clusterId, securityGroupId, source) {
-    return this.OvhApiCloudDBEnterpriseRule.create({ clusterId, securityGroupId },
-      { source }).$promise;
+    return this.OvhApiCloudDBEnterpriseRule.create(
+      { clusterId, securityGroupId },
+      { source },
+    ).$promise;
   }
 
   createSecurityGroup(clusterId, name) {
-    return this.OvhApiCloudDBEnterpriseSecurityGroup.create({ clusterId },
-      { clusterId, name }).$promise;
+    return this.OvhApiCloudDBEnterpriseSecurityGroup.create(
+      { clusterId },
+      { clusterId, name },
+    ).$promise;
   }
 
   deleteRule(clusterId, securityGroupId, ruleId) {
-    return this.OvhApiCloudDBEnterpriseRule
-      .delete({ clusterId, securityGroupId, ruleId }).$promise;
+    return this.OvhApiCloudDBEnterpriseRule.delete({
+      clusterId,
+      securityGroupId,
+      ruleId,
+    }).$promise;
   }
 
   deleteSecurityGroup(clusterId, securityGroupId) {
-    return this.OvhApiCloudDBEnterpriseSecurityGroup
-      .delete({ clusterId, securityGroupId }).$promise;
+    return this.OvhApiCloudDBEnterpriseSecurityGroup.delete({
+      clusterId,
+      securityGroupId,
+    }).$promise;
   }
 
   getOffers() {
-    return this.OvhApiCloudDBEnterpriseOffers.query()
-      .$promise
-      .then((offers) => this.$q.all(map(offers, (offer) => this.getOfferDetails(offer)
-        .then((offerDetails) => {
-          set(offerDetails, 'displayName', get(OFFERS, offerDetails.name, offerDetails.name));
-          return offerDetails;
-        }))));
+    return this.OvhApiCloudDBEnterpriseOffers.query().$promise.then((offers) =>
+      this.$q.all(
+        map(offers, (offer) =>
+          this.getOfferDetails(offer).then((offerDetails) => {
+            set(
+              offerDetails,
+              'displayName',
+              get(OFFERS, offerDetails.name, offerDetails.name),
+            );
+            return offerDetails;
+          }),
+        ),
+      ),
+    );
   }
 
   getOfferDetails(offerName) {
@@ -85,17 +116,19 @@ export default class EnterpriseCloudDatabaseService {
   }
 
   getCatalog(ovhSubsidiary) {
-    return this.OvhApiOrderEnterpriseCloudDB
-      .get({ productName: 'enterpriseCloudDatabases', ovhSubsidiary }).$promise;
+    return this.OvhApiOrderEnterpriseCloudDB.get({
+      productName: 'enterpriseCloudDatabases',
+      ovhSubsidiary,
+    }).$promise;
   }
 
   getClusterDetails(clusterId) {
-    return this.OvhApiCloudDBEnterpriseCluster.get({ clusterId })
-      .$promise
-      .then((response) => {
+    return this.OvhApiCloudDBEnterpriseCluster.get({ clusterId }).$promise.then(
+      (response) => {
         delete response.$promise;
         return response;
-      });
+      },
+    );
   }
 
   getClusters() {
@@ -108,7 +141,8 @@ export default class EnterpriseCloudDatabaseService {
   }
 
   getEndpointDetails(clusterId, endpointId) {
-    return this.OvhApiCloudDBEnterpriseEndpoint.get({ clusterId, endpointId }).$promise;
+    return this.OvhApiCloudDBEnterpriseEndpoint.get({ clusterId, endpointId })
+      .$promise;
   }
 
   getEndpoints(clusterId) {
@@ -116,17 +150,22 @@ export default class EnterpriseCloudDatabaseService {
   }
 
   getEndpointsWithDetails(clusterId) {
-    return this.getEndpoints(clusterId)
-      .then((endpoints) => this.$q.all(
-        map(endpoints, (endpointId) => this.getEndpointDetails(clusterId, endpointId)),
-      ));
+    return this.getEndpoints(clusterId).then((endpoints) =>
+      this.$q.all(
+        map(endpoints, (endpointId) =>
+          this.getEndpointDetails(clusterId, endpointId),
+        ),
+      ),
+    );
   }
 
   getHostsWithDetails(clusterId) {
     return this.getHosts(clusterId)
-      .then((hosts) => this.$q.all(
-        map(hosts, (hostId) => this.getHostDetails(clusterId, hostId)),
-      ))
+      .then((hosts) =>
+        this.$q.all(
+          map(hosts, (hostId) => this.getHostDetails(clusterId, hostId)),
+        ),
+      )
       .then((hosts) => compact(hosts));
   }
 
@@ -139,41 +178,70 @@ export default class EnterpriseCloudDatabaseService {
   }
 
   getMaintenanceWindow(clusterId) {
-    return this.OvhApiCloudDBEnterpriseWindow.get({ clusterId }).$promise
-      .catch((error) => ((error.status === 404) ? null : this.$q.reject(error)));
+    return this.OvhApiCloudDBEnterpriseWindow.get({
+      clusterId,
+    }).$promise.catch((error) =>
+      error.status === 404 ? null : this.$q.reject(error),
+    );
   }
 
   getRegionDetails(name) {
-    return this.OvhApiCloudDBEnterpriseRegion.get({ name }).$promise
-      .then((regionInfo) => set(regionInfo, 'maintenanceDuration', get(regionInfo, 'maintenanceDuration', 1) * 60));
+    return this.OvhApiCloudDBEnterpriseRegion.get({
+      name,
+    }).$promise.then((regionInfo) =>
+      set(
+        regionInfo,
+        'maintenanceDuration',
+        get(regionInfo, 'maintenanceDuration', 1) * 60,
+      ),
+    );
   }
 
   getRuleDetails(clusterId, securityGroupId, ruleId) {
-    return this.OvhApiCloudDBEnterpriseRule.get({ clusterId, securityGroupId, ruleId }).$promise;
+    return this.OvhApiCloudDBEnterpriseRule.get({
+      clusterId,
+      securityGroupId,
+      ruleId,
+    }).$promise;
   }
 
   getRulesList(clusterId, securityGroupId) {
-    return this.getRules(clusterId, securityGroupId)
-      .then((rules) => this.$q.all(map(rules,
-        (ruleId) => this.getRuleDetails(clusterId, securityGroupId, ruleId))));
+    return this.getRules(clusterId, securityGroupId).then((rules) =>
+      this.$q.all(
+        map(rules, (ruleId) =>
+          this.getRuleDetails(clusterId, securityGroupId, ruleId),
+        ),
+      ),
+    );
   }
 
   getRules(clusterId, securityGroupId) {
-    return this.OvhApiCloudDBEnterpriseRule.query({ clusterId, securityGroupId }).$promise;
+    return this.OvhApiCloudDBEnterpriseRule.query({
+      clusterId,
+      securityGroupId,
+    }).$promise;
   }
 
   getSecurityGroupDetails(clusterId, securityGroupId) {
-    return this.OvhApiCloudDBEnterpriseSecurityGroup.get({ clusterId, securityGroupId }).$promise;
+    return this.OvhApiCloudDBEnterpriseSecurityGroup.get({
+      clusterId,
+      securityGroupId,
+    }).$promise;
   }
 
   getSecurityGroupList(clusterId) {
-    return this.getSecurityGroups(clusterId)
-      .then((securityGroups) => this.$q.all(map(securityGroups,
-        (securityGroupId) => this.getSecurityGroupDetails(clusterId, securityGroupId))));
+    return this.getSecurityGroups(clusterId).then((securityGroups) =>
+      this.$q.all(
+        map(securityGroups, (securityGroupId) =>
+          this.getSecurityGroupDetails(clusterId, securityGroupId),
+        ),
+      ),
+    );
   }
 
   getSecurityGroups(clusterId) {
-    return this.OvhApiCloudDBEnterpriseSecurityGroup.query({ clusterId }).$promise;
+    return this.OvhApiCloudDBEnterpriseSecurityGroup.query({ clusterId })
+      .$promise;
   }
 
   getServiceInfo(clusterId) {
@@ -181,20 +249,28 @@ export default class EnterpriseCloudDatabaseService {
   }
 
   getUser(clusterId) {
-    return this.OvhApiCloudDBEnterpriseUser.get({ clusterId }).$promise
-      .catch((error) => ((error.status === 404) ? null : this.$q.reject(error)));
+    return this.OvhApiCloudDBEnterpriseUser.get({
+      clusterId,
+    }).$promise.catch((error) =>
+      error.status === 404 ? null : this.$q.reject(error),
+    );
   }
 
   setClusterDetails(clusterId, clusterDetails) {
-    return this.OvhApiCloudDBEnterpriseCluster.update({ clusterId }, clusterDetails).$promise;
+    return this.OvhApiCloudDBEnterpriseCluster.update(
+      { clusterId },
+      clusterDetails,
+    ).$promise;
   }
 
   setUserPassword(clusterId, password) {
-    return this.OvhApiCloudDBEnterpriseUser.create({ clusterId }, { password }).$promise;
+    return this.OvhApiCloudDBEnterpriseUser.create({ clusterId }, { password })
+      .$promise;
   }
 
   updateMaintenanceWindow(clusterId, windowData) {
-    return this.OvhApiCloudDBEnterpriseWindow.update({ clusterId }, windowData).$promise;
+    return this.OvhApiCloudDBEnterpriseWindow.update({ clusterId }, windowData)
+      .$promise;
   }
 
   getRestores(clusterId) {
@@ -202,19 +278,23 @@ export default class EnterpriseCloudDatabaseService {
   }
 
   getRestoreDetails(clusterId, restoreId) {
-    return this.OvhApiCloudDBEnterpriseRestore.get({ clusterId, restoreId })
-      .$promise
-      .then((response) => {
-        delete response.$promise;
-        return response;
-      });
+    return this.OvhApiCloudDBEnterpriseRestore.get({
+      clusterId,
+      restoreId,
+    }).$promise.then((response) => {
+      delete response.$promise;
+      return response;
+    });
   }
 
   getRestoreList(clusterId) {
-    return this.getRestores(clusterId)
-      .then((restores) => this.$q.all(
-        map(restores, (restoreId) => this.getRestoreDetails(clusterId, restoreId)),
-      ));
+    return this.getRestores(clusterId).then((restores) =>
+      this.$q.all(
+        map(restores, (restoreId) =>
+          this.getRestoreDetails(clusterId, restoreId),
+        ),
+      ),
+    );
   }
 
   resetRestoredInstancesCache() {
@@ -224,17 +304,22 @@ export default class EnterpriseCloudDatabaseService {
 
   createRestore(clusterId, backupId, timestamp) {
     const payLoad = backupId ? { backupId } : { timestamp };
-    return this.OvhApiCloudDBEnterpriseRestore.create({ clusterId }, payLoad).$promise;
+    return this.OvhApiCloudDBEnterpriseRestore.create({ clusterId }, payLoad)
+      .$promise;
   }
 
   deleteRestoredInstance(clusterId, restoredInstanceId) {
-    return this.OvhApiCloudDBEnterpriseRestore.delete(
-      { clusterId, restoreId: restoredInstanceId },
-    ).$promise;
+    return this.OvhApiCloudDBEnterpriseRestore.delete({
+      clusterId,
+      restoreId: restoredInstanceId,
+    }).$promise;
   }
 
   createBackup(clusterId, name) {
-    return this.OvhApiCloudDBEnterpriseBackup.create({ clusterId }, { clusterId, name }).$promise;
+    return this.OvhApiCloudDBEnterpriseBackup.create(
+      { clusterId },
+      { clusterId, name },
+    ).$promise;
   }
 
   getBackups(clusterId) {
@@ -242,13 +327,15 @@ export default class EnterpriseCloudDatabaseService {
   }
 
   getBackupDetails(clusterId, backupId) {
-    return this.OvhApiCloudDBEnterpriseBackup.get({ clusterId, backupId }).$promise;
+    return this.OvhApiCloudDBEnterpriseBackup.get({ clusterId, backupId })
+      .$promise;
   }
 
   deleteBackupInstance(clusterId, backupInstanceId) {
-    return this.OvhApiCloudDBEnterpriseBackup.delete(
-      { clusterId, backupId: backupInstanceId },
-    ).$promise;
+    return this.OvhApiCloudDBEnterpriseBackup.delete({
+      clusterId,
+      backupId: backupInstanceId,
+    }).$promise;
   }
 
   resetBackupsCache() {
@@ -257,14 +344,13 @@ export default class EnterpriseCloudDatabaseService {
   }
 
   getLogs(clusterId) {
-    return this.OvhApiCloudDBEnterpriseLogs.query({ clusterId })
-      .$promise
-      .then((ids) => map(ids, (id) => ({ id })));
+    return this.OvhApiCloudDBEnterpriseLogs.query({
+      clusterId,
+    }).$promise.then((ids) => map(ids, (id) => ({ id })));
   }
 
   getLogDetails(clusterId, logsId) {
-    return this.OvhApiCloudDBEnterpriseLogs.get({ clusterId, logsId })
-      .$promise;
+    return this.OvhApiCloudDBEnterpriseLogs.get({ clusterId, logsId }).$promise;
   }
 
   grantAccessToLdpAccount(clusterId, log) {
@@ -292,7 +378,8 @@ export default class EnterpriseCloudDatabaseService {
   }
 
   scaleCluster(clusterId, count) {
-    return this.OvhApiCloudDBEnterpriseCluster.scale({ clusterId }, { count }).$promise;
+    return this.OvhApiCloudDBEnterpriseCluster.scale({ clusterId }, { count })
+      .$promise;
   }
 
   updateSecurityGroup(clusterId, securityGroupId, name) {
@@ -303,39 +390,49 @@ export default class EnterpriseCloudDatabaseService {
   }
 
   getRegions(offerName) {
-    return this.OvhApiCloudDBEnterpriseOffers.getRegions({ name: offerName })
-      .$promise
-      .then((regions) => {
-        const regionObj = { offerName, regions };
-        return regionObj;
-      });
+    return this.OvhApiCloudDBEnterpriseOffers.getRegions({
+      name: offerName,
+    }).$promise.then((regions) => {
+      const regionObj = { offerName, regions };
+      return regionObj;
+    });
   }
 
   getAllHostCount(offers) {
     const mapObj = {};
-    return this.$q.all(map(offers, (offer) => {
-      if (isEmpty(mapObj[offer.offerName])) {
-        mapObj[offer.offerName] = {};
-      }
-      return this.$q.all(map(offer.regions, (region) => this.getHostCount(offer.offerName, region)
-        .then((count) => {
-          mapObj[offer.offerName][count.regionName] = { hostLeft: count.hostLeft };
-          return mapObj;
-        })));
-    }))
+    return this.$q
+      .all(
+        map(offers, (offer) => {
+          if (isEmpty(mapObj[offer.offerName])) {
+            mapObj[offer.offerName] = {};
+          }
+          return this.$q.all(
+            map(offer.regions, (region) =>
+              this.getHostCount(offer.offerName, region).then((count) => {
+                mapObj[offer.offerName][count.regionName] = {
+                  hostLeft: count.hostLeft,
+                };
+                return mapObj;
+              }),
+            ),
+          );
+        }),
+      )
       .then(() => mapObj);
   }
 
   getHostCount(offerName, regionName) {
-    return this.OvhApiCloudDBEnterpriseOffers
-      .getAvailableHostCount({ name: offerName, regionName })
-      .$promise;
+    return this.OvhApiCloudDBEnterpriseOffers.getAvailableHostCount({
+      name: offerName,
+      regionName,
+    }).$promise;
   }
 
   createCart() {
-    return this.getMe()
-      .then((me) => this.OvhApiOrderCart
-        .post({ ovhSubsidiary: me.ovhSubsidiary }).$promise);
+    return this.getMe().then(
+      (me) =>
+        this.OvhApiOrderCart.post({ ovhSubsidiary: me.ovhSubsidiary }).$promise,
+    );
   }
 
   addToCart(cartId, cluster) {
@@ -350,25 +447,33 @@ export default class EnterpriseCloudDatabaseService {
   }
 
   addConfig(cart, cluster) {
-    return this.$q.all(
-      this.OvhApiOrderCartConfig.post({
-        cartId: cart.cartId,
-        itemId: cart.itemId,
-      },
-      {
-        label: 'dbms',
-        value: `${get(cluster, 'database.originalName')}-${get(cluster, 'database.selectedVersion')}`,
-      }).$promise,
-      this.OvhApiOrderCartConfig.post({
-        cartId: cart.cartId,
-        itemId: cart.itemId,
-      },
-      {
-        label: 'region',
-        value: get(cluster, 'datacenter'),
-        quantity: 1,
-      }).$promise,
-    )
+    return this.$q
+      .all(
+        this.OvhApiOrderCartConfig.post(
+          {
+            cartId: cart.cartId,
+            itemId: cart.itemId,
+          },
+          {
+            label: 'dbms',
+            value: `${get(cluster, 'database.originalName')}-${get(
+              cluster,
+              'database.selectedVersion',
+            )}`,
+          },
+        ).$promise,
+        this.OvhApiOrderCartConfig.post(
+          {
+            cartId: cart.cartId,
+            itemId: cart.itemId,
+          },
+          {
+            label: 'region',
+            value: get(cluster, 'datacenter'),
+            quantity: 1,
+          },
+        ).$promise,
+      )
       .then(() => cart);
   }
 
@@ -383,23 +488,23 @@ export default class EnterpriseCloudDatabaseService {
         pricingMode: get(cluster, 'paymentType.mode'),
         quantity: replica.value,
         itemId: cart.itemId,
-      }).$promise
-        .then(() => cart);
+      }).$promise.then(() => cart);
     }
     return this.$q.resolve(cart);
   }
 
   assignCart(cart) {
-    return this.OvhApiOrderCart
-      .assign({ cartId: cart.cartId, autoPayWithPreferredPaymentMethod: true })
-      .$promise
-      .then(() => cart);
+    return this.OvhApiOrderCart.assign({
+      cartId: cart.cartId,
+      autoPayWithPreferredPaymentMethod: true,
+    }).$promise.then(() => cart);
   }
 
   checkoutCart(cart) {
-    return this.OvhApiOrderCart
-      .checkout({ cartId: cart.cartId, autoPayWithPreferredPaymentMethod: true })
-      .$promise;
+    return this.OvhApiOrderCart.checkout({
+      cartId: cart.cartId,
+      autoPayWithPreferredPaymentMethod: true,
+    }).$promise;
   }
 
   getCheckoutInfo(cart) {
@@ -414,7 +519,8 @@ export default class EnterpriseCloudDatabaseService {
 
   orderAddon(addon, cart, clusterId, quantity) {
     return this.OvhApiOrderCartServiceOption.orderOptions(
-      { serviceName: clusterId }, {
+      { serviceName: clusterId },
+      {
         cartId: cart.cartId,
         duration: get(addon, 'prices[0].duration'),
         planCode: addon.planCode,
@@ -427,8 +533,12 @@ export default class EnterpriseCloudDatabaseService {
   orderAddons(clusterId, quantity) {
     return this.createCart()
       .then((cart) => this.assignCart(cart))
-      .then((cart) => this.getOrderableAddon(clusterId).then((addon) => [addon, cart]))
-      .then(([addon, cart]) => this.orderAddon(addon, cart, clusterId, quantity))
+      .then((cart) =>
+        this.getOrderableAddon(clusterId).then((addon) => [addon, cart]),
+      )
+      .then(([addon, cart]) =>
+        this.orderAddon(addon, cart, clusterId, quantity),
+      )
       .then((cart) => this.checkoutCart({ cartId: cart.cartId }));
   }
 
@@ -438,8 +548,12 @@ export default class EnterpriseCloudDatabaseService {
       .then((cart) => this.addConfig(cart, cluster))
       .then((cart) => this.addOptions(cart, cluster))
       .then((cart) => this.assignCart(cart))
-      .then((cart) => this.getCheckoutInfo({ cartId: cart.cartId })
-        .then((order) => ({ ...order, cart })));
+      .then((cart) =>
+        this.getCheckoutInfo({ cartId: cart.cartId }).then((order) => ({
+          ...order,
+          cart,
+        })),
+      );
   }
 
   orderCluster(cart) {
@@ -459,9 +573,17 @@ export default class EnterpriseCloudDatabaseService {
         // populate pricing
         EnterpriseCloudDatabaseService.populatePricing(capability, plan);
         // populate node details
-        EnterpriseCloudDatabaseService.populateNodeDetails(capability, catalog, plan);
+        EnterpriseCloudDatabaseService.populateNodeDetails(
+          capability,
+          catalog,
+          plan,
+        );
         // populate node details
-        EnterpriseCloudDatabaseService.populateAddons(capability, catalog, plan);
+        EnterpriseCloudDatabaseService.populateAddons(
+          capability,
+          catalog,
+          plan,
+        );
       }
     });
     return capabilities;
@@ -509,14 +631,18 @@ export default class EnterpriseCloudDatabaseService {
       size,
       count,
       raid,
-      usableSize: get(raid, 'level', 0) === 10 ? (size * count) / 2 : size * count,
+      usableSize:
+        get(raid, 'level', 0) === 10 ? (size * count) / 2 : size * count,
       type: toUpper(get(head(storages.disks), 'technology', null)),
     };
     set(capability, 'storage', storage);
   }
 
   static populateNodeDetails(capability, catalog, plan) {
-    const nodePlan = get(find(plan.addonFamilies, { name: 'node' }), 'addons[0]');
+    const nodePlan = get(
+      find(plan.addonFamilies, { name: 'node' }),
+      'addons[0]',
+    );
     set(capability, 'node', find(catalog.addons, { planCode: nodePlan }));
   }
 

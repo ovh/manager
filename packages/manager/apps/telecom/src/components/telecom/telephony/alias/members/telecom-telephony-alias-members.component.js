@@ -9,7 +9,9 @@ import sortBy from 'lodash/sortBy';
 angular.module('managerApp').run(($translate, asyncLoader) => {
   asyncLoader.addTranslations(
     import(`./translations/Messages_${$translate.use()}.json`)
-      .catch(() => import(`./translations/Messages_${$translate.fallbackLanguage()}.json`))
+      .catch(() =>
+        import(`./translations/Messages_${$translate.fallbackLanguage()}.json`),
+      )
       .then((x) => x.default),
   );
   $translate.refresh();
@@ -18,7 +20,8 @@ angular.module('managerApp').component('telecomTelephonyAliasMembers', {
   bindings: {
     api: '=',
   },
-  templateUrl: 'components/telecom/telephony/alias/members/telecom-telephony-alias-members.html',
+  templateUrl:
+    'components/telecom/telephony/alias/members/telecom-telephony-alias-members.html',
   controller($q, $translate, $translatePartialLoader, TucToast, TucToastError) {
     const self = this;
 
@@ -40,7 +43,6 @@ angular.module('managerApp').component('telecomTelephonyAliasMembers', {
       self.memberInEdition = null;
       self.memberToDelete = null;
 
-
       self.api.addMembersToList = function addMembersToList(toAdd) {
         forEach(toAdd.reverse(), (member) => {
           self.members.unshift(member);
@@ -54,19 +56,26 @@ angular.module('managerApp').component('telecomTelephonyAliasMembers', {
         return angular.copy(self.members);
       };
 
-      $translatePartialLoader.addPart('../components/telecom/telephony/alias/members');
+      $translatePartialLoader.addPart(
+        '../components/telecom/telephony/alias/members',
+      );
       return $translate.refresh().finally(() => {
         self.isInitialized = true;
-        return self.refreshMembers().catch((err) => new TucToastError(err)).finally(() => {
-          self.loaders.init = false;
-        });
+        return self
+          .refreshMembers()
+          .catch((err) => new TucToastError(err))
+          .finally(() => {
+            self.loaders.init = false;
+          });
       });
     };
 
     self.refreshMembers = function refreshMembers() {
       self.members = null;
-      return self.api.fetchMembers()
-        .then((members) => self.api.reorderMembers(members)).then((orderedMembers) => {
+      return self.api
+        .fetchMembers()
+        .then((members) => self.api.reorderMembers(members))
+        .then((orderedMembers) => {
           self.members = orderedMembers;
         })
         .catch((err) => new TucToastError(err))
@@ -77,7 +86,8 @@ angular.module('managerApp').component('telecomTelephonyAliasMembers', {
 
     self.updateMemberDescription = function updateMemberDescription(member) {
       if (member.description === undefined) {
-        self.api.fetchMemberDescription(member)
+        self.api
+          .fetchMemberDescription(member)
           .then((result) => {
             set(member, 'description', result);
           })
@@ -142,26 +152,40 @@ angular.module('managerApp').component('telecomTelephonyAliasMembers', {
     self.submitMemberChanges = function submitMemberChanges() {
       self.loaders.editing = true;
       const attrs = ['status', 'timeout', 'wrapUpTime', 'simultaneousLines'];
-      return self.api.updateMember(self.memberInEdition).then(() => {
-        TucToast.success($translate.instant('telephony_alias_members_change_success'));
-        const toUpdate = find(self.members, { agentId: self.memberInEdition.agentId });
-        assign(toUpdate, pick(self.memberInEdition, attrs));
-        self.cancelMemberEdition();
-      }).catch((err) => new TucToastError(err)).finally(() => {
-        self.loaders.editing = false;
-      });
+      return self.api
+        .updateMember(self.memberInEdition)
+        .then(() => {
+          TucToast.success(
+            $translate.instant('telephony_alias_members_change_success'),
+          );
+          const toUpdate = find(self.members, {
+            agentId: self.memberInEdition.agentId,
+          });
+          assign(toUpdate, pick(self.memberInEdition, attrs));
+          self.cancelMemberEdition();
+        })
+        .catch((err) => new TucToastError(err))
+        .finally(() => {
+          self.loaders.editing = false;
+        });
     };
 
     self.deleteMember = function deleteMember(toDelete) {
       self.loaders.deleting = true;
-      self.api.deleteMember(self.memberToDelete).then(() => {
-        self.memberToDelete = null;
-        TucToast.success($translate.instant('telephony_alias_members_delete_success'));
-        remove(self.members, (m) => m.agentId === toDelete.agentId);
-        return self.api.reorderMembers(self.members);
-      }).then((orderedMembers) => {
-        self.members = orderedMembers;
-      }).catch((err) => new TucToastError(err))
+      self.api
+        .deleteMember(self.memberToDelete)
+        .then(() => {
+          self.memberToDelete = null;
+          TucToast.success(
+            $translate.instant('telephony_alias_members_delete_success'),
+          );
+          remove(self.members, (m) => m.agentId === toDelete.agentId);
+          return self.api.reorderMembers(self.members);
+        })
+        .then((orderedMembers) => {
+          self.members = orderedMembers;
+        })
+        .catch((err) => new TucToastError(err))
         .finally(() => {
           self.loaders.deleting = false;
         });

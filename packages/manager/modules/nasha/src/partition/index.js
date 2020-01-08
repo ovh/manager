@@ -38,8 +38,13 @@ angular
   .component('nashaPartitionComponent', NashaPartitionComponent)
 
   .run(/* @ngTranslationsInject:json ./translations */)
-  .run(/* @ngInject */ ($templateCache) => {
-    $templateCache.put('nasha/partition/partition-help.html', partitionHelpTemplate);
-  });
+  .run(
+    /* @ngInject */ ($templateCache) => {
+      $templateCache.put(
+        'nasha/partition/partition-help.html',
+        partitionHelpTemplate,
+      );
+    },
+  );
 
 export default moduleName;

@@ -1,6 +1,11 @@
 class CloudprojectcomputeinfrastructureprivatenetworkdeleteCtrl {
-  constructor($uibModalInstance, $stateParams, params, OvhApiCloudProjectNetworkPrivate,
-    CloudProjectComputeInfrastructurePrivateNetworkService) {
+  constructor(
+    $uibModalInstance,
+    $stateParams,
+    params,
+    OvhApiCloudProjectNetworkPrivate,
+    CloudProjectComputeInfrastructurePrivateNetworkService,
+  ) {
     this.service = CloudProjectComputeInfrastructurePrivateNetworkService;
     this.serviceName = $stateParams.projectId;
     this.networkId = params;
@@ -21,5 +26,9 @@ class CloudprojectcomputeinfrastructureprivatenetworkdeleteCtrl {
   }
 }
 
-angular.module('managerApp').controller('CloudprojectcomputeinfrastructureprivatenetworkdeleteCtrl',
-  CloudprojectcomputeinfrastructureprivatenetworkdeleteCtrl);
+angular
+  .module('managerApp')
+  .controller(
+    'CloudprojectcomputeinfrastructureprivatenetworkdeleteCtrl',
+    CloudprojectcomputeinfrastructureprivatenetworkdeleteCtrl,
+  );

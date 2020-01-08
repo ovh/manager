@@ -1,16 +1,12 @@
 export default class BannerController {
   /* @ngInject */
-  constructor(
-    $translate,
-    OvhManagerBannerService,
-  ) {
+  constructor($translate, OvhManagerBannerService) {
     this.$translate = $translate;
     this.OvhManagerBannerService = OvhManagerBannerService;
   }
 
   $onInit() {
-    this.OvhManagerBannerService
-      .getBanner(this.$translate.use())
+    this.OvhManagerBannerService.getBanner(this.$translate.use())
       .then((banner) => {
         this.banner = banner;
       })

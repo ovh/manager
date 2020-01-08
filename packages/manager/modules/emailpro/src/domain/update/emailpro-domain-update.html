@@ -1,13 +1,12 @@
 <div data-ng-controller="EmailProUpdateDomainCtrl">
-    <div data-wizard
-         data-wizard-bread-crumb
-         data-wizard-on-cancel="cancel"
-         data-wizard-on-finish="submit"
-         data-wizard-title="'emailpro_tab_domain_modify_domain' | translate">
-
-        <div data-wizard-step
-             data-wizard-step-valid="isValid()">
-
+    <div
+        data-wizard
+        data-wizard-bread-crumb
+        data-wizard-on-cancel="cancel"
+        data-wizard-on-finish="submit"
+        data-wizard-title="'emailpro_tab_domain_modify_domain' | translate"
+    >
+        <div data-wizard-step data-wizard-step-valid="isValid()">
             <form class="form-horizontal" name="emailProUpdateDomainForm">
                 <p>
                     <small class="text-danger">*</small>
@@ -15,78 +14,125 @@
                 </p>
 
                 <div class="form-group">
-                    <label class="col-md-4 control-label"
-                           data-translate="emailpro_tab_domain_domain"></label>
+                    <label
+                        class="col-md-4 control-label"
+                        data-translate="emailpro_tab_domain_domain"
+                    ></label>
                     <div class="col-md-8">
-                        <p class="form-control-static" data-ng-bind="currentActionData.displayName"></p>
+                        <p
+                            class="form-control-static"
+                            data-ng-bind="currentActionData.displayName"
+                        ></p>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="type" class="col-md-4 control-label"
-                           data-translate="emailpro_tab_domain_type"></label>
+                    <label
+                        for="type"
+                        class="col-md-4 control-label"
+                        data-translate="emailpro_tab_domain_type"
+                    ></label>
                     <div class="col-md-8">
                         <div class="oui-select">
-                            <select class="oui-select__input"
+                            <select
+                                class="oui-select__input"
                                 id="type"
                                 name="type"
                                 data-ng-options="('emailpro_tab_domain_' + type | translate) for type in domainTypes"
                                 data-ng-model="selectedDomain.type"
-                                data-ng-change="checkMxRelay()">
+                                data-ng-change="checkMxRelay()"
+                            >
                             </select>
-                            <span class="oui-icon oui-icon-chevron-down" aria-hidden="true"></span>
+                            <span
+                                class="oui-icon oui-icon-chevron-down"
+                                aria-hidden="true"
+                            ></span>
                         </div>
                     </div>
                 </div>
-                <div class="form-group"
-                     data-ng-if="isMxRelayVisible() && selectedDomain.type === 'NON_AUTHORITATIVE'"
-                     data-ng-class="{ 'has-error': !isValidMxRelay() || checkLoopWarning() || checkLengthWarning() }">
-                    <label for="selectedDomain" class="col-md-4 control-label required"
-                           data-translate="emailpro_tab_domain_add_step2_mx_replay"></label>
+                <div
+                    class="form-group"
+                    data-ng-if="isMxRelayVisible() && selectedDomain.type === 'NON_AUTHORITATIVE'"
+                    data-ng-class="{ 'has-error': !isValidMxRelay() || checkLoopWarning() || checkLengthWarning() }"
+                >
+                    <label
+                        for="selectedDomain"
+                        class="col-md-4 control-label required"
+                        data-translate="emailpro_tab_domain_add_step2_mx_replay"
+                    ></label>
                     <div class="col-md-8">
-                        <input type="text" class="form-control" id="selectedDomain" name="selectedDomain"
-                               data-ng-model="selectedDomain.mxRelay"
-                               data-ng-pattern="/^([-a-zA-Z0-9\.])+$/">
-                        <span class="help-block"
-                              data-ng-hide="isValidMxRelay()"
-                              data-translate="emailpro_tab_domain_modify_domain_warning"></span>
-                        <span class="help-block"
-                              data-ng-show="checkLoopWarning()"
-                              data-translate="emailpro_tab_domain_modify_loop_warning"></span>
-                        <span class="help-block"
-                              data-ng-show="checkLengthWarning()"
-                              data-translate="emailpro_tab_domain_modify_length_warning"></span>
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="selectedDomain"
+                            name="selectedDomain"
+                            data-ng-model="selectedDomain.mxRelay"
+                            data-ng-pattern="/^([-a-zA-Z0-9\.])+$/"
+                        />
+                        <span
+                            class="help-block"
+                            data-ng-hide="isValidMxRelay()"
+                            data-translate="emailpro_tab_domain_modify_domain_warning"
+                        ></span>
+                        <span
+                            class="help-block"
+                            data-ng-show="checkLoopWarning()"
+                            data-translate="emailpro_tab_domain_modify_loop_warning"
+                        ></span>
+                        <span
+                            class="help-block"
+                            data-ng-show="checkLengthWarning()"
+                            data-translate="emailpro_tab_domain_modify_length_warning"
+                        ></span>
                     </div>
                 </div>
-                <p data-ng-show="selectedDomain.type === 'NON_AUTHORITATIVE' && exchange"
-                   data-ng-bind-html="'emailpro_tab_domain_modify_domain_tooltip' | translate: { t0: nonAuthoritativeEmail[0], t1: nonAuthoritativeEmail[1], t2: nonAuthoritativeEmail[2], t3: nonAuthoritativeEmail[3], t4: exchange.hostname }"></p>
+                <p
+                    data-ng-show="selectedDomain.type === 'NON_AUTHORITATIVE' && exchange"
+                    data-ng-bind-html="'emailpro_tab_domain_modify_domain_tooltip' | translate: { t0: nonAuthoritativeEmail[0], t1: nonAuthoritativeEmail[1], t2: nonAuthoritativeEmail[2], t3: nonAuthoritativeEmail[3], t4: exchange.hostname }"
+                ></p>
             </form>
 
             <div data-wizard-step-help>
                 <h3 data-translate="emailpro_tab_domain_modify_domain"></h3>
-                <h4 data-translate="emailpro_tab_domain_modify_wizard_subtitle"></h4>
-                <p data-translate="{{ exchange.billingPlan + '_tab_domain_modify_wizard_text' }}"></p>
+                <h4
+                    data-translate="emailpro_tab_domain_modify_wizard_subtitle"
+                ></h4>
+                <p
+                    data-translate="{{ exchange.billingPlan + '_tab_domain_modify_wizard_text' }}"
+                ></p>
             </div>
-
         </div>
 
         <div data-wizard-step>
-            <p data-translate="{{ exchange.billingPlan + '_tab_domain_modify_title' }}"></p>
+            <p
+                data-translate="{{ exchange.billingPlan + '_tab_domain_modify_title' }}"
+            ></p>
 
             <dl class="dl-horizontal">
                 <dt data-translate="emailpro_tab_domain_domain"></dt>
                 <dd data-ng-bind="currentActionData.displayName"></dd>
 
-                <div data-ng-if="isMxRelayVisible() && selectedDomain.type == 'NON_AUTHORITATIVE'">
-                    <dt data-translate="emailpro_tab_domain_add_step2_mx_replay"></dt>
-                    <dd data-ng-bind="selectedDomain.mxRelay" data-ng-if="selectedDomain.mxRelay"></dd>
+                <div
+                    data-ng-if="isMxRelayVisible() && selectedDomain.type == 'NON_AUTHORITATIVE'"
+                >
+                    <dt
+                        data-translate="emailpro_tab_domain_add_step2_mx_replay"
+                    ></dt>
+                    <dd
+                        data-ng-bind="selectedDomain.mxRelay"
+                        data-ng-if="selectedDomain.mxRelay"
+                    ></dd>
                     <dd data-ng-if="!selectedDomain.mxRelay">-</dd>
                 </div>
 
                 <dt data-translate="emailpro_tab_domain_type"></dt>
-                <dd data-ng-bind="'emailpro_tab_domain_' + selectedDomain.type | translate"></dd>
+                <dd
+                    data-ng-bind="'emailpro_tab_domain_' + selectedDomain.type | translate"
+                ></dd>
             </dl>
-            <p data-ng-show="selectedDomain.type == 'NON_AUTHORITATIVE' && exchange"
-               data-ng-bind-html="'emailpro_tab_domain_modify_domain_tooltip' | translate: { t0: nonAuthoritativeEmail[0], t1: nonAuthoritativeEmail[1], t2: nonAuthoritativeEmail[2], t3: nonAuthoritativeEmail[3], t4: exchange.hostname }"></p>
+            <p
+                data-ng-show="selectedDomain.type == 'NON_AUTHORITATIVE' && exchange"
+                data-ng-bind-html="'emailpro_tab_domain_modify_domain_tooltip' | translate: { t0: nonAuthoritativeEmail[0], t1: nonAuthoritativeEmail[1], t2: nonAuthoritativeEmail[2], t3: nonAuthoritativeEmail[3], t4: exchange.hostname }"
+            ></p>
         </div>
     </div>
 </div>

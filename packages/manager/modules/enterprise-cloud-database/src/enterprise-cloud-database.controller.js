@@ -1,16 +1,15 @@
 import assign from 'lodash/assign';
 
 import {
-  DATABASE_CONSTANTS, GUIDELINK, SERVICE_TYPE, STATUS,
+  DATABASE_CONSTANTS,
+  GUIDELINK,
+  SERVICE_TYPE,
+  STATUS,
 } from './enterprise-cloud-database.constants';
 
 export default class EnterpriseCloudDatabaseCtrl {
   /* @ngInject */
-  constructor(
-    $q,
-    CucCloudMessage,
-    enterpriseCloudDatabaseService,
-  ) {
+  constructor($q, CucCloudMessage, enterpriseCloudDatabaseService) {
     this.$q = $q;
     this.CucCloudMessage = CucCloudMessage;
     this.DATABASE_CONSTANTS = DATABASE_CONSTANTS;
@@ -26,7 +25,10 @@ export default class EnterpriseCloudDatabaseCtrl {
 
   loadMessages() {
     this.CucCloudMessage.unSubscribe('enterprise-cloud-database.list');
-    this.messageHandler = this.CucCloudMessage.subscribe('enterprise-cloud-database', { onMessage: () => this.refreshMessages() });
+    this.messageHandler = this.CucCloudMessage.subscribe(
+      'enterprise-cloud-database',
+      { onMessage: () => this.refreshMessages() },
+    );
   }
 
   refreshMessages() {
@@ -34,9 +36,13 @@ export default class EnterpriseCloudDatabaseCtrl {
   }
 
   loadRow(cluster) {
-    return this.$q.all([
-      this.enterpriseCloudDatabaseService.getEndpointsWithDetails(cluster.details.id),
-      this.enterpriseCloudDatabaseService.getUser(cluster.details.id),
-    ]).then((res) => assign({ endpoints: res[0], user: res[1] }));
+    return this.$q
+      .all([
+        this.enterpriseCloudDatabaseService.getEndpointsWithDetails(
+          cluster.details.id,
+        ),
+        this.enterpriseCloudDatabaseService.getUser(cluster.details.id),
+      ])
+      .then((res) => assign({ endpoints: res[0], user: res[1] }));
   }
 }

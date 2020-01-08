@@ -1,90 +1,137 @@
 <div data-ng-controller="PrivateDatabaseAddUserCtrl as addUserCtrl">
-    <div data-wizard
-         data-wizard-on-cancel="resetAction"
-         data-wizard-on-finish="addUser"
-         data-wizard-title="'privateDatabase_add_user_title' | translate">
-
-        <div data-wizard-step
-             data-wizard-step-valid="addUserCtrl.isPasswordValid() && addUserCtrl.isNameValid() && addUserCtrl.isPasswordConfirmed()">
-
+    <div
+        data-wizard
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="addUser"
+        data-wizard-title="'privateDatabase_add_user_title' | translate"
+    >
+        <div
+            data-wizard-step
+            data-wizard-step-valid="addUserCtrl.isPasswordValid() && addUserCtrl.isNameValid() && addUserCtrl.isPasswordConfirmed()"
+        >
             <form class="form-horizontal" name="privateDatabaseAddUserForm">
-
                 <p>
                     <small class="text-danger">*</small>
                     <small data-translate="required_fields"></small>
                 </p>
 
-                <div class="form-group"
-                     data-ng-class="{'has-error': privateDatabaseAddUserForm.nameValue.$dirty && (privateDatabaseAddUserForm.nameValue.$invalid || addUserCtrl.nameAlreadyExist())}">
-
-                    <label class="control-label col-md-4 required" for="nameValue"
-                           data-translate="privateDatabase_add_user_name"></label>
-
-                    <div class="col-md-8">
-                        <input type="text" class="form-control" id="nameValue" name="nameValue" autocomplete="off" required
-                               data-ng-minlength="addUserCtrl.model.user.condition.length.min"
-                               data-ng-maxlength="addUserCtrl.model.user.condition.length.max"
-                               data-ng-model="addUserCtrl.model.user.value"
-                               data-ng-pattern="addUserCtrl.model.user.pattern.regValidUser">
-                        <small class="help-block mb-0"
-                               data-ng-bind="(('privateDatabase_add_user_error_name_' + error | translate) == 'privateDatabase_add_user_error_name_' + error)? error: ('privateDatabase_add_user_error_name_' + error | translate)"
-                               data-ng-if="privateDatabaseAddUserForm.nameValue.$dirty && (privateDatabaseAddUserForm.nameValue) && value == true"
-                               data-ng-repeat="(error, value) in privateDatabaseAddUserForm.nameValue.$error">
-                        </small>
-                        <small class="help-block mb-0"
-                               data-translate="privateDatabase_add_user_error_name_exist"
-                               data-ng-if="addUserCtrl.nameAlreadyExist()">
-                        </small>
-
-                    </div>
-                </div>
-
-                <div class="alert alert-info mb-5" role="alert"
-                     data-ng-bind-html="'privateDatabase_add_user_conditions' | translate: { t0: addUserCtrl.model.user.condition.length.min, t1: addUserCtrl.model.user.condition.length.max }"></div>
-
-                <div class="form-group"
-                     data-ng-class="{'has-error': privateDatabaseAddUserForm.passwordValue.$dirty && (privateDatabaseAddUserForm.passwordValue.$invalid || !addUserCtrl.isPasswordValid())}">
-
-                    <label class="control-label col-md-4 required" for="passwordValue"
-                           data-translate="privateDatabase_add_user_password"></label>
+                <div
+                    class="form-group"
+                    data-ng-class="{'has-error': privateDatabaseAddUserForm.nameValue.$dirty && (privateDatabaseAddUserForm.nameValue.$invalid || addUserCtrl.nameAlreadyExist())}"
+                >
+                    <label
+                        class="control-label col-md-4 required"
+                        for="nameValue"
+                        data-translate="privateDatabase_add_user_name"
+                    ></label>
 
                     <div class="col-md-8">
-                        <input type="password" class="form-control" id="passwordValue" name="passwordValue" autocomplete="off" required
-                               data-ng-minlength="addUserCtrl.model.password.condition.length.min"
-                               data-ng-maxlength="addUserCtrl.model.password.condition.length.max"
-                               data-ng-model="addUserCtrl.model.password.value"
-                               data-ng-pattern="addUserCtrl.model.password.condition.pattern">
-                        <small class="help-block mb-0"
-                               data-ng-bind="(('privateDatabase_add_user_error_password_' + error | translate) == 'privateDatabase_add_user_error_password_' + error)? error: ('privateDatabase_add_user_error_password_' + error | translate)"
-                               data-ng-if="privateDatabaseAddUserForm.passwordValue.$dirty && (privateDatabaseAddUserForm.passwordValue) && value == true"
-                               data-ng-repeat="(error, value) in privateDatabaseAddUserForm.passwordValue.$error">
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="nameValue"
+                            name="nameValue"
+                            autocomplete="off"
+                            required
+                            data-ng-minlength="addUserCtrl.model.user.condition.length.min"
+                            data-ng-maxlength="addUserCtrl.model.user.condition.length.max"
+                            data-ng-model="addUserCtrl.model.user.value"
+                            data-ng-pattern="addUserCtrl.model.user.pattern.regValidUser"
+                        />
+                        <small
+                            class="help-block mb-0"
+                            data-ng-bind="(('privateDatabase_add_user_error_name_' + error | translate) == 'privateDatabase_add_user_error_name_' + error)? error: ('privateDatabase_add_user_error_name_' + error | translate)"
+                            data-ng-if="privateDatabaseAddUserForm.nameValue.$dirty && (privateDatabaseAddUserForm.nameValue) && value == true"
+                            data-ng-repeat="(error, value) in privateDatabaseAddUserForm.nameValue.$error"
+                        >
+                        </small>
+                        <small
+                            class="help-block mb-0"
+                            data-translate="privateDatabase_add_user_error_name_exist"
+                            data-ng-if="addUserCtrl.nameAlreadyExist()"
+                        >
                         </small>
                     </div>
                 </div>
 
-                <div class="form-group"
-                     data-ng-class="{'has-error': privateDatabaseAddUserForm.passwordConfirm.$dirty && (privateDatabaseAddUserForm.passwordConfirm.$invalid || !addUserCtrl.isPasswordConfirmed())}">
+                <div
+                    class="alert alert-info mb-5"
+                    role="alert"
+                    data-ng-bind-html="'privateDatabase_add_user_conditions' | translate: { t0: addUserCtrl.model.user.condition.length.min, t1: addUserCtrl.model.user.condition.length.max }"
+                ></div>
 
-                    <label class="control-label col-md-4 required" for="passwordConfirm"
-                           data-translate="privateDatabase_add_user_password_confirm"></label>
+                <div
+                    class="form-group"
+                    data-ng-class="{'has-error': privateDatabaseAddUserForm.passwordValue.$dirty && (privateDatabaseAddUserForm.passwordValue.$invalid || !addUserCtrl.isPasswordValid())}"
+                >
+                    <label
+                        class="control-label col-md-4 required"
+                        for="passwordValue"
+                        data-translate="privateDatabase_add_user_password"
+                    ></label>
 
                     <div class="col-md-8">
-                        <input type="password" class="form-control" id="passwordConfirm" name="passwordConfirm" autocomplete="off" required
-                               data-ng-minlength="addUserCtrl.model.password.condition.length.min"
-                               data-ng-maxlength="addUserCtrl.model.password.condition.length.max"
-                               data-ng-model="addUserCtrl.model.password.confirm"
-                               data-ng-pattern="addUserCtrl.model.password.value">
-                        <small class="help-block mb-0"
-                               data-ng-bind="(('privateDatabase_add_user_error_password_confirm_' + error | translate) == 'privateDatabase_add_user_error_password_confirm_' + error)? error: ('privateDatabase_add_user_error_password_confirm_' + error | translate)"
-                               data-ng-if="privateDatabaseAddUserForm.passwordConfirm.$dirty && (privateDatabaseAddUserForm.passwordConfirm) && value == true"
-                               data-ng-repeat="(error, value) in privateDatabaseAddUserForm.passwordConfirm.$error">
+                        <input
+                            type="password"
+                            class="form-control"
+                            id="passwordValue"
+                            name="passwordValue"
+                            autocomplete="off"
+                            required
+                            data-ng-minlength="addUserCtrl.model.password.condition.length.min"
+                            data-ng-maxlength="addUserCtrl.model.password.condition.length.max"
+                            data-ng-model="addUserCtrl.model.password.value"
+                            data-ng-pattern="addUserCtrl.model.password.condition.pattern"
+                        />
+                        <small
+                            class="help-block mb-0"
+                            data-ng-bind="(('privateDatabase_add_user_error_password_' + error | translate) == 'privateDatabase_add_user_error_password_' + error)? error: ('privateDatabase_add_user_error_password_' + error | translate)"
+                            data-ng-if="privateDatabaseAddUserForm.passwordValue.$dirty && (privateDatabaseAddUserForm.passwordValue) && value == true"
+                            data-ng-repeat="(error, value) in privateDatabaseAddUserForm.passwordValue.$error"
+                        >
+                        </small>
+                    </div>
+                </div>
+
+                <div
+                    class="form-group"
+                    data-ng-class="{'has-error': privateDatabaseAddUserForm.passwordConfirm.$dirty && (privateDatabaseAddUserForm.passwordConfirm.$invalid || !addUserCtrl.isPasswordConfirmed())}"
+                >
+                    <label
+                        class="control-label col-md-4 required"
+                        for="passwordConfirm"
+                        data-translate="privateDatabase_add_user_password_confirm"
+                    ></label>
+
+                    <div class="col-md-8">
+                        <input
+                            type="password"
+                            class="form-control"
+                            id="passwordConfirm"
+                            name="passwordConfirm"
+                            autocomplete="off"
+                            required
+                            data-ng-minlength="addUserCtrl.model.password.condition.length.min"
+                            data-ng-maxlength="addUserCtrl.model.password.condition.length.max"
+                            data-ng-model="addUserCtrl.model.password.confirm"
+                            data-ng-pattern="addUserCtrl.model.password.value"
+                        />
+                        <small
+                            class="help-block mb-0"
+                            data-ng-bind="(('privateDatabase_add_user_error_password_confirm_' + error | translate) == 'privateDatabase_add_user_error_password_confirm_' + error)? error: ('privateDatabase_add_user_error_password_confirm_' + error | translate)"
+                            data-ng-if="privateDatabaseAddUserForm.passwordConfirm.$dirty && (privateDatabaseAddUserForm.passwordConfirm) && value == true"
+                            data-ng-repeat="(error, value) in privateDatabaseAddUserForm.passwordConfirm.$error"
+                        >
                         </small>
                     </div>
                 </div>
             </form>
 
-            <div class="alert alert-info" role="alert"
-                 data-ng-bind-html="'privateDatabase_change_rootPassword_conditions' | translate: { t0: addUserCtrl.model.password.condition.length.min, t1: addUserCtrl.model.password.condition.length.max }"></div>
+            <div
+                class="alert alert-info"
+                role="alert"
+                data-ng-bind-html="'privateDatabase_change_rootPassword_conditions' | translate: { t0: addUserCtrl.model.password.condition.length.min, t1: addUserCtrl.model.password.condition.length.max }"
+            ></div>
         </div>
     </div>
 </div>

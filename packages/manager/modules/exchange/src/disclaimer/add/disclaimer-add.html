@@ -1,62 +1,88 @@
 <div data-ng-controller="ExchangeAddDisclaimerCtrl as ctrl">
-    <div data-wizard
-         data-wizard-on-cancel="resetAction"
-         data-wizard-on-finish="saveDisclaimer"
-         data-wizard-title="'exchange_ACTION_add_disclaimer_title' | translate">
-
-        <div data-wizard-step
-             data-wizard-step-valid="isStep1Valid()">
-
+    <div
+        data-wizard
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="saveDisclaimer"
+        data-wizard-title="'exchange_ACTION_add_disclaimer_title' | translate"
+    >
+        <div data-wizard-step data-wizard-step-valid="isStep1Valid()">
             <oui-spinner data-ng-if="ctrl.loadingData"></oui-spinner>
 
             <div data-ng-if="!ctrl.loadingData">
                 <form name="addDisclaimerForm">
                     <div class="form-group">
-                        <label class="control-label required" for="completeDomain"
-                               data-translate="exchange_ACTION_disclaimer_associated_domains"></label>
+                        <label
+                            class="control-label required"
+                            for="completeDomain"
+                            data-translate="exchange_ACTION_disclaimer_associated_domains"
+                        ></label>
                         <div class="oui-select">
-                            <select class="oui-select__input" id="completeDomain" required
-                                    data-ng-model="ctrl.data.completeDomain"
-                                    data-ng-options="domain.displayName for domain in ctrl.availableDomains | orderBy:'formattedName'">
+                            <select
+                                class="oui-select__input"
+                                id="completeDomain"
+                                required
+                                data-ng-model="ctrl.data.completeDomain"
+                                data-ng-options="domain.displayName for domain in ctrl.availableDomains | orderBy:'formattedName'"
+                            >
                             </select>
                         </div>
                     </div>
 
                     <div class="text-center">
                         <div class="oui-select oui-select_inline">
-                            <select class="oui-select__input" id="variableSelect"
-                                    data-ng-model="ctrl.data.selectedAttribute"
-                                    data-ng-options="('exchange_ACTION_add_disclaimer_option_' + variable) | translate for variable in ctrl.availableAttributes">
+                            <select
+                                class="oui-select__input"
+                                id="variableSelect"
+                                data-ng-model="ctrl.data.selectedAttribute"
+                                data-ng-options="('exchange_ACTION_add_disclaimer_option_' + variable) | translate for variable in ctrl.availableAttributes"
+                            >
                             </select>
-                            <span class="oui-icon oui-icon-chevron-down" aria-hidden="true"></span>
+                            <span
+                                class="oui-icon oui-icon-chevron-down"
+                                aria-hidden="true"
+                            ></span>
                         </div>
-                        <button class="btn btn-default" type="button"
-                                data-translate="exchange_ACTION_disclaimer_insert"
-                                data-ng-click="ctrl.insertAttribute()"
-                                data-ng-disabled="!ctrl.data.selectedAttribute">
-                        </button>
+                        <button
+                            class="btn btn-default"
+                            type="button"
+                            data-translate="exchange_ACTION_disclaimer_insert"
+                            data-ng-click="ctrl.insertAttribute()"
+                            data-ng-disabled="!ctrl.data.selectedAttribute"
+                        ></button>
                     </div>
 
-                    <ng-ckeditor class="oui-textarea" id="add-disclaimer-editor"
-                                data-ng-model="ctrl.data.content"
-                                data-ng-value="ctrl.data.content">
+                    <ng-ckeditor
+                        class="oui-textarea"
+                        id="add-disclaimer-editor"
+                        data-ng-model="ctrl.data.content"
+                        data-ng-value="ctrl.data.content"
+                    >
                     </ng-ckeditor>
 
-                    <oui-checkbox class="mt-4" id="outsideOnly"
+                    <oui-checkbox
+                        class="mt-4"
+                        id="outsideOnly"
                         data-model="ctrl.data.outsideOnly"
-                        data-text="{{::'exchange_ACTION_add_disclaimer_outside' | translate}}">
+                        data-text="{{::'exchange_ACTION_add_disclaimer_outside' | translate}}"
+                    >
                     </oui-checkbox>
                 </form>
 
-                <div class="alert alert-warning" role="alert"
-                     data-translate="exchange_ACTION_update_disclaimer_length_warning"
-                     data-ng-if="ctrl.data.content.length > 5000">
-                </div>
+                <div
+                    class="alert alert-warning"
+                    role="alert"
+                    data-translate="exchange_ACTION_update_disclaimer_length_warning"
+                    data-ng-if="ctrl.data.content.length > 5000"
+                ></div>
             </div>
 
             <div data-wizard-step-help>
-                <h3 data-translate="exchange_ACTION_add_disclaimer_helpwizard_title"></h3>
-                <p data-ng-bind-html="'exchange_ACTION_add_disclaimer_helpwizard_details' | translate"></p>
+                <h3
+                    data-translate="exchange_ACTION_add_disclaimer_helpwizard_title"
+                ></h3>
+                <p
+                    data-ng-bind-html="'exchange_ACTION_add_disclaimer_helpwizard_details' | translate"
+                ></p>
             </div>
         </div>
     </div>

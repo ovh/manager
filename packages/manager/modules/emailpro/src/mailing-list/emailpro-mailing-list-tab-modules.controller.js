@@ -24,7 +24,8 @@ export default class EmailProMXPlanMailingListsTabModulesCtrl {
   }
 
   $onInit() {
-    this.$http.get(`/hosting/web/${this.$scope.exchange.associatedDomainName}`)
+    this.$http
+      .get(`/hosting/web/${this.$scope.exchange.associatedDomainName}`)
       .then((hosting) => {
         this.$scope.hosting = hosting;
       });
@@ -39,8 +40,12 @@ export default class EmailProMXPlanMailingListsTabModulesCtrl {
       EmailProMXPlanMailingLists: '',
     };
 
-    this.$scope.$on('hosting.tabs.EmailProMXPlanMailingLists.refresh', () => this.refreshTableEmailProMXPlanMailingLists(true));
-    this.$scope.$on('EmailProMXPlanMailingLists.update.poll.done', () => this.refreshTableEmailProMXPlanMailingLists(true));
+    this.$scope.$on('hosting.tabs.EmailProMXPlanMailingLists.refresh', () =>
+      this.refreshTableEmailProMXPlanMailingLists(true),
+    );
+    this.$scope.$on('EmailProMXPlanMailingLists.update.poll.done', () =>
+      this.refreshTableEmailProMXPlanMailingLists(true),
+    );
     this.$scope.$on('$destroy', () => {
       this.Alerter.resetMessage(this.$scope.alerts.tabs);
       this.EmailProMXPlanMailingLists.killAllPolling({
@@ -90,11 +95,13 @@ export default class EmailProMXPlanMailingListsTabModulesCtrl {
   refreshTableEmailProMXPlanMailingLists(forceRefresh) {
     this.loading.mailingLists = true;
     this.mailingLists = null;
-    return this.EmailProMXPlanMailingLists
-      .getEmailProMXPlanMailingLists(this.$scope.exchange.associatedDomainName, {
+    return this.EmailProMXPlanMailingLists.getEmailProMXPlanMailingLists(
+      this.$scope.exchange.associatedDomainName,
+      {
         name: `%${this.search.EmailProMXPlanMailingLists}%`,
         forceRefresh,
-      })
+      },
+    )
       .then((data) => {
         this.mailingLists = this.$filter('orderBy')(data);
       })

@@ -73,23 +73,28 @@ export default class PrivateDatabaseCtrl {
       );
     });
 
-    this.$scope.isDockerDatabase = () => this.$scope.database.infrastructure === 'docker';
+    this.$scope.isDockerDatabase = () =>
+      this.$scope.database.infrastructure === 'docker';
 
-    this.$scope.isLegacyDatabase = () => this.$scope.database.infrastructure === 'legacy';
+    this.$scope.isLegacyDatabase = () =>
+      this.$scope.database.infrastructure === 'legacy';
 
-    this.$scope.isConfigSet = () => this.privateDatabaseService
-      .getConfigurationDetails(this.productId)
-      .then((res) => !isEmpty(res.details));
+    this.$scope.isConfigSet = () =>
+      this.privateDatabaseService
+        .getConfigurationDetails(this.productId)
+        .then((res) => !isEmpty(res.details));
 
-    this.$scope.isExtensionSet = () => this.privateDatabaseExtensionService
-      .getExtensions(this.productId, this.$scope.database.databaseName)
-      .then((res) => !isEmpty(res));
+    this.$scope.isExtensionSet = () =>
+      this.privateDatabaseExtensionService
+        .getExtensions(this.productId, this.$scope.database.databaseName)
+        .then((res) => !isEmpty(res));
 
     this.$scope.isDBaaS = () => this.$scope.database.offer === 'public';
 
-    this.$scope.isRenew = () => this.$scope.database.serviceInfos.renew
-      && (this.$scope.database.serviceInfos.renew.forced
-        || this.$scope.database.serviceInfos.renew.automatic);
+    this.$scope.isRenew = () =>
+      this.$scope.database.serviceInfos.renew &&
+      (this.$scope.database.serviceInfos.renew.forced ||
+        this.$scope.database.serviceInfos.renew.automatic);
 
     this.$scope.addCron = (data) => {
       this.$scope.setAction('cron/add/private-database-cron-add', data);
@@ -103,9 +108,7 @@ export default class PrivateDatabaseCtrl {
       this.$scope.currentAction = action;
       this.$scope.currentActionData = data;
       if (action) {
-        this.$scope.stepPath = `private-database/${
-          this.$scope.currentAction
-        }.html`;
+        this.$scope.stepPath = `private-database/${this.$scope.currentAction}.html`;
         $('#currentAction').modal({
           keyboard: true,
           backdrop: 'static',
@@ -139,15 +142,13 @@ export default class PrivateDatabaseCtrl {
     };
 
     this.$scope.$on('privateDatabase.global.actions.start', (e, taskOpt) => {
-      this.$scope.taskState.lockAction = taskOpt.lock || this.$scope.taskState.lockAction;
+      this.$scope.taskState.lockAction =
+        taskOpt.lock || this.$scope.taskState.lockAction;
     });
 
-    this.$scope.$on(
-      'privateDataBase.action.change.ftp.password.cancel',
-      () => {
-        this.$scope.taskState.changeFtpPassword = false;
-      },
-    );
+    this.$scope.$on('privateDataBase.action.change.ftp.password.cancel', () => {
+      this.$scope.taskState.changeFtpPassword = false;
+    });
 
     this.$scope.$on(
       'privateDataBase.action.change.root.password.cancel',
@@ -211,16 +212,16 @@ export default class PrivateDatabaseCtrl {
         this.$scope.database.quotaPercent = {};
         if (database.quotaSize && +database.quotaSize.value) {
           this.$scope.database.quotaPercent = {
-            value:
-              (database.quotaUsed.value / database.quotaSize.value) * 100,
+            value: (database.quotaUsed.value / database.quotaSize.value) * 100,
             unit: database.quotaSize.unit,
           };
         }
 
         if (!this.$scope.database.hostnameFtp) {
-          this.$scope.database.hostnameFtp = this.$scope.database.infrastructure === 'legacy'
-            ? 'sqlprive.ovh.net'
-            : this.$scope.database.hostname.replace('.ha.', '.');
+          this.$scope.database.hostnameFtp =
+            this.$scope.database.infrastructure === 'legacy'
+              ? 'sqlprive.ovh.net'
+              : this.$scope.database.hostname.replace('.ha.', '.');
         }
 
         if (!this.$scope.database.portFtp) {
@@ -236,13 +237,14 @@ export default class PrivateDatabaseCtrl {
   }
 
   editDisplayName() {
-    this.newDisplayName.value = this.$scope.database.displayName
-      || this.$scope.database.serviceName;
+    this.newDisplayName.value =
+      this.$scope.database.displayName || this.$scope.database.serviceName;
     this.editMode = true;
   }
 
   saveDisplayName() {
-    const displayName = this.newDisplayName.value || this.$scope.database.serviceName;
+    const displayName =
+      this.newDisplayName.value || this.$scope.database.serviceName;
     this.privateDatabaseService
       .updatePrivateDatabase(this.productId, {
         body: {
@@ -292,22 +294,20 @@ export default class PrivateDatabaseCtrl {
           this.getDetails(true);
         }
 
-        this.$rootScope.$broadcast(
-          'privateDatabase.global.actions.done',
-          opt,
-        );
+        this.$rootScope.$broadcast('privateDatabase.global.actions.done', opt);
         this.alerter.success(
-          this.$translate.instant(`privateDatabase_global_actions_success_${task.function}`),
+          this.$translate.instant(
+            `privateDatabase_global_actions_success_${task.function}`,
+          ),
           this.$scope.alerts.main,
         );
       })
       .catch(() => {
-        this.$rootScope.$broadcast(
-          'privateDatabase.global.actions.error',
-          opt,
-        );
+        this.$rootScope.$broadcast('privateDatabase.global.actions.error', opt);
         this.alerter.error(
-          this.$translate.instant(`privateDatabase_global_actions_fail_${task.function}`),
+          this.$translate.instant(
+            `privateDatabase_global_actions_fail_${task.function}`,
+          ),
           this.$scope.alerts.main,
         );
       });

@@ -6,12 +6,6 @@ import terminate from './terminate/hosting-cdn-terminate.module';
 
 const moduleName = 'ovhManagerHostingCdn';
 
-angular
-  .module(moduleName, [
-    flush,
-    order,
-    terminate,
-  ])
-  .config(routing);
+angular.module(moduleName, [flush, order, terminate]).config(routing);
 
 export default moduleName;

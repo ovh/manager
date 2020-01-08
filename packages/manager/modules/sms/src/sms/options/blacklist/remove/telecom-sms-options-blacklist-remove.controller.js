@@ -2,7 +2,14 @@ import angular from 'angular';
 
 export default class {
   /* @ngInject */
-  constructor($q, $stateParams, $timeout, $uibModalInstance, OvhApiSms, blacklist) {
+  constructor(
+    $q,
+    $stateParams,
+    $timeout,
+    $uibModalInstance,
+    OvhApiSms,
+    blacklist,
+  ) {
     this.$q = $q;
     this.$stateParams = $stateParams;
     this.$timeout = $timeout;
@@ -23,25 +30,30 @@ export default class {
   }
 
   /**
-     * Remove blacklists.
-     * @return {Promise}
-     */
+   * Remove blacklists.
+   * @return {Promise}
+   */
   remove() {
     this.loading.removeBlacklisted = true;
-    return this.$q.all([
-      this.api.sms.blacklists.delete({
-        serviceName: this.$stateParams.serviceName,
-        number: this.blacklist.number,
-      }).$promise,
-      this.$timeout(angular.noop, 1000),
-    ]).then(() => {
-      this.loading.removeBlacklisted = false;
-      this.removed = true;
-      return this.$timeout(() => this.close(), 1500);
-    }).catch((error) => this.cancel({
-      type: 'API',
-      msg: error,
-    }));
+    return this.$q
+      .all([
+        this.api.sms.blacklists.delete({
+          serviceName: this.$stateParams.serviceName,
+          number: this.blacklist.number,
+        }).$promise,
+        this.$timeout(angular.noop, 1000),
+      ])
+      .then(() => {
+        this.loading.removeBlacklisted = false;
+        this.removed = true;
+        return this.$timeout(() => this.close(), 1500);
+      })
+      .catch((error) =>
+        this.cancel({
+          type: 'API',
+          msg: error,
+        }),
+      );
   }
 
   cancel(message) {

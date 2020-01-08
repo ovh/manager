@@ -1,6 +1,13 @@
 class LogsHomeAccountCtrl {
-  constructor($location, $stateParams, $uibModalInstance, CucCloudMessage, CucControllerHelper,
-    LogsHomeService, LogsConstants) {
+  constructor(
+    $location,
+    $stateParams,
+    $uibModalInstance,
+    CucCloudMessage,
+    CucControllerHelper,
+    LogsHomeService,
+    LogsConstants,
+  ) {
     this.$location = $location;
     this.serviceName = $stateParams.serviceName;
     this.$uibModalInstance = $uibModalInstance;
@@ -12,10 +19,9 @@ class LogsHomeAccountCtrl {
   }
 
   $onInit() {
-    this.accountDetails.load()
-      .then(() => {
-        this.service = this.accountDetails.data.service;
-      });
+    this.accountDetails.load().then(() => {
+      this.service = this.accountDetails.data.service;
+    });
   }
 
   /**
@@ -25,7 +31,8 @@ class LogsHomeAccountCtrl {
    */
   initLoaders() {
     this.accountDetails = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () => this.LogsHomeService.getAccountDetails(this.serviceName),
+      loaderFunction: () =>
+        this.LogsHomeService.getAccountDetails(this.serviceName),
     });
   }
 
@@ -50,9 +57,11 @@ class LogsHomeAccountCtrl {
 
     this.CucCloudMessage.flushChildMessage();
     this.saving = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () => this.LogsHomeService
-        .updateDisplayName(this.serviceName, this.service)
-        .finally(() => {
+      loaderFunction: () =>
+        this.LogsHomeService.updateDisplayName(
+          this.serviceName,
+          this.service,
+        ).finally(() => {
           this.CucControllerHelper.scrollPageToTop();
           this.$uibModalInstance.close();
         }),
@@ -61,4 +70,6 @@ class LogsHomeAccountCtrl {
   }
 }
 
-angular.module('managerApp').controller('LogsHomeAccountCtrl', LogsHomeAccountCtrl);
+angular
+  .module('managerApp')
+  .controller('LogsHomeAccountCtrl', LogsHomeAccountCtrl);

@@ -6,10 +6,7 @@ import {
 
 export default class {
   /* @ngInject */
-  constructor(
-    $state,
-    dedicatedCloudDrp,
-  ) {
+  constructor($state, dedicatedCloudDrp) {
     this.$state = $state;
     this.dedicatedCloudDrp = dedicatedCloudDrp;
     this.DRP_OPTIONS = DEDICATEDCLOUD_DATACENTER_DRP_OPTIONS;
@@ -19,14 +16,18 @@ export default class {
 
   $onInit() {
     if (!this.currentDrp.isSuccessAlertDisable) {
-      return this.dedicatedCloudDrp.setDisableSuccessAlertPreference(this.currentDrp.serviceName);
+      return this.dedicatedCloudDrp.setDisableSuccessAlertPreference(
+        this.currentDrp.serviceName,
+      );
     }
 
     return Promise.resolve(null);
   }
 
   disableSuccessAlert() {
-    return this.dedicatedCloudDrp.setDisableSuccessAlertPreference(this.currentDrp.serviceName);
+    return this.dedicatedCloudDrp.setDisableSuccessAlertPreference(
+      this.currentDrp.serviceName,
+    );
   }
 
   isOnSummaryState() {
@@ -38,10 +39,9 @@ export default class {
   }
 
   goToVpnConfigurationState() {
-    return this.$state
-      .go(
-        'app.dedicatedClouds.datacenter.drp.summary',
-        { datacenterId: this.currentDrp.datacenterId, drpInformations: this.currentDrp },
-      );
+    return this.$state.go('app.dedicatedClouds.datacenter.drp.summary', {
+      datacenterId: this.currentDrp.datacenterId,
+      drpInformations: this.currentDrp,
+    });
   }
 }

@@ -1,16 +1,26 @@
-<div data-ng-controller="PromotionCodeCtrl as PromotionCode" class="oui-tile__item">
+<div
+    data-ng-controller="PromotionCodeCtrl as PromotionCode"
+    class="oui-tile__item"
+>
     <div class="block-emphasis__row">
         <div class="block-emphasis__column block-emphasis__column--first">
-            <span class="block-emphasis__icon--main ovh-font ovh-font-promotion-code-badge" aria-hidden="true"></span>
+            <span
+                class="block-emphasis__icon--main ovh-font ovh-font-promotion-code-badge"
+                aria-hidden="true"
+            ></span>
         </div>
 
         <div class="block-emphasis__column">
-            <p class="promotion-code-description" data-ng-bind-html="PromotionCode.proposal"></p>
-            <button type="button"
+            <p
+                class="promotion-code-description"
+                data-ng-bind-html="PromotionCode.proposal"
+            ></p>
+            <button
+                type="button"
                 data-ng-click="PromotionCode.getPromotion()"
                 class="btn btn-primary mt-2"
-                data-translate="pack_promotion_code_question">
-            </button>
+                data-translate="pack_promotion_code_question"
+            ></button>
         </div>
     </div>
 </div>

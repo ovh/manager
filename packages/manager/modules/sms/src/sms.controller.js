@@ -16,10 +16,15 @@ export default class SmsCtrl extends ListLayoutHelper.ListLayoutCtrl {
     this.filtersOptions = {
       status: {
         hideOperators: true,
-        values: this.smsStatusTypes.reduce((statusTypes, statusType) => ({
-          ...statusTypes,
-          [statusType]: this.$translate.instant(`sms_status_label_${statusType}`),
-        }), {}),
+        values: this.smsStatusTypes.reduce(
+          (statusTypes, statusType) => ({
+            ...statusTypes,
+            [statusType]: this.$translate.instant(
+              `sms_status_label_${statusType}`,
+            ),
+          }),
+          {},
+        ),
       },
     };
 

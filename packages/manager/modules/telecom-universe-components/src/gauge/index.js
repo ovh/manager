@@ -5,8 +5,6 @@ import './gauge.less';
 
 const moduleName = 'tucGauge';
 
-angular
-  .module(moduleName, [])
-  .directive('tucGauge', tucGaugeDirective);
+angular.module(moduleName, []).directive('tucGauge', tucGaugeDirective);
 
 export default moduleName;

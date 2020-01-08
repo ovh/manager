@@ -1,4 +1,3 @@
-
 angular.module('managerApp').config(($stateProvider) => {
   $stateProvider.state('iaas.pci-project.details', {
     url: '',
@@ -10,7 +9,8 @@ angular.module('managerApp').config(($stateProvider) => {
       },
     },
     params: {
-      fromProjectAdd: { // used in CloudProjectAddCtrl
+      fromProjectAdd: {
+        // used in CloudProjectAddCtrl
         value: false,
         squash: true,
       },

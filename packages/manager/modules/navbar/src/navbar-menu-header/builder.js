@@ -11,10 +11,9 @@ export default class NavbarBuilder {
   }
 
   buildMenuHeader(content) {
-    const compiledTemplate = this.$compile(template)(merge(
-      this.$rootScope.$new(true),
-      { $ctrl: { content } },
-    ));
+    const compiledTemplate = this.$compile(template)(
+      merge(this.$rootScope.$new(true), { $ctrl: { content } }),
+    );
     // $timeout is required in order to let angular's scope $digest
     return this.$timeout(() => compiledTemplate.html());
   }

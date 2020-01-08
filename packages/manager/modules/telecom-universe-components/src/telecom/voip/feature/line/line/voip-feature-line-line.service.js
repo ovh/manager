@@ -35,21 +35,26 @@ export default class {
    *  @return {Promise}   That return a `TucVoipLine` instance.
    */
   fetchFeature(service) {
-    return this.OvhApiTelephony.Line().v6().get({
-      billingAccount: service.billingAccount,
-      serviceName: service.serviceName,
-    }).$promise.then((featureOptions) => {
-      // create an instance of the feature with it's options
-      const feature = new this.TucVoipLine(angular.extend(featureOptions, {
+    return this.OvhApiTelephony.Line()
+      .v6()
+      .get({
         billingAccount: service.billingAccount,
-        featureType: service.featureType,
-      }));
+        serviceName: service.serviceName,
+      })
+      .$promise.then((featureOptions) => {
+        // create an instance of the feature with it's options
+        const feature = new this.TucVoipLine(
+          angular.extend(featureOptions, {
+            billingAccount: service.billingAccount,
+            featureType: service.featureType,
+          }),
+        );
 
-      // set service feature with TucVoipLine instance previously created
-      set(service, 'feature', feature);
+        // set service feature with TucVoipLine instance previously created
+        set(service, 'feature', feature);
 
-      return service.feature;
-    });
+        return service.feature;
+      });
   }
 
   /**
@@ -66,10 +71,12 @@ export default class {
    *  @return {Promise}   That return a `TucVoipLine` instance.
    */
   fetchLineInfo(service) {
-    return this.OvhApiTelephony.Line().v6().get({
-      billingAccount: service.billingAccount,
-      serviceName: service.serviceName,
-    }).$promise;
+    return this.OvhApiTelephony.Line()
+      .v6()
+      .get({
+        billingAccount: service.billingAccount,
+        serviceName: service.serviceName,
+      }).$promise;
   }
 
   /**
@@ -87,12 +94,18 @@ export default class {
    *  @return {Promise}   That return the `TucVoipLine` instance with saved value.
    */
   saveFeature(feature, featureOptions) {
-    return this.OvhApiTelephony.Line().v6().edit({
-      billingAccount: feature.billingAccount,
-      serviceName: feature.serviceName,
-    }, featureOptions).$promise.then(() => {
-      // set the new options saved
-      feature.setOptions(featureOptions);
-    });
+    return this.OvhApiTelephony.Line()
+      .v6()
+      .edit(
+        {
+          billingAccount: feature.billingAccount,
+          serviceName: feature.serviceName,
+        },
+        featureOptions,
+      )
+      .$promise.then(() => {
+        // set the new options saved
+        feature.setOptions(featureOptions);
+      });
   }
 }

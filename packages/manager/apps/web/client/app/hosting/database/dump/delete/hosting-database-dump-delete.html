@@ -1,11 +1,14 @@
 <div data-ng-controller="HostingDatabaseDumpDeleteCtrl as ctrl">
-    <div data-wizard
-         data-wizard-on-cancel="resetAction"
-         data-wizard-on-finish="deleteDatabaseDump"
-         data-wizard-title="'hosting_tab_DATABASES_configuration_dump_delete_title' | translate">
-
+    <div
+        data-wizard
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="deleteDatabaseDump"
+        data-wizard-title="'hosting_tab_DATABASES_configuration_dump_delete_title' | translate"
+    >
         <div data-wizard-step>
-            <p data-ng-bind-html="'hosting_tab_DATABASES_configuration_dump_delete_question' | translate: { t0: ctrl.fitleredCreationDate }"></p>
+            <p
+                data-ng-bind-html="'hosting_tab_DATABASES_configuration_dump_delete_question' | translate: { t0: ctrl.fitleredCreationDate }"
+            ></p>
         </div>
     </div>
 </div>

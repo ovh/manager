@@ -5,12 +5,7 @@ import Ticket from './ticket.class';
 
 export default class TicketService {
   /* @ngInject */
-  constructor(
-    $q,
-    $translate,
-    OvhApiSupport,
-    ticketMessageService,
-  ) {
+  constructor($q, $translate, OvhApiSupport, ticketMessageService) {
     this.$q = $q;
     this.$translate = $translate;
     this.OvhApiSupport = OvhApiSupport;
@@ -43,65 +38,54 @@ export default class TicketService {
   }
 
   close(id) {
-    return this
-      .OvhApiSupport
-      .v6()
-      .close({ id }).$promise;
+    return this.OvhApiSupport.v6().close({ id }).$promise;
   }
 
   get(id) {
-    return this
-      .OvhApiSupport
-      .v6()
-      .get({ id }).$promise;
+    return this.OvhApiSupport.v6().get({ id }).$promise;
   }
 
   getWithMessages(id) {
-    return this
-      .get(id)
+    return this.get(id)
       .then((ticketFromApi) => this.buildFromApi(ticketFromApi))
-      .then((ticket) => this.ticketMessageService
-        .query(id)
-        .then((messagesFromApi) => set(
-          ticket,
-          'messages',
-          map(
-            messagesFromApi,
-            (messageFromApi) => this.ticketMessageService.buildFromApi(messageFromApi),
+      .then((ticket) =>
+        this.ticketMessageService
+          .query(id)
+          .then((messagesFromApi) =>
+            set(
+              ticket,
+              'messages',
+              map(messagesFromApi, (messageFromApi) =>
+                this.ticketMessageService.buildFromApi(messageFromApi),
+              ),
+            ),
           ),
-        )));
+      );
   }
 
   query() {
-    return this
-      .OvhApiSupport
-      .Iceberg()
+    return this.OvhApiSupport.Iceberg()
       .query()
       .expand('CachedObjectList-Pages')
       .execute({}, true)
-      .$promise
-      .then((tickets) => map(
-        tickets.data,
-        (ticket) => this.buildFromApi(ticket),
-      ));
+      .$promise.then((tickets) =>
+        map(tickets.data, (ticket) => this.buildFromApi(ticket)),
+      );
   }
 
   reopen(id, body) {
-    return this
-      .OvhApiSupport
-      .v6()
-      .reopen({ id }, { body }).$promise;
+    return this.OvhApiSupport.v6().reopen({ id }, { body }).$promise;
   }
 
   reply(id, body) {
-    return this
-      .OvhApiSupport
-      .v6()
-      .reply({ id }, { body }).$promise;
+    return this.OvhApiSupport.v6().reply({ id }, { body }).$promise;
   }
 
   translateServiceName(serviceName) {
-    return serviceName || this.$translate.instant('ovhManagerSupport_ticket_serviceName_none');
+    return (
+      serviceName ||
+      this.$translate.instant('ovhManagerSupport_ticket_serviceName_none')
+    );
   }
 
   translateState(state) {

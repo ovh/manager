@@ -1,5 +1,13 @@
 class pciSlideshowCtrl {
-  constructor($scope, $state, $stateParams, $uibModalInstance, $window, atInternet, ovhUserPref) {
+  constructor(
+    $scope,
+    $state,
+    $stateParams,
+    $uibModalInstance,
+    $window,
+    atInternet,
+    ovhUserPref,
+  ) {
     this.$state = $state;
     this.$scope = $scope;
     this.$uibModalInstance = $uibModalInstance;

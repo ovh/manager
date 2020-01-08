@@ -3,29 +3,34 @@
         type="button"
         class="close float-right"
         aria-label="{{ ::'sms_cancel' | translate }}"
-        data-ng-click="IncomingReadCtrl.close()">
+        data-ng-click="IncomingReadCtrl.close()"
+    >
         <span aria-hidden="true">&times;</span>
     </button>
 </div>
 
 <div class="modal-body">
-    <h3 class="modal-title"
-        data-translate="sms_sms_incoming_read_title">
-    </h3>
+    <h3 class="modal-title" data-translate="sms_sms_incoming_read_title"></h3>
     <dl class="dl-horizontal">
         <dt data-translate="sms_sms_incoming_label_date"></dt>
-        <dd data-ng-bind="IncomingReadCtrl.incomingSms.creationDatetime | date : 'dd/MM/yyyy HH:mm:ss'"></dd>
+        <dd
+            data-ng-bind="IncomingReadCtrl.incomingSms.creationDatetime | date : 'dd/MM/yyyy HH:mm:ss'"
+        ></dd>
 
         <dt data-translate="sms_sms_incoming_label_sender"></dt>
         <dd data-ng-bind="IncomingReadCtrl.incomingSms.sender"></dd>
 
         <dt data-translate="sms_sms_incoming_label_message"></dt>
         <dd data-ng-if="IncomingReadCtrl.incomingSms.message.length >= 25">
-            <span data-ng-bind="IncomingReadCtrl.incomingSms.message | limitTo: 25"></span>…
+            <span
+                data-ng-bind="IncomingReadCtrl.incomingSms.message | limitTo: 25"
+            ></span
+            >…
         </dd>
-        <dd data-ng-if="IncomingReadCtrl.incomingSms.message.length < 25"
-            data-ng-bind="IncomingReadCtrl.incomingSms.message">
-        </dd>
+        <dd
+            data-ng-if="IncomingReadCtrl.incomingSms.message.length < 25"
+            data-ng-bind="IncomingReadCtrl.incomingSms.message"
+        ></dd>
     </dl>
     <dl class="dl-horizontal">
         <dt data-translate="sms_sms_incoming_read_label_sms_size"></dt>
@@ -35,16 +40,19 @@
                 data-translate-values="{
                     numberOfSms: '1',
                     credits: IncomingReadCtrl.incomingSms.credits
-                }">
+                }"
+            >
             </span>
         </dd>
 
-        <dt data-ng-if="IncomingReadCtrl.incomingSms.message.length >= 25"
-            data-translate="sms_sms_incoming_read_label_message">
-        </dt>
-        <dd data-ng-if="IncomingReadCtrl.incomingSms.message.length >= 25"
-            data-ng-bind="IncomingReadCtrl.incomingSms.message">
-        </dd>
+        <dt
+            data-ng-if="IncomingReadCtrl.incomingSms.message.length >= 25"
+            data-translate="sms_sms_incoming_read_label_message"
+        ></dt>
+        <dd
+            data-ng-if="IncomingReadCtrl.incomingSms.message.length >= 25"
+            data-ng-bind="IncomingReadCtrl.incomingSms.message"
+        ></dd>
     </dl>
 </div>
 
@@ -53,6 +61,6 @@
         type="button"
         class="btn btn-primary"
         data-translate="sms_ok"
-        data-ng-click="IncomingReadCtrl.close()">
-    </button>
+        data-ng-click="IncomingReadCtrl.close()"
+    ></button>
 </div>

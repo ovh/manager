@@ -1,141 +1,140 @@
 <div class="actions-menu-inner">
-
     <div class="actions-menu-pages">
-
         <div class="actions-menu-page main-page">
             <ul class="actions-list list-unstyled p-0 m-0">
                 <li class="actions-list-item">
-                    <button class="actions-menu-item-link d-block w-100"
-                            type="button"
-                            data-ng-click="$ctrl.manageAdd()"
-                            data-ng-disabled="$ctrl.status.deleteConfirm">
-
-                        <span class="d-inline-block item-icon"
-                              aria-hidden>
-                            <i class="ovh-font ovh-font-ajouter"
-                               aria-hidden>
+                    <button
+                        class="actions-menu-item-link d-block w-100"
+                        type="button"
+                        data-ng-click="$ctrl.manageAdd()"
+                        data-ng-disabled="$ctrl.status.deleteConfirm"
+                    >
+                        <span class="d-inline-block item-icon" aria-hidden>
+                            <i class="ovh-font ovh-font-ajouter" aria-hidden>
                             </i>
                         </span>
 
-                        <span class="d-block item-title"
-                              data-translate="telephony_scheduler_actions_add">
+                        <span
+                            class="d-block item-title"
+                            data-translate="telephony_scheduler_actions_add"
+                        >
                         </span>
-
                     </button>
                 </li>
 
                 <li class="actions-list-item">
-                    <button class="actions-menu-item-link d-block w-100"
-                            type="button"
-                            data-ng-click="$ctrl.manageImport()"
-                            data-ng-disabled="$ctrl.status.deleteConfirm || $ctrl.scheduler.hasChange()">
-
-                        <span class="d-inline-block item-icon"
-                              aria-hidden>
-                            <i class="ovh-font ovh-font-download"
-                               aria-hidden>
+                    <button
+                        class="actions-menu-item-link d-block w-100"
+                        type="button"
+                        data-ng-click="$ctrl.manageImport()"
+                        data-ng-disabled="$ctrl.status.deleteConfirm || $ctrl.scheduler.hasChange()"
+                    >
+                        <span class="d-inline-block item-icon" aria-hidden>
+                            <i class="ovh-font ovh-font-download" aria-hidden>
                             </i>
                         </span>
 
-                        <span class="d-block item-title"
-                              data-translate="telephony_scheduler_actions_import">
+                        <span
+                            class="d-block item-title"
+                            data-translate="telephony_scheduler_actions_import"
+                        >
                         </span>
-
                     </button>
                 </li>
 
                 <li class="actions-list-item">
-                    <button class="actions-menu-item-link d-block w-100"
-                            type="button"
-                            data-ng-click="$ctrl.manageExport()"
-                            data-ng-disabled="$ctrl.status.deleteConfirm || $ctrl.scheduler.hasChange()">
-
-                        <span class="d-inline-block item-icon"
-                              aria-hidden>
-                            <i class="ovh-font ovh-font-upload"
-                               aria-hidden>
+                    <button
+                        class="actions-menu-item-link d-block w-100"
+                        type="button"
+                        data-ng-click="$ctrl.manageExport()"
+                        data-ng-disabled="$ctrl.status.deleteConfirm || $ctrl.scheduler.hasChange()"
+                    >
+                        <span class="d-inline-block item-icon" aria-hidden>
+                            <i class="ovh-font ovh-font-upload" aria-hidden>
                             </i>
                         </span>
 
-                        <span class="d-block item-title"
-                              data-translate="telephony_scheduler_actions_export">
+                        <span
+                            class="d-block item-title"
+                            data-translate="telephony_scheduler_actions_export"
+                        >
                         </span>
-
                     </button>
                 </li>
 
                 <li class="actions-list-item">
-                    <button class="actions-menu-item-link d-block w-100"
-                            type="button"
-                            data-ng-click="$ctrl.manageBankHolidays()"
-                            data-ng-disabled="$ctrl.status.deleteConfirm">
-
-                        <span class="d-inline-block item-icon"
-                              aria-hidden>
-                            <i class="ovh-font ovh-font-palmTree"
-                               aria-hidden>
+                    <button
+                        class="actions-menu-item-link d-block w-100"
+                        type="button"
+                        data-ng-click="$ctrl.manageBankHolidays()"
+                        data-ng-disabled="$ctrl.status.deleteConfirm"
+                    >
+                        <span class="d-inline-block item-icon" aria-hidden>
+                            <i class="ovh-font ovh-font-palmTree" aria-hidden>
                             </i>
                         </span>
 
-                        <span class="d-block item-title"
-                              data-translate="telephony_scheduler_actions_bank_holidays">
+                        <span
+                            class="d-block item-title"
+                            data-translate="telephony_scheduler_actions_bank_holidays"
+                        >
                         </span>
-
                     </button>
                 </li>
 
                 <li class="actions-list-item">
-                    <button class="actions-menu-item-link d-block w-100"
-                            type="button"
-                            data-ng-click="$ctrl.status.deleteConfirm = true">
-
-                        <span class="d-inline-block item-icon"
-                              aria-hidden>
-                            <i class="ovh-font ovh-font-bin"
-                               aria-hidden>
-                            </i>
+                    <button
+                        class="actions-menu-item-link d-block w-100"
+                        type="button"
+                        data-ng-click="$ctrl.status.deleteConfirm = true"
+                    >
+                        <span class="d-inline-block item-icon" aria-hidden>
+                            <i class="ovh-font ovh-font-bin" aria-hidden> </i>
                         </span>
 
-                        <span class="d-block item-title"
-                              data-translate="telephony_scheduler_actions_bank_delete_all">
+                        <span
+                            class="d-block item-title"
+                            data-translate="telephony_scheduler_actions_bank_delete_all"
+                        >
                         </span>
-
                     </button>
                 </li>
             </ul>
 
-            <footer class="bottom-action"
-                    data-ng-show="$ctrl.status.deleteConfirm">
-
+            <footer
+                class="bottom-action"
+                data-ng-show="$ctrl.status.deleteConfirm"
+            >
                 <div class="confirm-inner">
-
-                    <p data-translate="telephony_scheduler_delete_all_confirm_question"></p>
+                    <p
+                        data-translate="telephony_scheduler_delete_all_confirm_question"
+                    ></p>
 
                     <div class="button-container">
-                        <button type="button"
-                                class="btn btn-primary float-right ml-2"
-                                data-ng-click="$ctrl.manageDeleteAll()">
-                            <oui-spinner class="mr-2"
-                                         data-ng-if="$ctrl.loading.deleteAll"
-                                         data-ng-size="s">
+                        <button
+                            type="button"
+                            class="btn btn-primary float-right ml-2"
+                            data-ng-click="$ctrl.manageDeleteAll()"
+                        >
+                            <oui-spinner
+                                class="mr-2"
+                                data-ng-if="$ctrl.loading.deleteAll"
+                                data-ng-size="s"
+                            >
                             </oui-spinner>
                             <span data-translate="delete"></span>
                         </button>
 
-                        <button type="button"
-                                class="btn btn-default float-right"
-                                data-translate="cancel"
-                                data-ng-click="$ctrl.status.deleteConfirm = false"
-                                data-ng-disabled="$ctrl.loading.deleteAll">
-                        </button>
+                        <button
+                            type="button"
+                            class="btn btn-default float-right"
+                            data-translate="cancel"
+                            data-ng-click="$ctrl.status.deleteConfirm = false"
+                            data-ng-disabled="$ctrl.loading.deleteAll"
+                        ></button>
                     </div>
-
                 </div>
-
-
             </footer>
         </div>
-
     </div>
-
 </div>

@@ -9,10 +9,12 @@ export default class {
 
   initLoaders() {
     this.backup = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () => this.VpsService.getBackupStorageTab(this.serviceName),
+      loaderFunction: () =>
+        this.VpsService.getBackupStorageTab(this.serviceName),
     });
     this.info = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () => this.VpsService.getBackupStorageInformation(this.serviceName),
+      loaderFunction: () =>
+        this.VpsService.getBackupStorageInformation(this.serviceName),
     });
     this.vps = this.CucControllerHelper.request.getHashLoader({
       loaderFunction: () => this.VpsService.getSelectedVps(this.serviceName),
@@ -23,17 +25,17 @@ export default class {
     this.initLoaders();
 
     this.backup.load();
-    this.info.load()
-      .then(() => {
-        if (!this.info.data.activated) {
-          this.vps.load();
-        }
-      });
+    this.info.load().then(() => {
+      if (!this.info.data.activated) {
+        this.vps.load();
+      }
+    });
   }
 
   add() {
-    this.VpsActionService.addBackupStorage(this.serviceName)
-      .then(() => this.backup.load());
+    this.VpsActionService.addBackupStorage(this.serviceName).then(() =>
+      this.backup.load(),
+    );
   }
 
   resetPassword() {
@@ -41,12 +43,14 @@ export default class {
   }
 
   deleteOne(access) {
-    this.VpsActionService.deleteBackupStorage(this.serviceName, access)
-      .then(() => this.backup.load());
+    this.VpsActionService.deleteBackupStorage(this.serviceName, access).then(
+      () => this.backup.load(),
+    );
   }
 
   editOne(row) {
-    this.VpsActionService.editBackupStorage(this.serviceName, row)
-      .then(() => this.backup.load());
+    this.VpsActionService.editBackupStorage(this.serviceName, row).then(() =>
+      this.backup.load(),
+    );
   }
 }

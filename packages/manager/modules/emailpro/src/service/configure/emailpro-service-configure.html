@@ -1,237 +1,448 @@
 <div data-ng-controller="EmailProServicesConfigureCtrl">
-
-    <div data-wizard
-         data-wizard-title="'emailpro_configuration_action_title' | translate"
-         data-wizard-on-cancel="resetAction"
-         data-wizard-on-finish="putDetails">
-
-        <div data-wizard-step
-            data-wizard-step-valid="formIsValid.value == true">
-
-            <div data-ng-if="loaders.details == true && loaders.put == false"
-                 data-translate="emailpro_ACTION_loading">
+    <div
+        data-wizard
+        data-wizard-title="'emailpro_configuration_action_title' | translate"
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="putDetails"
+    >
+        <div
+            data-wizard-step
+            data-wizard-step-valid="formIsValid.value == true"
+        >
+            <div
+                data-ng-if="loaders.details == true && loaders.put == false"
+                data-translate="emailpro_ACTION_loading"
+            >
                 <oui-spinner data-size="s"></oui-spinner>
             </div>
-            <div data-ng-if="loaders.details == false && loaders.put == true"
-                 data-translate="emailpro_ACTION_sending">
+            <div
+                data-ng-if="loaders.details == false && loaders.put == true"
+                data-translate="emailpro_ACTION_sending"
+            >
                 <oui-spinner data-size="s"></oui-spinner>
             </div>
-            <form name="serviceForm"
-                  novalidate="novalidate"
-                  data-ng-if="loaders.details == false && loaders.put == false"
-                  data-ng-controller="EmailProServicesConfigureFormCtrl">
+            <form
+                name="serviceForm"
+                novalidate="novalidate"
+                data-ng-if="loaders.details == false && loaders.put == false"
+                data-ng-controller="EmailProServicesConfigureFormCtrl"
+            >
                 <!-- Lockout Threshold -->
-                <div class="form-group"
-                     data-ng-class="{
+                <div
+                    class="form-group"
+                    data-ng-class="{
                         'has-error': serviceForm.lockoutThreshold.$invalid && serviceForm.lockoutThreshold.$dirty
-                     }">
-                    <label for="lockoutThreshold" class="control-label"
-                           data-translate="emailpro_ACTION_configure_services_label_lockoutThreshold"
-                           data-oui-tooltip="{{:: 'emailpro_ACTION_configure_services_help_lockoutThreshold' | translate }}"
-                           data-oui-tooltip-placement="right">
+                     }"
+                >
+                    <label
+                        for="lockoutThreshold"
+                        class="control-label"
+                        data-translate="emailpro_ACTION_configure_services_label_lockoutThreshold"
+                        data-oui-tooltip="{{:: 'emailpro_ACTION_configure_services_help_lockoutThreshold' | translate }}"
+                        data-oui-tooltip-placement="right"
+                    >
                     </label>
-                    <input type="number" class="form-control" id="lockoutThreshold" name="lockoutThreshold" min="0" max="14" required
-                           data-ng-change="check(serviceForm.lockoutThreshold)"
-                           data-ng-model="service.lockoutThreshold"
-                           data-ng-pattern="/^\d+$/">
-                    <span class="help-block"
-                          data-ng-if="service.lockoutThreshold == 0"
-                          data-translate="lockoutThreshold_unit_value_0"></span>
-                    <span class="help-block"
-                          data-ng-if="isError"
-                          data-ng-repeat="(type, isError) in serviceForm.lockoutThreshold.$error"
-                          data-ng-bind="'lockoutThreshold_' + type + '_error' | translate">
+                    <input
+                        type="number"
+                        class="form-control"
+                        id="lockoutThreshold"
+                        name="lockoutThreshold"
+                        min="0"
+                        max="14"
+                        required
+                        data-ng-change="check(serviceForm.lockoutThreshold)"
+                        data-ng-model="service.lockoutThreshold"
+                        data-ng-pattern="/^\d+$/"
+                    />
+                    <span
+                        class="help-block"
+                        data-ng-if="service.lockoutThreshold == 0"
+                        data-translate="lockoutThreshold_unit_value_0"
+                    ></span>
+                    <span
+                        class="help-block"
+                        data-ng-if="isError"
+                        data-ng-repeat="(type, isError) in serviceForm.lockoutThreshold.$error"
+                        data-ng-bind="'lockoutThreshold_' + type + '_error' | translate"
+                    >
                     </span>
                 </div>
                 <!-- Lockout Observation Window -->
-                <div class="form-group"
-                     data-ng-class="{
+                <div
+                    class="form-group"
+                    data-ng-class="{
                         'has-error': serviceForm.lockoutObservationWindow.$invalid && (serviceForm.lockoutDuration.$dirty || serviceForm.lockoutObservationWindow.$dirty) && service.lockoutThreshold !== 0
                      }"
-                     data-ng-if="service.lockoutThreshold !== 0 && service.lockoutThreshold != null">
-                    <label for="lockoutObservationWindow" class="control-label"
-                           data-translate="emailpro_ACTION_configure_services_label_lockoutObservationWindow"></label>
-                    <input type="number" class="form-control" id="lockoutObservationWindow" name="lockoutObservationWindow" min="1" max="90"
-                           data-ng-change="check(serviceForm.lockoutObservationWindow)"
-                           data-ng-model="service.lockoutObservationWindow"
-                           data-oui-tooltip="{{:: 'emailpro_ACTION_configure_services_tooltip_minutes' | translate }}"
-                           data-ng-pattern="/^\d+$/"
-                           data-ng-disabled="service.lockoutThreshold === 0"
-                           data-ng-required="service.lockoutThreshold !== 0">
-                    <span class="help-block"
-                          data-ng-repeat="(type, isError) in serviceForm.lockoutObservationWindow.$error"
-                          data-ng-if="service.lockoutThreshold !== 0 && isError"
-                          data-ng-bind="'lockoutObservationWindow_' + type + '_error' | translate">
+                    data-ng-if="service.lockoutThreshold !== 0 && service.lockoutThreshold != null"
+                >
+                    <label
+                        for="lockoutObservationWindow"
+                        class="control-label"
+                        data-translate="emailpro_ACTION_configure_services_label_lockoutObservationWindow"
+                    ></label>
+                    <input
+                        type="number"
+                        class="form-control"
+                        id="lockoutObservationWindow"
+                        name="lockoutObservationWindow"
+                        min="1"
+                        max="90"
+                        data-ng-change="check(serviceForm.lockoutObservationWindow)"
+                        data-ng-model="service.lockoutObservationWindow"
+                        data-oui-tooltip="{{:: 'emailpro_ACTION_configure_services_tooltip_minutes' | translate }}"
+                        data-ng-pattern="/^\d+$/"
+                        data-ng-disabled="service.lockoutThreshold === 0"
+                        data-ng-required="service.lockoutThreshold !== 0"
+                    />
+                    <span
+                        class="help-block"
+                        data-ng-repeat="(type, isError) in serviceForm.lockoutObservationWindow.$error"
+                        data-ng-if="service.lockoutThreshold !== 0 && isError"
+                        data-ng-bind="'lockoutObservationWindow_' + type + '_error' | translate"
+                    >
                     </span>
                 </div>
                 <!-- Lockout Duration -->
-                <div class="form-group"
-                     data-ng-class="{
+                <div
+                    class="form-group"
+                    data-ng-class="{
                         'has-error': serviceForm.lockoutDuration.$invalid && (serviceForm.lockoutDuration.$dirty || serviceForm.lockoutObservationWindow.$dirty) && service.lockoutThreshold !== 0
                      }"
-                     data-ng-if="service.lockoutThreshold !== 0 && service.lockoutThreshold != null">
-                    <label for="lockoutDuration" class="control-label"
-                           data-translate="emailpro_ACTION_configure_services_label_lockoutDuration"></label>
-                    <input type="number" class="form-control" id="lockoutDuration" name="lockoutDuration" min="{{service.lockoutObservationWindow}}" max="90"
-                           data-ng-change="check(serviceForm.lockoutDuration)"
-                           data-ng-model="service.lockoutDuration"
-                           data-oui-tooltip="{{:: 'emailpro_ACTION_configure_services_tooltip_minutes' | translate }}"
-                           data-ng-pattern="/^\d+$/"
-                           data-ng-disabled="service.lockoutThreshold === 0"
-                           data-ng-required="service.lockoutThreshold !== 0">
-                    <span class="help-block"
-                         data-ng-repeat="(type, isError) in serviceForm.lockoutDuration.$error"
-                         data-ng-if="service.lockoutThreshold !== 0 && isError"
-                         data-ng-bind="'lockoutDuration_' + type + '_error' | translate: { t0: service.lockoutObservationWindow }">
+                    data-ng-if="service.lockoutThreshold !== 0 && service.lockoutThreshold != null"
+                >
+                    <label
+                        for="lockoutDuration"
+                        class="control-label"
+                        data-translate="emailpro_ACTION_configure_services_label_lockoutDuration"
+                    ></label>
+                    <input
+                        type="number"
+                        class="form-control"
+                        id="lockoutDuration"
+                        name="lockoutDuration"
+                        min="{{service.lockoutObservationWindow}}"
+                        max="90"
+                        data-ng-change="check(serviceForm.lockoutDuration)"
+                        data-ng-model="service.lockoutDuration"
+                        data-oui-tooltip="{{:: 'emailpro_ACTION_configure_services_tooltip_minutes' | translate }}"
+                        data-ng-pattern="/^\d+$/"
+                        data-ng-disabled="service.lockoutThreshold === 0"
+                        data-ng-required="service.lockoutThreshold !== 0"
+                    />
+                    <span
+                        class="help-block"
+                        data-ng-repeat="(type, isError) in serviceForm.lockoutDuration.$error"
+                        data-ng-if="service.lockoutThreshold !== 0 && isError"
+                        data-ng-bind="'lockoutDuration_' + type + '_error' | translate: { t0: service.lockoutObservationWindow }"
+                    >
                     </span>
                 </div>
                 <!-- Complexity Enabled -->
-                <oui-checkbox id="complexityEnabled" name="complexityEnabled"
+                <oui-checkbox
+                    id="complexityEnabled"
+                    name="complexityEnabled"
                     data-model="service.complexityEnabled"
-                    data-text="{{:: 'emailpro_ACTION_configure_services_label_complexityEnabled' | translate }}">
+                    data-text="{{:: 'emailpro_ACTION_configure_services_label_complexityEnabled' | translate }}"
+                >
                 </oui-checkbox>
                 <!-- Min password Age -->
-                <div class="form-group"
-                     data-ng-class="{
+                <div
+                    class="form-group"
+                    data-ng-class="{
                         'has-error': serviceForm.minPasswordAge.$invalid && serviceForm.minPasswordAge.$dirty
-                     }">
-                    <label for="minPasswordAge" class="control-label"
-                           data-translate="emailpro_ACTION_configure_services_label_minPasswordAge"
-                           data-oui-tooltip="{{:: 'emailpro_ACTION_configure_services_help_minPasswordAge' | translate }}"
-                           data-oui-tooltip-placement="right">
+                     }"
+                >
+                    <label
+                        for="minPasswordAge"
+                        class="control-label"
+                        data-translate="emailpro_ACTION_configure_services_label_minPasswordAge"
+                        data-oui-tooltip="{{:: 'emailpro_ACTION_configure_services_help_minPasswordAge' | translate }}"
+                        data-oui-tooltip-placement="right"
+                    >
                     </label>
-                    <input type="number" class="form-control" id="minPasswordAge" name="minPasswordAge" min="0" max="90" required
-                           data-ng-change="checkPasswordAge()"
-                           data-oui-tooltip="{{:: 'emailpro_ACTION_configure_services_tooltip_days' | translate }}"
-                           data-ng-pattern="/^\d+$/"
-                           data-ng-model="service.minPasswordAge">
-                    <span class="help-block"
-                          data-ng-if="service.minPasswordAge == 0"
-                          data-translate="minPasswordAge_unit_value_0"></span>
-                    <span class="help-block"
-                          data-ng-repeat="(type, isError) in serviceForm.minPasswordAge.$error"
-                          data-ng-if="isError"
-                          data-ng-bind="'minPasswordAge_' + type + '_error' | translate">
+                    <input
+                        type="number"
+                        class="form-control"
+                        id="minPasswordAge"
+                        name="minPasswordAge"
+                        min="0"
+                        max="90"
+                        required
+                        data-ng-change="checkPasswordAge()"
+                        data-oui-tooltip="{{:: 'emailpro_ACTION_configure_services_tooltip_days' | translate }}"
+                        data-ng-pattern="/^\d+$/"
+                        data-ng-model="service.minPasswordAge"
+                    />
+                    <span
+                        class="help-block"
+                        data-ng-if="service.minPasswordAge == 0"
+                        data-translate="minPasswordAge_unit_value_0"
+                    ></span>
+                    <span
+                        class="help-block"
+                        data-ng-repeat="(type, isError) in serviceForm.minPasswordAge.$error"
+                        data-ng-if="isError"
+                        data-ng-bind="'minPasswordAge_' + type + '_error' | translate"
+                    >
                     </span>
                 </div>
                 <!-- Max password Age -->
-                <div class="form-group"
-                     data-ng-class="{
+                <div
+                    class="form-group"
+                    data-ng-class="{
                         'has-error': serviceForm.maxPasswordAge.$invalid && serviceForm.maxPasswordAge.$dirty
-                     }">
-                    <label for="maxPasswordAge" class="control-label"
-                           data-translate="emailpro_ACTION_configure_services_label_maxPasswordAge"
-                           data-oui-tooltip="{{:: 'emailpro_ACTION_configure_services_help_maxPasswordAge' | translate }}"
-                           data-oui-tooltip-placement="right">
+                     }"
+                >
+                    <label
+                        for="maxPasswordAge"
+                        class="control-label"
+                        data-translate="emailpro_ACTION_configure_services_label_maxPasswordAge"
+                        data-oui-tooltip="{{:: 'emailpro_ACTION_configure_services_help_maxPasswordAge' | translate }}"
+                        data-oui-tooltip-placement="right"
+                    >
                     </label>
-                    <input type="number" class="form-control" id="maxPasswordAge" name="maxPasswordAge" min="0" max="90" required
-                           data-ng-change="checkPasswordAge()"
-                           data-ng-model="service.maxPasswordAge"
-                           data-oui-tooltip="{{:: 'emailpro_ACTION_configure_services_tooltip_days' | translate }}"
-                           data-ng-pattern="/^\d+$/">
-                    <span class="help-block"
-                          data-ng-if="service.maxPasswordAge == 0"
-                          data-translate="maxPasswordAge_unit_value_0"></span>
-                    <span class="help-block"
-                          data-ng-repeat="(type, isError) in serviceForm.maxPasswordAge.$error"
-                          data-ng-if="isError"
-                          data-ng-bind="'maxPasswordAge_' + type + '_error' | translate">
+                    <input
+                        type="number"
+                        class="form-control"
+                        id="maxPasswordAge"
+                        name="maxPasswordAge"
+                        min="0"
+                        max="90"
+                        required
+                        data-ng-change="checkPasswordAge()"
+                        data-ng-model="service.maxPasswordAge"
+                        data-oui-tooltip="{{:: 'emailpro_ACTION_configure_services_tooltip_days' | translate }}"
+                        data-ng-pattern="/^\d+$/"
+                    />
+                    <span
+                        class="help-block"
+                        data-ng-if="service.maxPasswordAge == 0"
+                        data-translate="maxPasswordAge_unit_value_0"
+                    ></span>
+                    <span
+                        class="help-block"
+                        data-ng-repeat="(type, isError) in serviceForm.maxPasswordAge.$error"
+                        data-ng-if="isError"
+                        data-ng-bind="'maxPasswordAge_' + type + '_error' | translate"
+                    >
                     </span>
                 </div>
                 <!-- Min password Length -->
-                <div class="form-group"
-                     data-ng-class="{
+                <div
+                    class="form-group"
+                    data-ng-class="{
                         'has-error': serviceForm.minPasswordLength.$invalid && serviceForm.minPasswordLength.$dirty
-                     }">
-                    <label for="minPasswordLength" class="control-label"
-                           data-translate="emailpro_ACTION_configure_services_label_minPasswordLength"
-                           data-oui-tooltip="{{:: 'emailpro_ACTION_configure_services_help_minPasswordLength' | translate }}"
-                           data-oui-tooltip-placement="right"></label>
-                    <input type="number" class="form-control" id="minPasswordLength" name="minPasswordLength" min="0" max="14" required
-                           data-ng-change="check(serviceForm.minPasswordLength)"
-                           data-ng-pattern="/^\d+$/"
-                           data-ng-model="service.minPasswordLength">
-                    <span class="help-block"
-                          data-ng-if="service.minPasswordLength == 0"
-                          data-translate="minPasswordLength_unit_value_0"></span>
-                    <span class="help-block"
-                          data-ng-repeat="(type, isError) in serviceForm.minPasswordLength.$error"
-                          data-ng-if="isError"
-                          data-ng-bind="'minPasswordLength_' + type + '_error' | translate">
+                     }"
+                >
+                    <label
+                        for="minPasswordLength"
+                        class="control-label"
+                        data-translate="emailpro_ACTION_configure_services_label_minPasswordLength"
+                        data-oui-tooltip="{{:: 'emailpro_ACTION_configure_services_help_minPasswordLength' | translate }}"
+                        data-oui-tooltip-placement="right"
+                    ></label>
+                    <input
+                        type="number"
+                        class="form-control"
+                        id="minPasswordLength"
+                        name="minPasswordLength"
+                        min="0"
+                        max="14"
+                        required
+                        data-ng-change="check(serviceForm.minPasswordLength)"
+                        data-ng-pattern="/^\d+$/"
+                        data-ng-model="service.minPasswordLength"
+                    />
+                    <span
+                        class="help-block"
+                        data-ng-if="service.minPasswordLength == 0"
+                        data-translate="minPasswordLength_unit_value_0"
+                    ></span>
+                    <span
+                        class="help-block"
+                        data-ng-repeat="(type, isError) in serviceForm.minPasswordLength.$error"
+                        data-ng-if="isError"
+                        data-ng-bind="'minPasswordLength_' + type + '_error' | translate"
+                    >
                     </span>
                 </div>
             </form>
             <div data-wizard-step-help>
-                <h3 data-translate="{{ exchange.billingPlan + '_ACTION_configure_help_title' }}"></h3>
-                <h4 data-translate="emailpro_ACTION_configure_help_lockoutThreshold_title"></h4>
-                <p data-ng-bind-html="'emailpro_ACTION_configure_help_lockoutThreshold_text' | translate"></p>
-                <h4 data-translate="emailpro_ACTION_configure_help_lockoutObservationWindow_title"></h4>
-                <p data-ng-bind-html="'emailpro_ACTION_configure_help_lockoutObservationWindow_text' | translate"></p>
-                <h4 data-translate="emailpro_ACTION_configure_help_lockoutDuration_title"></h4>
-                <p data-ng-bind-html="'emailpro_ACTION_configure_help_lockoutDuration_text' | translate"></p>
-                <h4 data-translate="emailpro_ACTION_configure_help_complexityEnabled_title"></h4>
-                <p data-ng-bind-html="'emailpro_ACTION_configure_help_complexityEnabled_text' | translate"></p>
-                <h4 data-translate="emailpro_ACTION_configure_help_minPasswordAge_title"></h4>
-                <p data-ng-bind-html="'emailpro_ACTION_configure_help_minPasswordAge_text' | translate"></p>
-                <h4 data-translate="emailpro_ACTION_configure_help_maxPasswordAge_title"></h4>
-                <p data-ng-bind-html="'emailpro_ACTION_configure_help_maxPasswordAge_text' | translate"></p>
-                <h4 data-translate="emailpro_ACTION_configure_help_minPasswordLength_title"></h4>
-                <p data-ng-bind-html="'emailpro_ACTION_configure_help_minPasswordLength_text' | translate"></p>
-             </div>
+                <h3
+                    data-translate="{{ exchange.billingPlan + '_ACTION_configure_help_title' }}"
+                ></h3>
+                <h4
+                    data-translate="emailpro_ACTION_configure_help_lockoutThreshold_title"
+                ></h4>
+                <p
+                    data-ng-bind-html="'emailpro_ACTION_configure_help_lockoutThreshold_text' | translate"
+                ></p>
+                <h4
+                    data-translate="emailpro_ACTION_configure_help_lockoutObservationWindow_title"
+                ></h4>
+                <p
+                    data-ng-bind-html="'emailpro_ACTION_configure_help_lockoutObservationWindow_text' | translate"
+                ></p>
+                <h4
+                    data-translate="emailpro_ACTION_configure_help_lockoutDuration_title"
+                ></h4>
+                <p
+                    data-ng-bind-html="'emailpro_ACTION_configure_help_lockoutDuration_text' | translate"
+                ></p>
+                <h4
+                    data-translate="emailpro_ACTION_configure_help_complexityEnabled_title"
+                ></h4>
+                <p
+                    data-ng-bind-html="'emailpro_ACTION_configure_help_complexityEnabled_text' | translate"
+                ></p>
+                <h4
+                    data-translate="emailpro_ACTION_configure_help_minPasswordAge_title"
+                ></h4>
+                <p
+                    data-ng-bind-html="'emailpro_ACTION_configure_help_minPasswordAge_text' | translate"
+                ></p>
+                <h4
+                    data-translate="emailpro_ACTION_configure_help_maxPasswordAge_title"
+                ></h4>
+                <p
+                    data-ng-bind-html="'emailpro_ACTION_configure_help_maxPasswordAge_text' | translate"
+                ></p>
+                <h4
+                    data-translate="emailpro_ACTION_configure_help_minPasswordLength_title"
+                ></h4>
+                <p
+                    data-ng-bind-html="'emailpro_ACTION_configure_help_minPasswordLength_text' | translate"
+                ></p>
+            </div>
         </div>
 
         <div data-wizard-step>
             <strong
                 data-translate="{{ exchange.billingPlan + '_ACTION_configure_step2_intro' }}"
-                data-translate-values="{ t0: service.displayName }"></strong>
+                data-translate-values="{ t0: service.displayName }"
+            ></strong>
             <dl class="mt-5">
-                <dt data-translate="emailpro_ACTION_configure_step2_label_lockoutThreshold"></dt>
+                <dt
+                    data-translate="emailpro_ACTION_configure_step2_label_lockoutThreshold"
+                ></dt>
                 <dd>
-                    <span data-ng-if="service.lockoutThreshold == 0" data-translate="lockoutThreshold_unit_value_0"></span>
-                    <span data-ng-if="service.lockoutThreshold == 1" data-translate="lockoutThreshold_unit_value_1"></span>
-                    <span data-ng-if="service.lockoutThreshold > 1" data-translate="lockoutThreshold_unit_value_many" data-translate-values="{ t0: service.lockoutThreshold }"></span>
+                    <span
+                        data-ng-if="service.lockoutThreshold == 0"
+                        data-translate="lockoutThreshold_unit_value_0"
+                    ></span>
+                    <span
+                        data-ng-if="service.lockoutThreshold == 1"
+                        data-translate="lockoutThreshold_unit_value_1"
+                    ></span>
+                    <span
+                        data-ng-if="service.lockoutThreshold > 1"
+                        data-translate="lockoutThreshold_unit_value_many"
+                        data-translate-values="{ t0: service.lockoutThreshold }"
+                    ></span>
                 </dd>
 
-                <dt data-ng-if="service.lockoutThreshold !== 0 && service.lockoutObservationWindow !== 0"
-                    data-translate="emailpro_ACTION_configure_step2_label_lockoutObservationWindow"></dt>
-                <dd data-ng-if="service.lockoutThreshold !== 0 && service.lockoutObservationWindow !== 0">
-                    <span data-ng-if="service.lockoutObservationWindow == 1" data-translate="lockoutObservationWindow_unit_value_1"></span>
-                    <span data-ng-if="service.lockoutObservationWindow > 1" data-translate="lockoutObservationWindow_unit_value_many" data-translate-values="{ t0: service.lockoutObservationWindow }"></span>
+                <dt
+                    data-ng-if="service.lockoutThreshold !== 0 && service.lockoutObservationWindow !== 0"
+                    data-translate="emailpro_ACTION_configure_step2_label_lockoutObservationWindow"
+                ></dt>
+                <dd
+                    data-ng-if="service.lockoutThreshold !== 0 && service.lockoutObservationWindow !== 0"
+                >
+                    <span
+                        data-ng-if="service.lockoutObservationWindow == 1"
+                        data-translate="lockoutObservationWindow_unit_value_1"
+                    ></span>
+                    <span
+                        data-ng-if="service.lockoutObservationWindow > 1"
+                        data-translate="lockoutObservationWindow_unit_value_many"
+                        data-translate-values="{ t0: service.lockoutObservationWindow }"
+                    ></span>
                 </dd>
 
-                <dt data-ng-if="service.lockoutThreshold !== 0"
-                    data-translate="emailpro_ACTION_configure_step2_label_lockoutDuration"></dt>
+                <dt
+                    data-ng-if="service.lockoutThreshold !== 0"
+                    data-translate="emailpro_ACTION_configure_step2_label_lockoutDuration"
+                ></dt>
                 <dd data-ng-if="service.lockoutThreshold !== 0">
-                    <span data-ng-if="service.lockoutDuration == 0" data-translate="lockoutDuration_unit_value_0"></span>
-                    <span data-ng-if="service.lockoutDuration == 1" data-translate="lockoutDuration_unit_value_1"></span>
-                    <span data-ng-if="service.lockoutDuration > 1" data-translate="lockoutDuration_unit_value_many" data-translate-values="{ t0: service.lockoutDuration }"></span>
+                    <span
+                        data-ng-if="service.lockoutDuration == 0"
+                        data-translate="lockoutDuration_unit_value_0"
+                    ></span>
+                    <span
+                        data-ng-if="service.lockoutDuration == 1"
+                        data-translate="lockoutDuration_unit_value_1"
+                    ></span>
+                    <span
+                        data-ng-if="service.lockoutDuration > 1"
+                        data-translate="lockoutDuration_unit_value_many"
+                        data-translate-values="{ t0: service.lockoutDuration }"
+                    ></span>
                 </dd>
 
-                <dt data-translate="emailpro_ACTION_configure_step2_label_complexityEnabled"></dt>
-                <dd data-ng-bind="'complexityEnabled_value_' + service.complexityEnabled | translate"></dd>
+                <dt
+                    data-translate="emailpro_ACTION_configure_step2_label_complexityEnabled"
+                ></dt>
+                <dd
+                    data-ng-bind="'complexityEnabled_value_' + service.complexityEnabled | translate"
+                ></dd>
 
-                <dt data-translate="emailpro_ACTION_configure_step2_label_minPasswordAge"></dt>
+                <dt
+                    data-translate="emailpro_ACTION_configure_step2_label_minPasswordAge"
+                ></dt>
                 <dd>
-                    <span data-ng-if="service.minPasswordAge == 0" data-translate="minPasswordAge_unit_value_0"></span>
-                    <span data-ng-if="service.minPasswordAge == 1" data-translate="minPasswordAge_unit_value_1"></span>
-                    <span data-ng-if="service.minPasswordAge > 1" data-translate="minPasswordAge_unit_value_many" data-translate-values="{ t0: service.minPasswordAge }"></span>
+                    <span
+                        data-ng-if="service.minPasswordAge == 0"
+                        data-translate="minPasswordAge_unit_value_0"
+                    ></span>
+                    <span
+                        data-ng-if="service.minPasswordAge == 1"
+                        data-translate="minPasswordAge_unit_value_1"
+                    ></span>
+                    <span
+                        data-ng-if="service.minPasswordAge > 1"
+                        data-translate="minPasswordAge_unit_value_many"
+                        data-translate-values="{ t0: service.minPasswordAge }"
+                    ></span>
                 </dd>
 
-                <dt data-translate="emailpro_ACTION_configure_step2_label_maxPasswordAge"></dt>
+                <dt
+                    data-translate="emailpro_ACTION_configure_step2_label_maxPasswordAge"
+                ></dt>
                 <dd>
-                    <span data-ng-if="service.maxPasswordAge == 0" data-translate="maxPasswordAge_unit_value_0"></span>
-                    <span data-ng-if="service.maxPasswordAge == 1" data-translate="maxPasswordAge_unit_value_1"></span>
-                    <span data-ng-if="service.maxPasswordAge > 1" data-translate="maxPasswordAge_unit_value_many" data-translate-values="{ t0: service.maxPasswordAge }"></span>
+                    <span
+                        data-ng-if="service.maxPasswordAge == 0"
+                        data-translate="maxPasswordAge_unit_value_0"
+                    ></span>
+                    <span
+                        data-ng-if="service.maxPasswordAge == 1"
+                        data-translate="maxPasswordAge_unit_value_1"
+                    ></span>
+                    <span
+                        data-ng-if="service.maxPasswordAge > 1"
+                        data-translate="maxPasswordAge_unit_value_many"
+                        data-translate-values="{ t0: service.maxPasswordAge }"
+                    ></span>
                 </dd>
 
-                <dt data-translate="emailpro_ACTION_configure_step2_label_minPasswordLength"></dt>
+                <dt
+                    data-translate="emailpro_ACTION_configure_step2_label_minPasswordLength"
+                ></dt>
                 <dd>
-                    <span data-ng-if="service.minPasswordLength == 0" data-translate="minPasswordLength_unit_value_0"></span>
-                    <span data-ng-if="service.minPasswordLength == 1" data-translate="minPasswordLength_unit_value_1"></span>
-                    <span data-ng-if="service.minPasswordLength > 1" data-translate="minPasswordLength_unit_value_many" data-translate-values="{ t0: service.minPasswordLength }"></span>
+                    <span
+                        data-ng-if="service.minPasswordLength == 0"
+                        data-translate="minPasswordLength_unit_value_0"
+                    ></span>
+                    <span
+                        data-ng-if="service.minPasswordLength == 1"
+                        data-translate="minPasswordLength_unit_value_1"
+                    ></span>
+                    <span
+                        data-ng-if="service.minPasswordLength > 1"
+                        data-translate="minPasswordLength_unit_value_many"
+                        data-translate-values="{ t0: service.minPasswordLength }"
+                    ></span>
                 </dd>
             </dl>
         </div>
-
     </div>
 </div>

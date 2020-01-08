@@ -12,8 +12,9 @@ export default class PciProjectsNewPaymentAddCtrl {
   ============================== */
 
   onAvailablePaymentTypesLoadError() {
-    return this.CucCloudMessage
-      .error(this.$translate.instant('pci_projects_new_payment_add_load_error'));
+    return this.CucCloudMessage.error(
+      this.$translate.instant('pci_projects_new_payment_add_load_error'),
+    );
   }
 
   /* -----  End of Events  ------ */

@@ -1,8 +1,14 @@
 import angular from 'angular';
 import set from 'lodash/set';
 
-export default /* @ngInject */ ($scope, $http, $stateParams,
-  $translate, EmailPro, EmailProDomains) => {
+export default /* @ngInject */ (
+  $scope,
+  $http,
+  $stateParams,
+  $translate,
+  EmailPro,
+  EmailProDomains,
+) => {
   $scope.domainTypeAuthoritative = 'AUTHORITATIVE';
   $scope.domainTypeNonAuthoritative = 'NON_AUTHORITATIVE';
   $scope.stateCreating = EmailPro.stateCreating;
@@ -23,25 +29,34 @@ export default /* @ngInject */ ($scope, $http, $stateParams,
   };
 
   function isReseller2010AuthInvalidMx(domain) {
-    return $scope.exchange.offer === 'PROVIDER'
-  && $scope.exchange.serverDiagnostic.commercialVersion === '_2010'
-  && domain.type === 'AUTHORITATIVE'
-  && !domain.mxValid;
+    return (
+      $scope.exchange.offer === 'PROVIDER' &&
+      $scope.exchange.serverDiagnostic.commercialVersion === '_2010' &&
+      domain.type === 'AUTHORITATIVE' &&
+      !domain.mxValid
+    );
   }
 
   $scope.updateDomain = function updateDomain(domain) {
-    if (domain.state === $scope.stateOk
-  && !domain.taskInProgress
-  && !isReseller2010AuthInvalidMx(domain)) {
+    if (
+      domain.state === $scope.stateOk &&
+      !domain.taskInProgress &&
+      !isReseller2010AuthInvalidMx(domain)
+    ) {
       set(domain, 'domainTypes', $scope.domainTypes);
-      $scope.setAction('emailpro/domain/update/emailpro-domain-update', angular.copy(domain));
+      $scope.setAction(
+        'emailpro/domain/update/emailpro-domain-update',
+        angular.copy(domain),
+      );
     }
   };
 
   $scope.isEditDisabled = function isEditDisabled(domain) {
-    return domain.state !== $scope.stateOk
-  || domain.taskInProgress
-  || isReseller2010AuthInvalidMx(domain);
+    return (
+      domain.state !== $scope.stateOk ||
+      domain.taskInProgress ||
+      isReseller2010AuthInvalidMx(domain)
+    );
   };
 
   $scope.isDeleteDisabled = function isDeleteDisabled(domain) {
@@ -56,17 +71,37 @@ export default /* @ngInject */ ($scope, $http, $stateParams,
 
   function setMxTooltip(domain) {
     if (domain.mxValid) {
-      set(domain, 'mxTooltip', $translate.instant('emailpro_tab_domain_diagnostic_mx_toolbox_ok'));
+      set(
+        domain,
+        'mxTooltip',
+        $translate.instant('emailpro_tab_domain_diagnostic_mx_toolbox_ok'),
+      );
     } else {
-      set(domain, 'mxTooltip', $translate.instant('emailpro_tab_domain_diagnostic_mx_toolbox', { t0: $scope.exchange.hostname }));
+      set(
+        domain,
+        'mxTooltip',
+        $translate.instant('emailpro_tab_domain_diagnostic_mx_toolbox', {
+          t0: $scope.exchange.hostname,
+        }),
+      );
     }
   }
 
   function setSrvTooltip(domain) {
     if (domain.srvValid) {
-      set(domain, 'srvTooltip', $translate.instant('emailpro_tab_domain_diagnostic_srv_toolbox_ok'));
+      set(
+        domain,
+        'srvTooltip',
+        $translate.instant('emailpro_tab_domain_diagnostic_srv_toolbox_ok'),
+      );
     } else {
-      set(domain, 'srvTooltip', $translate.instant('emailpro_tab_domain_diagnostic_srv_toolbox', { t0: $scope.exchange.hostname }));
+      set(
+        domain,
+        'srvTooltip',
+        $translate.instant('emailpro_tab_domain_diagnostic_srv_toolbox', {
+          t0: $scope.exchange.hostname,
+        }),
+      );
     }
   }
 
@@ -84,8 +119,12 @@ export default /* @ngInject */ ($scope, $http, $stateParams,
   $scope.getDomains = function getDomains(count, offset) {
     $scope.loading = true;
 
-    return EmailProDomains
-      .getDomains($stateParams.productId, count, offset, $scope.search.value)
+    return EmailProDomains.getDomains(
+      $stateParams.productId,
+      count,
+      offset,
+      $scope.search.value,
+    )
       .then((domains) => {
         $scope.paginated = domains;
         $scope.domainTypes = domains.domainTypes;
@@ -106,7 +145,11 @@ export default /* @ngInject */ ($scope, $http, $stateParams,
 
   $scope.containPartial = function containPartial() {
     let i;
-    if ($scope.paginated && $scope.paginated.domains && $scope.paginated.domains.length) {
+    if (
+      $scope.paginated &&
+      $scope.paginated.domains &&
+      $scope.paginated.domains.length
+    ) {
       for (i = 0; i < $scope.paginated.domains.length; i += 1) {
         if ($scope.paginated.domains[i].partial) {
           return true;

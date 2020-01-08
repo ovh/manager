@@ -30,36 +30,50 @@ export default class EmailProMXPlanMailingListsCreateModeratorsCtrl {
     this.loading = true;
     const moderatorsToDelete = uniq(this.selection);
 
-    return this.EmailProMXPlanMailingLists.deleteModerators(get(this.$scope, 'exchange.associatedDomainName'), {
-      mailingList: this.mailingList.name,
-      users: moderatorsToDelete,
-      type: 'moderator',
-    })
+    return this.EmailProMXPlanMailingLists.deleteModerators(
+      get(this.$scope, 'exchange.associatedDomainName'),
+      {
+        mailingList: this.mailingList.name,
+        users: moderatorsToDelete,
+        type: 'moderator',
+      },
+    )
       .then((tasks) => {
         this.Alerter.alertFromSWSBatchResult(
           {
-            OK: this.$translate.instant(moderatorsToDelete.length === 1
-              ? 'mailing_list_tab_modal_moderator_delete_success'
-              : 'mailing_list_tab_modal_moderators_delete_success'),
-            PARTIAL: this.$translate.instant('mailing_list_tab_modal_moderators_delete_error'),
-            ERROR: this.$translate.instant('mailing_list_tab_modal_moderators_delete_error'),
+            OK: this.$translate.instant(
+              moderatorsToDelete.length === 1
+                ? 'mailing_list_tab_modal_moderator_delete_success'
+                : 'mailing_list_tab_modal_moderators_delete_success',
+            ),
+            PARTIAL: this.$translate.instant(
+              'mailing_list_tab_modal_moderators_delete_error',
+            ),
+            ERROR: this.$translate.instant(
+              'mailing_list_tab_modal_moderators_delete_error',
+            ),
           },
           tasks,
           this.$scope.alerts.main,
         );
 
-        this.EmailProMXPlanMailingLists.pollState(this.$scope.exchange.associatedDomainName, {
-          id: tasks.task,
-          mailingList: this.mailingList,
-          successStates: ['noState'],
-          namespace: 'EmailProMXPlanMailingLists.moderators.poll',
-        });
+        this.EmailProMXPlanMailingLists.pollState(
+          this.$scope.exchange.associatedDomainName,
+          {
+            id: tasks.task,
+            mailingList: this.mailingList,
+            successStates: ['noState'],
+            namespace: 'EmailProMXPlanMailingLists.moderators.poll',
+          },
+        );
       })
       .catch((err) => {
         this.Alerter.alertFromSWS(
-          this.$translate.instant(moderatorsToDelete.length === 1
-            ? 'mailing_list_tab_modal_moderator_delete_error'
-            : 'mailing_list_tab_modal_moderators_delete_error'),
+          this.$translate.instant(
+            moderatorsToDelete.length === 1
+              ? 'mailing_list_tab_modal_moderator_delete_error'
+              : 'mailing_list_tab_modal_moderators_delete_error',
+          ),
           err,
           this.$scope.alerts.main,
         );

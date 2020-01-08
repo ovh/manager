@@ -5,10 +5,8 @@ import terminate from '../terminate/terminate.module';
 
 const moduleName = 'ovhManagerBillingAutorenewTerminateEnterpriseCloudDatabase';
 
-angular.module(moduleName, [
-  'ui.router',
-  terminate,
-])
+angular
+  .module(moduleName, ['ui.router', terminate])
   .config(routing)
   .component('billingAutorenewTerminateEnterpriseCloudDatabase', component);
 

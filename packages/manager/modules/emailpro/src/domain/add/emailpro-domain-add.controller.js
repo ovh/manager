@@ -17,7 +17,8 @@ export default /* @ngInject */ (
 
   const init = function init() {
     $scope.noDomainAttached = $scope.currentActionData
-      ? $scope.currentActionData.noDomainAttached : false;
+      ? $scope.currentActionData.noDomainAttached
+      : false;
     $scope.loading = false;
     $scope.ovhDomain = 'ovh-domain';
     $scope.nonOvhDomain = 'non-ovh-domain';
@@ -48,9 +49,12 @@ export default /* @ngInject */ (
   };
 
   const check2010Provider = function check2010Provider() {
-    if ($scope.exchange && $scope.availableMainDomains
-      && $scope.exchange.offer === EmailPro.accountTypeProvider
-      && $scope.exchange.serverDiagnostic.version === EmailPro.EmailPro2010Code) {
+    if (
+      $scope.exchange &&
+      $scope.availableMainDomains &&
+      $scope.exchange.offer === EmailPro.accountTypeProvider &&
+      $scope.exchange.serverDiagnostic.version === EmailPro.EmailPro2010Code
+    ) {
       $scope.setOrganization2010 = true;
       if ($scope.availableMainDomains.length === 0) {
         $scope.model.main = true;
@@ -67,7 +71,8 @@ export default /* @ngInject */ (
       if ($scope.model.main) {
         delete $scope.model.organization2010;
       } else {
-        $scope.model.organization2010 = $scope.model.attachOrganization2010.name;
+        $scope.model.organization2010 =
+          $scope.model.attachOrganization2010.name;
       }
       delete $scope.model.attachOrganization2010;
     }
@@ -82,15 +87,20 @@ export default /* @ngInject */ (
   $scope.loadDomainData = function loadDomainData() {
     $scope.loading = true;
 
-    EmailProDomains.getAddDomainData($stateParams.productId)
-      .then((data) => {
+    EmailProDomains.getAddDomainData($stateParams.productId).then(
+      (data) => {
         $scope.loading = false;
         prepareData(data);
         check2010Provider();
-      }, (failure) => {
+      },
+      (failure) => {
         $scope.resetAction();
-        $scope.setMessage($translate.instant('emailpro_tab_domain_add_failure'), failure);
-      });
+        $scope.setMessage(
+          $translate.instant('emailpro_tab_domain_add_failure'),
+          failure,
+        );
+      },
+    );
 
     check2010Provider();
   };
@@ -123,12 +133,20 @@ export default /* @ngInject */ (
     $scope.resetAction();
     prepareModel();
 
-    EmailProDomains.addDomain($scope.model)
-      .then(() => {
-        $scope.setMessage($translate.instant('emailpro_tab_domain_add_success'), { status: 'success' });
-      }, (failure) => {
-        $scope.setMessage($translate.instant('emailpro_tab_domain_add_failure'), failure);
-      });
+    EmailProDomains.addDomain($scope.model).then(
+      () => {
+        $scope.setMessage(
+          $translate.instant('emailpro_tab_domain_add_success'),
+          { status: 'success' },
+        );
+      },
+      (failure) => {
+        $scope.setMessage(
+          $translate.instant('emailpro_tab_domain_add_failure'),
+          failure,
+        );
+      },
+    );
   };
 
   $scope.resetName = function resetName() {
@@ -150,7 +168,9 @@ export default /* @ngInject */ (
   };
 
   $scope.isNonOvhDomainValid = function isNonOvhDomainValid() {
-    return $scope.model.domainType !== $scope.nonOvhDomain
-      || WucValidator.isValidDomain($scope.model.displayName);
+    return (
+      $scope.model.domainType !== $scope.nonOvhDomain ||
+      WucValidator.isValidDomain($scope.model.displayName)
+    );
   };
 };

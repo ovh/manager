@@ -14,19 +14,26 @@ function SearchController($scope, $element, $attrs) {
 
     if (typeof this.onSearch !== 'function') {
       // console.warn('Without a data-on-notify callback the searchbox wont do anything');
-      this.onSearch = function onSearch() { /* do nothing */ };
+      this.onSearch = function onSearch() {
+        /* do nothing */
+      };
     }
 
     this.onClear = $scope.$ctrl.onClear;
     if (typeof this.onClear !== 'function') {
       // console.warn('Without a data-on-clear callback the searchbox wont do anything');
-      this.onClear = function onClear() { /* do nothing */ };
+      this.onClear = function onClear() {
+        /* do nothing */
+      };
     }
   };
 }
 
 SearchController.prototype.change = function change() {
-  if (Number.isInteger(this.threshold) && this.search.length >= this.threshold) {
+  if (
+    Number.isInteger(this.threshold) &&
+    this.search.length >= this.threshold
+  ) {
     this.onSearch(this.search);
   }
 

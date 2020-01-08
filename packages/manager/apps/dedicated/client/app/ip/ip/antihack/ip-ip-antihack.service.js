@@ -22,14 +22,25 @@ angular.module('Module.ip.services').service('IpAntihack', [
       //               "Wed May 7 21:58:44 2014 : arp who-has 5.135.143.254 tell 5.39.15.196\n"
       //     }
       // })
-      return $http.get([swsProxypassPath, `ip/${window.encodeURIComponent(ipBlock)}/antihack/${ip}`].join('/')).then((data) => data.data, (http) => $q.reject(http.data));
+      return $http
+        .get(
+          [
+            swsProxypassPath,
+            `ip/${window.encodeURIComponent(ipBlock)}/antihack/${ip}`,
+          ].join('/'),
+        )
+        .then((data) => data.data, (http) => $q.reject(http.data));
     };
 
     this.unblockIp = function unblockIp(ipBlock, ip) {
-      return $http.post([swsProxypassPath, `ip/${window.encodeURIComponent(ipBlock)}/antihack/${ip}/unblock`].join('/')).then(
-        (data) => data.data,
-        (http) => $q.reject(http.data),
-      );
+      return $http
+        .post(
+          [
+            swsProxypassPath,
+            `ip/${window.encodeURIComponent(ipBlock)}/antihack/${ip}/unblock`,
+          ].join('/'),
+        )
+        .then((data) => data.data, (http) => $q.reject(http.data));
     };
   },
 ]);

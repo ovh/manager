@@ -3,7 +3,13 @@ import head from 'lodash/head';
 import includes from 'lodash/includes';
 import set from 'lodash/set';
 
-export default /* @ngInject */ ($scope, $stateParams, $translate, EmailPro, EmailProPassword) => {
+export default /* @ngInject */ (
+  $scope,
+  $stateParams,
+  $translate,
+  EmailPro,
+  EmailProPassword,
+) => {
   $scope.valid = { legalWarning: false };
   $scope.accountTypeHosted = EmailPro.accountTypeHosted;
 
@@ -17,7 +23,11 @@ export default /* @ngInject */ ($scope, $stateParams, $translate, EmailPro, Emai
     $scope.containsSpace = false;
 
     set(selectedAccount, 'password', selectedAccount.password || '');
-    set(selectedAccount, 'passwordConfirmation', selectedAccount.passwordConfirmation || '');
+    set(
+      selectedAccount,
+      'passwordConfirmation',
+      selectedAccount.passwordConfirmation || '',
+    );
 
     if (selectedAccount.password.length > 0) {
       $scope.simplePasswordFlag = !EmailProPassword.passwordSimpleCheck(
@@ -26,8 +36,10 @@ export default /* @ngInject */ ($scope, $stateParams, $translate, EmailPro, Emai
         $scope.newAccountOptions.minPasswordLength,
       );
 
-      if (!$scope.simplePasswordFlag
-          && selectedAccount.password !== selectedAccount.passwordConfirmation) {
+      if (
+        !$scope.simplePasswordFlag &&
+        selectedAccount.password !== selectedAccount.passwordConfirmation
+      ) {
         $scope.differentPasswordFlag = true;
       }
 
@@ -38,8 +50,9 @@ export default /* @ngInject */ ($scope, $stateParams, $translate, EmailPro, Emai
         https://technet.microsoft.com/en-us/library/hh994562%28v=ws.10%29.aspx
        */
       if ($scope.newAccountOptions.passwordComplexityEnabled) {
-        $scope.simplePasswordFlag = $scope.simplePasswordFlag
-          || !EmailProPassword.passwordComplexityCheck(selectedAccount.password);
+        $scope.simplePasswordFlag =
+          $scope.simplePasswordFlag ||
+          !EmailProPassword.passwordComplexityCheck(selectedAccount.password);
 
         if (selectedAccount.displayName) {
           $scope.containsNameFlag = EmailProPassword.passwordContainsName(
@@ -54,8 +67,11 @@ export default /* @ngInject */ ($scope, $stateParams, $translate, EmailPro, Emai
           }
         }
 
-        if (selectedAccount.samaccountName
-          && selectedAccount.password.indexOf(selectedAccount.samaccountName) !== -1) {
+        if (
+          selectedAccount.samaccountName &&
+          selectedAccount.password.indexOf(selectedAccount.samaccountName) !==
+            -1
+        ) {
           if (!$scope.containsSamAccountNameLabel) {
             $scope.containsSamAccountNameLabel = $translate.instant(
               'emailpro_ACTION_update_account_step1_password_contains_samaccount_name',
@@ -78,8 +94,14 @@ export default /* @ngInject */ ($scope, $stateParams, $translate, EmailPro, Emai
   $scope.getPasswordTooltip = function getPasswordTooltip() {
     if ($scope.newAccountOptions) {
       return $scope.newAccountOptions.passwordComplexityEnabled
-        ? $translate.instant('emailpro_ACTION_update_account_step1_complex_password_tooltip', { t0: $scope.newAccountOptions.minPasswordLength })
-        : $translate.instant('emailpro_ACTION_update_account_step1_simple_password_tooltip', { t0: $scope.newAccountOptions.minPasswordLength });
+        ? $translate.instant(
+            'emailpro_ACTION_update_account_step1_complex_password_tooltip',
+            { t0: $scope.newAccountOptions.minPasswordLength },
+          )
+        : $translate.instant(
+            'emailpro_ACTION_update_account_step1_simple_password_tooltip',
+            { t0: $scope.newAccountOptions.minPasswordLength },
+          );
     }
     return null;
   };
@@ -89,7 +111,11 @@ export default /* @ngInject */ ($scope, $stateParams, $translate, EmailPro, Emai
 
     if ($scope.takenEmails && $scope.accountToAdd.login) {
       angular.forEach($scope.takenEmails, (value) => {
-        if (`${$scope.accountToAdd.login.toLowerCase()}@${$scope.accountToAdd.completeDomain.name}` === value.toLowerCase()) {
+        if (
+          `${$scope.accountToAdd.login.toLowerCase()}@${
+            $scope.accountToAdd.completeDomain.name
+          }` === value.toLowerCase()
+        ) {
           $scope.takenEmailError = true;
         }
       });
@@ -97,51 +123,71 @@ export default /* @ngInject */ ($scope, $stateParams, $translate, EmailPro, Emai
   };
 
   $scope.loadAccountOptions = function loadAccountOptions() {
-    EmailPro.getNewAccountOptions($stateParams.productId).then((data) => {
-      $scope.newAccountOptions = data;
-      $scope.takenEmails = data.takenEmails;
+    EmailPro.getNewAccountOptions($stateParams.productId).then(
+      (data) => {
+        $scope.newAccountOptions = data;
+        $scope.takenEmails = data.takenEmails;
 
-      if (data.availableDomains.length === 0) {
-        $scope.setMessage($translate.instant('emailpro_ACTION_add_no_domains'), { status: 'error' });
+        if (data.availableDomains.length === 0) {
+          $scope.setMessage(
+            $translate.instant('emailpro_ACTION_add_no_domains'),
+            { status: 'error' },
+          );
+          $scope.resetAction();
+        } else {
+          $scope.accountToAdd.completeDomain = head(data.availableDomains);
+          $scope.accountToAdd.accountLicense = head(data.availableTypes);
+          $scope.accountIsValid();
+        }
+
+        $scope.passwordTooltip = $scope.newAccountOptions
+          .passwordComplexityEnabled
+          ? $translate.instant(
+              'emailpro_ACTION_update_account_step1_complex_password_tooltip',
+              { t0: $scope.newAccountOptions.minPasswordLength },
+            )
+          : $translate.instant(
+              'emailpro_ACTION_update_account_step1_simple_password_tooltip',
+              { t0: $scope.newAccountOptions.minPasswordLength },
+            );
+      },
+      (failure) => {
         $scope.resetAction();
-      } else {
-        $scope.accountToAdd.completeDomain = head(data.availableDomains);
-        $scope.accountToAdd.accountLicense = head(data.availableTypes);
-        $scope.accountIsValid();
-      }
-
-      $scope.passwordTooltip = $scope.newAccountOptions.passwordComplexityEnabled
-        ? $translate.instant(
-          'emailpro_ACTION_update_account_step1_complex_password_tooltip',
-          { t0: $scope.newAccountOptions.minPasswordLength },
-        )
-        : $translate.instant(
-          'emailpro_ACTION_update_account_step1_simple_password_tooltip',
-          { t0: $scope.newAccountOptions.minPasswordLength },
+        $scope.setMessage(
+          $translate.instant('emailpro_ACTION_add_account_option_fail'),
+          failure.data,
         );
-    }, (failure) => {
-      $scope.resetAction();
-      $scope.setMessage($translate.instant('emailpro_ACTION_add_account_option_fail'), failure.data);
-    });
+      },
+    );
   };
 
   $scope.accountIsValid = function accountIsValid() {
     // $scope.setPasswordsFlag($scope.accountToAdd);
     if (!$scope.valid.legalWarning) {
       return false;
-    } if ($scope.containsSpace
-       || $scope.simplePasswordFlag
-       || $scope.differentPasswordFlag
-       || $scope.containsNameFlag) {
+    }
+    if (
+      $scope.containsSpace ||
+      $scope.simplePasswordFlag ||
+      $scope.differentPasswordFlag ||
+      $scope.containsNameFlag
+    ) {
       return false;
-    } if (!$scope.accountToAdd.completeDomain
-      || $scope.accountToAdd.completeDomain.name === undefined) {
+    }
+    if (
+      !$scope.accountToAdd.completeDomain ||
+      $scope.accountToAdd.completeDomain.name === undefined
+    ) {
       return false;
-    } if (!$scope.accountToAdd.login) {
+    }
+    if (!$scope.accountToAdd.login) {
       return false;
-    } if (!$scope.accountToAdd.password
-      || $scope.accountToAdd.password.indexOf(' ') > -1
-      || $scope.accountToAdd.password !== $scope.accountToAdd.passwordConfirmation) {
+    }
+    if (
+      !$scope.accountToAdd.password ||
+      $scope.accountToAdd.password.indexOf(' ') > -1 ||
+      $scope.accountToAdd.password !== $scope.accountToAdd.passwordConfirmation
+    ) {
       return false;
     }
     return EmailProPassword.passwordSimpleCheck(
@@ -157,11 +203,23 @@ export default /* @ngInject */ ($scope, $stateParams, $translate, EmailPro, Emai
     $scope.accountToAdd.completeDomain = undefined;
     $scope.accountToAdd.login = $scope.accountToAdd.login.toLowerCase();
 
-    EmailPro.addEmailProAccount($stateParams.productId, $scope.accountToAdd).then(() => {
-      $scope.setMessage($translate.instant('emailpro_ACTION_add_account_success_message'), { status: 'success' });
-    }, (failure) => {
-      $scope.setMessage($translate.instant('emailpro_ACTION_add_account_error_message'), failure.data);
-    });
+    EmailPro.addEmailProAccount(
+      $stateParams.productId,
+      $scope.accountToAdd,
+    ).then(
+      () => {
+        $scope.setMessage(
+          $translate.instant('emailpro_ACTION_add_account_success_message'),
+          { status: 'success' },
+        );
+      },
+      (failure) => {
+        $scope.setMessage(
+          $translate.instant('emailpro_ACTION_add_account_error_message'),
+          failure.data,
+        );
+      },
+    );
     $scope.resetAction();
   };
 };

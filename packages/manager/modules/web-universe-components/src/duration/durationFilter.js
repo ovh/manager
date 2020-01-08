@@ -18,14 +18,18 @@ export default /* @ngInject */ ($translate, $filter) => {
     if (simpleDurationReg.test(wucDuration)) {
       d = +wucDuration.match(simpleDurationReg)[1];
       unit = unitHash[wucDuration.match(simpleDurationReg)[2] || 'm'];
-      return d > 1 ? $translate.instant(`duration_${unit}_other`, {
-        t0: d,
-      }) : $translate.instant(`duration_${unit}_1`);
+      return d > 1
+        ? $translate.instant(`duration_${unit}_other`, {
+            t0: d,
+          })
+        : $translate.instant(`duration_${unit}_1`);
     }
     if (upto.test(wucDuration)) {
       if (uptoDuration.test(wucDuration)) {
         [, , d] = wucDuration.match(uptoDuration);
-        return $translate.instant('duration_upto', { t0: dateFormat ? $filter('date')(d, dateFormat) : d });
+        return $translate.instant('duration_upto', {
+          t0: dateFormat ? $filter('date')(d, dateFormat) : d,
+        });
       }
       return $translate.instant('duration_uptofirstdaynextmonth');
     }
@@ -33,9 +37,12 @@ export default /* @ngInject */ ($translate, $filter) => {
       d = +wucDuration.match(engage)[2];
       unit = unitHash[wucDuration.match(engage)[3] || 'm'];
       return $translate.instant('duration_engage', {
-        t0: d > 1 ? $translate.instant(`duration_${unit}_other`, {
-          t0: d,
-        }) : $translate.instant(`duration_${unit}_1`),
+        t0:
+          d > 1
+            ? $translate.instant(`duration_${unit}_other`, {
+                t0: d,
+              })
+            : $translate.instant(`duration_${unit}_1`),
       });
     }
     return wucDuration;

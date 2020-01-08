@@ -8,9 +8,7 @@ import service from './billingAccount.service';
 const moduleName = 'ovhManagerTelecomTelephonyBillingAccount';
 
 angular
-  .module(moduleName, [
-    services,
-  ])
+  .module(moduleName, [services])
   .config(routing)
   .service('telecomBillingAccount', service);
 

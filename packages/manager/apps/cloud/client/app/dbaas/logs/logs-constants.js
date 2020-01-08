@@ -8,14 +8,15 @@ angular.module('managerApp').constant('LogsConstants', {
   FAILURE: 'FAILURE',
   SUCCESS: 'SUCCESS',
   suffixPattern: '^[a-z0-9_-]+$',
-  ORDER_URL: "/order/express/#/new/express/resume?products=~(~(planCode~'logs-basic~productId~'logs))",
+  ORDER_URL:
+    "/order/express/#/new/express/resume?products=~(~(planCode~'logs-basic~productId~'logs))",
   LOGS_DOCS_NAME: 'logs-data-platform',
   LOGS_PRODUCT_URL: '/data-platforms/logs/',
   ELASTICSEARCH_API_URL: 'ELASTICSEARCH_API',
   SERVICE_STATE_TO_CONFIG: 'TO_CONFIG',
   SERVICE_STATE_DISABLED: 'DISABLED',
   SERVICE_STATE_ENABLED: 'ENABLED',
-  PASSWORD_SPECIAL_CHARACTERS: "!\"#$%&'()*+,-./:;<=>?@[]^_`{|}~",
+  PASSWORD_SPECIAL_CHARACTERS: '!"#$%&\'()*+,-./:;<=>?@[]^_`{|}~',
   MESSAGE_THRESHOLD: 1000,
   WEB_SOCKET_URL: 'WEB_SOCKET',
   RFC_URL: 'TCP_TLS_RFC5424',
@@ -180,11 +181,13 @@ angular.module('managerApp').constant('LogsConstants', {
   DATA_USAGE_GRAPH_CONFIGURATION: {
     options: {
       scales: {
-        xAxes: [{
-          gridLines: {
-            display: false,
+        xAxes: [
+          {
+            gridLines: {
+              display: false,
+            },
           },
-        }],
+        ],
         yAxes: [
           {
             id: 'y-axis-1',
@@ -227,14 +230,16 @@ angular.module('managerApp').constant('LogsConstants', {
         borderColor: '#59d2ef',
         pointBorderColor: 'transparent',
         pointHoverBorderColor: '#fff',
-      }, {
+      },
+      {
         backgroundColor: 'transparent',
         pointBackgroundColor: 'transparent',
         pointHoverBackgroundColor: '#113f6d',
         borderColor: '#113f6d',
         pointBorderColor: 'transparent',
         pointHoverBorderColor: '#fff',
-      }, {
+      },
+      {
         backgroundColor: 'transparent',
         pointBackgroundColor: 'transparent',
         pointHoverBackgroundColor: 'transparent',
@@ -243,7 +248,11 @@ angular.module('managerApp').constant('LogsConstants', {
         pointHoverBorderColor: 'transparent',
       },
     ],
-    datasetOverride: [{ yAxisID: 'y-axis-1' }, { yAxisID: 'y-axis-2' }, { yAxisID: 'y-axis-1' }],
+    datasetOverride: [
+      { yAxisID: 'y-axis-1' },
+      { yAxisID: 'y-axis-2' },
+      { yAxisID: 'y-axis-1' },
+    ],
   },
   inputStatus: {
     PROCESSING: 'PROCESSING',

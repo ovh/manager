@@ -1,8 +1,13 @@
 import head from 'lodash/head';
 import set from 'lodash/set';
 
-export default /* @ngInject */ ($scope, $stateParams, $translate,
-  EmailPro, EmailProExternalContacts) => {
+export default /* @ngInject */ (
+  $scope,
+  $stateParams,
+  $translate,
+  EmailPro,
+  EmailProExternalContacts,
+) => {
   $scope.model = {
     newAccount: {
       hiddenFromGAL: false,
@@ -12,46 +17,75 @@ export default /* @ngInject */ ($scope, $stateParams, $translate,
 
   $scope.init = function init() {
     EmailPro.getSelected().then((exchange) => {
-      if (exchange.serverDiagnostic.version === 14
-        && exchange.offer === EmailPro.accountTypeProvider) {
-        EmailProExternalContacts
-          .getContactOptions($stateParams.organization, $stateParams.productId)
+      if (
+        exchange.serverDiagnostic.version === 14 &&
+        exchange.offer === EmailPro.accountTypeProvider
+      ) {
+        EmailProExternalContacts.getContactOptions(
+          $stateParams.organization,
+          $stateParams.productId,
+        )
           .then((data) => {
             $scope.availableMainDomains = data;
-            $scope.model.attachOrganization2010 = head($scope.availableMainDomains);
+            $scope.model.attachOrganization2010 = head(
+              $scope.availableMainDomains,
+            );
           })
           .catch((failure) => {
             $scope.resetAction();
-            $scope.setMessage($translate.instant('emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_add_fail'), failure.data);
+            $scope.setMessage(
+              $translate.instant(
+                'emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_add_fail',
+              ),
+              failure.data,
+            );
           });
       }
     });
   };
 
   $scope.isEmailValid = function isEmailValid() {
-    return $scope.model.newAccount.externalEmailAddress
-      && EmailPro.isEmailValid($scope.model.newAccount.externalEmailAddress);
+    return (
+      $scope.model.newAccount.externalEmailAddress &&
+      EmailPro.isEmailValid($scope.model.newAccount.externalEmailAddress)
+    );
   };
 
   $scope.getPasswordInvalidClass = function getPasswordInvalidClass() {
-    return !$scope.model.newAccount.externalEmailAddress
-      || EmailPro.isEmailValid($scope.model.newAccount.externalEmailAddress) ? '' : 'error';
+    return !$scope.model.newAccount.externalEmailAddress ||
+      EmailPro.isEmailValid($scope.model.newAccount.externalEmailAddress)
+      ? ''
+      : 'error';
   };
 
   $scope.addContact = function addContact() {
     $scope.resetAction();
     if ($scope.model.attachOrganization2010) {
-      $scope.model.newAccount.organization2010 = $scope.model.attachOrganization2010.name;
+      $scope.model.newAccount.organization2010 =
+        $scope.model.attachOrganization2010.name;
     }
 
-    EmailProExternalContacts
-      .addContact($stateParams.organization, $stateParams.productId, $scope.model.newAccount)
+    EmailProExternalContacts.addContact(
+      $stateParams.organization,
+      $stateParams.productId,
+      $scope.model.newAccount,
+    )
       .then(() => {
-        $scope.setMessage($translate.instant('emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_add_success'), { status: 'success' });
+        $scope.setMessage(
+          $translate.instant(
+            'emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_add_success',
+          ),
+          { status: 'success' },
+        );
       })
       .catch((failure) => {
         set(failure, 'status', 'error');
-        $scope.setMessage($translate.instant('emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_add_fail'), failure);
+        $scope.setMessage(
+          $translate.instant(
+            'emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_add_fail',
+          ),
+          failure,
+        );
       });
   };
 

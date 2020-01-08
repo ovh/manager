@@ -2,13 +2,7 @@ import get from 'lodash/get';
 
 {
   class controller {
-    constructor(
-      $scope,
-      $state,
-      $translate,
-      Alerter,
-      dedicatedServerOVHTasks,
-    ) {
+    constructor($scope, $state, $translate, Alerter, dedicatedServerOVHTasks) {
       this.$scope = $scope;
       this.$state = $state;
       this.$translate = $translate;
@@ -27,7 +21,15 @@ import get from 'lodash/get';
         })
         .catch((error) => {
           this.$state.go('^');
-          this.Alerter.set('alert-danger', [this.$translate.instant('dedicated_server_ovhTasks_fetching_error'), get(error, 'message', error)].join(' '));
+          this.Alerter.set(
+            'alert-danger',
+            [
+              this.$translate.instant(
+                'dedicated_server_ovhTasks_fetching_error',
+              ),
+              get(error, 'message', error),
+            ].join(' '),
+          );
         })
         .finally(() => {
           this.isLoading = false;
@@ -35,10 +37,8 @@ import get from 'lodash/get';
     }
   }
 
-  angular
-    .module('App')
-    .component('dedicatedServerOVHTasks', {
-      controller,
-      templateUrl: 'dedicated/server/ovh-tasks/dedicated-server-ovh-tasks.html',
-    });
+  angular.module('App').component('dedicatedServerOVHTasks', {
+    controller,
+    templateUrl: 'dedicated/server/ovh-tasks/dedicated-server-ovh-tasks.html',
+  });
 }

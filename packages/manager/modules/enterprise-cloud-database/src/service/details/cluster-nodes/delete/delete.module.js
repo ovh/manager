@@ -7,11 +7,12 @@ import routing from './delete.routing';
 const moduleName = 'enterpriseCloudDatabaseServiceDetailsClusterSizeDelete';
 
 angular
-  .module(moduleName, [
-    'ui.router',
-  ])
+  .module(moduleName, ['ui.router'])
   .config(routing)
-  .component('enterpriseCloudDatabaseServiceDetailsClusterSizeDeleteComponent', deleteComponent)
+  .component(
+    'enterpriseCloudDatabaseServiceDetailsClusterSizeDeleteComponent',
+    deleteComponent,
+  )
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

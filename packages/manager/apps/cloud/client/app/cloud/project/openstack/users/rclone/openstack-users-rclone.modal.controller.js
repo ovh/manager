@@ -1,8 +1,14 @@
 import get from 'lodash/get';
 
 class CloudProjectOpenstackUsersRcloneModalCtrl {
-  constructor($stateParams, $uibModalInstance, CloudProjectOpenstackUsersRcloneService,
-    CucControllerHelper, openstackUser, URLS) {
+  constructor(
+    $stateParams,
+    $uibModalInstance,
+    CloudProjectOpenstackUsersRcloneService,
+    CucControllerHelper,
+    openstackUser,
+    URLS,
+  ) {
     this.$stateParams = $stateParams;
     this.$uibModalInstance = $uibModalInstance;
     this.CloudProjectOpenstackUsersRcloneService = CloudProjectOpenstackUsersRcloneService;
@@ -23,18 +29,20 @@ class CloudProjectOpenstackUsersRcloneModalCtrl {
   }
 
   $onInit() {
-    this.regions.load()
-      .then(() => {
-        if (this.regions.data.length === 1) {
-          this.model.region.value = this.regions.data[0].microRegion.code;
-        }
-      });
+    this.regions.load().then(() => {
+      if (this.regions.data.length === 1) {
+        this.model.region.value = this.regions.data[0].microRegion.code;
+      }
+    });
     this.rCloneFileGuide.load();
   }
 
   confirm() {
-    return this.CloudProjectOpenstackUsersRcloneService
-      .getRcloneFileInfo(this.projectId, this.openstackUser.id, this.model.region.value)
+    return this.CloudProjectOpenstackUsersRcloneService.getRcloneFileInfo(
+      this.projectId,
+      this.openstackUser.id,
+      this.model.region.value,
+    )
       .then((response) => {
         this.CucControllerHelper.constructor.downloadContent({
           fileContent: response.content,
@@ -54,16 +62,24 @@ class CloudProjectOpenstackUsersRcloneModalCtrl {
 
   initLoaders() {
     this.regions = this.CucControllerHelper.request.getArrayLoader({
-      loaderFunction: () => this.CloudProjectOpenstackUsersRcloneService
-        .getValidRcloneRegions(this.projectId)
-        .catch((error) => this.cancel(error)),
+      loaderFunction: () =>
+        this.CloudProjectOpenstackUsersRcloneService.getValidRcloneRegions(
+          this.projectId,
+        ).catch((error) => this.cancel(error)),
     });
 
     this.rCloneFileGuide = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () => this.CucControllerHelper.navigation.getConstant(get(this.URLS, 'guides.rCloneFile', ''))
-        .catch((error) => this.cancel(error)),
+      loaderFunction: () =>
+        this.CucControllerHelper.navigation
+          .getConstant(get(this.URLS, 'guides.rCloneFile', ''))
+          .catch((error) => this.cancel(error)),
     });
   }
 }
 
-angular.module('managerApp').controller('CloudProjectOpenstackUsersRcloneModalCtrl', CloudProjectOpenstackUsersRcloneModalCtrl);
+angular
+  .module('managerApp')
+  .controller(
+    'CloudProjectOpenstackUsersRcloneModalCtrl',
+    CloudProjectOpenstackUsersRcloneModalCtrl,
+  );

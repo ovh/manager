@@ -9,11 +9,7 @@ import directive from './directive';
 const moduleName = 'ngOvhPaymentMethodIntegration';
 
 angular
-  .module(moduleName, [
-    iframeVantiv,
-    inContext,
-    redirect,
-  ])
+  .module(moduleName, [iframeVantiv, inContext, redirect])
   .directive(directive.name, () => directive);
 
 export default moduleName;

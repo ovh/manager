@@ -1,8 +1,17 @@
 export default class VpsOrderDisklegacyOrderController {
   /* @ngInject */
-  constructor($filter, $stateParams, $state, $translate, $q, $window, CucCloudMessage,
-    CucCloudNavigation, VpsService,
-    CucServiceHelper) {
+  constructor(
+    $filter,
+    $stateParams,
+    $state,
+    $translate,
+    $q,
+    $window,
+    CucCloudMessage,
+    CucCloudNavigation,
+    VpsService,
+    CucServiceHelper,
+  ) {
     this.$filter = $filter;
     this.$translate = $translate;
     this.$q = $q;
@@ -36,9 +45,17 @@ export default class VpsOrderDisklegacyOrderController {
   getAdditionalDiskPrices() {
     this.loaders.capacity = true;
     this.VpsService.getAdditionalDiskPrices(this.serviceName)
-      .then((data) => { this.capacityArray = data; })
-      .catch((error) => this.CucCloudMessage.error(error || this.$translate.instant('vps_order_additional_disk_fail')))
-      .finally(() => { this.loaders.capacity = false; });
+      .then((data) => {
+        this.capacityArray = data;
+      })
+      .catch((error) =>
+        this.CucCloudMessage.error(
+          error || this.$translate.instant('vps_order_additional_disk_fail'),
+        ),
+      )
+      .finally(() => {
+        this.loaders.capacity = false;
+      });
   }
 
   getAdditionalDiskFinalPrice() {
@@ -46,23 +63,40 @@ export default class VpsOrderDisklegacyOrderController {
     this.VpsService.getAllowedDuration(this.serviceName, this.model.capacity)
       .then((duration) => {
         this.model.duration = duration;
-        this.VpsService
-          .getAdditionalDiskFinalPrice(this.serviceName, this.model.capacity, this.model.duration)
-          .then((offer) => { this.offer = offer; })
-          .catch((error) => this.CucCloudMessage.error(error || this.$translate.instant('vps_order_additional_disk_fail')))
-          .finally(() => { this.loaders.offer = false; });
+        this.VpsService.getAdditionalDiskFinalPrice(
+          this.serviceName,
+          this.model.capacity,
+          this.model.duration,
+        )
+          .then((offer) => {
+            this.offer = offer;
+          })
+          .catch((error) =>
+            this.CucCloudMessage.error(
+              error ||
+                this.$translate.instant('vps_order_additional_disk_fail'),
+            ),
+          )
+          .finally(() => {
+            this.loaders.offer = false;
+          });
       })
-      .catch((error) => this.CucCloudMessage.error(error || this.$translate.instant('vps_order_additional_disk_fail')));
+      .catch((error) =>
+        this.CucCloudMessage.error(
+          error || this.$translate.instant('vps_order_additional_disk_fail'),
+        ),
+      );
   }
 
   orderAdditionalDiskOption() {
     this.loaders.order = true;
-    this.CucServiceHelper
-      .loadOnNewPage(this.VpsService.postAdditionalDiskOrder(
+    this.CucServiceHelper.loadOnNewPage(
+      this.VpsService.postAdditionalDiskOrder(
         this.serviceName,
         this.model.capacity,
         this.model.duration,
-      ))
+      ),
+    )
       .then(({ url }) => {
         this.model.url = url;
       })
@@ -80,9 +114,6 @@ export default class VpsOrderDisklegacyOrderController {
   }
 
   displayBC() {
-    this.$window.open(
-      this.model.url,
-      '_blank',
-    );
+    this.$window.open(this.model.url, '_blank');
   }
 }

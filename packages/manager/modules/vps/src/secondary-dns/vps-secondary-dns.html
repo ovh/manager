@@ -1,25 +1,46 @@
 <section class="cui-page__content">
-    <div data-ng-if="$ctrl.loaders.init"
-         class="text-center">
+    <div data-ng-if="$ctrl.loaders.init" class="text-center">
         <oui-spinner data-size="l"></oui-spinner>
     </div>
 
     <div data-ng-if="!$ctrl.loaders.init">
-        <button type="button"
-                class="oui-button oui-button_secondary"
-                data-translate="vps_configuration_secondarydns_add_title_button"
-                data-ng-click="$ctrl.add()"></button>
-        <oui-datagrid data-ng-show="!$ctrl.loaders.init"
-                      data-rows="$ctrl.secondaryDns.list.results">
-            <oui-column data-title="'vps_tab_SECONDARY_DNS_table_domain' | translate" data-property="domain" data-sortable></oui-column>
-            <oui-column data-title="'vps_tab_SECONDARY_DNS_table_ip' | translate" data-property="ipMaster" data-sortable></oui-column>
-            <oui-column data-title="'vps_tab_SECONDARY_DNS_table_date' | translate" data-property="creationDate" data-sortable>
+        <button
+            type="button"
+            class="oui-button oui-button_secondary"
+            data-translate="vps_configuration_secondarydns_add_title_button"
+            data-ng-click="$ctrl.add()"
+        ></button>
+        <oui-datagrid
+            data-ng-show="!$ctrl.loaders.init"
+            data-rows="$ctrl.secondaryDns.list.results"
+        >
+            <oui-column
+                data-title="'vps_tab_SECONDARY_DNS_table_domain' | translate"
+                data-property="domain"
+                data-sortable
+            ></oui-column>
+            <oui-column
+                data-title="'vps_tab_SECONDARY_DNS_table_ip' | translate"
+                data-property="ipMaster"
+                data-sortable
+            ></oui-column>
+            <oui-column
+                data-title="'vps_tab_SECONDARY_DNS_table_date' | translate"
+                data-property="creationDate"
+                data-sortable
+            >
                 <span data-ng-bind="$row.creationDateLabel"></span>
             </oui-column>
-            <oui-column data-title="'vps_tab_SECONDARY_DNS_table_dns' | translate" data-property="dns" data-sortable></oui-column>
+            <oui-column
+                data-title="'vps_tab_SECONDARY_DNS_table_dns' | translate"
+                data-property="dns"
+                data-sortable
+            ></oui-column>
             <oui-action-menu data-align="end" data-compact>
-                <oui-action-menu-item data-text="{{'vps_common_delete' | translate}}"
-                                      data-on-click="$ctrl.deleteOne($row)"></oui-action-menu-item>
+                <oui-action-menu-item
+                    data-text="{{'vps_common_delete' | translate}}"
+                    data-on-click="$ctrl.deleteOne($row)"
+                ></oui-action-menu-item>
             </oui-action-menu>
         </oui-datagrid>
     </div>

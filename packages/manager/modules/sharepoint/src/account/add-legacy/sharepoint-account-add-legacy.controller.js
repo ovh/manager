@@ -3,7 +3,13 @@ import round from 'lodash/round';
 
 export default class SharepointAccountAddLegacyCtrl {
   /* @ngInject */
-  constructor($scope, $stateParams, $translate, Alerter, MicrosoftSharepointLicenseService) {
+  constructor(
+    $scope,
+    $stateParams,
+    $translate,
+    Alerter,
+    MicrosoftSharepointLicenseService,
+  ) {
     this.$scope = $scope;
     this.$stateParams = $stateParams;
     this.$translate = $translate;
@@ -20,13 +26,20 @@ export default class SharepointAccountAddLegacyCtrl {
 
   retrievingSharepointServiceOptions() {
     this.loading = true;
-    return this.sharepointService.retrievingSharepointServiceOptions(this.$stateParams.productId)
+    return this.sharepointService
+      .retrievingSharepointServiceOptions(this.$stateParams.productId)
       .then((options) => {
         this.optionsList = options;
       })
       .catch((err) => {
         this.$scope.resetAction();
-        this.alerter.alertFromSWS(this.$translate.instant('sharepoint_accounts_action_sharepoint_add_error_message'), err, this.$scope.alerts.main);
+        this.alerter.alertFromSWS(
+          this.$translate.instant(
+            'sharepoint_accounts_action_sharepoint_add_error_message',
+          ),
+          err,
+          this.$scope.alerts.main,
+        );
       })
       .finally(() => {
         this.loading = false;
@@ -34,15 +47,26 @@ export default class SharepointAccountAddLegacyCtrl {
   }
 
   static getPrice(option) {
-    return round(get(option, 'prices[0].price.value', 0) * get(option, 'prices[0].quantity', 0), 2);
+    return round(
+      get(option, 'prices[0].price.value', 0) *
+        get(option, 'prices[0].quantity', 0),
+      2,
+    );
   }
 
   static getCurrency(option) {
-    return get(option, 'prices[0].price.currencyCode') === 'EUR' ? '&#0128;' : get(option, 'prices[0].price.currencyCode');
+    return get(option, 'prices[0].price.currencyCode') === 'EUR'
+      ? '&#0128;'
+      : get(option, 'prices[0].price.currencyCode');
   }
 
   submit() {
-    this.alerter.success(this.$translate.instant('sharepoint_account_action_sharepoint_add_success_message'), this.$scope.alerts.main);
+    this.alerter.success(
+      this.$translate.instant(
+        'sharepoint_account_action_sharepoint_add_success_message',
+      ),
+      this.$scope.alerts.main,
+    );
     this.$scope.resetAction();
 
     const win = window.open('', '_blank');

@@ -9,7 +9,10 @@ const moduleName = 'enterpriseCloudDatabaseServiceDetailsRestoredInstances';
 angular
   .module(moduleName, [deleteBackup])
   .config(routing)
-  .component('enterpriseCloudDatabaseServiceDetailsRestoredInstancesComponent', enterpriseCloudDatabaseServiceDetailsRestoredInstancesComponent)
+  .component(
+    'enterpriseCloudDatabaseServiceDetailsRestoredInstancesComponent',
+    enterpriseCloudDatabaseServiceDetailsRestoredInstancesComponent,
+  )
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

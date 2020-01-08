@@ -3,9 +3,8 @@ import routing from './cancel-resiliation.routing';
 
 const moduleName = 'ovhManagerBillingAutorenewCancelResiliation';
 
-angular.module(moduleName, [
-  'ui.router',
-])
+angular
+  .module(moduleName, ['ui.router'])
   .config(routing)
   .component('billingAutorenewCancelResiliation', component);
 

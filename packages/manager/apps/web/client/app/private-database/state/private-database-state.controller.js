@@ -86,7 +86,11 @@ angular.module('App').controller(
       };
       this.database.oom.realList = filter(
         this.database.oom.list,
-        (item) => filesize(item.sizeReached, { output: 'object', exponent: get(exponent, this.database.ram.unit, -1) }).value > this.database.ram.value,
+        (item) =>
+          filesize(item.sizeReached, {
+            output: 'object',
+            exponent: get(exponent, this.database.ram.unit, -1),
+          }).value > this.database.ram.value,
       );
       return this.database.oom.realList;
     }
@@ -94,14 +98,16 @@ angular.module('App').controller(
     getHostingsLinked() {
       this.privateDatabaseService
         .getHostingsLinked(this.productId)
-        .then((hostingsLinkedsId) => this.$q.all(map(
-          hostingsLinkedsId,
-          (mutuName) => this.isAdminMutu(mutuName)
-            .then((isAdmin) => ({
-              name: mutuName,
-              isAdmin,
-            })),
-        )))
+        .then((hostingsLinkedsId) =>
+          this.$q.all(
+            map(hostingsLinkedsId, (mutuName) =>
+              this.isAdminMutu(mutuName).then((isAdmin) => ({
+                name: mutuName,
+                isAdmin,
+              })),
+            ),
+          ),
+        )
         .then((hostingsLinked) => {
           this.hostingsLinked = hostingsLinked;
         })
@@ -120,14 +126,16 @@ angular.module('App').controller(
     isAdminMutu(mutu) {
       this.getUserInfos()
         .then(() => this.hostingService.getServiceInfos(mutu))
-        .then((mutuInfo) => some(
-          [
-            mutuInfo.contactBilling,
-            mutuInfo.contactTech,
-            mutuInfo.contactAdmin,
-          ],
-          (contactName) => this.userInfos.nichandle === contactName,
-        ))
+        .then((mutuInfo) =>
+          some(
+            [
+              mutuInfo.contactBilling,
+              mutuInfo.contactTech,
+              mutuInfo.contactAdmin,
+            ],
+            (contactName) => this.userInfos.nichandle === contactName,
+          ),
+        )
         .catch((err) => {
           this.alerter.error(err);
           return false;

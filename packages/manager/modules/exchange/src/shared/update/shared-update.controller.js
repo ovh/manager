@@ -5,7 +5,14 @@ import values from 'lodash/values';
 
 export default class ExchangeUpdatePublicFolderCtrl {
   /* @ngInject */
-  constructor($scope, Exchange, ExchangePublicFolders, messaging, navigation, $translate) {
+  constructor(
+    $scope,
+    Exchange,
+    ExchangePublicFolders,
+    messaging,
+    navigation,
+    $translate,
+  ) {
     this.services = {
       $scope,
       Exchange,
@@ -43,13 +50,16 @@ export default class ExchangeUpdatePublicFolderCtrl {
         this.quotaUnitTranslation = this.services.$translate.instant(
           `unit_size_${this.publicFoldersOptions.maxQuota.unit}`,
         );
-        /* eslint-disable-next-line operator-assignment */
-        this.publicFoldersOptions.maxQuota.value = this
-          .publicFoldersOptions.maxQuota.value + this.folderToUpdate.quota.value;
+        // eslint-disable-next-line operator-assignment
+        this.publicFoldersOptions.maxQuota.value =
+          this.publicFoldersOptions.maxQuota.value +
+          this.folderToUpdate.quota.value;
       })
       .catch((failure) => {
         this.services.messaging.writeError(
-          this.services.$translate.instant('exchange_tab_SHARED_all_error_message'),
+          this.services.$translate.instant(
+            'exchange_tab_SHARED_all_error_message',
+          ),
           failure,
         );
       })
@@ -64,9 +74,11 @@ export default class ExchangeUpdatePublicFolderCtrl {
 
   checkQuotaValidity() {
     this.errors.quotaIsValid = true;
-    const quotaIsWithinLimits = this.folderToUpdate.quota.value
-      >= this.publicFoldersOptions.minQuota.value
-      && this.folderToUpdate.quota.value <= this.publicFoldersOptions.maxQuota.value;
+    const quotaIsWithinLimits =
+      this.folderToUpdate.quota.value >=
+        this.publicFoldersOptions.minQuota.value &&
+      this.folderToUpdate.quota.value <=
+        this.publicFoldersOptions.maxQuota.value;
 
     if (!isNumber(this.folderToUpdate.quota.value) || !quotaIsWithinLimits) {
       this.errors.quotaIsValid = false;
@@ -74,8 +86,9 @@ export default class ExchangeUpdatePublicFolderCtrl {
   }
 
   checkPermissions() {
-    this.errors.permissionsAreValid = this.folderToUpdate.defaultPermission != null
-      && this.folderToUpdate.anonymousPermission != null;
+    this.errors.permissionsAreValid =
+      this.folderToUpdate.defaultPermission != null &&
+      this.folderToUpdate.anonymousPermission != null;
   }
 
   submitting() {
@@ -91,13 +104,17 @@ export default class ExchangeUpdatePublicFolderCtrl {
     )
       .then((success) => {
         this.services.messaging.writeSuccess(
-          this.services.$translate.instant('exchange_action_SHARED_update_success_message'),
+          this.services.$translate.instant(
+            'exchange_action_SHARED_update_success_message',
+          ),
           success,
         );
       })
       .catch((failure) => {
         this.services.messaging.writeError(
-          this.services.$translate.instant('exchange_action_SHARED_update_fail_message'),
+          this.services.$translate.instant(
+            'exchange_action_SHARED_update_fail_message',
+          ),
           failure,
         );
       })

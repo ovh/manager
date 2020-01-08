@@ -51,13 +51,31 @@ export default /* @ngInject */ function vpsPriceFilter($translate) {
         return `<span class="bold">${price.withoutTax.text}</span>`;
       }
       if (frequency === 'yearly') {
-        return `<span class="bold">${$translate.instant('vps_price_ht_label', { price: price.withoutTax.text })}`
-          + `<small>${$translate.instant('vps_price_label_yearly')}</small></span> `
-          + `<span class="italic small"> (${$translate.instant('vps_price_ttc_label', { price: price.withTax.text })}`
-          + `<small>${$translate.instant('vps_price_label_yearly')}</small>)</span>`;
+        return (
+          `<span class="bold">${$translate.instant('vps_price_ht_label', {
+            price: price.withoutTax.text,
+          })}` +
+          `<small>${$translate.instant(
+            'vps_price_label_yearly',
+          )}</small></span> ` +
+          `<span class="italic small"> (${$translate.instant(
+            'vps_price_ttc_label',
+            { price: price.withTax.text },
+          )}` +
+          `<small>${$translate.instant(
+            'vps_price_label_yearly',
+          )}</small>)</span>`
+        );
       }
-      return `<span class="bold">${$translate.instant('vps_price_ht_label', { price: price.withoutTax.text })}`
-        + `</span> <span class="italic small"> (${$translate.instant('vps_price_ttc_label', { price: price.withTax.text })})</span>`;
+      return (
+        `<span class="bold">${$translate.instant('vps_price_ht_label', {
+          price: price.withoutTax.text,
+        })}` +
+        `</span> <span class="italic small"> (${$translate.instant(
+          'vps_price_ttc_label',
+          { price: price.withTax.text },
+        )})</span>`
+      );
     }
     return `<span class="bold">${$translate.instant('vps_price_free')}</span>`;
   }

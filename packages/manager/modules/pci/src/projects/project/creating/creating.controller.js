@@ -3,10 +3,7 @@ import get from 'lodash/get';
 
 import { PCI_REDIRECT_URLS } from '../../../constants';
 
-import {
-  SLIDE_ANIMATION_INTERVAL,
-  SLIDE_IMAGES,
-} from './creating.constants';
+import { SLIDE_ANIMATION_INTERVAL, SLIDE_IMAGES } from './creating.constants';
 
 export default class ProjectCreatingCtrl {
   /* @ngInject */
@@ -39,14 +36,13 @@ export default class ProjectCreatingCtrl {
       successRule(status) {
         return status !== 'checking';
       },
-    })
-      .then((status) => {
-        if (status === 'notPaid') {
-          return this.onProjectCreated(); // it has to redirect to same page
-        }
+    }).then((status) => {
+      if (status === 'notPaid') {
+        return this.onProjectCreated(); // it has to redirect to same page
+      }
 
-        return this.startCreationPolling();
-      });
+      return this.startCreationPolling();
+    });
   }
 
   startCreationPolling() {
@@ -55,8 +51,7 @@ export default class ProjectCreatingCtrl {
       successRule(details) {
         return details.status === 'ok';
       },
-    })
-      .then(() => this.onProjectCreated());
+    }).then(() => this.onProjectCreated());
   }
 
   stopPollings() {

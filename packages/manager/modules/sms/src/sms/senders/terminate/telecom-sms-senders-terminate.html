@@ -1,45 +1,59 @@
-<form name="terminateSenderForm"
-      id="terminateSenderForm"
-      data-ng-submit="SendersTerminateCtrl.terminate()">
-
+<form
+    name="terminateSenderForm"
+    id="terminateSenderForm"
+    data-ng-submit="SendersTerminateCtrl.terminate()"
+>
     <div class="modal-header">
         <button
             type="button"
             class="close float-right"
             aria-label="{{ ::'sms_cancel' | translate }}"
-            data-ng-click="SendersTerminateCtrl.cancel()">
+            data-ng-click="SendersTerminateCtrl.cancel()"
+        >
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
 
-    <div class="modal-body"
-         data-ng-if="!SendersTerminateCtrl.loading.terminate && !SendersTerminateCtrl.terminated">
-        <h3 class="modal-title"
-            data-translate="sms_senders_terminate_sender_title">
-        </h3>
-        <p data-ng-if="!SendersTerminateCtrl.sender.serviceInfos.renew.deleteAtExpiration"
-           data-translate="sms_senders_terminate_sender_info"
-           data-translate-values="{
+    <div
+        class="modal-body"
+        data-ng-if="!SendersTerminateCtrl.loading.terminate && !SendersTerminateCtrl.terminated"
+    >
+        <h3
+            class="modal-title"
+            data-translate="sms_senders_terminate_sender_title"
+        ></h3>
+        <p
+            data-ng-if="!SendersTerminateCtrl.sender.serviceInfos.renew.deleteAtExpiration"
+            data-translate="sms_senders_terminate_sender_info"
+            data-translate-values="{
                number: SendersTerminateCtrl.sender.sender,
                date: (SendersTerminateCtrl.sender.serviceInfos.expiration | date:'shortDate')
-           }">
-        </p>
-        <p data-ng-if="SendersTerminateCtrl.sender.serviceInfos.renew.deleteAtExpiration"
-           data-translate="sms_senders_terminate_sender_info_cancel"
-           data-translate-values="{ number: SendersTerminateCtrl.sender.sender }">
-        </p>
+           }"
+        ></p>
+        <p
+            data-ng-if="SendersTerminateCtrl.sender.serviceInfos.renew.deleteAtExpiration"
+            data-translate="sms_senders_terminate_sender_info_cancel"
+            data-translate-values="{ number: SendersTerminateCtrl.sender.sender }"
+        ></p>
     </div>
 
-    <div class="modal-body text-center"
-         data-ng-if="SendersTerminateCtrl.loading.terminate && !SendersTerminateCtrl.terminated">
+    <div
+        class="modal-body text-center"
+        data-ng-if="SendersTerminateCtrl.loading.terminate && !SendersTerminateCtrl.terminated"
+    >
         <oui-spinner></oui-spinner>
-        <h4 data-ng-bind="SendersTerminateCtrl.sender.serviceInfos.renew.deleteAtExpiration ? 'sms_senders_terminate_sender_cancelling' : 'sms_senders_terminate_sender_terminating' | translate"></h4>
+        <h4
+            data-ng-bind="SendersTerminateCtrl.sender.serviceInfos.renew.deleteAtExpiration ? 'sms_senders_terminate_sender_cancelling' : 'sms_senders_terminate_sender_terminating' | translate"
+        ></h4>
     </div>
 
-    <div class="modal-body"
-         data-ng-if="SendersTerminateCtrl.terminated">
-        <tuc-success-drawing-check data-draw-success-check="SendersTerminateCtrl.terminated">
-            <h4 data-ng-bind="SendersTerminateCtrl.sender.serviceInfos.renew.deleteAtExpiration ? 'sms_senders_terminate_sender_cancelled' : 'sms_senders_terminate_sender_terminated' | translate"></h4>
+    <div class="modal-body" data-ng-if="SendersTerminateCtrl.terminated">
+        <tuc-success-drawing-check
+            data-draw-success-check="SendersTerminateCtrl.terminated"
+        >
+            <h4
+                data-ng-bind="SendersTerminateCtrl.sender.serviceInfos.renew.deleteAtExpiration ? 'sms_senders_terminate_sender_cancelled' : 'sms_senders_terminate_sender_terminated' | translate"
+            ></h4>
         </tuc-success-drawing-check>
     </div>
 
@@ -49,14 +63,13 @@
             class="btn btn-default"
             data-ng-click="SendersTerminateCtrl.cancel()"
             data-translate="sms_cancel"
-            data-ng-disabled="SendersTerminateCtrl.loading.terminate || SendersTerminateCtrl.terminated">
-        </button>
+            data-ng-disabled="SendersTerminateCtrl.loading.terminate || SendersTerminateCtrl.terminated"
+        ></button>
         <button
             type="submit"
             class="btn btn-primary"
             data-ng-bind="SendersTerminateCtrl.sender.serviceInfos.renew.deleteAtExpiration ? 'sms_senders_terminate_cancel' : 'sms_common_resiliation' | translate"
-            data-ng-disabled="SendersTerminateCtrl.loading.terminate || SendersTerminateCtrl.terminated">
-        </button>
+            data-ng-disabled="SendersTerminateCtrl.loading.terminate || SendersTerminateCtrl.terminated"
+        ></button>
     </div>
-
 </form>

@@ -18,8 +18,15 @@ import terminateTemplate from './terminate/telecom-sms-senders-terminate.html';
 export default class {
   /* @ngInject */
   constructor(
-    $stateParams, $q, $filter, $timeout, $uibModal, $translate,
-    OvhApiSms, TucToast, TucToastError,
+    $stateParams,
+    $q,
+    $filter,
+    $timeout,
+    $uibModal,
+    $translate,
+    OvhApiSms,
+    TucToast,
+    TucToastError,
   ) {
     this.$stateParams = $stateParams;
     this.$q = $q;
@@ -59,27 +66,39 @@ export default class {
   refresh() {
     this.senders.isLoading = true;
     this.resetAllCache();
-    return this.fetchSenders().then((senders) => this.$q.all(map(senders, (sender) => {
-      set(sender, 'serviceInfos', null);
-      if (sender.type === 'virtual') {
-        const number = `00${trimStart(sender.sender, '+')}`;
-        return this.api.sms.virtualNumbers
-          .getVirtualNumbersServiceInfos({ number }).$promise
-          .then((serviceInfos) => {
-            set(sender, 'serviceInfos', serviceInfos);
-            return sender;
-          });
-      }
-      return this.$q.resolve(sender);
-    })).then((sendersResult) => {
-      this.senders.raw = sendersResult;
-      this.senders.hasExpiration = some(this.senders.raw, 'serviceInfos.renew.deleteAtExpiration');
-      this.sortSenders();
-    })).catch((err) => {
-      this.TucToastError(err);
-    }).finally(() => {
-      this.senders.isLoading = false;
-    });
+    return this.fetchSenders()
+      .then((senders) =>
+        this.$q
+          .all(
+            map(senders, (sender) => {
+              set(sender, 'serviceInfos', null);
+              if (sender.type === 'virtual') {
+                const number = `00${trimStart(sender.sender, '+')}`;
+                return this.api.sms.virtualNumbers
+                  .getVirtualNumbersServiceInfos({ number })
+                  .$promise.then((serviceInfos) => {
+                    set(sender, 'serviceInfos', serviceInfos);
+                    return sender;
+                  });
+              }
+              return this.$q.resolve(sender);
+            }),
+          )
+          .then((sendersResult) => {
+            this.senders.raw = sendersResult;
+            this.senders.hasExpiration = some(
+              this.senders.raw,
+              'serviceInfos.renew.deleteAtExpiration',
+            );
+            this.sortSenders();
+          }),
+      )
+      .catch((err) => {
+        this.TucToastError(err);
+      })
+      .finally(() => {
+        this.senders.isLoading = false;
+      });
   }
 
   /**
@@ -98,13 +117,21 @@ export default class {
     return this.api.sms.senders
       .query({
         serviceName: this.$stateParams.serviceName,
-      }).$promise
-      .then((sendersIds) => this.$q
-        .all(map(chunk(sendersIds, 50), (chunkIds) => this.api.sms.senders.getBatch({
-          serviceName: this.$stateParams.serviceName,
-          sender: chunkIds.join('|'),
-        }).$promise))
-        .then((chunkResult) => map(flatten(chunkResult), 'value')));
+      })
+      .$promise.then((sendersIds) =>
+        this.$q
+          .all(
+            map(
+              chunk(sendersIds, 50),
+              (chunkIds) =>
+                this.api.sms.senders.getBatch({
+                  serviceName: this.$stateParams.serviceName,
+                  sender: chunkIds.join('|'),
+                }).$promise,
+            ),
+          )
+          .then((chunkResult) => map(flatten(chunkResult), 'value')),
+      );
   }
 
   /**
@@ -138,7 +165,14 @@ export default class {
    * @return {Array}
    */
   getSelection() {
-    return filter(this.senders.raw, (sender) => sender && sender.type !== 'virtual' && this.senders.selected && this.senders.selected[sender.sender]);
+    return filter(
+      this.senders.raw,
+      (sender) =>
+        sender &&
+        sender.type !== 'virtual' &&
+        this.senders.selected &&
+        this.senders.selected[sender.sender],
+    );
   }
 
   /**
@@ -147,21 +181,30 @@ export default class {
    */
   deleteSelectedSenders() {
     const senders = this.getSelection();
-    const queries = senders.map((sender) => this.api.sms.senders.delete({
-      serviceName: this.$stateParams.serviceName,
-      sender: sender.sender,
-    }).$promise);
+    const queries = senders.map(
+      (sender) =>
+        this.api.sms.senders.delete({
+          serviceName: this.$stateParams.serviceName,
+          sender: sender.sender,
+        }).$promise,
+    );
     this.senders.isDeleting = true;
     queries.push(this.$timeout(angular.noop, 500)); // avoid clipping
-    this.TucToast.info(this.$translate.instant('sms_senders_delete_senders_success'));
-    return this.$q.all(queries).then(() => {
-      this.senders.selected = {};
-      return this.refresh();
-    }).catch((err) => {
-      this.TucToastError(err);
-    }).finally(() => {
-      this.senders.isDeleting = false;
-    });
+    this.TucToast.info(
+      this.$translate.instant('sms_senders_delete_senders_success'),
+    );
+    return this.$q
+      .all(queries)
+      .then(() => {
+        this.senders.selected = {};
+        return this.refresh();
+      })
+      .catch((err) => {
+        this.TucToastError(err);
+      })
+      .finally(() => {
+        this.senders.isDeleting = false;
+      });
   }
 
   /**
@@ -176,11 +219,17 @@ export default class {
       controllerAs: 'SendersEditCtrl',
       resolve: { sender: () => sender },
     });
-    modal.result.then(() => this.refresh()).catch((error) => {
-      if (error && error.type === 'API') {
-        this.TucToast.error(this.$translate.instant('sms_senders_edit_sender_ko', { error: get(error, 'msg.data.message') }));
-      }
-    });
+    modal.result
+      .then(() => this.refresh())
+      .catch((error) => {
+        if (error && error.type === 'API') {
+          this.TucToast.error(
+            this.$translate.instant('sms_senders_edit_sender_ko', {
+              error: get(error, 'msg.data.message'),
+            }),
+          );
+        }
+      });
   }
 
   /**
@@ -195,11 +244,17 @@ export default class {
       controllerAs: 'SendersRemoveCtrl',
       resolve: { sender: () => sender },
     });
-    modal.result.then(() => this.refresh()).catch((error) => {
-      if (error && error.type === 'API') {
-        this.TucToast.error(this.$translate.instant('sms_senders_remove_sender_ko', { error: get(error, 'msg.data.message') }));
-      }
-    });
+    modal.result
+      .then(() => this.refresh())
+      .catch((error) => {
+        if (error && error.type === 'API') {
+          this.TucToast.error(
+            this.$translate.instant('sms_senders_remove_sender_ko', {
+              error: get(error, 'msg.data.message'),
+            }),
+          );
+        }
+      });
   }
 
   /**
@@ -214,11 +269,17 @@ export default class {
       controllerAs: 'SendersTerminateCtrl',
       resolve: { sender: () => sender },
     });
-    modal.result.then(() => this.refresh()).catch((error) => {
-      if (error && error.type === 'API') {
-        this.TucToast.error(this.$translate.instant('sms_senders_terminate_sender_ko', { error: get(error, 'msg.data.message') }));
-      }
-    });
+    modal.result
+      .then(() => this.refresh())
+      .catch((error) => {
+        if (error && error.type === 'API') {
+          this.TucToast.error(
+            this.$translate.instant('sms_senders_terminate_sender_ko', {
+              error: get(error, 'msg.data.message'),
+            }),
+          );
+        }
+      });
   }
 
   /**
@@ -230,7 +291,9 @@ export default class {
     if (sender.status === 'waitingValidation') {
       return false;
     }
-    return sender.type === 'virtual' ? sender.serviceInfos.status !== 'expired' : true;
+    return sender.type === 'virtual'
+      ? sender.serviceInfos.status !== 'expired'
+      : true;
   }
 
   /**
@@ -239,9 +302,11 @@ export default class {
    * @return {Boolean}
    */
   static canTerminate(sender) {
-    return sender.type === 'virtual'
-      && sender.serviceInfos.canDeleteAtExpiration
-      && sender.serviceInfos.status !== 'expired';
+    return (
+      sender.type === 'virtual' &&
+      sender.serviceInfos.canDeleteAtExpiration &&
+      sender.serviceInfos.status !== 'expired'
+    );
   }
 
   /**

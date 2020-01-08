@@ -3,7 +3,14 @@ import get from 'lodash/get';
 angular.module('App').controller(
   'HostingFtpUserUpdateCtrl',
   class HostingFtpUserUpdateCtrl {
-    constructor($scope, $stateParams, $translate, Alerter, Hosting, HostingUser) {
+    constructor(
+      $scope,
+      $stateParams,
+      $translate,
+      Alerter,
+      Hosting,
+      HostingUser,
+    ) {
       this.$scope = $scope;
       this.$stateParams = $stateParams;
       this.$translate = $translate;
@@ -36,7 +43,9 @@ angular.module('App').controller(
         })
         .catch((err) => {
           this.Alerter.alertFromSWS(
-            this.$translate.instant('hosting_tab_FTP_configuration_user_modify_step1_loading_error'),
+            this.$translate.instant(
+              'hosting_tab_FTP_configuration_user_modify_step1_loading_error',
+            ),
             get(err, 'data', err),
             this.$scope.alerts.main,
           );
@@ -55,8 +64,8 @@ angular.module('App').controller(
       let home;
       if (this.model.user.home !== null) {
         if (
-          /^\/.*/.test(this.model.user.home)
-          || this.model.user.isPrimaryAccount
+          /^\/.*/.test(this.model.user.home) ||
+          this.model.user.isPrimaryAccount
         ) {
           return this.model.user.home;
         }
@@ -82,13 +91,17 @@ angular.module('App').controller(
       })
         .then(() => {
           this.Alerter.success(
-            this.$translate.instant('hosting_tab_FTP_configuration_user_modify_success'),
+            this.$translate.instant(
+              'hosting_tab_FTP_configuration_user_modify_success',
+            ),
             this.$scope.alerts.main,
           );
         })
         .catch((err) => {
           this.Alerter.alertFromSWS(
-            this.$translate.instant('hosting_tab_FTP_configuration_user_modify_fail'),
+            this.$translate.instant(
+              'hosting_tab_FTP_configuration_user_modify_fail',
+            ),
             err,
             this.$scope.alerts.main,
           );

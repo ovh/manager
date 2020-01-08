@@ -1,31 +1,42 @@
 <div class="row" data-ng-controller="EmailProTabAliasCtrl">
     <div class="col-md-9">
-
         <oui-back-button data-on-click="hideAliases()">
             <span data-translate="emailpro_tab_ACCOUNTS_popover_alias"></span>
         </oui-back-button>
 
         <oui-datagrid data-rows-loader="getAliases($config)">
-            <oui-column data-title="'emailpro_tab_ALIAS_header' | translate" data-property="displayName"></oui-column>
-            <oui-column data-title="'emailpro_tab_ACCOUNTS_table_status' | translate" data-property="taskPendingId">
-                <span class="oui-status oui-status_info"
-                      data-translate="emailpro_tab_ALIAS_state_TASK_ON_DOING"
-                      data-ng-if="$row.taskPendingId"
-                      data-oui-tooltip="{{:: 'emailpro_tab_ALIAS_state_TASK_ON_DOING_tooltip' | translate }}"></span>
+            <oui-column
+                data-title="'emailpro_tab_ALIAS_header' | translate"
+                data-property="displayName"
+            ></oui-column>
+            <oui-column
+                data-title="'emailpro_tab_ACCOUNTS_table_status' | translate"
+                data-property="taskPendingId"
+            >
+                <span
+                    class="oui-status oui-status_info"
+                    data-translate="emailpro_tab_ALIAS_state_TASK_ON_DOING"
+                    data-ng-if="$row.taskPendingId"
+                    data-oui-tooltip="{{:: 'emailpro_tab_ALIAS_state_TASK_ON_DOING_tooltip' | translate }}"
+                ></span>
             </oui-column>
             <oui-action-menu data-align="end" data-compact>
-                <oui-action-menu-item data-text="{{ 'emailpro_tab_ALIAS_delete_tooltip' | translate }}"
-                                      data-on-click="deleteAlias($row)"
-                                      data-disabled="$row.taskPendingId"></oui-action-menu-item>
+                <oui-action-menu-item
+                    data-text="{{ 'emailpro_tab_ALIAS_delete_tooltip' | translate }}"
+                    data-on-click="deleteAlias($row)"
+                    data-disabled="$row.taskPendingId"
+                ></oui-action-menu-item>
             </oui-action-menu>
         </oui-datagrid>
     </div>
 
     <div class="col-md-3 mt-5 mt-lg-0">
-        <button class="btn btn-block btn-default" type="button"
-                data-translate="emailpro_tab_ALIAS_add_button"
-                data-ng-click="addAccountAlias()"
-                data-ng-disabled="selectedAccount.aliases >= aliasMaxLimit">
-        </button>
+        <button
+            class="btn btn-block btn-default"
+            type="button"
+            data-translate="emailpro_tab_ALIAS_add_button"
+            data-ng-click="addAccountAlias()"
+            data-ng-disabled="selectedAccount.aliases >= aliasMaxLimit"
+        ></button>
     </div>
 </div>

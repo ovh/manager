@@ -1,21 +1,25 @@
 <div data-ng-controller="EmailsAccountsToCsvCtrl as ctrl">
-    <div data-wizard
-         data-wizard-on-cancel="cancelExport"
-         data-wizard-on-finish="exportAccounts"
-         data-wizard-title="'email_tab_modal_export_csv_title' | translate">
-
-        <div data-wizard-step
-             data-wizard-step-valid="!ctrl.loading.exportCsv">
-
+    <div
+        data-wizard
+        data-wizard-on-cancel="cancelExport"
+        data-wizard-on-finish="exportAccounts"
+        data-wizard-title="'email_tab_modal_export_csv_title' | translate"
+    >
+        <div data-wizard-step data-wizard-step-valid="!ctrl.loading.exportCsv">
             <div class="text-center" data-ng-if="ctrl.loading.exportCsv">
                 <oui-spinner></oui-spinner>
-                <span class="d-block"
-                      data-translate="emails_export_csv_doing"></span>
+                <span
+                    class="d-block"
+                    data-translate="emails_export_csv_doing"
+                ></span>
             </div>
 
             <div data-ng-if="!ctrl.loading.exportCsv">
                 <p data-translate="emails_export_csv_expl"></p>
-                <p class="font-weight-bold" data-translate="emails_export_csv_confirm"></p>
+                <p
+                    class="font-weight-bold"
+                    data-translate="emails_export_csv_confirm"
+                ></p>
             </div>
         </div>
     </div>

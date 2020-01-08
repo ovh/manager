@@ -3,7 +3,8 @@ angular.module('managerApp').config(($stateProvider) => {
     url: '/terminate',
     views: {
       'aliasView@telecom.telephony.billingAccount.alias': {
-        templateUrl: 'app/telecom/telephony/alias/administration/terminate/telecom-telephony-alias-administration-terminate.html',
+        templateUrl:
+          'app/telecom/telephony/alias/administration/terminate/telecom-telephony-alias-administration-terminate.html',
         controller: 'TelecomTelephonyAliasAdministrationTerminateCtrl',
         controllerAs: 'AliasTerminateCtrl',
       },

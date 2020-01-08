@@ -1,24 +1,39 @@
 <div class="tab-content container-fluid mx-5">
-    <div class="alert alert-dismissible"
-         role="alert"
-         data-ng-class="$ctrl.messaging.alertType"
-         data-ng-if="$ctrl.messaging.message"
-         id="wizard-error-message">
-        <button class="close"
-                type="button"
-                aria-label="'wizard_close' | translate"
-                data-ng-click="$ctrl.closeMessages()">
-        </button>
+    <div
+        class="alert alert-dismissible"
+        role="alert"
+        data-ng-class="$ctrl.messaging.alertType"
+        data-ng-if="$ctrl.messaging.message"
+        id="wizard-error-message"
+    >
+        <button
+            class="close"
+            type="button"
+            aria-label="'wizard_close' | translate"
+            data-ng-click="$ctrl.closeMessages()"
+        ></button>
 
         <p data-ng-bind-html="$ctrl.messaging.message"></p>
 
-        <ul class="mb-1 ml-2" data-ng-if="$ctrl.messaging.messageDetails != null && $ctrl.messaging.messageDetails.length > 0">
-            <li data-ng-repeat="message in $ctrl.messaging.messageDetails track by $index">
-                <strong data-ng-if="message.id != null">{{:: message.id}}:</strong> {{:: message.message}}
+        <ul
+            class="mb-1 ml-2"
+            data-ng-if="$ctrl.messaging.messageDetails != null && $ctrl.messaging.messageDetails.length > 0"
+        >
+            <li
+                data-ng-repeat="message in $ctrl.messaging.messageDetails track by $index"
+            >
+                <strong data-ng-if="message.id != null"
+                    >{{:: message.id}}:</strong
+                >
+                {{:: message.message}}
             </li>
         </ul>
     </div>
 
-    <exchange-wizard-hosted-creation-first-step data-ng-if="$ctrl.shouldDisplayFirstStep"></exchange-wizard-hosted-creation-first-step>
-    <exchange-wizard-hosted-creation-summary data-ng-if="$ctrl.shouldDisplaySummary"></exchange-wizard-hosted-creation-summary>
+    <exchange-wizard-hosted-creation-first-step
+        data-ng-if="$ctrl.shouldDisplayFirstStep"
+    ></exchange-wizard-hosted-creation-first-step>
+    <exchange-wizard-hosted-creation-summary
+        data-ng-if="$ctrl.shouldDisplaySummary"
+    ></exchange-wizard-hosted-creation-summary>
 </div>

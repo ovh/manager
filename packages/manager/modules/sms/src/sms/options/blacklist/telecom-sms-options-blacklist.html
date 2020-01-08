@@ -129,9 +129,7 @@
                         ></th>
                     </tr>
                 </thead>
-                <tbody
-                    data-ng-if="!$ctrl.blacklists.isLoading"
-                >
+                <tbody data-ng-if="!$ctrl.blacklists.isLoading">
                     <tr
                         data-ng-repeat="blacklist in $ctrl.blacklists.paginated | orderBy:$ctrl.blacklists.orderBy:$ctrl.blacklists.orderDesc track by $index"
                     >
@@ -167,9 +165,7 @@
                         </td>
                     </tr>
                 </tbody>
-                <tbody
-                    data-ng-if="$ctrl.blacklists.isLoading"
-                >
+                <tbody data-ng-if="$ctrl.blacklists.isLoading">
                     <tr>
                         <td colspan="4" class="text-center">
                             <oui-spinner data-size="s"></oui-spinner>

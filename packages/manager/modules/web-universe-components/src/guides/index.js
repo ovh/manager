@@ -12,11 +12,7 @@ import './guides.less';
 const moduleName = 'wucGuides';
 
 angular
-  .module(moduleName, [
-    'ngTranslateAsyncLoader',
-    'ovh-api-services',
-    translate,
-  ])
+  .module(moduleName, ['ngTranslateAsyncLoader', 'ovh-api-services', translate])
   .constant('WUC_GUIDES', wucGUIDES)
   .directive('wucGuides', wucGuidesDirective)
   .run(/* @ngTranslationsInject:json ./translations */);

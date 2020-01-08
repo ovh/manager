@@ -1,9 +1,6 @@
 export default class {
   /* @ngInject */
-  constructor(
-    $translate,
-    CucCloudMessage,
-  ) {
+  constructor($translate, CucCloudMessage) {
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
   }
@@ -13,12 +10,9 @@ export default class {
   }
 
   loadMessages() {
-    this.messageHandler = this.CucCloudMessage.subscribe(
-      'pci.projects',
-      {
-        onMessage: () => this.refreshMessages(),
-      },
-    );
+    this.messageHandler = this.CucCloudMessage.subscribe('pci.projects', {
+      onMessage: () => this.refreshMessages(),
+    });
   }
 
   refreshMessages() {
@@ -26,11 +20,10 @@ export default class {
   }
 
   deleteProject(project) {
-    return this.terminateProject(project)
-      .then(() => {
-        this.goToProjects(
-          this.$translate.instant('pci_projects_project_delete_success'),
-        );
-      });
+    return this.terminateProject(project).then(() => {
+      this.goToProjects(
+        this.$translate.instant('pci_projects_project_delete_success'),
+      );
+    });
   }
 }

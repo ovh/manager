@@ -1,12 +1,14 @@
 <div data-ng-controller="DomainOperationUpdateCtrl as ctrl">
-    <div data-wizard
-         data-wizard-on-cancel="resetAction"
-         data-wizard-on-finish="updateOperation"
-         data-wizard-title="'domains_operations_update_title' | translate">
-
-        <div data-wizard-step
-             data-wizard-step-valid="ctrl.updateOperationForm.$valid && ctrl.canContinue">
-
+    <div
+        data-wizard
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="updateOperation"
+        data-wizard-title="'domains_operations_update_title' | translate"
+    >
+        <div
+            data-wizard-step
+            data-wizard-step-valid="ctrl.updateOperationForm.$valid && ctrl.canContinue"
+        >
             <p>
                 <span data-translate="domains_operations_update_comment"></span>
                 <em data-ng-bind="::ctrl.operation.comment"></em>
@@ -17,162 +19,325 @@
             </div>
 
             <div data-ng-if="!ctrl.loading">
-
                 <form class="form-horizontal" name="ctrl.updateOperationForm">
-
                     <div data-ng-if="ctrl.args.length > 0">
-                        <p data-ng-bind-html="'domains_operations_update_info' | translate: { t0: ('domains_operations_nicOperation_' + ctrl.operation['function'] | translate), t1: ctrl.operation.domain }"></p>
-                        <hr>
-                        <div class="form-group" data-ng-repeat="arg in ctrl.args track by $index">
+                        <p
+                            data-ng-bind-html="'domains_operations_update_info' | translate: { t0: ('domains_operations_nicOperation_' + ctrl.operation['function'] | translate), t1: ctrl.operation.domain }"
+                        ></p>
+                        <hr />
+                        <div
+                            class="form-group"
+                            data-ng-repeat="arg in ctrl.args track by $index"
+                        >
                             <div data-ng-switch="arg.type">
                                 <div data-ng-switch-when="string">
-                                    <label class="control-label col-md-4" for="arg-{{$index}}"
-                                           data-ng-bind="arg.keyTranslation || arg.description">
+                                    <label
+                                        class="control-label col-md-4"
+                                        for="arg-{{$index}}"
+                                        data-ng-bind="arg.keyTranslation || arg.description"
+                                    >
                                     </label>
                                     <div class="col-md-7">
-                                        <input type="text" class="oui-input" name="arg-{{$index}}" data-ng-attr-id="{{ 'arg-' + $index }}"
-                                               data-ng-if="!arg.acceptedValues"
-                                               data-ng-model="arg.value"
-                                               data-ng-required>
-                                        <div class="oui-select mb-0" data-ng-if="arg.acceptedValues && arg.acceptedValues.length > 1">
-                                            <select class="oui-select__input" name="arg-{{$index}}" data-ng-attr-id="{{ 'arg-' + $index }}"
-                                                    data-ng-model="arg.value"
-                                                    data-ng-options="operation for operation in arg.acceptedValues track by operation">
+                                        <input
+                                            type="text"
+                                            class="oui-input"
+                                            name="arg-{{$index}}"
+                                            data-ng-attr-id="{{ 'arg-' + $index }}"
+                                            data-ng-if="!arg.acceptedValues"
+                                            data-ng-model="arg.value"
+                                            data-ng-required
+                                        />
+                                        <div
+                                            class="oui-select mb-0"
+                                            data-ng-if="arg.acceptedValues && arg.acceptedValues.length > 1"
+                                        >
+                                            <select
+                                                class="oui-select__input"
+                                                name="arg-{{$index}}"
+                                                data-ng-attr-id="{{ 'arg-' + $index }}"
+                                                data-ng-model="arg.value"
+                                                data-ng-options="operation for operation in arg.acceptedValues track by operation"
+                                            >
                                             </select>
-                                            <span class="oui-icon oui-icon-chevron-down" aria-hidden="true"></span>
+                                            <span
+                                                class="oui-icon oui-icon-chevron-down"
+                                                aria-hidden="true"
+                                            ></span>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="mt-1 text-center" data-ng-switch-when="/me/contact">
-                                    <a target="_blank" title="{{::('domains_operations_update_nicowner_click_' + arg.key | translate) + ' (' + ('core_new_window' | translate) + ')'}}"
-                                       data-ng-href="{{'#/useraccount/contact/' + arg.value + '/' + (arg.fields.length ? ctrl.constructor.getNicParams(arg) : '')}}">
-                                        <span data-ng-bind="'domains_operations_update_nicowner_click_' + arg.key | translate"></span>
-                                        <span class="fa fa-external-link" aria-hidden="true"></span>
+                                <div
+                                    class="mt-1 text-center"
+                                    data-ng-switch-when="/me/contact"
+                                >
+                                    <a
+                                        target="_blank"
+                                        title="{{::('domains_operations_update_nicowner_click_' + arg.key | translate) + ' (' + ('core_new_window' | translate) + ')'}}"
+                                        data-ng-href="{{'#/useraccount/contact/' + arg.value + '/' + (arg.fields.length ? ctrl.constructor.getNicParams(arg) : '')}}"
+                                    >
+                                        <span
+                                            data-ng-bind="'domains_operations_update_nicowner_click_' + arg.key | translate"
+                                        ></span>
+                                        <span
+                                            class="fa fa-external-link"
+                                            aria-hidden="true"
+                                        ></span>
                                     </a>
                                 </div>
 
                                 <div data-ng-switch-when="/me/document">
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <strong data-translate="domains_operations_update_document_select_file"></strong>
+                                            <strong
+                                                data-translate="domains_operations_update_document_select_file"
+                                            ></strong>
                                         </div>
-                                        <div class="col-md-6" data-ng-if="!ctrl.viewMode[arg.key]">
-                                            <input type="file" accept="{{ctrl.constraints[arg.key].acceptedFormats}}"
-                                                   data-ng-model="ctrl.filesModel[$index]"
-                                                   data-ng-multiple="true"
-                                                   data-ng-required="true"
-                                                   data-max-size="{{ctrl.constraints[arg.key].maximumSize}}"
-                                                   data-ovh-disable-reader="true"
-                                                   data-wuc-ovh-filereader="ctrl.files[$index]"
-                                                   data-wuc-ovh-filereader-action="ctrl.upload(ctrl.filesModel[$index], arg)">
-                                            <button class="oui-button oui-button_secondary oui-button_icon-only oui-button_small-width ml-1" type="button"
-                                                    data-ng-click="ctrl.viewMode[arg.key] = true"
-                                                    data-ng-if="ctrl.previousValue[arg.key] && !ctrl.viewMode[arg.key]">
-                                                <span class="oui-icon oui-icon-close" aria-hidden="true"></span>
+                                        <div
+                                            class="col-md-6"
+                                            data-ng-if="!ctrl.viewMode[arg.key]"
+                                        >
+                                            <input
+                                                type="file"
+                                                accept="{{ctrl.constraints[arg.key].acceptedFormats}}"
+                                                data-ng-model="ctrl.filesModel[$index]"
+                                                data-ng-multiple="true"
+                                                data-ng-required="true"
+                                                data-max-size="{{ctrl.constraints[arg.key].maximumSize}}"
+                                                data-ovh-disable-reader="true"
+                                                data-wuc-ovh-filereader="ctrl.files[$index]"
+                                                data-wuc-ovh-filereader-action="ctrl.upload(ctrl.filesModel[$index], arg)"
+                                            />
+                                            <button
+                                                class="oui-button oui-button_secondary oui-button_icon-only oui-button_small-width ml-1"
+                                                type="button"
+                                                data-ng-click="ctrl.viewMode[arg.key] = true"
+                                                data-ng-if="ctrl.previousValue[arg.key] && !ctrl.viewMode[arg.key]"
+                                            >
+                                                <span
+                                                    class="oui-icon oui-icon-close"
+                                                    aria-hidden="true"
+                                                ></span>
                                             </button>
-                                            <span class="text-danger"
-                                                  data-translate="domains_operations_update_document_file_invalid"
-                                                  data-ng-if="ctrl.filesModel[$index].uploadError"></span>
+                                            <span
+                                                class="text-danger"
+                                                data-translate="domains_operations_update_document_file_invalid"
+                                                data-ng-if="ctrl.filesModel[$index].uploadError"
+                                            ></span>
                                         </div>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <strong data-translate="domains_operations_update_document_description"></strong>
+                                            <strong
+                                                data-translate="domains_operations_update_document_description"
+                                            ></strong>
                                         </div>
-                                        <div class="col-md-6" data-ng-bind="arg.description"></div>
+                                        <div
+                                            class="col-md-6"
+                                            data-ng-bind="arg.description"
+                                        ></div>
                                     </div>
 
-                                    <div class="row" data-ng-if="ctrl.viewMode[arg.key]">
+                                    <div
+                                        class="row"
+                                        data-ng-if="ctrl.viewMode[arg.key]"
+                                    >
                                         <div class="col-md-6">
-                                            <strong data-translate="domains_operations_update_document_exist"></strong>
+                                            <strong
+                                                data-translate="domains_operations_update_document_exist"
+                                            ></strong>
                                         </div>
                                         <div class="col-md-6">
-                                            <a data-ng-href="{{ctrl.documents[arg.value].getUrl}}" title="{{ctrl.constraints[arg.key].getUrl}} {{::core_new_window}}" target="_blank">
-                                                <span data-translate="domains_operations_update_document_exist"></span>
-                                                <span data-translate="domains_operations_update_document_expired" data-ng-if="ctrl.documents[arg.value].expirationDate"></span>
-                                                <span data-ng-bind="(ctrl.documents[arg.value].expirationDate | date:'short') || '-'" data-ng-if="ctrl.documents[arg.value].expirationDate"></span>
-                                                <span data-ng-if="ctrl.documents[arg.value].expirationDate">)</span>
-                                                <span class="fa fa-external-link" aria-hidden="true"></span>
+                                            <a
+                                                data-ng-href="{{ctrl.documents[arg.value].getUrl}}"
+                                                title="{{ctrl.constraints[arg.key].getUrl}} {{::core_new_window}}"
+                                                target="_blank"
+                                            >
+                                                <span
+                                                    data-translate="domains_operations_update_document_exist"
+                                                ></span>
+                                                <span
+                                                    data-translate="domains_operations_update_document_expired"
+                                                    data-ng-if="ctrl.documents[arg.value].expirationDate"
+                                                ></span>
+                                                <span
+                                                    data-ng-bind="(ctrl.documents[arg.value].expirationDate | date:'short') || '-'"
+                                                    data-ng-if="ctrl.documents[arg.value].expirationDate"
+                                                ></span>
+                                                <span
+                                                    data-ng-if="ctrl.documents[arg.value].expirationDate"
+                                                    >)</span
+                                                >
+                                                <span
+                                                    class="fa fa-external-link"
+                                                    aria-hidden="true"
+                                                ></span>
                                             </a>
-                                            <button class="oui-button oui-button_secondary oui-button_icon-only oui-button_small-width" type="button"
-                                                    data-ng-click="ctrl.viewMode[arg.key] = false"
-                                                    data-oui-tooltip="{{ 'domains_operations_update_document_edit' | translate }}">
-                                                <span class="oui-icon oui-icon-pen_line" aria-hidden="true"></span>
+                                            <button
+                                                class="oui-button oui-button_secondary oui-button_icon-only oui-button_small-width"
+                                                type="button"
+                                                data-ng-click="ctrl.viewMode[arg.key] = false"
+                                                data-oui-tooltip="{{ 'domains_operations_update_document_edit' | translate }}"
+                                            >
+                                                <span
+                                                    class="oui-icon oui-icon-pen_line"
+                                                    aria-hidden="true"
+                                                ></span>
                                             </button>
                                         </div>
                                     </div>
 
-                                    <div class="row" data-ng-if="ctrl.constraints[arg.key].template">
+                                    <div
+                                        class="row"
+                                        data-ng-if="ctrl.constraints[arg.key].template"
+                                    >
                                         <div class="col-md-6">
-                                            <strong data-translate="domains_operations_update_document_template"></strong>
+                                            <strong
+                                                data-translate="domains_operations_update_document_template"
+                                            ></strong>
                                         </div>
                                         <div class="col-md-6">
-                                            <a data-ng-href="{{ctrl.constraints[arg.key].template}}" title="{{ctrl.constraints[arg.key].template}} {{::core_new_window}}" target="_blank">
-                                                <span data-translate="domains_operations_update_document_link"></span>
-                                                <span class="fa fa-external-link" aria-hidden="true"></span>
+                                            <a
+                                                data-ng-href="{{ctrl.constraints[arg.key].template}}"
+                                                title="{{ctrl.constraints[arg.key].template}} {{::core_new_window}}"
+                                                target="_blank"
+                                            >
+                                                <span
+                                                    data-translate="domains_operations_update_document_link"
+                                                ></span>
+                                                <span
+                                                    class="fa fa-external-link"
+                                                    aria-hidden="true"
+                                                ></span>
                                             </a>
                                         </div>
                                     </div>
-                                    <div class="row" data-ng-if="ctrl.constraints[arg.key].minimumSize">
+                                    <div
+                                        class="row"
+                                        data-ng-if="ctrl.constraints[arg.key].minimumSize"
+                                    >
                                         <div class="col-md-6">
-                                            <strong data-translate="domains_operations_update_document_min_size"></strong>
+                                            <strong
+                                                data-translate="domains_operations_update_document_min_size"
+                                            ></strong>
                                         </div>
-                                        <div class="col-md-6" data-ng-bind="ctrl.constraints[arg.key].minimumSize | humanReadableSize: {base: 10}"></div>
+                                        <div
+                                            class="col-md-6"
+                                            data-ng-bind="ctrl.constraints[arg.key].minimumSize | humanReadableSize: {base: 10}"
+                                        ></div>
                                     </div>
-                                    <div data-ng-if="ctrl.constraints[arg.key].maximumSize" class="row">
+                                    <div
+                                        data-ng-if="ctrl.constraints[arg.key].maximumSize"
+                                        class="row"
+                                    >
                                         <div class="col-md-6">
-                                            <strong data-translate="domains_operations_update_document_max_size"></strong>
+                                            <strong
+                                                data-translate="domains_operations_update_document_max_size"
+                                            ></strong>
                                         </div>
-                                        <div class="col-md-6" data-ng-bind="ctrl.constraints[arg.key].maximumSize | humanReadableSize: {base: 10}"></div>
+                                        <div
+                                            class="col-md-6"
+                                            data-ng-bind="ctrl.constraints[arg.key].maximumSize | humanReadableSize: {base: 10}"
+                                        ></div>
                                     </div>
-                                    <div class="row" data-ng-if="ctrl.constraints[arg.key].acceptedFormats !== '*'">
+                                    <div
+                                        class="row"
+                                        data-ng-if="ctrl.constraints[arg.key].acceptedFormats !== '*'"
+                                    >
                                         <div class="col-md-6">
-                                            <strong data-translate="domains_operations_update_document_accept_format"></strong>
+                                            <strong
+                                                data-translate="domains_operations_update_document_accept_format"
+                                            ></strong>
                                         </div>
-                                        <div class="col-md-6" data-ng-bind="ctrl.constraints[arg.key].acceptedFormats"></div>
+                                        <div
+                                            class="col-md-6"
+                                            data-ng-bind="ctrl.constraints[arg.key].acceptedFormats"
+                                        ></div>
                                     </div>
                                 </div>
 
-                                <input type="text" class="form-control" name="arg-{{$index}}" id="arg-{{$index}}"
-                                       data-ng-switch-default
-                                       data-ng-model="arg.value"
-                                       data-ng-required>
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    name="arg-{{$index}}"
+                                    id="arg-{{$index}}"
+                                    data-ng-switch-default
+                                    data-ng-model="arg.value"
+                                    data-ng-required
+                                />
                             </div>
                         </div>
-                        <hr>
+                        <hr />
                     </div>
 
                     <div class="col-md-offset-4" data-ng-if="ctrl.canContinue">
                         <div class="oui-radio">
-                            <input type="radio" class="oui-radio__input" id="chk-cancel" name="operationCheckbox" value="cancel"
-                                   data-ng-disabled="!ctrl.operation.canCancel"
-                                   data-ng-model="ctrl.todoOperation">
-                            <label class="oui-radio__label-container" for="chk-cancel">
-                                <span class="oui-radio__label" data-translate="domains_operations_cancel_title"></span>
+                            <input
+                                type="radio"
+                                class="oui-radio__input"
+                                id="chk-cancel"
+                                name="operationCheckbox"
+                                value="cancel"
+                                data-ng-disabled="!ctrl.operation.canCancel"
+                                data-ng-model="ctrl.todoOperation"
+                            />
+                            <label
+                                class="oui-radio__label-container"
+                                for="chk-cancel"
+                            >
+                                <span
+                                    class="oui-radio__label"
+                                    data-translate="domains_operations_cancel_title"
+                                ></span>
                             </label>
                         </div>
                         <div class="oui-radio">
-                            <input type="radio" class="oui-radio__input" id="chk-relaunch" name="operationCheckbox" value="relaunch"
-                                   data-ng-disabled="!ctrl.operation.canRelaunch"
-                                   data-ng-model="ctrl.todoOperation">
-                            <label class="oui-radio__label-container" for="chk-relaunch">
-                                <span class="oui-radio__label" data-translate="domains_operations_relaunch_title"></span>
+                            <input
+                                type="radio"
+                                class="oui-radio__input"
+                                id="chk-relaunch"
+                                name="operationCheckbox"
+                                value="relaunch"
+                                data-ng-disabled="!ctrl.operation.canRelaunch"
+                                data-ng-model="ctrl.todoOperation"
+                            />
+                            <label
+                                class="oui-radio__label-container"
+                                for="chk-relaunch"
+                            >
+                                <span
+                                    class="oui-radio__label"
+                                    data-translate="domains_operations_relaunch_title"
+                                ></span>
                             </label>
                         </div>
                         <div class="oui-radio">
-                            <input type="radio" class="oui-radio__input" id="chk-accelerate" name="operationCheckbox" value="accelerate"
-                                   data-ng-disabled="!ctrl.operation.canAccelerate"
-                                   data-ng-model="ctrl.todoOperation">
-                            <label class="oui-radio__label-container" for="chk-accelerate">
-                                <span class="oui-radio__label" data-translate="domains_operations_accelerate_title"></span>
+                            <input
+                                type="radio"
+                                class="oui-radio__input"
+                                id="chk-accelerate"
+                                name="operationCheckbox"
+                                value="accelerate"
+                                data-ng-disabled="!ctrl.operation.canAccelerate"
+                                data-ng-model="ctrl.todoOperation"
+                            />
+                            <label
+                                class="oui-radio__label-container"
+                                for="chk-accelerate"
+                            >
+                                <span
+                                    class="oui-radio__label"
+                                    data-translate="domains_operations_accelerate_title"
+                                ></span>
                             </label>
                         </div>
-                        <div class="alert alert-warning mt-4" role="alert"
-                             data-translate="domains_operations_accelerate_warning"
-                             data-ng-if="ctrl.todoOperation === 'accelerate'">
-                        </div>
+                        <div
+                            class="alert alert-warning mt-4"
+                            role="alert"
+                            data-translate="domains_operations_accelerate_warning"
+                            data-ng-if="ctrl.todoOperation === 'accelerate'"
+                        ></div>
                     </div>
                 </form>
             </div>

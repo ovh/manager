@@ -1,12 +1,14 @@
 <form novalidate name="ctrl.form">
-    <oui-modal data-title="{{ ::'logs_update_capped_title' | translate }}"
-           data-primary-action="ctrl.updateCappedPlan()"
-           data-primary-label="{{ ::'common_save' | translate }}"
-           data-secondary-action="ctrl.cancel()"
-           data-secondary-label="{{ ::'common_cancel' | translate }}"
-           data-on-dismiss="ctrl.cancel()"
-           data-loading="ctrl.saving.loading"
-           data-ng-if="ctrl.offer != 'logs-basic'">
+    <oui-modal
+        data-title="{{ ::'logs_update_capped_title' | translate }}"
+        data-primary-action="ctrl.updateCappedPlan()"
+        data-primary-label="{{ ::'common_save' | translate }}"
+        data-secondary-action="ctrl.cancel()"
+        data-secondary-label="{{ ::'common_cancel' | translate }}"
+        data-on-dismiss="ctrl.cancel()"
+        data-loading="ctrl.saving.loading"
+        data-ng-if="ctrl.offer != 'logs-basic'"
+    >
         <div class="oui-field">
             <div class="oui-field__content">
                 <div class="oui-field-control oui-field-control_5">
@@ -15,19 +17,21 @@
                         name="service_is_capped"
                         data-text="{{:: 'logs_update_capped' | translate}}"
                         data-description="{{:: 'logs_update_capped_description' | translate}}"
-                        data-model="ctrl.service.isCapped">
+                        data-model="ctrl.service.isCapped"
+                    >
                     </oui-checkbox>
                 </div>
             </div>
         </div>
-
     </oui-modal>
-    <oui-modal data-title="{{ ::'logs_update_capped_title' | translate }}"
-           data-primary-action="ctrl.cancel()"
-           data-primary-label="{{ ::'common_cancel' | translate }}"
-           data-on-dismiss="ctrl.cancel()"
-           data-loading="ctrl.saving.loading"
-           data-ng-if="ctrl.offer == 'logs-basic'">
+    <oui-modal
+        data-title="{{ ::'logs_update_capped_title' | translate }}"
+        data-primary-action="ctrl.cancel()"
+        data-primary-label="{{ ::'common_cancel' | translate }}"
+        data-on-dismiss="ctrl.cancel()"
+        data-loading="ctrl.saving.loading"
+        data-ng-if="ctrl.offer == 'logs-basic'"
+    >
         <div class="oui-field">
             <div class="oui-field__content">
                 <div class="oui-field-control oui-field-control_5">
@@ -35,6 +39,5 @@
                 </div>
             </div>
         </div>
-
     </oui-modal>
 </form>

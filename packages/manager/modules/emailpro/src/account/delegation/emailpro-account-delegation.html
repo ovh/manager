@@ -1,57 +1,92 @@
 <div data-ng-controller="EmailProAccountDelegationCtrl">
-    <div data-wizard
-         data-wizard-bread-crumb
-         data-wizard-title="'emailpro_ACTION_delegation_title' | translate"
-         data-wizard-on-cancel="resetAction"
-         data-wizard-on-finish="updateDelegationRight">
-
-        <div data-wizard-step
-             data-wizard-step-valid="hasChanged()"
-             data-wizard-step-on-load="getAccounts">
-
-            <div class="alert alert-info" role="alert"
-                 data-translate="{{ exchange.billingPlan + '_ACTION_delegation_step1_intro' }}"
-                 data-translate-values="{ t0: selectedAccount.primaryEmailDisplayName }">
-            </div>
+    <div
+        data-wizard
+        data-wizard-bread-crumb
+        data-wizard-title="'emailpro_ACTION_delegation_title' | translate"
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="updateDelegationRight"
+    >
+        <div
+            data-wizard-step
+            data-wizard-step-valid="hasChanged()"
+            data-wizard-step-on-load="getAccounts"
+        >
+            <div
+                class="alert alert-info"
+                role="alert"
+                data-translate="{{ exchange.billingPlan + '_ACTION_delegation_step1_intro' }}"
+                data-translate-values="{ t0: selectedAccount.primaryEmailDisplayName }"
+            ></div>
 
             <div class="text-right mb-3">
                 <form class="form-inline">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="{{ 'emailpro_tab_ACCOUNTS_table_email' | translate }}"
-                               data-ng-disabled="loading"
-                               data-ng-model="form.search">
+                        <input
+                            type="text"
+                            class="form-control"
+                            placeholder="{{ 'emailpro_tab_ACCOUNTS_table_email' | translate }}"
+                            data-ng-disabled="loading"
+                            data-ng-model="form.search"
+                        />
                         <div class="input-group-btn">
-                            <button type="button" class="btn btn-default" title="{{ 'table_delete_search' | translate }}"
-                                    data-ng-show="form.search"
-                                    data-ng-click="form.search = ''">
-                                <span class="fa fa-times" aria-hidden="true"></span>
+                            <button
+                                type="button"
+                                class="btn btn-default"
+                                title="{{ 'table_delete_search' | translate }}"
+                                data-ng-show="form.search"
+                                data-ng-click="form.search = ''"
+                            >
+                                <span
+                                    class="fa fa-times"
+                                    aria-hidden="true"
+                                ></span>
                             </button>
-                            <button type="button" class="btn btn-default" title="{{ 'common_search' | translate }}"
-                                    data-ng-hide="form.search"
-                                    data-ng-click="getAccounts()">
-                                <span class="fa fa-search" aria-hidden="true"></span>
+                            <button
+                                type="button"
+                                class="btn btn-default"
+                                title="{{ 'common_search' | translate }}"
+                                data-ng-hide="form.search"
+                                data-ng-click="getAccounts()"
+                            >
+                                <span
+                                    class="fa fa-search"
+                                    aria-hidden="true"
+                                ></span>
                             </button>
                         </div>
                     </div>
                 </form>
             </div>
 
-            <div class="alert alert-warning" role="alert"
-                 data-ng-if="accounts && accounts.list.messages.length > 0 && !loading"
-                 data-translate="emailpro_tab_ACCOUNTS_partial">
-            </div>
+            <div
+                class="alert alert-warning"
+                role="alert"
+                data-ng-if="accounts && accounts.list.messages.length > 0 && !loading"
+                data-translate="emailpro_tab_ACCOUNTS_partial"
+            ></div>
 
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th scope="col"
-                            data-translate="emailpro_ACTION_delegation_step1_email_header"></th>
-                        <th scope="col" class="text-center text-wrap"
-                            data-translate="emailpro_ACTION_delegation_step1_send_header"></th>
-                        <th scope="col" class="text-center text-wrap"
-                            data-translate="emailpro_ACTION_delegation_step1_sendOnBehalfTo_header"></th>
-                        <th scope="col" class="text-center text-wrap min-width"
-                            data-translate="emailpro_ACTION_delegation_step1_full_header"></th>
+                        <th
+                            scope="col"
+                            data-translate="emailpro_ACTION_delegation_step1_email_header"
+                        ></th>
+                        <th
+                            scope="col"
+                            class="text-center text-wrap"
+                            data-translate="emailpro_ACTION_delegation_step1_send_header"
+                        ></th>
+                        <th
+                            scope="col"
+                            class="text-center text-wrap"
+                            data-translate="emailpro_ACTION_delegation_step1_sendOnBehalfTo_header"
+                        ></th>
+                        <th
+                            scope="col"
+                            class="text-center text-wrap min-width"
+                            data-translate="emailpro_ACTION_delegation_step1_full_header"
+                        ></th>
                     </tr>
                 </thead>
 
@@ -63,146 +98,236 @@
                     </tr>
                 </tbody>
 
-                <tbody data-ng-if="accounts.list.results.length == 0 && accounts.list.messages.length == 0 && !loading">
+                <tbody
+                    data-ng-if="accounts.list.results.length == 0 && accounts.list.messages.length == 0 && !loading"
+                >
                     <tr>
-                        <td colspan="4" class="text-center" data-translate="emailpro_tab_ACCOUNTS_table_empty"></td>
+                        <td
+                            colspan="4"
+                            class="text-center"
+                            data-translate="emailpro_tab_ACCOUNTS_table_empty"
+                        ></td>
                     </tr>
                 </tbody>
 
                 <tbody data-ng-if="!loading">
-                    <tr	data-ng-repeat="account in accounts.list.results | orderBy:'primaryEmailDisplayName':false">
-                        <th class="word-break" scope="row"
-                            data-ng-bind="account.primaryEmailDisplayName"></th>
+                    <tr
+                        data-ng-repeat="account in accounts.list.results | orderBy:'primaryEmailDisplayName':false"
+                    >
+                        <th
+                            class="word-break"
+                            scope="row"
+                            data-ng-bind="account.primaryEmailDisplayName"
+                        ></th>
                         <td class="text-center">
                             <!-- A task is on doing (activation or deactivation, sendAs or sendOnBehalf)-->
-                            <div data-ng-if="account.sendAsOnDoing || account.sendOnBehalfToOnDoing">
-                                <input type="checkbox" disabled
-                                       data-ng-model="account.newSendAsValue"
-                                       data-oui-tooltip="{{ 'emailpro_ACTION_delegation_step1_task_on_doing' | translate }}">
+                            <div
+                                data-ng-if="account.sendAsOnDoing || account.sendOnBehalfToOnDoing"
+                            >
+                                <input
+                                    type="checkbox"
+                                    disabled
+                                    data-ng-model="account.newSendAsValue"
+                                    data-oui-tooltip="{{ 'emailpro_ACTION_delegation_step1_task_on_doing' | translate }}"
+                                />
                             </div>
                             <!-- No task on doing-->
-                            <div data-ng-if="!account.sendAsOnDoing || !account.sendOnBehalfToOnDoing">
+                            <div
+                                data-ng-if="!account.sendAsOnDoing || !account.sendOnBehalfToOnDoing"
+                            >
                                 <!-- Mutual exclusive option (sendOnBehalf) is activated-->
-                                <div data-ng-if="account.sendOnBehalfTo && account.newSendOnBehalfToValue"
-                                     data-oui-tooltip="{{ 'emailpro_ACTION_delegation_sendas_tooltip' | translate }}">
-                                    <input type="checkbox" disabled>
+                                <div
+                                    data-ng-if="account.sendOnBehalfTo && account.newSendOnBehalfToValue"
+                                    data-oui-tooltip="{{ 'emailpro_ACTION_delegation_sendas_tooltip' | translate }}"
+                                >
+                                    <input type="checkbox" disabled />
                                 </div>
                                 <!-- Mutual exclusive option (sendOnBehalf) will be activated-->
-                                <div data-ng-if="!account.sendOnBehalfTo && account.newSendOnBehalfToValue"
-                                     data-oui-tooltip="{{ 'emailpro_ACTION_delegation_sendas_tooltip' | translate }}">
-                                    <input type="checkbox" disabled>
+                                <div
+                                    data-ng-if="!account.sendOnBehalfTo && account.newSendOnBehalfToValue"
+                                    data-oui-tooltip="{{ 'emailpro_ACTION_delegation_sendas_tooltip' | translate }}"
+                                >
+                                    <input type="checkbox" disabled />
                                 </div>
                                 <!-- Wait until mutual exclusive option (sendOnBehalf) will be deactivated-->
-                                <div data-ng-show="account.sendOnBehalfTo && !account.newSendOnBehalfToValue"
-                                     data-oui-tooltip="{{ 'emailpro_ACTION_delegation_wait_sendas_tooltip' | translate }}">
-                                    <input type="checkbox" disabled>
+                                <div
+                                    data-ng-show="account.sendOnBehalfTo && !account.newSendOnBehalfToValue"
+                                    data-oui-tooltip="{{ 'emailpro_ACTION_delegation_wait_sendas_tooltip' | translate }}"
+                                >
+                                    <input type="checkbox" disabled />
                                 </div>
                                 <!-- Mutual exclusive option (sendOnBehalf) is deactivated-->
-                                <input type="checkbox"
-                                       data-ng-if="!account.sendOnBehalfTo && !account.newSendOnBehalfToValue"
-                                       data-ng-model="account.newSendAsValue">
+                                <input
+                                    type="checkbox"
+                                    data-ng-if="!account.sendOnBehalfTo && !account.newSendOnBehalfToValue"
+                                    data-ng-model="account.newSendAsValue"
+                                />
                             </div>
                         </td>
                         <td class="text-center">
                             <!-- A task is on doing (activation or deactivation, sendAs or sendOnBehalf)-->
-                            <div data-ng-if="account.sendAsOnDoing || account.sendOnBehalfToOnDoing"
-                                 data-oui-tooltip="{{ 'emailpro_ACTION_delegation_step1_task_on_doing' | translate }}">
-                                <input type="checkbox" disabled
-                                    data-ng-model="account.newSendOnBehalfToValue">
+                            <div
+                                data-ng-if="account.sendAsOnDoing || account.sendOnBehalfToOnDoing"
+                                data-oui-tooltip="{{ 'emailpro_ACTION_delegation_step1_task_on_doing' | translate }}"
+                            >
+                                <input
+                                    type="checkbox"
+                                    disabled
+                                    data-ng-model="account.newSendOnBehalfToValue"
+                                />
                             </div>
                             <!-- No task on doing-->
-                            <div data-ng-if="!account.sendAsOnDoing || !account.sendOnBehalfToOnDoing">
+                            <div
+                                data-ng-if="!account.sendAsOnDoing || !account.sendOnBehalfToOnDoing"
+                            >
                                 <!-- Mutual exclusive option (sendAs) is activated-->
-                                <div data-ng-if="account.sendAs && account.newSendAsValue"
-                                     data-oui-tooltip="{{ 'emailpro_ACTION_delegation_behalf_tooltip' | translate }}">
-                                    <input type="checkbox" disabled>
+                                <div
+                                    data-ng-if="account.sendAs && account.newSendAsValue"
+                                    data-oui-tooltip="{{ 'emailpro_ACTION_delegation_behalf_tooltip' | translate }}"
+                                >
+                                    <input type="checkbox" disabled />
                                 </div>
                                 <!-- Mutual exclusive option (sendAs) will be  activated-->
-                                <div data-ng-if="!account.sendAs && account.newSendAsValue"
-                                     data-oui-tooltip="{{ 'emailpro_ACTION_delegation_behalf_tooltip' | translate }}">
-                                    <input type="checkbox" disabled>
+                                <div
+                                    data-ng-if="!account.sendAs && account.newSendAsValue"
+                                    data-oui-tooltip="{{ 'emailpro_ACTION_delegation_behalf_tooltip' | translate }}"
+                                >
+                                    <input type="checkbox" disabled />
                                 </div>
                                 <!-- Wait until mutual exclusive option (sendAs) will be  activated-->
-                                <div data-ng-if="account.sendAs && !account.newSendAsValue"
-                                     data-oui-tooltip="{{ 'emailpro_ACTION_delegation_wait_behalf_tooltip' | translate }}">
-                                    <input type="checkbox" disabled>
+                                <div
+                                    data-ng-if="account.sendAs && !account.newSendAsValue"
+                                    data-oui-tooltip="{{ 'emailpro_ACTION_delegation_wait_behalf_tooltip' | translate }}"
+                                >
+                                    <input type="checkbox" disabled />
                                 </div>
                                 <!-- Mutual exclusive option (sendAs) is deactivated-->
-                                <input type="checkbox"
-                                       data-ng-if="!account.sendAs && !account.newSendAsValue"
-                                       data-ng-model="account.newSendOnBehalfToValue">
+                                <input
+                                    type="checkbox"
+                                    data-ng-if="!account.sendAs && !account.newSendAsValue"
+                                    data-ng-model="account.newSendOnBehalfToValue"
+                                />
                             </div>
                         </td>
                         <td class="text-center text-nowrap">
-                            <div data-ng-if="account.fullAccessOnDoing"
-                                 data-oui-tooltip="{{ 'emailpro_ACTION_delegation_step1_task_on_doing' | translate }}">
-                                <input type="checkbox"
-                                       data-ng-model="account.newFullAccessValue"
-                                       data-ng-disabled="'true'">
+                            <div
+                                data-ng-if="account.fullAccessOnDoing"
+                                data-oui-tooltip="{{ 'emailpro_ACTION_delegation_step1_task_on_doing' | translate }}"
+                            >
+                                <input
+                                    type="checkbox"
+                                    data-ng-model="account.newFullAccessValue"
+                                    data-ng-disabled="'true'"
+                                />
                             </div>
-                            <input type="checkbox"
-                                   data-ng-if="!account.fullAccessOnDoing"
-                                   data-ng-model="account.newFullAccessValue">
+                            <input
+                                type="checkbox"
+                                data-ng-if="!account.fullAccessOnDoing"
+                                data-ng-model="account.newFullAccessValue"
+                            />
                         </td>
                     </tr>
 
-                    <tr	data-ng-repeat="account in accounts.list.results track by account.id | orderBy:'id':false">
+                    <tr
+                        data-ng-repeat="account in accounts.list.results track by account.id | orderBy:'id':false"
+                    >
                         <td colspan="4">
                             <div class="text-warning">
-                                <span class="icon-warning-sign" aria-hidden="true"></span>
-                                <span data-ng-bind="account.id" data-oui-tooltip="{{ 'emailpro_GROUPS_partial_account' | translate: { t0: account.message } }}"></span>
+                                <span
+                                    class="icon-warning-sign"
+                                    aria-hidden="true"
+                                ></span>
+                                <span
+                                    data-ng-bind="account.id"
+                                    data-oui-tooltip="{{ 'emailpro_GROUPS_partial_account' | translate: { t0: account.message } }}"
+                                ></span>
                             </div>
                         </td>
                     </tr>
                 </tbody>
             </table>
-            <div data-pagination-server-side
-                 data-pagination-server-side-function="getAccounts"
-                 data-pagination-server-side-paginated-stuff="accounts"
-                 data-pagination-server-side-table-loading="loading"></div>
+            <div
+                data-pagination-server-side
+                data-pagination-server-side-function="getAccounts"
+                data-pagination-server-side-paginated-stuff="accounts"
+                data-pagination-server-side-table-loading="loading"
+            ></div>
         </div>
 
         <div data-wizard-step>
-            <p data-ng-bind-html="'emailpro_ACTION_delegation_step2_intro' | translate: { t0: primaryEmailDisplayName }"></p>
+            <p
+                data-ng-bind-html="'emailpro_ACTION_delegation_step2_intro' | translate: { t0: primaryEmailDisplayName }"
+            ></p>
 
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th scope="col" data-translate="emailpro_ACTION_delegation_step2_email_header"></th>
-                        <th scope="col" class="text-center"
-                            data-translate="emailpro_ACTION_delegation_step2_send_header"></th>
-                        <th scope="col" class="text-center"
-                            data-translate="emailpro_ACTION_delegation_step2_sendOnBehalfTo_header"></th>
-                        <th scope="col" class="text-center"
-                            data-translate="emailpro_ACTION_delegation_step2_full_header"></th>
+                        <th
+                            scope="col"
+                            data-translate="emailpro_ACTION_delegation_step2_email_header"
+                        ></th>
+                        <th
+                            scope="col"
+                            class="text-center"
+                            data-translate="emailpro_ACTION_delegation_step2_send_header"
+                        ></th>
+                        <th
+                            scope="col"
+                            class="text-center"
+                            data-translate="emailpro_ACTION_delegation_step2_sendOnBehalfTo_header"
+                        ></th>
+                        <th
+                            scope="col"
+                            class="text-center"
+                            data-translate="emailpro_ACTION_delegation_step2_full_header"
+                        ></th>
                     </tr>
                 </thead>
 
                 <tbody>
-                    <tr	data-ng-repeat="account in accounts.list.results | orderBy:'primaryEmailDisplayName':false">
-                        <th scope="row" data-ng-bind="account.primaryEmailDisplayName"></th>
+                    <tr
+                        data-ng-repeat="account in accounts.list.results | orderBy:'primaryEmailDisplayName':false"
+                    >
+                        <th
+                            scope="row"
+                            data-ng-bind="account.primaryEmailDisplayName"
+                        ></th>
                         <td class="text-center">
-                            <span data-ng-if="account.newSendAsValue"
-                                  data-translate="emailpro_ACTION_delegation_step2_right_true"></span>
-                            <span data-ng-if="!account.newSendAsValue"> - </span>
+                            <span
+                                data-ng-if="account.newSendAsValue"
+                                data-translate="emailpro_ACTION_delegation_step2_right_true"
+                            ></span>
+                            <span data-ng-if="!account.newSendAsValue">
+                                -
+                            </span>
                         </td>
                         <td class="text-center">
-                            <span data-ng-if="account.newSendOnBehalfToValue"
-                                  data-translate="emailpro_ACTION_delegation_step2_right_true"></span>
-                            <span data-ng-if="!account.newSendOnBehalfToValue"> - </span>
+                            <span
+                                data-ng-if="account.newSendOnBehalfToValue"
+                                data-translate="emailpro_ACTION_delegation_step2_right_true"
+                            ></span>
+                            <span data-ng-if="!account.newSendOnBehalfToValue">
+                                -
+                            </span>
                         </td>
                         <td class="text-center">
-                            <span data-ng-if="account.newFullAccessValue"
-                                  data-translate="emailpro_ACTION_delegation_step2_right_true"></span>
-                            <span data-ng-if="!account.newFullAccessValue"> - </span>
+                            <span
+                                data-ng-if="account.newFullAccessValue"
+                                data-translate="emailpro_ACTION_delegation_step2_right_true"
+                            ></span>
+                            <span data-ng-if="!account.newFullAccessValue">
+                                -
+                            </span>
                         </td>
                     </tr>
                 </tbody>
             </table>
-            <div data-pagination-server-side
+            <div
+                data-pagination-server-side
                 data-pagination-server-side-function="getAccounts"
                 data-pagination-server-side-paginated-stuff="accounts"
-                data-pagination-server-side-table-loading="loading"></div>
+                data-pagination-server-side-table-loading="loading"
+            ></div>
         </div>
     </div>
 </div>

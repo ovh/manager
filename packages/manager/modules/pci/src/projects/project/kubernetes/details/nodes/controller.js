@@ -29,8 +29,13 @@ export default class KubernetesNodesCtrl {
   }
 
   loadMessages() {
-    this.CucCloudMessage.unSubscribe('pci.projects.project.kubernetes.details.nodes');
-    this.messageHandler = this.CucCloudMessage.subscribe('pci.projects.project.kubernetes.details.nodes', { onMessage: () => this.refreshMessages() });
+    this.CucCloudMessage.unSubscribe(
+      'pci.projects.project.kubernetes.details.nodes',
+    );
+    this.messageHandler = this.CucCloudMessage.subscribe(
+      'pci.projects.project.kubernetes.details.nodes',
+      { onMessage: () => this.refreshMessages() },
+    );
   }
 
   refreshMessages() {
@@ -38,17 +43,21 @@ export default class KubernetesNodesCtrl {
   }
 
   getAssociatedFlavor(node) {
-    return this.OvhApiCloudProjectFlavor
-      .v6()
+    return this.OvhApiCloudProjectFlavor.v6()
       .query({ serviceName: this.projectId, region: this.cluster.region })
-      .$promise
-      .then((flavors) => {
-        set(node, 'formattedFlavor', this.Kubernetes.formatFlavor(
-          find(flavors, { name: node.flavor }),
-        ));
+      .$promise.then((flavors) => {
+        set(
+          node,
+          'formattedFlavor',
+          this.Kubernetes.formatFlavor(find(flavors, { name: node.flavor })),
+        );
       })
       .catch(() => {
-        set(node, 'formattedFlavor', this.$translate.instant('kube_nodes_flavor_error'));
+        set(
+          node,
+          'formattedFlavor',
+          this.$translate.instant('kube_nodes_flavor_error'),
+        );
       });
   }
 
@@ -73,7 +82,9 @@ export default class KubernetesNodesCtrl {
         }
       })
       .catch(() => {
-        this.CucCloudMessage.error(this.$translate.instant('kube_nodes_instances_error'));
+        this.CucCloudMessage.error(
+          this.$translate.instant('kube_nodes_instances_error'),
+        );
       });
   }
 }

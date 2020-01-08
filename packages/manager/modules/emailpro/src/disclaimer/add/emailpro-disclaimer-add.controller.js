@@ -2,7 +2,13 @@ import find from 'lodash/find';
 import get from 'lodash/get';
 import head from 'lodash/head';
 
-export default /* @ngInject */ ($scope, $stateParams, $translate, EmailPro, navigation) => {
+export default /* @ngInject */ (
+  $scope,
+  $stateParams,
+  $translate,
+  EmailPro,
+  navigation,
+) => {
   $scope.data = {
     content: '',
     outsideOnly: false,
@@ -16,28 +22,31 @@ export default /* @ngInject */ ($scope, $stateParams, $translate, EmailPro, navi
   $scope.loadAvailableDomains = function loadAvailableDomains() {
     $scope.loadingData = true;
 
-    return EmailPro.getNewDisclaimerOptions($stateParams.productId).then((data) => {
-      $scope.loadingData = false;
-      if (data.availableDomains) {
-        $scope.availableDomains = data.availableDomains;
-        $scope.selectCurrentDomain();
+    return EmailPro.getNewDisclaimerOptions($stateParams.productId).then(
+      (data) => {
+        $scope.loadingData = false;
+        if (data.availableDomains) {
+          $scope.availableDomains = data.availableDomains;
+          $scope.selectCurrentDomain();
 
-        $scope.data.selectedAttribute = head(data.availableAttributes);
-        $scope.availableAttributes = data.availableAttributes;
-      } else {
-        $scope.resetAction();
-        $scope.setMessage($translate.instant('emailpro_ACTION_add_disclaimer_no_domains'));
-      }
-      return $scope.data;
-    });
+          $scope.data.selectedAttribute = head(data.availableAttributes);
+          $scope.availableAttributes = data.availableAttributes;
+        } else {
+          $scope.resetAction();
+          $scope.setMessage(
+            $translate.instant('emailpro_ACTION_add_disclaimer_no_domains'),
+          );
+        }
+        return $scope.data;
+      },
+    );
   };
 
   $scope.selectCurrentDomain = function selectCurrentDomain() {
     if (get(navigation, 'currentActionData.domain.name')) {
-      $scope.data.completeDomain = find(
-        $scope.availableDomains,
-        { name: navigation.currentActionData.domain.name },
-      );
+      $scope.data.completeDomain = find($scope.availableDomains, {
+        name: navigation.currentActionData.domain.name,
+      });
     }
     if (!$scope.data.completeDomain) {
       $scope.data.completeDomain = head($scope.availableDomains);
@@ -53,12 +62,23 @@ export default /* @ngInject */ ($scope, $stateParams, $translate, EmailPro, navi
       content: $scope.data.content,
     };
 
-    $scope.setMessage($translate.instant('emailpro_dashboard_action_doing'), { status: 'success' });
-    EmailPro.saveDisclaimer($stateParams.productId, model).then(() => {
-      $scope.setMessage($translate.instant('emailpro_ACTION_add_disclaimer_success_message'), { status: 'success' });
-    }, (failure) => {
-      $scope.setMessage($translate.instant('emailpro_ACTION_add_disclaimer_error_message'), failure.data);
+    $scope.setMessage($translate.instant('emailpro_dashboard_action_doing'), {
+      status: 'success',
     });
+    EmailPro.saveDisclaimer($stateParams.productId, model).then(
+      () => {
+        $scope.setMessage(
+          $translate.instant('emailpro_ACTION_add_disclaimer_success_message'),
+          { status: 'success' },
+        );
+      },
+      (failure) => {
+        $scope.setMessage(
+          $translate.instant('emailpro_ACTION_add_disclaimer_error_message'),
+          failure.data,
+        );
+      },
+    );
     $scope.resetAction();
   };
 };

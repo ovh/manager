@@ -7,10 +7,7 @@ import component from './default.component';
 const moduleName = 'ovhManagerPciProjectsNewPaymentDefault';
 
 angular
-  .module(moduleName, [
-    'ngTranslateAsyncLoader',
-    'pascalprecht.translate',
-  ])
+  .module(moduleName, ['ngTranslateAsyncLoader', 'pascalprecht.translate'])
   .run(/* @ngTranslationsInject:json ./translations */)
   .component('pciProjectNewPaymentDefault', component);
 

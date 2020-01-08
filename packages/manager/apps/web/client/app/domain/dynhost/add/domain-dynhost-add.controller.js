@@ -28,9 +28,9 @@ angular.module('App').controller(
     subDomainCheck(input) {
       input.$setValidity(
         'subdomain',
-        this.dynHost.subDomain === null
-          || this.dynHost.subDomain === ''
-          || this.WucValidator.isValidSubDomain(this.dynHost.subDomain),
+        this.dynHost.subDomain === null ||
+          this.dynHost.subDomain === '' ||
+          this.WucValidator.isValidSubDomain(this.dynHost.subDomain),
       );
     }
 
@@ -40,14 +40,22 @@ angular.module('App').controller(
         ip: this.dynHost.ipTarget,
         subDomain: punycode.toASCII(this.dynHost.subDomain),
       })
-        .then(() => this.Domain.refreshZoneState(this.product.name).then(() => this.Alerter.success(
-          this.$translate.instant('domain_tab_DYNHOST_add_success'),
-          this.$scope.alerts.main,
-        )))
-        .catch((err) => this.Alerter.error(
-          `${this.$translate.instant('domain_tab_DYNHOST_error')} ${err.message}`,
-          this.$scope.alerts.main,
-        ))
+        .then(() =>
+          this.Domain.refreshZoneState(this.product.name).then(() =>
+            this.Alerter.success(
+              this.$translate.instant('domain_tab_DYNHOST_add_success'),
+              this.$scope.alerts.main,
+            ),
+          ),
+        )
+        .catch((err) =>
+          this.Alerter.error(
+            `${this.$translate.instant('domain_tab_DYNHOST_error')} ${
+              err.message
+            }`,
+            this.$scope.alerts.main,
+          ),
+        )
         .finally(() => {
           this.loading = false;
           this.$scope.resetAction();

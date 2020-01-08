@@ -20,15 +20,21 @@ angular.module('App').controller(
     deleteLogin() {
       this.loading = true;
       return this.Domain.deleteDynHostLogin(this.zoneName, this.login)
-        .then(() => this.Domain.refreshZoneState(this.zoneName).then(() => this.Alerter.success(
-          this.$translate.instant('domain_tab_DYNHOSTLOGIN_delete_success'),
-          this.$scope.alerts.main,
-        )))
-        .catch((err) => this.Alerter.alertFromSWS(
-          this.$translate.instant('domain_tab_DYNHOST_error'),
-          err,
-          this.$scope.alerts.main,
-        ))
+        .then(() =>
+          this.Domain.refreshZoneState(this.zoneName).then(() =>
+            this.Alerter.success(
+              this.$translate.instant('domain_tab_DYNHOSTLOGIN_delete_success'),
+              this.$scope.alerts.main,
+            ),
+          ),
+        )
+        .catch((err) =>
+          this.Alerter.alertFromSWS(
+            this.$translate.instant('domain_tab_DYNHOST_error'),
+            err,
+            this.$scope.alerts.main,
+          ),
+        )
         .finally(() => {
           this.loading = false;
           this.$scope.resetAction();

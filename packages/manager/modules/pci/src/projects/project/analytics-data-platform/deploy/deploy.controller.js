@@ -25,8 +25,15 @@ import {
 
 export default class {
   /* @ngInject */
-  constructor($state, $translate, analyticsDataPlatformService, CucControllerHelper,
-    CucCloudMessage, CucCurrencyService, CucServiceHelper) {
+  constructor(
+    $state,
+    $translate,
+    analyticsDataPlatformService,
+    CucControllerHelper,
+    CucCloudMessage,
+    CucCurrencyService,
+    CucServiceHelper,
+  ) {
     this.$state = $state;
     this.$translate = $translate;
     this.ANALYTICS_DATA_PLATFORM_COMPUTE = ANALYTICS_DATA_PLATFORM_COMPUTE;
@@ -90,8 +97,13 @@ export default class {
   $onInit() {
     this.analyticsDataPlatform.osProjectId = this.projectId;
     this.cluster = {};
-    this.cucCloudMessage.unSubscribe('pci.projects.project.analytics-data-platform.deploy');
-    this.messageHandler = this.cucCloudMessage.subscribe('pci.projects.project.analytics-data-platform.deploy', { onMessage: () => this.refreshMessage() });
+    this.cucCloudMessage.unSubscribe(
+      'pci.projects.project.analytics-data-platform.deploy',
+    );
+    this.messageHandler = this.cucCloudMessage.subscribe(
+      'pci.projects.project.analytics-data-platform.deploy',
+      { onMessage: () => this.refreshMessage() },
+    );
   }
 
   refreshMessage() {
@@ -118,17 +130,23 @@ export default class {
     this.resetRegionConfiguration();
     this.resetNodesConfiguration();
     this.resetStorageConfiguration();
-    this.minimumNodesRequired = get(this.selectedCapability, ['bastionNode', 'instanceMin'], 0)
-      + get(this.selectedCapability, ['edgeNode', 'instanceMin'], 0)
-      + get(this.selectedCapability, ['masterNode', 'instanceMin'], 0)
-      + get(this.selectedCapability, ['workerNode', 'instanceMin'], 0)
-      + get(this.selectedCapability, ['utilityNode', 'instanceMin'], 0);
-    this.maximumNodesRequired = get(this.selectedCapability, ['bastionNode', 'instanceMax'], 0)
-      + get(this.selectedCapability, ['edgeNode', 'instanceMax'], 0)
-      + get(this.selectedCapability, ['masterNode', 'instanceMax'], 0)
-      + get(this.selectedCapability, ['workerNode', 'instanceMax'], 0)
-      + get(this.selectedCapability, ['utilityNode', 'instanceMax'], 0);
-    this.analyticsDataPlatform.masterNodeStorage = get(this.selectedCapability, ['masterNode', 'rawStorageMinGb'], 100);
+    this.minimumNodesRequired =
+      get(this.selectedCapability, ['bastionNode', 'instanceMin'], 0) +
+      get(this.selectedCapability, ['edgeNode', 'instanceMin'], 0) +
+      get(this.selectedCapability, ['masterNode', 'instanceMin'], 0) +
+      get(this.selectedCapability, ['workerNode', 'instanceMin'], 0) +
+      get(this.selectedCapability, ['utilityNode', 'instanceMin'], 0);
+    this.maximumNodesRequired =
+      get(this.selectedCapability, ['bastionNode', 'instanceMax'], 0) +
+      get(this.selectedCapability, ['edgeNode', 'instanceMax'], 0) +
+      get(this.selectedCapability, ['masterNode', 'instanceMax'], 0) +
+      get(this.selectedCapability, ['workerNode', 'instanceMax'], 0) +
+      get(this.selectedCapability, ['utilityNode', 'instanceMax'], 0);
+    this.analyticsDataPlatform.masterNodeStorage = get(
+      this.selectedCapability,
+      ['masterNode', 'rawStorageMinGb'],
+      100,
+    );
   }
 
   /**
@@ -136,9 +154,21 @@ export default class {
    */
   submitGeneralInformation() {
     if (this.selectedCapability) {
-      set(this.analyticsDataPlatform, 'clusterType', this.selectedCapability.version);
-      set(this.analyticsDataPlatform, 'hdfsReplicationFactor', this.selectedCapability.hdfsReplicationFactor);
-      set(this.analyticsDataPlatform, 'osProjectName', this.publicCloud.description);
+      set(
+        this.analyticsDataPlatform,
+        'clusterType',
+        this.selectedCapability.version,
+      );
+      set(
+        this.analyticsDataPlatform,
+        'hdfsReplicationFactor',
+        this.selectedCapability.hdfsReplicationFactor,
+      );
+      set(
+        this.analyticsDataPlatform,
+        'osProjectName',
+        this.publicCloud.description,
+      );
     }
   }
 
@@ -189,10 +219,13 @@ export default class {
   initRegions() {
     // fetch regions
     this.displaySelectedRegion = false;
-    this.regions = map(get(this.selectedCapability, 'availableRegion'), (region) => ({
-      name: region,
-      hasEnoughQuota: () => true,
-    }));
+    this.regions = map(
+      get(this.selectedCapability, 'availableRegion'),
+      (region) => ({
+        name: region,
+        hasEnoughQuota: () => true,
+      }),
+    );
   }
 
   /**
@@ -227,9 +260,14 @@ export default class {
    */
   fetchFlavors(publicCloudServiceName, region) {
     this.supportedFlavors = this.cucControllerHelper.request.getHashLoader({
-      loaderFunction:
-      () => this.analyticsDataPlatformService.getFlavors(publicCloudServiceName, region)
-        .catch((error) => this.cucServiceHelper.errorHandler('analytics_data_platform_get_flavors_error')(error)),
+      loaderFunction: () =>
+        this.analyticsDataPlatformService
+          .getFlavors(publicCloudServiceName, region)
+          .catch((error) =>
+            this.cucServiceHelper.errorHandler(
+              'analytics_data_platform_get_flavors_error',
+            )(error),
+          ),
     });
     return this.supportedFlavors.load();
   }
@@ -243,27 +281,40 @@ export default class {
    */
   fetchQuota(publicCloudServiceName, region) {
     this.quota = this.cucControllerHelper.request.getHashLoader({
-      loaderFunction:
-      () => this.analyticsDataPlatformService.getPublicCloudsQuota(publicCloudServiceName)
-        .then((quotas) => find(quotas, { region }))
-        .catch((error) => this.cucServiceHelper.errorHandler('analytics_data_platform_get_quota_error')(error)),
+      loaderFunction: () =>
+        this.analyticsDataPlatformService
+          .getPublicCloudsQuota(publicCloudServiceName)
+          .then((quotas) => find(quotas, { region }))
+          .catch((error) =>
+            this.cucServiceHelper.errorHandler(
+              'analytics_data_platform_get_quota_error',
+            )(error),
+          ),
     });
     return this.quota.load();
   }
 
   /**
    * Initializes the nodes configuration structure
-  */
+   */
   initNodes() {
     this.storage.initialized = false;
     if (isEmpty(this.nodesConfig)) {
-      this.fetchFlavors(this.analyticsDataPlatform.osProjectId, this.analyticsDataPlatform.osRegion)
-        .then((flavors) => {
-          this.nodesConfig = this.getNodesConfiguration(this.selectedCapability, flavors);
-        });
+      this.fetchFlavors(
+        this.analyticsDataPlatform.osProjectId,
+        this.analyticsDataPlatform.osRegion,
+      ).then((flavors) => {
+        this.nodesConfig = this.getNodesConfiguration(
+          this.selectedCapability,
+          flavors,
+        );
+      });
     }
     if (isEmpty(this.quota)) {
-      this.fetchQuota(this.analyticsDataPlatform.osProjectId, this.analyticsDataPlatform.osRegion);
+      this.fetchQuota(
+        this.analyticsDataPlatform.osProjectId,
+        this.analyticsDataPlatform.osRegion,
+      );
     }
   }
 
@@ -280,23 +331,28 @@ export default class {
       const nodeConfig = cloneDeep(get(capability, `${nodeType}Node`));
       nodeConfig.type = nodeType;
       nodeConfig.count = nodeConfig.instanceMin;
-      nodeConfig.countText = this.$translate.instant('analytics_data_platform_deploy_nodes', { node_count: nodeConfig.count });
-      nodeConfig.instanceType = map(
-        nodeConfig.instanceType,
-        (instanceType) => {
-          const flavor = find(flavors, { name: instanceType });
-          if (!flavor) {
-            return undefined;
-          }
-          const flavorId = find(this.ANALYTICS_DATA_PLATFORM_FLAVOR_TYPES,
-            (flavorType) => includes(flavorType.types, flavor.type)).id;
-          flavor.flavorFamily = this.$translate.instant(`analytics_data_platform_deploy_flavor_family_${flavorId}`);
-          return flavor;
-        },
-      ).filter((instanceType) => !!instanceType);
+      nodeConfig.countText = this.$translate.instant(
+        'analytics_data_platform_deploy_nodes',
+        { node_count: nodeConfig.count },
+      );
+      nodeConfig.instanceType = map(nodeConfig.instanceType, (instanceType) => {
+        const flavor = find(flavors, { name: instanceType });
+        if (!flavor) {
+          return undefined;
+        }
+        const flavorId = find(
+          this.ANALYTICS_DATA_PLATFORM_FLAVOR_TYPES,
+          (flavorType) => includes(flavorType.types, flavor.type),
+        ).id;
+        flavor.flavorFamily = this.$translate.instant(
+          `analytics_data_platform_deploy_flavor_family_${flavorId}`,
+        );
+        return flavor;
+      }).filter((instanceType) => !!instanceType);
       if (nodeConfig.instanceType.length === 1) {
         nodeConfig.selectedFlavor = head(nodeConfig.instanceType);
-        const isValid = nodeConfig.selectedFlavor.disk >= nodeConfig.rawStorageMinGb;
+        const isValid =
+          nodeConfig.selectedFlavor.disk >= nodeConfig.rawStorageMinGb;
         set(nodeConfig, 'isValid', isValid);
       } else {
         nodeConfig.selectedFlavor = null;
@@ -315,14 +371,19 @@ export default class {
       set(form, '$valid', false);
       return;
     }
-    const nodes = values(this.nodesConfig).filter((nodeConfig) => nodeConfig.type
-      !== this.ANALYTICS_DATA_PLATFORM_NODE_TYPES.BASTION.toLowerCase());
+    const nodes = values(this.nodesConfig).filter(
+      (nodeConfig) =>
+        nodeConfig.type !==
+        this.ANALYTICS_DATA_PLATFORM_NODE_TYPES.BASTION.toLowerCase(),
+    );
     this.analyticsDataPlatform.nodes = [];
     map(nodes, (nodeConfig) => {
       times(nodeConfig.count, () => {
         this.analyticsDataPlatform.nodes.push({
           nodeFlavor: nodeConfig.selectedFlavor.name,
-          nodeType: this.ANALYTICS_DATA_PLATFORM_NODE_TYPES[nodeConfig.type.toUpperCase()],
+          nodeType: this.ANALYTICS_DATA_PLATFORM_NODE_TYPES[
+            nodeConfig.type.toUpperCase()
+          ],
         });
       });
     });
@@ -346,34 +407,49 @@ export default class {
     }
     const quota = this.quota.data;
     // RAM
-    const totalRamRequired = sumBy(nodes, (node) => get(node, ['selectedFlavor', 'ram'], 0) * get(node, 'count', 0));
+    const totalRamRequired = sumBy(
+      nodes,
+      (node) => get(node, ['selectedFlavor', 'ram'], 0) * get(node, 'count', 0),
+    );
     const pciUsedRam = get(quota, ['instance', 'usedRAM'], 0);
     const pciTotalRam = get(quota, ['instance', 'maxRam'], 0);
     const pciAvailableRam = pciTotalRam - pciUsedRam;
     const isRamValid = pciAvailableRam - totalRamRequired >= 0;
 
     // Instances
-    const totalInstancesRequired = sumBy(nodes, (node) => get(node, 'count', 0));
+    const totalInstancesRequired = sumBy(nodes, (node) =>
+      get(node, 'count', 0),
+    );
     const pciUsedInstances = get(quota, ['instance', 'usedInstances'], 0);
     const pciTotalInstances = get(quota, ['instance', 'maxInstances'], 0);
     const pciAvailableInstances = pciTotalInstances - pciUsedInstances;
-    const isInstancesValid = pciAvailableInstances - totalInstancesRequired >= 0;
+    const isInstancesValid =
+      pciAvailableInstances - totalInstancesRequired >= 0;
 
     // CPU
-    const totalCpuRequired = sumBy(nodes, (node) => get(node, ['selectedFlavor', 'vcpus'], 0) * get(node, 'count', 0));
+    const totalCpuRequired = sumBy(
+      nodes,
+      (node) =>
+        get(node, ['selectedFlavor', 'vcpus'], 0) * get(node, 'count', 0),
+    );
     const pciUsedCpu = get(quota, ['instance', 'usedCores'], 0);
     const pciTotalCpu = get(quota, ['instance', 'maxCores'], 0);
     const pciAvailableCpu = pciTotalCpu - pciUsedCpu;
     const isCpuValid = pciAvailableCpu - totalCpuRequired >= 0;
 
     // Storage
-    const totalStorageRequired = sumBy(nodes, (node) => get(node, ['selectedFlavor', 'disk'], 0) * get(node, 'count', 0));
+    const totalStorageRequired = sumBy(
+      nodes,
+      (node) =>
+        get(node, ['selectedFlavor', 'disk'], 0) * get(node, 'count', 0),
+    );
     const pciStorageUsed = get(quota, ['volume', 'usedGigabytes'], 0);
     const pciMaxStorage = get(quota, ['volume', 'maxGigabytes'], 0);
     const pciAvailableStorage = pciMaxStorage - pciStorageUsed;
     const isStorageValid = pciAvailableStorage - totalStorageRequired >= 0;
 
-    const isClusterValid = isRamValid && isInstancesValid && isCpuValid && isStorageValid;
+    const isClusterValid =
+      isRamValid && isInstancesValid && isCpuValid && isStorageValid;
     if (!isClusterValid) {
       const currentlyUsed = pciUsedRam / 1000;
       const requiredForCluster = totalRamRequired / 1000;
@@ -394,14 +470,18 @@ export default class {
           required: pciUsedCpu + totalCpuRequired,
         },
         {
-          computeName: this.$translate.instant('analytics_data_platform_deploy_quota_virtual_nodes'),
+          computeName: this.$translate.instant(
+            'analytics_data_platform_deploy_quota_virtual_nodes',
+          ),
           currentlyUsed: pciUsedInstances,
           requiredForCluster: totalInstancesRequired,
           maxLimit: pciTotalInstances,
           required: pciUsedInstances + totalInstancesRequired,
         },
         {
-          computeName: this.$translate.instant('analytics_data_platform_common_storage'),
+          computeName: this.$translate.instant(
+            'analytics_data_platform_common_storage',
+          ),
           currentlyUsed: pciStorageUsed,
           requiredForCluster: totalStorageRequired,
           maxLimit: pciMaxStorage,
@@ -425,10 +505,13 @@ export default class {
    * @param {*} quotas
    */
   showQuotaInsufficientErrorModel(publicCloudName, quotas) {
-    this.$state.go('pci.projects.project.analytics-data-platform.deploy.insufficient-quota', {
-      publicCloudName,
-      quotas,
-    });
+    this.$state.go(
+      'pci.projects.project.analytics-data-platform.deploy.insufficient-quota',
+      {
+        publicCloudName,
+        quotas,
+      },
+    );
   }
 
   /** #####################################################################
@@ -448,14 +531,16 @@ export default class {
   initStorage() {
     this.storage.initialized = true;
     // calculate min and max storage for cluster and edge node storage
-    this.storage.min_cluster_storage = ceil((
-      this.nodesConfig.worker.rawStorageMinGb
-      * this.nodesConfig.worker.count
-    ) / this.analyticsDataPlatform.hdfsReplicationFactor);
-    this.storage.max_cluster_storage = floor((
-      this.nodesConfig.worker.rawStorageMaxGb
-      * this.nodesConfig.worker.count
-    ) / this.analyticsDataPlatform.hdfsReplicationFactor);
+    this.storage.min_cluster_storage = ceil(
+      (this.nodesConfig.worker.rawStorageMinGb *
+        this.nodesConfig.worker.count) /
+        this.analyticsDataPlatform.hdfsReplicationFactor,
+    );
+    this.storage.max_cluster_storage = floor(
+      (this.nodesConfig.worker.rawStorageMaxGb *
+        this.nodesConfig.worker.count) /
+        this.analyticsDataPlatform.hdfsReplicationFactor,
+    );
     this.storage.min_edge_node_storage = this.nodesConfig.edge.rawStorageMinGb;
     this.storage.max_edge_node_storage = this.nodesConfig.edge.rawStorageMaxGb;
   }
@@ -473,18 +558,19 @@ export default class {
     const computePrice = this.getComputePrice(priceMap);
     const storagePrice = this.getStoragePrice(
       priceMap,
-      (this.analyticsDataPlatform.hdfsEffectiveStorage
-        * this.analyticsDataPlatform.hdfsReplicationFactor)
-      + (this.analyticsDataPlatform.edgeNodeStorage
-        * this.nodesConfig.edge.count),
+      this.analyticsDataPlatform.hdfsEffectiveStorage *
+        this.analyticsDataPlatform.hdfsReplicationFactor +
+        this.analyticsDataPlatform.edgeNodeStorage *
+          this.nodesConfig.edge.count,
     );
     // add 20% on compute price
-    const totalHourlyPrice = this.constructor
-      .getAnalyticsDataPlatformPrice(computePrice.hourlyPrice)
-      + storagePrice.hourlyPrice;
-    const totalMonthlyPrice = this.constructor
-      .getAnalyticsDataPlatformPrice(computePrice.monthlyPrice)
-      + storagePrice.monthlyPrice;
+    const totalHourlyPrice =
+      this.constructor.getAnalyticsDataPlatformPrice(computePrice.hourlyPrice) +
+      storagePrice.hourlyPrice;
+    const totalMonthlyPrice =
+      this.constructor.getAnalyticsDataPlatformPrice(
+        computePrice.monthlyPrice,
+      ) + storagePrice.monthlyPrice;
     this.price.hourlyPrice = round(totalHourlyPrice, 2);
     this.price.monthlyPrice = round(totalMonthlyPrice, 2);
   }
@@ -498,14 +584,28 @@ export default class {
   getComputePrice(catalog) {
     const nodes = values(this.nodesConfig);
     const monthlyPrice = sumBy(nodes, (node) => {
-      const flavourMonthly = get(node, ['selectedFlavor', 'planCodes', 'monthly']);
-      return this.cucCurrencyService.convertUcentsToCurrency(get(catalog, [flavourMonthly, 'price'], 0))
-        * get(node, 'count', 0);
+      const flavourMonthly = get(node, [
+        'selectedFlavor',
+        'planCodes',
+        'monthly',
+      ]);
+      return (
+        this.cucCurrencyService.convertUcentsToCurrency(
+          get(catalog, [flavourMonthly, 'price'], 0),
+        ) * get(node, 'count', 0)
+      );
     });
     const hourlyPrice = sumBy(nodes, (node) => {
-      const flavourConsumption = get(node, ['selectedFlavor', 'planCodes', 'hourly']);
-      return this.cucCurrencyService.convertUcentsToCurrency(get(catalog, [flavourConsumption, 'price'], 0))
-        * get(node, 'count', 0);
+      const flavourConsumption = get(node, [
+        'selectedFlavor',
+        'planCodes',
+        'hourly',
+      ]);
+      return (
+        this.cucCurrencyService.convertUcentsToCurrency(
+          get(catalog, [flavourConsumption, 'price'], 0),
+        ) * get(node, 'count', 0)
+      );
     });
     return {
       hourlyPrice,
@@ -521,8 +621,11 @@ export default class {
    */
   getStoragePrice(catalog, size, type = 'high-speed') {
     const storagePriceCatalog = get(catalog, `volume.${type}.consumption`);
-    const hourlyPrice = size * this.cucCurrencyService
-      .convertUcentsToCurrency(get(storagePriceCatalog, 'price', 0));
+    const hourlyPrice =
+      size *
+      this.cucCurrencyService.convertUcentsToCurrency(
+        get(storagePriceCatalog, 'price', 0),
+      );
     const monthlyPrice = hourlyPrice * 24 * 30;
     return {
       hourlyPrice,
@@ -538,19 +641,40 @@ export default class {
       return;
     }
     this.deploy = this.cucControllerHelper.request.getHashLoader({
-      loaderFunction: () => this.analyticsDataPlatformService.createUser(this.projectId, 'analytics-data-platform')
-        .then((user) => this.analyticsDataPlatformService.createAnalyticsOrder()
-          .then((order) => this.analyticsDataPlatformService.getServiceNameFromOrder(order.orderId))
-          .then((serviceName) => this.analyticsDataPlatformService
-            .getNewToken(this.projectId, user.id, user.password)
-            .then((osToken) => set(this.analyticsDataPlatform, 'osToken', osToken))
-            .then((analyticsDataPlatform) => this.analyticsDataPlatformService
-              .deployAnalyticsDataPlatform(serviceName, analyticsDataPlatform))
-            .then(() => {
-              this.analyticsDataPlatformService.clearPlatformAllCache();
-              return this.manageCluster(serviceName);
-            })))
-        .catch((error) => this.cucServiceHelper.errorHandler('analytics_data_platform_deploy_error')(error)),
+      loaderFunction: () =>
+        this.analyticsDataPlatformService
+          .createUser(this.projectId, 'analytics-data-platform')
+          .then((user) =>
+            this.analyticsDataPlatformService
+              .createAnalyticsOrder()
+              .then((order) =>
+                this.analyticsDataPlatformService.getServiceNameFromOrder(
+                  order.orderId,
+                ),
+              )
+              .then((serviceName) =>
+                this.analyticsDataPlatformService
+                  .getNewToken(this.projectId, user.id, user.password)
+                  .then((osToken) =>
+                    set(this.analyticsDataPlatform, 'osToken', osToken),
+                  )
+                  .then((analyticsDataPlatform) =>
+                    this.analyticsDataPlatformService.deployAnalyticsDataPlatform(
+                      serviceName,
+                      analyticsDataPlatform,
+                    ),
+                  )
+                  .then(() => {
+                    this.analyticsDataPlatformService.clearPlatformAllCache();
+                    return this.manageCluster(serviceName);
+                  }),
+              ),
+          )
+          .catch((error) =>
+            this.cucServiceHelper.errorHandler(
+              'analytics_data_platform_deploy_error',
+            )(error),
+          ),
     });
     this.deploy.load();
   }

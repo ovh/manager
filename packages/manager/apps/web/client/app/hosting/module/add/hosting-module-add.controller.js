@@ -6,8 +6,17 @@ angular
   .module('App')
   .controller(
     'HostingModuleCreateCtrl',
-    ($scope, $q, $stateParams, $translate,
-      Alerter, constants, Hosting, HostingModule, HOSTING_MODULE) => {
+    (
+      $scope,
+      $q,
+      $stateParams,
+      $translate,
+      Alerter,
+      constants,
+      Hosting,
+      HostingModule,
+      HOSTING_MODULE,
+    ) => {
       $scope.model = {
         databases: null,
         moduleTemplates: null,
@@ -35,7 +44,8 @@ angular
       };
 
       $scope.rootPathPrefix = './';
-      $scope.defaultInstallationPath = constants.HOSTING.MODULES.DEFAULT_INSTALL_PATH;
+      $scope.defaultInstallationPath =
+        constants.HOSTING.MODULES.DEFAULT_INSTALL_PATH;
 
       $scope.advancedMode = {
         value: false,
@@ -44,7 +54,7 @@ angular
       function generateDatabasePrefix(moduleName) {
         return `${[
           moduleName.substring(0, 3),
-          Math.floor((Math.random() * 10000) + 1),
+          Math.floor(Math.random() * 10000 + 1),
         ].join('')}_`;
       }
 
@@ -56,14 +66,20 @@ angular
 
         HostingModule.getModulesLatestList().then(
           (moduleTemplates) => {
-            $q.all(moduleTemplates.map((id) => HostingModule.getAvailableModule(id))).then(
+            $q.all(
+              moduleTemplates.map((id) => HostingModule.getAvailableModule(id)),
+            ).then(
               (templates) => {
-                $scope.model.moduleTemplates = templates.filter((tpl) => tpl.branch === 'stable');
+                $scope.model.moduleTemplates = templates.filter(
+                  (tpl) => tpl.branch === 'stable',
+                );
                 $scope.databasesType = moduleTemplates.databasesType;
               },
               (err) => {
                 Alerter.alertFromSWS(
-                  $translate.instant('hosting_tab_DATABASES_configuration_create_step1_loading_error'),
+                  $translate.instant(
+                    'hosting_tab_DATABASES_configuration_create_step1_loading_error',
+                  ),
                   err,
                   $scope.alerts.main,
                 );
@@ -73,7 +89,9 @@ angular
           },
           (err) => {
             Alerter.alertFromSWS(
-              $translate.instant('hosting_tab_DATABASES_configuration_create_step1_loading_error'),
+              $translate.instant(
+                'hosting_tab_DATABASES_configuration_create_step1_loading_error',
+              ),
               err,
               $scope.alerts.main,
             );
@@ -93,13 +111,17 @@ angular
           }).then(
             () => {
               Alerter.success(
-                $translate.instant('hosting_configuration_tab_modules_create_success'),
+                $translate.instant(
+                  'hosting_configuration_tab_modules_create_success',
+                ),
                 $scope.alerts.main,
               );
             },
             (err) => {
               Alerter.alertFromSWS(
-                $translate.instant('hosting_tab_DATABASES_configuration_create_step1_loading_error'),
+                $translate.instant(
+                  'hosting_tab_DATABASES_configuration_create_step1_loading_error',
+                ),
                 err,
                 $scope.alerts.main,
               );
@@ -114,8 +136,9 @@ angular
       function isPortValid() {
         const port = parseInt($scope.model.databaseSelected.port, 10);
         return (
-          $scope.model.databaseSelected.port.toString().match(/^\d+$/)
-          && (port >= 1024 && port <= 49151)
+          $scope.model.databaseSelected.port.toString().match(/^\d+$/) &&
+          port >= 1024 &&
+          port <= 49151
         );
       }
 
@@ -139,7 +162,9 @@ angular
           })
           .catch((err) => {
             Alerter.alertFromSWS(
-              $translate.instant('hosting_tab_DATABASES_configuration_create_step1_loading_error'),
+              $translate.instant(
+                'hosting_tab_DATABASES_configuration_create_step1_loading_error',
+              ),
               get(err, 'data', err),
               $scope.alerts.main,
             );
@@ -171,7 +196,9 @@ angular
           })
           .catch((err) => {
             Alerter.alertFromSWS(
-              $translate.instant('hosting_tab_DATABASES_configuration_create_step1_loading_error'),
+              $translate.instant(
+                'hosting_tab_DATABASES_configuration_create_step1_loading_error',
+              ),
               get(err, 'data', err),
               $scope.alerts.main,
             );
@@ -182,14 +209,15 @@ angular
           });
       };
 
-      $scope.isStep2Valid = () => $scope.model.databaseSelected
-        && !!$scope.model.databaseSelected.name
-        && !!$scope.model.databaseSelected.port
-        && !!$scope.model.databaseSelected.server
-        && !!$scope.model.databaseSelected.type
-        && !!$scope.model.databaseSelected.user
-        && !!$scope.model.databaseSelected.password
-        && isPortValid();
+      $scope.isStep2Valid = () =>
+        $scope.model.databaseSelected &&
+        !!$scope.model.databaseSelected.name &&
+        !!$scope.model.databaseSelected.port &&
+        !!$scope.model.databaseSelected.server &&
+        !!$scope.model.databaseSelected.type &&
+        !!$scope.model.databaseSelected.user &&
+        !!$scope.model.databaseSelected.password &&
+        isPortValid();
 
       //------------------------
       // Step 3 : Module details
@@ -209,7 +237,9 @@ angular
               },
               (err) => {
                 Alerter.alertFromSWS(
-                  $translate.instant('hosting_tab_DATABASES_configuration_create_step1_loading_error'),
+                  $translate.instant(
+                    'hosting_tab_DATABASES_configuration_create_step1_loading_error',
+                  ),
                   get(err, 'data', err),
                   $scope.alerts.main,
                 );
@@ -218,7 +248,9 @@ angular
           })
           .catch((err) => {
             Alerter.alertFromSWS(
-              $translate.instant('hosting_tab_DATABASES_configuration_create_step1_loading_error'),
+              $translate.instant(
+                'hosting_tab_DATABASES_configuration_create_step1_loading_error',
+              ),
               get(err, 'data', err),
               $scope.alerts.main,
             );
@@ -230,8 +262,8 @@ angular
       function isAdminNameValid() {
         let syntaxOk = /^[\w-.]+$/.test($scope.model.adminName);
         if (
-          !!$scope.model.templateSelected
-          && $scope.model.templateSelected.adminNameType === 'email'
+          !!$scope.model.templateSelected &&
+          $scope.model.templateSelected.adminNameType === 'email'
         ) {
           syntaxOk = validator.isEmail($scope.model.adminName);
         }
@@ -248,9 +280,9 @@ angular
 
       function modulePasswordMatch() {
         return (
-          !!$scope.model.adminPassword
-          && !!$scope.model.adminPasswordConfirm
-          && $scope.model.adminPassword === $scope.model.adminPasswordConfirm
+          !!$scope.model.adminPassword &&
+          !!$scope.model.adminPasswordConfirm &&
+          $scope.model.adminPassword === $scope.model.adminPasswordConfirm
         );
       }
 
@@ -322,7 +354,9 @@ angular
           })
           .catch((err) => {
             Alerter.alertFromSWS(
-              $translate.instant('hosting_tab_DATABASES_configuration_create_step1_loading_error'),
+              $translate.instant(
+                'hosting_tab_DATABASES_configuration_create_step1_loading_error',
+              ),
               get(err, 'data', err),
               $scope.alerts.main,
             );
@@ -331,13 +365,14 @@ angular
           });
       });
 
-      $scope.isStep3Valid = () => !!$scope.model.adminName
-        && !!$scope.model.adminPassword
-        && !!$scope.model.language
-        && !!$scope.model.domain
-        && isAdminNameValid()
-        && isPasswordValid()
-        && modulePasswordMatch();
+      $scope.isStep3Valid = () =>
+        !!$scope.model.adminName &&
+        !!$scope.model.adminPassword &&
+        !!$scope.model.language &&
+        !!$scope.model.domain &&
+        isAdminNameValid() &&
+        isPasswordValid() &&
+        modulePasswordMatch();
 
       //------------------------
       // Step 4 : Module details
@@ -354,7 +389,9 @@ angular
           dependencies: [
             {
               port: $scope.model.databaseSelected.port,
-              prefix: generateDatabasePrefix($scope.model.templateSelected.name),
+              prefix: generateDatabasePrefix(
+                $scope.model.templateSelected.name,
+              ),
               name: $scope.model.databaseSelected.name,
               server: $scope.model.databaseSelected.server,
               type: $scope.model.databaseSelected.type,
@@ -367,13 +404,17 @@ angular
         HostingModule.createModule($stateParams.productId, data)
           .then(() => {
             Alerter.success(
-              $translate.instant('hosting_configuration_tab_modules_create_success'),
+              $translate.instant(
+                'hosting_configuration_tab_modules_create_success',
+              ),
               $scope.alerts.main,
             );
           })
           .catch((err) => {
             Alerter.alertFromSWS(
-              $translate.instant('hosting_tab_DATABASES_configuration_create_step1_loading_error'),
+              $translate.instant(
+                'hosting_tab_DATABASES_configuration_create_step1_loading_error',
+              ),
               err,
               $scope.alerts.main,
             );

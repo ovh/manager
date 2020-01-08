@@ -7,10 +7,7 @@ import component from './component';
 const moduleName = 'ngOvhContractsSummary';
 
 angular
-  .module(moduleName, [
-    'pascalprecht.translate',
-    'oui',
-  ])
+  .module(moduleName, ['pascalprecht.translate', 'oui'])
   .component('ovhContractsSummary', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 

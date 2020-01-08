@@ -74,22 +74,21 @@ export default class ExchangeCtrl {
       resiliate: 'exchange/header/remove/exchange-remove',
     };
 
-    this.retrievingExchange()
-      .then(() => {
-        const urlParamAction = this.services.$location.search().action;
-        if (Object.keys(modals).includes(urlParamAction)) {
-          this.services.$timeout(() => {
-            this.services.$rootScope.$broadcast(
-              'leftNavigation.selectProduct.fromName',
-              this.parseLocationForExchangeData(),
-            );
-            this.services.$scope.setAction(
-              modals[urlParamAction],
-              this.parseLocationForExchangeData(),
-            );
-          });
-        }
-      });
+    this.retrievingExchange().then(() => {
+      const urlParamAction = this.services.$location.search().action;
+      if (Object.keys(modals).includes(urlParamAction)) {
+        this.services.$timeout(() => {
+          this.services.$rootScope.$broadcast(
+            'leftNavigation.selectProduct.fromName',
+            this.parseLocationForExchangeData(),
+          );
+          this.services.$scope.setAction(
+            modals[urlParamAction],
+            this.parseLocationForExchangeData(),
+          );
+        });
+      }
+    });
   }
 
   retrievingWizardPreference() {
@@ -107,27 +106,32 @@ export default class ExchangeCtrl {
       .catch(() => {
         this.shouldOpenWizard = true;
       })
-      .then(() => this.services.User.getUser().then((currentUser) => {
-        const { ovhSubsidiary } = currentUser;
+      .then(() =>
+        this.services.User.getUser().then((currentUser) => {
+          const { ovhSubsidiary } = currentUser;
 
-        this.shouldOpenWizard = this.shouldOpenWizard && ovhSubsidiary !== 'CA';
-      }))
+          this.shouldOpenWizard =
+            this.shouldOpenWizard && ovhSubsidiary !== 'CA';
+        }),
+      )
       .then(() => {
         if (this.shouldOpenWizard) {
           return this.services.ovhUserPref
             .getValue('WIZARD_HOSTED_CREATION_CHECKPOINT')
             .catch(() => null)
             .then((preferences) => {
-              const preferenceToSave = !isObject(preferences) || isEmpty(preferences)
-                ? {}
-                : preferences;
+              const preferenceToSave =
+                !isObject(preferences) || isEmpty(preferences)
+                  ? {}
+                  : preferences;
 
               const hasNoDomain = this.exchange.domainsNumber === 0;
               const isReturningToWizard = !isEmpty(
                 preferenceToSave[this.$routerParams.organization],
               );
 
-              this.hasNoDomain = hasNoDomain || (!hasNoDomain && isReturningToWizard);
+              this.hasNoDomain =
+                hasNoDomain || (!hasNoDomain && isReturningToWizard);
             });
         }
 
@@ -149,7 +153,9 @@ export default class ExchangeCtrl {
       .then(() => {
         if (!isEmpty(this.exchange.messages)) {
           this.services.messaging.writeError(
-            this.services.$translate.instant('exchange_dashboard_loading_error'),
+            this.services.$translate.instant(
+              'exchange_dashboard_loading_error',
+            ),
             this.exchange,
           );
         }
@@ -172,12 +178,16 @@ export default class ExchangeCtrl {
 
           if (response.code === 460 || response.status === 460) {
             this.services.messaging.writeError(
-              this.services.$translate.instant('common_service_expired', { t0: response.id }),
+              this.services.$translate.instant('common_service_expired', {
+                t0: response.id,
+              }),
               data,
             );
           } else {
             this.services.messaging.writeError(
-              this.services.$translate.instant('exchange_dashboard_loading_error'),
+              this.services.$translate.instant(
+                'exchange_dashboard_loading_error',
+              ),
               data,
             );
           }

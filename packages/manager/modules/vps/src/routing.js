@@ -5,7 +5,7 @@ import template from './vps.html';
 import detailComponent from './detail/vps-detail.component';
 import headerComponent from './header/vps-header.component';
 
-export default /* @ngInject */($stateProvider) => {
+export default /* @ngInject */ ($stateProvider) => {
   $stateProvider
     .state('vps', {
       url: '/iaas/vps',
@@ -23,29 +23,38 @@ export default /* @ngInject */($stateProvider) => {
       url: '/{serviceName}',
       redirectTo: 'vps.detail.dashboard',
       resolve: {
-        connectedUser: /* @ngInject */ (OvhApiMe) => OvhApiMe.v6().get().$promise,
-        capabilities: /* @ngInject */ (
-          serviceName,
-          OvhApiVpsCapabilities,
-        ) => OvhApiVpsCapabilities.Aapi().query({ serviceName }).$promise
-          .then((capabilities) => capabilities.map((capability) => kebabCase(capability))),
-        serviceName: /* @ngInject */ ($transition$) => $transition$.params().serviceName,
-        stateVps: /* @ngInject */ ($q, serviceName, OvhApiVps) => OvhApiVps.v6().get({
-          serviceName,
-        }).$promise
-          .then((stateVps) => OvhApiVps.v6().version({
-            serviceName,
-          }).$promise.then((response) => {
-            const vpsState = stateVps;
-            vpsState.isLegacy = response.version !== 2;
-            return vpsState;
-          }))
-          .catch((error) => {
-            if (error.status === 404) {
-              return $q.reject(error);
-            }
-            return true;
-          }),
+        connectedUser: /* @ngInject */ (OvhApiMe) =>
+          OvhApiMe.v6().get().$promise,
+        capabilities: /* @ngInject */ (serviceName, OvhApiVpsCapabilities) =>
+          OvhApiVpsCapabilities.Aapi()
+            .query({ serviceName })
+            .$promise.then((capabilities) =>
+              capabilities.map((capability) => kebabCase(capability)),
+            ),
+        serviceName: /* @ngInject */ ($transition$) =>
+          $transition$.params().serviceName,
+        stateVps: /* @ngInject */ ($q, serviceName, OvhApiVps) =>
+          OvhApiVps.v6()
+            .get({
+              serviceName,
+            })
+            .$promise.then((stateVps) =>
+              OvhApiVps.v6()
+                .version({
+                  serviceName,
+                })
+                .$promise.then((response) => {
+                  const vpsState = stateVps;
+                  vpsState.isLegacy = response.version !== 2;
+                  return vpsState;
+                }),
+            )
+            .catch((error) => {
+              if (error.status === 404) {
+                return $q.reject(error);
+              }
+              return true;
+            }),
       },
       views: {
         'vpsHeader@vps': {

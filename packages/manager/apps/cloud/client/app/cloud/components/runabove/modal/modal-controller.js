@@ -1,9 +1,8 @@
-angular.module('managerApp').controller('RA.modalCtrl',
-  ['$scope', '$timeout', 'RA.modalService', function RAModalCtrl(
-    $scope,
-    $timeout,
-    Modal,
-  ) {
+angular.module('managerApp').controller('RA.modalCtrl', [
+  '$scope',
+  '$timeout',
+  'RA.modalService',
+  function RAModalCtrl($scope, $timeout, Modal) {
     const self = this;
 
     $scope.setAction = function setAction(action, data, largeSize) {
@@ -49,4 +48,5 @@ angular.module('managerApp').controller('RA.modalCtrl',
     $scope.$on('RA.modal.setAction', (evt, route, data) => {
       $scope.setAction(route, data, false);
     });
-  }]);
+  },
+]);

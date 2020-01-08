@@ -156,9 +156,9 @@ angular
       };
 
       /*
-     * if you want transform item must return transformated item
-     * item is the current item to transform
-     */
+       * if you want transform item must return transformated item
+       * item is the current item to transform
+       */
       $scope.transformItem = (item) => {
         if (item.transformed) {
           return $q((resolve) => resolve(item));

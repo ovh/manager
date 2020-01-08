@@ -1,27 +1,33 @@
-<form name="quotaUserForm"
-      id="quotaUserForm"
-      data-ng-submit="UsersQuotaCtrl.quota()">
-
+<form
+    name="quotaUserForm"
+    id="quotaUserForm"
+    data-ng-submit="UsersQuotaCtrl.quota()"
+>
     <div class="modal-header">
         <button
             type="button"
             class="close float-right"
             aria-label="{{ ::'sms_cancel' | translate }}"
-            data-ng-click="UsersQuotaCtrl.cancel()">
+            data-ng-click="UsersQuotaCtrl.cancel()"
+        >
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
 
-    <div class="modal-body"
-         data-ng-if="!UsersQuotaCtrl.loading.quotaUser && !UsersQuotaCtrl.quotaApplied">
-        <h3 class="modal-title"
-            data-translate="sms_users_quota_user_title">
-        </h3>
+    <div
+        class="modal-body"
+        data-ng-if="!UsersQuotaCtrl.loading.quotaUser && !UsersQuotaCtrl.quotaApplied"
+    >
+        <h3
+            class="modal-title"
+            data-translate="sms_users_quota_user_title"
+        ></h3>
 
-        <p class="word-break"
-           data-translate="sms_users_quota_user_info"
-           data-translate-values="{ login: UsersQuotaCtrl.model.user.login }">
-        </p>
+        <p
+            class="word-break"
+            data-translate="sms_users_quota_user_info"
+            data-translate-values="{ login: UsersQuotaCtrl.model.user.login }"
+        ></p>
 
         <!-- ACTIVATE QUOTA -->
         <div class="checkbox">
@@ -34,19 +40,26 @@
                     data-ng-model="UsersQuotaCtrl.model.user.quotaInformations.quotaStatus"
                     data-ng-checked="UsersQuotaCtrl.model.user.quotaInformations.quotaStatus === 'active'"
                     data-ng-true-value="'active'"
-                    data-ng-false-value="'inactive'" />
-                <span data-translate="sms_users_quota_user_activate_label"></span>
+                    data-ng-false-value="'inactive'"
+                />
+                <span
+                    data-translate="sms_users_quota_user_activate_label"
+                ></span>
             </label>
         </div>
 
         <!-- NEW QUOTA -->
-        <div class="form-group"
-             data-ng-class="{
+        <div
+            class="form-group"
+            data-ng-class="{
                  'has-error': quotaUserForm.newQuota.$touched && quotaUserForm.newQuota.$invalid
-             }">
-            <label for="newQuota"
-                   class="control-label"
-                   data-translate="sms_users_quota_user_new_quota_label">
+             }"
+        >
+            <label
+                for="newQuota"
+                class="control-label"
+                data-translate="sms_users_quota_user_new_quota_label"
+            >
             </label>
             <input
                 type="number"
@@ -58,38 +71,51 @@
                 step="1"
                 data-ng-model="UsersQuotaCtrl.model.user.quotaInformations.quotaLeft"
                 data-ng-disabled="UsersQuotaCtrl.model.user.quotaInformations.quotaStatus === 'inactive'"
-                data-translate-attr="{ placeholder: 'sms_users_quota_user_new_quota_placeholder' }" />
-            <span class="help-block"
-                  role="alert"
-                  data-ng-if="quotaUserForm.newQuota.$touched"
-                  data-ng-messages="quotaUserForm.newQuota.$error">
-                <span data-ng-message="required"
-                      data-translate="sms_users_quota_user_new_quota_error_required">
+                data-translate-attr="{ placeholder: 'sms_users_quota_user_new_quota_placeholder' }"
+            />
+            <span
+                class="help-block"
+                role="alert"
+                data-ng-if="quotaUserForm.newQuota.$touched"
+                data-ng-messages="quotaUserForm.newQuota.$error"
+            >
+                <span
+                    data-ng-message="required"
+                    data-translate="sms_users_quota_user_new_quota_error_required"
+                >
                 </span>
-                <span data-ng-message="number"
-                      data-translate="sms_users_quota_user_new_quota_error_number">
+                <span
+                    data-ng-message="number"
+                    data-translate="sms_users_quota_user_new_quota_error_number"
+                >
                 </span>
-                <span data-ng-message="min"
-                       data-translate="sms_users_quota_user_new_quota_error_min">
+                <span
+                    data-ng-message="min"
+                    data-translate="sms_users_quota_user_new_quota_error_min"
+                >
                 </span>
-                <span data-ng-message="max"
-                      data-translate="sms_users_quota_user_new_quota_error_max"
-                      data-translate-values="{ creditLeft: UsersQuotaCtrl.service.creditsLeft }">
-               </span>
-           </span>
+                <span
+                    data-ng-message="max"
+                    data-translate="sms_users_quota_user_new_quota_error_max"
+                    data-translate-values="{ creditLeft: UsersQuotaCtrl.service.creditsLeft }"
+                >
+                </span>
+            </span>
         </div>
-
     </div>
 
-    <div class="modal-body text-center"
-         data-ng-if="UsersQuotaCtrl.loading.quotaUser && !UsersQuotaCtrl.quotaApplied">
+    <div
+        class="modal-body text-center"
+        data-ng-if="UsersQuotaCtrl.loading.quotaUser && !UsersQuotaCtrl.quotaApplied"
+    >
         <oui-spinner></oui-spinner>
         <h4 data-translate="sms_users_quota_user_adding"></h4>
     </div>
 
-    <div class="modal-body"
-         data-ng-if="UsersQuotaCtrl.quotaApplied">
-        <tuc-success-drawing-check data-draw-success-check="UsersQuotaCtrl.quotaApplied">
+    <div class="modal-body" data-ng-if="UsersQuotaCtrl.quotaApplied">
+        <tuc-success-drawing-check
+            data-draw-success-check="UsersQuotaCtrl.quotaApplied"
+        >
             <h4 data-translate="sms_users_quota_user_added"></h4>
         </tuc-success-drawing-check>
     </div>
@@ -100,8 +126,8 @@
             class="btn btn-default"
             data-ng-click="UsersQuotaCtrl.cancel()"
             data-translate="sms_cancel"
-            data-ng-disabled="UsersQuotaCtrl.loading.quotaUser || UsersQuotaCtrl.quotaApplied">
-        </button>
+            data-ng-disabled="UsersQuotaCtrl.loading.quotaUser || UsersQuotaCtrl.quotaApplied"
+        ></button>
         <button
             type="submit"
             class="btn btn-primary"
@@ -109,7 +135,7 @@
                               !UsersQuotaCtrl.hasChanged() ||
                               UsersQuotaCtrl.loading.quotaUser ||
                               UsersQuotaCtrl.quotaApplied"
-            data-translate="sms_submit">
-        </button>
+            data-translate="sms_submit"
+        ></button>
     </div>
 </form>

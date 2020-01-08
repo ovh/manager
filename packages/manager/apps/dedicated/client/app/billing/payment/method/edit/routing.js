@@ -23,11 +23,11 @@ export default /* @ngInject */ ($stateProvider) => {
 
       /* ----------  ouiModal layout resolves  ---------- */
 
-      heading: /* @ngInject */ ($translate) => $translate
-        .instant('billing_payment_method_edit_title'),
+      heading: /* @ngInject */ ($translate) =>
+        $translate.instant('billing_payment_method_edit_title'),
 
-      primaryLabel: /* @ngInject */ ($translate) => $translate
-        .instant('billing_payment_method_edit_action_save'),
+      primaryLabel: /* @ngInject */ ($translate) =>
+        $translate.instant('billing_payment_method_edit_action_save'),
 
       primaryAction: /* @ngInject */ (
         $translate,
@@ -39,21 +39,28 @@ export default /* @ngInject */ ($stateProvider) => {
       ) => () => {
         set(loaders, 'save', true);
 
-        return ovhPaymentMethod.editPaymentMethod(paymentMethod, {
-          description: model.description,
-        }).then(() => goPaymentList({
-          type: 'success',
-          text: $translate.instant('billing_payment_method_edit_success'),
-        })).catch((error) => goPaymentList({
-          type: 'error',
-          text: $translate.instant('billing_payment_method_edit_error', {
-            errorMessage: get(error, 'data.message'),
-          }),
-        }));
+        return ovhPaymentMethod
+          .editPaymentMethod(paymentMethod, {
+            description: model.description,
+          })
+          .then(() =>
+            goPaymentList({
+              type: 'success',
+              text: $translate.instant('billing_payment_method_edit_success'),
+            }),
+          )
+          .catch((error) =>
+            goPaymentList({
+              type: 'error',
+              text: $translate.instant('billing_payment_method_edit_error', {
+                errorMessage: get(error, 'data.message'),
+              }),
+            }),
+          );
       },
 
-      secondaryLabel: /* @ngInject */ ($translate) => $translate
-        .instant('common_cancel'),
+      secondaryLabel: /* @ngInject */ ($translate) =>
+        $translate.instant('common_cancel'),
 
       secondaryAction: /* @ngInject */ (goPaymentList) => goPaymentList,
 

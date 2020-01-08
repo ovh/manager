@@ -1,5 +1,4 @@
 <div class="row-fluid">
-
     <div class="col-xs-12">
         <a class="btn btn-secondary" ui-sref="^.dbaasts-project-details-key">
             <span class="glyphicon glyphicon-arrow-left"></span>
@@ -7,63 +6,123 @@
         </a>
 
         <!-- Init loader -->
-        <div data-ng-if="DBaasTsProjectDetailsKeyAddOrEditCtrl.loaders.init" class="text-center top-space-m16">
+        <div
+            data-ng-if="DBaasTsProjectDetailsKeyAddOrEditCtrl.loaders.init"
+            class="text-center top-space-m16"
+        >
             <spinner></spinner>
             <span data-translate="common_loading"></span>
         </div>
 
         <!-- Create or update loader -->
-        <div data-ng-if="DBaasTsProjectDetailsKeyAddOrEditCtrl.loaders.addOrEdit" class="text-center top-space-m16">
+        <div
+            data-ng-if="DBaasTsProjectDetailsKeyAddOrEditCtrl.loaders.addOrEdit"
+            class="text-center top-space-m16"
+        >
             <spinner></spinner>
-            <span data-translate="{{:: DBaasTsProjectDetailsKeyAddOrEditCtrl.data.edition ? 'dtpdt_update_loading' : 'dtpdt_create_loading' }}"></span>
+            <span
+                data-translate="{{:: DBaasTsProjectDetailsKeyAddOrEditCtrl.data.edition ? 'dtpdt_update_loading' : 'dtpdt_create_loading' }}"
+            ></span>
         </div>
-
     </div>
 
-    <div data-ng-if="!DBaasTsProjectDetailsKeyAddOrEditCtrl.loaders.init && !DBaasTsProjectDetailsKeyAddOrEditCtrl.loaders.addOrEdit"
-        class="col-xs-12 col-lg-10 col-lg-offset-1">
-
+    <div
+        data-ng-if="!DBaasTsProjectDetailsKeyAddOrEditCtrl.loaders.init && !DBaasTsProjectDetailsKeyAddOrEditCtrl.loaders.addOrEdit"
+        class="col-xs-12 col-lg-10 col-lg-offset-1"
+    >
         <header class="page-header">
-            <h2 class="main-color"
+            <h2
+                class="main-color"
                 data-translate="{{:: DBaasTsProjectDetailsKeyAddOrEditCtrl.data.edition ? 'dtpdt_key_edit_title' : 'dtpdt_key_add_title' }}"
-                data-translate-values="{ name: DBaasTsProjectDetailsKeyAddOrEditCtrl.model.description }">
-            </h2>
+                data-translate-values="{ name: DBaasTsProjectDetailsKeyAddOrEditCtrl.model.description }"
+            ></h2>
         </header>
 
-        <form name="TpdsForm" class="form-horizontal right-space-p4"
-            data-ng-submit="DBaasTsProjectDetailsKeyAddOrEditCtrl.saveKey()">
-
+        <form
+            name="TpdsForm"
+            class="form-horizontal right-space-p4"
+            data-ng-submit="DBaasTsProjectDetailsKeyAddOrEditCtrl.saveKey()"
+        >
             <!-- Token description -->
             <div class="row top-space-m8 bottom-space-m16">
                 <div class="col-xs-12">
-                    <div class="form-group no-space" data-ng-class="{'has-error': TpdsForm.description.$invalid}">
-                        <label class="col-md-4 control-label" for="description" data-translate="dtpdt_description"></label>
+                    <div
+                        class="form-group no-space"
+                        data-ng-class="{'has-error': TpdsForm.description.$invalid}"
+                    >
+                        <label
+                            class="col-md-4 control-label"
+                            for="description"
+                            data-translate="dtpdt_description"
+                        ></label>
                         <div class="col-md-8">
-                            <input type="text" class="form-control" id="description" name="description" cuc-autofocus
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="description"
+                                name="description"
+                                cuc-autofocus
                                 data-ng-required="true"
                                 data-ng-maxlength="255"
                                 data-ng-pattern="'[a-zA-Z0-9-._ ]*'"
-                                data-ng-model="DBaasTsProjectDetailsKeyAddOrEditCtrl.model.description" />
+                                data-ng-model="DBaasTsProjectDetailsKeyAddOrEditCtrl.model.description"
+                            />
                         </div>
-                        <div class="form-error col-md-offset-4 col-md-8" data-ng-messages="TpdsForm.description.$error">
-                            <div class="text-danger animate-fadeInLeft-enter animate-fadeOutRight-leave" data-ng-message="maxlength">
-                                <span translate="dtpds_name_error"></span><br/>
-                                <span translate="dtpds_name_error1" translate-values="{min: 1, max: 255}"></span><br/>
-                                <span translate="dtpds_name_error2" translate-values="{min: 1, max: 255}"></span><br/>
-                                <span translate="dtpds_name_error3"></span><br/>
+                        <div
+                            class="form-error col-md-offset-4 col-md-8"
+                            data-ng-messages="TpdsForm.description.$error"
+                        >
+                            <div
+                                class="text-danger animate-fadeInLeft-enter animate-fadeOutRight-leave"
+                                data-ng-message="maxlength"
+                            >
+                                <span translate="dtpds_name_error"></span><br />
+                                <span
+                                    translate="dtpds_name_error1"
+                                    translate-values="{min: 1, max: 255}"
+                                ></span
+                                ><br />
+                                <span
+                                    translate="dtpds_name_error2"
+                                    translate-values="{min: 1, max: 255}"
+                                ></span
+                                ><br />
+                                <span translate="dtpds_name_error3"></span
+                                ><br />
                                 <span translate="dtpds_name_error4"></span>
                             </div>
-                            <div class="text-danger animate-fadeInLeft-enter animate-fadeOutRight-leave" data-ng-message="pattern">
-                                <span translate="dtpds_name_error"></span><br/>
-                                <span translate="dtpds_name_error1" translate-values="{min: 1, max: 255}"></span><br/>
-                                <span translate="dtpds_name_error2" translate-values="{min: 1, max: 255}"></span><br/>
-                                <span translate="dtpds_name_error3"></span><br/>
+                            <div
+                                class="text-danger animate-fadeInLeft-enter animate-fadeOutRight-leave"
+                                data-ng-message="pattern"
+                            >
+                                <span translate="dtpds_name_error"></span><br />
+                                <span
+                                    translate="dtpds_name_error1"
+                                    translate-values="{min: 1, max: 255}"
+                                ></span
+                                ><br />
+                                <span
+                                    translate="dtpds_name_error2"
+                                    translate-values="{min: 1, max: 255}"
+                                ></span
+                                ><br />
+                                <span translate="dtpds_name_error3"></span
+                                ><br />
                                 <span translate="dtpds_name_error4"></span>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-offset-4 left-space-p16 right-space-p8 fs10" data-ng-messages="TpdsForm.description.$error" data-ng-if="TpdsForm.description.$dirty">
-                        <p class="text-danger bottom-space-m0 animate-fadeInLeft-enter animate-fadeOutRight-leave" data-ng-message="maxlength"><span translate="dtpdt_name_error_max_char"></span></p>
+                    <div
+                        class="col-md-offset-4 left-space-p16 right-space-p8 fs10"
+                        data-ng-messages="TpdsForm.description.$error"
+                        data-ng-if="TpdsForm.description.$dirty"
+                    >
+                        <p
+                            class="text-danger bottom-space-m0 animate-fadeInLeft-enter animate-fadeOutRight-leave"
+                            data-ng-message="maxlength"
+                        >
+                            <span translate="dtpdt_name_error_max_char"></span>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -71,32 +130,49 @@
             <!-- Token tags -->
             <div class="row top-space-m8 bottom-space-m16">
                 <div class="col-xs-12">
-                    <div class="form-group no-space" data-ng-class="{'has-error': TpdsForm.tags.$invalid}">
-                        <label class="col-md-4 control-label" for="tag-0" data-translate="dtpdt_tags"></label>
+                    <div
+                        class="form-group no-space"
+                        data-ng-class="{'has-error': TpdsForm.tags.$invalid}"
+                    >
+                        <label
+                            class="col-md-4 control-label"
+                            for="tag-0"
+                            data-translate="dtpdt_tags"
+                        ></label>
 
                         <div class="col-md-8">
                             <!-- Display key/value tag inputs n times -->
-                            <div class="row"
+                            <div
+                                class="row"
                                 data-ng-class="{'top-space-m8': $index > 0}"
-                                data-ng-repeat="tag in DBaasTsProjectDetailsKeyAddOrEditCtrl.model.tags">
+                                data-ng-repeat="tag in DBaasTsProjectDetailsKeyAddOrEditCtrl.model.tags"
+                            >
                                 <div class="col-sm-4">
-                                    <input type="text"
-                                           class="form-control"
-                                           placeholder="{{::'dtpdt_tag_key' | translate}}"
-                                           id="tag-{{$index}}"
-                                           data-ng-maxlength="255"
-                                           data-ng-model="DBaasTsProjectDetailsKeyAddOrEditCtrl.model.tags[$index].key" />
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        placeholder="{{::'dtpdt_tag_key' | translate}}"
+                                        id="tag-{{$index}}"
+                                        data-ng-maxlength="255"
+                                        data-ng-model="DBaasTsProjectDetailsKeyAddOrEditCtrl.model.tags[$index].key"
+                                    />
                                 </div>
                                 <div class="col-sm-4">
-                                    <input type="text"
-                                           class="form-control"
-                                           placeholder="{{::'dtpdt_tag_value' | translate}}"
-                                           data-ng-maxlength="255"
-                                           data-ng-model="DBaasTsProjectDetailsKeyAddOrEditCtrl.model.tags[$index].value" />
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        placeholder="{{::'dtpdt_tag_value' | translate}}"
+                                        data-ng-maxlength="255"
+                                        data-ng-model="DBaasTsProjectDetailsKeyAddOrEditCtrl.model.tags[$index].value"
+                                    />
                                 </div>
                                 <!-- Remove tag button -->
                                 <div class="col-sm-4">
-                                    <button type="button" class="btn btn-default" data-ng-click="DBaasTsProjectDetailsKeyAddOrEditCtrl.removeTag($index)">
+                                    <button
+                                        type="button"
+                                        class="btn btn-default"
+                                        data-ng-click="DBaasTsProjectDetailsKeyAddOrEditCtrl.removeTag($index)"
+                                    >
                                         <i class="fa fa-remove"></i>
                                     </button>
                                 </div>
@@ -104,8 +180,14 @@
                             <div class="row">
                                 <div class="col-sm-8">
                                     <!-- Add tag button -->
-                                    <button type="button" class="form-control btn btn-form top-space-m8" data-ng-click="DBaasTsProjectDetailsKeyAddOrEditCtrl.addTag()">
-                                        <i class="fa fa-plus right-space-m8"></i>
+                                    <button
+                                        type="button"
+                                        class="form-control btn btn-form top-space-m8"
+                                        data-ng-click="DBaasTsProjectDetailsKeyAddOrEditCtrl.addTag()"
+                                    >
+                                        <i
+                                            class="fa fa-plus right-space-m8"
+                                        ></i>
                                         {{::'dtpdt_add_tag' | translate}}
                                     </button>
                                 </div>
@@ -118,27 +200,45 @@
             <!-- Token permission -->
             <div class="row top-space-m8 bottom-space-m16">
                 <div class="col-xs-12">
-                    <div class="form-group no-space" data-ng-class="{'has-error': TpdsPermissionForm.permission.$invalid}">
-                        <label class="col-md-4 control-label" data-translate="dtpdt_permission"></label>
+                    <div
+                        class="form-group no-space"
+                        data-ng-class="{'has-error': TpdsPermissionForm.permission.$invalid}"
+                    >
+                        <label
+                            class="col-md-4 control-label"
+                            data-translate="dtpdt_permission"
+                        ></label>
 
                         <div class="col-md-8">
-                            <label class="top-space-p8 right-space-m20" data-ovh-stop-event="click">
-                                <input type="radio" name="permission"
+                            <label
+                                class="top-space-p8 right-space-m20"
+                                data-ovh-stop-event="click"
+                            >
+                                <input
+                                    type="radio"
+                                    name="permission"
                                     class="no-box-shadow vertical-text-bottom"
                                     data-ovh-stop-event="click"
                                     data-ng-disabled="DBaasTsProjectDetailsKeyAddOrEditCtrl.data.edition"
                                     data-ng-value="DBaasTsProjectDetailsKeyAddOrEditCtrl.data.permissions.READ"
-                                    data-ng-model="DBaasTsProjectDetailsKeyAddOrEditCtrl.model.permissions[0]">
+                                    data-ng-model="DBaasTsProjectDetailsKeyAddOrEditCtrl.model.permissions[0]"
+                                />
                                 {{ :: 'dtpdt_read_permission' | translate }}
                             </label>
 
-                            <label class="top-space-p8" data-ovh-stop-event="click">
-                                <input type="radio" name="permission"
+                            <label
+                                class="top-space-p8"
+                                data-ovh-stop-event="click"
+                            >
+                                <input
+                                    type="radio"
+                                    name="permission"
                                     class="no-box-shadow vertical-text-bottom"
                                     data-ovh-stop-event="click"
                                     data-ng-disabled="DBaasTsProjectDetailsKeyAddOrEditCtrl.data.edition"
                                     data-ng-value="DBaasTsProjectDetailsKeyAddOrEditCtrl.data.permissions.WRITE"
-                                    data-ng-model="DBaasTsProjectDetailsKeyAddOrEditCtrl.model.permissions[0]">
+                                    data-ng-model="DBaasTsProjectDetailsKeyAddOrEditCtrl.model.permissions[0]"
+                                />
                                 {{ :: 'dtpdt_write_permission' | translate}}
                             </label>
                         </div>
@@ -146,31 +246,31 @@
                 </div>
             </div>
 
-
             <!-- Actions zone -->
-             <div class="row top-space-m8 bottom-space-m16">
+            <div class="row top-space-m8 bottom-space-m16">
                 <div class="col-xs-12">
                     <div class="form-horizontal">
                         <div class="form-group no-space">
                             <div class="col-md-offset-4 col-md-8">
-                                 <!-- Cancel -->
-                                <a ui-sref="^.dbaasts-project-details-key" class="btn btn-default btn-lg"
-                                    data-translate="dtpdt_cancel">
+                                <!-- Cancel -->
+                                <a
+                                    ui-sref="^.dbaasts-project-details-key"
+                                    class="btn btn-default btn-lg"
+                                    data-translate="dtpdt_cancel"
+                                >
                                 </a>
                                 <!-- 'Create/Update key' button -->
                                 <button
-                                    type="submit" class="btn btn-primary btn-lg right-space-m8"
+                                    type="submit"
+                                    class="btn btn-primary btn-lg right-space-m8"
                                     data-ng-disabled="TpdsForm.$invalid"
-                                    data-translate="{{:: DBaasTsProjectDetailsKeyAddOrEditCtrl.data.edition ? 'dtpdt_edit_key' : 'dtpdt_add_key' }}">
-                                </button>
+                                    data-translate="{{:: DBaasTsProjectDetailsKeyAddOrEditCtrl.data.edition ? 'dtpdt_edit_key' : 'dtpdt_add_key' }}"
+                                ></button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
         </form>
-
     </div>
-
 </div>

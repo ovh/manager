@@ -2,8 +2,15 @@ import filter from 'lodash/filter';
 
 export default class IpLoadBalancerZoneDeleteCtrl {
   /* @ngInject */
-  constructor($q, $state, $stateParams, CucCloudMessage, CucCloudNavigation, CucControllerHelper,
-    IpLoadBalancerZoneDeleteService) {
+  constructor(
+    $q,
+    $state,
+    $stateParams,
+    CucCloudMessage,
+    CucCloudNavigation,
+    CucControllerHelper,
+    IpLoadBalancerZoneDeleteService,
+  ) {
     this.$state = $state;
     this.$q = $q;
     this.CucCloudMessage = CucCloudMessage;
@@ -28,8 +35,10 @@ export default class IpLoadBalancerZoneDeleteCtrl {
 
     this.saving = true;
     this.CucCloudMessage.flushChildMessage();
-    return this.IpLoadBalancerZoneDeleteService
-      .deleteZones(this.serviceName, this.model.zones.value)
+    return this.IpLoadBalancerZoneDeleteService.deleteZones(
+      this.serviceName,
+      this.model.zones.value,
+    )
       .then(() => this.$state.go('network.iplb.detail.home'))
       .finally(() => {
         this.saving = false;
@@ -37,7 +46,8 @@ export default class IpLoadBalancerZoneDeleteCtrl {
   }
 
   getDeletableZoneCount() {
-    return filter(this.zones.data, (zone) => zone.selectable.value !== false).length;
+    return filter(this.zones.data, (zone) => zone.selectable.value !== false)
+      .length;
   }
 
   isLoading() {
@@ -46,8 +56,10 @@ export default class IpLoadBalancerZoneDeleteCtrl {
 
   initLoaders() {
     this.zones = this.CucControllerHelper.request.getArrayLoader({
-      loaderFunction: () => this.IpLoadBalancerZoneDeleteService
-        .getDeletableZones(this.serviceName),
+      loaderFunction: () =>
+        this.IpLoadBalancerZoneDeleteService.getDeletableZones(
+          this.serviceName,
+        ),
     });
   }
 

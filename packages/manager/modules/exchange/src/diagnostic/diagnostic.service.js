@@ -25,8 +25,10 @@ export default class diagnostic {
 
   gettingLastDiagnostic() {
     if (
-      this.diagnosticCache.organizationName === this.services.Exchange.value.organization
-      && this.diagnosticCache.exchangeService === this.services.Exchange.value.domain
+      this.diagnosticCache.organizationName ===
+        this.services.Exchange.value.organization &&
+      this.diagnosticCache.exchangeService ===
+        this.services.Exchange.value.domain
     ) {
       return this.diagnosticCache.primaryEmailAddress;
     }
@@ -121,9 +123,7 @@ export default class diagnostic {
       set(opts, 'successSates', [opts.successSates]);
     }
 
-    const url = `apiv6/email/exchange/${this.services.Exchange.value.organization}/service/${
-      this.services.Exchange.value.domain
-    }/account/${email}/tasks/${opts.id}`;
+    const url = `apiv6/email/exchange/${this.services.Exchange.value.organization}/service/${this.services.Exchange.value.domain}/account/${email}/tasks/${opts.id}`;
     const pollParameters = {
       interval: 2000,
       successRule: {

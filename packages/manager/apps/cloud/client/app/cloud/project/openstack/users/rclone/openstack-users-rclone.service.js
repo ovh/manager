@@ -20,16 +20,24 @@ class CloudProjectOpenstackUsersRcloneService {
   }
 
   getValidRcloneRegions(projectId) {
-    return this.OvhApiCloud.Project().Region().v6().query({ serviceName: projectId })
-      .$promise
-      .then((regions) => map(regions, (region) => this.CucRegionService.getRegion(region)))
-      .catch(this.CucServiceHelper.errorHandler('cpou_rclone_modal_loading_error'));
+    return this.OvhApiCloud.Project()
+      .Region()
+      .v6()
+      .query({ serviceName: projectId })
+      .$promise.then((regions) =>
+        map(regions, (region) => this.CucRegionService.getRegion(region)),
+      )
+      .catch(
+        this.CucServiceHelper.errorHandler('cpou_rclone_modal_loading_error'),
+      );
   }
 
   getRcloneFileInfo(projectId, userId, region) {
     let url = [
       (find(this.CONFIG_API.apis, { serviceType: 'apiv6' }) || {}).urlPrefix,
-      this.OvhApiCloud.Project().User().v6().services.rclone.url,
+      this.OvhApiCloud.Project()
+        .User()
+        .v6().services.rclone.url,
       '?',
       this.$httpParamSerializer({
         region,
@@ -45,14 +53,20 @@ class CloudProjectOpenstackUsersRcloneService {
       url = url.replace(`:${paramName}`, replacements[paramName]);
     });
 
-    return this.OvhApiCloud.Project().User().v6()
-      .rclone({ serviceName: projectId, userId, region }, { })
-      .$promise
-      .then((response) => {
+    return this.OvhApiCloud.Project()
+      .User()
+      .v6()
+      .rclone({ serviceName: projectId, userId, region }, {})
+      .$promise.then((response) => {
         assign(response, { url });
         return response;
       });
   }
 }
 
-angular.module('managerApp').service('CloudProjectOpenstackUsersRcloneService', CloudProjectOpenstackUsersRcloneService);
+angular
+  .module('managerApp')
+  .service(
+    'CloudProjectOpenstackUsersRcloneService',
+    CloudProjectOpenstackUsersRcloneService,
+  );

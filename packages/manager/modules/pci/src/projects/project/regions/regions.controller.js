@@ -59,7 +59,9 @@ export default class RegionsCtrl {
   }
 
   groupAvailableRegionsByDatacenter() {
-    this.availableRegionsByDatacenter = RegionsCtrl.groupByDatacenter(this.availableRegions);
+    this.availableRegionsByDatacenter = RegionsCtrl.groupByDatacenter(
+      this.availableRegions,
+    );
     this.allRegionsAdded = isEmpty(this.availableRegionsByDatacenter);
   }
 
@@ -78,18 +80,33 @@ export default class RegionsCtrl {
     this.isLoading = true;
 
     return this.OvhApiCloudProjectRegion.v6()
-      .addRegion({ serviceName: this.projectId },
-        { region: this.regionToAdd.microRegion.code })
-      .$promise
-      .then(() => this.OvhApiCloudProjectRegion.AvailableRegions().v6().resetQueryCache())
+      .addRegion(
+        { serviceName: this.projectId },
+        { region: this.regionToAdd.microRegion.code },
+      )
+      .$promise.then(() =>
+        this.OvhApiCloudProjectRegion.AvailableRegions()
+          .v6()
+          .resetQueryCache(),
+      )
       .then(() => this.$state.reload())
       .then(() => {
-        this.CucCloudMessage.success(this.$translate.instant('pci_projects_project_regions_add_region_success', {
-          code: this.regionToAdd.microRegion.code,
-        }));
+        this.CucCloudMessage.success(
+          this.$translate.instant(
+            'pci_projects_project_regions_add_region_success',
+            {
+              code: this.regionToAdd.microRegion.code,
+            },
+          ),
+        );
       })
       .catch((error) => {
-        this.CucCloudMessage.error(this.$translate.instant('pci_projects_project_regions_add_region_error', { message: get(error, 'data.message') }));
+        this.CucCloudMessage.error(
+          this.$translate.instant(
+            'pci_projects_project_regions_add_region_error',
+            { message: get(error, 'data.message') },
+          ),
+        );
       });
   }
 }

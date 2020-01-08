@@ -8,11 +8,10 @@ import IplbConfigurationTemplate from './iplb-configuration.html';
 const moduleName = 'ovhManagerIplbConfiguration';
 
 angular
-  .module(moduleName, [
-    'ui.router',
-  ]).config(/* @ngInject */($stateProvider) => {
-    $stateProvider
-      .state('network.iplb.detail.configuration', {
+  .module(moduleName, ['ui.router'])
+  .config(
+    /* @ngInject */ ($stateProvider) => {
+      $stateProvider.state('network.iplb.detail.configuration', {
         url: '/configuration',
         views: {
           iplbHeader: {
@@ -31,10 +30,20 @@ angular
           format: 'json',
         },
       });
-  })
-  .controller('IpLoadBalancerDashboardHeaderCtrl', IpLoadBalancerDashboardHeaderCtrl)
-  .controller('IpLoadBalancerConfigurationCtrl', IpLoadBalancerConfigurationCtrl)
-  .service('IpLoadBalancerConfigurationService', IpLoadBalancerConfigurationService)
+    },
+  )
+  .controller(
+    'IpLoadBalancerDashboardHeaderCtrl',
+    IpLoadBalancerDashboardHeaderCtrl,
+  )
+  .controller(
+    'IpLoadBalancerConfigurationCtrl',
+    IpLoadBalancerConfigurationCtrl,
+  )
+  .service(
+    'IpLoadBalancerConfigurationService',
+    IpLoadBalancerConfigurationService,
+  )
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

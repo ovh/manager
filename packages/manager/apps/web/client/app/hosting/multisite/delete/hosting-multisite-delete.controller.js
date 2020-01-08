@@ -22,9 +22,15 @@ angular.module('App').controller(
         wwwNeeded: false,
       };
       this.resultMessages = {
-        OK: this.$translate.instant('hosting_tab_DOMAINS_configuration_remove_!success'),
-        PARTIAL: this.$translate.instant('hosting_tab_DOMAINS_configuration_remove_partial'),
-        ERROR: this.$translate.instant('hosting_tab_DOMAINS_configuration_remove_failure'),
+        OK: this.$translate.instant(
+          'hosting_tab_DOMAINS_configuration_remove_!success',
+        ),
+        PARTIAL: this.$translate.instant(
+          'hosting_tab_DOMAINS_configuration_remove_partial',
+        ),
+        ERROR: this.$translate.instant(
+          'hosting_tab_DOMAINS_configuration_remove_failure',
+        ),
       };
 
       this.$scope.deleteMultiSite = () => this.deleteMultiSite();
@@ -36,7 +42,9 @@ angular.module('App').controller(
         .catch((err) => {
           this.$scope.resetAction();
           this.Alerter.alertFromSWS(
-            this.$translate.instant('hosting_tab_DOMAINS_configuration_remove_step1_loading_error'),
+            this.$translate.instant(
+              'hosting_tab_DOMAINS_configuration_remove_step1_loading_error',
+            ),
             get(err, 'data', err),
             this.$scope.alerts.main,
           );
@@ -45,8 +53,8 @@ angular.module('App').controller(
 
     domainsWwwExists() {
       return (
-        this.model.domains
-        && indexOf(this.model.domains, `www.${this.selected.domain.name}`) !== -1
+        this.model.domains &&
+        indexOf(this.model.domains, `www.${this.selected.domain.name}`) !== -1
       );
     }
 
@@ -68,7 +76,9 @@ angular.module('App').controller(
         })
         .catch((err) => {
           this.Alerter.alertFromSWS(
-            this.$translate.instant('hosting_tab_DOMAINS_configuration_remove_failure'),
+            this.$translate.instant(
+              'hosting_tab_DOMAINS_configuration_remove_failure',
+            ),
             get(err, 'data', err),
             this.$scope.alerts.main,
           );

@@ -1,55 +1,67 @@
 <div class="shipping-mode-selection">
-
     <div class="text-center" data-ng-if="$ctrl.loading.init">
         <oui-spinner data-size="l"></oui-spinner>
     </div>
 
     <div data-ng-if="!$ctrl.loading.init">
-
         <!-- SHIPPING MODE SELECTION -->
         <div class="mb-4">
             <!-- MONDIAL RELAY CHOICE -->
             <div data-ng-if="!$ctrl.options.disableMondialRelay">
                 <label>
-                    <input type="radio"
-                           class="mr-2"
-                           data-ng-model="$ctrl.selectedMode"
-                           value="mondialRelay"
-                           name="shipping-mode"
-                           data-ng-change="$ctrl.resetValues()"
-                           required>
-                    <span data-translate="{{ !$ctrl.options.payForRelay ? 'shipping_mode_selection_mode_mondial_relay' : 'shipping_mode_selection_mode_mondial_relay_not_free' }}"
-                          data-translate-values="{ price: $ctrl.options.shippingPrice }">
+                    <input
+                        type="radio"
+                        class="mr-2"
+                        data-ng-model="$ctrl.selectedMode"
+                        value="mondialRelay"
+                        name="shipping-mode"
+                        data-ng-change="$ctrl.resetValues()"
+                        required
+                    />
+                    <span
+                        data-translate="{{ !$ctrl.options.payForRelay ? 'shipping_mode_selection_mode_mondial_relay' : 'shipping_mode_selection_mode_mondial_relay_not_free' }}"
+                        data-translate-values="{ price: $ctrl.options.shippingPrice }"
+                    >
                     </span>
                 </label>
-            </div> <!-- MONDIAL RELAY CHOICE -->
+            </div>
+            <!-- MONDIAL RELAY CHOICE -->
 
             <!-- TRANSPORTER CHOICE -->
             <div data-ng-if="!$ctrl.options.disableTransporter">
                 <label>
-                    <input type="radio"
-                           class="mr-2"
-                           data-ng-model="$ctrl.selectedMode"
-                           value="transporter"
-                           name="shipping-mode"
-                           data-ng-change="$ctrl.resetValues()"
-                           required>
-                    <span data-translate="{{ $ctrl.options.shippingPrice ? 'shipping_mode_selection_mode_transporter' : 'shipping_mode_selection_mode_transporter_free' }}"
-                          data-translate-values="{ price: $ctrl.options.shippingPrice }">
+                    <input
+                        type="radio"
+                        class="mr-2"
+                        data-ng-model="$ctrl.selectedMode"
+                        value="transporter"
+                        name="shipping-mode"
+                        data-ng-change="$ctrl.resetValues()"
+                        required
+                    />
+                    <span
+                        data-translate="{{ $ctrl.options.shippingPrice ? 'shipping_mode_selection_mode_transporter' : 'shipping_mode_selection_mode_transporter_free' }}"
+                        data-translate-values="{ price: $ctrl.options.shippingPrice }"
+                    >
                     </span>
                 </label>
-            </div> <!-- TRANSPORTER CHOICE -->
-        </div> <!-- SHIPPING MODE SELECTION -->
+            </div>
+            <!-- TRANSPORTER CHOICE -->
+        </div>
+        <!-- SHIPPING MODE SELECTION -->
 
         <hr data-ng-if="$ctrl.selectedMode === 'mondialRelay'" />
 
         <!-- MONDIAL RELAY CHOICE -->
-        <div class="animate-mondial-relay mb-3"
-             data-ng-if="$ctrl.selectedMode === 'mondialRelay'">
-            <ovh-mondial-relay data-ng-model="$ctrl.selectedRelay"></ovh-mondial-relay>
-        </div> <!-- MONDIAL RELAY CHOICE -->
-
+        <div
+            class="animate-mondial-relay mb-3"
+            data-ng-if="$ctrl.selectedMode === 'mondialRelay'"
+        >
+            <ovh-mondial-relay
+                data-ng-model="$ctrl.selectedRelay"
+            ></ovh-mondial-relay>
+        </div>
+        <!-- MONDIAL RELAY CHOICE -->
     </div>
-
 </div>
 <!-- /.shipping-mode-selection -->

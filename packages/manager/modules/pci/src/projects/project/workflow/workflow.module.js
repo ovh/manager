@@ -16,18 +16,19 @@ import routing from './workflow.routing';
 
 const moduleName = 'ovhManagerPciProjectsProjectWorkflowModule';
 
-angular.module(moduleName, [
-  add,
-  deleteWorkflow,
-  executions,
-  onboarding,
-  'ngTranslateAsyncLoader',
-  'ngOvhCloudUniverseComponents',
-  'oui',
-  'ovh-api-services',
-  'pascalprecht.translate',
-  'ui.router',
-])
+angular
+  .module(moduleName, [
+    add,
+    deleteWorkflow,
+    executions,
+    onboarding,
+    'ngTranslateAsyncLoader',
+    'ngOvhCloudUniverseComponents',
+    'oui',
+    'ovh-api-services',
+    'pascalprecht.translate',
+    'ui.router',
+  ])
   .config(routing)
   .component('ovhManagerPciProjectsProjectWorkflow', component)
   .run(/* @ngTranslationsInject:json ./translations */);

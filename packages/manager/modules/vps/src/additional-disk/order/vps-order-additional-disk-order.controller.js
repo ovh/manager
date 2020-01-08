@@ -53,12 +53,10 @@ export default class VpsOrderDiskCtrl {
   ============================== */
 
   onAdditionalDiskOrderStepperFinish() {
-    let expressOrderUrl = get(
-      ORDER_EXPRESS_BASE_URL, [
-        this.coreConfig.getRegion(),
-        this.connectedUser.ovhSubsidiary,
-      ],
-    );
+    let expressOrderUrl = get(ORDER_EXPRESS_BASE_URL, [
+      this.coreConfig.getRegion(),
+      this.connectedUser.ovhSubsidiary,
+    ]);
     const expressParams = {
       productId: 'vps',
       serviceName: this.stateVps.name,
@@ -67,7 +65,9 @@ export default class VpsOrderDiskCtrl {
       pricingMode: 'default',
       quantity: 1,
     };
-    expressOrderUrl = `${expressOrderUrl}?products=${JSURL.stringify([expressParams])}`;
+    expressOrderUrl = `${expressOrderUrl}?products=${JSURL.stringify([
+      expressParams,
+    ])}`;
 
     this.$window.open(expressOrderUrl, '_blank');
 
@@ -90,10 +90,13 @@ export default class VpsOrderDiskCtrl {
     this.loading.init = true;
     this.model.disk = null;
 
-    return this.OvhApiOrder.CartServiceOption().Vps().v6().get({
-      serviceName: this.stateVps.name,
-    }).$promise
-      .then((response) => {
+    return this.OvhApiOrder.CartServiceOption()
+      .Vps()
+      .v6()
+      .get({
+        serviceName: this.stateVps.name,
+      })
+      .$promise.then((response) => {
         // first take the options from additionalDisk family
         let diskOptions = filter(response, {
           family: 'additionalDisk',
@@ -116,10 +119,12 @@ export default class VpsOrderDiskCtrl {
         this.chunkedDiskOptions = chunk(diskOptions, 3);
       })
       .catch((error) => {
-        this.CucCloudMessage.error([
-          this.$translate.instant('vps_order_additional_disk_load_error'),
-          get(error, 'data.message'),
-        ].join(' '));
+        this.CucCloudMessage.error(
+          [
+            this.$translate.instant('vps_order_additional_disk_load_error'),
+            get(error, 'data.message'),
+          ].join(' '),
+        );
       })
       .finally(() => {
         this.loading.init = false;

@@ -8,9 +8,9 @@ import {
   DEDICATEDCLOUD_DATACENTER_DRP_STATUS,
 } from './datacenter/drp/dedicatedCloud-datacenter-drp.constants';
 
-angular
-  .module('App')
-  .controller('DedicatedCloudCtrl', class {
+angular.module('App').controller(
+  'DedicatedCloudCtrl',
+  class {
     /* @ngInject */
     constructor(
       $q,
@@ -64,7 +64,8 @@ angular
       this.$scope.loadingError = false;
       this.$scope.dedicatedCloud = null;
 
-      this.$scope.allowDedicatedServerComplianceOptions = this.coreConfig.getRegion() !== 'US';
+      this.$scope.allowDedicatedServerComplianceOptions =
+        this.coreConfig.getRegion() !== 'US';
 
       this.$scope.dedicatedCloudDescription = {
         model: null,
@@ -89,10 +90,12 @@ angular
 
       this.$scope.editDescription = (value) => this.editDescription(value);
       this.$scope.getRight = (order) => this.getRight(order);
-      this.$scope.getUserAccessPolicyLabel = () => this.getUserAccessPolicyLabel();
+      this.$scope.getUserAccessPolicyLabel = () =>
+        this.getUserAccessPolicyLabel();
       this.$scope.loadDedicatedCloud = () => this.loadDedicatedCloud();
       this.$scope.setAction = (action, data) => this.setAction(action, data);
-      this.$scope.setMessage = (message, data) => this.setMessage(message, data);
+      this.$scope.setMessage = (message, data) =>
+        this.setMessage(message, data);
       this.$scope.resetMessage = () => this.resetMessage();
       this.$scope.resetAction = () => this.resetAction();
 
@@ -100,20 +103,20 @@ angular
     }
 
     loadNewPrices() {
-      return this.DedicatedCloud
-        .getNewPrices(this.$stateParams.productId)
-        .then((newPrices) => {
+      return this.DedicatedCloud.getNewPrices(this.$stateParams.productId).then(
+        (newPrices) => {
           this.$scope.newPriceInformation = newPrices.resources;
-          this.$scope.hasChangePrices = newPrices.resources
-            .filter((resource) => resource.changed === true).length > 0;
-        });
+          this.$scope.hasChangePrices =
+            newPrices.resources.filter((resource) => resource.changed === true)
+              .length > 0;
+        },
+      );
     }
 
     loadUserInfo() {
-      return this.User.getUser()
-        .then((user) => {
-          this.$scope.dedicatedCloud.email = user.email;
-        });
+      return this.User.getUser().then((user) => {
+        this.$scope.dedicatedCloud.email = user.email;
+      });
     }
 
     loadDedicatedCloud() {
@@ -126,54 +129,69 @@ angular
             this.$scope.dedicatedCloud.isExpired = dedicatedCloud.isExpired;
 
             if (this.$scope.dedicatedCloud.isExpired) {
-              this.$scope.setMessage(this.$translate.instant('common_expired'), { type: 'cancelled' });
+              this.$scope.setMessage(
+                this.$translate.instant('common_expired'),
+                { type: 'cancelled' },
+              );
               return;
             }
 
-            this.$scope.dedicatedCloudDescription.model = angular
-              .copy(this.$scope.dedicatedCloud.description);
+            this.$scope.dedicatedCloudDescription.model = angular.copy(
+              this.$scope.dedicatedCloud.description,
+            );
 
             this.loadNewPrices();
             this.loadUserInfo();
           })
           .catch((data) => {
             this.$scope.loadingError = true;
-            this.$scope.setMessage(this.$translate.instant('dedicatedCloud_dashboard_loading_error'), { message: data.message, type: 'ERROR' });
+            this.$scope.setMessage(
+              this.$translate.instant('dedicatedCloud_dashboard_loading_error'),
+              { message: data.message, type: 'ERROR' },
+            );
           })
           .finally(() => {
             this.$scope.loadingInformations = false;
           }),
-        this.DedicatedCloud
-          .getDescription(this.$stateParams.productId)
-          .then((dedicatedCloudDescription) => {
-            Object.assign(this.$scope.dedicatedCloud, dedicatedCloudDescription);
-          }),
-        this.OvhApiDedicatedCloud.v6().getServiceInfos({
-          serviceName: this.$stateParams.productId,
-        }).$promise
-          .then((serviceInformations) => {
+        this.DedicatedCloud.getDescription(this.$stateParams.productId).then(
+          (dedicatedCloudDescription) => {
+            Object.assign(
+              this.$scope.dedicatedCloud,
+              dedicatedCloudDescription,
+            );
+          },
+        ),
+        this.OvhApiDedicatedCloud.v6()
+          .getServiceInfos({
+            serviceName: this.$stateParams.productId,
+          })
+          .$promise.then((serviceInformations) => {
             this.$scope.dedicatedCloud.serviceInfos = serviceInformations;
           }),
       ]);
     }
 
     editDescription(value) {
-      return this.$uibModal.open({
-        animation: true,
-        templateUrl: 'components/name-edition/name-edition.html',
-        controller: 'NameEditionCtrl',
-        controllerAs: '$ctrl',
-        resolve: {
-          data: () => ({
-            contextTitle: 'dedicatedCloud_description',
-            productId: this.$stateParams.productId,
-            successText: this.$translate.instant('dedicatedCloud_dashboard_nameModifying_success'),
-            value,
-          }),
-        },
-      }).result.then((newDescription) => {
-        this.$scope.dedicatedCloud.description = newDescription;
-      });
+      return this.$uibModal
+        .open({
+          animation: true,
+          templateUrl: 'components/name-edition/name-edition.html',
+          controller: 'NameEditionCtrl',
+          controllerAs: '$ctrl',
+          resolve: {
+            data: () => ({
+              contextTitle: 'dedicatedCloud_description',
+              productId: this.$stateParams.productId,
+              successText: this.$translate.instant(
+                'dedicatedCloud_dashboard_nameModifying_success',
+              ),
+              value,
+            }),
+          },
+        })
+        .result.then((newDescription) => {
+          this.$scope.dedicatedCloud.description = newDescription;
+        });
     }
 
     getRight(order) {
@@ -234,7 +252,10 @@ angular
       if (data.message) {
         messageToSend += ` (${data.message})`;
       } else if (some(data.messages)) {
-        const messageParts = map(data.messages, (_message) => `${_message.id} : ${_message.message}`);
+        const messageParts = map(
+          data.messages,
+          (_message) => `${_message.id} : ${_message.message}`,
+        );
         messageToSend = ` (${messageParts.join(', ')})`;
       }
 
@@ -269,9 +290,14 @@ angular
       const policy = get(this.$scope, 'dedicatedCloud.userAccessPolicy');
 
       if (policy) {
-        return this.$translate.instant(`dedicatedCloud_user_access_policy_${snakeCase(policy).toUpperCase()}`);
+        return this.$translate.instant(
+          `dedicatedCloud_user_access_policy_${snakeCase(
+            policy,
+          ).toUpperCase()}`,
+        );
       }
 
       return '-';
     }
-  });
+  },
+);

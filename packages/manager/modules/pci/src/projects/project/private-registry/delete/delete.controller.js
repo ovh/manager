@@ -3,11 +3,7 @@ import { DELETE_CONFIRMATION_INPUT } from '../private-registry.constants';
 
 export default class PrivateRegistryDeleteCtrl {
   /* @ngInject */
-  constructor(
-    $stateParams,
-    $translate,
-    pciPrivateRegistryService,
-  ) {
+  constructor($stateParams, $translate, pciPrivateRegistryService) {
     this.projectId = $stateParams.projectId;
     this.registryId = $stateParams.registryId;
     this.registryName = $stateParams.registryName;
@@ -19,15 +15,23 @@ export default class PrivateRegistryDeleteCtrl {
 
   deletePrivateRegistry() {
     this.isLoading = true;
-    return this.privateRegistryService.delete(this.projectId, this.registryId)
-      .then(() => this.goBack(
-        this.$translate.instant('private_registry_delete_success', { registryName: this.registryName }),
-      ))
-      .catch((error) => this.goBack(
-        this.$translate.instant('private_registry_delete_error', {
-          message: get(error, 'data.message'),
-          registryName: this.registryName,
-        }), 'error',
-      ));
+    return this.privateRegistryService
+      .delete(this.projectId, this.registryId)
+      .then(() =>
+        this.goBack(
+          this.$translate.instant('private_registry_delete_success', {
+            registryName: this.registryName,
+          }),
+        ),
+      )
+      .catch((error) =>
+        this.goBack(
+          this.$translate.instant('private_registry_delete_error', {
+            message: get(error, 'data.message'),
+            registryName: this.registryName,
+          }),
+          'error',
+        ),
+      );
   }
 }

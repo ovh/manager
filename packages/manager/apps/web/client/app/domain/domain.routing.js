@@ -26,39 +26,49 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     redirectTo: 'app.domain.product.information',
     resolve: {
-      associatedHostings: /* @ngInject */ (
-        Domain,
-        domainName,
-      ) => Domain.getAssociatedHosting(domainName),
+      associatedHostings: /* @ngInject */ (Domain, domainName) =>
+        Domain.getAssociatedHosting(domainName),
       currentSection: () => 'domain',
-      domain: /* @ngInject */ (Domain, domainName) => Domain
-        .getSelected(domainName),
-      domainName: /* @ngInject */ ($transition$) => $transition$
-        .params().productId,
-      goToWebhostingOrder: /* @ngInject */ ($state) => () => $state.go('app.domain.product.webhosting.order'),
+      domain: /* @ngInject */ (Domain, domainName) =>
+        Domain.getSelected(domainName),
+      domainName: /* @ngInject */ ($transition$) =>
+        $transition$.params().productId,
+      goToWebhostingOrder: /* @ngInject */ ($state) => () =>
+        $state.go('app.domain.product.webhosting.order'),
       navigationInformations: [
         'Navigator',
         '$rootScope',
         (Navigator, $rootScope) => {
-          $rootScope.currentSectionInformation = 'domain'; // eslint-disable-line no-param-reassign
+          // eslint-disable-next-line no-param-reassign
+          $rootScope.currentSectionInformation = 'domain';
           return Navigator.setNavigationInformation({
             leftMenuVisible: true,
             configurationSelected: true,
           });
         },
       ],
-      orderedHosting: /* @ngInject */ (
-        $q,
-        domainName,
-        Hosting,
-      ) => Hosting.getSelected(domainName)
-        .then(({ offer, serviceName }) => (isEmpty(offer) ? null : serviceName))
-        .catch((error) => (error.code === 404 ? null : $q.reject(error))),
+      orderedHosting: /* @ngInject */ ($q, domainName, Hosting) =>
+        Hosting.getSelected(domainName)
+          .then(({ offer, serviceName }) =>
+            isEmpty(offer) ? null : serviceName,
+          )
+          .catch((error) => (error.code === 404 ? null : $q.reject(error))),
 
-      goToDns: /* @ngInject */ ($state) => () => $state.go('app.domain.product.dns'),
-      goToDnsAnycast: /* @ngInject */ ($state) => () => $state.go('app.domain.product.anycast'),
+      goToDns: /* @ngInject */ ($state) => () =>
+        $state.go('app.domain.product.dns'),
+      goToDnsAnycast: /* @ngInject */ ($state) => () =>
+        $state.go('app.domain.product.anycast'),
     },
-    translations: { value: ['../core', '../domain', '../email', '../hosting', '../domain-operation'], format: 'json' },
+    translations: {
+      value: [
+        '../core',
+        '../domain',
+        '../email',
+        '../hosting',
+        '../domain-operation',
+      ],
+      format: 'json',
+    },
   });
 
   $stateProvider.state('app.domain.alldom', {
@@ -69,46 +79,66 @@ export default /* @ngInject */ ($stateProvider) => {
     reloadOnSearch: false,
     redirectTo: 'app.domain.alldom.information',
     resolve: {
-      associatedHostings: /* @ngInject */ (
-        Domain,
-        domainName,
-      ) => Domain.getAssociatedHosting(domainName),
+      associatedHostings: /* @ngInject */ (Domain, domainName) =>
+        Domain.getAssociatedHosting(domainName),
       currentSection: () => 'domain',
-      domain: /* @ngInject */ (Domain, domainName) => Domain
-        .getSelected(domainName),
-      domainName: /* @ngInject */ ($transition$) => $transition$.params().productId,
-      goToWebhostingOrder: /* @ngInject */ ($state) => () => $state.go('app.domain.alldom.webhosting.order'),
+      domain: /* @ngInject */ (Domain, domainName) =>
+        Domain.getSelected(domainName),
+      domainName: /* @ngInject */ ($transition$) =>
+        $transition$.params().productId,
+      goToWebhostingOrder: /* @ngInject */ ($state) => () =>
+        $state.go('app.domain.alldom.webhosting.order'),
       navigationInformations: [
         'Navigator',
         '$rootScope',
         (Navigator, $rootScope) => {
-          $rootScope.currentSectionInformation = 'all_dom'; // eslint-disable-line no-param-reassign
+          // eslint-disable-next-line no-param-reassign
+          $rootScope.currentSectionInformation = 'all_dom';
           return Navigator.setNavigationInformation({
             leftMenuVisible: true,
             configurationSelected: true,
           });
         },
       ],
-      orderedHosting: /* @ngInject */ (
-        $q,
-        domainName,
-        Hosting,
-      ) => Hosting.getSelected(domainName)
-        .then(({ offer, serviceName }) => (isEmpty(offer) ? null : serviceName))
-        .catch((error) => (error.code === 404 ? null : $q.reject(error))),
+      orderedHosting: /* @ngInject */ ($q, domainName, Hosting) =>
+        Hosting.getSelected(domainName)
+          .then(({ offer, serviceName }) =>
+            isEmpty(offer) ? null : serviceName,
+          )
+          .catch((error) => (error.code === 404 ? null : $q.reject(error))),
 
-      goToDns: /* @ngInject */ ($state) => () => $state.go('app.domain.alldom.dns'),
-      goToDnsAnycast: /* @ngInject */ ($state) => () => $state.go('app.domain.alldom.anycast'),
+      goToDns: /* @ngInject */ ($state) => () =>
+        $state.go('app.domain.alldom.dns'),
+      goToDnsAnycast: /* @ngInject */ ($state) => () =>
+        $state.go('app.domain.alldom.anycast'),
     },
-    translations: { value: ['../core', '../domain', '../email', '../hosting', '../domain-operation'], format: 'json' },
+    translations: {
+      value: [
+        '../core',
+        '../domain',
+        '../email',
+        '../hosting',
+        '../domain-operation',
+      ],
+      format: 'json',
+    },
   });
 
   ['product', 'alldom'].forEach((stateType) => {
     // Clone state before using it as it will be modified by UI Router
-    $stateProvider.state(`app.domain.${stateType}.anycast`, clone(anycastState));
+    $stateProvider.state(
+      `app.domain.${stateType}.anycast`,
+      clone(anycastState),
+    );
     $stateProvider.state(`app.domain.${stateType}.dns`, clone(dnsState));
-    $stateProvider.state(`app.domain.${stateType}.redirection`, clone(redirectionState));
-    $stateProvider.state(`app.domain.${stateType}.dynhost`, clone(dynHostState));
+    $stateProvider.state(
+      `app.domain.${stateType}.redirection`,
+      clone(redirectionState),
+    );
+    $stateProvider.state(
+      `app.domain.${stateType}.dynhost`,
+      clone(dynHostState),
+    );
     $stateProvider.state(`app.domain.${stateType}.glue`, clone(glueState));
     $stateProvider.state(`app.domain.${stateType}.dnssec`, clone(dnsSecState));
     $stateProvider.state(`app.domain.${stateType}.tasks`, clone(tasksState));

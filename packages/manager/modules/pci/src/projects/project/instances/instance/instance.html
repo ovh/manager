@@ -3,187 +3,288 @@
         <oui-header-tabs-item
             data-text="{{ 'pci_projects_project_instances_instance_dashboard_title' | translate }}"
             data-href="{{ $ctrl.instanceLink }}"
-            data-active="$ctrl.currentActiveLink() === $ctrl.instanceLink">
+            data-active="$ctrl.currentActiveLink() === $ctrl.instanceLink"
+        >
         </oui-header-tabs-item>
         <oui-header-tabs-item
             data-text="{{ 'pci_projects_project_instances_instance_vnc_title' | translate }}"
             data-href="{{ $ctrl.consoleLink }}"
-            data-active="$ctrl.currentActiveLink() === $ctrl.consoleLink">
+            data-active="$ctrl.currentActiveLink() === $ctrl.consoleLink"
+        >
         </oui-header-tabs-item>
     </oui-header-tabs>
     <oui-guide-menu data-text="{{:: 'pci_project_guides_header' | translate }}">
-        <oui-guide-menu-item
-            href="{{ $ctrl.guideUrl }}"
-            data-external>
+        <oui-guide-menu-item href="{{ $ctrl.guideUrl }}" data-external>
             <span data-translate="pci_project_guides_header_all_guides"></span>
         </oui-guide-menu-item>
     </oui-guide-menu>
 </oui-page-header>
 
 <div class="mt-4">
-    <cui-message-container data-messages="$ctrl.messages"></cui-message-container>
+    <cui-message-container
+        data-messages="$ctrl.messages"
+    ></cui-message-container>
 </div>
 
 <div class="py-4" data-ui-view>
-
     <div class="row">
         <div class="col-md-4">
-            <oui-tile data-heading="{{ 'pci_projects_project_instances_instance_manage_title' | translate }}">
-                <oui-tile-button data-on-click="$ctrl.editInstance()"
-                    data-ng-if="$ctrl.instance.statusGroup === 'ACTIVE'">
-                    <span data-translate="pci_projects_project_instances_instance_action_edit_label"></span>
-                </oui-tile-button>
-                <oui-tile-button data-on-click="$ctrl.createBackupInstance()"
+            <oui-tile
+                data-heading="{{ 'pci_projects_project_instances_instance_manage_title' | translate }}"
+            >
+                <oui-tile-button
+                    data-on-click="$ctrl.editInstance()"
                     data-ng-if="$ctrl.instance.statusGroup === 'ACTIVE'"
-                    data-disabled="!$ctrl.instance.canAddSnapshot()">
-                    <span data-translate="pci_projects_project_instances_instance_action_createBackup_label"></span>
+                >
+                    <span
+                        data-translate="pci_projects_project_instances_instance_action_edit_label"
+                    ></span>
                 </oui-tile-button>
-                <oui-tile-button data-on-click="$ctrl.scheduleAutoBackup($ctrl.instance)"
+                <oui-tile-button
+                    data-on-click="$ctrl.createBackupInstance()"
+                    data-ng-if="$ctrl.instance.statusGroup === 'ACTIVE'"
+                    data-disabled="!$ctrl.instance.canAddSnapshot()"
+                >
+                    <span
+                        data-translate="pci_projects_project_instances_instance_action_createBackup_label"
+                    ></span>
+                </oui-tile-button>
+                <oui-tile-button
+                    data-on-click="$ctrl.scheduleAutoBackup($ctrl.instance)"
                     data-ng-if="$ctrl.instance.statusGroup === 'ACTIVE' && !$ctrl.coreConfig.isRegion('US')"
-                    data-disabled="!$ctrl.instance.canAddSnapshot()">
-                    <span data-translate="pci_projects_project_instances_autobackup_label"></span>
+                    data-disabled="!$ctrl.instance.canAddSnapshot()"
+                >
+                    <span
+                        data-translate="pci_projects_project_instances_autobackup_label"
+                    ></span>
                 </oui-tile-button>
-                <oui-tile-button data-on-click="$ctrl.startRescueInstance()"
-                    data-ng-if="$ctrl.instance.canBeHardRebooted()">
-                    <span data-translate="pci_projects_project_instances_instance_action_rescue_label"></span>
+                <oui-tile-button
+                    data-on-click="$ctrl.startRescueInstance()"
+                    data-ng-if="$ctrl.instance.canBeHardRebooted()"
+                >
+                    <span
+                        data-translate="pci_projects_project_instances_instance_action_rescue_label"
+                    ></span>
                 </oui-tile-button>
-                <oui-tile-button data-on-click="$ctrl.endRescueInstance()"
-                    data-ng-if="$ctrl.instance.status === 'RESCUE'">
-                    <span data-translate="pci_projects_project_instances_instance_action_rescueEnd_label"></span>
+                <oui-tile-button
+                    data-on-click="$ctrl.endRescueInstance()"
+                    data-ng-if="$ctrl.instance.status === 'RESCUE'"
+                >
+                    <span
+                        data-translate="pci_projects_project_instances_instance_action_rescueEnd_label"
+                    ></span>
                 </oui-tile-button>
-                <oui-tile-button data-on-click="$ctrl.softRebootInstance()"
-                    data-ng-if="$ctrl.instance.statusGroup === 'ACTIVE'">
-                    <span data-translate="pci_projects_project_instances_instance_action_softReboot_label"></span>
+                <oui-tile-button
+                    data-on-click="$ctrl.softRebootInstance()"
+                    data-ng-if="$ctrl.instance.statusGroup === 'ACTIVE'"
+                >
+                    <span
+                        data-translate="pci_projects_project_instances_instance_action_softReboot_label"
+                    ></span>
                 </oui-tile-button>
-                <oui-tile-button data-on-click="$ctrl.hardRebootInstance()"
-                    data-ng-if="$ctrl.instance.statusGroup === 'ACTIVE'">
-                    <span data-translate="pci_projects_project_instances_instance_action_hardReboot_label"></span>
+                <oui-tile-button
+                    data-on-click="$ctrl.hardRebootInstance()"
+                    data-ng-if="$ctrl.instance.statusGroup === 'ACTIVE'"
+                >
+                    <span
+                        data-translate="pci_projects_project_instances_instance_action_hardReboot_label"
+                    ></span>
                 </oui-tile-button>
-                <oui-tile-button data-on-click="$ctrl.reinstallInstance()"
-                    data-ng-if="$ctrl.instance.statusGroup === 'ACTIVE'">
-                    <span data-translate="pci_projects_project_instances_instance_action_reinstall_label"></span>
+                <oui-tile-button
+                    data-on-click="$ctrl.reinstallInstance()"
+                    data-ng-if="$ctrl.instance.statusGroup === 'ACTIVE'"
+                >
+                    <span
+                        data-translate="pci_projects_project_instances_instance_action_reinstall_label"
+                    ></span>
                 </oui-tile-button>
-                <oui-tile-button data-on-click="$ctrl.resumeInstance()"
-                    data-ng-if="$ctrl.instance.statusGroup === 'SUSPENDED'">
-                    <span data-translate="pci_projects_project_instances_instance_action_resume_label"></span>
+                <oui-tile-button
+                    data-on-click="$ctrl.resumeInstance()"
+                    data-ng-if="$ctrl.instance.statusGroup === 'SUSPENDED'"
+                >
+                    <span
+                        data-translate="pci_projects_project_instances_instance_action_resume_label"
+                    ></span>
                 </oui-tile-button>
                 <oui-tile-button data-on-click="$ctrl.deleteInstance()">
-                    <span data-translate="pci_projects_project_instances_instance_action_delete_label"></span>
+                    <span
+                        data-translate="pci_projects_project_instances_instance_action_delete_label"
+                    ></span>
                 </oui-tile-button>
             </oui-tile>
         </div>
 
         <div class="col-md-4">
-            <oui-tile data-heading="{{:: 'pci_projects_project_instances_instance_info_title' | translate }}">
-                <oui-tile-definition data-term="{{:: 'pci_projects_project_instances_instance_status_label' | translate }}">
+            <oui-tile
+                data-heading="{{:: 'pci_projects_project_instances_instance_info_title' | translate }}"
+            >
+                <oui-tile-definition
+                    data-term="{{:: 'pci_projects_project_instances_instance_status_label' | translate }}"
+                >
                     <oui-tile-description>
-                        <span class="oui-status"
+                        <span
+                            class="oui-status"
                             data-ng-class="{
                                 'oui-status_success': ($ctrl.instance.statusGroup === 'ACTIVE'),
                                 'oui-status_warning': ($ctrl.instance.statusGroup === 'PENDING'),
                                 'oui-status_error': ($ctrl.instance.statusGroup === 'ERROR'),
                                 'oui-status_info': ($ctrl.instance.statusGroup === $ctrl.instance.status),
-                            }">
-                            <span data-ng-bind="'pci_projects_project_instances_status_' + $ctrl.instance.status | translate"></span>
+                            }"
+                        >
+                            <span
+                                data-ng-bind="'pci_projects_project_instances_status_' + $ctrl.instance.status | translate"
+                            ></span>
                         </span>
                     </oui-tile-description>
                 </oui-tile-definition>
-                <oui-tile-definition data-term="{{:: 'pci_projects_project_instances_instance_localisation_label' | translate }}">
+                <oui-tile-definition
+                    data-term="{{:: 'pci_projects_project_instances_instance_localisation_label' | translate }}"
+                >
                     <oui-tile-description>
-                        <span data-ng-bind="$ctrl.CucRegionService.getTranslatedMicroRegion($ctrl.instance.region)"></span>
+                        <span
+                            data-ng-bind="$ctrl.CucRegionService.getTranslatedMicroRegion($ctrl.instance.region)"
+                        ></span>
                     </oui-tile-description>
                 </oui-tile-definition>
                 <div class="oui-tile__item">
                     <dl class="oui-tile__definition">
-                        <dt class="oui-tile__term"
-                            data-translate="pci_projects_project_instances_instance_type_label">
-                        </dt>
+                        <dt
+                            class="oui-tile__term"
+                            data-translate="pci_projects_project_instances_instance_type_label"
+                        ></dt>
                         <dd class="oui-tile__description">
-                            <span data-ng-bind="$ctrl.instance.flavor.name | uppercase"></span>
+                            <span
+                                data-ng-bind="$ctrl.instance.flavor.name | uppercase"
+                            ></span>
                         </dd>
-                        <dt class="oui-tile__term"
-                            data-translate="pci_projects_project_instances_instance_ram_label">
-                        </dt>
+                        <dt
+                            class="oui-tile__term"
+                            data-translate="pci_projects_project_instances_instance_ram_label"
+                        ></dt>
                         <dd class="oui-tile__description">
-                            <span data-ng-bind="$ctrl.instance.flavor.ram * 1000 * 1000 | cucBytes"></span>
+                            <span
+                                data-ng-bind="$ctrl.instance.flavor.ram * 1000 * 1000 | cucBytes"
+                            ></span>
                         </dd>
                         <dt class="oui-tile__term">
-                            <span data-translate="pci_projects_project_instances_instance_cpu_label"></span>
+                            <span
+                                data-translate="pci_projects_project_instances_instance_cpu_label"
+                            ></span>
                         </dt>
                         <dd class="oui-tile__description">
-                            <span data-translate="pci_projects_project_instances_instance_cpu_value"
-                                data-translate-values="{ num : $ctrl.instance.flavor.vcpus }"></span>
+                            <span
+                                data-translate="pci_projects_project_instances_instance_cpu_value"
+                                data-translate-values="{ num : $ctrl.instance.flavor.vcpus }"
+                            ></span>
                         </dd>
-                        <dt class="oui-tile__term"
-                            data-translate="pci_projects_project_instances_instance_storage_label">
-                        </dt>
+                        <dt
+                            class="oui-tile__term"
+                            data-translate="pci_projects_project_instances_instance_storage_label"
+                        ></dt>
                         <dd class="oui-tile__description">
-                            <span data-ng-bind="$ctrl.instance.flavor.disk * 1024 * 1024 * 1024 | cucBytes:2:'true'"></span>
+                            <span
+                                data-ng-bind="$ctrl.instance.flavor.disk * 1024 * 1024 * 1024 | cucBytes:2:'true'"
+                            ></span>
                         </dd>
-                        <dt class="oui-tile__term"
-                            data-translate="pci_projects_project_instances_instance_bandwidth_label">
-                        </dt>
+                        <dt
+                            class="oui-tile__term"
+                            data-translate="pci_projects_project_instances_instance_bandwidth_label"
+                        ></dt>
                         <dd class="oui-tile__description">
-                            <span data-translate="pci_projects_project_instances_instance_bandwidth_value"
-                                data-translate-values="{ bandwidth : $ctrl.instance.flavor.outboundBandwidth }"></span>
+                            <span
+                                data-translate="pci_projects_project_instances_instance_bandwidth_value"
+                                data-translate-values="{ bandwidth : $ctrl.instance.flavor.outboundBandwidth }"
+                            ></span>
                         </dd>
                     </dl>
                 </div>
 
-                <oui-tile-definition data-term="{{:: 'pci_projects_project_instances_instance_price_label' | translate }}">
+                <oui-tile-definition
+                    data-term="{{:: 'pci_projects_project_instances_instance_price_label' | translate }}"
+                >
                     <oui-tile-description>
-                        <span data-ng-if="$ctrl.instance.isMonthlyBillingActivated()"
+                        <span
+                            data-ng-if="$ctrl.instance.isMonthlyBillingActivated()"
                             data-translate="pci_projects_project_instances_instance_price_month_value"
-                            data-translate-values="{ price : $ctrl.instancePrice.price.text }"></span>
-                        <span data-ng-if="!$ctrl.instance.isMonthlyBillingActivated()"
+                            data-translate-values="{ price : $ctrl.instancePrice.price.text }"
+                        ></span>
+                        <span
+                            data-ng-if="!$ctrl.instance.isMonthlyBillingActivated()"
                             data-translate="pci_projects_project_instances_instance_price_hourly_value"
-                            data-translate-values="{ price : $ctrl.instancePrice.price.text }"></span>
+                            data-translate-values="{ price : $ctrl.instancePrice.price.text }"
+                        ></span>
                     </oui-tile-description>
 
-                    <oui-action-menu data-compact data-align="end"
-                        data-ng-if="!$ctrl.instance.isMonthlyBillingActivated()">
-                        <oui-action-menu-item text="{{:: 'pci_projects_project_instances_instance_price_action_activeMonthlyBilling_label' | translate }}"
-                            data-on-click="$ctrl.enableMonthlyBillingInstance()">
+                    <oui-action-menu
+                        data-compact
+                        data-align="end"
+                        data-ng-if="!$ctrl.instance.isMonthlyBillingActivated()"
+                    >
+                        <oui-action-menu-item
+                            text="{{:: 'pci_projects_project_instances_instance_price_action_activeMonthlyBilling_label' | translate }}"
+                            data-on-click="$ctrl.enableMonthlyBillingInstance()"
+                        >
                         </oui-action-menu-item>
                     </oui-action-menu>
                 </oui-tile-definition>
 
-                <oui-tile-definition data-term="{{:: 'pci_projects_project_instances_instance_volumes_label' | translate }}">
+                <oui-tile-definition
+                    data-term="{{:: 'pci_projects_project_instances_instance_volumes_label' | translate }}"
+                >
                     <oui-tile-description
                         data-ng-if="$ctrl.instance.volumes.length > 0"
-                        data-ng-repeat="volume in $ctrl.instance.volumes track by volume.id">
+                        data-ng-repeat="volume in $ctrl.instance.volumes track by volume.id"
+                    >
                         <span data-ng-bind="volume.name"></span>
-                        <span data-ng-bind="volume.size * 1024 * 1024 * 1024 | cucBytes:2:'true'"></span>
+                        <span
+                            data-ng-bind="volume.size * 1024 * 1024 * 1024 | cucBytes:2:'true'"
+                        ></span>
                     </oui-tile-description>
                     <oui-tile-description
-                        data-ng-if="$ctrl.instance.volumes.length === 0">
+                        data-ng-if="$ctrl.instance.volumes.length === 0"
+                    >
                         <span>-</span>
                     </oui-tile-description>
 
                     <oui-action-menu data-compact data-align="end">
-                        <oui-action-menu-item text="{{:: 'pci_projects_project_instances_instance_volumes_action_manage_label' | translate }}"
-                            data-on-click="$ctrl.goToBlockStorages()">
+                        <oui-action-menu-item
+                            text="{{:: 'pci_projects_project_instances_instance_volumes_action_manage_label' | translate }}"
+                            data-on-click="$ctrl.goToBlockStorages()"
+                        >
                         </oui-action-menu-item>
-                        <oui-action-menu-item data-text="{{:: 'pci_projects_project_instances_instance_volumes_action_attach_label' | translate }}"
+                        <oui-action-menu-item
+                            data-text="{{:: 'pci_projects_project_instances_instance_volumes_action_attach_label' | translate }}"
                             data-disabled="!$ctrl.instance.canAttachVolume()"
-                            data-on-click="$ctrl.attachVolume()">
+                            data-on-click="$ctrl.attachVolume()"
+                        >
                         </oui-action-menu-item>
                     </oui-action-menu>
                 </oui-tile-definition>
-                <oui-tile-definition data-term="{{:: 'pci_projects_project_instances_instance_openstack_id_label' | translate }}">
+                <oui-tile-definition
+                    data-term="{{:: 'pci_projects_project_instances_instance_openstack_id_label' | translate }}"
+                >
                     <oui-tile-description>
                         <span data-ng-bind="$ctrl.instance.id"></span>
                     </oui-tile-description>
                 </oui-tile-definition>
-                <oui-tile-definition data-term="{{:: 'pci_projects_project_instances_instance_image_label' | translate }}">
+                <oui-tile-definition
+                    data-term="{{:: 'pci_projects_project_instances_instance_image_label' | translate }}"
+                >
                     <oui-tile-description>
-                        <span data-ng-bind="$ctrl.instance.image.name || '-'"></span>
+                        <span
+                            data-ng-bind="$ctrl.instance.image.name || '-'"
+                        ></span>
                     </oui-tile-description>
 
-                    <oui-action-menu data-compact data-align="end"
-                        data-ng-if="$ctrl.instance.isApplicationImage()">
-                        <oui-action-menu-item text="{{:: 'pci_projects_project_instances_instance_image_action_application_access_label' | translate }}"
-                            data-on-click="$ctrl.applicationAccess()">
+                    <oui-action-menu
+                        data-compact
+                        data-align="end"
+                        data-ng-if="$ctrl.instance.isApplicationImage()"
+                    >
+                        <oui-action-menu-item
+                            text="{{:: 'pci_projects_project_instances_instance_image_action_application_access_label' | translate }}"
+                            data-on-click="$ctrl.applicationAccess()"
+                        >
                         </oui-action-menu-item>
                     </oui-action-menu>
                 </oui-tile-definition>
@@ -191,96 +292,183 @@
         </div>
 
         <div class="col-md-4">
-            <oui-tile data-heading="{{:: 'pci_projects_project_instances_instance_networks_title' | translate }}"
-                data-loading="$ctrl.loading.instance">
+            <oui-tile
+                data-heading="{{:: 'pci_projects_project_instances_instance_networks_title' | translate }}"
+                data-loading="$ctrl.loading.instance"
+            >
                 <div class="oui-tile__item">
                     <dl class="oui-tile__definition">
-                        <dt class="oui-tile__term" data-translate="pci_projects_project_instances_instance_ipv4_label"></dt>
+                        <dt
+                            class="oui-tile__term"
+                            data-translate="pci_projects_project_instances_instance_ipv4_label"
+                        ></dt>
                         <dd class="oui-tile__description">
-                            <oui-clipboard data-ng-if="$ctrl.instance.hasPublicIpV4()" data-model="$ctrl.instance.publicIpV4[0].ip|| ''"></oui-clipboard>
-                            <span data-ng-if="!$ctrl.instance.hasPublicIpV4()">-</span>
+                            <oui-clipboard
+                                data-ng-if="$ctrl.instance.hasPublicIpV4()"
+                                data-model="$ctrl.instance.publicIpV4[0].ip|| ''"
+                            ></oui-clipboard>
+                            <span data-ng-if="!$ctrl.instance.hasPublicIpV4()"
+                                >-</span
+                            >
                         </dd>
-                        <dt class="oui-tile__term" data-translate="pci_projects_project_instances_instance_reverse_ip_label"></dt>
+                        <dt
+                            class="oui-tile__term"
+                            data-translate="pci_projects_project_instances_instance_reverse_ip_label"
+                        ></dt>
                         <dd class="oui-tile__description">
-                            <oui-clipboard data-ng-if="$ctrl.instance.ipReverse" data-model="$ctrl.instance.ipReverse.reverse"></oui-clipboard>
-                            <span data-ng-if="!$ctrl.instance.ipReverse">-</span>
+                            <oui-clipboard
+                                data-ng-if="$ctrl.instance.ipReverse"
+                                data-model="$ctrl.instance.ipReverse.reverse"
+                            ></oui-clipboard>
+                            <span data-ng-if="!$ctrl.instance.ipReverse"
+                                >-</span
+                            >
                         </dd>
                     </dl>
                     <div class="oui-tile__actions">
                         <oui-action-menu data-compact data-align="end">
-                            <oui-action-menu-item data-href="{{:: $ctrl.reverseDnsLink }}" data-external>
-                                <span data-translate="pci_projects_project_instances_instance_ip_reverse_change_label"></span>
+                            <oui-action-menu-item
+                                data-href="{{:: $ctrl.reverseDnsLink }}"
+                                data-external
+                            >
+                                <span
+                                    data-translate="pci_projects_project_instances_instance_ip_reverse_change_label"
+                                ></span>
                             </oui-action-menu-item>
-                            <oui-action-menu-item data-href="{{:: $ctrl.ipMitigationLink }}" data-external>
-                                <span data-translate="pci_projects_project_instances_instance_ip_mitigation_label"></span>
+                            <oui-action-menu-item
+                                data-href="{{:: $ctrl.ipMitigationLink }}"
+                                data-external
+                            >
+                                <span
+                                    data-translate="pci_projects_project_instances_instance_ip_mitigation_label"
+                                ></span>
                             </oui-action-menu-item>
-                            <oui-action-menu-item data-href="{{:: $ctrl.firewallLink }}" data-external>
-                                <span data-translate="pci_projects_project_instances_instance_ip_firewall_label"></span>
+                            <oui-action-menu-item
+                                data-href="{{:: $ctrl.firewallLink }}"
+                                data-external
+                            >
+                                <span
+                                    data-translate="pci_projects_project_instances_instance_ip_firewall_label"
+                                ></span>
                             </oui-action-menu-item>
                         </oui-action-menu>
                     </div>
                 </div>
                 <div class="oui-tile__item">
                     <dl class="oui-tile__definition">
-                        <dt class="oui-tile__term" data-translate="pci_projects_project_instances_instance_ipv6_label"></dt>
+                        <dt
+                            class="oui-tile__term"
+                            data-translate="pci_projects_project_instances_instance_ipv6_label"
+                        ></dt>
                         <dd class="oui-tile__description">
-                            <oui-clipboard data-ng-if="$ctrl.instance.hasPublicIpV6()" data-model="$ctrl.instance.publicIpV6[0].ip|| ''"></oui-clipboard>
-                            <span data-ng-if="!$ctrl.instance.hasPublicIpV6()">-</span>
+                            <oui-clipboard
+                                data-ng-if="$ctrl.instance.hasPublicIpV6()"
+                                data-model="$ctrl.instance.publicIpV6[0].ip|| ''"
+                            ></oui-clipboard>
+                            <span data-ng-if="!$ctrl.instance.hasPublicIpV6()"
+                                >-</span
+                            >
                         </dd>
-                        <dt class="oui-tile__term" data-translate="pci_projects_project_instances_instance_gateway"></dt>
+                        <dt
+                            class="oui-tile__term"
+                            data-translate="pci_projects_project_instances_instance_gateway"
+                        ></dt>
                         <dd class="oui-tile__description">
-                            <oui-clipboard data-ng-if="$ctrl.instance.hasPublicIpV6()"
-                                           data-model="$ctrl.instance.publicIpV6[0].gatewayIp"></oui-clipboard>
-                            <span data-ng-if="!$ctrl.instance.publicIpV6[0].gatewayIp">-</span>
+                            <oui-clipboard
+                                data-ng-if="$ctrl.instance.hasPublicIpV6()"
+                                data-model="$ctrl.instance.publicIpV6[0].gatewayIp"
+                            ></oui-clipboard>
+                            <span
+                                data-ng-if="!$ctrl.instance.publicIpV6[0].gatewayIp"
+                                >-</span
+                            >
                         </dd>
-                        <dt class="oui-tile__term" data-translate="pci_projects_project_instances_instance_reverse_ip_label"></dt>
+                        <dt
+                            class="oui-tile__term"
+                            data-translate="pci_projects_project_instances_instance_reverse_ip_label"
+                        ></dt>
                         <dd class="oui-tile__description">
-                            <oui-clipboard data-ng-if="$ctrl.instance.ipReverse" data-model="$ctrl.instance.ipReverse.reverse"></oui-clipboard>
-                            <span data-ng-if="!$ctrl.instance.ipReverse">-</span>
+                            <oui-clipboard
+                                data-ng-if="$ctrl.instance.ipReverse"
+                                data-model="$ctrl.instance.ipReverse.reverse"
+                            ></oui-clipboard>
+                            <span data-ng-if="!$ctrl.instance.ipReverse"
+                                >-</span
+                            >
                         </dd>
                     </dl>
                     <div class="oui-tile__actions">
                         <oui-action-menu data-compact data-align="end">
-                            <oui-action-menu-item data-href="{{:: $ctrl.reverseDnsLink }}" data-external>
-                                <span data-translate="pci_projects_project_instances_instance_ip_reverse_change_label"></span>
+                            <oui-action-menu-item
+                                data-href="{{:: $ctrl.reverseDnsLink }}"
+                                data-external
+                            >
+                                <span
+                                    data-translate="pci_projects_project_instances_instance_ip_reverse_change_label"
+                                ></span>
                             </oui-action-menu-item>
-                            <oui-action-menu-item data-href="{{:: $ctrl.ipMitigationLink }}" data-external>
-                                <span data-translate="pci_projects_project_instances_instance_ip_mitigation_label"></span>
+                            <oui-action-menu-item
+                                data-href="{{:: $ctrl.ipMitigationLink }}"
+                                data-external
+                            >
+                                <span
+                                    data-translate="pci_projects_project_instances_instance_ip_mitigation_label"
+                                ></span>
                             </oui-action-menu-item>
-                            <oui-action-menu-item data-href="{{:: $ctrl.firewallLink }}" data-external>
-                                <span data-translate="pci_projects_project_instances_instance_ip_firewall_label"></span>
+                            <oui-action-menu-item
+                                data-href="{{:: $ctrl.firewallLink }}"
+                                data-external
+                            >
+                                <span
+                                    data-translate="pci_projects_project_instances_instance_ip_firewall_label"
+                                ></span>
                             </oui-action-menu-item>
                         </oui-action-menu>
                     </div>
                 </div>
                 <oui-tile-definition
-                    data-term="{{:: 'pci_projects_project_instances_instance_private_networks_label' | translate }}">
+                    data-term="{{:: 'pci_projects_project_instances_instance_private_networks_label' | translate }}"
+                >
                     <oui-tile-description
-                        data-ng-if="$ctrl.instance.privateNetworks.length === 0">
+                        data-ng-if="$ctrl.instance.privateNetworks.length === 0"
+                    >
                         <span>-</span>
                     </oui-tile-description>
                     <oui-tile-description
                         data-ng-if="$ctrl.instance.privateNetworks.length > 0"
-                        data-ng-repeat="network in $ctrl.instance.privateNetworks track by network.id">
+                        data-ng-repeat="network in $ctrl.instance.privateNetworks track by network.id"
+                    >
                         <span data-ng-bind="network.name"></span>
                     </oui-tile-description>
                     <oui-action-menu data-compact data-align="end">
-                        <oui-action-menu-item text="{{:: 'pci_projects_project_instances_instance_private_networks_action_manage_label' | translate }}"
-                            data-on-click="$ctrl.gotToNetworks()">
+                        <oui-action-menu-item
+                            text="{{:: 'pci_projects_project_instances_instance_private_networks_action_manage_label' | translate }}"
+                            data-on-click="$ctrl.gotToNetworks()"
+                        >
                         </oui-action-menu-item>
-                        <oui-action-menu-item text="{{:: 'pci_projects_project_instances_instance_private_networks_action_attach_label' | translate }}"
-                            data-on-click="$ctrl.attachPrivateNetwork()">
+                        <oui-action-menu-item
+                            text="{{:: 'pci_projects_project_instances_instance_private_networks_action_attach_label' | translate }}"
+                            data-on-click="$ctrl.attachPrivateNetwork()"
+                        >
                         </oui-action-menu-item>
                     </oui-action-menu>
                 </oui-tile-definition>
-                <oui-tile-definition data-term="{{:: 'pci_projects_project_instances_instance_connection_info_label' | translate }}">
+                <oui-tile-definition
+                    data-term="{{:: 'pci_projects_project_instances_instance_connection_info_label' | translate }}"
+                >
                     <oui-tile-description>
-                        <oui-clipboard data-model="$ctrl.instance.connectionInfos"></oui-clipboard>
+                        <oui-clipboard
+                            data-model="$ctrl.instance.connectionInfos"
+                        ></oui-clipboard>
                     </oui-tile-description>
                 </oui-tile-definition>
-                <oui-tile-definition data-term="{{:: 'pci_projects_project_instances_instance_ssh_key_label' | translate }}">
+                <oui-tile-definition
+                    data-term="{{:: 'pci_projects_project_instances_instance_ssh_key_label' | translate }}"
+                >
                     <oui-tile-description>
-                        <span data-ng-bind="$ctrl.instance.sshKey.name || '-'"></span>
+                        <span
+                            data-ng-bind="$ctrl.instance.sshKey.name || '-'"
+                        ></span>
                     </oui-tile-description>
                 </oui-tile-definition>
             </oui-tile>

@@ -7,9 +7,11 @@ import { PAYMENT_MEAN_TYPE_ENUM } from './payment-mean.constants';
 
 export default class OvhPaymentMeanCreditCard extends OvhPaymentMean {
   constructor(options = {}) {
-    super(merge(options, {
-      meanType: PAYMENT_MEAN_TYPE_ENUM.CREDIT_CARD,
-    }));
+    super(
+      merge(options, {
+        meanType: PAYMENT_MEAN_TYPE_ENUM.CREDIT_CARD,
+      }),
+    );
 
     this.number = options.number;
     this.expirationDate = options.expirationDate;
@@ -18,11 +20,13 @@ export default class OvhPaymentMeanCreditCard extends OvhPaymentMean {
   }
 
   toPaymentMethod() {
-    return new OvhPaymentMethod(merge(super.toPaymentMethod(), {
-      label: this.number,
-      expirationDate: this.expirationDate,
-      paymentSubType: snakeCase(this.type).toUpperCase(),
-      original: this,
-    }));
+    return new OvhPaymentMethod(
+      merge(super.toPaymentMethod(), {
+        label: this.number,
+        expirationDate: this.expirationDate,
+        paymentSubType: snakeCase(this.type).toUpperCase(),
+        original: this,
+      }),
+    );
   }
 }

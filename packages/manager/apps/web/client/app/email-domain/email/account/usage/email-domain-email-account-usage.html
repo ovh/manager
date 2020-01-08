@@ -1,26 +1,32 @@
 <div data-ng-controller="EmailsUpdateUsageAccountCtrl as ctrl">
-    <div data-wizard
-         data-wizard-on-cancel="resetAction"
-         data-wizard-on-finish="updateUsageAccount"
-         data-wizard-title="'email_tab_modal_update_usage_title' | translate">
-
-        <div data-wizard-step
-             data-wizard-step-valid="ctrl.isUsageRequestValid()">
-
+    <div
+        data-wizard
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="updateUsageAccount"
+        data-wizard-title="'email_tab_modal_update_usage_title' | translate"
+    >
+        <div
+            data-wizard-step
+            data-wizard-step-valid="ctrl.isUsageRequestValid()"
+        >
             <div class="text-center" data-ng-if="ctrl.loading">
                 <oui-spinner></oui-spinner>
             </div>
 
             <div data-ng-if="!ctrl.loading">
                 <p data-translate="email_tab_modal_update_usage_info"></p>
-                <p class="font-italic"
-                   data-translate="email_tab_modal_update_usage_lastupdate"
-                   data-translate-values="{ t0: (ctrl.lastUpdated.value|date:'medium') }"
-                   data-ng-if="ctrl.lastUpdated.value"></p>
-                <div class="alert alert-warning" role="alert"
-                     data-translate="email_tab_modal_update_usage_alert_updating"
-                     data-ng-if="!ctrl.isCheckAuthorized()">
-                </div>
+                <p
+                    class="font-italic"
+                    data-translate="email_tab_modal_update_usage_lastupdate"
+                    data-translate-values="{ t0: (ctrl.lastUpdated.value|date:'medium') }"
+                    data-ng-if="ctrl.lastUpdated.value"
+                ></p>
+                <div
+                    class="alert alert-warning"
+                    role="alert"
+                    data-translate="email_tab_modal_update_usage_alert_updating"
+                    data-ng-if="!ctrl.isCheckAuthorized()"
+                ></div>
             </div>
         </div>
     </div>

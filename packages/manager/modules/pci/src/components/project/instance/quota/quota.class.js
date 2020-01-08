@@ -14,11 +14,15 @@ export default class InstanceQuota {
   }
 
   getMaxNumberDependingOnInstances() {
-    return this.maxInstances === -1 ? MAX_INSTANCES : this.maxInstances - this.usedInstances;
+    return this.maxInstances === -1
+      ? MAX_INSTANCES
+      : this.maxInstances - this.usedInstances;
   }
 
   getMaxNumberDependingOnRam(ram) {
-    return this.maxRam === -1 ? MAX_INSTANCES : Math.floor((this.maxRam - this.usedRAM) / ram);
+    return this.maxRam === -1
+      ? MAX_INSTANCES
+      : Math.floor((this.maxRam - this.usedRAM) / ram);
   }
 
   getMaxNumberDependingOnCores(vcpus) {

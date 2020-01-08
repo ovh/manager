@@ -1,6 +1,12 @@
 export default class {
   /* @ngInject */
-  constructor($state, $uibModalInstance, publicCloudName, publicCloudId, quotas) {
+  constructor(
+    $state,
+    $uibModalInstance,
+    publicCloudName,
+    publicCloudId,
+    quotas,
+  ) {
     this.$state = $state;
     this.$uibModalInstance = $uibModalInstance;
     this.publicCloudName = publicCloudName;
@@ -14,6 +20,8 @@ export default class {
 
   closeModal() {
     this.$uibModalInstance.close();
-    this.$state.go('pci.projects.project.quota', { projectId: this.publicCloudId });
+    this.$state.go('pci.projects.project.quota', {
+      projectId: this.publicCloudId,
+    });
   }
 }

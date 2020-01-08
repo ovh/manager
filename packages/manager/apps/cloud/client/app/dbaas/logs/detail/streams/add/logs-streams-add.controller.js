@@ -1,6 +1,13 @@
 class LogsStreamsAddCtrl {
-  constructor($q, $state, $stateParams, LogsStreamsService, CucControllerHelper, CucCloudMessage,
-    LogsConstants) {
+  constructor(
+    $q,
+    $state,
+    $stateParams,
+    LogsStreamsService,
+    CucControllerHelper,
+    CucCloudMessage,
+    LogsConstants,
+  ) {
     this.$q = $q;
     this.$state = $state;
     this.$stateParams = $stateParams;
@@ -25,40 +32,52 @@ class LogsStreamsAddCtrl {
    */
   initLoaders() {
     this.options = this.CucControllerHelper.request.getArrayLoader({
-      loaderFunction: () => this.LogsStreamsService.getSubscribedOptions(this.serviceName),
+      loaderFunction: () =>
+        this.LogsStreamsService.getSubscribedOptions(this.serviceName),
     });
     this.options.load();
 
     this.mainOffer = this.CucControllerHelper.request.getArrayLoader({
-      loaderFunction: () => this.LogsStreamsService.getMainOffer(this.serviceName),
+      loaderFunction: () =>
+        this.LogsStreamsService.getMainOffer(this.serviceName),
     });
     this.catalog = this.CucControllerHelper.request.getArrayLoader({
-      loaderFunction: () => this.LogsStreamsService.getOrderCatalog(this.ovhSubsidiary),
+      loaderFunction: () =>
+        this.LogsStreamsService.getOrderCatalog(this.ovhSubsidiary),
     });
     this.accountDetails = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () => this.LogsStreamsService.getAccountDetails(this.serviceName),
+      loaderFunction: () =>
+        this.LogsStreamsService.getAccountDetails(this.serviceName),
     });
 
     this.accountDetails.load().then(() => {
       this.ovhSubsidiary = this.accountDetails.data.me.ovhSubsidiary;
       this.$q.all([this.mainOffer.load(), this.catalog.load()]).then(() => {
-        if (this.mainOffer.data.planCode === this.LogsConstants.basicOffer && !this.isEdit) {
+        if (
+          this.mainOffer.data.planCode === this.LogsConstants.basicOffer &&
+          !this.isEdit
+        ) {
           this.stream.data.webSocketEnabled = false;
         }
-        const selectedCatalog = this.catalog.data.plans
-          .find((plan) => plan.planCode === this.mainOffer.data.planCode);
-        const coldstorage = selectedCatalog.addonsFamily
-          .find((addon) => addon.family === this.LogsConstants.COLDSTORAGE);
-        this.coldStoragePrice.price = coldstorage.addons[0].plan.details.pricings.default[0]
-          .price.text;
+        const selectedCatalog = this.catalog.data.plans.find(
+          (plan) => plan.planCode === this.mainOffer.data.planCode,
+        );
+        const coldstorage = selectedCatalog.addonsFamily.find(
+          (addon) => addon.family === this.LogsConstants.COLDSTORAGE,
+        );
+        this.coldStoragePrice.price =
+          coldstorage.addons[0].plan.details.pricings.default[0].price.text;
       });
     });
 
     if (this.$stateParams.streamId) {
       this.isEdit = true;
       this.stream = this.CucControllerHelper.request.getHashLoader({
-        loaderFunction: () => this.LogsStreamsService
-          .getStream(this.serviceName, this.$stateParams.streamId),
+        loaderFunction: () =>
+          this.LogsStreamsService.getStream(
+            this.serviceName,
+            this.$stateParams.streamId,
+          ),
       });
       this.stream.load();
     } else {
@@ -86,9 +105,10 @@ class LogsStreamsAddCtrl {
     }
     this.CucCloudMessage.flushChildMessage();
     this.saving = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () => this.LogsStreamsService.updateStream(this.serviceName, this.stream.data)
-        .then(() => this.$state.go('dbaas.logs.detail.streams'))
-        .catch(() => this.CucControllerHelper.scrollPageToTop()),
+      loaderFunction: () =>
+        this.LogsStreamsService.updateStream(this.serviceName, this.stream.data)
+          .then(() => this.$state.go('dbaas.logs.detail.streams'))
+          .catch(() => this.CucControllerHelper.scrollPageToTop()),
     });
     return this.saving.load();
   }
@@ -104,12 +124,15 @@ class LogsStreamsAddCtrl {
     }
     this.CucCloudMessage.flushChildMessage();
     this.saving = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () => this.LogsStreamsService.createStream(this.serviceName, this.stream.data)
-        .then(() => this.$state.go('dbaas.logs.detail.streams'))
-        .catch(() => this.CucControllerHelper.scrollPageToTop()),
+      loaderFunction: () =>
+        this.LogsStreamsService.createStream(this.serviceName, this.stream.data)
+          .then(() => this.$state.go('dbaas.logs.detail.streams'))
+          .catch(() => this.CucControllerHelper.scrollPageToTop()),
     });
     return this.saving.load();
   }
 }
 
-angular.module('managerApp').controller('LogsStreamsAddCtrl', LogsStreamsAddCtrl);
+angular
+  .module('managerApp')
+  .controller('LogsStreamsAddCtrl', LogsStreamsAddCtrl);

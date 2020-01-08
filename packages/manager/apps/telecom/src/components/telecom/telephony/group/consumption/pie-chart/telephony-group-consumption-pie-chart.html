@@ -1,10 +1,15 @@
 <div class="pie__legend">
     <ul data-ng-if="!PieCtrl.loading.translations">
         <li data-ng-repeat="set in PieCtrl.dataset">
-            <i class="pie__legend__badge" aria-hidden="true" data-role="button"
-                data-ng-class="'pie__legend__badge--' + set.label">
+            <i
+                class="pie__legend__badge"
+                aria-hidden="true"
+                data-role="button"
+                data-ng-class="'pie__legend__badge--' + set.label"
+            >
             </i>
-            <span class="pie__legend__label"
+            <span
+                class="pie__legend__label"
                 data-ng-init="
                     label  = 'telephony_group_consumption_pie_chart_' + set.label + '_label';
                     labels = 'telephony_group_consumption_pie_chart_' + set.label + '_labels';
@@ -15,13 +20,20 @@
                     '0'     : '{{ label  | translate }}',
                     '1'     : '{{ label  | translate }}',
                     'other' : '{{ labels | translate }}'
-                }"></span>
+                }"
+            ></span>
             <span class="pie__legend__value" data-ng-bind="set.count"></span>
         </li>
 
         <li class="pie__legend__total">
-            <span class="pie__legend__label" data-translate="telephony_group_consumption_pie_chart_total_label"></span>
-            <span class="pie__legend__value" data-ng-bind="PieCtrl.getTotal();"></span>
+            <span
+                class="pie__legend__label"
+                data-translate="telephony_group_consumption_pie_chart_total_label"
+            ></span>
+            <span
+                class="pie__legend__value"
+                data-ng-bind="PieCtrl.getTotal();"
+            ></span>
         </li>
     </ul>
 

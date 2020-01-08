@@ -1,14 +1,19 @@
 <div data-ng-controller="HostingDatabaseCheckQuotaCtrl as ctrl">
-    <div data-wizard
-         data-wizard-on-cancel="resetAction"
-         data-wizard-on-finish="checkQuota"
-         data-wizard-title="'hosting_tab_DATABASES_configuration_check_quota_title' | translate">
-
+    <div
+        data-wizard
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="checkQuota"
+        data-wizard-title="'hosting_tab_DATABASES_configuration_check_quota_title' | translate"
+    >
         <div data-wizard-step>
-            <p data-ng-bind-html="'hosting_tab_DATABASES_configuration_check_quota_question' | translate: { t0: '<strong>' + ctrl.bddName + '</strong>' }"></p>
-            <div class="alert alert-info" role="alert"
-                 data-translate="hosting_tab_DATABASES_configuration_check_quota_information">
-            </div>
+            <p
+                data-ng-bind-html="'hosting_tab_DATABASES_configuration_check_quota_question' | translate: { t0: '<strong>' + ctrl.bddName + '</strong>' }"
+            ></p>
+            <div
+                class="alert alert-info"
+                role="alert"
+                data-translate="hosting_tab_DATABASES_configuration_check_quota_information"
+            ></div>
         </div>
     </div>
 </div>

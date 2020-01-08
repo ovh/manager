@@ -10,7 +10,8 @@ angular.module('App').config(($stateProvider) => {
         'Navigator',
         '$rootScope',
         (Navigator, $rootScope) => {
-          $rootScope.currentSectionInformation = 'website'; // eslint-disable-line no-param-reassign
+          // eslint-disable-next-line no-param-reassign
+          $rootScope.currentSectionInformation = 'website';
 
           return Navigator.setNavigationInformation({
             leftMenuVisible: true,
@@ -20,7 +21,10 @@ angular.module('App').config(($stateProvider) => {
       ],
       currentSection: () => 'website',
     },
-    translations: { value: ['../domain', '../hosting', '../website'], format: 'json' },
+    translations: {
+      value: ['../domain', '../hosting', '../website'],
+      format: 'json',
+    },
   });
 
   $stateProvider.state('app.website-success', {
@@ -34,7 +38,8 @@ angular.module('App').config(($stateProvider) => {
         'Navigator',
         '$rootScope',
         (Navigator, $rootScope) => {
-          $rootScope.currentSectionInformation = 'website'; // eslint-disable-line no-param-reassign
+          // eslint-disable-next-line no-param-reassign
+          $rootScope.currentSectionInformation = 'website';
 
           return Navigator.setNavigationInformation({
             leftMenuVisible: true,
@@ -44,6 +49,9 @@ angular.module('App').config(($stateProvider) => {
       ],
       currentSection: () => 'website',
     },
-    translations: { value: ['../domain', '../hosting', '../website'], format: 'json' },
+    translations: {
+      value: ['../domain', '../hosting', '../website'],
+      format: 'json',
+    },
   });
 });

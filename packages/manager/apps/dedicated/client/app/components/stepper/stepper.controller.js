@@ -8,11 +8,7 @@ import { NAVIGATION } from './step/step.constants';
 
 export default class {
   /* @ngInject */
-  constructor(
-    $state,
-    $stateRegistry,
-    $transitions,
-  ) {
+  constructor($state, $stateRegistry, $transitions) {
     this.$state = $state;
     this.$stateRegistry = $stateRegistry;
     this.$transitions = $transitions;
@@ -20,15 +16,19 @@ export default class {
 
   $onInit() {
     this.stepCollection = new StepCollection(this.steps);
-    this.navigation = new Navigation(this.$state, this.$stateRegistry, this.stepCollection);
-    this.transitionManagement = new TransitionManagement(this.$state, this.$transitions);
+    this.navigation = new Navigation(
+      this.$state,
+      this.$stateRegistry,
+      this.stepCollection,
+    );
+    this.transitionManagement = new TransitionManagement(
+      this.$state,
+      this.$transitions,
+    );
 
     this.bindings = {
       header: {
-        steps: filter(
-          this.steps,
-          (step) => step.header.isVisible,
-        ),
+        steps: filter(this.steps, (step) => step.header.isVisible),
       },
     };
 

@@ -8,7 +8,8 @@ export default /* @ngInject */ ($stateProvider) => {
     controller,
     controllerAs: '$ctrl',
     resolve: {
-      breadcrumb: /* @ngInject */ ($translate) => $translate.instant('cpb_project_management_credit_vouchers'),
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('cpb_project_management_credit_vouchers'),
     },
   });
 };

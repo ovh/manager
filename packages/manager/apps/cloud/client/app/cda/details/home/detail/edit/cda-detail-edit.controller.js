@@ -1,5 +1,12 @@
 class CdaDetailEditCtrl {
-  constructor($uibModalInstance, $translate, $stateParams, CucCloudMessage, CdaService, items) {
+  constructor(
+    $uibModalInstance,
+    $translate,
+    $stateParams,
+    CucCloudMessage,
+    CdaService,
+    items,
+  ) {
     this.$uibModalInstance = $uibModalInstance;
     this.$translate = $translate;
     this.serviceName = $stateParams.serviceName;
@@ -41,16 +48,28 @@ class CdaDetailEditCtrl {
   editCluster() {
     this.CucCloudMessage.flushMessages(this.messageContainerName);
     this.saving = true;
-    return this.CdaService
-      .updateDetails(this.serviceName, this.model.label, this.model.crushTunable)
+    return this.CdaService.updateDetails(
+      this.serviceName,
+      this.model.label,
+      this.model.crushTunable,
+    )
       .then(() => {
-        this.CucCloudMessage.success(this.$translate.instant('cda_detail_edit_success'));
+        this.CucCloudMessage.success(
+          this.$translate.instant('cda_detail_edit_success'),
+        );
         this.$uibModalInstance.close();
       })
       .catch((error) => {
-        this.CucCloudMessage.error(`${this.$translate.instant('ceph_common_error')} ${(error.data && error.data.message) || ''}`, this.messageContainerName);
+        this.CucCloudMessage.error(
+          `${this.$translate.instant('ceph_common_error')} ${(error.data &&
+            error.data.message) ||
+            ''}`,
+          this.messageContainerName,
+        );
       })
-      .finally(() => { this.saving = false; });
+      .finally(() => {
+        this.saving = false;
+      });
   }
 
   closeModal() {

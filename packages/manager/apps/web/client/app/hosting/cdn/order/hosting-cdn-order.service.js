@@ -6,12 +6,11 @@ export default class HostingCdnOrderService {
     this.OrderService = OrderService;
   }
 
-  async getCatalogAddon(
-    ovhSubsidiary,
-    serviceOption,
-  ) {
-    const { addons } = await this.OrderService
-      .getProductPublicCatalog(ovhSubsidiary, 'webHosting');
+  async getCatalogAddon(ovhSubsidiary, serviceOption) {
+    const { addons } = await this.OrderService.getProductPublicCatalog(
+      ovhSubsidiary,
+      'webHosting',
+    );
 
     const addonPlanCode = serviceOption.planCode;
     const addon = find(addons, { planCode: addonPlanCode });
@@ -24,8 +23,10 @@ export default class HostingCdnOrderService {
   }
 
   async getServiceOption(serviceName) {
-    const serviceOptions = await this.OrderService
-      .getProductServiceOptions('webHosting', serviceName);
+    const serviceOptions = await this.OrderService.getProductServiceOptions(
+      'webHosting',
+      serviceName,
+    );
 
     const serviceOption = find(serviceOptions, { family: 'cdn' });
 
@@ -37,38 +38,38 @@ export default class HostingCdnOrderService {
   }
 
   async prepareOrderCart(ovhSubsidiary) {
-    const { cartId } = await this.OrderService
-      .createNewCart(ovhSubsidiary);
+    const { cartId } = await this.OrderService.createNewCart(ovhSubsidiary);
 
-    await this.OrderService
-      .assignCart(cartId);
+    await this.OrderService.assignCart(cartId);
 
     return cartId;
   }
 
-  async addItemToCart(
-    cartId,
-    serviceName,
-    serviceOption,
-  ) {
+  async addItemToCart(cartId, serviceName, serviceOption) {
     const [price] = serviceOption.prices; // Will only have one price option
-    const { itemId } = await this.OrderService
-      .addProductServiceOptionToCart(cartId, 'webHosting', serviceName, {
+    const { itemId } = await this.OrderService.addProductServiceOptionToCart(
+      cartId,
+      'webHosting',
+      serviceName,
+      {
         duration: price.duration,
         planCode: serviceOption.planCode,
         pricingMode: price.pricingMode,
         quantity: price.minimumQuantity,
-      });
+      },
+    );
 
-    await this.OrderService.addConfigurationItem(cartId, itemId, 'legacy_domain', serviceName);
+    await this.OrderService.addConfigurationItem(
+      cartId,
+      itemId,
+      'legacy_domain',
+      serviceName,
+    );
 
     return this.OrderService.getCheckoutInformations(cartId);
   }
 
-  checkoutOrderCart(
-    autoPayWithPreferredPaymentMethod,
-    cartId,
-  ) {
+  checkoutOrderCart(autoPayWithPreferredPaymentMethod, cartId) {
     return this.OrderService.checkoutCart(cartId, {
       autoPayWithPreferredPaymentMethod,
     });

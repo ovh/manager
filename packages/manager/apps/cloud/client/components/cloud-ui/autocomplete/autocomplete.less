@@ -50,7 +50,10 @@
     &__description {
       color: @autocomplete-group-description-color;
       font-style: italic;
-      padding: @autocomplete-list-item-padding-vertical 0 @autocomplete-list-item-padding-vertical @autocomplete-group-item-padding;
+      padding:
+        @autocomplete-list-item-padding-vertical 0
+        @autocomplete-list-item-padding-vertical
+        @autocomplete-group-item-padding;
       display: block;
     }
 
@@ -89,11 +92,16 @@
       }
 
       &-first-level {
-        padding: @autocomplete-list-item-padding-vertical 0 @autocomplete-list-item-padding-vertical @autocomplete-list-item-padding-left;
+        padding:
+          @autocomplete-list-item-padding-vertical 0
+          @autocomplete-list-item-padding-vertical
+          @autocomplete-list-item-padding-left;
       }
 
       &-second-level {
-        padding-left: @autocomplete-group-item-padding + @autocomplete-list-item-padding-left;
+        padding-left:
+          @autocomplete-group-item-padding +
+          @autocomplete-list-item-padding-left;
       }
 
       &:hover:not(&-highlighted) {

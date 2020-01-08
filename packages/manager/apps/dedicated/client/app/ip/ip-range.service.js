@@ -45,7 +45,9 @@ angular.module('Module.ip.services').service('IpRange', function IpRange() {
       if (num.length < length) {
         num = getStrCopy(padding, length - num.length) + num;
       } else {
-        throw new Error(`convertDecToBase(): num(${num}).length > length(${length}) too long.`);
+        throw new Error(
+          `convertDecToBase(): num(${num}).length > length(${length}) too long.`,
+        );
       }
     }
     return num;

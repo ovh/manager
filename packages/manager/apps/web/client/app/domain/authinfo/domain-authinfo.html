@@ -1,23 +1,28 @@
 <div data-ng-controller="DomainAuthInfoCtrl as ctrl">
-    <div data-wizard
-         data-wizard-confirm-button-text="'domain_close' | translate"
-         data-wizard-hide-cancel-button="true"
-         data-wizard-on-cancel="resetAction"
-         data-wizard-on-finish="resetAction"
-         data-wizard-title="'domain_dashboard_authinfo_code' | translate">
-
+    <div
+        data-wizard
+        data-wizard-confirm-button-text="'domain_close' | translate"
+        data-wizard-hide-cancel-button="true"
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="resetAction"
+        data-wizard-title="'domain_dashboard_authinfo_code' | translate"
+    >
         <div data-wizard-step>
-
             <div class="text-center" data-ng-if="ctrl.loading">
                 <oui-spinner></oui-spinner>
             </div>
 
             <div data-ng-if="!ctrl.loading.init && ctrl.domain.authinfo">
-                <div class="alert alert-info" role="alert"
-                     data-ng-bind-html="'domain_dashboard_show_authinfo_description' | translate: { t0: ctrl.domain.displayName }">
-                </div>
+                <div
+                    class="alert alert-info"
+                    role="alert"
+                    data-ng-bind-html="'domain_dashboard_show_authinfo_description' | translate: { t0: ctrl.domain.displayName }"
+                ></div>
                 <p class="text-center mt-5">
-                    <span data-translate="domain_dashboard_authinfo_code"></span> :
+                    <span
+                        data-translate="domain_dashboard_authinfo_code"
+                    ></span>
+                    :
                     <strong data-ng-bind="::ctrl.domain.authinfo"></strong>
                 </p>
             </div>

@@ -36,15 +36,19 @@ export default /* @ngInject */ ($timeout, $http, $q) => {
     getDeltaTime() {
       if (deltaTime !== null) {
         return $q.when(deltaTime);
-      } if (pendingDeltaTime) {
+      }
+      if (pendingDeltaTime) {
         return pendingDeltaTime;
       }
-      pendingDeltaTime = $http.get('/auth/time').then((result) => {
-        deltaTime = moment.unix(result.data).diff(moment(), 'seconds');
-        return deltaTime;
-      }).finally(() => {
-        pendingDeltaTime = null;
-      });
+      pendingDeltaTime = $http
+        .get('/auth/time')
+        .then((result) => {
+          deltaTime = moment.unix(result.data).diff(moment(), 'seconds');
+          return deltaTime;
+        })
+        .finally(() => {
+          pendingDeltaTime = null;
+        });
       return pendingDeltaTime;
     },
   };

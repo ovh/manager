@@ -34,19 +34,17 @@ export const ServicePackService = class ServicePack {
   }
 
   getNamesForService(serviceName) {
-    return this
-      .OvhApiDedicatedCloud
-      .ServicePacks()
+    return this.OvhApiDedicatedCloud.ServicePacks()
       .v6()
       .query({ serviceName }).$promise;
   }
 
   getServicePacksForDashboardOptions(serviceName, subsidiary) {
-    return this
-      .getServicePacks(serviceName, subsidiary)
-      .then((servicePacks) => servicePacks
-        .map((servicePack) => ServicePack
-          .turnRawServicePackToServicePackForDashboard(servicePack)));
+    return this.getServicePacks(serviceName, subsidiary).then((servicePacks) =>
+      servicePacks.map((servicePack) =>
+        ServicePack.turnRawServicePackToServicePackForDashboard(servicePack),
+      ),
+    );
   }
 
   static turnRawServicePackToServicePackForDashboard(servicePack) {
@@ -65,49 +63,52 @@ export const ServicePackService = class ServicePack {
   }
 
   static keepOnlyBasicOptions(options) {
-    return filter(
-      options,
-      (option) => isEqual(option.type, OPTION_TYPES.basic),
+    return filter(options, (option) =>
+      isEqual(option.type, OPTION_TYPES.basic),
     );
   }
 
   static keepOnlyCertification(options) {
-    const matchingCertification = find(
-      options,
-      (option) => isEqual(option.type, OPTION_TYPES.certification),
+    const matchingCertification = find(options, (option) =>
+      isEqual(option.type, OPTION_TYPES.certification),
     );
 
     return matchingCertification
       ? {
-        ...matchingCertification,
-        exists: true,
-      }
+          ...matchingCertification,
+          exists: true,
+        }
       : { exists: false };
   }
 
   getServicePacks(serviceName, subsidiary) {
-    const buildChunkFromName = (servicePackName) => this
-      .ovhManagerPccServicePackOptionService
-      .getOptions({
-        serviceName,
-        servicePackName,
-        subsidiary,
-      })
-      .then((options) => ({
-        name: servicePackName,
-        options,
-      }));
+    const buildChunkFromName = (servicePackName) =>
+      this.ovhManagerPccServicePackOptionService
+        .getOptions({
+          serviceName,
+          servicePackName,
+          subsidiary,
+        })
+        .then((options) => ({
+          name: servicePackName,
+          options,
+        }));
 
     const buildFromChunk = (chunk) => ({
       ...chunk,
-      description: this.$translate.instant(`dedicatedCloudDashboardTilesOptionsServicePack_description_${chunk.name}`),
-      displayName: this.$translate.instant(`dedicatedCloudDashboardTilesOptionsServicePack_displayName_${chunk.name}`),
-      fullDisplayName: this.$translate.instant(`dedicatedCloudDashboardTilesOptionsServicePack_fullDisplayName_${chunk.name}`),
+      description: this.$translate.instant(
+        `dedicatedCloudDashboardTilesOptionsServicePack_description_${chunk.name}`,
+      ),
+      displayName: this.$translate.instant(
+        `dedicatedCloudDashboardTilesOptionsServicePack_displayName_${chunk.name}`,
+      ),
+      fullDisplayName: this.$translate.instant(
+        `dedicatedCloudDashboardTilesOptionsServicePack_fullDisplayName_${chunk.name}`,
+      ),
       type: ServicePack.computeType(chunk),
     });
 
-    return this
-      .getNamesForService(serviceName)
+    return this.getNamesForService(serviceName)
       .then((names) => this.$q.all(names.map(buildChunkFromName)))
       .then((chunks) => chunks.map(buildFromChunk));
   }
@@ -126,11 +127,9 @@ export const ServicePackService = class ServicePack {
   }
 
   static keepOnlyCertainOptionType(servicePacks, optionTypeToKeep) {
-    return filter(
-      servicePacks,
-      (servicePack) => some(
-        servicePack.options,
-        (option) => isEqual(option.type, optionTypeToKeep),
+    return filter(servicePacks, (servicePack) =>
+      some(servicePack.options, (option) =>
+        isEqual(option.type, optionTypeToKeep),
       ),
     );
   }
@@ -150,9 +149,7 @@ export const ServicePackService = class ServicePack {
   }
 
   getCatalog(ovhSubsidiary) {
-    return this
-      .OvhApiOrder
-      .CatalogFormatted()
+    return this.OvhApiOrder.CatalogFormatted()
       .v6()
       .get({
         catalogName: 'privateCloud',
@@ -161,18 +158,13 @@ export const ServicePackService = class ServicePack {
   }
 
   static getAddonsFromCatalogForFamilyName(catalog, family) {
-    return find(
-      catalog.plans[0].addonsFamily,
-      { family },
-    ).addons;
+    return find(catalog.plans[0].addonsFamily, { family }).addons;
   }
 
   static getPricingsFromAddonsForPlanCode(addons, planCode) {
     return find(
       addons,
-      (addon) => head(
-        addon.plan.planCode.split('-consumption'),
-      ) === planCode,
+      (addon) => head(addon.plan.planCode.split('-consumption')) === planCode,
     ).plan.details.pricings;
   }
 
@@ -181,10 +173,7 @@ export const ServicePackService = class ServicePack {
   }
 
   static getHostsOfBillingType(hosts, billingType) {
-    return filter(
-      hosts,
-      { billingType },
-    );
+    return filter(hosts, { billingType });
   }
 
   static computeNumberOfHostsPerProfileCode(hosts) {
@@ -202,64 +191,53 @@ export const ServicePackService = class ServicePack {
   }
 
   getPrices(ovhSubsidiary, hosts, servicePacks) {
-    return this
-      .getCatalog(ovhSubsidiary)
-      .then((catalog) => {
-        const addons = {
-          hourly: ServicePack.getAddonsFromCatalogForFamilyName(catalog, 'host-hourly'),
-          monthly: ServicePack.getAddonsFromCatalogForFamilyName(catalog, 'host'),
-        };
+    return this.getCatalog(ovhSubsidiary).then((catalog) => {
+      const addons = {
+        hourly: ServicePack.getAddonsFromCatalogForFamilyName(
+          catalog,
+          'host-hourly',
+        ),
+        monthly: ServicePack.getAddonsFromCatalogForFamilyName(catalog, 'host'),
+      };
 
-        return map(
-          servicePacks,
-          (servicePack) => {
-            const price = reduce(
-              filter(
-                hosts,
-                (host) => host.billingType !== 'freeSpare',
+      return map(servicePacks, (servicePack) => {
+        const price = reduce(
+          filter(hosts, (host) => host.billingType !== 'freeSpare'),
+          (acc, host) => {
+            const pricing = ServicePack.getPricingFromPricingsForServicePackName(
+              ServicePack.getPricingsFromAddonsForPlanCode(
+                addons[host.billingType],
+                host.profileCode,
               ),
-              (acc, host) => {
-                const pricing = ServicePack.getPricingFromPricingsForServicePackName(
-                  ServicePack.getPricingsFromAddonsForPlanCode(
-                    addons[host.billingType],
-                    host.profileCode,
-                  ),
-                  servicePack.name,
-                );
-
-                acc[host.billingType] = (acc[host.billingType] || 0) + pricing.price.value;
-                acc.currencyCode = pricing.price.currencyCode;
-
-                return acc;
-              },
-              {},
+              servicePack.name,
             );
 
-            return {
-              ...servicePack,
-              price,
-            };
+            acc[host.billingType] =
+              (acc[host.billingType] || 0) + pricing.price.value;
+            acc.currencyCode = pricing.price.currencyCode;
+
+            return acc;
           },
+          {},
         );
+
+        return {
+          ...servicePack,
+          price,
+        };
       });
+    });
   }
 
   getHosts(serviceName) {
-    return this
-      .DedicatedCloud
-      .getDatacentersInformations(serviceName)
-      .then((datacenters) => reduce(
-        map(
-          datacenters.list.results,
-          'hosts',
+    return this.DedicatedCloud.getDatacentersInformations(serviceName).then(
+      (datacenters) =>
+        reduce(
+          map(datacenters.list.results, 'hosts'),
+          (acc, host) => flatten([...acc, values(host)]),
+          [],
         ),
-        (acc, host) => flatten(
-          [...acc, values(
-            host,
-          )],
-        ),
-        [],
-      ));
+    );
   }
 };
 

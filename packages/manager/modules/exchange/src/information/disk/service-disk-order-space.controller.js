@@ -2,7 +2,15 @@ import isEmpty from 'lodash/isEmpty';
 
 export default class ExchangeOrderDiskSpaceCtrl {
   /* @ngInject */
-  constructor($rootScope, $scope, Exchange, messaging, navigation, $translate, $window) {
+  constructor(
+    $rootScope,
+    $scope,
+    Exchange,
+    messaging,
+    navigation,
+    $translate,
+    $window,
+  ) {
     this.services = {
       $rootScope,
       $scope,
@@ -43,7 +51,9 @@ export default class ExchangeOrderDiskSpaceCtrl {
       .catch((failure) => {
         this.services.navigation.resetAction();
         this.services.messaging.writeError(
-          this.services.$translate.instant('exchange_ACTION_renew_ssl_dcv_failure'),
+          this.services.$translate.instant(
+            'exchange_ACTION_renew_ssl_dcv_failure',
+          ),
           failure,
         );
       });
@@ -66,7 +76,9 @@ export default class ExchangeOrderDiskSpaceCtrl {
   getResumePrice(price) {
     return price.value === 0
       ? this.services.$translate.instant('price_free')
-      : this.services.$translate.instant('price_ht_label', { price: price.text });
+      : this.services.$translate.instant('price_ht_label', {
+          price: price.text,
+        });
   }
 
   submitting() {
@@ -76,18 +88,24 @@ export default class ExchangeOrderDiskSpaceCtrl {
     )
       .then((order) => {
         this.services.messaging.writeSuccess(
-          this.services.$translate.instant('exchange_action_order_space_disk_success', {
-            t0: order.url,
-            t1: order.orderId,
-          }),
+          this.services.$translate.instant(
+            'exchange_action_order_space_disk_success',
+            {
+              t0: order.url,
+              t1: order.orderId,
+            },
+          ),
         );
         this.services.$window.open(order.url, '_blank');
       })
       .catch((failure) => {
         this.services.messaging.writeError(
-          this.services.$translate.instant('exchange_action_order_space_disk_failure', {
-            t0: failure,
-          }),
+          this.services.$translate.instant(
+            'exchange_action_order_space_disk_failure',
+            {
+              t0: failure,
+            },
+          ),
         );
       })
       .finally(() => {

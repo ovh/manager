@@ -6,13 +6,7 @@ import isObject from 'lodash/isObject';
 
 export default class SupportNewIssuesFormController {
   /* @ngInject */
-  constructor(
-    $q,
-    $timeout,
-    atInternet,
-    IssueForm,
-    SupportNewTicketService,
-  ) {
+  constructor($q, $timeout, atInternet, IssueForm, SupportNewTicketService) {
     this.$q = $q;
     this.$timeout = $timeout;
     this.atInternet = atInternet;
@@ -45,7 +39,7 @@ export default class SupportNewIssuesFormController {
       issue: {},
       buttons: {
         exists: false,
-        choice: { },
+        choice: {},
       },
     };
 
@@ -58,7 +52,7 @@ export default class SupportNewIssuesFormController {
         categories: this.getCategories(),
         serviceTypes: this.getServiceTypes(),
       })
-      . then(({ categories, serviceTypes }) => {
+      .then(({ categories, serviceTypes }) => {
         this.setCategory(categories);
         this.setServiceTypes(serviceTypes);
 
@@ -73,38 +67,34 @@ export default class SupportNewIssuesFormController {
   getCategories() {
     this.bindings.category.isLoading = true;
 
-    return this.SupportNewTicketService
-      .getCategories()
-      .then((categories) => {
-        this.bindings.category.isLoading = false;
+    return this.SupportNewTicketService.getCategories().then((categories) => {
+      this.bindings.category.isLoading = false;
 
-        return categories;
-      });
+      return categories;
+    });
   }
 
   getServiceTypes() {
     this.bindings.serviceType.isLoading = true;
 
-    return this.IssueForm
-      .getServiceTypes()
-      .then((serviceTypes) => {
-        this.bindings.serviceType.isLoading = false;
+    return this.IssueForm.getServiceTypes().then((serviceTypes) => {
+      this.bindings.serviceType.isLoading = false;
 
-        return serviceTypes;
-      });
+      return serviceTypes;
+    });
   }
 
   getServices() {
     this.bindings.service.exists = true;
     this.bindings.service.isLoading = true;
 
-    return this.IssueForm
-      .getServices(this.bindings.serviceType.value.route)
-      .then((services) => {
-        this.bindings.service.isLoading = false;
+    return this.IssueForm.getServices(
+      this.bindings.serviceType.value.route,
+    ).then((services) => {
+      this.bindings.service.isLoading = false;
 
-        return services;
-      });
+      return services;
+    });
   }
 
   onCategoryChange() {
@@ -137,15 +127,16 @@ export default class SupportNewIssuesFormController {
 
   setCategory(categories) {
     this.bindings.category.values = categories;
-    this.bindings.category.value = this.bindings.category.value
-      || (
-        this.props.categoryName
-          ? categories
-            .find((category) => isEqual(
+    this.bindings.category.value =
+      this.bindings.category.value ||
+      (this.props.categoryName
+        ? categories.find((category) =>
+            isEqual(
               category.id.toLowerCase(),
               this.props.categoryName.toLowerCase(),
-            ))
-          : undefined);
+            ),
+          )
+        : undefined);
 
     if (this.bindings.category.value) {
       this.onCategoryChange();
@@ -154,26 +145,27 @@ export default class SupportNewIssuesFormController {
 
   setServiceTypes(serviceTypes) {
     this.bindings.serviceType.values = serviceTypes;
-    this.bindings.serviceType.value = this.bindings.serviceType.value
-      || (
-        this.props.serviceTypeName
-          ? serviceTypes
-            .find((serviceType) => isEqual(
+    this.bindings.serviceType.value =
+      this.bindings.serviceType.value ||
+      (this.props.serviceTypeName
+        ? serviceTypes.find((serviceType) =>
+            isEqual(
               serviceType.name.toLowerCase(),
               this.props.serviceTypeName.toLowerCase(),
-            ))
-          : undefined);
+            ),
+          )
+        : undefined);
 
     this.updateServiceType();
   }
 
   updateServiceType() {
-    this.bindings.serviceType.exists = (this.bindings.category.value
-      && this.bindings.category.value.id !== 'account')
-      || (
-        this.bindings.serviceType.value
-        && this.props.serviceTypeName
-        && isEqual(
+    this.bindings.serviceType.exists =
+      (this.bindings.category.value &&
+        this.bindings.category.value.id !== 'account') ||
+      (this.bindings.serviceType.value &&
+        this.props.serviceTypeName &&
+        isEqual(
           this.bindings.serviceType.value.name.toLowerCase(),
           this.props.serviceTypeName.toLowerCase(),
         ));
@@ -182,8 +174,9 @@ export default class SupportNewIssuesFormController {
   }
 
   updateService() {
-    this.bindings.service.exists = this.bindings.serviceType.exists
-        && isObject(this.bindings.serviceType.value);
+    this.bindings.service.exists =
+      this.bindings.serviceType.exists &&
+      isObject(this.bindings.serviceType.value);
 
     if (this.bindings.service.exists) {
       this.bindings.service.isUnknown = isEmpty(this.bindings.service.values);
@@ -199,29 +192,33 @@ export default class SupportNewIssuesFormController {
   onServiceTypeChange() {
     this.resetIssuesSelector();
 
-    return this.getServices()
-      .then((services) => {
-        this.setService(services);
-        this.updateIssuesSelector();
-      });
+    return this.getServices().then((services) => {
+      this.setService(services);
+      this.updateIssuesSelector();
+    });
   }
 
   setService(services) {
     this.bindings.service.values = services;
-    this.bindings.service.value = services
-      .find((service) => [service.serviceName, service.displayName]
-        .includes(this.props.serviceName)
-        && this.props.serviceTypeName
-        && isEqual(
+    this.bindings.service.value = services.find(
+      (service) =>
+        [service.serviceName, service.displayName].includes(
+          this.props.serviceName,
+        ) &&
+        this.props.serviceTypeName &&
+        isEqual(
           this.props.serviceTypeName.toLowerCase(),
           this.bindings.serviceType.value.name.toLowerCase(),
-        ));
+        ),
+    );
 
     this.updateService();
   }
 
   onServiceChange({ modelValue }) {
-    this.checkIfIssueSelectorShouldReset(isBoolean(modelValue) ? modelValue : undefined);
+    this.checkIfIssueSelectorShouldReset(
+      isBoolean(modelValue) ? modelValue : undefined,
+    );
   }
 
   checkIfIssueSelectorShouldReset(serviceIsUnknown) {
@@ -229,15 +226,16 @@ export default class SupportNewIssuesFormController {
       ? serviceIsUnknown
       : this.bindings.service.isUnknown;
 
-    const withAccountCategory = this.bindings.category.value
-    && this.bindings.category.value.id === 'account';
-    const withoutAccountCategory = this.bindings.category.value
-    && this.bindings.category.value.id !== 'account'
-      && (
-        this.bindings.service.value || this.bindings.service.isUnknown
-      );
+    const withAccountCategory =
+      this.bindings.category.value &&
+      this.bindings.category.value.id === 'account';
+    const withoutAccountCategory =
+      this.bindings.category.value &&
+      this.bindings.category.value.id !== 'account' &&
+      (this.bindings.service.value || this.bindings.service.isUnknown);
 
-    this.bindings.issuesSelector.exists = withAccountCategory || withoutAccountCategory;
+    this.bindings.issuesSelector.exists =
+      withAccountCategory || withoutAccountCategory;
 
     if (!this.bindings.issuesSelector.exists) {
       this.resetIssuesSelector();
@@ -276,13 +274,15 @@ export default class SupportNewIssuesFormController {
   }
 
   updateIssue() {
-    this.bindings.issue.exists = this.bindings.issue.value
-      && !this.bindings.issue.value.hasChildren
-      && this.bindings.issue.value.selfCareResources.length > 0;
-    this.bindings.buttons.exists = this.bindings.issue.value
-      && !this.bindings.issue.value.hasChildren;
-    this.bindings.buttons.choice.exists = this.bindings.buttons.exists
-      && this.bindings.issue.value.selfCareResources.length > 0;
+    this.bindings.issue.exists =
+      this.bindings.issue.value &&
+      !this.bindings.issue.value.hasChildren &&
+      this.bindings.issue.value.selfCareResources.length > 0;
+    this.bindings.buttons.exists =
+      this.bindings.issue.value && !this.bindings.issue.value.hasChildren;
+    this.bindings.buttons.choice.exists =
+      this.bindings.buttons.exists &&
+      this.bindings.issue.value.selfCareResources.length > 0;
   }
 
   onIssuesSelectorChange({ issue }) {

@@ -27,27 +27,31 @@ export default class IpLoadBalancerHomeStatusService {
   }
 
   getIPLBStatus(serviceName, config = { toArray: false }) {
-    return this.OvhApiIpLoadBalancing.v6().status({ serviceName })
-      .$promise
-      .then((response) => {
+    return this.OvhApiIpLoadBalancing.v6()
+      .status({ serviceName })
+      .$promise.then((response) => {
         const transformedResponse = {};
         const promises = map(
           keys(pick(response, keys(this.iplbItemWeight))),
           (iplbItem) => {
             response[iplbItem].itemName = iplbItem;
-            return this.transformIplbItem(serviceName, response[iplbItem]).then((item) => {
-              transformedResponse[iplbItem] = item;
-            });
+            return this.transformIplbItem(serviceName, response[iplbItem]).then(
+              (item) => {
+                transformedResponse[iplbItem] = item;
+              },
+            );
           },
         );
 
-        return this.$q.all(promises)
-          .then(() => {
-            if (config.toArray) {
-              return map(keys(transformedResponse), (iplbItem) => transformedResponse[iplbItem]);
-            }
-            return transformedResponse;
-          });
+        return this.$q.all(promises).then(() => {
+          if (config.toArray) {
+            return map(
+              keys(transformedResponse),
+              (iplbItem) => transformedResponse[iplbItem],
+            );
+          }
+          return transformedResponse;
+        });
       })
       .catch(this.CucServiceHelper.errorHandler('iplb_status_loading_error'));
   }
@@ -62,16 +66,20 @@ export default class IpLoadBalancerHomeStatusService {
   }
 
   buildServiceStatusItem(serviceName, iplbItem) {
-    return this.OvhApiIpLoadBalancing.v6().get({ serviceName })
-      .$promise
-      .then((response) => ({
+    return this.OvhApiIpLoadBalancing.v6()
+      .get({ serviceName })
+      .$promise.then((response) => ({
         itemName: iplbItem.itemName,
         displayName: response.displayName || response.serviceName,
         status: {
           [this.apiToUiStatus[iplbItem.status]]: {
             code: this.apiToUiStatus[iplbItem.status],
             number: 1,
-            text: this.$translate.instant(`iplb_status_${this.apiToUiStatus[iplbItem.status]}_${iplbItem.itemName}`),
+            text: this.$translate.instant(
+              `iplb_status_${this.apiToUiStatus[iplbItem.status]}_${
+                iplbItem.itemName
+              }`,
+            ),
           },
         },
         total: 1,
@@ -82,7 +90,10 @@ export default class IpLoadBalancerHomeStatusService {
   buildOtherStatusItem(iplbItem) {
     const transformedItem = {
       itemName: iplbItem.itemName,
-      displayName: this.$translate.instant(`iplb_home_tile_status_${iplbItem.itemName}`, { number: iplbItem.total }),
+      displayName: this.$translate.instant(
+        `iplb_home_tile_status_${iplbItem.itemName}`,
+        { number: iplbItem.total },
+      ),
       status: {},
       total: iplbItem.total,
       weight: this.iplbItemWeight[iplbItem],
@@ -92,10 +103,13 @@ export default class IpLoadBalancerHomeStatusService {
       transformedItem.status[this.apiToUiStatus[status]] = {
         code: this.apiToUiStatus[status],
         number: iplbItem.status[status],
-        text: this.$translate.instant(`iplb_status_${this.apiToUiStatus[status]}_${iplbItem.itemName}`, {
-          activeCount: iplbItem.status[status],
-          totalCount: iplbItem.total,
-        }),
+        text: this.$translate.instant(
+          `iplb_status_${this.apiToUiStatus[status]}_${iplbItem.itemName}`,
+          {
+            activeCount: iplbItem.status[status],
+            totalCount: iplbItem.total,
+          },
+        ),
       };
     });
     return this.$q.when(transformedItem);

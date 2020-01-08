@@ -14,8 +14,10 @@ export default class OuiModalLayout {
   static isLayoutAppliedToState(state) {
     const layout = get(state, 'self.layout');
 
-    return (isString(layout) && layout === LAYOUT_NAME)
-      || (isObject(layout) && get(layout, 'name') === LAYOUT_NAME);
+    return (
+      (isString(layout) && layout === LAYOUT_NAME) ||
+      (isObject(layout) && get(layout, 'name') === LAYOUT_NAME)
+    );
   }
 
   /**

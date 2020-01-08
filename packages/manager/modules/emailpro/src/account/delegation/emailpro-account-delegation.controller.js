@@ -1,13 +1,23 @@
 import angular from 'angular';
 import set from 'lodash/set';
 
-export default /* @ngInject */ ($scope, $stateParams, EmailPro, $timeout, $translate) => {
+export default /* @ngInject */ (
+  $scope,
+  $stateParams,
+  EmailPro,
+  $timeout,
+  $translate,
+) => {
   const init = function init() {
     $scope.selectedAccount = $scope.currentActionData;
     $scope.form = { search: null };
   };
 
-  const recordChangeOperations = function recordChangeOperations(account, buffer, changesList) {
+  const recordChangeOperations = function recordChangeOperations(
+    account,
+    buffer,
+    changesList,
+  ) {
     // record the operation to be done for sendAs rights:
     if (account.newSendAsValue !== buffer.sendAs) {
       changesList.sendRights.push({
@@ -47,7 +57,11 @@ export default /* @ngInject */ ($scope, $stateParams, EmailPro, $timeout, $trans
 
     if ($scope.accounts) {
       angular.forEach($scope.accounts.list.results, (account, index) => {
-        recordChangeOperations(account, $scope.bufferAccounts.list.results[index], changesList);
+        recordChangeOperations(
+          account,
+          $scope.bufferAccounts.list.results[index],
+          changesList,
+        );
       });
     }
     return changesList;
@@ -64,7 +78,11 @@ export default /* @ngInject */ ($scope, $stateParams, EmailPro, $timeout, $trans
 
     angular.forEach(data, (task) => {
       if (task.status === 'ERROR') {
-        set(task, 'message', $translate.instant(`emailpro_tab_TASKS_${task.function}`));
+        set(
+          task,
+          'message',
+          $translate.instant(`emailpro_tab_TASKS_${task.function}`),
+        );
         set(task, 'type', 'ERROR');
         state = 'PARTIAL';
         errors += 1;
@@ -81,7 +99,11 @@ export default /* @ngInject */ ($scope, $stateParams, EmailPro, $timeout, $trans
       angular.forEach($scope.bufferAccounts.list.results, (bufferAccount) => {
         if (bufferAccount.id === account.id) {
           set(account, 'newSendAsValue', bufferAccount.newSendAsValue);
-          set(account, 'newSendOnBehalfToValue', bufferAccount.newSendOnBehalfToValue);
+          set(
+            account,
+            'newSendOnBehalfToValue',
+            bufferAccount.newSendOnBehalfToValue,
+          );
           set(account, 'newFullAccessValue', bufferAccount.newFullAccessValue);
         }
       });
@@ -94,9 +116,11 @@ export default /* @ngInject */ ($scope, $stateParams, EmailPro, $timeout, $trans
   $scope.hasChanged = function hasChanged() {
     const changesList = getChanges();
     if (changesList) {
-      return changesList.sendRights.length > 0
-            || changesList.fullAccessRights.length > 0
-            || changesList.sendOnBehalfToRights.length > 0;
+      return (
+        changesList.sendRights.length > 0 ||
+        changesList.fullAccessRights.length > 0 ||
+        changesList.sendOnBehalfToRights.length > 0
+      );
     }
     return false;
   };
@@ -105,14 +129,13 @@ export default /* @ngInject */ ($scope, $stateParams, EmailPro, $timeout, $trans
     $scope.setMessage(null);
     $scope.loading = true;
 
-    EmailPro
-      .getAccountDelegationRight(
-        $stateParams.productId,
-        $scope.selectedAccount.primaryEmailAddress,
-        count,
-        offset,
-        $scope.form.search,
-      )
+    EmailPro.getAccountDelegationRight(
+      $stateParams.productId,
+      $scope.selectedAccount.primaryEmailAddress,
+      count,
+      offset,
+      $scope.form.search,
+    )
       .then((accounts) => {
         $scope.loading = false;
         // make a deep copy of accounts list to use it as model
@@ -129,7 +152,10 @@ export default /* @ngInject */ ($scope, $stateParams, EmailPro, $timeout, $trans
       })
       .catch((failure) => {
         $scope.loading = false;
-        $scope.setMessage($translate.instant('emailpro_tab_ACCOUNTS_error_message'), failure.data);
+        $scope.setMessage(
+          $translate.instant('emailpro_tab_ACCOUNTS_error_message'),
+          failure.data,
+        );
       });
   };
 
@@ -137,25 +163,41 @@ export default /* @ngInject */ ($scope, $stateParams, EmailPro, $timeout, $trans
     $scope.getAccounts();
   });
 
-  $scope.$watch('form.search', (search) => {
-    if ($scope.form.search !== null) {
-      $timeout(() => {
-        if ($scope.form.search === search) {
-          $scope.getAccounts();
-        }
-      }, 1500);
-    }
-  }, true);
+  $scope.$watch(
+    'form.search',
+    (search) => {
+      if ($scope.form.search !== null) {
+        $timeout(() => {
+          if ($scope.form.search === search) {
+            $scope.getAccounts();
+          }
+        }, 1500);
+      }
+    },
+    true,
+  );
 
   $scope.updateDelegationRight = function updateAccountDelegationRights() {
     $scope.resetAction();
-    $scope.setMessage($translate.instant('emailpro_ACTION_delegation_doing_message'), { status: 'success' });
+    $scope.setMessage(
+      $translate.instant('emailpro_ACTION_delegation_doing_message'),
+      { status: 'success' },
+    );
 
-    EmailPro.updateAccountDelegationRights($stateParams.productId, getChanges()).then((data) => {
-      constructResult(data);
-    }, (failure) => {
-      $scope.setMessage($translate.instant('emailpro_ACTION_delegation_error_message'), failure.data);
-    });
+    EmailPro.updateAccountDelegationRights(
+      $stateParams.productId,
+      getChanges(),
+    ).then(
+      (data) => {
+        constructResult(data);
+      },
+      (failure) => {
+        $scope.setMessage(
+          $translate.instant('emailpro_ACTION_delegation_error_message'),
+          failure.data,
+        );
+      },
+    );
   };
 
   init();

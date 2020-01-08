@@ -21,23 +21,31 @@ export default /* @ngInject */ ($stateProvider) => {
         },
       },
       resolve: {
-        serviceName: /* @ngInject */ ($transition$) => $transition$.params().serviceName,
-        goToDashboard: /* @ngInject */ ($state, serviceName) => () => $state.go('veeam-cloud-connect.detail.dashboard', {
-          serviceName,
-        }),
-        goToStorage: /* @ngInject */ ($state, serviceName) => () => $state.go('veeam-cloud-connect.detail.storage', {
-          serviceName,
-        }),
-        goToStorageAdd: /* @ngInject */ ($state, serviceName) => () => $state.go('veeam-cloud-connect.detail.storage.add', {
-          serviceName,
-        }),
-        goToStorageQuota: /* @ngInject */ ($state, serviceName) => (inventoryName) => $state.go('veeam-cloud-connect.detail.storage.quota', {
+        serviceName: /* @ngInject */ ($transition$) =>
+          $transition$.params().serviceName,
+        goToDashboard: /* @ngInject */ ($state, serviceName) => () =>
+          $state.go('veeam-cloud-connect.detail.dashboard', {
+            serviceName,
+          }),
+        goToStorage: /* @ngInject */ ($state, serviceName) => () =>
+          $state.go('veeam-cloud-connect.detail.storage', {
+            serviceName,
+          }),
+        goToStorageAdd: /* @ngInject */ ($state, serviceName) => () =>
+          $state.go('veeam-cloud-connect.detail.storage.add', {
+            serviceName,
+          }),
+        goToStorageQuota: /* @ngInject */ ($state, serviceName) => (
           inventoryName,
-          serviceName,
-        }),
-        goToOfferChange: /* @ngInject */ ($state, serviceName) => () => $state.go('veeam-cloud-connect.detail.dashboard.update-offer', {
-          serviceName,
-        }),
+        ) =>
+          $state.go('veeam-cloud-connect.detail.storage.quota', {
+            inventoryName,
+            serviceName,
+          }),
+        goToOfferChange: /* @ngInject */ ($state, serviceName) => () =>
+          $state.go('veeam-cloud-connect.detail.dashboard.update-offer', {
+            serviceName,
+          }),
       },
     })
     .state('veeam-cloud-connect.detail.dashboard', {
@@ -53,7 +61,12 @@ export default /* @ngInject */ ($stateProvider) => {
         },
       },
       translations: {
-        value: ['.', './dashboard', './storage/add', './dashboard/update-offer'],
+        value: [
+          '.',
+          './dashboard',
+          './storage/add',
+          './dashboard/update-offer',
+        ],
         format: 'json',
       },
     })
@@ -101,7 +114,8 @@ export default /* @ngInject */ ($stateProvider) => {
       },
       layout: 'modal',
       resolve: {
-        inventoryName: /* @ngInject */ ($transition$) => $transition$.params().inventoryName,
+        inventoryName: /* @ngInject */ ($transition$) =>
+          $transition$.params().inventoryName,
       },
     });
 };

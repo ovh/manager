@@ -9,7 +9,14 @@ angular.module('App').controller(
      * @param $translate
      * @param Alerter
      */
-    constructor($scope, $stateParams, $timeout, $translate, Alerter, WucEmails) {
+    constructor(
+      $scope,
+      $stateParams,
+      $timeout,
+      $translate,
+      Alerter,
+      WucEmails,
+    ) {
       this.$scope = $scope;
       this.$stateParams = $stateParams;
       this.$timeout = $timeout;
@@ -69,7 +76,9 @@ angular.module('App').controller(
           }
         })
         .catch(() => {
-          this.Alerter.error(this.$translate.instant('domain_dashboard_loading_error'));
+          this.Alerter.error(
+            this.$translate.instant('domain_dashboard_loading_error'),
+          );
         })
         .finally(() => {
           this.loading.init = false;

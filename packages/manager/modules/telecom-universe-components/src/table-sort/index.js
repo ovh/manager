@@ -7,9 +7,7 @@ import tucTableSortDirective from './table-sort.directive';
 const moduleName = 'tucTableSort';
 
 angular
-  .module(moduleName, [
-    'ui.bootstrap',
-  ])
+  .module(moduleName, ['ui.bootstrap'])
   .component('tucColSort', tucColSort)
   .directive('tucTableSort', tucTableSortDirective);
 

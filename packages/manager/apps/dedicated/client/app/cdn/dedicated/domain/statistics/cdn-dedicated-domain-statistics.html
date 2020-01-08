@@ -1,20 +1,22 @@
 <div data-ng-controller="CdnDomainStatisticsCtrl">
-
     <div class="row d-md-flex mb-5">
-
         <div class="col-md-4">
             <div class="oui-tile mb-5 h-100">
                 <div class="oui-tile__body">
-                    <h2 class="oui-header_3 oui-tile__title"
-                        data-translate="cdn_domain_tab_statistics"></h2>
+                    <h2
+                        class="oui-header_3 oui-tile__title"
+                        data-translate="cdn_domain_tab_statistics"
+                    ></h2>
                     <div class="oui-tile__item">
                         <dl class="oui-tile__definition">
-                            <dt class="oui-tile__term"
-                                 data-translate="cdn_domain_configuration_cname">
-                            </dt>
-                            <dd class="oui-tile__description"
-                                 data-ng-bind="domain.cname">
-                            </dd>
+                            <dt
+                                class="oui-tile__term"
+                                data-translate="cdn_domain_configuration_cname"
+                            ></dt>
+                            <dd
+                                class="oui-tile__description"
+                                data-ng-bind="domain.cname"
+                            ></dd>
                         </dl>
                     </div>
                 </div>
@@ -24,124 +26,163 @@
         <div class="col-md-4">
             <div class="oui-tile mb-5 h-100">
                 <div class="oui-tile__body">
-                    <h2 class="oui-header_3 oui-tile__title"
-                        data-translate="cdn_network"></h2>
+                    <h2
+                        class="oui-header_3 oui-tile__title"
+                        data-translate="cdn_network"
+                    ></h2>
                     <div class="oui-tile__item">
                         <dl class="oui-tile__definition">
-                            <dt class="oui-tile__term"
-                                data-translate="cdn_network_domain"></dt>
-                            <dd class="oui-tile__description"
-                                data-ng-bind="domain.domain"></dd>
+                            <dt
+                                class="oui-tile__term"
+                                data-translate="cdn_network_domain"
+                            ></dt>
+                            <dd
+                                class="oui-tile__description"
+                                data-ng-bind="domain.domain"
+                            ></dd>
                         </dl>
-                        <div class="oui-tile__actions"
-                             data-ng-if="domain">
-                            <oui-action-menu aria-label="{{ :: 'cdn_domain_configuration_title_button' | translate }}"
-                                             data-align="end"
-                                             data-compact
-                                             data-title="{{ :: 'cdn_domain_configuration_title_button' | translate }}">
-                                <oui-action-menu-item aria-label="{{ domain.mode === 'ON' ? ('cdn_domain_configuration_bypass_title_button' | translate) : ('cdn_domain_configuration_reactive_title_button' | translate) }}"
-                                                      data-text="{{ domain.mode === 'ON' ? ('cdn_domain_configuration_bypass_title_button' | translate) : ('cdn_domain_configuration_reactive_title_button' | translate) }}"
-                                                      data-on-click="setAction('domain/update/cdn-dedicated-domain-domain', domain)"
+                        <div class="oui-tile__actions" data-ng-if="domain">
+                            <oui-action-menu
+                                aria-label="{{ :: 'cdn_domain_configuration_title_button' | translate }}"
+                                data-align="end"
+                                data-compact
+                                data-title="{{ :: 'cdn_domain_configuration_title_button' | translate }}"
+                            >
+                                <oui-action-menu-item
+                                    aria-label="{{ domain.mode === 'ON' ? ('cdn_domain_configuration_bypass_title_button' | translate) : ('cdn_domain_configuration_reactive_title_button' | translate) }}"
+                                    data-text="{{ domain.mode === 'ON' ? ('cdn_domain_configuration_bypass_title_button' | translate) : ('cdn_domain_configuration_reactive_title_button' | translate) }}"
+                                    data-on-click="setAction('domain/update/cdn-dedicated-domain-domain', domain)"
                                 ></oui-action-menu-item>
-                                <oui-action-menu-item aria-label="{{ :: 'cdn_domain_configuration_delete_title_button' | translate }}"
-                                                      data-text="{{ :: 'cdn_domain_configuration_delete_title_button' | translate }}"
-                                                      data-on-click="setAction('domain/delete/cdn-dedicated-domain-delete')"></oui-action-menu-item>
+                                <oui-action-menu-item
+                                    aria-label="{{ :: 'cdn_domain_configuration_delete_title_button' | translate }}"
+                                    data-text="{{ :: 'cdn_domain_configuration_delete_title_button' | translate }}"
+                                    data-on-click="setAction('domain/delete/cdn-dedicated-domain-delete')"
+                                ></oui-action-menu-item>
                             </oui-action-menu>
                         </div>
                     </div>
                     <div class="oui-tile__item">
                         <dl class="oui-tile__definition">
-                            <dt class="oui-tile__term"
-                                data-translate="cdn_network_ipv4"></dt>
-                            <dd class="oui-tile__description"
-                                data-ng-bind="domain.anycast.ipv4"></dd>
+                            <dt
+                                class="oui-tile__term"
+                                data-translate="cdn_network_ipv4"
+                            ></dt>
+                            <dd
+                                class="oui-tile__description"
+                                data-ng-bind="domain.anycast.ipv4"
+                            ></dd>
                         </dl>
                     </div>
                     <div class="oui-tile__item">
                         <dl class="oui-tile__definition">
-                            <dt class="oui-tile__term"
-                                data-translate="cdn_network_servers"></dt>
-                            <dd class="oui-tile__description"
-                                data-ng-bind="domain.backend.ipv4"></dd>
+                            <dt
+                                class="oui-tile__term"
+                                data-translate="cdn_network_servers"
+                            ></dt>
+                            <dd
+                                class="oui-tile__description"
+                                data-ng-bind="domain.backend.ipv4"
+                            ></dd>
                         </dl>
                         <div class="oui-tile__actions">
-                            <oui-action-menu aria-label="{{ :: 'cdn_domain_configuration_change_backend_title_button' | translate }}"
-                                             data-align="end"
-                                             data-compact
-                                             data-title="{{ :: 'cdn_domain_configuration_change_backend_title_button' | translate }}">
-                                <oui-action-menu-item aria-label="{{ :: 'cdn_domain_configuration_change_backend_title_button' | translate }}"
-                                                      data-text="{{ :: 'cdn_domain_configuration_change_backend_title_button' | translate }}"
-                                                      data-on-click="setAction('domain/backend/update/cdn-dedicated-domain-backend-update')"></oui-action-menu-item>
+                            <oui-action-menu
+                                aria-label="{{ :: 'cdn_domain_configuration_change_backend_title_button' | translate }}"
+                                data-align="end"
+                                data-compact
+                                data-title="{{ :: 'cdn_domain_configuration_change_backend_title_button' | translate }}"
+                            >
+                                <oui-action-menu-item
+                                    aria-label="{{ :: 'cdn_domain_configuration_change_backend_title_button' | translate }}"
+                                    data-text="{{ :: 'cdn_domain_configuration_change_backend_title_button' | translate }}"
+                                    data-on-click="setAction('domain/backend/update/cdn-dedicated-domain-backend-update')"
+                                ></oui-action-menu-item>
                             </oui-action-menu>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
 
-    <div class="text-center"
-         data-ng-if="loadingConsts">
+    <div class="text-center" data-ng-if="loadingConsts">
         <oui-spinner></oui-spinner>
     </div>
     <div data-ng-if="!loadingConsts">
         <div class="oui-box mb-5">
             <div class="row">
                 <div class="col-sm-6">
-                    <label for="dataType"
-                           class="oui-label d-inline-block align-middle mr-2">
-                        <span data-translate="cdn_statistics_visualize"></span>&nbsp;:
+                    <label
+                        for="dataType"
+                        class="oui-label d-inline-block align-middle mr-2"
+                    >
+                        <span data-translate="cdn_statistics_visualize"></span
+                        >&nbsp;:
                     </label>
                     <div class="oui-select mb-0 oui-select_inline align-middle">
-                        <select name="datatype"
-                                class="oui-select__input"
-                                id="dataType"
-                                data-ng-options="(('cdn_stats_type_' + option) | translate) for option in consts.types"
-                                data-ng-model="model.dataType"
-                                data-ng-change="getStatistics()">
+                        <select
+                            name="datatype"
+                            class="oui-select__input"
+                            id="dataType"
+                            data-ng-options="(('cdn_stats_type_' + option) | translate) for option in consts.types"
+                            data-ng-model="model.dataType"
+                            data-ng-change="getStatistics()"
+                        >
                         </select>
-                        <span class="oui-icon oui-icon-chevron-down" aria-hidden="true"></span>
+                        <span
+                            class="oui-icon oui-icon-chevron-down"
+                            aria-hidden="true"
+                        ></span>
                     </div>
                 </div>
                 <div class="col-sm-6">
-                    <label for="period"
-                           class="oui-label d-inline-block align-middle mr-2">
-                        <span data-translate="cdn_statistics_from"></span>&nbsp;:
+                    <label
+                        for="period"
+                        class="oui-label d-inline-block align-middle mr-2"
+                    >
+                        <span data-translate="cdn_statistics_from"></span
+                        >&nbsp;:
                     </label>
                     <div class="oui-select mb-0 oui-select_inline align-middle">
-                        <select name="period"
-                                class="oui-select__input"
-                                id="period"
-                                data-ng-options="(('cdn_statistics_period_' + option) | translate) for option in consts.periods"
-                                data-ng-model="model.period"
-                                data-ng-change="getStatistics()">
+                        <select
+                            name="period"
+                            class="oui-select__input"
+                            id="period"
+                            data-ng-options="(('cdn_statistics_period_' + option) | translate) for option in consts.periods"
+                            data-ng-model="model.period"
+                            data-ng-change="getStatistics()"
+                        >
                         </select>
-                        <span class="oui-icon oui-icon-chevron-down" aria-hidden="true"></span>
+                        <span
+                            class="oui-icon oui-icon-chevron-down"
+                            aria-hidden="true"
+                        ></span>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="text-center"
-            data-ng-if="loadingConsts || loadingStats">
+        <div class="text-center" data-ng-if="loadingConsts || loadingStats">
             <oui-spinner></oui-spinner>
         </div>
         <div data-ng-if="!loadingConsts && !loadingStats">
-            <canvas id="cdnDomainStatsChart"
-                    class="chart chart-line"
-                    data-chart-labels="labels"
-                    data-chart-series="series"
-                    data-chart-data="data"
-                    data-chart-options="options"
-                    data-ng-if="model.dataType === 'BANDWIDTH' || model.dataType === 'QUOTA'">
+            <canvas
+                id="cdnDomainStatsChart"
+                class="chart chart-line"
+                data-chart-labels="labels"
+                data-chart-series="series"
+                data-chart-data="data"
+                data-chart-options="options"
+                data-ng-if="model.dataType === 'BANDWIDTH' || model.dataType === 'QUOTA'"
+            >
             </canvas>
-            <canvas id="cdnDomainStatsChartRequests"
-                    class="chart chart-line"
-                    data-chart-labels="labels"
-                    data-chart-series="series"
-                    data-chart-data="data"
-                    data-chart-options="requestOptions"
-                    data-ng-if="model.dataType === 'REQUEST'">
+            <canvas
+                id="cdnDomainStatsChartRequests"
+                class="chart chart-line"
+                data-chart-labels="labels"
+                data-chart-series="series"
+                data-chart-data="data"
+                data-chart-options="requestOptions"
+                data-ng-if="model.dataType === 'REQUEST'"
+            >
             </canvas>
         </div>
     </div>

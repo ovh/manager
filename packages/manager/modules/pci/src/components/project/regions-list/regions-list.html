@@ -1,19 +1,27 @@
 <oui-tabs class="mb-4" data-ng-if="!$ctrl.displaySelectedRegion">
-    <oui-tabs-item data-heading="{{ continent }}"
-        data-ng-repeat="continent in $ctrl.continents track by continent">
+    <oui-tabs-item
+        data-heading="{{ continent }}"
+        data-ng-repeat="continent in $ctrl.continents track by continent"
+    >
         <div class="container-fluid px-0">
             <div class="row">
                 <p data-ng-if="$ctrl.regionsByContinent[continent] === {}">
-                    <span data-translate="pci_project_regions_list_empty"></span>
+                    <span
+                        data-translate="pci_project_regions_list_empty"
+                    ></span>
                     <span
                         data-translate="pci_project_regions_list_add"
                         data-translate-values="{
                             url: $ctrl.$state.href('pci.projects.project.regions')
-                        }">
+                        }"
+                    >
                     </span>
                 </p>
 
-                <div class="col-md-6 col-xl-4 my-3" data-ng-repeat="(macro, regions) in $ctrl.regionsByContinents[continent] track by macro">
+                <div
+                    class="col-md-6 col-xl-4 my-3"
+                    data-ng-repeat="(macro, regions) in $ctrl.regionsByContinents[continent] track by macro"
+                >
                     <oui-select-picker
                         data-name="{{:: continent }}_regions"
                         data-model="$ctrl.macroRegion"
@@ -22,19 +30,25 @@
                         data-variant="light"
                         data-on-change="$ctrl.onMacroChange(modelValue, regions)"
                         data-disabled="$ctrl.constructor.isRegionDisabled(regions)"
-                        data-required>
-                        <oui-select-picker-section data-ng-if="$ctrl.constructor.isRegionDisabled(regions)">
-                            <a class="oui-button oui-button_link"
+                        data-required
+                    >
+                        <oui-select-picker-section
+                            data-ng-if="$ctrl.constructor.isRegionDisabled(regions)"
+                        >
+                            <a
+                                class="oui-button oui-button_link"
                                 data-ng-href="{{:: $ctrl.quotaUrl }}"
-                                data-translate="pci_project_regions_list_quota">
+                                data-translate="pci_project_regions_list_quota"
+                            >
                             </a>
                         </oui-select-picker-section>
                     </oui-select-picker>
                 </div>
             </div>
 
-            <div data-ng-if="$ctrl.regionsByContinents[continent][$ctrl.macroRegion].length > 1">
-
+            <div
+                data-ng-if="$ctrl.regionsByContinents[continent][$ctrl.macroRegion].length > 1"
+            >
                 <p data-translate="pci_project_regions_list_region"></p>
 
                 <div class="row">
@@ -47,11 +61,18 @@
                         data-values="[region]"
                         data-variant="light"
                         data-on-change="$ctrl.onRegionChange(modelValue)"
-                        data-disabled="!region.hasEnoughQuota">
-                        <oui-select-picker-section data-ng-if="!region.hasEnoughQuota">
-                            <a class="oui-button oui-button_link"
-                                data-ng-href="{{ $ctrl.quotaUrl }}">
-                                <span data-translate="pci_project_regions_list_quota"></span>
+                        data-disabled="!region.hasEnoughQuota"
+                    >
+                        <oui-select-picker-section
+                            data-ng-if="!region.hasEnoughQuota"
+                        >
+                            <a
+                                class="oui-button oui-button_link"
+                                data-ng-href="{{ $ctrl.quotaUrl }}"
+                            >
+                                <span
+                                    data-translate="pci_project_regions_list_quota"
+                                ></span>
                             </a>
                         </oui-select-picker-section>
                     </oui-select-picker>
@@ -61,8 +82,7 @@
     </oui-tabs-item>
 </oui-tabs>
 
-<div data-ng-if="$ctrl.displaySelectedRegion"
-    class="container-fluid px-0">
+<div data-ng-if="$ctrl.displaySelectedRegion" class="container-fluid px-0">
     <div class="row">
         <oui-select-picker
             class="d-inline-block col-md-6 col-xl-4 my-3"
@@ -72,7 +92,8 @@
             data-label="{{$ctrl.region.macroRegion.text}}"
             data-values="[$ctrl.region]"
             data-variant="light"
-            data-required>
+            data-required
+        >
             {{$ctrl.region.macroRegion.text}}
         </oui-select-picker>
     </div>

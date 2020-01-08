@@ -1,4 +1,4 @@
-export default /* @ngInject */ function (OvhApiFreeFax) {
+export default /* @ngInject */ function(OvhApiFreeFax) {
   const self = this;
 
   /*= ============================
@@ -6,7 +6,10 @@ export default /* @ngInject */ function (OvhApiFreeFax) {
     ============================= */
 
   self.getCount = function getCount() {
-    return OvhApiFreeFax.v7().query().execute().$promise.then((freeFaxIds) => freeFaxIds.length);
+    return OvhApiFreeFax.v7()
+      .query()
+      .execute()
+      .$promise.then((freeFaxIds) => freeFaxIds.length);
   };
 
   /* -----  End of COUNT  ------*/

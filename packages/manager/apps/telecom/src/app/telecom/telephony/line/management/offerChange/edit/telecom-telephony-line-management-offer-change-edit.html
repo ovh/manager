@@ -1,77 +1,103 @@
-<form class="telecom-telephony-line-management-offer-change-edit form-horizontal"
-      data-ng-submit="OfferChangeEditCtrl.saveNewOffer()"
-      name="offerChangeEditForm">
-
+<form
+    class="telecom-telephony-line-management-offer-change-edit form-horizontal"
+    data-ng-submit="OfferChangeEditCtrl.saveNewOffer()"
+    name="offerChangeEditForm"
+>
     <div class="modal-header">
-        <button type="button"
-                class="close float-right"
-                aria-label="{{'cancel'|translate}}"
-                data-ng-click="OfferChangeEditCtrl.cancel()">
+        <button
+            type="button"
+            class="close float-right"
+            aria-label="{{'cancel'|translate}}"
+            data-ng-click="OfferChangeEditCtrl.cancel()"
+        >
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
 
-    <div class="modal-body text-center"
-         data-ng-if="OfferChangeEditCtrl.loading.init">
+    <div
+        class="modal-body text-center"
+        data-ng-if="OfferChangeEditCtrl.loading.init"
+    >
         <oui-spinner></oui-spinner>
         <h4 data-translate="loading"></h4>
     </div>
 
-    <div class="modal-body"
-         data-ng-if="!OfferChangeEditCtrl.loading.init && !OfferChangeEditCtrl.loading.save && !OfferChangeEditCtrl.status.saved">
+    <div
+        class="modal-body"
+        data-ng-if="!OfferChangeEditCtrl.loading.init && !OfferChangeEditCtrl.loading.save && !OfferChangeEditCtrl.status.saved"
+    >
+        <h3
+            class="modal-title"
+            data-translate="telephony_line_management_change_offer_change_edit_title"
+        ></h3>
 
-            <h3 class="modal-title"
-                data-translate="telephony_line_management_change_offer_change_edit_title">
-            </h3>
-
-            <div class="form-group">
-                <div class="col-xs-12">
-                    <label for="offerChoice"
-                           data-translate="telephony_line_management_change_offer_change_edit_available_offers">
-                    </label>
-                    <select class="form-control"
-                            id="offerChoice"
-                            data-ng-model="OfferChangeEditCtrl.model.offer"
-                            data-ng-options="offer as offer.getFullDescription() for offer in OfferChangeEditCtrl.availableOffers | orderBy:['type', 'price.value'] track by offer.name">
-                    </select>
-                </div>
+        <div class="form-group">
+            <div class="col-xs-12">
+                <label
+                    for="offerChoice"
+                    data-translate="telephony_line_management_change_offer_change_edit_available_offers"
+                >
+                </label>
+                <select
+                    class="form-control"
+                    id="offerChoice"
+                    data-ng-model="OfferChangeEditCtrl.model.offer"
+                    data-ng-options="offer as offer.getFullDescription() for offer in OfferChangeEditCtrl.availableOffers | orderBy:['type', 'price.value'] track by offer.name"
+                >
+                </select>
             </div>
+        </div>
 
-            <dl data-ng-if="OfferChangeEditCtrl.model.offer">
-                <dt data-translate="telephony_line_management_change_offer_change_edit_selected_price"></dt>
-                <dd data-ng-bind-html="OfferChangeEditCtrl.model.offer.price.text | tucFormatPrice"></dd>
+        <dl data-ng-if="OfferChangeEditCtrl.model.offer">
+            <dt
+                data-translate="telephony_line_management_change_offer_change_edit_selected_price"
+            ></dt>
+            <dd
+                data-ng-bind-html="OfferChangeEditCtrl.model.offer.price.text | tucFormatPrice"
+            ></dd>
 
-                <dt data-translate="telephony_line_management_change_offer_change_edit_selected_date"></dt>
-                <dd data-ng-bind="OfferChangeEditCtrl.line.nextBill | date:'shortDate'"></dd>
-            </dl>
-
+            <dt
+                data-translate="telephony_line_management_change_offer_change_edit_selected_date"
+            ></dt>
+            <dd
+                data-ng-bind="OfferChangeEditCtrl.line.nextBill | date:'shortDate'"
+            ></dd>
+        </dl>
     </div>
 
-    <div class="modal-body text-center"
-         data-ng-if="OfferChangeEditCtrl.loading.save && !OfferChangeEditCtrl.status.saved">
+    <div
+        class="modal-body text-center"
+        data-ng-if="OfferChangeEditCtrl.loading.save && !OfferChangeEditCtrl.status.saved"
+    >
         <oui-spinner></oui-spinner>
-        <h4 data-translate="telephony_line_management_change_offer_change_doing"></h4>
+        <h4
+            data-translate="telephony_line_management_change_offer_change_doing"
+        ></h4>
     </div>
 
-    <div class="modal-body"
-         data-ng-if="OfferChangeEditCtrl.status.saved">
-        <tuc-success-drawing-check data-draw-success-check="OfferChangeEditCtrl.status.saved">
-            <h4 data-translate="telephony_line_management_change_offer_change_success"></h4>
+    <div class="modal-body" data-ng-if="OfferChangeEditCtrl.status.saved">
+        <tuc-success-drawing-check
+            data-draw-success-check="OfferChangeEditCtrl.status.saved"
+        >
+            <h4
+                data-translate="telephony_line_management_change_offer_change_success"
+            ></h4>
         </tuc-success-drawing-check>
     </div>
 
     <div class="modal-footer">
-        <button type="button"
-                class="btn btn-default"
-                data-ng-click="OfferChangeEditCtrl.cancel()"
-                data-ng-disabled="OfferChangeEditCtrl.loading.save"
-                data-translate="cancel">
-        </button>
-        <button type="submit"
-                class="btn btn-primary"
-                data-translate="submit"
-                data-ng-disabled="!OfferChangeEditCtrl.model.offer || OfferChangeEditCtrl.loading.save || offerChangeEditForm.$pristine">
-        </button>
+        <button
+            type="button"
+            class="btn btn-default"
+            data-ng-click="OfferChangeEditCtrl.cancel()"
+            data-ng-disabled="OfferChangeEditCtrl.loading.save"
+            data-translate="cancel"
+        ></button>
+        <button
+            type="submit"
+            class="btn btn-primary"
+            data-translate="submit"
+            data-ng-disabled="!OfferChangeEditCtrl.model.offer || OfferChangeEditCtrl.loading.save || offerChangeEditForm.$pristine"
+        ></button>
     </div>
-
 </form>

@@ -5,7 +5,12 @@ angular.module('UserAccount').controller('UserAccount.controllers.agreements', [
   '$translate',
   'UserAccount.services.agreements',
   'Alerter',
-  function UserAccountAgreementsController($scope, $translate, Service, Alerter) {
+  function UserAccountAgreementsController(
+    $scope,
+    $translate,
+    Service,
+    Alerter,
+  ) {
     function init() {
       $scope.loading = true;
       $scope.list = [];
@@ -26,11 +31,20 @@ angular.module('UserAccount').controller('UserAccount.controllers.agreements', [
       init();
 
       Service.getList(count, offset)
-        .then((agreements) => {
-          $scope.list = agreements;
-        }, (err) => {
-          Alerter.error(`${$translate.instant('user_agreements_error')} ${get(err, 'message') || err}`, 'agreements_alerter');
-        })
+        .then(
+          (agreements) => {
+            $scope.list = agreements;
+          },
+          (err) => {
+            Alerter.error(
+              `${$translate.instant('user_agreements_error')} ${get(
+                err,
+                'message',
+              ) || err}`,
+              'agreements_alerter',
+            );
+          },
+        )
         .then(() => {
           $scope.loading = false;
         });

@@ -1,24 +1,37 @@
 <div data-ng-controller="DomainAttachedDomainSelectCtrl as ctrl">
-    <div data-wizard
-         data-wizard-on-cancel="resetAction"
-         data-wizard-on-finish="goToHosting"
-         data-wizard-title="'domain_attached_domain_select_title' | translate">
-
+    <div
+        data-wizard
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="goToHosting"
+        data-wizard-title="'domain_attached_domain_select_title' | translate"
+    >
         <div data-wizard-step>
             <div class="text-center" data-ng-if="ctrl.loading">
                 <oui-spinner></oui-spinner>
             </div>
 
             <form name="attachedDomainForm" data-ng-if="!ctrl.loading">
-                <p data-ng-bind-html="'domain_attached_domain_select_intro' | translate: { t0: ctrl.domainName }"></p>
-                <label class="oui-label" for="attachedDomains"
-                       data-translate="domain_attached_domain_select_action"></label>
+                <p
+                    data-ng-bind-html="'domain_attached_domain_select_intro' | translate: { t0: ctrl.domainName }"
+                ></p>
+                <label
+                    class="oui-label"
+                    for="attachedDomains"
+                    data-translate="domain_attached_domain_select_action"
+                ></label>
                 <div class="oui-select">
-                    <select class="oui-select__input" id="attachedDomains" name="attachedDomains"
-                            data-ng-model="ctrl.selectedAttachedDomain"
-                            data-ng-options="attachedDomain as attachedDomain for attachedDomain in ctrl.attachedDomains track by attachedDomain">
+                    <select
+                        class="oui-select__input"
+                        id="attachedDomains"
+                        name="attachedDomains"
+                        data-ng-model="ctrl.selectedAttachedDomain"
+                        data-ng-options="attachedDomain as attachedDomain for attachedDomain in ctrl.attachedDomains track by attachedDomain"
+                    >
                     </select>
-                    <span class="oui-icon oui-icon-chevron-down" aria-hidden="true"></span>
+                    <span
+                        class="oui-icon oui-icon-chevron-down"
+                        aria-hidden="true"
+                    ></span>
                 </div>
             </form>
         </div>

@@ -3,8 +3,15 @@ import flatten from 'lodash/flatten';
 
 export default class IpLoadBalancerConfigurationService {
   /* @ngInject */
-  constructor($q, $state, $translate, CucCloudMessage, OvhApiIpLoadBalancing, CucRegionService,
-    CucServiceHelper) {
+  constructor(
+    $q,
+    $state,
+    $translate,
+    CucCloudMessage,
+    OvhApiIpLoadBalancing,
+    CucRegionService,
+    CucServiceHelper,
+  ) {
     this.$q = $q;
     this.$state = $state;
     this.$translate = $translate;
@@ -15,33 +22,38 @@ export default class IpLoadBalancerConfigurationService {
   }
 
   getPendingChanges(serviceName) {
-    return this.IpLoadBalancing.v6().pendingChanges({ serviceName })
-      .$promise;
+    return this.IpLoadBalancing.v6().pendingChanges({ serviceName }).$promise;
   }
 
   getAllZonesChanges(serviceName) {
-    return this.$q.all({
-      description: this.IpLoadBalancing.v6().get({ serviceName }),
-      pendingChanges: this.getPendingChanges(serviceName),
-      tasks: this.getRefreshTasks(serviceName),
-    })
-      .then(({ description, pendingChanges, tasks }) => description.zone.map((zone) => {
-        const pending = find(pendingChanges, { zone });
-        return {
-          id: zone,
-          name: this.CucRegionService.getRegion(zone).microRegion.text,
-          changes: pending ? pending.number : 0,
-          task: this.constructor.getLastUndoneTask(tasks, zone),
-        };
-      }))
-      .catch(this.CucServiceHelper.errorHandler('iplb_configuration_info_error'));
+    return this.$q
+      .all({
+        description: this.IpLoadBalancing.v6().get({ serviceName }),
+        pendingChanges: this.getPendingChanges(serviceName),
+        tasks: this.getRefreshTasks(serviceName),
+      })
+      .then(({ description, pendingChanges, tasks }) =>
+        description.zone.map((zone) => {
+          const pending = find(pendingChanges, { zone });
+          return {
+            id: zone,
+            name: this.CucRegionService.getRegion(zone).microRegion.text,
+            changes: pending ? pending.number : 0,
+            task: this.constructor.getLastUndoneTask(tasks, zone),
+          };
+        }),
+      )
+      .catch(
+        this.CucServiceHelper.errorHandler('iplb_configuration_info_error'),
+      );
   }
 
   getZoneChanges(serviceName, zone) {
-    return this.$q.all({
-      pendingChanges: this.getPendingChanges(serviceName),
-      tasks: this.getRefreshTasks(serviceName, ['todo', 'doing', 'done']),
-    })
+    return this.$q
+      .all({
+        pendingChanges: this.getPendingChanges(serviceName),
+        tasks: this.getRefreshTasks(serviceName, ['todo', 'doing', 'done']),
+      })
       .then(({ pendingChanges, tasks }) => {
         const pending = find(pendingChanges, { zone });
         return {
@@ -51,14 +63,17 @@ export default class IpLoadBalancerConfigurationService {
           task: this.constructor.getLastUndoneTask(tasks, zone),
         };
       })
-      .catch(this.CucServiceHelper.errorHandler('iplb_configuration_info_error'));
+      .catch(
+        this.CucServiceHelper.errorHandler('iplb_configuration_info_error'),
+      );
   }
 
   static getLastUndoneTask(tasks, zone) {
     const result = tasks.sort((a, b) => {
       if (a.creationDate > b.creationDate) {
         return -1;
-      } if (a.creationDate === b.creationDate) {
+      }
+      if (a.creationDate === b.creationDate) {
         return 0;
       }
 
@@ -69,63 +84,104 @@ export default class IpLoadBalancerConfigurationService {
 
   refresh(serviceName, zone) {
     return this.IpLoadBalancing.v6()
-      .refresh({
-        serviceName,
-      }, {
-        zone,
-      }).$promise
-      .then(() => this.CucServiceHelper.successHandler('iplb_configuration_apply_success')())
-      .catch(this.CucServiceHelper.errorHandler('iplb_configuration_apply_error'));
+      .refresh(
+        {
+          serviceName,
+        },
+        {
+          zone,
+        },
+      )
+      .$promise.then(() =>
+        this.CucServiceHelper.successHandler(
+          'iplb_configuration_apply_success',
+        )(),
+      )
+      .catch(
+        this.CucServiceHelper.errorHandler('iplb_configuration_apply_error'),
+      );
   }
 
   batchRefresh(serviceName, zones) {
-    const promises = zones.map((zone) => this.IpLoadBalancing.v6()
-      .refresh({
-        serviceName,
-      }, {
-        zone,
-      }).$promise);
+    const promises = zones.map(
+      (zone) =>
+        this.IpLoadBalancing.v6().refresh(
+          {
+            serviceName,
+          },
+          {
+            zone,
+          },
+        ).$promise,
+    );
 
     return this.$q
       .all(promises)
       .then((refreshResults) => {
-        refreshResults.forEach(() => this.CucServiceHelper.successHandler('iplb_configuration_apply_success')());
+        refreshResults.forEach(() =>
+          this.CucServiceHelper.successHandler(
+            'iplb_configuration_apply_success',
+          )(),
+        );
       })
-      .catch(this.CucServiceHelper.errorHandler('iplb_configuration_apply_error'));
+      .catch(
+        this.CucServiceHelper.errorHandler('iplb_configuration_apply_error'),
+      );
   }
 
   getRefreshTasks(serviceName, statuses) {
     let tasksPromise;
 
     if (statuses) {
-      tasksPromise = this.$q.all(statuses.map((status) => this.IpLoadBalancing.Task().v6().query({
-        serviceName,
-        action: 'refreshIplb',
-        status,
-      }).$promise))
+      tasksPromise = this.$q
+        .all(
+          statuses.map(
+            (status) =>
+              this.IpLoadBalancing.Task()
+                .v6()
+                .query({
+                  serviceName,
+                  action: 'refreshIplb',
+                  status,
+                }).$promise,
+          ),
+        )
         .then((tasksResults) => flatten(tasksResults));
     } else {
-      tasksPromise = this.IpLoadBalancing.Task().v6().query({
-        serviceName,
-        action: 'refreshIplb',
-      }).$promise;
+      tasksPromise = this.IpLoadBalancing.Task()
+        .v6()
+        .query({
+          serviceName,
+          action: 'refreshIplb',
+        }).$promise;
     }
 
-    return tasksPromise
-      .then((ids) => this.$q.all(ids.map((id) => this.IpLoadBalancing.Task().v6().get({
-        serviceName,
-        taskId: id,
-      }).$promise)));
+    return tasksPromise.then((ids) =>
+      this.$q.all(
+        ids.map(
+          (id) =>
+            this.IpLoadBalancing.Task()
+              .v6()
+              .get({
+                serviceName,
+                taskId: id,
+              }).$promise,
+        ),
+      ),
+    );
   }
 
   showRefreshWarning() {
-    this.CucCloudMessage.warning({
-      text: this.$translate.instant('iplb_configuration_pending_changes'),
-      link: {
-        type: 'state',
-        text: this.$translate.instant('iplb_configuration_action_apply'),
-        state: 'network.iplb.detail.configuration',
+    this.CucCloudMessage.warning(
+      {
+        text: this.$translate.instant('iplb_configuration_pending_changes'),
+        link: {
+          type: 'state',
+          text: this.$translate.instant('iplb_configuration_action_apply'),
+          state: 'network.iplb.detail.configuration',
+        },
       },
-    }, 'network.iplb.detail');
+      'network.iplb.detail',
+    );
   }
 }

@@ -6,8 +6,6 @@ import './slider.less';
 
 const moduleName = 'tucSlider';
 
-angular
-  .module(moduleName, [])
-  .directive('tucSlider', tucSliderDirective);
+angular.module(moduleName, []).directive('tucSlider', tucSliderDirective);
 
 export default moduleName;

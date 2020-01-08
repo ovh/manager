@@ -1,14 +1,14 @@
 class UserSessionService {
-  constructor(
-    $translate,
-  ) {
+  constructor($translate) {
     this.$translate = $translate;
   }
 
   getCurrentLocale() {
-    this.$translate.use().replace('_', '-').toLowerCase();
+    this.$translate
+      .use()
+      .replace('_', '-')
+      .toLowerCase();
   }
-
 
   loadTranslations() {
     // Add all $translatePartialLoader for Navbar here
@@ -17,5 +17,4 @@ class UserSessionService {
   }
 }
 
-angular.module('services')
-  .service('UserSessionService', UserSessionService);
+angular.module('services').service('UserSessionService', UserSessionService);

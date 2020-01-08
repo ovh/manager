@@ -1,23 +1,35 @@
 <div class="row dbaasts-project-details-billing cloud-billing-details">
-
     <!-- Init loader -->
-    <div data-ng-if="DBaasTsProjectDetailsBillingCtrl.loaders.init" class="text-center col-xs-12">
+    <div
+        data-ng-if="DBaasTsProjectDetailsBillingCtrl.loaders.init"
+        class="text-center col-xs-12"
+    >
         <spinner name="bubbles-222-fff-32"></spinner>
     </div>
 
-    <div class="col-md-offset-1 col-md-10" data-ng-if="!DBaasTsProjectDetailsBillingCtrl.loaders.init">
-
+    <div
+        class="col-md-offset-1 col-md-10"
+        data-ng-if="!DBaasTsProjectDetailsBillingCtrl.loaders.init"
+    >
         <!-- Arrows to navigate between month billings -->
         <h4 class="text-center bottom-space-m20">
-            <button type="button" class="no-style"
-                data-ng-click="DBaasTsProjectDetailsBillingCtrl.previousMonth()">
+            <button
+                type="button"
+                class="no-style"
+                data-ng-click="DBaasTsProjectDetailsBillingCtrl.previousMonth()"
+            >
                 <i class="fa fa-chevron-left"></i>
             </button>
-            <span data-translate="dtpdb_bill_current_month"
-                  data-translate-values="DBaasTsProjectDetailsBillingCtrl.getDateInfo()"></span>
-            <button type="button" class="no-style"
+            <span
+                data-translate="dtpdb_bill_current_month"
+                data-translate-values="DBaasTsProjectDetailsBillingCtrl.getDateInfo()"
+            ></span>
+            <button
+                type="button"
+                class="no-style"
                 data-ng-click="DBaasTsProjectDetailsBillingCtrl.nextMonth()"
-                data-ng-disabled="DBaasTsProjectDetailsBillingCtrl.getLimit() >= 0">
+                data-ng-disabled="DBaasTsProjectDetailsBillingCtrl.getLimit() >= 0"
+            >
                 <i class="fa fa-chevron-right"></i>
             </button>
         </h4>
@@ -25,14 +37,24 @@
         <!-- Current month total -->
         <div class="well">
             <h4>
-                <span data-translate="dtpdb_total_current_month" class="right-space-m12"></span>
-                <strong>{{ DBaasTsProjectDetailsBillingCtrl.data.billing.total.text }} {{ DBaasTsProjectDetailsBillingCtrl.data.billing.total.currencyCode }}</strong>
+                <span
+                    data-translate="dtpdb_total_current_month"
+                    class="right-space-m12"
+                ></span>
+                <strong
+                    >{{ DBaasTsProjectDetailsBillingCtrl.data.billing.total.text
+                    }} {{
+                    DBaasTsProjectDetailsBillingCtrl.data.billing.total.currencyCode
+                    }}</strong
+                >
             </h4>
         </div>
 
         <!-- Billing table -->
         <div class="shadow-z-1 top-space-m8 bottom-space-m12">
-            <table class="table table-pretty table-hover table-striped no-space">
+            <table
+                class="table table-pretty table-hover table-striped no-space"
+            >
                 <thead>
                     <tr>
                         <th data-translate="dtpdb_thead_description"></th>
@@ -40,23 +62,35 @@
                         <th data-translate="dtpdb_thead_unit_price"></th>
                         <th>
                             <span data-translate="dtpdb_thead_price"></span>
-                            <button data-ng-click="DBaasTsProjectDetailsBillingCtrl.refresh()" class="no-style pull-right">
+                            <button
+                                data-ng-click="DBaasTsProjectDetailsBillingCtrl.refresh()"
+                                class="no-style pull-right"
+                            >
                                 <i class="glyphicon glyphicon-refresh"></i>
                             </button>
                         </th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr data-ng-repeat="billingItem in DBaasTsProjectDetailsBillingCtrl.data.billing.items track by billingItem.metricName">
+                    <tr
+                        data-ng-repeat="billingItem in DBaasTsProjectDetailsBillingCtrl.data.billing.items track by billingItem.metricName"
+                    >
                         <td>{{ billingItem.metricName | translate}}</td>
-                        <td>{{ billingItem.quantity.value }} {{ billingItem.quantity.unit }}</td>
-                        <td>{{ billingItem.unitPrice.text }} {{ billingItem.unitPrice.currencyCode }}</td>
-                        <td>{{ billingItem.price.text }} {{ billingItem.price.currencyCode }}</td>
+                        <td>
+                            {{ billingItem.quantity.value }} {{
+                            billingItem.quantity.unit }}
+                        </td>
+                        <td>
+                            {{ billingItem.unitPrice.text }} {{
+                            billingItem.unitPrice.currencyCode }}
+                        </td>
+                        <td>
+                            {{ billingItem.price.text }} {{
+                            billingItem.price.currencyCode }}
+                        </td>
                     </tr>
                 </tbody>
             </table>
         </div>
-
     </div>
-
 </div>

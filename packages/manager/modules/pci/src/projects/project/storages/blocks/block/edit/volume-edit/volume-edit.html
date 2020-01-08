@@ -1,41 +1,59 @@
 <div>
     <h1 data-ng-bind="$ctrl.title"></h1>
 
-    <div class="text-center"
-        data-ng-if="$ctrl.loading || $ctrl.showLoading">
+    <div class="text-center" data-ng-if="$ctrl.loading || $ctrl.showLoading">
         <oui-spinner></oui-spinner>
     </div>
 
-    <form novalidate name="editForm"
+    <form
+        novalidate
+        name="editForm"
         data-ng-submit="editForm.$valid && $ctrl.save()"
-        data-ng-if="!$ctrl.loading && !$ctrl.showLoading">
-
+        data-ng-if="!$ctrl.loading && !$ctrl.showLoading"
+    >
         <div class="oui-field oui-field_error">
-            <label for="storage-region" class="oui-field__label oui-label"
-                data-translate="pci_projects_project_storages_blocks_block_volume-edit_region_label"></label>
-            <div class="oui-field__control" data-ng-bind="$ctrl.CucRegionService.getTranslatedMicroRegion($ctrl.storage.region)"></div>
+            <label
+                for="storage-region"
+                class="oui-field__label oui-label"
+                data-translate="pci_projects_project_storages_blocks_block_volume-edit_region_label"
+            ></label>
+            <div
+                class="oui-field__control"
+                data-ng-bind="$ctrl.CucRegionService.getTranslatedMicroRegion($ctrl.storage.region)"
+            ></div>
         </div>
 
         <div class="oui-field oui-field_error">
-            <label for="storage-type" class="oui-field__label oui-label"
-                data-translate="pci_projects_project_storages_blocks_block_volume-edit_type_label"></label>
-            <div class="oui-field__control"
-                data-ng-bind="'pci_projects_project_storages_blocks_block_volume-edit_type_' + $ctrl.storage.type | translate"></div>
+            <label
+                for="storage-type"
+                class="oui-field__label oui-label"
+                data-translate="pci_projects_project_storages_blocks_block_volume-edit_type_label"
+            ></label>
+            <div
+                class="oui-field__control"
+                data-ng-bind="'pci_projects_project_storages_blocks_block_volume-edit_type_' + $ctrl.storage.type | translate"
+            ></div>
         </div>
 
         <oui-field
             data-label="{{:: 'pci_projects_project_storages_blocks_block_volume-edit_name_label' | translate }}"
-            data-size="xl">
-            <input class="oui-input" type="text" id="name" name="name"
+            data-size="xl"
+        >
+            <input
+                class="oui-input"
+                type="text"
+                id="name"
+                name="name"
                 data-ng-model="$ctrl.storage.name"
                 data-ng-maxlength="255"
-                >
+            />
         </oui-field>
 
         <oui-field
             data-label="{{:: 'pci_projects_project_storages_blocks_block_volume-edit_size_label' | translate }}"
             data-help-text="{{:: 'pci_projects_project_storages_blocks_block_volume-edit_size_help' | translate }}"
-            data-size="xl">
+            data-size="xl"
+        >
             <div class="d-inline-block">
                 <oui-numeric
                     data-name="size"
@@ -44,33 +62,44 @@
                     data-model="$ctrl.storage.size"
                     data-on-change="$ctrl.estimatePrice(modelValue)"
                     data-disabled="!$ctrl.sizeEditable"
-                    ></oui-numeric>
+                ></oui-numeric>
             </div>
-            <span class="pl-2" data-translate="pci_projects_project_storages_blocks_block_volume-edit_size_unit"></span>
+            <span
+                class="pl-2"
+                data-translate="pci_projects_project_storages_blocks_block_volume-edit_size_unit"
+            ></span>
 
-            <p data-translate="pci_projects_project_storages_blocks_block_volume-edit_price_text"
-                data-translate-values="{ price: $ctrl.estimatedPrice.monthly.text }"></p>
+            <p
+                data-translate="pci_projects_project_storages_blocks_block_volume-edit_price_text"
+                data-translate-values="{ price: $ctrl.estimatedPrice.monthly.text }"
+            ></p>
         </oui-field>
 
         <oui-field
             data-ng-if="$ctrl.displayBootable"
             data-help-text="{{ :: 'pci_projects_project_storages_blocks_block_volume-edit_bootable_help' | translate }}"
-            data-size="xl">
+            data-size="xl"
+        >
             <oui-checkbox
                 data-name="bootable"
-                data-model="$ctrl.storage.bootable">
-                <span data-translate="pci_projects_project_storages_blocks_block_volume-edit_bootable_label"></span>
+                data-model="$ctrl.storage.bootable"
+            >
+                <span
+                    data-translate="pci_projects_project_storages_blocks_block_volume-edit_bootable_label"
+                ></span>
             </oui-checkbox>
-
         </oui-field>
 
-        <p data-ng-if="$ctrl.displayBootable"
+        <p
+            data-ng-if="$ctrl.displayBootable"
             data-translate="pci_projects_project_storages_blocks_block_volume-edit_price_text"
-            data-translate-values="{ price: $ctrl.estimatedPrice.monthly.text }"></p>
+            data-translate-values="{ price: $ctrl.estimatedPrice.monthly.text }"
+        ></p>
 
         <oui-form-actions
             data-submit-text="{{ $ctrl.submitLabel }}"
             data-cancel-text="{{:: 'pci_projects_project_storages_blocks_block_volume-edit_cancel_label' | translate }}"
-            data-on-cancel="$ctrl.onCancel()"></oui-form-actions>
+            data-on-cancel="$ctrl.onCancel()"
+        ></oui-form-actions>
     </form>
 </div>

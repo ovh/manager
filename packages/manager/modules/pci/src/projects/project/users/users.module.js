@@ -17,7 +17,6 @@ import component from './users.component';
 import routing from './users.routing';
 import service from './users.service';
 
-
 const moduleName = 'ovhManagerPciUsers';
 
 angular

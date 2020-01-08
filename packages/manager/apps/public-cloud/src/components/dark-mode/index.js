@@ -8,11 +8,7 @@ import component from './dark-mode.component';
 const moduleName = 'ovhManagerPublicCloudDarkMode';
 
 angular
-  .module(moduleName, [
-    'oui',
-    'pascalprecht.translate',
-    'ui.bootstrap',
-  ])
+  .module(moduleName, ['oui', 'pascalprecht.translate', 'ui.bootstrap'])
   .component('publicCloudDarkMode', component)
   .run(/* @ngTranslationsInject:json ./modal/translations */);
 

@@ -4,17 +4,23 @@
     data-on-submit="$ctrl.updateDuration()"
     data-navigation="false"
     data-editable="$ctrl.duration && $ctrl.hasManyDurations() && !$ctrl.stepper.loadingCheckout()"
-    data-valid="$ctrl.duration">
+    data-valid="$ctrl.duration"
+>
     <oui-radio
         name="duration"
         data-ng-repeat="pricing in $ctrl.availablePricings track by $index"
         data-model="$ctrl.duration"
         data-value="pricing.duration"
-        data-required>
-        <span data-translate="{{:: 'domain_webhosting_order_duration_' + pricing.duration }}"></span>&nbsp;&nbsp;
+        data-required
+    >
+        <span
+            data-translate="{{:: 'domain_webhosting_order_duration_' + pricing.duration }}"
+        ></span
+        >&nbsp;&nbsp;
         <ovh-manager-order-catalog-price
             data-price="pricing.price"
             data-tax="pricing.tax"
-            data-user="$ctrl.user"></ovh-manager-order-catalog-price>
+            data-user="$ctrl.user"
+        ></ovh-manager-order-catalog-price>
     </oui-radio>
 </oui-step-form>

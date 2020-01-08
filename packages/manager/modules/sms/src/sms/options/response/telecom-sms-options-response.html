@@ -1,55 +1,65 @@
 <section class="telecom-sms-options-response">
-
     <header>
-        <tuc-section-back-link data-tuc-section-back-link-to-state="sms.service.options"
-                           data-tuc-section-back-link-title="{{ 'sms_section_back_link' | translate }}">
+        <tuc-section-back-link
+            data-tuc-section-back-link-to-state="sms.service.options"
+            data-tuc-section-back-link-title="{{ 'sms_section_back_link' | translate }}"
+        >
         </tuc-section-back-link>
         <h1 data-translate="sms_options_response"></h1>
     </header>
 
-    <main class="telecom-section-content"
-          role="main">
-
+    <main class="telecom-section-content" role="main">
         <tuc-toast-message></tuc-toast-message>
 
         <div class="widget-presentation">
-
             <header class="widget-presentation-header">
-                <h2 class="widget-presentation-title"
-                    data-translate="sms_options_response_information_title">
-                </h2>
+                <h2
+                    class="widget-presentation-title"
+                    data-translate="sms_options_response_information_title"
+                ></h2>
             </header>
 
             <p data-translate="sms_options_response_information_text_1"></p>
             <ul>
-                <li data-translate="sms_options_response_information_list_item_1"></li>
-                <li data-translate="sms_options_response_information_list_item_2"></li>
-                <li data-translate="sms_options_response_information_list_item_3"></li>
+                <li
+                    data-translate="sms_options_response_information_list_item_1"
+                ></li>
+                <li
+                    data-translate="sms_options_response_information_list_item_2"
+                ></li>
+                <li
+                    data-translate="sms_options_response_information_list_item_3"
+                ></li>
             </ul>
             <p data-translate="sms_options_response_information_text_2"></p>
-            <strong data-translate="sms_options_response_information_text_3"></strong>
-
+            <strong
+                data-translate="sms_options_response_information_text_3"
+            ></strong>
         </div>
         <!-- /.row -->
 
         <div class="row">
             <div class="col-md-6 widget-presentation">
-
                 <header class="widget-presentation-header">
-                    <h2 class="widget-presentation-title"
-                        data-translate="sms_options_response_action_title">
-                    </h2>
+                    <h2
+                        class="widget-presentation-title"
+                        data-translate="sms_options_response_action_title"
+                    ></h2>
                 </header>
 
-                <div class="text-center" data-ng-if="TelecomSmsOptionsResponseCtrl.loading.init">
+                <div
+                    class="text-center"
+                    data-ng-if="TelecomSmsOptionsResponseCtrl.loading.init"
+                >
                     <oui-spinner></oui-spinner>
                 </div>
 
-                <form name="smsResponseActionForm"
-                      id="smsResponseActionForm"
-                      data-ng-if="!TelecomSmsOptionsResponseCtrl.loading.init"
-                      data-ng-submit="TelecomSmsOptionsResponseCtrl.setResponseAction()">
-
+                <form
+                    name="smsResponseActionForm"
+                    id="smsResponseActionForm"
+                    data-ng-if="!TelecomSmsOptionsResponseCtrl.loading.init"
+                    data-ng-submit="TelecomSmsOptionsResponseCtrl.setResponseAction()"
+                >
                     <!-- RESPONSE ACTION -->
                     <div class="form-group">
                         <select
@@ -57,19 +67,24 @@
                             id="response"
                             class="form-control"
                             data-ng-model="TelecomSmsOptionsResponseCtrl.smsResponse.responseType"
-                            data-ng-options="response as ('sms_options_response_action_option_' + response | translate) for response in TelecomSmsOptionsResponseCtrl.enums.smsResponseType">
+                            data-ng-options="response as ('sms_options_response_action_option_' + response | translate) for response in TelecomSmsOptionsResponseCtrl.enums.smsResponseType"
+                        >
                         </select>
                     </div>
 
                     <!-- CGI URL -->
-                    <div class="form-group"
-                         data-ng-if="TelecomSmsOptionsResponseCtrl.smsResponse.responseType === 'cgi'"
-                         data-ng-class="{
+                    <div
+                        class="form-group"
+                        data-ng-if="TelecomSmsOptionsResponseCtrl.smsResponse.responseType === 'cgi'"
+                        data-ng-class="{
                              'has-error': smsResponseActionForm.cgiUrl.$touched && smsResponseActionForm.cgiUrl.$invalid
-                         }">
-                        <label for="cgiUrl"
-                               class="control-label"
-                               data-translate="sms_options_response_action_url_cgi_label">
+                         }"
+                    >
+                        <label
+                            for="cgiUrl"
+                            class="control-label"
+                            data-translate="sms_options_response_action_url_cgi_label"
+                        >
                         </label>
                         <input
                             type="url"
@@ -78,32 +93,45 @@
                             class="form-control"
                             data-ng-required="TelecomSmsOptionsResponseCtrl.smsResponse.responseType === 'cgi'"
                             data-ng-pattern="TelecomSmsOptionsResponseCtrl.urlPattern"
-                            data-ng-model="TelecomSmsOptionsResponseCtrl.smsResponse.cgiUrl" />
-                        <span class="help-block"
-                              role="alert"
-                              data-ng-if="smsResponseActionForm.cgiUrl.$touched"
-                              data-ng-messages="smsResponseActionForm.cgiUrl.$error">
-                            <span data-ng-message="required"
-                                  data-translate="sms_options_response_action_cgi_url_required">
+                            data-ng-model="TelecomSmsOptionsResponseCtrl.smsResponse.cgiUrl"
+                        />
+                        <span
+                            class="help-block"
+                            role="alert"
+                            data-ng-if="smsResponseActionForm.cgiUrl.$touched"
+                            data-ng-messages="smsResponseActionForm.cgiUrl.$error"
+                        >
+                            <span
+                                data-ng-message="required"
+                                data-translate="sms_options_response_action_cgi_url_required"
+                            >
                             </span>
-                            <span data-ng-message="pattern"
-                                  data-translate="sms_options_response_action_cgi_url_error_pattern">
+                            <span
+                                data-ng-message="pattern"
+                                data-translate="sms_options_response_action_cgi_url_error_pattern"
+                            >
                             </span>
-                            <span data-ng-message="url"
-                                  data-translate="sms_options_response_action_cgi_url_error_url">
+                            <span
+                                data-ng-message="url"
+                                data-translate="sms_options_response_action_cgi_url_error_url"
+                            >
                             </span>
                         </span>
                     </div>
 
                     <!-- TEXT -->
-                    <div class="form-group clearfix"
-                         data-ng-if="TelecomSmsOptionsResponseCtrl.smsResponse.responseType === 'text'"
-                         data-ng-class="{
+                    <div
+                        class="form-group clearfix"
+                        data-ng-if="TelecomSmsOptionsResponseCtrl.smsResponse.responseType === 'text'"
+                        data-ng-class="{
                              'has-error': smsResponseActionForm.text.$touched && smsResponseActionForm.text.$invalid
-                         }">
-                        <label for="text"
-                               class="control-label"
-                               data-translate="sms_options_response_action_text_label">
+                         }"
+                    >
+                        <label
+                            for="text"
+                            class="control-label"
+                            data-translate="sms_options_response_action_text_label"
+                        >
                         </label>
                         <textarea
                             name="text"
@@ -115,37 +143,60 @@
                             data-ng-model="TelecomSmsOptionsResponseCtrl.smsResponse.text"
                             data-ng-change="TelecomSmsOptionsResponseCtrl.computeRemainingChar()"
                             data-ng-maxlength="TelecomSmsOptionsResponseCtrl.message.maxlength"
-                            data-ng-trim="false">
+                            data-ng-trim="false"
+                        >
                         </textarea>
-                        <span class="help-block"
-                              role="alert"
-                              data-ng-if="smsResponseActionForm.text.$touched && smsResponseActionForm.text.$invalid"
-                              data-ng-messages="smsResponseActionForm.text.$error">
-                            <span data-ng-message="required"
-                                  data-translate="sms_options_response_action_text_error_required">
+                        <span
+                            class="help-block"
+                            role="alert"
+                            data-ng-if="smsResponseActionForm.text.$touched && smsResponseActionForm.text.$invalid"
+                            data-ng-messages="smsResponseActionForm.text.$error"
+                        >
+                            <span
+                                data-ng-message="required"
+                                data-translate="sms_options_response_action_text_error_required"
+                            >
                             </span>
                         </span>
                         <div class="text-right">
-                            <small class="mb-3"
-                                   data-ng-hide="TelecomSmsOptionsResponseCtrl.message.maxLengthReached">
-                                <span data-translate="sms_options_response_action_text_characters_left"></span>
-                                <strong data-ng-bind="TelecomSmsOptionsResponseCtrl.message.remainingCharacters"></strong>&nbsp;/&nbsp;<span data-ng-bind="TelecomSmsOptionsResponseCtrl.message.defaultSize"></span>
-                                <i class="ovh-font ovh-font-filled-warning font-weight-normal text-warning"
-                                   data-ng-if="TelecomSmsOptionsResponseCtrl.message.coding === '8bit'"
-                                   data-oui-tooltip="{{ ::'sms_sms_compose_message_characters_left_warning_8bit' | translate }}"
-                                   data-oui-tooltip-placement="left">
+                            <small
+                                class="mb-3"
+                                data-ng-hide="TelecomSmsOptionsResponseCtrl.message.maxLengthReached"
+                            >
+                                <span
+                                    data-translate="sms_options_response_action_text_characters_left"
+                                ></span>
+                                <strong
+                                    data-ng-bind="TelecomSmsOptionsResponseCtrl.message.remainingCharacters"
+                                ></strong
+                                >&nbsp;/&nbsp;<span
+                                    data-ng-bind="TelecomSmsOptionsResponseCtrl.message.defaultSize"
+                                ></span>
+                                <i
+                                    class="ovh-font ovh-font-filled-warning font-weight-normal text-warning"
+                                    data-ng-if="TelecomSmsOptionsResponseCtrl.message.coding === '8bit'"
+                                    data-oui-tooltip="{{ ::'sms_sms_compose_message_characters_left_warning_8bit' | translate }}"
+                                    data-oui-tooltip-placement="left"
+                                >
                                 </i>
                                 <br />
-                                <span data-translate="sms_options_response_action_text_equivalent"></span>
-                                <strong data-ng-bind="TelecomSmsOptionsResponseCtrl.message.equivalence"></strong>
-                                <span data-translate="sms_options_response_action_text_sms"></span>
+                                <span
+                                    data-translate="sms_options_response_action_text_equivalent"
+                                ></span>
+                                <strong
+                                    data-ng-bind="TelecomSmsOptionsResponseCtrl.message.equivalence"
+                                ></strong>
+                                <span
+                                    data-translate="sms_options_response_action_text_sms"
+                                ></span>
                             </small>
                         </div>
-                        <div class="alert alert-danger mt-3"
-                             role="alert"
-                             data-ng-show="TelecomSmsOptionsResponseCtrl.message.maxLengthReached"
-                             data-translate="sms_options_response_action_text_alert_maxlength">
-                        </div>
+                        <div
+                            class="alert alert-danger mt-3"
+                            role="alert"
+                            data-ng-show="TelecomSmsOptionsResponseCtrl.message.maxLengthReached"
+                            data-translate="sms_options_response_action_text_alert_maxlength"
+                        ></div>
                     </div>
 
                     <div class="form-group">
@@ -153,55 +204,74 @@
                             type="submit"
                             class="btn btn-primary"
                             data-ng-disabled="smsResponseActionForm.$invalid || !TelecomSmsOptionsResponseCtrl.hasChanged() || TelecomSmsOptionsResponseCtrl.loading.action"
-                            data-translate="sms_submit">
-                        </button>
-                        <oui-spinner class="ml-2"
-                                     data-ng-if="TelecomSmsOptionsResponseCtrl.loading.action"
-                                     data-size="s">
+                            data-translate="sms_submit"
+                        ></button>
+                        <oui-spinner
+                            class="ml-2"
+                            data-ng-if="TelecomSmsOptionsResponseCtrl.loading.action"
+                            data-size="s"
+                        >
                         </oui-spinner>
                     </div>
-
                 </form>
-
             </div>
 
             <div class="col-md-6 widget-presentation">
-
                 <header class="widget-presentation-header">
-                    <h2 class="widget-presentation-title"
-                        data-translate="sms_options_response_tracking_title">
-                    </h2>
+                    <h2
+                        class="widget-presentation-title"
+                        data-translate="sms_options_response_tracking_title"
+                    ></h2>
                 </header>
 
-                <oui-datagrid data-rows="TelecomSmsOptionsResponseCtrl.smsResponse.trackingOptions">
-                    <oui-column data-title="'sms_options_response_tracking_media_label' | translate" data-property="media" data-sortable="asc">
-                        <span class="text-capitalize visible-xs"
-                              data-ng-bind="$row.media">
+                <oui-datagrid
+                    data-rows="TelecomSmsOptionsResponseCtrl.smsResponse.trackingOptions"
+                >
+                    <oui-column
+                        data-title="'sms_options_response_tracking_media_label' | translate"
+                        data-property="media"
+                        data-sortable="asc"
+                    >
+                        <span
+                            class="text-capitalize visible-xs"
+                            data-ng-bind="$row.media"
+                        >
                         </span>
-                        <i class="ovh-font ovh-font-1x4 ml-2 hidden-xs"
-                           data-ng-attr-title="{{ $row.media }}"
-                           data-ng-class="{
+                        <i
+                            class="ovh-font ovh-font-1x4 ml-2 hidden-xs"
+                            data-ng-attr-title="{{ $row.media }}"
+                            data-ng-class="{
                                'ovh-font-mail': $row.media === 'email',
                                'ovh-font-message': $row.media === 'sms'
-                           }">
+                           }"
+                        >
                         </i>
                     </oui-column>
 
-                    <oui-column data-title="'sms_options_response_tracking_email_number_label' | translate" data-property="target">
-                        <strong class="d-block"
-                                data-ng-bind="$row.target">
+                    <oui-column
+                        data-title="'sms_options_response_tracking_email_number_label' | translate"
+                        data-property="target"
+                    >
+                        <strong class="d-block" data-ng-bind="$row.target">
                         </strong>
                     </oui-column>
 
-                    <oui-column data-title="'sms_options_response_tracking_email_sender_label' | translate" data-property="sender">
+                    <oui-column
+                        data-title="'sms_options_response_tracking_email_sender_label' | translate"
+                        data-property="sender"
+                    >
                         <span data-ng-bind="$row.sender"></span>
                     </oui-column>
 
                     <oui-action-menu data-align="end" data-compact>
-                        <oui-action-menu-item on-click="TelecomSmsOptionsResponseCtrl.editTrackingOptions($rowIndex, $row)">
+                        <oui-action-menu-item
+                            on-click="TelecomSmsOptionsResponseCtrl.editTrackingOptions($rowIndex, $row)"
+                        >
                             <span data-translate="sms_edit"></span>
                         </oui-action-menu-item>
-                        <oui-action-menu-item on-click="TelecomSmsOptionsResponseCtrl.removeTrackingOptions($rowIndex, $row)">
+                        <oui-action-menu-item
+                            on-click="TelecomSmsOptionsResponseCtrl.removeTrackingOptions($rowIndex, $row)"
+                        >
                             <span data-translate="sms_delete"></span>
                         </oui-action-menu-item>
                     </oui-action-menu>
@@ -212,15 +282,13 @@
                         type="button"
                         class="btn btn-primary"
                         data-ng-click="TelecomSmsOptionsResponseCtrl.addTrackingOptions()"
-                        data-translate="sms_options_response_tracking_add">
-                    </button>
+                        data-translate="sms_options_response_tracking_add"
+                    ></button>
                 </div>
             </div>
         </div>
         <!-- /.row -->
-
     </main>
     <!-- /.telecom-section-content -->
-
 </section>
 <!-- /.telecom-sms-options-response -->

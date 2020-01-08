@@ -12,10 +12,28 @@ export default class BlockStorage {
     if (includes(['available', 'in-use'], this.status)) {
       return 'ACTIVE';
     }
-    if (includes(['creating', 'attaching', 'detaching', 'deleting', 'backing-up', 'restoring-backup', 'snapshotting'], this.status)) {
+    if (
+      includes(
+        [
+          'creating',
+          'attaching',
+          'detaching',
+          'deleting',
+          'backing-up',
+          'restoring-backup',
+          'snapshotting',
+        ],
+        this.status,
+      )
+    ) {
       return 'PENDING';
     }
-    if (includes(['error', 'error_deleting', 'error_restoring', 'error_extending'], this.status)) {
+    if (
+      includes(
+        ['error', 'error_deleting', 'error_restoring', 'error_extending'],
+        this.status,
+      )
+    ) {
       return 'ERROR';
     }
     return this.status;

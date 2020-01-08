@@ -3,7 +3,14 @@ import isEmpty from 'lodash/isEmpty';
 angular.module('App').controller(
   'HostingIndyTabCtrl',
   class HostingIndyTabCtrl {
-    constructor($scope, $location, $stateParams, $translate, Alerter, HostingIndy) {
+    constructor(
+      $scope,
+      $location,
+      $stateParams,
+      $translate,
+      Alerter,
+      HostingIndy,
+    ) {
       this.$scope = $scope;
       this.$location = $location;
       this.$stateParams = $stateParams;

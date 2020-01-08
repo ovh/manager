@@ -38,7 +38,8 @@ angular.module('App').controller(
         WEEKLY: 'weekly.1',
         NOW: 'now',
       };
-      this.canCreateDatabase = this.hosting.databaseMax - this.hosting.databaseCount > 0;
+      this.canCreateDatabase =
+        this.hosting.databaseMax - this.hosting.databaseCount > 0;
       this.databases = {
         details: [],
       };
@@ -52,13 +53,17 @@ angular.module('App').controller(
       };
 
       this.$scope.goToList = () => this.goToList();
-      this.$scope.$on('hosting.databases.backup.restore', () => this.reloadCurrentPage());
+      this.$scope.$on('hosting.databases.backup.restore', () =>
+        this.reloadCurrentPage(),
+      );
 
       this.$scope.$on(
         `${this.hostingService.events.tabDatabasesCreation}.done`,
         () => {
           this.alerter.success(
-            this.$translate.instant('hosting_tab_DATABASES_configuration_create_bdd_added'),
+            this.$translate.instant(
+              'hosting_tab_DATABASES_configuration_create_bdd_added',
+            ),
             this.$scope.alerts.main,
           );
           this.reloadCurrentPage();
@@ -96,14 +101,16 @@ angular.module('App').controller(
       });
       return deferred.promise
         .then((task) => {
-          database.quotaCalculating = true; // eslint-disable-line no-param-reassign
+          // eslint-disable-next-line no-param-reassign
+          database.quotaCalculating = true;
           return this.hostingService.pollDatabaseQuotaTask(
             this.$stateParams.productId,
             task.id,
           );
         })
         .then(() => {
-          database.quotaCalculating = false; // eslint-disable-line no-param-reassign
+          // eslint-disable-next-line no-param-reassign
+          database.quotaCalculating = false;
           this.reloadCurrentPage();
         });
     }
@@ -137,14 +144,10 @@ angular.module('App').controller(
 
     getPhpMyAdminUrl(element) {
       let PHPMYADMIN_BASE_URL = 'https://phpmyadmin.ovh.net/index.php';
-      const queryString = `pma_username=${element.user}&pma_servername=${
-        element.name
-      }`;
+      const queryString = `pma_username=${element.user}&pma_servername=${element.name}`;
 
       if (this.hostingProxy.datacenter !== 'p19') {
-        PHPMYADMIN_BASE_URL = `https://phpmyadmin.${
-          this.hostingProxy.cluster
-        }.hosting.ovh.net/index.php`;
+        PHPMYADMIN_BASE_URL = `https://phpmyadmin.${this.hostingProxy.cluster}.hosting.ovh.net/index.php`;
       }
       return `${PHPMYADMIN_BASE_URL}?${queryString}`;
     }

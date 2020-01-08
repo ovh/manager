@@ -15,7 +15,8 @@ angular.module('managerApp').config(($stateProvider) => {
       url: '/home',
       views: {
         logsOptions: {
-          templateUrl: 'app/dbaas/logs/detail/options/home/logs-options-home.html',
+          templateUrl:
+            'app/dbaas/logs/detail/options/home/logs-options-home.html',
           controller: 'LogsOptionsCtrl',
           controllerAs: 'ctrl',
         },
@@ -25,7 +26,8 @@ angular.module('managerApp').config(($stateProvider) => {
       url: '/manage',
       views: {
         logsOptions: {
-          templateUrl: 'app/dbaas/logs/detail/options/manage/logs-options-manage.html',
+          templateUrl:
+            'app/dbaas/logs/detail/options/manage/logs-options-manage.html',
           controller: 'LogsOptionsManageCtrl',
           controllerAs: 'ctrl',
         },

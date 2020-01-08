@@ -4,6 +4,4 @@ import telecomDashboard from '@ovh-ux/manager-telecom-dashboard';
 
 import angular from 'angular';
 
-angular.module('telecomDashboardApp', [
-  telecomDashboard,
-]);
+angular.module('telecomDashboardApp', [telecomDashboard]);

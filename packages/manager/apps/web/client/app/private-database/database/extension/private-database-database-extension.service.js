@@ -39,7 +39,9 @@ angular.module('services').service(
      */
     getExtension(serviceName, databaseName, extensionName) {
       return this.$http
-        .get(`apiv6/hosting/privateDatabase/${serviceName}/database/${databaseName}/extension/${extensionName}`)
+        .get(
+          `apiv6/hosting/privateDatabase/${serviceName}/database/${databaseName}/extension/${extensionName}`,
+        )
         .then((res) => res.data);
     }
 
@@ -52,7 +54,9 @@ angular.module('services').service(
      */
     disableExtension(serviceName, databaseName, extensionName) {
       return this.$http
-        .post(`apiv6/hosting/privateDatabase/${serviceName}/database/${databaseName}/extension/${extensionName}/disable`)
+        .post(
+          `apiv6/hosting/privateDatabase/${serviceName}/database/${databaseName}/extension/${extensionName}/disable`,
+        )
         .then((task) => {
           this.pollExtensionDisable(serviceName, {
             taskId: task.data.id,
@@ -116,7 +120,9 @@ angular.module('services').service(
      */
     enableExtension(serviceName, databaseName, extensionName) {
       return this.$http
-        .post(`apiv6/hosting/privateDatabase/${serviceName}/database/${databaseName}/extension/${extensionName}/enable`)
+        .post(
+          `apiv6/hosting/privateDatabase/${serviceName}/database/${databaseName}/extension/${extensionName}/enable`,
+        )
         .then((task) => {
           this.pollExtensionEnable(serviceName, {
             taskId: task.data.id,

@@ -5,7 +5,13 @@ import snakeCase from 'lodash/snakeCase';
 
 angular
   .module('services')
-  .service('CdnDomain', function CdnDomain($http, $q, constants, $cacheFactory, $rootScope) {
+  .service('CdnDomain', function CdnDomain(
+    $http,
+    $q,
+    constants,
+    $cacheFactory,
+    $rootScope,
+  ) {
     const aapiRootPath = '/sws/dedicated/cdn';
     const swsCdnProxyPath = `${constants.swsProxyRootPath}cdn/dedicated`;
     const cdnCache = $cacheFactory('UNIVERS_DEDICATED_CDN_DOMAIN');
@@ -29,7 +35,7 @@ angular
             requests[request] = {};
           }
         }
-      /* eslint-enable no-restricted-syntax, no-prototype-builtins */
+        /* eslint-enable no-restricted-syntax, no-prototype-builtins */
       }
     }
 
@@ -86,14 +92,24 @@ angular
       return this.getSelected(cdn, domain)
         .then((cdnDomain) => {
           if (cdn && cdnDomain.domain) {
-            const tab = cdnCache.get(`domain_${domain}_cacherule?elementsToDisplay=${elementsToDisplay}&fromIndex=${fromIndex}${searched}`);
+            const tab = cdnCache.get(
+              `domain_${domain}_cacherule?elementsToDisplay=${elementsToDisplay}&fromIndex=${fromIndex}${searched}`,
+            );
             if (!tab) {
               return $http
-                .get(`${[aapiRootPath, cdn, 'domains', domain, 'cacherule'].join('/')}?elementsToDisplay=${elementsToDisplay}&fromIndex=${fromIndex}${searched}`, {
-                  serviceType: 'aapi',
-                })
+                .get(
+                  `${[aapiRootPath, cdn, 'domains', domain, 'cacherule'].join(
+                    '/',
+                  )}?elementsToDisplay=${elementsToDisplay}&fromIndex=${fromIndex}${searched}`,
+                  {
+                    serviceType: 'aapi',
+                  },
+                )
                 .then((data) => {
-                  cdnCache.put(`domain_${domain}_cacherule?elementsToDisplay=${elementsToDisplay}&fromIndex=${fromIndex}${searched}`, data.data);
+                  cdnCache.put(
+                    `domain_${domain}_cacherule?elementsToDisplay=${elementsToDisplay}&fromIndex=${fromIndex}${searched}`,
+                    data.data,
+                  );
                   return data.data;
                 });
             }
@@ -103,12 +119,18 @@ angular
         })
         .then(
           () => {
-            const result = cdnCache.get(`domain_${domain}_cacherule?elementsToDisplay=${elementsToDisplay}&fromIndex=${fromIndex}${searched}`);
-            if (result
-            && (!result.messages
-              || (angular.isArray(result.messages) && result.messages.length === 0))) {
+            const result = cdnCache.get(
+              `domain_${domain}_cacherule?elementsToDisplay=${elementsToDisplay}&fromIndex=${fromIndex}${searched}`,
+            );
+            if (
+              result &&
+              (!result.messages ||
+                (angular.isArray(result.messages) &&
+                  result.messages.length === 0))
+            ) {
               return result;
-            } if (result && result.messages.length !== 0) {
+            }
+            if (result && result.messages.length !== 0) {
               return $q.reject(result.messages);
             }
             return $q.reject(result);
@@ -126,11 +148,15 @@ angular
       return this.getSelected(cdn, domain)
         .then((cdnDomain) => {
           if (cdn && cdnDomain.domain) {
-            return $http.post([swsCdnProxyPath, cdn, 'domains', domain, 'flush'].join('/')).then((data) => ({
-              id: data.taskId,
-              status: camelCase(data.status),
-              function: camelCase(data.function),
-            }));
+            return $http
+              .post(
+                [swsCdnProxyPath, cdn, 'domains', domain, 'flush'].join('/'),
+              )
+              .then((data) => ({
+                id: data.taskId,
+                status: camelCase(data.status),
+                function: camelCase(data.function),
+              }));
           }
           return $q.reject(cdnDomain);
         })
@@ -160,14 +186,15 @@ angular
       return this.getSelected(cdn, domain)
         .then((cdnDomain) => {
           if (cdn && cdnDomain.domain && newBackend) {
-            return $http
-              .put(
-                `${[aapiRootPath, cdn, 'domains', domain, 'backend'].join('/')}?newBackend=${encodeURIComponent(newBackend)}`,
-                {},
-                {
-                  serviceType: 'aapi',
-                },
-              );
+            return $http.put(
+              `${[aapiRootPath, cdn, 'domains', domain, 'backend'].join(
+                '/',
+              )}?newBackend=${encodeURIComponent(newBackend)}`,
+              {},
+              {
+                serviceType: 'aapi',
+              },
+            );
           }
           return $q.reject(cdnDomain);
         })
@@ -187,7 +214,9 @@ angular
             const newStatus = byPass.toString() === 'true' ? 'on' : 'off';
 
             return $http
-              .put([swsCdnProxyPath, cdn, 'domains', domain].join('/'), { status: newStatus })
+              .put([swsCdnProxyPath, cdn, 'domains', domain].join('/'), {
+                status: newStatus,
+              })
               .then(() => $q.when(true))
               .catch(() => $q.reject(false));
           }
@@ -205,7 +234,18 @@ angular
       return this.getSelected(cdn, domain)
         .then((cdnDomain) => {
           if (cdn && cdnDomain.domain && id) {
-            return $http.delete([swsCdnProxyPath, cdn, 'domains', domain, 'cacheRules', id].join('/')).then(({ data }) => data);
+            return $http
+              .delete(
+                [
+                  swsCdnProxyPath,
+                  cdn,
+                  'domains',
+                  domain,
+                  'cacheRules',
+                  id,
+                ].join('/'),
+              )
+              .then(({ data }) => data);
           }
           return $q.reject(cdnDomain);
         })
@@ -217,13 +257,24 @@ angular
         .catch((reason) => $q.reject(get(reason, 'data', reason)));
     };
 
-    this.updateAllCacheruleStatus = function updateAllCacheruleStatus(cdn, domain, status) {
+    this.updateAllCacheruleStatus = function updateAllCacheruleStatus(
+      cdn,
+      domain,
+      status,
+    ) {
       return this.getSelected(cdn, domain)
         .then((cdnDomain) => {
           if (cdn && cdnDomain.domain) {
             return $http
               .put(
-                `${[aapiRootPath, cdn, 'domains', cdnDomain.domain, 'allcacherules', 'status'].join('/')}?status=${camelCase(status)}`,
+                `${[
+                  aapiRootPath,
+                  cdn,
+                  'domains',
+                  cdnDomain.domain,
+                  'allcacherules',
+                  'status',
+                ].join('/')}?status=${camelCase(status)}`,
                 {},
                 {
                   serviceType: 'aapi',
@@ -241,11 +292,21 @@ angular
         .catch((reason) => $q.reject(get(reason, 'data', reason)));
     };
 
-    this.updateCacheruleStatus = function updateCacheruleStatus(cdn, domain, id, status) {
+    this.updateCacheruleStatus = function updateCacheruleStatus(
+      cdn,
+      domain,
+      id,
+      status,
+    ) {
       return this.getSelected(cdn, domain)
         .then((cdnDomain) => {
           if (cdn && cdnDomain.domain && id) {
-            return $http.put([swsCdnProxyPath, cdn, 'domains', domain, 'cacheRules', id].join('/'), { status: camelCase(status) });
+            return $http.put(
+              [swsCdnProxyPath, cdn, 'domains', domain, 'cacheRules', id].join(
+                '/',
+              ),
+              { status: camelCase(status) },
+            );
           }
           return $q.reject(cdnDomain);
         })
@@ -258,11 +319,21 @@ angular
         .catch((reason) => $q.reject(get(reason, 'data', reason)));
     };
 
-    this.updateCacheruleTtl = function updateCacheruleTtl(cdn, domain, id, ttl) {
+    this.updateCacheruleTtl = function updateCacheruleTtl(
+      cdn,
+      domain,
+      id,
+      ttl,
+    ) {
       return this.getSelected(cdn, domain)
         .then((cdnDomain) => {
           if (cdn && cdnDomain.domain && id) {
-            return $http.put([swsCdnProxyPath, cdn, 'domains', domain, 'cacheRules', id].join('/'), { ttl });
+            return $http.put(
+              [swsCdnProxyPath, cdn, 'domains', domain, 'cacheRules', id].join(
+                '/',
+              ),
+              { ttl },
+            );
           }
           return $q.reject(cdnDomain);
         })
@@ -284,8 +355,18 @@ angular
 
       return $http.get(`${swsCdnProxyPath}.json`).then(
         (content) => {
-          let cacheTypes = get(content, ['data', 'models', 'cdnanycast.CacheRuleCacheTypeEnum', 'enum']);
-          let fileTypes = get(content, ['data', 'models', 'cdnanycast.CacheRuleFileTypeEnum', 'enum']);
+          let cacheTypes = get(content, [
+            'data',
+            'models',
+            'cdnanycast.CacheRuleCacheTypeEnum',
+            'enum',
+          ]);
+          let fileTypes = get(content, [
+            'data',
+            'models',
+            'cdnanycast.CacheRuleFileTypeEnum',
+            'enum',
+          ]);
 
           cacheTypes = map(cacheTypes, (t) => snakeCase(t).toUpperCase());
           fileTypes = map(fileTypes, (t) => snakeCase(t).toUpperCase());
@@ -326,11 +407,18 @@ angular
               ttl,
             };
 
-            return $http.post([swsCdnProxyPath, cdn, 'domains', domain, 'cacheRules'].join('/'), opts).then((data) => ({
-              id: data.taskId,
-              status: camelCase(data.status),
-              function: camelCase(data.function),
-            }));
+            return $http
+              .post(
+                [swsCdnProxyPath, cdn, 'domains', domain, 'cacheRules'].join(
+                  '/',
+                ),
+                opts,
+              )
+              .then((data) => ({
+                id: data.taskId,
+                status: camelCase(data.status),
+                function: camelCase(data.function),
+              }));
           }
           return $q.reject(cdnDomain);
         })
@@ -346,7 +434,9 @@ angular
       return this.getSelected(cdn, domain)
         .then((cdnDomain) => {
           if (cdn && cdnDomain.domain) {
-            return $http.delete([swsCdnProxyPath, cdn, 'domains', domain].join('/'));
+            return $http.delete(
+              [swsCdnProxyPath, cdn, 'domains', domain].join('/'),
+            );
           }
           return $q.reject(cdnDomain);
         })
@@ -362,7 +452,17 @@ angular
       return this.getSelected(cdn, domain)
         .then((cdnDomain) => {
           if (cdn && cdnDomain.domain) {
-            return $http.post([swsCdnProxyPath, cdn, 'domains', domain, 'cacheRules', cacheRule.id, 'flush'].join('/'));
+            return $http.post(
+              [
+                swsCdnProxyPath,
+                cdn,
+                'domains',
+                domain,
+                'cacheRules',
+                cacheRule.id,
+                'flush',
+              ].join('/'),
+            );
           }
           return $q.reject(cdnDomain);
         })

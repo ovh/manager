@@ -1,11 +1,12 @@
 <div class="modal-header">
-    <h3 class="modal-title" data-translate="dtpdt_modal_example_key_title">
-    </h3>
+    <h3 class="modal-title" data-translate="dtpdt_modal_example_key_title"></h3>
 </div>
 
 <div class="modal-body" data-ng-if="ctrl.key.permissions[0] === 'WRITE'">
     <p>
-        <span data-translate="dtpdt_modal_example_key_write_explain_begin"></span>
+        <span
+            data-translate="dtpdt_modal_example_key_write_explain_begin"
+        ></span>
         <code class="dbaasts-highlight">{{ ctrl.dbaastsApiURL }}</code>
         <span data-translate="dtpdt_modal_example_key_explain_end"></span>
     </p>
@@ -23,14 +24,18 @@
         }
     }'</span></pre>
 
-    <p data-ng-if="ctrl.dbaastsGuideKeyUrl"
-       data-translate="dtpdt_modal_example_key_more"
-       data-translate-values="{dbaasts_guide_key_url: ctrl.dbaastsGuideKeyUrl}"></p>
+    <p
+        data-ng-if="ctrl.dbaastsGuideKeyUrl"
+        data-translate="dtpdt_modal_example_key_more"
+        data-translate-values="{dbaasts_guide_key_url: ctrl.dbaastsGuideKeyUrl}"
+    ></p>
 </div>
 
 <div class="modal-body" data-ng-if="ctrl.key.permissions[0] === 'READ'">
     <p>
-        <span data-translate="dtpdt_modal_example_key_read_explain_begin"></span>
+        <span
+            data-translate="dtpdt_modal_example_key_read_explain_begin"
+        ></span>
         <code class="dbaasts-highlight">{{ ctrl.dbaastsApiURL }}</code>
         <span data-translate="dtpdt_modal_example_key_explain_end"></span>
     </p>
@@ -50,14 +55,19 @@
         }}]
     }'</span></pre>
 
-    <p data-ng-if="ctrl.dbaastsGuideKeyUrl"
-       data-translate="dtpdt_modal_example_key_more"
-       data-translate-values="{dbaasts_guide_key_url: ctrl.dbaastsGuideKeyUrl}"></p>
+    <p
+        data-ng-if="ctrl.dbaastsGuideKeyUrl"
+        data-translate="dtpdt_modal_example_key_more"
+        data-translate-values="{dbaasts_guide_key_url: ctrl.dbaastsGuideKeyUrl}"
+    ></p>
 </div>
 
 <div class="modal-footer">
-    <button type="submit" class="btn btn-primary pull-right"
-        data-ng-click="ctrl.close()">
+    <button
+        type="submit"
+        class="btn btn-primary pull-right"
+        data-ng-click="ctrl.close()"
+    >
         <i class="glyphicon glyphicon-ok"></i>
         <span data-translate="dbaasts_ok"></span>
     </button>

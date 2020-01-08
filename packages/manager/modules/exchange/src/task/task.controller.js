@@ -22,9 +22,8 @@ export default class ExchangeTabTasksCtrl {
       todo: 'TODO',
     };
 
-    this.services.$scope.$on(
-      this.services.Exchange.events.tasksChanged,
-      () => this.refreshTasks(),
+    this.services.$scope.$on(this.services.Exchange.events.tasksChanged, () =>
+      this.refreshTasks(),
     );
   }
 
@@ -69,7 +68,11 @@ export default class ExchangeTabTasksCtrl {
         for (let i = 0; i < response.list.results.length; i += 1) {
           this.tasksList.splice(i, 1, response.list.results[i]);
         }
-        for (let i = response.list.results.length; i < this.tasksList.length; i += 1) {
+        for (
+          let i = response.list.results.length;
+          i < this.tasksList.length;
+          i += 1
+        ) {
           this.tasksList.splice(i, 1);
         }
       })

@@ -11,4 +11,6 @@ class ovhTaskFollowModalCtrl {
   }
 }
 
-angular.module('managerApp').controller('ovhTaskFollowModalCtrl', ovhTaskFollowModalCtrl);
+angular
+  .module('managerApp')
+  .controller('ovhTaskFollowModalCtrl', ovhTaskFollowModalCtrl);

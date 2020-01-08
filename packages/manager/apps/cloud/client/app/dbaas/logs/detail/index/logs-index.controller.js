@@ -1,6 +1,12 @@
 class LogsIndexCtrl {
-  constructor($stateParams, bytesFilter, CucCloudMessage, CucControllerHelper, LogsIndexService,
-    LogsConstants) {
+  constructor(
+    $stateParams,
+    bytesFilter,
+    CucCloudMessage,
+    CucControllerHelper,
+    LogsIndexService,
+    LogsConstants,
+  ) {
     this.$stateParams = $stateParams;
     this.serviceName = this.$stateParams.serviceName;
     this.CucControllerHelper = CucControllerHelper;
@@ -14,7 +20,8 @@ class LogsIndexCtrl {
 
   initLoaders() {
     this.indexOptions = this.CucControllerHelper.request.getArrayLoader({
-      loaderFunction: () => this.LogsIndexService.getSubscribedOptions(this.serviceName),
+      loaderFunction: () =>
+        this.LogsIndexService.getSubscribedOptions(this.serviceName),
     });
 
     this.quota = this.CucControllerHelper.request.getHashLoader({
@@ -32,31 +39,35 @@ class LogsIndexCtrl {
 
   add(info) {
     this.CucCloudMessage.flushChildMessage();
-    this.CucControllerHelper.modal.showModal({
-      modalConfig: {
-        templateUrl: 'app/dbaas/logs/detail/index/add/logs-index-add.html',
-        controller: 'LogsIndexAddModalCtrl',
-        controllerAs: 'ctrl',
-        backdrop: 'static',
-        resolve: {
-          serviceName: () => this.serviceName,
-          indexInfo: () => info,
-          options: () => this.indexOptions,
-          quota: () => this.quota,
+    this.CucControllerHelper.modal
+      .showModal({
+        modalConfig: {
+          templateUrl: 'app/dbaas/logs/detail/index/add/logs-index-add.html',
+          controller: 'LogsIndexAddModalCtrl',
+          controllerAs: 'ctrl',
+          backdrop: 'static',
+          resolve: {
+            serviceName: () => this.serviceName,
+            indexInfo: () => info,
+            options: () => this.indexOptions,
+            quota: () => this.quota,
+          },
         },
-      },
-    }).then(() => {
-      this.initLoaders();
-    });
+      })
+      .then(() => {
+        this.initLoaders();
+      });
   }
 
   storageColor(info) {
     const percentage = parseInt((info.currentStorage * 100) / info.maxSize, 10);
     if (percentage >= 80) {
       return `oui-status_${this.LogsConstants.indexStorage.error}`;
-    } if (percentage < 60) {
+    }
+    if (percentage < 60) {
       return `oui-status_${this.LogsConstants.indexStorage.success}`;
-    } if (percentage >= 60 && percentage < 80) {
+    }
+    if (percentage >= 60 && percentage < 80) {
       return `oui-status_${this.LogsConstants.indexStorage.warning}`;
     }
     return null;
@@ -64,13 +75,12 @@ class LogsIndexCtrl {
 
   showDeleteConfirm(info) {
     this.CucCloudMessage.flushChildMessage();
-    this.LogsIndexService.deleteModal(
-      info.name,
-    ).then(() => {
+    this.LogsIndexService.deleteModal(info.name).then(() => {
       this.delete = this.CucControllerHelper.request.getHashLoader({
-        loaderFunction: () => this.LogsIndexService.deleteIndex(this.serviceName, info)
-          .then(() => this.initLoaders())
-          .finally(() => this.CucControllerHelper.scrollPageToTop()),
+        loaderFunction: () =>
+          this.LogsIndexService.deleteIndex(this.serviceName, info)
+            .then(() => this.initLoaders())
+            .finally(() => this.CucControllerHelper.scrollPageToTop()),
       });
 
       this.delete.load();

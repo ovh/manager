@@ -46,19 +46,36 @@ class CdaPoolAddCtrl {
 
   createPool() {
     this.saving = true;
-    return this.OvhApiDedicatedCeph.Pool().v6().post({
-      serviceName: this.serviceName,
-    }, {
-      poolName: this.model.poolName,
-    }).$promise
-      .then((result) => {
-        this.$uibModalInstance.close({ poolName: this.model.poolName, taskId: result.data });
-        this.CucCloudMessage.success(this.$translate.instant('cda_pool_add_success'));
+    return this.OvhApiDedicatedCeph.Pool()
+      .v6()
+      .post(
+        {
+          serviceName: this.serviceName,
+        },
+        {
+          poolName: this.model.poolName,
+        },
+      )
+      .$promise.then((result) => {
+        this.$uibModalInstance.close({
+          poolName: this.model.poolName,
+          taskId: result.data,
+        });
+        this.CucCloudMessage.success(
+          this.$translate.instant('cda_pool_add_success'),
+        );
       })
       .catch((error) => {
-        this.CucCloudMessage.error(`${this.$translate.instant('ceph_common_error')} ${(error.data && error.data.message) || ''}`, this.messageContainerName);
+        this.CucCloudMessage.error(
+          `${this.$translate.instant('ceph_common_error')} ${(error.data &&
+            error.data.message) ||
+            ''}`,
+          this.messageContainerName,
+        );
       })
-      .finally(() => { this.saving = false; });
+      .finally(() => {
+        this.saving = false;
+      });
   }
 
   closeModal() {

@@ -1397,5 +1397,6 @@
   "hosting_dashboard_service_activate_cdn": "Attiva una CDN",
   "hosting_dashboard_cdn_order_success_activation": "La tua attivazione ha avuto successo. La soluzione scelta sarà attiva entro pochi minuti.",
   "hosting_tab_DATABASES_configuration_order_title_button_private": "Ordinare un database SQL privato",
-  "hosting_tab_DATABASES_configuration_order_title_private": "Ordinare un database SQL privato"
+  "hosting_tab_DATABASES_configuration_order_title_private": "Ordinare un database SQL privato",
+  "hosting_tab_DATABASES_table_header_server_address_tooltip": "Per accedere all’istanza utilizza l’hostname fornito: l’indirizzo IP associato potrebbe variare nel corso del tempo."
 }

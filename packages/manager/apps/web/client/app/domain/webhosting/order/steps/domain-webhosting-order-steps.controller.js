@@ -8,7 +8,8 @@ export default class {
     this.validatingCheckout = true;
     return this.validateCheckout(this.cartId, {
       autoPayWithPreferredPaymentMethod: this.autoPayWithPreferredPaymentMethod,
-    })
-      .catch(() => this.alertCheckoutError('domain_webhosting_order_payment_checkout_error'));
+    }).catch(() =>
+      this.alertCheckoutError('domain_webhosting_order_payment_checkout_error'),
+    );
   }
 }

@@ -1,4 +1,5 @@
-angular.module('managerApp').controller('XdslModemTemplateConfigModalCtrl',
+angular.module('managerApp').controller(
+  'XdslModemTemplateConfigModalCtrl',
   class XdslModemTemplateConfigModalCtrl {
     /* @ngInject */
     constructor($uibModalInstance, data) {
@@ -6,4 +7,5 @@ angular.module('managerApp').controller('XdslModemTemplateConfigModalCtrl',
       this.title = data.title;
       this.question = data.question;
     }
-  });
+  },
+);

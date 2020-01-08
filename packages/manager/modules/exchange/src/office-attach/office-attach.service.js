@@ -16,9 +16,9 @@ export default class OfficeAttach {
       return this.$q.when(null);
     }
 
-    return this.OvhHttp.get(`/msServices/${serviceName}`, { rootPath: 'apiv6' }).then(
-      (service) => service.officeTenantServiceName,
-    );
+    return this.OvhHttp.get(`/msServices/${serviceName}`, {
+      rootPath: 'apiv6',
+    }).then((service) => service.officeTenantServiceName);
   }
 
   retrievingIfPreferencesAllowBannerDisplaying() {
@@ -27,7 +27,10 @@ export default class OfficeAttach {
       .then((officeAttachPreference) => {
         const preferenceExists = has(officeAttachPreference, 'canDisplay');
 
-        return !preferenceExists || (preferenceExists && officeAttachPreference.canDisplay);
+        return (
+          !preferenceExists ||
+          (preferenceExists && officeAttachPreference.canDisplay)
+        );
       })
       .catch((error) => {
         if (error.status === 404) {
@@ -39,8 +42,9 @@ export default class OfficeAttach {
   }
 
   retrievingIfUserAlreadyHasSubscribed(serviceName) {
-    return this.retrievingServiceName(serviceName)
-      .then((officeAttachServiceName) => isString(officeAttachServiceName));
+    return this.retrievingServiceName(serviceName).then(
+      (officeAttachServiceName) => isString(officeAttachServiceName),
+    );
   }
 
   savingHidingPreferences() {

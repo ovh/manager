@@ -1,26 +1,44 @@
 <div class="telecom-overTheBox-tasks">
-
     <div class="telecom-section-content">
-
         <tuc-toast-message></tuc-toast-message>
 
         <div class="widget-presentation">
-            <h2 class="widget-presentation-title"
-                data-translate="overTheBox_tasks_list">
-            </h2>
+            <h2
+                class="widget-presentation-title"
+                data-translate="overTheBox_tasks_list"
+            ></h2>
 
-            <oui-datagrid data-rows="OverTheBoxTasks.taskIds" data-row-loader="OverTheBoxTasks.transformItem($row)">
-                <oui-column data-title="'overTheBox_tasks_name' | translate" data-property="name" data-sortable="asc"></oui-column>
-                <oui-column data-title="'overTheBox_tasks_id' | translate" data-property="taskId" data-sortable></oui-column>
-                <oui-column data-title="'overTheBox_tasks_status' | translate" data-property="status" data-sortable>
-                    <span class="label"
-                          data-ng-class="{
+            <oui-datagrid
+                data-rows="OverTheBoxTasks.taskIds"
+                data-row-loader="OverTheBoxTasks.transformItem($row)"
+            >
+                <oui-column
+                    data-title="'overTheBox_tasks_name' | translate"
+                    data-property="name"
+                    data-sortable="asc"
+                ></oui-column>
+                <oui-column
+                    data-title="'overTheBox_tasks_id' | translate"
+                    data-property="taskId"
+                    data-sortable
+                ></oui-column>
+                <oui-column
+                    data-title="'overTheBox_tasks_status' | translate"
+                    data-property="status"
+                    data-sortable
+                >
+                    <span
+                        class="label"
+                        data-ng-class="{
                                 'label-success': $row.status === 'done',
                                 'label-danger': $row.status === 'error',
                                 'label-info': $row.status === 'doing',
                                 'label-primary': $row.status === 'todo'
-                            }">
-                        <span data-ng-bind="'overTheBox_tasks_status_' + $row.status | translate"></span>
+                            }"
+                    >
+                        <span
+                            data-ng-bind="'overTheBox_tasks_status_' + $row.status | translate"
+                        ></span>
                     </span>
                 </oui-column>
             </oui-datagrid>

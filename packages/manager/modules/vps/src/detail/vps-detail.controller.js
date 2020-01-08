@@ -1,6 +1,13 @@
 export default class {
   /* @ngInject */
-  constructor($filter, $scope, $stateParams, CucCloudMessage, CucCloudNavigation, VpsTaskService) {
+  constructor(
+    $filter,
+    $scope,
+    $stateParams,
+    CucCloudMessage,
+    CucCloudNavigation,
+    VpsTaskService,
+  ) {
     this.$filter = $filter;
     this.$scope = $scope;
     this.$stateParams = $stateParams;
@@ -26,7 +33,9 @@ export default class {
 
   loadMessage() {
     this.CucCloudMessage.unSubscribe('vps.detail');
-    this.messageHandler = this.CucCloudMessage.subscribe('vps.detail', { onMessage: () => this.refreshMessage() });
+    this.messageHandler = this.CucCloudMessage.subscribe('vps.detail', {
+      onMessage: () => this.refreshMessage(),
+    });
   }
 
   refreshMessage() {

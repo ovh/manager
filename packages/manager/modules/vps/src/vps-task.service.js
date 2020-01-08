@@ -17,23 +17,26 @@ export default class VpsTaskService {
   }
 
   initPoller(serviceName, containerName) {
-    this.getPendingTasks(serviceName)
-      .then((tasks) => this.startTaskPolling(serviceName, containerName, tasks));
+    this.getPendingTasks(serviceName).then((tasks) =>
+      this.startTaskPolling(serviceName, containerName, tasks),
+    );
   }
 
   getPendingTasks(serviceName, type) {
-    return this.$http.get(['/sws/vps', serviceName, 'tasks/uncompleted'].join('/'), {
-      serviceType: 'aapi',
-      params: {
-        type,
-      },
-    })
+    return this.$http
+      .get(['/sws/vps', serviceName, 'tasks/uncompleted'].join('/'), {
+        serviceType: 'aapi',
+        params: {
+          type,
+        },
+      })
       .then((data) => data.data)
       .catch((error) => this.$q.reject(error.data));
   }
 
   getTask(serviceName, taskId) {
-    return this.$http.get(['/vps', serviceName, 'tasks', taskId].join('/'))
+    return this.$http
+      .get(['/vps', serviceName, 'tasks', taskId].join('/'))
       .then((data) => data.data)
       .catch((error) => this.$q.reject(error.data))
       .finally(() => this.$rootScope.$broadcast('tasks.pending', serviceName));
@@ -60,7 +63,9 @@ export default class VpsTaskService {
   manageSuccess(serviceName, containerName) {
     this.flushMessages(containerName);
     this.$rootScope.$broadcast('tasks.success', serviceName);
-    this.CucCloudMessage.success(this.$translate.instant('vps_dashboard_task_finish'));
+    this.CucCloudMessage.success(
+      this.$translate.instant('vps_dashboard_task_finish'),
+    );
   }
 
   manageMessage(containerName, task) {
@@ -71,13 +76,16 @@ export default class VpsTaskService {
   }
 
   createMessage(containerName, task) {
-    this.CucCloudMessage.warning({
-      id: task.id,
-      class: 'task',
-      title: this.messageType(task.type),
-      textHtml: this.template(task.type, task.progress),
-      progress: task.progress,
-    }, containerName);
+    this.CucCloudMessage.warning(
+      {
+        id: task.id,
+        class: 'task',
+        title: this.messageType(task.type),
+        textHtml: this.template(task.type, task.progress),
+        progress: task.progress,
+      },
+      containerName,
+    );
   }
 
   flushMessages(containerName, task) {

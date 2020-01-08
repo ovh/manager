@@ -1,38 +1,42 @@
 <div data-ng-controller="LicenseSplaRevokeCtrl">
-
-    <div data-wizard
-         data-wizard-on-cancel="resetAction"
-         data-wizard-on-finish="revokeSpla"
-         data-wizard-title=":: 'license_spla_revoke_title' | translate"
-         data-wizard-title-icon="'icon-add-licenses'"
-         data-wizard-bread-crumb>
-
+    <div
+        data-wizard
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="revokeSpla"
+        data-wizard-title=":: 'license_spla_revoke_title' | translate"
+        data-wizard-title-icon="'icon-add-licenses'"
+        data-wizard-bread-crumb
+    >
         <div data-wizard-step>
-
             <div data-ng-show="!model.deleting && !model.deleted">
-                <p class="font-weigth-bold"
-                   data-translate="license_spla_revoke_step1_question">
-                </p>
+                <p
+                    class="font-weigth-bold"
+                    data-translate="license_spla_revoke_step1_question"
+                ></p>
                 <dl>
                     <dt data-translate="license_spla_revoke_step1_server"></dt>
                     <dd data-ng-bind="model.license.serverServiceName"></dd>
                     <dt data-translate="license_spla_revoke_step1_type"></dt>
-                    <dd data-ng-bind="('license_spla_revoke_common_type_' + model.license.splaType) | translate"></dd>
+                    <dd
+                        data-ng-bind="('license_spla_revoke_common_type_' + model.license.splaType) | translate"
+                    ></dd>
                     <dt data-translate="license_spla_revoke_step1_serial"></dt>
                     <dd data-ng-bind="model.license.serialNumber"></dd>
                 </dl>
             </div>
 
-            <div class="text-center"
-                 data-ng-show="model.deleting">
+            <div class="text-center" data-ng-show="model.deleting">
                 <oui-spinner></oui-spinner>
-                <span data-translate="license_spla_revoke_step1_deleting"></span>
+                <span
+                    data-translate="license_spla_revoke_step1_deleting"
+                ></span>
             </div>
 
-            <span data-ng-show="model.deleted"
-                  data-translate="license_spla_revoke_success">
+            <span
+                data-ng-show="model.deleted"
+                data-translate="license_spla_revoke_success"
+            >
             </span>
         </div>
-
     </div>
 </div>

@@ -1,32 +1,42 @@
-<form name="removeOutgoingSmsForm"
-      id="removeOutgoingSmsForm"
-      data-ng-submit="OutgoingRemoveCtrl.remove()">
-
+<form
+    name="removeOutgoingSmsForm"
+    id="removeOutgoingSmsForm"
+    data-ng-submit="OutgoingRemoveCtrl.remove()"
+>
     <div class="modal-header">
         <button
             type="button"
             class="close float-right"
             aria-label="{{ ::'sms_cancel' | translate }}"
-            data-ng-click="OutgoingRemoveCtrl.cancel()">
+            data-ng-click="OutgoingRemoveCtrl.cancel()"
+        >
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
 
-    <div class="modal-body"
-         data-ng-if="!OutgoingRemoveCtrl.loading.removeOutgoing && !OutgoingRemoveCtrl.removed">
-        <h3 class="modal-title"
-             data-translate="sms_sms_outgoing_remove_title">
-         </h3>
+    <div
+        class="modal-body"
+        data-ng-if="!OutgoingRemoveCtrl.loading.removeOutgoing && !OutgoingRemoveCtrl.removed"
+    >
+        <h3
+            class="modal-title"
+            data-translate="sms_sms_outgoing_remove_title"
+        ></h3>
         <p data-translate="sms_sms_outgoing_remove_confirm"></p>
         <dl class="dl-horizontal">
             <dt data-translate="sms_sms_outgoing_label_date"></dt>
-            <dd data-ng-bind="OutgoingRemoveCtrl.outgoingSms.creationDatetime | date : 'dd/MM/yyyy HH:mm:ss'"></dd>
+            <dd
+                data-ng-bind="OutgoingRemoveCtrl.outgoingSms.creationDatetime | date : 'dd/MM/yyyy HH:mm:ss'"
+            ></dd>
 
             <dt data-translate="sms_sms_outgoing_label_sender"></dt>
-            <dd data-ng-if="OutgoingRemoveCtrl.outgoingSms.sender.length"
-                data-ng-bind="OutgoingRemoveCtrl.outgoingSms.sender">
+            <dd
+                data-ng-if="OutgoingRemoveCtrl.outgoingSms.sender.length"
+                data-ng-bind="OutgoingRemoveCtrl.outgoingSms.sender"
+            ></dd>
+            <dd data-ng-if="!OutgoingRemoveCtrl.outgoingSms.sender.length">
+                -
             </dd>
-            <dd data-ng-if="!OutgoingRemoveCtrl.outgoingSms.sender.length">-</dd>
 
             <dt data-translate="sms_sms_outgoing_label_receiver"></dt>
             <dd data-ng-bind="OutgoingRemoveCtrl.outgoingSms.receiver"></dd>
@@ -39,15 +49,18 @@
         </dl>
     </div>
 
-    <div class="modal-body text-center"
-         data-ng-if="OutgoingRemoveCtrl.loading.removeOutgoing">
+    <div
+        class="modal-body text-center"
+        data-ng-if="OutgoingRemoveCtrl.loading.removeOutgoing"
+    >
         <oui-spinner></oui-spinner>
         <h4 data-translate="sms_sms_outgoing_removing"></h4>
     </div>
 
-    <div class="modal-body"
-         data-ng-if="OutgoingRemoveCtrl.removed">
-        <tuc-success-drawing-check data-draw-success-check="OutgoingRemoveCtrl.removed">
+    <div class="modal-body" data-ng-if="OutgoingRemoveCtrl.removed">
+        <tuc-success-drawing-check
+            data-draw-success-check="OutgoingRemoveCtrl.removed"
+        >
             <h4 data-translate="sms_sms_outgoing_removed"></h4>
         </tuc-success-drawing-check>
     </div>
@@ -58,14 +71,13 @@
             class="btn btn-default"
             data-ng-click="OutgoingRemoveCtrl.cancel()"
             data-translate="sms_cancel"
-            data-ng-disabled="OutgoingRemoveCtrl.loading.removeOutgoing || OutgoingRemoveCtrl.removed">
-        </button>
+            data-ng-disabled="OutgoingRemoveCtrl.loading.removeOutgoing || OutgoingRemoveCtrl.removed"
+        ></button>
         <button
             type="submit"
             class="btn btn-primary"
             data-translate="sms_submit"
-            data-ng-disabled="OutgoingRemoveCtrl.loading.removeOutgoing || OutgoingRemoveCtrl.removed">
-        </button>
+            data-ng-disabled="OutgoingRemoveCtrl.loading.removeOutgoing || OutgoingRemoveCtrl.removed"
+        ></button>
     </div>
-
 </form>

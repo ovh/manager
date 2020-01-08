@@ -8,9 +8,7 @@ import './index.less';
 const moduleName = 'cucCloudSpaceMeterLegend';
 
 angular
-  .module(moduleName, [
-    'pascalprecht.translate',
-  ])
+  .module(moduleName, ['pascalprecht.translate'])
   .component('cucSpaceMeterLegend', component);
 
 export default moduleName;

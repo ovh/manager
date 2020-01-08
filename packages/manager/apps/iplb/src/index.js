@@ -15,13 +15,15 @@ import 'ovh-ui-kit-bs/dist/ovh-ui-kit-bs.css';
 Environment.setRegion(__WEBPACK_REGION__);
 
 angular
-  .module('iplbApp', [
-    'ovhManagerIplb',
-  ])
-  .config(/* @ngInject */ (CucConfigProvider, coreConfigProvider) => {
-    CucConfigProvider.setRegion(coreConfigProvider.getRegion());
-  })
-  .config(/* @ngInject */($qProvider) => {
-    $qProvider.errorOnUnhandledRejections(false);
-  })
+  .module('iplbApp', ['ovhManagerIplb'])
+  .config(
+    /* @ngInject */ (CucConfigProvider, coreConfigProvider) => {
+      CucConfigProvider.setRegion(coreConfigProvider.getRegion());
+    },
+  )
+  .config(
+    /* @ngInject */ ($qProvider) => {
+      $qProvider.errorOnUnhandledRejections(false);
+    },
+  )
   .config(momentConfiguration);

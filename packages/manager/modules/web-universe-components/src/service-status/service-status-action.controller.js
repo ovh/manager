@@ -2,10 +2,7 @@ import get from 'lodash/get';
 import isString from 'lodash/isString';
 import angular from 'angular';
 import moment from 'moment';
-import {
-  DEFAULT_TARGET,
-  RENEW_URL,
-} from './service-status-action.constant';
+import { DEFAULT_TARGET, RENEW_URL } from './service-status-action.constant';
 
 export default class {
   /* @ngInject */
@@ -15,29 +12,32 @@ export default class {
   }
 
   $onInit() {
-    if (
-      !angular.isObject(this.serviceInfos)
-      || !isString(this.serviceName)
-    ) {
+    if (!angular.isObject(this.serviceInfos) || !isString(this.serviceName)) {
       throw new Error('serviceExpirationDate: Missing parameter(s)');
     }
 
     this.loading = true;
 
-    return this.getOrderUrl()
-      .finally(() => {
-        this.loading = false;
-      });
+    return this.getOrderUrl().finally(() => {
+      this.loading = false;
+    });
   }
 
   getRenewUrl() {
-    return this.constants.target === 'CA' ? this.getOrderUrl() : this.getAutoRenewUrl();
+    return this.constants.target === 'CA'
+      ? this.getOrderUrl()
+      : this.getAutoRenewUrl();
   }
 
   getOrderUrl() {
-    return this.OvhApiMe.v6().get().$promise
-      .then(({ ovhSubsidiary }) => {
-        this.orderUrl = `${get(RENEW_URL, ovhSubsidiary, RENEW_URL[DEFAULT_TARGET])}${this.serviceInfos.domain}`;
+    return this.OvhApiMe.v6()
+      .get()
+      .$promise.then(({ ovhSubsidiary }) => {
+        this.orderUrl = `${get(
+          RENEW_URL,
+          ovhSubsidiary,
+          RENEW_URL[DEFAULT_TARGET],
+        )}${this.serviceInfos.domain}`;
       });
   }
 
@@ -51,13 +51,18 @@ export default class {
 
   getDate() {
     if (this.isInAutoRenew()) {
-      return moment(this.serviceInfos.expiration).add(1, 'days').format();
+      return moment(this.serviceInfos.expiration)
+        .add(1, 'days')
+        .format();
     }
     return this.serviceInfos.expiration;
   }
 
   isInAutoRenew() {
-    return get(this.serviceInfos, 'renew.automatic') || get(this.serviceInfos, 'renew.forced');
+    return (
+      get(this.serviceInfos, 'renew.automatic') ||
+      get(this.serviceInfos, 'renew.forced')
+    );
   }
 
   shouldDeleteAtExpiration() {

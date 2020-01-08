@@ -24,7 +24,9 @@ export default class ExchangeRemoveExchangeCtrl {
     this.$routerParams = Exchange.getParams();
     this.exchange = angular.copy(Exchange.value);
     this.exchange.renewPeriod = 'YEARLY';
-    this.dialogTypeSeparator = this.exchange.renewType.deleteAtExpiration ? 'cancel_' : '';
+    this.dialogTypeSeparator = this.exchange.renewType.deleteAtExpiration
+      ? 'cancel_'
+      : '';
 
     $scope.getSubmitButtonLabel = () => this.getSubmitButtonLabel();
     $scope.submit = () => this.submit();

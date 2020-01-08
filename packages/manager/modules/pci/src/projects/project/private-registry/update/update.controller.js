@@ -2,11 +2,7 @@ import get from 'lodash/get';
 
 export default class {
   /* @ngInject */
-  constructor(
-    $stateParams,
-    $translate,
-    pciPrivateRegistryService,
-  ) {
+  constructor($stateParams, $translate, pciPrivateRegistryService) {
     this.projectId = $stateParams.projectId;
     this.registryId = $stateParams.registryId;
     this.registryName = $stateParams.registryName;
@@ -24,19 +20,23 @@ export default class {
       return this.goBack();
     }
     this.isLoading = true;
-    return this.privateRegistryService.update(
-      this.projectId,
-      this.registryId,
-      this.newRegistryName,
-    )
-      .then(() => this.goBack(
-        this.$translate.instant('private_registry_update_success', { newRegistryName: this.newRegistryName }),
-      ))
-      .catch((error) => this.goBack(
-        this.$translate.instant('private_registry_update_error', {
-          message: get(error, 'data.message'),
-          registryName: this.registryName,
-        }), 'error',
-      ));
+    return this.privateRegistryService
+      .update(this.projectId, this.registryId, this.newRegistryName)
+      .then(() =>
+        this.goBack(
+          this.$translate.instant('private_registry_update_success', {
+            newRegistryName: this.newRegistryName,
+          }),
+        ),
+      )
+      .catch((error) =>
+        this.goBack(
+          this.$translate.instant('private_registry_update_error', {
+            message: get(error, 'data.message'),
+            registryName: this.registryName,
+          }),
+          'error',
+        ),
+      );
   }
 }

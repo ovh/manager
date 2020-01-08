@@ -1,68 +1,130 @@
 <div data-ng-controller="PrivateDatabaseUpdateWhitelistCtrl as updateCtrl">
-    <div data-wizard
-         data-wizard-on-cancel="resetAction"
-         data-wizard-on-finish="updateWhitelist"
-         data-wizard-title="'privateDatabase_modale_whitelist_update_title' | translate">
-
-        <div data-wizard-step
-             data-wizard-step-valid="updateCtrl.isWhitelistValid()">
-
+    <div
+        data-wizard
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="updateWhitelist"
+        data-wizard-title="'privateDatabase_modale_whitelist_update_title' | translate"
+    >
+        <div
+            data-wizard-step
+            data-wizard-step-valid="updateCtrl.isWhitelistValid()"
+        >
             <form class="form-horizontal" name="updateWhitelistForm">
-
                 <div class="form-group">
-                    <label class="control-label col-md-4"
-                           data-translate="privateDatabase_modale_whitelist_update_ip"></label>
+                    <label
+                        class="control-label col-md-4"
+                        data-translate="privateDatabase_modale_whitelist_update_ip"
+                    ></label>
                     <div class="col-md-8">
-                        <span class="d-block form-control-static"
-                              data-ng-bind="updateCtrl.whitelistId"></span>
+                        <span
+                            class="d-block form-control-static"
+                            data-ng-bind="updateCtrl.whitelistId"
+                        ></span>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="control-label col-md-4" for="inputName"
-                           data-translate="privateDatabase_modale_whitelist_update_name"></label>
+                    <label
+                        class="control-label col-md-4"
+                        for="inputName"
+                        data-translate="privateDatabase_modale_whitelist_update_name"
+                    ></label>
                     <div class="col-md-6">
-                        <textarea class="form-control"
-                                  id="inputName"
-                                  maxlength="256"
-                                  data-ng-model="updateCtrl.model.name"></textarea>
+                        <textarea
+                            class="form-control"
+                            id="inputName"
+                            maxlength="256"
+                            data-ng-model="updateCtrl.model.name"
+                        ></textarea>
                     </div>
                 </div>
 
                 <div class="form-group mt-3">
-                    <label class="control-label col-md-4"
-                           data-translate="privateDatabase_modale_whitelist_update_restriction_info"></label>
+                    <label
+                        class="control-label col-md-4"
+                        data-translate="privateDatabase_modale_whitelist_update_restriction_info"
+                    ></label>
                     <div class="col-md-8">
                         <div class="oui-checkbox">
-                            <input type="checkbox" class="oui-checkbox__input" id="updateService"
-                                   data-ng-model="updateCtrl.model.service">
-                            <label class="oui-checkbox__label-container" for="updateService">
+                            <input
+                                type="checkbox"
+                                class="oui-checkbox__input"
+                                id="updateService"
+                                data-ng-model="updateCtrl.model.service"
+                            />
+                            <label
+                                class="oui-checkbox__label-container"
+                                for="updateService"
+                            >
                                 <span class="oui-checkbox__label">
-                                    <span class="mr-2" data-translate="privateDatabase_modale_whitelist_update_service"></span>
-                                    <span class="fa fa-question-circle" aria-hidden="true"
-                                          data-oui-tooltip="{{ 'privateDatabase_modale_whitelist_update_service_title' | translate }}"></span>
+                                    <span
+                                        class="mr-2"
+                                        data-translate="privateDatabase_modale_whitelist_update_service"
+                                    ></span>
+                                    <span
+                                        class="fa fa-question-circle"
+                                        aria-hidden="true"
+                                        data-oui-tooltip="{{ 'privateDatabase_modale_whitelist_update_service_title' | translate }}"
+                                    ></span>
                                     <span class="oui-checkbox__icon">
-                                        <span class="oui-icon oui-icon-checkbox-unchecked" aria-hidden="true"></span>
-                                        <span class="oui-icon oui-icon-checkbox-checked" aria-hidden="true"></span>
-                                        <span class="oui-icon oui-icon-checkbox-checkmark" aria-hidden="true"></span>
-                                        <span class="oui-icon oui-icon-checkbox-indeterminate" aria-hidden="true"></span>
+                                        <span
+                                            class="oui-icon oui-icon-checkbox-unchecked"
+                                            aria-hidden="true"
+                                        ></span>
+                                        <span
+                                            class="oui-icon oui-icon-checkbox-checked"
+                                            aria-hidden="true"
+                                        ></span>
+                                        <span
+                                            class="oui-icon oui-icon-checkbox-checkmark"
+                                            aria-hidden="true"
+                                        ></span>
+                                        <span
+                                            class="oui-icon oui-icon-checkbox-indeterminate"
+                                            aria-hidden="true"
+                                        ></span>
                                     </span>
                                 </span>
                             </label>
                         </div>
                         <div class="oui-checkbox">
-                            <input type="checkbox" class="oui-checkbox__input" id="updateSftp"
-                                   data-ng-model="updateCtrl.model.sftp">
-                            <label class="oui-checkbox__label-container" for="updateSftp">
+                            <input
+                                type="checkbox"
+                                class="oui-checkbox__input"
+                                id="updateSftp"
+                                data-ng-model="updateCtrl.model.sftp"
+                            />
+                            <label
+                                class="oui-checkbox__label-container"
+                                for="updateSftp"
+                            >
                                 <span class="oui-checkbox__label">
-                                    <span class="mr-2" data-translate="privateDatabase_modale_whitelist_update_sftp"></span>
-                                    <span class="fa fa-question-circle" aria-hidden="true"
-                                          data-oui-tooltip="{{ 'privateDatabase_modale_whitelist_update_sftp_title' | translate }}"></span>
+                                    <span
+                                        class="mr-2"
+                                        data-translate="privateDatabase_modale_whitelist_update_sftp"
+                                    ></span>
+                                    <span
+                                        class="fa fa-question-circle"
+                                        aria-hidden="true"
+                                        data-oui-tooltip="{{ 'privateDatabase_modale_whitelist_update_sftp_title' | translate }}"
+                                    ></span>
                                     <span class="oui-checkbox__icon">
-                                        <span class="oui-icon oui-icon-checkbox-unchecked" aria-hidden="true"></span>
-                                        <span class="oui-icon oui-icon-checkbox-checked" aria-hidden="true"></span>
-                                        <span class="oui-icon oui-icon-checkbox-checkmark" aria-hidden="true"></span>
-                                        <span class="oui-icon oui-icon-checkbox-indeterminate" aria-hidden="true"></span>
+                                        <span
+                                            class="oui-icon oui-icon-checkbox-unchecked"
+                                            aria-hidden="true"
+                                        ></span>
+                                        <span
+                                            class="oui-icon oui-icon-checkbox-checked"
+                                            aria-hidden="true"
+                                        ></span>
+                                        <span
+                                            class="oui-icon oui-icon-checkbox-checkmark"
+                                            aria-hidden="true"
+                                        ></span>
+                                        <span
+                                            class="oui-icon oui-icon-checkbox-indeterminate"
+                                            aria-hidden="true"
+                                        ></span>
                                     </span>
                                 </span>
                             </label>

@@ -1,4 +1,5 @@
-angular.module('managerApp')
+angular
+  .module('managerApp')
   .service('ChangelogService', function ChangelogService($uibModal) {
     this.show = function show() {
       $uibModal.open({

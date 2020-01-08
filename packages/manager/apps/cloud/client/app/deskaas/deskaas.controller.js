@@ -28,21 +28,28 @@ class DeskaasCtrl {
   }
 
   loadService(serviceId) {
-    const servicePromise = this.OvhApiDeskaasService.v6()
-      .serviceInfos({ serviceName: serviceId }).$promise;
+    const servicePromise = this.OvhApiDeskaasService.v6().serviceInfos({
+      serviceName: serviceId,
+    }).$promise;
     servicePromise.then((serviceInfo) => {
-      const detailsPromise = this.OvhApiDeskaasService.v6()
-        .getDetails({ serviceName: serviceId }).$promise;
+      const detailsPromise = this.OvhApiDeskaasService.v6().getDetails({
+        serviceName: serviceId,
+      }).$promise;
       detailsPromise.then((details) => {
         if (details.alias !== 'noAlias') {
-          set(details, 'displayName', `${details.alias} (${details.serviceName})`);
+          set(
+            details,
+            'displayName',
+            `${details.alias} (${details.serviceName})`,
+          );
         } else {
           set(details, 'displayName', details.serviceName);
         }
 
         if (serviceInfo.status === 'ok') {
-          const userPromise = this.OvhApiDeskaasService.v6()
-            .getUser({ serviceName: serviceId }).$promise;
+          const userPromise = this.OvhApiDeskaasService.v6().getUser({
+            serviceName: serviceId,
+          }).$promise;
           userPromise.then((user) => {
             set(user, 'displayName', `${user.name} (${user.email})`);
             this.registerService(details, serviceInfo, user);
@@ -60,7 +67,9 @@ class DeskaasCtrl {
 
     return promise.then((serviceIds) => {
       const promises = [];
-      serviceIds.forEach((serviceId) => promises.push(this.loadService(serviceId)));
+      serviceIds.forEach((serviceId) =>
+        promises.push(this.loadService(serviceId)),
+      );
       return this.$q.all(promises);
     });
   }

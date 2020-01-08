@@ -15,9 +15,15 @@ export default /* @ngInject */ (TUC_JS_PLUMB) => ({
     pre(iScope, iElement, iAttrs, $ctrl) {
       // create a jsplumb instance with given options and with directive element as container
 
-      set($ctrl, 'instance', TUC_JS_PLUMB.getInstance(angular.extend($ctrl.options || {}, {
-        Container: iElement,
-      })));
+      set(
+        $ctrl,
+        'instance',
+        TUC_JS_PLUMB.getInstance(
+          angular.extend($ctrl.options || {}, {
+            Container: iElement,
+          }),
+        ),
+      );
 
       // avoid jsplumb to draw something when endpoints or connections are added to instance
       $ctrl.instance.setSuspendDrawing(true);
@@ -40,10 +46,14 @@ export default /* @ngInject */ (TUC_JS_PLUMB) => ({
        * We need to watch the window element to handle the scrollbar display. We also need to keep
        * the window.on("resize") binding because it will be triggered as soon as window is resized.
        */
-      iScope.$watch(() => ({
-        h: windowElt.height(),
-        w: windowElt.width(),
-      }), onResizePage, true);
+      iScope.$watch(
+        () => ({
+          h: windowElt.height(),
+          w: windowElt.width(),
+        }),
+        onResizePage,
+        true,
+      );
 
       iScope.$on('$destroy', () => {
         if ($ctrl.instance) {

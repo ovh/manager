@@ -1,6 +1,11 @@
 import angular from 'angular';
 
-export default /* @ngInject */ function ($q, $translate, $uibModalInstance, data) {
+export default /* @ngInject */ function(
+  $q,
+  $translate,
+  $uibModalInstance,
+  data,
+) {
   const self = this;
 
   self.loading = {
@@ -19,20 +24,26 @@ export default /* @ngInject */ function ($q, $translate, $uibModalInstance, data
   self.send = function send() {
     self.errorMessage = null;
     self.loading.updating = true;
-    $q.when(self.saveCallback({ value: self.data })).then(
-      () => {
-        $uibModalInstance.close(self.data);
-      },
-      (err) => {
-        if (/^This abbreviated/.test(err.data.message)) {
-          self.errorMessage = $translate.instant('telephony_abbreviated_numbers_not_free_error');
-        } else {
-          self.errorMessage = $translate.instant('telephony_abbreviated_numbers_save_error');
-        }
-        $q.reject(err);
-      },
-    ).finally(() => {
-      self.loading.updating = false;
-    });
+    $q.when(self.saveCallback({ value: self.data }))
+      .then(
+        () => {
+          $uibModalInstance.close(self.data);
+        },
+        (err) => {
+          if (/^This abbreviated/.test(err.data.message)) {
+            self.errorMessage = $translate.instant(
+              'telephony_abbreviated_numbers_not_free_error',
+            );
+          } else {
+            self.errorMessage = $translate.instant(
+              'telephony_abbreviated_numbers_save_error',
+            );
+          }
+          $q.reject(err);
+        },
+      )
+      .finally(() => {
+        self.loading.updating = false;
+      });
   };
 }

@@ -53,7 +53,8 @@ export const BANK_HOLIDAYS = {
     {
       name: 'easter_monday',
       date: null,
-    }, {
+    },
+    {
       name: 'labor_day',
       date: '05-01',
     },
@@ -106,7 +107,8 @@ export const BANK_HOLIDAYS = {
     {
       name: 'ascension_day',
       date: null,
-    }, {
+    },
+    {
       name: 'whit_monday',
       date: null,
     },
@@ -147,10 +149,12 @@ export const BANK_HOLIDAYS = {
     {
       name: 'national_holiday',
       date: '10-12',
-    }, {
+    },
+    {
       name: 'all_saints_day',
       date: '11-01',
-    }, {
+    },
+    {
       name: 'constitution_day',
       date: '12-06',
     },

@@ -53,37 +53,57 @@ export default /* @ngInject */ function CloudProjectBillingConsumptionEstimateAl
   }
 
   function createAlert() {
-    return OvhApiCloudProjectAlerting.v6().save({
-      serviceName: $stateParams.projectId,
-    }, {
-      delay: self.alerting.defaultDelay,
-      email: self.model.email,
-      monthlyThreshold: self.model.threshold,
-    }).$promise.then(() => {
-      CucCloudMessage.success($translate.instant('cpbea_estimate_alert_success'));
-    });
+    return OvhApiCloudProjectAlerting.v6()
+      .save(
+        {
+          serviceName: $stateParams.projectId,
+        },
+        {
+          delay: self.alerting.defaultDelay,
+          email: self.model.email,
+          monthlyThreshold: self.model.threshold,
+        },
+      )
+      .$promise.then(() => {
+        CucCloudMessage.success(
+          $translate.instant('cpbea_estimate_alert_success'),
+        );
+      });
   }
 
   function editAlert(alertId) {
-    return OvhApiCloudProjectAlerting.v6().put({
-      serviceName: $stateParams.projectId,
-      alertId,
-    }, {
-      delay: self.alerting.defaultDelay,
-      email: self.model.email,
-      monthlyThreshold: self.model.threshold,
-    }).$promise.then(() => {
-      $uibModalInstance.close();
-      CucCloudMessage.success($translate.instant('cpbea_estimate_alert_success'));
-    });
+    return OvhApiCloudProjectAlerting.v6()
+      .put(
+        {
+          serviceName: $stateParams.projectId,
+          alertId,
+        },
+        {
+          delay: self.alerting.defaultDelay,
+          email: self.model.email,
+          monthlyThreshold: self.model.threshold,
+        },
+      )
+      .$promise.then(() => {
+        $uibModalInstance.close();
+        CucCloudMessage.success(
+          $translate.instant('cpbea_estimate_alert_success'),
+        );
+      });
   }
 
   self.saveAlert = function saveAlert() {
     this.loaders.saveAlert = true;
     (!self.alerting.id ? createAlert() : editAlert(self.alerting.id))
       .catch((err) => {
-        CucCloudMessage.error([$translate.instant('cpbea_estimate_alert_error'), (err.data && err.data.message) || ''].join(' '));
-      }).finally(() => {
+        CucCloudMessage.error(
+          [
+            $translate.instant('cpbea_estimate_alert_error'),
+            (err.data && err.data.message) || '',
+          ].join(' '),
+        );
+      })
+      .finally(() => {
         $uibModalInstance.close();
         self.loaders.saveAlert = false;
       });

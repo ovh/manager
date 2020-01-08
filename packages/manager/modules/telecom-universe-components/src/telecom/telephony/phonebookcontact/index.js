@@ -5,8 +5,7 @@ import TucPhonebookcontact from './phonebookcontact.service';
 
 const moduleName = 'tucTelecomTelephonyPhonebookcontact';
 angular
-  .module(moduleName, [
-  ])
+  .module(moduleName, [])
   .constant('TUC_TELEPHONY_PHONEBOOK', TELEPHONY_PHONEBOOK)
   .service('TucPhonebookcontact', TucPhonebookcontact);
 

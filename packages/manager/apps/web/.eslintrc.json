@@ -6,6 +6,7 @@
     "moment": true,
     "punycode": true,
     "URI": true,
-    "validator": true
+    "validator": true,
+    "WEBPACK_ENV": true
   }
 }

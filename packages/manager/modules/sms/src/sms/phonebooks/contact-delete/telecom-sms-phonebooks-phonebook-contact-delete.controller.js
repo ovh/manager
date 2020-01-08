@@ -12,7 +12,9 @@ export default class {
     this.api = {
       sms: {
         phonebooks: {
-          phonebookContact: OvhApiSms.Phonebooks().PhonebookContact().v6(),
+          phonebookContact: OvhApiSms.Phonebooks()
+            .PhonebookContact()
+            .v6(),
         },
       },
     };
@@ -26,32 +28,37 @@ export default class {
   }
 
   /**
-     * Delete phonebook contact.
-     * @return {Promise}
-     */
+   * Delete phonebook contact.
+   * @return {Promise}
+   */
   delete() {
     this.isDeleting = true;
-    return this.$q.all([
-      this.api.sms.phonebooks.phonebookContact.delete({
-        serviceName: this.$stateParams.serviceName,
-        bookKey: get(this.phonebook, 'bookKey'),
-        id: get(this.contact, 'id'),
-      }).$promise,
-      this.$timeout(angular.noop, 1000),
-    ]).then(() => {
-      this.isDeleting = false;
-      this.deleted = true;
-      return this.$timeout(() => this.close(), 1500);
-    }).catch((error) => this.cancel({
-      type: 'API',
-      msg: error,
-    }));
+    return this.$q
+      .all([
+        this.api.sms.phonebooks.phonebookContact.delete({
+          serviceName: this.$stateParams.serviceName,
+          bookKey: get(this.phonebook, 'bookKey'),
+          id: get(this.contact, 'id'),
+        }).$promise,
+        this.$timeout(angular.noop, 1000),
+      ])
+      .then(() => {
+        this.isDeleting = false;
+        this.deleted = true;
+        return this.$timeout(() => this.close(), 1500);
+      })
+      .catch((error) =>
+        this.cancel({
+          type: 'API',
+          msg: error,
+        }),
+      );
   }
 
   /**
-     * Get phonebook contact name.
-     * @return {String}
-     */
+   * Get phonebook contact name.
+   * @return {String}
+   */
   getContactName() {
     return `${get(this.contact, 'surname')} ${get(this.contact, 'name')}`;
   }

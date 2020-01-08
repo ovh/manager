@@ -22,17 +22,20 @@ export default class CuiMessageContainerCtrl {
     this.dismissableTypes = this.dismissableTypes || ['info', 'success'];
     this.groupedTypes = this.groupedTypes || ['error'];
 
-    this.$scope.$watchCollection(() => this.messages, () => {
-      this.refreshValues();
-      this.groupedMessages = this.getGroupedMessages();
-    });
+    this.$scope.$watchCollection(
+      () => this.messages,
+      () => {
+        this.refreshValues();
+        this.groupedMessages = this.getGroupedMessages();
+      },
+    );
   }
 
   static shouldDisplayGroupedMessages(messageCategory) {
-    return filter(
-      messageCategory.values,
-      (value) => !value.dismissed,
-    ).length !== 1 && messageCategory.isGroupable;
+    return (
+      filter(messageCategory.values, (value) => !value.dismissed).length !==
+        1 && messageCategory.isGroupable
+    );
   }
 
   hasMessageToDisplay() {
@@ -40,7 +43,10 @@ export default class CuiMessageContainerCtrl {
   }
 
   hasGroupMessageToDisplay(type) {
-    const messageGroup = find(this.groupedMessages, (group) => group.key === type);
+    const messageGroup = find(
+      this.groupedMessages,
+      (group) => group.key === type,
+    );
     return some(messageGroup.values, (value) => !value.dismissed);
   }
 
@@ -53,7 +59,7 @@ export default class CuiMessageContainerCtrl {
       }
 
       set(message, 'dismissable', this.isDismissable(message.type));
-      set(message, 'messageOrder', messageOrder += 1);
+      set(message, 'messageOrder', (messageOrder += 1));
     });
   }
 
@@ -85,7 +91,10 @@ export default class CuiMessageContainerCtrl {
   }
 
   static extractUniqueMessage(messageList) {
-    const groupedMessages = groupBy(messageList, (message) => message.text || message.textHtml);
+    const groupedMessages = groupBy(
+      messageList,
+      (message) => message.text || message.textHtml,
+    );
     const groupedMessagesHash = map(
       keys(groupedMessages),
       (key) => new UniqueMessageComposite(groupedMessages[key]),

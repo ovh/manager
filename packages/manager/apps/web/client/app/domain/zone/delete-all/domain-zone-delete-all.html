@@ -1,25 +1,33 @@
 <div data-ng-controller="DomainZoneDeleteAllCtrl as ctrl">
-    <div data-wizard
-         data-wizard-on-cancel="resetAction"
-         data-wizard-on-finish="deleteAllZone"
-         data-wizard-title="'domain_tab_ZONE_default_delete_all' | translate">
-
-        <div data-wizard-step
-             data-wizard-step-valid="!ctrl.loading && ctrl.canDeleteAllZone">
-
+    <div
+        data-wizard
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="deleteAllZone"
+        data-wizard-title="'domain_tab_ZONE_default_delete_all' | translate"
+    >
+        <div
+            data-wizard-step
+            data-wizard-step-valid="!ctrl.loading && ctrl.canDeleteAllZone"
+        >
             <oui-spinner data-ng-if="ctrl.loading"></oui-spinner>
 
             <div data-ng-if="!ctrl.loading">
-
-                <div class="alert alert-warning" role="alert"
-                     data-translate="domain_configuration_zonedns_delete_all_blocked"
-                     data-ng-if="!ctrl.canDeleteAllZone"></div>
+                <div
+                    class="alert alert-warning"
+                    role="alert"
+                    data-translate="domain_configuration_zonedns_delete_all_blocked"
+                    data-ng-if="!ctrl.canDeleteAllZone"
+                ></div>
 
                 <div data-ng-if="ctrl.canDeleteAllZone">
-                    <p data-translate="domain_configuration_zonedns_delete_all_question"></p>
-                    <div class="alert alert-warning mt-5" role="alert"
-                         data-translate="domain_configuration_zonedns_delete_all_warning">
-                    </div>
+                    <p
+                        data-translate="domain_configuration_zonedns_delete_all_question"
+                    ></p>
+                    <div
+                        class="alert alert-warning mt-5"
+                        role="alert"
+                        data-translate="domain_configuration_zonedns_delete_all_warning"
+                    ></div>
                 </div>
             </div>
         </div>

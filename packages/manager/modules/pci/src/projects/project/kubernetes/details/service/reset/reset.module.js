@@ -5,7 +5,8 @@ import routing from './reset.routing';
 
 const moduleName = 'ovhManagerPciProjectKubernetesServiceReset';
 
-angular.module(moduleName, [])
+angular
+  .module(moduleName, [])
   .config(routing)
   .component('pciProjectKubernetesServiceReset', component)
   .run(/* @ngTranslationsInject:json ./translations */);

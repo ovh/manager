@@ -9,10 +9,7 @@ import TucElapsedTimePeriodicUpdater from './elapsed-time-periodic-updater.servi
 const moduleName = 'tucElapsedTime';
 
 angular
-  .module(moduleName, [
-    'ngTranslateAsyncLoader',
-    translate,
-  ])
+  .module(moduleName, ['ngTranslateAsyncLoader', translate])
   .directive('tucElapsedTime', tucElapsedTimeDirective)
   .service('TucElapsedTimePeriodicUpdater', TucElapsedTimePeriodicUpdater)
   .run(/* @ngTranslationsInject:json ./translations */);

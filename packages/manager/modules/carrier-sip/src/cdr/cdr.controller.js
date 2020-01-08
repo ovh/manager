@@ -7,13 +7,7 @@ import { GET_RECORD_NUMBER_OF_YEARS, POLLER_TIMEOUT } from './cdr.constants';
 
 export default class CarrierSipCdrCtrl {
   /* @ngInject */
-  constructor(
-    $timeout,
-    $translate,
-    $window,
-    OvhApiTelephony,
-    TucToast,
-  ) {
+  constructor($timeout, $translate, $window, OvhApiTelephony, TucToast) {
     this.$timeout = $timeout;
     this.$translate = $translate;
     this.$window = $window;
@@ -43,31 +37,39 @@ export default class CarrierSipCdrCtrl {
     const { billingAccount, serviceName } = this;
     const month = this.months.indexOf(this.month) + 1;
 
-    const tryGetTelephonyDocument = () => this.OvhApiTelephony
-      .CarrierSip()
-      .Cdrs()
-      .v6()
-      .get({
-        billingAccount,
-        serviceName,
-        month: `${this.year}-${padStart(month, 2, '0')}`,
-      })
-      .$promise
-      .then(({ validationDate, url }) => {
-        if (validationDate) {
-          return url;
-        }
-        this.poller = this.$timeout(tryGetTelephonyDocument, POLLER_TIMEOUT);
-        return this.poller;
-      });
+    const tryGetTelephonyDocument = () =>
+      this.OvhApiTelephony.CarrierSip()
+        .Cdrs()
+        .v6()
+        .get({
+          billingAccount,
+          serviceName,
+          month: `${this.year}-${padStart(month, 2, '0')}`,
+        })
+        .$promise.then(({ validationDate, url }) => {
+          if (validationDate) {
+            return url;
+          }
+          this.poller = this.$timeout(tryGetTelephonyDocument, POLLER_TIMEOUT);
+          return this.poller;
+        });
 
     this.isExporting = true;
     return tryGetTelephonyDocument()
       .then((url) => {
         this.$window.location.href = url;
-        return this.TucToast.success(this.$translate.instant('carrier_sip_cdr_action_succeed'));
+        return this.TucToast.success(
+          this.$translate.instant('carrier_sip_cdr_action_succeed'),
+        );
       })
-      .catch((err) => this.TucToast.error(`${this.$translate.instant('carrier_sip_cdr_action_failed')} ${get(err, 'data.message')}`))
+      .catch((err) =>
+        this.TucToast.error(
+          `${this.$translate.instant('carrier_sip_cdr_action_failed')} ${get(
+            err,
+            'data.message',
+          )}`,
+        ),
+      )
       .finally(() => {
         this.isExporting = false;
       });

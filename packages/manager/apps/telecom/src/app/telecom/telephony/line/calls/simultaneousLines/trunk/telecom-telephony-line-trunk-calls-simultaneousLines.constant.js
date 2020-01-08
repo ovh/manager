@@ -18,7 +18,9 @@ angular.module('managerApp').constant('TRUNK_PACK_DETAILS', {
             const portraitFormat = window.innerHeight > window.innerWidth;
             meta.data.forEach((bar, index) => {
               const data = dataset.data[index] - dataOffset;
-              const label = portraitFormat ? data : data + (data > 1 ? ' packs' : ' pack');
+              const label = portraitFormat
+                ? data
+                : data + (data > 1 ? ' packs' : ' pack');
               ctx.fillText(label, bar._model.x, bar._model.y - 5);
             });
           });

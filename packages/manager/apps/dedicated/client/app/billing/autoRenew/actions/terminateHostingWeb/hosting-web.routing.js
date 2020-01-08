@@ -10,11 +10,10 @@ export default /* @ngInject */ ($stateProvider) => {
     translations: { value: ['.'], format: 'json' },
     resolve: {
       goBack: /* @ngInject */ (goToAutorenew) => goToAutorenew,
-      serviceId: /* @ngInject */ ($transition$) => $transition$.params().serviceId,
-      terminateHosting: /* @ngInject */ (
-        BillingAutoRenew,
-        serviceId,
-      ) => () => BillingAutoRenew.terminateHosting(serviceId),
+      serviceId: /* @ngInject */ ($transition$) =>
+        $transition$.params().serviceId,
+      terminateHosting: /* @ngInject */ (BillingAutoRenew, serviceId) => () =>
+        BillingAutoRenew.terminateHosting(serviceId),
     },
   });
 };

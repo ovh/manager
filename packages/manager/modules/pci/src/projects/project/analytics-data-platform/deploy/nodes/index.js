@@ -5,9 +5,7 @@ import nodesComponent from './nodes.component';
 const moduleName = 'ovhManagerAnalyticsDataPlatformDeployNodesComponent';
 
 angular
-  .module(moduleName, [
-    'ui.router',
-  ])
+  .module(moduleName, ['ui.router'])
   .component('analyticsDataPlatformDeployNodesComponent', nodesComponent)
   .run(/* @ngTranslationsInject:json ./translations */);
 

@@ -3,8 +3,19 @@ import get from 'lodash/get';
 angular.module('App').controller(
   'HostingUpgradeOfferCtrl',
   class HostingUpgradeOfferCtrl {
-    constructor($scope, $rootScope, $state, $stateParams, $translate, $window,
-      Alerter, apiTranslator, atInternet, Hosting, User) {
+    constructor(
+      $scope,
+      $rootScope,
+      $state,
+      $stateParams,
+      $translate,
+      $window,
+      Alerter,
+      apiTranslator,
+      atInternet,
+      Hosting,
+      User,
+    ) {
       this.$scope = $scope;
       this.$rootScope = $rootScope;
       this.$state = $state;
@@ -36,10 +47,9 @@ angular.module('App').controller(
         downgradeAgree: false,
       };
 
-      this.User.getUser()
-        .then((user) => {
-          this.ovhSubsidiary = user.ovhSubsidiary;
-        });
+      this.User.getUser().then((user) => {
+        this.ovhSubsidiary = user.ovhSubsidiary;
+      });
 
       this.Hosting.getSelected(this.productId)
         .then((hosting) => {
@@ -47,11 +57,12 @@ angular.module('App').controller(
           return this.Hosting.getAvailableOffer(this.productId);
         })
         .then((availableOffers) => {
-          this.availableOffers = availableOffers
-            .map((offer) => ({
-              name: this.$translate.instant(`hosting_dashboard_service_offer_${offer}`),
-              value: offer,
-            }));
+          this.availableOffers = availableOffers.map((offer) => ({
+            name: this.$translate.instant(
+              `hosting_dashboard_service_offer_${offer}`,
+            ),
+            value: offer,
+          }));
         })
         .catch(() => {
           this.availableOffers = [];
@@ -68,7 +79,10 @@ angular.module('App').controller(
       };
       this.loading.durations = true;
 
-      return this.Hosting.getUpgradePrices(get(this.hosting, 'serviceName', this.$stateParams.productId), this.model.offer.value)
+      return this.Hosting.getUpgradePrices(
+        get(this.hosting, 'serviceName', this.$stateParams.productId),
+        this.model.offer.value,
+      )
         .then((durations) => {
           this.durations.available = durations;
           if (durations.length === 1) {
@@ -114,16 +128,24 @@ angular.module('App').controller(
       win.referrer = null;
       win.opener = null;
 
-      const startTime = moment(this.model.startTime, 'HH:mm:ss').utc().format('HH:mm:ss');
+      const startTime = moment(this.model.startTime, 'HH:mm:ss')
+        .utc()
+        .format('HH:mm:ss');
 
-      return this.Hosting
-        .orderUpgrade(
-          get(this.hosting, 'serviceName', this.$stateParams.productId),
-          this.model.offer.value,
-          this.model.duration.duration,
-          (this.hosting.isCloudWeb ? startTime : null),
-        ).then((order) => {
-          this.Alerter.success(this.$translate.instant('hosting_order_upgrade_success', { t0: order.url, t1: order.orderId }), this.$scope.alerts.page);
+      return this.Hosting.orderUpgrade(
+        get(this.hosting, 'serviceName', this.$stateParams.productId),
+        this.model.offer.value,
+        this.model.duration.duration,
+        this.hosting.isCloudWeb ? startTime : null,
+      )
+        .then((order) => {
+          this.Alerter.success(
+            this.$translate.instant('hosting_order_upgrade_success', {
+              t0: order.url,
+              t1: order.orderId,
+            }),
+            this.$scope.alerts.page,
+          );
           this.atInternet.trackOrder({
             name: `[hosting]::${this.model.offer.value}[${this.model.offer.value}]`,
             page: 'web::payment-pending',
@@ -133,10 +155,16 @@ angular.module('App').controller(
             status: 1,
           });
           win.location = order.url;
-        }).catch((err) => {
-          this.Alerter.alertFromSWS(this.$translate.instant('hosting_order_upgrade_error'), err, this.$scope.alerts.page);
+        })
+        .catch((err) => {
+          this.Alerter.alertFromSWS(
+            this.$translate.instant('hosting_order_upgrade_error'),
+            err,
+            this.$scope.alerts.page,
+          );
           win.close();
-        }).finally(() => {
+        })
+        .finally(() => {
           this.loading.validation = false;
           this.$state.go('^');
         });

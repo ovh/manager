@@ -5,7 +5,8 @@ import routing from './delete.routing';
 
 const moduleName = 'ovhManagerPciProjectWorkflowDelete';
 
-angular.module(moduleName, [])
+angular
+  .module(moduleName, [])
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */)
   .component('pciProjectWorkflowDeleteComponent', component);

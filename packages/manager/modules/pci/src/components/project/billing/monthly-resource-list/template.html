@@ -1,8 +1,12 @@
-<oui-collapsible class="mx-0" heading="{{ ::'cpbc_monthly_instance_detail_title' | translate }} ({{ $ctrl.resources.totals.monthly.instance.toFixed(2) + ' ' + $ctrl.resources.totals.currencySymbol }})">
+<oui-collapsible
+    class="mx-0"
+    heading="{{ ::'cpbc_monthly_instance_detail_title' | translate }} ({{ $ctrl.resources.totals.monthly.instance.toFixed(2) + ' ' + $ctrl.resources.totals.currencySymbol }})"
+>
     <instance-list
         instances="$ctrl.resources.monthlyInstances"
         instance-col-name="'cpbc_monthly_instance_col_name'"
         instance-col-total="'cpbc_monthly_instance_col_total'"
-        instance-col-total-tooltip="'cpbc_monthly_instance_col_total_tooltip'">
+        instance-col-total-tooltip="'cpbc_monthly_instance_col_total_tooltip'"
+    >
     </instance-list>
 </oui-collapsible>

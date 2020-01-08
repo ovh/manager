@@ -5,7 +5,8 @@ export default class VeeamCloudConnectStorageUpdateQuotaCtrl {
     this.VeeamCloudConnectService = VeeamCloudConnectService;
 
     this.capabilities = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () => this.VeeamCloudConnectService.getCapabilities(this.serviceName),
+      loaderFunction: () =>
+        this.VeeamCloudConnectService.getCapabilities(this.serviceName),
     });
   }
 
@@ -15,20 +16,27 @@ export default class VeeamCloudConnectStorageUpdateQuotaCtrl {
 
   confirm() {
     this.updateQuota = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () => this.VeeamCloudConnectService
-        .updateRepositoryQuota(this.serviceName, this.inventoryName, this.newQuota)
-        .then((result) => {
-          this.VeeamCloudConnectService.startPolling(this.serviceName, result.data);
-        })
-        .catch((error) => {
-          this.VeeamCloudConnectService.unitOfWork.messages.push({
-            text: error.message,
-            type: 'error',
-          });
-        })
-        .finally(() => {
-          this.goToStorage();
-        }),
+      loaderFunction: () =>
+        this.VeeamCloudConnectService.updateRepositoryQuota(
+          this.serviceName,
+          this.inventoryName,
+          this.newQuota,
+        )
+          .then((result) => {
+            this.VeeamCloudConnectService.startPolling(
+              this.serviceName,
+              result.data,
+            );
+          })
+          .catch((error) => {
+            this.VeeamCloudConnectService.unitOfWork.messages.push({
+              text: error.message,
+              type: 'error',
+            });
+          })
+          .finally(() => {
+            this.goToStorage();
+          }),
     });
     return this.updateQuota.load();
   }

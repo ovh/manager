@@ -43,6 +43,10 @@ export default class {
 
   getPrice(price) {
     const languageLocale = this.user.language.replace('_', '-');
-    return Intl.NumberFormat(languageLocale, { style: 'currency', currency: this.price.currencyCode, maximumSignificantDigits: 1 }).format(price);
+    return Intl.NumberFormat(languageLocale, {
+      style: 'currency',
+      currency: this.price.currencyCode,
+      maximumSignificantDigits: 1,
+    }).format(price);
   }
 }

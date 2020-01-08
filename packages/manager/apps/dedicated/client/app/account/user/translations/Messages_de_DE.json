@@ -718,5 +718,6 @@
   "user_account_support_level_title": "Mein Support-Level",
   "user_account_ssh_keys_title": "Meine SSH-Schlüssel",
   "user_account_users_management_title": "Benutzerverwaltung",
-  "user_account_advanced_title": "Erweiterte Einstellungen"
+  "user_account_advanced_title": "Erweiterte Einstellungen",
+  "user_account_security_double_auth_type_totp_delete_error": "Oops! Bei der Löschung der Zwei-Faktor-Authentifizierung ist ein Fehler aufgetreten:"
 }

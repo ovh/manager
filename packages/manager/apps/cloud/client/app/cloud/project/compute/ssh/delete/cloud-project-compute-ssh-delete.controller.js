@@ -1,5 +1,10 @@
 class CloudProjectComputeSshDeleteCtrl {
-  constructor($uibModalInstance, OvhApiCloudProjectSshKey, serviceName, sshKey) {
+  constructor(
+    $uibModalInstance,
+    OvhApiCloudProjectSshKey,
+    serviceName,
+    sshKey,
+  ) {
     this.$uibModalInstance = $uibModalInstance;
     this.OvhApiCloudProjectSshKey = OvhApiCloudProjectSshKey;
 
@@ -12,9 +17,10 @@ class CloudProjectComputeSshDeleteCtrl {
   }
 
   deleteSshKey(sshKey) {
-    return this.OvhApiCloudProjectSshKey.v6()
-      .remove({ serviceName: this.serviceName, keyId: sshKey.id })
-      .$promise;
+    return this.OvhApiCloudProjectSshKey.v6().remove({
+      serviceName: this.serviceName,
+      keyId: sshKey.id,
+    }).$promise;
   }
 
   confirm() {
@@ -32,4 +38,9 @@ class CloudProjectComputeSshDeleteCtrl {
   }
 }
 
-angular.module('managerApp').controller('CloudProjectComputeSshDeleteCtrl', CloudProjectComputeSshDeleteCtrl);
+angular
+  .module('managerApp')
+  .controller(
+    'CloudProjectComputeSshDeleteCtrl',
+    CloudProjectComputeSshDeleteCtrl,
+  );

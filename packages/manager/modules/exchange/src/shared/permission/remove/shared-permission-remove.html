@@ -1,20 +1,31 @@
 <div data-ng-controller="ExchangeRemovePublicFolderPermissionCtrl as ctrl">
-    <div data-wizard
-         data-wizard-bread-crumb
-         data-wizard-title="'exchange_action_SHARED_permissions_delete_title' | translate"
-         data-wizard-on-cancel="resetAction"
-         data-wizard-on-finish="submitting">
-
+    <div
+        data-wizard
+        data-wizard-bread-crumb
+        data-wizard-title="'exchange_action_SHARED_permissions_delete_title' | translate"
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="submitting"
+    >
         <div data-wizard-step>
-            <p data-ng-bind-html="'exchange_action_SHARED_permissions_delete_question' | translate:{ t0: ctrl.folder.path }"></p>
+            <p
+                data-ng-bind-html="'exchange_action_SHARED_permissions_delete_question' | translate:{ t0: ctrl.folder.path }"
+            ></p>
 
             <dl class="dl-horizontal dl-lg">
-                <dt data-translate="exchange_tab_SHARED_permissions_header_email"></dt>
-                <dd class="word-break"
-                    data-ng-bind="ctrl.permission.primaryAddressDisplayName | wucSliceContent: 150"></dd>
+                <dt
+                    data-translate="exchange_tab_SHARED_permissions_header_email"
+                ></dt>
+                <dd
+                    class="word-break"
+                    data-ng-bind="ctrl.permission.primaryAddressDisplayName | wucSliceContent: 150"
+                ></dd>
 
-                <dt data-translate="exchange_tab_SHARED_permissions_header_type"></dt>
-                <dd data-ng-bind="('exchange_tab_SHARED_permissions_type_' + ctrl.permission.accessRights) | translate"></dd>
+                <dt
+                    data-translate="exchange_tab_SHARED_permissions_header_type"
+                ></dt>
+                <dd
+                    data-ng-bind="('exchange_tab_SHARED_permissions_type_' + ctrl.permission.accessRights) | translate"
+                ></dd>
             </dl>
         </div>
     </div>

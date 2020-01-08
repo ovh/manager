@@ -11,10 +11,7 @@ import './index.less';
 const moduleName = 'cuiTabs';
 
 angular
-  .module(moduleName, [
-    'oui',
-    'ui.router',
-  ])
+  .module(moduleName, ['oui', 'ui.router'])
   .component('cuiTabs', component)
   .directive('cuiTab', tabDirective)
   .service('CuiTabsService', service);

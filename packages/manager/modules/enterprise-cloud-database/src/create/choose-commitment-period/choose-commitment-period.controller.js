@@ -12,9 +12,11 @@ export default class {
     this.selectedCommitmentPeriod = commitmentPeriod;
     this.enterpriseDb.commitmentPeriod = commitmentPeriod;
     if (this.onChange) {
-      this.$timeout(() => this.onChange({
-        commitmentPeriod,
-      }));
+      this.$timeout(() =>
+        this.onChange({
+          commitmentPeriod,
+        }),
+      );
     }
   }
 }

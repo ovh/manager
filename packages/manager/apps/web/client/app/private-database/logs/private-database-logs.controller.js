@@ -12,9 +12,10 @@ angular.module('App').controller(
       this.productId = this.$stateParams.productId;
 
       this.logger = new this.TailLogs({
-        source: () => this.privateDatabaseLogsService
-          .getLogs(this.productId)
-          .then((logs) => logs.url),
+        source: () =>
+          this.privateDatabaseLogsService
+            .getLogs(this.productId)
+            .then((logs) => logs.url),
         delay: 2000,
       });
 

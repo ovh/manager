@@ -38,7 +38,8 @@ angular.module('managerApp').config(($stateProvider) => {
       views: {
         metricsHeader,
         metricsContent: {
-          templateUrl: 'app/dbaas/dbaas-metrics/dashboard/metrics-dashboard.html',
+          templateUrl:
+            'app/dbaas/dbaas-metrics/dashboard/metrics-dashboard.html',
           controller: 'MetricsDashboardCtrl',
           controllerAs: '$ctrl',
         },
@@ -82,7 +83,8 @@ angular.module('managerApp').config(($stateProvider) => {
       url: '/add',
       views: {
         metricsContent: {
-          templateUrl: 'app/dbaas/dbaas-metrics/token/add/metrics-token-add.html',
+          templateUrl:
+            'app/dbaas/dbaas-metrics/token/add/metrics-token-add.html',
           controller: 'MetricsTokenAddCtrl',
           controllerAs: '$ctrl',
         },

@@ -1,170 +1,246 @@
 <section class="telecom-troubleshooting-step widget-presentation">
-
     <header class="widget-presentation-header">
-        <h2 class="widget-presentation-title"
-            data-translate="telephony_line_assist_troubleshooting_auto_config_title">
-        </h2>
+        <h2
+            class="widget-presentation-title"
+            data-translate="telephony_line_assist_troubleshooting_auto_config_title"
+        ></h2>
     </header>
 
     <div class="row">
         <div class="col-xs-12 col-md-6">
-            <div class="alert alert-info"
-                 role="alert"
-                 data-translate="telephony_line_assist_troubleshooting_auto_config_info">
-            </div>
+            <div
+                class="alert alert-info"
+                role="alert"
+                data-translate="telephony_line_assist_troubleshooting_auto_config_info"
+            ></div>
         </div>
     </div>
 
-    <div class="row"
-         data-ng-if="AutoConfigCtrl.resetConfigError"
-         data-smooth-scroll>
+    <div
+        class="row"
+        data-ng-if="AutoConfigCtrl.resetConfigError"
+        data-smooth-scroll
+    >
         <div class="col-xs-12 col-md-6">
-            <div class="alert alert-danger"
-                 role="alert">
-                <p data-translate="telephony_line_assist_troubleshooting_auto_config_error"></p>
-                <strong data-ng-bind="AutoConfigCtrl.resetConfigError.data.message"></strong>
+            <div class="alert alert-danger" role="alert">
+                <p
+                    data-translate="telephony_line_assist_troubleshooting_auto_config_error"
+                ></p>
+                <strong
+                    data-ng-bind="AutoConfigCtrl.resetConfigError.data.message"
+                ></strong>
             </div>
         </div>
     </div>
 
-    <div class="text-center" data-ng-if="AutoConfigCtrl.loading.init || AutoConfigCtrl.loading.resetConfig">
+    <div
+        class="text-center"
+        data-ng-if="AutoConfigCtrl.loading.init || AutoConfigCtrl.loading.resetConfig"
+    >
         <oui-spinner></oui-spinner>
     </div>
 
-    <div data-ng-if="!AutoConfigCtrl.loading.init && !AutoConfigCtrl.loading.resetConfig">
-
+    <div
+        data-ng-if="!AutoConfigCtrl.loading.init && !AutoConfigCtrl.loading.resetConfig"
+    >
         <ol class="troubleshooting-list">
             <li>
-                <h4 class="mb-3 lead"
-                    data-translate="telephony_line_assist_troubleshooting_auto_config_mac_address">
-                </h4>
-                <p data-translate="telephony_line_assist_troubleshooting_auto_config_mac_address_explain"
-                   data-translate-values="{ macAddress: AutoConfigCtrl.process.line.phone.macAddress }"
-                   data-translate-compile>
-                </p>
+                <h4
+                    class="mb-3 lead"
+                    data-translate="telephony_line_assist_troubleshooting_auto_config_mac_address"
+                ></h4>
+                <p
+                    data-translate="telephony_line_assist_troubleshooting_auto_config_mac_address_explain"
+                    data-translate-values="{ macAddress: AutoConfigCtrl.process.line.phone.macAddress }"
+                    data-translate-compile
+                ></p>
                 <em>
                     <span>* </span>
-                    <span data-ng-if="AutoConfigCtrl.process.line.phone.brand !== 'phone.yealink.w56p'"
-                          data-translate="telephony_line_assist_troubleshooting_auto_config_mac_address_explain_note"></span>
-                    <span data-ng-if="AutoConfigCtrl.process.line.phone.brand === 'phone.yealink.w56p'"
-                          data-translate="telephony_line_assist_troubleshooting_auto_config_mac_address_W56P_explain_note"></span>
+                    <span
+                        data-ng-if="AutoConfigCtrl.process.line.phone.brand !== 'phone.yealink.w56p'"
+                        data-translate="telephony_line_assist_troubleshooting_auto_config_mac_address_explain_note"
+                    ></span>
+                    <span
+                        data-ng-if="AutoConfigCtrl.process.line.phone.brand === 'phone.yealink.w56p'"
+                        data-translate="telephony_line_assist_troubleshooting_auto_config_mac_address_W56P_explain_note"
+                    ></span>
                 </em>
             </li>
-            <li data-ng-if="AutoConfigCtrl.process.phoneType === 'unidata' || AutoConfigCtrl.process.phoneType === 'popc' || AutoConfigCtrl.process.phoneType === 'yealink'">
-                <h4 class="mb-3 lead"
-                    data-translate="telephony_line_assist_troubleshooting_auto_config_reinit">
-                </h4>
+            <li
+                data-ng-if="AutoConfigCtrl.process.phoneType === 'unidata' || AutoConfigCtrl.process.phoneType === 'popc' || AutoConfigCtrl.process.phoneType === 'yealink'"
+            >
+                <h4
+                    class="mb-3 lead"
+                    data-translate="telephony_line_assist_troubleshooting_auto_config_reinit"
+                ></h4>
 
-                <p class="mb-3"
-                   data-translate="telephony_line_assist_troubleshooting_auto_config_reinit_explain">
-                </p>
+                <p
+                    class="mb-3"
+                    data-translate="telephony_line_assist_troubleshooting_auto_config_reinit_explain"
+                ></p>
 
-                <div data-ng-if="AutoConfigCtrl.process.line.phone.brand !== 'phone.yealink.w56p'">
-                    <p data-translate="telephony_line_assist_troubleshooting_auto_config_reinit_step1"></p>
-                    <p data-translate="telephony_line_assist_troubleshooting_auto_config_reinit_step2"></p>
-                    <p data-translate="telephony_line_assist_troubleshooting_auto_config_reinit_step3"></p>
+                <div
+                    data-ng-if="AutoConfigCtrl.process.line.phone.brand !== 'phone.yealink.w56p'"
+                >
+                    <p
+                        data-translate="telephony_line_assist_troubleshooting_auto_config_reinit_step1"
+                    ></p>
+                    <p
+                        data-translate="telephony_line_assist_troubleshooting_auto_config_reinit_step2"
+                    ></p>
+                    <p
+                        data-translate="telephony_line_assist_troubleshooting_auto_config_reinit_step3"
+                    ></p>
                 </div>
-                <div data-ng-if="AutoConfigCtrl.process.line.phone.brand === 'phone.yealink.w56p'">
-                    <p data-translate="telephony_line_assist_troubleshooting_auto_config_W56P_reinit_step1"></p>
-                    <p data-translate="telephony_line_assist_troubleshooting_auto_config_W56P_reinit_step2"></p>
-                    <p data-translate="telephony_line_assist_troubleshooting_auto_config_W56P_reinit_step3"></p>
+                <div
+                    data-ng-if="AutoConfigCtrl.process.line.phone.brand === 'phone.yealink.w56p'"
+                >
+                    <p
+                        data-translate="telephony_line_assist_troubleshooting_auto_config_W56P_reinit_step1"
+                    ></p>
+                    <p
+                        data-translate="telephony_line_assist_troubleshooting_auto_config_W56P_reinit_step2"
+                    ></p>
+                    <p
+                        data-translate="telephony_line_assist_troubleshooting_auto_config_W56P_reinit_step3"
+                    ></p>
                 </div>
             </li>
             <li>
-                <h4 class="mb-3 lead"
-                    data-translate="telephony_line_assist_troubleshooting_auto_config_fill_ip">
-                </h4>
+                <h4
+                    class="mb-3 lead"
+                    data-translate="telephony_line_assist_troubleshooting_auto_config_fill_ip"
+                ></h4>
 
-                <form data-ng-submit="AutoConfigCtrl.startAutoConfig()"
-                      name="autoConfigForm"
-                      novalidate>
-
+                <form
+                    data-ng-submit="AutoConfigCtrl.startAutoConfig()"
+                    name="autoConfigForm"
+                    novalidate
+                >
                     <p>
-                        <span class="d-block"
-                              data-translate="telephony_line_assist_troubleshooting_auto_config_last_ip">
+                        <span
+                            class="d-block"
+                            data-translate="telephony_line_assist_troubleshooting_auto_config_last_ip"
+                        >
                         </span>
-                        <span class="d-block"
-                              data-translate="telephony_line_assist_troubleshooting_auto_config_your_ip"
-                              data-translate-values="{ ip: AutoConfigCtrl.myIpInfos.address, domain: AutoConfigCtrl.myIpInfos.domain }">
+                        <span
+                            class="d-block"
+                            data-translate="telephony_line_assist_troubleshooting_auto_config_your_ip"
+                            data-translate-values="{ ip: AutoConfigCtrl.myIpInfos.address, domain: AutoConfigCtrl.myIpInfos.domain }"
+                        >
                         </span>
-                        <span class="d-block"
-                              data-translate="telephony_line_assist_troubleshooting_auto_config_check_ip">
+                        <span
+                            class="d-block"
+                            data-translate="telephony_line_assist_troubleshooting_auto_config_check_ip"
+                        >
                         </span>
                     </p>
 
                     <div class="form-group">
-                        <label for="myIp"
-                               class="d-block troubleshooting-outside-label"
-                               data-translate="telephony_line_assist_troubleshooting_auto_config_public_ip">
+                        <label
+                            for="myIp"
+                            class="d-block troubleshooting-outside-label"
+                            data-translate="telephony_line_assist_troubleshooting_auto_config_public_ip"
+                        >
                         </label>
-                        <input type="text"
-                               name="myIp"
-                               id="myIp"
-                               class="form-control"
-                               data-ng-model="AutoConfigCtrl.model.ip"
-                               data-ng-disabled="AutoConfigCtrl.status === 'OK' || AutoConfigCtrl.loading.resetConfig"
-                               data-ui-validate="{ ipv4: 'AutoConfigCtrl.validator.isIP($value, 4)' }"
-                               data-translate-attr="{ placeholder: 'telephony_line_assist_troubleshooting_auto_config_public_ip_placeholder' }" />
+                        <input
+                            type="text"
+                            name="myIp"
+                            id="myIp"
+                            class="form-control"
+                            data-ng-model="AutoConfigCtrl.model.ip"
+                            data-ng-disabled="AutoConfigCtrl.status === 'OK' || AutoConfigCtrl.loading.resetConfig"
+                            data-ui-validate="{ ipv4: 'AutoConfigCtrl.validator.isIP($value, 4)' }"
+                            data-translate-attr="{ placeholder: 'telephony_line_assist_troubleshooting_auto_config_public_ip_placeholder' }"
+                        />
                     </div>
                     <div class="form-group">
-                        <button type="reset"
-                                class="btn btn-default"
-                                data-ng-if="AutoConfigCtrl.status === 'OK'"
-                                data-ng-click="AutoConfigCtrl.resetIp()"
-                                data-ng-disabled="!AutoConfigCtrl.step.active"
-                                data-translate="modify">
-                        </button>
-                        <button type="submit"
-                                class="btn btn-primary"
-                                data-ng-if="AutoConfigCtrl.status === 'CHECKIP'"
-                                data-ng-disabled="!AutoConfigCtrl.model.ip || !autoConfigForm.$valid || AutoConfigCtrl.loading.resetConfig"
-                                data-translate="contract_next">
-                        </button>
-                        <div class="help-block"
-                             role="alert"
-                             data-ng-messages="autoConfigForm.myIp.$error"
-                             data-ng-if="autoConfigForm.myIp.$dirty && autoConfigForm.myIp.$touched">
-                            <label for="myIp"
-                                   data-ng-message="ipv4"
-                                   data-translate="telephony_line_assist_troubleshooting_auto_config_public_ip_invalid">
+                        <button
+                            type="reset"
+                            class="btn btn-default"
+                            data-ng-if="AutoConfigCtrl.status === 'OK'"
+                            data-ng-click="AutoConfigCtrl.resetIp()"
+                            data-ng-disabled="!AutoConfigCtrl.step.active"
+                            data-translate="modify"
+                        ></button>
+                        <button
+                            type="submit"
+                            class="btn btn-primary"
+                            data-ng-if="AutoConfigCtrl.status === 'CHECKIP'"
+                            data-ng-disabled="!AutoConfigCtrl.model.ip || !autoConfigForm.$valid || AutoConfigCtrl.loading.resetConfig"
+                            data-translate="contract_next"
+                        ></button>
+                        <div
+                            class="help-block"
+                            role="alert"
+                            data-ng-messages="autoConfigForm.myIp.$error"
+                            data-ng-if="autoConfigForm.myIp.$dirty && autoConfigForm.myIp.$touched"
+                        >
+                            <label
+                                for="myIp"
+                                data-ng-message="ipv4"
+                                data-translate="telephony_line_assist_troubleshooting_auto_config_public_ip_invalid"
+                            >
                             </label>
                         </div>
                     </div>
-
                 </form>
             </li>
-            <li data-ng-if="AutoConfigCtrl.status !== 'CHECKIP'"
-                data-smooth-scroll>
+            <li
+                data-ng-if="AutoConfigCtrl.status !== 'CHECKIP'"
+                data-smooth-scroll
+            >
+                <div
+                    data-ng-if="AutoConfigCtrl.process.phoneType === 'siemens' && AutoConfigCtrl.process.line.phone.brand !== 'phone.gigaset.c530ip'"
+                >
+                    <h4
+                        class="mb-3 lead"
+                        data-translate="telephony_line_assist_troubleshooting_auto_config_siemens_reset_config"
+                    ></h4>
 
-                <div data-ng-if="AutoConfigCtrl.process.phoneType === 'siemens' && AutoConfigCtrl.process.line.phone.brand !== 'phone.gigaset.c530ip'">
-                    <h4 class="mb-3 lead"
-                        data-translate="telephony_line_assist_troubleshooting_auto_config_siemens_reset_config">
-                    </h4>
-
-                    <p data-translate="telephony_line_assist_troubleshooting_auto_config_siemens_step1"></p>
-                    <p data-translate="telephony_line_assist_troubleshooting_auto_config_siemens_step2"></p>
-                    <p data-translate="telephony_line_assist_troubleshooting_auto_config_siemens_step3"></p>
-                    <p data-translate="telephony_line_assist_troubleshooting_auto_config_siemens_step4"></p>
-                    <p data-translate="telephony_line_assist_troubleshooting_auto_config_siemens_step5"></p>
-                    <p data-translate="telephony_line_assist_troubleshooting_auto_config_siemens_step6"></p>
-                    <p data-translate="telephony_line_assist_troubleshooting_auto_config_siemens_step7"></p>
-                    <p data-translate="telephony_line_assist_troubleshooting_auto_config_siemens_step8"
-                       data-translate-values="{ code: AutoConfigCtrl.resetConfigResult.resetCodeInfo.activationCode }">
-                    </p>
-                    <p data-translate="telephony_line_assist_troubleshooting_auto_config_siemens_step9"></p>
+                    <p
+                        data-translate="telephony_line_assist_troubleshooting_auto_config_siemens_step1"
+                    ></p>
+                    <p
+                        data-translate="telephony_line_assist_troubleshooting_auto_config_siemens_step2"
+                    ></p>
+                    <p
+                        data-translate="telephony_line_assist_troubleshooting_auto_config_siemens_step3"
+                    ></p>
+                    <p
+                        data-translate="telephony_line_assist_troubleshooting_auto_config_siemens_step4"
+                    ></p>
+                    <p
+                        data-translate="telephony_line_assist_troubleshooting_auto_config_siemens_step5"
+                    ></p>
+                    <p
+                        data-translate="telephony_line_assist_troubleshooting_auto_config_siemens_step6"
+                    ></p>
+                    <p
+                        data-translate="telephony_line_assist_troubleshooting_auto_config_siemens_step7"
+                    ></p>
+                    <p
+                        data-translate="telephony_line_assist_troubleshooting_auto_config_siemens_step8"
+                        data-translate-values="{ code: AutoConfigCtrl.resetConfigResult.resetCodeInfo.activationCode }"
+                    ></p>
+                    <p
+                        data-translate="telephony_line_assist_troubleshooting_auto_config_siemens_step9"
+                    ></p>
                 </div>
 
-                <div data-ng-if="AutoConfigCtrl.process.phoneType !== 'siemens' || AutoConfigCtrl.process.line.phone.brand === 'phone.gigaset.c530ip'">
-                    <h4 class="mb-2 lead"
-                        data-translate="telephony_line_assist_troubleshooting_auto_config_reboot">
-                    </h4>
+                <div
+                    data-ng-if="AutoConfigCtrl.process.phoneType !== 'siemens' || AutoConfigCtrl.process.line.phone.brand === 'phone.gigaset.c530ip'"
+                >
+                    <h4
+                        class="mb-2 lead"
+                        data-translate="telephony_line_assist_troubleshooting_auto_config_reboot"
+                    ></h4>
 
-                    <p data-translate="telephony_line_assist_troubleshooting_auto_config_after_reboot"></p>
+                    <p
+                        data-translate="telephony_line_assist_troubleshooting_auto_config_after_reboot"
+                    ></p>
                 </div>
-
             </li>
         </ol>
-
     </div>
-
 </section>

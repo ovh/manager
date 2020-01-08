@@ -1,43 +1,48 @@
-<form name="deletePhonebookForm"
-      id="deletePhonebookForm"
-      data-ng-submit="DeleteCtrl.delete()">
-
+<form
+    name="deletePhonebookForm"
+    id="deletePhonebookForm"
+    data-ng-submit="DeleteCtrl.delete()"
+>
     <div class="modal-header">
         <button
             type="button"
             class="close float-right"
             aria-label="{{ ::'sms_cancel' | translate }}"
-            data-ng-click="DeleteCtrl.cancel()">
+            data-ng-click="DeleteCtrl.cancel()"
+        >
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
     <!-- /.modal-header -->
 
-    <div class="modal-body"
-         data-ng-if="!DeleteCtrl.isDeleting && !DeleteCtrl.deleted">
-        <h3 class="modal-title"
-            data-translate="sms_phonebooks_phonebook_delete">
-        </h3>
-        <p class="text-info"
-           role="alert"
-           data-translate="sms_phonebooks_phonebook_delete_info">
-        </p>
-        <p class="word-break"
-           data-translate="sms_phonebooks_phonebook_delete_confirm"
-           data-translate-values="{ name: DeleteCtrl.phonebook.name }">
-        </p>
+    <div
+        class="modal-body"
+        data-ng-if="!DeleteCtrl.isDeleting && !DeleteCtrl.deleted"
+    >
+        <h3
+            class="modal-title"
+            data-translate="sms_phonebooks_phonebook_delete"
+        ></h3>
+        <p
+            class="text-info"
+            role="alert"
+            data-translate="sms_phonebooks_phonebook_delete_info"
+        ></p>
+        <p
+            class="word-break"
+            data-translate="sms_phonebooks_phonebook_delete_confirm"
+            data-translate-values="{ name: DeleteCtrl.phonebook.name }"
+        ></p>
     </div>
     <!-- /.modal-body -->
 
-    <div class="modal-body text-center"
-         data-ng-if="DeleteCtrl.isDeleting">
+    <div class="modal-body text-center" data-ng-if="DeleteCtrl.isDeleting">
         <oui-spinner></oui-spinner>
         <h4 data-translate="sms_phonebooks_phonebook_deleting"></h4>
     </div>
     <!-- /.modal-body -->
 
-    <div class="modal-body"
-         data-ng-if="DeleteCtrl.deleted">
+    <div class="modal-body" data-ng-if="DeleteCtrl.deleted">
         <tuc-success-drawing-check data-draw-success-check="DeleteCtrl.deleted">
             <h4 data-translate="sms_phonebooks_phonebook_deleted"></h4>
         </tuc-success-drawing-check>
@@ -50,14 +55,14 @@
             class="btn btn-default"
             data-ng-click="DeleteCtrl.cancel()"
             data-ng-disabled="DeleteCtrl.isDeleting || DeleteCtrl.deleted"
-            data-translate="sms_cancel">
-        </button>
+            data-translate="sms_cancel"
+        ></button>
         <button
             type="submit"
             class="btn btn-primary"
             data-ng-disabled="DeleteCtrl.isDeleting || DeleteCtrl.deleted"
-            data-translate="sms_submit">
-        </button>
+            data-translate="sms_submit"
+        ></button>
     </div>
     <!-- /.modal-footer -->
 </form>

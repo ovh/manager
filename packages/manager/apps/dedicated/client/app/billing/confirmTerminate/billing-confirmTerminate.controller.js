@@ -1,7 +1,8 @@
 import get from 'lodash/get';
 
-angular.module('Billing.controllers')
-  .controller('Billing.controllers.TerminateServiceCtrl', class TerminateServiceCtrl {
+angular.module('Billing.controllers').controller(
+  'Billing.controllers.TerminateServiceCtrl',
+  class TerminateServiceCtrl {
     constructor($q, $stateParams, BillingTerminate, User) {
       this.$q = $q;
       this.$stateParams = $stateParams;
@@ -46,10 +47,7 @@ angular.module('Billing.controllers')
         return;
       }
 
-      this.$q.all([
-        this.loadUser(),
-        this.loadService(),
-      ]).catch(() => {
+      this.$q.all([this.loadUser(), this.loadService()]).catch(() => {
         this.globalError = true;
       });
     }
@@ -65,8 +63,7 @@ angular.module('Billing.controllers')
     }
 
     loadService() {
-      return this.BillingTerminate
-        .getServiceInfo(this.serviceId)
+      return this.BillingTerminate.getServiceInfo(this.serviceId)
         .then((serviceInfos) => {
           this.serviceInfos = serviceInfos;
           return this.BillingTerminate.getServiceApi(serviceInfos.serviceId);
@@ -81,15 +78,14 @@ angular.module('Billing.controllers')
 
     confirmTermination() {
       this.terminating = true;
-      this.BillingTerminate
-        .confirmTermination(
-          this.serviceId,
-          this.serviceInfos.domain,
-          this.futureUse,
-          this.reason,
-          this.commentary,
-          this.token,
-        )
+      this.BillingTerminate.confirmTermination(
+        this.serviceId,
+        this.serviceInfos.domain,
+        this.futureUse,
+        this.reason,
+        this.commentary,
+        this.token,
+      )
         .then(() => {
           this.error = false;
           this.serviceState = 'suspending';
@@ -101,4 +97,5 @@ angular.module('Billing.controllers')
           this.terminating = false;
         });
     }
-  });
+  },
+);

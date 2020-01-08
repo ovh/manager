@@ -72,7 +72,9 @@ export default class OvhPaymentMethod {
      *  @type {Date}
      *  @default null
      */
-    this.expirationDate = options.expirationDate ? new Date(options.expirationDate) : null;
+    this.expirationDate = options.expirationDate
+      ? new Date(options.expirationDate)
+      : null;
 
     /**
      *  Payment method type.

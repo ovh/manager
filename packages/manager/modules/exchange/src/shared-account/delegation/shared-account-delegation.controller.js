@@ -38,7 +38,8 @@ export default class ExchangeSharedAccountDelegationCtrl {
 
     $scope.updatingDelegationRight = () => this.updatingDelegationRight();
     $scope.hasChanged = () => this.hasChanged();
-    $scope.retrievingAccounts = (count, offset) => this.retrievingAccounts(count, offset);
+    $scope.retrievingAccounts = (count, offset) =>
+      this.retrievingAccounts(count, offset);
     $scope.getAccounts = () => this.accounts;
     $scope.getIsLoading = () => this.isLoading;
   }
@@ -56,10 +57,10 @@ export default class ExchangeSharedAccountDelegationCtrl {
     let hasChanged = false;
 
     if (
-      has(this.accounts, 'list.results')
-      && this.accounts.list.results != null
-      && has(this.bufferedAccounts, 'list.results')
-      && this.bufferedAccounts.list.results != null
+      has(this.accounts, 'list.results') &&
+      this.accounts.list.results != null &&
+      has(this.bufferedAccounts, 'list.results') &&
+      this.bufferedAccounts.list.results != null
     ) {
       forEach(this.accounts.list.results, (account) => {
         const matchingBufferedAccount = this.bufferedAccounts.list.results.find(
@@ -69,10 +70,12 @@ export default class ExchangeSharedAccountDelegationCtrl {
         matchingBufferedAccount.newSendOnBehalfTo = account.newSendOnBehalfTo;
         matchingBufferedAccount.newFullAccess = account.newFullAccess;
 
-        const differentSendAs = matchingBufferedAccount.sendAs !== account.newSendAs;
-        const differentSendOnBehalfTo = matchingBufferedAccount.sendOnBehalfTo !== account
-          .newSendOnBehalfTo;
-        const differentFullAccess = matchingBufferedAccount.fullAccess !== account.newFullAccess;
+        const differentSendAs =
+          matchingBufferedAccount.sendAs !== account.newSendAs;
+        const differentSendOnBehalfTo =
+          matchingBufferedAccount.sendOnBehalfTo !== account.newSendOnBehalfTo;
+        const differentFullAccess =
+          matchingBufferedAccount.fullAccess !== account.newFullAccess;
 
         if (differentSendAs || differentSendOnBehalfTo || differentFullAccess) {
           hasChanged = true;
@@ -100,7 +103,10 @@ export default class ExchangeSharedAccountDelegationCtrl {
         this.accounts = angular.copy(accounts);
         this.bufferedAccounts = angular.copy(accounts);
 
-        if (has(this.accounts, 'list.results') && this.accounts.list.results != null) {
+        if (
+          has(this.accounts, 'list.results') &&
+          this.accounts.list.results != null
+        ) {
           forEach(this.accounts.list.results, (account) => {
             set(account, 'newSendAs', account.sendAs);
             set(account, 'newSendOnBehalfTo', account.sendOnBehalfTo);
@@ -110,7 +116,9 @@ export default class ExchangeSharedAccountDelegationCtrl {
       })
       .catch((failure) => {
         this.services.messaging.writeError(
-          this.services.$translate.instant('exchange_tab_ACCOUNTS_error_message'),
+          this.services.$translate.instant(
+            'exchange_tab_ACCOUNTS_error_message',
+          ),
           failure,
         );
       })
@@ -121,27 +129,37 @@ export default class ExchangeSharedAccountDelegationCtrl {
 
   updatingDelegationRight() {
     this.services.messaging.writeSuccess(
-      this.services.$translate.instant('exchange_ACTION_delegation_doing_message'),
+      this.services.$translate.instant(
+        'exchange_ACTION_delegation_doing_message',
+      ),
     );
 
     const model = {
       primaryEmail: this.primaryEmailAddress,
       sendRights: this.bufferedAccounts.list.results
-        .filter((bufferedAccount) => bufferedAccount.sendAs !== bufferedAccount.newSendAs)
+        .filter(
+          (bufferedAccount) =>
+            bufferedAccount.sendAs !== bufferedAccount.newSendAs,
+        )
         .map((account) => ({
           id: account.id,
           operation: account.newSendAs ? 'POST' : 'DELETE',
         })),
       sendOnBehalfToRights: this.bufferedAccounts.list.results
         .filter(
-          (bufferedAccount) => bufferedAccount.sendOnBehalfTo !== bufferedAccount.newSendOnBehalfTo,
+          (bufferedAccount) =>
+            bufferedAccount.sendOnBehalfTo !==
+            bufferedAccount.newSendOnBehalfTo,
         )
         .map((account) => ({
           id: account.id,
           operation: account.newSendOnBehalfTo ? 'POST' : 'DELETE',
         })),
       fullAccessRights: this.bufferedAccounts.list.results
-        .filter((bufferedAccount) => bufferedAccount.fullAccess !== bufferedAccount.newFullAccess)
+        .filter(
+          (bufferedAccount) =>
+            bufferedAccount.fullAccess !== bufferedAccount.newFullAccess,
+        )
         .map((account) => ({
           id: account.id,
           operation: account.newFullAccess ? 'POST' : 'DELETE',
@@ -155,9 +173,15 @@ export default class ExchangeSharedAccountDelegationCtrl {
     )
       .then((data) => {
         const mainMessage = {
-          OK: this.services.$translate.instant('exchange_ACTION_delegation_success_message'),
-          PARTIAL: this.services.$translate.instant('exchange_ACTION_delegation_partial_message'),
-          ERROR: this.services.$translate.instant('exchange_ACTION_delegation_error_message'),
+          OK: this.services.$translate.instant(
+            'exchange_ACTION_delegation_success_message',
+          ),
+          PARTIAL: this.services.$translate.instant(
+            'exchange_ACTION_delegation_partial_message',
+          ),
+          ERROR: this.services.$translate.instant(
+            'exchange_ACTION_delegation_error_message',
+          ),
         };
 
         this.services.messaging.setMessage(mainMessage, {
@@ -167,7 +191,9 @@ export default class ExchangeSharedAccountDelegationCtrl {
       })
       .catch((failure) => {
         this.services.messaging.writeError(
-          this.services.$translate.instant('exchange_ACTION_delegation_error_message'),
+          this.services.$translate.instant(
+            'exchange_ACTION_delegation_error_message',
+          ),
           failure,
         );
       })

@@ -1,20 +1,32 @@
 <!DOCTYPE html>
 <html class="h-100">
     <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <link rel="shortcut icon" href="assets/favicon.png">
-        <link rel="apple-touch-icon" href="assets/touchicon-180.png">
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+        />
+        <link rel="shortcut icon" href="assets/images/favicon.png" />
+        <link rel="apple-touch-icon" href="assets/images/touchicon-180.png" />
         <title>OVHcloud</title>
     </head>
-    <body data-ng-app="App" data-ng-controller="SessionCtrl as $ctrl" data-ng-cloak class="ng-cloak h-100 ovh-manager-dedicated-app"  style="overflow: hidden;">
+    <body
+        data-ng-app="App"
+        data-ng-controller="SessionCtrl as $ctrl"
+        data-ng-cloak
+        class="ng-cloak h-100 ovh-manager-dedicated-app"
+        style="overflow: hidden;"
+    >
         <div class="h-100 d-flex flex-column overflow-hidden">
             <!-- Skip to main content -->
             <div class="skipnav">
-                <a class="oui-button oui-button_link" href=""
+                <a
+                    class="oui-button oui-button_link"
+                    href=""
                     data-translate="common_skip_to_main_content"
-                    data-ng-click="scrollTo('maincontent')">
+                    data-ng-click="scrollTo('maincontent')"
+                >
                 </a>
             </div>
             <!-- /Skip to main content -->
@@ -26,35 +38,41 @@
                     universe: 'server',
                     version: 'beta'
                 }"
-                data-universe-click="$ctrl.openSidebar()">
+                data-universe-click="$ctrl.openSidebar()"
+            >
             </ovh-manager-navbar>
 
             <button
                 style="position: absolute; top: 0; left: 0; width: 48px; height: 44px; background-color: transparent; border: 0;"
                 data-ng-if="$ctrl.sidebarIsOpen"
-                data-ng-click="$ctrl.closeSidebar()">
-            </button>
+                data-ng-click="$ctrl.closeSidebar()"
+            ></button>
 
-
-            <div class="container-fluid h-100 w-100" style="overflow: auto" data-ui-view="app">
+            <div
+                class="container-fluid h-100 w-100"
+                style="overflow: auto"
+                data-ui-view="app"
+            >
                 <div class="row">
                     <ovh-manager-server-sidebar
                         universe="'DEDICATED'"
                         data-is-open="$ctrl.sidebarIsOpen"
                         class="col-md-3 col-lg-2 px-0"
                         data-on-click="$ctrl.closeSidebar()"
-                        data-ng-if="!$ctrl.displayAccountSidebar">
+                        data-ng-if="!$ctrl.displayAccountSidebar"
+                    >
                     </ovh-manager-server-sidebar>
 
                     <div
                         class="col-md-3 col-lg-2"
                         data-ng-if="$ctrl.displayAccountSidebar"
                         data-sidebar-menu
-                        data-sidebar-namespace="'account'">
-                    </div>
+                        data-sidebar-namespace="'account'"
+                    ></div>
 
-                    <div class="col-md-9 col-md-offset-3 col-lg-10 col-lg-offset-2 px-0">
-
+                    <div
+                        class="col-md-9 col-md-offset-3 col-lg-10 col-lg-offset-2 px-0"
+                    >
                         <!-- Skip content target -->
                         <div class="skiptarget">
                             <a id="maincontent" href="">-</a>
@@ -63,25 +81,21 @@
 
                         <ovh-browser-alert></ovh-browser-alert>
 
-                        <div class="pb-5"
-                             data-ui-view>
-                        </div>
+                        <div class="pb-5" data-ui-view></div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div id="managerPreload"
-             class="d-flex text-center"
-             data-ng-class="managerPreloadHide">
+        <div
+            id="managerPreload"
+            class="d-flex text-center"
+            data-ng-class="managerPreloadHide"
+        >
             <div class="m-auto">
-                <p class="lead mb-3"
-                   data-translate="preload_welcome">
-                </p>
+                <p class="lead mb-3" data-translate="preload_welcome"></p>
                 <hr class="my-0" />
-                <h1 class="mt-3 mb-5"
-                    data-translate="preload_manager_ovh">
-                </h1>
+                <h1 class="mt-3 mb-5" data-translate="preload_manager_ovh"></h1>
                 <div class="mt-5">
                     <oui-spinner data-size="l"></oui-spinner>
                 </div>
@@ -90,23 +104,35 @@
 
         <div data-ng-controller="UserContractsCtrl">
             <div id="user-contracts-main-container">
-                <div id="user-contracts-currentAction" class="modal fade currentAction" role="dialog">
+                <div
+                    id="user-contracts-currentAction"
+                    class="modal fade currentAction"
+                    role="dialog"
+                >
                     <div class="modal-dialog">
-                        <div id="modal-container" class="modal-content"
-                             data-ng-include="stepPath">
-                        </div>
-                        <div id="modal-help" class="help4wizards" style="width: 230px;"></div>
+                        <div
+                            id="modal-container"
+                            class="modal-content"
+                            data-ng-include="stepPath"
+                        ></div>
+                        <div
+                            id="modal-help"
+                            class="help4wizards"
+                            style="width: 230px;"
+                        ></div>
                     </div>
                 </div>
             </div>
         </div>
 
         <div data-ng-controller="DoubleAuthBackupCodeCtrl">
-            <div id="double-auth-backup-code-alert" class="modal fade currentAction" role="dialog">
+            <div
+                id="double-auth-backup-code-alert"
+                class="modal fade currentAction"
+                role="dialog"
+            >
                 <div class="modal-dialog">
-                    <div class="modal-content"
-                         data-ng-include="stepPath">
-                    </div>
+                    <div class="modal-content" data-ng-include="stepPath"></div>
                 </div>
             </div>
         </div>
@@ -114,7 +140,16 @@
         <ovh-chatbot></ovh-chatbot>
         <div data-otrs-popup></div>
         <script>
-            var CKEDITOR_BASEPATH = (window.location.pathname !== "/" ? window.location.pathname.split("/").splice(0, window.location.pathname.split("/").length - 1).join("/") : "") + '/ckeditor/';
+            var CKEDITOR_BASEPATH =
+                (window.location.pathname !== '/'
+                    ? window.location.pathname
+                          .split('/')
+                          .splice(
+                              0,
+                              window.location.pathname.split('/').length - 1,
+                          )
+                          .join('/')
+                    : '') + '/ckeditor/';
         </script>
         <script src="ckeditor/ckeditor.js"></script>
     </body>

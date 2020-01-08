@@ -1,148 +1,189 @@
-<form novalidate
-      name="bulkServiceChoiceForm"
-      class="bulk-action-modal"
-      data-ng-submit="$ctrl.onBulkServiceChoiceFormSubmit()">
-
+<form
+    novalidate
+    name="bulkServiceChoiceForm"
+    class="bulk-action-modal"
+    data-ng-submit="$ctrl.onBulkServiceChoiceFormSubmit()"
+>
     <div class="modal-header">
-        <button type="button"
-                class="close float-right"
-                aria-label="{{:: 'telephony_bulk_action_cancel' | translate }}"
-                data-ng-click="$ctrl.cancel()">
+        <button
+            type="button"
+            class="close float-right"
+            aria-label="{{:: 'telephony_bulk_action_cancel' | translate }}"
+            data-ng-click="$ctrl.cancel()"
+        >
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
 
-    <div class="modal-body"
-         data-ng-if="!$ctrl.loading.bulk">
-        <h3 class="modal-title"
-            data-translate="{{ 'telephony_bulk_action_apply_to_' + $ctrl.bindings.serviceType }}">
-        </h3>
+    <div class="modal-body" data-ng-if="!$ctrl.loading.bulk">
+        <h3
+            class="modal-title"
+            data-translate="{{ 'telephony_bulk_action_apply_to_' + $ctrl.bindings.serviceType }}"
+        ></h3>
 
         <div class="text-center" data-ng-if="$ctrl.loading.init">
             <oui-spinner></oui-spinner>
         </div>
 
         <div data-ng-if="!$ctrl.loading.init">
-            <p data-translate="telephony_bulk_action_apply_to_service_explain"></p>
+            <p
+                data-translate="telephony_bulk_action_apply_to_service_explain"
+            ></p>
 
             <!-- Filters -->
             <div class="row">
                 <!-- Group Selection -->
                 <div class="col-xs-6">
                     <label class="oui-select">
-                        <select class="oui-select__input"
-                                name="selectBillingAccount"
-                                data-ng-model="$ctrl.model.billingAccount"
-                                data-ng-change="$ctrl.onBillingAccountSelectChange()"
-                                data-ng-options="billingAccount.billingAccount as billingAccount.getDisplayedName() for billingAccount in $ctrl.billingAccounts">
-                            <option data-ng-value=""
-                                    data-translate="telephony_bulk_action_modal_all_billing_account">
+                        <select
+                            class="oui-select__input"
+                            name="selectBillingAccount"
+                            data-ng-model="$ctrl.model.billingAccount"
+                            data-ng-change="$ctrl.onBillingAccountSelectChange()"
+                            data-ng-options="billingAccount.billingAccount as billingAccount.getDisplayedName() for billingAccount in $ctrl.billingAccounts"
+                        >
+                            <option
+                                data-ng-value=""
+                                data-translate="telephony_bulk_action_modal_all_billing_account"
+                            >
                             </option>
                         </select>
-                        <i class="oui-icon oui-icon-chevron-down"
-                           aria-hidden="true">
+                        <i
+                            class="oui-icon oui-icon-chevron-down"
+                            aria-hidden="true"
+                        >
                         </i>
                     </label>
-                </div> <!-- End of Group Selection -->
+                </div>
+                <!-- End of Group Selection -->
 
                 <!-- Service search -->
                 <div class="col-xs-6">
                     <label class="oui-search-input">
-                        <input type="text"
-                               class="oui-input"
-                               data-translate-attr="{ placeholder: 'telephony_bulk_action_modal_search' }"
-                               data-ng-model="$ctrl.model.searchService"
-                               data-ng-change="$ctrl.onSearchServiceInputChange()" />
-                        <i class="ovh-font ovh-font-search"
-                           aria-hidden="true">
+                        <input
+                            type="text"
+                            class="oui-input"
+                            data-translate-attr="{ placeholder: 'telephony_bulk_action_modal_search' }"
+                            data-ng-model="$ctrl.model.searchService"
+                            data-ng-change="$ctrl.onSearchServiceInputChange()"
+                        />
+                        <i class="ovh-font ovh-font-search" aria-hidden="true">
                         </i>
                     </label>
-                </div> <!-- End of Service search -->
-            </div> <!-- End of Filters -->
+                </div>
+                <!-- End of Service search -->
+            </div>
+            <!-- End of Filters -->
 
             <div class="row">
                 <!-- Select All -->
                 <div class="col-xs-6">
-                    <button type="button"
-                            class="btn btn-link pl-0"
-                            data-translate="{{ $ctrl.state.selectAll ? 'telephony_bulk_action_modal_unselect_all' : 'telephony_bulk_action_modal_select_all' }}"
-                            data-translate-attr="{ title: ($ctrl.state.selectAll ? 'telephony_bulk_action_modal_unselect_all_title' : 'telephony_bulk_action_modal_select_all_title') }"
-                            data-ng-click="$ctrl.onToggleAllCheckStateBtnClick()">
-                    </button>
-                </div> <!-- End of Select All -->
+                    <button
+                        type="button"
+                        class="btn btn-link pl-0"
+                        data-translate="{{ $ctrl.state.selectAll ? 'telephony_bulk_action_modal_unselect_all' : 'telephony_bulk_action_modal_select_all' }}"
+                        data-translate-attr="{ title: ($ctrl.state.selectAll ? 'telephony_bulk_action_modal_unselect_all_title' : 'telephony_bulk_action_modal_select_all_title') }"
+                        data-ng-click="$ctrl.onToggleAllCheckStateBtnClick()"
+                    ></button>
+                </div>
+                <!-- End of Select All -->
 
                 <!-- Select count -->
-                <div class="col-xs-6 text-right"
-                     data-translate="{{ $ctrl.getSelectedCount() > 1 ? 'telephony_bulk_action_modal_selected_count' : 'telephony_bulk_action_modal_selected_count_single' }}"
-                     data-translate-values="{ count: $ctrl.getSelectedCount() }">
-                </div> <!-- End of Select count -->
+                <div
+                    class="col-xs-6 text-right"
+                    data-translate="{{ $ctrl.getSelectedCount() > 1 ? 'telephony_bulk_action_modal_selected_count' : 'telephony_bulk_action_modal_selected_count_single' }}"
+                    data-translate-values="{ count: $ctrl.getSelectedCount() }"
+                ></div>
+                <!-- End of Select count -->
             </div>
 
-            <div>
-
-            </div>
-
+            <div></div>
 
             <!-- Service list -->
             <ul class="list-group">
-                <li class="list-group-item"
+                <li
+                    class="list-group-item"
                     data-ng-repeat="service in $ctrl.serviceList | orderBy:'getDisplayedName()' track by service.serviceName"
-                    data-ng-class="{'has-update': service.hasUpdate}">
+                    data-ng-class="{'has-update': service.hasUpdate}"
+                >
                     <div class="oui-checkbox">
-                        <input type="checkbox"
-                               class="oui-checkbox__input"
-                               data-ng-attr-id="service-{{ service.serviceName }}"
-                               data-ng-model="$ctrl.model.selection[service.serviceName]"
-                               data-ng-disabled="service.serviceName === $ctrl.bindings.serviceName" />
-                        <label class="oui-checkbox__label-container"
-                               data-ng-attr-for="service-{{ service.serviceName }}">
+                        <input
+                            type="checkbox"
+                            class="oui-checkbox__input"
+                            data-ng-attr-id="service-{{ service.serviceName }}"
+                            data-ng-model="$ctrl.model.selection[service.serviceName]"
+                            data-ng-disabled="service.serviceName === $ctrl.bindings.serviceName"
+                        />
+                        <label
+                            class="oui-checkbox__label-container"
+                            data-ng-attr-for="service-{{ service.serviceName }}"
+                        >
                             <span class="oui-checkbox__label">
-                                <span data-ng-bind="service.getDisplayedName()"></span>
+                                <span
+                                    data-ng-bind="service.getDisplayedName()"
+                                ></span>
                                 <span class="oui-checkbox__icon">
-                                    <span class="oui-icon oui-icon-checkbox-unchecked" aria-hidden="true"></span>
-                                    <span class="oui-icon oui-icon-checkbox-checked" aria-hidden="true"></span>
-                                    <span class="oui-icon oui-icon-checkbox-checkmark" aria-hidden="true"></span>
-                                    <span class="oui-icon oui-icon-checkbox-indeterminate" aria-hidden="true"></span>
+                                    <span
+                                        class="oui-icon oui-icon-checkbox-unchecked"
+                                        aria-hidden="true"
+                                    ></span>
+                                    <span
+                                        class="oui-icon oui-icon-checkbox-checked"
+                                        aria-hidden="true"
+                                    ></span>
+                                    <span
+                                        class="oui-icon oui-icon-checkbox-checkmark"
+                                        aria-hidden="true"
+                                    ></span>
+                                    <span
+                                        class="oui-icon oui-icon-checkbox-indeterminate"
+                                        aria-hidden="true"
+                                    ></span>
                                 </span>
                             </span>
                             <span class="oui-checkbox__description">
-                                <span data-translate="{{ service.serviceType === 'alias' ?  'telephony_bulk_action_service_type_alias' : 'telephony_bulk_action_service_feature_type_' + service.getRealFeatureType()  }}"></span>
-                                <span class="extra-description"
-                                      data-ng-if="!service.isDescriptionSameAsServiceName()"
-                                      data-ng-bind="service.serviceName">
+                                <span
+                                    data-translate="{{ service.serviceType === 'alias' ?  'telephony_bulk_action_service_type_alias' : 'telephony_bulk_action_service_feature_type_' + service.getRealFeatureType()  }}"
+                                ></span>
+                                <span
+                                    class="extra-description"
+                                    data-ng-if="!service.isDescriptionSameAsServiceName()"
+                                    data-ng-bind="service.serviceName"
+                                >
                                 </span>
-                                <span class="has-update_description"
-                                      data-translate="telephony_bulk_action_modal_service_updated"
-                                      data-ng-if="service.hasUpdate"></span>
+                                <span
+                                    class="has-update_description"
+                                    data-translate="telephony_bulk_action_modal_service_updated"
+                                    data-ng-if="service.hasUpdate"
+                                ></span>
                             </span>
                         </label>
                     </div>
                 </li>
-            </ul> <!-- End of Service list -->
-
+            </ul>
+            <!-- End of Service list -->
         </div>
-
     </div>
 
-    <div class="modal-body"
-         data-ng-if="$ctrl.loading.bulk">
+    <div class="modal-body" data-ng-if="$ctrl.loading.bulk">
         <div class="text-center">
             <oui-spinner></oui-spinner>
         </div>
     </div>
 
     <div class="modal-footer">
-        <button type="button"
-                class="btn btn-default"
-                data-ng-click="$ctrl.cancel()"
-                data-ng-disabled="$ctrl.loading.init || $ctrl.loading.bulk"
-                data-translate="telephony_bulk_action_cancel">
-        </button>
-        <button type="submit"
-                class="btn btn-primary"
-                data-ng-disabled="$ctrl.loading.init || $ctrl.loading.bulk"
-                data-translate="telephony_bulk_action_submit">
-        </button>
+        <button
+            type="button"
+            class="btn btn-default"
+            data-ng-click="$ctrl.cancel()"
+            data-ng-disabled="$ctrl.loading.init || $ctrl.loading.bulk"
+            data-translate="telephony_bulk_action_cancel"
+        ></button>
+        <button
+            type="submit"
+            class="btn btn-primary"
+            data-ng-disabled="$ctrl.loading.init || $ctrl.loading.bulk"
+            data-translate="telephony_bulk_action_submit"
+        ></button>
     </div>
-
 </form>

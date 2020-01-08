@@ -2,10 +2,7 @@ import forEach from 'lodash/forEach';
 
 export default class CucCloudPoll {
   /* @ngInject */
-  constructor(
-    $transitions,
-    CucOvhPoll,
-  ) {
+  constructor($transitions, CucOvhPoll) {
     this.CucOvhPoll = CucOvhPoll;
 
     this.pollers = [];

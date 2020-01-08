@@ -23,7 +23,8 @@ export default class PciBlockStorageController {
 
   initLoaders() {
     this.loading = true;
-    return this.$translate.refresh()
+    return this.$translate
+      .refresh()
       .then(() => this.checkHelpDisplay())
       .finally(() => {
         this.loading = false;
@@ -46,7 +47,8 @@ export default class PciBlockStorageController {
   checkHelpDisplay() {
     return new Promise((resolve) => {
       if (this.help) {
-        return this.ovhUserPref.getValue(this.getHelpPreferenceKey())
+        return this.ovhUserPref
+          .getValue(this.getHelpPreferenceKey())
           .then((value) => {
             this.displayHelp = value && this.help;
           })
@@ -73,7 +75,8 @@ export default class PciBlockStorageController {
     if (type === this.displayHelp) {
       this.updateHelp = true;
 
-      this.ovhUserPref.assign(this.getHelpPreferenceKey(), false)
+      this.ovhUserPref
+        .assign(this.getHelpPreferenceKey(), false)
         .then()
         .finally(() => {
           this.updateHelp = false;

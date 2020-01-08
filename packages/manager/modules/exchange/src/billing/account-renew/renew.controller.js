@@ -9,9 +9,7 @@ import { RENEW_PERIODS } from './renew.constants';
 
 export default class ExchangeUpdateRenewCtrl {
   /* @ngInject */
-  constructor(
-    $translate,
-  ) {
+  constructor($translate) {
     this.$translate = $translate;
   }
 
@@ -49,7 +47,8 @@ export default class ExchangeUpdateRenewCtrl {
         }
       } else {
         this.buffer.changes = this.buffer.changes.filter(
-          (change) => change.primaryEmailAddress !== currentAccount.primaryEmailAddress,
+          (change) =>
+            change.primaryEmailAddress !== currentAccount.primaryEmailAddress,
         );
       }
     });
@@ -85,16 +84,22 @@ export default class ExchangeUpdateRenewCtrl {
   retrieveAccounts({ criteria, offset, pageSize }) {
     return this.getAccounts(
       pageSize,
-      (offset - 1), // Avoid offset to start at 1
+      offset - 1, // Avoid offset to start at 1
       ExchangeUpdateRenewCtrl.getCriterion(criteria, null),
     )
       .then((accounts) => {
         this.accounts = accounts;
         this.bufferedAccounts = cloneDeep(accounts);
 
-        const bufferedAccountList = get(this.bufferedAccounts, 'list.results', []);
+        const bufferedAccountList = get(
+          this.bufferedAccounts,
+          'list.results',
+          [],
+        );
 
-        this.buffer.ids = bufferedAccountList.map((item) => item.primaryEmailAddress);
+        this.buffer.ids = bufferedAccountList.map(
+          (item) => item.primaryEmailAddress,
+        );
 
         // roll previous buffered changes
         if (this.buffer.hasChanged) {
@@ -128,7 +133,9 @@ export default class ExchangeUpdateRenewCtrl {
       })
       .catch((failure) => {
         this.goBack(
-          `${this.$translate.instant('exchange_tab_ACCOUNTS_error_message')} ${failure}`,
+          `${this.$translate.instant(
+            'exchange_tab_ACCOUNTS_error_message',
+          )} ${failure}`,
           'danger',
         );
       })
@@ -138,9 +145,9 @@ export default class ExchangeUpdateRenewCtrl {
   }
 
   /**
-     * Mark alltems on the page as selected with 'value'.
-     * @param value
-     */
+   * Mark alltems on the page as selected with 'value'.
+   * @param value
+   */
   checkboxStateChange(value) {
     if (has(this.buffer, 'ids') && this.buffer.ids != null) {
       forEach(this.buffer.ids, (id) => {
@@ -164,7 +171,11 @@ export default class ExchangeUpdateRenewCtrl {
       this.checkForChanges();
     }
 
-    if (this.bufferedAccounts.list.results.every(({ renewPeriod }) => renewPeriod === period)) {
+    if (
+      this.bufferedAccounts.list.results.every(
+        ({ renewPeriod }) => renewPeriod === period,
+      )
+    ) {
       this.buffer.periodSelectedForAll = period;
     }
   }
@@ -175,16 +186,24 @@ export default class ExchangeUpdateRenewCtrl {
     return this.updateRenew(this.buffer.changes)
       .then(({ state }) => {
         const updateRenewMessages = {
-          OK: this.$translate.instant('exchange_update_billing_periode_success'),
-          PARTIAL: this.$translate.instant('exchange_update_billing_periode_partial'),
-          ERROR: this.$translate.instant('exchange_update_billing_periode_failure'),
+          OK: this.$translate.instant(
+            'exchange_update_billing_periode_success',
+          ),
+          PARTIAL: this.$translate.instant(
+            'exchange_update_billing_periode_partial',
+          ),
+          ERROR: this.$translate.instant(
+            'exchange_update_billing_periode_failure',
+          ),
         };
 
         this.goBack(updateRenewMessages[state]);
       })
       .catch((failure) => {
         this.goBack(
-          `${this.$translate.instant('exchange_update_billing_periode_failure')} ${failure}`,
+          `${this.$translate.instant(
+            'exchange_update_billing_periode_failure',
+          )} ${failure}`,
           'danger',
         );
       })

@@ -54,16 +54,9 @@ export default class HostingCronsCtrl {
     let filters = null;
     if (!isEmpty(criteria)) {
       const { value } = head(criteria);
-      filters = [
-        { command: value },
-        { description: value },
-        { email: value },
-      ];
+      filters = [{ command: value }, { description: value }, { email: value }];
     }
-    return this.HostingCron.getCrons(
-      this.$stateParams.productId,
-      filters,
-    )
+    return this.HostingCron.getCrons(this.$stateParams.productId, filters)
       .then((crons) => ({
         data: map(crons, (id) => ({ id })),
         meta: {
@@ -80,15 +73,18 @@ export default class HostingCronsCtrl {
   }
 
   getCron({ id }) {
-    return this.HostingCron.getCron(this.$stateParams.productId, id)
-      .then((cron) => ({
+    return this.HostingCron.getCron(this.$stateParams.productId, id).then(
+      (cron) => ({
         ...cron,
         displayedLanguage: this.HostingCron.formatLanguage(cron.language),
-      }));
+      }),
+    );
   }
 
   modifyCron(cron) {
-    return this.$scope.setAction('cron/add-or-edit/hosting-cron-add-or-edit', { cron });
+    return this.$scope.setAction('cron/add-or-edit/hosting-cron-add-or-edit', {
+      cron,
+    });
   }
 
   deleteCron(cron) {

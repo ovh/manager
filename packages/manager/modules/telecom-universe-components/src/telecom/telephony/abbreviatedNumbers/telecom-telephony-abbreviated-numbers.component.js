@@ -41,14 +41,25 @@ export default {
      * @return {Promise}
      */
     this.remove = function remove(abbreviatedNumber) {
-      return $q.when(this.removeCallback({ value: abbreviatedNumber }))
+      return $q
+        .when(this.removeCallback({ value: abbreviatedNumber }))
         .then(() => {
-          TucToast.success($translate.instant('telephony_abbreviated_numbers_remove_success', abbreviatedNumber));
+          TucToast.success(
+            $translate.instant(
+              'telephony_abbreviated_numbers_remove_success',
+              abbreviatedNumber,
+            ),
+          );
           const index = self.abbreviatedNumbers.indexOf(abbreviatedNumber);
           self.abbreviatedNumbers.splice(index, 1);
         })
         .catch((err) => {
-          TucToast.error($translate.instant('telephony_abbreviated_numbers_remove_error', abbreviatedNumber));
+          TucToast.error(
+            $translate.instant(
+              'telephony_abbreviated_numbers_remove_error',
+              abbreviatedNumber,
+            ),
+          );
           return $q.reject(err);
         });
     };
@@ -68,16 +79,17 @@ export default {
               // data: {},
               pattern: self.abbreviatedNumberPattern,
               saveCallback: self.insertCallback,
-              title: $translate.instant('telephony_abbreviated_numbers_insert_title'),
+              title: $translate.instant(
+                'telephony_abbreviated_numbers_insert_title',
+              ),
             };
           },
         },
       });
       addModalInstance.result.then((data) => {
         self.abbreviatedNumbers.push(data);
-        self.abbreviatedNumbers = sortBy(
-          self.abbreviatedNumbers,
-          (elt) => parseInt(elt.abbreviatedNumber, 10),
+        self.abbreviatedNumbers = sortBy(self.abbreviatedNumbers, (elt) =>
+          parseInt(elt.abbreviatedNumber, 10),
         );
       });
     };
@@ -142,8 +154,12 @@ export default {
      */
     this.getCsvHeader = function getCsvHeader() {
       return {
-        abbreviatedNumber: $translate.instant('telephony_abbreviated_numbers_id'),
-        destinationNumber: $translate.instant('telephony_abbreviated_numbers_number'),
+        abbreviatedNumber: $translate.instant(
+          'telephony_abbreviated_numbers_id',
+        ),
+        destinationNumber: $translate.instant(
+          'telephony_abbreviated_numbers_number',
+        ),
         name: $translate.instant('telephony_abbreviated_numbers_name'),
         surname: $translate.instant('telephony_abbreviated_numbers_surname'),
       };
@@ -176,16 +192,24 @@ export default {
               },
               pattern: self.abbreviatedNumberPattern,
               saveCallback: self.updateCallback,
-              title: $translate.instant('telephony_abbreviated_numbers_update_title'),
+              title: $translate.instant(
+                'telephony_abbreviated_numbers_update_title',
+              ),
             };
           },
         },
       });
-      addModalInstance.result.then((data) => {
-        angular.extend(abbreviatedNumber, pick(data, ['name', 'surname', 'destinationNumber']));
-      }).finally(() => {
-        delete abbreviatedNumber.updating; // eslint-disable-line
-      });
+      addModalInstance.result
+        .then((data) => {
+          angular.extend(
+            abbreviatedNumber,
+            pick(data, ['name', 'surname', 'destinationNumber']),
+          );
+        })
+        .finally(() => {
+          // eslint-disable-next-line no-param-reassign
+          delete abbreviatedNumber.updating;
+        });
     };
   },
 };

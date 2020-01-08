@@ -9,7 +9,9 @@
     <div class="modal-body">
         <div>
             <div class="text-danger row">
-                <div class="col-md-1 no-space text-center"><i class="fa fa-warning fs20"></i></div>
+                <div class="col-md-1 no-space text-center">
+                    <i class="fa fa-warning fs20"></i>
+                </div>
                 <div class="col-md-11">
                     <p data-translate="dbaasts_project_delete_info"></p>
                     <p data-translate="dbaasts_project_delete_info_bill"></p>
@@ -21,16 +23,23 @@
 
     <div class="modal-footer">
         <div class="clearfix">
-            <button type="submit" class="btn btn-primary pull-right"
-                    data-ng-click="DBaasTsProjectDeleteCtrl.confirm()"
-                    data-ng-disabled="DBaasTsProjectDeleteCtrl.loaders.deleting">
+            <button
+                type="submit"
+                class="btn btn-primary pull-right"
+                data-ng-click="DBaasTsProjectDeleteCtrl.confirm()"
+                data-ng-disabled="DBaasTsProjectDeleteCtrl.loaders.deleting"
+            >
                 <i class="glyphicon glyphicon-trash right-space-m8"></i>
                 <span data-translate="delete"></span>
-                <spinner data-ng-show="DBaasTsProjectDeleteCtrl.loaders.deleting"></spinner>
+                <spinner
+                    data-ng-show="DBaasTsProjectDeleteCtrl.loaders.deleting"
+                ></spinner>
             </button>
-            <button type="reset"
-                    class="btn pull-left btn-default"
-                    data-ng-click="DBaasTsProjectDeleteCtrl.cancel()">
+            <button
+                type="reset"
+                class="btn pull-left btn-default"
+                data-ng-click="DBaasTsProjectDeleteCtrl.cancel()"
+            >
                 <i class="glyphicon glyphicon-remove"></i>
                 <span data-translate="common_cancel"></span>
             </button>

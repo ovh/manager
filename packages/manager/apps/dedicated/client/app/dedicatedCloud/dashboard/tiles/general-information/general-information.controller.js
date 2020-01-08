@@ -4,11 +4,7 @@ import isString from 'lodash/isString';
 
 export default class {
   /* @ngInject */
-  constructor(
-    $stateParams,
-    $translate,
-    $uibModal,
-  ) {
+  constructor($stateParams, $translate, $uibModal) {
     this.$stateParams = $stateParams;
     this.$translate = $translate;
     this.$uibModal = $uibModal;
@@ -44,13 +40,15 @@ export default class {
           data: () => ({
             contextTitle: 'dedicatedCloud_description',
             productId: this.$stateParams.productId,
-            successText: this.$translate.instant('dedicatedCloud_dashboard_nameModifying_success'),
+            successText: this.$translate.instant(
+              'dedicatedCloud_dashboard_nameModifying_success',
+            ),
             value: this.currentService.description,
           }),
         },
         templateUrl: 'components/name-edition/name-edition.html',
-      }).result
-      .then((description) => {
+      })
+      .result.then((description) => {
         this.bindings.description = description;
       });
   }
@@ -68,7 +66,9 @@ export default class {
 
   buildSoftwareSolution() {
     const solution = {
-      displayName: this.$translate.instant(`ovhManagerPccDashboardGeneralInformation_softwareSolution_definition_displayName_${this.currentService.solution.toUpperCase()}`),
+      displayName: this.$translate.instant(
+        `ovhManagerPccDashboardGeneralInformation_softwareSolution_definition_displayName_${this.currentService.solution.toUpperCase()}`,
+      ),
       displayVersionNumber: get(this.currentService.version, 'major', ''),
     };
 

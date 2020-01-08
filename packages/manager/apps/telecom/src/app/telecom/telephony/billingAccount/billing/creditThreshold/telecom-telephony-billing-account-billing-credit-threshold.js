@@ -3,7 +3,8 @@ angular.module('managerApp').config(($stateProvider) => {
     url: '/creditThreshold',
     views: {
       'groupView@telecom.telephony.billingAccount': {
-        templateUrl: 'app/telecom/telephony/billingAccount/billing/creditThreshold/telecom-telephony-billing-account-billing-credit-threshold.html',
+        templateUrl:
+          'app/telecom/telephony/billingAccount/billing/creditThreshold/telecom-telephony-billing-account-billing-credit-threshold.html',
         controller: 'TelecomTelephonyBillingAccountBillingCreditThresholdCtrl',
         controllerAs: 'BillingAccountCreditThresholdCtrl',
       },

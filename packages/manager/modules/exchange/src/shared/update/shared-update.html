@@ -1,124 +1,212 @@
 <div data-ng-controller="ExchangeUpdatePublicFolderCtrl as ctrl">
-    <div data-wizard
-         data-wizard-on-cancel="resetAction"
-         data-wizard-on-finish="submitting"
-         data-wizard-title="'exchange_action_SHARED_update_title' | translate">
-
-        <div data-wizard-step
-             data-wizard-step-valid="allOptionsAreValid()"
-             data-wizard-step-on-load="loadingPublicFolderOptions">
-
+    <div
+        data-wizard
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="submitting"
+        data-wizard-title="'exchange_action_SHARED_update_title' | translate"
+    >
+        <div
+            data-wizard-step
+            data-wizard-step-valid="allOptionsAreValid()"
+            data-wizard-step-on-load="loadingPublicFolderOptions"
+        >
             <p data-translate="exchange_action_SHARED_update_intro"></p>
 
             <oui-spinner data-ng-if="!ctrl.publicFoldersOptions"></oui-spinner>
 
-            <form class="form-horizontal" data-ng-if="ctrl.publicFoldersOptions">
+            <form
+                class="form-horizontal"
+                data-ng-if="ctrl.publicFoldersOptions"
+            >
                 <div class="form-group">
-                    <label class="control-label col-md-4" data-translate="exchange_action_SHARED_add_path_label"></label>
+                    <label
+                        class="control-label col-md-4"
+                        data-translate="exchange_action_SHARED_add_path_label"
+                    ></label>
                     <div class="col-md-6">
-                        <p class="form-control-static" data-ng-bind="ctrl.folderToUpdate.path"></p>
+                        <p
+                            class="form-control-static"
+                            data-ng-bind="ctrl.folderToUpdate.path"
+                        ></p>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="control-label col-md-4" data-translate="exchange_action_SHARED_add_type_label"></label>
+                    <label
+                        class="control-label col-md-4"
+                        data-translate="exchange_action_SHARED_add_type_label"
+                    ></label>
                     <div class="col-md-6">
-                        <p class="form-control-static" data-ng-bind="('exchange_tab_SHARED_header_access_' + ctrl.folderToUpdate.type) | translate"></p>
+                        <p
+                            class="form-control-static"
+                            data-ng-bind="('exchange_tab_SHARED_header_access_' + ctrl.folderToUpdate.type) | translate"
+                        ></p>
                     </div>
                 </div>
 
-                <div class="form-group" data-ng-class="{ 'has-error': !ctrl.errors.quotaIsValid }">
-                    <label class="control-label col-md-4"
-                           for="quota"
-                           data-translate="exchange_action_SHARED_add_quota_label"></label>
+                <div
+                    class="form-group"
+                    data-ng-class="{ 'has-error': !ctrl.errors.quotaIsValid }"
+                >
+                    <label
+                        class="control-label col-md-4"
+                        for="quota"
+                        data-translate="exchange_action_SHARED_add_quota_label"
+                    ></label>
                     <div class="col-md-6">
                         <div class="input-group">
-                            <input type="number" class="form-control" id="quota" required
-                                   data-ng-change="ctrl.checkQuotaValidity()"
-                                   data-ng-min="ctrl.publicFoldersOptions.minQuota.value" min="{{::ctrl.publicFoldersOptions.minQuota.value}}"
-                                   data-ng-max="ctrl.publicFoldersOptions.maxQuota.value" max="{{::ctrl.publicFoldersOptions.maxQuota.value}}"
-                                   data-ng-model="ctrl.folderToUpdate.quota.value"
-                                   data-ng-pattern="/^\d+$/"
-                                   data-oui-tooltip="{{ 'exchange_action_SHARED_add_quota_tooltip' | translate:{ t0: ctrl.publicFoldersOptions.maxQuota.value, t1: ctrl.quotaUnitTranslation } }}">
-                            <span class="input-group-addon"
-                                  data-ng-bind="ctrl.quotaUnitTranslation"></span>
+                            <input
+                                type="number"
+                                class="form-control"
+                                id="quota"
+                                required
+                                data-ng-change="ctrl.checkQuotaValidity()"
+                                data-ng-min="ctrl.publicFoldersOptions.minQuota.value"
+                                min="{{::ctrl.publicFoldersOptions.minQuota.value}}"
+                                data-ng-max="ctrl.publicFoldersOptions.maxQuota.value"
+                                max="{{::ctrl.publicFoldersOptions.maxQuota.value}}"
+                                data-ng-model="ctrl.folderToUpdate.quota.value"
+                                data-ng-pattern="/^\d+$/"
+                                data-oui-tooltip="{{ 'exchange_action_SHARED_add_quota_tooltip' | translate:{ t0: ctrl.publicFoldersOptions.maxQuota.value, t1: ctrl.quotaUnitTranslation } }}"
+                            />
+                            <span
+                                class="input-group-addon"
+                                data-ng-bind="ctrl.quotaUnitTranslation"
+                            ></span>
                         </div>
 
-                        <p class="help-block"
-                           data-ng-bind="'exchange_action_SHARED_add_quota_error_message' | translate:{
+                        <p
+                            class="help-block"
+                            data-ng-bind="'exchange_action_SHARED_add_quota_error_message' | translate:{
                                t0: ctrl.publicFoldersOptions.minQuota.value,
                                t1: ctrl.publicFoldersOptions.maxQuota.value,
                                t2: ctrl.quotaUnitTranslation
                            }"
-                           data-ng-if="!ctrl.errors.quotaIsValid"></p>
+                            data-ng-if="!ctrl.errors.quotaIsValid"
+                        ></p>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="control-label col-md-4" for="defaultAccess"
-                           data-translate="exchange_action_SHARED_add_default_permission_label"></label>
+                    <label
+                        class="control-label col-md-4"
+                        for="defaultAccess"
+                        data-translate="exchange_action_SHARED_add_default_permission_label"
+                    ></label>
                     <div class="col-md-6">
                         <div class="oui-select mb-0">
-                            <select class="oui-select__input" id="defaultAccess" required
-                                    data-ng-change="ctrl.checkPermissions()"
-                                    data-ng-model="ctrl.folderToUpdate.defaultPermission"
-                                    data-ng-options="('exchange_tab_SHARED_permissions_type_' + type) | translate for type in ctrl.publicFoldersOptions.defaultPermissions">
+                            <select
+                                class="oui-select__input"
+                                id="defaultAccess"
+                                required
+                                data-ng-change="ctrl.checkPermissions()"
+                                data-ng-model="ctrl.folderToUpdate.defaultPermission"
+                                data-ng-options="('exchange_tab_SHARED_permissions_type_' + type) | translate for type in ctrl.publicFoldersOptions.defaultPermissions"
+                            >
                             </select>
-                            <span class="oui-icon oui-icon-chevron-down" aria-hidden="true"></span>
+                            <span
+                                class="oui-icon oui-icon-chevron-down"
+                                aria-hidden="true"
+                            ></span>
                         </div>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="control-label col-md-4" for="defaultPermission" data-translate="exchange_action_SHARED_add_anonymous_permissions_label"></label>
+                    <label
+                        class="control-label col-md-4"
+                        for="defaultPermission"
+                        data-translate="exchange_action_SHARED_add_anonymous_permissions_label"
+                    ></label>
                     <div class="col-md-6">
                         <div class="oui-select mb-0">
-                            <select class="oui-select__input" id="defaultPermission" required
-                                    data-ng-change="ctrl.checkPermissions()"
-                                    data-ng-model="ctrl.folderToUpdate.anonymousPermission"
-                                    data-ng-options="('exchange_tab_SHARED_permissions_type_' + type) | translate for type in ctrl.publicFoldersOptions.anonymousPermissions">
+                            <select
+                                class="oui-select__input"
+                                id="defaultPermission"
+                                required
+                                data-ng-change="ctrl.checkPermissions()"
+                                data-ng-model="ctrl.folderToUpdate.anonymousPermission"
+                                data-ng-options="('exchange_tab_SHARED_permissions_type_' + type) | translate for type in ctrl.publicFoldersOptions.anonymousPermissions"
+                            >
                             </select>
-                            <span class="oui-icon oui-icon-chevron-down" aria-hidden="true"></span>
+                            <span
+                                class="oui-icon oui-icon-chevron-down"
+                                aria-hidden="true"
+                            ></span>
                         </div>
                     </div>
                 </div>
             </form>
 
             <div data-wizard-step-help>
-                <h2 class="title"
-                    data-translate="exchange_action_SHARED_add_help_title"></h2>
-                <p data-ng-bind-html="'exchange_action_SHARED_add_help_message' | translate"></p>
+                <h2
+                    class="title"
+                    data-translate="exchange_action_SHARED_add_help_title"
+                ></h2>
+                <p
+                    data-ng-bind-html="'exchange_action_SHARED_add_help_message' | translate"
+                ></p>
 
-                <strong data-translate="exchange_action_SHARED_add_default_permission_label"></strong>
-                <p data-translate="exchange_action_SHARED_add_help_permissions_default_message"></p>
+                <strong
+                    data-translate="exchange_action_SHARED_add_default_permission_label"
+                ></strong>
+                <p
+                    data-translate="exchange_action_SHARED_add_help_permissions_default_message"
+                ></p>
 
-                <strong data-translate="exchange_action_SHARED_add_anonymous_permissions_label"></strong>
-                <p data-translate="exchange_action_SHARED_add_help_permissions_anonymous_message"></p>
+                <strong
+                    data-translate="exchange_action_SHARED_add_anonymous_permissions_label"
+                ></strong>
+                <p
+                    data-translate="exchange_action_SHARED_add_help_permissions_anonymous_message"
+                ></p>
 
-                <strong data-translate="exchange_action_SHARED_add_quota_label"></strong>
-                <p data-translate="exchange_action_SHARED_add_help_quota_message"></p>
+                <strong
+                    data-translate="exchange_action_SHARED_add_quota_label"
+                ></strong>
+                <p
+                    data-translate="exchange_action_SHARED_add_help_quota_message"
+                ></p>
             </div>
         </div>
 
         <div data-wizard-step>
-            <p data-translate="exchange_action_SHARED_update_confirmation_intro"></p>
+            <p
+                data-translate="exchange_action_SHARED_update_confirmation_intro"
+            ></p>
 
             <dl class="dl-horizontal dl-lg">
                 <dt data-translate="exchange_action_SHARED_add_path_label"></dt>
-                <dd class="word-break"
-                    data-ng-bind="ctrl.folderToUpdate.path | wucSliceContent: 150"></dd>
+                <dd
+                    class="word-break"
+                    data-ng-bind="ctrl.folderToUpdate.path | wucSliceContent: 150"
+                ></dd>
 
                 <dt data-translate="exchange_action_SHARED_add_type_label"></dt>
-                <dd data-ng-bind="('exchange_tab_SHARED_header_access_' + ctrl.folderToUpdate.type) | translate"></dd>
+                <dd
+                    data-ng-bind="('exchange_tab_SHARED_header_access_' + ctrl.folderToUpdate.type) | translate"
+                ></dd>
 
-                <dt data-translate="exchange_action_SHARED_add_quota_label"></dt>
-                <dd data-ng-bind="ctrl.folderToUpdate.quota.value + ' '+ ('unit_size_' + ctrl.folderToUpdate.quota.unit) | translate"></dd>
+                <dt
+                    data-translate="exchange_action_SHARED_add_quota_label"
+                ></dt>
+                <dd
+                    data-ng-bind="ctrl.folderToUpdate.quota.value + ' '+ ('unit_size_' + ctrl.folderToUpdate.quota.unit) | translate"
+                ></dd>
 
-                <dt data-translate="exchange_action_SHARED_add_default_permission_label"></dt>
-                <dd data-ng-bind="('exchange_tab_SHARED_permissions_type_' + ctrl.folderToUpdate.defaultPermission) | translate"></dd>
+                <dt
+                    data-translate="exchange_action_SHARED_add_default_permission_label"
+                ></dt>
+                <dd
+                    data-ng-bind="('exchange_tab_SHARED_permissions_type_' + ctrl.folderToUpdate.defaultPermission) | translate"
+                ></dd>
 
-                <dt data-translate="exchange_action_SHARED_add_anonymous_permissions_label"></dt>
-                <dd data-ng-bind="('exchange_tab_SHARED_permissions_type_' + ctrl.folderToUpdate.anonymousPermission) | translate"></dd>
+                <dt
+                    data-translate="exchange_action_SHARED_add_anonymous_permissions_label"
+                ></dt>
+                <dd
+                    data-ng-bind="('exchange_tab_SHARED_permissions_type_' + ctrl.folderToUpdate.anonymousPermission) | translate"
+                ></dd>
             </dl>
         </div>
     </div>

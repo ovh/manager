@@ -4,19 +4,16 @@
             <div class="oui-page-header__content">
                 <h1
                     class="oui-page-header__title"
-                    data-translate="ovhManagerSupport_header"></h1>
+                    data-translate="ovhManagerSupport_header"
+                ></h1>
             </div>
         </div>
     </header>
 
     <div class="p-5">
-        <div
-            class="text-center"
-            data-ng-if="$ctrl.isLoading">
+        <div class="text-center" data-ng-if="$ctrl.isLoading">
             <oui-spinner data-size="l"></oui-spinner>
         </div>
-        <div
-            data-ng-if="!$ctrl.isLoading"
-            data-ui-view="support"></div>
+        <div data-ng-if="!$ctrl.isLoading" data-ui-view="support"></div>
     </div>
 </section>

@@ -3,15 +3,18 @@
     <div class="page-header">
         <h1 class="oui-header_2">
             <span data-ng-bind="$ctrl.domain.domain"></span>
-            <span class="label d-inline-block align-middle ml-3 oui-status"
-                  data-ng-bind="$ctrl.domain.mode"
-                  data-ng-class="{
+            <span
+                class="label d-inline-block align-middle ml-3 oui-status"
+                data-ng-bind="$ctrl.domain.mode"
+                data-ng-class="{
                       'oui-status_success': $ctrl.domain.mode === 'ON',
                       'oui-status_error': $ctrl.domain.mode ==='OFF'
-                  }">
+                  }"
+            >
             </span>
         </h1>
-    </div> <!-- End of Header -->
+    </div>
+    <!-- End of Header -->
 
     <!-- Tabs -->
     <responsive-tabs>
@@ -25,27 +28,32 @@
             <span data-translate="cdn_domain_tab_logs"></span>
         </responsive-tab>
         <responsive-tab-more>
-            <span aria-hidden="true"
-                  class="fa fa-plus"></span>
+            <span aria-hidden="true" class="fa fa-plus"></span>
         </responsive-tab-more>
-    </responsive-tabs> <!-- End of Tabs -->
+    </responsive-tabs>
+    <!-- End of Tabs -->
 
     <!-- Tab Content -->
     <div class="tab-content">
-        <div class="alert alert-dismissible"
-             role="alert"
-             data-ng-class="alertType"
-             data-ng-if="message">
-            <button type="button"
-                    class="close"
-                    data-dismiss="alert"
-                    aria-label="Close"
-                    data-ng-click="message = null">
+        <div
+            class="alert alert-dismissible"
+            role="alert"
+            data-ng-class="alertType"
+            data-ng-if="message"
+        >
+            <button
+                type="button"
+                class="close"
+                data-dismiss="alert"
+                aria-label="Close"
+                data-ng-click="message = null"
+            >
                 <span aria-hidden="true">&times;</span>
             </button>
             <span data-ng-bind="message"></span>
         </div>
 
         <div data-ui-view="cdnDomainView"></div>
-    </div> <!-- End of Tab Content -->
+    </div>
+    <!-- End of Tab Content -->
 </div>

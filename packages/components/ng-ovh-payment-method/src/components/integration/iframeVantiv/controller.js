@@ -2,10 +2,7 @@ import get from 'lodash/get';
 import merge from 'lodash/merge';
 import snakeCase from 'lodash/snakeCase';
 
-import {
-  VANTIV_IFRAME_CONFIGURATION,
-  VANTIV_RESPONSE_CODE,
-} from './constants';
+import { VANTIV_IFRAME_CONFIGURATION, VANTIV_RESPONSE_CODE } from './constants';
 
 export default class OvhPaymentMethodRegisterIframeVantivCtrl {
   /* @ngInject */
@@ -23,8 +20,11 @@ export default class OvhPaymentMethodRegisterIframeVantivCtrl {
    *  when script is loaded.
    *  Will trigger the onInitialized callback of integration directive.
    */
-  init() { // call onIntegrationInitialized callback from parent controller to get render options
-    const renderOptions = this.integrationCtrl.onIntegrationInitialized(this.submit.bind(this));
+  init() {
+    // call onIntegrationInitialized callback from parent controller to get render options
+    const renderOptions = this.integrationCtrl.onIntegrationInitialized(
+      this.submit.bind(this),
+    );
 
     // render the Iframe
     this.render(renderOptions);
@@ -34,9 +34,15 @@ export default class OvhPaymentMethodRegisterIframeVantivCtrl {
    *  Render Vantiv Iframe content
    */
   render(renderOptions = {}) {
-    this.eProtectClient = new EprotectIframeClient(merge({
-      callback: this.onIframeSubmitted.bind(this),
-    }, VANTIV_IFRAME_CONFIGURATION, renderOptions));
+    this.eProtectClient = new EprotectIframeClient(
+      merge(
+        {
+          callback: this.onIframeSubmitted.bind(this),
+        },
+        VANTIV_IFRAME_CONFIGURATION,
+        renderOptions,
+      ),
+    );
   }
 
   /**
@@ -63,11 +69,13 @@ export default class OvhPaymentMethodRegisterIframeVantivCtrl {
     if (responseCode === VANTIV_RESPONSE_CODE.SUCCESS) {
       // finalize the payment registration
       // then remove ThreatMetrix script and iframe (defined in directive's link function)
-      return this.integrationCtrl.onIntegrationFinalize({
-        expirationMonth: parseInt(response.expMonth, 10),
-        expirationYear: parseInt(response.expYear, 10),
-        registrationId: response.paypageRegistrationId,
-      }).finally(() => this.removeThreatMetrix());
+      return this.integrationCtrl
+        .onIntegrationFinalize({
+          expirationMonth: parseInt(response.expMonth, 10),
+          expirationYear: parseInt(response.expYear, 10),
+          registrationId: response.paypageRegistrationId,
+        })
+        .finally(() => this.removeThreatMetrix());
     }
 
     // transform response to an error structure similar to $http/$resource

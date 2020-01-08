@@ -4,14 +4,14 @@ angular.module('UserAccount').directive('checkboxSwitch', [
   function checkboxSwitchDirective($timeout) {
     return {
       template:
-                '<div class="has-switch" data-ng-class="{ deactivate: ngDisabled }">'
-                + "<div class=\"switch-wrapper switch-animate\" data-ng-class=\"{ 'switch-on': ngModel, 'switch-off': !ngModel }\">"
-                + '<input type="checkbox" data-ng-model="ngModel" />'
-                + '<span class="switch-left" data-ng-click="changeStatusTo(false)">{{switchOnLabel}}</span>'
-                + '<label>&nbsp;</label>'
-                + '<span class="switch-right" data-ng-click="changeStatusTo(true)">{{switchOffLabel}}</span>'
-                + '</div>'
-                + '</div>',
+        '<div class="has-switch" data-ng-class="{ deactivate: ngDisabled }">' +
+        '<div class="switch-wrapper switch-animate" data-ng-class="{ \'switch-on\': ngModel, \'switch-off\': !ngModel }">' +
+        '<input type="checkbox" data-ng-model="ngModel" />' +
+        '<span class="switch-left" data-ng-click="changeStatusTo(false)">{{switchOnLabel}}</span>' +
+        '<label>&nbsp;</label>' +
+        '<span class="switch-right" data-ng-click="changeStatusTo(true)">{{switchOffLabel}}</span>' +
+        '</div>' +
+        '</div>',
       restrict: 'A',
       require: '?ngModel',
       replace: true,
@@ -47,8 +47,9 @@ angular.module('UserAccount').directive('checkboxSwitch', [
           elWrapper.removeClass('switch-animate');
 
           elCursor.bind('mousemove touchmove', (e) => {
-            const relativeX = (e.pageX || e.originalEvent.targetTouches[0].pageX)
-              - el.offset().left;
+            const relativeX =
+              (e.pageX || e.originalEvent.targetTouches[0].pageX) -
+              el.offset().left;
             let percent = (relativeX / el.width()) * 100;
             const left = 25;
             const right = 75;

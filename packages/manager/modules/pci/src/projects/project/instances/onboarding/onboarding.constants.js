@@ -1,11 +1,13 @@
 export const GUIDES = [
   {
     id: 'create-instance',
-    link: 'https://docs.ovh.com/gb/en/public-cloud/create_an_instance_in_your_ovh_customer_account/',
+    link:
+      'https://docs.ovh.com/gb/en/public-cloud/create_an_instance_in_your_ovh_customer_account/',
   },
   {
     id: 'post-install-script',
-    link: 'https://docs.ovh.com/gb/en/public-cloud/launch-a-script-when-instance-is-created/',
+    link:
+      'https://docs.ovh.com/gb/en/public-cloud/launch-a-script-when-instance-is-created/',
   },
   {
     id: 'back-up-instance',
@@ -13,7 +15,8 @@ export const GUIDES = [
   },
   {
     id: 'instance-introduction',
-    link: 'https://docs.ovh.com/gb/en/public-cloud/introduction-to-instances-and-other-cloud-based-terms/',
+    link:
+      'https://docs.ovh.com/gb/en/public-cloud/introduction-to-instances-and-other-cloud-based-terms/',
   },
 ];
 

@@ -1,8 +1,15 @@
 import find from 'lodash/find';
 import isEmpty from 'lodash/isEmpty';
 
-export default /* @ngInject */ function VrackMoveDialogCtrl($scope, $q, $translate,
-  $uibModalInstance, Toast, OvhApiVrack, OvhApiVrackDedicatedCloudDatacenter) {
+export default /* @ngInject */ function VrackMoveDialogCtrl(
+  $scope,
+  $q,
+  $translate,
+  $uibModalInstance,
+  Toast,
+  OvhApiVrack,
+  OvhApiVrackDedicatedCloudDatacenter,
+) {
   const self = this;
 
   self.form = null;
@@ -35,20 +42,24 @@ export default /* @ngInject */ function VrackMoveDialogCtrl($scope, $q, $transla
 
     self.loaders.allowedVrack = true;
 
-    return OvhApiVrackDedicatedCloudDatacenter.v6().allowedVrack({
-      serviceName: self.service.vrack,
-      datacenter: self.service.id,
-    }).$promise.then((allowedVracks) => {
-      if (!allowedVracks.length) {
-        return $q.when();
-      }
-      self.collections.allowedVracks = allowedVracks;
-      return self.fetchVracks();
-    }).catch(() => {
-      self.collections.allowedVracks = [];
-    }).finally(() => {
-      self.loaders.allowedVrack = false;
-    });
+    return OvhApiVrackDedicatedCloudDatacenter.v6()
+      .allowedVrack({
+        serviceName: self.service.vrack,
+        datacenter: self.service.id,
+      })
+      .$promise.then((allowedVracks) => {
+        if (!allowedVracks.length) {
+          return $q.when();
+        }
+        self.collections.allowedVracks = allowedVracks;
+        return self.fetchVracks();
+      })
+      .catch(() => {
+        self.collections.allowedVracks = [];
+      })
+      .finally(() => {
+        self.loaders.allowedVrack = false;
+      });
   };
 
   self.fetchVracks = function fetchVracks() {
@@ -58,13 +69,17 @@ export default /* @ngInject */ function VrackMoveDialogCtrl($scope, $q, $transla
 
     self.loaders.vracks = true;
 
-    OvhApiVrack.Aapi().query().$promise.then((vracks) => {
-      self.collections.vracks = vracks;
-    }).catch(() => {
-      self.collections.vracks = [];
-    }).finally(() => {
-      self.loaders.vracks = false;
-    });
+    OvhApiVrack.Aapi()
+      .query()
+      .$promise.then((vracks) => {
+        self.collections.vracks = vracks;
+      })
+      .catch(() => {
+        self.collections.vracks = [];
+      })
+      .finally(() => {
+        self.loaders.vracks = false;
+      });
   };
 
   self.getDisplayName = function getDisplayName(vrackId) {
@@ -96,19 +111,26 @@ export default /* @ngInject */ function VrackMoveDialogCtrl($scope, $q, $transla
 
     self.loaders.move = true;
 
-    return OvhApiVrackDedicatedCloudDatacenter.v6().move({
-      serviceName: self.service.vrack,
-      datacenter: self.service.id,
-    }, {
-      targetServiceName: self.models.vrack,
-    }).$promise.then((task) => {
-      $scope.$emit('vrack:refresh-data');
-      $uibModalInstance.close({ task });
-    }).catch(() => {
-      Toast.error($translate.instant('vrack_move_dialog_request_error'));
-    }).finally(() => {
-      self.loaders.move = false;
-    });
+    return OvhApiVrackDedicatedCloudDatacenter.v6()
+      .move(
+        {
+          serviceName: self.service.vrack,
+          datacenter: self.service.id,
+        },
+        {
+          targetServiceName: self.models.vrack,
+        },
+      )
+      .$promise.then((task) => {
+        $scope.$emit('vrack:refresh-data');
+        $uibModalInstance.close({ task });
+      })
+      .catch(() => {
+        Toast.error($translate.instant('vrack_move_dialog_request_error'));
+      })
+      .finally(() => {
+        self.loaders.move = false;
+      });
   };
 
   self.hasPendingRequests = function hasPendingRequests() {

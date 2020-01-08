@@ -1,10 +1,12 @@
-<oui-modal data-heading="{{ 'xdsl_modem_service_modal_title' | translate }}"
-           data-primary-action="$ctrl.close()"
-           data-primary-label="{{:: 'common_confirm' | translate }}"
-           data-secondary-label="{{:: 'cancel' | translate }}"
-           data-secondary-action="$ctrl.cancel()"
-           data-on-dismiss="$ctrl.cancel()"
-           data-type="warning">
+<oui-modal
+    data-heading="{{ 'xdsl_modem_service_modal_title' | translate }}"
+    data-primary-action="$ctrl.close()"
+    data-primary-label="{{:: 'common_confirm' | translate }}"
+    data-secondary-label="{{:: 'cancel' | translate }}"
+    data-secondary-action="$ctrl.cancel()"
+    data-on-dismiss="$ctrl.cancel()"
+    data-type="warning"
+>
     <div class="text-warning mt-3">
         <h6 class="ovh-font" aria-hidden="true"></h6>
         <span data-translate="xdsl_modem_service_description"></span>

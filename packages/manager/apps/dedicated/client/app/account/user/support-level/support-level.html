@@ -6,42 +6,66 @@
         <h3 data-translate="user_account_support_level_section_title_what"></h3>
 
         <p>
-            <span data-translate="user_account_support_level_section_title_description_1"></span>
-            <span data-translate="user_account_support_level_section_title_description_2"></span>
-            <span data-translate="user_account_support_level_section_title_description_3"></span>
+            <span
+                data-translate="user_account_support_level_section_title_description_1"
+            ></span>
+            <span
+                data-translate="user_account_support_level_section_title_description_2"
+            ></span>
+            <span
+                data-translate="user_account_support_level_section_title_description_3"
+            ></span>
         </p>
 
         <div class="row pt-4 mb-4">
-            <div class="col"
+            <div
+                class="col"
                 data-ng-repeat="supportLevel in ::$ctrl.supportLevels track by supportLevel.name"
-                data-ng-if="supportLevel.isActive()">
-                <oui-tile class="py-0 h-100"
+                data-ng-if="supportLevel.isActive()"
+            >
+                <oui-tile
+                    class="py-0 h-100"
                     data-ng-class="{'support-level-selected' : supportLevel.name === $ctrl.supportLevel.level && supportLevel.isAvailable($ctrl.currentUser.ovhSubsidiary)}"
-                    loading="$ctrl.loading">
-                    <div class="d-flex flex-column justify-content-between h-100">
+                    loading="$ctrl.loading"
+                >
+                    <div
+                        class="d-flex flex-column justify-content-between h-100"
+                    >
                         <div>
-                            <h4 class="mb-4 border-bottom"
-                                data-translate="{{ 'user_account_support_level_section_' + supportLevel.name }}">
-                            </h4>
-                            <span class="oui-chip support-level-current"
+                            <h4
+                                class="mb-4 border-bottom"
+                                data-translate="{{ 'user_account_support_level_section_' + supportLevel.name }}"
+                            ></h4>
+                            <span
+                                class="oui-chip support-level-current"
                                 data-ng-if="supportLevel.name === $ctrl.supportLevel.level && supportLevel.isAvailable($ctrl.currentUser.ovhSubsidiary)"
-                                data-translate="user_account_support_level_section_enabled">
+                                data-translate="user_account_support_level_section_enabled"
+                            >
                             </span>
-                            <span class="oui-chip"
+                            <span
+                                class="oui-chip"
                                 data-ng-if="$ctrl.getRecommendedLevel() === supportLevel.name"
-                                data-translate="user_account_support_level_section_recommended">
+                                data-translate="user_account_support_level_section_recommended"
+                            >
                             </span>
-                            <p class="oui-chip"
-                                data-ng-if="!supportLevel.isAvailable($ctrl.currentUser.ovhSubsidiary)">
-                                <span data-translate="user_account_support_level_section_coming_soon"></span>
+                            <p
+                                class="oui-chip"
+                                data-ng-if="!supportLevel.isAvailable($ctrl.currentUser.ovhSubsidiary)"
+                            >
+                                <span
+                                    data-translate="user_account_support_level_section_coming_soon"
+                                ></span>
                                 <sup aria-label="(1)">*</sup>
                             </p>
                             <img
                                 data-ng-src="{{'images/support-level/' + supportLevel.name + '.png'}}"
                                 class="d-block w-75 mx-auto mb-4"
-                                alt=""/>
+                                alt=""
+                            />
 
-                            <p data-translate="{{:: 'user_account_support_level_section_' + supportLevel.name + '_description' }}"></p>
+                            <p
+                                data-translate="{{:: 'user_account_support_level_section_' + supportLevel.name + '_description' }}"
+                            ></p>
                         </div>
                         <a
                             class="oui-button oui-button_secondary oui-button_icon-right oui-button_full-width my-5 align-self-end"
@@ -49,9 +73,15 @@
                             target="_blank"
                             rel="noopener"
                             data-track-on="click"
-                            data-track-name="{{:: 'user::account::support-level::' + supportLevel.name }}">
-                            <span data-translate="user_account_support_level_section_discover"></span>
-                            <span class="oui-icon oui-icon_circle oui-icon-chevron-right" aria-hidden="true"></span>
+                            data-track-name="{{:: 'user::account::support-level::' + supportLevel.name }}"
+                        >
+                            <span
+                                data-translate="user_account_support_level_section_discover"
+                            ></span>
+                            <span
+                                class="oui-icon oui-icon_circle oui-icon-chevron-right"
+                                aria-hidden="true"
+                            ></span>
                         </a>
                     </div>
                 </oui-tile>
@@ -60,8 +90,14 @@
 
         <p class="mb-0">
             <sup aria-label="(1)">*</sup>
-            <small data-ng-if="$ctrl.areAllLevelsAvailable()" data-translate="user_account_support_level_section_title_annex_all_available"></small>
-            <small data-ng-if="!$ctrl.areAllLevelsAvailable()" data-translate="user_account_support_level_section_title_annex_1"></small>
+            <small
+                data-ng-if="$ctrl.areAllLevelsAvailable()"
+                data-translate="user_account_support_level_section_title_annex_all_available"
+            ></small>
+            <small
+                data-ng-if="!$ctrl.areAllLevelsAvailable()"
+                data-translate="user_account_support_level_section_title_annex_1"
+            ></small>
         </p>
     </div>
 </div>

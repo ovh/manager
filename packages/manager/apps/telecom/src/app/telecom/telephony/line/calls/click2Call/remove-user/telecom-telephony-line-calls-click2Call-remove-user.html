@@ -1,57 +1,77 @@
-<form id="removeUserForm"
-      name="removeUserForm"
-      data-ng-submit="Click2CallRemoveUserCtrl.remove()">
-
+<form
+    id="removeUserForm"
+    name="removeUserForm"
+    data-ng-submit="Click2CallRemoveUserCtrl.remove()"
+>
     <div class="modal-header">
-        <button type="button"
-                class="close float-right"
-                data-ng-disabled="Click2CallRemoveUserCtrl.loading.removeUser"
-                aria-label="{{'cancel'|translate}}"
-                data-ng-click="Click2CallRemoveUserCtrl.close()">
+        <button
+            type="button"
+            class="close float-right"
+            data-ng-disabled="Click2CallRemoveUserCtrl.loading.removeUser"
+            aria-label="{{'cancel'|translate}}"
+            data-ng-click="Click2CallRemoveUserCtrl.close()"
+        >
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
 
-    <div class="modal-body"
-         data-ng-if="!Click2CallRemoveUserCtrl.loading.removeUser && !Click2CallRemoveUserCtrl.removed">
-        <h3 class="modal-title"
-            data-translate="telephony_group_line_calls_click2call_removeUser">
-        </h3>
-        <p data-translate="telephony_group_line_calls_click2call_removeUser_confirm" data-translate-values="{name: Click2CallRemoveUserCtrl.userToDelete.login}"></p>
+    <div
+        class="modal-body"
+        data-ng-if="!Click2CallRemoveUserCtrl.loading.removeUser && !Click2CallRemoveUserCtrl.removed"
+    >
+        <h3
+            class="modal-title"
+            data-translate="telephony_group_line_calls_click2call_removeUser"
+        ></h3>
+        <p
+            data-translate="telephony_group_line_calls_click2call_removeUser_confirm"
+            data-translate-values="{name: Click2CallRemoveUserCtrl.userToDelete.login}"
+        ></p>
     </div>
 
-    <div class="modal-body"
-         data-ng-if="Click2CallRemoveUserCtrl.loading.removeUser">
-        <h3 class="modal-title"
-            data-translate="telephony_group_line_calls_click2call_removeUser">
-        </h3>
+    <div
+        class="modal-body"
+        data-ng-if="Click2CallRemoveUserCtrl.loading.removeUser"
+    >
+        <h3
+            class="modal-title"
+            data-translate="telephony_group_line_calls_click2call_removeUser"
+        ></h3>
         <div class="text-center">
             <oui-spinner></oui-spinner>
-            <h4 data-translate="telephony_group_line_calls_click2call_removeUser_removing"></h4>
+            <h4
+                data-translate="telephony_group_line_calls_click2call_removeUser_removing"
+            ></h4>
         </div>
     </div>
 
-    <div class="modal-body"
-         data-ng-if="Click2CallRemoveUserCtrl.removed">
-        <h3 class="modal-title"
-            data-translate="telephony_group_line_calls_click2call_removeUser">
-        </h3>
-        <tuc-success-drawing-check  data-draw-success-check="Click2CallRemoveUserCtrl.removed">
-            <h4 data-translate="telephony_group_line_calls_click2call_removeUser_removed"></h4>
+    <div class="modal-body" data-ng-if="Click2CallRemoveUserCtrl.removed">
+        <h3
+            class="modal-title"
+            data-translate="telephony_group_line_calls_click2call_removeUser"
+        ></h3>
+        <tuc-success-drawing-check
+            data-draw-success-check="Click2CallRemoveUserCtrl.removed"
+        >
+            <h4
+                data-translate="telephony_group_line_calls_click2call_removeUser_removed"
+            ></h4>
         </tuc-success-drawing-check>
     </div>
 
     <div class="modal-footer">
-        <button class="btn btn-default"
-                type="reset"
-                data-ng-click="Click2CallRemoveUserCtrl.close()"
-                data-translate="cancel"
-                data-ng-disabled="Click2CallRemoveUserCtrl.loading.removeUser || Click2CallRemoveUserCtrl.removed">
-        </button>
-        <button class="btn btn-primary"
-                type="submit"
-                data-translate="submit"
-                data-ng-disabled="removeUserForm.$invalid || Click2CallRemoveUserCtrl.loading.removeUser || Click2CallRemoveUserCtrl.removed">
-        </button>
+        <button
+            class="btn btn-default"
+            type="reset"
+            data-ng-click="Click2CallRemoveUserCtrl.close()"
+            data-translate="cancel"
+            data-ng-disabled="Click2CallRemoveUserCtrl.loading.removeUser || Click2CallRemoveUserCtrl.removed"
+        ></button>
+        <button
+            class="btn btn-primary"
+            type="submit"
+            data-translate="submit"
+            data-ng-disabled="removeUserForm.$invalid || Click2CallRemoveUserCtrl.loading.removeUser || Click2CallRemoveUserCtrl.removed"
+        ></button>
     </div>
 </form>

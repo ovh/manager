@@ -27,21 +27,23 @@ export default class {
           status: 'completed',
         },
       },
-    )
-      .then(
-        () => this.onVrackCreated(),
-        (error) => {
-          this.CucCloudMessage.error(
-            this.$translate.instant('pci_projects_project_network_private_vrack_error', {
+    ).then(
+      () => this.onVrackCreated(),
+      (error) => {
+        this.CucCloudMessage.error(
+          this.$translate.instant(
+            'pci_projects_project_network_private_vrack_error',
+            {
               message: get(error, 'data.message', ''),
-            }),
-          );
-        },
-        (operation) => {
-          this.operation = operation;
-          this.isLoading = false;
-        },
-      );
+            },
+          ),
+        );
+      },
+      (operation) => {
+        this.operation = operation;
+        this.isLoading = false;
+      },
+    );
   }
 
   loadMessages() {

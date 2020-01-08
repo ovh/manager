@@ -1,12 +1,6 @@
 export default class TelecomAppCtrl {
   /* @ngInject */
-  constructor(
-    $q,
-    $state,
-    $transitions,
-    betaPreferenceService,
-    ovhUserPref,
-  ) {
+  constructor($q, $state, $transitions, betaPreferenceService, ovhUserPref) {
     this.displayFallbackMenu = false;
     $transitions.onStart({}, () => this.closeSidebar());
 
@@ -17,10 +11,11 @@ export default class TelecomAppCtrl {
   }
 
   $onInit() {
-    return this.betaPreferenceService.isBetaActive()
-      .then((beta) => {
-        this.globalSearchLink = beta ? this.$state.href('telecomSearch', {}) : null;
-      });
+    return this.betaPreferenceService.isBetaActive().then((beta) => {
+      this.globalSearchLink = beta
+        ? this.$state.href('telecomSearch', {})
+        : null;
+    });
   }
 
   openSidebar() {

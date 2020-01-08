@@ -18,43 +18,52 @@ export default class Selection {
   }
 
   $onInit() {
-    const currentServicePack = find(
-      this.servicePacksWithPrices,
-      { name: this.currentService.servicePackName },
-    );
+    const currentServicePack = find(this.servicePacksWithPrices, {
+      name: this.currentService.servicePackName,
+    });
 
     this.orderableServicePacks = sortBy(
-      this.orderableServicePacks
-        .map((servicePack) => {
-          const servicePackToDisplay = find(
-            this.servicePacksWithPrices,
-            {
-              name: servicePack.name,
-            },
-          );
+      this.orderableServicePacks.map((servicePack) => {
+        const servicePackToDisplay = find(this.servicePacksWithPrices, {
+          name: servicePack.name,
+        });
 
-          return {
-            ...servicePack,
-            prices: {
-              hourly: Selection.computeRelativePrice('hourly', currentServicePack, servicePackToDisplay),
-              monthly: Selection.computeRelativePrice('monthly', currentServicePack, servicePackToDisplay),
-            },
-          };
-        }),
+        return {
+          ...servicePack,
+          prices: {
+            hourly: Selection.computeRelativePrice(
+              'hourly',
+              currentServicePack,
+              servicePackToDisplay,
+            ),
+            monthly: Selection.computeRelativePrice(
+              'monthly',
+              currentServicePack,
+              servicePackToDisplay,
+            ),
+          },
+        };
+      }),
       'name',
     );
   }
 
-  static computeRelativePrice(duration, currentServicePack, servicePackToDisplay) {
-    if (!currentServicePack.price[duration]
-        || !servicePackToDisplay.price[duration]) {
+  static computeRelativePrice(
+    duration,
+    currentServicePack,
+    servicePackToDisplay,
+  ) {
+    if (
+      !currentServicePack.price[duration] ||
+      !servicePackToDisplay.price[duration]
+    ) {
       return {
         exists: false,
       };
     }
 
-    const value = servicePackToDisplay.price[duration]
-            - currentServicePack.price[duration];
+    const value =
+      servicePackToDisplay.price[duration] - currentServicePack.price[duration];
     const display = Selection.convertPriceValueToDisplay(
       value,
       currentServicePack.price.currencyCode,
@@ -68,16 +77,14 @@ export default class Selection {
   }
 
   static convertPriceValueToDisplay(value, currency) {
-    const priceAsString = new Intl
-      .NumberFormat(
-        'fr', // can't change as the API is not ISO compliant
-        {
-          style: 'currency',
-          currency,
-          minimumFractionDigits: 2,
-        },
-      )
-      .format(value);
+    const priceAsString = new Intl.NumberFormat(
+      'fr', // can't change as the API is not ISO compliant
+      {
+        style: 'currency',
+        currency,
+        minimumFractionDigits: 2,
+      },
+    ).format(value);
 
     return value > 0 ? `+${priceAsString}` : priceAsString;
   }

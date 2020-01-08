@@ -1,162 +1,225 @@
 <section class="telephony-group-service-voicemail-management">
-
-    <audio id="voicemailAudio"
-           preload="none">
-    </audio>
+    <audio id="voicemailAudio" preload="none"></audio>
 
     <div class="widget-presentation">
-        <h2 class="widget-presentation-title"
-            data-translate="telephony_line_answer_voicemail_directories_title">
-        </h2>
+        <h2
+            class="widget-presentation-title"
+            data-translate="telephony_line_answer_voicemail_directories_title"
+        ></h2>
 
         <tuc-toast-message></tuc-toast-message>
 
-        <button class="btn btn-default mb-3 no-transition"
-                type="button"
-                data-ng-click="VoicemailManagementCtrl.deleteSelectedMessages()"
-                data-ng-disabled="VoicemailManagementCtrl.messages.isDeleting"
-                data-ng-if="!VoicemailManagementCtrl.messages.isLoading && VoicemailManagementCtrl.getSelection().length">
-            <span data-ng-if="VoicemailManagementCtrl.getSelection().length === 1"
-                  data-translate="telephony_line_answer_voicemail_directories_delete_message">
+        <button
+            class="btn btn-default mb-3 no-transition"
+            type="button"
+            data-ng-click="VoicemailManagementCtrl.deleteSelectedMessages()"
+            data-ng-disabled="VoicemailManagementCtrl.messages.isDeleting"
+            data-ng-if="!VoicemailManagementCtrl.messages.isLoading && VoicemailManagementCtrl.getSelection().length"
+        >
+            <span
+                data-ng-if="VoicemailManagementCtrl.getSelection().length === 1"
+                data-translate="telephony_line_answer_voicemail_directories_delete_message"
+            >
             </span>
-            <span data-ng-if="VoicemailManagementCtrl.getSelection().length > 1"
-                  data-translate="telephony_line_answer_voicemail_directories_delete_message_plural"
-                  data-translate-values="{ count: VoicemailManagementCtrl.getSelection().length }">
+            <span
+                data-ng-if="VoicemailManagementCtrl.getSelection().length > 1"
+                data-translate="telephony_line_answer_voicemail_directories_delete_message_plural"
+                data-translate-values="{ count: VoicemailManagementCtrl.getSelection().length }"
+            >
             </span>
-            <oui-spinner class="ml-2"
-                         data-ng-if="VoicemailManagementCtrl.messages.isDeleting"
-                         data-size="s">
+            <oui-spinner
+                class="ml-2"
+                data-ng-if="VoicemailManagementCtrl.messages.isDeleting"
+                data-size="s"
+            >
             </oui-spinner>
         </button>
 
         <div class="table-responsive">
-            <table class="table"
-                   data-ng-class="{
+            <table
+                class="table"
+                data-ng-class="{
                        'table-hover table-striped': VoicemailManagementCtrl.messages.raw.length > 1
-                   }">
+                   }"
+            >
                 <thead>
                     <tr>
                         <th scope="col">
-                            <input type="checkbox"
-                                   data-ng-if="VoicemailManagementCtrl.messages.paginated.length"
-                                   data-ng-disabled="VoicemailManagementCtrl.messages.isDeleting"
-                                   ovh-checkbox-table
-                                   ovh-checkbox-table-ids-all="VoicemailManagementCtrl.messages.raw"
-                                   ovh-checkbox-table-ids-page="VoicemailManagementCtrl.messages.paginated"
-                                   ovh-checkbox-table-ids-selected="VoicemailManagementCtrl.messages.selected"
-                                   ovh-checkbox-table-id="id" />
+                            <input
+                                type="checkbox"
+                                data-ng-if="VoicemailManagementCtrl.messages.paginated.length"
+                                data-ng-disabled="VoicemailManagementCtrl.messages.isDeleting"
+                                ovh-checkbox-table
+                                ovh-checkbox-table-ids-all="VoicemailManagementCtrl.messages.raw"
+                                ovh-checkbox-table-ids-page="VoicemailManagementCtrl.messages.paginated"
+                                ovh-checkbox-table-ids-selected="VoicemailManagementCtrl.messages.selected"
+                                ovh-checkbox-table-id="id"
+                            />
                         </th>
                         <th scope="col">
-                            <button class="btn btn-link p-0"
-                                    type="button"
-                                    data-ng-disabled="!VoicemailManagementCtrl.messages.paginated.length"
-                                    data-ng-click="VoicemailManagementCtrl.orderBy('caller')">
-                                <span data-translate="telephony_line_answer_voicemail_directories_caller"></span>
-                                <span class="oui-icon align-baseline"
-                                      aria-hidden="true"
-                                      data-ng-class="{
+                            <button
+                                class="btn btn-link p-0"
+                                type="button"
+                                data-ng-disabled="!VoicemailManagementCtrl.messages.paginated.length"
+                                data-ng-click="VoicemailManagementCtrl.orderBy('caller')"
+                            >
+                                <span
+                                    data-translate="telephony_line_answer_voicemail_directories_caller"
+                                ></span>
+                                <span
+                                    class="oui-icon align-baseline"
+                                    aria-hidden="true"
+                                    data-ng-class="{
                                           'oui-icon-arrow-down': VoicemailManagementCtrl.messages.orderBy !== 'caller',
                                           'oui-icon-arrow-down': VoicemailManagementCtrl.messages.orderBy === 'caller' && VoicemailManagementCtrl.messages.orderDesc,
                                           'oui-icon-arrow-up': VoicemailManagementCtrl.messages.orderBy === 'caller' && !VoicemailManagementCtrl.messages.orderDesc
-                                      }">
+                                      }"
+                                >
                                 </span>
                             </button>
                         </th>
                         <th scope="col">
-                            <button class="btn btn-link p-0"
-                                    type="button"
-                                    data-ng-disabled="!VoicemailManagementCtrl.messages.paginated.length"
-                                    data-ng-click="VoicemailManagementCtrl.orderBy('creationDatetime')">
-                                <span data-translate="telephony_line_answer_voicemail_directories_date"></span>
-                                <span class="oui-icon align-baseline"
-                                      aria-hidden="true"
-                                      data-ng-class="{
+                            <button
+                                class="btn btn-link p-0"
+                                type="button"
+                                data-ng-disabled="!VoicemailManagementCtrl.messages.paginated.length"
+                                data-ng-click="VoicemailManagementCtrl.orderBy('creationDatetime')"
+                            >
+                                <span
+                                    data-translate="telephony_line_answer_voicemail_directories_date"
+                                ></span>
+                                <span
+                                    class="oui-icon align-baseline"
+                                    aria-hidden="true"
+                                    data-ng-class="{
                                           'oui-icon-arrow-down': VoicemailManagementCtrl.messages.orderBy !== 'creationDatetime',
                                           'oui-icon-arrow-down': VoicemailManagementCtrl.messages.orderBy === 'creationDatetime' && VoicemailManagementCtrl.messages.orderDesc,
                                           'oui-icon-arrow-up': VoicemailManagementCtrl.messages.orderBy === 'creationDatetime' && !VoicemailManagementCtrl.messages.orderDesc
-                                      }">
+                                      }"
+                                >
                                 </span>
                             </button>
                         </th>
                         <th scope="col">
-                            <button class="btn btn-link p-0"
-                                    type="button"
-                                    data-ng-disabled="!VoicemailManagementCtrl.messages.paginated.length"
-                                    data-ng-click="VoicemailManagementCtrl.orderBy('durationAsDate')">
-                                <span data-translate="telephony_line_answer_voicemail_directories_duration"></span>
-                                <span class="oui-icon align-baseline"
-                                      aria-hidden="true"
-                                      data-ng-class="{
+                            <button
+                                class="btn btn-link p-0"
+                                type="button"
+                                data-ng-disabled="!VoicemailManagementCtrl.messages.paginated.length"
+                                data-ng-click="VoicemailManagementCtrl.orderBy('durationAsDate')"
+                            >
+                                <span
+                                    data-translate="telephony_line_answer_voicemail_directories_duration"
+                                ></span>
+                                <span
+                                    class="oui-icon align-baseline"
+                                    aria-hidden="true"
+                                    data-ng-class="{
                                           'oui-icon-arrow-down': VoicemailManagementCtrl.messages.orderBy !== 'durationAsDate',
                                           'oui-icon-arrow-down': VoicemailManagementCtrl.messages.orderBy === 'durationAsDate' && VoicemailManagementCtrl.messages.orderDesc,
                                           'oui-icon-arrow-up': VoicemailManagementCtrl.messages.orderBy === 'durationAsDate' && !VoicemailManagementCtrl.messages.orderDesc
-                                      }">
+                                      }"
+                                >
                                 </span>
                             </button>
                         </th>
                         <th class="text-right">
-                            <button class="btn btn-link p-0"
-                                    type="button"
-                                    title="{{:: 'telephony_line_answer_voicemail_directories_refresh_message' | translate }}"
-                                    data-ng-disabled="VoicemailManagementCtrl.messages.isDeleting"
-                                    data-ng-click="VoicemailManagementCtrl.refresh()">
+                            <button
+                                class="btn btn-link p-0"
+                                type="button"
+                                title="{{:: 'telephony_line_answer_voicemail_directories_refresh_message' | translate }}"
+                                data-ng-disabled="VoicemailManagementCtrl.messages.isDeleting"
+                                data-ng-click="VoicemailManagementCtrl.refresh()"
+                            >
                                 <i class="text-default fa fa-refresh"></i>
                             </button>
                         </th>
                     </tr>
                 </thead>
                 <tbody data-ng-if="!VoicemailManagementCtrl.messages.isLoading">
-                    <tr data-ng-repeat="message in VoicemailManagementCtrl.messages.paginated | orderBy:VoicemailManagementCtrl.order.by:VoicemailManagementCtrl.order.reverse">
+                    <tr
+                        data-ng-repeat="message in VoicemailManagementCtrl.messages.paginated | orderBy:VoicemailManagementCtrl.order.by:VoicemailManagementCtrl.order.reverse"
+                    >
                         <td>
-                            <input type="checkbox"
-                                   data-ng-disabled="VoicemailManagementCtrl.messages.isDeleting"
-                                   data-ng-model="VoicemailManagementCtrl.messages.selected[message.id]">
+                            <input
+                                type="checkbox"
+                                data-ng-disabled="VoicemailManagementCtrl.messages.isDeleting"
+                                data-ng-model="VoicemailManagementCtrl.messages.selected[message.id]"
+                            />
                         </td>
-                        <th scope="row"
-                            data-ng-bind="message.caller | tucPhoneNumber">
-                        </th>
+                        <th
+                            scope="row"
+                            data-ng-bind="message.caller | tucPhoneNumber"
+                        ></th>
                         <td>
-                            <span class="text-nowrap" data-ng-bind="message.creationDatetime | date: 'dd/MM/yyyy'"></span>
-                            <span class="text-nowrap" data-ng-bind="message.creationDatetime | date: 'HH:mm:ss'"></span>
+                            <span
+                                class="text-nowrap"
+                                data-ng-bind="message.creationDatetime | date: 'dd/MM/yyyy'"
+                            ></span>
+                            <span
+                                class="text-nowrap"
+                                data-ng-bind="message.creationDatetime | date: 'HH:mm:ss'"
+                            ></span>
                         </td>
-                        <td data-ng-bind="message.durationAsDate | date: 'mm:ss': 'UTC'"></td>
+                        <td
+                            data-ng-bind="message.durationAsDate | date: 'mm:ss': 'UTC'"
+                        ></td>
                         <td>
-                            <button class="btn btn-link mr-2"
-                                    type="button"
-                                    title="{{:: 'telephony_line_answer_voicemail_directories_listen_message' | translate }}"
-                                    data-ng-disabled="VoicemailManagementCtrl.messages.isDeleting"
-                                    data-ng-click="VoicemailManagementCtrl.listenMessage(message)">
-                                <i class="fa fa-play-circle-o"
-                                   data-ng-if="VoicemailManagementCtrl.messages.playing !== message && !message.pendingListen"></i>
-                                <i class="fa fa-stop-circle-o"
-                                   data-ng-if="VoicemailManagementCtrl.messages.playing === message && !message.pendingListen"></i>
-                                <oui-spinner class="ml-2"
-                                             data-ng-if="message.pendingListen"
-                                             data-size="s">
+                            <button
+                                class="btn btn-link mr-2"
+                                type="button"
+                                title="{{:: 'telephony_line_answer_voicemail_directories_listen_message' | translate }}"
+                                data-ng-disabled="VoicemailManagementCtrl.messages.isDeleting"
+                                data-ng-click="VoicemailManagementCtrl.listenMessage(message)"
+                            >
+                                <i
+                                    class="fa fa-play-circle-o"
+                                    data-ng-if="VoicemailManagementCtrl.messages.playing !== message && !message.pendingListen"
+                                ></i>
+                                <i
+                                    class="fa fa-stop-circle-o"
+                                    data-ng-if="VoicemailManagementCtrl.messages.playing === message && !message.pendingListen"
+                                ></i>
+                                <oui-spinner
+                                    class="ml-2"
+                                    data-ng-if="message.pendingListen"
+                                    data-size="s"
+                                >
                                 </oui-spinner>
                             </button>
-                            <button class="btn btn-link mr-2"
-                                    type="button"
-                                    title="{{:: 'telephony_line_answer_voicemail_directories_download_message' | translate }}"
-                                    data-ng-disabled="VoicemailManagementCtrl.messages.isDeleting"
-                                    data-ng-click="VoicemailManagementCtrl.downloadMessage(message)">
-                                <i class="fa fa-download"
-                                   data-ng-if="!message.pendingDownload"></i>
-                                <oui-spinner class="ml-2"
-                                             data-ng-if="message.pendingDownload"
-                                             data-size="s">
+                            <button
+                                class="btn btn-link mr-2"
+                                type="button"
+                                title="{{:: 'telephony_line_answer_voicemail_directories_download_message' | translate }}"
+                                data-ng-disabled="VoicemailManagementCtrl.messages.isDeleting"
+                                data-ng-click="VoicemailManagementCtrl.downloadMessage(message)"
+                            >
+                                <i
+                                    class="fa fa-download"
+                                    data-ng-if="!message.pendingDownload"
+                                ></i>
+                                <oui-spinner
+                                    class="ml-2"
+                                    data-ng-if="message.pendingDownload"
+                                    data-size="s"
+                                >
                                 </oui-spinner>
                             </button>
-                            <button class="btn btn-link"
-                                    type="button"
-                                    title="{{:: 'telephony_line_answer_voicemail_directories_delete_message' | translate }}"
-                                    data-ng-disabled="VoicemailManagementCtrl.messages.isDeleting"
-                                    data-ng-click="VoicemailManagementCtrl.deleteMessage(message)">
-                                <i class="ovh-font ovh-font-bin align-top"
-                                   data-ng-if="!message.isDeleting"></i>
-                                <oui-spinner class="ml-2"
-                                             data-ng-if="message.isDeleting"
-                                             data-size="s">
+                            <button
+                                class="btn btn-link"
+                                type="button"
+                                title="{{:: 'telephony_line_answer_voicemail_directories_delete_message' | translate }}"
+                                data-ng-disabled="VoicemailManagementCtrl.messages.isDeleting"
+                                data-ng-click="VoicemailManagementCtrl.deleteMessage(message)"
+                            >
+                                <i
+                                    class="ovh-font ovh-font-bin align-top"
+                                    data-ng-if="!message.isDeleting"
+                                ></i>
+                                <oui-spinner
+                                    class="ml-2"
+                                    data-ng-if="message.isDeleting"
+                                    data-size="s"
+                                >
                                 </oui-spinner>
                             </button>
                         </td>
@@ -169,31 +232,33 @@
                         </td>
                     </tr>
                 </tbody>
-                <tbody data-ng-if="!VoicemailManagementCtrl.messages.isLoading && !VoicemailManagementCtrl.messages.paginated.length">
+                <tbody
+                    data-ng-if="!VoicemailManagementCtrl.messages.isLoading && !VoicemailManagementCtrl.messages.paginated.length"
+                >
                     <tr>
-                        <td class="text-center my-3"
+                        <td
+                            class="text-center my-3"
                             colspan="5"
-                            data-translate="telephony_line_answer_voicemail_directories_empty">
-                        </td>
+                            data-translate="telephony_line_answer_voicemail_directories_empty"
+                        ></td>
                     </tr>
                 </tbody>
             </table>
         </div>
 
-        <div class="mt-2"
-             data-ng-if="!VoicemailManagementCtrl.messages.isLoading && VoicemailManagementCtrl.messages.raw.length"
-             data-pagination-front
-             data-items="VoicemailManagementCtrl.messages.sorted"
-             data-paginated-items="VoicemailManagementCtrl.messages.paginated"
-             data-current-page="currentPage"
-             data-nb-pages="nbPages"
-             data-items-per-page="itemsPerPage"
-             data-page-placeholder="{{'common_pagination_page' | translate: {currentPage:currentPage, nbPages:nbPages} }}"
-             data-item-per-page-placeholder="{{'common_pagination_display' | translate}}">
-        </div>
-
+        <div
+            class="mt-2"
+            data-ng-if="!VoicemailManagementCtrl.messages.isLoading && VoicemailManagementCtrl.messages.raw.length"
+            data-pagination-front
+            data-items="VoicemailManagementCtrl.messages.sorted"
+            data-paginated-items="VoicemailManagementCtrl.messages.paginated"
+            data-current-page="currentPage"
+            data-nb-pages="nbPages"
+            data-items-per-page="itemsPerPage"
+            data-page-placeholder="{{'common_pagination_page' | translate: {currentPage:currentPage, nbPages:nbPages} }}"
+            data-item-per-page-placeholder="{{'common_pagination_display' | translate}}"
+        ></div>
     </div>
     <!-- /.widget-presentation -->
-
 </section>
 <!-- /.telephony-group-service-voicemail-management -->

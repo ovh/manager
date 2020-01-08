@@ -1,62 +1,101 @@
-<div class="container-fluid px-0" data-ng-controller="HostingBoostTabCtrl" data-ng-init="init()">
+<div
+    class="container-fluid px-0"
+    data-ng-controller="HostingBoostTabCtrl"
+    data-ng-init="init()"
+>
     <div class="row">
         <div class="col-md-9">
-
             <div data-ovh-alert="{{alerts.main}}"></div>
 
             <h2 data-translate="hosting_tab_BOOST"></h2>
 
-            <div class="alert alert-info" role="alert"
-                 data-ng-if="!loaders.product && models.product && !models.product.availableBoostOffer.length">
+            <div
+                class="alert alert-info"
+                role="alert"
+                data-ng-if="!loaders.product && models.product && !models.product.availableBoostOffer.length"
+            >
                 <div>
-                    <p data-translate="hosting_tab_BOOST_supported_performance"></p>
+                    <p
+                        data-translate="hosting_tab_BOOST_supported_performance"
+                    ></p>
                     <p>
-                        <span class="mr-2" data-translate="hosting_tab_BOOST_supported_performance_migrate"></span>
-                        <button class="btn btn-info align-middle" type="button"
-                                data-translate="hosting_dashboard_service_change_offer"
-                                data-ui-sref="app.hosting.upgrade({ productId: hosting.serviceName })">
-                        </button>
+                        <span
+                            class="mr-2"
+                            data-translate="hosting_tab_BOOST_supported_performance_migrate"
+                        ></span>
+                        <button
+                            class="btn btn-info align-middle"
+                            type="button"
+                            data-translate="hosting_dashboard_service_change_offer"
+                            data-ui-sref="app.hosting.upgrade({ productId: hosting.serviceName })"
+                        ></button>
                     </p>
                 </div>
             </div>
-            <oui-datagrid data-rows="hostingBoosts"
-                          data-row-loader="transformItem($row)">
-                <oui-column data-title="'hosting_tab_BOOST_history_table_header_id' | translate" data-property="accountId"></oui-column>
-                <oui-column data-title="'hosting_tab_BOOST_history_table_header_offer' | translate" data-property="offer"></oui-column>
-                <oui-column data-title="'hosting_tab_BOOST_history_table_header_boost_offer' | translate" data-property="boostOffer">
-                    <span data-ng-class="{'text-center': $row.boostOffer === null}">
-                        <span data-ng-bind="::$row.boostOffer"
-                              data-ng-if="$row.boostOffer !== null"></span>
-                        <span class="oui-status oui-status_error"
-                              data-translate="hosting_tab_BOOST_history_table_boost_history_disabled"
-                              data-ng-if="$row.boostOffer === null"></span>
+            <oui-datagrid
+                data-rows="hostingBoosts"
+                data-row-loader="transformItem($row)"
+            >
+                <oui-column
+                    data-title="'hosting_tab_BOOST_history_table_header_id' | translate"
+                    data-property="accountId"
+                ></oui-column>
+                <oui-column
+                    data-title="'hosting_tab_BOOST_history_table_header_offer' | translate"
+                    data-property="offer"
+                ></oui-column>
+                <oui-column
+                    data-title="'hosting_tab_BOOST_history_table_header_boost_offer' | translate"
+                    data-property="boostOffer"
+                >
+                    <span
+                        data-ng-class="{'text-center': $row.boostOffer === null}"
+                    >
+                        <span
+                            data-ng-bind="::$row.boostOffer"
+                            data-ng-if="$row.boostOffer !== null"
+                        ></span>
+                        <span
+                            class="oui-status oui-status_error"
+                            data-translate="hosting_tab_BOOST_history_table_boost_history_disabled"
+                            data-ng-if="$row.boostOffer === null"
+                        ></span>
                     </span>
                 </oui-column>
-                <oui-column data-title="'hosting_tab_BOOST_history_table_header_date' | translate" data-property="date">
+                <oui-column
+                    data-title="'hosting_tab_BOOST_history_table_header_date' | translate"
+                    data-property="date"
+                >
                     <span data-ng-bind="$row.date | date:'medium'"></span>
                 </oui-column>
             </oui-datagrid>
         </div>
 
         <div class="col-md-3 mt-5 mt-lg-0">
-            <button class="btn btn-block btn-default" type="button"
-                    data-translate="hosting_tab_BOOST_boost_update"
-                    data-ng-click="setAction('boost/update/hosting-boost-update', { product: models.product })"
-                    data-ng-disabled="isLoading"
-                    data-ng-if="models.product.boostOffer !== null">
-            </button>
-            <button class="btn btn-block btn-default" type="button"
-                    data-translate="hosting_tab_BOOST_boost_disable"
-                    data-ng-click="setAction('boost/disable/hosting-boost-disable.controller', { product: models.product })"
-                    data-ng-disabled="isLoading"
-                    data-ng-if="models.product.boostOffer !== null">
-            </button>
-            <button class="btn btn-block btn-default" type="button"
-                    data-translate="hosting_tab_BOOST"
-                    data-ng-click="setAction('boost/enable/hosting-boost-enable', {product: models.product})"
-                    data-ng-disabled="isLoading || !models.product.availableBoostOffer.length"
-                    data-ng-if="models.product.boostOffer === null">
-            </button>
+            <button
+                class="btn btn-block btn-default"
+                type="button"
+                data-translate="hosting_tab_BOOST_boost_update"
+                data-ng-click="setAction('boost/update/hosting-boost-update', { product: models.product })"
+                data-ng-disabled="isLoading"
+                data-ng-if="models.product.boostOffer !== null"
+            ></button>
+            <button
+                class="btn btn-block btn-default"
+                type="button"
+                data-translate="hosting_tab_BOOST_boost_disable"
+                data-ng-click="setAction('boost/disable/hosting-boost-disable.controller', { product: models.product })"
+                data-ng-disabled="isLoading"
+                data-ng-if="models.product.boostOffer !== null"
+            ></button>
+            <button
+                class="btn btn-block btn-default"
+                type="button"
+                data-translate="hosting_tab_BOOST"
+                data-ng-click="setAction('boost/enable/hosting-boost-enable', {product: models.product})"
+                data-ng-disabled="isLoading || !models.product.availableBoostOffer.length"
+                data-ng-if="models.product.boostOffer === null"
+            ></button>
         </div>
     </div>
 </div>

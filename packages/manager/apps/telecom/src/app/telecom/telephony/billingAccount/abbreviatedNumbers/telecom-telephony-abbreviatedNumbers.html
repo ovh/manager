@@ -1,27 +1,29 @@
 <section class="telephony-group-line-abbreviated-numbers">
-
     <div class="text-center" data-ng-if="AbbreviatedNumbersCtrl.loading">
         <oui-spinner></oui-spinner>
     </div>
 
-    <section class="widget-presentation"
-        data-ng-hide="AbbreviatedNumbersCtrl.loading">
-        <h2 class="widget-presentation-title"
-            data-translate="telephony_abbreviated_numbers_title">
-        </h2>
+    <section
+        class="widget-presentation"
+        data-ng-hide="AbbreviatedNumbersCtrl.loading"
+    >
+        <h2
+            class="widget-presentation-title"
+            data-translate="telephony_abbreviated_numbers_title"
+        ></h2>
         <p data-translate="telephony_abbreviated_numbers_explaination"></p>
         <tuc-telecom-telephony-abbreviated-numbers
-                data-abbreviated-numbers="AbbreviatedNumbersCtrl.abbreviatedNumbers"
-                data-abbreviated-number-pattern="AbbreviatedNumbersCtrl.pattern"
-                data-loading="AbbreviatedNumbersCtrl.loading"
-                data-remove-callback="AbbreviatedNumbersCtrl.remove(value)"
-                data-insert-callback="AbbreviatedNumbersCtrl.insert(value)"
-                data-update-callback="AbbreviatedNumbersCtrl.update(value)"
-                data-reload-callback="AbbreviatedNumbersCtrl.load()"
-                data-export-filename="AbbreviatedNumbersCtrl.exportFilename"
-                data-v4redirect="AbbreviatedNumbersCtrl.v4redirect">
+            data-abbreviated-numbers="AbbreviatedNumbersCtrl.abbreviatedNumbers"
+            data-abbreviated-number-pattern="AbbreviatedNumbersCtrl.pattern"
+            data-loading="AbbreviatedNumbersCtrl.loading"
+            data-remove-callback="AbbreviatedNumbersCtrl.remove(value)"
+            data-insert-callback="AbbreviatedNumbersCtrl.insert(value)"
+            data-update-callback="AbbreviatedNumbersCtrl.update(value)"
+            data-reload-callback="AbbreviatedNumbersCtrl.load()"
+            data-export-filename="AbbreviatedNumbersCtrl.exportFilename"
+            data-v4redirect="AbbreviatedNumbersCtrl.v4redirect"
+        >
         </tuc-telecom-telephony-abbreviated-numbers>
     </section>
-
 </section>
 <!-- /.telephony-group-line-abbreviated-numbers -->

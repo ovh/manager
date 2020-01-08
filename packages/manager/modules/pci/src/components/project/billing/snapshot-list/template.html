@@ -1,4 +1,8 @@
-<span  data-ng-if="$ctrl.snapshots.length === 0" data-translate="cpbc_no_consumption_data" class="cloud-billing-resource-no-data"></span>
+<span
+    data-ng-if="$ctrl.snapshots.length === 0"
+    data-translate="cpbc_no_consumption_data"
+    class="cloud-billing-resource-no-data"
+></span>
 
 <div data-ng-if="$ctrl.snapshots.length > 0" class="snapshotList">
     <div class="oui-datagrid-responsive-container">
@@ -7,35 +11,68 @@
                 <table class="oui-datagrid">
                     <thead class="oui-datagrid__headers">
                         <th class="oui-datagrid__header">
-                            <span data-translate="cpbc_snapshot_col_location"></span>
+                            <span
+                                data-translate="cpbc_snapshot_col_location"
+                            ></span>
                         </th>
                         <th class="oui-datagrid__header">
-                            <span data-translate="cpbc_snapshot_col_type"></span>
+                            <span
+                                data-translate="cpbc_snapshot_col_type"
+                            ></span>
                         </th>
                         <th class="oui-datagrid__header text-right">
-                            <span data-translate="cpbc_snapshot_col_usage"></span>
+                            <span
+                                data-translate="cpbc_snapshot_col_usage"
+                            ></span>
                         </th>
                     </thead>
-                    <tbody data-ng-if="$ctrl.loading" class="oui-datagrid__body">
+                    <tbody
+                        data-ng-if="$ctrl.loading"
+                        class="oui-datagrid__body"
+                    >
                         <tr>
                             <td colspan="3" class="text-center">
                                 <spinner></spinner>
                             </td>
                         </tr>
                     </tbody>
-                    <tbody data-ng-if="!$ctrl.loading" class="oui-datagrid__body">
-                        <tr data-ng-repeat="snapshot in $ctrl.snapshots | orderBy: 'region' track by snapshot.region" class="oui-datagrid__row">
-                            <td data-title="{{ :: 'cpbc_snapshot_col_location' | translate }}" class="oui-datagrid__cell">
-                                <span data-ng-bind=":: $ctrl.CucRegionService.getTranslatedMicroRegion(snapshot.region)"></span>
+                    <tbody
+                        data-ng-if="!$ctrl.loading"
+                        class="oui-datagrid__body"
+                    >
+                        <tr
+                            data-ng-repeat="snapshot in $ctrl.snapshots | orderBy: 'region' track by snapshot.region"
+                            class="oui-datagrid__row"
+                        >
+                            <td
+                                data-title="{{ :: 'cpbc_snapshot_col_location' | translate }}"
+                                class="oui-datagrid__cell"
+                            >
+                                <span
+                                    data-ng-bind=":: $ctrl.CucRegionService.getTranslatedMicroRegion(snapshot.region)"
+                                ></span>
                             </td>
-                            <td data-title="{{ :: 'cpbc_snapshot_col_type' | translate }}" class="oui-datagrid__cell">
-                                <span data-translate="cpbc_snapshot_type_instance"></span>
+                            <td
+                                data-title="{{ :: 'cpbc_snapshot_col_type' | translate }}"
+                                class="oui-datagrid__cell"
+                            >
+                                <span
+                                    data-translate="cpbc_snapshot_type_instance"
+                                ></span>
                             </td>
-                            <td class="oui-datagrid__cell text-right" data-title="{{ :: 'cpbc_snapshot_col_usage' | translate }}">
-                                <span>{{ snapshot.totalPrice.toFixed(2)  + ' ' + $ctrl.currencySymbol }}</span>
-                                <i class="fa fa-question-circle left-space-m4"
-                                data-oui-tooltip="{{:: $ctrl.getSnapshotPriceInfoTooltip(snapshot) }}"
-                                data-oui-tooltip-placement="left"></i>
+                            <td
+                                class="oui-datagrid__cell text-right"
+                                data-title="{{ :: 'cpbc_snapshot_col_usage' | translate }}"
+                            >
+                                <span
+                                    >{{ snapshot.totalPrice.toFixed(2) + ' ' +
+                                    $ctrl.currencySymbol }}</span
+                                >
+                                <i
+                                    class="fa fa-question-circle left-space-m4"
+                                    data-oui-tooltip="{{:: $ctrl.getSnapshotPriceInfoTooltip(snapshot) }}"
+                                    data-oui-tooltip-placement="left"
+                                ></i>
                             </td>
                         </tr>
                     </tbody>

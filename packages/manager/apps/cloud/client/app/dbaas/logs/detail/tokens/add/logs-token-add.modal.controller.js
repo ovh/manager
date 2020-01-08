@@ -7,13 +7,15 @@ class LogsTokenAddModalCtrl {
   }
 
   openModal() {
-    this.CucControllerHelper.modal.showModal({
-      modalConfig: {
-        templateUrl: 'app/dbaas/logs/detail/tokens/add/logs-token-add.html',
-        controller: 'LogsTokenAddCtrl',
-        controllerAs: 'ctrl',
-      },
-    }).then(() => this.$scope.$parent.ctrl.initLoaders())
+    this.CucControllerHelper.modal
+      .showModal({
+        modalConfig: {
+          templateUrl: 'app/dbaas/logs/detail/tokens/add/logs-token-add.html',
+          controller: 'LogsTokenAddCtrl',
+          controllerAs: 'ctrl',
+        },
+      })
+      .then(() => this.$scope.$parent.ctrl.initLoaders())
       .finally(() => this.onCloseModal());
   }
 
@@ -22,4 +24,6 @@ class LogsTokenAddModalCtrl {
   }
 }
 
-angular.module('managerApp').controller('LogsTokenAddModalCtrl', LogsTokenAddModalCtrl);
+angular
+  .module('managerApp')
+  .controller('LogsTokenAddModalCtrl', LogsTokenAddModalCtrl);

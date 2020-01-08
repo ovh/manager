@@ -75,18 +75,21 @@ angular.module('App').controller(
         this.$stateParams.productId,
         this.$stateParams.productId,
       )
-        .then((attachedDomain) => (!attachedDomain.ssl
-          ? this.HostingDomain.updateAttachedDomain(
-            this.$stateParams.productId,
-            this.$stateParams.productId,
-            {
-              ssl: true,
-            },
-          )
-          : null))
+        .then((attachedDomain) =>
+          !attachedDomain.ssl
+            ? this.HostingDomain.updateAttachedDomain(
+                this.$stateParams.productId,
+                this.$stateParams.productId,
+                {
+                  ssl: true,
+                },
+              )
+            : null,
+        )
         .then(() => this.Hosting.getSelected(this.$stateParams.productId))
         .then((hosting) => {
-          this.step1.canOrderPaidCertificate = hosting.offer !== this.HOSTING.offers.START_10_M;
+          this.step1.canOrderPaidCertificate =
+            hosting.offer !== this.HOSTING.offers.START_10_M;
         })
         .catch((err) => {
           this.step1.cannotOrderPaidCertificateErrorMessage = this.$translate.instant(
@@ -95,14 +98,19 @@ angular.module('App').controller(
           );
           this.step1.canOrderPaidCertificate = false;
         })
-        .then(() => this.hostingSSLCertificate.retrievingCertificate(
-          this.$stateParams.productId,
-        ).then((certificate) => {
-          if (certificate.provider === this.certificateTypes.LETS_ENCRYPT.providerName) {
-            this.selectedCertificateType = this.certificateTypes.IMPORTED.name;
-            this.step1.canOrderLetEncryptCertificate = false;
-          }
-        }))
+        .then(() =>
+          this.hostingSSLCertificate
+            .retrievingCertificate(this.$stateParams.productId)
+            .then((certificate) => {
+              if (
+                certificate.provider ===
+                this.certificateTypes.LETS_ENCRYPT.providerName
+              ) {
+                this.selectedCertificateType = this.certificateTypes.IMPORTED.name;
+                this.step1.canOrderLetEncryptCertificate = false;
+              }
+            }),
+        )
         .finally(() => {
           this.step1.loading.isRetrievingInitialData = false;
         });
@@ -110,7 +118,9 @@ angular.module('App').controller(
 
     onStep1NextStep() {
       if (
-        this.hostingSSLCertificateType.constructor.isLetsEncrypt(this.selectedCertificateType)
+        this.hostingSSLCertificateType.constructor.isLetsEncrypt(
+          this.selectedCertificateType,
+        )
       ) {
         this.creatingCertificate();
       }
@@ -118,20 +128,25 @@ angular.module('App').controller(
 
     onStep2Load() {
       if (
-        this.hostingSSLCertificateType.constructor.isPaid(this.selectedCertificateType)
+        this.hostingSSLCertificateType.constructor.isPaid(
+          this.selectedCertificateType,
+        )
       ) {
         this.generatingOrderForm();
       }
     }
 
     isStep2Valid() {
-      const isPaidCertificateValid = this.hostingSSLCertificateType
-        .constructor.isPaid(this.selectedCertificateType)
-          && !this.step2.loading.isGeneratingOrderForm;
-      const isImportCertificateValid = this.hostingSSLCertificateType
-        .constructor.isImported(this.selectedCertificateType)
-          && isObject(this.importCertificateForm)
-          && this.importCertificateForm.$valid;
+      const isPaidCertificateValid =
+        this.hostingSSLCertificateType.constructor.isPaid(
+          this.selectedCertificateType,
+        ) && !this.step2.loading.isGeneratingOrderForm;
+      const isImportCertificateValid =
+        this.hostingSSLCertificateType.constructor.isImported(
+          this.selectedCertificateType,
+        ) &&
+        isObject(this.importCertificateForm) &&
+        this.importCertificateForm.$valid;
 
       return isPaidCertificateValid || isImportCertificateValid;
     }
@@ -166,7 +181,9 @@ angular.module('App').controller(
     generatingOrderForm() {
       this.step2.loading.isGeneratingOrderForm = true;
 
-      return this.User.getUrlOfEndsWithSubsidiary('domain_order_options_service')
+      return this.User.getUrlOfEndsWithSubsidiary(
+        'domain_order_options_service',
+      )
         .then((rawOrderFormURL) => {
           this.orderFormURL = rawOrderFormURL.replace(
             '{domain}',
@@ -175,7 +192,9 @@ angular.module('App').controller(
         })
         .catch((err) => {
           this.Alerter.alertFromSWS(
-            this.$translate.instant('hosting_dashboard_ssl_redirect_to_order_error'),
+            this.$translate.instant(
+              'hosting_dashboard_ssl_redirect_to_order_error',
+            ),
             err,
             this.$scope.alerts.main,
           );
@@ -188,12 +207,16 @@ angular.module('App').controller(
 
     onFinishWizard() {
       if (
-        this.hostingSSLCertificateType.constructor.isPaid(this.selectedCertificateType)
+        this.hostingSSLCertificateType.constructor.isPaid(
+          this.selectedCertificateType,
+        )
       ) {
         this.$window.open(this.orderFormURL, '_blank');
         this.$scope.resetAction();
       } else if (
-        this.hostingSSLCertificateType.constructor.isImported(this.selectedCertificateType)
+        this.hostingSSLCertificateType.constructor.isImported(
+          this.selectedCertificateType,
+        )
       ) {
         this.creatingCertificate();
       }

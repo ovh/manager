@@ -44,7 +44,8 @@ import domainTpl from './domain/DOMAIN.html';
 
 const moduleName = 'Module.sharepoint';
 
-angular.module('Module.sharepoint.controllers', [])
+angular
+  .module('Module.sharepoint.controllers', [])
   .controller('SharepointCtrl', sharepointCtrl)
   .controller('SharepointTabsCtrl', tabsCtrl)
   .controller('SharepointAccountsCtrl', accountCtrl)
@@ -64,54 +65,97 @@ angular.module('Module.sharepoint.controllers', [])
   .controller('SharepointTasksCtrl', tasksCtrl)
   .controller('SharepointUrlCtrl', urlCtrl);
 
-angular.module('Module.sharepoint.services', [])
+angular
+  .module('Module.sharepoint.services', [])
   .service('MicrosoftSharepointLicenseService', licenseService)
   .service('MicrosoftSharepointOrderService', orderService);
 
-angular.module(moduleName, [
-  'ngOvhUtils',
-  'ngRoute',
-  'ui.bootstrap',
-  'ngSanitize',
-  'Module.sharepoint.controllers',
-  'Module.sharepoint.services',
-  'ovh-api-services',
-]).config(routing)
+angular
+  .module(moduleName, [
+    'ngOvhUtils',
+    'ngRoute',
+    'ui.bootstrap',
+    'ngSanitize',
+    'Module.sharepoint.controllers',
+    'Module.sharepoint.services',
+    'ovh-api-services',
+  ])
+  .config(routing)
   .constant('SHAREPOINT_GUIDE_URLS', {
     CZ: '',
-    DE: 'https://www.ovh.de/g2249.aktivierung_und_verwaltung_ihres_ovh_sharepoint',
+    DE:
+      'https://www.ovh.de/g2249.aktivierung_und_verwaltung_ihres_ovh_sharepoint',
     ES: 'https://www.ovh.es/g2249.activacion_y_gestion_de_un_sharepoint_ovh',
-    FI: 'https://www.ovh-hosting.fi/g2249.ovhn_sharepoint-hallintaliittyman_aktivointi',
-    FR: 'https://docs.ovh.com/fr/fr/web/microsoft-collaborative-solutions/activation-et-gestion-de-votre-sharepoint-ovh/',
+    FI:
+      'https://www.ovh-hosting.fi/g2249.ovhn_sharepoint-hallintaliittyman_aktivointi',
+    FR:
+      'https://docs.ovh.com/fr/fr/web/microsoft-collaborative-solutions/activation-et-gestion-de-votre-sharepoint-ovh/',
     GB: 'https://www.ovh.co.uk/g2249.enable_and_manage_your_ovh_sharepoint',
     IT: '',
     LT: 'https://www.ovh.lt/g2249.ovh_sharepoint_ijungimas_ir_valdymas',
     NL: '',
-    PL: 'https://www.ovh.pl/g2249.aktywacja_uslugi_sharepoint_ovh_i_zarzadzanie_nia',
+    PL:
+      'https://www.ovh.pl/g2249.aktywacja_uslugi_sharepoint_ovh_i_zarzadzanie_nia',
     PT: 'https://www.ovh.pt/g2249.ativacao_e_gestao_do_seu_sharepoint_ovh',
     CA: 'https://www.ovh.com/ca/en/g2249.enable_and_manage_your_ovh_sharepoint',
-    QC: 'https://www.ovh.com/ca/fr/g2249.activation_et_gestion_de_votre_sharepoint_ovh',
+    QC:
+      'https://www.ovh.com/ca/fr/g2249.activation_et_gestion_de_votre_sharepoint_ovh',
     US: 'https://www.ovh.com/us/g2249.enable_and_manage_your_ovh_sharepoint',
   })
-  .run(/* @ngInject */ ($templateCache) => {
-    $templateCache.put('sharepoint/order/sharepoint-order.html', orderTpl);
-    $templateCache.put('sharepoint/information/INFORMATION.html', informationTpl);
-    $templateCache.put('sharepoint/renew/update/sharepoint-renew-update.html', renewUpdateTpl);
-    $templateCache.put('sharepoint/sharepoint.html', sharepointTpl);
-    $templateCache.put('sharepoint/url/sharepoint-url.html', urlTpl);
-    $templateCache.put('sharepoint/task/TASK.html', taskTpl);
-    $templateCache.put('sharepoint/activate/sharepoint-activate.html', activateTpl);
-    $templateCache.put('sharepoint/admin-rights/reset/sharepoint-admin-rights-reset.html', adminRightsResetTpl);
-    $templateCache.put('sharepoint/account/password/update/sharepoint-account-password-update.html', passwordUpdateTpl);
-    $templateCache.put('sharepoint/account/update/sharepoint-account-update.html', accountUpdateTpl);
-    $templateCache.put('sharepoint/account/delete/sharepoint-account-delete.html', accountDeleteTpl);
-    $templateCache.put('sharepoint/account/ACCOUNT.html', accountTpl);
-    $templateCache.put('sharepoint/account/popover/user.html', userTpl);
-    $templateCache.put('sharepoint/account/add/sharepoint-account-add.html', accountAddTpl);
-    $templateCache.put('sharepoint/account/add-legacy/sharepoint-account-add-legacy.html', accountAddLegacyTpl);
-    $templateCache.put('sharepoint/domain/delete/sharepoint-domain-delete.html', domainDeleteTpl);
-    $templateCache.put('sharepoint/domain/add/sharepoint-domain-add.html', domainAddTpl);
-    $templateCache.put('sharepoint/domain/DOMAIN.html', domainTpl);
-  });
+  .run(
+    /* @ngInject */ ($templateCache) => {
+      $templateCache.put('sharepoint/order/sharepoint-order.html', orderTpl);
+      $templateCache.put(
+        'sharepoint/information/INFORMATION.html',
+        informationTpl,
+      );
+      $templateCache.put(
+        'sharepoint/renew/update/sharepoint-renew-update.html',
+        renewUpdateTpl,
+      );
+      $templateCache.put('sharepoint/sharepoint.html', sharepointTpl);
+      $templateCache.put('sharepoint/url/sharepoint-url.html', urlTpl);
+      $templateCache.put('sharepoint/task/TASK.html', taskTpl);
+      $templateCache.put(
+        'sharepoint/activate/sharepoint-activate.html',
+        activateTpl,
+      );
+      $templateCache.put(
+        'sharepoint/admin-rights/reset/sharepoint-admin-rights-reset.html',
+        adminRightsResetTpl,
+      );
+      $templateCache.put(
+        'sharepoint/account/password/update/sharepoint-account-password-update.html',
+        passwordUpdateTpl,
+      );
+      $templateCache.put(
+        'sharepoint/account/update/sharepoint-account-update.html',
+        accountUpdateTpl,
+      );
+      $templateCache.put(
+        'sharepoint/account/delete/sharepoint-account-delete.html',
+        accountDeleteTpl,
+      );
+      $templateCache.put('sharepoint/account/ACCOUNT.html', accountTpl);
+      $templateCache.put('sharepoint/account/popover/user.html', userTpl);
+      $templateCache.put(
+        'sharepoint/account/add/sharepoint-account-add.html',
+        accountAddTpl,
+      );
+      $templateCache.put(
+        'sharepoint/account/add-legacy/sharepoint-account-add-legacy.html',
+        accountAddLegacyTpl,
+      );
+      $templateCache.put(
+        'sharepoint/domain/delete/sharepoint-domain-delete.html',
+        domainDeleteTpl,
+      );
+      $templateCache.put(
+        'sharepoint/domain/add/sharepoint-domain-add.html',
+        domainAddTpl,
+      );
+      $templateCache.put('sharepoint/domain/DOMAIN.html', domainTpl);
+    },
+  );
 
 export default moduleName;

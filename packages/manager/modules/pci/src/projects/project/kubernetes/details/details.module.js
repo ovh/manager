@@ -18,21 +18,24 @@ import './index.scss';
 
 const moduleName = 'ovhManagerPciProjectKubernetesDetailComponent';
 
-angular.module(moduleName, [
-  'ngOvhCloudUniverseComponents',
-  'oui',
-  'ovh-api-services',
-  'pascalprecht.translate',
-  'ngTranslateAsyncLoader',
-  'ui.router',
-  containersComponent,
-  nodesComponent,
-  serviceComponent,
-])
+angular
+  .module(moduleName, [
+    'ngOvhCloudUniverseComponents',
+    'oui',
+    'ovh-api-services',
+    'pascalprecht.translate',
+    'ngTranslateAsyncLoader',
+    'ui.router',
+    containersComponent,
+    nodesComponent,
+    serviceComponent,
+  ])
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */)
-  .component('ovhManagerPciProjectKubernetesDetailComponent', kubernetesComponent)
+  .component(
+    'ovhManagerPciProjectKubernetesDetailComponent',
+    kubernetesComponent,
+  )
   .service('Kubernetes', service);
-
 
 export default moduleName;

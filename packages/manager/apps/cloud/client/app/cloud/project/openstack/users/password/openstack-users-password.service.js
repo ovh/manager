@@ -1,6 +1,6 @@
-
-angular.module('managerApp').service('OpenstackUsersPassword',
-  function OpenstackUsersPasswordService() {
+angular
+  .module('managerApp')
+  .service('OpenstackUsersPassword', function OpenstackUsersPasswordService() {
     const passwords = {};
     const self = this;
 

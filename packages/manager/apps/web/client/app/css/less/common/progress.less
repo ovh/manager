@@ -16,19 +16,15 @@
       min-height: unit(@ovh-progress-bar-height, px);
 
       &::after {
-        border-bottom:
-          unit(@ovh-progress-bar-height / 2, px) solid
-          transparent;
+        border-bottom: unit(@ovh-progress-bar-height / 2, px) solid transparent;
         border-left:
           unit(@ovh-progress-bar-height / 2, px) solid
           @oui-color-jungle;
-        border-top:
-          unit(@ovh-progress-bar-height / 2, px) solid
-          transparent;
-        content: "";
+        border-top: unit(@ovh-progress-bar-height / 2, px) solid transparent;
+        content: '';
         display: block;
         height: 0;
-        margin-left: ~"calc(100% + 1px)";
+        margin-left: ~'calc(100% + 1px)';
         width: 0;
       }
 
@@ -58,7 +54,7 @@
           box-sizing: content-box;
           background-color: #fff;
           border-radius: 50%;
-          content: "";
+          content: '';
           display: block;
           height: unit(@ovh-progress-bar-height / 2, px);
           position: absolute;
@@ -70,21 +66,20 @@
         &.active {
           &::after {
             border-left:
-              unit(@ovh-progress-bar-height / 10, px)
-              solid transparent;
+              unit(@ovh-progress-bar-height / 10, px) solid
+              transparent;
             border-right:
-              unit(@ovh-progress-bar-height / 10, px)
-              solid transparent;
+              unit(@ovh-progress-bar-height / 10, px) solid
+              transparent;
             border-top:
-              unit(@ovh-progress-bar-height / 10, px)
-              solid @oui-color-jungle;
-            content: "";
+              unit(@ovh-progress-bar-height / 10, px) solid
+              @oui-color-jungle;
+            content: '';
             display: block;
             height: 0;
             left:
               unit(
-                (@ovh-progress-bar-height / 4) -
-                (@ovh-progress-bar-height / 10),
+                (@ovh-progress-bar-height / 4) - (@ovh-progress-bar-height / 10),
                 px
               );
             position: absolute;
@@ -97,8 +92,8 @@
           &::after {
             left:
               unit(
-                (@ovh-progress-bar-height / 4) -
-                (@ovh-progress-bar-height / 10) + 2,
+                (@ovh-progress-bar-height / 4) - (@ovh-progress-bar-height / 10) +
+                2,
                 px
               );
           }

@@ -5,11 +5,14 @@ export default class exchangeHeaderService {
   }
 
   updateServiceDisplayName(organizationName, exchangeService, displayName) {
-    return this.OvhHttp.put(`/email/exchange/${organizationName}/service/${exchangeService}`, {
-      rootPath: 'apiv6',
-      data: {
-        displayName,
+    return this.OvhHttp.put(
+      `/email/exchange/${organizationName}/service/${exchangeService}`,
+      {
+        rootPath: 'apiv6',
+        data: {
+          displayName,
+        },
       },
-    });
+    );
   }
 }

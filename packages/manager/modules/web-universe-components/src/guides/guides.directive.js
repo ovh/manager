@@ -29,18 +29,13 @@ export default /* @ngInject */ (OvhApiMe, WUC_GUIDES) => ({
 
       OvhApiMe.v6()
         .get()
-        .$promise
-        .then((user) => {
+        .$promise.then((user) => {
           const ovhSubsidiary = get(user, 'ovhSubsidiary', 'FR');
 
           $scope.guideConfiguration = get(
             WUC_GUIDES,
             `${ovhSubsidiary}.${$scope.wucGuidesList}`,
-            get(
-              WUC_GUIDES,
-              `FR.${$scope.wucGuidesList}`,
-              [],
-            ),
+            get(WUC_GUIDES, `FR.${$scope.wucGuidesList}`, []),
           );
         });
     },

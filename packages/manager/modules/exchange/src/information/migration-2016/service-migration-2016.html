@@ -1,19 +1,21 @@
 <div data-ng-controller="ExchangeMigration2016Ctrl as ctrl">
-    <div data-wizard
-         data-wizard-title="'exchange_ACTION_upgrade_title' | translate"
-         data-wizard-on-cancel="resetAction"
-         data-wizard-on-finish="submitting">
-
-        <div data-wizard-step
-             data-wizard-step-valid="ctrl.agree.value">
+    <div
+        data-wizard
+        data-wizard-title="'exchange_ACTION_upgrade_title' | translate"
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="submitting"
+    >
+        <div data-wizard-step data-wizard-step-valid="ctrl.agree.value">
             <p data-translate="exchange_ACTION_upgrade_intro"></p>
 
             <oui-spinner data-ng-if="!ctrl.model.contracts"></oui-spinner>
 
-            <div data-contracts="ctrl.model.contracts"
-                 data-full-text="false"
-                 data-ng-model="ctrl.agree.value"
-                 data-ng-if="ctrl.model.contracts"></div>
+            <div
+                data-contracts="ctrl.model.contracts"
+                data-full-text="false"
+                data-ng-model="ctrl.agree.value"
+                data-ng-if="ctrl.model.contracts"
+            ></div>
         </div>
     </div>
 </div>

@@ -4,7 +4,14 @@ import isNumber from 'lodash/isNumber';
 
 export default class ExchangeServicesConfigureCtrl {
   /* @ngInject */
-  constructor($scope, APIExchange, Exchange, $translate, navigation, messaging) {
+  constructor(
+    $scope,
+    APIExchange,
+    Exchange,
+    $translate,
+    navigation,
+    messaging,
+  ) {
     this.services = {
       $scope,
       APIExchange,
@@ -34,18 +41,23 @@ export default class ExchangeServicesConfigureCtrl {
   }
 
   retrievingDetails() {
-    return this.services.APIExchange.get('/{organizationName}/service/{exchangeService}', {
-      urlParams: {
-        organizationName: this.exchange.organization,
-        exchangeService: this.exchange.domain,
+    return this.services.APIExchange.get(
+      '/{organizationName}/service/{exchangeService}',
+      {
+        urlParams: {
+          organizationName: this.exchange.organization,
+          exchangeService: this.exchange.domain,
+        },
       },
-    })
+    )
       .then((serviceDescription) => {
         this.service = serviceDescription;
         this.service.lockoutThreshold = isNumber(this.service.lockoutThreshold)
           ? this.service.lockoutThreshold
           : 0;
-        this.service.minPasswordLength = isNumber(this.service.minPasswordLength)
+        this.service.minPasswordLength = isNumber(
+          this.service.minPasswordLength,
+        )
           ? this.service.minPasswordLength
           : 0;
         this.service.minPasswordAge = isNumber(this.service.minPasswordAge)
@@ -54,7 +66,9 @@ export default class ExchangeServicesConfigureCtrl {
         this.service.maxPasswordAge = isNumber(this.service.maxPasswordAge)
           ? this.service.maxPasswordAge
           : 0;
-        this.service.passwordHistoryCount = isNumber(this.service.passwordHistoryCount)
+        this.service.passwordHistoryCount = isNumber(
+          this.service.passwordHistoryCount,
+        )
           ? this.service.passwordHistoryCount
           : 0;
 
@@ -74,7 +88,9 @@ export default class ExchangeServicesConfigureCtrl {
       maxPasswordAge: this.service.maxPasswordAge || null,
       minPasswordAge: this.service.minPasswordAge || null,
       passwordHistoryCount:
-        this.service.maxPasswordAge > 0 ? this.service.passwordHistoryCount || null : null,
+        this.service.maxPasswordAge > 0
+          ? this.service.passwordHistoryCount || null
+          : null,
       minPasswordLength: this.service.minPasswordLength || null,
       spamAndVirusConfiguration: this.service.spamAndVirusConfiguration,
     };
@@ -145,7 +161,10 @@ export default class ExchangeServicesConfigureCtrl {
         input.$setValidity('min', intValue >= 0);
         input.$setValidity('max', intValue <= 90);
       } else if (intValue !== 0) {
-        input.$setValidity('minToBigForMax', intValue < +this.service.maxPasswordAge);
+        input.$setValidity(
+          'minToBigForMax',
+          intValue < +this.service.maxPasswordAge,
+        );
       }
     }
   }
@@ -161,7 +180,10 @@ export default class ExchangeServicesConfigureCtrl {
       input.$setValidity('max', intValue <= 90);
 
       if (intValue !== 0) {
-        input.$setValidity('maxToSmallForMin', intValue > +this.service.minPasswordAge);
+        input.$setValidity(
+          'maxToSmallForMin',
+          intValue > +this.service.minPasswordAge,
+        );
       }
     }
 
@@ -184,10 +206,12 @@ export default class ExchangeServicesConfigureCtrl {
     }
 
     if (
-      this.serviceForm.lockoutObservationWindow != null
-      && this.serviceForm.lockoutDuration != null
+      this.serviceForm.lockoutObservationWindow != null &&
+      this.serviceForm.lockoutDuration != null
     ) {
-      this.lockoutObservationWindowCheck(this.serviceForm.lockoutObservationWindow);
+      this.lockoutObservationWindowCheck(
+        this.serviceForm.lockoutObservationWindow,
+      );
       this.lockoutDurationCheck(this.serviceForm.lockoutDuration);
     }
   }
@@ -197,7 +221,10 @@ export default class ExchangeServicesConfigureCtrl {
     input.$setValidity('max', true);
     input.$setValidity('toBigForDuration', true);
 
-    if (this.serviceForm.lockoutThreshold.$valid && this.service.lockoutThreshold === 0) {
+    if (
+      this.serviceForm.lockoutThreshold.$valid &&
+      this.service.lockoutThreshold === 0
+    ) {
       input.$setValidity('number', true);
       input.$setValidity('mustBeInteger', true);
       return;
@@ -208,8 +235,14 @@ export default class ExchangeServicesConfigureCtrl {
       input.$setValidity('min', intValue >= 1);
       input.$setValidity('max', intValue <= 90);
 
-      if (isNumber(this.service.lockoutDuration) && !isNaN(this.service.lockoutDuration)) {
-        input.$setValidity('toBigForDuration', intValue <= this.service.lockoutDuration);
+      if (
+        isNumber(this.service.lockoutDuration) &&
+        !isNaN(this.service.lockoutDuration)
+      ) {
+        input.$setValidity(
+          'toBigForDuration',
+          intValue <= this.service.lockoutDuration,
+        );
       }
     }
 
@@ -223,7 +256,10 @@ export default class ExchangeServicesConfigureCtrl {
     input.$setValidity('min', true);
     input.$setValidity('max', true);
 
-    if (this.serviceForm.lockoutThreshold.$valid && this.service.lockoutThreshold === 0) {
+    if (
+      this.serviceForm.lockoutThreshold.$valid &&
+      this.service.lockoutThreshold === 0
+    ) {
       input.$setValidity('number', true);
       input.$setValidity('mustBeInteger', true);
       return;
@@ -241,7 +277,10 @@ export default class ExchangeServicesConfigureCtrl {
     }
 
     if (!comesFromLockoutObservationWindowCheck) {
-      this.lockoutObservationWindowCheck(this.serviceForm.lockoutObservationWindow, true);
+      this.lockoutObservationWindowCheck(
+        this.serviceForm.lockoutObservationWindow,
+        true,
+      );
     }
   }
 

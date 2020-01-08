@@ -12,10 +12,13 @@
     }
 
     deleteUser(userId) {
-      return this.Cloud.Project().User().v6().remove({
-        serviceName: this.serviceName,
-        userId,
-      }).$promise;
+      return this.Cloud.Project()
+        .User()
+        .v6()
+        .remove({
+          serviceName: this.serviceName,
+          userId,
+        }).$promise;
     }
 
     confirm() {
@@ -33,5 +36,10 @@
     }
   }
 
-  angular.module('managerApp').controller('CloudProjectOpenStackUserDeleteCtrl', CloudProjectOpenStackUserDeleteCtrl);
+  angular
+    .module('managerApp')
+    .controller(
+      'CloudProjectOpenStackUserDeleteCtrl',
+      CloudProjectOpenStackUserDeleteCtrl,
+    );
 })();

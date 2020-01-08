@@ -1,48 +1,79 @@
 <div data-ng-controller="AddSubdomainHostingChoiceCtrl as ctrl">
-    <div data-wizard
-         data-wizard-confirm-button-text="'wizard_next' | translate"
-         data-wizard-on-cancel="resetAction"
-         data-wizard-on-finish="redirect"
-         data-wizard-title="'domain_configuration_add_subdomain' | translate">
-
-        <div data-wizard-step
-             data-wizard-step-on-previous="ctrl.goBack"
-             data-wizard-step-valid="ctrl.selected.hosting">
-
+    <div
+        data-wizard
+        data-wizard-confirm-button-text="'wizard_next' | translate"
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="redirect"
+        data-wizard-title="'domain_configuration_add_subdomain' | translate"
+    >
+        <div
+            data-wizard-step
+            data-wizard-step-on-previous="ctrl.goBack"
+            data-wizard-step-valid="ctrl.selected.hosting"
+        >
             <div class="text-center" data-ng-if="ctrl.loading">
                 <oui-spinner></oui-spinner>
             </div>
 
             <div data-ng-if="!ctrl.loading && ctrl.hostings">
-                <p data-ng-bind-html="'domain_configuration_add_subdomain_hosting_choice' | translate: { t0: currentActionData.subdomain, t1: currentActionData.domain.displayName }"></p>
+                <p
+                    data-ng-bind-html="'domain_configuration_add_subdomain_hosting_choice' | translate: { t0: currentActionData.subdomain, t1: currentActionData.domain.displayName }"
+                ></p>
                 <form class="mt-4" name="searchHostingForm">
                     <div class="form-group w-50 mx-auto">
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="{{ 'domain_configuration_add_subdomain_hosting_search' | translate }}"
-                                   data-ng-change="selected.hosting = null"
-                                   data-ng-model="ctrl.selected.search">
-                            <div class="input-group-btn" data-ng-if="ctrl.selected.search">
-                                <button class="btn btn-default" type="button" title="{{ 'common_cancel' | translate }}"
-                                        data-ng-click="ctrl.selected.search = ''">
-                                    <span class="fa fa-times" aria-hidden="true"></span>
+                            <input
+                                type="text"
+                                class="form-control"
+                                placeholder="{{ 'domain_configuration_add_subdomain_hosting_search' | translate }}"
+                                data-ng-change="selected.hosting = null"
+                                data-ng-model="ctrl.selected.search"
+                            />
+                            <div
+                                class="input-group-btn"
+                                data-ng-if="ctrl.selected.search"
+                            >
+                                <button
+                                    class="btn btn-default"
+                                    type="button"
+                                    title="{{ 'common_cancel' | translate }}"
+                                    data-ng-click="ctrl.selected.search = ''"
+                                >
+                                    <span
+                                        class="fa fa-times"
+                                        aria-hidden="true"
+                                    ></span>
                                 </button>
                             </div>
-                            <span class="input-group-addon" data-ng-if="!ctrl.selected.search">
-                                <span class="fa fa-search" aria-hidden="true"></span>
+                            <span
+                                class="input-group-addon"
+                                data-ng-if="!ctrl.selected.search"
+                            >
+                                <span
+                                    class="fa fa-search"
+                                    aria-hidden="true"
+                                ></span>
                             </span>
                         </div>
                     </div>
                 </form>
-                <ul class="list-unstyled selectList" data-ng-show="(ctrl.hostings | filter:ctrl.selected.search).length > 0">
-                    <li data-ng-repeat="hosting in (ctrl.hostings | filter:ctrl.selected.search | orderBy) track by $index"
+                <ul
+                    class="list-unstyled selectList"
+                    data-ng-show="(ctrl.hostings | filter:ctrl.selected.search).length > 0"
+                >
+                    <li
+                        data-ng-repeat="hosting in (ctrl.hostings | filter:ctrl.selected.search | orderBy) track by $index"
                         data-ng-bind="hosting"
                         data-ng-click="ctrl.selected.hosting = hosting"
-                        data-ng-class="{'lineSelected': ctrl.selected.hosting === hosting}">
-                    </li>
+                        data-ng-class="{'lineSelected': ctrl.selected.hosting === hosting}"
+                    ></li>
                 </ul>
-                <div class="alert alert-info mt-5" role="alert"
-                     data-translate="hosting_tab_DOMAINS_configuration_add_step1_ovh_search_no_result_found"
-                     data-ng-show="(ctrl.hostings | filter:ctrl.selected.search).length === 0"></div>
+                <div
+                    class="alert alert-info mt-5"
+                    role="alert"
+                    data-translate="hosting_tab_DOMAINS_configuration_add_step1_ovh_search_no_result_found"
+                    data-ng-show="(ctrl.hostings | filter:ctrl.selected.search).length === 0"
+                ></div>
             </div>
         </div>
     </div>

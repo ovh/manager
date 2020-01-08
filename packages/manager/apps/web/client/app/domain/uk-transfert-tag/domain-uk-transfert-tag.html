@@ -1,31 +1,55 @@
 <div data-ng-controller="DomainUkTransfertTagCtrl as ctrl">
-    <div data-wizard
-         data-wizard-on-finish="addTagUkTransfer"
-         data-wizard-on-cancel="resetAction"
-         data-wizard-title="'domain_dashboard_add_uk_tags' | translate">
-
-        <div data-wizard-step
-             data-wizard-step-valid="ctrl.ukTransferForm.$valid">
-
+    <div
+        data-wizard
+        data-wizard-on-finish="addTagUkTransfer"
+        data-wizard-on-cancel="resetAction"
+        data-wizard-title="'domain_dashboard_add_uk_tags' | translate"
+    >
+        <div
+            data-wizard-step
+            data-wizard-step-valid="ctrl.ukTransferForm.$valid"
+        >
             <div class="text-center" data-ng-if="ctrl.loading">
                 <oui-spinner></oui-spinner>
             </div>
 
             <div data-ng-if="!ctrl.loading">
-                <p data-ng-bind-html="'domain_dashboard_add_uk_tags_title' | translate: { t0: ctrl.domain.name }"></p>
+                <p
+                    data-ng-bind-html="'domain_dashboard_add_uk_tags_title' | translate: { t0: ctrl.domain.name }"
+                ></p>
 
                 <form name="ctrl.ukTransferForm">
-                    <div class="form-group" data-ng-class="{ 'has-error': ctrl.ukTransferForm.ukTag.$dirty && ctrl.ukTransferForm.ukTag.$invalid }">
-                        <label class="control-label required" for="ukTag"
-                               data-translate="domain_dashboard_add_uk_tags_label"></label>
-                        <input type="text" class="form-control" id="ukTag" name="ukTag" required
-                               data-ng-maxlength="50"
-                               data-ng-model="ctrl.ukTag"
-                               data-ng-pattern="/^[a-zA-Z0-9\-]+$/">
-                        <div class="help-block"
-                             data-ng-messages="ctrl.ukTransferForm.ukTag.$error">
-                             <span data-ng-message="maxlength" data-translate="domain_dashboard_add_uk_tags_maxlength_error"></span>
-                             <span data-ng-message="pattern" data-translate="domain_dashboard_add_uk_tags_pattern_error"></span>
+                    <div
+                        class="form-group"
+                        data-ng-class="{ 'has-error': ctrl.ukTransferForm.ukTag.$dirty && ctrl.ukTransferForm.ukTag.$invalid }"
+                    >
+                        <label
+                            class="control-label required"
+                            for="ukTag"
+                            data-translate="domain_dashboard_add_uk_tags_label"
+                        ></label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="ukTag"
+                            name="ukTag"
+                            required
+                            data-ng-maxlength="50"
+                            data-ng-model="ctrl.ukTag"
+                            data-ng-pattern="/^[a-zA-Z0-9\-]+$/"
+                        />
+                        <div
+                            class="help-block"
+                            data-ng-messages="ctrl.ukTransferForm.ukTag.$error"
+                        >
+                            <span
+                                data-ng-message="maxlength"
+                                data-translate="domain_dashboard_add_uk_tags_maxlength_error"
+                            ></span>
+                            <span
+                                data-ng-message="pattern"
+                                data-translate="domain_dashboard_add_uk_tags_pattern_error"
+                            ></span>
                         </div>
                     </div>
                 </form>

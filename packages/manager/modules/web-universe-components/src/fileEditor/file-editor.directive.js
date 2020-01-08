@@ -23,8 +23,9 @@ export default /* @ngInject */ ($anchorScroll, $location) => ({
     const $editor = element.find('.editor');
     const $inputFile = $(element).find('input[type=file]');
 
-    $scope.wucFileEditorMatchExistingItems = angular
-      .isDefined($scope.wucFileEditorMatchExistingItems)
+    $scope.wucFileEditorMatchExistingItems = angular.isDefined(
+      $scope.wucFileEditorMatchExistingItems,
+    )
       ? $scope.wucFileEditorMatchExistingItems
       : false;
 
@@ -112,11 +113,14 @@ export default /* @ngInject */ ($anchorScroll, $location) => ({
         $scope.ngModel = uniq($scope.fileModel.value.trim().split(/\s/g));
 
         if (!$scope.wucFileEditorMatchExistingItems) {
-          $scope.ngModel = $scope.ngModel
-            .filter((item) => !!item && $scope.wucFileEditorExistingItems.indexOf(item) === -1);
+          $scope.ngModel = $scope.ngModel.filter(
+            (item) =>
+              !!item && $scope.wucFileEditorExistingItems.indexOf(item) === -1,
+          );
         } else {
-          $scope.ngModel = $scope.ngModel
-            .filter((item) => $scope.wucFileEditorExistingItems.indexOf(item) !== -1);
+          $scope.ngModel = $scope.ngModel.filter(
+            (item) => $scope.wucFileEditorExistingItems.indexOf(item) !== -1,
+          );
         }
       } else {
         $scope.ngModel = [];
@@ -132,8 +136,9 @@ export default /* @ngInject */ ($anchorScroll, $location) => ({
             $scope.removeAll();
           }
 
-          $scope.wucFileEditorErrors = $scope.ngModel
-            .filter((item) => !$scope.wucFileEditorItemValidator(item));
+          $scope.wucFileEditorErrors = $scope.ngModel.filter(
+            (item) => !$scope.wucFileEditorItemValidator(item),
+          );
         }
       },
       true,

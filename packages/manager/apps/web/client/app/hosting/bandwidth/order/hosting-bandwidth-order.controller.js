@@ -5,7 +5,15 @@ angular
   .module('App')
   .controller(
     'HostingOrderBandwidthCtrl',
-    ($scope, $q, $window, $stateParams, $translate, HostingBandwidthOrder, Alerter) => {
+    (
+      $scope,
+      $q,
+      $window,
+      $stateParams,
+      $translate,
+      HostingBandwidthOrder,
+      Alerter,
+    ) => {
       $scope.loading = {
         init: true,
         duration: true,
@@ -62,12 +70,14 @@ angular
 
             $scope.loading.details = true;
             $scope.durations.forEach((duration) => {
-              queue.push(HostingBandwidthOrder.getOrder($stateParams.productId, {
-                traffic: $scope.model.offer,
-                duration,
-              }).then((details) => {
-                $scope.details[duration] = details;
-              }));
+              queue.push(
+                HostingBandwidthOrder.getOrder($stateParams.productId, {
+                  traffic: $scope.model.offer,
+                  duration,
+                }).then((details) => {
+                  $scope.details[duration] = details;
+                }),
+              );
             });
             $q.all(queue).then(() => {
               $scope.loading.details = false;
@@ -92,15 +102,15 @@ angular
             );
           case 2:
             return (
-              $scope.model.offer
-              && $scope.model.duration
-              && !$scope.loading.details
+              $scope.model.offer &&
+              $scope.model.duration &&
+              !$scope.loading.details
             );
           case 3:
             return (
-              $scope.model.offer
-              && $scope.model.duration
-              && $scope.model.contract
+              $scope.model.offer &&
+              $scope.model.duration &&
+              $scope.model.contract
             );
           default:
             return null;
@@ -115,7 +125,9 @@ angular
         })
           .then((order) => {
             Alerter.success(
-              $translate.instant('hosting_dashboard_cdn_order_success', { t0: order.url }),
+              $translate.instant('hosting_dashboard_cdn_order_success', {
+                t0: order.url,
+              }),
               $scope.alerts.main,
             );
             $window.open(order.url, '_blank');

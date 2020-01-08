@@ -35,10 +35,8 @@ export default class DomainOptinCtrl {
     this.options = {};
     this.loading = true;
 
-    return this.$q.all([
-      this.getContactFields(),
-      this.getOptinRules(),
-    ])
+    return this.$q
+      .all([this.getContactFields(), this.getOptinRules()])
       .then(() => this.getCurrentConfiguration())
       .catch(() => {
         this.Alerter.error(
@@ -52,19 +50,21 @@ export default class DomainOptinCtrl {
   }
 
   getOptinRules() {
-    return this.OvhApiDomainRulesOptin.v6().query({
-      serviceName: this.domain,
-    }).$promise
-      .then((optinRules) => {
-        const contactTypes = optinRules.length === CONTACTS_TYPES.length ? CONTACTS_TYPES : map(optinRules, 'type');
-        this.rules = contactTypes
-          .map((contactType) => (
-            {
-              type: contactType,
-              fields: DomainOptinCtrl
-                .filterIndividualFields(optinRules.find(({ type }) => type === contactType).fields),
-            }
-          ));
+    return this.OvhApiDomainRulesOptin.v6()
+      .query({
+        serviceName: this.domain,
+      })
+      .$promise.then((optinRules) => {
+        const contactTypes =
+          optinRules.length === CONTACTS_TYPES.length
+            ? CONTACTS_TYPES
+            : map(optinRules, 'type');
+        this.rules = contactTypes.map((contactType) => ({
+          type: contactType,
+          fields: DomainOptinCtrl.filterIndividualFields(
+            optinRules.find(({ type }) => type === contactType).fields,
+          ),
+        }));
 
         this.rules.forEach(({ type, fields }) => {
           this.configuration[type] = {
@@ -81,16 +81,20 @@ export default class DomainOptinCtrl {
   }
 
   getCurrentConfiguration() {
-    return this.OvhApiDomainConfigurationsOptin.v6().query({
-      serviceName: this.domain,
-    }).$promise
-      .then((optinConfigurations) => {
+    return this.OvhApiDomainConfigurationsOptin.v6()
+      .query({
+        serviceName: this.domain,
+      })
+      .$promise.then((optinConfigurations) => {
         optinConfigurations.forEach(({ type, fields }) => {
-          const fieldsWithoutEmail = fields.filter((field) => field !== 'email');
-          this.options[type]
-            .allFieldsOption = fieldsWithoutEmail.length === this.fields.length;
-          this.options[type].areFieldsEditedIndividually = !this.options[type].allFieldsOption
-            && fieldsWithoutEmail.length > 0;
+          const fieldsWithoutEmail = fields.filter(
+            (field) => field !== 'email',
+          );
+          this.options[type].allFieldsOption =
+            fieldsWithoutEmail.length === this.fields.length;
+          this.options[type].areFieldsEditedIndividually =
+            !this.options[type].allFieldsOption &&
+            fieldsWithoutEmail.length > 0;
 
           fields.forEach((field) => {
             this.configuration[type][field] = true;
@@ -100,10 +104,11 @@ export default class DomainOptinCtrl {
   }
 
   getContactFields() {
-    return this.Domain.getDomainModels()
-      .then(({ models }) => {
-        this.fields = models['domain.OptinFieldsEnum'].enum.filter((field) => field !== 'email');
-      });
+    return this.Domain.getDomainModels().then(({ models }) => {
+      this.fields = models['domain.OptinFieldsEnum'].enum.filter(
+        (field) => field !== 'email',
+      );
+    });
   }
 
   saveOptinConfiguration() {
@@ -111,12 +116,16 @@ export default class DomainOptinCtrl {
       type: DomainOptinCtrl.formatContactType(type),
       fields: this.getContactTypeFields(type, fields),
     })).filter((data) => data.fields.length > 0);
-    return this.OvhApiDomainConfigurationsOptin.v6().put({
-      serviceName: this.domain,
-    }, {
-      optin,
-    }).$promise
-      .then(() => {
+    return this.OvhApiDomainConfigurationsOptin.v6()
+      .put(
+        {
+          serviceName: this.domain,
+        },
+        {
+          optin,
+        },
+      )
+      .$promise.then(() => {
         this.Alerter.success(
           this.$translate.instant('domain_optin_save_success'),
           this.DOMAIN.ALERTS.tabs,
@@ -148,10 +157,13 @@ export default class DomainOptinCtrl {
   }
 
   static mapFields(fields) {
-    return fields.reduce((mappedFields, field) => ({
-      ...mappedFields,
-      [field]: false,
-    }), {});
+    return fields.reduce(
+      (mappedFields, field) => ({
+        ...mappedFields,
+        [field]: false,
+      }),
+      {},
+    );
   }
 
   static formatContactType(contactType) {

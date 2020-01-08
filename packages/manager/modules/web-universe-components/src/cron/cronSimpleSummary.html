@@ -3,35 +3,75 @@
     <dt data-translate="cron_label_hours"></dt>
     <dd data-ng-switch="mode.simple.h">
         <span data-ng-switch-when="all" data-translate="cron_hours_all"></span>
-        <span data-ng-switch-when="items" data-ng-bind="getSimpleModeItems('h').toString()"></span>
-        <span data-ng-switch-when="interval" data-translate="cron_hours_interval_value" data-translate-values="{ t0: cron.simple.interval.h }"></span>
-        <span data-ng-switch-when="range" data-ng-bind="('cron_hours_range_from' | translate) + ' ' + cron.simple.range.h.from + ' ' + ('cron_hours_range_to' | translate) + ' ' + cron.simple.range.h.to"></span>
+        <span
+            data-ng-switch-when="items"
+            data-ng-bind="getSimpleModeItems('h').toString()"
+        ></span>
+        <span
+            data-ng-switch-when="interval"
+            data-translate="cron_hours_interval_value"
+            data-translate-values="{ t0: cron.simple.interval.h }"
+        ></span>
+        <span
+            data-ng-switch-when="range"
+            data-ng-bind="('cron_hours_range_from' | translate) + ' ' + cron.simple.range.h.from + ' ' + ('cron_hours_range_to' | translate) + ' ' + cron.simple.range.h.to"
+        ></span>
     </dd>
 
     <!-- DOM -->
     <dt data-translate="cron_label_days"></dt>
     <dd data-ng-switch="mode.simple.dom">
         <span data-ng-switch-when="all" data-translate="cron_dom_all"></span>
-        <span data-ng-switch-when="items" data-ng-bind="getSimpleModeItems('dom').toString()"></span>
-        <span data-ng-switch-when="interval" data-translate="cron_dom_interval_value" data-translate-values="{ t0: cron.simple.interval.dom }"></span>
-        <span data-ng-switch-when="range" data-ng-bind="('cron_dom_range_from' | translate) + ' ' + cron.simple.range.dom.from + ' ' + ('cron_dom_range_to' | translate) + ' ' + cron.simple.range.dom.to"></span>
+        <span
+            data-ng-switch-when="items"
+            data-ng-bind="getSimpleModeItems('dom').toString()"
+        ></span>
+        <span
+            data-ng-switch-when="interval"
+            data-translate="cron_dom_interval_value"
+            data-translate-values="{ t0: cron.simple.interval.dom }"
+        ></span>
+        <span
+            data-ng-switch-when="range"
+            data-ng-bind="('cron_dom_range_from' | translate) + ' ' + cron.simple.range.dom.from + ' ' + ('cron_dom_range_to' | translate) + ' ' + cron.simple.range.dom.to"
+        ></span>
     </dd>
 
     <!-- DOW -->
     <dt data-translate="cron_label_dow"></dt>
     <dd data-ng-switch="mode.simple.dow">
         <span data-ng-switch-when="all" data-translate="cron_dow_all"></span>
-        <span data-ng-switch-when="items" data-ng-bind="getSimpleModeItems('dow').toString()"></span>
-        <span data-ng-switch-when="interval" data-translate="cron_dow_interval_value" data-translate-values="{ t0: cron.simple.interval.dow }"></span>
-        <span data-ng-switch-when="range" data-ng-bind="('cron_dow_range_from' | translate) + ' ' + cron.simple.range.dow.from + ' ' + ('cron_dow_range_to' | translate) + ' ' + cron.simple.range.dow.to"></span>
+        <span
+            data-ng-switch-when="items"
+            data-ng-bind="getSimpleModeItems('dow').toString()"
+        ></span>
+        <span
+            data-ng-switch-when="interval"
+            data-translate="cron_dow_interval_value"
+            data-translate-values="{ t0: cron.simple.interval.dow }"
+        ></span>
+        <span
+            data-ng-switch-when="range"
+            data-ng-bind="('cron_dow_range_from' | translate) + ' ' + cron.simple.range.dow.from + ' ' + ('cron_dow_range_to' | translate) + ' ' + cron.simple.range.dow.to"
+        ></span>
     </dd>
 
     <!-- MON -->
     <dt data-translate="cron_label_months"></dt>
     <dd data-ng-switch="mode.simple.mon">
         <span data-ng-switch-when="all" data-translate="cron_mon_all"></span>
-        <span data-ng-switch-when="items" data-ng-bind="getSimpleModeItems('mon').toString()"></span>
-        <span data-ng-switch-when="interval" data-translate="cron_mon_interval_value" data-translate-values="{ t0: cron.simple.interval.mon }"></span>
-        <span data-ng-switch-when="range" data-ng-bind="('cron_mon_range_from' | translate) + ' ' + cron.simple.range.mon.from + ' ' + ('cron_mon_range_to' | translate) + ' ' + cron.simple.range.mon.to"></span>
+        <span
+            data-ng-switch-when="items"
+            data-ng-bind="getSimpleModeItems('mon').toString()"
+        ></span>
+        <span
+            data-ng-switch-when="interval"
+            data-translate="cron_mon_interval_value"
+            data-translate-values="{ t0: cron.simple.interval.mon }"
+        ></span>
+        <span
+            data-ng-switch-when="range"
+            data-ng-bind="('cron_mon_range_from' | translate) + ' ' + cron.simple.range.mon.from + ' ' + ('cron_mon_range_to' | translate) + ' ' + cron.simple.range.mon.to"
+        ></span>
     </dd>
 </dl>

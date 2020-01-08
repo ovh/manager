@@ -5,9 +5,7 @@ import 'angular-translate';
 import 'ovh-ui-angular';
 import 'ovh-api-services';
 
-import {
-  URL_WHITELIST,
-} from './vnc.constants';
+import { URL_WHITELIST } from './vnc.constants';
 
 import component from './vnc.component';
 import routing from './vnc.routing';
@@ -23,10 +21,13 @@ angular
     'pascalprecht.translate',
   ])
   .config(routing)
-  .config(/* @ngInject */ ($sceDelegateProvider) => $sceDelegateProvider.resourceUrlWhitelist([
-    ...$sceDelegateProvider.resourceUrlWhitelist(),
-    ...URL_WHITELIST,
-  ]))
+  .config(
+    /* @ngInject */ ($sceDelegateProvider) =>
+      $sceDelegateProvider.resourceUrlWhitelist([
+        ...$sceDelegateProvider.resourceUrlWhitelist(),
+        ...URL_WHITELIST,
+      ]),
+  )
   .component('pciInstancesInstanceVNC', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 

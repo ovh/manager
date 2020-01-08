@@ -1,5 +1,13 @@
-angular.module('managerApp')
-  .controller('CdaPoolListCtrl', function CdaPoolListCtrl($q, $stateParams, $uibModal, $translate, OvhApiDedicatedCeph, CucCloudMessage) {
+angular
+  .module('managerApp')
+  .controller('CdaPoolListCtrl', function CdaPoolListCtrl(
+    $q,
+    $stateParams,
+    $uibModal,
+    $translate,
+    OvhApiDedicatedCeph,
+    CucCloudMessage,
+  ) {
     const self = this;
 
     self.loading = false;
@@ -20,18 +28,28 @@ angular.module('managerApp')
     };
 
     function initPools() {
-      OvhApiDedicatedCeph.Pool().v6().resetAllCache();
+      OvhApiDedicatedCeph.Pool()
+        .v6()
+        .resetAllCache();
 
-      return OvhApiDedicatedCeph.Pool().v6().query({
-        serviceName: $stateParams.serviceName,
-      }).$promise.then((pools) => {
-        self.datas.pools = pools;
-        return pools;
-      });
+      return OvhApiDedicatedCeph.Pool()
+        .v6()
+        .query({
+          serviceName: $stateParams.serviceName,
+        })
+        .$promise.then((pools) => {
+          self.datas.pools = pools;
+          return pools;
+        });
     }
 
     function displayError(error) {
-      CucCloudMessage.error([$translate.instant('ceph_common_error'), (error.data && error.data.message) || ''].join(' '));
+      CucCloudMessage.error(
+        [
+          $translate.instant('ceph_common_error'),
+          (error.data && error.data.message) || '',
+        ].join(' '),
+      );
     }
 
     function init() {
@@ -39,7 +57,8 @@ angular.module('managerApp')
       initPools()
         .catch((error) => {
           displayError(error);
-        }).finally(() => {
+        })
+        .finally(() => {
           self.loading = false;
         });
     }
@@ -49,7 +68,11 @@ angular.module('managerApp')
     };
 
     self.openDeleteModal = function openDeleteModal(pool) {
-      self.openModal(self.modals.remove.templateUrl, self.modals.remove.controller, { pool });
+      self.openModal(
+        self.modals.remove.templateUrl,
+        self.modals.remove.controller,
+        { pool },
+      );
     };
 
     self.openModal = function openModal(template, controller, params) {

@@ -19,12 +19,26 @@ angular
   .component('exchangeAccountAlias', exchangeAccountAlias)
   .component('exchangeAccountHome', exchangeAccountHome)
   .component('exchangeHeader', exchangeHeader)
-  .component('exchangeWizardHostedCreationDomainConfiguration', exchangeWizardHostedCreationDomainConfiguration)
-  .component('exchangeWizardHostedCreationEmailCreation', exchangeWizardHostedCreationEmailCreation)
-  .component('exchangeWizardHostedCreationFirstStep', exchangeWizardHostedCreationFirstStep)
-  .component('exchangeWizardHostedCreationHeader', exchangeWizardHostedCreationHeader)
-  .component('exchangeWizardHostedCreationSummary', exchangeWizardHostedCreationSummary)
+  .component(
+    'exchangeWizardHostedCreationDomainConfiguration',
+    exchangeWizardHostedCreationDomainConfiguration,
+  )
+  .component(
+    'exchangeWizardHostedCreationEmailCreation',
+    exchangeWizardHostedCreationEmailCreation,
+  )
+  .component(
+    'exchangeWizardHostedCreationFirstStep',
+    exchangeWizardHostedCreationFirstStep,
+  )
+  .component(
+    'exchangeWizardHostedCreationHeader',
+    exchangeWizardHostedCreationHeader,
+  )
+  .component(
+    'exchangeWizardHostedCreationSummary',
+    exchangeWizardHostedCreationSummary,
+  )
   .component('exchangeWizardHostedCreation', exchangeWizardHostedCreation);
-
 
 export default moduleName;

@@ -1,13 +1,27 @@
 <section class="widget-presentation table-router">
     <header class="widget-presentation-header">
-        <h2 class="widget-presentation-title" data-translate="xdsl_modem_service_title"></h2>
+        <h2
+            class="widget-presentation-title"
+            data-translate="xdsl_modem_service_title"
+        ></h2>
     </header>
-    
+
     <div class="row">
-        <div class="col-md-3" data-ng-repeat="service in $ctrl.modemServices track by $index" data-ng-class="{ 'disabled' : !service.isDefined }">
-            <oui-switch name="service.name" model="service.value" disabled="!service.isDefined" data-on-change="$ctrl.changeValue(service.name, modelValue)">
+        <div
+            class="col-md-3"
+            data-ng-repeat="service in $ctrl.modemServices track by $index"
+            data-ng-class="{ 'disabled' : !service.isDefined }"
+        >
+            <oui-switch
+                name="service.name"
+                model="service.value"
+                disabled="!service.isDefined"
+                data-on-change="$ctrl.changeValue(service.name, modelValue)"
+            >
             </oui-switch>
-            <span data-translate="{{ 'xdsl_modem_service_' + service.label }}"></span>
+            <span
+                data-translate="{{ 'xdsl_modem_service_' + service.label }}"
+            ></span>
         </div>
     </div>
 </section>

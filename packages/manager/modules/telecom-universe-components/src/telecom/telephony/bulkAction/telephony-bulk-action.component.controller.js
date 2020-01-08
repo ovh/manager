@@ -4,7 +4,7 @@ import isFunction from 'lodash/isFunction';
 
 import templateModal from './modal/telephony-bulk-action-modal.html';
 
-export default /* @ngInject */ function (
+export default /* @ngInject */ function(
   $q,
   $translate,
   $translatePartialLoader,
@@ -28,33 +28,40 @@ export default /* @ngInject */ function (
       self.onOpen()();
     }
 
-    return $uibModal.open({
-      template: templateModal,
-      controller: 'tucTelephonyBulkActionModalCtrl',
-      controllerAs: '$ctrl',
-      resolve: {
-        modalBindings: {
-          serviceType: self.serviceType,
-          billingAccount: self.billingAccount,
-          serviceName: self.serviceName,
-          bulkInfos: self.bulkInfos,
-          getBulkParams: self.getBulkParams,
-          filterServices: self.filterServices,
-          previouslyUpdatedServices: self.previouslyUpdatedServices,
+    return $uibModal
+      .open({
+        template: templateModal,
+        controller: 'tucTelephonyBulkActionModalCtrl',
+        controllerAs: '$ctrl',
+        resolve: {
+          modalBindings: {
+            serviceType: self.serviceType,
+            billingAccount: self.billingAccount,
+            serviceName: self.serviceName,
+            bulkInfos: self.bulkInfos,
+            getBulkParams: self.getBulkParams,
+            filterServices: self.filterServices,
+            previouslyUpdatedServices: self.previouslyUpdatedServices,
+          },
         },
-      },
-    })
+      })
       .result.then((data) => {
         if (self.onSuccess && isFunction(self.onSuccess())) {
           self.onSuccess()(data);
         }
 
         if (isArray(data.success)) {
-          tucTelephonyBulkActionUpdatedServicesContainer.storeUpdatedServices(data.success);
+          tucTelephonyBulkActionUpdatedServicesContainer.storeUpdatedServices(
+            data.success,
+          );
         }
       })
       .catch((error) => {
-        if (get(error, 'type') === 'API' && self.onError && isFunction(self.onError())) {
+        if (
+          get(error, 'type') === 'API' &&
+          self.onError &&
+          isFunction(self.onError())
+        ) {
           self.onError()(error);
         }
         return $q.reject(error);
@@ -63,21 +70,21 @@ export default /* @ngInject */ function (
 
   /* -----  End of EVENTS  ------ */
 
-
   /* =====================================
     =            INITIALIZATION            =
     ====================================== */
 
   function getTranslations() {
-    $translatePartialLoader.addPart('../components/telecom/telephony/bulkAction');
+    $translatePartialLoader.addPart(
+      '../components/telecom/telephony/bulkAction',
+    );
     return $translate.refresh();
   }
 
   self.$onInit = function $onInit() {
     self.loading.init = true;
 
-    self.previouslyUpdatedServices = tucTelephonyBulkActionUpdatedServicesContainer
-      .getUpdatedServices();
+    self.previouslyUpdatedServices = tucTelephonyBulkActionUpdatedServicesContainer.getUpdatedServices();
 
     // check for attributes
     // check for serviceType : line or number - default to line

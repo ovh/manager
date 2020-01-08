@@ -1,6 +1,8 @@
-angular.module('managerApp').constant('CONFIG', {
-  env: 'production',
-})
+angular
+  .module('managerApp')
+  .constant('CONFIG', {
+    env: 'production',
+  })
   .constant('CONFIG_API', {
     apis: [
       {

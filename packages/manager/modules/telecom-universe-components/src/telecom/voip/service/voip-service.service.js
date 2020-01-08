@@ -28,7 +28,13 @@ import { FEATURE_TYPES } from './voip-service.constants';
  */
 export default class {
   /* @ngInject */
-  constructor($q, OvhApiTelephony, TucVoipService, TucVoipServiceAlias, TucVoipServiceLine) {
+  constructor(
+    $q,
+    OvhApiTelephony,
+    TucVoipService,
+    TucVoipServiceAlias,
+    TucVoipServiceLine,
+  ) {
     this.$q = $q;
     this.OvhApiTelephony = OvhApiTelephony;
     this.TucVoipService = TucVoipService;
@@ -51,32 +57,43 @@ export default class {
    *  @return {Promise} That return an Array of TucVoipService instances.
    */
   fetchAll(withError = true) {
-    return this.OvhApiTelephony.Service().v7().query().aggregate('billingAccount')
+    return this.OvhApiTelephony.Service()
+      .v7()
+      .query()
+      .aggregate('billingAccount')
       .expand()
       .execute()
-      .$promise
-      .then((result) => map(
-        filter(
-          result,
-          (res) => has(res, 'value') || (withError && (keys(res.value).length && has(res.value, 'message'))),
+      .$promise.then((result) =>
+        map(
+          filter(
+            result,
+            (res) =>
+              has(res, 'value') ||
+              (withError &&
+                keys(res.value).length &&
+                has(res.value, 'message')),
+          ),
+          (res) => {
+            const billingAccount = get(res.path.split('/'), '[2]');
+
+            // same remark as above :-)
+            if (
+              res.error ||
+              (keys(res.value).length === 1 && has(res.value, 'message'))
+            ) {
+              return new this.TucVoipService({
+                billingAccount,
+                serviceName: res.key,
+                error: res.error || res.value.message,
+              });
+            }
+
+            // ensure that billingAccount option is setted
+            set(res.value, 'billingAccount', billingAccount);
+            return this.constructService(res.value);
+          },
         ),
-        (res) => {
-          const billingAccount = get(res.path.split('/'), '[2]');
-
-          // same remark as above :-)
-          if (res.error || (keys(res.value).length === 1 && has(res.value, 'message'))) {
-            return new this.TucVoipService({
-              billingAccount,
-              serviceName: res.key,
-              error: res.error || res.value.message,
-            });
-          }
-
-          // ensure that billingAccount option is setted
-          set(res.value, 'billingAccount', billingAccount);
-          return this.constructService(res.value); // eslint-disable-line
-        },
-      ));
+      );
   }
 
   /**
@@ -94,14 +111,17 @@ export default class {
    *  @return {Promise}   That returns a TucVoipService instance representing the fetched service.
    */
   fetchSingleService(billingAccount, serviceName) {
-    return this.OvhApiTelephony.Service().v6().get({
-      billingAccount,
-      serviceName,
-    }).$promise.then((result) => {
-      // ensure billingAccount is setted
-      set(result, 'billingAccount', billingAccount);
-      return this.constructService(result); // eslint-disable-line
-    });
+    return this.OvhApiTelephony.Service()
+      .v6()
+      .get({
+        billingAccount,
+        serviceName,
+      })
+      .$promise.then((result) => {
+        // ensure billingAccount is setted
+        set(result, 'billingAccount', billingAccount);
+        return this.constructService(result);
+      });
   }
 
   /* =========================================
@@ -126,11 +146,13 @@ export default class {
    *  @return {Promise}   That returns an Array of {@link https://eu.api.ovh.com/console/#/telephony/%7BbillingAccount%7D/service/%7BserviceName%7D/diagnosticReports#GET `telephony.DiagnosticReport`} objects.
    */
   fetchDiagnosticReports(billingAccount, serviceName, dayInterval) {
-    return this.OvhApiTelephony.Service().v6().diagnosticReports({
-      billingAccount,
-      serviceName,
-      dayInterval,
-    }).$promise;
+    return this.OvhApiTelephony.Service()
+      .v6()
+      .diagnosticReports({
+        billingAccount,
+        serviceName,
+        dayInterval,
+      }).$promise;
   }
 
   /**
@@ -148,7 +170,11 @@ export default class {
    *  @return {Promise}   That returns an Array of {@link http://jean-baptiste.devs.ria.ovh.net/rico/#/telephony/%7BbillingAccount%7D/service/%7BserviceName%7D/diagnosticReports#GET `telephony.DiagnosticReport`} objects.
    */
   fetchServiceDiagnosticReports(service, dayInterval) {
-    return this.fetchDiagnosticReports(service.billingAccount, service.serviceName, dayInterval);
+    return this.fetchDiagnosticReports(
+      service.billingAccount,
+      service.serviceName,
+      dayInterval,
+    );
   }
 
   /* -----  End of Diagnostic reports  ------ */
@@ -166,19 +192,33 @@ export default class {
    *  @return {Object}   the pending termination task
    */
   getTerminationTask(service) {
-    return this.OvhApiTelephony.Service().OfferTask().v6()
+    return this.OvhApiTelephony.Service()
+      .OfferTask()
+      .v6()
       .query({
         billingAccount: service.billingAccount,
         serviceName: service.serviceName,
         action: 'termination',
         type: 'offer',
-      }).$promise.then((offerTaskIds) => this.$q
-        .all(map(offerTaskIds, (id) => this.OvhApiTelephony.Service().OfferTask().v6().get({
-          billingAccount: service.billingAccount,
-          serviceName: service.serviceName,
-          taskId: id,
-        }).$promise))
-        .then((tasks) => head(filter(tasks, { status: 'todo' }))));
+      })
+      .$promise.then((offerTaskIds) =>
+        this.$q
+          .all(
+            map(
+              offerTaskIds,
+              (id) =>
+                this.OvhApiTelephony.Service()
+                  .OfferTask()
+                  .v6()
+                  .get({
+                    billingAccount: service.billingAccount,
+                    serviceName: service.serviceName,
+                    taskId: id,
+                  }).$promise,
+            ),
+          )
+          .then((tasks) => head(filter(tasks, { status: 'todo' }))),
+      );
   }
 
   /**
@@ -194,7 +234,8 @@ export default class {
    *  @return {Promise}  Promise that returns directory
    */
   getServiceDirectory(service) {
-    return this.OvhApiTelephony.Service().v6()
+    return this.OvhApiTelephony.Service()
+      .v6()
       .directory({
         billingAccount: service.billingAccount,
         serviceName: service.serviceName,
@@ -214,21 +255,31 @@ export default class {
    *  @return {Array}               Consumption list of details
    */
   getServiceConsumption(service) {
-    return this.OvhApiTelephony.Service().VoiceConsumption().v6()
+    return this.OvhApiTelephony.Service()
+      .VoiceConsumption()
+      .v6()
       .query({
         billingAccount: service.billingAccount,
         serviceName: service.serviceName,
-      }).$promise.then((ids) => this.$q
-        .all(map(
-          chunk(ids, 50),
-          (chunkIds) => this.OvhApiTelephony.Service().VoiceConsumption().v6()
-            .getBatch({
-              billingAccount: service.billingAccount,
-              serviceName: service.serviceName,
-              consumptionId: chunkIds,
-            }).$promise,
-        ))
-        .then((chunkResult) => flatten(chunkResult)))
+      })
+      .$promise.then((ids) =>
+        this.$q
+          .all(
+            map(
+              chunk(ids, 50),
+              (chunkIds) =>
+                this.OvhApiTelephony.Service()
+                  .VoiceConsumption()
+                  .v6()
+                  .getBatch({
+                    billingAccount: service.billingAccount,
+                    serviceName: service.serviceName,
+                    consumptionId: chunkIds,
+                  }).$promise,
+            ),
+          )
+          .then((chunkResult) => flatten(chunkResult)),
+      )
       .then((result) => map(result, 'value'));
   }
 
@@ -245,16 +296,28 @@ export default class {
    *  @return {Array}               Repayments list
    */
   fetchServiceRepayments({ billingAccount, serviceName }) {
-    return this.OvhApiTelephony.Service().RepaymentConsumption().v6().query({
-      billingAccount,
-      serviceName,
-    }).$promise
-      .then((repaymentsIds) => this.$q.all(repaymentsIds.map((repayment) => this.OvhApiTelephony
-        .Service().RepaymentConsumption().v6().get({
-          billingAccount,
-          serviceName,
-          consumptionId: repayment,
-        }).$promise)));
+    return this.OvhApiTelephony.Service()
+      .RepaymentConsumption()
+      .v6()
+      .query({
+        billingAccount,
+        serviceName,
+      })
+      .$promise.then((repaymentsIds) =>
+        this.$q.all(
+          repaymentsIds.map(
+            (repayment) =>
+              this.OvhApiTelephony.Service()
+                .RepaymentConsumption()
+                .v6()
+                .get({
+                  billingAccount,
+                  serviceName,
+                  consumptionId: repayment,
+                }).$promise,
+          ),
+        ),
+      );
   }
 
   /* ==============================
@@ -262,9 +325,8 @@ export default class {
     =============================== */
 
   static groupByFeatureType(services) {
-    return groupBy(
-      services,
-      (service) => get(
+    return groupBy(services, (service) =>
+      get(
         FEATURE_TYPES.GROUPS,
         service.featureType,
         FEATURE_TYPES.DEFAULT_GROUP,
@@ -343,7 +405,10 @@ export default class {
    *  @return {Array.<VoipSercice>} The filtered list of fax.
    */
   static filterFaxServices(services) {
-    return filter(services, (service) => ['fax', 'voicefax'].indexOf(service.featureType) > -1);
+    return filter(
+      services,
+      (service) => ['fax', 'voicefax'].indexOf(service.featureType) > -1,
+    );
   }
 
   /* -----  End of Filters  ------ */
@@ -361,8 +426,11 @@ export default class {
    *  @return {Array.<VoipSercice>}   The sorted list of services.
    */
   static sortServicesByDisplayedName(services) {
-    return angular.copy(services)
-      .sort((first, second) => first.getDisplayedName().localeCompare(second.getDisplayedName()));
+    return angular
+      .copy(services)
+      .sort((first, second) =>
+        first.getDisplayedName().localeCompare(second.getDisplayedName()),
+      );
   }
 
   /* ==============================

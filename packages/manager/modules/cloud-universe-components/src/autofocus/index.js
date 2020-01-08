@@ -4,8 +4,6 @@ import directive from './directive';
 
 const moduleName = 'cucAutofocus';
 
-angular
-  .module(moduleName, [])
-  .directive('cucAutofocus', directive);
+angular.module(moduleName, []).directive('cucAutofocus', directive);
 
 export default moduleName;

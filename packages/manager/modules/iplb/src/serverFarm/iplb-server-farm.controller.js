@@ -8,9 +8,16 @@ import IplbServerStatusDetailTemplate from '../server/status/iplb-server-status-
 
 export default class IpLoadBalancerServerFarmCtrl {
   /* @ngInject */
-  constructor($filter, $state, $stateParams, $translate, CucControllerHelper,
-    IpLoadBalancerActionService, IpLoadBalancerServerService,
-    IpLoadBalancerServerFarmService) {
+  constructor(
+    $filter,
+    $state,
+    $stateParams,
+    $translate,
+    CucControllerHelper,
+    IpLoadBalancerActionService,
+    IpLoadBalancerServerService,
+    IpLoadBalancerServerFarmService,
+  ) {
     this.$filter = $filter;
     this.$state = $state;
     this.$stateParams = $stateParams;
@@ -41,8 +48,10 @@ export default class IpLoadBalancerServerFarmCtrl {
 
   initLoaders() {
     this.farms = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () => this.IpLoadBalancerServerFarmService.getServerFarms(this.serviceName)
-        .then((farms) => {
+      loaderFunction: () =>
+        this.IpLoadBalancerServerFarmService.getServerFarms(
+          this.serviceName,
+        ).then((farms) => {
           this.createFarmActions(farms);
           return farms;
         }),
@@ -58,10 +67,18 @@ export default class IpLoadBalancerServerFarmCtrl {
 
   loadServers() {
     forEach(this.farms.data, (farm) => {
-      set(farm, 'servers', this.CucControllerHelper.request.getArrayLoader({
-        loaderFunction: () => this.IpLoadBalancerServerFarmService
-          .getServerFarmServers(this.serviceName, farm.farmId, farm.type),
-      }));
+      set(
+        farm,
+        'servers',
+        this.CucControllerHelper.request.getArrayLoader({
+          loaderFunction: () =>
+            this.IpLoadBalancerServerFarmService.getServerFarmServers(
+              this.serviceName,
+              farm.farmId,
+              farm.type,
+            ),
+        }),
+      );
       farm.servers.load();
     });
   }
@@ -140,7 +157,8 @@ export default class IpLoadBalancerServerFarmCtrl {
       farm.type,
       this.$stateParams.serviceName,
       farm.farmId,
-      server.serverId, {
+      server.serverId,
+      {
         status: newStatus,
       },
     ).then(() => {
@@ -153,17 +171,22 @@ export default class IpLoadBalancerServerFarmCtrl {
     this.farmActions = {};
     farms.forEach((farm) => {
       this.farmActions[farm.farmId] = [
-        [{
-          text: this.i18n.preview,
-          callback: () => this.farmPreview(farm),
-        }],
-        [{
-          text: this.i18n.update,
-          callback: () => this.update(farm),
-        }, {
-          text: this.i18n.remove,
-          callback: () => this.delete(farm),
-        }],
+        [
+          {
+            text: this.i18n.preview,
+            callback: () => this.farmPreview(farm),
+          },
+        ],
+        [
+          {
+            text: this.i18n.update,
+            callback: () => this.update(farm),
+          },
+          {
+            text: this.i18n.remove,
+            callback: () => this.delete(farm),
+          },
+        ],
       ];
     });
   }
@@ -172,10 +195,19 @@ export default class IpLoadBalancerServerFarmCtrl {
     let serverText = '';
     if (!get(farm.servers, 'loading', false)) {
       const serverNumber = farm.servers.data.length;
-      const serverLabel = serverNumber > 1
-        ? this.$translate.instant('iplb_farm_list_accordion_aside_server_many', { serverNumber })
-        : this.$translate.instant('iplb_farm_list_accordion_aside_server_single', { serverNumber });
-      serverText = ` / ${this.$translate.instant(serverLabel, { serverNumber })}`;
+      const serverLabel =
+        serverNumber > 1
+          ? this.$translate.instant(
+              'iplb_farm_list_accordion_aside_server_many',
+              { serverNumber },
+            )
+          : this.$translate.instant(
+              'iplb_farm_list_accordion_aside_server_single',
+              { serverNumber },
+            );
+      serverText = ` / ${this.$translate.instant(serverLabel, {
+        serverNumber,
+      })}`;
     }
 
     let zone = farm.zoneText.microRegion.text;
@@ -183,7 +215,8 @@ export default class IpLoadBalancerServerFarmCtrl {
       zone = this.$translate.instant('iplb_zone_all');
     }
 
-    return `${this.$filter('uppercase')(farm.type) + (farm.port ? `:${farm.port}` : '')} / ${zone}${serverText}`;
+    return `${this.$filter('uppercase')(farm.type) +
+      (farm.port ? `:${farm.port}` : '')} / ${zone}${serverText}`;
   }
 
   getFarmName(farm) {

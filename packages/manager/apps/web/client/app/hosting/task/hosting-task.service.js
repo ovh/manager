@@ -3,7 +3,12 @@ import map from 'lodash/map';
 
 angular
   .module('services')
-  .service('HostingTask', function hostingTaskService(OvhHttp, $q, $timeout, $log) {
+  .service('HostingTask', function hostingTaskService(
+    OvhHttp,
+    $q,
+    $timeout,
+    $log,
+  ) {
     const self = this;
     const deferred = {};
     const ticOfPoll = 1000;
@@ -66,14 +71,16 @@ angular
       const setToPoll = [];
       angular.forEach(deferred, (defer, id) => {
         if (defer) {
-          setToPoll.push(self.getFromId(serviceName, id).then(
-            (task) => {
-              resolveOrNot(id, task);
-            },
-            (err) => {
-              resolveOrNot(id, null, err);
-            },
-          ));
+          setToPoll.push(
+            self.getFromId(serviceName, id).then(
+              (task) => {
+                resolveOrNot(id, task);
+              },
+              (err) => {
+                resolveOrNot(id, null, err);
+              },
+            ),
+          );
         }
       });
 
@@ -96,21 +103,22 @@ angular
       pollDeferred(serviceName);
     }
 
-    this.getFromId = (serviceName, id) => OvhHttp.get('/hosting/web/{serviceName}/tasks/{id}', {
-      rootPath: 'apiv6',
-      urlParams: {
-        serviceName,
-        id,
-      },
-      returnSuccessKey: '',
-    }).then(
-      (response) => response.data,
-      (err) => {
-        const { data } = err.data;
-        data.status = err.status;
-        return $q.reject(data);
-      },
-    );
+    this.getFromId = (serviceName, id) =>
+      OvhHttp.get('/hosting/web/{serviceName}/tasks/{id}', {
+        rootPath: 'apiv6',
+        urlParams: {
+          serviceName,
+          id,
+        },
+        returnSuccessKey: '',
+      }).then(
+        (response) => response.data,
+        (err) => {
+          const { data } = err.data;
+          data.status = err.status;
+          return $q.reject(data);
+        },
+      );
 
     function getFromFunctionAndStatus(serviceName, fncName, fncStatus) {
       return OvhHttp.get('/hosting/web/{serviceName}/tasks/', {

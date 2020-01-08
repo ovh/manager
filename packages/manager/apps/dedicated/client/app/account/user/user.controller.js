@@ -9,7 +9,8 @@ export default class UserAccountCtrl {
     this.constants = constants;
     this.supportLevel = supportLevel;
     this.USERACCOUNT_BASE_URL = 'account/user/';
-    this.originUrl = this.$location.search().redirectTo || this.$location.search().redirectto;
+    this.originUrl =
+      this.$location.search().redirectTo || this.$location.search().redirectto;
   }
 
   $onInit() {

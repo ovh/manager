@@ -12,6 +12,9 @@ export default class EnterpriseCloudDatabaseServiceDetailsLogsCtrl {
   }
 
   loadLogDetails(logId) {
-    return this.enterpriseCloudDatabaseService.getLogDetails(this.clusterId, logId);
+    return this.enterpriseCloudDatabaseService.getLogDetails(
+      this.clusterId,
+      logId,
+    );
   }
 }

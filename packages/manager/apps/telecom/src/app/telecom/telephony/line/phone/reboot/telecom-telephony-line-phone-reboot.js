@@ -3,7 +3,8 @@ angular.module('managerApp').config(($stateProvider) => {
     url: '/reboot',
     views: {
       'lineView@telecom.telephony.billingAccount.line': {
-        templateUrl: 'app/telecom/telephony/line/phone/reboot/telecom-telephony-line-phone-reboot.html',
+        templateUrl:
+          'app/telecom/telephony/line/phone/reboot/telecom-telephony-line-phone-reboot.html',
         controller: 'TelecomTelephonyLinePhoneRebootCtrl',
         controllerAs: 'PhoneRebootCtrl',
       },

@@ -1,36 +1,45 @@
-<form name="removeReceiverForm"
-      id="removeReceiverForm"
-      data-ng-submit="ReceiversRemoveCtrl.remove()">
-
+<form
+    name="removeReceiverForm"
+    id="removeReceiverForm"
+    data-ng-submit="ReceiversRemoveCtrl.remove()"
+>
     <div class="modal-header">
         <button
             type="button"
             class="close float-right"
             aria-label="{{ ::'sms_cancel' | translate }}"
-            data-ng-click="ReceiversRemoveCtrl.cancel()">
+            data-ng-click="ReceiversRemoveCtrl.cancel()"
+        >
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
 
-    <div class="modal-body"
-         data-ng-if="!ReceiversRemoveCtrl.loading.removeReceiver && !ReceiversRemoveCtrl.removed">
-        <h3 class="modal-title"
-            data-translate="sms_receivers_remove_receiver_title">
-        </h3>
-        <p data-translate="sms_receivers_remove_receiver_confirm"
-           data-translate-values="{ receiver: ReceiversRemoveCtrl.receiver.description }">
-        </p>
+    <div
+        class="modal-body"
+        data-ng-if="!ReceiversRemoveCtrl.loading.removeReceiver && !ReceiversRemoveCtrl.removed"
+    >
+        <h3
+            class="modal-title"
+            data-translate="sms_receivers_remove_receiver_title"
+        ></h3>
+        <p
+            data-translate="sms_receivers_remove_receiver_confirm"
+            data-translate-values="{ receiver: ReceiversRemoveCtrl.receiver.description }"
+        ></p>
     </div>
 
-    <div class="modal-body text-center"
-         data-ng-if="ReceiversRemoveCtrl.loading.removeReceiver">
+    <div
+        class="modal-body text-center"
+        data-ng-if="ReceiversRemoveCtrl.loading.removeReceiver"
+    >
         <oui-spinner></oui-spinner>
         <h4 data-translate="sms_receivers_remove_receiver_removing"></h4>
     </div>
 
-    <div class="modal-body"
-         data-ng-if="ReceiversRemoveCtrl.removed">
-        <tuc-success-drawing-check data-draw-success-check="ReceiversRemoveCtrl.removed">
+    <div class="modal-body" data-ng-if="ReceiversRemoveCtrl.removed">
+        <tuc-success-drawing-check
+            data-draw-success-check="ReceiversRemoveCtrl.removed"
+        >
             <h4 data-translate="sms_receivers_remove_receiver_removed"></h4>
         </tuc-success-drawing-check>
     </div>
@@ -41,14 +50,13 @@
             class="btn btn-default"
             data-ng-click="ReceiversRemoveCtrl.cancel()"
             data-translate="sms_cancel"
-            data-ng-disabled="ReceiversRemoveCtrl.loading.removeReceiver || ReceiversRemoveCtrl.removed">
-        </button>
+            data-ng-disabled="ReceiversRemoveCtrl.loading.removeReceiver || ReceiversRemoveCtrl.removed"
+        ></button>
         <button
             type="submit"
             class="btn btn-primary"
             data-translate="sms_submit"
-            data-ng-disabled="ReceiversRemoveCtrl.loading.removeReceiver || ReceiversRemoveCtrl.removed">
-        </button>
+            data-ng-disabled="ReceiversRemoveCtrl.loading.removeReceiver || ReceiversRemoveCtrl.removed"
+        ></button>
     </div>
-
 </form>

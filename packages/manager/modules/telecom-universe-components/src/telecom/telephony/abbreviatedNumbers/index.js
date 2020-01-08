@@ -28,11 +28,26 @@ angular
     tucToaster,
     'ui.bootstrap',
   ])
-  .constant('TUC_TELECOM_TELEPHONY_ABBREVIATED_NUMBERS_PAGINATION_PER_PAGE', PAGINATION_PER_PAGE)
-  .controller('tucTelecomTelephonyAbbreviatedNumbersImportModal', tucTelecomTelephonyAbbreviatedNumbersImportModal)
-  .controller('tucTelecomTelephonyAbbreviatedNumbersModal', tucTelecomTelephonyAbbreviatedNumbersModal)
-  .controller('tucTelecomTelephonyAbbreviatedNumbersEmptyModal', tucTelecomTelephonyAbbreviatedNumbersEmptyModal)
-  .component('tucTelecomTelephonyAbbreviatedNumbers', tucTelecomTelephonyAbbreviatedNumbers)
+  .constant(
+    'TUC_TELECOM_TELEPHONY_ABBREVIATED_NUMBERS_PAGINATION_PER_PAGE',
+    PAGINATION_PER_PAGE,
+  )
+  .controller(
+    'tucTelecomTelephonyAbbreviatedNumbersImportModal',
+    tucTelecomTelephonyAbbreviatedNumbersImportModal,
+  )
+  .controller(
+    'tucTelecomTelephonyAbbreviatedNumbersModal',
+    tucTelecomTelephonyAbbreviatedNumbersModal,
+  )
+  .controller(
+    'tucTelecomTelephonyAbbreviatedNumbersEmptyModal',
+    tucTelecomTelephonyAbbreviatedNumbersEmptyModal,
+  )
+  .component(
+    'tucTelecomTelephonyAbbreviatedNumbers',
+    tucTelecomTelephonyAbbreviatedNumbers,
+  )
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

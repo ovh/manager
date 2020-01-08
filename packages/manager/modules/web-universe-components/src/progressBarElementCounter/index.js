@@ -6,6 +6,9 @@ const moduleName = 'wucProgressBarElementCounter';
 
 angular
   .module(moduleName, [])
-  .directive('wucProgressBarElementCounter', wucProgressBarElementCounterDirective);
+  .directive(
+    'wucProgressBarElementCounter',
+    wucProgressBarElementCounterDirective,
+  );
 
 export default moduleName;

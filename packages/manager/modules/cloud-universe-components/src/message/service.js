@@ -11,10 +11,7 @@ import moment from 'moment';
 
 export default class CucCloudMessage {
   /* @ngInject */
-  constructor(
-    $transitions,
-    $state,
-  ) {
+  constructor($transitions, $state) {
     this.$state = $state;
     this.messages = {};
     this.subscribers = {};
@@ -25,19 +22,35 @@ export default class CucCloudMessage {
   }
 
   success(message, containerName) {
-    this.logMessage(isPlainObject(message) ? message : { text: message }, 'success', containerName);
+    this.logMessage(
+      isPlainObject(message) ? message : { text: message },
+      'success',
+      containerName,
+    );
   }
 
   error(message, containerName) {
-    this.logMessage(isPlainObject(message) ? message : { text: message }, 'error', containerName);
+    this.logMessage(
+      isPlainObject(message) ? message : { text: message },
+      'error',
+      containerName,
+    );
   }
 
   warning(message, containerName) {
-    this.logMessage(isPlainObject(message) ? message : { text: message }, 'warning', containerName);
+    this.logMessage(
+      isPlainObject(message) ? message : { text: message },
+      'warning',
+      containerName,
+    );
   }
 
   info(message, containerName) {
-    this.logMessage(isPlainObject(message) ? message : { text: message }, 'info', containerName);
+    this.logMessage(
+      isPlainObject(message) ? message : { text: message },
+      'info',
+      containerName,
+    );
   }
 
   /*
@@ -52,11 +65,16 @@ export default class CucCloudMessage {
 
     if (messageHandler) {
       // Message age defines how many flush the message went through.
-      messageHandler.messages.push(assignIn({
-        type,
-        origin: containerName || this.$state.current.name,
-        timestamp: moment().valueOf(),
-      }, messageHash));
+      messageHandler.messages.push(
+        assignIn(
+          {
+            type,
+            origin: containerName || this.$state.current.name,
+            timestamp: moment().valueOf(),
+          },
+          messageHash,
+        ),
+      );
       messageHandler.onMessage();
     } else {
       // eslint-disable-next-line no-console
@@ -74,7 +92,10 @@ export default class CucCloudMessage {
     containerName = `${containerName || this.$state.current.name}.`;
     let messageHandler = null;
     do {
-      containerName = containerName.substring(0, lastIndexOf(containerName, '.'));
+      containerName = containerName.substring(
+        0,
+        lastIndexOf(containerName, '.'),
+      );
       messageHandler = this.subscribers[containerName];
     } while (!messageHandler && includes(containerName, '.'));
     return messageHandler;
@@ -107,8 +128,9 @@ export default class CucCloudMessage {
       const now = moment().valueOf();
       messageHandler.messages = filter(
         messageHandler.messages,
-        (message) => message.origin === messageHandler.containerName
-          || (!message.forceFlush && now - 500 < message.timestamp),
+        (message) =>
+          message.origin === messageHandler.containerName ||
+          (!message.forceFlush && now - 500 < message.timestamp),
       );
 
       forEach(messageHandler.messages, (message) => {
@@ -140,11 +162,14 @@ export default class CucCloudMessage {
    * ex params : { onMessage: () => this.getMessage() }
    */
   subscribe(containerName, params) {
-    this.subscribers[containerName] = assignIn({
-      containerName,
-      messages: [],
-      onMessage: noop(),
-    }, params);
+    this.subscribers[containerName] = assignIn(
+      {
+        containerName,
+        messages: [],
+        onMessage: noop(),
+      },
+      params,
+    );
     return {
       getMessages: () => this.getMessages(containerName),
     };

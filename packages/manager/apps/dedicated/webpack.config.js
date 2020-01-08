@@ -34,52 +34,71 @@ fs.readdirSync(folder).forEach((file) => {
 });
 
 module.exports = (env = {}) => {
-  const { config } = webpackConfig({
-    template: './client/app/index.html',
-    basePath: './client/app',
-    lessPath: [
-      './node_modules',
-    ],
-    lessJavascriptEnabled: true,
-    root: path.resolve(__dirname, './client/app'),
-    assets: {
-      files: [
-        { from: path.resolve(__dirname, './client/**/*.html'), context: 'client/app' },
-        { from: path.resolve(__dirname, './client/app/images/**/*.*'), context: 'client/app' },
-        { from: path.resolve(__dirname, './client/assets'), to: 'assets' },
-        { from: foundNodeModulesFolder('ckeditor'), to: 'ckeditor' },
-        { from: foundNodeModulesFolder('angular-i18n'), to: 'resources/angular/i18n' },
-        { from: `${foundNodeModulesFolder('flag-icon-css')}/flags`, to: 'flag-icon-css/flags' },
-      ],
+  const { config } = webpackConfig(
+    {
+      template: './client/app/index.html',
+      basePath: './client/app',
+      lessPath: ['./node_modules'],
+      lessJavascriptEnabled: true,
+      root: path.resolve(__dirname, './client/app'),
+      assets: {
+        files: [
+          {
+            from: path.resolve(__dirname, './client/**/*.html'),
+            context: 'client/app',
+          },
+          {
+            from: path.resolve(__dirname, './client/app/images/**/*.*'),
+            context: 'client/app',
+          },
+          { from: path.resolve(__dirname, './client/assets'), to: 'assets' },
+          { from: foundNodeModulesFolder('ckeditor'), to: 'ckeditor' },
+          {
+            from: foundNodeModulesFolder('angular-i18n'),
+            to: 'resources/angular/i18n',
+          },
+          {
+            from: `${foundNodeModulesFolder('flag-icon-css')}/flags`,
+            to: 'flag-icon-css/flags',
+          },
+        ],
+      },
     },
-  }, env);
+    env,
+  );
 
-  const WEBPACK_REGION = `${_.upperCase(env.region || process.env.REGION || 'EU')}`;
+  const WEBPACK_REGION = `${_.upperCase(
+    env.region || process.env.REGION || 'EU',
+  )}`;
 
-  config.plugins.push(new webpack.DefinePlugin({
-    WEBPACK_ENV: {
-      region: JSON.stringify(env.region),
-      production: JSON.stringify(env.production),
-    },
-  }));
+  config.plugins.push(
+    new webpack.DefinePlugin({
+      WEBPACK_ENV: {
+        region: JSON.stringify(env.region),
+        production: JSON.stringify(env.production),
+      },
+    }),
+  );
 
   // Extra config files
   const extrasRegion = glob.sync(`./.extras-${WEBPACK_REGION}/**/*.js`);
   const extras = glob.sync('./.extras/**/*.js');
 
   return merge(config, {
-    entry: _.assign({
-      app: [
-        './client/app/index.js',
-        './client/app/app.js',
-        './client/app/app.routes.js',
-      ]
-        .concat(glob.sync('./client/app/**/*.module.js'))
-        .concat(glob.sync('./client/app/components/**/!(*.module).js')),
-    },
-    bundles,
-    extras.length > 0 ? { extras } : {},
-    extrasRegion.length > 0 ? { extrasRegion } : {}),
+    entry: _.assign(
+      {
+        app: [
+          './client/app/index.js',
+          './client/app/app.js',
+          './client/app/app.routes.js',
+        ]
+          .concat(glob.sync('./client/app/**/*.module.js'))
+          .concat(glob.sync('./client/app/components/**/!(*.module).js')),
+      },
+      bundles,
+      extras.length > 0 ? { extras } : {},
+      extrasRegion.length > 0 ? { extrasRegion } : {},
+    ),
     output: {
       path: path.resolve(__dirname, 'dist'),
       filename: '[name].[chunkhash].bundle.js',
@@ -94,7 +113,9 @@ module.exports = (env = {}) => {
     },
     plugins: [
       new webpack.DefinePlugin({
-        __NG_APP_INJECTIONS__: process.env.NG_APP_INJECTIONS ? `'${process.env.NG_APP_INJECTIONS}'` : 'null',
+        __NG_APP_INJECTIONS__: process.env.NG_APP_INJECTIONS
+          ? `'${process.env.NG_APP_INJECTIONS}'`
+          : 'null',
         __WEBPACK_REGION__: `'${WEBPACK_REGION}'`,
       }),
     ],

@@ -4,7 +4,10 @@ export default class TelecomBillingAccountService {
     this.$state = $state;
   }
 
-  static getServiceState(billingAccount, { featureType, serviceName, serviceType }) {
+  static getServiceState(
+    billingAccount,
+    { featureType, serviceName, serviceType },
+  ) {
     const statePrefix = 'telecom.telephony.billingAccount.';
     let state = `${statePrefix}line`;
 
@@ -28,7 +31,11 @@ export default class TelecomBillingAccountService {
   getServiceLink(billingAccount, { featureType, serviceName, serviceType }) {
     const { state, stateParams } = this.constructor.getServiceState(
       billingAccount,
-      { featureType, serviceName, serviceType },
+      {
+        featureType,
+        serviceName,
+        serviceType,
+      },
     );
     return this.$state.href(state, stateParams);
   }
