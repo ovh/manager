@@ -1,4 +1,4 @@
-const VRACK_URLS = {
+export const VRACK_URLS = {
   changeOwner: {
     CZ: 'https://www.ovh.cz/cgi-bin/procedure/procedureChangeOwner.cgi',
     DE: 'https://www.ovh.de/cgi-bin/procedure/procedureChangeOwner.cgi',
@@ -26,6 +26,9 @@ const VRACK_URLS = {
   },
 };
 
+export const POLLING_INTERVAL = 500;
+
 export default {
+  POLLING_INTERVAL,
   VRACK_URLS,
 };

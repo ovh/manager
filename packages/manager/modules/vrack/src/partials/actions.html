@@ -1,16 +1,16 @@
 <img
     class="vrack__mapper-icon"
-    data-ng-show="!VrackCtrl.loaders.init"
+    data-ng-show="!$ctrl.loaders.init"
     alt=""
-    src="{{:: VrackCtrl.arrowIcon }}"
+    src="{{:: $ctrl.arrowIcon }}"
 />
 
-<div data-ng-if="VrackCtrl.isAdding()">
+<div data-ng-if="$ctrl.isAdding()">
     <button
         class="oui-button oui-button_primary oui-button_icon-right"
-        data-ng-click="VrackCtrl.addSelectedServices()"
+        data-ng-click="$ctrl.addSelectedServices()"
         data-ng-class="{
-                'hidden': !VrackCtrl.isAdding() && !VrackCtrl.isRemoving()
+                'hidden': !$ctrl.isAdding() && !$ctrl.isRemoving()
             }"
     >
         <span data-translate="vrack_common_add"></span>
@@ -18,12 +18,12 @@
     </button>
 </div>
 
-<div data-ng-if="VrackCtrl.isRemoving()">
+<div data-ng-if="$ctrl.isRemoving()">
     <button
         class="oui-button oui-button_secondary oui-button_icon-left"
-        data-ng-click="VrackCtrl.deleteSelectedServices()"
+        data-ng-click="$ctrl.deleteSelectedServices()"
         data-ng-class="{
-                'hidden': !VrackCtrl.isAdding() && !VrackCtrl.isRemoving()
+                'hidden': !$ctrl.isAdding() && !$ctrl.isRemoving()
             }"
     >
         <i class="oui-icon oui-icon_circle oui-icon-chevron-left"></i>
@@ -34,6 +34,6 @@
 <button
     class="oui-button oui-button_secondary"
     data-translate="vrack_common_move"
-    data-ng-show="VrackCtrl.isMoving()"
-    data-ng-click="VrackCtrl.moveSelectedService()"
+    data-ng-show="$ctrl.isMoving()"
+    data-ng-click="$ctrl.moveSelectedService()"
 ></button>

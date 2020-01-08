@@ -1,0 +1,8 @@
+{
+  "vrack_move_dialog_title": "Déplacement d'un datacenter private cloud",
+  "vrack_move_dialog_intro": "Vous avez selectionné un service de type datacenter private cloud. Ce service ne peut être orphelin et doit être transféré obligatoirement vers un autre vRack.",
+  "vrack_move_dialog_warning_notice": "Cette opération entraîne une interruption de service d'environ 5 minutes.",
+  "vrack_move_dialog_choose_vrack_label": "vRack de destination:",
+  "vrack_move_dialog_choose_vrack_default_option": "Selectionnez un vRack",
+  "vrack_move_dialog_request_error": "Oups, l'opération de déplacement du datacenter a échouée."
+}
