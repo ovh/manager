@@ -1,3 +1,7 @@
+## [4.0.5](https://github.com/ovh-ux/ng-ovh-contact/compare/v4.0.4...v4.0.5) (2020-01-08)
+
+
+
 ## [4.0.4](https://github.com/ovh-ux/ng-ovh-contact/compare/v4.0.3...v4.0.4) (2019-10-24)
 
 
