@@ -1,3 +1,7 @@
+## [14.0.6](https://github.com/ovh-ux/ng-ovh-utils/compare/v14.0.5...v14.0.6) (2020-01-08)
+
+
+
 ## [14.0.5](https://github.com/ovh-ux/ng-ovh-utils/compare/v14.0.4...v14.0.5) (2019-09-18)
 
 
