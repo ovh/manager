@@ -76,15 +76,19 @@
             </div>
         </div>
 
-        <button type="button"
-                class="oui-button oui-button_secondary mt-4"
-                data-translate="vps_backup_storage_access_add_button"
-                data-ng-click="$ctrl.goToAddBackupStorage()"></button>
+        <button
+            type="button"
+            class="oui-button oui-button_secondary mt-4"
+            data-translate="vps_backup_storage_access_add_button"
+            data-ng-click="$ctrl.goToAddBackupStorage()"
+        ></button>
 
-        <button type="button"
-                class="oui-button oui-button_secondary mt-4"
-                data-translate="vps_backup_storage_access_forgot_password_button"
-                data-ng-click="$ctrl.goToPassword()"></button>
+        <button
+            type="button"
+            class="oui-button oui-button_secondary mt-4"
+            data-translate="vps_backup_storage_access_forgot_password_button"
+            data-ng-click="$ctrl.goToPassword()"
+        ></button>
 
         <oui-datagrid
             data-rows="$ctrl.backup.data.list.results"
@@ -133,10 +137,14 @@
                 ></span>
             </oui-column>
             <oui-action-menu data-align="end" data-compact>
-                <oui-action-menu-item data-text="{{'vps_common_edit' | translate}}"
-                                      data-on-click="$ctrl.goToEditBackupStorage($row)"></oui-action-menu-item>
-                <oui-action-menu-item data-text="{{'vps_common_delete' | translate}}"
-                                      data-on-click="$ctrl.goToDeleteBackupStorage($row.ipBlock)"></oui-action-menu-item>
+                <oui-action-menu-item
+                    data-text="{{'vps_common_edit' | translate}}"
+                    data-on-click="$ctrl.goToEditBackupStorage($row)"
+                ></oui-action-menu-item>
+                <oui-action-menu-item
+                    data-text="{{'vps_common_delete' | translate}}"
+                    data-on-click="$ctrl.goToDeleteBackupStorage($row.ipBlock)"
+                ></oui-action-menu-item>
             </oui-action-menu>
         </oui-datagrid>
     </div>
