@@ -1,3 +1,12 @@
+## [13.40.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.40.0...@ovh-ux/manager-web@13.40.1) (2020-01-08)
+
+
+### Bug Fixes
+
+* **web:** fix redirection to error page ([#2054](https://github.com/ovh/manager/issues/2054)) ([278f880](https://github.com/ovh/manager/commit/278f88093ebdc3c41dd34940f367197297788a3a))
+
+
+
 # [13.40.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.39.2...@ovh-ux/manager-web@13.40.0) (2020-01-08)
 
 
