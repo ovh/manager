@@ -1,3 +1,7 @@
+## [2.0.4](https://github.com/ovh-ux/ng-at-internet-ui-router-plugin/compare/v2.0.3...v2.0.4) (2020-01-08)
+
+
+
 ## [2.0.3](https://github.com/ovh-ux/ng-at-internet-ui-router-plugin/compare/v2.0.2...v2.0.3) (2019-11-08)
 
 
