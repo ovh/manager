@@ -1,3 +1,7 @@
+## [1.0.1](https://github.com/ovh-ux/ng-ovh-simple-country-list/compare/v1.0.0...v1.0.1) (2020-01-08)
+
+
+
 # [1.0.0](https://github.com/ovh-ux/ng-ovh-simple-country-list/compare/0.0.9...1.0.0) (2019-02-04)
 
 
