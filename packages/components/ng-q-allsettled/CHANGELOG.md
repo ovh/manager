@@ -1,3 +1,7 @@
+## [1.0.1](https://github.com/ovh-ux/ng-q-allsettled/compare/v1.0.0...v1.0.1) (2020-01-08)
+
+
+
 # [1.0.0](https://github.com/ovh-ux/ng-q-allsettled/compare/v1.0.0-alpha.0...v1.0.0) (2019-11-07)
 
 
