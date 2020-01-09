@@ -3,10 +3,10 @@ import template from './upgrade.html';
 
 export default {
   bindings: {
+    goBack: '<',
     serviceName: '<',
     offers: '<',
     user: '<',
-    goToEmailDomain: '<',
   },
   controller,
   template,

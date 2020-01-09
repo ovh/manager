@@ -23,7 +23,7 @@ export default /* @ngInject */ function EmailProCtrl(
   $scope.accountTypeProvider = EmailPro.accountTypeProvider;
 
   $scope.alerts = {
-    dashboard: 'emailproDashboardAlert',
+    main: 'emailproDashboardAlert',
   };
 
   $scope.loadingEmailProInformations = true;
