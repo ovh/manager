@@ -1,8 +1,26 @@
 import assign from 'lodash/assign';
+import capitalize from 'lodash/capitalize';
+import filter from 'lodash/filter';
+import get from 'lodash/get';
 import head from 'lodash/head';
 import includes from 'lodash/includes';
+import join from 'lodash/join';
+import map from 'lodash/map';
+import parseInt from 'lodash/parseInt';
+import replace from 'lodash/replace';
 import set from 'lodash/set';
+import sortBy from 'lodash/sortBy';
+import split from 'lodash/split';
 import values from 'lodash/values';
+
+import {
+  CPANEL_PREMIER_TYPES,
+  CPANEL_ADMIN_TYPE,
+  CPANEL_PRO_TYPE,
+  MAX_CPANEL_PRO_ACCOUNTS,
+  MAX_CPANEL_ADMIN_ACCOUNTS,
+  LICENCE_TYPES,
+} from './license-order.constants';
 
 angular
   .module('Module.license')
@@ -230,6 +248,65 @@ angular
             // eslint-disable-next-line prefer-destructuring
             $scope.selected.version =
               $scope.types[$scope.selected.licenseType].options[0].options[0];
+          }
+          const { options } = $scope.types[
+            $scope.selected.licenseType
+          ].options[0];
+          if ($scope.selected.licenseType === LICENCE_TYPES.CPANEL) {
+            $scope.formatedOptions = map(options, (option) => {
+              const value = get(option, 'value');
+              let count = 0;
+              let displayName = null;
+              if (
+                filter(CPANEL_PREMIER_TYPES, (cPanelType) =>
+                  includes(value, cPanelType),
+                ).length > 0
+              ) {
+                count = head(value.match(/[\d]+/));
+                displayName = $translate.instant(
+                  'license_designation_CPANEL_premier_option',
+                  { numberOfCPANEL: count },
+                );
+              } else if (includes(value, CPANEL_ADMIN_TYPE)) {
+                count = MAX_CPANEL_ADMIN_ACCOUNTS;
+                displayName = $translate.instant(
+                  'license_designation_CPANEL_admin_option',
+                );
+              } else if (includes(value, CPANEL_PRO_TYPE)) {
+                count = MAX_CPANEL_PRO_ACCOUNTS;
+                displayName = $translate.instant(
+                  'license_designation_CPANEL_pro_option',
+                );
+              }
+              set(option, 'displayName', displayName);
+              set(option, 'cPanelCount', parseInt(count));
+              return option;
+            });
+            $scope.formatedOptions = sortBy(
+              $scope.formatedOptions,
+              'cPanelCount',
+            );
+          } else if ($scope.selected.licenseType === LICENCE_TYPES.WORKLIGHT) {
+            $scope.formatedOptions = map(options, (option) => {
+              const value = replace(option.value, /version-/gi, '');
+              set(
+                option,
+                'displayName',
+                capitalize(join(split(value, '-'), ' ')),
+              );
+              return option;
+            });
+          } else {
+            $scope.formatedOptions = map(options, (option) => {
+              set(
+                option,
+                'displayName',
+                $translate.instant(
+                  `license_designation_${$scope.selected.licenseType}_version_${option.value}`,
+                ),
+              );
+              return option;
+            });
           }
 
           $scope.selected.options = getResetedOptions();

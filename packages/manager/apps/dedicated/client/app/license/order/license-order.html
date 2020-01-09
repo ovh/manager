@@ -154,7 +154,7 @@
                         class="form-control"
                         id="optionVersion"
                         name="optionVersion"
-                        data-ng-options="optionVersion as (('license_designation_' + selected.licenseType + '_version_' + optionVersion.value) | translate) for optionVersion in types[selected.licenseType].options[0].options"
+                        data-ng-options="optionVersion as optionVersion.displayName for optionVersion in formatedOptions"
                         data-ng-model="selected.version"
                     >
                         <option
@@ -188,11 +188,6 @@
                         </li>
                     </ul>
                 </div>
-            </div>
-
-            <div class="text-center" data-ng-show="loaders.durations">
-                <oui-spinner></oui-spinner>
-                <span data-translate="common_loading"></span>
             </div>
 
             <!-- step 3-->
