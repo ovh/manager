@@ -13,5 +13,6 @@
   "mxPlan_price_without_tax": "Precio (sin IVA): ",
   "mxPlan_price_with_tax": "Precio (IVA incl.): ",
   "mxPlan_order_action": "Contratar",
-  "mxPlan_order_error_payment": "Se ha producido un error al cargar las formas de pago."
+  "mxPlan_order_error_payment": "Se ha producido un error al cargar las formas de pago.",
+  "mxPlan_order_activate": "Activar"
 }

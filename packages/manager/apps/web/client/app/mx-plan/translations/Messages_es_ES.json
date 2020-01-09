@@ -1,6 +1,6 @@
 {
   "mxPlan_order_title": "Contratación de un MX Plan",
-  "mxPlan_order_error_no_domain": "Es necesario tener al menos un dominio disponible para configurar un plan MX.",
+  "mxPlan_order_error_no_domain": "Es necesario tener al menos un dominio disponible para configurar un MX Plan.",
   "mxPlan_order_step1_title": "1. Configuración del MX Plan",
   "mxPlan_order_step1_domain": "Dominio",
   "mxPlan_order_step1_offer": "Tipo de producto",

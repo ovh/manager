@@ -541,7 +541,7 @@
   "user_account_advanced_section_developer_title": "Opciones para desarrolladores",
   "user_account_advanced_section_developer_label": "Quiero activar el modo de desarrollador en esta cuenta",
   "user_account_advanced_section_developer_interface_opensource": "Desarrollar en nuestras<br />interfaces de cliente <strong>open source</strong>",
-  "user_account_advanced_section_developer_component_library": "Acceder a la <br />biblioteca de <strong>componentes</strong>",
+  "user_account_advanced_section_developer_component_library": "Acceder a la<br />biblioteca de <strong>componentes</strong>",
   "user_account_advanced_section_developer_api": "Una <strong>API</strong> <br />para responder a sus necesidades",
   "user_account_advanced_section_developer_join_us": "Únase a nosotros en:",
   "user_account_advanced_section_developer_alert_success_enabled": "Se ha activado el modo desarrollador.",
