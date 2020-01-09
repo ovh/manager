@@ -206,10 +206,12 @@
                 ></strong>
             </div>
         </div>
-        <div
-            class="tab-pane active platform"
-            data-ng-include="selectedTab && 'emailpro/' + kebabCase(selectedTab) + '/emailpro-' + kebabCase(selectedTab) + '.html'"
-        ></div>
+        <div data-ui-view>
+            <div
+                class="tab-pane active platform"
+                data-ng-include="selectedTab && 'emailpro/' + kebabCase(selectedTab) + '/emailpro-' + kebabCase(selectedTab) + '.html'"
+            ></div>
+        </div>
     </div>
 </div>
 

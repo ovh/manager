@@ -7,6 +7,8 @@ export default class EmailProTabInformationCtrl {
   constructor(
     $q,
     $scope,
+    $state,
+    $stateParams,
     $translate,
     Alerter,
     EmailPro,
@@ -15,6 +17,8 @@ export default class EmailProTabInformationCtrl {
   ) {
     this.$q = $q;
     this.$scope = $scope;
+    this.$state = $state;
+    this.$stateParams = $stateParams;
     this.$translate = $translate;
     this.Alerter = Alerter;
     this.EmailPro = EmailPro;
@@ -38,6 +42,11 @@ export default class EmailProTabInformationCtrl {
         emailsDomain: this.getEmailsDomain(),
         mailingLists: this.getMailingLists(),
         redirections: this.getRedirections(),
+      });
+
+      this.upgradeLink = this.$state.href('app.email.mxplan.upgrade', {
+        productId: this.$stateParams.productId,
+        domain: this.$scope.exchange.associatedDomainName,
       });
     }
   }
