@@ -16,6 +16,7 @@ angular.module('App').controller(
      */
     constructor(
       $scope,
+      $state,
       $location,
       $stateParams,
       $translate,
@@ -23,6 +24,7 @@ angular.module('App').controller(
       Alerter,
     ) {
       this.$scope = $scope;
+      this.$state = $state;
       this.$location = $location;
       this.$stateParams = $stateParams;
       this.$translate = $translate;
