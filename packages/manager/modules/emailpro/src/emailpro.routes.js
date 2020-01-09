@@ -36,6 +36,29 @@ export default /* @ngInject */ ($stateProvider) => {
           configurationSelected: true,
         });
       },
+      productId: /* @ngInject */ ($transition$) =>
+        $transition$.params().productId,
+      goToEmailPro: /* @ngInject */ ($state, $timeout, Alerter, productId) => (
+        message = false,
+        type = 'success',
+      ) => {
+        const promise = $state.go('app.email.mxplan', { productId });
+
+        if (message) {
+          promise.then(() =>
+            $timeout(() =>
+              Alerter.set(
+                `alert-${type}`,
+                message,
+                null,
+                'emailproDashboardAlert',
+              ),
+            ),
+          );
+        }
+
+        return promise;
+      },
     },
     translations: {
       value: ['.', 'mailing-list'],
