@@ -80,8 +80,6 @@ angular.module('App').config(
         }),
         isDrpActionPossible: /* @ngInject */ (currentDrp, dedicatedCloudDrp) =>
           dedicatedCloudDrp.constructor.isDrpActionPossible(currentDrp),
-        isDrpAvailable: /* @ngInject */ (coreConfig) =>
-          coreConfig.getRegion() !== 'US',
 
         goToDrp: /* @ngInject */ ($state, currentDrp) => (datacenterId) =>
           $state.go('app.dedicatedClouds.datacenter.drp', {
