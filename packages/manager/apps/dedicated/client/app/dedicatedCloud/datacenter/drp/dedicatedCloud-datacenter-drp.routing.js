@@ -21,8 +21,6 @@ export default /* @ngInject */ ($stateProvider) => {
         DedicatedCloud.getDatacenters($stateParams.productId).then(
           ({ results }) => results,
         ),
-      disableForUS: /* @ngInject */ ($q, isDrpAvailable) =>
-        !isDrpAvailable ? $q.reject() : $q.when(),
       getIpOrderLink: /* @ngInject */ ($state) => (
         drpType,
         isLegacyOrder,
