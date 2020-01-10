@@ -1,3 +1,12 @@
+## [11.3.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@11.3.2...@ovh-ux/manager-dedicated@11.3.3) (2020-01-10)
+
+
+### Bug Fixes
+
+* **dedicated.billing:** add checks for automatic renew ([#2027](https://github.com/ovh/manager/issues/2027)) ([ea5f828](https://github.com/ovh/manager/commit/ea5f82897e25d37d69586bd328849c83f64807d8))
+
+
+
 ## [11.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@11.3.1...@ovh-ux/manager-dedicated@11.3.2) (2020-01-08)
 
 
