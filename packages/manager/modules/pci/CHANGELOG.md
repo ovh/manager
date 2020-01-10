@@ -1,3 +1,13 @@
+## [3.7.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.7.1...@ovh-ux/manager-pci@3.7.2) (2020-01-10)
+
+
+### Bug Fixes
+
+* **pci.project.billing:** display unique active tab ([ef58032](https://github.com/ovh/manager/commit/ef5803214445aef5a32e7a6158320f8e06221246))
+* **pci.project.billing:** fix encoding ([c0eec97](https://github.com/ovh/manager/commit/c0eec978186960dab08fe602707be4595c82ca72)), closes [/github.com/angular-translate/angular-translate/issues/1458#issuecomment-213961549](https://github.com//github.com/angular-translate/angular-translate/issues/1458/issues/issuecomment-213961549)
+
+
+
 ## [3.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.7.0...@ovh-ux/manager-pci@3.7.1) (2020-01-08)
 
 
