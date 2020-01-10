@@ -1,3 +1,4 @@
+import get from 'lodash/get';
 import component from './domain-webhosting-order.component';
 
 const resolve = {
@@ -51,6 +52,7 @@ const resolve = {
     WebHostingOrder.prepareCheckout(cartId, cartOption, domainName),
   validateCheckout: /* @ngInject */ (
     $timeout,
+    $translate,
     defaultPaymentMethod,
     displayErrorMessage,
     displayOrderBillSuccessMessage,
@@ -77,8 +79,18 @@ const resolve = {
           return openBill(checkout.url);
         }),
       )
-      .catch(() => {
-        displayErrorMessage('domain_webhosting_order_payment_checkout_error');
+      .catch((error) => {
+        const message = get(error, 'message');
+        displayErrorMessage(
+          message
+            ? $translate.instant(
+                'domain_webhosting_order_payment_checkout_error',
+                { message },
+              )
+            : $translate.instant(
+                'domain_webhosting_order_payment_checkout_error_unknown',
+              ),
+        );
       }),
 };
 
