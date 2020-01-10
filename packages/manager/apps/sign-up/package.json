@@ -18,7 +18,7 @@
     "@ovh-ux/manager-core": "^7.3.0",
     "@ovh-ux/ng-ovh-request-tagger": "^1.0.1",
     "@ovh-ux/ng-ovh-sso-auth": "^4.2.3",
-    "@ovh-ux/ng-translate-async-loader": "^2.0.2",
+    "@ovh-ux/ng-translate-async-loader": "^2.0.3",
     "@ovh-ux/sign-up": "^1.0.0",
     "@uirouter/angularjs": "^1.0.23",
     "angular": "^1.7.8",
