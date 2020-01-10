@@ -39,7 +39,7 @@
     "messenger": "HubSpot/messenger#~1.4.1",
     "ovh-api-services": "^9.30.0",
     "ovh-manager-webfont": "^1.2.0",
-    "ovh-ui-angular": "^3.11.0",
+    "ovh-ui-angular": "^3.12.0",
     "ovh-ui-kit": "^2.35.2"
   },
   "devDependencies": {
