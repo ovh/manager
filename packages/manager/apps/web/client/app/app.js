@@ -40,7 +40,6 @@ import moment from 'moment';
 import config from './config/config';
 import orderCatalogPrice from './components/manager-order-catalog-price';
 import orderContracts from './components/manager-order-contracts';
-import orderService from './components/manager-order-service/manager-order-service.service';
 
 import domain from './domain';
 import domainDnsZone from './dns-zone';
@@ -145,7 +144,6 @@ angular
     REDIRECT_URLS: config.constants.REDIRECT_URLS,
     ORDER_URL: config.constants.ORDER_URL,
   })
-  .service('OrderService', orderService)
   .constant('LANGUAGES', config.constants.LANGUAGES)
   .constant('website_url', config.constants.website_url)
   .factory('serviceTypeInterceptor', () => ({

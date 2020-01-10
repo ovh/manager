@@ -1,8 +1,8 @@
 import component from './domain-webhosting-order.component';
 
 const resolve = {
-  assignCart: /* @ngInject */ (OrderService) => (cartId) =>
-    OrderService.assignCart(cartId),
+  assignCart: /* @ngInject */ (WucOrderCartService) => (cartId) =>
+    WucOrderCartService.assignCart(cartId),
   /* @ngInject */
   availableModules: (cartId, WebHostingOrder) =>
     WebHostingOrder.getAvailableModules(cartId),
@@ -10,12 +10,12 @@ const resolve = {
     WebHostingOrder.getAvailableOffers(cartId, user.ovhSubsidiary),
   cartId: /* @ngInject */ (assignCart, createCart) =>
     createCart().then(({ cartId }) => assignCart(cartId).then(() => cartId)),
-  createCart: /* @ngInject */ (OrderService, user) => () =>
-    OrderService.createNewCart(user.ovhSubsidiary),
+  createCart: /* @ngInject */ (WucOrderCartService, user) => () =>
+    WucOrderCartService.createNewCart(user.ovhSubsidiary),
   defaultPaymentMethod: /* @ngInject */ (ovhPaymentMethod) =>
     ovhPaymentMethod.getDefaultPaymentMethod(),
-  deleteCartItems: /* @ngInject */ (cartId, OrderService) => () =>
-    OrderService.deleteAllItems(cartId),
+  deleteCartItems: /* @ngInject */ (cartId, WucOrderCartService) => () =>
+    WucOrderCartService.deleteAllItems(cartId),
   displayErrorMessage: /* @ngInject */ ($translate, Alerter) => (
     translationId,
   ) =>
