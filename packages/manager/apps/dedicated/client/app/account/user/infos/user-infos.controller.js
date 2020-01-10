@@ -259,6 +259,27 @@ angular.module('UserAccount').controller('UserAccount.controllers.Infos', [
       loadTaskForEmailValidation($scope.controls.validateEmailChange.taskId);
     };
 
+    $scope.requestChangeEmailToken = function requestChangeEmailToken(email) {
+      $scope.requestingToken = true;
+      return UseraccountInfos.changeEmail(email)
+        .then(({ id }) => {
+          $scope.controls.taskEmailChangeTodo.id = id;
+          $scope.requestingToken = false;
+          Alerter.success(
+            $translate.instant('user_account_email_token_resend_success'),
+            'InfoAlert',
+          );
+        })
+        .catch((error) => {
+          $scope.requestingToken = false;
+          Alerter.alertFromSWS(
+            $translate.instant('user_account_email_token_resend_error'),
+            error.data,
+            'InfoAlert',
+          );
+        });
+    };
+
     $scope.isMandatory = function isMandatory(field) {
       return $scope.edit && $scope.creationRules[field].mandatory;
     };
