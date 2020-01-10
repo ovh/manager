@@ -1,4 +1,3 @@
-import camelCase from 'lodash/camelCase';
 import flatten from 'lodash/flatten';
 import get from 'lodash/get';
 import keys from 'lodash/keys';
@@ -261,24 +260,15 @@ export default class {
   }
 
   validateZertoOptionCart(cartId) {
-    let autoPayWithPreferredPaymentMethod;
-    return this.$q
-      .all({
-        availableAutomaticPaymentsMean: this.OvhApiMe.AvailableAutomaticPaymentMeans()
-          .v6()
-          .get().$promise,
-        allPaymentMethods: this.ovhPaymentMethod.getAllPaymentMethods({
-          onlyValid: true,
-          transform: true,
-        }),
+    let autoPayWithPreferredPaymentMethod = false;
+    return this.ovhPaymentMethod
+      .getAllPaymentMethods({
+        onlyValid: true,
+        transform: true,
       })
-      .then(({ availableAutomaticPaymentsMean, allPaymentMethods }) => {
-        const availablePaymentType = flatten(
-          allPaymentMethods.map(({ paymentType }) => paymentType),
-        );
-        autoPayWithPreferredPaymentMethod = availablePaymentType.some(
-          (paymentType) =>
-            get(availableAutomaticPaymentsMean, camelCase(paymentType)),
+      .then((allPaymentMethods) => {
+        autoPayWithPreferredPaymentMethod = allPaymentMethods.some(
+          (paymentMethod) => !!paymentMethod.default,
         );
 
         return this.OvhApiOrder.Cart()
