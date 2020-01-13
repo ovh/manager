@@ -1,25 +1,23 @@
 <div data-ng-controller="ExchangeAccountMfaCtrl as $ctrl">
 
-    <oui-modal data-heading="{{:: 'exchange_tab_ACCOUNTS_menu_mfa_' + $ctrl.action | translate }}"
-        data-primary-action="$ctrl.submit()"
-        data-primary-label="{{:: 'exchange_common_confirm' | translate }}"
-        data-secondary-action="resetAction()"
-        data-secondary-label="{{:: 'exchange_common_cancel' | translate }}"
-        data-on-dismiss="resetAction()"
-        data-loading="$ctrl.isLoading">
+    <form novalidate name="numericForm">
+        <oui-modal data-heading="{{:: 'exchange_tab_ACCOUNTS_menu_mfa_' + $ctrl.action | translate }}"
+            data-primary-action="$ctrl.submit()"
+            data-primary-label="{{:: 'exchange_common_confirm' | translate }}"
+            data-secondary-action="resetAction()"
+            data-secondary-label="{{:: 'exchange_common_cancel' | translate }}"
+            data-on-dismiss="resetAction()"
+            data-loading="$ctrl.isLoading">
 
-        <p data-translate="{{'exchange_mfa_description_' + $ctrl.action}}"
-            data-translate-values="{ account: $ctrl.account.primaryEmailAddress}"></p>
+            <p data-translate="{{'exchange_mfa_description_' + $ctrl.action}}"
+                data-translate-values="{ account: $ctrl.account.primaryEmailAddress}"></p>
 
-        <form novalidate name="numericForm"
-            data-ng-if="$ctrl.action === 'DISABLE'">
-            <oui-field label="{{'exchange_mfa_description_DISABLE_period' | translate}}"
-                help-text="{{ 'exchange_mfa_description_DISABLE_period_help' | translate}}">
-                <oui-numeric id="period" name="period" model="$ctrl.disablePeriod" min="1">
-                </oui-numeric>
-            </oui-field>
-        </form>
-
-    </oui-modal>
-
+                <oui-field label="{{'exchange_mfa_description_DISABLE_period' | translate}}"
+                    help-text="{{ 'exchange_mfa_description_DISABLE_period_help' | translate}}"
+                    data-ng-if="$ctrl.action === 'DISABLE'">
+                    <oui-numeric id="period" name="period" model="$ctrl.disablePeriod" min="1">
+                    </oui-numeric>
+                </oui-field>
+        </oui-modal>
+    </form>
 </div>

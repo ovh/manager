@@ -79,6 +79,8 @@ import accountOutlookAddTemplate from './account/outlook/add/account-outlook-add
 import accountOutlookDeactivateTemplate from './account/outlook/deactivate/account-outlook-deactivate.html';
 import accountOutlookActivateTemplate from './account/outlook/activate/account-outlook-activate.html';
 import accountMfaTemplate from './account/mfa/account-mfa.html';
+import accountMfaBulkCreateTemplate from './account/mfa/bulk-create.html';
+import accountMfaBulkDeleteTemplate from './account/mfa/bulk-delete.html';
 import errorMessagesPopoverTemplate from './error-messages.popover.html';
 import resourceRemoveTemplate from './resource/remove/resource-remove.html';
 import resourceUpdateTemplate from './resource/update/resource-update.html';
@@ -180,6 +182,8 @@ export default /* @ngInject */ ($templateCache) => {
   $templateCache.put('exchange/account/outlook/deactivate/account-outlook-deactivate.html', accountOutlookDeactivateTemplate);
   $templateCache.put('exchange/account/outlook/activate/account-outlook-activate.html', accountOutlookActivateTemplate);
   $templateCache.put('exchange/account/mfa/account-mfa.html', accountMfaTemplate);
+  $templateCache.put('exchange/account/mfa/bulk-create.html', accountMfaBulkCreateTemplate);
+  $templateCache.put('exchange/account/mfa/bulk-delete.html', accountMfaBulkDeleteTemplate);
   $templateCache.put('exchange/error-messages.popover.html', errorMessagesPopoverTemplate);
   $templateCache.put('exchange/resource/remove/resource-remove.html', resourceRemoveTemplate);
   $templateCache.put('exchange/resource/update/resource-update.html', resourceUpdateTemplate);

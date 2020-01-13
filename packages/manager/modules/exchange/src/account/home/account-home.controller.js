@@ -119,6 +119,13 @@ export default class ExchangeAccountHomeController {
     return this.fetchingGridColumnsLastSavedParameters()
       .then(() => this.fetchingCanUserSubscribeToOfficeAttach())
       .then(() => this.fetchingAccountCreationOptions())
+      .then(() => this.Exchange.getExchangeServer(
+        this.$routerParams.organization,
+        this.$routerParams.productId,
+      ))
+      .then((exchangeServer) => {
+        this.exchangeServer = exchangeServer;
+      })
       .finally(() => {
         this.initialLoading = false;
       });
@@ -534,5 +541,13 @@ export default class ExchangeAccountHomeController {
         DATAGRID_COLUMN_PARAMETERS_PREFERENCE_NAME,
         this.gridParameters.columnParameters.current,
       );
+  }
+
+  openAllAccountsMFACreateDialog() {
+    this.navigation.setAction('exchange/account/mfa/bulk-create');
+  }
+
+  openAllAccountsMFADeleteDialog() {
+    this.navigation.setAction('exchange/account/mfa/bulk-delete');
   }
 }

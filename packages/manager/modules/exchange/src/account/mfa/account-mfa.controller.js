@@ -3,7 +3,7 @@ export default class ExchangeAccountMfaCtrl {
   constructor(
     $q,
     $scope,
-    $timeout,
+    $state,
     $translate,
     Exchange,
     exchangeAccount,
@@ -12,7 +12,7 @@ export default class ExchangeAccountMfaCtrl {
   ) {
     this.$q = $q;
     this.$scope = $scope;
-    this.$timeout = $timeout;
+    this.$state = $state;
     this.$translate = $translate;
     this.exchangeAccount = exchangeAccount;
     this.isLoading = false;
@@ -31,6 +31,7 @@ export default class ExchangeAccountMfaCtrl {
       this.exchangeService.domain,
     ).then((server) => {
       this.server = server;
+      this.owaMfaEnabled = this.server.owaMfa;
     }).catch((error) => {
       this.messaging.writeError(
         this.$translate.instant('exchange_mfa_error', {
@@ -82,13 +83,6 @@ export default class ExchangeAccountMfaCtrl {
 
   submit() {
     this.isLoading = true;
-    const serverMfaPromise = this.server.owaMfa
-      ? this.$q.resolve(true)
-      : this.Exchange.updateExchangeServer(
-        this.exchangeService.organization,
-        this.exchangeService.domain,
-        { owaMfa: true },
-      );
 
     let accountMfaPromise = null;
     let messages = {};
@@ -125,9 +119,7 @@ export default class ExchangeAccountMfaCtrl {
         this.$scope.resetAction();
     }
 
-    return serverMfaPromise
-      .then(() => this.$timeout(6000))
-      .then(() => accountMfaPromise)
+    return accountMfaPromise
       .then(() => {
         this.messaging.writeSuccess(
           this.$translate.instant(messages.success),

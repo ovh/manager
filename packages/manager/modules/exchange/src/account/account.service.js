@@ -89,6 +89,7 @@ export default class ExchangeAccount {
       `/msServices/${serviceName}/account/${userPrincipalName}/mfa`,
       {
         rootPath: 'apiv6',
+        broadcast: this.Exchange.events.accountsChanged,
       },
     );
   }
@@ -151,6 +152,27 @@ export default class ExchangeAccount {
       },
     );
   }
+
+  createMfaOnAllAccount(serviceName) {
+    return this.OvhHttp.post(
+      `/msServices/${serviceName}/createMfaOnAllUsers`,
+      {
+        rootPath: 'apiv6',
+        broadcast: this.Exchange.events.accountsChanged,
+      },
+    );
+  }
+
+  deleteMfaOnAllAccounts(serviceName) {
+    return this.OvhHttp.post(
+      `/msServices/${serviceName}/removeMfaOnAllUsers`,
+      {
+        rootPath: 'apiv6',
+        broadcast: this.Exchange.events.accountsChanged,
+      },
+    );
+  }
+
 
   /**
    * @param {object} account

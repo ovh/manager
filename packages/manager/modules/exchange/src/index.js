@@ -1,6 +1,8 @@
 import angular from 'angular';
 
 import accountRenew from './billing/account-renew/renew.module';
+import ExchangeAccountMfaCreate from './account/mfa/create';
+import ExchangeAccountMfaDelete from './account/mfa/delete';
 
 import components from './exchangeComponents.module';
 import controllers from './exchangeControllers.module';
@@ -27,6 +29,8 @@ angular
     controllers,
     directives,
     services,
+    ExchangeAccountMfaCreate,
+    ExchangeAccountMfaDelete,
   ])
   .constant('EXCHANGE_MX_CONFIG', EXCHANGE_MX_CONFIG)
   .constant('EXCHANGE_CONFIG_URL', EXCHANGE_CONFIG_URL)
