@@ -86,7 +86,7 @@ export default class TelecomTelephonyAliasPortabilitiesCtrl {
                     set(porta, 'canBeCancelled', results.canBeCancelled.value);
                     set(porta, 'documentAttached', results.documentAttached);
                     if (results.documentAttached.length > 0) {
-                      this.$q
+                      return this.$q
                         .all(
                           results.documentAttached.map(
                             (documentId) =>
@@ -107,6 +107,7 @@ export default class TelecomTelephonyAliasPortabilitiesCtrl {
                         )
                         .then((documents) => {
                           set(porta, 'uploadedDocuments', documents);
+                          return porta;
                         });
                     }
                     return porta;
