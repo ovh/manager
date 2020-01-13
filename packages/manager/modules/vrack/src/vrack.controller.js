@@ -23,105 +23,794 @@ import without from 'lodash/without';
 
 import angular from 'angular';
 
-import moveDialogCtrl from './move-dialog/vrack-move-dialog.controller';
-import moveDialogTpl from './move-dialog/vrack-move-dialog.html';
-import constant from './vrack.constant';
+import { POLLING_INTERVAL, VRACK_URLS } from './vrack.constant';
 import arrowIcon from '../assets/icon_vrack-mapper-arrows.svg';
 
-export default /* @ngInject */ function VrackCtrl(
-  $scope,
-  $q,
-  $stateParams,
-  $rootScope,
-  $state,
-  $timeout,
-  $translate,
-  $uibModal,
-  CucCloudMessage,
-  OvhApiVrack,
-  OvhApiMe,
-  CucVrackService,
-) {
-  const self = this;
-  const pollingInterval = 5000;
+export default class VrackMoveDialogCtrl {
+  /* @ngInject */
+  constructor(
+    $scope,
+    $q,
+    $stateParams,
+    $rootScope,
+    $state,
+    $timeout,
+    $translate,
+    CucCloudMessage,
+    OvhApiVrack,
+    OvhApiMe,
+    CucVrackService,
+  ) {
+    this.$scope = $scope;
+    this.$q = $q;
+    this.$stateParams = $stateParams;
+    this.$rootScope = $rootScope;
+    this.$state = $state;
+    this.$timeout = $timeout;
+    this.$translate = $translate;
+    this.CucCloudMessage = CucCloudMessage;
+    this.OvhApiVrack = OvhApiVrack;
+    this.OvhApiMe = OvhApiMe;
+    this.vrackService = CucVrackService;
+  }
 
-  self.poller = null;
-  self.serviceName = null;
-  self.name = null;
-  self.description = null;
-  self.nameEditing = false;
-  self.descriptionEditing = false;
-  self.nameOptions = { pattern: /^([a-zA-Z])\S*$/, maxLength: 100 };
-  self.descriptionOptions = { maxLength: 255 };
-  self.changeOwnerUrl = null;
-  self.vRackCloudRoadmapGuide = null;
-  self.vrackService = CucVrackService;
-  self.arrowIcon = arrowIcon;
+  $onInit() {
+    this.poller = null;
+    this.serviceName = null;
+    this.name = null;
+    this.description = null;
+    this.nameEditing = false;
+    this.descriptionEditing = false;
+    this.nameOptions = { pattern: /^([a-zA-Z])\S*$/, maxLength: 100 };
+    this.descriptionOptions = { maxLength: 255 };
+    this.changeOwnerUrl = null;
+    this.vRackCloudRoadmapGuide = null;
+    this.arrowIcon = arrowIcon;
 
-  self.modals = {
-    move: null,
-  };
+    this.modals = {
+      move: null,
+    };
 
-  self.messages = [];
+    this.messages = [];
 
-  self.loaders = {
-    init: false,
-    adding: false,
-    deleting: false,
-    moving: false,
-  };
+    this.loaders = {
+      init: false,
+      adding: false,
+      deleting: false,
+      moving: false,
+    };
 
-  self.data = {
-    cloudProjects: [],
-    allowedServices: {},
-    vrackServices: {},
-    pendingTasks: [],
-  };
+    this.data = {
+      cloudProjects: [],
+      allowedServices: {},
+      vrackServices: {},
+      pendingTasks: [],
+    };
 
-  self.form = {
-    servicesToAdd: [],
-    servicesToDelete: [],
-    serviceToMove: null,
-  };
+    this.form = {
+      servicesToAdd: [],
+      servicesToDelete: [],
+      serviceToMove: null,
+    };
 
-  self.states = {
-    accordions: {
-      available: {
-        types: [],
-        groups: [],
-        dedicatedCloudNetworks: [],
+    this.states = {
+      accordions: {
+        available: {
+          types: [],
+          groups: [],
+          dedicatedCloudNetworks: [],
+        },
+        mapped: {
+          types: [],
+          groups: [],
+          dedicatedCloudNetworks: [],
+          dedicatedCloudDatacenters: [],
+        },
       },
-      mapped: {
-        types: [],
-        groups: [],
-        dedicatedCloudNetworks: [],
-        dedicatedCloudDatacenters: [],
-      },
-    },
-  };
-  self.refreshMessage = function refreshMessage() {
-    self.messages = self.messageHandler.getMessages();
-  };
+    };
 
-  self.loadMessage = function loadMessage() {
-    CucCloudMessage.unSubscribe('vrack');
-    self.messageHandler = CucCloudMessage.subscribe('vrack', {
-      onMessage: () => self.refreshMessage(),
+    this.groupedServiceKeys = {
+      dedicatedCloudDatacenter: 'dedicatedCloud.niceName',
+      dedicatedServerInterface: 'dedicatedServer.niceName',
+    };
+
+    this.loaders.init = true;
+    this.loadMessage();
+    if (isEmpty(this.$stateParams.vrackId)) {
+      this.OvhApiVrack.v6()
+        .query()
+        .$promise.then((vracks) => {
+          if (isEmpty(vracks)) {
+            this.$state.go('vrack-add');
+          } else {
+            this.$state.go('vrack', { vrackId: vracks[0] });
+          }
+        })
+        .catch(() => {
+          this.$state.go('vrack-add');
+        });
+    } else {
+      // check if the serviceName is valid before loading the services
+      this.OvhApiVrack.v6()
+        .get({
+          serviceName: this.$stateParams.vrackId,
+        })
+        .$promise.then((resp) => {
+          this.serviceName = this.$stateParams.vrackId;
+          this.name = resp.name;
+          this.description = resp.description;
+          this.setUserRelatedContent();
+          this.refreshData();
+        })
+        .catch((err) => {
+          this.CucCloudMessage.error(
+            [
+              this.$translate.instant('vrack_error'),
+              (err.data && err.data.message) || '',
+            ].join(' '),
+          );
+        });
+    }
+
+    this.$scope.$on('$destroy', () => {
+      if (this.poller) {
+        this.$timeout.cancel(this.poller);
+      }
     });
-  };
+  }
 
-  self.groupedServiceKeys = {
-    dedicatedCloudDatacenter: 'dedicatedCloud.niceName',
-    dedicatedServerInterface: 'dedicatedServer.niceName',
-  };
+  refreshMessage() {
+    this.messages = this.messageHandler.getMessages();
+  }
 
-  self.getDisplayName = function getDisplayName(serviceType) {
-    return $translate.instant(
+  loadMessage() {
+    this.CucCloudMessage.unSubscribe('vrack');
+    this.messageHandler = this.CucCloudMessage.subscribe('vrack', {
+      onMessage: () => this.refreshMessage(),
+    });
+  }
+
+  getDisplayName(serviceType) {
+    return this.$translate.instant(
       `vrack_service_type_${serviceType.toLowerCase()}`,
     );
-  };
+  }
 
-  function getDedicatedServerNiceName(service) {
+  getAllowedServices() {
+    return this.OvhApiVrack.Aapi()
+      .allowedServices({ serviceName: this.serviceName })
+      .$promise.then((allServicesParam) => {
+        let allServices = allServicesParam;
+        allServices = mapValues(allServices, (services, serviceType) => {
+          if (isArray(services)) {
+            return map(services, (service) =>
+              this.constructor.fillServiceData(serviceType, service),
+            );
+          }
+          return services;
+        });
+
+        // We need to append dedicatedServerInterfaces list to dedicatedServers list.
+        if (
+          has(allServices, 'dedicatedServerInterface') &&
+          allServices.dedicatedServerInterface.length > 0
+        ) {
+          // If dedicatedServers list doesn't exist, we create it first.
+          if (!has(allServices, 'dedicatedServer')) {
+            allServices.dedicatedServer = [];
+          }
+
+          angular.forEach(
+            allServices.dedicatedServerInterface,
+            (serverInterface) => {
+              allServices.dedicatedServer.push(serverInterface);
+            },
+          );
+
+          allServices.dedicatedServerInterface = [];
+        }
+
+        return allServices;
+      });
+  }
+
+  getVrackServices() {
+    return this.OvhApiVrack.Aapi()
+      .services({ serviceName: this.serviceName })
+      .$promise.then((allServicesParam) => {
+        let allServices = allServicesParam;
+        allServices = mapValues(allServices, (servicesParams, serviceType) => {
+          let services = servicesParams;
+          if (isArray(services)) {
+            services = map(services, (service) =>
+              this.constructor.fillServiceData(serviceType, service),
+            );
+          }
+          return services;
+        });
+
+        if (has(allServices, 'dedicatedCloudDatacenter')) {
+          allServices.dedicatedCloudDatacenter = groupBy(
+            allServices.dedicatedCloudDatacenter,
+            this.groupedServiceKeys.dedicatedCloudDatacenter,
+          );
+        }
+
+        // We need to append dedicatedServerInterfaces list to dedicatedServers list.
+        if (
+          has(allServices, 'dedicatedServerInterface') &&
+          allServices.dedicatedServerInterface.length > 0
+        ) {
+          // If dedicatedServers list doesn't exist, we create it first.
+          if (!has(allServices, 'dedicatedServer')) {
+            allServices.dedicatedServer = [];
+          }
+
+          angular.forEach(
+            allServices.dedicatedServerInterface,
+            (serverInterface) => {
+              allServices.dedicatedServer.push(serverInterface);
+            },
+          );
+
+          allServices.dedicatedServerInterface = [];
+        }
+
+        return allServices;
+      });
+  }
+
+  getPendingTasks() {
+    return this.OvhApiVrack.v6()
+      .tasks({
+        serviceName: this.serviceName,
+      })
+      .$promise.then((taskIds) =>
+        this.$q
+          .all(
+            map(taskIds, (id) =>
+              this.OvhApiVrack.v6()
+                .task({
+                  serviceName: this.serviceName,
+                  taskId: id,
+                })
+                .$promise.then((task) => task)
+                .catch((err) =>
+                  err.status === 404 ? this.$q.when(null) : this.$q.reject(err),
+                ),
+            ),
+          )
+          .then((tasks) => without(tasks, null)),
+      );
+  }
+
+  resetCache() {
+    this.OvhApiVrack.v6().resetCache();
+    this.OvhApiVrack.CloudProject()
+      .v6()
+      .resetQueryCache();
+    this.OvhApiVrack.IpLoadBalancing()
+      .v6()
+      .resetQueryCache();
+    this.OvhApiVrack.DedicatedCloud()
+      .v6()
+      .resetQueryCache();
+    this.OvhApiVrack.DedicatedServer()
+      .v6()
+      .resetQueryCache();
+    this.OvhApiVrack.DedicatedServerInterface()
+      .v6()
+      .resetQueryCache();
+    this.OvhApiVrack.Ip()
+      .v6()
+      .resetQueryCache();
+    this.OvhApiVrack.LegacyVrack()
+      .v6()
+      .resetQueryCache();
+    this.OvhApiVrack.Aapi().resetAllCache();
+  }
+
+  moveDisplayedService(serviceId, allServicesSource, allServicesDestination) {
+    let serviceToMove = null;
+    let typeToMove = null;
+    let isGroupedServicesType = false;
+    forEach(allServicesSource, (services, type) => {
+      const servicesToSearch = !isArray(allServicesSource[type])
+        ? flatten(values(allServicesSource[type]))
+        : allServicesSource[type];
+
+      serviceToMove = remove(servicesToSearch, (service) => {
+        if (service.id === serviceId) {
+          typeToMove = type;
+          isGroupedServicesType = !isArray(allServicesSource[type]);
+          return true;
+        }
+        return null;
+      });
+
+      if (!isEmpty(serviceToMove)) {
+        if (isGroupedServicesType) {
+          // eslint-disable-next-line no-param-reassign
+          allServicesSource[typeToMove] = groupBy(
+            servicesToSearch,
+            this.groupedServiceKeys[typeToMove],
+          );
+        } else {
+          // eslint-disable-next-line no-param-reassign
+          allServicesSource[typeToMove] = servicesToSearch;
+        }
+
+        return false;
+      }
+      return null;
+    });
+
+    if (serviceToMove && typeToMove) {
+      if (isGroupedServicesType) {
+        const services = flatten(values(allServicesDestination[typeToMove]));
+        services.push(serviceToMove[0]);
+        // eslint-disable-next-line no-param-reassign
+        allServicesDestination[typeToMove] = groupBy(
+          services,
+          this.groupedServiceKeys[typeToMove],
+        );
+      } else {
+        allServicesDestination[typeToMove].push(serviceToMove[0]);
+      }
+    }
+  }
+
+  refreshData() {
+    let poll = true;
+    return this.getPendingTasks()
+      .then((tasks) => {
+        /**
+         * First, we check if there is any new pending tasks ...
+         */
+        const currentTasks = map(tasks, 'id');
+        const previousTasks = map(this.data.pendingTasks, 'id');
+        if (
+          difference(currentTasks, previousTasks).length ||
+          difference(previousTasks, currentTasks).length
+        ) {
+          this.resetCache(); // a task changed, vrack state might have changed too
+        } else if (tasks.length === 0) {
+          poll = false; // no new tasks & no tasks, no need to poll
+        }
+        /**
+         * Secondly, we fetch vrack data ...
+         */
+        return this.$q
+          .all({
+            allowedServices: this.getAllowedServices(),
+            vrackServices: this.getVrackServices(),
+          })
+          .then((result) => {
+            this.data.pendingTasks = tasks;
+            this.data.allowedServices = result.allowedServices;
+            this.data.vrackServices = result.vrackServices;
+
+            /**
+             * Finally, check if some tasks are adding or removing services in vrack
+             * and move the service in his "future" column
+             */
+            angular.forEach(this.data.pendingTasks, (task) => {
+              if (task && task.targetDomain) {
+                const id = task.targetDomain;
+                const fn = task.function;
+                if (startsWith(fn, 'add')) {
+                  this.moveDisplayedService(
+                    id,
+                    this.data.allowedServices,
+                    this.data.vrackServices,
+                  );
+                } else if (startsWith(fn, 'remove')) {
+                  this.moveDisplayedService(
+                    id,
+                    this.data.vrackServices,
+                    this.data.allowedServices,
+                  );
+                }
+                this.form.servicesToAdd = reject(this.form.servicesToAdd, {
+                  id,
+                });
+                this.form.servicesToDelete = reject(
+                  this.form.servicesToDelete,
+                  { id },
+                );
+              }
+            });
+          });
+      })
+      .finally(() => {
+        // if there are some pending tasks, poll
+        if (poll && !this.poller) {
+          this.poller = this.$timeout(() => {
+            this.poller = null;
+            this.refreshData();
+          }, POLLING_INTERVAL);
+        }
+        this.loaders.init = false;
+      });
+  }
+
+  isSelected(serviceType, serviceId) {
+    return (
+      angular.isDefined(
+        find(this.form.servicesToAdd, {
+          type: serviceType,
+          id: serviceId,
+        }),
+      ) ||
+      angular.isDefined(
+        find(this.form.servicesToDelete, {
+          type: serviceType,
+          id: serviceId,
+        }),
+      ) ||
+      isEqual(this.form.serviceToMove, { type: serviceType, id: serviceId })
+    );
+  }
+
+  isPending(serviceId) {
+    const ids = uniq(map(this.data.pendingTasks, 'targetDomain'));
+    return ids.indexOf(serviceId) >= 0;
+  }
+
+  toggleAddService(serviceType, serviceId) {
+    if (
+      !this.isPending(serviceId) &&
+      !this.loaders.adding &&
+      !this.loaders.deleting
+    ) {
+      const toAdd = { type: serviceType, id: serviceId };
+      if (find(this.form.servicesToAdd, toAdd)) {
+        this.form.servicesToAdd = reject(this.form.servicesToAdd, toAdd);
+      } else {
+        this.form.servicesToAdd.push(toAdd);
+      }
+      this.form.serviceToMove = null;
+      this.form.servicesToDelete = [];
+    }
+  }
+
+  toggleDeleteService(serviceType, serviceId) {
+    if (
+      !this.isPending(serviceId) &&
+      !this.loaders.adding &&
+      !this.loaders.deleting
+    ) {
+      const toDelete = { type: serviceType, id: serviceId };
+      if (find(this.form.servicesToDelete, toDelete)) {
+        this.form.servicesToDelete = reject(
+          this.form.servicesToDelete,
+          toDelete,
+        );
+      } else {
+        this.form.servicesToDelete.push(toDelete);
+      }
+      this.form.serviceToMove = null;
+      this.form.servicesToAdd = [];
+    }
+  }
+
+  toggleMoveService(serviceType, serviceId) {
+    if (this.isPending(serviceId) || this.loaders.moving) {
+      return;
+    }
+    const toMove = { type: serviceType, id: serviceId };
+    if (this.form.serviceToMove === null) {
+      this.form.servicesToAdd = [];
+      this.form.servicesToDelete = [];
+      this.form.serviceToMove = toMove;
+    } else {
+      this.form.serviceToMove = null;
+    }
+  }
+
+  editName() {
+    this.nameEditing = true;
+    this.nameBackup = this.name;
+  }
+
+  cancelEditName() {
+    this.nameEditing = false;
+    this.name = this.nameBackup;
+  }
+
+  saveName() {
+    this.nameEditing = false;
+
+    this.OvhApiVrack.v6()
+      .edit({ serviceName: this.serviceName }, { name: this.name })
+      .$promise.then(() =>
+        this.$rootScope.$broadcast('global_display_name_change', {
+          serviceName: this.serviceName,
+          displayName: this.name,
+        }),
+      )
+      .catch((err) => {
+        this.name = this.nameBackup;
+        this.CucCloudMessage.error(
+          [
+            this.$translate.instant('vrack_error'),
+            (err.data && err.data.message) || err.message || '',
+          ].join(' '),
+        );
+      })
+      .finally(() => {
+        this.nameBackup = null;
+      });
+  }
+
+  editDescription() {
+    this.descriptionEditing = true;
+    this.descriptionBackup = this.description;
+  }
+
+  cancelEditDescription() {
+    this.descriptionEditing = false;
+    this.description = this.descriptionBackup;
+  }
+
+  saveDescription() {
+    this.descriptionEditing = false;
+    this.OvhApiVrack.v6()
+      .edit(
+        { serviceName: this.serviceName },
+        { description: this.description },
+      )
+      .$promise.catch((err) => {
+        this.description = this.descriptionBackup;
+        this.CucCloudMessage.error(
+          [
+            this.$translate.instant('vrack_error'),
+            (err.data && err.data.message) || err.message || '',
+          ].join(' '),
+        );
+      })
+      .finally(() => {
+        this.descriptionBackup = null;
+      });
+  }
+
+  addSelectedServices() {
+    this.loaders.adding = true;
+    return this.$q
+      .all(
+        map(this.form.servicesToAdd, (service) => {
+          let task = this.$q.reject('Unknown service type');
+          switch (service.type) {
+            case 'dedicatedServer':
+              task = this.OvhApiVrack.DedicatedServer()
+                .v6()
+                .create(
+                  {
+                    serviceName: this.serviceName,
+                  },
+                  {
+                    dedicatedServer: service.id,
+                  },
+                ).$promise;
+              break;
+            case 'dedicatedServerInterface':
+              task = this.OvhApiVrack.DedicatedServerInterface()
+                .v6()
+                .post(
+                  {
+                    serviceName: this.serviceName,
+                  },
+                  {
+                    dedicatedServerInterface: service.id,
+                  },
+                ).$promise;
+              break;
+            case 'dedicatedCloud':
+              task = this.OvhApiVrack.DedicatedCloud()
+                .v6()
+                .create(
+                  {
+                    serviceName: this.serviceName,
+                  },
+                  {
+                    dedicatedCloud: service.id,
+                  },
+                ).$promise;
+              break;
+            case 'legacyVrack':
+              task = this.OvhApiVrack.LegacyVrack()
+                .v6()
+                .create(
+                  {
+                    serviceName: this.serviceName,
+                  },
+                  {
+                    legacyVrack: service.id,
+                  },
+                ).$promise;
+              break;
+            case 'ip':
+              task = this.OvhApiVrack.Ip()
+                .v6()
+                .create(
+                  {
+                    serviceName: this.serviceName,
+                  },
+                  {
+                    block: service.id,
+                  },
+                ).$promise;
+              break;
+            case 'cloudProject':
+              task = this.OvhApiVrack.CloudProject()
+                .v6()
+                .create(
+                  {
+                    serviceName: this.serviceName,
+                  },
+                  {
+                    project: service.id,
+                  },
+                ).$promise;
+              break;
+            case 'ipLoadbalancing':
+              task = this.OvhApiVrack.IpLoadBalancing()
+                .v6()
+                .create(
+                  {
+                    serviceName: this.serviceName,
+                  },
+                  {
+                    ipLoadbalancing: service.id,
+                  },
+                ).$promise;
+              break;
+            default:
+              break;
+          }
+          return task.catch((err) => {
+            this.CucCloudMessage.error(
+              [
+                this.$translate.instant('vrack_add_error'),
+                (err.data && err.data.message) || '',
+              ].join(' '),
+            );
+            return this.$q.reject(err);
+          });
+        }),
+      )
+      .then(() => this.refreshData())
+      .finally(() => {
+        this.form.servicesToAdd = [];
+        this.loaders.adding = false;
+      });
+  }
+
+  deleteSelectedServices() {
+    this.loaders.deleting = true;
+    return this.$q
+      .all(
+        map(this.form.servicesToDelete, (service) => {
+          let task = this.$q.reject('Unknown service type');
+          switch (service.type) {
+            case 'dedicatedServer':
+              task = this.OvhApiVrack.DedicatedServer()
+                .v6()
+                .delete({
+                  serviceName: this.serviceName,
+                  dedicatedServer: service.id,
+                }).$promise;
+              break;
+            case 'dedicatedServerInterface':
+              task = this.OvhApiVrack.DedicatedServerInterface()
+                .v6()
+                .delete({
+                  serviceName: this.serviceName,
+                  dedicatedServerInterface: service.id,
+                }).$promise;
+              break;
+            case 'dedicatedCloud':
+              task = this.OvhApiVrack.DedicatedCloud()
+                .v6()
+                .delete({
+                  serviceName: this.serviceName,
+                  dedicatedCloud: service.id,
+                }).$promise;
+              break;
+            case 'legacyVrack':
+              task = this.OvhApiVrack.LegacyVrack()
+                .v6()
+                .delete({
+                  serviceName: this.serviceName,
+                  legacyVrack: service.id,
+                }).$promise;
+              break;
+            case 'ip':
+              task = this.OvhApiVrack.Ip()
+                .v6()
+                .delete({
+                  serviceName: this.serviceName,
+                  ip: service.id,
+                }).$promise;
+              break;
+            case 'cloudProject':
+              task = this.OvhApiVrack.CloudProject()
+                .v6()
+                .delete({
+                  serviceName: this.serviceName,
+                  project: service.id,
+                }).$promise;
+              break;
+            case 'ipLoadbalancing':
+              task = this.OvhApiVrack.IpLoadBalancing()
+                .v6()
+                .delete({
+                  serviceName: this.serviceName,
+                  ipLoadbalancing: service.id,
+                }).$promise;
+              break;
+            default:
+              break;
+          }
+          return task.catch((err) => {
+            this.CucCloudMessage.error(
+              [
+                this.$translate.instant('vrack_remove_error'),
+                (err.data && err.data.message) || '',
+              ].join(' '),
+            );
+            return this.$q.reject(err);
+          });
+        }),
+      )
+      .then(() => this.refreshData())
+      .finally(() => {
+        this.form.servicesToDelete = [];
+        this.loaders.deleting = false;
+      });
+  }
+
+  moveSelectedService() {
+    this.goToMoveDialog(
+      merge(this.form.serviceToMove, { vrack: this.serviceName }),
+    );
+  }
+
+  setAccordionState(side, kind, offset, value) {
+    this.states.accordions[side][kind][offset] = value;
+  }
+
+  getAccordionState(side, kind, offset) {
+    if (!has(this.states.accordions, [side, kind, offset])) {
+      return true;
+    }
+
+    return this.states.accordions[side][kind][offset];
+  }
+
+  toggleAccordion(side, kind, offset) {
+    this.states.accordions[side][kind][offset] = !this.states.accordions[side][
+      kind
+    ][offset];
+  }
+
+  isAdding() {
+    return this.form.servicesToAdd.length > 0 && !this.loaders.adding;
+  }
+
+  isRemoving() {
+    return this.form.servicesToDelete.length > 0 && !this.loaders.deleting;
+  }
+
+  isMoving() {
+    return this.form.serviceToMove !== null && !this.loaders.moving;
+  }
+
+  static hasServices(services) {
+    return keys(services).length > 0;
+  }
+
+  static getDedicatedServerNiceName(service) {
     const formattedService = {};
     angular.copy(service, formattedService);
     formattedService.id = service.name;
@@ -136,8 +825,8 @@ export default /* @ngInject */ function VrackCtrl(
     return formattedService;
   }
 
-  function getDedicatedServerInterfaceNiceName(service) {
-    const formattedService = getDedicatedServerNiceName(
+  static getDedicatedServerInterfaceNiceName(service) {
+    const formattedService = VrackMoveDialogCtrl.getDedicatedServerNiceName(
       service.dedicatedServer,
     );
     formattedService.id = service.dedicatedServerInterface;
@@ -146,7 +835,7 @@ export default /* @ngInject */ function VrackCtrl(
     return formattedService;
   }
 
-  function getDedicatedCloudNiceName(service) {
+  static getDedicatedCloudNiceName(service) {
     const formattedService = {};
     angular.copy(service, formattedService);
     formattedService.id = service.serviceName;
@@ -159,7 +848,7 @@ export default /* @ngInject */ function VrackCtrl(
     return formattedService;
   }
 
-  function getCloudProjectNiceName(service) {
+  static getCloudProjectNiceName(service) {
     const formattedService = {};
     angular.copy(service, formattedService);
     formattedService.id = service.project_id;
@@ -172,7 +861,7 @@ export default /* @ngInject */ function VrackCtrl(
     return formattedService;
   }
 
-  function getIpLoadbalancingNiceName(service) {
+  static getIpLoadbalancingNiceName(service) {
     const formattedService = {};
     angular.copy(service, formattedService);
     formattedService.id = service.serviceName;
@@ -185,17 +874,23 @@ export default /* @ngInject */ function VrackCtrl(
     return formattedService;
   }
 
-  function fillServiceData(serviceType, service) {
+  static fillServiceData(serviceType, service) {
     let formattedService = null;
     switch (serviceType) {
       case 'dedicatedServer':
-        formattedService = getDedicatedServerNiceName(service);
+        formattedService = VrackMoveDialogCtrl.getDedicatedServerNiceName(
+          service,
+        );
         break;
       case 'dedicatedServerInterface':
-        formattedService = getDedicatedServerInterfaceNiceName(service);
+        formattedService = VrackMoveDialogCtrl.getDedicatedServerInterfaceNiceName(
+          service,
+        );
         break;
       case 'dedicatedCloud':
-        formattedService = getDedicatedCloudNiceName(service);
+        formattedService = VrackMoveDialogCtrl.getDedicatedCloudNiceName(
+          service,
+        );
         break;
       case 'dedicatedCloudDatacenter':
         formattedService = cloneDeep(service);
@@ -225,10 +920,12 @@ export default /* @ngInject */ function VrackCtrl(
         };
         break;
       case 'cloudProject':
-        formattedService = getCloudProjectNiceName(service);
+        formattedService = VrackMoveDialogCtrl.getCloudProjectNiceName(service);
         break;
       case 'ipLoadbalancing':
-        formattedService = getIpLoadbalancingNiceName(service);
+        formattedService = VrackMoveDialogCtrl.getIpLoadbalancingNiceName(
+          service,
+        );
         break;
       default:
         formattedService = cloneDeep(service);
@@ -237,733 +934,15 @@ export default /* @ngInject */ function VrackCtrl(
     return formattedService;
   }
 
-  self.getAllowedServices = function getAllowedServices() {
-    return OvhApiVrack.Aapi()
-      .allowedServices({ serviceName: self.serviceName })
-      .$promise.then((allServicesParam) => {
-        let allServices = allServicesParam;
-        allServices = mapValues(allServices, (services, serviceType) => {
-          if (isArray(services)) {
-            return map(services, (service) =>
-              fillServiceData(serviceType, service),
-            );
-          }
-          return services;
-        });
-
-        // We need to append dedicatedServerInterfaces list to dedicatedServers list.
-        if (
-          has(allServices, 'dedicatedServerInterface') &&
-          allServices.dedicatedServerInterface.length > 0
-        ) {
-          // If dedicatedServers list doesn't exist, we create it first.
-          if (!has(allServices, 'dedicatedServer')) {
-            allServices.dedicatedServer = [];
-          }
-
-          angular.forEach(
-            allServices.dedicatedServerInterface,
-            (serverInterface) => {
-              allServices.dedicatedServer.push(serverInterface);
-            },
-          );
-
-          allServices.dedicatedServerInterface = [];
-        }
-
-        return allServices;
-      });
-  };
-
-  self.getVrackServices = function getVrackServices() {
-    return OvhApiVrack.Aapi()
-      .services({ serviceName: self.serviceName })
-      .$promise.then((allServicesParam) => {
-        let allServices = allServicesParam;
-        allServices = mapValues(allServices, (servicesParams, serviceType) => {
-          let services = servicesParams;
-          if (isArray(services)) {
-            services = map(services, (service) =>
-              fillServiceData(serviceType, service),
-            );
-          }
-          return services;
-        });
-
-        if (has(allServices, 'dedicatedCloudDatacenter')) {
-          allServices.dedicatedCloudDatacenter = groupBy(
-            allServices.dedicatedCloudDatacenter,
-            self.groupedServiceKeys.dedicatedCloudDatacenter,
-          );
-        }
-
-        // We need to append dedicatedServerInterfaces list to dedicatedServers list.
-        if (
-          has(allServices, 'dedicatedServerInterface') &&
-          allServices.dedicatedServerInterface.length > 0
-        ) {
-          // If dedicatedServers list doesn't exist, we create it first.
-          if (!has(allServices, 'dedicatedServer')) {
-            allServices.dedicatedServer = [];
-          }
-
-          angular.forEach(
-            allServices.dedicatedServerInterface,
-            (serverInterface) => {
-              allServices.dedicatedServer.push(serverInterface);
-            },
-          );
-
-          allServices.dedicatedServerInterface = [];
-        }
-
-        return allServices;
-      });
-  };
-
-  self.getPendingTasks = function getPendingTasks() {
-    return OvhApiVrack.v6()
-      .tasks({
-        serviceName: self.serviceName,
-      })
-      .$promise.then((taskIds) =>
-        $q
-          .all(
-            map(taskIds, (id) =>
-              OvhApiVrack.v6()
-                .task({
-                  serviceName: self.serviceName,
-                  taskId: id,
-                })
-                .$promise.then((task) => task)
-                .catch((err) =>
-                  err.status === 404 ? $q.when(null) : $q.reject(err),
-                ),
-            ),
-          )
-          .then((tasks) => without(tasks, null)),
-      );
-  };
-
-  self.resetCache = function resetCache() {
-    OvhApiVrack.v6().resetCache();
-    OvhApiVrack.CloudProject()
-      .v6()
-      .resetQueryCache();
-    OvhApiVrack.IpLoadBalancing()
-      .v6()
-      .resetQueryCache();
-    OvhApiVrack.DedicatedCloud()
-      .v6()
-      .resetQueryCache();
-    OvhApiVrack.DedicatedServer()
-      .v6()
-      .resetQueryCache();
-    OvhApiVrack.DedicatedServerInterface()
-      .v6()
-      .resetQueryCache();
-    OvhApiVrack.Ip()
-      .v6()
-      .resetQueryCache();
-    OvhApiVrack.LegacyVrack()
-      .v6()
-      .resetQueryCache();
-    OvhApiVrack.Aapi().resetAllCache();
-  };
-
-  self.moveDisplayedService = function moveDisplayedService(
-    serviceId,
-    allServicesSource,
-    allServicesDestination,
-  ) {
-    let serviceToMove = null;
-    let typeToMove = null;
-    let isGroupedServicesType = false;
-    forEach(allServicesSource, (services, type) => {
-      const servicesToSearch = !isArray(allServicesSource[type])
-        ? flatten(values(allServicesSource[type]))
-        : allServicesSource[type];
-
-      serviceToMove = remove(servicesToSearch, (service) => {
-        if (service.id === serviceId) {
-          typeToMove = type;
-          isGroupedServicesType = !isArray(allServicesSource[type]);
-          return true;
-        }
-        return null;
-      });
-
-      if (!isEmpty(serviceToMove)) {
-        if (isGroupedServicesType) {
-          // eslint-disable-next-line no-param-reassign
-          allServicesSource[typeToMove] = groupBy(
-            servicesToSearch,
-            self.groupedServiceKeys[typeToMove],
-          );
-        } else {
-          // eslint-disable-next-line no-param-reassign
-          allServicesSource[typeToMove] = servicesToSearch;
-        }
-
-        return false;
-      }
-      return null;
-    });
-
-    if (serviceToMove && typeToMove) {
-      if (isGroupedServicesType) {
-        const services = flatten(values(allServicesDestination[typeToMove]));
-        services.push(serviceToMove[0]);
-        // eslint-disable-next-line no-param-reassign
-        allServicesDestination[typeToMove] = groupBy(
-          services,
-          self.groupedServiceKeys[typeToMove],
-        );
-      } else {
-        allServicesDestination[typeToMove].push(serviceToMove[0]);
-      }
-    }
-  };
-
-  self.refreshData = function refreshData() {
-    let poll = true;
-    return self
-      .getPendingTasks()
-      .then((tasks) => {
-        /**
-         * First, we check if there is any new pending tasks ...
-         */
-        const currentTasks = map(tasks, 'id');
-        const previousTasks = map(self.data.pendingTasks, 'id');
-        if (
-          difference(currentTasks, previousTasks).length ||
-          difference(previousTasks, currentTasks).length
-        ) {
-          self.resetCache(); // a task changed, vrack state might have changed too
-        } else if (tasks.length === 0) {
-          poll = false; // no new tasks & no tasks, no need to poll
-        }
-        /**
-         * Secondly, we fetch vrack data ...
-         */
-        return $q
-          .all({
-            allowedServices: self.getAllowedServices(),
-            vrackServices: self.getVrackServices(),
-          })
-          .then((result) => {
-            self.data.pendingTasks = tasks;
-            self.data.allowedServices = result.allowedServices;
-            self.data.vrackServices = result.vrackServices;
-
-            /**
-             * Finally, check if some tasks are adding or removing services in vrack
-             * and move the service in his "future" column
-             */
-            angular.forEach(self.data.pendingTasks, (task) => {
-              if (task && task.targetDomain) {
-                const id = task.targetDomain;
-                const fn = task.function;
-                if (startsWith(fn, 'add')) {
-                  self.moveDisplayedService(
-                    id,
-                    self.data.allowedServices,
-                    self.data.vrackServices,
-                  );
-                } else if (startsWith(fn, 'remove')) {
-                  self.moveDisplayedService(
-                    id,
-                    self.data.vrackServices,
-                    self.data.allowedServices,
-                  );
-                }
-                self.form.servicesToAdd = reject(self.form.servicesToAdd, {
-                  id,
-                });
-                self.form.servicesToDelete = reject(
-                  self.form.servicesToDelete,
-                  { id },
-                );
-              }
-            });
-          });
-      })
-      .finally(() => {
-        // if there are some pending tasks, poll
-        if (poll && !self.poller) {
-          self.poller = $timeout(() => {
-            self.poller = null;
-            self.refreshData();
-          }, pollingInterval);
-        }
-        self.loaders.init = false;
-      });
-  };
-
-  self.isSelected = function isSelected(serviceType, serviceId) {
-    return (
-      angular.isDefined(
-        find(self.form.servicesToAdd, {
-          type: serviceType,
-          id: serviceId,
-        }),
-      ) ||
-      angular.isDefined(
-        find(self.form.servicesToDelete, {
-          type: serviceType,
-          id: serviceId,
-        }),
-      ) ||
-      isEqual(self.form.serviceToMove, { type: serviceType, id: serviceId })
-    );
-  };
-
-  self.isPending = function isPending(serviceId) {
-    const ids = uniq(map(self.data.pendingTasks, 'targetDomain'));
-    return ids.indexOf(serviceId) >= 0;
-  };
-
-  self.toggleAddService = function toggleAddService(serviceType, serviceId) {
-    if (
-      !self.isPending(serviceId) &&
-      !self.loaders.adding &&
-      !self.loaders.deleting
-    ) {
-      const toAdd = { type: serviceType, id: serviceId };
-      if (find(self.form.servicesToAdd, toAdd)) {
-        self.form.servicesToAdd = reject(self.form.servicesToAdd, toAdd);
-      } else {
-        self.form.servicesToAdd.push(toAdd);
-      }
-      self.form.serviceToMove = null;
-      self.form.servicesToDelete = [];
-    }
-  };
-
-  self.toggleDeleteService = function toggleDeleteService(
-    serviceType,
-    serviceId,
-  ) {
-    if (
-      !self.isPending(serviceId) &&
-      !self.loaders.adding &&
-      !self.loaders.deleting
-    ) {
-      const toDelete = { type: serviceType, id: serviceId };
-      if (find(self.form.servicesToDelete, toDelete)) {
-        self.form.servicesToDelete = reject(
-          self.form.servicesToDelete,
-          toDelete,
-        );
-      } else {
-        self.form.servicesToDelete.push(toDelete);
-      }
-      self.form.serviceToMove = null;
-      self.form.servicesToAdd = [];
-    }
-  };
-
-  self.toggleMoveService = function toggleMoveService(serviceType, serviceId) {
-    if (self.isPending(serviceId) || self.loaders.moving) {
-      return;
-    }
-    const toMove = { type: serviceType, id: serviceId };
-    if (self.form.serviceToMove === null) {
-      self.form.servicesToAdd = [];
-      self.form.servicesToDelete = [];
-      self.form.serviceToMove = toMove;
-    } else {
-      self.form.serviceToMove = null;
-    }
-  };
-
-  self.editName = function editName() {
-    self.nameEditing = true;
-    self.nameBackup = self.name;
-  };
-
-  self.cancelEditName = function cancelEditName() {
-    self.nameEditing = false;
-    self.name = self.nameBackup;
-  };
-
-  self.saveName = function saveName() {
-    self.nameEditing = false;
-
-    OvhApiVrack.v6()
-      .edit({ serviceName: self.serviceName }, { name: self.name })
-      .$promise.then(() =>
-        $rootScope.$broadcast('global_display_name_change', {
-          serviceName: self.serviceName,
-          displayName: self.name,
-        }),
-      )
-      .catch((err) => {
-        self.name = self.nameBackup;
-        CucCloudMessage.error(
-          [
-            $translate.instant('vrack_error'),
-            (err.data && err.data.message) || err.message || '',
-          ].join(' '),
-        );
-      })
-      .finally(() => {
-        self.nameBackup = null;
-      });
-  };
-
-  self.editDescription = function editDescription() {
-    self.descriptionEditing = true;
-    self.descriptionBackup = self.description;
-  };
-
-  self.cancelEditDescription = function cancelEditDescription() {
-    self.descriptionEditing = false;
-    self.description = self.descriptionBackup;
-  };
-
-  self.saveDescription = function saveDescription() {
-    self.descriptionEditing = false;
-    OvhApiVrack.v6()
-      .edit(
-        { serviceName: self.serviceName },
-        { description: self.description },
-      )
-      .$promise.catch((err) => {
-        self.description = self.descriptionBackup;
-        CucCloudMessage.error(
-          [
-            $translate.instant('vrack_error'),
-            (err.data && err.data.message) || err.message || '',
-          ].join(' '),
-        );
-      })
-      .finally(() => {
-        self.descriptionBackup = null;
-      });
-  };
-
-  self.addSelectedServices = function addSelectedServices() {
-    self.loaders.adding = true;
-    return $q
-      .all(
-        map(self.form.servicesToAdd, (service) => {
-          let task = $q.reject('Unknown service type');
-          switch (service.type) {
-            case 'dedicatedServer':
-              task = OvhApiVrack.DedicatedServer()
-                .v6()
-                .create(
-                  {
-                    serviceName: self.serviceName,
-                  },
-                  {
-                    dedicatedServer: service.id,
-                  },
-                ).$promise;
-              break;
-            case 'dedicatedServerInterface':
-              task = OvhApiVrack.DedicatedServerInterface()
-                .v6()
-                .post(
-                  {
-                    serviceName: self.serviceName,
-                  },
-                  {
-                    dedicatedServerInterface: service.id,
-                  },
-                ).$promise;
-              break;
-            case 'dedicatedCloud':
-              task = OvhApiVrack.DedicatedCloud()
-                .v6()
-                .create(
-                  {
-                    serviceName: self.serviceName,
-                  },
-                  {
-                    dedicatedCloud: service.id,
-                  },
-                ).$promise;
-              break;
-            case 'legacyVrack':
-              task = OvhApiVrack.LegacyVrack()
-                .v6()
-                .create(
-                  {
-                    serviceName: self.serviceName,
-                  },
-                  {
-                    legacyVrack: service.id,
-                  },
-                ).$promise;
-              break;
-            case 'ip':
-              task = OvhApiVrack.Ip()
-                .v6()
-                .create(
-                  {
-                    serviceName: self.serviceName,
-                  },
-                  {
-                    block: service.id,
-                  },
-                ).$promise;
-              break;
-            case 'cloudProject':
-              task = OvhApiVrack.CloudProject()
-                .v6()
-                .create(
-                  {
-                    serviceName: self.serviceName,
-                  },
-                  {
-                    project: service.id,
-                  },
-                ).$promise;
-              break;
-            case 'ipLoadbalancing':
-              task = OvhApiVrack.IpLoadBalancing()
-                .v6()
-                .create(
-                  {
-                    serviceName: self.serviceName,
-                  },
-                  {
-                    ipLoadbalancing: service.id,
-                  },
-                ).$promise;
-              break;
-            default:
-              break;
-          }
-          return task.catch((err) => {
-            CucCloudMessage.error(
-              [
-                $translate.instant('vrack_add_error'),
-                (err.data && err.data.message) || '',
-              ].join(' '),
-            );
-            return $q.reject(err);
-          });
-        }),
-      )
-      .then(() => self.refreshData())
-      .finally(() => {
-        self.form.servicesToAdd = [];
-        self.loaders.adding = false;
-      });
-  };
-
-  self.deleteSelectedServices = function deleteSelectedServices() {
-    self.loaders.deleting = true;
-    return $q
-      .all(
-        map(self.form.servicesToDelete, (service) => {
-          let task = $q.reject('Unknown service type');
-          switch (service.type) {
-            case 'dedicatedServer':
-              task = OvhApiVrack.DedicatedServer()
-                .v6()
-                .delete({
-                  serviceName: self.serviceName,
-                  dedicatedServer: service.id,
-                }).$promise;
-              break;
-            case 'dedicatedServerInterface':
-              task = OvhApiVrack.DedicatedServerInterface()
-                .v6()
-                .delete({
-                  serviceName: self.serviceName,
-                  dedicatedServerInterface: service.id,
-                }).$promise;
-              break;
-            case 'dedicatedCloud':
-              task = OvhApiVrack.DedicatedCloud()
-                .v6()
-                .delete({
-                  serviceName: self.serviceName,
-                  dedicatedCloud: service.id,
-                }).$promise;
-              break;
-            case 'legacyVrack':
-              task = OvhApiVrack.LegacyVrack()
-                .v6()
-                .delete({
-                  serviceName: self.serviceName,
-                  legacyVrack: service.id,
-                }).$promise;
-              break;
-            case 'ip':
-              task = OvhApiVrack.Ip()
-                .v6()
-                .delete({
-                  serviceName: self.serviceName,
-                  ip: service.id,
-                }).$promise;
-              break;
-            case 'cloudProject':
-              task = OvhApiVrack.CloudProject()
-                .v6()
-                .delete({
-                  serviceName: self.serviceName,
-                  project: service.id,
-                }).$promise;
-              break;
-            case 'ipLoadbalancing':
-              task = OvhApiVrack.IpLoadBalancing()
-                .v6()
-                .delete({
-                  serviceName: self.serviceName,
-                  ipLoadbalancing: service.id,
-                }).$promise;
-              break;
-            default:
-              break;
-          }
-          return task.catch((err) => {
-            CucCloudMessage.error(
-              [
-                $translate.instant('vrack_remove_error'),
-                (err.data && err.data.message) || '',
-              ].join(' '),
-            );
-            return $q.reject(err);
-          });
-        }),
-      )
-      .then(() => self.refreshData())
-      .finally(() => {
-        self.form.servicesToDelete = [];
-        self.loaders.deleting = false;
-      });
-  };
-
-  self.moveSelectedService = function moveSelectedService() {
-    self.modals.move = $uibModal.open({
-      windowTopClass: 'cui-modal',
-      template: moveDialogTpl,
-      controller: moveDialogCtrl,
-      controllerAs: 'ctrl',
-      resolve: {
-        service() {
-          return merge(self.form.serviceToMove, {
-            vrack: self.serviceName,
-          });
-        },
-      },
-    });
-
-    self.modals.move.result
-      .then(() => {
-        self.refreshData();
-      })
-      .finally(() => {
-        self.form.serviceToMove = null;
-      });
-  };
-
-  self.setAccordionState = function setAccordionState(
-    side,
-    kind,
-    offset,
-    value,
-  ) {
-    self.states.accordions[side][kind][offset] = value;
-  };
-
-  self.getAccordionState = function getAccordionState(side, kind, offset) {
-    if (!has(self.states.accordions, [side, kind, offset])) {
-      return true;
-    }
-
-    return self.states.accordions[side][kind][offset];
-  };
-
-  self.toggleAccordion = function toggleAccordion(side, kind, offset) {
-    self.states.accordions[side][kind][offset] = !self.states.accordions[side][
-      kind
-    ][offset];
-  };
-
-  self.isAdding = function isAdding() {
-    return self.form.servicesToAdd.length > 0 && !self.loaders.adding;
-  };
-
-  self.isRemoving = function isRemoving() {
-    return self.form.servicesToDelete.length > 0 && !self.loaders.deleting;
-  };
-
-  self.isMoving = function isMoving() {
-    return self.form.serviceToMove !== null && !self.loaders.moving;
-  };
-
-  self.hasVrackGuideUrl = function hasVrackGuideUrl() {
-    return false;
-  };
-
-  self.hasServices = function hasServices(services) {
-    return keys(services).length > 0;
-  };
-
-  function setUserRelatedContent() {
-    OvhApiMe.v6()
+  setUserRelatedContent() {
+    this.OvhApiMe.v6()
       .get()
       .$promise.then((user) => {
         if (user.ovhSubsidiary === 'FR') {
           // Roadmap is only available in french
-          self.vRackCloudRoadmapGuide = constant.VRACK_URLS.guides.vrack.FR;
+          this.vRackCloudRoadmapGuide = VRACK_URLS.guides.vrack.FR;
         }
-        self.changeOwnerUrl =
-          constant.VRACK_URLS.changeOwner[user.ovhSubsidiary];
+        this.changeOwnerUrl = VRACK_URLS.changeOwner[user.ovhSubsidiary];
       });
   }
-
-  function init() {
-    self.loaders.init = true;
-    self.loadMessage();
-    if (isEmpty($stateParams.vrackId)) {
-      OvhApiVrack.v6()
-        .query()
-        .$promise.then((vracks) => {
-          if (isEmpty(vracks)) {
-            $state.go('vrack-add');
-          } else {
-            $state.go('vrack', { vrackId: vracks[0] });
-          }
-        })
-        .catch(() => {
-          $state.go('vrack-add');
-        });
-    } else {
-      // check if the serviceName is valid before loading the services
-      OvhApiVrack.v6()
-        .get({
-          serviceName: $stateParams.vrackId,
-        })
-        .$promise.then((resp) => {
-          self.serviceName = $stateParams.vrackId;
-          self.name = resp.name;
-          self.description = resp.description;
-          setUserRelatedContent();
-          self.refreshData();
-        })
-        .catch((err) => {
-          CucCloudMessage.error(
-            [
-              $translate.instant('vrack_error'),
-              (err.data && err.data.message) || '',
-            ].join(' '),
-          );
-        });
-    }
-  }
-
-  init();
-
-  $scope.$on('$destroy', () => {
-    if (self.poller) {
-      $timeout.cancel(self.poller);
-    }
-  });
 }
