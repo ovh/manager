@@ -11791,11 +11791,6 @@ ovh-angular-list-view@ovh-ux/ovh-angular-list-view#^0.1.5:
     angular-mock "^1.0.0"
     less-plugin-remcalc "^0.0.1"
 
-ovh-angular-proxy-request@^0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/ovh-angular-proxy-request/-/ovh-angular-proxy-request-0.1.0.tgz#36cc7cd5509fc85769b373e56019124d36bf0599"
-  integrity sha1-Nsx81VCfyFdps3PlYBkSTTa/BZk=
-
 ovh-angular-responsive-page-switcher@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/ovh-angular-responsive-page-switcher/-/ovh-angular-responsive-page-switcher-1.1.1.tgz#eed3fb6ab1610ed30fa2fde424767ced79b6f676"
