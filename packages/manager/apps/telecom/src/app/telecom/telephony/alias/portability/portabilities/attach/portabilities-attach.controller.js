@@ -1,4 +1,4 @@
-export default class {
+export default class TelephonyPortabilitiesAttachCtrl {
   /* @ngInject */
   constructor($q, $timeout, $translate, OvhApiTelephony) {
     this.$translate = $translate;

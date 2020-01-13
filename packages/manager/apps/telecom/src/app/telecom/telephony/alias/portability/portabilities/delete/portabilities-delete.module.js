@@ -19,7 +19,7 @@ angular
     'pascalprecht.translate',
   ])
   .config(routing)
-  .component('portabilitiesDelete', component)
+  .component('telephonyPortabilitiesDelete', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

@@ -3,7 +3,7 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '/delete?portabilityId&documentId',
     views: {
       modal: {
-        component: 'portabilitiesDelete',
+        component: 'telephonyPortabilitiesDelete',
       },
     },
     layout: 'modal',

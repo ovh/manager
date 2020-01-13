@@ -95,23 +95,42 @@
                             </dl>
 
                             <!-- PORTABILITY ATTACH CUSTOMER FORM -->
-                            <div data-ng-if="(number.portability.rio == null) && $ctrl.checkPortabilityStatus($index)">
-                                <button class="oui-button oui-button_primary oui-button_full-width oui-button_icon-right"
-                                        data-ng-click="$ctrl.attachMandate(number.portability)"
-                                        data-translate="telephony_alias_portabilities_attach_form">
-                                </button>
+                            <div
+                                data-ng-if="(number.portability.rio == null) && $ctrl.checkPortabilityStatus($index)"
+                            >
+                                <button
+                                    class="oui-button oui-button_primary oui-button_full-width oui-button_icon-right"
+                                    data-ng-click="$ctrl.attachMandate(number.portability)"
+                                    data-translate="telephony_alias_portabilities_attach_form"
+                                    type="button"
+                                ></button>
                             </div>
                             <!-- PORTABILITY UPLOADED DOCUMENTS -->
-                            <div data-ng-if="number.portability.documentAttached.length > 0">
-                                <oui-collapsible data-heading="{{ ::'telephony_alias_portabilities_attach_list_files' | translate }}">
-                                    <oui-datagrid data-rows="number.portability.uploadedDocuments">
-                                        <oui-column data-title="'telephony_alias_portabilities_attach_file_name' | translate"
-                                                    data-property="name">
+                            <div
+                                data-ng-if="number.portability.documentAttached.length > 0"
+                            >
+                                <oui-collapsible
+                                    data-heading="{{ ::'telephony_alias_portabilities_attach_list_files' | translate }}"
+                                >
+                                    <oui-datagrid
+                                        data-rows="number.portability.uploadedDocuments"
+                                    >
+                                        <oui-column
+                                            data-title="'telephony_alias_portabilities_attach_file_name' | translate"
+                                            data-property="name"
+                                        >
                                         </oui-column>
-                                        <oui-action-menu data-align="end" data-compact
-                                                        data-ng-if="$ctrl.checkPortabilityStatus($index)">
-                                            <oui-action-menu-item data-on-click="$ctrl.deleteDocument(number.portability, $row.documentId)">
-                                                <span data-translate="telephony_alias_portabilities_attach_delete"></span>
+                                        <oui-action-menu
+                                            data-align="end"
+                                            data-compact
+                                            data-ng-if="$ctrl.checkPortabilityStatus($index)"
+                                        >
+                                            <oui-action-menu-item
+                                                data-on-click="$ctrl.deleteDocument(number.portability, $row.documentId)"
+                                            >
+                                                <span
+                                                    data-translate="telephony_alias_portabilities_attach_delete"
+                                                ></span>
                                             </oui-action-menu-item>
                                         </oui-action-menu>
                                     </oui-datagrid>
