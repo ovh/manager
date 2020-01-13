@@ -1,8 +1,10 @@
 import chunk from 'lodash/chunk';
+import filter from 'lodash/filter';
 import find from 'lodash/find';
 import get from 'lodash/get';
 import map from 'lodash/map';
 import set from 'lodash/set';
+import sumBy from 'lodash/sumBy';
 
 import {
   OFFER_AGORA_MAPPING,
@@ -97,9 +99,15 @@ export default class VpsUpgradeCtrl {
    *  Find the monthly price object of given offer
    */
   static getMonthlyPrice(offer) {
-    return find(offer.offer.details.prices, {
+    const prices = filter(offer.offer.details.prices, {
       duration: 'P1M',
     });
+    const totalPrice = sumBy(prices, 'price.value');
+    return {
+      ...prices[0].price,
+      value: totalPrice,
+      text: prices[0].price.text.replace(/\d+(?:[.,]\d+)?/, totalPrice),
+    };
   }
 
   /* =============================
