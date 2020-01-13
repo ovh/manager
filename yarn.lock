@@ -11796,11 +11796,6 @@ ovh-angular-responsive-page-switcher@^1.1.1:
   resolved "https://registry.yarnpkg.com/ovh-angular-responsive-page-switcher/-/ovh-angular-responsive-page-switcher-1.1.1.tgz#eed3fb6ab1610ed30fa2fde424767ced79b6f676"
   integrity sha512-vTjrnA9nH96dnfUGvyBGveLB7tk62bV6wFhzl3Bim4FLgnVwkH77M9EAGxyuNFuOfH0UWu1/6qgP3jKPagZDeg==
 
-ovh-angular-responsive-popover@^4.0.1:
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/ovh-angular-responsive-popover/-/ovh-angular-responsive-popover-4.0.1.tgz#9bbd2d860490fdf791021cd09133f0ca0207ead7"
-  integrity sha1-m70thgSQ/feRAhzQkTPwygIH6tc=
-
 ovh-angular-responsive-tabs@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/ovh-angular-responsive-tabs/-/ovh-angular-responsive-tabs-4.0.0.tgz#85b66d7032612c3ed1a14cb29f83d1331b50c1df"
