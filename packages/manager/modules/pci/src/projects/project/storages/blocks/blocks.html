@@ -72,7 +72,7 @@
             </oui-column>
             <oui-column
                 data-title="'pci_projects_project_storages_blocks_status_label' | translate"
-                data-property="status"
+                data-property="statusGroup"
                 data-sortable
                 data-filterable
             >
@@ -84,9 +84,14 @@
                         'oui-status_error': ($row.statusGroup === 'ERROR'),
                         'oui-status_info': ($row.statusGroup === $row.status),
                     }"
-                    data-ng-switch="$row.statusGroup"
                 >
                     <span
+                        data-ng-if="$row.statusGroup === $row.status"
+                        data-ng-bind="$row.status"
+                    >
+                    </span>
+                    <span
+                        data-ng-if="$row.statusGroup !== $row.status"
                         data-ng-bind="'pci_projects_project_storages_blocks_status_' + $row.statusGroup | translate"
                     ></span>
                 </span>
