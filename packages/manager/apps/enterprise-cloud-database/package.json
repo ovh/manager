@@ -8,9 +8,9 @@
     "build": "webpack",
     "dev": "webpack-dev-server",
     "dev:watch": "yarn run dev",
-    "start": "lerna exec --stream --scope='@ovh-ux/manager-enterprise-cloud-database-app' --include-filtered-dependencies -- yarn run build",
-    "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-enterprise-cloud-database-app' --include-filtered-dependencies -- yarn run dev",
-    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-enterprise-cloud-database-app' --include-filtered-dependencies -- yarn run dev:watch"
+    "start": "lerna exec --stream --scope='@ovh-ux/manager-enterprise-cloud-database-app' --include-dependencies -- yarn run build",
+    "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-enterprise-cloud-database-app' --include-dependencies -- yarn run dev",
+    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-enterprise-cloud-database-app' --include-dependencies -- yarn run dev:watch"
   },
   "dependencies": {
     "@ovh-ux/manager-config": "^0.4.0",
