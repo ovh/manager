@@ -6,23 +6,26 @@
 </div>
 
 <div
-    class="page-header"
+    data-ng-controller="EmailProTabsCtrl"
     data-ng-if="!loadingEmailProInformations && !loadingEmailProError"
 >
-    <div class="row">
-        <div class="col-sm-9">
-            <form name="formEditDisplayName" novalidate>
-                <div class="mb-3" data-ng-show="!edit.active">
-                    <div class="d-flex">
+    <div
+        class="oui-page-header"
+        data-ng-if="!loadingEmailProInformations && !loadingEmailProError"
+    >
+        <div class="oui-page-header__container">
+            <div class="oui-page-header__content">
+                <form name="formEditDisplayName" novalidate>
+                    <div class="d-flex" data-ng-if="!edit.active">
                         <h1
-                            class="d-inline-block mb-0"
+                            class="oui-page-header__title"
                             data-ng-bind="exchange.displayName"
                         ></h1>
                         <button
-                            class="btn btn-icon my-auto ml-2"
                             type="button"
-                            title="{{ 'wizard_modify' | translate }}"
+                            class="oui-button oui-button_icon-alone my-auto ml-2"
                             data-ng-click="edit.active = !edit.active"
+                            aria-label="{{:: 'wizard_modify' | translate }}"
                         >
                             <span
                                 class="oui-icon oui-icon-pen_line oui-icon_small"
@@ -30,156 +33,130 @@
                             ></span>
                         </button>
                     </div>
-                    <span
-                        class="font-italic"
-                        data-ng-bind="exchange.domain"
-                        data-ng-if="exchange.displayName != null && exchange.displayName !== exchange.domain"
-                    ></span>
-                </div>
-                <div class="form-group" data-ng-show="edit.active">
-                    <div class="oui-input-group">
-                        <input
-                            type="text"
-                            class="form-control"
-                            name="txtDisplayName"
-                            required
-                            data-ng-minlength="5"
-                            data-ng-maxlength="250"
-                            data-ng-model="newDisplayName.value"
-                        />
-                        <button
-                            class="oui-button oui-button_small-width"
-                            type="submit"
-                            title="{{ 'common_confirm' | translate }}"
-                            data-ng-click="saveDisplayName()"
-                            data-ng-disabled="formEditDisplayName.$invalid"
-                        >
-                            <span
-                                class="oui-icon oui-icon-success oui-icon_small"
-                                aria-hidden="true"
-                            ></span>
-                        </button>
-                        <button
-                            class="oui-button oui-button_small-width"
-                            type="button"
-                            title="{{ 'common_cancel' | translate }}"
-                            data-ng-click="edit.active = false"
-                        >
-                            <span
-                                class="oui-icon oui-icon-error oui-icon_small"
-                                aria-hidden="true"
-                            ></span>
-                        </button>
-                    </div>
-                    <div
-                        class="help-block"
-                        data-ng-if="formEditDisplayName.txtDisplayName.$dirty"
-                        data-ng-messages="formEditDisplayName.txtDisplayName.$error"
-                    >
-                        <span
-                            data-translate="emailpro_displayName_maxlength"
-                            data-ng-message="maxlength"
-                        ></span>
-                        <span
-                            data-translate="emailpro_displayName_required"
-                            data-ng-message="required"
-                        ></span>
-                    </div>
-                </div>
-            </form>
-        </div>
+                    <oui-field data-ng-if="edit.active">
+                        <div class="oui-input-group  oui-input-group_l">
+                            <input
+                                type="text"
+                                class="oui-input"
+                                name="txtDisplayName"
+                                required
+                                data-ng-minlength="5"
+                                data-ng-maxlength="250"
+                                data-ng-model="newDisplayName.value"
+                            />
 
-        <div class="col-sm-3 text-right">
-            <div class="btn-group mt-4">
-                <button
-                    class="oui-button oui-button_dropdown mb-0"
-                    type="button"
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                    data-toggle="dropdown"
-                >
-                    <span data-translate="common_actions"></span>
-                    <span
-                        class="oui-icon oui-icon-chevron-down"
-                        aria-hidden="true"
-                    ></span>
-                </button>
-                <ul class="dropdown-menu dropdown-menu-right m-0 p-0">
-                    <li data-ng-if="!exchange.isMXPlan">
-                        <i
-                            class="oui-icon oui-icon-page_line"
-                            aria-hidden="true"
-                        ></i>
-                        <button
-                            class="btn btn-link"
-                            type="button"
-                            data-ng-if="exchange.renewOptionAvailable || is25g()"
-                            data-ng-click="setAction('emailpro/update/renew/emailpro-update-renew', exchange)"
-                            data-translate="emailpro_update_billing_button_title"
-                        ></button>
-                    </li>
-                    <li
-                        class="dropdown-divider"
-                        data-ng-if="!exchange.isMXPlan"
-                    >
-                        <i
-                            class="oui-icon oui-icon-power_line"
-                            aria-hidden="true"
-                        ></i>
-                        <button
-                            class="btn btn-link"
-                            type="button"
-                            data-ng-if="exchange.deleteOptionAvailable"
-                            data-ng-click="setAction('emailpro/remove/emailpro-remove', exchange)"
-                        >
-                            <span
-                                data-translate="emailpro_resilitation_action_button"
-                                data-ng-if="!exchange.renewType.deleteAtExpiration"
-                            ></span>
-                            <span
-                                data-translate="emailpro_resilitation_action_button_cancel"
-                                data-ng-if="exchange.renewType.deleteAtExpiration"
-                            ></span>
-                        </button>
-                    </li>
-                    <li data-ng-if="exchange.isMXPlan">
-                        <a
-                            class="btn btn-link"
-                            target="_blank"
-                            data-ng-href="#/billing/autoRenew?selectedType=EMAIL_DOMAIN&searchText={{ exchange.associatedDomainName }}"
-                        >
-                            <span
-                                data-translate="emailpro_delete_action_button"
-                            ></span>
-                            <span
-                                class="fa fa-external-link ml-2"
-                                aria-hidden="true"
-                            ></span>
-                            <span
-                                class="sr-only"
-                                data-translate="common_open_new_tab"
-                            ></span>
-                        </a>
-                    </li>
-                </ul>
+                            <button
+                                class="oui-button oui-button_small-width"
+                                type="submit"
+                                aria-label="{{ 'common_confirm' | translate }}"
+                                title="{{ 'common_confirm' | translate }}"
+                                data-ng-click="saveDisplayName()"
+                                data-ng-disabled="formEditDisplayName.$invalid"
+                            >
+                                <span
+                                    class="oui-icon oui-icon-success oui-icon_small"
+                                    aria-hidden="true"
+                                ></span>
+                            </button>
+                            <button
+                                class="oui-button oui-button_small-width"
+                                type="button"
+                                aria-label="{{ 'common_cancel' | translate }}"
+                                title="{{ 'common_cancel' | translate }}"
+                                data-ng-click="edit.active = false"
+                            >
+                                <span
+                                    class="oui-icon oui-icon-error oui-icon_small"
+                                    aria-hidden="true"
+                                ></span>
+                            </button>
+                        </div>
+                    </oui-field>
+                </form>
+
+                <h2
+                    class="oui-page-header__description"
+                    data-ng-bind="exchange.domain"
+                    data-ng-if="exchange.displayName != null && exchange.displayName !== exchange.domain"
+                ></h2>
             </div>
+            <oui-action-menu
+                data-align="end"
+                data-text="{{:: 'common_actions' | translate }}"
+            >
+                <div data-ng-if="!exchange.isMXPlan">
+                    <oui-action-menu-item
+                        data-ng-if="exchange.renewOptionAvailable || is25g()"
+                        data-on-click="setAction('emailpro/update/renew/emailpro-update-renew', exchange)"
+                    >
+                        <span
+                            data-translate="emailpro_update_billing_button_title"
+                        ></span>
+                    </oui-action-menu-item>
+                    <oui-action-menu-divider></oui-action-menu-divider>
+                    <oui-action-menu-item
+                        data-ng-if="exchange.deleteOptionAvailable"
+                        data-on-click="setAction('emailpro/remove/emailpro-remove', exchange)"
+                    >
+                        <span
+                            data-translate="emailpro_resilitation_action_button"
+                            data-ng-if="!exchange.renewType.deleteAtExpiration"
+                        ></span>
+                        <span
+                            data-translate="emailpro_resilitation_action_button_cancel"
+                            data-ng-if="exchange.renewType.deleteAtExpiration"
+                        ></span>
+                    </oui-action-menu-item>
+                </div>
+                <div data-ng-if="exchange.isMXPlan">
+                    <oui-action-menu-item
+                        data-href="{{ '#/billing/autoRenew?selectedType=EMAIL_DOMAIN&searchText=' + exchange.associatedDomainName }}"
+                        data-external
+                    >
+                        <span
+                            data-translate="emailpro_delete_action_button"
+                        ></span>
+                    </oui-action-menu-item>
+                </div>
+            </oui-action-menu>
+        </div>
+        <div data-ng-if="!exchange.isExpired">
+            <oui-header-tabs>
+                <oui-header-tabs-item
+                    data-ng-repeat="tab in tabs track by $index"
+                    data-text="{{:: 'emailpro_tab_' + tab | translate }}"
+                    data-href="{{ $ctrl.getTabLink(tab) }}"
+                    data-active="selectedTab === tab"
+                    data-on-click="setSelectedTab(tab)"
+                >
+                </oui-header-tabs-item>
+                <oui-header-tabs-dropdown data-text="{{ tabMenu.title }}">
+                    <div data-ng-repeat="item in tabMenu.items">
+                        <oui-header-tabs-divider
+                            data-ng-if="item.type === 'SEPARATOR'"
+                        ></oui-header-tabs-divider>
+                        <button
+                            data-ng-if="item.type === 'ACTION'"
+                            class="oui-header-tabs__item oui-dropdown-option p-0"
+                            type="button"
+                            data-ng-click="item.fn()"
+                            data-ng-disabled="item.disabled"
+                        >
+                            <span data-ng-bind="item.label"></span>
+                        </button>
+                        <oui-header-tabs-item
+                            data-ng-if="item.type !== 'ACTION' && item.type !== 'SEPARATOR'"
+                            data-text="{{ item.label }}"
+                            data-disabled="item.disabled"
+                            data-href="{{ $ctrl.getTabLink(item.target) }}"
+                            data-on-click="setSelectedTab(item.target)"
+                        ></oui-header-tabs-item>
+                    </div>
+                </oui-header-tabs-dropdown>
+            </oui-header-tabs>
         </div>
     </div>
-</div>
-
-<div
-    data-ng-controller="EmailProTabsCtrl"
-    data-ng-if="!loadingEmailProInformations && !loadingEmailProError && !exchange.isExpired"
->
-    <wuc-ovh-tabs
-        tabs="tabs"
-        selected-tab="selectedTab"
-        change-tab="setSelectedTab"
-        product="exchange"
-        tr="tr"
-        menu="tabMenu"
-    ></wuc-ovh-tabs>
-    <div class="tab-content">
+    <div class="tab-content" data-ng-if="!exchange.isExpired">
         <div
             class="alert alert-dismissible"
             role="alert"
