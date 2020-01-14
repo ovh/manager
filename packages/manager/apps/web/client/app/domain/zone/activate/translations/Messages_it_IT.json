@@ -1,0 +1,9 @@
+{
+  "web_domain_zone_activation": "Attiva la zona DNS",
+  "web_domain_zone_activation_confirm": "Attiva",
+  "web_domain_zone_activation_cancel": "Annulla",
+  "web_domain_zone_activation_question": "Vuoi attivare il numero minimo di record nella tua zona DNS?",
+  "web_domain_zone_activation_template_minimized": "Sì, voglio attivare la mia zona DNS con il numero minimo di record",
+  "web_domain_zone_activation_template_basic": "No, ma voglio attivare la mia zona DNS",
+  "web_domain_zone_activation_success": "L’ordine è stato generato correttamente"
+}

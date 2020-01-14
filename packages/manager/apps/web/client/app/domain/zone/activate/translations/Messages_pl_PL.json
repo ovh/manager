@@ -1,0 +1,9 @@
+{
+  "web_domain_zone_activation": "Włącz strefę DNS",
+  "web_domain_zone_activation_confirm": "Włącz",
+  "web_domain_zone_activation_cancel": "Anuluj",
+  "web_domain_zone_activation_question": "Czy chcesz włączyć minimalne wpisy w strefie DNS?",
+  "web_domain_zone_activation_template_minimized": "Tak, chcę włączyć strefę DNS z minimalnymi wpisami.",
+  "web_domain_zone_activation_template_basic": "Nie, ale chcę włączyć strefę DNS.",
+  "web_domain_zone_activation_success": "Zamówienie zostało wygenerowane."
+}

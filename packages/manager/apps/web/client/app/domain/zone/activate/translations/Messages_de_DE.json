@@ -1,0 +1,9 @@
+{
+  "web_domain_zone_activation": "DNS-Zone aktivieren",
+  "web_domain_zone_activation_confirm": "Aktivieren",
+  "web_domain_zone_activation_cancel": "Abbrechen",
+  "web_domain_zone_activation_question": "Möchten Sie die DNS-Zone mit minimalen Einträgen aktivieren?",
+  "web_domain_zone_activation_template_minimized": "Ja, ich möchte meine DNS-Zone mit minimalen Einträgen aktivieren.",
+  "web_domain_zone_activation_template_basic": "Nein, aber ich möchte meine DNS-Zone aktivieren.",
+  "web_domain_zone_activation_success": "Der Bestellschein wurde erfolgreich erstellt."
+}
