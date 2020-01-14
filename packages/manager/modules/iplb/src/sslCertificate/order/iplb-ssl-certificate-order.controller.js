@@ -4,19 +4,9 @@ import pick from 'lodash/pick';
 
 export default class IpLoadBalancerSslCertificateOrderCtrl {
   /* @ngInject */
-  constructor(
-    $q,
-    $state,
-    $stateParams,
-    $window,
-    CucCloudMessage,
-    CucControllerHelper,
-    IpLoadBalancerConstant,
-    IpLoadBalancerSslCertificateService,
-  ) {
+  constructor($q, $window, CucCloudMessage, CucControllerHelper,
+    IpLoadBalancerConstant, IpLoadBalancerSslCertificateService) {
     this.$q = $q;
-    this.$state = $state;
-    this.$stateParams = $stateParams;
     this.$window = $window;
     this.CucCloudMessage = CucCloudMessage;
     this.CucControllerHelper = CucControllerHelper;
@@ -26,10 +16,10 @@ export default class IpLoadBalancerSslCertificateOrderCtrl {
 
   $onInit() {
     this.paidOffers = this.CucControllerHelper.request.getArrayLoader({
-      loaderFunction: () =>
-        this.IpLoadBalancerSslCertificateService.getCertificateProducts(
-          this.$stateParams.serviceName,
-        ).then((offers) => {
+      loaderFunction: () => this.IpLoadBalancerSslCertificateService.getCertificateProducts(
+        this.serviceName,
+      )
+        .then((offers) => {
           this.offers = offers;
           this.sslTypes = map(offers, 'planCode').map((planCode) =>
             planCode.replace(/-/g, '_'),
@@ -87,11 +77,9 @@ export default class IpLoadBalancerSslCertificateOrderCtrl {
   orderFreeCertificate() {
     const fqdn = this.newSsl.fqdn.split(',').map((item) => item.trim());
     this.saving = true;
-    this.IpLoadBalancerSslCertificateService.orderFreeCertificate(
-      this.$stateParams.serviceName,
-      fqdn,
-    )
-      .then(() => this.$state.go('network.iplb.detail.ssl-certificate.home'))
+    this.IpLoadBalancerSslCertificateService
+      .orderFreeCertificate(this.serviceName, fqdn)
+      .then(() => this.goBack())
       .finally(() => {
         this.saving = false;
       });
@@ -110,11 +98,8 @@ export default class IpLoadBalancerSslCertificateOrderCtrl {
     delete configuration.type;
 
     this.saving = true;
-    this.IpLoadBalancerSslCertificateService.orderPaidCertificate(
-      this.$stateParams.serviceName,
-      options,
-      configuration,
-    )
+    this.IpLoadBalancerSslCertificateService
+      .orderPaidCertificate(this.serviceName, options, configuration)
       .then(({ url }) => {
         this.$window.open(url);
       })

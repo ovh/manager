@@ -1,15 +1,15 @@
 <oui-modal
     data-title="{{ ::'iplb_ssl_delete_title' | translate }}"
     data-primary-label="{{ ::'iplb_ssl_delete_button' | translate }}"
-    data-primary-action="IpLoadBalancerSslCertificateDeleteCtrl.confirm()"
-    data-secondary-action="IpLoadBalancerSslCertificateDeleteCtrl.cancel()"
+    data-primary-action="$ctrl.confirm()"
+    data-secondary-action="$ctrl.goBack()"
     data-secondary-label="{{ ::'iplb_cancel' | translate }}"
-    data-on-dismiss="IpLoadBalancerSslCertificateDeleteCtrl.cancel()"
-    data-loading="IpLoadBalancerSslCertificateDeleteCtrl.delete.loading"
+    data-on-dismiss="$ctrl.goBack()"
+    data-loading="$ctrl.delete.loading"
 >
     <p
         class="oui-modal__text"
         data-translate="iplb_ssl_delete_question"
-        data-translate-values="{ name: IpLoadBalancerSslCertificateDeleteCtrl.name }"
+        data-translate-values="{ name: $ctrl.name }"
     ></p>
 </oui-modal>

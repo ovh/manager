@@ -1,21 +1,8 @@
 export default class IpLoadBalancerSslCertificateUpdateCtrl {
   /* @ngInject */
-  constructor(
-    $uibModalInstance,
-    CucControllerHelper,
-    IpLoadBalancerSslCertificateService,
-    serviceName,
-    ssl,
-  ) {
-    this.$uibModalInstance = $uibModalInstance;
+  constructor(CucControllerHelper, IpLoadBalancerSslCertificateService) {
     this.CucControllerHelper = CucControllerHelper;
     this.IpLoadBalancerSslCertificateService = IpLoadBalancerSslCertificateService;
-    this.serviceName = serviceName;
-    this.ssl = ssl;
-  }
-
-  dismiss() {
-    this.$uibModalInstance.dismiss();
   }
 
   update() {
@@ -25,9 +12,7 @@ export default class IpLoadBalancerSslCertificateUpdateCtrl {
           this.serviceName,
           this.ssl.id,
           { displayName: this.displayName },
-        )
-          .then((response) => this.$uibModalInstance.close(response))
-          .catch((error) => this.$uibModalInstance.dismiss(error)),
+        ).finally(() => this.goBack()),
     });
     return this.updateSsl.load();
   }

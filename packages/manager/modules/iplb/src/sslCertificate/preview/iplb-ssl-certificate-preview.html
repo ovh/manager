@@ -1,6 +1,6 @@
 <oui-modal
     data-title="{{ ::'iplb_ssl_preview_title' | translate }}"
-    data-on-dismiss="IpLoadBalancerSslCertificatePreviewCtrl.dismiss()"
+    data-on-dismiss="$ctrl.goBack()"
 >
     <dl class="preview-list">
         <dt
@@ -9,7 +9,7 @@
         ></dt>
         <dd
             class="preview-list__definition"
-            data-ng-bind="IpLoadBalancerSslCertificatePreviewCtrl.ssl.displayName || '-'"
+            data-ng-bind="$ctrl.ssl.displayName || '-'"
         ></dd>
         <dt
             class="preview-list__term"
@@ -17,7 +17,7 @@
         ></dt>
         <dd
             class="preview-list__definition"
-            data-ng-bind="IpLoadBalancerSslCertificatePreviewCtrl.ssl.serial"
+            data-ng-bind="$ctrl.ssl.serial"
         ></dd>
         <dt
             class="preview-list__term"
@@ -25,7 +25,7 @@
         ></dt>
         <dd
             class="preview-list__definition"
-            data-ng-bind="IpLoadBalancerSslCertificatePreviewCtrl.ssl.subject"
+            data-ng-bind="$ctrl.ssl.subject"
         ></dd>
         <dt
             class="preview-list__term"
@@ -33,24 +33,18 @@
         ></dt>
         <dd
             class="preview-list__definition"
-            title="{{ IpLoadBalancerSslCertificatePreviewCtrl.ssl.fingerprint }}"
-            data-ng-bind="IpLoadBalancerSslCertificatePreviewCtrl.ssl.fingerprint"
+            title="{{ $ctrl.ssl.fingerprint }}"
+            data-ng-bind="$ctrl.ssl.fingerprint"
         ></dd>
         <dt
             class="preview-list__term"
             data-translate="iplb_ssl_preview_type"
         ></dt>
-        <dd
-            class="preview-list__definition"
-            data-ng-bind="IpLoadBalancerSslCertificatePreviewCtrl.ssl.type"
-        ></dd>
+        <dd class="preview-list__definition" data-ng-bind="$ctrl.ssl.type"></dd>
         <dt
             class="preview-list__term"
             data-translate="iplb_ssl_preview_id"
         ></dt>
-        <dd
-            class="preview-list__definition"
-            data-ng-bind="IpLoadBalancerSslCertificatePreviewCtrl.ssl.id"
-        ></dd>
+        <dd class="preview-list__definition" data-ng-bind="$ctrl.ssl.id"></dd>
     </dl>
 </oui-modal>

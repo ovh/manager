@@ -16,7 +16,7 @@
         data-translate="iplb_ssl_order_title"
     ></a>
 
-    <oui-datagrid data-rows="ctrl.certificates">
+    <oui-datagrid data-rows="$ctrl.certificates">
         <oui-column
             data-title="'iplb_ssl_certificate' | translate"
             data-property="id"
@@ -38,16 +38,16 @@
         <oui-action-menu data-align="end" data-compact>
             <oui-action-menu-item
                 data-text="{{'iplb_ssl_see' | translate}}"
-                data-on-click="ctrl.preview($row)"
+                data-on-click="$ctrl.goToPreview($row)"
             ></oui-action-menu-item>
             <oui-action-menu-divider></oui-action-menu-divider>
             <oui-action-menu-item
                 data-text="{{'iplb_ssl_update' | translate}}"
-                data-on-click="ctrl.update($row)"
+                data-on-click="$ctrl.goToUpdate($row)"
             ></oui-action-menu-item>
             <oui-action-menu-item
                 data-text="{{'iplb_ssl_delete' | translate}}"
-                data-on-click="ctrl.delete($row)"
+                data-on-click="$ctrl.goToDelete($row)"
             ></oui-action-menu-item>
         </oui-action-menu>
     </oui-datagrid>

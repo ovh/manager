@@ -1,20 +1,20 @@
 <div class="cui-page__content">
     <oui-back-button
         data-heading="{{ ::'iplb_ssl_add_title' | translate }}"
-        data-on-click="ctrl.$state.go('network.iplb.detail.ssl-certificate')"
+        data-on-click="$ctrl.goBack()"
     >
     </oui-back-button>
 
-    <form novalidate name="ctrl.form">
+    <form novalidate name="$ctrl.form">
         <div class="oui-field">
             <label
                 class="oui-label"
                 data-translate="iplb_ssl_order_type"
             ></label>
             <div class="oui-field__content">
-                <oui-radio-toggle-group data-model="ctrl.newSsl.type">
+                <oui-radio-toggle-group data-model="$ctrl.newSsl.type">
                     <oui-radio
-                        data-ng-repeat="type in ctrl.sslTypes track by $index"
+                        data-ng-repeat="type in $ctrl.sslTypes track by $index"
                         data-text="{{ ::('iplb_ssl_order_type_' + type) | translate }}"
                         data-value="type"
                     >
@@ -33,13 +33,13 @@
                 id="fqdn"
                 name="fqdn"
                 class="oui-input"
-                data-ng-class="{ 'oui-input_error': ctrl.form.$submitted && ctrl.form.fqdn.$invalid }"
-                data-ng-model="ctrl.newSsl.fqdn"
+                data-ng-class="{ 'oui-input_error': $ctrl.form.$submitted && $ctrl.form.fqdn.$invalid }"
+                data-ng-model="$ctrl.newSsl.fqdn"
                 required
             />
         </oui-field>
 
-        <div data-ng-if="ctrl.newSsl.type === 'iplb_ssl_ev_single'">
+        <div data-ng-if="$ctrl.newSsl.type === 'iplb_ssl_ev_single'">
             <h3
                 class="oui-header_3"
                 data-translate="iplb_ssl_order_contact"
@@ -47,7 +47,7 @@
 
             <div
                 class="oui-field"
-                data-ng-class="{ 'oui-field_error': ctrl.form.$submitted && ctrl.form.email.$invalid }"
+                data-ng-class="{ 'oui-field_error': $ctrl.form.$submitted && $ctrl.form.email.$invalid }"
             >
                 <label
                     for="email"
@@ -61,8 +61,8 @@
                             id="email"
                             name="email"
                             class="oui-input"
-                            data-ng-class="{ 'oui-input_error': ctrl.form.$submitted && ctrl.form.email.$invalid }"
-                            data-ng-model="ctrl.newSsl.email"
+                            data-ng-class="{ 'oui-input_error': $ctrl.form.$submitted && $ctrl.form.email.$invalid }"
+                            data-ng-model="$ctrl.newSsl.email"
                             required
                         />
                     </div>
@@ -71,7 +71,7 @@
 
             <div
                 class="oui-field"
-                data-ng-class="{ 'oui-field_error': ctrl.form.$submitted && ctrl.form.date_of_incorporation.$invalid }"
+                data-ng-class="{ 'oui-field_error': $ctrl.form.$submitted && $ctrl.form.date_of_incorporation.$invalid }"
             >
                 <label
                     for="date_of_incorporation"
@@ -85,8 +85,8 @@
                             id="date_of_incorporation"
                             name="date_of_incorporation"
                             class="oui-input"
-                            data-ng-class="{ 'oui-input_error': ctrl.form.$submitted && ctrl.form.date_of_incorporation.$invalid }"
-                            data-ng-model="ctrl.newSsl.date_of_incorporation"
+                            data-ng-class="{ 'oui-input_error': $ctrl.form.$submitted && $ctrl.form.date_of_incorporation.$invalid }"
+                            data-ng-model="$ctrl.newSsl.date_of_incorporation"
                             required
                         />
                     </div>
@@ -95,7 +95,7 @@
 
             <div
                 class="oui-field"
-                data-ng-class="{ 'oui-field_error': ctrl.form.$submitted && ctrl.form.organizationName.$invalid }"
+                data-ng-class="{ 'oui-field_error': $ctrl.form.$submitted && $ctrl.form.organizationName.$invalid }"
             >
                 <label
                     for="organizationName"
@@ -109,8 +109,8 @@
                             id="organizationName"
                             name="organizationName"
                             class="oui-input"
-                            data-ng-class="{ 'oui-input_error': ctrl.form.$submitted && ctrl.form.organizationName.$invalid }"
-                            data-ng-model="ctrl.newSsl.organizationName"
+                            data-ng-class="{ 'oui-input_error': $ctrl.form.$submitted && $ctrl.form.organizationName.$invalid }"
+                            data-ng-model="$ctrl.newSsl.organizationName"
                             required
                         />
                     </div>
@@ -119,7 +119,7 @@
 
             <div
                 class="oui-field"
-                data-ng-class="{ 'oui-field_error': ctrl.form.$submitted && ctrl.form.organizationalUnitName.$invalid }"
+                data-ng-class="{ 'oui-field_error': $ctrl.form.$submitted && $ctrl.form.organizationalUnitName.$invalid }"
             >
                 <label
                     for="organizationalUnitName"
@@ -133,8 +133,8 @@
                             id="organizationalUnitName"
                             name="organizationalUnitName"
                             class="oui-input"
-                            data-ng-class="{ 'oui-input_error': ctrl.form.$submitted && ctrl.form.organizationalUnitName.$invalid }"
-                            data-ng-model="ctrl.newSsl.organizationalUnitName"
+                            data-ng-class="{ 'oui-input_error': $ctrl.form.$submitted && $ctrl.form.organizationalUnitName.$invalid }"
+                            data-ng-model="$ctrl.newSsl.organizationalUnitName"
                             required
                         />
                     </div>
@@ -143,7 +143,7 @@
 
             <div
                 class="oui-field"
-                data-ng-class="{ 'oui-field_error': ctrl.form.$submitted && ctrl.form.business_category.$invalid }"
+                data-ng-class="{ 'oui-field_error': $ctrl.form.$submitted && $ctrl.form.business_category.$invalid }"
             >
                 <label
                     for="business_category"
@@ -154,14 +154,14 @@
                     <div class="oui-field-control oui-field-control_4">
                         <div
                             class="oui-select"
-                            data-ng-class="{ 'oui-select_error': ctrl.form.$submitted && ctrl.form.business_category.$invalid }"
+                            data-ng-class="{ 'oui-select_error': $ctrl.form.$submitted && $ctrl.form.business_category.$invalid }"
                         >
                             <select
                                 class="oui-select__input"
                                 name="business_category"
                                 id="business_category"
-                                data-ng-model="ctrl.newSsl.business_category"
-                                data-ng-options="organizationType as organizationType for organizationType in ctrl.organizationTypes"
+                                data-ng-model="$ctrl.newSsl.business_category"
+                                data-ng-options="organizationType as organizationType for organizationType in $ctrl.organizationTypes"
                                 required
                             >
                                 <option
@@ -179,7 +179,7 @@
 
             <div
                 class="oui-field"
-                data-ng-class="{ 'oui-field_error': ctrl.form.$submitted && ctrl.form.streetName.$invalid }"
+                data-ng-class="{ 'oui-field_error': $ctrl.form.$submitted && $ctrl.form.streetName.$invalid }"
             >
                 <label
                     for="streetName"
@@ -193,8 +193,8 @@
                             id="streetName"
                             name="streetName"
                             class="oui-input"
-                            data-ng-class="{ 'oui-input_error': ctrl.form.$submitted && ctrl.form.streetName.$invalid }"
-                            data-ng-model="ctrl.newSsl.streetName"
+                            data-ng-class="{ 'oui-input_error': $ctrl.form.$submitted && $ctrl.form.streetName.$invalid }"
+                            data-ng-model="$ctrl.newSsl.streetName"
                             required
                         />
                     </div>
@@ -203,7 +203,7 @@
 
             <div
                 class="oui-field"
-                data-ng-class="{ 'oui-field_error': ctrl.form.$submitted && ctrl.form.postalCode.$invalid }"
+                data-ng-class="{ 'oui-field_error': $ctrl.form.$submitted && $ctrl.form.postalCode.$invalid }"
             >
                 <label
                     for="postalCode"
@@ -217,8 +217,8 @@
                             id="postalCode"
                             name="postalCode"
                             class="oui-input"
-                            data-ng-class="{ 'oui-input_error': ctrl.form.$submitted && ctrl.form.postalCode.$invalid }"
-                            data-ng-model="ctrl.newSsl.postalCode"
+                            data-ng-class="{ 'oui-input_error': $ctrl.form.$submitted && $ctrl.form.postalCode.$invalid }"
+                            data-ng-model="$ctrl.newSsl.postalCode"
                             required
                         />
                     </div>
@@ -227,7 +227,7 @@
 
             <div
                 class="oui-field"
-                data-ng-class="{ 'oui-field_error': ctrl.form.$submitted && ctrl.form.stateOrProvinceName.$invalid }"
+                data-ng-class="{ 'oui-field_error': $ctrl.form.$submitted && $ctrl.form.stateOrProvinceName.$invalid }"
             >
                 <label
                     for="stateOrProvinceName"
@@ -241,8 +241,8 @@
                             id="stateOrProvinceName"
                             name="stateOrProvinceName"
                             class="oui-input"
-                            data-ng-class="{ 'oui-input_error': ctrl.form.$submitted && ctrl.form.stateOrProvinceName.$invalid }"
-                            data-ng-model="ctrl.newSsl.stateOrProvinceName"
+                            data-ng-class="{ 'oui-input_error': $ctrl.form.$submitted && $ctrl.form.stateOrProvinceName.$invalid }"
+                            data-ng-model="$ctrl.newSsl.stateOrProvinceName"
                             required
                         />
                     </div>
@@ -251,7 +251,7 @@
 
             <div
                 class="oui-field"
-                data-ng-class="{ 'oui-field_error': ctrl.form.$submitted && ctrl.form.localityName.$invalid }"
+                data-ng-class="{ 'oui-field_error': $ctrl.form.$submitted && $ctrl.form.localityName.$invalid }"
             >
                 <label
                     for="localityName"
@@ -265,8 +265,8 @@
                             id="localityName"
                             name="localityName"
                             class="oui-input"
-                            data-ng-class="{ 'oui-input_error': ctrl.form.$submitted && ctrl.form.localityName.$invalid }"
-                            data-ng-model="ctrl.newSsl.localityName"
+                            data-ng-class="{ 'oui-input_error': $ctrl.form.$submitted && $ctrl.form.localityName.$invalid }"
+                            data-ng-model="$ctrl.newSsl.localityName"
                             required
                         />
                     </div>
@@ -275,7 +275,7 @@
 
             <div
                 class="oui-field"
-                data-ng-class="{ 'oui-field_error': ctrl.form.$submitted && ctrl.form.countryName.$invalid }"
+                data-ng-class="{ 'oui-field_error': $ctrl.form.$submitted && $ctrl.form.countryName.$invalid }"
             >
                 <label
                     for="countryName"
@@ -289,8 +289,8 @@
                             id="countryName"
                             name="countryName"
                             class="oui-input"
-                            data-ng-class="{ 'oui-input_error': ctrl.form.$submitted && ctrl.form.countryName.$invalid }"
-                            data-ng-model="ctrl.newSsl.countryName"
+                            data-ng-class="{ 'oui-input_error': $ctrl.form.$submitted && $ctrl.form.countryName.$invalid }"
+                            data-ng-model="$ctrl.newSsl.countryName"
                             required
                         />
                     </div>
@@ -301,7 +301,7 @@
 
             <div
                 class="oui-field"
-                data-ng-class="{ 'oui-field_error': ctrl.form.$submitted && ctrl.form.joi_state_or_province_name.$invalid }"
+                data-ng-class="{ 'oui-field_error': $ctrl.form.$submitted && $ctrl.form.joi_state_or_province_name.$invalid }"
             >
                 <label
                     for="joi_state_or_province_name"
@@ -315,8 +315,8 @@
                             id="joi_state_or_province_name"
                             name="joi_state_or_province_name"
                             class="oui-input"
-                            data-ng-class="{ 'oui-input_error': ctrl.form.$submitted && ctrl.form.joi_state_or_province_name.$invalid }"
-                            data-ng-model="ctrl.newSsl.joi_state_or_province_name"
+                            data-ng-class="{ 'oui-input_error': $ctrl.form.$submitted && $ctrl.form.joi_state_or_province_name.$invalid }"
+                            data-ng-model="$ctrl.newSsl.joi_state_or_province_name"
                             required
                         />
                     </div>
@@ -325,7 +325,7 @@
 
             <div
                 class="oui-field"
-                data-ng-class="{ 'oui-field_error': ctrl.form.$submitted && ctrl.form.joi_locality_name.$invalid }"
+                data-ng-class="{ 'oui-field_error': $ctrl.form.$submitted && $ctrl.form.joi_locality_name.$invalid }"
             >
                 <label
                     for="joi_locality_name"
@@ -339,8 +339,8 @@
                             id="joi_locality_name"
                             name="joi_locality_name"
                             class="oui-input"
-                            data-ng-class="{ 'oui-input_error': ctrl.form.$submitted && ctrl.form.joi_locality_name.$invalid }"
-                            data-ng-model="ctrl.newSsl.joi_locality_name"
+                            data-ng-class="{ 'oui-input_error': $ctrl.form.$submitted && $ctrl.form.joi_locality_name.$invalid }"
+                            data-ng-model="$ctrl.newSsl.joi_locality_name"
                             required
                         />
                     </div>
@@ -349,7 +349,7 @@
 
             <div
                 class="oui-field"
-                data-ng-class="{ 'oui-field_error': ctrl.form.$submitted && ctrl.form.joi_country_name.$invalid }"
+                data-ng-class="{ 'oui-field_error': $ctrl.form.$submitted && $ctrl.form.joi_country_name.$invalid }"
             >
                 <label
                     for="joi_country_name"
@@ -363,8 +363,8 @@
                             id="joi_country_name"
                             name="joi_country_name"
                             class="oui-input"
-                            data-ng-class="{ 'oui-input_error': ctrl.form.$submitted && ctrl.form.joi_country_name.$invalid }"
-                            data-ng-model="ctrl.newSsl.joi_country_name"
+                            data-ng-class="{ 'oui-input_error': $ctrl.form.$submitted && $ctrl.form.joi_country_name.$invalid }"
+                            data-ng-model="$ctrl.newSsl.joi_country_name"
                             required
                         />
                     </div>
@@ -372,13 +372,13 @@
             </div>
         </div>
 
-        <div class="cui-form-actions" data-ng-hide="ctrl.saving">
+        <div class="cui-form-actions" data-ng-hide="$ctrl.saving">
             <button
                 type="submit"
                 class="oui-button oui-button_primary"
                 data-translate="iplb_ssl_order_ok"
-                data-ng-click="ctrl.order()"
-                data-ng-disabled="ctrl.form.$submitted && ctrl.form.$invalid"
+                data-ng-click="$ctrl.order()"
+                data-ng-disabled="$ctrl.form.$submitted && $ctrl.form.$invalid"
             ></button>
             <a
                 class="oui-button oui-button_link"
@@ -386,6 +386,6 @@
                 data-ui-sref="network.iplb.detail.ssl-certificate.home"
             ></a>
         </div>
-        <oui-spinner size="s" data-ng-show="ctrl.saving"></oui-spinner>
+        <oui-spinner size="s" data-ng-show="$ctrl.saving"></oui-spinner>
     </form>
 </div>
