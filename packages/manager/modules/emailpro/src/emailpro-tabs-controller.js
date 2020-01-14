@@ -21,7 +21,7 @@ export default /* @ngInject */ (
   ].filter((tab) => !isNull(tab));
 
   $scope.tabMenu = {
-    title: $translate.instant('navigation_more'),
+    title: $translate.instant('emailpro_navigation_more'),
     items: [
       {
         label: $translate.instant('emailpro_tab_DISCLAIMER'),
