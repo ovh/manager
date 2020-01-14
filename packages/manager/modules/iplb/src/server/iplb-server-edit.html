@@ -1,11 +1,14 @@
 <div class="cui-page__content">
-    <h1 data-ng-hide="ctrl.edition" data-translate="iplb_server_add_title"></h1>
     <h1
-        data-ng-show="ctrl.edition"
-        data-translate="iplb_server_update_title"
-        data-translate-values="{ serverId: ctrl.server.serverId }"
+        data-ng-hide="$ctrl.edition"
+        data-translate="iplb_server_add_title"
     ></h1>
-    <form novalidate name="ctrl.form">
+    <h1
+        data-ng-show="$ctrl.edition"
+        data-translate="iplb_server_update_title"
+        data-translate-values="{ serverId: $ctrl.server.serverId }"
+    ></h1>
+    <form novalidate name="$ctrl.form">
         <div class="oui-field">
             <label
                 for="displayName"
@@ -19,7 +22,7 @@
                         id="displayName"
                         name="displayName"
                         class="oui-input"
-                        data-ng-model="ctrl.server.displayName"
+                        data-ng-model="$ctrl.server.displayName"
                     />
                 </div>
             </div>
@@ -38,7 +41,7 @@
                         id="address"
                         name="address"
                         class="oui-input"
-                        data-ng-model="ctrl.server.address"
+                        data-ng-model="$ctrl.server.address"
                     />
                 </div>
             </div>
@@ -46,7 +49,7 @@
 
         <div
             class="oui-field"
-            data-ng-class="{'oui-field_error': ctrl.form.$submitted && ctrl.form.port.$invalid}"
+            data-ng-class="{'oui-field_error': $ctrl.form.$submitted && $ctrl.form.port.$invalid}"
         >
             <label
                 for="port"
@@ -58,28 +61,28 @@
                     <input
                         type="number"
                         min="1"
-                        data-ng-max="ctrl.portLimit"
+                        data-ng-max="$ctrl.portLimit"
                         id="port"
                         name="port"
                         class="oui-input"
-                        data-ng-class="{'oui-input_error': ctrl.form.$submitted && ctrl.form.port.$invalid}"
-                        data-ng-model="ctrl.server.port"
+                        data-ng-class="{'oui-input_error': $ctrl.form.$submitted && $ctrl.form.port.$invalid}"
+                        data-ng-model="$ctrl.server.port"
                     />
                 </div>
                 <div
                     class="oui-field-helper"
                     data-translate="iplb_server_edit_port_tip"
-                    data-translate-values="{ portMax: ctrl.portLimit }"
+                    data-translate-values="{ portMax: $ctrl.portLimit }"
                 ></div>
             </div>
         </div>
 
         <cui-advanced-options
-            data-ng-if="ctrl.farmType !== 'udp'"
+            data-ng-if="$ctrl.farmType !== 'udp'"
             data-title="'iplb_server_edit_advanced_options' | translate"
             data-text="'iplb_server_edit_advanced_options_info' | translate"
             data-button-text="'iplb_server_edit_advanced_options_show' | translate"
-            data-expanded="ctrl.edition"
+            data-expanded="$ctrl.edition"
         >
             <div class="oui-field">
                 <div class="oui-field__content">
@@ -87,7 +90,7 @@
                         <oui-checkbox
                             text="{{ 'iplb_server_edit_backup' | translate }}"
                             name="backup"
-                            model="ctrl.server.backup"
+                            model="$ctrl.server.backup"
                         >
                         </oui-checkbox>
                     </div>
@@ -100,7 +103,7 @@
                         <oui-checkbox
                             text="{{ 'iplb_server_edit_probe' | translate }}"
                             name="probe"
-                            model="ctrl.server.probe"
+                            model="$ctrl.server.probe"
                         >
                         </oui-checkbox>
                     </div>
@@ -113,7 +116,7 @@
                         <oui-checkbox
                             text="{{ 'iplb_server_edit_ssl' | translate }}"
                             name="ssl"
-                            model="ctrl.server.ssl"
+                            model="$ctrl.server.ssl"
                         >
                         </oui-checkbox>
                     </div>
@@ -133,7 +136,7 @@
                             id="cookie"
                             name="cookie"
                             class="oui-input"
-                            data-ng-model="ctrl.server.cookie"
+                            data-ng-model="$ctrl.server.cookie"
                         />
                     </div>
                     <div
@@ -153,7 +156,7 @@
                     <div class="oui-field-control oui-field-control_4">
                         <textarea
                             class="oui-textarea"
-                            data-ng-model="ctrl.server.chain"
+                            data-ng-model="$ctrl.server.chain"
                             id="chain"
                             name="chain"
                         ></textarea>
@@ -176,24 +179,24 @@
                         <input
                             type="number"
                             min="1"
-                            max="{{ctrl.lbWeightMax}}"
+                            max="{{$ctrl.lbWeightMax}}"
                             id="weight"
                             name="weight"
                             class="oui-input"
-                            data-ng-model="ctrl.server.weight"
+                            data-ng-model="$ctrl.server.weight"
                         />
                     </div>
                     <div
                         class="oui-field-helper"
                         data-translate="iplb_server_edit_weight_tip"
-                        data-translate-values="{ lbWeightMax: ctrl.lbWeightMax }"
+                        data-translate-values="{ lbWeightMax: $ctrl.lbWeightMax }"
                     ></div>
                 </div>
             </div>
 
             <div
                 class="oui-field"
-                data-ng-class="{ 'oui-field_error': ctrl.proxyProtocolVersion.$submitted && ctrl.form.proxyProtocolVersion.$invalid }"
+                data-ng-class="{ 'oui-field_error': $ctrl.proxyProtocolVersion.$submitted && $ctrl.form.proxyProtocolVersion.$invalid }"
             >
                 <label
                     for="proxyProtocolVersion"
@@ -203,19 +206,19 @@
                 <div class="oui-field__content">
                     <div class="oui-field-control oui-field-control_4">
                         <oui-spinner
-                            data-ng-show="ctrl.proxyProtocolVersions.loading"
+                            data-ng-show="$ctrl.proxyProtocolVersions.loading"
                         ></oui-spinner>
                         <div
                             class="oui-select"
-                            data-ng-class="{ 'oui-select_error': ctrl.form.$submitted && ctrl.form.proxyProtocolVersion.$invalid }"
-                            data-ng-hide="ctrl.proxyProtocolVersions.loading"
+                            data-ng-class="{ 'oui-select_error': $ctrl.form.$submitted && $ctrl.form.proxyProtocolVersion.$invalid }"
+                            data-ng-hide="$ctrl.proxyProtocolVersions.loading"
                         >
                             <select
                                 class="oui-select__input"
                                 name="proxyProtocolVersion"
                                 id="proxyProtocolVersion"
-                                data-ng-model="ctrl.server.proxyProtocolVersion"
-                                data-ng-options="proxyProtocolVersion as proxyProtocolVersion for proxyProtocolVersion in ctrl.proxyProtocolVersions.data"
+                                data-ng-model="$ctrl.server.proxyProtocolVersion"
+                                data-ng-options="proxyProtocolVersion as proxyProtocolVersion for proxyProtocolVersion in $ctrl.proxyProtocolVersions.data"
                             >
                                 <option
                                     data-translate="iplb_server_preview_proxyProtocolVersion_placeholder"
@@ -232,21 +235,21 @@
         </cui-advanced-options>
 
         <div class="cui-form-actions">
-            <oui-spinner data-ng-show="ctrl.saving"></oui-spinner>
-            <div data-ng-hide="ctrl.saving">
+            <oui-spinner data-ng-show="$ctrl.saving"></oui-spinner>
+            <div data-ng-hide="$ctrl.saving">
                 <button
                     type="submit"
                     class="oui-button oui-button_primary"
                     data-translate="iplb_server_update_confirm"
-                    data-ng-click="ctrl.update()"
-                    data-ng-show="ctrl.edition"
+                    data-ng-click="$ctrl.update()"
+                    data-ng-show="$ctrl.edition"
                 ></button>
                 <button
                     type="submit"
                     class="oui-button oui-button_primary"
                     data-translate="iplb_server_add_confirm"
-                    data-ng-click="ctrl.create()"
-                    data-ng-hide="ctrl.edition"
+                    data-ng-click="$ctrl.create()"
+                    data-ng-hide="$ctrl.edition"
                 ></button>
                 <a
                     class="oui-button oui-button_link"

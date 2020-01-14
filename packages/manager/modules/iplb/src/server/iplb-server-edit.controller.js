@@ -2,66 +2,49 @@ import omit from 'lodash/omit';
 
 export default class IpLoadBalancerServerEditCtrl {
   /* @ngInject */
-  constructor(
-    $q,
-    $state,
-    $stateParams,
-    CucCloudMessage,
-    CucControllerHelper,
-    IpLoadBalancerConstant,
-    IpLoadBalancerServerService,
-  ) {
+  constructor($q, CucCloudMessage, CucControllerHelper,
+    IpLoadBalancerConstant, IpLoadBalancerServerService) {
     this.$q = $q;
-    this.$state = $state;
-    this.$stateParams = $stateParams;
     this.CucCloudMessage = CucCloudMessage;
     this.CucControllerHelper = CucControllerHelper;
     this.IpLoadBalancerConstant = IpLoadBalancerConstant;
     this.IpLoadBalancerServerService = IpLoadBalancerServerService;
-
-    this.initLoaders();
   }
 
   initLoaders() {
     this.farmTypeLoader = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () =>
-        this.IpLoadBalancerServerService.getFarmType(
-          this.$stateParams.serviceName,
-          this.$stateParams.farmId,
-        )
-          .then((type) => {
-            this.farmType = type;
-          })
-          .catch((err) => {
-            if (err === 'NOTFOUND') {
-              return this.$state.go('network.iplb.detail.server-farm');
-            }
-            return this.CucServiceHelper.errorHandler(
-              'iplb_server_request_error',
-            );
-          }),
+      loaderFunction: () => this.IpLoadBalancerServerService.getFarmType(
+        this.serviceName,
+        this.farmId,
+      )
+        .then((type) => {
+          this.farmType = type;
+        })
+        .catch((err) => {
+          if (err === 'NOTFOUND') {
+            return this.goBack();
+          }
+          return this.CucServiceHelper.errorHandler('iplb_server_request_error');
+        }),
     });
 
-    this.proxyProtocolVersions = this.CucControllerHelper.request.getArrayLoader(
-      {
-        loaderFunction: () =>
-          this.IpLoadBalancerServerService.getProxyProtocolVersions(
-            this.$stateParams.serviceName,
-          ),
-      },
-    );
+    this.proxyProtocolVersions = this.CucControllerHelper.request.getArrayLoader({
+      loaderFunction: () => this.IpLoadBalancerServerService.getProxyProtocolVersions(
+        this.serviceName,
+      ),
+    });
 
     this.apiServer = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () =>
-        this.IpLoadBalancerServerService.getServer(
-          this.$stateParams.serviceName,
-          this.$stateParams.farmId,
-          this.$stateParams.serverId,
-        ).then((server) => this.parseServer(server)),
+      loaderFunction: () => this.IpLoadBalancerServerService.getServer(
+        this.serviceName,
+        this.farmId,
+        this.serverId,
+      ).then((server) => this.parseServer(server)),
     });
   }
 
   $onInit() {
+    this.initLoaders();
     this.server = {
       backup: false,
       probe: false,
@@ -74,7 +57,7 @@ export default class IpLoadBalancerServerEditCtrl {
     this.farmTypeLoader.load();
     this.proxyProtocolVersions.load();
 
-    if (this.$stateParams.serverId) {
+    if (this.serverId) {
       this.edition = true;
       this.apiServer.load();
     }
@@ -112,13 +95,11 @@ export default class IpLoadBalancerServerEditCtrl {
     this.CucCloudMessage.flushChildMessage();
     return this.IpLoadBalancerServerService.create(
       this.farmType,
-      this.$stateParams.serviceName,
-      this.$stateParams.farmId,
+      this.serviceName,
+      this.farmId,
       this.getCleanServer(),
     )
-      .then(() => {
-        this.$state.go('network.iplb.detail.server-farm');
-      })
+      .then(() => this.goBack())
 
       .finally(() => {
         this.saving = false;
@@ -133,14 +114,12 @@ export default class IpLoadBalancerServerEditCtrl {
     this.CucCloudMessage.flushChildMessage();
     return this.IpLoadBalancerServerService.update(
       this.farmType,
-      this.$stateParams.serviceName,
-      this.$stateParams.farmId,
+      this.serviceName,
+      this.farmId,
       this.server.serverId,
       this.getCleanServer(),
     )
-      .then(() => {
-        this.$state.go('network.iplb.detail.server-farm');
-      })
+      .then(() => this.goBack())
       .finally(() => {
         this.saving = false;
       });
