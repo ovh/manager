@@ -28,6 +28,7 @@
     "test": "yarn lint",
     "version": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
     "vuepress:build": "vuepress build docs",
+    "vuepress:deploy": "yarn run vuepress:build && gh-pages -d docs/.vuepress/dist -m \"docs: update documentation\"",
     "vuepress:dev": "vuepress dev docs"
   },
   "devDependencies": {
@@ -51,6 +52,7 @@
     "execa": "^2.0.5",
     "find-free-port": "^2.0.0",
     "get-monorepo-packages": "^1.2.0",
+    "gh-pages": "^2.2.0",
     "git-raw-commits": "^2.0.2",
     "git-url-parse": "^11.1.2",
     "htmlhint": "^0.11.0",
