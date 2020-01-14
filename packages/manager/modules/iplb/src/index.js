@@ -1,5 +1,6 @@
 import angular from 'angular';
 import '@uirouter/angularjs';
+import '@ovh-ux/ng-ui-router-layout';
 import 'angular-translate';
 import 'ovh-api-services';
 import 'ovh-ui-angular';
@@ -17,7 +18,6 @@ import 'script-loader!chart.js/dist/Chart.js';
 import 'script-loader!angular-chart.js/dist/angular-chart.js';
 /* eslint-enable import/no-webpack-loader-syntax */
 
-import IpLoadBalancerActionService from './iplb-action.service';
 import IpLoadBalancerCipherService from './iplb-cipher.service';
 import IpLoadBalancerConstant from './iplb.constants';
 import IpLoadBalancerDetailCtrl from './iplb-detail.controller';
@@ -25,9 +25,6 @@ import IpLoadBalancerFailoverIpService from './iplb-failover-ip.service';
 import IpLoadBalancerMetricsService from './iplb-metrics.service';
 import IpLoadBalancerNatIpService from './iplb-nat-ip.service';
 import IpLoadBalancerZoneService from './iplb-zone.service';
-import IpLoadBalancerNatIpDetailCtrl from './modal/nat-ip/iplb-nat-ip-detail.controller';
-import IpLoadBalancerFailoverIpDetailCtrl from './modal/failover-ip/iplb-failover-ip-detail.controller';
-import IpLoadBalancerCipherChangeCtrl from './modal/cipher/iplb-cipher-change.controller';
 import IplbConfigurationModule from './configuration';
 import IplbFrontendsModule from './frontends';
 import IplbGraphModule from './graph';
@@ -52,6 +49,7 @@ angular
     'chart.js',
     'pascalprecht.translate',
     'ui.router',
+    'ngUiRouterLayout',
     'ovh-api-services',
     'oui',
     'ui.bootstrap',
@@ -82,19 +80,12 @@ angular
     },
   )
   .controller('IpLoadBalancerDetailCtrl', IpLoadBalancerDetailCtrl)
-  .service('IpLoadBalancerActionService', IpLoadBalancerActionService)
   .service('IpLoadBalancerCipherService', IpLoadBalancerCipherService)
   .service('IpLoadBalancerFailoverIpService', IpLoadBalancerFailoverIpService)
   .service('IpLoadBalancerMetricsService', IpLoadBalancerMetricsService)
   .service('IpLoadBalancerNatIpService', IpLoadBalancerNatIpService)
   .service('IpLoadBalancerZoneService', IpLoadBalancerZoneService)
   .constant('IpLoadBalancerConstant', IpLoadBalancerConstant)
-  .controller('IpLoadBalancerNatIpDetailCtrl', IpLoadBalancerNatIpDetailCtrl)
-  .controller(
-    'IpLoadBalancerFailoverIpDetailCtrl',
-    IpLoadBalancerFailoverIpDetailCtrl,
-  )
-  .controller('IpLoadBalancerCipherChangeCtrl', IpLoadBalancerCipherChangeCtrl)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
