@@ -1,3 +1,12 @@
+## [0.1.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@0.1.4...@ovh-ux/manager-vps@0.1.5) (2020-01-13)
+
+
+### Bug Fixes
+
+* **vps.upgrade:** fix retrieval of upgrade prices ([#2066](https://github.com/ovh/manager/issues/2066)) ([34c8bef](https://github.com/ovh/manager/commit/34c8bef27c5a5d3b02dac0cbedf3e44b076dbc4f))
+
+
+
 ## [0.1.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@0.1.3...@ovh-ux/manager-vps@0.1.4) (2019-12-19)
 
 

@@ -46,11 +46,7 @@ export default class BillingService {
   }
 
   hasAutomaticRenew() {
-    return (
-      this.renew.automatic ||
-      this.renewalType === 'automaticV2012' ||
-      this.renewalType === 'automaticV2016'
-    );
+    return this.renew.automatic;
   }
 
   hasForcedRenew() {

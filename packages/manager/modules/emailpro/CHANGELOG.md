@@ -1,3 +1,12 @@
+## [1.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@1.4.0...@ovh-ux/manager-emailpro@1.4.1) (2020-01-13)
+
+
+### Bug Fixes
+
+* **emailpro:** domain translation ([#2064](https://github.com/ovh/manager/issues/2064)) ([38b3fba](https://github.com/ovh/manager/commit/38b3fba78356f27cb3bfd9e3d181b55192b84c62))
+
+
+
 # [1.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@1.3.0...@ovh-ux/manager-emailpro@1.4.0) (2019-12-20)
 
 
