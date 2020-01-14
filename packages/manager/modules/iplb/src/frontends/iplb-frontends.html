@@ -11,8 +11,8 @@
     ></a>
 
     <oui-datagrid
-        data-rows="ctrl.frontends"
-        data-row-loader="ctrl.loadFarm($row)"
+        data-rows="$ctrl.frontends"
+        data-row-loader="$ctrl.loadFarm($row)"
     >
         <oui-column
             data-title="'iplb_frontend_frontend' | translate"
@@ -56,7 +56,7 @@
                         type="checkbox"
                         class="oui-switch__checkbox"
                         data-ng-checked="!$row.disabled"
-                        data-ng-click="ctrl.toggle($row)"
+                        data-ng-click="$ctrl.toggle($row)"
                     />
                     <span class="oui-switch__slider" aria-hidden="true"></span>
                 </label>
@@ -65,16 +65,16 @@
         <oui-action-menu data-align="end" data-compact>
             <oui-action-menu-item
                 data-text="{{'iplb_preview_see' | translate}}"
-                data-on-click="ctrl.preview($row)"
+                data-on-click="$ctrl.goToIplbFrontendPreview($row)"
             ></oui-action-menu-item>
             <oui-action-menu-divider></oui-action-menu-divider>
             <oui-action-menu-item
                 data-text="{{'iplb_frontend_update' | translate}}"
-                data-on-click="ctrl.update($row)"
+                data-on-click="$ctrl.goToIplbFrontendUpdate($row.frontendId)"
             ></oui-action-menu-item>
             <oui-action-menu-item
                 data-text="{{'iplb_frontend_delete' | translate}}"
-                data-on-click="ctrl.delete($row)"
+                data-on-click="$ctrl.goToIplbFrontendDelete($row)"
             ></oui-action-menu-item>
         </oui-action-menu>
     </oui-datagrid>

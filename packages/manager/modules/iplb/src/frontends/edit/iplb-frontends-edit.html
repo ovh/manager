@@ -1,10 +1,10 @@
 <div class="cui-page__content">
     <oui-back-button
-        data-heading="{{ ::(ctrl.edition ? 'iplb_frontend_update_title' : 'iplb_frontend_add_title') | translate: { frontendId: ctrl.frontend.frontendId } }}"
+        data-heading="{{ ::($ctrl.edition ? 'iplb_frontend_update_title' : 'iplb_frontend_add_title') | translate: { frontendId: $ctrl.frontend.frontendId } }}"
     >
     </oui-back-button>
 
-    <form novalidate name="ctrl.form">
+    <form novalidate name="$ctrl.form">
         <div class="oui-field">
             <label
                 for="displayName"
@@ -18,7 +18,7 @@
                         id="displayName"
                         name="displayName"
                         class="oui-input"
-                        data-ng-model="ctrl.frontend.displayName"
+                        data-ng-model="$ctrl.frontend.displayName"
                     />
                 </div>
             </div>
@@ -32,14 +32,14 @@
             ></label>
             <div class="oui-field__content">
                 <oui-radio-toggle-group
-                    data-model="ctrl.protocol"
-                    data-on-change="ctrl.onProtocolChange()"
+                    data-model="$ctrl.protocol"
+                    data-on-change="$ctrl.onProtocolChange()"
                 >
                     <oui-radio
-                        data-ng-repeat="protocol in ctrl.protocols track by $index"
+                        data-ng-repeat="protocol in $ctrl.protocols track by $index"
                         data-text="{{ ::('iplb_frontend_add_protocol_' + protocol) | translate }}"
                         data-value="protocol"
-                        data-disabled="ctrl.isProtocolDisabled(protocol)"
+                        data-disabled="$ctrl.isProtocolDisabled(protocol)"
                     >
                     </oui-radio>
                 </oui-radio-toggle-group>
@@ -48,7 +48,7 @@
 
         <div
             class="oui-field"
-            data-ng-class="{ 'oui-field_error': ctrl.form.$submitted && ctrl.form.port.$invalid }"
+            data-ng-class="{ 'oui-field_error': $ctrl.form.$submitted && $ctrl.form.port.$invalid }"
         >
             <label
                 for="port"
@@ -62,22 +62,22 @@
                         id="port"
                         name="port"
                         class="oui-input"
-                        data-ng-class="{ 'oui-input_error': ctrl.form.$submitted && ctrl.form.port.$invalid }"
-                        data-ng-model="ctrl.frontend.port"
+                        data-ng-class="{ 'oui-input_error': $ctrl.form.$submitted && $ctrl.form.port.$invalid }"
+                        data-ng-model="$ctrl.frontend.port"
                         required
                     />
                 </div>
                 <div
                     class="oui-field-helper"
                     data-translate="iplb_frontend_add_port_tip"
-                    data-translate-values="{ portMax: ctrl.portLimit }"
+                    data-translate-values="{ portMax: $ctrl.portLimit }"
                 ></div>
             </div>
         </div>
 
         <div
             class="oui-field"
-            data-ng-class="{ 'oui-field_error': ctrl.form.$submitted && ctrl.form.zone.$invalid }"
+            data-ng-class="{ 'oui-field_error': $ctrl.form.$submitted && $ctrl.form.zone.$invalid }"
         >
             <label
                 for="zone"
@@ -87,21 +87,21 @@
             <div class="oui-field__content">
                 <div class="oui-field-control oui-field-control_4">
                     <oui-spinner
-                        data-ng-show="ctrl.zones.loading"
+                        data-ng-show="$ctrl.zones.loading"
                     ></oui-spinner>
                     <div
                         class="oui-select"
-                        data-ng-class="{ 'oui-select_error': ctrl.form.$submitted && ctrl.form.zone.$invalid }"
-                        data-ng-hide="ctrl.zones.loading"
+                        data-ng-class="{ 'oui-select_error': $ctrl.form.$submitted && $ctrl.form.zone.$invalid }"
+                        data-ng-hide="$ctrl.zones.loading"
                     >
                         <select
                             class="oui-select__input"
                             name="zone"
                             id="zone"
-                            data-ng-model="ctrl.frontend.zone"
-                            data-ng-options="zone.id as zone.name for zone in ctrl.zones.data"
-                            data-ng-change="ctrl.onZoneChange()"
-                            ui-validate="{ selection: 'ctrl.constructor.validateSelection($value)' }"
+                            data-ng-model="$ctrl.frontend.zone"
+                            data-ng-options="zone.id as zone.name for zone in $ctrl.zones.data"
+                            data-ng-change="$ctrl.onZoneChange()"
+                            ui-validate="{ selection: '$ctrl.constructor.validateSelection($value)' }"
                         >
                             <option
                                 data-translate="iplb_zone_select_placeholder"
@@ -118,7 +118,7 @@
 
         <div
             class="oui-field"
-            data-ng-show="ctrl.farms.data.length || ctrl.farms.loading"
+            data-ng-show="$ctrl.farms.data.length || $ctrl.farms.loading"
         >
             <label
                 for="farm"
@@ -128,16 +128,16 @@
             <div class="oui-field__content">
                 <div class="oui-field-control oui-field-control_4">
                     <oui-spinner
-                        data-ng-show="ctrl.farms.loading"
+                        data-ng-show="$ctrl.farms.loading"
                     ></oui-spinner>
-                    <div class="oui-select" data-ng-hide="ctrl.farms.loading">
+                    <div class="oui-select" data-ng-hide="$ctrl.farms.loading">
                         <select
                             class="oui-select__input"
                             name="farm"
                             id="farm"
-                            data-ng-model="ctrl.frontend.defaultFarmId"
-                            data-ng-options="farm.farmId as ctrl.getFarmName(farm) for farm in ctrl.farms.data"
-                            data-ng-disabled="!ctrl.frontend.zone"
+                            data-ng-model="$ctrl.frontend.defaultFarmId"
+                            data-ng-options="farm.farmId as $ctrl.getFarmName(farm) for farm in $ctrl.farms.data"
+                            data-ng-disabled="!$ctrl.frontend.zone"
                         >
                         </select>
                         <i
@@ -149,7 +149,7 @@
             </div>
         </div>
 
-        <div class="oui-field" data-ng-if="ctrl.frontend.ssl">
+        <div class="oui-field" data-ng-if="$ctrl.frontend.ssl">
             <label
                 for="certificate"
                 class="oui-label"
@@ -158,18 +158,18 @@
             <div class="oui-field__content">
                 <div class="oui-field-control oui-field-control_4">
                     <oui-spinner
-                        data-ng-show="ctrl.certificates.loading"
+                        data-ng-show="$ctrl.certificates.loading"
                     ></oui-spinner>
                     <div
                         class="oui-select"
-                        data-ng-hide="ctrl.certificates.loading"
+                        data-ng-hide="$ctrl.certificates.loading"
                     >
                         <select
                             class="oui-select__input"
                             name="certificate"
                             id="certificate"
-                            data-ng-model="ctrl.frontend.defaultSslId"
-                            data-ng-options="certificate.id as ctrl.constructor.getCertificateName(certificate) for certificate in ctrl.certificates.data"
+                            data-ng-model="$ctrl.frontend.defaultSslId"
+                            data-ng-options="certificate.id as $ctrl.constructor.getCertificateName(certificate) for certificate in $ctrl.certificates.data"
                         >
                         </select>
                         <i
@@ -185,7 +185,7 @@
             data-title="'iplb_frontend_add_advanced_options' | translate"
             data-text="'iplb_frontend_add_advanced_options_info' | translate"
             data-button-text="'iplb_frontend_add_advanced_options_show' | translate"
-            data-expanded="ctrl.edition"
+            data-expanded="$ctrl.edition"
         >
             <div class="oui-field">
                 <label
@@ -196,18 +196,18 @@
                 <div class="oui-field__content">
                     <div class="oui-field-control oui-field-control_4">
                         <oui-spinner
-                            data-ng-show="ctrl.dedicatedIp.loading"
+                            data-ng-show="$ctrl.dedicatedIp.loading"
                         ></oui-spinner>
                         <div
                             class="oui-select"
-                            data-ng-hide="ctrl.dedicatedIp.loading"
+                            data-ng-hide="$ctrl.dedicatedIp.loading"
                         >
                             <select
                                 class="oui-select__input"
                                 name="dedicatedIpfo"
                                 id="dedicatedIpfo"
-                                data-ng-model="ctrl.frontend.dedicatedIpfo"
-                                data-ng-options="ip.id as ip.name for ip in ctrl.failoverIps.data"
+                                data-ng-model="$ctrl.frontend.dedicatedIpfo"
+                                data-ng-options="ip.id as ip.name for ip in $ctrl.failoverIps.data"
                                 multiple
                             ></select>
                         </div>
@@ -219,7 +219,7 @@
                 </div>
             </div>
 
-            <div class="oui-field" data-ng-if="ctrl.protocol !== 'udp'">
+            <div class="oui-field" data-ng-if="$ctrl.protocol !== 'udp'">
                 <label
                     for="restrict_ip_access"
                     class="oui-label"
@@ -232,7 +232,7 @@
                             id="restrict_ip_access"
                             name="restrict_ip_access"
                             class="oui-input"
-                            data-ng-model="ctrl.frontend.allowedSource"
+                            data-ng-model="$ctrl.frontend.allowedSource"
                         />
                     </div>
                     <div
@@ -242,7 +242,7 @@
                 </div>
             </div>
 
-            <div class="oui-field" data-ng-if="ctrl.type === 'http'">
+            <div class="oui-field" data-ng-if="$ctrl.type === 'http'">
                 <label
                     for="http_redirection"
                     class="oui-label"
@@ -255,13 +255,13 @@
                             id="http_redirection"
                             name="http_redirection"
                             class="oui-input"
-                            data-ng-model="ctrl.frontend.redirectLocation"
+                            data-ng-model="$ctrl.frontend.redirectLocation"
                         />
                     </div>
                 </div>
             </div>
 
-            <div class="oui-field" data-ng-if="ctrl.type === 'http'">
+            <div class="oui-field" data-ng-if="$ctrl.type === 'http'">
                 <label
                     for="http_header"
                     class="oui-label"
@@ -274,7 +274,7 @@
                             id="http_header"
                             name="http_header"
                             class="oui-input"
-                            data-ng-model="ctrl.frontend.httpHeader"
+                            data-ng-model="$ctrl.frontend.httpHeader"
                         />
                     </div>
                     <div
@@ -286,14 +286,14 @@
 
             <div
                 class="oui-field"
-                data-ng-if="ctrl.type === 'http' && ctrl.frontend.ssl"
+                data-ng-if="$ctrl.type === 'http' && $ctrl.frontend.ssl"
             >
                 <div class="oui-field__content">
                     <div class="oui-field-control">
                         <oui-checkbox
                             text="{{ 'iplb_frontend_add_hsts_tip' | translate }}"
                             name="hsts"
-                            model="ctrl.frontend.hsts"
+                            model="$ctrl.frontend.hsts"
                         >
                         </oui-checkbox>
                     </div>
@@ -302,21 +302,21 @@
         </cui-advanced-options>
 
         <div class="cui-form-actions">
-            <oui-spinner data-ng-show="ctrl.saving"></oui-spinner>
-            <div data-ng-hide="ctrl.saving">
+            <oui-spinner data-ng-show="$ctrl.saving"></oui-spinner>
+            <div data-ng-hide="$ctrl.saving">
                 <button
                     type="submit"
                     class="oui-button oui-button_primary"
                     data-translate="iplb_frontend_update_confirm"
-                    data-ng-click="ctrl.updateFrontend()"
-                    data-ng-show="ctrl.edition"
+                    data-ng-click="$ctrl.updateFrontend()"
+                    data-ng-show="$ctrl.edition"
                 ></button>
                 <button
                     type="submit"
                     class="oui-button oui-button_primary"
                     data-translate="iplb_frontend_add_confirm"
-                    data-ng-click="ctrl.createFrontend()"
-                    data-ng-hide="ctrl.edition"
+                    data-ng-click="$ctrl.createFrontend()"
+                    data-ng-hide="$ctrl.edition"
                 ></button>
                 <a
                     class="oui-button oui-button_link"

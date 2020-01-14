@@ -1,38 +1,27 @@
 export default class IpLoadBalancerFrontendDeleteCtrl {
   /* @ngInject */
-  constructor(
-    $stateParams,
-    $uibModalInstance,
-    CucControllerHelper,
-    frontend,
-    IpLoadBalancerFrontendsService,
-  ) {
-    this.$stateParams = $stateParams;
-    this.$uibModalInstance = $uibModalInstance;
+  constructor(CucControllerHelper,
+    IpLoadBalancerFrontendsService) {
     this.CucControllerHelper = CucControllerHelper;
     this.IpLoadBalancerFrontendsService = IpLoadBalancerFrontendsService;
+  }
 
-    this.frontend = frontend;
-    this.name = frontend.displayName || frontend.frontendId;
-    this.frontendId = frontend.frontendId;
-    this.type = frontend.protocol;
+  $onInit() {
+    this.name = this.frontend.displayName || this.frontend.frontendId;
+    this.frontendId = this.frontend.frontendId;
+    this.type = this.frontend.protocol;
   }
 
   confirm() {
     this.delete = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () =>
-        this.IpLoadBalancerFrontendsService.deleteFrontend(
-          this.type,
-          this.$stateParams.serviceName,
-          this.frontendId,
-        )
-          .then((response) => this.$uibModalInstance.close(response))
-          .catch((error) => this.$uibModalInstance.dismiss(error)),
+      loaderFunction: () => this.IpLoadBalancerFrontendsService
+        .deleteFrontend(this.type, this.serviceName, this.frontendId)
+        .finally(() => this.goBack()),
     });
     return this.delete.load();
   }
 
   cancel() {
-    this.$uibModalInstance.dismiss();
+    this.goBack();
   }
 }

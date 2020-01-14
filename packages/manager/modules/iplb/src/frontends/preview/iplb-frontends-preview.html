@@ -1,6 +1,6 @@
 <oui-modal
     data-title="{{ ::'iplb_frontend_preview_title' | translate }}"
-    data-on-dismiss="IpLoadBalancerFrontendPreviewCtrl.dismiss()"
+    data-on-dismiss="$ctrl.dismiss()"
 >
     <dl class="preview-list preview-list_no-margin">
         <dt
@@ -9,7 +9,7 @@
         ></dt>
         <dd
             class="preview-list__definition"
-            data-ng-bind="::IpLoadBalancerFrontendPreviewCtrl.frontend.displayName"
+            data-ng-bind="::$ctrl.frontend.displayName"
         ></dd>
         <dt
             class="preview-list__term"
@@ -17,7 +17,7 @@
         ></dt>
         <dd
             class="preview-list__definition"
-            data-ng-bind="::IpLoadBalancerFrontendPreviewCtrl.frontend.protocol"
+            data-ng-bind="::$ctrl.frontend.protocol"
         ></dd>
         <dt
             class="preview-list__term"
@@ -25,7 +25,7 @@
         ></dt>
         <dd
             class="preview-list__definition"
-            data-ng-bind="::IpLoadBalancerFrontendPreviewCtrl.frontend.port"
+            data-ng-bind="::$ctrl.frontend.port"
         ></dd>
         <dt
             class="preview-list__term"
@@ -33,7 +33,7 @@
         ></dt>
         <dd
             class="preview-list__definition"
-            data-ng-bind="::IpLoadBalancerFrontendPreviewCtrl.frontend.region.microRegion.text"
+            data-ng-bind="::$ctrl.frontend.region.microRegion.text"
         ></dd>
         <dt
             class="preview-list__term"
@@ -41,17 +41,17 @@
         ></dt>
         <dd
             class="preview-list__definition"
-            data-ng-bind="::IpLoadBalancerFrontendPreviewCtrl.frontend.defaultFarmId"
+            data-ng-bind="::$ctrl.frontend.defaultFarmId"
         ></dd>
         <dt
             class="preview-list__term"
-            data-ng-if="IpLoadBalancerFrontendPreviewCtrl.frontend.ssl"
+            data-ng-if="$ctrl.frontend.ssl"
             data-translate="iplb_frontend_preview_default_certificate"
         ></dt>
         <dd
             class="preview-list__definition"
-            data-ng-if="IpLoadBalancerFrontendPreviewCtrl.frontend.ssl"
-            data-ng-bind="::IpLoadBalancerFrontendPreviewCtrl.frontend.defaultSslId"
+            data-ng-if="$ctrl.frontend.ssl"
+            data-ng-bind="::$ctrl.frontend.defaultSslId"
         ></dd>
         <dt
             class="preview-list__term"
@@ -60,12 +60,12 @@
         <dd class="preview-list__definition">
             <div
                 class="oui-list"
-                data-ng-if="IpLoadBalancerFrontendPreviewCtrl.frontend.dedicatedIpfo.length"
+                data-ng-if="$ctrl.frontend.dedicatedIpfo.length"
             >
                 <ul class="oui-list__items">
                     <li
                         class="oui-list__item"
-                        data-ng-repeat="dedicatedIpfo in IpLoadBalancerFrontendPreviewCtrl.frontend.dedicatedIpfo track by $index"
+                        data-ng-repeat="dedicatedIpfo in $ctrl.frontend.dedicatedIpfo track by $index"
                         data-ng-bind="::dedicatedIpfo"
                     ></li>
                 </ul>
@@ -73,43 +73,43 @@
         </dd>
         <dt
             class="preview-list__term"
-            data-ng-if="IpLoadBalancerFrontendPreviewCtrl.frontend.protocol !== 'udp'"
+            data-ng-if="$ctrl.frontend.protocol !== 'udp'"
             data-translate="iplb_frontend_preview_restrict_ip_access"
         ></dt>
         <dd
             class="preview-list__definition"
-            data-ng-if="IpLoadBalancerFrontendPreviewCtrl.frontend.protocol !== 'udp'"
-            data-ng-bind="::IpLoadBalancerFrontendPreviewCtrl.frontend.allowedSource"
+            data-ng-if="$ctrl.frontend.protocol !== 'udp'"
+            data-ng-bind="::$ctrl.frontend.allowedSource"
         ></dd>
         <dt
             class="preview-list__term"
-            data-ng-if="IpLoadBalancerFrontendPreviewCtrl.frontend.protocol === 'http'"
+            data-ng-if="$ctrl.frontend.protocol === 'http'"
             data-translate="iplb_frontend_preview_http_redirection"
         ></dt>
         <dd
             class="preview-list__definition"
-            data-ng-if="IpLoadBalancerFrontendPreviewCtrl.frontend.protocol === 'http'"
-            data-ng-bind="::IpLoadBalancerFrontendPreviewCtrl.frontend.redirectLocation"
+            data-ng-if="$ctrl.frontend.protocol === 'http'"
+            data-ng-bind="::$ctrl.frontend.redirectLocation"
         ></dd>
         <dt
             class="preview-list__term"
-            data-ng-if="IpLoadBalancerFrontendPreviewCtrl.frontend.protocol === 'http'"
+            data-ng-if="$ctrl.frontend.protocol === 'http'"
             data-translate="iplb_frontend_preview_http_header"
         ></dt>
         <dd
             class="preview-list__definition"
-            data-ng-if="IpLoadBalancerFrontendPreviewCtrl.frontend.protocol === 'http'"
-            data-ng-bind="::IpLoadBalancerFrontendPreviewCtrl.frontend.httpHeader"
+            data-ng-if="$ctrl.frontend.protocol === 'http'"
+            data-ng-bind="::$ctrl.frontend.httpHeader"
         ></dd>
         <dt
             class="preview-list__term"
-            data-ng-if="IpLoadBalancerFrontendPreviewCtrl.frontend.protocol === 'http' && IpLoadBalancerFrontendPreviewCtrl.frontend.ssl"
+            data-ng-if="$ctrl.frontend.protocol === 'http' && $ctrl.frontend.ssl"
             data-translate="iplb_frontend_preview_hsts"
         ></dt>
         <dd
             class="preview-list__definition"
-            data-ng-if="IpLoadBalancerFrontendPreviewCtrl.frontend.protocol === 'http' && IpLoadBalancerFrontendPreviewCtrl.frontend.ssl"
-            data-ng-bind="::IpLoadBalancerFrontendPreviewCtrl.frontend.hsts"
+            data-ng-if="$ctrl.frontend.protocol === 'http' && $ctrl.frontend.ssl"
+            data-ng-bind="::$ctrl.frontend.hsts"
         ></dd>
         <dt
             class="preview-list__term"
@@ -117,7 +117,7 @@
         ></dt>
         <dd
             class="preview-list__definition"
-            data-ng-bind="::IpLoadBalancerFrontendPreviewCtrl.frontend.disabled ? 'false' : 'true'"
+            data-ng-bind="::$ctrl.frontend.disabled ? 'false' : 'true'"
         ></dd>
         <dt
             class="preview-list__term"
@@ -125,7 +125,7 @@
         ></dt>
         <dd
             class="preview-list__definition"
-            data-ng-bind="::IpLoadBalancerFrontendPreviewCtrl.frontend.frontendId"
+            data-ng-bind="::$ctrl.frontend.frontendId"
         ></dd>
     </dl>
 </oui-modal>
