@@ -6,20 +6,16 @@ import isArray from 'lodash/isArray';
 import map from 'lodash/map';
 import values from 'lodash/values';
 
-import IplbHomeUpdateQuotaTemplate from './updateQuota/iplb-update-quota.html';
-
 import { RENEW_URL, CONTACTS_URL } from '../iplb-url.constants';
 
 export default class IpLoadBalancerHomeCtrl {
   /* @ngInject */
   constructor(
     $state,
-    $stateParams,
     $translate,
     CucControllerHelper,
     CucCloudMessage,
     CucFeatureAvailabilityService,
-    IpLoadBalancerActionService,
     IpLoadBalancerConstant,
     IpLoadBalancerHomeService,
     IpLoadBalancerHomeStatusService,
@@ -32,12 +28,10 @@ export default class IpLoadBalancerHomeCtrl {
     CucVrackService,
   ) {
     this.$state = $state;
-    this.$stateParams = $stateParams;
     this.$translate = $translate;
     this.CucControllerHelper = CucControllerHelper;
     this.CucCloudMessage = CucCloudMessage;
     this.CucFeatureAvailabilityService = CucFeatureAvailabilityService;
-    this.IpLoadBalancerActionService = IpLoadBalancerActionService;
     this.IpLoadBalancerConstant = IpLoadBalancerConstant;
     this.IpLoadBalancerHomeService = IpLoadBalancerHomeService;
     this.IpLoadBalancerHomeStatusService = IpLoadBalancerHomeStatusService;
@@ -48,8 +42,6 @@ export default class IpLoadBalancerHomeCtrl {
     this.IpLoadBalancerVrackService = IpLoadBalancerVrackService;
     this.CucRegionService = CucRegionService;
     this.VrackService = CucVrackService;
-
-    this.serviceName = this.$stateParams.serviceName;
 
     this.initLoaders();
   }
@@ -154,16 +146,6 @@ export default class IpLoadBalancerHomeCtrl {
 
   initActions() {
     this.actions = {
-      showFailoverIp: {
-        callback: () =>
-          this.IpLoadBalancerActionService.showFailoverIpDetail(
-            this.serviceName,
-          ),
-      },
-      showNatIp: {
-        callback: () =>
-          this.IpLoadBalancerActionService.showNatIpDetail(this.serviceName),
-      },
       changeName: {
         text: this.$translate.instant('iplb_edit'),
         callback: () =>
@@ -181,10 +163,6 @@ export default class IpLoadBalancerHomeCtrl {
       },
       changeCipher: {
         text: this.$translate.instant('iplb_edit'),
-        callback: () =>
-          this.IpLoadBalancerActionService.cipherChange(this.serviceName, () =>
-            this.configuration.load(),
-          ),
         isAvailable: () =>
           !this.configuration.loading && !this.configuration.hasErrors,
       },
@@ -270,23 +248,6 @@ export default class IpLoadBalancerHomeCtrl {
             1,
       },
     };
-  }
-
-  updateQuotaAlert(quota) {
-    this.CucControllerHelper.modal
-      .showModal({
-        modalConfig: {
-          template: IplbHomeUpdateQuotaTemplate,
-          controller: 'IpLoadBalancerUpdateQuotaCtrl',
-          controllerAs: 'IpLoadBalancerUpdateQuotaCtrl',
-          resolve: {
-            quota: () => quota,
-          },
-        },
-      })
-      .then(() => {
-        this.usage.load();
-      });
   }
 
   initGraph() {

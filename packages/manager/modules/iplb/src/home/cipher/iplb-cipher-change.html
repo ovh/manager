@@ -1,0 +1,29 @@
+<form
+    id="IplbCipherChangeForm"
+    name="IplbCipherChangeForm"
+    data-ng-submit="IplbCipherChangeForm.$valid && $ctrl.confirm()"
+    novalidate
+>
+    <oui-modal
+        data-primary-label="{{ ::'iplb_edit' | translate }}"
+        data-title="{{ ::'iplb_modal_cipher_change_title' | translate }}"
+        data-secondary-action="$ctrl.goBack()"
+        data-secondary-label="{{ ::'iplb_cancel' | translate }}"
+        data-on-dismiss="$ctrl.goBack()"
+        data-loading="$ctrl.isModalLoading()"
+    >
+        <div data-ng-if="!$ctrl.isModalLoading()">
+            <oui-radio
+                data-ng-repeat="cipherType in $ctrl.cipherTypes.data track by $index"
+                data-text="{{ cipherType.displayName }}"
+                data-description="{{ cipherType.description }}"
+                name="cipher"
+                model="$ctrl.model.cipherType.value"
+                value="cipherType.type"
+                data-on-change="$ctrl.model.cipherType.value = modelValue"
+                required
+            >
+            </oui-radio>
+        </div>
+    </oui-modal>
+</form>
