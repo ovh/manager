@@ -5,7 +5,7 @@ const webpack = require('webpack'); // eslint-disable-line
 const webpackConfig = require('@ovh-ux/manager-webpack-config');
 
 module.exports = (env = {}) => {
-  const REGION = `${_.upperCase(env.region || process.env.REGION || 'EU')}`;
+  const REGION = _.upperCase(env.region || process.env.REGION || 'EU');
 
   const { config } = webpackConfig(
     {
