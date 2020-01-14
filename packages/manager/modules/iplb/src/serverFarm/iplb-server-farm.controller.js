@@ -2,32 +2,17 @@ import forEach from 'lodash/forEach';
 import get from 'lodash/get';
 import set from 'lodash/set';
 
-import IplbServerFormPreviewTemplate from './preview/iplb-server-farm-preview.html';
-import IplbServerPreviewTemplate from '../server/preview/iplb-server-preview.html';
-import IplbServerStatusDetailTemplate from '../server/status/iplb-server-status-detail.html';
-
 export default class IpLoadBalancerServerFarmCtrl {
   /* @ngInject */
-  constructor(
-    $filter,
-    $state,
-    $stateParams,
-    $translate,
-    CucControllerHelper,
-    IpLoadBalancerActionService,
+  constructor($filter, $state, $translate, CucControllerHelper,
     IpLoadBalancerServerService,
-    IpLoadBalancerServerFarmService,
-  ) {
+    IpLoadBalancerServerFarmService) {
     this.$filter = $filter;
     this.$state = $state;
-    this.$stateParams = $stateParams;
     this.$translate = $translate;
     this.CucControllerHelper = CucControllerHelper;
-    this.IpLoadBalancerActionService = IpLoadBalancerActionService;
     this.IpLoadBalancerServerService = IpLoadBalancerServerService;
     this.IpLoadBalancerServerFarmService = IpLoadBalancerServerFarmService;
-
-    this.serviceName = this.$stateParams.serviceName;
 
     this.initLoaders();
   }
@@ -59,12 +44,6 @@ export default class IpLoadBalancerServerFarmCtrl {
     });
   }
 
-  addServer(farm) {
-    this.$state.go('network.iplb.detail.server-farm.server-add', {
-      farmId: farm.id,
-    });
-  }
-
   loadServers() {
     forEach(this.farms.data, (farm) => {
       set(
@@ -83,79 +62,11 @@ export default class IpLoadBalancerServerFarmCtrl {
     });
   }
 
-  seeServerPreview(server) {
-    this.CucControllerHelper.modal.showModal({
-      modalConfig: {
-        template: IplbServerPreviewTemplate,
-        controller: 'IpLoadBalancerServerPreviewCtrl',
-        controllerAs: 'IpLoadBalancerServerPreviewCtrl',
-        resolve: {
-          server: () => server,
-        },
-      },
-    });
-  }
-
-  seeServerStatus(server) {
-    this.CucControllerHelper.modal.showModal({
-      modalConfig: {
-        template: IplbServerStatusDetailTemplate,
-        controller: 'IpLoadBalancerServerStatusDetailCtrl',
-        controllerAs: 'IpLoadBalancerServerStatusDetailCtrl',
-        resolve: {
-          server: () => server,
-        },
-      },
-    });
-  }
-
-  deleteServer(farm, server) {
-    this.IpLoadBalancerActionService.deleteServer(
-      this.$stateParams.serviceName,
-      farm,
-      server,
-    ).then(() => this.init());
-  }
-
-  farmPreview(farm) {
-    this.CucControllerHelper.modal.showModal({
-      modalConfig: {
-        template: IplbServerFormPreviewTemplate,
-        controller: 'IpLoadBalancerServerFarmPreviewCtrl',
-        controllerAs: 'IpLoadBalancerServerFarmPreviewCtrl',
-        resolve: {
-          farm: () => farm,
-        },
-      },
-    });
-  }
-
-  update(farm) {
-    this.$state.go('network.iplb.detail.server-farm.update', {
-      serviceName: this.$stateParams.serviceName,
-      farmId: farm.farmId,
-    });
-  }
-
-  updateServer(farmId, serverId) {
-    this.$state.go('network.iplb.detail.server-farm.server-update', {
-      farmId,
-      serverId,
-    });
-  }
-
-  delete(farm) {
-    this.IpLoadBalancerActionService.deleteFarm(
-      this.$stateParams.serviceName,
-      farm,
-    ).then(() => this.init());
-  }
-
   toggle(farm, server) {
     const newStatus = server.status === 'active' ? 'inactive' : 'active';
     this.IpLoadBalancerServerService.update(
       farm.type,
-      this.$stateParams.serviceName,
+      this.serviceName,
       farm.farmId,
       server.serverId,
       {
@@ -171,22 +82,17 @@ export default class IpLoadBalancerServerFarmCtrl {
     this.farmActions = {};
     farms.forEach((farm) => {
       this.farmActions[farm.farmId] = [
-        [
-          {
-            text: this.i18n.preview,
-            callback: () => this.farmPreview(farm),
-          },
-        ],
-        [
-          {
-            text: this.i18n.update,
-            callback: () => this.update(farm),
-          },
-          {
-            text: this.i18n.remove,
-            callback: () => this.delete(farm),
-          },
-        ],
+        [{
+          text: this.i18n.preview,
+          callback: () => this.goToIplbServerFarmPreview(farm),
+        }],
+        [{
+          text: this.i18n.update,
+          callback: () => this.goToIplbServerFarmUpdate(farm.farmId),
+        }, {
+          text: this.i18n.remove,
+          callback: () => this.goToIplbServerFarmDelete(farm),
+        }],
       ];
     });
   }

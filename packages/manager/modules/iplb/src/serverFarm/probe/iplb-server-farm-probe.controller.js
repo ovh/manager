@@ -1,29 +1,21 @@
 import find from 'lodash/find';
 import includes from 'lodash/includes';
 import isArray from 'lodash/isArray';
+import assign from 'lodash/assign';
 
 export default class IpLoadBalancerServerFarmProbeEditCtrl {
   /* @ngInject */
-  constructor(
-    $uibModalInstance,
-    IpLoadBalancerConstant,
-    availableProbes,
-    edition,
-    farm,
-  ) {
-    this.$uibModalInstance = $uibModalInstance;
+  constructor(IpLoadBalancerConstant) {
     this.IpLoadBalancerConstant = IpLoadBalancerConstant;
-    this.availableProbes = availableProbes;
-    this.edition = edition;
-    this.farm = farm;
-    this.farmProbe = this.farm.probe
-      ? angular.copy(this.farm.probe)
-      : {
-          match: 'default',
-        };
-
     this.methods = IpLoadBalancerConstant.probeMethods;
     this.matches = IpLoadBalancerConstant.probeMatches;
+  }
+
+  $onInit() {
+    this.farmProbe = this.farm.probe ? angular.copy(this.farm.probe) : {
+      match: 'default',
+    };
+
     this.rules = this.getRules();
 
     if (!includes(this.getMatches(), this.farm.probe.match)) {
@@ -95,10 +87,11 @@ export default class IpLoadBalancerServerFarmProbeEditCtrl {
 
   close() {
     this.cleanProbe();
-    this.$uibModalInstance.close(this.farmProbe);
+    assign(this.farm.probe, this.farmProbe);
+    this.goBackToEditPage(this.farmProbe);
   }
 
   dismiss() {
-    this.$uibModalInstance.dismiss();
+    return this.goBackToEditPage();
   }
 }

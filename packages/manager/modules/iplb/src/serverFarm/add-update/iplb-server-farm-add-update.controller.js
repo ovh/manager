@@ -1,17 +1,12 @@
-import assign from 'lodash/assign';
 import find from 'lodash/find';
 import includes from 'lodash/includes';
 import pick from 'lodash/pick';
 import set from 'lodash/set';
 
-import IplbServerFormProbTemplate from './probe/iplb-server-farm-probe.html';
-
 export default class IpLoadBalancerServerFarmEditCtrl {
   /* @ngInject */
   constructor(
     $q,
-    $state,
-    $stateParams,
     CucCloudMessage,
     CucControllerHelper,
     IpLoadBalancerConstant,
@@ -20,8 +15,6 @@ export default class IpLoadBalancerServerFarmEditCtrl {
     IpLoadBalancerZoneService,
   ) {
     this.$q = $q;
-    this.$state = $state;
-    this.$stateParams = $stateParams;
     this.CucCloudMessage = CucCloudMessage;
     this.CucControllerHelper = CucControllerHelper;
     this.IpLoadBalancerConstant = IpLoadBalancerConstant;
@@ -35,30 +28,24 @@ export default class IpLoadBalancerServerFarmEditCtrl {
   initLoaders() {
     this.zones = this.CucControllerHelper.request.getArrayLoader({
       loaderFunction: () =>
-        this.IpLoadBalancerZoneService.getZonesSelectData(
-          this.$stateParams.serviceName,
-        ),
+        this.IpLoadBalancerZoneService.getZonesSelectData(this.serviceName),
     });
 
     this.privateNetworks = this.CucControllerHelper.request.getArrayLoader({
       loaderFunction: () =>
-        this.IpLoadBalancerVrackService.getPrivateNetworks(
-          this.$stateParams.serviceName,
-        ),
+        this.IpLoadBalancerVrackService.getPrivateNetworks(this.serviceName),
     });
 
     this.apiFarm = this.CucControllerHelper.request.getHashLoader({
       loaderFunction: () =>
-        this.IpLoadBalancerServerFarmService.getAllFarmsTypes(
-          this.$stateParams.serviceName,
-        )
+        this.IpLoadBalancerServerFarmService.getAllFarmsTypes(this.serviceName)
           .then((farms) => {
             const farm = find(farms, {
-              id: parseInt(this.$stateParams.farmId, 10),
+              id: parseInt(this.farmId, 10),
             });
             return this.IpLoadBalancerServerFarmService.getServerFarm(
-              this.$stateParams.serviceName,
-              this.$stateParams.farmId,
+              this.serviceName,
+              this.farmId,
               farm.type,
             );
           })
@@ -88,7 +75,7 @@ export default class IpLoadBalancerServerFarmEditCtrl {
     this.privateNetworks.load();
     this.updateStickinessList();
 
-    if (this.$stateParams.farmId) {
+    if (this.farmId) {
       this.edition = true;
       this.apiFarm.load();
     }
@@ -228,25 +215,7 @@ export default class IpLoadBalancerServerFarmEditCtrl {
   }
 
   editProbe() {
-    this.CucControllerHelper.modal
-      .showModal({
-        modalConfig: {
-          template: IplbServerFormProbTemplate,
-          controller: 'IpLoadBalancerServerFarmProbeEditCtrl',
-          controllerAs: 'IpLoadBalancerServerFarmProbeEditCtrl',
-          resolve: {
-            availableProbes: () =>
-              this.IpLoadBalancerServerFarmService.getAvailableFarmProbes(
-                this.$stateParams.serviceName,
-              ),
-            farm: () => this.farm,
-            edition: () => this.edition,
-          },
-        },
-      })
-      .then((probe) => {
-        assign(this.farm, { probe });
-      });
+    return this.goToServerFarmProbe(this.farm, this.edition);
   }
 
   create() {
@@ -257,11 +226,11 @@ export default class IpLoadBalancerServerFarmEditCtrl {
     this.CucCloudMessage.flushChildMessage();
     return this.IpLoadBalancerServerFarmService.create(
       this.type,
-      this.$stateParams.serviceName,
+      this.serviceName,
       this.getCleanFarm(),
     )
       .then(() => {
-        this.$state.go('network.iplb.detail.server-farm');
+        this.goBack();
       })
       .finally(() => {
         this.saving = false;
@@ -276,12 +245,12 @@ export default class IpLoadBalancerServerFarmEditCtrl {
     this.CucCloudMessage.flushChildMessage();
     return this.IpLoadBalancerServerFarmService.update(
       this.type,
-      this.$stateParams.serviceName,
+      this.serviceName,
       this.farm.farmId,
       this.getCleanFarm(),
     )
       .then(() => {
-        this.$state.go('network.iplb.detail.server-farm');
+        this.goBack();
       })
       .finally(() => {
         this.saving = false;

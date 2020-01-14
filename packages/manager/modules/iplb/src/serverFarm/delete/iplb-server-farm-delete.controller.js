@@ -1,21 +1,14 @@
 export default class IpLoadBalancerServerFarmDeleteCtrl {
   /* @ngInject */
-  constructor(
-    $stateParams,
-    $uibModalInstance,
-    CucControllerHelper,
-    farm,
-    IpLoadBalancerServerFarmService,
-  ) {
-    this.$stateParams = $stateParams;
-    this.$uibModalInstance = $uibModalInstance;
+  constructor(CucControllerHelper, IpLoadBalancerServerFarmService) {
     this.CucControllerHelper = CucControllerHelper;
     this.IpLoadBalancerServerFarmService = IpLoadBalancerServerFarmService;
+  }
 
-    this.farm = farm;
-    this.name = farm.displayName || farm.farmId;
-    this.farmId = farm.farmId;
-    this.type = farm.type;
+  $onInit() {
+    this.name = this.farm.displayName || this.farm.farmId;
+    this.farmId = this.farm.farmId;
+    this.type = this.farm.type;
   }
 
   confirm() {
@@ -23,16 +16,10 @@ export default class IpLoadBalancerServerFarmDeleteCtrl {
       loaderFunction: () =>
         this.IpLoadBalancerServerFarmService.delete(
           this.type,
-          this.$stateParams.serviceName,
+          this.serviceName,
           this.farmId,
-        )
-          .then((response) => this.$uibModalInstance.close(response))
-          .catch((error) => this.$uibModalInstance.dismiss(error)),
+        ).finally(() => this.goBack()),
     });
     return this.delete.load();
-  }
-
-  cancel() {
-    this.$uibModalInstance.dismiss();
   }
 }
