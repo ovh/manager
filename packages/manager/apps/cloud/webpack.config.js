@@ -87,9 +87,6 @@ module.exports = (env = {}) => {
         path.resolve(__dirname, 'node_modules'),
         path.resolve(__dirname, '../../../node_modules'),
       ],
-      // alias: {
-      //   jquery: path.resolve(__dirname, 'node_modules/jquery'),
-      // },
     },
     plugins: [
       new webpack.DefinePlugin({
