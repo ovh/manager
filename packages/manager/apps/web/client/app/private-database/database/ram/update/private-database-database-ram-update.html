@@ -75,8 +75,15 @@
                     >
                         <span class="oui-radio__label">
                             <span
-                                data-ng-bind="duration.duration | wucDuration:'longDate'"
-                            ></span
+                                data-ng-if="ramCtrl.constructor.isProrataDuration(duration)"
+                                data-ng-bind-html="duration.duration | wucDuration:'longDate':{prorata:true}"
+                            >
+                            </span>
+                            <span
+                                data-ng-if="!ramCtrl.constructor.isProrataDuration(duration)"
+                                data-ng-bind-html="duration.duration | wucDuration:'longDate'"
+                            >
+                            </span
                             >&nbsp;:
                             <span
                                 data-ng-bind-html="duration.prices | price: ramCtrl.data.ovhSubsidiary"
