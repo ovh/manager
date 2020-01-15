@@ -12948,13 +12948,6 @@ ovh-angular-user-pref@^0.3.1:
   resolved "https://registry.yarnpkg.com/ovh-angular-user-pref/-/ovh-angular-user-pref-0.3.1.tgz#07f5792513651f3262ae4879c174423649b08307"
   integrity sha1-B/V5JRNlHzJirkh5wXRCNkmwgwc=
 
-ovh-api-services@^9.30.0:
-  version "9.30.0"
-  resolved "https://registry.yarnpkg.com/ovh-api-services/-/ovh-api-services-9.30.0.tgz#87225f2cc05d4f46ec6d5131e6a95cacfb736355"
-  integrity sha512-GC28Nw0JJyMskK6C1zRMvGlXT+u5hiAv4co/zykhOqCSkuxGp37M2hqZ9G7Q0GhddDWW2Dw7BEyUfxz0YoV0qg==
-  dependencies:
-    lodash "^4.17.15"
-
 ovh-api-services@^9.31.0:
   version "9.31.0"
   resolved "https://registry.yarnpkg.com/ovh-api-services/-/ovh-api-services-9.31.0.tgz#974cf3df5b50380f63ec8d7ff853e7b9cabffa3c"
@@ -12993,6 +12986,17 @@ ovh-ui-angular@^3.11.0:
   version "3.11.0"
   resolved "https://registry.yarnpkg.com/ovh-ui-angular/-/ovh-ui-angular-3.11.0.tgz#aee328e39da89b99a6078d749db8f0726de0180b"
   integrity sha512-bL2swenzaEz5twvYAeR28E06/GMRGszC7pQjIAJhbzKu3mg6bQgcX2v1bjudU9ZYzJQQs16jPB7sdzl55InlIg==
+  dependencies:
+    bloodhound-js "^1.2.3"
+    clipboard "^2.0.1"
+    escape-string-regexp "^1.0.5"
+    popper.js "^1.14.4"
+    ui-select "^0.19.8"
+
+ovh-ui-angular@^3.12.0:
+  version "3.12.0"
+  resolved "https://registry.yarnpkg.com/ovh-ui-angular/-/ovh-ui-angular-3.12.0.tgz#c1994e2de697307454f8e9279d4540c8b3be6f9d"
+  integrity sha512-NBisa3NzkvSCh8HWrQBKXplJ/rEVrHaOOC54+pfaygXHPlbfWDVwgg8Fh/z/Pnx6m/MESRVlH4aD+P/xPYYowg==
   dependencies:
     bloodhound-js "^1.2.3"
     clipboard "^2.0.1"
