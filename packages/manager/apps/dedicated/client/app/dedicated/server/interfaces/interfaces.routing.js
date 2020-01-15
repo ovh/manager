@@ -1,3 +1,6 @@
+import get from 'lodash/get';
+import { GUIDES } from './interfaces.constants';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.dedicated.server.interfaces', {
     url: '/interfaces?:configStep',
@@ -26,6 +29,8 @@ export default /* @ngInject */ ($stateProvider) => {
           'routedTo.serviceName': serverName,
           type: 'failover',
         }).$promise,
+      guideUrl: /* @ngInject */ (user) =>
+        get(GUIDES, `${user.ovhSubsidiary}`, GUIDES.default),
       optionPrice: /* @ngInject */ (
         $q,
         isOlaAvailable,
