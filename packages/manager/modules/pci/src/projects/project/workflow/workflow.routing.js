@@ -1,9 +1,8 @@
-import concat from 'lodash/concat';
-import forEach from 'lodash/forEach';
+import compact from 'lodash/compact';
+import flatten from 'lodash/flatten';
 import map from 'lodash/map';
-import set from 'lodash/set';
 
-import { WORKFLOW_TYPE_ENUM } from './workflow.constants';
+import Workflow from './Workflow.class';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.workflow', {
@@ -55,31 +54,22 @@ export default /* @ngInject */ ($stateProvider) => {
             serviceName: projectId,
           })
           .$promise.then((regions) => {
-            let workflows = [];
-            return $q
-              .all(
-                map(regions, (region) =>
-                  OvhApiCloudProjectRegionWorkflowBackup.v6()
-                    .query({
-                      serviceName: projectId,
-                      regionName: region,
-                    })
-                    .$promise.then((regionWorkflows) => {
-                      forEach(regionWorkflows, (workflow) => {
-                        set(
-                          workflow,
-                          'type',
-                          WORKFLOW_TYPE_ENUM.INSTANCE_BACKUP,
-                        );
-                        return workflow;
-                      });
-                      workflows = concat(workflows, regionWorkflows);
-                      return regionWorkflows;
-                    })
-                    .catch(() => null),
+            const workflows = map(regions, (region) =>
+              OvhApiCloudProjectRegionWorkflowBackup.v6()
+                .query({
+                  serviceName: projectId,
+                  regionName: region,
+                })
+                .$promise.then((regionWorkflows) =>
+                  map(regionWorkflows, (workflow) => new Workflow(workflow)),
+                )
+                .catch((error) =>
+                  error.status === 400 ? null : $q.reject(error),
                 ),
-              )
-              .then(() => workflows);
+            );
+            return $q
+              .all(workflows)
+              .then((regionWorkflows) => compact(flatten(regionWorkflows)));
           }),
 
       goToInstancePage: /* @ngInject */ ($state, projectId) => (instanceId) => {
