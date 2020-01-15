@@ -87,7 +87,13 @@
                         data-value="duration"
                     >
                         <span
-                            data-ng-bind="duration.duration | wucDuration: 'longDate'"
+                            data-ng-if="$ctrl.constructor.isProrataDuration(duration)"
+                            data-ng-bind-html="duration.duration | wucDuration: 'longDate':{prorata:true}"
+                        >
+                        </span>
+                        <span
+                            data-ng-if="!$ctrl.constructor.isProrataDuration(duration)"
+                            data-ng-bind-html="duration.duration | wucDuration: 'longDate'"
                         ></span
                         >&nbsp;:
                         <span
@@ -201,22 +207,6 @@
                         data-translate="hosting_order_upgrade_freedom_warning_text"
                     ></span>
                 </oui-message>
-                <p>
-                    <strong
-                        data-translate="hosting_order_upgrade_do_order_upgrade"
-                    ></strong>
-                    <span
-                        data-translate="hosting_order_upgrade_do_order_upgrade_text"
-                    ></span>
-                </p>
-                <p data-ng-if="!$ctrl.hosting.isCloudWeb">
-                    <strong
-                        data-translate="hosting_order_upgrade_do_order_downgrade"
-                    ></strong>
-                    <span
-                        data-translate="hosting_order_upgrade_do_order_downgrade_text"
-                    ></span>
-                </p>
             </oui-step-form>
         </oui-stepper>
     </div>
