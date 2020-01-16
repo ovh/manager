@@ -51,5 +51,7 @@
   "kube_service_cluster_status_REOPENING": "Wird geöffnet",
   "kube_service_cluster_status_SUSPENDED": "Geschlossen",
   "kube_service_cluster_status_USER_ERROR": "Fehler",
-  "kube_service_cluster_status_USER_QUOTA_ERROR": "Quota-Problem:"
+  "kube_service_cluster_status_USER_QUOTA_ERROR": "Quota-Problem:",
+  "kube_service_cluster_version_not_supported_message": "Ihre Kubernetes-Version wird nicht mehr unterstützt. Bitte wählen Sie eine unterstützte Version.",
+  "kube_service_cluster_versions_guide": "Mehr Informationen zu den unterstützten Versionen finden Sie in unserem offiziellen Informationsmaterial  <a href=\"{{ versionGuideUrl }}\" rel=\"noopener\" target=\"_blank\">End-of-Support et End-of-Life policy</a>"
 }

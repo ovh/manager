@@ -1,0 +1,7 @@
+{
+  "pci_project_new_payment_credit_thanks": "Danke! Wir haben die Registrierung Ihrer Zahlungsmethode berücksichtigt.",
+  "pci_project_new_payment_credit_explain": "Um schnell loszulegen und die volle Leistungsfähigkeit der Public Cloud bei OVHcloud nutzen zu können, werden Sie gebeten, loszulegen. Dieser Betrag wird in Credits umgewandelt, die für Ihr Projekt verwendet werden können.",
+  "pci_project_new_payment_credit_info": "Credits sind nicht übertragbar oder erstattungsfähig und haben keinen Geldwert. Jegliches Guthaben, das nicht innerhalb von 13 Monaten nach dem Kauf verwendet wird, geht verloren. Wenn Sie auf \"Gutschreiben und erstellen Sie mein Projekt\" klicken, werden Sie zu einer Bestellung weitergeleitet, um Ihre Kreditzahlung per Kreditkarte oder Paypal zu bezahlen.",
+  "pci_project_new_payment_credit_credit_and_pay": "Guthaben aufladen und mein Projekt erstellen",
+  "pci_project_new_payment_credit_checkout_error": "Bei der Erstellung Ihres Public Cloud Projekts ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut. Bitte versuchen Sie es erneut."
+}

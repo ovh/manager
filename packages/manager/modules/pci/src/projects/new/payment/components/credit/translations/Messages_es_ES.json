@@ -1,0 +1,6 @@
+{
+  "pci_project_new_payment_credit_explain": "Cada proyecto de Public Cloud tiene una cuenta de crédito propia. En esa cuenta se cargarán automáticamente las facturas. Si el saldo es insuficiente, deberá abonar lo antes posible la cantidad restante con una forma de pago memorizada en su cuenta.",
+  "pci_project_new_payment_credit_info": "Los créditos son intransferibles o reembolsables y no tienen valor monetario. Cualquier crédito no utilizado dentro de los 13 meses de la compra se pierde. Al hacer clic en \"Crédito y crear mi proyecto\" se le redirigirá a una orden de compra para pagar su crédito con tarjeta de crédito o Paypal.",
+  "pci_project_new_payment_credit_amount_other": "Otra cantidad",
+  "pci_project_new_payment_credit_amount_other_label": "Importe a acreditar"
+}

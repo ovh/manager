@@ -1,0 +1,6 @@
+{
+  "pci_project_new_payment_challenge_credit_card": "Per verificare il metodo di pagamento, inserisci le prime 6 cifre della tua carta di credito di fronte:",
+  "pci_project_new_payment_challenge_paypal": "Per verificare il tuo metodo di pagamento, accedi di nuovo al tuo account paypal.",
+  "pci_project_new_payment_challenge_bank_account": "Per verificare il tuo metodo di pagamento, inserisci il tuo numero IBAN qui sotto:",
+  "pci_project_new_payment_challenge_error_retry_challenge": "La verifica del tuo metodo di pagamento non è andata a buon fine, ti preghiamo di riprovare."
+}

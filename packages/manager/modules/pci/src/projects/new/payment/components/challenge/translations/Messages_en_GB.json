@@ -1,0 +1,6 @@
+{
+  "pci_project_new_payment_challenge_credit_card": "To check your payment method, please enter the first 6 digits of your bank card opposite:",
+  "pci_project_new_payment_challenge_paypal": "To check your payment method, please log back to your paypal account.",
+  "pci_project_new_payment_challenge_bank_account": "To verify your payment method, please enter your IBAN number below:",
+  "pci_project_new_payment_challenge_error_retry_challenge": "Payment method verification unsuccessful. Please try again."
+}
