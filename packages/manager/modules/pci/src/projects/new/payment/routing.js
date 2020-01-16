@@ -15,7 +15,7 @@ export default /* @ngInject */ ($stateProvider) => {
             : 'pciProjectNewPaymentRegister',
       },
 
-      'credits@pci.projects.new.payment': 'pciProjectNewPaymentCredit',
+      'credits@pci.projects.new.payment': 'pciProjectNewPaymentCreditType',
 
       'challenge@pci.projects.new.payment': {
         componentProvider: /* @ngInject */ (eligibility) =>
