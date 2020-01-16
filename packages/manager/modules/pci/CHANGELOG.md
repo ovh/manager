@@ -1,3 +1,12 @@
+# [3.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.7.2...@ovh-ux/manager-pci@3.8.0) (2020-01-16)
+
+
+### Features
+
+* **pci.projects.new:** revamp project creation ([b353f85](https://github.com/ovh/manager/commit/b353f8593e0038ec6a93eaf0511ceb805370b3aa))
+
+
+
 ## [3.7.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.7.1...@ovh-ux/manager-pci@3.7.2) (2020-01-10)
 
 
