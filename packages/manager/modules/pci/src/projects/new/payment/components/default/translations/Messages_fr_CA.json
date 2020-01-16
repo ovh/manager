@@ -1,0 +1,5 @@
+{
+  "pci_project_new_payment_default_title": "Votre moyen de paiement",
+  "pci_project_new_payment_default_explain": "Le moyen de paiement ci-dessous sera utilisé pour la consommation de votre projet Public Cloud. Tant que vous ne consommez rien, vous ne serez pas débité ou prélevé. Pour changer, rendez-vous dans <a href=\"{{ paymentMehodSection }}\">\"Mes moyens de paiement\"</a> dans <a href=\"{{ myAccountSection }}\">\"Mon compte\"</a>.",
+  "pci_project_new_payment_default_method": "Moyen de paiement par défaut"
+}

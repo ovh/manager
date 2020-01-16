@@ -1,0 +1,9 @@
+{
+  "pci_project_new_payment_register_title": "Zahlungsmittel hinterlegen",
+  "pci_project_new_payment_register_explain": "Um Ihre Identität zu bestätigen, ist die Eintragung eines Zahlungsmittels erforderlich. Es erfolgt keine Abbuchung oder Belastung, solange Sie keine Ressourcen verbrauchen.",
+  "pci_project_new_payment_register_info_credit_card": "Sie werden auf das gesicherte Zahlungsinterface unseres Zahlungsdienstleisters weitergeleitet, um eine neue Kreditkarte zu hinterlegen. Es wird eine Testabbuchung bei Ihrem Bankinstitut vorgenommen, um Nummer und Gültigkeit der Karte zu überprüfen. Der Betrag wird nicht abgezogen.",
+  "pci_project_new_payment_register_info_paypal": "Wenn Sie auf „Mein Projekt erstellen“ klicken, werden Sie zum sicheren Paypal-Interface weitergeleitet, um Ihr Konto zu registrieren.",
+  "pci_project_new_payment_register_info_bank_account": "Wenn Sie auf „Hinzufügen\" klicken, werden Sie zum Bereich „Meine Zahlungsarten“ des Kundencenters weitergeleitet.",
+  "pci_project_new_payment_register_warning_bank_account": "Ihr Bankkonto wird innerhalb von 24 bis 48 Stunden nach Erhalt Ihrer Debitberechtigung, die per Post zurückgesendet werden muss, genehmigt. Anschließend können Sie ein Public Cloud-Projekt neu erstellen.",
+  "pci_project_new_payment_register_credit": "Hinzufügen von Credits"
+}

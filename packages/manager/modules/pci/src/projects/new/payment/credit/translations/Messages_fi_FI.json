@@ -1,0 +1,7 @@
+{
+  "pci_project_new_payment_credit_thanks": "Thanks! We have taken into account the registration of your payment method.",
+  "pci_project_new_payment_credit_explain": "To get started quickly and be able to take full advantage of the full power of the Public Cloud at OVHcloud, you are asked to get started. This amount will be converted into credits that can be used on your project.",
+  "pci_project_new_payment_credit_info": "Credits are non-transferable or refundable and have no monetary value. Any credit not used within 13 months of purchase is lost. By clicking \"Credit and create my project\" you will be redirected to a purchase order to pay your credit by credit card or Paypal.",
+  "pci_project_new_payment_credit_credit_and_pay": "Credit and create my project ",
+  "pci_project_new_payment_credit_checkout_error": "An error has occurred creating your Public Cloud project. Please try again. Please try again."
+}

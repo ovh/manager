@@ -1,0 +1,5 @@
+{
+  "pci_project_new_payment_default_title": "Mi forma de pago",
+  "pci_project_new_payment_default_explain": "El método de pago siguiente se utilizará para el consumo de su proyecto de nube pública. Mientras no consuma recursos, no se le cargará nada. Para cambiar, vaya a 'lt;a href' 'paymentMehodSection' 'My means of payment' en 'lt;a href'\" 'myAccountSection'.\"",
+  "pci_project_new_payment_default_method": "Forma de pago por defecto"
+}

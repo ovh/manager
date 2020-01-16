@@ -1,0 +1,6 @@
+{
+  "pci_project_new_payment_challenge_credit_card": "Para comprobar su método de pago, introduzca los primeros 6 dígitos de su tarjeta bancaria opuestas:",
+  "pci_project_new_payment_challenge_paypal": "Para comprobar su método de pago, vuelva a iniciar sesión en su cuenta de Paypal.",
+  "pci_project_new_payment_challenge_bank_account": "Para verificar su método de pago, ingrese su número IBAN a continuación:",
+  "pci_project_new_payment_challenge_error_retry_challenge": "No ha sido posible verificar su forma de pago. Por favor, vuelva a intentarlo."
+}

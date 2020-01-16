@@ -1,0 +1,6 @@
+{
+  "pci_project_new_payment_credit_explain": "Jedes Public Cloud Projekt verfügt über ein eigenes Guthabenkonto. Alle Rechnungen werden automatisch von diesem Konto abgebucht. Wenn das Guthaben nicht ausreicht, begleichen Sie den ausstehenden Betrag so schnell wie möglich mit einem eingetragenen Zahlungsmittel.",
+  "pci_project_new_payment_credit_info": "Credits sind nicht übertragbar oder erstattungsfähig und haben keinen Geldwert. Jegliches Guthaben, das nicht innerhalb von 13 Monaten nach dem Kauf verwendet wird, geht verloren. Wenn Sie auf \"Gutschreiben und erstellen Sie mein Projekt\" klicken, werden Sie zu einer Bestellung weitergeleitet, um Ihre Kreditzahlung per Kreditkarte oder Paypal zu bezahlen.",
+  "pci_project_new_payment_credit_amount_other": "Sonstiger Betrag",
+  "pci_project_new_payment_credit_amount_other_label": "Anschreibender Betrag"
+}

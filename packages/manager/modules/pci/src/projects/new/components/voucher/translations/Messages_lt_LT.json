@@ -1,0 +1,13 @@
+{
+  "pci_projects_new_voucher_question": "Do you have a voucher? ",
+  "pci_projects_new_voucher_form_field": "Enter a voucher",
+  "pci_projects_new_voucher_form_field_amount": "Amount credited: {{ amount }}",
+  "pci_projects_new_voucher_form_field_error_invalid": "Invalid code",
+  "pci_projects_new_voucher_form_field_error_no_longer_valid": "Invalid code",
+  "pci_projects_new_voucher_form_field_error_default": "An error has occurred modifying the filter.",
+  "pci_projects_new_voucher_form_add": "Add",
+  "pci_projects_new_voucher_form_add_title": "Add a voucher",
+  "pci_projects_new_voucher_form_remove": "Remove ",
+  "pci_projects_new_voucher_form_remove_title": "Enter the voucher",
+  "pci_projects_new_voucher_form_reset_error": "There was an error when you withdrew your voucher."
+}

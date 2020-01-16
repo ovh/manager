@@ -1,0 +1,5 @@
+{
+  "pci_project_new_payment_default_title": "Il tuo metodo di pagamento",
+  "pci_project_new_payment_default_explain": "Il metodo di pagamento riportato di seguito verrà utilizzato per l'utilizzo del progetto Public Cloud. Non vengono eseguiti addebiti o prelievi se non vengono utilizzate risorse. Per modificare, passare a 'lt;a href' 'paymentMehodSection' 'My means of payment' in 'lt;a href'\" 'myAccountSection'.\"",
+  "pci_project_new_payment_default_method": "Metodo di pagamento predefinito "
+}
