@@ -1,6 +1,7 @@
 import find from 'lodash/find';
 import forEach from 'lodash/forEach';
 import get from 'lodash/get';
+import includes from 'lodash/includes';
 
 export default class OvhCloudPriceHelper {
   /* @ngInject */
@@ -44,7 +45,12 @@ export default class OvhCloudPriceHelper {
         forEach(projectPlan.addonFamilies, (family) => {
           forEach(family.addons, (planCode) => {
             pricesMap[planCode] = this.transformPrice(
-              get(find(catalog.addons, { planCode }), 'pricings[0]'),
+              find(
+                get(find(catalog.addons, { planCode }), 'pricings'),
+                ({ capacities }) =>
+                  includes(capacities, 'renew') ||
+                  includes(capacities, 'consumption'),
+              ),
               catalog.locale.currencyCode,
             );
           });
