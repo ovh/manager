@@ -1,0 +1,13 @@
+<nav class="pci-project-new-progress oui-progress-tracker mx-auto">
+    <ol class="oui-progress-tracker__steps">
+        <li
+            class="oui-progress-tracker__step"
+            data-ng-repeat="step in $ctrl.steps track by $index"
+            data-ng-class="{
+                'oui-progress-tracker__step_active': step.active,
+            }"
+        >
+            <span class="oui-progress-tracker__status"></span>
+        </li>
+    </ol>
+</nav>

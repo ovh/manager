@@ -1,0 +1,92 @@
+<div class="pci-project-new-voucher">
+    <button
+        type="button"
+        class="btn-voucher oui-button oui-button_secondary oui-button_icon-right w-100 mw-100 d-flex justify-content-between align-items-center no-transition"
+        data-ng-click="$ctrl.onAddVoucherBtnClick()"
+        data-ng-if="!$ctrl.formVisible"
+    >
+        <span data-translate="pci_projects_new_voucher_question"></span>
+        <span class="oui-icon oui-icon-add mr-3" aria-hidden="true"> </span>
+    </button>
+
+    <oui-message data-type="error" data-ng-if="$ctrl.errors.reset">
+        <span
+            data-ng-if="$ctrl.errors.reset"
+            data-translate="pci_projects_new_voucher_form_reset_error"
+        >
+        </span>
+    </oui-message>
+
+    <form
+        class="voucher-form oui-box h-100 d-lg-flex justify-content-between align-items-center no-transition"
+        data-ng-if="$ctrl.formVisible"
+        name="$ctrl.voucherForm"
+        data-ng-submit="$ctrl.onVoucherFormSubmit()"
+    >
+        <div
+            class="oui-field w-100 mb-0"
+            data-ng-class="{ 'oui-field_error': !$ctrl.voucherForm.voucher.$pristine && $ctrl.voucherForm.voucher.$invalid }"
+        >
+            <label
+                class="oui-field__label oui-label"
+                for="voucher"
+                data-translate="pci_projects_new_voucher_form_field"
+            >
+            </label>
+            <div
+                class="oui-field__control w-100 d-md-flex justify-content-between align-items-center"
+            >
+                <input
+                    class="oui-input mr-3"
+                    type="text"
+                    id="voucher"
+                    name="voucher"
+                    data-ng-model="$ctrl.model.voucher.value"
+                    data-ng-change="$ctrl.onVoucherInputChange()"
+                    data-ng-disabled="$ctrl.loading.check || $ctrl.loading.reset || $ctrl.globalLoading.finalize"
+                    data-ng-readonly="$ctrl.model.voucher.value && $ctrl.model.voucher.valid"
+                />
+
+                <oui-button
+                    data-type="submit"
+                    data-aria-label="{{ :: 'pci_projects_new_voucher_form_add_title' | translate }}"
+                    data-disabled="$ctrl.loading.check || !$ctrl.model.voucher.value || $ctrl.globalLoading.finalize"
+                    data-ng-if="!$ctrl.model.voucher.valid"
+                >
+                    <span
+                        data-translate="pci_projects_new_voucher_form_add"
+                    ></span>
+                </oui-button>
+
+                <oui-button
+                    data-type="reset"
+                    data-aria-label="{{ :: 'pci_projects_new_voucher_form_remove_title' | translate }}"
+                    data-ng-if="$ctrl.model.voucher.value && $ctrl.model.voucher.valid"
+                    data-ng-click="$ctrl.onVoucherFormReset()"
+                    data-ng-disabled="$ctrl.loading.reset || $ctrl.globalLoading.finalize"
+                >
+                    <span
+                        data-translate="pci_projects_new_voucher_form_remove"
+                    ></span>
+                </oui-button>
+            </div>
+            <span
+                class="oui-field__helper"
+                data-translate="pci_projects_new_voucher_form_field_amount"
+                data-translate-values="{ amount: $ctrl.model.voucher.credit.text }"
+                data-ng-if="$ctrl.model.voucher.value && $ctrl.model.voucher.valid"
+            >
+            </span>
+            <span
+                class="oui-field__error"
+                data-ng-if="$ctrl.model.voucher.value && !$ctrl.model.voucher.valid && $ctrl.model.voucher.error"
+            >
+                <span class="oui-icon oui-icon-error" aria-hidden="true">
+                </span>
+                <span
+                    data-translate="{{ 'pci_projects_new_voucher_form_field_error_' + $ctrl.model.voucher.error.statusText.toLowerCase() }}"
+                ></span>
+            </span>
+        </div>
+    </form>
+</div>

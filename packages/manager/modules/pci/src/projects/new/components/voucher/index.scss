@@ -1,0 +1,32 @@
+pci-project-new-voucher {
+  @import '~bootstrap4/scss/_functions';
+  @import '~bootstrap4/scss/_variables';
+  @import '~bootstrap4/scss/mixins/_breakpoints';
+
+  .pci-project-new-voucher {
+    .btn-voucher,
+    .oui-box {
+      background-color: rgb(230, 245, 252);
+      border-radius: 0;
+      min-height: 85px;
+      border: 0 !important;
+    }
+
+    .btn-voucher .oui-icon.oui-icon-add::before {
+      font-size: 1rem;
+    }
+
+    @include media-breakpoint-down(sm) {
+      oui-button {
+        width: 100%;
+      }
+
+      .oui-button {
+        max-width: 100%;
+        display: block;
+        width: 100%;
+        margin-top: $spacer;
+      }
+    }
+  }
+}

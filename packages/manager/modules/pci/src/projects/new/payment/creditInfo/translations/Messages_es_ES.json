@@ -1,4 +1,0 @@
-{
- "pci_projects_new_payment_credit_info_message": "Para confirmar el registro y la validez de su forma de pago, es necesario un importe de {{ amount }}. Esta suma se acumulará en forma de crédito* que podrá utilizar en su proyecto.",
- "pci_projects_new_payment_credit_info_explain": "Al hacer clic en «Recargar y crear mi proyecto», será redirigido a la página de pago seguro de nuestro proveedor. Para consultar su factura, haga clic en «Mi cuenta» > <a href=\"{{ href }}\">« Mis pedidos »</a>."
-}

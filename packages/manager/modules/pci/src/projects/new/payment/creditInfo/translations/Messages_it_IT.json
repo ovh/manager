@@ -1,4 +1,0 @@
-{
- "pci_projects_new_payment_credit_info_message": "Per la conferma dei dati e della validità del metodo di pagamento inserito è necessario un importo minimo di {{ amount }}. Questa somma verrà convertita in crediti*, utilizzabili per il tuo progetto.",
- "pci_projects_new_payment_credit_info_explain": "Cliccando su “Ricarica e crea il tuo progetto” sarai reindirizzato all’interfaccia di pagamento sicuro del nostro provider. Per recuperare la fattura, clicca su “Il tuo account” > “I tuoi ordini”."
-}

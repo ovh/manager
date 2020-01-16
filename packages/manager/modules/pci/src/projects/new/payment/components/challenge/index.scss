@@ -1,0 +1,35 @@
+pci-project-new-payment-challenge {
+  .pci-project-new-payment-challenge {
+    color: #4d5592;
+
+    .oui-box {
+      background-color: #faefef;
+    }
+
+    .challenge-credit-card {
+      height: 129px;
+      width: 208px;
+      position: relative;
+      background-image: url('./assets/cb.png');
+
+      .challenge-input {
+        position: absolute;
+        width: 70px;
+        height: 29px;
+        border-radius: 2px;
+        border: solid 0.9px #bef1ff;
+        background-color: #fff;
+        padding: 4px 2px 4px 4px;
+        font-size: 14px;
+        font-weight: 600;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.29;
+        letter-spacing: 1.86px;
+        color: #4d5592;
+        top: 68px;
+        left: 10px;
+      }
+    }
+  }
+}
