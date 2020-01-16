@@ -1,3 +1,12 @@
+## [3.8.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.8.1...@ovh-ux/manager-pci@3.8.2) (2020-01-16)
+
+
+### Bug Fixes
+
+* **pci.projects.new:** duplicate component name ([9209d68](https://github.com/ovh/manager/commit/9209d68e7514f0e80a42578aa60c2e0e90f03d8d))
+
+
+
 ## [3.8.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.8.0...@ovh-ux/manager-pci@3.8.1) (2020-01-16)
 
 
