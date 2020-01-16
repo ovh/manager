@@ -4,7 +4,7 @@
     ></cui-page-content-title>
     <p data-translate="iplb_task_intro_text"></p>
 
-    <oui-datagrid data-rows="ctrl.tasks.data">
+    <oui-datagrid data-rows="$ctrl.tasks.data">
         <oui-column
             data-title="'iplb_task_list_col_creation_date' | translate"
             data-property="creationDate"
@@ -26,7 +26,7 @@
         >
             <oui-progress data-compact>
                 <oui-progress-bar
-                    data-type="{{ ctrl.ServiceHelper.constructor.getTaskProgressType($row.status) }}"
+                    data-type="{{ $ctrl.ServiceHelper.constructor.getTaskProgressType($row.status) }}"
                     data-value="$row.progress"
                 >
                 </oui-progress-bar>
@@ -40,7 +40,7 @@
         <oui-action-menu data-align="end" data-compact>
             <oui-action-menu-item
                 data-text="{{'iplb_preview_see' | translate}}"
-                data-on-click="ctrl.showTaskPreview($row)"
+                data-on-click="$ctrl.goToTaskPreview($row)"
             ></oui-action-menu-item>
         </oui-action-menu>
     </oui-datagrid>

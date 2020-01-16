@@ -1,45 +1,25 @@
+import angular from 'angular';
+import '@uirouter/angularjs';
+
 import IpLoadBalancerDashboardHeaderCtrl from '../header/iplb-dashboard-header.controller';
-import IpLoadBalancerTaskCtrl from './iplb-task.controller';
-import IpLoadBalancerTaskPreviewCtrl from './preview/iplb-task-preview.controller';
 import IpLoadBalancerTaskService from './iplb-task.service';
 
-import IplbHeaderTemplate from '../header/iplb-dashboard-header.html';
-import IplbTaskTemplate from './iplb-task.html';
+import IpLoadBalancerTaskPreview from './preview';
+
+import routing from './iplb-task.routing';
+import IplbTaskComponent from './iplb-task.component';
 
 const moduleName = 'ovhManagerIplbTask';
 
 angular
-  .module(moduleName, ['ui.router'])
-  .config(
-    /* @ngInject */ ($stateProvider) => {
-      $stateProvider.state('network.iplb.detail.task', {
-        url: '/task',
-        views: {
-          iplbHeader: {
-            template: IplbHeaderTemplate,
-            controller: 'IpLoadBalancerDashboardHeaderCtrl',
-            controllerAs: 'ctrl',
-          },
-          iplbContent: {
-            template: IplbTaskTemplate,
-            controller: 'IpLoadBalancerTaskCtrl',
-            controllerAs: 'ctrl',
-          },
-        },
-        translations: {
-          value: ['../task'],
-          format: 'json',
-        },
-      });
-    },
-  )
+  .module(moduleName, ['ui.router', IpLoadBalancerTaskPreview])
+  .config(routing)
   .controller(
     'IpLoadBalancerDashboardHeaderCtrl',
     IpLoadBalancerDashboardHeaderCtrl,
   )
-  .controller('IpLoadBalancerTaskCtrl', IpLoadBalancerTaskCtrl)
+  .component('ovhManagerIplbTaskComponent', IplbTaskComponent)
   .service('IpLoadBalancerTaskService', IpLoadBalancerTaskService)
-  .controller('IpLoadBalancerTaskPreviewCtrl', IpLoadBalancerTaskPreviewCtrl)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
