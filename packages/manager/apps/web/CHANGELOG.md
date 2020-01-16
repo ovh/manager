@@ -1,3 +1,12 @@
+# [13.41.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.40.1...@ovh-ux/manager-web@13.41.0) (2020-01-16)
+
+
+### Features
+
+* **pci.projects.new:** revamp project creation ([b353f85](https://github.com/ovh/manager/commit/b353f8593e0038ec6a93eaf0511ceb805370b3aa))
+
+
+
 ## [13.40.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.40.0...@ovh-ux/manager-web@13.40.1) (2020-01-08)
 
 

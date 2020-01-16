@@ -1,3 +1,12 @@
+# [2.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@2.5.5...@ovh-ux/manager-public-cloud@2.6.0) (2020-01-16)
+
+
+### Features
+
+* **pci.projects.new:** revamp project creation ([b353f85](https://github.com/ovh/manager/commit/b353f8593e0038ec6a93eaf0511ceb805370b3aa))
+
+
+
 ## [2.5.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@2.5.4...@ovh-ux/manager-public-cloud@2.5.5) (2020-01-08)
 
 

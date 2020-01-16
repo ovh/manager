@@ -1,3 +1,12 @@
+# [1.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-error-page@1.2.0...@ovh-ux/manager-error-page@1.3.0) (2020-01-16)
+
+
+### Features
+
+* **pci.projects.new:** revamp project creation ([b353f85](https://github.com/ovh/manager/commit/b353f8593e0038ec6a93eaf0511ceb805370b3aa))
+
+
+
 # [1.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-error-page@1.1.0...@ovh-ux/manager-error-page@1.2.0) (2019-10-28)
 
 
