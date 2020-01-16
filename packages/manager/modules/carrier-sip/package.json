@@ -2,6 +2,11 @@
   "name": "@ovh-ux/manager-carrier-sip",
   "version": "1.0.4",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ovh/manager.git",
+    "directory": "packages/manager/modules/carrier-sip"
+  },
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
   "main": "./src/index.js",

@@ -2,6 +2,11 @@
   "name": "@ovh-ux/manager-emailpro",
   "version": "1.4.1",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ovh/manager.git",
+    "directory": "packages/manager/modules/emailpro"
+  },
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
   "main": "src/index.js",

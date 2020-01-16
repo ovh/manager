@@ -10,7 +10,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ovh/manager.git",
-    "directory": "packages/manager/components/server-sidebar"
+    "directory": "packages/manager/modules/server-sidebar"
   },
   "license": "BSD-3-Clause",
   "files": [
