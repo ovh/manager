@@ -1,0 +1,101 @@
+<div class="pci-project-creating h-100">
+    <div class="container h-100">
+        <div class="row minh-100 justify-content-md-center text-center">
+            <div
+                class="col-lg-10 p-5 bg-white minh-100 d-md-flex flex-col-center"
+            >
+                <div class="p-5 mx-auto">
+                    <h1
+                        class="oui-heading_4"
+                        data-translate="pci_projects_creating_main_title"
+                    ></h1>
+
+                    <h2
+                        class="oui-heading_5"
+                        data-translate="pci_projects_creating_secondary_title"
+                    ></h2>
+
+                    <div class="position-relative">
+                        <div
+                            class="img-slide-container position-absolute w-100"
+                        >
+                            <img
+                                class="img-responsive mx-auto"
+                                data-ng-repeat="image in $ctrl.imageSlider.list track by $index"
+                                data-ng-src="{{ image }}"
+                                data-ng-if="$index === $ctrl.imageSlider.currentIndex"
+                                alt=""
+                            />
+                        </div>
+                        <div class="spinner mx-auto">
+                            <svg
+                                data-ng-repeat="svg in [0,1,2] track by $index"
+                                viewBox="0 0 66 66"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <circle
+                                    fill="none"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    cx="33"
+                                    cy="33"
+                                    r="28"
+                                ></circle>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <p>
+                    <span
+                        class="block"
+                        data-translate="pci_projects_creating_long_time"
+                    >
+                    </span>
+                    <span
+                        data-translate="pci_projects_creating_long_time_wait"
+                    ></span>
+                </p>
+
+                <div class="row action-row">
+                    <div class="col-lg text-center">
+                        <a
+                            class="oui-link_icon d-inline-block py-2 px-4 rounded"
+                            data-ng-href="{{ $ctrl.guideUrl }}"
+                            target="_blank"
+                            rel="noopener"
+                        >
+                            <span
+                                class="d-inline-block vertical-middle"
+                                data-translate="pci_projects_creating_guides"
+                            ></span>
+                            <span
+                                class="oui-icon oui-icon-guides d-inline-block vertical-middle"
+                                aria-hidden="true"
+                            >
+                            </span>
+                        </a>
+                    </div>
+                    <div
+                        class="col-md border-left text-center projects-link-container"
+                    >
+                        <a
+                            class="oui-link_icon d-inline-block py-2 px-4 rounded"
+                            data-ng-href="{{ $ctrl.pciProjectsHref }}"
+                        >
+                            <span
+                                class="d-inline-block vertical-middle"
+                                data-translate="pci_projects_creating_other_projects"
+                            >
+                            </span>
+                            <span
+                                class="oui-icon oui-icon-folder_extra-thin d-inline-block vertical-middle"
+                                aria-hidden="true"
+                            >
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

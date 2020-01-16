@@ -1,9 +1,0 @@
-{
-  "pci_error_button_action_pay_debt": "Saldar dívida",
-  "pci_error_button_action_contact_support": "Contactar o Apoio ao Cliente",
-  "pci_error_account_not_eligible": "Não é possível criar um novo projeto Public Cloud com a sua conta. Convidamo-lo a entrar em contacto com o nosso apoio ao cliente para obter mais informações.",
-  "pci_error_max_projects_limit_reached": "Não é possível criar projetos Public Cloud adicionais, pois atingiu o limite máximo de projetos. Para desbloquear o limite, sugerimos que contacte o apoio ao cliente.",
-  "pci_error_paypal_account_not_verified": "Não é possível criar projetos Public Cloud com a sua conta PayPal, pois esta não é uma conta verificada. Sugerimos que efetue os procedimentos necessários junto da PayPal para verificar a sua conta e, a seguir, que tente novamente. Também pode alterar <a href=\"{{ href }}\">o seu método de pagamento predefinido</a>.",
-  "pci_error_unpaid_debts": "Não é possível criar projetos Public Cloud, pois tem um valor em dívida na OVHcloud. Sugerimos que salde a dívida e que tente novamente.",
-  "pci_error_invalid_payment_mean": "Não é possível criar um novo projeto Public Cloud com a sua conta. Sugerimos que altere <a href=\"{{ href }}\">o seu método de pagamento predefinido</a>."
-}

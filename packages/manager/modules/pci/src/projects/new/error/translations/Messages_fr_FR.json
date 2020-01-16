@@ -1,9 +1,0 @@
-{
-  "pci_error_button_action_pay_debt": "Régler ma dette",
-  "pci_error_button_action_contact_support": "Contacter le support",
-  "pci_error_account_not_eligible": "La création d’un nouveau projet Public Cloud n’est pas possible avec votre compte. Nous vous invitons à contacter notre support pour plus d’informations.",
-  "pci_error_max_projects_limit_reached": "Vous ne pouvez pas créer de projet Public Cloud supplémentaire, car vous avez atteint le quota maximum de projets. Pour débloquer ce quota, nous vous invitons à contacter notre support.",
-  "pci_error_paypal_account_not_verified": "Vous ne pouvez pas créer de projet Public Cloud avec votre compte PayPal, car celui-ci n'est pas vérifié. Nous vous invitons à effectuer les démarches nécessaires auprès de PayPal pour vérifier votre compte, puis à réessayer. Vous pouvez aussi modifier <a href=\"{{ href }}\">votre moyen de paiement par défaut</a>.",
-  "pci_error_unpaid_debts": "Vous ne pouvez pas créer de projet Public Cloud, car vous avez une dette en cours chez OVH. Nous vous invitons à régler le montant dû, puis à réessayer.",
-  "pci_error_invalid_payment_mean": "La création d’un nouveau projet Public Cloud n’est pas possible avec votre compte. Nous vous invitons à modifier <a href=\"{{ href }}\">votre moyen de paiement par défaut</a>."
-}

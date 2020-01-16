@@ -5,10 +5,9 @@ import { REGION } from '../private-registry.constants';
 
 export default class {
   /* @ngInject */
-  constructor($translate, pciPrivateRegistryService, PciProjectNewService) {
+  constructor($translate, pciPrivateRegistryService) {
     this.$translate = $translate;
     this.privateRegistryService = pciPrivateRegistryService;
-    this.PciProjectNewService = PciProjectNewService;
     this.isLoading = false;
     this.REGION = REGION;
     this.registry = {};
@@ -17,29 +16,29 @@ export default class {
   create() {
     this.isLoading = true;
     this.registry.region = this.REGION;
-    return this.PciProjectNewService.acceptAgreements(
-      this.registryContracts,
-    ).then(() =>
-      this.privateRegistryService
-        .create(this.projectId, this.registry)
-        .then((res) =>
-          this.goBack(
-            this.$translate.instant('private_registry_onboarding_success', {
-              registryName: this.registry.name,
-            }),
-            'success',
-            res.id,
+    return this.privateRegistryService
+      .acceptAgreements(this.registryContracts)
+      .then(() =>
+        this.privateRegistryService
+          .create(this.projectId, this.registry)
+          .then((res) =>
+            this.goBack(
+              this.$translate.instant('private_registry_onboarding_success', {
+                registryName: this.registry.name,
+              }),
+              'success',
+              res.id,
+            ),
+          )
+          .catch((error) =>
+            this.goBack(
+              this.$translate.instant('private_registry_onboarding_error', {
+                message: get(error, 'data.message'),
+              }),
+              'error',
+            ),
           ),
-        )
-        .catch((error) =>
-          this.goBack(
-            this.$translate.instant('private_registry_onboarding_error', {
-              message: get(error, 'data.message'),
-            }),
-            'error',
-          ),
-        ),
-    );
+      );
   }
 
   getCompiledLinks(linkTemplate) {

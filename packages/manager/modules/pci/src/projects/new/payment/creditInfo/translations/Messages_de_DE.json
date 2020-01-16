@@ -1,4 +1,0 @@
-{
- "pci_projects_new_payment_credit_info_message": "Es wird ein Betrag über {{ amount }} von Ihrem Konto abgezogen, um die Registrierung und Gültigkeit Ihres Zahlungsmittels zu bestätigen. Der Betrag wird Ihnen als Guthaben* für Ihr Projekt gutgeschrieben.",
- "pci_projects_new_payment_credit_info_explain": "Wenn Sie auf „Guthaben aufladen und mein Projekt erstellen klicken“, werden Sie auf das gesicherte Interface unseres Dienstleiters weitergeleitet. Um zu Ihrer Abrechnung zu gelangen, klicken Sie auf „Mein Account“, dann auf <a href=\"{{ href }}\">„Meine Bestellungen“</a>."
-}

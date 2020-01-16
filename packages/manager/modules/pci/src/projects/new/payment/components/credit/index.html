@@ -1,0 +1,62 @@
+<div class="pci-project-new-payment-credit">
+    <p data-translate="pci_project_new_payment_credit_explain"></p>
+
+    <div class="d-flex justify-content-between mb-3">
+        <oui-radio
+            class="oui-radio_btn"
+            data-ng-repeat="amount in $ctrl.predefinedAmounts track by $index"
+            data-name="credit"
+            data-thumbnail
+            data-variant="light"
+            data-model="$ctrl.model.credit"
+            data-value="amount"
+            data-on-change="$ctrl.onPredifinedAmountRadioChange()"
+            data-disabled="$ctrl.globalLoading.finalize"
+        >
+            <span data-ng-bind="amount.text"></span>
+        </oui-radio>
+        <oui-radio
+            class="oui-radio_btn"
+            data-name="credit"
+            data-thumbnail
+            data-variant="light"
+            data-model="$ctrl.otherAmount.radio"
+            data-value="true"
+            data-on-change="$ctrl.onOtherAmountRadioChange()"
+            data-disabled="$ctrl.globalLoading.finalize"
+        >
+            <span
+                data-translate="pci_project_new_payment_credit_amount_other"
+            ></span>
+        </oui-radio>
+    </div>
+
+    <div data-ng-if="$ctrl.otherAmount.radio">
+        <div
+            class="oui-field"
+            data-ng-class="{ 'oui-field_error': !newProjectCreditForm.creditAmount.$pristine && newProjectCreditForm.creditAmount.$invalid }"
+        >
+            <label
+                class="oui-field__label oui-label"
+                for="otherAmount"
+                data-translate="pci_project_new_payment_credit_amount_other_label"
+            >
+            </label>
+            <div class="oui-field__control">
+                <input
+                    class="oui-input"
+                    type="number"
+                    id="otherAmount"
+                    name="otherAmount"
+                    data-ng-model="$ctrl.otherAmount.getterSetter"
+                    data-ng-model-options="{ getterSetter: true }"
+                    required
+                    min="{{ $ctrl.eligibility.minimumCredit.value }}"
+                    data-ng-disabled="$ctrl.globalLoading.finalize"
+                />
+            </div>
+        </div>
+    </div>
+
+    <small data-translate="pci_project_new_payment_credit_info"></small>
+</div>

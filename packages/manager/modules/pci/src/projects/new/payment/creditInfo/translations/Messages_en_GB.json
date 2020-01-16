@@ -1,4 +1,0 @@
-{
- "pci_projects_new_payment_credit_info_message": "An amount of {{ amount }} will be withdrawn to confirm your payment method. This amount will be converted into credit* that can be used towards your project.  ",
- "pci_projects_new_payment_credit_info_explain": "Click on “Credit and create my project”, to be redirected to our provider’s secure interface. Go back to your bill by clicking on “My account”, then <a href=\"{{ href }}\"> “My orders”</a>."
-}

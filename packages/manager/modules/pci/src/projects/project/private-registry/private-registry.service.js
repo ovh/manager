@@ -85,6 +85,23 @@ export default class pciPrivateRegistryService {
     );
   }
 
+  acceptAgreements(contactList = []) {
+    const acceptPromises = map(
+      contactList,
+      ({ id }) =>
+        this.OvhApiMe.Agreements()
+          .v6()
+          .accept(
+            {
+              id,
+            },
+            {},
+          ).$promise,
+    );
+
+    return this.$q.all(acceptPromises);
+  }
+
   static getCompiledLinks(linkTemplate, registryContracts) {
     return map(registryContracts, (contract) => {
       const compile = template(linkTemplate);
