@@ -263,15 +263,12 @@
                     data-term="{{ ::'domain_dashboard_protection_transfert' | translate }}"
                 >
                     <oui-tile-description>
-                        <span
-                            class="align-middle mt-2"
-                            data-wuc-v6-ui-switch
-                            data-ng-change="$ctrl.switchTheStateOfProtection()"
-                            data-ng-model="$ctrl.vm.protection.uiSwitch"
-                            data-oui-tooltip="{{($ctrl.domain.protection === 'unlocking' ||
-                              $ctrl.domain.protection === 'locking' ||
-                              $ctrl.domain.protection === 'unavailable') ? ('domain_dashboard_protection_' + $ctrl.domain.protection | translate) : ''}}"
-                        ></span>
+                        <oui-switch
+                            class="mt-2 d-inline-block"
+                            data-disabled="$ctrl.vm.protection.disabled"
+                            data-model="$ctrl.vm.protection.uiSwitch"
+                            data-on-change="$ctrl.switchTheStateOfProtection()"
+                        ></oui-switch>
                         <button
                             class="btn btn-link ml-3 p-0"
                             type="button"
@@ -308,15 +305,12 @@
                     data-term="{{ ::'domain_dashboard_dnssec' | translate }}"
                 >
                     <oui-tile-description>
-                        <span
-                            class="align-middle mt-2"
-                            data-wuc-v6-ui-switch
-                            data-ng-change="setAction('dns/sec/domain-dns-sec', $ctrl.domain)"
-                            data-ng-disabled="!$ctrl.domain.zoneDnssecSupported"
-                            data-ng-model="$ctrl.vm.dnssec.uiSwitch"
-                            data-oui-tooltip="{{($ctrl.domain.dnssecStatus === 'ENABLE_IN_PROGRESS' ||
-                              $ctrl.domain.dnssecStatus === 'DISABLE_IN_PROGRESS') ? ('domain_configuration_dnssec_' + $ctrl.domain.dnssecStatus | translate) : ''}}"
-                        ></span>
+                        <oui-switch
+                            class="mt-2 d-inline-block"
+                            data-disabled="$ctrl.vm.protection.disabled"
+                            data-model="$ctrl.vm.dnssec.uiSwitch"
+                            data-on-change="setAction('dns/sec/domain-dns-sec', $ctrl.domain)"
+                        ></oui-switch>
                     </oui-tile-description>
                 </oui-tile-definition>
                 <!-- WHOIS configuration  -->
