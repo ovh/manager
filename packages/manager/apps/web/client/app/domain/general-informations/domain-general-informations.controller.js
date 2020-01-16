@@ -13,7 +13,11 @@ import reduce from 'lodash/reduce';
 import set from 'lodash/set';
 import some from 'lodash/some';
 
-import { OWNER_CHANGE_URL } from './general-information.constants';
+import {
+  DNSSEC_STATUS,
+  OWNER_CHANGE_URL,
+  PROTECTION_TYPES,
+} from './general-information.constants';
 
 export default class DomainTabGeneralInformationsCtrl {
   /* @ngInject */
@@ -93,8 +97,21 @@ export default class DomainTabGeneralInformationsCtrl {
       refreshAlert: false,
     };
     this.vm = {
-      protection: { uiSwitch: {} },
-      dnssec: { uiSwitch: {} },
+      protection: {
+        disabled: [
+          PROTECTION_TYPES.LOCKING,
+          PROTECTION_TYPES.UNLOCKING,
+          PROTECTION_TYPES.UNAVAILABLE,
+        ].includes(this.domain.protection),
+        uiSwitch: {},
+      },
+      dnssec: {
+        disabled: [
+          DNSSEC_STATUS.DISABLE_IN_PROGRESS,
+          DNSSEC_STATUS.ENABLE_IN_PROGRESS,
+        ].includes(this.domain.dnssecStatus),
+        uiSwitch: {},
+      },
       hosting: {
         web: {
           sites: [],
