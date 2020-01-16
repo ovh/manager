@@ -78,5 +78,19 @@
   "telephony_alias_portability_order_step_2": "Informations",
   "telephony_alias_portability_order_step_3": "Configuration du numéro",
   "telephony_alias_portability_order_step_4": "Finalisation",
-  "telephony_alias_portability_order_number_category": "Catégorie du numéro spécial"
+  "telephony_alias_portability_order_number_category": "Catégorie du numéro spécial",
+  "telephony_order_specific_typology_error": "Une erreur est survenue lors de la récupération des informations",
+  "telephony_order_specific_typology_access_label": "Services délivrant des codes d’accès",
+  "telephony_order_specific_typology_adults_label": "Contenu pour adultes",
+  "telephony_order_specific_typology_announced_label": "Petites annonces",
+  "telephony_order_specific_typology_conferencing_label": "Services de téléphonie/téléconférence",
+  "telephony_order_specific_typology_contentsAuto_label": "Édition de contenus automatisée, délivrés par un automate",
+  "telephony_order_specific_typology_contentsManual_label": "Édition de contenu de services délivrés par des personnes physiques qualifiées",
+  "telephony_order_specific_typology_games_label": "Jeux",
+  "telephony_order_specific_typology_linking_label": "Services de mise en relation",
+  "telephony_order_specific_typology_m2m_label": "Services de machine à machine",
+  "telephony_order_specific_typology_relationship_label": "Relation client entreprise / administration / association",
+  "telephony_order_specific_typology_content_label": "Sonneries, logos",
+  "telephony_order_specific_typology_general_label": "Général",
+  "telephony_order_specific_typology_relaxing_label": "Services de détente"
 }
