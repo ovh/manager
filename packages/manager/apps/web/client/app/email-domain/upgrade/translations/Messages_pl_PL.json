@@ -2,7 +2,7 @@
   "email_domain_upgrade_title": "Zmień ofertę",
   "email_domain_upgrade_step_header_offer": "Usługa",
   "email_domain_upgrade_step_header_validation": "Weryfikacja",
-  "email_domain_upgrade_in_progress": "Zmiana oferty poczty elektronicznej na '{{newOffer}}'.",
+  "email_domain_upgrade_in_progress": "Zmiana oferty poczty elektronicznej na '{{newOffer}}'",
   "email_domain_upgrade_error": "Nie można zmienić oferty e-mail: {{message}}.",
   "email_domain_upgrade_success": "Trwa zmiana oferty e-mail.",
   "email_domain_upgrade_price_without_tax": "Cena netto: ",
