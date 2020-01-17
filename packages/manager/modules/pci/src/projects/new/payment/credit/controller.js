@@ -1,6 +1,7 @@
 export default class PciProjectsNewPaymentCreditCtrl {
   /* @ngInject */
-  constructor(CucCloudMessage, pciProjectNew) {
+  constructor($translate, CucCloudMessage, pciProjectNew) {
+    this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
     this.pciProjectNew = pciProjectNew;
   }
