@@ -2,6 +2,7 @@
   "name": "@ovh-ux/manager-telecom-task",
   "version": "5.0.2",
   "private": true,
+  "description": "Telecom task section.",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ovh/manager.git",

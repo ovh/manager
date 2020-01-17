@@ -2,7 +2,7 @@
   "name": "@ovh-ux/manager-vrack",
   "version": "0.4.1",
   "private": true,
-  "description": "OVH vRack product control panel",
+  "description": "vRack product.",
   "keywords": [
     "control",
     "manager",

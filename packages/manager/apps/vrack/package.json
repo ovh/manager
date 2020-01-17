@@ -2,6 +2,7 @@
   "name": "@ovh-ux/manager-vrack-app",
   "version": "0.3.0",
   "private": true,
+  "description": "vRack standalone application.",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ovh/manager.git",

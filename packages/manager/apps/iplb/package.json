@@ -2,6 +2,7 @@
   "name": "@ovh-ux/manager-iplb-app",
   "version": "0.1.0",
   "private": true,
+  "description": "IP Load Balancer standalone application.",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ovh/manager.git",

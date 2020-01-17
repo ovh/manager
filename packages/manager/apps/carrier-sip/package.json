@@ -2,6 +2,7 @@
   "name": "@ovh-ux/manager-carrier-sip-app",
   "version": "1.0.4",
   "private": true,
+  "description": "Carrier SIP Trunk standalone application.",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ovh/manager.git",
