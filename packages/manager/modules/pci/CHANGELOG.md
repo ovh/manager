@@ -1,3 +1,12 @@
+## [3.8.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.8.2...@ovh-ux/manager-pci@3.8.3) (2020-01-17)
+
+
+### Bug Fixes
+
+* **pci.projects.new:** redirect to BC when checkout not equal to 0 ([#2101](https://github.com/ovh/manager/issues/2101)) ([d89778c](https://github.com/ovh/manager/commit/d89778cdaa816399540b30e9b260def4464b63f7))
+
+
+
 ## [3.8.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.8.1...@ovh-ux/manager-pci@3.8.2) (2020-01-16)
 
 
