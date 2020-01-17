@@ -2,6 +2,7 @@
   "name": "@ovh-ux/manager-veeam-enterprise-app",
   "version": "0.1.2",
   "private": true,
+  "description": "Veeam Enterprise standalone application.",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ovh/manager.git",

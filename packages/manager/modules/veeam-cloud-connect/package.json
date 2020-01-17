@@ -2,7 +2,7 @@
   "name": "@ovh-ux/manager-veeam-cloud-connect",
   "version": "1.0.2",
   "private": true,
-  "description": "OVHcloud Veeam Cloud Connect product",
+  "description": "Veeam Cloud Connect product.",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ovh/manager.git",

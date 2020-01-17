@@ -1,7 +1,7 @@
 {
   "name": "@ovh-ux/manager-webpack-config",
   "version": "3.3.0",
-  "description": "OVH manager shared webpack configuration",
+  "description": "OVHcloud manager shared webpack configuration.",
   "keywords": [
     "configuration",
     "control-panel",

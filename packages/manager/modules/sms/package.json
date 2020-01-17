@@ -2,6 +2,7 @@
   "name": "@ovh-ux/manager-sms",
   "version": "7.5.1",
   "private": true,
+  "description": "SMS product.",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ovh/manager.git",

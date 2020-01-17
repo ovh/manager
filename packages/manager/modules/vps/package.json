@@ -2,7 +2,7 @@
   "name": "@ovh-ux/manager-vps",
   "version": "0.1.5",
   "private": true,
-  "description": "OVHcloud Vps product",
+  "description": "VPS product.",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ovh/manager.git",

@@ -2,7 +2,7 @@
   "name": "@ovh-ux/manager-beta-preference",
   "version": "1.0.2",
   "private": true,
-  "description": "OVHCloud User account beta preference management",
+  "description": "User account beta preference management.",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ovh/manager.git",

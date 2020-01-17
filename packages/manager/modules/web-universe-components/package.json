@@ -2,6 +2,7 @@
   "name": "@ovh-ux/ng-ovh-web-universe-components",
   "version": "7.2.1",
   "private": true,
+  "description": "Collection of components for the Web control panel.",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ovh/manager.git",

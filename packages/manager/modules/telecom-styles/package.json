@@ -2,6 +2,7 @@
   "name": "@ovh-ux/manager-telecom-styles",
   "version": "3.1.2",
   "private": true,
+  "description": "[DEPRECATED] - Collection of stylesheets for the Telecom control panel.",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ovh/manager.git",

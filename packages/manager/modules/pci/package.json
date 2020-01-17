@@ -2,6 +2,7 @@
   "name": "@ovh-ux/manager-pci",
   "version": "3.8.2",
   "private": true,
+  "description": "Public Cloud Instance product.",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ovh/manager.git",
