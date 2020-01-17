@@ -2,7 +2,7 @@
   "name": "@ovh-ux/manager-veeam-enterprise",
   "version": "0.1.2",
   "private": true,
-  "description": "OVHcloud VeeamEnterprise product",
+  "description": "Veeam Enterprise product.",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ovh/manager.git",

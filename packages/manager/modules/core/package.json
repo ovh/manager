@@ -2,6 +2,7 @@
   "name": "@ovh-ux/manager-core",
   "version": "7.6.3",
   "private": true,
+  "description": "Core functionalities shared across all control panel.",
   "homepage": "https://github.com/ovh/manager/tree/master/packages/manager/modules/core#readme",
   "bugs": {
     "url": "https://github.com/ovh/manager/issues"

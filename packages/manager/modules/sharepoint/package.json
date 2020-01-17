@@ -2,6 +2,7 @@
   "name": "@ovh-ux/manager-sharepoint",
   "version": "1.0.6",
   "private": true,
+  "description": "SharePoint product.",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ovh/manager.git",

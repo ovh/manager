@@ -2,6 +2,7 @@
   "name": "@ovh-ux/order-tracking-app",
   "version": "1.0.2",
   "private": true,
+  "description": "Order tracking standalone application.",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ovh/manager.git",

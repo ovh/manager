@@ -2,6 +2,7 @@
   "name": "@ovh-ux/manager-freefax",
   "version": "6.2.0",
   "private": true,
+  "description": "Freefax product.",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ovh/manager.git",

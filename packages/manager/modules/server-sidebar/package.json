@@ -2,7 +2,7 @@
   "name": "@ovh-ux/manager-server-sidebar",
   "version": "1.2.2",
   "private": true,
-  "description": "OVH control panel sidebar",
+  "description": "Sidebar component shared across all control panel.",
   "homepage": "https://github.com/ovh/manager/tree/master/packages/manager/modules/server-sidebar#readme",
   "bugs": {
     "url": "https://github.com/ovh/manager/issues"
