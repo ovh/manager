@@ -68,10 +68,12 @@ export default /* @ngInject */ ($stateProvider) => {
 
       onCartFinalized: /* @ngInject */ ($state, $window, cart) => ({
         orderId,
+        prices,
         url,
       }) => {
-        if (cart.creditOption) {
-          // if credit has been added - redirect to order url
+        if (cart.creditOption || prices.withTax.value !== 0) {
+          // if credit has been added or total checkout is not equal to 0
+          // redirect to order url
           return $window.location.assign(url);
         }
 
