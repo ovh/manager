@@ -3,9 +3,18 @@ import get from 'lodash/get';
 angular.module('controllers').controller(
   'Domain.controllers.DnsSec',
   class DomainDnsSecCtrl {
-    constructor($scope, $rootScope, $translate, Alerter, DomainsDnsSec) {
-      this.$scope = $scope;
+    /* @ngInject */
+    constructor(
+      $rootScope,
+      $scope,
+      $state,
+      $translate,
+      Alerter,
+      DomainsDnsSec,
+    ) {
       this.$rootScope = $rootScope;
+      this.$scope = $scope;
+      this.$state = $state;
       this.$translate = $translate;
       this.Alerter = Alerter;
       this.DomainsDnsSec = DomainsDnsSec;
@@ -31,6 +40,8 @@ angular.module('controllers').controller(
               this.$scope.alerts.main,
             );
           }
+
+          return this.$state.reload();
         })
         .catch((err) =>
           this.Alerter.alertFromSWS(
