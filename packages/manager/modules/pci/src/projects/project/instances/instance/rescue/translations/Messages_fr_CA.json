@@ -1,0 +1,17 @@
+{
+  "pci_projects_project_instances_instance_rescue_title": "Redémarrer en mode rescue",
+  "pci_projects_project_instances_instance_rescue_submit_label": "Redémarrer",
+  "pci_projects_project_instances_instance_rescue_cancel_label": "Annuler",
+
+  "pci_projects_project_instances_instance_rescue_image_content": "Vous allez redémarrer votre instance en mode rescue.",
+  "pci_projects_project_instances_instance_rescue_image_explanations": "Si vous sélectionnez \"Distribution Rescue Made-in-OVH\", vous recevrez un mot de passe temporaire avec lequel vous pourrez vous connecter à votre instance en mode rescue. Sinon, votre instance sera accessible avec votre clé SSH habituelle mais l'empreinte SSH de l'instance aura changé. Le disque principal sera disponible en tant que second disque non monté.",
+  "pci_projects_project_instances_instance_rescue_image_label": "Mon image :",
+  "pci_projects_project_instances_instance_rescue_image_default": "Distribution Rescue Made-in-OVH",
+
+  "pci_projects_project_instances_instance_rescue_success_message": "Le redémarrage de l'instance {{ instance }} a commencé.",
+  "pci_projects_project_instances_instance_rescue_infos_linux": "Pour accéder à votre serveur \"{{instance}}\" en mode rescue, utilisez  :<br/><code>ssh {{user}}@{{ip}}</code> avec la clé SSH habituelle. Attention, seul le disque principal est accessible dans ce mode.",
+  "pci_projects_project_instances_instance_rescue_infos_linux_with_password": "Pour accéder à votre serveur \"{{instance}}\" en mode rescue, utilisez :<br/><code>ssh {{user}}@{{ip}}</code> avec le mot de passe visible dans la console VNC ou via <code>openstack console log show \"{{instance}}\"</code>. Attention, seul le disque principal est accessible dans ce mode.",
+  "pci_projects_project_instances_instance_rescue_infos_windows": "Pour accéder à votre serveur {{instance}} en mode rescue, utilisez  :<br/><code>rdesktop {{ip}}</code> avec la clé SSH habituelle. Attention, seul le disque principal est accessible dans ce mode.",
+  "pci_projects_project_instances_instance_rescue_infos_windows_with_password": "Pour accéder à votre serveur {{instance}} en mode rescue, utilisez :<br/><code>rdesktop {{ip}}</code> ou <code>ssh {{user}}@{{ip}}</code> avec le mot de passe visible dans la console VNC ou via <code>openstack console log show \"{{instance}}\"</code>. Attention, seul le disque principal est accessible dans ce mode.",
+  "pci_projects_project_instances_instance_rescue_error_rescue": "Une erreur est survenue lors du redémarrage de l'instance {{ instance }} : {{ message }}."
+}

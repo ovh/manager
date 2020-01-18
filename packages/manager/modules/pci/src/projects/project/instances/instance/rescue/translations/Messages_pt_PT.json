@@ -1,15 +1,15 @@
 {
- "pci_projects_project_instances_instance_rescue_title": "Reiniciar em modo Rescue",
- "pci_projects_project_instances_instance_rescue_submit_label": "Reiniciar ",
- "pci_projects_project_instances_instance_rescue_cancel_label": "Anular",
- "pci_projects_project_instances_instance_rescue_image_content": "A sua instância vai ser reiniciada em modo Rescue.",
- "pci_projects_project_instances_instance_rescue_image_explanations": "Se selecionar a opção \"Distribution Rescue Made-in-OVH\", receberá uma palavra-passe temporária através da qual poderá aceder ao servidor em modo Rescue. Caso contrário, o seu servidor poderá ser acedido através da sua chave SSH habitual, mas a marca SSH da instância será diferente. O disco principal estará disponível enquanto segundo disco não montado.",
- "pci_projects_project_instances_instance_rescue_image_label": "A minha imagem:",
- "pci_projects_project_instances_instance_rescue_image_default": "Distribuição Rescue Made-in-OVH",
- "pci_projects_project_instances_instance_rescue_success_message": "A reinicialização da instância {{ instance }} foi iniciada.",
- "pci_projects_project_instances_instance_rescue_infos_linux": "Para aceder ao servidor \"{{instance}}\" em modo Rescue, utilize:<br/><code>ssh {{user}}@{{ip}}</code> com a chave SSH habitual. Atenção, apenas o disco principal está acessível neste modo.",
- "pci_projects_project_instances_instance_rescue_infos_linux_with_password": "Para aceder ao servidor \"{{instance}}\" em modo Rescue, utilize:<br/><code>ssh {{user}}@{{ip}}</code> com a palavra-passe temporária <code>{{password}}</code> (esta já não lhe será comunicada mais tarde). Atenção, apenas o disco principal está acessível neste modo.",
- "pci_projects_project_instances_instance_rescue_infos_windows": "Para aceder ao servidor {{instance}} em modo Rescue, utilize:<br/><code>rdesktop {{ip}}</code> com a chave SSH habitual. Atenção, apenas o disco principal está acessível neste modo.",
- "pci_projects_project_instances_instance_rescue_infos_windows_with_password": "Para aceder ao servidor {{instance}} em modo Rescue, utilize:<br/><code>rdesktop {{ip}}</code> com a palavra-passe temporária <code>{{password}}</code> (esta já não lhe será comunicada mais tarde). Atenção, apenas o disco principal está acessível neste modo.",
- "pci_projects_project_instances_instance_rescue_error_rescue": "Ocorreu um erro ao reiniciar a instância {{ instance }}: {{ message }}."
+  "pci_projects_project_instances_instance_rescue_title": "Reiniciar em modo Rescue",
+  "pci_projects_project_instances_instance_rescue_submit_label": "Reiniciar ",
+  "pci_projects_project_instances_instance_rescue_cancel_label": "Anular",
+  "pci_projects_project_instances_instance_rescue_image_content": "A sua instância vai ser reiniciada em modo Rescue.",
+  "pci_projects_project_instances_instance_rescue_image_explanations": "Se selecionar a opção \"Distribution Rescue Made-in-OVH\", receberá uma palavra-passe temporária através da qual poderá aceder ao servidor em modo Rescue. Caso contrário, o seu servidor poderá ser acedido através da sua chave SSH habitual, mas a marca SSH da instância será diferente. O disco principal estará disponível enquanto segundo disco não montado.",
+  "pci_projects_project_instances_instance_rescue_image_label": "A minha imagem:",
+  "pci_projects_project_instances_instance_rescue_image_default": "Distribuição Rescue Made-in-OVH",
+  "pci_projects_project_instances_instance_rescue_success_message": "A reinicialização da instância {{ instance }} foi iniciada.",
+  "pci_projects_project_instances_instance_rescue_infos_linux": "Para aceder ao servidor \"{{instance}}\" em modo Rescue, utilize:<br/><code>ssh {{user}}@{{ip}}</code> com a chave SSH habitual. Atenção, apenas o disco principal está acessível neste modo.",
+  "pci_projects_project_instances_instance_rescue_infos_linux_with_password": "Para aceder ao seu servidor \"{{instance}}\" em modo rescue, utilize:<br/><code>ssh {{user}}@{{ip}}</code> com a palavra-passe visível na consola VNC ou através do <code>openstack console log show \"{{instance}}\"</code>. Atenção: apenas o disco principal está disponível neste modo.",
+  "pci_projects_project_instances_instance_rescue_infos_windows": "Para aceder ao servidor {{instance}} em modo Rescue, utilize:<br/><code>rdesktop {{ip}}</code> com a chave SSH habitual. Atenção, apenas o disco principal está acessível neste modo.",
+  "pci_projects_project_instances_instance_rescue_infos_windows_with_password": "Para aceder ao seu servidor {{instance}} em modo rescue, utilize:<br/><code>rdesktop {{ip}}</code> ou <code>ssh {{user}}@{{ip}}</code> com a palavra-passe visível na consola VNC ou através de <code>openstack console log show \"{{instance}}\"</code>. Atenção: apenas o disco principal está disponível neste modo.",
+  "pci_projects_project_instances_instance_rescue_error_rescue": "Ocorreu um erro ao reiniciar a instância {{ instance }}: {{ message }}."
 }
