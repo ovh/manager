@@ -1,3 +1,12 @@
+## [3.8.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.8.3...@ovh-ux/manager-pci@3.8.4) (2020-01-20)
+
+
+### Bug Fixes
+
+* **pci.projects.private-registry:** update api service call ([#2112](https://github.com/ovh/manager/issues/2112)) ([8f819e9](https://github.com/ovh/manager/commit/8f819e98ea8e8ae0440ce0180557783b754e660f))
+
+
+
 ## [3.8.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.8.2...@ovh-ux/manager-pci@3.8.3) (2020-01-17)
 
 
