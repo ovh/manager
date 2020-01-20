@@ -719,5 +719,8 @@
   "user_account_ssh_keys_title": "Meine SSH-Schlüssel",
   "user_account_users_management_title": "Benutzerverwaltung",
   "user_account_advanced_title": "Erweiterte Einstellungen",
-  "user_account_security_double_auth_type_totp_delete_error": "Oops! Bei der Löschung der Zwei-Faktor-Authentifizierung ist ein Fehler aufgetreten:"
+  "user_account_security_double_auth_type_totp_delete_error": "Oops! Bei der Löschung der Zwei-Faktor-Authentifizierung ist ein Fehler aufgetreten:",
+  "user_account_email_token_resend": "Bestätigungscode erneut versenden",
+  "user_account_email_token_resend_success": "Ein neuer Bestätigungscode wurde gerade versandt. Bitte beachten Sie, das der Eingang dieses Codes einige Minuten in Anspruch nehmen kann.",
+  "user_account_email_token_resend_error": "Beim Versand eines neuen Bestätigungscodes ist ein Fehler aufgetreten."
 }
