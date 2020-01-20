@@ -1,0 +1,14 @@
+<form name="$ctrl.deletePortabilityForm" novalidate>
+    <oui-modal
+        data-heading="{{:: 'portabilities_delete_title' | translate }}"
+        data-primary-action="$ctrl.deleteDocument()"
+        data-primary-label="{{:: 'portabilities_delete_submit' | translate }}"
+        data-primary-disabled="$ctrl.isLoading"
+        data-secondary-action="$ctrl.goBack()"
+        data-secondary-label="{{:: 'portabilities_delete_cancel' | translate }}"
+        data-on-dismiss="$ctrl.goBack()"
+        data-loading="$ctrl.isLoading"
+    >
+        <p data-translate="portabilities_delete_action"></p>
+    </oui-modal>
+</form>
