@@ -4,7 +4,8 @@ import template from 'lodash/template';
 
 export default class pciPrivateRegistryService {
   /* @ngInject */
-  constructor(OvhApiCloud, OvhApiCloudProject, OvhApiMe) {
+  constructor($q, OvhApiCloud, OvhApiCloudProject, OvhApiMe) {
+    this.$q = $q;
     this.OvhApiCloud = OvhApiCloud.v6();
     this.OvhApiPrivateRegistry = OvhApiCloudProject.ContainerRegistry().v6();
     this.OvhApiPrivateRegistryUser = OvhApiCloudProject.ContainerRegistry()
@@ -89,14 +90,12 @@ export default class pciPrivateRegistryService {
     const acceptPromises = map(
       contactList,
       ({ id }) =>
-        this.OvhApiMe.Agreements()
-          .v6()
-          .accept(
-            {
-              id,
-            },
-            {},
-          ).$promise,
+        this.OvhApiAgreements.accept(
+          {
+            id,
+          },
+          {},
+        ).$promise,
     );
 
     return this.$q.all(acceptPromises);
