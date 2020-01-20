@@ -71,7 +71,7 @@
                             class="form-control"
                             type="text"
                             data-ng-change="IncomingCallsCtrl.applySorting()"
-                            data-ng-model="IncomingCallsCtrl.consumption.filterBy.dialed"
+                            data-ng-model="IncomingCallsCtrl.consumption.filterBy.called"
                             placeholder="{{:: 'telephony_service_consumption_dialed' | translate }}"
                         />
                     </div>
@@ -135,12 +135,10 @@
 
             <oui-column
                 data-title="'telephony_service_consumption_dialed' | translate"
-                data-property="dialed"
+                data-property="called"
                 data-sortable
             >
-                <span
-                    data-ng-bind="::$row.dialed === IncomingCallsCtrl.serviceName ? '-' : $row.dialed | tucPhoneNumber"
-                ></span>
+                <span data-ng-bind="::$row.called | tucPhoneNumber"></span>
             </oui-column>
 
             <oui-column

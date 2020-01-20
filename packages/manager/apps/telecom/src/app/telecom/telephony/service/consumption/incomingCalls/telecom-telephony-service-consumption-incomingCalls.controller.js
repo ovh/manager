@@ -56,7 +56,7 @@ angular
           orderDesc: true,
           filterBy: {
             calling: undefined,
-            dialed: undefined,
+            called: undefined,
           },
           showFilter: false,
         };
@@ -107,7 +107,7 @@ angular
         self.consumption.showFilter = !self.consumption.showFilter;
         self.consumption.filterBy = {
           calling: undefined,
-          dialed: undefined,
+          called: undefined,
         };
         self.applySorting();
       };
