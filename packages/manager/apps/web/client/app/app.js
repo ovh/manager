@@ -11,6 +11,7 @@ import ovhManagerCore from '@ovh-ux/manager-core';
 import ngAtInternet from '@ovh-ux/ng-at-internet';
 import ngAtInternetUiRouterPlugin from '@ovh-ux/ng-at-internet-ui-router-plugin';
 import ngOvhApiWrappers from '@ovh-ux/ng-ovh-api-wrappers';
+import ngOvhContracts from '@ovh-ux/ng-ovh-contracts';
 // import ngOvhChatbot from '@ovh-ux/ng-ovh-chatbot';
 import ngOvhExportCsv from '@ovh-ux/ng-ovh-export-csv';
 import ngOvhHttp from '@ovh-ux/ng-ovh-http';
@@ -38,13 +39,11 @@ import sharepoint from '@ovh-ux/manager-sharepoint';
 import moment from 'moment';
 
 import config from './config/config';
-import orderCatalogPrice from './components/manager-order-catalog-price';
-import orderContracts from './components/manager-order-contracts';
-
 import domain from './domain';
 import domainDnsZone from './dns-zone';
 import errorPage from './error-page/error-page.module';
 import hosting from './hosting/hosting.module';
+import orderCatalogPrice from './components/manager-order-catalog-price';
 import privateDatabase from './private-database';
 import zone from './domain/zone/zone.module';
 
@@ -77,6 +76,7 @@ angular
     ngAtInternetUiRouterPlugin,
     ngOvhApiWrappers,
     // ngOvhChatbot,
+    ngOvhContracts,
     ngOvhExportCsv,
     ngOvhHttp,
     ngOvhSsoAuth,
@@ -109,7 +109,6 @@ angular
     errorPage,
     hosting,
     orderCatalogPrice,
-    orderContracts,
     privateDatabase,
     zone,
   ])
