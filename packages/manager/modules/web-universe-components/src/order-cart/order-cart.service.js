@@ -109,10 +109,14 @@ export default class OrderCartService {
   async checkoutCart(cartId, checkout) {
     const order = await this.OvhApiOrder.Cart()
       .v6()
-      .checkout({
-        cartId,
-        ...checkout,
-      }).$promise;
+      .checkout(
+        {
+          cartId,
+        },
+        {
+          ...checkout,
+        },
+      ).$promise;
 
     if (order.prices.withTax.value === 0) {
       await this.OvhApiMe.Order()
