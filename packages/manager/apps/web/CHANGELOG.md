@@ -1,3 +1,12 @@
+## [13.41.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.41.0...@ovh-ux/manager-web@13.41.1) (2020-01-20)
+
+
+### Bug Fixes
+
+* **web.components.order:** send api call params according to schema ([6473e97](https://github.com/ovh/manager/commit/6473e97db351489f190e451369ef4f8769dc51be))
+
+
+
 # [13.41.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.40.1...@ovh-ux/manager-web@13.41.0) (2020-01-16)
 
 

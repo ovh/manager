@@ -1,3 +1,12 @@
+## [7.2.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@7.2.1...@ovh-ux/ng-ovh-web-universe-components@7.2.2) (2020-01-20)
+
+
+### Bug Fixes
+
+* **wuc.order-cart:** send api call params according to schema ([f3f0af2](https://github.com/ovh/manager/commit/f3f0af2e755603d4967fabcc8b05ecf909a1309a))
+
+
+
 ## [7.2.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@7.2.0...@ovh-ux/ng-ovh-web-universe-components@7.2.1) (2020-01-08)
 
 
