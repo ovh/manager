@@ -848,5 +848,11 @@
   "email_tab_modal_delete_redirection_accounts": "<strong>{0}</strong> auf <strong>{1}</strong>",
   "emails_common_continue_question": "Möchten Sie fortfahren? ",
   "emails_common_account_name_conditions": "Achtung, der Name des Accounts muss folgende Bedingungen erfüllen: <br/>- Mindestens {0} Zeichen<br/>- Höchstens {1} Zeichen<br/>- Keine Leerzeichen<br/>- Keine Zeichen mit Akzent oder Umlaute<br/>- Keine Sonderzeichen außer . und - und _.",
-  "emailpro_ACTION_update_account_step1_password_contains_space": "Das Passwort darf keine Leerzeichen enthalten."
+  "emailpro_ACTION_update_account_step1_password_contains_space": "Das Passwort darf keine Leerzeichen enthalten.",
+  "emailpro_tab_DOMAIN": "Assoziierte Domains",
+  "emailpro_tab_ACCOUNT": "E-Mail-Accounts",
+  "emailpro_tab_EXTERNAL_CONTACT": "Externe Kontakte",
+  "emailpro_tab_MAILING_LIST": "Mailinglisten",
+  "emailpro_tab_REDIRECTION": "Weiterleitungen",
+  "emailpro_navigation_more": "Mehr"
 }
