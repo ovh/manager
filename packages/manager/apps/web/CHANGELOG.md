@@ -1,3 +1,12 @@
+## [13.42.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.42.0...@ovh-ux/manager-web@13.42.1) (2020-01-21)
+
+
+### Bug Fixes
+
+* **web.email-domain:** catch error if cart has been checked out ([#2121](https://github.com/ovh/manager/issues/2121)) ([b457c8d](https://github.com/ovh/manager/commit/b457c8d0b3c9eae77477acf59e714750fea7e3c9))
+
+
+
 # [13.42.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.41.1...@ovh-ux/manager-web@13.42.0) (2020-01-21)
 
 
