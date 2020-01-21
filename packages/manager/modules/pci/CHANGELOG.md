@@ -1,3 +1,23 @@
+# [3.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.8.4...@ovh-ux/manager-pci@3.9.0) (2020-01-21)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 231] ([97ff113](https://github.com/ovh/manager/commit/97ff113b7a8aa24aff872db89aee7d825152f390))
+* **i18n:** add missing translations [CDS 233] ([fbc8f75](https://github.com/ovh/manager/commit/fbc8f7510d7a7177f9f09f50edb89ea272181bb5))
+* **i18n:** add missing translations [CDS 234] ([14021eb](https://github.com/ovh/manager/commit/14021eb5273b4a6fb308b3f46a4eb72ddd5e2cf9))
+* **i18n:** add missing translations [CDS 237] ([67efde3](https://github.com/ovh/manager/commit/67efde34de434103585029f432c175db921d3772))
+* **pci.project.instance.rescue:** update rescue message with password ([#2063](https://github.com/ovh/manager/issues/2063)) ([8c13483](https://github.com/ovh/manager/commit/8c13483998b31aeaff171421061ae001246b69c8))
+* **pci.projects.blocks:** fix column sorting ([6dab0e0](https://github.com/ovh/manager/commit/6dab0e0799373f1d69dc44c162648932a4f415f2))
+* **pci.projects.storage:** add missing status ([36df216](https://github.com/ovh/manager/commit/36df216e7ed28313dabe91cf7dd774e84aaa5af0))
+
+
+### Features
+
+* **kubernetes:** show version EOL message ([#2042](https://github.com/ovh/manager/issues/2042)) ([b9f414a](https://github.com/ovh/manager/commit/b9f414afb57d82d70ffb5933672a40a845978310))
+
+
+
 ## [3.8.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.8.3...@ovh-ux/manager-pci@3.8.4) (2020-01-20)
 
 

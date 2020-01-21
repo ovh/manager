@@ -1,3 +1,20 @@
+# [11.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@11.3.2...@ovh-ux/manager-telecom@11.4.0) (2020-01-21)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 233] ([fbc8f75](https://github.com/ovh/manager/commit/fbc8f7510d7a7177f9f09f50edb89ea272181bb5))
+* **i18n:** add missing translations [CDS 234] ([14021eb](https://github.com/ovh/manager/commit/14021eb5273b4a6fb308b3f46a4eb72ddd5e2cf9))
+* **i18n:** add missing translations [CDS 237] ([67efde3](https://github.com/ovh/manager/commit/67efde34de434103585029f432c175db921d3772))
+* **telephony.alias.portability.order:** add missing translations ([#2098](https://github.com/ovh/manager/issues/2098)) ([df54e01](https://github.com/ovh/manager/commit/df54e0174c93bcc2cb62b58bbc410bf964374d29))
+
+
+### Features
+
+* **telephony.portability:** display uploaded files ([#1900](https://github.com/ovh/manager/issues/1900)) ([fdddd86](https://github.com/ovh/manager/commit/fdddd8612252cb3a2a15149b38227246401bde2f))
+
+
+
 ## [11.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@11.3.1...@ovh-ux/manager-telecom@11.3.2) (2020-01-08)
 
 

@@ -1,3 +1,29 @@
+# [13.42.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.41.1...@ovh-ux/manager-web@13.42.0) (2020-01-21)
+
+
+### Bug Fixes
+
+* **domain.webhosting:** display error message with details ([#2030](https://github.com/ovh/manager/issues/2030)) ([060c830](https://github.com/ovh/manager/commit/060c8303a1b622ccbde86a09d3c89edfb48fc846))
+* **i18n:** add missing translations [CDS 220] ([e5b9be8](https://github.com/ovh/manager/commit/e5b9be83f6b70484b15a958ab5bc0d00a6139574))
+* **i18n:** add missing translations [CDS 224] ([3e2d0b3](https://github.com/ovh/manager/commit/3e2d0b3c90e9f606a0d40b1d4c0bf488a7a12868))
+* **i18n:** add missing translations [CDS 226] ([0ad7334](https://github.com/ovh/manager/commit/0ad73342fe81919ab4b4ca56b1094ca53d9a716b))
+* **i18n:** add missing translations [CDS 228] ([6453173](https://github.com/ovh/manager/commit/64531732bead074ea0af10f6ad30e90347aa5188))
+* **i18n:** add missing translations [CDS 232] ([c2605d5](https://github.com/ovh/manager/commit/c2605d578d57eeebce38884d6616cc1ea8c20e52))
+* **i18n:** add missing translations [CDS 233] ([fbc8f75](https://github.com/ovh/manager/commit/fbc8f7510d7a7177f9f09f50edb89ea272181bb5))
+* **i18n:** add missing translations [CDS 234] ([14021eb](https://github.com/ovh/manager/commit/14021eb5273b4a6fb308b3f46a4eb72ddd5e2cf9))
+* **i18n:** add missing translations [CDS 237] ([67efde3](https://github.com/ovh/manager/commit/67efde34de434103585029f432c175db921d3772))
+
+
+### Features
+
+* **email:** email domain upgrade ([01a3640](https://github.com/ovh/manager/commit/01a3640d6d15b977ff8a5a7369459bdfcd47dbd3))
+* **hosting:** add boost offer action ([#2080](https://github.com/ovh/manager/issues/2080)) ([4185a04](https://github.com/ovh/manager/commit/4185a0411f95bc5d0ff7f2264f4c3d98f715104f))
+* **private.database:** add postgresql 12 label ([#2097](https://github.com/ovh/manager/issues/2097)) ([49dc013](https://github.com/ovh/manager/commit/49dc01350b1e43c38c9da9341977faa44b040062))
+* **web.catalog-price:** add option to pass non-ucents prices ([d50b1fc](https://github.com/ovh/manager/commit/d50b1fc5b7b6d503a1a8cf48309588a191adab24))
+* **web.email-domain:** update order funnel ([36dc579](https://github.com/ovh/manager/commit/36dc57951f061cc207c5180cc4281ddd61fb1b32))
+
+
+
 ## [13.41.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.41.0...@ovh-ux/manager-web@13.41.1) (2020-01-20)
 
 

@@ -1,3 +1,21 @@
+# [0.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack@0.4.1...@ovh-ux/manager-vrack@0.5.0) (2020-01-21)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 231] ([97ff113](https://github.com/ovh/manager/commit/97ff113b7a8aa24aff872db89aee7d825152f390))
+* **i18n:** add missing translations [CDS 233] ([fbc8f75](https://github.com/ovh/manager/commit/fbc8f7510d7a7177f9f09f50edb89ea272181bb5))
+* **i18n:** add missing translations [CDS 234] ([14021eb](https://github.com/ovh/manager/commit/14021eb5273b4a6fb308b3f46a4eb72ddd5e2cf9))
+* **i18n:** add missing translations [CDS 236] ([03945a1](https://github.com/ovh/manager/commit/03945a108d52bb16313d2e000ec40a130df887e2))
+* **i18n:** add missing translations [CDS 237] ([67efde3](https://github.com/ovh/manager/commit/67efde34de434103585029f432c175db921d3772))
+
+
+### Features
+
+* **vrack:** remove uibModal ([#2046](https://github.com/ovh/manager/issues/2046)) ([c908e2a](https://github.com/ovh/manager/commit/c908e2a41e99f82a7df9f31af98a72cad6a89b4c))
+
+
+
 ## [0.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack@0.4.0...@ovh-ux/manager-vrack@0.4.1) (2020-01-16)
 
 

@@ -1,3 +1,12 @@
+# [7.3.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@7.2.2...@ovh-ux/ng-ovh-web-universe-components@7.3.0) (2020-01-21)
+
+
+### Features
+
+* **web-universe-components:** add prorata duration translation ([71f6ea4](https://github.com/ovh/manager/commit/71f6ea4ef95dcbcaf8173eac93fa9aef92bcf494))
+
+
+
 ## [7.2.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@7.2.1...@ovh-ux/ng-ovh-web-universe-components@7.2.2) (2020-01-20)
 
 
