@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+
 export default /* @ngInject */ ($translate, $filter) => {
   const unitHash = {
     m: 'month',
@@ -11,7 +13,14 @@ export default /* @ngInject */ ($translate, $filter) => {
   const uptoDuration = /(^upto-)([0-9]{4}-[0-9]{2}-[0-9]{2}?$)/;
   const engage = /(^engage)([0-9]+)([mdjya]?)$/;
 
-  return (wucDuration, dateFormat) => {
+  /*
+   * options : {
+   *   prorata : boolean (default: false) // display prorata text for 'upto' durations
+   * }
+   *
+   */
+
+  return (wucDuration, dateFormat, options) => {
     let d;
     let unit;
 
@@ -27,9 +36,12 @@ export default /* @ngInject */ ($translate, $filter) => {
     if (upto.test(wucDuration)) {
       if (uptoDuration.test(wucDuration)) {
         [, , d] = wucDuration.match(uptoDuration);
-        return $translate.instant('duration_upto', {
-          t0: dateFormat ? $filter('date')(d, dateFormat) : d,
-        });
+        return $translate.instant(
+          get(options, 'prorata') ? 'duration_upto_prorata' : 'duration_upto',
+          {
+            t0: dateFormat ? $filter('date')(d, dateFormat) : d,
+          },
+        );
       }
       return $translate.instant('duration_uptofirstdaynextmonth');
     }
