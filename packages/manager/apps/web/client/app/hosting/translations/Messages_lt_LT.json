@@ -1385,5 +1385,7 @@
   "hosting_dashboard_cdn_order_success_activation": "Your activation has been successfully completed. Your product will be enabled shortly.",
   "hosting_tab_DATABASES_configuration_order_title_button_private": "Order a Private SQL database",
   "hosting_tab_DATABASES_configuration_order_title_private": "Order a Private SQL database",
-  "hosting_tab_DATABASES_table_header_server_address_tooltip": "Please use the host name provided to connect to your instance, as the IP address associated with it may change over time."
+  "hosting_tab_DATABASES_table_header_server_address_tooltip": "Please use the host name provided to connect to your instance, as the IP address associated with it may change over time.",
+  "hosting_dashboard_service_privatesql_active_long": "Enable a Private SQL database",
+  "hosting_dashboard_service_privatesql_active_remaining": "{{ count }} Private SQL databases not enabled"
 }
