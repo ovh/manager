@@ -1,3 +1,12 @@
+## [11.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@11.4.0...@ovh-ux/manager-telecom@11.4.1) (2020-01-21)
+
+
+### Bug Fixes
+
+* **portabilities.delete:** fix route to display delete modal ([#2127](https://github.com/ovh/manager/issues/2127)) ([74b8601](https://github.com/ovh/manager/commit/74b8601987692116e324ad2275cb614369944210))
+
+
+
 # [11.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@11.3.2...@ovh-ux/manager-telecom@11.4.0) (2020-01-21)
 
 
