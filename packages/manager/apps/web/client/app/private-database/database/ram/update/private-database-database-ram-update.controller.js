@@ -167,5 +167,9 @@ angular.module('App').controller(
           this.loading.validation = false;
         });
     }
+
+    static isProrataDuration({ duration }) {
+      return /^upto/.test(duration);
+    }
   },
 );
