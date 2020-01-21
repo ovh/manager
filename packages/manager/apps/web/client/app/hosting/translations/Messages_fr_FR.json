@@ -154,6 +154,8 @@
   "hosting_dashboard_service_privatesql_order": "Commander",
   "hosting_dashboard_service_privatesql_order_title": "Commander une base de données privée",
   "hosting_dashboard_service_privatesql_active": "Activer",
+  "hosting_dashboard_service_privatesql_active_long": "Activer une base SQL privée",
+  "hosting_dashboard_service_privatesql_active_remaining": "{{ count }} base(s) de données SQL privée(s) non activée(s)",
   "hosting_dashboard_service_privatesql_active_doing": "Activation en cours",
   "hosting_dashboard_service_web_info_1": "sur 1 recommandé",
   "hosting_dashboard_service_web_info_other": "sur {{t0}} recommandés",
