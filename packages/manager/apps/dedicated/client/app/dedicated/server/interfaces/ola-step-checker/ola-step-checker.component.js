@@ -5,9 +5,9 @@ export default {
   controller,
   template,
   bindings: {
+    guide: '<',
     price: '<',
     ola: '<',
-    urls: '<',
     user: '<',
   },
 };

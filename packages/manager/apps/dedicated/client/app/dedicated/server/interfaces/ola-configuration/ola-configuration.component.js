@@ -4,12 +4,12 @@ import template from './ola-configuration.html';
 export default {
   bindings: {
     goBack: '<',
+    guideUrl: '<',
     atTrack: '<',
     serverName: '<',
     specifications: '<',
     interfaces: '<',
     ola: '<',
-    urls: '<',
     taskPolling: '<',
   },
   controller,

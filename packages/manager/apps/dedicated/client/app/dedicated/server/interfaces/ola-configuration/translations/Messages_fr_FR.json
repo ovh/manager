@@ -1,6 +1,7 @@
 {
   "dedicated_server_interfaces_ola_title": "Configuration OLA",
   "dedicated_server_interfaces_ola_description": "OLA vous permet de configurer une interface réseau et d’en modifier le fonctionnement. Par exemple, utilisez l’interface dédiée au réseau public afin d’obtenir une double connectivité au réseau privé OVH (vRack)",
+  "dedicated_server_interface_ola_new_tab": "(S'ouvre dans un nouvel onglet)",
 
   "dedicated_server_interfaces_ola_alert_configuration_reset": "Les interfaces seront dé-configurées. La connectivité à votre serveur sera perdue le temps de la configuration",
   "dedicated_server_interfaces_ola_alert_not_allowed": "Les interfaces suivantes ne sont pas sélectionnables pour votre configuration. Pour pouvoir les configurer, retirez d'abord les vracks et les IPFOs de celles-ci.",
