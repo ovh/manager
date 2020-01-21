@@ -719,5 +719,8 @@
   "user_account_ssh_keys_title": "My SSH keys",
   "user_account_users_management_title": "User management",
   "user_account_advanced_title": "Advanced settings",
-  "user_account_security_double_auth_type_totp_delete_error": "Oops! An error has occurred deleting two-factor authentication:"
+  "user_account_security_double_auth_type_totp_delete_error": "Oops! An error has occurred deleting two-factor authentication:",
+  "user_account_email_token_resend": "Resend confirmation code",
+  "user_account_email_token_resend_success": "You have just been sent a new confirmation code.  Please note that you may need to wait a few minutes before you receive it.",
+  "user_account_email_token_resend_error": "An error has occurred sending a new confirmation code."
 }

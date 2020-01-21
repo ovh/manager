@@ -1,6 +1,6 @@
 {
   "pci_project_new_payment_dlp_title": "Digital Launch Pad (DLP) Guthaben",
-  "pci_project_new_payment_dlp_info": "Im Rahmen des DLP Programms verfügen Sie über einen speziellen Prepaid-Account.",
+  "pci_project_new_payment_dlp_info": "Im Rahmen des DLP Programms verfügen Sie über ein spezielles Prepaid-Konto.",
   "pci_project_new_payment_dlp_amount_available": "Kontostand: {{amount}}",
-  "pci_project_new_payment_dlp_explain": "Dieser Betrag wird verwendet, um den Verbrauch Ihres Public Cloud-Projekts zu bezahlen. Sobald dieser Betrag erschöpft ist, wird die oben aufgezeichnete Zahlungsmethode automatisch verwendet, um die Kontinuität Ihrer erstellten Instanzen zu gewährleisten."
+  "pci_project_new_payment_dlp_explain": "Dieser Betrag wird zur Zahlung des Verbrauchs Ihres Public Cloud Projekts verwendet. Sobald der Betrag aufgebraucht ist, wird automatisch das oben eingetragene Zahlungsmittel verwendet, um die Kontinuität der von Ihnen erstellten Instanzen sicherzustellen."
 }

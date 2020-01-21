@@ -2,12 +2,12 @@ import find from 'lodash/find';
 
 export default class HostingCdnOrderService {
   /* @ngInject */
-  constructor(OrderService) {
-    this.OrderService = OrderService;
+  constructor(WucOrderCartService) {
+    this.WucOrderCartService = WucOrderCartService;
   }
 
   async getCatalogAddon(ovhSubsidiary, serviceOption) {
-    const { addons } = await this.OrderService.getProductPublicCatalog(
+    const { addons } = await this.WucOrderCartService.getProductPublicCatalog(
       ovhSubsidiary,
       'webHosting',
     );
@@ -23,7 +23,7 @@ export default class HostingCdnOrderService {
   }
 
   async getServiceOption(serviceName) {
-    const serviceOptions = await this.OrderService.getProductServiceOptions(
+    const serviceOptions = await this.WucOrderCartService.getProductServiceOptions(
       'webHosting',
       serviceName,
     );
@@ -38,16 +38,20 @@ export default class HostingCdnOrderService {
   }
 
   async prepareOrderCart(ovhSubsidiary) {
-    const { cartId } = await this.OrderService.createNewCart(ovhSubsidiary);
+    const { cartId } = await this.WucOrderCartService.createNewCart(
+      ovhSubsidiary,
+    );
 
-    await this.OrderService.assignCart(cartId);
+    await this.WucOrderCartService.assignCart(cartId);
 
     return cartId;
   }
 
   async addItemToCart(cartId, serviceName, serviceOption) {
     const [price] = serviceOption.prices; // Will only have one price option
-    const { itemId } = await this.OrderService.addProductServiceOptionToCart(
+    const {
+      itemId,
+    } = await this.WucOrderCartService.addProductServiceOptionToCart(
       cartId,
       'webHosting',
       serviceName,
@@ -59,18 +63,18 @@ export default class HostingCdnOrderService {
       },
     );
 
-    await this.OrderService.addConfigurationItem(
+    await this.WucOrderCartService.addConfigurationItem(
       cartId,
       itemId,
       'legacy_domain',
       serviceName,
     );
 
-    return this.OrderService.getCheckoutInformations(cartId);
+    return this.WucOrderCartService.getCheckoutInformations(cartId);
   }
 
   checkoutOrderCart(autoPayWithPreferredPaymentMethod, cartId) {
-    return this.OrderService.checkoutCart(cartId, {
+    return this.WucOrderCartService.checkoutCart(cartId, {
       autoPayWithPreferredPaymentMethod,
     });
   }

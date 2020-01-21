@@ -9,10 +9,7 @@
         text="{{::'dedicated_server_interfaces_guides' | translate}}"
         class="col-auto px-5"
     >
-        <oui-guide-menu-item
-            data-href="https://docs.ovh.com/gb/en/dedicated/ola-manager/"
-            external
-        >
+        <oui-guide-menu-item data-href="{{ $ctrl.guideUrl }}" external>
             <span
                 data-translate="dedicated_server_interfaces_guides_ola"
             ></span>
@@ -25,9 +22,20 @@
 <p>
     <span data-translate="dedicated_server_interfaces_vrack_information"></span>
     <a
-        href="{{::$ctrl.urls.guides.home}}"
-        data-translate="dedicated_server_interfaces_vrack_information_link_label"
-    ></a>
+        class="oui-link_icon"
+        data-ng-href="{{::$ctrl.urls.guides.home}}"
+        target="_blank"
+        rel="noopener"
+    >
+        <span
+            data-translate="dedicated_server_interfaces_vrack_information_link_label"
+        ></span>
+        <span class="oui-icon oui-icon-external_link" aria-hidden="true"></span>
+        <span
+            class="sr-only"
+            data-translate="dedicated_server_interfaces_new_tab"
+        ></span>
+    </a>
 </p>
 
 <div class="row" data-ng-if="!$ctrl.loading">
@@ -39,7 +47,7 @@
             class="h-100"
             data-price="$ctrl.optionPrice"
             data-ola="$ctrl.ola"
-            data-urls="$ctrl.urls"
+            data-guide="$ctrl.guideUrl"
             data-user="$ctrl.user"
         >
         </ola-step-checker>
@@ -59,9 +67,23 @@
                         data-translate="dedicated_server_interfaces_ola_alert_configuration_needed"
                     ></span>
                     <a
-                        href="{{::$ctrl.urls.guides.home}}"
-                        data-translate="dedicated_server_interfaces_ola_alert_configuration_needed_link"
-                    ></a>
+                        class="oui-link_icon"
+                        data-ng-href="{{::$ctrl.guideUrl}}"
+                        target="_blank"
+                        rel="noopener"
+                    >
+                        <span
+                            data-translate="dedicated_server_interfaces_ola_alert_configuration_needed_link"
+                        ></span>
+                        <span
+                            class="oui-icon oui-icon-external_link"
+                            aria-hidden="true"
+                        ></span>
+                        <span
+                            class="sr-only"
+                            data-translate="dedicated_server_interfaces_new_tab"
+                        ></span>
+                    </a>
                 </p>
             </oui-message>
 

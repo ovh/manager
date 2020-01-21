@@ -31,7 +31,9 @@ export default class PciCartProjectItem {
   }
 
   addConfiguration(configurationOptions) {
-    const configuration = new PciCartProjectItemConfiguration(configurationOptions);
+    const configuration = new PciCartProjectItemConfiguration(
+      configurationOptions,
+    );
     this.configurations.push(configuration);
     return configuration;
   }

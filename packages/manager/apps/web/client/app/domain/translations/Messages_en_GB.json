@@ -836,5 +836,6 @@
   "domain_dashboard_web_hosting_ordered_none": "No web hosting plans ordered",
   "domain_dashboard_web_hosting_subdomains_and_multisites": "Sub-domains and multi-sites",
   "domain_dashboard_web_hosting_subdomains_and_multisites_more": "Display all",
-  "domain_dashboard_web_hosting_subdomains_and_multisites_none": "No sub-domains or multi-sites"
+  "domain_dashboard_web_hosting_subdomains_and_multisites_none": "No sub-domains or multi-sites",
+  "domain_dashboard_options_dns_anycast_expiry": "date of effect: {{date}}"
 }

@@ -1,3 +1,7 @@
+export const GUIDES = {
+  default: 'https://docs.ovh.com/gb/en/dedicated/ola-manager/',
+};
+
 export const INTERFACE_TASK = 'INFRA_002_VirtualNetworkInterface';
 
 export const PHYSICAL_TYPE = {
@@ -17,6 +21,7 @@ export const VIRTUAL_TYPE = {
 };
 
 export default {
+  GUIDES,
   INTERFACE_TASK,
   PHYSICAL_TYPE,
   OLA_PLAN_CODE,

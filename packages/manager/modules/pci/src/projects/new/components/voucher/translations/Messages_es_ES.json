@@ -1,13 +1,13 @@
 {
   "pci_projects_new_voucher_question": "¿Tiene un vale?",
-  "pci_projects_new_voucher_form_field": "Introduzca un cupón",
+  "pci_projects_new_voucher_form_field": "Introduzca el vale",
   "pci_projects_new_voucher_form_field_amount": "Importe recargado: {{ amount }}",
   "pci_projects_new_voucher_form_field_error_invalid": "Código no válido",
   "pci_projects_new_voucher_form_field_error_no_longer_valid": "Código no válido",
-  "pci_projects_new_voucher_form_field_error_default": "Se ha producido un error al modificar el proyecto.",
+  "pci_projects_new_voucher_form_field_error_default": "Se ha producido un error al verificar el código.",
   "pci_projects_new_voucher_form_add": "Añadir",
-  "pci_projects_new_voucher_form_add_title": "Añadir un cupón",
-  "pci_projects_new_voucher_form_remove": "Quitar",
-  "pci_projects_new_voucher_form_remove_title": "Introduzca el vale",
-  "pci_projects_new_voucher_form_reset_error": "Hubo un error cuando retiraste tu cupón."
+  "pci_projects_new_voucher_form_add_title": "Introduzca el vale",
+  "pci_projects_new_voucher_form_remove": "Retirar",
+  "pci_projects_new_voucher_form_remove_title": "Retirar el vale",
+  "pci_projects_new_voucher_form_reset_error": "Se ha producido un error al retirar el vale."
 }

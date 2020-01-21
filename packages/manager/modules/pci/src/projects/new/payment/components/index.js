@@ -8,13 +8,6 @@ import register from './register';
 
 const moduleName = 'pciProjectNewPaymentComponents';
 
-angular
-  .module(moduleName, [
-    credit,
-    challenge,
-    defaultMethod,
-    dlp,
-    register,
-  ]);
+angular.module(moduleName, [credit, challenge, defaultMethod, dlp, register]);
 
 export default moduleName;

@@ -16,9 +16,10 @@ export default /* @ngInject */ ($stateProvider) => {
       cancelHref: /* @ngInject */ ($state) => $state.href('pci.projects'),
 
       getExpressOrderLink: /* @ngInject */ (model) => () =>
-        get(PCI_URLS, 'US.website_order["cloud-resell-eu"].US')(
-          model.description || '',
-        ),
+        get(
+          PCI_URLS,
+          'US.website_order["cloud-resell-eu"].US',
+        )(model.description || ''),
 
       model: () => ({
         description: null,

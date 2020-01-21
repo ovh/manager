@@ -1,4 +1,9 @@
 export default class {
+  /* @ngInject */
+  constructor($translate) {
+    this.$translate = $translate;
+  }
+
   $onInit() {
     this.currentIndex = 0;
     this.cartOption = {};
@@ -9,7 +14,11 @@ export default class {
     return this.validateCheckout(this.cartId, {
       autoPayWithPreferredPaymentMethod: this.autoPayWithPreferredPaymentMethod,
     }).catch(() =>
-      this.alertCheckoutError('domain_webhosting_order_payment_checkout_error'),
+      this.displayErrorMessage(
+        this.$translate.instant(
+          'domain_webhosting_order_payment_checkout_error',
+        ),
+      ),
     );
   }
 }

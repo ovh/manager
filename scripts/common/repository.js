@@ -61,7 +61,7 @@ class MonoRepository {
       .join('\n');
     return execa
       .command(
-        `git add . && git commit -m 'Release: ${version}' -m '${commitMsg}' --no-verify`,
+        `git add . && git commit -s -m'Release: ${version}' -m '${commitMsg}' --no-verify`,
         { shell: true },
       )
       .then(() =>

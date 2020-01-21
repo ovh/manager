@@ -5,10 +5,10 @@ import { CATALOG_PRODUCT } from './hosting-database-order-private.constant';
 
 export default class HostingDatabaseOrderPrivateService {
   /* @ngInject */
-  constructor($filter, Hosting, OrderService) {
+  constructor($filter, Hosting, WucOrderCartService) {
     this.$filter = $filter;
     this.Hosting = Hosting;
-    this.OrderService = OrderService;
+    this.WucOrderCartService = WucOrderCartService;
   }
 
   async getCatalogProducts(ovhSubsidiary, products) {
@@ -17,7 +17,7 @@ export default class HostingDatabaseOrderPrivateService {
     }
 
     const { name, category } = CATALOG_PRODUCT;
-    const catalog = await this.OrderService.getProductPublicCatalog(
+    const catalog = await this.WucOrderCartService.getProductPublicCatalog(
       ovhSubsidiary,
       name,
     );
@@ -40,7 +40,7 @@ export default class HostingDatabaseOrderPrivateService {
   }
 
   async getProducts(cartId) {
-    const result = await this.OrderService.getProductOffers(
+    const result = await this.WucOrderCartService.getProductOffers(
       cartId,
       'privateSQL',
     );
@@ -63,15 +63,17 @@ export default class HostingDatabaseOrderPrivateService {
   }
 
   async prepareOrderCart(ovhSubsidiary) {
-    const { cartId } = await this.OrderService.createNewCart(ovhSubsidiary);
+    const { cartId } = await this.WucOrderCartService.createNewCart(
+      ovhSubsidiary,
+    );
 
-    await this.OrderService.assignCart(cartId);
+    await this.WucOrderCartService.assignCart(cartId);
 
     return cartId;
   }
 
   async addItemToCart(cartId, datacenter, price, product, version) {
-    const { itemId } = await this.OrderService.addProductToCart(
+    const { itemId } = await this.WucOrderCartService.addProductToCart(
       cartId,
       'privateSQL',
       {
@@ -82,28 +84,28 @@ export default class HostingDatabaseOrderPrivateService {
       },
     );
 
-    await this.OrderService.addConfigurationItem(
+    await this.WucOrderCartService.addConfigurationItem(
       cartId,
       itemId,
       'dc',
       datacenter,
     );
-    await this.OrderService.addConfigurationItem(
+    await this.WucOrderCartService.addConfigurationItem(
       cartId,
       itemId,
       'engine',
       version,
     );
 
-    return this.OrderService.getCheckoutInformations(cartId);
+    return this.WucOrderCartService.getCheckoutInformations(cartId);
   }
 
   resetOrderCart(cartId) {
-    return this.OrderService.deleteAllItems(cartId);
+    return this.WucOrderCartService.deleteAllItems(cartId);
   }
 
   checkoutOrderCart(autoPayWithPreferredPaymentMethod, cartId) {
-    return this.OrderService.checkoutCart(cartId, {
+    return this.WucOrderCartService.checkoutCart(cartId, {
       autoPayWithPreferredPaymentMethod,
     });
   }

@@ -198,6 +198,7 @@ export default class OvhManagerServerSidebarController {
 
         if (has(service, 'types')) {
           menuItem.onLoad = () => this.loadServices(service, menuItem);
+          menuItem.loadSubItems();
         } else {
           this.addItems(get(service, 'children'), menuItem);
         }
@@ -232,6 +233,7 @@ export default class OvhManagerServerSidebarController {
             },
             parent,
           );
+          parent.hide();
         } else {
           each(typesServices, (typeServices) => {
             let items = get(typeServices, 'items');

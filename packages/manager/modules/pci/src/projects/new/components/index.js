@@ -6,11 +6,6 @@ import featureFlippling from './feature-flipping';
 
 const moduleName = 'pciProjectNewComponents';
 
-angular
-  .module(moduleName, [
-    progress,
-    voucher,
-    featureFlippling,
-  ]);
+angular.module(moduleName, [progress, voucher, featureFlippling]);
 
 export default moduleName;

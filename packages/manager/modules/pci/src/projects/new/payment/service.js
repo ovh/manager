@@ -5,11 +5,8 @@ export default class PciProjectNewPaymentService {
   }
 
   getDlpStatus() {
-    return this.OvhApiMeVoucherAccount
-      .v6()
-      .get({
-        voucherAccountId: 'digitallaunchpad',
-      })
-      .$promise;
+    return this.OvhApiMeVoucherAccount.v6().get({
+      voucherAccountId: 'digitallaunchpad',
+    }).$promise;
   }
 }

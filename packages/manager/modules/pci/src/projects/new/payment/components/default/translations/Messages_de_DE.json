@@ -1,5 +1,5 @@
 {
   "pci_project_new_payment_default_title": "Ihr Zahlungsmittel",
-  "pci_project_new_payment_default_explain": "Die folgende Zahlungsmethode wird für die Nutzung Ihres Public Cloud-Projekts verwendet. Es erfolgt keine Abbuchung oder Belastung, solange Sie keine Ressourcen verbrauchen. Um sich zu ändern, gehen Sie zu 'lt;a href' 'paymentMehodSection' 'Meine Zahlungsmittel' in 'lt;a href'\" 'myAccountSection'.\"",
+  "pci_project_new_payment_default_explain": "Das unten angegebene Zahlungsmittel wird für den Verbrauch Ihres Public Cloud Projekts verwendet. Es erfolgt keine Abbuchung oder Belastung, solange Sie nichts  verbrauchen. Um etwas zu ändern, gehen Sie zu <a href=\"{{ paymentMehodSection }}\">\"Meine Zahlungsmittel\"</a> in<a href=\"{{ myAccountSection }}\">\"Mein Account\"</a>.",
   "pci_project_new_payment_default_method": "Standardzahlungsmittel"
 }

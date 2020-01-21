@@ -15,16 +15,16 @@
     "build": "webpack --env.production",
     "dev": "webpack-dev-server",
     "dev:watch": "yarn run dev",
-    "start": "lerna exec --stream --scope='@ovh-ux/sign-up-app' --include-filtered-dependencies -- npm run build --if-present",
-    "start:dev": "lerna exec --stream --scope='@ovh-ux/sign-up-app' --include-filtered-dependencies -- npm run dev --if-present",
-    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/sign-up-app' --include-filtered-dependencies -- npm run dev:watch --if-present"
+    "start": "lerna exec --stream --scope='@ovh-ux/sign-up-app' --include-dependencies -- npm run build --if-present",
+    "start:dev": "lerna exec --stream --scope='@ovh-ux/sign-up-app' --include-dependencies -- npm run dev --if-present",
+    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/sign-up-app' --include-dependencies -- npm run dev:watch --if-present"
   },
   "dependencies": {
     "@ovh-ux/manager-config": "^0.4.0",
     "@ovh-ux/manager-core": "^7.3.0",
     "@ovh-ux/ng-ovh-request-tagger": "^1.0.1",
     "@ovh-ux/ng-ovh-sso-auth": "^4.2.3",
-    "@ovh-ux/ng-translate-async-loader": "^2.0.2",
+    "@ovh-ux/ng-translate-async-loader": "^2.0.3",
     "@ovh-ux/sign-up": "^1.0.0",
     "@uirouter/angularjs": "^1.0.23",
     "angular": "^1.7.8",
@@ -33,7 +33,7 @@
     "angular-translate": "^2.18.1",
     "bootstrap4": "twbs/bootstrap#v4.0.0",
     "lodash": "^4.17.15",
-    "ovh-ui-angular": "^3.11.0",
+    "ovh-ui-angular": "^3.12.0",
     "ovh-ui-kit": "^2.35.2"
   },
   "devDependencies": {

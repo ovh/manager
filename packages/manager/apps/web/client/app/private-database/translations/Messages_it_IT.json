@@ -18,6 +18,7 @@
   "privateDatabase_dashboard_version_postgresql_96": "PostgreSQL 9.6",
   "privateDatabase_dashboard_version_postgresql_10": "PostgreSQL 10",
   "privateDatabase_dashboard_version_postgresql_11": "PostgreSQL 11",
+  "privateDatabase_dashboard_version_postgresql_12": "PostgreSQL 12",
   "privateDatabase_dashboard_version_mongodb_34": "MongoDB 3.4",
   "privateDatabase_dashboard_version_redis_32": "Redis 3.2",
   "privateDatabase_dashboard_version_mongodb_40": "MongoDB 4.0",

@@ -1,68 +1,40 @@
-import assign from 'lodash/assign';
-import map from 'lodash/map';
+import {
+  CONFIGURATION_LABEL,
+  GENERIC_PRODUCT,
+  PRODUCT_NAME,
+} from './order.constants';
 
-angular.module('services').service(
-  'MXPlan',
-  class MXPlan {
-    /**
-     * Constructor
-     * @param $q
-     * @param OvhHttp
-     */
-    constructor($q, OvhHttp) {
-      this.$q = $q;
-      this.OvhHttp = OvhHttp;
-    }
+export default class MXPlan {
+  /* @ngInject */
+  constructor($q, WucOrderCartService) {
+    this.$q = $q;
+    this.WucOrderCartService = WucOrderCartService;
+  }
 
-    getOrderModels(domain) {
-      return this.OvhHttp.get('/order.json', {
-        rootPath: 'apiv6',
-        cache: 'MX_PLAN_MODELS',
-      }).then((response) => {
-        if (response && response.models) {
-          const promises = map(
-            response.models['email.domain.OfferEnum'].enum,
-            (offer) =>
-              this.orderDuration(domain, offer).then((duration) =>
-                this.orderPrice(domain, offer, duration),
-              ),
-          );
-          return this.$q.allSettled(promises);
-        }
-        return [];
-      });
-    }
+  updateOffer(cart, item, product) {
+    const deleteItemPromise = item
+      ? this.WucOrderCartService.deleteItem(cart, item.itemId)
+      : this.$q.resolve();
 
-    orderDuration(domain, offer) {
-      return this.OvhHttp.get('/order/email/domain/new', {
-        rootPath: 'apiv6',
-        params: {
+    return deleteItemPromise.then(() =>
+      this.WucOrderCartService.addProductToCart(cart, PRODUCT_NAME, {
+        ...GENERIC_PRODUCT,
+        planCode: product.planCode,
+      }),
+    );
+  }
+
+  addDomainConfiguration(cart, previousItem, product, domain) {
+    return this.updateOffer(cart, previousItem, product).then((item) =>
+      this.$q.all({
+        item,
+        configuration: this.WucOrderCartService.addConfigurationItem(
+          cart,
+          item.itemId,
+          CONFIGURATION_LABEL,
           domain,
-          offer,
-        },
-      });
-    }
-
-    orderPrice(domain, offer, duration) {
-      return this.OvhHttp.get(`/order/email/domain/new/${duration}`, {
-        rootPath: 'apiv6',
-        params: {
-          domain,
-          offer,
-        },
-      })
-        .then((response) => assign(response, { duration, offer }))
-        .catch((err) => this.$q.reject(err));
-    }
-
-    orderMxPlan(domain, offer, duration) {
-      return this.OvhHttp.post(`/order/email/domain/new/${duration}`, {
-        rootPath: 'apiv6',
-        data: {
-          domain,
-          offer,
-        },
-      });
-    }
-  },
-);
+        ),
+      }),
+    );
+  }
+}

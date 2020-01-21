@@ -1,0 +1,9 @@
+{
+  "web_domain_zone_activation": "Ativar a zona DNS",
+  "web_domain_zone_activation_confirm": "Ativar",
+  "web_domain_zone_activation_cancel": "Anular",
+  "web_domain_zone_activation_question": "Pretende ativar o número mínimo de entradas na zona DNS?",
+  "web_domain_zone_activation_template_minimized": "Sim, pretendo ativar a minha zona DNS com o número mínimo de entradas.",
+  "web_domain_zone_activation_template_basic": "Não, mas pretendo ativar a minha zona DNS.",
+  "web_domain_zone_activation_success": "A nota de encomenda foi gerada com sucesso."
+}

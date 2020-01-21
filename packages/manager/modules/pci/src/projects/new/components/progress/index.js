@@ -6,8 +6,6 @@ import './index.scss';
 
 const moduleName = 'pciProjectNewProgress';
 
-angular
-  .module(moduleName, [])
-  .component(component.name, component);
+angular.module(moduleName, []).component(component.name, component);
 
 export default moduleName;

@@ -1,13 +1,13 @@
 {
   "pci_projects_new_voucher_question": "Gutschein?",
-  "pci_projects_new_voucher_form_field": "Geben Sie einen Beleg ein",
+  "pci_projects_new_voucher_form_field": "Gutschein eintragen",
   "pci_projects_new_voucher_form_field_amount": "Gutgeschriebener Betrag: {{ amount }}",
-  "pci_projects_new_voucher_form_field_error_invalid": "Ungültiger Code",
-  "pci_projects_new_voucher_form_field_error_no_longer_valid": "Ungültiger Code",
-  "pci_projects_new_voucher_form_field_error_default": "Bei der Bearbeitung des Projekts ist ein Fehler aufgetreten.",
+  "pci_projects_new_voucher_form_field_error_invalid": "Ungültiger Code.",
+  "pci_projects_new_voucher_form_field_error_no_longer_valid": "Ungültiger Code.",
+  "pci_projects_new_voucher_form_field_error_default": "Bei der Überprüfung des Codes ist ein Fehler aufgetreten.",
   "pci_projects_new_voucher_form_add": "Hinzufügen",
-  "pci_projects_new_voucher_form_add_title": "Hinzufügen eines Gutscheins",
+  "pci_projects_new_voucher_form_add_title": "Einen Gutschein hinzufügen",
   "pci_projects_new_voucher_form_remove": "Entfernen",
-  "pci_projects_new_voucher_form_remove_title": "Gutschein eintragen",
-  "pci_projects_new_voucher_form_reset_error": "Fehler beim Zurückhaben des Gutscheins."
+  "pci_projects_new_voucher_form_remove_title": "Gutschein entfernen",
+  "pci_projects_new_voucher_form_reset_error": "Beim Entfernen Ihres Gutscheins ist ein Fehler aufgetreten."
 }

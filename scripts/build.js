@@ -18,7 +18,7 @@ async function retrieveDependencies(_modules) {
     _modules.map((pck) =>
       execa
         .command(
-          `lerna list -alp --include-filtered-dependencies --json --scope="${pck.name}"`,
+          `lerna list -alp --include-dependencies --json --scope="${pck.name}"`,
           { shell: true },
         )
         .then(({ stdout }) => {
@@ -108,7 +108,7 @@ program
       .command(
         `lerna list -alp --json ${
           program.package
-            ? `--scope=${program.package} --include-filtered-dependencies`
+            ? `--scope=${program.package} --include-dependencies`
             : ''
         }`,
         { shell: true },

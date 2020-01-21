@@ -6,6 +6,8 @@ export default {
     billingAccount: '<',
     portabilityId: '<',
     attachMandate: '<',
+    deleteDocument: '<',
+    documentId: '<',
   },
   controller,
   template,

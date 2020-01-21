@@ -105,9 +105,11 @@
   "domain_webhosting_order_payment_duration": "Durée :",
   "domain_webhosting_order_duration_P1Y": "12 mois",
   "domain_webhosting_order_payment_choice": "Afin de confirmer votre demande, veuillez choisir votre moyen de paiement, et accepter les conditions d'utilisation.",
-  "domain_webhosting_order_payment_get_checkout_error": "Une erreur est survenue lors de la récupération des informations de votre panier.",
+  "domain_webhosting_order_payment_get_checkout_error": "Une erreur est survenue lors de la récupération des informations de votre panier : {{ message }}",
+  "domain_webhosting_order_payment_get_checkout_error_unknown": "Une erreur est survenue lors de la récupération des informations de votre panier.",
   "domain_webhosting_order_payment_get_payment_method_error": "Une erreur est survenue lors de la récupération des moyens de paiement.",
-  "domain_webhosting_order_payment_checkout_error": "Une erreur est survenue lors du paiement de votre panier.",
+  "domain_webhosting_order_payment_checkout_error": "Une erreur est survenue lors du paiement de votre panier : {{ message }}",
+  "domain_webhosting_order_payment_checkout_error_unknown": "Une erreur est survenue lors du paiement de votre panier.",
   "domain_webhosting_order_payment_checkout_success": "Votre commande pour votre hébergement mutualisé a bien été prise en compte. Votre compte {{accountId}} a bien été débité de {{price}}. Votre produit sera renouvelé automatiquement le {{renewDate}}.<a class=\"d-block\" target=\"_blank\" href=\"{{billUrl}}\" rel=\"noopener\">Voir ma facture</a>",
   "domain_webhosting_order_bill_success": "Votre <a target=\"_blank\" href=\"{{billUrl}}\" rel=\"noopener\">bon de commande</a> a été généré. Votre hébergement sera activé lorsque vous l'aurez validé"
 }

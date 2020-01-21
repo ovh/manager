@@ -8,8 +8,6 @@ import provider from './provider';
 
 const moduleName = 'pciProjectNewFeatureFlipping';
 
-angular
-  .module(moduleName, [])
-  .provider('ovhFeatureFlipping', provider);
+angular.module(moduleName, []).provider('ovhFeatureFlipping', provider);
 
 export default moduleName;

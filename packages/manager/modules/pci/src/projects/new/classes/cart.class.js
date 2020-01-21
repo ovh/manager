@@ -13,14 +13,16 @@ export default class PciCartProject {
   get projectItem() {
     return find(
       this.items,
-      (cartItem) => cartItem.settings.planCode === PCI_PROJECT_ORDER_CART.planCode,
+      (cartItem) =>
+        cartItem.settings.planCode === PCI_PROJECT_ORDER_CART.planCode,
     );
   }
 
   get creditOption() {
     return find(
       this.items,
-      (cartItem) => cartItem.settings.planCode === PCI_PROJECT_ORDER_CART.creditPlanCode,
+      (cartItem) =>
+        cartItem.settings.planCode === PCI_PROJECT_ORDER_CART.creditPlanCode,
     );
   }
 

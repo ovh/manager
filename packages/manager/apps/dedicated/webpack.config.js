@@ -34,6 +34,8 @@ fs.readdirSync(folder).forEach((file) => {
 });
 
 module.exports = (env = {}) => {
+  const REGION = _.upperCase(env.region || process.env.REGION || 'EU');
+
   const { config } = webpackConfig(
     {
       template: './client/app/index.html',
@@ -64,12 +66,8 @@ module.exports = (env = {}) => {
         ],
       },
     },
-    env,
+    REGION ? Object.assign(env, { region: REGION }) : env,
   );
-
-  const WEBPACK_REGION = `${_.upperCase(
-    env.region || process.env.REGION || 'EU',
-  )}`;
 
   config.plugins.push(
     new webpack.DefinePlugin({
@@ -81,7 +79,7 @@ module.exports = (env = {}) => {
   );
 
   // Extra config files
-  const extrasRegion = glob.sync(`./.extras-${WEBPACK_REGION}/**/*.js`);
+  const extrasRegion = glob.sync(`./.extras-${REGION}/**/*.js`);
   const extras = glob.sync('./.extras/**/*.js');
 
   return merge(config, {
@@ -116,7 +114,7 @@ module.exports = (env = {}) => {
         __NG_APP_INJECTIONS__: process.env.NG_APP_INJECTIONS
           ? `'${process.env.NG_APP_INJECTIONS}'`
           : 'null',
-        __WEBPACK_REGION__: `'${WEBPACK_REGION}'`,
+        __WEBPACK_REGION__: `'${REGION}'`,
       }),
     ],
     optimization: {

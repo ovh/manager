@@ -13,5 +13,6 @@
   "mxPlan_price_without_tax": "Cena netto: ",
   "mxPlan_price_with_tax": "Cena brutto: ",
   "mxPlan_order_action": "Zamów",
-  "mxPlan_order_error_payment": "Wystąpił błąd podczas ładowania Twoich metod płatności."
+  "mxPlan_order_error_payment": "Wystąpił błąd podczas ładowania Twoich metod płatności.",
+  "mxPlan_order_activate": "Włącz"
 }

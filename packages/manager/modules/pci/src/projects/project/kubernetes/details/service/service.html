@@ -1,5 +1,25 @@
 <cui-message-container data-messages="$ctrl.messages"></cui-message-container>
 <oui-message
+    data-type="warning"
+    data-dismissable="false"
+    data-ng-if="!$ctrl.isVersionSupported"
+>
+    <p data-translate="kube_service_cluster_version_not_supported_message"></p>
+    <oui-button
+        data-variant="primary"
+        class="d-block"
+        data-on-click="$ctrl.updateCluster(true)"
+        data-disabled="$ctrl.Kubernetes.constructor.isProcessing($ctrl.cluster.status) || !$ctrl.cluster.isReady()"
+    >
+        <span data-translate="kube_service_minor_version_upgrade"></span>
+    </oui-button>
+    <p
+        class="pt-3"
+        data-translate="kube_service_cluster_versions_guide"
+        data-translate-values="{ versionGuideUrl: $ctrl.VERSIONS_GUIDE_URL }"
+    ></p>
+</oui-message>
+<oui-message
     data-type="info"
     data-dismissable="false"
     data-ng-if="!$ctrl.cluster.hasLatestPatchVersion() && !$ctrl.cluster.isUpdating()"

@@ -4,9 +4,6 @@ import banner from './banner';
 
 const moduleName = 'pciProjectNewConfigComponents';
 
-angular
-  .module(moduleName, [
-    banner,
-  ]);
+angular.module(moduleName, [banner]);
 
 export default moduleName;

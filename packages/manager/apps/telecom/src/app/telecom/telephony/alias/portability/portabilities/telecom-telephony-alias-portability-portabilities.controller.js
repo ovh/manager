@@ -3,6 +3,7 @@ import map from 'lodash/map';
 import set from 'lodash/set';
 
 import groupPortaByNumbers from './telecom-telephony-alias-portability-portabilities.service';
+import { PORTABILITY_STATUS } from './telecom-telephony-alias-portability-portabilities.constants';
 
 export default class TelecomTelephonyAliasPortabilitiesCtrl {
   /* @ngInject */
@@ -84,6 +85,31 @@ export default class TelecomTelephonyAliasPortabilitiesCtrl {
                     set(porta, 'steps', results.steps);
                     set(porta, 'canBeCancelled', results.canBeCancelled.value);
                     set(porta, 'documentAttached', results.documentAttached);
+                    if (results.documentAttached.length > 0) {
+                      return this.$q
+                        .all(
+                          results.documentAttached.map(
+                            (documentId) =>
+                              this.OvhApiTelephony.Portability()
+                                .PortabilityDocument()
+                                .v6()
+                                .getDocument(
+                                  {
+                                    billingAccount: this.$stateParams
+                                      .billingAccount,
+                                    id,
+                                  },
+                                  {
+                                    documentId,
+                                  },
+                                ).$promise,
+                          ),
+                        )
+                        .then((documents) => {
+                          set(porta, 'uploadedDocuments', documents);
+                          return porta;
+                        });
+                    }
                     return porta;
                   }),
               ),
@@ -126,5 +152,17 @@ export default class TelecomTelephonyAliasPortabilitiesCtrl {
       .finally(() => {
         this.loading.cancel = false;
       });
+  }
+
+  checkPortabilityStatus(index) {
+    // If portability first step is toDo, lastStepDone isn't initialized
+    if (!this.numbers[index].lastStepDone) {
+      return false;
+    }
+
+    return [
+      PORTABILITY_STATUS.formSent,
+      PORTABILITY_STATUS.formReceived,
+    ].includes(this.numbers[index].lastStepDone.name);
   }
 }

@@ -1,0 +1,9 @@
+{
+  "portabilities_delete_title": "Supprimer un document",
+  "portabilities_delete_action": "Êtes-vous sûr de vouloir supprimer le document ?",
+  "portabilities_delete_document_processing": "Suppression du document en cours",
+  "portabilities_delete_document_succeed": "La suppression du document a été effectuée avec succès.",
+  "portabilities_delete_document_failed": "La suppression du document a échoué.",
+  "portabilities_delete_submit": "Valider",
+  "portabilities_delete_cancel": "Annuler"
+}

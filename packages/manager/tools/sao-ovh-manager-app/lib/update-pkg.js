@@ -16,9 +16,9 @@ module.exports = ({ name }) => ({
     'build:us': "webpack --env.production --env.region='US' && mv dist dist-US",
     dev: 'webpack-dev-server',
     'dev:watch': 'yarn run dev',
-    start: `lerna exec --stream --scope='@ovh-ux/manager-${name}-app' --include-filtered-dependencies -- npm run build --if-present`,
-    'start:dev': `lerna exec --stream --scope='@ovh-ux/manager-${name}-app' --include-filtered-dependencies -- npm run dev --if-present`,
-    'start:watch': `lerna exec --stream --parallel --scope='@ovh-ux/manager-${name}-app' --include-filtered-dependencies -- npm run dev:watch --if-present`,
+    start: `lerna exec --stream --scope='@ovh-ux/manager-${name}-app' --include-dependencies -- npm run build --if-present`,
+    'start:dev': `lerna exec --stream --scope='@ovh-ux/manager-${name}-app' --include-dependencies -- npm run dev --if-present`,
+    'start:watch': `lerna exec --stream --parallel --scope='@ovh-ux/manager-${name}-app' --include-dependencies -- npm run dev:watch --if-present`,
   },
   dependencies: {
     '@ovh-ux/manager-config': '^0.4.0',

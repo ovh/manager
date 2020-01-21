@@ -7,10 +7,7 @@ import component from './component';
 const moduleName = 'pciProjectNewPaymentCreditType';
 
 angular
-  .module(moduleName, [
-    'ngTranslateAsyncLoader',
-    'pascalprecht.translate',
-  ])
+  .module(moduleName, ['ngTranslateAsyncLoader', 'pascalprecht.translate'])
   .run(/* @ngTranslationsInject:json ./translations */)
   .component(component.name, component);
 

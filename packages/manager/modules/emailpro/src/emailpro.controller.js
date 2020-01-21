@@ -13,9 +13,11 @@ export default /* @ngInject */ function EmailProCtrl(
   $translate,
   EmailPro,
   APIEmailPro,
+  getTabLink,
   User,
   EMAILPRO_CONFIG,
 ) {
+  this.getTabLink = getTabLink;
   let initialLoad = true;
 
   $scope.accountTypeDedicated = EmailPro.accountTypeDedicated;
@@ -23,7 +25,7 @@ export default /* @ngInject */ function EmailProCtrl(
   $scope.accountTypeProvider = EmailPro.accountTypeProvider;
 
   $scope.alerts = {
-    dashboard: 'emailproDashboardAlert',
+    main: 'emailproDashboardAlert',
   };
 
   $scope.loadingEmailProInformations = true;

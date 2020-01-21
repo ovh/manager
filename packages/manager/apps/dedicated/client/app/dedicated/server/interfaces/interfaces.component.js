@@ -9,6 +9,7 @@ export default {
     bandwidthVrackOption: '<',
     bandwidthVrackOrderOptions: '<',
     failoverIps: '<',
+    guideUrl: '<',
     interfaces: '<',
     ola: '<',
     optionPrice: '<',

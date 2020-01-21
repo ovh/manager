@@ -242,4 +242,8 @@ export default class HostingGeneralInformationsCtrl {
       this.$scope.hosting.offer,
     );
   }
+
+  goToBoostTab() {
+    this.$scope.$parent.$ctrl.setSelectedTab('BOOST');
+  }
 }

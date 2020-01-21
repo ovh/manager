@@ -35,7 +35,7 @@ execa('lerna', ['ls', '-pl', '--json', '--toposort'])
                     'exec',
                     '--scope',
                     pkg.name,
-                    '--include-filtered-dependencies',
+                    '--include-dependencies',
                     '--',
                     'yarn',
                     'prepare',
