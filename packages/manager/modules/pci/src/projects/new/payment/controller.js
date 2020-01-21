@@ -196,6 +196,22 @@ export default class PciProjectNewPaymentCtrl {
         onMessage: () => this.refreshMessages(),
       },
     );
+
+    // check if addPayment status is in URL
+    // and no paymentMethod needs to be added
+    // and there is a default payment method.
+    // In this case it means that a payment method has been added
+    // and that the APIs eligibility AND payment are sync.
+    // In other case, for example: when eligibility requires a payment method
+    // and there is a paymentStatus in URL, the onIntegrationSubmitSuccess will be triggered
+    // automatically.
+    if (
+      !this.eligibility.isAddPaymentMethodRequired() &&
+      this.defaultPaymentMethod &&
+      this.paymentStatus === 'success'
+    ) {
+      this.manageProjectCreation();
+    }
   }
 
   /* -----  End of Hooks  ------ */

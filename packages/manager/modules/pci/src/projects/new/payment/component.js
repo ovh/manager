@@ -15,5 +15,6 @@ export default {
     onCartFinalized: '<',
     onAskCreditPayment: '<',
     globalLoading: '<',
+    paymentStatus: '<',
   },
 };
