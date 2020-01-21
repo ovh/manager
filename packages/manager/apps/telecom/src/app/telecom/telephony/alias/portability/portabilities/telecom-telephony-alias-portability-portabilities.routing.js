@@ -22,11 +22,14 @@ export default /* @ngInject */ ($stateProvider) => {
         portability,
         documentId,
       ) =>
-        $state.go('telecom.telephony.alias.portabilities.delete', {
-          billingAccount,
-          portabilityId: portability.id,
-          documentId,
-        }),
+        $state.go(
+          'telecom.telephony.billingAccount.alias.portabilities.delete',
+          {
+            billingAccount,
+            portabilityId: portability.id,
+            documentId,
+          },
+        ),
       goToPortabilities: /* @ngInject */ ($state, billingAccount, TucToast) => (
         message = false,
         type = 'success',
