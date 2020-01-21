@@ -12,8 +12,10 @@ export default /* @ngInject */ ($stateProvider) => {
     params: {
       domain: null,
     },
-    onExit: /* @ngInject */ (cart, WucOrderCartService) =>
-      WucOrderCartService.deleteCart(cart),
+    onExit: /* @ngInject */ ($q, cart, WucOrderCartService) =>
+      WucOrderCartService.deleteCart(cart).catch((error) =>
+        error.status === 404 ? $q.resolve() : $q.reject(error),
+      ),
     resolve: {
       addConfiguration: /* @ngInject */ (cart, MXPlanService) => (
         item,
@@ -21,9 +23,10 @@ export default /* @ngInject */ ($stateProvider) => {
         domain,
       ) => MXPlanService.addDomainConfiguration(cart, item, product, domain),
       cart: /* @ngInject */ (WucOrderCartService, user) =>
-        WucOrderCartService.createNewCart(user.ovhSubsidiary).then(
-          ({ cartId }) =>
-            WucOrderCartService.assignCart(cartId).then(() => cartId),
+        WucOrderCartService.createNewCart(
+          user.ovhSubsidiary,
+        ).then(({ cartId }) =>
+          WucOrderCartService.assignCart(cartId).then(() => cartId),
         ),
       catalog: /* @ngInject */ (OvhApiOrderCatalogPublicV6, user) =>
         OvhApiOrderCatalogPublicV6.get({
@@ -62,9 +65,10 @@ export default /* @ngInject */ ($stateProvider) => {
           autoPayWithPreferredPaymentMethod,
         }),
       products: /* @ngInject */ (cart, WucOrderCartService) =>
-        WucOrderCartService.getProductOffers(cart, PRODUCT_NAME).then(
-          (offers) => map(offers, (offer) => new EmailDomainOffer(offer)),
-        ),
+        WucOrderCartService.getProductOffers(
+          cart,
+          PRODUCT_NAME,
+        ).then((offers) => map(offers, (offer) => new EmailDomainOffer(offer))),
     },
     translations: { value: ['.'], format: 'json' },
   });
