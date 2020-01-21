@@ -246,4 +246,8 @@ export default class HostingGeneralInformationsCtrl {
   goToBoostTab() {
     this.$scope.$parent.$ctrl.setSelectedTab('BOOST');
   }
+
+  goToPrivateSqlActivation() {
+    return this.$state.go('app.hosting.database.private-sql-activation');
+  }
 }
