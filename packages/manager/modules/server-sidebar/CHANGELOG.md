@@ -1,3 +1,12 @@
+# [1.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@1.2.2...@ovh-ux/manager-server-sidebar@1.3.0) (2020-01-21)
+
+
+### Features
+
+* **controller:** hide empty sections ([#1833](https://github.com/ovh/manager/issues/1833)) ([35911d2](https://github.com/ovh/manager/commit/35911d2b003fec955be74d8edac53b9d7bea8196))
+
+
+
 ## [1.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@1.2.1...@ovh-ux/manager-server-sidebar@1.2.2) (2019-12-19)
 
 

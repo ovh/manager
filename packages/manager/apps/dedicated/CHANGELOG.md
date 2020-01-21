@@ -1,3 +1,21 @@
+## [11.3.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@11.3.4...@ovh-ux/manager-dedicated@11.3.5) (2020-01-21)
+
+
+### Bug Fixes
+
+* **account.user:** add email change validation token request action ([#2016](https://github.com/ovh/manager/issues/2016)) ([9e2bb2e](https://github.com/ovh/manager/commit/9e2bb2eeabbb4da30a8dc0b45153ffc6b1d151d8))
+* **i18n:** add missing translations [CDS 220] ([e5b9be8](https://github.com/ovh/manager/commit/e5b9be83f6b70484b15a958ab5bc0d00a6139574))
+* **i18n:** add missing translations [CDS 224] ([3e2d0b3](https://github.com/ovh/manager/commit/3e2d0b3c90e9f606a0d40b1d4c0bf488a7a12868))
+* **i18n:** add missing translations [CDS 225] ([bf3e4be](https://github.com/ovh/manager/commit/bf3e4bed41d28acd4ac33fc5be2487efcb3c60e4))
+* **i18n:** add missing translations [CDS 228] ([6453173](https://github.com/ovh/manager/commit/64531732bead074ea0af10f6ad30e90347aa5188))
+* **i18n:** add missing translations [CDS 231] ([97ff113](https://github.com/ovh/manager/commit/97ff113b7a8aa24aff872db89aee7d825152f390))
+* **i18n:** add missing translations [CDS 234] ([14021eb](https://github.com/ovh/manager/commit/14021eb5273b4a6fb308b3f46a4eb72ddd5e2cf9))
+* **i18n:** add missing translations [CDS 236] ([03945a1](https://github.com/ovh/manager/commit/03945a108d52bb16313d2e000ec40a130df887e2))
+* **i18n:** add missing translations [CDS 237] ([67efde3](https://github.com/ovh/manager/commit/67efde34de434103585029f432c175db921d3772))
+* **server.interfaces:** update guide url ([#2084](https://github.com/ovh/manager/issues/2084)) ([a48cf0a](https://github.com/ovh/manager/commit/a48cf0aa6ecc9edb62c1a442df04348ad04ac49b))
+
+
+
 ## [11.3.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@11.3.3...@ovh-ux/manager-dedicated@11.3.4) (2020-01-16)
 
 

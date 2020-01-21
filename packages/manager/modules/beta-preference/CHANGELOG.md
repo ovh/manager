@@ -1,3 +1,12 @@
+## [1.0.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-beta-preference@1.0.2...@ovh-ux/manager-beta-preference@1.0.3) (2020-01-21)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 221] ([10c05cb](https://github.com/ovh/manager/commit/10c05cb30057983836975af2b4c4241b68a368c9))
+
+
+
 ## [1.0.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-beta-preference@1.0.1...@ovh-ux/manager-beta-preference@1.0.2) (2020-01-08)
 
 
