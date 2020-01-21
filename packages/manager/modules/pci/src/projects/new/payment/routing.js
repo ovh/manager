@@ -35,6 +35,9 @@ export default /* @ngInject */ ($stateProvider) => {
       activeStep(step.name);
     },
     resolve: {
+      paymentStatus: /* @ngInject */ ($transition$) =>
+        $transition$.params().paymentStatus,
+
       defaultPaymentMethod: /* @ngInject */ (ovhPaymentMethod) =>
         ovhPaymentMethod.getDefaultPaymentMethod(),
 
