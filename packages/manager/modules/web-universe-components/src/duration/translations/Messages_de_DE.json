@@ -7,5 +7,6 @@
   "duration_year_other": "{{t0}} Jahre ",
   "duration_upto": "Bis zum {{t0}}",
   "duration_uptofirstdaynextmonth": "Bis zum ersten Tag des nächsten Monats",
-  "duration_engage": "Laufzeit {{t0}}"
+  "duration_engage": "Laufzeit {{t0}}",
+  "duration_upto_prorata": "Anteilig bis zum Ablaufdatum des Dienstes ({{t0}})"
 }
