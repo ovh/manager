@@ -45,5 +45,7 @@
   "telephony_alias_portabilities_cancel_error": "Oups ! Une erreur est survenue lors de l'annulation de votre demande de portabilité.",
   "telephony_alias_portabilities_load_error": "Oups ! Une erreur est survenue lors du chargement des portabilités : {{error}}.",
   "telephony_alias_portabilities_attach_form": "Attacher mon mandat de portabilité signé",
-  "telephony_alias_portabilities_attach_info": "Uniquement pour les demandes de portabilité sans RIO."
+  "telephony_alias_portabilities_attach_list_files": "Liste des documents envoyés",
+  "telephony_alias_portabilities_attach_file_name": "Nom du document",
+  "telephony_alias_portabilities_attach_delete": "Supprimer"
 }

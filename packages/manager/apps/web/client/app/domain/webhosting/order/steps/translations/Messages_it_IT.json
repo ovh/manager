@@ -75,9 +75,11 @@
   "domain_webhosting_order_payment_duration": "Durata:",
   "domain_webhosting_order_duration_P1Y": "12 mesi",
   "domain_webhosting_order_payment_choice": "Per confermare la richiesta, seleziona il metodo di pagamento e accetta le condizioni di utilizzo.",
-  "domain_webhosting_order_payment_get_checkout_error": "Si è verificato un errore durante il recupero delle informazioni del tuo carrello.",
+  "domain_webhosting_order_payment_get_checkout_error": "Si è verificato un errore durante il recupero delle informazioni relative al carrello: {{ message }}",
   "domain_webhosting_order_payment_get_payment_method_error": "Si è verificato un errore durante il recupero dei metodi di pagamento",
-  "domain_webhosting_order_payment_checkout_error": "Si è verificato un errore durante il pagamento degli articoli nel carrello.",
+  "domain_webhosting_order_payment_checkout_error": "Si è verificato un errore durante il pagamento degli articoli nel carrello: {{ message }}",
   "domain_webhosting_order_payment_checkout_success": "L’ordine effettuato per l’hosting condiviso è stato preso in carico correttamente. L’addebito di {{price}} è stato effettuato correttamente sull’account {{accountId}}. La solzione attivata verrà rinnovata sutomaticamente il {{renewDate}}.<a class=\"d-block\" target=\"_blank\" href=\"{{billUrl}}\" rel=\"noopener\">Visualizza la fattura</a>",
-  "domain_webhosting_order_bill_success": "Il tuo <a target=\"_blank\" href=\"{{billUrl}}\" rel=\"noopener\">ordine</a> è stato generato correttamente. Una volta convalidato, l’hosting sarà attivo."
+  "domain_webhosting_order_bill_success": "Il tuo <a target=\"_blank\" href=\"{{billUrl}}\" rel=\"noopener\">ordine</a> è stato generato correttamente. Una volta convalidato, l’hosting sarà attivo.",
+  "domain_webhosting_order_payment_get_checkout_error_unknown": "Si è verificato un errore durante il recupero delle informazioni relative al carrello:",
+  "domain_webhosting_order_payment_checkout_error_unknown": "Si è verificato un errore durante il pagamento degli articoli nel carrello."
 }
