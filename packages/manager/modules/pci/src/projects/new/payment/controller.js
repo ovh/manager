@@ -48,6 +48,9 @@ export default class PciProjectNewPaymentCtrl {
   }
 
   manageProjectCreation() {
+    // reset message
+    this.CucCloudMessage.flushMessages('pci.projects.new.payment');
+
     let infraConfigPromise = Promise.resolve(true);
     let creditPromise = Promise.resolve(true);
 
