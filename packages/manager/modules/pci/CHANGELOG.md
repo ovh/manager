@@ -1,3 +1,13 @@
+## [3.9.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.9.0...@ovh-ux/manager-pci@3.9.1) (2020-01-21)
+
+
+### Bug Fixes
+
+* **pci.projects.new:** manage hipay return ([c2f59c9](https://github.com/ovh/manager/commit/c2f59c97c538f55c325de923ab84284b34185151))
+* **pci.projects.new:** remove messages on project creation ([7c12d5d](https://github.com/ovh/manager/commit/7c12d5dc12526b9da615b69e0d0f0fd6b4760078))
+
+
+
 # [3.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.8.4...@ovh-ux/manager-pci@3.9.0) (2020-01-21)
 
 
