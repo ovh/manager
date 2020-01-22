@@ -169,5 +169,9 @@ angular.module('App').controller(
           this.$state.go('^');
         });
     }
+
+    static isProrataDuration({ duration }) {
+      return /^upto/.test(duration);
+    }
   },
 );
