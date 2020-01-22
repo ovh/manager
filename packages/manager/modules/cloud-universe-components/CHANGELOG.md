@@ -1,3 +1,12 @@
+## [1.7.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@1.7.1...@ovh-ux/ng-ovh-cloud-universe-components@1.7.2) (2020-01-22)
+
+
+### Bug Fixes
+
+* **instances:** add default value if pricing is not found ([166a04b](https://github.com/ovh/manager/commit/166a04b86464240828758c39e2b38ef05e26e393))
+
+
+
 ## [1.7.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@1.7.0...@ovh-ux/ng-ovh-cloud-universe-components@1.7.1) (2020-01-21)
 
 
