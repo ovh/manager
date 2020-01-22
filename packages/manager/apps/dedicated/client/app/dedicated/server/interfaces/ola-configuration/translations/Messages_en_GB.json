@@ -24,5 +24,6 @@
   "dedicated_server_interfaces_ola_step2_description_ungroup": "Select the aggregated link you would like to ungroup.",
   "dedicated_server_interfaces_ola_step3_title": "Configuration overview",
   "dedicated_server_interfaces_ola_step3_submit": "Create",
-  "dedicated_server_interfaces_ola_error": "An error has occurred during configuration: {{ errorMessage }}"
+  "dedicated_server_interfaces_ola_error": "An error has occurred during configuration: {{ errorMessage }}",
+  "dedicated_server_interface_ola_new_tab": "Open in a new tab"
 }

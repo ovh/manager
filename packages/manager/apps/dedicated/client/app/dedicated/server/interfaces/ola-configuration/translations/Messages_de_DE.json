@@ -24,5 +24,6 @@
   "dedicated_server_interfaces_ola_step2_description_group": "Wählen Sie die Interfaces aus, die Sie bündeln möchten.",
   "dedicated_server_interfaces_ola_step2_description_ungroup": "Wählen Sie das aggregierte Interface aus, das Sie trennen möchten.",
   "dedicated_server_interfaces_ola_step3_title": "Übersicht der Konfiguration",
-  "dedicated_server_interfaces_ola_step3_submit": "Erstellen"
+  "dedicated_server_interfaces_ola_step3_submit": "Erstellen",
+  "dedicated_server_interface_ola_new_tab": "Wird in einem neuen Tab geöffnet"
 }

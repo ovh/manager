@@ -1398,5 +1398,7 @@
   "hosting_dashboard_cdn_order_success_activation": "Su activación fue exitosa. Su producto se activará en unos momentos.",
   "hosting_tab_DATABASES_configuration_order_title_button_private": "Solicite una base de datos SQL privada",
   "hosting_tab_DATABASES_configuration_order_title_private": "Solicite una base de datos SQL privada",
-  "hosting_tab_DATABASES_table_header_server_address_tooltip": "Utilice el nombre del host proporcionado para conectarse a su instancia, ya que la dirección IP asociada puede cambiar con el tiempo."
+  "hosting_tab_DATABASES_table_header_server_address_tooltip": "Utilice el nombre del host proporcionado para conectarse a su instancia, ya que la dirección IP asociada puede cambiar con el tiempo.",
+  "hosting_dashboard_service_privatesql_active_long": "Activar una base de datos SQL privada",
+  "hosting_dashboard_service_privatesql_active_remaining": "{{ count }} base(s) de datos SQL privada(s) no activa(s)"
 }

@@ -71,5 +71,6 @@
   "dedicated_server_interfaces_bandwith_public": "Public bandwidth",
   "dedicated_server_interfaces_bandwith_private": "Private bandwidth",
   "dedicated_server_interfaces_current_operation": "An operation is in progress on this server ",
-  "dedicated_server_interfaces_task_error": "An error has occurred during configuration: {{ errorMessage }}"
+  "dedicated_server_interfaces_task_error": "An error has occurred during configuration: {{ errorMessage }}",
+  "dedicated_server_interfaces_new_tab": "Open in a new tab"
 }

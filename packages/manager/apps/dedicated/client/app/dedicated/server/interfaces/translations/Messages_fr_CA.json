@@ -10,6 +10,7 @@
   "dedicated_server_interfaces_step_checker_activate": "Activer OLA",
   "dedicated_server_interfaces_step_checker_guides_text": "Pour en savoir plus,",
   "dedicated_server_interfaces_step_checker_guides_link": "consulter nos guides",
+  "dedicated_server_interfaces_new_tab": "(S'ouvre dans un nouvel onglet)",
   "dedicated_server_interfaces_step_checker_list_connectivity": "Connectivité redondée",
   "dedicated_server_interfaces_step_checker_list_security": "Sécurisation des machines",
   "dedicated_server_interfaces_step_checker_list_reversible": "Réversible à volonté",

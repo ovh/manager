@@ -24,5 +24,6 @@
   "dedicated_server_interfaces_ola_step2_description_ungroup": "Wybierz zagregowany interfejs, który chcesz rozłączyć.",
   "dedicated_server_interfaces_ola_step3_title": "Podsumowanie konfiguracji",
   "dedicated_server_interfaces_ola_step3_submit": "Utwórz",
-  "dedicated_server_interfaces_ola_error": "Wystąpił problem podczas konfiguracji: {{errorMessage}}."
+  "dedicated_server_interfaces_ola_error": "Wystąpił problem podczas konfiguracji: {{errorMessage}}.",
+  "dedicated_server_interface_ola_new_tab": "Otworzy się w nowej zakładce."
 }

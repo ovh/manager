@@ -24,5 +24,6 @@
   "dedicated_server_interfaces_ola_step2_description_ungroup": "Seleccione la interfaz agrupada que quiera desagrupar. ",
   "dedicated_server_interfaces_ola_step3_title": "Vista previa de la configuración",
   "dedicated_server_interfaces_ola_step3_submit": "Crear",
-  "dedicated_server_interfaces_ola_error": "Se ha producido un error durante la configuración: {{ errorMessage }}."
+  "dedicated_server_interfaces_ola_error": "Se ha producido un error durante la configuración: {{ errorMessage }}.",
+  "dedicated_server_interface_ola_new_tab": "Se abrirá en una nueva pestaña"
 }
