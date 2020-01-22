@@ -50,7 +50,7 @@ export default class OvhCloudPriceHelper {
                 ({ capacities }) =>
                   includes(capacities, 'renew') ||
                   includes(capacities, 'consumption'),
-              ),
+              ) || {},
               catalog.locale.currencyCode,
             );
           });
