@@ -1,0 +1,15 @@
+{
+  "hosting_email_address_activate_title": "Aktivieren Sie Ihre E-Mail-Adressen",
+  "hosting_email_address_activate_description": "Sie haben noch nicht Ihr E-Mail-Paket aktiviert, das in Ihrem Webhosting Angebot enthalten ist. Wählen Sie den Domainnamen aus, den Sie Ihren E-Mail-Adressen vor der Aktivierung Ihrer Postfächer zuweisen möchten.",
+  "hosting_email_address_activate_step1_title": "E-Mail-Adressen",
+  "hosting_email_address_activate_step2_title": "Aktivierung",
+  "hosting_email_address_activate_choose_domain": "Wählen Sie den Domainnamen, den Sie bei Ihren E-Mails verwenden möchten:",
+  "hosting_email_address_activate_choose_domain_placeholder": "Wählen Sie eine Domain aus...",
+  "hosting_email_address_activate_next": "Weiter",
+  "hosting_email_address_activate_cancel": "Abbrechen",
+  "hosting_email_address_activate_activate": "Aktivieren",
+  "hosting_email_address_activate_contracts_accept": "Um Ihre Anfrage zu bestätigen, akzeptieren Sie bitte die Nutzungsbedingungen.",
+  "hosting_email_address_activate_in_progress": "Aktivierung Ihres E-Mail-Pakets",
+  "hosting_email_address_activation_error": "Die Aktivierung der E-Mail-Adresse ist fehlgeschlagen : {{message}}",
+  "hosting_email_address_activation_success": "Die Aktivierung des E-Mail-Adressen-Pakets ist im Gange. <a href=\"{{ orderTrackURL }}\" target=\"_blank\" rel=\"noopener\"> Klicken Sie hier, um den Fortschritt zu verfolgen. </a>"
+}

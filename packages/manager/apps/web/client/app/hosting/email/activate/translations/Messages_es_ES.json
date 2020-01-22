@@ -1,0 +1,15 @@
+{
+  "hosting_email_address_activate_title": "Active sus direcciones de correo electrónico",
+  "hosting_email_address_activate_description": "Todavía no ha activado el pack de direcciones de correo incluido en su plan de hosting. Seleccione el dominio que quiere asociar a sus direcciones de correo antes de activar las cuentas de correo.",
+  "hosting_email_address_activate_step1_title": "Direcciones de correo",
+  "hosting_email_address_activate_step2_title": "Activación",
+  "hosting_email_address_activate_choose_domain": "Seleccione el dominio que quiere utilizar con sus direcciones de correo:",
+  "hosting_email_address_activate_choose_domain_placeholder": "Seleccione un dominio...",
+  "hosting_email_address_activate_next": "Siguiente",
+  "hosting_email_address_activate_cancel": "Cancelar",
+  "hosting_email_address_activate_activate": "Activar",
+  "hosting_email_address_activate_contracts_accept": "Para confirmar su solicitud, acepte las condiciones de uso.",
+  "hosting_email_address_activate_in_progress": "Activación de su pack de direcciones de correo",
+  "hosting_email_address_activation_error": "Se ha producido un error al activar la dirección de correo electrónico: {{message}} ",
+  "hosting_email_address_activation_success": "Activando el pack de direcciones de correo... <a href=\"{{ orderTrackURL }}\" target=\"_blank\" rel=\"noopener\"> Haga clic aquí para consultar el progreso. </a>"
+}

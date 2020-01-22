@@ -24,5 +24,6 @@
   "dedicated_server_interfaces_ola_step2_description_ungroup": "Selecione a interface agregada que pretende separar.",
   "dedicated_server_interfaces_ola_step3_title": "Visão geral da configuração",
   "dedicated_server_interfaces_ola_step3_submit": "Criar",
-  "dedicated_server_interfaces_ola_error": "Ocorreu um erro durante a configuração: {{ errorMessage }}."
+  "dedicated_server_interfaces_ola_error": "Ocorreu um erro durante a configuração: {{ errorMessage }}.",
+  "dedicated_server_interface_ola_new_tab": "Abre-se numa nova janela"
 }

@@ -1,0 +1,15 @@
+{
+  "hosting_email_address_activate_title": "Activate your email addresses",
+  "hosting_email_address_activate_description": "You have not activated the email pack included in your web hosting plan. Select the domain name you would like to associate with your email addresses before you activate your mailboxes.",
+  "hosting_email_address_activate_step1_title": "Email addresses",
+  "hosting_email_address_activate_step2_title": "Activation",
+  "hosting_email_address_activate_choose_domain": "Choose the domain name you would like to use with your emails:",
+  "hosting_email_address_activate_choose_domain_placeholder": "Select a domain",
+  "hosting_email_address_activate_next": "Next",
+  "hosting_email_address_activate_cancel": "Cancel",
+  "hosting_email_address_activate_activate": "Activate",
+  "hosting_email_address_activate_contracts_accept": "To confirm your request, please accept the Terms & Conditions of Use.",
+  "hosting_email_address_activate_in_progress": "Activate your email pack",
+  "hosting_email_address_activation_error": "Unable to activate email address: {{message}}",
+  "hosting_email_address_activation_success": "Your email address pack is being activated. <a href=\"{{ orderTrackURL }}\" target=\"_blank\" rel=\"noopener\">Click here to track its progress. </a>"
+}
