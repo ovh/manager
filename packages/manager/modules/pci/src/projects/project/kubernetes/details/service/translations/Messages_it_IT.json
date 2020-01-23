@@ -51,5 +51,7 @@
   "kube_service_cluster_status_REOPENING": "Apertura in corso...",
   "kube_service_cluster_status_SUSPENDED": "Sospeso",
   "kube_service_cluster_status_USER_ERROR": "In errore",
-  "kube_service_cluster_status_USER_QUOTA_ERROR": "Problema relativo alla quota"
+  "kube_service_cluster_status_USER_QUOTA_ERROR": "Problema relativo alla quota",
+  "kube_service_cluster_version_not_supported_message": "La tua versione di Kubernetes non è più supportata. È necessario effettuare l’upgrade a una versione compatibile.",
+  "kube_service_cluster_versions_guide": "Per maggiori informazioni, consulta la nostra documentazione ufficiale <a href=\"{{ versionGuideUrl }}\" rel=\"noopener\" target=\"_blank\">End-of-Support e End-of-Life policy</a> "
 }
