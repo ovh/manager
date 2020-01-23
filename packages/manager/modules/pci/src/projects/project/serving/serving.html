@@ -25,12 +25,30 @@
             <span data-ng-bind="$value"></span>
         </oui-column>
 
+        <oui-column
+            data-title=":: 'pci_projects_project_serving_container_label' | translate"
+            data-property="container"
+            data-type="string"
+            data-searchable
+            data-filterable
+            data-sortable="asc">
+            <span data-ng-bind="$value"></span>
+        </oui-column>
+
         <oui-action-menu
             data-align="left-start"
             data-compact>
             <oui-action-menu-item
                 data-text="{{:: 'pci_projects_project_serving_view_label' | translate }}"
                 data-on-click="$ctrl.viewNamespace($row)">
+            </oui-action-menu-item>
+            <oui-action-menu-item
+                data-text="{{:: 'pci_projects_project_serving_list_models_label' | translate }}"
+                data-on-click="$ctrl.listModels($row)">
+            </oui-action-menu-item>
+            <oui-action-menu-item
+                data-text="{{:: 'pci_projects_project_serving_deploy_model_label' | translate }}"
+                data-on-click="$ctrl.deployModel($row)">
             </oui-action-menu-item>
             <oui-action-menu-item
                 data-text="{{:: 'pci_projects_project_serving_delete_label' | translate }}"

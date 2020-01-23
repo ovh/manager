@@ -9,6 +9,8 @@ export default {
     namespaces: '<',
     addNamespaceLink: '<',
     namespaceLink: '<',
+    listModels: '<',
+    deployModel: '<',
     viewNamespace: '<',
     deleteNamespace: '<',
   },

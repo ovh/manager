@@ -29,6 +29,14 @@ export default /* @ngInject */ ($stateProvider) => {
           projectId,
           namespaceId: namespace.id,
         }),
+        listModels: /* @ngInject */ ($state, projectId) => namespace => $state.go('pci.projects.project.serving.namespace.models', {
+          projectId,
+          namespaceId: namespace.id,
+        }),
+        deployModel: /* @ngInject */ ($state, projectId) => namespace => $state.go('pci.projects.project.serving.namespace.models.add', {
+          projectId,
+          namespaceId: namespace.id,
+        }),
         deleteNamespace: /* @ngInject */ ($state, projectId) => namespace => $state.go('pci.projects.project.serving.delete', {
           projectId,
           namespaceId: namespace.id,
