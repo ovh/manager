@@ -222,7 +222,8 @@ export default class OvhManagerServerSidebarController {
         this.addItems(get(parentService, 'children'), parent);
         if (
           sumBy(typesServices, (typeServices) => typeServices.items.length) ===
-          0
+            0 &&
+          !has(parentService, 'children')
         ) {
           this.SidebarMenu.addMenuItem(
             {
