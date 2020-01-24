@@ -1,3 +1,12 @@
+## [1.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@1.3.0...@ovh-ux/manager-server-sidebar@1.3.1) (2020-01-24)
+
+
+### Bug Fixes
+
+* **server-sidebar:** display static items if there is no items ([#2131](https://github.com/ovh/manager/issues/2131)) ([00fb0ff](https://github.com/ovh/manager/commit/00fb0ff0dd506fa508ddd5525155a362be5f03c6))
+
+
+
 # [1.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@1.2.2...@ovh-ux/manager-server-sidebar@1.3.0) (2020-01-21)
 
 
