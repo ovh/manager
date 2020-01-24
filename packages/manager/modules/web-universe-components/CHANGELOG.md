@@ -1,3 +1,18 @@
+# [7.4.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@7.3.0...@ovh-ux/ng-ovh-web-universe-components@7.4.0) (2020-01-24)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 238] ([735f36c](https://github.com/ovh/manager/commit/735f36c6ec36a4555e145d567360fb2fa4ad6b5d))
+* **i18n:** add missing translations [CDS 239] ([945cc74](https://github.com/ovh/manager/commit/945cc74a7c3d79e754f6ea9f8c2101ad92c22e07))
+
+
+### Features
+
+* **web:** private sql upgrade prorata ([#2087](https://github.com/ovh/manager/issues/2087)) ([001ef60](https://github.com/ovh/manager/commit/001ef601a0041de0d61eb327c18d9853abc18eb9))
+
+
+
 # [7.3.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@7.2.2...@ovh-ux/ng-ovh-web-universe-components@7.3.0) (2020-01-21)
 
 

@@ -12,6 +12,8 @@ export default /* @ngInject */ ($stateProvider) => {
       tab: null,
     },
     resolve: {
+      serviceName: /* @ngInject */ ($transition$) =>
+        $transition$.params().productId,
       goToHosting: /* @ngInject */ ($state, $timeout, Alerter) => (
         message = false,
         type = 'success',

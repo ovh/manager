@@ -49,6 +49,8 @@ import privateDatabase from './private-database';
 import zone from './domain/zone/zone.module';
 
 import emailDomainUpgradeModule from './email-domain/upgrade';
+import hostingEmail from './hosting/email';
+import hostingEmailActivateModule from './hosting/email/activate';
 
 import './css/source.less';
 import './css/source.scss';
@@ -117,6 +119,8 @@ angular
     privateDatabase,
     zone,
     emailDomainUpgradeModule,
+    hostingEmail,
+    hostingEmailActivateModule,
   ])
   .constant('constants', {
     prodMode: config.prodMode,
@@ -547,4 +551,5 @@ angular
         }
       });
     },
-  );
+  )
+  .run(/* @ngTranslationsInject:json ./translations */);
