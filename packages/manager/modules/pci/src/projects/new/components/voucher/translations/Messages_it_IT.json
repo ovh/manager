@@ -1,13 +1,13 @@
 {
   "pci_projects_new_voucher_question": "Hai un voucher?",
-  "pci_projects_new_voucher_form_field": "Immettere un giustificativo",
+  "pci_projects_new_voucher_form_field": "Inserisci un voucher",
   "pci_projects_new_voucher_form_field_amount": "Importo accreditato: {{ amount }}",
   "pci_projects_new_voucher_form_field_error_invalid": "Codice non valido",
   "pci_projects_new_voucher_form_field_error_no_longer_valid": "Codice non valido",
-  "pci_projects_new_voucher_form_field_error_default": "Si è verificato un errore durante la modifica del filtro.",
+  "pci_projects_new_voucher_form_field_error_default": "Si è verificato un errore durante la verifica del codice.",
   "pci_projects_new_voucher_form_add": "Aggiungi",
-  "pci_projects_new_voucher_form_add_title": "Aggiungere un voucher",
+  "pci_projects_new_voucher_form_add_title": "Aggiungi un voucher",
   "pci_projects_new_voucher_form_remove": "Cancella",
-  "pci_projects_new_voucher_form_remove_title": "Inserisci il voucher",
-  "pci_projects_new_voucher_form_reset_error": "Si è verificato un errore quando hai ritirato il voucher."
+  "pci_projects_new_voucher_form_remove_title": "Rimuovi il voucher",
+  "pci_projects_new_voucher_form_reset_error": "Si è verificato un errore durante la rimozione del voucher."
 }

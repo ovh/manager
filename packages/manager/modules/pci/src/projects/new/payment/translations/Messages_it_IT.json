@@ -6,6 +6,6 @@
   "pci_project_new_payment_btn_continue_credit": "Ricarica e crea il tuo progetto",
   "pci_project_new_payment_btn_cancel": "Annulla",
   "pci_project_new_payment_create_error": "Si è verificato un errore durante l'aggiunta del metodo di pagamento. ti preghiamo di riprovare.",
-  "pci_project_new_payment_checkout_error": "Si è verificato un errore durante la creazione del tuo progetto Public Cloud, ti invitiamo a riprovare. ti preghiamo di riprovare.",
-  "pci_project_new_payment_challenge_error_payment_method_deactivated": "La verifica del tuo metodo di pagamento non è andata a buon fine, ti preghiamo di riprovare. Questo è stato disabilitato. Scegli un altro metodo di pagamento per creare un nuovo progetto."
+  "pci_project_new_payment_checkout_error": "Si è verificato un errore durante la creazione del tuo progetto Public Cloud. ti preghiamo di riprovare.",
+  "pci_project_new_payment_challenge_error_payment_method_deactivated": "La verifica del metodo di pagamento non è andata a buon fine e verrà quindi disattivato. Per poter creare un nuovo progetto, scegli un’altra modalità di pagamento."
 }

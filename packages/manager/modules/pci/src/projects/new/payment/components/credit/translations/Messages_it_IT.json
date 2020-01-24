@@ -1,6 +1,6 @@
 {
-  "pci_project_new_payment_credit_explain": "Ogni progetto Public Cloud ha un proprio account di credito. Se l'importo del credito è insufficiente, si dovrà pagare l'importo rimanente dovuto con un metodo di pagamento registrato il più presto possibile.",
-  "pci_project_new_payment_credit_info": "I crediti non sono trasferibili o rimborsabili e non hanno alcun valore monetario. Qualsiasi credito non utilizzato entro 13 mesi dall'acquisto viene perso. Cliccando su \"Credito e creare il mio progetto\" sarete reindirizzati a un ordine di acquisto per pagare il credito con carta di credito o Paypal.",
+  "pci_project_new_payment_credit_explain": "Ogni progetto Public cloud dispone di un conto di crediti dedicato. Se il credito non è sufficiente per pagare l’intero importo, sarà necessario saldare la differenza nel più breve tempo possibile, utilizzando uno dei metodi di pagamenti registrati.",
+  "pci_project_new_payment_credit_info": "*Il credito non ha valore monetario e non è trasferibile o rimborsabile. Gli importi non utilizzati nei 13 mesi successivi all’accredito vengono persi. Cliccando su “Ricarica e crea il tuo progetto” verrai reindirizzato al buono d’ordine per effettuare l’accredito tramite carta bancaria o PayPal.",
   "pci_project_new_payment_credit_amount_other": "Altro importo",
   "pci_project_new_payment_credit_amount_other_label": "Importo da accreditare"
 }

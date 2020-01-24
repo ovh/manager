@@ -1,0 +1,9 @@
+{
+  "portabilities_delete_title": "Elimina un documento",
+  "portabilities_delete_action": "Vuoi davvero eliminare il documento?",
+  "portabilities_delete_document_processing": "Eliminazione del documento in corso...",
+  "portabilities_delete_document_succeed": "L’eliminazione dell'account Outlook è stata effettuata correttamente.",
+  "portabilities_delete_document_failed": "L’eliminazione del documento non è andata a buon fine.",
+  "portabilities_delete_submit": "Conferma",
+  "portabilities_delete_cancel": "Annulla"
+}
