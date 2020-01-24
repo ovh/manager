@@ -1,3 +1,12 @@
+## [13.43.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.43.0...@ovh-ux/manager-web@13.43.1) (2020-01-24)
+
+
+### Bug Fixes
+
+* **web:** replace contracts component ([#2138](https://github.com/ovh/manager/issues/2138)) ([c693f0e](https://github.com/ovh/manager/commit/c693f0ec9e4396bf9288e9a247fffd5649fedeee))
+
+
+
 # [13.43.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.42.1...@ovh-ux/manager-web@13.43.0) (2020-01-24)
 
 
