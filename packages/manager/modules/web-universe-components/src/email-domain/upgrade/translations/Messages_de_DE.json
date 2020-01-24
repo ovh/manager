@@ -1,0 +1,19 @@
+{
+  "email_domain_upgrade_title": "E-Mail-Angebot wechseln",
+  "email_domain_upgrade_step_header_offer": "Wählen Sie ein Angebot aus",
+  "email_domain_upgrade_step_header_offer_description": "Wählen Sie das gewünschte Angebot aus.",
+  "email_domain_upgrade_step_header_offer_select_placeholder": "Auswahl...",
+  "email_domain_upgrade_step_header_duration": "Dauer",
+  "email_domain_upgrade_step_header_duration_description": "Wählen Sie die gewünschte Laufzeit aus.",
+  "email_domain_upgrade_step_header_validation": "Bestätigung",
+  "email_domain_upgrade_next_button_label": "Weiter",
+  "email_domain_upgrade_upgrade_button_label": "Upgraden",
+  "email_domain_upgrade_cancel_button_label": "Abbrechen",
+  "email_domain_upgrade_contracts_accept": "Um Ihre Anfrage zu bestätigen, akzeptieren Sie bitte die Nutzungsbedingungen.",
+  "email_domain_upgrade_in_progress": "Ändern Sie den E-Mail-Plan in '{{ newOffer }}'",
+  "email_domain_upgrade_fetch_duration_error": "Bei der Einholung der Angebotsdetails ist ein Fehler aufgetreten: {{message}}",
+  "email_domain_upgrade_error": "Der E-Mail-Plan konnte nicht geändert werden: {{message}}",
+  "email_domain_upgrade_success": "Der Bestellschein <a href=\"{{orderUrl}}\" target=\"_blank\">{{orderId}}</a> wurde erfolgreich gelöscht.",
+  "email_domain_upgrade_price_without_tax": "Preis zzgl. MwSt.: ",
+  "email_domain_upgrade_price_with_tax": "Preis inkl. MwSt.: "
+}

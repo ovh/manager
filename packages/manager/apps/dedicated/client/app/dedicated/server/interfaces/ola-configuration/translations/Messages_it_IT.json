@@ -24,5 +24,6 @@
   "dedicated_server_interfaces_ola_step2_description_ungroup": "Scegli l’interfaccia aggregata che vuoi separare.",
   "dedicated_server_interfaces_ola_step3_title": "Anteprima della configurazione",
   "dedicated_server_interfaces_ola_step3_submit": "Crea",
-  "dedicated_server_interfaces_ola_error": "Si è verificato un errore durante la configurazione: {{ errorMessage }}"
+  "dedicated_server_interfaces_ola_error": "Si è verificato un errore durante la configurazione: {{ errorMessage }}",
+  "dedicated_server_interface_ola_new_tab": "Apri in una nuova scheda"
 }

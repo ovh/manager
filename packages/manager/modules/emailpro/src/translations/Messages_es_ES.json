@@ -848,5 +848,11 @@
   "email_tab_modal_delete_redirection_accounts": "<strong>{0}</strong> hacia <strong>{1}</strong>",
   "emails_common_continue_question": "¿Seguro que quiere continuar?",
   "emails_common_account_name_conditions": "Atención: El nombre de la cuenta debe cumplir los siguientes criterios: <br/>- mínimo {0} caracteres,<br/>- máximo {1} caracteres,<br/>- sin espacios,<br/>- sin caracteres acentuados,<br/>- sin caracteres especiales, excepto «.», «-» y «_».",
-  "emailpro_ACTION_update_account_step1_password_contains_space": "La contraseña no puede contener espacios."
+  "emailpro_ACTION_update_account_step1_password_contains_space": "La contraseña no puede contener espacios.",
+  "emailpro_tab_DOMAIN": "Dominios asociados",
+  "emailpro_tab_ACCOUNT": "Cuentas de correo",
+  "emailpro_tab_EXTERNAL_CONTACT": "Contactos externos",
+  "emailpro_tab_MAILING_LIST": "Listas de correo",
+  "emailpro_tab_REDIRECTION": "Redirecciones",
+  "emailpro_navigation_more": "Más"
 }

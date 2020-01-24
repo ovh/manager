@@ -7,5 +7,6 @@
   "duration_year_other": "{{t0}} anni",
   "duration_upto": "Fino al {{t0}}",
   "duration_uptofirstdaynextmonth": "Fino al primo giorno del prossimo mese",
-  "duration_engage": "Sottoscrivi {{t0}}"
+  "duration_engage": "Sottoscrivi {{t0}}",
+  "duration_upto_prorata": "Prorata fino alla data di scadenza del servizio ({{t0}})"
 }

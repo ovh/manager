@@ -7,5 +7,6 @@
   "duration_year_other": "{{t0}} lat(a)",
   "duration_upto": "Do {{t0}}",
   "duration_uptofirstdaynextmonth": "Do pierwszego dnia kolejnego miesiąca",
-  "duration_engage": "Zamów {{t0}}"
+  "duration_engage": "Zamów {{t0}}",
+  "duration_upto_prorata": "({{t0}})"
 }

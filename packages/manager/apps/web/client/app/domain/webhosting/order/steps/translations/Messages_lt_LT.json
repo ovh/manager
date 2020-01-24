@@ -75,9 +75,11 @@
   "domain_webhosting_order_payment_duration": "Duration:",
   "domain_webhosting_order_duration_P1Y": "12 months",
   "domain_webhosting_order_payment_choice": "To confirm your request, please choose a payment method, and accept the Terms & Conditions of Use.",
-  "domain_webhosting_order_payment_get_checkout_error": "An error has occurred retrieving information on your basket.",
+  "domain_webhosting_order_payment_get_checkout_error": "An error has occurred retrieving information on your basket: {{ message }}",
   "domain_webhosting_order_payment_get_payment_method_error": "An error has occurred retrieving payment methods.",
-  "domain_webhosting_order_payment_checkout_error": "An error has occurred paying for the orders in your basket.",
+  "domain_webhosting_order_payment_checkout_error": "An error has occurred paying for the orders in your basket: {{ message }}",
   "domain_webhosting_order_payment_checkout_success": "Your web hosting plan order has been processed. Your {{accountId}} account has been charged {{price}}. Your product will be renewed automatically on {{renewDate}}.<a class=\"d-block\" target=\"_blank\" href=\"{{billUrl}}\" rel=\"noopener\">View my bill</a>",
-  "domain_webhosting_order_bill_success": "Your <a target=\"_blank\" href=\"{{billUrl}}\" rel=\"noopener\">purchase order</a> has been generated. Your web hosting plan will be enabled once you have validated it."
+  "domain_webhosting_order_bill_success": "Your <a target=\"_blank\" href=\"{{billUrl}}\" rel=\"noopener\">purchase order</a> has been generated. Your web hosting plan will be enabled once you have validated it.",
+  "domain_webhosting_order_payment_get_checkout_error_unknown": "An error has occurred retrieving information on your basket.",
+  "domain_webhosting_order_payment_checkout_error_unknown": "An error has occurred paying for the orders in your basket."
 }

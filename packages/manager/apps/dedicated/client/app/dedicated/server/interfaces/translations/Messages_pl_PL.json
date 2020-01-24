@@ -71,5 +71,6 @@
   "dedicated_server_interfaces_current_operation": "Trwa operacja dla tego serwera ",
   "dedicated_server_interfaces_task_error": "Wystąpił problem podczas konfiguracji: {{errorMessage}}.",
   "dedicated_server_interfaces_guides": "Przewodniki",
-  "dedicated_server_interfaces_guides_ola": "Jak skonfigurować OLA?"
+  "dedicated_server_interfaces_guides_ola": "Jak skonfigurować OLA?",
+  "dedicated_server_interfaces_new_tab": "Otworzy się w nowej zakładce."
 }

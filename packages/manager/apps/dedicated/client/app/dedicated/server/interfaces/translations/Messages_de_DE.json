@@ -71,5 +71,6 @@
   "dedicated_server_interfaces_bandwith_public": "Öffentliche Bandbreite",
   "dedicated_server_interfaces_bandwith_private": "Private Bandbreite",
   "dedicated_server_interfaces_guides": "Anleitungen",
-  "dedicated_server_interfaces_guides_ola": "Wie wird OLA konfiguriert?"
+  "dedicated_server_interfaces_guides_ola": "Wie wird OLA konfiguriert?",
+  "dedicated_server_interfaces_new_tab": "Wird in einem neuen Tab geöffnet"
 }

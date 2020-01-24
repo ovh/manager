@@ -1398,5 +1398,7 @@
   "hosting_tab_DATABASES_configuration_create_step3_type_sql_pro": "SQL Pro {{t0}} {{t1}}",
   "hosting_tab_DATABASES_configuration_create_step3_type_extra_sql_perso": "Extra SQL Basic {{t0}} {{t1}}",
   "hosting_tab_DATABASES_configuration_create_step3_type_sql_local": "In Ihrer Cloud Web Instanz gespeichert",
-  "hosting_tab_DATABASES_table_header_server_address_tooltip": "Bitte verwenden Sie den bereitgestellten Hostnamen, um eine Verbindung zu Ihrer Instanz herzustellen, da sich die damit verbundene IP-Adresse im Laufe der Zeit ändern kann."
+  "hosting_tab_DATABASES_table_header_server_address_tooltip": "Bitte verwenden Sie den bereitgestellten Hostnamen, um eine Verbindung zu Ihrer Instanz herzustellen, da sich die damit verbundene IP-Adresse im Laufe der Zeit ändern kann.",
+  "hosting_dashboard_service_privatesql_active_long": "Eine private SQL Datenbank aktivieren",
+  "hosting_dashboard_service_privatesql_active_remaining": "{{ count }} nicht aktivierte private SQL Datenbank(en)"
 }
