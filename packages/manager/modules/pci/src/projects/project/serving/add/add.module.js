@@ -9,6 +9,8 @@ import component from './add.component';
 import routing from './add.routing';
 import service from './add.service';
 
+import ovhManagerPciStoragesContainers from '../../storages/containers';
+
 const moduleName = 'ovhManagerPciServingAdd';
 
 angular
@@ -18,6 +20,7 @@ angular
     'pascalprecht.translate',
     'ovh-api-services',
     'ui.router',
+    ovhManagerPciStoragesContainers,
   ])
   .config(routing)
   .component('ovhManagerPciServingAdd', component)
