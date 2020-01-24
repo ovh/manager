@@ -1,0 +1,66 @@
+<div class="container-fluid pb-4">
+    <oui-back-button data-on-click="$ctrl.cancel()">
+        <span data-translate="hosting_email_address_activate_title"></span>
+    </oui-back-button>
+    <p data-translate="hosting_email_address_activate_description"></p>
+    <div data-ovh-alert="{{$ctrl.alerts.main}}"></div>
+    <oui-stepper>
+        <oui-step-form
+            data-header="{{ ::'hosting_email_address_activate_step1_title' | translate}}"
+            data-submit-text="{{ ::'hosting_email_address_activate_next' | translate}}"
+            data-navigation="$ctrl.domainName"
+            data-prevent-next="!$ctrl.domainName"
+            data-editable="!$ctrl.createCartInProgress"
+            data-on-submit="$ctrl.createOrder(form)"
+        >
+            <oui-field
+                data-label="{{ ::'hosting_email_address_activate_choose_domain' | translate}}"
+            >
+                <oui-select
+                    name="selectDomainName"
+                    id="selectDomainName"
+                    data-model="$ctrl.domainName"
+                    data-placeholder="{{ ::'hosting_email_address_activate_choose_domain_placeholder' | translate}}"
+                    data-items="$ctrl.domainNames"
+                    required
+                    data-align="start"
+                    data-searchable
+                >
+                    <span data-ng-bind="$item"></span>
+                </oui-select>
+            </oui-field>
+        </oui-step-form>
+        <oui-step-form
+            data-header="{{ ::'hosting_email_address_activate_step2_title' | translate}}"
+            data-submit-text="{{ ::'hosting_email_address_activate_activate' | translate}}"
+            data-cancel-text="{{ ::'hosting_email_address_activate_cancel' | translate}}"
+            data-loading="$ctrl.createCartInProgress"
+            data-on-cancel="$ctrl.cancel()"
+            data-on-submit="$ctrl.activate()"
+            data-editable="!$ctrl.checkoutCartInProgress"
+            data-prevent-next="!$ctrl.contractsAccepted || !$ctrl.order"
+            data-valid="$ctrl.contractsAccepted"
+        >
+            <p
+                data-translate="hosting_email_address_activate_contracts_accept"
+            ></p>
+            <ovh-manager-order-contracts
+                data-ng-if="$ctrl.order"
+                name="agreeContracts"
+                data-items="$ctrl.order.contracts"
+                data-model="$ctrl.contractsAccepted"
+            >
+            </ovh-manager-order-contracts>
+            <div
+                class="ml-2 mb-3 inline-block d-flex align-items-center"
+                data-ng-if="$ctrl.checkoutCartInProgress"
+            >
+                <oui-spinner data-size="s"></oui-spinner>
+                <span
+                    class="text-success pl-1"
+                    data-translate="hosting_email_address_activate_in_progress"
+                ></span>
+            </div>
+        </oui-step-form>
+    </oui-stepper>
+</div>
