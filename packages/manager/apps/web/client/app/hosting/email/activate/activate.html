@@ -44,13 +44,13 @@
             <p
                 data-translate="hosting_email_address_activate_contracts_accept"
             ></p>
-            <ovh-manager-order-contracts
+            <ovh-contracts-summary
                 data-ng-if="$ctrl.order"
                 name="agreeContracts"
                 data-items="$ctrl.order.contracts"
                 data-model="$ctrl.contractsAccepted"
             >
-            </ovh-manager-order-contracts>
+            </ovh-contracts-summary>
             <div
                 class="ml-2 mb-3 inline-block d-flex align-items-center"
                 data-ng-if="$ctrl.checkoutCartInProgress"
