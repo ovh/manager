@@ -21,5 +21,6 @@
   "pci_projects_project_serving_namespace_models_storage_path": "Répertoire Object Storage",
   "pci_projects_project_serving_namespace_models_storage_scale_min": "Instances minimum",
   "pci_projects_project_serving_namespace_models_storage_scale_max": "Instances maximum",
-  "pci_projects_project_serving_namespace_models_add_autoscaling_info": "Pendant la phase de découverte la configuration de l'auto-scaling n'est pas personnalisable."
+  "pci_projects_project_serving_namespace_models_add_autoscaling_info": "Pendant la phase de découverte la configuration de l'auto-scaling n'est pas personnalisable.",
+  "pci_projects_project_serving_namespace_models_add_model_preset_info": "Plus d'informations"
 }

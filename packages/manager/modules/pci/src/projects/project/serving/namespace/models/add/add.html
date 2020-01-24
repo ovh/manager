@@ -34,11 +34,20 @@
                          data-ng-repeat="preset in $ctrl.presetImages track by preset.id">
                         <oui-select-picker
                             data-name="{{:: preset.id }}"
+                            data-description="{{:: preset.description }}"
                             data-model="$ctrl.model.imageId"
-                            data-label="{{:: preset.description }}"
+                            data-label="{{:: preset.name }}"
                             data-variant="light"
                             data-values="[preset]"
                             data-required>
+
+                            <span class="oui-select-picker__section">
+                                <a target="_blank" class="oui-button oui-button_link" rel="noopener"
+                                   data-ng-href="{{:: preset.link }}">
+                                    <span>{{ :: 'pci_projects_project_serving_namespace_models_add_model_preset_info' | translate }}</span>
+                                </a>
+                            </span>
+
                         </oui-select-picker>
                     </div>
                 </div>
