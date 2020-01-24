@@ -1,3 +1,12 @@
+## [11.3.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@11.3.5...@ovh-ux/manager-dedicated@11.3.6) (2020-01-24)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 240] ([e4b2814](https://github.com/ovh/manager/commit/e4b281488457da54f57ad5f3ad8d6a27b88e8750))
+
+
+
 ## [11.3.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@11.3.4...@ovh-ux/manager-dedicated@11.3.5) (2020-01-21)
 
 

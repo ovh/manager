@@ -1,3 +1,33 @@
+## [13.43.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.43.0...@ovh-ux/manager-web@13.43.1) (2020-01-24)
+
+
+### Bug Fixes
+
+* **web:** replace contracts component ([#2138](https://github.com/ovh/manager/issues/2138)) ([c693f0e](https://github.com/ovh/manager/commit/c693f0ec9e4396bf9288e9a247fffd5649fedeee))
+
+
+
+# [13.43.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.42.1...@ovh-ux/manager-web@13.43.0) (2020-01-24)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 238] ([735f36c](https://github.com/ovh/manager/commit/735f36c6ec36a4555e145d567360fb2fa4ad6b5d))
+* **i18n:** add missing translations [CDS 239] ([945cc74](https://github.com/ovh/manager/commit/945cc74a7c3d79e754f6ea9f8c2101ad92c22e07))
+* **i18n:** add missing translations [CDS 240] ([e4b2814](https://github.com/ovh/manager/commit/e4b281488457da54f57ad5f3ad8d6a27b88e8750))
+* **i18n:** add missing translations [CDS 241] ([c577f92](https://github.com/ovh/manager/commit/c577f9299a0b416514d375ebec0e62c5d817f864))
+
+
+### Features
+
+* **hosting.offer.upgrade:** display prorata ([#2110](https://github.com/ovh/manager/issues/2110)) ([aa1e5a5](https://github.com/ovh/manager/commit/aa1e5a5ddc7451d476b07ee2667621b2e1dd11d7))
+* **web:** migrate email activate to agora ([#1924](https://github.com/ovh/manager/issues/1924)) ([68cd438](https://github.com/ovh/manager/commit/68cd4380df2a8babb9ba37b1b584389dff31137c))
+* **web:** private sql upgrade prorata ([#2087](https://github.com/ovh/manager/issues/2087)) ([001ef60](https://github.com/ovh/manager/commit/001ef601a0041de0d61eb327c18d9853abc18eb9))
+* **web:** update private-sql activation ([#1991](https://github.com/ovh/manager/issues/1991)) ([2835c9c](https://github.com/ovh/manager/commit/2835c9c10cbd5dc4e4232389198810e53314b904))
+* **web.hosting.email:** extract translations ([#2128](https://github.com/ovh/manager/issues/2128)) ([6b4f8c6](https://github.com/ovh/manager/commit/6b4f8c6366e2ba92ecbc1cb3178ced04246b929d))
+
+
+
 ## [13.42.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.42.0...@ovh-ux/manager-web@13.42.1) (2020-01-21)
 
 
