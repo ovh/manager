@@ -1,10 +1,6 @@
 export const GROUPS = [
-  {
-    id: 'model-management',
-  },
-  {
-    id: 'model-evaluation',
-  },
+  'model-management',
+  'model-evaluation',
 ];
 
 export default {

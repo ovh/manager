@@ -24,9 +24,16 @@
         </oui-field>
         <oui-field data-label="{{:: 'pci_projects_project_serving_namespace_tokens_group' | translate }}"
                    data-size="auto">
-            <oui-select data-name="groups" data-model="$ctrl.token.groups" data-placeholder="{{:: 'pci_projects_project_serving_namespace_tokens_groups' | translate }}"
-                        data-items="$ctrl.GROUPS" data-match="id" data-multiple data-searchable>
-            </oui-select>
+
+            <div data-ng-repeat="group in $ctrl.GROUPS" ng-init="$ctrl.token.groups[group] = false">
+                <oui-checkbox
+                    data-name="$group"
+                    data-model="$ctrl.token.groups[group]"
+                    data-description="{{:: 'pci_projects_project_serving_namespace_tokens_group_help_' + group | translate }}">
+                        {{:: 'pci_projects_project_serving_namespace_tokens_group_name_' + group | translate }}
+                </oui-checkbox>
+            </div>
+
         </oui-field>
     </oui-modal>
 </form>

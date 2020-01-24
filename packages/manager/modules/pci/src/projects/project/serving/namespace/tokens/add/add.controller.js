@@ -27,7 +27,7 @@ export default class PciServingNamespaceTokensAddController {
 
     return this.OvhManagerPciServingTokenService.add(this.projectId, this.namespaceId, {
       resource: this.token.resource,
-      groups: this.token.groups.map(group => group.id),
+      groups: Object.entries(this.token.groups).filter(([, v]) => v).map(([k]) => k),
     })
       .then(({ token }) => this.goBack({
         textHtml: this.$translate.instant('pci_projects_project_serving_namespace_tokens_add_success'),
