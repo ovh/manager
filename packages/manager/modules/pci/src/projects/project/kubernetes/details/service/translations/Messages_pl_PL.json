@@ -51,5 +51,7 @@
   "kube_service_cluster_status_REOPENING": "Trwa odblokowywanie",
   "kube_service_cluster_status_SUSPENDED": "Zawieszony",
   "kube_service_cluster_status_USER_ERROR": "Błąd",
-  "kube_service_cluster_status_USER_QUOTA_ERROR": "Problem z limitem"
+  "kube_service_cluster_status_USER_QUOTA_ERROR": "Problem z limitem",
+  "kube_service_cluster_version_not_supported_message": "Twoja wersja Kubernetes nie jest już wspierana. Zaktualizuj Kubernetes do wspieranej wersji.",
+  "kube_service_cluster_versions_guide": "Więcej informacji o wspieranych przez nas wersjach znajdziesz w naszej dokumentacji <a href=\"{{versionGuideUrl}}\" rel=\"noopener\" target=\"_blank\">End-of-Support i End-of-Life policy</a>"
 }
