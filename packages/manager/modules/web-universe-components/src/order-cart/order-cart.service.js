@@ -1,3 +1,5 @@
+import { FIDELITY_ACCOUNT } from './order-cart.constants';
+
 /**
  * Cart order management service, based on API /order/cart
  * It is, for the moment, aimed to handle order of product, or existing product
@@ -16,6 +18,7 @@ export default class OrderCartService {
    * Will create a new cart for the user
    *
    * @param  {string} ovhSubsidiary OVHcloud Subsidiary in order to propose
+   * localized offers
    * @return {Promise<Object>}      Promise of the new created cart
    */
   createNewCart(ovhSubsidiary) {
@@ -218,7 +221,7 @@ export default class OrderCartService {
             orderId: order.orderId,
           },
           {
-            paymentMean: 'fidelityAccount',
+            paymentMean: FIDELITY_ACCOUNT,
           },
         ).$promise;
     }
