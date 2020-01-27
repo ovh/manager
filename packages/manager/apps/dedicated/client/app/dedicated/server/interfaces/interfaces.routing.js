@@ -32,14 +32,9 @@ export default /* @ngInject */ ($stateProvider) => {
       guideUrl: /* @ngInject */ (user) =>
         get(GUIDES, `${user.ovhSubsidiary}`, GUIDES.default),
       optionPrice: /* @ngInject */ (
-        $q,
-        isOlaAvailable,
         DedicatedServerInterfacesService,
         serverName,
-      ) =>
-        isOlaAvailable
-          ? DedicatedServerInterfacesService.getOlaPrice(serverName)
-          : $q.resolve(),
+      ) => DedicatedServerInterfacesService.getOlaPrice(serverName),
       orderPrivateBandwidthLink: /* @ngInject */ (
         $state,
         isLegacy,

@@ -4,8 +4,4 @@ export default class {
     this.coreConfig = coreConfig;
     this.Server = Server;
   }
-
-  hasBandwidthOption() {
-    return this.coreConfig.isRegion(['EU', 'CA']);
-  }
 }
