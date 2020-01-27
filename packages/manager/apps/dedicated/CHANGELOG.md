@@ -1,3 +1,13 @@
+## [11.3.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@11.3.6...@ovh-ux/manager-dedicated@11.3.7) (2020-01-27)
+
+
+### Bug Fixes
+
+* **dedicated:** update dedicated server order link for us ([#2143](https://github.com/ovh/manager/issues/2143)) ([2b1c6cc](https://github.com/ovh/manager/commit/2b1c6ccb0526aeb427aec9b068e1f989111b54b5))
+* **server:** unlock ola across all regions ([18ce659](https://github.com/ovh/manager/commit/18ce6597c22dfaef42aaa30a2d15ec4f3dbe15d4))
+
+
+
 ## [11.3.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@11.3.5...@ovh-ux/manager-dedicated@11.3.6) (2020-01-24)
 
 
