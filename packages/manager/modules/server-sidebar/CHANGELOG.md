@@ -1,3 +1,12 @@
+## [1.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@1.3.1...@ovh-ux/manager-server-sidebar@1.3.2) (2020-01-27)
+
+
+### Bug Fixes
+
+* **dedicated:** update dedicated server order link for us ([#2143](https://github.com/ovh/manager/issues/2143)) ([2b1c6cc](https://github.com/ovh/manager/commit/2b1c6ccb0526aeb427aec9b068e1f989111b54b5))
+
+
+
 ## [1.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@1.3.0...@ovh-ux/manager-server-sidebar@1.3.1) (2020-01-24)
 
 
