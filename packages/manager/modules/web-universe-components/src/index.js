@@ -21,7 +21,6 @@ import wucProgressBarElementCounter from './progressBarElementCounter';
 import wucServiceStatusAction from './service-status';
 import wucString from './string';
 import wucTabs from './tabs';
-import wucV6UiSwitch from './v6UiSwitch';
 import wucValidator from './validator';
 
 const moduleName = 'ngOvhWebUniverseComponents';
@@ -48,7 +47,6 @@ angular.module(moduleName, [
   wucServiceStatusAction,
   wucString,
   wucTabs,
-  wucV6UiSwitch,
   wucValidator,
 ]);
 
