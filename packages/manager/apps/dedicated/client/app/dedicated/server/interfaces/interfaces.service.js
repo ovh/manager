@@ -4,6 +4,7 @@ import get from 'lodash/get';
 import includes from 'lodash/includes';
 import isString from 'lodash/isString';
 import map from 'lodash/map';
+import startsWith from 'lodash/startsWith';
 import some from 'lodash/some';
 import uniq from 'lodash/uniq';
 
@@ -15,6 +16,7 @@ export default class DedicatedServerInterfacesService {
   constructor(
     $http,
     $q,
+    coreConfig,
     OvhApiDedicatedServerOla,
     OvhApiDedicatedServerPhysicalInterface,
     OvhApiDedicatedServerVirtualInterface,
@@ -23,6 +25,7 @@ export default class DedicatedServerInterfacesService {
   ) {
     this.$http = $http;
     this.$q = $q;
+    this.coreConfig = coreConfig;
     this.Ola = OvhApiDedicatedServerOla;
     this.PhysicalInterface = OvhApiDedicatedServerPhysicalInterface;
     this.VirtualInterface = OvhApiDedicatedServerVirtualInterface;
@@ -125,7 +128,10 @@ export default class DedicatedServerInterfacesService {
   getTasks(serverName) {
     return this.$http
       .get(`/dedicated/server/${serverName}/task?function=${INTERFACE_TASK}`)
-      .then((response) => response.data, () => [])
+      .then(
+        (response) => response.data,
+        () => [],
+      )
       .then((taskIds) => ({
         promise: this.waitAllTasks(
           serverName,
@@ -193,16 +199,30 @@ export default class DedicatedServerInterfacesService {
     );
   }
 
-  getOlaPrice(serviceName) {
+  getOlaPrice(serviceName, { datacenter }) {
+    let suffix = 'eu';
+    if (startsWith(datacenter, 'HIL') || startsWith(datacenter, 'VIN')) {
+      suffix = 'us';
+    }
+    if (startsWith(datacenter, 'BHS')) {
+      suffix = 'ca';
+    }
+
     return this.OvhApiOrderCartServiceOption.v6()
       .get({
         productName: 'baremetalServers',
         serviceName,
       })
       .$promise.then((options) => {
+        let planCode = OLA_PLAN_CODE;
+
+        if (this.coreConfig.getRegion() === 'US') {
+          planCode = `${OLA_PLAN_CODE}-${suffix}`;
+        }
+
         const prices = get(
           find(options, {
-            planCode: OLA_PLAN_CODE,
+            planCode,
           }),
           'prices',
         );

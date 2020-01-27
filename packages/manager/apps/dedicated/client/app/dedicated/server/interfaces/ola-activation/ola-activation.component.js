@@ -6,6 +6,7 @@ export default {
     goBack: '<',
     alertError: '<',
     atTrack: '<',
+    server: '<',
     serverName: '<',
     user: '<',
   },

@@ -1,8 +1,14 @@
+import get from 'lodash/get';
+import startsWith from 'lodash/startsWith';
+
+import { OLA_PLAN_CODE } from '../interfaces.constants';
+
 export default class DedicatedServerInterfacesOlaActivationCtrl {
   /* @ngInject */
-  constructor($translate, $window, OvhApiOrderCart) {
+  constructor($translate, $window, coreConfig, OvhApiOrderCart) {
     this.$translate = $translate;
     this.$window = $window;
+    this.coreConfig = coreConfig;
     this.CartService = OvhApiOrderCart;
   }
 
@@ -22,6 +28,23 @@ export default class DedicatedServerInterfacesOlaActivationCtrl {
       'dedicated_server_interfaces_ola_activation_cancel',
     );
 
+    let planCode = OLA_PLAN_CODE;
+
+    let suffix = 'eu';
+    if (
+      startsWith(get(this.server, 'datacenter'), 'HIL') ||
+      startsWith(get(this.server, 'datacenter'), 'VIN')
+    ) {
+      suffix = 'us';
+    }
+    if (startsWith(get(this.server, 'datacenter'), 'BHS')) {
+      suffix = 'ca';
+    }
+
+    if (this.coreConfig.getRegion() === 'US') {
+      planCode = `${OLA_PLAN_CODE}-${suffix}`;
+    }
+
     this.cartPromise = this.CartService.v6()
       .post({
         ovhSubsidiary: this.user.ovhSubsidiary,
@@ -37,7 +60,7 @@ export default class DedicatedServerInterfacesOlaActivationCtrl {
             .post({
               productName: 'baremetalServers',
               serviceName: this.serverName,
-              planCode: 'ovh-link-aggregation-infra',
+              planCode,
               duration: 'P1M',
               pricingMode: 'default',
               quantity: 1,
