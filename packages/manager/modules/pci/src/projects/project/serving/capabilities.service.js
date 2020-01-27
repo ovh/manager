@@ -1,21 +1,27 @@
 export default class OvhManagerPciServingNamespaceModelsAddServiceCapabilities {
   /* @ngInject */
-  constructor($q, OvhApiCloudProjectAiServing) {
+  constructor($q, OvhApiCloudProjectAi) {
     this.$q = $q;
-    this.OvhApiCloudProjectAiServing = OvhApiCloudProjectAiServing;
+    this.OvhApiCloudProjectAi = OvhApiCloudProjectAi;
   }
 
   getFlavors(serviceName) {
-    return this.OvhApiCloudProjectAiServing
-      .Capabilities().Flavor().v6()
+    return this.OvhApiCloudProjectAi
+      .Capabilities()
+      .Serving()
+      .Flavor()
+      .v6()
       .query({
         serviceName,
       }).$promise;
   }
 
   getPresetImages(serviceName) {
-    return this.OvhApiCloudProjectAiServing
-      .Capabilities().PresetImage().v6()
+    return this.OvhApiCloudProjectAi
+      .Capabilities()
+      .Serving()
+      .PresetImage()
+      .v6()
       .query({
         serviceName,
       }).$promise;

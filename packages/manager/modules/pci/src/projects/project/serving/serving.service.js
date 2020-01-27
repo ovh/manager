@@ -4,14 +4,15 @@ export default class PciProjectServingService {
   /* @ngInject */
   constructor(
     $q,
-    OvhApiCloudProjectAiServing,
+    OvhApiCloudProjectAi,
   ) {
     this.$q = $q;
-    this.OvhApiCloudProjectAiServing = OvhApiCloudProjectAiServing;
+    this.OvhApiCloudProjectAi = OvhApiCloudProjectAi;
   }
 
   getAll(projectId) {
-    return this.OvhApiCloudProjectAiServing
+    return this.OvhApiCloudProjectAi
+      .Serving()
       .v6()
       .query({
         serviceName: projectId,
@@ -21,7 +22,8 @@ export default class PciProjectServingService {
   }
 
   get(projectId, namespaceId) {
-    return this.OvhApiCloudProjectAiServing
+    return this.OvhApiCloudProjectAi
+      .Serving()
       .v6()
       .get({
         serviceName: projectId,
@@ -34,7 +36,8 @@ export default class PciProjectServingService {
   }
 
   delete(projectId, { id: namespaceId }) {
-    return this.OvhApiCloudProjectAiServing
+    return this.OvhApiCloudProjectAi
+      .Serving()
       .v6()
       .delete({
         serviceName: projectId,

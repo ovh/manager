@@ -2,13 +2,14 @@ import NamespaceModel from './model.class';
 
 export default class OvhManagerPciServingModelService {
   /* @ngInject */
-  constructor($q, OvhApiCloudProjectAiServing) {
+  constructor($q, OvhApiCloudProjectAi) {
     this.$q = $q;
-    this.OvhApiCloudProjectAiServing = OvhApiCloudProjectAiServing;
+    this.OvhApiCloudProjectAi = OvhApiCloudProjectAi;
   }
 
   add(serviceName, namespaceId, modelCreation) {
-    return this.OvhApiCloudProjectAiServing
+    return this.OvhApiCloudProjectAi
+      .Serving()
       .Model()
       .v6()
       .save(
@@ -22,7 +23,8 @@ export default class OvhManagerPciServingModelService {
   }
 
   getAll(serviceName, namespaceId) {
-    return this.OvhApiCloudProjectAiServing
+    return this.OvhApiCloudProjectAi
+      .Serving()
       .Model()
       .v6()
       .query({
@@ -34,7 +36,8 @@ export default class OvhManagerPciServingModelService {
   }
 
   get(serviceName, namespaceId, modelId) {
-    return this.OvhApiCloudProjectAiServing
+    return this.OvhApiCloudProjectAi
+      .Serving()
       .Model()
       .v6()
       .get({
@@ -49,7 +52,8 @@ export default class OvhManagerPciServingModelService {
   }
 
   delete(serviceName, namespaceId, { id: modelId }) {
-    return this.OvhApiCloudProjectAiServing
+    return this.OvhApiCloudProjectAi
+      .Serving()
       .Model()
       .v6()
       .delete({
@@ -61,7 +65,8 @@ export default class OvhManagerPciServingModelService {
   }
 
   update(serviceName, namespaceId, modelId) {
-    return this.OvhApiCloudProjectAiServing
+    return this.OvhApiCloudProjectAi
+      .Serving()
       .Model()
       .v6()
       .edit(

@@ -2,13 +2,14 @@ import Token from './token.class';
 
 export default class OvhManagerPciServingTokenService {
   /* @ngInject */
-  constructor($q, OvhApiCloudProjectAiServing) {
+  constructor($q, OvhApiCloudProjectAi) {
     this.$q = $q;
-    this.OvhApiCloudProjectAiServing = OvhApiCloudProjectAiServing;
+    this.OvhApiCloudProjectAi = OvhApiCloudProjectAi;
   }
 
   add(serviceName, namespaceId, tokenCreation) {
-    return this.OvhApiCloudProjectAiServing
+    return this.OvhApiCloudProjectAi
+      .Serving()
       .Token()
       .v6()
       .save(
@@ -22,7 +23,8 @@ export default class OvhManagerPciServingTokenService {
   }
 
   update(serviceName, namespaceId, tokenId) {
-    return this.OvhApiCloudProjectAiServing
+    return this.OvhApiCloudProjectAi
+      .Serving()
       .Token()
       .v6()
       .edit(
@@ -37,7 +39,8 @@ export default class OvhManagerPciServingTokenService {
   }
 
   getAll(serviceName, namespaceId) {
-    return this.OvhApiCloudProjectAiServing
+    return this.OvhApiCloudProjectAi
+      .Serving()
       .Token()
       .v6()
       .query({
@@ -49,7 +52,8 @@ export default class OvhManagerPciServingTokenService {
   }
 
   get(serviceName, namespaceId, tokenId) {
-    return this.OvhApiCloudProjectAiServing
+    return this.OvhApiCloudProjectAi
+      .Serving()
       .Token()
       .v6()
       .get({
@@ -64,7 +68,8 @@ export default class OvhManagerPciServingTokenService {
   }
 
   delete(serviceName, namespaceId, { id: tokenId }) {
-    return this.OvhApiCloudProjectAiServing
+    return this.OvhApiCloudProjectAi
+      .Serving()
       .Token()
       .v6()
       .delete({

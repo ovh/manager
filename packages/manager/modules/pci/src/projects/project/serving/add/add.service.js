@@ -2,21 +2,25 @@ import map from 'lodash/map';
 
 export default class OvhManagerPciServingAddService {
   /* @ngInject */
-  constructor($q, OvhApiCloudProjectAiServing) {
+  constructor($q, OvhApiCloudProjectAi) {
     this.$q = $q;
-    this.OvhApiCloudProjectAiServing = OvhApiCloudProjectAiServing;
+    this.OvhApiCloudProjectAi = OvhApiCloudProjectAi;
   }
 
   addNamespace(serviceName, namespaceCreation) {
-    return this.OvhApiCloudProjectAiServing
-      .v6().save({
-        serviceName,
-      }, namespaceCreation).$promise;
+    return this.OvhApiCloudProjectAi
+      .Serving()
+      .v6()
+      .save({ serviceName }, namespaceCreation)
+      .$promise;
   }
 
   getAvailableRegions(serviceName) {
-    return this.OvhApiCloudProjectAiServing
-      .Capabilities().Region().v6()
+    return this.OvhApiCloudProjectAi
+      .Capabilities()
+      .Serving()
+      .Region()
+      .v6()
       .query({
         serviceName,
       }).$promise

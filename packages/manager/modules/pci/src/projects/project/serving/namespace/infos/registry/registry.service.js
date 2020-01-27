@@ -1,13 +1,14 @@
 
 export default class OvhManagerPciServingRegistryService {
   /* @ngInject */
-  constructor($q, OvhApiCloudProjectAiServing) {
+  constructor($q, OvhApiCloudProjectAi) {
     this.$q = $q;
-    this.OvhApiCloudProjectAiServing = OvhApiCloudProjectAiServing;
+    this.OvhApiCloudProjectAi = OvhApiCloudProjectAi;
   }
 
   get(serviceName, namespaceId) {
-    return this.OvhApiCloudProjectAiServing
+    return this.OvhApiCloudProjectAi
+      .Serving()
       .Registry()
       .v6()
       .get(
@@ -20,7 +21,8 @@ export default class OvhManagerPciServingRegistryService {
   }
 
   attach(serviceName, namespaceId, registry) {
-    return this.OvhApiCloudProjectAiServing
+    return this.OvhApiCloudProjectAi
+      .Serving()
       .Registry()
       .v6()
       .save(
@@ -34,7 +36,8 @@ export default class OvhManagerPciServingRegistryService {
   }
 
   detach(serviceName, namespaceId) {
-    return this.OvhApiCloudProjectAiServing
+    return this.OvhApiCloudProjectAi
+      .Serving()
       .Registry()
       .v6()
       .delete({
