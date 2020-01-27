@@ -381,6 +381,41 @@ import union from 'lodash/union';
       }
 
       /**
+       * Retrieve e-mail options
+       * @param {string} serviceName
+       */
+      getEmailOptions(serviceName) {
+        return this.OvhHttp.get(`/hosting/web/${serviceName}/emailOption`, {
+          rootPath: 'apiv6',
+        }).then((ids) => {
+          return this.$q.all(
+            ids.map((id) => {
+              return this.OvhHttp.get(
+                `/hosting/web/${serviceName}/emailOption/${id}`,
+                {
+                  rootPath: 'apiv6',
+                },
+              );
+            }),
+          );
+        });
+      }
+
+      /**
+       * Terminate Email option
+       * @param {string} serviceName
+       * @param {string} email option id
+       */
+      terminateEmailOption(serviceName, id) {
+        return this.OvhHttp.post(
+          `/hosting/web/${serviceName}/emailOption/${id}/terminate`,
+          {
+            rootPath: 'apiv6',
+          },
+        );
+      }
+
+      /**
        * Get available offers
        * @param {string} domain
        */
@@ -542,7 +577,10 @@ import union from 'lodash/union';
                 namespace: 'hosting.cdn.flush.refresh',
                 interval: 30000,
               },
-            ).then((resp) => resp, (err) => err),
+            ).then(
+              (resp) => resp,
+              (err) => err,
+            ),
           ),
         );
       }
