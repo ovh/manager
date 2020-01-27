@@ -1,3 +1,13 @@
+## [11.3.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@11.3.7...@ovh-ux/manager-dedicated@11.3.8) (2020-01-27)
+
+
+### Bug Fixes
+
+* **server.interface:** set right planCode for ola ([98e4120](https://github.com/ovh/manager/commit/98e412074cc9436694b2307e39a8a8f4144f8cad))
+* **server.interface.ola-activation:** set right planCode ([f7ed41e](https://github.com/ovh/manager/commit/f7ed41e05d5f695bc5127a294c437f11af5de31d))
+
+
+
 ## [11.3.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@11.3.6...@ovh-ux/manager-dedicated@11.3.7) (2020-01-27)
 
 
