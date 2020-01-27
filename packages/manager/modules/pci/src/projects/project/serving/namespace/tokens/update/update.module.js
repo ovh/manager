@@ -16,7 +16,7 @@ angular.module(moduleName, [
 ])
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */)
-  .component('ovhManagerPciProjectServingNamespaceTokensUpdateComponent', component)
+  .component(moduleName, component)
   .service('OvhManagerPciServingTokensService', service);
 
 

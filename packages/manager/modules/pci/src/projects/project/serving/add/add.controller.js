@@ -1,5 +1,6 @@
 import get from 'lodash/get';
 
+
 export default class PciServingAddController {
   /* @ngInject */
   constructor($translate, PciProjectStorageContainersService, CucCloudMessage) {
@@ -9,6 +10,9 @@ export default class PciServingAddController {
   }
 
   $onInit() {
+    this.NEW = 'new';
+    this.ATTACH = 'attach';
+
     this.model = {
       region: null,
       description: null,
@@ -16,7 +20,7 @@ export default class PciServingAddController {
       containerInput: null,
     };
 
-    this.attachType = 'attach';
+    this.attachType = this.ATTACH;
 
     this.loading = false;
 
@@ -48,19 +52,22 @@ export default class PciServingAddController {
     }
 
     if (!this.containersFilter.length) {
-      this.attachType = 'new';
+      this.attachType = this.NEW;
     } else {
-      this.attachType = 'attach';
+      this.attachType = this.ATTACH;
     }
   }
 
   onStepperFinish() {
     this.loading = true;
 
+    const container = this.attachType === this.ATTACH
+      ? this.model.containerSelect : this.model.containerInput;
+
     return this.addNamespace({
       region: this.model.region.name,
       description: this.model.description,
-      container: this.attachType === 'attach' ? this.model.containerSelect : this.model.containerInput,
+      container,
     }).catch((error) => {
       this.loading = false;
 

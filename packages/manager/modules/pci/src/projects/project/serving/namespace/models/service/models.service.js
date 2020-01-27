@@ -1,4 +1,4 @@
-import Model from './model.class';
+import NamespaceModel from './model.class';
 
 export default class OvhManagerPciServingModelService {
   /* @ngInject */
@@ -30,7 +30,7 @@ export default class OvhManagerPciServingModelService {
         namespaceId,
       })
       .$promise
-      .then(models => models.map(model => new Model({ ...model })));
+      .then(models => models.map(model => new NamespaceModel({ ...model })));
   }
 
   get(serviceName, namespaceId, modelId) {
@@ -43,7 +43,7 @@ export default class OvhManagerPciServingModelService {
         modelId,
       })
       .$promise
-      .then(model => new Model({
+      .then(model => new NamespaceModel({
         ...model,
       }));
   }

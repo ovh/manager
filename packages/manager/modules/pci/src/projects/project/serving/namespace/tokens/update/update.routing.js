@@ -4,7 +4,7 @@ export default /* @ngInject */ ($stateProvider) => {
       url: '/update?tokenId',
       views: {
         modal: {
-          component: 'ovhManagerPciProjectServingNamespaceTokensUpdateComponent',
+          component: 'ovhManagerPciProjectServingNamespaceTokensUpdate',
         },
       },
       layout: 'modal',

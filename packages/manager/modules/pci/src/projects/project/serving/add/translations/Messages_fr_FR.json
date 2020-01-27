@@ -7,7 +7,7 @@
   "pci_projects_project_serving_add_container_help": "Nom du nouveau container",
   "pci_projects_project_serving_add_success": "Votre namespace {{ name }} a été créé avec succès",
   "pci_projects_project_serving_add_error": "Une erreur est survenue durant la création du namespace: {{ errorMessage }}",
-  "pci_projects_project_serving_add_container_attach": "Attacher a un container existant",
+  "pci_projects_project_serving_add_container_attach": "Attacher à un container existant",
   "pci_projects_project_serving_attach_container_help": "Merci de choisir un container dans la liste",
-  "pci_projects_project_serving_add_container_new": "Créer un container"
+  "pci_projects_project_serving_add_container_new": "Créer un conteneur"
 }

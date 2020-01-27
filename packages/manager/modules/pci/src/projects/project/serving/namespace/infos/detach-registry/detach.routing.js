@@ -4,7 +4,7 @@ export default /* @ngInject */ ($stateProvider) => {
       url: '/detach-registry',
       views: {
         modal: {
-          component: 'ovhManagerPciProjectServingNamespaceInfosDetachRegistryComponent',
+          component: 'ovhManagerPciProjectServingNamespaceInfosDetachRegistry',
         },
       },
       layout: 'modal',

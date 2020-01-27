@@ -7,7 +7,7 @@ export default /* @ngInject */ ($stateProvider) => {
       },
       views: {
         modal: {
-          component: 'ovhManagerPciProjectServingNamespaceTokensAddComponent',
+          component: 'ovhManagerPciProjectServingNamespaceTokensAdd',
         },
       },
       layout: 'modal',

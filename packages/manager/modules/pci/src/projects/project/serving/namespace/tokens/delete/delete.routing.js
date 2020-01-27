@@ -4,7 +4,7 @@ export default /* @ngInject */ ($stateProvider) => {
       url: '/delete?tokenId',
       views: {
         modal: {
-          component: 'ovhManagerPciProjectServingNamespaceTokensDeleteComponent',
+          component: 'ovhManagerPciProjectServingNamespaceTokensDelete',
         },
       },
       layout: 'modal',

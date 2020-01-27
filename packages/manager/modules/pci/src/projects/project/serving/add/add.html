@@ -36,14 +36,14 @@
             data-loading="$ctrl.loading">
 
             <oui-radio-toggle-group data-model="$ctrl.attachType">
-                <oui-radio data-disabled="$ctrl.containersFilter.length === 0" data-value="'attach'" >
+                <oui-radio data-disabled="$ctrl.containersFilter.length === 0" data-value="$ctrl.ATTACH" >
                     {{ :: 'pci_projects_project_serving_add_container_attach' | translate }}
                 </oui-radio>
-                <oui-radio data-value="'new'">
+                <oui-radio data-value="$ctrl.NEW">
                     {{ :: 'pci_projects_project_serving_add_container_new' | translate }}
                 </oui-radio>
             </oui-radio-toggle-group>
-            <oui-field data-ng-if="$ctrl.attachType === 'attach'" data-size="xl"
+            <oui-field data-ng-if="$ctrl.attachType === $ctrl.ATTACH" data-size="xl"
                        data-help-text="{{ :: 'pci_projects_project_serving_attach_container_help' | translate }}">
                 <oui-select
                     id="container-select"
@@ -54,7 +54,7 @@
                     data-required>
                 </oui-select>
             </oui-field>
-            <oui-field data-ng-if="$ctrl.attachType === 'new'" data-size="xl"
+            <oui-field data-ng-if="$ctrl.attachType === $ctrl.NEW" data-size="xl"
                        data-help-text="{{ :: 'pci_projects_project_serving_add_container_help' | translate }}">
                 <input class="oui-input" type="text"
                        id="container"

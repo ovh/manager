@@ -17,6 +17,6 @@ angular.module(moduleName, [
 ])
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */)
-  .component('ovhManagerPciProjectServingNamespaceInfosDetachRegistryComponent', component);
+  .component(moduleName, component);
 
 export default moduleName;
