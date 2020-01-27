@@ -1379,7 +1379,7 @@
   "hosting_dashboard_general_informations": "Allgemeine Informationen",
   "hosting_dashboard_configuration": "Konfiguration",
   "hosting_dashboard_access": "Zugriff",
-  "common_api_hostingWeb-1": "Sie können nicht auf dieses Angebot migrieren, da Ihr aktuelles Angebot über mehr E-Mail-Adressen verfügt als das gewählte Angebot.",
+  "common_api_hostingWeb-1": "Sie können nicht zu diesem Angebot wechseln, da Ihr aktuelles Angebot mehr E-Mail-Adressen umfasst, als das gerade gewählte Angebot.",
   "hosting_tab_WEBSITE_COACH": "Website Coach",
   "hosting_tab_BOOST_request_description_billing_new": "Ab dem 01. November 2019 ändert sich die Abrechnung und die Option wird Ihnen pro Tag der Nutzung berechnet: {{price}} zzgl. MwSt. pro Tag und pro Angebotsstufe.",
   "hosting_dashboard_service_datacenter_gra2": "Gravelines 2",
@@ -1400,5 +1400,10 @@
   "hosting_tab_DATABASES_configuration_create_step3_type_sql_local": "In Ihrer Cloud Web Instanz gespeichert",
   "hosting_tab_DATABASES_table_header_server_address_tooltip": "Bitte verwenden Sie den bereitgestellten Hostnamen, um eine Verbindung zu Ihrer Instanz herzustellen, da sich die damit verbundene IP-Adresse im Laufe der Zeit ändern kann.",
   "hosting_dashboard_service_privatesql_active_long": "Eine private SQL Datenbank aktivieren",
-  "hosting_dashboard_service_privatesql_active_remaining": "{{ count }} nicht aktivierte private SQL Datenbank(en)"
+  "hosting_dashboard_service_privatesql_active_remaining": "{{ count }} nicht aktivierte private SQL Datenbank(en)",
+  "hosting_dashboard_service_activate_email": "Mein E-Mail Angebot aktivieren",
+  "hosting_dashboard_service_email_address": "E-Mail-Adressen",
+  "hosting_dashboard_service_common_active": "Aktiv",
+  "hosting_dashboard_service_common_inactive": "Inaktiv",
+  "hosting_dashboard_email_offer_get_error": "Es ist unmöglich, die E-Mail-Adresse wiederherzustellen."
 }
