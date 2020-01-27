@@ -373,7 +373,7 @@ export const ORDER_URLS = {
       US: 'https://us.ovhcloud.com/solutions/ip-load-balancing/',
     },
     dedicatedOrder: {
-      US: 'https://us.ovhcloud.com/order/dedicated/#/dedicated/select',
+      US: 'https://us.ovhcloud.com/dedicated-servers/prices',
     },
     cloudProjectOrder: {
       US: 'https://us.ovhcloud.com/manager/cloud/#/iaas/pci/offer',
