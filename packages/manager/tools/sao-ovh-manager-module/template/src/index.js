@@ -16,7 +16,7 @@ angular
     'ui.router',
   ])
   .config(routing)
-  .component('ovhManager<%= pascalcasedName %>Component', component)
+  .component('<%= pascalcasedName %>', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

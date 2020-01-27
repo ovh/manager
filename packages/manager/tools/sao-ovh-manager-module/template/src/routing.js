@@ -2,6 +2,6 @@
   $stateProvider
     .state('app', {
       url: '/<%= name %>',
-      component: 'ovhManager<%= pascalcasedName %>Component',
+      component: '<%= pascalcasedName %>',
     });
 };
