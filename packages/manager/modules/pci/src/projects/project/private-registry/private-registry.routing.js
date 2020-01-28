@@ -15,6 +15,46 @@ export default /* @ngInject */ ($stateProvider) => {
             : 'pci.projects.project.private-registry.onboarding',
         ),
     resolve: {
+      createLink: /* @ngInject */ ($state, projectId) =>
+        $state.href('pci.projects.project.private-registry.create', {
+          projectId,
+        }),
+      deleteRegistry: /* @ngInject */ ($state, projectId) => (
+        registryId,
+        registryName,
+      ) =>
+        $state.go('pci.projects.project.private-registry.delete', {
+          projectId,
+          registryId,
+          registryName,
+        }),
+      updateRegistry: /* @ngInject */ ($state, projectId) => (
+        registryId,
+        registryName,
+      ) =>
+        $state.go('pci.projects.project.private-registry.update', {
+          projectId,
+          registryId,
+          registryName,
+        }),
+
+      generateCredentials: /* @ngInject */ ($state, projectId) => (
+        registryId,
+      ) =>
+        $state.go('pci.projects.project.private-registry.credentials', {
+          projectId,
+          registryId,
+          confirmationRequired: true,
+        }),
+
+      copyApiUrl: /* @ngInject */ ($state, projectId) => (registryId, url) =>
+        $state.go('pci.projects.project.private-registry.api-url', {
+          projectId,
+          registryId,
+          url,
+        }),
+
+      refreshRegistryList: /* @ngInject */ ($state) => () => $state.reload(),
       goBackToList: /* @ngInject */ ($state, CucCloudMessage, projectId) => (
         message = false,
         type = 'success',
