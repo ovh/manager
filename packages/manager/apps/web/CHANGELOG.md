@@ -1,3 +1,13 @@
+## [13.43.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.43.1...@ovh-ux/manager-web@13.43.2) (2020-01-28)
+
+
+### Bug Fixes
+
+* **web.hosting:** hide webcoach tab for non FR subsidiaries ([#2142](https://github.com/ovh/manager/issues/2142)) ([652e719](https://github.com/ovh/manager/commit/652e7193f9c2004682c2dcf718630d777768bb97))
+* **web.hosting.cdn:** use renew duration ([#2154](https://github.com/ovh/manager/issues/2154)) ([cd3a4e2](https://github.com/ovh/manager/commit/cd3a4e2856bfc03f0a22f7ec47b1a68dd3bb1d62))
+
+
+
 ## [13.43.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.43.0...@ovh-ux/manager-web@13.43.1) (2020-01-24)
 
 
