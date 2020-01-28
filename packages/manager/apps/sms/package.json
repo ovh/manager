@@ -48,7 +48,7 @@
     "ng-csv": "^0.3.6",
     "oclazyload": "^1.1.0",
     "ovh-angular-ui-confirm-modal": "^1.0.2",
-    "ovh-api-services": "^9.31.0",
+    "ovh-api-services": "^9.34.0",
     "ovh-ngstrap": "^4.0.2",
     "validator-js": "^0.2.1"
   },
