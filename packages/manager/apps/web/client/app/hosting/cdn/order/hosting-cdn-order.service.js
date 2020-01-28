@@ -1,4 +1,5 @@
 import find from 'lodash/find';
+import includes from 'lodash/includes';
 
 export default class HostingCdnOrderService {
   /* @ngInject */
@@ -48,7 +49,9 @@ export default class HostingCdnOrderService {
   }
 
   async addItemToCart(cartId, serviceName, serviceOption) {
-    const [price] = serviceOption.prices; // Will only have one price option
+    const price = find(serviceOption.prices, ({ capacities }) =>
+      includes(capacities, 'renew'),
+    );
     const {
       itemId,
     } = await this.WucOrderCartService.addProductServiceOptionToCart(
