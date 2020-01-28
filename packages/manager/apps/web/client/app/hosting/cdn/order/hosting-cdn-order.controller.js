@@ -1,3 +1,6 @@
+import filter from 'lodash/filter';
+import includes from 'lodash/includes';
+
 export default class {
   /* @ngInject */
   constructor($filter, $timeout) {
@@ -7,7 +10,10 @@ export default class {
 
   $onInit() {
     // Auto-select duration
-    [this.price] = this.catalogAddon.pricings;
+    this.prices = filter(this.catalogAddon.pricings, ({ capacities }) =>
+      includes(capacities, 'renew'),
+    );
+    [this.price] = this.prices;
     this.interval = this.price.interval;
     this.isEditable = true;
 
