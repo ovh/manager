@@ -1,3 +1,6 @@
+import map from 'lodash/map';
+import PrivateRegistry from './PrivateRegistry.class';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.private-registry', {
     url: '/private-registry',
@@ -63,7 +66,23 @@ export default /* @ngInject */ ($stateProvider) => {
       },
 
       registries: /* @ngInject */ (pciPrivateRegistryService, projectId) =>
-        pciPrivateRegistryService.getRegistryList(projectId, true),
+        pciPrivateRegistryService
+          .getRegistryList(projectId, true)
+          .then((registries) =>
+            map(registries, (registry) => new PrivateRegistry(registry)),
+          ),
+
+      getRegistryPlan: /* @ngInject */ (
+        pciPrivateRegistryService,
+        projectId,
+      ) => (registry) =>
+        pciPrivateRegistryService.getRegistryPlan(projectId, registry.id).then(
+          (plan) =>
+            new PrivateRegistry({
+              ...registry,
+              plan,
+            }),
+        ),
 
       list: /* @ngInject */ ($state, projectId) => () =>
         $state.go('pci.projects.project.private-registry', {
