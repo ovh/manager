@@ -1,6 +1,7 @@
 import filter from 'lodash/filter';
 import find from 'lodash/find';
 import get from 'lodash/get';
+import includes from 'lodash/includes';
 import map from 'lodash/map';
 
 export default class PrivateSqlActivationController {
@@ -81,7 +82,9 @@ export default class PrivateSqlActivationController {
   }
 
   fetchCheckoutInformations() {
-    const price = find(this.option.value.prices, { pricingMode: 'default' });
+    const price = find(this.option.value.prices, ({ capacities }) =>
+      includes(capacities, 'renew'),
+    );
     this.loading.checkout = true;
     this.error.checkout = null;
     return this.WucOrderCartService.createNewCart(this.me.ovhSubsidiary)
@@ -119,9 +122,9 @@ export default class PrivateSqlActivationController {
         ).then(() => cartId),
       )
       .then((cartId) =>
-        this.WucOrderCartService.getCheckoutInformations(cartId).then(
-          (checkout) => ({ cartId, checkout }),
-        ),
+        this.WucOrderCartService.getCheckoutInformations(
+          cartId,
+        ).then((checkout) => ({ cartId, checkout })),
       )
       .then(({ cartId, checkout }) => {
         this.checkout = checkout;
