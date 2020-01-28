@@ -97,12 +97,12 @@
                     ></span>
                 </oui-action-menu-item>
                 <oui-action-menu-item
-                    data-on-click="$ctrl.update($row.id, $row.name)"
+                    data-on-click="$ctrl.updateRegistry($row.id, $row.name)"
                 >
                     <span data-translate="private_registry_rename"></span>
                 </oui-action-menu-item>
                 <oui-action-menu-item
-                    data-on-click="$ctrl.delete($row.id, $row.name)"
+                    data-on-click="$ctrl.deleteRegistry($row.id, $row.name)"
                     data-disabled="($row.status !== $ctrl.PRIVATE_REGISTRY_STATUS.READY && $row.status !== $ctrl.PRIVATE_REGISTRY_STATUS.ERROR)"
                 >
                     <span
@@ -111,7 +111,10 @@
                 </oui-action-menu-item>
             </oui-action-menu>
             <extra-top>
-                <oui-button data-on-click="$ctrl.create()">
+                <a
+                    class="oui-button oui-button_secondary oui-button_icon-left"
+                    data-ng-href="{{ $ctrl.createLink }}"
+                >
                     <span
                         class="oui-icon oui-icon-add"
                         aria-hidden="true"
@@ -119,7 +122,7 @@
                     <span
                         data-translate="private_registry_create_registry"
                     ></span>
-                </oui-button>
+                </a>
                 <button
                     type="button"
                     class="float-right oui-button oui-button_secondary oui-button_icon-only oui-button_small-width"

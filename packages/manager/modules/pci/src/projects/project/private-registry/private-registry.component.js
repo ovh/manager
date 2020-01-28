@@ -5,9 +5,15 @@ export default {
   template,
   controller,
   bindings: {
+    copyApiUrl: '<',
+    createLink: '<',
+    deleteRegistry: '<',
+    generateCredentials: '<',
     getRegistryPlan: '<',
     guideUrl: '<',
     projectId: '<',
+    refreshRegistryList: '<',
     registries: '<',
+    updateRegistry: '<',
   },
 };
