@@ -402,11 +402,6 @@ export default class {
           ],
         };
 
-        if (user.ovhSubsidiary === 'FR') {
-          this.tabs.splice(indexOf(this.tabs, 'FTP'), 0, 'LOCAL_SEO');
-          this.$scope.localSeoAvailable = true;
-        }
-
         if (hosting.isCloudWeb) {
           remove(this.tabs, (t) => t === 'TASK');
           this.tabs.splice(1, 0, 'RUNTIMES', 'ENVVARS');
@@ -454,13 +449,17 @@ export default class {
           });
         }
 
-        this.tabMenu.items.push({
-          label: this.$translate.instant('hosting_tab_WEBSITE_COACH'),
-          styles: 'status-beta',
-          state: 'app.hosting.website-coach',
-          target: 'WEBSITE_COACH',
-          type: 'STATE',
-        });
+        if (user.ovhSubsidiary === 'FR') {
+          this.tabs.splice(indexOf(this.tabs, 'FTP'), 0, 'LOCAL_SEO');
+          this.tabMenu.items.push({
+            label: this.$translate.instant('hosting_tab_WEBSITE_COACH'),
+            styles: 'status-beta',
+            state: 'app.hosting.website-coach',
+            target: 'WEBSITE_COACH',
+            type: 'STATE',
+          });
+          this.$scope.localSeoAvailable = true;
+        }
 
         this.tabMenu.items.push({
           type: 'SEPARATOR',
