@@ -93,11 +93,10 @@ export default class PrivateDatabaseOrderCloudDbCtrl {
 
             return {
               ...duration,
-              price: pricing.price,
-              tax: pricing.tax,
+              ...pricing,
             };
           })
-          .filter(({ interval }) => interval > 0);
+          .filter(({ capacities }) => capacities.includes('renew'));
       })
       .finally(() => {
         this.loadingDurations = false;
