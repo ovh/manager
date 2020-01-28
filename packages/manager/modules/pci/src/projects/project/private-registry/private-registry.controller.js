@@ -1,7 +1,7 @@
 import {
   PRIVATE_REGISTRY_STATUS,
   PRIVATE_REGISTRY_STATUS_MAP,
-  GUIDELINK,
+  GUIDE_LINKS,
 } from './private-registry.constants';
 
 export default class {
@@ -19,7 +19,7 @@ export default class {
     this.projectId = $stateParams.projectId;
     this.CucCloudMessage = CucCloudMessage;
     this.privateRegistryService = pciPrivateRegistryService;
-    this.guideLink = GUIDELINK;
+    this.GUIDE_LINKS = GUIDE_LINKS;
     this.PRIVATE_REGISTRY_STATUS = PRIVATE_REGISTRY_STATUS;
     this.PRIVATE_REGISTRY_STATUS_MAP = PRIVATE_REGISTRY_STATUS_MAP;
   }
