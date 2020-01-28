@@ -1,4 +1,6 @@
 import filter from 'lodash/filter';
+import find from 'lodash/find';
+import includes from 'lodash/includes';
 import isEmpty from 'lodash/isEmpty';
 
 import {
@@ -51,7 +53,9 @@ export default class HostingEmailService {
   }
 
   addServiceOption(cart, serviceName, option) {
-    const price = option.prices[0];
+    const price = find(option.prices, ({ capacities }) =>
+      includes(capacities, 'renew'),
+    );
     const options = {
       duration: price.duration,
       planCode: option.planCode,
