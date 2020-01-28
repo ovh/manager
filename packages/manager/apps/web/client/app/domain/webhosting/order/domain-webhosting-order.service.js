@@ -1,3 +1,5 @@
+import filter from 'lodash/filter';
+import includes from 'lodash/includes';
 import WebHostingOffer from './domain-webhosting-order-offer.class';
 import {
   CONFIGURATION_OPTIONS,
@@ -60,9 +62,18 @@ export default class {
             ({ planCode: productPlanCode }) => planCode === productPlanCode,
           );
 
-          const [pricing] = pricings;
-          const [{ duration, pricingMode }] = prices;
-          const durations = prices.map(
+          const renewPrices = filter(prices, ({ capacities }) =>
+            includes(capacities, 'renew'),
+          );
+
+          const renewPricings = filter(pricings, ({ capacities }) =>
+            includes(capacities, 'renew'),
+          );
+
+          const [pricing] = renewPricings;
+
+          const [{ duration, pricingMode }] = renewPrices;
+          const durations = renewPrices.map(
             ({ duration: priceDuration }) => priceDuration,
           );
 
@@ -74,7 +85,7 @@ export default class {
             durations,
             planCode,
             pricing,
-            pricings,
+            pricings: renewPricings,
           });
         });
       });
