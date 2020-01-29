@@ -9,6 +9,7 @@ import 'ovh-ui-angular';
 import routing from './private-registry.routing';
 import pciPrivateRegistryComponent from './private-registry.component';
 import pciPrivateRegistryService from './private-registry.service';
+import priceComponent from './components/price';
 
 import create from './create';
 import deleteRegistry from './delete';
@@ -21,12 +22,13 @@ const moduleName = 'ovhManagerPciProjectPrivateRegistry';
 
 angular
   .module(moduleName, [
+    apiUrl,
     create,
+    credentials,
     deleteRegistry,
     onboarding,
+    priceComponent,
     updateRegistry,
-    credentials,
-    apiUrl,
     'ngTranslateAsyncLoader',
     'pascalprecht.translate',
     'ngOvhCloudUniverseComponents',
