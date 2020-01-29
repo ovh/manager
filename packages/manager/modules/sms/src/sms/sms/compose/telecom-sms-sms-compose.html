@@ -446,7 +446,9 @@
                                 </oui-checkbox>
                             </div>
                         </div>
-                        <div data-ng-if="$ctrl.isShortNumber()">
+                        <div
+                            data-ng-if="$ctrl.isShortNumber() && $ctrl.displayCommercialClause()"
+                        >
                             <p
                                 data-translate="sms_sms_compose_message_commercial_description"
                             ></p>

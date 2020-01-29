@@ -295,7 +295,9 @@ export default class {
     this.displaySenderCustomizationAdvice =
       isRealNumber || this.sms.sender === SMS_COMPOSE.shortNumber;
     this.canHaveSTOPAnswer =
-      !isRealNumber && this.sms.sender !== SMS_COMPOSE.shortNumber;
+      !isRealNumber &&
+      this.sms.sender !== SMS_COMPOSE.shortNumber &&
+      this.displayCommercialClause();
     this.sms.noStopClause = isRealNumber;
 
     return this.computeRemainingChar();
@@ -303,6 +305,10 @@ export default class {
 
   isShortNumber() {
     return this.sms.sender === SMS_COMPOSE.shortNumber;
+  }
+
+  displayCommercialClause() {
+    return this.user.ovhSubsidiary === 'FR';
   }
 
   /**
