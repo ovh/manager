@@ -238,43 +238,13 @@ export default class PciProjectInstanceService {
     }).$promise;
   }
 
-  getBackupPriceEstimation(projectId, instance) {
+  getSnapshotMonthlyPrice(projectId, instance) {
     return this.CucPriceHelper.getPrices(projectId).then((catalog) => {
-      const catalogPrice = get(
+      return get(
         catalog,
-        `${INSTANCE_BACKUP_CONSUMPTION}.${instance.region}`,
-        get(catalog, INSTANCE_BACKUP_CONSUMPTION, false),
+        `snapshot.monthly.postpaid.${instance.region}`,
+        get(catalog, 'snapshot.monthly.postpaid', false),
       );
-
-      if (catalogPrice) {
-        const monthlyPriceValue =
-          (catalogPrice.priceInUcents *
-            moment.duration(1, 'months').asHours()) /
-          100000000;
-        const totalPriceValue = monthlyPriceValue * instance.flavor.disk;
-
-        return {
-          price: catalogPrice.price,
-          priceInUcents: catalogPrice.priceInUcents,
-          monthlyPrice: {
-            ...catalogPrice.price,
-            value: monthlyPriceValue,
-            text: catalogPrice.price.text.replace(
-              /\d+(?:[.,]\d+)?/,
-              round(monthlyPriceValue.toString(), 2),
-            ),
-          },
-          totalPrice: {
-            ...catalogPrice.price,
-            value: totalPriceValue,
-            text: catalogPrice.price.text.replace(
-              /\d+(?:[.,]\d+)?/,
-              round(totalPriceValue.toString(), 2),
-            ),
-          },
-        };
-      }
-      return Promise.reject();
     });
   }
 
@@ -320,13 +290,14 @@ export default class PciProjectInstanceService {
   }
 
   getCompatiblesPrivateNetworks(projectId, instance) {
-    return this.getAvailablesPrivateNetworks(projectId, instance.region).then(
-      (networks) =>
-        filter(
-          networks,
-          (network) =>
-            !includes(map(instance.privateNetworks, 'id'), network.id),
-        ),
+    return this.getAvailablesPrivateNetworks(
+      projectId,
+      instance.region,
+    ).then((networks) =>
+      filter(
+        networks,
+        (network) => !includes(map(instance.privateNetworks, 'id'), network.id),
+      ),
     );
   }
 
@@ -437,6 +408,7 @@ export default class PciProjectInstanceService {
   save(
     projectId,
     {
+      autobackup,
       flavorId,
       imageId,
       monthlyBilling,
@@ -454,6 +426,7 @@ export default class PciProjectInstanceService {
           serviceName: projectId,
         },
         {
+          autobackup,
           flavorId,
           imageId,
           monthlyBilling,
@@ -471,6 +444,7 @@ export default class PciProjectInstanceService {
         serviceName: projectId,
       },
       {
+        autobackup,
         flavorId,
         imageId,
         monthlyBilling,
