@@ -9,13 +9,18 @@
             data-ng-repeat="plan in $ctrl.detailedPlans track by plan.id"
             name="plan"
             data-model="$ctrl.selectedPlan"
-            data-label="{{ plan.name }}"
+            data-label="{{ plan.displayName }}"
             data-variant="light"
             data-values="[plan]"
         >
             <oui-select-picker-section>
                 <ul class="list-unstyled">
-                    <li data-ng-bind="plan.capacity | cucBytes"></li>
+                    <li
+                        data-translate="private_registry_upgrade_plan_storage"
+                        data-translate-values="{
+                            capacity: (plan.capacity | cucBytes)
+                        }"
+                    ></li>
                     <li
                         data-translate="private_registry_upgrade_plan_connections"
                         data-translate-values="{
@@ -36,8 +41,15 @@
             </oui-select-picker-section>
         </oui-select-picker>
     </div>
+    <div class="container">
+        <span class="italic"
+            >* La plupart des logiciels clients sont configurés pour utiliser 5
+            connexions http simultanées lors de l'accès à une Registry</span
+        >
+    </div>
 
     <oui-form-actions
+        class="mt-4"
         data-on-submit="$ctrl.upgradeOffer()"
         data-href="{{ $ctrl.cancelLink }}"
         data-submit-text="{{ 'private_registry_upgrade_plan' | translate }}"

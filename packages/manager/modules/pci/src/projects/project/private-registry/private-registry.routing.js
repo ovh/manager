@@ -1,3 +1,6 @@
+import map from 'lodash/map';
+import PrivateRegistry from './PrivateRegistry.class';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.private-registry', {
     url: '/private-registry',
@@ -12,6 +15,11 @@ export default /* @ngInject */ ($stateProvider) => {
             : 'pci.projects.project.private-registry.onboarding',
         ),
     resolve: {
+      upgradePlan: /* @ngInject */ ($state, projectId) => (registryId) =>
+        $state.go('pci.projects.project.private-registry.upgrade-plan', {
+          projectId,
+          registryId,
+        }),
       goBackToList: /* @ngInject */ ($state, CucCloudMessage, projectId) => (
         message = false,
         type = 'success',
@@ -63,7 +71,40 @@ export default /* @ngInject */ ($stateProvider) => {
       },
 
       registries: /* @ngInject */ (pciPrivateRegistryService, projectId) =>
-        pciPrivateRegistryService.getRegistryList(projectId, true),
+        pciPrivateRegistryService
+          .getRegistryList(projectId, true)
+          .then((registries) =>
+            map(registries, (registry) => new PrivateRegistry(registry)),
+          ),
+
+      getAvailableUpgrades: /* @ngInject */ (
+        pciPrivateRegistryService,
+        projectId,
+      ) => (registry) =>
+        pciPrivateRegistryService.getAvailableUpgrades(projectId, registry.id),
+
+      getRegistryDetails: /* @ngInject */ (
+        $q,
+        getAvailableUpgrades,
+        pciPrivateRegistryService,
+        projectId,
+      ) => (registry) =>
+        $q
+          .all({
+            availableUpgrades: getAvailableUpgrades(registry),
+            plan: pciPrivateRegistryService.getRegistryPlan(
+              projectId,
+              registry.id,
+            ),
+          })
+          .then(
+            ({ availableUpgrades, plan }) =>
+              new PrivateRegistry({
+                ...registry,
+                plan,
+                availableUpgrades,
+              }),
+          ),
 
       list: /* @ngInject */ ($state, projectId) => () =>
         $state.go('pci.projects.project.private-registry', {

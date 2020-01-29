@@ -16,6 +16,7 @@ import onboarding from './onboarding';
 import updateRegistry from './update';
 import credentials from './credentials';
 import apiUrl from './api-url';
+import upgradePlan from './upgrade-plan';
 
 const moduleName = 'ovhManagerPciProjectPrivateRegistry';
 
@@ -27,6 +28,7 @@ angular
     updateRegistry,
     credentials,
     apiUrl,
+    upgradePlan,
     'ngTranslateAsyncLoader',
     'pascalprecht.translate',
     'ngOvhCloudUniverseComponents',

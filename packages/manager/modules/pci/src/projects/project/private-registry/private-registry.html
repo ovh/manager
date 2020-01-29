@@ -16,7 +16,11 @@
             data-messages="$ctrl.messages"
         ></cui-message-container>
 
-        <oui-datagrid class="mt-5" data-rows="$ctrl.registries">
+        <oui-datagrid
+            class="mt-5"
+            data-rows="$ctrl.registries"
+            data-row-loader="$ctrl.getRegistryDetails($row)"
+        >
             <oui-column
                 data-title=":: 'private_registry_name' | translate"
                 data-property="name"
@@ -24,6 +28,13 @@
                 data-searchable
                 data-sortable="asc"
                 data-filterable
+            ></oui-column>
+            <oui-column
+                data-title=":: 'private_registry_plan' | translate"
+                data-property="plan.displayName"
+                data-searchable
+                data-sortable
+                data-type="string"
             ></oui-column>
             <oui-column
                 data-title=":: 'private_registry_harbor_version' | translate"
@@ -52,6 +63,12 @@
                 data-compact
                 data-ng-if="$row.status !== $ctrl.PRIVATE_REGISTRY_STATUS.DELETING"
             >
+                <oui-action-menu-item
+                    data-ng-if="$row.canBeUpgraded()"
+                    data-on-click="$ctrl.upgradePlan($row.id)"
+                >
+                    <span data-translate="private_registry_upgrade_plan"></span>
+                </oui-action-menu-item>
                 <oui-action-menu-item
                     data-external
                     data-href="{{:: $row.url }}"

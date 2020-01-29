@@ -1,8 +1,10 @@
 import get from 'lodash/get';
+import set from 'lodash/set';
 
 export default class RegistyPlan {
   constructor(resource) {
     Object.assign(this, resource);
+    set(this, 'displayName', get(this, 'name[0]'));
   }
 
   get capacity() {
@@ -22,10 +24,10 @@ export default class RegistyPlan {
   }
 
   hasUnlimitedBandwidth() {
-    return get(this, 'blobs.technical.bandwidth.unlimited');
+    return get(this, 'blobs.technical.bandwidth.unlimited', false);
   }
 
   hasVulnerabilityScanning() {
-    return get(this, 'features.vulnerability');
+    return get(this, 'features.vulnerability', false);
   }
 }

@@ -5,8 +5,11 @@ export default {
   template,
   controller,
   bindings: {
+    getRegistryDetails: '<',
     guideUrl: '<',
     projectId: '<',
     registries: '<',
+    updateRegistry: '<',
+    upgradePlan: '<',
   },
 };

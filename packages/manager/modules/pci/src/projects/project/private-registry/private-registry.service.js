@@ -11,6 +11,9 @@ export default class pciPrivateRegistryService {
     this.OvhApiPrivateRegistryUser = OvhApiCloudProject.ContainerRegistry()
       .Users()
       .v6();
+    this.OvhApiPrivateRegistryPlan = OvhApiCloudProject.ContainerRegistry()
+      .Plan()
+      .v6();
     this.OvhApiAgreements = OvhApiMe.Agreements().v6();
   }
 
@@ -52,6 +55,20 @@ export default class pciPrivateRegistryService {
 
   getRegistry(serviceName, registryID) {
     return this.OvhApiPrivateRegistry.get({
+      serviceName,
+      registryID,
+    }).$promise;
+  }
+
+  getRegistryPlan(serviceName, registryID) {
+    return this.OvhApiPrivateRegistryPlan.get({
+      serviceName,
+      registryID,
+    }).$promise;
+  }
+
+  getAvailableUpgrades(serviceName, registryID) {
+    return this.OvhApiPrivateRegistryPlan.getCapabilities({
       serviceName,
       registryID,
     }).$promise;
