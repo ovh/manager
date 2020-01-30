@@ -320,13 +320,14 @@ export default class PciProjectInstanceService {
   }
 
   getCompatiblesPrivateNetworks(projectId, instance) {
-    return this.getAvailablesPrivateNetworks(projectId, instance.region).then(
-      (networks) =>
-        filter(
-          networks,
-          (network) =>
-            !includes(map(instance.privateNetworks, 'id'), network.id),
-        ),
+    return this.getAvailablesPrivateNetworks(
+      projectId,
+      instance.region,
+    ).then((networks) =>
+      filter(
+        networks,
+        (network) => !includes(map(instance.privateNetworks, 'id'), network.id),
+      ),
     );
   }
 

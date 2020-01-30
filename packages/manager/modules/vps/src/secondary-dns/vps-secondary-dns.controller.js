@@ -50,8 +50,9 @@ export default class {
   }
 
   deleteOne(domain) {
-    this.VpsActionService.deleteSecondaryDns(this.serviceName, domain).finally(
-      () => this.refreshSecondaryDnsList(),
-    );
+    this.VpsActionService.deleteSecondaryDns(
+      this.serviceName,
+      domain,
+    ).finally(() => this.refreshSecondaryDnsList());
   }
 }

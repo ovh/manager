@@ -13,13 +13,14 @@ export default /* @ngInject */ ($stateProvider) => {
         transition.injector().getAsync('HostingDatabase'),
         transition.injector().getAsync('hosting'),
       ]).then(([Hosting, HostingDatabase, hosting]) =>
-        HostingDatabase.getPrivateDatabaseCapabilities(hosting).then(
-          (capabilities) =>
-            Hosting.getPrivateDatabasesLinked(hosting).then((privateDbs) =>
-              privateDbs.length < capabilities.length
-                ? false
-                : { state: 'app.hosting' },
-            ),
+        HostingDatabase.getPrivateDatabaseCapabilities(
+          hosting,
+        ).then((capabilities) =>
+          Hosting.getPrivateDatabasesLinked(hosting).then((privateDbs) =>
+            privateDbs.length < capabilities.length
+              ? false
+              : { state: 'app.hosting' },
+          ),
         ),
       ),
     resolve: {
