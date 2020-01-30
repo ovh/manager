@@ -1,3 +1,12 @@
+## [3.9.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.9.2...@ovh-ux/manager-pci@3.9.3) (2020-01-30)
+
+
+### Bug Fixes
+
+* **pci:** update models used to retrieve kubernetes version ([#2167](https://github.com/ovh/manager/issues/2167)) ([04b45ed](https://github.com/ovh/manager/commit/04b45ed72779b2061d695070d28a0dbeb3fa42be))
+
+
+
 ## [3.9.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.9.1...@ovh-ux/manager-pci@3.9.2) (2020-01-24)
 
 
