@@ -1,3 +1,12 @@
+## [8.5.1](https://github.com/ovh-ux/ng-ovh-sidebar-menu/compare/v8.5.0...v8.5.1) (2020-01-30)
+
+
+### Bug Fixes
+
+* **provider:** consider parent to get path item ([#115](https://github.com/ovh-ux/ng-ovh-sidebar-menu/issues/115)) ([78385e9](https://github.com/ovh-ux/ng-ovh-sidebar-menu/commit/78385e98f10f38bb2608a7a2fd6237568c9e1af2))
+
+
+
 # [8.5.0](https://github.com/ovh-ux/ng-ovh-sidebar-menu/compare/v8.4.5...v8.5.0) (2020-01-07)
 
 
