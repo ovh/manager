@@ -21,5 +21,6 @@
   "pci_projects_project_serving_namespace_models_storage_path": "Object storage directory",
   "pci_projects_project_serving_namespace_models_storage_scale_min": "Min Instances",
   "pci_projects_project_serving_namespace_models_storage_scale_max": "Max Instances",
-  "pci_projects_project_serving_namespace_models_add_autoscaling_info": "During the preview phase, the auto-scaling settings are not customizable."
+  "pci_projects_project_serving_namespace_models_add_autoscaling_info": "During the preview phase, the auto-scaling settings are not customizable.",
+  "pci_projects_project_serving_namespace_models_add_model_preset_info": "More informations"
 }

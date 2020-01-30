@@ -27,5 +27,6 @@
   "pci_projects_project_serving_namespace_models_delete": "Delete",
   "pci_projects_project_serving_namespace_models_update": "Update",
   "pci_projects_project_serving_namespace_models_deploy_model": "Deploy Model",
-  "pci_projects_project_serving_namespace_models_gen_token": "Generate a token"
+  "pci_projects_project_serving_namespace_models_gen_token": "Generate a token",
+  "pci_projects_project_serving_namespace_models_date": "Creation date"
 }
