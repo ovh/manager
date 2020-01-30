@@ -32,7 +32,7 @@
     "@ovh-ux/ng-ovh-sso-auth": "^4.2.3",
     "@ovh-ux/ng-ovh-telecom-universe-components": "^4.0.0",
     "@ovh-ux/ng-pagination-front": "^8.0.1",
-    "@uirouter/angularjs": "^1.0.23",
+    "@uirouter/angularjs": "^1.0.24",
     "CSV-JS": "^1.2.0",
     "angular": "^1.7.5",
     "angular-cookies": "^1.7.8",

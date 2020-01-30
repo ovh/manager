@@ -12,7 +12,7 @@
   "author": "OVH SAS",
   "main": "./src/index.js",
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^5.11.2",
+    "@fortawesome/fontawesome-free": "^5.12.0",
     "@ovh-ux/manager-config": "^0.4.0",
     "d3": "~3.5.13",
     "fast-sha256": "^1.1.0",
@@ -22,7 +22,7 @@
     "jsurl": "^0.1.5",
     "lodash": "^4.17.15",
     "moment": "^2.19",
-    "tweetnacl-util": "^0.15.0",
+    "tweetnacl-util": "^0.15.1",
     "urijs": "^1.19.1",
     "validator": "^10.11.0",
     "xterm": "^3.14.5"
