@@ -5,8 +5,6 @@ import '@ovh-ux/manager-core';
 import 'ovh-api-services';
 import 'ovh-ui-angular';
 
-import assistanceMenu from './assistance-menu';
-import languageMenu from './language-menu';
 import notificationsMenu from './notifications-menu';
 import userMenu from './user-menu';
 import walkMe from './walk-me';
@@ -24,8 +22,6 @@ angular
     'ovhManagerCore',
     'ovh-api-services',
     'oui',
-    assistanceMenu,
-    languageMenu,
     notificationsMenu,
     userMenu,
     walkMe,

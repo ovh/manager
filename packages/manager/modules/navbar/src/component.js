@@ -5,7 +5,6 @@ const component = {
   bindings: {
     brandLabel: '@',
     globalSearchLink: '@?',
-    langOptions: '<?',
     navbarOptions: '<?',
     sidebarLinks: '<?',
     universeClick: '&?',
