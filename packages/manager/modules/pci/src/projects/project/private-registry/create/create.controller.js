@@ -48,7 +48,11 @@ export default class {
     }).join(', ');
   }
 
-  back() {
-    this.goBack(null, null);
+  getAvailablePlans() {
+    this.availablePlans = this.plans(this.registry.region.name);
+  }
+
+  changeMethod(value) {
+    this.registry.selectedPlan = value;
   }
 }

@@ -40,6 +40,12 @@ export default class pciPrivateRegistryService {
     ).$promise;
   }
 
+  getCapabilities(projectId) {
+    return this.OvhApiPrivateRegistry.getCapabilities({
+      serviceName: projectId,
+    }).$promise;
+  }
+
   getRegistryList(projectId, clearCache = false) {
     if (clearCache) {
       this.OvhApiPrivateRegistry.resetCache();

@@ -5,10 +5,13 @@ const component = {
   template,
   controller,
   bindings: {
+    availableRegions: '<',
     goBack: '<',
+    plans: '<',
     projectId: '<',
     registryContracts: '<',
     acceptTermsAndConditions: '<',
+    user: '<',
   },
 };
 
