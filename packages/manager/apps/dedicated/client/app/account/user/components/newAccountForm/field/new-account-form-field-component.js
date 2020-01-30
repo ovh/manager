@@ -21,6 +21,7 @@ angular.module('ovhSignupApp').component('newAccountFormField', {
     '$timeout',
     '$translate',
     'atInternet',
+    'CORE_LANGUAGES',
     'NewAccountFormConfig',
 
     function newAccountFormFieldController(
@@ -29,6 +30,7 @@ angular.module('ovhSignupApp').component('newAccountFormField', {
       $timeout,
       $translate,
       atInternet,
+      CORE_LANGUAGES,
       NewAccountFormConfig,
     ) {
       $scope.getTemplateUrl = () =>
@@ -220,6 +222,11 @@ angular.module('ovhSignupApp').component('newAccountFormField', {
             );
           } else if (this.rule.fieldName === 'timezone') {
             translated = value;
+          } else if (this.rule.fieldName === 'managerLanguage') {
+            translated = get(
+              find(CORE_LANGUAGES.available, { key: value }),
+              'name',
+            );
           } else {
             translated = $translate.instant(
               `signup_enum_${this.rule.fieldName}_${value}`,
