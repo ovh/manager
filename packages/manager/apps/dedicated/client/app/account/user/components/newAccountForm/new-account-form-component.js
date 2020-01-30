@@ -2,6 +2,7 @@ import clone from 'lodash/clone';
 import forEach from 'lodash/forEach';
 import filter from 'lodash/filter';
 import find from 'lodash/find';
+import findIndex from 'lodash/findIndex';
 import flatten from 'lodash/flatten';
 import get from 'lodash/get';
 import includes from 'lodash/includes';
@@ -26,8 +27,10 @@ angular.module('ovhSignupApp').component('newAccountForm', {
     '$http',
     '$timeout',
     'coreConfig',
+    'CORE_LANGUAGES',
     'NewAccountFormConfig',
     'Alerter',
+    'TranslateService',
     'UserAccount.constants',
     'userAccountServiceInfos',
     '$translate',
@@ -37,8 +40,10 @@ angular.module('ovhSignupApp').component('newAccountForm', {
       $http,
       $timeout,
       coreConfig,
+      CORE_LANGUAGES,
       NewAccountFormConfig,
       Alerter,
+      TranslateService,
       UserAccountConstants,
       UserAccountServiceInfos,
       $translate,
@@ -50,6 +55,7 @@ angular.module('ovhSignupApp').component('newAccountForm', {
       this.readonly = this.readonly || [];
       this.rules = null;
       this.isSubmitting = false;
+      this.originalManagerLanguage = TranslateService.getUserLocale();
       const CONSENT_MARKETING_EMAIL_NAME = 'consent-marketing-email';
 
       $scope.getTemplateUrl = () =>
@@ -99,6 +105,7 @@ angular.module('ovhSignupApp').component('newAccountForm', {
         // customer code does not belong to /rules, only displayed in the form
         params = omit(params, 'customerCode');
         params = omit(params, 'commercialCommunicationsApproval');
+        params = omit(params, 'managerLanguage');
 
         this.isLoading = true;
 
@@ -176,6 +183,17 @@ angular.module('ovhSignupApp').component('newAccountForm', {
               hasBottomMargin: true,
             });
 
+            const languageRuleIdx = findIndex(rules, { fieldName: 'language' });
+            if (languageRuleIdx >= 0) {
+              rules.splice(languageRuleIdx + 1, 0, {
+                fieldName: 'managerLanguage',
+                mandatory: true,
+                initialValue: TranslateService.getUserLocale(),
+                in: map(CORE_LANGUAGES.available, 'key'),
+                hasBottomMargin: true,
+              });
+            }
+
             return rules;
           })
           .finally(() => {
@@ -215,6 +233,7 @@ angular.module('ovhSignupApp').component('newAccountForm', {
         // put on /me does not handle email modification
         model = omit(model, 'email');
         model = omit(model, 'commercialCommunicationsApproval');
+        model = omit(model, 'managerLanguage');
 
         let promise = $http
           .put(`${UserAccountConstants.swsProxyRootPath}me`, model)
@@ -260,7 +279,13 @@ angular.module('ovhSignupApp').component('newAccountForm', {
 
         return promise
           .then(() => {
-            if (this.onSubmit) {
+            if (
+              this.model.managerLanguage &&
+              this.originalManagerLanguage !== this.model.managerLanguage
+            ) {
+              TranslateService.setUserLocale(this.model.managerLanguage);
+              window.location.reload();
+            } else if (this.onSubmit) {
               this.onSubmit();
             }
           })
