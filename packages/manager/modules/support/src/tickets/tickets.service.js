@@ -21,18 +21,16 @@ export default class TicketsService {
 
   buildGridColumnLastMessageFromTypeOptions() {
     return {
-      values: mapValues(
-        TICKET_MESSAGE_FROM,
-        from => this.ticketMessageService.translateFrom(from),
+      values: mapValues(TICKET_MESSAGE_FROM, (from) =>
+        this.ticketMessageService.translateFrom(from),
       ),
     };
   }
 
   buildGridColumnStateTypeOptions() {
     return {
-      values: mapValues(
-        TICKET_STATUS,
-        status => this.ticketService.translateState(status),
+      values: mapValues(TICKET_STATUS, (status) =>
+        this.ticketService.translateState(status),
       ),
     };
   }

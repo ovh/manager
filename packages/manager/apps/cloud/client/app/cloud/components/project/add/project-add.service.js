@@ -4,8 +4,18 @@ import set from 'lodash/set';
 /* eslint-disable consistent-return */
 (() => {
   class CloudProjectAdd {
-    constructor($q, $translate, $state, $window, atInternet, Toast, OvhApiCloud, OvhApiMe,
-      OvhApiVrack, CloudProjectSidebar) {
+    constructor(
+      $q,
+      $translate,
+      $state,
+      $window,
+      atInternet,
+      Toast,
+      OvhApiCloud,
+      OvhApiMe,
+      OvhApiVrack,
+      CloudProjectSidebar,
+    ) {
       this.$q = $q;
       this.$translate = $translate;
       this.$state = $state;
@@ -21,21 +31,26 @@ import set from 'lodash/set';
     startProject(voucher, description, catalogVersion) {
       // Agreements should be already accepted
 
-      return this.Cloud.v6().createProject({}, {
-        voucher,
-        description,
-        catalogVersion,
-      })
-        .$promise
-        .then((response) => {
+      return this.Cloud.v6()
+        .createProject(
+          {},
+          {
+            voucher,
+            description,
+            catalogVersion,
+          },
+        )
+        .$promise.then((response) => {
           let error;
           switch (response.status) {
             case 'creating':
               // User needs to pay something
-              this.User.Order().v6().get({
-                orderId: response.orderId,
-              }).$promise
-                .then((order) => {
+              this.User.Order()
+                .v6()
+                .get({
+                  orderId: response.orderId,
+                })
+                .$promise.then((order) => {
                   this.$window.open(order.url, '_blank');
                   this.updateManager(response.project, description);
                   this.atInternet.trackEvent({
@@ -49,7 +64,9 @@ import set from 'lodash/set';
                     projectId: response.project,
                     fromProjectAdd: true,
                   });
-                  this.Toast.success(this.$translate.instant('cpa_success', { url: order.url }));
+                  this.Toast.success(
+                    this.$translate.instant('cpa_success', { url: order.url }),
+                  );
                 })
                 .catch(() => {
                   this.Toast.error(this.$translate.instant('cpa_error'));
@@ -73,9 +90,11 @@ import set from 'lodash/set';
               error = {
                 agreements: this.getAllAgreementsInfo(response.agreements),
               };
-              this.Toast.info(this.$translate.instant('cpa_error_contracts_tosign'));
+              this.Toast.info(
+                this.$translate.instant('cpa_error_contracts_tosign'),
+              );
               return this.$q.reject(error);
-              // case "validationPending":
+            // case "validationPending":
             default:
           }
         })
@@ -83,13 +102,24 @@ import set from 'lodash/set';
           if (err && err.status) {
             switch (err.status) {
               case 400:
-                return this.Toast.error(this.$translate.instant('cpa_error_invalid_paymentmean'));
+                return this.Toast.error(
+                  this.$translate.instant('cpa_error_invalid_paymentmean'),
+                );
               case 404:
-                return this.Toast.error(this.$translate.instant('cpa_error_invalid_voucher'));
+                return this.Toast.error(
+                  this.$translate.instant('cpa_error_invalid_voucher'),
+                );
               case 409:
-                return this.Toast.error(this.$translate.instant('cpa_error_over_quota'));
+                return this.Toast.error(
+                  this.$translate.instant('cpa_error_over_quota'),
+                );
               default:
-                return this.Toast.error(this.$translate.instant('cpa_error') + (err.data && err.data.message ? ` (${err.data.message})` : ''));
+                return this.Toast.error(
+                  this.$translate.instant('cpa_error') +
+                    (err.data && err.data.message
+                      ? ` (${err.data.message})`
+                      : ''),
+                );
             }
           } else if (err && err.agreements) {
             return this.$q.reject(err);
@@ -98,20 +128,29 @@ import set from 'lodash/set';
     }
 
     getProjectInfo() {
-      return this.Cloud.v6().createProjectInfo()
-        .$promise
-        .then(response => this.$q.all({
-          agreementsToAccept: this.getAllAgreementsInfo(response.agreements),
-          orderToPay: this.$q.when(response.order),
-        }))
+      return this.Cloud.v6()
+        .createProjectInfo()
+        .$promise.then((response) =>
+          this.$q.all({
+            agreementsToAccept: this.getAllAgreementsInfo(response.agreements),
+            orderToPay: this.$q.when(response.order),
+          }),
+        )
         .catch((err) => {
           if (err && err.status) {
             switch (err.status) {
               case 409:
-                this.Toast.error(this.$translate.instant('cpa_error_over_quota'));
+                this.Toast.error(
+                  this.$translate.instant('cpa_error_over_quota'),
+                );
                 break;
               default:
-                this.Toast.error(this.$translate.instant('cpa_error') + (err.data && err.data.message ? ` (${err.data.message})` : ''));
+                this.Toast.error(
+                  this.$translate.instant('cpa_error') +
+                    (err.data && err.data.message
+                      ? ` (${err.data.message})`
+                      : ''),
+                );
             }
           }
         });
@@ -128,11 +167,12 @@ import set from 'lodash/set';
     }
 
     getContractInfo(contractId) {
-      return this.User.Agreements().v6().contract({
-        id: contractId,
-      })
-        .$promise
-        .then((contract) => {
+      return this.User.Agreements()
+        .v6()
+        .contract({
+          id: contractId,
+        })
+        .$promise.then((contract) => {
           set(contract, 'id', contractId);
           return contract;
         });
@@ -144,7 +184,9 @@ import set from 'lodash/set';
         description,
       });
       this.Vrack.v6().resetCache();
-      this.Vrack.CloudProject().v6().resetQueryCache();
+      this.Vrack.CloudProject()
+        .v6()
+        .resetQueryCache();
     }
   }
   angular.module('managerApp').service('CloudProjectAdd', CloudProjectAdd);

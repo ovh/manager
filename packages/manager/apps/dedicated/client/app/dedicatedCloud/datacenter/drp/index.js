@@ -8,7 +8,6 @@ import {
   DEDICATEDCLOUD_DATACENTER_ZERTO,
 } from './dedicatedCloud-datacenter-drp.constants';
 
-
 import component from './dedicatedCloud-datacenter-drp.component';
 import onPremiseTypeConfiguration from './configuration/onPremise';
 import ovhTypeConfiguration from './configuration/ovh';
@@ -23,8 +22,10 @@ const optionsConstantName = 'DEDICATEDCLOUD_DATACENTER_DRP_OPTIONS';
 const orderOptionsConstantName = 'DEDICATEDCLOUD_DATACENTER_DRP_ORDER_OPTIONS';
 const rolesConstantName = 'DEDICATEDCLOUD_DATACENTER_DRP_ROLES';
 const statusConstantName = 'DEDICATEDCLOUD_DATACENTER_DRP_STATUS';
-const unavailableIpStatusConstantName = 'DEDICATEDCLOUD_DATACENTER_DRP_UNAVAILABLE_IP_STATUS';
-const vpnConfigurationStatusConstantName = 'DEDICATEDCLOUD_DATACENTER_DRP_VPN_CONFIGURATION_STATUS';
+const unavailableIpStatusConstantName =
+  'DEDICATEDCLOUD_DATACENTER_DRP_UNAVAILABLE_IP_STATUS';
+const vpnConfigurationStatusConstantName =
+  'DEDICATEDCLOUD_DATACENTER_DRP_VPN_CONFIGURATION_STATUS';
 const zertoConstantName = 'DEDICATEDCLOUD_DATACENTER_ZERTO';
 
 angular
@@ -35,12 +36,20 @@ angular
   ])
   .component(component.name, component)
   .constant(optionsConstantName, DEDICATEDCLOUD_DATACENTER_DRP_OPTIONS)
-  .constant(orderOptionsConstantName, DEDICATEDCLOUD_DATACENTER_DRP_ORDER_OPTIONS)
+  .constant(
+    orderOptionsConstantName,
+    DEDICATEDCLOUD_DATACENTER_DRP_ORDER_OPTIONS,
+  )
   .constant(rolesConstantName, DEDICATEDCLOUD_DATACENTER_DRP_ROLES)
   .constant(statusConstantName, DEDICATEDCLOUD_DATACENTER_DRP_STATUS)
-  .constant(unavailableIpStatusConstantName, DEDICATEDCLOUD_DATACENTER_DRP_UNAVAILABLE_IP_STATUS)
-  .constant(vpnConfigurationStatusConstantName,
-    DEDICATEDCLOUD_DATACENTER_DRP_VPN_CONFIGURATION_STATUS)
+  .constant(
+    unavailableIpStatusConstantName,
+    DEDICATEDCLOUD_DATACENTER_DRP_UNAVAILABLE_IP_STATUS,
+  )
+  .constant(
+    vpnConfigurationStatusConstantName,
+    DEDICATEDCLOUD_DATACENTER_DRP_VPN_CONFIGURATION_STATUS,
+  )
   .constant(zertoConstantName, DEDICATEDCLOUD_DATACENTER_ZERTO)
   .service('dedicatedCloudDrp', service)
   .config(routing)

@@ -34,26 +34,26 @@ export default class {
    *  @return {Promise} That return an Array of TucVoipBillingAccount instances.
    */
   fetchAll(withError = true) {
-    return this.OvhApiTelephony
-      .v7()
+    return this.OvhApiTelephony.v7()
       .query()
       .expand()
       .execute()
-      .$promise
-      .then(result => map(
-        filter(
-          result,
-          res => has(res, 'value') || (withError && has(res, 'error')),
+      .$promise.then((result) =>
+        map(
+          filter(
+            result,
+            (res) => has(res, 'value') || (withError && has(res, 'error')),
+          ),
+          (res) => {
+            if (res.value && res.value.billingAccount) {
+              return new this.TucVoipBillingAccount(res.value);
+            }
+            return new this.TucVoipBillingAccount({
+              billingAccount: res.key,
+              error: res.error,
+            });
+          },
         ),
-        (res) => {
-          if (res.value) {
-            return new this.TucVoipBillingAccount(res.value);
-          }
-          return new this.TucVoipBillingAccount({
-            billingAccount: res.key,
-            error: res.error,
-          });
-        },
-      ));
+      );
   }
 }

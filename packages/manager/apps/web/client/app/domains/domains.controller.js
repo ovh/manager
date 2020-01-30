@@ -98,7 +98,8 @@ angular.module('App').controller(
           });
       };
 
-      this.$scope.setActionMultiple = (action, data) => this.setAction(action, 'domains/', data);
+      this.$scope.setActionMultiple = (action, data) =>
+        this.setAction(action, 'domains/', data);
       this.$scope.resetAction = () => this.setAction(false);
       this.$scope.getSelectedDomains = () => this.$scope.selectedDomains;
 
@@ -124,7 +125,11 @@ angular.module('App').controller(
 
     applySelection() {
       forEach(get(this.$scope.domains, 'list.results'), (value) => {
-        set(value, 'selected', indexOf(this.$scope.selectedDomains, value.name) !== -1);
+        set(
+          value,
+          'selected',
+          indexOf(this.$scope.selectedDomains, value.name) !== -1,
+        );
       });
     }
 
@@ -155,7 +160,9 @@ angular.module('App').controller(
             this.$scope.selectedDomains = map(
               this.$scope.domains.list.results,
               'name',
-            ).filter(result => !some(this.$scope.selectedDomains, result.name));
+            ).filter(
+              (result) => !some(this.$scope.selectedDomains, result.name),
+            );
             this.atLeastOneSelected = true;
             break;
           case 2:
@@ -184,9 +191,7 @@ angular.module('App').controller(
      * @param {string} domain name
      */
     toggleDomain(domain) {
-      this.$scope.selectedDomains = xor(this.$scope.selectedDomains, [
-        domain,
-      ]);
+      this.$scope.selectedDomains = xor(this.$scope.selectedDomains, [domain]);
       this.atLeastOneSelected = this.$scope.selectedDomains.length > 0;
     }
 

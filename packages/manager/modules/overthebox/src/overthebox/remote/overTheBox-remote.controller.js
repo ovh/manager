@@ -2,9 +2,20 @@ import angular from 'angular';
 import moment from 'moment';
 import set from 'lodash/set';
 
-export default /* @ngInject */ function
-($stateParams, $translate, $scope, $q, CORE_URLS, OVER_THE_BOX, OVERTHEBOX_REMOTE_STATUS,
-  OvhApiOverTheBox, TucToastError, TucToast, TucIpAddress, tucValidator) {
+export default /* @ngInject */ function(
+  $stateParams,
+  $translate,
+  $scope,
+  $q,
+  CORE_URLS,
+  OVER_THE_BOX,
+  OVERTHEBOX_REMOTE_STATUS,
+  OvhApiOverTheBox,
+  TucToastError,
+  TucToast,
+  TucIpAddress,
+  tucValidator,
+) {
   const self = this;
 
   this.filter = {
@@ -28,37 +39,47 @@ export default /* @ngInject */ function
       exposedPort: 443,
     };
     self.datepickerOptions = {
-      minDate: moment().add(1, 'days').toDate(),
+      minDate: moment()
+        .add(1, 'days')
+        .toDate(),
     };
     self.loading = true;
     return $q.all([
       /* Load all remotes */
-      OvhApiOverTheBox.Aapi().remoteAccesses({
-        serviceName: $stateParams.serviceName,
-      }, null).$promise.then(
-        (remotes) => {
-          self.remotes = remotes;
-        },
-        (err) => {
-          self.remotes = [];
-          return new TucToastError(err);
-        },
-      ).finally(() => {
-        self.loading = false;
-      }),
+      OvhApiOverTheBox.Aapi()
+        .remoteAccesses(
+          {
+            serviceName: $stateParams.serviceName,
+          },
+          null,
+        )
+        .$promise.then(
+          (remotes) => {
+            self.remotes = remotes;
+          },
+          (err) => {
+            self.remotes = [];
+            return new TucToastError(err);
+          },
+        )
+        .finally(() => {
+          self.loading = false;
+        }),
 
       /* Create tho poller */
-      OvhApiOverTheBox.Aapi().poll($scope, {
-        serviceName: $stateParams.serviceName,
-      }).then(
-        (remotes) => {
-          self.remotes = remotes;
-        },
-        TucToastError,
-        (remotes) => {
-          self.remotes = remotes;
-        },
-      ),
+      OvhApiOverTheBox.Aapi()
+        .poll($scope, {
+          serviceName: $stateParams.serviceName,
+        })
+        .then(
+          (remotes) => {
+            self.remotes = remotes;
+          },
+          TucToastError,
+          (remotes) => {
+            self.remotes = remotes;
+          },
+        ),
     ]);
   }
 
@@ -68,10 +89,12 @@ export default /* @ngInject */ function
    * @param oldRemote
    */
   function updateRemote(newRemote, oldRemote) {
-    self.remotes = self.remotes
-      .map(remote => (remote.remoteAccessId === oldRemote.remoteAccessId ? newRemote : remote));
-    self.paginatedRemotes = self.paginatedRemotes
-      .map(remote => (remote.remoteAccessId === oldRemote.remoteAccessId ? newRemote : remote));
+    self.remotes = self.remotes.map((remote) =>
+      remote.remoteAccessId === oldRemote.remoteAccessId ? newRemote : remote,
+    );
+    self.paginatedRemotes = self.paginatedRemotes.map((remote) =>
+      remote.remoteAccessId === oldRemote.remoteAccessId ? newRemote : remote,
+    );
   }
 
   this.isIpValid = function isIpValid(ip) {
@@ -93,24 +116,39 @@ export default /* @ngInject */ function
     self.adding = true;
     const formData = angular.copy(this.newRemote);
     if (this.newRemote.expirationDate) {
-      formData.expirationDate = moment(this.newRemote.expirationDate).toISOString();
+      formData.expirationDate = moment(
+        this.newRemote.expirationDate,
+      ).toISOString();
     }
-    return OvhApiOverTheBox.Aapi().createAndAuthorize({
-      serviceName: $stateParams.serviceName,
-    }, formData).$promise.then(() => {
-      init();
-      self.addForm = false;
-      TucToast.success($translate.instant('overTheBox_remote_element_added'));
-    }).catch((err) => {
-      if (err && err.data === "Impossible to create a remote access, your device hasn't contacted us for more than 10 minutes") {
-        TucToast.error($translate.instant('overTheBox_remote_error_no_contact'));
-      } else {
-        TucToast.error($translate.instant('overTheBox_remote_error_unknown'));
-      }
-      return $q.reject(err);
-    }).finally(() => {
-      self.adding = false;
-    });
+    return OvhApiOverTheBox.Aapi()
+      .createAndAuthorize(
+        {
+          serviceName: $stateParams.serviceName,
+        },
+        formData,
+      )
+      .$promise.then(() => {
+        init();
+        self.addForm = false;
+        TucToast.success($translate.instant('overTheBox_remote_element_added'));
+      })
+      .catch((err) => {
+        if (
+          err &&
+          err.data ===
+            "Impossible to create a remote access, your device hasn't contacted us for more than 10 minutes"
+        ) {
+          TucToast.error(
+            $translate.instant('overTheBox_remote_error_no_contact'),
+          );
+        } else {
+          TucToast.error($translate.instant('overTheBox_remote_error_unknown'));
+        }
+        return $q.reject(err);
+      })
+      .finally(() => {
+        self.adding = false;
+      });
   };
 
   /**
@@ -150,16 +188,21 @@ export default /* @ngInject */ function
    */
   this.authorize = function authorize(remote) {
     set(remote, 'busy', true);
-    return OvhApiOverTheBox.v6().authorizeRemote(
-      {
-        serviceName: $stateParams.serviceName,
-        remoteAccessId: remote.remoteAccessId,
-      },
-      null,
-    ).$promise.then(() => self.reloadRemote(remote), (err) => {
-      set(remote, 'busy', false);
-      return new TucToastError(err);
-    });
+    return OvhApiOverTheBox.v6()
+      .authorizeRemote(
+        {
+          serviceName: $stateParams.serviceName,
+          remoteAccessId: remote.remoteAccessId,
+        },
+        null,
+      )
+      .$promise.then(
+        () => self.reloadRemote(remote),
+        (err) => {
+          set(remote, 'busy', false);
+          return new TucToastError(err);
+        },
+      );
   };
 
   /**
@@ -169,21 +212,35 @@ export default /* @ngInject */ function
    */
   this.reloadRemote = function reloadedRemote(remote) {
     set(remote, 'busy', true);
-    return OvhApiOverTheBox.v6().loadRemote({
-      serviceName: $stateParams.serviceName,
-      remoteAccessId: remote.remoteAccessId,
-    }, null).$promise.then((reloaded) => {
-      updateRemote(reloaded, remote);
-      if (reloaded.accepted) {
-        if (reloaded.status !== 'toDelete') {
-          TucToast.success($translate.instant('overTheBox_remote_authorized', { port: reloaded.exposedPort }));
+    return OvhApiOverTheBox.v6()
+      .loadRemote(
+        {
+          serviceName: $stateParams.serviceName,
+          remoteAccessId: remote.remoteAccessId,
+        },
+        null,
+      )
+      .$promise.then((reloaded) => {
+        updateRemote(reloaded, remote);
+        if (reloaded.accepted) {
+          if (reloaded.status !== 'toDelete') {
+            TucToast.success(
+              $translate.instant('overTheBox_remote_authorized', {
+                port: reloaded.exposedPort,
+              }),
+            );
+          }
+        } else {
+          TucToast.error(
+            $translate.instant('overTheBox_remote_authorized_failed', {
+              port: reloaded.exposedPort,
+            }),
+          );
         }
-      } else {
-        TucToast.error($translate.instant('overTheBox_remote_authorized_failed', { port: reloaded.exposedPort }));
-      }
-    }, TucToastError).finally(() => {
-      set(remote, 'busy', false);
-    });
+      }, TucToastError)
+      .finally(() => {
+        set(remote, 'busy', false);
+      });
   };
 
   /**
@@ -192,15 +249,23 @@ export default /* @ngInject */ function
    */
   this.remove = function remove(remote) {
     set(remote, 'busy', true);
-    return OvhApiOverTheBox.v6().deleteRemote({
-      serviceName: $stateParams.serviceName,
-      remoteAccessId: remote.remoteAccessId,
-    }, null).$promise.then(() => {
-      TucToast.success($translate.instant('overTheBox_remote_element_deleted'));
-      self.reloadRemote(remote);
-    }, TucToastError).finally(() => {
-      set(remote, 'busy', false);
-    });
+    return OvhApiOverTheBox.v6()
+      .deleteRemote(
+        {
+          serviceName: $stateParams.serviceName,
+          remoteAccessId: remote.remoteAccessId,
+        },
+        null,
+      )
+      .$promise.then(() => {
+        TucToast.success(
+          $translate.instant('overTheBox_remote_element_deleted'),
+        );
+        self.reloadRemote(remote);
+      }, TucToastError)
+      .finally(() => {
+        set(remote, 'busy', false);
+      });
   };
 
   init();

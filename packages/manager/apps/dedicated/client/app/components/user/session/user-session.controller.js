@@ -1,8 +1,9 @@
 import isString from 'lodash/isString';
 import set from 'lodash/set';
 
-angular.module('App')
-  .controller('SessionCtrl', class {
+angular.module('App').controller(
+  'SessionCtrl',
+  class {
     /* @ngInject */
     constructor($document, $scope, $state, $transitions, $translate) {
       this.$document = $document;
@@ -20,8 +21,9 @@ angular.module('App')
           this.closeSidebar();
         }),
         this.$transitions.onSuccess({}, () => {
-          this.displayAccountSidebar = ['support', 'app.account']
-            .some(name => this.$state.includes(name));
+          this.displayAccountSidebar = ['support', 'app.account'].some((name) =>
+            this.$state.includes(name),
+          );
         }),
       ];
 
@@ -43,7 +45,7 @@ angular.module('App')
     }
 
     $onDestroy() {
-      this.hooksToUnsubscribe
-        .forEach(hook => hook());
+      this.hooksToUnsubscribe.forEach((hook) => hook());
     }
-  });
+  },
+);

@@ -15,7 +15,8 @@ export default class ExchangeTabManagersByGroupsCtrl {
 
     $scope.$on(Exchange.events.accountsChanged, () => this.refreshList());
     $scope.getManagersList = () => this.managersList;
-    $scope.getManagersByGroup = (pageSize, offset) => this.getManagersByGroup(pageSize, offset);
+    $scope.getManagersByGroup = (pageSize, offset) =>
+      this.getManagersByGroup(pageSize, offset);
   }
 
   hide() {
@@ -44,10 +45,14 @@ export default class ExchangeTabManagersByGroupsCtrl {
           },
         };
       })
-      .catch(failure => this.services.messaging.writeError(
-        this.services.$translate.instant('exchange_tab_ACCOUNTS_error_message'),
-        failure,
-      ));
+      .catch((failure) =>
+        this.services.messaging.writeError(
+          this.services.$translate.instant(
+            'exchange_tab_ACCOUNTS_error_message',
+          ),
+          failure,
+        ),
+      );
   }
 
   refreshList() {
@@ -63,20 +68,31 @@ export default class ExchangeTabManagersByGroupsCtrl {
         for (let i = 0; i < data.list.results.length; i += 1) {
           this.managersList.splice(i, 1, data.list.results[i]);
         }
-        for (let i = data.list.results.length; i < this.managersList.length; i += 1) {
+        for (
+          let i = data.list.results.length;
+          i < this.managersList.length;
+          i += 1
+        ) {
           this.managersList.splice(i, 1);
         }
       })
-      .catch(failure => this.services.messaging.writeError(
-        this.services.$translate.instant('exchange_tab_ACCOUNTS_error_message'),
-        failure,
-      ));
+      .catch((failure) =>
+        this.services.messaging.writeError(
+          this.services.$translate.instant(
+            'exchange_tab_ACCOUNTS_error_message',
+          ),
+          failure,
+        ),
+      );
   }
 
   removeManager(manager) {
-    this.services.navigation.setAction('exchange/group/manager/remove/group-manager-remove', {
-      group: this.services.navigation.selectedGroup,
-      manager,
-    });
+    this.services.navigation.setAction(
+      'exchange/group/manager/remove/group-manager-remove',
+      {
+        group: this.services.navigation.selectedGroup,
+        manager,
+      },
+    );
   }
 }

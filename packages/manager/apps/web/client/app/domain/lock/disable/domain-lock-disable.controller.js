@@ -27,14 +27,18 @@ angular.module('App').controller(
         .then((data) => {
           this.$rootScope.$broadcast('domain.protection.unlock.done', data);
           this.Alerter.success(
-            this.$translate.instant('domain_configuration_protection_desactivate_success'),
+            this.$translate.instant(
+              'domain_configuration_protection_desactivate_success',
+            ),
             this.$scope.alerts.main,
           );
         })
         .catch((err) => {
           this.$rootScope.$broadcast('domain.protection.unlock.error', err);
           this.Alerter.alertFromSWS(
-            this.$translate.instant('domain_configuration_protection_desactivate_fail'),
+            this.$translate.instant(
+              'domain_configuration_protection_desactivate_fail',
+            ),
             get(err, 'data', err),
             this.$scope.alerts.main,
           );

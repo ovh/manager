@@ -1,6 +1,4 @@
-import {
-  ANALYTICS_DATA_PLATFORM_STATUS_MAP,
-} from '../../analytics-data-platform.constants';
+import { ANALYTICS_DATA_PLATFORM_STATUS_MAP } from '../../analytics-data-platform.constants';
 
 export default class {
   /* @ngInject */

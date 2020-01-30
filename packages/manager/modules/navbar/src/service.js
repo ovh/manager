@@ -7,17 +7,22 @@ export default class {
   }
 
   getUser() {
-    return this.$q.all({
-      user: this.OvhApiMe.v6().get().$promise,
-      certificates: this.OvhApiMe.v6().certificates().$promise,
-    }).then(({ user, certificates }) => Object.assign(user, {
-      isEnterprise: certificates.includes('enterprise'),
-    }));
+    return this.$q
+      .all({
+        user: this.OvhApiMe.v6().get().$promise,
+        certificates: this.OvhApiMe.v6().certificates().$promise,
+      })
+      .then(({ user, certificates }) =>
+        Object.assign(user, {
+          isEnterprise: certificates.includes('enterprise'),
+        }),
+      );
   }
 
   getSupportLevel() {
-    return this.OvhApiMe.v6().supportLevel().$promise
-      .catch(() => Promise.resolve(null));
+    return this.OvhApiMe.v6()
+      .supportLevel()
+      .$promise.catch(() => Promise.resolve(null));
   }
 
   getUniverses(version) {

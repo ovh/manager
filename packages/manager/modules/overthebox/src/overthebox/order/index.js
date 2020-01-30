@@ -9,10 +9,7 @@ import ovhManagerOtbWarning from '../warning';
 const moduleName = 'ovhManagerOtbOrder';
 
 angular
-  .module(moduleName, [
-    'ngOvhContracts',
-    ovhManagerOtbWarning,
-  ])
+  .module(moduleName, ['ngOvhContracts', ovhManagerOtbWarning])
   .config(($stateProvider) => {
     $stateProvider.state('overTheBox-order', {
       url: '/overTheBox/order',
@@ -20,10 +17,7 @@ angular
       controller,
       controllerAs: 'OrderOverTheBox',
       translations: {
-        value: [
-          '.',
-          '..',
-        ],
+        value: ['.', '..'],
         format: 'json',
       },
     });

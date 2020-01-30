@@ -3,8 +3,17 @@ import pull from 'lodash/pull';
 
 (() => {
   class CloudOfferCtrl {
-    constructor($q, $stateParams, $translate, CucFeatureAvailabilityService, CloudProjectAdd,
-      CucCloudMessage, OvhApiMe, coreConfig, URLS) {
+    constructor(
+      $q,
+      $stateParams,
+      $translate,
+      CucFeatureAvailabilityService,
+      CloudProjectAdd,
+      CucCloudMessage,
+      OvhApiMe,
+      coreConfig,
+      URLS,
+    ) {
       this.$q = $q;
       this.$stateParams = $stateParams;
       this.$translate = $translate;
@@ -38,46 +47,48 @@ import pull from 'lodash/pull';
         start: false,
       };
 
-      this.features = [{
-        title: 'cloud_offer_vrack',
-        explanation: 'cloud_offer_vrack_explanation',
-      },
-      {
-        title: 'cloud_offer_ipfo',
-        explanation: 'cloud_offer_ipfo_explanation',
-      },
-      {
-        title: 'cloud_offer_ipv6',
-        explanation: 'cloud_offer_ipv6_explanation',
-      },
-      {
-        title: 'cloud_offer_upgrade',
-        explanation: 'cloud_offer_upgrade_explanation',
-      },
-      {
-        title: 'cloud_offer_pca',
-        explanation: 'cloud_offer_pca_explanation',
-      },
-      {
-        title: 'cloud_offer_snapshot',
-        explanation: 'cloud_offer_snapshot_explanation',
-      },
-      {
-        title: 'cloud_offer_ssd',
-        explanation: 'cloud_offer_ssd_explanation',
-      },
-      {
-        title: 'cloud_offer_volume',
-        explanation: 'cloud_offer_volume_explanation',
-      },
-      {
-        title: 'cloud_offer_object_storage',
-        explanation: 'cloud_offer_object_storage_explanation',
-      },
-      {
-        title: 'cloud_offer_api',
-        explanation: 'cloud_offer_api_explanation',
-      }];
+      this.features = [
+        {
+          title: 'cloud_offer_vrack',
+          explanation: 'cloud_offer_vrack_explanation',
+        },
+        {
+          title: 'cloud_offer_ipfo',
+          explanation: 'cloud_offer_ipfo_explanation',
+        },
+        {
+          title: 'cloud_offer_ipv6',
+          explanation: 'cloud_offer_ipv6_explanation',
+        },
+        {
+          title: 'cloud_offer_upgrade',
+          explanation: 'cloud_offer_upgrade_explanation',
+        },
+        {
+          title: 'cloud_offer_pca',
+          explanation: 'cloud_offer_pca_explanation',
+        },
+        {
+          title: 'cloud_offer_snapshot',
+          explanation: 'cloud_offer_snapshot_explanation',
+        },
+        {
+          title: 'cloud_offer_ssd',
+          explanation: 'cloud_offer_ssd_explanation',
+        },
+        {
+          title: 'cloud_offer_volume',
+          explanation: 'cloud_offer_volume_explanation',
+        },
+        {
+          title: 'cloud_offer_object_storage',
+          explanation: 'cloud_offer_object_storage_explanation',
+        },
+        {
+          title: 'cloud_offer_api',
+          explanation: 'cloud_offer_api_explanation',
+        },
+      ];
 
       this.init();
     }
@@ -85,7 +96,10 @@ import pull from 'lodash/pull';
     init() {
       this.loadMessage();
       // Call not available for US customer
-      this.CucFeatureAvailabilityService.hasFeaturePromise('PROJECT', 'expressOrder').then((hasFeature) => {
+      this.CucFeatureAvailabilityService.hasFeaturePromise(
+        'PROJECT',
+        'expressOrder',
+      ).then((hasFeature) => {
         if (!hasFeature) {
           this.loaders.agreements = true;
           this.CloudProjectAdd.getProjectInfo()
@@ -105,7 +119,10 @@ import pull from 'lodash/pull';
 
     loadMessage() {
       this.CucCloudMessage.unSubscribe('iaas.pci-project-onboarding');
-      this.messageHandler = this.CucCloudMessage.subscribe('iaas.pci-project-onboarding', { onMessage: () => this.refreshMessage() });
+      this.messageHandler = this.CucCloudMessage.subscribe(
+        'iaas.pci-project-onboarding',
+        { onMessage: () => this.refreshMessage() },
+      );
     }
 
     refreshMessage() {
@@ -116,14 +133,17 @@ import pull from 'lodash/pull';
       this.loaders.start = true;
 
       // Use express order for US customers
-      if (this.CucFeatureAvailabilityService.hasFeature('PROJECT', 'expressOrder')) {
-        window.location.href = this.URLS.website_order['cloud-resell-eu'].US(this.model.projectName);
+      if (
+        this.CucFeatureAvailabilityService.hasFeature('PROJECT', 'expressOrder')
+      ) {
+        window.location.href = this.URLS.website_order['cloud-resell-eu'].US(
+          this.model.projectName,
+        );
         return;
       }
-      this.acceptAllAgreements()
-        .then(() => {
-          this.createProject();
-        });
+      this.acceptAllAgreements().then(() => {
+        this.createProject();
+      });
     }
 
     agreementAcceptation(agreementId) {
@@ -132,8 +152,8 @@ import pull from 'lodash/pull';
       } else {
         pull(this.data.agreementsAccepted, agreementId);
       }
-      this.state.allAgreementsAccepted = this.data.agreementsAccepted.length === this.data
-        .agreements.length;
+      this.state.allAgreementsAccepted =
+        this.data.agreementsAccepted.length === this.data.agreements.length;
     }
 
     canStartProject() {
@@ -145,22 +165,31 @@ import pull from 'lodash/pull';
       forEach(this.data.agreements, (agreement) => {
         agreements.push(this.acceptAgreement(agreement.id));
       });
-      return this.$q.all(agreements)
-        .catch((err) => {
-          this.CucCloudMessage.error(this.$translate.instant('cpa_error') + (err.data && err.data.message ? ` (${err.data.message})` : ''));
-          this.loaders.start = false;
-        });
+      return this.$q.all(agreements).catch((err) => {
+        this.CucCloudMessage.error(
+          this.$translate.instant('cpa_error') +
+            (err.data && err.data.message ? ` (${err.data.message})` : ''),
+        );
+        this.loaders.start = false;
+      });
     }
 
     acceptAgreement(agreementId) {
-      return this.User.Agreements().v6().accept({
-        id: agreementId,
-      }, {});
+      return this.User.Agreements()
+        .v6()
+        .accept(
+          {
+            id: agreementId,
+          },
+          {},
+        );
     }
 
     getDefaultPaymentMethod() {
       this.loaders.payment = true;
-      this.User.PaymentMean().v6().getDefaultPaymentMean()
+      this.User.PaymentMean()
+        .v6()
+        .getDefaultPaymentMean()
         .then((defaultPayment) => {
           this.data.defaultPayment = defaultPayment;
         })
@@ -170,7 +199,10 @@ import pull from 'lodash/pull';
     }
 
     createProject() {
-      this.CloudProjectAdd.startProject(this.model.voucher, this.model.projectName)
+      this.CloudProjectAdd.startProject(
+        this.model.voucher,
+        this.model.projectName,
+      )
         .catch((error) => {
           if (error.agreements) {
             this.data.agreementsAccepted = [];

@@ -7,6 +7,7 @@ import '@ovh-ux/manager-core';
 import '@ovh-ux/ng-ovh-cloud-universe-components';
 import '@ovh-ux/ng-ovh-toaster';
 import 'ovh-api-services';
+import 'ovh-ui-angular';
 
 import 'font-awesome/css/font-awesome.css';
 import 'ovh-manager-webfont/dist/css/ovh-font.css';
@@ -18,29 +19,35 @@ import './vrack-mapper.less';
 
 import actionsPartials from './partials/actions.html';
 import availablePartials from './partials/available.html';
-import controller from './vrack.controller';
+import component from './vrack.component';
 import mappedPartials from './partials/mapped.html';
 import routing from './vrack.routing';
 import vrackAdd from './add';
+import vrackMoveDialog from './move-dialog';
 
 const moduleName = 'ovhManagerVrack';
 
-angular.module(moduleName, [
-  'ui.router',
-  'ui.bootstrap',
-  'ovh-api-services',
-  'ovhManagerCore',
-  'ngOvhCloudUniverseComponents',
-  'ngOvhToaster',
-  'ui.router',
-  vrackAdd,
-])
+angular
+  .module(moduleName, [
+    'ui.router',
+    'ui.bootstrap',
+    'oui',
+    'ovh-api-services',
+    'ovhManagerCore',
+    'ngOvhCloudUniverseComponents',
+    'ngOvhToaster',
+    'ui.router',
+    vrackAdd,
+    vrackMoveDialog,
+  ])
+  .component('ovhManagerVrackComponent', component)
   .config(routing)
-  .controller('VrackCtrl', controller)
-  .run(/* @ngInject */ ($templateCache) => {
-    $templateCache.put('vrack/partials/actions.html', actionsPartials);
-    $templateCache.put('vrack/partials/available.html', availablePartials);
-    $templateCache.put('vrack/partials/mapped.html', mappedPartials);
-  });
+  .run(
+    /* @ngInject */ ($templateCache) => {
+      $templateCache.put('vrack/partials/actions.html', actionsPartials);
+      $templateCache.put('vrack/partials/available.html', availablePartials);
+      $templateCache.put('vrack/partials/mapped.html', mappedPartials);
+    },
+  );
 
 export default moduleName;

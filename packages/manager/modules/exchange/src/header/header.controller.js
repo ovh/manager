@@ -49,31 +49,29 @@ export default class HeaderController {
   }
 
   fetchingExchangeService() {
-    return this.Exchange
-      .getSelected()
-      .then((exchangeService) => {
-        this.exchangeService = exchangeService;
-        this.remoteDisplayName = this.exchangeService.displayName;
-        this.displayNameToUpdate = this.remoteDisplayName;
-      });
+    return this.Exchange.getSelected().then((exchangeService) => {
+      this.exchangeService = exchangeService;
+      this.remoteDisplayName = this.exchangeService.displayName;
+      this.displayNameToUpdate = this.remoteDisplayName;
+    });
   }
 
   fetchingCanActivateSharepoint() {
     const infrastructureAllowsSharepoint = this.exchangeServiceInfrastructure.isHosted();
     const subsidiaryAllowsSharepoint = this.constants.target === 'EU';
 
-    return this.Exchange
-      .getSharepointService()
+    return this.Exchange.getSharepointService()
       .then((sharepoint) => {
         const isAlreadyActivated = sharepoint != null;
 
-        this.canSubscribeToSharepoint = !isAlreadyActivated
-        && infrastructureAllowsSharepoint
-        && subsidiaryAllowsSharepoint;
+        this.canSubscribeToSharepoint =
+          !isAlreadyActivated &&
+          infrastructureAllowsSharepoint &&
+          subsidiaryAllowsSharepoint;
       })
       .catch(() => {
-        this.canSubscribeToSharepoint = infrastructureAllowsSharepoint
-        && subsidiaryAllowsSharepoint;
+        this.canSubscribeToSharepoint =
+          infrastructureAllowsSharepoint && subsidiaryAllowsSharepoint;
       });
   }
 
@@ -81,7 +79,9 @@ export default class HeaderController {
     return this.officeAttach
       .retrievingIfUserAlreadyHasSubscribed(this.exchangeService.domain)
       .then((userHasAlreadySubscribedToOfficeAttach) => {
-        this.canUserSubscribeToOfficeAttach = !userHasAlreadySubscribedToOfficeAttach && this.constants.target === 'EU';
+        this.canUserSubscribeToOfficeAttach =
+          !userHasAlreadySubscribedToOfficeAttach &&
+          this.constants.target === 'EU';
       });
   }
 
@@ -105,13 +105,10 @@ export default class HeaderController {
       )
       .then(() => {
         this.remoteDisplayName = this.displayNameToUpdate;
-        this.$rootScope.$broadcast(
-          'change.displayName',
-          [
-            this.exchangeService.domain,
-            this.remoteDisplayName,
-          ],
-        );
+        this.$rootScope.$broadcast('change.displayName', [
+          this.exchangeService.domain,
+          this.remoteDisplayName,
+        ]);
         this.messaging.writeSuccess(
           this.$translate.instant('exchange_ACTION_configure_success'),
         );

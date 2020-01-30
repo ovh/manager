@@ -22,7 +22,10 @@ export default class ExchangeMailingListDelegationCtrl {
     this.availableDomains = [];
     this.loadingDomains = false;
     this.currentAccount = this.services.navigation.currentActionData.mailingListAddress;
-    this.allDomainsOption = { displayName: this.services.$translate.instant('exchange_all_domains'), name: '' };
+    this.allDomainsOption = {
+      displayName: this.services.$translate.instant('exchange_all_domains'),
+      name: '',
+    };
     this.selectedDomain = this.getDefaultDomain();
 
     this.selectedGroup = this.services.navigation.currentActionData;
@@ -40,12 +43,20 @@ export default class ExchangeMailingListDelegationCtrl {
     this.delegationRightCheckingOffset = this.defaultOffset;
     this.pageSize = 10;
 
-    this.services.$scope.$on(this.services.Exchange.events.accountsChanged, () => this.services.$scope.$broadcast('paginationServerSide.reload', 'delegationTable'));
+    this.services.$scope.$on(
+      this.services.Exchange.events.accountsChanged,
+      () =>
+        this.services.$scope.$broadcast(
+          'paginationServerSide.reload',
+          'delegationTable',
+        ),
+    );
 
     this.debouncedGetDelegationRight = debounce(this.getDelegationRight, 300);
     this.services.$scope.getLoading = () => this.loading;
     this.services.$scope.getDelegationList = () => this.delegationList;
-    this.services.$scope.updateDelegationRight = () => this.updateDelegationRight();
+    this.services.$scope.updateDelegationRight = () =>
+      this.updateDelegationRight();
     this.services.$scope.getDelegationRight = (pageSize, offset) => {
       this.getDelegationRight(pageSize, offset);
     };
@@ -96,37 +107,44 @@ export default class ExchangeMailingListDelegationCtrl {
   }
 
   applyAccountSelection(account) {
-    const sendAsAccountChange = this.accountChanges.sendRights
-      .find(({ id }) => id === account.id);
-    const sendOnBehalfToAccountChange = this.accountChanges.sendOnBehalfToRights
-      .find(({ id }) => id === account.id);
+    const sendAsAccountChange = this.accountChanges.sendRights.find(
+      ({ id }) => id === account.id,
+    );
+    const sendOnBehalfToAccountChange = this.accountChanges.sendOnBehalfToRights.find(
+      ({ id }) => id === account.id,
+    );
 
-    const newSendAsValue = sendAsAccountChange ? get(sendAsAccountChange, 'operation') === 'POST' : account.sendAs;
-    const newSendOnBehalfToValue = sendOnBehalfToAccountChange ? get(sendOnBehalfToAccountChange, 'operation') === 'POST' : account.sendOnBehalfTo;
+    const newSendAsValue = sendAsAccountChange
+      ? get(sendAsAccountChange, 'operation') === 'POST'
+      : account.sendAs;
+    const newSendOnBehalfToValue = sendOnBehalfToAccountChange
+      ? get(sendOnBehalfToAccountChange, 'operation') === 'POST'
+      : account.sendOnBehalfTo;
 
-    return Object.assign({}, account, {
+    return {
+      ...account,
       newSendAsValue,
       newSendOnBehalfToValue,
-    });
+    };
   }
 
   hasChanged() {
-    return this.accountChanges.sendRights.length > 0
-    || this.accountChanges.sendOnBehalfToRights.length > 0;
+    return (
+      this.accountChanges.sendRights.length > 0 ||
+      this.accountChanges.sendOnBehalfToRights.length > 0
+    );
   }
 
   changeSelectionPage(offset) {
-    return this.getDelegationRight(this.pageSize, offset)
-      .then(() => {
-        this.delegationRightSelectionOffset = offset;
-      });
+    return this.getDelegationRight(this.pageSize, offset).then(() => {
+      this.delegationRightSelectionOffset = offset;
+    });
   }
 
   changeCheckingPage(offset) {
-    return this.getDelegationRight(this.pageSize, offset)
-      .then(() => {
-        this.delegationRightCheckingOffset = offset;
-      });
+    return this.getDelegationRight(this.pageSize, offset).then(() => {
+      this.delegationRightCheckingOffset = offset;
+    });
   }
 
   fetchAccountCreationOptions() {
@@ -140,12 +158,16 @@ export default class ExchangeMailingListDelegationCtrl {
           this.allDomainsOption,
           ...accountCreationOptions.availableDomains,
         ];
-        this.selectedDomain = find(accountCreationOptions.availableDomains,
-          domain => domain.name === this.selectedDomain.name);
+        this.selectedDomain = find(
+          accountCreationOptions.availableDomains,
+          (domain) => domain.name === this.selectedDomain.name,
+        );
       })
       .catch((error) => {
         this.services.messaging.writeError(
-          this.services.$translate.instant('exchange_accounts_fetchAccountCreationOptions_error'),
+          this.services.$translate.instant(
+            'exchange_accounts_fetchAccountCreationOptions_error',
+          ),
           error,
         );
       })
@@ -171,8 +193,9 @@ export default class ExchangeMailingListDelegationCtrl {
         // make a deep copy of accounts list to use it as model
         this.delegationList = angular.copy(accounts);
 
-        this.delegationList.list.results = accounts.list.results
-          .map(account => this.applyAccountSelection(account));
+        this.delegationList.list.results = accounts.list.results.map(
+          (account) => this.applyAccountSelection(account),
+        );
       })
       .catch((failure) => {
         this.services.messaging.writeError(
@@ -187,7 +210,9 @@ export default class ExchangeMailingListDelegationCtrl {
 
   updateDelegationRight() {
     this.services.messaging.writeSuccess(
-      this.services.$translate.instant('exchange_GROUPS_delegation_doing_message'),
+      this.services.$translate.instant(
+        'exchange_GROUPS_delegation_doing_message',
+      ),
     );
 
     this.services.Exchange.updateMailingListDelegationRights(
@@ -197,13 +222,17 @@ export default class ExchangeMailingListDelegationCtrl {
     )
       .then((data) => {
         this.services.messaging.writeSuccess(
-          this.services.$translate.instant('exchange_GROUPS_delegation_success_message'),
+          this.services.$translate.instant(
+            'exchange_GROUPS_delegation_success_message',
+          ),
           data,
         );
       })
       .catch((failure) => {
         this.services.messaging.writeError(
-          this.services.$translate.instant('exchange_GROUPS_delegation_error_message'),
+          this.services.$translate.instant(
+            'exchange_GROUPS_delegation_error_message',
+          ),
           failure,
         );
       })

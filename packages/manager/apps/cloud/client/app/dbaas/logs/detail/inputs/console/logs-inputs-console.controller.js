@@ -12,7 +12,7 @@ class LogsInputsConsoleCtrl {
   $onInit() {
     this.input.load();
     this.logger = new this.TailLogs({
-      source: () => this.inputLogUrl.load().then(urlInfo => urlInfo.data.url),
+      source: () => this.inputLogUrl.load().then((urlInfo) => urlInfo.data.url),
       delay: 10000,
     });
     this.logger.log();
@@ -25,12 +25,16 @@ class LogsInputsConsoleCtrl {
    */
   initLoaders() {
     this.inputLogUrl = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () => this.LogsInputsService.getInputLogUrl(this.serviceName, this.inputId),
+      loaderFunction: () =>
+        this.LogsInputsService.getInputLogUrl(this.serviceName, this.inputId),
     });
     this.input = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () => this.LogsInputsService.getInput(this.serviceName, this.inputId),
+      loaderFunction: () =>
+        this.LogsInputsService.getInput(this.serviceName, this.inputId),
     });
   }
 }
 
-angular.module('managerApp').controller('LogsInputsConsoleCtrl', LogsInputsConsoleCtrl);
+angular
+  .module('managerApp')
+  .controller('LogsInputsConsoleCtrl', LogsInputsConsoleCtrl);

@@ -7,8 +7,14 @@ import controller from './update/telecom-sms-options-recredit-update.controller'
 export default class {
   /* @ngInject */
   constructor(
-    $q, $stateParams, $translate, $uibModal,
-    OvhApiOrderSms, TucSmsMediator, TucToast, TucToastError,
+    $q,
+    $stateParams,
+    $translate,
+    $uibModal,
+    OvhApiOrderSms,
+    TucSmsMediator,
+    TucToast,
+    TucToastError,
   ) {
     this.$q = $q;
     this.$stateParams = $stateParams;
@@ -30,14 +36,18 @@ export default class {
     this.service = null;
 
     this.loading.init = true;
-    return this.TucSmsMediator.initDeferred.promise.then(() => {
-      this.service = this.TucSmsMediator.getCurrentSmsService();
-      return this.service;
-    }).then(service => this.fetchOfferPrice(service)).catch((err) => {
-      this.TucToastError(err);
-    }).finally(() => {
-      this.loading.init = false;
-    });
+    return this.TucSmsMediator.initDeferred.promise
+      .then(() => {
+        this.service = this.TucSmsMediator.getCurrentSmsService();
+        return this.service;
+      })
+      .then((service) => this.fetchOfferPrice(service))
+      .catch((err) => {
+        this.TucToastError(err);
+      })
+      .finally(() => {
+        this.loading.init = false;
+      });
   }
 
   /**
@@ -47,10 +57,13 @@ export default class {
    */
   fetchOfferPrice(service) {
     if (service.automaticRecreditAmount !== null) {
-      return this.api.orderSms.getCredits({
-        serviceName: this.$stateParams.serviceName,
-        quantity: service.automaticRecreditAmount,
-      }).$promise.then(credits => result(credits, 'prices.withoutTax')).then(price => assign(service, { price }));
+      return this.api.orderSms
+        .getCredits({
+          serviceName: this.$stateParams.serviceName,
+          quantity: service.automaticRecreditAmount,
+        })
+        .$promise.then((credits) => result(credits, 'prices.withoutTax'))
+        .then((price) => assign(service, { price }));
     }
     set(service, 'price', null);
     return this.$q.when(service);
@@ -68,15 +81,21 @@ export default class {
       controllerAs: 'OptionsRecreditUpdateCtrl',
       resolve: { service: () => service },
     });
-    modal.result.then(() => {
-      this.loading.price = true;
-      return this.fetchOfferPrice(this.service).finally(() => {
-        this.loading.price = false;
+    modal.result
+      .then(() => {
+        this.loading.price = true;
+        return this.fetchOfferPrice(this.service).finally(() => {
+          this.loading.price = false;
+        });
+      })
+      .catch((error) => {
+        if (error && error.type === 'API') {
+          this.TucToast.error(
+            this.$translate.instant('sms_options_recredit_update_ko', {
+              error: error.message,
+            }),
+          );
+        }
       });
-    }).catch((error) => {
-      if (error && error.type === 'API') {
-        this.TucToast.error(this.$translate.instant('sms_options_recredit_update_ko', { error: error.message }));
-      }
-    });
   }
 }

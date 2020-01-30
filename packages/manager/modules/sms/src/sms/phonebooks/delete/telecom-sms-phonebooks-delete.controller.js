@@ -3,7 +3,14 @@ import get from 'lodash/get';
 
 export default class {
   /* @ngInject */
-  constructor($q, $stateParams, $timeout, $uibModalInstance, phonebook, OvhApiSms) {
+  constructor(
+    $q,
+    $stateParams,
+    $timeout,
+    $uibModalInstance,
+    phonebook,
+    OvhApiSms,
+  ) {
     this.$q = $q;
     this.$stateParams = $stateParams;
     this.$timeout = $timeout;
@@ -25,25 +32,30 @@ export default class {
   }
 
   /**
-     * Delete phonebook.
-     * @return {Promise}
-     */
+   * Delete phonebook.
+   * @return {Promise}
+   */
   delete() {
     this.isDeleting = true;
-    return this.$q.all([
-      this.api.sms.phonebooks.delete({
-        serviceName: this.$stateParams.serviceName,
-        bookKey: get(this.phonebook, 'bookKey'),
-      }).$promise,
-      this.$timeout(angular.noop, 1000),
-    ]).then(() => {
-      this.isDeleting = false;
-      this.deleted = true;
-      return this.$timeout(() => this.close(), 1500);
-    }).catch(error => this.cancel({
-      type: 'API',
-      msg: error,
-    }));
+    return this.$q
+      .all([
+        this.api.sms.phonebooks.delete({
+          serviceName: this.$stateParams.serviceName,
+          bookKey: get(this.phonebook, 'bookKey'),
+        }).$promise,
+        this.$timeout(angular.noop, 1000),
+      ])
+      .then(() => {
+        this.isDeleting = false;
+        this.deleted = true;
+        return this.$timeout(() => this.close(), 1500);
+      })
+      .catch((error) =>
+        this.cancel({
+          type: 'API',
+          msg: error,
+        }),
+      );
   }
 
   cancel(message) {

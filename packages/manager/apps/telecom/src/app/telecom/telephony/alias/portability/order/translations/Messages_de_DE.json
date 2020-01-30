@@ -78,5 +78,19 @@
   "telephony_alias_portability_order_step_2": "Informationen",
   "telephony_alias_portability_order_step_3": "Configuration du numéro",
   "telephony_alias_portability_order_step_4": "Finalisation",
-  "telephony_alias_portability_order_number_category": "Catégorie du numéro spécial"
+  "telephony_alias_portability_order_number_category": "Catégorie du numéro spécial",
+  "telephony_order_specific_typology_error": "Beim Abruf der Informationen ist ein Fehler aufgetreten.",
+  "telephony_order_specific_typology_access_label": "Dienste für Zugangscodes",
+  "telephony_order_specific_typology_adults_label": "nicht jugendfreier Inhalt",
+  "telephony_order_specific_typology_announced_label": "Kleinanzeigen",
+  "telephony_order_specific_typology_conferencing_label": "Dienste für Telefonie und Videokonferenzen ",
+  "telephony_order_specific_typology_contentsAuto_label": "Automatisierte Verarbeitung der Inhalte, maschinell bereitgestellt",
+  "telephony_order_specific_typology_contentsManual_label": "Verarbeitung der Inhalte der Dienste durch qualifizierte Mitarbeiter",
+  "telephony_order_specific_typology_games_label": "Spiele",
+  "telephony_order_specific_typology_linking_label": "Vermittlungsdienste",
+  "telephony_order_specific_typology_m2m_label": "Dienste zwischen Maschinen",
+  "telephony_order_specific_typology_relationship_label": "Beziehung zwischen Kunde und Unternehmen / Verwaltung / Verband",
+  "telephony_order_specific_typology_content_label": "Klingeltöne, Logos",
+  "telephony_order_specific_typology_general_label": "Allgemein",
+  "telephony_order_specific_typology_relaxing_label": "Dienste zur Entspannung"
 }

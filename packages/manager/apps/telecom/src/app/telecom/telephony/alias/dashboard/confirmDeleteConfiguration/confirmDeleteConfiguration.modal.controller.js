@@ -1,4 +1,5 @@
-angular.module('managerApp').controller('TelecomTelephonyAliasConfirmDeleteConfigurationCtrl',
+angular.module('managerApp').controller(
+  'TelecomTelephonyAliasConfirmDeleteConfigurationCtrl',
   class TelecomTelephonyAliasConfirmDeleteConfigurationCtrl {
     constructor($uibModalInstance, isObsolete, number, tucVoipServiceAlias) {
       this.$uibModalInstance = $uibModalInstance;
@@ -12,13 +13,17 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfirmDeleteConfi
       const emptyType = 'empty';
 
       this.loading = true;
-      this.tucVoipServiceAlias.changeNumberFeatureType(this.number, emptyType).then(() => {
-        this.$uibModalInstance.close();
-      }).catch((error) => {
-        this.$uibModalInstance.dismiss(error);
-      }).finally(() => {
-        this.loading = false;
-      });
+      this.tucVoipServiceAlias
+        .changeNumberFeatureType(this.number, emptyType)
+        .then(() => {
+          this.$uibModalInstance.close();
+        })
+        .catch((error) => {
+          this.$uibModalInstance.dismiss(error);
+        })
+        .finally(() => {
+          this.loading = false;
+        });
     }
 
     cancel() {
@@ -26,4 +31,5 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfirmDeleteConfi
         this.$uibModalInstance.dismiss();
       }
     }
-  });
+  },
+);

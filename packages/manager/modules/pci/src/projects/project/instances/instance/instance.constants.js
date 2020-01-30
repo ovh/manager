@@ -4,15 +4,11 @@ export const DEDICATED_IPS_URL = {
   US: 'https://us.ovhcloud.com/manager/dedicated/#/configuration/ip',
 };
 
-export const MITIGATION_URL = (
-  ip,
-  region,
-) => `${DEDICATED_IPS_URL[region]}?action=mitigation&ip=${ip}&ipBlock=${ip}`;
+export const MITIGATION_URL = (ip, region) =>
+  `${DEDICATED_IPS_URL[region]}?action=mitigation&ip=${ip}&ipBlock=${ip}`;
 
-export const FIREWALL_URL = (
-  ip,
-  region,
-) => `${DEDICATED_IPS_URL[region]}?action=toggleFirewall&ip=${ip}&ipBlock=${ip}`;
+export const FIREWALL_URL = (ip, region) =>
+  `${DEDICATED_IPS_URL[region]}?action=toggleFirewall&ip=${ip}&ipBlock=${ip}`;
 
 export default {
   DEDICATED_IPS_URL,

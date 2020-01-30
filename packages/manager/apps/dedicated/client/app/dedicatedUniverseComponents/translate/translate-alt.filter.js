@@ -8,7 +8,7 @@
  *   'my_key' | ducTranslateAlt: ('my_other_key' | translate)
  *   you can use any valid angular expression as alternative value
  */
-export default /* @ngInject */ $translate => (toTranslate, alternative) => {
+export default /* @ngInject */ ($translate) => (toTranslate, alternative) => {
   const translated = $translate.instant(toTranslate);
   return translated === toTranslate ? alternative : translated;
 };

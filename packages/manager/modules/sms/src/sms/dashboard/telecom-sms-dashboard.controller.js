@@ -7,7 +7,14 @@ import moment from 'moment';
 
 export default class {
   /* @ngInject */
-  constructor($q, $stateParams, $translate, OvhApiSms, TucSmsMediator, TucToastError) {
+  constructor(
+    $q,
+    $stateParams,
+    $translate,
+    OvhApiSms,
+    TucSmsMediator,
+    TucToastError,
+  ) {
     this.$q = $q;
     this.$stateParams = $stateParams;
     this.$translate = $translate;
@@ -49,52 +56,63 @@ export default class {
       },
       limit: 6,
     };
-    this.actions = [{
-      name: 'compose_message',
-      sref: 'sms.service.sms.compose',
-      text: this.$translate.instant('sms_actions_send_sms'),
-    }, {
-      name: 'recredit_options',
-      sref: 'sms.service.order',
-      text: this.$translate.instant('sms_actions_credit_account'),
-    }, {
-      name: 'manage_recipient_new',
-      sref: 'sms.service.receivers',
-      text: this.$translate.instant('sms_actions_create_contact'),
-    }, {
-      name: 'manage_senders',
-      sref: 'sms.service.senders.add',
-      text: this.$translate.instant('sms_actions_create_sender'),
-    }, {
-      name: 'manage_soapi_users',
-      sref: 'sms.service.users',
-      text: this.$translate.instant('sms_actions_create_api_user'),
-    }, {
-      name: 'manage_blacklisted_senders',
-      sref: 'sms.service.receivers',
-      text: this.$translate.instant('sms_actions_clean_contact_list'),
-    }];
+    this.actions = [
+      {
+        name: 'compose_message',
+        sref: 'sms.service.sms.compose',
+        text: this.$translate.instant('sms_actions_send_sms'),
+      },
+      {
+        name: 'recredit_options',
+        sref: 'sms.service.order',
+        text: this.$translate.instant('sms_actions_credit_account'),
+      },
+      {
+        name: 'manage_recipient_new',
+        sref: 'sms.service.receivers',
+        text: this.$translate.instant('sms_actions_create_contact'),
+      },
+      {
+        name: 'manage_senders',
+        sref: 'sms.service.senders.add',
+        text: this.$translate.instant('sms_actions_create_sender'),
+      },
+      {
+        name: 'manage_soapi_users',
+        sref: 'sms.service.users',
+        text: this.$translate.instant('sms_actions_create_api_user'),
+      },
+      {
+        name: 'manage_blacklisted_senders',
+        sref: 'sms.service.receivers',
+        text: this.$translate.instant('sms_actions_clean_contact_list'),
+      },
+    ];
 
     this.loading.init = true;
     this.api.sms.outgoing.resetAllCache();
     this.api.sms.incoming.resetAllCache();
-    return this.$q.all({
-      senders: this.fetchSenders(),
-      outgoing: this.fetchOutgoing(),
-      incoming: this.fetchIncoming(),
-      jobs: this.fetchJobs(),
-    }).then((results) => {
-      this.service = this.TucSmsMediator.getCurrentSmsService();
-      this.stats.data.outgoing = results.outgoing.length;
-      this.stats.data.incoming = results.incoming.length;
-      this.stats.data.jobs = results.jobs.length;
-      this.stats.label.senders = results.senders;
-      this.stats.label.months = this.getPreviousMonths();
-    }).catch((err) => {
-      this.TucToastError(err);
-    }).finally(() => {
-      this.loading.init = false;
-    });
+    return this.$q
+      .all({
+        senders: this.fetchSenders(),
+        outgoing: this.fetchOutgoing(),
+        incoming: this.fetchIncoming(),
+        jobs: this.fetchJobs(),
+      })
+      .then((results) => {
+        this.service = this.TucSmsMediator.getCurrentSmsService();
+        this.stats.data.outgoing = results.outgoing.length;
+        this.stats.data.incoming = results.incoming.length;
+        this.stats.data.jobs = results.jobs.length;
+        this.stats.label.senders = results.senders;
+        this.stats.label.months = this.getPreviousMonths();
+      })
+      .catch((err) => {
+        this.TucToastError(err);
+      })
+      .finally(() => {
+        this.loading.init = false;
+      });
   }
 
   /**
@@ -115,8 +133,14 @@ export default class {
   fetchOutgoing(month = 0) {
     return this.api.sms.outgoing.query({
       serviceName: this.$stateParams.serviceName,
-      'creationDatetime.from': moment().subtract(month, 'months').startOf('month').format(),
-      'creationDatetime.to': moment().subtract(month, 'months').endOf('month').format(),
+      'creationDatetime.from': moment()
+        .subtract(month, 'months')
+        .startOf('month')
+        .format(),
+      'creationDatetime.to': moment()
+        .subtract(month, 'months')
+        .endOf('month')
+        .format(),
     }).$promise;
   }
 
@@ -128,8 +152,14 @@ export default class {
   fetchIncoming(month = 0) {
     return this.api.sms.incoming.query({
       serviceName: this.$stateParams.serviceName,
-      'creationDatetime.from': moment().subtract(month, 'months').startOf('month').format(),
-      'creationDatetime.to': moment().subtract(month, 'months').endOf('month').format(),
+      'creationDatetime.from': moment()
+        .subtract(month, 'months')
+        .startOf('month')
+        .format(),
+      'creationDatetime.to': moment()
+        .subtract(month, 'months')
+        .endOf('month')
+        .format(),
     }).$promise;
   }
 
@@ -152,8 +182,14 @@ export default class {
     for (let i = 1; i <= this.stats.limit; i += 1) {
       monthsAvailable.push({
         index: this.stats.moment.month - i,
-        name: capitalize(moment().month(this.stats.moment.month - i).format('MMMM')),
-        fromYear: moment().month(this.stats.moment.month - i).format('YYYY'),
+        name: capitalize(
+          moment()
+            .month(this.stats.moment.month - i)
+            .format('MMMM'),
+        ),
+        fromYear: moment()
+          .month(this.stats.moment.month - i)
+          .format('YYYY'),
       });
     }
     return monthsAvailable;
@@ -165,36 +201,46 @@ export default class {
    * @return {Promise}
    */
   getStats(sender) {
-    const offset = this.stats.moment.month - (this.stats.filter.month
-      ? this.stats.filter.month : moment().month());
+    const offset =
+      this.stats.moment.month -
+      (this.stats.filter.month ? this.stats.filter.month : moment().month());
     this.api.sms.outgoing.resetAllCache();
     this.api.sms.incoming.resetAllCache();
     this.loading.stats = true;
-    return this.$q.all({
-      outgoing: this.fetchOutgoing(offset),
-      incoming: this.fetchIncoming(offset),
-    }).then((results) => {
-      if (sender) {
-        return this.$q
-          .all(map(
-            chunk(results.outgoing, 50),
-            id => this.api.sms.outgoing.getBatch({
-              serviceName: this.$stateParams.serviceName,
-              id,
-            }).$promise.catch(err => this.TucToastError(err)),
-          ))
-          .then(chunkResult => map(flatten(chunkResult), 'value')).then((sms) => {
-            this.stats.data.outgoing = filter(sms, { sender }).length;
-            this.stats.data.incoming = 0;
-          }).catch(err => this.TucToastError(err));
-      }
-      this.stats.data.outgoing = results.outgoing.length;
-      this.stats.data.incoming = results.incoming.length;
-      return null;
-    }).catch((err) => {
-      this.TucToastError(err);
-    }).finally(() => {
-      this.loading.stats = false;
-    });
+    return this.$q
+      .all({
+        outgoing: this.fetchOutgoing(offset),
+        incoming: this.fetchIncoming(offset),
+      })
+      .then((results) => {
+        if (sender) {
+          return this.$q
+            .all(
+              map(chunk(results.outgoing, 50), (id) =>
+                this.api.sms.outgoing
+                  .getBatch({
+                    serviceName: this.$stateParams.serviceName,
+                    id,
+                  })
+                  .$promise.catch((err) => this.TucToastError(err)),
+              ),
+            )
+            .then((chunkResult) => map(flatten(chunkResult), 'value'))
+            .then((sms) => {
+              this.stats.data.outgoing = filter(sms, { sender }).length;
+              this.stats.data.incoming = 0;
+            })
+            .catch((err) => this.TucToastError(err));
+        }
+        this.stats.data.outgoing = results.outgoing.length;
+        this.stats.data.incoming = results.incoming.length;
+        return null;
+      })
+      .catch((err) => {
+        this.TucToastError(err);
+      })
+      .finally(() => {
+        this.loading.stats = false;
+      });
   }
 }

@@ -16,16 +16,24 @@ export default class OverTheBoxesCtrl extends ListLayoutHelper.ListLayoutCtrl {
     this.filtersOptions = {
       status: {
         hideOperators: true,
-        values: this.overTheBoxStatusTypes.reduce((statusTypes, statusType) => ({
-          ...statusTypes,
-          [statusType]: this.$translate.instant(`overtheboxes_status_label_${statusType}`),
-        }), {}),
+        values: this.overTheBoxStatusTypes.reduce(
+          (statusTypes, statusType) => ({
+            ...statusTypes,
+            [statusType]: this.$translate.instant(
+              `overtheboxes_status_label_${statusType}`,
+            ),
+          }),
+          {},
+        ),
       },
     };
 
     this.columnsConfig = [
       { name: 'serviceName', sortable: this.getSorting('serviceName') },
-      { name: 'customerDescription', sortable: this.getSorting('customerDescription') },
+      {
+        name: 'customerDescription',
+        sortable: this.getSorting('customerDescription'),
+      },
       { name: 'status', sortable: this.getSorting('status') },
     ];
   }

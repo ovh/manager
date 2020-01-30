@@ -1,17 +1,24 @@
 <div data-ng-controller="hostingRegenerateSSLCtrl">
-    <div data-wizard
-         data-wizard-on-cancel="resetAction"
-         data-wizard-on-finish="regeneratingCertificate"
-         data-wizard-title="'hosting_dashboard_service_regenerate_ssl_title' | translate">
-
+    <div
+        data-wizard
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="regeneratingCertificate"
+        data-wizard-title="'hosting_dashboard_service_regenerate_ssl_title' | translate"
+    >
         <div data-wizard-step>
-            <p data-translate="hosting_dashboard_service_regenerate_ssl_warning"></p>
-            <div class="alert alert-warning"
-                 role="alert"
-                 data-translate="hosting_ssl_regenerate_info_warning"></div>
-            <div class="alert alert-info"
-                 role="alert"
-                 data-translate="hosting_ssl_regenerate_info"></div>
+            <p
+                data-translate="hosting_dashboard_service_regenerate_ssl_warning"
+            ></p>
+            <div
+                class="alert alert-warning"
+                role="alert"
+                data-translate="hosting_ssl_regenerate_info_warning"
+            ></div>
+            <div
+                class="alert alert-info"
+                role="alert"
+                data-translate="hosting_ssl_regenerate_info"
+            ></div>
         </div>
     </div>
 </div>

@@ -1,3 +1,5 @@
+import filter from 'lodash/filter';
+import includes from 'lodash/includes';
 import WebHostingOffer from './domain-webhosting-order-offer.class';
 import {
   CONFIGURATION_OPTIONS,
@@ -9,62 +11,83 @@ import {
 
 export default class {
   /* @ngInject */
-  constructor($q, OrderService, OvhApiHostingWebModuleList, OvhApiOrder) {
+  constructor(
+    $q,
+    OvhApiHostingWebModuleList,
+    OvhApiOrder,
+    WucOrderCartService,
+  ) {
     this.$q = $q;
-    this.OrderService = OrderService;
     this.OvhApiHostingWebModuleList = OvhApiHostingWebModuleList;
     this.OvhApiOrder = OvhApiOrder;
+    this.WucOrderCartService = WucOrderCartService;
   }
 
   getAvailableModules(cartId) {
-    return this.OrderService
-      .getProductOptions(
-        cartId,
-        WEBHOSTING_ORDER_PRODUCT,
-        { planCode: DEFAULT_PLANCODE },
-      );
+    return this.WucOrderCartService.getProductOptions(
+      cartId,
+      WEBHOSTING_ORDER_PRODUCT,
+      { planCode: DEFAULT_PLANCODE },
+    );
   }
 
   getAvailableOffers(cartId, ovhSubsidiary) {
-    return this.$q.all({
-      catalog: this.OvhApiOrder.Catalog().Public().v6()
-        .get({ productName: WEBHOSTING_ORDER_PRODUCT, ovhSubsidiary })
-        .$promise
-        .then(({ plans }) => plans),
-      offers: this.OvhApiOrder.Cart().Product()
-        .v6()
-        .get({
-          cartId,
-        }, {
-          productName: WEBHOSTING_ORDER_PRODUCT,
-        })
-        .$promise,
-    })
+    return this.$q
+      .all({
+        catalog: this.OvhApiOrder.Catalog()
+          .Public()
+          .v6()
+          .get({ productName: WEBHOSTING_ORDER_PRODUCT, ovhSubsidiary })
+          .$promise.then(({ plans }) => plans),
+        offers: this.OvhApiOrder.Cart()
+          .Product()
+          .v6()
+          .get(
+            {
+              cartId,
+            },
+            {
+              productName: WEBHOSTING_ORDER_PRODUCT,
+            },
+          ).$promise,
+      })
       .then(({ catalog, offers }) => {
         const productPlancodes = offers.map(({ planCode }) => planCode);
-        const catalogProducts = catalog
-          .filter(({ planCode }) => productPlancodes.includes(planCode));
+        const catalogProducts = catalog.filter(({ planCode }) =>
+          productPlancodes.includes(planCode),
+        );
 
-        return offers
-          .map(({ description, planCode, prices }) => {
-            const { pricings } = catalogProducts
-              .find(({ planCode: productPlanCode }) => planCode === productPlanCode);
+        return offers.map(({ description, planCode, prices }) => {
+          const { pricings } = catalogProducts.find(
+            ({ planCode: productPlanCode }) => planCode === productPlanCode,
+          );
 
-            const [pricing] = pricings;
-            const [{ duration, pricingMode }] = prices;
-            const durations = prices.map(({ duration: priceDuration }) => priceDuration);
+          const renewPrices = filter(prices, ({ capacities }) =>
+            includes(capacities, 'renew'),
+          );
 
-            pricing.duration = duration;
-            pricing.pricingMode = pricingMode;
+          const renewPricings = filter(pricings, ({ capacities }) =>
+            includes(capacities, 'renew'),
+          );
 
-            return new WebHostingOffer({
-              ...description,
-              durations,
-              planCode,
-              pricing,
-              pricings,
-            });
+          const [pricing] = renewPricings;
+
+          const [{ duration, pricingMode }] = renewPrices;
+          const durations = renewPrices.map(
+            ({ duration: priceDuration }) => priceDuration,
+          );
+
+          pricing.duration = duration;
+          pricing.pricingMode = pricingMode;
+
+          return new WebHostingOffer({
+            ...description,
+            durations,
+            planCode,
+            pricing,
+            pricings: renewPricings,
           });
+        });
       });
   }
 
@@ -72,58 +95,78 @@ export default class {
     const productOptions = cartOption.offer;
     const moduleOptions = cartOption.module;
 
-    const dnsZoneValue = this.constructor
-      .mapDnsZoneValue(cartOption.dnsConfiguration);
+    const dnsZoneValue = this.constructor.mapDnsZoneValue(
+      cartOption.dnsConfiguration,
+    );
 
-    return this.addHostingToCart(cartId, domainName, productOptions, dnsZoneValue)
-      .then(itemId => (moduleOptions ? this.addModuleToCart(
-        cartId,
-        itemId,
-        domainName,
-        moduleOptions,
-      ) : null))
-      .then(() => this.OrderService.getCheckoutInformations(cartId));
+    return this.addHostingToCart(
+      cartId,
+      domainName,
+      productOptions,
+      dnsZoneValue,
+    )
+      .then((itemId) =>
+        moduleOptions
+          ? this.addModuleToCart(cartId, itemId, domainName, moduleOptions)
+          : null,
+      )
+      .then(() => this.WucOrderCartService.getCheckoutInformations(cartId));
   }
 
   addHostingToCart(cartId, domainName, productOptions, dnsConfiguration) {
     const { label, value } = dnsConfiguration;
-    return this.OrderService
-      .addProductToCart(
-        cartId,
-        WEBHOSTING_ORDER_PRODUCT,
-        {
-          duration: productOptions.pricing.duration,
-          planCode: productOptions.planCode,
-          pricingMode: productOptions.pricing.pricingMode,
-          quantity: PRODUCT_QUANTITY,
-        },
-      )
-      .then(({ itemId }) => this.$q.all([
-        this.OrderService.addConfigurationItem(
-          cartId, itemId, CONFIGURATION_OPTIONS.LEGACY_DOMAIN, domainName,
-        ),
-        this.OrderService.addConfigurationItem(
-          cartId, itemId, label, value,
-        ),
-      ]).then(() => itemId));
+    return this.WucOrderCartService.addProductToCart(
+      cartId,
+      WEBHOSTING_ORDER_PRODUCT,
+      {
+        duration: productOptions.pricing.duration,
+        planCode: productOptions.planCode,
+        pricingMode: productOptions.pricing.pricingMode,
+        quantity: PRODUCT_QUANTITY,
+      },
+    ).then(({ itemId }) =>
+      this.$q
+        .all([
+          this.WucOrderCartService.addConfigurationItem(
+            cartId,
+            itemId,
+            CONFIGURATION_OPTIONS.LEGACY_DOMAIN,
+            domainName,
+          ),
+          this.WucOrderCartService.addConfigurationItem(
+            cartId,
+            itemId,
+            label,
+            value,
+          ),
+        ])
+        .then(() => itemId),
+    );
   }
 
   addModuleToCart(cartId, itemId, domainName, moduleOptions) {
-    return this.OrderService
-      .addProductOptionToCart(cartId, WEBHOSTING_ORDER_PRODUCT, {
+    return this.WucOrderCartService.addProductOptionToCart(
+      cartId,
+      WEBHOSTING_ORDER_PRODUCT,
+      {
         duration: moduleOptions.duration,
         itemId,
         planCode: moduleOptions.planCode,
         pricingMode: moduleOptions.pricingMode,
         quantity: OPTION_QUANTITY,
-      })
-      .then(({ itemId: productId }) => this.OrderService.addConfigurationItem(
-        cartId, productId, CONFIGURATION_OPTIONS.LEGACY_DOMAIN, domainName,
-      ));
+      },
+    ).then(({ itemId: productId }) =>
+      this.WucOrderCartService.addConfigurationItem(
+        cartId,
+        productId,
+        CONFIGURATION_OPTIONS.LEGACY_DOMAIN,
+        domainName,
+      ),
+    );
   }
 
   validateCheckout(cartId, checkout) {
-    return this.OrderService.checkoutCart(cartId, checkout);
+    return this.WucOrderCartService.checkoutCart(cartId, checkout);
   }
 
   static mapDnsZoneValue(dnsConfiguration) {

@@ -30,25 +30,33 @@ export default class {
   }
 
   /**
-     * Set callback URL for sms api user.
-     * @return {Promise}
-     */
+   * Set callback URL for sms api user.
+   * @return {Promise}
+   */
   setUrl() {
     this.loading.changePasswordUser = true;
-    return this.$q.all([
-      this.api.sms.users.edit({
-        serviceName: this.$stateParams.serviceName,
-        login: this.model.user.login,
-      }, pick(this.model.user, this.attributes)).$promise,
-      this.$timeout(angular.noop, 1000),
-    ]).then(() => {
-      this.loading.changePasswordUser = false;
-      this.changed = true;
-      return this.$timeout(() => this.close(), 1000);
-    }).catch(error => this.cancel({
-      type: 'API',
-      msg: error,
-    }));
+    return this.$q
+      .all([
+        this.api.sms.users.edit(
+          {
+            serviceName: this.$stateParams.serviceName,
+            login: this.model.user.login,
+          },
+          pick(this.model.user, this.attributes),
+        ).$promise,
+        this.$timeout(angular.noop, 1000),
+      ])
+      .then(() => {
+        this.loading.changePasswordUser = false;
+        this.changed = true;
+        return this.$timeout(() => this.close(), 1000);
+      })
+      .catch((error) =>
+        this.cancel({
+          type: 'API',
+          msg: error,
+        }),
+      );
   }
 
   cancel(message) {
@@ -60,9 +68,9 @@ export default class {
   }
 
   /**
-     * Has changed helper.
-     * @return {Boolean}
-     */
+   * Has changed helper.
+   * @return {Boolean}
+   */
   hasChanged() {
     return !isEqual(
       pick(this.model.user, this.attributes),

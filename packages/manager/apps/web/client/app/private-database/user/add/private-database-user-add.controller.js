@@ -37,15 +37,15 @@ angular.module('App').controller(
         },
       };
 
-      this.$scope.hasError = label => label.$invalid && label.$dirty;
+      this.$scope.hasError = (label) => label.$invalid && label.$dirty;
       this.$scope.addUser = () => this.addUser();
     }
 
     isPasswordValid() {
       return (
-        this.model.password.value
-        && this.model.password.value.length
-        && this.model.password.condition.pattern.test(this.model.password.value)
+        this.model.password.value &&
+        this.model.password.value.length &&
+        this.model.password.condition.pattern.test(this.model.password.value)
       );
     }
 
@@ -55,10 +55,10 @@ angular.module('App').controller(
 
     isNameValid() {
       return (
-        this.model.user.value
-        && this.model.user.value.length
-        && this.model.user.condition.pattern.test(this.model.user.value)
-        && !this.nameAlreadyExist()
+        this.model.user.value &&
+        this.model.user.value.length &&
+        this.model.user.condition.pattern.test(this.model.user.value) &&
+        !this.nameAlreadyExist()
       );
     }
 

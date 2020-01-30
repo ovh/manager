@@ -5,7 +5,17 @@ import map from 'lodash/map';
 
 export default class MicrosoftOfficeLicenseService {
   /* @ngInject */
-  constructor($cacheFactory, $http, $q, $translate, $window, constants, OvhHttp, Poll, User) {
+  constructor(
+    $cacheFactory,
+    $http,
+    $q,
+    $translate,
+    $window,
+    constants,
+    OvhHttp,
+    Poll,
+    User,
+  ) {
     this.$cacheFactory = $cacheFactory;
     this.$http = $http;
     this.$q = $q;
@@ -25,9 +35,10 @@ export default class MicrosoftOfficeLicenseService {
    * @return {[string]}
    */
   get(licenseId) {
-    return this.$http.get(`${this.basePath}/${licenseId}`)
-      .then(response => response.data)
-      .catch(err => this.$q.reject(err.data));
+    return this.$http
+      .get(`${this.basePath}/${licenseId}`)
+      .then((response) => response.data)
+      .catch((err) => this.$q.reject(err.data));
   }
 
   /**
@@ -37,9 +48,10 @@ export default class MicrosoftOfficeLicenseService {
    * @return {[type]}
    */
   edit(licenseId, officeTenant) {
-    return this.$http.put(`${this.basePath}/${licenseId}`, officeTenant)
-      .then(response => response.data)
-      .catch(err => this.$q.reject(err.data));
+    return this.$http
+      .put(`${this.basePath}/${licenseId}`, officeTenant)
+      .then((response) => response.data)
+      .catch((err) => this.$q.reject(err.data));
   }
 
   /**
@@ -50,9 +62,13 @@ export default class MicrosoftOfficeLicenseService {
    * @return {Task}                 [description]
    */
   editPassword(licenseId, activationEmail, data) {
-    return this.$http.post(`${this.basePath}/${licenseId}/user/${activationEmail}/changePassword`, data)
-      .then(response => response.data)
-      .catch(err => this.$q.reject(err.data));
+    return this.$http
+      .post(
+        `${this.basePath}/${licenseId}/user/${activationEmail}/changePassword`,
+        data,
+      )
+      .then((response) => response.data)
+      .catch((err) => this.$q.reject(err.data));
   }
 
   /**
@@ -71,9 +87,12 @@ export default class MicrosoftOfficeLicenseService {
   }
 
   getAvailableOptions(licenseId) {
-    return this.ovhHttp.get(`/order/cartServiceOption/office365Prepaid/${licenseId}`, {
-      rootPath: 'apiv6',
-    });
+    return this.ovhHttp.get(
+      `/order/cartServiceOption/office365Prepaid/${licenseId}`,
+      {
+        rootPath: 'apiv6',
+      },
+    );
   }
 
   /**
@@ -82,9 +101,10 @@ export default class MicrosoftOfficeLicenseService {
    * @return {[string]}           [description]
    */
   getUsers(licenseId) {
-    return this.$http.get(`${this.basePath}/${licenseId}/user`)
-      .then(response => response.data)
-      .catch(err => this.$q.reject(err.data));
+    return this.$http
+      .get(`${this.basePath}/${licenseId}/user`)
+      .then((response) => response.data)
+      .catch((err) => this.$q.reject(err.data));
   }
 
   /**
@@ -92,9 +112,12 @@ export default class MicrosoftOfficeLicenseService {
    * @return {Object} [description]
    */
   getLicenses() {
-    return this.$http.get(`${this.basePath}.json`)
-      .then(response => response.data.models['license.office.LicenceEnum'].enum)
-      .catch(err => this.$q.reject(err.data));
+    return this.$http
+      .get(`${this.basePath}.json`)
+      .then(
+        (response) => response.data.models['license.office.LicenceEnum'].enum,
+      )
+      .catch((err) => this.$q.reject(err.data));
   }
 
   /**
@@ -114,9 +137,10 @@ export default class MicrosoftOfficeLicenseService {
    * @return {Object}           [description]
    */
   getUserDetails(licenseId, userId) {
-    return this.$http.get(`${this.basePath}/${licenseId}/user/${userId}`)
-      .then(response => response.data)
-      .catch(err => this.$q.reject(err.data));
+    return this.$http
+      .get(`${this.basePath}/${licenseId}/user/${userId}`)
+      .then((response) => response.data)
+      .catch((err) => this.$q.reject(err.data));
   }
 
   pollUserDetails(licenseId, userId, $scope) {
@@ -128,14 +152,18 @@ export default class MicrosoftOfficeLicenseService {
       });
     });
 
-    return this.pollService.poll(`${this.basePath}/${licenseId}/user/${userId}`, null, {
-      scope: $scope.$id,
-      successRule: {
-        status: 'ok',
-        taskPendingId: 0,
+    return this.pollService.poll(
+      `${this.basePath}/${licenseId}/user/${userId}`,
+      null,
+      {
+        scope: $scope.$id,
+        successRule: {
+          status: 'ok',
+          taskPendingId: 0,
+        },
+        namespace,
       },
-      namespace,
-    });
+    );
   }
 
   /**
@@ -145,9 +173,10 @@ export default class MicrosoftOfficeLicenseService {
    * @return {Task}           [description]
    */
   addUser(licenseId, data) {
-    return this.$http.post(`${this.basePath}/${licenseId}/user`, data)
-      .then(response => response.data)
-      .catch(err => this.$q.reject(err));
+    return this.$http
+      .post(`${this.basePath}/${licenseId}/user`, data)
+      .then((response) => response.data)
+      .catch((err) => this.$q.reject(err));
   }
 
   /**
@@ -158,9 +187,10 @@ export default class MicrosoftOfficeLicenseService {
    * @return {Task}                 [description]
    */
   updateUser(serviceName, activationEmail, data) {
-    return this.$http.put(`${this.basePath}/${serviceName}/user/${activationEmail}`, data)
-      .then(response => response.data)
-      .catch(err => this.$q.reject(err));
+    return this.$http
+      .put(`${this.basePath}/${serviceName}/user/${activationEmail}`, data)
+      .then((response) => response.data)
+      .catch((err) => this.$q.reject(err));
   }
 
   /**
@@ -170,9 +200,10 @@ export default class MicrosoftOfficeLicenseService {
    * @return {Task}           [description]
    */
   deleteUser(licenseId, userId) {
-    return this.$http.delete(`${this.basePath}/${licenseId}/user/${userId}`)
-      .then(response => response.data)
-      .catch(err => this.$q.reject(err.data));
+    return this.$http
+      .delete(`${this.basePath}/${licenseId}/user/${userId}`)
+      .then((response) => response.data)
+      .catch((err) => this.$q.reject(err.data));
   }
 
   /**
@@ -181,9 +212,10 @@ export default class MicrosoftOfficeLicenseService {
    * @return {[string]}           [description]
    */
   getDomainsId(licenseId) {
-    return this.$http.get(`${this.basePath}/${licenseId}/domain`)
-      .then(response => response.data)
-      .catch(err => this.$q.reject(err.data));
+    return this.$http
+      .get(`${this.basePath}/${licenseId}/domain`)
+      .then((response) => response.data)
+      .catch((err) => this.$q.reject(err.data));
   }
 
   /**
@@ -193,9 +225,10 @@ export default class MicrosoftOfficeLicenseService {
    * @return {Object}           [description]
    */
   getDomain(licenseId, domain) {
-    return this.$http.get(`${this.basePath}/${licenseId}/domain/${domain}`)
-      .then(response => response.data)
-      .catch(err => this.$q.reject(err.data));
+    return this.$http
+      .get(`${this.basePath}/${licenseId}/domain/${domain}`)
+      .then((response) => response.data)
+      .catch((err) => this.$q.reject(err.data));
   }
 
   /**
@@ -229,12 +262,13 @@ export default class MicrosoftOfficeLicenseService {
       },
     };
 
-    return this.$http.get(`${this.basePath}/${opts.serviceName}/usageStatistics`, {
-      params: {
-        from: opts.from,
-        to: opts.to,
-      },
-    })
+    return this.$http
+      .get(`${this.basePath}/${opts.serviceName}/usageStatistics`, {
+        params: {
+          from: opts.from,
+          to: opts.to,
+        },
+      })
       .then((response) => {
         const series = response.data;
 
@@ -253,20 +287,22 @@ export default class MicrosoftOfficeLicenseService {
 
         stat.series = map(dataByLicense, (value, oneLicense) => ({
           id: oneLicense,
-          name: this.$translate.instant(`microsoft_office_license_${oneLicense}_serie_name`),
+          name: this.$translate.instant(
+            `microsoft_office_license_${oneLicense}_serie_name`,
+          ),
           data: value,
         }));
 
         return stat;
       })
-      .catch(err => this.$q.reject(err.data));
+      .catch((err) => this.$q.reject(err.data));
   }
 
   /**
    * Redirect to the express order page
    * @param {String} licenseType [the type of office license to buy]
    * @param {Number} number [the number of office licenses to buy]
-  */
+   */
   gotToOrderPrepaidLicenses(licenseId, licenseType, number) {
     const answer = [
       {
@@ -277,9 +313,16 @@ export default class MicrosoftOfficeLicenseService {
       },
     ];
 
-    this.User.getUrlOfEndsWithSubsidiary('express_order').then((expressOrderUrl) => {
-      this.$window.open(`${expressOrderUrl}#/new/express/resume?products=${JSURL.stringify(answer)}`, '_blank');
-    });
+    this.User.getUrlOfEndsWithSubsidiary('express_order').then(
+      (expressOrderUrl) => {
+        this.$window.open(
+          `${expressOrderUrl}#/new/express/resume?products=${JSURL.stringify(
+            answer,
+          )}`,
+          '_blank',
+        );
+      },
+    );
   }
 
   static getLoginConditions() {
@@ -292,7 +335,12 @@ export default class MicrosoftOfficeLicenseService {
 
   getLoginConditionsMessage() {
     const conditions = this.constructor.getLoginConditions();
-    return `${this.$translate.instant('microsoft_office_license_add_user_login_conditions', { t0: conditions.minLength, t1: conditions.maxLength })}
-                ${this.$translate.instant('microsoft_office_license_add_user_login_condition_exception')}`;
+    return `${this.$translate.instant(
+      'microsoft_office_license_add_user_login_conditions',
+      { t0: conditions.minLength, t1: conditions.maxLength },
+    )}
+                ${this.$translate.instant(
+                  'microsoft_office_license_add_user_login_condition_exception',
+                )}`;
   }
 }

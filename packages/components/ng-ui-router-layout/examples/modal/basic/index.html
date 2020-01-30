@@ -1,9 +1,12 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="utf-8">
+        <meta charset="utf-8" />
         <title>@ovh-ux/ng-ui-router-layout</title>
-        <link rel="stylesheet" href="https://unpkg.com/bootstrap@3.4.1/dist/css/bootstrap.min.css">
+        <link
+            rel="stylesheet"
+            href="https://unpkg.com/bootstrap@3.4.1/dist/css/bootstrap.min.css"
+        />
     </head>
     <body ng-app="myApp">
         <nav>
@@ -17,12 +20,16 @@
         <script src="https://unpkg.com/angular-ui-bootstrap@1.3.3/dist/ui-bootstrap-tpls.js"></script>
         <script>
             var myApp = angular
-                .module('myApp', ['ui.router', 'ui.bootstrap', 'ngUiRouterLayout'])
-                .config(function ($stateProvider) {
+                .module('myApp', [
+                    'ui.router',
+                    'ui.bootstrap',
+                    'ngUiRouterLayout',
+                ])
+                .config(function($stateProvider) {
                     $stateProvider.state('foo', {
                         url: '/foo',
                         template: '<h2>Foo</h2>',
-                        layout: 'modal'
+                        layout: 'modal',
                     });
                 });
         </script>

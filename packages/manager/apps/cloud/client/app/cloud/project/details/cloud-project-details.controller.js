@@ -1,7 +1,21 @@
-angular.module('managerApp').controller('CloudProjectDetailsCtrl',
-  function CloudProjectDetailsCtrl($stateParams, $q, $state, $rootScope, $scope, $timeout,
-    CucControllerModalHelper, OvhApiCloudProject, Poller, OvhApiMeOrder, CucCloudMessage,
-    $translate, $filter, REDIRECT_URLS) {
+angular
+  .module('managerApp')
+  .controller('CloudProjectDetailsCtrl', function CloudProjectDetailsCtrl(
+    $stateParams,
+    $q,
+    $state,
+    $rootScope,
+    $scope,
+    $timeout,
+    CucControllerModalHelper,
+    OvhApiCloudProject,
+    Poller,
+    OvhApiMeOrder,
+    CucCloudMessage,
+    $translate,
+    $filter,
+    REDIRECT_URLS,
+  ) {
     const self = this;
 
     this.projectId = $stateParams.projectId;
@@ -39,19 +53,22 @@ angular.module('managerApp').controller('CloudProjectDetailsCtrl',
      * Poll project creating/deleting
      */
     function pollProject() {
-      Poller.poll(`/cloud/project/${self.projectId}`,
-        null,
-        {
-          successRule(project) {
-            return project.status !== 'creating' && project.status !== 'deleting';
-          },
-          namespace: 'iaas.pci-project.details',
-        }).then(project => handleProjectDetails(project), (err) => { // eslint-disable-line
-        if (err && err.status) {
-          // Error: goTo project creation
-          return $state.go('iaas.pci-project-new');
-        }
-      });
+      Poller.poll(`/cloud/project/${self.projectId}`, null, {
+        successRule(project) {
+          return project.status !== 'creating' && project.status !== 'deleting';
+        },
+        namespace: 'iaas.pci-project.details',
+      }).then(
+        // eslint-disable-next-line no-use-before-define
+        (project) => handleProjectDetails(project),
+        // eslint-disable-next-line consistent-return
+        (err) => {
+          if (err && err.status) {
+            // Error: goTo project creation
+            return $state.go('iaas.pci-project-new');
+          }
+        },
+      );
     }
 
     /**
@@ -82,11 +99,13 @@ angular.module('managerApp').controller('CloudProjectDetailsCtrl',
           return null;
         case 'creating':
           if (project.orderId) {
-            OvhApiMeOrder.v6().get({
-              orderId: project.orderId,
-            }).$promise.then((result) => {
-              self.order = result;
-            });
+            OvhApiMeOrder.v6()
+              .get({
+                orderId: project.orderId,
+              })
+              .$promise.then((result) => {
+                self.order = result;
+              });
           }
           pollProject();
           return null;
@@ -108,10 +127,11 @@ angular.module('managerApp').controller('CloudProjectDetailsCtrl',
      */
     function init() {
       self.loaders.init = true;
-      return OvhApiCloudProject.v6().get({
-        serviceName: self.projectId,
-      }).$promise
-        .then(project => handleProjectDetails(project))
+      return OvhApiCloudProject.v6()
+        .get({
+          serviceName: self.projectId,
+        })
+        .$promise.then((project) => handleProjectDetails(project))
         .catch(() => {
           $state.go('iaas.pci-project-new');
         })
@@ -123,33 +143,50 @@ angular.module('managerApp').controller('CloudProjectDetailsCtrl',
     this.cancelProjectCreation = function cancelProjectCreation() {
       self.loaders.cancelCreation = true;
 
-      return OvhApiCloudProject.v6().cancelCreation({
-        serviceName: self.projectId,
-      }, {}).$promise.then((result) => {
-        CucCloudMessage.success($translate.instant('cpd_project_cancel_success'));
-        $rootScope.$broadcast('sidebar_refresh_cloud');
-        $state.go('home');
-        init();
-        return result;
-      }, (err) => {
-        switch (err) {
-          case self.projectDeleteErrorsStatus.expired:
-            CucCloudMessage.error($translate.instant('cpd_project_cancel_error_expired_status'));
+      return OvhApiCloudProject.v6()
+        .cancelCreation(
+          {
+            serviceName: self.projectId,
+          },
+          {},
+        )
+        .$promise.then(
+          (result) => {
+            CucCloudMessage.success(
+              $translate.instant('cpd_project_cancel_success'),
+            );
             $rootScope.$broadcast('sidebar_refresh_cloud');
+            $state.go('home');
             init();
-            break;
-          case self.projectDeleteErrorsStatus.ok:
-            CucCloudMessage.error($translate.instant('cpd_project_cancel_error_ok_status'));
-            $rootScope.$broadcast('sidebar_refresh_cloud');
-            init();
-            break;
-          default:
-            CucCloudMessage.error($translate.instant('cpd_project_cancel_error'));
-        }
-        $q.reject(err);
-      }).finally(() => {
-        self.loaders.cancelCreation = false;
-      });
+            return result;
+          },
+          (err) => {
+            switch (err) {
+              case self.projectDeleteErrorsStatus.expired:
+                CucCloudMessage.error(
+                  $translate.instant('cpd_project_cancel_error_expired_status'),
+                );
+                $rootScope.$broadcast('sidebar_refresh_cloud');
+                init();
+                break;
+              case self.projectDeleteErrorsStatus.ok:
+                CucCloudMessage.error(
+                  $translate.instant('cpd_project_cancel_error_ok_status'),
+                );
+                $rootScope.$broadcast('sidebar_refresh_cloud');
+                init();
+                break;
+              default:
+                CucCloudMessage.error(
+                  $translate.instant('cpd_project_cancel_error'),
+                );
+            }
+            $q.reject(err);
+          },
+        )
+        .finally(() => {
+          self.loaders.cancelCreation = false;
+        });
     };
 
     init();

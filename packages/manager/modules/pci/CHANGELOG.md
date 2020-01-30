@@ -1,3 +1,142 @@
+## [3.9.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.9.2...@ovh-ux/manager-pci@3.9.3) (2020-01-30)
+
+
+### Bug Fixes
+
+* **pci:** update models used to retrieve kubernetes version ([#2167](https://github.com/ovh/manager/issues/2167)) ([04b45ed](https://github.com/ovh/manager/commit/04b45ed72779b2061d695070d28a0dbeb3fa42be))
+
+
+
+## [3.9.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.9.1...@ovh-ux/manager-pci@3.9.2) (2020-01-24)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 241] ([c577f92](https://github.com/ovh/manager/commit/c577f9299a0b416514d375ebec0e62c5d817f864))
+
+
+
+## [3.9.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.9.0...@ovh-ux/manager-pci@3.9.1) (2020-01-21)
+
+
+### Bug Fixes
+
+* **pci.projects.new:** manage hipay return ([c2f59c9](https://github.com/ovh/manager/commit/c2f59c97c538f55c325de923ab84284b34185151))
+* **pci.projects.new:** remove messages on project creation ([7c12d5d](https://github.com/ovh/manager/commit/7c12d5dc12526b9da615b69e0d0f0fd6b4760078))
+
+
+
+# [3.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.8.4...@ovh-ux/manager-pci@3.9.0) (2020-01-21)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 231] ([97ff113](https://github.com/ovh/manager/commit/97ff113b7a8aa24aff872db89aee7d825152f390))
+* **i18n:** add missing translations [CDS 233] ([fbc8f75](https://github.com/ovh/manager/commit/fbc8f7510d7a7177f9f09f50edb89ea272181bb5))
+* **i18n:** add missing translations [CDS 234] ([14021eb](https://github.com/ovh/manager/commit/14021eb5273b4a6fb308b3f46a4eb72ddd5e2cf9))
+* **i18n:** add missing translations [CDS 237] ([67efde3](https://github.com/ovh/manager/commit/67efde34de434103585029f432c175db921d3772))
+* **pci.project.instance.rescue:** update rescue message with password ([#2063](https://github.com/ovh/manager/issues/2063)) ([8c13483](https://github.com/ovh/manager/commit/8c13483998b31aeaff171421061ae001246b69c8))
+* **pci.projects.blocks:** fix column sorting ([6dab0e0](https://github.com/ovh/manager/commit/6dab0e0799373f1d69dc44c162648932a4f415f2))
+* **pci.projects.storage:** add missing status ([36df216](https://github.com/ovh/manager/commit/36df216e7ed28313dabe91cf7dd774e84aaa5af0))
+
+
+### Features
+
+* **kubernetes:** show version EOL message ([#2042](https://github.com/ovh/manager/issues/2042)) ([b9f414a](https://github.com/ovh/manager/commit/b9f414afb57d82d70ffb5933672a40a845978310))
+
+
+
+## [3.8.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.8.3...@ovh-ux/manager-pci@3.8.4) (2020-01-20)
+
+
+### Bug Fixes
+
+* **pci.projects.private-registry:** update api service call ([#2112](https://github.com/ovh/manager/issues/2112)) ([8f819e9](https://github.com/ovh/manager/commit/8f819e98ea8e8ae0440ce0180557783b754e660f))
+
+
+
+## [3.8.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.8.2...@ovh-ux/manager-pci@3.8.3) (2020-01-17)
+
+
+### Bug Fixes
+
+* **pci.projects.new:** redirect to BC when checkout not equal to 0 ([#2101](https://github.com/ovh/manager/issues/2101)) ([d89778c](https://github.com/ovh/manager/commit/d89778cdaa816399540b30e9b260def4464b63f7))
+
+
+
+## [3.8.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.8.1...@ovh-ux/manager-pci@3.8.2) (2020-01-16)
+
+
+### Bug Fixes
+
+* **pci.projects.new:** duplicate component name ([9209d68](https://github.com/ovh/manager/commit/9209d68e7514f0e80a42578aa60c2e0e90f03d8d))
+
+
+
+## [3.8.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.8.0...@ovh-ux/manager-pci@3.8.1) (2020-01-16)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 231] ([bf08804](https://github.com/ovh/manager/commit/bf088048b5c0450eda8a5d60f25d60853a160e2d))
+
+
+
+# [3.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.7.2...@ovh-ux/manager-pci@3.8.0) (2020-01-16)
+
+
+### Features
+
+* **pci.projects.new:** revamp project creation ([b353f85](https://github.com/ovh/manager/commit/b353f8593e0038ec6a93eaf0511ceb805370b3aa))
+
+
+
+## [3.7.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.7.1...@ovh-ux/manager-pci@3.7.2) (2020-01-10)
+
+
+### Bug Fixes
+
+* **pci.project.billing:** display unique active tab ([ef58032](https://github.com/ovh/manager/commit/ef5803214445aef5a32e7a6158320f8e06221246))
+* **pci.project.billing:** fix encoding ([c0eec97](https://github.com/ovh/manager/commit/c0eec978186960dab08fe602707be4595c82ca72)), closes [/github.com/angular-translate/angular-translate/issues/1458#issuecomment-213961549](https://github.com//github.com/angular-translate/angular-translate/issues/1458/issues/issuecomment-213961549)
+
+
+
+## [3.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.7.0...@ovh-ux/manager-pci@3.7.1) (2020-01-08)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 200] ([203d3f0](https://github.com/ovh/manager/commit/203d3f0294981f9e3dcc79d9734d9dda38f168d6))
+* **i18n:** add missing translations [CDS 212] ([1f85592](https://github.com/ovh/manager/commit/1f8559205e170279929e29e4e52d8e255d688b3d))
+
+
+
+# [3.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.6.1...@ovh-ux/manager-pci@3.7.0) (2019-12-19)
+
+
+### Bug Fixes
+
+* **analytics-data-platform:** fix service name check when ordering ([#1949](https://github.com/ovh/manager/issues/1949)) ([6801ff9](https://github.com/ovh/manager/commit/6801ff95128ecacc22c95e22ae7123aa7048ebf4))
+* **i18n:** add missing translations [CDS 196] ([acbb2da](https://github.com/ovh/manager/commit/acbb2da34b2d1c2863fd7c2f6cd187b67e065324))
+* **pci:** remove billing for non admin and billing nics ([749536f](https://github.com/ovh/manager/commit/749536f1ae70d639f31f91716575a06b7854a32b))
+
+
+### Features
+
+* replace formatted cloud catalog api with public ([ac3280b](https://github.com/ovh/manager/commit/ac3280b6c03f17f1240607e1ccfeed79f956eb47))
+* **pci.project.block:** improve attach message ([#1969](https://github.com/ovh/manager/issues/1969)) ([9d13c37](https://github.com/ovh/manager/commit/9d13c3705b1a87ce48525f0c33d9f01fb9ab7cb5))
+
+
+
+## [3.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.6.0...@ovh-ux/manager-pci@3.6.1) (2019-12-16)
+
+
+### Bug Fixes
+
+* **analytics-data-platform.onboarding:** set right docs URLs ([#1964](https://github.com/ovh/manager/issues/1964)) ([c3d199c](https://github.com/ovh/manager/commit/c3d199c7406ff5152984dbcd682ff592cafa2d12))
+
+
+
 # [3.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.5.0...@ovh-ux/manager-pci@3.6.0) (2019-12-10)
 
 

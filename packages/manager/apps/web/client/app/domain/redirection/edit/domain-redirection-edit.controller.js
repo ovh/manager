@@ -15,7 +15,14 @@ angular.module('controllers').controller(
      * @param {Object} DomainRedirection
      * @param {Object} WucValidator
      */
-    constructor($scope, $rootScope, $translate, Alerter, DomainRedirection, WucValidator) {
+    constructor(
+      $scope,
+      $rootScope,
+      $translate,
+      Alerter,
+      DomainRedirection,
+      WucValidator,
+    ) {
       this.$scope = $scope;
       this.$rootScope = $rootScope;
       this.$translate = $translate;
@@ -26,7 +33,9 @@ angular.module('controllers').controller(
 
     $onInit() {
       this.displayName = this.$scope.currentActionData.displayName;
-      this.redirection = angular.copy(this.$scope.currentActionData.redirection);
+      this.redirection = angular.copy(
+        this.$scope.currentActionData.redirection,
+      );
       this.redirectionTarget = this.redirection.targetDisplayName;
 
       this.loading = false;
@@ -38,7 +47,8 @@ angular.module('controllers').controller(
         ortDescription: false,
       };
       this.shouldIncludeDomain = false;
-      this.unknownFieldDisplayTypeErrorMessageId = 'domain_tab_REDIRECTION_edit_fail';
+      this.unknownFieldDisplayTypeErrorMessageId =
+        'domain_tab_REDIRECTION_edit_fail';
 
       // Binds this to the functions used in the scope
       this.$scope.editRedirection = this.editRedirection.bind(this);
@@ -51,8 +61,8 @@ angular.module('controllers').controller(
     isTargetValid() {
       const completeTarget = this.getCompleteTarget();
       return (
-        !isEmpty(this.redirectionTarget)
-        && this.constructor.isLengthValid(completeTarget)
+        !isEmpty(this.redirectionTarget) &&
+        this.constructor.isLengthValid(completeTarget)
       );
     }
 
@@ -78,10 +88,9 @@ angular.module('controllers').controller(
             { t0: this.redirection.fieldDisplayType },
           );
           this.alerter.alertFromSWS(
-            this.$translate.instant(
-              'domain_tab_REDIRECTION_edit_fail',
-              { t0: this.displayName },
-            ),
+            this.$translate.instant('domain_tab_REDIRECTION_edit_fail', {
+              t0: this.displayName,
+            }),
             errorMessage,
             this.$scope.alerts.main,
           );
@@ -135,10 +144,9 @@ angular.module('controllers').controller(
               { t0: this.redirection.fieldDisplayType },
             );
             this.alerter.alertFromSWS(
-              this.$translate.instant(
-                'domain_tab_REDIRECTION_edit_fail',
-                { t0: this.displayName },
-              ),
+              this.$translate.instant('domain_tab_REDIRECTION_edit_fail', {
+                t0: this.displayName,
+              }),
               errorMessage,
               this.$scope.alerts.main,
             );
@@ -155,9 +163,15 @@ angular.module('controllers').controller(
      */
     redirectionChange() {
       if (this.redirection.isOrt) {
-        this.errors.ortTitle = !this.constructor.isLengthValid(this.redirection.title);
-        this.errors.ortKeywords = !this.constructor.isLengthValid(this.redirection.keywords);
-        this.errors.ortDescription = !this.constructor.isLengthValid(this.redirection.description);
+        this.errors.ortTitle = !this.constructor.isLengthValid(
+          this.redirection.title,
+        );
+        this.errors.ortKeywords = !this.constructor.isLengthValid(
+          this.redirection.keywords,
+        );
+        this.errors.ortDescription = !this.constructor.isLengthValid(
+          this.redirection.description,
+        );
       }
     }
 
@@ -168,19 +182,27 @@ angular.module('controllers').controller(
       if (isEmpty(this.redirectionTarget)) {
         this.errors.redirectionTarget = true;
       } else if (this.redirection.isOrt) {
-        this.errors.redirectionTarget = !this.validator.isValidURL(this.redirectionTarget);
+        this.errors.redirectionTarget = !this.validator.isValidURL(
+          this.redirectionTarget,
+        );
         this.errors.targetLength = !this.isTargetValid();
       } else {
         switch (this.redirection.fieldDisplayType) {
           case 'A':
-            this.errors.redirectionTarget = !this.validator.isValidIpv4(this.redirectionTarget);
+            this.errors.redirectionTarget = !this.validator.isValidIpv4(
+              this.redirectionTarget,
+            );
             break;
           case 'AAAA':
-            this.errors.redirectionTarget = !this.validator.isValidIpv6(this.redirectionTarget);
+            this.errors.redirectionTarget = !this.validator.isValidIpv6(
+              this.redirectionTarget,
+            );
             break;
           case 'CNAME': {
             const domainName = this.getCompleteTarget();
-            this.errors.redirectionTarget = !this.validator.isValidDomain(domainName);
+            this.errors.redirectionTarget = !this.validator.isValidDomain(
+              domainName,
+            );
             break;
           }
           default: {
@@ -189,10 +211,9 @@ angular.module('controllers').controller(
               { t0: this.redirection.fieldDisplayType },
             );
             this.alerter.alertFromSWS(
-              this.$translate.instant(
-                'domain_tab_REDIRECTION_edit_fail',
-                { t0: this.displayName },
-              ),
+              this.$translate.instant('domain_tab_REDIRECTION_edit_fail', {
+                t0: this.displayName,
+              }),
               errorMessage,
               this.$scope.alerts.main,
             );
@@ -210,9 +231,10 @@ angular.module('controllers').controller(
      */
     isTargetLengthValid() {
       let value = this.redirectionTarget;
-      const shouldAppendZone = this.shouldIncludeDomain
-        && isString(this.redirection.fieldDisplayType)
-        && this.redirection.fieldDisplayType.toUpperCase() === 'CNAME';
+      const shouldAppendZone =
+        this.shouldIncludeDomain &&
+        isString(this.redirection.fieldDisplayType) &&
+        this.redirection.fieldDisplayType.toUpperCase() === 'CNAME';
 
       if (shouldAppendZone) {
         value += `${this.redirection.zone}.`;
@@ -258,21 +280,23 @@ angular.module('controllers').controller(
       }
 
       this.service[method](this.redirection.id, data)
-        .then(() => this.alerter.success(
-          this.$translate.instant(
-            'domain_tab_REDIRECTION_edit_success',
-            { t0: this.displayName },
+        .then(() =>
+          this.alerter.success(
+            this.$translate.instant('domain_tab_REDIRECTION_edit_success', {
+              t0: this.displayName,
+            }),
+            this.$scope.alerts.main,
           ),
-          this.$scope.alerts.main,
-        ))
-        .catch(err => this.alerter.alertFromSWS(
-          this.$translate.instant(
-            'domain_tab_REDIRECTION_edit_fail',
-            { t0: this.displayName },
+        )
+        .catch((err) =>
+          this.alerter.alertFromSWS(
+            this.$translate.instant('domain_tab_REDIRECTION_edit_fail', {
+              t0: this.displayName,
+            }),
+            err,
+            this.$scope.alerts.main,
           ),
-          err,
-          this.$scope.alerts.main,
-        ))
+        )
         .finally(() => {
           this.isLoading = false;
           this.$scope.resetAction();
@@ -288,10 +312,13 @@ angular.module('controllers').controller(
      */
     includeDomainToTarget() {
       const endsWithDot = this.redirectionTarget.match(/.*\.$/);
-      const targetIsCNAME = isString(this.redirection.fieldDisplayType)
-        && this.redirection.fieldDisplayType.toUpperCase() === 'CNAME';
-      const shouldDeleteTrailingDot = endsWithDot && this.shouldIncludeDomain && targetIsCNAME;
-      const shouldAddTrailingDot = !endsWithDot && !this.shouldIncludeDomain && targetIsCNAME;
+      const targetIsCNAME =
+        isString(this.redirection.fieldDisplayType) &&
+        this.redirection.fieldDisplayType.toUpperCase() === 'CNAME';
+      const shouldDeleteTrailingDot =
+        endsWithDot && this.shouldIncludeDomain && targetIsCNAME;
+      const shouldAddTrailingDot =
+        !endsWithDot && !this.shouldIncludeDomain && targetIsCNAME;
 
       if (shouldDeleteTrailingDot) {
         return this.redirectionTarget.substring(

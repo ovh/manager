@@ -22,17 +22,17 @@ export default {
     ====================================== */
 
     self.$onInit = () => {
-      const mainActions = filter(self.actions, action => action.main && !action.divider);
+      const mainActions = filter(
+        self.actions,
+        (action) => action.main && !action.divider,
+      );
 
       self.actionRows.main = chunk(mainActions, 2);
 
       self.actionRows.normal = chunk(
         filter(
-          difference(
-            self.actions,
-            mainActions,
-          ),
-          action => !action.divider,
+          difference(self.actions, mainActions),
+          (action) => !action.divider,
         ),
         3,
       );

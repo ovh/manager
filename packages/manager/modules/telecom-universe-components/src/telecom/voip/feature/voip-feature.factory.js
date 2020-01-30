@@ -24,7 +24,9 @@ export default /* @ngInject */ () => {
       // check for mandatory options
       mandatoryOptions.forEach((option) => {
         if (!options[option]) {
-          throw new Error(`${option} option must be specified when creating a new TucVoipFeature`);
+          throw new Error(
+            `${option} option must be specified when creating a new TucVoipFeature`,
+          );
         }
       });
 

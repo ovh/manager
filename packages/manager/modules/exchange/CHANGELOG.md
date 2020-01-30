@@ -1,3 +1,12 @@
+## [1.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@1.3.0...@ovh-ux/manager-exchange@1.3.1) (2019-12-18)
+
+
+### Bug Fixes
+
+* **exchange:** account password validation ([#1826](https://github.com/ovh/manager/issues/1826)) ([ff3822d](https://github.com/ovh/manager/commit/ff3822d1cff01f8ad19fce8d79f3b9f28c2fec1f))
+
+
+
 # [1.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@1.2.5...@ovh-ux/manager-exchange@1.3.0) (2019-12-10)
 
 

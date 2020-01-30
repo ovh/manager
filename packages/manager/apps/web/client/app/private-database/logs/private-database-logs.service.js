@@ -9,10 +9,10 @@ angular.module('services').service(
 
     getLogs(serviceName) {
       return this.$http
-        .post(`${
-          this.apiVersion
-        }/hosting/privateDatabase/${serviceName}/generateTemporaryLogsLink`)
-        .then(res => res.data);
+        .post(
+          `${this.apiVersion}/hosting/privateDatabase/${serviceName}/generateTemporaryLogsLink`,
+        )
+        .then((res) => res.data);
     }
   },
 );

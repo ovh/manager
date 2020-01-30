@@ -8,15 +8,7 @@ import map from 'lodash/map';
 angular.module('services').service(
   'HostingDomain',
   class HostingDomain {
-    constructor(
-      $rootScope,
-      $http,
-      $q,
-      Hosting,
-      OvhHttp,
-      Poll,
-      constants,
-    ) {
+    constructor($rootScope, $http, $q, Hosting, OvhHttp, Poll, constants) {
       this.$rootScope = $rootScope;
       this.$http = $http;
       this.$q = $q;
@@ -48,22 +40,26 @@ angular.module('services').service(
         },
       ).then((response) => {
         if (response.state !== 'ERROR') {
-          this.getTaskIds({ fn: 'web/detachDomain' }, serviceName).then((taskIds) => {
+          this.getTaskIds({ fn: 'web/detachDomain' }, serviceName).then(
+            (taskIds) => {
+              this.pollRequest({
+                serviceName,
+                taskIds,
+                namespace: 'detachDomain',
+              });
+            },
+          );
+        }
+        this.Hosting.resetDomains();
+        this.getTaskIds({ fn: 'attachedDomain/delete' }, serviceName).then(
+          (taskIds) => {
             this.pollRequest({
               serviceName,
               taskIds,
-              namespace: 'detachDomain',
+              namespace: 'modifyDomain',
             });
-          });
-        }
-        this.Hosting.resetDomains();
-        this.getTaskIds({ fn: 'attachedDomain/delete' }, serviceName).then((taskIds) => {
-          this.pollRequest({
-            serviceName,
-            taskIds,
-            namespace: 'modifyDomain',
-          });
-        });
+          },
+        );
       });
     }
 
@@ -115,13 +111,15 @@ angular.module('services').service(
         })
         .then((response) => {
           this.Hosting.resetDomains();
-          this.getTaskIds({ fn: 'attachedDomain/create' }, serviceName).then((taskIds) => {
-            this.pollRequest({
-              serviceName,
-              taskIds,
-              namespace: 'modifyDomain',
-            });
-          });
+          this.getTaskIds({ fn: 'attachedDomain/create' }, serviceName).then(
+            (taskIds) => {
+              this.pollRequest({
+                serviceName,
+                taskIds,
+                namespace: 'modifyDomain',
+              });
+            },
+          );
           return response.data;
         });
     }
@@ -184,13 +182,15 @@ angular.module('services').service(
         })
         .then((response) => {
           this.Hosting.resetDomains();
-          this.getTaskIds({ fn: 'attachedDomain/update' }, serviceName).then((taskIds) => {
-            this.pollRequest({
-              serviceName,
-              taskIds,
-              namespace: 'modifyDomain',
-            });
-          });
+          this.getTaskIds({ fn: 'attachedDomain/update' }, serviceName).then(
+            (taskIds) => {
+              this.pollRequest({
+                serviceName,
+                taskIds,
+                namespace: 'modifyDomain',
+              });
+            },
+          );
           return response.data;
         });
     }
@@ -222,9 +222,7 @@ angular.module('services').service(
     getExistingConfiguration(serviceName, domain, subDomain, wwwNeeded) {
       return this.$http
         .get(
-          `${
-            this.aapiHostingPath
-          }/${serviceName}/domains/${domain}/configuration`,
+          `${this.aapiHostingPath}/${serviceName}/domains/${domain}/configuration`,
           {
             params: {
               domainName: subDomain,
@@ -232,7 +230,7 @@ angular.module('services').service(
             },
           },
         )
-        .then(response => response.data);
+        .then((response) => response.data);
     }
 
     /**
@@ -256,7 +254,7 @@ angular.module('services').service(
       return this.OvhHttp.get('/domain/zone', {
         rootPath: 'apiv6',
       }).then((zones) => {
-        const zonesJava = map(zones, zone => ({
+        const zonesJava = map(zones, (zone) => ({
           displayName: zone,
           formattedName: zone,
           name: zone,
@@ -281,7 +279,7 @@ angular.module('services').service(
             function: fn,
           },
         })
-        .then(response => response.data);
+        .then((response) => response.data);
     }
 
     /**
@@ -343,7 +341,7 @@ angular.module('services').service(
           subDomain,
           fieldType,
         },
-      }).then(response => response.data);
+      }).then((response) => response.data);
     }
 
     /**
@@ -395,7 +393,7 @@ angular.module('services').service(
           searchedType: 'AAAA',
         },
       })
-        .then(data => get(data, 'paginatedZone.records.results'))
+        .then((data) => get(data, 'paginatedZone.records.results'))
         .catch((error) => {
           if (error.code === 404) {
             return this.$q.resolve([]);
@@ -410,9 +408,15 @@ angular.module('services').service(
      * @param {string} serviceName
      */
     getAttachedDomains(serviceName, options) {
-      return this.OvhHttp.get(`/hosting/web/${serviceName}/attachedDomain`, assign({
-        rootPath: 'apiv6',
-      }, options));
+      return this.OvhHttp.get(
+        `/hosting/web/${serviceName}/attachedDomain`,
+        assign(
+          {
+            rootPath: 'apiv6',
+          },
+          options,
+        ),
+      );
     }
 
     /**
@@ -460,17 +464,20 @@ angular.module('services').service(
      * @param {string} attachedDomain
      */
     pollRestartDomain(serviceName, attachedDomain) {
-      return this.Poll.poll(`/hosting/web/${serviceName}/attachedDomain/${attachedDomain}`, null, {
-        namespace: 'hostingDomain.request',
-        successRule: { status: 'created' },
-      }).then((task) => {
-        this.$rootScope.$broadcast('hostingDomain.restart.done', task);
-      }).catch((err) => {
-        this.$rootScope.$broadcast(
-          'hostingDomain.restart.error',
-          err,
-        );
-      });
+      return this.Poll.poll(
+        `/hosting/web/${serviceName}/attachedDomain/${attachedDomain}`,
+        null,
+        {
+          namespace: 'hostingDomain.request',
+          successRule: { status: 'created' },
+        },
+      )
+        .then((task) => {
+          this.$rootScope.$broadcast('hostingDomain.restart.done', task);
+        })
+        .catch((err) => {
+          this.$rootScope.$broadcast('hostingDomain.restart.error', err);
+        });
     }
 
     pollSslTask(serviceName) {
@@ -479,14 +486,13 @@ angular.module('services').service(
         namespace: 'hostingDomain.request',
         interval: 30000,
         successRule: { status: 'created' },
-      }).then((task) => {
-        this.$rootScope.$broadcast('hostingDomain.regenerateSsl.done', task);
-      }).catch((err) => {
-        this.$rootScope.$broadcast(
-          'hostingDomain.regenerateSsl.error',
-          err,
-        );
-      });
+      })
+        .then((task) => {
+          this.$rootScope.$broadcast('hostingDomain.regenerateSsl.done', task);
+        })
+        .catch((err) => {
+          this.$rootScope.$broadcast('hostingDomain.regenerateSsl.error', err);
+        });
     }
 
     /**

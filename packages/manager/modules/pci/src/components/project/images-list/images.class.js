@@ -20,7 +20,7 @@ export default class Image {
 
   getAppName() {
     return this.name
-      .replace(/^[a-z0-9\s]+ - /ig, '')
+      .replace(/^[a-z0-9\s]+ - /gi, '')
       .replace(' - deprecated', '');
   }
 
@@ -49,8 +49,10 @@ export default class Image {
   }
 
   isCompatibleWithFlavor(flavorType) {
-    return isEmpty(this.flavorType)
-    || some(this.getFlavorTypes(), type => includes(flavorType, type));
+    return (
+      isEmpty(this.flavorType) ||
+      some(this.getFlavorTypes(), (type) => includes(flavorType, type))
+    );
   }
 
   isCompatibleWithOsTypes(osTypes) {

@@ -17,23 +17,25 @@ export default class kubernetesTerminateCtrl {
 
   terminate() {
     this.isDeleting = true;
-    return (
-      this.isLegacyCluster
-        ? this.OvhApiKube.v6().terminate({
+    return (this.isLegacyCluster
+      ? this.OvhApiKube.v6().terminate({
           serviceName: this.kubeId,
         }).$promise
-        : this.OvhApiCloudProjectKube.v6().delete({
+      : this.OvhApiCloudProjectKube.v6().delete({
           serviceName: this.projectId,
           kubeId: this.kubeId,
         }).$promise
     )
-      .then(() => this.goBack(
-        this.$translate.instant('kube_service_terminate_success'),
-      ))
-      .catch(error => this.goBack(
-        this.$translate.instant('kube_service_terminate_error', {
-          message: get(error, 'data.message'),
-        }), 'error',
-      ));
+      .then(() =>
+        this.goBack(this.$translate.instant('kube_service_terminate_success')),
+      )
+      .catch((error) =>
+        this.goBack(
+          this.$translate.instant('kube_service_terminate_error', {
+            message: get(error, 'data.message'),
+          }),
+          'error',
+        ),
+      );
   }
 }

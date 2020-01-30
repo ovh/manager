@@ -11,13 +11,36 @@ angular.module('Module.ip.services').service('IpMitigation', [
     const self = this;
 
     this.pollMitigationState = function pollMitigationState(ipBlock, ip) {
-      return Poll.poll([swsProxypassPath, window.encodeURIComponent(`ip/${window.encodeURIComponent(ipBlock.ipBlock)}/mitigation/${ip.ip}`)].join('/'), null, { successRule: { state: 'ok' }, namespace: 'ip.mitigation' });
+      return Poll.poll(
+        [
+          swsProxypassPath,
+          window.encodeURIComponent(
+            `ip/${window.encodeURIComponent(ipBlock.ipBlock)}/mitigation/${
+              ip.ip
+            }`,
+          ),
+        ].join('/'),
+        null,
+        { successRule: { state: 'ok' }, namespace: 'ip.mitigation' },
+      );
     };
 
-    this.killPollMitigationState = function killPollMitigationState(ipBlock, ip) {
+    this.killPollMitigationState = function killPollMitigationState(
+      ipBlock,
+      ip,
+    ) {
       let pattern;
       if (ipBlock && ip) {
-        pattern = { url: [swsProxypassPath, window.encodeURIComponent(`ip/${window.encodeURIComponent(ipBlock.ipBlock)}/mitigation/${ip.ip}`)].join('/') };
+        pattern = {
+          url: [
+            swsProxypassPath,
+            window.encodeURIComponent(
+              `ip/${window.encodeURIComponent(ipBlock.ipBlock)}/mitigation/${
+                ip.ip
+              }`,
+            ),
+          ].join('/'),
+        };
       } else {
         pattern = { namespace: 'ip.mitigation' };
       }
@@ -26,33 +49,60 @@ angular.module('Module.ip.services').service('IpMitigation', [
 
     this.updateMitigation = function updateMitigation(ipBlock, ip, mitigation) {
       if (mitigation === 'PERMANENT') {
-        return $http.post(['/ip', window.encodeURIComponent(ipBlock), 'mitigation'].join('/'), { ipOnMitigation: ip }, { serviceType: 'apiv6' }).then(data => data.data, http => $q.reject(http.data));
-      } if (mitigation === 'DEFAULT') {
         return $http
-          .delete(['/ip', window.encodeURIComponent(ipBlock), 'mitigation', ip].join('/'), {
-            serviceType: 'apiv6',
-          })
-          .then(data => data.data, http => $q.reject(http.data));
+          .post(
+            ['/ip', window.encodeURIComponent(ipBlock), 'mitigation'].join('/'),
+            { ipOnMitigation: ip },
+            { serviceType: 'apiv6' },
+          )
+          .then((data) => data.data, (http) => $q.reject(http.data));
+      }
+      if (mitigation === 'DEFAULT') {
+        return $http
+          .delete(
+            ['/ip', window.encodeURIComponent(ipBlock), 'mitigation', ip].join(
+              '/',
+            ),
+            {
+              serviceType: 'apiv6',
+            },
+          )
+          .then((data) => data.data, (http) => $q.reject(http.data));
       }
       return $q.reject(ipBlock);
     };
 
     this.getMitigationDetails = function getMitigationDetails(ipBlock, ip) {
-      const url = [swsProxypassPath, window.encodeURIComponent(`ip/${window.encodeURIComponent(ipBlock)}/mitigation/${ip}`)].join('/');
-      return $http.get(url).then(result => result.data, http => $q.reject(http.data));
+      const url = [
+        swsProxypassPath,
+        window.encodeURIComponent(
+          `ip/${window.encodeURIComponent(ipBlock)}/mitigation/${ip}`,
+        ),
+      ].join('/');
+      return $http
+        .get(url)
+        .then((result) => result.data, (http) => $q.reject(http.data));
     };
 
     this.getMitigationStatisticsScale = function getMitigationStatisticsScale() {
-      return self.getIpModels().then(ipModels => ipModels['ip.MitigationStatsScaleEnum'].enum.map(scale => `_${snakeCase(scale).toUpperCase()}`));
+      return self
+        .getIpModels()
+        .then((ipModels) =>
+          ipModels['ip.MitigationStatsScaleEnum'].enum.map(
+            (scale) => `_${snakeCase(scale).toUpperCase()}`,
+          ),
+        );
     };
 
     this.getIpModels = function getIpModels() {
-      return $http.get([swsProxypassPath, 'ip.json'].join('/'), { cache: true }).then((response) => {
-        if (response && response.data && response.data.models) {
-          return response.data.models;
-        }
-        return {};
-      });
+      return $http
+        .get([swsProxypassPath, 'ip.json'].join('/'), { cache: true })
+        .then((response) => {
+          if (response && response.data && response.data.models) {
+            return response.data.models;
+          }
+          return {};
+        });
     };
 
     this.getMitigationStatistics = function getMitigationStatistics(
@@ -68,22 +118,40 @@ angular.module('Module.ip.services').service('IpMitigation', [
       }
       if (ipBlock && ip && from && scale) {
         return $http
-          .get([swsAapiIpPath, window.encodeURIComponent(ipBlock), 'mitigation', ip, 'statistics'].join('/'), {
-            params: {
-              from,
-              scale: `_${snakeCase(scale).toUpperCase()}`,
-              pointsCount: count,
+          .get(
+            [
+              swsAapiIpPath,
+              window.encodeURIComponent(ipBlock),
+              'mitigation',
+              ip,
+              'statistics',
+            ].join('/'),
+            {
+              params: {
+                from,
+                scale: `_${snakeCase(scale).toUpperCase()}`,
+                pointsCount: count,
+              },
+              serviceType: 'aapi',
             },
-            serviceType: 'aapi',
-          })
-          .then(data => data.data, http => $q.reject(http.data));
+          )
+          .then((data) => data.data, (http) => $q.reject(http.data));
       }
       return $q.reject(ip);
     };
 
-    this.getMitigationRealTimeStatistics = function getMitigationRealTimeStatistics(ipBlock, ip) {
+    this.getMitigationRealTimeStatistics = function getMitigationRealTimeStatistics(
+      ipBlock,
+      ip,
+    ) {
       if (ipBlock && ip) {
-        return self.getMitigationStatistics(ipBlock, ip, moment().toISOString(), '_5_M', 30);
+        return self.getMitigationStatistics(
+          ipBlock,
+          ip,
+          moment().toISOString(),
+          '_5_M',
+          30,
+        );
       }
       return $q.reject(ip);
     };

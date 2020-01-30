@@ -1,26 +1,40 @@
 <div data-ng-controller="HousingTaskCtrl as $ctrl">
     <h2 data-translate="housing_tab_task"></h2>
     <div data-ovh-alert="housing_tab_tasks_alert"></div>
-    <oui-datagrid data-rows-loader="$ctrl.loadDatagridTasks($config)"
-                  data-row-loader="$ctrl.transformItem($row)">
-        <oui-column data-title=":: 'housing_configuration_task_last_action' | translate">
+    <oui-datagrid
+        data-rows-loader="$ctrl.loadDatagridTasks($config)"
+        data-row-loader="$ctrl.transformItem($row)"
+    >
+        <oui-column
+            data-title=":: 'housing_configuration_task_last_action' | translate"
+        >
             <span data-ng-bind="$row.lastUpdate | date: 'medium'"></span>
         </oui-column>
-        <oui-column data-title=":: 'housing_configuration_task_function' | translate">
-            <span data-ng-bind="('housing_configuration_task_'+ $row.function) translateAlt: $row.function"></span>
+        <oui-column
+            data-title=":: 'housing_configuration_task_function' | translate"
+        >
+            <span
+                data-ng-bind="('housing_configuration_task_'+ $row.function) translateAlt: $row.function"
+            ></span>
         </oui-column>
-        <oui-column data-title=":: 'housing_configuration_task_comment' | translate">
+        <oui-column
+            data-title=":: 'housing_configuration_task_comment' | translate"
+        >
             <span data-ng-bind="$row.comment || '-'"></span>
         </oui-column>
-        <oui-column data-title=":: 'housing_configuration_task_status' | translate">
-            <span class="label"
-                  data-translate="{{ 'housing_configuration_task_status_'+ $row.status }}"
-                  data-ng-class="{
+        <oui-column
+            data-title=":: 'housing_configuration_task_status' | translate"
+        >
+            <span
+                class="label"
+                data-translate="{{ 'housing_configuration_task_status_'+ $row.status }}"
+                data-ng-class="{
                       'label-success': $row.status === $ctrl.TASK_STATUS.DONE.toLowerCase(),
                       'label-info': $row.status === $ctrl.TASK_STATUS.DOING.toLowerCase(),
                       'label-danger': $row.status === $ctrl.TASK_STATUS.OVH_ERROR.toLowerCase() || $row.status === $ctrl.TASK_STATUS.CUSTOMER_ERROR.toLowerCase(),
                       'label-warning': $row.status === $ctrl.TASK_STATUS.INIT.toLowerCase() || $row.status === $ctrl.TASK_STATUS.TODO.toLowerCase()
-                  }">
+                  }"
+            >
             </span>
         </oui-column>
     </oui-datagrid>

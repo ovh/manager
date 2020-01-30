@@ -18,7 +18,8 @@ angular.module('App').config(($stateProvider) => {
         controllerAs: '$ctrl',
       },
       'nasDetails@app.networks.nas.details': {
-        templateUrl: 'dedicated/nas/details/dashboard/nas-details-dashboard.html',
+        templateUrl:
+          'dedicated/nas/details/dashboard/nas-details-dashboard.html',
         controller: 'NasDetailsDashboardCtrl',
         controllerAs: '$ctrl',
       },

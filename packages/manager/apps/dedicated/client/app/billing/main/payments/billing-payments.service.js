@@ -10,7 +10,10 @@ angular.module('Billing.services').service('BillingPayments', [
     const batchSeparator = ',';
 
     this.getPaymentIds = ({
-      dateFrom, dateTo, sort = false, paymentType = 0,
+      dateFrom,
+      dateTo,
+      sort = false,
+      paymentType = 0,
     }) => {
       const apiv7Ops = {
         'date:ge': moment(dateFrom)
@@ -37,7 +40,7 @@ angular.module('Billing.services').service('BillingPayments', [
           cache: billingCache,
           serviceType: 'apiv7',
         })
-        .then(response => response.data);
+        .then((response) => response.data);
     };
 
     this.getPayments = (_ids, limit = 0, offset = 0) => {
@@ -56,7 +59,9 @@ angular.module('Billing.services').service('BillingPayments', [
       }
 
       // Add an extra batchSeparator in the end of the batch to workaround ENGINE-5479
-      const batchIds = encodeURIComponent(ids.join(batchSeparator) + batchSeparator);
+      const batchIds = encodeURIComponent(
+        ids.join(batchSeparator) + batchSeparator,
+      );
 
       return $http
         .get(`/me/deposit/${batchIds}?$batch=${batchSeparator}`, {
@@ -64,69 +69,90 @@ angular.module('Billing.services').service('BillingPayments', [
           serviceType: 'apiv7',
         })
         .then((response) => {
-          const res = response.data.sort((a, b) => ids.indexOf(a.key) - ids.indexOf(b.key));
+          const res = response.data.sort(
+            (a, b) => ids.indexOf(a.key) - ids.indexOf(b.key),
+          );
 
-          return res.map(item => (item.error
-            ? angular.extend({ error: item.error }, item.value)
-            : item.value));
+          return res.map((item) =>
+            item.error
+              ? angular.extend({ error: item.error }, item.value)
+              : item.value,
+          );
         });
     };
 
-    this.getPayment = id => $http
-      .get(`/me/deposit/${id}`, {
-        cache: billingCache,
-        serviceType: 'apiv7',
-      })
-      .then(response => response.data);
+    this.getPayment = (id) =>
+      $http
+        .get(`/me/deposit/${id}`, {
+          cache: billingCache,
+          serviceType: 'apiv7',
+        })
+        .then((response) => response.data);
 
-    this.getBillsIds = id => $http
-      .get(`/me/deposit/${id}/paidBills`, {
-        cache: billingCache,
-        serviceType: 'apiv7',
-      })
-      .then(response => response.data);
+    this.getBillsIds = (id) =>
+      $http
+        .get(`/me/deposit/${id}/paidBills`, {
+          cache: billingCache,
+          serviceType: 'apiv7',
+        })
+        .then((response) => response.data);
 
-    this.getBillDetails = (id, billId) => this.getBill(id, billId)
-      .then(bill => this.getOperationsDetails(id, billId, bill.orderId).then((operations) => {
-        const billdetails = clone(bill);
-        if (!operations || operations.length === 0) {
-          throw new Error('No operation for a bill concerned by a deposit');
-        }
-        if (operations.length > 1) {
-          throw new Error('More than one operation for a bill concerned by a deposit');
-        }
-        billdetails.payment = operations[0].amount.text;
-        return billdetails;
-      }));
+    this.getBillDetails = (id, billId) =>
+      this.getBill(id, billId).then((bill) =>
+        this.getOperationsDetails(id, billId, bill.orderId).then(
+          (operations) => {
+            const billdetails = clone(bill);
+            if (!operations || operations.length === 0) {
+              throw new Error('No operation for a bill concerned by a deposit');
+            }
+            if (operations.length > 1) {
+              throw new Error(
+                'More than one operation for a bill concerned by a deposit',
+              );
+            }
+            billdetails.payment = operations[0].amount.text;
+            return billdetails;
+          },
+        ),
+      );
 
-    this.getBill = (id, billId) => $http
-      .get(`/me/deposit/${id}/paidBills/${billId}`, {
-        cache: billingCache,
-        serviceType: 'apiv7',
-      })
-      .then(response => response.data);
+    this.getBill = (id, billId) =>
+      $http
+        .get(`/me/deposit/${id}/paidBills/${billId}`, {
+          cache: billingCache,
+          serviceType: 'apiv7',
+        })
+        .then((response) => response.data);
 
-    this.getOperationsDetails = (id, billId, orderId) => this.getOperationsIds(id, billId, orderId)
-      .then(operationsIds => $q.all(map(
-        operationsIds,
-        operationId => this.getOperation(id, billId, operationId),
-      )));
+    this.getOperationsDetails = (id, billId, orderId) =>
+      this.getOperationsIds(id, billId, orderId).then((operationsIds) =>
+        $q.all(
+          map(operationsIds, (operationId) =>
+            this.getOperation(id, billId, operationId),
+          ),
+        ),
+      );
 
-    this.getOperationsIds = (id, billId, orderId) => $http
-      .get(`/me/deposit/${id}/paidBills/${billId}/debt/operation`, {
-        cache: billingCache,
-        serviceType: 'apiv7',
-        params: {
-          depositOrderId: orderId,
-        },
-      })
-      .then(response => response.data);
+    this.getOperationsIds = (id, billId, orderId) =>
+      $http
+        .get(`/me/deposit/${id}/paidBills/${billId}/debt/operation`, {
+          cache: billingCache,
+          serviceType: 'apiv7',
+          params: {
+            depositOrderId: orderId,
+          },
+        })
+        .then((response) => response.data);
 
-    this.getOperation = (id, billId, operationId) => $http
-      .get(`/me/deposit/${id}/paidBills/${billId}/debt/operation/${operationId}`, {
-        cache: billingCache,
-        serviceType: 'apiv7',
-      })
-      .then(response => response.data);
+    this.getOperation = (id, billId, operationId) =>
+      $http
+        .get(
+          `/me/deposit/${id}/paidBills/${billId}/debt/operation/${operationId}`,
+          {
+            cache: billingCache,
+            serviceType: 'apiv7',
+          },
+        )
+        .then((response) => response.data);
   },
 ]);

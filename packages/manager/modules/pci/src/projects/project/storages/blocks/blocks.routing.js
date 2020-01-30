@@ -1,67 +1,91 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider
-    .state('pci.projects.project.storages.blocks', {
-      url: '/blocks?help',
-      component: 'pciProjectStorageBlocks',
+  $stateProvider.state('pci.projects.project.storages.blocks', {
+    url: '/blocks?help',
+    component: 'pciProjectStorageBlocks',
 
-      redirectTo: transition => transition
+    redirectTo: (transition) =>
+      transition
         .injector()
         .getAsync('storages')
-        .then(storages => (storages.length === 0 ? { state: 'pci.projects.project.storages.blocks.onboarding' } : false)),
+        .then((storages) =>
+          storages.length === 0
+            ? { state: 'pci.projects.project.storages.blocks.onboarding' }
+            : false,
+        ),
 
-      resolve: {
-        addStorage: /* @ngInject */($state, projectId) => () => $state.go('pci.projects.project.storages.blocks.add', {
+    resolve: {
+      addStorage: /* @ngInject */ ($state, projectId) => () =>
+        $state.go('pci.projects.project.storages.blocks.add', {
           projectId,
         }),
-        editStorage: /* @ngInject */ ($state, projectId) => storage => $state.go('pci.projects.project.storages.blocks.block.edit', {
-          projectId,
-          storageId: storage.id,
-        }),
-        attachStorage: /* @ngInject */ ($state, projectId) => storage => $state.go('pci.projects.project.storages.blocks.attach', {
+      editStorage: /* @ngInject */ ($state, projectId) => (storage) =>
+        $state.go('pci.projects.project.storages.blocks.block.edit', {
           projectId,
           storageId: storage.id,
         }),
-        detachStorage: /* @ngInject */ ($state, projectId) => storage => $state.go('pci.projects.project.storages.blocks.detach', {
+      attachStorage: /* @ngInject */ ($state, projectId) => (storage) =>
+        $state.go('pci.projects.project.storages.blocks.attach', {
           projectId,
           storageId: storage.id,
         }),
-        createSnapshot: /* @ngInject */ ($state, projectId) => storage => $state.go('pci.projects.project.storages.blocks.snapshot', {
+      detachStorage: /* @ngInject */ ($state, projectId) => (storage) =>
+        $state.go('pci.projects.project.storages.blocks.detach', {
           projectId,
           storageId: storage.id,
         }),
-        deleteStorage: /* @ngInject */($state, projectId) => ({ id: storageId }) => $state.go('pci.projects.project.storages.blocks.delete', {
+      createSnapshot: /* @ngInject */ ($state, projectId) => (storage) =>
+        $state.go('pci.projects.project.storages.blocks.snapshot', {
+          projectId,
+          storageId: storage.id,
+        }),
+      deleteStorage: /* @ngInject */ ($state, projectId) => ({
+        id: storageId,
+      }) =>
+        $state.go('pci.projects.project.storages.blocks.delete', {
           projectId,
           storageId,
         }),
-        help: /* @ngInject */ $transition$ => $transition$.params().help,
-        instanceLink: /* @ngInject */ ($state, projectId) => instanceId => $state.href('pci.projects.project.instances.instance', {
+      help: /* @ngInject */ ($transition$) => $transition$.params().help,
+      instanceLink: /* @ngInject */ ($state, projectId) => (instanceId) =>
+        $state.href('pci.projects.project.instances.instance', {
           projectId,
           instanceId,
         }),
-        storages: /* @ngInject */ (
-          PciProjectStorageBlockService,
-          projectId,
-        ) => PciProjectStorageBlockService
-          .getAll(projectId),
+      storages: /* @ngInject */ (PciProjectStorageBlockService, projectId) =>
+        PciProjectStorageBlockService.getAll(projectId),
 
-        goToBlockStorage: /* @ngInject */ ($rootScope, CucCloudMessage, $state, projectId) => (message = false, type = 'success') => {
-          const reload = message && type === 'success';
+      goToBlockStorage: /* @ngInject */ (
+        $rootScope,
+        CucCloudMessage,
+        $state,
+        projectId,
+      ) => (message = false, type = 'success') => {
+        const reload = message && type === 'success';
 
-          const promise = $state.go('pci.projects.project.storages.blocks', {
+        const promise = $state.go(
+          'pci.projects.project.storages.blocks',
+          {
             projectId,
           },
           {
             reload,
-          });
+          },
+        );
 
-          if (message) {
-            promise.then(() => CucCloudMessage[type](message, 'pci.projects.project.storages.blocks'));
-          }
+        if (message) {
+          promise.then(() =>
+            CucCloudMessage[type](
+              message,
+              'pci.projects.project.storages.blocks',
+            ),
+          );
+        }
 
-          return promise;
-        },
-
-        breadcrumb: /* @ngInject */ $translate => $translate.instant('pci_projects_project_storages_blocks_title'),
+        return promise;
       },
-    });
+
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('pci_projects_project_storages_blocks_title'),
+    },
+  });
 };

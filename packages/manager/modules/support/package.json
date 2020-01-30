@@ -2,6 +2,12 @@
   "name": "@ovh-ux/manager-support",
   "version": "0.4.8",
   "private": true,
+  "description": "Support component to manage tickets.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ovh/manager.git",
+    "directory": "packages/manager/modules/support"
+  },
   "license": "BSD-3-Clause",
   "main": "./src/index.js",
   "dependencies": {
@@ -21,7 +27,7 @@
     "font-awesome": "~4.7.0",
     "oclazyload": "^1.1.0",
     "ovh-api-services": "^9.27.1",
-    "ovh-ui-angular": "^3.10.0",
+    "ovh-ui-angular": "^3.11.0",
     "ovh-ui-kit": "^2.36.1",
     "ovh-ui-kit-bs": "^2.2.0"
   }

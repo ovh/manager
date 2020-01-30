@@ -39,11 +39,13 @@ angular.module('App').controller(
         .then((extensions) => {
           this.extensions = extensions
             .sort()
-            .map(id => ({ id, extensionName: id }));
+            .map((id) => ({ id, extensionName: id }));
         })
         .catch((err) => {
           this.alerter.error(
-            this.$translate.instant('privateDatabase_tabs_list_extensions_retrieve_infos'),
+            this.$translate.instant(
+              'privateDatabase_tabs_list_extensions_retrieve_infos',
+            ),
             err,
           );
         });
@@ -56,19 +58,29 @@ angular.module('App').controller(
         let action;
         extension.updating = true;
         if (extension.enabled) {
-          action = this.enableExtension(extension).then(() => this.alerter.success(
-            this.$translate.instant('privateDatabase_tabs_list_extensions_enable_success'),
-            this.$scope.alerts.main,
-          ));
+          action = this.enableExtension(extension).then(() =>
+            this.alerter.success(
+              this.$translate.instant(
+                'privateDatabase_tabs_list_extensions_enable_success',
+              ),
+              this.$scope.alerts.main,
+            ),
+          );
         } else {
-          action = this.disableExtension(extension).then(() => this.alerter.success(
-            this.$translate.instant('privateDatabase_tabs_list_extensions_disable_success'),
-            this.$scope.alerts.main,
-          ));
+          action = this.disableExtension(extension).then(() =>
+            this.alerter.success(
+              this.$translate.instant(
+                'privateDatabase_tabs_list_extensions_disable_success',
+              ),
+              this.$scope.alerts.main,
+            ),
+          );
         }
         action
           .catch((error) => {
-            let errorMessage = this.$translate.instant('privateDatabase_tabs_list_extensions_enable_error');
+            let errorMessage = this.$translate.instant(
+              'privateDatabase_tabs_list_extensions_enable_error',
+            );
             if (error.data) {
               errorMessage = `${errorMessage} ${error.data.message}`;
             }
@@ -100,7 +112,7 @@ angular.module('App').controller(
 
     transformItem(item, force) {
       if (item.transformed && !force) {
-        return this.$q(resolve => resolve(item));
+        return this.$q((resolve) => resolve(item));
       }
       return this.privateDatabaseExtensionService
         .getExtension(this.productId, this.bdd.databaseName, item.id)
@@ -114,7 +126,9 @@ angular.module('App').controller(
         })
         .catch((err) => {
           this.alerter.error(
-            this.$translate.instant('privateDatabase_tabs_list_extensions_retrieve_infos'),
+            this.$translate.instant(
+              'privateDatabase_tabs_list_extensions_retrieve_infos',
+            ),
             err,
           );
         });

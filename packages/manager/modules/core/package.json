@@ -2,6 +2,7 @@
   "name": "@ovh-ux/manager-core",
   "version": "7.6.3",
   "private": true,
+  "description": "Core functionalities shared across all control panel.",
   "homepage": "https://github.com/ovh/manager/tree/master/packages/manager/modules/core#readme",
   "bugs": {
     "url": "https://github.com/ovh/manager/issues"
@@ -23,12 +24,12 @@
     "dev": "rollup -c --environment BUILD:development",
     "dev:watch": "yarn run dev --watch",
     "prepare": "yarn run build",
-    "start": "lerna exec --stream --scope='@ovh-ux/manager-core' --include-filtered-dependencies -- yarn run build",
-    "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-core' --include-filtered-dependencies -- yarn run dev",
-    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-core' --include-filtered-dependencies -- yarn run dev:watch"
+    "start": "lerna exec --stream --scope='@ovh-ux/manager-core' --include-dependencies -- yarn run build",
+    "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-core' --include-dependencies -- yarn run dev",
+    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-core' --include-dependencies -- yarn run dev:watch"
   },
   "dependencies": {
-    "@ovh-ux/ng-translate-async-loader": "^2.0.2",
+    "@ovh-ux/ng-translate-async-loader": "^2.0.3",
     "lodash": "^4.17.15"
   },
   "devDependencies": {
@@ -51,6 +52,6 @@
     "angular-translate": "^2.18.1",
     "angular-translate-loader-pluggable": "^1.3.1",
     "ovh-api-services": "^9.27.1",
-    "ovh-ui-angular": "^^3.9.10"
+    "ovh-ui-angular": "^3.11.0"
   }
 }

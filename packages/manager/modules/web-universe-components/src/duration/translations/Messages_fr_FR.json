@@ -6,6 +6,7 @@
   "duration_year_1": "1 an",
   "duration_year_other": "{{t0}} ans",
   "duration_upto": "Jusqu'au {{t0}}",
+  "duration_upto_prorata": "Prorata jusqu'à la date d'expiration du service ({{t0}})",
   "duration_uptofirstdaynextmonth": "Jusqu'au premier jour du prochain mois",
   "duration_engage": "S'engager {{t0}}"
 }

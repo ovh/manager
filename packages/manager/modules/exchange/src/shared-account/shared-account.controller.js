@@ -67,10 +67,10 @@ export default class ExchangeTabSharedAccountsCtrl {
     )
       .then((data) => {
         if (
-          !has(data, 'quotaLimit', 'quotaUsed', 'quotaReserved')
-          || !isNumber(data.quotaLimit)
-          || !isNumber(data.quotaReserved)
-          || !isNumber(data.quotaUsed)
+          !has(data, 'quotaLimit', 'quotaUsed', 'quotaReserved') ||
+          !isNumber(data.quotaLimit) ||
+          !isNumber(data.quotaReserved) ||
+          !isNumber(data.quotaUsed)
         ) {
           return;
         }
@@ -86,7 +86,9 @@ export default class ExchangeTabSharedAccountsCtrl {
       })
       .catch((err) => {
         this.services.messaging.writeError(
-          this.services.$translate.instant('exchange_tab_ACCOUNTS_error_message'),
+          this.services.$translate.instant(
+            'exchange_tab_ACCOUNTS_error_message',
+          ),
           err,
         );
         this.canDisplayQuota = false;
@@ -100,13 +102,14 @@ export default class ExchangeTabSharedAccountsCtrl {
       this.displayAccounts();
     });
 
-    $scope.retrievingAccounts = (count, offset) => this.retrievingAccounts(count, offset);
+    $scope.retrievingAccounts = (count, offset) =>
+      this.retrievingAccounts(count, offset);
     $scope.getAccounts = () => this.accounts;
     $scope.getLoading = () => this.loading;
 
     $scope.isDisabled = () => this.isDisabled();
-    $scope.deleteAccount = account => this.deleteAccount(account);
-    $scope.delegationSettings = account => this.delegationSettings(account);
+    $scope.deleteAccount = (account) => this.deleteAccount(account);
+    $scope.delegationSettings = (account) => this.delegationSettings(account);
 
     this.debouncedRetrievingAccounts = debounce(this.retrievingAccounts, 300);
   }
@@ -117,7 +120,11 @@ export default class ExchangeTabSharedAccountsCtrl {
 
   resetSearch() {
     this.searchValue = null;
-    this.services.$scope.$broadcast('paginationServerSide.loadPage', 1, 'accountsTable');
+    this.services.$scope.$broadcast(
+      'paginationServerSide.loadPage',
+      1,
+      'accountsTable',
+    );
   }
 
   retrievingAccounts(count, offset) {
@@ -136,7 +143,9 @@ export default class ExchangeTabSharedAccountsCtrl {
       })
       .catch((err) => {
         this.services.messaging.writeError(
-          this.services.$translate.instant('exchange_tab_ACCOUNTS_error_message'),
+          this.services.$translate.instant(
+            'exchange_tab_ACCOUNTS_error_message',
+          ),
           err,
         );
       })
@@ -146,18 +155,19 @@ export default class ExchangeTabSharedAccountsCtrl {
   }
 
   newSharedAccount() {
-    this.services.navigation.setAction('exchange/shared-account/add/shared-account-add');
+    this.services.navigation.setAction(
+      'exchange/shared-account/add/shared-account-add',
+    );
   }
 
   isEditable(account) {
     return account.state === this.stateOk && !this.noDomainFlag;
   }
 
-  /* eslint-disable class-methods-use-this */
+  // eslint-disable-next-line class-methods-use-this
   isConfigurable(account) {
     return account.state === 'OK';
   }
-  /* eslint-enable class-methods-use-this */
 
   isSharedAccountAdjustable() {
     return this.exchange;
@@ -176,7 +186,11 @@ export default class ExchangeTabSharedAccountsCtrl {
     this.selectedAccount = account;
     this.showAccounts = false;
     this.showAlias = true;
-    this.services.$scope.$broadcast('paginationServerSide.loadPage', 1, 'aliasTable');
+    this.services.$scope.$broadcast(
+      'paginationServerSide.loadPage',
+      1,
+      'aliasTable',
+    );
   }
 
   displayAccounts() {
@@ -188,9 +202,9 @@ export default class ExchangeTabSharedAccountsCtrl {
 
   isDisabled(account) {
     return (
-      !this.services.exchangeStates.constructor.isOk(account)
-      || this.services.exchangeStates.constructor.isDoing(account)
-      || this.services.exchangeStates.constructor.isInError(account)
+      !this.services.exchangeStates.constructor.isOk(account) ||
+      this.services.exchangeStates.constructor.isDoing(account) ||
+      this.services.exchangeStates.constructor.isInError(account)
     );
   }
 

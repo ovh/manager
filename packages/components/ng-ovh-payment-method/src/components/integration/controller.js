@@ -6,13 +6,9 @@ import noop from 'lodash/noop';
 import omit from 'lodash/omit';
 import values from 'lodash/values';
 
-import {
-  DEFAULT_BINDINGS_VALUES,
-} from './constants';
+import { DEFAULT_BINDINGS_VALUES } from './constants';
 
-import {
-  TYPE_INTEGRATION_ENUM,
-} from '../../payment-method.constants';
+import { TYPE_INTEGRATION_ENUM } from '../../payment-method.constants';
 
 export default class OvhPaymentMethodIntegrationCtrl {
   /* @ngInject */
@@ -43,16 +39,32 @@ export default class OvhPaymentMethodIntegrationCtrl {
     // (in case of previous payment error when integration is REDIRECT)
     const { location } = this.$window;
     // take all hash param except callbackStatusParamUrlName if present in current location
-    const hashParams = omit(this.$location.search(), [this.callbackStatusParamUrlName]);
-    const hashParamsArray = Object.keys(hashParams).map(hashKey => `${hashKey}=${get(hashParams, hashKey)}`);
+    const hashParams = omit(this.$location.search(), [
+      this.callbackStatusParamUrlName,
+    ]);
+    const hashParamsArray = Object.keys(hashParams).map(
+      (hashKey) => `${hashKey}=${get(hashParams, hashKey)}`,
+    );
 
-    const callbackUrlBase = `${location.protocol}//${location.host}${location.pathname}#${this.$location.path()}?${hashParamsArray.join('&')}`;
+    const callbackUrlBase = `${location.protocol}//${location.host}${
+      location.pathname
+    }#${this.$location.path()}?${hashParamsArray.join('&')}`;
     return {
-      cancel: `${callbackUrlBase}${hashParamsArray.length ? '&' : ''}${this.callbackStatusParamUrlName}=cancel`,
-      error: `${callbackUrlBase}${hashParamsArray.length ? '&' : ''}${this.callbackStatusParamUrlName}=error`,
-      failure: `${callbackUrlBase}${hashParamsArray.length ? '&' : ''}${this.callbackStatusParamUrlName}=failure`,
-      pending: `${callbackUrlBase}${hashParamsArray.length ? '&' : ''}${this.callbackStatusParamUrlName}=pending`,
-      success: `${callbackUrlBase}${hashParamsArray.length ? '&' : ''}${this.callbackStatusParamUrlName}=success`,
+      cancel: `${callbackUrlBase}${hashParamsArray.length ? '&' : ''}${
+        this.callbackStatusParamUrlName
+      }=cancel`,
+      error: `${callbackUrlBase}${hashParamsArray.length ? '&' : ''}${
+        this.callbackStatusParamUrlName
+      }=error`,
+      failure: `${callbackUrlBase}${hashParamsArray.length ? '&' : ''}${
+        this.callbackStatusParamUrlName
+      }=failure`,
+      pending: `${callbackUrlBase}${hashParamsArray.length ? '&' : ''}${
+        this.callbackStatusParamUrlName
+      }=pending`,
+      success: `${callbackUrlBase}${hashParamsArray.length ? '&' : ''}${
+        this.callbackStatusParamUrlName
+      }=success`,
     };
   }
 
@@ -110,11 +122,14 @@ export default class OvhPaymentMethodIntegrationCtrl {
       return resolve(onSubmitReturn);
     }).then((postParams = {}) => {
       // merge postParams with default values if not provided
-      const postData = merge({
-        default: false,
-        register: true,
-        callbackUrl: this.buildCallbackUrls(),
-      }, postParams);
+      const postData = merge(
+        {
+          default: false,
+          register: true,
+          callbackUrl: this.buildCallbackUrls(),
+        },
+        postParams,
+      );
 
       // create payment method by posting to /me/payment/method API route
       return this.ovhPaymentMethod
@@ -124,8 +139,11 @@ export default class OvhPaymentMethodIntegrationCtrl {
 
           // if payment method type doesn't require finalization
           // call onSubmitSuccess callback
-          if (!this.paymentMethodType.isRequiringFinalization()
-            && this.paymentMethodType.integration !== TYPE_INTEGRATION_ENUM.REDIRECT) {
+          if (
+            !this.paymentMethodType.isRequiringFinalization() &&
+            this.paymentMethodType.integration !==
+              TYPE_INTEGRATION_ENUM.REDIRECT
+          ) {
             this.manageCallback('onSubmitSuccess', { paymentValidation });
           }
 

@@ -8,8 +8,16 @@ import set from 'lodash/set';
 
 export default class IpLoadBalancerVrackEditCtrl {
   /* @ngInject */
-  constructor($q, $stateParams, $translate, CucCloudMessage, CucCloudNavigation,
-    CucControllerHelper, IpLoadBalancerServerFarmService, IpLoadBalancerVrackService) {
+  constructor(
+    $q,
+    $stateParams,
+    $translate,
+    CucCloudMessage,
+    CucCloudNavigation,
+    CucControllerHelper,
+    IpLoadBalancerServerFarmService,
+    IpLoadBalancerVrackService,
+  ) {
     this.$q = $q;
     this.$stateParams = $stateParams;
     this.$translate = $translate;
@@ -29,7 +37,8 @@ export default class IpLoadBalancerVrackEditCtrl {
   $onInit() {
     this.previousState = this.CucCloudNavigation.getPreviousState();
     this.creationRules.load();
-    this.privateNetwork.load()
+    this.privateNetwork
+      .load()
       .then(() => {
         if (keys(this.privateNetwork.data).length) {
           forEach(keys(this.model), (key) => {
@@ -51,12 +60,11 @@ export default class IpLoadBalancerVrackEditCtrl {
         this.model.farmId.value = this.privateNetworkFarms.data;
       });
 
-    this.farms.load()
-      .then(() => {
-        forEach(this.farms.data, (farm) => {
-          set(farm, 'displayName', farm.displayName || farm.farmId);
-        });
+    this.farms.load().then(() => {
+      forEach(this.farms.data, (farm) => {
+        set(farm, 'displayName', farm.displayName || farm.farmId);
       });
+    });
   }
 
   submit() {
@@ -68,7 +76,9 @@ export default class IpLoadBalancerVrackEditCtrl {
     this.CucCloudMessage.flushChildMessage();
     return (!this.editing() ? this.addNetwork() : this.editNetwork())
       .then(() => this.previousState.go())
-      .finally(() => { this.saving = false; });
+      .finally(() => {
+        this.saving = false;
+      });
   }
 
   isLoading() {
@@ -82,17 +92,26 @@ export default class IpLoadBalancerVrackEditCtrl {
   getAvailableFarm(forceValue) {
     const filteredValue = filter(
       this.farms.data,
-      farm => !includes(map(this.model.farmId.value, value => value.farmId), farm.farmId),
+      (farm) =>
+        !includes(
+          map(this.model.farmId.value, (value) => value.farmId),
+          farm.farmId,
+        ),
     );
     if (forceValue) {
-      filteredValue.push(find(this.farms.data, farm => farm.farmId === forceValue));
+      filteredValue.push(
+        find(this.farms.data, (farm) => farm.farmId === forceValue),
+      );
     }
     return filteredValue;
   }
 
   canAddFarm() {
     const availableFarmCount = this.getAvailableFarm().length;
-    return availableFarmCount > 0 && this.model.farmId.value.length < this.farms.data.length;
+    return (
+      availableFarmCount > 0 &&
+      this.model.farmId.value.length < this.farms.data.length
+    );
   }
 
   addFarm() {
@@ -107,13 +126,17 @@ export default class IpLoadBalancerVrackEditCtrl {
   }
 
   addNetwork() {
-    return this.IpLoadBalancerVrackService
-      .addPrivateNetwork(this.serviceName, this.getCleanModel());
+    return this.IpLoadBalancerVrackService.addPrivateNetwork(
+      this.serviceName,
+      this.getCleanModel(),
+    );
   }
 
   editNetwork() {
-    return this.IpLoadBalancerVrackService
-      .editPrivateNetwork(this.serviceName, this.getCleanModel());
+    return this.IpLoadBalancerVrackService.editPrivateNetwork(
+      this.serviceName,
+      this.getCleanModel(),
+    );
   }
 
   getCleanModel() {
@@ -123,8 +146,8 @@ export default class IpLoadBalancerVrackEditCtrl {
         switch (key) {
           case 'farmId':
             cleanModel[key] = map(
-              filter(this.model[key].value, farm => farm.farmId),
-              farm => farm.farmId,
+              filter(this.model[key].value, (farm) => farm.farmId),
+              (farm) => farm.farmId,
             );
             break;
           default:
@@ -139,22 +162,35 @@ export default class IpLoadBalancerVrackEditCtrl {
 
   initLoaders() {
     this.creationRules = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () => this.IpLoadBalancerVrackService
-        .getNetworkCreationRules(this.serviceName),
+      loaderFunction: () =>
+        this.IpLoadBalancerVrackService.getNetworkCreationRules(
+          this.serviceName,
+        ),
     });
 
     this.privateNetwork = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () => (this.editing() ? this.IpLoadBalancerVrackService
-        .getPrivateNetwork(this.serviceName, this.networkId) : this.$q.when({})),
+      loaderFunction: () =>
+        this.editing()
+          ? this.IpLoadBalancerVrackService.getPrivateNetwork(
+              this.serviceName,
+              this.networkId,
+            )
+          : this.$q.when({}),
     });
 
     this.privateNetworkFarms = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () => (this.editing() ? this.IpLoadBalancerVrackService
-        .getPrivateNetworkFarms(this.serviceName, this.networkId) : this.$q.when([])),
+      loaderFunction: () =>
+        this.editing()
+          ? this.IpLoadBalancerVrackService.getPrivateNetworkFarms(
+              this.serviceName,
+              this.networkId,
+            )
+          : this.$q.when([]),
     });
 
     this.farms = this.CucControllerHelper.request.getArrayLoader({
-      loaderFunction: () => this.IpLoadBalancerServerFarmService.getServerFarms(this.serviceName),
+      loaderFunction: () =>
+        this.IpLoadBalancerServerFarmService.getServerFarms(this.serviceName),
     });
   }
 
@@ -162,7 +198,9 @@ export default class IpLoadBalancerVrackEditCtrl {
     this.model = {
       displayName: {
         id: 'displayName',
-        label: this.$translate.instant('iplb_vrack_private_network_add_edit_field_display_name_label'),
+        label: this.$translate.instant(
+          'iplb_vrack_private_network_add_edit_field_display_name_label',
+        ),
         type: 'text',
         value: undefined,
         required: false,
@@ -173,42 +211,57 @@ export default class IpLoadBalancerVrackEditCtrl {
       },
       vlan: {
         id: 'vlan',
-        label: this.$translate.instant('iplb_vrack_private_network_add_edit_field_vlan_label'),
+        label: this.$translate.instant(
+          'iplb_vrack_private_network_add_edit_field_vlan_label',
+        ),
         type: 'number',
         value: undefined,
         required: false,
         minLength: 0,
         maxLength: Infinity,
         disabled: () => this.creationRules.data.status !== 'active',
-        helperText: this.$translate.instant('iplb_vrack_private_network_add_edit_field_vlan_helper'),
+        helperText: this.$translate.instant(
+          'iplb_vrack_private_network_add_edit_field_vlan_helper',
+        ),
         inputSize: 1,
       },
       subnet: {
         id: 'subnet',
-        label: this.$translate.instant('iplb_vrack_private_network_add_edit_field_subnet_label'),
+        label: this.$translate.instant(
+          'iplb_vrack_private_network_add_edit_field_subnet_label',
+        ),
         type: 'text',
         value: undefined,
         required: true,
         minLength: 0,
         maxLength: Infinity,
-        disabled: () => this.editing() && this.creationRules.data.status !== 'active',
-        helperText: this.$translate.instant('iplb_vrack_private_network_add_edit_field_subnet_helper'),
+        disabled: () =>
+          this.editing() && this.creationRules.data.status !== 'active',
+        helperText: this.$translate.instant(
+          'iplb_vrack_private_network_add_edit_field_subnet_helper',
+        ),
         inputSize: 2,
       },
       natIp: {
         id: 'natIp',
-        label: this.$translate.instant('iplb_vrack_private_network_add_edit_field_nat_ip_label'),
+        label: this.$translate.instant(
+          'iplb_vrack_private_network_add_edit_field_nat_ip_label',
+        ),
         type: 'text',
         value: undefined,
         required: true,
         minLength: 0,
         maxLength: Infinity,
         disabled: () => this.creationRules.data.status !== 'active',
-        helperText: this.$translate.instant('iplb_vrack_private_network_add_edit_field_nat_ip_helper'),
+        helperText: this.$translate.instant(
+          'iplb_vrack_private_network_add_edit_field_nat_ip_helper',
+        ),
         inputSize: 2,
       },
       farmId: {
-        label: this.$translate.instant('iplb_vrack_private_network_add_edit_field_farm_label'),
+        label: this.$translate.instant(
+          'iplb_vrack_private_network_add_edit_field_farm_label',
+        ),
         value: [],
         disabled: () => false,
       },

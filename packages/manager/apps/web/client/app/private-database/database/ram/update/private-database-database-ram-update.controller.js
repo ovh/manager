@@ -47,7 +47,7 @@ angular.module('App').controller(
 
       this.database = this.$scope.currentActionData;
 
-      this.$scope.sortRam = ram => +ram;
+      this.$scope.sortRam = (ram) => +ram;
 
       this.userService.getUser().then((user) => {
         this.data.ovhSubsidiary = user.ovhSubsidiary;
@@ -62,12 +62,12 @@ angular.module('App').controller(
         this.loading.availableRam = false;
         this.data.availableRam = availableRam;
         if (this.database.infrastructure === 'legacy') {
-          remove(this.data.availableRam, ram => ram === '2048');
+          remove(this.data.availableRam, (ram) => ram === '2048');
         }
 
         remove(
           this.data.availableRam,
-          ram => +ram === +this.database.ram.value,
+          (ram) => +ram === +this.database.ram.value,
         );
       });
 
@@ -118,8 +118,8 @@ angular.module('App').controller(
     loadContracts() {
       this.model.contract = false;
       if (
-        !this.model.duration.contracts
-        || !this.model.duration.contracts.length
+        !this.model.duration.contracts ||
+        !this.model.duration.contracts.length
       ) {
         this.$rootScope.$broadcast('wizard-goToStep', 5);
       }
@@ -127,8 +127,8 @@ angular.module('App').controller(
 
     backToContracts() {
       if (
-        !this.model.duration.contracts
-        || !this.model.duration.contracts.length
+        !this.model.duration.contracts ||
+        !this.model.duration.contracts.length
       ) {
         this.$rootScope.$broadcast('wizard-goToStep', 2);
       }
@@ -147,9 +147,12 @@ angular.module('App').controller(
         )
         .then((order) => {
           this.alerter.success(
-            this.$translate.instant('privateDatabase_order_RAM_finish_success', {
-              t0: order.url,
-            }),
+            this.$translate.instant(
+              'privateDatabase_order_RAM_finish_success',
+              {
+                t0: order.url,
+              },
+            ),
             this.$scope.alerts.main,
           );
           window.open(order.url, '_blank');
@@ -163,6 +166,10 @@ angular.module('App').controller(
         .finally(() => {
           this.loading.validation = false;
         });
+    }
+
+    static isProrataDuration({ duration }) {
+      return /^upto/.test(duration);
     }
   },
 );

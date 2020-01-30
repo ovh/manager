@@ -1,8 +1,8 @@
 {
   "name": "@ovh-ux/ng-ovh-cloud-universe-components",
-  "version": "1.6.0",
+  "version": "1.7.2",
   "private": true,
-  "description": "Cloud Universe Components",
+  "description": "Collection of components for the Cloud control panel.",
   "keywords": [
     "cloud",
     "components",
@@ -31,9 +31,9 @@
     "dev": "rollup -c --environment BUILD:development",
     "dev:watch": "yarn run dev --watch",
     "prepare": "yarn run build",
-    "start": "lerna exec --stream --scope='@ovh-ux/ng-ovh-cloud-universe-components' --include-filtered-dependencies -- yarn run build",
-    "start:dev": "lerna exec --stream --scope='@ovh-ux/ng-ovh-cloud-universe-components' --include-filtered-dependencies -- yarn run dev",
-    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/ng-ovh-cloud-universe-components' --include-filtered-dependencies -- yarn run dev:watch"
+    "start": "lerna exec --stream --scope='@ovh-ux/ng-ovh-cloud-universe-components' --include-dependencies -- yarn run build",
+    "start:dev": "lerna exec --stream --scope='@ovh-ux/ng-ovh-cloud-universe-components' --include-dependencies -- yarn run dev",
+    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/ng-ovh-cloud-universe-components' --include-dependencies -- yarn run dev:watch"
   },
   "dependencies": {
     "bootstrap": "~3.3.0",
@@ -55,6 +55,6 @@
     "angular-ui-bootstrap": "~1.3.3",
     "d3": "~3.5.13",
     "ovh-api-services": "^9.27.1",
-    "ovh-ui-angular": "^3.9.10"
+    "ovh-ui-angular": "^3.11.0"
   }
 }

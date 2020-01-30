@@ -1,11 +1,15 @@
-<oui-modal class="my-0"
-           data-title="{{:: 'vps_terminate_title' | translate }}"
-           data-primary-label="{{:: 'vps_terminate_confirm' | translate }}"
-           data-primary-action="$ctrl.terminate()"
-           data-secondary-label="{{:: 'vps_terminate_cancel' | translate }}"
-           data-secondary-action="$ctrl.cancel()"
-           data-type="warning"
-           data-loading="$ctrl.isTerminating">
-    <span data-translate="vps_terminate_question"
-          data-translate-values="{ 'vps' : $ctrl.serviceName }"></span>
+<oui-modal
+    class="my-0"
+    data-title="{{:: 'vps_terminate_title' | translate }}"
+    data-primary-label="{{:: 'vps_terminate_confirm' | translate }}"
+    data-primary-action="$ctrl.terminate()"
+    data-secondary-label="{{:: 'vps_terminate_cancel' | translate }}"
+    data-secondary-action="$ctrl.cancel()"
+    data-type="warning"
+    data-loading="$ctrl.isTerminating"
+>
+    <span
+        data-translate="vps_terminate_question"
+        data-translate-values="{ 'vps' : $ctrl.serviceName }"
+    ></span>
 </oui-modal>

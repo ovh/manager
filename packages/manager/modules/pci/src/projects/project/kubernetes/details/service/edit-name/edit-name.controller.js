@@ -15,19 +15,33 @@ export default class {
 
   edit() {
     this.isEditing = true;
-    return this.OvhApiCloudProjectKube.v6().update({
-      serviceName: this.projectId,
-      kubeId: this.kubeId,
-    }, {
-      name: this.name,
-    }).$promise
-      .then(() => this.goBack(
-        this.$translate.instant('pci_projects_project_kubernetes_details_service_name_success'),
-      ))
-      .catch(error => this.goBack(
-        this.$translate.instant('pci_projects_project_kubernetes_details_service_name_error', {
-          message: get(error, 'data.message'),
-        }), 'error',
-      ));
+    return this.OvhApiCloudProjectKube.v6()
+      .update(
+        {
+          serviceName: this.projectId,
+          kubeId: this.kubeId,
+        },
+        {
+          name: this.name,
+        },
+      )
+      .$promise.then(() =>
+        this.goBack(
+          this.$translate.instant(
+            'pci_projects_project_kubernetes_details_service_name_success',
+          ),
+        ),
+      )
+      .catch((error) =>
+        this.goBack(
+          this.$translate.instant(
+            'pci_projects_project_kubernetes_details_service_name_error',
+            {
+              message: get(error, 'data.message'),
+            },
+          ),
+          'error',
+        ),
+      );
   }
 }

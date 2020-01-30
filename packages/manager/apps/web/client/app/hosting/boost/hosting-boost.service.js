@@ -1,12 +1,19 @@
 angular
   .module('services')
-  .service('HostingBoost', function hostingBoost($q, $rootScope, OvhHttp, Poll, OvhApiOrderCatalogPublic) {
+  .service('HostingBoost', function hostingBoost(
+    $q,
+    $rootScope,
+    OvhHttp,
+    Poll,
+    OvhApiOrderCatalogPublic,
+  ) {
     /**
      * Get models
      */
-    this.getModels = () => OvhHttp.get('/hosting/web.json', {
-      rootPath: 'apiv6',
-    });
+    this.getModels = () =>
+      OvhHttp.get('/hosting/web.json', {
+        rootPath: 'apiv6',
+      });
 
     /**
      * Get tasks
@@ -38,31 +45,34 @@ angular
     /**
      * Obtain hosting boost new price
      */
-    this.getBoostPrice = ovhSubsidiary => OvhApiOrderCatalogPublic.v6().get({
-      ovhSubsidiary,
-      productName: 'webHosting',
-    }).$promise;
+    this.getBoostPrice = (ovhSubsidiary) =>
+      OvhApiOrderCatalogPublic.v6().get({
+        ovhSubsidiary,
+        productName: 'webHosting',
+      }).$promise;
 
     /**
      * Obtain hosting boost history
      */
-    this.getHistory = serviceName => OvhHttp.get('/hosting/web/{serviceName}/boostHistory', {
-      rootPath: 'apiv6',
-      urlParams: {
-        serviceName,
-      },
-    });
+    this.getHistory = (serviceName) =>
+      OvhHttp.get('/hosting/web/{serviceName}/boostHistory', {
+        rootPath: 'apiv6',
+        urlParams: {
+          serviceName,
+        },
+      });
 
     /**
      * Obtain an hosting boost history entry
      */
-    this.getHistoryEntry = (serviceName, date) => OvhHttp.get('/hosting/web/{serviceName}/boostHistory/{date}', {
-      rootPath: 'apiv6',
-      urlParams: {
-        serviceName,
-        date,
-      },
-    });
+    this.getHistoryEntry = (serviceName, date) =>
+      OvhHttp.get('/hosting/web/{serviceName}/boostHistory/{date}', {
+        rootPath: 'apiv6',
+        urlParams: {
+          serviceName,
+          date,
+        },
+      });
 
     this.requestBoost = (data) => {
       const self = this;

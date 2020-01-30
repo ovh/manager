@@ -17,19 +17,22 @@
     "docs:update-readme": "scripts/update-readme.js",
     "generate:app": "sao ./packages/manager/tools/sao-ovh-manager-app",
     "generate:module": "sao ./packages/manager/tools/sao-ovh-manager-module",
-    "lint": "run-p lint:css lint:html lint:js lint:md",
-    "lint:css": "stylelint 'packages/**/*.less' --fix",
+    "lint": "run-p lint:*",
+    "lint:css": "stylelint \"packages/**/*.{css,less,scss}\" --fix",
     "lint:html": "htmlhint --ignore \"**/dist/**,**/dist-EU/**,**/dist-CA/**,**/dist-US/**\" \"packages/**/*.html\"",
-    "lint:js": "eslint --fix --quiet --format=pretty packages scripts",
+    "lint:js": "eslint --fix --quiet --format=pretty \"packages\" \"scripts\"",
     "lint:md": "remark -qf .",
     "packages:publish": "scripts/publish.js",
     "release": "scripts/release.js",
     "split": "scripts/split.js",
     "test": "yarn lint",
-    "version": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md"
+    "version": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
+    "vuepress:build": "vuepress build docs",
+    "vuepress:deploy": "yarn run vuepress:build && gh-pages -d docs/.vuepress/dist -m \"docs: update documentation\"",
+    "vuepress:dev": "vuepress dev docs"
   },
   "devDependencies": {
-    "@commitlint/cli": "^8.2.0",
+    "@commitlint/cli": "^8.3.3",
     "@commitlint/config-angular": "^8.2.0",
     "@ovh-ux/codename-generator": "^1.0.0",
     "babel-eslint": "^10.0.3",
@@ -40,11 +43,16 @@
     "conventional-recommended-bump": "^4.1.1",
     "eslint": "^6.7.2",
     "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-config-prettier": "^6.3.0",
     "eslint-import-resolver-lerna": "^1.1.0",
     "eslint-plugin-angular": "^4.0.1",
+    "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-markdown": "^1.0.0",
+    "eslint-plugin-prettier": "^3.1.1",
     "execa": "^2.0.5",
     "find-free-port": "^2.0.0",
+    "get-monorepo-packages": "^1.2.0",
+    "gh-pages": "^2.2.0",
     "git-raw-commits": "^2.0.2",
     "git-url-parse": "^11.1.2",
     "htmlhint": "^0.11.0",
@@ -58,6 +66,7 @@
     "octonode": "^0.9.5",
     "ora": "^3.4.0",
     "p-series": "^2.1.0",
+    "prettier": "^1.18.2",
     "remark-cli": "^7.0.1",
     "remark-lint": "^6.0.5",
     "remark-preset-lint-recommended": "^3.0.3",
@@ -66,10 +75,13 @@
     "semver": "^5.6.0",
     "stylelint": "^12.0.0",
     "stylelint-config-standard": "^19.0.0",
-    "tcp-port-used": "^1.0.1"
+    "stylelint-prettier": "^1.1.2",
+    "stylelint-scss": "^3.13.0",
+    "tcp-port-used": "^1.0.1",
+    "vuepress": "^1.2.0"
   },
   "engines": {
     "node": ">=12.13",
-    "yarn": ">=1.17.3"
+    "yarn": ">=1.21.1"
   }
 }

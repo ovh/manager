@@ -51,5 +51,7 @@
   "kube_service_cluster_minor_update_available": "A minor update is available.",
   "kube_service_manage_title": "Management",
   "kube_service_common_edit_security_update_policy": "Change security policy",
-  "kube_service_minor_version_upgrade": "Upgrade to the next minor version"
+  "kube_service_minor_version_upgrade": "Upgrade to the next minor version",
+  "kube_service_cluster_version_not_supported_message": "Your version of Kubernetes is no longer supported. Please upgrade to a supported version.",
+  "kube_service_cluster_versions_guide": "You can find more information about the versions supported in our official <a href=\"{{ versionGuideUrl }}\" rel=\"noopener\" target=\"_blank\">End-of-Support and End-of-Life policy</a> documentation."
 }

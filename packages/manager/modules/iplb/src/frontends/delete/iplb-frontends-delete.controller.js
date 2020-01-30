@@ -1,7 +1,12 @@
 export default class IpLoadBalancerFrontendDeleteCtrl {
   /* @ngInject */
-  constructor($stateParams, $uibModalInstance, CucControllerHelper, frontend,
-    IpLoadBalancerFrontendsService) {
+  constructor(
+    $stateParams,
+    $uibModalInstance,
+    CucControllerHelper,
+    frontend,
+    IpLoadBalancerFrontendsService,
+  ) {
     this.$stateParams = $stateParams;
     this.$uibModalInstance = $uibModalInstance;
     this.CucControllerHelper = CucControllerHelper;
@@ -15,10 +20,14 @@ export default class IpLoadBalancerFrontendDeleteCtrl {
 
   confirm() {
     this.delete = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () => this.IpLoadBalancerFrontendsService
-        .deleteFrontend(this.type, this.$stateParams.serviceName, this.frontendId)
-        .then(response => this.$uibModalInstance.close(response))
-        .catch(error => this.$uibModalInstance.dismiss(error)),
+      loaderFunction: () =>
+        this.IpLoadBalancerFrontendsService.deleteFrontend(
+          this.type,
+          this.$stateParams.serviceName,
+          this.frontendId,
+        )
+          .then((response) => this.$uibModalInstance.close(response))
+          .catch((error) => this.$uibModalInstance.dismiss(error)),
     });
     return this.delete.load();
   }

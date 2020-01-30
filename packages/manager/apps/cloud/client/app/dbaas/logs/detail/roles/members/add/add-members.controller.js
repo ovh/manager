@@ -28,11 +28,13 @@ class LogsRolesAddMembersCtrl {
       this.title = 'logs_member_modal_add_title';
     }
     this.isLoading = true;
-    this.logs.promise.then(() => {
-      this.users = map(this.logs.data, 'username');
-    }).finally(() => {
-      this.isLoading = false;
-    });
+    this.logs.promise
+      .then(() => {
+        this.users = map(this.logs.data, 'username');
+      })
+      .finally(() => {
+        this.isLoading = false;
+      });
   }
 
   cancel() {
@@ -44,16 +46,19 @@ class LogsRolesAddMembersCtrl {
       return this.$q.reject();
     }
     this.saving = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () => this.LogsRolesService.createMember(this.serviceName, this.roleId, {
-        username: this.member.username,
-        note: this.member.note,
-      })
-        .then(response => this.$uibModalInstance.close(response))
-        .catch(response => this.$uibModalInstance.dismiss(response))
-        .finally(() => this.CucControllerHelper.scrollPageToTop()),
+      loaderFunction: () =>
+        this.LogsRolesService.createMember(this.serviceName, this.roleId, {
+          username: this.member.username,
+          note: this.member.note,
+        })
+          .then((response) => this.$uibModalInstance.close(response))
+          .catch((response) => this.$uibModalInstance.dismiss(response))
+          .finally(() => this.CucControllerHelper.scrollPageToTop()),
     });
     return this.saving.load();
   }
 }
 
-angular.module('managerApp').controller('LogsRolesAddMembersCtrl', LogsRolesAddMembersCtrl);
+angular
+  .module('managerApp')
+  .controller('LogsRolesAddMembersCtrl', LogsRolesAddMembersCtrl);

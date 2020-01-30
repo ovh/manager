@@ -1,13 +1,15 @@
 <div data-ng-controller="DomainZoneImportTextCtrl as ctrl">
-    <div data-wizard
-         data-wizard-bread-crumb
-         data-wizard-on-cancel="resetAction"
-         data-wizard-on-finish="importDnsText"
-         data-wizard-title="'domain_tab_ZONE_default_import_button' | translate">
-
-        <div data-wizard-step
-             data-wizard-step-valid="ctrl.zoneDnsTextForm.$valid">
-
+    <div
+        data-wizard
+        data-wizard-bread-crumb
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="importDnsText"
+        data-wizard-title="'domain_tab_ZONE_default_import_button' | translate"
+    >
+        <div
+            data-wizard-step
+            data-wizard-step-valid="ctrl.zoneDnsTextForm.$valid"
+        >
             <div class="text-center" data-ng-if="ctrl.loading">
                 <oui-spinner></oui-spinner>
             </div>
@@ -15,15 +17,26 @@
             <div data-ng-if="!ctrl.loading">
                 <form class="mt-4" name="ctrl.zoneDnsTextForm">
                     <div class="form-group">
-                        <label class="control-label" for="zoneDnsText"
-                               data-translate="domain_configuration_dns_importtext_title"></label>
-                        <textarea class="mt-2 w-100" id="zoneDnsText" name="zoneDnsText" rows="20" required
-                                  data-ng-model="ctrl.model.zoneDnsText"
-                                  data-ng-pattern="/^\$TTL[ \\t]+[0-9]+\n.*/">
+                        <label
+                            class="control-label"
+                            for="zoneDnsText"
+                            data-translate="domain_configuration_dns_importtext_title"
+                        ></label>
+                        <textarea
+                            class="mt-2 w-100"
+                            id="zoneDnsText"
+                            name="zoneDnsText"
+                            rows="20"
+                            required
+                            data-ng-model="ctrl.model.zoneDnsText"
+                            data-ng-pattern="/^\$TTL[ \\t]+[0-9]+\n.*/"
+                        >
                         </textarea>
-                        <p class="help-block mt-2"
-                           data-translate="domain_configuration_dns_importtext_error_regex"
-                           data-ng-if="ctrl.zoneDnsTextForm.zoneDnsText.$invalid"></p>
+                        <p
+                            class="help-block mt-2"
+                            data-translate="domain_configuration_dns_importtext_error_regex"
+                            data-ng-if="ctrl.zoneDnsTextForm.zoneDnsText.$invalid"
+                        ></p>
                     </div>
                 </form>
             </div>

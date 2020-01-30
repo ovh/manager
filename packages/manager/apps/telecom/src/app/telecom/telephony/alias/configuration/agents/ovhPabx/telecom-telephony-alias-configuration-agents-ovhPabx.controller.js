@@ -10,12 +10,25 @@ import pullAt from 'lodash/pullAt';
 import set from 'lodash/set';
 import sortBy from 'lodash/sortBy';
 
-import { ALLOWED_FEATURE_TYPES, NUMBER_PREFIXES } from './telecom-telephony-alias-configuration-agents-ovhPabx.constants';
+import {
+  ALLOWED_FEATURE_TYPES,
+  NUMBER_PREFIXES,
+} from './telecom-telephony-alias-configuration-agents-ovhPabx.constants';
 
-angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationAgentsOvhPabxCtrl',
+angular.module('managerApp').controller(
+  'TelecomTelephonyAliasConfigurationAgentsOvhPabxCtrl',
   class TelecomTelephonyAliasConfigurationAgentsOvhPabxCtrl {
-    constructor($q, $stateParams, $timeout, $translate, $uibModal, OvhApiTelephony,
-      TelephonyMediator, tucTelecomVoip, TucToast) {
+    constructor(
+      $q,
+      $stateParams,
+      $timeout,
+      $translate,
+      $uibModal,
+      OvhApiTelephony,
+      TelephonyMediator,
+      tucTelecomVoip,
+      TucToast,
+    ) {
       this.$q = $q;
       this.$stateParams = $stateParams;
       this.$timeout = $timeout;
@@ -42,26 +55,44 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationAgent
       };
 
       this.types = [
-        { value: 'internal', label: this.$translate.instant('telephony_alias_configuration_agents_type_internal') },
-        { value: 'external', label: this.$translate.instant('telephony_alias_configuration_agents_type_external') },
+        {
+          value: 'internal',
+          label: this.$translate.instant(
+            'telephony_alias_configuration_agents_type_internal',
+          ),
+        },
+        {
+          value: 'external',
+          label: this.$translate.instant(
+            'telephony_alias_configuration_agents_type_external',
+          ),
+        },
       ];
 
       this.onChooseServicePopover = ({ serviceName }, pos) => {
         this.addAgentForm.numbers[pos] = serviceName;
       };
 
-      this.$q.all({
-        translations: this.$translate.refresh(),
-        services: this.tucTelecomVoip.fetchAll(),
-      }).then((result) => {
-        this.groupList = result.services;
-        return this.fetchAgentsIds();
-      }).then((ids) => {
-        this.agents.ids = ids;
-      }).catch((err) => {
-        this.TucToast.error(`${this.$translate.instant('telephony_alias_configuration_agents_get_error')} ${get(err, 'data.message')}`);
-        return this.$q.reject(err);
-      });
+      this.$q
+        .all({
+          translations: this.$translate.refresh(),
+          services: this.tucTelecomVoip.fetchAll(),
+        })
+        .then((result) => {
+          this.groupList = result.services;
+          return this.fetchAgentsIds();
+        })
+        .then((ids) => {
+          this.agents.ids = ids;
+        })
+        .catch((err) => {
+          this.TucToast.error(
+            `${this.$translate.instant(
+              'telephony_alias_configuration_agents_get_error',
+            )} ${get(err, 'data.message')}`,
+          );
+          return this.$q.reject(err);
+        });
     }
 
     orderBy(prop, asc) {
@@ -79,17 +110,24 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationAgent
 
     fetchAgentsIds() {
       this.agents.isLoading = true;
-      return this.OvhApiTelephony.OvhPabx().Hunting().Agent().v6()
+      return this.OvhApiTelephony.OvhPabx()
+        .Hunting()
+        .Agent()
+        .v6()
         .query({
           billingAccount: this.$stateParams.billingAccount,
           serviceName: this.$stateParams.serviceName,
-        }).$promise.finally(() => {
+        })
+        .$promise.finally(() => {
           this.agents.isLoading = false;
         });
     }
 
     fetchAgent(id) {
-      return this.OvhApiTelephony.OvhPabx().Hunting().Agent().v6()
+      return this.OvhApiTelephony.OvhPabx()
+        .Hunting()
+        .Agent()
+        .v6()
         .get({
           billingAccount: this.$stateParams.billingAccount,
           serviceName: this.$stateParams.serviceName,
@@ -109,24 +147,39 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationAgent
     deleteAgents() {
       this.agents.isDeleting = true;
       return this.$q
-        .all(this.getSelectedAgentIds()
-          .map(id => this.OvhApiTelephony.OvhPabx().Hunting().Agent().v6()
-            .remove({
-              billingAccount: this.$stateParams.billingAccount,
-              serviceName: this.$stateParams.serviceName,
-              agentId: id,
-            }).$promise.then(() => {
-              pull(this.agents.id, parseInt(id, 10));
-            })))
+        .all(
+          this.getSelectedAgentIds().map((id) =>
+            this.OvhApiTelephony.OvhPabx()
+              .Hunting()
+              .Agent()
+              .v6()
+              .remove({
+                billingAccount: this.$stateParams.billingAccount,
+                serviceName: this.$stateParams.serviceName,
+                agentId: id,
+              })
+              .$promise.then(() => {
+                pull(this.agents.id, parseInt(id, 10));
+              }),
+          ),
+        )
         .then(() => {
-          this.TucToast.success(this.$translate.instant('telephony_alias_configuration_agents_delete_success'));
+          this.TucToast.success(
+            this.$translate.instant(
+              'telephony_alias_configuration_agents_delete_success',
+            ),
+          );
           return this.fetchAgentsIds();
         })
         .then((ids) => {
           this.agents.ids = ids;
         })
         .catch((err) => {
-          this.TucToast.error(`${this.$translate.instant('telephony_alias_configuration_agents_delete_error')} ${get(err, 'data.message')}`);
+          this.TucToast.error(
+            `${this.$translate.instant(
+              'telephony_alias_configuration_agents_delete_error',
+            )} ${get(err, 'data.message')}`,
+          );
           return this.$q.reject(err);
         })
         .finally(() => {
@@ -136,12 +189,22 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationAgent
     }
 
     static startEdition(agent) {
-      set(agent, 'inEdition', pick(agent, ['description', 'number', 'simultaneousLines', 'status', 'timeout', 'type', 'wrapUpTime']));
+      set(
+        agent,
+        'inEdition',
+        pick(agent, [
+          'description',
+          'number',
+          'simultaneousLines',
+          'status',
+          'timeout',
+          'type',
+          'wrapUpTime',
+        ]),
+      );
     }
 
-    static isValidAgent({
-      number, timeout, simultaneousLines, wrapUpTime,
-    }) {
+    static isValidAgent({ number, timeout, simultaneousLines, wrapUpTime }) {
       let valid = true;
       valid = valid && number;
       valid = valid && /^\d{1,6}$/.test(timeout);
@@ -152,19 +215,33 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationAgent
 
     updateAgent(agent) {
       set(agent, 'isUpdating', true);
-      return this.OvhApiTelephony.OvhPabx().Hunting().Agent().v6()
-        .change({
-          billingAccount: this.$stateParams.billingAccount,
-          serviceName: this.$stateParams.serviceName,
-          agentId: agent.agentId,
-        }, agent.inEdition).$promise
-        .then(() => {
+      return this.OvhApiTelephony.OvhPabx()
+        .Hunting()
+        .Agent()
+        .v6()
+        .change(
+          {
+            billingAccount: this.$stateParams.billingAccount,
+            serviceName: this.$stateParams.serviceName,
+            agentId: agent.agentId,
+          },
+          agent.inEdition,
+        )
+        .$promise.then(() => {
           assign(agent, agent.inEdition);
           set(agent, 'inEdition', null);
-          this.TucToast.success(this.$translate.instant('telephony_alias_configuration_agents_update_success'));
+          this.TucToast.success(
+            this.$translate.instant(
+              'telephony_alias_configuration_agents_update_success',
+            ),
+          );
         })
         .catch((err) => {
-          this.TucToast.error(`${this.$translate.instant('telephony_alias_configuration_agents_update_error')} ${get(err, 'data.message')}`);
+          this.TucToast.error(
+            `${this.$translate.instant(
+              'telephony_alias_configuration_agents_update_error',
+            )} ${get(err, 'data.message')}`,
+          );
           return this.$q.reject(err);
         })
         .finally(() => {
@@ -183,35 +260,39 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationAgent
     }
 
     getInternalNumber(newNumber) {
-      const allNumbers = flatten(
-        map(
-          this.groupList,
-          'services',
-        ),
+      const allNumbers = flatten(map(this.groupList, 'services'));
+      const [, numberSuffix] = newNumber
+        .replace(/ /g, '')
+        .split(NUMBER_PREFIXES);
+      return allNumbers.find(({ serviceName }) =>
+        endsWith(serviceName, numberSuffix),
       );
-      const [, numberSuffix] = newNumber.replace(/ /g, '').split(NUMBER_PREFIXES);
-      return allNumbers.find(({ serviceName }) => endsWith(serviceName, numberSuffix));
     }
 
     // Check if external numbers are defined into the list
     checkExternalNumber() {
       return !this.addAgentForm.numbers.some((newNumber) => {
         const internalNumber = this.getInternalNumber(newNumber);
-        return internalNumber !== undefined
-          && ALLOWED_FEATURE_TYPES.includes(internalNumber.serviceType);
+        return (
+          internalNumber !== undefined &&
+          ALLOWED_FEATURE_TYPES.includes(internalNumber.serviceType)
+        );
       });
     }
 
     addAgents() {
       if (this.checkExternalNumber()) {
-        this.$uibModal.open({
-          animation: true,
-          templateUrl: 'app/telecom/telephony/alias/configuration/agents/ovhPabx/telecom-telephony-alias-configuration-agents-ovhPabx-modal.html',
-          controller: 'telecomTelephonyAliasConfigurationAgentsOvhPabxModal',
-          controllerAs: '$ctrl',
-        }).result.then(() => {
-          this.createAgents();
-        });
+        this.$uibModal
+          .open({
+            animation: true,
+            templateUrl:
+              'app/telecom/telephony/alias/configuration/agents/ovhPabx/telecom-telephony-alias-configuration-agents-ovhPabx-modal.html',
+            controller: 'telecomTelephonyAliasConfigurationAgentsOvhPabxModal',
+            controllerAs: '$ctrl',
+          })
+          .result.then(() => {
+            this.createAgents();
+          });
       } else {
         this.createAgents();
       }
@@ -219,33 +300,54 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationAgent
 
     createAgents() {
       this.addAgentForm.isAdding = true;
-      return this.$q.all(this.addAgentForm.numbers.map((number) => {
-        if (!number || !number.length) {
-          return this.$q.when(null);
-        }
-        return this.OvhApiTelephony.OvhPabx().Hunting().Agent().v6()
-          .create({
-            billingAccount: this.$stateParams.billingAccount,
-            serviceName: this.$stateParams.serviceName,
-          }, {
-            number,
-            simultaneousLines: 1,
-            status: 'available',
-            timeout: 20,
-            wrapUpTime: 0,
-          }).$promise;
-      })).then(() => {
-        this.TucToast.success(this.$translate.instant('telephony_alias_configuration_agents_add_success'));
-        return this.fetchAgentsIds();
-      }).then((ids) => {
-        this.agents.ids = ids;
-      }).catch((err) => {
-        this.TucToast.error(`${this.$translate.instant('telephony_alias_configuration_agents_add_error')} ${get(err, 'data.message')}`);
-        return this.$q.reject(err);
-      })
+      return this.$q
+        .all(
+          this.addAgentForm.numbers.map((number) => {
+            if (!number || !number.length) {
+              return this.$q.when(null);
+            }
+            return this.OvhApiTelephony.OvhPabx()
+              .Hunting()
+              .Agent()
+              .v6()
+              .create(
+                {
+                  billingAccount: this.$stateParams.billingAccount,
+                  serviceName: this.$stateParams.serviceName,
+                },
+                {
+                  number,
+                  simultaneousLines: 1,
+                  status: 'available',
+                  timeout: 20,
+                  wrapUpTime: 0,
+                },
+              ).$promise;
+          }),
+        )
+        .then(() => {
+          this.TucToast.success(
+            this.$translate.instant(
+              'telephony_alias_configuration_agents_add_success',
+            ),
+          );
+          return this.fetchAgentsIds();
+        })
+        .then((ids) => {
+          this.agents.ids = ids;
+        })
+        .catch((err) => {
+          this.TucToast.error(
+            `${this.$translate.instant(
+              'telephony_alias_configuration_agents_add_error',
+            )} ${get(err, 'data.message')}`,
+          );
+          return this.$q.reject(err);
+        })
         .finally(() => {
           this.addAgentForm.isAdding = false;
           this.addAgentForm.numbers = [null];
         });
     }
-  });
+  },
+);

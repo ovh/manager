@@ -1,0 +1,18 @@
+{
+  "mxPlan_order_title": "Zamów MX PLAN",
+  "mxPlan_order_domain": "Wybór za domenę",
+  "mxPlan_order_domain_pick": "Wybierz domenę",
+  "mxPlan_order_offer": "Wybierz ofertę",
+  "mxPlan_order_offer_description_domain": "Usługa poczty e-mail zostanie dołączona do nazwy domeny bez żądania odnowienia.",
+  "mxPlan_order_contracts": "Weryfikacja",
+  "mxPlan_order_generated_purchase_success": "Zamówienie <a href=\"{{orderUrl}}\" target=\"_blank\">{{orderId}}</a>zostało utworzone.",
+  "mxPlan_order_generated_success": "Zamówienie zostało zrealizowane.",
+  "mxPlan_order_generated_success_tracking": "Kliknij tutaj, aby zastosować się do zamówienia.",
+  "mxPlan_order_checkout_error": "Wystąpił błąd: {{message}}",
+  "mxPlan_order_error": "Wystąpił błąd podczas składania zamówienia : {{ message }}",
+  "mxPlan_price_without_tax": "Cena netto: ",
+  "mxPlan_price_with_tax": "Cena brutto: ",
+  "mxPlan_order_action": "Zamów",
+  "mxPlan_order_error_payment": "Wystąpił błąd podczas ładowania Twoich metod płatności.",
+  "mxPlan_order_activate": "Włącz"
+}

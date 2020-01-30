@@ -50,7 +50,9 @@ export default class ExchangeTabDomainsCtrl {
       this.cnameRedirection = 'ovh.com';
     }
 
-    $scope.$on(Exchange.events.domainsChanged, () => $scope.$broadcast('paginationServerSide.reload', 'domainsTable'));
+    $scope.$on(Exchange.events.domainsChanged, () =>
+      $scope.$broadcast('paginationServerSide.reload', 'domainsTable'),
+    );
 
     $scope.getDomains = (count, offset) => this.getDomains(count, offset);
     $scope.getPaginated = () => this.paginated;
@@ -58,7 +60,11 @@ export default class ExchangeTabDomainsCtrl {
   }
 
   goSearch() {
-    this.services.$scope.$broadcast('paginationServerSide.loadPage', 1, 'domainsTable');
+    this.services.$scope.$broadcast(
+      'paginationServerSide.loadPage',
+      1,
+      'domainsTable',
+    );
   }
 
   emptySearch() {
@@ -103,27 +109,43 @@ export default class ExchangeTabDomainsCtrl {
 
   setMxTooltip(domain) {
     if (domain.mxValid) {
-      set(domain, 'mxTooltip', this.services.$translate.instant(
-        'exchange_tab_domain_diagnostic_mx_toolbox_ok',
-      ));
+      set(
+        domain,
+        'mxTooltip',
+        this.services.$translate.instant(
+          'exchange_tab_domain_diagnostic_mx_toolbox_ok',
+        ),
+      );
     } else {
-      set(domain, 'mxTooltip', this.services.$translate.instant(
-        'exchange_tab_domain_diagnostic_mx_toolbox',
-        { t0: this.exchange.hostname },
-      ));
+      set(
+        domain,
+        'mxTooltip',
+        this.services.$translate.instant(
+          'exchange_tab_domain_diagnostic_mx_toolbox',
+          { t0: this.exchange.hostname },
+        ),
+      );
     }
   }
 
   setSrvTooltip(domain) {
     if (domain.srvValid) {
-      set(domain, 'srvTooltip', this.services.$translate.instant(
-        'exchange_tab_domain_diagnostic_srv_toolbox_ok',
-      ));
+      set(
+        domain,
+        'srvTooltip',
+        this.services.$translate.instant(
+          'exchange_tab_domain_diagnostic_srv_toolbox_ok',
+        ),
+      );
     } else {
-      set(domain, 'srvTooltip', this.services.$translate.instant(
-        'exchange_tab_domain_diagnostic_srv_toolbox',
-        { t0: this.exchange.hostname },
-      ));
+      set(
+        domain,
+        'srvTooltip',
+        this.services.$translate.instant(
+          'exchange_tab_domain_diagnostic_srv_toolbox',
+          { t0: this.exchange.hostname },
+        ),
+      );
     }
   }
 
@@ -137,26 +159,31 @@ export default class ExchangeTabDomainsCtrl {
 
   isReseller2010AuthInvalidMx() {
     return (
-      this.services.exchangeServiceInfrastructure.isProvider()
-      && this.services.exchangeVersion.isVersion(2010)
+      this.services.exchangeServiceInfrastructure.isProvider() &&
+      this.services.exchangeVersion.isVersion(2010)
     );
   }
 
   isUpdateDisabled(domain) {
     return (
-      !this.services.exchangeStates.constructor.isOk(domain)
-      || domain.taskInProgress
-      || this.isReseller2010AuthInvalidMx()
+      !this.services.exchangeStates.constructor.isOk(domain) ||
+      domain.taskInProgress ||
+      this.isReseller2010AuthInvalidMx()
     );
   }
 
   isDeleteDisabled(domain) {
-    return !this.services.exchangeStates.constructor.isOk(domain) || domain.accountsCount > 0;
+    return (
+      !this.services.exchangeStates.constructor.isOk(domain) ||
+      domain.accountsCount > 0
+    );
   }
 
   getDeleteTooltip(domain) {
     return this.isDeleteDisabled(domain)
-      ? this.services.$translate.instant('exchange_tab_domain_delete_domain_accounts_warning')
+      ? this.services.$translate.instant(
+          'exchange_tab_domain_delete_domain_accounts_warning',
+        )
       : '';
   }
 }

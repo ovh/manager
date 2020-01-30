@@ -1,21 +1,37 @@
-<div class="details-popover-ctnr" data-ng-controller="DetailsPopoverController as ctrl" xmlns="http://www.w3.org/1999/html">
+<div
+    class="details-popover-ctnr"
+    data-ng-controller="DetailsPopoverController as ctrl"
+    xmlns="http://www.w3.org/1999/html"
+>
     <div class="details-popover-content" data-ng-click="ctrl.closePopover()">
         <div>
             <p>
-                <strong><span data-translate= "cpbc_volume_location"></span> : </strong>
-                <span data-ng-bind=":: ctrl.CucRegionService.getTranslatedMicroRegion(ctrl.details.region)"></span>
+                <strong
+                    ><span data-translate="cpbc_volume_location"></span> :
+                </strong>
+                <span
+                    data-ng-bind=":: ctrl.CucRegionService.getTranslatedMicroRegion(ctrl.details.region)"
+                ></span>
             </p>
             <p>
-                <strong><span data-translate= "cpbc_volume_type"></span> : </strong>
+                <strong
+                    ><span data-translate="cpbc_volume_type"></span> :
+                </strong>
                 {{ :: ctrl.details.type }}
             </p>
             <p>
-                <strong><span data-translate= "cpbc_volume_size"></span> : </strong>
+                <strong
+                    ><span data-translate="cpbc_volume_size"></span> :
+                </strong>
                 {{ :: ctrl.details.size | cucBytes:2:'true':'GiB' }}
             </p>
             <p>
-                <strong><span data-translate= "cpbc_volume_state"></span> : </strong>
-                <span data-translate="{{ :: 'cloud_common_state_' + ctrl.details.status }}"></span>
+                <strong
+                    ><span data-translate="cpbc_volume_state"></span> :
+                </strong>
+                <span
+                    data-translate="{{ :: 'cloud_common_state_' + ctrl.details.status }}"
+                ></span>
             </p>
         </div>
     </div>

@@ -1,7 +1,7 @@
 import angular from 'angular';
 import map from 'lodash/map';
 
-export default /* @ngInject */ function (
+export default /* @ngInject */ function(
   $stateParams,
   $translate,
   $q,
@@ -21,9 +21,40 @@ export default /* @ngInject */ function (
     self.config = {
       mobile: ['+336', '+337'],
       line: ['+331', '+332', '+333', '+334', '+335', '+339'],
-      foreign: ['+1', '+2', '+30', '+31', '+32', '+34', '+35', '+36', '+37', '+38', '+39', '+4', '+5', '+6', '+7', '+8', '+9'],
+      foreign: [
+        '+1',
+        '+2',
+        '+30',
+        '+31',
+        '+32',
+        '+34',
+        '+35',
+        '+36',
+        '+37',
+        '+38',
+        '+39',
+        '+4',
+        '+5',
+        '+6',
+        '+7',
+        '+8',
+        '+9',
+      ],
       special: ['+338'],
-      short: ['10', '11', '12', '13', '14', '16', '19', '30', '31', '32', '36', '39'],
+      short: [
+        '10',
+        '11',
+        '12',
+        '13',
+        '14',
+        '16',
+        '19',
+        '30',
+        '31',
+        '32',
+        '36',
+        '39',
+      ],
     };
   }
 
@@ -46,18 +77,28 @@ export default /* @ngInject */ function (
     }
 
     self.isLoading = true;
-    return $q.all(map(toAdd, number => param.addScreenList({
-      screen: {
-        callNumber: number,
-        nature,
-        type: self.type,
-      },
-    }))).then(() => {
-      $uibModalInstance.close();
-      TucToast.success($translate.instant('telephony_calls_filtering_add_plural_success'));
-    }).catch(err => new TucToastError(err)).finally(() => {
-      self.isLoading = false;
-    });
+    return $q
+      .all(
+        map(toAdd, (number) =>
+          param.addScreenList({
+            screen: {
+              callNumber: number,
+              nature,
+              type: self.type,
+            },
+          }),
+        ),
+      )
+      .then(() => {
+        $uibModalInstance.close();
+        TucToast.success(
+          $translate.instant('telephony_calls_filtering_add_plural_success'),
+        );
+      })
+      .catch((err) => new TucToastError(err))
+      .finally(() => {
+        self.isLoading = false;
+      });
   };
 
   self.cancel = function cancel() {

@@ -1,6 +1,13 @@
 export default class ExchangeRemoveDomainCtrl {
   /* @ngInject */
-  constructor($scope, Exchange, ExchangeDomains, messaging, navigation, $translate) {
+  constructor(
+    $scope,
+    Exchange,
+    ExchangeDomains,
+    messaging,
+    navigation,
+    $translate,
+  ) {
     this.services = {
       $scope,
       Exchange,
@@ -24,12 +31,16 @@ export default class ExchangeRemoveDomainCtrl {
     )
       .then(() => {
         this.services.messaging.writeSuccess(
-          this.services.$translate.instant('exchange_tab_domain_remove_success'),
+          this.services.$translate.instant(
+            'exchange_tab_domain_remove_success',
+          ),
         );
       })
       .catch((failure) => {
         this.services.messaging.writeError(
-          this.services.$translate.instant('exchange_tab_domain_remove_failure'),
+          this.services.$translate.instant(
+            'exchange_tab_domain_remove_failure',
+          ),
           {
             code: this.domain.name,
             message: failure.message,

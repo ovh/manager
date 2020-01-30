@@ -55,7 +55,9 @@ angular.module('services').service(
     }
 
     getModels() {
-      return this.WucApi.get(`${this.constants.swsProxyRootPath}order.json`).then(data => data.models);
+      return this.WucApi.get(
+        `${this.constants.swsProxyRootPath}order.json`,
+      ).then((data) => data.models);
     }
   },
 );

@@ -11,14 +11,18 @@ export default class CloudProjectUsersCtrl {
   }
 
   $onInit() {
-    this.model = reduce(this.rolesList, (model, { id }) => ({
-      ...model,
-      [id]: some(this.userRoles, { id }),
-    }), {});
+    this.model = reduce(
+      this.rolesList,
+      (model, { id }) => ({
+        ...model,
+        [id]: some(this.userRoles, { id }),
+      }),
+      {},
+    );
   }
 
   submit() {
     this.isLoading = true;
-    return this.confirmRoles(keys(pickBy(this.model, value => value)));
+    return this.confirmRoles(keys(pickBy(this.model, (value) => value)));
   }
 }

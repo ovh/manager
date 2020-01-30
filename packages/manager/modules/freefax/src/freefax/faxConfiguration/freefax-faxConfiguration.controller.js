@@ -1,4 +1,4 @@
-export default /* @ngInject */ function (
+export default /* @ngInject */ function(
   $stateParams,
   $scope,
   $translate,
@@ -58,13 +58,22 @@ export default /* @ngInject */ function (
 
   this.generatePassword = function generatePassword() {
     this.generatingPassword = true;
-    OvhApiFreeFax.v6().resetPassword({
-      serviceName: $stateParams.serviceName,
-    }, null).$promise.then((password) => {
-      self.generatedPassword = password.value;
-    }, err => new TucToastError(err)).finally(() => {
-      self.generatingPassword = false;
-    });
+    OvhApiFreeFax.v6()
+      .resetPassword(
+        {
+          serviceName: $stateParams.serviceName,
+        },
+        null,
+      )
+      .$promise.then(
+        (password) => {
+          self.generatedPassword = password.value;
+        },
+        (err) => new TucToastError(err),
+      )
+      .finally(() => {
+        self.generatingPassword = false;
+      });
   };
 
   this.togglePassword = function togglePassword() {
@@ -82,12 +91,21 @@ export default /* @ngInject */ function (
     };
     self.loading = true;
 
-    OvhApiFreeFax.v6().saveConfiguration({
-      serviceName: $stateParams.serviceName,
-    }, formData).$promise.then(() => {
-      self.editMode = false;
-    }, err => new TucToastError(err)).finally(() => {
-      self.loading = false;
-    });
+    OvhApiFreeFax.v6()
+      .saveConfiguration(
+        {
+          serviceName: $stateParams.serviceName,
+        },
+        formData,
+      )
+      .$promise.then(
+        () => {
+          self.editMode = false;
+        },
+        (err) => new TucToastError(err),
+      )
+      .finally(() => {
+        self.loading = false;
+      });
   };
 }

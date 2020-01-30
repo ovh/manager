@@ -83,13 +83,19 @@ export default class ExchangeDisplayOutlookCtrl {
 
   orderOutlook() {
     this.services.exchangeAccountOutlook
-      .orderOutlook(this.$routerParams.organization, this.$routerParams.productId, this.model)
+      .orderOutlook(
+        this.$routerParams.organization,
+        this.$routerParams.productId,
+        this.model,
+      )
       .then((data) => {
         this.previewOrder = data;
       })
       .catch((failure) => {
         this.services.messaging.writeError(
-          this.services.$translate.instant('exchange_ACTION_add_outlook_step2_error_message'),
+          this.services.$translate.instant(
+            'exchange_ACTION_add_outlook_step2_error_message',
+          ),
           failure,
         );
         this.services.navigation.resetAction();
@@ -99,7 +105,11 @@ export default class ExchangeDisplayOutlookCtrl {
   static checkForNoLanguageSpecificApiError(message) {
     // hack to detect a specific API error like
     // "There is no outlook for mac_x86_2011 in tr language"
-    return !isEmpty(message) && includes(message, 'There') && includes(message, 'language');
+    return (
+      !isEmpty(message) &&
+      includes(message, 'There') &&
+      includes(message, 'language')
+    );
   }
 
   getOutlookDetails() {
@@ -119,7 +129,8 @@ export default class ExchangeDisplayOutlookCtrl {
         }
       })
       .catch(() => {
-        if (this.retryFlag--) { // eslint-disable-line
+        // eslint-disable-next-line no-plusplus
+        if (this.retryFlag--) {
           this.startTimeout();
         } else {
           this.services.navigation.resetAction();
@@ -140,14 +151,16 @@ export default class ExchangeDisplayOutlookCtrl {
     return availibility ? availibility.status : true;
   }
 
-  /* eslint-disable class-methods-use-this */
+  // eslint-disable-next-line class-methods-use-this
   parseOutlookVersionEnum(version) {
     return version;
   }
-  /* eslint-enable class-methods-use-this */
 
   isLanguageDisabled(language) {
-    return !this.getOutlookAvailibility(this.model.licenceVersion, language.toLowerCase());
+    return !this.getOutlookAvailibility(
+      this.model.licenceVersion,
+      language.toLowerCase(),
+    );
   }
 
   previous() {
@@ -166,13 +179,19 @@ export default class ExchangeDisplayOutlookCtrl {
     )
       .then((data) => {
         this.availableLicences = data;
-        this.versionsList = uniq(this.availableLicences.map(item => item.outlookVersion));
-        this.languageList = uniq(this.availableLicences.map(item => item.outlookLanguage));
+        this.versionsList = uniq(
+          this.availableLicences.map((item) => item.outlookVersion),
+        );
+        this.languageList = uniq(
+          this.availableLicences.map((item) => item.outlookLanguage),
+        );
         this.model.licenceVersion = head(this.versionsList);
       })
       .catch((fail) => {
         this.services.messaging.writeError(
-          this.services.$translate.instant('exchange_ACTION_display_outlook_error_message'),
+          this.services.$translate.instant(
+            'exchange_ACTION_display_outlook_error_message',
+          ),
           fail,
         );
         this.services.navigation.resetAction();
@@ -181,7 +200,9 @@ export default class ExchangeDisplayOutlookCtrl {
 
   generateOutlookLicence() {
     this.model.language = this.model.languageIndex.toUpperCase();
-    this.model.licenceVersion = this.parseOutlookVersionEnum(this.model.licenceVersion);
+    this.model.licenceVersion = this.parseOutlookVersionEnum(
+      this.model.licenceVersion,
+    );
     delete this.model.languageIndex; // clean up the model
 
     this.services.exchangeAccountOutlook
@@ -191,11 +212,14 @@ export default class ExchangeDisplayOutlookCtrl {
         this.model,
       )
       .then((data) => {
-        if (data.status !== 'ERROR' && this.retryFlag--) { // eslint-disable-line
+        // eslint-disable-next-line no-plusplus
+        if (data.status !== 'ERROR' && this.retryFlag--) {
           this.startTimeout();
         } else {
           this.services.messaging.writeError(
-            this.services.$translate.instant('exchange_ACTION_display_outlook_error_message'),
+            this.services.$translate.instant(
+              'exchange_ACTION_display_outlook_error_message',
+            ),
             data,
           );
           this.services.navigation.resetAction();
@@ -203,7 +227,9 @@ export default class ExchangeDisplayOutlookCtrl {
       })
       .catch((fail) => {
         if (
-          ExchangeDisplayOutlookCtrl.checkForNoLanguageSpecificApiError(fail.message) !== null
+          ExchangeDisplayOutlookCtrl.checkForNoLanguageSpecificApiError(
+            fail.message,
+          ) !== null
         ) {
           this.services.messaging.writeError(
             this.services.$translate.instant(
@@ -213,7 +239,9 @@ export default class ExchangeDisplayOutlookCtrl {
           );
         } else {
           this.services.messaging.writeError(
-            this.services.$translate.instant('exchange_ACTION_display_outlook_error_message'),
+            this.services.$translate.instant(
+              'exchange_ACTION_display_outlook_error_message',
+            ),
             fail,
           );
         }

@@ -52,7 +52,8 @@ angular.module('ovhSignupApp').component('newAccountForm', {
       this.isSubmitting = false;
       const CONSENT_MARKETING_EMAIL_NAME = 'consent-marketing-email';
 
-      $scope.getTemplateUrl = () => 'account/user/components/newAccountForm/new-account-form-component.html';
+      $scope.getTemplateUrl = () =>
+        'account/user/components/newAccountForm/new-account-form-component.html';
 
       this.$onInit = () => {
         // backup of original model
@@ -68,7 +69,8 @@ angular.module('ovhSignupApp').component('newAccountForm', {
             this.loaded = true;
           })
           .catch((err) => {
-            this.initError = get(err, 'data.message') || get(err, 'message') || err;
+            this.initError =
+              get(err, 'data.message') || get(err, 'message') || err;
           });
       };
 
@@ -100,12 +102,18 @@ angular.module('ovhSignupApp').component('newAccountForm', {
 
         this.isLoading = true;
 
-        return UserAccountServiceInfos
-          .fetchConsentDecision(CONSENT_MARKETING_EMAIL_NAME)
+        return UserAccountServiceInfos.fetchConsentDecision(
+          CONSENT_MARKETING_EMAIL_NAME,
+        )
           .then((fetchedConsentDecision) => {
             consentDecision = get(fetchedConsentDecision, 'value', false);
           })
-          .then(() => $http.post(`${UserAccountConstants.swsProxyRootPath}newAccount/rules`, params))
+          .then(() =>
+            $http.post(
+              `${UserAccountConstants.swsProxyRootPath}newAccount/rules`,
+              params,
+            ),
+          )
           .then((result) => {
             if (result.status !== 200) {
               return $q.reject(result);
@@ -124,13 +132,15 @@ angular.module('ovhSignupApp').component('newAccountForm', {
                 editedRule.readonly = false;
                 editedRule.hasBottomMargin = coreConfig.getRegion() === 'US';
               } else {
-                editedRule.readonly = includes(this.readonly, editedRule.fieldName);
+                editedRule.readonly = includes(
+                  this.readonly,
+                  editedRule.fieldName,
+                );
                 editedRule.hasBottomMargin = true;
               }
 
               return editedRule;
             });
-
 
             if (coreConfig.getRegion() !== 'US') {
               rules.splice(emailFieldIndex + 1, 0, {
@@ -184,7 +194,10 @@ angular.module('ovhSignupApp').component('newAccountForm', {
         // we need to blank out some values for api to be happy
         forEach(keys(this.originalModel), (field) => {
           // attributes not in /rules and not readonly are blanked out
-          if (!find(this.rules, { fieldName: field }) && this.readonly.indexOf(field) < 0) {
+          if (
+            !find(this.rules, { fieldName: field }) &&
+            this.readonly.indexOf(field) < 0
+          ) {
             model[field] = null;
           }
         });
@@ -203,26 +216,46 @@ angular.module('ovhSignupApp').component('newAccountForm', {
         model = omit(model, 'email');
         model = omit(model, 'commercialCommunicationsApproval');
 
-        let promise = $http.put(`${UserAccountConstants.swsProxyRootPath}me`, model).then((result) => {
-          if (result.status !== 200) {
-            return $q.reject(result);
-          }
-          return result;
-        });
+        let promise = $http
+          .put(`${UserAccountConstants.swsProxyRootPath}me`, model)
+          .then((result) => {
+            if (result.status !== 200) {
+              return $q.reject(result);
+            }
+            return result;
+          });
 
         if (this.originalModel.email !== this.model.email) {
           promise = promise
             .then(() => UserAccountServiceInfos.changeEmail(this.model.email))
-            .then(() => $timeout(angular.noop, 3000) /* add some delay for task creation */);
+            .then(
+              () =>
+                $timeout(
+                  angular.noop,
+                  3000,
+                ) /* add some delay for task creation */,
+            );
         }
 
-        if (this.originalModel.commercialCommunicationsApproval !== this.model.commercialCommunicationsApproval && coreConfig.getRegion() !== 'US') {
+        if (
+          this.originalModel.commercialCommunicationsApproval !==
+            this.model.commercialCommunicationsApproval &&
+          coreConfig.getRegion() !== 'US'
+        ) {
           promise = promise
-            .then(() => UserAccountServiceInfos.updateConsentDecision(
-              CONSENT_MARKETING_EMAIL_NAME,
-              this.model.commercialCommunicationsApproval || false,
-            ))
-            .then(() => $timeout(angular.noop, 3000) /* add some delay for task creation */);
+            .then(() =>
+              UserAccountServiceInfos.updateConsentDecision(
+                CONSENT_MARKETING_EMAIL_NAME,
+                this.model.commercialCommunicationsApproval || false,
+              ),
+            )
+            .then(
+              () =>
+                $timeout(
+                  angular.noop,
+                  3000,
+                ) /* add some delay for task creation */,
+            );
         }
 
         return promise
@@ -270,7 +303,7 @@ angular.module('ovhSignupApp').component('newAccountForm', {
         const fields = NewAccountFormConfig.sections[section];
         return filter(
           this.rules,
-          rule => indexOf(fields, rule.fieldName) >= 0 && !rule.readonly,
+          (rule) => indexOf(fields, rule.fieldName) >= 0 && !rule.readonly,
         );
       };
 
@@ -285,14 +318,15 @@ angular.module('ovhSignupApp').component('newAccountForm', {
         return found || 'other';
       };
 
-      this.updateRules = () => this.fetchRules(this.model).then((newRules) => {
-        forEach(this.rules, (rule) => {
-          if (!find(newRules, { fieldName: rule.fieldName })) {
-            delete this.model[rule.fieldName];
-          }
+      this.updateRules = () =>
+        this.fetchRules(this.model).then((newRules) => {
+          forEach(this.rules, (rule) => {
+            if (!find(newRules, { fieldName: rule.fieldName })) {
+              delete this.model[rule.fieldName];
+            }
+          });
+          this.rules = newRules;
         });
-        this.rules = newRules;
-      });
 
       // callback for when user changed a form field value
       this.onFieldChange = (rule, value) => {

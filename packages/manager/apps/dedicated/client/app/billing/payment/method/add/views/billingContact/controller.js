@@ -17,8 +17,9 @@ export default class BillingPaymentMethodAddBillingContactViewCtrl {
 
   addContact(contact) {
     this.contactList.push(contact);
-    this.contactList = BillingPaymentMethodAddBillingContactViewCtrl
-      .sortContacts(this.contactList);
+    this.contactList = BillingPaymentMethodAddBillingContactViewCtrl.sortContacts(
+      this.contactList,
+    );
     return this.contactList;
   }
 
@@ -40,7 +41,6 @@ export default class BillingPaymentMethodAddBillingContactViewCtrl {
 
   /* -----  End of Events  ------ */
 
-
   /* ============================
   =            Hooks            =
   ============================= */
@@ -49,12 +49,13 @@ export default class BillingPaymentMethodAddBillingContactViewCtrl {
     this.addSteps.billingContact.loading = true;
     this.activeTab = 'existing';
 
-    this.ovhContacts.getContacts()
+    this.ovhContacts
+      .getContacts()
       .then((contacts) => {
-        this.contactList = BillingPaymentMethodAddBillingContactViewCtrl
-          .sortContacts(contacts);
-        return this.ovhContacts
-          .findMatchingContactFromNic(null, contacts);
+        this.contactList = BillingPaymentMethodAddBillingContactViewCtrl.sortContacts(
+          contacts,
+        );
+        return this.ovhContacts.findMatchingContactFromNic(null, contacts);
       })
       .then((contact) => {
         this.defaultContact = contact;

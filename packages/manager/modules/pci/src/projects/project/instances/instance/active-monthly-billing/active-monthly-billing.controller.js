@@ -2,11 +2,7 @@ import get from 'lodash/get';
 
 export default class PciInstanceActiveMonthlyBillingController {
   /* @ngInject */
-  constructor(
-    $translate,
-    CucCloudMessage,
-    PciProjectsProjectInstanceService,
-  ) {
+  constructor($translate, CucCloudMessage, PciProjectsProjectInstanceService) {
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
     this.PciProjectsProjectInstanceService = PciProjectsProjectInstanceService;
@@ -18,26 +14,32 @@ export default class PciInstanceActiveMonthlyBillingController {
 
   activeMonthlyBilling() {
     this.isLoading = true;
-    return this.PciProjectsProjectInstanceService
-      .activeMonthlyBilling(this.projectId, this.instance)
-      .then(() => this.goBack(
-        this.$translate.instant(
-          'pci_projects_project_instances_instance_active-monthly-billing_success_message',
-          {
-            instance: this.instance.name,
-          },
+    return this.PciProjectsProjectInstanceService.activeMonthlyBilling(
+      this.projectId,
+      this.instance,
+    )
+      .then(() =>
+        this.goBack(
+          this.$translate.instant(
+            'pci_projects_project_instances_instance_active-monthly-billing_success_message',
+            {
+              instance: this.instance.name,
+            },
+          ),
         ),
-      ))
-      .catch(err => this.goBack(
-        this.$translate.instant(
-          'pci_projects_project_instances_instance_active-monthly-billing_error_enable',
-          {
-            message: get(err, 'data.message', null),
-            instance: this.instance.name,
-          },
+      )
+      .catch((err) =>
+        this.goBack(
+          this.$translate.instant(
+            'pci_projects_project_instances_instance_active-monthly-billing_error_enable',
+            {
+              message: get(err, 'data.message', null),
+              instance: this.instance.name,
+            },
+          ),
+          'error',
         ),
-        'error',
-      ))
+      )
       .finally(() => {
         this.isLoading = false;
       });

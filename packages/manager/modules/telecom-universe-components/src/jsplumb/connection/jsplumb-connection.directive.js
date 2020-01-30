@@ -17,16 +17,21 @@ export default () => ({
 
     jsplumbCtrl.instance.setSuspendDrawing(true);
 
-    connectionCtrl.connection = jsplumbCtrl.instance.connect(angular.extend({
-      uuids: [endpointCtrl.uuid, connectionCtrl.target],
-      deleteEndpointsOnDetach: false,
-    }, connectionCtrl.options || {}));
+    connectionCtrl.connection = jsplumbCtrl.instance.connect(
+      angular.extend(
+        {
+          uuids: [endpointCtrl.uuid, connectionCtrl.target],
+          deleteEndpointsOnDetach: false,
+        },
+        connectionCtrl.options || {},
+      ),
+    );
 
     jsplumbCtrl.instance.customRepaint();
 
     /**
-             *  Directive destroy management. Detach connection from instance.
-             */
+     *  Directive destroy management. Detach connection from instance.
+     */
     iScope.$on('$destroy', () => {
       try {
         if (jsplumbCtrl.instance) {
@@ -34,7 +39,6 @@ export default () => ({
           jsplumbCtrl.instance.customRepaint();
         }
       } finally {
-
         /* continue regardless of error */
       }
     });

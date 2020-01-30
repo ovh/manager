@@ -39,8 +39,10 @@ angular.module('Module.otrs.controllers').controller('otrsCtrl', [
     };
     $scope.worldPart = coreConfig.getRegion();
     $scope.showFilters = false;
-    $scope.currentPage = $location.search()
-      && $location.search().currentPage != null ? parseInt($location.search().currentPage, 10) : 1;
+    $scope.currentPage =
+      $location.search() && $location.search().currentPage != null
+        ? parseInt($location.search().currentPage, 10)
+        : 1;
     $scope.selectedLanguage = $scope.selectedLanguage || { value: 'fr_FR' };
 
     function loadSearch() {
@@ -48,7 +50,9 @@ angular.module('Module.otrs.controllers').controller('otrsCtrl', [
         return;
       }
       if (sessionStorage.getItem('OVH_SUPPORT_FILTERS')) {
-        $scope.search = JSON.parse(sessionStorage.getItem('OVH_SUPPORT_FILTERS'));
+        $scope.search = JSON.parse(
+          sessionStorage.getItem('OVH_SUPPORT_FILTERS'),
+        );
         $scope.showFilters = true;
       }
     }
@@ -88,7 +92,11 @@ angular.module('Module.otrs.controllers').controller('otrsCtrl', [
             $scope.requests = models.models['support.TicketCategoryEnum'].enum;
           },
           (err) => {
-            Alerter.alertFromSWS($translate.instant('otrs_popup_get_types_error'), err, 'otrs_popup_sent');
+            Alerter.alertFromSWS(
+              $translate.instant('otrs_popup_get_types_error'),
+              err,
+              'otrs_popup_sent',
+            );
           },
         )
         .finally(() => {
@@ -104,16 +112,21 @@ angular.module('Module.otrs.controllers').controller('otrsCtrl', [
       if (!sessionStorage) {
         return;
       }
-      if (angular.equals($scope.search, {
-        minCreationDate: null,
-        maxCreationDate: null,
-        serviceName: null,
-        status: null,
-        subject: null,
-      })) {
+      if (
+        angular.equals($scope.search, {
+          minCreationDate: null,
+          maxCreationDate: null,
+          serviceName: null,
+          status: null,
+          subject: null,
+        })
+      ) {
         sessionStorage.removeItem('OVH_SUPPORT_FILTERS');
       } else {
-        sessionStorage.setItem('OVH_SUPPORT_FILTERS', JSON.stringify($scope.search));
+        sessionStorage.setItem(
+          'OVH_SUPPORT_FILTERS',
+          JSON.stringify($scope.search),
+        );
       }
     }
 
@@ -122,9 +135,11 @@ angular.module('Module.otrs.controllers').controller('otrsCtrl', [
       debounce(() => {
         Alerter.resetMessage('otrs-popup-search');
 
-        if ($scope.search.subject !== null
-          && $scope.search.subject.length > 0
-          && $scope.search.subject.length < 3) {
+        if (
+          $scope.search.subject !== null &&
+          $scope.search.subject.length > 0 &&
+          $scope.search.subject.length < 3
+        ) {
           return;
         }
         saveSearch();
@@ -163,7 +178,10 @@ angular.module('Module.otrs.controllers').controller('otrsCtrl', [
             $scope.tickets.ids = table;
           },
           (err) => {
-            Alerter.alertFromSWS($translate.instant('otrs_table_ticket_error'), err);
+            Alerter.alertFromSWS(
+              $translate.instant('otrs_table_ticket_error'),
+              err,
+            );
           },
         )
         .finally(() => {
@@ -190,7 +208,7 @@ angular.module('Module.otrs.controllers').controller('otrsCtrl', [
       if ($scope.list.services.length > 0) {
         serviceMap = find(
           $scope.list.services,
-          service => service.serviceName === ticket.serviceName,
+          (service) => service.serviceName === ticket.serviceName,
         );
 
         if (serviceMap) {
@@ -204,9 +222,10 @@ angular.module('Module.otrs.controllers').controller('otrsCtrl', [
     $scope.onTransformItemDone = function onTransformItemDone() {
       $scope.loaders.tickets = false;
       if (!firstLoading) {
-        $scope.currentPage = $location.search() && $location.search().currentPage != null
-          ? parseInt($location.search().currentPage, 10)
-          : 1;
+        $scope.currentPage =
+          $location.search() && $location.search().currentPage != null
+            ? parseInt($location.search().currentPage, 10)
+            : 1;
         $scope.refreshTable = !$scope.refreshTable;
         firstLoading = true;
       }
@@ -242,12 +261,17 @@ angular.module('Module.otrs.controllers').controller('otrsCtrl', [
             if ($location.search() && $location.search().serviceName) {
               $scope.search.selectedService = find(
                 $scope.list.services,
-                service => service.serviceName === $location.search().serviceName,
+                (service) =>
+                  service.serviceName === $location.search().serviceName,
               );
             }
           },
           (err) => {
-            Alerter.alertFromSWS($translate.instant('otrs_search_ticket_get_services_error'), err, 'otrs_popup_service');
+            Alerter.alertFromSWS(
+              $translate.instant('otrs_search_ticket_get_services_error'),
+              err,
+              'otrs_popup_service',
+            );
           },
         )
         .finally(() => {

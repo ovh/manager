@@ -15,25 +15,29 @@ export default class FailoverIpImportsController {
   }
 
   loadData() {
-    return this.OvhApiIp
-      .v6()
+    return this.OvhApiIp.v6()
       .query({
         type: 'failover',
       })
-      .$promise
-      .then(ips => this.$q.all(
-        map(
-          ips,
-          ip => this.OvhApiIp
-            .v6()
-            .get({
-              ip,
-            })
-            .$promise,
+      .$promise.then((ips) =>
+        this.$q.all(
+          map(
+            ips,
+            (ip) =>
+              this.OvhApiIp.v6().get({
+                ip,
+              }).$promise,
+          ),
         ),
-      ))
-      .then(ips => filter(ips, ({ routedTo }) => isEmpty(routedTo)
-        || (isObject(routedTo) && routedTo.serviceName !== this.projectId)))
+      )
+      .then((ips) =>
+        filter(
+          ips,
+          ({ routedTo }) =>
+            isEmpty(routedTo) ||
+            (isObject(routedTo) && routedTo.serviceName !== this.projectId),
+        ),
+      )
       .then((ips) => {
         this.ips = ips;
       });

@@ -4,7 +4,8 @@
             type="button"
             class="close float-right"
             aria-label="{{ ::'cancel' | translate }}"
-            data-ng-click="XdslDeconsolidationContract.cancel()">
+            data-ng-click="XdslDeconsolidationContract.cancel()"
+        >
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
@@ -13,29 +14,41 @@
     </div>
 
     <div class="modal-body" data-ng-if="!XdslDeconsolidationContract.loading">
-        <h3 class="modal-title"
-            data-translate="xdsl_access_deconsolidation_contract_title">
-        </h3>
+        <h3
+            class="modal-title"
+            data-translate="xdsl_access_deconsolidation_contract_title"
+        ></h3>
         <p>
-            <span data-translate="xdsl_access_deconsolidation_contract_are_you_sure"></span>
-            <strong class="text-primary" data-translate="xdsl_access_deconsolidation_contract_modification_operation"></strong>
+            <span
+                data-translate="xdsl_access_deconsolidation_contract_are_you_sure"
+            ></span>
+            <strong
+                class="text-primary"
+                data-translate="xdsl_access_deconsolidation_contract_modification_operation"
+            ></strong>
         </p>
-        <p data-translate="xdsl_access_deconsolidation_contract_modified"
-           data-translate-values="{serviceName: XdslDeconsolidationContract.serviceName}">
-        </p>
-        <p data-translate="xdsl_access_deconsolidation_contract_price"
-           data-translate-values="{ price: XdslDeconsolidationContract.terms.price.text }"
-           data-ng-if="XdslDeconsolidationContract.terms.price.value !== 0"
-           class="font-weight-bold">
-        </p>
-        <p data-translate="xdsl_access_deconsolidation_contract_monthlyPrice"
-           data-translate-values="{ price: XdslDeconsolidationContract.terms.monthlyPrice.text }"
-           data-ng-if="XdslDeconsolidationContract.isVIP"
-           class="font-weight-bold">
-        </p>
+        <p
+            data-translate="xdsl_access_deconsolidation_contract_modified"
+            data-translate-values="{serviceName: XdslDeconsolidationContract.serviceName}"
+        ></p>
+        <p
+            data-translate="xdsl_access_deconsolidation_contract_price"
+            data-translate-values="{ price: XdslDeconsolidationContract.terms.price.text }"
+            data-ng-if="XdslDeconsolidationContract.terms.price.value !== 0"
+            class="font-weight-bold"
+        ></p>
+        <p
+            data-translate="xdsl_access_deconsolidation_contract_monthlyPrice"
+            data-translate-values="{ price: XdslDeconsolidationContract.terms.monthlyPrice.text }"
+            data-ng-if="XdslDeconsolidationContract.isVIP"
+            class="font-weight-bold"
+        ></p>
         <p data-ng-if="!XdslDeconsolidationContract.rio">
-           <span class="ovh-font ovh-font-warning" aria-hidden="true"></span>
-           <span class="text-warning mb-3" data-translate="xdsl_access_deconsolidation_contract_number_not_transferred"></span>
+            <span class="ovh-font ovh-font-warning" aria-hidden="true"></span>
+            <span
+                class="text-warning mb-3"
+                data-translate="xdsl_access_deconsolidation_contract_number_not_transferred"
+            ></span>
         </p>
         <ul class="list-unstyled">
             <li>
@@ -45,11 +58,14 @@
                         id="desc_agreement1"
                         name="desc_agreement1"
                         class="form-control"
-                        data-ng-model="XdslDeconsolidationContract.checkboxSelected1">
+                        data-ng-model="XdslDeconsolidationContract.checkboxSelected1"
+                    />
                 </div>
-                <label for="desc_agreement1"
-                       data-translate="xdsl_access_deconsolidation_contract_desc_agreement1"
-                       data-translate-values="{ engagement : XdslDeconsolidationContract.terms.engagement }">
+                <label
+                    for="desc_agreement1"
+                    data-translate="xdsl_access_deconsolidation_contract_desc_agreement1"
+                    data-translate-values="{ engagement : XdslDeconsolidationContract.terms.engagement }"
+                >
                 </label>
             </li>
             <li>
@@ -59,9 +75,13 @@
                         id="desc_agreement2"
                         name="desc_agreement2"
                         class="form-control"
-                        data-ng-model="XdslDeconsolidationContract.checkboxSelected2">
+                        data-ng-model="XdslDeconsolidationContract.checkboxSelected2"
+                    />
                 </div>
-                <label for="desc_agreement2" data-translate="xdsl_access_deconsolidation_contract_desc_agreement2"></label>
+                <label
+                    for="desc_agreement2"
+                    data-translate="xdsl_access_deconsolidation_contract_desc_agreement2"
+                ></label>
             </li>
             <li>
                 <div class="mr-2">
@@ -70,31 +90,36 @@
                         id="desc_agreement3"
                         name="desc_agreement3"
                         class="form-control"
-                        data-ng-model="XdslDeconsolidationContract.checkboxSelected3">
+                        data-ng-model="XdslDeconsolidationContract.checkboxSelected3"
+                    />
                 </div>
-                <label for="desc_agreement3"
-                       data-translate="xdsl_access_deconsolidation_contract_desc_agreement3"
-                       data-translate-values="{ packAdslPro2013: XdslDeconsolidationContract.packAdslPro2013, packAdslEnterprise2013: XdslDeconsolidationContract.packAdslEnterprise2013 }">
+                <label
+                    for="desc_agreement3"
+                    data-translate="xdsl_access_deconsolidation_contract_desc_agreement3"
+                    data-translate-values="{ packAdslPro2013: XdslDeconsolidationContract.packAdslPro2013, packAdslEnterprise2013: XdslDeconsolidationContract.packAdslEnterprise2013 }"
+                >
                 </label>
             </li>
         </ul>
     </div>
     <div class="modal-footer text-left" role="group">
-        <button type="button"
-                class="btn btn-default btn-cancel"
-                data-ng-disabled="XdslDeconsolidationContract.loading"
-                data-ng-click="XdslDeconsolidationContract.cancel()"
-                data-translate="cancel">
-        </button>
-        <button type="submit"
-                data-ng-disabled="XdslDeconsolidationContract.loading"
-                class="btn btn-primary"
-                data-ng-click="XdslDeconsolidationContract.confirm()"
-                data-ng-if="
+        <button
+            type="button"
+            class="btn btn-default btn-cancel"
+            data-ng-disabled="XdslDeconsolidationContract.loading"
+            data-ng-click="XdslDeconsolidationContract.cancel()"
+            data-translate="cancel"
+        ></button>
+        <button
+            type="submit"
+            data-ng-disabled="XdslDeconsolidationContract.loading"
+            class="btn btn-primary"
+            data-ng-click="XdslDeconsolidationContract.confirm()"
+            data-ng-if="
                     XdslDeconsolidationContract.checkboxSelected1 &&
                     XdslDeconsolidationContract.checkboxSelected2 &&
                     XdslDeconsolidationContract.checkboxSelected3"
-                data-translate="submit">
-        </button>
+            data-translate="submit"
+        ></button>
     </div>
 </div>

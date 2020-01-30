@@ -14,7 +14,8 @@ import take from 'lodash/take';
       editMode: '=linePhoneConfigurationEditMode',
       expertMode: '=linePhoneConfigurationExpertMode',
     },
-    templateUrl: 'components/telecom/telephony/group/line/phone/configration/extension/line-phone-configuration-extension.html',
+    templateUrl:
+      'components/telecom/telephony/group/line/phone/configration/extension/line-phone-configuration-extension.html',
     controller($scope, TelephonyGroupLinePhoneConfiguration) {
       const self = this;
 
@@ -56,11 +57,8 @@ import take from 'lodash/take';
         return chunk(
           chunk(
             sortBy(
-              filter(
-                configs,
-                config => config.name !== 'ExtensionKeyModule',
-              ),
-              config => parseInt(config.name.match(/\d+/g)[0], 10),
+              filter(configs, (config) => config.name !== 'ExtensionKeyModule'),
+              (config) => parseInt(config.name.match(/\d+/g)[0], 10),
             ),
             self.configGroup.keysPerPage,
           ),
@@ -71,17 +69,24 @@ import take from 'lodash/take';
       function createDynamicConfigs(moduleNumberToAdd, existingModulesCount) {
         const dynamicConfigs = [];
         let dynamicConfig;
-        const startKeyNumber = existingModulesCount
-          * self.configGroup.pagesPerModule
-          * self.configGroup.keysPerPage;
-        const keysNumberToAdd = moduleNumberToAdd
-          * self.configGroup.pagesPerModule
-          * self.configGroup.keysPerPage;
+        const startKeyNumber =
+          existingModulesCount *
+          self.configGroup.pagesPerModule *
+          self.configGroup.keysPerPage;
+        const keysNumberToAdd =
+          moduleNumberToAdd *
+          self.configGroup.pagesPerModule *
+          self.configGroup.keysPerPage;
 
         for (let i = 0; i < keysNumberToAdd; i += 1) {
           dynamicConfig = angular.copy(keyConfigModel);
-          dynamicConfig.name = [dynamicConfig.name, startKeyNumber + i + 1].join('');
-          dynamicConfigs.push(new TelephonyGroupLinePhoneConfiguration(dynamicConfig));
+          dynamicConfig.name = [
+            dynamicConfig.name,
+            startKeyNumber + i + 1,
+          ].join('');
+          dynamicConfigs.push(
+            new TelephonyGroupLinePhoneConfiguration(dynamicConfig),
+          );
         }
 
         return dynamicConfigs;
@@ -89,9 +94,12 @@ import take from 'lodash/take';
 
       self.getKeyIndex = function getKeyIndex(index) {
         return {
-          number: (index + (self.model.moduleIndex * self.configGroup.keysPerPage)
-            + ((self.model.moduleIndex * self.configGroup.keysPerPage)
-            + (self.model.pageIndex * self.configGroup.keysPerPage))) + 1,
+          number:
+            index +
+            self.model.moduleIndex * self.configGroup.keysPerPage +
+            (self.model.moduleIndex * self.configGroup.keysPerPage +
+              self.model.pageIndex * self.configGroup.keysPerPage) +
+            1,
         };
       };
 
@@ -109,10 +117,15 @@ import take from 'lodash/take';
             self.extensionKeyModuleConfig.value - existingModules.length,
             existingModules.length,
           );
-          self.modules = existingModules.concat(groupConfigs(self.configGroup.dynamicConfigs));
+          self.modules = existingModules.concat(
+            groupConfigs(self.configGroup.dynamicConfigs),
+          );
         } else {
           self.configGroup.dynamicConfigs = null;
-          self.modules = take(existingModules, self.extensionKeyModuleConfig.value);
+          self.modules = take(
+            existingModules,
+            self.extensionKeyModuleConfig.value,
+          );
         }
 
         if (self.model.moduleIndex >= self.modules.length) {
@@ -148,4 +161,4 @@ import take from 'lodash/take';
       /* -----  End of INITIALIZATION  ------*/
     },
   });
-}());
+})();

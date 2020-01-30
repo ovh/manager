@@ -46,7 +46,9 @@ angular.module('App').controller('CdnCtrl', ($scope, $timeout) => {
           }
           messageToSend += ' (';
           for (i; i < data.messages.length; i += 1) {
-            messageToSend += `${data.messages[i].id} : ${data.messages[i].message}${data.messages.length === i + 1 ? ')' : ', '}`;
+            messageToSend += `${data.messages[i].id} : ${
+              data.messages[i].message
+            }${data.messages.length === i + 1 ? ')' : ', '}`;
           }
         }
       } else if (data.id && data.status) {

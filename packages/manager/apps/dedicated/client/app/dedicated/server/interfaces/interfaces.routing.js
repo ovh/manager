@@ -1,3 +1,6 @@
+import get from 'lodash/get';
+import { GUIDES } from './interfaces.constants';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.dedicated.server.interfaces', {
     url: '/interfaces?:configStep',
@@ -11,58 +14,71 @@ export default /* @ngInject */ ($stateProvider) => {
       configStep: { dynamic: true },
     },
     resolve: {
-      alertError: /* @ngInject */ (
-        $timeout,
-        $translate,
-        Alerter,
-      ) => (translateId, error) => $timeout(() => {
-        Alerter.set('alert-danger', $translate.instant(translateId, { error: error.message }));
-      }),
-      failoverIps: /* @ngInject */ (
-        OvhApiIp,
-        serverName,
-      ) => OvhApiIp.v6().query({
-        'routedTo.serviceName': serverName,
-        type: 'failover',
-      }).$promise,
+      alertError: /* @ngInject */ ($timeout, $translate, Alerter) => (
+        translateId,
+        error,
+      ) =>
+        $timeout(() => {
+          Alerter.set(
+            'alert-danger',
+            $translate.instant(translateId, { error: error.message }),
+          );
+        }),
+      failoverIps: /* @ngInject */ (OvhApiIp, serverName) =>
+        OvhApiIp.v6().query({
+          'routedTo.serviceName': serverName,
+          type: 'failover',
+        }).$promise,
+      guideUrl: /* @ngInject */ (user) =>
+        get(GUIDES, `${user.ovhSubsidiary}`, GUIDES.default),
       optionPrice: /* @ngInject */ (
-        $q,
-        isOlaAvailable,
         DedicatedServerInterfacesService,
+        server,
         serverName,
-      ) => (isOlaAvailable
-        ? DedicatedServerInterfacesService.getOlaPrice(serverName)
-        : $q.resolve()),
+      ) => DedicatedServerInterfacesService.getOlaPrice(serverName, server),
       orderPrivateBandwidthLink: /* @ngInject */ (
         $state,
         isLegacy,
         serverName,
-      ) => (isLegacy
-        ? $state.href('app.dedicated.server.interfaces.bandwidth-legacy-private-order', { productId: serverName })
-        : $state.href('app.dedicated.server.interfaces.bandwidth-private-order', { productId: serverName })),
+      ) =>
+        isLegacy
+          ? $state.href(
+              'app.dedicated.server.interfaces.bandwidth-legacy-private-order',
+              { productId: serverName },
+            )
+          : $state.href(
+              'app.dedicated.server.interfaces.bandwidth-private-order',
+              { productId: serverName },
+            ),
       orderPublicBandwidthLink: /* @ngInject */ (
         $state,
         isLegacy,
         serverName,
-      ) => (isLegacy
-        ? $state.href('app.dedicated.server.interfaces.bandwidth-legacy-public-order', { productId: serverName })
-        : $state.href('app.dedicated.server.interfaces.bandwidth-public-order', { productId: serverName })),
-      resiliatePrivateBandwidthLink: /* @ngInject */ (
-        $state,
-        serverName,
-      ) => $state.href('app.dedicated.server.interfaces.bandwidth-private-cancel', { productId: serverName }),
-      resiliatePublicBandwidthLink: /* @ngInject */ (
-        $state,
-        serverName,
-      ) => $state.href('app.dedicated.server.interfaces.bandwidth-public-cancel', { productId: serverName }),
+      ) =>
+        isLegacy
+          ? $state.href(
+              'app.dedicated.server.interfaces.bandwidth-legacy-public-order',
+              { productId: serverName },
+            )
+          : $state.href(
+              'app.dedicated.server.interfaces.bandwidth-public-order',
+              { productId: serverName },
+            ),
+      resiliatePrivateBandwidthLink: /* @ngInject */ ($state, serverName) =>
+        $state.href(
+          'app.dedicated.server.interfaces.bandwidth-private-cancel',
+          { productId: serverName },
+        ),
+      resiliatePublicBandwidthLink: /* @ngInject */ ($state, serverName) =>
+        $state.href('app.dedicated.server.interfaces.bandwidth-public-cancel', {
+          productId: serverName,
+        }),
       taskPolling: /* @ngInject */ (
         DedicatedServerInterfacesService,
         serverName,
       ) => DedicatedServerInterfacesService.getTasks(serverName),
-      urls: /* @ngInject */ (
-        constants,
-        user,
-      ) => constants.urls[user.ovhSubsidiary],
+      urls: /* @ngInject */ (constants, user) =>
+        constants.urls[user.ovhSubsidiary],
     },
   });
 };

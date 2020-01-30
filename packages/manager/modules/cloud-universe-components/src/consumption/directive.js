@@ -29,7 +29,7 @@ import 'd3';
  * </div>
  *
  */
-export default /* @ngInject */($window) => {
+export default /* @ngInject */ ($window) => {
   const defaultWidth = 250;
   const defaultHeight = 150;
   function Chart() {
@@ -38,7 +38,10 @@ export default /* @ngInject */($window) => {
     this.textSpacing = 4;
     // default values, can be customized in model parameter
     this.margin = {
-      top: 20, right: 0, bottom: 20, left: 80,
+      top: 20,
+      right: 0,
+      bottom: 20,
+      left: 80,
     };
 
     // d3js elements
@@ -63,14 +66,24 @@ export default /* @ngInject */($window) => {
   Chart.prototype.init = function init(el) {
     this.x = d3.scale.ordinal();
     this.y = d3.scale.linear();
-    this.xAxis = d3.svg.axis().scale(this.x).orient('bottom');
-    this.g.svg = d3.select(el).append('svg').attr('class', 'cloud-consumption-chart');
+    this.xAxis = d3.svg
+      .axis()
+      .scale(this.x)
+      .orient('bottom');
+    this.g.svg = d3
+      .select(el)
+      .append('svg')
+      .attr('class', 'cloud-consumption-chart');
 
     this.g.barNow = this.g.svg.append('rect').attr('class', 'barNow');
     this.g.barFuture = this.g.svg.append('rect').attr('class', 'barFuture');
     this.g.line = this.g.svg.append('line').attr('class', 'line');
-    this.g.thresholdText = this.g.svg.append('text').attr('class', 'threshold-text');
-    this.g.thresholdAmount = this.g.svg.append('text').attr('class', 'threshold-amount-text');
+    this.g.thresholdText = this.g.svg
+      .append('text')
+      .attr('class', 'threshold-text');
+    this.g.thresholdAmount = this.g.svg
+      .append('text')
+      .attr('class', 'threshold-amount-text');
     this.g.barText1 = this.g.svg.append('text').attr('class', 'bar-text');
     this.g.barText2 = this.g.svg.append('text').attr('class', 'bar-text');
     this.g.x = this.g.svg.append('g').attr('class', 'axis');
@@ -78,16 +91,24 @@ export default /* @ngInject */($window) => {
   };
 
   Chart.prototype.resize = function resize() {
-    if (this.width > this.margin.left + this.margin.right
-      && this.height > this.margin.top + this.margin.bottom) {
+    if (
+      this.width > this.margin.left + this.margin.right &&
+      this.height > this.margin.top + this.margin.bottom
+    ) {
       this.g.svg.attr({ width: this.width, height: this.height });
 
-      this.x.rangeRoundBands([0, this.width], 0.50, 0.70);
+      this.x.rangeRoundBands([0, this.width], 0.5, 0.7);
       this.y.range([this.height - this.margin.bottom, this.margin.top, 0]);
       this.g.x.attr('transform', `translate(${[0, this.y.range()[0]]})`);
       this.g.y.attr('transform', `translate(${[this.x.range()[0], 0]})`);
-      this.g.barText1.attr('transform', `translate(${[this.x.rangeBand() / 2, 0]})`);
-      this.g.barText2.attr('transform', `translate(${[this.x.rangeBand() / 2, 0]})`);
+      this.g.barText1.attr(
+        'transform',
+        `translate(${[this.x.rangeBand() / 2, 0]})`,
+      );
+      this.g.barText2.attr(
+        'transform',
+        `translate(${[this.x.rangeBand() / 2, 0]})`,
+      );
       this.update();
     }
   };
@@ -99,25 +120,37 @@ export default /* @ngInject */($window) => {
     this.g.barNow
       .attr('x', this.x(this.data.estimate.now.label))
       .attr('y', this.y(this.data.estimate.now.value))
-      .attr('height', this.height - this.y(this.data.estimate.now.value) - this.margin.bottom)
+      .attr(
+        'height',
+        this.height - this.y(this.data.estimate.now.value) - this.margin.bottom,
+      )
       .attr('width', this.x.rangeBand());
 
     this.g.barText1
       .attr('x', this.x(this.data.estimate.now.label))
       .attr('y', this.y(this.data.estimate.now.value) - this.textSpacing)
-      .text(`${this.data.estimate.now.value} ${this.data.estimate.now.currencyCode}`)
+      .text(
+        `${this.data.estimate.now.value} ${this.data.estimate.now.currencyCode}`,
+      )
       .attr('width', this.x.rangeBand());
 
     this.g.barFuture
       .attr('x', this.x(this.data.estimate.endOfMonth.label))
       .attr('y', this.y(this.data.estimate.endOfMonth.value))
-      .attr('height', this.height - this.y(this.data.estimate.endOfMonth.value) - this.margin.bottom)
+      .attr(
+        'height',
+        this.height -
+          this.y(this.data.estimate.endOfMonth.value) -
+          this.margin.bottom,
+      )
       .attr('width', this.x.rangeBand());
 
     this.g.barText2
       .attr('x', this.x(this.data.estimate.endOfMonth.label))
       .attr('y', this.y(this.data.estimate.endOfMonth.value) - this.textSpacing)
-      .text(`${this.data.estimate.endOfMonth.value} ${this.data.estimate.endOfMonth.currencyCode}`)
+      .text(
+        `${this.data.estimate.endOfMonth.value} ${this.data.estimate.endOfMonth.currencyCode}`,
+      )
       .attr('width', this.x.rangeBand());
 
     this.g.thresholdText
@@ -129,7 +162,9 @@ export default /* @ngInject */($window) => {
     this.g.thresholdAmount
       .attr('x', this.width)
       .attr('y', this.y(this.data.threshold.now.value) - this.textSpacing)
-      .text(`${this.data.threshold.now.value} ${this.data.threshold.now.currencyCode}`)
+      .text(
+        `${this.data.threshold.now.value} ${this.data.threshold.now.currencyCode}`,
+      )
       .attr('width', this.x.rangeBand());
 
     this.g.line
@@ -142,11 +177,11 @@ export default /* @ngInject */($window) => {
   Chart.prototype.setModel = function setModel(model) {
     this.data = model;
     const dataValues = values(model.estimate);
-    this.x.domain(dataValues.map(d => d.label));
-    const maxYDomainEstimate = d3.max(dataValues, d => d.value);
-    const maxYDomainThreshold = d3.max(values(model.threshold), d => d.value);
+    this.x.domain(dataValues.map((d) => d.label));
+    const maxYDomainEstimate = d3.max(dataValues, (d) => d.value);
+    const maxYDomainThreshold = d3.max(values(model.threshold), (d) => d.value);
     const maxYDomain = max([maxYDomainEstimate, maxYDomainThreshold]);
-    this.y.domain([0, maxYDomain * 1.20]);
+    this.y.domain([0, maxYDomain * 1.2]);
     this.margin = model.margin || this.margin;
     this.resize();
     this.update();
@@ -171,7 +206,7 @@ export default /* @ngInject */($window) => {
         const parentWidth = $element.parent().width();
         if (parentWidth > 0 && $element.parent().height() > 0) {
           chart.width = parentWidth;
-          chart.height = parentWidth / defaultWidth * defaultHeight;
+          chart.height = (parentWidth / defaultWidth) * defaultHeight;
           if (chart.data) {
             chart.resize();
           }

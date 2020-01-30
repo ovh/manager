@@ -50,67 +50,104 @@ export default class {
   }
 
   getAllServices() {
-    return this.OvhApiBillingAutorenewServices.Aapi()
-      .query().$promise;
+    return this.OvhApiBillingAutorenewServices.Aapi().query().$promise;
   }
 
-  getServices(count, offset, search, type, renewDateType, status, state, order, nicBilling) {
-    return this.OvhApiBillingAutorenewServices.Aapi()
-      .query({
-        count,
-        offset,
-        search,
-        type,
-        renewDateType,
-        status,
-        state,
-        order: JSON.stringify(order),
-        nicBilling,
-      }).$promise;
+  getServices(
+    count,
+    offset,
+    search,
+    type,
+    renewDateType,
+    status,
+    state,
+    order,
+    nicBilling,
+  ) {
+    return this.OvhApiBillingAutorenewServices.Aapi().query({
+      count,
+      offset,
+      search,
+      type,
+      renewDateType,
+      status,
+      state,
+      order: JSON.stringify(order),
+      nicBilling,
+    }).$promise;
   }
 
   getService(serviceId) {
     return this.OvhApiBillingAutorenewServices.Aapi()
       .query({
         search: serviceId,
-      }).$promise
-      .then(services => new BillingService(head(services.list.results)));
+      })
+      .$promise.then(
+        (services) => new BillingService(head(services.list.results)),
+      );
   }
 
   getServicesTypes(services) {
-    return reduce(services.servicesTypes, (serviceTypes, service) => ({
-      ...serviceTypes,
-      [service]: this.$translate.instant(`billing_autorenew_service_type_${service}`),
-    }), {});
+    return reduce(
+      services.servicesTypes,
+      (serviceTypes, service) => ({
+        ...serviceTypes,
+        [service]: this.$translate.instant(
+          `billing_autorenew_service_type_${service}`,
+        ),
+      }),
+      {},
+    );
   }
 
   getStatusTypes() {
-    return reduce(SERVICE_STATUS, (translatedStatus, status) => ({
-      ...translatedStatus,
-      [status]: this.$translate.instant(`billing_autorenew_service_status_${status}`),
-    }), {});
+    return reduce(
+      SERVICE_STATUS,
+      (translatedStatus, status) => ({
+        ...translatedStatus,
+        [status]: this.$translate.instant(
+          `billing_autorenew_service_status_${status}`,
+        ),
+      }),
+      {},
+    );
   }
 
   getStatesTypes() {
-    return reduce(SERVICE_STATES, (states, state) => ({
-      ...states,
-      [state]: this.$translate.instant(`billing_autorenew_service_state_${state}`),
-    }), {});
+    return reduce(
+      SERVICE_STATES,
+      (states, state) => ({
+        ...states,
+        [state]: this.$translate.instant(
+          `billing_autorenew_service_state_${state}`,
+        ),
+      }),
+      {},
+    );
   }
 
   getExpirationFilterTypes() {
-    return reduce(SERVICE_EXPIRATION, (expirations, expirationType) => ({
-      ...expirations,
-      [expirationType]: this.$translate.instant(`billing_autorenew_service_expiration_${expirationType}`),
-    }), {});
+    return reduce(
+      SERVICE_EXPIRATION,
+      (expirations, expirationType) => ({
+        ...expirations,
+        [expirationType]: this.$translate.instant(
+          `billing_autorenew_service_expiration_${expirationType}`,
+        ),
+      }),
+      {},
+    );
   }
 
   updateServices(updateList) {
     return this.OvhApiBillingAutorenewServices.Aapi()
-      .put({}, {
-        updateList,
-      }).$promise
-      .then((result) => {
+      .put(
+        {},
+        {
+          updateList,
+        },
+      )
+      .$promise.then((result) => {
         if (result.state === 'OK') {
           return result;
         }
@@ -120,10 +157,14 @@ export default class {
   }
 
   updateService(service) {
-    return this.OvhApiBillingAutorenewServices.Aapi().put({}, {
-      updateList: [service],
-    }).$promise
-      .then((result) => {
+    return this.OvhApiBillingAutorenewServices.Aapi()
+      .put(
+        {},
+        {
+          updateList: [service],
+        },
+      )
+      .$promise.then((result) => {
         if (result.state === 'OK') {
           return result;
         }
@@ -132,9 +173,9 @@ export default class {
   }
 
   getAutorenew() {
-    return this.OvhApiMeAutorenew.v6().query()
-      .$promise
-      .catch((err) => {
+    return this.OvhApiMeAutorenew.v6()
+      .query()
+      .$promise.catch((err) => {
         if (err.status === 404) {
           return {
             active: false,
@@ -149,10 +190,9 @@ export default class {
   }
 
   enableAutorenew(renewDay) {
-    return this.OvhApiMeAutorenew.v6()
-      .create({
-        renewDay,
-      }).$promise;
+    return this.OvhApiMeAutorenew.v6().create({
+      renewDay,
+    }).$promise;
   }
 
   disableAutoRenewForDomains() {
@@ -180,12 +220,15 @@ export default class {
   }
 
   terminateHostingPrivateDatabase(serviceName) {
-    return this.OvhHttp.post('/hosting/privateDatabase/{serviceName}/terminate', {
-      rootPath: 'apiv6',
-      urlParams: {
-        serviceName,
+    return this.OvhHttp.post(
+      '/hosting/privateDatabase/{serviceName}/terminate',
+      {
+        rootPath: 'apiv6',
+        urlParams: {
+          serviceName,
+        },
       },
-    });
+    );
   }
 
   getEmailInfos(serviceName) {
@@ -204,10 +247,12 @@ export default class {
   }
 
   getExchangeService(organization, exchange) {
-    return this.OvhApiEmailExchange.service().Aapi().get({
-      organization,
-      exchange,
-    }).$promise;
+    return this.OvhApiEmailExchange.service()
+      .Aapi()
+      .get({
+        organization,
+        exchange,
+      }).$promise;
   }
 
   static getExchangeUrl(service, action, target = 'action') {
@@ -217,31 +262,42 @@ export default class {
   getAutorenewAgreements() {
     return this.DucUserContractService.getAgreementsToValidate(
       ({ contractId }) => values(CONTRACTS_IDS).includes(contractId),
-    )
-      .then(contracts => map(contracts, ({ code: name, pdf: url, id }) => ({ name, url, id })));
+    ).then((contracts) =>
+      map(contracts, ({ code: name, pdf: url, id }) => ({ name, url, id })),
+    );
   }
 
   updateRenew(service, agreements) {
     const agreementsPromise = service.hasAutomaticRenew()
-      ? this.DucUserContractService.acceptAgreements(agreements) : Promise.resolve([]);
-    return agreementsPromise
-      .then(() => this.updateServices([pick(service, ['serviceId', 'serviceType', 'renew'])]));
+      ? this.DucUserContractService.acceptAgreements(agreements)
+      : Promise.resolve([]);
+    return agreementsPromise.then(() =>
+      this.updateServices([
+        pick(service, ['serviceId', 'serviceType', 'renew']),
+      ]),
+    );
   }
 
   /* eslint-disable class-methods-use-this */
   userIsBillingOrAdmin(service, user) {
-    return service
-      && Boolean(user
-        && (service.contactBilling === user.nichandle
-          || service.contactAdmin === user.nichandle));
+    return (
+      service &&
+      Boolean(
+        user &&
+          (service.contactBilling === user.nichandle ||
+            service.contactAdmin === user.nichandle),
+      )
+    );
   }
   /* eslint-enable class-methods-use-this */
-
 
   hasRenewDay() {
     return this.ovhPaymentMethod
       .hasDefaultPaymentMethod()
-      .then(hasDefaultPaymentMethod => hasDefaultPaymentMethod && this.coreConfig.getRegion() === 'EU');
+      .then(
+        (hasDefaultPaymentMethod) =>
+          hasDefaultPaymentMethod && this.coreConfig.getRegion() === 'EU',
+      );
   }
 
   setNicRenew(nicRenew) {

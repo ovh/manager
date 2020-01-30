@@ -1,7 +1,7 @@
 import find from 'lodash/find';
 import forEach from 'lodash/forEach';
 
-export default /* @ngInject */ function (
+export default /* @ngInject */ function(
   $q,
   $translate,
   $stateParams,
@@ -18,15 +18,22 @@ export default /* @ngInject */ function (
   self.data = {};
 
   function getVolumesDetails() {
-    return OvhApiCloudProjectVolume.v6().query({
-      serviceName: $stateParams.projectId,
-    }).$promise.then(volumes => volumes);
+    return OvhApiCloudProjectVolume.v6()
+      .query({
+        serviceName: $stateParams.projectId,
+      })
+      .$promise.then((volumes) => volumes);
   }
 
-  function updateVolumeConsumptionDetails(allProjectVolumes, volumeConsumptions) {
+  function updateVolumeConsumptionDetails(
+    allProjectVolumes,
+    volumeConsumptions,
+  ) {
     forEach(volumeConsumptions, (volumeConsumption) => {
       const volumeConsumptionDetail = {};
-      volumeConsumptionDetail.totalPrice = `${volumeConsumption.totalPrice.toFixed(2)} ${self.currencySymbol}`;
+      volumeConsumptionDetail.totalPrice = `${volumeConsumption.totalPrice.toFixed(
+        2,
+      )} ${self.currencySymbol}`;
       volumeConsumptionDetail.volumeId = volumeConsumption.volumeId;
       volumeConsumptionDetail.quantity = volumeConsumption.quantity.value;
       volumeConsumptionDetail.region = volumeConsumption.region;
@@ -34,7 +41,10 @@ export default /* @ngInject */ function (
 
       volumeConsumptionDetail.amount = volumeConsumption.quantity.value;
 
-      const volumeDetail = find(allProjectVolumes, x => x.id === volumeConsumption.volumeId);
+      const volumeDetail = find(
+        allProjectVolumes,
+        (x) => x.id === volumeConsumption.volumeId,
+      );
       if (volumeDetail) {
         volumeConsumptionDetail.name = volumeDetail.name;
         volumeConsumptionDetail.size = volumeDetail.size;
@@ -49,14 +59,17 @@ export default /* @ngInject */ function (
   }
 
   function initVolumes() {
-    return getVolumesDetails()
-      .then(allProjectVolumes => updateVolumeConsumptionDetails(allProjectVolumes, self.volumes));
+    return getVolumesDetails().then((allProjectVolumes) =>
+      updateVolumeConsumptionDetails(allProjectVolumes, self.volumes),
+    );
   }
 
   function initUserCurrency() {
-    return OvhApiMe.v6().get().$promise.then((me) => {
-      self.currencySymbol = me.currency.symbol;
-    });
+    return OvhApiMe.v6()
+      .get()
+      .$promise.then((me) => {
+        self.currencySymbol = me.currency.symbol;
+      });
   }
 
   self.$onInit = () => {
@@ -65,7 +78,12 @@ export default /* @ngInject */ function (
     initUserCurrency()
       .then(() => initVolumes())
       .catch((err) => {
-        CucCloudMessage.error([$translate.instant('cpb_error_message'), (err.data && err.data.message) || ''].join(' '));
+        CucCloudMessage.error(
+          [
+            $translate.instant('cpb_error_message'),
+            (err.data && err.data.message) || '',
+          ].join(' '),
+        );
         $q.reject(err);
       })
       .finally(() => {

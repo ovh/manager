@@ -3,7 +3,8 @@ angular.module('managerApp').config(($stateProvider) => {
     url: '/missingRio',
     views: {
       'accessView@telecom.packs.pack.xdsl': {
-        templateUrl: 'app/telecom/pack/xdsl/missingRio/pack-xdsl-missing-rio.html',
+        templateUrl:
+          'app/telecom/pack/xdsl/missingRio/pack-xdsl-missing-rio.html',
         controller: 'PackXdslMissingRioCtrl',
         controllerAs: 'PackXdslMissingRio',
       },

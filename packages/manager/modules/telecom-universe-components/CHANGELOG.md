@@ -1,3 +1,30 @@
+# [4.5.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@4.4.2...@ovh-ux/ng-ovh-telecom-universe-components@4.5.0) (2019-12-19)
+
+
+### Features
+
+* add order availability for telecom services ([90c27d8](https://github.com/ovh/manager/commit/90c27d8c986ff20d0519fbde87bb11d3e433aa46))
+
+
+
+## [4.4.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@4.4.1...@ovh-ux/ng-ovh-telecom-universe-components@4.4.2) (2019-12-18)
+
+
+### Bug Fixes
+
+* **telecom:** abbreviated number large csv import ([#1945](https://github.com/ovh/manager/issues/1945)) ([8d7cac1](https://github.com/ovh/manager/commit/8d7cac1fb7efa7e6eadfc65f279b691464e32047))
+
+
+
+## [4.4.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@4.4.0...@ovh-ux/ng-ovh-telecom-universe-components@4.4.1) (2019-12-16)
+
+
+### Bug Fixes
+
+* **telecom.telephony:** bypass API error when loading groups ([#1834](https://github.com/ovh/manager/issues/1834)) ([2acd199](https://github.com/ovh/manager/commit/2acd199347b89b1532d37d0a2e9331f344867498))
+
+
+
 # [4.4.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@4.3.0...@ovh-ux/ng-ovh-telecom-universe-components@4.4.0) (2019-12-10)
 
 

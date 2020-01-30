@@ -13,20 +13,27 @@ export default class {
   }
 
   $onInit() {
-    const includedClusterCount = INCLUDED_CLUSTER_SIZE.PRIMARY
-      + INCLUDED_CLUSTER_SIZE.REPLICA + INCLUDED_CLUSTER_SIZE.BACKUP;
+    const includedClusterCount =
+      INCLUDED_CLUSTER_SIZE.PRIMARY +
+      INCLUDED_CLUSTER_SIZE.REPLICA +
+      INCLUDED_CLUSTER_SIZE.BACKUP;
     this.addedReplicas = this.hostList.length - includedClusterCount;
     this.data = {
       dailyBackup: this.clusterDetails.autoBackup,
     };
-    this.readWriteEndpoint = find(this.endPoints, { name: ENDPOINT_TYPES.READ_WRITE });
+    this.readWriteEndpoint = find(this.endPoints, {
+      name: ENDPOINT_TYPES.READ_WRITE,
+    });
   }
 
   dataChange(dailyBackup) {
     this.onDataChange({
-      data: Object.assign({}, this.data, {
-        dailyBackup: isUndefined(dailyBackup) ? this.data.dailyBackup : dailyBackup,
-      }),
+      data: {
+        ...this.data,
+        dailyBackup: isUndefined(dailyBackup)
+          ? this.data.dailyBackup
+          : dailyBackup,
+      },
     });
   }
 

@@ -42,7 +42,9 @@ export default class TranslateServiceProvider {
     if (splittedLocale) {
       // Format the value
       const language = splittedLocale[1];
-      const country = splittedLocale[2] ? splittedLocale[2] : this.preferredCountry(language);
+      const country = splittedLocale[2]
+        ? splittedLocale[2]
+        : this.preferredCountry(language);
       this.currentLanguage = this.findLanguage(language, country);
     } else {
       // Incorrect value
@@ -83,7 +85,10 @@ export default class TranslateServiceProvider {
 
   preferredCountry(language) {
     if (indexOf(['FR', 'EN'], language.toUpperCase() > -1)) {
-      const customLanguage = get(this.LANGUAGES.preferred, `${language}.${this.coreConfigProvider.getRegion()}`);
+      const customLanguage = get(
+        this.LANGUAGES.preferred,
+        `${language}.${this.coreConfigProvider.getRegion()}`,
+      );
       if (customLanguage) {
         return customLanguage;
       }
@@ -99,7 +104,9 @@ export default class TranslateServiceProvider {
     // Not found: Try to find another country with same base language
     const similarLanguage = find(
       this.availableLangsKeys,
-      val => this.localeRegex.test(val) && val.match(this.localeRegex)[1] === language,
+      (val) =>
+        this.localeRegex.test(val) &&
+        val.match(this.localeRegex)[1] === language,
     );
     if (similarLanguage) {
       return similarLanguage;
@@ -116,9 +123,9 @@ export default class TranslateServiceProvider {
 
   $get() {
     return {
-      getUserLocale: locale => this.getUserLocale(locale),
+      getUserLocale: (locale) => this.getUserLocale(locale),
       getGeneralLanguage: () => this.getGeneralLanguage(),
-      setUserLocale: min => this.setUserLocale(min),
+      setUserLocale: (min) => this.setUserLocale(min),
     };
   }
 }

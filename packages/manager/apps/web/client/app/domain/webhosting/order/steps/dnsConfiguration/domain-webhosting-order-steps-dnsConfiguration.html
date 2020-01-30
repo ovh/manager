@@ -3,12 +3,16 @@
     data-editable="!$ctrl.stepper.loadingCheckout"
     data-description="{{:: 'domain_webhosting_order_dns_configuration_step_subtitle' | translate }}"
     data-on-focus="$ctrl.enableHelpers()"
-    data-on-submit="$ctrl.updateDnsConfiguration()">
+    data-on-submit="$ctrl.updateDnsConfiguration()"
+>
     <div>
         <oui-checkbox
             class="d-inline-block"
-            data-model="$ctrl.dnsConfiguration.enableHosting">
-            <span data-translate="domain_webhosting_order_dns_configuration_enable_hosting"></span>
+            data-model="$ctrl.dnsConfiguration.enableHosting"
+        >
+            <span
+                data-translate="domain_webhosting_order_dns_configuration_enable_hosting"
+            ></span>
         </oui-checkbox>
         <button
             type="button"
@@ -17,17 +21,21 @@
             data-oui-popover="{{ 'domain_webhosting_order_dns_configuration_enable_hosting_help' | translate }}"
             data-oui-popover-open="$ctrl.isHostingHelpOpen"
             data-oui-popover-on-open="$ctrl.isHostingHelpOpen = true"
-            data-oui-popover-on-close="$ctrl.isHostingHelpOpen = false">
-        </button>
+            data-oui-popover-on-close="$ctrl.isHostingHelpOpen = false"
+        ></button>
         <span
             class="sr-only"
-            data-translate="domain_webhosting_order_dns_configuration_enable_hosting_help"></span>
+            data-translate="domain_webhosting_order_dns_configuration_enable_hosting_help"
+        ></span>
     </div>
     <div>
         <oui-checkbox
             class="d-inline-block"
-            data-model="$ctrl.dnsConfiguration.enableEmails">
-            <span data-translate="domain_webhosting_order_dns_configuration_enable_emails"></span>
+            data-model="$ctrl.dnsConfiguration.enableEmails"
+        >
+            <span
+                data-translate="domain_webhosting_order_dns_configuration_enable_emails"
+            ></span>
         </oui-checkbox>
         <button
             type="button"
@@ -36,10 +44,11 @@
             data-oui-popover="{{ 'domain_webhosting_order_dns_configuration_enable_emails_help' | translate }}"
             data-oui-popover-open="$ctrl.isEmailHelpOpen"
             data-oui-popover-on-open="$ctrl.isEmailHelpOpen = true"
-            data-oui-popover-on-close="$ctrl.isEmailHelpOpen = false">
-        </button>
+            data-oui-popover-on-close="$ctrl.isEmailHelpOpen = false"
+        ></button>
         <span
             class="sr-only"
-            data-translate="domain_webhosting_order_dns_configuration_enable_emails_help"></span>
+            data-translate="domain_webhosting_order_dns_configuration_enable_emails_help"
+        ></span>
     </div>
 </oui-step-form>

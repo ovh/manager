@@ -6,12 +6,21 @@ angular.module('UserAccount').controller('UserAccount.controllers.emails', [
   'UserAccount.services.emails',
   'Alerter',
 
-  function UserAccountEmailsController($q, $location, $scope, $translate, Emails, Alerter) {
+  function UserAccountEmailsController(
+    $q,
+    $location,
+    $scope,
+    $translate,
+    Emails,
+    Alerter,
+  ) {
     const self = this;
 
     $scope.itemsPerPage = 10;
-    $scope.currentPage = $location.search()
-      && $location.search().currentPage != null ? $location.search().currentPage : 1;
+    $scope.currentPage =
+      $location.search() && $location.search().currentPage != null
+        ? $location.search().currentPage
+        : 1;
 
     $scope.init = () => {
       $scope.loaders = {
@@ -36,7 +45,11 @@ angular.module('UserAccount').controller('UserAccount.controllers.emails', [
           $scope.emails.ids = table.reverse();
         })
         .catch((err) => {
-          Alerter.alertFromSWS($translate.instant('user_account_table_email_error'), null, 'user_account_email');
+          Alerter.alertFromSWS(
+            $translate.instant('user_account_table_email_error'),
+            null,
+            'user_account_email',
+          );
           return $q.reject(err);
         })
         .finally(() => {
@@ -47,7 +60,11 @@ angular.module('UserAccount').controller('UserAccount.controllers.emails', [
     $scope.transformItem = (emailId) => {
       $scope.loaders.emails = true;
       return Emails.getEmail(emailId).catch((err) => {
-        Alerter.alertFromSWS($translate.instant('user_account_table_email_error'), null, 'user_account_email');
+        Alerter.alertFromSWS(
+          $translate.instant('user_account_table_email_error'),
+          null,
+          'user_account_email',
+        );
         return $q.reject(err);
       });
     };

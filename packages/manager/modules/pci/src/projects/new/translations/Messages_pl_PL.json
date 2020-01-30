@@ -1,13 +1,5 @@
 {
-  "pci_projects_new_title": "Rozpocznij przygodę z Public Cloud",
-  "pci_projects_new_continue": "Kontynuuj",
-  "pci_projects_new_cancel": "Anuluj",
-  "pci_projects_new_create": "Utwórz projekt",
-  "pci_projects_new_add": "Dodaj",
-  "pci_projects_new_credit_and_create": "Zasil konto i utwórz projekt",
-  "pci_projects_new_add_payment_error_message": "Wystąpił błąd podczas dodawania sposobu płatności. Spróbuj później lub wybierz inny sposób płatności.",
-  "pci_projects_new_add_credit_payment_error_message": "Wystąpił błąd podczas usuwania Twojego sposobu płatności. Spróbuj później lub anuluj tworzenie Twojego projektu.",
-  "pci_projects_new_create_error_message": "Wystąpił błąd podczas tworzenia projektu Public Cloud. Spróbuj później.",
-  "pci_projects_new_create_credit_asterisk": "* Do każdego projektu Public Cloud przypisane jest oddzielne konto przedpłacone. Twoje należności zostaną automatycznie pobrane z tego konta. Jeśli kwota zasilenia jest niewystarczająca, ureguluj jak najszybciej pozostałą należną kwotę, używając zarejestrowanego sposobu płatności.",
-  "pci_projects_new_create_voucher_not_submitted": "Zatwierdź Twój voucher, zanim przejdziesz dalej."
+  "pci_project_new_error_contact_support": "Skontaktuj się z pomocą techniczną",
+  "pci_project_new_error_ask_increase_projects_quota": "Niestety, nie możesz utworzyć dodatkowego projektu Public Cloud, ponieważ osiągnąłeś maksymalny limit projektów.  Aby zwiększyć limity, skontaktuj się z pomocą techniczną.",
+  "pci_project_new_error_verify_paypal": "Niestety, nie możesz utworzyć projektu Public Cloud, używając Twojego konta PayPal, ponieważ nie zostało ono zweryfikowane.  Prosimy o wykonanie kroków niezbędnych do zatwierdzenia konta PayPal i podjęcie nowej próby utworzenia projektu. Możesz również zmienić <a href=\"{{ href }}\">Twój domyślny sposób płatności</a>."
 }

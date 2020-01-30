@@ -1,9 +1,6 @@
 export default {
   metricsUrl: 'https://opentsdb-in.gra1-ovh.metrics.ovh.net/api',
-  graphs: [
-    'conn',
-    'reqm',
-  ],
+  graphs: ['conn', 'reqm'],
   graphParams: {
     '1h-ago': {
       downsample: '1m',
@@ -54,52 +51,15 @@ export default {
       '1y-ago',
     ],
   },
-  protocols: [
-    'http',
-    'https',
-    'tcp',
-    'tls',
-    'udp',
-  ],
-  balances: [
-    'roundrobin',
-    'first',
-    'leastconn',
-    'source',
-    'uri',
-  ],
-  stickinesses: [
-    'none',
-    'cookie',
-    'sourceIp',
-  ],
-  probeTypes: [
-    '',
-    'http',
-    'mysql',
-    'pgsql',
-    'smtp',
-    'tcp',
-    'oco',
-  ],
-  probeMethods: [
-    'GET',
-    'HEAD',
-    'OPTIONS',
-  ],
-  probeMatches: [
-    'default',
-    'status',
-    'contains',
-    'matches',
-  ],
+  protocols: ['http', 'https', 'tcp', 'tls', 'udp'],
+  balances: ['roundrobin', 'first', 'leastconn', 'source', 'uri'],
+  stickinesses: ['none', 'cookie', 'sourceIp'],
+  probeTypes: ['', 'http', 'mysql', 'pgsql', 'smtp', 'tcp', 'oco'],
+  probeMethods: ['GET', 'HEAD', 'OPTIONS'],
+  probeMatches: ['default', 'status', 'contains', 'matches'],
   portLimit: 49151,
   lbWeightMax: 256,
-  sslTypes: [
-    'free',
-    'dv',
-    'ev',
-  ],
+  sslTypes: ['free', 'dv', 'ev'],
   organisationTypes: [
     'Private Organisation',
     'Government Entity',
@@ -110,12 +70,14 @@ export default {
       planCode: 'sslgateway-advanced',
       duration: 'P1M',
       configuration: {},
-      option: [{
-        planCode: 'sslgateway-ssl-ev-single',
-        configuration: {},
-        duration: 'P1Y',
-        quantity: 1,
-      }],
+      option: [
+        {
+          planCode: 'sslgateway-ssl-ev-single',
+          configuration: {},
+          duration: 'P1Y',
+          quantity: 1,
+        },
+      ],
       quantity: 1,
       productId: 'sslGateway',
     },

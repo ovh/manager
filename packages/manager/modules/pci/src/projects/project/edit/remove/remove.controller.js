@@ -2,10 +2,7 @@ import { MESSAGES_CONTAINER_NAME } from '../edit.constant';
 
 export default class {
   /* @ngInject */
-  constructor(
-    $translate,
-    CucCloudMessage,
-  ) {
+  constructor($translate, CucCloudMessage) {
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
     this.isLoading = false;
@@ -16,7 +13,10 @@ export default class {
 
     const promises = [this.delete()];
 
-    if (this.defaultProject && this.defaultProject.projectId === this.serviceName) {
+    if (
+      this.defaultProject &&
+      this.defaultProject.projectId === this.serviceName
+    ) {
       promises.push(this.unFavProject());
     }
 
@@ -29,7 +29,9 @@ export default class {
       })
       .catch(({ data }) => {
         this.CucCloudMessage.error(
-          this.$translate.instant('pci_projects_project_edit_remove_error', { error: data.message }),
+          this.$translate.instant('pci_projects_project_edit_remove_error', {
+            error: data.message,
+          }),
           MESSAGES_CONTAINER_NAME,
         );
       })

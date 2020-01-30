@@ -36,15 +36,23 @@ angular.module('App').controller(
       return this.Domain.importDnsText(this.domain.name, {
         zoneFile: this.model.zoneDnsText,
       })
-        .then(() => this.Alerter.success(
-          this.$translate.instant('domain_configuration_dns_importtext_success'),
-          this.$scope.alerts.main,
-        ))
-        .catch(err => this.Alerter.alertFromSWS(
-          this.$translate.instant('domain_configuration_dns_importtext_error'),
-          err,
-          this.$scope.alerts.main,
-        ))
+        .then(() =>
+          this.Alerter.success(
+            this.$translate.instant(
+              'domain_configuration_dns_importtext_success',
+            ),
+            this.$scope.alerts.main,
+          ),
+        )
+        .catch((err) =>
+          this.Alerter.alertFromSWS(
+            this.$translate.instant(
+              'domain_configuration_dns_importtext_error',
+            ),
+            err,
+            this.$scope.alerts.main,
+          ),
+        )
         .finally(() => {
           this.loading = false;
           this.$scope.resetAction();

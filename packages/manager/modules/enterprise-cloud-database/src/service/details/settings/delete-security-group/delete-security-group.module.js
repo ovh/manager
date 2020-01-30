@@ -3,11 +3,15 @@ import angular from 'angular';
 import deleteSecurityGroupComponent from './delete-security-group.component';
 import routing from './delete-security-group.routing';
 
-const moduleName = 'enterpriseCloudDatabaseServiceDetailsSettingsDeleteSecurityGroup';
+const moduleName =
+  'enterpriseCloudDatabaseServiceDetailsSettingsDeleteSecurityGroup';
 
 angular
   .module(moduleName, [])
-  .component('enterpriseCloudDatabaseServiceDetailsSettingsDeleteSecurityGroupComponent', deleteSecurityGroupComponent)
+  .component(
+    'enterpriseCloudDatabaseServiceDetailsSettingsDeleteSecurityGroupComponent',
+    deleteSecurityGroupComponent,
+  )
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */);
 

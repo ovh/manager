@@ -2,39 +2,54 @@
     <div class="row">
         <div class="col-lg-6">
             <!-- name -->
-            <oui-field data-label="{{ 'sign_up_identity_field_name' | translate}}">
-                <input type="text"
-                       class="oui-input"
-                       name="name"
-                       id="name"
-                       data-ng-model="$ctrl.accountFormCtrl.model.name"
-                       data-ng-required="$ctrl.accountFormCtrl.rules.name.mandatory" />
-            </oui-field> <!-- /input[name="name"] -->
+            <oui-field
+                data-label="{{ 'sign_up_identity_field_name' | translate}}"
+            >
+                <input
+                    type="text"
+                    class="oui-input"
+                    name="name"
+                    id="name"
+                    data-ng-model="$ctrl.accountFormCtrl.model.name"
+                    data-ng-required="$ctrl.accountFormCtrl.rules.name.mandatory"
+                />
+            </oui-field>
+            <!-- /input[name="name"] -->
         </div>
 
         <div class="col-lg-6">
             <!-- firstname -->
-            <oui-field data-label="{{ 'sign_up_identity_field_firstname' | translate}}">
-                <input type="text"
-                       class="oui-input"
-                       name="firstname"
-                       id="firstname"
-                       data-ng-model="$ctrl.accountFormCtrl.model.firstname"
-                       data-ng-required="$ctrl.accountFormCtrl.rules.firstname.mandatory" />
-            </oui-field> <!-- /input[name="firstname"] -->
+            <oui-field
+                data-label="{{ 'sign_up_identity_field_firstname' | translate}}"
+            >
+                <input
+                    type="text"
+                    class="oui-input"
+                    name="firstname"
+                    id="firstname"
+                    data-ng-model="$ctrl.accountFormCtrl.model.firstname"
+                    data-ng-required="$ctrl.accountFormCtrl.rules.firstname.mandatory"
+                />
+            </oui-field>
+            <!-- /input[name="firstname"] -->
         </div>
     </div>
 
     <!-- email -->
-    <oui-field data-label="{{ 'sign_up_identity_field_email' | translate }}"
-               data-error-messages="{ emailAvailable: ('ovh_account_form_field_email_error' | translate) }">
-        <input type="email"
-               class="oui-input"
-               name="email"
-               id="email"
-               data-ng-model="$ctrl.accountFormCtrl.model.email"
-               data-ng-required="$ctrl.accountFormCtrl.rules.email.mandatory"
-               data-ng-pattern="$ctrl.accountFormCtrl.rules.email.regularExpression"
-               data-email-available="{{ $ctrl.accountFormCtrl.model.ovhCompany }}" />
-    </oui-field> <!-- /input[name="email"] -->
+    <oui-field
+        data-label="{{ 'sign_up_identity_field_email' | translate }}"
+        data-error-messages="{ emailAvailable: ('ovh_account_form_field_email_error' | translate) }"
+    >
+        <input
+            type="email"
+            class="oui-input"
+            name="email"
+            id="email"
+            data-ng-model="$ctrl.accountFormCtrl.model.email"
+            data-ng-required="$ctrl.accountFormCtrl.rules.email.mandatory"
+            data-ng-pattern="$ctrl.accountFormCtrl.rules.email.regularExpression"
+            data-email-available="{{ $ctrl.accountFormCtrl.model.ovhCompany }}"
+        />
+    </oui-field>
+    <!-- /input[name="email"] -->
 </div>

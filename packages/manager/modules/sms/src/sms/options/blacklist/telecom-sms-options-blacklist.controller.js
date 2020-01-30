@@ -8,8 +8,15 @@ import template from './remove/telecom-sms-options-blacklist-remove.html';
 export default class {
   /* @ngInject */
   constructor(
-    $stateParams, $q, $filter, $timeout, $uibModal, $translate,
-    OvhApiSms, TucToast, TucToastError,
+    $stateParams,
+    $q,
+    $filter,
+    $timeout,
+    $uibModal,
+    $translate,
+    OvhApiSms,
+    TucToast,
+    TucToastError,
   ) {
     this.$stateParams = $stateParams;
     this.$q = $q;
@@ -47,14 +54,17 @@ export default class {
   refresh() {
     this.api.sms.blacklists.resetAllCache();
     this.blacklists.isLoading = true;
-    return this.fetchBlacklists().then((blacklists) => {
-      this.blacklists.raw = angular.copy(blacklists);
-      this.sortBlacklists();
-    }).catch((err) => {
-      this.TucToastError(err);
-    }).finally(() => {
-      this.blacklists.isLoading = false;
-    });
+    return this.fetchBlacklists()
+      .then((blacklists) => {
+        this.blacklists.raw = angular.copy(blacklists);
+        this.sortBlacklists();
+      })
+      .catch((err) => {
+        this.TucToastError(err);
+      })
+      .finally(() => {
+        this.blacklists.isLoading = false;
+      });
   }
 
   /**
@@ -65,12 +75,19 @@ export default class {
     return this.api.sms.blacklists
       .query({
         serviceName: this.$stateParams.serviceName,
-      }).$promise
-      .then(blacklistsIds => this.$q
-        .all(map(blacklistsIds, number => this.api.sms.blacklists.get({
-          serviceName: this.$stateParams.serviceName,
-          number,
-        }).$promise)));
+      })
+      .$promise.then((blacklistsIds) =>
+        this.$q.all(
+          map(
+            blacklistsIds,
+            (number) =>
+              this.api.sms.blacklists.get({
+                serviceName: this.$stateParams.serviceName,
+                number,
+              }).$promise,
+          ),
+        ),
+      );
   }
 
   /**
@@ -106,7 +123,10 @@ export default class {
   getSelection() {
     return filter(
       this.blacklists.raw,
-      list => list && this.blacklists.selected && this.blacklists.selected[list.number],
+      (list) =>
+        list &&
+        this.blacklists.selected &&
+        this.blacklists.selected[list.number],
     );
   }
 
@@ -116,21 +136,30 @@ export default class {
    */
   deleteSelectedBlacklist() {
     const blackLists = this.getSelection();
-    const queries = blackLists.map(list => this.api.sms.blacklists.delete({
-      serviceName: this.$stateParams.serviceName,
-      number: list.number,
-    }).$promise);
+    const queries = blackLists.map(
+      (list) =>
+        this.api.sms.blacklists.delete({
+          serviceName: this.$stateParams.serviceName,
+          number: list.number,
+        }).$promise,
+    );
     this.blacklists.isDeleting = true;
     queries.push(this.$timeout(angular.noop, 500)); // avoid clipping
-    this.TucToast.info(this.$translate.instant('sms_senders_blacklisted_delete_list_success'));
-    return this.$q.all(queries).then(() => {
-      this.blacklists.selected = {};
-      return this.refresh();
-    }).catch((err) => {
-      this.TucToastError(err);
-    }).finally(() => {
-      this.blacklists.isDeleting = false;
-    });
+    this.TucToast.info(
+      this.$translate.instant('sms_senders_blacklisted_delete_list_success'),
+    );
+    return this.$q
+      .all(queries)
+      .then(() => {
+        this.blacklists.selected = {};
+        return this.refresh();
+      })
+      .catch((err) => {
+        this.TucToastError(err);
+      })
+      .finally(() => {
+        this.blacklists.isDeleting = false;
+      });
   }
 
   /**
@@ -145,10 +174,16 @@ export default class {
       controllerAs: 'SendersBlacklistedRemoveCtrl',
       resolve: { blacklist: () => blacklist },
     });
-    modal.result.then(() => this.refresh()).catch((error) => {
-      if (error && error.type === 'API') {
-        this.TucToast.error(this.$translate.instant('sms_senders_blacklisted_sender_ko', { error: get(error, 'msg.data.message') }));
-      }
-    });
+    modal.result
+      .then(() => this.refresh())
+      .catch((error) => {
+        if (error && error.type === 'API') {
+          this.TucToast.error(
+            this.$translate.instant('sms_senders_blacklisted_sender_ko', {
+              error: get(error, 'msg.data.message'),
+            }),
+          );
+        }
+      });
   }
 }

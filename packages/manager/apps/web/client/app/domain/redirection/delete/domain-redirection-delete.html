@@ -1,32 +1,40 @@
 <div data-ng-controller="controllers.Domain.Redirection.delete as ctrl">
-    <div data-wizard
-         data-wizard-on-cancel="resetAction"
-         data-wizard-on-finish="deleteRedirection"
-         data-wizard-title="'domain_tab_REDIRECTION_delete_title' | translate">
-
-        <div data-wizard-step
-             data-wizard-step-valid="!ctrl.loading">
-
+    <div
+        data-wizard
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="deleteRedirection"
+        data-wizard-title="'domain_tab_REDIRECTION_delete_title' | translate"
+    >
+        <div data-wizard-step data-wizard-step-valid="!ctrl.loading">
             <div class="text-center" data-ng-if="ctrl.loading">
                 <oui-spinner></oui-spinner>
             </div>
 
             <div data-ng-if="!ctrl.loading">
-                <p data-ng-bind-html="'domain_tab_REDIRECTION_delete_confirm' | translate: { t0: ctrl.entryToDeleteName, t1: ctrl.entryToDelete.targetDisplayName }"
-                   data-ng-if="!ctrl.isSubDomain"></p>
-                <p data-ng-bind-html="'domain_tab_REDIRECTION_delete_sub_confirm' | translate: { t0: ctrl.entryToDeleteName, t1: ctrl.entryToDelete.targetDisplayName }"
-                   data-ng-if="ctrl.isSubDomain"></p>
+                <p
+                    data-ng-bind-html="'domain_tab_REDIRECTION_delete_confirm' | translate: { t0: ctrl.entryToDeleteName, t1: ctrl.entryToDelete.targetDisplayName }"
+                    data-ng-if="!ctrl.isSubDomain"
+                ></p>
+                <p
+                    data-ng-bind-html="'domain_tab_REDIRECTION_delete_sub_confirm' | translate: { t0: ctrl.entryToDeleteName, t1: ctrl.entryToDelete.targetDisplayName }"
+                    data-ng-if="ctrl.isSubDomain"
+                ></p>
             </div>
 
-            <oui-checkbox class="mt-4" id="removeWWW" name="removeWWW"
+            <oui-checkbox
+                class="mt-4"
+                id="removeWWW"
+                name="removeWWW"
                 data-ng-if="ctrl.wwwDomainToDelete.data"
-                data-model="ctrl.wwwDomainToDelete.removeWWW">
+                data-model="ctrl.wwwDomainToDelete.removeWWW"
+            >
                 <span
                     data-translate="domain_tab_REDIRECTION_delete_www_confirm"
                     data-translate-values="{
                         t0: ctrl.constructor.getDomainName(ctrl.wwwDomainToDelete.data),
                         t1: ctrl.wwwDomainToDelete.data.targetDisplayName
-                    }">
+                    }"
+                >
                 </span>
             </oui-checkbox>
         </div>

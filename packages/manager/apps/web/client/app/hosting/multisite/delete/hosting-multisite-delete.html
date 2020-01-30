@@ -1,13 +1,17 @@
 <div data-ng-controller="HostingRemoveDomainCtrl as ctrl">
-    <div data-wizard
-         data-wizard-on-cancel="resetAction"
-         data-wizard-on-finish="deleteMultiSite"
-         data-wizard-title="'hosting_tab_DOMAINS_configuration_remove_title' | translate">
-
-        <div data-wizard-step
-             data-wizard-step-valid="ctrl.model.domains != null">
-
-            <p data-translate="hosting_tab_DOMAINS_configuration_remove_step1_title"></p>
+    <div
+        data-wizard
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="deleteMultiSite"
+        data-wizard-title="'hosting_tab_DOMAINS_configuration_remove_title' | translate"
+    >
+        <div
+            data-wizard-step
+            data-wizard-step-valid="ctrl.model.domains != null"
+        >
+            <p
+                data-translate="hosting_tab_DOMAINS_configuration_remove_step1_title"
+            ></p>
 
             <div class="text-center" data-ng-if="!ctrl.model.domains">
                 <oui-spinner></oui-spinner>
@@ -15,43 +19,94 @@
 
             <div data-ng-if="ctrl.model.domains">
                 <dl class="dl-horizontal dl-lg">
-                    <dt data-translate="hosting_tab_DOMAINS_configuration_remove_step1_domain_name"></dt>
+                    <dt
+                        data-translate="hosting_tab_DOMAINS_configuration_remove_step1_domain_name"
+                    ></dt>
                     <dd data-ng-bind="ctrl.selected.domain.displayName"></dd>
-                    <dt data-translate="hosting_tab_DOMAINS_configuration_remove_step1_home"></dt>
+                    <dt
+                        data-translate="hosting_tab_DOMAINS_configuration_remove_step1_home"
+                    ></dt>
                     <dd data-ng-bind="ctrl.selected.domain.path"></dd>
                 </dl>
 
-                <div class="oui-checkbox" data-ng-show="ctrl.domainsWwwExists()">
-                    <input type="checkbox" class="oui-checkbox__input" id="wwwNeeded"
-                            data-ng-model="ctrl.selected.wwwNeeded">
-                    <label class="oui-checkbox__label-container" for="wwwNeeded">
+                <div
+                    class="oui-checkbox"
+                    data-ng-show="ctrl.domainsWwwExists()"
+                >
+                    <input
+                        type="checkbox"
+                        class="oui-checkbox__input"
+                        id="wwwNeeded"
+                        data-ng-model="ctrl.selected.wwwNeeded"
+                    />
+                    <label
+                        class="oui-checkbox__label-container"
+                        for="wwwNeeded"
+                    >
                         <span class="oui-checkbox__label">
-                            <span data-ng-bind-html="'hosting_tab_DOMAINS_configuration_remove_step1_www' | translate: { t0: 'www.' + ctrl.selected.domain.displayName }"></span>
+                            <span
+                                data-ng-bind-html="'hosting_tab_DOMAINS_configuration_remove_step1_www' | translate: { t0: 'www.' + ctrl.selected.domain.displayName }"
+                            ></span>
                             <span class="oui-checkbox__icon">
-                                <span class="oui-icon oui-icon-checkbox-unchecked" aria-hidden="true"></span>
-                                <span class="oui-icon oui-icon-checkbox-checked" aria-hidden="true"></span>
-                                <span class="oui-icon oui-icon-checkbox-checkmark" aria-hidden="true"></span>
-                                <span class="oui-icon oui-icon-checkbox-indeterminate" aria-hidden="true"></span>
+                                <span
+                                    class="oui-icon oui-icon-checkbox-unchecked"
+                                    aria-hidden="true"
+                                ></span>
+                                <span
+                                    class="oui-icon oui-icon-checkbox-checked"
+                                    aria-hidden="true"
+                                ></span>
+                                <span
+                                    class="oui-icon oui-icon-checkbox-checkmark"
+                                    aria-hidden="true"
+                                ></span>
+                                <span
+                                    class="oui-icon oui-icon-checkbox-indeterminate"
+                                    aria-hidden="true"
+                                ></span>
                             </span>
                         </span>
                     </label>
                 </div>
 
                 <div class="oui-checkbox oui-checkbox_thumbnail">
-                    <input type="checkbox" class="oui-checkbox__input" id="autoConfigure"
-                           data-ng-model="ctrl.selected.autoconfigure">
-                    <label class="oui-checkbox__label-container" for="autoConfigure">
+                    <input
+                        type="checkbox"
+                        class="oui-checkbox__input"
+                        id="autoConfigure"
+                        data-ng-model="ctrl.selected.autoconfigure"
+                    />
+                    <label
+                        class="oui-checkbox__label-container"
+                        for="autoConfigure"
+                    >
                         <span class="oui-checkbox__label">
-                            <span data-translate="hosting_tab_DOMAINS_configuration_remove_step1_autoconfigure"></span>
+                            <span
+                                data-translate="hosting_tab_DOMAINS_configuration_remove_step1_autoconfigure"
+                            ></span>
                             <span class="oui-checkbox__icon">
-                                <span class="oui-icon oui-icon-checkbox-unchecked" aria-hidden="true"></span>
-                                <span class="oui-icon oui-icon-checkbox-checked" aria-hidden="true"></span>
-                                <span class="oui-icon oui-icon-checkbox-checkmark" aria-hidden="true"></span>
-                                <span class="oui-icon oui-icon-checkbox-indeterminate" aria-hidden="true"></span>
+                                <span
+                                    class="oui-icon oui-icon-checkbox-unchecked"
+                                    aria-hidden="true"
+                                ></span>
+                                <span
+                                    class="oui-icon oui-icon-checkbox-checked"
+                                    aria-hidden="true"
+                                ></span>
+                                <span
+                                    class="oui-icon oui-icon-checkbox-checkmark"
+                                    aria-hidden="true"
+                                ></span>
+                                <span
+                                    class="oui-icon oui-icon-checkbox-indeterminate"
+                                    aria-hidden="true"
+                                ></span>
                             </span>
                         </span>
-                        <span class="oui-checkbox__description"
-                              data-translate="hosting_tab_DOMAINS_configuration_remove_step1_autoconfigure_text">
+                        <span
+                            class="oui-checkbox__description"
+                            data-translate="hosting_tab_DOMAINS_configuration_remove_step1_autoconfigure_text"
+                        >
                         </span>
                     </label>
                 </div>

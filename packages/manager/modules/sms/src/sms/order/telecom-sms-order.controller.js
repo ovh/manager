@@ -6,8 +6,16 @@ import toArray from 'lodash/toArray';
 export default class {
   /* @ngInject */
   constructor(
-    $q, $translate, $filter, $stateParams,
-    atInternet, TucSmsMediator, OvhApiOrder, tucDebounce, TucToast, SMS_ORDER_PREFIELDS_VALUES,
+    $q,
+    $translate,
+    $filter,
+    $stateParams,
+    atInternet,
+    TucSmsMediator,
+    OvhApiOrder,
+    tucDebounce,
+    TucToast,
+    SMS_ORDER_PREFIELDS_VALUES,
   ) {
     this.$q = $q;
     this.$translate = $translate;
@@ -46,7 +54,9 @@ export default class {
     this.availableCredits = [];
     forEach(this.constant.SMS_ORDER_PREFIELDS_VALUES, (value, idx) => {
       this.availableCredits.push({
-        label: isNaN(value) ? this.$translate.instant('sms_order_credit_custom') : this.$filter('number')(value),
+        label: isNaN(value)
+          ? this.$translate.instant('sms_order_credit_custom')
+          : this.$filter('number')(value),
         value,
       });
       if (value === this.order.min) {
@@ -55,41 +65,51 @@ export default class {
     });
 
     this.loading.init = true;
-    this.TucSmsMediator.initAll().then(() => {
-      const availableAccounts = toArray(this.TucSmsMediator.getAccounts())
-        .sort((a, b) => a.name.localeCompare(b.name));
+    this.TucSmsMediator.initAll()
+      .then(() => {
+        const availableAccounts = toArray(
+          this.TucSmsMediator.getAccounts(),
+        ).sort((a, b) => a.name.localeCompare(b.name));
 
-      // We have to format it to become human readable
-      forEach(availableAccounts, (account, idx) => {
-        // if no description, take sms id
-        if (account.description === '') {
-          set(account, 'label', account.name);
-        } else if (account.description !== account.name) {
-          set(account, 'label', `${account.description} (${account.name})`);
-        } else {
-          set(account, 'label', account.name);
-        }
+        // We have to format it to become human readable
+        forEach(availableAccounts, (account, idx) => {
+          // if no description, take sms id
+          if (account.description === '') {
+            set(account, 'label', account.name);
+          } else if (account.description !== account.name) {
+            set(account, 'label', `${account.description} (${account.name})`);
+          } else {
+            set(account, 'label', account.name);
+          }
 
-        // If we are on a service, preselect
-        if (account.name === this.$stateParams.serviceName) {
-          this.order.account = availableAccounts[idx];
+          // If we are on a service, preselect
+          if (account.name === this.$stateParams.serviceName) {
+            this.order.account = availableAccounts[idx];
+          }
+        });
+        const newAccount = {
+          name: 'new',
+          description: '',
+          label: this.$translate.instant('sms_order_new_account'),
+        };
+        availableAccounts.push(newAccount);
+        this.availableAccounts = availableAccounts;
+        if (!this.order.account) {
+          this.order.account = this.availableAccounts[
+            this.availableAccounts.length - 1
+          ];
         }
+      })
+      .then(() => this.getPrices())
+      .finally(() => {
+        this.loading.init = false;
       });
-      const newAccount = {
-        name: 'new',
-        description: '',
-        label: this.$translate.instant('sms_order_new_account'),
-      };
-      availableAccounts.push(newAccount);
-      this.availableAccounts = availableAccounts;
-      if (!this.order.account) {
-        this.order.account = this.availableAccounts[this.availableAccounts.length - 1];
-      }
-    }).then(() => this.getPrices()).finally(() => {
-      this.loading.init = false;
-    });
 
-    this.getDebouncedPrices = this.tucDebounce(() => this.getPrices(), 500, false);
+    this.getDebouncedPrices = this.tucDebounce(
+      () => this.getPrices(),
+      500,
+      false,
+    );
   }
 
   /**
@@ -105,7 +125,11 @@ export default class {
    * @return {Boolean}
    */
   customCreditSelected() {
-    return this.order.credit.label && this.order.credit.label === this.$translate.instant('sms_order_credit_custom');
+    return (
+      this.order.credit.label &&
+      this.order.credit.label ===
+        this.$translate.instant('sms_order_credit_custom')
+    );
   }
 
   /**
@@ -129,28 +153,36 @@ export default class {
     this.prices = null;
     this.contractsAccepted = false;
     if (this.isAccountCreation()) {
-      return this.api.order.sms.getNewSmsAccount({
+      return this.api.order.sms
+        .getNewSmsAccount({
+          quantity: this.getSelectedCredit(),
+        })
+        .$promise.then((newAccountPriceDetails) => {
+          this.contracts = newAccountPriceDetails.contracts;
+          this.prices = newAccountPriceDetails;
+          return this.prices;
+        })
+        .catch((error) => {
+          this.TucToast.error(this.$translate.instant('sms_order_ko'));
+          return this.$q.reject(error);
+        })
+        .finally(() => {
+          this.loading.prices = false;
+        });
+    }
+    return this.api.order.sms
+      .getCredits({
+        serviceName: this.order.account.name,
         quantity: this.getSelectedCredit(),
-      }).$promise.then((newAccountPriceDetails) => {
-        this.contracts = newAccountPriceDetails.contracts;
-        this.prices = newAccountPriceDetails;
-        return this.prices;
-      }).catch((error) => {
-        this.TucToast.error(this.$translate.instant('sms_order_ko'));
-        return this.$q.reject(error);
-      }).finally(() => {
+      })
+      .$promise.then((priceDetails) => {
+        this.contracts = priceDetails.contracts;
+        this.prices = priceDetails;
+      })
+      .catch(() => this.TucToast.error(this.$translate.instant('sms_order_ko')))
+      .finally(() => {
         this.loading.prices = false;
       });
-    }
-    return this.api.order.sms.getCredits({
-      serviceName: this.order.account.name,
-      quantity: this.getSelectedCredit(),
-    }).$promise.then((priceDetails) => {
-      this.contracts = priceDetails.contracts;
-      this.prices = priceDetails;
-    }).catch(() => this.TucToast.error(this.$translate.instant('sms_order_ko'))).finally(() => {
-      this.loading.prices = false;
-    });
   }
 
   /**
@@ -161,30 +193,46 @@ export default class {
     this.loading.order = true;
     this.prices.url = null;
     if (this.isAccountCreation()) {
-      return this.api.order.sms.orderNewSmsAccount({}, {
-        quantity: this.getSelectedCredit(),
-      }).$promise.then((newAccountPriceDetails) => {
-        this.prices.url = newAccountPriceDetails.url;
-        return this.prices.url;
-      }).catch(() => this.TucToast.error(this.$translate.instant('sms_order_ko'))).finally(() => {
-        this.loading.order = false;
-      });
+      return this.api.order.sms
+        .orderNewSmsAccount(
+          {},
+          {
+            quantity: this.getSelectedCredit(),
+          },
+        )
+        .$promise.then((newAccountPriceDetails) => {
+          this.prices.url = newAccountPriceDetails.url;
+          return this.prices.url;
+        })
+        .catch(() =>
+          this.TucToast.error(this.$translate.instant('sms_order_ko')),
+        )
+        .finally(() => {
+          this.loading.order = false;
+        });
     }
-    return this.api.order.sms.orderCredits({
-      serviceName: this.order.account.name,
-    }, {
-      quantity: this.getSelectedCredit(),
-    }).$promise.then((priceDetails) => {
-      this.prices.url = priceDetails.url;
-    }).catch(() => this.TucToast.error(this.$translate.instant('sms_order_ko'))).finally(() => {
-      this.loading.order = false;
-      return this.atInternet.trackClick({
-        cta: 'Generate purchase order',
-        name: 'Generate_BC',
-        type: 'action',
-        level2: 'Telecom',
-        chpater1: 'telecom',
+    return this.api.order.sms
+      .orderCredits(
+        {
+          serviceName: this.order.account.name,
+        },
+        {
+          quantity: this.getSelectedCredit(),
+        },
+      )
+      .$promise.then((priceDetails) => {
+        this.prices.url = priceDetails.url;
+      })
+      .catch(() => this.TucToast.error(this.$translate.instant('sms_order_ko')))
+      .finally(() => {
+        this.loading.order = false;
+        return this.atInternet.trackClick({
+          cta: 'Generate purchase order',
+          name: 'Generate_BC',
+          type: 'action',
+          level2: 'Telecom',
+          chpater1: 'telecom',
+        });
       });
-    });
   }
 }

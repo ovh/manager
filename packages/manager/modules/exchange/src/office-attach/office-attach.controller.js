@@ -19,10 +19,12 @@ export default class OfficeAttachController {
 
     return this.officeAttach
       .retrievingIfPreferencesAllowBannerDisplaying()
-      .then(
-        preferencesAllowBannerDisplaying => (preferencesAllowBannerDisplaying
-          ? this.officeAttach.retrievingIfUserAlreadyHasSubscribed(this.$routerParams.productId)
-          : true),
+      .then((preferencesAllowBannerDisplaying) =>
+        preferencesAllowBannerDisplaying
+          ? this.officeAttach.retrievingIfUserAlreadyHasSubscribed(
+              this.$routerParams.productId,
+            )
+          : true,
       )
       .then((userHasAlreadySubscribed) => {
         this.canDisplay = !userHasAlreadySubscribed;

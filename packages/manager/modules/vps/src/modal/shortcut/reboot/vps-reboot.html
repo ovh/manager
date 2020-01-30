@@ -5,24 +5,33 @@
     data-secondary-action="$ctrl.cancel()"
     data-secondary-label="{{ ::'vps_common_cancel' | translate }}"
     data-on-dismiss="$ctrl.cancel()"
-    data-loading="$ctrl.loader.init || $ctrl.save.loading">
-
+    data-loading="$ctrl.loader.init || $ctrl.save.loading"
+>
     <div data-ng-if="$ctrl.vps.tools === 'KO'">
-        <p class="oui-modal__text"
-            data-translate="vps_configuration_reboot_warning_tools"></p>
-        <p class="oui-modal__text"
-            data-translate="vps_configuration_reboot_warning_tools2"></p>
+        <p
+            class="oui-modal__text"
+            data-translate="vps_configuration_reboot_warning_tools"
+        ></p>
+        <p
+            class="oui-modal__text"
+            data-translate="vps_configuration_reboot_warning_tools2"
+        ></p>
     </div>
-    <p class="oui-modal__text"
-        data-translate="vps_configuration_reboot_confirmation"></p>
-    <p class="oui-modal__text italic"
-        data-translate="vps_configuration_reboot_alert"></p>
+    <p
+        class="oui-modal__text"
+        data-translate="vps_configuration_reboot_confirmation"
+    ></p>
+    <p
+        class="oui-modal__text italic"
+        data-translate="vps_configuration_reboot_alert"
+    ></p>
     <oui-checkbox
         data-ng-if="$ctrl.model.netbootMode !== 'RESCUE'"
         data-text="{{ 'vps_configuration_reboot_rescue' | translate }}"
         data-description="{{ 'vps_configuration_reboot_rescue_info' | translate }}"
         id="rescue"
         name="rescue"
-        data-model="$ctrl.selected.rescue">
+        data-model="$ctrl.selected.rescue"
+    >
     </oui-checkbox>
 </oui-modal>

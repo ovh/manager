@@ -26,8 +26,14 @@ export default /* @ngInject */ {
   },
   template,
   controller(
-    $scope, $timeout, $filter, $q, $translate, $translatePartialLoader,
-    TucToast, TucToastError,
+    $scope,
+    $timeout,
+    $filter,
+    $q,
+    $translate,
+    $translatePartialLoader,
+    TucToast,
+    TucToastError,
   ) {
     'ngInject';
 
@@ -62,7 +68,9 @@ export default /* @ngInject */ {
         return angular.copy(self.screenLists.raw);
       };
 
-      $translatePartialLoader.addPart('../components/telecom/telephony/callsFiltering');
+      $translatePartialLoader.addPart(
+        '../components/telecom/telephony/callsFiltering',
+      );
       return $translate.refresh().finally(() => {
         self.isInitialized = true;
         return self.refresh();
@@ -71,9 +79,12 @@ export default /* @ngInject */ {
 
     self.refresh = function refresh() {
       self.isLoading = true;
-      return self.updateScreenList().catch(err => new TucToastError(err)).finally(() => {
-        self.isLoading = false;
-      });
+      return self
+        .updateScreenList()
+        .catch((err) => new TucToastError(err))
+        .finally(() => {
+          self.isLoading = false;
+        });
     };
 
     self.refreshScreenListsPoller = function refreshScreenListsPoller() {
@@ -83,11 +94,20 @@ export default /* @ngInject */ {
     };
 
     self.getSelection = function getSelection() {
-      return filter(self.screenLists.raw, screen => screen && screen.status !== 'delete' && self.screenLists.selected && self.screenLists.selected[screen.id]);
+      return filter(
+        self.screenLists.raw,
+        (screen) =>
+          screen &&
+          screen.status !== 'delete' &&
+          self.screenLists.selected &&
+          self.screenLists.selected[screen.id],
+      );
     };
 
     self.exportSelection = function exportSelection() {
-      return map(self.getSelection(), selection => pick(selection, ['callNumber', 'nature', 'type']));
+      return map(self.getSelection(), (selection) =>
+        pick(selection, ['callNumber', 'nature', 'type']),
+      );
     };
 
     self.updateScreenList = function updateScreenList() {
@@ -106,7 +126,9 @@ export default /* @ngInject */ {
           self.screenLists.raw = result;
         }
         self.sortScreenLists();
-        self.screenLists.isTaskInProgress = filter(self.screenLists.raw, { status: 'active' }).length !== self.screenLists.raw.length;
+        self.screenLists.isTaskInProgress =
+          filter(self.screenLists.raw, { status: 'active' }).length !==
+          self.screenLists.raw.length;
       });
     };
 
@@ -115,13 +137,21 @@ export default /* @ngInject */ {
       const queries = screenLists.map(self.api.remove);
       self.screenLists.isDeleting = true;
       queries.push($timeout(angular.noop, 500)); // avoid clipping
-      TucToast.info($translate.instant('telephony_calls_filtering_table_status_delete_success'));
-      return $q.all(queries).then(() => {
-        self.screenLists.selected = [];
-        return self.updateScreenList();
-      }).catch(err => new TucToastError(err)).finally(() => {
-        self.screenLists.isDeleting = false;
-      });
+      TucToast.info(
+        $translate.instant(
+          'telephony_calls_filtering_table_status_delete_success',
+        ),
+      );
+      return $q
+        .all(queries)
+        .then(() => {
+          self.screenLists.selected = [];
+          return self.updateScreenList();
+        })
+        .catch((err) => new TucToastError(err))
+        .finally(() => {
+          self.screenLists.isDeleting = false;
+        });
     };
 
     self.sortScreenLists = function sortScreenLists() {

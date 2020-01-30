@@ -26,23 +26,47 @@ export default class SharepointActivateOfficeCtrl {
     this.$scope.submit = () => {
       this.$scope.resetAction();
       return this.sharepointService
-        .updateSharepointAccount(this.$stateParams.exchangeId, this.account.userPrincipalName, {
-          officeLicense: true,
-        })
+        .updateSharepointAccount(
+          this.$stateParams.exchangeId,
+          this.account.userPrincipalName,
+          {
+            officeLicense: true,
+          },
+        )
         .then(() => {
           this.alerter.success(
-            this.$translate.instant('sharepoint_action_activate_office_licence_success_message', { t0: this.account.userPrincipalName }),
+            this.$translate.instant(
+              'sharepoint_action_activate_office_licence_success_message',
+              { t0: this.account.userPrincipalName },
+            ),
             this.$scope.alerts.main,
           );
         })
-        .catch(err => this.alerter.alertFromSWS(this.$translate.instant('sharepoint__action_activate_office_licence_error_message'), err, this.$scope.alerts.main))
+        .catch((err) =>
+          this.alerter.alertFromSWS(
+            this.$translate.instant(
+              'sharepoint__action_activate_office_licence_error_message',
+            ),
+            err,
+            this.$scope.alerts.main,
+          ),
+        )
         .finally(() => this.$scope.resetAction());
     };
   }
 
   getUser() {
-    return this.userService.getUser()
-      .then((user) => { this.licenceOrderUrl = `https://www.ovh.com/${user.ovhSubsidiary.toLowerCase()}/office-365`; })
-      .catch(() => this.alerter.alertFromSWS(this.$translate.instant('sharepoint_accounts_action_sharepoint_add_error_message')));
+    return this.userService
+      .getUser()
+      .then((user) => {
+        this.licenceOrderUrl = `https://www.ovh.com/${user.ovhSubsidiary.toLowerCase()}/office-365`;
+      })
+      .catch(() =>
+        this.alerter.alertFromSWS(
+          this.$translate.instant(
+            'sharepoint_accounts_action_sharepoint_add_error_message',
+          ),
+        ),
+      );
   }
 }

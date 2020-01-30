@@ -1,5 +1,3 @@
-
-
 angular.module('managerApp').config(($stateProvider) => {
   $stateProvider.state('iaas.pci-project.billing', {
     url: '/billing',

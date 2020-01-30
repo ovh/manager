@@ -100,7 +100,9 @@ angular.module('App').controller(
           })
           .catch((err) => {
             this.alerter.alertFromSWS(
-              this.$translate.instant('hosting_tab_DATABASES_table_popover_import_step1_load_documents_error'),
+              this.$translate.instant(
+                'hosting_tab_DATABASES_table_popover_import_step1_load_documents_error',
+              ),
               get(err, 'data', err),
               this.$scope.alerts.main,
             );
@@ -124,13 +126,17 @@ angular.module('App').controller(
         )
         .then(() => {
           this.alerter.success(
-            this.$translate.instant('hosting_tab_DATABASES_table_popover_import_step3_succes'),
+            this.$translate.instant(
+              'hosting_tab_DATABASES_table_popover_import_step3_succes',
+            ),
             this.$scope.alerts.main,
           );
         })
         .catch((err) => {
           this.alerter.alertFromSWS(
-            this.$translate.instant('hosting_tab_DATABASES_table_popover_import_step3_fail'),
+            this.$translate.instant(
+              'hosting_tab_DATABASES_table_popover_import_step3_fail',
+            ),
             get(err, 'data', err),
             this.$scope.alerts.main,
           );

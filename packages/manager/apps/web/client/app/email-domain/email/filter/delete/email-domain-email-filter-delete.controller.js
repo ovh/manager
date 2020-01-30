@@ -41,15 +41,19 @@ angular.module('App').controller(
       }
 
       return filterPromise
-        .then(() => this.Alerter.success(
-          this.$translate.instant('email_tab_modal_delete_filter_success'),
-          this.$scope.alerts.main,
-        ))
-        .catch(err => this.Alerter.alertFromSWS(
-          this.$translate.instant('email_tab_modal_delete_filter_error'),
-          get(err, 'data', err),
-          this.$scope.alerts.main,
-        ))
+        .then(() =>
+          this.Alerter.success(
+            this.$translate.instant('email_tab_modal_delete_filter_success'),
+            this.$scope.alerts.main,
+          ),
+        )
+        .catch((err) =>
+          this.Alerter.alertFromSWS(
+            this.$translate.instant('email_tab_modal_delete_filter_error'),
+            get(err, 'data', err),
+            this.$scope.alerts.main,
+          ),
+        )
         .finally(() => this.$scope.resetAction());
     }
   },

@@ -22,24 +22,23 @@ export default class PciBlockStorageDetailsEditController {
     this.isLoading = false;
 
     this.editStorage = new BlockStorage(
-      pick(
-        this.storage,
-        [
-          'id',
-          'region',
-          'type',
-          'name',
-          'size',
-          'bootable',
-          'planCode',
-        ],
-      ),
+      pick(this.storage, [
+        'id',
+        'region',
+        'type',
+        'name',
+        'size',
+        'bootable',
+        'planCode',
+      ]),
     );
     this.loadMessages();
   }
 
   loadMessages() {
-    this.CucCloudMessage.unSubscribe('pci.projects.project.storages.blocks.block.edit');
+    this.CucCloudMessage.unSubscribe(
+      'pci.projects.project.storages.blocks.block.edit',
+    );
     this.messageHandler = this.CucCloudMessage.subscribe(
       'pci.projects.project.storages.blocks.block.edit',
       {
@@ -54,17 +53,27 @@ export default class PciBlockStorageDetailsEditController {
 
   edit() {
     this.isLoading = true;
-    return this.PciProjectStorageBlockService
-      .update(this.projectId, this.editStorage, this.storage)
-      .then(() => this.goBack(this.$translate.instant(
-        'pci_projects_project_storages_blocks_block_edit_success_message',
-        { volume: this.editStorage.name },
-      )))
+    return this.PciProjectStorageBlockService.update(
+      this.projectId,
+      this.editStorage,
+      this.storage,
+    )
+      .then(() =>
+        this.goBack(
+          this.$translate.instant(
+            'pci_projects_project_storages_blocks_block_edit_success_message',
+            { volume: this.editStorage.name },
+          ),
+        ),
+      )
       .catch((err) => {
         this.CucCloudMessage.error(
           this.$translate.instant(
             'pci_projects_project_storages_blocks_block_edit_error_put',
-            { message: get(err, 'data.message', null), volume: this.editStorage.name },
+            {
+              message: get(err, 'data.message', null),
+              volume: this.editStorage.name,
+            },
           ),
           'pci.projects.project.storages.blocks.block.edit',
         );

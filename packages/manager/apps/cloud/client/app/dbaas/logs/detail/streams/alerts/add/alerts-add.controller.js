@@ -1,6 +1,14 @@
 class LogsStreamsAlertsAddCtrl {
-  constructor($q, $state, $stateParams, $window, CucCloudMessage, CucControllerHelper,
-    LogsConstants, LogsStreamsAlertsService) {
+  constructor(
+    $q,
+    $state,
+    $stateParams,
+    $window,
+    CucCloudMessage,
+    CucControllerHelper,
+    LogsConstants,
+    LogsStreamsAlertsService,
+  ) {
     this.$q = $q;
     this.$state = $state;
     this.serviceName = $stateParams.serviceName;
@@ -19,16 +27,22 @@ class LogsStreamsAlertsAddCtrl {
   $onInit() {
     if (this.editMode) {
       this.alert = this.CucControllerHelper.request.getHashLoader({
-        loaderFunction: () => this.LogsStreamsAlertsService
-          .getAlert(this.serviceName, this.streamId, this.alertId),
+        loaderFunction: () =>
+          this.LogsStreamsAlertsService.getAlert(
+            this.serviceName,
+            this.streamId,
+            this.alertId,
+          ),
       });
-      this.alert.load()
-        .then((alert) => {
-          this.alertType = alert.conditionType;
-        });
+      this.alert.load().then((alert) => {
+        this.alertType = alert.conditionType;
+      });
     } else {
-      this.LogsStreamsAlertsService.getNewAlert(this.alertType)
-        .then((alert) => { this.alert = alert; });
+      this.LogsStreamsAlertsService.getNewAlert(this.alertType).then(
+        (alert) => {
+          this.alert = alert;
+        },
+      );
     }
   }
 
@@ -44,12 +58,21 @@ class LogsStreamsAlertsAddCtrl {
 
     this.CucCloudMessage.flushChildMessage();
     this.savingAlert = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () => (this.editMode
-        ? this.LogsStreamsAlertsService
-          .updateAlert(this.serviceName, this.streamId, this.alert.data)
-        : this.LogsStreamsAlertsService.addAlert(this.serviceName, this.streamId, this.alert.data)),
+      loaderFunction: () =>
+        this.editMode
+          ? this.LogsStreamsAlertsService.updateAlert(
+              this.serviceName,
+              this.streamId,
+              this.alert.data,
+            )
+          : this.LogsStreamsAlertsService.addAlert(
+              this.serviceName,
+              this.streamId,
+              this.alert.data,
+            ),
     });
-    return this.savingAlert.load()
+    return this.savingAlert
+      .load()
       .then(() => this.$state.go('dbaas.logs.detail.streams.alerts'));
   }
 
@@ -70,9 +93,15 @@ class LogsStreamsAlertsAddCtrl {
    */
   getThresholdTypes() {
     if (this.alertType === this.LogsConstants.alertType.numeric) {
-      return [this.LogsConstants.thresholdType.lower, this.LogsConstants.thresholdType.higher];
+      return [
+        this.LogsConstants.thresholdType.lower,
+        this.LogsConstants.thresholdType.higher,
+      ];
     }
-    return [this.LogsConstants.thresholdType.more, this.LogsConstants.thresholdType.less];
+    return [
+      this.LogsConstants.thresholdType.more,
+      this.LogsConstants.thresholdType.less,
+    ];
   }
 
   /**
@@ -85,4 +114,6 @@ class LogsStreamsAlertsAddCtrl {
   }
 }
 
-angular.module('managerApp').controller('LogsStreamsAlertsAddCtrl', LogsStreamsAlertsAddCtrl);
+angular
+  .module('managerApp')
+  .controller('LogsStreamsAlertsAddCtrl', LogsStreamsAlertsAddCtrl);

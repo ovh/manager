@@ -30,28 +30,34 @@ export default class {
     this.preferenceKey = `${this.productType.toUpperCase()}_AUTORENEW_STOP_BOTHER`;
 
     return this.isAutorenewAllowed()
-      .then(() => (this.isAutorenewAllowed ? this.getDisplayConditions() : this.$q.when()))
+      .then(() =>
+        this.isAutorenewAllowed ? this.getDisplayConditions() : this.$q.when(),
+      )
       .finally(() => {
         this.loading = false;
       });
   }
 
   getDisplayConditions() {
-    return this.getProductAutorenewPreferences()
-      .then(() => this.hasPaymentMean());
+    return this.getProductAutorenewPreferences().then(() =>
+      this.hasPaymentMean(),
+    );
   }
 
   hasPaymentMean() {
-    return this.ovhPaymentMethod.getAllPaymentMethods()
+    return this.ovhPaymentMethod
+      .getAllPaymentMethods()
       .then((paymentMethods) => {
-        this.hasPaymentMean = isArray(paymentMethods) && !isEmpty(paymentMethods);
+        this.hasPaymentMean =
+          isArray(paymentMethods) && !isEmpty(paymentMethods);
         return this.hasPaymentMean;
       });
   }
 
   isAutorenewAllowed() {
-    return this.OvhApiMe.v6().get().$promise
-      .then(({ ovhSubsidiary }) => {
+    return this.OvhApiMe.v6()
+      .get()
+      .$promise.then(({ ovhSubsidiary }) => {
         this.isAutorenewAllowed = includes(
           this.WUC_SUBSIDIARIES_WITH_OPTIONAL_AUTORENEW,
           ovhSubsidiary,
@@ -63,7 +69,8 @@ export default class {
   }
 
   getProductAutorenewPreferences() {
-    return this.ovhUserPref.getValue(this.preferenceKey)
+    return this.ovhUserPref
+      .getValue(this.preferenceKey)
       .then((productAutorenewPreferences) => {
         this.productAutorenewPreferences = productAutorenewPreferences;
       })
@@ -73,22 +80,30 @@ export default class {
   }
 
   shouldAskAboutAutorenewSubscription() {
-    return !includes(this.productAutorenewPreferences, this.serviceInfos.domain);
+    return !includes(
+      this.productAutorenewPreferences,
+      this.serviceInfos.domain,
+    );
   }
 
   isInAutorenew() {
-    return get(this.serviceInfos, 'renew.automatic') || get(this.serviceInfos, 'renew.forced');
+    return (
+      get(this.serviceInfos, 'renew.automatic') ||
+      get(this.serviceInfos, 'renew.forced')
+    );
   }
 
   isExpired() {
-    return moment().isAfter(moment(this.serviceInfos.expiration)) || this.serviceInfos.status === 'expired';
+    return (
+      moment().isAfter(moment(this.serviceInfos.expiration)) ||
+      this.serviceInfos.status === 'expired'
+    );
   }
 
   stopBotheringWithAutorenew() {
-    return this.ovhUserPref
-      .assign(
-        this.preferenceKey,
-        this.productAutorenewPreferences.concat(this.serviceInfos.domain),
-      );
+    return this.ovhUserPref.assign(
+      this.preferenceKey,
+      this.productAutorenewPreferences.concat(this.serviceInfos.domain),
+    );
   }
 }

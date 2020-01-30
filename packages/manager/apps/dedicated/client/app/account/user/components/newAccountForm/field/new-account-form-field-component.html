@@ -1,122 +1,155 @@
-<div class="form-group"
-     data-ng-class="{
+<div
+    class="form-group"
+    data-ng-class="{
         'has-error': $ctrl.isInvalid() || ($ctrl.getFieldType() === 'email' && $ctrl.fieldset['ovh_field_' + $ctrl.rule.fieldName].$error.emailAvailable),
         focused: $ctrl.focused,
         'mb-0': !$ctrl.rule.hasBottomMargin
-    }">
-
+    }"
+>
     <!-- FIELD LABEL -->
-    <label for="{{ 'ovh_field_' + $ctrl.rule.fieldName }}"
-           class="control-label"
-           data-ng-if="$ctrl.getFieldType() !== 'checkbox'">
-        <span data-ng-bind="$ctrl.getTranslatedArea()"
-              data-ng-if="$ctrl.rule.fieldName === 'area'"></span>
-        <span data-translate="{{ 'signup_field_' + $ctrl.rule.fieldName }}"></span>
-        <em data-ng-if="!$ctrl.rule.mandatory"
-            data-translate="signup_not_mandatory_field"></em>
+    <label
+        for="{{ 'ovh_field_' + $ctrl.rule.fieldName }}"
+        class="control-label"
+        data-ng-if="$ctrl.getFieldType() !== 'checkbox'"
+    >
+        <span
+            data-ng-bind="$ctrl.getTranslatedArea()"
+            data-ng-if="$ctrl.rule.fieldName === 'area'"
+        ></span>
+        <span
+            data-translate="{{ 'signup_field_' + $ctrl.rule.fieldName }}"
+        ></span>
+        <em
+            data-ng-if="!$ctrl.rule.mandatory"
+            data-translate="signup_not_mandatory_field"
+        ></em>
     </label>
 
     <!-- TEXT INPUT -->
-    <div data-ng-class="{'input-group': $ctrl.rule.prefix }"
-         data-ng-if="$ctrl.getFieldType() === 'text'">
-        <span class="input-group-addon"
-              data-ng-if="$ctrl.rule.prefix"
-              data-ng-bind="$ctrl.rule.prefix">
+    <div
+        data-ng-class="{'input-group': $ctrl.rule.prefix }"
+        data-ng-if="$ctrl.getFieldType() === 'text'"
+    >
+        <span
+            class="input-group-addon"
+            data-ng-if="$ctrl.rule.prefix"
+            data-ng-bind="$ctrl.rule.prefix"
+        >
         </span>
 
-        <input type="text"
-               class="form-control"
-               data-ng-attr-id="{{ 'ovh_field_' + $ctrl.rule.fieldName }}"
-               data-ng-attr-name="{{ 'ovh_field_' + $ctrl.rule.fieldName }}"
-               data-ng-model="$ctrl.value"
-               data-ng-model-options="{ debounce: $ctrl.debounce }"
-               data-ng-change="$ctrl.onChange()"
-               data-ng-focus="$ctrl.focused = true"
-               data-ng-blur="$ctrl.focused = false"
-               data-ng-pattern="$ctrl.inputValidator"
-               data-ng-disabled="$ctrl.rule.fieldName === 'customerCode'"
-               data-ng-required="$ctrl.rule.mandatory">
+        <input
+            type="text"
+            class="form-control"
+            data-ng-attr-id="{{ 'ovh_field_' + $ctrl.rule.fieldName }}"
+            data-ng-attr-name="{{ 'ovh_field_' + $ctrl.rule.fieldName }}"
+            data-ng-model="$ctrl.value"
+            data-ng-model-options="{ debounce: $ctrl.debounce }"
+            data-ng-change="$ctrl.onChange()"
+            data-ng-focus="$ctrl.focused = true"
+            data-ng-blur="$ctrl.focused = false"
+            data-ng-pattern="$ctrl.inputValidator"
+            data-ng-disabled="$ctrl.rule.fieldName === 'customerCode'"
+            data-ng-required="$ctrl.rule.mandatory"
+        />
     </div>
 
     <!-- PHONE INPUT -->
-    <div class="phoneInput"
-         data-ng-if="$ctrl.getFieldType() === 'phone'">
-
+    <div class="phoneInput" data-ng-if="$ctrl.getFieldType() === 'phone'">
         <!-- PHONE PREFIX -->
-        <div class="phonePrefix"
-             data-ng-if="$ctrl.phoneCountryList.length">
+        <div class="phonePrefix" data-ng-if="$ctrl.phoneCountryList.length">
             <div class="mb-2">
-                <select class="form-control"
-                        data-ng-options="pc as pc.label + ' +' + pc.prefix for pc in $ctrl.phoneCountryList track by pc.country"
-                        data-ng-change="$ctrl.onPhonePrefixChange()"
-                        data-ng-model="$ctrl.phoneCountry">
+                <select
+                    class="form-control"
+                    data-ng-options="pc as pc.label + ' +' + pc.prefix for pc in $ctrl.phoneCountryList track by pc.country"
+                    data-ng-change="$ctrl.onPhonePrefixChange()"
+                    data-ng-model="$ctrl.phoneCountry"
+                >
                 </select>
             </div>
         </div>
 
         <!-- PHONE INPUT -->
-        <div class="phoneNumber"
-             data-ng-class="{
+        <div
+            class="phoneNumber"
+            data-ng-class="{
                  'input-group': $ctrl.rule.prefix
-             }">
-            <span class="input-group-addon"
-                  data-ng-if="$ctrl.rule.prefix"
-                  data-ng-bind="$ctrl.rule.prefix">
+             }"
+        >
+            <span
+                class="input-group-addon"
+                data-ng-if="$ctrl.rule.prefix"
+                data-ng-bind="$ctrl.rule.prefix"
+            >
             </span>
-            <input type="text"
-                   class="form-control"
-                   data-ng-attr-id="{{ 'ovh_field_' + $ctrl.rule.fieldName }}"
-                   data-ng-attr-name="{{ 'ovh_field_' + $ctrl.rule.fieldName }}"
-                   data-ng-model="$ctrl.value"
-                   data-ng-model-options="{ debounce: $ctrl.debounce }"
-                   data-ng-change="$ctrl.onChange()"
-                   data-ng-focus="$ctrl.focused = true"
-                   data-ng-blur="$ctrl.focused = false"
-                   data-ng-pattern="$ctrl.inputValidator"
-                   data-ng-required="$ctrl.rule.mandatory">
+            <input
+                type="text"
+                class="form-control"
+                data-ng-attr-id="{{ 'ovh_field_' + $ctrl.rule.fieldName }}"
+                data-ng-attr-name="{{ 'ovh_field_' + $ctrl.rule.fieldName }}"
+                data-ng-model="$ctrl.value"
+                data-ng-model-options="{ debounce: $ctrl.debounce }"
+                data-ng-change="$ctrl.onChange()"
+                data-ng-focus="$ctrl.focused = true"
+                data-ng-blur="$ctrl.focused = false"
+                data-ng-pattern="$ctrl.inputValidator"
+                data-ng-required="$ctrl.rule.mandatory"
+            />
         </div>
     </div>
 
     <!-- EMAIL INPUT -->
-    <div data-ng-class="{ 'input-group': $ctrl.rule.prefix }"
-         data-ng-if="$ctrl.getFieldType() === 'email'">
-        <span class="input-group-addon"
-              data-ng-if="$ctrl.rule.prefix"
-              data-ng-bind="$ctrl.rule.prefix">
+    <div
+        data-ng-class="{ 'input-group': $ctrl.rule.prefix }"
+        data-ng-if="$ctrl.getFieldType() === 'email'"
+    >
+        <span
+            class="input-group-addon"
+            data-ng-if="$ctrl.rule.prefix"
+            data-ng-bind="$ctrl.rule.prefix"
+        >
         </span>
-        <input type="email"
-               class="form-control"
-               data-ng-attr-id="{{ 'ovh_field_' + $ctrl.rule.fieldName }}"
-               data-ng-attr-name="{{ 'ovh_field_' + $ctrl.rule.fieldName }}"
-               data-ng-model="$ctrl.value"
-               data-ng-model-options="{ debounce: $ctrl.debounce }"
-               data-ng-change="$ctrl.onChange()"
-               data-ng-focus="$ctrl.focused = true"
-               data-ng-blur="$ctrl.focused = false"
-               data-ng-pattern="$ctrl.inputValidator"
-               data-ng-required="$ctrl.rule.mandatory">
-        <p class="help-block" role="alert"
-           data-ng-if="$ctrl.fieldset['ovh_field_' + $ctrl.rule.fieldName].$error.emailAvailable && $ctrl.value"
-           data-translate="signup_email_in_use"></p>
+        <input
+            type="email"
+            class="form-control"
+            data-ng-attr-id="{{ 'ovh_field_' + $ctrl.rule.fieldName }}"
+            data-ng-attr-name="{{ 'ovh_field_' + $ctrl.rule.fieldName }}"
+            data-ng-model="$ctrl.value"
+            data-ng-model-options="{ debounce: $ctrl.debounce }"
+            data-ng-change="$ctrl.onChange()"
+            data-ng-focus="$ctrl.focused = true"
+            data-ng-blur="$ctrl.focused = false"
+            data-ng-pattern="$ctrl.inputValidator"
+            data-ng-required="$ctrl.rule.mandatory"
+        />
+        <p
+            class="help-block"
+            role="alert"
+            data-ng-if="$ctrl.fieldset['ovh_field_' + $ctrl.rule.fieldName].$error.emailAvailable && $ctrl.value"
+            data-translate="signup_email_in_use"
+        ></p>
     </div>
 
     <!-- PASSWORD INPUT -->
     <div data-ng-if="$ctrl.getFieldType() === 'password'">
-        <input type="password"
-               class="form-control"
-               data-ng-attr-id="{{ 'ovh_field_' + $ctrl.rule.fieldName }}"
-               data-ng-attr-name="{{ 'ovh_field_' + $ctrl.rule.fieldName }}"
-               data-ng-model="$ctrl.value"
-               data-ng-model-options="{ debounce: $ctrl.debounce }"
-               data-ng-change="$ctrl.onChange()"
-               data-ng-focus="$ctrl.focused = true"
-               data-ng-blur="$ctrl.focused = false"
-               data-ng-pattern="$ctrl.inputValidator"
-               data-ng-required="$ctrl.rule.mandatory">
-        <p class="help-block" role="alert"
-           data-ng-if="$ctrl.fieldset['ovh_field_' + $ctrl.rule.fieldName].$error.pattern"
-           data-translate="signup_password_invalid">
-        </p>
+        <input
+            type="password"
+            class="form-control"
+            data-ng-attr-id="{{ 'ovh_field_' + $ctrl.rule.fieldName }}"
+            data-ng-attr-name="{{ 'ovh_field_' + $ctrl.rule.fieldName }}"
+            data-ng-model="$ctrl.value"
+            data-ng-model-options="{ debounce: $ctrl.debounce }"
+            data-ng-change="$ctrl.onChange()"
+            data-ng-focus="$ctrl.focused = true"
+            data-ng-blur="$ctrl.focused = false"
+            data-ng-pattern="$ctrl.inputValidator"
+            data-ng-required="$ctrl.rule.mandatory"
+        />
+        <p
+            class="help-block"
+            role="alert"
+            data-ng-if="$ctrl.fieldset['ovh_field_' + $ctrl.rule.fieldName].$error.pattern"
+            data-translate="signup_password_invalid"
+        ></p>
     </div>
 
     <!-- CHECKBOX INPUT -->
@@ -133,71 +166,77 @@
                     data-ng-focus="$ctrl.focused = true"
                     data-ng-blur="$ctrl.focused = false"
                     data-ng-pattern="$ctrl.inputValidator"
-                    data-ng-required="$ctrl.rule.mandatory">
-                <span data-translate="{{ 'signup_field_' + $ctrl.rule.fieldName }}"></span>
+                    data-ng-required="$ctrl.rule.mandatory"
+                />
+                <span
+                    data-translate="{{ 'signup_field_' + $ctrl.rule.fieldName }}"
+                ></span>
             </label>
         </div>
         <p
             class="help-block"
             role="alert"
             data-ng-if="$ctrl.fieldset['ovh_field_' + $ctrl.rule.fieldName].$error.pattern"
-            data-translate="signup_password_invalid">
-        </p>
+            data-translate="signup_password_invalid"
+        ></p>
     </div>
 
     <!-- SELECT INPUT -->
     <div data-ng-if="$ctrl.getFieldType() === 'select'">
-        <select class="form-control"
-                data-ng-options="val as val.translated for val in $ctrl.getTranslatedEnums() track by val.key"
-                data-ng-attr-id="{{ 'ovh_field_' + $ctrl.rule.fieldName }}"
-                data-ng-attr-name="{{ 'ovh_field_' + $ctrl.rule.fieldName }}"
-                data-ng-model="$ctrl.value"
-                data-ng-change="$ctrl.onChange()"
-                data-ng-focus="$ctrl.focused = true"
-                data-ng-blur="$ctrl.focused = false"
-                data-ng-pattern="$ctrl.inputValidator"
-                data-ng-required="$ctrl.rule.mandatory">
+        <select
+            class="form-control"
+            data-ng-options="val as val.translated for val in $ctrl.getTranslatedEnums() track by val.key"
+            data-ng-attr-id="{{ 'ovh_field_' + $ctrl.rule.fieldName }}"
+            data-ng-attr-name="{{ 'ovh_field_' + $ctrl.rule.fieldName }}"
+            data-ng-model="$ctrl.value"
+            data-ng-change="$ctrl.onChange()"
+            data-ng-focus="$ctrl.focused = true"
+            data-ng-blur="$ctrl.focused = false"
+            data-ng-pattern="$ctrl.inputValidator"
+            data-ng-required="$ctrl.rule.mandatory"
+        >
         </select>
     </div>
 
     <!-- DATE PICKER INPUT -->
-    <div class="input-group"
-         data-ng-if="$ctrl.getFieldType() === 'date'">
-        <span class="input-group-addon"
-              data-ng-if="$ctrl.rule.prefix"
-              data-ng-bind="$ctrl.rule.prefix">
+    <div class="input-group" data-ng-if="$ctrl.getFieldType() === 'date'">
+        <span
+            class="input-group-addon"
+            data-ng-if="$ctrl.rule.prefix"
+            data-ng-bind="$ctrl.rule.prefix"
+        >
         </span>
-        <input type="text"
-               class="form-control"
-               placeholder="{{ 'signup_field_date_placeholder' | translate }}"
-               data-ng-attr-id="{{ 'ovh_field_' + $ctrl.rule.fieldName }}"
-               data-ng-attr-name="{{ 'ovh_field_' + $ctrl.rule.fieldName }}"
-               data-ng-model="$ctrl.value"
-               data-ng-model-options="{ debounce: $ctrl.debounce }"
-               data-ng-change="$ctrl.onChange()"
-               data-ng-focus="$ctrl.focused = true"
-               data-ng-blur="$ctrl.focused = false"
-               data-ng-pattern="$ctrl.inputValidator"
-               data-ng-required="$ctrl.rule.mandatory"
-               data-uib-datepicker-popup="yyyy-MM-dd"
-               datepicker-options="{
+        <input
+            type="text"
+            class="form-control"
+            placeholder="{{ 'signup_field_date_placeholder' | translate }}"
+            data-ng-attr-id="{{ 'ovh_field_' + $ctrl.rule.fieldName }}"
+            data-ng-attr-name="{{ 'ovh_field_' + $ctrl.rule.fieldName }}"
+            data-ng-model="$ctrl.value"
+            data-ng-model-options="{ debounce: $ctrl.debounce }"
+            data-ng-change="$ctrl.onChange()"
+            data-ng-focus="$ctrl.focused = true"
+            data-ng-blur="$ctrl.focused = false"
+            data-ng-pattern="$ctrl.inputValidator"
+            data-ng-required="$ctrl.rule.mandatory"
+            data-uib-datepicker-popup="yyyy-MM-dd"
+            datepicker-options="{
                    showWeeks: false,
                    initDate: $ctrl.value,
                    datepickerMode: 'year'
                }"
-               data-is-open="datePickerOpen"
-               data-show-button-bar="false"
-               >
+            data-is-open="datePickerOpen"
+            data-show-button-bar="false"
+        />
         <span class="input-group-btn">
-            <button type="button"
-                    class="btn btn-default"
-                    title="{{:: 'signup_field_date_calendar' | translate }}"
-                    data-ng-click="datePickerOpen = !datePickerOpen">
-                <span class="fa fa-calendar"
-                      aria-hidden="true">
-                </span>
+            <button
+                type="button"
+                class="btn btn-default"
+                title="{{:: 'signup_field_date_calendar' | translate }}"
+                data-ng-click="datePickerOpen = !datePickerOpen"
+            >
+                <span class="fa fa-calendar" aria-hidden="true"> </span>
             </button>
         </span>
     </div>
-
 </div>

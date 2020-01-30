@@ -1,33 +1,45 @@
-<div class="text-center"
-     data-ng-if="$ctrl.loading">
+<div class="text-center" data-ng-if="$ctrl.loading">
     <oui-spinner></oui-spinner>
 </div>
 
 <div data-ng-if="!$ctrl.loading">
-
     <tuc-toast-message></tuc-toast-message>
 
-    <h2 data-translate="telephony_alias_configuration_title"
-        data-translate-values="{ 'featureType': ('telephony_alias_config_change_type_label_' + $ctrl.groupFeatureType() | translate) }"></h2>
+    <h2
+        data-translate="telephony_alias_configuration_title"
+        data-translate-values="{ 'featureType': ('telephony_alias_config_change_type_label_' + $ctrl.groupFeatureType() | translate) }"
+    ></h2>
 
-    <telephony-number data-ng-if="$ctrl.isSubwayPlanActive()"
-                      data-telephony-number="$ctrl.number"
-                      data-telephony-number-feature-actions="$ctrl.actions">
+    <telephony-number
+        data-ng-if="$ctrl.isSubwayPlanActive()"
+        data-telephony-number="$ctrl.number"
+        data-telephony-number-feature-actions="$ctrl.actions"
+    >
     </telephony-number>
 
     <div class="row" data-ng-if="!$ctrl.isSubwayPlanActive()">
         <div class="col-lg-8">
-            <oui-collapsible class="mb-5"
-                             data-heading="{{:: 'telephony_alias_configuration_question_' + $ctrl.groupFeatureType() | translate }}">
-                <div data-ng-if="$ctrl.number.feature.featureType !== 'redirect' && $ctrl.number.feature.featureType !== 'ddi'">
-                    <p class="mb-4"
-                       data-translate="{{:: 'telephony_alias_config_feature_type_' + $ctrl.groupFeatureType() + '_first_part' }}"
-                       data-translate-values="{ 'featureType': '<strong>' + $ctrl.featureTypeLabel + '</strong>' }"></p>
-                    <p data-translate="{{:: 'telephony_alias_config_feature_type_' + $ctrl.groupFeatureType() + '_second_part' }}"></p>
+            <oui-collapsible
+                class="mb-5"
+                data-heading="{{:: 'telephony_alias_configuration_question_' + $ctrl.groupFeatureType() | translate }}"
+            >
+                <div
+                    data-ng-if="$ctrl.number.feature.featureType !== 'redirect' && $ctrl.number.feature.featureType !== 'ddi'"
+                >
+                    <p
+                        class="mb-4"
+                        data-translate="{{:: 'telephony_alias_config_feature_type_' + $ctrl.groupFeatureType() + '_first_part' }}"
+                        data-translate-values="{ 'featureType': '<strong>' + $ctrl.featureTypeLabel + '</strong>' }"
+                    ></p>
+                    <p
+                        data-translate="{{:: 'telephony_alias_config_feature_type_' + $ctrl.groupFeatureType() + '_second_part' }}"
+                    ></p>
                 </div>
-                <span data-ng-if="$ctrl.number.feature.featureType === 'redirect' || $ctrl.number.feature.featureType === 'ddi'"
-                      data-translate="telephony_alias_config_feature_type_redirect"
-                      data-translate-values="{ 'featureType': '<strong>' + $ctrl.featureTypeLabel + '</strong>' }"></span>
+                <span
+                    data-ng-if="$ctrl.number.feature.featureType === 'redirect' || $ctrl.number.feature.featureType === 'ddi'"
+                    data-translate="telephony_alias_config_feature_type_redirect"
+                    data-translate-values="{ 'featureType': '<strong>' + $ctrl.featureTypeLabel + '</strong>' }"
+                ></span>
             </oui-collapsible>
 
             <div data-ui-view="featureView"></div>

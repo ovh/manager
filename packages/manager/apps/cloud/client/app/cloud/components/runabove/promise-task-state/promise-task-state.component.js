@@ -1,5 +1,6 @@
 angular.module('managerApp').component('promiseTaskState', {
-  templateUrl: 'app/cloud/components/runabove/promise-task-state/promise-task-state.html',
+  templateUrl:
+    'app/cloud/components/runabove/promise-task-state/promise-task-state.html',
   controller: /* @ngInject */ function CloudStorageContainerTasksRunnerController(
     $timeout,
     CloudStorageContainerTasksRunner,
@@ -19,16 +20,25 @@ angular.module('managerApp').component('promiseTaskState', {
       let percents;
       switch (state) {
         case 'done':
-          percents = Math.round((CloudStorageContainerTasksRunner
-            .countDoneTasks() / self.sumTasks()) * 100);
+          percents = Math.round(
+            (CloudStorageContainerTasksRunner.countDoneTasks() /
+              self.sumTasks()) *
+              100,
+          );
           break;
         case 'error':
-          percents = Math.round((CloudStorageContainerTasksRunner
-            .countErrorTasks() / self.sumTasks()) * 100);
+          percents = Math.round(
+            (CloudStorageContainerTasksRunner.countErrorTasks() /
+              self.sumTasks()) *
+              100,
+          );
           break;
         case 'pending':
-          percents = Math.round((CloudStorageContainerTasksRunner
-            .countPendingTasks() / self.sumTasks()) * 100);
+          percents = Math.round(
+            (CloudStorageContainerTasksRunner.countPendingTasks() /
+              self.sumTasks()) *
+              100,
+          );
           break;
         default:
           break;

@@ -2,6 +2,7 @@
   "name": "@ovh-ux/manager-config",
   "version": "0.4.0",
   "private": true,
+  "description": "Retrieve configuration based on the environment.",
   "homepage": "https://github.com/ovh/manager/tree/master/packages/manager/modules/config#readme",
   "bugs": {
     "url": "https://github.com/ovh/manager/issues"
@@ -23,9 +24,9 @@
     "dev": "rollup -c --environment BUILD:development",
     "dev:watch": "yarn run dev --watch",
     "prepare": "yarn run build",
-    "start": "lerna exec --stream --scope='@ovh-ux/manager-config' --include-filtered-dependencies -- yarn run build",
-    "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-config' --include-filtered-dependencies -- yarn run dev",
-    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-config' --include-filtered-dependencies -- yarn run dev:watch"
+    "start": "lerna exec --stream --scope='@ovh-ux/manager-config' --include-dependencies -- yarn run build",
+    "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-config' --include-dependencies -- yarn run dev",
+    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-config' --include-dependencies -- yarn run dev:watch"
   },
   "devDependencies": {
     "@ovh-ux/component-rollup-config": "^7.0.0"

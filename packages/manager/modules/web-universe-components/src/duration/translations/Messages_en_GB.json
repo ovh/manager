@@ -7,5 +7,6 @@
   "duration_year_other": "{{t0}} years",
   "duration_upto": "Until {{t0}}",
   "duration_uptofirstdaynextmonth": "Until the 1st of next month",
-  "duration_engage": "Sign up {{t0}}"
+  "duration_engage": "Sign up {{t0}}",
+  "duration_upto_prorata": "Prorata to Service Expiry Date  ({{t0}})"
 }

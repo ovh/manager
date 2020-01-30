@@ -16,8 +16,17 @@ import some from 'lodash/some';
 export default class {
   /* @ngInject */
   constructor(
-    $filter, $q, $scope, $stateParams, $timeout, $translate, $uibModalInstance,
-    phonebooks, OvhApiSms, TucToast, SMS_PHONEBOOKS,
+    $filter,
+    $q,
+    $scope,
+    $stateParams,
+    $timeout,
+    $translate,
+    $uibModalInstance,
+    phonebooks,
+    OvhApiSms,
+    TucToast,
+    SMS_PHONEBOOKS,
   ) {
     this.$filter = $filter;
     this.$q = $q;
@@ -30,7 +39,9 @@ export default class {
     this.api = {
       sms: {
         phonebooks: {
-          phonebookcontact: OvhApiSms.Phonebooks().PhonebookContact().v6(),
+          phonebookcontact: OvhApiSms.Phonebooks()
+            .PhonebookContact()
+            .v6(),
         },
       },
     };
@@ -54,18 +65,22 @@ export default class {
     };
     this.selectedContacts = angular.copy(this.phonebooks.lists);
     this.availableTypes = get(this.constant.SMS_PHONEBOOKS, 'numberFields');
-    this.$scope.$watch('AddPhonebookContactCtrl.phonebookContact.sorted', (contacts) => {
-      each(contacts, (contact) => {
-        const alreadyAdded = find(this.selectedContacts, { id: contact.id });
-        if (contact.isSelected) {
-          if (!alreadyAdded) {
-            this.selectedContacts.push(contact);
+    this.$scope.$watch(
+      'AddPhonebookContactCtrl.phonebookContact.sorted',
+      (contacts) => {
+        each(contacts, (contact) => {
+          const alreadyAdded = find(this.selectedContacts, { id: contact.id });
+          if (contact.isSelected) {
+            if (!alreadyAdded) {
+              this.selectedContacts.push(contact);
+            }
+          } else {
+            pull(this.selectedContacts, alreadyAdded);
           }
-        } else {
-          pull(this.selectedContacts, alreadyAdded);
-        }
-      });
-    }, true);
+        });
+      },
+      true,
+    );
     this.refresh();
   }
 
@@ -79,39 +94,70 @@ export default class {
       .query({
         serviceName: this.$stateParams.serviceName,
         bookKey: get(phonebook, 'bookKey'),
-      }).$promise
-      .then(phonebookContactIds => this.$q
-        .all(map(
-          chunk(phonebookContactIds, 50),
-          id => this.api.sms.phonebooks.phonebookcontact.getBatch({
-            serviceName: this.$stateParams.serviceName,
-            bookKey: get(phonebook, 'bookKey'),
-            id,
-          }).$promise,
-        ))
-        .then((chunkResult) => {
-          const result = map(flatten(chunkResult), 'value');
-          const emptyPhoneNumber = get(this.constant.SMS_PHONEBOOKS, 'emptyFields.numbers');
-          return each(result, (contact) => {
-            set(contact, 'homeMobile', contact.homeMobile === emptyPhoneNumber ? '' : contact.homeMobile);
-            set(contact, 'homePhone', contact.homePhone === emptyPhoneNumber ? '' : contact.homePhone);
-            set(contact, 'workMobile', contact.workMobile === emptyPhoneNumber ? '' : contact.workMobile);
-            set(contact, 'workPhone', contact.workPhone === emptyPhoneNumber ? '' : contact.workPhone);
-          });
-        }).then((contacts) => {
-          const clonedContacts = [];
-          each(this.availableTypes, (field) => {
-            each(cloneDeep(contacts), (contact) => {
-              set(contact, 'type', field);
-              set(contact, 'id', [contact.id, contact.type].join('_'));
-              if (isEmpty(get(contact, field))) {
-                return;
-              }
-              clonedContacts.push(omit(contact, difference(this.availableTypes, [field])));
+      })
+      .$promise.then((phonebookContactIds) =>
+        this.$q
+          .all(
+            map(
+              chunk(phonebookContactIds, 50),
+              (id) =>
+                this.api.sms.phonebooks.phonebookcontact.getBatch({
+                  serviceName: this.$stateParams.serviceName,
+                  bookKey: get(phonebook, 'bookKey'),
+                  id,
+                }).$promise,
+            ),
+          )
+          .then((chunkResult) => {
+            const result = map(flatten(chunkResult), 'value');
+            const emptyPhoneNumber = get(
+              this.constant.SMS_PHONEBOOKS,
+              'emptyFields.numbers',
+            );
+            return each(result, (contact) => {
+              set(
+                contact,
+                'homeMobile',
+                contact.homeMobile === emptyPhoneNumber
+                  ? ''
+                  : contact.homeMobile,
+              );
+              set(
+                contact,
+                'homePhone',
+                contact.homePhone === emptyPhoneNumber ? '' : contact.homePhone,
+              );
+              set(
+                contact,
+                'workMobile',
+                contact.workMobile === emptyPhoneNumber
+                  ? ''
+                  : contact.workMobile,
+              );
+              set(
+                contact,
+                'workPhone',
+                contact.workPhone === emptyPhoneNumber ? '' : contact.workPhone,
+              );
             });
-          });
-          return flatten(clonedContacts);
-        }));
+          })
+          .then((contacts) => {
+            const clonedContacts = [];
+            each(this.availableTypes, (field) => {
+              each(cloneDeep(contacts), (contact) => {
+                set(contact, 'type', field);
+                set(contact, 'id', [contact.id, contact.type].join('_'));
+                if (isEmpty(get(contact, field))) {
+                  return;
+                }
+                clonedContacts.push(
+                  omit(contact, difference(this.availableTypes, [field])),
+                );
+              });
+            });
+            return flatten(clonedContacts);
+          }),
+      );
   }
 
   /**
@@ -121,15 +167,22 @@ export default class {
   refresh() {
     this.phonebookContact.isLoading = true;
     this.api.sms.phonebooks.phonebookcontact.resetAllCache();
-    return this.fetchPhonebookContact(this.phonebooks.current).then((phonebookContact) => {
-      this.phonebookContact.raw = phonebookContact;
-      this.sortPhonebookContact();
-    }).catch((err) => {
-      this.TucToast.error(`${this.$translate.instant('sms_sms_compose_add_phonebook_contact_ko')} ${get(err, 'data.message')}`);
-      return this.$q.reject(err);
-    }).finally(() => {
-      this.phonebookContact.isLoading = false;
-    });
+    return this.fetchPhonebookContact(this.phonebooks.current)
+      .then((phonebookContact) => {
+        this.phonebookContact.raw = phonebookContact;
+        this.sortPhonebookContact();
+      })
+      .catch((err) => {
+        this.TucToast.error(
+          `${this.$translate.instant(
+            'sms_sms_compose_add_phonebook_contact_ko',
+          )} ${get(err, 'data.message')}`,
+        );
+        return this.$q.reject(err);
+      })
+      .finally(() => {
+        this.phonebookContact.isLoading = false;
+      });
   }
 
   /**
@@ -143,7 +196,11 @@ export default class {
       this.phonebookContact.orderDesc,
     );
     this.phonebookContact.sorted = each(data, (contact) => {
-      set(contact, 'isSelected', some(this.selectedContacts, { id: contact.id }));
+      set(
+        contact,
+        'isSelected',
+        some(this.selectedContacts, { id: contact.id }),
+      );
     });
   }
 
@@ -155,7 +212,9 @@ export default class {
     return this.$timeout(angular.noop, 500).then(() => {
       this.phonebookContact.isAdding = false;
       this.phonebookContact.hasBeenAdded = true;
-      return this.$timeout(angular.noop, 1500).then(() => this.close(this.selectedContacts));
+      return this.$timeout(angular.noop, 1500).then(() =>
+        this.close(this.selectedContacts),
+      );
     });
   }
 

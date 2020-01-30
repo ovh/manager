@@ -1,94 +1,155 @@
-<div class="container-fluid px-0" data-ng-controller="HostingTabModulesController as ctrlHostingTabModules">
-
+<div
+    class="container-fluid px-0"
+    data-ng-controller="HostingTabModulesController as ctrlHostingTabModules"
+>
     <div class="row">
         <div class="col-md-9">
             <div data-ovh-alert="{{alerts.main}}"></div>
 
-            <div class="alert alert-warning" role="alert"
-                 data-translate="hosting_configuration_tab_modules_status_maintenance"
-                 data-ng-if="ctrlHostingTabModules.serviceState === 'MAINTENANCE'">
-            </div>
+            <div
+                class="alert alert-warning"
+                role="alert"
+                data-translate="hosting_configuration_tab_modules_status_maintenance"
+                data-ng-if="ctrlHostingTabModules.serviceState === 'MAINTENANCE'"
+            ></div>
 
-            <div class="alert alert-danger" role="alert"
-                 data-translate="hosting_configuration_tab_modules_status_bloqued"
-                 data-ng-if="ctrlHostingTabModules.serviceState === 'BLOQUED'">
-            </div>
+            <div
+                class="alert alert-danger"
+                role="alert"
+                data-translate="hosting_configuration_tab_modules_status_bloqued"
+                data-ng-if="ctrlHostingTabModules.serviceState === 'BLOQUED'"
+            ></div>
 
-            <div class="alert alert-info" role="alert"
-                 data-ng-if="hosting.offer === 'START_10_M'">
+            <div
+                class="alert alert-info"
+                role="alert"
+                data-ng-if="hosting.offer === 'START_10_M'"
+            >
                 <div>
-                    <p data-translate="hosting_change_offer_for_service_start10m"></p>
-                    <button class="btn btn-info" type="button"
-                            data-translate="hosting_dashboard_service_change_offer"
-                            data-ui-sref="app.hosting.upgrade({ productId: hosting.serviceName })">
-                    </button>
+                    <p
+                        data-translate="hosting_change_offer_for_service_start10m"
+                    ></p>
+                    <button
+                        class="btn btn-info"
+                        type="button"
+                        data-translate="hosting_dashboard_service_change_offer"
+                        data-ui-sref="app.hosting.upgrade({ productId: hosting.serviceName })"
+                    ></button>
                 </div>
             </div>
 
-            <div data-ng-if="ctrlHostingTabModules.serviceState === 'ACTIVE' && hosting.offer !== 'START_10_M'">
-
-                <div class="alert alert-info" role="alert"
-                     data-ng-if="!displayTabs.modules">
+            <div
+                data-ng-if="ctrlHostingTabModules.serviceState === 'ACTIVE' && hosting.offer !== 'START_10_M'"
+            >
+                <div
+                    class="alert alert-info"
+                    role="alert"
+                    data-ng-if="!displayTabs.modules"
+                >
                     <div>
-                        <p data-translate="hosting_change_offer_for_service"></p>
-                        <button class="btn btn-info" type="button"
-                                data-translate="hosting_dashboard_service_change_offer"
-                                data-ui-sref="app.hosting.upgrade({ productId: hosting.serviceName })">
-                        </button>
+                        <p
+                            data-translate="hosting_change_offer_for_service"
+                        ></p>
+                        <button
+                            class="btn btn-info"
+                            type="button"
+                            data-translate="hosting_dashboard_service_change_offer"
+                            data-ui-sref="app.hosting.upgrade({ productId: hosting.serviceName })"
+                        ></button>
                     </div>
                 </div>
 
                 <div data-ng-if="displayTabs.modules">
-
                     <p data-ng-if="ctrlHostingTabModules.guide">
-                        <span class="fa fa-life-ring mr-2" aria-hidden="true"></span>
-                        <span data-translate="hosting_tab_MODULES_guide_help"></span>
-                        <a data-ng-href="{{ctrlHostingTabModules.guide}}" target="_blank" title="{{ 'hosting_guide_help' | translate }} ({{ 'common_newtab' | translate }})">
+                        <span
+                            class="fa fa-life-ring mr-2"
+                            aria-hidden="true"
+                        ></span>
+                        <span
+                            data-translate="hosting_tab_MODULES_guide_help"
+                        ></span>
+                        <a
+                            data-ng-href="{{ctrlHostingTabModules.guide}}"
+                            target="_blank"
+                            title="{{ 'hosting_guide_help' | translate }} ({{ 'common_newtab' | translate }})"
+                        >
                             <span data-translate="hosting_guide_help"></span>
-                            <span class="fa fa-external-link" aria-hidden="true"></span>
+                            <span
+                                class="fa fa-external-link"
+                                aria-hidden="true"
+                            ></span>
                         </a>
                     </p>
 
-                    <div class="alert alert-info" role="alert"
-                         data-translate="hosting_configuration_tab_modules_table_empty"
-                         data-ng-if="ctrlHostingTabModules.modules.length === 0">
-                    </div>
+                    <div
+                        class="alert alert-info"
+                        role="alert"
+                        data-translate="hosting_configuration_tab_modules_table_empty"
+                        data-ng-if="ctrlHostingTabModules.modules.length === 0"
+                    ></div>
 
-                    <oui-datagrid data-rows="ctrlHostingTabModules.modules"
-                                  data-row-loader="ctrlHostingTabModules.transformItem($row)">
-                        <oui-column data-title="'hosting_configuration_tab_modules_module_name' | translate" data-property="template.name"></oui-column>
-                        <oui-column data-title="'hosting_configuration_tab_modules_module_path' | translate" data-property="path">
-                            <a data-ng-bind="$row.path" data-ng-href="{{$row.href}}" target="_blank"></a>
+                    <oui-datagrid
+                        data-rows="ctrlHostingTabModules.modules"
+                        data-row-loader="ctrlHostingTabModules.transformItem($row)"
+                    >
+                        <oui-column
+                            data-title="'hosting_configuration_tab_modules_module_name' | translate"
+                            data-property="template.name"
+                        ></oui-column>
+                        <oui-column
+                            data-title="'hosting_configuration_tab_modules_module_path' | translate"
+                            data-property="path"
+                        >
+                            <a
+                                data-ng-bind="$row.path"
+                                data-ng-href="{{$row.href}}"
+                                target="_blank"
+                            ></a>
                         </oui-column>
-                        <oui-column data-title="'hosting_configuration_tab_modules_module_version' | translate" data-property="template.version"></oui-column>
-                        <oui-column data-title="'hosting_configuration_tab_modules_module_login' | translate" data-property="adminName"></oui-column>
+                        <oui-column
+                            data-title="'hosting_configuration_tab_modules_module_version' | translate"
+                            data-property="template.version"
+                        ></oui-column>
+                        <oui-column
+                            data-title="'hosting_configuration_tab_modules_module_login' | translate"
+                            data-property="adminName"
+                        ></oui-column>
                         <oui-action-menu data-align="end" data-compact>
-                            <oui-action-menu-item data-text="{{:: 'hosting_configuration_tab_modules_module_access' | translate }}"
-                                                  data-ng-click="ctrlHostingTabModules.goToHref($row.href)">
+                            <oui-action-menu-item
+                                data-text="{{:: 'hosting_configuration_tab_modules_module_access' | translate }}"
+                                data-ng-click="ctrlHostingTabModules.goToHref($row.href)"
+                            >
                             </oui-action-menu-item>
-                            <oui-action-menu-item data-text="{{:: 'hosting_configuration_tab_modules_module_access_admin' | translate }}"
-                                                  data-ng-click="ctrlHostingTabModules.goToHref($row.adminHref)">
+                            <oui-action-menu-item
+                                data-text="{{:: 'hosting_configuration_tab_modules_module_access_admin' | translate }}"
+                                data-ng-click="ctrlHostingTabModules.goToHref($row.adminHref)"
+                            >
                             </oui-action-menu-item>
-                            <oui-action-menu-item data-text="{{:: 'hosting_configuration_tab_modules_module_change_password' | translate }}"
-                                                  data-ng-click="setAction('module/update-password/hosting-module-update-password', $row)"
-                                                  data-ng-if="module.template.branch !== 'old'">
+                            <oui-action-menu-item
+                                data-text="{{:: 'hosting_configuration_tab_modules_module_change_password' | translate }}"
+                                data-ng-click="setAction('module/update-password/hosting-module-update-password', $row)"
+                                data-ng-if="module.template.branch !== 'old'"
+                            >
                             </oui-action-menu-item>
-                            <oui-action-menu-item data-text="{{:: 'hosting_configuration_tab_modules_module_delete' | translate }}"
-                                                  data-ng-click="setAction('module/delete/hosting-module-delete', $row)">
+                            <oui-action-menu-item
+                                data-text="{{:: 'hosting_configuration_tab_modules_module_delete' | translate }}"
+                                data-ng-click="setAction('module/delete/hosting-module-delete', $row)"
+                            >
                             </oui-action-menu-item>
                         </oui-action-menu>
                     </oui-datagrid>
-
                 </div>
             </div>
         </div>
 
         <div class="col-md-3 mt-5 mt-lg-0">
-            <button type="button" class="btn btn-block btn-default"
-                    data-translate="hosting_configuration_tab_modules_module_add"
-                    data-ng-click="setAction('module/add/hosting-module-add')"
-                    data-ng-if="ctrlHostingTabModules.serviceState === 'ACTIVE' && hosting.offer !== 'START_10_M' && displayTabs.modules">
-            </button>
+            <button
+                type="button"
+                class="btn btn-block btn-default"
+                data-translate="hosting_configuration_tab_modules_module_add"
+                data-ng-click="setAction('module/add/hosting-module-add')"
+                data-ng-if="ctrlHostingTabModules.serviceState === 'ACTIVE' && hosting.offer !== 'START_10_M' && displayTabs.modules"
+            ></button>
         </div>
     </div>
 </div>

@@ -11,21 +11,31 @@ export const definition = class SupportNewTicketService {
   }
 
   getCategories() {
-    return this.OvhApiSupport.v6().schema().$promise.then(
-      schema => schema.models['support.tickets.CategoryEnum'].enum.map(categoryId => ({
-        id: categoryId,
-        label: this.$translate.instant(`ovhManagerSupport_new_category_${categoryId}`),
-      })),
-    );
+    return this.OvhApiSupport.v6()
+      .schema()
+      .$promise.then((schema) =>
+        schema.models['support.tickets.CategoryEnum'].enum.map(
+          (categoryId) => ({
+            id: categoryId,
+            label: this.$translate.instant(
+              `ovhManagerSupport_new_category_${categoryId}`,
+            ),
+          }),
+        ),
+      );
   }
 
   getUrgencies() {
-    return this.OvhApiSupport.v6().schema().$promise.then(
-      schema => schema.models['support.tickets.UrgencyEnum'].enum.map(categoryId => ({
-        id: categoryId,
-        label: this.$translate.instant(`ovhManagerSupport_new_urgency_${categoryId}`),
-      })),
-    );
+    return this.OvhApiSupport.v6()
+      .schema()
+      .$promise.then((schema) =>
+        schema.models['support.tickets.UrgencyEnum'].enum.map((categoryId) => ({
+          id: categoryId,
+          label: this.$translate.instant(
+            `ovhManagerSupport_new_urgency_${categoryId}`,
+          ),
+        })),
+      );
   }
 
   getSupportLevel() {
@@ -43,13 +53,15 @@ export const definition = class SupportNewTicketService {
   }
 
   static buildFieldText() {
-    return field => SupportNewTicketService.createLine(field.label)
-      + SupportNewTicketService.createLine(field.default);
+    return (field) =>
+      SupportNewTicketService.createLine(field.label) +
+      SupportNewTicketService.createLine(field.default);
   }
 
   static createTicketBody({ subject, fields }) {
-    const head = SupportNewTicketService.createLine(subject)
-     + SupportNewTicketService.createLine();
+    const head =
+      SupportNewTicketService.createLine(subject) +
+      SupportNewTicketService.createLine();
     const body = fields
       .map(SupportNewTicketService.buildFieldText())
       .join(SupportNewTicketService.createLine());
@@ -58,14 +70,17 @@ export const definition = class SupportNewTicketService {
   }
 
   createTicket(issue, subject, serviceName, impactedResource, urgency) {
-    return this.OvhApiSupport.v6().createTickets({}, {
-      issueTypeId: issue.id,
-      serviceName,
-      impactedResource,
-      subject,
-      body: SupportNewTicketService.createTicketBody(issue),
-      urgency: get(urgency, 'id'),
-    }).$promise;
+    return this.OvhApiSupport.v6().createTickets(
+      {},
+      {
+        issueTypeId: issue.id,
+        serviceName,
+        impactedResource,
+        subject,
+        body: SupportNewTicketService.createTicketBody(issue),
+        urgency: get(urgency, 'id'),
+      },
+    ).$promise;
   }
 };
 

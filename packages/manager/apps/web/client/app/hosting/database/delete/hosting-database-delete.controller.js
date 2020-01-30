@@ -24,16 +24,21 @@ angular.module('App').controller(
       )
         .then(() => {
           this.Alerter.success(
-            this.$translate.instant('hosting_tab_DATABASES_configuration_delete_success'),
+            this.$translate.instant(
+              'hosting_tab_DATABASES_configuration_delete_success',
+            ),
             this.$scope.alerts.main,
           );
         })
         .catch((err) => {
           set(err, 'type', err.type || 'ERROR');
           this.Alerter.alertFromSWS(
-            this.$translate.instant('hosting_tab_DATABASES_configuration_delete_fail', {
-              t0: this.entryToDelete,
-            }),
+            this.$translate.instant(
+              'hosting_tab_DATABASES_configuration_delete_fail',
+              {
+                t0: this.entryToDelete,
+              },
+            ),
             get(err, 'data', err),
             this.$scope.alerts.main,
           );

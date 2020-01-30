@@ -19,7 +19,7 @@ angular.module('App').controller(
       this.account = this.$scope.currentActionData.account || null;
       this.accounts = map(
         this.$scope.currentActionData.accounts,
-        account => `${account}@${this.account.domain}`,
+        (account) => `${account}@${this.account.domain}`,
       );
       this.filters = this.$scope.currentActionData.filterNames || [];
       this.headers = ['From', 'To', 'Subject', 'other'];
@@ -78,9 +78,9 @@ angular.module('App').controller(
       const value = input.$viewValue;
       input.$setValidity(
         'filterActionRedirect',
-        !!value
-          && /^[\w.+-]+@[\w.-]+\.[A-Za-z]{2,}$/.test(value)
-          && !/^\./.test(value),
+        !!value &&
+          /^[\w.+-]+@[\w.-]+\.[A-Za-z]{2,}$/.test(value) &&
+          !/^\./.test(value),
       );
     }
 
@@ -88,9 +88,9 @@ angular.module('App').controller(
       const value = input.$viewValue;
       input.$setValidity(
         'filterName',
-        !!value
-          && /^[\w.\s-]+$/.test(value)
-          && !find(this.filters, filter => value === filter),
+        !!value &&
+          /^[\w.\s-]+$/.test(value) &&
+          !find(this.filters, (filter) => value === filter),
       );
     }
 
@@ -102,10 +102,11 @@ angular.module('App').controller(
     filterRuleCheck() {
       return every(
         this.model.rules,
-        rule => rule.value
-          && rule.operand
-          && ((rule.headerSelect && rule.headerSelect !== 'other')
-            || (rule.headerSelect === 'other' && rule.header)),
+        (rule) =>
+          rule.value &&
+          rule.operand &&
+          ((rule.headerSelect && rule.headerSelect !== 'other') ||
+            (rule.headerSelect === 'other' && rule.header)),
       );
     }
 
@@ -114,11 +115,12 @@ angular.module('App').controller(
       const rules = map(
         lodashFilter(
           this.model.rules,
-          rule => (rule.headerSelect !== '' || rule.header !== '')
-            && rule.operand !== ''
-            && rule.value !== '',
+          (rule) =>
+            (rule.headerSelect !== '' || rule.header !== '') &&
+            rule.operand !== '' &&
+            rule.value !== '',
         ),
-        rule => ({
+        (rule) => ({
           operand: rule.operand,
           value: rule.value,
           header:

@@ -28,22 +28,31 @@ export default class ExchangeAccount {
 
     this.CAN_DO = {
       CREATION_METHOD: {
-        ADDING: () => this.exchangeServiceInfrastructure.isDedicated()
-          || this.exchangeServiceInfrastructure.isDedicatedCluster()
-          || (this.exchangeServiceInfrastructure.isProvider() && this.exchangeVersion.is(2010)),
-        ORDERING: () => this.exchangeServiceInfrastructure.isHosted()
-          || (this.exchangeServiceInfrastructure.isProvider() && !this.exchangeVersion.is(2010)),
+        ADDING: () =>
+          this.exchangeServiceInfrastructure.isDedicated() ||
+          this.exchangeServiceInfrastructure.isDedicatedCluster() ||
+          (this.exchangeServiceInfrastructure.isProvider() &&
+            this.exchangeVersion.is(2010)),
+        ORDERING: () =>
+          this.exchangeServiceInfrastructure.isHosted() ||
+          (this.exchangeServiceInfrastructure.isProvider() &&
+            !this.exchangeVersion.is(2010)),
       },
       DESTRUCTION_METHOD: {
-        DELETING: () => this.exchangeServiceInfrastructure.isDedicated()
-          || this.exchangeServiceInfrastructure.isDedicatedCluster()
-          || (this.exchangeServiceInfrastructure.isProvider() && this.exchangeVersion.is(2010)),
-        RESETTING: () => this.exchangeServiceInfrastructure.isHosted()
-          || (this.exchangeServiceInfrastructure.isProvider() && !this.exchangeVersion.is(2010)),
+        DELETING: () =>
+          this.exchangeServiceInfrastructure.isDedicated() ||
+          this.exchangeServiceInfrastructure.isDedicatedCluster() ||
+          (this.exchangeServiceInfrastructure.isProvider() &&
+            this.exchangeVersion.is(2010)),
+        RESETTING: () =>
+          this.exchangeServiceInfrastructure.isHosted() ||
+          (this.exchangeServiceInfrastructure.isProvider() &&
+            !this.exchangeVersion.is(2010)),
       },
-      UPGRADE_TO_300_GB: () => this.exchangeServiceInfrastructure.isHosted()
-        || (this.exchangeServiceInfrastructure.isProvider()
-          && this.exchangeVersion.isAfter(2010)),
+      UPGRADE_TO_300_GB: () =>
+        this.exchangeServiceInfrastructure.isHosted() ||
+        (this.exchangeServiceInfrastructure.isProvider() &&
+          this.exchangeVersion.isAfter(2010)),
     };
   }
 
@@ -86,9 +95,9 @@ export default class ExchangeAccount {
    */
   isEditable(account) {
     return (
-      this.exchangeStates.constructor.isOk(account)
-      || this.exchangeStates.constructor.isDoing(account)
-      || this.exchangeStates.constructor.isInError(account)
+      this.exchangeStates.constructor.isOk(account) ||
+      this.exchangeStates.constructor.isDoing(account) ||
+      this.exchangeStates.constructor.isInError(account)
     );
   }
 
@@ -104,6 +113,9 @@ export default class ExchangeAccount {
       throw new Error('Input is not a valid account');
     }
 
-    return account.domain.toUpperCase() === this.PLACEHOLDER_DOMAIN_NAME.toUpperCase();
+    return (
+      account.domain.toUpperCase() ===
+      this.PLACEHOLDER_DOMAIN_NAME.toUpperCase()
+    );
   }
 }

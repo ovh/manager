@@ -1,8 +1,17 @@
 import keyBy from 'lodash/keyBy';
 
 class LogsStreamsFollowService {
-  constructor($websocket, $translate, OvhApiDbaas, LogsStreamsService,
-    CucControllerHelper, CucCloudMessage, CucServiceHelper, CucUrlHelper, LogsConstants) {
+  constructor(
+    $websocket,
+    $translate,
+    OvhApiDbaas,
+    LogsStreamsService,
+    CucControllerHelper,
+    CucCloudMessage,
+    CucServiceHelper,
+    CucUrlHelper,
+    LogsConstants,
+  ) {
     this.$websocket = $websocket;
     this.$translate = $translate;
     this.LogsStreamsService = LogsStreamsService;
@@ -33,42 +42,34 @@ class LogsStreamsFollowService {
       0: {
         label: 'logs_streams_follow_emergency',
         type: 'error',
-
       },
       1: {
         label: 'logs_streams_follow_alert',
         type: 'error',
-
       },
       2: {
         label: 'logs_streams_follow_critical',
         type: 'error',
-
       },
       3: {
         label: 'logs_streams_follow_error',
         type: 'warning',
-
       },
       4: {
         label: 'logs_streams_follow_warning',
         type: 'warning',
-
       },
       5: {
         label: 'logs_streams_follow_notice',
         type: 'primary',
-
       },
       6: {
         label: 'logs_streams_follow_info',
         type: 'info',
-
       },
       7: {
         label: 'logs_streams_follow_debug',
         type: 'default',
-
       },
     };
   }
@@ -79,8 +80,9 @@ class LogsStreamsFollowService {
    * @param {string} serviceName
    */
   getTestClientUrls(serviceName) {
-    return this.LogsAapiService.home({ serviceName })
-      .$promise.catch(this.CucServiceHelper.errorHandler('logs_streams_get_command_urls_error'));
+    return this.LogsAapiService.home({ serviceName }).$promise.catch(
+      this.CucServiceHelper.errorHandler('logs_streams_get_command_urls_error'),
+    );
   }
 
   /**
@@ -89,18 +91,29 @@ class LogsStreamsFollowService {
    * @param {object} stream
    */
   copyWebSocketAddress(stream) {
-    const url = this.CucUrlHelper.constructor.findUrl(stream, this.LogsConstants.WEB_SOCKET_URL);
+    const url = this.CucUrlHelper.constructor.findUrl(
+      stream,
+      this.LogsConstants.WEB_SOCKET_URL,
+    );
     if (!url) {
-      this.CucCloudMessage.error(this.$translate.instant('logs_streams_follow_get_websocket_error', { stream: stream.info.title }));
+      this.CucCloudMessage.error(
+        this.$translate.instant('logs_streams_follow_get_websocket_error', {
+          stream: stream.info.title,
+        }),
+      );
     } else {
       const error = this.CucControllerHelper.constructor.copyToClipboard(url);
       if (error) {
-        this.CucCloudMessage.error(this.$translate.instant('logs_streams_follow_copy_websocket_error', {
-          stream: stream.info.title,
-          url,
-        }));
+        this.CucCloudMessage.error(
+          this.$translate.instant('logs_streams_follow_copy_websocket_error', {
+            stream: stream.info.title,
+            url,
+          }),
+        );
       } else {
-        this.CucCloudMessage.info(this.$translate.instant('logs_streams_follow_copy_websocket_success'));
+        this.CucCloudMessage.info(
+          this.$translate.instant('logs_streams_follow_copy_websocket_success'),
+        );
       }
     }
   }
@@ -118,11 +131,15 @@ class LogsStreamsFollowService {
   }
 
   getAlertType(level) {
-    return this.alertTypeLabelMap[level] ? this.alertTypeLabelMap[level].type : '';
+    return this.alertTypeLabelMap[level]
+      ? this.alertTypeLabelMap[level].type
+      : '';
   }
 
   getAlertLabel(level) {
-    return this.alertTypeLabelMap[level] ? this.alertTypeLabelMap[level].label : '';
+    return this.alertTypeLabelMap[level]
+      ? this.alertTypeLabelMap[level].label
+      : '';
   }
 
   isConnectionClosed() {
@@ -164,63 +181,93 @@ class LogsStreamsFollowService {
       const now = new Date();
       const dateFormatted = now.toISOString();
       const command = `echo -e '<6>1 ${dateFormatted} 149.202.165.20 example.org - - [exampleSDID@8485 user_id="9001"  some_info="foo" some_metric_num="42.0" X-OVH-TOKEN="${token}"] A short RFC 5424 message that helps you identify what is going on'\\n | openssl s_client -quiet -no_ign_eof  -connect ${rfc5424Url}`;
-      const error = this.CucControllerHelper.constructor.copyToClipboard(command);
-      this.handleCommandCopyStatus(error, stream, command, this.testTypeEnum.RFC5424);
+      const error = this.CucControllerHelper.constructor.copyToClipboard(
+        command,
+      );
+      this.handleCommandCopyStatus(
+        error,
+        stream,
+        command,
+        this.testTypeEnum.RFC5424,
+      );
     }
   }
 
   /**
-     * Copies GELF client command line to clipboard. Shows status message on UI.
-     * Shows error if copy failed, success otherwise.
-     * @param {Object} stream
-     * @param {string} gelfUrl
-     */
+   * Copies GELF client command line to clipboard. Shows status message on UI.
+   * Shows error if copy failed, success otherwise.
+   * @param {Object} stream
+   * @param {string} gelfUrl
+   */
   copyLTSVCommandLine(stream, ltsvUrl) {
     const token = this.LogsStreamsService.getStreamToken(stream);
     if (token) {
       const now = new Date();
       const dateFormatted = now.toISOString();
       const command = `echo -e 'X-OVH-TOKEN:${token}\\thost:example.org\\ttime:${dateFormatted}\\tmessage:A short LTSV message that helps you identify what is going on\\tfull_message:Backtrace here more stuff\\tlevel:1\\tuser_id:9001\\tsome_info:foo\\tsome_metric_num:42.0\\0' | openssl s_client -quiet -no_ign_eof  -connect ${ltsvUrl}`;
-      const error = this.CucControllerHelper.constructor.copyToClipboard(command);
-      this.handleCommandCopyStatus(error, stream, command, this.testTypeEnum.LTSV);
+      const error = this.CucControllerHelper.constructor.copyToClipboard(
+        command,
+      );
+      this.handleCommandCopyStatus(
+        error,
+        stream,
+        command,
+        this.testTypeEnum.LTSV,
+      );
     }
   }
 
   /**
-     * Copies GELF client command line to clipboard. Shows status message on UI.
-     * Shows error if copy failed, success otherwise.
-     * @param {Object} stream
-     * @param {string} gelfUrl
-     */
+   * Copies GELF client command line to clipboard. Shows status message on UI.
+   * Shows error if copy failed, success otherwise.
+   * @param {Object} stream
+   * @param {string} gelfUrl
+   */
   copyGELCommandLine(stream, gelfUrl) {
     const token = this.LogsStreamsService.getStreamToken(stream);
     if (token) {
       const now = new Date();
       const timestamp = Math.round(now.getTime() / 1000);
       const command = `echo -e '{"version":"1.1", "host": "example.org", "short_message": "A short GELF message that helps you identify what is going on", "full_message": "Backtrace here more stuff", "timestamp": ${timestamp}, "level": 1, "_user_id": 9001, "_some_info": "foo", "some_metric_num": 42.0, "_X-OVH-TOKEN":"${token}"}\\0' | openssl s_client -quiet -no_ign_eof  -connect ${gelfUrl}`;
-      const error = this.CucControllerHelper.constructor.copyToClipboard(command);
-      this.handleCommandCopyStatus(error, stream, command, this.testTypeEnum.GELF);
+      const error = this.CucControllerHelper.constructor.copyToClipboard(
+        command,
+      );
+      this.handleCommandCopyStatus(
+        error,
+        stream,
+        command,
+        this.testTypeEnum.GELF,
+      );
     }
   }
 
   handleCommandCopyStatus(error, stream, command, type) {
     if (error) {
-      this.CucCloudMessage.error(this.$translate.instant('logs_streams_follow_copy_command_error', {
-        stream: stream.info.title,
-        command,
-        type,
-      }));
+      this.CucCloudMessage.error(
+        this.$translate.instant('logs_streams_follow_copy_command_error', {
+          stream: stream.info.title,
+          command,
+          type,
+        }),
+      );
     } else {
-      this.CucCloudMessage.info(this.$translate.instant('logs_streams_follow_copy_command_success', { type }));
+      this.CucCloudMessage.info(
+        this.$translate.instant('logs_streams_follow_copy_command_success', {
+          type,
+        }),
+      );
     }
   }
 
   /**
-     * opens websocket connection and connects to given stream URL
-     * @param {object} stream
-     */
+   * opens websocket connection and connects to given stream URL
+   * @param {object} stream
+   */
   connectToWebSocket(stream) {
-    const url = this.CucUrlHelper.constructor.findUrl(stream, this.LogsConstants.WEB_SOCKET_URL);
+    const url = this.CucUrlHelper.constructor.findUrl(
+      stream,
+      this.LogsConstants.WEB_SOCKET_URL,
+    );
     if (url) {
       this.webSocket = this.$websocket(url);
       let response;
@@ -255,7 +302,11 @@ class LogsStreamsFollowService {
       });
 
       this.webSocket.onError((err) => {
-        this.CucCloudMessage.error(this.$translate.instant('logs_streams_follow_connection_error', { message: err }));
+        this.CucCloudMessage.error(
+          this.$translate.instant('logs_streams_follow_connection_error', {
+            message: err,
+          }),
+        );
       });
 
       this.webSocket.onClose(() => {
@@ -270,8 +321,14 @@ class LogsStreamsFollowService {
         this.totalMessages = 0;
       });
     } else {
-      this.CucCloudMessage.error(this.$translate.instant('logs_streams_follow_get_websocket_error', { stream: stream.info.title }));
+      this.CucCloudMessage.error(
+        this.$translate.instant('logs_streams_follow_get_websocket_error', {
+          stream: stream.info.title,
+        }),
+      );
     }
   }
 }
-angular.module('managerApp').service('LogsStreamsFollowService', LogsStreamsFollowService);
+angular
+  .module('managerApp')
+  .service('LogsStreamsFollowService', LogsStreamsFollowService);

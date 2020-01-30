@@ -5,12 +5,15 @@
     data-secondary-action="IpLoadBalancerSslCertificateUpdateCtrl.dismiss()"
     data-secondary-label="{{ ::'iplb_ssl_update_cancel' | translate }}"
     data-on-dismiss="IpLoadBalancerSslCertificateUpdateCtrl.dismiss()"
-    data-loading="IpLoadBalancerSslCertificateUpdateCtrl.updateSsl.loading">
+    data-loading="IpLoadBalancerSslCertificateUpdateCtrl.updateSsl.loading"
+>
     <oui-field data-label="{{ ::'iplb_ssl_edit_name' | translate }}">
-        <input class="oui-input"
-               type="text"
-               id="displayName"
-               name="displayName"
-               data-ng-model="IpLoadBalancerSslCertificateUpdateCtrl.displayName">
+        <input
+            class="oui-input"
+            type="text"
+            id="displayName"
+            name="displayName"
+            data-ng-model="IpLoadBalancerSslCertificateUpdateCtrl.displayName"
+        />
     </oui-field>
 </oui-modal>

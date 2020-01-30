@@ -43,24 +43,29 @@ export default class EnterpriseCloudDatabaseServiceGetStartedCtrl {
   }
 
   getMaintenanceWindowConfig() {
-    return (this.data.dayOfWeek && this.data.startTime && this.data.duration) ? {
-      dayOfWeek: this.data.dayOfWeek,
-      startTime: this.data.startTime,
-      duration: this.data.duration,
-    } : undefined;
+    return this.data.dayOfWeek && this.data.startTime && this.data.duration
+      ? {
+          dayOfWeek: this.data.dayOfWeek,
+          startTime: this.data.startTime,
+          duration: this.data.duration,
+        }
+      : undefined;
   }
 
   getMaintenanceWindowToSave() {
     const maintenanceWindow = this.getMaintenanceWindowConfig();
-    return (this.isDefaultMaintenanceWindow(maintenanceWindow) && !this.maintenanceWindow)
-      ? undefined : maintenanceWindow;
+    return this.isDefaultMaintenanceWindow(maintenanceWindow) &&
+      !this.maintenanceWindow
+      ? undefined
+      : maintenanceWindow;
   }
 
   getSecurityGroup(name) {
     const securityGroup = find(this.securityGroups, { name });
     return isUndefined(securityGroup)
-      ? this.enterpriseCloudDatabaseService.createSecurityGroup(this.clusterDetails.id, name)
-        .then(newSecurityGroup => newSecurityGroup.data)
+      ? this.enterpriseCloudDatabaseService
+          .createSecurityGroup(this.clusterDetails.id, name)
+          .then((newSecurityGroup) => newSecurityGroup.data)
       : this.$q.when(securityGroup);
   }
 
@@ -70,17 +75,22 @@ export default class EnterpriseCloudDatabaseServiceGetStartedCtrl {
 
   handleError(error) {
     this.CucCloudMessage.error(
-      this.$translate.instant('enterprise_cloud_database_service_get_started_settings_save_error', {
-        message: get(error, 'data.message'),
-      }),
+      this.$translate.instant(
+        'enterprise_cloud_database_service_get_started_settings_save_error',
+        {
+          message: get(error, 'data.message'),
+        },
+      ),
     );
     this.CucControllerHelper.scrollPageToTop();
   }
 
   isDefaultMaintenanceWindow(maintenanceWindow) {
-    return maintenanceWindow.dayOfWeek === this.regionInfo.maintenanceDayOfWeek
-      && maintenanceWindow.startTime === this.regionInfo.maintenanceStartTime
-      && maintenanceWindow.duration === this.regionInfo.maintenanceDuration;
+    return (
+      maintenanceWindow.dayOfWeek === this.regionInfo.maintenanceDayOfWeek &&
+      maintenanceWindow.startTime === this.regionInfo.maintenanceStartTime &&
+      maintenanceWindow.duration === this.regionInfo.maintenanceDuration
+    );
   }
 
   refreshMessage() {
@@ -92,7 +102,9 @@ export default class EnterpriseCloudDatabaseServiceGetStartedCtrl {
   }
 
   loadMessages() {
-    this.CucCloudMessage.unSubscribe('enterprise-cloud-database.service.get-started');
+    this.CucCloudMessage.unSubscribe(
+      'enterprise-cloud-database.service.get-started',
+    );
     this.messageHandler = this.CucCloudMessage.subscribe(
       'enterprise-cloud-database.service.get-started',
       { onMessage: () => this.refreshMessage() },
@@ -104,24 +116,37 @@ export default class EnterpriseCloudDatabaseServiceGetStartedCtrl {
       return false;
     }
     set(form, '$valid', false);
-    this.CucCloudMessage.flushMessages('enterprise-cloud-database.service.get-started');
+    this.CucCloudMessage.flushMessages(
+      'enterprise-cloud-database.service.get-started',
+    );
     this.loaders.savingSecuritySettings = true;
-    return this.$q.all([
-      this.enterpriseCloudDatabaseService.setClusterDetails(this.clusterDetails.id, {
-        autoBackup: this.clusterDetails.autoBackup,
-        name: this.data.clusterName,
-      }),
-      this.enterpriseCloudDatabaseService.setUserPassword(this.clusterDetails.id,
-        this.data.clusterPassword),
-      this.getSecurityGroup(this.data.securityGroupName)
-        .then(securityGroup => this.enterpriseCloudDatabaseService
-          .createRule(this.clusterDetails.id, securityGroup.id, this.data.rule)),
-    ])
+    return this.$q
+      .all([
+        this.enterpriseCloudDatabaseService.setClusterDetails(
+          this.clusterDetails.id,
+          {
+            autoBackup: this.clusterDetails.autoBackup,
+            name: this.data.clusterName,
+          },
+        ),
+        this.enterpriseCloudDatabaseService.setUserPassword(
+          this.clusterDetails.id,
+          this.data.clusterPassword,
+        ),
+        this.getSecurityGroup(this.data.securityGroupName).then(
+          (securityGroup) =>
+            this.enterpriseCloudDatabaseService.createRule(
+              this.clusterDetails.id,
+              securityGroup.id,
+              this.data.rule,
+            ),
+        ),
+      ])
       .then(() => {
         this.stepperIndex += 1;
         set(form, '$valid', true);
       })
-      .catch(error => this.handleError(error))
+      .catch((error) => this.handleError(error))
       .finally(() => {
         this.loaders.savingSecuritySettings = false;
       });
@@ -129,39 +154,52 @@ export default class EnterpriseCloudDatabaseServiceGetStartedCtrl {
 
   saveSettings(form) {
     set(form, '$valid', false);
-    this.CucCloudMessage.flushMessages('enterprise-cloud-database.service.get-started');
+    this.CucCloudMessage.flushMessages(
+      'enterprise-cloud-database.service.get-started',
+    );
     this.loaders.savingSettings = true;
     const newMaintenanceWindow = this.getMaintenanceWindowToSave();
-    return this.$q.all([
-      this.data.replicaConfig.replicaCount
-        ? this.enterpriseCloudDatabaseService
-          .orderAddons(this.clusterDetails.id, this.data.replicaConfig.replicaCount)
-          .then(() => this.enterpriseCloudDatabaseService.resetHostsCache())
-        : this.$q.when(0),
-      this.enterpriseCloudDatabaseService.setClusterDetails(this.clusterDetails.id, {
-        autoBackup: this.data.dailyBackup,
-        name: this.data.clusterName,
-      }),
-      newMaintenanceWindow
-        ? this.setupMaintenanceWindow(newMaintenanceWindow)
-        : this.$q.when(0),
-    ])
+    return this.$q
+      .all([
+        this.data.replicaConfig.replicaCount
+          ? this.enterpriseCloudDatabaseService
+              .orderAddons(
+                this.clusterDetails.id,
+                this.data.replicaConfig.replicaCount,
+              )
+              .then(() => this.enterpriseCloudDatabaseService.resetHostsCache())
+          : this.$q.when(0),
+        this.enterpriseCloudDatabaseService.setClusterDetails(
+          this.clusterDetails.id,
+          {
+            autoBackup: this.data.dailyBackup,
+            name: this.data.clusterName,
+          },
+        ),
+        newMaintenanceWindow
+          ? this.setupMaintenanceWindow(newMaintenanceWindow)
+          : this.$q.when(0),
+      ])
       .then(() => {
         this.stepperIndex += 1;
         set(form, '$valid', true);
         this.gotoClusterDetails();
       })
-      .catch(error => this.handleError(error))
+      .catch((error) => this.handleError(error))
       .finally(() => {
         this.loaders.savingSettings = false;
       });
   }
 
   setupMaintenanceWindow(maintenanceWindow) {
-    return (this.maintenanceWindow
-      ? this.enterpriseCloudDatabaseService
-        .updateMaintenanceWindow(this.clusterDetails.id, maintenanceWindow)
-      : this.enterpriseCloudDatabaseService
-        .createMaintenanceWindow(this.clusterDetails.id, maintenanceWindow));
+    return this.maintenanceWindow
+      ? this.enterpriseCloudDatabaseService.updateMaintenanceWindow(
+          this.clusterDetails.id,
+          maintenanceWindow,
+        )
+      : this.enterpriseCloudDatabaseService.createMaintenanceWindow(
+          this.clusterDetails.id,
+          maintenanceWindow,
+        );
   }
 }

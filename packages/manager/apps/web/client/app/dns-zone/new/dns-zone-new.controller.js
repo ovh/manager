@@ -1,15 +1,14 @@
 import get from 'lodash/get';
 import set from 'lodash/set';
 
-export default
-class newDnsZoneCtrl {
+export default class newDnsZoneCtrl {
   /**
-     * Constructor
-     * @param $scope
-     * @param Alerter
-     * @param newDnsZone
-     * @param User
-     */
+   * Constructor
+   * @param $scope
+   * @param Alerter
+   * @param newDnsZone
+   * @param User
+   */
   /* @ngInject */
   constructor($scope, $translate, Alerter, newDnsZone, User) {
     this.$scope = $scope;
@@ -43,10 +42,7 @@ class newDnsZoneCtrl {
   generateBc() {
     this.loading.bc = true;
     this.newDnsZone
-      .orderZoneName(
-        this.zoneNameOrder.zoneName,
-        this.zoneNameOrder.minimized,
-      )
+      .orderZoneName(this.zoneNameOrder.zoneName, this.zoneNameOrder.minimized)
       .then((details) => {
         this.order = details;
       })

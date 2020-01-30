@@ -1,5 +1,13 @@
-angular.module('managerApp')
-  .controller('CdaPoolDeleteCtrl', function CdaPoolDeleteCtrl($uibModalInstance, $translate, $stateParams, $scope, CucCloudMessage, OvhApiDedicatedCeph) {
+angular
+  .module('managerApp')
+  .controller('CdaPoolDeleteCtrl', function CdaPoolDeleteCtrl(
+    $uibModalInstance,
+    $translate,
+    $stateParams,
+    $scope,
+    CucCloudMessage,
+    OvhApiDedicatedCeph,
+  ) {
     const self = this;
 
     self.pool = {};
@@ -16,17 +24,29 @@ angular.module('managerApp')
 
     self.deletePool = function deletePool() {
       self.saving = true;
-      OvhApiDedicatedCeph.Pool().v6().delete({
-        serviceName: $stateParams.serviceName,
-        poolName: self.pool.name,
-      }).$promise.then((result) => {
-        $uibModalInstance.close({ taskId: result.data });
-        CucCloudMessage.success($translate.instant('cda_pool_delete_success'));
-      }).catch((error) => {
-        CucCloudMessage.error([$translate.instant('ceph_common_error'), (error.data && error.data.message) || ''].join(' '));
-      }).finally(() => {
-        self.saving = false;
-      });
+      OvhApiDedicatedCeph.Pool()
+        .v6()
+        .delete({
+          serviceName: $stateParams.serviceName,
+          poolName: self.pool.name,
+        })
+        .$promise.then((result) => {
+          $uibModalInstance.close({ taskId: result.data });
+          CucCloudMessage.success(
+            $translate.instant('cda_pool_delete_success'),
+          );
+        })
+        .catch((error) => {
+          CucCloudMessage.error(
+            [
+              $translate.instant('ceph_common_error'),
+              (error.data && error.data.message) || '',
+            ].join(' '),
+          );
+        })
+        .finally(() => {
+          self.saving = false;
+        });
     };
 
     init();

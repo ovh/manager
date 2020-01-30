@@ -1,6 +1,4 @@
-import {
-  ENTERPRISE_CLOUD_DATABASE_RULE_PATTERN,
-} from './rule.constants';
+import { ENTERPRISE_CLOUD_DATABASE_RULE_PATTERN } from './rule.constants';
 
 export default class EnterpriseCloudDatabasePasswordCtrl {
   /* @ngInject */

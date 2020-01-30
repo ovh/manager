@@ -15,18 +15,27 @@ export default class SignUpDetailsCtrl {
       model: (...args) => {
         if (args.length) {
           const newPhoneModel = args[0];
-          const phonePrefix = get(PHONE_PREFIX, this.signUpFormCtrl.model.phoneCountry);
+          const phonePrefix = get(
+            PHONE_PREFIX,
+            this.signUpFormCtrl.model.phoneCountry,
+          );
           this.phoneModel.value = newPhoneModel;
-          this.signUpFormCtrl.model.phone = SignUpDetailsCtrl
-            .cleanPhoneNumber(newPhoneModel, phonePrefix);
+          this.signUpFormCtrl.model.phone = SignUpDetailsCtrl.cleanPhoneNumber(
+            newPhoneModel,
+            phonePrefix,
+          );
         }
         return this.phoneModel.value;
       },
       validator: {
         test: () => {
-          if (this.signUpFormCtrl.rules && this.signUpFormCtrl.rules.phone.regularExpression) {
-            return new RegExp(this.signUpFormCtrl.rules.phone.regularExpression)
-              .test(this.signUpFormCtrl.model.phone);
+          if (
+            this.signUpFormCtrl.rules &&
+            this.signUpFormCtrl.rules.phone.regularExpression
+          ) {
+            return new RegExp(
+              this.signUpFormCtrl.rules.phone.regularExpression,
+            ).test(this.signUpFormCtrl.model.phone);
           }
           return true;
         },
@@ -38,18 +47,26 @@ export default class SignUpDetailsCtrl {
       model: (...args) => {
         if (args.length) {
           const newZipModel = args[0];
-          this.zipModel.value = newZipModel
-            .replace(get(this.signUpFormCtrl.rules, 'zip.prefix'), '');
-          this.signUpFormCtrl.model.zip = SignUpDetailsCtrl
-            .cleanZipCode(newZipModel, get(this.signUpFormCtrl.rules, 'zip.prefix'));
+          this.zipModel.value = newZipModel.replace(
+            get(this.signUpFormCtrl.rules, 'zip.prefix'),
+            '',
+          );
+          this.signUpFormCtrl.model.zip = SignUpDetailsCtrl.cleanZipCode(
+            newZipModel,
+            get(this.signUpFormCtrl.rules, 'zip.prefix'),
+          );
         }
         return this.zipModel.value;
       },
       validator: {
         test: () => {
-          if (this.signUpFormCtrl.rules && this.signUpFormCtrl.rules.zip.regularExpression) {
-            return new RegExp(this.signUpFormCtrl.rules.zip.regularExpression)
-              .test(this.signUpFormCtrl.model.zip);
+          if (
+            this.signUpFormCtrl.rules &&
+            this.signUpFormCtrl.rules.zip.regularExpression
+          ) {
+            return new RegExp(
+              this.signUpFormCtrl.rules.zip.regularExpression,
+            ).test(this.signUpFormCtrl.model.zip);
           }
           return true;
         },
@@ -73,7 +90,9 @@ export default class SignUpDetailsCtrl {
         const alternativePhonePrefix = `00${phonePrefix.replace('+', '')}`;
         if (startsWith(phoneNumber, alternativePhonePrefix)) {
           // check if input value begin with 00${prefix}
-          phoneNumber = `+${phonePrefix}${phoneNumber.slice(alternativePhonePrefix.length)}`;
+          phoneNumber = `+${phonePrefix}${phoneNumber.slice(
+            alternativePhonePrefix.length,
+          )}`;
         } else if (!startsWith(phoneNumber, `+${phonePrefix}`)) {
           // or not by the phonePrefix
           phoneNumber = `+${phonePrefix}${phoneNumber}`;
@@ -98,7 +117,6 @@ export default class SignUpDetailsCtrl {
 
   /* -----  End of Helpers  ------ */
 
-
   /* =============================
   =            Events            =
   ============================== */
@@ -117,32 +135,32 @@ export default class SignUpDetailsCtrl {
   ================================= */
 
   onCountryChange() {
-    return this.signUpFormCtrl
-      .getRules()
-      .then(() => {
-        const changePhoneCountry = (!this.signUpFormCtrl.model.phoneCountry
-          || this.signUpFormCtrl.model.phoneCountry === 'UNKNOWN')
-          && this.signUpFormCtrl.model.country;
+    return this.signUpFormCtrl.getRules().then(() => {
+      const changePhoneCountry =
+        (!this.signUpFormCtrl.model.phoneCountry ||
+          this.signUpFormCtrl.model.phoneCountry === 'UNKNOWN') &&
+        this.signUpFormCtrl.model.country;
 
-        if (changePhoneCountry) {
-          this.signUpFormCtrl.model.phoneCountry = this.signUpFormCtrl.model.country;
-        }
-      });
+      if (changePhoneCountry) {
+        this.signUpFormCtrl.model.phoneCountry = this.signUpFormCtrl.model.country;
+      }
+    });
   }
 
   onPhoneCountryChange() {
-    return this.signUpFormCtrl
-      .getRules()
-      .then(() => {
-        // When phone country change, the pattern change too.
-        // But... the validation is not done automatically.
-        // So... be sure that the phone validation is done.
-        const phoneModel = this.formCtrl.phone;
-        const modelValue = phoneModel.$modelValue;
-        const viewValue = phoneModel.$viewValue;
-        const phoneModelValid = phoneModel.$validators.pattern(modelValue, viewValue);
-        phoneModel.$setValidity('pattern', phoneModelValid);
-      });
+    return this.signUpFormCtrl.getRules().then(() => {
+      // When phone country change, the pattern change too.
+      // But... the validation is not done automatically.
+      // So... be sure that the phone validation is done.
+      const phoneModel = this.formCtrl.phone;
+      const modelValue = phoneModel.$modelValue;
+      const viewValue = phoneModel.$viewValue;
+      const phoneModelValid = phoneModel.$validators.pattern(
+        modelValue,
+        viewValue,
+      );
+      phoneModel.$setValidity('pattern', phoneModelValid);
+    });
   }
 
   /* -----  End of Callbacks  ------ */
@@ -153,26 +171,37 @@ export default class SignUpDetailsCtrl {
 
   $onInit() {
     // clean phone number
-    const phonePrefix = get(PHONE_PREFIX, this.signUpFormCtrl.model.phoneCountry);
+    const phonePrefix = get(
+      PHONE_PREFIX,
+      this.signUpFormCtrl.model.phoneCountry,
+    );
     this.phoneModel.value = this.signUpFormCtrl.model.phone;
-    this.phoneModel.model(SignUpDetailsCtrl.cleanPhoneNumber(
-      this.signUpFormCtrl.model.phone,
-      phonePrefix,
-    ));
+    this.phoneModel.model(
+      SignUpDetailsCtrl.cleanPhoneNumber(
+        this.signUpFormCtrl.model.phone,
+        phonePrefix,
+      ),
+    );
 
     // clean zip code
     this.zipModel.value = this.signUpFormCtrl.model.zip;
-    this.zipModel.model(SignUpDetailsCtrl.cleanZipCode(
-      this.signUpFormCtrl.model.zip,
-      get(this.signUpFormCtrl.rules, 'zip.prefix'),
-    ));
+    this.zipModel.model(
+      SignUpDetailsCtrl.cleanZipCode(
+        this.signUpFormCtrl.model.zip,
+        get(this.signUpFormCtrl.rules, 'zip.prefix'),
+      ),
+    );
 
     // set specific model callbacks
     if (this.signUpFormCtrl.model.$country) {
-      this.signUpFormCtrl.model.$country.setCallback(this.onCountryChange.bind(this));
+      this.signUpFormCtrl.model.$country.setCallback(
+        this.onCountryChange.bind(this),
+      );
     }
     if (this.signUpFormCtrl.model.$phoneCountry) {
-      this.signUpFormCtrl.model.$phoneCountry.setCallback(this.onPhoneCountryChange.bind(this));
+      this.signUpFormCtrl.model.$phoneCountry.setCallback(
+        this.onPhoneCountryChange.bind(this),
+      );
     }
   }
 

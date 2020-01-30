@@ -3,10 +3,7 @@ import Stream from '../../stream.class';
 
 export default class PciStreamsStreamReplayRetentionController {
   /* @ngInject */
-  constructor(
-    $translate,
-    PciProjectStreamService,
-  ) {
+  constructor($translate, PciProjectStreamService) {
     this.$translate = $translate;
     this.PciProjectStreamService = PciProjectStreamService;
   }
@@ -22,17 +19,25 @@ export default class PciStreamsStreamReplayRetentionController {
   updateStream() {
     this.editStream.setRetentionFromHours(this.replayValue);
     this.isLoading = true;
-    return this.PciProjectStreamService
-      .update(this.projectId, this.editStream)
-      .then(() => this.goBack(this.$translate.instant(
-        'pci_projects_project_streams_stream_replay_retention_success_message',
-      )))
-      .catch(err => this.goBack(this.$translate.instant(
-        'pci_projects_project_streams_stream_replay_retention_error_replay_retention',
-        {
-          message: get(err, 'data.message', null),
-        },
-      ), 'error'))
+    return this.PciProjectStreamService.update(this.projectId, this.editStream)
+      .then(() =>
+        this.goBack(
+          this.$translate.instant(
+            'pci_projects_project_streams_stream_replay_retention_success_message',
+          ),
+        ),
+      )
+      .catch((err) =>
+        this.goBack(
+          this.$translate.instant(
+            'pci_projects_project_streams_stream_replay_retention_error_replay_retention',
+            {
+              message: get(err, 'data.message', null),
+            },
+          ),
+          'error',
+        ),
+      )
       .finally(() => {
         this.isLoading = false;
       });

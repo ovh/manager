@@ -1,47 +1,66 @@
 <div class="form-group">
     <div data-ng-if="!loading.durations && durations.available.length">
-        <strong data-ng-if="isMonthlyVps()"
-                data-translate="ip_order_select_duration">
+        <strong
+            data-ng-if="isMonthlyVps()"
+            data-translate="ip_order_select_duration"
+        >
         </strong>
-        <strong data-ng-if="!isMonthlyVps()"
-                data-translate="ip_order_select_activation">
+        <strong
+            data-ng-if="!isMonthlyVps()"
+            data-translate="ip_order_select_activation"
+        >
         </strong>
         <div data-ng-repeat="duration in durations.available">
             <div class="radio">
                 <label>
-                    <input type="radio"
-                           data-ng-model="model.duration"
-                           data-ng-disabled="loading.prices || durations.available.length === 1"
-                           value="{{duration}}">
-                    <span data-ng-if="!isMonthlyVps()"
-                          data-ng-bind="('ip_order_ipnbr' | translate) + ' ' + model.params.number ">
+                    <input
+                        type="radio"
+                        data-ng-model="model.duration"
+                        data-ng-disabled="loading.prices || durations.available.length === 1"
+                        value="{{duration}}"
+                    />
+                    <span
+                        data-ng-if="!isMonthlyVps()"
+                        data-ng-bind="('ip_order_ipnbr' | translate) + ' ' + model.params.number "
+                    >
                     </span>
-                    <span data-ng-if="isMonthlyVps()"
-                          data-ng-bind-html="duration | wucDuration:'longDate'">
+                    <span
+                        data-ng-if="isMonthlyVps()"
+                        data-ng-bind-html="duration | wucDuration:'longDate'"
+                    >
                     </span>
-                    <span data-ng-if="model.service.serviceType === 'DEDICATED'"
-                          data-ng-bind="(model.params.blockSize > 1 ? 'ip_order_ip_count_other' : 'ip_order_ip_count_1') | translate">
-                    </span> :
-                    <span data-ng-bind-html="durations.details[duration].prices | ducPrice:user.ovhSubsidiary"></span>
-                    <oui-spinner data-ng-hide="durations.details[duration]"
-                                 data-size="s">
+                    <span
+                        data-ng-if="model.service.serviceType === 'DEDICATED'"
+                        data-ng-bind="(model.params.blockSize > 1 ? 'ip_order_ip_count_other' : 'ip_order_ip_count_1') | translate"
+                    >
+                    </span>
+                    :
+                    <span
+                        data-ng-bind-html="durations.details[duration].prices | ducPrice:user.ovhSubsidiary"
+                    ></span>
+                    <oui-spinner
+                        data-ng-hide="durations.details[duration]"
+                        data-size="s"
+                    >
                     </oui-spinner>
                 </label>
             </div>
         </div>
 
         <div data-ng-show="orderableIp.professionalUsePrice">
-            <p data-ng-bind-html="'ip_order_no_professionaluse_1' | translate:{ t0: orderableIp.professionalUsePrice }"></p>
+            <p
+                data-ng-bind-html="'ip_order_no_professionaluse_1' | translate:{ t0: orderableIp.professionalUsePrice }"
+            ></p>
             <p data-translate="ip_order_no_professionaluse_2"></p>
         </div>
 
-        <p class="font-italic text-muted"
-           data-translate="ip_order_free_activation_fee">
-        </p>
+        <p
+            class="font-italic text-muted"
+            data-translate="ip_order_free_activation_fee"
+        ></p>
     </div>
 
-    <div class="text-center"
-         data-ng-if="loading.durations">
+    <div class="text-center" data-ng-if="loading.durations">
         <oui-spinner></oui-spinner>
     </div>
 </div>

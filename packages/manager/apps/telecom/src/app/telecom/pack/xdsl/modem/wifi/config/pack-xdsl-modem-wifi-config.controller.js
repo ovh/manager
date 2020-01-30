@@ -7,8 +7,19 @@ import map from 'lodash/map';
 import set from 'lodash/set';
 import some from 'lodash/some';
 
-angular.module('managerApp')
-  .controller('XdslModemWifiConfigCtrl', function XdslModemWifiConfigCtrl($state, $q, $timeout, $stateParams, $translate, TucToast, OvhApiXdsl, TucPackXdslModemMediator, OvhApiXdslModemAvailableWLANChannel) {
+angular
+  .module('managerApp')
+  .controller('XdslModemWifiConfigCtrl', function XdslModemWifiConfigCtrl(
+    $state,
+    $q,
+    $timeout,
+    $stateParams,
+    $translate,
+    TucToast,
+    OvhApiXdsl,
+    TucPackXdslModemMediator,
+    OvhApiXdslModemAvailableWLANChannel,
+  ) {
     const self = this;
     self.mediator = TucPackXdslModemMediator;
     self.wifi = null;
@@ -55,31 +66,56 @@ angular.module('managerApp')
         wifiTmp.securityKey = self.wifi.securityKey;
       }
 
-      OvhApiXdsl.Modem().Wifi().v6().update({
-        xdslId: $stateParams.serviceName,
-        wifiName: this.wifi.wifiName,
-      }, wifiTmp).$promise.then((data) => {
-        TucToast.success($translate.instant(self.wifis.length > 1 ? 'xdsl_modem_wifi_config_success' : 'xdsl_modem_wifi_config_success_single'));
+      OvhApiXdsl.Modem()
+        .Wifi()
+        .v6()
+        .update(
+          {
+            xdslId: $stateParams.serviceName,
+            wifiName: this.wifi.wifiName,
+          },
+          wifiTmp,
+        )
+        .$promise.then(
+          (data) => {
+            TucToast.success(
+              $translate.instant(
+                self.wifis.length > 1
+                  ? 'xdsl_modem_wifi_config_success'
+                  : 'xdsl_modem_wifi_config_success_single',
+              ),
+            );
 
-        if (self.wifis.length > 1) {
-          self.resetKey();
+            if (self.wifis.length > 1) {
+              self.resetKey();
 
-          // replace wifi in list
-          self.wifis.splice(findIndex(self.wifis, {
-            wifiName: self.wifi.wifiName,
-          }), 1, self.wifi);
-          self.wifi = null;
-        } else {
-          $timeout(() => {
-            $state.go('telecom.packs.pack.xdsl.modem');
-          }, 2000);
-        }
-        self.mediator.tasks.changeModemConfigWLAN = true;
-        return data;
-      }, (err) => {
-        TucToast.error([$translate.instant('xdsl_modem_wifi_write_error'), get(err, 'data.message')].join(' '));
-        return $q.reject(err);
-      });
+              // replace wifi in list
+              self.wifis.splice(
+                findIndex(self.wifis, {
+                  wifiName: self.wifi.wifiName,
+                }),
+                1,
+                self.wifi,
+              );
+              self.wifi = null;
+            } else {
+              $timeout(() => {
+                $state.go('telecom.packs.pack.xdsl.modem');
+              }, 2000);
+            }
+            self.mediator.tasks.changeModemConfigWLAN = true;
+            return data;
+          },
+          (err) => {
+            TucToast.error(
+              [
+                $translate.instant('xdsl_modem_wifi_write_error'),
+                get(err, 'data.message'),
+              ].join(' '),
+            );
+            return $q.reject(err);
+          },
+        );
     };
 
     self.cancelConfig = function cancelConfig() {
@@ -99,7 +135,10 @@ angular.module('managerApp')
       }
     };
 
-    self.hasConfigFieldChanged = function hasConfigFieldChanged(field, originalWifi) {
+    self.hasConfigFieldChanged = function hasConfigFieldChanged(
+      field,
+      originalWifi,
+    ) {
       let original = originalWifi;
       if (!original) {
         original = find(self.wifis, {
@@ -115,7 +154,9 @@ angular.module('managerApp')
         wifiName: self.wifi.wifiName,
       });
 
-      return some(flatten([wifiFields, ['key', 'key2']]), field => self.hasConfigFieldChanged(field, original));
+      return some(flatten([wifiFields, ['key', 'key2']]), (field) =>
+        self.hasConfigFieldChanged(field, original),
+      );
     };
 
     /**
@@ -130,50 +171,71 @@ angular.module('managerApp')
     self.setSelectedWifi = function setSelectedWifi(wifi) {
       // Call API to load available channel for selected wifi
       if (!wifi.guest) {
-        OvhApiXdslModemAvailableWLANChannel.v6().get({
-          xdslId: $stateParams.serviceName,
-          frequency: wifi.frequency,
-        }).$promise.then((channelList) => {
-          self.fields.channelMode = flatten(['Auto', channelList]);
-        });
+        OvhApiXdslModemAvailableWLANChannel.v6()
+          .get({
+            xdslId: $stateParams.serviceName,
+            frequency: wifi.frequency,
+          })
+          .$promise.then((channelList) => {
+            self.fields.channelMode = flatten(['Auto', channelList]);
+          });
       }
       self.wifi = angular.copy(wifi);
     };
 
     function getModem() {
-      return OvhApiXdsl.Modem().v6().get({
-        xdslId: $stateParams.serviceName,
-      }).$promise;
+      return OvhApiXdsl.Modem()
+        .v6()
+        .get({
+          xdslId: $stateParams.serviceName,
+        }).$promise;
     }
 
     function getWifi() {
-      return OvhApiXdsl.Modem().Wifi().Aapi().getWifiDetails({
-        xdslId: $stateParams.serviceName,
-      }).$promise;
+      return OvhApiXdsl.Modem()
+        .Wifi()
+        .Aapi()
+        .getWifiDetails({
+          xdslId: $stateParams.serviceName,
+        }).$promise;
     }
 
     self.$onInit = function $onInit() {
-      return $q.all({
-        modem: getModem(),
-        wifi: getWifi(),
-      }).then((response) => {
-        self.modem = response.modem;
+      return $q
+        .all({
+          modem: getModem(),
+          wifi: getWifi(),
+        })
+        .then(
+          (response) => {
+            self.modem = response.modem;
 
-        self.wifis = map(response.wifi, (wifi) => {
-          set(wifi, 'channelCustom', wifi.channelMode === 'Auto' ? 'Auto' : wifi.channel);
-          return wifi;
-        }).sort(wifiA => (wifiA.wifiName === 'defaultWIFI' ? -1 : 1));
+            self.wifis = map(response.wifi, (wifi) => {
+              set(
+                wifi,
+                'channelCustom',
+                wifi.channelMode === 'Auto' ? 'Auto' : wifi.channel,
+              );
+              return wifi;
+            }).sort((wifiA) => (wifiA.wifiName === 'defaultWIFI' ? -1 : 1));
 
-        if (self.wifis.length === 1) {
-          self.setSelectedWifi(find(response.wifi, {
-            wifiName: 'defaultWIFI',
-          }));
-        }
+            if (self.wifis.length === 1) {
+              self.setSelectedWifi(
+                find(response.wifi, {
+                  wifiName: 'defaultWIFI',
+                }),
+              );
+            }
 
-        self.fields.securityType = self.modem.model === 'TG799VAC' ? ['None', 'WPA2', 'WPAandWPA2'] : ['None', 'WEP', 'WPA', 'WPA2', 'WPAandWPA2'];
-      }, (err) => {
-        TucToast.error($translate.instant('xdsl_modem_wifi_read_error'));
-        return $q.reject(err);
-      });
+            self.fields.securityType =
+              self.modem.model === 'TG799VAC'
+                ? ['None', 'WPA2', 'WPAandWPA2']
+                : ['None', 'WEP', 'WPA', 'WPA2', 'WPAandWPA2'];
+          },
+          (err) => {
+            TucToast.error($translate.instant('xdsl_modem_wifi_read_error'));
+            return $q.reject(err);
+          },
+        );
     };
   });

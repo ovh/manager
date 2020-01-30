@@ -1,7 +1,14 @@
 angular.module('App').controller(
   'controllers.Hosting.Runtimes.delete',
   class HostingRuntimesDeleteCtrl {
-    constructor($scope, $stateParams, $translate, Alerter, HostingRuntimes, HOSTING_RUNTIME) {
+    constructor(
+      $scope,
+      $stateParams,
+      $translate,
+      Alerter,
+      HostingRuntimes,
+      HOSTING_RUNTIME,
+    ) {
       this.$scope = $scope;
       this.$stateParams = $stateParams;
       this.$translate = $translate;
@@ -32,8 +39,8 @@ angular.module('App').controller(
         })
         .catch((err) => {
           this.Alerter.error(
-            this.$translate.instant('hosting_tab_RUNTIMES_delete_error')
-              + err.message,
+            this.$translate.instant('hosting_tab_RUNTIMES_delete_error') +
+              err.message,
             this.$scope.alerts.main,
           );
         })

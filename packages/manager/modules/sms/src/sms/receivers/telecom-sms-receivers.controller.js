@@ -20,8 +20,18 @@ import removeController from './remove/telecom-sms-receivers-remove.controller';
 export default class {
   /* @ngInject */
   constructor(
-    $scope, $stateParams, $q, $filter, $uibModal, $translate, $timeout,
-    OvhApiSms, TucCsvParser, TucToast, TucToastError, SMS_URL,
+    $scope,
+    $stateParams,
+    $q,
+    $filter,
+    $uibModal,
+    $translate,
+    $timeout,
+    OvhApiSms,
+    TucCsvParser,
+    TucToast,
+    TucToastError,
+    SMS_URL,
   ) {
     this.$filter = $filter;
     this.$q = $q;
@@ -71,14 +81,17 @@ export default class {
     };
 
     this.receivers.isLoading = true;
-    return this.fetchReceivers().then((receivers) => {
-      this.receivers.raw = angular.copy(receivers);
-      this.sortReceivers();
-    }).catch((err) => {
-      this.TucToastError(err);
-    }).finally(() => {
-      this.receivers.isLoading = false;
-    });
+    return this.fetchReceivers()
+      .then((receivers) => {
+        this.receivers.raw = angular.copy(receivers);
+        this.sortReceivers();
+      })
+      .catch((err) => {
+        this.TucToastError(err);
+      })
+      .finally(() => {
+        this.receivers.isLoading = false;
+      });
   }
 
   /**
@@ -86,24 +99,32 @@ export default class {
    * @return {Promise}
    */
   fetchReceivers() {
-    return this.api.sms.receivers.query({
-      serviceName: this.$stateParams.serviceName,
-    }).$promise.then((receiversIds) => {
-      this.slot.raw = receiversIds;
-
-      // slotId isn't auto generated :( and must be in the range 1…9.
-      for (let i = 1; i <= this.slot.threshold; i += 1) {
-        if (indexOf(this.slot.raw, i) === -1) {
-          this.slot.available.push(i);
-        }
-      }
-      this.slot.count = receiversIds.length;
-      this.slot.isFull = this.slot.count >= this.slot.threshold;
-      return this.$q.all(map(receiversIds, slotId => this.api.sms.receivers.get({
+    return this.api.sms.receivers
+      .query({
         serviceName: this.$stateParams.serviceName,
-        slotId,
-      }).$promise));
-    });
+      })
+      .$promise.then((receiversIds) => {
+        this.slot.raw = receiversIds;
+
+        // slotId isn't auto generated :( and must be in the range 1…9.
+        for (let i = 1; i <= this.slot.threshold; i += 1) {
+          if (indexOf(this.slot.raw, i) === -1) {
+            this.slot.available.push(i);
+          }
+        }
+        this.slot.count = receiversIds.length;
+        this.slot.isFull = this.slot.count >= this.slot.threshold;
+        return this.$q.all(
+          map(
+            receiversIds,
+            (slotId) =>
+              this.api.sms.receivers.get({
+                serviceName: this.$stateParams.serviceName,
+                slotId,
+              }).$promise,
+          ),
+        );
+      });
   }
 
   /**
@@ -139,7 +160,10 @@ export default class {
   getSelection() {
     return filter(
       this.receivers.raw,
-      receiver => receiver && this.receivers.selected && this.receivers.selected[receiver.slotId],
+      (receiver) =>
+        receiver &&
+        this.receivers.selected &&
+        this.receivers.selected[receiver.slotId],
     );
   }
 
@@ -151,14 +175,17 @@ export default class {
     this.api.sms.receivers.resetAllCache();
     this.slot.available = [];
     this.receivers.isLoading = true;
-    return this.fetchReceivers().then((receivers) => {
-      this.receivers.raw = angular.copy(receivers);
-      this.sortReceivers();
-    }).catch((err) => {
-      this.TucToastError(err);
-    }).finally(() => {
-      this.receivers.isLoading = false;
-    });
+    return this.fetchReceivers()
+      .then((receivers) => {
+        this.receivers.raw = angular.copy(receivers);
+        this.sortReceivers();
+      })
+      .catch((err) => {
+        this.TucToastError(err);
+      })
+      .finally(() => {
+        this.receivers.isLoading = false;
+      });
   }
 
   /**
@@ -172,11 +199,18 @@ export default class {
       controllerAs: 'ReceiversAddCtrl',
       resolve: { slot: () => this.slot },
     });
-    modal.result.then(() => this.refresh(), (error) => {
-      if (error && error.type === 'API') {
-        this.TucToast.error(this.$translate.instant('sms_receivers_add_receiver_ko', { error: get(error, 'msg.data.message') }));
-      }
-    });
+    modal.result.then(
+      () => this.refresh(),
+      (error) => {
+        if (error && error.type === 'API') {
+          this.TucToast.error(
+            this.$translate.instant('sms_receivers_add_receiver_ko', {
+              error: get(error, 'msg.data.message'),
+            }),
+          );
+        }
+      },
+    );
   }
 
   /**
@@ -191,11 +225,18 @@ export default class {
       controllerAs: 'ReceiversEditCtrl',
       resolve: { receiver: () => receiver },
     });
-    modal.result.then(() => this.refresh(), (error) => {
-      if (error && error.type === 'API') {
-        this.TucToast.error(this.$translate.instant('sms_receivers_edit_receiver_ko', { error: get(error, 'msg.data.message') }));
-      }
-    });
+    modal.result.then(
+      () => this.refresh(),
+      (error) => {
+        if (error && error.type === 'API') {
+          this.TucToast.error(
+            this.$translate.instant('sms_receivers_edit_receiver_ko', {
+              error: get(error, 'msg.data.message'),
+            }),
+          );
+        }
+      },
+    );
   }
 
   /**
@@ -234,23 +275,31 @@ export default class {
       controllerAs: 'ReceiversCleanCtrl',
       resolve: { receiver: () => receiver },
     });
-    modal.result.then((response) => {
-      if (has(response, 'taskId')) {
-        this.receivers.isCleaning = true;
-        return this.api.sms.task.poll(this.$scope, {
-          serviceName: this.$stateParams.serviceName,
-          taskId: response.taskId,
-        }).finally(() => {
-          this.receivers.isCleaning = false;
-          this.refresh();
-        });
-      }
-      return response;
-    }).catch((error) => {
-      if (error && error.type === 'API') {
-        this.TucToast.error(this.$translate.instant('sms_receivers_clean_receiver_ko', { error: get(error, 'msg.data.message') }));
-      }
-    });
+    modal.result
+      .then((response) => {
+        if (has(response, 'taskId')) {
+          this.receivers.isCleaning = true;
+          return this.api.sms.task
+            .poll(this.$scope, {
+              serviceName: this.$stateParams.serviceName,
+              taskId: response.taskId,
+            })
+            .finally(() => {
+              this.receivers.isCleaning = false;
+              this.refresh();
+            });
+        }
+        return response;
+      })
+      .catch((error) => {
+        if (error && error.type === 'API') {
+          this.TucToast.error(
+            this.$translate.instant('sms_receivers_clean_receiver_ko', {
+              error: get(error, 'msg.data.message'),
+            }),
+          );
+        }
+      });
     return modal;
   }
 
@@ -260,23 +309,30 @@ export default class {
    * @return {Promise}
    */
   getCsvData(receiver) {
-    return this.api.sms.receivers.getCsv({
-      serviceName: this.$stateParams.serviceName,
-      slotId: receiver.slotId,
-    }).$promise.then((csv) => {
-      this.TucCsvParser.setColumnSeparator(';');
-      this.TucCsvParser.setDetectTypes(false);
-      try {
-        this.csv.data = this.TucCsvParser.parse(csv.data);
-      } catch (err) {
-        this.csv.data = null;
-        this.TucToast.error(this.$translate.instant('sms_receivers_read_receiver_parse_ko', { error: get(err, 'msg.data.message') }));
-      }
-      return this.csv.data;
-    }).catch((err) => {
-      this.receivers.isReading = false;
-      this.TucToastError(err);
-    });
+    return this.api.sms.receivers
+      .getCsv({
+        serviceName: this.$stateParams.serviceName,
+        slotId: receiver.slotId,
+      })
+      .$promise.then((csv) => {
+        this.TucCsvParser.setColumnSeparator(';');
+        this.TucCsvParser.setDetectTypes(false);
+        try {
+          this.csv.data = this.TucCsvParser.parse(csv.data);
+        } catch (err) {
+          this.csv.data = null;
+          this.TucToast.error(
+            this.$translate.instant('sms_receivers_read_receiver_parse_ko', {
+              error: get(err, 'msg.data.message'),
+            }),
+          );
+        }
+        return this.csv.data;
+      })
+      .catch((err) => {
+        this.receivers.isReading = false;
+        this.TucToastError(err);
+      });
   }
 
   /**
@@ -284,11 +340,13 @@ export default class {
    * @param {Object} receiver
    */
   setFilename(receiver) {
-    return `${kebabCase([
-      this.$stateParams.serviceName,
-      this.$translate.instant('sms_tabs_contacts'),
-      receiver.description,
-    ].join())}.csv`;
+    return `${kebabCase(
+      [
+        this.$stateParams.serviceName,
+        this.$translate.instant('sms_tabs_contacts'),
+        receiver.description,
+      ].join(),
+    )}.csv`;
   }
 
   /**
@@ -303,11 +361,18 @@ export default class {
       controllerAs: 'ReceiversRemoveCtrl',
       resolve: { receiver: () => receiver },
     });
-    modal.result.then(() => this.refresh(), (error) => {
-      if (error && error.type === 'API') {
-        this.TucToast.error(this.$translate.instant('sms_receivers_remove_receiver_ko', { error: get(error, 'msg.data.message') }));
-      }
-    });
+    modal.result.then(
+      () => this.refresh(),
+      (error) => {
+        if (error && error.type === 'API') {
+          this.TucToast.error(
+            this.$translate.instant('sms_receivers_remove_receiver_ko', {
+              error: get(error, 'msg.data.message'),
+            }),
+          );
+        }
+      },
+    );
   }
 
   /**
@@ -316,20 +381,29 @@ export default class {
    */
   deleteSelectedReceivers() {
     const receivers = this.getSelection();
-    const queries = receivers.map(receiver => this.api.sms.receivers.delete({
-      serviceName: this.$stateParams.serviceName,
-      slotId: receiver.slotId,
-    }).$promise);
+    const queries = receivers.map(
+      (receiver) =>
+        this.api.sms.receivers.delete({
+          serviceName: this.$stateParams.serviceName,
+          slotId: receiver.slotId,
+        }).$promise,
+    );
     this.receivers.isDeleting = true;
     queries.push(this.$timeout(angular.noop, 500)); // avoid clipping
-    this.TucToast.info(this.$translate.instant('sms_receivers_delete_receivers_success'));
-    return this.$q.all(queries).then(() => {
-      this.receivers.selected = {};
-      return this.refresh();
-    }).catch((err) => {
-      this.TucToastError(err);
-    }).finally(() => {
-      this.receivers.isDeleting = false;
-    });
+    this.TucToast.info(
+      this.$translate.instant('sms_receivers_delete_receivers_success'),
+    );
+    return this.$q
+      .all(queries)
+      .then(() => {
+        this.receivers.selected = {};
+        return this.refresh();
+      })
+      .catch((err) => {
+        this.TucToastError(err);
+      })
+      .finally(() => {
+        this.receivers.isDeleting = false;
+      });
   }
 }

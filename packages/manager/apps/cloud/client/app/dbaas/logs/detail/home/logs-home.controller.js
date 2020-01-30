@@ -1,8 +1,20 @@
 import max from 'lodash/max';
 
 class LogsHomeCtrl {
-  constructor($q, $scope, $state, $stateParams, $translate, bytesFilter, CucControllerHelper,
-    LogsConstants, LogsHomeService, LogsTokensService, LogsHelperService, LogsDetailService) {
+  constructor(
+    $q,
+    $scope,
+    $state,
+    $stateParams,
+    $translate,
+    bytesFilter,
+    CucControllerHelper,
+    LogsConstants,
+    LogsHomeService,
+    LogsTokensService,
+    LogsHelperService,
+    LogsDetailService,
+  ) {
     this.$q = $q;
     this.$scope = $scope;
     this.$state = $state;
@@ -20,20 +32,23 @@ class LogsHomeCtrl {
 
   $onInit() {
     this.service = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () => this.LogsDetailService.getServiceDetails(this.serviceName)
-        .then((service) => {
-          this.initLoaders();
-          this.isAccountDisabled = this.LogsHelperService.isAccountDisabled(service);
-          this.lastUpdatedDate = moment(service.updatedAt).format('LL');
-          if (service.state === this.LogsConstants.SERVICE_STATE_TO_CONFIG) {
-            this.goToAccountSetupPage();
-          } else {
-            this.dataUsageGraphData = this.LogsConstants.DATA_USAGE_GRAPH_CONFIGURATION;
-            this.runLoaders()
-              .then(() => this.prepareDataUsageGraphData());
-          }
-          return service;
-        }),
+      loaderFunction: () =>
+        this.LogsDetailService.getServiceDetails(this.serviceName).then(
+          (service) => {
+            this.initLoaders();
+            this.isAccountDisabled = this.LogsHelperService.isAccountDisabled(
+              service,
+            );
+            this.lastUpdatedDate = moment(service.updatedAt).format('LL');
+            if (service.state === this.LogsConstants.SERVICE_STATE_TO_CONFIG) {
+              this.goToAccountSetupPage();
+            } else {
+              this.dataUsageGraphData = this.LogsConstants.DATA_USAGE_GRAPH_CONFIGURATION;
+              this.runLoaders().then(() => this.prepareDataUsageGraphData());
+            }
+            return service;
+          },
+        ),
     });
     this.service.load();
   }
@@ -48,14 +63,17 @@ class LogsHomeCtrl {
    * @memberof LogsHomeCtrl
    */
   openChangePasswordModal() {
-    this.CucControllerHelper.modal.showModal({
-      modalConfig: {
-        templateUrl: 'app/dbaas/logs/detail/account/password/logs-account-password.html',
-        controller: 'LogsAccountPasswordCtrl',
-        controllerAs: 'ctrl',
-        backdrop: 'static',
-      },
-    }).finally(() => this.CucControllerHelper.scrollPageToTop());
+    this.CucControllerHelper.modal
+      .showModal({
+        modalConfig: {
+          templateUrl:
+            'app/dbaas/logs/detail/account/password/logs-account-password.html',
+          controller: 'LogsAccountPasswordCtrl',
+          controllerAs: 'ctrl',
+          backdrop: 'static',
+        },
+      })
+      .finally(() => this.CucControllerHelper.scrollPageToTop());
   }
 
   /**
@@ -64,25 +82,36 @@ class LogsHomeCtrl {
    * @memberof LogsHomeCtrl
    */
   prepareDataUsageGraphData() {
-    const offerLimit = this.account.data.offer
-      .esStorage * this.LogsConstants.OFFER_STORAGE_MULTIPLIER;
+    const offerLimit =
+      this.account.data.offer.esStorage *
+      this.LogsConstants.OFFER_STORAGE_MULTIPLIER;
     const maxDataReceived = max(this.storageData.data.usageData[0]);
-    this.dataUsageGraphData.labels = this.storageData.data.timestamps.map(timestamp => moment(timestamp).format('DD MMM'));
+    this.dataUsageGraphData.labels = this.storageData.data.timestamps.map(
+      (timestamp) => moment(timestamp).format('DD MMM'),
+    );
     this.dataUsageGraphData.data = this.storageData.data.usageData;
-    this.dataUsageGraphData.series = [this.$translate.instant('logs_home_data_received'), this.$translate.instant('logs_home_number_of_documents')];
+    this.dataUsageGraphData.series = [
+      this.$translate.instant('logs_home_data_received'),
+      this.$translate.instant('logs_home_number_of_documents'),
+    ];
     if (offerLimit <= maxDataReceived * 1.5) {
-      this.dataUsageGraphData.data.push(this.storageData.data.timestamps.map(() => offerLimit));
-      this.dataUsageGraphData.series.push(this.$translate.instant('logs_home_offer_limit'));
+      this.dataUsageGraphData.data.push(
+        this.storageData.data.timestamps.map(() => offerLimit),
+      );
+      this.dataUsageGraphData.series.push(
+        this.$translate.instant('logs_home_offer_limit'),
+      );
     }
     this.dataUsageGraphData.options.scales.yAxes[0].ticks = {
       suggestedMin: 0,
       suggestedMax: maxDataReceived * 1.3 || 5,
-      callback: value => (value % 1 === 0 ? this.bytesFilter(value, 2, true) : ''),
+      callback: (value) =>
+        value % 1 === 0 ? this.bytesFilter(value, 2, true) : '',
     };
     this.dataUsageGraphData.options.scales.yAxes[1].ticks = {
       suggestedMin: 0,
       suggestedMax: max(this.dataUsageGraphData.data[1]) * 1.3 || 5,
-      callback: value => (value % 1 === 0 ? value : ''),
+      callback: (value) => (value % 1 === 0 ? value : ''),
     };
 
     this.dataUsageGraphData.options.tooltips.callbacks = {
@@ -94,9 +123,12 @@ class LogsHomeCtrl {
         if (label) {
           label += ': ';
         }
-        label += tooltipItem.datasetIndex === 0
-          ? this.bytesFilter(tooltipItem.yLabel, 2, true)
-          : this.LogsHomeService.constructor.humanizeNumber(tooltipItem.yLabel);
+        label +=
+          tooltipItem.datasetIndex === 0
+            ? this.bytesFilter(tooltipItem.yLabel, 2, true)
+            : this.LogsHomeService.constructor.humanizeNumber(
+                tooltipItem.yLabel,
+              );
         return label;
       },
     };
@@ -163,7 +195,8 @@ class LogsHomeCtrl {
    */
   initLoaders() {
     this.accountDetails = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () => this.LogsHomeService.getAccountDetails(this.serviceName),
+      loaderFunction: () =>
+        this.LogsHomeService.getAccountDetails(this.serviceName),
     });
     this.account = this.CucControllerHelper.request.getHashLoader({
       loaderFunction: () => this.LogsHomeService.getAccount(this.serviceName),
@@ -172,20 +205,25 @@ class LogsHomeCtrl {
       loaderFunction: () => this.LogsHomeService.getOptions(this.serviceName),
     });
     this.serviceInfos = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () => this.LogsHomeService.getServiceInfos(this.serviceName),
+      loaderFunction: () =>
+        this.LogsHomeService.getServiceInfos(this.serviceName),
     });
     if (!this.isAccountDisabled) {
       this.tokenIds = this.CucControllerHelper.request.getArrayLoader({
-        loaderFunction: () => this.LogsTokensService.getTokensIds(this.serviceName),
+        loaderFunction: () =>
+          this.LogsTokensService.getTokensIds(this.serviceName),
       });
       this.defaultCluster = this.CucControllerHelper.request.getHashLoader({
-        loaderFunction: () => this.LogsTokensService.getDefaultCluster(this.serviceName),
+        loaderFunction: () =>
+          this.LogsTokensService.getDefaultCluster(this.serviceName),
       });
       this.storageData = this.CucControllerHelper.request.getHashLoader({
-        loaderFunction: () => this.LogsHomeService.getDataUsage(this.serviceName),
+        loaderFunction: () =>
+          this.LogsHomeService.getDataUsage(this.serviceName),
       });
       this.coldStorage = this.CucControllerHelper.request.getHashLoader({
-        loaderFunction: () => this.LogsHomeService.getColdstorage(this.serviceName),
+        loaderFunction: () =>
+          this.LogsHomeService.getColdstorage(this.serviceName),
       });
     }
   }
@@ -198,7 +236,8 @@ class LogsHomeCtrl {
   openMessagesAndPorts() {
     this.CucControllerHelper.modal.showModal({
       modalConfig: {
-        templateUrl: 'app/dbaas/logs/detail/home/formatsports/logs-home-formatsports.html',
+        templateUrl:
+          'app/dbaas/logs/detail/home/formatsports/logs-home-formatsports.html',
         controller: 'LogsHomeFormatsportsCtrl',
         controllerAs: 'ctrl',
         resolve: {

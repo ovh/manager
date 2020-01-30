@@ -3,12 +3,10 @@ import find from 'lodash/find';
 import flatten from 'lodash/flatten';
 import map from 'lodash/map';
 
-angular
-  .module('App')
-  .service('ovhManagerPccDatacenterService', class OvhManagerPccDatacenterService {
-    constructor(
-      OvhApiMe,
-    ) {
+angular.module('App').service(
+  'ovhManagerPccDatacenterService',
+  class OvhManagerPccDatacenterService {
+    constructor(OvhApiMe) {
       this.OvhApiMe = OvhApiMe;
     }
 
@@ -17,14 +15,17 @@ angular
     }
 
     fetchConsumptionForService(serviceId) {
-      return this
-        .fetchConsumptionForAllServices()
-        .then(OvhManagerPccDatacenterService.keepOnlyConsumptionForService(serviceId));
+      return this.fetchConsumptionForAllServices().then(
+        OvhManagerPccDatacenterService.keepOnlyConsumptionForService(serviceId),
+      );
     }
 
     static extractElementConsumption({ elements }, { id, type }) {
       return find(
-        OvhManagerPccDatacenterService.keepOnlyElementDetailsWithType(elements, type),
+        OvhManagerPccDatacenterService.keepOnlyElementDetailsWithType(
+          elements,
+          type,
+        ),
         OvhManagerPccDatacenterService.keepOnlyElement(id),
       );
     }
@@ -32,14 +33,18 @@ angular
     static keepOnlyElementDetailsWithType(elements, type) {
       return flatten(
         map(
-          OvhManagerPccDatacenterService.keepOnlyElementsWithType(elements, type),
+          OvhManagerPccDatacenterService.keepOnlyElementsWithType(
+            elements,
+            type,
+          ),
           'details',
         ),
       );
     }
 
     static keepOnlyConsumptionForService(serviceId) {
-      return consumptionForAllServices => find(consumptionForAllServices, { serviceId });
+      return (consumptionForAllServices) =>
+        find(consumptionForAllServices, { serviceId });
     }
 
     static keepOnlyElementsWithType(elements, { planFamily }) {
@@ -47,6 +52,7 @@ angular
     }
 
     static keepOnlyElement(id) {
-      return element => element.uniqueId.split('@')[0] === `${id}`;
+      return (element) => element.uniqueId.split('@')[0] === `${id}`;
     }
-  });
+  },
+);

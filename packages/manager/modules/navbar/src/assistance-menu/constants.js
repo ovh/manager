@@ -34,7 +34,8 @@ const CA = {
 
 const EU = {
   supportTicket: 'https://www.ovh.com/manager/dedicated/#/support',
-  supportLevel: 'https://www.ovh.com/manager/dedicated/#/useraccount/support/level',
+  supportLevel:
+    'https://www.ovh.com/manager/dedicated/#/useraccount/support/level',
   support: {
     CZ: 'http://www.ovh.cz/podpora/',
     DE: 'http://www.ovh.de/support/',
@@ -92,7 +93,8 @@ const EU = {
 
 const US = {
   supportTicket: 'https://us.ovhcloud.com/manager/dedicated/#/support',
-  supportLevel: 'https://us.ovhcloud.com/manager/dedicated/#/useraccount/support/level',
+  supportLevel:
+    'https://us.ovhcloud.com/manager/dedicated/#/useraccount/support/level',
   support: {
     US: 'https://us.ovhcloud.com/support/',
   },
@@ -112,18 +114,20 @@ export const ASSISTANCE_URLS = {
   US,
 };
 
-export const HELP_CENTER_SUBSIDIARIES = [
-  'FR',
-];
+export const HELP_CENTER_SUBSIDIARIES = ['FR'];
 
-export const CHATBOT_SUBSIDIARIES = [
-  'FR',
-];
+export const CHATBOT_SUBSIDIARIES = ['FR'];
 
 export const AVAILABLE_SUPPORT_LEVEL = ['business', 'enterprise'];
 
+export const ALL_SUPPORT_LEVEL_SUBSIDIARY = ['FR'];
+
+export const INACTIVE_SUPPORT_LEVEL = ['premium-accredited'];
+
 export default {
+  ALL_SUPPORT_LEVEL_SUBSIDIARY,
   AVAILABLE_SUPPORT_LEVEL,
+  INACTIVE_SUPPORT_LEVEL,
   CHATBOT_SUBSIDIARIES,
   HELP_CENTER_SUBSIDIARIES,
   ASSISTANCE_URLS,

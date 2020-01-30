@@ -4,8 +4,15 @@ import isEmpty from 'lodash/isEmpty';
 export default class {
   /* @ngInject */
   constructor(
-    $q, $stateParams, $timeout, $uibModalInstance,
-    OvhApiMe, OvhApiSms, TucSmsMediator, user, TucToastError,
+    $q,
+    $stateParams,
+    $timeout,
+    $uibModalInstance,
+    OvhApiMe,
+    OvhApiSms,
+    TucSmsMediator,
+    user,
+    TucToastError,
   ) {
     this.$q = $q;
     this.$stateParams = $stateParams;
@@ -36,17 +43,21 @@ export default class {
     this.numberPattern = /^\+?\d+$/;
 
     this.loading.init = true;
-    return this.$q.all({
-      enums: this.fetchEnums(),
-      userEmail: this.fetchUserEmail(),
-    }).then((result) => {
-      this.enums = result.enums;
-      this.limitStatus = this.getLimitStatus();
-    }).catch((err) => {
-      this.TucToastError(err);
-    }).finally(() => {
-      this.loading.init = false;
-    });
+    return this.$q
+      .all({
+        enums: this.fetchEnums(),
+        userEmail: this.fetchUserEmail(),
+      })
+      .then((result) => {
+        this.enums = result.enums;
+        this.limitStatus = this.getLimitStatus();
+      })
+      .catch((err) => {
+        this.TucToastError(err);
+      })
+      .finally(() => {
+        this.loading.init = false;
+      });
   }
 
   /**
@@ -54,7 +65,9 @@ export default class {
    * @return {Promise}
    */
   fetchEnums() {
-    return this.TucSmsMediator.getApiScheme().then(schema => schema.models['sms.SupportEnum'].enum);
+    return this.TucSmsMediator.getApiScheme().then(
+      (schema) => schema.models['sms.SupportEnum'].enum,
+    );
   }
 
   /**
@@ -93,7 +106,10 @@ export default class {
       alertThresholdInformations: {
         alertEmail: this.model.user.alertThresholdInformations.alertEmail,
         alertNumber: this.model.user.alertThresholdInformations.alertNumber,
-        alertThreshold: this.model.user.alertThresholdInformations.limitStatus === 'active' ? this.alertThreshold : -1,
+        alertThreshold:
+          this.model.user.alertThresholdInformations.limitStatus === 'active'
+            ? this.alertThreshold
+            : -1,
         support: this.model.user.alertThresholdInformations.support,
       },
     };
@@ -105,20 +121,28 @@ export default class {
    */
   limit() {
     this.loading.limitUser = true;
-    return this.$q.all([
-      this.api.sms.users.edit({
-        serviceName: this.$stateParams.serviceName,
-        login: this.model.user.login,
-      }, this.getAlertThresholdInformations()).$promise,
-      this.$timeout(angular.noop, 1000),
-    ]).then(() => {
-      this.loading.limitUser = false;
-      this.limited = true;
-      return this.$timeout(() => this.close(), 1000);
-    }).catch(error => this.cancel({
-      type: 'API',
-      msg: error,
-    }));
+    return this.$q
+      .all([
+        this.api.sms.users.edit(
+          {
+            serviceName: this.$stateParams.serviceName,
+            login: this.model.user.login,
+          },
+          this.getAlertThresholdInformations(),
+        ).$promise,
+        this.$timeout(angular.noop, 1000),
+      ])
+      .then(() => {
+        this.loading.limitUser = false;
+        this.limited = true;
+        return this.$timeout(() => this.close(), 1000);
+      })
+      .catch((error) =>
+        this.cancel({
+          type: 'API',
+          msg: error,
+        }),
+      );
   }
 
   cancel(message) {
@@ -129,19 +153,22 @@ export default class {
     return this.$uibModalInstance.close(true);
   }
 
-  /* eslint-disable max-len */
   /**
    * Has changed helper.
    * @return {Boolean}
    */
   hasChanged() {
     return !(
-      this.model.user.alertThresholdInformations.alertEmail === this.user.alertThresholdInformations.alertEmail
-        && this.model.user.alertThresholdInformations.alertNumber === this.user.alertThresholdInformations.alertNumber
-        && this.alertThreshold === this.user.alertThresholdInformations.alertThreshold
-        && this.model.user.alertThresholdInformations.support === this.user.alertThresholdInformations.support
-        && this.model.user.alertThresholdInformations.limitStatus === this.limitStatus
+      this.model.user.alertThresholdInformations.alertEmail ===
+        this.user.alertThresholdInformations.alertEmail &&
+      this.model.user.alertThresholdInformations.alertNumber ===
+        this.user.alertThresholdInformations.alertNumber &&
+      this.alertThreshold ===
+        this.user.alertThresholdInformations.alertThreshold &&
+      this.model.user.alertThresholdInformations.support ===
+        this.user.alertThresholdInformations.support &&
+      this.model.user.alertThresholdInformations.limitStatus ===
+        this.limitStatus
     );
   }
-  /* eslint-enable max-len */
 }

@@ -1,6 +1,6 @@
-angular
-  .module('App')
-  .service('dedicatedServerFeatureAvailability', class {
+angular.module('App').service(
+  'dedicatedServerFeatureAvailability',
+  class {
     /* @ngInject */
     constructor(coreConfig) {
       this.target = coreConfig.getRegion();
@@ -53,4 +53,5 @@ angular
     deny(...args) {
       return Array.from(args).indexOf(this.target) === -1;
     }
-  });
+  },
+);

@@ -57,7 +57,6 @@ import 'script-loader!urijs/src/URI.min.js';
 import 'script-loader!urijs/src/URITemplate.js';
 import 'script-loader!leaflet/dist/leaflet-src.js';
 import 'angular-leaflet-directive';
-import 'ovh-angular-responsive-popover';
 import 'ovh-angular-responsive-tabs';
 import 'ng-slide-down';
 import 'script-loader!angularjs-scroll-glue/src/scrollglue.js';
@@ -71,6 +70,5 @@ import 'script-loader!bootstrap-tour/build/js/bootstrap-tour-standalone.min.js';
 /* eslint-enable */
 
 import 'bootstrap-tour/build/css/bootstrap-tour.min.css';
-
 
 import './app';

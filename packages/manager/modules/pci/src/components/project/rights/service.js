@@ -1,37 +1,49 @@
 import find from 'lodash/find';
 
-export default /* @ngInject */ function (
+export default /* @ngInject */ function(
   $q,
   OvhApiCloud,
   OvhApiCloudProjectServiceInfos,
   OvhApiMe,
 ) {
   function getReadWriteAccounts(projectId) {
-    return OvhApiCloud.Project().Acl().v6().query({
-      serviceName: projectId,
-      type: 'readWrite',
-    }).$promise;
+    return OvhApiCloud.Project()
+      .Acl()
+      .v6()
+      .query({
+        serviceName: projectId,
+        type: 'readWrite',
+      }).$promise;
   }
 
   function getCurrentUserNic() {
-    return OvhApiMe.v6().get().$promise
-      .then(user => user.nichandle);
+    return OvhApiMe.v6()
+      .get()
+      .$promise.then((user) => user.nichandle);
   }
 
   function getProjectAdminNic(projectId) {
-    return OvhApiCloudProjectServiceInfos.v6().get({
-      serviceName: projectId,
-    }).$promise
-      .then(project => project.contactAdmin);
+    return OvhApiCloudProjectServiceInfos.v6()
+      .get({
+        serviceName: projectId,
+      })
+      .$promise.then((project) => project.contactAdmin);
   }
 
   this.userHaveReadWriteRights = function userHaveReadWriteRights(projectId) {
-    return $q.all({
-      readWriteAccounts: getReadWriteAccounts(projectId),
-      currentUserNic: getCurrentUserNic(),
-      projectAdminNic: getProjectAdminNic(projectId),
-    })
-      .then(result => result.projectAdminNic === result.currentUserNic
-        || find(result.readWriteAccounts, nicWrite => nicWrite === result.currentUserNic));
+    return $q
+      .all({
+        readWriteAccounts: getReadWriteAccounts(projectId),
+        currentUserNic: getCurrentUserNic(),
+        projectAdminNic: getProjectAdminNic(projectId),
+      })
+      .then(
+        (result) =>
+          result.projectAdminNic === result.currentUserNic ||
+          find(
+            result.readWriteAccounts,
+            (nicWrite) => nicWrite === result.currentUserNic,
+          ),
+      );
   };
 }

@@ -9,11 +9,7 @@ import tucSectionBackLink from './section-back-link.component';
 const moduleName = 'tucSectionBackLink';
 
 angular
-  .module(moduleName, [
-    'ngTranslateAsyncLoader',
-    translate,
-    uiRouter,
-  ])
+  .module(moduleName, ['ngTranslateAsyncLoader', translate, uiRouter])
   .component('tucSectionBackLink', tucSectionBackLink)
   .run(/* @ngTranslationsInject:json ./translations */);
 

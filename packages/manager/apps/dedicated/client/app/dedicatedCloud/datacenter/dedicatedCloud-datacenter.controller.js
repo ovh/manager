@@ -7,9 +7,9 @@ import {
   DEDICATEDCLOUD_DATACENTER_DRP_VPN_CONFIGURATION_STATUS,
 } from './drp/dedicatedCloud-datacenter-drp.constants';
 
-angular
-  .module('App')
-  .controller('ovhManagerPccDatacenter', class {
+angular.module('App').controller(
+  'ovhManagerPccDatacenter',
+  class {
     /* @ngInject */
     constructor(
       $scope,
@@ -72,12 +72,14 @@ angular
         this.$scope.loadDatacenter();
       });
 
-      this.$scope.editDescription = (value, contextTitle) => this
-        .editDescription(value, contextTitle);
+      this.$scope.editDescription = (value, contextTitle) =>
+        this.editDescription(value, contextTitle);
       this.$scope.loadDatacenter = () => this.loadDatacenter();
-      this.$scope.setAction = (action, data, parent) => this.setAction(action, data, parent);
+      this.$scope.setAction = (action, data, parent) =>
+        this.setAction(action, data, parent);
       this.$scope.resetMessage = () => this.resetMessage();
-      this.$scope.setMessage = (message, data) => this.setMessage(message, data);
+      this.$scope.setMessage = (message, data) =>
+        this.setMessage(message, data);
       this.$scope.resetAction = () => this.resetAction();
 
       return this.loadDatacenter();
@@ -95,52 +97,71 @@ angular
     }
 
     getDatacenterInformations() {
-      return this.DedicatedCloud
-        .getDatacenterInformations(
-          this.$stateParams.productId,
-          this.$stateParams.datacenterId,
-          true,
-        )
+      return this.DedicatedCloud.getDatacenterInformations(
+        this.$stateParams.productId,
+        this.$stateParams.datacenterId,
+        true,
+      )
         .then((datacenter) => {
           this.$scope.datacenter.model = datacenter;
           this.$scope.datacenter.model.id = this.$stateParams.datacenterId;
-          this.$scope.datacenterDescription.model = angular
-            .copy(this.$scope.datacenter.model.description);
-          this.$scope.datacenterName.model = angular.copy(this.$scope.datacenter.model.name);
+          this.$scope.datacenterDescription.model = angular.copy(
+            this.$scope.datacenter.model.description,
+          );
+          this.$scope.datacenterName.model = angular.copy(
+            this.$scope.datacenter.model.name,
+          );
         })
         .catch((data) => {
           this.loadingError = true;
-          this.$scope.setMessage(this.$translate.instant('dedicatedCloud_dashboard_loading_error'), angular.extend(data, { type: 'ERROR' }));
+          this.$scope.setMessage(
+            this.$translate.instant('dedicatedCloud_dashboard_loading_error'),
+            angular.extend(data, { type: 'ERROR' }),
+          );
         })
-        .then(() => this.DedicatedCloud
-          .getDescription(this.$stateParams.productId)
-          .then((dedicatedCloudDescription) => {
-            this.$scope.dedicatedCloud = angular.extend(
-              this.$scope.dedicatedCloud || {},
-              dedicatedCloudDescription,
-            );
-          }));
+        .then(() =>
+          this.DedicatedCloud.getDescription(this.$stateParams.productId).then(
+            (dedicatedCloudDescription) => {
+              this.$scope.dedicatedCloud = angular.extend(
+                this.$scope.dedicatedCloud || {},
+                dedicatedCloudDescription,
+              );
+            },
+          ),
+        );
     }
 
     checkForZertoOptionOrder() {
-      return this.dedicatedCloudDrp.checkForZertoOptionOrder(this.currentService.name)
+      return this.dedicatedCloudDrp
+        .checkForZertoOptionOrder(this.currentService.name)
         .then((storedDrpInformations) => {
-          const storedDrpStatus = storedDrpInformations != null
-            ? this.dedicatedCloudDrp.constructor.formatStatus(storedDrpInformations.status)
-            : this.DRP_STATUS.disabled;
+          const storedDrpStatus =
+            storedDrpInformations != null
+              ? this.dedicatedCloudDrp.constructor.formatStatus(
+                  storedDrpInformations.status,
+                )
+              : this.DRP_STATUS.disabled;
 
-          this.drpStatus = [this.currentDrp.state, storedDrpStatus]
-            .find(status => status !== this.DRP_STATUS.disabled)
-            || this.DRP_STATUS.disabled;
+          this.drpStatus =
+            [this.currentDrp.state, storedDrpStatus].find(
+              (status) => status !== this.DRP_STATUS.disabled,
+            ) || this.DRP_STATUS.disabled;
 
-          this.drpRemotePccStatus = this.currentDrp
-            .drpType === DEDICATEDCLOUD_DATACENTER_DRP_OPTIONS.ovh
-            ? this.dedicatedCloudDrp.constructor.formatStatus(get(this.currentDrp, 'remoteSiteInformation.state'))
-            : this.DRP_STATUS.delivered;
+          this.drpRemotePccStatus =
+            this.currentDrp.drpType ===
+            DEDICATEDCLOUD_DATACENTER_DRP_OPTIONS.ovh
+              ? this.dedicatedCloudDrp.constructor.formatStatus(
+                  get(this.currentDrp, 'remoteSiteInformation.state'),
+                )
+              : this.DRP_STATUS.delivered;
         })
         .catch((error) => {
           this.loadingError = true;
-          this.$scope.setMessage(`${this.$translate.instant('dedicatedCloud_datacenter_drp_get_state_error')} ${get(error, 'data.message', error.message)}`);
+          this.$scope.setMessage(
+            `${this.$translate.instant(
+              'dedicatedCloud_datacenter_drp_get_state_error',
+            )} ${get(error, 'data.message', error.message)}`,
+          );
         });
     }
 
@@ -148,23 +169,26 @@ angular
     editDescription(value, contextTitle) {
       const context = last(contextTitle.split('_'));
 
-      this.$uibModal.open({
-        animation: true,
-        templateUrl: 'components/name-edition/name-edition.html',
-        controller: 'NameEditionCtrl',
-        controllerAs: '$ctrl',
-        resolve: {
-          data: () => ({
-            contextTitle,
-            datacenterId: this.$stateParams.datacenterId,
-            destinationId: this.DEDICATED_CLOUD_DATACENTER.alertId,
-            productId: this.$stateParams.productId,
-            successText: this.$translate.instant(`dedicatedCloud_datacenter_${context}Modifying_success`),
-            value,
-          }),
-        },
-      }).result
-        .then((newValue) => {
+      this.$uibModal
+        .open({
+          animation: true,
+          templateUrl: 'components/name-edition/name-edition.html',
+          controller: 'NameEditionCtrl',
+          controllerAs: '$ctrl',
+          resolve: {
+            data: () => ({
+              contextTitle,
+              datacenterId: this.$stateParams.datacenterId,
+              destinationId: this.DEDICATED_CLOUD_DATACENTER.alertId,
+              productId: this.$stateParams.productId,
+              successText: this.$translate.instant(
+                `dedicatedCloud_datacenter_${context}Modifying_success`,
+              ),
+              value,
+            }),
+          },
+        })
+        .result.then((newValue) => {
           if (contextTitle === 'dedicatedCloud_datacenter_name') {
             this.$scope.datacenterName.model = newValue;
           } else {
@@ -218,7 +242,9 @@ angular
 
             messageToSend += ' (';
             for (i; i < data.messages.length; i += 1) {
-              messageToSend += `${data.messages[i].id} : ${data.messages[i].message}${data.messages.length === i + 1 ? ')' : ', '}`;
+              messageToSend += `${data.messages[i].id} : ${
+                data.messages[i].message
+              }${data.messages.length === i + 1 ? ')' : ', '}`;
             }
           }
         } else if (data.idTask && data.state) {
@@ -283,4 +309,5 @@ angular
         }, 300);
       }
     }
-  });
+  },
+);

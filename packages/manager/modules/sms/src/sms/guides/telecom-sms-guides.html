@@ -1,45 +1,53 @@
 <section class="telecom-sms-guides">
-
     <div class="text-center" data-ng-if="SmsGuidesCtrl.loading.init">
         <oui-spinner></oui-spinner>
     </div>
 
-    <div class="row"
-         data-ng-if="!SmsGuidesCtrl.loading.init">
+    <div class="row" data-ng-if="!SmsGuidesCtrl.loading.init">
         <div class="col-md-6">
+            <div
+                class="alert alert-info"
+                role="alert"
+                data-ng-if="!SmsGuidesCtrl.hasGuides()"
+                data-translate="sms_guides_empty"
+            ></div>
 
-            <div class="alert alert-info"
-                 role="alert"
-                 data-ng-if="!SmsGuidesCtrl.hasGuides()"
-                 data-translate="sms_guides_empty">
-            </div>
-
-            <section class="widget-presentation"
-                     data-ng-if="SmsGuidesCtrl.hasGuides()"
-                     data-ng-repeat="section in SmsGuidesCtrl.guides.sections track by section.label">
+            <section
+                class="widget-presentation"
+                data-ng-if="SmsGuidesCtrl.hasGuides()"
+                data-ng-repeat="section in SmsGuidesCtrl.guides.sections track by section.label"
+            >
                 <header class="widget-presentation-header">
-                    <h2 class="widget-presentation-title"
-                        data-translate="{{ section.label }}">
-                    </h2>
+                    <h2
+                        class="widget-presentation-title"
+                        data-translate="{{ section.label }}"
+                    ></h2>
                 </header>
                 <ul>
-                    <li data-ng-repeat="guide in section.guides track by guide.label">
-                        <a title="{{ guide.label | translate }} ({{:: 'common_open_new_tab' | translate }})"
-                           target="_blank"
-                           rel="noopener"
-                           data-ng-if="guide.url[SmsGuidesCtrl.language]"
-                           data-ng-href="{{ guide.url[SmsGuidesCtrl.language] }}">
-                            <span data-translate="{{ guide.label | translate }}"></span>
-                            <i class="ovh-font ovh-font-newtab" aria-hidden="true"></i>
+                    <li
+                        data-ng-repeat="guide in section.guides track by guide.label"
+                    >
+                        <a
+                            title="{{ guide.label | translate }} ({{:: 'common_open_new_tab' | translate }})"
+                            target="_blank"
+                            rel="noopener"
+                            data-ng-if="guide.url[SmsGuidesCtrl.language]"
+                            data-ng-href="{{ guide.url[SmsGuidesCtrl.language] }}"
+                        >
+                            <span
+                                data-translate="{{ guide.label | translate }}"
+                            ></span>
+                            <i
+                                class="ovh-font ovh-font-newtab"
+                                aria-hidden="true"
+                            ></i>
                         </a>
                     </li>
                 </ul>
             </section>
             <!-- /.widget-presentation -->
-
         </div>
     </div>
     <!-- /.row -->
-
 </section>
 <!-- /.telecom-sms-guides -->

@@ -7,10 +7,7 @@ import stepper from '../../../components/stepper';
 
 import component from './upgrade.component';
 import { registerState } from './upgrade.routing';
-import {
-  name as serviceName,
-  UpgradeService,
-} from './upgrade.service';
+import { name as serviceName, UpgradeService } from './upgrade.service';
 
 const moduleName = 'ovhManagerPccServicePackUpgrade';
 

@@ -1,17 +1,21 @@
-<button class="btn btn-link pl-0"
-        data-ng-if="$ctrl.onClick"
-        data-ng-click="$ctrl.onClick()">
-    <i class="ovh-font ovh-font-arrow-left mr-2"
-       aria-hidden>
-    </i>
-    <span data-translate="{{ $ctrl.linkText || 'section_back_link_back' }}"></span>
+<button
+    class="btn btn-link pl-0"
+    data-ng-if="$ctrl.onClick"
+    data-ng-click="$ctrl.onClick()"
+>
+    <i class="ovh-font ovh-font-arrow-left mr-2" aria-hidden> </i>
+    <span
+        data-translate="{{ $ctrl.linkText || 'section_back_link_back' }}"
+    ></span>
 </button>
 
-<a class="btn btn-link pl-0"
-   data-ng-if="!$ctrl.onClick"
-   data-ui-sref="{{ $ctrl.toState || '^' }}">
-    <i class="ovh-font ovh-font-arrow-left mr-2"
-       aria-hidden>
-    </i>
-    <span data-translate="{{ $ctrl.linkText || 'section_back_link_back' }}"></span>
+<a
+    class="btn btn-link pl-0"
+    data-ng-if="!$ctrl.onClick"
+    data-ui-sref="{{ $ctrl.toState || '^' }}"
+>
+    <i class="ovh-font ovh-font-arrow-left mr-2" aria-hidden> </i>
+    <span
+        data-translate="{{ $ctrl.linkText || 'section_back_link_back' }}"
+    ></span>
 </a>

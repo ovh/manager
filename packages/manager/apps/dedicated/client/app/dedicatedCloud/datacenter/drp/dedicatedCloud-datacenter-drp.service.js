@@ -34,57 +34,89 @@ export default class {
   /*       Information Getters         */
   /* ================================= */
 
-
   getPccIpAddresses(serviceName) {
-    return this.OvhApiDedicatedCloud.Ip().v6().query({
-      serviceName,
-    }).$promise
-      .then(ipAddresses => ipAddresses
-        .map(ipAddress => this.OvhApiDedicatedCloud.Ip().v6()
-          .get({
-            serviceName,
-            network: ipAddress,
-          }).$promise));
+    return this.OvhApiDedicatedCloud.Ip()
+      .v6()
+      .query({
+        serviceName,
+      })
+      .$promise.then((ipAddresses) =>
+        ipAddresses.map(
+          (ipAddress) =>
+            this.OvhApiDedicatedCloud.Ip()
+              .v6()
+              .get({
+                serviceName,
+                network: ipAddress,
+              }).$promise,
+        ),
+      );
   }
 
   getPccDrpPlan(serviceName) {
-    return this.OvhApiDedicatedCloud.Datacenter().v6().query({
-      serviceName,
-    }).$promise
-      .then(datacenters => this.$q.all(datacenters
-        .map(datacenterId => this.getDrpState({
-          serviceName,
-          datacenterId,
-        }))))
-      .catch(error => (DEDICATEDCLOUD_DATACENTER_PCC_UNAVAILABLE_CODES
-        .includes(error.status)
-        ? Promise.resolve([]) : Promise.reject(error)));
+    return this.OvhApiDedicatedCloud.Datacenter()
+      .v6()
+      .query({
+        serviceName,
+      })
+      .$promise.then((datacenters) =>
+        this.$q.all(
+          datacenters.map((datacenterId) =>
+            this.getDrpState({
+              serviceName,
+              datacenterId,
+            }),
+          ),
+        ),
+      )
+      .catch((error) =>
+        DEDICATEDCLOUD_DATACENTER_PCC_UNAVAILABLE_CODES.includes(error.status)
+          ? Promise.resolve([])
+          : Promise.reject(error),
+      );
   }
 
   getPccIpAddressesDetails(serviceName) {
-    return this.OvhApiDedicatedCloud.Ip().v6().query({
-      serviceName,
-    }).$promise
-      .then(ipAddresses => this.$q.all(ipAddresses
-        .map(ipAddress => this.OvhApiDedicatedCloud.Ip().Details()
-          .v6()
-          .get({
-            serviceName,
-            network: ipAddress,
-          }).$promise))
-        .then(ipAddressesDetails => flatten(ipAddressesDetails)));
+    return this.OvhApiDedicatedCloud.Ip()
+      .v6()
+      .query({
+        serviceName,
+      })
+      .$promise.then((ipAddresses) =>
+        this.$q
+          .all(
+            ipAddresses.map(
+              (ipAddress) =>
+                this.OvhApiDedicatedCloud.Ip()
+                  .Details()
+                  .v6()
+                  .get({
+                    serviceName,
+                    network: ipAddress,
+                  }).$promise,
+            ),
+          )
+          .then((ipAddressesDetails) => flatten(ipAddressesDetails)),
+      );
   }
 
   getDrpState(serviceInformations) {
-    return this.OvhApiDedicatedCloud
-      .Datacenter().Zerto().v6().state(serviceInformations, null).$promise
-      .then(state => ({ ...state, ...serviceInformations }));
+    return this.OvhApiDedicatedCloud.Datacenter()
+      .Zerto()
+      .v6()
+      .state(serviceInformations, null)
+      .$promise.then((state) => ({ ...state, ...serviceInformations }));
   }
 
   getDefaultLocalVraNetwork(serviceInformations) {
-    return this.OvhApiDedicatedCloud.Datacenter().Zerto().Single().v6()
-      .getDefaultLocalVraNetwork(serviceInformations).$promise
-      .then(({ value: defaultLocalVraNetwork }) => defaultLocalVraNetwork);
+    return this.OvhApiDedicatedCloud.Datacenter()
+      .Zerto()
+      .Single()
+      .v6()
+      .getDefaultLocalVraNetwork(serviceInformations)
+      .$promise.then(
+        ({ value: defaultLocalVraNetwork }) => defaultLocalVraNetwork,
+      );
   }
 
   /* ---- END Information Getters ---- */
@@ -94,8 +126,8 @@ export default class {
   /* ================================= */
 
   enableDrp(drpInformations, isLegacy) {
-    const isOvhToOvhPlan = drpInformations
-      .drpType === DEDICATEDCLOUD_DATACENTER_DRP_OPTIONS.ovh;
+    const isOvhToOvhPlan =
+      drpInformations.drpType === DEDICATEDCLOUD_DATACENTER_DRP_OPTIONS.ovh;
 
     if (!isLegacy) {
       return isOvhToOvhPlan
@@ -103,7 +135,8 @@ export default class {
         : this.enableDrpOnPremise(drpInformations);
     }
 
-    return isOvhToOvhPlan ? this.enableDrpOvhLegacy(drpInformations)
+    return isOvhToOvhPlan
+      ? this.enableDrpOvhLegacy(drpInformations)
       : this.enableDrpOnPremiseLegacy(drpInformations);
   }
 
@@ -115,15 +148,21 @@ export default class {
     secondaryDatacenter,
     secondaryEndpointIp,
   }) {
-    return this.OvhApiDedicatedCloud.Datacenter().Zerto().v6().enable({
-      serviceName: primaryPcc.serviceName,
-      datacenterId: primaryDatacenter.id,
-    }, {
-      primaryEndpointIp,
-      secondaryServiceName: secondaryPcc.serviceName,
-      secondaryDatacenterId: secondaryDatacenter.id,
-      secondaryEndpointIp,
-    }).$promise;
+    return this.OvhApiDedicatedCloud.Datacenter()
+      .Zerto()
+      .v6()
+      .enable(
+        {
+          serviceName: primaryPcc.serviceName,
+          datacenterId: primaryDatacenter.id,
+        },
+        {
+          primaryEndpointIp,
+          secondaryServiceName: secondaryPcc.serviceName,
+          secondaryDatacenterId: secondaryDatacenter.id,
+          secondaryEndpointIp,
+        },
+      ).$promise;
   }
 
   enableDrpOnPremiseLegacy({
@@ -133,15 +172,21 @@ export default class {
     primaryEndpointIp: ovhEndpointIp,
     remoteVraNetwork,
   }) {
-    return this.OvhApiDedicatedCloud.Datacenter().Zerto().Single().v6()
-      .enable({
-        serviceName: primaryPcc.serviceName,
-        datacenterId: primaryDatacenter.id,
-      }, {
-        localVraNetwork,
-        ovhEndpointIp,
-        remoteVraNetwork,
-      }).$promise;
+    return this.OvhApiDedicatedCloud.Datacenter()
+      .Zerto()
+      .Single()
+      .v6()
+      .enable(
+        {
+          serviceName: primaryPcc.serviceName,
+          datacenterId: primaryDatacenter.id,
+        },
+        {
+          localVraNetwork,
+          ovhEndpointIp,
+          remoteVraNetwork,
+        },
+      ).$promise;
   }
 
   /* ------ END PCC Legacy OVH ------- */
@@ -166,61 +211,87 @@ export default class {
 
   createZertoOptionCart(drpInformations, zertoOption) {
     let zertoCartId;
-    return this.OvhApiMe.v6().get().$promise
-      .then(({ ovhSubsidiary }) => this.OvhApiOrder.Cart().v6()
-        .post({}, { ovhSubsidiary })
-        .$promise)
+    return this.OvhApiMe.v6()
+      .get()
+      .$promise.then(
+        ({ ovhSubsidiary }) =>
+          this.OvhApiOrder.Cart()
+            .v6()
+            .post({}, { ovhSubsidiary }).$promise,
+      )
       .then(({ cartId }) => {
         zertoCartId = cartId;
-        return this.OvhApiOrder.Cart().v6().assign({ cartId }).$promise;
+        return this.OvhApiOrder.Cart()
+          .v6()
+          .assign({ cartId }).$promise;
       })
-      .then(() => this.OvhApiOrder.Cart().ServiceOption().v6().get({
-        productName: DEDICATEDCLOUD_DATACENTER_DRP_ORDER_OPTIONS.productName,
-        serviceName: drpInformations.primaryPcc.serviceName,
-      }).$promise)
+      .then(
+        () =>
+          this.OvhApiOrder.Cart()
+            .ServiceOption()
+            .v6()
+            .get({
+              productName:
+                DEDICATEDCLOUD_DATACENTER_DRP_ORDER_OPTIONS.productName,
+              serviceName: drpInformations.primaryPcc.serviceName,
+            }).$promise,
+      )
       .then((offers) => {
         const [firstOffer] = offers;
         const [firstPrice] = firstOffer.prices;
 
-        return this.OvhApiOrder.Cart().ServiceOption().v6().post({
-          productName: DEDICATEDCLOUD_DATACENTER_DRP_ORDER_OPTIONS.productName,
-          serviceName: drpInformations.primaryPcc.serviceName,
-        }, {
-          cartId: zertoCartId,
-          duration: DEDICATEDCLOUD_DATACENTER_DRP_ORDER_OPTIONS.duration,
-          planCode: zertoOption,
-          pricingMode: firstPrice.pricingMode,
-          quantity: DEDICATEDCLOUD_DATACENTER_DRP_ORDER_OPTIONS.quantity,
-        }).$promise;
+        return this.OvhApiOrder.Cart()
+          .ServiceOption()
+          .v6()
+          .post(
+            {
+              productName:
+                DEDICATEDCLOUD_DATACENTER_DRP_ORDER_OPTIONS.productName,
+              serviceName: drpInformations.primaryPcc.serviceName,
+            },
+            {
+              cartId: zertoCartId,
+              duration: DEDICATEDCLOUD_DATACENTER_DRP_ORDER_OPTIONS.duration,
+              planCode: zertoOption,
+              pricingMode: firstPrice.pricingMode,
+              quantity: DEDICATEDCLOUD_DATACENTER_DRP_ORDER_OPTIONS.quantity,
+            },
+          ).$promise;
       });
   }
 
   validateZertoOptionCart(cartId) {
     let autoPayWithPreferredPaymentMethod;
-    return this.$q.all({
-      availableAutomaticPaymentsMean:
-        this.OvhApiMe.AvailableAutomaticPaymentMeans().v6().get().$promise,
-      allPaymentMethods:
-        this.ovhPaymentMethod
-          .getAllPaymentMethods({ onlyValid: true, transform: true }),
-    })
+    return this.$q
+      .all({
+        availableAutomaticPaymentsMean: this.OvhApiMe.AvailableAutomaticPaymentMeans()
+          .v6()
+          .get().$promise,
+        allPaymentMethods: this.ovhPaymentMethod.getAllPaymentMethods({
+          onlyValid: true,
+          transform: true,
+        }),
+      })
       .then(({ availableAutomaticPaymentsMean, allPaymentMethods }) => {
         const availablePaymentType = flatten(
           allPaymentMethods.map(({ paymentType }) => paymentType),
         );
-        autoPayWithPreferredPaymentMethod = availablePaymentType
-          .some(
-            paymentType => get(
-              availableAutomaticPaymentsMean, camelCase(paymentType),
-            ),
-          );
+        autoPayWithPreferredPaymentMethod = availablePaymentType.some(
+          (paymentType) =>
+            get(availableAutomaticPaymentsMean, camelCase(paymentType)),
+        );
 
-        return this.OvhApiOrder.Cart().v6().checkout({
-          cartId,
-        }, {
-          autoPayWithPreferredPaymentMethod,
-          waiveRetractationPeriod: false,
-        }).$promise;
+        return this.OvhApiOrder.Cart()
+          .v6()
+          .checkout(
+            {
+              cartId,
+            },
+            {
+              autoPayWithPreferredPaymentMethod,
+              waiveRetractationPeriod: false,
+            },
+          ).$promise;
       })
       .then(({ orderId, url }) => ({
         hasAutoPay: autoPayWithPreferredPaymentMethod,
@@ -246,27 +317,39 @@ export default class {
   addCartZertoOptionConfiguration(cartId, itemId, drpInformations) {
     const parametersToSet = keys(drpInformations);
 
-    return this.$q.all(parametersToSet
-      .map(parameter => this.OvhApiOrder.Cart().Item().Configuration().v6()
-        .post({
-          cartId,
-          itemId,
-          label: parameter,
-          value: get(drpInformations, parameter),
-        }).$promise));
+    return this.$q.all(
+      parametersToSet.map(
+        (parameter) =>
+          this.OvhApiOrder.Cart()
+            .Item()
+            .Configuration()
+            .v6()
+            .post({
+              cartId,
+              itemId,
+              label: parameter,
+              value: get(drpInformations, parameter),
+            }).$promise,
+      ),
+    );
   }
 
   checkForZertoOptionOrder(pccId) {
     let storedZertoOption;
 
-    const preferenceKey = this.constructor
-      .formatPreferenceKey(pccId, DEDICATEDCLOUD_DATACENTER_ZERTO.title);
+    const preferenceKey = this.constructor.formatPreferenceKey(
+      pccId,
+      DEDICATEDCLOUD_DATACENTER_ZERTO.title,
+    );
 
-    return this.ovhUserPref.getValue(preferenceKey)
+    return this.ovhUserPref
+      .getValue(preferenceKey)
       .then((preference) => {
         const { drpInformations, zertoOptionOrderId } = preference;
-        if (drpInformations != null
-            && drpInformations.primaryPcc.serviceName === pccId) {
+        if (
+          drpInformations != null &&
+          drpInformations.primaryPcc.serviceName === pccId
+        ) {
           storedZertoOption = drpInformations;
           return this.getZertoOptionOrderStatus(zertoOptionOrderId);
         }
@@ -277,29 +360,31 @@ export default class {
         const pendingOrderStatus = [
           DEDICATEDCLOUD_DATACENTER_DRP_STATUS.delivering,
           DEDICATEDCLOUD_DATACENTER_DRP_STATUS.delivered,
-        ].find(status => status === zertoOrderStatus);
+        ].find((status) => status === zertoOrderStatus);
 
         return pendingOrderStatus != null
           ? { ...storedZertoOption, state: pendingOrderStatus }
           : Promise.resolve(null);
       })
-      .catch(error => (error.status === 404
-        ? Promise.resolve(null)
-        : Promise.reject(error)));
+      .catch((error) =>
+        error.status === 404 ? Promise.resolve(null) : Promise.reject(error),
+      );
   }
 
   getZertoOptionOrderStatus(orderId) {
-    return this.OvhApiMe.Order().v6().getStatus({ orderId }).$promise;
+    return this.OvhApiMe.Order()
+      .v6()
+      .getStatus({ orderId }).$promise;
   }
 
   storeZertoOptionOrderInUserPref(drpInformations, enableDrp) {
     const drpInformationsToStore = {
       drpInformations,
       zertoOptionOrderId: enableDrp.orderId,
-      zertoOption: drpInformations
-        .drpType === DEDICATEDCLOUD_DATACENTER_DRP_OPTIONS.ovh
-        ? DEDICATEDCLOUD_DATACENTER_DRP_ORDER_OPTIONS.zertoOption.ovh
-        : DEDICATEDCLOUD_DATACENTER_DRP_ORDER_OPTIONS.zertoOption.onPremise,
+      zertoOption:
+        drpInformations.drpType === DEDICATEDCLOUD_DATACENTER_DRP_OPTIONS.ovh
+          ? DEDICATEDCLOUD_DATACENTER_DRP_ORDER_OPTIONS.zertoOption.ovh
+          : DEDICATEDCLOUD_DATACENTER_DRP_ORDER_OPTIONS.zertoOption.onPremise,
     };
 
     const preferenceKey = this.constructor.formatPreferenceKey(
@@ -320,10 +405,10 @@ export default class {
   /* ------- Order ZERTO option ------ */
 
   disableDrp(drpInformations) {
-    const deleteDrpPromise = drpInformations
-      .drpType === DEDICATEDCLOUD_DATACENTER_DRP_OPTIONS.ovh
-      ? this.disableDrpOvh(drpInformations)
-      : this.disableDrpOnPremise(drpInformations);
+    const deleteDrpPromise =
+      drpInformations.drpType === DEDICATEDCLOUD_DATACENTER_DRP_OPTIONS.ovh
+        ? this.disableDrpOvh(drpInformations)
+        : this.disableDrpOnPremise(drpInformations);
 
     const drpPccId = drpInformations.primaryPcc.serviceName;
 
@@ -338,30 +423,46 @@ export default class {
     secondaryPcc,
     secondaryDatacenter,
   }) {
-    return this.OvhApiDedicatedCloud.Datacenter().Zerto().v6()
-      .disable({
-        serviceName: primaryPcc.serviceName,
-        datacenterId: primaryDatacenter.id,
-      }, {
-        secondaryServiceName: secondaryPcc.serviceName,
-        secondaryDatacenterId: secondaryDatacenter.id,
-      }).$promise;
+    return this.OvhApiDedicatedCloud.Datacenter()
+      .Zerto()
+      .v6()
+      .disable(
+        {
+          serviceName: primaryPcc.serviceName,
+          datacenterId: primaryDatacenter.id,
+        },
+        {
+          secondaryServiceName: secondaryPcc.serviceName,
+          secondaryDatacenterId: secondaryDatacenter.id,
+        },
+      ).$promise;
   }
 
   disableDrpOnPremise({ primaryPcc, primaryDatacenter }) {
-    return this.OvhApiDedicatedCloud.Datacenter().Zerto().Single().v6()
-      .disable({
-        serviceName: primaryPcc.serviceName,
-        datacenterId: primaryDatacenter.id,
-      }, null).$promise;
+    return this.OvhApiDedicatedCloud.Datacenter()
+      .Zerto()
+      .Single()
+      .v6()
+      .disable(
+        {
+          serviceName: primaryPcc.serviceName,
+          datacenterId: primaryDatacenter.id,
+        },
+        null,
+      ).$promise;
   }
 
   regenerateZsspPassword({ primaryPcc, primaryDatacenter }) {
-    return this.OvhApiDedicatedCloud.Datacenter().Zerto().v6()
-      .generateZsspPassword({
-        serviceName: primaryPcc.serviceName,
-        datacenterId: primaryDatacenter.id,
-      }, null).$promise;
+    return this.OvhApiDedicatedCloud.Datacenter()
+      .Zerto()
+      .v6()
+      .generateZsspPassword(
+        {
+          serviceName: primaryPcc.serviceName,
+          datacenterId: primaryDatacenter.id,
+        },
+        null,
+      ).$promise;
   }
 
   configureVpn({
@@ -370,39 +471,48 @@ export default class {
     remoteVraNetwork,
     vpnConfiguration,
   }) {
-    return this.OvhApiDedicatedCloud.Datacenter().Zerto().Single().v6()
-      .configureVpn({
-        serviceName: primaryPcc.serviceName,
-        datacenterId: primaryDatacenter.id,
-      }, {
-        preSharedKey: vpnConfiguration.preSharedKey,
-        remoteEndpointInternalIp: vpnConfiguration.remoteEndpointInternalIp,
-        remoteEndpointPublicIp: vpnConfiguration.remoteEndpointPublicIp,
-        remoteVraNetwork,
-        remoteZvmInternalIp: vpnConfiguration.remoteZvmInternalIp,
-      }).$promise;
+    return this.OvhApiDedicatedCloud.Datacenter()
+      .Zerto()
+      .Single()
+      .v6()
+      .configureVpn(
+        {
+          serviceName: primaryPcc.serviceName,
+          datacenterId: primaryDatacenter.id,
+        },
+        {
+          preSharedKey: vpnConfiguration.preSharedKey,
+          remoteEndpointInternalIp: vpnConfiguration.remoteEndpointInternalIp,
+          remoteEndpointPublicIp: vpnConfiguration.remoteEndpointPublicIp,
+          remoteVraNetwork,
+          remoteZvmInternalIp: vpnConfiguration.remoteZvmInternalIp,
+        },
+      ).$promise;
   }
 
   getDisableSuccessAlertPreference(pccId) {
-    const preferenceKey = this.constructor
-      .formatPreferenceKey(pccId, DEDICATEDCLOUD_DATACENTER_ZERTO
-        .alertPreference);
+    const preferenceKey = this.constructor.formatPreferenceKey(
+      pccId,
+      DEDICATEDCLOUD_DATACENTER_ZERTO.alertPreference,
+    );
 
     return this.ovhUserPref.getValue(preferenceKey);
   }
 
   setDisableSuccessAlertPreference(pccId) {
-    const preferenceKey = this.constructor
-      .formatPreferenceKey(pccId, DEDICATEDCLOUD_DATACENTER_ZERTO
-        .alertPreference);
+    const preferenceKey = this.constructor.formatPreferenceKey(
+      pccId,
+      DEDICATEDCLOUD_DATACENTER_ZERTO.alertPreference,
+    );
 
     return this.ovhUserPref.create(preferenceKey, true);
   }
 
   deleteDisableSuccessAlertPreference(pccId) {
-    const preferenceKey = this.constructor
-      .formatPreferenceKey(pccId, DEDICATEDCLOUD_DATACENTER_ZERTO
-        .alertPreference);
+    const preferenceKey = this.constructor.formatPreferenceKey(
+      pccId,
+      DEDICATEDCLOUD_DATACENTER_ZERTO.alertPreference,
+    );
 
     return this.ovhUserPref.remove(preferenceKey, true);
   }
@@ -433,7 +543,10 @@ export default class {
   static formatPreferenceKey(pccId, keyPreference) {
     const { splitter } = DEDICATEDCLOUD_DATACENTER_ZERTO;
     const [, ...[formattedServiceName]] = pccId.split(splitter);
-    const preferenceKey = `${keyPreference}_${formattedServiceName.replace(/-/g, '')}`;
+    const preferenceKey = `${keyPreference}_${formattedServiceName.replace(
+      /-/g,
+      '',
+    )}`;
 
     return preferenceKey;
   }
@@ -459,31 +572,33 @@ export default class {
   }
 
   static getZertoConfiguration(drpInformations, zertoOption) {
-    return zertoOption === DEDICATEDCLOUD_DATACENTER_DRP_ORDER_OPTIONS
-      .zertoOption.ovh
+    return zertoOption ===
+      DEDICATEDCLOUD_DATACENTER_DRP_ORDER_OPTIONS.zertoOption.ovh
       ? {
-        datacenter_id: drpInformations.primaryDatacenter.id,
-        primaryEndpointIp: drpInformations.primaryEndpointIp,
-        secondaryEndpointIp: drpInformations.secondaryEndpointIp,
-        secondaryServiceName: drpInformations.secondaryPcc.serviceName,
-        secondaryDatacenterId: drpInformations.secondaryDatacenter.id,
-      }
+          datacenter_id: drpInformations.primaryDatacenter.id,
+          primaryEndpointIp: drpInformations.primaryEndpointIp,
+          secondaryEndpointIp: drpInformations.secondaryEndpointIp,
+          secondaryServiceName: drpInformations.secondaryPcc.serviceName,
+          secondaryDatacenterId: drpInformations.secondaryDatacenter.id,
+        }
       : {
-        datacenter_id: drpInformations.primaryDatacenter.id,
-        ovhEndpointIp: drpInformations.ovhEndpointIp,
-        localVraNetwork: drpInformations.localVraNetwork,
-        remoteVraNetwork: drpInformations.remoteVraNetwork,
-      };
+          datacenter_id: drpInformations.primaryDatacenter.id,
+          ovhEndpointIp: drpInformations.ovhEndpointIp,
+          localVraNetwork: drpInformations.localVraNetwork,
+          remoteVraNetwork: drpInformations.remoteVraNetwork,
+        };
   }
 
   static isDrpActionPossible(currentDrp) {
-    return [
-      DEDICATEDCLOUD_DATACENTER_DRP_STATUS.delivered,
-      DEDICATEDCLOUD_DATACENTER_DRP_STATUS.disabled,
-      DEDICATEDCLOUD_DATACENTER_DRP_STATUS.waitingConfiguration,
-    ].includes(currentDrp.state) && currentDrp
-      .vpnStatus !== DEDICATEDCLOUD_DATACENTER_DRP_VPN_CONFIGURATION_STATUS
-      .configuring;
+    return (
+      [
+        DEDICATEDCLOUD_DATACENTER_DRP_STATUS.delivered,
+        DEDICATEDCLOUD_DATACENTER_DRP_STATUS.disabled,
+        DEDICATEDCLOUD_DATACENTER_DRP_STATUS.waitingConfiguration,
+      ].includes(currentDrp.state) &&
+      currentDrp.vpnStatus !==
+        DEDICATEDCLOUD_DATACENTER_DRP_VPN_CONFIGURATION_STATUS.configuring
+    );
   }
 
   static isDrpNotInValidState(state) {

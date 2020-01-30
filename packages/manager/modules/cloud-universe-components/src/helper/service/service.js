@@ -7,12 +7,7 @@ import set from 'lodash/set';
 
 export default class CucServiceHelper {
   /* @ngInject */
-  constructor(
-    $q,
-    $translate,
-    $window,
-    CucCloudMessage,
-  ) {
+  constructor($q, $translate, $window, CucCloudMessage) {
     this.$q = $q;
     this.$translate = $translate;
     this.$window = $window;
@@ -27,15 +22,12 @@ export default class CucServiceHelper {
       const firstPaths = isArray(pathsToGetErrorMessage)
         ? pathsToGetErrorMessage
         : [pathsToGetErrorMessage];
-      const standardPaths = [
-        'data.message',
-        'message',
-        'data'];
+      const standardPaths = ['data.message', 'message', 'data'];
 
       const paths = [...firstPaths, ...standardPaths];
 
       return (isArray(error) ? error : [error]).map((currentError) => {
-        const matchingPath = paths.find(path => has(currentError, path));
+        const matchingPath = paths.find((path) => has(currentError, path));
         errorMessageConfig.apiMessage = get(currentError, matchingPath);
 
         if (isString(messageInput)) {
@@ -74,7 +66,10 @@ export default class CucServiceHelper {
     }
 
     if (config.translateParams) {
-      message.text = this.$translate.instant(config.textToTranslate, config.translateParams);
+      message.text = this.$translate.instant(
+        config.textToTranslate,
+        config.translateParams,
+      );
     } else if (config.textToTranslate) {
       message.text = this.$translate.instant(config.textToTranslate);
     }
@@ -86,20 +81,25 @@ export default class CucServiceHelper {
   }
 
   successHandler(message, containerName) {
-    return data => (isArray(data) ? data : [data]).map((datum) => {
-      let messageToWrite = this.$translate.instant('cuc_helper_global_success');
+    return (data) =>
+      (isArray(data) ? data : [data]).map((datum) => {
+        let messageToWrite = this.$translate.instant(
+          'cuc_helper_global_success',
+        );
 
-      if (message) {
-        const jsonData = isFunction(datum, 'toJSON') ? datum.toJSON() : datum || {};
-        messageToWrite = isString(message)
-          ? this.$translate.instant(message, jsonData)
-          : message;
-      }
+        if (message) {
+          const jsonData = isFunction(datum, 'toJSON')
+            ? datum.toJSON()
+            : datum || {};
+          messageToWrite = isString(message)
+            ? this.$translate.instant(message, jsonData)
+            : message;
+        }
 
-      this.CucCloudMessage.success(messageToWrite, containerName);
+        this.CucCloudMessage.success(messageToWrite, containerName);
 
-      return datum;
-    });
+        return datum;
+      });
   }
 
   static findOrderId(data) {
@@ -107,7 +107,7 @@ export default class CucServiceHelper {
     if (!orderId) {
       const matches = data.url.match(/orderId=(\d+)/);
       if (matches.length > 0) {
-        orderId = matches[1]; // eslint-disable-line
+        [, orderId] = matches;
       }
     }
 
@@ -147,7 +147,10 @@ export default class CucServiceHelper {
     };
   }
 
-  orderSuccessMessage({ orderUrl, orderId }, message = 'cuc_helper_order_success') {
+  orderSuccessMessage(
+    { orderUrl, orderId },
+    message = 'cuc_helper_order_success',
+  ) {
     this.CucCloudMessage.success({
       textHtml: this.$translate.instant(message, {
         orderUrl,

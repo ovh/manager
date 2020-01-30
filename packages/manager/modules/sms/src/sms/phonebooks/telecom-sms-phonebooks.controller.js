@@ -30,8 +30,19 @@ import updateTemplate from './contact-update/telecom-sms-phonebooks-phonebook-co
 export default class {
   /* @ngInject */
   constructor(
-    $document, $filter, $q, $scope, $stateParams, $translate, $timeout, $uibModal, $window,
-    OvhApiSms, TucToast, TucToastError, SMS_PHONEBOOKS,
+    $document,
+    $filter,
+    $q,
+    $scope,
+    $stateParams,
+    $translate,
+    $timeout,
+    $uibModal,
+    $window,
+    OvhApiSms,
+    TucToast,
+    TucToastError,
+    SMS_PHONEBOOKS,
   ) {
     this.$document = $document;
     this.$filter = $filter;
@@ -45,7 +56,9 @@ export default class {
     this.api = {
       sms: {
         phonebooks: OvhApiSms.Phonebooks().v6(),
-        phonebookContact: OvhApiSms.Phonebooks().PhonebookContact().v6(),
+        phonebookContact: OvhApiSms.Phonebooks()
+          .PhonebookContact()
+          .v6(),
         task: OvhApiSms.Task().v6(),
       },
     };
@@ -78,26 +91,39 @@ export default class {
 
     this.resetAllCache();
     this.phonebooks.isLoading = true;
-    this.fetchPhonebooks().then((phonebooks) => {
-      this.phonebooks.raw = phonebooks;
-      this.phonebooks.current = find(this.phonebooks.raw, {
-        bookKey: this.$stateParams.bookKey,
-      }) || head(this.phonebooks.raw);
-      this.phonebookContact.isLoading = true;
-      return this.fetchPhonebookContact(this.phonebooks.current).then((phonebookContact) => {
-        this.phonebookContact.raw = angular.copy(phonebookContact);
-        this.sortPhonebookContact();
-        this.updatePhonebookContactGroups();
-      }).finally(() => {
-        this.phonebookContact.isLoading = false;
+    this.fetchPhonebooks()
+      .then((phonebooks) => {
+        this.phonebooks.raw = phonebooks;
+        this.phonebooks.current =
+          find(this.phonebooks.raw, {
+            bookKey: this.$stateParams.bookKey,
+          }) || head(this.phonebooks.raw);
+        this.phonebookContact.isLoading = true;
+        return this.fetchPhonebookContact(this.phonebooks.current)
+          .then((phonebookContact) => {
+            this.phonebookContact.raw = angular.copy(phonebookContact);
+            this.sortPhonebookContact();
+            this.updatePhonebookContactGroups();
+          })
+          .finally(() => {
+            this.phonebookContact.isLoading = false;
+          });
+      })
+      .catch((err) => {
+        this.TucToast.error(
+          `${this.$translate.instant('sms_phonebooks_phonebook_ko')} ${get(
+            err,
+            'data.message',
+          )}`,
+        );
+        return this.$q.rejec(err);
+      })
+      .finally(() => {
+        this.phonebooks.isLoading = false;
       });
-    }).catch((err) => {
-      this.TucToast.error(`${this.$translate.instant('sms_phonebooks_phonebook_ko')} ${get(err, 'data.message')}`);
-      return this.$q.rejec(err);
-    }).finally(() => {
-      this.phonebooks.isLoading = false;
-    });
-    this.$scope.$on('$destroy', () => this.$timeout.cancel(this.phonebookContact.poller));
+    this.$scope.$on('$destroy', () =>
+      this.$timeout.cancel(this.phonebookContact.poller),
+    );
   }
 
   /**
@@ -116,14 +142,21 @@ export default class {
     return this.api.sms.phonebooks
       .query({
         serviceName: this.$stateParams.serviceName,
-      }).$promise
-      .then(phonebooksIds => this.$q
-        .all(map(phonebooksIds, bookKey => this.api.sms.phonebooks
-          .get({
-            serviceName: this.$stateParams.serviceName,
-            bookKey,
-          }).$promise))
-        .then(phonebooks => sortBy(phonebooks, 'name')));
+      })
+      .$promise.then((phonebooksIds) =>
+        this.$q
+          .all(
+            map(
+              phonebooksIds,
+              (bookKey) =>
+                this.api.sms.phonebooks.get({
+                  serviceName: this.$stateParams.serviceName,
+                  bookKey,
+                }).$promise,
+            ),
+          )
+          .then((phonebooks) => sortBy(phonebooks, 'name')),
+      );
   }
 
   /**
@@ -139,29 +172,63 @@ export default class {
       .query({
         serviceName: this.$stateParams.serviceName,
         bookKey: get(phonebook, 'bookKey'),
-      }).$promise
-      .then(phonebookContactIds => this.$q
-        .all(map(
-          chunk(phonebookContactIds, 50),
-          id => this.api.sms.phonebookContact
-            .getBatch({
-              serviceName: this.$stateParams.serviceName,
-              bookKey: get(phonebook, 'bookKey'),
-              id,
-            }).$promise,
-        ))
-        .then((chunkResult) => {
-          const result = map(flatten(chunkResult), 'value');
-          const emptyGroup = get(this.constant.SMS_PHONEBOOKS, 'emptyFields.group');
-          const emptyPhoneNumber = get(this.constant.SMS_PHONEBOOKS, 'emptyFields.numbers');
-          return each(result, (contact) => {
-            set(contact, 'group', contact.group === emptyGroup ? '' : contact.group);
-            set(contact, 'homeMobile', contact.homeMobile === emptyPhoneNumber ? '' : contact.homeMobile);
-            set(contact, 'homePhone', contact.homePhone === emptyPhoneNumber ? '' : contact.homePhone);
-            set(contact, 'workMobile', contact.workMobile === emptyPhoneNumber ? '' : contact.workMobile);
-            set(contact, 'workPhone', contact.workPhone === emptyPhoneNumber ? '' : contact.workPhone);
-          });
-        }));
+      })
+      .$promise.then((phonebookContactIds) =>
+        this.$q
+          .all(
+            map(
+              chunk(phonebookContactIds, 50),
+              (id) =>
+                this.api.sms.phonebookContact.getBatch({
+                  serviceName: this.$stateParams.serviceName,
+                  bookKey: get(phonebook, 'bookKey'),
+                  id,
+                }).$promise,
+            ),
+          )
+          .then((chunkResult) => {
+            const result = map(flatten(chunkResult), 'value');
+            const emptyGroup = get(
+              this.constant.SMS_PHONEBOOKS,
+              'emptyFields.group',
+            );
+            const emptyPhoneNumber = get(
+              this.constant.SMS_PHONEBOOKS,
+              'emptyFields.numbers',
+            );
+            return each(result, (contact) => {
+              set(
+                contact,
+                'group',
+                contact.group === emptyGroup ? '' : contact.group,
+              );
+              set(
+                contact,
+                'homeMobile',
+                contact.homeMobile === emptyPhoneNumber
+                  ? ''
+                  : contact.homeMobile,
+              );
+              set(
+                contact,
+                'homePhone',
+                contact.homePhone === emptyPhoneNumber ? '' : contact.homePhone,
+              );
+              set(
+                contact,
+                'workMobile',
+                contact.workMobile === emptyPhoneNumber
+                  ? ''
+                  : contact.workMobile,
+              );
+              set(
+                contact,
+                'workPhone',
+                contact.workPhone === emptyPhoneNumber ? '' : contact.workPhone,
+              );
+            });
+          }),
+      );
   }
 
   /**
@@ -224,9 +291,10 @@ export default class {
   getSelection() {
     return filter(
       this.phonebookContact.raw,
-      contact => contact
-        && this.phonebookContact.selected
-        && this.phonebookContact.selected[contact.id],
+      (contact) =>
+        contact &&
+        this.phonebookContact.selected &&
+        this.phonebookContact.selected[contact.id],
     );
   }
 
@@ -235,8 +303,12 @@ export default class {
    */
   startEdition() {
     this.phonebooks.current.inEdition = true;
-    this.phonebooks.current.newName = angular.copy(this.phonebooks.current.name);
-    this.$timeout(() => this.$document.find("input[name='phonebookName']").select());
+    this.phonebooks.current.newName = angular.copy(
+      this.phonebooks.current.name,
+    );
+    this.$timeout(() =>
+      this.$document.find("input[name='phonebookName']").select(),
+    );
   }
 
   /**
@@ -251,26 +323,37 @@ export default class {
    * @return {Promise}
    */
   updatePhonebook() {
-    return this.api.sms.phonebooks.update({
-      serviceName: this.$stateParams.serviceName,
-      bookKey: get(this.phonebooks.current, 'bookKey'),
-    }, {
-      name: this.phonebooks.current.newName,
-    }).$promise.then(() => {
-      this.api.sms.phonebooks.resetAllCache();
-      return this.fetchPhonebooks().then((phonebooks) => {
-        this.phonebooks.raw = phonebooks;
-        this.phonebooks.current = find(this.phonebooks.raw, {
+    return this.api.sms.phonebooks
+      .update(
+        {
+          serviceName: this.$stateParams.serviceName,
+          bookKey: get(this.phonebooks.current, 'bookKey'),
+        },
+        {
           name: this.phonebooks.current.newName,
+        },
+      )
+      .$promise.then(() => {
+        this.api.sms.phonebooks.resetAllCache();
+        return this.fetchPhonebooks().then((phonebooks) => {
+          this.phonebooks.raw = phonebooks;
+          this.phonebooks.current = find(this.phonebooks.raw, {
+            name: this.phonebooks.current.newName,
+          });
+          return phonebooks;
         });
-        return phonebooks;
+      })
+      .catch((err) => {
+        this.TucToast.error(
+          `${this.$translate.instant(
+            'sms_phonebooks_phonebook_update_ko',
+          )} ${get(err, 'data.message')}`,
+        );
+        return this.$q.reject(err);
+      })
+      .finally(() => {
+        this.phonebooks.current.inEdition = false;
       });
-    }).catch((err) => {
-      this.TucToast.error(`${this.$translate.instant('sms_phonebooks_phonebook_update_ko')} ${get(err, 'data.message')}`);
-      return this.$q.reject(err);
-    }).finally(() => {
-      this.phonebooks.current.inEdition = false;
-    });
   }
 
   /**
@@ -287,21 +370,29 @@ export default class {
         phonebook: () => this.phonebooks.current,
       },
     });
-    modal.result.then(() => {
-      this.api.sms.phonebooks.resetAllCache();
-      return this.fetchPhonebooks().then((phonebooks) => {
-        this.phonebooks.raw = phonebooks;
-        this.phonebooks.current = isEmpty(this.phonebooks.raw)
-          ? {} : head(this.phonebooks.raw);
-        return this.refresh();
+    modal.result
+      .then(() => {
+        this.api.sms.phonebooks.resetAllCache();
+        return this.fetchPhonebooks().then((phonebooks) => {
+          this.phonebooks.raw = phonebooks;
+          this.phonebooks.current = isEmpty(this.phonebooks.raw)
+            ? {}
+            : head(this.phonebooks.raw);
+          return this.refresh();
+        });
+      })
+      .catch((err) => {
+        if (err && err.type === 'API') {
+          this.TucToast.error(
+            this.$translate.instant('sms_phonebooks_phonebook_delete_ko', {
+              error: get(err, 'msg.data.message'),
+            }),
+          );
+        }
+      })
+      .finally(() => {
+        this.phonebooks.hasModalOpened = false;
       });
-    }).catch((err) => {
-      if (err && err.type === 'API') {
-        this.TucToast.error(this.$translate.instant('sms_phonebooks_phonebook_delete_ko', { error: get(err, 'msg.data.message') }));
-      }
-    }).finally(() => {
-      this.phonebooks.hasModalOpened = false;
-    });
   }
 
   /**
@@ -324,13 +415,21 @@ export default class {
         },
       },
     });
-    modal.result.then(() => this.refresh()).catch((err) => {
-      if (err && err.type === 'API') {
-        this.TucToast.error(this.$translate.instant('sms_phonebooks_phonebook_contact_create_ko', { error: get(err, 'msg.data.message') }));
-      }
-    }).finally(() => {
-      this.phonebooks.hasModalOpened = false;
-    });
+    modal.result
+      .then(() => this.refresh())
+      .catch((err) => {
+        if (err && err.type === 'API') {
+          this.TucToast.error(
+            this.$translate.instant(
+              'sms_phonebooks_phonebook_contact_create_ko',
+              { error: get(err, 'msg.data.message') },
+            ),
+          );
+        }
+      })
+      .finally(() => {
+        this.phonebooks.hasModalOpened = false;
+      });
   }
 
   /**
@@ -355,13 +454,21 @@ export default class {
         },
       },
     });
-    modal.result.then(() => this.refresh()).catch((err) => {
-      if (err && err.type === 'API') {
-        this.TucToast.error(this.$translate.instant('sms_phonebooks_phonebook_contact_update_ko', { error: get(err, 'msg.data.message') }));
-      }
-    }).finally(() => {
-      this.phonebooks.hasModalOpened = false;
-    });
+    modal.result
+      .then(() => this.refresh())
+      .catch((err) => {
+        if (err && err.type === 'API') {
+          this.TucToast.error(
+            this.$translate.instant(
+              'sms_phonebooks_phonebook_contact_update_ko',
+              { error: get(err, 'msg.data.message') },
+            ),
+          );
+        }
+      })
+      .finally(() => {
+        this.phonebooks.hasModalOpened = false;
+      });
   }
 
   /**
@@ -385,13 +492,21 @@ export default class {
         },
       },
     });
-    modal.result.then(() => this.refresh()).catch((err) => {
-      if (err && err.type === 'API') {
-        this.TucToast.error(this.$translate.instant('sms_phonebooks_phonebook_contact_delete_ko', { error: get(err, 'msg.data.message') }));
-      }
-    }).finally(() => {
-      this.phonebooks.hasModalOpened = false;
-    });
+    modal.result
+      .then(() => this.refresh())
+      .catch((err) => {
+        if (err && err.type === 'API') {
+          this.TucToast.error(
+            this.$translate.instant(
+              'sms_phonebooks_phonebook_contact_delete_ko',
+              { error: get(err, 'msg.data.message') },
+            ),
+          );
+        }
+      })
+      .finally(() => {
+        this.phonebooks.hasModalOpened = false;
+      });
   }
 
   /**
@@ -400,23 +515,39 @@ export default class {
    */
   deleteSelectedPhonebookContact() {
     const contacts = this.getSelection();
-    const queries = contacts.map(contact => this.api.sms.phonebookContact.delete({
-      serviceName: this.$stateParams.serviceName,
-      bookKey: get(this.phonebooks.current, 'bookKey'),
-      id: contact.id,
-    }).$promise);
+    const queries = contacts.map(
+      (contact) =>
+        this.api.sms.phonebookContact.delete({
+          serviceName: this.$stateParams.serviceName,
+          bookKey: get(this.phonebooks.current, 'bookKey'),
+          id: contact.id,
+        }).$promise,
+    );
     this.phonebookContact.isDeleting = true;
     queries.push(this.$timeout(angular.noop, 500)); // avoid clipping
-    this.TucToast.info(this.$translate.instant('sms_phonebooks_phonebook_contact_selected_delete_info'));
-    return this.$q.all(queries).then(() => {
-      this.phonebookContact.selected = {};
-      return this.refresh();
-    }).catch((err) => {
-      this.TucToast.error(this.$translate.instant('sms_phonebooks_phonebook_contact_selected_delete_ko', { error: get(err, 'data.message') }));
-      return this.$q.reject(err);
-    }).finally(() => {
-      this.phonebookContact.isDeleting = false;
-    });
+    this.TucToast.info(
+      this.$translate.instant(
+        'sms_phonebooks_phonebook_contact_selected_delete_info',
+      ),
+    );
+    return this.$q
+      .all(queries)
+      .then(() => {
+        this.phonebookContact.selected = {};
+        return this.refresh();
+      })
+      .catch((err) => {
+        this.TucToast.error(
+          this.$translate.instant(
+            'sms_phonebooks_phonebook_contact_selected_delete_ko',
+            { error: get(err, 'data.message') },
+          ),
+        );
+        return this.$q.reject(err);
+      })
+      .finally(() => {
+        this.phonebookContact.isDeleting = false;
+      });
   }
 
   /**
@@ -433,25 +564,35 @@ export default class {
         phonebook: () => this.phonebooks.current,
       },
     });
-    modal.result.then((response) => {
-      if (has(response, 'taskId')) {
-        this.phonebookContact.isImporting = true;
-        return this.api.sms.task.poll(this.$scope, {
-          serviceName: this.$stateParams.serviceName,
-          taskId: response.taskId,
-        }).finally(() => {
-          this.phonebookContact.isImporting = false;
-          return this.refresh();
-        });
-      }
-      return response;
-    }).catch((err) => {
-      if (err && err.type === 'API') {
-        this.TucToast.error(this.$translate.instant('sms_phonebooks_phonebook_contact_import_ko', { error: get(err, 'msg.data.message') }));
-      }
-    }).finally(() => {
-      this.phonebooks.hasModalOpened = false;
-    });
+    modal.result
+      .then((response) => {
+        if (has(response, 'taskId')) {
+          this.phonebookContact.isImporting = true;
+          return this.api.sms.task
+            .poll(this.$scope, {
+              serviceName: this.$stateParams.serviceName,
+              taskId: response.taskId,
+            })
+            .finally(() => {
+              this.phonebookContact.isImporting = false;
+              return this.refresh();
+            });
+        }
+        return response;
+      })
+      .catch((err) => {
+        if (err && err.type === 'API') {
+          this.TucToast.error(
+            this.$translate.instant(
+              'sms_phonebooks_phonebook_contact_import_ko',
+              { error: get(err, 'msg.data.message') },
+            ),
+          );
+        }
+      })
+      .finally(() => {
+        this.phonebooks.hasModalOpened = false;
+      });
   }
 
   /**
@@ -460,26 +601,38 @@ export default class {
    */
   exportPhonebookContact() {
     this.phonebookContact.isExporting = true;
-    const tryGetCsvExport = () => this.api.sms.phonebooks.getExport({
-      serviceName: this.$stateParams.serviceName,
-      bookKey: get(this.phonebooks.current, 'bookKey'),
-      format: 'csv',
-    }).$promise.then((exportPhonebook) => {
-      if (exportPhonebook.status === 'done') {
-        return exportPhonebook;
-      }
-      this.phonebookContact.poller = this.$timeout(tryGetCsvExport, 1000);
-      return this.phonebookContact.poller;
-    });
-    return tryGetCsvExport().then((phonebook) => {
-      this.$window.location.href = phonebook.url;
-      this.TucToast.success(this.$translate.instant('sms_phonebooks_phonebook_contact_export_ok'));
-    }).catch((err) => {
-      this.TucToast.error(`${this.$translate.instant('sms_phonebooks_phonebook_contact_export_ko')} ${get(err, 'data.message')}`);
-      return this.$q.reject(err);
-    }).finally(() => {
-      this.phonebookContact.isExporting = false;
-    });
+    const tryGetCsvExport = () =>
+      this.api.sms.phonebooks
+        .getExport({
+          serviceName: this.$stateParams.serviceName,
+          bookKey: get(this.phonebooks.current, 'bookKey'),
+          format: 'csv',
+        })
+        .$promise.then((exportPhonebook) => {
+          if (exportPhonebook.status === 'done') {
+            return exportPhonebook;
+          }
+          this.phonebookContact.poller = this.$timeout(tryGetCsvExport, 1000);
+          return this.phonebookContact.poller;
+        });
+    return tryGetCsvExport()
+      .then((phonebook) => {
+        this.$window.location.href = phonebook.url;
+        this.TucToast.success(
+          this.$translate.instant('sms_phonebooks_phonebook_contact_export_ok'),
+        );
+      })
+      .catch((err) => {
+        this.TucToast.error(
+          `${this.$translate.instant(
+            'sms_phonebooks_phonebook_contact_export_ko',
+          )} ${get(err, 'data.message')}`,
+        );
+        return this.$q.reject(err);
+      })
+      .finally(() => {
+        this.phonebookContact.isExporting = false;
+      });
   }
 
   /**
@@ -489,15 +642,22 @@ export default class {
   refresh() {
     this.phonebookContact.isLoading = true;
     this.api.sms.phonebookContact.resetAllCache();
-    return this.fetchPhonebookContact(this.phonebooks.current).then((phonebookContact) => {
-      this.phonebookContact.raw = angular.copy(phonebookContact);
-      this.sortPhonebookContact();
-      this.updatePhonebookContactGroups();
-    }).catch((err) => {
-      this.TucToast.error(`${this.$translate.instant('sms_phonebooks_phonebook_contact_ko')} ${get(err, 'data.message')}`);
-      return this.$q.reject(err);
-    }).finally(() => {
-      this.phonebookContact.isLoading = false;
-    });
+    return this.fetchPhonebookContact(this.phonebooks.current)
+      .then((phonebookContact) => {
+        this.phonebookContact.raw = angular.copy(phonebookContact);
+        this.sortPhonebookContact();
+        this.updatePhonebookContactGroups();
+      })
+      .catch((err) => {
+        this.TucToast.error(
+          `${this.$translate.instant(
+            'sms_phonebooks_phonebook_contact_ko',
+          )} ${get(err, 'data.message')}`,
+        );
+        return this.$q.reject(err);
+      })
+      .finally(() => {
+        this.phonebookContact.isLoading = false;
+      });
   }
 }

@@ -1,6 +1,6 @@
 import component from './vps-windows.component';
 
-export default /* @ngInject */($stateProvider) => {
+export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('vps.detail.windows', {
     url: '/windows',
     abstract: true,

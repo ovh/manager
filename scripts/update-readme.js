@@ -4,12 +4,15 @@ const execa = require('execa');
 const markdownMagic = require('markdown-magic');
 
 const getPackages = async () => {
-  const { stdout: packageList } = await execa('lerna', ['list', '-a', '--json']);
-  return JSON.parse(packageList)
-    .map(pkg => ({
-      ...pkg,
-      location: path.relative(process.cwd(), pkg.location),
-    }));
+  const { stdout: packageList } = await execa('lerna', [
+    'list',
+    '-a',
+    '--json',
+  ]);
+  return JSON.parse(packageList).map((pkg) => ({
+    ...pkg,
+    location: path.relative(process.cwd(), pkg.location),
+  }));
 };
 
 const filterPackages = (
@@ -18,13 +21,15 @@ const filterPackages = (
 ) => {
   let filteredPackages = [...pkgs];
   if (!publicPackage) {
-    filteredPackages = filteredPackages.filter(pkg => pkg.private);
+    filteredPackages = filteredPackages.filter((pkg) => pkg.private);
   }
   if (!privatePackage) {
-    filteredPackages = filteredPackages.filter(pkg => !pkg.private);
+    filteredPackages = filteredPackages.filter((pkg) => !pkg.private);
   }
   if (packagePath) {
-    filteredPackages = filteredPackages.filter(pkg => pkg.location.startsWith(packagePath));
+    filteredPackages = filteredPackages.filter((pkg) =>
+      pkg.location.startsWith(packagePath),
+    );
   }
 
   return filteredPackages;
@@ -58,19 +63,19 @@ const buildTableHeader = (showBadges = []) => {
     },
   };
 
-  const headerIds = [
-    'package',
-    ...showBadges,
-    'changelog',
-  ];
+  const headerIds = ['package', ...showBadges, 'changelog'];
 
-  const colTitles = headerIds.map(header => tableHeadersDefinition[header].title);
+  const colTitles = headerIds.map(
+    (header) => tableHeadersDefinition[header].title,
+  );
 
   const colSeparators = headerIds.map((header) => {
     let separator = '';
     switch (tableHeadersDefinition[header].align) {
       case 'center':
-        separator = `:${'-'.repeat(tableHeadersDefinition[header].title.length - 2)}:`;
+        separator = `:${'-'.repeat(
+          tableHeadersDefinition[header].title.length - 2,
+        )}:`;
         break;
       default:
         separator = '-'.repeat(tableHeadersDefinition[header].title.length);
@@ -103,18 +108,15 @@ const buildTableLine = ({ name, location }, showBadges) => {
     `[:books:](https://github.com/ovh/manager/blob/master/${location}/CHANGELOG.md)`,
   ];
 
-
   return `| ${cols.join(' | ')} |`;
 };
 
 const updateReadme = async () => {
   const packages = await getPackages();
   const markdownPath = path.join(process.cwd(), 'README.md');
-  markdownMagic(
-    markdownPath,
-    {
-      transforms: {
-        /*
+  markdownMagic(markdownPath, {
+    transforms: {
+      /*
           Match :
             <!-- AUTO-GENERATED-CONTENT:START (PACKAGES:showBadges=false&name=module) -->
               <!-- CONTENT WILL BE GENERATED HERE -->
@@ -128,41 +130,46 @@ const updateReadme = async () => {
             name: 'package',
           }
         */
-        PACKAGES: (content, _options = {}) => {
-          let { showBadges } = _options;
-          if (showBadges === 'false') {
-            showBadges = [];
-          } else {
-            showBadges = (showBadges || 'version|deps|devDeps|peerDeps').split('|');
-          }
-          const options = {
-            level: _options.level || 2,
-            packagePath: _options.packagePath || false,
-            publicPackage: (_options.publicPackage || 'true') === 'true',
-            privatePackage: (_options.privatePackage || 'false') === 'true',
-            showBadges,
-            name: _options.name || 'packages',
-          };
+      PACKAGES: (content, _options = {}) => {
+        let { showBadges } = _options;
+        if (showBadges === 'false') {
+          showBadges = [];
+        } else {
+          showBadges = (showBadges || 'version|deps|devDeps|peerDeps').split(
+            '|',
+          );
+        }
+        const options = {
+          level: _options.level || 2,
+          packagePath: _options.packagePath || false,
+          publicPackage: (_options.publicPackage || 'true') === 'true',
+          privatePackage: (_options.privatePackage || 'false') === 'true',
+          showBadges,
+          name: _options.name || 'packages',
+        };
 
-          const packageList = filterPackages(packages, options);
+        const packageList = filterPackages(packages, options);
 
-          if (packageList.length === 0) {
-            return '';
-          }
+        if (packageList.length === 0) {
+          return '';
+        }
 
-          const header = `${'#'.repeat(options.level)} Availables ${options.name}`;
-          const tableaHeader = buildTableHeader(options.showBadges);
+        const header = `${'#'.repeat(options.level)} Availables ${
+          options.name
+        }`;
+        const tableaHeader = buildTableHeader(options.showBadges);
 
-          const lines = packageList.map(pkg => buildTableLine(pkg, options.showBadges));
+        const lines = packageList.map((pkg) =>
+          buildTableLine(pkg, options.showBadges),
+        );
 
-          return `${header}
+        return `${header}
 
 ${tableaHeader}
 ${lines.join('\n')}`;
-        },
       },
     },
-  );
+  });
 };
 
 try {

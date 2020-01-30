@@ -1,118 +1,196 @@
 <div data-ng-controller="HostingDatabaseImportCtrl as ctrl">
-    <div data-wizard
-         data-wizard-bread-crumb
-         data-wizard-on-cancel="resetAction"
-         data-wizard-on-finish="importDatabase"
-         data-wizard-title="'hosting_tab_DATABASES_configuration_import_title' | translate">
-
+    <div
+        data-wizard
+        data-wizard-bread-crumb
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="importDatabase"
+        data-wizard-title="'hosting_tab_DATABASES_configuration_import_title' | translate"
+    >
         <div data-wizard-step>
             <form name="ctrl.formFileUploadStep0" novalidate>
                 <p data-translate="wizard_action_question"></p>
                 <div class="oui-radio">
-                    <input type="radio" class="oui-radio__input" id="hostingDatabaseImportMode-new" name="hostingDatabaseImportMode"
-                           data-ng-model="ctrl.selected.action"
-                           data-ng-value="ctrl.model.actions.IMPORT_FROM_NEW">
-                    <label class="oui-radio__label-container" for="hostingDatabaseImportMode-new">
-                        <span class="oui-radio__label"
-                              data-translate="hosting_tab_DATABASES_table_popover_import_step0_new_file_mode"></span>
+                    <input
+                        type="radio"
+                        class="oui-radio__input"
+                        id="hostingDatabaseImportMode-new"
+                        name="hostingDatabaseImportMode"
+                        data-ng-model="ctrl.selected.action"
+                        data-ng-value="ctrl.model.actions.IMPORT_FROM_NEW"
+                    />
+                    <label
+                        class="oui-radio__label-container"
+                        for="hostingDatabaseImportMode-new"
+                    >
+                        <span
+                            class="oui-radio__label"
+                            data-translate="hosting_tab_DATABASES_table_popover_import_step0_new_file_mode"
+                        ></span>
                     </label>
                 </div>
                 <div class="oui-radio">
-                    <input type="radio" class="oui-radio__input" id="hostingDatabaseImportMode-existing" name="hostingDatabaseImportMode"
-                           data-ng-model="ctrl.selected.action"
-                           data-ng-value="ctrl.model.actions.IMPORT_FROM_EXISTING">
-                    <label class="oui-radio__label-container" for="hostingDatabaseImportMode-existing">
-                        <span class="oui-radio__label"
-                              data-translate="hosting_tab_DATABASES_table_popover_import_step0_existing_file_mode"></span>
+                    <input
+                        type="radio"
+                        class="oui-radio__input"
+                        id="hostingDatabaseImportMode-existing"
+                        name="hostingDatabaseImportMode"
+                        data-ng-model="ctrl.selected.action"
+                        data-ng-value="ctrl.model.actions.IMPORT_FROM_EXISTING"
+                    />
+                    <label
+                        class="oui-radio__label-container"
+                        for="hostingDatabaseImportMode-existing"
+                    >
+                        <span
+                            class="oui-radio__label"
+                            data-translate="hosting_tab_DATABASES_table_popover_import_step0_existing_file_mode"
+                        ></span>
                     </label>
                 </div>
             </form>
         </div>
 
-        <div data-wizard-step
-             data-wizard-step-on-load="getDocuments"
-             data-wizard-step-on-previous="resetDocumentSelection"
-             data-wizard-step-valid="ctrl.isStep2Ok()">
-
-            <div data-ng-if="ctrl.selected.action === ctrl.model.actions.IMPORT_FROM_NEW">
+        <div
+            data-wizard-step
+            data-wizard-step-on-load="getDocuments"
+            data-wizard-step-on-previous="resetDocumentSelection"
+            data-wizard-step-valid="ctrl.isStep2Ok()"
+        >
+            <div
+                data-ng-if="ctrl.selected.action === ctrl.model.actions.IMPORT_FROM_NEW"
+            >
                 <oui-spinner data-ng-if="ctrl.isSendingFile"></oui-spinner>
 
-                <form name="ctrl.formFileUpload" novalidate
-                      data-ng-show="!ctrl.isSendingFile"
-                      data-ng-submit="ctrl.submit()">
-
-                    <div class="form-group"
-                         data-ng-class="{'has-error': ctrl.formFileUpload.uploadFileName.$dirty && ctrl.formFileUpload.uploadFileName.$invalid}">
+                <form
+                    name="ctrl.formFileUpload"
+                    novalidate
+                    data-ng-show="!ctrl.isSendingFile"
+                    data-ng-submit="ctrl.submit()"
+                >
+                    <div
+                        class="form-group"
+                        data-ng-class="{'has-error': ctrl.formFileUpload.uploadFileName.$dirty && ctrl.formFileUpload.uploadFileName.$invalid}"
+                    >
                         <label class="control-label" for="uploadFileName">
-                            <span class="mr-2"
-                                  data-translate="hosting_tab_DATABASES_table_popover_import_step1_upload_file_name"></span>
-                            <span class="fa fa-info-circle" aria-hidden="true"
-                                  data-oui-tooltip="{{:: 'hosting_tab_DATABASES_table_popover_import_step1_upload_file_name_info' | translate }}"></span>
+                            <span
+                                class="mr-2"
+                                data-translate="hosting_tab_DATABASES_table_popover_import_step1_upload_file_name"
+                            ></span>
+                            <span
+                                class="fa fa-info-circle"
+                                aria-hidden="true"
+                                data-oui-tooltip="{{:: 'hosting_tab_DATABASES_table_popover_import_step1_upload_file_name_info' | translate }}"
+                            ></span>
                         </label>
-                        <input type="text" class="form-control" id="uploadFileName" name="uploadFileName" required
-                               data-ng-model="ctrl.model.uploadFileName">
-                        <small class="help-block"
-                               data-ng-repeat="(type, isError) in ctrl.formFileUpload.uploadFileName.$error"
-                               data-ng-bind="'hosting_tab_DATABASES_table_popover_import_step1_upload_file_name_' + type + '_error' | translate"
-                               data-ng-if="ctrl.formFileUpload.uploadFileName.$dirty && ctrl.formFileUpload.uploadFileName.$error"></small>
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="uploadFileName"
+                            name="uploadFileName"
+                            required
+                            data-ng-model="ctrl.model.uploadFileName"
+                        />
+                        <small
+                            class="help-block"
+                            data-ng-repeat="(type, isError) in ctrl.formFileUpload.uploadFileName.$error"
+                            data-ng-bind="'hosting_tab_DATABASES_table_popover_import_step1_upload_file_name_' + type + '_error' | translate"
+                            data-ng-if="ctrl.formFileUpload.uploadFileName.$dirty && ctrl.formFileUpload.uploadFileName.$error"
+                        ></small>
                     </div>
 
-                    <div class="form-group"
-                         data-ng-class="{'has-error': ctrl.formFileUpload.file.$dirty && ctrl.formFileUpload.file.$invalid}">
-                        <label class="control-label" for="uploadFileFile"
-                               data-translate="hosting_tab_DATABASES_table_popover_import_step1_upload_file_file">
+                    <div
+                        class="form-group"
+                        data-ng-class="{'has-error': ctrl.formFileUpload.file.$dirty && ctrl.formFileUpload.file.$invalid}"
+                    >
+                        <label
+                            class="control-label"
+                            for="uploadFileFile"
+                            data-translate="hosting_tab_DATABASES_table_popover_import_step1_upload_file_file"
+                        >
                         </label>
-                        <input type="file" id="uploadFileFile" name="file" required
-                               data-wuc-file-change="ctrl.onFileChange(ctrl.formFileUpload.file)"
-                               data-ng-model="ctrl.file">
-                        <small class="help-block"
-                               data-ng-repeat="(type, isError) in ctrl.formFileUpload.file.$error track by $index"
-                               data-ng-bind="'hosting_tab_DATABASES_table_popover_import_step1_upload_file_file_' + type + '_error' | translate"
-                               data-ng-if="ctrl.formFileUpload.file.$dirty && ctrl.formFileUpload.file.$invalid">
+                        <input
+                            type="file"
+                            id="uploadFileFile"
+                            name="file"
+                            required
+                            data-wuc-file-change="ctrl.onFileChange(ctrl.formFileUpload.file)"
+                            data-ng-model="ctrl.file"
+                        />
+                        <small
+                            class="help-block"
+                            data-ng-repeat="(type, isError) in ctrl.formFileUpload.file.$error track by $index"
+                            data-ng-bind="'hosting_tab_DATABASES_table_popover_import_step1_upload_file_file_' + type + '_error' | translate"
+                            data-ng-if="ctrl.formFileUpload.file.$dirty && ctrl.formFileUpload.file.$invalid"
+                        >
                         </small>
                         <div class="mt-3">
-                            <button class="oui-button oui-button_primary" type="submit"
-                                    data-translate="hosting_tab_DATABASES_table_popover_import_step1_upload"
-                                    data-ng-disabled="ctrl.formFileUpload.$invalid">
-                            </button>
-                            <p class="text-success mt-3"
-                               data-translate="hosting_tab_DATABASES_table_popover_import_step1_upload_succes"
-                               data-ng-if="ctrl.atLeastOneFileHasBeenSend"></p>
+                            <button
+                                class="oui-button oui-button_primary"
+                                type="submit"
+                                data-translate="hosting_tab_DATABASES_table_popover_import_step1_upload"
+                                data-ng-disabled="ctrl.formFileUpload.$invalid"
+                            ></button>
+                            <p
+                                class="text-success mt-3"
+                                data-translate="hosting_tab_DATABASES_table_popover_import_step1_upload_succes"
+                                data-ng-if="ctrl.atLeastOneFileHasBeenSend"
+                            ></p>
                         </div>
                     </div>
                 </form>
             </div>
 
-
-            <div data-ng-if="ctrl.selected.action === ctrl.model.actions.IMPORT_FROM_EXISTING">
+            <div
+                data-ng-if="ctrl.selected.action === ctrl.model.actions.IMPORT_FROM_EXISTING"
+            >
                 <oui-spinner data-ng-if="!ctrl.model.documents"></oui-spinner>
 
                 <form data-ng-if="ctrl.model.documents">
-                    <label class="oui-label" for="ddlDocuments"
-                           data-translate="hosting_tab_DATABASES_table_popover_import_step1_choose_file"></label>
+                    <label
+                        class="oui-label"
+                        for="ddlDocuments"
+                        data-translate="hosting_tab_DATABASES_table_popover_import_step1_choose_file"
+                    ></label>
                     <div class="oui-select oui-select_inline">
-                        <select class="oui-select__input" id="ddlDocuments"
-                                data-ng-model="ctrl.model.document"
-                                data-ng-options="document.name for document in ctrl.model.documents | orderBy: 'name' track by document.id">
-                            <option value="" disabled
-                                    data-translate="select_placeholder"></option>
+                        <select
+                            class="oui-select__input"
+                            id="ddlDocuments"
+                            data-ng-model="ctrl.model.document"
+                            data-ng-options="document.name for document in ctrl.model.documents | orderBy: 'name' track by document.id"
+                        >
+                            <option
+                                value=""
+                                disabled
+                                data-translate="select_placeholder"
+                            ></option>
                         </select>
-                        <span class="oui-icon oui-icon-chevron-down" aria-hidden="true"></span>
+                        <span
+                            class="oui-icon oui-icon-chevron-down"
+                            aria-hidden="true"
+                        ></span>
                     </div>
                 </form>
             </div>
         </div>
 
         <div data-wizard-step>
-            <p data-translate="hosting_tab_DATABASES_table_popover_import_step2_title"></p>
+            <p
+                data-translate="hosting_tab_DATABASES_table_popover_import_step2_title"
+            ></p>
             <form name="ctrl.formFileUploadStep2" novalidate>
-                <oui-checkbox id="flushDatabase" name="flushDatabase"
+                <oui-checkbox
+                    id="flushDatabase"
+                    name="flushDatabase"
                     data-model="ctrl.model.flushDatabase"
-                    data-text="{{:: 'hosting_tab_DATABASES_table_popover_import_step2_flush_database' | translate }}">
+                    data-text="{{:: 'hosting_tab_DATABASES_table_popover_import_step2_flush_database' | translate }}"
+                >
                 </oui-checkbox>
-                <oui-checkbox id="sendEmail" name="sendEmail"
+                <oui-checkbox
+                    id="sendEmail"
+                    name="sendEmail"
                     data-model="ctrl.model.sendEmail"
-                    data-text="{{:: 'hosting_tab_DATABASES_table_popover_import_step2_send_email' | translate }}">
+                    data-text="{{:: 'hosting_tab_DATABASES_table_popover_import_step2_send_email' | translate }}"
+                >
                 </oui-checkbox>
             </form>
         </div>

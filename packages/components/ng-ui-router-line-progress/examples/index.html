@@ -1,7 +1,7 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="utf-8">
+        <meta charset="utf-8" />
         <title>@ovh-ux/ng-ui-router-line-progress</title>
     </head>
     <body ng-app="myApp">
@@ -17,18 +17,18 @@
         <script>
             var myApp = angular
                 .module('myApp', ['ui.router', 'ngUiRouterLineProgress'])
-                .config(function ($stateProvider) {
+                .config(function($stateProvider) {
                     $stateProvider.state('foo', {
                         url: '/foo',
-                        template: '<h2>Foo</h2>'
+                        template: '<h2>Foo</h2>',
                     });
                     $stateProvider.state('bar', {
                         url: '/bar',
-                        template: '<h2>Bar</h2>'
+                        template: '<h2>Bar</h2>',
                     });
                     $stateProvider.state('baz', {
                         url: '/baz',
-                        template: '<h2>Baz</h2>'
+                        template: '<h2>Baz</h2>',
                     });
                 });
         </script>

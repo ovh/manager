@@ -8,7 +8,7 @@ angular.module('App').config(($stateProvider) => {
     translations: { value: ['./core', './common'], format: 'json' },
     resolve: {
       rootState: () => 'app.configuration',
-      user: /* @ngInject */ OvhApiMe => OvhApiMe.v6().get().$promise,
+      user: /* @ngInject */ (OvhApiMe) => OvhApiMe.v6().get().$promise,
     },
   });
 
@@ -26,8 +26,8 @@ angular.module('App').config(($stateProvider) => {
     },
     translations: { value: ['.'], format: 'json' },
     resolve: {
-      forced: /* @ngInject */ $transition$ => $transition$.params().forced,
-      from: /* @ngInject */ $transition$ => $transition$.$from().name,
+      forced: /* @ngInject */ ($transition$) => $transition$.params().forced,
+      from: /* @ngInject */ ($transition$) => $transition$.$from().name,
     },
   });
 

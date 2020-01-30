@@ -833,5 +833,10 @@
   "domain_tab_options_delete_error": "Se ha producido un error al dar de baja la opción.",
   "domain_tab_options_delete_cancel": "Cancelar",
   "domain_dashboard_options_dns_anycast_expiry": "Fecha de aplicación: {{date}}",
-  "domain_tab_options_delete_expiry": "Esta opción se dará de baja en la fecha de renovación, es decir, el {{ date }}."
+  "domain_tab_options_delete_expiry": "Esta opción se dará de baja en la fecha de renovación, es decir, el {{ date }}.",
+  "domain_dashboard_web_hosting_ordered": "Alojamientos contratados",
+  "domain_dashboard_web_hosting_ordered_none": "No hay alojamientos contratados",
+  "domain_dashboard_web_hosting_subdomains_and_multisites": "Subdominios y multisitios",
+  "domain_dashboard_web_hosting_subdomains_and_multisites_more": "Mostrar todo",
+  "domain_dashboard_web_hosting_subdomains_and_multisites_none": "No hay ningún subdominio ni multisitio"
 }

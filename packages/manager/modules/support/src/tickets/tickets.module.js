@@ -28,9 +28,11 @@ angular
     uiRouter,
   ])
   .component(component.name, component)
-  .config(/* @ngInject */ ($stateProvider) => {
-    $stateProvider.state(state.name, state);
-  })
+  .config(
+    /* @ngInject */ ($stateProvider) => {
+      $stateProvider.state(state.name, state);
+    },
+  )
   .run(/* @ngTranslationsInject:json ./translations */)
   .service('ticketService', ticketService)
   .service('ticketMessageService', ticketMessageService)

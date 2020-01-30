@@ -7,21 +7,20 @@ import '@ovh-ux/manager-core';
 const moduleName = 'ovhManagerPciProjectKubernetesLazyloading';
 
 angular
-  .module(moduleName, [
-    'ui.router',
-    'ovhManagerCore',
-    'oc.lazyLoad',
-  ])
-  .config(/* @ngInject */($stateProvider) => {
-    $stateProvider.state('pci.projects.project.kubernetes.**', {
-      url: '/kubernetes',
-      lazyLoad: ($transition$) => {
-        const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+  .module(moduleName, ['ui.router', 'ovhManagerCore', 'oc.lazyLoad'])
+  .config(
+    /* @ngInject */ ($stateProvider) => {
+      $stateProvider.state('pci.projects.project.kubernetes.**', {
+        url: '/kubernetes',
+        lazyLoad: ($transition$) => {
+          const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-        return import('./kubernetes.module')
-          .then(mod => $ocLazyLoad.inject(mod.default || mod));
-      },
-    });
-  });
+          return import('./kubernetes.module').then((mod) =>
+            $ocLazyLoad.inject(mod.default || mod),
+          );
+        },
+      });
+    },
+  );
 
 export default moduleName;

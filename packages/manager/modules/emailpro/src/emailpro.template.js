@@ -48,52 +48,190 @@ import emailproMailingListSubscriberDeleteTemplate from './mailing-list/subscrib
 import emailproMailingListCreateTemplate from './mailing-list/create/emailpro-mailing-list-create.html';
 
 export default /* @ngInject */ ($templateCache) => {
-  $templateCache.put('emailpro/remove/emailpro-remove.html', emailproRemoveTemplate);
-  $templateCache.put('emailpro/information/emailpro-information.html', emailproInformationTemplate);
-  $templateCache.put('emailpro/disclaimer/remove/emailpro-disclaimer-remove.html', emailproDisclaimerRemoveTemplate);
-  $templateCache.put('emailpro/disclaimer/update/emailpro-disclaimer-update.html', emailproDisclaimerUpdateTemplate);
-  $templateCache.put('emailpro/disclaimer/emailpro-disclaimer.html', emailproDisclaimerTemplate);
-  $templateCache.put('emailpro/disclaimer/add/emailpro-disclaimer-add.html', emailproDisclaimerAddTemplate);
-  $templateCache.put('emailpro/update/renew/emailpro-update-renew.html', emailproUpdateRenewTemplate);
-  $templateCache.put('emailpro/redirection/update/email-domain-email-redirection-update.html', emailDomainEmailRedirectionUpdateTemplate);
-  $templateCache.put('emailpro/redirection/delete/email-domain-email-redirection-delete.html', emailDomainEmailRedirectionDeleteTemplate);
-  $templateCache.put('emailpro/redirection/emailpro-redirection.html', emailproRedirectionTemplate);
-  $templateCache.put('emailpro/redirection/create/email-domain-email-redirection-create.html', emailDomainEmailRedirectionCreateTemplate);
-  $templateCache.put('emailpro/external-contact/remove/emailpro-external-contact-remove.html', emailproExternalContactRemoveTemplate);
-  $templateCache.put('emailpro/external-contact/update/emailpro-external-contact-update.html', emailproExternalContactUpdateTemplate);
-  $templateCache.put('emailpro/external-contact/add/emailpro-external-contact-add.html', emailproExternalContactAddTemplate);
-  $templateCache.put('emailpro/external-contact/emailpro-external-contact.html', emailproExternalContactTemplate);
+  $templateCache.put(
+    'emailpro/remove/emailpro-remove.html',
+    emailproRemoveTemplate,
+  );
+  $templateCache.put(
+    'emailpro/information/emailpro-information.html',
+    emailproInformationTemplate,
+  );
+  $templateCache.put(
+    'emailpro/disclaimer/remove/emailpro-disclaimer-remove.html',
+    emailproDisclaimerRemoveTemplate,
+  );
+  $templateCache.put(
+    'emailpro/disclaimer/update/emailpro-disclaimer-update.html',
+    emailproDisclaimerUpdateTemplate,
+  );
+  $templateCache.put(
+    'emailpro/disclaimer/emailpro-disclaimer.html',
+    emailproDisclaimerTemplate,
+  );
+  $templateCache.put(
+    'emailpro/disclaimer/add/emailpro-disclaimer-add.html',
+    emailproDisclaimerAddTemplate,
+  );
+  $templateCache.put(
+    'emailpro/update/renew/emailpro-update-renew.html',
+    emailproUpdateRenewTemplate,
+  );
+  $templateCache.put(
+    'emailpro/redirection/update/email-domain-email-redirection-update.html',
+    emailDomainEmailRedirectionUpdateTemplate,
+  );
+  $templateCache.put(
+    'emailpro/redirection/delete/email-domain-email-redirection-delete.html',
+    emailDomainEmailRedirectionDeleteTemplate,
+  );
+  $templateCache.put(
+    'emailpro/redirection/emailpro-redirection.html',
+    emailproRedirectionTemplate,
+  );
+  $templateCache.put(
+    'emailpro/redirection/create/email-domain-email-redirection-create.html',
+    emailDomainEmailRedirectionCreateTemplate,
+  );
+  $templateCache.put(
+    'emailpro/external-contact/remove/emailpro-external-contact-remove.html',
+    emailproExternalContactRemoveTemplate,
+  );
+  $templateCache.put(
+    'emailpro/external-contact/update/emailpro-external-contact-update.html',
+    emailproExternalContactUpdateTemplate,
+  );
+  $templateCache.put(
+    'emailpro/external-contact/add/emailpro-external-contact-add.html',
+    emailproExternalContactAddTemplate,
+  );
+  $templateCache.put(
+    'emailpro/external-contact/emailpro-external-contact.html',
+    emailproExternalContactTemplate,
+  );
   $templateCache.put('emailpro/emailpro.html', emailproTemplate);
   $templateCache.put('emailpro/task/emailpro-task.html', emailproTaskTemplate);
-  $templateCache.put('emailpro/emailpro-error-messages.popover.html', emailproErrorMessagesPopoverTemplate);
-  $templateCache.put('emailpro/account/order/emailpro-account-order.html', emailproAccountOrderTemplate);
-  $templateCache.put('emailpro/account/alias/remove/emailpro-account-alias-remove.html', emailproAccountAliasRemoveTemplate);
-  $templateCache.put('emailpro/account/alias/emailpro-account-alias.html', emailproAccountAliasTemplate);
-  $templateCache.put('emailpro/account/alias/add/emailpro-account-alias-add.html', emailproAccountAliasAddTemplate);
-  $templateCache.put('emailpro/account/remove/emailpro-account-remove.html', emailproAccountRemoveTemplate);
-  $templateCache.put('emailpro/account/update/emailpro-account-update.html', emailproAccountUpdateTemplate);
-  $templateCache.put('emailpro/account/delegation/emailpro-account-delegation.html', emailproAccountDelegationTemplate);
-  $templateCache.put('emailpro/account/add/emailpro-account-add.html', emailproAccountAddTemplate);
-  $templateCache.put('emailpro/account/emailpro-account.html', emailproAccountTemplate);
-  $templateCache.put('emailpro/service/configure/emailpro-service-configure.html', emailproServiceConfigureTemplate);
-  $templateCache.put('emailpro/domain/mx-autoconfig/emailpro-domain-mx-autoconfig.html', emailproDomainMxAutoconfigTemplate);
-  $templateCache.put('emailpro/domain/emailpro-domain.html', emailproDomainTemplate);
-  $templateCache.put('emailpro/domain/remove/emailpro-domain-remove.html', emailproDomainRemoveTemplate);
-  $templateCache.put('emailpro/domain/update/emailpro-domain-update.html', emailproDomainUpdateTemplate);
-  $templateCache.put('emailpro/domain/srv-autoconfig/emailpro-domain-srv-autoconfig.html', emailproDomainSrvAutoconfigTemplate);
-  $templateCache.put('emailpro/domain/add/emailpro-domain-add.html', emailproDomainAddTemplate);
-  $templateCache.put('emailpro/mailing-list/update/emailpro-mailing-list-update.html', emailproMailingListUpdateTemplate);
-  $templateCache.put('emailpro/mailing-list/delete/emailpro-mailing-list-delete.html', emailproMailingListDeleteTemplate);
-  $templateCache.put('emailpro/mailing-list/send-list-by-email/emailpro-mailing-list-send-list-by-email.html', emailproMailingListSendListByEmailTemplate);
-  $templateCache.put('emailpro/mailing-list/moderator/delete/emailpro-mailing-list-moderator-delete.html', emailproMailingListModeratorDeleteTemplate);
-  $templateCache.put('emailpro/mailing-list/emailpro-mailing-list-view.html', emailproMailingListViewTemplate);
-  $templateCache.put('emailpro/mailing-list/emailpro-mailing-list.html', emailproMailingListTemplate);
-  $templateCache.put('emailpro/mailing-list/moderators/delete/emailpro-mailing-list-moderators-delete.html', emailproMailingListModeratorsDeleteTemplate);
-  $templateCache.put('emailpro/mailing-list/moderators/emailpro-mailing-list-moderators-view.html', emailproMailingListModeratorsViewTemplate);
-  $templateCache.put('emailpro/mailing-list/moderators/create/emailpro-mailing-list-moderators-create.html', emailproMailingListModeratorsCreateTemplate);
-  $templateCache.put('emailpro/mailing-list/subscribers/delete/emailpro-mailing-list-subscribers-delete.html', emailproMailingListSubscribersDeleteTemplate);
-  $templateCache.put('emailpro/mailing-list/subscribers/emailpro-mailing-list-subscribers-view.html', emailproMailingListSubscribersViewTemplate);
-  $templateCache.put('emailpro/mailing-list/subscribers/create/emailpro-mailing-list-subscribers-create.html', emailproMailingListSubscribersCreateTemplate);
-  $templateCache.put('emailpro/mailing-list/subscriber/delete/emailpro-mailing-list-subscriber-delete.html', emailproMailingListSubscriberDeleteTemplate);
-  $templateCache.put('emailpro/mailing-list/create/emailpro-mailing-list-create.html', emailproMailingListCreateTemplate);
+  $templateCache.put(
+    'emailpro/emailpro-error-messages.popover.html',
+    emailproErrorMessagesPopoverTemplate,
+  );
+  $templateCache.put(
+    'emailpro/account/order/emailpro-account-order.html',
+    emailproAccountOrderTemplate,
+  );
+  $templateCache.put(
+    'emailpro/account/alias/remove/emailpro-account-alias-remove.html',
+    emailproAccountAliasRemoveTemplate,
+  );
+  $templateCache.put(
+    'emailpro/account/alias/emailpro-account-alias.html',
+    emailproAccountAliasTemplate,
+  );
+  $templateCache.put(
+    'emailpro/account/alias/add/emailpro-account-alias-add.html',
+    emailproAccountAliasAddTemplate,
+  );
+  $templateCache.put(
+    'emailpro/account/remove/emailpro-account-remove.html',
+    emailproAccountRemoveTemplate,
+  );
+  $templateCache.put(
+    'emailpro/account/update/emailpro-account-update.html',
+    emailproAccountUpdateTemplate,
+  );
+  $templateCache.put(
+    'emailpro/account/delegation/emailpro-account-delegation.html',
+    emailproAccountDelegationTemplate,
+  );
+  $templateCache.put(
+    'emailpro/account/add/emailpro-account-add.html',
+    emailproAccountAddTemplate,
+  );
+  $templateCache.put(
+    'emailpro/account/emailpro-account.html',
+    emailproAccountTemplate,
+  );
+  $templateCache.put(
+    'emailpro/service/configure/emailpro-service-configure.html',
+    emailproServiceConfigureTemplate,
+  );
+  $templateCache.put(
+    'emailpro/domain/mx-autoconfig/emailpro-domain-mx-autoconfig.html',
+    emailproDomainMxAutoconfigTemplate,
+  );
+  $templateCache.put(
+    'emailpro/domain/emailpro-domain.html',
+    emailproDomainTemplate,
+  );
+  $templateCache.put(
+    'emailpro/domain/remove/emailpro-domain-remove.html',
+    emailproDomainRemoveTemplate,
+  );
+  $templateCache.put(
+    'emailpro/domain/update/emailpro-domain-update.html',
+    emailproDomainUpdateTemplate,
+  );
+  $templateCache.put(
+    'emailpro/domain/srv-autoconfig/emailpro-domain-srv-autoconfig.html',
+    emailproDomainSrvAutoconfigTemplate,
+  );
+  $templateCache.put(
+    'emailpro/domain/add/emailpro-domain-add.html',
+    emailproDomainAddTemplate,
+  );
+  $templateCache.put(
+    'emailpro/mailing-list/update/emailpro-mailing-list-update.html',
+    emailproMailingListUpdateTemplate,
+  );
+  $templateCache.put(
+    'emailpro/mailing-list/delete/emailpro-mailing-list-delete.html',
+    emailproMailingListDeleteTemplate,
+  );
+  $templateCache.put(
+    'emailpro/mailing-list/send-list-by-email/emailpro-mailing-list-send-list-by-email.html',
+    emailproMailingListSendListByEmailTemplate,
+  );
+  $templateCache.put(
+    'emailpro/mailing-list/moderator/delete/emailpro-mailing-list-moderator-delete.html',
+    emailproMailingListModeratorDeleteTemplate,
+  );
+  $templateCache.put(
+    'emailpro/mailing-list/emailpro-mailing-list-view.html',
+    emailproMailingListViewTemplate,
+  );
+  $templateCache.put(
+    'emailpro/mailing-list/emailpro-mailing-list.html',
+    emailproMailingListTemplate,
+  );
+  $templateCache.put(
+    'emailpro/mailing-list/moderators/delete/emailpro-mailing-list-moderators-delete.html',
+    emailproMailingListModeratorsDeleteTemplate,
+  );
+  $templateCache.put(
+    'emailpro/mailing-list/moderators/emailpro-mailing-list-moderators-view.html',
+    emailproMailingListModeratorsViewTemplate,
+  );
+  $templateCache.put(
+    'emailpro/mailing-list/moderators/create/emailpro-mailing-list-moderators-create.html',
+    emailproMailingListModeratorsCreateTemplate,
+  );
+  $templateCache.put(
+    'emailpro/mailing-list/subscribers/delete/emailpro-mailing-list-subscribers-delete.html',
+    emailproMailingListSubscribersDeleteTemplate,
+  );
+  $templateCache.put(
+    'emailpro/mailing-list/subscribers/emailpro-mailing-list-subscribers-view.html',
+    emailproMailingListSubscribersViewTemplate,
+  );
+  $templateCache.put(
+    'emailpro/mailing-list/subscribers/create/emailpro-mailing-list-subscribers-create.html',
+    emailproMailingListSubscribersCreateTemplate,
+  );
+  $templateCache.put(
+    'emailpro/mailing-list/subscriber/delete/emailpro-mailing-list-subscriber-delete.html',
+    emailproMailingListSubscriberDeleteTemplate,
+  );
+  $templateCache.put(
+    'emailpro/mailing-list/create/emailpro-mailing-list-create.html',
+    emailproMailingListCreateTemplate,
+  );
 };

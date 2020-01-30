@@ -12,7 +12,9 @@ angular.module('App').controller(
     $onInit() {
       this.dnsStatus = angular.copy(this.$scope.currentActionData.dnsStatus);
       this.domain = angular.copy(this.$scope.currentActionData.domain);
-      this.nameServers = angular.copy(this.$scope.currentActionData.nameServers);
+      this.nameServers = angular.copy(
+        this.$scope.currentActionData.nameServers,
+      );
 
       this.hasZone = false;
       this.hideButtonConfirm = !(

@@ -6,7 +6,14 @@ import sortBy from 'lodash/sortBy';
 
 export default class ExchangeGroupAccountsCtrl {
   /* @ngInject */
-  constructor($scope, $translate, Exchange, messaging, navigation, ouiDatagridService) {
+  constructor(
+    $scope,
+    $translate,
+    Exchange,
+    messaging,
+    navigation,
+    ouiDatagridService,
+  ) {
     this.services = {
       $scope,
       Exchange,
@@ -23,7 +30,10 @@ export default class ExchangeGroupAccountsCtrl {
     this.availableDomains = [];
     this.loadingDomains = false;
     this.currentAccount = this.services.navigation.currentActionData.mailingListAddress;
-    this.allDomainsOption = { displayName: this.services.$translate.instant('exchange_all_domains'), name: '' };
+    this.allDomainsOption = {
+      displayName: this.services.$translate.instant('exchange_all_domains'),
+      name: '',
+    };
     this.selectedDomain = this.getDefaultDomain();
 
     this.search = {
@@ -53,8 +63,9 @@ export default class ExchangeGroupAccountsCtrl {
   }
 
   updateManagersList(newManagerValue, account) {
-    const bufferedAccount = this.accountsListBuffer.list.results
-      .find(({ id }) => id === account.id);
+    const bufferedAccount = this.accountsListBuffer.list.results.find(
+      ({ id }) => id === account.id,
+    );
 
     if (newManagerValue !== get(bufferedAccount, 'manager')) {
       this.model.managersList.push({
@@ -66,8 +77,9 @@ export default class ExchangeGroupAccountsCtrl {
   }
 
   updateMembersList(newMemberValue, account) {
-    const bufferedAccount = this.accountsListBuffer.list.results
-      .find(({ id }) => id === account.id);
+    const bufferedAccount = this.accountsListBuffer.list.results.find(
+      ({ id }) => id === account.id,
+    );
 
     if (newMemberValue !== get(bufferedAccount, 'member')) {
       this.model.membersList.push({
@@ -79,16 +91,25 @@ export default class ExchangeGroupAccountsCtrl {
   }
 
   applySelection(account) {
-    const accountInManagerList = this.model.managersList.find(({ id }) => id === account.id);
-    const accountInMemberList = this.model.membersList.find(({ id }) => id === account.id);
+    const accountInManagerList = this.model.managersList.find(
+      ({ id }) => id === account.id,
+    );
+    const accountInMemberList = this.model.membersList.find(
+      ({ id }) => id === account.id,
+    );
 
-    const managerValue = accountInManagerList ? get(accountInManagerList, 'operation') === 'POST' : account.manager;
-    const memberValue = accountInMemberList ? get(accountInMemberList, 'operation') === 'POST' : account.member;
+    const managerValue = accountInManagerList
+      ? get(accountInManagerList, 'operation') === 'POST'
+      : account.manager;
+    const memberValue = accountInMemberList
+      ? get(accountInMemberList, 'operation') === 'POST'
+      : account.member;
 
-    return Object.assign({}, account, {
+    return {
+      ...account,
       manager: managerValue,
       member: memberValue,
-    });
+    };
   }
 
   getDefaultDomain() {
@@ -110,12 +131,16 @@ export default class ExchangeGroupAccountsCtrl {
           this.allDomainsOption,
           ...accountCreationOptions.availableDomains,
         ];
-        this.selectedDomain = find(accountCreationOptions.availableDomains,
-          domain => domain.name === this.selectedDomain.name);
+        this.selectedDomain = find(
+          accountCreationOptions.availableDomains,
+          (domain) => domain.name === this.selectedDomain.name,
+        );
       })
       .catch((error) => {
         this.services.messaging.writeError(
-          this.services.$translate.instant('exchange_accounts_fetchAccountCreationOptions_error'),
+          this.services.$translate.instant(
+            'exchange_accounts_fetchAccountCreationOptions_error',
+          ),
           error,
         );
       })
@@ -144,7 +169,9 @@ export default class ExchangeGroupAccountsCtrl {
         this.accountsListBuffer = accounts;
         this.accountsList = angular.copy(accounts);
         return {
-          data: sortBy(accounts.list.results, 'formattedAddress').concat(sortBy(accounts.list.messages, 'id')),
+          data: sortBy(accounts.list.results, 'formattedAddress').concat(
+            sortBy(accounts.list.messages, 'id'),
+          ),
           meta: {
             totalCount: accounts.count,
           },
@@ -152,7 +179,9 @@ export default class ExchangeGroupAccountsCtrl {
       })
       .catch((failure) => {
         this.services.messaging.writeError(
-          this.services.$translate.instant('exchange_tab_ACCOUNTS_error_message'),
+          this.services.$translate.instant(
+            'exchange_tab_ACCOUNTS_error_message',
+          ),
           failure,
         );
         this.services.navigation.resetAction();
@@ -172,22 +201,34 @@ export default class ExchangeGroupAccountsCtrl {
     )
       .then((data) => {
         const addGroupMessages = {
-          OK: this.services.$translate.instant('exchange_GROUPS_settings_success_message', {
-            t0: this.selectedGroup.mailingListDisplayName,
-          }),
-          PARTIAL: this.services.$translate.instant('exchange_GROUPS_settings_partial_message', {
-            t0: this.selectedGroup.mailingListDisplayName,
-          }),
-          ERROR: this.services.$translate.instant('exchange_GROUPS_settings_error_message', {
-            t0: this.selectedGroup.mailingListDisplayName,
-          }),
+          OK: this.services.$translate.instant(
+            'exchange_GROUPS_settings_success_message',
+            {
+              t0: this.selectedGroup.mailingListDisplayName,
+            },
+          ),
+          PARTIAL: this.services.$translate.instant(
+            'exchange_GROUPS_settings_partial_message',
+            {
+              t0: this.selectedGroup.mailingListDisplayName,
+            },
+          ),
+          ERROR: this.services.$translate.instant(
+            'exchange_GROUPS_settings_error_message',
+            {
+              t0: this.selectedGroup.mailingListDisplayName,
+            },
+          ),
         };
 
         if (data == null) {
           this.services.messaging.writeSuccess(
-            this.services.$translate.instant('exchange_GROUPS_settings_success_message', {
-              t0: this.selectedGroup.mailingListDisplayName,
-            }),
+            this.services.$translate.instant(
+              'exchange_GROUPS_settings_success_message',
+              {
+                t0: this.selectedGroup.mailingListDisplayName,
+              },
+            ),
           );
         } else {
           this.services.messaging.setMessage(addGroupMessages, data);
@@ -195,9 +236,12 @@ export default class ExchangeGroupAccountsCtrl {
       })
       .catch((failure) => {
         this.services.messaging.writeError(
-          this.services.$translate.instant('exchange_GROUPS_settings_error_message', {
-            t0: this.selectedGroup.mailingListDisplayName,
-          }),
+          this.services.$translate.instant(
+            'exchange_GROUPS_settings_error_message',
+            {
+              t0: this.selectedGroup.mailingListDisplayName,
+            },
+          ),
           failure,
         );
       })

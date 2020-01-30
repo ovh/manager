@@ -7,7 +7,9 @@ class LogsListService {
     this.LogsListApiService = OvhApiDbaas.Logs().v6();
     this.LogsHelperService = LogsHelperService;
     this.LogsTokensService = LogsTokensService;
-    this.AccountingAapiService = OvhApiDbaas.Logs().Accounting().Aapi();
+    this.AccountingAapiService = OvhApiDbaas.Logs()
+      .Accounting()
+      .Aapi();
   }
 
   /**
@@ -18,8 +20,13 @@ class LogsListService {
    * @memberof LogsListService
    */
   getServices() {
-    return this.getServicesDetails()
-      .catch(err => this.LogsHelperService.handleError('logs_accounts_get_accounts_error', err, {}));
+    return this.getServicesDetails().catch((err) =>
+      this.LogsHelperService.handleError(
+        'logs_accounts_get_accounts_error',
+        err,
+        {},
+      ),
+    );
   }
 
   /**
@@ -29,11 +36,12 @@ class LogsListService {
    * @memberof LogsListService
    */
   getServicesDetails() {
-    return this.getServicesIds()
-      .then((accounts) => {
-        const promises = accounts.map(serviceName => this.getService(serviceName));
-        return this.$q.all(promises);
-      });
+    return this.getServicesIds().then((accounts) => {
+      const promises = accounts.map((serviceName) =>
+        this.getService(serviceName),
+      );
+      return this.$q.all(promises);
+    });
   }
 
   /**
@@ -55,15 +63,24 @@ class LogsListService {
    */
   getService(serviceName) {
     return this.LogsListApiService.logDetail({ serviceName })
-      .$promise
-      .then(service => this.transformService(service))
-      .catch(err => this.LogsHelperService.handleError('logs_accounts_get_detail_error', err, { accountName: serviceName }));
+      .$promise.then((service) => this.transformService(service))
+      .catch((err) =>
+        this.LogsHelperService.handleError(
+          'logs_accounts_get_detail_error',
+          err,
+          { accountName: serviceName },
+        ),
+      );
   }
 
   getQuota(service) {
-    return this.AccountingAapiService.me({ serviceName: service.serviceName })
-      .$promise
-      .catch(err => this.LogsHelperService.handleError('logs_accounts_get_quota_error', err, { accountName: service.displayName || service.serviceName }));
+    return this.AccountingAapiService.me({
+      serviceName: service.serviceName,
+    }).$promise.catch((err) =>
+      this.LogsHelperService.handleError('logs_accounts_get_quota_error', err, {
+        accountName: service.displayName || service.serviceName,
+      }),
+    );
   }
 
   /**
@@ -74,7 +91,10 @@ class LogsListService {
    * @memberof LogsInputsService
    */
   getDefaultCluster(serviceName) {
-    return this.LogsTokensService.getDefaultCluster(serviceName, 'logs_accounts_get_entry_point_error');
+    return this.LogsTokensService.getDefaultCluster(
+      serviceName,
+      'logs_accounts_get_entry_point_error',
+    );
   }
 
   transformService(service) {
@@ -108,7 +128,11 @@ class LogsListService {
             max: me.total.maxNbDashboard,
           });
           set(service, 'isBasicOffer', this.LogsHelperService.isBasicOffer(me));
-          set(service, 'quota.offerType', service.isBasicOffer ? 'Basic' : 'Pro');
+          set(
+            service,
+            'quota.offerType',
+            service.isBasicOffer ? 'Basic' : 'Pro',
+          );
         }
       })
       .finally(() => {
@@ -122,10 +146,6 @@ class LogsListService {
         set(service, 'cluster.isLoadingCluster', false);
       });
     return service;
-  }
-
-  _resetAllCache() {
-    this.TokenApiService.resetAllCache();
   }
 }
 

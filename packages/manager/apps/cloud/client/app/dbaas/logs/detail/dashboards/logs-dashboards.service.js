@@ -1,11 +1,25 @@
 class LogsDashboardsService {
-  constructor($q, OvhApiDbaas, LogsOptionsService,
-    LogsHelperService, LogsConstants, CucUrlHelper) {
+  constructor(
+    $q,
+    OvhApiDbaas,
+    LogsOptionsService,
+    LogsHelperService,
+    LogsConstants,
+    CucUrlHelper,
+  ) {
     this.$q = $q;
-    this.DashboardsApiService = OvhApiDbaas.Logs().Dashboard().v6();
-    this.DashboardsAapiService = OvhApiDbaas.Logs().Dashboard().Aapi();
-    this.AccountingAapiService = OvhApiDbaas.Logs().Accounting().Aapi();
-    this.DetailsAapiService = OvhApiDbaas.Logs().Details().Aapi();
+    this.DashboardsApiService = OvhApiDbaas.Logs()
+      .Dashboard()
+      .v6();
+    this.DashboardsAapiService = OvhApiDbaas.Logs()
+      .Dashboard()
+      .Aapi();
+    this.AccountingAapiService = OvhApiDbaas.Logs()
+      .Accounting()
+      .Aapi();
+    this.DetailsAapiService = OvhApiDbaas.Logs()
+      .Details()
+      .Aapi();
     this.LogsOptionsService = LogsOptionsService;
     this.LogsHelperService = LogsHelperService;
     this.LogsConstants = LogsConstants;
@@ -21,8 +35,9 @@ class LogsDashboardsService {
    * @memberof LogsDashboardsService
    */
   getDashboards(serviceName) {
-    return this.getDashboardsDetails(serviceName)
-      .catch(err => this.LogsHelperService.handleError('logs_dashboards_get_error', err, {}));
+    return this.getDashboardsDetails(serviceName).catch((err) =>
+      this.LogsHelperService.handleError('logs_dashboards_get_error', err, {}),
+    );
   }
 
   /**
@@ -35,8 +50,16 @@ class LogsDashboardsService {
    */
   getOwnDashboards(serviceName) {
     return this.getDashboardsDetails(serviceName)
-      .then(dashboards => dashboards.filter(dashboard => dashboard.info.isEditable))
-      .catch(err => this.LogsHelperService.handleError('logs_dashboards_get_error', err, {}));
+      .then((dashboards) =>
+        dashboards.filter((dashboard) => dashboard.info.isEditable),
+      )
+      .catch((err) =>
+        this.LogsHelperService.handleError(
+          'logs_dashboards_get_error',
+          err,
+          {},
+        ),
+      );
   }
 
   /**
@@ -49,8 +72,16 @@ class LogsDashboardsService {
    */
   getShareableDashboards(serviceName) {
     return this.getDashboardsDetails(serviceName)
-      .then(dashboards => dashboards.filter(dashboard => dashboard.info.isShareable))
-      .catch(err => this.LogsHelperService.handleError('logs_dashboards_get_error', err, {}));
+      .then((dashboards) =>
+        dashboards.filter((dashboard) => dashboard.info.isShareable),
+      )
+      .catch((err) =>
+        this.LogsHelperService.handleError(
+          'logs_dashboards_get_error',
+          err,
+          {},
+        ),
+      );
   }
 
   /**
@@ -61,12 +92,12 @@ class LogsDashboardsService {
    * @memberof LogsDashboardsService
    */
   getDashboardsDetails(serviceName) {
-    return this.getDashboardsIds(serviceName)
-      .then((dashboards) => {
-        const promises = dashboards
-          .map(dashboardId => this.getAapiDashboard(serviceName, dashboardId));
-        return this.$q.all(promises);
-      });
+    return this.getDashboardsIds(serviceName).then((dashboards) => {
+      const promises = dashboards.map((dashboardId) =>
+        this.getAapiDashboard(serviceName, dashboardId),
+      );
+      return this.$q.all(promises);
+    });
   }
 
   /**
@@ -89,9 +120,16 @@ class LogsDashboardsService {
    * @memberof LogsDashboardsService
    */
   getDashboard(serviceName, dashboardId) {
-    return this.DashboardsApiService.get({ serviceName, dashboardId })
-      .$promise
-      .catch(err => this.LogsHelperService.handleError('logs_dashboards_get_detail_error', err, {}));
+    return this.DashboardsApiService.get({
+      serviceName,
+      dashboardId,
+    }).$promise.catch((err) =>
+      this.LogsHelperService.handleError(
+        'logs_dashboards_get_detail_error',
+        err,
+        {},
+      ),
+    );
   }
 
   /**
@@ -103,9 +141,16 @@ class LogsDashboardsService {
    * @memberof LogsDashboardsService
    */
   getAapiDashboard(serviceName, dashboardId) {
-    return this.DashboardsAapiService.get({ serviceName, dashboardId })
-      .$promise
-      .catch(err => this.LogsHelperService.handleError('logs_dashboards_get_detail_error', err, {}));
+    return this.DashboardsAapiService.get({
+      serviceName,
+      dashboardId,
+    }).$promise.catch((err) =>
+      this.LogsHelperService.handleError(
+        'logs_dashboards_get_detail_error',
+        err,
+        {},
+      ),
+    );
   }
 
   /**
@@ -117,13 +162,19 @@ class LogsDashboardsService {
    * @memberof LogsDashboardsService
    */
   getQuota(serviceName) {
-    return this.AccountingAapiService.me({ serviceName }).$promise
-      .then(me => ({
+    return this.AccountingAapiService.me({ serviceName })
+      .$promise.then((me) => ({
         max: me.total.maxNbDashboard,
         configured: me.total.curNbDashboard,
         reference: me.total.reference,
       }))
-      .catch(err => this.LogsHelperService.handleError('logs_dashboards_quota_get_error', err, {}));
+      .catch((err) =>
+        this.LogsHelperService.handleError(
+          'logs_dashboards_quota_get_error',
+          err,
+          {},
+        ),
+      );
   }
 
   /**
@@ -131,12 +182,18 @@ class LogsDashboardsService {
    * @param {string} serviceName
    */
   getMainOffer(serviceName) {
-    return this.AccountingAapiService.me({ serviceName }).$promise
-      .then(me => ({
+    return this.AccountingAapiService.me({ serviceName })
+      .$promise.then((me) => ({
         max: me.offer.maxNbDashboard,
         current: me.offer.curNbDashboard,
       }))
-      .catch(err => this.LogsHelperService.handleError('logs_main_offer_get_error', err, {}));
+      .catch((err) =>
+        this.LogsHelperService.handleError(
+          'logs_main_offer_get_error',
+          err,
+          {},
+        ),
+      );
   }
 
   /**
@@ -148,13 +205,26 @@ class LogsDashboardsService {
    * @memberof LogsDashboardsService
    */
   deleteDashboard(serviceName, dashboard) {
-    return this.DashboardsApiService.delete({ serviceName, dashboardId: dashboard.dashboardId })
-      .$promise
-      .then((operation) => {
+    return this.DashboardsApiService.delete({
+      serviceName,
+      dashboardId: dashboard.dashboardId,
+    })
+      .$promise.then((operation) => {
         this.resetAllCache();
-        return this.LogsHelperService.handleOperation(serviceName, operation.data || operation, 'logs_dashboards_delete_success', { dashboardName: dashboard.title });
+        return this.LogsHelperService.handleOperation(
+          serviceName,
+          operation.data || operation,
+          'logs_dashboards_delete_success',
+          { dashboardName: dashboard.title },
+        );
       })
-      .catch(err => this.LogsHelperService.handleError('logs_dashboards_delete_error', err, { dashboardName: dashboard.title }));
+      .catch((err) =>
+        this.LogsHelperService.handleError(
+          'logs_dashboards_delete_error',
+          err,
+          { dashboardName: dashboard.title },
+        ),
+      );
   }
 
   /**
@@ -166,18 +236,30 @@ class LogsDashboardsService {
    * @memberof LogsDashboardsService
    */
   createDashboard(serviceName, dashboard) {
-    return this.DashboardsApiService.create({ serviceName },
+    return this.DashboardsApiService.create(
+      { serviceName },
       {
         description: dashboard.description,
         optionId: dashboard.optionId,
         title: dashboard.title,
-      })
-      .$promise
-      .then((operation) => {
+      },
+    )
+      .$promise.then((operation) => {
         this.resetAllCache();
-        return this.LogsHelperService.handleOperation(serviceName, operation.data || operation, 'logs_dashboards_create_success', { dashboardName: dashboard.title });
+        return this.LogsHelperService.handleOperation(
+          serviceName,
+          operation.data || operation,
+          'logs_dashboards_create_success',
+          { dashboardName: dashboard.title },
+        );
       })
-      .catch(err => this.LogsHelperService.handleError('logs_dashboards_create_error', err, { dashboardName: dashboard.title }));
+      .catch((err) =>
+        this.LogsHelperService.handleError(
+          'logs_dashboards_create_error',
+          err,
+          { dashboardName: dashboard.title },
+        ),
+      );
   }
 
   /**
@@ -189,14 +271,26 @@ class LogsDashboardsService {
    * @memberof LogsDashboardsService
    */
   duplicateDashboard(serviceName, dashboard, dashboardId) {
-    return this.DashboardsApiService.duplicate({ serviceName, dashboardId },
-      this.constructor.transformDashboardToDuplicate(dashboard))
-      .$promise
-      .then((operation) => {
+    return this.DashboardsApiService.duplicate(
+      { serviceName, dashboardId },
+      this.constructor.transformDashboardToDuplicate(dashboard),
+    )
+      .$promise.then((operation) => {
         this.resetAllCache();
-        return this.LogsHelperService.handleOperation(serviceName, operation.data || operation, 'logs_dashboards_create_success', { dashboardName: dashboard.title });
+        return this.LogsHelperService.handleOperation(
+          serviceName,
+          operation.data || operation,
+          'logs_dashboards_create_success',
+          { dashboardName: dashboard.title },
+        );
       })
-      .catch(err => this.LogsHelperService.handleError('logs_dashboards_create_error', err, { dashboardName: dashboard.title }));
+      .catch((err) =>
+        this.LogsHelperService.handleError(
+          'logs_dashboards_create_error',
+          err,
+          { dashboardName: dashboard.title },
+        ),
+      );
   }
 
   /**
@@ -208,19 +302,30 @@ class LogsDashboardsService {
    * @memberof LogsDashboardsService
    */
   updateDashboard(serviceName, dashboard) {
-    return this.DashboardsApiService
-      .update({ serviceName, dashboardId: dashboard.dashboardId },
-        {
-          title: dashboard.title,
-          description: dashboard.description,
-          optionId: dashboard.optionId,
-        })
-      .$promise
-      .then((operation) => {
+    return this.DashboardsApiService.update(
+      { serviceName, dashboardId: dashboard.dashboardId },
+      {
+        title: dashboard.title,
+        description: dashboard.description,
+        optionId: dashboard.optionId,
+      },
+    )
+      .$promise.then((operation) => {
         this.resetAllCache();
-        return this.LogsHelperService.handleOperation(serviceName, operation.data || operation, 'logs_dashboards_update_success', { dashboardName: dashboard.title });
+        return this.LogsHelperService.handleOperation(
+          serviceName,
+          operation.data || operation,
+          'logs_dashboards_update_success',
+          { dashboardName: dashboard.title },
+        );
       })
-      .catch(err => this.LogsHelperService.handleError('logs_dashboards_update_error', err, { dashboardName: dashboard.title }));
+      .catch((err) =>
+        this.LogsHelperService.handleError(
+          'logs_dashboards_update_error',
+          err,
+          { dashboardName: dashboard.title },
+        ),
+      );
   }
 
   /**
@@ -263,7 +368,11 @@ class LogsDashboardsService {
       this.LogsConstants.GRAYLOG_WEBUI,
     );
     if (!url) {
-      this.LogsHelperService.handleError('logs_dashboards_get_graylog_url_error', {}, { dashboardName: aapiDashboard.info.title });
+      this.LogsHelperService.handleError(
+        'logs_dashboards_get_graylog_url_error',
+        {},
+        { dashboardName: aapiDashboard.info.title },
+      );
     }
     return url;
   }
@@ -275,7 +384,9 @@ class LogsDashboardsService {
       streamId: dashboard.streamId,
       title: dashboard.title,
     };
-    if (!dashboard.streamId) { delete toDuplicate.streamId; } // eslint-disable-line
+    if (!dashboard.streamId) {
+      delete toDuplicate.streamId;
+    }
     return toDuplicate;
   }
 
@@ -288,4 +399,6 @@ class LogsDashboardsService {
   }
 }
 
-angular.module('managerApp').service('LogsDashboardsService', LogsDashboardsService);
+angular
+  .module('managerApp')
+  .service('LogsDashboardsService', LogsDashboardsService);

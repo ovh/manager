@@ -1,9 +1,20 @@
 class LogsStreamsAlertsService {
-  constructor($q, CucCloudPoll, OvhApiDbaas, CucServiceHelper, LogsConstants, LogsHelperService) {
+  constructor(
+    $q,
+    CucCloudPoll,
+    OvhApiDbaas,
+    CucServiceHelper,
+    LogsConstants,
+    LogsHelperService,
+  ) {
     this.$q = $q;
     this.CucCloudPoll = CucCloudPoll;
-    this.OperationApiService = OvhApiDbaas.Logs().Operation().v6();
-    this.AlertsApiService = OvhApiDbaas.Logs().Alert().v6();
+    this.OperationApiService = OvhApiDbaas.Logs()
+      .Operation()
+      .v6();
+    this.AlertsApiService = OvhApiDbaas.Logs()
+      .Alert()
+      .v6();
     this.CucServiceHelper = CucServiceHelper;
     this.LogsConstants = LogsConstants;
     this.LogsHelperService = LogsHelperService;
@@ -19,7 +30,8 @@ class LogsStreamsAlertsService {
    * @memberof LogsStreamsAlertsService
    */
   addAlert(serviceName, streamId, alert) {
-    return this.AlertsApiService.post({ serviceName, streamId },
+    return this.AlertsApiService.post(
+      { serviceName, streamId },
       {
         backlog: alert.backlog,
         conditionType: alert.conditionType,
@@ -33,9 +45,21 @@ class LogsStreamsAlertsService {
         time: alert.time,
         title: alert.title,
         value: alert.value,
-      }).$promise
-      .then(operation => this.LogsHelperService.handleOperation(serviceName, operation.data || operation, 'streams_alerts_add_success', { alertName: alert.title }))
-      .catch(err => this.LogsHelperService.handleError('streams_alerts_add_error', err, { alertName: alert.title }));
+      },
+    )
+      .$promise.then((operation) =>
+        this.LogsHelperService.handleOperation(
+          serviceName,
+          operation.data || operation,
+          'streams_alerts_add_success',
+          { alertName: alert.title },
+        ),
+      )
+      .catch((err) =>
+        this.LogsHelperService.handleError('streams_alerts_add_error', err, {
+          alertName: alert.title,
+        }),
+      );
   }
 
   /**
@@ -48,9 +72,24 @@ class LogsStreamsAlertsService {
    * @memberof LogsStreamsAlertsService
    */
   deleteAlert(serviceName, streamId, alert) {
-    return this.AlertsApiService.delete({ serviceName, streamId, alertId: alert.alertId }).$promise
-      .then(operation => this.LogsHelperService.handleOperation(serviceName, operation.data || operation, 'streams_alerts_delete_success', { alertName: alert.title }))
-      .catch(err => this.LogsHelperService.handleError('streams_alerts_delete_error', err, { alertName: alert.title }));
+    return this.AlertsApiService.delete({
+      serviceName,
+      streamId,
+      alertId: alert.alertId,
+    })
+      .$promise.then((operation) =>
+        this.LogsHelperService.handleOperation(
+          serviceName,
+          operation.data || operation,
+          'streams_alerts_delete_success',
+          { alertName: alert.title },
+        ),
+      )
+      .catch((err) =>
+        this.LogsHelperService.handleError('streams_alerts_delete_error', err, {
+          alertName: alert.title,
+        }),
+      );
   }
 
   /**
@@ -65,8 +104,13 @@ class LogsStreamsAlertsService {
     return this.AlertsApiService.query({
       serviceName,
       streamId,
-    }).$promise
-      .catch(err => this.LogsHelperService.handleError('streams_alerts_ids_loading_error', err, {}));
+    }).$promise.catch((err) =>
+      this.LogsHelperService.handleError(
+        'streams_alerts_ids_loading_error',
+        err,
+        {},
+      ),
+    );
   }
 
   /**
@@ -79,8 +123,13 @@ class LogsStreamsAlertsService {
    * @memberof LogsStreamsAlertsService
    */
   getAlerts(serviceName, streamId, alertIds) {
-    return this.getAlertDetails(serviceName, streamId, alertIds)
-      .catch(err => this.LogsHelperService.handleError('streams_alerts_loading_error', err, {}));
+    return this.getAlertDetails(serviceName, streamId, alertIds).catch((err) =>
+      this.LogsHelperService.handleError(
+        'streams_alerts_loading_error',
+        err,
+        {},
+      ),
+    );
   }
 
   /**
@@ -93,7 +142,9 @@ class LogsStreamsAlertsService {
    * @memberof LogsStreamsAlertsService
    */
   getAlertDetails(serviceName, streamId, alertIds) {
-    const promises = alertIds.map(alertId => this.getAlert(serviceName, streamId, alertId));
+    const promises = alertIds.map((alertId) =>
+      this.getAlert(serviceName, streamId, alertId),
+    );
     return this.$q.all(promises);
   }
 
@@ -107,8 +158,11 @@ class LogsStreamsAlertsService {
    * @memberof LogsStreamsAlertsService
    */
   getAlert(serviceName, streamId, alertId) {
-    return this.AlertsApiService.get({ serviceName, streamId, alertId })
-      .$promise.then(alert => this.constructor.transformAlert(alert));
+    return this.AlertsApiService.get({
+      serviceName,
+      streamId,
+      alertId,
+    }).$promise.then((alert) => this.constructor.transformAlert(alert));
   }
 
   /**
@@ -119,9 +173,10 @@ class LogsStreamsAlertsService {
    * @memberof LogsStreamsAlertsService
    */
   getNewAlert(conditionType) {
-    const thresholdType = conditionType === this.LogsConstants.alertType.numeric
-      ? this.LogsConstants.thresholdType.lower
-      : this.LogsConstants.thresholdType.more;
+    const thresholdType =
+      conditionType === this.LogsConstants.alertType.numeric
+        ? this.LogsConstants.thresholdType.lower
+        : this.LogsConstants.thresholdType.more;
     const constraintType = this.LogsConstants.constraintType.mean;
     return this.$q.when({
       data: {
@@ -149,24 +204,36 @@ class LogsStreamsAlertsService {
    * @memberof LogsStreamsAlertsService
    */
   updateAlert(serviceName, streamId, alert) {
-    return this.AlertsApiService
-      .put({ serviceName, streamId, alertId: alert.alertId },
-        {
-          backlog: alert.backlog,
-          conditionType: alert.conditionType,
-          constraintType: alert.constraintType,
-          field: alert.field,
-          grace: alert.grace,
-          queryFilter: alert.queryFilter,
-          repeatNotificationsEnabled: alert.repeatNotificationsEnabled,
-          threshold: alert.threshold,
-          thresholdType: alert.thresholdType,
-          time: alert.time,
-          title: alert.title,
-          value: alert.value,
-        }).$promise
-      .then(operation => this.LogsHelperService.handleOperation(serviceName, operation.data || operation, 'streams_alerts_update_success', { alertName: alert.title }))
-      .catch(err => this.LogsHelperService.handleError('streams_alerts_update_error', err, { alertName: alert.title }));
+    return this.AlertsApiService.put(
+      { serviceName, streamId, alertId: alert.alertId },
+      {
+        backlog: alert.backlog,
+        conditionType: alert.conditionType,
+        constraintType: alert.constraintType,
+        field: alert.field,
+        grace: alert.grace,
+        queryFilter: alert.queryFilter,
+        repeatNotificationsEnabled: alert.repeatNotificationsEnabled,
+        threshold: alert.threshold,
+        thresholdType: alert.thresholdType,
+        time: alert.time,
+        title: alert.title,
+        value: alert.value,
+      },
+    )
+      .$promise.then((operation) =>
+        this.LogsHelperService.handleOperation(
+          serviceName,
+          operation.data || operation,
+          'streams_alerts_update_success',
+          { alertName: alert.title },
+        ),
+      )
+      .catch((err) =>
+        this.LogsHelperService.handleError('streams_alerts_update_error', err, {
+          alertName: alert.title,
+        }),
+      );
   }
 
   /**
@@ -179,11 +246,14 @@ class LogsStreamsAlertsService {
   static transformAlert(alert) {
     Object.keys(alert).forEach((property) => {
       if (alert[property] === null) {
-        alert[property] = undefined; // eslint-disable-line
+        // eslint-disable-next-line no-param-reassign
+        alert[property] = undefined;
       }
     });
     return alert;
   }
 }
 
-angular.module('managerApp').service('LogsStreamsAlertsService', LogsStreamsAlertsService);
+angular
+  .module('managerApp')
+  .service('LogsStreamsAlertsService', LogsStreamsAlertsService);

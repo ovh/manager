@@ -45,8 +45,9 @@ export default class {
   }
 
   getCurrentLang() {
-    return this.availableLangs
-      .find(({ key }) => key === this.TranslateService.getUserLocale());
+    return this.availableLangs.find(
+      ({ key }) => key === this.TranslateService.getUserLocale(),
+    );
   }
 
   formatCurrentLang() {
@@ -85,7 +86,7 @@ export default class {
   }
 
   getSublinks() {
-    return this.availableLangs.map(lang => ({
+    return this.availableLangs.map((lang) => ({
       title: lang.name,
       isActive: lang.key === this.currentLanguage.key,
       lang: head(words(lang.key)),

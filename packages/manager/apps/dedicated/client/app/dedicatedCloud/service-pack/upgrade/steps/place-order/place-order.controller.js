@@ -29,28 +29,24 @@ export default class {
       isLoading: true,
     };
 
-    return this
-      .handleInitialData()
-      .finally(() => {
-        this.$scope.$apply();
-      });
+    return this.handleInitialData().finally(() => {
+      this.$scope.$apply();
+    });
   }
 
   async handleInitialData() {
     try {
-      await this
-        .$uibModal
-        .open({
-          templateUrl: CONFIRM_TEMPLATE_CACHE_KEY,
-          controller: CONFIRM_CONTROLLER_NAME,
-          controllerAs: '$ctrl',
-          resolve: {
-            hasDefaultMeansOfPayment: () => this.hasDefaultMeansOfPayment,
-            itemName: () => this.servicePackToOrder.displayName,
-            itemType: () => this.activationType,
-            prices: () => this.servicePackToOrder.prices,
-          },
-        }).result;
+      await this.$uibModal.open({
+        templateUrl: CONFIRM_TEMPLATE_CACHE_KEY,
+        controller: CONFIRM_CONTROLLER_NAME,
+        controllerAs: '$ctrl',
+        resolve: {
+          hasDefaultMeansOfPayment: () => this.hasDefaultMeansOfPayment,
+          itemName: () => this.servicePackToOrder.displayName,
+          itemType: () => this.activationType,
+          prices: () => this.servicePackToOrder.prices,
+        },
+      }).result;
     } catch (error) {
       return this.stepper.goToStep(NAVIGATION.PREVIOUS_STEP);
     }
@@ -71,14 +67,15 @@ export default class {
 
       this.bindings.isLoading = false;
     } catch (error) {
-      this
-        .Alerter
-        .alertFromSWS(this
-          .$translate
-          .instant('ovhManagerPccServicePackUpgradePlaceOrder_error'), {
+      this.Alerter.alertFromSWS(
+        this.$translate.instant(
+          'ovhManagerPccServicePackUpgradePlaceOrder_error',
+        ),
+        {
           ...error.data,
           type: 'ERROR',
-        });
+        },
+      );
 
       return this.stepper.close();
     }
@@ -87,9 +84,7 @@ export default class {
   }
 
   placeOrder() {
-    return this
-      .OvhApiOrder
-      .Upgrade()
+    return this.OvhApiOrder.Upgrade()
       .PrivateCloud()
       .v6()
       .post({
@@ -101,15 +96,16 @@ export default class {
   }
 
   savePreference() {
-    return this
-      .servicePackUpgradePreferenceService
-      .savePreference(this.currentService.serviceName, {
+    return this.servicePackUpgradePreferenceService.savePreference(
+      this.currentService.serviceName,
+      {
         activationType: this.activationType,
         hasBeenPaid: this.hasDefaultMeansOfPayment,
         id: this.order.orderId,
         nameOfServicePackBeforeOrder: this.currentService.servicePackName,
         orderedServicePackName: this.servicePackToOrder.name,
         url: this.order.url,
-      });
+      },
+    );
   }
 }

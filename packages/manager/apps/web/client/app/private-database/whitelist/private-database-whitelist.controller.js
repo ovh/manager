@@ -41,9 +41,8 @@ angular.module('App').controller(
           this[`onWhitelistDelete${state}`].bind(this),
         );
       });
-      this.$scope.$on(
-        'privateDatabase.whitelist.update.done',
-        opts => (opts.serviceName === this.serviceName ? this.getList() : undefined),
+      this.$scope.$on('privateDatabase.whitelist.update.done', (opts) =>
+        opts.serviceName === this.serviceName ? this.getList() : undefined,
       );
 
       forEach(['done', 'error'], (state) => {
@@ -68,10 +67,10 @@ angular.module('App').controller(
       return this.whitelistService
         .getWhitelistIds(this.serviceName)
         .then((res) => {
-          this.whitelistIps = res.map(id => ({ id }));
+          this.whitelistIps = res.map((id) => ({ id }));
           return this.whitelistIps;
         })
-        .catch(err => this.alerter.error(err));
+        .catch((err) => this.alerter.error(err));
     }
 
     createWhitelist() {
@@ -95,7 +94,7 @@ angular.module('App').controller(
     transformItem(whitelist) {
       return this.whitelistService
         .getWhitelist(this.serviceName, whitelist.id)
-        .catch(err => this.alerter.error(err));
+        .catch((err) => this.alerter.error(err));
     }
 
     /*
@@ -127,7 +126,7 @@ angular.module('App').controller(
       const todo = () => {
         const el = find(
           this.whitelistIps,
-          whitelist => whitelist.ip === opts.whitelistIp,
+          (whitelist) => whitelist.ip === opts.whitelistIp,
         );
 
         if (el) {
@@ -162,14 +161,16 @@ angular.module('App').controller(
       const todo = () => {
         const el = find(
           this.whitelistIps,
-          whitelist => whitelist.ip === opts.whitelistIp,
+          (whitelist) => whitelist.ip === opts.whitelistIp,
         );
 
         if (el) {
           delete el.deleting;
 
           this.alerter.error(
-            this.$translate.instant('privateDatabase_modale_whitelist_delete_fail'),
+            this.$translate.instant(
+              'privateDatabase_modale_whitelist_delete_fail',
+            ),
             this.$scope.alerts.main,
           );
 

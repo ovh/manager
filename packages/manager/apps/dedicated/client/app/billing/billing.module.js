@@ -39,7 +39,12 @@ angular
   .constant('Billing.constants', {
     aapiRootPath: config.aapiRootPath,
     swsProxyRootPath: config.swsProxyRootPath,
-    paymentMeans: ['bankAccount', 'paypal', 'creditCard', 'deferredPaymentAccount'],
+    paymentMeans: [
+      'bankAccount',
+      'paypal',
+      'creditCard',
+      'deferredPaymentAccount',
+    ],
     target: config.target,
   })
   .constant('LANGUAGES', config.constants.LANGUAGES)
@@ -48,6 +53,8 @@ angular
   })
   .config(routing)
   .service('billingFeatureAvailability', featureAvailability)
-  .run(/* @ngInject */ ($rootScope, coreConfig) => {
-    set($rootScope, 'worldPart', coreConfig.getRegion());
-  });
+  .run(
+    /* @ngInject */ ($rootScope, coreConfig) => {
+      set($rootScope, 'worldPart', coreConfig.getRegion());
+    },
+  );

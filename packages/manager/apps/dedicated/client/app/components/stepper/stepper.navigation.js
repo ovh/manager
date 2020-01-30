@@ -1,11 +1,7 @@
 import StateManagement from './stepper.state-management';
 
 export default class {
-  constructor(
-    $state,
-    $stateRegistry,
-    stepCollection,
-  ) {
+  constructor($state, $stateRegistry, stepCollection) {
     this.stateManagement = new StateManagement($state, $stateRegistry);
     this.stepCollection = stepCollection;
     this.stateManagement.registerStatesFromSteps(stepCollection.steps);

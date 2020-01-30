@@ -8,34 +8,34 @@ import { FEATURES } from './email-password.constants';
 /* eslint-disable class-methods-use-this */
 export default class EmailPasswordService {
   /*
-    * This function is taken from:
-    * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/charAt?redirectlocale=en-US&redirectslug=JavaScript%2FReference%2FGlobal_Objects%2FString%2FcharAt
-    *
-    * This is necessary because charAt(n) does not return unicode character and
-    * will happily return half a surrogate pair for code points over 65535
-    *
-    * If you do a getWholeChar(n) on a the start of a pair, it will return the whole character.
-    * If you do do it on the end of a pair, it will return false.
-    *
-    * If you want all the characters in a string, loop on its length and skip the falses.
-    */
+   * This function is taken from:
+   * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/charAt?redirectlocale=en-US&redirectslug=JavaScript%2FReference%2FGlobal_Objects%2FString%2FcharAt
+   *
+   * This is necessary because charAt(n) does not return unicode character and
+   * will happily return half a surrogate pair for code points over 65535
+   *
+   * If you do a getWholeChar(n) on a the start of a pair, it will return the whole character.
+   * If you do do it on the end of a pair, it will return false.
+   *
+   * If you want all the characters in a string, loop on its length and skip the falses.
+   */
   getWholeChar(str, i) {
     const code = str.charCodeAt(i);
 
     if (isNaN(code)) {
       return ''; // Position not found
     }
-    if (code < 0xD800 || code > 0xDFFF) {
+    if (code < 0xd800 || code > 0xdfff) {
       return str.charAt(i);
     }
     // High surrogate (could change last hex to 0xDB7F to treat
     // high private surrogates as single characters)
-    if (code >= 0xD800 && code <= 0xDBFF) {
-      if (str.length <= (i + 1)) {
+    if (code >= 0xd800 && code <= 0xdbff) {
+      if (str.length <= i + 1) {
         throw new Error('High surrogate without following low surrogate');
       }
       const next = str.charCodeAt(i + 1);
-      if (next < 0xDC00 || next > 0xDFFF) {
+      if (next < 0xdc00 || next > 0xdfff) {
         throw new Error('High surrogate without following low surrogate');
       }
       return str.charAt(i) + str.charAt(i + 1);
@@ -47,7 +47,7 @@ export default class EmailPasswordService {
     }
     const prev = str.charCodeAt(i - 1);
     // (could change last hex to 0xDB7F to treat high private surrogates as single characters)
-    if (prev < 0xD800 || prev > 0xDBFF) {
+    if (prev < 0xd800 || prev > 0xdbff) {
       throw new Error('Low surrogate without preceding high surrogate');
     }
     // We can pass over low surrogates now as the second component
@@ -68,8 +68,8 @@ export default class EmailPasswordService {
     const next = str.charCodeAt(pos + 1);
 
     // If a surrogate pair
-    if (code >= 0xD800 && code <= 0xDBFF && next >= 0xDC00 && next <= 0xDFFF) {
-      return ((code - 0xD800) * 0x400) + (next - 0xDC00) + 0x10000;
+    if (code >= 0xd800 && code <= 0xdbff && next >= 0xdc00 && next <= 0xdfff) {
+      return (code - 0xd800) * 0x400 + (next - 0xdc00) + 0x10000;
     }
     return code;
   }
@@ -91,12 +91,12 @@ export default class EmailPasswordService {
   }
 
   /**
-     * Check for at least three of the following for conditions:
-     * - lower cases
-     * - upper cases
-     * - special characters
-     * - numbers
-     */
+   * Check for at least three of the following for conditions:
+   * - lower cases
+   * - upper cases
+   * - special characters
+   * - numbers
+   */
   passwordComplexityCheck(password) {
     let numFeatures;
     let f;
@@ -105,10 +105,7 @@ export default class EmailPasswordService {
     let point;
 
     numFeatures = 0;
-    const alreadyUsed = fill(
-      new Array(FEATURES.length),
-      false,
-    );
+    const alreadyUsed = fill(new Array(FEATURES.length), false);
 
     /* eslint-disable no-restricted-syntax, camelcase, no-labels, no-continue */
     characters_loop: for (let c = 0; c < password.length; c += 1) {
@@ -190,7 +187,7 @@ export default class EmailPasswordService {
     containsName = false;
     const splittedDisplayName = displayName.split(/[,.\-_£\s\t]/);
 
-    remove(splittedDisplayName, word => word.length < 3);
+    remove(splittedDisplayName, (word) => word.length < 3);
     forEach(splittedDisplayName, (num) => {
       if (password.search(num) !== -1) {
         containsName = true;

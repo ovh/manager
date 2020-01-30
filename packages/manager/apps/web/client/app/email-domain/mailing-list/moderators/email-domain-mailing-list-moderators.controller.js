@@ -20,7 +20,14 @@ angular.module('App').controller(
      * @param Alerter
      * @param MailingLists
      */
-    constructor($scope, $filter, $stateParams, $translate, Alerter, MailingLists) {
+    constructor(
+      $scope,
+      $filter,
+      $stateParams,
+      $translate,
+      Alerter,
+      MailingLists,
+    ) {
       this.$scope = $scope;
       this.$filter = $filter;
       this.$stateParams = $stateParams;
@@ -41,7 +48,9 @@ angular.module('App').controller(
       };
       this.search = { moderators: '' };
 
-      this.$scope.$on('hosting.tabs.mailingLists.moderators.refresh', () => this.refreshTableModerators());
+      this.$scope.$on('hosting.tabs.mailingLists.moderators.refresh', () =>
+        this.refreshTableModerators(),
+      );
       this.$scope.$on(
         'mailingLists.moderators.poll.start',
         (pollObject, task) => {
@@ -106,7 +115,7 @@ angular.module('App').controller(
           case 1:
             this.moderators.selected = filter(
               map(this.moderators.details, 'email'),
-              result => !some(this.moderators.selected, result.email),
+              (result) => !some(this.moderators.selected, result.email),
             );
             break;
           case 2:
@@ -125,7 +134,11 @@ angular.module('App').controller(
 
     applySelection(moderators) {
       forEach(moderators, (moderator) => {
-        set(moderator, 'selected', indexOf(this.moderators.selected, moderator.email) !== -1);
+        set(
+          moderator,
+          'selected',
+          indexOf(this.moderators.selected, moderator.email) !== -1,
+        );
       });
     }
 
@@ -146,11 +159,13 @@ angular.module('App').controller(
         .then((data) => {
           this.moderators.ids = this.$filter('orderBy')(data);
         })
-        .catch(err => this.Alerter.alertFromSWS(
-          this.$translate.instant('mailing_list_tab_modal_get_lists_error'),
-          err,
-          this.$scope.alerts.main,
-        ))
+        .catch((err) =>
+          this.Alerter.alertFromSWS(
+            this.$translate.instant('mailing_list_tab_modal_get_lists_error'),
+            err,
+            this.$scope.alerts.main,
+          ),
+        )
         .finally(() => {
           if (isEmpty(this.moderators.ids)) {
             this.loading.moderators = false;

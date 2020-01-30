@@ -1,9 +1,9 @@
 import get from 'lodash/get';
 import pick from 'lodash/pick';
 
-angular
-  .module('App')
-  .controller('DedicatedCloudUserEditCtrl', class DedicatedCloudUserEditCtrl {
+angular.module('App').controller(
+  'DedicatedCloudUserEditCtrl',
+  class DedicatedCloudUserEditCtrl {
     /* @ngInject */
     constructor(
       $state,
@@ -31,17 +31,21 @@ angular
 
     $onInit() {
       this.loading = true;
-      return this.DedicatedCloud.getUserDetail(
-        this.productId,
-        this.userId,
-      ).then((user) => {
-        this.user = user;
-        this.user.tokenValidator = user.isTokenValidator;
-      }).catch((err) => {
-        this.Alerter.error(`${this.$translate.instant('dedicatedCloud_USER_edit_load_error')} ${get(err, 'message', err)}`);
-      }).finally(() => {
-        this.loading = false;
-      });
+      return this.DedicatedCloud.getUserDetail(this.productId, this.userId)
+        .then((user) => {
+          this.user = user;
+          this.user.tokenValidator = user.isTokenValidator;
+        })
+        .catch((err) => {
+          this.Alerter.error(
+            `${this.$translate.instant(
+              'dedicatedCloud_USER_edit_load_error',
+            )} ${get(err, 'message', err)}`,
+          );
+        })
+        .finally(() => {
+          this.loading = false;
+        });
     }
 
     editUser() {
@@ -59,12 +63,22 @@ angular
           'canManageIpFailOvers',
           'nsxRight',
         ]),
-      ).then(() => {
-        this.Alerter.success(this.$translate.instant('dedicatedCloud_USER_edit_success'));
-        this.$state.go('^').then(() => this.$state.reload());
-      }).catch((err) => {
-        this.$state.go('^');
-        this.Alerter.error(`${this.$translate.instant('dedicatedCloud_USER_edit_error')} ${get(err, 'message') || err}`);
-      });
+      )
+        .then(() => {
+          this.Alerter.success(
+            this.$translate.instant('dedicatedCloud_USER_edit_success'),
+          );
+          this.$state.go('^').then(() => this.$state.reload());
+        })
+        .catch((err) => {
+          this.$state.go('^');
+          this.Alerter.error(
+            `${this.$translate.instant('dedicatedCloud_USER_edit_error')} ${get(
+              err,
+              'message',
+            ) || err}`,
+          );
+        });
     }
-  });
+  },
+);

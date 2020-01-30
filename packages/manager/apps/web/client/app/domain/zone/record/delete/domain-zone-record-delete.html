@@ -1,32 +1,49 @@
 <div data-ng-controller="DomainZoneRecordDeleteCtrl as ctrl">
-    <div data-wizard
-         data-wizard-on-cancel="resetAction"
-         data-wizard-on-finish="deleteDnsEntry"
-         data-wizard-title="'domain_configuration_dns_entry_delete_title' | translate">
-
-        <div data-wizard-step
-             data-wizard-step-valid="!ctrl.loading">
-
+    <div
+        data-wizard
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="deleteDnsEntry"
+        data-wizard-title="'domain_configuration_dns_entry_delete_title' | translate"
+    >
+        <div data-wizard-step data-wizard-step-valid="!ctrl.loading">
             <oui-spinner data-ng-if="ctrl.loading"></oui-spinner>
 
-            <p data-ng-if="ctrl.massDelete && !ctrl.loading"
-               data-ng-bind-html="(ctrl.entryToDelete.length > 1
+            <p
+                data-ng-if="ctrl.massDelete && !ctrl.loading"
+                data-ng-bind-html="(ctrl.entryToDelete.length > 1
                                     ? 'domain_configuration_dns_entry_mass_delete_step1_question_other'
                                     : 'domain_configuration_dns_entry_mass_delete_step1_question_1')
-                                  | translate: { t0: ctrl.entryToDelete.length }"></p>
+                                  | translate: { t0: ctrl.entryToDelete.length }"
+            ></p>
 
             <div data-ng-if="!ctrl.massDelete && !ctrl.loading">
-                <p data-ng-bind-html="'domain_configuration_dns_entry_delete_step1_question' | translate: { t0: ctrl.domain.displayName }"></p>
+                <p
+                    data-ng-bind-html="'domain_configuration_dns_entry_delete_step1_question' | translate: { t0: ctrl.domain.displayName }"
+                ></p>
 
                 <dl class="dl-horizontal dl-lg">
-                    <dt data-translate="domain_configuration_dns_entry_delete_step1_type"></dt>
-                    <dd data-ng-bind="ctrl.entryToDelete.fieldTypeFormatted"></dd>
+                    <dt
+                        data-translate="domain_configuration_dns_entry_delete_step1_type"
+                    ></dt>
+                    <dd
+                        data-ng-bind="ctrl.entryToDelete.fieldTypeFormatted"
+                    ></dd>
 
-                    <dt data-translate="domain_configuration_dns_entry_delete_step1_subdomain"></dt>
-                    <dd data-ng-show="ctrl.entryToDelete.subDomain" data-ng-bind="ctrl.entryToDelete.subDomain + '.' + ctrl.entryToDelete.zoneToDisplay"></dd>
-                    <dd data-ng-show="!ctrl.entryToDelete.subDomain" data-ng-bind="ctrl.entryToDelete.zoneToDisplay"></dd>
+                    <dt
+                        data-translate="domain_configuration_dns_entry_delete_step1_subdomain"
+                    ></dt>
+                    <dd
+                        data-ng-show="ctrl.entryToDelete.subDomain"
+                        data-ng-bind="ctrl.entryToDelete.subDomain + '.' + ctrl.entryToDelete.zoneToDisplay"
+                    ></dd>
+                    <dd
+                        data-ng-show="!ctrl.entryToDelete.subDomain"
+                        data-ng-bind="ctrl.entryToDelete.zoneToDisplay"
+                    ></dd>
 
-                    <dt data-translate="domain_configuration_dns_entry_delete_step1_target"></dt>
+                    <dt
+                        data-translate="domain_configuration_dns_entry_delete_step1_target"
+                    ></dt>
                     <dd data-ng-bind="ctrl.entryToDelete.targetToDisplay"></dd>
                 </dl>
             </div>

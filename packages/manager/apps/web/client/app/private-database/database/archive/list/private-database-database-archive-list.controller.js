@@ -26,7 +26,7 @@ angular.module('App').controller(
     getDump(dumpId) {
       return this.privateDatabase
         .getDump(this.productId, dumpId)
-        .catch(err => this.alerter.error(err));
+        .catch((err) => this.alerter.error(err));
     }
 
     getDumps() {
@@ -34,7 +34,9 @@ angular.module('App').controller(
       this.deletedDbList = null;
       return this.privateDatabase
         .getDumps(this.productId, true)
-        .then(dumpsId => this.$q.all(map(dumpsId, dumpId => this.getDump(dumpId))))
+        .then((dumpsId) =>
+          this.$q.all(map(dumpsId, (dumpId) => this.getDump(dumpId))),
+        )
         .then((dumps) => {
           dumps.forEach((dump) => {
             let deletedDb = deletedDbs[dump.databaseName];
@@ -44,10 +46,11 @@ angular.module('App').controller(
             }
             deletedDb.dumps.push(dump);
           });
-          this.deletedDbList = values(deletedDbs)
-            .sort((a, b) => a.databaseName.localeCompare(b.databaseName));
+          this.deletedDbList = values(deletedDbs).sort((a, b) =>
+            a.databaseName.localeCompare(b.databaseName),
+          );
         })
-        .catch(err => this.alerter.error(err));
+        .catch((err) => this.alerter.error(err));
     }
   },
 );

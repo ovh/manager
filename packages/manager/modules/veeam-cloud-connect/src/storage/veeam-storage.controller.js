@@ -1,7 +1,12 @@
 export default class VeeamCloudConnectStorageCtrl {
   /* @ngInject */
-  constructor($stateParams, $translate, CucControllerHelper,
-    CucRegionService, VeeamCloudConnectService) {
+  constructor(
+    $stateParams,
+    $translate,
+    CucControllerHelper,
+    CucRegionService,
+    VeeamCloudConnectService,
+  ) {
     this.$stateParams = $stateParams;
     this.$translate = $translate;
     this.CucControllerHelper = CucControllerHelper;
@@ -9,22 +14,27 @@ export default class VeeamCloudConnectStorageCtrl {
     this.VeeamCloudConnectService = VeeamCloudConnectService;
 
     this.storageInfos = CucControllerHelper.request.getArrayLoader({
-      loaderFunction: () => this.VeeamCloudConnectService
-        .getStorages(this.$stateParams.serviceName),
-      errorHandler: response => this.VeeamCloudConnectService.unitOfWork.messages.push({
-        text: response.message,
-        type: 'error',
-      }),
+      loaderFunction: () =>
+        this.VeeamCloudConnectService.getStorages(
+          this.$stateParams.serviceName,
+        ),
+      errorHandler: (response) =>
+        this.VeeamCloudConnectService.unitOfWork.messages.push({
+          text: response.message,
+          type: 'error',
+        }),
     });
 
     this.actions = this.CucControllerHelper.request.getArrayLoader({
-      loaderFunction: () => this.VeeamCloudConnectService
-        .getActions(this.$stateParams.serviceName),
+      loaderFunction: () =>
+        this.VeeamCloudConnectService.getActions(this.$stateParams.serviceName),
     });
 
     this.capabilities = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () => this.VeeamCloudConnectService
-        .getCapabilities(this.$stateParams.serviceName),
+      loaderFunction: () =>
+        this.VeeamCloudConnectService.getCapabilities(
+          this.$stateParams.serviceName,
+        ),
     });
   }
 

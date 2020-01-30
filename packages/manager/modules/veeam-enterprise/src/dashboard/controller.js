@@ -28,27 +28,32 @@ export default class VeeamEnterpriseDashboardCtrl {
   }
 
   initLoaders() {
-    const errorHandler = response => this.VeeamEnterpriseService.unitOfWork.messages.push({
-      text: response.message,
-      type: 'error',
-    });
+    const errorHandler = (response) =>
+      this.VeeamEnterpriseService.unitOfWork.messages.push({
+        text: response.message,
+        type: 'error',
+      });
 
     this.configurationInfos = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () => this.VeeamEnterpriseService.getConfigurationInfos(this.serviceName),
+      loaderFunction: () =>
+        this.VeeamEnterpriseService.getConfigurationInfos(this.serviceName),
       errorHandler,
     });
 
     this.subscriptionInfos = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () => this.VeeamEnterpriseService
-        .getSubscriptionInfos(this.serviceName)
-        .then(subscriptionInfos => ({
-          ...subscriptionInfos,
-          data: {
-            ...subscriptionInfos.data,
-            creation: moment(subscriptionInfos.data.creation).format('LL'),
-            expiration: moment(subscriptionInfos.data.expiration).format('LL'),
-          },
-        })),
+      loaderFunction: () =>
+        this.VeeamEnterpriseService.getSubscriptionInfos(this.serviceName).then(
+          (subscriptionInfos) => ({
+            ...subscriptionInfos,
+            data: {
+              ...subscriptionInfos.data,
+              creation: moment(subscriptionInfos.data.creation).format('LL'),
+              expiration: moment(subscriptionInfos.data.expiration).format(
+                'LL',
+              ),
+            },
+          }),
+        ),
       errorHandler,
     });
   }

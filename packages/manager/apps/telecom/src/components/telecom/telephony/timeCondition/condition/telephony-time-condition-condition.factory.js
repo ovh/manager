@@ -7,241 +7,302 @@ import random from 'lodash/random';
 angular.module('managerApp').run(($translate, asyncLoader) => {
   asyncLoader.addTranslations(
     import(`./translations/Messages_${$translate.use()}.json`)
-      .catch(() => import(`./translations/Messages_${$translate.fallbackLanguage()}.json`))
-      .then(x => x.default),
+      .catch(() =>
+        import(`./translations/Messages_${$translate.fallbackLanguage()}.json`),
+      )
+      .then((x) => x.default),
   );
   $translate.refresh();
 });
-angular.module('managerApp').factory('VoipTimeConditionCondition', (voipTimeCondition, VOIP_TIMECONDITION_ORDERED_DAYS) => {
-  /*= ==================================
+angular
+  .module('managerApp')
+  .factory(
+    'VoipTimeConditionCondition',
+    (voipTimeCondition, VOIP_TIMECONDITION_ORDERED_DAYS) => {
+      /*= ==================================
     =            CONSTRUCTOR            =
     =================================== */
 
-  function VoipTimeConditionCondition(conditionOptions) {
-    const opts = conditionOptions || {};
+      function VoipTimeConditionCondition(conditionOptions) {
+        const opts = conditionOptions || {};
 
-    // options check
-    if (!opts.billingAccount) {
-      throw new Error('billingAccount option must be specified when creating a new VoipTimeConditionCondition');
-    }
-    if (!opts.serviceName) {
-      throw new Error('serviceName option must be specified when creating a new VoipTimeConditionCondition');
-    }
-    if (!opts.featureType) {
-      throw new Error('featureType option must be specified when creating a new VoipTimeConditionCondition');
-    }
+        // options check
+        if (!opts.billingAccount) {
+          throw new Error(
+            'billingAccount option must be specified when creating a new VoipTimeConditionCondition',
+          );
+        }
+        if (!opts.serviceName) {
+          throw new Error(
+            'serviceName option must be specified when creating a new VoipTimeConditionCondition',
+          );
+        }
+        if (!opts.featureType) {
+          throw new Error(
+            'featureType option must be specified when creating a new VoipTimeConditionCondition',
+          );
+        }
 
-    // mandatory
-    this.billingAccount = opts.billingAccount;
-    this.serviceName = opts.serviceName;
-    this.featureType = opts.featureType;
+        // mandatory
+        this.billingAccount = opts.billingAccount;
+        this.serviceName = opts.serviceName;
+        this.featureType = opts.featureType;
 
-    // check for mandatory field required by ovhPabx feature type
-    if (this.featureType === 'ovhPabx') {
-      if (!opts.dialplanId) {
-        throw new Error('dialplanId option must be specified when creating a new VoipTimeConditionCondition');
+        // check for mandatory field required by ovhPabx feature type
+        if (this.featureType === 'ovhPabx') {
+          if (!opts.dialplanId) {
+            throw new Error(
+              'dialplanId option must be specified when creating a new VoipTimeConditionCondition',
+            );
+          }
+          if (!opts.extensionId) {
+            throw new Error(
+              'extensionId option must be specified when creating a new VoipTimeConditionCondition',
+            );
+          }
+
+          this.dialplanId = opts.dialplanId;
+          this.extensionId = opts.extensionId;
+        }
+
+        // from api
+        this.setOptions(opts);
+
+        // other attributes
+        this.conditionId =
+          get(opts, this.featureType === 'sip' ? 'id' : 'conditionId') ||
+          `tmp_${random(now())}`;
+        this.state = get(opts, 'state') || 'OK';
       }
-      if (!opts.extensionId) {
-        throw new Error('extensionId option must be specified when creating a new VoipTimeConditionCondition');
-      }
 
-      this.dialplanId = opts.dialplanId;
-      this.extensionId = opts.extensionId;
-    }
+      /* -----  End of CONSTRUCTOR  ------*/
 
-    // from api
-    this.setOptions(opts);
-
-    // other attributes
-    this.conditionId = get(opts, this.featureType === 'sip' ? 'id' : 'conditionId') || `tmp_${random(now())}`;
-    this.state = get(opts, 'state') || 'OK';
-  }
-
-  /* -----  End of CONSTRUCTOR  ------*/
-
-  /*= ========================================
+      /*= ========================================
     =            PROTOTYPE METHODS            =
     ========================================= */
 
-  VoipTimeConditionCondition.prototype.setOptions = function setOptions(conditionOptions) {
-    const self = this;
-    let timeFrom;
-    let timeTo;
+      VoipTimeConditionCondition.prototype.setOptions = function setOptions(
+        conditionOptions,
+      ) {
+        const self = this;
+        let timeFrom;
+        let timeTo;
 
-    self.weekDay = get(conditionOptions, self.featureType === 'sip' ? 'day' : 'weekDay') || 'monday';
+        self.weekDay =
+          get(
+            conditionOptions,
+            self.featureType === 'sip' ? 'day' : 'weekDay',
+          ) || 'monday';
 
-    if (self.featureType === 'sip') {
-      timeFrom = get(conditionOptions, 'hourBegin');
-      timeTo = get(conditionOptions, 'hourEnd');
+        if (self.featureType === 'sip') {
+          timeFrom = get(conditionOptions, 'hourBegin');
+          timeTo = get(conditionOptions, 'hourEnd');
 
-      self.timeFrom = timeFrom ? voipTimeCondition.parseSipTime(timeFrom) : '08:30:00';
-      self.timeTo = timeTo ? voipTimeCondition.parseSipTime(timeTo, true) : '17:29:59';
-      self.status = conditionOptions.status || 'new'; // donno what is this status ???
-    } else {
-      timeTo = get(conditionOptions, 'timeTo');
+          self.timeFrom = timeFrom
+            ? voipTimeCondition.parseSipTime(timeFrom)
+            : '08:30:00';
+          self.timeTo = timeTo
+            ? voipTimeCondition.parseSipTime(timeTo, true)
+            : '17:29:59';
+          self.status = conditionOptions.status || 'new'; // donno what is this status ???
+        } else {
+          timeTo = get(conditionOptions, 'timeTo');
 
-      self.timeFrom = get(conditionOptions, 'timeFrom') || '08:30:00';
+          self.timeFrom = get(conditionOptions, 'timeFrom') || '08:30:00';
 
-      // because in v4 timeTo is something like this : 10:00:59.
-      // Format it to something like 09:59:59
-      self.timeTo = timeTo ? voipTimeCondition.parseTime(get(conditionOptions, 'timeTo')) : '17:29:59';
-    }
-    self.policy = get(conditionOptions, 'policy') || 'available';
+          // because in v4 timeTo is something like this : 10:00:59.
+          // Format it to something like 09:59:59
+          self.timeTo = timeTo
+            ? voipTimeCondition.parseTime(get(conditionOptions, 'timeTo'))
+            : '17:29:59';
+        }
+        self.policy = get(conditionOptions, 'policy') || 'available';
 
-    return self;
-  };
-
-  VoipTimeConditionCondition.prototype.clone = function clone() {
-    const self = this;
-    const timeConditionOptions = angular.copy(self);
-    delete timeConditionOptions.conditionId;
-
-    return new VoipTimeConditionCondition(timeConditionOptions);
-  };
-
-  VoipTimeConditionCondition.prototype.getTimeMoment = function getTimeMoment(time) {
-    const self = this;
-    const timePath = time ? `time${upperFirst(time)}` : 'timeFrom';
-    const splittedTime = get(self, timePath).split(':');
-    return moment()
-      .day(VOIP_TIMECONDITION_ORDERED_DAYS.indexOf(self.weekDay) + 1)
-      .hour(splittedTime[0])
-      .minute(splittedTime[1])
-      .second(splittedTime[2]);
-  };
-
-  VoipTimeConditionCondition.prototype.toFullCalendarEvent = function toFullCalendarEvent() {
-    const self = this;
-
-    return {
-      id: self.conditionId,
-      start: self.getTimeMoment('from'),
-      end: self.getTimeMoment('to'),
-      allDay: false,
-    };
-  };
-
-  /* ----------  API Calls  ----------*/
-
-  VoipTimeConditionCondition.prototype.create = function create() {
-    const self = this;
-
-    const conditionResources = voipTimeCondition.getResource('condition', self.featureType);
-
-    return conditionResources
-      .create(
-        voipTimeCondition.getConditionResourceCallParams(self, null),
-        voipTimeCondition.getConditionResourceCallActionParams(self),
-      ).$promise
-      .then((conditionOptions) => {
-        self.conditionId = get(conditionOptions, self.featureType === 'sip' ? 'id' : 'conditionId');
-        self.state = 'OK';
         return self;
-      });
-  };
+      };
 
-  VoipTimeConditionCondition.prototype.save = function save() {
-    const self = this;
-    const conditionResources = voipTimeCondition.getResource('condition', self.featureType);
+      VoipTimeConditionCondition.prototype.clone = function clone() {
+        const self = this;
+        const timeConditionOptions = angular.copy(self);
+        delete timeConditionOptions.conditionId;
 
-    return conditionResources.save(
-      voipTimeCondition.getConditionResourceCallParams(self),
-      voipTimeCondition.getConditionResourceCallActionParams(self),
-    ).$promise;
-  };
+        return new VoipTimeConditionCondition(timeConditionOptions);
+      };
 
-  VoipTimeConditionCondition.prototype.remove = function remove() {
-    const self = this;
-    const conditionResources = voipTimeCondition.getResource('condition', self.featureType);
+      VoipTimeConditionCondition.prototype.getTimeMoment = function getTimeMoment(
+        time,
+      ) {
+        const self = this;
+        const timePath = time ? `time${upperFirst(time)}` : 'timeFrom';
+        const splittedTime = get(self, timePath).split(':');
+        return moment()
+          .day(VOIP_TIMECONDITION_ORDERED_DAYS.indexOf(self.weekDay) + 1)
+          .hour(splittedTime[0])
+          .minute(splittedTime[1])
+          .second(splittedTime[2]);
+      };
 
-    return conditionResources
-      .remove(voipTimeCondition.getConditionResourceCallParams(self)).$promise;
-  };
+      VoipTimeConditionCondition.prototype.toFullCalendarEvent = function toFullCalendarEvent() {
+        const self = this;
 
-  /* ----------  EDITION  ----------*/
+        return {
+          id: self.conditionId,
+          start: self.getTimeMoment('from'),
+          end: self.getTimeMoment('to'),
+          allDay: false,
+        };
+      };
 
-  VoipTimeConditionCondition.prototype.startEdition = function startEdition() {
-    const self = this;
+      /* ----------  API Calls  ----------*/
 
-    self.inEdition = true;
+      VoipTimeConditionCondition.prototype.create = function create() {
+        const self = this;
 
-    self.saveForEdition = {
-      weekDay: angular.copy(self.weekDay),
-      timeFrom: angular.copy(self.timeFrom),
-      timeTo: angular.copy(self.timeTo),
-    };
+        const conditionResources = voipTimeCondition.getResource(
+          'condition',
+          self.featureType,
+        );
 
-    if (self.featureType !== 'ovhPabx') {
-      self.saveForEdition.policy = angular.copy(self.policy);
-    }
+        return conditionResources
+          .create(
+            voipTimeCondition.getConditionResourceCallParams(self, null),
+            voipTimeCondition.getConditionResourceCallActionParams(self),
+          )
+          .$promise.then((conditionOptions) => {
+            self.conditionId = get(
+              conditionOptions,
+              self.featureType === 'sip' ? 'id' : 'conditionId',
+            );
+            self.state = 'OK';
+            return self;
+          });
+      };
 
-    if (!self.originalSave) {
-      self.originalSave = angular.copy(self.saveForEdition);
-    }
+      VoipTimeConditionCondition.prototype.save = function save() {
+        const self = this;
+        const conditionResources = voipTimeCondition.getResource(
+          'condition',
+          self.featureType,
+        );
 
-    return self;
-  };
+        return conditionResources.save(
+          voipTimeCondition.getConditionResourceCallParams(self),
+          voipTimeCondition.getConditionResourceCallActionParams(self),
+        ).$promise;
+      };
 
-  VoipTimeConditionCondition.prototype.stopEdition = function stopEdition(
-    cancel,
-    cancelToOriginalSave,
-    resetOriginalSave,
-  ) {
-    const self = this;
-    let fromObject;
+      VoipTimeConditionCondition.prototype.remove = function remove() {
+        const self = this;
+        const conditionResources = voipTimeCondition.getResource(
+          'condition',
+          self.featureType,
+        );
 
-    if (self.originalSave && cancelToOriginalSave) {
-      fromObject = self.originalSave;
-    } else if (self.saveForEdition && cancel) {
-      fromObject = self.saveForEdition;
-    }
+        return conditionResources.remove(
+          voipTimeCondition.getConditionResourceCallParams(self),
+        ).$promise;
+      };
 
-    if ((cancelToOriginalSave || cancel) && fromObject) {
-      self.weekDay = angular.copy(get(fromObject, 'weekDay'));
-      self.timeFrom = angular.copy(get(fromObject, 'timeFrom'));
-      self.timeTo = angular.copy(get(fromObject, 'timeTo'));
+      /* ----------  EDITION  ----------*/
 
-      if (self.featureType !== 'ovhPabx') {
-        self.policy = angular.copy(get(fromObject, 'policy'));
-      }
-    }
+      VoipTimeConditionCondition.prototype.startEdition = function startEdition() {
+        const self = this;
 
-    if (cancelToOriginalSave || resetOriginalSave) {
-      self.originalSave = null;
-    }
+        self.inEdition = true;
 
-    self.saveForEdition = null;
-    self.inEdition = false;
+        self.saveForEdition = {
+          weekDay: angular.copy(self.weekDay),
+          timeFrom: angular.copy(self.timeFrom),
+          timeTo: angular.copy(self.timeTo),
+        };
 
-    return self;
-  };
+        if (self.featureType !== 'ovhPabx') {
+          self.saveForEdition.policy = angular.copy(self.policy);
+        }
 
-  VoipTimeConditionCondition.prototype.hasChange = function hasChange(property, fromOriginal) {
-    const self = this;
-    let compareToObject = null;
+        if (!self.originalSave) {
+          self.originalSave = angular.copy(self.saveForEdition);
+        }
 
-    if (['DRAFT', 'TO_CREATE', 'TO_DELETE'].indexOf(self.state) > -1) {
-      return true;
-    }
+        return self;
+      };
 
-    if (fromOriginal && !self.originalSave) {
-      return false;
-    } if (!fromOriginal && !self.saveForEdition) {
-      return false;
-    }
+      VoipTimeConditionCondition.prototype.stopEdition = function stopEdition(
+        cancel,
+        cancelToOriginalSave,
+        resetOriginalSave,
+      ) {
+        const self = this;
+        let fromObject;
 
-    compareToObject = fromOriginal ? self.originalSave : self.saveForEdition;
+        if (self.originalSave && cancelToOriginalSave) {
+          fromObject = self.originalSave;
+        } else if (self.saveForEdition && cancel) {
+          fromObject = self.saveForEdition;
+        }
 
-    if (property) {
-      return !isEqual(get(self, property), get(compareToObject, property));
-    }
-    if (self.featureType !== 'ovhPabx') {
-      return self.hasChange('weekDay', fromOriginal) || self.hasChange('timeFrom', fromOriginal) || self.hasChange('timeTo', fromOriginal) || self.hasChange('policy', fromOriginal);
-    }
-    return self.hasChange('weekDay', fromOriginal) || self.hasChange('timeFrom', fromOriginal) || self.hasChange('timeTo', fromOriginal);
-  };
+        if ((cancelToOriginalSave || cancel) && fromObject) {
+          self.weekDay = angular.copy(get(fromObject, 'weekDay'));
+          self.timeFrom = angular.copy(get(fromObject, 'timeFrom'));
+          self.timeTo = angular.copy(get(fromObject, 'timeTo'));
 
-  /* -----  End of PROTOTYPE METHODS  ------*/
+          if (self.featureType !== 'ovhPabx') {
+            self.policy = angular.copy(get(fromObject, 'policy'));
+          }
+        }
 
-  return VoipTimeConditionCondition;
-});
+        if (cancelToOriginalSave || resetOriginalSave) {
+          self.originalSave = null;
+        }
+
+        self.saveForEdition = null;
+        self.inEdition = false;
+
+        return self;
+      };
+
+      VoipTimeConditionCondition.prototype.hasChange = function hasChange(
+        property,
+        fromOriginal,
+      ) {
+        const self = this;
+        let compareToObject = null;
+
+        if (['DRAFT', 'TO_CREATE', 'TO_DELETE'].indexOf(self.state) > -1) {
+          return true;
+        }
+
+        if (fromOriginal && !self.originalSave) {
+          return false;
+        }
+        if (!fromOriginal && !self.saveForEdition) {
+          return false;
+        }
+
+        compareToObject = fromOriginal
+          ? self.originalSave
+          : self.saveForEdition;
+
+        if (property) {
+          return !isEqual(get(self, property), get(compareToObject, property));
+        }
+        if (self.featureType !== 'ovhPabx') {
+          return (
+            self.hasChange('weekDay', fromOriginal) ||
+            self.hasChange('timeFrom', fromOriginal) ||
+            self.hasChange('timeTo', fromOriginal) ||
+            self.hasChange('policy', fromOriginal)
+          );
+        }
+        return (
+          self.hasChange('weekDay', fromOriginal) ||
+          self.hasChange('timeFrom', fromOriginal) ||
+          self.hasChange('timeTo', fromOriginal)
+        );
+      };
+
+      /* -----  End of PROTOTYPE METHODS  ------*/
+
+      return VoipTimeConditionCondition;
+    },
+  );

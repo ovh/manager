@@ -1,108 +1,182 @@
 <div data-ng-controller="HostingFtpUserCreateCtrl as ctrl">
-    <div data-wizard
-         data-wizard-on-cancel="resetAction"
-         data-wizard-on-finish="createUser"
-         data-wizard-title="'hosting_tab_FTP_configuration_user_create_title' | translate">
+    <div
+        data-wizard
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="createUser"
+        data-wizard-title="'hosting_tab_FTP_configuration_user_create_title' | translate"
+    >
+        <div data-wizard-step data-wizard-step-valid="ctrl.isStep1Valid()">
+            <p
+                data-translate="hosting_tab_FTP_configuration_user_create_step1_question"
+            ></p>
 
-        <div data-wizard-step
-             data-wizard-step-valid="ctrl.isStep1Valid()">
-
-            <p data-translate="hosting_tab_FTP_configuration_user_create_step1_question"></p>
-
-            <p class="text-danger"
-               data-translate="hosting_tab_FTP_configuration_user_create_step1_no_user_left"
-               data-ng-if="ctrl.model.capabilities && ctrl.model.capabilities.maxUser === 0"></p>
+            <p
+                class="text-danger"
+                data-translate="hosting_tab_FTP_configuration_user_create_step1_no_user_left"
+                data-ng-if="ctrl.model.capabilities && ctrl.model.capabilities.maxUser === 0"
+            ></p>
 
             <div class="text-center" data-ng-if="!ctrl.model.capabilities">
                 <oui-spinner></oui-spinner>
             </div>
 
-            <form class="form-horizontal" name="hostingUserCreateForm"
-                  data-ng-if="ctrl.model.capabilities && ctrl.model.capabilities.maxUser > 0">
-
-                <div class="form-group"
-                     data-ng-class="{'has-error': hostingUserCreateForm.hostingUserCreateLogin.$dirty && !ctrl.isUserValid()}">
-                    <label class="control-label col-md-3 required" for="hostingUserCreateLogin"
-                           data-translate="hosting_tab_FTP_configuration_user_create_step1_user"></label>
+            <form
+                class="form-horizontal"
+                name="hostingUserCreateForm"
+                data-ng-if="ctrl.model.capabilities && ctrl.model.capabilities.maxUser > 0"
+            >
+                <div
+                    class="form-group"
+                    data-ng-class="{'has-error': hostingUserCreateForm.hostingUserCreateLogin.$dirty && !ctrl.isUserValid()}"
+                >
+                    <label
+                        class="control-label col-md-3 required"
+                        for="hostingUserCreateLogin"
+                        data-translate="hosting_tab_FTP_configuration_user_create_step1_user"
+                    ></label>
                     <div class="col-md-8">
                         <div class="input-group">
-                            <span class="input-group-addon" data-ng-bind="ctrl.model.primaryLogin + '-'"></span>
-                            <input type="text" class="form-control" id="hostingUserCreateLogin" name="hostingUserCreateLogin" required
-                                   data-ng-model="ctrl.model.selected.login">
+                            <span
+                                class="input-group-addon"
+                                data-ng-bind="ctrl.model.primaryLogin + '-'"
+                            ></span>
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="hostingUserCreateLogin"
+                                name="hostingUserCreateLogin"
+                                required
+                                data-ng-model="ctrl.model.selected.login"
+                            />
                         </div>
-                        <small class="help-block"
-                               data-translate="hosting_tab_FTP_configuration_user_create_step1_user_error"
-                               data-ng-if="hostingUserCreateForm.hostingUserCreateLogin.$dirty && !ctrl.isUserValid()"></small>
-                        <small class="d-block"
-                               data-ng-bind="'hosting_tab_FTP_configuration_user_create_step1_user_condition' | translate: { t0: ctrl.model.minUserLength, t1: ctrl.model.maxUserLength }"></small>
+                        <small
+                            class="help-block"
+                            data-translate="hosting_tab_FTP_configuration_user_create_step1_user_error"
+                            data-ng-if="hostingUserCreateForm.hostingUserCreateLogin.$dirty && !ctrl.isUserValid()"
+                        ></small>
+                        <small
+                            class="d-block"
+                            data-ng-bind="'hosting_tab_FTP_configuration_user_create_step1_user_condition' | translate: { t0: ctrl.model.minUserLength, t1: ctrl.model.maxUserLength }"
+                        ></small>
                     </div>
                 </div>
 
-                <div class="form-group"
-                     data-ng-class="{'has-error': hostingUserCreateForm.hostingUserCreateHome.$dirty && !ctrl.isPathValid()}">
-                    <label class="control-label col-md-3" for="hostingUserCreateHome"
-                           data-translate="hosting_tab_FTP_configuration_user_create_step1_home_label"></label>
+                <div
+                    class="form-group"
+                    data-ng-class="{'has-error': hostingUserCreateForm.hostingUserCreateHome.$dirty && !ctrl.isPathValid()}"
+                >
+                    <label
+                        class="control-label col-md-3"
+                        for="hostingUserCreateHome"
+                        data-translate="hosting_tab_FTP_configuration_user_create_step1_home_label"
+                    ></label>
                     <div class="col-md-8">
                         <div class="input-group">
                             <span class="input-group-addon">./</span>
-                            <input type="text" class="form-control" id="hostingUserCreateHome" name="hostingUserCreateHome"
-                                   data-ng-model="ctrl.model.selected.home">
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="hostingUserCreateHome"
+                                name="hostingUserCreateHome"
+                                data-ng-model="ctrl.model.selected.home"
+                            />
                         </div>
-                        <small class="help-block"
-                               data-translate="hosting_common_path_help_inline"
-                               data-ng-if="!ctrl.isPathValid()"></small>
+                        <small
+                            class="help-block"
+                            data-translate="hosting_common_path_help_inline"
+                            data-ng-if="!ctrl.isPathValid()"
+                        ></small>
                     </div>
                 </div>
             </form>
         </div>
 
-        <div data-wizard-step
-             data-wizard-step-valid="ctrl.isPasswordValid()">
+        <div data-wizard-step data-wizard-step-valid="ctrl.isPasswordValid()">
+            <p
+                data-translate="hosting_tab_FTP_configuration_user_create_step2_password_question"
+            ></p>
 
-            <p data-translate="hosting_tab_FTP_configuration_user_create_step2_password_question"></p>
-
-            <form class="form-horizontal" name="hostingUserCreateForm"
-                  data-ng-if="ctrl.model.capabilities && ctrl.model.capabilities.maxUser > 0">
-
-                <div class="form-group"
-                     data-ng-class="{'has-error': hostingUserCreateForm.hostingUserCreatePassword.$dirty && (hostingUserCreateForm.hostingUserCreatePassword.$invalid || ctrl.isPasswordInvalid())}">
-                    <label class="control-label col-md-4 required" for="hostingUserCreatePassword"
-                           data-translate="hosting_tab_FTP_configuration_user_create_step2_password_password"></label>
+            <form
+                class="form-horizontal"
+                name="hostingUserCreateForm"
+                data-ng-if="ctrl.model.capabilities && ctrl.model.capabilities.maxUser > 0"
+            >
+                <div
+                    class="form-group"
+                    data-ng-class="{'has-error': hostingUserCreateForm.hostingUserCreatePassword.$dirty && (hostingUserCreateForm.hostingUserCreatePassword.$invalid || ctrl.isPasswordInvalid())}"
+                >
+                    <label
+                        class="control-label col-md-4 required"
+                        for="hostingUserCreatePassword"
+                        data-translate="hosting_tab_FTP_configuration_user_create_step2_password_password"
+                    ></label>
                     <div class="col-md-6">
-                        <input type="password" class="form-control" id="hostingUserCreatePassword" name="hostingUserCreatePassword" autocomplete="off" required
-                               data-ng-minlength="{{ctrl.condition.min}}"
-                               data-ng-maxlength="{{ctrl.condition.max}}"
-                               data-ng-model="ctrl.model.selected.password.value">
+                        <input
+                            type="password"
+                            class="form-control"
+                            id="hostingUserCreatePassword"
+                            name="hostingUserCreatePassword"
+                            autocomplete="off"
+                            required
+                            data-ng-minlength="{{ctrl.condition.min}}"
+                            data-ng-maxlength="{{ctrl.condition.max}}"
+                            data-ng-model="ctrl.model.selected.password.value"
+                        />
                     </div>
                 </div>
 
-                <div class="form-group"
-                     data-ng-class="{'has-error': hostingUserCreateForm.hostingUserCreatePasswordConfirm.$dirty && (hostingUserCreateForm.hostingUserCreatePasswordConfirm.$invalid || ctrl.isPasswordConfirmationInvalid())}">
-                    <label class="control-label col-md-4 required" for="hostingUserCreatePasswordConfirm"
-                           data-translate="hosting_tab_FTP_configuration_user_create_step2_password_confirmation"></label>
+                <div
+                    class="form-group"
+                    data-ng-class="{'has-error': hostingUserCreateForm.hostingUserCreatePasswordConfirm.$dirty && (hostingUserCreateForm.hostingUserCreatePasswordConfirm.$invalid || ctrl.isPasswordConfirmationInvalid())}"
+                >
+                    <label
+                        class="control-label col-md-4 required"
+                        for="hostingUserCreatePasswordConfirm"
+                        data-translate="hosting_tab_FTP_configuration_user_create_step2_password_confirmation"
+                    ></label>
                     <div class="col-md-6">
-                        <input type="password" class="form-control" id="hostingUserCreatePasswordConfirm" name="hostingUserCreatePasswordConfirm" autocomplete="off" required
-                               data-ng-minlength="{{ctrl.condition.min}}"
-                               data-ng-maxlength="{{ctrl.condition.max}}"
-                               data-ng-model="ctrl.model.selected.password.confirmation">
-                        <small class="help-block"
-                               data-translate="hosting_tab_DATABASES_configuration_create_step2_password_error"
-                               data-ng-if="hostingUserCreateForm.hostingUserCreatePasswordConfirm.$dirty && ctrl.isPasswordConfirmationInvalid()"></small>
+                        <input
+                            type="password"
+                            class="form-control"
+                            id="hostingUserCreatePasswordConfirm"
+                            name="hostingUserCreatePasswordConfirm"
+                            autocomplete="off"
+                            required
+                            data-ng-minlength="{{ctrl.condition.min}}"
+                            data-ng-maxlength="{{ctrl.condition.max}}"
+                            data-ng-model="ctrl.model.selected.password.confirmation"
+                        />
+                        <small
+                            class="help-block"
+                            data-translate="hosting_tab_DATABASES_configuration_create_step2_password_error"
+                            data-ng-if="hostingUserCreateForm.hostingUserCreatePasswordConfirm.$dirty && ctrl.isPasswordConfirmationInvalid()"
+                        ></small>
                     </div>
                 </div>
             </form>
 
             <div class="row">
-                <small class="col-md-8 col-md-offset-4" data-ng-bind-html="'hosting_common_password_conditions' | translate: { t0: ctrl.condition.min, t1: ctrl.condition.max }"></small>
+                <small
+                    class="col-md-8 col-md-offset-4"
+                    data-ng-bind-html="'hosting_common_password_conditions' | translate: { t0: ctrl.condition.min, t1: ctrl.condition.max }"
+                ></small>
             </div>
         </div>
 
         <div data-wizard-step>
-            <p data-translate="hosting_tab_FTP_configuration_user_create_step3_question"></p>
+            <p
+                data-translate="hosting_tab_FTP_configuration_user_create_step3_question"
+            ></p>
             <dl class="dl-horizontal dl-lg">
-                <dt data-translate="hosting_tab_FTP_configuration_user_create_step3_user"></dt>
-                <dd data-ng-bind="ctrl.model.primaryLogin + '-' + ctrl.model.selected.login"></dd>
-                <dt data-translate="hosting_tab_FTP_configuration_user_create_step3_home_label"></dt>
+                <dt
+                    data-translate="hosting_tab_FTP_configuration_user_create_step3_user"
+                ></dt>
+                <dd
+                    data-ng-bind="ctrl.model.primaryLogin + '-' + ctrl.model.selected.login"
+                ></dd>
+                <dt
+                    data-translate="hosting_tab_FTP_configuration_user_create_step3_home_label"
+                ></dt>
                 <dd data-ng-bind="ctrl.getSelectedHome()"></dd>
             </dl>
         </div>

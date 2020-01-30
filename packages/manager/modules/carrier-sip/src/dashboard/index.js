@@ -14,10 +14,7 @@ import './index.scss';
 const moduleName = 'ovhManagerCarrierSipDashboard';
 
 angular
-  .module(moduleName, [
-    'oui',
-    'pascalprecht.translate',
-  ])
+  .module(moduleName, ['oui', 'pascalprecht.translate'])
   .component('carrierSipDashboard', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 

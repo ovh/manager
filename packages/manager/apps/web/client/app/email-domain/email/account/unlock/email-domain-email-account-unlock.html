@@ -1,53 +1,94 @@
 <div data-ng-controller="EmailsUnlockAccountCtrl as ctrl">
-    <div data-wizard
-         data-wizard-on-cancel="resetAction"
-         data-wizard-on-finish="changePasswordAccount"
-         data-wizard-title="'email_tab_modal_unlock_account_title' | translate">
-
-        <div data-wizard-step
-             data-wizard-step-valid="ctrl.unlockAccountForm.$valid && ctrl.isPasswordMatches()">
-
-            <p data-ng-bind-html="'email_tab_modal_unlock_account_heading' | translate: { t0: ctrl.currentAccount.accountName }"></p>
+    <div
+        data-wizard
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="changePasswordAccount"
+        data-wizard-title="'email_tab_modal_unlock_account_title' | translate"
+    >
+        <div
+            data-wizard-step
+            data-wizard-step-valid="ctrl.unlockAccountForm.$valid && ctrl.isPasswordMatches()"
+        >
+            <p
+                data-ng-bind-html="'email_tab_modal_unlock_account_heading' | translate: { t0: ctrl.currentAccount.accountName }"
+            ></p>
             <p data-translate="email_tab_modal_unlock_account_infos"></p>
-            <p class="font-weight-bold" data-translate="emails_common_continue_question"></p>
+            <p
+                class="font-weight-bold"
+                data-translate="emails_common_continue_question"
+            ></p>
 
             <form class="form-horizontal" name="ctrl.unlockAccountForm">
-                <div class="form-group" data-ng-class="{
+                <div
+                    class="form-group"
+                    data-ng-class="{
                     'has-error': ctrl.unlockAccountForm.accountPassword.$dirty && ctrl.unlockAccountForm.accountPassword.$invalid,
                     'has-success': ctrl.unlockAccountForm.accountPassword.$dirty && ctrl.unlockAccountForm.accountPassword.$valid
-                }">
-                    <label class="control-label col-md-4 required" for="txt-account-password"
-                           data-translate="email_tab_modal_create_account_account_password"></label>
+                }"
+                >
+                    <label
+                        class="control-label col-md-4 required"
+                        for="txt-account-password"
+                        data-translate="email_tab_modal_create_account_account_password"
+                    ></label>
                     <div class="col-md-6">
-                        <input type="password" class="form-control" id="txt-account-password" name="accountPassword" aria-describedby="emailsUnlockPasswordHelp" autocomplete="off" required
-                               data-ng-change="ctrl.accountPasswordCheck(ctrl.unlockAccountForm.accountPassword)"
-                               data-ng-maxlength="ctrl.constants.passwordMaxLength"
-                               data-ng-minlength="ctrl.constants.passwordMinLength"
-                               data-ng-model="ctrl.model.password">
-                        <small class="help-block"
-                               data-translate="email_tab_modal_create_account_account_password_error"
-                               data-ng-if="ctrl.unlockAccountForm.accountPassword.$dirty && ctrl.unlockAccountForm.accountPassword.$invalid"></small>
+                        <input
+                            type="password"
+                            class="form-control"
+                            id="txt-account-password"
+                            name="accountPassword"
+                            aria-describedby="emailsUnlockPasswordHelp"
+                            autocomplete="off"
+                            required
+                            data-ng-change="ctrl.accountPasswordCheck(ctrl.unlockAccountForm.accountPassword)"
+                            data-ng-maxlength="ctrl.constants.passwordMaxLength"
+                            data-ng-minlength="ctrl.constants.passwordMinLength"
+                            data-ng-model="ctrl.model.password"
+                        />
+                        <small
+                            class="help-block"
+                            data-translate="email_tab_modal_create_account_account_password_error"
+                            data-ng-if="ctrl.unlockAccountForm.accountPassword.$dirty && ctrl.unlockAccountForm.accountPassword.$invalid"
+                        ></small>
                     </div>
                 </div>
 
-                <div class="form-group" data-ng-class="{
+                <div
+                    class="form-group"
+                    data-ng-class="{
                     'has-error': ctrl.unlockAccountForm.accountPasswordConfirm.$dirty && !ctrl.isPasswordMatches(),
                     'has-success': ctrl.unlockAccountForm.accountPasswordConfirm.$dirty && ctrl.isPasswordMatches()
-                }">
-                    <label class="control-label col-md-4 required" for="txt-account-password-confirm"
-                           data-translate="email_tab_modal_create_account_account_password_confirm"></label>
+                }"
+                >
+                    <label
+                        class="control-label col-md-4 required"
+                        for="txt-account-password-confirm"
+                        data-translate="email_tab_modal_create_account_account_password_confirm"
+                    ></label>
                     <div class="col-md-6">
-                        <input type="password" class="form-control" id="txt-account-password-confirm" name="accountPasswordConfirm" autocomplete="off" required
-                               data-ng-model="ctrl.validation.password">
-                        <small class="help-block"
-                               data-translate="email_tab_modal_create_account_account_password_match_error"
-                               data-ng-if="ctrl.unlockAccountForm.accountPasswordConfirm.$dirty && !!ctrl.validation.password && !ctrl.isPasswordMatches()"></small>
+                        <input
+                            type="password"
+                            class="form-control"
+                            id="txt-account-password-confirm"
+                            name="accountPasswordConfirm"
+                            autocomplete="off"
+                            required
+                            data-ng-model="ctrl.validation.password"
+                        />
+                        <small
+                            class="help-block"
+                            data-translate="email_tab_modal_create_account_account_password_match_error"
+                            data-ng-if="ctrl.unlockAccountForm.accountPasswordConfirm.$dirty && !!ctrl.validation.password && !ctrl.isPasswordMatches()"
+                        ></small>
                     </div>
                 </div>
             </form>
-            <div class="alert alert-info" role="alert" id="emailsUnlockPasswordHelp"
-                 data-ng-bind-html="'emails_common_password_conditions' | translate: { t0: ctrl.constants.passwordMinLength, t1: ctrl.constants.passwordMaxLength }">
-            </div>
+            <div
+                class="alert alert-info"
+                role="alert"
+                id="emailsUnlockPasswordHelp"
+                data-ng-bind-html="'emails_common_password_conditions' | translate: { t0: ctrl.constants.passwordMinLength, t1: ctrl.constants.passwordMaxLength }"
+            ></div>
         </div>
     </div>
 </div>

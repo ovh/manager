@@ -1,5 +1,8 @@
 <ul class="mb-1 ml-2">
-    <li data-ng-repeat="message in ctrl.services.messaging.messageDetails track by $index">
-        <strong data-ng-if="message.id != null">{{message.id}}:</strong> {{message.message}}
+    <li
+        data-ng-repeat="message in ctrl.services.messaging.messageDetails track by $index"
+    >
+        <strong data-ng-if="message.id != null">{{message.id}}:</strong>
+        {{message.message}}
     </li>
 </ul>

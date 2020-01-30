@@ -1,6 +1,5 @@
-angular
-  .module('UserAccount')
-  .config(/* @ngInject */($stateProvider) => {
+angular.module('UserAccount').config(
+  /* @ngInject */ ($stateProvider) => {
     const name = 'app.account.user.security';
 
     $stateProvider.state(name, {
@@ -9,4 +8,5 @@ angular
       controller: 'UserAccount.controllers.doubleAuth',
       translations: ['../'],
     });
-  });
+  },
+);

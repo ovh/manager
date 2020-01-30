@@ -6,10 +6,6 @@ import './error.scss';
 
 const moduleName = 'ovhManagerDedicatedError';
 
-angular.module(moduleName, [
-  'ui.router',
-  managerErrorPage,
-])
-  .config(routing);
+angular.module(moduleName, ['ui.router', managerErrorPage]).config(routing);
 
 export default moduleName;

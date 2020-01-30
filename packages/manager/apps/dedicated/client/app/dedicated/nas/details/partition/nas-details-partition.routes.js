@@ -3,7 +3,8 @@ angular.module('App').config(($stateProvider) => {
     url: '/partitions',
     views: {
       nasDetails: {
-        templateUrl: 'dedicated/nas/details/partition/nas-details-partition.html',
+        templateUrl:
+          'dedicated/nas/details/partition/nas-details-partition.html',
         controller: 'PartitionCtrl',
         controllerAs: '$ctrl',
       },

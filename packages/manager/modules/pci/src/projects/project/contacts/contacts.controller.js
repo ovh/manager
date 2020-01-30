@@ -1,6 +1,6 @@
 import indexOf from 'lodash/indexOf';
 
-export default /* @ngInject */ function (
+export default /* @ngInject */ function(
   $stateParams,
   $translate,
   $window,
@@ -58,28 +58,33 @@ export default /* @ngInject */ function (
   self.loader = false;
 
   /* ==================================================
-      * Initialization
-      */
+   * Initialization
+   */
 
   function initContact() {
-    return OvhApiCloudProjectServiceInfos.v6().get({
-      serviceName,
-    }).$promise.then((infos) => {
-      self.model.owner = infos.contactAdmin;
-      self.contactFormData.owner = infos.contactAdmin;
-      self.model.billing = infos.contactBilling;
-      self.contactFormData.billing = infos.contactBilling;
-      return OvhApiMe.v6().get().$promise.then((me) => {
-        if (me.nichandle === infos.contactAdmin) {
-          self.model.isAdmin = true;
-        }
-        if (me.country) {
-          // check if the user country is USA or Canada, in this case we display
-          // email instead of NIC handle
-          self.model.isUSorCA = indexOf(['US', 'CA'], me.country.toUpperCase()) >= 0;
-        }
+    return OvhApiCloudProjectServiceInfos.v6()
+      .get({
+        serviceName,
+      })
+      .$promise.then((infos) => {
+        self.model.owner = infos.contactAdmin;
+        self.contactFormData.owner = infos.contactAdmin;
+        self.model.billing = infos.contactBilling;
+        self.contactFormData.billing = infos.contactBilling;
+        return OvhApiMe.v6()
+          .get()
+          .$promise.then((me) => {
+            if (me.nichandle === infos.contactAdmin) {
+              self.model.isAdmin = true;
+            }
+            if (me.country) {
+              // check if the user country is USA or Canada, in this case we display
+              // email instead of NIC handle
+              self.model.isUSorCA =
+                indexOf(['US', 'CA'], me.country.toUpperCase()) >= 0;
+            }
+          });
       });
-    });
   }
 
   self.init = function init() {
@@ -88,8 +93,8 @@ export default /* @ngInject */ function (
   };
 
   /* ==================================================
-      * Owner contact form
-      */
+   * Owner contact form
+   */
 
   self.canChangeContacts = function canChangeContacts() {
     return PCI_REDIRECT_URLS[coreConfig.getRegion()].contacts;
@@ -106,17 +111,28 @@ export default /* @ngInject */ function (
   self.getRights = function getRights(clearCache) {
     self.loader = true;
     if (clearCache) {
-      OvhApiCloud.Project().Acl().v6().resetQueryCache();
+      OvhApiCloud.Project()
+        .Acl()
+        .v6()
+        .resetQueryCache();
     }
-    return OvhApiCloud.Project().Acl().v6().query({
-      serviceName,
-    }).$promise
-      .then((rightIds) => {
-        self.data.rights = rightIds.map(id => ({ accountId: id }));
+    return OvhApiCloud.Project()
+      .Acl()
+      .v6()
+      .query({
+        serviceName,
+      })
+      .$promise.then((rightIds) => {
+        self.data.rights = rightIds.map((id) => ({ accountId: id }));
       })
       .catch((err) => {
         self.data.rights = [];
-        CucCloudMessage.error([$translate.instant('cpb_rights_error'), (err.data && err.data.message) || ''].join(' '));
+        CucCloudMessage.error(
+          [
+            $translate.instant('cpb_rights_error'),
+            (err.data && err.data.message) || '',
+          ].join(' '),
+        );
       })
       .finally(() => {
         self.loader = false;
@@ -127,20 +143,36 @@ export default /* @ngInject */ function (
     self.loader = true;
     self.removeRight.accountId = account.accountId;
 
-    return CucControllerHelper.modal.showConfirmationModal({
-      titleText: $translate.instant('cpb_rights_delete_title'),
-      text: $translate.instant('cpb_rights_delete_question', { nickname: account.accountId }),
-    })
-      .then(() => OvhApiCloud.Project().Acl().v6().remove({
-        serviceName,
-        accountId: account.accountId,
-      }).$promise)
+    return CucControllerHelper.modal
+      .showConfirmationModal({
+        titleText: $translate.instant('cpb_rights_delete_title'),
+        text: $translate.instant('cpb_rights_delete_question', {
+          nickname: account.accountId,
+        }),
+      })
+      .then(
+        () =>
+          OvhApiCloud.Project()
+            .Acl()
+            .v6()
+            .remove({
+              serviceName,
+              accountId: account.accountId,
+            }).$promise,
+      )
       .then(() => {
         self.getRights(true);
-        CucCloudMessage.success($translate.instant('cpb_rights_table_rights_remove_success'));
+        CucCloudMessage.success(
+          $translate.instant('cpb_rights_table_rights_remove_success'),
+        );
       })
       .catch((err) => {
-        CucCloudMessage.error([$translate.instant('cpb_rights_remove_error'), (err.data && err.data.message) || ''].join(' '));
+        CucCloudMessage.error(
+          [
+            $translate.instant('cpb_rights_remove_error'),
+            (err.data && err.data.message) || '',
+          ].join(' '),
+        );
       })
       .finally(() => {
         self.loader = false;
@@ -149,10 +181,13 @@ export default /* @ngInject */ function (
   };
 
   this.transformItem = function transformItem(account) {
-    return OvhApiCloud.Project().Acl().v6().get({
-      serviceName,
-      accountId: account.accountId,
-    }).$promise;
+    return OvhApiCloud.Project()
+      .Acl()
+      .v6()
+      .get({
+        serviceName,
+        accountId: account.accountId,
+      }).$promise;
   };
 
   // Controller initialization

@@ -14,42 +14,35 @@ export default /* @ngInject */ ($translate) => {
   };
 
   /**
-     * Object constructor
-     * @param {Object} data Data from AAPI
-     */
+   * Object constructor
+   * @param {Object} data Data from AAPI
+   */
   const FreefaxNotificationObject = function FreefaxNotificationObject(data) {
-    assignIn(
-      this,
-      template,
-      pick(
-        data,
-        Object.keys(template),
-      ),
-    );
+    assignIn(this, template, pick(data, Object.keys(template)));
     this.inApi = data ? data.inApi : false;
   };
 
   /**
-     * Cancel edit mode
-     */
+   * Cancel edit mode
+   */
   FreefaxNotificationObject.prototype.cancel = function cancel() {
     this.toggleEdit(false);
     return this.inApi;
   };
 
   /**
-     * Enter Edit Mode
-     */
+   * Enter Edit Mode
+   */
   FreefaxNotificationObject.prototype.edit = function edit() {
     this.tempValue = pick(this, Object.keys(template));
     this.toggleEdit(true);
   };
 
   /**
-     * Toggle edit mode
-     * @param {Boolean} state [Optional] if set, for the edit mode state
-     * @return {Boolean} new edit mode state
-     */
+   * Toggle edit mode
+   * @param {Boolean} state [Optional] if set, for the edit mode state
+   * @return {Boolean} new edit mode state
+   */
   FreefaxNotificationObject.prototype.toggleEdit = function toggleEdit(state) {
     if (isBoolean(state)) {
       this.editMode = state;
@@ -60,16 +53,16 @@ export default /* @ngInject */ ($translate) => {
   };
 
   /**
-     * Accept the editing values
-     */
+   * Accept the editing values
+   */
   FreefaxNotificationObject.prototype.accept = function accept() {
     assignIn(this, this.tempValue);
     this.toggleEdit(false);
   };
 
   /**
-     * Identifier
-     */
+   * Identifier
+   */
   Object.defineProperty(FreefaxNotificationObject.prototype, 'id', {
     get() {
       if (isEmpty(this.email)) {
@@ -81,8 +74,8 @@ export default /* @ngInject */ ($translate) => {
   });
 
   /**
-     * Identifier
-     */
+   * Identifier
+   */
   Object.defineProperty(FreefaxNotificationObject.prototype, 'translatedType', {
     get() {
       if (this.type) {

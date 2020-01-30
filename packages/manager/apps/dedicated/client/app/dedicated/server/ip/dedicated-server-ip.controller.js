@@ -10,8 +10,15 @@ angular.module('App').controller('ServerIpCtrl', [
   'FIREWALL_STATUSES',
   'MITIGATION_STATUSES',
 
-  function ServerIpCtrl($rootScope, $scope, $timeout, $translate, Server, firewallStatuses,
-    mitigationStatuses) {
+  function ServerIpCtrl(
+    $rootScope,
+    $scope,
+    $timeout,
+    $translate,
+    Server,
+    firewallStatuses,
+    mitigationStatuses,
+  ) {
     $scope.firewallStatuses = firewallStatuses;
     $scope.mitigationStatuses = mitigationStatuses;
     $scope.status = {
@@ -53,21 +60,27 @@ angular.module('App').controller('ServerIpCtrl', [
     });
 
     $scope.canDisplayEnableFirewall = function canDisplayEnableFirewall(ip) {
-      return ip.mitigationStatus !== mitigationStatuses.FORCED
-        && ip.firewallStatus === firewallStatuses.DEACTIVATED;
+      return (
+        ip.mitigationStatus !== mitigationStatuses.FORCED &&
+        ip.firewallStatus === firewallStatuses.DEACTIVATED
+      );
     };
 
     $scope.canDisplayDisableFirewall = function canDisplayDisableFirewall(ip) {
-      return ip.mitigationStatus === mitigationStatuses.AUTO
-        && ip.firewallStatus === firewallStatuses.ACTIVATED;
+      return (
+        ip.mitigationStatus === mitigationStatuses.AUTO &&
+        ip.firewallStatus === firewallStatuses.ACTIVATED
+      );
     };
 
     $scope.canDisplayDisableFirewallMitigationActivated = function displayDisableFirewallMitigation(
       ip,
     ) {
-      return !$scope.canDisplayEnableFirewall(ip)
-        && !$scope.canDisplayDisableFirewall(ip)
-        && ip.firewallStatus !== firewallStatuses.NOT_CONFIGURED;
+      return (
+        !$scope.canDisplayEnableFirewall(ip) &&
+        !$scope.canDisplayDisableFirewall(ip) &&
+        ip.firewallStatus !== firewallStatuses.NOT_CONFIGURED
+      );
     };
 
     $scope.loadBlocks = function loadBlocks() {
@@ -122,7 +135,10 @@ angular.module('App').controller('ServerIpCtrl', [
     $scope.displayFirewall = function displayFirewall(ip, $event) {
       $scope.selectedIp = ip;
       $scope.displayed = false;
-      $rootScope.$broadcast('ips.firewall.display', { block: $scope.selectedBlock, ip: $scope.selectedIp });
+      $rootScope.$broadcast('ips.firewall.display', {
+        block: $scope.selectedBlock,
+        ip: $scope.selectedIp,
+      });
 
       // Prevent bubbling to selectIp which sets $scope.selectedIp to null every other call
       if ($event.stopPropagation) {
@@ -166,7 +182,13 @@ angular.module('App').controller('ServerIpFirewallCtrl', [
   'Server',
   'FIREWALL_STATUSES',
 
-  function ServerIpFirewallCtrl($rootScope, $scope, $translate, Server, firewallStatuses) {
+  function ServerIpFirewallCtrl(
+    $rootScope,
+    $scope,
+    $translate,
+    Server,
+    firewallStatuses,
+  ) {
     $scope.selectedBlock = null;
     $scope.selectedIp = null;
     $scope.loading = true;
@@ -195,20 +217,33 @@ angular.module('App').controller('ServerIpFirewallCtrl', [
     $scope.loadRules = function loadRules(rulesCount, offset) {
       if ($scope.selectedIp && $scope.selectedIp.ip) {
         $scope.rulesLoading = true;
-        Server
-          .getFirewallDetails($scope.selectedBlock.value.ip, $scope.selectedIp.ip)
-          .then((firewall) => {
-            $scope.firewall = firewall;
-          });
+        Server.getFirewallDetails(
+          $scope.selectedBlock.value.ip,
+          $scope.selectedIp.ip,
+        ).then((firewall) => {
+          $scope.firewall = firewall;
+        });
 
-        Server
-          .getFirewallRules($scope.selectedBlock.value.ip, $scope.selectedIp.ip, rulesCount, offset)
+        Server.getFirewallRules(
+          $scope.selectedBlock.value.ip,
+          $scope.selectedIp.ip,
+          rulesCount,
+          offset,
+        )
           .then((rules) => {
             $scope.rules = rules;
-            for (let i = 0, n = $scope.rules.list.results.length; i < n; i += 1) {
+            for (
+              let i = 0, n = $scope.rules.list.results.length;
+              i < n;
+              i += 1
+            ) {
               if ($scope.rules.list.results[i].options) {
                 $scope.rules.list.results[i].options.sort();
-                $scope.rules.list.results[i].optionsDisplay = $scope.rules.list.results[i].options.join('<br>');
+                $scope.rules.list.results[
+                  i
+                ].optionsDisplay = $scope.rules.list.results[i].options.join(
+                  '<br>',
+                );
               }
             }
             $scope.loading = false;
@@ -230,155 +265,216 @@ angular.module('App').controller('ServerIpFirewallCtrl', [
   },
 ]);
 
-angular.module('App').controller('ServerIpAntispamCtrl', ($rootScope, $scope, $location, Server, $translate) => {
-  $scope.displayedAntispam = false;
-  $scope.ipspam = null;
-  $scope.ipspamStats = null;
-  $scope.block = null;
-  $scope.ipSpamparam = null;
-  $scope.endDate = null;
-  $scope.antispamLoadingError = null;
-  $scope.loadingAntiSpam = false;
-  $scope.status = {
-    BLOCKED_FOR_SPAM: 'BLOCKED_FOR_SPAM',
-    UNBLOCKED: 'UNBLOCKED',
-    UNBLOCKING: 'UNBLOCKING',
-  };
-
-  function init(params) {
-    $scope.displayedAntispam = true;
-    $scope.block = params.ip;
-    $scope.ipSpamparam = params.ipSpamming;
-  }
-
-  $scope.loadAntispam = function loadAntispam(count, offset) {
-    if ($scope.displayedAntispam) {
+angular
+  .module('App')
+  .controller(
+    'ServerIpAntispamCtrl',
+    ($rootScope, $scope, $location, Server, $translate) => {
+      $scope.displayedAntispam = false;
+      $scope.ipspam = null;
+      $scope.ipspamStats = null;
+      $scope.block = null;
+      $scope.ipSpamparam = null;
+      $scope.endDate = null;
       $scope.antispamLoadingError = null;
-      $scope.loadingAntiSpam = true;
-      Server.getIpSpam($scope.block, $scope.ipSpamparam, count, offset).then(
-        (ipSpamming) => {
-          $scope.ipspam = ipSpamming;
-          if ($scope.ipspam.state === $scope.status.BLOCKED_FOR_SPAM) {
-            $scope.endDate = new Date($scope.ipspam.date);
-            $scope.endDate = new Date(+$scope.endDate + ($scope.ipspam.time * 1000));
-          }
-          $scope.displayedAntispam = true;
-          $scope.loadingAntiSpam = false;
-        },
-        (reason) => {
-          $scope.displayedAntispam = true;
-          $scope.loadingAntiSpam = false;
-          $scope.antispamLoadingError = reason.message;
-        },
-      );
-    }
-  };
+      $scope.loadingAntiSpam = false;
+      $scope.status = {
+        BLOCKED_FOR_SPAM: 'BLOCKED_FOR_SPAM',
+        UNBLOCKED: 'UNBLOCKED',
+        UNBLOCKING: 'UNBLOCKING',
+      };
 
-  // come from button
-  $rootScope.$on('ips.antispam.display', (event, params) => {
-    init(params);
-    $scope.$broadcast('paginationServerSide.loadPage', 1, 'antispamPeriods');
-  });
-
-  // come from button
-  $rootScope.$on('ips.antispam.loadbyurl', (event, params) => {
-    $location.search('action', null);
-    $location.search('ip', null);
-    $location.search('ipSpamming', null);
-    init(params);
-    $scope.$broadcast('paginationServerSide.loadPage', 1, 'antispamPeriods');
-  });
-
-  $scope.hideAntispam = function hideAntispam() {
-    $scope.displayedAntispam = false;
-    $rootScope.$broadcast('ips.display');
-  };
-
-  $scope.unblockIp = function unblockIp() {
-    if ($scope.canBeUnblocking()) {
-      Server.unblockIp($scope.block, $scope.ipspam.ipSpamming).then(
-        () => {
-          init({ ip: $scope.block, ipSpamming: $scope.ipSpamparam });
-          $scope.$broadcast('paginationServerSide.reload', 'antispamPeriods');
-        },
-        (data) => {
-          set(data, 'type', 'ERROR');
-          $scope.setMessage($translate.instant('server_configuration_antispam_error', { t0: $scope.ipspam.ip }), data.data);
-        },
-      );
-    }
-  };
-
-  $scope.canBeUnblocking = function canBeUnblocking() {
-    if ($scope.endDate) {
-      return $scope.endDate <= new Date(Date.now());
-    }
-    return false;
-  };
-
-  $scope.isIpSpamming = function isIpSpamming() {
-    return $scope.ipspam && $scope.ipspam.state === $scope.status.BLOCKED_FOR_SPAM;
-  };
-});
-
-angular.module('App').controller('ServerIpAntispamDetailsCtrl', ($scope, $translate, Server, $timeout) => {
-  $scope.tableLoading = false;
-  $scope.details = null;
-  $scope.pageSizes = [5, 10, 15];
-  $scope.titles = [
-    $translate.instant('server_tab_IP_antispam_details_information_table_header_ip'),
-    $translate.instant('server_tab_IP_antispam_details_information_table_header_messageid'),
-    $translate.instant('server_tab_IP_antispam_details_information_table_header_date'),
-    $translate.instant('server_tab_IP_antispam_details_information_table_header_spamscore'),
-  ];
-  $scope.elements = ['{{element.destinationIp}}', '{{element.messageId}}', "{{element.date|date:'short'}}", '{{element.spamscore}}'];
-
-  $scope.model = {
-    block: $scope.currentActionData.block,
-    ip: $scope.currentActionData.ip,
-    id: $scope.currentActionData.id,
-    search: null,
-  };
-
-  $scope.$watch(
-    'model.search',
-    (newValue) => {
-      if ($scope.model.search !== null) {
-        if ($scope.model.search === '') {
-          $scope.$broadcast('paginationServerSide.loadPage', 1, 'antispamDetails');
-        } else {
-          $scope.searchLoading = true;
-          $timeout(() => {
-            if ($scope.model.search === newValue) {
-              $scope.$broadcast('paginationServerSide.loadPage', 1, 'antispamDetails');
-            }
-          }, 500);
-        }
+      function init(params) {
+        $scope.displayedAntispam = true;
+        $scope.block = params.ip;
+        $scope.ipSpamparam = params.ipSpamming;
       }
+
+      $scope.loadAntispam = function loadAntispam(count, offset) {
+        if ($scope.displayedAntispam) {
+          $scope.antispamLoadingError = null;
+          $scope.loadingAntiSpam = true;
+          Server.getIpSpam(
+            $scope.block,
+            $scope.ipSpamparam,
+            count,
+            offset,
+          ).then(
+            (ipSpamming) => {
+              $scope.ipspam = ipSpamming;
+              if ($scope.ipspam.state === $scope.status.BLOCKED_FOR_SPAM) {
+                $scope.endDate = new Date($scope.ipspam.date);
+                $scope.endDate = new Date(
+                  +$scope.endDate + $scope.ipspam.time * 1000,
+                );
+              }
+              $scope.displayedAntispam = true;
+              $scope.loadingAntiSpam = false;
+            },
+            (reason) => {
+              $scope.displayedAntispam = true;
+              $scope.loadingAntiSpam = false;
+              $scope.antispamLoadingError = reason.message;
+            },
+          );
+        }
+      };
+
+      // come from button
+      $rootScope.$on('ips.antispam.display', (event, params) => {
+        init(params);
+        $scope.$broadcast(
+          'paginationServerSide.loadPage',
+          1,
+          'antispamPeriods',
+        );
+      });
+
+      // come from button
+      $rootScope.$on('ips.antispam.loadbyurl', (event, params) => {
+        $location.search('action', null);
+        $location.search('ip', null);
+        $location.search('ipSpamming', null);
+        init(params);
+        $scope.$broadcast(
+          'paginationServerSide.loadPage',
+          1,
+          'antispamPeriods',
+        );
+      });
+
+      $scope.hideAntispam = function hideAntispam() {
+        $scope.displayedAntispam = false;
+        $rootScope.$broadcast('ips.display');
+      };
+
+      $scope.unblockIp = function unblockIp() {
+        if ($scope.canBeUnblocking()) {
+          Server.unblockIp($scope.block, $scope.ipspam.ipSpamming).then(
+            () => {
+              init({ ip: $scope.block, ipSpamming: $scope.ipSpamparam });
+              $scope.$broadcast(
+                'paginationServerSide.reload',
+                'antispamPeriods',
+              );
+            },
+            (data) => {
+              set(data, 'type', 'ERROR');
+              $scope.setMessage(
+                $translate.instant('server_configuration_antispam_error', {
+                  t0: $scope.ipspam.ip,
+                }),
+                data.data,
+              );
+            },
+          );
+        }
+      };
+
+      $scope.canBeUnblocking = function canBeUnblocking() {
+        if ($scope.endDate) {
+          return $scope.endDate <= new Date(Date.now());
+        }
+        return false;
+      };
+
+      $scope.isIpSpamming = function isIpSpamming() {
+        return (
+          $scope.ipspam &&
+          $scope.ipspam.state === $scope.status.BLOCKED_FOR_SPAM
+        );
+      };
     },
-    true,
   );
 
-  $scope.loadSpams = function loadSpams(count, offset) {
-    $scope.tableLoading = true;
-    Server
-      .getIpSpamStats(
-        $scope.model.block,
-        $scope.model.ip,
-        $scope.model.id,
-        count,
-        offset,
-        $scope.model.search,
-      )
-      .then((stats) => {
-        $scope.details = stats;
-        $scope.tableLoading = false;
-      })
-      .catch((reason) => {
-        $scope.tableLoading = false;
-        $scope.resetAction();
-        set(reason, 'type', 'INFO');
-        $scope.setMessage($translate.instant('server_configuration_mitigation_auto_success'), reason);
-      });
-  };
-});
+angular
+  .module('App')
+  .controller(
+    'ServerIpAntispamDetailsCtrl',
+    ($scope, $translate, Server, $timeout) => {
+      $scope.tableLoading = false;
+      $scope.details = null;
+      $scope.pageSizes = [5, 10, 15];
+      $scope.titles = [
+        $translate.instant(
+          'server_tab_IP_antispam_details_information_table_header_ip',
+        ),
+        $translate.instant(
+          'server_tab_IP_antispam_details_information_table_header_messageid',
+        ),
+        $translate.instant(
+          'server_tab_IP_antispam_details_information_table_header_date',
+        ),
+        $translate.instant(
+          'server_tab_IP_antispam_details_information_table_header_spamscore',
+        ),
+      ];
+      $scope.elements = [
+        '{{element.destinationIp}}',
+        '{{element.messageId}}',
+        "{{element.date|date:'short'}}",
+        '{{element.spamscore}}',
+      ];
+
+      $scope.model = {
+        block: $scope.currentActionData.block,
+        ip: $scope.currentActionData.ip,
+        id: $scope.currentActionData.id,
+        search: null,
+      };
+
+      $scope.$watch(
+        'model.search',
+        (newValue) => {
+          if ($scope.model.search !== null) {
+            if ($scope.model.search === '') {
+              $scope.$broadcast(
+                'paginationServerSide.loadPage',
+                1,
+                'antispamDetails',
+              );
+            } else {
+              $scope.searchLoading = true;
+              $timeout(() => {
+                if ($scope.model.search === newValue) {
+                  $scope.$broadcast(
+                    'paginationServerSide.loadPage',
+                    1,
+                    'antispamDetails',
+                  );
+                }
+              }, 500);
+            }
+          }
+        },
+        true,
+      );
+
+      $scope.loadSpams = function loadSpams(count, offset) {
+        $scope.tableLoading = true;
+        Server.getIpSpamStats(
+          $scope.model.block,
+          $scope.model.ip,
+          $scope.model.id,
+          count,
+          offset,
+          $scope.model.search,
+        )
+          .then((stats) => {
+            $scope.details = stats;
+            $scope.tableLoading = false;
+          })
+          .catch((reason) => {
+            $scope.tableLoading = false;
+            $scope.resetAction();
+            set(reason, 'type', 'INFO');
+            $scope.setMessage(
+              $translate.instant(
+                'server_configuration_mitigation_auto_success',
+              ),
+              reason,
+            );
+          });
+      };
+    },
+  );

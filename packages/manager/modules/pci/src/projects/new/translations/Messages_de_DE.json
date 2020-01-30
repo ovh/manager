@@ -1,13 +1,5 @@
 {
- "pci_projects_new_title": "Starten Sie Ihr Public Cloud Abenteuer!",
- "pci_projects_new_continue": "Weiter",
- "pci_projects_new_cancel": "Abbrechen",
- "pci_projects_new_create": "Mein Projekt erstellen",
- "pci_projects_new_add": "Hinzufügen",
- "pci_projects_new_credit_and_create": "Guthaben aufladen und mein Projekt erstellen",
- "pci_projects_new_add_payment_error_message": "Beim Hinterlegen Ihres Zahlungsmittels ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut oder wählen Sie ein anderes Zahlungsmittel.",
- "pci_projects_new_add_credit_payment_error_message": "Bei der Überprüfung Ihres Zahlungsmittels ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.",
- "pci_projects_new_create_error_message": "Bei der Erstellung Ihres Public Cloud Projekts ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.",
- "pci_projects_new_create_credit_asterisk": "* Jedes Public Cloud Projekt verfügt über ein eigenes Guthabenkonto. Alle Rechnungen werden automatisch von diesem Konto abgebucht. Wenn das Guthaben nicht ausreicht, begleichen Sie den ausstehenden Betrag so schnell wie möglich mit einem eingetragenen Zahlungsmittel.",
- "pci_projects_new_create_voucher_not_submitted": "Bevor Sie fortfahren, überprüfen Sie bitte Ihren Promo-Code"
+  "pci_project_new_error_contact_support": "Kundendienst kontaktieren",
+  "pci_project_new_error_ask_increase_projects_quota": "Sie können kein weiteres Public Cloud Projekt erstellen, da Sie die maximale Zahl an Projekten bereits erreicht haben. Um das Quota zu erhöhen, wenden Sie sich bitte an den Support.",
+  "pci_project_new_error_verify_paypal": "Sie können mit Ihrem PayPal-Konto kein Public Cloud Projekt erstellen, da das Konto noch nicht verifiziert wurde. Bitte ergreifen Sie die notwendigen Maßnahmen bei PayPal, um Ihr Konto zu verifizieren, und versuchen Sie es erneut. Wahlweise können Sie auch ein anderes <a href=\"{{ href }}\">Standardzahlungsmittel</a> verwenden."
 }

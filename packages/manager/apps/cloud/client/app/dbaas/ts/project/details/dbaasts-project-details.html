@@ -1,33 +1,36 @@
 <div class="dbaasts-project-details">
-
     <div class="dbaasts-project-details-content">
         <div class="dbaasts-details-tabs-ctnr">
             <responsive-tabs>
                 <responsive-tab
                     class="dbaasts-details-tabs-item"
                     state="{{::DBaasTsProjectDetailsCtrl.getRouteContext() + '.dbaasts-project-details-key'}}"
-                    dropdown-title="{{'dbaasts_tab_tokens'|translate}}">
+                    dropdown-title="{{'dbaasts_tab_tokens'|translate}}"
+                >
                     <i class="ovh-font ovh-font-key"></i>
                     <span translate="dbaasts_tab_tokens"></span>
                 </responsive-tab>
                 <responsive-tab
                     class="dbaasts-details-tabs-item"
                     state="{{::DBaasTsProjectDetailsCtrl.getRouteContext() +'.dbaasts-project-details-quota'}}"
-                    dropdown-title="{{'dbaasts_tab_quota'|translate}}">
+                    dropdown-title="{{'dbaasts_tab_quota'|translate}}"
+                >
                     <i class="ovh-font ovh-font-pieChart"></i>
                     <span translate="dbaasts_tab_quota"></span>
                 </responsive-tab>
                 <responsive-tab
                     class="dbaasts-details-tabs-item"
                     state="{{::DBaasTsProjectDetailsCtrl.getRouteContext() +'.dbaasts-project-details-billing'}}"
-                    dropdown-title="{{'dbaasts_tab_billing'|translate}}">
+                    dropdown-title="{{'dbaasts_tab_billing'|translate}}"
+                >
                     <i class="ovh-font ovh-font-receipt"></i>
                     <span translate="dbaasts_tab_billing"></span>
                 </responsive-tab>
                 <responsive-tab
                     class="dbaasts-details-tabs-item pull-right"
                     state="{{::DBaasTsProjectDetailsCtrl.getRouteContext() +'.dbaasts-project-details-settings'}}"
-                    dropdown-title="{{'dbaasts_tab_settings'|translate}}">
+                    dropdown-title="{{'dbaasts_tab_settings'|translate}}"
+                >
                     <i class="ovh-font ovh-font-config"></i>
                     <span translate="dbaasts_tab_settings"></span>
                 </responsive-tab>
@@ -38,10 +41,14 @@
             </responsive-tabs>
         </div>
 
-        <div class="container-fluid top-space-m16" data-ui-view="dbaastsProjectDetails"></div>
-
+        <div
+            class="container-fluid top-space-m16"
+            data-ui-view="dbaastsProjectDetails"
+        ></div>
     </div>
-
 </div>
 
-<div class="cuc-highlighted-element-overlay animated-300 fadeIn" data-cuc-highlighted-element="details"></div>
+<div
+    class="cuc-highlighted-element-overlay animated-300 fadeIn"
+    data-cuc-highlighted-element="details"
+></div>

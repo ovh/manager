@@ -1,6 +1,7 @@
-export default /* @ngInject */($stateProvider) => {
-  $stateProvider
-    .state('pci.projects.project.instances.instance.active-monthly-billing', {
+export default /* @ngInject */ ($stateProvider) => {
+  $stateProvider.state(
+    'pci.projects.project.instances.instance.active-monthly-billing',
+    {
       url: '/billing/monthly/activate',
       views: {
         modal: {
@@ -13,8 +14,9 @@ export default /* @ngInject */($stateProvider) => {
         format: 'json',
       },
       resolve: {
-        goBack: /* @ngInject */ goToInstance => goToInstance,
+        goBack: /* @ngInject */ (goToInstance) => goToInstance,
         breadcrumb: () => null,
       },
-    });
+    },
+  );
 };

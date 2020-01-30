@@ -7,17 +7,24 @@ export default class IpLoadBalancerFailoverIpService {
   }
 
   getFailoverIps(serviceName) {
-    return this.IpLoadBalancing.v6().failoverIp({ serviceName }).$promise
-      .then(response => response)
-      .catch(this.CucServiceHelper.errorHandler('iplb_failover_ip_detail_loading_error'));
+    return this.IpLoadBalancing.v6()
+      .failoverIp({ serviceName })
+      .$promise.then((response) => response)
+      .catch(
+        this.CucServiceHelper.errorHandler(
+          'iplb_failover_ip_detail_loading_error',
+        ),
+      );
   }
 
   getFailoverIpsSelectData(serviceName) {
     return this.getFailoverIps(serviceName)
-      .then(ipfos => ipfos.map(ipfo => ({
-        id: ipfo,
-        name: ipfo,
-      })))
+      .then((ipfos) =>
+        ipfos.map((ipfo) => ({
+          id: ipfo,
+          name: ipfo,
+        })),
+      )
       .then((ipfos) => {
         ipfos.unshift({
           id: 0,

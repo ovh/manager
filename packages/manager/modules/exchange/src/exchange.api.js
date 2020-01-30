@@ -5,7 +5,8 @@ const VERBS = ['get', 'put', 'post', 'delete'];
 export default class APIExchange {
   /* @ngInject */
   constructor(WucApi, $q, constants, $cacheFactory) {
-    const cache = $cacheFactory.get('exchangeService') || $cacheFactory('exchangeService');
+    const cache =
+      $cacheFactory.get('exchangeService') || $cacheFactory('exchangeService');
 
     forEach(VERBS, (verb) => {
       this[verb] = (path, optionsParam) => {
@@ -13,10 +14,10 @@ export default class APIExchange {
         options.cache = cache;
         options.cache.removeAll();
 
-        return WucApi[verb](`${constants.swsProxyRootPath}email/exchange${path}`, options).then(
-          data => data,
-          reason => $q.reject(reason),
-        );
+        return WucApi[verb](
+          `${constants.swsProxyRootPath}email/exchange${path}`,
+          options,
+        ).then((data) => data, (reason) => $q.reject(reason));
       };
     });
   }

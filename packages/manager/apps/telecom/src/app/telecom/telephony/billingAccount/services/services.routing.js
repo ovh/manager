@@ -12,30 +12,34 @@ export default /* @ngInject */ ($stateProvider) => {
     params: ListLayoutHelper.stateParams,
     resolve: {
       ...ListLayoutHelper.stateResolves,
-      apiPath: /* @ngInject */ billingAccountId => `/telephony/${billingAccountId}/service`,
-      schema: /* @ngInject */ OvhApiTelephony => OvhApiTelephony
-        .v6()
-        .schema()
-        .$promise,
-      telephonyFeatureTypes: /* @ngInject */ schema => get(schema.models, 'telephony.TypeEnum').enum,
-      telephonyServiceTypes: /* @ngInject */ schema => get(schema.models, 'telephony.TypeServiceEnum').enum,
+      apiPath: /* @ngInject */ (billingAccountId) =>
+        `/telephony/${billingAccountId}/service`,
+      schema: /* @ngInject */ (OvhApiTelephony) =>
+        OvhApiTelephony.v6().schema().$promise,
+      telephonyFeatureTypes: /* @ngInject */ (schema) =>
+        get(schema.models, 'telephony.TypeEnum').enum,
+      telephonyServiceTypes: /* @ngInject */ (schema) =>
+        get(schema.models, 'telephony.TypeServiceEnum').enum,
       getServiceLink: /* @ngInject */ (
         billingAccountId,
         telecomBillingAccount,
-      ) => service => telecomBillingAccount
-        .getServiceLink(billingAccountId, service),
+      ) => (service) =>
+        telecomBillingAccount.getServiceLink(billingAccountId, service),
 
       viewService: /* @ngInject */ (
         $state,
         billingAccountId,
         telecomBillingAccount,
       ) => (service) => {
-        const { state, stateParams } = telecomBillingAccount
-          .constructor
-          .getServiceState(billingAccountId, service);
+        const {
+          state,
+          stateParams,
+        } = telecomBillingAccount.constructor.getServiceState(
+          billingAccountId,
+          service,
+        );
         return $state.go(state, stateParams);
       },
-
     },
   });
 };

@@ -1,6 +1,13 @@
 export default class MicrosoftOfficePasswordEditCtrl {
   /* @ngInject */
-  constructor(Alerter, MicrosoftOfficeLicenseService, $q, $scope, $translate, User) {
+  constructor(
+    Alerter,
+    MicrosoftOfficeLicenseService,
+    $q,
+    $scope,
+    $translate,
+    User,
+  ) {
     this.alerter = Alerter;
     this.licenseService = MicrosoftOfficeLicenseService;
     this.$q = $q;
@@ -11,7 +18,11 @@ export default class MicrosoftOfficePasswordEditCtrl {
 
   loadUserInfos() {
     this.loaders.infos = true;
-    this.$q.all([this.userService.getUser(), this.licenseService.getServiceInfos(this.licenseId)])
+    this.$q
+      .all([
+        this.userService.getUser(),
+        this.licenseService.getServiceInfos(this.licenseId),
+      ])
       .then((data) => {
         if (data[0].nichandle === data[1].contactAdmin) {
           this.model.notifyEmail = data[0].email;
@@ -21,14 +32,16 @@ export default class MicrosoftOfficePasswordEditCtrl {
           this.model.notifyEmail = '';
         }
       })
-      .catch(err => this.alerter.error(err))
-      .finally(() => { this.loaders.infos = false; });
+      .catch((err) => this.alerter.error(err))
+      .finally(() => {
+        this.loaders.infos = false;
+      });
   }
 
   $onInit() {
     this.licenseId = this.$scope.currentActionData.licenseId;
 
-    this.pwdPattern = /(?=.*[a-z])(?=.*[A-Z])(?=.*[~!@#\$%\^&\*_\-\+=\|\\\(\)\{\}\[\]:;\'<>,\.\?\d])/; // eslint-disable-line
+    this.pwdPattern = /(?=.*[a-z])(?=.*[A-Z])(?=.*[~!@#$%^&*_\-+=|\\(){}[\]:;'<>,.?\d])/;
     this.user = this.$scope.currentActionData.user;
     this.loaders = {
       edit: false,
@@ -51,9 +64,25 @@ export default class MicrosoftOfficePasswordEditCtrl {
         this.model.notifyEmail = null;
       }
 
-      return this.licenseService.editPassword(this.licenseId, this.user.activationEmail, this.model)
-        .then(() => this.alerter.success(this.$translate.instant('microsoft_office_license_edit_password_success'), this.$scope.alerts.main))
-        .catch(err => this.alerter.alertFromSWS(this.$translate.instant('microsoft_office_license_edit_password_error'), err, this.$scope.alerts.main))
+      return this.licenseService
+        .editPassword(this.licenseId, this.user.activationEmail, this.model)
+        .then(() =>
+          this.alerter.success(
+            this.$translate.instant(
+              'microsoft_office_license_edit_password_success',
+            ),
+            this.$scope.alerts.main,
+          ),
+        )
+        .catch((err) =>
+          this.alerter.alertFromSWS(
+            this.$translate.instant(
+              'microsoft_office_license_edit_password_error',
+            ),
+            err,
+            this.$scope.alerts.main,
+          ),
+        )
         .finally(() => {
           this.loaders.edit = false;
           this.$scope.resetAction();

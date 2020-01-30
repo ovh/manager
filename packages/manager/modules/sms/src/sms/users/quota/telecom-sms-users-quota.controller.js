@@ -2,7 +2,14 @@ import angular from 'angular';
 
 export default class {
   /* @ngInject */
-  constructor($q, $stateParams, $timeout, $uibModalInstance, OvhApiSms, params) {
+  constructor(
+    $q,
+    $stateParams,
+    $timeout,
+    $uibModalInstance,
+    OvhApiSms,
+    params,
+  ) {
     this.$q = $q;
     this.$stateParams = $stateParams;
     this.$timeout = $timeout;
@@ -33,25 +40,33 @@ export default class {
    */
   quota() {
     this.loading.quotaUser = true;
-    return this.$q.all([
-      this.api.sms.users.edit({
-        serviceName: this.$stateParams.serviceName,
-        login: this.model.user.login,
-      }, {
-        quotaInformations: {
-          quotaLeft: this.model.user.quotaInformations.quotaLeft,
-          quotaStatus: this.model.user.quotaInformations.quotaStatus,
-        },
-      }).$promise,
-      this.$timeout(angular.noop, 1000),
-    ]).then(() => {
-      this.loading.quotaUser = false;
-      this.quotaApplied = true;
-      return this.$timeout(() => this.close(), 1000);
-    }).catch(error => this.cancel({
-      type: 'API',
-      msg: error,
-    }));
+    return this.$q
+      .all([
+        this.api.sms.users.edit(
+          {
+            serviceName: this.$stateParams.serviceName,
+            login: this.model.user.login,
+          },
+          {
+            quotaInformations: {
+              quotaLeft: this.model.user.quotaInformations.quotaLeft,
+              quotaStatus: this.model.user.quotaInformations.quotaStatus,
+            },
+          },
+        ).$promise,
+        this.$timeout(angular.noop, 1000),
+      ])
+      .then(() => {
+        this.loading.quotaUser = false;
+        this.quotaApplied = true;
+        return this.$timeout(() => this.close(), 1000);
+      })
+      .catch((error) =>
+        this.cancel({
+          type: 'API',
+          msg: error,
+        }),
+      );
   }
 
   cancel(message) {
@@ -68,9 +83,10 @@ export default class {
    */
   hasChanged() {
     return !(
-      this.model.user.quotaInformations.quotaLeft === this.user.quotaInformations.quotaLeft
-        && this.model.user.quotaInformations.quotaStatus === this.user
-          .quotaInformations.quotaStatus
+      this.model.user.quotaInformations.quotaLeft ===
+        this.user.quotaInformations.quotaLeft &&
+      this.model.user.quotaInformations.quotaStatus ===
+        this.user.quotaInformations.quotaStatus
     );
   }
 }

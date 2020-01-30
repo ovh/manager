@@ -5,7 +5,9 @@
     }
 
     $onInit() {
-      this.content = this.billingRenewHelper.getRenewDateFormated(this.serviceInfos);
+      this.content = this.billingRenewHelper.getRenewDateFormated(
+        this.serviceInfos,
+      );
     }
 
     $onChanges() {
@@ -13,13 +15,11 @@
     }
   }
 
-  angular
-    .module('Billing.directives')
-    .component('billingRenewDate', {
-      bindings: {
-        serviceInfos: '<',
-      },
-      controller,
-      templateUrl: 'billing/components/renewDate/billing-renew-date.html',
-    });
+  angular.module('Billing.directives').component('billingRenewDate', {
+    bindings: {
+      serviceInfos: '<',
+    },
+    controller,
+    templateUrl: 'billing/components/renewDate/billing-renew-date.html',
+  });
 }

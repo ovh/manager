@@ -36,11 +36,17 @@ export default /* @ngInject */ (
   };
 
   $scope.checkMxRelay = function checkMxRelay() {
-    if ($scope.selectedDomain.type === 'AUTHORITATIVE' && $scope.selectedDomain.mxRelay) {
+    if (
+      $scope.selectedDomain.type === 'AUTHORITATIVE' &&
+      $scope.selectedDomain.mxRelay
+    ) {
       $scope.mxRelayBuffer = $scope.selectedDomain.mxRelay;
       $scope.selectedDomain.mxRelay = null;
     }
-    if ($scope.selectedDomain.type === 'NON_AUTHORITATIVE' && $scope.mxRelayBuffer) {
+    if (
+      $scope.selectedDomain.type === 'NON_AUTHORITATIVE' &&
+      $scope.mxRelayBuffer
+    ) {
       $scope.selectedDomain.mxRelay = $scope.mxRelayBuffer;
       $scope.mxRelayBuffer = null;
     }
@@ -51,7 +57,10 @@ export default /* @ngInject */ (
    * @returns {boolean}
    */
   $scope.isMxRelayVisible = function isMxRelayVisible() {
-    return !($scope.exchange.offer === 'PROVIDER' && $scope.exchange.serverDiagnostic.version === 14);
+    return !(
+      $scope.exchange.offer === 'PROVIDER' &&
+      $scope.exchange.serverDiagnostic.version === 14
+    );
   };
 
   /**
@@ -59,7 +68,10 @@ export default /* @ngInject */ (
    * @returns {boolean} True if infinite loop condition detected
    */
   $scope.checkLoopWarning = function checkLengthWarning() {
-    return $scope.getHostname() === $scope.selectedDomain.mxRelay || `${$scope.getHostname()}.` === $scope.selectedDomain.mxRelay;
+    return (
+      $scope.getHostname() === $scope.selectedDomain.mxRelay ||
+      `${$scope.getHostname()}.` === $scope.selectedDomain.mxRelay
+    );
   };
 
   /**
@@ -67,30 +79,46 @@ export default /* @ngInject */ (
    * @returns {boolean} True if more than 255 characters
    */
   $scope.checkLengthWarning = function checkLengthWarning() {
-    return $scope.selectedDomain.mxRelay && $scope.selectedDomain.mxRelay.length > 255;
+    return (
+      $scope.selectedDomain.mxRelay &&
+      $scope.selectedDomain.mxRelay.length > 255
+    );
   };
 
   $scope.isValid = function isValid() {
     if ($scope.selectedDomain.type === 'AUTHORITATIVE') {
       return true;
-    } if ($scope.currentActionData
-          && $scope.currentActionData.type === $scope.selectedDomain.type
-          && $scope.currentActionData.mxRelay === $scope.selectedDomain.mxRelay) {
+    }
+    if (
+      $scope.currentActionData &&
+      $scope.currentActionData.type === $scope.selectedDomain.type &&
+      $scope.currentActionData.mxRelay === $scope.selectedDomain.mxRelay
+    ) {
       return false;
-    } if ($scope.isMxRelayVisible()) {
-      return $scope.selectedDomain.mxRelay
-              && !$scope.checkLengthWarning()
-              && !$scope.checkLoopWarning()
-              && $scope.isValidMxRelay($scope.selectedDomain.mxRelay);
+    }
+    if ($scope.isMxRelayVisible()) {
+      return (
+        $scope.selectedDomain.mxRelay &&
+        !$scope.checkLengthWarning() &&
+        !$scope.checkLoopWarning() &&
+        $scope.isValidMxRelay($scope.selectedDomain.mxRelay)
+      );
     }
     return true;
   };
 
   $scope.isValidMxRelay = function isValidMxRelay() {
     let mxRelayBuffer = $scope.selectedDomain.mxRelay;
-    if (mxRelayBuffer && $scope.selectedDomain.mxRelay[$scope.selectedDomain.mxRelay.length - 1] === '.') {
-      mxRelayBuffer = $scope.selectedDomain.mxRelay
-        .substring(0, $scope.selectedDomain.mxRelay.length - 1);
+    if (
+      mxRelayBuffer &&
+      $scope.selectedDomain.mxRelay[
+        $scope.selectedDomain.mxRelay.length - 1
+      ] === '.'
+    ) {
+      mxRelayBuffer = $scope.selectedDomain.mxRelay.substring(
+        0,
+        $scope.selectedDomain.mxRelay.length - 1,
+      );
     }
     return WucValidator.isValidDomain(mxRelayBuffer);
   };
@@ -100,18 +128,31 @@ export default /* @ngInject */ (
     if ($scope.selectedDomain.type === 'AUTHORITATIVE') {
       $scope.selectedDomain.mxRelay = null;
     } else {
-      $scope.selectedDomain.mxRelay = trimMxRelay($scope.selectedDomain.mxRelay);
+      $scope.selectedDomain.mxRelay = trimMxRelay(
+        $scope.selectedDomain.mxRelay,
+      );
     }
 
-    EmailProDomains
-      .updateDomain($stateParams.organization, $stateParams.productId, $scope.selectedDomain)
+    EmailProDomains.updateDomain(
+      $stateParams.organization,
+      $stateParams.productId,
+      $scope.selectedDomain,
+    )
       .then(() => {
-        $scope.setMessage($translate.instant('emailpro_tab_domain_modify_success'), 'true');
+        $scope.setMessage(
+          $translate.instant('emailpro_tab_domain_modify_success'),
+          'true',
+        );
       })
       .catch((failure) => {
         // Make sure the type in the select widget is reset to its initial value
         $rootScope.$broadcast(EmailPro.events.domainsChanged);
-        $scope.setMessage(`${$translate.instant('emailpro_tab_domain_modify_failure')} : ${failure.message}`, { status: 'error' });
+        $scope.setMessage(
+          `${$translate.instant('emailpro_tab_domain_modify_failure')} : ${
+            failure.message
+          }`,
+          { status: 'error' },
+        );
       });
   };
 

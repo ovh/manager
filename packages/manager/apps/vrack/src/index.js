@@ -12,7 +12,8 @@ import angular from 'angular';
 import ovhManagerVrack from '@ovh-ux/manager-vrack';
 import './index.scss';
 
-angular.module('vrackApp', [ovhManagerVrack])
-  .config(/* @ngInject */ ($qProvider) => {
+angular.module('vrackApp', [ovhManagerVrack]).config(
+  /* @ngInject */ ($qProvider) => {
     $qProvider.errorOnUnhandledRejections(false);
-  });
+  },
+);

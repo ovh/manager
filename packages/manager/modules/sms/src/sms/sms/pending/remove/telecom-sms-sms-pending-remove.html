@@ -1,31 +1,39 @@
-<form name="removePendingSmsForm"
-      id="removePendingSmsForm"
-      data-ng-submit="PendingRemoveCtrl.remove()">
-
+<form
+    name="removePendingSmsForm"
+    id="removePendingSmsForm"
+    data-ng-submit="PendingRemoveCtrl.remove()"
+>
     <div class="modal-header">
         <button
             type="button"
             class="close float-right"
             aria-label="{{ ::'sms_cancel' | translate }}"
-            data-ng-click="PendingRemoveCtrl.cancel()">
+            data-ng-click="PendingRemoveCtrl.cancel()"
+        >
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
 
-    <div class="modal-body"
-         data-ng-if="!PendingRemoveCtrl.loading.removePending && !PendingRemoveCtrl.removed">
-        <h3 class="modal-title"
-            data-translate="sms_sms_pending_remove_title">
-        </h3>
+    <div
+        class="modal-body"
+        data-ng-if="!PendingRemoveCtrl.loading.removePending && !PendingRemoveCtrl.removed"
+    >
+        <h3
+            class="modal-title"
+            data-translate="sms_sms_pending_remove_title"
+        ></h3>
         <p data-translate="sms_sms_pending_remove_confirm"></p>
         <dl class="dl-horizontal">
             <dt data-translate="sms_sms_pending_label_date"></dt>
-            <dd data-ng-bind="PendingRemoveCtrl.pendingSms.creationDatetime | date: 'medium'"></dd>
+            <dd
+                data-ng-bind="PendingRemoveCtrl.pendingSms.creationDatetime | date: 'medium'"
+            ></dd>
 
             <dt data-translate="sms_sms_pending_label_sender"></dt>
-            <dd data-ng-if="PendingRemoveCtrl.pendingSms.sender.length"
-                data-ng-bind="PendingRemoveCtrl.pendingSms.sender">
-            </dd>
+            <dd
+                data-ng-if="PendingRemoveCtrl.pendingSms.sender.length"
+                data-ng-bind="PendingRemoveCtrl.pendingSms.sender"
+            ></dd>
             <dd data-ng-if="!PendingRemoveCtrl.pendingSms.sender.length">-</dd>
 
             <dt data-translate="sms_sms_pending_label_receiver"></dt>
@@ -36,15 +44,18 @@
         </dl>
     </div>
 
-    <div class="modal-body text-center"
-         data-ng-if="PendingRemoveCtrl.loading.removePending">
+    <div
+        class="modal-body text-center"
+        data-ng-if="PendingRemoveCtrl.loading.removePending"
+    >
         <oui-spinner></oui-spinner>
         <h4 data-translate="sms_sms_pending_removing"></h4>
     </div>
 
-    <div class="modal-body"
-         data-ng-if="PendingRemoveCtrl.removed">
-        <tuc-success-drawing-check data-draw-success-check="PendingRemoveCtrl.removed">
+    <div class="modal-body" data-ng-if="PendingRemoveCtrl.removed">
+        <tuc-success-drawing-check
+            data-draw-success-check="PendingRemoveCtrl.removed"
+        >
             <h4 data-translate="sms_sms_pending_removed"></h4>
         </tuc-success-drawing-check>
     </div>
@@ -55,14 +66,13 @@
             class="btn btn-default"
             data-ng-click="PendingRemoveCtrl.cancel()"
             data-translate="sms_cancel"
-            data-ng-disabled="PendingRemoveCtrl.loading.removePending || PendingRemoveCtrl.removed">
-        </button>
+            data-ng-disabled="PendingRemoveCtrl.loading.removePending || PendingRemoveCtrl.removed"
+        ></button>
         <button
             type="submit"
             class="btn btn-primary"
             data-translate="sms_submit"
-            data-ng-disabled="PendingRemoveCtrl.loading.removePending || PendingRemoveCtrl.removed">
-        </button>
+            data-ng-disabled="PendingRemoveCtrl.loading.removePending || PendingRemoveCtrl.removed"
+        ></button>
     </div>
-
 </form>

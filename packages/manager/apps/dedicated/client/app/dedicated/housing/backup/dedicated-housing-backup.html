@@ -1,40 +1,63 @@
 <div data-ng-controller="HousingFtpBackupCtrl">
-    <div class="text-center"
-         data-ng-if="loaders.global">
+    <div class="text-center" data-ng-if="loaders.global">
         <oui-spinner></oui-spinner>
     </div>
     <div data-ng-if="!loaders.global">
         <div data-ovh-alert="housing_tab_ftpbackup_alert"></div>
         <div class="row">
             <div class="col-md-9">
-                <p data-ng-if="!ftpBackup.model"
-                   data-translate="housing_configuration_ftpbackup_none">
-                </p>
+                <p
+                    data-ng-if="!ftpBackup.model"
+                    data-translate="housing_configuration_ftpbackup_none"
+                ></p>
                 <div data-ng-if="ftpBackup.model">
                     <div class="row">
                         <div class="col-md-6">
                             <dl>
-                                <dt data-translate="housing_configuration_ftpbackup_name"></dt>
-                                <dd data-ng-bind="ftpBackup.model.ftpBackupName || '-'"></dd>
-                                <dt data-translate="housing_configuration_ftpbackup_login"></dt>
+                                <dt
+                                    data-translate="housing_configuration_ftpbackup_name"
+                                ></dt>
+                                <dd
+                                    data-ng-bind="ftpBackup.model.ftpBackupName || '-'"
+                                ></dd>
+                                <dt
+                                    data-translate="housing_configuration_ftpbackup_login"
+                                ></dt>
                                 <dd data-ng-bind="::ftpBackup.model.login"></dd>
-                                <dt data-translate="housing_configuration_ftpbackup_usage"></dt>
+                                <dt
+                                    data-translate="housing_configuration_ftpbackup_usage"
+                                ></dt>
                                 <dd>
                                     <div class="progress">
-                                       <div class="progress-bar" role="progressbar" aria-valuenow="{{ ftpBackup.model.usage }}" aria-valuemin="0" aria-valuemax="100"
+                                        <div
+                                            class="progress-bar"
+                                            role="progressbar"
+                                            aria-valuenow="{{ ftpBackup.model.usage }}"
+                                            aria-valuemin="0"
+                                            aria-valuemax="100"
                                             data-ng-class="{
                                                 'progress-bar-success': ftpBackup.model.usage < 51,
                                                 'progress-bar-warning': ftpBackup.model.usage > 50 && ftpBackup.model.usage < 81,
                                                 'progress-bar-danger': ftpBackup.model.usage > 80
                                             }"
-                                            data-ng-style="{ 'width': ftpBackup.model.usage + '%' }">
+                                            data-ng-style="{ 'width': ftpBackup.model.usage + '%' }"
+                                        >
                                             <span>
-                                                <span data-ng-bind="ftpBackup.model.usage || '0'"></span>
-                                                <span data-translate="{{ 'unit_size_'+ ftpBackup.model.quota.unit }}"></span> /
-                                                <span data-ng-bind="ftpBackup.model.quota.value"></span>
-                                                <span data-translate="{{ 'unit_size_'+ ftpBackup.model.quota.unit }}"></span>
+                                                <span
+                                                    data-ng-bind="ftpBackup.model.usage || '0'"
+                                                ></span>
+                                                <span
+                                                    data-translate="{{ 'unit_size_'+ ftpBackup.model.quota.unit }}"
+                                                ></span>
+                                                /
+                                                <span
+                                                    data-ng-bind="ftpBackup.model.quota.value"
+                                                ></span>
+                                                <span
+                                                    data-translate="{{ 'unit_size_'+ ftpBackup.model.quota.unit }}"
+                                                ></span>
                                             </span>
-                                       </div>
+                                        </div>
                                     </div>
                                 </dd>
                             </dl>
@@ -43,197 +66,269 @@
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th scope="col"
-                                    data-translate="housing_configuration_ftpbackup_table_ip">
-                                </th>
-                                <th scope="col"
+                                <th
+                                    scope="col"
+                                    data-translate="housing_configuration_ftpbackup_table_ip"
+                                ></th>
+                                <th
+                                    scope="col"
                                     class="text-center"
-                                    data-translate="housing_configuration_ftpbackup_table_cifs">
-                                </th>
-                                <th scope="col"
+                                    data-translate="housing_configuration_ftpbackup_table_cifs"
+                                ></th>
+                                <th
+                                    scope="col"
                                     class="text-center"
-                                    data-translate="housing_configuration_ftpbackup_table_ftp">
-                                </th>
-                                <th scope="col"
+                                    data-translate="housing_configuration_ftpbackup_table_ftp"
+                                ></th>
+                                <th
+                                    scope="col"
                                     class="text-center"
-                                    data-translate="housing_configuration_ftpbackup_table_nfs">
-                                </th>
-                                <th scope="col"
-                                    data-translate="housing_configuration_ftpbackup_table_status">
-                                </th>
-                                <th scope="col"
-                                    class="text-right"
-                                    colspan="2">
-                                    <button type="button"
-                                            class="btn btn-link"
-                                            title="{{ 'refresh' | translate }}"
-                                            data-ng-click="reloadIpsBackup()">
-                                        <span class="fa fa-refresh" aria-hidden="true"></span>
+                                    data-translate="housing_configuration_ftpbackup_table_nfs"
+                                ></th>
+                                <th
+                                    scope="col"
+                                    data-translate="housing_configuration_ftpbackup_table_status"
+                                ></th>
+                                <th scope="col" class="text-right" colspan="2">
+                                    <button
+                                        type="button"
+                                        class="btn btn-link"
+                                        title="{{ 'refresh' | translate }}"
+                                        data-ng-click="reloadIpsBackup()"
+                                    >
+                                        <span
+                                            class="fa fa-refresh"
+                                            aria-hidden="true"
+                                        ></span>
                                     </button>
                                 </th>
                             </tr>
                         </thead>
                         <tbody data-ng-if="loaders.table">
                             <tr>
-                                <td colspan="7"
-                                    class="text-center">
+                                <td colspan="7" class="text-center">
                                     <oui-spinner data-size="s"></oui-spinner>
                                 </td>
                             </tr>
                         </tbody>
                         <tbody data-ng-if="!loaders.table">
                             <tr data-ng-repeat="ipbackup in backupIpDetail">
-                                <th scope="row"
-                                    data-ng-bind="ipbackup.ipBlock">
-                                </th>
+                                <th
+                                    scope="row"
+                                    data-ng-bind="ipbackup.ipBlock"
+                                ></th>
                                 <td class="text-center">
-                                    <button type="button"
-                                            class="btn btn-link"
-                                            data-ng-if="ipbackup != ipbackupCurrentEditBack"
-                                            data-ng-click="ipbackup.isApplied && setIpBackupCurrentEdit(ipbackup, 'cifs')">
-                                        <span class="fa"
-                                              aria-hidden="true"
-                                              data-ng-class="{
+                                    <button
+                                        type="button"
+                                        class="btn btn-link"
+                                        data-ng-if="ipbackup != ipbackupCurrentEditBack"
+                                        data-ng-click="ipbackup.isApplied && setIpBackupCurrentEdit(ipbackup, 'cifs')"
+                                    >
+                                        <span
+                                            class="fa"
+                                            aria-hidden="true"
+                                            data-ng-class="{
                                                   'fa-check': ipbackup.cifs == true,
                                                   'fa-ban': ipbackup.cifs == false
-                                              }">
+                                              }"
+                                        >
                                         </span>
                                     </button>
-                                    <input type="checkbox"
-                                           data-ng-if="ipbackup == ipbackupCurrentEditBack"
-                                           data-ng-model="ipbackupCurrentEdit.cifs" />
+                                    <input
+                                        type="checkbox"
+                                        data-ng-if="ipbackup == ipbackupCurrentEditBack"
+                                        data-ng-model="ipbackupCurrentEdit.cifs"
+                                    />
                                 </td>
                                 <td class="text-center">
-                                    <button type="button"
-                                            class="btn btn-link"
-                                            data-ng-if="ipbackup != ipbackupCurrentEditBack"
-                                            data-ng-click="ipbackup.isApplied && setIpBackupCurrentEdit(ipbackup, 'ftp')">
-                                        <span class="fa"
-                                              aria-hidden="true"
-                                              data-ng-class="{
+                                    <button
+                                        type="button"
+                                        class="btn btn-link"
+                                        data-ng-if="ipbackup != ipbackupCurrentEditBack"
+                                        data-ng-click="ipbackup.isApplied && setIpBackupCurrentEdit(ipbackup, 'ftp')"
+                                    >
+                                        <span
+                                            class="fa"
+                                            aria-hidden="true"
+                                            data-ng-class="{
                                                   'fa-check': ipbackup.ftp == true,
                                                   'fa-ban': ipbackup.ftp == false
-                                              }">
+                                              }"
+                                        >
                                         </span>
                                     </button>
-                                    <input type="checkbox"
-                                           data-ng-if="ipbackup == ipbackupCurrentEditBack"
-                                           data-ng-model="ipbackupCurrentEdit.ftp" />
+                                    <input
+                                        type="checkbox"
+                                        data-ng-if="ipbackup == ipbackupCurrentEditBack"
+                                        data-ng-model="ipbackupCurrentEdit.ftp"
+                                    />
                                 </td>
                                 <td class="text-center">
-                                    <button type="button"
-                                            class="btn btn-link"
-                                            data-ng-if="ipbackup != ipbackupCurrentEditBack"
-                                            data-ng-click="ipbackup.isApplied && setIpBackupCurrentEdit(ipbackup, 'nfs')">
-                                        <span class="fa"
-                                              aria-hidden="true"
-                                              data-ng-class="{
+                                    <button
+                                        type="button"
+                                        class="btn btn-link"
+                                        data-ng-if="ipbackup != ipbackupCurrentEditBack"
+                                        data-ng-click="ipbackup.isApplied && setIpBackupCurrentEdit(ipbackup, 'nfs')"
+                                    >
+                                        <span
+                                            class="fa"
+                                            aria-hidden="true"
+                                            data-ng-class="{
                                                   'fa-check': ipbackup.nfs == true,
                                                   'fa-ban': ipbackup.nfs == false
-                                              }">
+                                              }"
+                                        >
                                         </span>
                                     </button>
-                                    <input type="checkbox"
-                                           data-ng-if="ipbackup == ipbackupCurrentEditBack"
-                                           data-ng-model="ipbackupCurrentEdit.nfs" />
+                                    <input
+                                        type="checkbox"
+                                        data-ng-if="ipbackup == ipbackupCurrentEditBack"
+                                        data-ng-model="ipbackupCurrentEdit.nfs"
+                                    />
                                 </td>
                                 <td>
-                                    <span class="label label-success"
-                                          data-ng-if="ipbackup.isApplied"
-                                          data-translate="housing_configuration_ftpbackup_table_ip_enable">
+                                    <span
+                                        class="label label-success"
+                                        data-ng-if="ipbackup.isApplied"
+                                        data-translate="housing_configuration_ftpbackup_table_ip_enable"
+                                    >
                                     </span>
-                                    <span class="label label-important"
-                                          data-ng-if="!ipbackup.isApplied"
-                                          data-translate="housing_configuration_ftpbackup_table_ip_disable">
+                                    <span
+                                        class="label label-important"
+                                        data-ng-if="!ipbackup.isApplied"
+                                        data-translate="housing_configuration_ftpbackup_table_ip_disable"
+                                    >
                                     </span>
                                 </td>
                                 <td>
-                                    <button type="button"
-                                            class="btn btn-link"
-                                            data-ng-if="ipbackup != ipbackupCurrentEditBack && !disable.deleteFtp && ipbackup.isApplied"
-                                            data-ng-click="setIpBackupCurrentEdit(ipbackup)"
-                                            data-oui-tooltip="{{ 'housing_configuration_ftpbackup_table_ip_edit' | translate }}">
-                                        <span class="oui-icon oui-icon-pen_line" aria-hidden="true"></span>
+                                    <button
+                                        type="button"
+                                        class="btn btn-link"
+                                        data-ng-if="ipbackup != ipbackupCurrentEditBack && !disable.deleteFtp && ipbackup.isApplied"
+                                        data-ng-click="setIpBackupCurrentEdit(ipbackup)"
+                                        data-oui-tooltip="{{ 'housing_configuration_ftpbackup_table_ip_edit' | translate }}"
+                                    >
+                                        <span
+                                            class="oui-icon oui-icon-pen_line"
+                                            aria-hidden="true"
+                                        ></span>
                                     </button>
-                                    <button type="button"
-                                            class="btn btn-link"
-                                            data-ng-if="ipbackup == ipbackupCurrentEditBack && !loaders.edit && ipbackup.isApplied"
-                                            data-ng-click="cancelIpBackupCurrentEdit()"
-                                            data-oui-tooltip="{{ 'housing_configuration_ftpbackup_table_ip_cancel' | translate }}">
-                                        <span class="oui-icon oui-icon-error" aria-hidden="true"></span>
+                                    <button
+                                        type="button"
+                                        class="btn btn-link"
+                                        data-ng-if="ipbackup == ipbackupCurrentEditBack && !loaders.edit && ipbackup.isApplied"
+                                        data-ng-click="cancelIpBackupCurrentEdit()"
+                                        data-oui-tooltip="{{ 'housing_configuration_ftpbackup_table_ip_cancel' | translate }}"
+                                    >
+                                        <span
+                                            class="oui-icon oui-icon-error"
+                                            aria-hidden="true"
+                                        ></span>
                                     </button>
                                 </td>
                                 <td>
-                                    <button type="button"
-                                            class="btn btn-link"
-                                            data-ng-if="ipbackup != ipbackupCurrentEditBack && !disable.deleteFtp && ipbackup.isApplied"
-                                            data-ng-click="setAction('backup/access/delete/dedicated-housing-backup-access-delete', ipbackup)"
-                                            data-oui-tooltip="{{ 'housing_configuration_ftpbackup_table_ip_delete' | translate }}">
-                                        <span class="oui-icon oui-icon-trash_line" aria-hidden="true"></span>
+                                    <button
+                                        type="button"
+                                        class="btn btn-link"
+                                        data-ng-if="ipbackup != ipbackupCurrentEditBack && !disable.deleteFtp && ipbackup.isApplied"
+                                        data-ng-click="setAction('backup/access/delete/dedicated-housing-backup-access-delete', ipbackup)"
+                                        data-oui-tooltip="{{ 'housing_configuration_ftpbackup_table_ip_delete' | translate }}"
+                                    >
+                                        <span
+                                            class="oui-icon oui-icon-trash_line"
+                                            aria-hidden="true"
+                                        ></span>
                                     </button>
-                                    <button type="button"
-                                            class="btn btn-link"
-                                            data-ng-if="ipbackup == ipbackupCurrentEditBack && !loaders.edit && ipbackup.isApplied && (ipbackupCurrentEdit.cifs || ipbackupCurrentEdit.ftp || ipbackupCurrentEdit.nfs)"
-                                            data-ng-click="saveIpBackupCurrentEdit()"
-                                            data-oui-tooltip="{{ 'housing_configuration_ftpbackup_table_ip_modify' | translate }}">
-                                         <i class="oui-icon oui-icon-success" aria-hidden="true"></i>
+                                    <button
+                                        type="button"
+                                        class="btn btn-link"
+                                        data-ng-if="ipbackup == ipbackupCurrentEditBack && !loaders.edit && ipbackup.isApplied && (ipbackupCurrentEdit.cifs || ipbackupCurrentEdit.ftp || ipbackupCurrentEdit.nfs)"
+                                        data-ng-click="saveIpBackupCurrentEdit()"
+                                        data-oui-tooltip="{{ 'housing_configuration_ftpbackup_table_ip_modify' | translate }}"
+                                    >
+                                        <i
+                                            class="oui-icon oui-icon-success"
+                                            aria-hidden="true"
+                                        ></i>
                                     </button>
-                                    <oui-spinner data-ng-if="ipbackup == ipbackupCurrentEditBack && loaders.edit"
-                                                 data-size="s">
+                                    <oui-spinner
+                                        data-ng-if="ipbackup == ipbackupCurrentEditBack && loaders.edit"
+                                        data-size="s"
+                                    >
                                     </oui-spinner>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
-                    <div data-pagination-front
-                         data-items="backupIps"
-                         data-paginated-items="backupIpDetail"
-                         data-current-page="currentPage"
-                         data-nb-pages="nbPages"
-                         data-items-per-page="itemsPerPage"
-                         data-transform-item="transformItem(item)"
-                         data-on-transform-item-done="onTransformItemDone(items)"
-                         data-page-placeholder="{{'pagination_page' | translate:{ t0: currentPage, t1: nbPages } }}"
-                         data-item-per-page-placeholder="{{ 'pagination_display' | translate }}"
-                         data-refresh="reloadIps">
-                    </div>
+                    <div
+                        data-pagination-front
+                        data-items="backupIps"
+                        data-paginated-items="backupIpDetail"
+                        data-current-page="currentPage"
+                        data-nb-pages="nbPages"
+                        data-items-per-page="itemsPerPage"
+                        data-transform-item="transformItem(item)"
+                        data-on-transform-item-done="onTransformItemDone(items)"
+                        data-page-placeholder="{{'pagination_page' | translate:{ t0: currentPage, t1: nbPages } }}"
+                        data-item-per-page-placeholder="{{ 'pagination_display' | translate }}"
+                        data-refresh="reloadIps"
+                    ></div>
                 </div>
             </div>
             <div class="col-md-3">
-                <button type="button"
-                        class="btn btn-block btn-default {{ !disable.deleteFtp || 'disabled' }}"
-                        data-ng-show="ftpBackup.model"
-                        data-ng-click="!disable.deleteFtp && setAction('backup/access/add/dedicated-housing-backup-access-add', backupIpDetail)"
-                        data-translate="housing_configuration_ftpbackup_access_add">
-                </button>
-                <button type="button"
-                        class="btn btn-block btn-default {{ !disable.activeFtp || 'disabled' }}"
-                        data-ng-hide="ftpBackup.model"
-                        data-ng-click="!disable.activeFtp && setAction('backup/enable/dedicated-housing-backup-enable')">
-                    <span data-translate="housing_configuration_ftpbackup_activate"></span>
-                    <span class="d-block"
-                          data-ng-show="disable.activeFtp"
-                          data-translate="housing_configuration_doing">
+                <button
+                    type="button"
+                    class="btn btn-block btn-default {{ !disable.deleteFtp || 'disabled' }}"
+                    data-ng-show="ftpBackup.model"
+                    data-ng-click="!disable.deleteFtp && setAction('backup/access/add/dedicated-housing-backup-access-add', backupIpDetail)"
+                    data-translate="housing_configuration_ftpbackup_access_add"
+                ></button>
+                <button
+                    type="button"
+                    class="btn btn-block btn-default {{ !disable.activeFtp || 'disabled' }}"
+                    data-ng-hide="ftpBackup.model"
+                    data-ng-click="!disable.activeFtp && setAction('backup/enable/dedicated-housing-backup-enable')"
+                >
+                    <span
+                        data-translate="housing_configuration_ftpbackup_activate"
+                    ></span>
+                    <span
+                        class="d-block"
+                        data-ng-show="disable.activeFtp"
+                        data-translate="housing_configuration_doing"
+                    >
                     </span>
                 </button>
-                <button type="button"
-                        class="btn btn-block btn-default {{ !disable.passwordFtp && !disable.deleteFtp || 'disabled' }}"
-                        data-ng-click="!disable.passwordFtp && !disable.deleteFtp && setAction('backup/password/reset/dedicated-housing-backup-password-reset', ftpBackup.model)"
-                        data-ng-show="ftpBackup.model">
-                    <span data-translate="housing_configuration_ftpbackup_forgot_password"></span>
-                    <span class="d-block"
-                          data-ng-show="disable.passwordFtp"
-                          data-translate="housing_configuration_doing">
+                <button
+                    type="button"
+                    class="btn btn-block btn-default {{ !disable.passwordFtp && !disable.deleteFtp || 'disabled' }}"
+                    data-ng-click="!disable.passwordFtp && !disable.deleteFtp && setAction('backup/password/reset/dedicated-housing-backup-password-reset', ftpBackup.model)"
+                    data-ng-show="ftpBackup.model"
+                >
+                    <span
+                        data-translate="housing_configuration_ftpbackup_forgot_password"
+                    ></span>
+                    <span
+                        class="d-block"
+                        data-ng-show="disable.passwordFtp"
+                        data-translate="housing_configuration_doing"
+                    >
                     </span>
                 </button>
-                <button type="button"
-                        class="btn btn-block btn-default {{ !disable.deleteFtp || 'disabled' }}"
-                        data-ng-click="!disable.deleteFtp && setAction('backup/disable/dedicated-housing-backup-disable', ftpBackup.model)"
-                        data-ng-show="ftpBackup.model && ftpBackup.model.type == 'included'">
-                    <span data-translate="housing_configuration_ftpbackup_delete"></span>
-                    <span class="d-block"
-                          data-ng-show="disable.deleteFtp"
-                          data-translate="housing_configuration_doing">
+                <button
+                    type="button"
+                    class="btn btn-block btn-default {{ !disable.deleteFtp || 'disabled' }}"
+                    data-ng-click="!disable.deleteFtp && setAction('backup/disable/dedicated-housing-backup-disable', ftpBackup.model)"
+                    data-ng-show="ftpBackup.model && ftpBackup.model.type == 'included'"
+                >
+                    <span
+                        data-translate="housing_configuration_ftpbackup_delete"
+                    ></span>
+                    <span
+                        class="d-block"
+                        data-ng-show="disable.deleteFtp"
+                        data-translate="housing_configuration_doing"
+                    >
                     </span>
                 </button>
             </div>

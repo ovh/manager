@@ -6,7 +6,8 @@ angular.module('managerApp').config(($stateProvider) => {
         templateUrl: 'app/telecom/telephony/alias/telecom-telephony-alias.html',
       },
       'aliasView@telecom.telephony.billingAccount.alias': {
-        templateUrl: 'app/telecom/telephony/alias/telecom-telephony-alias-main.view.html',
+        templateUrl:
+          'app/telecom/telephony/alias/telecom-telephony-alias-main.view.html',
         controller: 'TelecomTelephonyAliasCtrl',
         controllerAs: '$ctrl',
       },

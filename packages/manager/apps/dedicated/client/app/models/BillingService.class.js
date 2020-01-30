@@ -50,7 +50,9 @@ export default class BillingService {
   }
 
   hasForcedRenew() {
-    return this.renew.forced && !this.shouldDeleteAtExpiration() && !this.isExpired();
+    return (
+      this.renew.forced && !this.shouldDeleteAtExpiration() && !this.isExpired()
+    );
   }
 
   isExpired() {
@@ -70,19 +72,16 @@ export default class BillingService {
   }
 
   isResiliated() {
-    return this.isExpired()
-            || (
-              moment().isAfter(this.expirationDate)
-                && !this.hasAutomaticRenew()
-                && !this.hasForcedRenew()
-            );
+    return (
+      this.isExpired() ||
+      (moment().isAfter(this.expirationDate) &&
+        !this.hasAutomaticRenew() &&
+        !this.hasForcedRenew())
+    );
   }
 
   hasDebt() {
-    return includes(
-      DEBT_STATUS,
-      snakeCase(this.status).toUpperCase(),
-    );
+    return includes(DEBT_STATUS, snakeCase(this.status).toUpperCase());
   }
 
   hasEngagement() {
@@ -123,7 +122,13 @@ export default class BillingService {
   }
 
   setForResiliation() {
-    if (this.hasAutomaticRenew() && !(this.isAutomaticallyRenewed() || ['automaticV2014', 'automaticV2016'].includes(this.renewalType))) {
+    if (
+      this.hasAutomaticRenew() &&
+      !(
+        this.isAutomaticallyRenewed() ||
+        ['automaticV2014', 'automaticV2016'].includes(this.renewalType)
+      )
+    ) {
       this.setManualRenew();
     }
 
@@ -244,6 +249,10 @@ export default class BillingService {
     return ['EXCHANGE', 'SMS', 'EMAIL_DOMAIN'].includes(this.serviceType);
   }
 
+  canHandleRenew() {
+    return !['VIP'].includes(this.serviceType);
+  }
+
   isOneShot() {
     return this.renewalType === 'oneShot';
   }
@@ -257,8 +266,7 @@ export default class BillingService {
   }
 
   canBeUnresiliated(nichandle) {
-    return this.hasPendingResiliation()
-    && this.hasResiliationRights(nichandle);
+    return this.hasPendingResiliation() && this.hasResiliationRights(nichandle);
   }
 
   isSuspended() {
@@ -266,8 +274,10 @@ export default class BillingService {
   }
 
   hasPendingResiliation() {
-    return this.shouldDeleteAtExpiration()
-    && !this.hasManualRenew()
-    && !this.isResiliated();
+    return (
+      this.shouldDeleteAtExpiration() &&
+      !this.hasManualRenew() &&
+      !this.isResiliated()
+    );
   }
 }

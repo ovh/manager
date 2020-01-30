@@ -1,5 +1,6 @@
-angular.module('App')
-  .controller('DedicatedServerMonitoringUpdateCtrl', class DedicatedServerMonitoringUpdateCtrl {
+angular.module('App').controller(
+  'DedicatedServerMonitoringUpdateCtrl',
+  class DedicatedServerMonitoringUpdateCtrl {
     constructor($q, $stateParams, $state, Alerter, $translate, Server) {
       this.$q = $q;
       this.$stateParams = $stateParams;
@@ -29,34 +30,63 @@ angular.module('App')
     }
 
     /**
-         * Update monitoring.
-         * @return {Promise}
-         */
+     * Update monitoring.
+     * @return {Promise}
+     */
     update() {
       const { monitored } = this.server;
       this.isUpdating = true;
-      return this.Server.updateMonitoring(this.$stateParams.productId, !monitored)
+      return this.Server.updateMonitoring(
+        this.$stateParams.productId,
+        !monitored,
+      )
         .then(() => {
           if (monitored === true) {
-            this.Alerter.success(this.$translate.instant('server_configuration_monitoring_deactivate_success', {
-              t0: this.server.name,
-            }), 'server_dashboard_alert');
+            this.Alerter.success(
+              this.$translate.instant(
+                'server_configuration_monitoring_deactivate_success',
+                {
+                  t0: this.server.name,
+                },
+              ),
+              'server_dashboard_alert',
+            );
           } else {
-            this.Alerter.success(this.$translate.instant('server_configuration_monitoring_activate_success', {
-              t0: this.server.name,
-            }), 'server_dashboard_alert');
+            this.Alerter.success(
+              this.$translate.instant(
+                'server_configuration_monitoring_activate_success',
+                {
+                  t0: this.server.name,
+                },
+              ),
+              'server_dashboard_alert',
+            );
           }
           return this.close();
         })
         .catch((err) => {
           if (monitored === true) {
-            this.Alerter.error(this.$translate.instant('server_configuration_monitoring_deactivate_failed', {
-              t0: this.server.name,
-            }), err, 'server_dashboard_alert');
+            this.Alerter.error(
+              this.$translate.instant(
+                'server_configuration_monitoring_deactivate_failed',
+                {
+                  t0: this.server.name,
+                },
+              ),
+              err,
+              'server_dashboard_alert',
+            );
           } else {
-            this.Alerter.error(this.$translate.instant('server_configuration_monitoring_activate_failed', {
-              t0: this.server.name,
-            }), err, 'server_dashboard_alert');
+            this.Alerter.error(
+              this.$translate.instant(
+                'server_configuration_monitoring_activate_failed',
+                {
+                  t0: this.server.name,
+                },
+              ),
+              err,
+              'server_dashboard_alert',
+            );
           }
           this.$q.reject(err);
           return this.cancel(err);
@@ -69,4 +99,5 @@ angular.module('App')
     close() {
       this.$state.go('^');
     }
-  });
+  },
+);

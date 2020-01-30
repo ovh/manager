@@ -13,15 +13,14 @@ import './grid.less';
 
 const moduleName = 'ngOvhCloudUniverseComponentsCui';
 
-angular
-  .module(moduleName, [
-    advancedOptions,
-    accordian,
-    dropdownMenu,
-    guideComponent,
-    message,
-    modal,
-    page,
-    tabs,
-  ]);
+angular.module(moduleName, [
+  advancedOptions,
+  accordian,
+  dropdownMenu,
+  guideComponent,
+  message,
+  modal,
+  page,
+  tabs,
+]);
 export default moduleName;

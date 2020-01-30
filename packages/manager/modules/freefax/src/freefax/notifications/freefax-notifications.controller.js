@@ -4,7 +4,7 @@ import map from 'lodash/map';
 import remove from 'lodash/remove';
 import some from 'lodash/some';
 
-export default /* @ngInject */ function (
+export default /* @ngInject */ function(
   $q,
   $stateParams,
   $translate,
@@ -36,7 +36,7 @@ export default /* @ngInject */ function (
    * @return {Boolean}
    */
   this.isUnique = function isUnique(val, collection, current) {
-    const other = filter(collection, elt => elt.email !== current.email);
+    const other = filter(collection, (elt) => elt.email !== current.email);
     return !some(other, { email: val });
   };
 
@@ -48,24 +48,34 @@ export default /* @ngInject */ function (
   this.update = function update(notifParam) {
     const notif = notifParam || {};
     notif.busy = true;
-    const notifications = filter(this.notifications, elt => elt.email !== notif.email);
+    const notifications = filter(
+      this.notifications,
+      (elt) => elt.email !== notif.email,
+    );
     notifications.push(notif.tempValue);
-    return OvhApiFreeFax.Aapi().notificationsUpdate({
-      serviceName: $stateParams.serviceName,
-    }, {
-      notifications,
-    }).$promise.then((data) => {
-      if (notif.accept) {
-        notif.accept();
-      }
-      TucToast.success($translate.instant('freefax_notif_save_success'));
-      return data;
-    }).catch((err) => {
-      TucToast.error($translate.instant('freefax_notif_save_error'));
-      return $q.reject(err);
-    }).finally(() => {
-      notif.busy = false;
-    });
+    return OvhApiFreeFax.Aapi()
+      .notificationsUpdate(
+        {
+          serviceName: $stateParams.serviceName,
+        },
+        {
+          notifications,
+        },
+      )
+      .$promise.then((data) => {
+        if (notif.accept) {
+          notif.accept();
+        }
+        TucToast.success($translate.instant('freefax_notif_save_success'));
+        return data;
+      })
+      .catch((err) => {
+        TucToast.error($translate.instant('freefax_notif_save_error'));
+        return $q.reject(err);
+      })
+      .finally(() => {
+        notif.busy = false;
+      });
   };
 
   /**
@@ -98,10 +108,12 @@ export default /* @ngInject */ function (
    */
   this.destroy = function destroy(notif) {
     const removed = remove(this.notifications, { email: notif.email });
-    return this.update().then(data => data).catch((err) => {
-      self.notifications.push(removed[0]);
-      return $q.reject(err);
-    });
+    return this.update()
+      .then((data) => data)
+      .catch((err) => {
+        self.notifications.push(removed[0]);
+        return $q.reject(err);
+      });
   };
 
   /**
@@ -109,21 +121,27 @@ export default /* @ngInject */ function (
    * @return {Promise}
    */
   function getNotifications() {
-    OvhApiFreeFax.Aapi().notifications({
-      serviceName: $stateParams.serviceName,
-    }).$promise.then((notificationList) => {
-      self.notifications = notificationList.map(notif => new FreefaxNotificationObject({
-        email: notif.email,
-        type: notif.type,
-        source: notif.source,
-        inApi: true,
-      }));
-      return self.notifications;
-    }).catch((err) => {
-      self.notifications = [];
-      TucToast.error($translate.instant('freefax_notif_read_error'));
-      return $q.reject(err);
-    });
+    OvhApiFreeFax.Aapi()
+      .notifications({
+        serviceName: $stateParams.serviceName,
+      })
+      .$promise.then((notificationList) => {
+        self.notifications = notificationList.map(
+          (notif) =>
+            new FreefaxNotificationObject({
+              email: notif.email,
+              type: notif.type,
+              source: notif.source,
+              inApi: true,
+            }),
+        );
+        return self.notifications;
+      })
+      .catch((err) => {
+        self.notifications = [];
+        TucToast.error($translate.instant('freefax_notif_read_error'));
+        return $q.reject(err);
+      });
   }
 
   /**
@@ -131,13 +149,19 @@ export default /* @ngInject */ function (
    * @return {Promise}
    */
   function getTypeChoices() {
-    return OvhApiFreeFax.v6().schema().$promise.then((data) => {
-      self.typeChoices = map(data.models['telephony.ServiceVoicemailMailOptionEnum'].enum, value => ({
-        value,
-        label: $translate.instant(`freefax_notification_type_${value}`),
-      }));
-      return self.typeChoices;
-    }).catch(err => $q.reject(err));
+    return OvhApiFreeFax.v6()
+      .schema()
+      .$promise.then((data) => {
+        self.typeChoices = map(
+          data.models['telephony.ServiceVoicemailMailOptionEnum'].enum,
+          (value) => ({
+            value,
+            label: $translate.instant(`freefax_notification_type_${value}`),
+          }),
+        );
+        return self.typeChoices;
+      })
+      .catch((err) => $q.reject(err));
   }
 
   /**
@@ -146,7 +170,7 @@ export default /* @ngInject */ function (
   function init() {
     self.typeChoices = [];
 
-    self.sourceChoices = map(['fax', 'voicemail', 'both'], elt => ({
+    self.sourceChoices = map(['fax', 'voicemail', 'both'], (elt) => ({
       value: elt,
       label: $translate.instant(`freefax_notification_source_${elt}`),
     }));
@@ -157,10 +181,12 @@ export default /* @ngInject */ function (
 
     self.serviceName = $stateParams.serviceName;
 
-    getTypeChoices().then(getNotifications).catch((err) => {
-      self.notifications = [];
-      return $q.reject(err);
-    });
+    getTypeChoices()
+      .then(getNotifications)
+      .catch((err) => {
+        self.notifications = [];
+        return $q.reject(err);
+      });
   }
 
   init();

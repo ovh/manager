@@ -74,31 +74,40 @@ angular
     'oui',
     'ui.bootstrap',
   ])
-  .config(/* @ngInject */($stateProvider) => {
-    $stateProvider
-      .state('pci', {
+  .config(
+    /* @ngInject */ ($stateProvider) => {
+      $stateProvider.state('pci', {
         url: '/pci',
         abstract: true,
         template,
         resolve: {
-          me: /* @ngInject */ OvhApiMe => OvhApiMe.v6().get().$promise,
+          me: /* @ngInject */ (OvhApiMe) => OvhApiMe.v6().get().$promise,
         },
       });
-  })
-  .run(/* @ngInject */ ($translate, $transitions) => {
-    $transitions.onBefore({ to: 'pci.**' }, () => $translate.refresh());
-  })
+    },
+  )
+  .run(
+    /* @ngInject */ ($translate, $transitions) => {
+      $transitions.onBefore({ to: 'pci.**' }, () => $translate.refresh());
+    },
+  )
   .constant('CLOUD_INSTANCE_DEFAULTS', CLOUD_INSTANCE_DEFAULTS)
   .constant('CLOUD_INSTANCE_DEFAULT_FALLBACK', CLOUD_INSTANCE_DEFAULT_FALLBACK)
   .constant('CLOUD_FLAVOR_SPECIFIC_IMAGE', CLOUD_FLAVOR_SPECIFIC_IMAGE)
-  .constant('CLOUD_INSTANCE_HAS_GUARANTEED_RESSOURCES', CLOUD_INSTANCE_HAS_GUARANTEED_RESSOURCES)
+  .constant(
+    'CLOUD_INSTANCE_HAS_GUARANTEED_RESSOURCES',
+    CLOUD_INSTANCE_HAS_GUARANTEED_RESSOURCES,
+  )
   .constant('CLOUD_VOLUME_TYPES', CLOUD_VOLUME_TYPES)
   .constant('CLOUD_IPFO_ORDER_LIMIT', CLOUD_IPFO_ORDER_LIMIT)
   .constant('CLOUD_GEOLOCALISATION', CLOUD_GEOLOCALISATION)
   .constant('CLOUD_VM_STATE', CLOUD_VM_STATE)
   .constant('CLOUD_UNIT_CONVERSION', CLOUD_UNIT_CONVERSION)
   .constant('CLOUD_MONITORING', CLOUD_MONITORING)
-  .constant('CLOUD_PROJECT_OVERVIEW_THRESHOLD', CLOUD_PROJECT_OVERVIEW_THRESHOLD)
+  .constant(
+    'CLOUD_PROJECT_OVERVIEW_THRESHOLD',
+    CLOUD_PROJECT_OVERVIEW_THRESHOLD,
+  )
   .constant('CLOUD_PROJECT_STATE', CLOUD_PROJECT_STATE)
   .constant('CLOUD_PCA_FILE_STATE', CLOUD_PCA_FILE_STATE)
   .constant('PCI_REDIRECT_URLS', PCI_REDIRECT_URLS)

@@ -6,11 +6,6 @@ import writeRightRequired from './writeRightRequired';
 
 const moduleName = 'ovhManagerPciComponents';
 
-angular
-  .module(moduleName, [
-    project,
-    runabove,
-    writeRightRequired,
-  ]);
+angular.module(moduleName, [project, runabove, writeRightRequired]);
 
 export default moduleName;

@@ -1,4 +1,4 @@
-export default /* @ngInject */($stateProvider) => {
+export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.streams.stream.replayRetention', {
     url: '/replay-retention',
     views: {
@@ -8,7 +8,7 @@ export default /* @ngInject */($stateProvider) => {
     },
     layout: 'modal',
     resolve: {
-      goBack: /* @ngInject */ goToStream => goToStream,
+      goBack: /* @ngInject */ (goToStream) => goToStream,
       breadcrumb: () => null,
     },
   });

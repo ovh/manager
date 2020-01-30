@@ -34,7 +34,8 @@ export default class ProjectController {
     this.user = user;
 
     this.actions = ACTIONS.filter(
-      ({ regions }) => isNil(regions) || regions.includes(coreConfig.getRegion()),
+      ({ regions }) =>
+        isNil(regions) || regions.includes(coreConfig.getRegion()),
     );
     this.links = LINKS;
     this.LEGACY_URL = LEGACY_URLS[coreConfig.getRegion()];
@@ -49,13 +50,11 @@ export default class ProjectController {
       this.$timeout(() => angular.element('#sidebar-focus').focus());
     });
 
-    return this.OvhApiCloudProject
-      .v6()
+    return this.OvhApiCloudProject.v6()
       .get({
         serviceName: this.$stateParams.projectId,
       })
-      .$promise
-      .then((project) => {
+      .$promise.then((project) => {
         this.project = project;
       })
       .finally(() => {
@@ -66,9 +65,7 @@ export default class ProjectController {
   get feedbackUrl() {
     const { language } = this.user;
 
-    return language.includes('fr')
-      ? __FEEDBACK_URL_FR__
-      : __FEEDBACK_URL_EN__;
+    return language.includes('fr') ? __FEEDBACK_URL_FR__ : __FEEDBACK_URL_EN__;
   }
 
   goToLegacy() {

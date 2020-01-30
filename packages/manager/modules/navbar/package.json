@@ -1,8 +1,8 @@
 {
   "name": "@ovh-ux/manager-navbar",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "private": true,
-  "description": "OVH control panel navbar",
+  "description": "A navbar component shared across all control panel.",
   "homepage": "https://github.com/ovh/manager/tree/master/packages/manager/modules/navbar#readme",
   "bugs": {
     "url": "https://github.com/ovh/manager/issues"
@@ -24,9 +24,9 @@
     "dev": "rollup -c --environment BUILD:development",
     "dev:watch": "yarn run dev --watch",
     "prepare": "yarn run build",
-    "start": "lerna exec --stream --scope='@ovh-ux/manager-navbar' --include-filtered-dependencies -- yarn run build",
-    "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-navbar' --include-filtered-dependencies -- yarn run dev",
-    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-navbar' --include-filtered-dependencies -- yarn run dev:watch"
+    "start": "lerna exec --stream --scope='@ovh-ux/manager-navbar' --include-dependencies -- yarn run build",
+    "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-navbar' --include-dependencies -- yarn run dev",
+    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-navbar' --include-dependencies -- yarn run dev:watch"
   },
   "dependencies": {
     "lodash": "^4.17.15",
@@ -48,7 +48,7 @@
     "angular-translate": "^2.18.1",
     "bootstrap-tour": "^0.12.0",
     "ovh-api-services": "^9.27.1",
-    "ovh-ui-angular": "^3.10.0",
+    "ovh-ui-angular": "^3.11.0",
     "ovh-ui-kit": "^2.33.3"
   }
 }

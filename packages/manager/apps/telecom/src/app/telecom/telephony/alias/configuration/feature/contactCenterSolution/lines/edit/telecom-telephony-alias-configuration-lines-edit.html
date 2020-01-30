@@ -1,37 +1,54 @@
-<oui-modal data-heading="{{:: 'telephony_alias_config_contactCenterSolution_lines_line_title' | translate:{ 'index': ($ctrl.lineToEdit.description || $ctrl.lineToEdit.number) } }}"
-           data-primary-action="$ctrl.updateLine()"
-           data-primary-label="{{:: 'submit' | translate }}"
-           data-primary-disabled="!$ctrl.hasChanged()"
-           data-secondary-action="$ctrl.$uibModalInstance.dismiss()"
-           data-secondary-label="{{:: 'cancel' | translate }}"
-           data-on-dismiss="$ctrl.$uibModalInstance.dismiss()"
-           data-loading="$ctrl.loading">
-    <form name="$ctrl.lineEdition"
-          novalidate>
-        <oui-field data-label="{{:: 'telephony_alias_config_contactCenterSolution_lines_line_timeout' | translate }}"
-                   data-help-text="{{:: ('telephony_alias_config_contactCenterSolution_lines_line_time_help' | translate) + ' ' + ('telephony_alias_config_contactCenterSolution_lines_line_secondes_help' | translate ) }}">
-            <oui-numeric name="timeout"
-                         data-model="$ctrl.lineToEdit.timeout"
-                         data-min="1"></oui-numeric>
+<oui-modal
+    data-heading="{{:: 'telephony_alias_config_contactCenterSolution_lines_line_title' | translate:{ 'index': ($ctrl.lineToEdit.description || $ctrl.lineToEdit.number) } }}"
+    data-primary-action="$ctrl.updateLine()"
+    data-primary-label="{{:: 'submit' | translate }}"
+    data-primary-disabled="!$ctrl.hasChanged()"
+    data-secondary-action="$ctrl.$uibModalInstance.dismiss()"
+    data-secondary-label="{{:: 'cancel' | translate }}"
+    data-on-dismiss="$ctrl.$uibModalInstance.dismiss()"
+    data-loading="$ctrl.loading"
+>
+    <form name="$ctrl.lineEdition" novalidate>
+        <oui-field
+            data-label="{{:: 'telephony_alias_config_contactCenterSolution_lines_line_timeout' | translate }}"
+            data-help-text="{{:: ('telephony_alias_config_contactCenterSolution_lines_line_time_help' | translate) + ' ' + ('telephony_alias_config_contactCenterSolution_lines_line_secondes_help' | translate ) }}"
+        >
+            <oui-numeric
+                name="timeout"
+                data-model="$ctrl.lineToEdit.timeout"
+                data-min="1"
+            ></oui-numeric>
         </oui-field>
-        <oui-field data-label="{{:: 'telephony_alias_config_contactCenterSolution_lines_line_wrapUpTime' | translate }}"
-                   data-help-text="{{:: 'telephony_alias_config_contactCenterSolution_lines_line_time_help' | translate }}">
-            <oui-numeric name="wrapUpTime"
-                         data-model="$ctrl.lineToEdit.wrapUpTime"></oui-numeric>
+        <oui-field
+            data-label="{{:: 'telephony_alias_config_contactCenterSolution_lines_line_wrapUpTime' | translate }}"
+            data-help-text="{{:: 'telephony_alias_config_contactCenterSolution_lines_line_time_help' | translate }}"
+        >
+            <oui-numeric
+                name="wrapUpTime"
+                data-model="$ctrl.lineToEdit.wrapUpTime"
+            ></oui-numeric>
         </oui-field>
-        <oui-field data-label="{{:: 'telephony_alias_config_contactCenterSolution_lines_line_simultaneousLines' | translate }}">
-            <oui-numeric name="simultaneousLines"
-                         data-model="$ctrl.lineToEdit.simultaneousLines"
-                         data-min="1"
-                         data-max="10"></oui-numeric>
+        <oui-field
+            data-label="{{:: 'telephony_alias_config_contactCenterSolution_lines_line_simultaneousLines' | translate }}"
+        >
+            <oui-numeric
+                name="simultaneousLines"
+                data-model="$ctrl.lineToEdit.simultaneousLines"
+                data-min="1"
+                data-max="10"
+            ></oui-numeric>
         </oui-field>
-        <oui-field data-label="{{:: 'telephony_alias_config_contactCenterSolution_lines_status' | translate }}"
-                   data-size="m">
-            <oui-select name="status"
-                        data-match="label"
-                        data-items="$ctrl.enumStatus"
-                        data-model="$ctrl.selectedStatus"
-                        data-on-change="$ctrl.lineToEdit.status = modelValue.value">
+        <oui-field
+            data-label="{{:: 'telephony_alias_config_contactCenterSolution_lines_status' | translate }}"
+            data-size="m"
+        >
+            <oui-select
+                name="status"
+                data-match="label"
+                data-items="$ctrl.enumStatus"
+                data-model="$ctrl.selectedStatus"
+                data-on-change="$ctrl.lineToEdit.status = modelValue.value"
+            >
                 <span data-ng-bind="::$item.label"></span>
             </oui-select>
         </oui-field>

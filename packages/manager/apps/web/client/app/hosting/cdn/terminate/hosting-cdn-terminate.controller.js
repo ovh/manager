@@ -18,13 +18,17 @@ export default class HostingTerminateCdnCtrl {
     this.Hosting.terminateCdn(this.$stateParams.productId)
       .then(() => {
         this.Alerter.success(
-          this.$translate.instant('hosting_dashboard_service_terminate_cdn_success'),
+          this.$translate.instant(
+            'hosting_dashboard_service_terminate_cdn_success',
+          ),
           this.$scope.alerts.main,
         );
       })
       .catch((err) => {
         this.Alerter.alertFromSWS(
-          this.$translate.instant('hosting_dashboard_service_terminate_cdn_error'),
+          this.$translate.instant(
+            'hosting_dashboard_service_terminate_cdn_error',
+          ),
           get(err, 'data', err),
           this.$scope.alerts.main,
         );

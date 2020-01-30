@@ -18,8 +18,10 @@ export default /* @ngInject */ ($stateProvider) => {
           $state.go('app.account.billing.orders');
         }
       },
-      ordersFilter: /* @ngInject */ $transition$ => $transition$.params().ordersFilter,
-      goToOrders: /* @ngInject */ ($state, ordersFilter) => () => $state.go('app.account.billing.orders', { filter: ordersFilter }),
+      ordersFilter: /* @ngInject */ ($transition$) =>
+        $transition$.params().ordersFilter,
+      goToOrders: /* @ngInject */ ($state, ordersFilter) => () =>
+        $state.go('app.account.billing.orders', { filter: ordersFilter }),
     },
   });
 };

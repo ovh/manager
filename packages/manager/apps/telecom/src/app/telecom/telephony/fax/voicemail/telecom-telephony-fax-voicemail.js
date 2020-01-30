@@ -3,7 +3,8 @@ angular.module('managerApp').config(($stateProvider) => {
     url: '/voicemail',
     views: {
       faxInnerView: {
-        templateUrl: 'app/telecom/telephony/fax/voicemail/telecom-telephony-fax-voicemail.html',
+        templateUrl:
+          'app/telecom/telephony/fax/voicemail/telecom-telephony-fax-voicemail.html',
         controller: 'TelecomTelephonyFaxVoicemailCtrl',
         controllerAs: '$ctrl',
       },

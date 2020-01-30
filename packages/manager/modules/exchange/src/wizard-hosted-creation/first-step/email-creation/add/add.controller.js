@@ -43,7 +43,8 @@ export default class ExchangeWizardHostedCreationEmailCreationAddController {
     this.hideConfirmButton = false;
     this.dataHasBeenSubmitted = false;
 
-    this.$scope.tryingToCustomizeEmailAddress = () => this.tryingToCustomizeEmailAddress();
+    this.$scope.tryingToCustomizeEmailAddress = () =>
+      this.tryingToCustomizeEmailAddress();
     this.$scope.hideCancelButton = () => this.hideCancelButton;
     this.$scope.hideConfirmButton = () => !this.hideConfirmButton;
 
@@ -54,7 +55,10 @@ export default class ExchangeWizardHostedCreationEmailCreationAddController {
     this.isLoading = true;
 
     return this.wizardHostedCreationEmailCreation
-      .retrievingServiceParameters(this.$routerParams.organization, this.$routerParams.productId)
+      .retrievingServiceParameters(
+        this.$routerParams.organization,
+        this.$routerParams.productId,
+      )
       .then((serviceParameters) => {
         this.serviceParameters = {
           complexityEnabled: serviceParameters.complexityEnabled,
@@ -89,21 +93,31 @@ export default class ExchangeWizardHostedCreationEmailCreationAddController {
   }
 
   validatePassword() {
-    const passwordIsLongEnough = isFinite(this.serviceParameters.minPasswordLength)
-      ? !isEmpty(this.model.password)
-        && this.model.password.length >= this.serviceParameters.minPasswordLength
+    const passwordIsLongEnough = isFinite(
+      this.serviceParameters.minPasswordLength,
+    )
+      ? !isEmpty(this.model.password) &&
+        this.model.password.length >= this.serviceParameters.minPasswordLength
       : true;
     this.addForm.password.$setValidity('passwordLength', passwordIsLongEnough);
 
-    const passwordIsComplexEnough = isBoolean(this.serviceParameters.complexityEnabled)
-      && this.serviceParameters.complexityEnabled
-      ? this.ExchangePassword.passwordComplexityCheck(this.model.password)
-      : true;
-    this.addForm.password.$setValidity('passwordComplexity', passwordIsComplexEnough);
+    const passwordIsComplexEnough =
+      isBoolean(this.serviceParameters.complexityEnabled) &&
+      this.serviceParameters.complexityEnabled
+        ? this.ExchangePassword.passwordComplexityCheck(this.model.password)
+        : true;
+    this.addForm.password.$setValidity(
+      'passwordComplexity',
+      passwordIsComplexEnough,
+    );
 
-    const passwordEqualsConfirmation = this.addForm.passwordConfirmation.$pristine
-      || this.model.password === this.model.passwordConfirmation;
-    this.addForm.password.$setValidity('passwordEquality', passwordEqualsConfirmation);
+    const passwordEqualsConfirmation =
+      this.addForm.passwordConfirmation.$pristine ||
+      this.model.password === this.model.passwordConfirmation;
+    this.addForm.password.$setValidity(
+      'passwordEquality',
+      passwordEqualsConfirmation,
+    );
   }
 
   tryingToCustomizeEmailAddress() {
@@ -129,12 +143,14 @@ export default class ExchangeWizardHostedCreationEmailCreationAddController {
           this.formerEmailAccount.primaryEmailAddress,
           model,
         )
-        .then(() => this.wizardHostedCreationEmailCreation.updatingPassword(
-          this.$routerParams.organization,
-          this.$routerParams.productId,
-          `${this.model.login}@${this.model.domain}`,
-          this.model.password,
-        ))
+        .then(() =>
+          this.wizardHostedCreationEmailCreation.updatingPassword(
+            this.$routerParams.organization,
+            this.$routerParams.productId,
+            `${this.model.login}@${this.model.domain}`,
+            this.model.password,
+          ),
+        )
         .then(() => {
           this.$rootScope.$broadcast('exchange.wizard.request.done');
           this.navigation.resetAction();
@@ -197,7 +213,9 @@ export default class ExchangeWizardHostedCreationEmailCreationAddController {
 
   scrollToBottom() {
     this.$timeout(() => {
-      document.getElementById('email-creation-main-container').scrollIntoView(false);
+      document
+        .getElementById('email-creation-main-container')
+        .scrollIntoView(false);
     });
   }
 

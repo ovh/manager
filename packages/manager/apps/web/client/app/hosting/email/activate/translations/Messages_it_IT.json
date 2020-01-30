@@ -1,0 +1,15 @@
+{
+  "hosting_email_address_activate_title": "Attiva i tuoi account email",
+  "hosting_email_address_activate_description": "Il pack di email incluso nella tua soluzione di hosting Web non è stato ancora attivato. Prima di attivare le caselle di posta, seleziona il dominio da associare agli indirizzi email.",
+  "hosting_email_address_activate_step1_title": "Account email",
+  "hosting_email_address_activate_step2_title": "Attivazione",
+  "hosting_email_address_activate_choose_domain": "Scegli il dominio da utilizzare con le tue email:",
+  "hosting_email_address_activate_choose_domain_placeholder": "Seleziona un dominio...",
+  "hosting_email_address_activate_next": "Continua",
+  "hosting_email_address_activate_cancel": "Annulla",
+  "hosting_email_address_activate_activate": "Attiva",
+  "hosting_email_address_activate_contracts_accept": "Per confermare la richiesta, accetta le condizioni di utilizzo.",
+  "hosting_email_address_activate_in_progress": "Attiva il pack di email",
+  "hosting_email_address_activation_error": "L’attivazione dell’indirizzo email non è andata a buon fine: {{message}}",
+  "hosting_email_address_activation_success": "L’attivazione del pack di account email è in corso, <a href=\"{{ orderTrackURL }}\" target=\"_blank\" rel=\"noopener\">clicca qui per monitorare lo stato di avanzamento dell’operazione</a>."
+}

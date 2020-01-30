@@ -15,20 +15,29 @@ export default class ExchangeResources {
   /**
    * Return the selected resources for the current exchange account
    */
-  retrievingResources(organization, serviceName, count = 10, offset = 0, search = '') {
-    return this.services.OvhHttp.get('/sws/exchange/{organization}/{exchange}/resources', {
-      rootPath: '2api',
-      clearCache: true,
-      urlParams: {
-        organization,
-        exchange: serviceName,
+  retrievingResources(
+    organization,
+    serviceName,
+    count = 10,
+    offset = 0,
+    search = '',
+  ) {
+    return this.services.OvhHttp.get(
+      '/sws/exchange/{organization}/{exchange}/resources',
+      {
+        rootPath: '2api',
+        clearCache: true,
+        urlParams: {
+          organization,
+          exchange: serviceName,
+        },
+        params: {
+          count,
+          offset,
+          search,
+        },
       },
-      params: {
-        count,
-        offset,
-        search,
-      },
-    });
+    );
   }
 
   /**
@@ -152,7 +161,12 @@ export default class ExchangeResources {
   /**
    * Get accounts by resource
    */
-  updateResourceDelegation(organization, serviceName, resourceEmailAddress, delegationModel) {
+  updateResourceDelegation(
+    organization,
+    serviceName,
+    resourceEmailAddress,
+    delegationModel,
+  ) {
     return this.services.OvhHttp.put(
       '/sws/exchange/{organization}/{exchange}/resources/{resourceEmailAddress}/rights-update',
       {

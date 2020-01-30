@@ -16,7 +16,15 @@ angular.module('App').controller(
      * @param Alerter
      * @param WucEmails
      */
-    constructor($scope, $q, $stateParams, $timeout, $translate, Alerter, WucEmails) {
+    constructor(
+      $scope,
+      $q,
+      $stateParams,
+      $timeout,
+      $translate,
+      Alerter,
+      WucEmails,
+    ) {
       this.$scope = $scope;
       this.$q = $q;
       this.$stateParams = $stateParams;
@@ -67,7 +75,9 @@ angular.module('App').controller(
         }
       };
 
-      this.$scope.$on('hosting.tabs.emails.delegate.refresh', () => this.loadEmails());
+      this.$scope.$on('hosting.tabs.emails.delegate.refresh', () =>
+        this.loadEmails(),
+      );
 
       this.loadEmails();
     }
@@ -108,11 +118,13 @@ angular.module('App').controller(
         .then((data) => {
           this.emails = data.sort();
         })
-        .catch(err => this.Alerter.alertFromSWS(
-          this.$translate.instant('email_tab_table_accounts_error'),
-          err,
-          this.$scope.alerts.main,
-        ))
+        .catch((err) =>
+          this.Alerter.alertFromSWS(
+            this.$translate.instant('email_tab_table_accounts_error'),
+            err,
+            this.$scope.alerts.main,
+          ),
+        )
         .finally(() => {
           if (isEmpty(this.emails)) {
             this.loading.accounts = false;
@@ -125,14 +137,16 @@ angular.module('App').controller(
       return this.$q
         .all({
           email: this.WucEmails.getDelegatedEmail(item),
-          usage: this.WucEmails.getEmailDelegatedUsage(item),
+          usage: this.WucEmails.getEmailDelegatedUsage(item).catch(() => null),
         })
         .then(({ email, usage }) => {
           const emailData = clone(email);
 
-          emailData.quota = usage.quota;
-          emailData.emailCount = usage.emailCount;
-          emailData.date = usage.date;
+          if (usage) {
+            emailData.quota = usage.quota;
+            emailData.emailCount = usage.emailCount;
+            emailData.date = usage.date;
+          }
 
           this.constructor.setAccountPercentUse(emailData);
 
@@ -152,21 +166,29 @@ angular.module('App').controller(
     updateUsage(account) {
       this.loading.usage = true;
       this.WucEmails.updateDelegatedUsage(account.email)
-        .then(() => this.WucEmails
-          .getEmailDelegatedUsage(account.email)
-          .then(() => this.constructor.setAccountPercentUse(account)))
-        .catch(err => this.Alerter.alertFromSWS(
-          this.$translate.instant('email_tab_modal_update_usage_error'),
-          err,
-          this.$scope.alerts.main,
-        ))
+        .then(() =>
+          this.WucEmails.getEmailDelegatedUsage(account.email).then(() =>
+            this.constructor.setAccountPercentUse(account),
+          ),
+        )
+        .catch((err) =>
+          this.Alerter.alertFromSWS(
+            this.$translate.instant('email_tab_modal_update_usage_error'),
+            err,
+            this.$scope.alerts.main,
+          ),
+        )
         .finally(() => {
           this.loading.usage = false;
         });
     }
 
     static setAccountPercentUse(account) {
-      set(account, 'percentUse', account.size > 0 ? round((account.quota * 100) / account.size) : 0);
+      set(
+        account,
+        'percentUse',
+        account.size > 0 ? round((account.quota * 100) / account.size) : 0,
+      );
     }
   },
 );

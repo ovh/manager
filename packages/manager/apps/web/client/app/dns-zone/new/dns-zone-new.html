@@ -1,7 +1,10 @@
 <div class="page-header mb-5">
     <h1>
         <span data-translate="domains_newdnszone_order_title"></span>
-        <small class="d-block" data-translate="domains_newdnszone_order_subtitle"></small>
+        <small
+            class="d-block"
+            data-translate="domains_newdnszone_order_subtitle"
+        ></small>
     </h1>
 </div>
 
@@ -11,44 +14,92 @@
             <div data-ovh-alert="{{ctrlNewDnsZone.alerts.main}}"></div>
 
             <p data-translate="domains_newdnszone_order_example"></p>
-            <p class="font-italic"
-               data-translate="domains_newdnszone_order_usage"></p>
-            <div class="alert alert-warning mt-5" role="alert"
-                data-translate="domains_newdnszone_order_reminder">
-            </div>
+            <p
+                class="font-italic"
+                data-translate="domains_newdnszone_order_usage"
+            ></p>
+            <div
+                class="alert alert-warning mt-5"
+                role="alert"
+                data-translate="domains_newdnszone_order_reminder"
+            ></div>
 
             <!-- step 1 -->
-            <h2 class="mt-5" data-translate="domains_newdnszone_order_step1_title"></h2>
+            <h2
+                class="mt-5"
+                data-translate="domains_newdnszone_order_step1_title"
+            ></h2>
             <form name="newDnsZoneForm">
-                <div class="form-group" data-ng-class="{
+                <div
+                    class="form-group"
+                    data-ng-class="{
                     'has-error': newDnsZoneForm.zoneName.$dirty && newDnsZoneForm.zoneName.$invalid,
                     'has-success': newDnsZoneForm.zoneName.$dirty && newDnsZoneForm.zoneName.$valid
-                }">
-                    <label class="control-label" for="zoneNameOrder"
-                           data-translate="domains_newdnszone_order_step1_zonename"></label>
-                    <input type="text" class="form-control" name="zoneName" id="zoneNameOrder" required
-                           data-ng-change="ctrlNewDnsZone.clean()"
-                           data-ng-minlength="4"
-                           data-ng-model="ctrlNewDnsZone.zoneNameOrder.zoneName"
-                           data-ng-model-options="{ debounce: 300 }"
-                           data-zone-name-validator>
-                    <div class="help-block" data-ng-if="newDnsZoneForm.zoneName.$dirty">
-                        <p data-translate="domains_newdnszone_order_step1_zonename_pending"
-                           data-ng-if="newDnsZoneForm.zoneName.$pending"></p>
+                }"
+                >
+                    <label
+                        class="control-label"
+                        for="zoneNameOrder"
+                        data-translate="domains_newdnszone_order_step1_zonename"
+                    ></label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        name="zoneName"
+                        id="zoneNameOrder"
+                        required
+                        data-ng-change="ctrlNewDnsZone.clean()"
+                        data-ng-minlength="4"
+                        data-ng-model="ctrlNewDnsZone.zoneNameOrder.zoneName"
+                        data-ng-model-options="{ debounce: 300 }"
+                        data-zone-name-validator
+                    />
+                    <div
+                        class="help-block"
+                        data-ng-if="newDnsZoneForm.zoneName.$dirty"
+                    >
+                        <p
+                            data-translate="domains_newdnszone_order_step1_zonename_pending"
+                            data-ng-if="newDnsZoneForm.zoneName.$pending"
+                        ></p>
                         <div data-ng-if="newDnsZoneForm.zoneName.$error">
-                            <p data-translate="domains_newdnszone_order_step1_zonename_required"
-                               data-ng-if="newDnsZoneForm.zoneName.$error.required"></p>
-                            <div data-ng-if="newDnsZoneForm.zoneName.$error.zoneName">
-                                <p data-translate="domains_newdnszone_order_step1_zonename_invalid"></p>
+                            <p
+                                data-translate="domains_newdnszone_order_step1_zonename_required"
+                                data-ng-if="newDnsZoneForm.zoneName.$error.required"
+                            ></p>
+                            <div
+                                data-ng-if="newDnsZoneForm.zoneName.$error.zoneName"
+                            >
+                                <p
+                                    data-translate="domains_newdnszone_order_step1_zonename_invalid"
+                                ></p>
                                 <ul>
-                                    <li data-translate="domains_newdnszone_zone_invalid_domain_active"></li>
-                                    <li data-translate="domains_newdnszone_zone_invalid_domain_soa"></li>
-                                    <li data-translate="domains_newdnszone_zone_invalid_domain_a"></li>
-                                    <li data-translate="domains_newdnszone_zone_invalid_domain_zone"></li>
-                                    <li data-ng-if="ctrlNewDnsZone.guideForExternal">
-                                        <a data-ng-href="{{ctrlNewDnsZone.guideForExternal}}" target="_blank">
-                                            <span data-translate="domains_newdnszone_zone_invalid_domain_guide"></span>
-                                            <span class="fa fa-external-link" aria-hidden="true"></span>
+                                    <li
+                                        data-translate="domains_newdnszone_zone_invalid_domain_active"
+                                    ></li>
+                                    <li
+                                        data-translate="domains_newdnszone_zone_invalid_domain_soa"
+                                    ></li>
+                                    <li
+                                        data-translate="domains_newdnszone_zone_invalid_domain_a"
+                                    ></li>
+                                    <li
+                                        data-translate="domains_newdnszone_zone_invalid_domain_zone"
+                                    ></li>
+                                    <li
+                                        data-ng-if="ctrlNewDnsZone.guideForExternal"
+                                    >
+                                        <a
+                                            data-ng-href="{{ctrlNewDnsZone.guideForExternal}}"
+                                            target="_blank"
+                                        >
+                                            <span
+                                                data-translate="domains_newdnszone_zone_invalid_domain_guide"
+                                            ></span>
+                                            <span
+                                                class="fa fa-external-link"
+                                                aria-hidden="true"
+                                            ></span>
                                         </a>
                                     </li>
                                 </ul>
@@ -59,39 +110,75 @@
             </form>
 
             <div data-ng-if="newDnsZoneForm.zoneName.$valid">
-
                 <!-- step 2 -->
-                <h2 class="mt-5" data-translate="domains_newdnszone_order_step2_title"></h2>
+                <h2
+                    class="mt-5"
+                    data-translate="domains_newdnszone_order_step2_title"
+                ></h2>
                 <form name="newDnsZoneDetailsForm">
                     <dl class="dl-horizontal dl-lg">
-                        <dt data-translate="domains_newdnszone_order_step2_domain"></dt>
-                        <dd data-ng-bind="data[ctrlNewDnsZone.zoneName].details[0].domain"></dd>
-                        <dt data-translate="domains_newdnszone_order_step2_description"></dt>
-                        <dd data-translate="{{:: 'domains_newdnszone_order_step2_description_' + data[ctrlNewDnsZone.zoneName].details[0].detailType }}"></dd>
-                        <dt data-translate="domains_newdnszone_order_step2_price"></dt>
-                        <dd data-ng-bind-html="data[ctrlNewDnsZone.zoneName].prices | price:ovhSubsidiary"></dd>
+                        <dt
+                            data-translate="domains_newdnszone_order_step2_domain"
+                        ></dt>
+                        <dd
+                            data-ng-bind="data[ctrlNewDnsZone.zoneName].details[0].domain"
+                        ></dd>
+                        <dt
+                            data-translate="domains_newdnszone_order_step2_description"
+                        ></dt>
+                        <dd
+                            data-translate="{{:: 'domains_newdnszone_order_step2_description_' + data[ctrlNewDnsZone.zoneName].details[0].detailType }}"
+                        ></dd>
+                        <dt
+                            data-translate="domains_newdnszone_order_step2_price"
+                        ></dt>
+                        <dd
+                            data-ng-bind-html="data[ctrlNewDnsZone.zoneName].prices | price:ovhSubsidiary"
+                        ></dd>
                     </dl>
                     <fieldset class="row">
-                        <legend class="col-md-3 oui-label text-lg-right border-0"
-                                data-translate="domains_newdnszone_order_step2_minimized"></legend>
+                        <legend
+                            class="col-md-3 oui-label text-lg-right border-0"
+                            data-translate="domains_newdnszone_order_step2_minimized"
+                        ></legend>
                         <div class="col-md-9">
                             <div class="oui-radio mt-0">
-                                <input type="radio" class="oui-radio__input" name="zoneNameOrderMinimized" id="zoneNameOrderMinimized-yes"
-                                       data-ng-model="ctrlNewDnsZone.zoneNameOrder.minimized"
-                                       data-ng-value="true">
-                                <label class="oui-radio__label-container" for="zoneNameOrderMinimized-yes">
+                                <input
+                                    type="radio"
+                                    class="oui-radio__input"
+                                    name="zoneNameOrderMinimized"
+                                    id="zoneNameOrderMinimized-yes"
+                                    data-ng-model="ctrlNewDnsZone.zoneNameOrder.minimized"
+                                    data-ng-value="true"
+                                />
+                                <label
+                                    class="oui-radio__label-container"
+                                    for="zoneNameOrderMinimized-yes"
+                                >
                                     <span class="oui-radio__label">
-                                        <span data-translate="domains_newdnszone_order_step2_minimized_yes"></span>
+                                        <span
+                                            data-translate="domains_newdnszone_order_step2_minimized_yes"
+                                        ></span>
                                     </span>
                                 </label>
                             </div>
                             <div class="oui-radio">
-                                <input type="radio" class="oui-radio__input" name="zoneNameOrderMinimized" id="zoneNameOrderMinimized-no"
-                                       data-ng-model="ctrlNewDnsZone.zoneNameOrder.minimized"
-                                       data-ng-value="false">
-                                <label class="oui-radio__label-container" for="zoneNameOrderMinimized-no">
+                                <input
+                                    type="radio"
+                                    class="oui-radio__input"
+                                    name="zoneNameOrderMinimized"
+                                    id="zoneNameOrderMinimized-no"
+                                    data-ng-model="ctrlNewDnsZone.zoneNameOrder.minimized"
+                                    data-ng-value="false"
+                                />
+                                <label
+                                    class="oui-radio__label-container"
+                                    for="zoneNameOrderMinimized-no"
+                                >
                                     <span class="oui-radio__label">
-                                        <span data-translate="domains_newdnszone_order_step2_minimized_no"></span>
+                                        <span
+                                            data-translate="domains_newdnszone_order_step2_minimized_no"
+                                        ></span>
                                     </span>
                                 </label>
                             </div>
@@ -100,45 +187,88 @@
                 </form>
 
                 <!-- step 3 -->
-                <h2 class="mt-5" data-translate="domains_newdnszone_order_step3_title"></h2>
+                <h2
+                    class="mt-5"
+                    data-translate="domains_newdnszone_order_step3_title"
+                ></h2>
                 <div data-ng-if="!ctrlNewDnsZone.order.url">
-                    <p data-translate="domains_newdnszone_order_step3_question"
-                       data-ng-if="data[ctrlNewDnsZone.zoneName].contracts.length === 0"></p>
+                    <p
+                        data-translate="domains_newdnszone_order_step3_question"
+                        data-ng-if="data[ctrlNewDnsZone.zoneName].contracts.length === 0"
+                    ></p>
 
-                    <div data-ng-if="data[ctrlNewDnsZone.zoneName].contracts.length > 0">
-                        <p data-translate="domains_newdnszone_order_step3_contracts_ask"></p>
+                    <div
+                        data-ng-if="data[ctrlNewDnsZone.zoneName].contracts.length > 0"
+                    >
+                        <p
+                            data-translate="domains_newdnszone_order_step3_contracts_ask"
+                        ></p>
                         <ul>
-                            <li data-ng-repeat="contract in data[ctrlNewDnsZone.zoneName].contracts track by $index">
-                                <a data-ng-href="{{contract.url}}" target="_blank"
-                                   data-ng-bind="contract.name"></a>
+                            <li
+                                data-ng-repeat="contract in data[ctrlNewDnsZone.zoneName].contracts track by $index"
+                            >
+                                <a
+                                    data-ng-href="{{contract.url}}"
+                                    target="_blank"
+                                    data-ng-bind="contract.name"
+                                ></a>
                             </li>
                         </ul>
                         <div class="oui-checkbox">
-                            <input type="checkbox" class="oui-checkbox__input" id="zoneNameOrderContractsValidated" name="zoneNameOrderContractsValidated" required
-                                   data-ng-model="ctrlNewDnsZone.zoneNameOrder.contractsValidated">
-                            <label class="oui-checkbox__label-container" for="zoneNameOrderContractsValidated">
+                            <input
+                                type="checkbox"
+                                class="oui-checkbox__input"
+                                id="zoneNameOrderContractsValidated"
+                                name="zoneNameOrderContractsValidated"
+                                required
+                                data-ng-model="ctrlNewDnsZone.zoneNameOrder.contractsValidated"
+                            />
+                            <label
+                                class="oui-checkbox__label-container"
+                                for="zoneNameOrderContractsValidated"
+                            >
                                 <span class="oui-checkbox__label">
-                                    <span data-translate="domains_newdnszone_order_step3_contracts_check"></span>
+                                    <span
+                                        data-translate="domains_newdnszone_order_step3_contracts_check"
+                                    ></span>
                                     <span class="oui-checkbox__icon">
-                                        <span class="oui-icon oui-icon-checkbox-unchecked" aria-hidden="true"></span>
-                                        <span class="oui-icon oui-icon-checkbox-checked" aria-hidden="true"></span>
-                                        <span class="oui-icon oui-icon-checkbox-checkmark" aria-hidden="true"></span>
-                                        <span class="oui-icon oui-icon-checkbox-indeterminate" aria-hidden="true"></span>
+                                        <span
+                                            class="oui-icon oui-icon-checkbox-unchecked"
+                                            aria-hidden="true"
+                                        ></span>
+                                        <span
+                                            class="oui-icon oui-icon-checkbox-checked"
+                                            aria-hidden="true"
+                                        ></span>
+                                        <span
+                                            class="oui-icon oui-icon-checkbox-checkmark"
+                                            aria-hidden="true"
+                                        ></span>
+                                        <span
+                                            class="oui-icon oui-icon-checkbox-indeterminate"
+                                            aria-hidden="true"
+                                        ></span>
                                     </span>
                                 </span>
                             </label>
                         </div>
 
                         <div class="mt-5">
-                            <button class="oui-button oui-button_primary oui-button_large-height" type="button"
-                                    data-translate="domains_newdnszone_order_step3_generate"
-                                    data-ng-click="ctrlNewDnsZone.generateBc()"
-                                    data-ng-disabled="data[ctrlNewDnsZone.zoneName].contracts.length !== 0 && !ctrlNewDnsZone.zoneNameOrder.contractsValidated"
-                                    data-ng-if="!ctrlNewDnsZone.loading.bc">
-                            </button>
-                            <div class="help-inline"
-                                 data-ng-if="ctrlNewDnsZone.loading.bc">
-                                <span data-translate="domains_newdnszone_order_step3_generating"></span>
+                            <button
+                                class="oui-button oui-button_primary oui-button_large-height"
+                                type="button"
+                                data-translate="domains_newdnszone_order_step3_generate"
+                                data-ng-click="ctrlNewDnsZone.generateBc()"
+                                data-ng-disabled="data[ctrlNewDnsZone.zoneName].contracts.length !== 0 && !ctrlNewDnsZone.zoneNameOrder.contractsValidated"
+                                data-ng-if="!ctrlNewDnsZone.loading.bc"
+                            ></button>
+                            <div
+                                class="help-inline"
+                                data-ng-if="ctrlNewDnsZone.loading.bc"
+                            >
+                                <span
+                                    data-translate="domains_newdnszone_order_step3_generating"
+                                ></span>
                                 <oui-spinner data-size="s"></oui-spinner>
                             </div>
                         </div>
@@ -146,26 +276,38 @@
                 </div>
                 <div data-ng-if="ctrlNewDnsZone.order.url">
                     <p>
-                        <span class="text-success"
-                              data-translate="domains_newdnszone_order_step3_generated"></span><br>
-                        <span data-translate="domains_newdnszone_order_step3_clic_here"></span><br>
-                        <span data-translate="domains_newdnszone_order_step3_bc_information"></span>
+                        <span
+                            class="text-success"
+                            data-translate="domains_newdnszone_order_step3_generated"
+                        ></span
+                        ><br />
+                        <span
+                            data-translate="domains_newdnszone_order_step3_clic_here"
+                        ></span
+                        ><br />
+                        <span
+                            data-translate="domains_newdnszone_order_step3_bc_information"
+                        ></span>
                     </p>
                     <p class="mt-4">
-                        <a class="oui-button oui-button_primary oui-button_large-height" target="_blank"
-                           data-ng-href="{{ctrlNewDnsZone.order.url}}"
-                           data-translate="domains_newdnszone_order_step3_pay_button">
+                        <a
+                            class="oui-button oui-button_primary oui-button_large-height"
+                            target="_blank"
+                            data-ng-href="{{ctrlNewDnsZone.order.url}}"
+                            data-translate="domains_newdnszone_order_step3_pay_button"
+                        >
                         </a>
                     </p>
                 </div>
             </div>
         </div>
         <div class="col-md-3 mt-5 mt-lg-0">
-            <div data-wuc-guides
-                 data-wuc-guides-title="'guide_domain_subtitle' | translate"
-                 data-wuc-guides-list="'addZone'"
-                 data-tr="tr">
-            </div>
+            <div
+                data-wuc-guides
+                data-wuc-guides-title="'guide_domain_subtitle' | translate"
+                data-wuc-guides-list="'addZone'"
+                data-tr="tr"
+            ></div>
         </div>
     </div>
 </div>

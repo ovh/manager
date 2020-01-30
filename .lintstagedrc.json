@@ -1,13 +1,15 @@
 {
   "*.html": [
-    "htmlhint --ignore \"**/dist/**,**/dist-EU/**,**/dist-CA/**,**/dist-US/**\" \"packages/**/*.html\""
+    "htmlhint --ignore \"**/dist/**,**/dist-EU/**,**/dist-CA/**,**/dist-US/**\" \"packages/**/*.html\"",
+    "prettier --write",
+    "git add"
   ],
   "*.js": [
     "eslint --fix",
     "git add"
   ],
-  "*.less": [
-    "stylelint 'packages/**/*.less' --fix",
+  "*.{css,less,scss}": [
+    "stylelint --fix",
     "git add"
   ],
   "!(*CHANGELOG).md": [

@@ -1,7 +1,8 @@
 import get from 'lodash/get';
 
-angular.module('App')
-  .controller('TaskCtrl', class DedicatedServerTaskController {
+angular.module('App').controller(
+  'TaskCtrl',
+  class DedicatedServerTaskController {
     constructor($scope, $stateParams, Alerter, Server, TASK_STATUS) {
       this.$scope = $scope;
       this.$stateParams = $stateParams;
@@ -11,15 +12,24 @@ angular.module('App')
     }
 
     loadDatagridTasks({ offset, pageSize }) {
-      return this.Server.getTasks(this.$stateParams.productId, pageSize, offset - 1)
-        .then(result => ({
+      return this.Server.getTasks(
+        this.$stateParams.productId,
+        pageSize,
+        offset - 1,
+      )
+        .then((result) => ({
           data: get(result, 'list.results'),
           meta: {
             totalCount: result.count,
           },
         }))
         .catch((err) => {
-          this.Alerter.alertFromSWS(this.$translate.instant('server_configuration_task_loading_error'), err, 'taskAlert');
+          this.Alerter.alertFromSWS(
+            this.$translate.instant('server_configuration_task_loading_error'),
+            err,
+            'taskAlert',
+          );
         });
     }
-  });
+  },
+);

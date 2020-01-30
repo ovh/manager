@@ -1,5 +1,7 @@
 {
   "dedicated_server_interfaces_title": "Network",
+  "dedicated_server_interfaces_guides": "Guides",
+  "dedicated_server_interfaces_guides_ola": "How to configure OLA?",
   "dedicated_server_interfaces_introduction": "In this section, you can find all information related to your server’s network interfaces.",
   "dedicated_server_interfaces_vrack_information": "Please note that by default, no IPs exist for the private network (vRack). You will need to create a private network (vRack) beforehand, add your server to it, then configure your IPs.",
   "dedicated_server_interfaces_vrack_information_link_label": "Find out more about the vRack",
@@ -69,5 +71,6 @@
   "dedicated_server_interfaces_bandwith_public": "Public bandwidth",
   "dedicated_server_interfaces_bandwith_private": "Private bandwidth",
   "dedicated_server_interfaces_current_operation": "An operation is in progress on this server ",
-  "dedicated_server_interfaces_task_error": "An error has occurred during configuration: {{ errorMessage }}"
+  "dedicated_server_interfaces_task_error": "An error has occurred during configuration: {{ errorMessage }}",
+  "dedicated_server_interfaces_new_tab": "Open in a new tab"
 }

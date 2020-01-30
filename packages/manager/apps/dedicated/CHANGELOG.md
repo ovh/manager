@@ -1,3 +1,115 @@
+## [11.3.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@11.3.7...@ovh-ux/manager-dedicated@11.3.8) (2020-01-27)
+
+
+### Bug Fixes
+
+* **server.interface:** set right planCode for ola ([98e4120](https://github.com/ovh/manager/commit/98e412074cc9436694b2307e39a8a8f4144f8cad))
+* **server.interface.ola-activation:** set right planCode ([f7ed41e](https://github.com/ovh/manager/commit/f7ed41e05d5f695bc5127a294c437f11af5de31d))
+
+
+
+## [11.3.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@11.3.6...@ovh-ux/manager-dedicated@11.3.7) (2020-01-27)
+
+
+### Bug Fixes
+
+* **dedicated:** update dedicated server order link for us ([#2143](https://github.com/ovh/manager/issues/2143)) ([2b1c6cc](https://github.com/ovh/manager/commit/2b1c6ccb0526aeb427aec9b068e1f989111b54b5))
+* **server:** unlock ola across all regions ([18ce659](https://github.com/ovh/manager/commit/18ce6597c22dfaef42aaa30a2d15ec4f3dbe15d4))
+
+
+
+## [11.3.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@11.3.5...@ovh-ux/manager-dedicated@11.3.6) (2020-01-24)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 240] ([e4b2814](https://github.com/ovh/manager/commit/e4b281488457da54f57ad5f3ad8d6a27b88e8750))
+
+
+
+## [11.3.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@11.3.4...@ovh-ux/manager-dedicated@11.3.5) (2020-01-21)
+
+
+### Bug Fixes
+
+* **account.user:** add email change validation token request action ([#2016](https://github.com/ovh/manager/issues/2016)) ([9e2bb2e](https://github.com/ovh/manager/commit/9e2bb2eeabbb4da30a8dc0b45153ffc6b1d151d8))
+* **i18n:** add missing translations [CDS 220] ([e5b9be8](https://github.com/ovh/manager/commit/e5b9be83f6b70484b15a958ab5bc0d00a6139574))
+* **i18n:** add missing translations [CDS 224] ([3e2d0b3](https://github.com/ovh/manager/commit/3e2d0b3c90e9f606a0d40b1d4c0bf488a7a12868))
+* **i18n:** add missing translations [CDS 225] ([bf3e4be](https://github.com/ovh/manager/commit/bf3e4bed41d28acd4ac33fc5be2487efcb3c60e4))
+* **i18n:** add missing translations [CDS 228] ([6453173](https://github.com/ovh/manager/commit/64531732bead074ea0af10f6ad30e90347aa5188))
+* **i18n:** add missing translations [CDS 231] ([97ff113](https://github.com/ovh/manager/commit/97ff113b7a8aa24aff872db89aee7d825152f390))
+* **i18n:** add missing translations [CDS 234] ([14021eb](https://github.com/ovh/manager/commit/14021eb5273b4a6fb308b3f46a4eb72ddd5e2cf9))
+* **i18n:** add missing translations [CDS 236] ([03945a1](https://github.com/ovh/manager/commit/03945a108d52bb16313d2e000ec40a130df887e2))
+* **i18n:** add missing translations [CDS 237] ([67efde3](https://github.com/ovh/manager/commit/67efde34de434103585029f432c175db921d3772))
+* **server.interfaces:** update guide url ([#2084](https://github.com/ovh/manager/issues/2084)) ([a48cf0a](https://github.com/ovh/manager/commit/a48cf0aa6ecc9edb62c1a442df04348ad04ac49b))
+
+
+
+## [11.3.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@11.3.3...@ovh-ux/manager-dedicated@11.3.4) (2020-01-16)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 231] ([bf08804](https://github.com/ovh/manager/commit/bf088048b5c0450eda8a5d60f25d60853a160e2d))
+
+
+
+## [11.3.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@11.3.2...@ovh-ux/manager-dedicated@11.3.3) (2020-01-10)
+
+
+### Bug Fixes
+
+* **dedicated.billing:** add checks for automatic renew ([#2027](https://github.com/ovh/manager/issues/2027)) ([ea5f828](https://github.com/ovh/manager/commit/ea5f82897e25d37d69586bd328849c83f64807d8))
+
+
+
+## [11.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@11.3.1...@ovh-ux/manager-dedicated@11.3.2) (2020-01-08)
+
+
+### Bug Fixes
+
+* **dedicated:** set right favicon path ([#2018](https://github.com/ovh/manager/issues/2018)) ([b910316](https://github.com/ovh/manager/commit/b910316232027dd6b81f0c3f9231344f86f3b14b)), closes [#1686](https://github.com/ovh/manager/issues/1686)
+* **dedicated:** use new github link ([#2026](https://github.com/ovh/manager/issues/2026)) ([9be61d5](https://github.com/ovh/manager/commit/9be61d52df72029df821e299ab5387ea8db8db15))
+* **i18n:** add missing translations [CDS 199] ([24691eb](https://github.com/ovh/manager/commit/24691eb7a3ef41321610c4e724c540aabd91d3db))
+* **i18n:** add missing translations [CDS 200] ([203d3f0](https://github.com/ovh/manager/commit/203d3f0294981f9e3dcc79d9734d9dda38f168d6))
+* **i18n:** add missing translations [CDS 206] ([ccc5e5c](https://github.com/ovh/manager/commit/ccc5e5c80c99443c90d6c6f703de6c4289c783f8))
+* **i18n:** add missing translations [CDS 212] ([1f85592](https://github.com/ovh/manager/commit/1f8559205e170279929e29e4e52d8e255d688b3d))
+* **ip:** refresh correctly ip if not ip block ([#2041](https://github.com/ovh/manager/issues/2041)) ([466eeeb](https://github.com/ovh/manager/commit/466eeeb935a11b0b4b5188f3e9b272ebe35f0f2d))
+
+
+
+## [11.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@11.3.0...@ovh-ux/manager-dedicated@11.3.1) (2019-12-19)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 198] ([1aefea2](https://github.com/ovh/manager/commit/1aefea2e3baf06b45e8187f1e6728d415d880314))
+
+
+
+# [11.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@11.2.2...@ovh-ux/manager-dedicated@11.3.0) (2019-12-19)
+
+
+### Bug Fixes
+
+* **account.user.security.totp.delete:** add missing warning message ([#1954](https://github.com/ovh/manager/issues/1954)) ([dbffffa](https://github.com/ovh/manager/commit/dbffffab5379c1d209f573c69aa938c407e4c72d)), closes [#1953](https://github.com/ovh/manager/issues/1953)
+* **dedicated.account.user:** remove shortcuts for some region ([34c4e64](https://github.com/ovh/manager/commit/34c4e647d1c968a6a866a3293b6a404df5593699))
+* **i18n:** add missing translations [CDS 182] ([de0bbaa](https://github.com/ovh/manager/commit/de0bbaaf4957ef0c73d1c8a8488c04d85dceab51))
+* **i18n:** add missing translations [CDS 184] ([6ec37b2](https://github.com/ovh/manager/commit/6ec37b2226218cecb94307abb01d88ffda824326))
+* **i18n:** add missing translations [CDS 187] ([707ec72](https://github.com/ovh/manager/commit/707ec724fe6852a0c5fa855bfb6911fef977df61))
+* **i18n:** add missing translations [CDS 193] ([9f4801a](https://github.com/ovh/manager/commit/9f4801a3ad577f6e3c9df4d400072237a4589a04))
+* **i18n:** add missing translations [CDS 195] ([7b63630](https://github.com/ovh/manager/commit/7b63630b213b9da1947fa6ccc36a290efa294a67))
+* **i18n:** add missing translations [CDS 196] ([acbb2da](https://github.com/ovh/manager/commit/acbb2da34b2d1c2863fd7c2f6cd187b67e065324))
+* rename OVH to OVHcloud in preloading and title ([35fc442](https://github.com/ovh/manager/commit/35fc4420850390e2ad80f322f6d23c87fb6a713a))
+
+
+### Features
+
+* **dedicated.billing:** prevent VIP renew ([#1943](https://github.com/ovh/manager/issues/1943)) ([9a5755c](https://github.com/ovh/manager/commit/9a5755ce2bdb45cd76484df41afced92e42808ed))
+* display standard and premium support levels for FR customers ([569b19e](https://github.com/ovh/manager/commit/569b19e231123f820cb537cd4c85f2a079fd9c03))
+
+
+
 ## [11.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@11.2.1...@ovh-ux/manager-dedicated@11.2.2) (2019-12-11)
 
 

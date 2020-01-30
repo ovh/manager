@@ -2,8 +2,15 @@ import has from 'lodash/has';
 
 export default class EditBackupStorageCtrl {
   /* @ngInject */
-  constructor($translate, $uibModalInstance, CucControllerHelper, row, CucCloudMessage, serviceName,
-    VpsService) {
+  constructor(
+    $translate,
+    $uibModalInstance,
+    CucControllerHelper,
+    row,
+    CucCloudMessage,
+    serviceName,
+    VpsService,
+  ) {
     this.$translate = $translate;
     this.$uibModalInstance = $uibModalInstance;
     this.CucControllerHelper = CucControllerHelper;
@@ -29,22 +36,32 @@ export default class EditBackupStorageCtrl {
   confirm() {
     this.CucCloudMessage.flushChildMessage();
     this.loader = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () => this.VpsService
-        .putBackupStorageAccess(
+      loaderFunction: () =>
+        this.VpsService.putBackupStorageAccess(
           this.serviceName,
           this.row.ipBlock,
           this.model.ftp,
           this.model.nfs,
           this.model.cifs,
         )
-        .then(() => this.CucCloudMessage.success(this.$translate.instant('vps_tab_backup_storage_set_success', { access: this.row.ipBlock })))
-        .catch((err) => {
-          if (has(err, 'data.message')) {
-            this.CucCloudMessage.error(err.data.message);
-          }
-          this.CucCloudMessage.error(this.$translate.instant('vps_tab_backup_storage_set_fail', { access: this.row.ipBlock }));
-        })
-        .finally(() => this.$uibModalInstance.close()),
+          .then(() =>
+            this.CucCloudMessage.success(
+              this.$translate.instant('vps_tab_backup_storage_set_success', {
+                access: this.row.ipBlock,
+              }),
+            ),
+          )
+          .catch((err) => {
+            if (has(err, 'data.message')) {
+              this.CucCloudMessage.error(err.data.message);
+            }
+            this.CucCloudMessage.error(
+              this.$translate.instant('vps_tab_backup_storage_set_fail', {
+                access: this.row.ipBlock,
+              }),
+            );
+          })
+          .finally(() => this.$uibModalInstance.close()),
     });
     return this.loader.load();
   }

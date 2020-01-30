@@ -47,36 +47,52 @@ export default class {
     this.choice = 'manual';
 
     this.loading.init = true;
-    return this.$q.all({
-      senders: this.fetchSenders(),
-      sendersAvailableForValidation: this.fetchSendersAvailableForValidation(),
-    }).then((results) => {
-      this.sendersAvailableForValidation = results.sendersAvailableForValidation;
-      return this.$q.all(map(results.senders, sender => this.api.smsSenders.get({
-        serviceName: this.$stateParams.serviceName,
-        sender,
-      }).$promise));
-    }).then((senders) => {
-      this.senders.availableForValidation.domains = filter(
-        this.sendersAvailableForValidation,
-        { referer: 'domain' },
-      );
-      this.senders.availableForValidation.domains = filter(
-        this.senders.availableForValidation.domains,
-        domain => !find(senders, {
-          sender: domain.sender,
-        }),
-      );
-      this.senders.availableForValidation.nichandle = uniqBy(filter(this.sendersAvailableForValidation, { referer: 'nichandle' }), 'sender');
-      this.senders.availableForValidation.nichandle = filter(
-        this.senders.availableForValidation.nichandle,
-        nichandle => !find(senders, {
-          sender: nichandle.sender,
-        }),
-      );
-    }).catch((err) => {
-      this.TucToastError(err);
-    })
+    return this.$q
+      .all({
+        senders: this.fetchSenders(),
+        sendersAvailableForValidation: this.fetchSendersAvailableForValidation(),
+      })
+      .then((results) => {
+        this.sendersAvailableForValidation =
+          results.sendersAvailableForValidation;
+        return this.$q.all(
+          map(
+            results.senders,
+            (sender) =>
+              this.api.smsSenders.get({
+                serviceName: this.$stateParams.serviceName,
+                sender,
+              }).$promise,
+          ),
+        );
+      })
+      .then((senders) => {
+        this.senders.availableForValidation.domains = filter(
+          this.sendersAvailableForValidation,
+          { referer: 'domain' },
+        );
+        this.senders.availableForValidation.domains = filter(
+          this.senders.availableForValidation.domains,
+          (domain) =>
+            !find(senders, {
+              sender: domain.sender,
+            }),
+        );
+        this.senders.availableForValidation.nichandle = uniqBy(
+          filter(this.sendersAvailableForValidation, { referer: 'nichandle' }),
+          'sender',
+        );
+        this.senders.availableForValidation.nichandle = filter(
+          this.senders.availableForValidation.nichandle,
+          (nichandle) =>
+            !find(senders, {
+              sender: nichandle.sender,
+            }),
+        );
+      })
+      .catch((err) => {
+        this.TucToastError(err);
+      })
       .finally(() => {
         this.loading.init = false;
       });
@@ -108,19 +124,28 @@ export default class {
    */
   addSenderAvailable(sender) {
     this.loading.adding = true;
-    return this.api.smsSenders.create({
-      serviceName: this.$stateParams.serviceName,
-    }, {
-      sender: sender.sender,
-      reason: 'sendersAvailableForValidation',
-    }).$promise.then(() => {
-      this.TucToast.success(this.$translate.instant('sms_senders_add_sender_added'));
-      return this.$state.go('sms.service.senders');
-    }).catch((err) => {
-      this.TucToastError(err);
-    }).finally(() => {
-      this.loading.adding = false;
-    });
+    return this.api.smsSenders
+      .create(
+        {
+          serviceName: this.$stateParams.serviceName,
+        },
+        {
+          sender: sender.sender,
+          reason: 'sendersAvailableForValidation',
+        },
+      )
+      .$promise.then(() => {
+        this.TucToast.success(
+          this.$translate.instant('sms_senders_add_sender_added'),
+        );
+        return this.$state.go('sms.service.senders');
+      })
+      .catch((err) => {
+        this.TucToastError(err);
+      })
+      .finally(() => {
+        this.loading.adding = false;
+      });
   }
 
   /**
@@ -129,17 +154,24 @@ export default class {
    */
   add() {
     this.loading.adding = true;
-    return this.api.smsSenders.create({
-      serviceName: this.$stateParams.serviceName,
-    }, {
-      sender: this.sender.sender,
-      description: this.sender.description,
-      reason: this.sender.reason,
-    }).$promise.then(() => this.$state.go('sms.service.senders')).catch((err) => {
-      this.TucToastError(err);
-    }).finally(() => {
-      this.loading.adding = false;
-    });
+    return this.api.smsSenders
+      .create(
+        {
+          serviceName: this.$stateParams.serviceName,
+        },
+        {
+          sender: this.sender.sender,
+          description: this.sender.description,
+          reason: this.sender.reason,
+        },
+      )
+      .$promise.then(() => this.$state.go('sms.service.senders'))
+      .catch((err) => {
+        this.TucToastError(err);
+      })
+      .finally(() => {
+        this.loading.adding = false;
+      });
   }
 
   /**
@@ -151,8 +183,12 @@ export default class {
       this.senders.availableForValidation.nichandle,
       this.senders.availableForValidation.domains,
     );
-    return filter(allSelectedSenders, sender => this.senders.availableForValidation.selected
-      && this.senders.availableForValidation.selected[sender.sender]);
+    return filter(
+      allSelectedSenders,
+      (sender) =>
+        this.senders.availableForValidation.selected &&
+        this.senders.availableForValidation.selected[sender.sender],
+    );
   }
 
   /**
@@ -161,22 +197,34 @@ export default class {
    */
   addSelectedSendersAvailableForValidaton() {
     const sendersAvailableForValidaton = this.getSelection();
-    const queries = sendersAvailableForValidaton.map(sender => this.api.smsSenders.create({
-      serviceName: this.$stateParams.serviceName,
-    }, {
-      sender: sender.sender,
-      reason: 'sendersAvailableForValidation',
-    }).$promise);
+    const queries = sendersAvailableForValidaton.map(
+      (sender) =>
+        this.api.smsSenders.create(
+          {
+            serviceName: this.$stateParams.serviceName,
+          },
+          {
+            sender: sender.sender,
+            reason: 'sendersAvailableForValidation',
+          },
+        ).$promise,
+    );
     this.loading.adding = true;
     queries.push(this.$timeout(angular.noop, 500)); // avoid clipping
-    this.TucToast.info(this.$translate.instant('sms_senders_add_senders_success'));
-    return this.$q.all(queries).then(() => {
-      this.senders.availableForValidation.selected = {};
-      return this.$state.go('sms.service.senders');
-    }).catch((err) => {
-      this.TucToastError(err);
-    }).finally(() => {
-      this.loading.adding = false;
-    });
+    this.TucToast.info(
+      this.$translate.instant('sms_senders_add_senders_success'),
+    );
+    return this.$q
+      .all(queries)
+      .then(() => {
+        this.senders.availableForValidation.selected = {};
+        return this.$state.go('sms.service.senders');
+      })
+      .catch((err) => {
+        this.TucToastError(err);
+      })
+      .finally(() => {
+        this.loading.adding = false;
+      });
   }
 }

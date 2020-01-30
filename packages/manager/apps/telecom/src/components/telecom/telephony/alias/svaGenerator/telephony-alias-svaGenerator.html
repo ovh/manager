@@ -5,11 +5,14 @@
     <div class="sva-container" data-ng-show="!isLoading"></div>
     <p data-ng-if="imageHref">
         <span data-translate="telecom_sva_generator_download"></span>
-        <a data-ng-href="{{ imageHref }}" download="{{ number + '.png' }}">{{ number + '.png' }}</a>
+        <a data-ng-href="{{ imageHref }}" download="{{ number + '.png' }}"
+            >{{ number + '.png' }}</a
+        >
     </p>
-    <div class="alert alert-info"
-         role="alert"
-         data-ng-if="invalidNumber"
-         data-translate="telecom_sva_generator_invalid_number">
-    </div>
+    <div
+        class="alert alert-info"
+        role="alert"
+        data-ng-if="invalidNumber"
+        data-translate="telecom_sva_generator_invalid_number"
+    ></div>
 </div>

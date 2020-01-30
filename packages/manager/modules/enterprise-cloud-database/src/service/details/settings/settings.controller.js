@@ -9,11 +9,7 @@ import { GUIDELINK } from '../../../enterprise-cloud-database.constants';
 
 export default class EnterpriseCloudDatabaseServiceDetailsSettingsCtrl {
   /* @ngInject */
-  constructor(
-    $translate,
-    CucCloudMessage,
-    enterpriseCloudDatabaseService,
-  ) {
+  constructor($translate, CucCloudMessage, enterpriseCloudDatabaseService) {
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
     this.enterpriseCloudDatabaseService = enterpriseCloudDatabaseService;
@@ -32,27 +28,37 @@ export default class EnterpriseCloudDatabaseServiceDetailsSettingsCtrl {
 
     this.rules = {};
     this.CucCloudMessage.flushMessages(MESSAGE_CONTAINER);
-    const securityGroup = find(this.securityGroups, { id: this.securityGroupId });
+    const securityGroup = find(this.securityGroups, {
+      id: this.securityGroupId,
+    });
     if (securityGroup) {
       this.toggleRules(securityGroup);
     }
   }
 
   getMaintenanceWindowConfig() {
-    return (this.data.dayOfWeek && this.data.startTime && this.data.duration) ? {
-      dayOfWeek: this.data.dayOfWeek,
-      startTime: this.data.startTime,
-      duration: this.data.duration,
-    } : undefined;
+    return this.data.dayOfWeek && this.data.startTime && this.data.duration
+      ? {
+          dayOfWeek: this.data.dayOfWeek,
+          startTime: this.data.startTime,
+          duration: this.data.duration,
+        }
+      : undefined;
   }
 
   getRules(group) {
     set(group, 'loadingRules', true);
-    this.enterpriseCloudDatabaseService.getRulesList(this.clusterDetails.id, group.id)
+    this.enterpriseCloudDatabaseService
+      .getRulesList(this.clusterDetails.id, group.id)
       .then((rules) => {
         set(this.rules, group.id, rules);
       })
-      .catch(error => this.handleError('enterprise_cloud_database_service_details_settings_rules_error', error))
+      .catch((error) =>
+        this.handleError(
+          'enterprise_cloud_database_service_details_settings_rules_error',
+          error,
+        ),
+      )
       .finally(() => {
         set(group, 'loadingRules', false);
       });
@@ -80,17 +86,24 @@ export default class EnterpriseCloudDatabaseServiceDetailsSettingsCtrl {
       return true;
     }
     return maintenanceWindowConfig
-      ? reduce(keys(maintenanceWindowConfig),
-        (windowChanged, configKey) => windowChanged || (get(maintenanceWindowConfig, configKey)
-          !== get(this.maintenanceWindow, configKey)), false)
+      ? reduce(
+          keys(maintenanceWindowConfig),
+          (windowChanged, configKey) =>
+            windowChanged ||
+            get(maintenanceWindowConfig, configKey) !==
+              get(this.maintenanceWindow, configKey),
+          false,
+        )
       : false;
   }
 
   isDefaultMaintenanceWindow() {
     const maintenanceWindow = this.getMaintenanceWindowConfig();
-    return maintenanceWindow.dayOfWeek === this.regionInfo.maintenanceDayOfWeek
-      && maintenanceWindow.startTime === this.regionInfo.maintenanceStartTime
-      && maintenanceWindow.duration === this.regionInfo.maintenanceDuration;
+    return (
+      maintenanceWindow.dayOfWeek === this.regionInfo.maintenanceDayOfWeek &&
+      maintenanceWindow.startTime === this.regionInfo.maintenanceStartTime &&
+      maintenanceWindow.duration === this.regionInfo.maintenanceDuration
+    );
   }
 
   loadRules(group) {
@@ -104,12 +117,27 @@ export default class EnterpriseCloudDatabaseServiceDetailsSettingsCtrl {
   saveAutoBackup(autoBackup) {
     this.CucCloudMessage.flushMessages(MESSAGE_CONTAINER);
     this.loaders.autoBackup = true;
-    this.enterpriseCloudDatabaseService.setClusterDetails(this.clusterDetails.id, {
-      autoBackup,
-      name: this.data.clusterName,
-    }).then(() => this.reload().then(() => this.handleSuccess('enterprise_cloud_database_service_details_settings_save_success')))
-      .catch(error => this.handleError('enterprise_cloud_database_service_details_settings_save_error', error))
-      .finally(() => { this.loaders.autoBackup = false; });
+    this.enterpriseCloudDatabaseService
+      .setClusterDetails(this.clusterDetails.id, {
+        autoBackup,
+        name: this.data.clusterName,
+      })
+      .then(() =>
+        this.reload().then(() =>
+          this.handleSuccess(
+            'enterprise_cloud_database_service_details_settings_save_success',
+          ),
+        ),
+      )
+      .catch((error) =>
+        this.handleError(
+          'enterprise_cloud_database_service_details_settings_save_error',
+          error,
+        ),
+      )
+      .finally(() => {
+        this.loaders.autoBackup = false;
+      });
   }
 
   saveMaintenanceWindow() {
@@ -122,18 +150,31 @@ export default class EnterpriseCloudDatabaseServiceDetailsSettingsCtrl {
           this.maintenanceWindow = {};
         }
         Object.assign(this.maintenanceWindow, maintenanceWindowConfig);
-        this.handleSuccess('enterprise_cloud_database_service_details_settings_save_success');
+        this.handleSuccess(
+          'enterprise_cloud_database_service_details_settings_save_success',
+        );
       })
-      .catch(error => this.handleError('enterprise_cloud_database_service_details_settings_save_error', error))
-      .finally(() => { this.loaders.maintenanceWindow = false; });
+      .catch((error) =>
+        this.handleError(
+          'enterprise_cloud_database_service_details_settings_save_error',
+          error,
+        ),
+      )
+      .finally(() => {
+        this.loaders.maintenanceWindow = false;
+      });
   }
 
   setupMaintenanceWindow(maintenanceWindow) {
-    return (this.maintenanceWindow
-      ? this.enterpriseCloudDatabaseService
-        .updateMaintenanceWindow(this.clusterDetails.id, maintenanceWindow)
-      : this.enterpriseCloudDatabaseService
-        .createMaintenanceWindow(this.clusterDetails.id, maintenanceWindow));
+    return this.maintenanceWindow
+      ? this.enterpriseCloudDatabaseService.updateMaintenanceWindow(
+          this.clusterDetails.id,
+          maintenanceWindow,
+        )
+      : this.enterpriseCloudDatabaseService.createMaintenanceWindow(
+          this.clusterDetails.id,
+          maintenanceWindow,
+        );
   }
 
   toggleRules(group) {

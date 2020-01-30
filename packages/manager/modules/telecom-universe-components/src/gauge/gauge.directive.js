@@ -31,9 +31,11 @@ export default /* @ngInject */ () => ({
         return;
       }
       going = $interval(() => {
-        const speed = Math.abs(targetValue - currentValue) / (self.tucGauge || 1);
+        const speed =
+          Math.abs(targetValue - currentValue) / (self.tucGauge || 1);
         if (speed > 0.05) {
-          const dir = (targetValue - currentValue) / Math.abs(targetValue - currentValue);
+          const dir =
+            (targetValue - currentValue) / Math.abs(targetValue - currentValue);
           currentValue += dir * speed * (self.tucGauge / 5);
           const fraction = (currentValue || 0) / (self.tucGauge || 1);
           self.cursor.attr('transform', `rotate(${180 * fraction})`);

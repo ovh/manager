@@ -1,6 +1,13 @@
 export default class ExchangeAccountOutlookDeactivate {
   /* @ngInject */
-  constructor($scope, Exchange, exchangeAccountOutlook, messaging, navigation, $translate) {
+  constructor(
+    $scope,
+    Exchange,
+    exchangeAccountOutlook,
+    messaging,
+    navigation,
+    $translate,
+  ) {
     this.$scope = $scope;
 
     this.Exchange = Exchange;
@@ -26,7 +33,9 @@ export default class ExchangeAccountOutlookDeactivate {
       )
       .then(() => {
         this.messaging.writeSuccess(
-          this.$translate.instant('exchange_accounts_outlook_deactivate_success'),
+          this.$translate.instant(
+            'exchange_accounts_outlook_deactivate_success',
+          ),
         );
       })
       .catch((error) => {

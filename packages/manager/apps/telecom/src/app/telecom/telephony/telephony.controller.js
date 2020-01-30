@@ -2,11 +2,7 @@ import { ListLayoutHelper } from '@ovh-ux/ng-ovh-telecom-universe-components';
 
 export default class TelecomTelephonyController extends ListLayoutHelper.ListLayoutCtrl {
   /* @ngInject */
-  constructor(
-    $q,
-    $translate,
-    ouiDatagridService,
-  ) {
+  constructor($q, $translate, ouiDatagridService) {
     super($q, ouiDatagridService);
     this.$translate = $translate;
   }
@@ -20,10 +16,15 @@ export default class TelecomTelephonyController extends ListLayoutHelper.ListLay
     this.filtersOptions = {
       status: {
         hideOperators: true,
-        values: this.telephonyStatusTypes.reduce((statusTypes, statusType) => ({
-          ...statusTypes,
-          [statusType]: this.$translate.instant(`telephony_status_label_${statusType}`),
-        }), {}),
+        values: this.telephonyStatusTypes.reduce(
+          (statusTypes, statusType) => ({
+            ...statusTypes,
+            [statusType]: this.$translate.instant(
+              `telephony_status_label_${statusType}`,
+            ),
+          }),
+          {},
+        ),
       },
     };
 
@@ -31,8 +32,14 @@ export default class TelecomTelephonyController extends ListLayoutHelper.ListLay
       { name: 'billingAccount', sortable: this.getSorting('billingAccount') },
       { name: 'description', sortable: this.getSorting('description') },
       { name: 'numServices', sortable: false },
-      { name: 'currentOutplan.value', sortable: this.getSorting('currentOutplan.value') },
-      { name: 'securityDeposit.value', sortable: this.getSorting('securityDeposit.value') },
+      {
+        name: 'currentOutplan.value',
+        sortable: this.getSorting('currentOutplan.value'),
+      },
+      {
+        name: 'securityDeposit.value',
+        sortable: this.getSorting('securityDeposit.value'),
+      },
       { name: 'status', sortable: this.getSorting('status') },
     ];
   }

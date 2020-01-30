@@ -7,10 +7,7 @@ import service from './service';
 const moduleName = 'cucNavigation';
 
 angular
-  .module(moduleName, [
-    cuiTabs,
-    'ui.router',
-  ])
+  .module(moduleName, [cuiTabs, 'ui.router'])
   .service('CucCloudNavigation', service);
 
 export default moduleName;

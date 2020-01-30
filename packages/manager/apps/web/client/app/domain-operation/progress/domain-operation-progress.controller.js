@@ -9,7 +9,13 @@ import set from 'lodash/set';
 angular.module('App').controller(
   'DomainOperationProgressCtrl',
   class DomainOperationProgressCtrl {
-    constructor($scope, $stateParams, $translate, Alerter, domainOperationService) {
+    constructor(
+      $scope,
+      $stateParams,
+      $translate,
+      Alerter,
+      domainOperationService,
+    ) {
       this.$scope = $scope;
       this.$stateParams = $stateParams;
       this.$translate = $translate;
@@ -52,7 +58,9 @@ angular.module('App').controller(
           this.progress = progress;
 
           if (get(this.progress, 'currentStep.step', false)) {
-            this.progress.currentStep.step = camelCase(this.progress.currentStep.step);
+            this.progress.currentStep.step = camelCase(
+              this.progress.currentStep.step,
+            );
             this.progress.followUpSteps = map(
               get(this.progress, 'followUpSteps', []),
               (step) => {
@@ -64,7 +72,7 @@ angular.module('App').controller(
             set(
               find(
                 this.steps,
-                step => step.name === this.progress.currentStep.step,
+                (step) => step.name === this.progress.currentStep.step,
               ),
               'active',
               true,
@@ -77,11 +85,13 @@ angular.module('App').controller(
               : null;
           }
         })
-        .catch(err => this.Alerter.alertFromSWS(
-          this.$translate.instant('domains_operations_error'),
-          err,
-          this.$scope.alerts.main,
-        ))
+        .catch((err) =>
+          this.Alerter.alertFromSWS(
+            this.$translate.instant('domains_operations_error'),
+            err,
+            this.$scope.alerts.main,
+          ),
+        )
         .finally(() => {
           this.loading = false;
         });

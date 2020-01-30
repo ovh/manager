@@ -20,12 +20,12 @@ export default /* @ngInject */ () => {
       headerVersion = version;
     },
     request: (config) => {
-      if (find(ROUTES_PREFIX, route => startsWith(config.url, route))) {
+      if (find(ROUTES_PREFIX, (route) => startsWith(config.url, route))) {
         requestIndex += 1;
-        const overridenHeaders = find(
-          ROUTES_HEADERS_OVERRIDE,
-          (value, route) => new RegExp(route).test(config.url),
-        ) || {};
+        const overridenHeaders =
+          find(ROUTES_HEADERS_OVERRIDE, (value, route) =>
+            new RegExp(route).test(config.url),
+          ) || {};
 
         const headerConfig = {
           ...config,

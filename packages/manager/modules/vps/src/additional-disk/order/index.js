@@ -4,7 +4,8 @@ import additionalDiskOptionsFilter from './legacy/additional-disk-option.filter'
 
 const moduleName = 'ovhManagerVpsAdditionnalDiskOrder';
 
-angular.module(moduleName, [])
+angular
+  .module(moduleName, [])
   .config(routing)
   .filter('vpsAdditionalDiskOptions', additionalDiskOptionsFilter);
 

@@ -28,12 +28,19 @@ export default class {
 
     // Messages Management
     this.messages = null;
-    this.messageHandler = this.CucCloudMessage.subscribe(MESSAGES_CONTAINER_NAME, {
-      onMessage: () => this.refreshMessage(),
-    });
+    this.messageHandler = this.CucCloudMessage.subscribe(
+      MESSAGES_CONTAINER_NAME,
+      {
+        onMessage: () => this.refreshMessage(),
+      },
+    );
     // End - Messages Management
 
-    const monthBilling = moment.utc({ y: validParams.year, M: validParams.month - 1, d: 1 });
+    const monthBilling = moment.utc({
+      y: validParams.year,
+      M: validParams.month - 1,
+      d: 1,
+    });
     this.data = {
       monthBilling,
       previousMonth: moment.utc(monthBilling).subtract(1, 'month'),
@@ -49,7 +56,13 @@ export default class {
     this.loading = true;
     this.initConsumptionHistory()
       .catch((err) => {
-        this.CucCloudMessage.error([this.$translate.instant('cpb_error_message'), (err.data && err.data.message) || ''].join(' '), MESSAGES_CONTAINER_NAME);
+        this.CucCloudMessage.error(
+          [
+            this.$translate.instant('cpb_error_message'),
+            (err.data && err.data.message) || '',
+          ].join(' '),
+          MESSAGES_CONTAINER_NAME,
+        );
         return this.$q.reject(err);
       })
       .finally(() => {
@@ -62,12 +75,15 @@ export default class {
   }
 
   initConsumptionHistory() {
-    return this.OvhApiCloudProjectUsageHistory.v6().query({
-      serviceName: this.$stateParams.projectId,
-      from: this.data.previousMonth.format(),
-      to: this.data.monthBilling.format(),
-    }).$promise
-      .then(historyPeriods => this.getConsumptionDetails(historyPeriods))
+    return this.OvhApiCloudProjectUsageHistory.v6()
+      .query({
+        serviceName: this.$stateParams.projectId,
+        from: this.data.previousMonth.format(),
+        to: this.data.monthBilling.format(),
+      })
+      .$promise.then((historyPeriods) =>
+        this.getConsumptionDetails(historyPeriods),
+      )
       .then((details) => {
         this.data.details = details;
       });
@@ -82,25 +98,36 @@ export default class {
   }
 
   getConsumptionDetails(periods) {
-    const detailPromises = map(periods, period => this.OvhApiCloudProjectUsageHistory.v6().get({
-      serviceName: this.$stateParams.projectId,
-      usageId: period.id,
-    }).$promise);
+    const detailPromises = map(
+      periods,
+      (period) =>
+        this.OvhApiCloudProjectUsageHistory.v6().get({
+          serviceName: this.$stateParams.projectId,
+          usageId: period.id,
+        }).$promise,
+    );
 
-    return this.$q.all(detailPromises)
+    return this.$q
+      .all(detailPromises)
       .then((periodDetails) => {
         let monthlyDetails;
 
         if (moment.utc().isSame(this.data.monthBilling, 'month')) {
-          monthlyDetails = this.OvhApiCloudProjectUsageCurrent.v6()
-            .get({ serviceName: this.$stateParams.projectId }).$promise;
+          monthlyDetails = this.OvhApiCloudProjectUsageCurrent.v6().get({
+            serviceName: this.$stateParams.projectId,
+          }).$promise;
         } else {
-          monthlyDetails = find(periodDetails, detail => moment.utc(detail.period.from).isSame(this.data.monthBilling, 'month'));
+          monthlyDetails = find(periodDetails, (detail) =>
+            moment
+              .utc(detail.period.from)
+              .isSame(this.data.monthBilling, 'month'),
+          );
         }
 
-        const hourlyDetails = find(
-          periodDetails,
-          detail => moment.utc(detail.period.from).isSame(this.data.previousMonth, 'month'),
+        const hourlyDetails = find(periodDetails, (detail) =>
+          moment
+            .utc(detail.period.from)
+            .isSame(this.data.previousMonth, 'month'),
         );
 
         return {
@@ -108,10 +135,16 @@ export default class {
           monthly: monthlyDetails,
         };
       })
-      .then(details => this.$q.all(details)
-        .then(allDetails => this.CloudProjectBilling.getConsumptionDetails(
-          allDetails.hourly, allDetails.monthly,
-        )));
+      .then((details) =>
+        this.$q
+          .all(details)
+          .then((allDetails) =>
+            this.CloudProjectBilling.getConsumptionDetails(
+              allDetails.hourly,
+              allDetails.monthly,
+            ),
+          ),
+      );
   }
 
   previousMonth() {
@@ -131,7 +164,10 @@ export default class {
   }
 
   isLimitReached() {
-    return this.data.monthBilling.isSameOrAfter(this.firstDayCurrentMonth, 'day');
+    return this.data.monthBilling.isSameOrAfter(
+      this.firstDayCurrentMonth,
+      'day',
+    );
   }
 
   getBillingDateInfo() {

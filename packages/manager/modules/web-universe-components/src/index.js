@@ -15,6 +15,7 @@ import wucFileEditor from './fileEditor';
 import wucGuides from './guides';
 import wucIncrementNumber from './incrementNumber';
 import wucJavaEnum from './java-enum';
+import wucOrderCart from './order-cart';
 import wucOvhFileReader from './ovhFileReader';
 import wucProgressBarElementCounter from './progressBarElementCounter';
 import wucServiceStatusAction from './service-status';
@@ -25,30 +26,30 @@ import wucValidator from './validator';
 
 const moduleName = 'ngOvhWebUniverseComponents';
 
-angular
-  .module(moduleName, [
-    wucAllDom,
-    wucApi,
-    wucAutorenewInvite,
-    wucChartjs,
-    wucConverter,
-    wucCron,
-    wucCronValidator,
-    wucDuration,
-    wucEmailDomain,
-    wucExpiration,
-    wucFileChange,
-    wucFileEditor,
-    wucGuides,
-    wucIncrementNumber,
-    wucJavaEnum,
-    wucOvhFileReader,
-    wucProgressBarElementCounter,
-    wucServiceStatusAction,
-    wucString,
-    wucTabs,
-    wucV6UiSwitch,
-    wucValidator,
-  ]);
+angular.module(moduleName, [
+  wucAllDom,
+  wucApi,
+  wucAutorenewInvite,
+  wucChartjs,
+  wucConverter,
+  wucCron,
+  wucCronValidator,
+  wucDuration,
+  wucEmailDomain,
+  wucExpiration,
+  wucFileChange,
+  wucFileEditor,
+  wucGuides,
+  wucIncrementNumber,
+  wucJavaEnum,
+  wucOrderCart,
+  wucOvhFileReader,
+  wucProgressBarElementCounter,
+  wucServiceStatusAction,
+  wucString,
+  wucTabs,
+  wucV6UiSwitch,
+  wucValidator,
+]);
 
 export default moduleName;

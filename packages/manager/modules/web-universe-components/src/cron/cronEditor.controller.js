@@ -1,6 +1,11 @@
 import angular from 'angular';
 
-export default /* @ngInject */ ($scope, $rootScope, $timeout, WucCronValidator) => {
+export default /* @ngInject */ (
+  $scope,
+  $rootScope,
+  $timeout,
+  WucCronValidator,
+) => {
   // Hack for trads
   $scope.tr = $rootScope.tr;
   $scope.trpl = $rootScope.trpl;
@@ -20,11 +25,11 @@ export default /* @ngInject */ ($scope, $rootScope, $timeout, WucCronValidator) 
     WucCronValidator.switchToExpertMode($scope.cron, $scope.mode);
   };
 
-  $scope.cronSimpleValueIsValid = field => WucCronValidator
-    .cronSimpleValueIsValid(field, $scope.cron, $scope.mode);
+  $scope.cronSimpleValueIsValid = (field) =>
+    WucCronValidator.cronSimpleValueIsValid(field, $scope.cron, $scope.mode);
 
-  $scope.cronExpertValueIsValid = field => WucCronValidator
-    .cronExpertValueIsValid(field, $scope.cron);
+  $scope.cronExpertValueIsValid = (field) =>
+    WucCronValidator.cronExpertValueIsValid(field, $scope.cron);
 
   function getCaretPosition(elem) {
     if (!elem) {
@@ -78,10 +83,12 @@ export default /* @ngInject */ ($scope, $rootScope, $timeout, WucCronValidator) 
     $scope.expertInlineView = expertInlineView;
 
     if (
-      angular.element(`#currentAction .cron_${field}:visible`)
-      && angular.element(`#currentAction .cron_${field}:visible`).length
+      angular.element(`#currentAction .cron_${field}:visible`) &&
+      angular.element(`#currentAction .cron_${field}:visible`).length
     ) {
-      caretPos = getCaretPosition(angular.element(`#currentAction .cron_${field}:visible`)[0]);
+      caretPos = getCaretPosition(
+        angular.element(`#currentAction .cron_${field}:visible`)[0],
+      );
       $timeout(() => {
         setCaretPosition(
           angular.element(`#currentAction .cron_${field}:visible`)[0],

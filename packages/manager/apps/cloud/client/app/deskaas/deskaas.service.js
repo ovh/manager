@@ -1,5 +1,10 @@
 class DeskaasService {
-  constructor(OvhApiDeskaasService, OvhApiMe, deskaasSidebar, DESKAAS_REFERENCES) {
+  constructor(
+    OvhApiDeskaasService,
+    OvhApiMe,
+    deskaasSidebar,
+    DESKAAS_REFERENCES,
+  ) {
     this.OvhApiDeskaasService = OvhApiDeskaasService;
     this.OvhApiMe = OvhApiMe;
     this.deskaasSidebar = deskaasSidebar;
@@ -13,8 +18,9 @@ class DeskaasService {
 
   fetchProductPlans(me) {
     // Use the catalog to get Product for deskaas
-    const promise = this.OvhApiDeskaasService.v6()
-      .getProducts({ ovhSubsidiary: me.ovhSubsidiary }).$promise;
+    const promise = this.OvhApiDeskaasService.v6().getProducts({
+      ovhSubsidiary: me.ovhSubsidiary,
+    }).$promise;
     promise.then((catalog) => {
       const newOrderPlanOffers = {};
       catalog.plans.forEach((catalogEntry) => {
@@ -36,7 +42,9 @@ class DeskaasService {
     if (curRef) {
       curRef.upgrades.forEach((upgrade) => {
         if (this.DESKAAS_REFERENCES[upgrade] && this.OrderPlanOffers[upgrade]) {
-          this.DESKAAS_REFERENCES[upgrade].priceText = this.OrderPlanOffers[upgrade].priceText;
+          this.DESKAAS_REFERENCES[upgrade].priceText = this.OrderPlanOffers[
+            upgrade
+          ].priceText;
           ref.push(this.DESKAAS_REFERENCES[upgrade]);
         }
       });
@@ -48,8 +56,9 @@ class DeskaasService {
   }
 
   getDetails(serviceName) {
-    return this.OvhApiDeskaasService.v6().getDetails({ serviceName }).$promise
-      .then((response) => {
+    return this.OvhApiDeskaasService.v6()
+      .getDetails({ serviceName })
+      .$promise.then((response) => {
         this.deskaasSidebar.updateItem(response);
         return response;
       });

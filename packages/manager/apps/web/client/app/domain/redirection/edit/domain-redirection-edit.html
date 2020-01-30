@@ -1,114 +1,203 @@
 <div data-ng-controller="controllers.Domain.Redirection.edit as ctrl">
-    <div data-wizard
-         data-wizard-on-cancel="resetAction"
-         data-wizard-on-finish="editRedirection"
-         data-wizard-title="'domain_tab_REDIRECTION_edit_title' | translate">
-
-        <div data-wizard-step
-             data-wizard-step-valid="editContainsNoError()">
-
+    <div
+        data-wizard
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="editRedirection"
+        data-wizard-title="'domain_tab_REDIRECTION_edit_title' | translate"
+    >
+        <div data-wizard-step data-wizard-step-valid="editContainsNoError()">
             <oui-spinner data-ng-if="ctrl.loading"></oui-spinner>
 
             <div data-ng-if="!ctrl.loading">
-                <p class="mb-2"
-                   data-ng-bind-html=":: 'domain_tab_REDIRECTION_edit_confirm' | translate: { t0: ctrl.displayName, t1: ctrl.redirection.targetDisplayName }"></p>
+                <p
+                    class="mb-2"
+                    data-ng-bind-html=":: 'domain_tab_REDIRECTION_edit_confirm' | translate: { t0: ctrl.displayName, t1: ctrl.redirection.targetDisplayName }"
+                ></p>
 
                 <!-- Form for ORT redirections -->
-                <form class="form-horizontal mt-4" data-ng-if="ctrl.redirection.isOrt">
+                <form
+                    class="form-horizontal mt-4"
+                    data-ng-if="ctrl.redirection.isOrt"
+                >
                     <p>
                         <small class="text-danger">*</small>
                         <small data-translate="required_fields"></small>
                     </p>
 
-                    <div class="form-group" data-ng-class="{ 'has-error': ctrl.errors.redirectionTarget || ctrl.errors.targetLength }">
-                        <label class="control-label col-md-3 required" for="redirectionTarget"
-                               data-ng-bind-html="'domain_tab_REDIRECTION_edit_web_target_label' | translate"></label>
+                    <div
+                        class="form-group"
+                        data-ng-class="{ 'has-error': ctrl.errors.redirectionTarget || ctrl.errors.targetLength }"
+                    >
+                        <label
+                            class="control-label col-md-3 required"
+                            for="redirectionTarget"
+                            data-ng-bind-html="'domain_tab_REDIRECTION_edit_web_target_label' | translate"
+                        ></label>
                         <div class="col-md-8">
-                            <input type="text" class="form-control" id="redirectionTarget" name="redirectionTarget" placeholder="{{:: 'domain_tab_REDIRECTION_add_step4_web_example' | translate }}" required
-                                   data-ng-change="ctrl.redirectionTargetChange()"
-                                   data-ng-model="ctrl.redirectionTarget"
-                                   data-ng-trim="true">
-                            <small class="help-block"
-                                   data-translate="domain_tab_REDIRECTION_edit_web_target_error"
-                                   data-ng-if="ctrl.errors.redirectionTarget"></small>
-                            <small class="help-block"
-                                   data-translate="domain_tab_REDIRECTION_add_step4_web_too_much_caractere"
-                                   data-ng-if="ctrl.errors.targetLength"></small>
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="redirectionTarget"
+                                name="redirectionTarget"
+                                placeholder="{{:: 'domain_tab_REDIRECTION_add_step4_web_example' | translate }}"
+                                required
+                                data-ng-change="ctrl.redirectionTargetChange()"
+                                data-ng-model="ctrl.redirectionTarget"
+                                data-ng-trim="true"
+                            />
+                            <small
+                                class="help-block"
+                                data-translate="domain_tab_REDIRECTION_edit_web_target_error"
+                                data-ng-if="ctrl.errors.redirectionTarget"
+                            ></small>
+                            <small
+                                class="help-block"
+                                data-translate="domain_tab_REDIRECTION_add_step4_web_too_much_caractere"
+                                data-ng-if="ctrl.errors.targetLength"
+                            ></small>
                         </div>
                     </div>
 
-                    <div data-ng-if="ctrl.redirection.fieldDisplayType === 'invisible'">
-                        <strong data-translate="domain_tab_REDIRECTION_edit_web_option"></strong>
-                        <div class="form-group" data-ng-class="{ 'has-error': ctrl.errors.ortTitle }">
-                            <label class="control-label col-md-3" for="redirectionTitle"
-                                   data-translate="domain_tab_REDIRECTION_edit_web_option_title"></label>
+                    <div
+                        data-ng-if="ctrl.redirection.fieldDisplayType === 'invisible'"
+                    >
+                        <strong
+                            data-translate="domain_tab_REDIRECTION_edit_web_option"
+                        ></strong>
+                        <div
+                            class="form-group"
+                            data-ng-class="{ 'has-error': ctrl.errors.ortTitle }"
+                        >
+                            <label
+                                class="control-label col-md-3"
+                                for="redirectionTitle"
+                                data-translate="domain_tab_REDIRECTION_edit_web_option_title"
+                            ></label>
                             <div class="col-md-8">
-                                <input type="text" class="form-control" id="redirectionTitle" name="redirectionTitle"
-                                       data-ng-change="ctrl.redirectionChange()"
-                                       data-ng-model="ctrl.redirection.title"
-                                       data-ng-trim="true">
-                                <small class="help-block"
-                                       data-translate="domain_tab_REDIRECTION_add_step4_web_too_much_caractere"
-                                       data-ng-if="ctrl.errors.ortTitle"></small>
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="redirectionTitle"
+                                    name="redirectionTitle"
+                                    data-ng-change="ctrl.redirectionChange()"
+                                    data-ng-model="ctrl.redirection.title"
+                                    data-ng-trim="true"
+                                />
+                                <small
+                                    class="help-block"
+                                    data-translate="domain_tab_REDIRECTION_add_step4_web_too_much_caractere"
+                                    data-ng-if="ctrl.errors.ortTitle"
+                                ></small>
                             </div>
                         </div>
 
-                        <div class="form-group" data-ng-class="{ 'has-error': ctrl.errors.ortKeywords }">
-                            <label class="control-label col-md-3" for="redirectionKeywords"
-                                   data-translate="domain_tab_REDIRECTION_edit_web_option_keyword"></label>
+                        <div
+                            class="form-group"
+                            data-ng-class="{ 'has-error': ctrl.errors.ortKeywords }"
+                        >
+                            <label
+                                class="control-label col-md-3"
+                                for="redirectionKeywords"
+                                data-translate="domain_tab_REDIRECTION_edit_web_option_keyword"
+                            ></label>
                             <div class="col-md-8">
-                                <input type="text" class="form-control" id="redirectionKeywords" name="redirectionKeywords"
-                                       data-ng-change="ctrl.redirectionChange()"
-                                       data-ng-model="ctrl.redirection.keywords"
-                                       data-ng-trim="true">
-                                <small class="help-block"
-                                       data-translate="domain_tab_REDIRECTION_add_step4_web_too_much_caractere"
-                                       data-ng-if="ctrl.errors.ortKeywords"></small>
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="redirectionKeywords"
+                                    name="redirectionKeywords"
+                                    data-ng-change="ctrl.redirectionChange()"
+                                    data-ng-model="ctrl.redirection.keywords"
+                                    data-ng-trim="true"
+                                />
+                                <small
+                                    class="help-block"
+                                    data-translate="domain_tab_REDIRECTION_add_step4_web_too_much_caractere"
+                                    data-ng-if="ctrl.errors.ortKeywords"
+                                ></small>
                             </div>
                         </div>
 
-                        <div class="form-group" data-ng-class="{ 'has-error': ctrl.errors.ortDescription }">
-                            <label class="control-label col-md-3" for="redirectionDescription"
-                                   data-translate="domain_tab_REDIRECTION_edit_web_option_description"></label>
+                        <div
+                            class="form-group"
+                            data-ng-class="{ 'has-error': ctrl.errors.ortDescription }"
+                        >
+                            <label
+                                class="control-label col-md-3"
+                                for="redirectionDescription"
+                                data-translate="domain_tab_REDIRECTION_edit_web_option_description"
+                            ></label>
                             <div class="col-md-8">
-                                <input type="text" class="form-control" id="redirectionDescription" name="redirectionDescription"
-                                       data-ng-change="ctrl.redirectionChange()"
-                                       data-ng-model="ctrl.redirection.description"
-                                       data-ng-trim="true">
-                                <small class="help-block"
-                                       data-translate="domain_tab_REDIRECTION_add_step4_web_too_much_caractere"
-                                       data-ng-if="ctrl.errors.ortDescription"></small>
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="redirectionDescription"
+                                    name="redirectionDescription"
+                                    data-ng-change="ctrl.redirectionChange()"
+                                    data-ng-model="ctrl.redirection.description"
+                                    data-ng-trim="true"
+                                />
+                                <small
+                                    class="help-block"
+                                    data-translate="domain_tab_REDIRECTION_add_step4_web_too_much_caractere"
+                                    data-ng-if="ctrl.errors.ortDescription"
+                                ></small>
                             </div>
                         </div>
                     </div>
                 </form>
 
                 <!-- Form for other redirections -->
-                <form class="form-horizontal mt-4" data-ng-if="!ctrl.redirection.isOrt">
-                    <div class="form-group" data-ng-class="{ 'has-error': ctrl.errors.redirectionTarget }">
-                        <label class="control-label col-md-3 required" for="redirectionTargetValue"
-                               data-ng-bind="ctrl.getNonOrtLabel()"></label>
+                <form
+                    class="form-horizontal mt-4"
+                    data-ng-if="!ctrl.redirection.isOrt"
+                >
+                    <div
+                        class="form-group"
+                        data-ng-class="{ 'has-error': ctrl.errors.redirectionTarget }"
+                    >
+                        <label
+                            class="control-label col-md-3 required"
+                            for="redirectionTargetValue"
+                            data-ng-bind="ctrl.getNonOrtLabel()"
+                        ></label>
                         <div class="col-md-8">
-                            <input type="text" class="form-control" id="redirectionTargetValue" name="redirectionTargetValue" required
-                                   data-ng-change="ctrl.redirectionTargetChange()"
-                                   data-ng-model="ctrl.redirectionTarget"
-                                   data-ng-trim="true">
-                            <small class="help-block"
-                                   data-ng-bind="ctrl.errorLabel"
-                                   data-ng-if="ctrl.inputContainErrors()"></small>
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="redirectionTargetValue"
+                                name="redirectionTargetValue"
+                                required
+                                data-ng-change="ctrl.redirectionTargetChange()"
+                                data-ng-model="ctrl.redirectionTarget"
+                                data-ng-trim="true"
+                            />
+                            <small
+                                class="help-block"
+                                data-ng-bind="ctrl.errorLabel"
+                                data-ng-if="ctrl.inputContainErrors()"
+                            ></small>
 
-                            <oui-checkbox class="mt-3" id="includeCNAME" name="includeCNAME"
+                            <oui-checkbox
+                                class="mt-3"
+                                id="includeCNAME"
+                                name="includeCNAME"
                                 data-ng-if="ctrl.redirection.fieldDisplayType === 'CNAME'"
                                 data-model="ctrl.shouldIncludeDomain"
                                 data-on-change="ctrl.redirectionTargetChange()"
-                                data-text="{{:: 'domain_tab_REDIRECTION_edit_server_cname_include_domain' | translate }}">
+                                data-text="{{:: 'domain_tab_REDIRECTION_edit_server_cname_include_domain' | translate }}"
+                            >
                             </oui-checkbox>
                         </div>
                     </div>
-                    <p data-ng-bind-html="'domain_tab_REDIRECTION_edit_server_cname_include_domain_example' | translate: { t0: ctrl.getCompleteTarget() }"></p>
-                    <div class="alert alert-info" role="alert"
-                         data-ng-bind-html="'domain_tab_REDIRECTION_edit_server_cname_info' | translate">
-                    </div>
+                    <p
+                        data-ng-bind-html="'domain_tab_REDIRECTION_edit_server_cname_include_domain_example' | translate: { t0: ctrl.getCompleteTarget() }"
+                    ></p>
+                    <div
+                        class="alert alert-info"
+                        role="alert"
+                        data-ng-bind-html="'domain_tab_REDIRECTION_edit_server_cname_info' | translate"
+                    ></div>
                 </form>
             </div>
         </div>

@@ -54,8 +54,7 @@ export default class Options {
   handleInitialData() {
     this.bindings.isLoading = true;
 
-    return this
-      .ovhManagerPccDashboardOptionsService
+    return this.ovhManagerPccDashboardOptionsService
       .getInitialData(
         this.currentService.name,
         this.currentUser.ovhSubsidiary,
@@ -87,7 +86,9 @@ export default class Options {
         const errorMessage = get(error.data, 'message', error.data);
 
         this.Alerter.error(
-          `${this.$translate.instant('ovhManagerPccDashboardOptions_handleInitialData_error')}${errorMessage ? ` (${errorMessage})` : ''}`,
+          `${this.$translate.instant(
+            'ovhManagerPccDashboardOptions_handleInitialData_error',
+          )}${errorMessage ? ` (${errorMessage})` : ''}`,
           'dedicatedCloud',
         );
       })

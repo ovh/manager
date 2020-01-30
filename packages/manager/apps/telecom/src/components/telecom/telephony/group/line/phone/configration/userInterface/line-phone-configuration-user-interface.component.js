@@ -12,7 +12,8 @@ angular.module('managerApp').component('linePhoneConfigurationUserInterface', {
     editMode: '=linePhoneConfigurationEditMode',
     expertMode: '=linePhoneConfigurationExpertMode',
   },
-  templateUrl: 'components/telecom/telephony/group/line/phone/configration/userInterface/line-phone-configuration-user-interface.html',
+  templateUrl:
+    'components/telecom/telephony/group/line/phone/configration/userInterface/line-phone-configuration-user-interface.html',
   controller() {
     const self = this;
 
@@ -26,7 +27,8 @@ angular.module('managerApp').component('linePhoneConfigurationUserInterface', {
 
     self.getKeyIndex = function getKeyIndex(index) {
       return {
-        number: index + (self.currentScreenPage * self.configGroup.keysPerScreen) + 1,
+        number:
+          index + self.currentScreenPage * self.configGroup.keysPerScreen + 1,
       };
     };
 
@@ -37,13 +39,16 @@ angular.module('managerApp').component('linePhoneConfigurationUserInterface', {
           ====================================== */
 
     self.$onInit = function $onInit() {
-      const keys = filter(self.configGroup.configs, config => startsWith(config.name, 'KeyLabel')).sort((configA, configB) => {
+      const keys = filter(self.configGroup.configs, (config) =>
+        startsWith(config.name, 'KeyLabel'),
+      ).sort((configA, configB) => {
         const matchA = parseInt(configA.name.match(/\d+/g)[0], 10);
         const matchB = parseInt(configB.name.match(/\d+/g)[0], 10);
 
         if (matchA < matchB) {
           return -1;
-        } if (matchA > matchB) {
+        }
+        if (matchA > matchB) {
           return 1;
         }
         return 0;
@@ -54,11 +59,17 @@ angular.module('managerApp').component('linePhoneConfigurationUserInterface', {
       if (keys.length < self.configGroup.configs.length) {
         self.fakeConfigGroup = {
           name: [self.configGroup.name, 'fake'].join('-'),
-          configs: filter(self.configGroup.configs, config => !startsWith(config.name, 'KeyLabel')),
+          configs: filter(
+            self.configGroup.configs,
+            (config) => !startsWith(config.name, 'KeyLabel'),
+          ),
         };
-        self.fakeConfigGroup.isExpertOnly = every(self.fakeConfigGroup.configs, {
-          level: 'expert',
-        });
+        self.fakeConfigGroup.isExpertOnly = every(
+          self.fakeConfigGroup.configs,
+          {
+            level: 'expert',
+          },
+        );
       }
     };
 

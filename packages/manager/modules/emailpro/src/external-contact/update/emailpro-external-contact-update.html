@@ -1,81 +1,148 @@
 <div data-ng-controller="EmailProExternalContactsModifyCtrl">
-    <div data-wizard
-         data-wizard-bread-crumb
-         data-wizard-on-cancel="resetAction"
-         data-wizard-on-finish="modifyContact"
-         data-wizard-title="'emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_modify_title' | translate">
-
-        <div data-wizard-step
-             data-wizard-step-valid="accountIsValid()">
-            <p class="mb-3" data-translate="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_modify_step1_question"></p>
-            <form class="form-horizontal" name="emailProExternalContactsModifyForm">
+    <div
+        data-wizard
+        data-wizard-bread-crumb
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="modifyContact"
+        data-wizard-title="'emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_modify_title' | translate"
+    >
+        <div data-wizard-step data-wizard-step-valid="accountIsValid()">
+            <p
+                class="mb-3"
+                data-translate="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_modify_step1_question"
+            ></p>
+            <form
+                class="form-horizontal"
+                name="emailProExternalContactsModifyForm"
+            >
                 <p>
                     <small class="text-danger">*</small>
                     <small data-translate="required_fields"></small>
                 </p>
-                <div class="form-group" data-ng-class="getPasswordInvalidClass()">
-                    <label for="emailAddress"
-                           class="control-label col-md-3 required"
-                           data-translate="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_modify_step1_email_label"></label>
+                <div
+                    class="form-group"
+                    data-ng-class="getPasswordInvalidClass()"
+                >
+                    <label
+                        for="emailAddress"
+                        class="control-label col-md-3 required"
+                        data-translate="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_modify_step1_email_label"
+                    ></label>
                     <div class="col-md-9">
-                        <input type="text" class="oui-input" id="emailAddress" required
-                               data-ng-model="model.newAccount.externalEmailAddress">
-                        <span class="help-block text-danger"
-                              data-ng-if="!isEmailValid() && model.newAccount.externalEmailAddress"
-                              data-translate="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_modify_step1_email_invalid"></span>
+                        <input
+                            type="text"
+                            class="oui-input"
+                            id="emailAddress"
+                            required
+                            data-ng-model="model.newAccount.externalEmailAddress"
+                        />
+                        <span
+                            class="help-block text-danger"
+                            data-ng-if="!isEmailValid() && model.newAccount.externalEmailAddress"
+                            data-translate="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_modify_step1_email_invalid"
+                        ></span>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="firstName" class="control-label col-md-3"
-                           data-translate="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_modify_step1_first_name_label"></label>
+                    <label
+                        for="firstName"
+                        class="control-label col-md-3"
+                        data-translate="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_modify_step1_first_name_label"
+                    ></label>
                     <div class="col-md-9">
-                        <input type="text" class="oui-input" id="firstName" max="64"
-                               data-ng-model="model.newAccount.firstName"
-                               data-ng-change="updateDisplayName()">
+                        <input
+                            type="text"
+                            class="oui-input"
+                            id="firstName"
+                            max="64"
+                            data-ng-model="model.newAccount.firstName"
+                            data-ng-change="updateDisplayName()"
+                        />
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="lastName" class="control-label col-md-3"
-                           data-translate="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_modify_step1_last_name_label"></label>
+                    <label
+                        for="lastName"
+                        class="control-label col-md-3"
+                        data-translate="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_modify_step1_last_name_label"
+                    ></label>
                     <div class="col-md-9">
-                        <input type="text" class="oui-input" id="lastName" max="64"
-                               data-ng-model="model.newAccount.lastName"
-                               data-ng-change="updateDisplayName()">
+                        <input
+                            type="text"
+                            class="oui-input"
+                            id="lastName"
+                            max="64"
+                            data-ng-model="model.newAccount.lastName"
+                            data-ng-change="updateDisplayName()"
+                        />
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="displayName" class="control-label col-md-3 required"
-                           data-translate="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_modify_step1_display_name_label"></label>
+                    <label
+                        for="displayName"
+                        class="control-label col-md-3 required"
+                        data-translate="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_modify_step1_display_name_label"
+                    ></label>
                     <div class="col-md-9">
-                        <input type="text" class="oui-input" id="displayName" required
-                               data-ng-model="model.newAccount.displayName"
-                               data-ng-change="updateDisplayNameFlag()">
+                        <input
+                            type="text"
+                            class="oui-input"
+                            id="displayName"
+                            required
+                            data-ng-model="model.newAccount.displayName"
+                            data-ng-change="updateDisplayNameFlag()"
+                        />
                     </div>
                 </div>
             </form>
 
             <div data-wizard-step-help>
-                <h3 data-translate="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_modify_step1_wizardhelp_requirements_title"></h3>
-                <p data-ng-bind-html="'emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_modify_step1_wizardhelp_requirements_content' | translate"></p>
+                <h3
+                    data-translate="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_modify_step1_wizardhelp_requirements_title"
+                ></h3>
+                <p
+                    data-ng-bind-html="'emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_modify_step1_wizardhelp_requirements_content' | translate"
+                ></p>
             </div>
         </div>
 
         <div data-wizard-step>
-            <p data-translate="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_modify_step2_question"></p>
+            <p
+                data-translate="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_modify_step2_question"
+            ></p>
             <dl class="dl-horizontal">
-                <dt data-translate="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_modify_step2_email_label"></dt>
+                <dt
+                    data-translate="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_modify_step2_email_label"
+                ></dt>
                 <dd data-ng-bind="model.newAccount.externalEmailAddress"></dd>
 
-                <dt data-ng-if="model.newAccount.firstName" data-translate="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_modify_step2_first_name_label"></dt>
-                <dd data-ng-if="model.newAccount.firstName" data-ng-bind="model.newAccount.firstName"></dd>
+                <dt
+                    data-ng-if="model.newAccount.firstName"
+                    data-translate="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_modify_step2_first_name_label"
+                ></dt>
+                <dd
+                    data-ng-if="model.newAccount.firstName"
+                    data-ng-bind="model.newAccount.firstName"
+                ></dd>
 
-                <dt data-ng-if="model.newAccount.lastName" data-translate="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_modify_step2_last_name_label"></dt>
-                <dd data-ng-if="model.newAccount.lastName" data-ng-bind="model.newAccount.lastName"></dd>
+                <dt
+                    data-ng-if="model.newAccount.lastName"
+                    data-translate="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_modify_step2_last_name_label"
+                ></dt>
+                <dd
+                    data-ng-if="model.newAccount.lastName"
+                    data-ng-bind="model.newAccount.lastName"
+                ></dd>
 
-                <dt data-ng-if="model.newAccount.displayName" data-translate="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_modify_step2_display_name_label"></dt>
-                <dd data-ng-if="model.newAccount.displayName" data-ng-bind="model.newAccount.displayName"></dd>
+                <dt
+                    data-ng-if="model.newAccount.displayName"
+                    data-translate="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_modify_step2_display_name_label"
+                ></dt>
+                <dd
+                    data-ng-if="model.newAccount.displayName"
+                    data-ng-bind="model.newAccount.displayName"
+                ></dd>
             </dl>
         </div>
-
     </div>
 </div>

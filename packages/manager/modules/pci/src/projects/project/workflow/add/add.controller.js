@@ -50,7 +50,10 @@ export default class {
 
   loadMessages() {
     this.CucCloudMessage.unSubscribe('pci.projects.project.workflow.new');
-    this.messageHandler = this.CucCloudMessage.subscribe('pci.projects.project.workflow.new', { onMessage: () => this.refreshMessages() });
+    this.messageHandler = this.CucCloudMessage.subscribe(
+      'pci.projects.project.workflow.new',
+      { onMessage: () => this.refreshMessages() },
+    );
   }
 
   refreshMessages() {
@@ -59,8 +62,10 @@ export default class {
 
   getPriceEstimation() {
     this.isLoadingPriceEstimate = true;
-    return this.PciProjectsProjectInstanceService
-      .getBackupPriceEstimation(this.projectId, this.workflow.resource)
+    return this.PciProjectsProjectInstanceService.getBackupPriceEstimation(
+      this.projectId,
+      this.workflow.resource,
+    )
       .then((price) => {
         this.price = price;
         return price;
@@ -82,9 +87,13 @@ export default class {
       workflow.maxExecutionCount = this.workflow.schedule.maxExecutionCount;
     }
     return this.createBackupWorkflow(workflow, this.workflow.resource.region)
-      .then(() => this.goToHomePage(
-        this.$translate.instant('pci_workflow_add_success', { workflowName: workflow.name }),
-      ))
+      .then(() =>
+        this.goToHomePage(
+          this.$translate.instant('pci_workflow_add_success', {
+            workflowName: workflow.name,
+          }),
+        ),
+      )
       .catch((error) => {
         this.CucCloudMessage.error(
           this.$translate.instant('pci_workflow_add_error', {
@@ -99,10 +108,13 @@ export default class {
   }
 
   createBackupWorkflow(workflow, regionName) {
-    return this.OvhApiCloudProjectRegionWorkflowBackup.v6().save({
-      serviceName: this.projectId,
-      regionName,
-    }, workflow).$promise;
+    return this.OvhApiCloudProjectRegionWorkflowBackup.v6().save(
+      {
+        serviceName: this.projectId,
+        regionName,
+      },
+      workflow,
+    ).$promise;
   }
 
   onResourceFocus() {

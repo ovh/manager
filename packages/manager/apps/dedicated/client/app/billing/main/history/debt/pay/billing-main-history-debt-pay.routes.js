@@ -3,7 +3,8 @@ angular.module('App').config(($stateProvider) => {
     url: '/debt/:debtId/pay',
     views: {
       modal: {
-        templateUrl: 'billing/main/history/debt/pay/billing-main-history-debt-pay.html',
+        templateUrl:
+          'billing/main/history/debt/pay/billing-main-history-debt-pay.html',
         controller: 'BillingHistoryDebtPayCtrl',
       },
     },

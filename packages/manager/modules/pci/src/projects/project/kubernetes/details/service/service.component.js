@@ -14,6 +14,7 @@ const component = {
     terminate: '<',
     updateCluster: '<',
     updatePolicy: '<',
+    isVersionSupported: '<',
   },
   template,
   controller,

@@ -1,3 +1,215 @@
+## [13.43.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.43.1...@ovh-ux/manager-web@13.43.2) (2020-01-28)
+
+
+### Bug Fixes
+
+* **web.hosting:** hide webcoach tab for non FR subsidiaries ([#2142](https://github.com/ovh/manager/issues/2142)) ([652e719](https://github.com/ovh/manager/commit/652e7193f9c2004682c2dcf718630d777768bb97))
+* **web.hosting.cdn:** use renew duration ([#2154](https://github.com/ovh/manager/issues/2154)) ([cd3a4e2](https://github.com/ovh/manager/commit/cd3a4e2856bfc03f0a22f7ec47b1a68dd3bb1d62))
+
+
+
+## [13.43.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.43.0...@ovh-ux/manager-web@13.43.1) (2020-01-24)
+
+
+### Bug Fixes
+
+* **web:** replace contracts component ([#2138](https://github.com/ovh/manager/issues/2138)) ([c693f0e](https://github.com/ovh/manager/commit/c693f0ec9e4396bf9288e9a247fffd5649fedeee))
+
+
+
+# [13.43.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.42.1...@ovh-ux/manager-web@13.43.0) (2020-01-24)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 238] ([735f36c](https://github.com/ovh/manager/commit/735f36c6ec36a4555e145d567360fb2fa4ad6b5d))
+* **i18n:** add missing translations [CDS 239] ([945cc74](https://github.com/ovh/manager/commit/945cc74a7c3d79e754f6ea9f8c2101ad92c22e07))
+* **i18n:** add missing translations [CDS 240] ([e4b2814](https://github.com/ovh/manager/commit/e4b281488457da54f57ad5f3ad8d6a27b88e8750))
+* **i18n:** add missing translations [CDS 241] ([c577f92](https://github.com/ovh/manager/commit/c577f9299a0b416514d375ebec0e62c5d817f864))
+
+
+### Features
+
+* **hosting.offer.upgrade:** display prorata ([#2110](https://github.com/ovh/manager/issues/2110)) ([aa1e5a5](https://github.com/ovh/manager/commit/aa1e5a5ddc7451d476b07ee2667621b2e1dd11d7))
+* **web:** migrate email activate to agora ([#1924](https://github.com/ovh/manager/issues/1924)) ([68cd438](https://github.com/ovh/manager/commit/68cd4380df2a8babb9ba37b1b584389dff31137c))
+* **web:** private sql upgrade prorata ([#2087](https://github.com/ovh/manager/issues/2087)) ([001ef60](https://github.com/ovh/manager/commit/001ef601a0041de0d61eb327c18d9853abc18eb9))
+* **web:** update private-sql activation ([#1991](https://github.com/ovh/manager/issues/1991)) ([2835c9c](https://github.com/ovh/manager/commit/2835c9c10cbd5dc4e4232389198810e53314b904))
+* **web.hosting.email:** extract translations ([#2128](https://github.com/ovh/manager/issues/2128)) ([6b4f8c6](https://github.com/ovh/manager/commit/6b4f8c6366e2ba92ecbc1cb3178ced04246b929d))
+
+
+
+## [13.42.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.42.0...@ovh-ux/manager-web@13.42.1) (2020-01-21)
+
+
+### Bug Fixes
+
+* **web.email-domain:** catch error if cart has been checked out ([#2121](https://github.com/ovh/manager/issues/2121)) ([b457c8d](https://github.com/ovh/manager/commit/b457c8d0b3c9eae77477acf59e714750fea7e3c9))
+
+
+
+# [13.42.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.41.1...@ovh-ux/manager-web@13.42.0) (2020-01-21)
+
+
+### Bug Fixes
+
+* **domain.webhosting:** display error message with details ([#2030](https://github.com/ovh/manager/issues/2030)) ([060c830](https://github.com/ovh/manager/commit/060c8303a1b622ccbde86a09d3c89edfb48fc846))
+* **i18n:** add missing translations [CDS 220] ([e5b9be8](https://github.com/ovh/manager/commit/e5b9be83f6b70484b15a958ab5bc0d00a6139574))
+* **i18n:** add missing translations [CDS 224] ([3e2d0b3](https://github.com/ovh/manager/commit/3e2d0b3c90e9f606a0d40b1d4c0bf488a7a12868))
+* **i18n:** add missing translations [CDS 226] ([0ad7334](https://github.com/ovh/manager/commit/0ad73342fe81919ab4b4ca56b1094ca53d9a716b))
+* **i18n:** add missing translations [CDS 228] ([6453173](https://github.com/ovh/manager/commit/64531732bead074ea0af10f6ad30e90347aa5188))
+* **i18n:** add missing translations [CDS 232] ([c2605d5](https://github.com/ovh/manager/commit/c2605d578d57eeebce38884d6616cc1ea8c20e52))
+* **i18n:** add missing translations [CDS 233] ([fbc8f75](https://github.com/ovh/manager/commit/fbc8f7510d7a7177f9f09f50edb89ea272181bb5))
+* **i18n:** add missing translations [CDS 234] ([14021eb](https://github.com/ovh/manager/commit/14021eb5273b4a6fb308b3f46a4eb72ddd5e2cf9))
+* **i18n:** add missing translations [CDS 237] ([67efde3](https://github.com/ovh/manager/commit/67efde34de434103585029f432c175db921d3772))
+
+
+### Features
+
+* **email:** email domain upgrade ([01a3640](https://github.com/ovh/manager/commit/01a3640d6d15b977ff8a5a7369459bdfcd47dbd3))
+* **hosting:** add boost offer action ([#2080](https://github.com/ovh/manager/issues/2080)) ([4185a04](https://github.com/ovh/manager/commit/4185a0411f95bc5d0ff7f2264f4c3d98f715104f))
+* **private.database:** add postgresql 12 label ([#2097](https://github.com/ovh/manager/issues/2097)) ([49dc013](https://github.com/ovh/manager/commit/49dc01350b1e43c38c9da9341977faa44b040062))
+* **web.catalog-price:** add option to pass non-ucents prices ([d50b1fc](https://github.com/ovh/manager/commit/d50b1fc5b7b6d503a1a8cf48309588a191adab24))
+* **web.email-domain:** update order funnel ([36dc579](https://github.com/ovh/manager/commit/36dc57951f061cc207c5180cc4281ddd61fb1b32))
+
+
+
+## [13.41.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.41.0...@ovh-ux/manager-web@13.41.1) (2020-01-20)
+
+
+### Bug Fixes
+
+* **web.components.order:** send api call params according to schema ([6473e97](https://github.com/ovh/manager/commit/6473e97db351489f190e451369ef4f8769dc51be))
+
+
+
+# [13.41.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.40.1...@ovh-ux/manager-web@13.41.0) (2020-01-16)
+
+
+### Features
+
+* **pci.projects.new:** revamp project creation ([b353f85](https://github.com/ovh/manager/commit/b353f8593e0038ec6a93eaf0511ceb805370b3aa))
+
+
+
+## [13.40.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.40.0...@ovh-ux/manager-web@13.40.1) (2020-01-08)
+
+
+### Bug Fixes
+
+* **web:** fix redirection to error page ([#2054](https://github.com/ovh/manager/issues/2054)) ([278f880](https://github.com/ovh/manager/commit/278f88093ebdc3c41dd34940f367197297788a3a))
+
+
+
+# [13.40.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.39.2...@ovh-ux/manager-web@13.40.0) (2020-01-08)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 200] ([203d3f0](https://github.com/ovh/manager/commit/203d3f0294981f9e3dcc79d9734d9dda38f168d6))
+* **i18n:** add missing translations [CDS 211] ([788d450](https://github.com/ovh/manager/commit/788d4509c296e6fc26c2817ab6668326c0f18a7c))
+* **i18n:** add missing translations [CDS 212] ([1f85592](https://github.com/ovh/manager/commit/1f8559205e170279929e29e4e52d8e255d688b3d))
+* **i18n:** add missing translations [CDS 214] ([4625fd2](https://github.com/ovh/manager/commit/4625fd28ba8402012f4a940a0669ec6674168b32))
+* **i18n:** add missing translations [CDS 217] ([8adccb0](https://github.com/ovh/manager/commit/8adccb0aee9ad8feb761101f7567953da8f1b73e))
+* **i18n:** add missing translations [CDS 218] ([0017718](https://github.com/ovh/manager/commit/0017718ac372db563f858ba8d0ef818528a9c7aa))
+
+
+### Features
+
+* **web.hosting:** add database hostname popover about ip ([2bf395c](https://github.com/ovh/manager/commit/2bf395c84f4da954d857b3a1ff52fb709bffb0a1))
+
+
+
+## [13.39.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.39.1...@ovh-ux/manager-web@13.39.2) (2020-01-08)
+
+
+### Bug Fixes
+
+* **web:** hosting tabs ([#2039](https://github.com/ovh/manager/issues/2039)) ([33b462e](https://github.com/ovh/manager/commit/33b462e725b86f689f3f81f78b50bab450c318b4))
+
+
+
+## [13.39.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.39.0...@ovh-ux/manager-web@13.39.1) (2019-12-24)
+
+
+### Bug Fixes
+
+* **web.private-db.clouddb:** fix translations ([fa6cb22](https://github.com/ovh/manager/commit/fa6cb22593808be314fe0d633228d51284f5c37c))
+
+
+### Reverts
+
+* Revert "feat(email): email domain upgrade" ([b64de72](https://github.com/ovh/manager/commit/b64de72f8c051bc95c018285f74cfdfa67c05812))
+* Revert "feat(web.email-domain): update order funnel" ([b1e3ec1](https://github.com/ovh/manager/commit/b1e3ec1473d41b1a595232088e4b41936af711ae))
+
+
+
+# [13.39.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.38.0...@ovh-ux/manager-web@13.39.0) (2019-12-20)
+
+
+### Features
+
+* **email:** email domain upgrade ([c4b998a](https://github.com/ovh/manager/commit/c4b998afd84b185de86fc78bb6e797547c9f9646))
+* **web.catalog-price:** use format depending on locale ([5971c74](https://github.com/ovh/manager/commit/5971c744a0fe160d5f0517ceb1aadd83bb3ecbc8))
+* **web.contracts:** add oui-field ([03a8c9e](https://github.com/ovh/manager/commit/03a8c9e8a722b7030709706234dfbf0d20d93589))
+* **web.email-domain:** update order funnel ([ff2a315](https://github.com/ovh/manager/commit/ff2a3159fa21086107a621e91bb61b8cfde5c08a))
+
+
+
+# [13.38.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.37.0...@ovh-ux/manager-web@13.38.0) (2019-12-19)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 198] ([1aefea2](https://github.com/ovh/manager/commit/1aefea2e3baf06b45e8187f1e6728d415d880314))
+
+
+### Features
+
+* **web.email-domain.upgrade:** extract translations ([#1999](https://github.com/ovh/manager/issues/1999)) ([9304787](https://github.com/ovh/manager/commit/93047871ca01c1413c42cd6386dd7cb6ae1f8300))
+
+
+
+# [13.37.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.36.2...@ovh-ux/manager-web@13.37.0) (2019-12-19)
+
+
+### Bug Fixes
+
+* **hosting:** add missing ng inject ([db22709](https://github.com/ovh/manager/commit/db22709db0ed62b19eb46207f8338ccf9b5f9867))
+* **hosting.database.order.private:** fix transations ([#1985](https://github.com/ovh/manager/issues/1985)) ([3d02708](https://github.com/ovh/manager/commit/3d027087c2830855ec69b2334a6264e59f0d9951))
+* **i18n:** add missing translations [CDS 184] ([6ec37b2](https://github.com/ovh/manager/commit/6ec37b2226218cecb94307abb01d88ffda824326))
+* **i18n:** add missing translations [CDS 187] ([707ec72](https://github.com/ovh/manager/commit/707ec724fe6852a0c5fa855bfb6911fef977df61))
+* **i18n:** add missing translations [CDS 193] ([9f4801a](https://github.com/ovh/manager/commit/9f4801a3ad577f6e3c9df4d400072237a4589a04))
+* **i18n:** add missing translations [CDS 194] ([b6c91ed](https://github.com/ovh/manager/commit/b6c91ed9d2a2dd86f20c31ac8fccdc8c72c40b3f))
+* **i18n:** add missing translations [CDS 195] ([7b63630](https://github.com/ovh/manager/commit/7b63630b213b9da1947fa6ccc36a290efa294a67))
+* **i18n:** add missing translations [CDS 196] ([acbb2da](https://github.com/ovh/manager/commit/acbb2da34b2d1c2863fd7c2f6cd187b67e065324))
+* rename OVH to OVHcloud in preloading and title ([35fc442](https://github.com/ovh/manager/commit/35fc4420850390e2ad80f322f6d23c87fb6a713a))
+
+
+### Features
+
+* **clouddb:** rework order cloud db feature ([04f3584](https://github.com/ovh/manager/commit/04f35842cf861f23d6f58045c5c9fc6e5a5c5123))
+* **domain:** add new webhosting order page ([b15723a](https://github.com/ovh/manager/commit/b15723a1473cc58e17acfe40773c4632d98be7b9))
+* **hosting.cdn.order:** update wizard modal to a page ([19e33d0](https://github.com/ovh/manager/commit/19e33d0fb544508bbc70d794d93deaa4b4a25b4f))
+* **hosting.cdn.order:** use orderCart api for ordering cdn ([9c8b1dd](https://github.com/ovh/manager/commit/9c8b1dd1922492415633eefe649b4b2b76b4205e))
+* **hosting.database.order-private:** prepare private database order ([9cbdc42](https://github.com/ovh/manager/commit/9cbdc420af41aac342aa31c6a4421f2b4aa01fa5))
+* **hosting.database.order-private:** use order cart api ([6827369](https://github.com/ovh/manager/commit/68273690a6d6820d19462eb5980346d403827148))
+* **server.sidebar:** add option to order cloud db ([00360b3](https://github.com/ovh/manager/commit/00360b3414382f2807566821b32e431d86aaedce))
+* **web:** add ovh payment method config ([e07ced9](https://github.com/ovh/manager/commit/e07ced985c4711f48be041ff5cf05360b1d41396))
+* **web:** add private sql activation translations ([#1984](https://github.com/ovh/manager/issues/1984)) ([f6cc947](https://github.com/ovh/manager/commit/f6cc94794e76d01003756483bbd89065f2bace19))
+* **web:** create order components ([e800a26](https://github.com/ovh/manager/commit/e800a26813ffd2bd9e84b710159ddcbc1a1ad0ed))
+* **web.email-domain:** add order translations ([#1990](https://github.com/ovh/manager/issues/1990)) ([00c4dc3](https://github.com/ovh/manager/commit/00c4dc30e914a64263023ef6e190d19e2e5f08d4))
+
+
+
+## [13.36.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.36.1...@ovh-ux/manager-web@13.36.2) (2019-12-18)
+
+
+### Bug Fixes
+
+* **web:** domain email delegation ([#1864](https://github.com/ovh/manager/issues/1864)) ([405dfe2](https://github.com/ovh/manager/commit/405dfe2ccc58795264df4facf31ce3e8d1e22d35))
+
+
+
 ## [13.36.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.36.0...@ovh-ux/manager-web@13.36.1) (2019-12-13)
 
 

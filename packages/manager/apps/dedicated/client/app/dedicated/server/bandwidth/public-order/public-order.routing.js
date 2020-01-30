@@ -5,21 +5,19 @@ export default /* @ngInject */ ($stateProvider) => {
     'app.dedicated.server.interfaces',
   ];
 
-  parentStates.forEach(
-    (parent) => {
-      $stateProvider.state(`${parent}.bandwidth-public-order`, {
-        url: '/bandwidth-public-order',
-        views: {
-          modal: {
-            component: 'dedicatedServerBandwidthPublicOrder',
-          },
+  parentStates.forEach((parent) => {
+    $stateProvider.state(`${parent}.bandwidth-public-order`, {
+      url: '/bandwidth-public-order',
+      views: {
+        modal: {
+          component: 'dedicatedServerBandwidthPublicOrder',
         },
-        layout: 'modal',
-        translations: { value: ['.'], format: 'json' },
-        resolve: {
-          goBack: /* @ngInject */ $state => () => $state.go('^'),
-        },
-      });
-    },
-  );
+      },
+      layout: 'modal',
+      translations: { value: ['.'], format: 'json' },
+      resolve: {
+        goBack: /* @ngInject */ ($state) => () => $state.go('^'),
+      },
+    });
+  });
 };

@@ -2,7 +2,14 @@ import angular from 'angular';
 
 export default class {
   /* @ngInject */
-  constructor($q, $stateParams, $timeout, $uibModalInstance, OvhApiSms, outgoingSms) {
+  constructor(
+    $q,
+    $stateParams,
+    $timeout,
+    $uibModalInstance,
+    OvhApiSms,
+    outgoingSms,
+  ) {
     this.$q = $q;
     this.$stateParams = $stateParams;
     this.$timeout = $timeout;
@@ -26,25 +33,30 @@ export default class {
   }
 
   /**
-     * Remove outgoing sms.
-     * @return {Promise}
-     */
+   * Remove outgoing sms.
+   * @return {Promise}
+   */
   remove() {
     this.loading.removeOutgoing = true;
-    return this.$q.all([
-      this.api.sms.outgoing.delete({
-        serviceName: this.$stateParams.serviceName,
-        id: this.model.outgoingSms.id,
-      }).$promise,
-      this.$timeout(angular.noop, 1000),
-    ]).then(() => {
-      this.loading.removeOutgoing = false;
-      this.removed = true;
-      return this.$timeout(() => this.close(), 1500);
-    }).catch(error => this.cancel({
-      type: 'API',
-      msg: error,
-    }));
+    return this.$q
+      .all([
+        this.api.sms.outgoing.delete({
+          serviceName: this.$stateParams.serviceName,
+          id: this.model.outgoingSms.id,
+        }).$promise,
+        this.$timeout(angular.noop, 1000),
+      ])
+      .then(() => {
+        this.loading.removeOutgoing = false;
+        this.removed = true;
+        return this.$timeout(() => this.close(), 1500);
+      })
+      .catch((error) =>
+        this.cancel({
+          type: 'API',
+          msg: error,
+        }),
+      );
   }
 
   cancel(message) {

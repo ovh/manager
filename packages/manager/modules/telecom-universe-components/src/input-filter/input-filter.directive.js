@@ -9,7 +9,7 @@
  *         return value.replace(/\w/g, "");
  *     };
  */
-export default /* @ngInject */ $parse => ({
+export default /* @ngInject */ ($parse) => ({
   require: 'ngModel',
   restrict: 'A',
   link(scope, elt, attrs, modelCtrl) {

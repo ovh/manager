@@ -6,7 +6,11 @@ import set from 'lodash/set';
 import upperFirst from 'lodash/upperFirst';
 
 import {
-  ALIGNMENT_URLS, COLUMNS_CONFIG, NIC_ALL, RENEW_URL, URL_PARAMETER_SEPARATOR,
+  ALIGNMENT_URLS,
+  COLUMNS_CONFIG,
+  NIC_ALL,
+  RENEW_URL,
+  URL_PARAMETER_SEPARATOR,
 } from './autorenew.constants';
 
 export default class AutorenewCtrl {
@@ -32,7 +36,9 @@ export default class AutorenewCtrl {
   }
 
   $onInit() {
-    this.ALIGNMENT_URL = this.coreConfig.isRegion('EU') ? ALIGNMENT_URLS[this.currentUser.ovhSubsidiary] || ALIGNMENT_URLS.FR : null;
+    this.ALIGNMENT_URL = this.coreConfig.isRegion('EU')
+      ? ALIGNMENT_URLS[this.currentUser.ovhSubsidiary] || ALIGNMENT_URLS.FR
+      : null;
 
     this.selectedServices = [];
 
@@ -61,24 +67,32 @@ export default class AutorenewCtrl {
       property,
       value,
       operator: 'is',
-      title: this.getCriterionTitle(property, get(this.filtersOptions, `${property}.values.${value}`)),
+      title: this.getCriterionTitle(
+        property,
+        get(this.filtersOptions, `${property}.values.${value}`),
+      ),
     }));
 
     this.parseExtraCriteria();
 
     if (this.sort.predicate) {
-      this.columnsConfig = map(
-        COLUMNS_CONFIG,
-        column => (column.property === this.sort.predicate ? ({
-          ...this.columnsConfig,
-          sortable: this.sort.reverse ? 'desc' : 'asc',
-        }) : column),
+      this.columnsConfig = map(COLUMNS_CONFIG, (column) =>
+        column.property === this.sort.predicate
+          ? {
+              ...this.columnsConfig,
+              sortable: this.sort.reverse ? 'desc' : 'asc',
+            }
+          : column,
       );
     }
   }
 
   getCriterionTitle(type, value) {
-    return `${this.$translate.instant(`billing_autorenew_criterion_${type}`)} ${this.$translate.instant('common_criteria_adder_operator_options_is')} ${value}`;
+    return `${this.$translate.instant(
+      `billing_autorenew_criterion_${type}`,
+    )} ${this.$translate.instant(
+      'common_criteria_adder_operator_options_is',
+    )} ${value}`;
   }
 
   parseExtraCriteria() {
@@ -87,7 +101,10 @@ export default class AutorenewCtrl {
         property: 'serviceType',
         operator: 'is',
         value: this.selectedType,
-        title: this.getCriterionTitle('serviceType', this.serviceTypes[this.selectedType]),
+        title: this.getCriterionTitle(
+          'serviceType',
+          this.serviceTypes[this.selectedType],
+        ),
       });
     }
 
@@ -102,22 +119,29 @@ export default class AutorenewCtrl {
   }
 
   getDatasToExport() {
-    const servicesToExport = (this.selectedServices.length === 0)
-      ? this.services
-      : this.selectedServices;
-    const datasToReturn = [[
-      this.$translate.instant('billing_autorenew_service_name'),
-      this.$translate.instant('billing_autorenew_service'),
-      this.$translate.instant('billing_autorenew_service_status'),
-      this.$translate.instant('billing_autorenew_service_date'),
-    ]];
+    const servicesToExport =
+      this.selectedServices.length === 0
+        ? this.services
+        : this.selectedServices;
+    const datasToReturn = [
+      [
+        this.$translate.instant('billing_autorenew_service_name'),
+        this.$translate.instant('billing_autorenew_service'),
+        this.$translate.instant('billing_autorenew_service_status'),
+        this.$translate.instant('billing_autorenew_service_date'),
+      ],
+    ];
 
     servicesToExport.forEach((service) => {
       datasToReturn.push([
         service.serviceId,
-        this.$translate.instant(`billing_autorenew_service_type_${service.serviceType}`),
+        this.$translate.instant(
+          `billing_autorenew_service_type_${service.serviceType}`,
+        ),
         service.renewLabel,
-        `${this.renewHelper.getRenewDateFormated(service)} ${this.$filter('date')(service.expiration, 'mediumDate')}`,
+        `${this.renewHelper.getRenewDateFormated(service)} ${this.$filter(
+          'date',
+        )(service.expiration, 'mediumDate')}`,
       ]);
     });
 
@@ -144,7 +168,11 @@ export default class AutorenewCtrl {
 
   loadServices() {
     if (get(this.ouiDatagridService, 'datagrids.services')) {
-      set(this.ouiDatagridService, 'datagrids.services.paging.offset', this.offset + 1);
+      set(
+        this.ouiDatagridService,
+        'datagrids.services.paging.offset',
+        this.offset + 1,
+      );
     }
 
     return this.$q.resolve({
@@ -165,16 +193,20 @@ export default class AutorenewCtrl {
   onCriteriaChange($criteria) {
     const selectedType = find($criteria, { property: 'serviceType' });
     const searchText = find($criteria, { property: null });
-    const filters = reduce($criteria, (criteria, { property, value }) => {
-      if (![null, 'serviceType'].includes(property)) {
-        return ({
-          ...criteria,
-          [property]: value,
-        });
-      }
+    const filters = reduce(
+      $criteria,
+      (criteria, { property, value }) => {
+        if (![null, 'serviceType'].includes(property)) {
+          return {
+            ...criteria,
+            [property]: value,
+          };
+        }
 
-      return criteria;
-    }, {});
+        return criteria;
+      },
+      {},
+    );
 
     this.onListParamChanges({
       filters: JSON.stringify(filters),
@@ -192,15 +224,15 @@ export default class AutorenewCtrl {
 
   onNicBillingChange(nicBilling) {
     this.onListParamChanges({
-      nicBilling: nicBilling === this.$translate.instant(NIC_ALL) ? null : nicBilling,
+      nicBilling:
+        nicBilling === this.$translate.instant(NIC_ALL) ? null : nicBilling,
     });
   }
 
   onAutoRenewChange(nicRenew) {
     this.nicRenewLoading = true;
 
-    this.BillingAutoRenew
-      .setNicRenew(nicRenew)
+    this.BillingAutoRenew.setNicRenew(nicRenew)
       .catch(({ message }) => {
         this.goToAutorenew(message, 'danger');
       })
@@ -219,9 +251,10 @@ export default class AutorenewCtrl {
 
   getAutomaticExpirationDate(service) {
     return upperFirst(
-      new Intl.DateTimeFormat(
-        this.$translate.use().replace('_', '-'), { year: 'numeric', month: 'long' },
-      ).format(new Date(service.expiration)),
+      new Intl.DateTimeFormat(this.$translate.use().replace('_', '-'), {
+        year: 'numeric',
+        month: 'long',
+      }).format(new Date(service.expiration)),
     );
   }
 }

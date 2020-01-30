@@ -833,5 +833,10 @@
   "domain_tab_options_delete_error": "Si è verificato un errore durante la disattivazione dell'opzione.",
   "domain_tab_options_delete_cancel": "Annulla",
   "domain_dashboard_options_dns_anycast_expiry": "Data di entrata in vigore: {{date}}",
-  "domain_tab_options_delete_expiry": "La disattivazione dell’opzione diventerà effettiva alla data di rinnovo, il {{ date }}."
+  "domain_tab_options_delete_expiry": "La disattivazione dell’opzione diventerà effettiva alla data di rinnovo, il {{ date }}.",
+  "domain_dashboard_web_hosting_ordered": "Hosting ordinati",
+  "domain_dashboard_web_hosting_ordered_none": "Nessun hosting ordinato",
+  "domain_dashboard_web_hosting_subdomains_and_multisites": "Sottodomini e multisito",
+  "domain_dashboard_web_hosting_subdomains_and_multisites_more": "Visualizza tutto",
+  "domain_dashboard_web_hosting_subdomains_and_multisites_none": "Nessun sottodominio o multisito"
 }

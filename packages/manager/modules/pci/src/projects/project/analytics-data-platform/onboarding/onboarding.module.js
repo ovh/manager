@@ -6,9 +6,7 @@ import routing from './onboarding.routing';
 const moduleName = 'ovhManagerAnalyticsDataPlatformOnboardingComponent';
 
 angular
-  .module(moduleName, [
-    'ui.router',
-  ])
+  .module(moduleName, ['ui.router'])
   .config(routing)
   .component('analyticsDataPlatformOnboardingComponent', onboardingComponent)
   .run(/* @ngTranslationsInject:json ./translations */);

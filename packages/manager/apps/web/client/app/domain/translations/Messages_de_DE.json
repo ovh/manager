@@ -40,7 +40,7 @@
   "domain_dashboard_whois_not_allowed": "Die für diese Domain zuständige Registry erlaubt nicht die Anzeige Ihrer persönlichen Daten",
   "domain_dashboard_whois_pending": "Dieser Dienst wird gerade erstellt. Bitte haben Sie einen Moment Geduld.",
   "domain_dashboard_whois_invalid_contact": "Nur der Administrator-Kontakt ist berechtigt, diese Aktion durchzuführen.",
-  "domain_dashboard_whois_error": "Es ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut.",
+  "domain_dashboard_whois_error": "Beim Laden der Informationen des WHOIS ist ein Fehler aufgetreten. Bitte versuchen Sie es später noch einmal.",
   "domain_dashboard_obfuscated_email": "Ersatz-E-Mail-Adressen",
   "domain_dashboard_obfuscated_email_regenerate_button": "Ersatz-E-Mails verwalten",
   "domain_dashboard_offer": "Angebot",
@@ -833,5 +833,10 @@
   "domain_tab_options_delete_error": "Bei der Kündigung der Option ist ein Fehler aufgetreten.",
   "domain_tab_options_delete_cancel": "Abbrechen",
   "domain_dashboard_options_dns_anycast_expiry": "Datum des Inkrafttretens: {{date}}",
-  "domain_tab_options_delete_expiry": "Die Kündigung der Option erfolgt zum Verlängerungsdatum, d. h. am {{date}}"
+  "domain_tab_options_delete_expiry": "Die Kündigung der Option erfolgt zum Verlängerungsdatum, d. h. am {{date}}",
+  "domain_dashboard_web_hosting_ordered": "Bestellten Hosting-Pakete",
+  "domain_dashboard_web_hosting_ordered_none": "Keine bestellten Hosting-Pakete",
+  "domain_dashboard_web_hosting_subdomains_and_multisites": "Sub-Domains und Multi-Site",
+  "domain_dashboard_web_hosting_subdomains_and_multisites_more": "Alle Anzeigen",
+  "domain_dashboard_web_hosting_subdomains_and_multisites_none": "Kein Subdomain oder Multisite"
 }

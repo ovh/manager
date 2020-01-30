@@ -37,7 +37,9 @@ angular.module('App').controller(
         })
         .catch((err) => {
           this.Alerter.alertFromSWS(
-            this.$translate.instant('hosting_configuration_tab_modules_create_step1_loading_error'),
+            this.$translate.instant(
+              'hosting_configuration_tab_modules_create_step1_loading_error',
+            ),
             get(err, 'data', err),
             this.$scope.alerts.main,
           );
@@ -59,12 +61,14 @@ angular.module('App').controller(
         forceRefresh,
       })
         .then((moduleIds) => {
-          this.modules = moduleIds.map(id => ({ id }));
+          this.modules = moduleIds.map((id) => ({ id }));
           return this.modules;
         })
         .catch((err) => {
           this.Alerter.alertFromSWS(
-            this.$translate.instant('hosting_configuration_tab_modules_create_step1_loading_error'),
+            this.$translate.instant(
+              'hosting_configuration_tab_modules_create_step1_loading_error',
+            ),
             err,
             this.$scope.alerts.main,
           );
@@ -78,15 +82,15 @@ angular.module('App').controller(
       ).then((originalModule) => {
         const module = clone(originalModule);
 
-        return this.HostingModule.getAvailableModule(module.moduleId).then((template) => {
-          module.template = template;
-          module.id = item.id;
-          module.href = `http://${module.targetUrl}`;
-          module.adminHref = `http://${module.targetUrl}/${
-            module.adminFolder
-          }`;
-          return module;
-        });
+        return this.HostingModule.getAvailableModule(module.moduleId).then(
+          (template) => {
+            module.template = template;
+            module.id = item.id;
+            module.href = `http://${module.targetUrl}`;
+            module.adminHref = `http://${module.targetUrl}/${module.adminFolder}`;
+            return module;
+          },
+        );
       });
     }
 

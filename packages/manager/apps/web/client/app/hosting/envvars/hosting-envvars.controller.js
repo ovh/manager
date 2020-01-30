@@ -31,7 +31,9 @@ angular.module('App').controller(
       this.envvars = [];
       this.maxEnvvars = 0;
 
-      this.$scope.$on(this.Hosting.events.tabEnvvarsRefresh, () => this.getIds());
+      this.$scope.$on(this.Hosting.events.tabEnvvarsRefresh, () =>
+        this.getIds(),
+      );
 
       return this.getIds().then(() => this.loadCapabilities());
     }
@@ -43,14 +45,17 @@ angular.module('App').controller(
       return this.HostingEnvvars.list(this.$stateParams.productId)
         .then((keys) => {
           if (!isArray(keys)) {
-            throw this.$translate.instant('hosting_tab_ENVVARS_list_error_temporary');
+            throw this.$translate.instant(
+              'hosting_tab_ENVVARS_list_error_temporary',
+            );
           }
 
-          this.envvars = keys.map(key => ({ key }));
+          this.envvars = keys.map((key) => ({ key }));
         })
         .catch((err) => {
           this.Alerter.error(
-            this.$translate.instant('hosting_tab_ENVVARS_list_error') + err.message,
+            this.$translate.instant('hosting_tab_ENVVARS_list_error') +
+              err.message,
             this.$scope.alerts.main,
           );
         })
@@ -64,12 +69,14 @@ angular.module('App').controller(
      * Load an environment variable given its key
      */
     getEnvvar(row) {
-      return this.HostingEnvvars.get(this.$stateParams.productId, row.key).then((envvar) => {
-        const formattedEnvar = clone(envvar);
-        formattedEnvar.loaded = true;
+      return this.HostingEnvvars.get(this.$stateParams.productId, row.key).then(
+        (envvar) => {
+          const formattedEnvar = clone(envvar);
+          formattedEnvar.loaded = true;
 
-        return envvar;
-      });
+          return envvar;
+        },
+      );
     }
 
     canAddEnvvar() {
@@ -82,7 +89,9 @@ angular.module('App').controller(
     loadCapabilities() {
       return this.Hosting.getSelected(this.$stateParams.productId)
         .then((hosting) => {
-          const offer = get(hosting, 'offer', '').toLowerCase().replace('_', '');
+          const offer = get(hosting, 'offer', '')
+            .toLowerCase()
+            .replace('_', '');
 
           return this.Hosting.getOfferCapabilities(offer);
         })

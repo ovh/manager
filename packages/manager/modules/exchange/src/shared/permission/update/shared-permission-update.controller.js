@@ -50,7 +50,8 @@ export default class ExchangeUpdatePublicFolderPermissionCtrl {
     this.isLoading = false;
     this.searchValue = null;
 
-    $scope.retrievingPermissions = (count, offset) => this.retrievingPermissions(count, offset);
+    $scope.retrievingPermissions = (count, offset) =>
+      this.retrievingPermissions(count, offset);
     $scope.getCurrentPermissions = () => this.permissions.current;
     $scope.getIsLoading = () => this.isLoading;
     $scope.hasBufferChanged = () => this.hasBufferChanged();
@@ -83,7 +84,9 @@ export default class ExchangeUpdatePublicFolderPermissionCtrl {
       .catch((failure) => {
         this.services.navigation.resetAction();
         this.services.messaging.writeError(
-          this.services.$translate.instant('exchange_tab_SHARED_all_error_message'),
+          this.services.$translate.instant(
+            'exchange_tab_SHARED_all_error_message',
+          ),
           failure,
         );
       })
@@ -94,10 +97,12 @@ export default class ExchangeUpdatePublicFolderPermissionCtrl {
 
   mapPermissionToArray() {
     if (
-      !has(this.permissions, 'current.list.results')
-      || this.permissions.current.list.results == null
+      !has(this.permissions, 'current.list.results') ||
+      this.permissions.current.list.results == null
     ) {
-      throw new Error('mapPermissionToArray() can only be used once the permission retrieved from the server');
+      throw new Error(
+        'mapPermissionToArray() can only be used once the permission retrieved from the server',
+      );
     }
 
     this.permissions.selectedPermissions = mapValues(
@@ -105,11 +110,11 @@ export default class ExchangeUpdatePublicFolderPermissionCtrl {
       () => [],
     );
     this.permissions.ids = this.permissions.current.list.results.map(
-      permission => permission.accessRights,
+      (permission) => permission.accessRights,
     );
     this.permissions.former.list.results.forEach((permission) => {
       const account = keys(this.permissions.changes).find(
-        accountName => accountName === permission.primaryAddressDisplayName,
+        (accountName) => accountName === permission.primaryAddressDisplayName,
       );
 
       if (account == null) {
@@ -130,21 +135,27 @@ export default class ExchangeUpdatePublicFolderPermissionCtrl {
   // STATE 0 : "ALL" -> "None"
   // STATE 1 : "None" -> "All"
   // STATE 2 : "Partial" -> "ALL"
-  /* eslint-disable no-fallthrough */
   onCheckboxStateClick(state, permission) {
     forEach(this.permissions.current.list.results, (account) => {
       switch (state) {
         // "All" -> "None"
         case 0:
-          this.changeAccountAndPermission(account.primaryAddressDisplayName, null);
+          this.changeAccountAndPermission(
+            account.primaryAddressDisplayName,
+            null,
+          );
           break;
 
         // "None" -> "All"
         case 1:
 
         // "Partial" -> "All"
+        // eslint-disable-next-line no-fallthrough
         case 2:
-          this.changeAccountAndPermission(account.primaryAddressDisplayName, permission);
+          this.changeAccountAndPermission(
+            account.primaryAddressDisplayName,
+            permission,
+          );
           break;
 
         default:
@@ -152,7 +163,6 @@ export default class ExchangeUpdatePublicFolderPermissionCtrl {
       }
     });
   }
-  /* eslint-enable no-fallthrough */
 
   onSinglePermissionChange(id, permissionName) {
     this.changeAccountAndPermission(id, permissionName);
@@ -165,7 +175,7 @@ export default class ExchangeUpdatePublicFolderPermissionCtrl {
 
     if (updateAccounts) {
       const formerPermission = this.permissions.former.list.results.find(
-        formerPerm => formerPerm.primaryAddressDisplayName === accountName,
+        (formerPerm) => formerPerm.primaryAddressDisplayName === accountName,
       );
       const formerPermissionName = this.getPermissionName(formerPermission);
       const newPermissionName = this.getPermissionName(permission);
@@ -178,16 +188,18 @@ export default class ExchangeUpdatePublicFolderPermissionCtrl {
     }
   }
 
-  /* eslint-disable class-methods-use-this */
+  // eslint-disable-next-line class-methods-use-this
   getPermissionName(permission) {
-    return has(permission, 'accessRights') ? permission.accessRights : permission;
+    return has(permission, 'accessRights')
+      ? permission.accessRights
+      : permission;
   }
-  /* eslint-enable class-methods-use-this */
 
   updateAccountPermission(accountName, permission) {
     const permissionName = this.getPermissionName(permission);
     const matchingAccount = this.permissions.current.list.results.find(
-      currentAccount => currentAccount.primaryAddressDisplayName === accountName,
+      (currentAccount) =>
+        currentAccount.primaryAddressDisplayName === accountName,
     );
 
     if (matchingAccount != null) {
@@ -202,20 +214,25 @@ export default class ExchangeUpdatePublicFolderPermissionCtrl {
       this.permissions.selectedPermissions[
         previousPermissionName
       ] = this.permissions.selectedPermissions[previousPermissionName].filter(
-        currentAccountName => currentAccountName !== accountName,
+        (currentAccountName) => currentAccountName !== accountName,
       );
     }
 
     const formerPermission = this.permissions.former.list.results.find(
-      formerPerm => formerPerm.primaryAddressDisplayName === accountName,
+      (formerPerm) => formerPerm.primaryAddressDisplayName === accountName,
     );
     const formerPermissionName = this.getPermissionName(formerPermission);
 
-    if (includes(this.permissions.selectedPermissions[formerPermissionName], accountName)) {
+    if (
+      includes(
+        this.permissions.selectedPermissions[formerPermissionName],
+        accountName,
+      )
+    ) {
       this.permissions.selectedPermissions[
         formerPermissionName
       ] = this.permissions.selectedPermissions[formerPermissionName].filter(
-        currentAccountName => currentAccountName !== accountName,
+        (currentAccountName) => currentAccountName !== accountName,
       );
     }
   }
@@ -229,20 +246,24 @@ export default class ExchangeUpdatePublicFolderPermissionCtrl {
   }
 
   hasBufferChanged() {
-    const allPermissionAreSelected = !values(this.permissions.changes).includes(null);
+    const allPermissionAreSelected = !values(this.permissions.changes).includes(
+      null,
+    );
     return !isEmpty(this.permissions.changes) && allPermissionAreSelected;
   }
 
   getOperationType(accountName) {
     const former = this.permissions.former.list.results.find(
-      formerPermission => formerPermission.primaryAddressDisplayName === accountName,
+      (formerPermission) =>
+        formerPermission.primaryAddressDisplayName === accountName,
     );
     if (former.accessRights === 'DEFAULT') {
       return 'POST';
     }
 
     const current = this.permissions.current.list.results.find(
-      formerPermission => formerPermission.primaryAddressDisplayName === accountName,
+      (formerPermission) =>
+        formerPermission.primaryAddressDisplayName === accountName,
     );
     if (current.accessRights === 'DEFAULT') {
       return 'DELETE';
@@ -262,7 +283,8 @@ export default class ExchangeUpdatePublicFolderPermissionCtrl {
     forEach(Object.keys(this.permissions.changes), (accountName) => {
       const newPermission = this.permissions.changes[accountName];
       const former = this.permissions.former.list.results.find(
-        formerPermission => formerPermission.primaryAddressDisplayName === accountName,
+        (formerPermission) =>
+          formerPermission.primaryAddressDisplayName === accountName,
       );
 
       model.push({

@@ -10,8 +10,11 @@ export default class EnterpriseCloudDatabaseServiceDetailsCtrl {
 
   $onInit() {
     this.loadMessages();
-    this.rulesCount = reduce(this.securityGroups,
-      (rulesCount, securityGroup) => rulesCount + securityGroup.rulesCount, 0);
+    this.rulesCount = reduce(
+      this.securityGroups,
+      (rulesCount, securityGroup) => rulesCount + securityGroup.rulesCount,
+      0,
+    );
   }
 
   refreshMessage() {
@@ -19,7 +22,9 @@ export default class EnterpriseCloudDatabaseServiceDetailsCtrl {
   }
 
   loadMessages() {
-    this.CucCloudMessage.unSubscribe('enterprise-cloud-database.service.details');
+    this.CucCloudMessage.unSubscribe(
+      'enterprise-cloud-database.service.details',
+    );
     this.messageHandler = this.CucCloudMessage.subscribe(
       'enterprise-cloud-database.service.details',
       { onMessage: () => this.refreshMessage() },

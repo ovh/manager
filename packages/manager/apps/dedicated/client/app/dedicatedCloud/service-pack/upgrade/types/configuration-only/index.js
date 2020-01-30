@@ -5,9 +5,7 @@ import { registerState } from './configuration-only.routing';
 const moduleName = 'ovhManagerPccServicePackUpgradeConfigurationOnly';
 
 angular
-  .module(moduleName, [
-    ...steps,
-  ])
+  .module(moduleName, [...steps])
   .config(registerState)
   .run(/* @ngTranslationsInject:json ./translations */);
 

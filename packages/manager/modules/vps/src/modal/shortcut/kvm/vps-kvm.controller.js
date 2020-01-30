@@ -1,7 +1,15 @@
 export default class VpsKvmCtrl {
   /* @ngInject */
-  constructor($sce, $translate, $uibModalInstance, CucControllerHelper, CucCloudMessage, noVNC,
-    serviceName, VpsService) {
+  constructor(
+    $sce,
+    $translate,
+    $uibModalInstance,
+    CucControllerHelper,
+    CucCloudMessage,
+    noVNC,
+    serviceName,
+    VpsService,
+  ) {
     this.$sce = $sce;
     this.$translate = $translate;
     this.$uibModalInstance = $uibModalInstance;
@@ -25,20 +33,32 @@ export default class VpsKvmCtrl {
 
   kvmUrl() {
     this.kvmUrlLoader = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () => this.VpsService.getKVMConsoleUrl(this.serviceName)
-        .then((data) => {
-          this.consoleUrl = this.$sce.trustAsResourceUrl(data);
-        })
-        .catch(() => this.CucCloudMessage.error(this.$translate.instant('vps_configuration_kvm_fail'))),
+      loaderFunction: () =>
+        this.VpsService.getKVMConsoleUrl(this.serviceName)
+          .then((data) => {
+            this.consoleUrl = this.$sce.trustAsResourceUrl(data);
+          })
+          .catch(() =>
+            this.CucCloudMessage.error(
+              this.$translate.instant('vps_configuration_kvm_fail'),
+            ),
+          ),
     });
     return this.kvmUrlLoader.load();
   }
 
   loadKvm() {
     this.kvmLoader = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () => this.VpsService.getKVMAccess(this.serviceName)
-        .then((data) => { this.kvm = data; })
-        .catch(() => this.CucCloudMessage.error(this.$translate.instant('vps_configuration_kvm_fail'))),
+      loaderFunction: () =>
+        this.VpsService.getKVMAccess(this.serviceName)
+          .then((data) => {
+            this.kvm = data;
+          })
+          .catch(() =>
+            this.CucCloudMessage.error(
+              this.$translate.instant('vps_configuration_kvm_fail'),
+            ),
+          ),
     });
     return this.kvmLoader.load();
   }

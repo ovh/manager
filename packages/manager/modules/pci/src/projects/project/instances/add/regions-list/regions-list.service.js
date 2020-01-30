@@ -17,15 +17,29 @@ export default class {
   }
 
   getRegions(serviceName) {
-    return this.OvhApiCloudProjectRegion.v6().query({ serviceName }).$promise
-      .then(regions => this.$q.all({
-        quota: this.OvhApiCloudProjectQuota.v6().query({ serviceName }).$promise,
-        regions: this.$q.all(regions
-          .map(region => this.OvhApiCloudProjectRegion
-            .v6().get({ serviceName, id: region }).$promise)),
-      }))
-      .then(({ quota, regions }) => regions
-        .map(region => ({ ...region, quota: find(quota, { region: region.name }) })));
+    return this.OvhApiCloudProjectRegion.v6()
+      .query({ serviceName })
+      .$promise.then((regions) =>
+        this.$q.all({
+          quota: this.OvhApiCloudProjectQuota.v6().query({ serviceName })
+            .$promise,
+          regions: this.$q.all(
+            regions.map(
+              (region) =>
+                this.OvhApiCloudProjectRegion.v6().get({
+                  serviceName,
+                  id: region,
+                }).$promise,
+            ),
+          ),
+        }),
+      )
+      .then(({ quota, regions }) =>
+        regions.map((region) => ({
+          ...region,
+          quota: find(quota, { region: region.name }),
+        })),
+      );
   }
 
   groupByContinentAndDatacenterLocation(regions) {
@@ -36,7 +50,9 @@ export default class {
         [continent]: groupBy(regionByContinent, 'macroRegion.text'),
       }),
       {
-        [this.$translate.instant('pci_project_regions_list_continent_all')]: groupBy(regions, 'macroRegion.text'),
+        [this.$translate.instant(
+          'pci_project_regions_list_continent_all',
+        )]: groupBy(regions, 'macroRegion.text'),
       },
     );
   }

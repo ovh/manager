@@ -14,10 +14,7 @@ import './addPhonebookContact/telecom-sms-sms-compose-addPhonebookContact.less';
 const moduleName = 'ovhManagerSmsSmsCompose';
 
 angular
-  .module(moduleName, [
-    'ngOvhTelecomUniverseComponents',
-    'ui.router',
-  ])
+  .module(moduleName, ['ngOvhTelecomUniverseComponents', 'ui.router'])
   .component(componentName, component)
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */);

@@ -34,14 +34,12 @@ export const OptionsService = class OptionsService {
     computedPendingOrder,
     currentServicePackName,
   ) {
-    const matchingServicePack = find(
-      allServicePacks,
-      {
-        name: (
-          computedPendingOrder.exists && computedPendingOrder.nameOfServicePackBeforeOrder
-        ) || currentServicePackName,
-      },
-    );
+    const matchingServicePack = find(allServicePacks, {
+      name:
+        (computedPendingOrder.exists &&
+          computedPendingOrder.nameOfServicePackBeforeOrder) ||
+        currentServicePackName,
+    });
 
     if (computedPendingOrder.isInitialOrder) {
       matchingServicePack.certification = { exists: false };
@@ -56,18 +54,23 @@ export const OptionsService = class OptionsService {
     orderedServicePackName,
   ) {
     // all service packs are orderable except the current one
-    const orderableServicePacks = reject(
-      allServicePacks,
-      { name: currentServicePackName },
-    );
+    const orderableServicePacks = reject(allServicePacks, {
+      name: currentServicePackName,
+    });
 
     return {
       withACertification: reject(
-        filter(orderableServicePacks, servicePack => servicePack.certification.exists),
+        filter(
+          orderableServicePacks,
+          (servicePack) => servicePack.certification.exists,
+        ),
         { name: orderedServicePackName },
       ),
       withOnlyBasicOptions: reject(
-        filter(orderableServicePacks, servicePack => !servicePack.certification.exists),
+        filter(
+          orderableServicePacks,
+          (servicePack) => !servicePack.certification.exists,
+        ),
         { name: orderedServicePackName },
       ),
     };
@@ -78,16 +81,14 @@ export const OptionsService = class OptionsService {
     pendingOrder,
     currentOrFutureServicePack,
   ) {
-    const matchingServicePackName = (pendingOrder && pendingOrder.orderedServicePackName)
-      || (
-        currentOrFutureServicePack.state !== DELIVERY_STATUS.ACTIVE
-        && currentOrFutureServicePack.name
-      );
+    const matchingServicePackName =
+      (pendingOrder && pendingOrder.orderedServicePackName) ||
+      (currentOrFutureServicePack.state !== DELIVERY_STATUS.ACTIVE &&
+        currentOrFutureServicePack.name);
 
-    const matchingServicePack = find(
-      allServicePacks,
-      { name: matchingServicePackName },
-    );
+    const matchingServicePack = find(allServicePacks, {
+      name: matchingServicePackName,
+    });
 
     const exists = matchingServicePack != null;
 
@@ -98,66 +99,56 @@ export const OptionsService = class OptionsService {
         ...(exists && matchingServicePack.certification),
         exists: exists && matchingServicePack.certification.exists,
       },
-      mustBeConfigured: currentOrFutureServicePack.state === DELIVERY_STATUS.WAITING_FOR_CUSTOMER,
+      mustBeConfigured:
+        currentOrFutureServicePack.state ===
+        DELIVERY_STATUS.WAITING_FOR_CUSTOMER,
     };
   }
 
   static computeOptionsBasic() {
-    return filter(
-      OPTIONS,
-      option => option.type === OPTION_TYPES.basic,
-    );
+    return filter(OPTIONS, (option) => option.type === OPTION_TYPES.basic);
   }
 
   getPendingOrder(serviceName) {
-    return this
-      .ovhManagerPccDashboardOptionsOrderService
-      .getServicePackOrder(serviceName);
+    return this.ovhManagerPccDashboardOptionsOrderService.getServicePackOrder(
+      serviceName,
+    );
   }
 
   getCurrentOrFutureServicePack(serviceName) {
-    this
-      .OvhApiDedicatedCloud
-      .v6()
-      .resetCache();
+    this.OvhApiDedicatedCloud.v6().resetCache();
 
-    return this
-      .OvhApiDedicatedCloud
-      .v6()
-      .servicePack({ serviceName }).$promise;
+    return this.OvhApiDedicatedCloud.v6().servicePack({ serviceName }).$promise;
   }
 
   getServicePacks(serviceName, ovhSubsidiary) {
-    return this
-      .ovhManagerPccServicePackService
-      .getServicePacksForDashboardOptions(serviceName, ovhSubsidiary);
+    return this.ovhManagerPccServicePackService.getServicePacksForDashboardOptions(
+      serviceName,
+      ovhSubsidiary,
+    );
   }
 
   getInitialData(serviceName, ovhSubsidiary, currentServicePackName) {
-    return this
-      .$q
-      .when(this
-        .getPendingOrder(serviceName)
-        .then(pendingOrder => (moment(pendingOrder.expirationDate).isBefore(moment())
-          ? this
-            .ovhManagerPccDashboardOptionsOrderService
-            .deleteServicePackOrder(serviceName)
-          : null)))
-      .then(() => this
-        .$q
-        .all({
-          pendingOrder: this
-            .getPendingOrder(serviceName),
-          currentOrFutureServicePack: this
-            .getCurrentOrFutureServicePack(serviceName),
-          servicePacks: this
-            .getServicePacks(serviceName, ovhSubsidiary),
-        }))
-      .then(({
-        pendingOrder,
-        currentOrFutureServicePack,
-        servicePacks,
-      }) => {
+    return this.$q
+      .when(
+        this.getPendingOrder(serviceName).then((pendingOrder) =>
+          moment(pendingOrder.expirationDate).isBefore(moment())
+            ? this.ovhManagerPccDashboardOptionsOrderService.deleteServicePackOrder(
+                serviceName,
+              )
+            : null,
+        ),
+      )
+      .then(() =>
+        this.$q.all({
+          pendingOrder: this.getPendingOrder(serviceName),
+          currentOrFutureServicePack: this.getCurrentOrFutureServicePack(
+            serviceName,
+          ),
+          servicePacks: this.getServicePacks(serviceName, ovhSubsidiary),
+        }),
+      )
+      .then(({ pendingOrder, currentOrFutureServicePack, servicePacks }) => {
         const model = {
           options: {},
           pendingOrder: OptionsService.computePendingOrder(
@@ -186,51 +177,56 @@ export const OptionsService = class OptionsService {
         model.servicePacks.orderable = OptionsService.computeServicePacksOrderable(
           servicePacks,
           model.servicePacks.current.name,
-          model.pendingOrder.exists && model.pendingOrder.orderedServicePackName,
+          model.pendingOrder.exists &&
+            model.pendingOrder.orderedServicePackName,
         );
 
         if (!model.pendingOrder.exists) {
-          this
-            .ovhManagerPccDashboardOptionsOrderService
-            .deleteServicePackOrder(serviceName);
+          this.ovhManagerPccDashboardOptionsOrderService.deleteServicePackOrder(
+            serviceName,
+          );
         }
 
         return model;
       });
   }
 
-  static computePendingOrder(
-    pendingOrder,
-    currentOrFutureServicePack,
-  ) {
-    const exists = OptionsService
-      .computePendingOrderExists(currentOrFutureServicePack, pendingOrder);
+  static computePendingOrder(pendingOrder, currentOrFutureServicePack) {
+    const exists = OptionsService.computePendingOrderExists(
+      currentOrFutureServicePack,
+      pendingOrder,
+    );
 
     return {
       ...pendingOrder,
       exists,
       isInError: currentOrFutureServicePack.state === DELIVERY_STATUS.ERROR,
       isInitialOrder: !pendingOrder.exists && exists,
-      needsConfiguration: OptionsService
-        .computePendingOrderNeedsConfiguration(currentOrFutureServicePack),
-      orderedServicePackName: exists && (
-        pendingOrder.orderedServicePackName || currentOrFutureServicePack.name
+      needsConfiguration: OptionsService.computePendingOrderNeedsConfiguration(
+        currentOrFutureServicePack,
       ),
+      orderedServicePackName:
+        exists &&
+        (pendingOrder.orderedServicePackName ||
+          currentOrFutureServicePack.name),
     };
   }
 
   static computePendingOrderExists(currentOrFutureServicePack, pendingOrder) {
-    return currentOrFutureServicePack.state !== DELIVERY_STATUS.ACTIVE
+    return (
+      currentOrFutureServicePack.state !== DELIVERY_STATUS.ACTIVE ||
       // tasks can take up to 5 minutes to be created
-      || (pendingOrder.exists && (
-        pendingOrder.status === ORDER_STATUS.notPaid
-        || moment().isBefore(moment(pendingOrder.date).add(5, 'minutes')))
-      );
+      (pendingOrder.exists &&
+        (pendingOrder.status === ORDER_STATUS.notPaid ||
+          moment().isBefore(moment(pendingOrder.date).add(5, 'minutes'))))
+    );
   }
 
   // user ordered through funnel and arrsived before task creation
   static computePendingOrderNeedsConfiguration(currentOrFutureServicePack) {
-    return currentOrFutureServicePack.state === DELIVERY_STATUS.WAITING_FOR_CUSTOMER;
+    return (
+      currentOrFutureServicePack.state === DELIVERY_STATUS.WAITING_FOR_CUSTOMER
+    );
   }
 };
 

@@ -1,101 +1,114 @@
 <div class="actions-menu-inner">
-
     <div class="actions-menu-pages">
-
         <div class="actions-menu-page main-page">
-
             <ul class="actions-list list-unstyled clearfix p-0 m-0">
                 <!-- KICK -->
                 <li class="actions-list-item">
-                    <button class="actions-menu-item-link btn btn-link d-block w-100"
-                            type="button"
-                            data-ng-click="$ctrl.kickParticipant(participant); $ctrl.manageSound = false;">
-
+                    <button
+                        class="actions-menu-item-link btn btn-link d-block w-100"
+                        type="button"
+                        data-ng-click="$ctrl.kickParticipant(participant); $ctrl.manageSound = false;"
+                    >
                         <span class="d-inline-block item-icon">
-                            <i class="ovh-font ovh-font-forbidUser" aria-hidden="true"></i>
+                            <i
+                                class="ovh-font ovh-font-forbidUser"
+                                aria-hidden="true"
+                            ></i>
                         </span>
 
-                        <span class="d-block item-title"
-                              data-translate="telephony_number_feature_conference_participants_actions_kick">
+                        <span
+                            class="d-block item-title"
+                            data-translate="telephony_number_feature_conference_participants_actions_kick"
+                        >
                         </span>
-
                     </button>
-                </li> <!-- KICK -->
+                </li>
+                <!-- KICK -->
 
                 <!-- DEAF / UNDEAF -->
                 <li class="actions-list-item">
-                    <button class="actions-menu-item-link d-block w-100"
-                            type="button"
-                            data-ng-click="$ctrl.toggleDeafParticipant(participant); $ctrl.manageSound = false;">
-
+                    <button
+                        class="actions-menu-item-link d-block w-100"
+                        type="button"
+                        data-ng-click="$ctrl.toggleDeafParticipant(participant); $ctrl.manageSound = false;"
+                    >
                         <span class="d-inline-block item-icon">
-                            <i class="ovh-font"
-                               aria-hidden="true"
-                               data-ng-class="{
+                            <i
+                                class="ovh-font"
+                                aria-hidden="true"
+                                data-ng-class="{
                                    'ovh-font-speaker': participant.hear,
                                    'ovh-font-noneSpeaker': !participant.hear
-                               }">
+                               }"
+                            >
                             </i>
                         </span>
 
-                        <span class="d-block item-title"
-                              data-translate="telephony_number_feature_conference_participants_actions_deaf">
+                        <span
+                            class="d-block item-title"
+                            data-translate="telephony_number_feature_conference_participants_actions_deaf"
+                        >
                         </span>
-
                     </button>
-                </li> <!-- DEAF / UNDEAF -->
+                </li>
+                <!-- DEAF / UNDEAF -->
 
                 <!-- SOUND -->
                 <li class="actions-list-item">
-                    <button class="actions-menu-item-link btn btn-link d-block w-100"
-                            type="button"
-                            data-ng-click="$ctrl.manageSound = true;">
-
+                    <button
+                        class="actions-menu-item-link btn btn-link d-block w-100"
+                        type="button"
+                        data-ng-click="$ctrl.manageSound = true;"
+                    >
                         <span class="d-inline-block item-icon">
-                            <i class="ovh-font ovh-font-microphone" aria-hidden="true"></i>
+                            <i
+                                class="ovh-font ovh-font-microphone"
+                                aria-hidden="true"
+                            ></i>
                         </span>
 
-                        <span class="d-block item-title"
-                              data-translate="telephony_number_feature_conference_participants_actions_sound">
+                        <span
+                            class="d-block item-title"
+                            data-translate="telephony_number_feature_conference_participants_actions_sound"
+                        >
                         </span>
-
                     </button>
-                </li> <!-- SOUND -->
+                </li>
+                <!-- SOUND -->
             </ul>
 
-            <footer class="bottom-action"
-                    data-ng-show="$ctrl.manageSound">
-
+            <footer class="bottom-action" data-ng-show="$ctrl.manageSound">
                 <div class="confirm-inner clearfix">
-
                     <div class="mb-3">
-                        <label data-translate="telephony_number_feature_conference_participants_actions_sound_label"></label>
-                        <oui-numeric data-model="participant.energyEquivalence"
-                                              min="0"
-                                              max="4">
+                        <label
+                            data-translate="telephony_number_feature_conference_participants_actions_sound_label"
+                        ></label>
+                        <oui-numeric
+                            data-model="participant.energyEquivalence"
+                            min="0"
+                            max="4"
+                        >
                         </oui-numeric>
                     </div>
 
                     <div class="button-container">
-                        <button type="button"
-                                class="btn btn-primary float-right ml-2"
-                                data-ng-click="$ctrl.manageSoundParticipant(participant); $ctrl.manageSound = false;">
+                        <button
+                            type="button"
+                            class="btn btn-primary float-right ml-2"
+                            data-ng-click="$ctrl.manageSoundParticipant(participant); $ctrl.manageSound = false;"
+                        >
                             <span data-translate="submit"></span>
                         </button>
 
-                        <button type="button"
-                                class="btn btn-default float-right"
-                                data-ng-click="$ctrl.manageSound = false;"
-                                data-translate="cancel">
-                        </button>
+                        <button
+                            type="button"
+                            class="btn btn-default float-right"
+                            data-ng-click="$ctrl.manageSound = false;"
+                            data-translate="cancel"
+                        ></button>
                     </div>
-
                 </div>
-
             </footer>
-
         </div>
-
     </div>
-
 </div>

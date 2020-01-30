@@ -18,6 +18,7 @@
   "privateDatabase_dashboard_version_postgresql_96": "PostgreSQL 9.6 ",
   "privateDatabase_dashboard_version_postgresql_10": "PostgreSQL 10",
   "privateDatabase_dashboard_version_postgresql_11": "PostgreSQL 11",
+  "privateDatabase_dashboard_version_postgresql_12": "PostgreSQL 12",
   "privateDatabase_dashboard_version_mongodb_34": "MongoDB 3.4",
   "privateDatabase_dashboard_version_redis_32": "Redis 3.2",
   "privateDatabase_dashboard_version_mongodb_40": "MongoDB 4.0",
@@ -553,5 +554,6 @@
   "privateDatabase_tabs_list_extensions_disable_success": "Die Erweiterung wurde erfolgreich deaktiviert.",
   "privateDatabase_tabs_list_extensions_disable_error": "Bei der Deaktivierung der Erweiterung ist ein Fehler aufgetreten.",
   "privateDatabase_dashboard_datacenter_gra2": "Gravelines 2",
-  "privateDatabase_order_datacenter_gra2": "Gravelines 2"
+  "privateDatabase_order_datacenter_gra2": "Gravelines 2",
+  "privateDatabase_dashboard_hostname_tooltip": "Bitte verwenden Sie den bereitgestellten Hostnamen, um eine Verbindung zu Ihrer Instanz herzustellen, da sich die damit verbundene IP-Adresse im Laufe der Zeit ändern kann."
 }

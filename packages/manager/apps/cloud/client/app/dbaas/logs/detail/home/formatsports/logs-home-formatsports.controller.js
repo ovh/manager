@@ -6,13 +6,15 @@ class LogsHomeFormatsportsCtrl {
   }
 
   /**
-     * Closes the info pop-up
-     *
-     * @memberof LogsHomeFormatsportsCtrl
-     */
+   * Closes the info pop-up
+   *
+   * @memberof LogsHomeFormatsportsCtrl
+   */
   cancel() {
     this.$uibModalInstance.dismiss();
   }
 }
 
-angular.module('managerApp').controller('LogsHomeFormatsportsCtrl', LogsHomeFormatsportsCtrl);
+angular
+  .module('managerApp')
+  .controller('LogsHomeFormatsportsCtrl', LogsHomeFormatsportsCtrl);

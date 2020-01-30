@@ -1,18 +1,25 @@
 <div data-ng-controller="EmailProRemoveAccountCtrl as ctrl">
-    <div data-wizard
-         data-wizard-on-cancel="resetAction"
-         data-wizard-on-finish="removeAccount"
-         data-wizard-title="'emailpro_tab_account_reset_account' | translate">
-
+    <div
+        data-wizard
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="removeAccount"
+        data-wizard-title="'emailpro_tab_account_reset_account' | translate"
+    >
         <div data-wizard-step>
-            <p data-translate="{{ exchange.billingPlan + '_tab_account_reset_title' }}"></p>
+            <p
+                data-translate="{{ exchange.billingPlan + '_tab_account_reset_title' }}"
+            ></p>
             <dl class="dl-horizontal">
-                <dt data-translate="emailpro_tab_account_reset_account_label"></dt>
+                <dt
+                    data-translate="emailpro_tab_account_reset_account_label"
+                ></dt>
                 <dd data-ng-bind="ctrl.account.primaryEmailDisplayName"></dd>
             </dl>
-            <div class="alert alert-info" role="alert"
-                 data-translate="{{ exchange.billingPlan + '_tab_account_reset_account_info' }}">
-            </div>
+            <div
+                class="alert alert-info"
+                role="alert"
+                data-translate="{{ exchange.billingPlan + '_tab_account_reset_account_info' }}"
+            ></div>
         </div>
     </div>
 </div>

@@ -23,18 +23,25 @@ angular
   ])
   .directive('tucOvhPassword', tucOvhPasswordDirective)
   .directive('tucOvhPasswordStrengthBar', tucOvhPasswordStrengthBarDirective)
-  .directive('tucOvhPasswordStrengthCheck', tucOvhPasswordStrengthCheckDirective)
-  .config(/* @ngInject */($ovhpopoverProvider) => {
-    angular.extend($ovhpopoverProvider.defaults, {
-      animation: 'flat-fade',
-    });
-  })
+  .directive(
+    'tucOvhPasswordStrengthCheck',
+    tucOvhPasswordStrengthCheckDirective,
+  )
+  .config(
+    /* @ngInject */ ($ovhpopoverProvider) => {
+      angular.extend($ovhpopoverProvider.defaults, {
+        animation: 'flat-fade',
+      });
+    },
+  )
   .run(/* @ngTranslationsInject:json ./translations */)
-  .run(/* @ngInject */ ($templateCache) => {
-    $templateCache.put(
-      'telecomUniverseComponents/ovh-password/strength/check/ovh-password-strength-check.html',
-      tucOvhPasswordStrengthCheckTemplate,
-    );
-  });
+  .run(
+    /* @ngInject */ ($templateCache) => {
+      $templateCache.put(
+        'telecomUniverseComponents/ovh-password/strength/check/ovh-password-strength-check.html',
+        tucOvhPasswordStrengthCheckTemplate,
+      );
+    },
+  );
 
 export default moduleName;

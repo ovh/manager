@@ -1,17 +1,33 @@
 <dl class="cda-dl cda-detail-component">
     <dt data-translate="cda_detail_billing_state"></dt>
     <dd>
-        <i data-ng-if="$ctrl.detail.state === 'ACTIVE'" class="glyphicon glyphicon-ok-circle cda-status-ok"></i>
-        <span class="text-capitalize" data-ng-bind="$ctrl.detail.state | lowercase"></span>
+        <i
+            data-ng-if="$ctrl.detail.state === 'ACTIVE'"
+            class="glyphicon glyphicon-ok-circle cda-status-ok"
+        ></i>
+        <span
+            class="text-capitalize"
+            data-ng-bind="$ctrl.detail.state | lowercase"
+        ></span>
     </dd>
 
     <dt data-translate="cda_detail_crush_tunables"></dt>
-    <dd class="text-capitalize" data-ng-bind="$ctrl.detail.crushTunables | lowercase"></dd>
+    <dd
+        class="text-capitalize"
+        data-ng-bind="$ctrl.detail.crushTunables | lowercase"
+    ></dd>
 
     <dt data-translate="cda_detail_status"></dt>
     <dd>
-        <i data-ng-if="$ctrl.detail.status === 'INSTALLED'" class="glyphicon glyphicon-ok-circle cda-status-ok"></i>
-        <span data-translate="{{ 'cda_detail_status_label_' + $ctrl.detail.status }}"></span>
+        <i
+            data-ng-if="$ctrl.detail.status === 'INSTALLED'"
+            class="glyphicon glyphicon-ok-circle cda-status-ok"
+        ></i>
+        <span
+            data-translate="{{
+                'cda_detail_status_label_' + $ctrl.detail.status
+            }}"
+        ></span>
     </dd>
 
     <dt data-translate="cda_detail_service_name"></dt>
@@ -24,7 +40,7 @@
     <dt data-translate="cda_detail_size"></dt>
     <dd>
         <span data-ng-bind="$ctrl.detail.size | bytes:2:false:'TB'"></span>
-    </dd> 
+    </dd>
 
     <dt data-translate="cda_detail_region"></dt>
     <dd data-ng-bind="$ctrl.detail.region"></dd>
@@ -34,20 +50,29 @@
     <dd data-ng-if="$ctrl.detail.cephMons.length > 0">
         <div data-ng-if="!$ctrl.accordions.monitor" class="cda-monitor">
             <span data-ng-bind="$ctrl.detail.cephMons[0]"></span>
-            <button type="button"
-                    class="no-style pull-right"
-                    data-ng-click="$ctrl.accordions.monitor = !$ctrl.accordions.monitor"
-                    data-ng-if="$ctrl.detail.cephMons.length > 1">
-                    <i class="glyphicon glyphicon-chevron-down"></i>
+            <button
+                type="button"
+                class="no-style pull-right"
+                data-ng-click="$ctrl.accordions.monitor = !$ctrl.accordions.monitor"
+                data-ng-if="$ctrl.detail.cephMons.length > 1"
+            >
+                <i class="glyphicon glyphicon-chevron-down"></i>
             </button>
         </div>
-        <ul class="left-space-p16 cda-monitor" data-ng-if="$ctrl.accordions.monitor">
-            <button type="button"
-                    class="no-style pull-right"
-                    data-ng-click="$ctrl.accordions.monitor = !$ctrl.accordions.monitor">
-                    <i class="glyphicon glyphicon-chevron-up"></i>
+        <ul
+            class="left-space-p16 cda-monitor"
+            data-ng-if="$ctrl.accordions.monitor"
+        >
+            <button
+                type="button"
+                class="no-style pull-right"
+                data-ng-click="$ctrl.accordions.monitor = !$ctrl.accordions.monitor"
+            >
+                <i class="glyphicon glyphicon-chevron-up"></i>
             </button>
-            <li data-ng-repeat="monitor in $ctrl.detail.cephMons track by monitor">
+            <li
+                data-ng-repeat="monitor in $ctrl.detail.cephMons track by monitor"
+            >
                 <span data-ng-bind="monitor"></span>
             </li>
         </ul>

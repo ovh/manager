@@ -25,7 +25,11 @@ export default class CucVrackService {
   }
 
   static getGroupedServiceTypes() {
-    return ['dedicatedCloudDatacenter', 'dedicatedCloud', 'dedicatedServerInterface'];
+    return [
+      'dedicatedCloudDatacenter',
+      'dedicatedCloud',
+      'dedicatedServerInterface',
+    ];
   }
 
   isGroupedServiceType(serviceType) {
@@ -34,13 +38,15 @@ export default class CucVrackService {
 
   getVracks() {
     this.OvhApiVrack.Aapi().resetCache();
-    return this.OvhApiVrack.Aapi().query().$promise.then((vracks) => {
-      map(vracks, (vrack) => {
-        set(vrack, 'serviceName', vrack.id);
-        set(vrack, 'displayName', vrack.name || vrack.id);
+    return this.OvhApiVrack.Aapi()
+      .query()
+      .$promise.then((vracks) => {
+        map(vracks, (vrack) => {
+          set(vrack, 'serviceName', vrack.id);
+          set(vrack, 'displayName', vrack.name || vrack.id);
+        });
+        return vracks;
       });
-      return vracks;
-    });
   }
 
   getOrderUrl() {
@@ -64,20 +70,26 @@ export default class CucVrackService {
   }
 
   selectVrack() {
-    return this.$q.all({
-      orderUrl: this.getOrderUrl(),
-      vracks: this.getVracks(),
-    })
-      .then(data => this.selectVrackModal(data.vracks, data.orderUrl));
+    return this.$q
+      .all({
+        orderUrl: this.getOrderUrl(),
+        vracks: this.getVracks(),
+      })
+      .then((data) => this.selectVrackModal(data.vracks, data.orderUrl));
   }
 
   linkCloudProjectToVrack(selectedVrack, projectId) {
-    return this.OvhApiVrack.CloudProject().v6().create({
-      serviceName: selectedVrack,
-    }, {
-      project: projectId,
-    }).$promise
-      .then(vrackTask => vrackTask.data.id);
+    return this.OvhApiVrack.CloudProject()
+      .v6()
+      .create(
+        {
+          serviceName: selectedVrack,
+        },
+        {
+          project: projectId,
+        },
+      )
+      .$promise.then((vrackTask) => vrackTask.data.id);
   }
 
   createNewVrack(serviceName) {
@@ -85,7 +97,8 @@ export default class CucVrackService {
   }
 
   getOperation(serviceName, operationId) {
-    return this.OvhApiCloudProjectV6.getOperation({ serviceName, operationId }).$promise;
+    return this.OvhApiCloudProjectV6.getOperation({ serviceName, operationId })
+      .$promise;
   }
 
   listOperations(serviceName) {
@@ -95,17 +108,25 @@ export default class CucVrackService {
   unlinkVrackModal(text) {
     return this.CucControllerHelper.modal.showConfirmationModal({
       submitButtonText: this.$translate.instant('cuc_vrack_deactivate'),
-      titleText: this.$translate.instant('cuc_vrack_private_network_deactivate'),
-      text: text || this.$translate.instant('cuc_vrack_private_network_deactivate_confirmation'),
+      titleText: this.$translate.instant(
+        'cuc_vrack_private_network_deactivate',
+      ),
+      text:
+        text ||
+        this.$translate.instant(
+          'cuc_vrack_private_network_deactivate_confirmation',
+        ),
     });
   }
 
   unlinkCloudProjectFromVrack(selectedVrack, projectId) {
-    return this.OvhApiVrack.CloudProject().v6().delete({
-      serviceName: selectedVrack,
-      project: projectId,
-    }).$promise
-      .then(vrackTask => vrackTask.data.id);
+    return this.OvhApiVrack.CloudProject()
+      .v6()
+      .delete({
+        serviceName: selectedVrack,
+        project: projectId,
+      })
+      .$promise.then((vrackTask) => vrackTask.data.id);
   }
 
   getTask(serviceName, taskId) {

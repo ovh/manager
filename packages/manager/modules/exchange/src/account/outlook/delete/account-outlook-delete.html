@@ -3,20 +3,24 @@
         data-wizard
         data-wizard-on-cancel="resetAction"
         data-wizard-on-finish="delete"
-        data-wizard-title="'exchange_accounts_outlook_delete_title' | translate">
-
+        data-wizard-title="'exchange_accounts_outlook_delete_title' | translate"
+    >
         <div data-wizard-step>
             <p data-translate="exchange_accounts_outlook_delete_intro"></p>
             <dl class="dl-horizontal">
-                <dt data-translate="exchange_tab_account_remove_email_label"></dt>
+                <dt
+                    data-translate="exchange_tab_account_remove_email_label"
+                ></dt>
                 <dd
                     class="text-truncate "
-                    data-ng-bind="$ctrl.account.primaryEmailDisplayName"></dd>
+                    data-ng-bind="$ctrl.account.primaryEmailDisplayName"
+                ></dd>
             </dl>
             <div
                 class="alert alert-warning mt-4"
                 role="alert"
-                data-translate="exchange_accounts_outlook_delete_note"></div>
+                data-translate="exchange_accounts_outlook_delete_note"
+            ></div>
         </div>
     </div>
 </div>

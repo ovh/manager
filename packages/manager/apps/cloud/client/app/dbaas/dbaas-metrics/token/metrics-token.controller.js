@@ -1,6 +1,13 @@
 (() => {
   class MetricsTokenCtrl {
-    constructor($scope, $stateParams, $translate, CucControllerHelper, MetricService, ovhDocUrl) {
+    constructor(
+      $scope,
+      $stateParams,
+      $translate,
+      CucControllerHelper,
+      MetricService,
+      ovhDocUrl,
+    ) {
       this.scope = $scope;
       this.$stateParams = $stateParams;
       this.serviceName = $stateParams.serviceName;
@@ -19,11 +26,10 @@
 
     getTokens(serviceName) {
       this.loading = true;
-      this.MetricService.getTokens(serviceName)
-        .then((data) => {
-          this.tokens = data.filter(token => token.isRevoked === false);
-          this.loading = false;
-        });
+      this.MetricService.getTokens(serviceName).then((data) => {
+        this.tokens = data.filter((token) => token.isRevoked === false);
+        this.loading = false;
+      });
     }
 
     getGuides() {
@@ -37,7 +43,8 @@
     showPreview(tokenID) {
       this.CucControllerHelper.modal.showModal({
         modalConfig: {
-          templateUrl: 'app/dbaas/dbaas-metrics/token/preview/metrics-token-preview.html',
+          templateUrl:
+            'app/dbaas/dbaas-metrics/token/preview/metrics-token-preview.html',
           controller: 'MetricsTokenPreviewCtrl',
           controllerAs: '$ctrl',
           resolve: {
@@ -51,7 +58,8 @@
     edit(tokenID, desc) {
       this.CucControllerHelper.modal.showModal({
         modalConfig: {
-          templateUrl: 'app/dbaas/dbaas-metrics/token/edit/metrics-token-edit.html',
+          templateUrl:
+            'app/dbaas/dbaas-metrics/token/edit/metrics-token-edit.html',
           controller: 'MetricsTokenEditCtrl',
           controllerAs: '$ctrl',
           resolve: {
@@ -68,7 +76,8 @@
     delete(tokenID) {
       this.CucControllerHelper.modal.showModal({
         modalConfig: {
-          templateUrl: 'app/dbaas/dbaas-metrics/token/delete/metrics-token-delete.html',
+          templateUrl:
+            'app/dbaas/dbaas-metrics/token/delete/metrics-token-delete.html',
           controller: 'MetricsTokenDeleteCtrl',
           controllerAs: '$ctrl',
           backdrop: 'static',

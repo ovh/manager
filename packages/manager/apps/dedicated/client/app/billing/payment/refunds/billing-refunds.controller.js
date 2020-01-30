@@ -1,4 +1,5 @@
-angular.module('Billing.controllers')
+angular
+  .module('Billing.controllers')
   .controller('Billing.controllers.Refunds', function BillingRefundsController(
     $scope,
     BillingRefunds,
@@ -35,7 +36,15 @@ angular.module('Billing.controllers')
             result = moment(a[predicate]) - moment(b[predicate]);
             break;
           case 'paymentType':
-            result = $translate.instant(`common_payment_type_${a[predicate]}${a.paymentIdentifier}`).localeCompare($translate.instant(`common_payment_type_${b[predicate]}${b.paymentIdentifier}`));
+            result = $translate
+              .instant(
+                `common_payment_type_${a[predicate]}${a.paymentIdentifier}`,
+              )
+              .localeCompare(
+                $translate.instant(
+                  `common_payment_type_${b[predicate]}${b.paymentIdentifier}`,
+                ),
+              );
             break;
           case 'priceWithTax':
             result = a[predicate].value - b[predicate].value;
@@ -84,13 +93,18 @@ angular.module('Billing.controllers')
           $scope.refundsLoading = false;
 
           angular.forEach(refunds.list.results, (historyLine) => {
-            if ($scope.paymentType.values.indexOf(historyLine.paymentType) === -1) {
+            if (
+              $scope.paymentType.values.indexOf(historyLine.paymentType) === -1
+            ) {
               $scope.paymentType.values.push(historyLine.paymentType);
             }
           });
         })
         .catch((err) => {
-          $scope.setMessage($translate.instant('ovhAccount_renew_step2_error'), err.data);
+          $scope.setMessage(
+            $translate.instant('ovhAccount_renew_step2_error'),
+            err.data,
+          );
         });
     };
 

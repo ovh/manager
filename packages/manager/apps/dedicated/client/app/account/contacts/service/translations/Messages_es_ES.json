@@ -34,6 +34,6 @@
   "account_contacts_service_category_PACK_SIP_TRUNK": "Packs SIP Trunk",
   "account_contacts_service_contact_admin": "Contacto administrador",
   "account_contacts_service_contact_tech": "Contacto técnico ",
-  "account_contacts_service_contact_billing": "Contacto de facturación:",
+  "account_contacts_service_contact_billing": "Contacto de facturación",
   "account_contacts_service_infos": "Puede cambiar las cuentas del contacto administrador, técnico y de facturación de sus servicios."
 }

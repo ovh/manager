@@ -3,12 +3,7 @@ import { MESSAGE_CONTAINER } from '../details.constants';
 
 export default class EnterpriseCloudDatabaseServiceDetailsRestoredInstancesCtrl {
   /* @ngInject */
-  constructor(
-    $scope,
-    $state,
-    CucCloudMessage,
-    enterpriseCloudDatabaseService,
-  ) {
+  constructor($scope, $state, CucCloudMessage, enterpriseCloudDatabaseService) {
     this.$scope = $scope;
     this.$state = $state;
     this.CucCloudMessage = CucCloudMessage;
@@ -21,8 +16,13 @@ export default class EnterpriseCloudDatabaseServiceDetailsRestoredInstancesCtrl 
   }
 
   loadMessages() {
-    this.CucCloudMessage.unSubscribe('enterprise-cloud-database.service.details.restored-instances');
-    this.messageHandler = this.CucCloudMessage.subscribe('enterprise-cloud-database', { onMessage: () => this.refreshMessages() });
+    this.CucCloudMessage.unSubscribe(
+      'enterprise-cloud-database.service.details.restored-instances',
+    );
+    this.messageHandler = this.CucCloudMessage.subscribe(
+      'enterprise-cloud-database',
+      { onMessage: () => this.refreshMessages() },
+    );
   }
 
   refreshMessages() {
@@ -30,7 +30,8 @@ export default class EnterpriseCloudDatabaseServiceDetailsRestoredInstancesCtrl 
   }
 
   loadDetails(backupId) {
-    return this.service.getBackupDetails(this.clusterId, backupId)
-      .then(res => assign({ backupDetails: res }));
+    return this.service
+      .getBackupDetails(this.clusterId, backupId)
+      .then((res) => assign({ backupDetails: res }));
   }
 }

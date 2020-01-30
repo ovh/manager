@@ -11,12 +11,35 @@ angular.module('App').config(($stateProvider) => {
     controllerAs: 'ctrlEmailDomain',
     reloadOnSearch: false,
     resolve: {
+      serviceName: /* @ngInject */ ($transition$) =>
+        $transition$.params().productId,
+      goToEmailDomain: /* @ngInject */ (
+        $state,
+        $timeout,
+        Alerter,
+        serviceName,
+      ) => (message = false, type = 'success') => {
+        const promise = $state.go('app.email.domain', {
+          productId: serviceName,
+        });
+
+        if (message) {
+          promise.then(() =>
+            $timeout(() =>
+              Alerter.set(`alert-${type}`, message, null, 'domain_alert_main'),
+            ),
+          );
+        }
+
+        return promise;
+      },
       currentSection: () => 'email_domain',
       navigationInformations: [
         'Navigator',
         '$rootScope',
         (Navigator, $rootScope) => {
-          $rootScope.currentSectionInformation = 'email_domain'; // eslint-disable-line no-param-reassign
+          // eslint-disable-next-line no-param-reassign
+          $rootScope.currentSectionInformation = 'email_domain';
           return Navigator.setNavigationInformation({
             leftMenuVisible: true,
             configurationSelected: true,
@@ -24,18 +47,27 @@ angular.module('App').config(($stateProvider) => {
         },
       ],
     },
-    redirectTo: trans => trans.injector().getAsync('WucEmails').then(WucEmails => WucEmails.getDomain(trans.params().productId).then((data) => {
-      if (data.migratedMXPlanServiceName) {
-        return {
-          state: 'app.email.mxplan',
-          params: {
-            productId: data.migratedMXPlanServiceName,
-          },
-        };
-      }
-      return null;
-    })),
-    translations: { value: ['../email', '../hosting', '../mailing-list'], format: 'json' },
+    redirectTo: (trans) =>
+      trans
+        .injector()
+        .getAsync('WucEmails')
+        .then((WucEmails) =>
+          WucEmails.getDomain(trans.params().productId).then((data) => {
+            if (data.migratedMXPlanServiceName) {
+              return {
+                state: 'app.email.mxplan',
+                params: {
+                  productId: data.migratedMXPlanServiceName,
+                },
+              };
+            }
+            return null;
+          }),
+        ),
+    translations: {
+      value: ['../email', '../hosting', '../mailing-list'],
+      format: 'json',
+    },
   });
 
   $stateProvider.state('app.email.delegate', {
@@ -50,7 +82,8 @@ angular.module('App').config(($stateProvider) => {
         'Navigator',
         '$rootScope',
         (Navigator, $rootScope) => {
-          $rootScope.currentSectionInformation = 'email_delegate'; // eslint-disable-line no-param-reassign
+          // eslint-disable-next-line no-param-reassign
+          $rootScope.currentSectionInformation = 'email_delegate';
           return Navigator.setNavigationInformation({
             leftMenuVisible: true,
             configurationSelected: true,
@@ -59,29 +92,5 @@ angular.module('App').config(($stateProvider) => {
       ],
     },
     translations: { value: ['../email'], format: 'json' },
-  });
-
-  $stateProvider.state('app.mx-plan', {
-    url: '/configuration/mx_plan?domain',
-    templateUrl: 'email-domain/order/email-domain-order.html',
-    controller: 'MXPlanOrderCtrl',
-    controllerAs: 'ctrlMXPlanOrder',
-    params: {
-      domain: null,
-    },
-    resolve: {
-      navigationInformations: [
-        'Navigator',
-        '$rootScope',
-        (Navigator, $rootScope) => {
-          $rootScope.currentSectionInformation = 'mxPlan'; // eslint-disable-line no-param-reassign
-          return Navigator.setNavigationInformation({
-            leftMenuVisible: true,
-            configurationSelected: true,
-          });
-        },
-      ],
-    },
-    translations: { value: ['../mx-plan'], format: 'json' },
   });
 });

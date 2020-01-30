@@ -3,16 +3,14 @@
         data-wizard
         data-wizard-on-cancel="resetAction"
         data-wizard-on-finish="create"
-        data-wizard-title="'hosting_tab_RUNTIMES_create_title' | translate">
-
-        <div
-            data-wizard-step
-            data-wizard-step-valid="isValid()">
-
+        data-wizard-title="'hosting_tab_RUNTIMES_create_title' | translate"
+    >
+        <div data-wizard-step data-wizard-step-valid="isValid()">
             <form
                 class="form-horizontal"
                 name="addRuntimeForm"
-                data-ng-if="!ctrl.loading">
+                data-ng-if="!ctrl.loading"
+            >
                 <p>
                     <small class="text-danger">*</small>
                     <small data-translate="required_fields"></small>
@@ -22,53 +20,110 @@
                     <label
                         class="control-label col-md-4 required"
                         for="runtimeName"
-                        data-translate="hosting_tab_RUNTIMES_label_name"></label>
+                        data-translate="hosting_tab_RUNTIMES_label_name"
+                    ></label>
 
                     <div class="col-md-6">
-                        <input type="text" class="form-control" id="runtimeName" data-ng-model="ctrl.entryToCreate.name">
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="runtimeName"
+                            data-ng-model="ctrl.entryToCreate.name"
+                        />
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="control-label col-md-4 required" for="runtimeType" data-translate="hosting_tab_RUNTIMES_label_type"></label>
+                    <label
+                        class="control-label col-md-4 required"
+                        for="runtimeType"
+                        data-translate="hosting_tab_RUNTIMES_label_type"
+                    ></label>
 
                     <div class="col-md-8">
                         <div class="oui-select oui-select_inline mb-0">
-                            <select class="oui-select__input" id="runtimeType" data-ng-model="ctrl.entryToCreate.type" data-ng-options="type for type in ctrl.availableTypes" required></select>
-                            <span class="oui-icon oui-icon-chevron-down" aria-hidden="true"></span>
+                            <select
+                                class="oui-select__input"
+                                id="runtimeType"
+                                data-ng-model="ctrl.entryToCreate.type"
+                                data-ng-options="type for type in ctrl.availableTypes"
+                                required
+                            ></select>
+                            <span
+                                class="oui-icon oui-icon-chevron-down"
+                                aria-hidden="true"
+                            ></span>
                         </div>
                     </div>
                 </div>
 
-                <div data-ng-if="ctrl.entryToCreate.type.length && !ctrl.entryToCreate.type.includes(ctrl.HOSTING_RUNTIME.PHP)">
+                <div
+                    data-ng-if="ctrl.entryToCreate.type.length && !ctrl.entryToCreate.type.includes(ctrl.HOSTING_RUNTIME.PHP)"
+                >
                     <div class="form-group">
-                        <label class="control-label col-md-4 required" for="runtimePublicDir" data-translate="hosting_tab_RUNTIMES_label_publicDir"></label>
+                        <label
+                            class="control-label col-md-4 required"
+                            for="runtimePublicDir"
+                            data-translate="hosting_tab_RUNTIMES_label_publicDir"
+                        ></label>
 
                         <div class="col-md-6">
-                            <input type="text" class="form-control" id="runtimePublicDir" data-ng-model="ctrl.entryToCreate.publicDir">
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="runtimePublicDir"
+                                data-ng-model="ctrl.entryToCreate.publicDir"
+                            />
                         </div>
 
-                        <span class="fa fa-info-circle m-2" data-oui-tooltip="{{:: 'hosting_tab_RUNTIMES_publicDir_help' | translate  }}"></span>
+                        <span
+                            class="fa fa-info-circle m-2"
+                            data-oui-tooltip="{{:: 'hosting_tab_RUNTIMES_publicDir_help' | translate  }}"
+                        ></span>
                     </div>
 
                     <div class="form-group">
-                        <label class="control-label col-md-4 required" for="runtimeAppEnv" data-translate="hosting_tab_RUNTIMES_label_appEnv"></label>
+                        <label
+                            class="control-label col-md-4 required"
+                            for="runtimeAppEnv"
+                            data-translate="hosting_tab_RUNTIMES_label_appEnv"
+                        ></label>
 
                         <div class="col-md-6">
-                            <input type="text" class="form-control" id="runtimeAppEnv" data-ng-model="ctrl.entryToCreate.appEnv">
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="runtimeAppEnv"
+                                data-ng-model="ctrl.entryToCreate.appEnv"
+                            />
                         </div>
 
-                        <span class="fa fa-info-circle m-2" data-oui-tooltip="{{:: 'hosting_tab_RUNTIMES_appEnv_help' | translate }}"></span>
+                        <span
+                            class="fa fa-info-circle m-2"
+                            data-oui-tooltip="{{:: 'hosting_tab_RUNTIMES_appEnv_help' | translate }}"
+                        ></span>
                     </div>
 
                     <div class="form-group">
-                        <label class="control-label col-md-4 required" for="runtimeAppBootstrap" data-translate="hosting_tab_RUNTIMES_label_appBootstrap"></label>
+                        <label
+                            class="control-label col-md-4 required"
+                            for="runtimeAppBootstrap"
+                            data-translate="hosting_tab_RUNTIMES_label_appBootstrap"
+                        ></label>
 
                         <div class="col-md-6">
-                            <input type="text" class="form-control" id="runtimeAppBootstrap" data-ng-model="ctrl.entryToCreate.appBootstrap">
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="runtimeAppBootstrap"
+                                data-ng-model="ctrl.entryToCreate.appBootstrap"
+                            />
                         </div>
 
-                        <span class="fa fa-info-circle m-2" data-oui-tooltip="{{:: 'hosting_tab_RUNTIMES_appBootstrap_help' | translate }}"></span>
+                        <span
+                            class="fa fa-info-circle m-2"
+                            data-oui-tooltip="{{:: 'hosting_tab_RUNTIMES_appBootstrap_help' | translate }}"
+                        ></span>
                     </div>
                 </div>
             </form>

@@ -1,31 +1,44 @@
 <div data-ng-controller="HostingFtpGenerateSnapshotCtrl as ctrl">
-    <div data-wizard
-         data-wizard-on-cancel="resetAction"
-         data-wizard-on-finish="generateSnapshot"
-         data-wizard-title="'hosting_tab_FTP_configuration_generate_snapshot_title' | translate">
-
-        <div data-wizard-step="data-wizard-step"
-             data-wizard-step-valid="ctrl.isStep1Valid()">
-
-            <p data-translate="hosting_tab_FTP_configuration_generate_password_step1_question"></p>
+    <div
+        data-wizard
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="generateSnapshot"
+        data-wizard-title="'hosting_tab_FTP_configuration_generate_snapshot_title' | translate"
+    >
+        <div
+            data-wizard-step="data-wizard-step"
+            data-wizard-step-valid="ctrl.isStep1Valid()"
+        >
+            <p
+                data-translate="hosting_tab_FTP_configuration_generate_password_step1_question"
+            ></p>
 
             <oui-spinner data-ng-if="ctrl.loading"></oui-spinner>
 
-            <form class="form-horizontal" name="hostingGenerateSnapshotForm" data-ng-if="!ctrl.loading">
+            <form
+                class="form-horizontal"
+                name="hostingGenerateSnapshotForm"
+                data-ng-if="!ctrl.loading"
+            >
                 <div class="form-group">
                     <label
                         class="control-label col-md-4"
                         for="select-snapshot-instance"
-                        data-translate="hosting_tab_FTP_configuration_generate_snapshot_step1_snapshot_instance"></label>
+                        data-translate="hosting_tab_FTP_configuration_generate_snapshot_step1_snapshot_instance"
+                    ></label>
                     <div class="col-md-6">
                         <div class="oui-select">
                             <select
                                 class="oui-select__input"
                                 id="select-snapshot-instance"
                                 data-ng-model="ctrl.model.snapshotInstance"
-                                data-ng-options="instance as ('hosting_tab_FTP_configuration_generate_snapshot_step1_instance_' + instance.replace('.','_') | translate) for instance in ctrl.instances track by instance"></select>
+                                data-ng-options="instance as ('hosting_tab_FTP_configuration_generate_snapshot_step1_instance_' + instance.replace('.','_') | translate) for instance in ctrl.instances track by instance"
+                            ></select>
 
-                            <span class="oui-icon oui-icon-chevron-down" aria-hidden="true"></span>
+                            <span
+                                class="oui-icon oui-icon-chevron-down"
+                                aria-hidden="true"
+                            ></span>
                         </div>
                     </div>
                 </div>
@@ -34,9 +47,13 @@
 
         <div data-wizard-step="data-wizard-step">
             <oui-message data-type="warning">
-                <span data-translate="hosting_tab_FTP_configuration_generate_snapshot_step2_alert"></span>
+                <span
+                    data-translate="hosting_tab_FTP_configuration_generate_snapshot_step2_alert"
+                ></span>
             </oui-message>
-            <p data-translate="hosting_tab_FTP_configuration_generate_snapshot_step2_alert_question"></p>
+            <p
+                data-translate="hosting_tab_FTP_configuration_generate_snapshot_step2_alert_question"
+            ></p>
         </div>
     </div>
 </div>

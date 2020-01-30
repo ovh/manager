@@ -1,6 +1,6 @@
 import { ListLayoutHelper } from '@ovh-ux/ng-ovh-telecom-universe-components';
 
-export default /* @ngInject */($stateProvider) => {
+export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('freefaxes', {
     url: '/freefax',
     abstract: true,
@@ -13,8 +13,10 @@ export default /* @ngInject */($stateProvider) => {
     resolve: {
       apiPath: () => '/freefax',
       ...ListLayoutHelper.stateResolves,
-      getFreefaxLink: /* @ngInject */ $state => fax => $state.href('freefaxes.freefax', { serviceName: fax.number }),
-      viewFreefax: /* @ngInject */ $state => fax => $state.go('freefaxes.freefax', { serviceName: fax.number }),
+      getFreefaxLink: /* @ngInject */ ($state) => (fax) =>
+        $state.href('freefaxes.freefax', { serviceName: fax.number }),
+      viewFreefax: /* @ngInject */ ($state) => (fax) =>
+        $state.go('freefaxes.freefax', { serviceName: fax.number }),
     },
   });
 };

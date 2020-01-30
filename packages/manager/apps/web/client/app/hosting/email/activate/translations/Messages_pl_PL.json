@@ -1,0 +1,15 @@
+{
+  "hosting_email_address_activate_title": "Aktywuj swoje adresy e-mail",
+  "hosting_email_address_activate_description": "Nie aktywowałeś jeszcze swojego pakietu e-mail zawartego w ofercie hostingu. Wybierz nazwę domeny, którą chcesz powiązać ze swoimi adresami e-mail przed aktywacją skrzynek pocztowych.",
+  "hosting_email_address_activate_step1_title": "10 adresów e-mail",
+  "hosting_email_address_activate_step2_title": "Uruchom",
+  "hosting_email_address_activate_choose_domain": "Wybierz nazwę domeny, której chcesz używać z e-mailami:",
+  "hosting_email_address_activate_choose_domain_placeholder": "Wybierz domenę",
+  "hosting_email_address_activate_next": "Dalej",
+  "hosting_email_address_activate_cancel": "Anuluj",
+  "hosting_email_address_activate_activate": "Włącz",
+  "hosting_email_address_activate_contracts_accept": "Aby potwierdzić zlecenie, wybierz sposób płatności i zaakceptuj warunki korzystania z usługi.",
+  "hosting_email_address_activate_in_progress": "Aktywowanie pakietu e-mail",
+  "hosting_email_address_activation_error": "Nie udało się aktywować adresu e-mail: {{message}}",
+  "hosting_email_address_activation_success": "Aktywacja pakietu adresu e-mail jest w toku.a href=\"{{ orderTrackURL }}\" target=\"_blank\" rel=\"noopener\">Kliknij tutaj, aby śledzić postępy. </a>"
+}

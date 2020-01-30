@@ -2,7 +2,7 @@
 @SIDEBAR_MENU_ACTIVE_COLOR: @oui-color-jungle;
 
 button,
-toggle-class { /* stylelint-disable-line */
+toggle-class {
   &.navbar-button .icon-bar {
     background-image: none;
   }
@@ -16,8 +16,10 @@ toggle-class { /* stylelint-disable-line */
     vertical-align: middle;
     text-rendering: optimizeLegibility;
     text-rendering: geometricPrecision;
-    font-smooth: always; /* stylelint-disable-line */
-    font-smoothing: antialiased; /* stylelint-disable-line */
+    /* stylelint-disable-next-line property-no-unknown */
+    font-smooth: always;
+    /* stylelint-disable-next-line property-no-unknown */
+    font-smoothing: antialiased;
     -moz-font-smoothing: antialiased;
     -webkit-font-smoothing: antialiased;
     -webkit-font-smoothing: subpixel-antialiased;

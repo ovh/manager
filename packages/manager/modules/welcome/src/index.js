@@ -6,10 +6,6 @@ import routing from './manager-welcome.routes';
 
 const moduleName = 'ovhManagerWelcome';
 
-angular.module(moduleName, [
-  'oc.lazyLoad',
-  'ui.router',
-])
-  .config(routing);
+angular.module(moduleName, ['oc.lazyLoad', 'ui.router']).config(routing);
 
 export default moduleName;

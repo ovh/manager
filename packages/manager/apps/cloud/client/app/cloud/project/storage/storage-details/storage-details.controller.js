@@ -66,13 +66,16 @@ angular.module('managerApp').controller('RA.storageDetailsCtrl', [
     $scope.password = null;
     $scope.guides = {
       title: $translate.instant('storage_details_guide_title'),
-      list: [{
-        name: $translate.instant('storage_details_guide_pca'),
-        url: ovhDocUrl.getDocUrl('cloud/storage/pca'),
-      }, {
-        name: $translate.instant('storage_details_guide_pcs'),
-        url: ovhDocUrl.getDocUrl('cloud/storage/pcs'),
-      }],
+      list: [
+        {
+          name: $translate.instant('storage_details_guide_pca'),
+          url: ovhDocUrl.getDocUrl('cloud/storage/pca'),
+        },
+        {
+          name: $translate.instant('storage_details_guide_pcs'),
+          url: ovhDocUrl.getDocUrl('cloud/storage/pcs'),
+        },
+      ],
       footer: $translate.instant('storage_details_guide_footer'),
     };
     $scope.messages = [];
@@ -83,7 +86,10 @@ angular.module('managerApp').controller('RA.storageDetailsCtrl', [
 
     function loadMessage() {
       CucCloudMessage.unSubscribe('iaas.pci-project.compute.storage.details');
-      $scope.messageHandler = CucCloudMessage.subscribe('iaas.pci-project.compute.storage.details', { onMessage: () => refreshMessage() });
+      $scope.messageHandler = CucCloudMessage.subscribe(
+        'iaas.pci-project.compute.storage.details',
+        { onMessage: () => refreshMessage() },
+      );
     }
 
     function sortAlpha(a, b) {
@@ -127,29 +133,53 @@ angular.module('managerApp').controller('RA.storageDetailsCtrl', [
       const hours = Math.floor(delay / 3600);
       const minutes = Math.floor((delay - hours * 3600) / 60);
       const seconds = delay - hours * 3600 - minutes * 60;
-      const delayText = map([hours, minutes, seconds], time => padStart(time, 2, '0')).join(':');
-      return $translate.instant('storage_availability_unsealing', { delay: delayText });
+      const delayText = map([hours, minutes, seconds], (time) =>
+        padStart(time, 2, '0'),
+      ).join(':');
+      return $translate.instant('storage_availability_unsealing', {
+        delay: delayText,
+      });
     }
 
     function startUnsealingCountdown(file) {
       set(file, 'stateText', retrivalCountdownText(file.retrievalDelay));
-      set(file, 'interval', $interval(() => {
-        set(file, 'stateText', retrivalCountdownText(file.retrievalDelay));
-        set(file, 'retrievalDelay', file.retrievalDelay - 1);
-        if (file.retrievalDelay === 0) {
-          set(file, 'retrievalState', CLOUD_PCA_FILE_STATE.UNSEALED);
-          set(file, 'stateText', $translate.instant('storage_availability_unsealed'));
-        }
-      }, 1000, file.retrievalDelay));
+      set(
+        file,
+        'interval',
+        $interval(
+          () => {
+            set(file, 'stateText', retrivalCountdownText(file.retrievalDelay));
+            set(file, 'retrievalDelay', file.retrievalDelay - 1);
+            if (file.retrievalDelay === 0) {
+              set(file, 'retrievalState', CLOUD_PCA_FILE_STATE.UNSEALED);
+              set(
+                file,
+                'stateText',
+                $translate.instant('storage_availability_unsealed'),
+              );
+            }
+          },
+          1000,
+          file.retrievalDelay,
+        ),
+      );
     }
 
     function setFileStateText(file) {
       switch (file.retrievalState) {
         case CLOUD_PCA_FILE_STATE.SEALED:
-          set(file, 'stateText', $translate.instant('storage_availability_sealed'));
+          set(
+            file,
+            'stateText',
+            $translate.instant('storage_availability_sealed'),
+          );
           break;
         case CLOUD_PCA_FILE_STATE.UNSEALED:
-          set(file, 'stateText', $translate.instant('storage_availability_unsealed'));
+          set(
+            file,
+            'stateText',
+            $translate.instant('storage_availability_unsealed'),
+          );
           break;
         case CLOUD_PCA_FILE_STATE.UNSEALING:
           startUnsealingCountdown(file);
@@ -162,14 +192,11 @@ angular.module('managerApp').controller('RA.storageDetailsCtrl', [
     function deleteObject(elem) {
       function createDeleteTask(element) {
         return function createDeleteTaskFn() {
-          const index = findIndex(
-            $scope.objects,
-            {
-              name: element.name,
-              lastModified: element.lastModified,
-              contentType: element.contentType,
-            },
-          );
+          const index = findIndex($scope.objects, {
+            name: element.name,
+            lastModified: element.lastModified,
+            contentType: element.contentType,
+          });
           if (index === -1) {
             return;
           }
@@ -178,18 +205,25 @@ angular.module('managerApp').controller('RA.storageDetailsCtrl', [
             $scope.projectId,
             $stateParams.storageId,
             element.name,
-          )
-            .then((result) => {
-              $rootScope.$broadcast('delete_object', [$scope.storage.name, element.name]);
-              return result;
-            });
+          ).then((result) => {
+            $rootScope.$broadcast('delete_object', [
+              $scope.storage.name,
+              element.name,
+            ]);
+            return result;
+          });
         };
       }
 
-      const queuePromise = CloudStorageContainerTasksRunner.addTask(`upload_${$scope.projectId}_${$stateParams.storageId}`, createDeleteTask(elem));
+      const queuePromise = CloudStorageContainerTasksRunner.addTask(
+        `upload_${$scope.projectId}_${$stateParams.storageId}`,
+        createDeleteTask(elem),
+      );
       queuePromise.then(() => {
         if (CloudStorageContainerTasksRunner.countErrorTasks()) {
-          CucCloudMessage.error($translate.instant('storage_object_delete_error'));
+          CucCloudMessage.error(
+            $translate.instant('storage_object_delete_error'),
+          );
         }
       });
       return queuePromise;
@@ -225,22 +259,29 @@ angular.module('managerApp').controller('RA.storageDetailsCtrl', [
               lastModified: Date.now(),
               size: file.size,
               contentType: file.type,
-              retrievalState: $scope.storage.shortcut === 'pca' ? CLOUD_PCA_FILE_STATE.SEALED : CLOUD_PCA_FILE_STATE.UNSEALED,
+              retrievalState:
+                $scope.storage.shortcut === 'pca'
+                  ? CLOUD_PCA_FILE_STATE.SEALED
+                  : CLOUD_PCA_FILE_STATE.UNSEALED,
               region: $scope.storage.region,
             };
             setFileStateText(newFile);
             insertIntoStorageList(newFile);
             $scope.storage.stored += file.size;
-          // eslint-disable-next-line no-empty
+            // eslint-disable-next-line no-empty
           } catch (e) {}
         }
 
         return function createUploadTaskFn() {
           $scope.loaders.uploading = true;
-          return CloudStorageContainer.upload($scope.projectId, $stateParams.storageId, {
-            file,
-            prefix: uploadTaskPrefix,
-          })
+          return CloudStorageContainer.upload(
+            $scope.projectId,
+            $stateParams.storageId,
+            {
+              file,
+              prefix: uploadTaskPrefix,
+            },
+          )
             .then((result) => {
               refreshList();
               return result;
@@ -252,23 +293,30 @@ angular.module('managerApp').controller('RA.storageDetailsCtrl', [
       }
 
       angular.forEach(files, (file) => {
-        queuePromise = CloudStorageContainerTasksRunner.addTask(`upload_${$scope.projectId}_${$stateParams.storageId}`, createUploadTask(file, cleanPrefix));
+        queuePromise = CloudStorageContainerTasksRunner.addTask(
+          `upload_${$scope.projectId}_${$stateParams.storageId}`,
+          createUploadTask(file, cleanPrefix),
+        );
       });
 
       queuePromise.then(() => {
         if (CloudStorageContainerTasksRunner.countErrorTasks()) {
-          CucCloudMessage.error($translate.instant('storage_object_upload_error'));
+          CucCloudMessage.error(
+            $translate.instant('storage_object_upload_error'),
+          );
         }
       });
     }
 
     function getObject(name) {
-      return CloudStorageContainer.list($scope.projectId, $stateParams.storageId)
-        .then((details) => {
-          const file = find(details.objects, { name });
-          file.region = details.region;
-          return file;
-        });
+      return CloudStorageContainer.list(
+        $scope.projectId,
+        $stateParams.storageId,
+      ).then((details) => {
+        const file = find(details.objects, { name });
+        file.region = details.region;
+        return file;
+      });
     }
 
     $scope.computeStorageSize = function computeStorageSize() {
@@ -277,7 +325,8 @@ angular.module('managerApp').controller('RA.storageDetailsCtrl', [
 
     $scope.openDNSHelp = function openDNSHelp() {
       $uibModal.open({
-        templateUrl: 'app/cloud/project/storage/storage-hosting-help/modal.html',
+        templateUrl:
+          'app/cloud/project/storage/storage-hosting-help/modal.html',
         controller: 'RA.storage.dnsHelp',
         controllerAs: 'RA.storage.dnsHelp',
         params: {
@@ -296,13 +345,16 @@ angular.module('managerApp').controller('RA.storageDetailsCtrl', [
     };
 
     $scope.addObjects = function addObjects() {
-      $uibModal.open({
-        templateUrl: 'app/cloud/project/storage/storage-add-object/modal.html',
-        controller: 'RA.storage.addObject',
-        controllerAs: 'RA.storage.addObject',
-      }).result.then((response) => {
-        uploadObject(response.files, response.prefix);
-      });
+      $uibModal
+        .open({
+          templateUrl:
+            'app/cloud/project/storage/storage-add-object/modal.html',
+          controller: 'RA.storage.addObject',
+          controllerAs: 'RA.storage.addObject',
+        })
+        .result.then((response) => {
+          uploadObject(response.files, response.prefix);
+        });
     };
 
     $scope.fileDownload = function fileDownload(file) {
@@ -313,7 +365,11 @@ angular.module('managerApp').controller('RA.storageDetailsCtrl', [
           $scope.objects[index] = assign(file, { sealingStateLoading: true });
         }
       }
-      CloudStorageContainer.download($scope.projectId, $stateParams.storageId, file)
+      CloudStorageContainer.download(
+        $scope.projectId,
+        $stateParams.storageId,
+        file,
+      )
         .then((url) => {
           if (url) {
             const link = document.createElement('a');
@@ -337,52 +393,61 @@ angular.module('managerApp').controller('RA.storageDetailsCtrl', [
     };
 
     $scope.delete = function deleteFn(element) {
-      $uibModal.open({
-        templateUrl: 'app/cloud/project/storage/storage-delete-object/modal.html',
-        controller: 'RA.storage.deleteObject',
-        controllerAs: 'RA.storage.deleteObject',
-        resolve: {
-          params() {
-            return [element];
+      $uibModal
+        .open({
+          templateUrl:
+            'app/cloud/project/storage/storage-delete-object/modal.html',
+          controller: 'RA.storage.deleteObject',
+          controllerAs: 'RA.storage.deleteObject',
+          resolve: {
+            params() {
+              return [element];
+            },
           },
-        },
-      }).result.then(() => {
-        deleteObject(element);
-        resetSelectionModel();
-      });
+        })
+        .result.then(() => {
+          deleteObject(element);
+          resetSelectionModel();
+        });
     };
 
     $scope.deleteAll = function deleteAll() {
       const toDelete = compact(
-        map(
-          $scope.model.selected,
-          (selected, index) => (selected ? $scope.files[index] : null),
+        map($scope.model.selected, (selected, index) =>
+          selected ? $scope.files[index] : null,
         ),
       );
-      $uibModal.open({
-        templateUrl: 'app/cloud/project/storage/storage-delete-object/modal.html',
-        controller: 'RA.storage.deleteObject',
-        controllerAs: 'RA.storage.deleteObject',
-        resolve: {
-          params() {
-            return toDelete;
+      $uibModal
+        .open({
+          templateUrl:
+            'app/cloud/project/storage/storage-delete-object/modal.html',
+          controller: 'RA.storage.deleteObject',
+          controllerAs: 'RA.storage.deleteObject',
+          resolve: {
+            params() {
+              return toDelete;
+            },
           },
-        },
-      }).result.then(() => {
-        forEach(toDelete, (object) => {
-          deleteObject(object);
+        })
+        .result.then(() => {
+          forEach(toDelete, (object) => {
+            deleteObject(object);
+          });
+          resetSelectionModel();
         });
-        resetSelectionModel();
-      });
     };
 
     $scope.selectAll = function selectAll() {
-      $scope.model.selected = times($scope.files.length, () => $scope.model.allSelected);
+      $scope.model.selected = times(
+        $scope.files.length,
+        () => $scope.model.allSelected,
+      );
     };
 
     $scope.select = function selectFn() {
-      $scope.model.allSelected = $scope.model.selected.length === $scope.files.length
-        && every($scope.model.selected, select => select);
+      $scope.model.allSelected =
+        $scope.model.selected.length === $scope.files.length &&
+        every($scope.model.selected, (select) => select);
     };
 
     $scope.manySelected = function manySelected() {
@@ -390,7 +455,7 @@ angular.module('managerApp').controller('RA.storageDetailsCtrl', [
     };
 
     $scope.selectionCount = function selectionCount() {
-      return size(filter($scope.model.selected, value => value));
+      return size(filter($scope.model.selected, (value) => value));
     };
 
     $scope.$on('delete_object', (event, data) => {
@@ -412,8 +477,9 @@ angular.module('managerApp').controller('RA.storageDetailsCtrl', [
       }
 
       // eslint-disable-next-line consistent-return
-      return OvhApiCloudProjectUser.v6().query(request).$promise
-        .then((users) => {
+      return OvhApiCloudProjectUser.v6()
+        .query(request)
+        .$promise.then((users) => {
           $scope.users = users;
           if (users.length > 0) {
             request.userId = users[0].id;
@@ -447,11 +513,19 @@ angular.module('managerApp').controller('RA.storageDetailsCtrl', [
 
       let storageDetails;
 
-      return CloudStorageContainer.list($scope.projectId, $stateParams.storageId)
+      return CloudStorageContainer.list(
+        $scope.projectId,
+        $stateParams.storageId,
+      )
         .then((details) => {
           storageDetails = details;
-          $scope.title = `${$translate.instant('storage_object_title')} : ${storageDetails.name}`;
-          return CloudStorageContainer.getMetaData($scope.projectId, $stateParams.storageId);
+          $scope.title = `${$translate.instant('storage_object_title')} : ${
+            storageDetails.name
+          }`;
+          return CloudStorageContainer.getMetaData(
+            $scope.projectId,
+            $stateParams.storageId,
+          );
         })
         .then((metaData) => {
           storageDetails.shortcut = metaData.shortcut;
@@ -467,13 +541,12 @@ angular.module('managerApp').controller('RA.storageDetailsCtrl', [
             $scope.getObjectList(encodeURIComponent(last($scope.objects).name));
           } else {
             const { accessCache } = CloudStorageContainersConfiguration;
-            const endpoint = find(
-              accessCache.get($scope.projectId).endpoints,
-              {
-                region: $scope.storage.region,
-              },
-            );
-            $scope.url = `${endpoint.url}/${encodeURIComponent($scope.storage.name)}`;
+            const endpoint = find(accessCache.get($scope.projectId).endpoints, {
+              region: $scope.storage.region,
+            });
+            $scope.url = `${endpoint.url}/${encodeURIComponent(
+              $scope.storage.name,
+            )}`;
             $scope.loaders.pager = false;
           }
 
@@ -504,4 +577,5 @@ angular.module('managerApp').controller('RA.storageDetailsCtrl', [
     }
 
     init();
-  }]);
+  },
+]);

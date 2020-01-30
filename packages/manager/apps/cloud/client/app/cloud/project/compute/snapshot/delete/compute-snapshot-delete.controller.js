@@ -1,7 +1,12 @@
 (() => {
   class CloudProjectComputeSnapshotDeleteCtrl {
-    constructor($uibModalInstance, serviceName, snapshot,
-      OvhApiCloudProjectSnapshot, OvhApiCloudProjectVolumeSnapshot) {
+    constructor(
+      $uibModalInstance,
+      serviceName,
+      snapshot,
+      OvhApiCloudProjectSnapshot,
+      OvhApiCloudProjectVolumeSnapshot,
+    ) {
       this.$uibModalInstance = $uibModalInstance;
       this.serviceName = serviceName;
       this.snapshot = snapshot;
@@ -29,11 +34,13 @@
 
     confirm() {
       this.loaders.delete = true;
-      const promiseDelete = this.snapshot.type === 'volume'
-        ? this.deleteVolumeSnapshot(this.snapshot.id) : this.deleteSnapshot(this.snapshot.id);
+      const promiseDelete =
+        this.snapshot.type === 'volume'
+          ? this.deleteVolumeSnapshot(this.snapshot.id)
+          : this.deleteSnapshot(this.snapshot.id);
       promiseDelete
-        .then(response => this.$uibModalInstance.close(response))
-        .catch(err => this.$uibModalInstance.dismiss(err))
+        .then((response) => this.$uibModalInstance.close(response))
+        .catch((err) => this.$uibModalInstance.dismiss(err))
         .finally(() => {
           this.loaders.delete = false;
         });
@@ -44,5 +51,10 @@
     }
   }
 
-  angular.module('managerApp').controller('CloudProjectComputeSnapshotDeleteCtrl', CloudProjectComputeSnapshotDeleteCtrl);
+  angular
+    .module('managerApp')
+    .controller(
+      'CloudProjectComputeSnapshotDeleteCtrl',
+      CloudProjectComputeSnapshotDeleteCtrl,
+    );
 })();

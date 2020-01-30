@@ -1,96 +1,179 @@
 <div data-ng-controller="DomainZoneRecordCtrl as ctrl">
-    <div data-wizard
-         data-wizard-bread-crumb
-         data-wizard-on-cancel="resetAction"
-         data-wizard-on-finish="addDnsEntry"
-         data-wizard-title="'domain_configuration_dns_entry_add_title' | translate">
+    <div
+        data-wizard
+        data-wizard-bread-crumb
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="addDnsEntry"
+        data-wizard-title="'domain_configuration_dns_entry_add_title' | translate"
+    >
+        <div data-wizard-step data-wizard-step-valid="ctrl.model.fieldType">
+            <p
+                data-translate="domain_configuration_dns_entry_add_step1_title"
+            ></p>
 
-        <div data-wizard-step
-             data-wizard-step-valid="ctrl.model.fieldType">
-
-            <p data-translate="domain_configuration_dns_entry_add_step1_title"></p>
-
-            <p class="mt-2" data-translate="domain_configuration_dns_entry_add_step1_subtitle1"></p>
+            <p
+                class="mt-2"
+                data-translate="domain_configuration_dns_entry_add_step1_subtitle1"
+            ></p>
             <ul class="d-flex flex-wrap flex-column flex-md-row list-unstyled">
-                <li class="pr-3" data-ng-repeat="fieldType in ['A', 'AAAA', 'NS', 'CNAME'] track by $index">
-                    <button class="oui-button oui-button_primary mb-3" type="button"
-                            data-ng-bind="fieldType"
-                            data-ng-class="{'active': ctrl.model.fieldType === fieldType}"
-                            data-ng-click="ctrl.selectFieldType(fieldType)"
-                            data-ng-if="ctrl.isAvailableFieldType(fieldType)">
-                    </button>
+                <li
+                    class="pr-3"
+                    data-ng-repeat="fieldType in ['A', 'AAAA', 'NS', 'CNAME'] track by $index"
+                >
+                    <button
+                        class="oui-button oui-button_primary mb-3"
+                        type="button"
+                        data-ng-bind="fieldType"
+                        data-ng-class="{'active': ctrl.model.fieldType === fieldType}"
+                        data-ng-click="ctrl.selectFieldType(fieldType)"
+                        data-ng-if="ctrl.isAvailableFieldType(fieldType)"
+                    ></button>
                 </li>
             </ul>
 
-            <p class="mt-4" data-translate="domain_configuration_dns_entry_add_step1_subtitle3"></p>
+            <p
+                class="mt-4"
+                data-translate="domain_configuration_dns_entry_add_step1_subtitle3"
+            ></p>
             <ul class="d-flex flex-wrap flex-column flex-md-row list-unstyled">
-                <li class="pr-3"
-                    data-ng-repeat="fieldType in ['CAA', 'TXT', 'NAPTR', 'SRV', 'LOC', 'SSHFP', 'TLSA'] track by $index">
-                    <button class="oui-button oui-button_primary mb-3" type="button"
-                            data-ng-bind="fieldType"
-                            data-ng-class="{'active': ctrl.model.fieldType === fieldType}"
-                            data-ng-click="ctrl.selectFieldType(fieldType)"
-                            data-ng-if="ctrl.isAvailableFieldType(fieldType)">
-                    </button>
+                <li
+                    class="pr-3"
+                    data-ng-repeat="fieldType in ['CAA', 'TXT', 'NAPTR', 'SRV', 'LOC', 'SSHFP', 'TLSA'] track by $index"
+                >
+                    <button
+                        class="oui-button oui-button_primary mb-3"
+                        type="button"
+                        data-ng-bind="fieldType"
+                        data-ng-class="{'active': ctrl.model.fieldType === fieldType}"
+                        data-ng-click="ctrl.selectFieldType(fieldType)"
+                        data-ng-if="ctrl.isAvailableFieldType(fieldType)"
+                    ></button>
                 </li>
             </ul>
 
-            <p class="mt-4" data-translate="domain_configuration_dns_entry_add_step1_subtitle4"></p>
+            <p
+                class="mt-4"
+                data-translate="domain_configuration_dns_entry_add_step1_subtitle4"
+            ></p>
             <ul class="d-flex flex-wrap flex-column flex-md-row list-unstyled">
-                <li class="pr-3"
-                    data-ng-repeat="fieldType in ['MX', 'SPF', 'DKIM', 'DMARC'] track by $index">
-                    <button class="oui-button oui-button_primary mb-3" type="button"
-                            data-ng-bind="fieldType"
-                            data-ng-class="{'active': ctrl.model.fieldType === fieldType}"
-                            data-ng-click="ctrl.selectFieldType(fieldType)"
-                            data-ng-if="ctrl.isAvailableFieldType(fieldType)">
-                    </button>
+                <li
+                    class="pr-3"
+                    data-ng-repeat="fieldType in ['MX', 'SPF', 'DKIM', 'DMARC'] track by $index"
+                >
+                    <button
+                        class="oui-button oui-button_primary mb-3"
+                        type="button"
+                        data-ng-bind="fieldType"
+                        data-ng-class="{'active': ctrl.model.fieldType === fieldType}"
+                        data-ng-click="ctrl.selectFieldType(fieldType)"
+                        data-ng-if="ctrl.isAvailableFieldType(fieldType)"
+                    ></button>
                 </li>
             </ul>
 
             <div data-wizard-step-help>
-                <h3 data-translate="domain_configuration_dns_entry_add_step1_helpwizard_title"></h3>
-                <p data-translate="domain_configuration_dns_entry_add_step1_helpwizard_desc"></p>
-                <h4 data-translate="domain_configuration_dns_entry_add_step1_helpwizard_a"></h4>
-                <p data-translate="domain_configuration_dns_entry_add_step1_helpwizard_a_desc"></p>
-                <h4 data-translate="domain_configuration_dns_entry_add_step1_helpwizard_aaaa"></h4>
-                <p data-translate="domain_configuration_dns_entry_add_step1_helpwizard_aaaa_desc"></p>
-                <h4 data-translate="domain_configuration_dns_entry_add_step1_helpwizard_cname"></h4>
-                <p data-translate="domain_configuration_dns_entry_add_step1_helpwizard_cname_desc"></p>
-                <h4 data-translate="domain_configuration_dns_entry_add_step1_helpwizard_dkim"></h4>
-                <p data-translate="domain_configuration_dns_entry_add_step1_helpwizard_dkim_desc"></p>
-                <h4 data-translate="domain_configuration_dns_entry_add_step1_helpwizard_loc"></h4>
-                <p data-translate="domain_configuration_dns_entry_add_step1_helpwizard_loc_desc"></p>
-                <h4 data-translate="domain_configuration_dns_entry_add_step1_helpwizard_mx"></h4>
-                <p data-translate="domain_configuration_dns_entry_add_step1_helpwizard_mx_desc"></p>
-                <h4 data-translate="domain_configuration_dns_entry_add_step1_helpwizard_naptr"></h4>
-                <p data-translate="domain_configuration_dns_entry_add_step1_helpwizard_naptr_desc"></p>
-                <h4 data-translate="domain_configuration_dns_entry_add_step1_helpwizard_ns"></h4>
-                <p data-translate="domain_configuration_dns_entry_add_step1_helpwizard_ns_desc"></p>
-                <h4 data-translate="domain_configuration_dns_entry_add_step1_helpwizard_spf"></h4>
-                <p data-translate="domain_configuration_dns_entry_add_step1_helpwizard_spf_desc"></p>
-                <h4 data-translate="domain_configuration_dns_entry_add_step1_helpwizard_srv"></h4>
-                <p data-translate="domain_configuration_dns_entry_add_step1_helpwizard_srv_desc"></p>
-                <h4 data-translate="domain_configuration_dns_entry_add_step1_helpwizard_sshfp"></h4>
-                <p data-translate="domain_configuration_dns_entry_add_step1_helpwizard_sshfp_desc"></p>
-                <h4 data-translate="domain_configuration_dns_entry_add_step1_helpwizard_txt"></h4>
-                <p data-translate="domain_configuration_dns_entry_add_step1_helpwizard_txt_desc"></p>
+                <h3
+                    data-translate="domain_configuration_dns_entry_add_step1_helpwizard_title"
+                ></h3>
+                <p
+                    data-translate="domain_configuration_dns_entry_add_step1_helpwizard_desc"
+                ></p>
+                <h4
+                    data-translate="domain_configuration_dns_entry_add_step1_helpwizard_a"
+                ></h4>
+                <p
+                    data-translate="domain_configuration_dns_entry_add_step1_helpwizard_a_desc"
+                ></p>
+                <h4
+                    data-translate="domain_configuration_dns_entry_add_step1_helpwizard_aaaa"
+                ></h4>
+                <p
+                    data-translate="domain_configuration_dns_entry_add_step1_helpwizard_aaaa_desc"
+                ></p>
+                <h4
+                    data-translate="domain_configuration_dns_entry_add_step1_helpwizard_cname"
+                ></h4>
+                <p
+                    data-translate="domain_configuration_dns_entry_add_step1_helpwizard_cname_desc"
+                ></p>
+                <h4
+                    data-translate="domain_configuration_dns_entry_add_step1_helpwizard_dkim"
+                ></h4>
+                <p
+                    data-translate="domain_configuration_dns_entry_add_step1_helpwizard_dkim_desc"
+                ></p>
+                <h4
+                    data-translate="domain_configuration_dns_entry_add_step1_helpwizard_loc"
+                ></h4>
+                <p
+                    data-translate="domain_configuration_dns_entry_add_step1_helpwizard_loc_desc"
+                ></p>
+                <h4
+                    data-translate="domain_configuration_dns_entry_add_step1_helpwizard_mx"
+                ></h4>
+                <p
+                    data-translate="domain_configuration_dns_entry_add_step1_helpwizard_mx_desc"
+                ></p>
+                <h4
+                    data-translate="domain_configuration_dns_entry_add_step1_helpwizard_naptr"
+                ></h4>
+                <p
+                    data-translate="domain_configuration_dns_entry_add_step1_helpwizard_naptr_desc"
+                ></p>
+                <h4
+                    data-translate="domain_configuration_dns_entry_add_step1_helpwizard_ns"
+                ></h4>
+                <p
+                    data-translate="domain_configuration_dns_entry_add_step1_helpwizard_ns_desc"
+                ></p>
+                <h4
+                    data-translate="domain_configuration_dns_entry_add_step1_helpwizard_spf"
+                ></h4>
+                <p
+                    data-translate="domain_configuration_dns_entry_add_step1_helpwizard_spf_desc"
+                ></p>
+                <h4
+                    data-translate="domain_configuration_dns_entry_add_step1_helpwizard_srv"
+                ></h4>
+                <p
+                    data-translate="domain_configuration_dns_entry_add_step1_helpwizard_srv_desc"
+                ></p>
+                <h4
+                    data-translate="domain_configuration_dns_entry_add_step1_helpwizard_sshfp"
+                ></h4>
+                <p
+                    data-translate="domain_configuration_dns_entry_add_step1_helpwizard_sshfp_desc"
+                ></p>
+                <h4
+                    data-translate="domain_configuration_dns_entry_add_step1_helpwizard_txt"
+                ></h4>
+                <p
+                    data-translate="domain_configuration_dns_entry_add_step1_helpwizard_txt_desc"
+                ></p>
             </div>
         </div>
 
-        <div data-wizard-step
-             data-wizard-step-on-load="initializeTarget"
-             data-wizard-step-on-previous="backToStep1"
-             data-wizard-step-valid="ctrl.zoneRecordForm.$valid">
-            <div data-ng-if="ctrl.model.fieldType"
-                 data-ng-include="'domain/zone/record/' + ctrl.model.fieldType + '/domain-zone-record-' + ctrl.model.fieldType + '.html'"></div>
+        <div
+            data-wizard-step
+            data-wizard-step-on-load="initializeTarget"
+            data-wizard-step-on-previous="backToStep1"
+            data-wizard-step-valid="ctrl.zoneRecordForm.$valid"
+        >
+            <div
+                data-ng-if="ctrl.model.fieldType"
+                data-ng-include="'domain/zone/record/' + ctrl.model.fieldType + '/domain-zone-record-' + ctrl.model.fieldType + '.html'"
+            ></div>
         </div>
 
-        <div data-wizard-step
-             data-wizard-step-on-load="checkIfRecordCanBeAdd"
-             data-wizard-step-valid="!ctrl.loading.resume && ctrl.recordConflicts">
-            <div data-ng-if="ctrl.model.target.value"
-                 data-ng-include="'domain/zone/record/resume.html'"></div>
+        <div
+            data-wizard-step
+            data-wizard-step-on-load="checkIfRecordCanBeAdd"
+            data-wizard-step-valid="!ctrl.loading.resume && ctrl.recordConflicts"
+        >
+            <div
+                data-ng-if="ctrl.model.target.value"
+                data-ng-include="'domain/zone/record/resume.html'"
+            ></div>
         </div>
     </div>
 </div>

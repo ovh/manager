@@ -2,7 +2,7 @@
   "name": "@ovh-ux/manager-enterprise-cloud-database",
   "version": "0.1.10",
   "private": true,
-  "description": "OVH Enterprise Cloud Database product control panel",
+  "description": "Enterprise Cloud Databases product.",
   "keywords": [
     "control",
     "enterprise cloud database",
@@ -30,9 +30,9 @@
     "dev": "rollup -c --environment BUILD:development",
     "dev:watch": "yarn run dev --watch",
     "prepare": "yarn run build",
-    "start": "lerna exec --stream --scope='@ovh-ux/manager-enterprise-cloud-database' --include-filtered-dependencies -- yarn run build",
-    "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-enterprise-cloud-database' --include-filtered-dependencies -- yarn run dev",
-    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-enterprise-cloud-database' --include-filtered-dependencies -- yarn run dev"
+    "start": "lerna exec --stream --scope='@ovh-ux/manager-enterprise-cloud-database' --include-dependencies -- yarn run build",
+    "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-enterprise-cloud-database' --include-dependencies -- yarn run dev",
+    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-enterprise-cloud-database' --include-dependencies -- yarn run dev"
   },
   "dependencies": {
     "flag-icon-css": "^3.2.0",
@@ -60,7 +60,7 @@
     "oclazyload": "^1.1.0",
     "ovh-api-services": "^9.27.1",
     "ovh-manager-webfont": "^1.2.0",
-    "ovh-ui-angular": "^3.10.0",
+    "ovh-ui-angular": "^3.11.0",
     "ovh-ui-kit": "^3.6.0",
     "ovh-ui-kit-bs": "^3.0.2"
   }

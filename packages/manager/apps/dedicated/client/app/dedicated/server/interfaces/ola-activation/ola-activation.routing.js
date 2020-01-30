@@ -9,7 +9,8 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     layout: 'modal',
     resolve: {
-      goBack: /* @ngInject */ $state => params => $state.go('app.dedicated.server.interfaces', params),
+      goBack: /* @ngInject */ ($state) => (params) =>
+        $state.go('app.dedicated.server.interfaces', params),
     },
   });
 };

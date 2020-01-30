@@ -1,0 +1,18 @@
+{
+  "mxPlan_order_title": "Ordina il tuo MX PLAN",
+  "mxPlan_order_domain": "Scegli del dominio",
+  "mxPlan_order_domain_pick": "seleziona un dominio",
+  "mxPlan_order_offer": "Seleziona un'offerta",
+  "mxPlan_order_offer_description_domain": "Una volta effettuato il pagamento dell'ordine, il servizio verrà associato al tuo dominio e non sarà necessario richiederne il rinnovo.",
+  "mxPlan_order_contracts": "Conferma",
+  "mxPlan_order_generated_purchase_success": "Il buono d'ordine <a href=\"{{orderUrl}}\" target=\"_blank\">{{orderId}}</a> è stato creato correttamente.",
+  "mxPlan_order_generated_success": "L’ordine è stato generato correttamente",
+  "mxPlan_order_generated_success_tracking": "Clicca qui per rintracciare il tuo ordine.",
+  "mxPlan_order_checkout_error": "Si è verificato un errore: {{message}}",
+  "mxPlan_order_error": "Si è verificato un errore durante il processo di ordine : {{ message }}",
+  "mxPlan_price_without_tax": "Prezzo IVA esclusa: ",
+  "mxPlan_price_with_tax": "Prezzo IVA inclusa: ",
+  "mxPlan_order_action": "Ordina",
+  "mxPlan_order_error_payment": "Si è verificato un errore durante il caricamento dei metodi di pagamento.",
+  "mxPlan_order_activate": "Attiva"
+}

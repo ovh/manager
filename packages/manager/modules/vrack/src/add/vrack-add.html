@@ -1,64 +1,95 @@
 <div id="vrack-add" class="row">
-
     <!-- init loading... -->
-    <div data-ng-if="VrackAddCtrl.loaders.loading" class="col-xs-10 col-xs-offset-1 col-md-11 page-margins">
+    <div
+        data-ng-if="VrackAddCtrl.loaders.loading"
+        class="col-xs-10 col-xs-offset-1 col-md-11 page-margins"
+    >
         <div class="text-center">
             <oui-spinner></oui-spinner>
         </div>
     </div>
 
-    <div data-ng-if="!VrackAddCtrl.loaders.loading"  class="col-xs-10 col-xs-offset-1 col-md-11 page-margins">
+    <div
+        data-ng-if="!VrackAddCtrl.loaders.loading"
+        class="col-xs-10 col-xs-offset-1 col-md-11 page-margins"
+    >
         <div class="page-header">
             <h1 data-translate="vrack_title"></h1>
         </div>
 
-        <h5 class="top-space-m20" data-translate="vrack_subtitle" data-ng-if="!VrackAddCtrl.loaders.validationPending"></h5>
+        <h5
+            class="top-space-m20"
+            data-translate="vrack_subtitle"
+            data-ng-if="!VrackAddCtrl.loaders.validationPending"
+        ></h5>
 
         <div class="row top-space-m20">
-            <div class="col-xs-10 col-xs-offset-1"
-                 data-ng-if="!VrackAddCtrl.loaders.loading && !VrackAddCtrl.model.error">
-
+            <div
+                class="col-xs-10 col-xs-offset-1"
+                data-ng-if="!VrackAddCtrl.loaders.loading && !VrackAddCtrl.model.error"
+            >
                 <!-- validationPending -->
-                <div class="top-space-m20" data-ng-if="VrackAddCtrl.loaders.validationPending">
-                    <h2 class="text-center" data-translate="vrack_validationPending" data-translate-values="{url: VrackAddCtrl.model.purchaseOrderUrl}"></h2>
-                    <p class="text-center fs12" data-translate="vrack_order_delay"></p>
+                <div
+                    class="top-space-m20"
+                    data-ng-if="VrackAddCtrl.loaders.validationPending"
+                >
+                    <h2
+                        class="text-center"
+                        data-translate="vrack_validationPending"
+                        data-translate-values="{url: VrackAddCtrl.model.purchaseOrderUrl}"
+                    ></h2>
+                    <p
+                        class="text-center fs12"
+                        data-translate="vrack_order_delay"
+                    ></p>
                 </div>
 
                 <!-- form -->
                 <div data-ng-if="!VrackAddCtrl.loaders.validationPending">
                     <!-- contracts -->
-                    <div class="row" data-ng-if="!VrackAddCtrl.model.contractsAccepted && VrackAddCtrl.model.agreements.length"
-                         data-full-text="true"
-                         data-cuc-contracts="VrackAddCtrl.model.agreements"
-                         data-cuc-contracts-validated="VrackAddCtrl.model.contractsAccepted">
-                    </div>
+                    <div
+                        class="row"
+                        data-ng-if="!VrackAddCtrl.model.contractsAccepted && VrackAddCtrl.model.agreements.length"
+                        data-full-text="true"
+                        data-cuc-contracts="VrackAddCtrl.model.agreements"
+                        data-cuc-contracts-validated="VrackAddCtrl.model.contractsAccepted"
+                    ></div>
 
                     <!-- contracts: okey (only shown if its the first project) -->
-                    <div class="row" data-ng-if="VrackAddCtrl.model.contractsAccepted">
+                    <div
+                        class="row"
+                        data-ng-if="VrackAddCtrl.model.contractsAccepted"
+                    >
                         <div class="col-xs-12 contracts-agree-ctnr bold">
                             <i class="fa fa-check text-success fs16"></i>
-                            <span class="fs12" data-translate="vrack_contract_empty"></span>
+                            <span
+                                class="fs12"
+                                data-translate="vrack_contract_empty"
+                            ></span>
                         </div>
                     </div>
 
                     <!-- submit -->
                     <div class="row  top-space-m8 bottom-space-m16">
-                        <button type="submit" class="col-xs-offset-3 col-xs-6 col-md-4 col-md-offset-4 col-lg-2 col-lg-offset-5 top-space-m16 oui-button oui-button_primary"
-                                data-ng-if="VrackAddCtrl.region !== 'US'"
-                                data-ng-click="VrackAddCtrl.addVrack()"
-                                data-ng-disabled="VrackAddCtrl.loaders.loading || VrackAddCtrl.loaders.validationPending || !VrackAddCtrl.model.agreements.length  || (VrackAddCtrl.model.agreements.length && !VrackAddCtrl.model.contractsAccepted)"
-                                data-translate="vrack_order">
-                        </button>
-                        <a class="oui-button oui-button_primary"
-                           target="_blank"
-                           rel="noopener"
-                           title="{{:: 'vrack_order_install_now_label' | translate }} ({{:: 'vrack_common_new_window' | translate }})"
-                           data-ng-if="VrackAddCtrl.region === 'US'"
-                           data-ng-href="{{:: VrackAddCtrl.vrackOrderUrl }}"
-                           data-translate="vrack_order_install_now_label">
+                        <button
+                            type="submit"
+                            class="col-xs-offset-3 col-xs-6 col-md-4 col-md-offset-4 col-lg-2 col-lg-offset-5 top-space-m16 oui-button oui-button_primary"
+                            data-ng-if="VrackAddCtrl.region !== 'US'"
+                            data-ng-click="VrackAddCtrl.addVrack()"
+                            data-ng-disabled="VrackAddCtrl.loaders.loading || VrackAddCtrl.loaders.validationPending || !VrackAddCtrl.model.agreements.length  || (VrackAddCtrl.model.agreements.length && !VrackAddCtrl.model.contractsAccepted)"
+                            data-translate="vrack_order"
+                        ></button>
+                        <a
+                            class="oui-button oui-button_primary"
+                            target="_blank"
+                            rel="noopener"
+                            title="{{:: 'vrack_order_install_now_label' | translate }} ({{:: 'vrack_common_new_window' | translate }})"
+                            data-ng-if="VrackAddCtrl.region === 'US'"
+                            data-ng-href="{{:: VrackAddCtrl.vrackOrderUrl }}"
+                            data-translate="vrack_order_install_now_label"
+                        >
                         </a>
                     </div>
-
                 </div>
             </div>
         </div>

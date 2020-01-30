@@ -1,5 +1,11 @@
-angular.module('managerApp')
-  .controller('ChangelogCtrl', function ChangelogCtrl($uibModalInstance, OvhApiMe, OvhApiChangelog, coreConfig) {
+angular
+  .module('managerApp')
+  .controller('ChangelogCtrl', function ChangelogCtrl(
+    $uibModalInstance,
+    OvhApiMe,
+    OvhApiChangelog,
+    coreConfig,
+  ) {
     const self = this;
 
     self.loading = false;
@@ -20,11 +26,12 @@ angular.module('managerApp')
     function init() {
       self.loading = true;
       return getUser()
-        .then(
-          user => getChangelog(user.ovhSubsidiary, coreConfig.getRegion())
-            .then((changelog) => {
+        .then((user) =>
+          getChangelog(user.ovhSubsidiary, coreConfig.getRegion()).then(
+            (changelog) => {
               self.content = changelog;
-            }),
+            },
+          ),
         )
         .catch((err) => {
           self.error = err;

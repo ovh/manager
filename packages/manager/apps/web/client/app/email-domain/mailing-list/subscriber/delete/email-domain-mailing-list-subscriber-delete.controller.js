@@ -38,11 +38,17 @@ angular.module('App').controller(
 
           this.Alerter.alertFromSWSBatchResult(
             {
-              OK: this.$translate.instant(this.subscribers.length === 1
-                ? 'mailing_list_tab_modal_subscriber_delete_success'
-                : 'mailing_list_tab_modal_subscribers_delete_success'),
-              PARTIAL: this.$translate.instant('mailing_list_tab_modal_subscribers_delete_error'),
-              ERROR: this.$translate.instant('mailing_list_tab_modal_subscribers_delete_error'),
+              OK: this.$translate.instant(
+                this.subscribers.length === 1
+                  ? 'mailing_list_tab_modal_subscriber_delete_success'
+                  : 'mailing_list_tab_modal_subscribers_delete_success',
+              ),
+              PARTIAL: this.$translate.instant(
+                'mailing_list_tab_modal_subscribers_delete_error',
+              ),
+              ERROR: this.$translate.instant(
+                'mailing_list_tab_modal_subscribers_delete_error',
+              ),
             },
             task,
             this.$scope.alerts.main,
@@ -57,9 +63,11 @@ angular.module('App').controller(
         })
         .catch((err) => {
           this.Alerter.alertFromSWS(
-            this.$translate.instant(this.subscribers.length === 1
-              ? 'mailing_list_tab_modal_subscriber_delete_error'
-              : 'mailing_list_tab_modal_subscribers_delete_error'),
+            this.$translate.instant(
+              this.subscribers.length === 1
+                ? 'mailing_list_tab_modal_subscriber_delete_error'
+                : 'mailing_list_tab_modal_subscribers_delete_error',
+            ),
             err,
             this.$scope.alerts.main,
           );

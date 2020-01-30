@@ -2,7 +2,13 @@ import isEmpty from 'lodash/isEmpty';
 
 export default class VpsReverseDnsCtrl {
   /* @ngInject */
-  constructor($translate, $uibModalInstance, CucCloudMessage, serviceName, VpsService) {
+  constructor(
+    $translate,
+    $uibModalInstance,
+    CucCloudMessage,
+    serviceName,
+    VpsService,
+  ) {
     this.$translate = $translate;
     this.$uibModalInstance = $uibModalInstance;
     this.CucCloudMessage = CucCloudMessage;
@@ -27,9 +33,17 @@ export default class VpsReverseDnsCtrl {
   $onInit() {
     this.loader.init = true;
     this.VpsService.getIps(this.serviceName)
-      .then((data) => { this.ips = data.results; })
-      .catch(() => this.CucCloudMessage.error(this.$translate.instant('vps_configuration_reversedns_fail')))
-      .finally(() => { this.loader.init = false; });
+      .then((data) => {
+        this.ips = data.results;
+      })
+      .catch(() =>
+        this.CucCloudMessage.error(
+          this.$translate.instant('vps_configuration_reversedns_fail'),
+        ),
+      )
+      .finally(() => {
+        this.loader.init = false;
+      });
   }
 
   prepareDnsIpsStruct() {
@@ -50,19 +64,35 @@ export default class VpsReverseDnsCtrl {
           const messages = !isEmpty(data.messages) ? data.messages : [];
           switch (data.state) {
             case 'ERROR':
-              this.CucCloudMessage.error(this.$translate.instant('vps_configuration_reversedns_fail'));
-              messages.forEach(message => this.CucCloudMessage.error(message.message || message));
+              this.CucCloudMessage.error(
+                this.$translate.instant('vps_configuration_reversedns_fail'),
+              );
+              messages.forEach((message) =>
+                this.CucCloudMessage.error(message.message || message),
+              );
               break;
             case 'PARTIAL':
               break;
             case 'OK':
-              this.CucCloudMessage.success(this.$translate.instant('vps_configuration_reversedns_success', { serviceName: this.serviceName }));
+              this.CucCloudMessage.success(
+                this.$translate.instant(
+                  'vps_configuration_reversedns_success',
+                  { serviceName: this.serviceName },
+                ),
+              );
               break;
-            default: this.this.CucCloudMessage.error(this.$translate.instant('vps_configuration_reversedns_fail'));
+            default:
+              this.this.CucCloudMessage.error(
+                this.$translate.instant('vps_configuration_reversedns_fail'),
+              );
           }
         }
       })
-      .catch(() => this.CucCloudMessage.error(this.$translate.instant('vps_configuration_reversedns_fail')))
+      .catch(() =>
+        this.CucCloudMessage.error(
+          this.$translate.instant('vps_configuration_reversedns_fail'),
+        ),
+      )
       .finally(() => {
         this.loader.save = false;
         this.$uibModalInstance.close();

@@ -10,18 +10,21 @@ export default class FormValidation {
    */
   doesFieldContainsErrors(form, fieldName, validationType) {
     if (form == null || isEmpty(fieldName) || isEmpty(validationType)) {
-      throw `ArgumentError: doesFieldContainsErrors(form = ${form}, fieldName = ${fieldName}, validationType = ${validationType})`; // eslint-disable-line
+      // eslint-disable-next-line no-throw-literal
+      throw `ArgumentError: doesFieldContainsErrors(form = ${form}, fieldName = ${fieldName}, validationType = ${validationType})`;
     }
 
     const fieldExists = form[fieldName] != null;
 
     if (!fieldExists) {
-      throw `The ${fieldName} doesn't exist in the form ${form}`; // eslint-disable-line
+      // eslint-disable-next-line no-throw-literal
+      throw `The ${fieldName} doesn't exist in the form ${form}`;
     }
 
     const isDirty = form[fieldName].$dirty;
     const hasValidationValue = form[fieldName].$error[validationType] != null;
-    const isValid = hasValidationValue && form[fieldName].$error[validationType];
+    const isValid =
+      hasValidationValue && form[fieldName].$error[validationType];
     const thereIsAnError = isDirty && isValid;
 
     return thereIsAnError;

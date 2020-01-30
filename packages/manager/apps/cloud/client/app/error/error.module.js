@@ -4,10 +4,6 @@ import routing from './error.routing';
 
 const moduleName = 'ovhManagerCloudError';
 
-angular.module(moduleName, [
-  'ui.router',
-  managerErrorPage,
-])
-  .config(routing);
+angular.module(moduleName, ['ui.router', managerErrorPage]).config(routing);
 
 export default moduleName;

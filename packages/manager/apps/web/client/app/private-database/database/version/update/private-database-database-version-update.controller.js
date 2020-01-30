@@ -40,8 +40,9 @@ angular.module('App').controller(
 
           remove(
             this.model.versions,
-            version => version.replace(/\./g, '')
-              === this.$scope.currentActionData.version,
+            (version) =>
+              version.replace(/\./g, '') ===
+              this.$scope.currentActionData.version,
           );
 
           this.loading.init = false;
@@ -49,9 +50,12 @@ angular.module('App').controller(
         .catch((err) => {
           this.$scope.resetAction();
           this.alerter.alertFromSWS(
-            this.$translate.instant('privateDatabase_change_version_step1_fail', {
-              t0: this.$scope.entryToDelete,
-            }),
+            this.$translate.instant(
+              'privateDatabase_change_version_step1_fail',
+              {
+                t0: this.$scope.entryToDelete,
+              },
+            ),
             get(err, 'data', err),
             this.$scope.alerts.main,
           );

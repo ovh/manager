@@ -45,9 +45,7 @@ angular.module('App').controller(
         this.guide = get(guides, 'hostingStatsLogs');
       });
 
-      if (
-        ['gra1', 'gra2'].includes(this.$scope.hostingProxy.datacenter)
-      ) {
+      if (['gra1', 'gra2'].includes(this.$scope.hostingProxy.datacenter)) {
         // FOR GRAVELINE
         this.urlUrchin = URI.expand(this.constants.urchin_gra, {
           serviceName: this.$stateParams.productId,
@@ -77,9 +75,9 @@ angular.module('App').controller(
       this.userLogs = null;
 
       return this.Hosting.getUserLogs(this.$stateParams.productId)
-        .then(data => data.sort())
+        .then((data) => data.sort())
         .then((ids) => {
-          this.userLogs = ids.map(id => ({ id }));
+          this.userLogs = ids.map((id) => ({ id }));
           return this.userLogs;
         })
         .catch((err) => {
@@ -89,7 +87,7 @@ angular.module('App').controller(
 
     transformItem(item) {
       if (item.transformed) {
-        return this.$q(resolve => resolve(item));
+        return this.$q((resolve) => resolve(item));
       }
       return this.Hosting.getUserLogsEntry(this.$stateParams.productId, item.id)
         .then((originalLogEntry) => {

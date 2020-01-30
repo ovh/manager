@@ -144,7 +144,7 @@ angular
           .then((hostingBoostIds) => {
             $scope.hostingBoosts = hostingBoostIds
               .sort((d1, d2) => moment(d2).diff(moment(d1)))
-              .map(id => ({ id }));
+              .map((id) => ({ id }));
           })
           .catch((err) => {
             Alerter.alertFromSWS(
@@ -156,12 +156,12 @@ angular
       };
 
       /*
-     * if you want transform item must return transformated item
-     * item is the current item to transform
-     */
+       * if you want transform item must return transformated item
+       * item is the current item to transform
+       */
       $scope.transformItem = (item) => {
         if (item.transformed) {
-          return $q(resolve => resolve(item));
+          return $q((resolve) => resolve(item));
         }
         return HostingBoost.getHistoryEntry(
           $stateParams.productId,

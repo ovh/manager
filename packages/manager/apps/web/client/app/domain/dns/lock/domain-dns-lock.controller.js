@@ -23,10 +23,12 @@ angular.module('controllers').controller(
         this.$stateParams.productId,
         'hosted',
       )
-        .then(() => this.Alerter.success(
-          this.$translate.instant('domain_tab_DNS_lock_success'),
-          this.$scope.alerts.main,
-        ))
+        .then(() =>
+          this.Alerter.success(
+            this.$translate.instant('domain_tab_DNS_lock_success'),
+            this.$scope.alerts.main,
+          ),
+        )
         .catch((err) => {
           set(err, 'type', err.type || 'ERROR');
           this.Alerter.alertFromSWS(

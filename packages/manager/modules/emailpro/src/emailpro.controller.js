@@ -4,9 +4,20 @@ import isString from 'lodash/isString';
 import set from 'lodash/set';
 
 export default /* @ngInject */ function EmailProCtrl(
-  $q, $rootScope, $scope, $timeout, $location, $stateParams, $translate,
-  EmailPro, APIEmailPro, User, EMAILPRO_CONFIG,
+  $q,
+  $rootScope,
+  $scope,
+  $timeout,
+  $location,
+  $stateParams,
+  $translate,
+  EmailPro,
+  APIEmailPro,
+  getTabLink,
+  User,
+  EMAILPRO_CONFIG,
 ) {
+  this.getTabLink = getTabLink;
   let initialLoad = true;
 
   $scope.accountTypeDedicated = EmailPro.accountTypeDedicated;
@@ -14,7 +25,7 @@ export default /* @ngInject */ function EmailProCtrl(
   $scope.accountTypeProvider = EmailPro.accountTypeProvider;
 
   $scope.alerts = {
-    dashboard: 'emailproDashboardAlert',
+    main: 'emailproDashboardAlert',
   };
 
   $scope.loadingEmailProInformations = true;
@@ -38,39 +49,82 @@ export default /* @ngInject */ function EmailProCtrl(
 
   const loadATooltip = function loadATooltip(exchange) {
     if (exchange.serverDiagnostic.ip && exchange.serverDiagnostic.isAValid) {
-      set(exchange, 'serverDiagnostic.aTooltip', $translate.instant('emailpro_dashboard_diag_a_tooltip_ok'));
+      set(
+        exchange,
+        'serverDiagnostic.aTooltip',
+        $translate.instant('emailpro_dashboard_diag_a_tooltip_ok'),
+      );
     } else {
-      set(exchange, 'serverDiagnostic.aTooltip', $translate.instant('emailpro_dashboard_diag_a_tooltip_error', { t0: exchange.hostname, t1: exchange.serverDiagnostic.ip }));
+      set(
+        exchange,
+        'serverDiagnostic.aTooltip',
+        $translate.instant('emailpro_dashboard_diag_a_tooltip_error', {
+          t0: exchange.hostname,
+          t1: exchange.serverDiagnostic.ip,
+        }),
+      );
     }
   };
 
   const loadAaaaTooltip = function loadAaaaTooltip(exchange) {
-    if (exchange.serverDiagnostic.ipV6 && exchange.serverDiagnostic.isAaaaValid) {
-      set(exchange, 'serverDiagnostic.aaaaTooltip', $translate.instant('emailpro_dashboard_diag_aaaa_tooltip_ok'));
+    if (
+      exchange.serverDiagnostic.ipV6 &&
+      exchange.serverDiagnostic.isAaaaValid
+    ) {
+      set(
+        exchange,
+        'serverDiagnostic.aaaaTooltip',
+        $translate.instant('emailpro_dashboard_diag_aaaa_tooltip_ok'),
+      );
     } else {
-      set(exchange, 'serverDiagnostic.aaaaTooltip', $translate.instant('emailpro_dashboard_diag_aaaa_tooltip_error', { t0: exchange.hostname, t1: exchange.serverDiagnostic.ipV6 }));
+      set(
+        exchange,
+        'serverDiagnostic.aaaaTooltip',
+        $translate.instant('emailpro_dashboard_diag_aaaa_tooltip_error', {
+          t0: exchange.hostname,
+          t1: exchange.serverDiagnostic.ipV6,
+        }),
+      );
     }
   };
 
   const loadPtrTooltip = function loadPtrTooltip(exchange) {
     if (exchange.serverDiagnostic.isPtrValid) {
-      set(exchange, 'serverDiagnostic.ptrTooltip', $translate.instant('emailpro_dashboard_diag_ptr_tooltip_ok'));
+      set(
+        exchange,
+        'serverDiagnostic.ptrTooltip',
+        $translate.instant('emailpro_dashboard_diag_ptr_tooltip_ok'),
+      );
     } else {
-      set(exchange, 'serverDiagnostic.ptrTooltip', $translate.instant('emailpro_dashboard_diag_ptr_tooltip_error'));
+      set(
+        exchange,
+        'serverDiagnostic.ptrTooltip',
+        $translate.instant('emailpro_dashboard_diag_ptr_tooltip_error'),
+      );
     }
   };
   const loadPtrv6Tooltip = function loadPtrv6Tooltip(exchange) {
     if (exchange.serverDiagnostic.isPtrV6Valid) {
-      set(exchange, 'serverDiagnostic.ptrv6Tooltip', $translate.instant('emailpro_dashboard_diag_ptrv6_tooltip_ok'));
+      set(
+        exchange,
+        'serverDiagnostic.ptrv6Tooltip',
+        $translate.instant('emailpro_dashboard_diag_ptrv6_tooltip_ok'),
+      );
     } else {
-      set(exchange, 'serverDiagnostic.ptrv6Tooltip', $translate.instant('emailpro_dashboard_diag_ptrv6_tooltip_error'));
+      set(
+        exchange,
+        'serverDiagnostic.ptrv6Tooltip',
+        $translate.instant('emailpro_dashboard_diag_ptrv6_tooltip_error'),
+      );
     }
   };
 
   const loadEmailPro = function loadEmailPro() {
-    User.getUser().then((data) => { // eslint-disable-line
+    // eslint-disable-next-line consistent-return
+    User.getUser().then((data) => {
       try {
-        $scope.displayGuides = EMAILPRO_CONFIG.URLS.GUIDES.DOCS_HOME[data.ovhSubsidiary];
+        $scope.displayGuides =
+          EMAILPRO_CONFIG.URLS.GUIDES.DOCS_HOME[data.ovhSubsidiary];
       } catch (exception) {
         return '';
       }
@@ -81,7 +135,9 @@ export default /* @ngInject */ function EmailProCtrl(
     return EmailPro.gettingIsServiceMXPlan()
       .then((serviceIsMXPlan) => {
         $scope.exchange.isMXPlan = serviceIsMXPlan;
-        $scope.exchange.billingPlan = serviceIsMXPlan ? 'emailpro-mxplan' : 'emailpro';
+        $scope.exchange.billingPlan = serviceIsMXPlan
+          ? 'emailpro-mxplan'
+          : 'emailpro';
 
         if ($scope.exchange.isMXPlan) {
           $scope.displayGuides = null;
@@ -102,7 +158,10 @@ export default /* @ngInject */ function EmailProCtrl(
         $scope.loadingEmailProInformations = false;
 
         if ($scope.exchange.messages && $scope.exchange.messages.length > 0) {
-          $scope.setMessage($translate.instant('emailpro_dashboard_loading_error'), $scope.exchange);
+          $scope.setMessage(
+            $translate.instant('emailpro_dashboard_loading_error'),
+            $scope.exchange,
+          );
           if (!$scope.exchange.name) {
             $scope.loadingEmailProError = true;
           }
@@ -125,7 +184,9 @@ export default /* @ngInject */ function EmailProCtrl(
         if (!$scope.exchange.domainsNumber && initialLoad) {
           initialLoad = false;
           $timeout(() => {
-            $scope.setAction('emailpro/domain/add/emailpro-domain-add', { noDomainAttached: true });
+            $scope.setAction('emailpro/domain/add/emailpro-domain-add', {
+              noDomainAttached: true,
+            });
           }, 1000);
         }
       })
@@ -136,12 +197,20 @@ export default /* @ngInject */ function EmailProCtrl(
           const response = failure.data || failure;
           const data = {
             status: 'ERROR',
-            messages: [{ type: 'ERROR', message: response.message, id: response.id }],
+            messages: [
+              { type: 'ERROR', message: response.message, id: response.id },
+            ],
           };
           if (response.code === 460 || response.status === 460) {
-            $scope.setMessage($translate.instant('common_service_expired', { t0: response.id }), data);
+            $scope.setMessage(
+              $translate.instant('common_service_expired', { t0: response.id }),
+              data,
+            );
           } else {
-            $scope.setMessage($translate.instant('emailpro_dashboard_loading_error'), data);
+            $scope.setMessage(
+              $translate.instant('emailpro_dashboard_loading_error'),
+              data,
+            );
           }
         }
       });
@@ -160,8 +229,10 @@ export default /* @ngInject */ function EmailProCtrl(
 
   $scope.is25g = function is25g() {
     if ($scope.exchange) {
-      return $scope.exchange.offer === $scope.accountTypeProvider
-                  && $scope.exchange.serverDiagnostic.individual2010 === true;
+      return (
+        $scope.exchange.offer === $scope.accountTypeProvider &&
+        $scope.exchange.serverDiagnostic.individual2010 === true
+      );
     }
     return false;
   };
@@ -177,7 +248,10 @@ export default /* @ngInject */ function EmailProCtrl(
   const init = function init() {
     if ($location.search().action === 'billing') {
       $timeout(() => {
-        $rootScope.$broadcast('leftNavigation.selectProduct.fromName', parseLocationForEmailProData());
+        $rootScope.$broadcast(
+          'leftNavigation.selectProduct.fromName',
+          parseLocationForEmailProData(),
+        );
         loadEmailPro();
       }, 2000);
     } else {
@@ -249,11 +323,15 @@ export default /* @ngInject */ function EmailProCtrl(
               break;
             default:
           }
-          angular.forEach(failure.messages, function iteration(value) {
-            if (value.type && value.type !== 'INFO') {
-              this.push({ id: value.id, message: value.message });
-            }
-          }, messageDetails);
+          angular.forEach(
+            failure.messages,
+            function iteration(value) {
+              if (value.type && value.type !== 'INFO') {
+                this.push({ id: value.id, message: value.message });
+              }
+            },
+            messageDetails,
+          );
         }
       } else if (failure.status) {
         const status = get(failure, 'status', '').toLowerCase();
@@ -308,19 +386,25 @@ export default /* @ngInject */ function EmailProCtrl(
   };
 
   $scope.displayRenewDate = function displayRenewDate() {
-    return $scope.exchange
-      && $scope.exchange.expiration
-      && $scope.exchange.serverDiagnostic.version === EmailPro.EmailPro2013Code
-      && $scope.exchange.offer === $scope.accountTypeDedicated;
+    return (
+      $scope.exchange &&
+      $scope.exchange.expiration &&
+      $scope.exchange.serverDiagnostic.version === EmailPro.EmailPro2013Code &&
+      $scope.exchange.offer === $scope.accountTypeDedicated
+    );
   };
 
   $scope.displaySslRenew = function displaySslRenew() {
     if (!$scope.exchange) {
       return false;
-    } if ($scope.exchange.offer === $scope.accountTypeDedicated) {
+    }
+    if ($scope.exchange.offer === $scope.accountTypeDedicated) {
       return true;
-    } if ($scope.exchange.serverDiagnostic.version === EmailPro.EmailPro2010Code
-        && $scope.exchange.offer !== $scope.accountTypeHosted) {
+    }
+    if (
+      $scope.exchange.serverDiagnostic.version === EmailPro.EmailPro2010Code &&
+      $scope.exchange.offer !== $scope.accountTypeHosted
+    ) {
       return true;
     }
     return false;
@@ -331,9 +415,12 @@ export default /* @ngInject */ function EmailProCtrl(
       return false;
     }
 
-    if ($scope.exchange.serverDiagnostic.commercialVersion === '_2013'
-      && $scope.exchange.offer === $scope.accountTypeHosted
-      && ($scope.exchange.nicType.indexOf('ADMIN') !== -1 || $scope.exchange.nicType.indexOf('BILLING') !== -1)) {
+    if (
+      $scope.exchange.serverDiagnostic.commercialVersion === '_2013' &&
+      $scope.exchange.offer === $scope.accountTypeHosted &&
+      ($scope.exchange.nicType.indexOf('ADMIN') !== -1 ||
+        $scope.exchange.nicType.indexOf('BILLING') !== -1)
+    ) {
       return true;
     }
 
@@ -341,43 +428,64 @@ export default /* @ngInject */ function EmailProCtrl(
   };
 
   $scope.displayOrderDiskSpace = function displayOrderDiskSpace() {
-    return $scope.exchange
-      && $scope.exchange.serverDiagnostic.version === EmailPro.EmailPro2010Code
-      && $scope.exchange.offer === $scope.accountTypeProvider && !$scope.is25g();
+    return (
+      $scope.exchange &&
+      $scope.exchange.serverDiagnostic.version === EmailPro.EmailPro2010Code &&
+      $scope.exchange.offer === $scope.accountTypeProvider &&
+      !$scope.is25g()
+    );
   };
 
   $scope.resetDisplayName = function resetDisplayName() {
     $timeout(() => {
       $scope.edit.active = false;
       if ($scope.newDisplayName.value.length < 5) {
-        $scope.setMessage($translate.instant('emailpro_dashboard_display_name_min'));
+        $scope.setMessage(
+          $translate.instant('emailpro_dashboard_display_name_min'),
+        );
       }
     }, 300);
   };
 
   $scope.saveDisplayName = function saveDisplayName() {
-    if ($scope.newDisplayName.value && $scope.newDisplayName.value.length >= 5) {
+    if (
+      $scope.newDisplayName.value &&
+      $scope.newDisplayName.value.length >= 5
+    ) {
       const dataToSend = { displayName: $scope.newDisplayName.value };
       APIEmailPro.put('/{exchangeService}', {
         urlParams: {
           exchangeService: $scope.exchange.domain,
         },
         data: dataToSend,
-      }).then(() => {
-        $scope.exchange.displayName = $scope.newDisplayName.value;
-        $rootScope.$broadcast('change.displayName', [$scope.exchange.domain, $scope.newDisplayName.value]);
-        $scope.setMessage($translate.instant('emailpro_ACTION_configure_success'), 'true');
-      }).catch((err) => {
-        $scope.setMessage($translate.instant('emailpro_ACTION_configure_error'), get(err, 'data', ''));
-      }).finally(() => {
-        $scope.edit.active = false;
-      });
+      })
+        .then(() => {
+          $scope.exchange.displayName = $scope.newDisplayName.value;
+          $rootScope.$broadcast('change.displayName', [
+            $scope.exchange.domain,
+            $scope.newDisplayName.value,
+          ]);
+          $scope.setMessage(
+            $translate.instant('emailpro_ACTION_configure_success'),
+            'true',
+          );
+        })
+        .catch((err) => {
+          $scope.setMessage(
+            $translate.instant('emailpro_ACTION_configure_error'),
+            get(err, 'data', ''),
+          );
+        })
+        .finally(() => {
+          $scope.edit.active = false;
+        });
     } else {
       $scope.edit.active = false;
     }
   };
 
-  $scope.getAutoRenewURL = () => `#/billing/autoRenew?searchText=${$scope.exchange.domain}`;
+  $scope.getAutoRenewURL = () =>
+    `#/billing/autoRenew?searchText=${$scope.exchange.domain}`;
 
   init();
 }

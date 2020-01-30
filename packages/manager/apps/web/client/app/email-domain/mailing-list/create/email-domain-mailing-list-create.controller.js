@@ -13,7 +13,15 @@ angular.module('App').controller(
      * @param MailingLists
      * @param User
      */
-    constructor($scope, $q, $stateParams, $translate, Alerter, MailingLists, User) {
+    constructor(
+      $scope,
+      $q,
+      $stateParams,
+      $translate,
+      Alerter,
+      MailingLists,
+      User,
+    ) {
       this.$scope = $scope;
       this.$q = $q;
       this.$stateParams = $stateParams;
@@ -62,7 +70,9 @@ angular.module('App').controller(
       return this.$q
         .all({
           models: this.MailingLists.getModels(),
-          limits: this.MailingLists.getMailingListLimits(this.model.mlModerationMsg),
+          limits: this.MailingLists.getMailingListLimits(
+            this.model.mlModerationMsg,
+          ),
         })
         .then(({ models, limits }) => {
           this.languages = models.models['domain.DomainMlLanguageEnum'].enum;
@@ -84,8 +94,8 @@ angular.module('App').controller(
     mlNameCheck(input) {
       input.$setValidity(
         'unique',
-        this.mailingLists.length === 0
-          || indexOf(this.mailingLists, this.model.mlName) === -1,
+        this.mailingLists.length === 0 ||
+          indexOf(this.mailingLists, this.model.mlName) === -1,
       );
     }
 
@@ -97,9 +107,10 @@ angular.module('App').controller(
     }
 
     selectReplyTo() {
-      this.model.replyTo = this.replyToSelector === this.constants.REPLY_TO_EMAIL
-        ? ''
-        : this.replyToSelector;
+      this.model.replyTo =
+        this.replyToSelector === this.constants.REPLY_TO_EMAIL
+          ? ''
+          : this.replyToSelector;
     }
 
     selectModerationMsg() {
@@ -150,15 +161,21 @@ angular.module('App').controller(
           subscribeByModerator: this.model.mlSubscribersModeration,
         },
       })
-        .then(() => this.Alerter.success(
-          this.$translate.instant('mailing_list_tab_modal_create_list_success'),
-          this.$scope.alerts.main,
-        ))
-        .catch(err => this.Alerter.alertFromSWS(
-          this.$translate.instant('mailing_list_tab_modal_create_list_error'),
-          err,
-          this.$scope.alerts.main,
-        ))
+        .then(() =>
+          this.Alerter.success(
+            this.$translate.instant(
+              'mailing_list_tab_modal_create_list_success',
+            ),
+            this.$scope.alerts.main,
+          ),
+        )
+        .catch((err) =>
+          this.Alerter.alertFromSWS(
+            this.$translate.instant('mailing_list_tab_modal_create_list_error'),
+            err,
+            this.$scope.alerts.main,
+          ),
+        )
         .finally(() => this.$scope.resetAction());
     }
   },

@@ -2,15 +2,15 @@ import get from 'lodash/get';
 import isArray from 'lodash/isArray';
 import isEmpty from 'lodash/isEmpty';
 
-import { FETCH_PRICE_MAX_TRIES, PRODUCT_TYPES } from './ip-ip-agoraOrder.constant';
+import {
+  FETCH_PRICE_MAX_TRIES,
+  PRODUCT_TYPES,
+} from './ip-ip-agoraOrder.constant';
 
-angular
-  .module('Module.ip.services')
-  .service('IpAgoraOrder', class {
-    constructor(
-      $q,
-      OvhHttp,
-    ) {
+angular.module('Module.ip.services').service(
+  'IpAgoraOrder',
+  class {
+    constructor($q, OvhHttp) {
       this.$q = $q;
       this.OvhHttp = OvhHttp;
 
@@ -26,29 +26,30 @@ angular
     }
 
     fetchProducts(product) {
-      return this.OvhHttp
-        .get('/products', {
-          rootPath: '2api',
-          params: {
-            product,
-          },
-        });
+      return this.OvhHttp.get('/products', {
+        rootPath: '2api',
+        params: {
+          product,
+        },
+      });
     }
 
     getServices() {
       return this.$q
         .all([
-          this.fetchProducts(PRODUCT_TYPES.privateCloud.apiTypeName)
-            .then(this.handleErrorOrServices),
-          this.fetchProducts(PRODUCT_TYPES.dedicatedServer.apiTypeName)
-            .then(this.handleErrorOrServices),
+          this.fetchProducts(PRODUCT_TYPES.privateCloud.apiTypeName).then(
+            this.handleErrorOrServices,
+          ),
+          this.fetchProducts(PRODUCT_TYPES.dedicatedServer.apiTypeName).then(
+            this.handleErrorOrServices,
+          ),
         ])
         .then(([privateClouds, dedicatedServers]) => [
-          ...privateClouds.map(privateCloud => ({
+          ...privateClouds.map((privateCloud) => ({
             ...privateCloud,
             type: PRODUCT_TYPES.privateCloud.typeName,
           })),
-          ...dedicatedServers.map(dedicatedServer => ({
+          ...dedicatedServers.map((dedicatedServer) => ({
             ...dedicatedServer,
             type: PRODUCT_TYPES.dedicatedServer.typeName,
           })),
@@ -56,35 +57,39 @@ angular
     }
 
     getIpOffers(ovhSubsidiary = 'US') {
-      return this.OvhHttp
-        .get('/order/catalog/formatted/ip', {
-          rootPath: 'apiv6',
-          params: {
-            ovhSubsidiary,
-          },
-        })
-        .then(({ plans }) => plans);
+      return this.OvhHttp.get('/order/catalog/formatted/ip', {
+        rootPath: 'apiv6',
+        params: {
+          ovhSubsidiary,
+        },
+      }).then(({ plans }) => plans);
     }
 
     fetchPrices(serviceName, blockSize) {
-      this.fetchPricesTries = this.fetchPricesTries + 1;
-      return this.OvhHttp
-        .get(`/order/cartServiceOption/privateCloud/${serviceName}`, {
+      this.fetchPricesTries += 1;
+      return this.OvhHttp.get(
+        `/order/cartServiceOption/privateCloud/${serviceName}`,
+        {
           rootPath: 'apiv6',
-        })
+        },
+      )
         .then((offers) => {
           this.fetchPricesTries = 0;
           const matchingOffers = offers
-            .filter(offer => offer.family === 'ip')
-            .filter(offer => offer.planCode.includes(blockSize));
+            .filter((offer) => offer.family === 'ip')
+            .filter((offer) => offer.planCode.includes(blockSize));
 
-          return [].concat(...matchingOffers.map(offer => offer.prices.map(price => ({
-            planCode: offer.planCode,
-            duration: price.duration,
-            price: price.price.text,
-          }))));
+          return [].concat(
+            ...matchingOffers.map((offer) =>
+              offer.prices.map((price) => ({
+                planCode: offer.planCode,
+                duration: price.duration,
+                price: price.price.text,
+              })),
+            ),
+          );
         })
-        .catch(error => this.retryFetchPrices(error, serviceName, blockSize));
+        .catch((error) => this.retryFetchPrices(error, serviceName, blockSize));
     }
 
     retryFetchPrices(error, ...args) {
@@ -156,4 +161,5 @@ angular
 
       return productToOrder;
     }
-  });
+  },
+);

@@ -1,8 +1,9 @@
 <section class="telecom-sms-sms-compose">
-
     <header>
-        <tuc-section-back-link data-tuc-section-back-link-to-state="sms.service.sms"
-                           data-tuc-section-back-link-title="{{ 'sms_section_back_link' | translate }}">
+        <tuc-section-back-link
+            data-tuc-section-back-link-to-state="sms.service.sms"
+            data-tuc-section-back-link-title="{{ 'sms_section_back_link' | translate }}"
+        >
         </tuc-section-back-link>
         <h1 data-translate="sms_sms_compose_title"></h1>
     </header>
@@ -12,82 +13,103 @@
         <oui-spinner></oui-spinner>
     </div>
 
-    <div class="telecom-section-content"
-         data-ng-if="!$ctrl.loading.init">
-
+    <div class="telecom-section-content" data-ng-if="!$ctrl.loading.init">
         <tuc-toast-message></tuc-toast-message>
 
         <div class="row">
             <div class="col-md-3 float-right">
-
                 <div class="oui-tile">
-                    <h3 class="oui-header_3 oui-tile__title"
-                        data-translate="sms_sms_compose_tips_title">
-                    </h3>
+                    <h3
+                        class="oui-header_3 oui-tile__title"
+                        data-translate="sms_sms_compose_tips_title"
+                    ></h3>
                     <div class="oui-tile__body">
                         <div class="oui-tile__item oui-tile__item_button">
-                            <a href="#"
-                               class="oui-tile__button oui-button oui-button_link oui-button_icon-right oui-button_full-width"
-                               data-translate="sms_sms_compose_tip_compose_title"
-                               data-ng-click="$ctrl.tips($event, 'compose')">
+                            <a
+                                href="#"
+                                class="oui-tile__button oui-button oui-button_link oui-button_icon-right oui-button_full-width"
+                                data-translate="sms_sms_compose_tip_compose_title"
+                                data-ng-click="$ctrl.tips($event, 'compose')"
+                            >
                             </a>
                         </div>
                         <div class="oui-tile__item oui-tile__item_button">
-                            <a href="#"
-                               class="oui-tile__button oui-button oui-button_link oui-button_icon-right oui-button_full-width"
-                               data-translate="sms_sms_compose_tip_size_title"
-                               data-ng-click="$ctrl.tips($event, 'size')">
+                            <a
+                                href="#"
+                                class="oui-tile__button oui-button oui-button_link oui-button_icon-right oui-button_full-width"
+                                data-translate="sms_sms_compose_tip_size_title"
+                                data-ng-click="$ctrl.tips($event, 'size')"
+                            >
                             </a>
                         </div>
                         <div class="oui-tile__item oui-tile__item_button">
-                            <a href="#"
-                               class="oui-tile__button oui-button oui-button_link oui-button_icon-right oui-button_full-width"
-                               title="{{:: 'sms_sms_compose_add_receivers_select' | translate }} ({{:: 'common_open_new_tab' | translate }})"
-                               target="_blank"
-                               rel="noopener"
-                               data-ng-href="{{ $ctrl.urls.receivers }}">
-                               <span class="text-link"
-                                     data-translate="sms_sms_compose_add_receivers_select">
+                            <a
+                                href="#"
+                                class="oui-tile__button oui-button oui-button_link oui-button_icon-right oui-button_full-width"
+                                title="{{:: 'sms_sms_compose_add_receivers_select' | translate }} ({{:: 'common_open_new_tab' | translate }})"
+                                target="_blank"
+                                rel="noopener"
+                                data-ng-href="{{ $ctrl.urls.receivers }}"
+                            >
+                                <span
+                                    class="text-link"
+                                    data-translate="sms_sms_compose_add_receivers_select"
+                                >
                                 </span>
-                                <i class="fa fa-icon fa-external-link" aria-hidden="true"></i>
-                                <i class="oui-icon oui-icon-chevron-right" aria-hidden="true"></i>
+                                <i
+                                    class="fa fa-icon fa-external-link"
+                                    aria-hidden="true"
+                                ></i>
+                                <i
+                                    class="oui-icon oui-icon-chevron-right"
+                                    aria-hidden="true"
+                                ></i>
                             </a>
                         </div>
                     </div>
                 </div>
-
             </div>
             <div class="col-md-9">
-
-                <div class="alert alert-warning"
-                     role="alert"
-                     data-ng-if="$ctrl.service.creditsLeft <= 0 || $ctrl.service.creditsLeft < $ctrl.receivers.records">
-                    <p data-ng-if="$ctrl.service.creditsLeft <= 0"
-                       data-translate="sms_sms_compose_alert_not_enough_credits">
-                    </p>
-                    <p data-ng-if="$ctrl.service.creditsLeft > 0 && $ctrl.service.creditsLeft < $ctrl.receivers.records"
-                       data-translate="sms_sms_compose_alert_not_enough_credits_receivers">
-                    </p>
-                    <a title="{{ ::'sms_actions_credit_account' | translate }}"
-                       data-ui-sref="sms.service.order">
-                        <span data-translate="sms_actions_credit_account"></span>.
+                <div
+                    class="alert alert-warning"
+                    role="alert"
+                    data-ng-if="$ctrl.service.creditsLeft <= 0 || $ctrl.service.creditsLeft < $ctrl.receivers.records"
+                >
+                    <p
+                        data-ng-if="$ctrl.service.creditsLeft <= 0"
+                        data-translate="sms_sms_compose_alert_not_enough_credits"
+                    ></p>
+                    <p
+                        data-ng-if="$ctrl.service.creditsLeft > 0 && $ctrl.service.creditsLeft < $ctrl.receivers.records"
+                        data-translate="sms_sms_compose_alert_not_enough_credits_receivers"
+                    ></p>
+                    <a
+                        title="{{ ::'sms_actions_credit_account' | translate }}"
+                        data-ui-sref="sms.service.order"
+                    >
+                        <span data-translate="sms_actions_credit_account"></span
+                        >.
                     </a>
                 </div>
 
-                <form name="sendSmsForm"
-                      novalidate
-                      data-ng-submit="$ctrl.send(sendSmsForm)">
-
+                <form
+                    name="sendSmsForm"
+                    novalidate
+                    data-ng-submit="$ctrl.send(sendSmsForm)"
+                >
                     <!-- SENDER AND RECEIVERS -->
                     <section class="widget-presentation">
-                        <h2 class="widget-presentation-title"
-                            data-translate="sms_sms_compose_section_configure">
-                        </h2>
+                        <h2
+                            class="widget-presentation-title"
+                            data-translate="sms_sms_compose_section_configure"
+                        ></h2>
 
                         <div class="form-group">
-                            <label for="sender"
-                                   class="control-label"
-                                   data-translate="sms_sms_compose_sender_label">
+                            <label
+                                for="sender"
+                                class="control-label"
+                                data-translate="sms_sms_compose_sender_label"
+                            >
                             </label>
                             <div class="row">
                                 <div class="col-md-8">
@@ -98,57 +120,98 @@
                                         autofocus
                                         required
                                         data-ng-model="$ctrl.sms.sender"
-                                        data-ng-change="$ctrl.showAdvice()">
-                                        <optgroup label="- {{ ::'sms_sms_compose_sender_optgroup_label_response' | translate }} -">
+                                        data-ng-change="$ctrl.showAdvice()"
+                                    >
+                                        <optgroup
+                                            label="- {{ ::'sms_sms_compose_sender_optgroup_label_response' | translate }} -"
+                                        >
                                             <option
                                                 value="shortNumber"
                                                 selected="true"
-                                                data-translate="sms_sms_compose_sender_option_short_number">
+                                                data-translate="sms_sms_compose_sender_option_short_number"
+                                            >
                                             </option>
                                             <option
                                                 value="{{ sender.sender }}"
                                                 data-ng-repeat="sender in $ctrl.senders.virtual"
                                                 data-translate="sms_sms_compose_sender_option_virtual_number"
-                                                data-translate-values="{ sender: sender.sender }">
+                                                data-translate-values="{ sender: sender.sender }"
+                                            >
                                             </option>
                                         </optgroup>
                                         <optgroup
                                             label="- {{ ::'sms_sms_compose_sender_optgroup_label_alphanumeric' | translate }} -"
-                                            data-ng-if="$ctrl.senders.alphanumeric.length">
+                                            data-ng-if="$ctrl.senders.alphanumeric.length"
+                                        >
                                             <option
                                                 value="{{ sender.sender }}"
                                                 data-ng-repeat="sender in $ctrl.senders.alphanumeric"
-                                                data-ng-bind="sender.sender">
+                                                data-ng-bind="sender.sender"
+                                            >
                                             </option>
                                         </optgroup>
                                         <optgroup
                                             label="- {{ ::'sms_sms_compose_sender_optgroup_label_other' | translate }} -"
-                                            data-ng-if="$ctrl.senders.other.length">
+                                            data-ng-if="$ctrl.senders.other.length"
+                                        >
                                             <option
                                                 value="{{ sender.sender }}"
                                                 data-ng-repeat="sender in $ctrl.senders.other"
-                                                data-ng-bind="'(' + sender.description + ') ' + sender.sender">
+                                                data-ng-bind="'(' + sender.description + ') ' + sender.sender"
+                                            >
                                             </option>
                                         </optgroup>
                                     </select>
                                 </div>
                                 <div class="col-md-4">
-                                    <a class="d-inline-block mt-2"
-                                       data-ui-sref="sms.service.senders"
-                                       data-translate="sms_sms_compose_sender_manage"
-                                       data-translate-attr="{ title: 'sms_sms_compose_sender_manage' }">
+                                    <a
+                                        class="d-inline-block mt-2"
+                                        data-ng-href="{{:: $ctrl.sendersLink() }}"
+                                        data-translate="sms_sms_compose_sender_manage"
+                                        data-translate-attr="{ title: 'sms_sms_compose_sender_manage' }"
+                                    >
                                     </a>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="form-group"
-                             data-ng-class="{
+                        <div
+                            class="form-group"
+                            data-ng-if="!$ctrl.isVirtualNumber() && $ctrl.displaySenderCustomizationAdvice"
+                        >
+                            <strong
+                                class="text-uppercase"
+                                data-translate="sms_sms_compose_message_advice_title"
+                            ></strong>
+                            <p
+                                data-translate="sms_sms_compose_message_advice_info"
+                            ></p>
+                            <p>
+                                <span
+                                    data-translate="sms_sms_compose_message_advice_description_1"
+                                ></span>
+                                <a
+                                    data-ng-href="{{:: $ctrl.sendersLink() }}"
+                                    data-translate="sms_sms_compose_message_advice_description_2"
+                                >
+                                </a>
+                                <span
+                                    data-translate="sms_sms_compose_message_advice_description_3"
+                                ></span>
+                            </p>
+                        </div>
+
+                        <div
+                            class="form-group"
+                            data-ng-class="{
                                  'has-error': sendSmsForm.recipient.$touched && sendSmsForm.recipient.$invalid
-                             }">
-                            <label for="recipient"
-                                   class="control-label"
-                                   data-translate="sms_sms_compose_recipient_label">
+                             }"
+                        >
+                            <label
+                                for="recipient"
+                                class="control-label"
+                                data-translate="sms_sms_compose_recipient_label"
+                            >
                             </label>
                             <div class="row">
                                 <div class="col-md-8">
@@ -161,16 +224,23 @@
                                         data-ng-model="$ctrl.sms.receivers"
                                         data-ng-pattern="/^(00|\+)[0-9]{7,15}$/"
                                         data-ng-maxlength="16"
-                                        data-translate-attr="{ placeholder: 'sms_sms_compose_recipient_placeholder' }"/>
-                                    <span class="help-block"
-                                          role="alert"
-                                          data-ng-if="sendSmsForm.recipient.$touched"
-                                          data-ng-messages="sendSmsForm.recipient.$error">
-                                        <span data-ng-message="required"
-                                              data-translate="sms_sms_compose_recipient_error_required">
+                                        data-translate-attr="{ placeholder: 'sms_sms_compose_recipient_placeholder' }"
+                                    />
+                                    <span
+                                        class="help-block"
+                                        role="alert"
+                                        data-ng-if="sendSmsForm.recipient.$touched"
+                                        data-ng-messages="sendSmsForm.recipient.$error"
+                                    >
+                                        <span
+                                            data-ng-message="required"
+                                            data-translate="sms_sms_compose_recipient_error_required"
+                                        >
                                         </span>
-                                        <span data-ng-message="pattern"
-                                              data-translate="sms_sms_compose_recipient_error_pattern">
+                                        <span
+                                            data-ng-message="pattern"
+                                            data-translate="sms_sms_compose_recipient_error_pattern"
+                                        >
                                         </span>
                                     </span>
                                     <div class="mt-3">
@@ -179,55 +249,73 @@
                                             class="btn btn-default"
                                             data-ng-if="$ctrl.receivers.raw.length > 0"
                                             data-ng-click="$ctrl.addReceiversLists($event)"
-                                            data-translate="sms_sms_compose_add_receivers_select">
-                                        </button>
+                                            data-translate="sms_sms_compose_add_receivers_select"
+                                        ></button>
                                         <button
                                             type="button"
                                             class="btn btn-default"
                                             data-ng-if="$ctrl.phonebooks.raw.length > 0"
                                             data-ng-click="$ctrl.addPhonebookContact($event)"
-                                            data-translate="sms_sms_compose_phonebook_manage">
-                                        </button>
+                                            data-translate="sms_sms_compose_phonebook_manage"
+                                        ></button>
                                         <ul class="mt-4">
-                                            <li class="mb-2"
-                                                data-ng-if="$ctrl.receivers.records > 0">
-                                                <span class="align-middle"
-                                                      data-ng-bind-html="($ctrl.receivers.count > 1 ? 'sms_sms_compose_add_receivers_selected_multiple' : 'sms_sms_compose_add_receivers_selected_single') | translate:{
+                                            <li
+                                                class="mb-2"
+                                                data-ng-if="$ctrl.receivers.records > 0"
+                                            >
+                                                <span
+                                                    class="align-middle"
+                                                    data-ng-bind-html="($ctrl.receivers.count > 1 ? 'sms_sms_compose_add_receivers_selected_multiple' : 'sms_sms_compose_add_receivers_selected_single') | translate:{
                                                           count: $ctrl.receivers.count
-                                                      }">
+                                                      }"
+                                                >
                                                 </span>
                                                 <button
                                                     type="button"
                                                     class="btn btn-default btn-xs float-right"
                                                     data-ng-click="$ctrl.clearReceiversLists($event)"
-                                                    data-translate-attr="{ title: 'sms_delete' }">
-                                                    <i class="ovh-font ovh-font-bin" aria-hidden="true"></i>
+                                                    data-translate-attr="{ title: 'sms_delete' }"
+                                                >
+                                                    <i
+                                                        class="ovh-font ovh-font-bin"
+                                                        aria-hidden="true"
+                                                    ></i>
                                                 </button>
                                             </li>
-                                            <li class="mb-2"
-                                                data-ng-if="$ctrl.phonebooks.lists.length > 0">
-                                                <span class="align-middle"
-                                                      data-ng-bind-html="($ctrl.phonebooks.lists.length > 1 ? 'sms_sms_compose_add_phonebooks_selected_multiple' : 'sms_sms_compose_add_phonebooks_selected_single') | translate:{
+                                            <li
+                                                class="mb-2"
+                                                data-ng-if="$ctrl.phonebooks.lists.length > 0"
+                                            >
+                                                <span
+                                                    class="align-middle"
+                                                    data-ng-bind-html="($ctrl.phonebooks.lists.length > 1 ? 'sms_sms_compose_add_phonebooks_selected_multiple' : 'sms_sms_compose_add_phonebooks_selected_single') | translate:{
                                                           count: $ctrl.phonebooks.lists.length
-                                                      }">
+                                                      }"
+                                                >
                                                 </span>
                                                 <button
                                                     type="button"
                                                     class="btn btn-default btn-xs float-right"
                                                     data-ng-click="$ctrl.clearPhonebookContactList($event)"
-                                                    data-translate-attr="{ title: 'sms_delete' }">
-                                                    <i class="ovh-font ovh-font-bin" aria-hidden="true"></i>
+                                                    data-translate-attr="{ title: 'sms_delete' }"
+                                                >
+                                                    <i
+                                                        class="ovh-font ovh-font-bin"
+                                                        aria-hidden="true"
+                                                    ></i>
                                                 </button>
                                             </li>
                                         </ul>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
-                                    <a class="d-inline-block mt-2"
-                                       data-ng-if="!$ctrl.receivers.raw.length"
-                                       data-ui-sref="sms.service.receivers"
-                                       data-translate="sms_sms_compose_receivers_manage"
-                                       data-translate-attr="{ title: 'sms_sms_compose_receivers_manage' }">
+                                    <a
+                                        class="d-inline-block mt-2"
+                                        data-ng-if="!$ctrl.receivers.raw.length"
+                                        data-ui-sref="sms.service.receivers"
+                                        data-translate="sms_sms_compose_receivers_manage"
+                                        data-translate-attr="{ title: 'sms_sms_compose_receivers_manage' }"
+                                    >
                                     </a>
                                 </div>
                             </div>
@@ -236,17 +324,22 @@
 
                     <!-- MESSAGE -->
                     <section class="widget-presentation">
-                        <h2 class="widget-presentation-title"
-                            data-translate="sms_sms_compose_section_compose">
-                        </h2>
+                        <h2
+                            class="widget-presentation-title"
+                            data-translate="sms_sms_compose_section_compose"
+                        ></h2>
 
-                        <div class="form-group"
-                             data-ng-class="{
+                        <div
+                            class="form-group"
+                            data-ng-class="{
                                  'has-error': sendSmsForm.message.$touched && (sendSmsForm.message.$invalid || $ctrl.message.maxLengthReached)
-                             }">
-                            <label for="message"
-                                   class="control-label"
-                                   data-translate="sms_sms_compose_message_label">
+                             }"
+                        >
+                            <label
+                                for="message"
+                                class="control-label"
+                                data-translate="sms_sms_compose_message_label"
+                            >
                             </label>
                             <div class="row">
                                 <div class="col-md-8">
@@ -260,75 +353,115 @@
                                         data-ng-change="$ctrl.computeRemainingChar()"
                                         data-ng-maxlength="$ctrl.message.maxlength"
                                         data-ng-trim="false"
-                                        data-translate-attr="{ placeholder: 'sms_sms_compose_message_placeholder' }">
+                                        data-translate-attr="{ placeholder: 'sms_sms_compose_message_placeholder' }"
+                                    >
                                     </textarea>
                                 </div>
                             </div>
-                            <span class="help-block"
-                                  role="alert"
-                                  data-ng-if="sendSmsForm.message.$touched"
-                                  data-ng-messages="sendSmsForm.message.$error">
-                                <span data-ng-message="required"
-                                      data-translate="sms_sms_compose_message_error_required">
+                            <span
+                                class="help-block"
+                                role="alert"
+                                data-ng-if="sendSmsForm.message.$touched"
+                                data-ng-messages="sendSmsForm.message.$error"
+                            >
+                                <span
+                                    data-ng-message="required"
+                                    data-translate="sms_sms_compose_message_error_required"
+                                >
                                 </span>
                             </span>
                             <div class="row">
                                 <div class="col-md-8">
-                                    <div class="text-right text-secondary"
-                                         data-ng-hide="$ctrl.message.maxLengthReached">
-                                        <span data-translate="sms_sms_compose_message_characters_left"></span>
-                                        <strong data-ng-bind="$ctrl.message.remainingCharacters"></strong>&nbsp;/&nbsp;<span data-ng-bind="$ctrl.message.defaultSize"></span>
-                                        <i class="ovh-font ovh-font-filled-warning font-weight-normal text-warning"
-                                           data-ng-if="$ctrl.message.coding === '8bit'"
-                                           data-oui-tooltip="{{ ::'sms_sms_compose_message_characters_left_warning_8bit' | translate }}"
-                                           data-oui-tooltip-placement="left">
+                                    <div
+                                        class="text-right text-secondary"
+                                        data-ng-hide="$ctrl.message.maxLengthReached"
+                                    >
+                                        <span
+                                            data-translate="sms_sms_compose_message_characters_left"
+                                        ></span>
+                                        <strong
+                                            data-ng-bind="$ctrl.message.remainingCharacters"
+                                        ></strong
+                                        >&nbsp;/&nbsp;<span
+                                            data-ng-bind="$ctrl.message.defaultSize"
+                                        ></span>
+                                        <i
+                                            class="ovh-font ovh-font-filled-warning font-weight-normal text-warning"
+                                            data-ng-if="$ctrl.message.coding === '8bit'"
+                                            data-oui-tooltip="{{ ::'sms_sms_compose_message_characters_left_warning_8bit' | translate }}"
+                                            data-oui-tooltip-placement="left"
+                                        >
                                         </i>
                                         <br />
-                                        <span data-translate="sms_sms_compose_message_equivalent"></span>
-                                        <strong data-ng-bind="$ctrl.message.equivalence"></strong>
-                                        <span data-translate="sms_sms_compose_message_sms"></span>
+                                        <span
+                                            data-translate="sms_sms_compose_message_equivalent"
+                                        ></span>
+                                        <strong
+                                            data-ng-bind="$ctrl.message.equivalence"
+                                        ></strong>
+                                        <span
+                                            data-translate="sms_sms_compose_message_sms"
+                                        ></span>
                                     </div>
-                                    <div class="alert alert-danger mt-3"
-                                         role="alert"
-                                         data-ng-show="$ctrl.message.maxLengthReached"
-                                         data-translate="sms_sms_compose_message_alert_maxlength">
-                                    </div>
+                                    <div
+                                        class="alert alert-danger mt-3"
+                                        role="alert"
+                                        data-ng-show="$ctrl.message.maxLengthReached"
+                                        data-translate="sms_sms_compose_message_alert_maxlength"
+                                    ></div>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="form-group" data-ng-hide="$ctrl.isVirtualNumber()">
+                        <div
+                            class="form-group"
+                            data-ng-hide="$ctrl.isVirtualNumber()"
+                        >
                             <div data-ng-if="$ctrl.canHaveSTOPAnswer">
                                 <p>
-                                    <span data-translate="sms_sms_compose_message_stop_info_start"></span>
-                                    <i class="ovh-font ovh-font-question"
-                                       data-oui-tooltip="{{ ::'sms_sms_compose_message_stop_info_tooltip' | translate }}">
+                                    <span
+                                        data-translate="sms_sms_compose_message_stop_info_start"
+                                    ></span>
+                                    <i
+                                        class="ovh-font ovh-font-question"
+                                        data-oui-tooltip="{{ ::'sms_sms_compose_message_stop_info_tooltip' | translate }}"
+                                    >
                                     </i>
-                                    <span data-translate="sms_sms_compose_message_stop_info_end"></span>
+                                    <span
+                                        data-translate="sms_sms_compose_message_stop_info_end"
+                                    ></span>
                                 </p>
-                                <p data-translate="sms_sms_compose_message_stop_description"></p>
-                                <label>
-                                    <input
-                                        type="checkbox"
-                                        name="noStopClause"
-                                        id="noStopClause"
-                                        data-ng-model="$ctrl.sms.noStopClause"
-                                        data-ng-change="$ctrl.computeRemainingChar()" />
-                                    <span data-translate="sms_sms_compose_no_stop_clause_label"></span>
-                                </label>
+                                <p
+                                    data-translate="sms_sms_compose_message_stop_description"
+                                ></p>
+                                <oui-checkbox
+                                    data-name="noStopClause"
+                                    data-id="noStopClause"
+                                    data-model="$ctrl.sms.noStopClause"
+                                    data-on-change="$ctrl.computeRemainingChar(modelValue)"
+                                >
+                                    <span
+                                        data-translate="sms_sms_compose_no_stop_clause_label"
+                                    ></span>
+                                </oui-checkbox>
                             </div>
-                            <div data-ng-if="$ctrl.displaySenderCustomizationAdvice">
-                                <strong class="text-uppercase" data-translate="sms_sms_compose_message_advice_title"></strong>
-                                <p data-translate="sms_sms_compose_message_advice_info"></p>
-                                <p>
-                                    <span data-translate="sms_sms_compose_message_advice_description_1"></span>
-                                    <a href="#"
-                                       data-ui-sref="sms.service.senders"
-                                       data-translate="sms_sms_compose_message_advice_description_2">
-                                    </a>
-                                    <span data-translate="sms_sms_compose_message_advice_description_3"></span>
-                                </p>
-                            </div>
+                        </div>
+                        <div
+                            data-ng-if="$ctrl.isShortNumber() && $ctrl.displayCommercialClause()"
+                        >
+                            <p
+                                data-translate="sms_sms_compose_message_commercial_description"
+                            ></p>
+                            <oui-checkbox
+                                data-name="noCommercialClause"
+                                data-id="noCommercialClause"
+                                data-model="$ctrl.sms.noCommercialClause"
+                                data-on-change="$ctrl.computeRemainingChar()"
+                            >
+                                <span
+                                    data-translate="sms_sms_compose_no_commercial_clause_label"
+                                ></span>
+                            </oui-checkbox>
                         </div>
                     </section>
 
@@ -337,16 +470,22 @@
                         <button
                             type="button"
                             class="btn btn-link p-0 telecom-link"
-                            data-ng-click="$ctrl.moreOptions = !$ctrl.moreOptions">
-                            <i class="ovh-font" data-ng-class="{
+                            data-ng-click="$ctrl.moreOptions = !$ctrl.moreOptions"
+                        >
+                            <i
+                                class="ovh-font"
+                                data-ng-class="{
                                 'ovh-font-disclosure-right': !$ctrl.moreOptions,
                                 'ovh-font-disclosure-down': $ctrl.moreOptions
-                            }" aria-hidden="true"></i>
-                            <span data-translate="sms_sms_compose_more_options"></span>
+                            }"
+                                aria-hidden="true"
+                            ></i>
+                            <span
+                                data-translate="sms_sms_compose_more_options"
+                            ></span>
                         </button>
 
-                        <div class="mt-4"
-                             data-ng-show="$ctrl.moreOptions">
+                        <div class="mt-4" data-ng-show="$ctrl.moreOptions">
                             <div class="row mb-4">
                                 <div class="col-md-6">
                                     <div class="radio">
@@ -356,8 +495,11 @@
                                                 name="differedPeriod"
                                                 id="instant"
                                                 data-ng-value="false"
-                                                data-ng-model="$ctrl.sms.differedPeriod" />
-                                            <span data-translate="sms_sms_compose_differed_period_instant"></span>
+                                                data-ng-model="$ctrl.sms.differedPeriod"
+                                            />
+                                            <span
+                                                data-translate="sms_sms_compose_differed_period_instant"
+                                            ></span>
                                         </label>
                                     </div>
                                     <div class="radio">
@@ -367,20 +509,31 @@
                                                 name="differedPeriod"
                                                 id="delayed"
                                                 data-ng-value="true"
-                                                data-ng-model="$ctrl.sms.differedPeriod" />
-                                            <span data-translate="sms_sms_compose_differed_period_delayed"></span>
+                                                data-ng-model="$ctrl.sms.differedPeriod"
+                                            />
+                                            <span
+                                                data-translate="sms_sms_compose_differed_period_delayed"
+                                            ></span>
                                         </label>
                                     </div>
-                                    <div data-ng-show="$ctrl.sms.differedPeriod">
-                                        <div class="form-group"
-                                             data-ng-class="{
+                                    <div
+                                        data-ng-show="$ctrl.sms.differedPeriod"
+                                    >
+                                        <div
+                                            class="form-group"
+                                            data-ng-class="{
                                                  'has-error': sendSmsForm.delayedDate.$touched && sendSmsForm.delayedDate.$invalid
-                                             }">
-                                            <label for="delayedDate"
-                                                   class="control-label"
-                                                   data-translate="sms_sms_compose_differed_period_date_label">
+                                             }"
+                                        >
+                                            <label
+                                                for="delayedDate"
+                                                class="control-label"
+                                                data-translate="sms_sms_compose_differed_period_date_label"
+                                            >
                                             </label>
-                                            <div class="input-group date-picker-input">
+                                            <div
+                                                class="input-group date-picker-input"
+                                            >
                                                 <input
                                                     type="text"
                                                     name="delayedDate"
@@ -397,31 +550,43 @@
                                                     data-close-text="{{ ::'sms_close' | translate }}"
                                                     data-ng-focus="$ctrl.openDatePicker($event)"
                                                     data-ng-required="$ctrl.sms.differedPeriod"
-                                                    data-translate-attr="{ placeholder: 'sms_sms_compose_differed_period_date_placeholder' }" />
+                                                    data-translate-attr="{ placeholder: 'sms_sms_compose_differed_period_date_placeholder' }"
+                                                />
                                                 <span class="input-group-btn">
                                                     <button
                                                         type="button"
                                                         class="btn btn-link btn-xs"
-                                                        data-ng-click="$ctrl.openDatePicker($event)">
-                                                        <i class="fa fa-calendar"></i>
+                                                        data-ng-click="$ctrl.openDatePicker($event)"
+                                                    >
+                                                        <i
+                                                            class="fa fa-calendar"
+                                                        ></i>
                                                     </button>
                                                 </span>
                                             </div>
-                                            <span class="help-block"
-                                                  role="alert"
-                                                  data-ng-if="sendSmsForm.delayedDate.$touched"
-                                                  data-ng-messages="sendSmsForm.delayedDate.$error">
-                                                <span data-ng-message="required"
-                                                      data-translate="sms_sms_compose_differed_period_date_error_required">
+                                            <span
+                                                class="help-block"
+                                                role="alert"
+                                                data-ng-if="sendSmsForm.delayedDate.$touched"
+                                                data-ng-messages="sendSmsForm.delayedDate.$error"
+                                            >
+                                                <span
+                                                    data-ng-message="required"
+                                                    data-translate="sms_sms_compose_differed_period_date_error_required"
+                                                >
                                                 </span>
                                             </span>
                                         </div>
                                         <div>
-                                            <label id="delayedTime"
-                                                   class="control-label"
-                                                   data-translate="sms_sms_compose_differed_period_time_label">
+                                            <label
+                                                id="delayedTime"
+                                                class="control-label"
+                                                data-translate="sms_sms_compose_differed_period_time_label"
+                                            >
                                             </label>
-                                            <oui-timepicker data-model="$ctrl.picker.time"></oui-timepicker>
+                                            <oui-timepicker
+                                                data-model="$ctrl.picker.time"
+                                            ></oui-timepicker>
                                         </div>
                                     </div>
                                 </div>
@@ -429,9 +594,11 @@
 
                             <div class="row">
                                 <div class="col-md-8">
-                                    <label for="class"
-                                           class="control-label"
-                                           data-translate="sms_sms_compose_class_label">
+                                    <label
+                                        for="class"
+                                        class="control-label"
+                                        data-translate="sms_sms_compose_class_label"
+                                    >
                                     </label>
                                     <select
                                         name="class"
@@ -439,48 +606,80 @@
                                         class="form-control"
                                         required
                                         data-ng-model="$ctrl.sms.class"
-                                        data-ng-options="class as ('sms_sms_compose_class_' + class | translate) for class in $ctrl.enums.smsClass">
+                                        data-ng-options="class as ('sms_sms_compose_class_' + class | translate) for class in $ctrl.enums.smsClass"
+                                    >
                                     </select>
                                 </div>
                             </div>
 
-                            <div class="alert alert-info mt-4"
-                                 role="alert"
-                                 data-ng-if="$ctrl.sms.class"
-                                 data-ng-bind="'sms_sms_compose_class_info_' + $ctrl.sms.class | translate">
-                            </div>
+                            <div
+                                class="alert alert-info mt-4"
+                                role="alert"
+                                data-ng-if="$ctrl.sms.class"
+                                data-ng-bind="'sms_sms_compose_class_info_' + $ctrl.sms.class | translate"
+                            ></div>
                         </div>
                     </div>
 
                     <!-- ESTIMATION CREDIT REMAINING -->
-                    <div class="oui-box mb-5"
-                         data-ng-if="($ctrl.receivers.count > 0 || $ctrl.phonebooks.lists.length) && !$ctrl.message.maxLengthReached">
-                        <h3 data-translate="sms_sms_compose_message_info_estimation_title"></h3>
+                    <div
+                        class="oui-box mb-5"
+                        data-ng-if="($ctrl.receivers.count > 0 || $ctrl.phonebooks.lists.length) && !$ctrl.message.maxLengthReached"
+                    >
+                        <h3
+                            data-translate="sms_sms_compose_message_info_estimation_title"
+                        ></h3>
                         <ul class="list-unstyled">
                             <li>
-                                <span data-translate="sms_sms_compose_message_info_estimation_receivers_selected"></span>
-                                <strong data-ng-bind="($ctrl.receivers.records + $ctrl.phonebooks.lists.length + ($ctrl.sms.receivers ? 1 : 0)) | number:0"></strong>
+                                <span
+                                    data-translate="sms_sms_compose_message_info_estimation_receivers_selected"
+                                ></span>
+                                <strong
+                                    data-ng-bind="($ctrl.receivers.records + $ctrl.phonebooks.lists.length + ($ctrl.sms.receivers ? 1 : 0)) | number:0"
+                                ></strong>
                             </li>
                             <li>
-                                <span data-translate="sms_sms_compose_message_info_estimation_credits_left"></span>
-                                <strong data-ng-bind="$ctrl.service.creditsLeft | number"></strong>
+                                <span
+                                    data-translate="sms_sms_compose_message_info_estimation_credits_left"
+                                ></span>
+                                <strong
+                                    data-ng-bind="$ctrl.service.creditsLeft | number"
+                                ></strong>
                             </li>
                             <li>
-                                <span data-translate="sms_sms_compose_message_info_estimation_credit_remaining"></span>
-                                <strong data-ng-bind="$ctrl.getEstimationCreditRemaining()"></strong>
+                                <span
+                                    data-translate="sms_sms_compose_message_info_estimation_credit_remaining"
+                                ></span>
+                                <strong
+                                    data-ng-bind="$ctrl.getEstimationCreditRemaining()"
+                                ></strong>
                             </li>
                         </ul>
                         <span class="text-info">
-                            <i class="ovh-font ovh-font-info" aria-hidden="true"></i>
-                            <span data-translate="sms_sms_compose_message_info_estimation_note_1"></span>
-                            <a href="https://www.ovhtelecom.fr/sms/tarifs.xml"
-                               class="telecom-link"
-                               target="_blank"
-                               data-translate-attr="{ title: 'common_open_new_tab' }">
-                               <span data-translate="sms_sms_compose_message_info_estimation_note_2"></span>
-                               <i class="ovh-font ovh-font-newtab" aria-hidden="true"></i>
+                            <i
+                                class="ovh-font ovh-font-info"
+                                aria-hidden="true"
+                            ></i>
+                            <span
+                                data-translate="sms_sms_compose_message_info_estimation_note_1"
+                            ></span>
+                            <a
+                                href="https://www.ovhtelecom.fr/sms/tarifs.xml"
+                                class="telecom-link"
+                                target="_blank"
+                                data-translate-attr="{ title: 'common_open_new_tab' }"
+                            >
+                                <span
+                                    data-translate="sms_sms_compose_message_info_estimation_note_2"
+                                ></span>
+                                <i
+                                    class="ovh-font ovh-font-newtab"
+                                    aria-hidden="true"
+                                ></i>
                             </a>
-                            <p data-translate="sms_sms_compose_message_info_estimation_note_3"></p>
+                            <p
+                                data-translate="sms_sms_compose_message_info_estimation_note_3"
+                            ></p>
                         </span>
                     </div>
 
@@ -491,10 +690,13 @@
                             class="btn btn-primary"
                             data-ng-disabled="sendSmsForm.$invalid ||
                                               $ctrl.service.creditsLeft === 0 ||
-                                              $ctrl.loading.send">
-                            <oui-spinner class="mr-2"
-                                         data-ng-if="$ctrl.loading.send"
-                                         data-size="s">
+                                              $ctrl.loading.send"
+                        >
+                            <oui-spinner
+                                class="mr-2"
+                                data-ng-if="$ctrl.loading.send"
+                                data-size="s"
+                            >
                             </oui-spinner>
                             <span data-translate="sms_sms_compose_send"></span>
                         </button>
@@ -503,15 +705,12 @@
                             class="btn btn-default"
                             data-ng-click="$ctrl.cancel(sendSmsForm)"
                             data-ng-disabled="$ctrl.loading.send"
-                            data-translate="sms_cancel">
-                        </button>
+                            data-translate="sms_cancel"
+                        ></button>
                     </div>
-
                 </form>
-
             </div>
         </div>
-
     </div>
 </section>
 <!-- /.telecom-sms-sms-compose -->

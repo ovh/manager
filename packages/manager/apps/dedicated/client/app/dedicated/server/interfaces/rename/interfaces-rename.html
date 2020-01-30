@@ -5,9 +5,18 @@
     data-secondary-action=":: $ctrl.goBack()"
     data-secondary-label="{{:: 'common_cancel' | translate }}"
     data-on-dismiss=":: $ctrl.goBack()"
-    data-loading="$ctrl.loading">
-    <oui-field data-label="{{:: 'dedicated_server_interfaces_name_label' | translate}}">
-        <input class="oui-input" type="text" id="name" name="name"
-               data-ng-model="$ctrl.interface.name" required>
+    data-loading="$ctrl.loading"
+>
+    <oui-field
+        data-label="{{:: 'dedicated_server_interfaces_name_label' | translate}}"
+    >
+        <input
+            class="oui-input"
+            type="text"
+            id="name"
+            name="name"
+            data-ng-model="$ctrl.interface.name"
+            required
+        />
     </oui-field>
 </oui-modal>

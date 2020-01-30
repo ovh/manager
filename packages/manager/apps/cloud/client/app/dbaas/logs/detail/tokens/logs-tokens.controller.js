@@ -1,8 +1,15 @@
 import set from 'lodash/set';
 
 class LogsTokensCtrl {
-  constructor($q, $state, $stateParams, $translate, LogsTokensService, CucControllerHelper,
-    CucCloudMessage) {
+  constructor(
+    $q,
+    $state,
+    $stateParams,
+    $translate,
+    LogsTokensService,
+    CucControllerHelper,
+    CucCloudMessage,
+  ) {
     this.$q = $q;
     this.$state = $state;
     this.$stateParams = $stateParams;
@@ -22,27 +29,34 @@ class LogsTokensCtrl {
    */
   initLoaders() {
     this.tokens = this.CucControllerHelper.request.getArrayLoader({
-      loaderFunction: () => this.LogsTokensService.getTokens(this.serviceName)
-        .then(tokens => tokens.map((token) => {
-          set(token, 'isLoadingCluster', true);
-          return token;
-        })),
+      loaderFunction: () =>
+        this.LogsTokensService.getTokens(this.serviceName).then((tokens) =>
+          tokens.map((token) => {
+            set(token, 'isLoadingCluster', true);
+            return token;
+          }),
+        ),
     });
     this.clusters = this.CucControllerHelper.request.getArrayLoader({
-      loaderFunction: () => this.LogsTokensService.getClusters(this.serviceName),
+      loaderFunction: () =>
+        this.LogsTokensService.getClusters(this.serviceName),
     });
     this.tokens.load();
     this.clusters.load();
-    this.$q.all([this.clusters.promise, this.tokens.promise])
-      .then((result) => {
-        const clusters = result[0];
-        const tokens = result[1];
-        tokens.map((token) => {
-          set(token, 'cluster', clusters.find(cluster => cluster.clusterId === token.clusterId) || {});
-          set(token, 'isLoadingCluster', false);
-          return token;
-        });
+    this.$q.all([this.clusters.promise, this.tokens.promise]).then((result) => {
+      const clusters = result[0];
+      const tokens = result[1];
+      tokens.map((token) => {
+        set(
+          token,
+          'cluster',
+          clusters.find((cluster) => cluster.clusterId === token.clusterId) ||
+            {},
+        );
+        set(token, 'isLoadingCluster', false);
+        return token;
       });
+    });
   }
 
   /**
@@ -53,10 +67,14 @@ class LogsTokensCtrl {
    */
   showDeleteConfirm(token) {
     this.CucCloudMessage.flushChildMessage();
-    return this.CucControllerHelper.modal.showDeleteModal({
-      titleText: this.$translate.instant('logs_tokens_delete_title'),
-      textHtml: this.$translate.instant('logs_tokens_delete_message', { tokenName: token.name }),
-    }).then(() => this.remove(token));
+    return this.CucControllerHelper.modal
+      .showDeleteModal({
+        titleText: this.$translate.instant('logs_tokens_delete_title'),
+        textHtml: this.$translate.instant('logs_tokens_delete_message', {
+          tokenName: token.name,
+        }),
+      })
+      .then(() => this.remove(token));
   }
 
   goToHomePage() {
@@ -73,9 +91,10 @@ class LogsTokensCtrl {
    */
   remove(token) {
     this.delete = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () => this.LogsTokensService.deleteToken(this.serviceName, token)
-        .then(() => this.initLoaders())
-        .finally(() => this.CucControllerHelper.scrollPageToTop()),
+      loaderFunction: () =>
+        this.LogsTokensService.deleteToken(this.serviceName, token)
+          .then(() => this.initLoaders())
+          .finally(() => this.CucControllerHelper.scrollPageToTop()),
     });
     this.delete.load();
   }

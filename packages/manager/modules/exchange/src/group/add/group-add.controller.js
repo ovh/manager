@@ -43,7 +43,8 @@ export default class ExchangeAddGroupCtrl {
     $scope.getAccountList = () => this.getAccountList();
     $scope.addExchangeGroup = () => this.addExchangeGroup();
     $scope.groupIsValid = () => this.groupIsValid();
-    $scope.retrievingOptionsToCreateNewGroup = () => this.retrievingOptionsToCreateNewGroup();
+    $scope.retrievingOptionsToCreateNewGroup = () =>
+      this.retrievingOptionsToCreateNewGroup();
     $scope.getLoading = () => this.getLoading();
     $scope.getAccounts = (count, offset) => this.getAccounts(count, offset);
   }
@@ -84,7 +85,10 @@ export default class ExchangeAddGroupCtrl {
   }
 
   saveManagers(account) {
-    const managerObject = find(this.model.managersList, manager => manager.id === account.id);
+    const managerObject = find(
+      this.model.managersList,
+      (manager) => manager.id === account.id,
+    );
 
     if (account.manager && managerObject == null) {
       this.model.managersList.push({
@@ -95,7 +99,10 @@ export default class ExchangeAddGroupCtrl {
   }
 
   saveMembers(account) {
-    const memberObject = find(this.model.membersList, member => member.id === account.id);
+    const memberObject = find(
+      this.model.membersList,
+      (member) => member.id === account.id,
+    );
 
     if (account.member && memberObject == null) {
       this.model.membersList.push({
@@ -116,7 +123,7 @@ export default class ExchangeAddGroupCtrl {
       forEach(this.model.managersList, (account) => {
         const toLoad = find(
           this.accountsList.list.results,
-          manager => manager.id === account.id,
+          (manager) => manager.id === account.id,
         );
 
         if (toLoad != null) {
@@ -129,7 +136,10 @@ export default class ExchangeAddGroupCtrl {
   loadMembers() {
     if (this.model.membersList != null) {
       forEach(this.model.membersList, (account) => {
-        const toLoad = find(this.accountsList.list.results, member => member.id === account.id);
+        const toLoad = find(
+          this.accountsList.list.results,
+          (member) => member.id === account.id,
+        );
 
         if (toLoad != null) {
           toLoad.member = true;
@@ -140,7 +150,11 @@ export default class ExchangeAddGroupCtrl {
 
   resetSearch() {
     this.search.value = null;
-    this.services.$scope.$broadcast('paginationServerSide.loadPage', 1, 'accountsByGroupTable');
+    this.services.$scope.$broadcast(
+      'paginationServerSide.loadPage',
+      1,
+      'accountsByGroupTable',
+    );
   }
 
   retrievingOptionsToCreateNewGroup() {
@@ -159,15 +173,21 @@ export default class ExchangeAddGroupCtrl {
           this.services.navigation.resetAction();
         } else {
           this.groupToAdd.completeDomain = head(data.availableDomains);
-          this.groupToAdd.subscribeRestriction = head(data.availableJoinRestrictions);
-          this.groupToAdd.unsubscribeRestriction = head(data.availableDepartRestrictions);
+          this.groupToAdd.subscribeRestriction = head(
+            data.availableJoinRestrictions,
+          );
+          this.groupToAdd.unsubscribeRestriction = head(
+            data.availableDepartRestrictions,
+          );
           this.groupIsValid();
         }
       })
       .catch((failure) => {
         this.services.navigation.resetAction();
         this.services.messaging.writeError(
-          this.services.$translate.instant('exchange_ACTION_add_account_option_fail'),
+          this.services.$translate.instant(
+            'exchange_ACTION_add_account_option_fail',
+          ),
           failure,
         );
       });
@@ -178,21 +198,24 @@ export default class ExchangeAddGroupCtrl {
     const isAddressPresent = this.groupToAdd.address != null;
 
     const maxReceiveSize = parseInt(this.groupToAdd.maxReceiveSize, 10);
-    const isReceiveSizeCorrect = this.groupToAdd.receiveSizeUnlimited
-      || (!isNaN(maxReceiveSize) && maxReceiveSize >= 0 && maxReceiveSize <= 100);
+    const isReceiveSizeCorrect =
+      this.groupToAdd.receiveSizeUnlimited ||
+      (!isNaN(maxReceiveSize) && maxReceiveSize >= 0 && maxReceiveSize <= 100);
 
     const maxSendSize = parseInt(this.groupToAdd.maxSendSize, 10);
-    const isSentSizeCorrect = this.groupToAdd.sentSizeUnlimited
-      || (!isNaN(maxSendSize) && maxSendSize >= 0 && maxSendSize <= 100);
-    const isSubscriptionPresent = this.groupToAdd.subscribeRestriction != null
-      && this.groupToAdd.unsubscribeRestriction != null;
+    const isSentSizeCorrect =
+      this.groupToAdd.sentSizeUnlimited ||
+      (!isNaN(maxSendSize) && maxSendSize >= 0 && maxSendSize <= 100);
+    const isSubscriptionPresent =
+      this.groupToAdd.subscribeRestriction != null &&
+      this.groupToAdd.unsubscribeRestriction != null;
 
     return (
-      isDomainPresent
-      && isAddressPresent
-      && isReceiveSizeCorrect
-      && isSentSizeCorrect
-      && isSubscriptionPresent
+      isDomainPresent &&
+      isAddressPresent &&
+      isReceiveSizeCorrect &&
+      isSentSizeCorrect &&
+      isSubscriptionPresent
     );
   }
 
@@ -222,7 +245,9 @@ export default class ExchangeAddGroupCtrl {
       })
       .catch((failure) => {
         this.services.messaging.writeError(
-          this.services.$translate.instant('exchange_tab_ACCOUNTS_error_message'),
+          this.services.$translate.instant(
+            'exchange_tab_ACCOUNTS_error_message',
+          ),
           failure,
         );
       })
@@ -249,9 +274,15 @@ export default class ExchangeAddGroupCtrl {
     )
       .then((data) => {
         const addGroupMessages = {
-          OK: this.services.$translate.instant('exchange_GROUPS_add_group_success'),
-          PARTIAL: this.services.$translate.instant('exchange_GROUPS_add_group_partial'),
-          ERROR: this.services.$translate.instant('exchange_GROUPS_add_group_fail'),
+          OK: this.services.$translate.instant(
+            'exchange_GROUPS_add_group_success',
+          ),
+          PARTIAL: this.services.$translate.instant(
+            'exchange_GROUPS_add_group_partial',
+          ),
+          ERROR: this.services.$translate.instant(
+            'exchange_GROUPS_add_group_fail',
+          ),
         };
 
         this.services.messaging.setMessage(addGroupMessages, data);

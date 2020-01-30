@@ -1,6 +1,12 @@
 class LogsTokenAddCtrl {
-  constructor($q, $stateParams, $uibModalInstance, LogsTokensService, CucControllerHelper,
-    CucCloudMessage) {
+  constructor(
+    $q,
+    $stateParams,
+    $uibModalInstance,
+    LogsTokensService,
+    CucControllerHelper,
+    CucCloudMessage,
+  ) {
     this.$q = $q;
     this.$stateParams = $stateParams;
     this.$uibModalInstance = $uibModalInstance;
@@ -18,11 +24,13 @@ class LogsTokenAddCtrl {
    */
   initLoaders() {
     this.token = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () => this.LogsTokensService.getNewToken(this.serviceName),
+      loaderFunction: () =>
+        this.LogsTokensService.getNewToken(this.serviceName),
     });
     this.token.load();
     this.clusters = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () => this.LogsTokensService.getClusters(this.serviceName),
+      loaderFunction: () =>
+        this.LogsTokensService.getClusters(this.serviceName),
     });
     this.clusters.load();
   }
@@ -38,8 +46,11 @@ class LogsTokenAddCtrl {
     }
     this.CucCloudMessage.flushChildMessage();
     this.saving = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () => this.LogsTokensService.createToken(this.serviceName, this.token.data)
-        .finally(() => {
+      loaderFunction: () =>
+        this.LogsTokensService.createToken(
+          this.serviceName,
+          this.token.data,
+        ).finally(() => {
           this.$uibModalInstance.close();
           this.CucControllerHelper.scrollPageToTop();
         }),

@@ -15,8 +15,11 @@ export default class IpLoadBalancerVrackHelper {
         set(vrackCreationRules, 'status', 'activating');
         return this.pollCreationRules(task);
       })
-      .then(() => this.IpLoadBalancerVrackService
-        .getNetworkCreationRules(serviceName, { resetCache: true }))
+      .then(() =>
+        this.IpLoadBalancerVrackService.getNetworkCreationRules(serviceName, {
+          resetCache: true,
+        }),
+      )
       .then((creationRules) => {
         assignIn(vrackCreationRules, creationRules);
       });
@@ -28,8 +31,11 @@ export default class IpLoadBalancerVrackHelper {
         set(vrackCreationRules, 'status', 'deactivating');
         return this.pollCreationRules(task);
       })
-      .then(() => this.IpLoadBalancerVrackService
-        .getNetworkCreationRules(serviceName, { resetCache: true }))
+      .then(() =>
+        this.IpLoadBalancerVrackService.getNetworkCreationRules(serviceName, {
+          resetCache: true,
+        }),
+      )
       .then((creationRules) => {
         assignIn(vrackCreationRules, creationRules);
       });
@@ -38,11 +44,12 @@ export default class IpLoadBalancerVrackHelper {
   pollCreationRules(task) {
     return this.CucCloudPoll.poll({
       item: task,
-      pollFunction: () => this.OvhApiVrack.v6()
-        .task({ serviceName: task.serviceName, taskId: task.id })
-        .$promise
-        .catch(() => ({ status: 'done' })),
-      stopCondition: item => item.status === 'done' || item.status === 'error',
+      pollFunction: () =>
+        this.OvhApiVrack.v6()
+          .task({ serviceName: task.serviceName, taskId: task.id })
+          .$promise.catch(() => ({ status: 'done' })),
+      stopCondition: (item) =>
+        item.status === 'done' || item.status === 'error',
     }).$promise;
   }
 }

@@ -1,53 +1,77 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider
-    .state('pci.projects.project.storages.archives', {
-      url: '/cloud-archives',
-      component: 'pciProjectStorageContainers',
-      redirectTo: transition => transition
+  $stateProvider.state('pci.projects.project.storages.archives', {
+    url: '/cloud-archives',
+    component: 'pciProjectStorageContainers',
+    redirectTo: (transition) =>
+      transition
         .injector()
         .getAsync('containers')
-        .then(containers => (containers.length === 0 ? { state: 'pci.projects.project.storages.archives.onboarding' } : false)),
-      resolve: {
-        archive: () => true,
-        containers: /* @ngInject */ (
-          PciProjectStorageContainersService,
-          archive,
-          projectId,
-        ) => PciProjectStorageContainersService.getAll(projectId, archive),
-        addContainer: /* @ngInject */($state, projectId) => () => $state.go('pci.projects.project.storages.archives.add', {
+        .then((containers) =>
+          containers.length === 0
+            ? { state: 'pci.projects.project.storages.archives.onboarding' }
+            : false,
+        ),
+    resolve: {
+      archive: () => true,
+      containers: /* @ngInject */ (
+        PciProjectStorageContainersService,
+        archive,
+        projectId,
+      ) => PciProjectStorageContainersService.getAll(projectId, archive),
+      addContainer: /* @ngInject */ ($state, projectId) => () =>
+        $state.go('pci.projects.project.storages.archives.add', {
           projectId,
         }),
-        viewContainer: /* @ngInject */($state, projectId) => container => $state.go('pci.projects.project.storages.archives.archive', {
+      viewContainer: /* @ngInject */ ($state, projectId) => (container) =>
+        $state.go('pci.projects.project.storages.archives.archive', {
           projectId,
           containerId: container.id,
         }),
-        deleteContainer: /* @ngInject */($state, projectId) => container => $state.go('pci.projects.project.storages.archives.delete', {
+      deleteContainer: /* @ngInject */ ($state, projectId) => (container) =>
+        $state.go('pci.projects.project.storages.archives.delete', {
           projectId,
           containerId: container.id,
         }),
-        containerLink: /* @ngInject */($state, projectId) => container => $state.href('pci.projects.project.storages.archives.archive', {
+      containerLink: /* @ngInject */ ($state, projectId) => (container) =>
+        $state.href('pci.projects.project.storages.archives.archive', {
           projectId,
           containerId: container.id,
         }),
 
-        goToStorageContainers: /* @ngInject */ ($rootScope, CucCloudMessage, $state, projectId) => (message = false, type = 'success') => {
-          const reload = message && type === 'success';
+      goToStorageContainers: /* @ngInject */ (
+        $rootScope,
+        CucCloudMessage,
+        $state,
+        projectId,
+      ) => (message = false, type = 'success') => {
+        const reload = message && type === 'success';
 
-          const promise = $state.go('pci.projects.project.storages.archives', {
+        const promise = $state.go(
+          'pci.projects.project.storages.archives',
+          {
             projectId,
           },
           {
             reload,
-          });
+          },
+        );
 
-          if (message) {
-            promise.then(() => CucCloudMessage[type](message, 'pci.projects.project.storages.containers'));
-          }
+        if (message) {
+          promise.then(() =>
+            CucCloudMessage[type](
+              message,
+              'pci.projects.project.storages.containers',
+            ),
+          );
+        }
 
-          return promise;
-        },
-
-        breadcrumb: /* @ngInject */ $translate => $translate.instant('pci_projects_project_storages_containers_archive_title'),
+        return promise;
       },
-    });
+
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant(
+          'pci_projects_project_storages_containers_archive_title',
+        ),
+    },
+  });
 };

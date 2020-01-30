@@ -1,6 +1,6 @@
 import angular from 'angular';
 
-export default /* @ngInject */ function ($http, $q) {
+export default /* @ngInject */ function($http, $q) {
   const self = this;
 
   // DEPRECATED: You should use ovh.http
@@ -20,7 +20,7 @@ export default /* @ngInject */ function ($http, $q) {
       url: requestUrl,
       data: requestBody,
       cache: opt.cache || false,
-    }).then(response => response.data, response => $q.reject(response));
+    }).then((response) => response.data, (response) => $q.reject(response));
   };
 
   angular.forEach(['get', 'put', 'post', 'delete'], (operationType) => {

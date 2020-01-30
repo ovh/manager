@@ -1,4 +1,4 @@
-export default /* @ngInject */($stateProvider) => {
+export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('nasha.nasha-partition-access.delete', {
     url: '/delete',
     params: {
@@ -11,7 +11,7 @@ export default /* @ngInject */($stateProvider) => {
     },
     layout: 'modal',
     resolve: {
-      access: /* @ngInject */ $transition$ => $transition$.params().access,
+      access: /* @ngInject */ ($transition$) => $transition$.params().access,
     },
   });
 };

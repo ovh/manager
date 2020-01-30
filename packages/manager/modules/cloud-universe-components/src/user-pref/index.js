@@ -5,10 +5,6 @@ import service from './service';
 
 const moduleName = 'cucCloudUserPref';
 
-angular
-  .module(moduleName, [
-    'ngOvhUserPref',
-  ])
-  .service('CucUserPref', service);
+angular.module(moduleName, ['ngOvhUserPref']).service('CucUserPref', service);
 
 export default moduleName;

@@ -13,61 +13,64 @@ import IplbZoneDeleteTemplate from './iplb-zone-delete.html';
 const moduleName = 'ovhManagerIplbZone';
 
 angular
-  .module(moduleName, [
-    'ui.router',
-  ])
-  .config(/* @ngInject */($stateProvider) => {
-    $stateProvider
-      .state('network.iplb.detail.zone', {
-        url: '/zone',
-        views: {
-          iplbHeader: {
-            template: IplbHeaderTemplate,
-            controller: 'IpLoadBalancerDashboardHeaderCtrl',
-            controllerAs: 'ctrl',
-          },
-          iplbContent: {
-            template: `
+  .module(moduleName, ['ui.router'])
+  .config(
+    /* @ngInject */ ($stateProvider) => {
+      $stateProvider
+        .state('network.iplb.detail.zone', {
+          url: '/zone',
+          views: {
+            iplbHeader: {
+              template: IplbHeaderTemplate,
+              controller: 'IpLoadBalancerDashboardHeaderCtrl',
+              controllerAs: 'ctrl',
+            },
+            iplbContent: {
+              template: `
                           <div data-ui-view="iplbZone"></div>
                       `,
+            },
           },
-        },
-        abstract: true,
-        translations: {
-          value: ['../../common', '.', '..'],
-          format: 'json',
-        },
-      })
-      .state('network.iplb.detail.zone.add', {
-        url: '/add',
-        views: {
-          iplbZone: {
-            template: IplbZoneAddTemplate,
-            controller: 'IpLoadBalancerZoneAddCtrl',
-            controllerAs: '$ctrl',
+          abstract: true,
+          translations: {
+            value: ['../../common', '.', '..'],
+            format: 'json',
           },
-        },
-        translations: {
-          value: ['../../common', '.', '..'],
-          format: 'json',
-        },
-      })
-      .state('network.iplb.detail.zone.delete', {
-        url: '/delete',
-        views: {
-          iplbZone: {
-            template: IplbZoneDeleteTemplate,
-            controller: 'IpLoadBalancerZoneDeleteCtrl',
-            controllerAs: '$ctrl',
+        })
+        .state('network.iplb.detail.zone.add', {
+          url: '/add',
+          views: {
+            iplbZone: {
+              template: IplbZoneAddTemplate,
+              controller: 'IpLoadBalancerZoneAddCtrl',
+              controllerAs: '$ctrl',
+            },
           },
-        },
-        translations: {
-          value: ['../../common', '.', '..'],
-          format: 'json',
-        },
-      });
-  })
-  .controller('IpLoadBalancerDashboardHeaderCtrl', IpLoadBalancerDashboardHeaderCtrl)
+          translations: {
+            value: ['../../common', '.', '..'],
+            format: 'json',
+          },
+        })
+        .state('network.iplb.detail.zone.delete', {
+          url: '/delete',
+          views: {
+            iplbZone: {
+              template: IplbZoneDeleteTemplate,
+              controller: 'IpLoadBalancerZoneDeleteCtrl',
+              controllerAs: '$ctrl',
+            },
+          },
+          translations: {
+            value: ['../../common', '.', '..'],
+            format: 'json',
+          },
+        });
+    },
+  )
+  .controller(
+    'IpLoadBalancerDashboardHeaderCtrl',
+    IpLoadBalancerDashboardHeaderCtrl,
+  )
   .controller('IpLoadBalancerZoneAddCtrl', IpLoadBalancerZoneAddCtrl)
   .controller('IpLoadBalancerZoneDeleteCtrl', IpLoadBalancerZoneDeleteCtrl)
   .service('IpLoadBalancerZoneAddService', IpLoadBalancerZoneAddService)

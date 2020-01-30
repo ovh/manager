@@ -67,13 +67,17 @@ export default class ExchangeUpdateDisclaimerCtrl {
     )
       .then((data) => {
         this.services.messaging.writeSuccess(
-          this.services.$translate.instant('exchange_ACTION_update_disclaimer_success_message'),
+          this.services.$translate.instant(
+            'exchange_ACTION_update_disclaimer_success_message',
+          ),
           data,
         );
       })
       .catch((failure) => {
         this.services.messaging.writeError(
-          this.services.$translate.instant('exchange_ACTION_update_disclaimer_error_message'),
+          this.services.$translate.instant(
+            'exchange_ACTION_update_disclaimer_error_message',
+          ),
           failure,
         );
       })

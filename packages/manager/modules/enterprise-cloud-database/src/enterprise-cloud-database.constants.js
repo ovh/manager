@@ -22,12 +22,8 @@ export const PROCESSING_STATUS = [
   'updating',
 ];
 
-export const ERROR_STATUS = [
-  'suspended',
-];
-export const SUCCESS_STATUS = [
-  'created',
-];
+export const ERROR_STATUS = ['suspended'];
+export const SUCCESS_STATUS = ['created'];
 
 export const DATABASE_CONSTANTS = {
   postgresql: {

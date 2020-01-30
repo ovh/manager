@@ -6,10 +6,23 @@ import remove from 'lodash/remove';
 import set from 'lodash/set';
 
 class CloudProjectComputeInfrastructureListCtrl {
-  constructor($scope, $q, $stateParams, $translate, $timeout, atInternet,
-    CloudFlavorService, CucCloudMessage, CucCloudNavigation, CloudProjectOrchestrator,
+  constructor(
+    $scope,
+    $q,
+    $stateParams,
+    $translate,
+    $timeout,
+    atInternet,
+    CloudFlavorService,
+    CucCloudMessage,
+    CucCloudNavigation,
+    CloudProjectOrchestrator,
     CloudProjectComputeInfrastructureService,
-    OvhApiCloudProjectVolume, CucRegionService, OvhApiCloudProjectFlavor, coreConfig) {
+    OvhApiCloudProjectVolume,
+    CucRegionService,
+    OvhApiCloudProjectFlavor,
+    coreConfig,
+  ) {
     this.$scope = $scope;
     this.$q = $q;
     this.$timeout = $timeout;
@@ -63,17 +76,26 @@ class CloudProjectComputeInfrastructureListCtrl {
       values: this.CucRegionService.getAllTranslatedMacroRegion(),
     };
 
-    this.$scope.$watchCollection(() => get(this.infra, 'vrack.publicCloud.sortedKeys'), (newValues, oldValues) => {
-      this.addOrRemoveInstance(newValues, oldValues);
-    });
+    this.$scope.$watchCollection(
+      () => get(this.infra, 'vrack.publicCloud.sortedKeys'),
+      (newValues, oldValues) => {
+        this.addOrRemoveInstance(newValues, oldValues);
+      },
+    );
 
-    this.$scope.$on('compute.infrastructure.vm.status-update', (evt, newStatus, oldStatus, vm) => {
-      this.updateInstance(vm, vm.flavor);
-    });
+    this.$scope.$on(
+      'compute.infrastructure.vm.status-update',
+      (evt, newStatus, oldStatus, vm) => {
+        this.updateInstance(vm, vm.flavor);
+      },
+    );
 
-    this.$scope.$on('compute.infrastructure.vm.monthlyBilling.status-update', (evt, newStatus, oldStatus, vm) => {
-      this.updateInstance(vm, vm.flavor);
-    });
+    this.$scope.$on(
+      'compute.infrastructure.vm.monthlyBilling.status-update',
+      (evt, newStatus, oldStatus, vm) => {
+        this.updateInstance(vm, vm.flavor);
+      },
+    );
 
     this.InfrastructureService.setPreferredView('list');
 
@@ -82,48 +104,91 @@ class CloudProjectComputeInfrastructureListCtrl {
 
   initInfra() {
     this.loaders.infra = true;
-    return this.$q.all({
-      infra: this.CloudProjectOrchestrator.initInfrastructure({ serviceName: this.serviceName }),
-      volumes: this.CloudProjectOrchestrator
-        .initVolumes({ serviceName: this.serviceName })
-        .then((volumes) => {
+    return this.$q
+      .all({
+        infra: this.CloudProjectOrchestrator.initInfrastructure({
+          serviceName: this.serviceName,
+        }),
+        volumes: this.CloudProjectOrchestrator.initVolumes({
+          serviceName: this.serviceName,
+        }).then((volumes) => {
           this.volumes = get(volumes, 'volumes');
         }),
-    }).then(({ infra }) => {
-      this.infra = infra;
-      return this.$q
-        .all(map(
-          this.infra.vrack.publicCloud.items,
-          instance => this.OvhApiCloudProjectFlavor.v6()
-            .get({ serviceName: this.serviceName, flavorId: instance.flavorId }).$promise
-            .then(flavor => this.updateInstance(instance, flavor)),
-        ))
-        .then((instances) => { this.table.items = instances; });
-    }).catch((err) => {
-      this.table.items = [];
-      this.CucCloudMessage.error(`${this.$translate.instant('cpci_errors_init_title')} : ${get(err, 'data.message', '')}`);
-      return this.$q.reject(err);
-    }).finally(() => {
-      this.loaders.infra = false;
-    });
+      })
+      .then(({ infra }) => {
+        this.infra = infra;
+        return this.$q
+          .all(
+            map(this.infra.vrack.publicCloud.items, (instance) =>
+              this.OvhApiCloudProjectFlavor.v6()
+                .get({
+                  serviceName: this.serviceName,
+                  flavorId: instance.flavorId,
+                })
+                .$promise.then((flavor) =>
+                  this.updateInstance(instance, flavor),
+                ),
+            ),
+          )
+          .then((instances) => {
+            this.table.items = instances;
+          });
+      })
+      .catch((err) => {
+        this.table.items = [];
+        this.CucCloudMessage.error(
+          `${this.$translate.instant('cpci_errors_init_title')} : ${get(
+            err,
+            'data.message',
+            '',
+          )}`,
+        );
+        return this.$q.reject(err);
+      })
+      .finally(() => {
+        this.loaders.infra = false;
+      });
   }
 
   updateInstance(instance, flavor) {
     set(instance, 'volumes', get(this.volumes, instance.id, []));
     set(instance, 'ipv4', instance.getPublicIpv4());
     set(instance, 'ipv6', instance.getPublicIpv6());
-    set(instance, 'statusToTranslate', this.constructor.getStatusToTranslate(instance));
-    set(instance, 'macroRegion', this.CucRegionService.constructor.getMacroRegion(instance.region));
-    set(instance, 'flavorTranslated', this.CloudFlavorService.formatFlavorName(flavor.name));
+    set(
+      instance,
+      'statusToTranslate',
+      this.constructor.getStatusToTranslate(instance),
+    );
+    set(
+      instance,
+      'macroRegion',
+      this.CucRegionService.constructor.getMacroRegion(instance.region),
+    );
+    set(
+      instance,
+      'flavorTranslated',
+      this.CloudFlavorService.formatFlavorName(flavor.name),
+    );
     return instance;
   }
 
   static getStatusToTranslate(instance) {
-    if (instance.status === 'ACTIVE' && instance.monthlyBilling && instance.monthlyBilling.status === 'activationPending') {
+    if (
+      instance.status === 'ACTIVE' &&
+      instance.monthlyBilling &&
+      instance.monthlyBilling.status === 'activationPending'
+    ) {
       return 'UPDATING';
-    } if (instance.status === 'ACTIVE') {
+    }
+    if (instance.status === 'ACTIVE') {
       return 'OK';
-    } if (instance.status === 'REBOOT' || instance.status === 'HARD_REBOOT' || instance.status === 'RESCUING' || instance.status === 'UNRESCUING') {
+    }
+    if (
+      instance.status === 'REBOOT' ||
+      instance.status === 'HARD_REBOOT' ||
+      instance.status === 'RESCUING' ||
+      instance.status === 'UNRESCUING'
+    ) {
       return 'REBOOT';
     }
     return instance.status;
@@ -132,15 +197,15 @@ class CloudProjectComputeInfrastructureListCtrl {
   addOrRemoveInstance(newIds, oldIds) {
     if (oldIds != null) {
       if (newIds.length > oldIds.length) {
-        const foundId = find(newIds, key => indexOf(oldIds, key) === -1);
+        const foundId = find(newIds, (key) => indexOf(oldIds, key) === -1);
         const foundItem = this.infra.vrack.publicCloud.items[foundId];
         if (foundItem) {
           set(foundItem, 'volumes', get(this.volumes, foundItem.id, []));
           this.table.items.push(foundItem);
         }
       } else if (newIds.length < oldIds.length) {
-        const foundId = find(oldIds, key => indexOf(newIds, key) === -1);
-        remove(this.table.items, item => item.id === foundId);
+        const foundId = find(oldIds, (key) => indexOf(newIds, key) === -1);
+        remove(this.table.items, (item) => item.id === foundId);
       }
     }
   }
@@ -153,19 +218,30 @@ class CloudProjectComputeInfrastructureListCtrl {
   }
 
   addVolume() {
-    this.trackOnClick('cloud-project::cloud-project-compute::cloud-project-compute-infrastructure-add-volume');
+    this.trackOnClick(
+      'cloud-project::cloud-project-compute::cloud-project-compute-infrastructure-add-volume',
+    );
     return this.InfrastructureService.addVolume();
   }
 
   buyIpFailOver() {
-    this.trackOnClick('cloud-project::cloud-project-compute::cloud-project-compute-infrastructure-buy-ip');
+    this.trackOnClick(
+      'cloud-project::cloud-project-compute::cloud-project-compute-infrastructure-buy-ip',
+    );
     return this.InfrastructureService.buyIpFailOver();
   }
 
   openDeleteProjectModal() {
-    this.trackOnClick('cloud-project::cloud-project-compute::cloud-project-compute-infrastructure-delete-project');
+    this.trackOnClick(
+      'cloud-project::cloud-project-compute::cloud-project-compute-infrastructure-delete-project',
+    );
     return this.InfrastructureService.openDeleteProjectModal();
   }
 }
 
-angular.module('managerApp').controller('CloudProjectComputeInfrastructureListCtrl', CloudProjectComputeInfrastructureListCtrl);
+angular
+  .module('managerApp')
+  .controller(
+    'CloudProjectComputeInfrastructureListCtrl',
+    CloudProjectComputeInfrastructureListCtrl,
+  );

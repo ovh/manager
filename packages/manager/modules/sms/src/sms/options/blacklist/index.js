@@ -4,7 +4,8 @@ import telecomSmsOptionsBlacklist from './telecom-sms-options-blacklist.componen
 
 const moduleName = 'ovhManagerSmsOptionsBlacklist';
 
-angular.module(moduleName, [])
+angular
+  .module(moduleName, [])
   .component('telecomSmsOptionsBlacklist', telecomSmsOptionsBlacklist)
   .config(routing);
 

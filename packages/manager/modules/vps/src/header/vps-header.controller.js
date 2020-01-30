@@ -47,11 +47,12 @@ export default class {
       this.description = data;
     });
     this.showDatabaseTab = false;
-    this.CucFeatureAvailabilityService
-      .hasFeaturePromise('VPS', 'cloudDatabase')
-      .then((hasFeature) => {
-        this.showDatabaseTab = hasFeature;
-      });
+    this.CucFeatureAvailabilityService.hasFeaturePromise(
+      'VPS',
+      'cloudDatabase',
+    ).then((hasFeature) => {
+      this.showDatabaseTab = hasFeature;
+    });
     this.VpsService.getSelectedVps(this.serviceName)
       .then((vps) => {
         this.vps = vps;
@@ -63,22 +64,28 @@ export default class {
           }
         });
       })
-      .catch(() => this.CucCloudMessage.error(this.$translate.instant('vps_dashboard_loading_error')))
-      .finally(() => { this.loaders.init = false; });
-    this.description = this.CucProductsService.getDisplayName('VPS', this.serviceName);
+      .catch(() =>
+        this.CucCloudMessage.error(
+          this.$translate.instant('vps_dashboard_loading_error'),
+        ),
+      )
+      .finally(() => {
+        this.loaders.init = false;
+      });
+    this.description = this.CucProductsService.getDisplayName(
+      'VPS',
+      this.serviceName,
+    );
     this.features = this.getFeatures();
     [this.feature] = this.features;
   }
 
   getFeatures() {
     return map(
-      filter(
-        map(
-          TAB_FEATURES, 'title',
-        ),
-        feature => this.capabilities.includes(feature),
+      filter(map(TAB_FEATURES, 'title'), (feature) =>
+        this.capabilities.includes(feature),
       ),
-      feature => ({
+      (feature) => ({
         textId: `vps_tab_${snakeCase(feature)}`,
         state: `vps.detail.${feature}`,
       }),
@@ -93,17 +100,28 @@ export default class {
 
   isExpired(vps) {
     if (vps.isExpired) {
-      this.CucCloudMessage.warning(this.$translate.instant('vps_service_expired', { vps: vps.name }), 'vps.detail');
+      this.CucCloudMessage.warning(
+        this.$translate.instant('vps_service_expired', { vps: vps.name }),
+        'vps.detail',
+      );
     } else if (vps.messages.length > 0) {
-      this.CucCloudMessage.error(this.$translate.instant('vps_dashboard_loading_error'), vps);
+      this.CucCloudMessage.error(
+        this.$translate.instant('vps_dashboard_loading_error'),
+        vps,
+      );
     }
   }
 
   isInRescueMode(netbootMode) {
     if (netbootMode === 'RESCUE') {
-      this.CucCloudMessage.warning({
-        textHtml: this.$translate.instant('vps_configuration_reboot_rescue_warning_text'),
-      }, 'vps.detail');
+      this.CucCloudMessage.warning(
+        {
+          textHtml: this.$translate.instant(
+            'vps_configuration_reboot_rescue_warning_text',
+          ),
+        },
+        'vps.detail',
+      );
     }
   }
 
@@ -111,28 +129,42 @@ export default class {
     const oldVersion = includes(version, '2014') || includes(version, '2013');
     const userAcknowledged = this.stopNotification.ipV6;
     if (!userAcknowledged && !oldVersion && ipv6) {
-      this.CucCloudMessage.info({
-        textHtml: this.$translate.instant('vps_configuration_ipV6_info_text'),
-        dismissed: this.stopNotification.ipV6,
-        dismiss: () => this.stopNotificationIpV6(),
-      }, 'vps.detail.dashboard');
+      this.CucCloudMessage.info(
+        {
+          textHtml: this.$translate.instant('vps_configuration_ipV6_info_text'),
+          dismissed: this.stopNotification.ipV6,
+          dismiss: () => this.stopNotificationIpV6(),
+        },
+        'vps.detail.dashboard',
+      );
     }
   }
 
   checkIfStopNotification(message, isArray, vps) {
     const item = vps.name;
-    return this.VpsNotificationIpv6
-      .checkIfStopNotification(STOP_NOTIFICATION_USER_PREF[message], isArray, item)
+    return this.VpsNotificationIpv6.checkIfStopNotification(
+      STOP_NOTIFICATION_USER_PREF[message],
+      isArray,
+      item,
+    )
       .then((showNotification) => {
         this.stopNotification[message] = showNotification;
         this.showIpV6Banner(vps.version, vps.ipv6);
       })
-      .catch(() => { this.stopNotification[message] = false; });
+      .catch(() => {
+        this.stopNotification[message] = false;
+      });
   }
 
   stopNotificationIpV6() {
     this.stopNotification.ipV6 = true;
-    this.VpsNotificationIpv6.stopNotification(STOP_NOTIFICATION_USER_PREF.ipV6, this.vps.name)
-      .catch(() => this.CucCloudMessage.error(this.$translate.instant('vps_stop_bother_error')));
+    this.VpsNotificationIpv6.stopNotification(
+      STOP_NOTIFICATION_USER_PREF.ipV6,
+      this.vps.name,
+    ).catch(() =>
+      this.CucCloudMessage.error(
+        this.$translate.instant('vps_stop_bother_error'),
+      ),
+    );
   }
 }

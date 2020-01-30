@@ -50,8 +50,8 @@ export default class ExchangeAddExternalContactCtrl {
     this.loaders.step1 = true;
 
     if (
-      this.services.exchangeVersion.isVersion(2010)
-      && this.services.exchangeServiceInfrastructure.isProvider()
+      this.services.exchangeVersion.isVersion(2010) &&
+      this.services.exchangeServiceInfrastructure.isProvider()
     ) {
       this.services.ExchangeExternalContacts.gettingContactOptions(
         this.$routerParams.organization,
@@ -60,7 +60,11 @@ export default class ExchangeAddExternalContactCtrl {
         .then((data) => {
           this.loaders.step1 = false;
           this.availableMainDomains = data;
-          this.model.attachOrganization2010 = get(this.availableMainDomains, '[0]', null);
+          this.model.attachOrganization2010 = get(
+            this.availableMainDomains,
+            '[0]',
+            null,
+          );
         })
         .catch((failure) => {
           this.services.navigation.resetAction();
@@ -76,9 +80,10 @@ export default class ExchangeAddExternalContactCtrl {
 
   isEmailValid() {
     return (
-      has(this.model, 'newAccount.externalEmailAddress')
-      && this.services.Exchange.constructor
-        .isEmailValid(this.model.newAccount.externalEmailAddress)
+      has(this.model, 'newAccount.externalEmailAddress') &&
+      this.services.Exchange.constructor.isEmailValid(
+        this.model.newAccount.externalEmailAddress,
+      )
     );
   }
 
@@ -113,7 +118,10 @@ export default class ExchangeAddExternalContactCtrl {
   }
 
   updateDisplayName() {
-    if (this.model.newAccount != null && !this.model.hasDisplayNameBeenModified) {
+    if (
+      this.model.newAccount != null &&
+      !this.model.hasDisplayNameBeenModified
+    ) {
       const firstName = get(this.model.newAccount, 'firstName', '');
       const lastName = get(this.model.newAccount, 'lastName', '');
       const separator = !isEmpty(firstName) && !isEmpty(lastName) ? ' ' : '';
@@ -123,10 +131,14 @@ export default class ExchangeAddExternalContactCtrl {
   }
 
   updateDisplayNameFlag() {
-    this.model.hasDisplayNameBeenModified = !isEmpty(this.model.newAccount.displayName);
+    this.model.hasDisplayNameBeenModified = !isEmpty(
+      this.model.newAccount.displayName,
+    );
   }
 
   accountIsValid() {
-    return this.services.ExchangeExternalContacts.isAccountValid(this.model.newAccount);
+    return this.services.ExchangeExternalContacts.isAccountValid(
+      this.model.newAccount,
+    );
   }
 }

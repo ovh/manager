@@ -8,20 +8,20 @@ export const state = {
     activationType: 'basic',
   },
   resolve: {
-    backButtonText: /* @ngInject */ $translate => $translate
-      .instant('ovhManagerPccServicePackUpgradeCertification_header'),
+    backButtonText: /* @ngInject */ ($translate) =>
+      $translate.instant('ovhManagerPccServicePackUpgradeCertification_header'),
     orderableServicePacks: /* @ngInject */ (
       currentService,
       currentUser,
       UpgradeCertificationService,
-    ) => UpgradeCertificationService
-      .getOrderableServicePacks(
+    ) =>
+      UpgradeCertificationService.getOrderableServicePacks(
         currentService.name,
         currentUser.ovhSubsidiary,
         currentService.servicePackName,
       ),
-    steps: /* @ngInject */ pccServicePackUpgradeService => pccServicePackUpgradeService
-      .buildSteps(stepModuleNames),
+    steps: /* @ngInject */ (pccServicePackUpgradeService) =>
+      pccServicePackUpgradeService.buildSteps(stepModuleNames),
   },
   translations: {
     format: 'json',

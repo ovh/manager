@@ -65,14 +65,17 @@ export default class ExchangeUpdateAccountCtrl {
 
   accountIsValid() {
     if (
-      this.simplePasswordFlag
-      || this.differentPasswordFlag
-      || this.containsNameFlag
-      || this.containsWhitespaces
+      this.simplePasswordFlag ||
+      this.differentPasswordFlag ||
+      this.containsNameFlag ||
+      this.containsWhitespaces
     ) {
       return false;
     }
-    if (!this.selectedAccount.canBeConfigured && !this.selectedAccount.password) {
+    if (
+      !this.selectedAccount.canBeConfigured &&
+      !this.selectedAccount.password
+    ) {
       return false;
     }
     if (!this.selectedAccount.domain || !this.selectedAccount.login) {
@@ -82,17 +85,21 @@ export default class ExchangeUpdateAccountCtrl {
     return true;
   }
 
-  /* eslint-disable class-methods-use-this */
+  // eslint-disable-next-line class-methods-use-this
   getModelToUpdate(originalValues, modifiedBuffer) {
     const model = {
       primaryEmailAddress: originalValues.primaryEmailAddress,
-      login: modifiedBuffer.login !== originalValues.login ? modifiedBuffer.login : undefined,
+      login:
+        modifiedBuffer.login !== originalValues.login
+          ? modifiedBuffer.login
+          : undefined,
       displayName:
         modifiedBuffer.displayName !== originalValues.displayName
           ? modifiedBuffer.displayName
           : undefined,
       domain:
-        modifiedBuffer.completeDomain.name !== originalValues.completeDomain.name
+        modifiedBuffer.completeDomain.name !==
+        originalValues.completeDomain.name
           ? modifiedBuffer.completeDomain.name
           : undefined,
       firstName:
@@ -100,15 +107,21 @@ export default class ExchangeUpdateAccountCtrl {
           ? modifiedBuffer.firstName
           : undefined,
       lastName:
-        modifiedBuffer.lastName !== originalValues.lastName ? modifiedBuffer.lastName : undefined,
+        modifiedBuffer.lastName !== originalValues.lastName
+          ? modifiedBuffer.lastName
+          : undefined,
       hiddenFromGAL:
         modifiedBuffer.hiddenFromGAL !== originalValues.hiddenFromGAL
           ? modifiedBuffer.hiddenFromGAL
           : undefined,
       outlook:
-        modifiedBuffer.outlook !== originalValues.outlook ? modifiedBuffer.outlook : undefined,
+        modifiedBuffer.outlook !== originalValues.outlook
+          ? modifiedBuffer.outlook
+          : undefined,
       company:
-        modifiedBuffer.company !== originalValues.company ? modifiedBuffer.company : undefined,
+        modifiedBuffer.company !== originalValues.company
+          ? modifiedBuffer.company
+          : undefined,
       deleteOutlook:
         modifiedBuffer.deleteOutlook !== originalValues.deleteOutlook
           ? modifiedBuffer.deleteOutlook
@@ -121,16 +134,16 @@ export default class ExchangeUpdateAccountCtrl {
 
     return model;
   }
-  /* eslint-enable class-methods-use-this */
 
   getFeaturesToUpdate(originalValues, modifiedBuffer) {
     const model = this.getModelToUpdate(originalValues, modifiedBuffer);
 
     if (this.services.exchangeServiceInfrastructure.isProvider()) {
-      model.quota = originalValues.totalQuota.value
-        && modifiedBuffer.quota !== originalValues.quota
-        ? modifiedBuffer.quota
-        : undefined;
+      model.quota =
+        originalValues.totalQuota.value &&
+        modifiedBuffer.quota !== originalValues.quota
+          ? modifiedBuffer.quota
+          : undefined;
     }
 
     model.password = modifiedBuffer.password;
@@ -166,7 +179,9 @@ export default class ExchangeUpdateAccountCtrl {
             'exchange_ACTION_update_account_error_message',
           );
         }
-      } else if (messages[0].message === this.services.Exchange.updateAccountAction) {
+      } else if (
+        messages[0].message === this.services.Exchange.updateAccountAction
+      ) {
         updateAccountMessages.PARTIAL = `${this.services.$translate.instant(
           'exchange_ACTION_update_account_success_message',
         )} ${this.services.$translate.instant(
@@ -187,13 +202,16 @@ export default class ExchangeUpdateAccountCtrl {
   checkTakenEmails() {
     this.takenEmailError = false;
 
-    if (has(this.selectedAccount, 'login') && !isEmpty(this.selectedAccount.login)) {
+    if (
+      has(this.selectedAccount, 'login') &&
+      !isEmpty(this.selectedAccount.login)
+    ) {
       const currentEmail = `${this.selectedAccount.login.toLowerCase()}@${
         this.selectedAccount.completeDomain.name
       }`;
       this.takenEmailError = some(
         this.takenEmails,
-        value => currentEmail === value.toLowerCase(),
+        (value) => currentEmail === value.toLowerCase(),
       );
 
       if (this.selectedAccount.primaryEmailAddress === currentEmail) {
@@ -209,7 +227,11 @@ export default class ExchangeUpdateAccountCtrl {
     this.containsSameAccountNameFlag = false;
 
     set(selectedAccount, 'password', selectedAccount.password || '');
-    set(selectedAccount, 'passwordConfirmation', selectedAccount.passwordConfirmation || '');
+    set(
+      selectedAccount,
+      'passwordConfirmation',
+      selectedAccount.passwordConfirmation || '',
+    );
 
     if (selectedAccount.password !== selectedAccount.passwordConfirmation) {
       this.differentPasswordFlag = true;
@@ -225,8 +247,11 @@ export default class ExchangeUpdateAccountCtrl {
       // see the password complexity requirements of Microsoft Windows Server (like Exchange)
       // https://technet.microsoft.com/en-us/library/hh994562%28v=ws.10%29.aspx
       if (this.newAccountOptions.passwordComplexityEnabled) {
-        this.simplePasswordFlag = this.simplePasswordFlag
-          || !this.services.ExchangePassword.passwordComplexityCheck(selectedAccount.password);
+        this.simplePasswordFlag =
+          this.simplePasswordFlag ||
+          !this.services.ExchangePassword.passwordComplexityCheck(
+            selectedAccount.password,
+          );
 
         if (selectedAccount.displayName) {
           this.containsNameFlag = this.services.ExchangePassword.passwordContainsName(
@@ -236,16 +261,16 @@ export default class ExchangeUpdateAccountCtrl {
         }
 
         if (
-          !this.containsNameFlag
-          && selectedAccount.login
-          && includes(selectedAccount.password, selectedAccount.login)
+          !this.containsNameFlag &&
+          selectedAccount.login &&
+          includes(selectedAccount.password, selectedAccount.login)
         ) {
           this.containsNameFlag = true;
         }
 
         if (
-          selectedAccount.samaccountName
-          && includes(selectedAccount.password, selectedAccount.samaccountName)
+          selectedAccount.samaccountName &&
+          includes(selectedAccount.password, selectedAccount.samaccountName)
         ) {
           if (!this.containsSamAccountNameLabel) {
             this.containsSamAccountNameLabel = this.services.$translate.instant(
@@ -267,19 +292,21 @@ export default class ExchangeUpdateAccountCtrl {
   needsUpdate() {
     const modifiedBuffer = this.selectedAccount;
 
-    const needsUpdate = modifiedBuffer.password != null
-      || this.originalValues.login !== modifiedBuffer.login
-      || this.originalValues.displayName !== modifiedBuffer.displayName
-      || (modifiedBuffer.completeDomain != null
-        && this.originalValues.completeDomain.name !== modifiedBuffer.completeDomain.name)
-      || this.originalValues.firstName !== modifiedBuffer.firstName
-      || this.originalValues.lastName !== modifiedBuffer.lastName
-      || this.originalValues.hiddenFromGAL !== modifiedBuffer.hiddenFromGAL
-      || this.originalValues.company !== modifiedBuffer.company
-      || this.originalValues.accountLicense !== modifiedBuffer.accountLicense
-      || this.originalValues.quota !== modifiedBuffer.quota
-      || this.originalValues.outlook !== modifiedBuffer.outlook
-      || this.originalValues.deleteOutlook !== modifiedBuffer.deleteOutlook;
+    const needsUpdate =
+      modifiedBuffer.password != null ||
+      this.originalValues.login !== modifiedBuffer.login ||
+      this.originalValues.displayName !== modifiedBuffer.displayName ||
+      (modifiedBuffer.completeDomain != null &&
+        this.originalValues.completeDomain.name !==
+          modifiedBuffer.completeDomain.name) ||
+      this.originalValues.firstName !== modifiedBuffer.firstName ||
+      this.originalValues.lastName !== modifiedBuffer.lastName ||
+      this.originalValues.hiddenFromGAL !== modifiedBuffer.hiddenFromGAL ||
+      this.originalValues.company !== modifiedBuffer.company ||
+      this.originalValues.accountLicense !== modifiedBuffer.accountLicense ||
+      this.originalValues.quota !== modifiedBuffer.quota ||
+      this.originalValues.outlook !== modifiedBuffer.outlook ||
+      this.originalValues.deleteOutlook !== modifiedBuffer.deleteOutlook;
 
     return needsUpdate && this.accountIsValid() && !this.takenEmailError;
   }
@@ -287,7 +314,11 @@ export default class ExchangeUpdateAccountCtrl {
   setQuotaAvailable() {
     this.newAccountOptions.quotaArray = [];
 
-    for (let i = this.newAccountOptions.maxQuota; i >= this.newAccountOptions.minQuota; i -= 1) {
+    for (
+      let i = this.newAccountOptions.maxQuota;
+      i >= this.newAccountOptions.minQuota;
+      i -= 1
+    ) {
       this.newAccountOptions.quotaArray.push(i);
     }
   }
@@ -299,14 +330,15 @@ export default class ExchangeUpdateAccountCtrl {
   getPasswordPlaceholder() {
     return this.selectedAccount.canBeConfigured
       ? this.services.$translate.instant(
-        'exchange_ACTION_update_account_step1_password_placeholder',
-      )
+          'exchange_ACTION_update_account_step1_password_placeholder',
+        )
       : ' ';
   }
 
   shouldDisplaySharepointPasswordWarning() {
-    const isChangingPassword = this.selectedAccount.password != null
-      && this.selectedAccount.canBeConfigured;
+    const isChangingPassword =
+      this.selectedAccount.password != null &&
+      this.selectedAccount.canBeConfigured;
     const hasSharepoint = this.sharepoint != null;
 
     return isChangingPassword && hasSharepoint;
@@ -315,7 +347,7 @@ export default class ExchangeUpdateAccountCtrl {
   getCompleteDomain(domainName) {
     const result = find(
       this.newAccountOptions.availableDomains,
-      value => value.name === domainName,
+      (value) => value.name === domainName,
     );
 
     // if the current domain is not in the domain's list (dummy account),
@@ -358,17 +390,19 @@ export default class ExchangeUpdateAccountCtrl {
 
         this.passwordTooltip = this.newAccountOptions.passwordComplexityEnabled
           ? this.services.$translate.instant(
-            'exchange_ACTION_update_account_step1_complex_password_tooltip',
-            { t0: this.newAccountOptions.minPasswordLength },
-          )
+              'exchange_ACTION_update_account_step1_complex_password_tooltip',
+              { t0: this.newAccountOptions.minPasswordLength },
+            )
           : this.services.$translate.instant(
-            'exchange_ACTION_update_account_step1_simple_password_tooltip',
-            { t0: this.newAccountOptions.minPasswordLength },
-          );
+              'exchange_ACTION_update_account_step1_simple_password_tooltip',
+              { t0: this.newAccountOptions.minPasswordLength },
+            );
       })
       .catch((failure) => {
         this.services.messaging.writeError(
-          this.services.$translate.instant('exchange_ACTION_add_account_option_fail'),
+          this.services.$translate.instant(
+            'exchange_ACTION_add_account_option_fail',
+          ),
           failure,
         );
         this.services.navigation.resetAction();
@@ -383,11 +417,18 @@ export default class ExchangeUpdateAccountCtrl {
         this.getFeaturesToUpdate(this.originalValues, this.selectedAccount),
       )
         .then((data) => {
-          this.services.messaging.setMessage(this.getActionMessage(data.messages), data);
+          this.services.messaging.setMessage(
+            this.getActionMessage(data.messages),
+            data,
+          );
         })
         .catch((failure) => {
           this.services.messaging.writeError(`
-            ${this.services.$translate.instant('exchange_common_error')} ${get(failure, 'message', failure)}
+            ${this.services.$translate.instant('exchange_common_error')} ${get(
+            failure,
+            'message',
+            failure,
+          )}
           `);
         })
         .finally(() => {

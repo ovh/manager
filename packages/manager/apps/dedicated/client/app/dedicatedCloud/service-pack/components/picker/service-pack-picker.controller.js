@@ -5,10 +5,7 @@ import { OPTION_TYPES } from '../../option/option.constants';
 
 export default class {
   /* @ngInject */
-  constructor(
-    $element,
-    $timeout,
-  ) {
+  constructor($element, $timeout) {
     this.$element = $element;
     this.$timeout = $timeout;
 
@@ -16,21 +13,18 @@ export default class {
   }
 
   $postLink() {
-  // Sometimes the digest cycle is done before dom manipulation,
-  // So we use $timeout to force the $apply
+    // Sometimes the digest cycle is done before dom manipulation,
+    // So we use $timeout to force the $apply
     this.$timeout(() => {
-      this.selectedItem = find(
-        this.servicePacks,
-        { name: get(this.defaultValue, 'name') },
-      );
+      this.selectedItem = find(this.servicePacks, {
+        name: get(this.defaultValue, 'name'),
+      });
 
       if (this.selectedItem) {
         this.handleOnChange();
       }
 
-      this
-        .$element
-        .addClass('d-block');
+      this.$element.addClass('d-block');
     });
   }
 

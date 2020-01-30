@@ -13,7 +13,6 @@ angular
     'ui.router',
     'ngTranslateAsyncLoader',
     'pascalprecht.translate',
-
   ])
   .config(routing)
   .component('pciProjectsProjectInstancesInstanceEdit', component)

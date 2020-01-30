@@ -4,9 +4,6 @@ import countryFlag from './country-flag';
 
 const moduleName = 'ovhSignUpComponents';
 
-angular
-  .module(moduleName, [
-    countryFlag,
-  ]);
+angular.module(moduleName, [countryFlag]);
 
 export default moduleName;

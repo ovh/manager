@@ -1,7 +1,14 @@
 export default class VpsOptionTerminateCtrl {
   /* @ngInject */
-  constructor($translate, $uibModalInstance, CucControllerHelper, CucCloudMessage, serviceName,
-    VpsService, vpsOption) {
+  constructor(
+    $translate,
+    $uibModalInstance,
+    CucControllerHelper,
+    CucCloudMessage,
+    serviceName,
+    VpsService,
+    vpsOption,
+  ) {
     this.$translate = $translate;
     this.$uibModalInstance = $uibModalInstance;
     this.CucCloudMessage = CucCloudMessage;
@@ -22,12 +29,19 @@ export default class VpsOptionTerminateCtrl {
 
   $onInit() {
     this.selectedVps = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () => this.VpsService.getSelectedVps(this.serviceName)
-        .then((vps) => {
-          this.expirationDate = moment(vps.expiration).format('LL');
-          return this.expirationDate;
-        })
-        .catch(() => this.CucCloudMessage.success(this.$translate.instant('vps_configuration_cancel_option_cancel_error'))),
+      loaderFunction: () =>
+        this.VpsService.getSelectedVps(this.serviceName)
+          .then((vps) => {
+            this.expirationDate = moment(vps.expiration).format('LL');
+            return this.expirationDate;
+          })
+          .catch(() =>
+            this.CucCloudMessage.success(
+              this.$translate.instant(
+                'vps_configuration_cancel_option_cancel_error',
+              ),
+            ),
+          ),
     });
     this.selectedVps.load();
   }
@@ -39,10 +53,24 @@ export default class VpsOptionTerminateCtrl {
   confirm() {
     this.CucCloudMessage.flushChildMessage();
     this.terminate = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () => this.VpsService.cancelOption(this.serviceName, this.vpsOption)
-        .then(() => this.CucCloudMessage.success(this.$translate.instant('vps_configuration_cancel_option_cancel_success')))
-        .catch(err => this.CucCloudMessage.error(err.message || this.$translate.instant('vps_configuration_cancel_option_cancel_error')))
-        .finally(() => this.$uibModalInstance.close()),
+      loaderFunction: () =>
+        this.VpsService.cancelOption(this.serviceName, this.vpsOption)
+          .then(() =>
+            this.CucCloudMessage.success(
+              this.$translate.instant(
+                'vps_configuration_cancel_option_cancel_success',
+              ),
+            ),
+          )
+          .catch((err) =>
+            this.CucCloudMessage.error(
+              err.message ||
+                this.$translate.instant(
+                  'vps_configuration_cancel_option_cancel_error',
+                ),
+            ),
+          )
+          .finally(() => this.$uibModalInstance.close()),
     });
     return this.terminate.load();
   }

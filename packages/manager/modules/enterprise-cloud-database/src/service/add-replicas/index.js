@@ -5,7 +5,10 @@ const moduleName = 'enterpriseCloudDatabaseServiceAddReplicas';
 
 angular
   .module(moduleName, [])
-  .component('enterpriseCloudDatabaseServiceAddReplicasComponent', addReplicasComponent)
+  .component(
+    'enterpriseCloudDatabaseServiceAddReplicasComponent',
+    addReplicasComponent,
+  )
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

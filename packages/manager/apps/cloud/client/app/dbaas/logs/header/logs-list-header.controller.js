@@ -8,4 +8,6 @@ class LogsListHeaderCtrl {
   }
 }
 
-angular.module('managerApp').controller('LogsListHeaderCtrl', LogsListHeaderCtrl);
+angular
+  .module('managerApp')
+  .controller('LogsListHeaderCtrl', LogsListHeaderCtrl);

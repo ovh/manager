@@ -12,7 +12,8 @@ angular.module('App').config(($stateProvider) => {
         controllerAs: '$ctrl',
       },
       'cdnView@app.networks.cdn.dedicated': {
-        templateUrl: 'cdn/dedicated/manage/statistics/cdn-dedicated-manage-statistics.html',
+        templateUrl:
+          'cdn/dedicated/manage/statistics/cdn-dedicated-manage-statistics.html',
         controller: 'CdnStatisticsCtrl',
       },
     },

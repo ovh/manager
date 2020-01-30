@@ -54,13 +54,19 @@ export default class SummaryController {
     this.$rootScope.$broadcast('exchange.wizard_hosted_creation.hide');
 
     if (this.homepage.isAutoConfigurationMode) {
-      this.navigation.setAction('exchange/wizard-hosted-creation/summary/automatic/automatic', {
-        domainName: this.homepage.domainName,
-      });
+      this.navigation.setAction(
+        'exchange/wizard-hosted-creation/summary/automatic/automatic',
+        {
+          domainName: this.homepage.domainName,
+        },
+      );
     } else {
-      this.navigation.setAction('exchange/wizard-hosted-creation/summary/manual/manual', {
-        domainName: this.homepage.domainName,
-      });
+      this.navigation.setAction(
+        'exchange/wizard-hosted-creation/summary/manual/manual',
+        {
+          domainName: this.homepage.domainName,
+        },
+      );
     }
 
     return this.homepage.deletingCheckpoint();
@@ -90,7 +96,9 @@ export default class SummaryController {
       .catch((failure) => {
         this.navigation.resetAction();
         this.messaging.writeError(
-          this.$translate.instant('exchange_tab_domain_diagnostic_add_field_failure'),
+          this.$translate.instant(
+            'exchange_tab_domain_diagnostic_add_field_failure',
+          ),
           failure,
         );
       });
@@ -115,12 +123,15 @@ export default class SummaryController {
       )
       .then((accounts) => {
         const copy = clone(accounts);
-        copy.list.results = accounts.list.results
-          .filter(currentAccount => currentAccount.domain === this.homepage.domainName);
+        copy.list.results = accounts.list.results.filter(
+          (currentAccount) =>
+            currentAccount.domain === this.homepage.domainName,
+        );
         copy.count = copy.list.results.length;
         this.homepage.emailAccounts = copy;
-        this.hasEmailAddresses = angular.isArray(this.homepage.emailAccounts.list.results)
-          && this.homepage.emailAccounts.count > 0;
+        this.hasEmailAddresses =
+          angular.isArray(this.homepage.emailAccounts.list.results) &&
+          this.homepage.emailAccounts.count > 0;
       })
       .catch((error) => {
         this.messaging.writeError(

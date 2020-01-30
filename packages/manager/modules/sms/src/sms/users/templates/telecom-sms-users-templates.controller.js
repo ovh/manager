@@ -5,7 +5,15 @@ import pick from 'lodash/pick';
 
 export default class {
   /* @ngInject */
-  constructor($q, $stateParams, $timeout, $uibModalInstance, OvhApiSms, service, SMS_ALERTS) {
+  constructor(
+    $q,
+    $stateParams,
+    $timeout,
+    $uibModalInstance,
+    OvhApiSms,
+    service,
+    SMS_ALERTS,
+  ) {
     this.$q = $q;
     this.$stateParams = $stateParams;
     this.$timeout = $timeout;
@@ -31,24 +39,32 @@ export default class {
   }
 
   /**
-     * Set templates.
-     * @return {Promise}
-     */
+   * Set templates.
+   * @return {Promise}
+   */
   templates() {
     this.loading.updateTemplates = true;
-    return this.$q.all([
-      this.api.sms.put({
-        serviceName: this.$stateParams.serviceName,
-      }, pick(this.model.service, this.attributes)).$promise,
-      this.$timeout(angular.noop, 1000),
-    ]).then(() => {
-      this.loading.updateTemplates = false;
-      this.updated = true;
-      return this.$timeout(() => this.close(), 1000);
-    }).catch(error => this.cancel({
-      type: 'API',
-      msg: error,
-    }));
+    return this.$q
+      .all([
+        this.api.sms.put(
+          {
+            serviceName: this.$stateParams.serviceName,
+          },
+          pick(this.model.service, this.attributes),
+        ).$promise,
+        this.$timeout(angular.noop, 1000),
+      ])
+      .then(() => {
+        this.loading.updateTemplates = false;
+        this.updated = true;
+        return this.$timeout(() => this.close(), 1000);
+      })
+      .catch((error) =>
+        this.cancel({
+          type: 'API',
+          msg: error,
+        }),
+      );
   }
 
   cancel(message) {
@@ -60,9 +76,9 @@ export default class {
   }
 
   /**
-     * Has changed helper.
-     * @return {Boolean}
-     */
+   * Has changed helper.
+   * @return {Boolean}
+   */
   hasChanged() {
     return !isEqual(
       pick(this.model.service, this.attributes),

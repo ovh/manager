@@ -6,9 +6,7 @@ import ovhManagerVpsVeeamOrder from './order';
 const moduleName = 'ovhManagerVpsVeeam';
 
 angular
-  .module(moduleName, [
-    ovhManagerVpsVeeamOrder,
-  ])
+  .module(moduleName, [ovhManagerVpsVeeamOrder])
   .component(component.name, component)
   .config(routing);
 

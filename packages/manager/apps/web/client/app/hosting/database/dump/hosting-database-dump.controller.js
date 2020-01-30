@@ -7,7 +7,15 @@ import isEmpty from 'lodash/isEmpty';
 angular.module('App').controller(
   'DatabaseDumpsCtrl',
   class DatabaseDumpsCtrl {
-    constructor($scope, $q, $stateParams, $translate, $window, Alerter, HostingDatabase) {
+    constructor(
+      $scope,
+      $q,
+      $stateParams,
+      $translate,
+      $window,
+      Alerter,
+      HostingDatabase,
+    ) {
       this.$scope = $scope;
       this.$q = $q;
       this.$stateParams = $stateParams;
@@ -39,21 +47,23 @@ angular.module('App').controller(
 
       return this.hostingDatabase
         .getDumpIds(this.$stateParams.productId, this.$scope.bdd.name)
-        .then(dumpIds => dumpIds.map(id => ({ id })))
+        .then((dumpIds) => dumpIds.map((id) => ({ id })))
         .then((databaseDumps) => {
           this.databaseDumps = databaseDumps;
           return databaseDumps;
         })
-        .catch(err => this.alerter.alertFromSWS(
-          this.$translate.instant('hosting_tab_databases_dumps_error_fetch'),
-          err,
-          this.$scope.alerts.main,
-        ));
+        .catch((err) =>
+          this.alerter.alertFromSWS(
+            this.$translate.instant('hosting_tab_databases_dumps_error_fetch'),
+            err,
+            this.$scope.alerts.main,
+          ),
+        );
     }
 
     transformItem(item) {
       if (item.transformed) {
-        return this.$q(resolve => resolve(item));
+        return this.$q((resolve) => resolve(item));
       }
       return this.hostingDatabase
         .getDump(this.$stateParams.productId, this.$scope.bdd.name, item.id)
@@ -134,7 +144,8 @@ angular.module('App').controller(
       delete this.$scope.bdd.waitRestore;
 
       this.databaseDumps.forEach((dump) => {
-        delete dump.waitRestore; // eslint-disable-line no-param-reassign
+        // eslint-disable-next-line no-param-reassign
+        delete dump.waitRestore;
       });
       this.alerter.success(
         this.$translate.instant('database_tabs_dumps_restore_success'),
@@ -161,7 +172,7 @@ angular.module('App').controller(
       let unregisterWatch = null;
 
       const todo = () => {
-        const idx = findIndex(this.databaseDumps, dump => dump.id === dumpId);
+        const idx = findIndex(this.databaseDumps, (dump) => dump.id === dumpId);
 
         if (idx >= 0) {
           deferred.resolve(idx);

@@ -1,22 +1,29 @@
 <div class="modal-header">
-    <h3 class="modal-title" data-translate="dtpdt_region_help_title">
-    </h3>
+    <h3 class="modal-title" data-translate="dtpdt_region_help_title"></h3>
 </div>
 
 <div class="modal-body">
     <p data-translate="dtpdt_region_help1"></p>
-    <p data-translate="dtpdt_region_help2"
-       data-translate-values="{region: ctrl.region.displayName}"></p>
-    <p><span data-translate="dtpdt_region_help3"></span>
+    <p
+        data-translate="dtpdt_region_help2"
+        data-translate-values="{region: ctrl.region.displayName}"
+    ></p>
+    <p>
+        <span data-translate="dtpdt_region_help3"></span>
         <code>{{ctrl.region.url}}</code>
     </p>
-    <p data-translate="dtpdt_key_explain_more_3"
-       data-translate-values="{dbaasts_guide_concepts_url: ctrl.guideURL}"></p>
+    <p
+        data-translate="dtpdt_key_explain_more_3"
+        data-translate-values="{dbaasts_guide_concepts_url: ctrl.guideURL}"
+    ></p>
 </div>
 
 <div class="modal-footer">
-    <button type="submit" class="btn btn-primary pull-right"
-            data-ng-click="$close()">
+    <button
+        type="submit"
+        class="btn btn-primary pull-right"
+        data-ng-click="$close()"
+    >
         <i class="glyphicon glyphicon-ok"></i>
         <span data-translate="dbaasts_ok"></span>
     </button>

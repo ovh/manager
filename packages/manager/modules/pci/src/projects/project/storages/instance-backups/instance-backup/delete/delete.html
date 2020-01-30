@@ -6,23 +6,35 @@
     data-secondary-action="$ctrl.goBack()"
     data-secondary-label="{{:: 'pci_projects_project_storages_volume-instances_volume-instance_delete_cancel_label' | translate }}"
     data-on-dismiss="$ctrl.goBack()"
-    data-loading="$ctrl.isLoading">
-
-    <div data-ng-if="$ctrl.instanceBackup.isDeletable() && $ctrl.namesOfAssociatedInstances.length === 0">
-        <p data-translate="pci_projects_project_storages_volume-instances_volume-instance_delete_content"
-            data-translate-values="{ backup: $ctrl.instanceBackup.name }"></p>
+    data-loading="$ctrl.isLoading"
+>
+    <div
+        data-ng-if="$ctrl.instanceBackup.isDeletable() && $ctrl.namesOfAssociatedInstances.length === 0"
+    >
+        <p
+            data-translate="pci_projects_project_storages_volume-instances_volume-instance_delete_content"
+            data-translate-values="{ backup: $ctrl.instanceBackup.name }"
+        ></p>
         <oui-message data-type="warning">
-            <span data-translate="pci_projects_project_storages_volume-instances_volume-instance_delete_erase_message"></span>
+            <span
+                data-translate="pci_projects_project_storages_volume-instances_volume-instance_delete_erase_message"
+            ></span>
         </oui-message>
     </div>
-    <oui-message data-ng-if="!$ctrl.instanceBackup.isDeletable()"
-                 data-type="warning">
-        <span data-translate="pci_projects_project_storages_volume-instances_volume-instance_delete_error_not_deletable"></span>
+    <oui-message
+        data-ng-if="!$ctrl.instanceBackup.isDeletable()"
+        data-type="warning"
+    >
+        <span
+            data-translate="pci_projects_project_storages_volume-instances_volume-instance_delete_error_not_deletable"
+        ></span>
     </oui-message>
     <div data-ng-if="$ctrl.namesOfAssociatedInstances.length > 0">
         <oui-message data-type="warning">
-            <span data-translate="pci_projects_project_storages_volume-instances_volume-instance_delete_error_installed"
-                  data-translate-values="{ instances: $ctrl.namesOfAssociatedInstances.join(', ') }">
+            <span
+                data-translate="pci_projects_project_storages_volume-instances_volume-instance_delete_error_installed"
+                data-translate-values="{ instances: $ctrl.namesOfAssociatedInstances.join(', ') }"
+            >
             </span>
         </oui-message>
     </div>

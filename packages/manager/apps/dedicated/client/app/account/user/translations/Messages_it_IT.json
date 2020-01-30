@@ -718,5 +718,9 @@
   "user_account_support_level_title": "Il tuo livello di supporto",
   "user_account_ssh_keys_title": "Le tue chiavi SSH",
   "user_account_users_management_title": "Gestione utenti",
-  "user_account_advanced_title": "Impostazioni avanzate"
+  "user_account_advanced_title": "Impostazioni avanzate",
+  "user_account_security_double_auth_type_totp_delete_error": "Ops! Si è verificato un errore durante la disattivazione della doppia autenticazione:",
+  "user_account_email_token_resend": "Invia un nuovo codice di verifica",
+  "user_account_email_token_resend_success": "Ti abbiamo inviato un nuovo codice di verifica. La consegna del messaggio potrebbe richiedere qualche minuto.",
+  "user_account_email_token_resend_error": "Si è verificato un errore durante l’invio del nuovo codice di verifica."
 }

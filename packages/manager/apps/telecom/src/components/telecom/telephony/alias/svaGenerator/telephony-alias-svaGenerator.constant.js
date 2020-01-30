@@ -1,12 +1,7 @@
 angular.module('managerApp').constant('SvaGeneratorConfig', {
-
   taxCoefficient: 1.2,
 
-  fillType: [
-    'gradient',
-    'simple',
-    'black',
-  ],
+  fillType: ['gradient', 'simple', 'black'],
 
   numberFormat: [
     '0 8AB XXX XXX',
@@ -46,5 +41,4 @@ angular.module('managerApp').constant('SvaGeneratorConfig', {
       pay: [165, 15, 120],
     },
   },
-
 });

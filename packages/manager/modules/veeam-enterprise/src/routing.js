@@ -14,11 +14,16 @@ export default /* @ngInject */ ($stateProvider) => {
         format: 'json',
       },
       resolve: {
-        serviceName: /* @ngInject */ $transition$ => $transition$.params().serviceName,
-        goToDashboard: /* @ngInject */ $state => () => $state.go('veeam-enterprise.dashboard'),
-        goToLicenseActivate: /* @ngInject */ $state => () => $state.go('veeam-enterprise.dashboard.license.activate'),
-        goToLicenseUpdate: /* @ngInject */ $state => () => $state.go('veeam-enterprise.dashboard.license.update'),
-        goToLicenseTerminate: /* @ngInject */ $state => () => $state.go('veeam-enterprise.dashboard.license.terminate'),
+        serviceName: /* @ngInject */ ($transition$) =>
+          $transition$.params().serviceName,
+        goToDashboard: /* @ngInject */ ($state) => () =>
+          $state.go('veeam-enterprise.dashboard'),
+        goToLicenseActivate: /* @ngInject */ ($state) => () =>
+          $state.go('veeam-enterprise.dashboard.license.activate'),
+        goToLicenseUpdate: /* @ngInject */ ($state) => () =>
+          $state.go('veeam-enterprise.dashboard.license.update'),
+        goToLicenseTerminate: /* @ngInject */ ($state) => () =>
+          $state.go('veeam-enterprise.dashboard.license.terminate'),
       },
     })
     .state('veeam-enterprise.dashboard', {

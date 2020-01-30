@@ -1,7 +1,14 @@
 export default class VpsReinstallCtrl {
   /* @ngInject */
-  constructor($scope, $translate, $uibModalInstance, CucCloudMessage, serviceName,
-    VpsReinstallService, VpsService) {
+  constructor(
+    $scope,
+    $translate,
+    $uibModalInstance,
+    CucCloudMessage,
+    serviceName,
+    VpsReinstallService,
+    VpsService,
+  ) {
     this.$scope = $scope;
     this.$translate = $translate;
     this.$uibModalInstance = $uibModalInstance;
@@ -33,9 +40,11 @@ export default class VpsReinstallCtrl {
   $onInit() {
     this.loaders.init = true;
     this.VpsService.getTaskInError(this.serviceName)
-      .then(tasks => this.loadTemplate(tasks))
-      .catch(err => this.loadTemplate(err))
-      .finally(() => { this.loaders.init = false; });
+      .then((tasks) => this.loadTemplate(tasks))
+      .catch((err) => this.loadTemplate(err))
+      .finally(() => {
+        this.loaders.init = false;
+      });
     this.loadSshKeys();
     this.loadSummary();
   }
@@ -45,9 +54,20 @@ export default class VpsReinstallCtrl {
     this.loaders.template = true;
     if (!tasks || !tasks.length) {
       this.VpsService.getTemplates(this.serviceName)
-        .then((data) => { this.templates = data.results; })
-        .catch(err => this.$uibModalInstance.dismiss(this.CucCloudMessage.error(err.message || this.$translate.instant('vps_configuration_polling_fail'))))
-        .finally(() => { this.loaders.template = false; });
+        .then((data) => {
+          this.templates = data.results;
+        })
+        .catch((err) =>
+          this.$uibModalInstance.dismiss(
+            this.CucCloudMessage.error(
+              err.message ||
+                this.$translate.instant('vps_configuration_polling_fail'),
+            ),
+          ),
+        )
+        .finally(() => {
+          this.loaders.template = false;
+        });
     }
   }
 
@@ -58,30 +78,54 @@ export default class VpsReinstallCtrl {
         this.userSshKeys = data;
         return this.userSshKeys;
       })
-      .catch(() => this.CucCloudMessage.error(this.$translate.instant('vps_configuration_reinstall_loading_sshKeys_error')))
-      .finally(() => { this.loaders.sshKeys = false; });
+      .catch(() =>
+        this.CucCloudMessage.error(
+          this.$translate.instant(
+            'vps_configuration_reinstall_loading_sshKeys_error',
+          ),
+        ),
+      )
+      .finally(() => {
+        this.loaders.sshKeys = false;
+      });
   }
 
   loadSummary() {
     this.loaders.summary = true;
     this.VpsService.getTabSummary(this.serviceName, true)
-      .then((data) => { this.summary = data; })
-      .catch(() => this.CucCloudMessage.error(this.$translate.instant('vps_configuration_reinstall_loading_summary_error')))
-      .finally(() => { this.loaders.summary = false; });
+      .then((data) => {
+        this.summary = data;
+      })
+      .catch(() =>
+        this.CucCloudMessage.error(
+          this.$translate.instant(
+            'vps_configuration_reinstall_loading_summary_error',
+          ),
+        ),
+      )
+      .finally(() => {
+        this.loaders.summary = false;
+      });
   }
 
   loadPackages(distribution) {
     this.loaders.packages = true;
     this.template.packages = [];
     this.VpsReinstallService.getPackages(distribution)
-      .then((data) => { this.template.packages = data; })
-      .finally(() => { this.loaders.packages = false; });
+      .then((data) => {
+        this.template.packages = data;
+      })
+      .finally(() => {
+        this.loaders.packages = false;
+      });
   }
 
   getSoftwareLabel(soft) {
     let result = soft.name;
     if (soft.status !== 'STABLE') {
-      result += ` (${this.$translate.instant(`vps_configuration_reinstall_step2_software_status_${soft.status}`)})`;
+      result += ` (${this.$translate.instant(
+        `vps_configuration_reinstall_step2_software_status_${soft.status}`,
+      )})`;
     }
     return result;
   }
@@ -102,7 +146,7 @@ export default class VpsReinstallCtrl {
 
   getSelectedLanguage() {
     if (this.template.value) {
-      return (this.template.value.availableLanguage.length > 1)
+      return this.template.value.availableLanguage.length > 1
         ? this.template.language
         : this.template.value.locale;
     }
@@ -137,11 +181,13 @@ export default class VpsReinstallCtrl {
       this.getSelectedLanguage(),
       softIds,
       this.template.sshKeys,
-      (this.template.sendPassword ? 0 : 1),
+      this.template.sendPassword ? 0 : 1,
     )
       .then(() => this.$uibModalInstance.close())
       .catch(() => this.$uibModalInstance.dismiss())
-      .finally(() => { this.loaders.save = false; });
+      .finally(() => {
+        this.loaders.save = false;
+      });
   }
 
   cancel() {

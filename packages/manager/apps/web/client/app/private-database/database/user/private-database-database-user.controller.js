@@ -5,7 +5,14 @@ import set from 'lodash/set';
 angular.module('App').controller(
   'PrivateDatabaseUserDatabaseCtrl',
   class PrivateDatabaseUserDatabaseController {
-    constructor($q, $scope, $stateParams, $translate, Alerter, PrivateDatabase) {
+    constructor(
+      $q,
+      $scope,
+      $stateParams,
+      $translate,
+      Alerter,
+      PrivateDatabase,
+    ) {
       this.$q = $q;
       this.$scope = $scope;
       this.$stateParams = $stateParams;
@@ -59,7 +66,7 @@ angular.module('App').controller(
     transformItem(userName) {
       return this.privateDatabaseService
         .getUserGrants(this.productId, userName)
-        .then(res => ({
+        .then((res) => ({
           userName,
           grantType: res[this.database.databaseName].value,
           database: res[this.database.databaseName],

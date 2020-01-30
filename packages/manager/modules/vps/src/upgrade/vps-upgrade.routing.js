@@ -8,7 +8,7 @@ import legacyOrderController from './legacy/vps-upgrade-legacy.controller';
 import orderTemplate from './vps-upgrade.html';
 import orderController from './vps-upgrade.controller';
 
-export default /* @ngInject */($stateProvider) => {
+export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('vps.detail.upgrade', {
     url: '/upgrade',
     views: {
@@ -16,10 +16,10 @@ export default /* @ngInject */($stateProvider) => {
         component: vpsHeaderComponent.name,
       },
       'vpsContent@vps.detail': {
-        templateProvider: /* @ngInject */ stateVps => (stateVps
-          .isLegacy ? legacyOrderTemplate : orderTemplate),
-        controllerProvider: /* @ngInject */ stateVps => (stateVps
-          .isLegacy ? legacyOrderController : orderController),
+        templateProvider: /* @ngInject */ (stateVps) =>
+          stateVps.isLegacy ? legacyOrderTemplate : orderTemplate,
+        controllerProvider: /* @ngInject */ (stateVps) =>
+          stateVps.isLegacy ? legacyOrderController : orderController,
         controllerAs: '$ctrl',
       },
     },

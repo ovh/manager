@@ -40,42 +40,67 @@ export default /* @ngInject */ ($stateProvider) => {
               operator: 'is',
               property: 'category',
               value: $transition$.params().category,
-              title: $translate.instant(`account_contacts_service_category_${$transition$.params().category}`),
+              title: $translate.instant(
+                `account_contacts_service_category_${
+                  $transition$.params().category
+                }`,
+              ),
             });
           }
 
           return criteria;
         });
       },
-      updateCriteria: $state => (criteria) => {
+      updateCriteria: ($state) => (criteria) => {
         $state.go(stateName, {
           serviceName: get(find(criteria, { property: null }), 'value', null),
-          category: get(find(criteria, { property: 'category' }), 'value', null),
+          category: get(
+            find(criteria, { property: 'category' }),
+            'value',
+            null,
+          ),
         });
       },
-      category: /* @ngInject */ $transition$ => $transition$.params().category,
-      editContacts: /* @ngInject */ $state => service => $state.go(`${stateName}.edit`, { service: service.serviceName, categoryType: service.category }),
-      getServiceInfos: /* @ngInject */
-        AccountContactsService => service => AccountContactsService.getServiceInfos(service)
-          .then(serviceInfos => ({
+      category: /* @ngInject */ ($transition$) =>
+        $transition$.params().category,
+      editContacts: /* @ngInject */ ($state) => (service) =>
+        $state.go(`${stateName}.edit`, {
+          service: service.serviceName,
+          categoryType: service.category,
+        }),
+      /* @ngInject */
+      getServiceInfos: (AccountContactsService) => (service) =>
+        AccountContactsService.getServiceInfos(service).then(
+          (serviceInfos) => ({
             ...service,
             ...serviceInfos,
-          })),
-      goToContacts: /* @ngInject */ ($state, $timeout, Alerter) => (message = false, type = 'success') => {
+          }),
+        ),
+      goToContacts: /* @ngInject */ ($state, $timeout, Alerter) => (
+        message = false,
+        type = 'success',
+      ) => {
         const reload = message && type === 'success';
 
-        const promise = $state.go(stateName, {}, {
-          reload,
-        });
+        const promise = $state.go(
+          stateName,
+          {},
+          {
+            reload,
+          },
+        );
 
         if (message) {
-          promise.then(() => $timeout(() => Alerter.set(`alert-${type}`, message, null)));
+          promise.then(() =>
+            $timeout(() => Alerter.set(`alert-${type}`, message, null)),
+          );
         }
 
         return promise;
       },
 
-      services: /* @ngInject */ AccountContactsService => AccountContactsService.getServices(),
+      services: /* @ngInject */ (AccountContactsService) =>
+        AccountContactsService.getServices(),
     },
   });
 };

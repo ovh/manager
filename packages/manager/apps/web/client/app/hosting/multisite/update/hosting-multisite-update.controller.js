@@ -71,16 +71,17 @@ angular
 
       $scope.domainsAlreadyExists = () => {
         if (
-          $scope.model.domains
-          && $scope.model.domains.indexOf(`www.${$scope.selected.domain.name}`)
-            !== -1
+          $scope.model.domains &&
+          $scope.model.domains.indexOf(`www.${$scope.selected.domain.name}`) !==
+            -1
         ) {
           return true;
         }
         return false;
       };
 
-      $scope.isPathValid = () => Hosting.constructor.isPathValid($scope.selected.domain.path);
+      $scope.isPathValid = () =>
+        Hosting.constructor.isPathValid($scope.selected.domain.path);
 
       function isCountryIp(countryIps, recordIdsData) {
         let target = 'FR';
@@ -88,7 +89,7 @@ angular
         if (
           find(
             countryIps,
-            countryIp => countryIp.country === $scope.userInfos.ovhSubsidiary,
+            (countryIp) => countryIp.country === $scope.userInfos.ovhSubsidiary,
           )
         ) {
           target = $scope.userInfos.ovhSubsidiary;
@@ -97,7 +98,8 @@ angular
         forEach(countryIps, (country) => {
           const countryFound = find(
             recordIdsData,
-            record => country.ip === record.target && country.country !== target,
+            (record) =>
+              country.ip === record.target && country.country !== target,
           );
 
           if (countryFound) {
@@ -142,9 +144,8 @@ angular
                 .then((runtimes) => {
                   $scope.loading.runtimes = true;
 
-                  const promises = map(
-                    runtimes,
-                    runtimeId => HostingRuntimes.get(
+                  const promises = map(runtimes, (runtimeId) =>
+                    HostingRuntimes.get(
                       $scope.hosting.serviceName,
                       runtimeId,
                     ).then((runtime) => {
@@ -161,7 +162,9 @@ angular
                 })
                 .catch((err) => {
                   Alerter.alertFromSWS(
-                    $translate.instant('hosting_tab_DOMAINS_configuration_add_loading_error'),
+                    $translate.instant(
+                      'hosting_tab_DOMAINS_configuration_add_loading_error',
+                    ),
                     get(err, 'data', err),
                     $scope.alerts.main,
                   );
@@ -172,17 +175,19 @@ angular
 
             return null;
           })
-          .then(() => HostingDomain.getIPv6Configuration(
-            $scope.hosting.serviceName,
-            $scope.selected.domain.name.replace(
-              `.${$scope.hosting.serviceName}`,
-              '',
+          .then(() =>
+            HostingDomain.getIPv6Configuration(
+              $scope.hosting.serviceName,
+              $scope.selected.domain.name.replace(
+                `.${$scope.hosting.serviceName}`,
+                '',
+              ),
             ),
-          ))
+          )
           .then((records) => {
             $scope.selected.domain.ipV6Enabled = some(
               records,
-              record => $scope.hosting.clusterIpv6 === record.target,
+              (record) => $scope.hosting.clusterIpv6 === record.target,
             );
 
             if ($scope.selected.domain.ipV6Enabled) {
@@ -194,25 +199,26 @@ angular
           .then((options) => {
             $scope.availableDomains = options.availableDomains;
           })
-          .then(() => Domain.getRecordsIds($stateParams.productId, {
-            fieldType: 'A',
-            subDomain: subDomainName,
-          })
-            .then(() => {
-              $scope.domainWwwAvailable = true;
+          .then(() =>
+            Domain.getRecordsIds($stateParams.productId, {
+              fieldType: 'A',
+              subDomain: subDomainName,
             })
-            .catch((error) => {
-              if (error.status === 404) {
-                $scope.domainWwwAvailable = false;
-                return $q.resolve([]);
-              }
+              .then(() => {
+                $scope.domainWwwAvailable = true;
+              })
+              .catch((error) => {
+                if (error.status === 404) {
+                  $scope.domainWwwAvailable = false;
+                  return $q.resolve([]);
+                }
 
-              return $q.reject(error);
-            }))
+                return $q.reject(error);
+              }),
+          )
           .then((recordIds) => {
-            const recordsPromises = map(
-              recordIds,
-              recordId => Domain.getRecord($stateParams.productId, recordId),
+            const recordsPromises = map(recordIds, (recordId) =>
+              Domain.getRecord($stateParams.productId, recordId),
             );
 
             return $q.all(recordsPromises);
@@ -224,15 +230,17 @@ angular
           .catch((err) => {
             $scope.resetAction();
             Alerter.alertFromSWS(
-              $translate.instant('hosting_tab_DOMAINS_configuration_add_loading_error'),
+              $translate.instant(
+                'hosting_tab_DOMAINS_configuration_add_loading_error',
+              ),
               get(err, 'data', err),
               $scope.alerts.main,
             );
           })
           .finally(() => {
             if (
-              $scope.hosting.hasCdn
-              && $scope.selected.domain.cdn !== 'NONE'
+              $scope.hosting.hasCdn &&
+              $scope.selected.domain.cdn !== 'NONE'
             ) {
               $scope.selected.domain.cdn = 'ACTIVE';
             }
@@ -263,9 +271,10 @@ angular
         return result;
       };
 
-      $scope.needWwwDomain = () => $scope.selected.domainWwwNeeded
-        && $scope.selected.domain.name !== $scope.selected.domainWww
-        && $scope.domainsAlreadyExists();
+      $scope.needWwwDomain = () =>
+        $scope.selected.domainWwwNeeded &&
+        $scope.selected.domain.name !== $scope.selected.domainWww &&
+        $scope.domainsAlreadyExists();
 
       $scope.loadStep2 = () => {
         $scope.selected.pathFinal = $scope.getSelectedPath();
@@ -275,8 +284,8 @@ angular
         let home;
         if ($scope.selected.domain.path !== null) {
           if (
-            /^\/.*/.test($scope.selected.domain.path)
-            || /^\.\/.*/.test($scope.selected.domain.path)
+            /^\/.*/.test($scope.selected.domain.path) ||
+            /^\.\/.*/.test($scope.selected.domain.path)
           ) {
             home = $scope.selected.domain.path;
           } else {
@@ -287,9 +296,15 @@ angular
       };
 
       const resultMessages = {
-        OK: $translate.instant('hosting_tab_DOMAINS_configuration_modify_success'),
-        PARTIAL: $translate.instant('hosting_tab_DOMAINS_configuration_modify_partial'),
-        ERROR: $translate.instant('hosting_tab_DOMAINS_configuration_modify_failure'),
+        OK: $translate.instant(
+          'hosting_tab_DOMAINS_configuration_modify_success',
+        ),
+        PARTIAL: $translate.instant(
+          'hosting_tab_DOMAINS_configuration_modify_partial',
+        ),
+        ERROR: $translate.instant(
+          'hosting_tab_DOMAINS_configuration_modify_failure',
+        ),
       };
 
       $scope.submit = () => {
@@ -322,13 +337,17 @@ angular
             if (isEqual(err.status, 403) && includes(err.data, 'updating')) {
               // show update in progress error
               Alerter.alertFromSWS(
-                $translate.instant('hosting_tab_DOMAINS_configuration_modify_failure_inprogress'),
+                $translate.instant(
+                  'hosting_tab_DOMAINS_configuration_modify_failure_inprogress',
+                ),
                 get(err, 'data', err),
                 $scope.alerts.main,
               );
             } else {
               Alerter.alertFromSWS(
-                $translate.instant('hosting_tab_DOMAINS_configuration_modify_failure'),
+                $translate.instant(
+                  'hosting_tab_DOMAINS_configuration_modify_failure',
+                ),
                 get(err, 'data', err),
                 $scope.alerts.main,
               );

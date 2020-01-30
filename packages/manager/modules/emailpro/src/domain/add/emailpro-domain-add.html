@@ -1,209 +1,323 @@
 <div data-ng-controller="EmailProAddDomainController">
-
-    <div data-wizard
-         data-wizard-on-cancel="resetAction"
-         data-wizard-on-finish="addDomain"
-         data-wizard-title="'emailpro_tab_domain_add_domain' | translate">
-
-        <div data-wizard-step
-             data-wizard-step-on-load="loadDomainData"
-             data-wizard-step-on-next="checkDomain"
-             data-wizard-step-valid="model.name && isNonOvhDomainValid()">
-
+    <div
+        data-wizard
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="addDomain"
+        data-wizard-title="'emailpro_tab_domain_add_domain' | translate"
+    >
+        <div
+            data-wizard-step
+            data-wizard-step-on-load="loadDomainData"
+            data-wizard-step-on-next="checkDomain"
+            data-wizard-step-valid="model.name && isNonOvhDomainValid()"
+        >
             <div class="text-center" data-ng-if="loading">
-              <oui-spinner></oui-spinner>
+                <oui-spinner></oui-spinner>
             </div>
 
-            <div class="alert alert-info" role="alert"
-                 data-ng-if="!loading && noDomainAttached"
-                 data-translate="{{ exchange.billingPlan + '_tab_domain_no_domain_attached' }}">
-            </div>
+            <div
+                class="alert alert-info"
+                role="alert"
+                data-ng-if="!loading && noDomainAttached"
+                data-translate="{{ exchange.billingPlan + '_tab_domain_no_domain_attached' }}"
+            ></div>
 
-            <form name="emailProAddDomainStep1Form" data-ng-if="!loading && availableDomains">
+            <form
+                name="emailProAddDomainStep1Form"
+                data-ng-if="!loading && availableDomains"
+            >
                 <div class="oui-radio">
-                    <input type="radio" name="addOption" id="addOption1"
-                           data-ng-value="ovhDomain"
-                           data-ng-model="model.domainType"
-                           data-ng-change="resetName()"
-                           class="oui-radio__input">
+                    <input
+                        type="radio"
+                        name="addOption"
+                        id="addOption1"
+                        data-ng-value="ovhDomain"
+                        data-ng-model="model.domainType"
+                        data-ng-change="resetName()"
+                        class="oui-radio__input"
+                    />
                     <label class="oui-radio__label-container" for="addOption1">
-                        <span class="oui-radio__label"
-                              data-translate="emailpro_tab_domain_add_step1_select_domain_option"></span>
+                        <span
+                            class="oui-radio__label"
+                            data-translate="emailpro_tab_domain_add_step1_select_domain_option"
+                        ></span>
                     </label>
                 </div>
-                <div class="form-group" data-ng-if="model.domainType === ovhDomain">
+                <div
+                    class="form-group"
+                    data-ng-if="model.domainType === ovhDomain"
+                >
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="{{ 'emailpro_tab_domain_search' | translate }}"
-                               data-ng-model="search.value"
-                               data-ng-change="resetName()">
+                        <input
+                            type="text"
+                            class="form-control"
+                            placeholder="{{ 'emailpro_tab_domain_search' | translate }}"
+                            data-ng-model="search.value"
+                            data-ng-change="resetName()"
+                        />
                         <div class="input-group-btn" data-ng-if="search.value">
-                            <button class="btn btn-default" type="button"
-                                    data-ng-click="resetSearchValue()">
-                                <span class="oui-icon oui-icon-trash_line oui-icon_small" aria-hidden="true"></span>
+                            <button
+                                class="btn btn-default"
+                                type="button"
+                                data-ng-click="resetSearchValue()"
+                            >
+                                <span
+                                    class="oui-icon oui-icon-trash_line oui-icon_small"
+                                    aria-hidden="true"
+                                ></span>
                             </button>
                         </div>
-                        <span class="input-group-addon disabled"
-                              data-ng-if="!search.value">
-                            <span class="fa fa-search" aria-hidden="true"></span>
+                        <span
+                            class="input-group-addon disabled"
+                            data-ng-if="!search.value"
+                        >
+                            <span
+                                class="fa fa-search"
+                                aria-hidden="true"
+                            ></span>
                         </span>
                     </div>
                 </div>
-                <ul class="list-unstyled pre-scrollable table-bordered" data-ng-if="model.domainType === ovhDomain">
-                    <li data-ng-repeat="domain in availableDomains | orderBy:'formattedName' track by $index">
-                        <button class="btn d-block w-100 text-left" type="button"
-                                data-ng-click="model.name = domain.name; model.displayName = domain.displayName;"
-                                data-ng-bind="domain.displayName"
-                                data-ng-class="{
+                <ul
+                    class="list-unstyled pre-scrollable table-bordered"
+                    data-ng-if="model.domainType === ovhDomain"
+                >
+                    <li
+                        data-ng-repeat="domain in availableDomains | orderBy:'formattedName' track by $index"
+                    >
+                        <button
+                            class="btn d-block w-100 text-left"
+                            type="button"
+                            data-ng-click="model.name = domain.name; model.displayName = domain.displayName;"
+                            data-ng-bind="domain.displayName"
+                            data-ng-class="{
                                     'btn-link': model.name !== domain.name,
                                     'btn-primary': model.name === domain.name
-                                }">
-                        </button>
+                                }"
+                        ></button>
                     </li>
-                    <li data-ng-if="availableDomains.length === 0 && search.value"
-                        data-translate="emailpro_tab_domain_add_step1_domain_none">
-                    </li>
+                    <li
+                        data-ng-if="availableDomains.length === 0 && search.value"
+                        data-translate="emailpro_tab_domain_add_step1_domain_none"
+                    ></li>
                 </ul>
                 <div class="oui-radio">
-                    <input type="radio" name="addOption" id="addOption2"
-                           data-ng-value="nonOvhDomain"
-                           data-ng-model="model.domainType"
-                           data-ng-change="resetName()"
-                           class="oui-radio__input">
+                    <input
+                        type="radio"
+                        name="addOption"
+                        id="addOption2"
+                        data-ng-value="nonOvhDomain"
+                        data-ng-model="model.domainType"
+                        data-ng-change="resetName()"
+                        class="oui-radio__input"
+                    />
                     <label class="oui-radio__label-container" for="addOption2">
-                        <span id="nonOvhDomain"
-                              class="oui-radio__label"
-                              data-translate="emailpro_tab_domain_add_step1_user_owned_option"></span>
+                        <span
+                            id="nonOvhDomain"
+                            class="oui-radio__label"
+                            data-translate="emailpro_tab_domain_add_step1_user_owned_option"
+                        ></span>
                     </label>
                 </div>
-                <div class="form-group"
+                <div
+                    class="form-group"
                     data-ng-class="{ 'has-error': !isNonOvhDomainValid() }"
-                    data-ng-if="model.domainType === nonOvhDomain">
-                    <input type="text"
-                           class="form-control"
-                           placeholder="{{ 'emailpro_tab_domain_domain' | translate }}"
-                           aria-labelledby="nonOvhDomain"
-                           data-ng-model="model.displayName"
-                           data-ng-change="changeName()">
-                    <span class="help-block"
-                          data-ng-if="!isNonOvhDomainValid()"
-                          data-translate="emailpro_ACTION_add_domain_invalid_domain"></span>
-                    <div class="alert alert-warning mt-4" role="alert"
-                         data-translate="emailpro_tab_domain_add_step1_user_owned_info">
-                    </div>
+                    data-ng-if="model.domainType === nonOvhDomain"
+                >
+                    <input
+                        type="text"
+                        class="form-control"
+                        placeholder="{{ 'emailpro_tab_domain_domain' | translate }}"
+                        aria-labelledby="nonOvhDomain"
+                        data-ng-model="model.displayName"
+                        data-ng-change="changeName()"
+                    />
+                    <span
+                        class="help-block"
+                        data-ng-if="!isNonOvhDomainValid()"
+                        data-translate="emailpro_ACTION_add_domain_invalid_domain"
+                    ></span>
+                    <div
+                        class="alert alert-warning mt-4"
+                        role="alert"
+                        data-translate="emailpro_tab_domain_add_step1_user_owned_info"
+                    ></div>
                 </div>
             </form>
 
             <div data-wizard-step-help>
                 <h3 data-translate="emailpro_tab_TASKS_ADD_DOMAIN"></h3>
-                <h4 data-translate="emailpro_tab_domain_step1_helpwizard_subdomain_title"></h4>
-                <p data-ng-bind-html="'emailpro_tab_domain_step1_helpwizard_subdomain' | translate"></p>
+                <h4
+                    data-translate="emailpro_tab_domain_step1_helpwizard_subdomain_title"
+                ></h4>
+                <p
+                    data-ng-bind-html="'emailpro_tab_domain_step1_helpwizard_subdomain' | translate"
+                ></p>
             </div>
         </div>
 
-        <div data-wizard-step
-             data-wizard-step-valid="model.type === 'AUTHORITATIVE' || (model.mxRelay && model.type === 'NON_AUTHORITATIVE')">
-
+        <div
+            data-wizard-step
+            data-wizard-step-valid="model.type === 'AUTHORITATIVE' || (model.mxRelay && model.type === 'NON_AUTHORITATIVE')"
+        >
             <form name="emailProAddDomainStep2Form">
                 <p data-translate="emailpro_tab_domain_add_step2bis_intro"></p>
                 <div class="oui-radio">
-                    <input type="radio"
-                           name="domainType" id="domainType-A"
-                           value="AUTHORITATIVE"
-                           aria-describedby="domainAuthoritativeHelp"
-                           data-ng-model="model.type"
-                           class="oui-radio__input">
-                    <label class="oui-radio__label-container" for="domainType-A">
-                         <span class="oui-radio__label"
-                               data-translate="emailpro_tab_domain_mode_AUTHORITATIVE"></span>
+                    <input
+                        type="radio"
+                        name="domainType"
+                        id="domainType-A"
+                        value="AUTHORITATIVE"
+                        aria-describedby="domainAuthoritativeHelp"
+                        data-ng-model="model.type"
+                        class="oui-radio__input"
+                    />
+                    <label
+                        class="oui-radio__label-container"
+                        for="domainType-A"
+                    >
+                        <span
+                            class="oui-radio__label"
+                            data-translate="emailpro_tab_domain_mode_AUTHORITATIVE"
+                        ></span>
                     </label>
-                    <span class="help-block" id="domainAuthoritativeHelp" data-translate="emailpro_tab_domain_AUTHORITATIVE_info"></span>
+                    <span
+                        class="help-block"
+                        id="domainAuthoritativeHelp"
+                        data-translate="emailpro_tab_domain_AUTHORITATIVE_info"
+                    ></span>
                 </div>
                 <div class="oui-radio mt-5">
-                    <input type="radio"
-                           name="domainType" id="domainType-NA"
-                           value="NON_AUTHORITATIVE"
-                           aria-describedby="domainNonAuthoritativeHelp"
-                           data-ng-model="model.type"
-                           class="oui-radio__input">
-                    <label class="oui-radio__label-container" for="domainType-NA">
-                        <span class="oui-radio__label"
-                              data-translate="emailpro_tab_domain_mode_NON_AUTHORITATIVE"></span>
+                    <input
+                        type="radio"
+                        name="domainType"
+                        id="domainType-NA"
+                        value="NON_AUTHORITATIVE"
+                        aria-describedby="domainNonAuthoritativeHelp"
+                        data-ng-model="model.type"
+                        class="oui-radio__input"
+                    />
+                    <label
+                        class="oui-radio__label-container"
+                        for="domainType-NA"
+                    >
+                        <span
+                            class="oui-radio__label"
+                            data-translate="emailpro_tab_domain_mode_NON_AUTHORITATIVE"
+                        ></span>
                     </label>
                 </div>
                 <div class="form-group">
-                    <label class="sr-only" for="targetMailServer"
-                           data-translate="emailpro_tab_domain_target_mail_server_label"></label>
-                    <input type="text"
-                           name="targetMailServer"
-                           class="form-control"
-                           id="targetMailServer"
-                           required
-                           aria-describedby="helpBlock"
-                           data-ng-model="model.mxRelay"
-                           data-ng-disabled="model.type === 'AUTHORITATIVE'">
-                    <span class="help-block" id="helpBlock"
-                          data-translate="emailpro_tab_domain_NON_AUTHORITATIVE_info"></span>
+                    <label
+                        class="sr-only"
+                        for="targetMailServer"
+                        data-translate="emailpro_tab_domain_target_mail_server_label"
+                    ></label>
+                    <input
+                        type="text"
+                        name="targetMailServer"
+                        class="form-control"
+                        id="targetMailServer"
+                        required
+                        aria-describedby="helpBlock"
+                        data-ng-model="model.mxRelay"
+                        data-ng-disabled="model.type === 'AUTHORITATIVE'"
+                    />
+                    <span
+                        class="help-block"
+                        id="helpBlock"
+                        data-translate="emailpro_tab_domain_NON_AUTHORITATIVE_info"
+                    ></span>
                 </div>
             </form>
         </div>
 
-        <div data-wizard-step
-             data-wizard-step-valid="model.type">
-
-            <p data-ng-if="model.type === 'AUTHORITATIVE'"
-               data-ng-bind-html="'emailpro_tab_domain_add_step2_auth_intro' | translate: { t0: model.displayName }"></p>
-            <p data-ng-if="model.type === 'NON_AUTHORITATIVE'"
-               data-ng-bind-html="'emailpro_tab_domain_add_step2_non_auth_intro' | translate: { t0: model.displayName }"></p>
+        <div data-wizard-step data-wizard-step-valid="model.type">
+            <p
+                data-ng-if="model.type === 'AUTHORITATIVE'"
+                data-ng-bind-html="'emailpro_tab_domain_add_step2_auth_intro' | translate: { t0: model.displayName }"
+            ></p>
+            <p
+                data-ng-if="model.type === 'NON_AUTHORITATIVE'"
+                data-ng-bind-html="'emailpro_tab_domain_add_step2_non_auth_intro' | translate: { t0: model.displayName }"
+            ></p>
 
             <form name="emailProAddDomainStep3Form">
                 <div data-ng-if="model.domainType !== nonOvhDomain">
-                    <oui-checkbox id="srvParam" name="srvParam"
+                    <oui-checkbox
+                        id="srvParam"
+                        name="srvParam"
                         data-model="model.srvParam"
-                        data-text="{{:: 'emailpro_tab_domain_add_step2_srv_checkbox' | translate }}">
+                        data-text="{{:: 'emailpro_tab_domain_add_step2_srv_checkbox' | translate }}"
+                    >
                     </oui-checkbox>
-                    <div class="alert alert-info" role="alert"
-                         data-ng-if="model.srvParam"
-                         data-translate="emailpro_tab_domain_add_step2_srv_tooltip">
-                    </div>
-                    <oui-checkbox id="mxParam" name="mxParam"
+                    <div
+                        class="alert alert-info"
+                        role="alert"
+                        data-ng-if="model.srvParam"
+                        data-translate="emailpro_tab_domain_add_step2_srv_tooltip"
+                    ></div>
+                    <oui-checkbox
+                        id="mxParam"
+                        name="mxParam"
                         data-model="model.mxParam"
-                        data-text="{{:: 'emailpro_tab_domain_add_step2_mx_checkbox' | translate }}">
+                        data-text="{{:: 'emailpro_tab_domain_add_step2_mx_checkbox' | translate }}"
+                    >
                     </oui-checkbox>
-                    <div class="alert alert-warning" role="alert"
-                          data-ng-if="model.mxParam"
-                          data-translate="emailpro_tab_domain_add_step2_mx_tooltip">
-                    </div>
+                    <div
+                        class="alert alert-warning"
+                        role="alert"
+                        data-ng-if="model.mxParam"
+                        data-translate="emailpro_tab_domain_add_step2_mx_tooltip"
+                    ></div>
                 </div>
-                <div class="alert alert-warning mt-3" role="alert"
-                     data-ng-if="model.domainType === nonOvhDomain">
-                    <span data-translate="emailpro_tab_domain_noovh_mx_info"></span>
-                    <span data-translate="emailpro_tab_domain_add_step2_mx_tooltip"></span>
+                <div
+                    class="alert alert-warning mt-3"
+                    role="alert"
+                    data-ng-if="model.domainType === nonOvhDomain"
+                >
+                    <span
+                        data-translate="emailpro_tab_domain_noovh_mx_info"
+                    ></span>
+                    <span
+                        data-translate="emailpro_tab_domain_add_step2_mx_tooltip"
+                    ></span>
                 </div>
                 <div class="form-group" data-ng-if="setOrganization2010">
                     <div class="checkbox">
                         <label>
-                            <input type="checkbox"
-                                   name="mainDomain"
-                                   data-ng-model="model.main">
-                            <span data-translate="emailpro_tab_domain_add_step1_main_domain"
-                                  data-oui-tooltip="{{ 'emailpro_tab_domain_add_step1_main_domain_tooltip' | translate }}"></span>
+                            <input
+                                type="checkbox"
+                                name="mainDomain"
+                                data-ng-model="model.main"
+                            />
+                            <span
+                                data-translate="emailpro_tab_domain_add_step1_main_domain"
+                                data-oui-tooltip="{{ 'emailpro_tab_domain_add_step1_main_domain_tooltip' | translate }}"
+                            ></span>
                         </label>
                     </div>
                     <div class="form-group" data-ng-if="!model.main">
-                        <label class="required"
-                               for="mainDomainAttached"
-                               data-translate="emailpro_tab_domain_add_step1_attach_organization_intro">
+                        <label
+                            class="required"
+                            for="mainDomainAttached"
+                            data-translate="emailpro_tab_domain_add_step1_attach_organization_intro"
+                        >
                         </label>
-                        <select class="form-control"
-                                id="mainDomainAttached"
-                                required
-                                data-ng-options="domain.displayName for domain in availableMainDomains"
-                                data-ng-model="model.attachOrganization2010">
+                        <select
+                            class="form-control"
+                            id="mainDomainAttached"
+                            required
+                            data-ng-options="domain.displayName for domain in availableMainDomains"
+                            data-ng-model="model.attachOrganization2010"
+                        >
                         </select>
                     </div>
-                    <p data-ng-if="model.main"
-                       data-translate="emailpro_tab_domain_add_step1_new_organization_intro"
-                       data-translate-values="{ t0: model.displayName }"></p>
+                    <p
+                        data-ng-if="model.main"
+                        data-translate="emailpro_tab_domain_add_step1_new_organization_intro"
+                        data-translate-values="{ t0: model.displayName }"
+                    ></p>
                 </div>
             </form>
         </div>
@@ -214,35 +328,59 @@
                 <dt data-translate="emailpro_tab_domain_domain"></dt>
                 <dd>
                     <span data-ng-bind="model.displayName"></span>
-                    <span data-ng-if="model.isUTF8Domain"> (<span data-ng-bind="model.name"></span>)</span>
+                    <span data-ng-if="model.isUTF8Domain">
+                        (<span data-ng-bind="model.name"></span>)</span
+                    >
                 </dd>
 
                 <dt data-translate="emailpro_tab_domain_type"></dt>
-                <dd data-ng-bind="'emailpro_tab_domain_' + model.type | translate"></dd>
+                <dd
+                    data-ng-bind="'emailpro_tab_domain_' + model.type | translate"
+                ></dd>
 
-                <dt data-ng-if="model.domainType !== nonOvhDomain"
-                    data-translate="emailpro_tab_domain_add_step3_mx_confirmation"></dt>
-                <dd data-ng-if="model.domainType !== nonOvhDomain"
-                    data-ng-bind="'emailpro_tab_domain_add_step3_configuration_' + model.mxParam | translate"></dd>
+                <dt
+                    data-ng-if="model.domainType !== nonOvhDomain"
+                    data-translate="emailpro_tab_domain_add_step3_mx_confirmation"
+                ></dt>
+                <dd
+                    data-ng-if="model.domainType !== nonOvhDomain"
+                    data-ng-bind="'emailpro_tab_domain_add_step3_configuration_' + model.mxParam | translate"
+                ></dd>
 
-                <dt data-ng-if="model.domainType !== nonOvhDomain"
-                    data-translate="emailpro_tab_domain_add_step3_srv_confirmation"></dt>
-                <dd data-ng-if="model.domainType !== nonOvhDomain"
-                    data-ng-bind="'emailpro_tab_domain_add_step3_configuration_' + model.srvParam | translate"></dd>
+                <dt
+                    data-ng-if="model.domainType !== nonOvhDomain"
+                    data-translate="emailpro_tab_domain_add_step3_srv_confirmation"
+                ></dt>
+                <dd
+                    data-ng-if="model.domainType !== nonOvhDomain"
+                    data-ng-bind="'emailpro_tab_domain_add_step3_configuration_' + model.srvParam | translate"
+                ></dd>
 
-                <dt data-ng-if="setOrganization2010"
-                    data-translate="emailpro_tab_domain_add_step2_main_domain"></dt>
-                <dd data-ng-if="setOrganization2010"
-                    data-ng-bind="'emailpro_tab_domain_add_step2_main_domain_' + model.main | translate"></dd>
+                <dt
+                    data-ng-if="setOrganization2010"
+                    data-translate="emailpro_tab_domain_add_step2_main_domain"
+                ></dt>
+                <dd
+                    data-ng-if="setOrganization2010"
+                    data-ng-bind="'emailpro_tab_domain_add_step2_main_domain_' + model.main | translate"
+                ></dd>
 
-                <dt data-ng-if="setOrganization2010"
-                    data-translate="emailpro_tab_domain_add_step2_organization"></dt>
-                <dd data-ng-if="setOrganization2010 && model.main && model.organization2010"
-                    data-ng-bind="model.organization2010"></dd>
-                <dd data-ng-if="setOrganization2010 && model.main && !model.organization2010"
-                    data-ng-bind="model.displayName"></dd>
-                <dd data-ng-if="setOrganization2010 && !model.main"
-                    data-ng-bind="model.attachOrganization2010.displayName"></dd>
+                <dt
+                    data-ng-if="setOrganization2010"
+                    data-translate="emailpro_tab_domain_add_step2_organization"
+                ></dt>
+                <dd
+                    data-ng-if="setOrganization2010 && model.main && model.organization2010"
+                    data-ng-bind="model.organization2010"
+                ></dd>
+                <dd
+                    data-ng-if="setOrganization2010 && model.main && !model.organization2010"
+                    data-ng-bind="model.displayName"
+                ></dd>
+                <dd
+                    data-ng-if="setOrganization2010 && !model.main"
+                    data-ng-bind="model.attachOrganization2010.displayName"
+                ></dd>
             </dl>
         </div>
     </div>

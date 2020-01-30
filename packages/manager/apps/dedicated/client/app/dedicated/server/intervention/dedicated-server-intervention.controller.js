@@ -1,7 +1,8 @@
 import get from 'lodash/get';
 
-angular.module('App')
-  .controller('DedicatedServerInterventionCtrl', class DedicatedServerInterventionCtrl {
+angular.module('App').controller(
+  'DedicatedServerInterventionCtrl',
+  class DedicatedServerInterventionCtrl {
     constructor($stateParams, $translate, Alerter, Server) {
       this.$stateParams = $stateParams;
       this.$translate = $translate;
@@ -16,16 +17,23 @@ angular.module('App')
     loadInterventions({ offset, pageSize }) {
       this.isLoading = true;
 
-      return this.Server
-        .getInterventions(this.$stateParams.productId, pageSize, offset)
-        .then(interventions => ({
+      return this.Server.getInterventions(
+        this.$stateParams.productId,
+        pageSize,
+        offset,
+      )
+        .then((interventions) => ({
           data: get(interventions, 'list.results'),
           meta: {
             totalCount: interventions.count,
           },
         }))
         .catch((err) => {
-          this.Alerter.alertFromSWS(this.$translate.instant('server_configuration_intervention_error'), err, 'server_tab_interventions_alert');
+          this.Alerter.alertFromSWS(
+            this.$translate.instant('server_configuration_intervention_error'),
+            err,
+            'server_tab_interventions_alert',
+          );
           return {
             data: [],
             meta: {
@@ -37,4 +45,5 @@ angular.module('App')
           this.isLoading = false;
         });
     }
-  });
+  },
+);

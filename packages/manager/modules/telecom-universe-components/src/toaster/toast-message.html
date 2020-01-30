@@ -1,19 +1,24 @@
-<div data-tuc-toast-message-scroller
-     data-ng-if="$ctrl.hasNewMessages"
-     aria-hidden="true"></div>
-<div class="alert alert-xs"
-     data-ng-repeat="message in $ctrl.getAllMessages()"
-     data-ng-class="{
+<div
+    data-tuc-toast-message-scroller
+    data-ng-if="$ctrl.hasNewMessages"
+    aria-hidden="true"
+></div>
+<div
+    class="alert alert-xs"
+    data-ng-repeat="message in $ctrl.getAllMessages()"
+    data-ng-class="{
         'alert-danger':  message.type === 'error',
         'alert-warning': message.type === 'warning',
         'alert-info':    message.type === 'info',
         'alert-success': message.type === 'success'
      }"
-     role="alert">
+    role="alert"
+>
     <p data-ng-bind-html="message.content"></p>
-    <button type="button"
-            class="oui-icon oui-icon-close oui-message__close-button"
-            title="{{ 'toaster_close' | translate }}"
-            data-ng-click="$ctrl.clearMessage(message)">
-    </button>
+    <button
+        type="button"
+        class="oui-icon oui-icon-close oui-message__close-button"
+        title="{{ 'toaster_close' | translate }}"
+        data-ng-click="$ctrl.clearMessage(message)"
+    ></button>
 </div>

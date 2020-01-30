@@ -1,7 +1,11 @@
 import find from 'lodash/find';
 import get from 'lodash/get';
 
-import { FLEX_TYPE, LEGACY_FLAVORS, SSD_DISK_TYPES } from './flavors-list.constants';
+import {
+  FLEX_TYPE,
+  LEGACY_FLAVORS,
+  SSD_DISK_TYPES,
+} from './flavors-list.constants';
 
 export default class Flavors {
   constructor(flavor) {
@@ -11,7 +15,9 @@ export default class Flavors {
   }
 
   setDiskType() {
-    this.diskType = SSD_DISK_TYPES.some(diskType => diskType.test(this.type)) ? 'ssd' : 'ceph';
+    this.diskType = SSD_DISK_TYPES.some((diskType) => diskType.test(this.type))
+      ? 'ssd'
+      : 'ceph';
   }
 
   isLegacy() {

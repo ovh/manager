@@ -10,43 +10,59 @@ import some from 'lodash/some';
 import Flavor from './flavor.class';
 import FlavorGroup from './flavor-group.class';
 
-import { CPU_FREQUENCY, CATEGORIES, LEGACY_FLAVORS } from './flavors-list.constants';
+import {
+  CPU_FREQUENCY,
+  CATEGORIES,
+  LEGACY_FLAVORS,
+} from './flavors-list.constants';
 
 export default class FlavorsList {
   /* @ngInject */
-  constructor(
-    $q,
-    CucPriceHelper,
-    OvhApiCloudProjectFlavor,
-  ) {
+  constructor($q, CucPriceHelper, OvhApiCloudProjectFlavor) {
     this.$q = $q;
     this.CucPriceHelper = CucPriceHelper;
     this.OvhApiCloudProjectFlavor = OvhApiCloudProjectFlavor;
   }
 
   getFlavors(serviceName, currentRegion) {
-    return this.$q.all({
-      flavors: this.OvhApiCloudProjectFlavor.v6().query({
-        serviceName,
-        region: currentRegion,
-      }).$promise,
-      prices: this.CucPriceHelper.getPrices(serviceName),
-    })
-      .then(({ flavors, prices }) => map(
-        groupBy(flavors.filter(({ planCodes }) => !isNil(planCodes.hourly)), 'name'),
-        groupedFlavors => new Flavor({
-          ...omit(groupedFlavors[0], ['available', 'id', 'region']),
-          available: some(groupedFlavors, 'available'),
-          prices: mapValues(groupedFlavors[0].planCodes, planCode => prices[planCode].price),
-          regions: map(filter(groupedFlavors, 'available'), ({ id, region }) => ({ id, region })),
-          frequency: get(CPU_FREQUENCY, groupedFlavors[0].type),
-          groupName: groupedFlavors[0].groupName.replace(/-flex/, ''),
-        }),
-      ));
+    return this.$q
+      .all({
+        flavors: this.OvhApiCloudProjectFlavor.v6().query({
+          serviceName,
+          region: currentRegion,
+        }).$promise,
+        prices: this.CucPriceHelper.getPrices(serviceName),
+      })
+      .then(({ flavors, prices }) =>
+        map(
+          groupBy(
+            flavors.filter(({ planCodes }) => !isNil(planCodes.hourly)),
+            'name',
+          ),
+          (groupedFlavors) =>
+            new Flavor({
+              ...omit(groupedFlavors[0], ['available', 'id', 'region']),
+              available: some(groupedFlavors, 'available'),
+              prices: mapValues(
+                groupedFlavors[0].planCodes,
+                (planCode) => prices[planCode].price,
+              ),
+              regions: map(
+                filter(groupedFlavors, 'available'),
+                ({ id, region }) => ({ id, region }),
+              ),
+              frequency: get(CPU_FREQUENCY, groupedFlavors[0].type),
+              groupName: groupedFlavors[0].groupName.replace(/-flex/, ''),
+            }),
+        ),
+      );
   }
 
   static mapByFlavorType(flavors, image) {
-    return map(FlavorsList.groupByGroupName(flavors), group => new FlavorGroup(group, image));
+    return map(
+      FlavorsList.groupByGroupName(flavors),
+      (group) => new FlavorGroup(group, image),
+    );
   }
 
   static groupByGroupName(flavors) {
@@ -57,7 +73,7 @@ export default class FlavorsList {
     return CATEGORIES.map(({ category, title, pattern }) => ({
       category,
       title,
-      flavors: filter(flavors, flavor => pattern.test(flavor.type)),
+      flavors: filter(flavors, (flavor) => pattern.test(flavor.type)),
     }));
   }
 

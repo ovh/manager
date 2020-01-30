@@ -25,7 +25,9 @@ angular.module('App').controller(
       )
         .then(() => {
           this.Alerter.success(
-            this.$translate.instant('hosting_tab_DATABASES_configuration_user_delete_success'),
+            this.$translate.instant(
+              'hosting_tab_DATABASES_configuration_user_delete_success',
+            ),
             this.$scope.alerts.main,
           );
         })

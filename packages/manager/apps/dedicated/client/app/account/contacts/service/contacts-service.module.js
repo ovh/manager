@@ -6,9 +6,8 @@ import edit from './edit/edit.module';
 
 const moduleName = 'ovhManagerDedicatedAccountContactsService';
 
-angular.module(moduleName, [
-  edit,
-])
+angular
+  .module(moduleName, [edit])
   .config(routing)
   .component('accountContactsService', component)
   .service('AccountContactsService', service)

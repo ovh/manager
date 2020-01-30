@@ -1,63 +1,95 @@
-<div
-    data-ui-view>
+<div data-ui-view>
     <header class="oui-page-header mb-3">
         <div class="oui-page-header__container">
             <div class="oui-page-header__content text-truncate">
-                <h1 class="oui-page-header__title" data-ng-bind="$ctrl.container.name"></h1>
+                <h1
+                    class="oui-page-header__title"
+                    data-ng-bind="$ctrl.container.name"
+                ></h1>
             </div>
-            <oui-guide-menu data-text="{{:: 'pci_project_guides_header' | translate }}">
-                <oui-guide-menu-item
-                    href="{{ $ctrl.guideUrl }}"
-                    data-external>
-                    <span data-translate="pci_project_guides_header_all_guides"></span>
+            <oui-guide-menu
+                data-text="{{:: 'pci_project_guides_header' | translate }}"
+            >
+                <oui-guide-menu-item href="{{ $ctrl.guideUrl }}" data-external>
+                    <span
+                        data-translate="pci_project_guides_header_all_guides"
+                    ></span>
                 </oui-guide-menu-item>
             </oui-guide-menu>
         </div>
     </header>
-    <cui-message-container data-messages="$ctrl.messages"></cui-message-container>
+    <cui-message-container
+        data-messages="$ctrl.messages"
+    ></cui-message-container>
 
     <div data-ng-if="$ctrl.container">
         <div class="oui-box">
-            <p data-translate="pci_projects_project_storages_containers_container_archive_info_storedObjects"
+            <p
+                data-translate="pci_projects_project_storages_containers_container_archive_info_storedObjects"
                 data-translate-value-count="{{ $ctrl.container.storedObjects }}"
-                data-ng-if="$ctrl.archive"></p>
+                data-ng-if="$ctrl.archive"
+            ></p>
 
-            <p data-translate="pci_projects_project_storages_containers_container_object_info_storedObjects"
+            <p
+                data-translate="pci_projects_project_storages_containers_container_object_info_storedObjects"
                 data-translate-value-count="{{ $ctrl.container.storedObjects }}"
-                data-ng-if="!$ctrl.archive"></p>
+                data-ng-if="!$ctrl.archive"
+            ></p>
 
-            <p data-translate="pci_projects_project_storages_containers_container_info_storedBytes"
-                data-translate-value-bytes="{{$ctrl.container.storedBytes  | RAUnitsBits}}"></p>
+            <p
+                data-translate="pci_projects_project_storages_containers_container_info_storedBytes"
+                data-translate-value-bytes="{{$ctrl.container.storedBytes  | RAUnitsBits}}"
+            ></p>
 
             <div>
-                <p data-translate="pci_projects_project_storages_containers_container_info_publicUrl"
-                  class="d-inline-block"></p>
-                <button type="button" class="oui-popover-button"
-                    data-oui-popover="{{:: 'pci_projects_project_storages_containers_container_info_publicUrl_help' | translate }}">
-                </button>
-                <oui-clipboard class="mt-1"
-                    data-model="$ctrl.container.publicUrl"></oui-clipboard>
+                <p
+                    data-translate="pci_projects_project_storages_containers_container_info_publicUrl"
+                    class="d-inline-block"
+                ></p>
+                <button
+                    type="button"
+                    class="oui-popover-button"
+                    data-oui-popover="{{:: 'pci_projects_project_storages_containers_container_info_publicUrl_help' | translate }}"
+                ></button>
+                <oui-clipboard
+                    class="mt-1"
+                    data-model="$ctrl.container.publicUrl"
+                ></oui-clipboard>
             </div>
 
             <div data-ng-if="!$ctrl.archive">
-                <p data-translate="pci_projects_project_storages_containers_container_object_info_staticUrl"
-                  class="d-inline-block"></p>
-                <button type="button" class="oui-popover-button"
-                    data-oui-popover="{{ 'pci_projects_project_storages_containers_container_object_info_staticUrl_help' | translate }}">
-                </button>
-                <oui-clipboard class="mt-1"
-                    data-model="$ctrl.container.staticUrl"></oui-clipboard>
+                <p
+                    data-translate="pci_projects_project_storages_containers_container_object_info_staticUrl"
+                    class="d-inline-block"
+                ></p>
+                <button
+                    type="button"
+                    class="oui-popover-button"
+                    data-oui-popover="{{ 'pci_projects_project_storages_containers_container_object_info_staticUrl_help' | translate }}"
+                ></button>
+                <oui-clipboard
+                    class="mt-1"
+                    data-model="$ctrl.container.staticUrl"
+                ></oui-clipboard>
             </div>
 
             <div data-ng-if="$ctrl.archive">
-                <p data-translate="pci_projects_project_storages_containers_container_archive_info_staticUrl"></p>
-                <oui-clipboard class="mt-1"
-                    data-model="$ctrl.container.storageGateway"></oui-clipboard>
+                <p
+                    data-translate="pci_projects_project_storages_containers_container_archive_info_staticUrl"
+                ></p>
+                <oui-clipboard
+                    class="mt-1"
+                    data-model="$ctrl.container.storageGateway"
+                ></oui-clipboard>
 
-                <p data-translate="pci_projects_project_storages_containers_container_archive_info_user"
-                    data-translate-value-user="{{:: $ctrl.defaultUser }}"></p>
+                <p
+                    data-translate="pci_projects_project_storages_containers_container_archive_info_user"
+                    data-translate-value-user="{{:: $ctrl.defaultUser }}"
+                ></p>
                 <p>
-                    <span data-translate="pci_projects_project_storages_containers_container_archive_info_password"></span>
+                    <span
+                        data-translate="pci_projects_project_storages_containers_container_archive_info_password"
+                    ></span>
                     <span data-ng-bind="$ctrl.defaultPassword"></span>
                 </p>
             </div>
@@ -65,14 +97,16 @@
 
         <oui-datagrid
             data-rows="$ctrl.container.objects"
-            data-columns-parameters="$ctrl.columnsParameters">
+            data-columns-parameters="$ctrl.columnsParameters"
+        >
             <oui-column
                 data-title=":: 'pci_projects_project_storages_containers_container_name_label' | translate"
                 data-property="name"
                 data-type="string"
                 data-searchable
                 data-sortable="asc"
-                data-filterable>
+                data-filterable
+            >
                 <span data-ng-bind="::$value" class="text-truncate"></span>
             </oui-column>
             <oui-column
@@ -80,59 +114,75 @@
                 data-property="lastModified"
                 data-type="date"
                 data-sortable
-                data-filterable>
+                data-filterable
+            >
                 <span data-ng-bind="$value | date:'medium'"></span>
             </oui-column>
             <oui-column
                 data-title=":: 'pci_projects_project_storages_containers_container_size_label' | translate"
                 data-property="size"
                 data-type="number"
-                data-sortable>
+                data-sortable
+            >
                 <span data-ng-bind="$value | RAUnitsBits"></span>
             </oui-column>
             <oui-column
                 data-title=":: 'pci_projects_project_storages_containers_container_contentType_label' | translate"
                 data-property="contentType"
                 data-sortable
-                data-type="string">
+                data-type="string"
+            >
             </oui-column>
             <oui-column
                 name="retrievalState"
                 data-title=":: 'pci_projects_project_storages_containers_container_retrievalState_label' | translate"
                 data-property="retrievalState"
                 data-sortable
-                data-type="string">
+                data-type="string"
+            >
                 <span
                     data-ng-if="$row.retrievalState === 'sealed' || $row.retrievalState === 'unsealed'"
-                    data-ng-bind="'pci_projects_project_storages_containers_container_retrievalState_' + $row.retrievalState | translate"></span>
+                    data-ng-bind="'pci_projects_project_storages_containers_container_retrievalState_' + $row.retrievalState | translate"
+                ></span>
                 <span
                     data-ng-if="$row.retrievalState === 'unsealing'"
-                    data-ng-bind="$row.retrievalDate | date:'medium'"></span>
-
+                    data-ng-bind="$row.retrievalDate | date:'medium'"
+                ></span>
             </oui-column>
 
             <oui-action-menu data-align="end" data-compact>
                 <oui-action-menu-item
                     data-on-click="$ctrl.downloadObject($row)"
-                    data-ng-if="!$ctrl.archive || $row.retrievalState === 'unsealed'">
-                    <span data-translate="pci_projects_project_storages_containers_container_download_label"></span>
+                    data-ng-if="!$ctrl.archive || $row.retrievalState === 'unsealed'"
+                >
+                    <span
+                        data-translate="pci_projects_project_storages_containers_container_download_label"
+                    ></span>
                 </oui-action-menu-item>
                 <oui-action-menu-item
                     data-on-click="$ctrl.unsealObject($row)"
-                    data-ng-if="$ctrl.archive && $row.retrievalState === 'sealed'">
-                        <span data-translate="pci_projects_project_storages_containers_container_unseal_label"></span>
-                    </oui-action-menu-item>
-                <oui-action-menu-item
-                    data-on-click="$ctrl.deleteObject($row)">
-                    <span data-translate="pci_projects_project_storages_containers_container_delete_label"></span>
+                    data-ng-if="$ctrl.archive && $row.retrievalState === 'sealed'"
+                >
+                    <span
+                        data-translate="pci_projects_project_storages_containers_container_unseal_label"
+                    ></span>
+                </oui-action-menu-item>
+                <oui-action-menu-item data-on-click="$ctrl.deleteObject($row)">
+                    <span
+                        data-translate="pci_projects_project_storages_containers_container_delete_label"
+                    ></span>
                 </oui-action-menu-item>
             </oui-action-menu>
 
             <extra-top>
-                <oui-button
-                    data-on-click="$ctrl.addObject()" >
-                    <span class="oui-icon oui-icon-add pr-1" aria-hidden="true"></span>
-                    <span data-ng-bind=":: 'pci_projects_project_storages_containers_container_add_' + ($ctrl.archive ? 'archive' : 'object') + '_label' | translate"></span>
+                <oui-button data-on-click="$ctrl.addObject()">
+                    <span
+                        class="oui-icon oui-icon-add pr-1"
+                        aria-hidden="true"
+                    ></span>
+                    <span
+                        data-ng-bind=":: 'pci_projects_project_storages_containers_container_add_' + ($ctrl.archive ? 'archive' : 'object') + '_label' | translate"
+                    ></span>
                 </oui-button>
             </extra-top>
         </oui-datagrid>

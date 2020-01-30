@@ -7,9 +7,7 @@ export const WHOIS_STATUS = {
   INVALID_CONTACT: 'Invalid contact number',
 };
 
-export const WHOIS_ALL_CONTACT_OPTIN_RULE = [
-  'domain',
-];
+export const WHOIS_ALL_CONTACT_OPTIN_RULE = ['domain'];
 
 export const DOMAIN_OPTION_STATUS = {
   ACTIVE: 'subscribed',

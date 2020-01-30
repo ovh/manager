@@ -21,7 +21,9 @@ export default () => {
       // check for mandatory options
       mandatoryOptions.forEach((option) => {
         if (!options[option]) {
-          throw new Error(`${option} option must be specified when creating a new TucVoipService`);
+          throw new Error(
+            `${option} option must be specified when creating a new TucVoipService`,
+          );
         }
       });
 
@@ -88,7 +90,10 @@ export default () => {
      * @return {Boolean}
      */
     hasValidPublicOffer() {
-      return this.getPublicOffer.name !== '' && this.getPublicOffer.description !== 'The Service has an error';
+      return (
+        this.getPublicOffer.name !== '' &&
+        this.getPublicOffer.description !== 'The Service has an error'
+      );
     }
 
     /* -----  End of Some Helpers  ------ */

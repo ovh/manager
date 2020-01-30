@@ -46,19 +46,36 @@ class CdaUserAddCtrl {
 
   createUser() {
     this.saving = true;
-    return this.OvhApiDedicatedCeph.User().v6().post({
-      serviceName: this.serviceName,
-    }, {
-      userName: this.model.userName,
-    }).$promise
-      .then((result) => {
-        this.$uibModalInstance.close({ userName: this.model.userName, taskId: result.data });
-        this.CucCloudMessage.success(this.$translate.instant('cda_user_add_success'));
+    return this.OvhApiDedicatedCeph.User()
+      .v6()
+      .post(
+        {
+          serviceName: this.serviceName,
+        },
+        {
+          userName: this.model.userName,
+        },
+      )
+      .$promise.then((result) => {
+        this.$uibModalInstance.close({
+          userName: this.model.userName,
+          taskId: result.data,
+        });
+        this.CucCloudMessage.success(
+          this.$translate.instant('cda_user_add_success'),
+        );
       })
       .catch((error) => {
-        this.CucCloudMessage.error(`${this.$translate.instant('ceph_common_error')} ${(error.data && error.data.message) || ''}`, this.messageContainerName);
+        this.CucCloudMessage.error(
+          `${this.$translate.instant('ceph_common_error')} ${(error.data &&
+            error.data.message) ||
+            ''}`,
+          this.messageContainerName,
+        );
       })
-      .finally(() => { this.saving = false; });
+      .finally(() => {
+        this.saving = false;
+      });
   }
 
   closeModal() {

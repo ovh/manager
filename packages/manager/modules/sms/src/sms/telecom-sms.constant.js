@@ -1,5 +1,6 @@
 const SMS_URL = {
-  hlrTermsOfUse: 'https://www.ovh.com/fr/support/documents_legaux/version/conditions_particulieres_HLR_2016-04-07.pdf',
+  hlrTermsOfUse:
+    'https://www.ovh.com/fr/support/documents_legaux/version/conditions_particulieres_HLR_2016-04-07.pdf',
   guides: {
     receivers: 'https://www.ovh.com/fr/g2402.liste_de_destinataire_sms',
   },
@@ -31,7 +32,8 @@ const SMS_GUIDES = {
         {
           label: 'sms_guides_compose_email',
           url: {
-            fr: 'https://docs.ovh.com/fr/sms/envoyer-sms-depuis-adresse-email/#gestion-des-destinataires',
+            fr:
+              'https://docs.ovh.com/fr/sms/envoyer-sms-depuis-adresse-email/#gestion-des-destinataires',
           },
         },
         {
@@ -162,12 +164,7 @@ const SMS_ALERTS = {
 };
 
 const SMS_PHONEBOOKS = {
-  numberFields: [
-    'homePhone',
-    'homeMobile',
-    'workPhone',
-    'workMobile',
-  ],
+  numberFields: ['homePhone', 'homeMobile', 'workPhone', 'workMobile'],
   emptyFields: {
     group: 'No group',
     numbers: '0033',
@@ -175,5 +172,8 @@ const SMS_PHONEBOOKS = {
 };
 
 export default {
-  SMS_URL, SMS_GUIDES, SMS_ALERTS, SMS_PHONEBOOKS,
+  SMS_URL,
+  SMS_GUIDES,
+  SMS_ALERTS,
+  SMS_PHONEBOOKS,
 };

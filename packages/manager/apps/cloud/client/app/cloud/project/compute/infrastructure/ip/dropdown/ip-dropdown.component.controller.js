@@ -3,8 +3,16 @@ import indexOf from 'lodash/indexOf';
 import keys from 'lodash/keys';
 import pickBy from 'lodash/pickBy';
 
-angular.module('managerApp')
-  .controller('IpDropdownComponentCtrl', function IpDropdownComponentCtrl($translate, $window, REDIRECT_URLS, OvhApiIp, CucCloudMessage, CLOUD_GEOLOCALISATION) {
+angular
+  .module('managerApp')
+  .controller('IpDropdownComponentCtrl', function IpDropdownComponentCtrl(
+    $translate,
+    $window,
+    REDIRECT_URLS,
+    OvhApiIp,
+    CucCloudMessage,
+    CLOUD_GEOLOCALISATION,
+  ) {
     const self = this;
 
     self.failoverAttach = function failoverAttach(ip) {
@@ -20,18 +28,33 @@ angular.module('managerApp')
 
     self.ipActionRedirect = function ipActionRedirect(action, ip) {
       let url = null;
-      const ipActionUrlWithSession = REDIRECT_URLS.ipAction; // eslint-disable-line
+      // eslint-disable-next-line no-shadow
+      const ipActionUrlWithSession = REDIRECT_URLS.ipAction;
       switch (action) {
         case 'reverse':
           if (self.isIpUserSameContinent(ip)) {
             OvhApiIp.v6().resetCache();
-            url = ipActionUrlWithSession.replace('{action}', 'reverse').replace('{ipBlock}', window.encodeURIComponent(ip.block || ip[self.ipAccessKey])).replace('{ip}', ip[self.ipAccessKey]);
+            url = ipActionUrlWithSession
+              .replace('{action}', 'reverse')
+              .replace(
+                '{ipBlock}',
+                window.encodeURIComponent(ip.block || ip[self.ipAccessKey]),
+              )
+              .replace('{ip}', ip[self.ipAccessKey]);
           } else {
-            CucCloudMessage.info($translate.instant('cpci_ip_reverse_info_soon'));
+            CucCloudMessage.info(
+              $translate.instant('cpci_ip_reverse_info_soon'),
+            );
           }
           break;
         default:
-          url = ipActionUrlWithSession.replace('{action}', action).replace('{ipBlock}', window.encodeURIComponent(ip.block || ip[self.ipAccessKey])).replace('{ip}', ip[self.ipAccessKey]);
+          url = ipActionUrlWithSession
+            .replace('{action}', action)
+            .replace(
+              '{ipBlock}',
+              window.encodeURIComponent(ip.block || ip[self.ipAccessKey]),
+            )
+            .replace('{ip}', ip[self.ipAccessKey]);
       }
       if (url) {
         $window.open(url);
@@ -47,10 +70,14 @@ angular.module('managerApp')
     self.getUserContinent = function getUserContinent() {
       let continent = null;
       if (self.user) {
-        continent = head(keys(pickBy(
-          CLOUD_GEOLOCALISATION.user,
-          region => indexOf(region, self.user.ovhSubsidiary) >= 0,
-        )));
+        continent = head(
+          keys(
+            pickBy(
+              CLOUD_GEOLOCALISATION.user,
+              (region) => indexOf(region, self.user.ovhSubsidiary) >= 0,
+            ),
+          ),
+        );
       }
       return continent;
     };
@@ -68,10 +95,14 @@ angular.module('managerApp')
           if (linkedVmId) {
             const linkedVm = self.infra.vrack.publicCloud.get(linkedVmId);
             if (linkedVm) {
-              continent = head(keys(pickBy(
-                CLOUD_GEOLOCALISATION.instance,
-                region => indexOf(region, linkedVm.region) >= 0,
-              )));
+              continent = head(
+                keys(
+                  pickBy(
+                    CLOUD_GEOLOCALISATION.instance,
+                    (region) => indexOf(region, linkedVm.region) >= 0,
+                  ),
+                ),
+              );
             }
           }
           break;

@@ -8,6 +8,7 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '/configuration/email_pro/:productId?tab',
     template: emailproTpl,
     controller: emailproCtrl,
+    controllerAs: '$ctrl',
     reloadOnSearch: false,
     resolve: {
       navigationInformations: /* @ngInject */ (Navigator, $rootScope) => {
@@ -17,6 +18,10 @@ export default /* @ngInject */ ($stateProvider) => {
           configurationSelected: true,
         });
       },
+      productId: /* @ngInject */ ($transition$) =>
+        $transition$.params().productId,
+      getTabLink: /* @ngInject */ ($state, productId) => (tab) =>
+        $state.href('app.email-pro', { productId, tab }),
     },
     translations: {
       value: ['.'],
@@ -27,6 +32,7 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '/configuration/email_mxplan/:productId?tab',
     template: emailproTpl,
     controller: emailproCtrl,
+    controllerAs: '$ctrl',
     reloadOnSearch: false,
     resolve: {
       navigationInformations: /* @ngInject */ (Navigator, $rootScope) => {
@@ -36,6 +42,31 @@ export default /* @ngInject */ ($stateProvider) => {
           configurationSelected: true,
         });
       },
+      productId: /* @ngInject */ ($transition$) =>
+        $transition$.params().productId,
+      goToEmailPro: /* @ngInject */ ($state, $timeout, Alerter, productId) => (
+        message = false,
+        type = 'success',
+      ) => {
+        const promise = $state.go('app.email.mxplan', { productId });
+
+        if (message) {
+          promise.then(() =>
+            $timeout(() =>
+              Alerter.set(
+                `alert-${type}`,
+                message,
+                null,
+                'emailproDashboardAlert',
+              ),
+            ),
+          );
+        }
+
+        return promise;
+      },
+      getTabLink: /* @ngInject */ ($state, productId) => (tab) =>
+        $state.href('app.email.mxplan', { productId, tab }),
     },
     translations: {
       value: ['.', 'mailing-list'],

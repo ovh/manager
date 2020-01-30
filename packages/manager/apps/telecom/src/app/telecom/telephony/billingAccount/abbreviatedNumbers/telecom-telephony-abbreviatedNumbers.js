@@ -3,7 +3,8 @@ angular.module('managerApp').config(($stateProvider) => {
     url: '/abbreviatedNumbers',
     views: {
       'groupInnerView@telecom.telephony.billingAccount': {
-        templateUrl: 'app/telecom/telephony/billingAccount/abbreviatedNumbers/telecom-telephony-abbreviatedNumbers.html',
+        templateUrl:
+          'app/telecom/telephony/billingAccount/abbreviatedNumbers/telecom-telephony-abbreviatedNumbers.html',
         controller: 'TelecomTelephonyAbbreviatedNumbersCtrl',
         controllerAs: 'AbbreviatedNumbersCtrl',
       },

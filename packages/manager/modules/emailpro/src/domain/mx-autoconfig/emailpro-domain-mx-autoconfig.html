@@ -1,26 +1,36 @@
 <div data-ng-controller="EmailProDomainMxAutoconfigCtrl">
-    <div data-wizard
-         data-wizard-on-cancel="resetAction"
-         data-wizard-on-finish="configMX"
-         data-wizard-title="'emailpro_tab_domain_diagnostic_mx_title' | translate">
-
-        <div data-wizard-step
-             data-wizard-step-valid="domainDiag.isOvhDomain"
-             data-wizard-step-on-load="init">
-
+    <div
+        data-wizard
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="configMX"
+        data-wizard-title="'emailpro_tab_domain_diagnostic_mx_title' | translate"
+    >
+        <div
+            data-wizard-step
+            data-wizard-step-valid="domainDiag.isOvhDomain"
+            data-wizard-step-on-load="init"
+        >
             <div class="text-center" data-ng-if="!domainDiag">
                 <oui-spinner></oui-spinner>
             </div>
 
-            <p data-ng-if="domainDiag.isOvhDomain"
-               data-translate="emailpro_tab_domain_diagnostic_mx_intro_ovh"
-               data-translate-values="{ t0: domain.displayName }"></p>
-            <p data-ng-if="!domainDiag.isOvhDomain"
-               data-translate="emailpro_tab_domain_diagnostic_mx_no_ovh"></p>
+            <p
+                data-ng-if="domainDiag.isOvhDomain"
+                data-translate="emailpro_tab_domain_diagnostic_mx_intro_ovh"
+                data-translate-values="{ t0: domain.displayName }"
+            ></p>
+            <p
+                data-ng-if="!domainDiag.isOvhDomain"
+                data-translate="emailpro_tab_domain_diagnostic_mx_no_ovh"
+            ></p>
 
             <dl class="dl-horizontal" data-ng-if="domainDiag">
-                <dt data-translate="emailpro_tab_domain_diagnostic_mx_label_champs"></dt>
-                <dd data-ng-bind-html="'emailpro_tab_domain_diagnostic_mx_antispam_config' | translate: { t0: domainDiag.mx.spam[0].priority, t1: domainDiag.mx.spam[0].target, t2: domainDiag.mx.spam[1].priority, t3: domainDiag.mx.spam[1].target, t4: domainDiag.mx.spam[2].priority, t5: domainDiag.mx.spam[2].target, t6: domainDiag.mx.spam[3].priority, t7: domainDiag.mx.spam[3].target }"></dd>
+                <dt
+                    data-translate="emailpro_tab_domain_diagnostic_mx_label_champs"
+                ></dt>
+                <dd
+                    data-ng-bind-html="'emailpro_tab_domain_diagnostic_mx_antispam_config' | translate: { t0: domainDiag.mx.spam[0].priority, t1: domainDiag.mx.spam[0].target, t2: domainDiag.mx.spam[1].priority, t3: domainDiag.mx.spam[1].target, t4: domainDiag.mx.spam[2].priority, t5: domainDiag.mx.spam[2].target, t6: domainDiag.mx.spam[3].priority, t7: domainDiag.mx.spam[3].target }"
+                ></dd>
             </dl>
         </div>
 
@@ -31,13 +41,24 @@
                 <dt data-translate="emailpro_tab_domain_domain"></dt>
                 <dd data-ng-bind="domain.displayName"></dd>
 
-                <dt data-ng-if="!model.antiSpam" data-translate="emailpro_tab_domain_diagnostic_mx_label_champs"></dt>
-                <dd data-ng-if="!model.antiSpam" data-ng-bind-html="'emailpro_tab_domain_diagnostic_mx_no_antispam_config' | translate: { t0: domainDiag.mx.noSpam[0].priority, t1: domainDiag.mx.noSpam[0].target }"></dd>
+                <dt
+                    data-ng-if="!model.antiSpam"
+                    data-translate="emailpro_tab_domain_diagnostic_mx_label_champs"
+                ></dt>
+                <dd
+                    data-ng-if="!model.antiSpam"
+                    data-ng-bind-html="'emailpro_tab_domain_diagnostic_mx_no_antispam_config' | translate: { t0: domainDiag.mx.noSpam[0].priority, t1: domainDiag.mx.noSpam[0].target }"
+                ></dd>
 
-                <dt data-ng-if="model.antiSpam" data-translate="emailpro_tab_domain_diagnostic_mx_label_champs"></dt>
-                <dd data-ng-if="model.antiSpam" data-ng-bind-html="'emailpro_tab_domain_diagnostic_mx_antispam_config' | translate: { t0: domainDiag.mx.spam[0].priority, t1: domainDiag.mx.spam[0].target, t2: domainDiag.mx.spam[1].priority, t3: domainDiag.mx.spam[1].target, t4: domainDiag.mx.spam[2].priority, t5: domainDiag.mx.spam[2].target, t6: domainDiag.mx.spam[3].priority, t7: domainDiag.mx.spam[3].target }"></dd>
+                <dt
+                    data-ng-if="model.antiSpam"
+                    data-translate="emailpro_tab_domain_diagnostic_mx_label_champs"
+                ></dt>
+                <dd
+                    data-ng-if="model.antiSpam"
+                    data-ng-bind-html="'emailpro_tab_domain_diagnostic_mx_antispam_config' | translate: { t0: domainDiag.mx.spam[0].priority, t1: domainDiag.mx.spam[0].target, t2: domainDiag.mx.spam[1].priority, t3: domainDiag.mx.spam[1].target, t4: domainDiag.mx.spam[2].priority, t5: domainDiag.mx.spam[2].target, t6: domainDiag.mx.spam[3].priority, t7: domainDiag.mx.spam[3].target }"
+                ></dd>
             </dl>
-
         </div>
     </div>
 </div>

@@ -21,7 +21,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.Infos', [
     coreConfig,
   ) {
     /* Be carefull, a part of this controller is url driven.
-         * See the bottom of this file for more detail */
+     * See the bottom of this file for more detail */
     let searchParams;
 
     $scope.loading = false;
@@ -33,7 +33,13 @@ angular.module('UserAccount').controller('UserAccount.controllers.Infos', [
     };
 
     $scope.controls = {
-      legalforms: ['association', 'corporation', 'administration', 'individual', 'other'],
+      legalforms: [
+        'association',
+        'corporation',
+        'administration',
+        'individual',
+        'other',
+      ],
       taskEmailChangesTodo: null,
       validateEmailChange: null,
       countries: null,
@@ -61,22 +67,31 @@ angular.module('UserAccount').controller('UserAccount.controllers.Infos', [
       promise = promise.then(() => UseraccountInfos.getListOfRulesFieldName());
 
       promise
-        .then(fieldNames => UseraccountInfos.getUseraccountInfos().then((response) => {
-          // pick attributes that belong to /rules
-          // add customer code since it will be displayed in the form
-          $scope.user = pick(response, fieldNames.concat('customerCode'));
+        .then((fieldNames) =>
+          UseraccountInfos.getUseraccountInfos().then((response) => {
+            // pick attributes that belong to /rules
+            // add customer code since it will be displayed in the form
+            $scope.user = pick(response, fieldNames.concat('customerCode'));
 
-          // remove empty attributes
-          $scope.user = pickBy($scope.user, identity);
+            // remove empty attributes
+            $scope.user = pickBy($scope.user, identity);
 
-          // juste in case birthday date is retrieved in legacy format
-          // we nullify it so we don't break the first call to /rules
-          if (!moment($scope.user.birthDay, 'YYYY-MM-DD').isValid() || /\//.test($scope.user.birthDay)) {
-            delete $scope.user.birthDay;
-          }
-        }))
+            // juste in case birthday date is retrieved in legacy format
+            // we nullify it so we don't break the first call to /rules
+            if (
+              !moment($scope.user.birthDay, 'YYYY-MM-DD').isValid() ||
+              /\//.test($scope.user.birthDay)
+            ) {
+              delete $scope.user.birthDay;
+            }
+          }),
+        )
         .catch((err) => {
-          Alerter.alertFromSWS($translate.instant('user_account_info_error'), err.data, 'InfoAlert');
+          Alerter.alertFromSWS(
+            $translate.instant('user_account_info_error'),
+            err.data,
+            'InfoAlert',
+          );
         })
         .finally(() => {
           $scope.loading = false;
@@ -94,13 +109,21 @@ angular.module('UserAccount').controller('UserAccount.controllers.Infos', [
                 }
               },
               (err) => {
-                Alerter.alertFromSWS($translate.instant('user_account_info_error'), err.data, 'InfoAlert');
+                Alerter.alertFromSWS(
+                  $translate.instant('user_account_info_error'),
+                  err.data,
+                  'InfoAlert',
+                );
               },
             );
           }
         },
         (err) => {
-          Alerter.alertFromSWS($translate.instant('user_account_info_error'), err.data, 'InfoAlert');
+          Alerter.alertFromSWS(
+            $translate.instant('user_account_info_error'),
+            err.data,
+            'InfoAlert',
+          );
         },
       );
     }
@@ -129,7 +152,11 @@ angular.module('UserAccount').controller('UserAccount.controllers.Infos', [
       UseraccountInfos.taskEmailChange(taskId).then(
         (task) => {
           if (!task) {
-            return Alerter.alertFromSWS($translate.instant('user_account_info_error'), new Error('task not found.'), 'InfoAlert');
+            return Alerter.alertFromSWS(
+              $translate.instant('user_account_info_error'),
+              new Error('task not found.'),
+              'InfoAlert',
+            );
           }
 
           $scope.controls.validateEmailChange.data = task;
@@ -138,20 +165,40 @@ angular.module('UserAccount').controller('UserAccount.controllers.Infos', [
             $scope.controls.validateEmailChange.error = true;
             switch (task.state) {
               case 'done':
-                Alerter.alertFromSWS($translate.instant('user_account_email_token_already_accepted'), null, 'InfoAlert');
+                Alerter.alertFromSWS(
+                  $translate.instant(
+                    'user_account_email_token_already_accepted',
+                  ),
+                  null,
+                  'InfoAlert',
+                );
                 break;
               case 'refused':
-                Alerter.alertFromSWS($translate.instant('user_account_email_token_already_refused'), null, 'InfoAlert');
+                Alerter.alertFromSWS(
+                  $translate.instant(
+                    'user_account_email_token_already_refused',
+                  ),
+                  null,
+                  'InfoAlert',
+                );
                 break;
               default:
-                Alerter.alertFromSWS($translate.instant('user_account_email_token_expired'), null, 'InfoAlert');
+                Alerter.alertFromSWS(
+                  $translate.instant('user_account_email_token_expired'),
+                  null,
+                  'InfoAlert',
+                );
                 break;
             }
           }
           return task;
         },
         (err) => {
-          Alerter.alertFromSWS($translate.instant('user_account_info_error'), err.data, 'InfoAlert');
+          Alerter.alertFromSWS(
+            $translate.instant('user_account_info_error'),
+            err.data,
+            'InfoAlert',
+          );
         },
       );
     }
@@ -161,7 +208,11 @@ angular.module('UserAccount').controller('UserAccount.controllers.Infos', [
     }
 
     function acceptOrRefuseEmailError(err) {
-      Alerter.alertFromSWS($translate.instant('user_account_info_error'), err.data, 'InfoAlert');
+      Alerter.alertFromSWS(
+        $translate.instant('user_account_info_error'),
+        err.data,
+        'InfoAlert',
+      );
       $scope.controls.validateEmailChange.loading = false;
     }
 
@@ -170,19 +221,15 @@ angular.module('UserAccount').controller('UserAccount.controllers.Infos', [
       $scope.controls.validateEmailChange.loading = true;
 
       if (accept) {
-        UseraccountInfos
-          .taskEmailChangeAccept(
-            $scope.controls.validateEmailChange.data.id,
-            $scope.controls.validateEmailChange.token,
-          )
-          .then(acceptOrRefuseEmailSuccess, acceptOrRefuseEmailError);
+        UseraccountInfos.taskEmailChangeAccept(
+          $scope.controls.validateEmailChange.data.id,
+          $scope.controls.validateEmailChange.token,
+        ).then(acceptOrRefuseEmailSuccess, acceptOrRefuseEmailError);
       } else {
-        UseraccountInfos
-          .taskEmailChangeRefuse(
-            $scope.controls.validateEmailChange.data.id,
-            $scope.controls.validateEmailChange.token,
-          )
-          .then(acceptOrRefuseEmailSuccess, acceptOrRefuseEmailError);
+        UseraccountInfos.taskEmailChangeRefuse(
+          $scope.controls.validateEmailChange.data.id,
+          $scope.controls.validateEmailChange.token,
+        ).then(acceptOrRefuseEmailSuccess, acceptOrRefuseEmailError);
       }
     }
 
@@ -210,6 +257,27 @@ angular.module('UserAccount').controller('UserAccount.controllers.Infos', [
         token: searchParams.token,
       };
       loadTaskForEmailValidation($scope.controls.validateEmailChange.taskId);
+    };
+
+    $scope.requestChangeEmailToken = function requestChangeEmailToken(email) {
+      $scope.requestingToken = true;
+      return UseraccountInfos.changeEmail(email)
+        .then(({ id }) => {
+          $scope.controls.taskEmailChangeTodo.id = id;
+          $scope.requestingToken = false;
+          Alerter.success(
+            $translate.instant('user_account_email_token_resend_success'),
+            'InfoAlert',
+          );
+        })
+        .catch((error) => {
+          $scope.requestingToken = false;
+          Alerter.alertFromSWS(
+            $translate.instant('user_account_email_token_resend_error'),
+            error.data,
+            'InfoAlert',
+          );
+        });
     };
 
     $scope.isMandatory = function isMandatory(field) {
@@ -243,7 +311,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.Infos', [
     };
 
     /* The url is watched to switch between the main view and the validation/refuse
-         * of the master email view */
+     * of the master email view */
     searchParams = $location.search();
     if (searchParams.taskId && searchParams.validateEmailChange === 'true') {
       $scope.controls.validateEmailChange = {

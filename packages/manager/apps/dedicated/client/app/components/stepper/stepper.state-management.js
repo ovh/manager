@@ -2,10 +2,7 @@ import forEach from 'lodash/forEach';
 import set from 'lodash/set';
 
 export default class {
-  constructor(
-    $state,
-    $stateRegistry,
-  ) {
+  constructor($state, $stateRegistry) {
     // Each step is a child of the stepper
     // This is the root state of the stepper itself,
     // parent of the state of the first step
@@ -17,17 +14,14 @@ export default class {
   registerStatesFromSteps(steps) {
     let currentStateName = this.rootState.name;
 
-    forEach(
-      steps,
-      (step) => {
-        currentStateName = `${currentStateName}.${step.name}`;
-        set(step, 'state.name', currentStateName);
+    forEach(steps, (step) => {
+      currentStateName = `${currentStateName}.${step.name}`;
+      set(step, 'state.name', currentStateName);
 
-        if (!this.$state.href(currentStateName)) {
-          this.registerState(step.state);
-        }
-      },
-    );
+      if (!this.$state.href(currentStateName)) {
+        this.registerState(step.state);
+      }
+    });
   }
 
   registerState(state) {
@@ -45,6 +39,10 @@ export default class {
   }
 
   close(transitionOptions) {
-    return this.$state.go(this.rootState.parent.parent.name, {}, transitionOptions);
+    return this.$state.go(
+      this.rootState.parent.parent.name,
+      {},
+      transitionOptions,
+    );
   }
 }

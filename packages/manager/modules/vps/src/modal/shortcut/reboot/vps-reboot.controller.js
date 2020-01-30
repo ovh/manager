@@ -3,8 +3,14 @@ import isEmpty from 'lodash/isEmpty';
 
 export default class VpsRebootCtrl {
   /* @ngInject */
-  constructor($translate, $uibModalInstance, CucControllerHelper, CucCloudMessage, serviceName,
-    VpsService) {
+  constructor(
+    $translate,
+    $uibModalInstance,
+    CucControllerHelper,
+    CucCloudMessage,
+    serviceName,
+    VpsService,
+  ) {
     this.$translate = $translate;
     this.$uibModalInstance = $uibModalInstance;
     this.CucCloudMessage = CucCloudMessage;
@@ -23,18 +29,29 @@ export default class VpsRebootCtrl {
 
   $onInit() {
     this.loader.init = true;
-    this.VpsService.getTaskInError(this.serviceName)
-      .then((tasks) => { this.loadVpsRescueMode(tasks); });
+    this.VpsService.getTaskInError(this.serviceName).then((tasks) => {
+      this.loadVpsRescueMode(tasks);
+    });
   }
 
   loadVpsRescueMode(tasks) {
     if (!isArray(tasks) || (isArray(tasks) && isEmpty(tasks))) {
       this.VpsService.getSelectedVps(this.serviceName)
-        .then((data) => { this.model = data; })
-        .catch(() => this.CucCloudMessage.error(this.$translate.instant('vps_configuration_reboot_fail')))
-        .finally(() => { this.loader.init = false; });
+        .then((data) => {
+          this.model = data;
+        })
+        .catch(() =>
+          this.CucCloudMessage.error(
+            this.$translate.instant('vps_configuration_reboot_fail'),
+          ),
+        )
+        .finally(() => {
+          this.loader.init = false;
+        });
     } else {
-      this.CucCloudMessage.error(this.$translate.instant('vps_configuration_polling_fail'));
+      this.CucCloudMessage.error(
+        this.$translate.instant('vps_configuration_polling_fail'),
+      );
       this.loader.init = false;
     }
   }
@@ -45,10 +62,21 @@ export default class VpsRebootCtrl {
 
   confirm() {
     this.save = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () => this.VpsService.reboot(this.serviceName, this.selected.rescue)
-        .then(() => this.CucCloudMessage.success(this.$translate.instant('vps_configuration_reboot_success', { serviceName: this.serviceName })))
-        .catch(() => this.CucCloudMessage.error(this.$translate.instant('vps_configuration_reboot_fail')))
-        .finally(() => this.$uibModalInstance.close()),
+      loaderFunction: () =>
+        this.VpsService.reboot(this.serviceName, this.selected.rescue)
+          .then(() =>
+            this.CucCloudMessage.success(
+              this.$translate.instant('vps_configuration_reboot_success', {
+                serviceName: this.serviceName,
+              }),
+            ),
+          )
+          .catch(() =>
+            this.CucCloudMessage.error(
+              this.$translate.instant('vps_configuration_reboot_fail'),
+            ),
+          )
+          .finally(() => this.$uibModalInstance.close()),
     });
     return this.save.load();
   }

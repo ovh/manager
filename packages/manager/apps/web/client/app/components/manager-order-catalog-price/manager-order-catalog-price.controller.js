@@ -11,8 +11,9 @@ import {
 
 export default class {
   /* @ngInject */
-  constructor($attrs) {
+  constructor($attrs, TranslateService) {
     this.$attrs = $attrs;
+    this.TranslateService = TranslateService;
   }
 
   $onInit() {
@@ -21,16 +22,29 @@ export default class {
       this.block = true;
     }
 
+    if (
+      !isUndefined(this.$attrs.convertToUcents) &&
+      this.$attrs.convertToUcents === ''
+    ) {
+      this.convertToUcents = true;
+    }
+
+    if (this.convertToUcents) {
+      this.price *= 100000000;
+      this.tax *= 100000000;
+    }
+
     this.ovhSubsidiary = get(this.user, 'ovhSubsidiary', '');
   }
 
   getPriceText(priceInCents) {
+    const locale = this.TranslateService.getUserLocale().replace('_', '-');
     const price = this.getIntervalPrice(priceInCents / 100000000);
 
-    if (this.isFrenchFormat() || this.isGermanFormat()) {
-      return `${price}${this.user.currency.symbol}`;
-    }
-    return `${this.user.currency.symbol}${price}`;
+    return new Intl.NumberFormat(locale, {
+      style: 'currency',
+      currency: this.user.currency.code,
+    }).format(price);
   }
 
   getIntervalPrice(price) {

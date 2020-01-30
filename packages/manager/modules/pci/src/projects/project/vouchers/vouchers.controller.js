@@ -26,10 +26,14 @@ export default class CloudprojectbillingvouchersCtrl {
     });
 
     this.vouchers = this.CucControllerHelper.request.getArrayLoader({
-      loaderFunction: () => this.CloudVouchersService.getVouchers($stateParams.projectId),
-      errorHandler: err => this.CucCloudMessage.error({
-        text: `${this.$translate.instant('cpb_vouchers_get_error')} ${err.data}`,
-      }),
+      loaderFunction: () =>
+        this.CloudVouchersService.getVouchers($stateParams.projectId),
+      errorHandler: (err) =>
+        this.CucCloudMessage.error({
+          text: `${this.$translate.instant('cpb_vouchers_get_error')} ${
+            err.data
+          }`,
+        }),
     });
   }
 
@@ -42,10 +46,13 @@ export default class CloudprojectbillingvouchersCtrl {
   }
 
   addCredit(amount) {
-    return this.OvhApiOrderCloudProjectCredit.v6().save({
-      serviceName: this.$stateParams.projectId,
-    }, {
-      amount,
-    }).$promise;
+    return this.OvhApiOrderCloudProjectCredit.v6().save(
+      {
+        serviceName: this.$stateParams.projectId,
+      },
+      {
+        amount,
+      },
+    ).$promise;
   }
 }

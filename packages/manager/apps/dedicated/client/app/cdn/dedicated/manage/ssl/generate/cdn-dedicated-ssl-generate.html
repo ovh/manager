@@ -1,41 +1,48 @@
-<form class="cdn-dedicated-ssl-generate"
-      name="$ctrl.cdnSslGenerateForm"
-      novalidate
-      data-ng-submit="$ctrl.onCdnSslGenerateFormSubmit()">
-
-    <oui-modal data-title="{{ :: 'cdn_dedicated_ssl_generate' | translate }}"
-               data-primary-label="{{ ($ctrl.actionEnabled ? 'wizard_confirm' : 'global_OK') | translate }}"
-               data-secondary-label="{{ $ctrl.actionEnabled ? ('wizard_cancel' | translate) : '' }}"
-               data-secondary-action="$ctrl.$state.go('^')"
-               data-on-dismiss="$ctrl.$state.go('^')"
-               data-loading="$ctrl.loading.generate"
-               data-type="{{ !$ctrl.actionEnabled ? 'warning' : '' }}">
-
-        <p data-ng-if="!$ctrl.actionEnabled"
-           data-translate="cdn_dedicated_ssl_generate_warning">
-        </p>
+<form
+    class="cdn-dedicated-ssl-generate"
+    name="$ctrl.cdnSslGenerateForm"
+    novalidate
+    data-ng-submit="$ctrl.onCdnSslGenerateFormSubmit()"
+>
+    <oui-modal
+        data-title="{{ :: 'cdn_dedicated_ssl_generate' | translate }}"
+        data-primary-label="{{ ($ctrl.actionEnabled ? 'wizard_confirm' : 'global_OK') | translate }}"
+        data-secondary-label="{{ $ctrl.actionEnabled ? ('wizard_cancel' | translate) : '' }}"
+        data-secondary-action="$ctrl.$state.go('^')"
+        data-on-dismiss="$ctrl.$state.go('^')"
+        data-loading="$ctrl.loading.generate"
+        data-type="{{ !$ctrl.actionEnabled ? 'warning' : '' }}"
+    >
+        <p
+            data-ng-if="!$ctrl.actionEnabled"
+            data-translate="cdn_dedicated_ssl_generate_warning"
+        ></p>
 
         <div data-ng-if="$ctrl.actionEnabled">
-            <div class="my-4"
-                 data-ng-if="$ctrl.ssl">
+            <div class="my-4" data-ng-if="$ctrl.ssl">
                 <oui-message data-type="warning">
-                    <span data-translate="cdn_dedicated_ssl_generate_replacement_warning"></span>
+                    <span
+                        data-translate="cdn_dedicated_ssl_generate_replacement_warning"
+                    ></span>
                 </oui-message>
             </div>
 
             <!-- SSL certificate name -->
-            <oui-field data-label="{{ :: 'cdn_dedicated_ssl_generate_name' | translate }}"
-                       data-error-messages="{ pattern: ('cdn_dedicated_ssl_generate_name_pattern' | translate) }">
-                <input class="oui-input"
-                       type="text"
-                       name="name"
-                       id="generate-name"
-                       data-ng-model="$ctrl.model.name"
-                       data-required
-                       data-ng-pattern="/^[\S]+$/" />
-            </oui-field> <!-- End of SSL certificate name -->
+            <oui-field
+                data-label="{{ :: 'cdn_dedicated_ssl_generate_name' | translate }}"
+                data-error-messages="{ pattern: ('cdn_dedicated_ssl_generate_name_pattern' | translate) }"
+            >
+                <input
+                    class="oui-input"
+                    type="text"
+                    name="name"
+                    id="generate-name"
+                    data-ng-model="$ctrl.model.name"
+                    data-required
+                    data-ng-pattern="/^[\S]+$/"
+                />
+            </oui-field>
+            <!-- End of SSL certificate name -->
         </div>
-
     </oui-modal>
-
 </form>

@@ -13,18 +13,17 @@ export default /* @ngInject */ ($stateProvider) => {
       },
     },
     resolve: {
-      activateZone: /* @ngInject */ $state => () => $state.go('app.domain.product.zone.activate'),
-      goToZone: /* @ngInject */ (
-        $state,
-        Alerter,
-      ) => (message = false, type = SUCCESS_TYPE) => {
+      activateZone: /* @ngInject */ ($state) => () =>
+        $state.go('app.domain.product.zone.activate'),
+      goToZone: /* @ngInject */ ($state, Alerter) => (
+        message = false,
+        type = SUCCESS_TYPE,
+      ) => {
         const reload = message && type === SUCCESS_TYPE;
 
-        const promise = $state.go('app.domain.product.zone',
-          null,
-          {
-            reload,
-          });
+        const promise = $state.go('app.domain.product.zone', null, {
+          reload,
+        });
 
         if (message) {
           promise.then(() => Alerter[type](message, 'domain_alert_main'));

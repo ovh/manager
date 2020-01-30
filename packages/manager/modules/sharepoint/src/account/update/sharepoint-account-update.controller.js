@@ -6,7 +6,14 @@ import union from 'lodash/union';
 
 export default class SharepointUpdateAccountCtrl {
   /* @ngInject */
-  constructor($scope, $q, $stateParams, $translate, Alerter, MicrosoftSharepointLicenseService) {
+  constructor(
+    $scope,
+    $q,
+    $stateParams,
+    $translate,
+    Alerter,
+    MicrosoftSharepointLicenseService,
+  ) {
     this.$scope = $scope;
     this.$q = $q;
     this.$stateParams = $stateParams;
@@ -21,8 +28,10 @@ export default class SharepointUpdateAccountCtrl {
     this.originalValue = angular.copy(this.$scope.currentActionData);
 
     this.account = this.$scope.currentActionData;
-    this.account.login = this.account.userPrincipalName.split('@')[0]; // eslint-disable-line
-    this.account.domain = this.account.userPrincipalName.split('@')[1]; // eslint-disable-line
+    // eslint-disable-next-line prefer-destructuring
+    this.account.login = this.account.userPrincipalName.split('@')[0];
+    // eslint-disable-next-line prefer-destructuring
+    this.account.domain = this.account.userPrincipalName.split('@')[1];
 
     this.availableDomains = [];
     this.availableDomains.push(this.account.domain);
@@ -35,23 +44,31 @@ export default class SharepointUpdateAccountCtrl {
   }
 
   getMsService() {
-    this.sharepointService.retrievingMSService(this.exchangeId)
-      .then((exchange) => { this.$scope.exchange = exchange; });
+    this.sharepointService
+      .retrievingMSService(this.exchangeId)
+      .then((exchange) => {
+        this.$scope.exchange = exchange;
+      });
   }
 
   getAccountDetails() {
-    this.sharepointService.getAccountDetails(this.exchangeId, this.account.userPrincipalName)
-      .then(accountDetails => assign(this.account, accountDetails));
+    this.sharepointService
+      .getAccountDetails(this.exchangeId, this.account.userPrincipalName)
+      .then((accountDetails) => assign(this.account, accountDetails));
   }
 
   getSharepointUpnSuffixes() {
     this.sharepointService
       .getSharepointUpnSuffixes(this.exchangeId)
-      .then(upnSuffixes => this.$q.all(
-        filter(upnSuffixes, suffix => this.sharepointService
-          .getSharepointUpnSuffixeDetails(this.exchangeId, suffix)
-          .then(suffixDetails => suffixDetails.ownershipValidated)),
-      ))
+      .then((upnSuffixes) =>
+        this.$q.all(
+          filter(upnSuffixes, (suffix) =>
+            this.sharepointService
+              .getSharepointUpnSuffixeDetails(this.exchangeId, suffix)
+              .then((suffixDetails) => suffixDetails.ownershipValidated),
+          ),
+        ),
+      )
       .then((availableDomains) => {
         this.availableDomains = union([this.account.domain], availableDomains);
       });
@@ -59,12 +76,35 @@ export default class SharepointUpdateAccountCtrl {
 
   updateMsAccount() {
     this.account.userPrincipalName = `${this.account.login}@${this.account.domain}`;
-    return this.sharepointService.updateSharepoint(this.exchangeId, this.originalValue.userPrincipalName, pick(this.account, ['userPrincipalName', 'firstName', 'lastName', 'initials', 'displayName']))
+    return this.sharepointService
+      .updateSharepoint(
+        this.exchangeId,
+        this.originalValue.userPrincipalName,
+        pick(this.account, [
+          'userPrincipalName',
+          'firstName',
+          'lastName',
+          'initials',
+          'displayName',
+        ]),
+      )
       .then(() => {
-        this.alerter.success(this.$translate.instant('sharepoint_account_update_configuration_confirm_message_text', { t0: this.account.userPrincipalName }), this.$scope.alerts.main);
+        this.alerter.success(
+          this.$translate.instant(
+            'sharepoint_account_update_configuration_confirm_message_text',
+            { t0: this.account.userPrincipalName },
+          ),
+          this.$scope.alerts.main,
+        );
       })
       .catch((err) => {
-        this.alerter.alertFromSWS(this.$translate.instant('sharepoint_account_update_configuration_error_message_text'), err, this.$scope.alerts.main);
+        this.alerter.alertFromSWS(
+          this.$translate.instant(
+            'sharepoint_account_update_configuration_error_message_text',
+          ),
+          err,
+          this.$scope.alerts.main,
+        );
       })
       .finally(() => {
         this.$scope.resetAction();

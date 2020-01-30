@@ -1,3 +1,57 @@
+## [1.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@1.3.1...@ovh-ux/manager-server-sidebar@1.3.2) (2020-01-27)
+
+
+### Bug Fixes
+
+* **dedicated:** update dedicated server order link for us ([#2143](https://github.com/ovh/manager/issues/2143)) ([2b1c6cc](https://github.com/ovh/manager/commit/2b1c6ccb0526aeb427aec9b068e1f989111b54b5))
+
+
+
+## [1.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@1.3.0...@ovh-ux/manager-server-sidebar@1.3.1) (2020-01-24)
+
+
+### Bug Fixes
+
+* **server-sidebar:** display static items if there is no items ([#2131](https://github.com/ovh/manager/issues/2131)) ([00fb0ff](https://github.com/ovh/manager/commit/00fb0ff0dd506fa508ddd5525155a362be5f03c6))
+
+
+
+# [1.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@1.2.2...@ovh-ux/manager-server-sidebar@1.3.0) (2020-01-21)
+
+
+### Features
+
+* **controller:** hide empty sections ([#1833](https://github.com/ovh/manager/issues/1833)) ([35911d2](https://github.com/ovh/manager/commit/35911d2b003fec955be74d8edac53b9d7bea8196))
+
+
+
+## [1.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@1.2.1...@ovh-ux/manager-server-sidebar@1.2.2) (2019-12-19)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 198] ([1aefea2](https://github.com/ovh/manager/commit/1aefea2e3baf06b45e8187f1e6728d415d880314))
+
+
+
+## [1.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@1.2.0...@ovh-ux/manager-server-sidebar@1.2.1) (2019-12-19)
+
+
+### Bug Fixes
+
+* **server-sidebar:** remove private database order ([#1996](https://github.com/ovh/manager/issues/1996)) ([a422965](https://github.com/ovh/manager/commit/a422965181777be314efee418bad9017dc7868c9))
+
+
+
+# [1.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@1.1.0...@ovh-ux/manager-server-sidebar@1.2.0) (2019-12-19)
+
+
+### Features
+
+* **server.sidebar:** add option to order cloud db ([00360b3](https://github.com/ovh/manager/commit/00360b3414382f2807566821b32e431d86aaedce))
+
+
+
 # [1.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@1.0.1...@ovh-ux/manager-server-sidebar@1.1.0) (2019-12-10)
 
 

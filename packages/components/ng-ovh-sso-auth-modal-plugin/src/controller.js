@@ -8,7 +8,11 @@ import $ from 'jquery';
  * Controller of the modal
  */
 export default /* @ngInject */ function SsoAuthModalController(
-  $q, $window, $translatePartialLoader, $translate, params,
+  $q,
+  $window,
+  $translatePartialLoader,
+  $translate,
+  params,
 ) {
   const self = this;
 
@@ -26,7 +30,9 @@ export default /* @ngInject */ function SsoAuthModalController(
 
   self.reload = function reload() {
     self.loaders.action = true;
-    $window.location.replace($window.location.href.replace($window.location.hash, ''));
+    $window.location.replace(
+      $window.location.href.replace($window.location.hash, ''),
+    );
   };
 
   self.logout = function logout() {
@@ -36,29 +42,40 @@ export default /* @ngInject */ function SsoAuthModalController(
 
   function getUser() {
     const deferredObj = $q.defer();
-    $.ajax(self.data.userConfig).done((data) => {
-      deferredObj.resolve(data);
-    }).fail((err) => {
-      deferredObj.resolve(err);
-    });
+    $.ajax(self.data.userConfig)
+      .done((data) => {
+        deferredObj.resolve(data);
+      })
+      .fail((err) => {
+        deferredObj.resolve(err);
+      });
     return deferredObj.promise;
   }
 
   function init() {
     $translatePartialLoader.addPart(self.data.translationPath);
-    return $translate.refresh().then(() => {
-      self.loaders.trads = false;
-      if (self.data.mode === 'DISCONNECTED_TO_CONNECTED' || self.data.mode === 'CONNECTED_TO_OTHER') {
-        return getUser().then((user) => {
-          self.data.currentUser = user;
-        }, () => {
-          self.reload();
-        });
-      }
-      return null;
-    }).finally(() => {
-      self.loaders.init = false;
-    });
+    return $translate
+      .refresh()
+      .then(() => {
+        self.loaders.trads = false;
+        if (
+          self.data.mode === 'DISCONNECTED_TO_CONNECTED' ||
+          self.data.mode === 'CONNECTED_TO_OTHER'
+        ) {
+          return getUser().then(
+            (user) => {
+              self.data.currentUser = user;
+            },
+            () => {
+              self.reload();
+            },
+          );
+        }
+        return null;
+      })
+      .finally(() => {
+        self.loaders.init = false;
+      });
   }
 
   init();

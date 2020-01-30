@@ -20,8 +20,9 @@ export default class {
 
   refreshSecondaryDnsList() {
     this.loaders.init = true;
-    this.loadSecondaryDns()
-      .finally(() => { this.loaders.init = false; });
+    this.loadSecondaryDns().finally(() => {
+      this.loaders.init = false;
+    });
   }
 
   loadSecondaryDns() {
@@ -31,7 +32,7 @@ export default class {
           ...data,
           list: {
             ...data.list,
-            results: map(data.list.results, secondaryDns => ({
+            results: map(data.list.results, (secondaryDns) => ({
               ...secondaryDns,
               creationDateLabel: moment(secondaryDns.creationDate).format('LL'),
             })),
@@ -39,16 +40,18 @@ export default class {
         };
         return data.list.results;
       })
-      .catch(err => this.CucCloudMessage.error(err));
+      .catch((err) => this.CucCloudMessage.error(err));
   }
 
   add() {
-    this.VpsActionService.addSecondaryDns(this.serviceName)
-      .finally(() => this.refreshSecondaryDnsList());
+    this.VpsActionService.addSecondaryDns(this.serviceName).finally(() =>
+      this.refreshSecondaryDnsList(),
+    );
   }
 
   deleteOne(domain) {
-    this.VpsActionService.deleteSecondaryDns(this.serviceName, domain)
-      .finally(() => this.refreshSecondaryDnsList());
+    this.VpsActionService.deleteSecondaryDns(this.serviceName, domain).finally(
+      () => this.refreshSecondaryDnsList(),
+    );
   }
 }

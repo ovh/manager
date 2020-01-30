@@ -1,8 +1,15 @@
 import find from 'lodash/find';
 
 class CloudProjectComputeInfrastructureIacDeployCtrl {
-  constructor($q, $state, $stateParams, CloudProjectComputeInfrastructureOpenstackClientService,
-    OvhApiCloudProjectStack, OvhApiMe, CucServiceHelper) {
+  constructor(
+    $q,
+    $state,
+    $stateParams,
+    CloudProjectComputeInfrastructureOpenstackClientService,
+    OvhApiCloudProjectStack,
+    OvhApiMe,
+    CucServiceHelper,
+  ) {
     this.$q = $q;
     this.$state = $state;
     this.$stateParams = $stateParams;
@@ -19,20 +26,22 @@ class CloudProjectComputeInfrastructureIacDeployCtrl {
     return this.$q
       .all({
         user: this.getUser(),
-        stack: this.OvhApiCloudProjectStack.v6()
-          .get({
-            serviceName: this.serviceName,
-            stackId: this.StackID,
-          }).$promise,
+        stack: this.OvhApiCloudProjectStack.v6().get({
+          serviceName: this.serviceName,
+          stackId: this.StackID,
+        }).$promise,
       })
       .then((results) => {
         this.stack = results.stack;
         this.guides = results.stack.instructions;
-        this.guide = find(this.guides, guide => guide.language === this.user.language);
+        this.guide = find(
+          this.guides,
+          (guide) => guide.language === this.user.language,
+        );
 
         // Default is en_US
         if (!this.guide) {
-          this.guide = find(this.guides, guide => guide.language === 'en_US');
+          this.guide = find(this.guides, (guide) => guide.language === 'en_US');
         }
 
         if (!this.guide) {
@@ -47,24 +56,30 @@ class CloudProjectComputeInfrastructureIacDeployCtrl {
           .client({
             serviceName: this.serviceName,
             stackId: this.stack.uuid,
-          }).$promise
-          .then(session => this.$state.go('.', {
-            hTerm: {
-              session,
-            },
-          }));
+          })
+          .$promise.then((session) =>
+            this.$state.go('.', {
+              hTerm: {
+                session,
+              },
+            }),
+          );
       })
-      .catch(this.CucServiceHelper.errorHandler('cpciiac_view_deployment_ERROR'));
+      .catch(
+        this.CucServiceHelper.errorHandler('cpciiac_view_deployment_ERROR'),
+      );
   }
 
   getUser() {
     return this.OvhApiMe.v6()
-      .get().$promise
-      .then((user) => {
+      .get()
+      .$promise.then((user) => {
         this.user = user;
         return user;
       })
-      .catch(this.CucServiceHelper.errorHandler('cpciiac_view_deployment_ERROR'));
+      .catch(
+        this.CucServiceHelper.errorHandler('cpciiac_view_deployment_ERROR'),
+      );
   }
 
   cancel() {
@@ -72,4 +87,9 @@ class CloudProjectComputeInfrastructureIacDeployCtrl {
   }
 }
 
-angular.module('managerApp').controller('CloudProjectComputeInfrastructureIacDeployCtrl', CloudProjectComputeInfrastructureIacDeployCtrl);
+angular
+  .module('managerApp')
+  .controller(
+    'CloudProjectComputeInfrastructureIacDeployCtrl',
+    CloudProjectComputeInfrastructureIacDeployCtrl,
+  );

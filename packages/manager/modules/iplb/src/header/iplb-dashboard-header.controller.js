@@ -2,8 +2,15 @@ import { GUIDE_HOME_URL } from '../iplb-url.constants';
 
 export default class IpLoadBalancerDashboardHeaderCtrl {
   /* @ngInject */
-  constructor($stateParams, $translate, CucControllerHelper, IpLoadBalancerHomeService, ovhDocUrl,
-    SidebarMenu, TranslateService) {
+  constructor(
+    $stateParams,
+    $translate,
+    CucControllerHelper,
+    IpLoadBalancerHomeService,
+    ovhDocUrl,
+    SidebarMenu,
+    TranslateService,
+  ) {
     this.$stateParams = $stateParams;
     this.$translate = $translate;
     this.CucControllerHelper = CucControllerHelper;
@@ -15,8 +22,11 @@ export default class IpLoadBalancerDashboardHeaderCtrl {
 
     //  No error handling since we don't want to break anything for a title.
     this.configuration = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () => this.IpLoadBalancerHomeService.getConfiguration(this.serviceName),
-      successHandler: () => { this.menuItem.title = this.configuration.data.displayName; },
+      loaderFunction: () =>
+        this.IpLoadBalancerHomeService.getConfiguration(this.serviceName),
+      successHandler: () => {
+        this.menuItem.title = this.configuration.data.displayName;
+      },
     });
   }
 
@@ -35,11 +45,13 @@ export default class IpLoadBalancerDashboardHeaderCtrl {
   initGuides() {
     this.guides = {};
     this.guides.title = this.$translate.instant('iplb_guides');
-    this.guides.list = [{
-      name: this.$translate.instant('iplb_guides_title'),
-      url: this.ovhDocUrl.getDocUrl('load-balancer'),
-      external: true,
-    }];
+    this.guides.list = [
+      {
+        name: this.$translate.instant('iplb_guides_title'),
+        url: this.ovhDocUrl.getDocUrl('load-balancer'),
+        external: true,
+      },
+    ];
     this.guides.footer = {
       name: this.$translate.instant('iplb_guide_footer'),
       url: GUIDE_HOME_URL,

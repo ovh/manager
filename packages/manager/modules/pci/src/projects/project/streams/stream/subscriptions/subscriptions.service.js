@@ -8,25 +8,24 @@ export default class PciProjectStreamStreamSubscriptionsService {
   }
 
   getAll(projectId, streamId) {
-    return this.OvhApiCloudProjectIo
-      .Stream()
+    return this.OvhApiCloudProjectIo.Stream()
       .Subscription()
       .v6()
       .query({
         serviceName: projectId,
         streamId,
       })
-      .$promise
-      .then(subscriptions => this.$q.all(
-        subscriptions.map(
-          subscriptionId => this.get(projectId, streamId, subscriptionId),
+      .$promise.then((subscriptions) =>
+        this.$q.all(
+          subscriptions.map((subscriptionId) =>
+            this.get(projectId, streamId, subscriptionId),
+          ),
         ),
-      ));
+      );
   }
 
   get(projectId, streamId, subscriptionId) {
-    return this.OvhApiCloudProjectIo
-      .Stream()
+    return this.OvhApiCloudProjectIo.Stream()
       .Subscription()
       .v6()
       .get({
@@ -34,15 +33,16 @@ export default class PciProjectStreamStreamSubscriptionsService {
         streamId,
         subscriptionId,
       })
-      .$promise
-      .then(subscription => new Subscription({
-        ...subscription,
-      }));
+      .$promise.then(
+        (subscription) =>
+          new Subscription({
+            ...subscription,
+          }),
+      );
   }
 
   getStats(projectId, streamId, subscription) {
-    return this.OvhApiCloudProjectIo
-      .Stream()
+    return this.OvhApiCloudProjectIo.Stream()
       .Subscription()
       .v6()
       .getStats({
@@ -50,50 +50,52 @@ export default class PciProjectStreamStreamSubscriptionsService {
         streamId,
         subscriptionId: subscription.id,
       })
-      .$promise
-      .then(stats => new Subscription({
-        ...subscription,
-        stats,
-      }));
+      .$promise.then(
+        (stats) =>
+          new Subscription({
+            ...subscription,
+            stats,
+          }),
+      );
   }
 
   add(projectId, streamId, name) {
-    return this.OvhApiCloudProjectIo
-      .Stream()
+    return this.OvhApiCloudProjectIo.Stream()
       .Subscription()
       .v6()
-      .save({
-        serviceName: projectId,
-        streamId,
-      }, {
-        name,
-      })
-      .$promise;
+      .save(
+        {
+          serviceName: projectId,
+          streamId,
+        },
+        {
+          name,
+        },
+      ).$promise;
   }
 
   delete(projectId, streamId, subscriptionId) {
-    return this.OvhApiCloudProjectIo
-      .Stream()
+    return this.OvhApiCloudProjectIo.Stream()
       .Subscription()
       .v6()
       .delete({
         serviceName: projectId,
         streamId,
         subscriptionId,
-      })
-      .$promise;
+      }).$promise;
   }
 
   resetCursor(projectId, streamId, subscriptionId) {
-    return this.OvhApiCloudProjectIo
-      .Stream()
+    return this.OvhApiCloudProjectIo.Stream()
       .Subscription()
       .v6()
-      .resetCursor({
-        serviceName: projectId,
-        streamId,
-        subscriptionId,
-      }, null)
-      .$promise;
+      .resetCursor(
+        {
+          serviceName: projectId,
+          streamId,
+          subscriptionId,
+        },
+        null,
+      ).$promise;
   }
 }

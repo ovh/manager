@@ -2,7 +2,14 @@ import angular from 'angular';
 
 export default class {
   /* @ngInject */
-  constructor($q, $stateParams, $timeout, $uibModalInstance, OvhApiSms, sender) {
+  constructor(
+    $q,
+    $stateParams,
+    $timeout,
+    $uibModalInstance,
+    OvhApiSms,
+    sender,
+  ) {
     this.$q = $q;
     this.$stateParams = $stateParams;
     this.$timeout = $timeout;
@@ -28,20 +35,27 @@ export default class {
    */
   remove() {
     this.loading.removeSender = true;
-    return this.$q.all([
-      this.api.sms.senders.delete({
-        serviceName: this.$stateParams.serviceName,
-        sender: this.sender.sender,
-      }).$promise.catch(error => this.$q.reject(error)),
-      this.$timeout(angular.noop, 1000),
-    ]).then(() => {
-      this.loading.removeSender = false;
-      this.removed = true;
-      return this.$timeout(() => this.close(), 1500);
-    }).catch(error => this.cancel({
-      type: 'API',
-      msg: error,
-    }));
+    return this.$q
+      .all([
+        this.api.sms.senders
+          .delete({
+            serviceName: this.$stateParams.serviceName,
+            sender: this.sender.sender,
+          })
+          .$promise.catch((error) => this.$q.reject(error)),
+        this.$timeout(angular.noop, 1000),
+      ])
+      .then(() => {
+        this.loading.removeSender = false;
+        this.removed = true;
+        return this.$timeout(() => this.close(), 1500);
+      })
+      .catch((error) =>
+        this.cancel({
+          type: 'API',
+          msg: error,
+        }),
+      );
   }
 
   cancel(message) {

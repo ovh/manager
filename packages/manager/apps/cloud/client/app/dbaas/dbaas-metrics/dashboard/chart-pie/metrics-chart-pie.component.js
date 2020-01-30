@@ -13,20 +13,20 @@
     }
 
     percentToSize(percent) {
-      return percent * this.ringSize / 100 || 0;
+      return (percent * this.ringSize) / 100 || 0;
     }
   }
 
-  angular.module('managerApp')
-    .component('metricsChartPie', {
-      templateUrl: 'app/dbaas/dbaas-metrics/dashboard/chart-pie/metrics-chart-pie.component.html',
-      bindings: {
-        value: '<',
-        color: '<',
-        text: '<',
-        textSmall: '<',
-        legend: '<',
-      },
-      controller: MetricsChartPieController,
-    });
+  angular.module('managerApp').component('metricsChartPie', {
+    templateUrl:
+      'app/dbaas/dbaas-metrics/dashboard/chart-pie/metrics-chart-pie.component.html',
+    bindings: {
+      value: '<',
+      color: '<',
+      text: '<',
+      textSmall: '<',
+      legend: '<',
+    },
+    controller: MetricsChartPieController,
+  });
 })();

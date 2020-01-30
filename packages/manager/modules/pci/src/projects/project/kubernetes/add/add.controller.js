@@ -24,7 +24,10 @@ export default class {
 
   loadMessages() {
     this.CucCloudMessage.unSubscribe('pci.projects.project.kubernetes.add');
-    this.messageHandler = this.CucCloudMessage.subscribe('pci.projects.project.kubernetes.add', { onMessage: () => this.refreshMessages() });
+    this.messageHandler = this.CucCloudMessage.subscribe(
+      'pci.projects.project.kubernetes.add',
+      { onMessage: () => this.refreshMessages() },
+    );
   }
 
   refreshMessages() {
@@ -33,16 +36,20 @@ export default class {
 
   create() {
     this.isAdding = true;
-    return this.OvhApiCloudProjectKube.v6().save({
-      serviceName: this.projectId,
-    }, {
-      ...this.cluster,
-      region: this.cluster.region.name,
-    }).$promise
-      .then(({ id }) => this.checkKubernetesStatus(this.projectId, id))
-      .then(() => this.goBack(
-        this.$translate.instant('kubernetes_add_success'),
-      ))
+    return this.OvhApiCloudProjectKube.v6()
+      .save(
+        {
+          serviceName: this.projectId,
+        },
+        {
+          ...this.cluster,
+          region: this.cluster.region.name,
+        },
+      )
+      .$promise.then(({ id }) => this.checkKubernetesStatus(this.projectId, id))
+      .then(() =>
+        this.goBack(this.$translate.instant('kubernetes_add_success')),
+      )
       .catch((error) => {
         this.CucCloudMessage.error(
           this.$translate.instant('kubernetes_add_error', {
@@ -54,7 +61,6 @@ export default class {
         this.isAdding = false;
       });
   }
-
 
   checkKubernetesStatus(serviceName, kubeId) {
     this.OvhApiCloudProjectKube.v6().resetCache();

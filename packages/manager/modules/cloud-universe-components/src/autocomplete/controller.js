@@ -81,7 +81,8 @@ export default class CucAutoCompleteController {
           this.openList();
           this.updateSelected(selected);
           this.filterChange();
-        } else { // else we scroll to the top of the list.
+        } else {
+          // else we scroll to the top of the list.
           this.resetHighlight();
         }
       } else {
@@ -108,12 +109,17 @@ export default class CucAutoCompleteController {
 
   filterOptions(filter) {
     if (filter) {
-      const displayProperty = this.displayProperty; // eslint-disable-line
+      // eslint-disable-next-line prefer-destructuring
+      const displayProperty = this.displayProperty;
       const filtered = [];
       const regExp = new RegExp(filter, 'g');
       angular.forEach(this.options, (item) => {
         if (item[displayProperty].indexOf(filter) !== -1) {
-          set(item, 'filteredProperty', item[displayProperty].replace(regExp, `<strong>${filter}</strong>`));
+          set(
+            item,
+            'filteredProperty',
+            item[displayProperty].replace(regExp, `<strong>${filter}</strong>`),
+          );
           filtered.push(item);
         }
       });
@@ -139,14 +145,18 @@ export default class CucAutoCompleteController {
       case this.keys.arrowUp:
         if (this.editing) {
           this.moveHightlightUp();
-          this.updateSelected(this.filteredOptions[this.highlightIndex][this.displayProperty]);
+          this.updateSelected(
+            this.filteredOptions[this.highlightIndex][this.displayProperty],
+          );
           event.preventDefault();
         }
         break;
       case this.keys.arrowDown:
         if (this.editing) {
           this.moveHightlightDown();
-          this.updateSelected(this.filteredOptions[this.highlightIndex][this.displayProperty]);
+          this.updateSelected(
+            this.filteredOptions[this.highlightIndex][this.displayProperty],
+          );
           event.preventDefault();
         }
         break;
@@ -241,9 +251,11 @@ export default class CucAutoCompleteController {
   scrollDownToHighlightedIndex() {
     const list = this.constructor.getDomList();
     const elem = this.constructor.getDomListItems()[this.highlightIndex];
-    const listOffsetBottom = list.clientHeight + list.scrollTop - elem.offsetHeight;
+    const listOffsetBottom =
+      list.clientHeight + list.scrollTop - elem.offsetHeight;
     if (listOffsetBottom < elem.offsetTop) {
-      const scrollPosition = elem.offsetTop + elem.offsetHeight - list.clientHeight;
+      const scrollPosition =
+        elem.offsetTop + elem.offsetHeight - list.clientHeight;
       list.scrollTop = scrollPosition;
     }
   }
@@ -275,7 +287,9 @@ export default class CucAutoCompleteController {
   adjustHighlightGroupIndexes(direction) {
     if (this.groupBy) {
       const currItem = this.filteredOptions[this.highlightIndex];
-      this.highlightedGroupKey = this.constructor.getArrangedGroupName(currItem[this.groupBy]);
+      this.highlightedGroupKey = this.constructor.getArrangedGroupName(
+        currItem[this.groupBy],
+      );
       let precItem = null;
       switch (direction) {
         case 'up':
@@ -283,7 +297,8 @@ export default class CucAutoCompleteController {
           // of the previous group.
           precItem = this.filteredOptions[this.highlightIndex + 1];
           if (!precItem || precItem[this.groupBy] !== currItem[this.groupBy]) {
-            this.highlightedGroupIndex = this.groupedOptions[currItem[this.groupBy]].length - 1;
+            this.highlightedGroupIndex =
+              this.groupedOptions[currItem[this.groupBy]].length - 1;
           }
           break;
         default:
@@ -303,7 +318,10 @@ export default class CucAutoCompleteController {
     // we have to scroll and highlight the selected item.
     if (this.ngModel && !this.ngModel.isNew) {
       const selectedModel = this.ngModel;
-      this.highlightIndex = findIndex(this.options, item => item === selectedModel);
+      this.highlightIndex = findIndex(
+        this.options,
+        (item) => item === selectedModel,
+      );
 
       if (this.groupBy) {
         this.highlightedGroupKey = this.constructor.getArrangedGroupName(
@@ -313,7 +331,7 @@ export default class CucAutoCompleteController {
         const optionToFind = this.options[this.highlightIndex];
         this.highlightedGroupIndex = findIndex(
           this.groupedOptions[this.highlightedGroupKey],
-          item => item === optionToFind,
+          (item) => item === optionToFind,
         );
       }
       this.$timeout(this.scrollDownToHighlightedIndex.bind(this));
@@ -325,7 +343,9 @@ export default class CucAutoCompleteController {
 
     if (this.groupBy) {
       this.name = this.filteredOptions[0][this.groupBy];
-      this.highlightedGroupKey = this.constructor.getArrangedGroupName(this.name);
+      this.highlightedGroupKey = this.constructor.getArrangedGroupName(
+        this.name,
+      );
       this.highlightedGroupIndex = 0;
     }
   }

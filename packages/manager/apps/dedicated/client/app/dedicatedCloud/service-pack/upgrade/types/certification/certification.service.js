@@ -9,39 +9,42 @@ export const name = 'UpgradeCertificationService';
 
 export const UpgradeCertificationService = class {
   /* @ngInject */
-  constructor(
-    $translate,
-    ovhManagerPccServicePackService,
-  ) {
+  constructor($translate, ovhManagerPccServicePackService) {
     this.$translate = $translate;
     this.ovhManagerPccServicePackService = ovhManagerPccServicePackService;
   }
 
-  async getOrderableServicePacks(serviceName, subsidiary, currentServicePackName) {
-    const allServicePacks = await this
-      .ovhManagerPccServicePackService
-      .getServicePacks(serviceName, subsidiary);
-
-    const allServicePacksExceptCurrent = reject(
-      allServicePacks,
-      { name: currentServicePackName },
+  async getOrderableServicePacks(
+    serviceName,
+    subsidiary,
+    currentServicePackName,
+  ) {
+    const allServicePacks = await this.ovhManagerPccServicePackService.getServicePacks(
+      serviceName,
+      subsidiary,
     );
 
-    return filter(
-      allServicePacksExceptCurrent,
-      servicePack => some(
-        servicePack.options,
-        option => isEqual(option.type, OPTION_TYPES.certification),
+    const allServicePacksExceptCurrent = reject(allServicePacks, {
+      name: currentServicePackName,
+    });
+
+    return filter(allServicePacksExceptCurrent, (servicePack) =>
+      some(servicePack.options, (option) =>
+        isEqual(option.type, OPTION_TYPES.certification),
       ),
     );
   }
 
   getSelectionHeader() {
-    return this.$translate('ovhManagerPccServicePackUpgradeCertification_selection_header');
+    return this.$translate(
+      'ovhManagerPccServicePackUpgradeCertification_selection_header',
+    );
   }
 
   getSelectionSubHeader() {
-    return this.$translate('ovhManagerPccServicePackUpgradeCertification_selection_header');
+    return this.$translate(
+      'ovhManagerPccServicePackUpgradeCertification_selection_header',
+    );
   }
 };
 

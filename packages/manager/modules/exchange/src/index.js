@@ -9,7 +9,11 @@ import services from './exchangeServices.module';
 import routing from './exchange.routes';
 import cacheTemplate from './exchange.template';
 
-import { EXCHANGE_MX_CONFIG, EXCHANGE_CONFIG_URL, EXCHANGE_CONFIG } from './exchange.constants';
+import {
+  EXCHANGE_MX_CONFIG,
+  EXCHANGE_CONFIG_URL,
+  EXCHANGE_CONFIG,
+} from './exchange.constants';
 
 import './css/exchangeDiagnostic.css';
 

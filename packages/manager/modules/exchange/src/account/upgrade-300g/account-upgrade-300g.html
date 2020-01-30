@@ -1,39 +1,74 @@
 <div data-ng-controller="ExchangeUpgrade300GCtrl as ctrl">
-    <div data-wizard
-         data-wizard-confirm-button-text="'exchange_ACTION_order_upgrade_300G_button_label' | translate"
-         data-wizard-on-cancel="closeExportWindow"
-         data-wizard-on-finish="confirmAction"
-         data-wizard-title="'exchange_ACTION_order_upgrade_300G_title_label' | translate">
+    <div
+        data-wizard
+        data-wizard-confirm-button-text="'exchange_ACTION_order_upgrade_300G_button_label' | translate"
+        data-wizard-on-cancel="closeExportWindow"
+        data-wizard-on-finish="confirmAction"
+        data-wizard-title="'exchange_ACTION_order_upgrade_300G_title_label' | translate"
+    >
+        <div
+            data-wizard-step
+            data-wizard-step-on-load="getPrices"
+            data-wizard-step-valid="getDuration()"
+        >
+            <p
+                data-translate="exchange_ACTION_order_upgrade_300G_question_intro"
+            ></p>
 
-        <div data-wizard-step
-             data-wizard-step-on-load="getPrices"
-             data-wizard-step-valid="getDuration()">
+            <oui-spinner
+                data-ng-if="!ctrl.price1M || !ctrl.price12M"
+            ></oui-spinner>
 
-            <p data-translate="exchange_ACTION_order_upgrade_300G_question_intro"></p>
-
-            <oui-spinner data-ng-if="!ctrl.price1M || !ctrl.price12M"></oui-spinner>
-
-            <form name="upgrate300gForm" data-ng-if="ctrl.price1M && ctrl.price12M">
-                <label class="oui-label"
-                       data-translate="exchange_ACTION_order_upgrade_300G_price_label"></label>
+            <form
+                name="upgrate300gForm"
+                data-ng-if="ctrl.price1M && ctrl.price12M"
+            >
+                <label
+                    class="oui-label"
+                    data-translate="exchange_ACTION_order_upgrade_300G_price_label"
+                ></label>
                 <div class="oui-radio">
-                    <input type="radio" class="oui-radio__input" id="duration-02" name="durationRadioGroup" value="01"
-                           data-ng-model="ctrl.duration.value">
+                    <input
+                        type="radio"
+                        class="oui-radio__input"
+                        id="duration-02"
+                        name="durationRadioGroup"
+                        value="01"
+                        data-ng-model="ctrl.duration.value"
+                    />
                     <label class="oui-radio__label-container" for="duration-02">
                         <span class="oui-radio__label">
-                            <span data-translate="exchange_ACTION_order_upgrade_300G_price_monthly_label"></span>
-                            (<strong class="text-danger" data-ng-bind="ctrl.price1M.withTax.text"></strong>)
+                            <span
+                                data-translate="exchange_ACTION_order_upgrade_300G_price_monthly_label"
+                            ></span>
+                            (<strong
+                                class="text-danger"
+                                data-ng-bind="ctrl.price1M.withTax.text"
+                            ></strong
+                            >)
                         </span>
                     </label>
                 </div>
 
                 <div class="oui-radio">
-                    <input type="radio" class="oui-radio__input" id="duration-12" name="durationRadioGroup" value="12"
-                           data-ng-model="ctrl.duration.value">
+                    <input
+                        type="radio"
+                        class="oui-radio__input"
+                        id="duration-12"
+                        name="durationRadioGroup"
+                        value="12"
+                        data-ng-model="ctrl.duration.value"
+                    />
                     <label class="oui-radio__label-container" for="duration-12">
                         <span class="oui-radio__label">
-                            <span data-translate="exchange_ACTION_order_upgrade_300G_price_yearly_label"></span>
-                            (<strong class="text-danger" data-ng-bind="ctrl.price12M.withTax.text"></strong>)
+                            <span
+                                data-translate="exchange_ACTION_order_upgrade_300G_price_yearly_label"
+                            ></span>
+                            (<strong
+                                class="text-danger"
+                                data-ng-bind="ctrl.price12M.withTax.text"
+                            ></strong
+                            >)
                         </span>
                     </label>
                 </div>

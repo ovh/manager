@@ -1,6 +1,6 @@
 import constant from './telecom-dashboard.constant';
 
-export default /* @ngInject */ function (OvhApiMeVipStatus, TucToastError) {
+export default /* @ngInject */ function(OvhApiMeVipStatus, TucToastError) {
   const self = this;
 
   self.loading = {
@@ -12,11 +12,12 @@ export default /* @ngInject */ function (OvhApiMeVipStatus, TucToastError) {
 
   function init() {
     self.loading.vip = true;
-    return OvhApiMeVipStatus.v6().get().$promise
-      .then((vipStatus) => {
+    return OvhApiMeVipStatus.v6()
+      .get()
+      .$promise.then((vipStatus) => {
         self.isVip = vipStatus;
       })
-      .catch(err => new TucToastError(err, 'telecom_dashboard_auth_failed'))
+      .catch((err) => new TucToastError(err, 'telecom_dashboard_auth_failed'))
       .finally(() => {
         self.loading.vip = false;
       });

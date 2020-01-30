@@ -19,17 +19,20 @@ export default /* @ngInject */ ($stateProvider) => {
         },
       },
       resolve: {
-        datacenterId: /* @ngInject */ $transition$ => $transition$.params()
-          .datacenterId,
-        drpInformations: /* @ngInject */ $transition$ => $transition$.params()
-          .drpInformations,
-        goBackToChoice: /* @ngInject */ $state => selectedDrpType => $state.go('app.dedicatedClouds.datacenter.drp', { selectedDrpType }),
-        goToNextStep: /* @ngInject */ $state => drpInformations => $state.go('app.dedicatedClouds.datacenter.drp.ovh.secondPccStep', { drpInformations }),
-        ipAddressDetails: /* @ngInject */ (
-          currentService,
-          dedicatedCloudDrp,
-        ) => dedicatedCloudDrp
-          .getPccIpAddressesDetails(currentService.serviceName),
+        datacenterId: /* @ngInject */ ($transition$) =>
+          $transition$.params().datacenterId,
+        drpInformations: /* @ngInject */ ($transition$) =>
+          $transition$.params().drpInformations,
+        goBackToChoice: /* @ngInject */ ($state) => (selectedDrpType) =>
+          $state.go('app.dedicatedClouds.datacenter.drp', { selectedDrpType }),
+        goToNextStep: /* @ngInject */ ($state) => (drpInformations) =>
+          $state.go('app.dedicatedClouds.datacenter.drp.ovh.secondPccStep', {
+            drpInformations,
+          }),
+        ipAddressDetails: /* @ngInject */ (currentService, dedicatedCloudDrp) =>
+          dedicatedCloudDrp.getPccIpAddressesDetails(
+            currentService.serviceName,
+          ),
       },
     })
     .state('app.dedicatedClouds.datacenter.drp.ovh.mainPccStep.legacyOrderIp', {

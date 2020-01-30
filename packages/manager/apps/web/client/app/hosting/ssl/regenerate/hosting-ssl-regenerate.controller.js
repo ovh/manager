@@ -19,7 +19,8 @@ angular.module('App').controller(
     }
 
     $onInit() {
-      this.$scope.regeneratingCertificate = () => this.regeneratingCertificate();
+      this.$scope.regeneratingCertificate = () =>
+        this.regeneratingCertificate();
     }
 
     regeneratingCertificate() {
@@ -28,13 +29,17 @@ angular.module('App').controller(
         .then(() => {
           this.hostingSSLCertificate.reload();
           this.Alerter.success(
-            this.$translate.instant('hosting_dashboard_service_regenerate_ssl_success'),
+            this.$translate.instant(
+              'hosting_dashboard_service_regenerate_ssl_success',
+            ),
             this.$scope.alerts.main,
           );
         })
         .catch((err) => {
           this.Alerter.alertFromSWS(
-            this.$translate.instant('hosting_dashboard_service_regenerate_ssl_error'),
+            this.$translate.instant(
+              'hosting_dashboard_service_regenerate_ssl_error',
+            ),
             err.data,
             this.$scope.alerts.main,
           );

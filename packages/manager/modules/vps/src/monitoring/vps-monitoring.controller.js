@@ -43,22 +43,47 @@ export default class {
     this.VpsService.getMonitoring(this.serviceName, this.period)
       .then((data) => {
         this.data = data;
-        this.constructor.humanizeData(get(data, 'cpu.values[0].points'), this.monitoring.cpu);
-        this.constructor.humanizeData(get(data, 'ram.values[0].points'), this.monitoring.ram);
-        this.constructor.humanizeData(get(data, 'netRx.values[0].points'), this.monitoring.net[0]);
-        this.constructor.humanizeData(get(data, 'netTx.values[0].points'), this.monitoring.net[1]);
+        this.constructor.humanizeData(
+          get(data, 'cpu.values[0].points'),
+          this.monitoring.cpu,
+        );
+        this.constructor.humanizeData(
+          get(data, 'ram.values[0].points'),
+          this.monitoring.ram,
+        );
+        this.constructor.humanizeData(
+          get(data, 'netRx.values[0].points'),
+          this.monitoring.net[0],
+        );
+        this.constructor.humanizeData(
+          get(data, 'netTx.values[0].points'),
+          this.monitoring.net[1],
+        );
         this.constructor.generateLabels(
           data.cpu.values[0].points,
           data.cpu.pointInterval,
           data.cpu.pointStart,
           this.monitoring.labels,
         );
-        this.noCpuData = find(get(this.data, 'messages'), type => get(type, 'params.type').indexOf('cpu') !== -1);
-        this.noRamData = find(get(this.data, 'messages'), type => get(type, 'params.type').indexOf('mem') !== -1);
-        this.noNetData = find(get(this.data, 'messages'), type => get(type, 'params.type').indexOf('net') !== -1);
+        this.noCpuData = find(
+          get(this.data, 'messages'),
+          (type) => get(type, 'params.type').indexOf('cpu') !== -1,
+        );
+        this.noRamData = find(
+          get(this.data, 'messages'),
+          (type) => get(type, 'params.type').indexOf('mem') !== -1,
+        );
+        this.noNetData = find(
+          get(this.data, 'messages'),
+          (type) => get(type, 'params.type').indexOf('net') !== -1,
+        );
       })
-      .catch(() => { this.error = true; })
-      .finally(() => { this.loaders.init = false; });
+      .catch(() => {
+        this.error = true;
+      })
+      .finally(() => {
+        this.loaders.init = false;
+      });
   }
 
   reset() {
@@ -92,7 +117,10 @@ export default class {
 
   loadOptions() {
     this.colors = VPS_MONITORING_COLORS;
-    this.series = [this.$translate.instant('vps_monitoring_network_netRx'), this.$translate.instant('vps_monitoring_network_netTx')];
+    this.series = [
+      this.$translate.instant('vps_monitoring_network_netRx'),
+      this.$translate.instant('vps_monitoring_network_netTx'),
+    ];
     this.percentOption = VPS_MONITORING_PERCENT_OPTIONS;
     this.bpsOption = VPS_MONITORING_BPS_OPTIONS;
   }

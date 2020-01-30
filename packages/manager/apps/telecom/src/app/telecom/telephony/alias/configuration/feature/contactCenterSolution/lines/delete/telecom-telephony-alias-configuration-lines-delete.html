@@ -1,10 +1,14 @@
-<oui-modal data-heading="{{:: 'telephony_alias_config_contactCenterSolution_lines_delete_line_title' | translate }}"
-           data-primary-action="$ctrl.$uibModalInstance.close()"
-           data-primary-label="{{:: 'common_yes_capitalized' | translate }}"
-           data-secondary-action="$ctrl.$uibModalInstance.dismiss()"
-           data-secondary-label="{{:: 'common_no_capitalized' | translate }}"
-           data-on-dismiss="$ctrl.$uibModalInstance.dismiss()"
-           data-type="warning">
-    <span data-translate="telephony_alias_config_contactCenterSolution_lines_delete_line_question"
-          data-translate-values="{ 'line': '<strong>' + ($ctrl.line.description ? $ctrl.line.description : $ctrl.line.number) + '</strong>' }"></span>
+<oui-modal
+    data-heading="{{:: 'telephony_alias_config_contactCenterSolution_lines_delete_line_title' | translate }}"
+    data-primary-action="$ctrl.$uibModalInstance.close()"
+    data-primary-label="{{:: 'common_yes_capitalized' | translate }}"
+    data-secondary-action="$ctrl.$uibModalInstance.dismiss()"
+    data-secondary-label="{{:: 'common_no_capitalized' | translate }}"
+    data-on-dismiss="$ctrl.$uibModalInstance.dismiss()"
+    data-type="warning"
+>
+    <span
+        data-translate="telephony_alias_config_contactCenterSolution_lines_delete_line_question"
+        data-translate-values="{ 'line': '<strong>' + ($ctrl.line.description ? $ctrl.line.description : $ctrl.line.number) + '</strong>' }"
+    ></span>
 </oui-modal>

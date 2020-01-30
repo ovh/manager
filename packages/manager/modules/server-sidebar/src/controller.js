@@ -49,13 +49,17 @@ export default class OvhManagerServerSidebarController {
 
   $onInit() {
     this.SidebarMenu.setInitializationPromise(
-      this.$translate.refresh()
+      this.$translate
+        .refresh()
         .then(() => this.OvhApiUniverses.Aapi().query().$promise)
         .then((universes) => {
           this.SIDEBAR_CONFIG = SIDEBAR_CONFIG;
           this.SIDEBAR_ORDER_CONFIG = SIDEBAR_ORDER_CONFIG;
 
-          if (this.universe === 'WEB' && find(universes, { universe: this.universe.toLowerCase() })) {
+          if (
+            this.universe === 'WEB' &&
+            find(universes, { universe: this.universe.toLowerCase() })
+          ) {
             this.SIDEBAR_CONFIG = WEB_SIDEBAR_CONFIG;
             this.SIDEBAR_ORDER_CONFIG = WEB_ORDER_SIDEBAR_CONFIG;
           }
@@ -106,41 +110,52 @@ export default class OvhManagerServerSidebarController {
 
   buildOrderMenu() {
     this.SidebarMenu.actionsMenuOptions = [];
-    return this.SessionService.getUser()
-      .then(({ ovhSubsidiary }) => {
-        const actionsMenuOptions = map(
-          this.filterRegions(this.SIDEBAR_ORDER_CONFIG),
-          (orderItemConfig) => {
-            if (!has(orderItemConfig, 'featureType')
-              || this.CucFeatureAvailabilityService.hasFeature(orderItemConfig.featureType, 'sidebarOrder', ovhSubsidiary)
+    return this.SessionService.getUser().then(({ ovhSubsidiary }) => {
+      const actionsMenuOptions = map(
+        this.filterRegions(this.SIDEBAR_ORDER_CONFIG),
+        (orderItemConfig) => {
+          if (
+            !has(orderItemConfig, 'featureType') ||
+            this.CucFeatureAvailabilityService.hasFeature(
+              orderItemConfig.featureType,
+              'sidebarOrder',
+              ovhSubsidiary,
+            )
+          ) {
+            const isExternal = !includes(orderItemConfig.app, this.universe);
+
+            let link = null;
+            if (
+              (isExternal || !has(orderItemConfig, 'state')) &&
+              (has(orderItemConfig, 'linkId') ||
+                has(orderItemConfig, 'linkPart'))
             ) {
-              const isExternal = !includes(orderItemConfig.app, this.universe);
-
-              let link = null;
-              if ((isExternal || !has(orderItemConfig, 'state'))
-                && (has(orderItemConfig, 'linkId') || has(orderItemConfig, 'linkPart'))) {
-                link = this.buildUrl(orderItemConfig, ovhSubsidiary);
-              }
-
-              if (!isExternal || link) {
-                return {
-                  id: orderItemConfig.id,
-                  title: this.$translate.instant(`server_sidebar_order_item_${orderItemConfig.title}_title`),
-                  icon: orderItemConfig.icon,
-                  href: link,
-                  state: isExternal ? null : orderItemConfig.state,
-                  target: isExternal ? '_blank' : null,
-                  external: get(orderItemConfig, 'external', false),
-                };
-              }
+              link = this.buildUrl(orderItemConfig, ovhSubsidiary);
             }
 
-            return null;
-          },
-        );
+            if (!isExternal || link) {
+              return {
+                id: orderItemConfig.id,
+                title: this.$translate.instant(
+                  `server_sidebar_order_item_${orderItemConfig.title}_title`,
+                ),
+                icon: orderItemConfig.icon,
+                href: link,
+                state: isExternal ? null : orderItemConfig.state,
+                target: isExternal ? '_blank' : null,
+                external: get(orderItemConfig, 'external', false),
+              };
+            }
+          }
 
-        return this.SidebarMenu.addActionsMenuOptions(compact(actionsMenuOptions));
-      });
+          return null;
+        },
+      );
+
+      return this.SidebarMenu.addActionsMenuOptions(
+        compact(actionsMenuOptions),
+      );
+    });
   }
 
   addItems(services, parent = null) {
@@ -152,27 +167,38 @@ export default class OvhManagerServerSidebarController {
         if (hasSubItems || has(service, 'link')) {
           link = get(service, 'link');
         } else if (has(service, 'stateUrl') && isExternal) {
-          link = get(MANAGER_URLS, [this.coreConfig.getRegion(), service.app[0], 'FR']);
+          link = get(MANAGER_URLS, [
+            this.coreConfig.getRegion(),
+            service.app[0],
+            'FR',
+          ]);
           link += service.stateUrl;
         }
-        const menuItem = this.SidebarMenu.addMenuItem({
-          id: service.id,
-          name: service.id,
-          icon: service.icon,
-          title: this.$translate.instant(`server_sidebar_item_${service.id}_title`),
-          allowSubItems: hasSubItems,
-          allowSearch: hasSubItems,
-          forceDisplaySearch: hasSubItems && get(service, 'forceDisplaySearch'),
-          infiniteScroll: hasSubItems,
-          state: isExternal ? null : get(service, 'state'),
-          loadOnState: get(service, 'loadOnState'),
-          url: link,
-          target: link ? '_self' : null,
-          click: () => this.onClick(),
-        }, parent);
+        const menuItem = this.SidebarMenu.addMenuItem(
+          {
+            id: service.id,
+            name: service.id,
+            icon: service.icon,
+            title: this.$translate.instant(
+              `server_sidebar_item_${service.id}_title`,
+            ),
+            allowSubItems: hasSubItems,
+            allowSearch: hasSubItems,
+            forceDisplaySearch:
+              hasSubItems && get(service, 'forceDisplaySearch'),
+            infiniteScroll: hasSubItems,
+            state: isExternal ? null : get(service, 'state'),
+            loadOnState: get(service, 'loadOnState'),
+            url: link,
+            target: link ? '_self' : null,
+            click: () => this.onClick(),
+          },
+          parent,
+        );
 
         if (has(service, 'types')) {
           menuItem.onLoad = () => this.loadServices(service, menuItem);
+          menuItem.loadSubItems();
         } else {
           this.addItems(get(service, 'children'), menuItem);
         }
@@ -185,20 +211,30 @@ export default class OvhManagerServerSidebarController {
 
     each(this.filterRegions(parentService.types), (typeDefinition) => {
       const parentParams = get(parent, 'stateParams', {});
-      promises.push(this.getTypeItems(typeDefinition, { ...params, ...parentParams }));
+      promises.push(
+        this.getTypeItems(typeDefinition, { ...params, ...parentParams }),
+      );
     });
 
     return this.$q
       .all(promises)
       .then((typesServices) => {
         this.addItems(get(parentService, 'children'), parent);
-        if (sumBy(typesServices, typeServices => typeServices.items.length) === 0) {
-          this.SidebarMenu.addMenuItem({
-            title: this.$translate.instant('server_sidebar_item_empty_title'),
-            allowSubItems: false,
-            infiniteScroll: false,
-            allowSearch: false,
-          }, parent);
+        if (
+          sumBy(typesServices, (typeServices) => typeServices.items.length) ===
+            0 &&
+          !has(parentService, 'children')
+        ) {
+          this.SidebarMenu.addMenuItem(
+            {
+              title: this.$translate.instant('server_sidebar_item_empty_title'),
+              allowSubItems: false,
+              infiniteScroll: false,
+              allowSearch: false,
+            },
+            parent,
+          );
+          parent.hide();
         } else {
           each(typesServices, (typeServices) => {
             let items = get(typeServices, 'items');
@@ -209,23 +245,40 @@ export default class OvhManagerServerSidebarController {
                 items,
                 find(
                   typesServices,
-                  service => get(service, 'type.category') === get(typeServices, 'type.filter.category'),
+                  (service) =>
+                    get(service, 'type.category') ===
+                    get(typeServices, 'type.filter.category'),
                 ),
               );
             }
 
             each(orderBy(items, 'displayName'), (service) => {
-              const isExternal = !includes(typeServices.type.app, this.universe)
-                && !isEmpty(service.url);
+              const isExternal =
+                !includes(typeServices.type.app, this.universe) &&
+                !isEmpty(service.url);
 
-              let stateParams = zipObject(get(typeServices.type, 'stateParams', []), get(service, 'stateParams', []));
-              if (has(typeServices.type, 'stateParamsTransformer') && isFunction(typeServices.type.stateParamsTransformer)) {
-                stateParams = typeServices.type.stateParamsTransformer(stateParams);
+              let stateParams = zipObject(
+                get(typeServices.type, 'stateParams', []),
+                get(service, 'stateParams', []),
+              );
+              if (
+                has(typeServices.type, 'stateParamsTransformer') &&
+                isFunction(typeServices.type.stateParamsTransformer)
+              ) {
+                stateParams = typeServices.type.stateParamsTransformer(
+                  stateParams,
+                );
               }
 
               let loadOnStateParams = stateParams;
-              if (has(typeServices.type, 'loadOnStateParams') && has(typeServices.type, 'loadOnState')) {
-                loadOnStateParams = zipObject(get(typeServices.type, 'loadOnStateParams', []), get(service, 'stateParams', []));
+              if (
+                has(typeServices.type, 'loadOnStateParams') &&
+                has(typeServices.type, 'loadOnState')
+              ) {
+                loadOnStateParams = zipObject(
+                  get(typeServices.type, 'loadOnStateParams', []),
+                  get(service, 'stateParams', []),
+                );
               }
 
               let link = null;
@@ -234,25 +287,31 @@ export default class OvhManagerServerSidebarController {
                 link = service.url;
               } else {
                 state = get(typeServices.type, 'state');
-                if (has(typeServices.type, 'getState') && isFunction(typeServices.type.getState)) {
+                if (
+                  has(typeServices.type, 'getState') &&
+                  isFunction(typeServices.type.getState)
+                ) {
                   state = typeServices.type.getState(service.extraParams);
                 }
               }
 
-              const menuItem = this.SidebarMenu.addMenuItem({
-                id: service.serviceName,
-                title: service.displayName,
-                allowSubItems: hasSubItems && !isExternal,
-                infiniteScroll: hasSubItems && !isExternal,
-                allowSearch: false,
-                state,
-                stateParams,
-                url: link,
-                target: isExternal ? '_self' : null,
-                icon: get(typeServices.type, 'icon'),
-                loadOnState: get(typeServices.type, 'loadOnState'),
-                loadOnStateParams,
-              }, parent);
+              const menuItem = this.SidebarMenu.addMenuItem(
+                {
+                  id: service.serviceName,
+                  title: service.displayName,
+                  allowSubItems: hasSubItems && !isExternal,
+                  infiniteScroll: hasSubItems && !isExternal,
+                  allowSearch: false,
+                  state,
+                  stateParams,
+                  url: link,
+                  target: isExternal ? '_self' : null,
+                  icon: get(typeServices.type, 'icon'),
+                  loadOnState: get(typeServices.type, 'loadOnState'),
+                  loadOnStateParams,
+                },
+                parent,
+              );
 
               // add serviceName in item searchKeys
               if (has(service, 'serviceName')) {
@@ -260,45 +319,52 @@ export default class OvhManagerServerSidebarController {
               }
 
               // add searchKeys from type definition in item searchKeys
-              if (has(typeServices.type, 'searchKeys') && isArray(typeServices.type.searchKeys)) {
-                each(typeServices.type.searchKeys, key => menuItem.addSearchKey(key));
+              if (
+                has(typeServices.type, 'searchKeys') &&
+                isArray(typeServices.type.searchKeys)
+              ) {
+                each(typeServices.type.searchKeys, (key) =>
+                  menuItem.addSearchKey(key),
+                );
               }
 
               if (hasSubItems && !isExternal) {
-                menuItem.onLoad = () => this.loadServices(
-                  typeServices.type,
-                  menuItem,
-                  stateParams,
-                );
+                menuItem.onLoad = () =>
+                  this.loadServices(typeServices.type, menuItem, stateParams);
               }
             });
           });
         }
       })
       .catch(() => {
-        this.SidebarMenu.addMenuItem({
-          title: this.$translate.instant('server_sidebar_item_empty_title'),
-          allowSubItems: false,
-          infiniteScroll: false,
-          allowSearch: false,
-        }, parent);
+        this.SidebarMenu.addMenuItem(
+          {
+            title: this.$translate.instant('server_sidebar_item_empty_title'),
+            allowSubItems: false,
+            infiniteScroll: false,
+            allowSearch: false,
+          },
+          parent,
+        );
       });
   }
 
   getTypeItems(typeDefinition, params = null) {
     const external = !includes(typeDefinition.app, this.universe);
-    const type = reduce(params, (result, value, paramId) => result.replace(`:${paramId}`, value), typeDefinition.path);
+    const type = reduce(
+      params,
+      (result, value, paramId) => result.replace(`:${paramId}`, value),
+      typeDefinition.path,
+    );
     const exclude = get(typeDefinition, 'exclude', null);
 
-    return new this.OvhApiService
-      .Aapi()
+    return new this.OvhApiService.Aapi()
       .query({
         type,
         external,
         exclude,
       })
-      .$promise
-      .then(items => ({
+      .$promise.then((items) => ({
         type: typeDefinition,
         items,
       }));

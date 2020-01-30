@@ -3,7 +3,8 @@ import controller from './optin.controller';
 
 const moduleName = 'domainOptin';
 
-angular.module(moduleName, [])
+angular
+  .module(moduleName, [])
   .component('domainOptin', component)
   .controller('DomainOptinCtrl', controller);
 

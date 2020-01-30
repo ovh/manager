@@ -4,19 +4,19 @@ import 'oclazyload';
 
 const moduleName = 'enterpriseCloudDatabaseServiceDetails';
 
-angular.module(moduleName, [
-  'oc.lazyLoad',
-  'ui.router',
-]).config(/* @ngInject */($stateProvider) => {
-  $stateProvider.state('enterprise-cloud-database.service.details.**', {
-    url: '/details',
-    lazyLoad: ($transition$) => {
-      const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+angular.module(moduleName, ['oc.lazyLoad', 'ui.router']).config(
+  /* @ngInject */ ($stateProvider) => {
+    $stateProvider.state('enterprise-cloud-database.service.details.**', {
+      url: '/details',
+      lazyLoad: ($transition$) => {
+        const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-      return import('./details.module')
-        .then(mod => $ocLazyLoad.inject(mod.default || mod));
-    },
-  });
-});
+        return import('./details.module').then((mod) =>
+          $ocLazyLoad.inject(mod.default || mod),
+        );
+      },
+    });
+  },
+);
 
 export default moduleName;

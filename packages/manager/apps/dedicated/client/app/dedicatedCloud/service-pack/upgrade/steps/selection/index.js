@@ -3,10 +3,7 @@ import noDefaultMeansOfPayment from '../../../../../components/no-default-means-
 import servicePackNoDefaultMeansOfPayment from '../../../components/no-default-means-of-payment';
 
 import component from './selection.component';
-import {
-  factory,
-  name as factoryName,
-} from './selection.factory';
+import { factory, name as factoryName } from './selection.factory';
 
 const moduleName = 'ovhManagerPccServicePackUpgradeSelection';
 

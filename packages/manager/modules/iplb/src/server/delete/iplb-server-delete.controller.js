@@ -1,7 +1,13 @@
 export default class IpLoadBalancerServerDeleteCtrl {
   /* @ngInject */
-  constructor($stateParams, $uibModalInstance, CucControllerHelper, farm, server,
-    IpLoadBalancerServerService) {
+  constructor(
+    $stateParams,
+    $uibModalInstance,
+    CucControllerHelper,
+    farm,
+    server,
+    IpLoadBalancerServerService,
+  ) {
     this.$stateParams = $stateParams;
     this.$uibModalInstance = $uibModalInstance;
     this.CucControllerHelper = CucControllerHelper;
@@ -16,10 +22,14 @@ export default class IpLoadBalancerServerDeleteCtrl {
 
   confirm() {
     this.delete = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () => this.IpLoadBalancerServerService
-        .delete(this.$stateParams.serviceName, this.farmId, this.serverId)
-        .then(response => this.$uibModalInstance.close(response))
-        .catch(error => this.$uibModalInstance.dismiss(error)),
+      loaderFunction: () =>
+        this.IpLoadBalancerServerService.delete(
+          this.$stateParams.serviceName,
+          this.farmId,
+          this.serverId,
+        )
+          .then((response) => this.$uibModalInstance.close(response))
+          .catch((error) => this.$uibModalInstance.dismiss(error)),
     });
     return this.delete.load();
   }

@@ -64,7 +64,10 @@ import uniqBy from 'lodash/uniqBy';
 
       if (includes(augmentedImage.tags, 'application')) {
         augmentedImage.apps = true;
-        augmentedImage.applications = intersection(augmentedImage.tags, cloudApplicationList);
+        augmentedImage.applications = intersection(
+          augmentedImage.tags,
+          cloudApplicationList,
+        );
       } else {
         augmentedImage.apps = false;
       }
@@ -106,16 +109,27 @@ import uniqBy from 'lodash/uniqBy';
 
     /* eslint-disable no-nested-ternary */
     groupImagesByType(images, imagesTypes, region = null) {
-      const filteredImages = this.constructor.getImagesByType(images, imagesTypes, region);
+      const filteredImages = this.constructor.getImagesByType(
+        images,
+        imagesTypes,
+        region,
+      );
       const groupedImages = {};
 
       forEach(filteredImages, (list, type) => {
         groupedImages[type] = groupBy(list, 'distribution');
         forEach(groupedImages[type], (version, distribution) => {
-          groupedImages[type][distribution] = uniqBy(forEach(version, (image) => {
-            delete image.region; // eslint-disable-line
-            delete image.id; // eslint-disable-line
-          }), 'name').sort((image1, image2) => (image1.name > image2.name ? -1 : image1.name < image2.name ? 1 : 0));
+          groupedImages[type][distribution] = uniqBy(
+            forEach(version, (image) => {
+              // eslint-disable-next-line no-param-reassign
+              delete image.region;
+              // eslint-disable-next-line no-param-reassign
+              delete image.id;
+            }),
+            'name',
+          ).sort((image1, image2) =>
+            image1.name > image2.name ? -1 : image1.name < image2.name ? 1 : 0,
+          );
         });
       });
 

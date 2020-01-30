@@ -7,10 +7,7 @@ import upgrade from '../../../service-pack/upgrade';
 import user from './models/user';
 
 import component from './options.component';
-import {
-  name as serviceName,
-  OptionsService,
-} from './options.service';
+import { name as serviceName, OptionsService } from './options.service';
 
 const moduleName = 'ovhManagerPccDashboardOptions';
 

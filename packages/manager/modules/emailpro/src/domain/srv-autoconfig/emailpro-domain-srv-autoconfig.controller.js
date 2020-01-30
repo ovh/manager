@@ -2,7 +2,11 @@ export default class EmailProDomainSrvAutoconfigCtrl {
   /* @ngInject */
   constructor($scope, $stateParams, $translate, EmailPro, EmailProDomains) {
     this.services = {
-      $scope, $stateParams, $translate, EmailPro, EmailProDomains,
+      $scope,
+      $stateParams,
+      $translate,
+      EmailPro,
+      EmailProDomains,
     };
 
     this.loading = {
@@ -19,14 +23,22 @@ export default class EmailProDomainSrvAutoconfigCtrl {
   init() {
     this.loading.step1 = true;
 
-    this.services
-      .EmailProDomains
-      .getDnsSettings(this.services.$stateParams.productId, this.domain.name)
+    this.services.EmailProDomains.getDnsSettings(
+      this.services.$stateParams.productId,
+      this.domain.name,
+    )
       .then(
-        (data) => { this.domainDiag = data; },
+        (data) => {
+          this.domainDiag = data;
+        },
         (failure) => {
           this.services.$scope.resetAction();
-          this.services.$scope.setMessage(this.services.$translate.instant('emailpro_tab_domain_diagnostic_add_field_failure'), failure);
+          this.services.$scope.setMessage(
+            this.services.$translate.instant(
+              'emailpro_tab_domain_diagnostic_add_field_failure',
+            ),
+            failure,
+          );
         },
       )
       .finally(() => {
@@ -44,15 +56,34 @@ export default class EmailProDomainSrvAutoconfigCtrl {
   configSRV() {
     this.services.$scope.resetAction();
 
-    this.services
-      .EmailProDomains
-      .addZoneDnsField(this.services.$stateParams.productId, this.prepareModel())
-      .then((success) => {
+    this.services.EmailProDomains.addZoneDnsField(
+      this.services.$stateParams.productId,
+      this.prepareModel(),
+    ).then(
+      (success) => {
         if (success.state === 'OK') {
-          this.services.$scope.setMessage(this.services.$translate.instant('emailpro_tab_domain_diagnostic_add_field_success'), { status: 'success' });
+          this.services.$scope.setMessage(
+            this.services.$translate.instant(
+              'emailpro_tab_domain_diagnostic_add_field_success',
+            ),
+            { status: 'success' },
+          );
         } else {
-          this.services.$scope.setMessage(this.services.$translate.instant('emailpro_tab_domain_diagnostic_add_field_failure'), { status: 'error' });
+          this.services.$scope.setMessage(
+            this.services.$translate.instant(
+              'emailpro_tab_domain_diagnostic_add_field_failure',
+            ),
+            { status: 'error' },
+          );
         }
-      }, failure => this.services.$scope.setMessage(this.services.$translate.instant('emailpro_tab_domain_diagnostic_add_field_failure'), failure));
+      },
+      (failure) =>
+        this.services.$scope.setMessage(
+          this.services.$translate.instant(
+            'emailpro_tab_domain_diagnostic_add_field_failure',
+          ),
+          failure,
+        ),
+    );
   }
 }

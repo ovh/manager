@@ -1,6 +1,6 @@
-/* global setTimeout */
-angular.module('managerApp').controller('PackXdslCtrl',
-  function PackXdslCtrl(
+angular
+  .module('managerApp')
+  .controller('PackXdslCtrl', function PackXdslCtrl(
     $q,
     $state,
     $transitions,
@@ -50,24 +50,30 @@ angular.module('managerApp').controller('PackXdslCtrl',
     };
 
     function enableModemIfHaveOne() {
-      return OvhApiXdslModem.v6().get({ xdslId: $stateParams.serviceName }).$promise.then(
-        () => {
-          self.disabledModem = false;
-        },
-        (err) => {
-          if (err.status !== noModemStatus) {
-            TucToastError(err);
-            return $q.reject(err);
-          }
-          return err;
-        },
-      );
+      return OvhApiXdslModem.v6()
+        .get({ xdslId: $stateParams.serviceName })
+        .$promise.then(
+          () => {
+            self.disabledModem = false;
+          },
+          (err) => {
+            if (err.status !== noModemStatus) {
+              TucToastError(err);
+              return $q.reject(err);
+            }
+            return err;
+          },
+        );
     }
 
     this.updateUIForState = function updateUIForState(state) {
       self.currentState = state.name;
       if ($stateParams.packName === PACK_XDSL.sdsl) {
-        if (state.name === 'telecom.packs.pack.xdsl' || state.name === 'telecom.packs.pack.xdsl.modem' || state.name === 'telecom.packs.pack.xdsl.tasks') {
+        if (
+          state.name === 'telecom.packs.pack.xdsl' ||
+          state.name === 'telecom.packs.pack.xdsl.modem' ||
+          state.name === 'telecom.packs.pack.xdsl.tasks'
+        ) {
           setAnim('anim');
           return;
         }
@@ -130,26 +136,47 @@ angular.module('managerApp').controller('PackXdslCtrl',
     =            ACTION            =
     ============================== */
 
-    self.accessDescriptionSave = function accessDescriptionSave(newAccessDescr) {
+    self.accessDescriptionSave = function accessDescriptionSave(
+      newAccessDescr,
+    ) {
       self.loading.save = true;
 
-      return OvhApiXdsl.v6().put({
-        xdslId: $stateParams.serviceName,
-      }, {
-        description: newAccessDescr,
-      }).$promise.then(() => {
-        self.access.description = newAccessDescr;
+      return OvhApiXdsl.v6()
+        .put(
+          {
+            xdslId: $stateParams.serviceName,
+          },
+          {
+            description: newAccessDescr,
+          },
+        )
+        .$promise.then(
+          () => {
+            self.access.description = newAccessDescr;
 
-        // rename in sidebar menu
-        SidebarMenu.updateItemDisplay({
-          title: newAccessDescr || self.access.serviceName,
-        }, $stateParams.serviceName, 'telecom-pack-section', $stateParams.packName);
-      }, (error) => {
-        TucToast.error([$translate.instant('xdsl_rename_error', $stateParams), error.data.message].join(' '));
-        return $q.reject(error);
-      }).finally(() => {
-        self.loading.save = false;
-      });
+            // rename in sidebar menu
+            SidebarMenu.updateItemDisplay(
+              {
+                title: newAccessDescr || self.access.serviceName,
+              },
+              $stateParams.serviceName,
+              'telecom-pack-section',
+              $stateParams.packName,
+            );
+          },
+          (error) => {
+            TucToast.error(
+              [
+                $translate.instant('xdsl_rename_error', $stateParams),
+                error.data.message,
+              ].join(' '),
+            );
+            return $q.reject(error);
+          },
+        )
+        .finally(() => {
+          self.loading.save = false;
+        });
     };
 
     /* -----  End of ACTION  ------*/
@@ -164,16 +191,18 @@ angular.module('managerApp').controller('PackXdslCtrl',
       self.disabledModem = true;
       enableModemIfHaveOne();
 
-      return $q.allSettled([
-        getPackXdsl().then((pack) => {
-          self.pack = pack;
-        }),
-        getXdsl().then((access) => {
-          self.access = access;
-        }),
-      ]).finally(() => {
-        self.loading.init = false;
-      });
+      return $q
+        .allSettled([
+          getPackXdsl().then((pack) => {
+            self.pack = pack;
+          }),
+          getXdsl().then((access) => {
+            self.access = access;
+          }),
+        ])
+        .finally(() => {
+          self.loading.init = false;
+        });
     }
 
     /* -----  End of INITIALIZATION  ------*/

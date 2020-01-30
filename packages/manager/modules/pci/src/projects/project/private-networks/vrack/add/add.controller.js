@@ -23,9 +23,12 @@ export default class {
     return this.getVracks()
       .catch((error) => {
         this.CucCloudMessage.error(
-          this.$translate.instant('pci_projects_project_network_private_vrack_create_init_error', {
-            message: get(error, 'data.message', ''),
-          }),
+          this.$translate.instant(
+            'pci_projects_project_network_private_vrack_create_init_error',
+            {
+              message: get(error, 'data.message', ''),
+            },
+          ),
           this.messageContainer,
         );
         this.goBack();
@@ -36,9 +39,10 @@ export default class {
   }
 
   getVracks() {
-    return this.OvhApiVrack.Aapi().query().$promise
-      .then((vracks) => {
-        this.vracks = vracks.map(vrack => ({
+    return this.OvhApiVrack.Aapi()
+      .query()
+      .$promise.then((vracks) => {
+        this.vracks = vracks.map((vrack) => ({
           ...vrack,
           displayName: vrack.name || vrack.id,
         }));
@@ -47,12 +51,18 @@ export default class {
 
   createVrack() {
     this.isLoading = true;
-    return (this.shouldCreateNewVrack ? this.createNewVrack() : this.associateVrack())
+    return (this.shouldCreateNewVrack
+      ? this.createNewVrack()
+      : this.associateVrack()
+    )
       .catch((error) => {
         this.CucCloudMessage.error(
-          this.$translate.instant('pci_projects_project_network_private_vrack_create_error', {
-            message: get(error, 'data.message', ''),
-          }),
+          this.$translate.instant(
+            'pci_projects_project_network_private_vrack_create_error',
+            {
+              message: get(error, 'data.message', ''),
+            },
+          ),
           this.messageContainer,
         );
         this.goBack();
@@ -63,14 +73,17 @@ export default class {
   }
 
   createNewVrack() {
-    return this.OvhApiCloudProject.v6().createVrack({
-      serviceName: this.projectId,
-    }).$promise
-      .then(({ id }) => this.onCreationSuccess(id));
+    return this.OvhApiCloudProject.v6()
+      .createVrack({
+        serviceName: this.projectId,
+      })
+      .$promise.then(({ id }) => this.onCreationSuccess(id));
   }
 
   associateVrack() {
-    return this.PciPrivateNetworksVrackAdd.associateVrack(this.vrack.id, this.projectId)
-      .then(() => this.onAssociationSuccess());
+    return this.PciPrivateNetworksVrackAdd.associateVrack(
+      this.vrack.id,
+      this.projectId,
+    ).then(() => this.onAssociationSuccess());
   }
 }

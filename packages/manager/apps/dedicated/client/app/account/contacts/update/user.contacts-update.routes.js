@@ -10,7 +10,6 @@ angular.module('UserAccount').config(($stateProvider, $urlRouterProvider) => {
     },
   });
 
-
   // TODO: Need refactoring this two steps ... Quickfix to manage legacy url correctly
 
   $stateProvider.state('app.account.contact-update', {
@@ -35,8 +34,7 @@ angular.module('UserAccount').config(($stateProvider, $urlRouterProvider) => {
     },
   });
 
-  $urlRouterProvider.when(
-    /^\/useraccount\/contact\//,
-    $location => $location.url($location.url().replace('/useraccount', '')),
+  $urlRouterProvider.when(/^\/useraccount\/contact\//, ($location) =>
+    $location.url($location.url().replace('/useraccount', '')),
   );
 });

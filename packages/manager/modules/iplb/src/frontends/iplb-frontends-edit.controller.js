@@ -7,9 +7,18 @@ import trim from 'lodash/trim';
 
 export default class IpLoadBalancerFrontendsEditCtrl {
   /* @ngInject */
-  constructor($q, $state, $stateParams, $translate, CucCloudMessage, CucControllerHelper,
-    IpLoadBalancerConstant, IpLoadBalancerFailoverIpService,
-    IpLoadBalancerFrontendsService, IpLoadBalancerZoneService) {
+  constructor(
+    $q,
+    $state,
+    $stateParams,
+    $translate,
+    CucCloudMessage,
+    CucControllerHelper,
+    IpLoadBalancerConstant,
+    IpLoadBalancerFailoverIpService,
+    IpLoadBalancerFrontendsService,
+    IpLoadBalancerZoneService,
+  ) {
     this.$q = $q;
     this.$state = $state;
     this.$stateParams = $stateParams;
@@ -26,41 +35,47 @@ export default class IpLoadBalancerFrontendsEditCtrl {
 
   initLoaders() {
     this.zones = this.CucControllerHelper.request.getArrayLoader({
-      loaderFunction: () => this.IpLoadBalancerZoneService.getZonesSelectData(
-        this.$stateParams.serviceName,
-      ),
+      loaderFunction: () =>
+        this.IpLoadBalancerZoneService.getZonesSelectData(
+          this.$stateParams.serviceName,
+        ),
     });
     this.farms = this.CucControllerHelper.request.getArrayLoader({
-      loaderFunction: () => this.IpLoadBalancerFrontendsService.getFarmsChoices(
-        this.getFarmType(),
-        this.$stateParams.serviceName,
-        this.frontend.zone,
-      ),
+      loaderFunction: () =>
+        this.IpLoadBalancerFrontendsService.getFarmsChoices(
+          this.getFarmType(),
+          this.$stateParams.serviceName,
+          this.frontend.zone,
+        ),
     });
     this.certificates = this.CucControllerHelper.request.getArrayLoader({
-      loaderFunction: () => this.IpLoadBalancerFrontendsService.getCertificatesChoices(
-        this.$stateParams.serviceName,
-      ),
+      loaderFunction: () =>
+        this.IpLoadBalancerFrontendsService.getCertificatesChoices(
+          this.$stateParams.serviceName,
+        ),
     });
     this.failoverIps = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () => this.IpLoadBalancerFailoverIpService.getFailoverIpsSelectData(
-        this.$stateParams.serviceName,
-      ),
+      loaderFunction: () =>
+        this.IpLoadBalancerFailoverIpService.getFailoverIpsSelectData(
+          this.$stateParams.serviceName,
+        ),
     });
     this.apiFrontend = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () => this.IpLoadBalancerFrontendsService.getAllFrontendsTypes(
-        this.$stateParams.serviceName,
-      )
-        .then((frontends) => {
-          const frontend = find(frontends, {
-            id: parseInt(this.$stateParams.frontendId, 10),
-          });
-          return this.IpLoadBalancerFrontendsService.getFrontend(
-            frontend.type,
-            this.$stateParams.serviceName,
-            this.$stateParams.frontendId,
-          );
-        }).then(frontend => this.parseFrontend(frontend)),
+      loaderFunction: () =>
+        this.IpLoadBalancerFrontendsService.getAllFrontendsTypes(
+          this.$stateParams.serviceName,
+        )
+          .then((frontends) => {
+            const frontend = find(frontends, {
+              id: parseInt(this.$stateParams.frontendId, 10),
+            });
+            return this.IpLoadBalancerFrontendsService.getFrontend(
+              frontend.type,
+              this.$stateParams.serviceName,
+              this.$stateParams.frontendId,
+            );
+          })
+          .then((frontend) => this.parseFrontend(frontend)),
     });
   }
 
@@ -80,7 +95,9 @@ export default class IpLoadBalancerFrontendsEditCtrl {
   getFarmName(farm) {
     const farmName = farm.displayName || farm.farmId;
     if (farm.farmId > 0) {
-      const farmType = this.$translate.instant(`iplb_frontend_add_protocol_${farm.type}`);
+      const farmType = this.$translate.instant(
+        `iplb_frontend_add_protocol_${farm.type}`,
+      );
       return `${farmName} (${farmType})`;
     }
     return farmName;
@@ -90,7 +107,9 @@ export default class IpLoadBalancerFrontendsEditCtrl {
     if (certificate.id <= 0) {
       return certificate.displayName;
     }
-    return certificate.displayName ? `${certificate.displayName} (${certificate.id})` : certificate.id;
+    return certificate.displayName
+      ? `${certificate.displayName} (${certificate.id})`
+      : certificate.id;
   }
 
   onProtocolChange() {
@@ -122,7 +141,8 @@ export default class IpLoadBalancerFrontendsEditCtrl {
         delete this.frontend.port;
         this.frontend.ssl = true;
         break;
-      default: break;
+      default:
+        break;
     }
 
     if (this.frontend.ssl) {
@@ -157,7 +177,8 @@ export default class IpLoadBalancerFrontendsEditCtrl {
 
     if (this.$stateParams.frontendId) {
       this.edition = true;
-      this.apiFrontend.load()
+      this.apiFrontend
+        .load()
         .then(() => (this.frontend.ssl ? this.certificates.load() : null))
         .then(() => {
           this.farms.load();
@@ -203,7 +224,8 @@ export default class IpLoadBalancerFrontendsEditCtrl {
       case 'udp':
         this.protocol = 'udp';
         break;
-      default: break;
+      default:
+        break;
     }
 
     if (has(frontend, 'allowedSource.length')) {
@@ -237,7 +259,10 @@ export default class IpLoadBalancerFrontendsEditCtrl {
       request.defaultFarmId = null;
     }
     if (this.frontend.allowedSource) {
-      request.allowedSource = map(this.frontend.allowedSource.split(','), source => trim(source));
+      request.allowedSource = map(
+        this.frontend.allowedSource.split(','),
+        (source) => trim(source),
+      );
     } else {
       request.allowedSource = [];
     }
@@ -260,8 +285,11 @@ export default class IpLoadBalancerFrontendsEditCtrl {
     }
     this.saving = true;
     this.CucCloudMessage.flushChildMessage();
-    return this.IpLoadBalancerFrontendsService
-      .createFrontend(this.type, this.$stateParams.serviceName, this.getCleanFrontend())
+    return this.IpLoadBalancerFrontendsService.createFrontend(
+      this.type,
+      this.$stateParams.serviceName,
+      this.getCleanFrontend(),
+    )
       .then(() => this.$state.go('network.iplb.detail.frontends'))
       .finally(() => {
         this.saving = false;
@@ -274,13 +302,12 @@ export default class IpLoadBalancerFrontendsEditCtrl {
     }
     this.saving = true;
     this.CucCloudMessage.flushChildMessage();
-    return this.IpLoadBalancerFrontendsService
-      .updateFrontend(
-        this.type,
-        this.$stateParams.serviceName,
-        this.frontend.frontendId,
-        this.getCleanFrontend(),
-      )
+    return this.IpLoadBalancerFrontendsService.updateFrontend(
+      this.type,
+      this.$stateParams.serviceName,
+      this.frontend.frontendId,
+      this.getCleanFrontend(),
+    )
       .then(() => this.$state.go('network.iplb.detail.frontends'))
       .finally(() => {
         this.saving = false;

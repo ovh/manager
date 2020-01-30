@@ -1,23 +1,30 @@
 <div data-ng-controller="HostingAutomatedEmailsRequestCtrl as ctrl">
-    <div data-wizard
-         data-wizard-on-cancel="resetAction"
-         data-wizard-on-finish="submitting"
-         data-wizard-title="title">
-
+    <div
+        data-wizard
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="submitting"
+        data-wizard-title="title"
+    >
         <div data-wizard-step>
             <div class="text-center" data-ng-if="ctrl.isLoading">
                 <oui-spinner></oui-spinner>
             </div>
 
             <div data-ng-if="!ctrl.isLoading" data-ng-switch="ctrl.action">
-                <p data-ng-switch-when="BLOCK"
-                   data-translate="hosting_tab_AUTOMATED_EMAILS_block_question"></p>
-                <p data-ng-switch-when="UNBLOCK"
-                   data-translate="hosting_tab_AUTOMATED_EMAILS_unblock_question"></p>
-                <div class="alert alert-warning" role="alert"
-                     data-ng-switch-when="PURGE"
-                     data-translate="hosting_tab_AUTOMATED_EMAILS_purge_question">
-                </div>
+                <p
+                    data-ng-switch-when="BLOCK"
+                    data-translate="hosting_tab_AUTOMATED_EMAILS_block_question"
+                ></p>
+                <p
+                    data-ng-switch-when="UNBLOCK"
+                    data-translate="hosting_tab_AUTOMATED_EMAILS_unblock_question"
+                ></p>
+                <div
+                    class="alert alert-warning"
+                    role="alert"
+                    data-ng-switch-when="PURGE"
+                    data-translate="hosting_tab_AUTOMATED_EMAILS_purge_question"
+                ></div>
             </div>
         </div>
     </div>

@@ -1,40 +1,54 @@
 <div data-ng-controller="PrivateDatabaseChangeRamCtrl as ramCtrl">
-
-    <div data-wizard
-         data-wizard-bread-crumb
-         data-wizard-on-cancel="resetAction"
-         data-wizard-on-finish="orderRam"
-         data-wizard-title="'privateDatabase_change_ram_title' | translate">
-
+    <div
+        data-wizard
+        data-wizard-bread-crumb
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="orderRam"
+        data-wizard-title="'privateDatabase_change_ram_title' | translate"
+    >
         <!-- Step 1: Select a capacity -->
-        <div data-wizard-step
-             data-wizard-step-valid="ramCtrl.model.capacity">
-
+        <div data-wizard-step data-wizard-step-valid="ramCtrl.model.capacity">
             <form name="orderRamForm">
-                <label class="oui-label" for="selectRamCapacity"
-                       data-translate="privateDatabase_order_select_ram"></label>
+                <label
+                    class="oui-label"
+                    for="selectRamCapacity"
+                    data-translate="privateDatabase_order_select_ram"
+                ></label>
                 <div class="oui-select">
-                    <select class="oui-select__input" name="capacity" id="selectRamCapacity"
-                            data-ng-disabled="ramCtrl.loading.availableRam"
-                            data-ng-model="ramCtrl.model.capacity"
-                            data-ng-options="ram + ('unit_size_MB' | translate) for ram in ramCtrl.data.availableRam | orderBy:sortRam">
-                        <option value="" disabled
-                                data-translate="privateDatabase_order_select_ram_placeholder"></option>
+                    <select
+                        class="oui-select__input"
+                        name="capacity"
+                        id="selectRamCapacity"
+                        data-ng-disabled="ramCtrl.loading.availableRam"
+                        data-ng-model="ramCtrl.model.capacity"
+                        data-ng-options="ram + ('unit_size_MB' | translate) for ram in ramCtrl.data.availableRam | orderBy:sortRam"
+                    >
+                        <option
+                            value=""
+                            disabled
+                            data-translate="privateDatabase_order_select_ram_placeholder"
+                        ></option>
                     </select>
-                    <span class="oui-icon oui-icon-chevron-down" aria-hidden="true"></span>
+                    <span
+                        class="oui-icon oui-icon-chevron-down"
+                        aria-hidden="true"
+                    ></span>
                 </div>
             </form>
 
-            <div class="alert alert-info mt-5" role="alert"
-                 data-translate="privateDatabase_order_select_ram_description">
-            </div>
+            <div
+                class="alert alert-info mt-5"
+                role="alert"
+                data-translate="privateDatabase_order_select_ram_description"
+            ></div>
         </div>
 
         <!-- Step 2: Durations -->
-        <div data-wizard-step
-             data-wizard-step-on-load="getDurations"
-             data-wizard-step-valid="ramCtrl.model.duration">
-
+        <div
+            data-wizard-step
+            data-wizard-step-on-load="getDurations"
+            data-wizard-step-valid="ramCtrl.model.duration"
+        >
             <p data-translate="privateDatabase_RAM_add_select_duration"></p>
 
             <div class="text-center" data-ng-if="ramCtrl.loading.durations">
@@ -43,15 +57,37 @@
             </div>
 
             <form name="orderRamForm" data-ng-if="!ramCtrl.loading.durations">
-                <div class="oui-radio"
-                     data-ng-repeat="duration in (ramCtrl.data.durations.available | orderBy:'duration':false) track by $index">
-                    <input type="radio" class="oui-radio__input" id="ramDuration-{{$index}}" name="ramDuration"
-                           data-ng-model="ramCtrl.model.duration"
-                           data-ng-value="duration">
-                    <label class="oui-radio__label-container" for="ramDuration-{{$index}}">
+                <div
+                    class="oui-radio"
+                    data-ng-repeat="duration in (ramCtrl.data.durations.available | orderBy:'duration':false) track by $index"
+                >
+                    <input
+                        type="radio"
+                        class="oui-radio__input"
+                        id="ramDuration-{{$index}}"
+                        name="ramDuration"
+                        data-ng-model="ramCtrl.model.duration"
+                        data-ng-value="duration"
+                    />
+                    <label
+                        class="oui-radio__label-container"
+                        for="ramDuration-{{$index}}"
+                    >
                         <span class="oui-radio__label">
-                            <span data-ng-bind="duration.duration | wucDuration:'longDate'"></span>&nbsp;:
-                            <span data-ng-bind-html="duration.prices | price: ramCtrl.data.ovhSubsidiary"></span>
+                            <span
+                                data-ng-if="ramCtrl.constructor.isProrataDuration(duration)"
+                                data-ng-bind-html="duration.duration | wucDuration:'longDate':{prorata:true}"
+                            >
+                            </span>
+                            <span
+                                data-ng-if="!ramCtrl.constructor.isProrataDuration(duration)"
+                                data-ng-bind-html="duration.duration | wucDuration:'longDate'"
+                            >
+                            </span
+                            >&nbsp;:
+                            <span
+                                data-ng-bind-html="duration.prices | price: ramCtrl.data.ovhSubsidiary"
+                            ></span>
                         </span>
                     </label>
                 </div>
@@ -59,22 +95,24 @@
         </div>
 
         <!-- Step 3: Contracts -->
-        <div data-wizard-step
-             data-wizard-step-on-load="loadContracts"
-             data-wizard-step-valid="ramCtrl.model.contract">
-
-            <div data-contracts="ramCtrl.model.duration.contracts"
-                 data-full-text="false"
-                 data-ng-model="ramCtrl.model.contract">
-            </div>
+        <div
+            data-wizard-step
+            data-wizard-step-on-load="loadContracts"
+            data-wizard-step-valid="ramCtrl.model.contract"
+        >
+            <div
+                data-contracts="ramCtrl.model.duration.contracts"
+                data-full-text="false"
+                data-ng-model="ramCtrl.model.contract"
+            ></div>
         </div>
 
-
         <!-- Step 4: Resume and validation -->
-        <div data-wizard-step
-             data-wizard-step-on-previous="backToContracts"
-             data-wizard-step-valid="!ramCtrl.loading.validation">
-
+        <div
+            data-wizard-step
+            data-wizard-step-on-previous="backToContracts"
+            data-wizard-step-valid="!ramCtrl.loading.validation"
+        >
             <p data-translate="privateDatabase_order_RAM_resume"></p>
 
             <div class="text-center" data-ng-if="ramCtrl.loading.validation">
@@ -85,34 +123,57 @@
             <div data-ng-if="!ramCtrl.loading.validation">
                 <table class="table table-condensed">
                     <tbody>
-                        <tr data-ng-repeat="detail in ramCtrl.model.duration.details track by $index">
-                            <th class="font-weight-normal" scope="row"
-                                data-ng-bind="detail.description"></th>
-                            <td class="font-weight-bold text-nowrap text-right"
-                                data-ng-bind-html="ramCtrl.getResumePrice(detail.totalPrice)"></td>
+                        <tr
+                            data-ng-repeat="detail in ramCtrl.model.duration.details track by $index"
+                        >
+                            <th
+                                class="font-weight-normal"
+                                scope="row"
+                                data-ng-bind="detail.description"
+                            ></th>
+                            <td
+                                class="font-weight-bold text-nowrap text-right"
+                                data-ng-bind-html="ramCtrl.getResumePrice(detail.totalPrice)"
+                            ></td>
                         </tr>
                     </tbody>
                     <tfoot>
                         <tr>
-                            <th class="text-right" scope="row"
-                                data-translate="privateDatabase_order_RAM_price_HT"></th>
-                            <td class="font-weight-bold text-right"
-                                data-ng-bind="ramCtrl.model.duration.prices.withoutTax.text"></td>
+                            <th
+                                class="text-right"
+                                scope="row"
+                                data-translate="privateDatabase_order_RAM_price_HT"
+                            ></th>
+                            <td
+                                class="font-weight-bold text-right"
+                                data-ng-bind="ramCtrl.model.duration.prices.withoutTax.text"
+                            ></td>
                         </tr>
                         <tr>
-                            <th class="text-right" scope="row"
-                                data-translate="privateDatabase_order_RAM_price_TTC"></th>
-                            <td class="font-weight-bold text-right"
-                                data-ng-bind="ramCtrl.model.duration.prices.withTax.text"></td>
+                            <th
+                                class="text-right"
+                                scope="row"
+                                data-translate="privateDatabase_order_RAM_price_TTC"
+                            ></th>
+                            <td
+                                class="font-weight-bold text-right"
+                                data-ng-bind="ramCtrl.model.duration.prices.withTax.text"
+                            ></td>
                         </tr>
                     </tfoot>
                 </table>
 
-                <div class="alert alert-info" role="alert"
-                     data-translate="privateDatabase_RAM_add_do_order"></div>
+                <div
+                    class="alert alert-info"
+                    role="alert"
+                    data-translate="privateDatabase_RAM_add_do_order"
+                ></div>
 
-                <div class="alert alert-warning" role="alert"
-                     data-translate="privateDatabase_RAM_add_do_order_warning"></div>
+                <div
+                    class="alert alert-warning"
+                    role="alert"
+                    data-translate="privateDatabase_RAM_add_do_order_warning"
+                ></div>
             </div>
         </div>
     </div>

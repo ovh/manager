@@ -1,63 +1,114 @@
-<h1 class="oui-header_3 oui-header_underline title-underlined"
-    data-ng-bind="'exchange_wizardHostedCreation_configureDNSZone_header' | translate"></h1>
+<h1
+    class="oui-header_3 oui-header_underline title-underlined"
+    data-ng-bind="'exchange_wizardHostedCreation_configureDNSZone_header' | translate"
+></h1>
 
 <oui-spinner data-ng-if="$ctrl.isLoading"></oui-spinner>
 
 <div data-ng-if="!$ctrl.isLoading">
-    <strong data-ng-bind="'exchange_wizardHostedCreation_configureDNSZone_summary' | translate"></strong>
+    <strong
+        data-ng-bind="'exchange_wizardHostedCreation_configureDNSZone_summary' | translate"
+    ></strong>
     <p class="mb-0">
-        <span data-ng-bind="'exchange_wizardHostedCreation_configureDNSZone_domainName' | translate"></span> :
+        <span
+            data-ng-bind="'exchange_wizardHostedCreation_configureDNSZone_domainName' | translate"
+        ></span>
+        :
         <span data-ng-bind="$ctrl.homepage.domainName"></span>
     </p>
     <p class="mb-0">
-        <span data-ng-bind="'exchange_wizardHostedCreation_configureDNSZone_authoritative' | translate"></span> :
-        <span data-ng-if="$ctrl.homepage.domainIsOnlyForExchange" data-ng-bind="'exchange_wizardHostedCreation_configureDNSZone_authoritative_yes' | translate"></span>
-        <span data-ng-if="!$ctrl.homepage.domainIsOnlyForExchange" data-ng-bind="'exchange_wizardHostedCreation_configureDNSZone_authoritative_no' | translate"></span>
+        <span
+            data-ng-bind="'exchange_wizardHostedCreation_configureDNSZone_authoritative' | translate"
+        ></span>
+        :
+        <span
+            data-ng-if="$ctrl.homepage.domainIsOnlyForExchange"
+            data-ng-bind="'exchange_wizardHostedCreation_configureDNSZone_authoritative_yes' | translate"
+        ></span>
+        <span
+            data-ng-if="!$ctrl.homepage.domainIsOnlyForExchange"
+            data-ng-bind="'exchange_wizardHostedCreation_configureDNSZone_authoritative_no' | translate"
+        ></span>
     </p>
-    <p class="mb-0">
-        <span data-ng-bind="'exchange_wizardHostedCreation_configureDNSZone_emailAdresses' | translate"></span> :
+    <div class="mb-0">
+        <span
+            data-ng-bind="'exchange_wizardHostedCreation_configureDNSZone_emailAdresses' | translate"
+        ></span>
+        :
         <ul data-ng-if="$ctrl.hasEmailAddresses">
-            <li data-ng-repeat="account in $ctrl.homepage.emailAccounts.list.results | orderBy:'login': false track by $index">
+            <li
+                data-ng-repeat="account in $ctrl.homepage.emailAccounts.list.results | orderBy:'login': false track by $index"
+            >
                 <span data-ng-if="account.displayName">
                     <span data-ng-bind="account.displayName"></span>
-                     -
+                    -
                 </span>
                 {{account.login}}@{{$ctrl.homepage.domainName}}
             </li>
         </ul>
-        <span data-ng-bind="'exchange_wizardHostedCreation_configureDNSZone_emailAdresses_non' | translate" data-ng-if="!$ctrl.hasEmailAddresses"></span>
-    </p>
-
-    <div class="mt-5" data-ng-if="$ctrl.homepage.domainIsOnlyForExchange === true && $ctrl.homepage.isAutoConfigurationMode === true">
-        <p class="mb-0" data-ng-bind-html="'exchange_wizardHostedCreation_configureDNSZone_auto_header' | translate"></p>
+        <span
+            data-ng-bind="'exchange_wizardHostedCreation_configureDNSZone_emailAdresses_non' | translate"
+            data-ng-if="!$ctrl.hasEmailAddresses"
+        ></span>
     </div>
 
-    <div class="mt-5" data-ng-if="$ctrl.homepage.domainIsOnlyForExchange === false || $ctrl.homepage.isAutoConfigurationMode === false">
-        <p data-ng-bind-html="'exchange_wizardHostedCreation_configureDNSZone_manual_header' | translate"></p>
+    <div
+        class="mt-5"
+        data-ng-if="$ctrl.homepage.domainIsOnlyForExchange === true && $ctrl.homepage.isAutoConfigurationMode === true"
+    >
+        <p
+            class="mb-0"
+            data-ng-bind-html="'exchange_wizardHostedCreation_configureDNSZone_auto_header' | translate"
+        ></p>
+    </div>
+
+    <div
+        class="mt-5"
+        data-ng-if="$ctrl.homepage.domainIsOnlyForExchange === false || $ctrl.homepage.isAutoConfigurationMode === false"
+    >
+        <p
+            data-ng-bind-html="'exchange_wizardHostedCreation_configureDNSZone_manual_header' | translate"
+        ></p>
         <p>
-            <span data-ng-bind-html="'exchange_wizardHostedCreation_configureDNSZone_manual_explanation_part_1' | translate"></span>
-            <span class="as-superscript"
-                  data-oui-tooltip="{{::$ctrl.tooltipText}}"
-                  data-oui-tooltip-placement="top-left">
+            <span
+                data-ng-bind-html="'exchange_wizardHostedCreation_configureDNSZone_manual_explanation_part_1' | translate"
+            ></span>
+            <span
+                class="as-superscript"
+                data-oui-tooltip="{{::$ctrl.tooltipText}}"
+                data-oui-tooltip-placement="top-left"
+            >
                 <span class="fa fa-question-circle" aria-hidden="true"></span>
             </span>
-            <span data-ng-bind-html="'exchange_wizardHostedCreation_configureDNSZone_manual_explanation_part_2' | translate:{ t0: $ctrl.homepage.domainName }"></span>
+            <span
+                data-ng-bind-html="'exchange_wizardHostedCreation_configureDNSZone_manual_explanation_part_2' | translate:{ t0: $ctrl.homepage.domainName }"
+            ></span>
         </p>
 
         <div class="table-responsive">
             <table class="table table-hover table-striped">
                 <thead>
                     <tr>
-                        <th scope="col" data-ng-bind-html="'exchange_wizardHostedCreation_configureDNSZone_manual_table_headers_fieldType' | translate"></th>
-                        <th scope="col" data-ng-bind-html="'exchange_wizardHostedCreation_configureDNSZone_manual_table_headers_data' | translate"></th>
+                        <th
+                            scope="col"
+                            data-ng-bind-html="'exchange_wizardHostedCreation_configureDNSZone_manual_table_headers_fieldType' | translate"
+                        ></th>
+                        <th
+                            scope="col"
+                            data-ng-bind-html="'exchange_wizardHostedCreation_configureDNSZone_manual_table_headers_data' | translate"
+                        ></th>
                     </tr>
                 </thead>
 
                 <tbody>
                     <tr>
-                        <th scope="row" data-ng-bind-html="'exchange_wizardHostedCreation_configureDNSZone_manual_table_mx' | translate"></th>
+                        <th
+                            scope="row"
+                            data-ng-bind-html="'exchange_wizardHostedCreation_configureDNSZone_manual_table_mx' | translate"
+                        ></th>
                         <td>
-                            <span data-ng-bind-html="
+                            <span
+                                data-ng-bind-html="
                                 'exchange_tab_domain_diagnostic_mx_antispam_config' | translate: {
                                     t0: $ctrl.domainDiagnostic.mx.spam[0].priority,
                                     t1: $ctrl.domainDiagnostic.mx.spam[0].target,
@@ -67,19 +118,25 @@
                                     t5: $ctrl.domainDiagnostic.mx.spam[2].target,
                                     t6: $ctrl.domainDiagnostic.mx.spam[3].priority,
                                     t7: $ctrl.domainDiagnostic.mx.spam[3].target
-                                }"></span>
+                                }"
+                            ></span>
                         </td>
                     </tr>
                     <tr>
-                        <th scope="row" data-ng-bind-html="'exchange_wizardHostedCreation_configureDNSZone_manual_table_srv' | translate"></th>
+                        <th
+                            scope="row"
+                            data-ng-bind-html="'exchange_wizardHostedCreation_configureDNSZone_manual_table_srv' | translate"
+                        ></th>
                         <td>
-                            <span data-ng-bind-html="'exchange_tab_domain_diagnostic_srv_config' | translate:{
+                            <span
+                                data-ng-bind-html="'exchange_tab_domain_diagnostic_srv_config' | translate:{
                                 t0: $ctrl.domainDiagnostic.srv.subDomain,
                                 t1: $ctrl.domainDiagnostic.srv.priority,
                                 t2: $ctrl.domainDiagnostic.srv.weight,
                                 t3: $ctrl.domainDiagnostic.srv.port,
                                 t4: $ctrl.domainDiagnostic.srv.target
-                            }"></span>
+                            }"
+                            ></span>
                         </td>
                     </tr>
                 </tbody>
@@ -89,18 +146,20 @@
 
     <div class="row mt-5">
         <div class="col-md-2">
-            <button data-ng-click="$ctrl.goBackToEmailCustomization()"
-                    type="button"
-                    class="oui-button oui-button_secondary"
-                    data-ng-bind="'exchange_wizardHostedCreation_configureDNSZone_returnButton' | translate">
-            </button>
+            <button
+                data-ng-click="$ctrl.goBackToEmailCustomization()"
+                type="button"
+                class="oui-button oui-button_secondary"
+                data-ng-bind="'exchange_wizardHostedCreation_configureDNSZone_returnButton' | translate"
+            ></button>
         </div>
         <div class="col-md-offset-8 col-md-2">
-            <button data-ng-click="$ctrl.closeWizard()"
-                    type="button"
-                    class="oui-button oui-button_primary"
-                    data-ng-bind="'exchange_wizardHostedCreation_configureDNSZone_closeButton' | translate">
-            </button>
+            <button
+                data-ng-click="$ctrl.closeWizard()"
+                type="button"
+                class="oui-button oui-button_primary"
+                data-ng-bind="'exchange_wizardHostedCreation_configureDNSZone_closeButton' | translate"
+            ></button>
         </div>
     </div>
 </div>

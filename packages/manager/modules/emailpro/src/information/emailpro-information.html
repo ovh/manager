@@ -1,4 +1,7 @@
-<div class="container-fluid px-0" data-ng-controller="EmailProTabInformationCtrl">
+<div
+    class="container-fluid px-0"
+    data-ng-controller="EmailProTabInformationCtrl as $ctrl"
+>
     <div class="row">
         <div class="col-md-9">
             <div data-ovh-alert="{{alerts.main}}"></div>
@@ -6,99 +9,140 @@
             <div class="row d-md-flex">
                 <div class="col-sm-6 mb-5">
                     <div class="oui-tile h-100">
-                        <h3 class="oui-tile__title oui-header_4" data-translate="emailpro_tab_INFORMATIONS_summary"></h3>
+                        <h3
+                            class="oui-tile__title oui-header_4"
+                            data-translate="emailpro_tab_INFORMATIONS_summary"
+                        ></h3>
                         <div class="oui-tile__body">
                             <ul class="list-unstyled">
                                 <li class="oui-tile__item">
                                     <div class="oui-tile__definition">
-                                        <strong class="oui-tile__term d-block"
-                                                data-translate="emailpro_dashboard_name"></strong>
-                                        <span data-ng-bind="exchange.domain"></span>
+                                        <strong
+                                            class="oui-tile__term d-block"
+                                            data-translate="emailpro_dashboard_name"
+                                        ></strong>
+                                        <span
+                                            data-ng-bind="exchange.domain"
+                                        ></span>
                                     </div>
                                 </li>
-                                <li data-ng-if="exchange.serverDiagnostic.version === 15"
-                                    class="oui-tile__item">
+                                <li
+                                    data-ng-if="exchange.serverDiagnostic.version === 15"
+                                    class="oui-tile__item"
+                                >
                                     <div class="oui-tile__definition">
-                                        <strong class="oui-tile__term d-block"
-                                                data-translate="emailpro_dashboard_diag"></strong>
-                                        <span class="mt-2 d-inline-block pointer">
-                                            <span data-ng-if="!exchange.offer == !accountTypeProvider"
-                                                  data-ng-class="{'oui-status oui-status_success': exchange.serverDiagnostic.isAValid,
+                                        <strong
+                                            class="oui-tile__term d-block"
+                                            data-translate="emailpro_dashboard_diag"
+                                        ></strong>
+                                        <span
+                                            class="mt-2 d-inline-block pointer"
+                                        >
+                                            <span
+                                                data-ng-if="!exchange.offer == !accountTypeProvider"
+                                                data-ng-class="{'oui-status oui-status_success': exchange.serverDiagnostic.isAValid,
                                                               'oui-status oui-status_error': !exchange.serverDiagnostic.isAValid}"
-                                                  data-simplepopover="{{exchange.serverDiagnostic.aTooltip}}"
-                                                  data-simplepopover-title="{{ 'emailpro_dashboard_diag_a_tooltip_title' | translate }}"
-                                                  data-simplepopover-placement="right"
-                                                  data-simplepopover-single="true"
-                                                  data-translate="emailpro_dashboard_diag_a_label"></span>
-                                            <span data-ng-if="exchange.offer == accountTypeDedicated"
-                                                  data-ng-class="{'oui-status oui-status_success': exchange.serverDiagnostic.isAaaaValid,
+                                                data-simplepopover="{{exchange.serverDiagnostic.aTooltip}}"
+                                                data-simplepopover-title="{{ 'emailpro_dashboard_diag_a_tooltip_title' | translate }}"
+                                                data-simplepopover-placement="right"
+                                                data-simplepopover-single="true"
+                                                data-translate="emailpro_dashboard_diag_a_label"
+                                            ></span>
+                                            <span
+                                                data-ng-if="exchange.offer == accountTypeDedicated"
+                                                data-ng-class="{'oui-status oui-status_success': exchange.serverDiagnostic.isAaaaValid,
                                                               'oui-status oui-status_error': !exchange.serverDiagnostic.isAaaaValid}"
-                                                  data-simplepopover="{{exchange.serverDiagnostic.aaaaTooltip}}"
-                                                  data-simplepopover-title="{{ 'emailpro_dashboard_diag_aaaa_tooltip_title' | translate }}"
-                                                  data-simplepopover-placement="bottom"
-                                                  data-simplepopover-single="true"
-                                                  data-translate="emailpro_dashboard_diag_aaaa_label"></span>
-                                            <span data-ng-if="exchange.offer == accountTypeDedicated"
-                                                  data-ng-class="{'oui-status oui-status_success': exchange.serverDiagnostic.isPtrValid,
+                                                data-simplepopover="{{exchange.serverDiagnostic.aaaaTooltip}}"
+                                                data-simplepopover-title="{{ 'emailpro_dashboard_diag_aaaa_tooltip_title' | translate }}"
+                                                data-simplepopover-placement="bottom"
+                                                data-simplepopover-single="true"
+                                                data-translate="emailpro_dashboard_diag_aaaa_label"
+                                            ></span>
+                                            <span
+                                                data-ng-if="exchange.offer == accountTypeDedicated"
+                                                data-ng-class="{'oui-status oui-status_success': exchange.serverDiagnostic.isPtrValid,
                                                               'oui-status oui-status_error': !exchange.serverDiagnostic.isPtrValid}"
-                                                  data-simplepopover="{{exchange.serverDiagnostic.ptrTooltip}}"
-                                                  data-simplepopover-title="{{ 'emailpro_dashboard_diag_ptr_tooltip_title' | translate }}"
-                                                  data-simplepopover-placement="bottom"
-                                                  data-simplepopover-single="true"
-                                                  data-translate="emailpro_dashboard_diag_ptr_label"></span>
-                                            <span data-ng-if="exchange.offer == accountTypeDedicated"
-                                                  data-ng-class="{'oui-status oui-status_success': exchange.serverDiagnostic.isPtrV6Valid,
+                                                data-simplepopover="{{exchange.serverDiagnostic.ptrTooltip}}"
+                                                data-simplepopover-title="{{ 'emailpro_dashboard_diag_ptr_tooltip_title' | translate }}"
+                                                data-simplepopover-placement="bottom"
+                                                data-simplepopover-single="true"
+                                                data-translate="emailpro_dashboard_diag_ptr_label"
+                                            ></span>
+                                            <span
+                                                data-ng-if="exchange.offer == accountTypeDedicated"
+                                                data-ng-class="{'oui-status oui-status_success': exchange.serverDiagnostic.isPtrV6Valid,
                                                               'oui-status oui-status_error': !exchange.serverDiagnostic.isPtrV6Valid}"
-                                                  data-simplepopover="{{exchange.serverDiagnostic.ptrv6Tooltip}}"
-                                                  data-simplepopover-title="{{ 'emailpro_dashboard_diag_ptrv6_tooltip_title' | translate }}"
-                                                  data-simplepopover-placement="bottom"
-                                                  data-simplepopover-single="true"
-                                                  data-translate="emailpro_dashboard_diag_ptrv6_label">
+                                                data-simplepopover="{{exchange.serverDiagnostic.ptrv6Tooltip}}"
+                                                data-simplepopover-title="{{ 'emailpro_dashboard_diag_ptrv6_tooltip_title' | translate }}"
+                                                data-simplepopover-placement="bottom"
+                                                data-simplepopover-single="true"
+                                                data-translate="emailpro_dashboard_diag_ptrv6_label"
+                                            >
                                             </span>
                                         </span>
                                     </div>
                                 </li>
-                                <li data-ng-if="exchange.sslExpirationDate || displayRenewDate()"
-                                    class="oui-tile__item">
+                                <li
+                                    data-ng-if="exchange.sslExpirationDate || displayRenewDate()"
+                                    class="oui-tile__item"
+                                >
                                     <div class="oui-tile__definition">
-                                        <strong class="oui-tile__term d-block"
-                                                data-ng-if="exchange.sslExpirationDate"
-                                                data-translate="emailpro_dashboard_ssl_expiration"></strong>
-                                        <strong class="oui-tile__term d-block"
-                                                data-ng-if="displayRenewDate()"
-                                                data-translate="emailpro_dashboard_expiration"></strong>
-                                        <span data-ng-if="displayRenewDate()"
-                                              data-ng-bind="exchange.expiration | date:'mediumDate'"></span>
+                                        <strong
+                                            class="oui-tile__term d-block"
+                                            data-ng-if="exchange.sslExpirationDate"
+                                            data-translate="emailpro_dashboard_ssl_expiration"
+                                        ></strong>
+                                        <strong
+                                            class="oui-tile__term d-block"
+                                            data-ng-if="displayRenewDate()"
+                                            data-translate="emailpro_dashboard_expiration"
+                                        ></strong>
+                                        <span
+                                            data-ng-if="displayRenewDate()"
+                                            data-ng-bind="exchange.expiration | date:'mediumDate'"
+                                        ></span>
                                     </div>
                                 </li>
                                 <li
                                     class="oui-tile__item"
-                                    data-ng-if="exchange.isMXPlan">
+                                    data-ng-if="exchange.isMXPlan"
+                                >
                                     <div class="oui-tile__definition">
                                         <strong
                                             class="oui-tile__term d-block"
-                                            data-translate="emailpro_dashboard_domain_offer"></strong>
-                                        <span data-ng-bind="emailDomain.offer"></span>
+                                            data-translate="emailpro_dashboard_domain_offer"
+                                        ></strong>
+                                        <span
+                                            data-ng-bind="emailDomain.offer"
+                                        ></span>
                                     </div>
                                 </li>
                                 <li
                                     class="oui-tile__item"
-                                    data-ng-if="exchange.isMXPlan">
+                                    data-ng-if="exchange.isMXPlan"
+                                >
                                     <div class="oui-tile__definition">
                                         <strong
                                             class="oui-tile__term d-block"
-                                            data-translate="emailpro_dashboard_domain_forMXPlan"></strong>
-                                        <span data-translate="{{:: exchange.associatedDomainName }}"></span>
+                                            data-translate="emailpro_dashboard_domain_forMXPlan"
+                                        ></strong>
+                                        <span
+                                            data-translate="{{:: exchange.associatedDomainName }}"
+                                        ></span>
                                     </div>
                                 </li>
                                 <li
                                     class="oui-tile__item"
-                                    data-ng-if="exchange.isMXPlan">
+                                    data-ng-if="exchange.isMXPlan"
+                                >
                                     <div class="oui-tile__definition">
                                         <strong
                                             class="oui-tile__term d-block"
-                                            data-translate="emailpro_dashboard_domain_filer"></strong>
-                                        <span data-ng-bind="emailDomain.filerz"></span>
+                                            data-translate="emailpro_dashboard_domain_filer"
+                                        ></strong>
+                                        <span
+                                            data-ng-bind="emailDomain.filerz"
+                                        ></span>
                                     </div>
                                 </li>
                             </ul>
@@ -107,93 +151,150 @@
                 </div>
                 <div class="col-sm-6 mb-5">
                     <div class="oui-tile h-100">
-                        <h3 class="oui-tile__title oui-header_4" data-translate="emailpro_tab_INFORMATIONS_stats"></h3>
+                        <h3
+                            class="oui-tile__title oui-header_4"
+                            data-translate="emailpro_tab_INFORMATIONS_stats"
+                        ></h3>
                         <div class="oui-tile__body">
                             <ul class="list-unstyled">
                                 <li
                                     class="oui-tile__item"
-                                    data-ng-if="!exchange.isMXPlan">
+                                    data-ng-if="!exchange.isMXPlan"
+                                >
                                     <div class="oui-tile__definition">
                                         <strong
                                             class="oui-tile__term d-block"
-                                            data-translate="emailpro_dashboard_domains"></strong>
-                                        <span data-ng-bind="exchange.domainsNumber"></span>
+                                            data-translate="emailpro_dashboard_domains"
+                                        ></strong>
+                                        <span
+                                            data-ng-bind="exchange.domainsNumber"
+                                        ></span>
                                     </div>
                                 </li>
                                 <li class="oui-tile__item">
                                     <div class="oui-tile__definition">
-                                        <strong class="oui-tile__term d-block" data-translate="emailpro_dashboard_accounts"></strong>
-                                        <div class="d-flex justify-content-between">
-                                            <span data-ng-if="exchange.isMXPlan"
-                                                  data-ng-bind="accountsConfigured.length + ' / ' + exchange.accountsNumber"></span>
-                                            <span data-ng-if="!exchange.isMXPlan"
-                                                  data-ng-bind="exchange.accountsNumber"></span>
+                                        <strong
+                                            class="oui-tile__term d-block"
+                                            data-translate="emailpro_dashboard_accounts"
+                                        ></strong>
+                                        <div
+                                            class="d-flex justify-content-between"
+                                        >
+                                            <span
+                                                data-ng-if="exchange.isMXPlan"
+                                                data-ng-bind="accountsConfigured.length + ' / ' + exchange.accountsNumber"
+                                            ></span>
+                                            <span
+                                                data-ng-if="!exchange.isMXPlan"
+                                                data-ng-bind="exchange.accountsNumber"
+                                            ></span>
                                             <oui-action-menu
                                                 data-ng-if="exchange.isMXPlan && exchange.accountsNumber <= 100"
                                                 data-compact
-                                                data-align="end">
+                                                data-align="end"
+                                            >
                                                 <oui-action-menu-item
-                                                    data-href="#/configuration/mx_plan?domain={{exchange.associatedDomainName}}"
-                                                    data-external>
+                                                    data-href="{{ $ctrl.upgradeLink }}">
                                                     <span data-translate="emailpro_dashboard_accounts_upgrade_mxPlan"></span>
                                                 </oui-action-menu-item>
                                             </oui-action-menu>
                                         </div>
                                     </div>
                                 </li>
-                                <li class="oui-tile__item"
-                                    data-ng-if="exchange.isMXPlan">
+                                <li
+                                    class="oui-tile__item"
+                                    data-ng-if="exchange.isMXPlan"
+                                >
                                     <div class="oui-tile__definition">
-                                        <strong class="oui-tile__term d-block" data-translate="emailpro_dashboard_redirections"></strong>
-                                        <span data-ng-bind="redirections.length + ' / ' + quotas.redirection"></span>
+                                        <strong
+                                            class="oui-tile__term d-block"
+                                            data-translate="emailpro_dashboard_redirections"
+                                        ></strong>
+                                        <span
+                                            data-ng-bind="redirections.length + ' / ' + quotas.redirection"
+                                        ></span>
                                     </div>
                                 </li>
 
-                                <li class="oui-tile__item"
-                                    data-ng-if="exchange.isMXPlan">
+                                <li
+                                    class="oui-tile__item"
+                                    data-ng-if="exchange.isMXPlan"
+                                >
                                     <div class="oui-tile__definition">
-                                        <strong class="oui-tile__term d-block" data-translate="emailpro_dashboard_mailingLists"></strong>
-                                        <span data-ng-bind="mailingLists.length + ' / ' + quotas.mailingList"></span>
+                                        <strong
+                                            class="oui-tile__term d-block"
+                                            data-translate="emailpro_dashboard_mailingLists"
+                                        ></strong>
+                                        <span
+                                            data-ng-bind="mailingLists.length + ' / ' + quotas.mailingList"
+                                        ></span>
                                     </div>
                                 </li>
                                 <li class="oui-tile__item">
                                     <div class="oui-tile__definition">
-                                        <strong class="oui-tile__term d-block" data-translate="emailpro_dashboard_tasks"></strong>
-                                        <span data-ng-bind="exchange.tasksNumber"></span>
+                                        <strong
+                                            class="oui-tile__term d-block"
+                                            data-translate="emailpro_dashboard_tasks"
+                                        ></strong>
+                                        <span
+                                            data-ng-bind="exchange.tasksNumber"
+                                        ></span>
                                     </div>
                                 </li>
-                                <li data-ng-if="exchange.diskPercent"
-                                    class="oui-tile__item">
+                                <li
+                                    data-ng-if="exchange.diskPercent"
+                                    class="oui-tile__item"
+                                >
                                     <div class="oui-tile__definition">
                                         <strong class="oui-tile__term d-block">
-                                            <span data-ng-bind-html="'vps_dashboard_disk_usage' | translate"></span>
-                                            <span class="fa fa-info-circle pointer"
-                                                  aria-hidden="true"
-                                                  data-oui-tooltip="{{ 'emailpro_action_order_space_disk_tooltip' | translate }}"></span>
+                                            <span
+                                                data-ng-bind-html="'vps_dashboard_disk_usage' | translate"
+                                            ></span>
+                                            <span
+                                                class="fa fa-info-circle pointer"
+                                                aria-hidden="true"
+                                                data-oui-tooltip="{{ 'emailpro_action_order_space_disk_tooltip' | translate }}"
+                                            ></span>
                                         </strong>
                                         <div>
                                             <div class="row">
                                                 <div class="col-md-7">
-                                                    <div class="progress"
-                                                         data-ng-class="{'progress-success' : exchange.diskPercent < 51,
+                                                    <div
+                                                        class="progress"
+                                                        data-ng-class="{'progress-success' : exchange.diskPercent < 51,
                                                                          'progress-warning' : exchange.diskPercent > 50 && exchange.diskPercent < 81,
-                                                                         'progress-danger' : exchange.diskPercent > 80 }">
-                                                        <div class="progress-bar" data-ng-style="{'width': exchange.diskPercent + '%'}"></div>
+                                                                         'progress-danger' : exchange.diskPercent > 80 }"
+                                                    >
+                                                        <div
+                                                            class="progress-bar"
+                                                            data-ng-style="{'width': exchange.diskPercent + '%'}"
+                                                        ></div>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-5">
-                                                    <span data-ng-bind="exchange.currentDiskUsage.value"></span>
-                                                    <span data-ng-bind="'unit_size_'+ exchange.currentDiskUsage.unit | translate"></span> /
-                                                    <span data-ng-bind="exchange.totalDiskSize.value"></span>
-                                                    <span data-ng-bind="'unit_size_'+ exchange.totalDiskSize.unit | translate"></span>
+                                                    <span
+                                                        data-ng-bind="exchange.currentDiskUsage.value"
+                                                    ></span>
+                                                    <span
+                                                        data-ng-bind="'unit_size_'+ exchange.currentDiskUsage.unit | translate"
+                                                    ></span>
+                                                    /
+                                                    <span
+                                                        data-ng-bind="exchange.totalDiskSize.value"
+                                                    ></span>
+                                                    <span
+                                                        data-ng-bind="'unit_size_'+ exchange.totalDiskSize.unit | translate"
+                                                    ></span>
                                                 </div>
                                             </div>
-                                            <button class="btn btn-default btn-block" type="button"
-                                                    data-ng-if="displayOrderDiskSpace()"
-                                                    data-ng-disabled="is25g();"
-                                                    data-ng-click="orderDiskSpace()"
-                                                    data-translate="emailpro_action_order_space_disk">
-                                            </button>
+                                            <button
+                                                class="btn btn-default btn-block"
+                                                type="button"
+                                                data-ng-if="displayOrderDiskSpace()"
+                                                data-ng-disabled="is25g();"
+                                                data-ng-click="orderDiskSpace()"
+                                                data-translate="emailpro_action_order_space_disk"
+                                            ></button>
                                         </div>
                                     </div>
                                 </li>
@@ -205,34 +306,64 @@
         </div>
         <div class="col-md-3">
             <div class="oui-tile mb-5">
-                <h3 class="oui-tile__title oui-header_4" data-translate="emailpro_tab_INFORMATIONS_connexion"></h3>
+                <h3
+                    class="oui-tile__title oui-header_4"
+                    data-translate="emailpro_tab_INFORMATIONS_connexion"
+                ></h3>
                 <div class="oui-tile__body">
                     <ul class="list-unstyled">
                         <li class="oui-tile__item">
                             <div class="oui-tile__definition">
-                                <strong class="oui-tile__term d-block" data-translate="emailpro_tab_INFORMATIONS_webmail"></strong>
+                                <strong
+                                    class="oui-tile__term d-block"
+                                    data-translate="emailpro_tab_INFORMATIONS_webmail"
+                                ></strong>
                                 <a
                                     data-ng-href="https://{{exchange.webUrl}}"
                                     class="d-block word-break oui-link_icon"
                                     target="_blank"
-                                    rel="noopener">
-                                    <span data-ng-bind="'https://' + exchange.webUrl"></span>
-                                    <span class="oui-icon oui-icon-external_link" aria-hidden="true"></span>
-                                    <span class="sr-only" data-translate="common_newtab"></span>
+                                    rel="noopener"
+                                >
+                                    <span
+                                        data-ng-bind="'https://' + exchange.webUrl"
+                                    ></span>
+                                    <span
+                                        class="oui-icon oui-icon-external_link"
+                                        aria-hidden="true"
+                                    ></span>
+                                    <span
+                                        class="sr-only"
+                                        data-translate="common_newtab"
+                                    ></span>
                                 </a>
                             </div>
                         </li>
-                        <li class="oui-tile__item" data-ng-if="!exchange.isMXPlan">
+                        <li
+                            class="oui-tile__item"
+                            data-ng-if="!exchange.isMXPlan"
+                        >
                             <div class="oui-tile__definition">
-                                <strong class="oui-tile__term d-block" data-translate="emailpro_tab_INFORMATIONS_messaging"></strong>
+                                <strong
+                                    class="oui-tile__term d-block"
+                                    data-translate="emailpro_tab_INFORMATIONS_messaging"
+                                ></strong>
                                 <a
                                     data-ng-href="{{ displayGuides }}"
                                     class="d-block word-break oui-link_icon"
                                     target="_blank"
-                                    rel="noopener">
-                                    <span data-translate="emailpro_dashboard_guides_url"></span>
-                                    <span class="oui-icon oui-icon-external_link" aria-hidden="true"></span>
-                                    <span class="sr-only" data-translate="common_newtab"></span>
+                                    rel="noopener"
+                                >
+                                    <span
+                                        data-translate="emailpro_dashboard_guides_url"
+                                    ></span>
+                                    <span
+                                        class="oui-icon oui-icon-external_link"
+                                        aria-hidden="true"
+                                    ></span>
+                                    <span
+                                        class="sr-only"
+                                        data-translate="common_newtab"
+                                    ></span>
                                 </a>
                             </div>
                         </li>
@@ -240,40 +371,71 @@
                 </div>
             </div>
             <div class="oui-tile mb-5" data-ng-if="sharepoint">
-                <h3 class="oui-tile__title oui-header_4" data-translate="emailpro_tab_INFORMATIONS_sharepoint"></h3>
+                <h3
+                    class="oui-tile__title oui-header_4"
+                    data-translate="emailpro_tab_INFORMATIONS_sharepoint"
+                ></h3>
                 <div class="oui-tile__body">
                     <ul class="list-unstyled">
                         <li class="oui-tile__item">
                             <div class="oui-tile__definition">
-                                <strong class="oui-tile__term d-block" data-translate="emailpro_tab_INFORMATIONS_sharepoint_url"></strong>
-                                <a class="d-block word-break" target="_blank"
-                                   data-ng-href="https://{{sharepoint.url}}"
-                                   data-ng-hide="sharepoint.state === 'creating'">
-                                    <span data-ng-bind="'https://' + sharepoint.url"></span>
-                                    <span class="fa fa-external-link ml-2" aria-hidden="true"></span>
+                                <strong
+                                    class="oui-tile__term d-block"
+                                    data-translate="emailpro_tab_INFORMATIONS_sharepoint_url"
+                                ></strong>
+                                <a
+                                    class="d-block word-break"
+                                    target="_blank"
+                                    data-ng-href="https://{{sharepoint.url}}"
+                                    data-ng-hide="sharepoint.state === 'creating'"
+                                >
+                                    <span
+                                        data-ng-bind="'https://' + sharepoint.url"
+                                    ></span>
+                                    <span
+                                        class="fa fa-external-link ml-2"
+                                        aria-hidden="true"
+                                    ></span>
                                 </a>
-                                <span data-translate="emailpro_tab_INFORMATIONS_wait_activation"
-                                      data-ng-show="sharepoint.state === 'creating'"></span>
+                                <span
+                                    data-translate="emailpro_tab_INFORMATIONS_wait_activation"
+                                    data-ng-show="sharepoint.state === 'creating'"
+                                ></span>
                             </div>
                         </li>
                         <li class="oui-tile__item">
                             <div class="oui-tile__definition">
-                                <a data-ng-href="#/configuration/sharepoint/{{exchange.domain}}/{{sharepoint.domain}}" class="d-block word-break">
-                                    <span data-translate="emailpro_tab_INFORMATIONS_service_url"></span>
-                                    <span class="fa fa-external-link ml-2" aria-hidden="true"></span>
+                                <a
+                                    data-ng-href="#/configuration/sharepoint/{{exchange.domain}}/{{sharepoint.domain}}"
+                                    class="d-block word-break"
+                                >
+                                    <span
+                                        data-translate="emailpro_tab_INFORMATIONS_service_url"
+                                    ></span>
+                                    <span
+                                        class="fa fa-external-link ml-2"
+                                        aria-hidden="true"
+                                    ></span>
                                 </a>
                             </div>
                         </li>
                     </ul>
                 </div>
             </div>
-            <div data-ng-if="!exchange.isMXPlan && displayGuides !== null && !loadingEmailProInformations && !loadingEmailProError">
+            <div
+                data-ng-if="!exchange.isMXPlan && displayGuides !== null && !loadingEmailProInformations && !loadingEmailProError"
+            >
                 <span data-translate="emailpro_dashboard_guides"></span>
-                <a data-ng-href="{{ displayGuides }}"
-                   target="_blank"
-                   title="{{ 'emailpro_dashboard_guides_url' | translate }} ({{ 'emailpro_dashboard_new_window' | translate }})">
+                <a
+                    data-ng-href="{{ displayGuides }}"
+                    target="_blank"
+                    title="{{ 'emailpro_dashboard_guides_url' | translate }} ({{ 'emailpro_dashboard_new_window' | translate }})"
+                >
                     <span data-translate="emailpro_dashboard_guides_url"></span>
-                    <span class="fa fa-external-link ml-2" aria-hidden="true"></span>
+                    <span
+                        class="fa fa-external-link ml-2"
+                        aria-hidden="true"
+                    ></span>
                 </a>
             </div>
         </div>

@@ -4,7 +4,8 @@ angular.module('managerApp').config(($stateProvider) => {
     redirectTo: 'iaas.pci-project.billing.history.details',
     views: {
       cloudProjectBilling: {
-        templateUrl: 'app/cloud/project/billing/history/cloud-project-billing-history.html',
+        templateUrl:
+          'app/cloud/project/billing/history/cloud-project-billing-history.html',
         controller: 'CloudProjectBillingHistoryCtrl',
         controllerAs: 'BillingHistoryCtrl',
       },

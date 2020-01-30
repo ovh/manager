@@ -1,42 +1,59 @@
 <oui-modal
     data-heading="{{:: 'pci_projects_project_instances_instance_application-access_title' | translate }}"
-    data-on-dismiss="$ctrl.goBack()">
-
-    <div data-ng-repeat="access in $ctrl.applicationAccesses.accesses track by access.type"
+    data-on-dismiss="$ctrl.goBack()"
+>
+    <div
+        data-ng-repeat="access in $ctrl.applicationAccesses.accesses track by access.type"
         data-ng-class="{
             'border-bottom': !$last
-        }" class="py-3 container-fluid">
-
+        }"
+        class="py-3 container-fluid"
+    >
         <div class="row pb-2" data-ng-if="access.type">
             <div class="col-sm-3 text-sm-right font-weight-bold text-truncate">
-                <span data-translate="pci_projects_project_instances_instance_application-access_type_label"></span>
+                <span
+                    data-translate="pci_projects_project_instances_instance_application-access_type_label"
+                ></span>
             </div>
             <div class="col-sm-9" data-ng-bind="access.type"></div>
         </div>
 
         <div class="row pb-2" data-ng-if="access.url">
             <div class="col-sm-3 text-sm-right font-weight-bold text-truncate">
-                <span data-translate="pci_projects_project_instances_instance_application-access_url_label"></span>
+                <span
+                    data-translate="pci_projects_project_instances_instance_application-access_url_label"
+                ></span>
             </div>
             <div class="col-sm-9">
-                <a data-ng-href="{{ :: access.url }}" rel="noopener" target="_blank"
-                    class="oui-link_icon">
+                <a
+                    data-ng-href="{{ :: access.url }}"
+                    rel="noopener"
+                    target="_blank"
+                    class="oui-link_icon"
+                >
                     <span data-ng-bind="access.url"></span>
-                    <span class="oui-icon oui-icon-external_link" aria-hidden="true"></span>
+                    <span
+                        class="oui-icon oui-icon-external_link"
+                        aria-hidden="true"
+                    ></span>
                 </a>
             </div>
         </div>
 
         <div class="row pb-2" data-ng-if="access.login">
             <div class="col-sm-3 text-sm-right font-weight-bold text-truncate">
-                <span data-translate="pci_projects_project_instances_instance_application-access_login_label"></span>
+                <span
+                    data-translate="pci_projects_project_instances_instance_application-access_login_label"
+                ></span>
             </div>
             <div class="col-sm-9" data-ng-bind="access.login"></div>
         </div>
 
         <div class="row pb-2" data-ng-if="access.password">
             <div class="col-sm-3 text-sm-right font-weight-bold text-truncate">
-                <span data-translate="pci_projects_project_instances_instance_application-access_password_label"></span>
+                <span
+                    data-translate="pci_projects_project_instances_instance_application-access_password_label"
+                ></span>
             </div>
             <div class="col-sm-9">
                 <oui-clipboard model="access.password"></oui-clipboard>

@@ -2,6 +2,7 @@
 import { Environment } from '@ovh-ux/manager-config';
 
 /* eslint-disable import/no-webpack-loader-syntax, import/extensions */
+import 'babel-polyfill';
 import angular from 'angular';
 import ngAnimate from 'angular-animate';
 import uiRouter, { RejectType } from '@uirouter/angularjs';
@@ -45,42 +46,57 @@ Environment.setRegion(__WEBPACK_REGION__);
 Environment.setVersion(__VERSION__);
 
 angular
-  .module('ovhPublicCloudApp', [
-    __NG_APP_INJECTIONS__,
-    atInternet,
-    darkMode,
-    ngAnimate,
-    ngUiRouterBreadcrumb,
-    ngUiRouterLineProgress,
-    ngOvhApiWrappers,
-    ngOvhUserPref,
-    navbar,
-    'oui',
-    ovhManagerCore,
-    ovhManagerMfaEnrollment,
-    ovhManagerPci,
-    preload,
-    uiRouter,
-  ].filter(value => value !== null)) // Remove null because __NG_APP_INJECTIONS__ can be null
+  .module(
+    'ovhPublicCloudApp',
+    [
+      __NG_APP_INJECTIONS__,
+      atInternet,
+      darkMode,
+      ngAnimate,
+      ngUiRouterBreadcrumb,
+      ngUiRouterLineProgress,
+      ngOvhApiWrappers,
+      ngOvhUserPref,
+      navbar,
+      'oui',
+      ovhManagerCore,
+      ovhManagerMfaEnrollment,
+      ovhManagerPci,
+      preload,
+      uiRouter,
+    ].filter((value) => value !== null),
+  ) // Remove null because __NG_APP_INJECTIONS__ can be null
   .controller('PublicCloudController', controller)
   .service('publicCloud', service)
-  .config(/* @ngInject */ $locationProvider => $locationProvider.hashPrefix(''))
+  .config(
+    /* @ngInject */ ($locationProvider) => $locationProvider.hashPrefix(''),
+  )
   .config(routing)
-  .config(/* @ngInject */(TranslateServiceProvider) => {
-    const defaultLanguage = TranslateServiceProvider.getUserLocale();
-    // set moment locale
-    moment.locale(defaultLanguage.split('_')[0]);
-  })
-  .run(/* @ngInject */ ($state) => {
-    $state.defaultErrorHandler((error) => {
-      if (error.type === RejectType.ERROR) {
-        $state.go('pci.error', {
-          detail: {
-            message: get(error.detail, 'data.message'),
-            code: has(error.detail, 'headers') ? error.detail.headers('x-ovh-queryId') : null,
-          },
-        }, { location: false });
-      }
-    });
-  })
+  .config(
+    /* @ngInject */ (TranslateServiceProvider) => {
+      const defaultLanguage = TranslateServiceProvider.getUserLocale();
+      // set moment locale
+      moment.locale(defaultLanguage.split('_')[0]);
+    },
+  )
+  .run(
+    /* @ngInject */ ($state) => {
+      $state.defaultErrorHandler((error) => {
+        if (error.type === RejectType.ERROR) {
+          $state.go(
+            'pci.error',
+            {
+              detail: {
+                message: get(error.detail, 'data.message'),
+                code: has(error.detail, 'headers')
+                  ? error.detail.headers('x-ovh-queryId')
+                  : null,
+              },
+            },
+            { location: false },
+          );
+        }
+      });
+    },
+  )
   .run(/* @ngTranslationsInject:json ./translations */);

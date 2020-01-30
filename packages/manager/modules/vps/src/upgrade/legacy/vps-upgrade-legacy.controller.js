@@ -4,8 +4,17 @@ import isEmpty from 'lodash/isEmpty';
 
 export default class VpsUpgradeLegacyCtrl {
   /* @ngInject */
-  constructor($filter, $stateParams, $translate, $q, $window, CucCloudMessage, CucCloudNavigation,
-    CucControllerHelper, VpsService) {
+  constructor(
+    $filter,
+    $stateParams,
+    $translate,
+    $q,
+    $window,
+    CucCloudMessage,
+    CucCloudNavigation,
+    CucControllerHelper,
+    VpsService,
+  ) {
     this.$filter = $filter;
     this.$translate = $translate;
     this.$q = $q;
@@ -35,13 +44,18 @@ export default class VpsUpgradeLegacyCtrl {
   }
 
   getCurrentModel() {
-    return find(this.upgradesList, upgrade => upgrade.isCurrentModel === true);
+    return find(
+      this.upgradesList,
+      (upgrade) => upgrade.isCurrentModel === true,
+    );
   }
 
   validateStep1() {
     if (this.selectedModel.model === this.getCurrentModel().model) {
       const title = this.$translate.instant('vps_warning_title');
-      const message = this.$translate.instant('vps_configuration_upgradevps_step1_warning');
+      const message = this.$translate.instant(
+        'vps_configuration_upgradevps_step1_warning',
+      );
 
       this.CucControllerHelper.modal.showWarningModal({ title, message });
       throw new Error(message);
@@ -53,21 +67,26 @@ export default class VpsUpgradeLegacyCtrl {
   loadUpgradesList() {
     if (!this.upgradesList) {
       this.loaders.step1 = true;
-      return this.Vps.upgradesList(this.serviceName).then((data) => {
-        this.upgradesList = data.results;
-        this.selectedModel.model = this.getCurrentModel().model;
-        return data;
-      }).catch((err) => {
-        this.$q.reject(err);
-        if (err.message) {
-          this.CucCloudMessage.error(err.message);
-        } else {
-          this.CucCloudMessage.error(this.$translate.instant('vps_configuration_upgradevps_fail'));
-        }
-        this.gotoPreviousState();
-      }).finally(() => {
-        this.loaders.step1 = false;
-      });
+      return this.Vps.upgradesList(this.serviceName)
+        .then((data) => {
+          this.upgradesList = data.results;
+          this.selectedModel.model = this.getCurrentModel().model;
+          return data;
+        })
+        .catch((err) => {
+          this.$q.reject(err);
+          if (err.message) {
+            this.CucCloudMessage.error(err.message);
+          } else {
+            this.CucCloudMessage.error(
+              this.$translate.instant('vps_configuration_upgradevps_fail'),
+            );
+          }
+          this.gotoPreviousState();
+        })
+        .finally(() => {
+          this.loaders.step1 = false;
+        });
     }
     return this.$q.when();
   }
@@ -76,7 +95,12 @@ export default class VpsUpgradeLegacyCtrl {
     this.conditionsAgree = false;
     this.loaders.step2 = true;
     this.order = null;
-    const modelToUpgradeTo = find(this.upgradesList, e => e.model === head(this.selectedModel.model.split(':')) && e.name === this.selectedModel.model.split(':')[1]);
+    const modelToUpgradeTo = find(
+      this.upgradesList,
+      (e) =>
+        e.model === head(this.selectedModel.model.split(':')) &&
+        e.name === this.selectedModel.model.split(':')[1],
+    );
 
     if (isEmpty(modelToUpgradeTo)) {
       return this.$q.when(true);
@@ -84,15 +108,16 @@ export default class VpsUpgradeLegacyCtrl {
 
     this.selectedModelForUpgrade = modelToUpgradeTo;
 
-    return this.Vps
-      .upgrade(
-        this.serviceName,
-        this.selectedModelForUpgrade.model,
-        this.selectedModelForUpgrade.duration.duration,
-      )
+    return this.Vps.upgrade(
+      this.serviceName,
+      this.selectedModelForUpgrade.model,
+      this.selectedModelForUpgrade.duration.duration,
+    )
       .then((data) => {
         this.conditionsAgree = false;
-        this.selectedModelForUpgrade.duration.dateFormatted = this.$filter('date')(this.selectedModelForUpgrade.duration.date, 'dd/MM/yyyy');
+        this.selectedModelForUpgrade.duration.dateFormatted = this.$filter(
+          'date',
+        )(this.selectedModelForUpgrade.duration.date, 'dd/MM/yyyy');
         this.order = data;
         return data;
       })
@@ -101,7 +126,9 @@ export default class VpsUpgradeLegacyCtrl {
         if (err.message) {
           this.CucCloudMessage.error(err.message);
         } else {
-          this.CucCloudMessage.error(this.$translate.instant('vps_configuration_upgradevps_fail'));
+          this.CucCloudMessage.error(
+            this.$translate.instant('vps_configuration_upgradevps_fail'),
+          );
         }
       })
       .finally(() => {
@@ -118,9 +145,6 @@ export default class VpsUpgradeLegacyCtrl {
   }
 
   displayBC() {
-    this.$window.open(
-      this.order.url,
-      '_blank',
-    );
+    this.$window.open(this.order.url, '_blank');
   }
 }

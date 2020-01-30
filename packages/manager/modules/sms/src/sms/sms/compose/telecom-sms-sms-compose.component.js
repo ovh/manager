@@ -4,6 +4,9 @@ import template from './telecom-sms-sms-compose.html';
 export const component = {
   controller,
   template,
+  bindings: {
+    sendersLink: '<',
+  },
 };
 
 export const name = 'smsCompose';

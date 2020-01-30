@@ -4,7 +4,15 @@ import get from 'lodash/get';
 angular.module('controllers').controller(
   'controllers.Domain.Redirection.delete',
   class DomainRedirectionDeleteCtrl {
-    constructor($scope, $rootScope, $q, $stateParams, $translate, Alerter, Domain) {
+    constructor(
+      $scope,
+      $rootScope,
+      $q,
+      $stateParams,
+      $translate,
+      Alerter,
+      Domain,
+    ) {
       this.$scope = $scope;
       this.$rootScope = $rootScope;
       this.$q = $q;
@@ -38,9 +46,10 @@ angular.module('controllers').controller(
       ).then((results) => {
         this.wwwDomainToDelete.data = find(
           get(results, 'list.results'),
-          redirection => redirection.subDomain === `www.${this.entryToDelete.subDomain}`
-            || (redirection.subDomain === 'www'
-              && this.entryToDelete.subDomain !== 'www'),
+          (redirection) =>
+            redirection.subDomain === `www.${this.entryToDelete.subDomain}` ||
+            (redirection.subDomain === 'www' &&
+              this.entryToDelete.subDomain !== 'www'),
         );
       });
     }
@@ -60,24 +69,30 @@ angular.module('controllers').controller(
         ](this.$stateParams.productId, this.entryToDelete.id),
       ];
       if (this.wwwDomainToDelete.data && this.wwwDomainToDelete.removeWWW) {
-        deletePromises.push(this.Domain[
-          this.wwwDomainToDelete.data.isOrt === true
-            ? 'deleteRedirection'
-            : 'deleteDnsEntry'
-        ](this.$stateParams.productId, this.wwwDomainToDelete.data.id));
+        deletePromises.push(
+          this.Domain[
+            this.wwwDomainToDelete.data.isOrt === true
+              ? 'deleteRedirection'
+              : 'deleteDnsEntry'
+          ](this.$stateParams.productId, this.wwwDomainToDelete.data.id),
+        );
       }
 
       return this.$q
         .all(deletePromises)
-        .then(() => this.Alerter.success(
-          this.$translate.instant('domain_tab_REDIRECTION_delete_success'),
-          this.$scope.alerts.main,
-        ))
-        .catch(err => this.Alerter.alertFromSWS(
-          this.$translate.instant('domain_tab_REDIRECTION_delete_fail'),
-          err,
-          this.$scope.alerts.main,
-        ))
+        .then(() =>
+          this.Alerter.success(
+            this.$translate.instant('domain_tab_REDIRECTION_delete_success'),
+            this.$scope.alerts.main,
+          ),
+        )
+        .catch((err) =>
+          this.Alerter.alertFromSWS(
+            this.$translate.instant('domain_tab_REDIRECTION_delete_fail'),
+            err,
+            this.$scope.alerts.main,
+          ),
+        )
         .finally(() => {
           this.loading = false;
           this.$scope.resetAction();

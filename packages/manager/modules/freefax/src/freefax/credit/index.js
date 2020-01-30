@@ -11,14 +11,14 @@ import template from './freefax-credit.html';
 const moduleName = 'managerFreefaxCredit';
 
 angular
-  .module(moduleName, [
-    'ngOvhContracts',
-  ])
+  .module(moduleName, ['ngOvhContracts'])
   .constant('FREEFAX_DISCRETE_CREDIT', DISCRETE_CREDIT)
   .controller('FreeFaxCreditCtrl', controller)
-  .run(/* @ngInject */($templateCache) => {
-    // import templates required by ng-include
-    $templateCache.put('freefax/credit/freefax-credit.html', template);
-  });
+  .run(
+    /* @ngInject */ ($templateCache) => {
+      // import templates required by ng-include
+      $templateCache.put('freefax/credit/freefax-credit.html', template);
+    },
+  );
 
 export default moduleName;

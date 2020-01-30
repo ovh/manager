@@ -25,24 +25,32 @@ export default class {
   }
 
   /**
-     * Add sms api user.
-     * @return {Promise}
-     */
+   * Add sms api user.
+   * @return {Promise}
+   */
   add() {
     this.loading.addUser = true;
-    return this.$q.all([
-      this.api.sms.users.create({
-        serviceName: this.$stateParams.serviceName,
-      }, pick(this.user, this.attributes)).$promise,
-      this.$timeout(angular.noop, 1000),
-    ]).then(() => {
-      this.loading.addUser = false;
-      this.added = true;
-      return this.$timeout(() => this.close(), 1000);
-    }).catch(error => this.cancel({
-      type: 'API',
-      msg: error,
-    }));
+    return this.$q
+      .all([
+        this.api.sms.users.create(
+          {
+            serviceName: this.$stateParams.serviceName,
+          },
+          pick(this.user, this.attributes),
+        ).$promise,
+        this.$timeout(angular.noop, 1000),
+      ])
+      .then(() => {
+        this.loading.addUser = false;
+        this.added = true;
+        return this.$timeout(() => this.close(), 1000);
+      })
+      .catch((error) =>
+        this.cancel({
+          type: 'API',
+          msg: error,
+        }),
+      );
   }
 
   cancel(message) {

@@ -30,7 +30,12 @@ export default class ExchangeOrderAccountCtrl {
         this.ovhSubsidiary = ovhSubsidiary;
       })
       .catch((failure) => {
-        this.services.messaging.writeError(this.services.$translate.instant('exchange_ACTION_order_accounts_step1_user_error'), failure);
+        this.services.messaging.writeError(
+          this.services.$translate.instant(
+            'exchange_ACTION_order_accounts_step1_user_error',
+          ),
+          failure,
+        );
         this.ovhSubsidiary = 'FR';
       })
       .then(() => {
@@ -38,7 +43,8 @@ export default class ExchangeOrderAccountCtrl {
       });
 
     this.$routerParams = Exchange.getParams();
-    this.numConfigureMeAccount = navigation.currentActionData.numConfigureMeAccount;
+    this.numConfigureMeAccount =
+      navigation.currentActionData.numConfigureMeAccount;
 
     // default values
     this.accountsToAdd = {
@@ -48,12 +54,16 @@ export default class ExchangeOrderAccountCtrl {
 
     this.accountsTypes = [
       {
-        label: $translate.instant('exchange_ACTION_order_accounts_step1_account_type_50G'),
+        label: $translate.instant(
+          'exchange_ACTION_order_accounts_step1_account_type_50G',
+        ),
         reference: 'exchange_hosted_account',
         storageQuota: '50',
       },
       {
-        label: $translate.instant('exchange_ACTION_order_accounts_step1_account_type_300G'),
+        label: $translate.instant(
+          'exchange_ACTION_order_accounts_step1_account_type_300G',
+        ),
         reference: 'exchange_hosted_account_300g',
         storageQuota: '300',
       },
@@ -108,7 +118,9 @@ export default class ExchangeOrderAccountCtrl {
       })
       .catch((failure) => {
         this.services.messaging.writeError(
-          this.services.$translate.instant('exchange_ACTION_order_accounts_step2_error_message'),
+          this.services.$translate.instant(
+            'exchange_ACTION_order_accounts_step2_error_message',
+          ),
           failure,
         );
         this.services.navigation.resetAction();
@@ -118,7 +130,9 @@ export default class ExchangeOrderAccountCtrl {
   loadOrderList(accountType) {
     this.ordersList = [];
 
-    this.accountsToAdd.storageQuota = accountType ? accountType.storageQuota : '50';
+    this.accountsToAdd.storageQuota = accountType
+      ? accountType.storageQuota
+      : '50';
     this.accountsToAdd.duration = '01';
     this.services.Exchange.getAccountsOptions(
       this.$routerParams.organization,
@@ -128,17 +142,23 @@ export default class ExchangeOrderAccountCtrl {
       .then((data) => {
         set(data, 'duration', '01');
         forEach(data.prices, (price) => {
-          set(price, 'localizedText', this.services.Exchange.constructor.getLocalizedPrice(
-            this.ovhSubsidiary,
-            price.value,
-            price.currencyCode,
-          ));
+          set(
+            price,
+            'localizedText',
+            this.services.Exchange.constructor.getLocalizedPrice(
+              this.ovhSubsidiary,
+              price.value,
+              price.currencyCode,
+            ),
+          );
         });
         this.ordersList.push(data);
       })
       .catch((failure) => {
         this.services.messaging.writeError(
-          this.services.$translate.instant('exchange_ACTION_order_accounts_step1_loading_error'),
+          this.services.$translate.instant(
+            'exchange_ACTION_order_accounts_step1_loading_error',
+          ),
           failure,
         );
         this.services.navigation.resetAction();
@@ -153,17 +173,23 @@ export default class ExchangeOrderAccountCtrl {
       .then((data) => {
         set(data, 'duration', '12');
         forEach(data.prices, (price) => {
-          set(price, 'localizedText', this.services.Exchange.constructor.getLocalizedPrice(
-            this.ovhSubsidiary,
-            price.value,
-            price.currencyCode,
-          ));
+          set(
+            price,
+            'localizedText',
+            this.services.Exchange.constructor.getLocalizedPrice(
+              this.ovhSubsidiary,
+              price.value,
+              price.currencyCode,
+            ),
+          );
         });
         this.ordersList.push(data);
       })
       .catch((failure) => {
         this.services.messaging.writeError(
-          this.services.$translate.instant('exchange_ACTION_order_accounts_step1_loading_error'),
+          this.services.$translate.instant(
+            'exchange_ACTION_order_accounts_step1_loading_error',
+          ),
           failure,
         );
         this.services.navigation.resetAction();
@@ -178,7 +204,7 @@ export default class ExchangeOrderAccountCtrl {
     if (!isEmpty(this.ordersList)) {
       const selected = $.grep(
         this.ordersList,
-        order => this.accountsToAdd.duration === order.duration,
+        (order) => this.accountsToAdd.duration === order.duration,
       );
 
       return selected ? selected[0] : null;
@@ -189,10 +215,10 @@ export default class ExchangeOrderAccountCtrl {
 
   isValid() {
     return (
-      this.ordersList
-      && this.accountsToAdd.accountsNumber
-      && this.valid.legalWarning
-      && this.accountsToAdd.duration
+      this.ordersList &&
+      this.accountsToAdd.accountsNumber &&
+      this.valid.legalWarning &&
+      this.accountsToAdd.duration
     );
   }
 

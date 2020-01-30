@@ -1,14 +1,19 @@
 <div data-ng-controller="EmailsDeleteAccountCtrl as ctrl">
-    <div data-wizard
-         data-wizard-on-cancel="resetAction"
-         data-wizard-on-finish="deleteAccount"
-         data-wizard-title="'email_tab_modal_delete_account_title' | translate">
-
+    <div
+        data-wizard
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="deleteAccount"
+        data-wizard-title="'email_tab_modal_delete_account_title' | translate"
+    >
         <div data-wizard-step>
-            <p data-ng-bind-html="'email_tab_modal_delete_account_heading' | translate: { t0: ctrl.currentAccount.accountName }"></p>
-            <div class="alert alert-warning" role="alert"
-                 data-translate="email_tab_modal_delete_account_warning">
-            </div>
+            <p
+                data-ng-bind-html="'email_tab_modal_delete_account_heading' | translate: { t0: ctrl.currentAccount.accountName }"
+            ></p>
+            <div
+                class="alert alert-warning"
+                role="alert"
+                data-translate="email_tab_modal_delete_account_warning"
+            ></div>
         </div>
     </div>
 </div>

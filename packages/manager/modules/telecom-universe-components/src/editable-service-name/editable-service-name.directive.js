@@ -1,6 +1,6 @@
 import template from './editable-service-name.html';
 
-export default /* @ngInject */ $timeout => ({
+export default /* @ngInject */ ($timeout) => ({
   restrict: 'E',
   template,
   scope: {
@@ -26,7 +26,8 @@ export default /* @ngInject */ $timeout => ({
 
     $element.on('keydown blur', 'input.service-name-edit-input', (event) => {
       if (event.type === 'keydown') {
-        if (event.keyCode === 27) { // if ESC is pressed
+        if (event.keyCode === 27) {
+          // if ESC is pressed
           tucEditableServiceNameCtrl.cancelEdition();
           $scope.$apply();
         }

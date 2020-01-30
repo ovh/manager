@@ -1,25 +1,36 @@
 <div data-ng-controller="PrivateDatabaseRestoreArchiveBDDCtrl">
-    <div data-wizard
-         data-wizard-confirm-button-text="confirmBtnTitle()"
-         data-wizard-on-cancel="resetAction"
-         data-wizard-on-finish="confirmBtnAction"
-         data-wizard-title="'privateDatabase_tabs_dumps_restore_dump' | translate">
-
-         <div data-wizard-step>
-
+    <div
+        data-wizard
+        data-wizard-confirm-button-text="confirmBtnTitle()"
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="confirmBtnAction"
+        data-wizard-title="'privateDatabase_tabs_dumps_restore_dump' | translate"
+    >
+        <div data-wizard-step>
             <div class="text-center" data-ng-if="step === 0">
                 <oui-spinner></oui-spinner>
             </div>
 
-             <div data-ng-if="step === 1">
-                <p data-ng-bind-html="'privateDatabase_restore_bdd_impossible' | translate"></p>
-                <p data-ng-bind-html="'privateDatabase_restore_bdd_application' | translate"></p>
+            <div data-ng-if="step === 1">
+                <p
+                    data-ng-bind-html="'privateDatabase_restore_bdd_impossible' | translate"
+                ></p>
+                <p
+                    data-ng-bind-html="'privateDatabase_restore_bdd_application' | translate"
+                ></p>
             </div>
 
-             <div data-ng-if="step === 2">
-                <p data-ng-bind-html="'privateDatabase_restore_bdd_confirm' | translate: { t0: dump.creationDate, t1: bddName }"></p>
-                <p><strong class="text-warning" data-ng-bind-html="'privateDatabase_restore_bdd_warning' | translate: { t0: dump.creationDate, t1: bddName }"></strong></p>
+            <div data-ng-if="step === 2">
+                <p
+                    data-ng-bind-html="'privateDatabase_restore_bdd_confirm' | translate: { t0: dump.creationDate, t1: bddName }"
+                ></p>
+                <p>
+                    <strong
+                        class="text-warning"
+                        data-ng-bind-html="'privateDatabase_restore_bdd_warning' | translate: { t0: dump.creationDate, t1: bddName }"
+                    ></strong>
+                </p>
             </div>
-         </div>
+        </div>
     </div>
 </div>

@@ -10,8 +10,9 @@ class CloudVouchersService {
   }
 
   futureVoucherWithPdfUrl(voucher) {
-    return this.OvhApiMeBill.v6().get({ billId: voucher.bill }).$promise
-      .then((bill) => {
+    return this.OvhApiMeBill.v6()
+      .get({ billId: voucher.bill })
+      .$promise.then((bill) => {
         set(voucher, 'pdfUrl', bill.pdfUrl);
         return voucher;
       })
@@ -19,18 +20,25 @@ class CloudVouchersService {
   }
 
   transformItem(projectId, voucherId) {
-    return this.OvhApiCloudProjectCredit.v6().get({
-      serviceName: projectId,
-      creditId: voucherId,
-    }).$promise.then(voucher => (voucher.bill ? this.futureVoucherWithPdfUrl(voucher) : voucher));
+    return this.OvhApiCloudProjectCredit.v6()
+      .get({
+        serviceName: projectId,
+        creditId: voucherId,
+      })
+      .$promise.then((voucher) =>
+        voucher.bill ? this.futureVoucherWithPdfUrl(voucher) : voucher,
+      );
   }
 
   getVouchers(projectId) {
-    return this.OvhApiCloudProjectCredit.v6().query({
-      serviceName: projectId,
-    }).$promise
-      .then((voucherIds) => {
-        const promises = map(voucherIds, id => this.transformItem(projectId, id));
+    return this.OvhApiCloudProjectCredit.v6()
+      .query({
+        serviceName: projectId,
+      })
+      .$promise.then((voucherIds) => {
+        const promises = map(voucherIds, (id) =>
+          this.transformItem(projectId, id),
+        );
         return this.$q.all(promises);
       });
   }
@@ -43,4 +51,6 @@ class CloudVouchersService {
   }
 }
 
-angular.module('managerApp').service('CloudVouchersService', CloudVouchersService);
+angular
+  .module('managerApp')
+  .service('CloudVouchersService', CloudVouchersService);

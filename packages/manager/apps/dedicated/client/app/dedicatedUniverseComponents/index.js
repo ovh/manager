@@ -10,15 +10,14 @@ import ducTranslate from './translate';
 
 const moduleName = 'dedicatedUniverseComponents';
 
-angular
-  .module(moduleName, [
-    ducBandwidth,
-    ducBytes,
-    ducContract,
-    ducNotification,
-    ducPrice,
-    ducTabs,
-    ducTranslate,
-  ]);
+angular.module(moduleName, [
+  ducBandwidth,
+  ducBytes,
+  ducContract,
+  ducNotification,
+  ducPrice,
+  ducTabs,
+  ducTranslate,
+]);
 
 export default moduleName;

@@ -10,12 +10,18 @@ export default class TelecomDashboardGuidesCtrl {
   }
 
   $onInit() {
-    this.guides = ['packActivate', 'modemConfig', 'modemReinit', 'interruptedService'];
+    this.guides = [
+      'packActivate',
+      'modemConfig',
+      'modemReinit',
+      'interruptedService',
+    ];
     this.links = pick(constant.guides, this.guides);
   }
 
   trackRedirection(link) {
-    const index = findIndex(this.guides, guide => constant.guides[guide] === link) + 1;
+    const index =
+      findIndex(this.guides, (guide) => constant.guides[guide] === link) + 1;
     return this.atInternet.trackClick({
       name: `TopGuide-Telecom-${index}`,
       type: 'navigation',

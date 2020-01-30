@@ -9,23 +9,25 @@
 
 import angular from 'angular';
 
-export default /* @ngInject */ function ($q, ssoAuthentication) {
+export default /* @ngInject */ function($q, ssoAuthentication) {
   return {
     /**
-         * @ngdoc function
-         * @name request
-         * @methodOf ovh-angular-sso-auth.OvhSsoAuthInterceptor
-         *
-         * @description
-         * Interceptors get called with a http config object
-         *
-         * @param {object} config configuration
-         * @return {object} modified configuration
-         */
+     * @ngdoc function
+     * @name request
+     * @methodOf ovh-angular-sso-auth.OvhSsoAuthInterceptor
+     *
+     * @description
+     * Interceptors get called with a http config object
+     *
+     * @param {object} config configuration
+     * @return {object} modified configuration
+     */
     request(configParam) {
       const config = configParam;
       const urlPrefix = ssoAuthentication.getUrlPrefix(config.serviceType);
-      const isTemplate = new RegExp(/(?:(?:\.html)|(?:Messages\w+\.json))$/i).test(config.url);
+      const isTemplate = new RegExp(
+        /(?:(?:\.html)|(?:Messages\w+\.json))$/i,
+      ).test(config.url);
 
       if (!isTemplate) {
         return ssoAuthentication.getSsoAuthPendingPromise().then(() => {
@@ -81,7 +83,11 @@ export default /* @ngInject */ function ($q, ssoAuthentication) {
      */
     responseError(response) {
       return ssoAuthentication.isLogged().then((logged) => {
-        if (response.status === 403 && (response.data.message === 'This session is forbidden' || response.data.message === 'This session is invalid')) {
+        if (
+          response.status === 403 &&
+          (response.data.message === 'This session is forbidden' ||
+            response.data.message === 'This session is invalid')
+        ) {
           response.status = 401;
         }
 

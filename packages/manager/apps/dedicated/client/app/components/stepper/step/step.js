@@ -1,10 +1,6 @@
 export default class {
   /* @ngInject */
-  constructor(
-    name,
-    state,
-    header,
-  ) {
+  constructor(name, state, header) {
     this.name = name;
     this.state = state;
     this.header = header;

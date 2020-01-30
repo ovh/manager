@@ -20,7 +20,10 @@ export default class ExchangeVersion {
    * @param {(string|number)} versionNumber - Version to test
    */
   isVersion(versionNumber, exchange = this.services.Exchange.getValue()) {
-    const isMatchingVersion = includes(exchange.serverDiagnostic.commercialVersion, versionNumber);
+    const isMatchingVersion = includes(
+      exchange.serverDiagnostic.commercialVersion,
+      versionNumber,
+    );
 
     return isMatchingVersion;
   }
@@ -33,7 +36,10 @@ export default class ExchangeVersion {
    * @param {(string|number)} versionNumberToCompareTo
    *                          Version to compare current Exchange account to
    */
-  isAfter(versionNumberToCompareTo, exchange = this.services.Exchange.getValue()) {
+  isAfter(
+    versionNumberToCompareTo,
+    exchange = this.services.Exchange.getValue(),
+  ) {
     const currentVersionNumber = exchange.serverDiagnostic.version;
 
     const propertyName = `v${versionNumberToCompareTo}`;
@@ -46,7 +52,10 @@ export default class ExchangeVersion {
    * @param {(string|number)} versionNumberToCompareTo
    *                          Version to compare current Exchange account to
    */
-  isBefore(versionNumberToCompareTo, exchange = this.services.Exchange.getValue()) {
+  isBefore(
+    versionNumberToCompareTo,
+    exchange = this.services.Exchange.getValue(),
+  ) {
     const currentVersionNumber = exchange.serverDiagnostic.version;
 
     const propertyName = `v${versionNumberToCompareTo}`;

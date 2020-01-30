@@ -1,6 +1,7 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider
-    .state('pci.projects.project.kubernetes.details.service.terminate', {
+  $stateProvider.state(
+    'pci.projects.project.kubernetes.details.service.terminate',
+    {
       url: '/terminate',
       views: {
         modal: {
@@ -9,12 +10,12 @@ export default /* @ngInject */ ($stateProvider) => {
       },
       layout: 'modal',
       resolve: {
-        goBack: /* @ngInject */ goToKubernetesDetails => goToKubernetesDetails,
-        isLegacyCluster: /* @ngInject */ (
-          kubeId,
-          Kubernetes,
-        ) => Kubernetes.isLegacyCluster(kubeId),
+        goBack: /* @ngInject */ (goToKubernetesDetails) =>
+          goToKubernetesDetails,
+        isLegacyCluster: /* @ngInject */ (kubeId, Kubernetes) =>
+          Kubernetes.isLegacyCluster(kubeId),
         breadcrumb: () => null,
       },
-    });
+    },
+  );
 };

@@ -24,17 +24,23 @@ angular.module('controllers').controller(
         .then((data) => {
           if (data.state !== 'OK') {
             this.Alerter.alertFromSWS(
-              this.$translate.instant(`domain_configuration_dnssec_error_${newState}`),
+              this.$translate.instant(
+                `domain_configuration_dnssec_error_${newState}`,
+              ),
               data,
               this.$scope.alerts.main,
             );
           }
         })
-        .catch(err => this.Alerter.alertFromSWS(
-          this.$translate.instant(`domain_configuration_dnssec_error_${newState}`),
-          get(err, 'data', err),
-          this.$scope.alerts.main,
-        ))
+        .catch((err) =>
+          this.Alerter.alertFromSWS(
+            this.$translate.instant(
+              `domain_configuration_dnssec_error_${newState}`,
+            ),
+            get(err, 'data', err),
+            this.$scope.alerts.main,
+          ),
+        )
         .finally(() => {
           this.$scope.$emit('domain.dashboard.refresh');
           this.$scope.resetAction();

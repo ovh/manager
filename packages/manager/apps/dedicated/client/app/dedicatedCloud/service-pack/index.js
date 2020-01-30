@@ -8,10 +8,7 @@ import {
 const moduleName = 'ovhManagerPccServicePack';
 
 angular
-  .module(moduleName, [
-    option,
-    'pascalprecht.translate',
-  ])
+  .module(moduleName, [option, 'pascalprecht.translate'])
   .run(/* @ngTranslationsInject:json ./translations */)
   .service(serviceName, ServicePackService);
 

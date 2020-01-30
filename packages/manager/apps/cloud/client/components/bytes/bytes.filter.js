@@ -4,7 +4,17 @@ import map from 'lodash/map';
 angular.module('managerApp').filter('bytes', ($translate) => {
   // TODO: Add this filter in UX components
   const units = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
-  const unitsKibi = ['B', 'KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB'];
+  const unitsKibi = [
+    'B',
+    'KiB',
+    'MiB',
+    'GiB',
+    'TiB',
+    'PiB',
+    'EiB',
+    'ZiB',
+    'YiB',
+  ];
 
   function translateUnit(unit) {
     const key = `unit_size_${unit}`;
@@ -16,7 +26,13 @@ angular.module('managerApp').filter('bytes', ($translate) => {
   const translatedUnits = map(units, translateUnit);
   const translatedUnitsKibi = map(unitsKibi, translateUnit);
 
-  return function bytesFilter(bytesParams, precisionParam, toKibi, fromUnit, toRawBytes) {
+  return function bytesFilter(
+    bytesParams,
+    precisionParam,
+    toKibi,
+    fromUnit,
+    toRawBytes,
+  ) {
     let bytes = bytesParams;
     let precision = precisionParam;
 
@@ -26,11 +42,13 @@ angular.module('managerApp').filter('bytes', ($translate) => {
 
       if (fromKibiUnitIndex !== -1) {
         if (fromKibiUnitIndex > 0) {
-          bytes *= Math.pow(1024, fromKibiUnitIndex); // eslint-disable-line
+          // eslint-disable-next-line no-restricted-properties
+          bytes *= Math.pow(1024, fromKibiUnitIndex);
         }
       } else if (fromUnitIndex !== -1) {
         if (fromUnitIndex > 0) {
-          bytes *= Math.pow(1000, fromUnitIndex); // eslint-disable-line
+          // eslint-disable-next-line no-restricted-properties
+          bytes *= Math.pow(1000, fromUnitIndex);
         }
       } else {
         return '?';
@@ -54,12 +72,17 @@ angular.module('managerApp').filter('bytes', ($translate) => {
     const divider = toKibi ? 1024 : 1000;
     const number = Math.floor(Math.log(bytes) / Math.log(divider));
 
-    let value = (bytes / Math.pow(divider, Math.floor(number))).toFixed(precision); // eslint-disable-line
+    // eslint-disable-next-line no-restricted-properties
+    let value = (bytes / Math.pow(divider, Math.floor(number))).toFixed(
+      precision,
+    );
 
     if (/\.0+$/.test(value)) {
       value = value.replace(/\.0+$/, '');
     }
 
-    return `${value} ${toKibi ? translatedUnitsKibi[number] : translatedUnits[number]}`;
+    return `${value} ${
+      toKibi ? translatedUnitsKibi[number] : translatedUnits[number]
+    }`;
   };
 });

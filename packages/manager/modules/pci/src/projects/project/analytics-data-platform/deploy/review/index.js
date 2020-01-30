@@ -5,9 +5,7 @@ import reviewComponent from './review.component';
 const moduleName = 'ovhManagerAnalyticsDataPlatformDeployReviewComponent';
 
 angular
-  .module(moduleName, [
-    'ui.router',
-  ])
+  .module(moduleName, ['ui.router'])
   .component('analyticsDataPlatformDeployReviewComponent', reviewComponent)
   .run(/* @ngTranslationsInject:json ./translations */);
 

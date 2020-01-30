@@ -28,9 +28,10 @@ angular.module('App').controller(
     }
 
     isPasswordMatches(input = null) {
-      const valid = !!this.data.password
-        && !!this.validation.password
-        && this.data.password === this.validation.password;
+      const valid =
+        !!this.data.password &&
+        !!this.validation.password &&
+        this.data.password === this.validation.password;
       if (input && typeof input.$setValidity === 'function') {
         input.$setValidity('match', valid);
       }
@@ -41,10 +42,10 @@ angular.module('App').controller(
       const length = this.data.password.length || 0;
       input.$setValidity(
         'password',
-        this.data.password === null
-          || this.data.password === ''
-          || (length >= this.const.nbMinPassword
-            && length <= this.const.nbMaxPassword),
+        this.data.password === null ||
+          this.data.password === '' ||
+          (length >= this.const.nbMinPassword &&
+            length <= this.const.nbMaxPassword),
       );
       this.isPasswordMatches(confirm);
     }
@@ -52,10 +53,10 @@ angular.module('App').controller(
     subDomainCheck(input) {
       input.$setValidity(
         'subdomain',
-        this.login.subDomain === null
-          || this.login.subDomain === ''
-          || this.login.subDomain === '*'
-          || this.WucValidator.isValidSubDomain(this.login.subDomain),
+        this.login.subDomain === null ||
+          this.login.subDomain === '' ||
+          this.login.subDomain === '*' ||
+          this.WucValidator.isValidSubDomain(this.login.subDomain),
       );
     }
 
@@ -68,26 +69,34 @@ angular.module('App').controller(
       ];
 
       if (this.data.password.length && this.isPasswordMatches()) {
-        promises.push(this.Domain.updateDynHostLoginPassword(
-          this.product.name,
-          this.login.login,
-          {
-            password: this.data.password,
-          },
-        ));
+        promises.push(
+          this.Domain.updateDynHostLoginPassword(
+            this.product.name,
+            this.login.login,
+            {
+              password: this.data.password,
+            },
+          ),
+        );
       }
 
       return this.$q
         .all(promises)
-        .then(() => this.Domain.refreshZoneState(this.product.name).then(() => this.Alerter.success(
-          this.$translate.instant('domain_tab_DYNHOSTLOGIN_edit_success'),
-          this.$scope.alerts.main,
-        )))
-        .catch(err => this.Alerter.alertFromSWS(
-          this.$translate.instant('domain_tab_DYNHOST_error'),
-          get(err, 'data', err),
-          this.$scope.alerts.main,
-        ))
+        .then(() =>
+          this.Domain.refreshZoneState(this.product.name).then(() =>
+            this.Alerter.success(
+              this.$translate.instant('domain_tab_DYNHOSTLOGIN_edit_success'),
+              this.$scope.alerts.main,
+            ),
+          ),
+        )
+        .catch((err) =>
+          this.Alerter.alertFromSWS(
+            this.$translate.instant('domain_tab_DYNHOST_error'),
+            get(err, 'data', err),
+            this.$scope.alerts.main,
+          ),
+        )
         .finally(() => {
           this.loading = false;
           this.$scope.resetAction();

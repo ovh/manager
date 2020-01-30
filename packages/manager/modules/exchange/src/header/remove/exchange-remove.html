@@ -1,58 +1,102 @@
 <div data-ng-controller="ExchangeRemoveExchangeCtrl as ctrl">
-    <div data-wizard
-         data-wizard-bread-crumb
-         data-wizard-confirm-button-text="getSubmitButtonLabel()"
-         data-wizard-on-cancel="resetAction"
-         data-wizard-on-finish="submit"
-         data-wizard-title="'exchange_resilitation_action_title' | translate">
-
+    <div
+        data-wizard
+        data-wizard-bread-crumb
+        data-wizard-confirm-button-text="getSubmitButtonLabel()"
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="submit"
+        data-wizard-title="'exchange_resilitation_action_title' | translate"
+    >
         <div data-wizard-step>
-
             <div data-ng-if="!ctrl.exchange.renewType.deleteAtExpiration">
-                <p data-ng-bind-html="'exchange_resilitation_action_intro' | translate:{ t0: ctrl.exchange.displayName }"></p>
+                <p
+                    data-ng-bind-html="'exchange_resilitation_action_intro' | translate:{ t0: ctrl.exchange.displayName }"
+                ></p>
 
-                <dl class="dl-horizontal dl-lg"
-                    data-ng-if="ctrl.services.exchangeVersion.isVersion(2010) || !ctrl.service.exchangeServiceInfrastructure.isHosted()">
-                    <dt data-translate="exchange_resilitation_action_expiration"></dt>
-                    <dd data-ng-bind="ctrl.exchange.expiration | date:'mediumDate'"></dd>
+                <dl
+                    class="dl-horizontal dl-lg"
+                    data-ng-if="ctrl.services.exchangeVersion.isVersion(2010) || !ctrl.service.exchangeServiceInfrastructure.isHosted()"
+                >
+                    <dt
+                        data-translate="exchange_resilitation_action_expiration"
+                    ></dt>
+                    <dd
+                        data-ng-bind="ctrl.exchange.expiration | date:'mediumDate'"
+                    ></dd>
                 </dl>
 
-               <div class="alert alert-warning" role="alert"
+                <div
+                    class="alert alert-warning"
+                    role="alert"
                     data-translate="exchange_resilitation_action_hosted_warning"
-                    data-ng-if="ctrl.services.exchangeVersion.isAfter(2010) || ctrl.service.exchangeServiceInfrastructure.isHosted()">
-               </div>
+                    data-ng-if="ctrl.services.exchangeVersion.isAfter(2010) || ctrl.service.exchangeServiceInfrastructure.isHosted()"
+                ></div>
             </div>
 
             <div data-ng-if="ctrl.exchange.renewType.deleteAtExpiration">
-                <p data-ng-bind-html="'exchange_resilitation_cancel_action_intro' | translate: { t0: '<strong>' + ctrl.exchange.displayName + '</strong>' }"></p>
+                <p
+                    data-ng-bind-html="'exchange_resilitation_cancel_action_intro' | translate: { t0: '<strong>' + ctrl.exchange.displayName + '</strong>' }"
+                ></p>
 
-                <dl class="dl-horizontal dl-lg"
-                    data-ng-if="ctrl.services.exchangeVersion.isVersion(2010) || !ctrl.service.exchangeServiceInfrastructure.isHosted()">
-                    <dt data-translate="exchange_resilitation_action_expiration"></dt>
-                    <dd data-ng-bind="ctrl.exchange.expiration | date:'mediumDate'"></dd>
+                <dl
+                    class="dl-horizontal dl-lg"
+                    data-ng-if="ctrl.services.exchangeVersion.isVersion(2010) || !ctrl.service.exchangeServiceInfrastructure.isHosted()"
+                >
+                    <dt
+                        data-translate="exchange_resilitation_action_expiration"
+                    ></dt>
+                    <dd
+                        data-ng-bind="ctrl.exchange.expiration | date:'mediumDate'"
+                    ></dd>
                 </dl>
 
-                <div data-ng-if="ctrl.service.exchangeServiceInfrastructure.isHosted()">
-                    <p data-ng-bind-html="'exchange_update_billing_periode_intro' | translate"></p>
+                <div
+                    data-ng-if="ctrl.service.exchangeServiceInfrastructure.isHosted()"
+                >
+                    <p
+                        data-ng-bind-html="'exchange_update_billing_periode_intro' | translate"
+                    ></p>
                     <form>
-                        <label class="oui-label"
-                               data-translate="exchange_update_billing_periode_label"></label>
+                        <label
+                            class="oui-label"
+                            data-translate="exchange_update_billing_periode_label"
+                        ></label>
                         <div class="oui-radio oui-radio_inline">
-                            <input type="radio" class="oui-radio__input" id="renewGroup-monthly" name="renewGroup"
-                                   data-ng-model="ctrl.exchange.renewPeriod"
-                                   data-ng-value="'MONTHLY'">
-                            <label class="oui-radio__label-container" for="renewGroup-monthly">
-                                <span class="oui-radio__label"
-                                      data-ng-bind="'exchange_ACTION_order_accounts_step2_pay_type_monthly' | translate"></span>
+                            <input
+                                type="radio"
+                                class="oui-radio__input"
+                                id="renewGroup-monthly"
+                                name="renewGroup"
+                                data-ng-model="ctrl.exchange.renewPeriod"
+                                data-ng-value="'MONTHLY'"
+                            />
+                            <label
+                                class="oui-radio__label-container"
+                                for="renewGroup-monthly"
+                            >
+                                <span
+                                    class="oui-radio__label"
+                                    data-ng-bind="'exchange_ACTION_order_accounts_step2_pay_type_monthly' | translate"
+                                ></span>
                             </label>
                         </div>
                         <div class="oui-radio oui-radio_inline">
-                            <input type="radio" class="oui-radio__input" id="renewGroup-yearly" name="renewGroup"
-                                   data-ng-model="ctrl.exchange.renewPeriod"
-                                   data-ng-value="'YEARLY'">
-                            <label class="oui-radio__label-container" for="renewGroup-yearly">
-                                <span class="oui-radio__label"
-                                      data-ng-bind="'exchange_ACTION_order_accounts_step2_pay_type_yearly' | translate"></span>
+                            <input
+                                type="radio"
+                                class="oui-radio__input"
+                                id="renewGroup-yearly"
+                                name="renewGroup"
+                                data-ng-model="ctrl.exchange.renewPeriod"
+                                data-ng-value="'YEARLY'"
+                            />
+                            <label
+                                class="oui-radio__label-container"
+                                for="renewGroup-yearly"
+                            >
+                                <span
+                                    class="oui-radio__label"
+                                    data-ng-bind="'exchange_ACTION_order_accounts_step2_pay_type_yearly' | translate"
+                                ></span>
                             </label>
                         </div>
                     </form>
@@ -62,14 +106,20 @@
 
         <div data-wizard-step>
             <div data-ng-if="!ctrl.exchange.renewType.deleteAtExpiration">
-                <p data-ng-bind-html="'exchange_resilitation_action_confirmation' | translate: { t0: '<strong>' + ctrl.exchange.displayName + '</strong>', t1: '<strong>' + ctrl.exchange.accountsNumber + '</strong>' }"
-                   data-ng-if="!ctrl.exchange.deleteAtExpiration"></p>
-                <p data-ng-bind-html="'exchange_resilitation_cancel_action_confirmation' | translate: { t0: '<strong>' + ctrl.exchange.displayName + '</strong>', t1: '<strong>' + ctrl.exchange.accountsNumber + '</strong>' }"
-                   data-ng-if="ctrl.exchange.deleteAtExpiration"></p>
+                <p
+                    data-ng-bind-html="'exchange_resilitation_action_confirmation' | translate: { t0: '<strong>' + ctrl.exchange.displayName + '</strong>', t1: '<strong>' + ctrl.exchange.accountsNumber + '</strong>' }"
+                    data-ng-if="!ctrl.exchange.deleteAtExpiration"
+                ></p>
+                <p
+                    data-ng-bind-html="'exchange_resilitation_cancel_action_confirmation' | translate: { t0: '<strong>' + ctrl.exchange.displayName + '</strong>', t1: '<strong>' + ctrl.exchange.accountsNumber + '</strong>' }"
+                    data-ng-if="ctrl.exchange.deleteAtExpiration"
+                ></p>
             </div>
 
-            <p data-ng-bind-html="'exchange_resilitation_cancel_action_confirmation' | translate: { t0: '<strong>' + ctrl.exchange.displayName + '</strong>' }"
-               data-ng-if="ctrl.exchange.renewType.deleteAtExpiration"></p>
+            <p
+                data-ng-bind-html="'exchange_resilitation_cancel_action_confirmation' | translate: { t0: '<strong>' + ctrl.exchange.displayName + '</strong>' }"
+                data-ng-if="ctrl.exchange.renewType.deleteAtExpiration"
+            ></p>
         </div>
     </div>
 </div>

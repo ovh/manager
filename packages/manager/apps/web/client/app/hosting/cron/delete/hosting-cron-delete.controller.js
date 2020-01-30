@@ -24,7 +24,9 @@ angular.module('App').controller(
       )
         .then(() => {
           this.Alerter.alertFromSWS(
-            this.$translate.instant('hosting_tab_CRON_configuration_delete_success'),
+            this.$translate.instant(
+              'hosting_tab_CRON_configuration_delete_success',
+            ),
             { idTask: 42, state: 'OK' },
             this.$scope.alerts.main,
           );
@@ -32,7 +34,9 @@ angular.module('App').controller(
         .catch((err) => {
           set(err, 'type', err.type || 'ERROR');
           this.Alerter.alertFromSWS(
-            this.$translate.instant('hosting_tab_CRON_configuration_delete_fail'),
+            this.$translate.instant(
+              'hosting_tab_CRON_configuration_delete_fail',
+            ),
             get(err, 'data', err),
             this.$scope.alerts.main,
           );

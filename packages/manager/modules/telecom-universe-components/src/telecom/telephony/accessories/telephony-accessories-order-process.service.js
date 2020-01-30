@@ -4,7 +4,7 @@ import fill from 'lodash/fill';
 import filter from 'lodash/filter';
 import map from 'lodash/map';
 
-export default /* @ngInject */ function (
+export default /* @ngInject */ function(
   $q,
   OvhApiTelephony,
   OvhApiOrder,
@@ -35,7 +35,7 @@ export default /* @ngInject */ function (
     each(
       filter(
         orderProcess.accessoriesList,
-        accessory => accessory.quantity > 0,
+        (accessory) => accessory.quantity > 0,
       ),
       (accessory) => {
         list = list.concat(fill(new Array(accessory.quantity), accessory.name));
@@ -53,22 +53,25 @@ export default /* @ngInject */ function (
 
   self.getAvailableAccessories = function getAvailableAccessories(country) {
     if (!orderProcess.accessoriesList) {
-      return OvhApiTelephony.v6().accessories({
-        country: country || 'fr',
-      }).$promise.then((accessoriesList) => {
-        orderProcess.accessoriesList = map(
-          accessoriesList,
-          accessory => angular.extend(accessory, {
-            url: TUC_TELEPHONY_LINE_PHONE_ACCESSORIES[accessory.name]
-              ? TUC_TELEPHONY_LINE_PHONE_ACCESSORIES[accessory.name].url : null,
-            img: TUC_TELEPHONY_LINE_PHONE_ACCESSORIES[accessory.name]
-              ? TUC_TELEPHONY_LINE_PHONE_ACCESSORIES[accessory.name].img : null,
-            quantity: 0,
-          }),
-        );
+      return OvhApiTelephony.v6()
+        .accessories({
+          country: country || 'fr',
+        })
+        .$promise.then((accessoriesList) => {
+          orderProcess.accessoriesList = map(accessoriesList, (accessory) =>
+            angular.extend(accessory, {
+              url: TUC_TELEPHONY_LINE_PHONE_ACCESSORIES[accessory.name]
+                ? TUC_TELEPHONY_LINE_PHONE_ACCESSORIES[accessory.name].url
+                : null,
+              img: TUC_TELEPHONY_LINE_PHONE_ACCESSORIES[accessory.name]
+                ? TUC_TELEPHONY_LINE_PHONE_ACCESSORIES[accessory.name].img
+                : null,
+              quantity: 0,
+            }),
+          );
 
-        return orderProcess;
-      });
+          return orderProcess;
+        });
     }
     return $q.when(orderProcess);
   };
@@ -80,27 +83,42 @@ export default /* @ngInject */ function (
     ================================ */
 
   self.getOrderCheckout = function getOrderCheckout() {
-    return OvhApiOrder.Telephony().v6().getAccessories({
-      billingAccount: orderProcess.billingAccount,
-      accessories: getAccessoryList(),
-      retractation: true,
-      shippingContactId: orderProcess.shipping.contact
-        ? orderProcess.shipping.contact.id : undefined,
-      mondialRelayId: orderProcess.shipping.mode === 'mondialRelay'
-        && orderProcess.shipping.relay ? orderProcess.shipping.relay.id : null,
-    }).$promise;
+    return OvhApiOrder.Telephony()
+      .v6()
+      .getAccessories({
+        billingAccount: orderProcess.billingAccount,
+        accessories: getAccessoryList(),
+        retractation: true,
+        shippingContactId: orderProcess.shipping.contact
+          ? orderProcess.shipping.contact.id
+          : undefined,
+        mondialRelayId:
+          orderProcess.shipping.mode === 'mondialRelay' &&
+          orderProcess.shipping.relay
+            ? orderProcess.shipping.relay.id
+            : null,
+      }).$promise;
   };
 
   self.orderCheckout = function orderCheckout() {
-    return OvhApiOrder.Telephony().v6().orderAccessories({
-      billingAccount: orderProcess.billingAccount,
-    }, {
-      accessories: getAccessoryList(),
-      retractation: orderProcess.retract,
-      shippingContactId: orderProcess.shipping.contact
-        ? orderProcess.shipping.contact.id : undefined,
-      mondialRelayId: orderProcess.shipping.mode === 'mondialRelay' ? orderProcess.shipping.relay.id : null,
-    }).$promise;
+    return OvhApiOrder.Telephony()
+      .v6()
+      .orderAccessories(
+        {
+          billingAccount: orderProcess.billingAccount,
+        },
+        {
+          accessories: getAccessoryList(),
+          retractation: orderProcess.retract,
+          shippingContactId: orderProcess.shipping.contact
+            ? orderProcess.shipping.contact.id
+            : undefined,
+          mondialRelayId:
+            orderProcess.shipping.mode === 'mondialRelay'
+              ? orderProcess.shipping.relay.id
+              : null,
+        },
+      ).$promise;
   };
 
   /* -----  End of CHECKOUT  ------*/

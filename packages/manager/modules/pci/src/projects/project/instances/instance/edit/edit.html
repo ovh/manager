@@ -1,72 +1,111 @@
 <section>
-    <cui-message-container data-messages="$ctrl.messages"></cui-message-container>
+    <cui-message-container
+        data-messages="$ctrl.messages"
+    ></cui-message-container>
 
-    <h1>{{:: 'pci_projects_project_instances_instance_edit_title' | translate }}</h1>
+    <h1>
+        {{:: 'pci_projects_project_instances_instance_edit_title' | translate }}
+    </h1>
 
-    <form novalidate name="$ctrl.editNameForm"
-        data-ng-submit="$ctrl.editNameForm.$valid && $ctrl.renameInstance()">
+    <form
+        novalidate
+        name="$ctrl.editNameForm"
+        data-ng-submit="$ctrl.editNameForm.$valid && $ctrl.renameInstance()"
+    >
         <fieldset data-ng-disabled="$ctrl.isLoading">
             <div class="oui-field oui-field_error">
-                <label for="storage-region" class="oui-field__label oui-label"
-                    data-translate="pci_projects_project_instances_instance_edit_region_label"></label>
-                <div class="oui-field__control"
-                    data-ng-bind="$ctrl.CucRegionService.getTranslatedMicroRegion($ctrl.instance.region)"></div>
+                <label
+                    for="storage-region"
+                    class="oui-field__label oui-label"
+                    data-translate="pci_projects_project_instances_instance_edit_region_label"
+                ></label>
+                <div
+                    class="oui-field__control"
+                    data-ng-bind="$ctrl.CucRegionService.getTranslatedMicroRegion($ctrl.instance.region)"
+                ></div>
             </div>
 
             <div class="oui-field oui-field_error">
-                <label for="storage-region" class="oui-field__label oui-label"
-                    data-translate="pci_projects_project_instances_instance_edit_sshKey_label"></label>
+                <label
+                    for="storage-region"
+                    class="oui-field__label oui-label"
+                    data-translate="pci_projects_project_instances_instance_edit_sshKey_label"
+                ></label>
                 <div class="oui-field__control">
-                    <span data-ng-bind="$ctrl.instance.sshKey.name || '-'"></span>
+                    <span
+                        data-ng-bind="$ctrl.instance.sshKey.name || '-'"
+                    ></span>
                 </div>
             </div>
 
             <div class="oui-field oui-field_error">
-                <label for="storage-region" class="oui-field__label oui-label"
-                    data-translate="pci_projects_project_instances_instance_edit_privateNetwork_label"></label>
+                <label
+                    for="storage-region"
+                    class="oui-field__label oui-label"
+                    data-translate="pci_projects_project_instances_instance_edit_privateNetwork_label"
+                ></label>
                 <div class="oui-field__control">
-                    <ul class="list-unstyled"
-                        data-ng-if="$ctrl.instance.privateNetworks.length > 0">
-                        <li data-ng-repeat="network in $ctrl.instance.privateNetworks track by network.id"
-                            data-ng-bind="network.name"></li>
+                    <ul
+                        class="list-unstyled"
+                        data-ng-if="$ctrl.instance.privateNetworks.length > 0"
+                    >
+                        <li
+                            data-ng-repeat="network in $ctrl.instance.privateNetworks track by network.id"
+                            data-ng-bind="network.name"
+                        ></li>
                     </ul>
-                    <span data-ng-if="$ctrl.instance.privateNetworks.length === 0">-</span>
+                    <span
+                        data-ng-if="$ctrl.instance.privateNetworks.length === 0"
+                        >-</span
+                    >
                 </div>
             </div>
 
             <oui-field
                 data-label="{{ :: 'pci_projects_project_instances_instance_edit_name_label' | translate }}"
-                data-size="xl">
-                <input class="oui-input" type="text" id="name" name="name"
+                data-size="xl"
+            >
+                <input
+                    class="oui-input"
+                    type="text"
+                    id="name"
+                    name="name"
                     ng-model="$ctrl.editInstance.name"
                     ng-pattern="$ctrl.instanceNamePattern"
-                    required>
+                    required
+                />
 
                 <div class="oui-field__helper">
-                    <span data-translate="pci_projects_project_instances_instance_edit_name_help"></span>
+                    <span
+                        data-translate="pci_projects_project_instances_instance_edit_name_help"
+                    ></span>
                 </div>
             </oui-field>
 
-            <cui-message-container data-messages="$ctrl.messages.name"></cui-message-container>
+            <cui-message-container
+                data-messages="$ctrl.messages.name"
+            ></cui-message-container>
 
             <oui-button
                 data-variant="primary"
                 data-type="submit"
                 data-text="{{:: 'pci_projects_project_instances_instance_edit_name_submit_label' | translate }}"
-                data-disabled="$ctrl.editInstance.name === $ctrl.instance.name"></oui-button>
-
+                data-disabled="$ctrl.editInstance.name === $ctrl.instance.name"
+            ></oui-button>
         </fieldset>
     </form>
 
     <div class="mt-4 pt-4 border-top">
-        <form novalidate name="$ctrl.editImageForm"
-            data-ng-submit="$ctrl.editImageForm.$valid && $ctrl.reinstallInstance()">
+        <form
+            novalidate
+            name="$ctrl.editImageForm"
+            data-ng-submit="$ctrl.editImageForm.$valid && $ctrl.reinstallInstance()"
+        >
             <fieldset data-ng-disabled="$ctrl.isLoading">
-
                 <oui-field
                     data-label="{{ :: 'pci_projects_project_instances_instance_edit_image_label' | translate }}"
-                    data-size="auto">
-
+                    data-size="auto"
+                >
                     <pci-project-images-list
                         data-flavor-type="$ctrl.instance.flavor.type"
                         data-os-types="[$ctrl.instance.flavor.osType]"
@@ -74,107 +113,149 @@
                         data-service-name="{{:: $ctrl.projectId }}"
                         data-default-image-id="$ctrl.instance.image.id"
                         data-on-change="$ctrl.onImageChange(image)"
-                        data-selected-image="$ctrl.model.image">
-                        <span data-translate="pci_projects_project_instances_instance_edit_image_not_available"></span>
+                        data-selected-image="$ctrl.model.image"
+                    >
+                        <span
+                            data-translate="pci_projects_project_instances_instance_edit_image_not_available"
+                        ></span>
                     </pci-project-images-list>
                 </oui-field>
 
-                <oui-message data-type="warning"
-                    data-ng-if="$ctrl.editInstance.imageId && $ctrl.instance.image.id !== $ctrl.editInstance.imageId">
+                <oui-message
+                    data-type="warning"
+                    data-ng-if="$ctrl.editInstance.imageId && $ctrl.instance.image.id !== $ctrl.editInstance.imageId"
+                >
                     <ul class="list-unstyled">
-                        <li data-translate="pci_projects_project_instances_instance_edit_reinstall_message"></li>
-                        <li data-translate="pci_projects_project_instances_instance_edit_reboot_message"></li>
+                        <li
+                            data-translate="pci_projects_project_instances_instance_edit_reinstall_message"
+                        ></li>
+                        <li
+                            data-translate="pci_projects_project_instances_instance_edit_reboot_message"
+                        ></li>
                     </ul>
                 </oui-message>
 
-                <cui-message-container data-messages="$ctrl.messages.image"></cui-message-container>
+                <cui-message-container
+                    data-messages="$ctrl.messages.image"
+                ></cui-message-container>
 
                 <oui-button
                     data-variant="primary"
                     data-type="submit"
                     data-text="{{:: 'pci_projects_project_instances_instance_edit_image_submit_label' | translate }}"
-                    data-disabled="!$ctrl.editInstance.imageId || $ctrl.instance.image.id === $ctrl.editInstance.imageId"></oui-button>
-
+                    data-disabled="!$ctrl.editInstance.imageId || $ctrl.instance.image.id === $ctrl.editInstance.imageId"
+                ></oui-button>
             </fieldset>
         </form>
     </div>
 
     <div class="mt-4 pt-4 border-top">
-        <form novalidate name="$ctrl.resizeInstanceForm"
-            data-ng-submit="$ctrl.resizeInstanceForm.$valid && $ctrl.resizeInstance()">
+        <form
+            novalidate
+            name="$ctrl.resizeInstanceForm"
+            data-ng-submit="$ctrl.resizeInstanceForm.$valid && $ctrl.resizeInstance()"
+        >
             <fieldset data-ng-disabled="$ctrl.isLoading">
                 <oui-field
                     data-label="{{ :: 'pci_projects_project_instances_instance_edit_flavor_label' | translate }}"
-                    data-size="auto">
-
+                    data-size="auto"
+                >
                     <pci-project-flavors-list
                         data-service-name="{{:: $ctrl.projectId }}"
                         data-selected-flavor="$ctrl.model.flavorGroup"
                         data-default-flavor="$ctrl.instance.flavor"
                         data-on-change="$ctrl.onFlavorChange(flavor)"
-                        data-display-selected-flavor="false">
-                        <span data-translate="pci_projects_project_instances_instance_edit_flavor_not_available"></span>
+                        data-display-selected-flavor="false"
+                    >
+                        <span
+                            data-translate="pci_projects_project_instances_instance_edit_flavor_not_available"
+                        ></span>
                     </pci-project-flavors-list>
 
                     <div
                         class="d-flex align-items-center"
-                        data-ng-if="$ctrl.canSwitchToFlex()">
+                        data-ng-if="$ctrl.canSwitchToFlex()"
+                    >
                         <oui-checkbox
                             class="position-relative"
                             id="instance-flex"
                             name="instance-flex"
                             data-model="$ctrl.model.isInstanceFlex"
-                            data-on-change="$ctrl.onFlexChange(modelValue)">
-                            <span data-translate="pci_projects_project_instances_instance_edit_flex"></span>
+                            data-on-change="$ctrl.onFlexChange(modelValue)"
+                        >
+                            <span
+                                data-translate="pci_projects_project_instances_instance_edit_flex"
+                            ></span>
                         </oui-checkbox>
-                        <button type="button" class="oui-popover-button mb-1" oui-popover="{{:: 'pci_projects_project_instances_instance_edit_flex_help' | translate }}"></button>
+                        <button
+                            type="button"
+                            class="oui-popover-button mb-1"
+                            oui-popover="{{:: 'pci_projects_project_instances_instance_edit_flex_help' | translate }}"
+                        ></button>
                     </div>
                 </oui-field>
 
-                <oui-message data-type="warning"
-                    data-ng-if="$ctrl.instance.flavor.id !== $ctrl.editInstance.flavorId">
-                    <span data-translate="pci_projects_project_instances_instance_edit_reboot_message"></span>
+                <oui-message
+                    data-type="warning"
+                    data-ng-if="$ctrl.instance.flavor.id !== $ctrl.editInstance.flavorId"
+                >
+                    <span
+                        data-translate="pci_projects_project_instances_instance_edit_reboot_message"
+                    ></span>
                 </oui-message>
 
-                <cui-message-container data-messages="$ctrl.messages.flavor"></cui-message-container>
+                <cui-message-container
+                    data-messages="$ctrl.messages.flavor"
+                ></cui-message-container>
 
                 <oui-button
                     data-variant="primary"
                     data-type="submit"
                     data-text="{{:: 'pci_projects_project_instances_instance_edit_flavor_submit_label' | translate }}"
-                    data-disabled="$ctrl.instance.flavor.id === $ctrl.editInstance.flavorId || !$ctrl.instance.canBeResized()"></oui-button>
-
+                    data-disabled="$ctrl.instance.flavor.id === $ctrl.editInstance.flavorId || !$ctrl.instance.canBeResized()"
+                ></oui-button>
             </fieldset>
         </form>
     </div>
 
     <div class="mt-4 pt-4 border-top">
-        <form novalidate name="$ctrl.activateMonthlyBillingForm"
-            data-ng-submit="$ctrl.activateMonthlyBillingForm.$valid && $ctrl.activateMonthlyBilling()">
+        <form
+            novalidate
+            name="$ctrl.activateMonthlyBillingForm"
+            data-ng-submit="$ctrl.activateMonthlyBillingForm.$valid && $ctrl.activateMonthlyBilling()"
+        >
             <fieldset data-ng-disabled="$ctrl.isLoading">
-
                 <oui-field
                     data-label="{{ :: 'pci_projects_project_instances_instance_edit_billing_label' | translate }}"
-                    data-size="auto">
+                    data-size="auto"
+                >
                     <p>
-                        <span data-translate="pci_projects_project_instances_instance_edit_billing_montly_discount_message"></span>
-                        <span class="d-inline-block"
-                            data-translate="pci_projects_project_instances_instance_edit_billing_short_period_message"></span>
+                        <span
+                            data-translate="pci_projects_project_instances_instance_edit_billing_montly_discount_message"
+                        ></span>
+                        <span
+                            class="d-inline-block"
+                            data-translate="pci_projects_project_instances_instance_edit_billing_short_period_message"
+                        ></span>
                     </p>
                     <pci-project-flavor-billing
                         data-flavor="$ctrl.defaultFlavor"
                         data-monthly-billing="$ctrl.editInstance.monthlyBilling"
-                        data-disabled="$ctrl.instance.isMonthlyBillingActivated()">
+                        data-disabled="$ctrl.instance.isMonthlyBillingActivated()"
+                    >
                     </pci-project-flavor-billing>
                 </oui-field>
 
-                <cui-message-container data-messages="$ctrl.messages.billing"></cui-message-container>
+                <cui-message-container
+                    data-messages="$ctrl.messages.billing"
+                ></cui-message-container>
 
                 <oui-button
                     data-variant="primary"
                     data-type="submit"
                     data-text="{{:: 'pci_projects_project_instances_instance_edit_billing_submit_label' | translate }}"
-                    data-disabled="$ctrl.editInstance.monthlyBilling === $ctrl.instance.isMonthlyBillingActivated()"></oui-button>
+                    data-disabled="$ctrl.editInstance.monthlyBilling === $ctrl.instance.isMonthlyBillingActivated()"
+                ></oui-button>
             </fieldset>
         </form>
     </div>

@@ -37,16 +37,17 @@ export default class IpLoadBalancerConfigurationCtrl {
 
     this.initLoaders();
 
-    this.zones.load()
-      .then(() => {
-        this.startPolling();
-      });
+    this.zones.load().then(() => {
+      this.startPolling();
+    });
   }
 
   initLoaders() {
     this.zones = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () => this.IpLoadBalancerConfigurationService
-        .getAllZonesChanges(this.$stateParams.serviceName),
+      loaderFunction: () =>
+        this.IpLoadBalancerConfigurationService.getAllZonesChanges(
+          this.$stateParams.serviceName,
+        ),
     });
   }
 
@@ -60,37 +61,58 @@ export default class IpLoadBalancerConfigurationCtrl {
       ? zone
       : [this.zones.data.find(({ id }) => id === zone)];
 
-    const targetsThatCantBeChanged = targets.filter(target => has(target, 'task.status') && get(target, 'task.status') !== 'done');
+    const targetsThatCantBeChanged = targets.filter(
+      (target) =>
+        has(target, 'task.status') && get(target, 'task.status') !== 'done',
+    );
 
     if (!isEmpty(targetsThatCantBeChanged)) {
-      const messageToDisplay = targetsThatCantBeChanged.length !== targets.length
-        ? `${this.$translate.instant(
-          'iplb_configuration_excludedZones_some',
-          {
-            datacenters: targetsThatCantBeChanged.map(target => target.name).join(','),
-          },
-        )} ${this.$translate.instant('iplb_configuration_excludedZones_explanation')}`
-        : `${this.$translate.instant('iplb_configuration_excludedZones_all')} ${this.$translate.instant('iplb_configuration_excludedZones_explanation')}`;
+      const messageToDisplay =
+        targetsThatCantBeChanged.length !== targets.length
+          ? `${this.$translate.instant(
+              'iplb_configuration_excludedZones_some',
+              {
+                datacenters: targetsThatCantBeChanged
+                  .map((target) => target.name)
+                  .join(','),
+              },
+            )} ${this.$translate.instant(
+              'iplb_configuration_excludedZones_explanation',
+            )}`
+          : `${this.$translate.instant(
+              'iplb_configuration_excludedZones_all',
+            )} ${this.$translate.instant(
+              'iplb_configuration_excludedZones_explanation',
+            )}`;
 
       this.CucCloudMessage.success(messageToDisplay);
     }
 
-    const targetsToApplyChangesTo = targets.filter(target => !has(target, 'task.status') || target.task.status === 'done');
+    const targetsToApplyChangesTo = targets.filter(
+      (target) => !has(target, 'task.status') || target.task.status === 'done',
+    );
 
     if (targetsToApplyChangesTo.length === zoneData.length) {
       // All selected, just call the API with no zone.
-      promise = this.IpLoadBalancerConfigurationService
-        .refresh(this.$stateParams.serviceName, null);
+      promise = this.IpLoadBalancerConfigurationService.refresh(
+        this.$stateParams.serviceName,
+        null,
+      );
     } else if (targetsToApplyChangesTo.length) {
-      promise = this.IpLoadBalancerConfigurationService
-        .batchRefresh(this.$stateParams.serviceName, map(targetsToApplyChangesTo, 'id'));
+      promise = this.IpLoadBalancerConfigurationService.batchRefresh(
+        this.$stateParams.serviceName,
+        map(targetsToApplyChangesTo, 'id'),
+      );
     }
 
     promise
       .then(() => {
         this.zones.data
-          .filter(currentZone => targetsToApplyChangesTo
-            .find(({ name }) => name === currentZone.name))
+          .filter((currentZone) =>
+            targetsToApplyChangesTo.find(
+              ({ name }) => name === currentZone.name,
+            ),
+          )
           .forEach((target) => {
             this.applications[target.id] = true;
 
@@ -98,19 +120,16 @@ export default class IpLoadBalancerConfigurationCtrl {
               Object.assign(target, { task: {} });
             }
 
-            Object.assign(
-              target.task,
-              {
-                progress: 0,
-                status: 'todo',
-              },
-            );
+            Object.assign(target.task, {
+              progress: 0,
+              status: 'todo',
+            });
           });
 
         this.startPolling();
         if (this.poller) {
           this.poller.$promise.then(() => {
-          // check if at least one change remains
+            // check if at least one change remains
             if (sum(map(this.zones.data, 'changes')) > 0) {
               this.CucCloudMessage.flushChildMessage();
             } else {
@@ -131,9 +150,16 @@ export default class IpLoadBalancerConfigurationCtrl {
 
     this.poller = this.CucCloudPoll.pollArray({
       items: this.zones.data,
-      pollFunction: zone => this.IpLoadBalancerConfigurationService
-        .getZoneChanges(this.$stateParams.serviceName, zone.id),
-      stopCondition: zone => !zone.task || (zone.task && includes(['done', 'error'], zone.task.status) && (zone.changes === 0 || zone.task.progress === 100)),
+      pollFunction: (zone) =>
+        this.IpLoadBalancerConfigurationService.getZoneChanges(
+          this.$stateParams.serviceName,
+          zone.id,
+        ),
+      stopCondition: (zone) =>
+        !zone.task ||
+        (zone.task &&
+          includes(['done', 'error'], zone.task.status) &&
+          (zone.changes === 0 || zone.task.progress === 100)),
     });
   }
 

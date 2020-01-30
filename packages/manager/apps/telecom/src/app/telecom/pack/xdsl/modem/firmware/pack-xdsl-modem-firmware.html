@@ -6,18 +6,22 @@
             id="configFimware"
             data-ng-model="$ctrl.firmwareTmp"
             data-ng-options="firmware for firmware in $ctrl.availableFirmwares"
-            data-ng-disabled="!$ctrl.mediator.capabilities.canChangeFirmware || $ctrl.mediator.tasks.changeModemConfigFirmware || $ctrl.loading">
+            data-ng-disabled="!$ctrl.mediator.capabilities.canChangeFirmware || $ctrl.mediator.tasks.changeModemConfigFirmware || $ctrl.loading"
+        >
         </select>
     </div>
-    <button class="oui-button oui-button_primary mt-1"
-            type="submit"
-            data-ng-disabled="!$ctrl.mediator.capabilities.canChangeFirmware || $ctrl.firmware === $ctrl.firmwareTmp">
-            <span data-ng-if="$ctrl.mediator.tasks.changeModemConfigFirmware">
-                <oui-spinner class="mr-2"
-                             data-size="s">
-                </oui-spinner>
-                <span data-translate="xdsl_modem_firmware_doing"></span>
-            </span>
-        <span data-ng-if="!$ctrl.mediator.tasks.changeModemConfigFirmware" data-translate="xdsl_modem_fimware_submit"></span>
+    <button
+        class="oui-button oui-button_primary mt-1"
+        type="submit"
+        data-ng-disabled="!$ctrl.mediator.capabilities.canChangeFirmware || $ctrl.firmware === $ctrl.firmwareTmp"
+    >
+        <span data-ng-if="$ctrl.mediator.tasks.changeModemConfigFirmware">
+            <oui-spinner class="mr-2" data-size="s"> </oui-spinner>
+            <span data-translate="xdsl_modem_firmware_doing"></span>
+        </span>
+        <span
+            data-ng-if="!$ctrl.mediator.tasks.changeModemConfigFirmware"
+            data-translate="xdsl_modem_fimware_submit"
+        ></span>
     </button>
 </form>

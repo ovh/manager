@@ -1,35 +1,66 @@
-<div class="row" data-ng-show="!ctrlDomainDynHost.loading.dynHosts || ctrlDomainDynHost.hasResult">
+<div
+    class="row"
+    data-ng-show="!ctrlDomainDynHost.loading.dynHosts || ctrlDomainDynHost.hasResult"
+>
     <div class="col-md-9">
         <div data-ovh-alert="{{alerts.main}}"></div>
 
-        <div data-ng-if="!ctrlDomainDynHost.loading.dynHosts && !ctrlDomainDynHost.hasResult">
+        <div
+            data-ng-if="!ctrlDomainDynHost.loading.dynHosts && !ctrlDomainDynHost.hasResult"
+        >
             <p data-translate="domain_tab_DYNHOST_title"></p>
-            <div class="alert alert-info mt-5" role="alert"
-                 data-translate="domain_tab_DYNHOST_table_dynhosts_empty">
-            </div>
+            <div
+                class="alert alert-info mt-5"
+                role="alert"
+                data-translate="domain_tab_DYNHOST_table_dynhosts_empty"
+            ></div>
         </div>
 
         <div data-ng-if="ctrlDomainDynHost.hasResult">
             <p data-translate="domain_tab_DYNHOST_title"></p>
-            <form class="form-inline d-md-flex justify-content-md-end mb-3 mt-5" name="searchDynhostForm">
+            <form
+                class="form-inline d-md-flex justify-content-md-end mb-3 mt-5"
+                name="searchDynhostForm"
+            >
                 <div class="form-group">
                     <label class="sr-only" for="searchDynhost"></label>
                     <div class="input-group">
-                        <input type="text" class="form-control" id="searchDynhost" name="searchDynhost" placeholder="{{:: 'domain_tab_DYNHOST_table_search' | translate }}"
-                               data-ng-change="ctrlDomainDynHost.refreshTableDynHosts()"
-                               data-ng-disabled="ctrlDomainDynHost.loading.dynHosts"
-                               data-ng-model="ctrlDomainDynHost.search.subDomain"
-                               data-ng-model-options="{ debounce: 800 }">
-                        <div class="input-group-btn" data-ng-if="ctrlDomainDynHost.search.subDomain">
-                            <button class="btn btn-default" type="button" aria-label="{{ 'common_cancel' | translate }}"
-                                    data-ng-click="ctrlDomainDynHost.emptySearch()"
-                                    data-ng-disabled="ctrlDomainDynHost.loading.dynHosts">
-                                <span class="fa fa-times" aria-hidden="true"></span>
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="searchDynhost"
+                            name="searchDynhost"
+                            placeholder="{{:: 'domain_tab_DYNHOST_table_search' | translate }}"
+                            data-ng-change="ctrlDomainDynHost.refreshTableDynHosts()"
+                            data-ng-disabled="ctrlDomainDynHost.loading.dynHosts"
+                            data-ng-model="ctrlDomainDynHost.search.subDomain"
+                            data-ng-model-options="{ debounce: 800 }"
+                        />
+                        <div
+                            class="input-group-btn"
+                            data-ng-if="ctrlDomainDynHost.search.subDomain"
+                        >
+                            <button
+                                class="btn btn-default"
+                                type="button"
+                                aria-label="{{ 'common_cancel' | translate }}"
+                                data-ng-click="ctrlDomainDynHost.emptySearch()"
+                                data-ng-disabled="ctrlDomainDynHost.loading.dynHosts"
+                            >
+                                <span
+                                    class="fa fa-times"
+                                    aria-hidden="true"
+                                ></span>
                             </button>
                         </div>
-                        <span class="input-group-addon"
-                              data-ng-if="!ctrlDomainDynHost.search.subDomain">
-                            <span class="fa fa-search" aria-hidden="true"></span>
+                        <span
+                            class="input-group-addon"
+                            data-ng-if="!ctrlDomainDynHost.search.subDomain"
+                        >
+                            <span
+                                class="fa fa-search"
+                                aria-hidden="true"
+                            ></span>
                         </span>
                     </div>
                 </div>
@@ -39,12 +70,25 @@
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th scope="col" data-translate="domain_tab_DYNHOST_table_header_field"></th>
-                            <th scope="col" data-translate="domain_tab_DYNHOST_table_header_target"></th>
+                            <th
+                                scope="col"
+                                data-translate="domain_tab_DYNHOST_table_header_field"
+                            ></th>
+                            <th
+                                scope="col"
+                                data-translate="domain_tab_DYNHOST_table_header_target"
+                            ></th>
                             <th class="min-width text-right" scope="col">
-                                <button class="btn btn-icon" type="button" title="{{ 'refresh' | translate }}"
-                                        data-ng-click="ctrlDomainDynHost.refreshTableDynHosts()">
-                                    <span class="fa fa-refresh" aria-hidden="true"></span>
+                                <button
+                                    class="btn btn-icon"
+                                    type="button"
+                                    title="{{ 'refresh' | translate }}"
+                                    data-ng-click="ctrlDomainDynHost.refreshTableDynHosts()"
+                                >
+                                    <span
+                                        class="fa fa-refresh"
+                                        aria-hidden="true"
+                                    ></span>
                                 </button>
                             </th>
                         </tr>
@@ -60,23 +104,40 @@
                     </tbody>
 
                     <!-- no DynHosts -->
-                    <tbody data-ng-if="!ctrlDomainDynHost.loading.dynHosts && !ctrlDomainDynHost.dynHosts.length">
+                    <tbody
+                        data-ng-if="!ctrlDomainDynHost.loading.dynHosts && !ctrlDomainDynHost.dynHosts.length"
+                    >
                         <tr>
-                            <td class="text-center" colspan="3" data-translate="table_search_noresult"></td>
+                            <td
+                                class="text-center"
+                                colspan="3"
+                                data-translate="table_search_noresult"
+                            ></td>
                         </tr>
                     </tbody>
 
                     <!-- DynHosts -->
-                    <tbody data-ng-if="!ctrlDomainDynHost.loading.dynHosts && ctrlDomainDynHost.dynHosts.length > 0">
-                        <tr data-ng-repeat="dynHost in (ctrlDomainDynHost.dynHostsDetails | orderBy:'subDomain') track by dynHost.id">
-                            <th scope="row" data-ng-bind="dynHost.subDomain + '.' + ctrlDomainDynHost.product.name"></th>
+                    <tbody
+                        data-ng-if="!ctrlDomainDynHost.loading.dynHosts && ctrlDomainDynHost.dynHosts.length > 0"
+                    >
+                        <tr
+                            data-ng-repeat="dynHost in (ctrlDomainDynHost.dynHostsDetails | orderBy:'subDomain') track by dynHost.id"
+                        >
+                            <th
+                                scope="row"
+                                data-ng-bind="dynHost.subDomain + '.' + ctrlDomainDynHost.product.name"
+                            ></th>
                             <td data-ng-bind="dynHost.ip"></td>
                             <td class="text-right">
                                 <oui-action-menu data-compact data-align="end">
-                                        <oui-action-menu-item data-text="{{:: 'table_modify_entry' | translate }}"
-                                                              data-on-click="setAction('dynhost/edit/domain-dynhost-edit', {dynHost: dynHost, product: ctrlDomainDynHost.product})"></oui-action-menu-item>
-                                        <oui-action-menu-item data-text="{{:: 'table_delete_entry' | translate }}"
-                                                              data-on-click="setAction('dynhost/delete/domain-dynhost-delete', {dynHost: dynHost, zoneName: ctrlDomainDynHost.product.name})"></oui-action-menu-item>
+                                    <oui-action-menu-item
+                                        data-text="{{:: 'table_modify_entry' | translate }}"
+                                        data-on-click="setAction('dynhost/edit/domain-dynhost-edit', {dynHost: dynHost, product: ctrlDomainDynHost.product})"
+                                    ></oui-action-menu-item>
+                                    <oui-action-menu-item
+                                        data-text="{{:: 'table_delete_entry' | translate }}"
+                                        data-on-click="setAction('dynhost/delete/domain-dynhost-delete', {dynHost: dynHost, zoneName: ctrlDomainDynHost.product.name})"
+                                    ></oui-action-menu-item>
                                 </oui-action-menu>
                             </td>
                         </tr>
@@ -85,39 +146,44 @@
             </div>
         </div>
 
-        <div class="clearix"
-             data-ng-if="ctrlDomainDynHost.dynHosts">
-            <div data-pagination-front
-                 data-items="ctrlDomainDynHost.dynHosts"
-                 data-paginated-items="ctrlDomainDynHost.dynHostsDetails"
-                 data-current-page="currentPageDynHosts"
-                 data-nb-pages="nbPages"
-                 data-items-per-page="itemsPerPage"
-                 data-transform-item="ctrlDomainDynHost.transformItem(item)"
-                 data-on-transform-item-done="ctrlDomainDynHost.onTransformItemDone(items)"
-                 data-page-placeholder="{{ 'pagination_page' | translate: { current: currentPageDynHosts, last: nbPages } }}"
-                 data-item-per-page-placeholder="{{ 'pagination_display' | translate }}"
-                 data-on-page-change="ctrlDomainDynHost.loading.dynHosts = true"
-                 data-ng-show="!ctrlDomainDynHost.loading.dynHosts && ctrlDomainDynHost.dynHostsDetails.length > 0">
-            </div>
+        <div class="clearix" data-ng-if="ctrlDomainDynHost.dynHosts">
+            <div
+                data-pagination-front
+                data-items="ctrlDomainDynHost.dynHosts"
+                data-paginated-items="ctrlDomainDynHost.dynHostsDetails"
+                data-current-page="currentPageDynHosts"
+                data-nb-pages="nbPages"
+                data-items-per-page="itemsPerPage"
+                data-transform-item="ctrlDomainDynHost.transformItem(item)"
+                data-on-transform-item-done="ctrlDomainDynHost.onTransformItemDone(items)"
+                data-page-placeholder="{{ 'pagination_page' | translate: { current: currentPageDynHosts, last: nbPages } }}"
+                data-item-per-page-placeholder="{{ 'pagination_display' | translate }}"
+                data-on-page-change="ctrlDomainDynHost.loading.dynHosts = true"
+                data-ng-show="!ctrlDomainDynHost.loading.dynHosts && ctrlDomainDynHost.dynHostsDetails.length > 0"
+            ></div>
         </div>
     </div>
 
     <div class="col-md-3 mt-5 mt-lg-0">
         <div class="mb-5">
-            <button class="btn btn-block btn-default" type="button"
-                    data-translate="domain_tab_DYNHOST_table_dynhosts_create"
-                    data-ng-click="setAction('dynhost/add/domain-dynhost-add', ctrlDomainDynHost.product)">
-            </button>
-            <button class="btn btn-block btn-default" type="button"
-                    data-translate="domain_tab_DYNHOST_management_heading"
-                    data-ng-click="ctrlDomainDynHost.selectSubView('loginsDynHostView')">
-            </button>
+            <button
+                class="btn btn-block btn-default"
+                type="button"
+                data-translate="domain_tab_DYNHOST_table_dynhosts_create"
+                data-ng-click="setAction('dynhost/add/domain-dynhost-add', ctrlDomainDynHost.product)"
+            ></button>
+            <button
+                class="btn btn-block btn-default"
+                type="button"
+                data-translate="domain_tab_DYNHOST_management_heading"
+                data-ng-click="ctrlDomainDynHost.selectSubView('loginsDynHostView')"
+            ></button>
         </div>
-        <div data-wuc-guides
-             data-wuc-guides-list="'dynhost'"
-             data-wuc-guides-title="'guide_domain_subtitle' | translate"
-             data-tr="tr">
-        </div>
+        <div
+            data-wuc-guides
+            data-wuc-guides-list="'dynhost'"
+            data-wuc-guides-title="'guide_domain_subtitle' | translate"
+            data-tr="tr"
+        ></div>
     </div>
 </div>

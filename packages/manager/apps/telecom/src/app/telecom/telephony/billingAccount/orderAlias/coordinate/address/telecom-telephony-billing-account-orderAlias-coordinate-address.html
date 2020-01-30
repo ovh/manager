@@ -1,75 +1,96 @@
-<div class="alias-order-address"
-     data-ng-form="aliasOrderAddress">
+<div class="alias-order-address" data-ng-form="aliasOrderAddress">
     <!-- Street number -->
     <div class="form-group">
-        <label class="control-label"
-               for="streetNumberElem"
-               data-translate="telephony_order_address_street_number">
+        <label
+            class="control-label"
+            for="streetNumberElem"
+            data-translate="telephony_order_address_street_number"
+        >
         </label>
-        <input type="text"
-               class="form-control"
-               id="streetNumberElem"
-               name="streetNumber"
-               data-ng-model="$ctrl.ngModel.streetNumber"
-               data-ng-disabled="$ctrl.ngDisabled"
-               data-translate-attr="{ 'placeholder': 'telephony_order_address_street_number' }" />
+        <input
+            type="text"
+            class="form-control"
+            id="streetNumberElem"
+            name="streetNumber"
+            data-ng-model="$ctrl.ngModel.streetNumber"
+            data-ng-disabled="$ctrl.ngDisabled"
+            data-translate-attr="{ 'placeholder': 'telephony_order_address_street_number' }"
+        />
     </div>
 
     <!-- Street name -->
-    <div class="form-group"
-         data-ng-class="{
+    <div
+        class="form-group"
+        data-ng-class="{
              'has-error': aliasOrderAddress.street.$touched && aliasOrderAddress.street.$invalid
-         }">
-        <label class="control-label"
-               for="streetElem"
-               data-translate="telephony_order_address_street_name">
+         }"
+    >
+        <label
+            class="control-label"
+            for="streetElem"
+            data-translate="telephony_order_address_street_name"
+        >
         </label>
-        <input type="text"
-               class="form-control"
-               id="streetElem"
-               name="street"
-               required
-               placeholder="{{:: 'telephony_order_address_street_name' | translate }} *"
-               data-ng-model="$ctrl.ngModel.streetName"
-               data-ng-disabled="$ctrl.ngDisabled" />
+        <input
+            type="text"
+            class="form-control"
+            id="streetElem"
+            name="street"
+            required
+            placeholder="{{:: 'telephony_order_address_street_name' | translate }} *"
+            data-ng-model="$ctrl.ngModel.streetName"
+            data-ng-disabled="$ctrl.ngDisabled"
+        />
     </div>
 
     <!-- Zipcode -->
-    <div class="form-group"
-         data-ng-class="{
+    <div
+        class="form-group"
+        data-ng-class="{
              'has-error': aliasOrderAddress.zip.$touched && aliasOrderAddress.zip.$invalid
-         }">
-        <label class="control-label"
-               for="zipElem"
-               data-translate="telephony_order_address_zipcode">
+         }"
+    >
+        <label
+            class="control-label"
+            for="zipElem"
+            data-translate="telephony_order_address_zipcode"
+        >
         </label>
-        <input type="text"
-               class="form-control"
-               id="zipElem"
-               name="zip"
-               placeholder="{{:: 'telephony_order_address_zipcode' | translate }} *"
-               required
-               data-ng-model="$ctrl.ngModel.zip"
-               data-ng-disabled="$ctrl.ngDisabled"
-               data-ui-validate="'$ctrl.validator.isZipcode($value, [$ctrl.regionCode])'" />
+        <input
+            type="text"
+            class="form-control"
+            id="zipElem"
+            name="zip"
+            placeholder="{{:: 'telephony_order_address_zipcode' | translate }} *"
+            required
+            data-ng-model="$ctrl.ngModel.zip"
+            data-ng-disabled="$ctrl.ngDisabled"
+            data-ui-validate="'$ctrl.validator.isZipcode($value, [$ctrl.regionCode])'"
+        />
     </div>
 
     <!-- City -->
-    <div class="form-group"
-         data-ng-class="{
+    <div
+        class="form-group"
+        data-ng-class="{
              'has-error': aliasOrderAddress.city.$touched && aliasOrderAddress.city.$invalid
-         }">
-        <label class="control-label"
-               for="cityElem"
-               data-translate="telephony_order_address_city">
+         }"
+    >
+        <label
+            class="control-label"
+            for="cityElem"
+            data-translate="telephony_order_address_city"
+        >
         </label>
-        <input type="text"
-               class="form-control"
-               id="cityElem"
-               name="city"
-               required
-               placeholder="{{:: 'telephony_order_address_city' | translate }} *"
-               data-ng-model="$ctrl.ngModel.city"
-               data-ng-disabled="$ctrl.ngDisabled" />
+        <input
+            type="text"
+            class="form-control"
+            id="cityElem"
+            name="city"
+            required
+            placeholder="{{:: 'telephony_order_address_city' | translate }} *"
+            data-ng-model="$ctrl.ngModel.city"
+            data-ng-disabled="$ctrl.ngDisabled"
+        />
     </div>
 </div>

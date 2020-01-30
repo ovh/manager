@@ -4,7 +4,7 @@
     min-height: 50px;
 
     &::before {
-      content: "";
+      content: '';
       position: absolute;
       left: -16px;
       border-left: 3px solid @gray-lighter;
@@ -13,7 +13,7 @@
     }
 
     &::after {
-      content: "";
+      content: '';
       display: block;
       border-radius: 10px;
       width: 20px;
@@ -24,9 +24,17 @@
       background-color: @gray-lighter;
     }
 
-    &.doing::after { background-color: @oui-color-fiord; }
-    &.done::after { background-color: @oui-color-success-dark; }
-    &.error::after { background-color: @oui-color-error-dark; }
+    &.doing::after {
+      background-color: @oui-color-fiord;
+    }
+
+    &.done::after {
+      background-color: @oui-color-success-dark;
+    }
+
+    &.error::after {
+      background-color: @oui-color-error-dark;
+    }
 
     &:first-child::before {
       top: 20px;

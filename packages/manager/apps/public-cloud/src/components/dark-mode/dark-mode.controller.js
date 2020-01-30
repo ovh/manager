@@ -36,8 +36,10 @@ export default class DarkModeController {
    * @return {Boolean}
    */
   static isDarkThemeActive() {
-    return localStorage
-      .getItem(DARK_MODE_LOCAL_STORAGE_KEY) === DARK_MODE_LOCAL_STORAGE_KEY_ACTIVATE;
+    return (
+      localStorage.getItem(DARK_MODE_LOCAL_STORAGE_KEY) ===
+      DARK_MODE_LOCAL_STORAGE_KEY_ACTIVATE
+    );
   }
 
   /**
@@ -76,8 +78,9 @@ export default class DarkModeController {
    */
 
   injectDarkTheme() {
-    return import('../../assets/theme/dark/index.less')
-      .then(() => this.rootElement.classList.add(DARK_MODE_THEME_NAME));
+    return import('../../assets/theme/dark/index.less').then(() =>
+      this.rootElement.classList.add(DARK_MODE_THEME_NAME),
+    );
   }
 
   /**
@@ -92,10 +95,9 @@ export default class DarkModeController {
         controller,
         controllerAs: '$ctrl',
       })
-      .result
-      .then(shouldActiveDarkTheme => (shouldActiveDarkTheme
-        ? this.activateDarkTheme()
-        : angular.noop))
+      .result.then((shouldActiveDarkTheme) =>
+        shouldActiveDarkTheme ? this.activateDarkTheme() : angular.noop,
+      )
       .catch(angular.noop); // Prevent unhandled rejection.
   }
 

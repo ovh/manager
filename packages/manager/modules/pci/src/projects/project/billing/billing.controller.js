@@ -4,8 +4,12 @@ export default class CloudProjectBillingConsumptionCurrentCtrl {
     $q,
     $translate,
     $state,
+    billingLink,
+    estimateLink,
     CucCloudMessage,
     CloudProjectBilling,
+    currentActiveLink,
+    historyLink,
     guideUrl,
     OvhApiCloudProjectUsageCurrent,
     projectId,
@@ -13,6 +17,10 @@ export default class CloudProjectBillingConsumptionCurrentCtrl {
     this.$state = $state;
     this.projectId = projectId;
     this.data = {};
+    this.billingLink = billingLink;
+    this.estimateLink = estimateLink;
+    this.historyLink = historyLink;
+    this.currentActiveLink = currentActiveLink;
 
     this.CucCloudMessage = CucCloudMessage;
     this.guideUrl = guideUrl;
@@ -20,19 +28,21 @@ export default class CloudProjectBillingConsumptionCurrentCtrl {
     this.loading = true;
 
     this.loadMessages();
-    OvhApiCloudProjectUsageCurrent
-      .v6()
+    OvhApiCloudProjectUsageCurrent.v6()
       .get({ serviceName: projectId })
-      .$promise
-      .then(billingInfo => CloudProjectBilling.getConsumptionDetails(
-        billingInfo,
-        billingInfo,
-      ))
+      .$promise.then((billingInfo) =>
+        CloudProjectBilling.getConsumptionDetails(billingInfo, billingInfo),
+      )
       .then((data) => {
         this.data = data;
       })
       .catch((err) => {
-        this.CucCloudMessage.error([$translate.instant('cpb_error_message'), (err.data && err.data.message) || ''].join(' '));
+        this.CucCloudMessage.error(
+          [
+            $translate.instant('cpb_error_message'),
+            (err.data && err.data.message) || '',
+          ].join(' '),
+        );
         return $q.reject(err);
       })
       .finally(() => {

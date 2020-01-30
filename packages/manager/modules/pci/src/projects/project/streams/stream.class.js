@@ -54,15 +54,17 @@ export default class Stream {
   }
 
   getStreamUrl({ project_id: projectId }) {
-    return `${this.isPersistent() ? 'persistent' : 'non-persistent'}://${projectId}/${this.name}/${this.name}`;
+    return `${
+      this.isPersistent() ? 'persistent' : 'non-persistent'
+    }://${projectId}/${this.name}/${this.name}`;
   }
 
   get consumerAndPublisherToken() {
-    return find(this.tokens, token => token.isProducerAndConsumer());
+    return find(this.tokens, (token) => token.isProducerAndConsumer());
   }
 
   get consumerOnlyToken() {
-    return find(this.tokens, token => token.isConsumerOnly());
+    return find(this.tokens, (token) => token.isConsumerOnly());
   }
 
   isUnlimitedThrottling() {

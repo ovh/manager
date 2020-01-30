@@ -26,13 +26,13 @@ export default class Kubernetes {
   }
 
   isLegacyCluster(serviceName) {
-    return this.OvhApiKube.v6().getServiceInfos({
-      serviceName,
-    }).$promise
-      .then(() => true)
-      .catch(error => (error.status === 404 ? false : Promise.reject(error)));
+    return this.OvhApiKube.v6()
+      .getServiceInfos({
+        serviceName,
+      })
+      .$promise.then(() => true)
+      .catch((error) => (error.status === 404 ? false : Promise.reject(error)));
   }
-
 
   static isProcessing(status) {
     return PROCESSING_STATUS.includes(status);
@@ -52,48 +52,53 @@ export default class Kubernetes {
   }
 
   getKubeConfig(serviceName, kubeId) {
-    return this.OvhApiCloudProjectKube.v6().getKubeConfig({
-      serviceName,
-      kubeId,
-    }, {}).$promise
-      .then(({ content }) => ({
+    return this.OvhApiCloudProjectKube.v6()
+      .getKubeConfig(
+        {
+          serviceName,
+          kubeId,
+        },
+        {},
+      )
+      .$promise.then(({ content }) => ({
         content,
         fileName: CONFIG_FILENAME,
       }))
-      .catch(error => (error.status === 400 ? false : Promise.reject(error)));
+      .catch((error) => (error.status === 400 ? false : Promise.reject(error)));
   }
 
   getAvailableFlavors(cluster, flavors, projectId) {
-    return this.OvhApiCloudProjectKube
-      .Flavors()
+    return this.OvhApiCloudProjectKube.Flavors()
       .v6()
       .query({
         serviceName: projectId,
         kubeId: cluster.id,
       })
-      .$promise
-      .then((kubeFlavors) => {
-        const detailedFlavors = map(
-          kubeFlavors,
-          (flavor) => {
-            const pciFlavor = flavors.find(flavorDetails => flavorDetails.name === flavor.name);
-            return new Flavors({
-              ...flavor,
-              ...pciFlavor,
-            });
-          },
-        );
-        return filter(detailedFlavors, flavor => flavor.isAvailable());
+      .$promise.then((kubeFlavors) => {
+        const detailedFlavors = map(kubeFlavors, (flavor) => {
+          const pciFlavor = flavors.find(
+            (flavorDetails) => flavorDetails.name === flavor.name,
+          );
+          return new Flavors({
+            ...flavor,
+            ...pciFlavor,
+          });
+        });
+        return filter(detailedFlavors, (flavor) => flavor.isAvailable());
       });
   }
 
   getProjectInstances(projectId) {
-    return this.OvhApiCloudProjectInstance.v6().query({ serviceName: projectId }).$promise;
+    return this.OvhApiCloudProjectInstance.v6().query({
+      serviceName: projectId,
+    }).$promise;
   }
 
   switchToMonthlyBilling(serviceName, nodeId) {
-    return this.OvhApiCloudProjectInstance.v6()
-      .activeMonthlyBilling({ serviceName, instanceId: nodeId }).$promise;
+    return this.OvhApiCloudProjectInstance.v6().activeMonthlyBilling({
+      serviceName,
+      instanceId: nodeId,
+    }).$promise;
   }
 
   resetInstancesCache() {

@@ -1,5 +1,11 @@
 {
-  function WebSiteSuccessController($stateParams, $translate, User, Hosting, Alerter) {
+  function WebSiteSuccessController(
+    $stateParams,
+    $translate,
+    User,
+    Hosting,
+    Alerter,
+  ) {
     const self = this;
 
     self.type = $stateParams.type;
@@ -17,11 +23,13 @@
           .then((hosting) => {
             self.hosting = hosting;
           })
-          .catch(err => Alerter.alertFromSWS(
-            $translate.instant('website_success_text_classic_error'),
-            err,
-            'website.success.alert',
-          ))
+          .catch((err) =>
+            Alerter.alertFromSWS(
+              $translate.instant('website_success_text_classic_error'),
+              err,
+              'website.success.alert',
+            ),
+          )
           .finally(() => {
             self.loading = false;
           });

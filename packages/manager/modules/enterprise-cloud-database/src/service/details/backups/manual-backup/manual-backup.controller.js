@@ -1,15 +1,14 @@
 import get from 'lodash/get';
 import moment from 'moment';
 
-import { STATUS, ENTERPRISE_CLOUD_DATABASE_BACKUP_NAME_PATTERN } from '../../../../enterprise-cloud-database.constants';
+import {
+  STATUS,
+  ENTERPRISE_CLOUD_DATABASE_BACKUP_NAME_PATTERN,
+} from '../../../../enterprise-cloud-database.constants';
 
 export default class EnterpriseCloudDatabaseServiceDetailsBackupsManualCtrl {
   /* @ngInject */
-  constructor(
-    $state,
-    $translate,
-    enterpriseCloudDatabaseService,
-  ) {
+  constructor($state, $translate, enterpriseCloudDatabaseService) {
     this.$state = $state;
     this.$translate = $translate;
     this.service = enterpriseCloudDatabaseService;
@@ -30,19 +29,31 @@ export default class EnterpriseCloudDatabaseServiceDetailsBackupsManualCtrl {
 
   createBackup() {
     this.isLoading = true;
-    return this.service.createBackup(this.clusterId, this.backupName)
-      .then(res => this.goBackToBackups(
-        this.$translate.instant('enterprise_cloud_database_backups_manual_backup_success',
-          { name: this.backupName }),
-        STATUS.SUCCESS,
-        res.id,
-      ))
-      .catch(error => this.goBackToBackups(
-        this.$translate.instant('enterprise_cloud_database_backups_manual_backup_error', {
-          message: get(error, 'data.message'),
-        }),
-        STATUS.ERROR,
-      ))
-      .finally(() => { this.isLoading = false; });
+    return this.service
+      .createBackup(this.clusterId, this.backupName)
+      .then((res) =>
+        this.goBackToBackups(
+          this.$translate.instant(
+            'enterprise_cloud_database_backups_manual_backup_success',
+            { name: this.backupName },
+          ),
+          STATUS.SUCCESS,
+          res.id,
+        ),
+      )
+      .catch((error) =>
+        this.goBackToBackups(
+          this.$translate.instant(
+            'enterprise_cloud_database_backups_manual_backup_error',
+            {
+              message: get(error, 'data.message'),
+            },
+          ),
+          STATUS.ERROR,
+        ),
+      )
+      .finally(() => {
+        this.isLoading = false;
+      });
   }
 }

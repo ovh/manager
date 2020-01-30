@@ -36,7 +36,10 @@ export default class CucControllerHelper {
     const dataString = btoa(unescape(encodeURIComponent(fileContent)));
     const link = document.createElement('a');
     if (navigator.msSaveBlob) {
-      navigator.msSaveBlob(new Blob([config.content], { type: `text/plain;${charSet}` }), fileName);
+      navigator.msSaveBlob(
+        new Blob([config.content], { type: `text/plain;${charSet}` }),
+        fileName,
+      );
     } else if (link.download !== undefined) {
       link.setAttribute('href', `data:text/plain;${charSet},${dataString}`);
       link.setAttribute('download', fileName);
@@ -83,11 +86,12 @@ export default class CucControllerHelper {
       const word1 = words1[wordIndex];
       const word2 = words2[wordIndex];
       if (word1 !== word2) {
-        /* eslint-disable no-nested-ternary */
+        // eslint-disable-next-line no-nested-ternary
         return !Number.isNaN(word1) && !Number.isNaN(word2)
           ? parseFloat(word1) > parseFloat(word2)
-          : word1 > word2 ? 1 : -1;
-        /* eslint-enable no-nested-ternary */
+          : word1 > word2
+          ? 1
+          : -1;
       }
     }
     return words1.length > words2.length ? 1 : 0;

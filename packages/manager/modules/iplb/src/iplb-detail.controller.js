@@ -27,7 +27,10 @@ export default class IpLoadBalancerDetailCtrl {
     });
 
     this.CucCloudMessage.unSubscribe('network.iplb.detail');
-    this.messageHandler = this.CucCloudMessage.subscribe('network.iplb.detail', { onMessage: () => this.refreshMessage() });
+    this.messageHandler = this.CucCloudMessage.subscribe(
+      'network.iplb.detail',
+      { onMessage: () => this.refreshMessage() },
+    );
     this.checkPendingChanges();
   }
 
@@ -36,10 +39,8 @@ export default class IpLoadBalancerDetailCtrl {
   }
 
   checkPendingChanges() {
-    this.IpLoadBalancerConfigurationService.getPendingChanges(
-      this.serviceName,
-    )
-      .then(changes => sum(map(changes, 'number')) > 0)
+    this.IpLoadBalancerConfigurationService.getPendingChanges(this.serviceName)
+      .then((changes) => sum(map(changes, 'number')) > 0)
       .then((hasChanges) => {
         if (hasChanges) {
           this.IpLoadBalancerConfigurationService.showRefreshWarning();

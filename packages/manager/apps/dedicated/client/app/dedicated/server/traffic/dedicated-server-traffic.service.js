@@ -27,7 +27,9 @@ class ServerTrafficService {
       .then((bandwidth) => {
         const { traffic } = bandwidth;
 
-        const hasQuota = get(traffic, 'outputQuotaSize') !== null || get(traffic, 'inputQuotaSize') !== null;
+        const hasQuota =
+          get(traffic, 'outputQuotaSize') !== null ||
+          get(traffic, 'inputQuotaSize') !== null;
 
         traffic.remainingInputQuotaSize = this.computeRemainingUsage(
           traffic.inputQuotaSize,
@@ -38,14 +40,34 @@ class ServerTrafficService {
           traffic.outputQuotaUsed,
         );
 
-        set(traffic, 'inputQuotaSize.text', this.getQuotaText(traffic.inputQuotaSize), traffic.remainingInputQuotaSize.unit);
-        set(traffic, 'inputQuotaUsed.text', this.getQuotaText(traffic.inputQuotaUsed));
-        set(traffic, 'outputQuotaSize.text', this.getQuotaText(traffic.outputQuotaSize), traffic.remainingOutputQuotaSize.unit);
-        set(traffic, 'outputQuotaUsed.text', this.getQuotaText(traffic.outputQuotaUsed));
+        set(
+          traffic,
+          'inputQuotaSize.text',
+          this.getQuotaText(traffic.inputQuotaSize),
+          traffic.remainingInputQuotaSize.unit,
+        );
+        set(
+          traffic,
+          'inputQuotaUsed.text',
+          this.getQuotaText(traffic.inputQuotaUsed),
+        );
+        set(
+          traffic,
+          'outputQuotaSize.text',
+          this.getQuotaText(traffic.outputQuotaSize),
+          traffic.remainingOutputQuotaSize.unit,
+        );
+        set(
+          traffic,
+          'outputQuotaUsed.text',
+          this.getQuotaText(traffic.outputQuotaUsed),
+        );
 
         traffic.resetQuotaTimeLeft = null;
         if (traffic.resetQuotaDate) {
-          traffic.resetQuotaTimeLeft = this.constructor.getTimeleft(traffic.resetQuotaDate);
+          traffic.resetQuotaTimeLeft = this.constructor.getTimeleft(
+            traffic.resetQuotaDate,
+          );
         }
 
         return this.acceptResponse({
@@ -85,15 +107,17 @@ class ServerTrafficService {
     });
 
     // If quota used > quotaSize we have to make sure remaining size is at zero.
-    const remainingSize = quotaSize.value <= upsizedQuotaUsed.value
-      ? 0
-      : quotaSize.value - upsizedQuotaUsed.value;
+    const remainingSize =
+      quotaSize.value <= upsizedQuotaUsed.value
+        ? 0
+        : quotaSize.value - upsizedQuotaUsed.value;
     const remainingSizeUnit = quotaSize.nonTranslatedUnit;
 
     // If quota used > quotaSize we have to make sure percent is not greater than 100.
-    const percent = quotaSize.value <= upsizedQuotaUsed.value
-      ? 100
-      : upsizedQuotaUsed.value / quotaSize.value * 100;
+    const percent =
+      quotaSize.value <= upsizedQuotaUsed.value
+        ? 100
+        : (upsizedQuotaUsed.value / quotaSize.value) * 100;
 
     const overQuota = quotaSize.value <= upsizedQuotaUsed.value;
     const nearQuota = overQuota && percent > 80;
@@ -104,7 +128,10 @@ class ServerTrafficService {
       percent,
       overQuota,
       nearQuota,
-      text: this.getQuotaText({ unit: remainingSizeUnit, value: remainingSize }),
+      text: this.getQuotaText({
+        unit: remainingSizeUnit,
+        value: remainingSize,
+      }),
     };
   }
 

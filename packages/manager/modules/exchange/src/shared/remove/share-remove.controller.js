@@ -1,6 +1,13 @@
 export default class ExchangeRemoveSharedCtrl {
   /* @ngInject */
-  constructor($scope, Exchange, ExchangePublicFolders, messaging, navigation, $translate) {
+  constructor(
+    $scope,
+    Exchange,
+    ExchangePublicFolders,
+    messaging,
+    navigation,
+    $translate,
+  ) {
     this.services = {
       $scope,
       Exchange,
@@ -23,13 +30,17 @@ export default class ExchangeRemoveSharedCtrl {
     )
       .then((success) => {
         this.services.messaging.writeSuccess(
-          this.services.$translate.instant('exchange_action_SHARED_delete_success'),
+          this.services.$translate.instant(
+            'exchange_action_SHARED_delete_success',
+          ),
           success,
         );
       })
       .catch((failure) => {
         this.services.messaging.writeError(
-          this.services.$translate.instant('exchange_action_SHARED_delete_error'),
+          this.services.$translate.instant(
+            'exchange_action_SHARED_delete_error',
+          ),
           failure,
         );
       })

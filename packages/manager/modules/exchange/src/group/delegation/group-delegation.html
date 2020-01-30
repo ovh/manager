@@ -1,52 +1,93 @@
 <div data-ng-controller="ExchangeMailingListDelegationCtrl as ctrl">
-    <div data-wizard
-         data-wizard-bread-crumb
-         data-wizard-on-cancel="resetAction"
-         data-wizard-on-finish="updateDelegationRight"
-         data-wizard-title="'exchange_GROUPS_delegation_title' | translate">
+    <div
+        data-wizard
+        data-wizard-bread-crumb
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="updateDelegationRight"
+        data-wizard-title="'exchange_GROUPS_delegation_title' | translate"
+    >
+        <div
+            data-wizard-step
+            data-wizard-step-on-load="getDelegationRight"
+            data-wizard-step-valid="hasChanged()"
+        >
+            <p
+                data-ng-bind-html="'exchange_GROUPS_delegation_step1_intro' | translate:{ t0: ctrl.selectedGroup.mailingListDisplayName }"
+            ></p>
 
-        <div data-wizard-step
-             data-wizard-step-on-load="getDelegationRight"
-             data-wizard-step-valid="hasChanged()">
-
-            <p data-ng-bind-html="'exchange_GROUPS_delegation_step1_intro' | translate:{ t0: ctrl.selectedGroup.mailingListDisplayName }"></p>
-
-            <div class="alert alert-warning" role="alert"
-                 data-ng-if="!ctrl.loading && ctrl.delegationList && ctrl.delegationList.list.messages.length > 0">
+            <div
+                class="alert alert-warning"
+                role="alert"
+                data-ng-if="!ctrl.loading && ctrl.delegationList && ctrl.delegationList.list.messages.length > 0"
+            >
                 <div>
-                    <strong data-translate="exchange_tab_ACCOUNTS_warning"></strong>
+                    <strong
+                        data-translate="exchange_tab_ACCOUNTS_warning"
+                    ></strong>
                     <span data-translate="exchange_tab_ACCOUNTS_partial"></span>
                 </div>
             </div>
 
             <form class="form-inline d-md-flex justify-content-md-end mb-3">
                 <div class="form-group">
-                    <label class="sr-only" for="delegationSearch"
-                           data-translate="common_search"></label>
-                    <oui-spinner data-size="s" data-ng-if="ctrl.loadingDomains"></oui-spinner>
-                    <oui-select class="select-domain oui-select_inline align-middle" data-ng-if="!ctrl.loadingDomains"
+                    <label
+                        class="sr-only"
+                        for="delegationSearch"
+                        data-translate="common_search"
+                    ></label>
+                    <oui-spinner
+                        data-size="s"
+                        data-ng-if="ctrl.loadingDomains"
+                    ></oui-spinner>
+                    <oui-select
+                        class="select-domain oui-select_inline align-middle"
+                        data-ng-if="!ctrl.loadingDomains"
                         data-model="ctrl.selectedDomain"
                         data-items="ctrl.availableDomains"
                         data-match="displayName"
                         data-align="start"
-                        data-on-change="ctrl.onDomainValueChange(modelValue)">
+                        data-on-change="ctrl.onDomainValueChange(modelValue)"
+                    >
                         <span data-ng-bind="$item.displayName"></span>
                     </oui-select>
                     <div class="input-group ml-2">
-                        <input type="text" class="form-control" id="delegationSearch" maxlength="256" name="delegationSearch" placeholder="{{'exchange_tab_ACCOUNTS_table_email' | translate}}"
-                               data-ng-change="ctrl.onSearchValueChange()"
-                               data-ng-disabled="ctrl.loading"
-                               data-ng-model="ctrl.form.search"
-                               data-ng-model-options="{ debounce: 800 }">
-                        <div class="input-group-btn" data-ng-if="ctrl.form.search">
-                            <button class="btn btn-default" type="button" aria-label="{{'common_cancel' | translate}}"
-                                    data-ng-click="ctrl.resetSearch()"
-                                    data-ng-disabled="ctrl.loading">
-                                <span class="fa fa-times" aria-hidden="true"></span>
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="delegationSearch"
+                            maxlength="256"
+                            name="delegationSearch"
+                            placeholder="{{'exchange_tab_ACCOUNTS_table_email' | translate}}"
+                            data-ng-change="ctrl.onSearchValueChange()"
+                            data-ng-disabled="ctrl.loading"
+                            data-ng-model="ctrl.form.search"
+                            data-ng-model-options="{ debounce: 800 }"
+                        />
+                        <div
+                            class="input-group-btn"
+                            data-ng-if="ctrl.form.search"
+                        >
+                            <button
+                                class="btn btn-default"
+                                type="button"
+                                aria-label="{{'common_cancel' | translate}}"
+                                data-ng-click="ctrl.resetSearch()"
+                                data-ng-disabled="ctrl.loading"
+                            >
+                                <span
+                                    class="fa fa-times"
+                                    aria-hidden="true"
+                                ></span>
                             </button>
                         </div>
-                        <span class="input-group-addon" data-ng-if="!ctrl.form.search">
-                            <span class="fa fa-search" aria-hidden="true"></span>
+                        <span
+                            class="input-group-addon"
+                            data-ng-if="!ctrl.form.search"
+                        >
+                            <span
+                                class="fa fa-search"
+                                aria-hidden="true"
+                            ></span>
                         </span>
                     </div>
                 </div>
@@ -55,11 +96,20 @@
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th scope="col" data-translate="exchange_GROUPS_delegation_step1_email_header"></th>
-                        <th class="text-center text-wrap" scope="col"
-                            data-translate="exchange_GROUPS_delegation_step1_send_header"></th>
-                        <th class="text-center text-wrap" scope="col"
-                            data-translate="exchange_ACTION_delegation_step1_sendOnBehalfTo_header"></th>
+                        <th
+                            scope="col"
+                            data-translate="exchange_GROUPS_delegation_step1_email_header"
+                        ></th>
+                        <th
+                            class="text-center text-wrap"
+                            scope="col"
+                            data-translate="exchange_GROUPS_delegation_step1_send_header"
+                        ></th>
+                        <th
+                            class="text-center text-wrap"
+                            scope="col"
+                            data-translate="exchange_ACTION_delegation_step1_sendOnBehalfTo_header"
+                        ></th>
                     </tr>
                 </thead>
 
@@ -71,48 +121,69 @@
                     </tr>
                 </tbody>
 
-                <tbody data-ng-if="!ctrl.loading && ctrl.delegationList.list.results.length === 0 && ctrl.delegationList.list.messages.length === 0">
+                <tbody
+                    data-ng-if="!ctrl.loading && ctrl.delegationList.list.results.length === 0 && ctrl.delegationList.list.messages.length === 0"
+                >
                     <tr>
                         <td class="text-center" colspan="3">
-                            <span data-translate="exchange_ACTION_delegation_table_empty"
-                                  data-ng-if="!ctrl.form.search"></span>
-                            <span data-translate="exchange_ACTION_delegation_table_empty_search"
-                                  data-ng-if="ctrl.form.search"></span>
+                            <span
+                                data-translate="exchange_ACTION_delegation_table_empty"
+                                data-ng-if="!ctrl.form.search"
+                            ></span>
+                            <span
+                                data-translate="exchange_ACTION_delegation_table_empty_search"
+                                data-ng-if="ctrl.form.search"
+                            ></span>
                         </td>
                     </tr>
                 </tbody>
 
                 <tbody data-ng-if="!ctrl.loading">
-                    <tr data-ng-repeat="account in (ctrl.delegationList.list.results | orderBy:'primaryEmailDisplayName':false) track by $index">
-                        <th class="word-break" scope="row"
-                            data-ng-bind="account.primaryEmailDisplayName"></th>
+                    <tr
+                        data-ng-repeat="account in (ctrl.delegationList.list.results | orderBy:'primaryEmailDisplayName':false) track by $index"
+                    >
+                        <th
+                            class="word-break"
+                            scope="row"
+                            data-ng-bind="account.primaryEmailDisplayName"
+                        ></th>
                         <td>
                             <div class="d-flex justify-content-center">
                                 <!-- A task is on doing (activation or deactivation, sendAs or sendOnBehalf)-->
-                                <oui-checkbox data-ng-if="account.sendAsOnDoing || account.sendOnBehalfToOnDoing"
-                                              data-oui-tooltip="{{'exchange_ACTION_delegation_step1_task_on_doing' | translate}}"
-                                              data-model="account.newSendAsValue"
-                                              disabled>
+                                <oui-checkbox
+                                    data-ng-if="account.sendAsOnDoing || account.sendOnBehalfToOnDoing"
+                                    data-oui-tooltip="{{'exchange_ACTION_delegation_step1_task_on_doing' | translate}}"
+                                    data-model="account.newSendAsValue"
+                                    disabled
+                                >
                                 </oui-checkbox>
 
                                 <!-- No task on doing-->
-                                <div data-ng-if="!account.sendAsOnDoing && !account.sendOnBehalfToOnDoing">
+                                <div
+                                    data-ng-if="!account.sendAsOnDoing && !account.sendOnBehalfToOnDoing"
+                                >
                                     <!-- Mutual exclusive option (sendOnBehalf) is activated or will be -->
-                                    <oui-checkbox data-ng-if="(account.sendOnBehalfTo && account.newSendOnBehalfToValue) || (!account.sendOnBehalfTo && account.newSendOnBehalfToValue)"
-                                                  data-oui-tooltip="{{'exchange_ACTION_delegation_sendas_tooltip' | translate}}"
-                                                  data-model="account.newSendAsValue"
-                                                  disabled>
+                                    <oui-checkbox
+                                        data-ng-if="(account.sendOnBehalfTo && account.newSendOnBehalfToValue) || (!account.sendOnBehalfTo && account.newSendOnBehalfToValue)"
+                                        data-oui-tooltip="{{'exchange_ACTION_delegation_sendas_tooltip' | translate}}"
+                                        data-model="account.newSendAsValue"
+                                        disabled
+                                    >
                                     </oui-checkbox>
                                     <!-- Wait until mutual exclusive option (sendOnBehalf) will be deactivated-->
-                                    <oui-checkbox data-ng-if="account.sendOnBehalfTo && !account.newSendOnBehalfToValue"
-                                                  data-oui-tooltip="{{'exchange_ACTION_delegation_wait_sendas_tooltip' | translate}}"
-                                                  data-model="account.newSendAsValue"
-                                                  disabled>
+                                    <oui-checkbox
+                                        data-ng-if="account.sendOnBehalfTo && !account.newSendOnBehalfToValue"
+                                        data-oui-tooltip="{{'exchange_ACTION_delegation_wait_sendas_tooltip' | translate}}"
+                                        data-model="account.newSendAsValue"
+                                        disabled
+                                    >
                                     </oui-checkbox>
                                     <!-- Mutual exclusive option (sendOnBehalf) is deactivated-->
-                                    <oui-checkbox data-ng-if="!account.sendOnBehalfTo && !account.newSendOnBehalfToValue"
-                                                  data-model="account.newSendAsValue"
-                                                  data-on-change="ctrl.updateAccountSendAs(modelValue, account)">
+                                    <oui-checkbox
+                                        data-ng-if="!account.sendOnBehalfTo && !account.newSendOnBehalfToValue"
+                                        data-model="account.newSendAsValue"
+                                        data-on-change="ctrl.updateAccountSendAs(modelValue, account)"
+                                    >
                                     </oui-checkbox>
                                 </div>
                             </div>
@@ -120,89 +191,131 @@
                         <td>
                             <div class="d-flex justify-content-center">
                                 <!-- A task is on doing (activation or deactivation, sendAs or sendOnBehalf)-->
-                                <oui-checkbox data-ng-if="account.sendAsOnDoing || account.sendOnBehalfToOnDoing"
-                                              data-oui-tooltip="{{'exchange_ACTION_delegation_step1_task_on_doing' | translate}}"
-                                              data-model="account.newSendOnBehalfToValue"
-                                              disabled>
+                                <oui-checkbox
+                                    data-ng-if="account.sendAsOnDoing || account.sendOnBehalfToOnDoing"
+                                    data-oui-tooltip="{{'exchange_ACTION_delegation_step1_task_on_doing' | translate}}"
+                                    data-model="account.newSendOnBehalfToValue"
+                                    disabled
+                                >
                                 </oui-checkbox>
 
                                 <!-- No task on doing-->
-                                <div data-ng-if="!account.sendAsOnDoing && !account.sendOnBehalfToOnDoing">
+                                <div
+                                    data-ng-if="!account.sendAsOnDoing && !account.sendOnBehalfToOnDoing"
+                                >
                                     <!-- Mutual exclusive option (sendAs) is activated or will be-->
-                                    <oui-checkbox data-ng-if="(account.sendAs && account.newSendAsValue) || (!account.sendAs && account.newSendAsValue)"
-                                                  data-oui-tooltip="{{'exchange_ACTION_delegation_behalf_tooltip' | translate}}"
-                                                  data-model="account.newSendOnBehalfToValue"
-                                                  disabled>
+                                    <oui-checkbox
+                                        data-ng-if="(account.sendAs && account.newSendAsValue) || (!account.sendAs && account.newSendAsValue)"
+                                        data-oui-tooltip="{{'exchange_ACTION_delegation_behalf_tooltip' | translate}}"
+                                        data-model="account.newSendOnBehalfToValue"
+                                        disabled
+                                    >
                                     </oui-checkbox>
                                     <!-- Wait until mutual exclusive option (sendAs) will be activated-->
-                                    <oui-checkbox data-ng-if="account.sendAs && !account.newSendAsValue"
-                                                  data-oui-tooltip="{{'exchange_ACTION_delegation_wait_behalf_tooltip' | translate}}"
-                                                  data-model="account.newSendOnBehalfToValue"
-                                                  disabled>
+                                    <oui-checkbox
+                                        data-ng-if="account.sendAs && !account.newSendAsValue"
+                                        data-oui-tooltip="{{'exchange_ACTION_delegation_wait_behalf_tooltip' | translate}}"
+                                        data-model="account.newSendOnBehalfToValue"
+                                        disabled
+                                    >
                                     </oui-checkbox>
                                     <!-- Mutual exclusive option (sendAs) is deactivated-->
-                                    <oui-checkbox data-ng-if="!account.sendAs && !account.newSendAsValue"
-                                                  data-model="account.newSendOnBehalfToValue"
-                                                  data-on-change="ctrl.updateAccountSendOnBehalfTo(modelValue, account)">
+                                    <oui-checkbox
+                                        data-ng-if="!account.sendAs && !account.newSendAsValue"
+                                        data-model="account.newSendOnBehalfToValue"
+                                        data-on-change="ctrl.updateAccountSendOnBehalfTo(modelValue, account)"
+                                    >
                                     </oui-checkbox>
                                 </div>
                             </div>
                         </td>
                     </tr>
 
-                    <tr data-ng-repeat="account in (ctrl.delegationList.list.messages | orderBy:'id':false) track by $index">
-                        <td colspan="3" >
-                            <span class="a fa-exclamation-triangle mr-2" aria-hidden="true"></span>
-                            <span data-ng-bind="account.id"
-                                  data-oui-tooltip="{{ 'exchange_GROUPS_partial_account' | translate: { t0: account.message } }}"></span>
+                    <tr
+                        data-ng-repeat="account in (ctrl.delegationList.list.messages | orderBy:'id':false) track by $index"
+                    >
+                        <td colspan="3">
+                            <span
+                                class="a fa-exclamation-triangle mr-2"
+                                aria-hidden="true"
+                            ></span>
+                            <span
+                                data-ng-bind="account.id"
+                                data-oui-tooltip="{{ 'exchange_GROUPS_partial_account' | translate: { t0: account.message } }}"
+                            ></span>
                         </td>
                     </tr>
                 </tbody>
             </table>
 
-            <oui-pagination data-current-offset="ctrl.delegationRightSelectionOffset"
-                            data-page-size="ctrl.pageSize"
-                            data-total-items="ctrl.delegationList.count"
-                            data-on-change="ctrl.changeSelectionPage($event.offset)">
+            <oui-pagination
+                data-current-offset="ctrl.delegationRightSelectionOffset"
+                data-page-size="ctrl.pageSize"
+                data-total-items="ctrl.delegationList.count"
+                data-on-change="ctrl.changeSelectionPage($event.offset)"
+            >
             </oui-pagination>
         </div>
 
-        <div data-wizard-step
-             data-wizard-step-on-load="getDelegationRight">
-            <p data-ng-bind-html="'exchange_GROUPS_delegation_step2_intro' | translate:{ t0: ctrl.selectedGroup.mailingListDisplayName }"></p>
+        <div data-wizard-step data-wizard-step-on-load="getDelegationRight">
+            <p
+                data-ng-bind-html="'exchange_GROUPS_delegation_step2_intro' | translate:{ t0: ctrl.selectedGroup.mailingListDisplayName }"
+            ></p>
 
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th scope="col" data-translate="exchange_GROUPS_delegation_step2_email_header"></th>
-                        <th class="text-center text-wrap" scope="col"
-                            data-translate="exchange_GROUPS_delegation_step2_send_header"></th>
-                        <th class="text-center text-wrap" scope="col"
-                            data-translate="exchange_ACTION_delegation_step1_sendOnBehalfTo_header"></th>
+                        <th
+                            scope="col"
+                            data-translate="exchange_GROUPS_delegation_step2_email_header"
+                        ></th>
+                        <th
+                            class="text-center text-wrap"
+                            scope="col"
+                            data-translate="exchange_GROUPS_delegation_step2_send_header"
+                        ></th>
+                        <th
+                            class="text-center text-wrap"
+                            scope="col"
+                            data-translate="exchange_ACTION_delegation_step1_sendOnBehalfTo_header"
+                        ></th>
                     </tr>
                 </thead>
 
                 <tbody>
-                    <tr data-ng-repeat="account in (ctrl.delegationList.list.results | orderBy:'primaryEmailDisplayName':false) track by $index">
-                        <th scope="row" data-ng-bind="account.primaryEmailDisplayName"></th>
+                    <tr
+                        data-ng-repeat="account in (ctrl.delegationList.list.results | orderBy:'primaryEmailDisplayName':false) track by $index"
+                    >
+                        <th
+                            scope="row"
+                            data-ng-bind="account.primaryEmailDisplayName"
+                        ></th>
                         <td class="text-center">
-                            <span data-ng-if="account.newSendAsValue"
-                                  data-translate="exchange_ACTION_delegation_step2_right_true"></span>
+                            <span
+                                data-ng-if="account.newSendAsValue"
+                                data-translate="exchange_ACTION_delegation_step2_right_true"
+                            ></span>
                             <span data-ng-if="!account.newSendAsValue">-</span>
                         </td>
                         <td class="text-center">
-                            <span data-ng-if="account.newSendOnBehalfToValue"
-                                  data-translate="exchange_ACTION_delegation_step2_right_true"></span>
-                            <span data-ng-if="!account.newSendOnBehalfToValue">-</span>
+                            <span
+                                data-ng-if="account.newSendOnBehalfToValue"
+                                data-translate="exchange_ACTION_delegation_step2_right_true"
+                            ></span>
+                            <span data-ng-if="!account.newSendOnBehalfToValue"
+                                >-</span
+                            >
                         </td>
                     </tr>
                 </tbody>
             </table>
 
-            <oui-pagination data-current-offset="ctrl.delegationRightCheckingOffset"
-                            data-page-size="ctrl.pageSize"
-                            data-total-items="ctrl.delegationList.count"
-                            data-on-change="ctrl.changeCheckingPage($event.offset)">
+            <oui-pagination
+                data-current-offset="ctrl.delegationRightCheckingOffset"
+                data-page-size="ctrl.pageSize"
+                data-total-items="ctrl.delegationList.count"
+                data-on-change="ctrl.changeCheckingPage($event.offset)"
+            >
             </oui-pagination>
         </div>
     </div>

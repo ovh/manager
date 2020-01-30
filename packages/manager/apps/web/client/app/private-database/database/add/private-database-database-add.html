@@ -1,12 +1,11 @@
 <div data-ng-controller="PrivateDatabaseAddBddCtrl as addBddCtrl">
-    <div data-wizard
-         data-wizard-on-cancel="resetAction"
-         data-wizard-on-finish="addBdd"
-         data-wizard-title="'privateDatabase_add_bdd_title' | translate">
-
-        <div data-wizard-step
-             data-wizard-step-valid="isBddValid()">
-
+    <div
+        data-wizard
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="addBdd"
+        data-wizard-title="'privateDatabase_add_bdd_title' | translate"
+    >
+        <div data-wizard-step data-wizard-step-valid="isBddValid()">
             <p>
                 <small class="text-danger">*</small>
                 <small data-translate="required_fields"></small>
@@ -15,123 +14,229 @@
             <form class="form-horizontal" name="privateDatabaseAddBddForm">
                 <!-- Hidden text and password field to prevent the browsers from autocompleting the email and password fields
                  with the nichandle and password. see http://stackoverflow.com/a/23234498 -->
-                <input type="text" style="display:none">
-                <input type="password" style="display:none">
+                <input type="text" style="display:none" />
+                <input type="password" style="display:none" />
 
                 <!-- DATABASE NAME-->
-                <div class="form-group" data-ng-class="{
+                <div
+                    class="form-group"
+                    data-ng-class="{
                     'has-error': privateDatabaseAddBddForm.bddvalue.$dirty && privateDatabaseAddBddForm.bddvalue.$invalid
-                }">
-                    <label class="control-label col-md-4 required" for="bddvalue"
-                           data-translate="privateDatabase_add_bdd_name"></label>
+                }"
+                >
+                    <label
+                        class="control-label col-md-4 required"
+                        for="bddvalue"
+                        data-translate="privateDatabase_add_bdd_name"
+                    ></label>
                     <div class="col-md-8">
-                        <input type="text" class="form-control" id="bddvalue" name="bddvalue" aria-describedby="bddvalueHelp" required
-                               data-ng-model="addBddCtrl.model.database.value"
-                               data-ng-pattern="addBddCtrl.model.database.condition.reg">
-                        <small class="help-block"
-                               data-ng-bind="(('privateDatabase_add_bdd_error_name_' + error | translate) == 'privateDatabase_add_bdd_error_name_' + error)? error: ('privateDatabase_add_bdd_error_name_' + error | translate)"
-                               data-ng-if="privateDatabaseAddBddForm.bddvalue.$dirty && privateDatabaseAddBddForm.bddvalue.$invalid"
-                               data-ng-repeat="(error, value) in privateDatabaseAddBddForm.bddvalue.$error track by error">
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="bddvalue"
+                            name="bddvalue"
+                            aria-describedby="bddvalueHelp"
+                            required
+                            data-ng-model="addBddCtrl.model.database.value"
+                            data-ng-pattern="addBddCtrl.model.database.condition.reg"
+                        />
+                        <small
+                            class="help-block"
+                            data-ng-bind="(('privateDatabase_add_bdd_error_name_' + error | translate) == 'privateDatabase_add_bdd_error_name_' + error)? error: ('privateDatabase_add_bdd_error_name_' + error | translate)"
+                            data-ng-if="privateDatabaseAddBddForm.bddvalue.$dirty && privateDatabaseAddBddForm.bddvalue.$invalid"
+                            data-ng-repeat="(error, value) in privateDatabaseAddBddForm.bddvalue.$error track by error"
+                        >
                         </small>
-                        <div class="alert alert-info mt-3" id="bddvalueHelp" role="alert"
-                             data-ng-bind-html="'privateDatabase_create_bdd_conditions' | translate: { t0: addBddCtrl.model.database.condition.length.min, t1: addBddCtrl.model.database.condition.length.max }">
-                        </div>
+                        <div
+                            class="alert alert-info mt-3"
+                            id="bddvalueHelp"
+                            role="alert"
+                            data-ng-bind-html="'privateDatabase_create_bdd_conditions' | translate: { t0: addBddCtrl.model.database.condition.length.min, t1: addBddCtrl.model.database.condition.length.max }"
+                        ></div>
                     </div>
                 </div>
             </form>
 
             <form class="form-horizontal" name="privateDatabaseAddBddUserForm">
                 <!-- ADD NEW USER-->
-                <oui-checkbox id="bddAddUser" name="bddAddUser"
+                <oui-checkbox
+                    id="bddAddUser"
+                    name="bddAddUser"
                     data-model="addBddCtrl.model.addUser"
-                    data-text="{{:: 'privateDatabase_add_bdd_new_user' | translate }}">
+                    data-text="{{:: 'privateDatabase_add_bdd_new_user' | translate }}"
+                >
                 </oui-checkbox>
 
                 <div class="mt-5" data-ng-if="addBddCtrl.model.addUser">
                     <!-- LOGIN -->
-                    <div class="form-group"
-                         data-ng-class="{'has-error': privateDatabaseAddBddUserForm.bddAddUserLogin.$dirty && privateDatabaseAddBddUserForm.bddAddUserLogin.$invalid}">
-                        <label class="control-label col-md-4 required" for="bddAddUserLogin"
-                               data-translate="privateDatabase_add_bdd_new_user_login"></label>
+                    <div
+                        class="form-group"
+                        data-ng-class="{'has-error': privateDatabaseAddBddUserForm.bddAddUserLogin.$dirty && privateDatabaseAddBddUserForm.bddAddUserLogin.$invalid}"
+                    >
+                        <label
+                            class="control-label col-md-4 required"
+                            for="bddAddUserLogin"
+                            data-translate="privateDatabase_add_bdd_new_user_login"
+                        ></label>
                         <div class="col-md-8">
-                            <input type="text" class="form-control" name="bddAddUserLogin" id="bddAddUserLogin" aria-describedby="bddUserHelp" autocomplete="off" required
-                                   data-ng-model="addBddCtrl.model.user.login.value"
-                                   data-ng-pattern="addBddCtrl.model.user.login.condition.reg">
-                            <div class="alert alert-info help-block mt-3" id="bddUserHelp" role="alert"
-                                 data-ng-bind-html="'privateDatabase_add_user_conditions' | translate: { t0: addBddCtrl.model.user.login.condition.length.min, t1: addBddCtrl.model.user.login.condition.length.max }"
-                                 data-ng-class="{'alert-danger': privateDatabaseAddBddUserForm.bddAddUserLogin.$dirty && privateDatabaseAddBddUserForm.bddAddUserLogin.$invalid}">
-                            </div>
+                            <input
+                                type="text"
+                                class="form-control"
+                                name="bddAddUserLogin"
+                                id="bddAddUserLogin"
+                                aria-describedby="bddUserHelp"
+                                autocomplete="off"
+                                required
+                                data-ng-model="addBddCtrl.model.user.login.value"
+                                data-ng-pattern="addBddCtrl.model.user.login.condition.reg"
+                            />
+                            <div
+                                class="alert alert-info help-block mt-3"
+                                id="bddUserHelp"
+                                role="alert"
+                                data-ng-bind-html="'privateDatabase_add_user_conditions' | translate: { t0: addBddCtrl.model.user.login.condition.length.min, t1: addBddCtrl.model.user.login.condition.length.max }"
+                                data-ng-class="{'alert-danger': privateDatabaseAddBddUserForm.bddAddUserLogin.$dirty && privateDatabaseAddBddUserForm.bddAddUserLogin.$invalid}"
+                            ></div>
                         </div>
                     </div>
 
                     <!-- GRANT -->
                     <div class="form-group">
-                        <label class="control-label col-md-4 required" for="bddAddUserGrant"
-                               data-translate="privateDatabase_add_bdd_new_user_grant"></label>
+                        <label
+                            class="control-label col-md-4 required"
+                            for="bddAddUserGrant"
+                            data-translate="privateDatabase_add_bdd_new_user_grant"
+                        ></label>
                         <div class="col-md-8">
                             <div class="oui-select mb-0">
-                                <select class="oui-select__input" id="bddAddUserGrant" name="bddAddUserGrant" required
-                                        data-ng-model="addBddCtrl.model.user.grant.value"
-                                        data-ng-options="grant as addBddCtrl.getGrantLabel(grant) for grant in addBddCtrl.grantEnum track by grant">
+                                <select
+                                    class="oui-select__input"
+                                    id="bddAddUserGrant"
+                                    name="bddAddUserGrant"
+                                    required
+                                    data-ng-model="addBddCtrl.model.user.grant.value"
+                                    data-ng-options="grant as addBddCtrl.getGrantLabel(grant) for grant in addBddCtrl.grantEnum track by grant"
+                                >
                                 </select>
-                                <span class="oui-icon oui-icon-chevron-down" aria-hidden="true"></span>
+                                <span
+                                    class="oui-icon oui-icon-chevron-down"
+                                    aria-hidden="true"
+                                ></span>
                             </div>
-                            <small class="help-block"
-                                   data-ng-if="addBddCtrl.model.user.grant.value"
-                                   data-ng-bind="'privateDatabase_tabs_user_grant_' + addBddCtrl.model.user.grant.value + '_tooltip' | translate">
+                            <small
+                                class="help-block"
+                                data-ng-if="addBddCtrl.model.user.grant.value"
+                                data-ng-bind="'privateDatabase_tabs_user_grant_' + addBddCtrl.model.user.grant.value + '_tooltip' | translate"
+                            >
                             </small>
                         </div>
                     </div>
 
                     <!-- PASSWORD -->
-                    <div class="form-group"
-                         data-ng-class="{'has-error': privateDatabaseAddBddUserForm.bddAddUserPassword.$dirty && !addBddCtrl.checkPassword()}">
-                        <label class="control-label col-md-4 required" for="bddAddUserPassword"
-                               data-translate="privateDatabase_add_bdd_new_user_password"></label>
+                    <div
+                        class="form-group"
+                        data-ng-class="{'has-error': privateDatabaseAddBddUserForm.bddAddUserPassword.$dirty && !addBddCtrl.checkPassword()}"
+                    >
+                        <label
+                            class="control-label col-md-4 required"
+                            for="bddAddUserPassword"
+                            data-translate="privateDatabase_add_bdd_new_user_password"
+                        ></label>
                         <div class="col-md-8">
-                            <input type="password" class="form-control" id="bddAddUserPassword" name="bddAddUserPassword" aria-describedby="bddPasswordHelp" autocomplete="off" required
-                                   data-ng-model="addBddCtrl.model.user.password.value">
+                            <input
+                                type="password"
+                                class="form-control"
+                                id="bddAddUserPassword"
+                                name="bddAddUserPassword"
+                                aria-describedby="bddPasswordHelp"
+                                autocomplete="off"
+                                required
+                                data-ng-model="addBddCtrl.model.user.password.value"
+                            />
                         </div>
                     </div>
 
-                    <div class="form-group" data-ng-class="{
+                    <div
+                        class="form-group"
+                        data-ng-class="{
                         'has-error': privateDatabaseAddBddUserForm.bddAddUserPasswordConfirm.$dirty && privateDatabaseAddBddUserForm.bddAddUserPassword.$dirty && !addBddCtrl.checkPasswordConfirm()
-                    }">
-                        <label class="control-label col-md-4 required" for="bddAddUserPasswordConfirm"
-                               data-translate="privateDatabase_add_bdd_new_user_password_confirm"></label>
+                    }"
+                    >
+                        <label
+                            class="control-label col-md-4 required"
+                            for="bddAddUserPasswordConfirm"
+                            data-translate="privateDatabase_add_bdd_new_user_password_confirm"
+                        ></label>
                         <div class="col-md-8">
-                            <input type="password" class="form-control" name="bddAddUserPasswordConfirm" id="bddAddUserPasswordConfirm" autocomplete="off" required
-                                   data-ng-model="addBddCtrl.model.user.password.confirm">
-                             <div class="alert alert-info help-block mt-3" id="bddPasswordHelp" role="alert"
-                                  data-ng-bind-html="'privateDatabase_change_rootPassword_conditions' | translate: { t0: addBddCtrl.model.user.password.condition.length.min, t1: addBddCtrl.model.user.password.condition.length.max }"
-                                  data-ng-class="{'alert-danger': privateDatabaseAddBddUserForm.bddAddUserPasswordConfirm.$dirty && privateDatabaseAddBddUserForm.bddAddUserPassword.$dirty && !addBddCtrl.checkPasswordConfirm()}">
-                             </div>
+                            <input
+                                type="password"
+                                class="form-control"
+                                name="bddAddUserPasswordConfirm"
+                                id="bddAddUserPasswordConfirm"
+                                autocomplete="off"
+                                required
+                                data-ng-model="addBddCtrl.model.user.password.confirm"
+                            />
+                            <div
+                                class="alert alert-info help-block mt-3"
+                                id="bddPasswordHelp"
+                                role="alert"
+                                data-ng-bind-html="'privateDatabase_change_rootPassword_conditions' | translate: { t0: addBddCtrl.model.user.password.condition.length.min, t1: addBddCtrl.model.user.password.condition.length.max }"
+                                data-ng-class="{'alert-danger': privateDatabaseAddBddUserForm.bddAddUserPasswordConfirm.$dirty && privateDatabaseAddBddUserForm.bddAddUserPassword.$dirty && !addBddCtrl.checkPasswordConfirm()}"
+                            ></div>
                         </div>
                     </div>
                 </div>
             </form>
 
-            <form class="form-horizontal" name="privateDatabaseAddAuthorizedIpForm" data-ng-if="isDBaaS() && !addBddCtrl.hasAuthorizedIp">
+            <form
+                class="form-horizontal"
+                name="privateDatabaseAddAuthorizedIpForm"
+                data-ng-if="isDBaaS() && !addBddCtrl.hasAuthorizedIp"
+            >
                 <!-- ADD AUTHORIZED IP -->
 
-                <oui-checkbox id="bddAddIpCheckbox" name="bddAddIpCheckbox"
+                <oui-checkbox
+                    id="bddAddIpCheckbox"
+                    name="bddAddIpCheckbox"
                     data-model="addBddCtrl.model.addIp"
-                    data-text="{{:: 'privateDatabase_add_authorized_ip' | translate }}">
+                    data-text="{{:: 'privateDatabase_add_authorized_ip' | translate }}"
+                >
                 </oui-checkbox>
 
-                <div class="alert alert-warning help-block mt-3" data-ng-if="addBddCtrl.model.addIp" data-translate="privateDatabase_add_authorized_ip_explanation"></div>
+                <div
+                    class="alert alert-warning help-block mt-3"
+                    data-ng-if="addBddCtrl.model.addIp"
+                    data-translate="privateDatabase_add_authorized_ip_explanation"
+                ></div>
 
                 <div class="mt-5" data-ng-if="addBddCtrl.model.addIp">
-                    <div class="form-group" data-ng-class="{'has-error': privateDatabaseAddAuthorizedIpForm.bddAddIp.$dirty && !addBddCtrl.isIpValid(addBddCtrl.model.ip.value)}">
-                        <label class="control-label col-md-4 required" for="bddAddIp"
-                               data-translate="privateDatabase_modale_whitelist_add_ip"></label>
+                    <div
+                        class="form-group"
+                        data-ng-class="{'has-error': privateDatabaseAddAuthorizedIpForm.bddAddIp.$dirty && !addBddCtrl.isIpValid(addBddCtrl.model.ip.value)}"
+                    >
+                        <label
+                            class="control-label col-md-4 required"
+                            for="bddAddIp"
+                            data-translate="privateDatabase_modale_whitelist_add_ip"
+                        ></label>
                         <div class="col-md-8">
-                            <input type="text" class="form-control" name="bddAddIp" id="bddAddIp" autocomplete="off" required
-                                   data-ng-model="addBddCtrl.model.ip.value">
-                             <div class="alert alert-info help-block mt-3" id="bddIpHelp" role="alert"
-                                  data-translate="privateDatabase_modale_whitelist_add_ip_tooltip"
-                                  data-ng-class="{'alert-danger': privateDatabaseAddAuthorizedIpForm.bddAddIp.$dirty && !addBddCtrl.isIpValid(addBddCtrl.model.ip.value)}">
-                             </div>
+                            <input
+                                type="text"
+                                class="form-control"
+                                name="bddAddIp"
+                                id="bddAddIp"
+                                autocomplete="off"
+                                required
+                                data-ng-model="addBddCtrl.model.ip.value"
+                            />
+                            <div
+                                class="alert alert-info help-block mt-3"
+                                id="bddIpHelp"
+                                role="alert"
+                                data-translate="privateDatabase_modale_whitelist_add_ip_tooltip"
+                                data-ng-class="{'alert-danger': privateDatabaseAddAuthorizedIpForm.bddAddIp.$dirty && !addBddCtrl.isIpValid(addBddCtrl.model.ip.value)}"
+                            ></div>
                         </div>
                     </div>
                 </div>

@@ -14,17 +14,20 @@ export default /* @ngInject */ ($stateProvider) => {
     controllerAs: '$ctrl',
     translations: { value: ['.', '../'], format: 'json' },
     resolve: {
-      orders: /* @ngInject */ iceberg => iceberg('/me/order')
-        .query()
-        .expand('CachedObjectList-Pages')
-        .sort('date', 'DESC')
-        .limit(5000)
-        .execute(null, true)
-        .$promise
-        .then(({ data }) => data),
-      timeNow: /* @ngInject */
-        BillingAuth => BillingAuth.getCurrentTimestamp().then(timestamp => moment(timestamp)),
-      filter: /* @ngInject */ $transition$ => $transition$.params().filter,
+      orders: /* @ngInject */ (iceberg) =>
+        iceberg('/me/order')
+          .query()
+          .expand('CachedObjectList-Pages')
+          .sort('date', 'DESC')
+          .limit(5000)
+          .execute(null, true)
+          .$promise.then(({ data }) => data),
+      /* @ngInject */
+      timeNow: (BillingAuth) =>
+        BillingAuth.getCurrentTimestamp().then((timestamp) =>
+          moment(timestamp),
+        ),
+      filter: /* @ngInject */ ($transition$) => $transition$.params().filter,
       criteria: /* @ngInject */ ($log, filter) => {
         if (filter) {
           try {
@@ -37,22 +40,26 @@ export default /* @ngInject */ ($stateProvider) => {
         }
         return undefined;
       },
-      schema: /* @ngInject */ OvhApiMe => OvhApiMe
-        .v6()
-        .schema()
-        .$promise,
-      goToOrder: /* @ngInject */ $state => (order, filter) => $state.go('app.account.billing.order', {
-        orderId: order.orderId,
-        ordersFilter: filter,
-      }),
-      goToOrderRetractation: /* @ngInject */ $state => ({ orderId }) => $state.go('app.account.billing.retract', {
-        id: orderId,
-      }),
-      updateFilterParam: /* @ngInject */ $state => filter => $state.go('app.account.billing.orders', {
-        filter,
-      }, {
-        reload: false,
-      }),
+      schema: /* @ngInject */ (OvhApiMe) => OvhApiMe.v6().schema().$promise,
+      goToOrder: /* @ngInject */ ($state) => (order, filter) =>
+        $state.go('app.account.billing.order', {
+          orderId: order.orderId,
+          ordersFilter: filter,
+        }),
+      goToOrderRetractation: /* @ngInject */ ($state) => ({ orderId }) =>
+        $state.go('app.account.billing.retract', {
+          id: orderId,
+        }),
+      updateFilterParam: /* @ngInject */ ($state) => (filter) =>
+        $state.go(
+          'app.account.billing.orders',
+          {
+            filter,
+          },
+          {
+            reload: false,
+          },
+        ),
     },
   });
 };

@@ -718,5 +718,9 @@
   "user_account_support_level_title": "O meu nível de suporte",
   "user_account_ssh_keys_title": "Chaves SSH",
   "user_account_users_management_title": "Gestão de utilizadores",
-  "user_account_advanced_title": "Configurações avançadas"
+  "user_account_advanced_title": "Configurações avançadas",
+  "user_account_security_double_auth_type_totp_delete_error": "Ups! Ocorreu um erro aquando da eliminação da dupla autenticação:",
+  "user_account_email_token_resend": "Reenviar um código de validação",
+  "user_account_email_token_resend_success": "Um novo código de validação foi enviado. Tenha em conta que a receção deste código poderá demorar alguns minutos.",
+  "user_account_email_token_resend_error": "Ocorreu um erro aquando do envio de um novo código de validação."
 }

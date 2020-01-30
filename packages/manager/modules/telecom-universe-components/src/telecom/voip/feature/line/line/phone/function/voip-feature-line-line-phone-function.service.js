@@ -31,21 +31,27 @@ export default class {
    * @return {Promise}  That return an array of TucVoipLinePhoneFunction instances.
    */
   fetchAll() {
-    return this.OvhApiTelephony.Line().Phone().FunctionKey().v7()
+    return this.OvhApiTelephony.Line()
+      .Phone()
+      .FunctionKey()
+      .v7()
       .query()
       .aggregate('billingAccount')
       .aggregate('serviceName')
       .aggregate('keyNum')
       .expand()
-      .execute().$promise.then(phoneResults => phoneResults.map((phone) => {
-        const splittedPath = phone.path.split('/');
+      .execute()
+      .$promise.then((phoneResults) =>
+        phoneResults.map((phone) => {
+          const splittedPath = phone.path.split('/');
 
-        const functionKeysOptions = angular.extend(phone.value, {
-          billingAccount: splittedPath[2],
-          serviceName: splittedPath[4],
-        });
+          const functionKeysOptions = angular.extend(phone.value, {
+            billingAccount: splittedPath[2],
+            serviceName: splittedPath[4],
+          });
 
-        return new this.TucVoipLinePhoneFunction(functionKeysOptions);
-      }));
+          return new this.TucVoipLinePhoneFunction(functionKeysOptions);
+        }),
+      );
   }
 }

@@ -1,3 +1,31 @@
+## [1.7.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@1.7.1...@ovh-ux/ng-ovh-cloud-universe-components@1.7.2) (2020-01-22)
+
+
+### Bug Fixes
+
+* **instances:** add default value if pricing is not found ([166a04b](https://github.com/ovh/manager/commit/166a04b86464240828758c39e2b38ef05e26e393))
+
+
+
+## [1.7.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@1.7.0...@ovh-ux/ng-ovh-cloud-universe-components@1.7.1) (2020-01-21)
+
+
+### Bug Fixes
+
+* **cuc.price:** get price according to capacity ([#2076](https://github.com/ovh/manager/issues/2076)) ([0e58c4b](https://github.com/ovh/manager/commit/0e58c4b68d2609b939229ba65783ddb518a356d4))
+
+
+
+# [1.7.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@1.6.0...@ovh-ux/ng-ovh-cloud-universe-components@1.7.0) (2019-12-19)
+
+
+### Features
+
+* move ucent to currency conversion to service ([b97c979](https://github.com/ovh/manager/commit/b97c9798c915232bc0c728b61ac2d4bfc68ac99e))
+* replace formatted cloud catalog api with public ([ac3280b](https://github.com/ovh/manager/commit/ac3280b6c03f17f1240607e1ccfeed79f956eb47))
+
+
+
 # [1.6.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@1.5.0...@ovh-ux/ng-ovh-cloud-universe-components@1.6.0) (2019-12-10)
 
 

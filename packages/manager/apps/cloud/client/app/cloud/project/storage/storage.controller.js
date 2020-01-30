@@ -45,15 +45,17 @@ angular.module('managerApp').controller('RA.storageCtrl', [
     // guides
     $scope.guides = {
       title: $translate.instant('storage_details_guide_title'),
-      list: [{
-        name: $translate.instant('storage_details_guide_pca'),
-        url: ovhDocUrl.getDocUrl('cloud/storage/pca'),
-      }, {
-        name: $translate.instant('storage_details_guide_pcs'),
-        url: ovhDocUrl.getDocUrl('cloud/storage/pcs'),
-      }],
+      list: [
+        {
+          name: $translate.instant('storage_details_guide_pca'),
+          url: ovhDocUrl.getDocUrl('cloud/storage/pca'),
+        },
+        {
+          name: $translate.instant('storage_details_guide_pcs'),
+          url: ovhDocUrl.getDocUrl('cloud/storage/pcs'),
+        },
+      ],
       footer: $translate.instant('storage_details_guide_footer'),
-
     };
 
     // table sorting
@@ -77,32 +79,43 @@ angular.module('managerApp').controller('RA.storageCtrl', [
 
     function loadMessage() {
       CucCloudMessage.unSubscribe('iaas.pci-project.compute.storage');
-      $scope.messageHandler = CucCloudMessage.subscribe('iaas.pci-project.compute.storage', { onMessage: () => refreshMessage() });
+      $scope.messageHandler = CucCloudMessage.subscribe(
+        'iaas.pci-project.compute.storage',
+        { onMessage: () => refreshMessage() },
+      );
     }
 
     // Do things on page change...
-    $scope.$watch('storagesPaginated', debounce((storages) => {
-      if (!storages || !storages.length) {
-        return;
-      }
-
-      function getStorage(name, region) {
-        return find($scope.storagesFiltered, { name, region });
-      }
-
-      // ... like load metadata for each container
-      storages.forEach((container) => {
-        if (container.shortcut) {
+    $scope.$watch(
+      'storagesPaginated',
+      debounce((storages) => {
+        if (!storages || !storages.length) {
           return;
         }
-        CloudStorageContainer.getMetaData($scope.projectId, container.id)
-          .then((containerMeta) => {
+
+        function getStorage(name, region) {
+          return find($scope.storagesFiltered, { name, region });
+        }
+
+        // ... like load metadata for each container
+        storages.forEach((container) => {
+          if (container.shortcut) {
+            return;
+          }
+          CloudStorageContainer.getMetaData(
+            $scope.projectId,
+            container.id,
+          ).then((containerMeta) => {
             angular.merge(container, containerMeta);
             // Update source
-            angular.merge(getStorage(container.name, container.region), containerMeta);
+            angular.merge(
+              getStorage(container.name, container.region),
+              containerMeta,
+            );
           });
-      });
-    }, 1000));
+        });
+      }, 1000),
+    );
 
     // Selection management
     function resetSelectionModel() {
@@ -119,7 +132,9 @@ angular.module('managerApp').controller('RA.storageCtrl', [
     // Search callbacks
     $scope.search = function search(value) {
       const regexp = new RegExp(value, 'i');
-      $scope.storagesFiltered = filter($scope.storages, storage => regexp.test(storage.name));
+      $scope.storagesFiltered = filter($scope.storages, (storage) =>
+        regexp.test(storage.name),
+      );
     };
 
     $scope.showAll = function showAll() {
@@ -137,7 +152,8 @@ angular.module('managerApp').controller('RA.storageCtrl', [
       }
       $scope.storagesFiltered = $scope.order.filter(
         $scope.storagesFiltered,
-        $scope.order.by, $scope.order.reverse,
+        $scope.order.by,
+        $scope.order.reverse,
       );
     };
 
@@ -145,8 +161,11 @@ angular.module('managerApp').controller('RA.storageCtrl', [
       if ($scope.filter.enabled) {
         $scope.storagesFiltered = filter(
           $scope.storages,
-          storage => storage.name
-            && storage.name.toLowerCase().indexOf($scope.filter.name.toLowerCase()) !== -1,
+          (storage) =>
+            storage.name &&
+            storage.name
+              .toLowerCase()
+              .indexOf($scope.filter.name.toLowerCase()) !== -1,
         );
       } else {
         $scope.storagesFiltered = $scope.storages;
@@ -159,13 +178,20 @@ angular.module('managerApp').controller('RA.storageCtrl', [
     function deleteContainer(container) {
       function createDeleteObjectTask(object) {
         return function createDeleteObjectTaskFn() {
-          return CloudStorageContainer.delete($scope.projectId, container.id, object.name);
+          return CloudStorageContainer.delete(
+            $scope.projectId,
+            container.id,
+            object.name,
+          );
         };
       }
 
       function refreshView() {
         $rootScope.$broadcast('delete_container', [container.name]);
-        $scope.storages = filter($scope.storages, storage => storage.id !== container.id);
+        $scope.storages = filter(
+          $scope.storages,
+          (storage) => storage.id !== container.id,
+        );
         $scope.filterStorages();
       }
 
@@ -178,7 +204,8 @@ angular.module('managerApp').controller('RA.storageCtrl', [
               return result;
             })
             .finally(() => {
-              delete container.status; // eslint-disable-line
+              // eslint-disable-next-line no-param-reassign
+              delete container.status;
             });
         };
       }
@@ -193,35 +220,43 @@ angular.module('managerApp').controller('RA.storageCtrl', [
 
       // First, delete all objects from the container
       return CloudStorageContainer.list($scope.projectId, container.id)
-        .then(containerData => containerData.objects)
+        .then((containerData) => containerData.objects)
         .then((objects) => {
           const deleteObjectTasks = map(objects, createDeleteObjectTask);
-          return CloudStorageContainerTasksRunner
-            .enqueue(`delete_objects_${$scope.projectId}_${container.id}`, deleteObjectTasks);
+          return CloudStorageContainerTasksRunner.enqueue(
+            `delete_objects_${$scope.projectId}_${container.id}`,
+            deleteObjectTasks,
+          );
         })
-        .then(() => CloudStorageContainerTasksRunner
-          .addTask(`delete_container_${$scope.projectId}_${container.id}`,
-            createDeleteContainerTask()))
+        .then(() =>
+          CloudStorageContainerTasksRunner.addTask(
+            `delete_container_${$scope.projectId}_${container.id}`,
+            createDeleteContainerTask(),
+          ),
+        )
         .finally(() => {
           checkResult();
         });
     }
 
     $scope.delete = function deleteFn(container) {
-      $uibModal.open({
-        windowTopClass: 'cui-modal',
-        templateUrl: 'app/cloud/project/storage/storage-delete-container/modal.html',
-        controller: 'RA.storage.deleteContainer',
-        controllerAs: 'RA.storage.deleteContainer',
-        windowClass: 'cloud_storage_container_delete',
-        resolve: {
-          storage() {
-            return container;
+      $uibModal
+        .open({
+          windowTopClass: 'cui-modal',
+          templateUrl:
+            'app/cloud/project/storage/storage-delete-container/modal.html',
+          controller: 'RA.storage.deleteContainer',
+          controllerAs: 'RA.storage.deleteContainer',
+          windowClass: 'cloud_storage_container_delete',
+          resolve: {
+            storage() {
+              return container;
+            },
           },
-        },
-      }).result.then(() => {
-        deleteContainer(container);
-      });
+        })
+        .result.then(() => {
+          deleteContainer(container);
+        });
     };
 
     function getStorages() {
@@ -249,4 +284,5 @@ angular.module('managerApp').controller('RA.storageCtrl', [
     }
 
     init();
-  }]);
+  },
+]);

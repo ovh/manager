@@ -10,10 +10,7 @@ import TucToast from './toast.service';
 const moduleName = 'tucToaster';
 
 angular
-  .module(moduleName, [
-    'ngTranslateAsyncLoader',
-    translate,
-  ])
+  .module(moduleName, ['ngTranslateAsyncLoader', translate])
   .component('tucToastMessage', tucToastMessage)
   .directive('tucToastMessageScroller', tucToastMessageScrollerDirective)
   .service('TucToast', TucToast)

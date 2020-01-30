@@ -4,8 +4,16 @@ import pick from 'lodash/pick';
 
 export default class IpLoadBalancerSslCertificateOrderCtrl {
   /* @ngInject */
-  constructor($q, $state, $stateParams, $window, CucCloudMessage, CucControllerHelper,
-    IpLoadBalancerConstant, IpLoadBalancerSslCertificateService) {
+  constructor(
+    $q,
+    $state,
+    $stateParams,
+    $window,
+    CucCloudMessage,
+    CucControllerHelper,
+    IpLoadBalancerConstant,
+    IpLoadBalancerSslCertificateService,
+  ) {
     this.$q = $q;
     this.$state = $state;
     this.$stateParams = $stateParams;
@@ -18,12 +26,14 @@ export default class IpLoadBalancerSslCertificateOrderCtrl {
 
   $onInit() {
     this.paidOffers = this.CucControllerHelper.request.getArrayLoader({
-      loaderFunction: () => this.IpLoadBalancerSslCertificateService.getCertificateProducts(
-        this.$stateParams.serviceName,
-      )
-        .then((offers) => {
+      loaderFunction: () =>
+        this.IpLoadBalancerSslCertificateService.getCertificateProducts(
+          this.$stateParams.serviceName,
+        ).then((offers) => {
           this.offers = offers;
-          this.sslTypes = map(offers, 'planCode').map(planCode => planCode.replace(/-/g, '_'));
+          this.sslTypes = map(offers, 'planCode').map((planCode) =>
+            planCode.replace(/-/g, '_'),
+          );
 
           // Add separate free certificate in first position.
           this.sslTypes.unshift('free');
@@ -55,28 +65,32 @@ export default class IpLoadBalancerSslCertificateOrderCtrl {
       return this.orderFreeCertificate();
     }
 
-    const sslOffer = this.offers.find(offer => offer.planCode === this.planCode);
+    const sslOffer = this.offers.find(
+      (offer) => offer.planCode === this.planCode,
+    );
 
     if (!sslOffer) {
       return null;
     }
 
-    const options = Object.assign(pick(sslOffer.prices[0], [
-      'duration',
-      'pricingMode',
-    ]), {
-      planCode: this.planCode,
-      quantity: 1,
-    });
+    const options = Object.assign(
+      pick(sslOffer.prices[0], ['duration', 'pricingMode']),
+      {
+        planCode: this.planCode,
+        quantity: 1,
+      },
+    );
 
     return this.orderPaidCertificate(options);
   }
 
   orderFreeCertificate() {
-    const fqdn = this.newSsl.fqdn.split(',').map(item => item.trim());
+    const fqdn = this.newSsl.fqdn.split(',').map((item) => item.trim());
     this.saving = true;
-    this.IpLoadBalancerSslCertificateService
-      .orderFreeCertificate(this.$stateParams.serviceName, fqdn)
+    this.IpLoadBalancerSslCertificateService.orderFreeCertificate(
+      this.$stateParams.serviceName,
+      fqdn,
+    )
       .then(() => this.$state.go('network.iplb.detail.ssl-certificate.home'))
       .finally(() => {
         this.saving = false;
@@ -84,7 +98,7 @@ export default class IpLoadBalancerSslCertificateOrderCtrl {
   }
 
   orderPaidCertificate(options) {
-    const configuration = Object.assign({}, this.newSsl);
+    const configuration = { ...this.newSsl };
 
     if (this.planCode === 'iplb-ssl-ev-single') {
       configuration.commonName = configuration.fqdn;
@@ -96,8 +110,11 @@ export default class IpLoadBalancerSslCertificateOrderCtrl {
     delete configuration.type;
 
     this.saving = true;
-    this.IpLoadBalancerSslCertificateService
-      .orderPaidCertificate(this.$stateParams.serviceName, options, configuration)
+    this.IpLoadBalancerSslCertificateService.orderPaidCertificate(
+      this.$stateParams.serviceName,
+      options,
+      configuration,
+    )
       .then(({ url }) => {
         this.$window.open(url);
       })

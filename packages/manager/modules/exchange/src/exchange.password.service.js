@@ -6,11 +6,11 @@ import isString from 'lodash/isString';
 
 /* eslint-disable max-len, class-methods-use-this, no-labels, no-continue */
 /*
-  * The following is a list of ranges between which code points fit in a given category as unicode code points.
-  * They were derived by iterating through the values 0 to 1,114,111 and asking the java.lang.Character class if they were into the appropriate category
-  *
-  * Microsoft considers an Exchange password strong enough when it has elements from 3 out of 5 of those groups
-  */
+ * The following is a list of ranges between which code points fit in a given category as unicode code points.
+ * They were derived by iterating through the values 0 to 1,114,111 and asking the java.lang.Character class if they were into the appropriate category
+ *
+ * Microsoft considers an Exchange password strong enough when it has elements from 3 out of 5 of those groups
+ */
 
 // Uppercase characters of European languages (A through Z, with diacritic marks, Greek and Cyrillic characters)
 const UPPERCASE_CHARACTERS = [
@@ -2125,15 +2125,15 @@ const PASSWORD_MAX_LENGTH = 127;
 
 export default class ExchangePassword {
   /*
-        * This function is taken from:
-        * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/charAt?redirectlocale=en-US&redirectslug=JavaScript%2FReference%2FGlobal_Objects%2FString%2FcharAt
-        *
-        * This is necessary because charAt(n) does not return unicode character and will happily return half a surrogate pair for code points over 65535
-        *
-        * If you do a getWholeChar(n) on a the start of a pair, it will return the whole character. If you do do it on the end of a pair, it will return false.
-        *
-        * If you want all the characters in a string, loop on its length and skip the falses.
-        */
+   * This function is taken from:
+   * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/charAt?redirectlocale=en-US&redirectslug=JavaScript%2FReference%2FGlobal_Objects%2FString%2FcharAt
+   *
+   * This is necessary because charAt(n) does not return unicode character and will happily return half a surrogate pair for code points over 65535
+   *
+   * If you do a getWholeChar(n) on a the start of a pair, it will return the whole character. If you do do it on the end of a pair, it will return false.
+   *
+   * If you want all the characters in a string, loop on its length and skip the falses.
+   */
   getWholeChar(inputString, position) {
     const charCode = inputString.charCodeAt(position);
 
@@ -2176,11 +2176,11 @@ export default class ExchangePassword {
   }
 
   /*
-        * Adapted from here:
-        * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/charCodeAt#Example_4.3A_ES_6_codePointAt_shim
-        *
-        * The original monkeypatches strings to add the method there to match EcmaScript 6.
-        */
+   * Adapted from here:
+   * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/charCodeAt#Example_4.3A_ES_6_codePointAt_shim
+   *
+   * The original monkeypatches strings to add the method there to match EcmaScript 6.
+   */
   codePointAt(inputString, position) {
     const fixedPosition = Number.isNaN(position) ? 0 : position;
     const characterCode = inputString.charCodeAt(fixedPosition);
@@ -2188,12 +2188,14 @@ export default class ExchangePassword {
 
     // If a surrogate pair
     if (
-      characterCode >= 0xd800
-      && characterCode <= 0xdbff
-      && nextCharacter >= 0xdc00
-      && nextCharacter <= 0xdfff
+      characterCode >= 0xd800 &&
+      characterCode <= 0xdbff &&
+      nextCharacter >= 0xdc00 &&
+      nextCharacter <= 0xdfff
     ) {
-      return (characterCode - 0xd800) * 0x400 + (nextCharacter - 0xdc00) + 0x10000;
+      return (
+        (characterCode - 0xd800) * 0x400 + (nextCharacter - 0xdc00) + 0x10000
+      );
     }
 
     return characterCode;
@@ -2213,7 +2215,10 @@ export default class ExchangePassword {
     }
 
     // Length must be between minPasswordLength and 127 as per the Exchange spec
-    return password.length >= minPasswordLength && password.length <= PASSWORD_MAX_LENGTH;
+    return (
+      password.length >= minPasswordLength &&
+      password.length <= PASSWORD_MAX_LENGTH
+    );
   }
 
   /**
@@ -2257,7 +2262,8 @@ export default class ExchangePassword {
 
         for (
           let currentCategoryChar = 0;
-          currentCategoryChar < ALL_ACCEPTED_CHARACTER_CATEGORIES[currentCategoryIndex].length;
+          currentCategoryChar <
+          ALL_ACCEPTED_CHARACTER_CATEGORIES[currentCategoryIndex].length;
           currentCategoryChar += 1
         ) {
           // Did we already pass the code point?
@@ -2266,15 +2272,17 @@ export default class ExchangePassword {
           // Most of the time, it will be in the very first range checked
           // Unless you go with fancy foreign characters
           if (
-            ALL_ACCEPTED_CHARACTER_CATEGORIES[currentCategoryIndex][currentCategoryChar][0]
-            > currentCharPoint
+            ALL_ACCEPTED_CHARACTER_CATEGORIES[currentCategoryIndex][
+              currentCategoryChar
+            ][0] > currentCharPoint
           ) {
             break;
           }
 
           if (
-            ALL_ACCEPTED_CHARACTER_CATEGORIES[currentCategoryIndex][currentCategoryChar][1]
-            >= currentCharPoint
+            ALL_ACCEPTED_CHARACTER_CATEGORIES[currentCategoryIndex][
+              currentCategoryChar
+            ][1] >= currentCharPoint
           ) {
             numberOfCategoryUsed += 1;
 
@@ -2323,7 +2331,7 @@ export default class ExchangePassword {
 
     if (splittedDisplayName != null) {
       const splittedNameWithoutShortWords = splittedDisplayName.filter(
-        word => word.length >= 3,
+        (word) => word.length >= 3,
       );
 
       forEach(splittedNameWithoutShortWords, (word) => {

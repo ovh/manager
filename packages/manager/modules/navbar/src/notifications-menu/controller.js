@@ -28,11 +28,14 @@ export default class NotificationsCtrl {
   $onInit() {
     this.isLoading = true;
 
-    return this.$translate.refresh()
-      .then(() => this.$q.all({
-        menuTitle: this.getMenuTitle(),
-        sublinks: this.getSublinks(),
-      }))
+    return this.$translate
+      .refresh()
+      .then(() =>
+        this.$q.all({
+          menuTitle: this.getMenuTitle(),
+          sublinks: this.getSublinks(),
+        }),
+      )
       .then(({ menuTitle, sublinks }) => {
         this.NavbarNotifications.setRefreshTime(sublinks);
         this.menuTitle = menuTitle;
@@ -45,21 +48,28 @@ export default class NotificationsCtrl {
   }
 
   getMenuTitle() {
-    return this.NavbarBuilder.buildMenuHeader(this.$translate.instant('navbar_notification_title'));
+    return this.NavbarBuilder.buildMenuHeader(
+      this.$translate.instant('navbar_notification_title'),
+    );
   }
 
   static shouldAnimateIcon(sublinks) {
-    return some(sublinks, ({ isActive, level }) => ANIMATED_STATUS.includes(level) && isActive);
+    return some(
+      sublinks,
+      ({ isActive, level }) => ANIMATED_STATUS.includes(level) && isActive,
+    );
   }
-
 
   getSublinks() {
     return this.NavbarNotifications.getNotifications(
       this.TranslateService.getUserLocale(),
       this.REGION,
     )
-      .then(notifications => notifications
-        .map(notification => this.NavbarNotifications.convertToSubLink(notification)))
+      .then((notifications) =>
+        notifications.map((notification) =>
+          this.NavbarNotifications.convertToSubLink(notification),
+        ),
+      )
       .catch(() => undefined);
   }
 
@@ -77,13 +87,13 @@ export default class NotificationsCtrl {
     if (!isEmpty(notificationsToAcknowledge)) {
       return this.NavbarNotifications.updateNotifications({
         acknowledged: notificationsToAcknowledge.map(({ id }) => id),
-      })
-        .then(() => {
-          this.sublinks = this.sublinks.map(sublink => Object.assign({}, sublink, {
-            acknowledged: false,
-          }));
-          this.iconIsAnimated = false;
-        });
+      }).then(() => {
+        this.sublinks = this.sublinks.map((sublink) => ({
+          ...sublink,
+          acknowledged: false,
+        }));
+        this.iconIsAnimated = false;
+      });
     }
 
     return this.$q.when();

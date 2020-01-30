@@ -25,13 +25,19 @@ export default class {
   update() {
     this.isUpdating = true;
     return this.updateRenew(this.billingService, this.autorenewAgreements)
-      .then(() => this.goBack(
-        this.$translate.instant('billing_autorenew_service_update_success'),
-      ))
-      .catch(error => this.Alerter.set(
-        'alert-danger',
-        this.$translate.instant('billing_autorenew_service_update_error', { message: get(error, 'data.message') }),
-      ))
+      .then(() =>
+        this.goBack(
+          this.$translate.instant('billing_autorenew_service_update_success'),
+        ),
+      )
+      .catch((error) =>
+        this.Alerter.set(
+          'alert-danger',
+          this.$translate.instant('billing_autorenew_service_update_error', {
+            message: get(error, 'data.message'),
+          }),
+        ),
+      )
       .finally(() => {
         this.isUpdating = false;
       });

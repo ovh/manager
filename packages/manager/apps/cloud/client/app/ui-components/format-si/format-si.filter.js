@@ -21,7 +21,7 @@
         '-24': 'y',
       };
 
-      return num => this.format(num);
+      return (num) => this.format(num);
     }
 
     format(num) {
@@ -43,7 +43,9 @@
       if (sig > 1000) {
         return signPrefix + sig.toFixed(0) + this.prefixes[exponent];
       }
-      return signPrefix + parseFloat(sig.toPrecision(3)) + this.prefixes[exponent];
+      return (
+        signPrefix + parseFloat(sig.toPrecision(3)) + this.prefixes[exponent]
+      );
     }
 
     static filter() {

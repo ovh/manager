@@ -1,13 +1,5 @@
 {
-  "pci_projects_new_title": "A caminho da aventura Public Cloud",
-  "pci_projects_new_continue": "Continuar",
-  "pci_projects_new_cancel": "Anular",
-  "pci_projects_new_create": "Criar o meu projeto",
-  "pci_projects_new_add": "Adicionar",
-  "pci_projects_new_credit_and_create": "Creditar e criar o meu projeto",
-  "pci_projects_new_add_payment_error_message": "Ocorreu um erro ao registar o seu método de pagamento. Tente novamente ou selecione outro método de pagamento.",
-  "pci_projects_new_add_credit_payment_error_message": "Ocorreu um erro ao validar o seu método de pagamento. Tente novamente mais tarde ou anule a criação do seu projeto.",
-  "pci_projects_new_create_error_message": "Ocorreu um erro na criação do seu projeto Public Cloud. Tente novamente.",
-  "pci_projects_new_create_credit_asterisk": "* Cada projeto Public Cloud dispõe de uma própria conta de crédito. As suas faturas serão automaticamente debitadas desta conta. Se o montante do crédito for insuficiente, deverá pagar o montante restante em dívida através de outro método de pagamento registado o mais rápido possível.",
-  "pci_projects_new_create_voucher_not_submitted": "Valide o seu código promocional antes de continuar"
+  "pci_project_new_error_contact_support": "Contactar o Apoio ao Cliente",
+  "pci_project_new_error_ask_increase_projects_quota": "Não é possível criar projetos Public Cloud adicionais, pois atingiu o limite máximo de projetos. Para desbloquear o limite, sugerimos que contacte o apoio ao cliente.",
+  "pci_project_new_error_verify_paypal": "Não é possível criar projetos Public Cloud com a sua conta PayPal, pois esta não é uma conta verificada. Sugerimos que efetue os procedimentos necessários junto da PayPal para verificar a sua conta e, a seguir, que tente novamente. Também pode alterar <a href=\"{{ href }}\">o seu método de pagamento predefinido</a>."
 }

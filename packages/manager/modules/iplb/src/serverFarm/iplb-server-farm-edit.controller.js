@@ -8,9 +8,17 @@ import IplbServerFormProbTemplate from './probe/iplb-server-farm-probe.html';
 
 export default class IpLoadBalancerServerFarmEditCtrl {
   /* @ngInject */
-  constructor($q, $state, $stateParams, CucCloudMessage, CucControllerHelper,
-    IpLoadBalancerConstant, IpLoadBalancerServerFarmService,
-    IpLoadBalancerVrackService, IpLoadBalancerZoneService) {
+  constructor(
+    $q,
+    $state,
+    $stateParams,
+    CucCloudMessage,
+    CucControllerHelper,
+    IpLoadBalancerConstant,
+    IpLoadBalancerServerFarmService,
+    IpLoadBalancerVrackService,
+    IpLoadBalancerZoneService,
+  ) {
     this.$q = $q;
     this.$state = $state;
     this.$stateParams = $stateParams;
@@ -26,30 +34,35 @@ export default class IpLoadBalancerServerFarmEditCtrl {
 
   initLoaders() {
     this.zones = this.CucControllerHelper.request.getArrayLoader({
-      loaderFunction: () => this.IpLoadBalancerZoneService.getZonesSelectData(
-        this.$stateParams.serviceName,
-      ),
+      loaderFunction: () =>
+        this.IpLoadBalancerZoneService.getZonesSelectData(
+          this.$stateParams.serviceName,
+        ),
     });
 
     this.privateNetworks = this.CucControllerHelper.request.getArrayLoader({
-      loaderFunction: () => this.IpLoadBalancerVrackService
-        .getPrivateNetworks(this.$stateParams.serviceName),
+      loaderFunction: () =>
+        this.IpLoadBalancerVrackService.getPrivateNetworks(
+          this.$stateParams.serviceName,
+        ),
     });
 
     this.apiFarm = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () => this.IpLoadBalancerServerFarmService.getAllFarmsTypes(
-        this.$stateParams.serviceName,
-      )
-        .then((farms) => {
-          const farm = find(farms, {
-            id: parseInt(this.$stateParams.farmId, 10),
-          });
-          return this.IpLoadBalancerServerFarmService.getServerFarm(
-            this.$stateParams.serviceName,
-            this.$stateParams.farmId,
-            farm.type,
-          );
-        }).then(farm => this.parseFarm(farm)),
+      loaderFunction: () =>
+        this.IpLoadBalancerServerFarmService.getAllFarmsTypes(
+          this.$stateParams.serviceName,
+        )
+          .then((farms) => {
+            const farm = find(farms, {
+              id: parseInt(this.$stateParams.farmId, 10),
+            });
+            return this.IpLoadBalancerServerFarmService.getServerFarm(
+              this.$stateParams.serviceName,
+              this.$stateParams.farmId,
+              farm.type,
+            );
+          })
+          .then((farm) => this.parseFarm(farm)),
     });
   }
 
@@ -88,7 +101,8 @@ export default class IpLoadBalancerServerFarmEditCtrl {
 
     if (this.type === 'http' && /http/.test(protocol)) {
       return false;
-    } if (this.protocol === protocol) {
+    }
+    if (this.protocol === protocol) {
       return false;
     }
 
@@ -121,7 +135,8 @@ export default class IpLoadBalancerServerFarmEditCtrl {
         this.type = 'tcp';
         delete this.farm.port;
         break;
-      default: break;
+      default:
+        break;
     }
 
     this.updateStickinessList();
@@ -129,7 +144,9 @@ export default class IpLoadBalancerServerFarmEditCtrl {
 
   updateStickinessList() {
     if (this.type === 'tcp') {
-      this.availableStickinesses = this.stickinesses.filter(stickiness => stickiness !== 'cookie');
+      this.availableStickinesses = this.stickinesses.filter(
+        (stickiness) => stickiness !== 'cookie',
+      );
     } else {
       this.availableStickinesses = this.stickinesses;
     }
@@ -211,21 +228,25 @@ export default class IpLoadBalancerServerFarmEditCtrl {
   }
 
   editProbe() {
-    this.CucControllerHelper.modal.showModal({
-      modalConfig: {
-        template: IplbServerFormProbTemplate,
-        controller: 'IpLoadBalancerServerFarmProbeEditCtrl',
-        controllerAs: 'IpLoadBalancerServerFarmProbeEditCtrl',
-        resolve: {
-          availableProbes: () => this.IpLoadBalancerServerFarmService
-            .getAvailableFarmProbes(this.$stateParams.serviceName),
-          farm: () => this.farm,
-          edition: () => this.edition,
+    this.CucControllerHelper.modal
+      .showModal({
+        modalConfig: {
+          template: IplbServerFormProbTemplate,
+          controller: 'IpLoadBalancerServerFarmProbeEditCtrl',
+          controllerAs: 'IpLoadBalancerServerFarmProbeEditCtrl',
+          resolve: {
+            availableProbes: () =>
+              this.IpLoadBalancerServerFarmService.getAvailableFarmProbes(
+                this.$stateParams.serviceName,
+              ),
+            farm: () => this.farm,
+            edition: () => this.edition,
+          },
         },
-      },
-    }).then((probe) => {
-      assign(this.farm, { probe });
-    });
+      })
+      .then((probe) => {
+        assign(this.farm, { probe });
+      });
   }
 
   create() {
@@ -234,8 +255,11 @@ export default class IpLoadBalancerServerFarmEditCtrl {
     }
     this.saving = true;
     this.CucCloudMessage.flushChildMessage();
-    return this.IpLoadBalancerServerFarmService
-      .create(this.type, this.$stateParams.serviceName, this.getCleanFarm())
+    return this.IpLoadBalancerServerFarmService.create(
+      this.type,
+      this.$stateParams.serviceName,
+      this.getCleanFarm(),
+    )
       .then(() => {
         this.$state.go('network.iplb.detail.server-farm');
       })
@@ -250,8 +274,12 @@ export default class IpLoadBalancerServerFarmEditCtrl {
     }
     this.saving = true;
     this.CucCloudMessage.flushChildMessage();
-    return this.IpLoadBalancerServerFarmService
-      .update(this.type, this.$stateParams.serviceName, this.farm.farmId, this.getCleanFarm())
+    return this.IpLoadBalancerServerFarmService.update(
+      this.type,
+      this.$stateParams.serviceName,
+      this.farm.farmId,
+      this.getCleanFarm(),
+    )
       .then(() => {
         this.$state.go('network.iplb.detail.server-farm');
       })

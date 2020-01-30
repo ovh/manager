@@ -1,60 +1,60 @@
 .exchange-diagnostic-result-item {
-    border-bottom: solid 1px #DDD;
-    padding: 15px 30px 15px 30px;
+  border-bottom: solid 1px #ddd;
+  padding: 15px 30px 15px 30px;
 }
 
 .td-crop-long-name {
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    max-width: 1px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  max-width: 1px;
 }
 
 .exchange-diagnostic-result-item-error {
-    background-color: #FAFAFA;
+  background-color: #fafafa;
 }
 
 .exchange-diagnostic-icon-success {
-    color: #B0CA67;
+  color: #b0ca67;
 }
 
 .exchange-diagnostic-icon-error {
-    color: #E36947;
+  color: #e36947;
 }
 
 .exchange-diagnostic-page-bottom-padding {
-    padding-bottom: 100px;
+  padding-bottom: 100px;
 }
 
 .exchange-diagnostic-description {
-    max-width: 800px;
+  max-width: 800px;
 }
 
 .image-container {
-    position: relative;
+  position: relative;
 }
 
 .center-image {
-    display: block;
-    margin: 0 auto;
+  display: block;
+  margin: 0 auto;
 }
 
 .resize-half {
-    width: 50%;
-    height: 50%;
+  width: 50%;
+  height: 50%;
 }
 
 .middle {
-    position: absolute;
-    top: 50%;
-    left: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
 }
 
 .overlay-transition {
   opacity: 0;
-  transition: .5s ease;
+  transition: 0.5s ease;
   transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%)
+  -ms-transform: translate(-50%, -50%);
 }
 
 .image {
@@ -62,7 +62,7 @@
   display: block;
   width: 100%;
   height: 100%;
-  transition: .5s ease;
+  transition: 0.5s ease;
   backface-visibility: hidden;
 }
 
@@ -70,10 +70,10 @@
   opacity: 0.3;
 }
 
-.image-container:hover .overlay-transition{
+.image-container:hover .overlay-transition {
   opacity: 1;
 }
 
 .select-domain .oui-field__component {
-    margin-bottom: 0px;
+  margin-bottom: 0;
 }

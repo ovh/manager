@@ -1,7 +1,19 @@
 import find from 'lodash/find';
 
-angular.module('managerApp')
-  .controller('CdaDetailsHomeCtrl', function CdaDetailsHomeCtrl($q, $state, $stateParams, $scope, $interval, $uibModal, $translate, OvhApiDedicatedCeph, CucCloudMessage, CdaService) {
+angular
+  .module('managerApp')
+  .controller('CdaDetailsHomeCtrl', function CdaDetailsHomeCtrl(
+    $q,
+    $state,
+    $stateParams,
+    $scope,
+    $interval,
+    $uibModal,
+    $translate,
+    OvhApiDedicatedCeph,
+    CucCloudMessage,
+    CdaService,
+  ) {
     const self = this;
     let taskPoll;
 
@@ -30,45 +42,65 @@ angular.module('managerApp')
     };
 
     function initHealth() {
-      return OvhApiDedicatedCeph.v6().health({
-        serviceName: self.serviceName,
-      }).$promise.then((health) => {
-        self.datas.health = health;
-        self.datas.totalBytes = health.availableBytes;
-        self.datas.availableBytes = health.availableBytes;
-        self.datas.usedBytes = health.usedBytes;
-        return health;
-      });
+      return OvhApiDedicatedCeph.v6()
+        .health({
+          serviceName: self.serviceName,
+        })
+        .$promise.then((health) => {
+          self.datas.health = health;
+          self.datas.totalBytes = health.availableBytes;
+          self.datas.availableBytes = health.availableBytes;
+          self.datas.usedBytes = health.usedBytes;
+          return health;
+        });
     }
 
     function initCrushTunablesOptions() {
-      return OvhApiDedicatedCeph.v6().schema({
-        serviceName: self.serviceName,
-      }).$promise.then((schema) => {
-        self.datas.crushTunablesOptions = schema.models['dedicated.ceph.clusterUpdate.crushTunablesEnum'].enum;
-      });
+      return OvhApiDedicatedCeph.v6()
+        .schema({
+          serviceName: self.serviceName,
+        })
+        .$promise.then((schema) => {
+          self.datas.crushTunablesOptions =
+            schema.models[
+              'dedicated.ceph.clusterUpdate.crushTunablesEnum'
+            ].enum;
+        });
     }
 
     function displayError(error) {
-      CucCloudMessage.error([$translate.instant('ceph_common_error'), (error.data && error.data.message) || ''].join(' '));
+      CucCloudMessage.error(
+        [
+          $translate.instant('ceph_common_error'),
+          (error.data && error.data.message) || '',
+        ].join(' '),
+      );
     }
 
     function initTasks() {
-      OvhApiDedicatedCeph.Task().v6().resetQueryCache();
-      OvhApiDedicatedCeph.Task().v6().query({
-        serviceName: self.serviceName,
-      }).$promise.then((tasks) => {
-        // If we passed from a state with no tasks to a state with tasks
-        // or a state with tasks to a state with no tasks we update the details.
-        if ((tasks.length === 0 && self.datas.tasks.length !== 0)
-          || (tasks.length !== 0 && self.datas.tasks.length === 0)) {
-          CdaService.initDetails(self.serviceName, true);
-        }
+      OvhApiDedicatedCeph.Task()
+        .v6()
+        .resetQueryCache();
+      OvhApiDedicatedCeph.Task()
+        .v6()
+        .query({
+          serviceName: self.serviceName,
+        })
+        .$promise.then((tasks) => {
+          // If we passed from a state with no tasks to a state with tasks
+          // or a state with tasks to a state with no tasks we update the details.
+          if (
+            (tasks.length === 0 && self.datas.tasks.length !== 0) ||
+            (tasks.length !== 0 && self.datas.tasks.length === 0)
+          ) {
+            CdaService.initDetails(self.serviceName, true);
+          }
 
-        self.datas.tasks = tasks;
-      }).catch((error) => {
-        displayError(error);
-      });
+          self.datas.tasks = tasks;
+        })
+        .catch((error) => {
+          displayError(error);
+        });
     }
 
     function pollTaskList() {
@@ -99,11 +131,13 @@ angular.module('managerApp')
     function init() {
       self.loading = true;
 
-      $q.allSettled([initHealth(), initCrushTunablesOptions()]).catch((errors) => {
-        displayError(find(errors, error => error));
-      }).finally(() => {
-        self.loading = false;
-      });
+      $q.allSettled([initHealth(), initCrushTunablesOptions()])
+        .catch((errors) => {
+          displayError(find(errors, (error) => error));
+        })
+        .finally(() => {
+          self.loading = false;
+        });
       pollTaskList();
       initUsers();
     }
@@ -123,16 +157,11 @@ angular.module('managerApp')
     }
 
     self.openEditModal = function openEditModal() {
-      openModal(
-        self.modals.edit.templateUrl,
-        self.modals.edit.controller,
-        {
-          details: self.CdaService.currentService,
-          crushTunablesOptions: self.datas.crushTunablesOptions,
-        },
-      );
+      openModal(self.modals.edit.templateUrl, self.modals.edit.controller, {
+        details: self.CdaService.currentService,
+        crushTunablesOptions: self.datas.crushTunablesOptions,
+      });
     };
-
 
     $scope.$on('$destroy', () => {
       $interval.cancel(taskPoll);

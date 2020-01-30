@@ -13,12 +13,18 @@ export default class {
 
     this.cancelBandwidthOption()
       .then(() => {
-        this.setMessage(this.$translate.instant('server_cancel_bandwidth_cancel_success'), true);
+        this.setMessage(
+          this.$translate.instant('server_cancel_bandwidth_cancel_success'),
+          true,
+        );
         this.$rootScope.$broadcast('dedicated.informations.bandwidth');
       })
       .catch((data) => {
         set(data, 'type', 'ERROR');
-        this.setMessage(this.$translate.instant('server_cancel_bandwidth_cancel_error'), data);
+        this.setMessage(
+          this.$translate.instant('server_cancel_bandwidth_cancel_error'),
+          data,
+        );
       })
       .finally(() => {
         this.isLoading = false;

@@ -9,7 +9,8 @@ angular.module('App').config(($stateProvider) => {
         'Navigator',
         '$rootScope',
         (Navigator, $rootScope) => {
-          $rootScope.currentSectionInformation = 'domainsOperations'; // eslint-disable-line no-param-reassign
+          // eslint-disable-next-line no-param-reassign
+          $rootScope.currentSectionInformation = 'domainsOperations';
           return Navigator.setNavigationInformation({
             leftMenuVisible: true,
             configurationSelected: true,
@@ -17,7 +18,10 @@ angular.module('App').config(($stateProvider) => {
         },
       ],
     },
-    translations: { value: ['../domain', '../domain-operation'], format: 'json' },
+    translations: {
+      value: ['../domain', '../domain-operation'],
+      format: 'json',
+    },
   });
 
   $stateProvider.state('app.domain.operation-progress', {
@@ -30,7 +34,8 @@ angular.module('App').config(($stateProvider) => {
         'Navigator',
         '$rootScope',
         (Navigator, $rootScope) => {
-          $rootScope.currentSectionInformation = 'domainsOperations'; // eslint-disable-line no-param-reassign
+          // eslint-disable-next-line no-param-reassign
+          $rootScope.currentSectionInformation = 'domainsOperations';
           return Navigator.setNavigationInformation({
             leftMenuVisible: true,
             configurationSelected: true,
@@ -38,6 +43,9 @@ angular.module('App').config(($stateProvider) => {
         },
       ],
     },
-    translations: { value: ['../domain', '../domain-operation'], format: 'json' },
+    translations: {
+      value: ['../domain', '../domain-operation'],
+      format: 'json',
+    },
   });
 });

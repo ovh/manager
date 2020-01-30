@@ -1,0 +1,6 @@
+{
+  "pci_project_new_payment_dlp_title": "Créditos Digital Launch Pad",
+  "pci_project_new_payment_dlp_info": "No âmbito do programa DLP, dispõe de uma conta pré-paga dedicada.",
+  "pci_project_new_payment_dlp_amount_available": "Montante da conta: {{ amount }}",
+  "pci_project_new_payment_dlp_explain": "Este montante será utilizado para o pagamento do consumo do seu projeto Public Cloud. Depois de esgotar esse montante, o método de pagamento acima registado será automaticamente utilizado para assegurar a continuidade das suas instâncias criadas."
+}

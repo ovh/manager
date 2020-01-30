@@ -1,4 +1,20 @@
-const ALL_EUROPEAN_SUBSIDIARIES = ['CZ', 'DE', 'ES', 'FI', 'FR', 'GB', 'IE', 'IT', 'LT', 'MA', 'NL', 'PL', 'PT', 'SN', 'TN'];
+const ALL_EUROPEAN_SUBSIDIARIES = [
+  'CZ',
+  'DE',
+  'ES',
+  'FI',
+  'FR',
+  'GB',
+  'IE',
+  'IT',
+  'LT',
+  'MA',
+  'NL',
+  'PL',
+  'PT',
+  'SN',
+  'TN',
+];
 const ALL_CANADIAN_SUBSIDIARIES = ['ASIA', 'AU', 'CA', 'QC', 'SG', 'WE', 'WS'];
 
 export const FEATURE_AVAILABILITY = {

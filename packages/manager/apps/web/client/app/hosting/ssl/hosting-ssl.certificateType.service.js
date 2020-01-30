@@ -62,12 +62,16 @@ angular.module('services').service(
      *  is the same as the knownCertificateType
      */
     static isCertificateType(mysteryCertificateType, knownCertificateType) {
-      HostingSSLCertificateType.testIsValidStringParameter(mysteryCertificateType);
-      HostingSSLCertificateType.testIsValidStringParameter(knownCertificateType);
+      HostingSSLCertificateType.testIsValidStringParameter(
+        mysteryCertificateType,
+      );
+      HostingSSLCertificateType.testIsValidStringParameter(
+        knownCertificateType,
+      );
 
       return (
-        snakeCase(mysteryCertificateType).toUpperCase()
-        === snakeCase(knownCertificateType).toUpperCase()
+        snakeCase(mysteryCertificateType).toUpperCase() ===
+        snakeCase(knownCertificateType).toUpperCase()
       );
     }
 
@@ -123,7 +127,8 @@ angular.module('services').service(
       const formattedProviderName = snakeCase(providerName).toUpperCase();
       const matchingCertificate = find(
         HostingSSLCertificateType.getCertificateTypes(),
-        certificateType => certificateType.providerName === formattedProviderName,
+        (certificateType) =>
+          certificateType.providerName === formattedProviderName,
       );
 
       const certificateIsFound = isObject(matchingCertificate);

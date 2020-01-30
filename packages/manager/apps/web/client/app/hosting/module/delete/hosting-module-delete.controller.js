@@ -22,15 +22,20 @@ angular.module('App').controller(
       )
         .then(() => {
           this.Alerter.success(
-            this.$translate.instant('hosting_configuration_tab_modules_delete_success'),
+            this.$translate.instant(
+              'hosting_configuration_tab_modules_delete_success',
+            ),
             this.$scope.alerts.main,
           );
         })
         .catch((err) => {
           this.Alerter.alertFromSWS(
-            this.$translate.instant('hosting_configuration_tab_modules_delete_fail', {
-              t0: this.moduleToDelete.template.name,
-            }),
+            this.$translate.instant(
+              'hosting_configuration_tab_modules_delete_fail',
+              {
+                t0: this.moduleToDelete.template.name,
+              },
+            ),
             err,
             this.$scope.alerts.main,
           );

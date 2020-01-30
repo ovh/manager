@@ -9,9 +9,12 @@ export default /* @ngInject */ ($stateProvider, $urlServiceProvider) => {
     controllerAs: '$ctrl',
     translations: { value: ['../../..'], format: 'json' },
     resolve: {
-      orderId: /* @ngInject */ $transition$ => $transition$.params().id,
+      orderId: /* @ngInject */ ($transition$) => $transition$.params().id,
     },
   });
 
-  $urlServiceProvider.rules.when('/billing/orders/:id/retract', '/billing/orders/retract/:id');
+  $urlServiceProvider.rules.when(
+    '/billing/orders/:id/retract',
+    '/billing/orders/retract/:id',
+  );
 };

@@ -848,5 +848,11 @@
   "email_tab_modal_delete_redirection_accounts": "<strong>{0}</strong> na <strong>{1}</strong>",
   "emails_common_continue_question": "Czy chcesz kontynuować?",
   "emails_common_account_name_conditions": "Uwaga, nazwa konta musi spełniać następujące wymagania: <br/>- Minimum {0} znaki<br/>- Maksimum {1} znaki<br/>- Brak spacji<br/>- Brak znaków akcentowanych<br/>- Brak znaków specjalnych za wyjątkiem ., - i _.",
-  "emailpro_ACTION_update_account_step1_password_contains_space": "Hasło nie może zawierać spacji."
+  "emailpro_ACTION_update_account_step1_password_contains_space": "Hasło nie może zawierać spacji.",
+  "emailpro_tab_DOMAIN": "Przypisane domeny",
+  "emailpro_tab_ACCOUNT": "Konta e-mail",
+  "emailpro_tab_EXTERNAL_CONTACT": "Zewnętrzne kontakty",
+  "emailpro_tab_MAILING_LIST": "Listy mailingowe",
+  "emailpro_tab_REDIRECTION": "Przekierowania",
+  "emailpro_navigation_more": "Więcej"
 }

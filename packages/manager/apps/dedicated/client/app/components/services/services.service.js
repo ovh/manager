@@ -1,33 +1,44 @@
 import get from 'lodash/get';
 import has from 'lodash/has';
 
-angular.module('App').service('ServicesHelper', class ServicesHelper {
-  constructor($http, $q, constants, SERVICES_TARGET_URLS) {
-    this.$http = $http;
-    this.$q = $q;
-    this.constants = constants;
-    this.SERVICES_TARGET_URLS = SERVICES_TARGET_URLS;
-  }
-
-  getServiceDetails(service) {
-    if (has(service, 'route.url')) {
-      return this.$http.get(get(service, 'route.url')).then(({ data }) => data);
-    }
-    return this.$q.when({});
-  }
-
-  getServiceManageUrl(service) {
-    if (!has(service, 'route.path')) {
-      return '';
+angular.module('App').service(
+  'ServicesHelper',
+  class ServicesHelper {
+    constructor($http, $q, constants, SERVICES_TARGET_URLS) {
+      this.$http = $http;
+      this.$q = $q;
+      this.constants = constants;
+      this.SERVICES_TARGET_URLS = SERVICES_TARGET_URLS;
     }
 
-    const target = get(this.SERVICES_TARGET_URLS, get(service, 'route.path'));
-    const basePath = get(this.constants.MANAGER_URLS, target.univers);
+    getServiceDetails(service) {
+      if (has(service, 'route.url')) {
+        return this.$http
+          .get(get(service, 'route.url'))
+          .then(({ data }) => data);
+      }
+      return this.$q.when({});
+    }
 
-    return `${basePath}#${target.url.replace('{serviceName}', get(service, 'resource.name'))}`;
-  }
+    getServiceManageUrl(service) {
+      if (!has(service, 'route.path')) {
+        return '';
+      }
 
-  getServiceType(service) {
-    return get(this.SERVICES_TARGET_URLS, `${get(service, 'route.path')}.type`);
-  }
-});
+      const target = get(this.SERVICES_TARGET_URLS, get(service, 'route.path'));
+      const basePath = get(this.constants.MANAGER_URLS, target.univers);
+
+      return `${basePath}#${target.url.replace(
+        '{serviceName}',
+        get(service, 'resource.name'),
+      )}`;
+    }
+
+    getServiceType(service) {
+      return get(
+        this.SERVICES_TARGET_URLS,
+        `${get(service, 'route.path')}.type`,
+      );
+    }
+  },
+);

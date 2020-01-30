@@ -9,13 +9,15 @@ import './snapshot.less';
 const moduleName = 'ovhManagerPciStoragesBlocksHelp';
 
 angular
-  .module(moduleName, [
-    'ngTranslateAsyncLoader',
-    'pascalprecht.translate',
-  ])
+  .module(moduleName, ['ngTranslateAsyncLoader', 'pascalprecht.translate'])
   .run(/* @ngTranslationsInject:json ./translations */)
-  .run(/* @ngInject */ ($templateCache) => {
-    $templateCache.put('pci/projects/project/storages/blocks/help/snapshot.html', snapshotTemplate);
-  });
+  .run(
+    /* @ngInject */ ($templateCache) => {
+      $templateCache.put(
+        'pci/projects/project/storages/blocks/help/snapshot.html',
+        snapshotTemplate,
+      );
+    },
+  );
 
 export default moduleName;

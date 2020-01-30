@@ -12,9 +12,19 @@ angular.module('managerApp').controller('RA.add.storageCtrl', [
   'CucCloudMessage',
   'CucControllerHelper',
   'CucServiceHelper',
-  function storageCtrl($q, $scope, $state, $stateParams, $timeout, $translate,
-    OvhApiCloudProjectRegion, CloudStorageContainers, CucCloudMessage,
-    CucControllerHelper, CucServiceHelper) {
+  function storageCtrl(
+    $q,
+    $scope,
+    $state,
+    $stateParams,
+    $timeout,
+    $translate,
+    OvhApiCloudProjectRegion,
+    CloudStorageContainers,
+    CucCloudMessage,
+    CucControllerHelper,
+    CucServiceHelper,
+  ) {
     $scope.projectId = $stateParams.projectId;
 
     $scope.model = {};
@@ -47,7 +57,10 @@ angular.module('managerApp').controller('RA.add.storageCtrl', [
 
     function loadMessage() {
       CucCloudMessage.unSubscribe('iaas.pci-project.compute.storage');
-      $scope.messageHandler = CucCloudMessage.subscribe('iaas.pci-project.compute.storage', { onMessage: () => refreshMessage() });
+      $scope.messageHandler = CucCloudMessage.subscribe(
+        'iaas.pci-project.compute.storage',
+        { onMessage: () => refreshMessage() },
+      );
     }
 
     $scope.loadStep = function loadStep(step) {
@@ -56,10 +69,14 @@ angular.module('managerApp').controller('RA.add.storageCtrl', [
     };
 
     $scope.isValid = function isValid() {
-      const isDefined = function isDefined(expr) { return !isUndefined(expr); };
-      return isDefined($scope.model.region)
-                   && isDefined($scope.model.containerType)
-                   && isDefined($scope.model.name);
+      const isDefined = function isDefined(expr) {
+        return !isUndefined(expr);
+      };
+      return (
+        isDefined($scope.model.region) &&
+        isDefined($scope.model.containerType) &&
+        isDefined($scope.model.name)
+      );
     };
 
     $scope.addStorage = function addStorage() {
@@ -73,15 +90,21 @@ angular.module('managerApp').controller('RA.add.storageCtrl', [
       )
         .then((resp) => {
           if (!resp || !resp.id) {
-            CucCloudMessage.error($translate.instant('add_storage_storage_added_error'));
+            CucCloudMessage.error(
+              $translate.instant('add_storage_storage_added_error'),
+            );
             return $q.reject(resp);
           }
 
           return $timeout(() => {
-            CucCloudMessage.success($translate.instant('add_storage_storage_added'));
-            $state.go('iaas.pci-project.compute.storage.detail-container', { projectId: $scope.projectId, storageId: resp.id });
-          }, 3000)
-            .then(() => resp);
+            CucCloudMessage.success(
+              $translate.instant('add_storage_storage_added'),
+            );
+            $state.go('iaas.pci-project.compute.storage.detail-container', {
+              projectId: $scope.projectId,
+              storageId: resp.id,
+            });
+          }, 3000).then(() => resp);
         })
         .finally(() => {
           $scope.loaders.post = false;
@@ -92,10 +115,11 @@ angular.module('managerApp').controller('RA.add.storageCtrl', [
       $scope.loaders.regions = true;
       $scope.regions = null;
 
-      return OvhApiCloudProjectRegion.v6().query({
-        serviceName: $scope.projectId,
-      }).$promise
-        .then((regions) => {
+      return OvhApiCloudProjectRegion.v6()
+        .query({
+          serviceName: $scope.projectId,
+        })
+        .$promise.then((regions) => {
           $scope.regions = regions;
         })
         .finally(() => {
@@ -105,10 +129,15 @@ angular.module('managerApp').controller('RA.add.storageCtrl', [
 
     function getAvailableRegions() {
       $scope.availableRegions = CucControllerHelper.request.getHashLoader({
-        loaderFunction: () => OvhApiCloudProjectRegion.AvailableRegions().v6()
-          .query({ serviceName: $scope.projectId })
-          .$promise
-          .catch(error => CucServiceHelper.errorHandler('cpci_add_regions_get_available_regions_error')(error)),
+        loaderFunction: () =>
+          OvhApiCloudProjectRegion.AvailableRegions()
+            .v6()
+            .query({ serviceName: $scope.projectId })
+            .$promise.catch((error) =>
+              CucServiceHelper.errorHandler(
+                'cpci_add_regions_get_available_regions_error',
+              )(error),
+            ),
       });
       return $scope.availableRegions.load();
     }
@@ -116,11 +145,11 @@ angular.module('managerApp').controller('RA.add.storageCtrl', [
     function init() {
       loadMessage();
       getAvailableRegions();
-      return loadRegions()
-        .then(() => {
-          $scope.loadStep('region');
-        });
+      return loadRegions().then(() => {
+        $scope.loadStep('region');
+      });
     }
 
     init();
-  }]);
+  },
+]);

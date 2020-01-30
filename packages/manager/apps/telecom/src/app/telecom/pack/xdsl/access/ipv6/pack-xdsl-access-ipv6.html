@@ -3,31 +3,37 @@
         <div class="form-group checkbox mt-0">
             <label for="ipv6">
                 <div data-ng-if="!access.tasks.current.routingIpv6">
-                    <input type="checkbox"
-                           id="ipv6"
-                           name="ipv6"
-                           data-ng-model="access.xdsl.ipv6Enabled"
-                           data-ng-disabled="access.tasks.current.routingIpv6"
-                           data-ng-really-click="IpCtrl.submitIp()"
-                           data-ng-really-undo="IpCtrl.undo()"
-                           data-ng-really-title="&#8203;"
-                           data-ng-really-message="{{ message }}"
-                           data-ng-really-confirm="{{ 'ok' | translate }}"
-                           data-ng-really-cancel="{{ 'cancel' | translate }}"
-                           data-ng-really-window-class="revert-really-buttons"/>
+                    <input
+                        type="checkbox"
+                        id="ipv6"
+                        name="ipv6"
+                        data-ng-model="access.xdsl.ipv6Enabled"
+                        data-ng-disabled="access.tasks.current.routingIpv6"
+                        data-ng-really-click="IpCtrl.submitIp()"
+                        data-ng-really-undo="IpCtrl.undo()"
+                        data-ng-really-title="&#8203;"
+                        data-ng-really-message="{{ message }}"
+                        data-ng-really-confirm="{{ 'ok' | translate }}"
+                        data-ng-really-cancel="{{ 'cancel' | translate }}"
+                        data-ng-really-window-class="revert-really-buttons"
+                    />
                 </div>
                 <div data-ng-if="access.tasks.current.routingIpv6">
-                    <oui-spinner class="mr-2"
-                                 data-size="s">
-                    </oui-spinner>
-                    <span data-ng-if="access.xdsl.ipv6Enabled"
-                           data-translate="xdsl_access_ipv6_success_validation_on"></span>
-                    <span data-ng-if="!access.xdsl.ipv6Enabled"
-                           data-translate="xdsl_access_ipv6_success_validation_off"></span>
+                    <oui-spinner class="mr-2" data-size="s"> </oui-spinner>
+                    <span
+                        data-ng-if="access.xdsl.ipv6Enabled"
+                        data-translate="xdsl_access_ipv6_success_validation_on"
+                    ></span>
+                    <span
+                        data-ng-if="!access.xdsl.ipv6Enabled"
+                        data-translate="xdsl_access_ipv6_success_validation_off"
+                    ></span>
                 </div>
-                <span data-ng-if="!access.tasks.current.routingIpv6"
-                      data-uib-tooltip-html-unsafe="<div class='text-warning'>{{ 'xdsl_access_ipv6_warning' | translate }}</div>"
-                      data-translate="xdsl_access_ipv6_status"></span>
+                <span
+                    data-ng-if="!access.tasks.current.routingIpv6"
+                    data-uib-tooltip-html-unsafe="<div class='text-warning'>{{ 'xdsl_access_ipv6_warning' | translate }}</div>"
+                    data-translate="xdsl_access_ipv6_status"
+                ></span>
             </label>
         </div>
     </form>

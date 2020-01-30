@@ -1,11 +1,9 @@
-/* stylelint-disable selector-type-no-unknown */
-
 ovh-manager-navbar {
-  @import "~ovh-ui-kit/packages/oui-color/_variables";
-  @import "~ovh-ui-kit/packages/oui-icons/_icons";
-  @import "~ovh-ui-kit/packages/oui-navbar/_variables";
-  @import "~ovh-ui-kit/packages/oui-responsive/_mixins";
-  @import "~ovh-ui-kit/packages/oui-typography/_variables";
+  @import '~ovh-ui-kit/packages/oui-color/_variables';
+  @import '~ovh-ui-kit/packages/oui-icons/_icons';
+  @import '~ovh-ui-kit/packages/oui-navbar/_variables';
+  @import '~ovh-ui-kit/packages/oui-responsive/_mixins';
+  @import '~ovh-ui-kit/packages/oui-typography/_variables';
 
   .oui-navbar {
     .oui-navbar-link {
@@ -22,7 +20,7 @@ ovh-manager-navbar {
         }
       }
 
-      &[aria-expanded="true"] {
+      &[aria-expanded='true'] {
         & .navbar-icon {
           .reset-icon();
 
@@ -41,9 +39,7 @@ ovh-manager-navbar {
       margin: 0 0 0 5px;
       align-self: center;
 
-      .medium({
-        font-size: 10px;
-      });
+      .medium({font-size: 10px;});
     }
 
     .transition() {
@@ -52,5 +48,3 @@ ovh-manager-navbar {
     }
   }
 }
-
-/* stylelint-enable selector-type-no-unknown */

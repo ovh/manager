@@ -21,7 +21,9 @@ export default class {
       throw new Error('Wrong parameter(s)');
     }
 
-    const baseUnit = findIndex(this.WucConverterFactory[system].units, { unit });
+    const baseUnit = findIndex(this.WucConverterFactory[system].units, {
+      unit,
+    });
 
     if (baseUnit < 0) {
       throw new Error('Wrong unit given');
@@ -31,8 +33,12 @@ export default class {
   }
 
   getUnitRange(minUnit, maxUnit, system = 'international') {
-    const minIndex = findIndex(this.WucConverterFactory[system].units, { unit: minUnit });
-    const maxIndex = findIndex(this.WucConverterFactory[system].units, { unit: maxUnit });
+    const minIndex = findIndex(this.WucConverterFactory[system].units, {
+      unit: minUnit,
+    });
+    const maxIndex = findIndex(this.WucConverterFactory[system].units, {
+      unit: maxUnit,
+    });
     if (minIndex > maxIndex) {
       throw new Error('Max unit is lower than min unit');
     }

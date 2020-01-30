@@ -77,9 +77,8 @@ export default class ExchangeAccountHomeController {
 
     this.buildAccountTypeColumnOptions();
 
-    this.$scope.$on(
-      this.Exchange.events.accountsChanged,
-      () => this.refreshList(),
+    this.$scope.$on(this.Exchange.events.accountsChanged, () =>
+      this.refreshList(),
     );
 
     return this.fetchInitialData();
@@ -128,15 +127,16 @@ export default class ExchangeAccountHomeController {
     return this.ovhUserPref
       .getValue(DATAGRID_COLUMN_PARAMETERS_PREFERENCE_NAME)
       .then((gridColumnsLastSavedParameters) => {
-        const savedParametersForCurrentService = gridColumnsLastSavedParameters[
-          this.$routerParams.productId
-        ];
+        const savedParametersForCurrentService =
+          gridColumnsLastSavedParameters[this.$routerParams.productId];
 
         if (savedParametersForCurrentService) {
           this.gridParameters.columnParameters.current[
             this.$routerParams.productId
           ] = savedParametersForCurrentService;
-          this.computeDatagridColumnParameters(savedParametersForCurrentService);
+          this.computeDatagridColumnParameters(
+            savedParametersForCurrentService,
+          );
           this.gridColumnParametersAlreadyExist = true;
         }
       })
@@ -145,32 +145,34 @@ export default class ExchangeAccountHomeController {
 
   fetchingCanUserSubscribeToOfficeAttach() {
     return this.OvhApiMe.v6()
-      .get().$promise
-      .then(({ ovhSubsidiary }) => {
+      .get()
+      .$promise.then(({ ovhSubsidiary }) => {
         if (['CA'].includes(ovhSubsidiary)) {
           return this.$q.when(true);
         }
 
-        return this.officeAttach
-          .retrievingIfUserAlreadyHasSubscribed(this.$routerParams.productId);
+        return this.officeAttach.retrievingIfUserAlreadyHasSubscribed(
+          this.$routerParams.productId,
+        );
       })
       .then((officeAttachIsNotAvailable) => {
         this.userCanSubscribeToOfficeAttach = !officeAttachIsNotAvailable;
       })
       .catch((error) => {
         this.messaging.writeError(
-          this.$translate.instant('exchange_accounts_fetchOfficeAttachError_error'),
+          this.$translate.instant(
+            'exchange_accounts_fetchOfficeAttachError_error',
+          ),
           error,
         );
       });
   }
 
   fetchingAccountCreationOptions() {
-    return this.Exchange
-      .fetchingAccountCreationOptions(
-        this.$routerParams.organization,
-        this.$routerParams.productId,
-      )
+    return this.Exchange.fetchingAccountCreationOptions(
+      this.$routerParams.organization,
+      this.$routerParams.productId,
+    )
       .then((accountCreationOptions) => {
         this.availableDomains = accountCreationOptions.availableDomains;
         this.atLeastOneDomainIsAssociatedToCurrentExchangeService = !isEmpty(
@@ -179,45 +181,45 @@ export default class ExchangeAccountHomeController {
       })
       .catch((error) => {
         this.messaging.writeError(
-          this.$translate.instant('exchange_accounts_fetchAccountCreationOptions_error'),
+          this.$translate.instant(
+            'exchange_accounts_fetchAccountCreationOptions_error',
+          ),
           error,
         );
       });
   }
 
   fetchAccounts(parameters) {
-    this.gridParameters = merge(
-      this.gridParameters,
-      parameters,
-    );
+    this.gridParameters = merge(this.gridParameters, parameters);
 
     this.gridParameters.searchValues = map(
       filter(
         parameters.criteria,
-        criterium => isNull(criterium.property) || criterium.property === 'emailAddress',
+        (criterium) =>
+          isNull(criterium.property) || criterium.property === 'emailAddress',
       ),
-      criterium => criterium.value,
+      (criterium) => criterium.value,
     );
 
     const accountTypeFilters = map(
       filter(
         parameters.criteria,
-        criterium => criterium.property === 'accountLicense',
+        (criterium) => criterium.property === 'accountLicense',
       ),
-      criterium => criterium.value,
+      (criterium) => criterium.value,
     );
 
-    this.gridParameters.accountTypeFilter = accountTypeFilters.length === 2 ? '' : accountTypeFilters[0];
+    this.gridParameters.accountTypeFilter =
+      accountTypeFilters.length === 2 ? '' : accountTypeFilters[0];
 
-    return this.Exchange
-      .fetchAccounts(
-        this.$routerParams.organization,
-        this.$routerParams.productId,
-        parameters.pageSize,
-        parameters.offset - 1,
-        this.gridParameters.searchValues,
-        this.gridParameters.accountTypeFilter,
-      )
+    return this.Exchange.fetchAccounts(
+      this.$routerParams.organization,
+      this.$routerParams.productId,
+      parameters.pageSize,
+      parameters.offset - 1,
+      this.gridParameters.searchValues,
+      this.gridParameters.accountTypeFilter,
+    )
       .then((accounts) => {
         this.accounts = this.formatAccountsForDatagrid(
           accounts,
@@ -258,15 +260,14 @@ export default class ExchangeAccountHomeController {
   }
 
   refreshList() {
-    return this.Exchange
-      .fetchAccounts(
-        this.$routerParams.organization,
-        this.$routerParams.productId,
-        this.gridParameters.pageSize,
-        this.gridParameters.offset - 1,
-        this.gridParameters.searchValues,
-        this.gridParameters.accountTypeFilter,
-      )
+    return this.Exchange.fetchAccounts(
+      this.$routerParams.organization,
+      this.$routerParams.productId,
+      this.gridParameters.pageSize,
+      this.gridParameters.offset - 1,
+      this.gridParameters.searchValues,
+      this.gridParameters.accountTypeFilter,
+    )
       .then((accounts) => {
         const formattedAccounts = this.formatAccountsForDatagrid(
           accounts,
@@ -278,7 +279,11 @@ export default class ExchangeAccountHomeController {
           this.accounts.splice(i, 1, formattedAccounts[i]);
         }
 
-        for (let i = formattedAccounts.length; i < this.accounts.length; i += 1) {
+        for (
+          let i = formattedAccounts.length;
+          i < this.accounts.length;
+          i += 1
+        ) {
           this.accounts.splice(i, 1);
         }
 
@@ -303,11 +308,7 @@ export default class ExchangeAccountHomeController {
       });
   }
 
-  formatAccountsForDatagrid(
-    accounts,
-    sortingOptions,
-    criteria,
-  ) {
+  formatAccountsForDatagrid(accounts, sortingOptions, criteria) {
     function unpunycodeEmailAddress(emailAddress) {
       const parts = emailAddress.split('@');
       const unpunycodedLocalPart = punycode.toUnicode(parts[0]);
@@ -317,7 +318,10 @@ export default class ExchangeAccountHomeController {
 
     function transformSizeData(account) {
       return {
-        usage: Math.round(((account.currentUsage / Math.pow(1024, 2)) * 100) / account.quota), // eslint-disable-line
+        usage: Math.round(
+          // eslint-disable-next-line no-restricted-properties
+          ((account.currentUsage / Math.pow(1024, 2)) * 100) / account.quota,
+        ),
         progressionText: `${account.usedQuota.value} ${this.$translate.instant(
           `unit_size_${account.usedQuota.unit}`,
         )} / ${account.totalQuota.value} ${this.$translate.instant(
@@ -327,11 +331,13 @@ export default class ExchangeAccountHomeController {
     }
 
     function transformOutlookStatus(account) {
-      const accountOutlookStatus = this.exchangeAccountOutlook.getStatus(account);
+      const accountOutlookStatus = this.exchangeAccountOutlook.getStatus(
+        account,
+      );
 
       if (
-        !this.exchangeAccountOutlook.canHaveLicense(account)
-        || this.exchangeAccountOutlook.hasStatus(
+        !this.exchangeAccountOutlook.canHaveLicense(account) ||
+        this.exchangeAccountOutlook.hasStatus(
           account,
           this.exchangeAccountOutlook.STATES.CANT_ORDER_OR_ACTIVATE_LICENSE,
         )
@@ -343,7 +349,8 @@ export default class ExchangeAccountHomeController {
       }
 
       return {
-        status, // eslint-disable-line
+        // eslint-disable-next-line no-restricted-globals
+        status,
         displayValue: this.$translate.instant(
           `exchange_tab_accounts_table_outlook_${accountOutlookStatus}`,
         ),
@@ -362,7 +369,9 @@ export default class ExchangeAccountHomeController {
       }
 
       if (this.exchangeAccount.isPlaceholder(account)) {
-        return this.$translate.instant('exchange_tab_ACCOUNTS_state_TO_CONFIGURE');
+        return this.$translate.instant(
+          'exchange_tab_ACCOUNTS_state_TO_CONFIGURE',
+        );
       }
 
       if (this.exchangeStates.isValidState(account.state)) {
@@ -372,7 +381,9 @@ export default class ExchangeAccountHomeController {
       }
 
       if (isNumber(account.taskPendingId) && account.taskPendingId !== 0) {
-        return this.$translate.instant('exchange_tab_ACCOUNTS_state_TASK_ON_DOING');
+        return this.$translate.instant(
+          'exchange_tab_ACCOUNTS_state_TASK_ON_DOING',
+        );
       }
 
       return this.$translate.instant('exchange_tab_ACCOUNTS_state_UNKNOWN');
@@ -381,41 +392,39 @@ export default class ExchangeAccountHomeController {
     function filterCompany(account) {
       const companyValue = account.company || '';
 
-      return every(
-        filter(criteria, { property: 'company' }),
-        (criterium) => {
-          const companyValueUpperCase = `${companyValue}`.trim().upperCase();
-          const criteriumValueUpperCase = `${criterium.value}`.trim().upperCase();
+      return every(filter(criteria, { property: 'company' }), (criterium) => {
+        const companyValueUpperCase = `${companyValue}`.trim().upperCase();
+        const criteriumValueUpperCase = `${criterium.value}`.trim().upperCase();
 
-          switch (criterium.operator) {
-            case 'contains':
-              return companyValueUpperCase.includes(criteriumValueUpperCase);
-            case 'containsNot':
-              return !companyValueUpperCase.includes(criteriumValueUpperCase);
-            case 'startsWith':
-              return startsWith(companyValueUpperCase, criteriumValueUpperCase);
-            case 'endsWith':
-              return endsWith(companyValueUpperCase, criteriumValueUpperCase);
-            case 'is':
-              return companyValue === criterium.value;
-            case 'isNot':
-              return companyValue !== criterium.value;
-            default:
-              return true;
-          }
-        },
-      );
+        switch (criterium.operator) {
+          case 'contains':
+            return companyValueUpperCase.includes(criteriumValueUpperCase);
+          case 'containsNot':
+            return !companyValueUpperCase.includes(criteriumValueUpperCase);
+          case 'startsWith':
+            return startsWith(companyValueUpperCase, criteriumValueUpperCase);
+          case 'endsWith':
+            return endsWith(companyValueUpperCase, criteriumValueUpperCase);
+          case 'is':
+            return companyValue === criterium.value;
+          case 'isNot':
+            return companyValue !== criterium.value;
+          default:
+            return true;
+        }
+      });
     }
 
-    let formattedAccounts = get(accounts, 'list.results', [])
-      .map(account => ({
+    let formattedAccounts = get(accounts, 'list.results', []).map(
+      (account) => ({
         ...account,
         emailAddress: unpunycodeEmailAddress(account.primaryEmailDisplayName),
         size: transformSizeData.call(this, account),
         numberOfAliases: account.aliases,
         outlookStatus: transformOutlookStatus.call(this, account),
         status: chooseStatusText.call(this, account),
-      }));
+      }),
+    );
 
     if (!isEmpty(filter(criteria, { property: 'company' }))) {
       formattedAccounts = formattedAccounts.filter(filterCompany);
@@ -448,13 +457,14 @@ export default class ExchangeAccountHomeController {
 
   displayAccountAddingView() {
     this.messaging.resetMessages();
-    this.$scope.$emit(this.exchangeAccount.EVENTS.CHANGE_STATE, { stateName: 'add' });
+    this.$scope.$emit(this.exchangeAccount.EVENTS.CHANGE_STATE, {
+      stateName: 'add',
+    });
   }
 
   openAccountOrderingDialog() {
-    const placeholderAccountAmount = sumBy(
-      this.accounts,
-      account => this.exchangeAccount.isPlaceholder(account),
+    const placeholderAccountAmount = sumBy(this.accounts, (account) =>
+      this.exchangeAccount.isPlaceholder(account),
     );
     this.navigation.setAction('exchange/account/order/account-order', {
       placeholderAccountAmount,
@@ -464,49 +474,51 @@ export default class ExchangeAccountHomeController {
   computeDefaultCompanyColumnParameter() {
     return {
       name: 'company',
-      hidden: !this.accounts.some(account => !isEmpty(account.company)),
+      hidden: !this.accounts.some((account) => !isEmpty(account.company)),
     };
   }
 
   computeDatagridColumnParameters(newParameters) {
-    const newParametersAsArray = isArray(newParameters) ? newParameters : [newParameters];
+    const newParametersAsArray = isArray(newParameters)
+      ? newParameters
+      : [newParameters];
 
     if (isEmpty(newParametersAsArray)) {
-      throw new Error('computeDatagridColumnParameters: at least one parameter to update is required');
+      throw new Error(
+        'computeDatagridColumnParameters: at least one parameter to update is required',
+      );
     }
 
     let atLeastOneChangeExists = false;
 
     this.gridParameters.columnParameters.current[
       this.$routerParams.productId
-    ] = newParametersAsArray
-      .map((currentNewParameter) => {
-        const oldParameterMatchingCurrentNewParameter = find(
-          this.gridParameters.columnParameters.current[this.$routerParams.productId],
-          { name: currentNewParameter.name },
-        );
+    ] = newParametersAsArray.map((currentNewParameter) => {
+      const oldParameterMatchingCurrentNewParameter = find(
+        this.gridParameters.columnParameters.current[
+          this.$routerParams.productId
+        ],
+        { name: currentNewParameter.name },
+      );
 
-        if (!oldParameterMatchingCurrentNewParameter) {
-          atLeastOneChangeExists = true;
-          return currentNewParameter;
-        }
+      if (!oldParameterMatchingCurrentNewParameter) {
+        atLeastOneChangeExists = true;
+        return currentNewParameter;
+      }
 
-        const changeExistsBetweenParameters = !isEqual(
-          oldParameterMatchingCurrentNewParameter,
-          currentNewParameter,
-        );
+      const changeExistsBetweenParameters = !isEqual(
+        oldParameterMatchingCurrentNewParameter,
+        currentNewParameter,
+      );
 
-        if (changeExistsBetweenParameters) {
-          atLeastOneChangeExists = true;
-        }
+      if (changeExistsBetweenParameters) {
+        atLeastOneChangeExists = true;
+      }
 
-        return changeExistsBetweenParameters
-          ? merge(
-            oldParameterMatchingCurrentNewParameter,
-            currentNewParameter,
-          )
-          : currentNewParameter;
-      });
+      return changeExistsBetweenParameters
+        ? merge(oldParameterMatchingCurrentNewParameter, currentNewParameter)
+        : currentNewParameter;
+    });
 
     return atLeastOneChangeExists;
   }
@@ -515,9 +527,9 @@ export default class ExchangeAccountHomeController {
     function fixHiddenProperty(parameter) {
       return parameter.hidden == null
         ? {
-          ...parameter,
-          hidden: false,
-        }
+            ...parameter,
+            hidden: false,
+          }
         : parameter;
     }
 
@@ -529,10 +541,9 @@ export default class ExchangeAccountHomeController {
   }
 
   savingDatagridColumnParameters() {
-    return this.ovhUserPref
-      .assign(
-        DATAGRID_COLUMN_PARAMETERS_PREFERENCE_NAME,
-        this.gridParameters.columnParameters.current,
-      );
+    return this.ovhUserPref.assign(
+      DATAGRID_COLUMN_PARAMETERS_PREFERENCE_NAME,
+      this.gridParameters.columnParameters.current,
+    );
   }
 }

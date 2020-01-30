@@ -4,16 +4,18 @@ import head from 'lodash/head';
 export default /* @ngInject */ ($scope, $stateParams, $translate, EmailPro) => {
   function loadOptions() {
     $scope.loadingData = true;
-    return EmailPro.getUpdateDisclaimerOptions().then((data) => {
-      $scope.availableAttributes = data.availableAttributes;
-      if (data.availableAttributes) {
-        $scope.data.selectedAttribute = head(data.availableAttributes);
-      }
-      return $scope.data;
-    }).then((data) => {
-      $scope.loadingData = false;
-      return data;
-    });
+    return EmailPro.getUpdateDisclaimerOptions()
+      .then((data) => {
+        $scope.availableAttributes = data.availableAttributes;
+        if (data.availableAttributes) {
+          $scope.data.selectedAttribute = head(data.availableAttributes);
+        }
+        return $scope.data;
+      })
+      .then((data) => {
+        $scope.loadingData = false;
+        return data;
+      });
   }
 
   $scope.data = angular.copy($scope.currentActionData);
@@ -45,11 +47,22 @@ export default /* @ngInject */ ($scope, $stateParams, $translate, EmailPro) => {
     };
 
     $scope.setMessage($translate.instant('emailpro_dashboard_action_doing'));
-    EmailPro.updateDisclaimer($stateParams.productId, model).then(() => {
-      $scope.setMessage($translate.instant('emailpro_ACTION_update_disclaimer_success_message'), { status: 'success' });
-    }, (failure) => {
-      $scope.setMessage($translate.instant('emailpro_ACTION_update_disclaimer_error_message'), failure.data);
-    });
+    EmailPro.updateDisclaimer($stateParams.productId, model).then(
+      () => {
+        $scope.setMessage(
+          $translate.instant(
+            'emailpro_ACTION_update_disclaimer_success_message',
+          ),
+          { status: 'success' },
+        );
+      },
+      (failure) => {
+        $scope.setMessage(
+          $translate.instant('emailpro_ACTION_update_disclaimer_error_message'),
+          failure.data,
+        );
+      },
+    );
     $scope.resetAction();
   };
 };

@@ -1,4 +1,4 @@
-const VRACK_URLS = {
+export const VRACK_URLS = {
   changeOwner: {
     CZ: 'https://www.ovh.cz/cgi-bin/procedure/procedureChangeOwner.cgi',
     DE: 'https://www.ovh.de/cgi-bin/procedure/procedureChangeOwner.cgi',
@@ -19,12 +19,16 @@ const VRACK_URLS = {
   guides: {
     vrack: {
       FR: {
-        roadmap: 'https://www.ovh.com/fr/g2148.public_cloud_et_vrack_-_explications_et_roadmap',
+        roadmap:
+          'https://www.ovh.com/fr/g2148.public_cloud_et_vrack_-_explications_et_roadmap',
       },
     },
   },
 };
 
+export const POLLING_INTERVAL = 500;
+
 export default {
+  POLLING_INTERVAL,
   VRACK_URLS,
 };

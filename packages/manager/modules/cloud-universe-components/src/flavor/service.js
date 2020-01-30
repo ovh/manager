@@ -35,7 +35,14 @@ export default class CucFlavorService {
     if (planHourly) {
       set(price, 'price', planHourly.price);
       // Set 3 digits for hourly price
-      set(price, 'price.text', get(price, 'price.text', '').replace(/\d+(?:[.,]\d+)?/, `${price.price.value.toFixed(3)}`));
+      set(
+        price,
+        'price.text',
+        get(price, 'price.text', '').replace(
+          /\d+(?:[.,]\d+)?/,
+          `${price.price.value.toFixed(3)}`,
+        ),
+      );
     }
     const planMonthly = prices[get(flavor, 'planCodes.monthly')];
     if (planMonthly) {
@@ -49,15 +56,22 @@ export default class CucFlavorService {
     const instanceQuota = get(quotaByRegion, 'instance', false);
     if (instanceQuota) {
       // set over quota reason
-      if (instanceQuota.maxInstances !== -1
-        && instanceQuota.usedInstances >= instanceQuota.maxInstances) {
+      if (
+        instanceQuota.maxInstances !== -1 &&
+        instanceQuota.usedInstances >= instanceQuota.maxInstances
+      ) {
         set(flavor, 'disabled', 'QUOTA_INSTANCE');
-      } else if (flavor.ram && instanceQuota.maxRam !== -1
-          && flavor.ram > instanceQuota.maxRam - instanceQuota.usedRAM) {
+      } else if (
+        flavor.ram &&
+        instanceQuota.maxRam !== -1 &&
+        flavor.ram > instanceQuota.maxRam - instanceQuota.usedRAM
+      ) {
         set(flavor, 'disabled', 'QUOTA_RAM');
-      } else if (flavor.vcpus
-          && instanceQuota.maxCores !== -1
-          && flavor.vcpus > instanceQuota.maxCores - instanceQuota.usedCores) {
+      } else if (
+        flavor.vcpus &&
+        instanceQuota.maxCores !== -1 &&
+        flavor.vcpus > instanceQuota.maxCores - instanceQuota.usedCores
+      ) {
         set(flavor, 'disabled', 'QUOTA_VCPUS');
       }
 
@@ -65,19 +79,41 @@ export default class CucFlavorService {
       if (instanceQuota.maxInstances === -1) {
         set(flavor, 'maxInstance', -1);
       } else {
-        set(flavor, 'maxInstance', instanceQuota.maxInstances - instanceQuota.usedInstances);
+        set(
+          flavor,
+          'maxInstance',
+          instanceQuota.maxInstances - instanceQuota.usedInstances,
+        );
       }
 
       if (instanceQuota.maxRam === -1) {
         set(flavor, 'maxInstance', Math.max(flavor.maxInstance, -1));
       } else {
-        set(flavor, 'maxInstance', Math.min(flavor.maxInstance > -1 ? flavor.maxInstance : 1000, Math.floor((instanceQuota.maxRam - instanceQuota.usedRAM) / flavor.ram)));
+        set(
+          flavor,
+          'maxInstance',
+          Math.min(
+            flavor.maxInstance > -1 ? flavor.maxInstance : 1000,
+            Math.floor(
+              (instanceQuota.maxRam - instanceQuota.usedRAM) / flavor.ram,
+            ),
+          ),
+        );
       }
 
       if (instanceQuota.maxCores === -1) {
         set(flavor, 'maxInstance', Math.max(flavor.maxInstance, -1));
       } else {
-        set(flavor, 'maxInstance', Math.min(flavor.maxInstance > -1 ? flavor.maxInstance : 1000, Math.floor((instanceQuota.maxCores - instanceQuota.usedCores) / flavor.vcpus)));
+        set(
+          flavor,
+          'maxInstance',
+          Math.min(
+            flavor.maxInstance > -1 ? flavor.maxInstance : 1000,
+            Math.floor(
+              (instanceQuota.maxCores - instanceQuota.usedCores) / flavor.vcpus,
+            ),
+          ),
+        );
       }
     }
 
@@ -97,7 +133,12 @@ export default class CucFlavorService {
       return {
         max: this.$filter('cucBytes')(instanceQuota.maxRam, 0, false, 'MB'),
         used: this.$filter('cucBytes')(instanceQuota.usedRAM, 0, false, 'MB'),
-        remaining: this.$filter('cucBytes')(instanceQuota.maxRam - instanceQuota.usedRAM, 0, false, 'MB'),
+        remaining: this.$filter('cucBytes')(
+          instanceQuota.maxRam - instanceQuota.usedRAM,
+          0,
+          false,
+          'MB',
+        ),
         required: this.$filter('cucBytes')(flavor.ram, 0, false, 'MB'),
       };
     }
@@ -123,8 +164,10 @@ export default class CucFlavorService {
       name: get(image, 'name', undefined),
       currentDisk: this.$filter('cucBytes')(flavor.disk, 2, false, 'GB'),
       currentRam: this.$filter('cucBytes')(flavor.ram, 2, false, 'MB'),
-      requiredDisk: this.$filter('cucBytes')(image.minDisk, 2, false, 'GB') || undefined,
-      requiredRam: this.$filter('cucBytes')(image.minRam, 2, false, 'MB') || undefined,
+      requiredDisk:
+        this.$filter('cucBytes')(image.minDisk, 2, false, 'GB') || undefined,
+      requiredRam:
+        this.$filter('cucBytes')(image.minRam, 2, false, 'MB') || undefined,
     };
   }
 
@@ -134,16 +177,18 @@ export default class CucFlavorService {
     }
 
     const augmentedFlavor = cloneDeep(flavor);
-    augmentedFlavor.frequency = this.CUC_FLAVOR_INSTANCE_CPU_FREQUENCY[flavor.type];
+    augmentedFlavor.frequency = this.CUC_FLAVOR_INSTANCE_CPU_FREQUENCY[
+      flavor.type
+    ];
 
     if (/vps/.test(flavor.type)) {
-      return Object.assign({
+      return {
         vps: true,
         diskType: 'ssd',
         flex: false,
         shortGroupName: flavor.name,
-      },
-      augmentedFlavor);
+        ...augmentedFlavor,
+      };
     }
 
     let shortType;
@@ -168,11 +213,19 @@ export default class CucFlavorService {
     }
 
     augmentedFlavor.flex = /flex$/.test(flavor.name);
-    augmentedFlavor.diskType = [/ssd/, /nvme/].some(regex => regex.test(flavor.type)) ? 'ssd' : 'ceph';
+    augmentedFlavor.diskType = [/ssd/, /nvme/].some((regex) =>
+      regex.test(flavor.type),
+    )
+      ? 'ssd'
+      : 'ceph';
 
-    const flavorContainsGPUs = includes(['g1', 'g2', 'g3', 't1'], augmentedFlavor.shortType);
+    const flavorContainsGPUs = includes(
+      ['g1', 'g2', 'g3', 't1'],
+      augmentedFlavor.shortType,
+    );
     if (flavorContainsGPUs) {
-      augmentedFlavor.imageType = flavor.osType === 'windows' ? ['uefi'] : augmentedFlavor.imageType;
+      augmentedFlavor.imageType =
+        flavor.osType === 'windows' ? ['uefi'] : augmentedFlavor.imageType;
       augmentedFlavor.gpuCardCount = get(
         this.CUC_FLAVOR_INSTANCE_NUMBER_OF_GPUS,
         numberType,
@@ -186,9 +239,8 @@ export default class CucFlavorService {
   }
 
   getCategory(flavorType) {
-    return find(
-      this.CUC_FLAVOR_FLAVORTYPE_CATEGORY,
-      currentCategory => includes(currentCategory.types, flavorType),
+    return find(this.CUC_FLAVOR_FLAVORTYPE_CATEGORY, (currentCategory) =>
+      includes(currentCategory.types, flavorType),
     );
   }
 }

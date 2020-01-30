@@ -1,42 +1,74 @@
 <div data-ng-controller="ExchangeResourceDelegationCtrl as ctrl">
-    <div data-wizard
-         data-wizard-bread-crumb
-         data-wizard-on-cancel="resetAction"
-         data-wizard-on-finish="updateDelegationRight"
-         data-wizard-title="'exchange_GROUPS_delegation_title' | translate">
+    <div
+        data-wizard
+        data-wizard-bread-crumb
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="updateDelegationRight"
+        data-wizard-title="'exchange_GROUPS_delegation_title' | translate"
+    >
+        <div
+            data-wizard-step
+            data-wizard-step-on-load="retrieveDelegationRights"
+            data-wizard-step-valid="hasChanged()"
+        >
+            <p
+                data-ng-bind-html="'exchange_RESOURCES_delegation_step1_intro' | translate:{ t0: ctrl.resource.resourceEmailAddress }"
+            ></p>
 
-        <div data-wizard-step
-             data-wizard-step-on-load="retrieveDelegationRights"
-             data-wizard-step-valid="hasChanged()">
-
-            <p data-ng-bind-html="'exchange_RESOURCES_delegation_step1_intro' | translate:{ t0: ctrl.resource.resourceEmailAddress }"></p>
-
-            <div class="alert alert-warning" role="alert"
-                 data-ng-if="!ctrl.loading && ctrl.delegationList && ctrl.delegationList.list.messages.length > 0">
+            <div
+                class="alert alert-warning"
+                role="alert"
+                data-ng-if="!ctrl.loading && ctrl.delegationList && ctrl.delegationList.list.messages.length > 0"
+            >
                 <div>
-                    <strong data-translate="exchange_tab_ACCOUNTS_warning"></strong>
+                    <strong
+                        data-translate="exchange_tab_ACCOUNTS_warning"
+                    ></strong>
                     <span data-translate="exchange_tab_ACCOUNTS_partial"></span>
                 </div>
             </div>
 
             <form class="form-inline d-md-flex justify-content-md-end mb-3">
                 <div class="form-group">
-                    <label class="sr-only" for="searchDelegationSearch"
-                           data-translate="common_search"></label>
+                    <label
+                        class="sr-only"
+                        for="searchDelegationSearch"
+                        data-translate="common_search"
+                    ></label>
                     <div class="input-group">
-                        <input type="text" class="form-control" id="searchDelegationSearch" placeholder="{{'exchange_tab_ACCOUNTS_table_email' | translate}}"
-                               data-ng-change="ctrl.onSearch()"
-                               data-ng-disabled="ctrl.loading"
-                               data-ng-model="ctrl.form.search">
-                        <div class="input-group-btn" data-ng-if="ctrl.form.search">
-                            <button class="btn btn-default" type="button"
-                                    data-ng-click="ctrl.resetSearch()"
-                                    data-ng-disabled="ctrl.loading">
-                                <span class="fa fa-times" aria-hidden="true"></span>
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="searchDelegationSearch"
+                            placeholder="{{'exchange_tab_ACCOUNTS_table_email' | translate}}"
+                            data-ng-change="ctrl.onSearch()"
+                            data-ng-disabled="ctrl.loading"
+                            data-ng-model="ctrl.form.search"
+                        />
+                        <div
+                            class="input-group-btn"
+                            data-ng-if="ctrl.form.search"
+                        >
+                            <button
+                                class="btn btn-default"
+                                type="button"
+                                data-ng-click="ctrl.resetSearch()"
+                                data-ng-disabled="ctrl.loading"
+                            >
+                                <span
+                                    class="fa fa-times"
+                                    aria-hidden="true"
+                                ></span>
                             </button>
                         </div>
-                        <span class="input-group-addon" data-ng-if="!ctrl.form.search">
-                            <span class="fa fa-search" aria-hidden="true"></span>
+                        <span
+                            class="input-group-addon"
+                            data-ng-if="!ctrl.form.search"
+                        >
+                            <span
+                                class="fa fa-search"
+                                aria-hidden="true"
+                            ></span>
                         </span>
                     </div>
                 </div>
@@ -45,13 +77,18 @@
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th scope="col" data-translate="exchange_GROUPS_delegation_step1_email_header"></th>
+                        <th
+                            scope="col"
+                            data-translate="exchange_GROUPS_delegation_step1_email_header"
+                        ></th>
                         <th class="text-center" scope="col">
-                            <input type="checkbox"
-                                   data-tri-state-checkbox
-                                   data-tsc-ids-all="ctrl.buffer.ids"
-                                   data-tsc-ids-selected="ctrl.buffer.selected"
-                                   data-tsc-on-click="ctrl.checkboxStateChange(state)">
+                            <input
+                                type="checkbox"
+                                data-tri-state-checkbox
+                                data-tsc-ids-all="ctrl.buffer.ids"
+                                data-tsc-ids-selected="ctrl.buffer.selected"
+                                data-tsc-on-click="ctrl.checkboxStateChange(state)"
+                            />
                         </th>
                     </tr>
                 </thead>
@@ -64,34 +101,57 @@
                     </tr>
                 </tbody>
 
-                <tbody data-ng-if="!ctrl.loading && ctrl.delegationList.list.results.length === 0 && ctrl.delegationList.list.messages.length === 0">
+                <tbody
+                    data-ng-if="!ctrl.loading && ctrl.delegationList.list.results.length === 0 && ctrl.delegationList.list.messages.length === 0"
+                >
                     <tr>
                         <td class="text-center" colspan="2">
-                            <span data-translate="exchange_ACTION_delegation_table_empty"
-                                  data-ng-if="!ctrl.form.search"></span>
-                            <span data-translate="exchange_ACTION_delegation_table_empty_search"
-                                  data-ng-if="ctrl.form.search"></span>
+                            <span
+                                data-translate="exchange_ACTION_delegation_table_empty"
+                                data-ng-if="!ctrl.form.search"
+                            ></span>
+                            <span
+                                data-translate="exchange_ACTION_delegation_table_empty_search"
+                                data-ng-if="ctrl.form.search"
+                            ></span>
                         </td>
                     </tr>
                 </tbody>
 
-                <tbody data-ng-if="!ctrl.loading && (ctrl.delegationList.list.results.length > 0 || ctrl.delegationList.list.messages.length > 0)">
-                    <tr data-ng-repeat="account in (ctrl.delegationList.list.results | orderBy:'displayAddress':false) track by $index">
+                <tbody
+                    data-ng-if="!ctrl.loading && (ctrl.delegationList.list.results.length > 0 || ctrl.delegationList.list.messages.length > 0)"
+                >
+                    <tr
+                        data-ng-repeat="account in (ctrl.delegationList.list.results | orderBy:'displayAddress':false) track by $index"
+                    >
                         <th scope="row">
-                            <label class="oui-label mb-0" for="delegation-{{$index}}"
-                                   data-ng-bind="account.displayAddress"></label>
+                            <label
+                                class="oui-label mb-0"
+                                for="delegation-{{$index}}"
+                                data-ng-bind="account.displayAddress"
+                            ></label>
                         </th>
                         <td class="text-center">
-                            <input type="checkbox" id="delegation-{{$index}}"
-                                   data-ng-change="ctrl.checkForChanges(account)"
-                                   data-ng-model="account.newDelegationValue">
+                            <input
+                                type="checkbox"
+                                id="delegation-{{$index}}"
+                                data-ng-change="ctrl.checkForChanges(account)"
+                                data-ng-model="account.newDelegationValue"
+                            />
                         </td>
                     </tr>
 
-                    <tr data-ng-repeat="account in (ctrl.delegationList.list.messages | orderBy:'id':false) track by $index">
+                    <tr
+                        data-ng-repeat="account in (ctrl.delegationList.list.messages | orderBy:'id':false) track by $index"
+                    >
                         <td colspan="2">
-                            <div data-oui-tooltip="{{ 'exchange_GROUPS_partial_account' | translate:{ t0: account.message } }}">
-                                <span class="fa fa-exclamation-triangle mr-2" aria-hidden="true"></span>
+                            <div
+                                data-oui-tooltip="{{ 'exchange_GROUPS_partial_account' | translate:{ t0: account.message } }}"
+                            >
+                                <span
+                                    class="fa fa-exclamation-triangle mr-2"
+                                    aria-hidden="true"
+                                ></span>
                                 <span data-ng-bind="account.id"></span>
                             </div>
                         </td>
@@ -99,55 +159,80 @@
                 </tbody>
             </table>
 
-            <div class="clearfix"
-                 data-pagination-server-side="delegationTable"
-                 data-pagination-server-side-function="retrieveDelegationRights"
-                 data-pagination-server-side-paginated-stuff="getDelegationList()"
-                 data-pagination-server-side-table-loading="ctrl.loading">
-            </div>
+            <div
+                class="clearfix"
+                data-pagination-server-side="delegationTable"
+                data-pagination-server-side-function="retrieveDelegationRights"
+                data-pagination-server-side-paginated-stuff="getDelegationList()"
+                data-pagination-server-side-table-loading="ctrl.loading"
+            ></div>
 
             <div data-wizard-step-help>
-                <h3 data-translate="exchange_RESOURCES_delegation_step2_delegation_header"></h3>
-                <p data-ng-bind-html="'exchange_RESOURCES_delegation_wizard_text' | translate"></p>
+                <h3
+                    data-translate="exchange_RESOURCES_delegation_step2_delegation_header"
+                ></h3>
+                <p
+                    data-ng-bind-html="'exchange_RESOURCES_delegation_wizard_text' | translate"
+                ></p>
             </div>
         </div>
 
         <div data-wizard-step>
-            <p data-ng-bind-html-unsafe="'exchange_RESOURCES_delegation_step2_intro' | translate:{ t0: ctrl.resource.resourceEmailAddress }"></p>
+            <p
+                data-ng-bind-html-unsafe="'exchange_RESOURCES_delegation_step2_intro' | translate:{ t0: ctrl.resource.resourceEmailAddress }"
+            ></p>
 
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th scope="col" data-translate="exchange_GROUPS_delegation_step2_email_header"></th>
-                        <th class="text-center" scope="col" data-translate="exchange_RESOURCES_delegation_step2_delegation_header"></th>
+                        <th
+                            scope="col"
+                            data-translate="exchange_GROUPS_delegation_step2_email_header"
+                        ></th>
+                        <th
+                            class="text-center"
+                            scope="col"
+                            data-translate="exchange_RESOURCES_delegation_step2_delegation_header"
+                        ></th>
                     </tr>
                 </thead>
 
                 <tbody>
-                    <tr data-ng-repeat="account in (ctrl.delegationList.list.results | orderBy:'displayAddress':false) track by $index">
+                    <tr
+                        data-ng-repeat="account in (ctrl.delegationList.list.results | orderBy:'displayAddress':false) track by $index"
+                    >
                         <td data-ng-bind="account.displayAddress"></td>
                         <td class="text-center">
-                            <span data-translate="exchange_ACTION_delegation_step2_right_true"
-                                  data-ng-class="ctrl.hasChangedClass(account.id)"
-                                  data-ng-if="account.newDelegationValue"></span>
-                            <span data-translate="exchange_RESOURCES_delegation_step2_delegation_no_value"
-                                  data-ng-class="ctrl.hasChangedClass(account.id)"
-                                  data-ng-if="!account.newDelegationValue"></span>
+                            <span
+                                data-translate="exchange_ACTION_delegation_step2_right_true"
+                                data-ng-class="ctrl.hasChangedClass(account.id)"
+                                data-ng-if="account.newDelegationValue"
+                            ></span>
+                            <span
+                                data-translate="exchange_RESOURCES_delegation_step2_delegation_no_value"
+                                data-ng-class="ctrl.hasChangedClass(account.id)"
+                                data-ng-if="!account.newDelegationValue"
+                            ></span>
                         </td>
                     </tr>
                 </tbody>
             </table>
 
-            <div class="clearfix"
-                 data-pagination-server-side="delegationTable"
-                 data-pagination-server-side-function="retrieveDelegationRights"
-                 data-pagination-server-side-paginated-stuff="getDelegationList()"
-                 data-pagination-server-side-table-loading="ctrl.loading">
-            </div>
+            <div
+                class="clearfix"
+                data-pagination-server-side="delegationTable"
+                data-pagination-server-side-function="retrieveDelegationRights"
+                data-pagination-server-side-paginated-stuff="getDelegationList()"
+                data-pagination-server-side-table-loading="ctrl.loading"
+            ></div>
 
             <div data-wizard-step-help>
-                <h3 data-translate="exchange_RESOURCES_delegation_step2_delegation_header"></h3>
-                <p data-ng-bind-html="'exchange_RESOURCES_delegation_wizard_text' | translate"></p>
+                <h3
+                    data-translate="exchange_RESOURCES_delegation_step2_delegation_header"
+                ></h3>
+                <p
+                    data-ng-bind-html="'exchange_RESOURCES_delegation_wizard_text' | translate"
+                ></p>
             </div>
         </div>
     </div>

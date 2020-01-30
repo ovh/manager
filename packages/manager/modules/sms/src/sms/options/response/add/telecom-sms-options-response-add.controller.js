@@ -5,8 +5,14 @@ import pull from 'lodash/pull';
 export default class {
   /* @ngInject */
   constructor(
-    $q, $stateParams, $timeout, $uibModalInstance,
-    params, OvhApiSms, TucSmsMediator, TucToastError,
+    $q,
+    $stateParams,
+    $timeout,
+    $uibModalInstance,
+    params,
+    OvhApiSms,
+    TucSmsMediator,
+    TucToastError,
   ) {
     this.$q = $q;
     this.$stateParams = $stateParams;
@@ -37,12 +43,19 @@ export default class {
 
     this.loading.init = true;
     return this.TucSmsMediator.initDeferred.promise
-      .then(() => this.TucSmsMediator.getApiScheme().then((schema) => {
-        this.availableTrackingMedia = pull(schema.models['sms.ResponseTrackingMediaEnum'].enum, 'voice');
-        return this.availableTrackingMedia;
-      })).catch((err) => {
+      .then(() =>
+        this.TucSmsMediator.getApiScheme().then((schema) => {
+          this.availableTrackingMedia = pull(
+            schema.models['sms.ResponseTrackingMediaEnum'].enum,
+            'voice',
+          );
+          return this.availableTrackingMedia;
+        }),
+      )
+      .catch((err) => {
         this.TucToastError(err);
-      }).finally(() => {
+      })
+      .finally(() => {
         this.loading.init = false;
       });
   }
@@ -59,7 +72,9 @@ export default class {
    * Handle tracking sender number.
    */
   handleTrackingSenderNumber() {
-    this.trackingOptions.sender = has(this.trackingSender, 'sender') ? this.trackingSender.sender : '';
+    this.trackingOptions.sender = has(this.trackingSender, 'sender')
+      ? this.trackingSender.sender
+      : '';
   }
 
   /**
@@ -67,7 +82,10 @@ export default class {
    */
   restrictTargetNumber() {
     if (this.trackingOptions.target) {
-      this.trackingOptions.target = this.trackingOptions.target.replace(/[^0-9+]/g, '');
+      this.trackingOptions.target = this.trackingOptions.target.replace(
+        /[^0-9+]/g,
+        '',
+      );
     }
   }
 
@@ -78,24 +96,32 @@ export default class {
   add() {
     this.loading.addTrackingOption = true;
     this.model.service.smsResponse.trackingOptions.push(this.trackingOptions);
-    return this.$q.all([
-      this.api.sms.edit({
-        serviceName: this.$stateParams.serviceName,
-      }, {
-        smsResponse: {
-          trackingOptions: this.model.service.smsResponse.trackingOptions,
-          responseType: this.model.service.smsResponse.responseType,
-        },
-      }).$promise,
-      this.$timeout(angular.noop, 1000),
-    ]).then(() => {
-      this.loading.addTrackingOption = false;
-      this.added = true;
-      return this.$timeout(() => this.close(), 1000);
-    }).catch(error => this.cancel({
-      type: 'API',
-      message: error.data.message,
-    }));
+    return this.$q
+      .all([
+        this.api.sms.edit(
+          {
+            serviceName: this.$stateParams.serviceName,
+          },
+          {
+            smsResponse: {
+              trackingOptions: this.model.service.smsResponse.trackingOptions,
+              responseType: this.model.service.smsResponse.responseType,
+            },
+          },
+        ).$promise,
+        this.$timeout(angular.noop, 1000),
+      ])
+      .then(() => {
+        this.loading.addTrackingOption = false;
+        this.added = true;
+        return this.$timeout(() => this.close(), 1000);
+      })
+      .catch((error) =>
+        this.cancel({
+          type: 'API',
+          message: error.data.message,
+        }),
+      );
   }
 
   cancel(message) {

@@ -26,14 +26,22 @@ export default class {
         isLoading: () => this.isLoading,
         load: () => {
           this.isLoading = true;
-          return this.Server
-            .getBareMetalPrivateBandwidthOptions(this.serverName, this.existingBandwidth)
+          return this.Server.getBareMetalPrivateBandwidthOptions(
+            this.serverName,
+            this.existingBandwidth,
+          )
             .then((plans) => {
-              this.plans = this.Server.getValidBandwidthPlans(plans, this.existingBandwidth);
+              this.plans = this.Server.getValidBandwidthPlans(
+                plans,
+                this.existingBandwidth,
+              );
             })
             .catch((error) => {
-              this.goBack().then(() => this.alertError('server_error_bandwidth_order', error.data));
-            }).finally(() => {
+              this.goBack().then(() =>
+                this.alertError('server_error_bandwidth_order', error.data),
+              );
+            })
+            .finally(() => {
               this.isLoading = false;
             });
         },
@@ -43,16 +51,25 @@ export default class {
         isLoading: () => this.isLoading,
         load: () => {
           this.isLoading = true;
-          return this.Server
-            .getBareMetalPrivateBandwidthOrder(this.serverName, this.model.plan)
+          return this.Server.getBareMetalPrivateBandwidthOrder(
+            this.serverName,
+            this.model.plan,
+          )
             .then((res) => {
-              res.bandwidth = find(this.plans, 'planCode', this.model.plan).bandwidth;
+              res.bandwidth = find(
+                this.plans,
+                'planCode',
+                this.model.plan,
+              ).bandwidth;
               res.planCode = this.model.plan;
               this.provisionalPlan = res;
             })
             .catch((error) => {
-              this.goBack().then(() => this.alertError('server_error_bandwidth_order', error.data));
-            }).finally(() => {
+              this.goBack().then(() =>
+                this.alertError('server_error_bandwidth_order', error.data),
+              );
+            })
+            .finally(() => {
               this.isLoading = false;
             });
         },

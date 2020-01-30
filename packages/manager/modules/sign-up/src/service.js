@@ -21,21 +21,18 @@ export default class SignUpService {
   }
 
   getCreationRulesParams() {
-    return this.$http
-      .get('/newAccount.json')
-      .then(({ data }) => {
-        const api = find(data.apis, {
-          path: '/newAccount/rules',
-        });
-
-        return find(api.operations, {
-          httpMethod: 'POST',
-        }).parameters;
+    return this.$http.get('/newAccount.json').then(({ data }) => {
+      const api = find(data.apis, {
+        path: '/newAccount/rules',
       });
+
+      return find(api.operations, {
+        httpMethod: 'POST',
+      }).parameters;
+    });
   }
 
   saveNic(nicInfos) {
-    return this.$http
-      .put('/me', nicInfos);
+    return this.$http.put('/me', nicInfos);
   }
 }

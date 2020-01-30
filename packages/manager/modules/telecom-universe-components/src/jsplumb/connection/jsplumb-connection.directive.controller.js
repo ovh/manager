@@ -1,4 +1,4 @@
-export default function () {
+export default function() {
   const self = this;
 
   self.connection = null;
@@ -8,11 +8,13 @@ export default function () {
     ====================================== */
 
   /**
-     *  Directive initialization
-     */
+   *  Directive initialization
+   */
   self.$onInit = function $onInit() {
     if (!self.target) {
-      throw new Error('target options must be specified when instanciating a jsplumb connection.');
+      throw new Error(
+        'target options must be specified when instanciating a jsplumb connection.',
+      );
     }
   };
 

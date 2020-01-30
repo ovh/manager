@@ -15,10 +15,10 @@ class InlineAdderCtrl {
     let p = this.$q.resolve();
     if (this.isLoading(item)) {
       return p;
-    } if (this.onAdd) {
+    }
+    if (this.onAdd) {
       this.setLoading(item, true);
-      p = this.onAdd({ item })
-        .finally(() => this.setLoading(item, false));
+      p = this.onAdd({ item }).finally(() => this.setLoading(item, false));
     }
     return p;
   }
@@ -27,10 +27,10 @@ class InlineAdderCtrl {
     let p = this.$q.resolve();
     if (this.isLoading(item)) {
       return p;
-    } if (this.onRemove) {
+    }
+    if (this.onRemove) {
       this.setLoading(item, true);
-      p = this.onRemove({ item })
-        .finally(() => this.setLoading(item, false));
+      p = this.onRemove({ item }).finally(() => this.setLoading(item, false));
     }
     return p;
   }
@@ -39,7 +39,9 @@ class InlineAdderCtrl {
     if (!this.uniqueProperty) {
       return item;
     }
-    const up = this.uniqueProperty.split('.').reduce((prev, curr) => (prev ? prev[curr] : undefined), item);
+    const up = this.uniqueProperty
+      .split('.')
+      .reduce((prev, curr) => (prev ? prev[curr] : undefined), item);
     return up;
   }
 

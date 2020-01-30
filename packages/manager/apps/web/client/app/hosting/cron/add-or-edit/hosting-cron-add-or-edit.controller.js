@@ -24,23 +24,25 @@ angular
         status: 'disabled',
       };
 
-      $scope.formatLanguage = language => HostingCron.formatLanguage(language);
+      $scope.formatLanguage = (language) =>
+        HostingCron.formatLanguage(language);
 
       // Object used to communicate with the cronEditor directive.
       // See definition in cronEditor.controller.js.
       $scope.crontabObject = WucCronValidator.makeCrontabObject();
 
-      $scope.isPathValid = () => Hosting.constructor.isPathValid($scope.selected.command);
+      $scope.isPathValid = () =>
+        Hosting.constructor.isPathValid($scope.selected.command);
 
       $scope.isValid = (step) => {
         switch (step) {
           case 1:
             return (
-              $scope.selected.command
-              && $scope.getSelectedCommand().length <= 100
-              && $scope.isPathValid()
-              && $scope.model.language
-              && ($scope.model.emailSelect === 'other' ? $scope.model.email : true)
+              $scope.selected.command &&
+              $scope.getSelectedCommand().length <= 100 &&
+              $scope.isPathValid() &&
+              $scope.model.language &&
+              ($scope.model.emailSelect === 'other' ? $scope.model.email : true)
             );
           case 2:
             return (
@@ -61,8 +63,8 @@ angular
         let home;
         if ($scope.selected.command !== null) {
           if (
-            /^\/.*/.test($scope.selected.command)
-            || /^\.\/.*/.test($scope.selected.command)
+            /^\/.*/.test($scope.selected.command) ||
+            /^\.\/.*/.test($scope.selected.command)
           ) {
             home = $scope.selected.command;
           } else {
@@ -77,9 +79,10 @@ angular
         $scope.model.frequency = $scope.crontabObject.getCrontab();
       };
 
-      $scope.getEmailResume = () => ($scope.model.emailSelect === 'other'
-        ? $scope.model.email
-        : $scope.model.emailSelect);
+      $scope.getEmailResume = () =>
+        $scope.model.emailSelect === 'other'
+          ? $scope.model.email
+          : $scope.model.emailSelect;
 
       $scope.saveCron = () => {
         $scope.loading.validation = true;
@@ -137,15 +140,19 @@ angular
         }
       };
 
-      $scope.trEnum = str => HostingCron.trEnum(str);
+      $scope.trEnum = (str) => HostingCron.trEnum(str);
 
       /*= =========  INIT  ========== */
 
       $scope.init = () => {
         $scope.loading.init = true;
         $scope.title = actionData.cron
-          ? $translate.instant('hosting_tab_CRON_configuration_edit_title_button')
-          : $translate.instant('hosting_tab_CRON_configuration_create_title_button');
+          ? $translate.instant(
+              'hosting_tab_CRON_configuration_edit_title_button',
+            )
+          : $translate.instant(
+              'hosting_tab_CRON_configuration_create_title_button',
+            );
 
         // Edition
         if (actionData.cron) {
@@ -172,7 +179,8 @@ angular
 
         Hosting.getModels()
           .then((models) => {
-            $scope.statusEnum = models.models['hosting.web.cron.StatusEnum'].enum;
+            $scope.statusEnum =
+              models.models['hosting.web.cron.StatusEnum'].enum;
           })
           .catch((err) => {
             Alerter.alertFromSWS(

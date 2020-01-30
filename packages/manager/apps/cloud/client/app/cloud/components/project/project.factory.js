@@ -1,5 +1,6 @@
-angular.module('managerApp').factory('CloudProjectFactory',
-  (CloudProjectComputeFactory) => {
+angular
+  .module('managerApp')
+  .factory('CloudProjectFactory', (CloudProjectComputeFactory) => {
     /**
      *  Defines a cloud project
      *
@@ -16,17 +17,20 @@ angular.module('managerApp').factory('CloudProjectFactory',
         }
 
         if (!options.serviceName) {
-          throw new Error('serviceName option must be specified when creating a new CloudProjectFactory');
+          throw new Error(
+            'serviceName option must be specified when creating a new CloudProjectFactory',
+          );
         }
 
         this.serviceName = options.serviceName || null;
-        this.compute = new CloudProjectComputeFactory(angular.extend(
-          (options.compute || {}),
-          { serviceName: this.serviceName },
-        ));
+        this.compute = new CloudProjectComputeFactory(
+          angular.extend(options.compute || {}, {
+            serviceName: this.serviceName,
+          }),
+        );
         // + storage
       };
-    }());
+    })();
 
     // /////////////////////////////
     // /         METHODS          //

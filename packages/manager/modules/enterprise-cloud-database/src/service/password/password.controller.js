@@ -20,13 +20,17 @@ export default class EnterpriseCloudDatabasePasswordCtrl {
   }
 
   checkPasswordLength(password) {
-    return password
-      && (password.length >= this.PASSWORD_LENGTH.MIN)
-      && (password.length <= this.PASSWORD_LENGTH.MAX);
+    return (
+      password &&
+      password.length >= this.PASSWORD_LENGTH.MIN &&
+      password.length <= this.PASSWORD_LENGTH.MAX
+    );
   }
 
   checkPasswordStrength() {
-    return this.passwordScore >= ENTERPRISE_CLOUD_DATABASE_MIN_PASSWORD_STRENGTH;
+    return (
+      this.passwordScore >= ENTERPRISE_CLOUD_DATABASE_MIN_PASSWORD_STRENGTH
+    );
   }
 
   passwordChanged(password) {

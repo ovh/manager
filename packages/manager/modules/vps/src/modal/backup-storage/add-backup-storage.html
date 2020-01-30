@@ -5,40 +5,63 @@
         data-secondary-action="$ctrl.cancel()"
         data-secondary-label="{{ ::'vps_common_cancel' | translate }}"
         data-on-dismiss="$ctrl.cancel()"
-        data-loading="$ctrl.ipBlocks.loading || $ctrl.addStorage.loading">
-
+        data-loading="$ctrl.ipBlocks.loading || $ctrl.addStorage.loading"
+    >
         <div data-ng-if="!$ctrl.ipBlocks.loading && !$ctrl.isAvailable()">
-            <p class="oui-modal__text" data-translate="vps_backup_storage_access_add_no_block"></p>
+            <p
+                class="oui-modal__text"
+                data-translate="vps_backup_storage_access_add_no_block"
+            ></p>
         </div>
         <div data-ng-if="!$ctrl.ipBlocks.loading && $ctrl.isAvailable()">
-            <p class="oui-modal__text" data-translate="vps_backup_storage_access_add_info"></p>
-            <oui-field data-label="{{ ::'vps_backup_storage_access_add_ip' | translate }}">
+            <p
+                class="oui-modal__text"
+                data-translate="vps_backup_storage_access_add_info"
+            ></p>
+            <oui-field
+                data-label="{{ ::'vps_backup_storage_access_add_ip' | translate }}"
+            >
                 <div class="oui-select">
-                    <select name="access-ip" id="access-ip" class="oui-select__input" multiple required
-                            data-ng-options="ip for ip in $ctrl.available track by ip"
-                            data-ng-model="$ctrl.model.ip">
+                    <select
+                        name="access-ip"
+                        id="access-ip"
+                        class="oui-select__input"
+                        multiple
+                        required
+                        data-ng-options="ip for ip in $ctrl.available track by ip"
+                        data-ng-model="$ctrl.model.ip"
+                    >
                     </select>
                 </div>
             </oui-field>
-            <p class="oui-modal__text" data-translate="vps_backup_storage_access_add_info3"></p>
-            <p class="oui-modal__text" data-translate="vps_backup_storage_access_add_authorization"></p>
+            <p
+                class="oui-modal__text"
+                data-translate="vps_backup_storage_access_add_info3"
+            ></p>
+            <p
+                class="oui-modal__text"
+                data-translate="vps_backup_storage_access_add_authorization"
+            ></p>
             <oui-checkbox
                 data-text="{{ ::'vps_tab_backup_storage_table_cifs' | translate }}"
                 id="acces-cifs"
                 name="acces-cifs"
-                data-model="$ctrl.model.cifs">
+                data-model="$ctrl.model.cifs"
+            >
             </oui-checkbox>
             <oui-checkbox
                 data-text="{{ ::'vps_tab_backup_storage_table_ftp' | translate }}"
                 id="acces-ftp"
                 name="acces-ftp"
-                data-model="$ctrl.model.ftp">
+                data-model="$ctrl.model.ftp"
+            >
             </oui-checkbox>
             <oui-checkbox
                 data-text="{{ ::'vps_tab_backup_storage_table_nfs' | translate }}"
                 id="acces-nfs"
                 name="acces-nfs"
-                data-model="$ctrl.model.nfs">
+                data-model="$ctrl.model.nfs"
+            >
             </oui-checkbox>
         </div>
     </oui-modal>

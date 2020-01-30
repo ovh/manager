@@ -47,9 +47,10 @@ export default /* @ngInject */ ($timeout) => {
       step = 1 / Math.pow(10, precision);
     }
     remainder = (value - floor) % step;
-    steppedValue = remainder > (step / 2) ? value + step - remainder : value - remainder;
+    steppedValue =
+      remainder > step / 2 ? value + step - remainder : value - remainder;
     decimals = Math.pow(10, precision);
-    roundedValue = steppedValue * decimals / decimals;
+    roundedValue = (steppedValue * decimals) / decimals;
     return parseFloat(roundedValue.toFixed(precision));
   };
 
@@ -84,19 +85,21 @@ export default /* @ngInject */ ($timeout) => {
       displayCallback: '&',
       disabled: '=?',
     },
-    template: '<div class="bar"><div class="selection"></div></div>' +
-        '<div class="handle low"></div><div class="handle high"></div>' +
-        '<div class="bubble limit low">{{ values.length ? values[floor || 0] : floor }}</div>' +
-        '<div class="bubble limit high">{{ values.length ? values[ceiling || values.length - 1] : ceiling }}</div>' +
-        '<div class="bubble value low">{{ display() }}</div>' +
-        '<div class="bubble value high">{{ values.length ? values[local.ngModelHigh] : local.ngModelHigh }}</div>',
+    template:
+      '<div class="bar"><div class="selection"></div></div>' +
+      '<div class="handle low"></div><div class="handle high"></div>' +
+      '<div class="bubble limit low">{{ values.length ? values[floor || 0] : floor }}</div>' +
+      '<div class="bubble limit high">{{ values.length ? values[ceiling || values.length - 1] : ceiling }}</div>' +
+      '<div class="bubble value low">{{ display() }}</div>' +
+      '<div class="bubble value high">{{ values.length ? values[local.ngModelHigh] : local.ngModelHigh }}</div>',
     compile(element, attributes) {
       let high;
       let low;
       let range;
       let watchables;
 
-      range = !attributes.ngModel && attributes.ngModelLow && attributes.ngModelHigh;
+      range =
+        !attributes.ngModel && attributes.ngModelLow && attributes.ngModelHigh;
       low = range ? 'ngModelLow' : 'ngModel';
       high = 'ngModelHigh';
       watchables = ['floor', 'ceiling', 'values', low, 'refreshTrigger'];
@@ -134,7 +137,7 @@ export default /* @ngInject */ ($timeout) => {
           let _len1;
           let _ref;
           let _ref1;
-          _ref = (function () {
+          _ref = (function() {
             let _i;
             let _len;
             let _ref;
@@ -147,7 +150,7 @@ export default /* @ngInject */ ($timeout) => {
               _results.push(angularize(e));
             }
             return _results;
-          }());
+          })();
           bar = _ref[0];
           minPtr = _ref[1];
           maxPtr = _ref[2];
@@ -168,7 +171,12 @@ export default /* @ngInject */ ($timeout) => {
           }
 
           scope.display = function display() {
-            const currentValue = scope.values && scope.values.length ? scope.values[scope.local.ngModelLow || scope.local.ngModel || 0] : scope.local.ngModelLow || scope.local.ngModel || 0;
+            const currentValue =
+              scope.values && scope.values.length
+                ? scope.values[
+                    scope.local.ngModelLow || scope.local.ngModel || 0
+                  ]
+                : scope.local.ngModelLow || scope.local.ngModel || 0;
             if (typeof attributes.displayCallback !== 'undefined') {
               return scope.displayCallback({ value: currentValue });
             }
@@ -193,7 +201,7 @@ export default /* @ngInject */ ($timeout) => {
           bound = false;
           ngDocument = angularize(document);
           handleHalfWidth = barWidth = minOffset = maxOffset = minValue = maxValue = valueRange = offsetRange = void 0;
-          dimensions = function () {
+          dimensions = function() {
             let value;
             let _j;
             let _len1;
@@ -221,7 +229,12 @@ export default /* @ngInject */ ($timeout) => {
             for (_j = 0, _len1 = watchables.length; _j < _len1; _j++) {
               value = watchables[_j];
               if (typeof value === 'number') {
-                scope[value] = roundStep(parseFloat(scope[value]), parseInt(scope.precision), parseFloat(scope.step), parseFloat(scope.floor));
+                scope[value] = roundStep(
+                  parseFloat(scope[value]),
+                  parseInt(scope.precision),
+                  parseFloat(scope.step),
+                  parseFloat(scope.floor),
+                );
               }
             }
             handleHalfWidth = halfWidth(minPtr);
@@ -234,7 +247,7 @@ export default /* @ngInject */ ($timeout) => {
             offsetRange = maxOffset - minOffset;
             return offsetRange;
           };
-          updateDOM = function () {
+          updateDOM = function() {
             let bind;
             let percentOffset;
             let percentValue;
@@ -242,28 +255,38 @@ export default /* @ngInject */ ($timeout) => {
             let setBindings;
             let setPointers;
             dimensions();
-            percentOffset = function (offset) {
+            percentOffset = function(offset) {
               return contain(((offset - minOffset) / offsetRange) * 100);
             };
-            percentValue = function (value) {
+            percentValue = function(value) {
               return contain(((value - minValue) / valueRange) * 100);
             };
-            pixelsToOffset = function (percent) {
-              return pixelize(percent * offsetRange / 100);
+            pixelsToOffset = function(percent) {
+              return pixelize((percent * offsetRange) / 100);
             };
-            setPointers = function () {
+            setPointers = function() {
               let newHighValue;
               let newLowValue;
               offset(ceilBub, pixelize(barWidth - width(ceilBub)));
               newLowValue = percentValue(scope.local[low]);
               offset(minPtr, pixelsToOffset(newLowValue));
-              offset(lowBub, pixelize(offsetLeft(minPtr) - halfWidth(lowBub) + handleHalfWidth));
+              offset(
+                lowBub,
+                pixelize(
+                  offsetLeft(minPtr) - halfWidth(lowBub) + handleHalfWidth,
+                ),
+              );
               offset(selection, pixelize(offsetLeft(minPtr) + handleHalfWidth));
               switch (true) {
                 case range:
                   newHighValue = percentValue(scope.local[high]);
                   offset(maxPtr, pixelsToOffset(newHighValue));
-                  offset(highBub, pixelize(offsetLeft(maxPtr) - halfWidth(highBub) + handleHalfWidth));
+                  offset(
+                    highBub,
+                    pixelize(
+                      offsetLeft(maxPtr) - halfWidth(highBub) + handleHalfWidth,
+                    ),
+                  );
                   return selection.css({
                     width: pixelsToOffset(newHighValue - newLowValue),
                   });
@@ -278,13 +301,13 @@ export default /* @ngInject */ ($timeout) => {
                   return offset(selection, 0);
               }
             };
-            bind = function (handle, bubble, ref, events) {
+            bind = function(handle, bubble, ref, events) {
               let currentRef;
               let onEnd;
               let onMove;
               let onStart;
               currentRef = ref;
-              onEnd = function () {
+              onEnd = function() {
                 bubble.removeClass('active');
                 handle.removeClass('active');
                 ngDocument.unbind(events.move);
@@ -296,7 +319,7 @@ export default /* @ngInject */ ($timeout) => {
                 currentRef = ref;
                 return scope.$apply();
               };
-              onMove = function (event) {
+              onMove = function(event) {
                 if (scope.disabled) {
                   return;
                 }
@@ -310,11 +333,26 @@ export default /* @ngInject */ ($timeout) => {
                 let _ref4;
                 let _ref5;
 
-                eventX = event.clientX || ((_ref2 = event.touches) ? (_ref3 = _ref2[0]) ? _ref3.clientX : void 0 : void 0) || ((_ref4 = event.originalEvent) ? (_ref5 = _ref4.changedTouches) ? _ref5[0].clientX : void 0 : void 0) || 0;
-                newOffset = eventX - element[0].getBoundingClientRect().left - handleHalfWidth;
+                eventX =
+                  event.clientX ||
+                  ((_ref2 = event.touches)
+                    ? (_ref3 = _ref2[0])
+                      ? _ref3.clientX
+                      : void 0
+                    : void 0) ||
+                  ((_ref4 = event.originalEvent)
+                    ? (_ref5 = _ref4.changedTouches)
+                      ? _ref5[0].clientX
+                      : void 0
+                    : void 0) ||
+                  0;
+                newOffset =
+                  eventX -
+                  element[0].getBoundingClientRect().left -
+                  handleHalfWidth;
                 newOffset = Math.max(Math.min(newOffset, maxOffset), minOffset);
                 newPercent = percentOffset(newOffset);
-                newValue = minValue + (valueRange * newPercent / 100.0);
+                newValue = minValue + (valueRange * newPercent) / 100.0;
 
                 if (range) {
                   switch (currentRef) {
@@ -327,7 +365,10 @@ export default /* @ngInject */ ($timeout) => {
                         highBub.addClass('active');
                         setPointers();
                       } else if (scope.buffer > 0) {
-                        newValue = Math.min(newValue, scope.local[high] - scope.buffer);
+                        newValue = Math.min(
+                          newValue,
+                          scope.local[high] - scope.buffer,
+                        );
                       }
                       break;
                     case high:
@@ -339,11 +380,19 @@ export default /* @ngInject */ ($timeout) => {
                         lowBub.addClass('active');
                         setPointers();
                       } else if (scope.buffer > 0) {
-                        newValue = Math.max(newValue, parseInt(scope.local[low]) + parseInt(scope.buffer));
+                        newValue = Math.max(
+                          newValue,
+                          parseInt(scope.local[low]) + parseInt(scope.buffer),
+                        );
                       }
                   }
                 }
-                newValue = roundStep(newValue, parseInt(scope.precision), parseFloat(scope.step), parseFloat(scope.floor));
+                newValue = roundStep(
+                  newValue,
+                  parseInt(scope.precision),
+                  parseFloat(scope.step),
+                  parseFloat(scope.floor),
+                );
                 scope.local[currentRef] = newValue;
                 if (!scope.dragstop) {
                   scope[currentRef] = newValue;
@@ -351,7 +400,7 @@ export default /* @ngInject */ ($timeout) => {
                 setPointers();
                 return scope.$apply();
               };
-              onStart = function (event) {
+              onStart = function(event) {
                 dimensions();
                 bubble.addClass('active');
                 handle.addClass('active');
@@ -363,7 +412,7 @@ export default /* @ngInject */ ($timeout) => {
               };
               return handle.bind(events.start, onStart);
             };
-            setBindings = function () {
+            setBindings = function() {
               let method;
               let _j;
               let _len1;
@@ -396,5 +445,5 @@ export default /* @ngInject */ ($timeout) => {
       };
     },
   };
-}
+};
 /* eslint-enable */

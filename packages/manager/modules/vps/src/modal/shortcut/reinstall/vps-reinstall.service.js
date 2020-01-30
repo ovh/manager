@@ -12,21 +12,28 @@ export default class VpsReinstallService {
   }
 
   getSshKeys() {
-    return this.OvhApiMe.SshKey().v6().query().$promise;
+    return this.OvhApiMe.SshKey()
+      .v6()
+      .query().$promise;
   }
 
   getPackages(image) {
-    return this.$http.get(`/distribution/image/vps/${image}`)
-      .then(response => response.data.packages)
-      .catch(err => this.$q.reject(err));
+    return this.$http
+      .get(`/distribution/image/vps/${image}`)
+      .then((response) => response.data.packages)
+      .catch((err) => this.$q.reject(err));
   }
 
   static filterKernel(packages) {
-    return filter(packages, pkg => !includes((pkg.name + pkg.alias).toLowerCase(), 'kernel'));
+    return filter(
+      packages,
+      (pkg) => !includes((pkg.name + pkg.alias).toLowerCase(), 'kernel'),
+    );
   }
 
   getPackagesFiltered(image) {
-    this.$http.get(`/distribution/image/vps/${image}`)
+    this.$http
+      .get(`/distribution/image/vps/${image}`)
       .then((response) => {
         const { packages } = response.data;
         filter(packages, (pkg) => {
@@ -36,6 +43,6 @@ export default class VpsReinstallService {
         });
         return packages;
       })
-      .catch(err => this.$q.reject(err));
+      .catch((err) => this.$q.reject(err));
   }
 }

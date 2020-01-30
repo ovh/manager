@@ -9,7 +9,7 @@ export default /* @ngInject */ ($stateProvider) => {
     layout: 'modal',
     translations: { value: ['.'], format: 'json' },
     resolve: {
-      goBack: /* @ngInject */ goToAutorenew => goToAutorenew,
+      goBack: /* @ngInject */ (goToAutorenew) => goToAutorenew,
       payDebt: /* @ngInject */ ($state, atInternet) => () => {
         atInternet.trackClick({
           name: 'autorenew::pay-debt',
@@ -21,7 +21,8 @@ export default /* @ngInject */ ($stateProvider) => {
 
         $state.go('app.account.billing.main.history');
       },
-      serviceName: /* @ngInject */ $transition$ => $transition$.params().serviceName,
+      serviceName: /* @ngInject */ ($transition$) =>
+        $transition$.params().serviceName,
     },
   });
 };

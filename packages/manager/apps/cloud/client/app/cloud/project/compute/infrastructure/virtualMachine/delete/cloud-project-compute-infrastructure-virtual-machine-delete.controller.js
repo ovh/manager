@@ -1,32 +1,36 @@
+angular
+  .module('managerApp')
+  .controller(
+    'CloudprojectcomputeinfrastructurevirtualmachinedeleteCtrl',
+    function CloudprojectcomputeinfrastructurevirtualmachinedeleteCtrl(
+      $uibModalInstance,
+      params,
+    ) {
+      const self = this;
+      self.vmToDelete = params;
 
+      self.loaders = {
+        ips: false,
+      };
 
-angular.module('managerApp')
-  .controller('CloudprojectcomputeinfrastructurevirtualmachinedeleteCtrl', function CloudprojectcomputeinfrastructurevirtualmachinedeleteCtrl(
-    $uibModalInstance, params,
-  ) {
-    const self = this;
-    self.vmToDelete = params;
+      self.routedIpsFo = [];
 
-    self.loaders = {
-      ips: false,
-    };
+      self.isMonthlyBilling = false;
 
-    self.routedIpsFo = [];
+      self.backup = function backup() {
+        $uibModalInstance.close();
+      };
 
-    self.isMonthlyBilling = false;
+      self.cancel = function cancel() {
+        $uibModalInstance.dismiss();
+      };
 
-    self.backup = function backup() {
-      $uibModalInstance.close();
-    };
+      function init() {
+        self.isMonthlyBilling =
+          self.vmToDelete.monthlyBilling &&
+          self.vmToDelete.monthlyBilling.status === 'ok';
+      }
 
-    self.cancel = function cancel() {
-      $uibModalInstance.dismiss();
-    };
-
-    function init() {
-      self.isMonthlyBilling = self.vmToDelete.monthlyBilling && self.vmToDelete.monthlyBilling.status === 'ok';
-    }
-
-
-    init();
-  });
+      init();
+    },
+  );

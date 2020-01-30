@@ -5,10 +5,7 @@ angular.module('Billing').config(($stateProvider) => {
     controller: 'BillingMainHistoryCtrl',
     controllerAs: '$ctrl',
     translations: {
-      value: [
-        '../history',
-        './postalMailOptions',
-      ],
+      value: ['../history', './postalMailOptions'],
       format: 'json',
     },
   });

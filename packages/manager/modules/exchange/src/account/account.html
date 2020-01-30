@@ -1,7 +1,15 @@
-<div class="container-fluid px-0" data-ng-controller="exchangeAccountCtlr as $ctrl">
+<div
+    class="container-fluid px-0"
+    data-ng-controller="exchangeAccountCtlr as $ctrl"
+>
     <div data-ng-switch="$ctrl.currentStateName">
-        <exchange-account-home data-ng-switch-when="home"></exchange-account-home>
-        <exchange-account-alias data-ng-switch-when="alias" data-account="$ctrl.stateArgs.account"></exchange-account-alias>
+        <exchange-account-home
+            data-ng-switch-when="home"
+        ></exchange-account-home>
+        <exchange-account-alias
+            data-ng-switch-when="alias"
+            data-account="$ctrl.stateArgs.account"
+        ></exchange-account-alias>
         <exchange-account-add data-ng-switch-when="add"></exchange-account-add>
     </div>
 </div>

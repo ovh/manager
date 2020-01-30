@@ -7,9 +7,7 @@ import tucVoipServiceTask from './telecom-telephony-service-task.service';
 const moduleName = 'tucTelecomTelephonyService';
 
 angular
-  .module(moduleName, [
-    'ngOvhSwimmingPoll',
-  ])
+  .module(moduleName, ['ngOvhSwimmingPoll'])
   .service('tucVoipServiceTask', tucVoipServiceTask);
 
 export default moduleName;

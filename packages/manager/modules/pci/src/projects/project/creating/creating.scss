@@ -1,10 +1,10 @@
-pci-project-creating { /* stylelint-disable-line */
+pci-project-creating {
   @import '~bootstrap4/scss/_functions';
   @import '~bootstrap4/scss/_variables';
-  @import "~bootstrap4/scss/mixins/_breakpoints";
+  @import '~bootstrap4/scss/mixins/_breakpoints';
 
   $spinner-size: 350px;
-  $colors: #3D86C3, #33BBEE, #2558C3;
+  $colors: #3d86c3, #3be, #2558c3;
   $d: 175;
 
   .pci-projects-creating {
@@ -15,7 +15,7 @@ pci-project-creating { /* stylelint-disable-line */
 
       a {
         &:hover {
-          background-color: #EFF9FD;
+          background-color: #eff9fd;
           text-decoration: none;
         }
 
@@ -82,11 +82,9 @@ pci-project-creating { /* stylelint-disable-line */
         display: block;
         margin: 0;
         padding: 0;
-
         position: absolute;
         left: 0;
         top: 0;
-
         transform: rotate(-90deg);
 
         @for $i from 1 through 3 {
@@ -94,8 +92,7 @@ pci-project-creating { /* stylelint-disable-line */
             stroke: nth($colors, $i);
             stroke-dasharray: 1, 300;
             stroke-dashoffset: 0;
-
-            animation: strokeanim 3s calc(.2s * (#{$i})) ease infinite;
+            animation: strokeanim 3s calc(0.2s * (#{$i})) ease infinite;
             transform-origin: center center;
           }
         }
@@ -108,10 +105,12 @@ pci-project-creating { /* stylelint-disable-line */
       stroke-dasharray: 1, 300;
       stroke-dashoffset: 0;
     }
+
     50% {
       stroke-dasharray: 120, 300;
       stroke-dashoffset: -$d / 3;
     }
+
     100% {
       stroke-dasharray: 120, 300;
       stroke-dashoffset: -$d;
@@ -120,7 +119,7 @@ pci-project-creating { /* stylelint-disable-line */
 
   @keyframes contanim {
     100% {
-      transform: rotate(360deg)
+      transform: rotate(360deg);
     }
   }
 }

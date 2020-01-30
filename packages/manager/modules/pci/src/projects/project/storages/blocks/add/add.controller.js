@@ -42,23 +42,27 @@ export default class PciBlockStorageAddController {
 
     this.loadings.regions = true;
 
-    this.$translate.refresh()
+    this.$translate
+      .refresh()
       .then(() => this.loadMessages())
-      .then(() => this.$q.all({
-        regions: this.PciProjectStorageBlockService.getAvailablesRegions(this.projectId),
-        types: this.PciProjectStorageBlockService.getAvailablesTypes(),
-      }))
+      .then(() =>
+        this.$q.all({
+          regions: this.PciProjectStorageBlockService.getAvailablesRegions(
+            this.projectId,
+          ),
+          types: this.PciProjectStorageBlockService.getAvailablesTypes(),
+        }),
+      )
       .then(({ regions, types }) => {
         this.regions = regions;
         this.types = types;
 
-        this.typesList = map(
-          this.types,
-          type => ({
-            id: type,
-            name: this.$translate.instant(`pci_projects_project_storages_blocks_add_type_${type}_description`),
-          }),
-        );
+        this.typesList = map(this.types, (type) => ({
+          id: type,
+          name: this.$translate.instant(
+            `pci_projects_project_storages_blocks_add_type_${type}_description`,
+          ),
+        }));
 
         return this.PciProjectStorageBlockService.getPricesEstimations(
           this.projectId,
@@ -69,19 +73,23 @@ export default class PciBlockStorageAddController {
       .then((typeRegionPrices) => {
         this.typeRegionPrices = typeRegionPrices;
       })
-      .catch(err => this.CucCloudMessage.error(
-        this.$translate.instant(
-          'pci_projects_project_storages_blocks_add_error_query',
-          { message: get(err, 'data.message', '') },
+      .catch((err) =>
+        this.CucCloudMessage.error(
+          this.$translate.instant(
+            'pci_projects_project_storages_blocks_add_error_query',
+            { message: get(err, 'data.message', '') },
+          ),
         ),
-      ))
+      )
       .finally(() => {
         this.loadings.regions = false;
       });
   }
 
   loadMessages() {
-    this.CucCloudMessage.unSubscribe('pci.projects.project.storages.blocks.add');
+    this.CucCloudMessage.unSubscribe(
+      'pci.projects.project.storages.blocks.add',
+    );
     this.messageHandler = this.CucCloudMessage.subscribe(
       'pci.projects.project.storages.blocks.add',
       {
@@ -115,7 +123,10 @@ export default class PciBlockStorageAddController {
     return this.estimatePrice()
       .then(() => {
         this.size.max = this.storage.region.getMaxSize();
-        this.storage.size = Math.min(Math.max(this.storage.size, this.size.min), this.size.max);
+        this.storage.size = Math.min(
+          Math.max(this.storage.size, this.size.min),
+          this.size.max,
+        );
       })
       .finally(() => {
         this.loadings.size = false;
@@ -124,30 +135,35 @@ export default class PciBlockStorageAddController {
 
   onSizeChange() {
     // Wait the next digest because oui-numeric use the viewValue when calling on-change callback
-    return this.$timeout(angular.noop, 0)
-      .then(() => this.estimatePrice())
-      // Force a digest...
-      .then(() => this.$timeout(angular.noop, 0));
+    return (
+      this.$timeout(angular.noop, 0)
+        .then(() => this.estimatePrice())
+        // Force a digest...
+        .then(() => this.$timeout(angular.noop, 0))
+    );
   }
 
   estimatePrice() {
-    return this.PciProjectStorageBlockService
-      .getVolumePriceEstimation(this.projectId, this.storage)
-      .then((estimatedPrice) => {
-        this.estimatedPrice = estimatedPrice;
-      });
+    return this.PciProjectStorageBlockService.getVolumePriceEstimation(
+      this.projectId,
+      this.storage,
+    ).then((estimatedPrice) => {
+      this.estimatedPrice = estimatedPrice;
+    });
   }
 
   add() {
     this.loadings.save = true;
 
     return this.PciProjectStorageBlockService.add(this.projectId, this.storage)
-      .then(() => this.goBack(
-        this.$translate.instant(
-          'pci_projects_project_storages_blocks_add_success_message',
-          { volume: this.storage.name },
+      .then(() =>
+        this.goBack(
+          this.$translate.instant(
+            'pci_projects_project_storages_blocks_add_success_message',
+            { volume: this.storage.name },
+          ),
         ),
-      ))
+      )
       .catch((err) => {
         this.CucCloudMessage.error(
           this.$translate.instant(

@@ -1,8 +1,13 @@
 <div>
-    <div class="file-reader btn btn-default" data-ng-disabled="{{ !ctrl.hasFileReader }}">
-        <input type="file"
-               data-ng-disabled="{{ !ctrl.hasFileReader }}"
-               accept="{{ ctrl.ngAccept }}">
+    <div
+        class="file-reader btn btn-default"
+        data-ng-disabled="{{ !ctrl.hasFileReader }}"
+    >
+        <input
+            type="file"
+            data-ng-disabled="{{ !ctrl.hasFileReader }}"
+            accept="{{ ctrl.ngAccept }}"
+        />
         <ng-transclude></ng-transclude>
     </div>
 </div>

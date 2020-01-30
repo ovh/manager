@@ -7,12 +7,33 @@
         data-secondary-action="$ctrl.goBack()"
         data-secondary-label="{{:: 'pci_projects_project_sshKeys_add_cancel_label' | translate }}"
         data-on-dismiss="$ctrl.goBack()"
-        data-loading="$ctrl.isLoading">
-        <oui-field label="{{ ::'pci_projects_project_sshKeys_add_name' | translate }}" size="xl">
-            <input class="oui-input" type="text" id="name" name="name" ng-model="$ctrl.name" required>
+        data-loading="$ctrl.isLoading"
+    >
+        <oui-field
+            label="{{ ::'pci_projects_project_sshKeys_add_name' | translate }}"
+            size="xl"
+        >
+            <input
+                class="oui-input"
+                type="text"
+                id="name"
+                name="name"
+                ng-model="$ctrl.name"
+                required
+            />
         </oui-field>
-        <oui-field label="{{ ::'pci_projects_project_sshKeys_add_key' | translate }}" size="xl">
-            <oui-textarea model="$ctrl.publicKey" id="key" name="key" placeholder="{{ ::'pci_projects_project_sshKeys_add_key_description' | translate }}" rows="5" required></oui-textarea>
+        <oui-field
+            label="{{ ::'pci_projects_project_sshKeys_add_key' | translate }}"
+            size="xl"
+        >
+            <oui-textarea
+                model="$ctrl.publicKey"
+                id="key"
+                name="key"
+                placeholder="{{ ::'pci_projects_project_sshKeys_add_key_description' | translate }}"
+                rows="5"
+                required
+            ></oui-textarea>
         </oui-field>
     </oui-modal>
 </form>

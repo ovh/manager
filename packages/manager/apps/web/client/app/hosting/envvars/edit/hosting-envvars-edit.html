@@ -3,15 +3,10 @@
         data-wizard
         data-wizard-on-cancel="resetAction"
         data-wizard-on-finish="edit"
-        data-wizard-title="'hosting_tab_ENVVARS_edit_title' | translate">
-
-        <div
-            data-wizard-step
-            data-wizard-step-valid="isValid()">
-
-            <form
-                class="form-horizontal"
-                name="ctrl.editEnvvarForm">
+        data-wizard-title="'hosting_tab_ENVVARS_edit_title' | translate"
+    >
+        <div data-wizard-step data-wizard-step-valid="isValid()">
+            <form class="form-horizontal" name="ctrl.editEnvvarForm">
                 <p>
                     <small class="text-danger">*</small>
                     <small data-translate="required_fields"></small>
@@ -19,11 +14,13 @@
 
                 <div
                     class="form-group"
-                    data-ng-class="{ 'has-error': ctrl.editEnvvarForm.envvarKey.$dirty && ctrl.editEnvvarForm.envvarKey.$invalid }">
+                    data-ng-class="{ 'has-error': ctrl.editEnvvarForm.envvarKey.$dirty && ctrl.editEnvvarForm.envvarKey.$invalid }"
+                >
                     <label
                         class="control-label col-md-4 required"
                         for="envvarKey"
-                        data-translate="hosting_tab_ENVVARS_label_key"></label>
+                        data-translate="hosting_tab_ENVVARS_label_key"
+                    ></label>
 
                     <div class="col-md-6">
                         <input
@@ -33,17 +30,20 @@
                             name="envvarKey"
                             data-ng-model="ctrl.entryToEdit.key"
                             data-ng-pattern="/^\w+$/"
-                            required>
+                            required
+                        />
                         <small
                             class="help-block"
                             role="alert"
                             data-translate="hosting_tab_ENVVARS_label_error_required"
-                            data-ng-if="ctrl.editEnvvarForm.envvarKey.$error.required"></small>
+                            data-ng-if="ctrl.editEnvvarForm.envvarKey.$error.required"
+                        ></small>
                         <small
                             class="help-block"
                             role="alert"
                             data-translate="hosting_tab_ENVVARS_label_error_pattern"
-                            data-ng-if="ctrl.editEnvvarForm.envvarKey.$error.pattern"></small>
+                            data-ng-if="ctrl.editEnvvarForm.envvarKey.$error.pattern"
+                        ></small>
                     </div>
                 </div>
 
@@ -51,7 +51,8 @@
                     <label
                         class="control-label col-md-4 required"
                         for="envvarType"
-                        data-translate="hosting_tab_ENVVARS_label_type"></label>
+                        data-translate="hosting_tab_ENVVARS_label_type"
+                    ></label>
 
                     <div class="col-md-8">
                         <div class="oui-select oui-select_inline mb-0">
@@ -61,13 +62,17 @@
                                 name="envvarType"
                                 required
                                 data-ng-change="ctrl.entryToEdit.value = null"
-                                data-ng-model="ctrl.entryToEdit.type">
+                                data-ng-model="ctrl.entryToEdit.type"
+                            >
                                 <option>string</option>
                                 <option>integer</option>
                                 <option>password</option>
                             </select>
 
-                            <span class="oui-icon oui-icon-chevron-down" aria-hidden="true"></span>
+                            <span
+                                class="oui-icon oui-icon-chevron-down"
+                                aria-hidden="true"
+                            ></span>
                         </div>
                     </div>
                 </div>
@@ -76,7 +81,8 @@
                     <label
                         class="control-label col-md-4 required"
                         for="envvarValue"
-                        data-translate="hosting_tab_ENVVARS_label_value"></label>
+                        data-translate="hosting_tab_ENVVARS_label_value"
+                    ></label>
 
                     <div class="col-md-6">
                         <input
@@ -86,7 +92,8 @@
                             data-ng-attr-id="{{ :: 'envvarValue' }}"
                             name="envvarValue"
                             required
-                            data-ng-model="+ctrl.entryToEdit.value">
+                            data-ng-model="+ctrl.entryToEdit.value"
+                        />
 
                         <input
                             type="password"
@@ -95,7 +102,8 @@
                             data-ng-attr-id="{{ :: 'envvarValue' }}"
                             name="envvarValue"
                             required
-                            data-ng-model="ctrl.entryToEdit.value">
+                            data-ng-model="ctrl.entryToEdit.value"
+                        />
 
                         <input
                             type="text"
@@ -104,13 +112,15 @@
                             data-ng-attr-id="{{ :: 'envvarValue' }}"
                             name="envvarValue"
                             required
-                            data-ng-model="ctrl.entryToEdit.value">
+                            data-ng-model="ctrl.entryToEdit.value"
+                        />
 
                         <small
                             class="help-block"
                             role="alert"
                             data-translate="hosting_tab_ENVVARS_label_error_required"
-                            data-ng-if="ctrl.editEnvvarForm.envvarValue.$error.required"></small>
+                            data-ng-if="ctrl.editEnvvarForm.envvarValue.$error.required"
+                        ></small>
                     </div>
                 </div>
             </form>

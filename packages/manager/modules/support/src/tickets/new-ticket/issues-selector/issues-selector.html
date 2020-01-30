@@ -1,6 +1,7 @@
 <oui-field
     data-label="{{:: 'ovhManagerSupport_new_issue' | translate }}"
-    data-size="xl">
+    data-size="xl"
+>
     <oui-spinner data-ng-if="$ctrl.isLoading"></oui-spinner>
 
     <oui-select
@@ -10,7 +11,8 @@
         data-items="$ctrl.issues"
         data-disabled="!$ctrl.issues.length"
         data-on-change="$ctrl.onIssueChange()"
-        data-match="label"></oui-select>
+        data-match="label"
+    ></oui-select>
 </oui-field>
 
 <support-issues-selector
@@ -18,4 +20,5 @@
     data-category="$ctrl.category"
     data-service-type="$ctrl.serviceType"
     data-parent-issue="$ctrl.issue"
-    data-on-change="$ctrl.onChildChange(changes)"></support-issues-selector>
+    data-on-change="$ctrl.onChildChange(changes)"
+></support-issues-selector>

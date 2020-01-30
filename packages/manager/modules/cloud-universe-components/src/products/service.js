@@ -8,12 +8,7 @@ import result from 'lodash/result';
 
 export default class CucProductsService {
   /* @ngInject */
-  constructor(
-    $q,
-    OvhApiProducts,
-    OvhApiLicense,
-    OvhApiIp,
-  ) {
+  constructor($q, OvhApiProducts, OvhApiLicense, OvhApiIp) {
     this.$q = $q;
     this.OvhApiProducts = OvhApiProducts;
     this.OvhApiLicense = OvhApiLicense;
@@ -34,17 +29,23 @@ export default class CucProductsService {
 
     this.productsDeferred = this.$q.defer();
 
-    this.$q.all({
-      cloudProducts: this.OvhApiProducts.Aapi().get({ universe: 'cloud' }).$promise,
-      licenses: this.OvhApiLicense.Aapi().get({ count: 1, offset: 0 }).$promise,
-      ips: this.OvhApiIp.v6().query().$promise,
-    })
+    this.$q
+      .all({
+        cloudProducts: this.OvhApiProducts.Aapi().get({ universe: 'cloud' })
+          .$promise,
+        licenses: this.OvhApiLicense.Aapi().get({ count: 1, offset: 0 })
+          .$promise,
+        ips: this.OvhApiIp.v6().query().$promise,
+      })
       .then((products) => {
         this.products = this.constructor.mergeLicenseIntoProducts(
           products.licenses,
           products.cloudProducts,
         );
-        this.products = this.constructor.mergeIpsIntoProducts(products.ips, this.products);
+        this.products = this.constructor.mergeIpsIntoProducts(
+          products.ips,
+          this.products,
+        );
         this.productsDeferred.resolve(this.products);
       });
 
@@ -55,7 +56,7 @@ export default class CucProductsService {
     const allProductsMerged = clone(allProducts);
     allProductsMerged.results.push({
       name: 'IP',
-      services: map(ips, ip => ({
+      services: map(ips, (ip) => ({
         displayName: ip,
         serviceName: ip,
       })),
@@ -68,20 +69,28 @@ export default class CucProductsService {
     allProductsMerged.errors.push(...licenses.list.messages);
     allProductsMerged.results.push({
       name: 'LICENSE',
-      services: map(licenses.list.results, license => assignIn(license, {
-        displayName: license.id,
-        serviceName: license.id,
-      })),
+      services: map(licenses.list.results, (license) =>
+        assignIn(license, {
+          displayName: license.id,
+          serviceName: license.id,
+        }),
+      ),
     });
     return allProductsMerged;
   }
 
   getProductsOfType(type) {
-    return result(find(this.products, service => service.name === type), 'services');
+    return result(
+      find(this.products, (service) => service.name === type),
+      'services',
+    );
   }
 
   getDisplayName(type, serviceName) {
     const services = this.getProductsOfType(type);
-    return result(find(services, service => service.serviceName === serviceName), 'displayName');
+    return result(
+      find(services, (service) => service.serviceName === serviceName),
+      'displayName',
+    );
   }
 }

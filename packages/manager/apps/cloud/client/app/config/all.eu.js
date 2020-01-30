@@ -1,4 +1,5 @@
-angular.module('managerApp')
+angular
+  .module('managerApp')
   .constant('UNIVERSE', 'CLOUD')
   .constant('MANAGER_URLS', {
     web: 'https://www.ovh.com/manager/web/index.html#/',
@@ -15,48 +16,89 @@ angular.module('managerApp')
   })
   .constant('REDIRECT_URLS', {
     support: 'https://www.ovh.com/manager/dedicated/index.html#/support',
-    billing: 'https://www.ovh.com/manager/dedicated/index.html#/billing/history',
-    billingPayments: 'https://www.ovh.com/manager/dedicated/index.html#/billing/payments',
-    billingMean: 'https://www.ovh.com/manager/dedicated/index.html#/billing/mean',
-    billingVouchers: 'https://www.ovh.com/manager/dedicated/index.html#/billing/vouchers',
-    billingRefunds: 'https://www.ovh.com/manager/dedicated/index.html#/billing/refunds',
-    billingFidelity: 'https://www.ovh.com/manager/dedicated/index.html#/billing/fidelity',
-    billingCredits: 'https://www.ovh.com/manager/dedicated/index.html#/billing/credits',
-    ordersInProgress: 'https://www.ovh.com/manager/dedicated/index.html#/billing/orders?status=in-progress',
-    orders: 'https://www.ovh.com/manager/dedicated/index.html#/billing/orders?status=all',
-    orderSql: 'https://www.ovh.com/manager/web/#/configuration/sql_order?orderType=dbaas',
-    privateDatabase: 'https://www.ovh.com/manager/web/#/configuration/private_database/{serviceName}',
-    services: 'https://www.ovh.com/manager/dedicated/index.html#/billing/autoRenew',
-    servicesAgreements: 'https://www.ovh.com/manager/dedicated/index.html#/useraccount/agreements',
-    paymentMeans: 'https://www.ovh.com/manager/dedicated/index.html#/billing/mean',
-    addCreditCard: 'https://www.ovh.com/manager/dedicated/index.html#/billing/mean/add?meanType=creditCard',
-    ovhAccount: 'https://www.ovh.com/manager/dedicated/index.html#/billing/ovhaccount',
-    debtAccount: 'https://www.ovh.com/manager/dedicated/index.html#/billing/statements',
-    userInfos: 'https://www.ovh.com/manager/dedicated/index.html#/useraccount/infos',
-    userSecurity: 'https://www.ovh.com/manager/dedicated/index.html#/useraccount/security',
-    userEmails: 'https://www.ovh.com/manager/dedicated/index.html#/useraccount/emails',
-    userSubscriptions: 'https://www.ovh.com/manager/dedicated/index.html#/useraccount/subscriptions',
-    userSSH: 'https://www.ovh.com/manager/dedicated/index.html#/useraccount/ssh',
-    userAdvanced: 'https://www.ovh.com/manager/dedicated/index.html#/useraccount/advanced',
-    contacts: 'https://www.ovh.com/manager/dedicated/index.html#/useraccount/contacts?tab=SERVICES&serviceName={serviceName}',
-    horizon: 'https://horizon.cloud.ovh.net/openstackdashboard?username={username}',
-    ipAction: 'https://www.ovh.com/manager/dedicated/index.html#/configuration/ip?action={action}&ip={ip}&ipBlock={ipBlock}',
-    vRack: 'https://www.ovh.com/manager/dedicated/index.html#/configuration/vrack?landingTo=networks',
-    nas: 'https://www.ovh.com/manager/dedicated/index.html#/configuration/nas?landingTo=networks',
-    nasPage: 'https://www.ovh.com/manager/dedicated/index.html#/configuration/nas/nas/nas_{nas}?landingTo=networks',
-    ip: 'https://www.ovh.com/manager/dedicated/index.html#/configuration/ip?landingTo=ip&serviceName={serviceName}',
-    license: 'https://www.ovh.com/manager/dedicated/index.html#/configuration/license?landingTo=licences',
-    housing: 'https://www.ovh.com/manager/dedicated/index.html#/configuration/housing/{housing}?landingTo=dedicatedServers',
-    dedicatedServers: 'https://www.ovh.com/manager/dedicated/index.html#/configuration?landingTo=dedicatedServers',
-    dedicatedServersPage: 'https://www.ovh.com/manager/dedicated/index.html#/configuration/server/{server}?landingTo=dedicatedServers',
-    dedicatedCloud: 'https://www.ovh.com/manager/dedicated/index.html#/configuration?landingTo=dedicatedClouds',
-    dedicatedCloudPage: 'https://www.ovh.com/manager/dedicated/index.html#/configuration/dedicated_cloud/{pcc}?landingTo=dedicatedClouds',
+    billing:
+      'https://www.ovh.com/manager/dedicated/index.html#/billing/history',
+    billingPayments:
+      'https://www.ovh.com/manager/dedicated/index.html#/billing/payments',
+    billingMean:
+      'https://www.ovh.com/manager/dedicated/index.html#/billing/mean',
+    billingVouchers:
+      'https://www.ovh.com/manager/dedicated/index.html#/billing/vouchers',
+    billingRefunds:
+      'https://www.ovh.com/manager/dedicated/index.html#/billing/refunds',
+    billingFidelity:
+      'https://www.ovh.com/manager/dedicated/index.html#/billing/fidelity',
+    billingCredits:
+      'https://www.ovh.com/manager/dedicated/index.html#/billing/credits',
+    ordersInProgress:
+      'https://www.ovh.com/manager/dedicated/index.html#/billing/orders?status=in-progress',
+    orders:
+      'https://www.ovh.com/manager/dedicated/index.html#/billing/orders?status=all',
+    orderSql:
+      'https://www.ovh.com/manager/web/#/configuration/sql_order?orderType=dbaas',
+    privateDatabase:
+      'https://www.ovh.com/manager/web/#/configuration/private_database/{serviceName}',
+    services:
+      'https://www.ovh.com/manager/dedicated/index.html#/billing/autoRenew',
+    servicesAgreements:
+      'https://www.ovh.com/manager/dedicated/index.html#/useraccount/agreements',
+    paymentMeans:
+      'https://www.ovh.com/manager/dedicated/index.html#/billing/mean',
+    addCreditCard:
+      'https://www.ovh.com/manager/dedicated/index.html#/billing/mean/add?meanType=creditCard',
+    ovhAccount:
+      'https://www.ovh.com/manager/dedicated/index.html#/billing/ovhaccount',
+    debtAccount:
+      'https://www.ovh.com/manager/dedicated/index.html#/billing/statements',
+    userInfos:
+      'https://www.ovh.com/manager/dedicated/index.html#/useraccount/infos',
+    userSecurity:
+      'https://www.ovh.com/manager/dedicated/index.html#/useraccount/security',
+    userEmails:
+      'https://www.ovh.com/manager/dedicated/index.html#/useraccount/emails',
+    userSubscriptions:
+      'https://www.ovh.com/manager/dedicated/index.html#/useraccount/subscriptions',
+    userSSH:
+      'https://www.ovh.com/manager/dedicated/index.html#/useraccount/ssh',
+    userAdvanced:
+      'https://www.ovh.com/manager/dedicated/index.html#/useraccount/advanced',
+    contacts:
+      'https://www.ovh.com/manager/dedicated/index.html#/useraccount/contacts?tab=SERVICES&serviceName={serviceName}',
+    horizon:
+      'https://horizon.cloud.ovh.net/openstackdashboard?username={username}',
+    ipAction:
+      'https://www.ovh.com/manager/dedicated/index.html#/configuration/ip?action={action}&ip={ip}&ipBlock={ipBlock}',
+    vRack:
+      'https://www.ovh.com/manager/dedicated/index.html#/configuration/vrack?landingTo=networks',
+    nas:
+      'https://www.ovh.com/manager/dedicated/index.html#/configuration/nas?landingTo=networks',
+    nasPage:
+      'https://www.ovh.com/manager/dedicated/index.html#/configuration/nas/nas/nas_{nas}?landingTo=networks',
+    ip:
+      'https://www.ovh.com/manager/dedicated/index.html#/configuration/ip?landingTo=ip&serviceName={serviceName}',
+    license:
+      'https://www.ovh.com/manager/dedicated/index.html#/configuration/license?landingTo=licences',
+    housing:
+      'https://www.ovh.com/manager/dedicated/index.html#/configuration/housing/{housing}?landingTo=dedicatedServers',
+    dedicatedServers:
+      'https://www.ovh.com/manager/dedicated/index.html#/configuration?landingTo=dedicatedServers',
+    dedicatedServersPage:
+      'https://www.ovh.com/manager/dedicated/index.html#/configuration/server/{server}?landingTo=dedicatedServers',
+    dedicatedCloud:
+      'https://www.ovh.com/manager/dedicated/index.html#/configuration?landingTo=dedicatedClouds',
+    dedicatedCloudPage:
+      'https://www.ovh.com/manager/dedicated/index.html#/configuration/dedicated_cloud/{pcc}?landingTo=dedicatedClouds',
     cloudDesktop: 'https://www.ovh.com/manager/sunrise/index.html#/deskaas',
-    vps: 'https://www.ovh.com/manager/dedicated/index.html#/configuration?landingTo=vps',
-    vpsPage: 'https://www.ovh.com/manager/dedicated/index.html#/configuration/vps/{vps}?landingTo=vps',
-    cdnPage: 'https://www.ovh.com/manager/dedicated/index.html#/configuration/cdn/{cdn}?landingTo=networks',
-    renew: 'https://www.ovh.com/manager/dedicated/index.html#/billing/autoRenew?selectedType={serviceType}&searchText={serviceName}',
-    licensePage: 'https://www.ovh.com/manager/dedicated/index.html#/configuration/license/{license}/detail',
+    vps:
+      'https://www.ovh.com/manager/dedicated/index.html#/configuration?landingTo=vps',
+    vpsPage:
+      'https://www.ovh.com/manager/dedicated/index.html#/configuration/vps/{vps}?landingTo=vps',
+    cdnPage:
+      'https://www.ovh.com/manager/dedicated/index.html#/configuration/cdn/{cdn}?landingTo=networks',
+    renew:
+      'https://www.ovh.com/manager/dedicated/index.html#/billing/autoRenew?selectedType={serviceType}&searchText={serviceName}',
+    licensePage:
+      'https://www.ovh.com/manager/dedicated/index.html#/configuration/license/{license}/detail',
   })
   .constant('URLS', {
     changeOwner: {
@@ -180,21 +222,36 @@ angular.module('managerApp')
         TN: 'https://www.ovh.com/tn/solutions/ip-load-balancing/',
       },
       vrack: {
-        CZ: "https://www.ovh.cz/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
-        DE: "https://www.ovh.de/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
-        ES: "https://www.ovh.es/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
-        FI: "https://www.ovh-hosting.fi/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
-        FR: "https://www.ovh.com/fr/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
-        GB: "https://www.ovh.co.uk/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
-        IE: "https://www.ovh.ie/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
-        IT: "https://www.ovh.it/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
-        LT: "https://www.ovh.lt/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
-        MA: "https://www.ovh.ma/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
-        NL: "https://www.ovh.nl/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
-        PL: "https://www.ovh.pl/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
-        PT: "https://www.ovh.pt/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
-        SN: "https://www.ovh.sn/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
-        TN: "https://www.ovh.com/tn/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
+        CZ:
+          "https://www.ovh.cz/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
+        DE:
+          "https://www.ovh.de/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
+        ES:
+          "https://www.ovh.es/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
+        FI:
+          "https://www.ovh-hosting.fi/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
+        FR:
+          "https://www.ovh.com/fr/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
+        GB:
+          "https://www.ovh.co.uk/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
+        IE:
+          "https://www.ovh.ie/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
+        IT:
+          "https://www.ovh.it/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
+        LT:
+          "https://www.ovh.lt/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
+        MA:
+          "https://www.ovh.ma/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
+        NL:
+          "https://www.ovh.nl/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
+        PL:
+          "https://www.ovh.pl/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
+        PT:
+          "https://www.ovh.pt/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
+        SN:
+          "https://www.ovh.sn/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
+        TN:
+          "https://www.ovh.com/tn/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
       },
       pcs: {
         CZ: 'https://www.ovh.cz/public-cloud/storage/object-storage/',
@@ -264,21 +321,36 @@ angular.module('managerApp')
         TN: 'https://www.ovh.com/tn/cloud/cloud-desktop/',
       },
       dbaas_logs: {
-        FR: "https://www.ovh.com/fr/order/express/#/new/express/resume?products=~(~(planCode~'logs-basic~productId~'logs))",
-        CZ: "https://www.ovh.cz/order/express/#/new/express/resume?products=~(~(planCode~'logs-basic~productId~'logs))",
-        DE: "https://www.ovh.de/order/express/#/new/express/resume?products=~(~(planCode~'logs-basic~productId~'logs))",
-        ES: "https://www.ovh.es/order/express/#/new/express/resume?products=~(~(planCode~'logs-basic~productId~'logs))",
-        FI: "https://www.ovh-hosting.fi/order/express/#/new/express/resume?products=~(~(planCode~'logs-basic~productId~'logs))",
-        GB: "https://www.ovh.co.uk/order/express/#/new/express/resume?products=~(~(planCode~'logs-basic~productId~'logs))",
-        IE: "https://www.ovh.ie/order/express/#/new/express/resume?products=~(~(planCode~'logs-basic~productId~'logs))",
-        IT: "https://www.ovh.it/order/express/#/new/express/resume?products=~(~(planCode~'logs-basic~productId~'logs))",
-        LT: "https://www.ovh.lt/order/express/#/new/express/resume?products=~(~(planCode~'logs-basic~productId~'logs))",
-        MA: "https://www.ovh.ma/order/express/#/new/express/resume?products=~(~(planCode~'logs-basic~productId~'logs))",
-        NL: "https://www.ovh.nl/order/express/#/new/express/resume?products=~(~(planCode~'logs-basic~productId~'logs))",
-        PL: "https://www.ovh.pl/order/express/#/new/express/resume?products=~(~(planCode~'logs-basic~productId~'logs))",
-        PT: "https://www.ovh.pt/order/express/#/new/express/resume?products=~(~(planCode~'logs-basic~productId~'logs))",
-        SN: "https://www.ovh.sn/order/express/#/new/express/resume?products=~(~(planCode~'logs-basic~productId~'logs))",
-        TN: "https://www.ovh.com/tn/order/express/#/new/express/resume?products=~(~(planCode~'logs-basic~productId~'logs))",
+        FR:
+          "https://www.ovh.com/fr/order/express/#/new/express/resume?products=~(~(planCode~'logs-basic~productId~'logs))",
+        CZ:
+          "https://www.ovh.cz/order/express/#/new/express/resume?products=~(~(planCode~'logs-basic~productId~'logs))",
+        DE:
+          "https://www.ovh.de/order/express/#/new/express/resume?products=~(~(planCode~'logs-basic~productId~'logs))",
+        ES:
+          "https://www.ovh.es/order/express/#/new/express/resume?products=~(~(planCode~'logs-basic~productId~'logs))",
+        FI:
+          "https://www.ovh-hosting.fi/order/express/#/new/express/resume?products=~(~(planCode~'logs-basic~productId~'logs))",
+        GB:
+          "https://www.ovh.co.uk/order/express/#/new/express/resume?products=~(~(planCode~'logs-basic~productId~'logs))",
+        IE:
+          "https://www.ovh.ie/order/express/#/new/express/resume?products=~(~(planCode~'logs-basic~productId~'logs))",
+        IT:
+          "https://www.ovh.it/order/express/#/new/express/resume?products=~(~(planCode~'logs-basic~productId~'logs))",
+        LT:
+          "https://www.ovh.lt/order/express/#/new/express/resume?products=~(~(planCode~'logs-basic~productId~'logs))",
+        MA:
+          "https://www.ovh.ma/order/express/#/new/express/resume?products=~(~(planCode~'logs-basic~productId~'logs))",
+        NL:
+          "https://www.ovh.nl/order/express/#/new/express/resume?products=~(~(planCode~'logs-basic~productId~'logs))",
+        PL:
+          "https://www.ovh.pl/order/express/#/new/express/resume?products=~(~(planCode~'logs-basic~productId~'logs))",
+        PT:
+          "https://www.ovh.pt/order/express/#/new/express/resume?products=~(~(planCode~'logs-basic~productId~'logs))",
+        SN:
+          "https://www.ovh.sn/order/express/#/new/express/resume?products=~(~(planCode~'logs-basic~productId~'logs))",
+        TN:
+          "https://www.ovh.com/tn/order/express/#/new/express/resume?products=~(~(planCode~'logs-basic~productId~'logs))",
       },
       express_base: {
         CZ: 'https://www.ovh.cz/order/express/#/new/express/resume',
@@ -364,11 +436,16 @@ angular.module('managerApp')
           windows: 'https://www.ovh-hosting.fi/g2046.ip_fail_over_windows',
         },
         FR: {
-          debian: 'https://www.ovh.com/fr/g2042.configurer_une_ip_fail_over_sur_debian',
-          ubuntu: 'https://www.ovh.com/fr/g2043.configurer_une_ip_fail_over_sur_ubuntu',
-          centos: 'https://www.ovh.com/fr/g2044.configurer_une_ip_fail_over_sur_centos',
-          fedora: 'https://www.ovh.com/fr/g2045.configurer_une_ip_fail_over_sur_fedora',
-          windows: 'https://www.ovh.com/fr/g2046.configurer_une_ip_fail_over_sur_windows',
+          debian:
+            'https://www.ovh.com/fr/g2042.configurer_une_ip_fail_over_sur_debian',
+          ubuntu:
+            'https://www.ovh.com/fr/g2043.configurer_une_ip_fail_over_sur_ubuntu',
+          centos:
+            'https://www.ovh.com/fr/g2044.configurer_une_ip_fail_over_sur_centos',
+          fedora:
+            'https://www.ovh.com/fr/g2045.configurer_une_ip_fail_over_sur_fedora',
+          windows:
+            'https://www.ovh.com/fr/g2046.configurer_une_ip_fail_over_sur_windows',
         },
         GB: {
           debian: 'https://www.ovh.co.uk/g2042.ip_fail_over_debian',
@@ -434,22 +511,30 @@ angular.module('managerApp')
           windows: 'https://www.ovh.sn/g2046.ip_fail_over_windows',
         },
         TN: {
-          debian: 'https://www.ovh.com/tn/g2042.configurer_une_ip_fail_over_sur_debian',
-          ubuntu: 'https://www.ovh.com/tn/g2043.configurer_une_ip_fail_over_sur_ubuntu',
-          centos: 'https://www.ovh.com/tn/g2044.configurer_une_ip_fail_over_sur_centos',
-          fedora: 'https://www.ovh.com/tn/g2045.configurer_une_ip_fail_over_sur_fedora',
-          windows: 'https://www.ovh.com/tn/g2046.configurer_une_ip_fail_over_sur_windows',
+          debian:
+            'https://www.ovh.com/tn/g2042.configurer_une_ip_fail_over_sur_debian',
+          ubuntu:
+            'https://www.ovh.com/tn/g2043.configurer_une_ip_fail_over_sur_ubuntu',
+          centos:
+            'https://www.ovh.com/tn/g2044.configurer_une_ip_fail_over_sur_centos',
+          fedora:
+            'https://www.ovh.com/tn/g2045.configurer_une_ip_fail_over_sur_fedora',
+          windows:
+            'https://www.ovh.com/tn/g2046.configurer_une_ip_fail_over_sur_windows',
         },
         defaultDistribution: 'debian',
       },
       openstack: {
-        FR: 'https://www.ovh.com/fr/publiccloud/guides/g1852.charger_les_variables_denvironnement_openstack',
+        FR:
+          'https://www.ovh.com/fr/publiccloud/guides/g1852.charger_les_variables_denvironnement_openstack',
       },
       xauthtoken: {
-        FR: 'https://www.ovh.com/fr/publiccloud/guides/g1872.gestion_des_tokens',
+        FR:
+          'https://www.ovh.com/fr/publiccloud/guides/g1872.gestion_des_tokens',
       },
       vmResize: {
-        FR: 'https://www.ovh.com/fr/publiccloud/guides/g1778.redimensionner_une_instance#redimensionner_une_instance_redimensionnement_du_disque_sous_windows',
+        FR:
+          'https://www.ovh.com/fr/publiccloud/guides/g1778.redimensionner_une_instance#redimensionner_une_instance_redimensionnement_du_disque_sous_windows',
       },
       cloud: {
         FR: 'https://docs.ovh.com/fr/fr/cloud/',
@@ -462,13 +547,16 @@ angular.module('managerApp')
       },
       vlans: {
         FR: {
-          roadmap: 'https://www.ovh.com/fr/g2148.public_cloud_et_vrack_-_explications_et_roadmap',
-          api: 'https://www.ovh.com/fr/publiccloud/guides/g2162.public_cloud_et_vrack_-_comment_utiliser_le_vrack_et_les_reseaux_prives_avec_les_instances_public_cloud',
+          roadmap:
+            'https://www.ovh.com/fr/g2148.public_cloud_et_vrack_-_explications_et_roadmap',
+          api:
+            'https://www.ovh.com/fr/publiccloud/guides/g2162.public_cloud_et_vrack_-_comment_utiliser_le_vrack_et_les_reseaux_prives_avec_les_instances_public_cloud',
         },
       },
       vrack: {
         FR: {
-          roadmap: 'https://www.ovh.com/fr/g2148.public_cloud_et_vrack_-_explications_et_roadmap',
+          roadmap:
+            'https://www.ovh.com/fr/g2148.public_cloud_et_vrack_-_explications_et_roadmap',
         },
       },
       rCloneFile: {

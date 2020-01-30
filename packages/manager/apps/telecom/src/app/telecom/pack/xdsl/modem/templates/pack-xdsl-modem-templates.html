@@ -1,34 +1,50 @@
 <section class="widget-presentation table-router">
     <header class="widget-presentation-header">
-        <h2 class="widget-presentation-title" data-translate="xdsl_modem_template_title"></h2>
+        <h2
+            class="widget-presentation-title"
+            data-translate="xdsl_modem_template_title"
+        ></h2>
     </header>
 
     <div data-ng-if="$ctrl.message">
-        <oui-message type="success" data-ng-if="$ctrl.message.type === 'success'">{{$ctrl.message.detail}}</oui-message>
-        <oui-message type="error" data-ng-if="$ctrl.message.type === 'error'">{{$ctrl.message.detail}}</oui-message>
+        <oui-message
+            type="success"
+            data-ng-if="$ctrl.message.type === 'success'"
+            >{{$ctrl.message.detail}}</oui-message
+        >
+        <oui-message type="error" data-ng-if="$ctrl.message.type === 'error'"
+            >{{$ctrl.message.detail}}</oui-message
+        >
     </div>
 
     <div class="my-3">
         <div class="service-title">
-            <label for="templateName" data-translate="xdsl_modem_template_create_title"></label>
+            <label
+                for="templateName"
+                data-translate="xdsl_modem_template_create_title"
+            ></label>
         </div>
         <div>
             <div class="form-group">
-                <input type="text"
+                <input
+                    type="text"
                     class="form-control"
                     data-ng-model="$ctrl.templateName"
                     id="templateName"
-                    placeholder="{{:: 'xdsl_modem_template_name' | translate }}">
+                    placeholder="{{:: 'xdsl_modem_template_name' | translate }}"
+                />
             </div>
-            <oui-button data-variant="primary"
+            <oui-button
+                data-variant="primary"
                 disabled="!$ctrl.templateName"
-                data-on-click="$ctrl.createModemTemplate()">
+                data-on-click="$ctrl.createModemTemplate()"
+            >
                 <span data-ng-if="$ctrl.mediator.tasks.saveModemTemplateConfig">
-                    <oui-spinner class="mr-2"
-                                    data-size="s">
-                    </oui-spinner>
-                    <span data-translate="xdsl_modem_template_creation_doing"></span>
-                    </span>
+                    <oui-spinner class="mr-2" data-size="s"> </oui-spinner>
+                    <span
+                        data-translate="xdsl_modem_template_creation_doing"
+                    ></span>
+                </span>
                 <span data-translate="xdsl_modem_template_create"></span>
             </oui-button>
         </div>
@@ -36,10 +52,16 @@
 
     <div class="my-3">
         <div class="service-title">
-            <label for="applyTemplate" data-translate="xdsl_modem_template_select_config"></label>
+            <label
+                for="applyTemplate"
+                data-translate="xdsl_modem_template_select_config"
+            ></label>
         </div>
         <div>
-            <form name="applyTemplateForm" data-ng-submit="$ctrl.applyTemplate()">
+            <form
+                name="applyTemplateForm"
+                data-ng-submit="$ctrl.applyTemplate()"
+            >
                 <div class="form-group">
                     <oui-select
                         name="applyTemplate"
@@ -47,18 +69,23 @@
                         data-model="$ctrl.templateTmp"
                         data-items="$ctrl.modemTemplates"
                         data-match="applyTemplate.template"
-                        data-disabled="$ctrl.loading">
+                        data-disabled="$ctrl.loading"
+                    >
                     </oui-select>
                 </div>
-                <button class="oui-button oui-button_primary mt-1"
-                        data-type="submit"
-                        data-ng-disabled="$ctrl.template === $ctrl.templateTmp">
-                        <span data-ng-if="$ctrl.mediator.tasks.applyTemplateModemConfig">
-                            <oui-spinner class="mr-2"
-                                         data-size="s">
-                            </oui-spinner>
-                            <span data-translate="xdsl_modem_template_apply_doing"></span>
-                        </span>
+                <button
+                    class="oui-button oui-button_primary mt-1"
+                    data-type="submit"
+                    data-ng-disabled="$ctrl.template === $ctrl.templateTmp"
+                >
+                    <span
+                        data-ng-if="$ctrl.mediator.tasks.applyTemplateModemConfig"
+                    >
+                        <oui-spinner class="mr-2" data-size="s"> </oui-spinner>
+                        <span
+                            data-translate="xdsl_modem_template_apply_doing"
+                        ></span>
+                    </span>
                     <span data-translate="xdsl_modem_template_apply"></span>
                 </button>
             </form>
@@ -67,16 +94,21 @@
 
     <div class="service-item">
         <div class="service-item px-0">
-            <a class="service-button"
+            <a
+                class="service-button"
                 data-ng-disabled="$ctrl.mediator.tasks.applyTemplateModemConfig || $ctrl.mediator.tasks.saveModemTemplateConfig"
-                data-ui-sref="telecom.packs.pack.xdsl.modem.templates">
-
+                data-ui-sref="telecom.packs.pack.xdsl.modem.templates"
+            >
                 <div class="link-name">
-                    <span data-translate="xdsl_modem_template_manage_config"></span>
-                    <span class="ovh-font ovh-font-arrow-right" aria-hidden="true"></span>
+                    <span
+                        data-translate="xdsl_modem_template_manage_config"
+                    ></span>
+                    <span
+                        class="ovh-font ovh-font-arrow-right"
+                        aria-hidden="true"
+                    ></span>
                 </div>
             </a>
         </div>
     </div>
-
 </section>

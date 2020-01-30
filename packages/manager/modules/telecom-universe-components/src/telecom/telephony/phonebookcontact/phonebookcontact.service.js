@@ -3,7 +3,7 @@ import isEmpty from 'lodash/isEmpty';
 import isNull from 'lodash/isNull';
 import some from 'lodash/some';
 
-export default /* @ngInject */ function (TUC_TELEPHONY_PHONEBOOK) {
+export default /* @ngInject */ function(TUC_TELEPHONY_PHONEBOOK) {
   const self = this;
 
   self.getContactData = function getContactData(contact) {
@@ -11,7 +11,9 @@ export default /* @ngInject */ function (TUC_TELEPHONY_PHONEBOOK) {
       return null;
     }
     return {
-      group: isEmpty(contact.group) ? get(TUC_TELEPHONY_PHONEBOOK, 'emptyFields.group') : contact.group,
+      group: isEmpty(contact.group)
+        ? get(TUC_TELEPHONY_PHONEBOOK, 'emptyFields.group')
+        : contact.group,
       name: contact.name,
       surname: contact.surname,
       homeMobile: isNull(contact.homeMobile) ? '' : contact.homeMobile,
@@ -25,6 +27,9 @@ export default /* @ngInject */ function (TUC_TELEPHONY_PHONEBOOK) {
     if (!contact) {
       return null;
     }
-    return some(TUC_TELEPHONY_PHONEBOOK.numberFields, field => !isEmpty(get(contact, field)));
+    return some(
+      TUC_TELEPHONY_PHONEBOOK.numberFields,
+      (field) => !isEmpty(get(contact, field)),
+    );
   };
 }

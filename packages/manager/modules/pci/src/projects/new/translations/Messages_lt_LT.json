@@ -1,13 +1,5 @@
 {
- "pci_projects_new_title": "Journeying to the Public Cloud ",
- "pci_projects_new_continue": "Continue",
- "pci_projects_new_cancel": "Cancel",
- "pci_projects_new_create": "Create my project",
- "pci_projects_new_add": "Add",
- "pci_projects_new_credit_and_create": "Credit and create my project ",
- "pci_projects_new_add_payment_error_message": "An error has occurred registering your payment method. Please try again or choose another payment method. ",
- "pci_projects_new_add_credit_payment_error_message": "An error has occurred validating your default payment method. Please try again.",
- "pci_projects_new_create_error_message": "An error has occurred creating your Public Cloud project. Please try again.",
- "pci_projects_new_create_credit_asterisk": "*Each Public Cloud project has its own individual credit account. The credit in this account is used to settle your bills. If there is not enough credit in your account, you must settle the remaining amount with an payment method registered to your account, as soon as possible. ",
- "pci_projects_new_create_voucher_not_submitted": "Please confirm your promo code before you continue"
+  "pci_project_new_error_contact_support": "Contact support",
+  "pci_project_new_error_ask_increase_projects_quota": "You cannot create an additional Public Cloud project because you have reached the maximum quota for projects. To unblock this quota, please contact our support team.",
+  "pci_project_new_error_verify_paypal": "You cannot create a Public Cloud project with your PayPal account, because it is not verified. Please go to the PayPal website and verify your account, then try again. You can also modify <a href=\"{{ href }}\">your default payment method</a>."
 }

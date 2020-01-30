@@ -8,9 +8,8 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     layout: 'modal',
     resolve: {
-      goBack: /* @ngInject */ goToDashboard => goToDashboard,
+      goBack: /* @ngInject */ (goToDashboard) => goToDashboard,
     },
-
   });
 
   $stateProvider.state('app.domain.alldom.information.zoneActivate', {
@@ -22,7 +21,7 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     layout: 'modal',
     resolve: {
-      goBack: /* @ngInject */ goToDashboard => goToDashboard,
+      goBack: /* @ngInject */ (goToDashboard) => goToDashboard,
     },
   });
 };

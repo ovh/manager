@@ -4,21 +4,19 @@ import 'oclazyload';
 
 const moduleName = 'ovhManagerPciInstancesOnboardingLazyLoading';
 
-angular
-  .module(moduleName, [
-    'ui.router',
-    'oc.lazyLoad',
-  ])
-  .config(/* @ngInject */ ($stateProvider) => {
+angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
+  /* @ngInject */ ($stateProvider) => {
     $stateProvider.state('pci.projects.project.instances.onboarding.**', {
       url: '/onboarding',
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-        return import('./onboarding.module')
-          .then(mod => $ocLazyLoad.inject(mod.default || mod));
+        return import('./onboarding.module').then((mod) =>
+          $ocLazyLoad.inject(mod.default || mod),
+        );
       },
     });
-  });
+  },
+);
 
 export default moduleName;

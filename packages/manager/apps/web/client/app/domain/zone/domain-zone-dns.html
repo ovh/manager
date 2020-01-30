@@ -1,5 +1,4 @@
 <div class="container-fluid px-0">
-
     <div class="text-center" data-ng-if="ctrlDomainTabZoneDns.loading.zone">
         <oui-spinner data-size="l"></oui-spinner>
     </div>
@@ -9,21 +8,27 @@
             <div class="col-md-9">
                 <div data-ovh-alert="{{alerts.main}}"></div>
 
-                <div class="alert alert-info" role="alert"
-                     data-translate="domain_tab_ZONE_no_zone"
-                     data-ng-if="ctrlDomainTabZoneDns.displayActivateZone">
-                </div>
-                <div class="alert alert-info" role="alert"
-                     data-translate="domain_tab_ZONE_delete_doing"
-                     data-ng-if="ctrlDomainTabZoneDns.displayActivateZone === false">
-                </div>
+                <div
+                    class="alert alert-info"
+                    role="alert"
+                    data-translate="domain_tab_ZONE_no_zone"
+                    data-ng-if="ctrlDomainTabZoneDns.displayActivateZone"
+                ></div>
+                <div
+                    class="alert alert-info"
+                    role="alert"
+                    data-translate="domain_tab_ZONE_delete_doing"
+                    data-ng-if="ctrlDomainTabZoneDns.displayActivateZone === false"
+                ></div>
             </div>
             <div class="col-md-3 text-right">
-                <button class="btn btn-block btn-default" type="button"
-                        data-translate="domain_tab_ZONE_no_zone_activate_btn"
-                        data-ng-disabled="!ctrlDomainTabZoneDns.displayActivateZone"
-                        data-ng-click="ctrlDomainTabZoneDns.activateZone()">
-                </button>
+                <button
+                    class="btn btn-block btn-default"
+                    type="button"
+                    data-translate="domain_tab_ZONE_no_zone_activate_btn"
+                    data-ng-disabled="!ctrlDomainTabZoneDns.displayActivateZone"
+                    data-ng-click="ctrlDomainTabZoneDns.activateZone()"
+                ></button>
             </div>
         </div>
 
@@ -31,104 +36,200 @@
             <div class="col-md-9">
                 <div data-ovh-alert="{{alerts.main}}"></div>
 
-                <div class="alert alert-warning" role="alert"
-                     data-ng-if="!ctrlDomainTabZoneDns.useDefaultsDns">
+                <div
+                    class="alert alert-warning"
+                    role="alert"
+                    data-ng-if="!ctrlDomainTabZoneDns.useDefaultsDns"
+                >
                     <div>
-                        <strong class="d-block" data-translate="domain_tab_ZONE_no_defaut_dns_used"></strong>
+                        <strong
+                            class="d-block"
+                            data-translate="domain_tab_ZONE_no_defaut_dns_used"
+                        ></strong>
                         <ul>
-                            <li data-ng-repeat="activeDns in ctrlDomainTabZoneDns.activatedDns track by $index" data-ng-bind="activeDns"></li>
+                            <li
+                                data-ng-repeat="activeDns in ctrlDomainTabZoneDns.activatedDns track by $index"
+                                data-ng-bind="activeDns"
+                            ></li>
                         </ul>
-                        <strong class="d-block" data-translate="domain_tab_ZONE_set_defaut_dns"></strong>
+                        <strong
+                            class="d-block"
+                            data-translate="domain_tab_ZONE_set_defaut_dns"
+                        ></strong>
                         <ul>
-                            <li data-ng-repeat="defaultDns in ctrlDomainTabZoneDns.defaultsDns track by $index" data-ng-bind="defaultDns"></li>
+                            <li
+                                data-ng-repeat="defaultDns in ctrlDomainTabZoneDns.defaultsDns track by $index"
+                                data-ng-bind="defaultDns"
+                            ></li>
                         </ul>
                     </div>
                 </div>
 
-                <div class="alert alert-warning" role="alert"
-                     data-ng-if="ctrlDomainTabZoneDns.zoneStatusWarnings.length">
+                <div
+                    class="alert alert-warning"
+                    role="alert"
+                    data-ng-if="ctrlDomainTabZoneDns.zoneStatusWarnings.length"
+                >
                     <div>
-                        <p data-ng-bind-html="'domain_tab_ZONE_status_warning' | translate"></p>
+                        <p
+                            data-ng-bind-html="'domain_tab_ZONE_status_warning' | translate"
+                        ></p>
                         <ol>
-                            <li data-ng-repeat="err in ctrlDomainTabZoneDns.zoneStatusWarnings track by $index" data-ng-bind="err"></li>
+                            <li
+                                data-ng-repeat="err in ctrlDomainTabZoneDns.zoneStatusWarnings track by $index"
+                                data-ng-bind="err"
+                            ></li>
                         </ol>
                     </div>
                 </div>
 
-                <div class="alert alert-danger" role="alert"
-                     data-ng-if="ctrlDomainTabZoneDns.zoneStatusErrors.length">
+                <div
+                    class="alert alert-danger"
+                    role="alert"
+                    data-ng-if="ctrlDomainTabZoneDns.zoneStatusErrors.length"
+                >
                     <div>
-                        <p data-ng-bind-html="'domain_tab_ZONE_status_error' | translate"></p>
+                        <p
+                            data-ng-bind-html="'domain_tab_ZONE_status_error' | translate"
+                        ></p>
                         <ol>
-                            <li data-ng-repeat="err in ctrlDomainTabZoneDns.zoneStatusErrors track by $index" data-ng-bind="err"></li>
+                            <li
+                                data-ng-repeat="err in ctrlDomainTabZoneDns.zoneStatusErrors track by $index"
+                                data-ng-bind="err"
+                            ></li>
                         </ol>
                     </div>
                 </div>
 
-                <p class="font-weight-bold" data-translate="domain_tab_ZONE_title"></p>
+                <p
+                    class="font-weight-bold"
+                    data-translate="domain_tab_ZONE_title"
+                ></p>
                 <p data-translate="domain_tab_ZONE_info"></p>
 
-                <div class="alert alert-info mt-5" role="alert"
-                     data-translate="domain_tab_ZONE_empty_zone"
-                     data-ng-if="!ctrlDomainTabZoneDns.loading.table && !ctrlDomainTabZoneDns.hasResult">
-                </div>
+                <div
+                    class="alert alert-info mt-5"
+                    role="alert"
+                    data-translate="domain_tab_ZONE_empty_zone"
+                    data-ng-if="!ctrlDomainTabZoneDns.loading.table && !ctrlDomainTabZoneDns.hasResult"
+                ></div>
 
-                <oui-spinner data-ng-if="ctrlDomainTabZoneDns.loading.table && !ctrlDomainTabZoneDns.hasResult"></oui-spinner>
+                <oui-spinner
+                    data-ng-if="ctrlDomainTabZoneDns.loading.table && !ctrlDomainTabZoneDns.hasResult"
+                ></oui-spinner>
 
                 <div data-ng-if="ctrlDomainTabZoneDns.hasResult">
                     <div class="row mt-5">
                         <div class="col-md-3 mb-3">
-                            <button class="btn btn-default" type="button"
-                                    data-translate="common_delete"
-                                    data-ng-click="setAction('zone/record/delete/domain-zone-record-delete', ctrlDomainTabZoneDns.selectedRecords)"
-                                    data-ng-if="ctrlDomainTabZoneDns.atLeastOneSelected && ctrlDomainTabZoneDns.allowModification">
-                            </button>
+                            <button
+                                class="btn btn-default"
+                                type="button"
+                                data-translate="common_delete"
+                                data-ng-click="setAction('zone/record/delete/domain-zone-record-delete', ctrlDomainTabZoneDns.selectedRecords)"
+                                data-ng-if="ctrlDomainTabZoneDns.atLeastOneSelected && ctrlDomainTabZoneDns.allowModification"
+                            ></button>
                         </div>
                         <div class="col-md-9 mb-3">
-                            <form class="form-inline d-md-flex justify-content-md-end" name="searchDomainForm">
+                            <form
+                                class="form-inline d-md-flex justify-content-md-end"
+                                name="searchDomainForm"
+                            >
                                 <div class="form-group mr-md-2">
-                                    <label class="sr-only" for="domainFilter"
-                                           data-ng-bind="('table_filter' | translate) + ' ' + ('domain_tab_ZONE_table_filter' | translate)"></label>
+                                    <label
+                                        class="sr-only"
+                                        for="domainFilter"
+                                        data-ng-bind="('table_filter' | translate) + ' ' + ('domain_tab_ZONE_table_filter' | translate)"
+                                    ></label>
                                     <div class="input-group">
-                                        <div class="input-group-btn" data-ng-if="ctrlDomainTabZoneDns.search.filter">
-                                            <button class="btn btn-default" type="button"
-                                                    data-ng-click="ctrlDomainTabZoneDns.emptyFilter()">
-                                                <span class="fa fa-times" aria-hidden="true"></span>
+                                        <div
+                                            class="input-group-btn"
+                                            data-ng-if="ctrlDomainTabZoneDns.search.filter"
+                                        >
+                                            <button
+                                                class="btn btn-default"
+                                                type="button"
+                                                data-ng-click="ctrlDomainTabZoneDns.emptyFilter()"
+                                            >
+                                                <span
+                                                    class="fa fa-times"
+                                                    aria-hidden="true"
+                                                ></span>
                                             </button>
                                         </div>
-                                        <span class="input-group-addon" data-ng-if="!ctrlDomainTabZoneDns.search.filter">
-                                            <span class="fa fa-filter" aria-hidden="true"></span>
+                                        <span
+                                            class="input-group-addon"
+                                            data-ng-if="!ctrlDomainTabZoneDns.search.filter"
+                                        >
+                                            <span
+                                                class="fa fa-filter"
+                                                aria-hidden="true"
+                                            ></span>
                                         </span>
-                                        <div class="oui-select oui-select_inline mb-0">
-                                            <select class="oui-select__input" id="domainFilter"
-                                                    data-ng-change="ctrlDomainTabZoneDns.goSearch()"
-                                                    data-ng-model="ctrlDomainTabZoneDns.search.filter"
-                                                    data-ng-options="zoneEntryType for zoneEntryType in ctrlDomainTabZoneDns.zone.fieldsTypes track by zoneEntryType">
-                                                <option value="" data-translate="domain_tab_ZONE_type_all"></option>
+                                        <div
+                                            class="oui-select oui-select_inline mb-0"
+                                        >
+                                            <select
+                                                class="oui-select__input"
+                                                id="domainFilter"
+                                                data-ng-change="ctrlDomainTabZoneDns.goSearch()"
+                                                data-ng-model="ctrlDomainTabZoneDns.search.filter"
+                                                data-ng-options="zoneEntryType for zoneEntryType in ctrlDomainTabZoneDns.zone.fieldsTypes track by zoneEntryType"
+                                            >
+                                                <option
+                                                    value=""
+                                                    data-translate="domain_tab_ZONE_type_all"
+                                                ></option>
                                             </select>
-                                            <span class="oui-icon oui-icon-chevron-down" aria-hidden="true"></span>
+                                            <span
+                                                class="oui-icon oui-icon-chevron-down"
+                                                aria-hidden="true"
+                                            ></span>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="sr-only" for="searchDomain"
-                                           data-ng-bind="('common_search' | translate) + ' ' + ('domain_tab_ZONE_table_search' | translate)"></label>
+                                    <label
+                                        class="sr-only"
+                                        for="searchDomain"
+                                        data-ng-bind="('common_search' | translate) + ' ' + ('domain_tab_ZONE_table_search' | translate)"
+                                    ></label>
                                     <div class="input-group">
-                                        <input type="text" class="form-control" id="searchDomain" name="searchDomain" placeholder="{{:: 'domain_tab_ZONE_search_placeholder' | translate }}"
-                                               data-ng-change="ctrlDomainTabZoneDns.goSearch()"
-                                               data-ng-disabled="ctrlDomainTabZoneDns.loading.table"
-                                               data-ng-model="ctrlDomainTabZoneDns.search.value"
-                                               data-ng-model-options="{ debounce: 800 }">
-                                        <div class="input-group-btn" data-ng-if="ctrlDomainTabZoneDns.search.value">
-                                            <button class="btn btn-default" type="button" aria-label="{{ 'common_cancel' | translate }}"
-                                                    data-ng-click="ctrlDomainTabZoneDns.emptySearch()"
-                                                    data-ng-disabled="ctrlDomainTabZoneDns.loading.table">
-                                                <span class="fa fa-times" aria-hidden="true"></span>
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            id="searchDomain"
+                                            name="searchDomain"
+                                            placeholder="{{:: 'domain_tab_ZONE_search_placeholder' | translate }}"
+                                            data-ng-change="ctrlDomainTabZoneDns.goSearch()"
+                                            data-ng-disabled="ctrlDomainTabZoneDns.loading.table"
+                                            data-ng-model="ctrlDomainTabZoneDns.search.value"
+                                            data-ng-model-options="{ debounce: 800 }"
+                                        />
+                                        <div
+                                            class="input-group-btn"
+                                            data-ng-if="ctrlDomainTabZoneDns.search.value"
+                                        >
+                                            <button
+                                                class="btn btn-default"
+                                                type="button"
+                                                aria-label="{{ 'common_cancel' | translate }}"
+                                                data-ng-click="ctrlDomainTabZoneDns.emptySearch()"
+                                                data-ng-disabled="ctrlDomainTabZoneDns.loading.table"
+                                            >
+                                                <span
+                                                    class="fa fa-times"
+                                                    aria-hidden="true"
+                                                ></span>
                                             </button>
                                         </div>
-                                        <span class="input-group-addon"
-                                              data-ng-if="!ctrlDomainTabZoneDns.search.value">
-                                            <span class="fa fa-search" aria-hidden="true"></span>
+                                        <span
+                                            class="input-group-addon"
+                                            data-ng-if="!ctrlDomainTabZoneDns.search.value"
+                                        >
+                                            <span
+                                                class="fa fa-search"
+                                                aria-hidden="true"
+                                            ></span>
                                         </span>
                                     </div>
                                 </div>
@@ -140,30 +241,60 @@
                         <table class="table table-hover">
                             <thead>
                                 <tr>
-                                    <th class="min-width text-center" scope="col">
+                                    <th
+                                        class="min-width text-center"
+                                        scope="col"
+                                    >
                                         <label class="m-0">
-                                            <input type="checkbox" class="m-0" name="selectAll" title="{{:: 'domains_dashboard_selector_all_pages' | translate }}"
-                                                   data-tri-state-checkbox
-                                                   data-tsc-ids-all="ctrlDomainTabZoneDns.zone.fullRecordsIdsList"
-                                                   data-tsc-ids-selected="ctrlDomainTabZoneDns.selectedRecords"
-                                                   data-tsc-on-click="ctrlDomainTabZoneDns.globalCheckboxStateChange(state)">
+                                            <input
+                                                type="checkbox"
+                                                class="m-0"
+                                                name="selectAll"
+                                                title="{{:: 'domains_dashboard_selector_all_pages' | translate }}"
+                                                data-tri-state-checkbox
+                                                data-tsc-ids-all="ctrlDomainTabZoneDns.zone.fullRecordsIdsList"
+                                                data-tsc-ids-selected="ctrlDomainTabZoneDns.selectedRecords"
+                                                data-tsc-on-click="ctrlDomainTabZoneDns.globalCheckboxStateChange(state)"
+                                            />
                                         </label>
                                     </th>
-                                    <th scope="col" data-translate="domain_tab_ZONE_table_headers_field"></th>
+                                    <th
+                                        scope="col"
+                                        data-translate="domain_tab_ZONE_table_headers_field"
+                                    ></th>
                                     <th class="text-center" scope="col">TTL</th>
-                                    <th class="text-center" scope="col" data-translate="domain_tab_ZONE_table_headers_type"></th>
-                                    <th scope="col" data-translate="domain_tab_ZONE_table_headers_target"></th>
-                                    <th class="min-width text-right" scope="col">
-                                        <button class="btn btn-icon" type="button" title="{{ 'refresh' | translate }}"
-                                                data-ng-click="ctrlDomainTabZoneDns.refreshTable()">
-                                            <span class="fa fa-refresh" aria-hidden="true"></span>
+                                    <th
+                                        class="text-center"
+                                        scope="col"
+                                        data-translate="domain_tab_ZONE_table_headers_type"
+                                    ></th>
+                                    <th
+                                        scope="col"
+                                        data-translate="domain_tab_ZONE_table_headers_target"
+                                    ></th>
+                                    <th
+                                        class="min-width text-right"
+                                        scope="col"
+                                    >
+                                        <button
+                                            class="btn btn-icon"
+                                            type="button"
+                                            title="{{ 'refresh' | translate }}"
+                                            data-ng-click="ctrlDomainTabZoneDns.refreshTable()"
+                                        >
+                                            <span
+                                                class="fa fa-refresh"
+                                                aria-hidden="true"
+                                            ></span>
                                         </button>
                                     </th>
                                 </tr>
                             </thead>
 
                             <!-- Loading -->
-                            <tbody data-ng-if="ctrlDomainTabZoneDns.loading.table">
+                            <tbody
+                                data-ng-if="ctrlDomainTabZoneDns.loading.table"
+                            >
                                 <tr>
                                     <td class="text-center" colspan="6">
                                         <oui-spinner></oui-spinner>
@@ -172,42 +303,81 @@
                             </tbody>
 
                             <!-- Empty table -->
-                            <tbody data-ng-if="!ctrlDomainTabZoneDns.loading.table && !ctrlDomainTabZoneDns.zone.paginatedZone.records.results.length">
+                            <tbody
+                                data-ng-if="!ctrlDomainTabZoneDns.loading.table && !ctrlDomainTabZoneDns.zone.paginatedZone.records.results.length"
+                            >
                                 <tr>
-                                    <td class="text-center" colspan="6" data-translate="table_search_noresult"></td>
+                                    <td
+                                        class="text-center"
+                                        colspan="6"
+                                        data-translate="table_search_noresult"
+                                    ></td>
                                 </tr>
                             </tbody>
 
                             <!-- Datas -->
-                            <tbody data-ng-if="!ctrlDomainTabZoneDns.loading.table && ctrlDomainTabZoneDns.zone.paginatedZone.records.results.length > 0">
-                                <tr data-ng-repeat="record in ctrlDomainTabZoneDns.zone.paginatedZone.records.results track by $index"
-                                    data-ng-class="{'info': record.selected}">
+                            <tbody
+                                data-ng-if="!ctrlDomainTabZoneDns.loading.table && ctrlDomainTabZoneDns.zone.paginatedZone.records.results.length > 0"
+                            >
+                                <tr
+                                    data-ng-repeat="record in ctrlDomainTabZoneDns.zone.paginatedZone.records.results track by $index"
+                                    data-ng-class="{'info': record.selected}"
+                                >
                                     <td class="text-center">
-                                        <input type="checkbox" class="m-0" name="domainsListResults[]" id="record-{{$index}}"
-                                               data-ng-change="ctrlDomainTabZoneDns.toggleRecord(record.id)"
-                                               data-ng-model="record.selected">
+                                        <input
+                                            type="checkbox"
+                                            class="m-0"
+                                            name="domainsListResults[]"
+                                            id="record-{{$index}}"
+                                            data-ng-change="ctrlDomainTabZoneDns.toggleRecord(record.id)"
+                                            data-ng-model="record.selected"
+                                        />
                                     </td>
                                     <td class="word-break">
-                                        <label class="d-block font-weight-normal m-0" for="record-{{$index}}"
-                                               data-ng-bind="ctrlDomainTabZoneDns.constructor.getDomainToDisplay(record)"></label>
+                                        <label
+                                            class="d-block font-weight-normal m-0"
+                                            for="record-{{$index}}"
+                                            data-ng-bind="ctrlDomainTabZoneDns.constructor.getDomainToDisplay(record)"
+                                        ></label>
                                     </td>
-                                    <td class="text-center" data-ng-bind="record.ttl"></td>
-                                    <td class="text-center" data-ng-bind="record.fieldType"></td>
-                                    <td class="word-break" data-ng-class="{'w-50': record.fieldType === 'DKIM'}">
-                                        <span data-ng-bind="record.targetToDisplay"></span>
-                                        <span class="fa fa-exclamation-triangle text-warning ml-2" aria-hidden="true"
-                                              data-ng-if="ctrlDomainTabZoneDns.targetIsRelativeDomain(record)"
-                                              data-oui-tooltip-placement="bottom"
-                                              data-oui-tooltip="{{:: 'domain_configuration_dns_entry_relative_warning_title' | translate }}&nbsp;&laquo;&nbsp;{{record.targetToDisplay}}.{{record.zoneToDisplay}}&nbsp;&raquo;&nbsp;">
+                                    <td
+                                        class="text-center"
+                                        data-ng-bind="record.ttl"
+                                    ></td>
+                                    <td
+                                        class="text-center"
+                                        data-ng-bind="record.fieldType"
+                                    ></td>
+                                    <td
+                                        class="word-break"
+                                        data-ng-class="{'w-50': record.fieldType === 'DKIM'}"
+                                    >
+                                        <span
+                                            data-ng-bind="record.targetToDisplay"
+                                        ></span>
+                                        <span
+                                            class="fa fa-exclamation-triangle text-warning ml-2"
+                                            aria-hidden="true"
+                                            data-ng-if="ctrlDomainTabZoneDns.targetIsRelativeDomain(record)"
+                                            data-oui-tooltip-placement="bottom"
+                                            data-oui-tooltip="{{:: 'domain_configuration_dns_entry_relative_warning_title' | translate }}&nbsp;&laquo;&nbsp;{{record.targetToDisplay}}.{{record.zoneToDisplay}}&nbsp;&raquo;&nbsp;"
+                                        >
                                         </span>
                                     </td>
                                     <td class="text-right">
-                                        <oui-action-menu data-compact data-align="end"
-                                                         data-ng-if="!(record.fieldType === 'NS' && !record.subDomain) && ctrlDomainTabZoneDns.allowModification">
-                                            <oui-action-menu-item data-text="{{:: 'table_modify_entry' | translate }}"
-                                                                  data-on-click="setAction('zone/record/edit/domain-zone-record-edit', { domain: ctrlDomainTabZoneDns.domain, fieldTypes: ctrlDomainTabZoneDns.zone.fieldsTypes, edit: record })"></oui-action-menu-item>
-                                            <oui-action-menu-item data-text="{{:: 'table_delete_entry' | translate }}"
-                                                                  data-on-click="setAction('zone/record/delete/domain-zone-record-delete', record)"></oui-action-menu-item>
+                                        <oui-action-menu
+                                            data-compact
+                                            data-align="end"
+                                            data-ng-if="!(record.fieldType === 'NS' && !record.subDomain) && ctrlDomainTabZoneDns.allowModification"
+                                        >
+                                            <oui-action-menu-item
+                                                data-text="{{:: 'table_modify_entry' | translate }}"
+                                                data-on-click="setAction('zone/record/edit/domain-zone-record-edit', { domain: ctrlDomainTabZoneDns.domain, fieldTypes: ctrlDomainTabZoneDns.zone.fieldsTypes, edit: record })"
+                                            ></oui-action-menu-item>
+                                            <oui-action-menu-item
+                                                data-text="{{:: 'table_delete_entry' | translate }}"
+                                                data-on-click="setAction('zone/record/delete/domain-zone-record-delete', record)"
+                                            ></oui-action-menu-item>
                                         </oui-action-menu>
                                     </td>
                                 </tr>
@@ -216,49 +386,61 @@
                     </div>
                 </div>
 
-                <div class="clearfix"
-                     data-ng-show="ctrlDomainTabZoneDns.hasResult"
-                     data-pagination-server-side
-                     data-pagination-server-side-function="loadPaginated"
-                     data-pagination-server-side-paginated-stuff="ctrlDomainTabZoneDns.zone.paginatedZone"
-                     data-pagination-server-side-table-loading="ctrlDomainTabZoneDns.loading.table">
-                </div>
+                <div
+                    class="clearfix"
+                    data-ng-show="ctrlDomainTabZoneDns.hasResult"
+                    data-pagination-server-side
+                    data-pagination-server-side-function="loadPaginated"
+                    data-pagination-server-side-paginated-stuff="ctrlDomainTabZoneDns.zone.paginatedZone"
+                    data-pagination-server-side-table-loading="ctrlDomainTabZoneDns.loading.table"
+                ></div>
             </div>
 
             <div class="col-md-3 mt-5 mt-lg-0">
                 <div class="mb-5">
-                    <button class="btn btn-block btn-default" type="button"
-                            data-translate="domain_configuration_dns_entry_add_title_button"
-                            data-ng-click="setAction('zone/record/add/domain-zone-record-add', { domain: ctrlDomainTabZoneDns.domain, fieldTypes: ctrlDomainTabZoneDns.zone.fieldsTypes })"
-                            data-ng-if="ctrlDomainTabZoneDns.allowModification">
-                    </button>
-                    <button class="btn btn-block btn-default" type="button"
-                            data-translate="domain_configuration_zonedns_reset_title_button"
-                            data-ng-click="setAction('zone/reset/domain-zone-reset', ctrlDomainTabZoneDns.domain)"
-                            data-ng-if="ctrlDomainTabZoneDns.allowModification">
-                    </button>
-                    <button class="btn btn-block btn-default" type="button"
-                            data-translate="domain_tab_ZONE_default_ttl_button"
-                            data-ng-click="setAction('zone/default-ttl/domain-zone-default-ttl', ctrlDomainTabZoneDns.domain)"
-                            data-ng-disabled="!ctrlDomainTabZoneDns.loading.table && !ctrlDomainTabZoneDns.zone.paginatedZone.records.results.length"
-                            data-ng-if="ctrlDomainTabZoneDns.allowModification">
-                    </button>
-                    <button class="btn btn-block btn-default" type="button"
-                            data-translate="domain_tab_ZONE_default_import_button"
-                            data-ng-click="setAction('zone/import-text/domain-zone-import-text', ctrlDomainTabZoneDns.domain)">
-                    </button>
-                    <button class="btn btn-block btn-default" type="button"
-                            data-translate="domain_tab_ZONE_default_delete_all"
-                            data-ng-click="setAction('zone/delete-all/domain-zone-delete-all', ctrlDomainTabZoneDns.domain)"
-                            data-ng-if="ctrlDomainTabZoneDns.allowModification">
-                    </button>
+                    <button
+                        class="btn btn-block btn-default"
+                        type="button"
+                        data-translate="domain_configuration_dns_entry_add_title_button"
+                        data-ng-click="setAction('zone/record/add/domain-zone-record-add', { domain: ctrlDomainTabZoneDns.domain, fieldTypes: ctrlDomainTabZoneDns.zone.fieldsTypes })"
+                        data-ng-if="ctrlDomainTabZoneDns.allowModification"
+                    ></button>
+                    <button
+                        class="btn btn-block btn-default"
+                        type="button"
+                        data-translate="domain_configuration_zonedns_reset_title_button"
+                        data-ng-click="setAction('zone/reset/domain-zone-reset', ctrlDomainTabZoneDns.domain)"
+                        data-ng-if="ctrlDomainTabZoneDns.allowModification"
+                    ></button>
+                    <button
+                        class="btn btn-block btn-default"
+                        type="button"
+                        data-translate="domain_tab_ZONE_default_ttl_button"
+                        data-ng-click="setAction('zone/default-ttl/domain-zone-default-ttl', ctrlDomainTabZoneDns.domain)"
+                        data-ng-disabled="!ctrlDomainTabZoneDns.loading.table && !ctrlDomainTabZoneDns.zone.paginatedZone.records.results.length"
+                        data-ng-if="ctrlDomainTabZoneDns.allowModification"
+                    ></button>
+                    <button
+                        class="btn btn-block btn-default"
+                        type="button"
+                        data-translate="domain_tab_ZONE_default_import_button"
+                        data-ng-click="setAction('zone/import-text/domain-zone-import-text', ctrlDomainTabZoneDns.domain)"
+                    ></button>
+                    <button
+                        class="btn btn-block btn-default"
+                        type="button"
+                        data-translate="domain_tab_ZONE_default_delete_all"
+                        data-ng-click="setAction('zone/delete-all/domain-zone-delete-all', ctrlDomainTabZoneDns.domain)"
+                        data-ng-if="ctrlDomainTabZoneDns.allowModification"
+                    ></button>
                 </div>
 
-                <div data-wuc-guides
-                     data-wuc-guides-list="'zone'"
-                     data-wuc-guides-title="'guide_domain_subtitle' | translate"
-                     data-tr="tr">
-                </div>
+                <div
+                    data-wuc-guides
+                    data-wuc-guides-list="'zone'"
+                    data-wuc-guides-title="'guide_domain_subtitle' | translate"
+                    data-tr="tr"
+                ></div>
             </div>
         </div>
     </div>

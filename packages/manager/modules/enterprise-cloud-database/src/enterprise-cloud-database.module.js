@@ -12,14 +12,12 @@ import service from './service';
 const moduleName = 'enterpriseCloudDatabase';
 
 angular
-  .module(moduleName, [
-    paymentInfoComponent,
-    create,
-    priceComponent,
-    service,
-  ])
+  .module(moduleName, [paymentInfoComponent, create, priceComponent, service])
   .config(routing)
-  .component('enterpriseCloudDatabaseComponent', enterpriseCloudDatabaseComponent)
+  .component(
+    'enterpriseCloudDatabaseComponent',
+    enterpriseCloudDatabaseComponent,
+  )
   .service('enterpriseCloudDatabaseService', enterpriseCloudDatabaseService)
   .run(/* @ngTranslationsInject:json ./translations */);
 

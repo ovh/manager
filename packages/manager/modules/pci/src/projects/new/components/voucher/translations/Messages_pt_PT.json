@@ -1,0 +1,13 @@
+{
+  "pci_projects_new_voucher_question": "Voucher",
+  "pci_projects_new_voucher_form_field": "Inserir voucher",
+  "pci_projects_new_voucher_form_field_amount": "Montante creditado: {{ amount }}",
+  "pci_projects_new_voucher_form_field_error_invalid": "Código inválido.",
+  "pci_projects_new_voucher_form_field_error_no_longer_valid": "Código inválido.",
+  "pci_projects_new_voucher_form_field_error_default": "Ocorreu um erro aquando da verificação do código.",
+  "pci_projects_new_voucher_form_add": "Adicionar",
+  "pci_projects_new_voucher_form_add_title": "Adicionar voucher",
+  "pci_projects_new_voucher_form_remove": "Remover",
+  "pci_projects_new_voucher_form_remove_title": "Remover voucher",
+  "pci_projects_new_voucher_form_reset_error": "Ocorreu um erro aquando da remoção do voucher."
+}

@@ -12,17 +12,20 @@
     }
 
     deleteUser(userId) {
-      return this.Cloud.Project().User().v6().remove({
-        serviceName: this.serviceName,
-        userId,
-      }).$promise;
+      return this.Cloud.Project()
+        .User()
+        .v6()
+        .remove({
+          serviceName: this.serviceName,
+          userId,
+        }).$promise;
     }
 
     confirm() {
       this.loaders.delete = true;
       return this.deleteUser(this.user.id)
         .then(() => this.$uibModalInstance.close())
-        .catch(err => this.$uibModalInstance.dismiss(err))
+        .catch((err) => this.$uibModalInstance.dismiss(err))
         .finally(() => {
           this.loaders.delete = false;
         });
@@ -33,5 +36,10 @@
     }
   }
 
-  angular.module('managerApp').controller('CloudProjectOpenStackUserDeleteCtrl', CloudProjectOpenStackUserDeleteCtrl);
+  angular
+    .module('managerApp')
+    .controller(
+      'CloudProjectOpenStackUserDeleteCtrl',
+      CloudProjectOpenStackUserDeleteCtrl,
+    );
 })();

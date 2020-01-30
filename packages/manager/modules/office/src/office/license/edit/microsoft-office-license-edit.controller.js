@@ -2,7 +2,13 @@ import angular from 'angular';
 
 export default class MicrosoftOfficeLicenseEditCtrl {
   /* @ngInject */
-  constructor(Alerter, MicrosoftOfficeLicenseService, $rootScope, $scope, $translate) {
+  constructor(
+    Alerter,
+    MicrosoftOfficeLicenseService,
+    $rootScope,
+    $scope,
+    $translate,
+  ) {
     this.alerter = Alerter;
     this.licenseService = MicrosoftOfficeLicenseService;
     this.$rootScope = $rootScope;
@@ -20,14 +26,24 @@ export default class MicrosoftOfficeLicenseEditCtrl {
     this.$scope.edit = () => {
       this.loaders.edit = true;
 
-      return this.licenseService.edit(this.license, this.tenant)
+      return this.licenseService
+        .edit(this.license, this.tenant)
         .then((tenant) => {
-          this.alerter.success(this.$translate.instant('microsoft_office_license_edit_success'), this.$scope.alerts.main);
-          this.$rootScope.$broadcast('change.displayName', [this.license, this.tenant.displayName]);
+          this.alerter.success(
+            this.$translate.instant('microsoft_office_license_edit_success'),
+            this.$scope.alerts.main,
+          );
+          this.$rootScope.$broadcast('change.displayName', [
+            this.license,
+            this.tenant.displayName,
+          ]);
           return tenant;
         })
         .catch((err) => {
-          this.alerter.alertFromSWS(this.$translate.instant('microsoft_office_license_edit_error'), this.$scope.alerts.main);
+          this.alerter.alertFromSWS(
+            this.$translate.instant('microsoft_office_license_edit_error'),
+            this.$scope.alerts.main,
+          );
           return err;
         })
         .finally(() => {

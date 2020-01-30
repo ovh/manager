@@ -1,0 +1,85 @@
+pci-project-new {
+  @import '~bootstrap4/scss/_functions';
+  @import '~bootstrap4/scss/_variables';
+  @import '~bootstrap4/scss/mixins/_breakpoints';
+
+  .pci-project-new {
+    background-color: rgb(241, 249, 253);
+    overflow-x: auto;
+
+    h1 {
+      font-size: 28px;
+      font-weight: normal;
+      line-height: 1.25;
+      margin: 2rem 0;
+    }
+
+    h2 {
+      font-size: 20px;
+      font-weight: bold;
+      line-height: 1.25;
+    }
+
+    small,
+    strong {
+      color: #4d5592;
+    }
+
+    .pci-project-new-view {
+      padding: 0 200px;
+    }
+
+    .oui-field .oui-field__label {
+      font-size: 12px;
+      font-weight: bold;
+      color: #4d5592;
+    }
+
+    .oui-radio.oui-radio_btn .oui-radio__label-container {
+      padding: 0.75rem 1.25rem;
+
+      .oui-radio__label {
+        margin: 0 auto;
+        padding: 0;
+        text-align: center;
+
+        &::before,
+        &::after {
+          display: none;
+        }
+      }
+    }
+
+    small {
+      line-height: 16px;
+    }
+
+    @include media-breakpoint-down(lg) {
+      .pci-project-new-view {
+        padding: 0 50px;
+      }
+    }
+
+    @include media-breakpoint-down(sm) {
+      .pci-project-new-view {
+        padding: 0 15px;
+
+        .actions-container {
+          text-align: center;
+
+          oui-button {
+            width: 100%;
+          }
+
+          a,
+          .oui-button {
+            max-width: 100%;
+            display: block;
+            width: 100%;
+            margin-bottom: $spacer;
+          }
+        }
+      }
+    }
+  }
+}

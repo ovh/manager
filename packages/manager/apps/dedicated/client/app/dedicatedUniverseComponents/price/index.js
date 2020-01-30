@@ -7,10 +7,7 @@ import ducPriceFilter from './price.filter';
 const moduleName = 'ducPrice';
 
 angular
-  .module(moduleName, [
-    ngTranslateAsyncLoader,
-    translate,
-  ])
+  .module(moduleName, [ngTranslateAsyncLoader, translate])
   .filter('ducPrice', ducPriceFilter)
   .run(/* @ngTranslationsInject:json ./translations */);
 

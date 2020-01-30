@@ -4,21 +4,22 @@ import 'oclazyload';
 
 const moduleName = 'ovhManagerPciStreamsStreamSubscriptionsDeleteLazyLoading';
 
-angular
-  .module(moduleName, [
-    'ui.router',
-    'oc.lazyLoad',
-  ])
-  .config(/* @ngInject */($stateProvider) => {
-    $stateProvider.state('pci.projects.project.streams.stream.subscriptions.delete.**', {
-      url: '/delete',
-      lazyLoad: ($transition$) => {
-        const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
+  /* @ngInject */ ($stateProvider) => {
+    $stateProvider.state(
+      'pci.projects.project.streams.stream.subscriptions.delete.**',
+      {
+        url: '/delete',
+        lazyLoad: ($transition$) => {
+          const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-        return import('./delete.module')
-          .then(mod => $ocLazyLoad.inject(mod.default || mod));
+          return import('./delete.module').then((mod) =>
+            $ocLazyLoad.inject(mod.default || mod),
+          );
+        },
       },
-    });
-  });
+    );
+  },
+);
 
 export default moduleName;

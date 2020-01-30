@@ -39,44 +39,46 @@ angular
     'ngOvhTelecomUniverseComponents',
     'ui.router',
   ])
-  .config(/* @ngInject */ ($stateProvider) => {
-    $stateProvider.state('telecom-dashboard', {
-      url: '/',
-      views: {
-        '': {
-          template,
-          controller: dashboardCtrl,
-          controllerAs: 'TelecomDashboardCtrl',
+  .config(
+    /* @ngInject */ ($stateProvider) => {
+      $stateProvider.state('telecom-dashboard', {
+        url: '/',
+        views: {
+          '': {
+            template,
+            controller: dashboardCtrl,
+            controllerAs: 'TelecomDashboardCtrl',
+          },
+          'billsView@telecom-dashboard': {
+            template: billsTemplate,
+            controller: billsCtrl,
+            controllerAs: 'BillsCtrl',
+          },
+          'guidesView@telecom-dashboard': {
+            template: guidesTemplate,
+            controller: guidesCtrl,
+            controllerAs: 'GuidesCtrl',
+          },
         },
-        'billsView@telecom-dashboard': {
-          template: billsTemplate,
-          controller: billsCtrl,
-          controllerAs: 'BillsCtrl',
+        translations: {
+          value: ['.'],
+          format: 'json',
         },
-        'guidesView@telecom-dashboard': {
-          template: guidesTemplate,
-          controller: guidesCtrl,
-          controllerAs: 'GuidesCtrl',
+        resolve: {
+          $title(translations, $translate) {
+            return $translate('telecom_dashboard_page_title');
+          },
+          tracking(atInternet) {
+            atInternet.trackPage({
+              name: 'dashboard',
+              type: 'navigation',
+              level2: 'Telecom',
+              chapter1: 'telecom',
+            });
+          },
         },
-      },
-      translations: {
-        value: ['.'],
-        format: 'json',
-      },
-      resolve: {
-        $title(translations, $translate) {
-          return $translate('telecom_dashboard_page_title');
-        },
-        tracking(atInternet) {
-          atInternet.trackPage({
-            name: 'dashboard',
-            type: 'navigation',
-            level2: 'Telecom',
-            chapter1: 'telecom',
-          });
-        },
-      },
-    });
-  });
+      });
+    },
+  );
 
 export default moduleName;

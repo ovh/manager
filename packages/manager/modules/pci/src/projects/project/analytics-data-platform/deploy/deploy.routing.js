@@ -1,57 +1,60 @@
 import get from 'lodash/get';
 import { PCI_REDIRECT_URLS } from '../../../../constants';
 
-export default /* @ngInject */($stateProvider) => {
+export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.analytics-data-platform.deploy', {
     url: '/deploy',
     component: 'analyticsDataPlatformDeployComponent',
     resolve: {
-      breadcrumb: /* @ngInject */ $translate => $translate.instant('analytics_data_platform_deploy_breadcrumb'),
-      capabilities: /* @ngInject */
-      analyticsDataPlatformService => analyticsDataPlatformService
-        .getAnalyticsDataPlatformCapabilities(),
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('analytics_data_platform_deploy_breadcrumb'),
+      /* @ngInject */
+      capabilities: (analyticsDataPlatformService) =>
+        analyticsDataPlatformService.getAnalyticsDataPlatformCapabilities(),
 
-      publicCloud: /* @ngInject */ (
-        analyticsDataPlatformService,
-        projectId,
-      ) => analyticsDataPlatformService.getPubliCloudDetails(projectId),
+      publicCloud: /* @ngInject */ (analyticsDataPlatformService, projectId) =>
+        analyticsDataPlatformService.getPubliCloudDetails(projectId),
 
-      sshKeys: /* @ngInject */ (
-        analyticsDataPlatformService,
-        projectId,
-      ) => analyticsDataPlatformService.getShhKeys(projectId)
-        .catch(() => null),
+      sshKeys: /* @ngInject */ (analyticsDataPlatformService, projectId) =>
+        analyticsDataPlatformService.getShhKeys(projectId).catch(() => null),
 
-      vRack: /* @ngInject */ (
-        analyticsDataPlatformService,
-        projectId,
-      ) => analyticsDataPlatformService.getVRacks(projectId)
-        .catch(() => null),
+      vRack: /* @ngInject */ (analyticsDataPlatformService, projectId) =>
+        analyticsDataPlatformService.getVRacks(projectId).catch(() => null),
 
       priceCatalog: /* @ngInject */ (
         analyticsDataPlatformService,
         publicCloud,
       ) => analyticsDataPlatformService.getPriceCatalog(publicCloud.planCode),
-      hasDefaultPaymentMethod: /* @ngInject */
-      ovhPaymentMethod => ovhPaymentMethod.hasDefaultPaymentMethod(),
+      /* @ngInject */
+      hasDefaultPaymentMethod: (ovhPaymentMethod) =>
+        ovhPaymentMethod.hasDefaultPaymentMethod(),
 
-      paymentMethodUrl: /* @ngInject */ coreConfig => get(
-        PCI_REDIRECT_URLS,
-        `${coreConfig.getRegion()}.paymentMethods`,
-      ),
+      paymentMethodUrl: /* @ngInject */ (coreConfig) =>
+        get(PCI_REDIRECT_URLS, `${coreConfig.getRegion()}.paymentMethods`),
 
-      goToDeploy: ($state, CucCloudMessage, projectId) => (message = false, type = 'success') => {
+      goToDeploy: ($state, CucCloudMessage, projectId) => (
+        message = false,
+        type = 'success',
+      ) => {
         const reload = message && type === 'success';
 
-        const promise = $state.go('pci.projects.project.analytics-data-platform.deploy', {
-          projectId,
-        },
-        {
-          reload,
-        });
+        const promise = $state.go(
+          'pci.projects.project.analytics-data-platform.deploy',
+          {
+            projectId,
+          },
+          {
+            reload,
+          },
+        );
 
         if (message) {
-          promise.then(() => CucCloudMessage[type](message, 'pci.projects.project.analytics-data-platform.deploy'));
+          promise.then(() =>
+            CucCloudMessage[type](
+              message,
+              'pci.projects.project.analytics-data-platform.deploy',
+            ),
+          );
         }
 
         return promise;

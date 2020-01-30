@@ -50,12 +50,12 @@ angular.module('services').service(
      * @throws  {TypeError} If the parameter is not a valid certificate
      */
     static testIsCertificate(certificate) {
-      const tests = [
-        isString(get(certificate, 'status')),
-      ];
+      const tests = [isString(get(certificate, 'status'))];
 
-      if (!every(tests, test => test)) {
-        throw new TypeError('certificate parameter is not a valid certificate object');
+      if (!every(tests, (test) => test)) {
+        throw new TypeError(
+          'certificate parameter is not a valid certificate object',
+        );
       }
     }
 

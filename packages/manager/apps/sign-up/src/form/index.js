@@ -16,10 +16,10 @@ angular
     'pascalprecht.translate',
   ])
   .run(/* @ngTranslationsInject:json ./translations */)
-  .run(/* @ngInject */ ($translate, ouiStepperConfiguration) => {
-    // set some translations for oui-kit
-    $translate.refresh()
-      .then(() => {
+  .run(
+    /* @ngInject */ ($translate, ouiStepperConfiguration) => {
+      // set some translations for oui-kit
+      $translate.refresh().then(() => {
         set(
           ouiStepperConfiguration,
           'translations.nextButtonLabel',
@@ -31,7 +31,8 @@ angular
           $translate.instant('sign_up_form_submit_button'),
         );
       });
-  })
+    },
+  )
   .component(component.name, component);
 
 export default moduleName;

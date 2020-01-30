@@ -5,34 +5,40 @@
     data-valid="$ctrl.autoPayWithPreferredPaymentMethod != null && $ctrl.agreeContracts"
     data-prevent-next="true"
     data-on-cancel="$ctrl.goBackToDashboard()"
-    data-on-submit="$ctrl.preparePayment()">
-
+    data-on-submit="$ctrl.preparePayment()"
+>
     <div class="row">
-        <dl class="oui-description oui-description_horizontal oui-heading_underline col-md-2">
-            <dt data-translate="domain_webhosting_order_payment_total_price_without_tax"></dt>
+        <dl
+            class="oui-description oui-description_horizontal oui-heading_underline col-md-2"
+        >
+            <dt
+                data-translate="domain_webhosting_order_payment_total_price_without_tax"
+            ></dt>
             <dd data-ng-bind="$ctrl.prices.withoutTax.text"></dd>
-            <dt data-translate="domain_webhosting_order_payment_total_price_with_tax"></dt>
+            <dt
+                data-translate="domain_webhosting_order_payment_total_price_with_tax"
+            ></dt>
             <dd data-ng-bind="$ctrl.prices.withTax.text"></dd>
             <dt data-translate="domain_webhosting_order_payment_duration"></dt>
-            <dd data-translate="{{ 'domain_webhosting_order_duration_' + $ctrl.stepper.cartOption.offer.pricing.duration }}"></dd>
+            <dd
+                data-translate="{{ 'domain_webhosting_order_duration_' + $ctrl.stepper.cartOption.offer.pricing.duration }}"
+            ></dd>
         </dl>
     </div>
 
-    <form
-        name="$ctrl.paymentMeans"
-        novalidate>
+    <form name="$ctrl.paymentMeans" novalidate>
         <ovh-payment-method-choice
-            data-model="$ctrl.autoPayWithPreferredPaymentMethod">
+            data-model="$ctrl.autoPayWithPreferredPaymentMethod"
+        >
         </ovh-payment-method-choice>
     </form>
 
-    <form
-        name="$ctrl.paymentContracts"
-        novalidate>
-        <ovh-manager-order-contracts
+    <form name="$ctrl.paymentContracts" novalidate>
+        <ovh-contracts-summary
             name="agreeContracts"
             data-items="$ctrl.contracts"
-            data-model="$ctrl.agreeContracts">
-        </ovh-manager-order-contracts>
+            data-model="$ctrl.agreeContracts"
+        >
+        </ovh-contracts-summary>
     </form>
 </oui-step-form>

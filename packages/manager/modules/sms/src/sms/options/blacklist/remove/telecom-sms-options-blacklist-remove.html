@@ -1,36 +1,45 @@
-<form name="removeSenderBlacklistedForm"
-      id="removeSenderBlacklistedForm"
-      data-ng-submit="SendersBlacklistedRemoveCtrl.remove()">
-
+<form
+    name="removeSenderBlacklistedForm"
+    id="removeSenderBlacklistedForm"
+    data-ng-submit="SendersBlacklistedRemoveCtrl.remove()"
+>
     <div class="modal-header">
         <button
             type="button"
             class="close float-right"
             aria-label="{{ ::'sms_cancel' | translate }}"
-            data-ng-click="SendersBlacklistedRemoveCtrl.cancel()">
+            data-ng-click="SendersBlacklistedRemoveCtrl.cancel()"
+        >
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
 
-    <div class="modal-body"
-         data-ng-if="!SendersBlacklistedRemoveCtrl.loading.removeBlacklisted && !SendersBlacklistedRemoveCtrl.removed">
-        <h3 class="modal-title"
-            data-translate="sms_senders_blacklisted_title">
-        </h3>
-        <p data-translate="sms_senders_blacklisted_confirm"
-           data-translate-values="{ sender: SendersBlacklistedRemoveCtrl.blacklist.number }">
-        </p>
+    <div
+        class="modal-body"
+        data-ng-if="!SendersBlacklistedRemoveCtrl.loading.removeBlacklisted && !SendersBlacklistedRemoveCtrl.removed"
+    >
+        <h3
+            class="modal-title"
+            data-translate="sms_senders_blacklisted_title"
+        ></h3>
+        <p
+            data-translate="sms_senders_blacklisted_confirm"
+            data-translate-values="{ sender: SendersBlacklistedRemoveCtrl.blacklist.number }"
+        ></p>
     </div>
 
-    <div class="modal-body text-center"
-         data-ng-if="SendersBlacklistedRemoveCtrl.loading.removeBlacklisted">
+    <div
+        class="modal-body text-center"
+        data-ng-if="SendersBlacklistedRemoveCtrl.loading.removeBlacklisted"
+    >
         <oui-spinner></oui-spinner>
         <h4 data-translate="sms_senders_remove_sender_removing"></h4>
     </div>
 
-    <div class="modal-body"
-         data-ng-if="SendersBlacklistedRemoveCtrl.removed">
-        <tuc-success-drawing-check data-draw-success-check="SendersBlacklistedRemoveCtrl.removed">
+    <div class="modal-body" data-ng-if="SendersBlacklistedRemoveCtrl.removed">
+        <tuc-success-drawing-check
+            data-draw-success-check="SendersBlacklistedRemoveCtrl.removed"
+        >
             <h4 data-translate="sms_senders_remove_sender_removed"></h4>
         </tuc-success-drawing-check>
     </div>
@@ -42,15 +51,14 @@
             data-ng-click="SendersBlacklistedRemoveCtrl.cancel()"
             data-translate="sms_cancel"
             data-ng-disabled="SendersBlacklistedRemoveCtrl.loading.removeBlacklisted ||
-                              SendersBlacklistedRemoveCtrl.removed">
-        </button>
+                              SendersBlacklistedRemoveCtrl.removed"
+        ></button>
         <button
             type="submit"
             class="btn btn-primary"
             data-translate="sms_submit"
             data-ng-disabled="SendersBlacklistedRemoveCtrl.loading.removeBlacklisted ||
-                              SendersBlacklistedRemoveCtrl.removed">
-        </button>
+                              SendersBlacklistedRemoveCtrl.removed"
+        ></button>
     </div>
-
 </form>

@@ -5,12 +5,17 @@
         data-primary-label="{{:: 'cuc_helper_edit' | translate}}"
         data-secondary-action="$ctrl.cancel()"
         data-secondary-label="{{:: 'cuc_helper_cancel' | translate}}"
-        data-loading="$ctrl.isModalLoading()">
+        data-loading="$ctrl.isModalLoading()"
+    >
         <p>
-            <span data-translate="cuc_helper_name_change_modal_service_name_label"></span>
+            <span
+                data-translate="cuc_helper_name_change_modal_service_name_label"
+            ></span>
             <span data-ng-bind="$ctrl.serviceName"></span>
         </p>
-        <oui-field data-label="{{::'cuc_helper_name_change_modal_display_name_label' | translate}}">
+        <oui-field
+            data-label="{{::'cuc_helper_name_change_modal_display_name_label' | translate}}"
+        >
             <input
                 type="text"
                 maxlength="{{ $ctrl.model.displayName.maxlength }}"
@@ -18,7 +23,8 @@
                 name="newDisplayName"
                 class="oui-input"
                 data-ng-model="$ctrl.model.displayName.value"
-                required>
+                required
+            />
         </oui-field>
     </oui-modal>
 </form>

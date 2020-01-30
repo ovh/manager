@@ -4,10 +4,15 @@ import cacheTemplate from './emailpro.template';
 import controllers from './emailproControllers.module';
 import routing from './emailpro.routes';
 import services from './emailproServices.module';
+import upgrade from './upgrade';
 
 import './css/exchangeDiagnostic.css';
 
-import { EMAILPRO_MX_CONFIG, EMAILPRO_CONFIG_URL, EMAILPRO_CONFIG } from './emailpro.constants';
+import {
+  EMAILPRO_MX_CONFIG,
+  EMAILPRO_CONFIG_URL,
+  EMAILPRO_CONFIG,
+} from './emailpro.constants';
 
 const moduleName = 'Module.emailpro';
 
@@ -20,6 +25,7 @@ angular
     'ng.ckeditor',
     controllers,
     services,
+    upgrade,
   ])
   .constant('EMAILPRO_MX_CONFIG', EMAILPRO_MX_CONFIG)
   .constant('EMAILPRO_CONFIG_URL', EMAILPRO_CONFIG_URL)

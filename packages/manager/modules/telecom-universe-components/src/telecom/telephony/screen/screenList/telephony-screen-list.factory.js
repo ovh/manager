@@ -14,13 +14,19 @@ export default /* @ngInject */ (OvhApiTelephony) => {
 
     // options check
     if (!screenListOptions.billingAccount) {
-      throw new Error('billingAccount option must be specified when creating a new TucVoipScreenScreenList');
+      throw new Error(
+        'billingAccount option must be specified when creating a new TucVoipScreenScreenList',
+      );
     }
     if (!screenListOptions.serviceName) {
-      throw new Error('serviceName option must be specified when creating a new TucVoipScreenScreenList');
+      throw new Error(
+        'serviceName option must be specified when creating a new TucVoipScreenScreenList',
+      );
     }
     if (!screenListOptions.featureType) {
-      throw new Error('featureType option must be specified when creating a new TucVoipScreenScreenList');
+      throw new Error(
+        'featureType option must be specified when creating a new TucVoipScreenScreenList',
+      );
     }
 
     // mandatory
@@ -31,10 +37,14 @@ export default /* @ngInject */ (OvhApiTelephony) => {
     // check for mandatory field required by ovhPabx feature type
     if (this.featureType === 'ovhPabx') {
       if (!screenListOptions.dialplanId) {
-        throw new Error('dialplanId option must be specified when creating a new TucVoipScreenScreenList');
+        throw new Error(
+          'dialplanId option must be specified when creating a new TucVoipScreenScreenList',
+        );
       }
       if (!screenListOptions.extensionId) {
-        throw new Error('extensionId option must be specified when creating a new TucVoipScreenScreenList');
+        throw new Error(
+          'extensionId option must be specified when creating a new TucVoipScreenScreenList',
+        );
       }
 
       this.dialplanId = screenListOptions.dialplanId;
@@ -45,7 +55,11 @@ export default /* @ngInject */ (OvhApiTelephony) => {
     this.setOptions(screenListOptions);
 
     // other attributes
-    this.id = get(screenListOptions, this.featureType === 'sip' ? 'id' : 'conditionId') || `tmp_${random(now())}`;
+    this.id =
+      get(
+        screenListOptions,
+        this.featureType === 'sip' ? 'id' : 'conditionId',
+      ) || `tmp_${random(now())}`;
     this.state = get(screenListOptions, 'state') || 'OK';
   }
 
@@ -55,14 +69,28 @@ export default /* @ngInject */ (OvhApiTelephony) => {
     =            PROTOTYPE METHODS            =
     ========================================= */
 
-  TucVoipScreenScreenList.prototype.setOptions = function setOptions(screenListOptions) {
+  TucVoipScreenScreenList.prototype.setOptions = function setOptions(
+    screenListOptions,
+  ) {
     const self = this;
 
-    self.callNumber = get(screenListOptions, self.featureType === 'sip' ? 'callNumber' : 'callerIdNumber', null);
-    self.type = get(screenListOptions, self.featureType === 'sip' ? 'type' : 'screenListType', null);
+    self.callNumber = get(
+      screenListOptions,
+      self.featureType === 'sip' ? 'callNumber' : 'callerIdNumber',
+      null,
+    );
+    self.type = get(
+      screenListOptions,
+      self.featureType === 'sip' ? 'type' : 'screenListType',
+      null,
+    );
 
     if (self.featureType !== 'sip') {
-      self.destinationNumber = get(screenListOptions, 'destinationNumber', null);
+      self.destinationNumber = get(
+        screenListOptions,
+        'destinationNumber',
+        null,
+      );
     }
 
     return self;
@@ -74,22 +102,31 @@ export default /* @ngInject */ (OvhApiTelephony) => {
     const self = this;
 
     if (self.featureType !== 'ovhPabx') {
-      throw new Error(`create method is not yet manager for feature type ${self.featureType}`);
+      throw new Error(
+        `create method is not yet manager for feature type ${self.featureType}`,
+      );
     }
 
     self.state = 'CREATING';
 
-    return OvhApiTelephony.OvhPabx().Dialplan().Extension().ConditionScreenList()
+    return OvhApiTelephony.OvhPabx()
+      .Dialplan()
+      .Extension()
+      .ConditionScreenList()
       .v6()
-      .create({
-        billingAccount: self.billingAccount,
-        serviceName: self.serviceName,
-        dialplanId: self.dialplanId,
-        extensionId: self.extensionId,
-      }, {
-        callerIdNumber: self.callNumber,
-        screenListType: self.type,
-      }).$promise.then((screenListOptions) => {
+      .create(
+        {
+          billingAccount: self.billingAccount,
+          serviceName: self.serviceName,
+          dialplanId: self.dialplanId,
+          extensionId: self.extensionId,
+        },
+        {
+          callerIdNumber: self.callNumber,
+          screenListType: self.type,
+        },
+      )
+      .$promise.then((screenListOptions) => {
         self.id = screenListOptions.extensionId;
         self.state = 'OK';
         return self;
@@ -100,12 +137,17 @@ export default /* @ngInject */ (OvhApiTelephony) => {
     const self = this;
 
     if (self.featureType !== 'ovhPabx') {
-      throw new Error(`remove method is not yet manager for feature type ${self.featureType}`);
+      throw new Error(
+        `remove method is not yet manager for feature type ${self.featureType}`,
+      );
     }
 
     self.state = 'DELETING';
 
-    return OvhApiTelephony.OvhPabx().Dialplan().Extension().ConditionScreenList()
+    return OvhApiTelephony.OvhPabx()
+      .Dialplan()
+      .Extension()
+      .ConditionScreenList()
       .v6()
       .remove({
         billingAccount: self.billingAccount,
@@ -113,7 +155,8 @@ export default /* @ngInject */ (OvhApiTelephony) => {
         dialplanId: self.dialplanId,
         extensionId: self.extensionId,
         conditionId: self.id,
-      }).$promise.finally(() => {
+      })
+      .$promise.finally(() => {
         self.state = 'OK';
       });
   };

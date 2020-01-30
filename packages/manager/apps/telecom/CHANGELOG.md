@@ -1,3 +1,108 @@
+## [11.4.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@11.4.1...@ovh-ux/manager-telecom@11.4.2) (2020-01-24)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 239] ([945cc74](https://github.com/ovh/manager/commit/945cc74a7c3d79e754f6ea9f8c2101ad92c22e07))
+
+
+
+## [11.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@11.4.0...@ovh-ux/manager-telecom@11.4.1) (2020-01-21)
+
+
+### Bug Fixes
+
+* **portabilities.delete:** fix route to display delete modal ([#2127](https://github.com/ovh/manager/issues/2127)) ([74b8601](https://github.com/ovh/manager/commit/74b8601987692116e324ad2275cb614369944210))
+
+
+
+# [11.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@11.3.2...@ovh-ux/manager-telecom@11.4.0) (2020-01-21)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 233] ([fbc8f75](https://github.com/ovh/manager/commit/fbc8f7510d7a7177f9f09f50edb89ea272181bb5))
+* **i18n:** add missing translations [CDS 234] ([14021eb](https://github.com/ovh/manager/commit/14021eb5273b4a6fb308b3f46a4eb72ddd5e2cf9))
+* **i18n:** add missing translations [CDS 237] ([67efde3](https://github.com/ovh/manager/commit/67efde34de434103585029f432c175db921d3772))
+* **telephony.alias.portability.order:** add missing translations ([#2098](https://github.com/ovh/manager/issues/2098)) ([df54e01](https://github.com/ovh/manager/commit/df54e0174c93bcc2cb62b58bbc410bf964374d29))
+
+
+### Features
+
+* **telephony.portability:** display uploaded files ([#1900](https://github.com/ovh/manager/issues/1900)) ([fdddd86](https://github.com/ovh/manager/commit/fdddd8612252cb3a2a15149b38227246401bde2f))
+
+
+
+## [11.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@11.3.1...@ovh-ux/manager-telecom@11.3.2) (2020-01-08)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 212] ([1f85592](https://github.com/ovh/manager/commit/1f8559205e170279929e29e4e52d8e255d688b3d))
+* **telephony:** remove height rule on img ([#2028](https://github.com/ovh/manager/issues/2028)) ([dbe1432](https://github.com/ovh/manager/commit/dbe14322955b6b1776b8a0fb4e660cf286e06e08))
+* **telephony.alias.config:** remove agent number edition in agents list ([#2010](https://github.com/ovh/manager/issues/2010)) ([f04336a](https://github.com/ovh/manager/commit/f04336a239881ecc60d2aecd2890b2ca5227eabc))
+* **telephony.line.phone.programmablekeys.edit:** set consistent order ([#2019](https://github.com/ovh/manager/issues/2019)) ([daee22a](https://github.com/ovh/manager/commit/daee22a6eed8a094d77fe21854d401594a09f724))
+
+
+
+## [11.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@11.3.0...@ovh-ux/manager-telecom@11.3.1) (2019-12-19)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 198] ([1aefea2](https://github.com/ovh/manager/commit/1aefea2e3baf06b45e8187f1e6728d415d880314))
+
+
+
+# [11.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@11.2.3...@ovh-ux/manager-telecom@11.3.0) (2019-12-19)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 182] ([de0bbaa](https://github.com/ovh/manager/commit/de0bbaaf4957ef0c73d1c8a8488c04d85dceab51))
+* **i18n:** add missing translations [CDS 183] ([a936e65](https://github.com/ovh/manager/commit/a936e6537c5bd79ffdf8ae22016a6c688c84da32))
+* **i18n:** add missing translations [CDS 184] ([6ec37b2](https://github.com/ovh/manager/commit/6ec37b2226218cecb94307abb01d88ffda824326))
+* **i18n:** add missing translations [CDS 187] ([707ec72](https://github.com/ovh/manager/commit/707ec724fe6852a0c5fa855bfb6911fef977df61))
+* **i18n:** add missing translations [CDS 193] ([9f4801a](https://github.com/ovh/manager/commit/9f4801a3ad577f6e3c9df4d400072237a4589a04))
+* **i18n:** add missing translations [CDS 196] ([acbb2da](https://github.com/ovh/manager/commit/acbb2da34b2d1c2863fd7c2f6cd187b67e065324))
+* rename OVH to OVHcloud in preloading and title ([35fc442](https://github.com/ovh/manager/commit/35fc4420850390e2ad80f322f6d23c87fb6a713a))
+
+
+### Features
+
+* **telecom.sidebar:** add URLs depending on subs ([c6f187a](https://github.com/ovh/manager/commit/c6f187aba8e302cf71d7a8ffd7f70e3530e6e379))
+* add order availability for telecom services ([90c27d8](https://github.com/ovh/manager/commit/90c27d8c986ff20d0519fbde87bb11d3e433aa46))
+* **telecom.sidebar:** allow sms order for FR and ES ([e8aac30](https://github.com/ovh/manager/commit/e8aac30f998dce29284ac277be3eace3644e14de))
+
+
+
+## [11.2.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@11.2.2...@ovh-ux/manager-telecom@11.2.3) (2019-12-18)
+
+
+### Bug Fixes
+
+* **telephony.fax:** retrieve time from oui date picker ([bd5795f](https://github.com/ovh/manager/commit/bd5795fca7503c79b2012f518da8793df93e677c))
+
+
+
+## [11.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@11.2.1...@ovh-ux/manager-telecom@11.2.2) (2019-12-16)
+
+
+### Bug Fixes
+
+* **telephony.fax.campaign:** disable native validation on creation form ([#1947](https://github.com/ovh/manager/issues/1947)) ([e8e86e1](https://github.com/ovh/manager/commit/e8e86e198b6f8c15a5d7e6f081480d05959e5048))
+
+
+
+## [11.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@11.2.0...@ovh-ux/manager-telecom@11.2.1) (2019-12-16)
+
+
+### Bug Fixes
+
+* **telecom.telephony:** bypass API error when loading groups ([#1834](https://github.com/ovh/manager/issues/1834)) ([2acd199](https://github.com/ovh/manager/commit/2acd199347b89b1532d37d0a2e9331f344867498))
+
+
+
 # [11.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@11.1.4...@ovh-ux/manager-telecom@11.2.0) (2019-12-10)
 
 

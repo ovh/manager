@@ -3,7 +3,8 @@ angular.module('managerApp').config(($stateProvider) => {
     url: '/password',
     views: {
       'lineView@telecom.telephony.billingAccount.line': {
-        templateUrl: 'app/telecom/telephony/line/management/password/telecom-telephony-line-management-password.html',
+        templateUrl:
+          'app/telecom/telephony/line/management/password/telecom-telephony-line-management-password.html',
         controller: 'TelecomTelephonyLinePasswordCtrl',
         controllerAs: 'PasswordCtrl',
       },

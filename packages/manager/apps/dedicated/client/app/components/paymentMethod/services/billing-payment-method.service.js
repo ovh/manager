@@ -8,12 +8,20 @@ import keys from 'lodash/keys';
 import pickBy from 'lodash/pickBy';
 import startsWith from 'lodash/startsWith';
 
-/* eslint-disable class-methods-use-this */
+/* eslint-disable class-methods-use-this, no-underscore-dangle */
 angular.module('services').service(
   'BillingPaymentMethodService',
   class BillingPaymentMethod {
-    constructor($q, $http, $timeout, $httpParamSerializerJQLike, MePaymentMethodApi,
-      BillingVantivInstance, BILLING_PAYMENT_METHOD, BILLING_VANTIV) {
+    constructor(
+      $q,
+      $http,
+      $timeout,
+      $httpParamSerializerJQLike,
+      MePaymentMethodApi,
+      BillingVantivInstance,
+      BILLING_PAYMENT_METHOD,
+      BILLING_VANTIV,
+    ) {
       this.$q = $q;
       this.$http = $http;
       this.$timeout = $timeout;
@@ -35,25 +43,28 @@ angular.module('services').service(
     }
 
     filterOnlyOneWithId(paymentMethods) {
-      return filter(paymentMethods, paymentMethod => has(paymentMethod, 'id'));
+      return filter(paymentMethods, (paymentMethod) =>
+        has(paymentMethod, 'id'),
+      );
     }
 
     _pickAvailablePaymentTypes(data) {
-      return keys(pickBy(data, status => status === true));
+      return keys(pickBy(data, (status) => status === true));
     }
 
     _filterNonExcludedPaymentTypes(paymentTypes) {
       return filter(
         paymentTypes,
-        paymentType => !includes(
-          this.BILLING_PAYMENT_METHOD.EXCLUDED_AUTOMATIC_TYPES_FOR_CREATION,
-          paymentType,
-        ),
+        (paymentType) =>
+          !includes(
+            this.BILLING_PAYMENT_METHOD.EXCLUDED_AUTOMATIC_TYPES_FOR_CREATION,
+            paymentType,
+          ),
       );
     }
 
     _filterNonAngularValues(values) {
-      return filter(values, value => !startsWith(value, '$'));
+      return filter(values, (value) => !startsWith(value, '$'));
     }
 
     getAvailable() {
@@ -108,16 +119,16 @@ angular.module('services').service(
           if (timeoutDate.isAfter(new Date())) {
             // If status has not changed we need to try again but later
             const interval = this.BILLING_PAYMENT_METHOD.UPDATE_POLL.INTERVAL;
-            return this.$timeout(() => this.pollStatusChanged(
-              id,
-              timeoutDate,
-              initialStatus,
-            ), interval);
+            return this.$timeout(
+              () => this.pollStatusChanged(id, timeoutDate, initialStatus),
+              interval,
+            );
           }
 
           return this.$q.reject({
             context: 'vantiv',
-            message: "Payment method status couldn't be refreshed in the expected time.",
+            message:
+              "Payment method status couldn't be refreshed in the expected time.",
           });
         }
         return data;
@@ -143,19 +154,28 @@ angular.module('services').service(
     isCardValidationNumberVantivError(error) {
       const errorCode = this.getVantivErrorCode(error);
 
-      return includes(this.BILLING_VANTIV.CARD_VALIDATION_NUMBER_ERRORS, errorCode);
+      return includes(
+        this.BILLING_VANTIV.CARD_VALIDATION_NUMBER_ERRORS,
+        errorCode,
+      );
     }
 
     isIframeHtmlMissingVantivError(error) {
       const errorCode = this.getVantivErrorCode(error);
 
-      return errorCode === this.BILLING_VANTIV.RESPONSES_CODE.EPROTECT_IFRAME_HTML_FAILED_TO_LOAD;
+      return (
+        errorCode ===
+        this.BILLING_VANTIV.RESPONSES_CODE.EPROTECT_IFRAME_HTML_FAILED_TO_LOAD
+      );
     }
 
     isIframeCssMissingVantivError(error) {
       const errorCode = this.getVantivErrorCode(error);
 
-      return errorCode === this.BILLING_VANTIV.RESPONSES_CODE.EPROTECT_IFRAME_CSS_FAILED_TO_LOAD;
+      return (
+        errorCode ===
+        this.BILLING_VANTIV.RESPONSES_CODE.EPROTECT_IFRAME_CSS_FAILED_TO_LOAD
+      );
     }
 
     add(paymentMethod) {
@@ -167,15 +187,23 @@ angular.module('services').service(
       const submitUrl = get(paymentMethod, 'submitUrl');
       const paymentMethodId = this.extractPaymentMethodId(submitUrl);
 
-      return this.BillingVantivInstance.submit(`payment_mean_${paymentMethodId}`)
-        .then(response => this.submit(submitUrl, response))
+      return this.BillingVantivInstance.submit(
+        `payment_mean_${paymentMethodId}`,
+      )
+        .then((response) => this.submit(submitUrl, response))
         .then(() => {
-          const timeoutDate = moment().add(this.BILLING_PAYMENT_METHOD.UPDATE_POLL.TIMEOUT, 'ms');
+          const timeoutDate = moment().add(
+            this.BILLING_PAYMENT_METHOD.UPDATE_POLL.TIMEOUT,
+            'ms',
+          );
           return this.pollStatusChanged(id, timeoutDate);
         })
         .then((response) => {
           if (response.status !== 'VALID') {
-            return this.$q.reject({ context: 'vantiv', message: 'Invalid card, please try with another one.' });
+            return this.$q.reject({
+              context: 'vantiv',
+              message: 'Invalid card, please try with another one.',
+            });
           }
           return response;
         })
@@ -183,7 +211,7 @@ angular.module('services').service(
           paymentType: paymentMethod.paymentType,
           id,
         }))
-        .catch(error => this.delete(id).finally(() => this.$q.reject(error)));
+        .catch((error) => this.delete(id).finally(() => this.$q.reject(error)));
     }
 
     // Those rules came from https://en.wikipedia.org/wiki/Payment_card_number
@@ -205,8 +233,10 @@ angular.module('services').service(
         return this.cardTypes.AMERICAN_EXPRESS;
       }
 
-      if ((firstTwoDigitsNumber >= 51 && firstTwoDigitsNumber <= 55)
-        || (firstFourDigitsNumber >= 2221 && firstFourDigitsNumber <= 2720)) {
+      if (
+        (firstTwoDigitsNumber >= 51 && firstTwoDigitsNumber <= 55) ||
+        (firstFourDigitsNumber >= 2221 && firstFourDigitsNumber <= 2720)
+      ) {
         return this.cardTypes.MASTERCARD;
       }
 
@@ -240,7 +270,9 @@ angular.module('services').service(
           hiddenCardNumber = `XXXX XXXX XXXX ${splitCardNumber[1]}`;
           break;
         default:
-          throw new Error('Unrecognized card number.  Expected formats : XXXXXX.XXXX or .XXXX');
+          throw new Error(
+            'Unrecognized card number.  Expected formats : XXXXXX.XXXX or .XXXX',
+          );
       }
 
       return {
@@ -251,4 +283,4 @@ angular.module('services').service(
     }
   },
 );
-/* eslint-enable class-methods-use-this */
+/* eslint-enable class-methods-use-this, no-underscore-dangle */

@@ -2,7 +2,6 @@ import clone from 'lodash/clone';
 import find from 'lodash/find';
 import includes from 'lodash/includes';
 
-/* global angular */
 angular.module('App').controller(
   'PrivateDatabaseConfigurationsCtrl',
   class PrivateDatabaseConfigurationsCtrl {
@@ -39,7 +38,9 @@ angular.module('App').controller(
       return this.privateDatabaseService
         .getConfigurationDetails(this.productId)
         .then((config) => {
-          this.configurations = config.details.map(field => this.convertAvailableValues(field));
+          this.configurations = config.details.map((field) =>
+            this.convertAvailableValues(field),
+          );
         })
         .catch((error) => {
           this.alerter.error(
@@ -57,7 +58,7 @@ angular.module('App').controller(
       const field = clone(opts);
 
       field.description = this.getFieldDescriptionTranslated(field);
-      field.availableValues = field.availableValues.map(value => ({
+      field.availableValues = field.availableValues.map((value) => ({
         id: value,
         text: value,
       }));
@@ -101,7 +102,7 @@ angular.module('App').controller(
       }
       this.loading = true;
       this.edit.value = false;
-      const parameters = this.configurations.map(conf => ({
+      const parameters = this.configurations.map((conf) => ({
         key: conf.key,
         value: conf.selectedValue.id,
       }));
@@ -113,7 +114,9 @@ angular.module('App').controller(
             this.$translate.instant('privateDatabase_configuration_reboot'),
             this.$scope.alerts.main,
           );
-          return this.privateDatabaseService.pollConfigurationChange(this.productId);
+          return this.privateDatabaseService.pollConfigurationChange(
+            this.productId,
+          );
         })
         .then(() => {
           this.alerter.success(

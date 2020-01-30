@@ -14,8 +14,17 @@ angular.module('App').controller(
      * @param WucEmails
      * @param Alerter
      */
-    constructor($scope, $location, $stateParams, $translate, WucEmails, Alerter) {
+    constructor(
+      $scope,
+      $state,
+      $location,
+      $stateParams,
+      $translate,
+      WucEmails,
+      Alerter,
+    ) {
       this.$scope = $scope;
+      this.$state = $state;
       this.$location = $location;
       this.$stateParams = $stateParams;
       this.$translate = $translate;
@@ -29,7 +38,9 @@ angular.module('App').controller(
       this.tabMenu = null;
 
       this.setSelectedTab = this.setSelectedTab.bind(this);
-      this.setSelectedTab(isString(this.$stateParams.tab) && this.$stateParams.tab.toUpperCase());
+      this.setSelectedTab(
+        isString(this.$stateParams.tab) && this.$stateParams.tab.toUpperCase(),
+      );
 
       this.$scope.$on('emails.canTerminate', () => {
         this.tabMenu = {
@@ -37,9 +48,7 @@ angular.module('App').controller(
           items: [
             {
               label: this.$translate.instant('email_tab_menu_resiliate'),
-              target: `#/billing/autoRenew?selectedType=EMAIL_DOMAIN&searchText=${
-                this.$stateParams.productId
-              }`,
+              target: `#/billing/autoRenew?selectedType=EMAIL_DOMAIN&searchText=${this.$stateParams.productId}`,
               type: 'LINK',
               styles: 'text-warning',
             },

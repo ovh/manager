@@ -9,18 +9,15 @@ export default /* @ngInject */ ($stateProvider) => {
     layout: 'modal',
     translations: { value: ['.'], format: 'json' },
     resolve: {
-      email: /* @ngInject */ (
-        BillingAutoRenew,
-        name,
-      ) => BillingAutoRenew.getEmailInfos(name),
-      isHosting: /* @ngInject */ email => ['hosting'].includes(email.offer),
-      goBack: /* @ngInject */ goToAutorenew => goToAutorenew,
-      name: /* @ngInject */ $transition$ => $transition$.params().name,
-      serviceId: /* @ngInject */ $transition$ => $transition$.params().serviceId,
-      terminateEmail: /* @ngInject */ (
-        BillingAutoRenew,
-        serviceId,
-      ) => () => BillingAutoRenew.terminateEmail(serviceId),
+      email: /* @ngInject */ (BillingAutoRenew, name) =>
+        BillingAutoRenew.getEmailInfos(name),
+      isHosting: /* @ngInject */ (email) => ['hosting'].includes(email.offer),
+      goBack: /* @ngInject */ (goToAutorenew) => goToAutorenew,
+      name: /* @ngInject */ ($transition$) => $transition$.params().name,
+      serviceId: /* @ngInject */ ($transition$) =>
+        $transition$.params().serviceId,
+      terminateEmail: /* @ngInject */ (BillingAutoRenew, serviceId) => () =>
+        BillingAutoRenew.terminateEmail(serviceId),
     },
   });
 };

@@ -48,7 +48,8 @@ angular.module('controllers').controller(
         );
       });
 
-      this.$scope.loadRedirection = (count, offset) => this.loadRedirection(count, offset);
+      this.$scope.loadRedirection = (count, offset) =>
+        this.loadRedirection(count, offset);
     }
 
     loadRedirection(count, offset) {
@@ -71,10 +72,7 @@ angular.module('controllers').controller(
           this.forceRefresh = false;
           this.redirectionList = results;
 
-          if (
-            has(results, 'list.results')
-            && !isEmpty(results.list.results)
-          ) {
+          if (has(results, 'list.results') && !isEmpty(results.list.results)) {
             this.hasResult = true;
           }
         })
@@ -141,9 +139,7 @@ angular.module('controllers').controller(
 
       const separator = redirection.subDomainDisplayName === '' ? '' : '.';
 
-      return `${redirection.subDomainDisplayName}${separator}${
-        redirection.zoneDisplayName
-      }`;
+      return `${redirection.subDomainDisplayName}${separator}${redirection.zoneDisplayName}`;
     }
 
     // Export CSV -------------------------------------------------------------
@@ -161,9 +157,15 @@ angular.module('controllers').controller(
           const datasToReturn = [
             [
               '',
-              this.$translate.instant('domain_tab_REDIRECTION_table_headers_field'),
-              this.$translate.instant('domain_tab_REDIRECTION_table_headers_type'),
-              this.$translate.instant('domain_tab_REDIRECTION_table_headers_target'),
+              this.$translate.instant(
+                'domain_tab_REDIRECTION_table_headers_field',
+              ),
+              this.$translate.instant(
+                'domain_tab_REDIRECTION_table_headers_type',
+              ),
+              this.$translate.instant(
+                'domain_tab_REDIRECTION_table_headers_target',
+              ),
             ],
           ];
 
@@ -171,7 +173,9 @@ angular.module('controllers').controller(
             datasToReturn.push([
               redirection.fieldDisplayType,
               this.constructor.getDomain(redirection),
-              this.$translate.instant(`domain_tab_REDIRECTION_type_${redirection.fieldDisplayType}`),
+              this.$translate.instant(
+                `domain_tab_REDIRECTION_type_${redirection.fieldDisplayType}`,
+              ),
               redirection.targetDisplayName,
             ]);
           });

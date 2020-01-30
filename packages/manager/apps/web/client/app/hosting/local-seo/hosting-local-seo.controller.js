@@ -54,10 +54,15 @@ angular.module('App').controller(
           serviceInfo: this.Hosting.getServiceInfos(this.productId),
           user: this.User.getUser(),
         })
-        .then(({ serviceInfo, user }) => serviceInfo.contactAdmin === user.nichandle)
+        .then(
+          ({ serviceInfo, user }) =>
+            serviceInfo.contactAdmin === user.nichandle,
+        )
         .catch((err) => {
           this.Alerter.alertFromSWS(
-            this.$translate.instant('common_serviceinfos_error', { t0: this.productId }),
+            this.$translate.instant('common_serviceinfos_error', {
+              t0: this.productId,
+            }),
             err,
             this.$scope.alerts.main,
           );
@@ -70,39 +75,45 @@ angular.module('App').controller(
     }
 
     loadAccounts() {
-      return this.getAccounts()
-        .then((accounts) => {
-          this.accounts = accounts;
-        });
+      return this.getAccounts().then((accounts) => {
+        this.accounts = accounts;
+      });
     }
 
     getAccounts() {
-      return this.HostingLocalSeo.getAccounts(this.productId)
-        .then(accounts => this.$q.all(
-          map(accounts, account => this.HostingLocalSeo.getAccount(this.productId, account)),
-        ));
+      return this.HostingLocalSeo.getAccounts(this.productId).then((accounts) =>
+        this.$q.all(
+          map(accounts, (account) =>
+            this.HostingLocalSeo.getAccount(this.productId, account),
+          ),
+        ),
+      );
     }
 
     loadLocations() {
       this.loading.locations = true;
-      return this.$q.when().then(() => {
-        if (!isEmpty(this.accounts)) {
-          return this.getLocations();
-        }
-        return { data: [], meta: { totalCount: 0 } };
-      }).finally(() => {
-        this.loading.locations = false;
-      });
+      return this.$q
+        .when()
+        .then(() => {
+          if (!isEmpty(this.accounts)) {
+            return this.getLocations();
+          }
+          return { data: [], meta: { totalCount: 0 } };
+        })
+        .finally(() => {
+          this.loading.locations = false;
+        });
     }
 
     getLocations() {
-      return this.HostingLocalSeo.getLocations(this.productId)
-        .then(locationIds => ({
-          data: map(locationIds, id => ({ id })),
+      return this.HostingLocalSeo.getLocations(this.productId).then(
+        (locationIds) => ({
+          data: map(locationIds, (id) => ({ id })),
           meta: {
             totalCount: locationIds.length,
           },
-        }));
+        }),
+      );
     }
 
     hasAccounts() {
@@ -115,8 +126,8 @@ angular.module('App').controller(
 
     transformItem(row) {
       this.loading.locations = true;
-      return this.HostingLocalSeo.getLocation(this.productId, row.id)
-        .then((result) => {
+      return this.HostingLocalSeo.getLocation(this.productId, row.id).then(
+        (result) => {
           const location = angular.copy(result);
           const accountId = get(location, 'accountId');
           if (accountId) {
@@ -126,7 +137,8 @@ angular.module('App').controller(
             }
           }
           return location;
-        });
+        },
+      );
     }
 
     goToInterface(location) {
@@ -142,10 +154,11 @@ angular.module('App').controller(
       */
       const win = this.$window.open('', '_blank');
       win.opener = null;
-      this.HostingLocalSeo.login(this.productId, location.accountId)
-        .then((token) => {
+      this.HostingLocalSeo.login(this.productId, location.accountId).then(
+        (token) => {
           win.location = `https://localseo.hosting.ovh.net/${lang}/app/ovh?access_token=${token}`;
-        });
+        },
+      );
     }
   },
 );

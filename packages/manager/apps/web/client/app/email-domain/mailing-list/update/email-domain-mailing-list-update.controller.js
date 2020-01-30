@@ -13,7 +13,15 @@ angular.module('App').controller(
      * @param MailingLists
      * @param User
      */
-    constructor($scope, $q, $stateParams, $translate, Alerter, MailingLists, User) {
+    constructor(
+      $scope,
+      $q,
+      $stateParams,
+      $translate,
+      Alerter,
+      MailingLists,
+      User,
+    ) {
       this.$scope = $scope;
       this.$q = $q;
       this.$stateParams = $stateParams;
@@ -25,10 +33,11 @@ angular.module('App').controller(
 
     $onInit() {
       this.mailingList = angular.copy(this.$scope.currentActionData);
-      this.mailingList.mlModerationMsg = !this.mailingList.options.moderatorMessage
-        && !this.mailingList.options.usersPostOnly
-        ? null
-        : this.mailingList.options.moderatorMessage;
+      this.mailingList.mlModerationMsg =
+        !this.mailingList.options.moderatorMessage &&
+        !this.mailingList.options.usersPostOnly
+          ? null
+          : this.mailingList.options.moderatorMessage;
 
       this.constants = {
         MAILING_LIST: 'mailinglist',
@@ -48,7 +57,9 @@ angular.module('App').controller(
       return this.$q
         .all({
           models: this.MailingLists.getModels(),
-          limits: this.MailingLists.getMailingListLimits(this.mailingList.mlModerationMsg),
+          limits: this.MailingLists.getMailingListLimits(
+            this.mailingList.mlModerationMsg,
+          ),
         })
         .then(({ models, limits }) => {
           this.languages = models.models['domain.DomainMlLanguageEnum'].enum;
@@ -75,9 +86,10 @@ angular.module('App').controller(
     }
 
     selectReplyTo() {
-      this.mailingList.replyTo = this.replyToSelector === this.constants.REPLY_TO_EMAIL
-        ? ''
-        : this.replyToSelector;
+      this.mailingList.replyTo =
+        this.replyToSelector === this.constants.REPLY_TO_EMAIL
+          ? ''
+          : this.replyToSelector;
     }
 
     selectModerationMsg() {
@@ -111,15 +123,21 @@ angular.module('App').controller(
           },
         },
       )
-        .then(() => this.Alerter.success(
-          this.$translate.instant('mailing_list_tab_modal_update_list_success'),
-          this.$scope.alerts.main,
-        ))
-        .catch(err => this.Alerter.alertFromSWS(
-          this.$translate.instant('mailing_list_tab_modal_update_list_error'),
-          get(err, 'data', err),
-          this.$scope.alerts.main,
-        ))
+        .then(() =>
+          this.Alerter.success(
+            this.$translate.instant(
+              'mailing_list_tab_modal_update_list_success',
+            ),
+            this.$scope.alerts.main,
+          ),
+        )
+        .catch((err) =>
+          this.Alerter.alertFromSWS(
+            this.$translate.instant('mailing_list_tab_modal_update_list_error'),
+            get(err, 'data', err),
+            this.$scope.alerts.main,
+          ),
+        )
         .finally(() => {
           this.loading = false;
           this.$scope.resetAction();

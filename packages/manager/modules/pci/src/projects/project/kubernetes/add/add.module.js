@@ -13,14 +13,15 @@ import routing from './add.routing';
 
 const moduleName = 'ovhManagerPciProjectKubernetesAdd';
 
-angular.module(moduleName, [
-  'ngOvhCloudUniverseComponents',
-  'ngOvhSwimmingPoll',
-  'oui',
-  'ovh-api-services',
-  regionsList,
-  versionsList,
-])
+angular
+  .module(moduleName, [
+    'ngOvhCloudUniverseComponents',
+    'ngOvhSwimmingPoll',
+    'oui',
+    'ovh-api-services',
+    regionsList,
+    versionsList,
+  ])
   .config(routing)
   .component('ovhManagerPciProjectKubernetesAdd', component)
   .run(/* @ngTranslationsInject:json ./translations */);

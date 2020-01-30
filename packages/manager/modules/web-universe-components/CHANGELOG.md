@@ -1,3 +1,54 @@
+# [7.4.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@7.3.0...@ovh-ux/ng-ovh-web-universe-components@7.4.0) (2020-01-24)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 238] ([735f36c](https://github.com/ovh/manager/commit/735f36c6ec36a4555e145d567360fb2fa4ad6b5d))
+* **i18n:** add missing translations [CDS 239] ([945cc74](https://github.com/ovh/manager/commit/945cc74a7c3d79e754f6ea9f8c2101ad92c22e07))
+
+
+### Features
+
+* **web:** private sql upgrade prorata ([#2087](https://github.com/ovh/manager/issues/2087)) ([001ef60](https://github.com/ovh/manager/commit/001ef601a0041de0d61eb327c18d9853abc18eb9))
+
+
+
+# [7.3.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@7.2.2...@ovh-ux/ng-ovh-web-universe-components@7.3.0) (2020-01-21)
+
+
+### Features
+
+* **web-universe-components:** add prorata duration translation ([71f6ea4](https://github.com/ovh/manager/commit/71f6ea4ef95dcbcaf8173eac93fa9aef92bcf494))
+
+
+
+## [7.2.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@7.2.1...@ovh-ux/ng-ovh-web-universe-components@7.2.2) (2020-01-20)
+
+
+### Bug Fixes
+
+* **wuc.order-cart:** send api call params according to schema ([f3f0af2](https://github.com/ovh/manager/commit/f3f0af2e755603d4967fabcc8b05ecf909a1309a))
+
+
+
+## [7.2.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@7.2.0...@ovh-ux/ng-ovh-web-universe-components@7.2.1) (2020-01-08)
+
+
+### Bug Fixes
+
+* **wuc:** order cart service ([#2043](https://github.com/ovh/manager/issues/2043)) ([aa1048b](https://github.com/ovh/manager/commit/aa1048bd36f765d262459777a0d129db018a5612))
+
+
+
+# [7.2.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@7.1.5...@ovh-ux/ng-ovh-web-universe-components@7.2.0) (2019-12-19)
+
+
+### Features
+
+* **order.cart:** add wucOrderCartService service ([#1933](https://github.com/ovh/manager/issues/1933)) ([6e08c2c](https://github.com/ovh/manager/commit/6e08c2c0f211dcbad0dbfa72fb354a250c0dafea))
+
+
+
 ## [7.1.5](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@7.1.4...@ovh-ux/ng-ovh-web-universe-components@7.1.5) (2019-11-22)
 
 

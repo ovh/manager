@@ -38,7 +38,7 @@ export default class {
     this.getTasks();
 
     this.$scope.$watch('TaskCtrl.allTasks.filter.page', (newPage, oldPage) => {
-      if (newPage && (newPage !== oldPage)) {
+      if (newPage && newPage !== oldPage) {
         this.getTasks();
       }
     });
@@ -46,24 +46,26 @@ export default class {
 
   getTasks() {
     if (this.allTasks.sortby) {
-      this.allTasks.filter.sort = `${this.allTasks.sortby} ${this.allTasks.reverse ? 'ASC' : 'DESC'}`;
+      this.allTasks.filter.sort = `${this.allTasks.sortby} ${
+        this.allTasks.reverse ? 'ASC' : 'DESC'
+      }`;
     }
     this.allTasks.loading = true;
     this.allTasks.result.data = [];
 
-    return this.OvhApiPackXdslTask
-      .Aapi()
+    return this.OvhApiPackXdslTask.Aapi()
       .detailsAll(this.allTasks.filter)
-      .$promise
-      .catch(error => new this.TucToastError(error))
-      .then(data => map(data, task => ({
-        ...task,
-        status: {
-          icon: this.statusInfo[task.status].icon,
-          name: task.status,
-          tip: this.$translate.instant(`telecom_task_${task.status}`),
-        },
-      })))
+      .$promise.catch((error) => new this.TucToastError(error))
+      .then((data) =>
+        map(data, (task) => ({
+          ...task,
+          status: {
+            icon: this.statusInfo[task.status].icon,
+            name: task.status,
+            tip: this.$translate.instant(`telecom_task_${task.status}`),
+          },
+        })),
+      )
       .then((tasks) => {
         this.allTasks.result.data = tasks;
       })

@@ -5,8 +5,12 @@ import map from 'lodash/map';
 export default class MicrosoftOfficeLicenseConsumptionCtrl {
   /* @ngInject */
   constructor(
-    $stateParams, $scope, $translate,
-    MicrosoftOfficeLicenseService, WucChartjsFactory, OFFICE_LICENSE_CONSUMPTION,
+    $stateParams,
+    $scope,
+    $translate,
+    MicrosoftOfficeLicenseService,
+    WucChartjsFactory,
+    OFFICE_LICENSE_CONSUMPTION,
   ) {
     this.$stateParams = $stateParams;
     this.$scope = $scope;
@@ -34,7 +38,8 @@ export default class MicrosoftOfficeLicenseConsumptionCtrl {
     this.stats = {};
     this.loaders.charts = true;
 
-    return this.licenseService.getServiceInfos(this.currentLicense)
+    return this.licenseService
+      .getServiceInfos(this.currentLicense)
       .then((response) => {
         if (response.creation) {
           this.renewDate = moment(response.creation).get('date');
@@ -42,7 +47,9 @@ export default class MicrosoftOfficeLicenseConsumptionCtrl {
           this.renewDate = 1;
         }
       })
-      .catch(() => { this.renewDate = 1; })
+      .catch(() => {
+        this.renewDate = 1;
+      })
       .finally(() => this.getStat());
   }
 
@@ -52,14 +59,17 @@ export default class MicrosoftOfficeLicenseConsumptionCtrl {
     this.errorMessage = '';
     this.stats = {};
 
-    return this.licenseService.consumption({
-      serviceName: this.currentLicense,
-      from: interval.fromDate.format(),
-      to: interval.toDate.format(),
-    })
+    return this.licenseService
+      .consumption({
+        serviceName: this.currentLicense,
+        from: interval.fromDate.format(),
+        to: interval.toDate.format(),
+      })
       .then((series) => {
         this.stats = series;
-        this.stats.title.text = this.$translate.instant(`microsoft_office_license_usage_period_${this.selectedPeriod}`);
+        this.stats.title.text = this.$translate.instant(
+          `microsoft_office_license_usage_period_${this.selectedPeriod}`,
+        );
 
         this.chart = new this.WucChartjsFactory(
           angular.copy(this.constant.OFFICE_LICENSE_CONSUMPTION.chart),
@@ -70,7 +80,7 @@ export default class MicrosoftOfficeLicenseConsumptionCtrl {
         angular.forEach(this.stats.series, (serie) => {
           this.chart.addSerie(
             serie.name,
-            map(serie.data, point => ({
+            map(serie.data, (point) => ({
               x: point[0],
               y: point[1],
             })),
@@ -83,7 +93,9 @@ export default class MicrosoftOfficeLicenseConsumptionCtrl {
           );
         });
       })
-      .catch((err) => { this.errorMessage = err.message; })
+      .catch((err) => {
+        this.errorMessage = err.message;
+      })
       .finally(() => {
         this.loaders.charts = false;
       });
@@ -96,17 +108,23 @@ export default class MicrosoftOfficeLicenseConsumptionCtrl {
 
   static calculateExpirationDate(day, monthOffset = 0) {
     const month = moment().add(monthOffset, 'months');
-    const expirationDate = moment(month).set('date', day).subtract(1, 'days');
+    const expirationDate = moment(month)
+      .set('date', day)
+      .subtract(1, 'days');
     const maxExpirationDate = moment(month).endOf('month');
 
     return moment.min(expirationDate, maxExpirationDate).endOf('day');
   }
 
   getRenewalInterval(period) {
-    const expirationDate = this.constructor.calculateExpirationDate(this.renewDate, 0);
+    const expirationDate = this.constructor.calculateExpirationDate(
+      this.renewDate,
+      0,
+    );
     const isRenewDateComingUp = expirationDate.isAfter();
-    let startingMonthOffset = this.periods
-      .filter(currentPeriod => currentPeriod.key === period)[0].value;
+    let startingMonthOffset = this.periods.filter(
+      (currentPeriod) => currentPeriod.key === period,
+    )[0].value;
     let endingMonthOffset = period === 'last' ? -1 : 0;
 
     if (!isRenewDateComingUp) {
@@ -115,8 +133,14 @@ export default class MicrosoftOfficeLicenseConsumptionCtrl {
     }
 
     return {
-      fromDate: this.calculateRenewalDate(this.renewDate, 0 - startingMonthOffset),
-      toDate: this.constructor.calculateExpirationDate(this.renewDate, endingMonthOffset),
+      fromDate: this.calculateRenewalDate(
+        this.renewDate,
+        0 - startingMonthOffset,
+      ),
+      toDate: this.constructor.calculateExpirationDate(
+        this.renewDate,
+        endingMonthOffset,
+      ),
     };
   }
 }

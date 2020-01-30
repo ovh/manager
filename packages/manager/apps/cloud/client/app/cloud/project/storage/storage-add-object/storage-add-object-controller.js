@@ -1,7 +1,8 @@
 import endsWith from 'lodash/endsWith';
 
-angular.module('managerApp').controller('RA.storage.addObject',
-  ($scope, $uibModalInstance) => {
+angular
+  .module('managerApp')
+  .controller('RA.storage.addObject', ($scope, $uibModalInstance) => {
     $scope.form = {
       prefix: '/',
     };

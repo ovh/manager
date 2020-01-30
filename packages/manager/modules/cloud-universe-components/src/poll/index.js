@@ -7,9 +7,7 @@ import ovhService from './ovh/service';
 const moduleName = 'cucCommon';
 
 angular
-  .module(moduleName, [
-    'ui.router',
-  ])
+  .module(moduleName, ['ui.router'])
   .service('CucCloudPoll', service)
   .service('CucOvhPoll', ovhService);
 

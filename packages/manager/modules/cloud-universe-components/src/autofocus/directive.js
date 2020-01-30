@@ -1,4 +1,4 @@
-export default /* @ngInject */ $timeout => ({
+export default /* @ngInject */ ($timeout) => ({
   restrict: 'A',
   link($scope, $element) {
     $timeout(() => {

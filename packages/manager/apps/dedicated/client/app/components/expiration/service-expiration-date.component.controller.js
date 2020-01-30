@@ -20,7 +20,9 @@ import isString from 'lodash/isString';
     }
 
     getRenewUrl() {
-      return this.coreConfig.getRegion() === 'CA' ? this.getOrderUrl() : this.getAutoRenewUrl();
+      return this.coreConfig.getRegion() === 'CA'
+        ? this.getOrderUrl()
+        : this.getAutoRenewUrl();
     }
 
     getOrderUrl() {
@@ -39,14 +41,24 @@ import isString from 'lodash/isString';
 
     getDate() {
       if (this.isAutoRenew()) {
-        return moment(this.serviceInfos.expiration).add(1, 'days').format();
+        return moment(this.serviceInfos.expiration)
+          .add(1, 'days')
+          .format();
       }
       return this.serviceInfos.expiration;
     }
 
     isAutoRenew() {
-      return get(this.serviceInfos, 'renew.automatic') || get(this.serviceInfos, 'renew.forced');
+      return (
+        get(this.serviceInfos, 'renew.automatic') ||
+        get(this.serviceInfos, 'renew.forced')
+      );
     }
   }
-  angular.module('directives').controller('ServiceExpirationDateComponentCtrl', ServiceExpirationDateComponentCtrl);
+  angular
+    .module('directives')
+    .controller(
+      'ServiceExpirationDateComponentCtrl',
+      ServiceExpirationDateComponentCtrl,
+    );
 })();

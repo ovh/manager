@@ -1,12 +1,21 @@
-angular.module('managerApp')
+angular
+  .module('managerApp')
   .run(($rootScope, SidebarMenu) => {
     $rootScope.$on('sms_updateName', (event, serviceId, serviceName) => {
-      SidebarMenu.updateItemDisplay({
-        title: serviceName,
-      }, serviceId, 'telecom-sms-section');
+      SidebarMenu.updateItemDisplay(
+        {
+          title: serviceName,
+        },
+        serviceId,
+        'telecom-sms-section',
+      );
     });
   })
-  .service('SmsSidebar', function SmsSidebar($translate, SidebarMenu, TucSmsMediator) {
+  .service('SmsSidebar', function SmsSidebar(
+    $translate,
+    SidebarMenu,
+    TucSmsMediator,
+  ) {
     const self = this;
 
     self.mainSectionItem = null;
@@ -18,14 +27,17 @@ angular.module('managerApp')
     self.loadSmsMainSection = function loadSmsMainSection() {
       return TucSmsMediator.initAll().then((smsDetails) => {
         angular.forEach(smsDetails, (smsDetail) => {
-          SidebarMenu.addMenuItem({
-            id: smsDetail.name,
-            title: smsDetail.description || smsDetail.name,
-            state: 'sms.service.dashboard',
-            stateParams: {
-              serviceName: smsDetail.name,
+          SidebarMenu.addMenuItem(
+            {
+              id: smsDetail.name,
+              title: smsDetail.description || smsDetail.name,
+              state: 'sms.service.dashboard',
+              stateParams: {
+                serviceName: smsDetail.name,
+              },
             },
-          }, self.mainSectionItem);
+            self.mainSectionItem,
+          );
         });
       });
     };
@@ -37,7 +49,7 @@ angular.module('managerApp')
       ====================================== */
 
     self.init = function init(expand) {
-      self.mainSectionItem = SidebarMenu.addMenuItem(Object.assign({
+      self.mainSectionItem = SidebarMenu.addMenuItem({
         title: $translate.instant('telecom_sidebar_section_sms'),
         error: $translate.instant('telecom_sidebar_load_error'),
         id: 'telecom-sms-section',
@@ -46,7 +58,10 @@ angular.module('managerApp')
         allowSubItems: !expand,
         allowSearch: !expand,
         loadOnState: 'sms',
-      }, expand ? { state: 'sms.index' } : { onLoad: self.loadSmsMainSection }));
+        ...(expand
+          ? { state: 'sms.index' }
+          : { onLoad: self.loadSmsMainSection }),
+      });
 
       return self.mainSectionItem;
     };

@@ -1,173 +1,343 @@
 <form class="form-horizontal" name="ctrl.zoneRecordForm">
-
     <div data-ng-include="'domain/zone/record/header.html'"></div>
 
     <!-- Latitude -->
     <div class="form-group">
-        <label class="control-label col-md-4 required" for="lat_deg"
-               data-translate="domain_configuration_dns_entry_add_lat_deg"></label>
+        <label
+            class="control-label col-md-4 required"
+            for="lat_deg"
+            data-translate="domain_configuration_dns_entry_add_lat_deg"
+        ></label>
         <div class="col-md-3">
-            <input type="number" class="form-control" id="lat_deg" name="lat_deg" step="1" required
-                   data-ng-change="ctrl.setTargetValue('LOC')"
-                   data-ng-model="ctrl.model.target.lat_deg"
-                   data-ng-min="0" min="0"
-                   data-ng-max="90" max="90">
+            <input
+                type="number"
+                class="form-control"
+                id="lat_deg"
+                name="lat_deg"
+                step="1"
+                required
+                data-ng-change="ctrl.setTargetValue('LOC')"
+                data-ng-model="ctrl.model.target.lat_deg"
+                data-ng-min="0"
+                min="0"
+                data-ng-max="90"
+                max="90"
+            />
         </div>
     </div>
 
     <div class="form-group">
-        <label class="control-label col-md-4 required" for="lat_min"
-               data-translate="domain_configuration_dns_entry_add_lat_min"></label>
+        <label
+            class="control-label col-md-4 required"
+            for="lat_min"
+            data-translate="domain_configuration_dns_entry_add_lat_min"
+        ></label>
         <div class="col-md-3">
-            <input type="number" class="form-control" id="lat_min" name="lat_min" step="1" required
-                   data-ng-change="ctrl.setTargetValue('LOC')"
-                   data-ng-model="ctrl.model.target.lat_min"
-                   data-ng-min="0" min="0"
-                   data-ng-max="59" max="59">
+            <input
+                type="number"
+                class="form-control"
+                id="lat_min"
+                name="lat_min"
+                step="1"
+                required
+                data-ng-change="ctrl.setTargetValue('LOC')"
+                data-ng-model="ctrl.model.target.lat_min"
+                data-ng-min="0"
+                min="0"
+                data-ng-max="59"
+                max="59"
+            />
         </div>
     </div>
 
     <div class="form-group">
-        <label class="control-label col-md-4 required" for="lat_sec"
-               data-translate="domain_configuration_dns_entry_add_lat_sec"></label>
+        <label
+            class="control-label col-md-4 required"
+            for="lat_sec"
+            data-translate="domain_configuration_dns_entry_add_lat_sec"
+        ></label>
         <div class="col-md-3">
-            <input type="number" class="form-control" id="lat_sec" name="lat_sec" step="0.001" required
-                   data-ng-change="ctrl.setTargetValue('LOC')"
-                   data-ng-model="ctrl.model.target.lat_sec"
-                   data-ng-min="0" min="0"
-                   data-ng-max="59.999" max="59.999">
+            <input
+                type="number"
+                class="form-control"
+                id="lat_sec"
+                name="lat_sec"
+                step="0.001"
+                required
+                data-ng-change="ctrl.setTargetValue('LOC')"
+                data-ng-model="ctrl.model.target.lat_sec"
+                data-ng-min="0"
+                min="0"
+                data-ng-max="59.999"
+                max="59.999"
+            />
         </div>
     </div>
 
     <div class="form-group">
-        <label class="control-label col-md-4 required" for="latitude"
-               data-translate="domain_configuration_dns_entry_add_lat"></label>
+        <label
+            class="control-label col-md-4 required"
+            for="latitude"
+            data-translate="domain_configuration_dns_entry_add_lat"
+        ></label>
         <div class="col-md-4">
             <div class="oui-select mb-0">
-                <select class="oui-select__input" name="latitude" id="latitude" required
-                        data-ng-change="ctrl.setTargetValue('LOC')"
-                        data-ng-model="ctrl.model.target.latitude">
-                    <option value="" disabled data-translate="select_placeholder"></option>
-                    <option value="N" data-translate="domain_configuration_dns_entry_add_lat_N"></option>
-                    <option value="S" data-translate="domain_configuration_dns_entry_add_lat_S"></option>
+                <select
+                    class="oui-select__input"
+                    name="latitude"
+                    id="latitude"
+                    required
+                    data-ng-change="ctrl.setTargetValue('LOC')"
+                    data-ng-model="ctrl.model.target.latitude"
+                >
+                    <option
+                        value=""
+                        disabled
+                        data-translate="select_placeholder"
+                    ></option>
+                    <option
+                        value="N"
+                        data-translate="domain_configuration_dns_entry_add_lat_N"
+                    ></option>
+                    <option
+                        value="S"
+                        data-translate="domain_configuration_dns_entry_add_lat_S"
+                    ></option>
                 </select>
-                <span class="oui-icon oui-icon-chevron-down" aria-hidden="true"></span>
+                <span
+                    class="oui-icon oui-icon-chevron-down"
+                    aria-hidden="true"
+                ></span>
             </div>
         </div>
     </div>
 
     <!-- Longitude -->
     <div class="form-group">
-        <label class="control-label col-md-4 required" for="long_deg"
-               data-translate="domain_configuration_dns_entry_add_long_deg"></label>
+        <label
+            class="control-label col-md-4 required"
+            for="long_deg"
+            data-translate="domain_configuration_dns_entry_add_long_deg"
+        ></label>
         <div class="col-md-3">
-            <input type="number" class="form-control" id="long_deg" name="long_deg" step="1" required
-                   data-ng-change="ctrl.setTargetValue('LOC')"
-                   data-ng-model="ctrl.model.target.long_deg"
-                   data-ng-min="0" min="0"
-                   data-ng-max="180" max="180">
+            <input
+                type="number"
+                class="form-control"
+                id="long_deg"
+                name="long_deg"
+                step="1"
+                required
+                data-ng-change="ctrl.setTargetValue('LOC')"
+                data-ng-model="ctrl.model.target.long_deg"
+                data-ng-min="0"
+                min="0"
+                data-ng-max="180"
+                max="180"
+            />
         </div>
     </div>
 
     <div class="form-group">
-        <label class="control-label col-md-4 required" for="long_min"
-               data-translate="domain_configuration_dns_entry_add_long_min"></label>
+        <label
+            class="control-label col-md-4 required"
+            for="long_min"
+            data-translate="domain_configuration_dns_entry_add_long_min"
+        ></label>
         <div class="col-md-3">
-            <input type="number" class="form-control" id="long_min" name="long_min" step="1" required
-                   data-ng-change="ctrl.setTargetValue('LOC')"
-                   data-ng-model="ctrl.model.target.long_min"
-                   data-ng-min="0" min="0"
-                   data-ng-max="59" max="59">
+            <input
+                type="number"
+                class="form-control"
+                id="long_min"
+                name="long_min"
+                step="1"
+                required
+                data-ng-change="ctrl.setTargetValue('LOC')"
+                data-ng-model="ctrl.model.target.long_min"
+                data-ng-min="0"
+                min="0"
+                data-ng-max="59"
+                max="59"
+            />
         </div>
     </div>
 
     <div class="form-group">
-        <label class="control-label col-md-4 required" for="long_sec"
-               data-translate="domain_configuration_dns_entry_add_long_sec"></label>
+        <label
+            class="control-label col-md-4 required"
+            for="long_sec"
+            data-translate="domain_configuration_dns_entry_add_long_sec"
+        ></label>
         <div class="col-md-3">
-            <input type="number" class="form-control" id="long_sec" name="long_sec" step="0.001" required
-                   data-ng-change="ctrl.setTargetValue('LOC')"
-                   data-ng-model="ctrl.model.target.long_sec"
-                   data-ng-min="0" min="0"
-                   data-ng-max="59.999" max="59.999">
+            <input
+                type="number"
+                class="form-control"
+                id="long_sec"
+                name="long_sec"
+                step="0.001"
+                required
+                data-ng-change="ctrl.setTargetValue('LOC')"
+                data-ng-model="ctrl.model.target.long_sec"
+                data-ng-min="0"
+                min="0"
+                data-ng-max="59.999"
+                max="59.999"
+            />
         </div>
     </div>
 
     <div class="form-group">
-        <label class="control-label col-md-4 required" for="longitude"
-               data-translate="domain_configuration_dns_entry_add_long"></label>
+        <label
+            class="control-label col-md-4 required"
+            for="longitude"
+            data-translate="domain_configuration_dns_entry_add_long"
+        ></label>
         <div class="col-md-4">
             <div class="oui-select mb-0">
-                <select class="oui-select__input" name="longitude" id="longitude" required
-                        data-ng-change="ctrl.setTargetValue('LOC')"
-                        data-ng-model="ctrl.model.target.longitude">
-                    <option value="" disabled data-translate="select_placeholder"></option>
-                    <option value="E" data-translate="domain_configuration_dns_entry_add_long_E"></option>
-                    <option value="W" data-translate="domain_configuration_dns_entry_add_long_W"></option>
+                <select
+                    class="oui-select__input"
+                    name="longitude"
+                    id="longitude"
+                    required
+                    data-ng-change="ctrl.setTargetValue('LOC')"
+                    data-ng-model="ctrl.model.target.longitude"
+                >
+                    <option
+                        value=""
+                        disabled
+                        data-translate="select_placeholder"
+                    ></option>
+                    <option
+                        value="E"
+                        data-translate="domain_configuration_dns_entry_add_long_E"
+                    ></option>
+                    <option
+                        value="W"
+                        data-translate="domain_configuration_dns_entry_add_long_W"
+                    ></option>
                 </select>
-                <span class="oui-icon oui-icon-chevron-down" aria-hidden="true"></span>
+                <span
+                    class="oui-icon oui-icon-chevron-down"
+                    aria-hidden="true"
+                ></span>
             </div>
         </div>
     </div>
 
     <!-- Altitude -->
     <div class="form-group">
-        <label class="control-label col-md-4 required" for="altitude"
-               data-translate="domain_configuration_dns_entry_add_altitude"></label>
+        <label
+            class="control-label col-md-4 required"
+            for="altitude"
+            data-translate="domain_configuration_dns_entry_add_altitude"
+        ></label>
         <div class="col-md-4">
             <div class="input-group">
-                <input type="number" class="form-control" id="altitude" name="altitude" step="0.01" required
-                       data-ng-change="ctrl.setTargetValue('LOC')"
-                       data-ng-model="ctrl.model.target.altitude"
-                       data-ng-min="-100000.00" min="-100000.00"
-                       data-ng-max="42849672.95" max="42849672.95">
-                <span class="input-group-addon" data-translate="domain_configuration_dns_entry_add_meters"></span>
+                <input
+                    type="number"
+                    class="form-control"
+                    id="altitude"
+                    name="altitude"
+                    step="0.01"
+                    required
+                    data-ng-change="ctrl.setTargetValue('LOC')"
+                    data-ng-model="ctrl.model.target.altitude"
+                    data-ng-min="-100000.00"
+                    min="-100000.00"
+                    data-ng-max="42849672.95"
+                    max="42849672.95"
+                />
+                <span
+                    class="input-group-addon"
+                    data-translate="domain_configuration_dns_entry_add_meters"
+                ></span>
             </div>
         </div>
     </div>
 
     <!-- Siz, hp, vp -->
     <div class="form-group">
-        <label class="control-label col-md-4" for="size"
-               data-translate="domain_configuration_dns_entry_add_size"></label>
+        <label
+            class="control-label col-md-4"
+            for="size"
+            data-translate="domain_configuration_dns_entry_add_size"
+        ></label>
         <div class="col-md-4">
             <div class="input-group">
-                <input type="number" class="form-control" id="size" name="size" step="0.01"
-                       data-ng-change="ctrl.setTargetValue('LOC')"
-                       data-ng-model="ctrl.model.target.size"
-                       data-ng-min="0.00" min="0.00"
-                       data-ng-max="90000000.00" max="90000000.00">
-                <span class="input-group-addon" data-translate="domain_configuration_dns_entry_add_meters"></span>
+                <input
+                    type="number"
+                    class="form-control"
+                    id="size"
+                    name="size"
+                    step="0.01"
+                    data-ng-change="ctrl.setTargetValue('LOC')"
+                    data-ng-model="ctrl.model.target.size"
+                    data-ng-min="0.00"
+                    min="0.00"
+                    data-ng-max="90000000.00"
+                    max="90000000.00"
+                />
+                <span
+                    class="input-group-addon"
+                    data-translate="domain_configuration_dns_entry_add_meters"
+                ></span>
             </div>
         </div>
     </div>
 
     <div class="form-group">
-        <label class="control-label col-md-4" for="hp"
-               data-translate="domain_configuration_dns_entry_add_hp"></label>
+        <label
+            class="control-label col-md-4"
+            for="hp"
+            data-translate="domain_configuration_dns_entry_add_hp"
+        ></label>
         <div class="col-md-4">
             <div class="input-group">
-                <input type="number" class="form-control" id="hp" name="hp" step="0.01"
-                       data-ng-change="ctrl.setTargetValue('LOC')"
-                       data-ng-model="ctrl.model.target.hp"
-                       data-ng-min="0.00" min="0.00"
-                       data-ng-max="90000000.00" max="90000000.00">
-                <span class="input-group-addon" data-translate="domain_configuration_dns_entry_add_meters"></span>
+                <input
+                    type="number"
+                    class="form-control"
+                    id="hp"
+                    name="hp"
+                    step="0.01"
+                    data-ng-change="ctrl.setTargetValue('LOC')"
+                    data-ng-model="ctrl.model.target.hp"
+                    data-ng-min="0.00"
+                    min="0.00"
+                    data-ng-max="90000000.00"
+                    max="90000000.00"
+                />
+                <span
+                    class="input-group-addon"
+                    data-translate="domain_configuration_dns_entry_add_meters"
+                ></span>
             </div>
         </div>
     </div>
 
     <div class="form-group">
-        <label class="control-label col-md-4" for="vp"
-               data-translate="domain_configuration_dns_entry_add_vp"></label>
+        <label
+            class="control-label col-md-4"
+            for="vp"
+            data-translate="domain_configuration_dns_entry_add_vp"
+        ></label>
         <div class="col-md-4">
             <div class="input-group">
-                <input type="number" class="form-control" id="vp" name="vp" step="0.01"
-                       data-ng-change="ctrl.setTargetValue('LOC')"
-                       data-ng-model="ctrl.model.target.vp"
-                       data-ng-min="0.00" min="0.00"
-                       data-ng-max="90000000.00" max="90000000.00">
-                <span class="input-group-addon" data-translate="domain_configuration_dns_entry_add_meters"></span>
+                <input
+                    type="number"
+                    class="form-control"
+                    id="vp"
+                    name="vp"
+                    step="0.01"
+                    data-ng-change="ctrl.setTargetValue('LOC')"
+                    data-ng-model="ctrl.model.target.vp"
+                    data-ng-min="0.00"
+                    min="0.00"
+                    data-ng-max="90000000.00"
+                    max="90000000.00"
+                />
+                <span
+                    class="input-group-addon"
+                    data-translate="domain_configuration_dns_entry_add_meters"
+                ></span>
             </div>
         </div>
     </div>

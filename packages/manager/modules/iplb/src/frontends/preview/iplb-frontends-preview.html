@@ -3,73 +3,129 @@
     data-on-dismiss="IpLoadBalancerFrontendPreviewCtrl.dismiss()"
 >
     <dl class="preview-list preview-list_no-margin">
-        <dt class="preview-list__term"
-            data-translate="iplb_frontend_preview_name"></dt>
-        <dd class="preview-list__definition"
-            data-ng-bind="::IpLoadBalancerFrontendPreviewCtrl.frontend.displayName"></dd>
-        <dt class="preview-list__term"
-            data-translate="iplb_frontend_preview_protocol"></dt>
-        <dd class="preview-list__definition"
-            data-ng-bind="::IpLoadBalancerFrontendPreviewCtrl.frontend.protocol"></dd>
-        <dt class="preview-list__term"
-            data-translate="iplb_frontend_preview_port"></dt>
-        <dd class="preview-list__definition"
-            data-ng-bind="::IpLoadBalancerFrontendPreviewCtrl.frontend.port"></dd>
-        <dt class="preview-list__term"
-            data-translate="iplb_frontend_preview_datacenter"></dt>
-        <dd class="preview-list__definition"
-            data-ng-bind="::IpLoadBalancerFrontendPreviewCtrl.frontend.region.microRegion.text"></dd>
-        <dt class="preview-list__term"
-            data-translate="iplb_frontend_preview_default_farm"></dt>
-        <dd class="preview-list__definition"
-            data-ng-bind="::IpLoadBalancerFrontendPreviewCtrl.frontend.defaultFarmId"></dd>
-        <dt class="preview-list__term"
+        <dt
+            class="preview-list__term"
+            data-translate="iplb_frontend_preview_name"
+        ></dt>
+        <dd
+            class="preview-list__definition"
+            data-ng-bind="::IpLoadBalancerFrontendPreviewCtrl.frontend.displayName"
+        ></dd>
+        <dt
+            class="preview-list__term"
+            data-translate="iplb_frontend_preview_protocol"
+        ></dt>
+        <dd
+            class="preview-list__definition"
+            data-ng-bind="::IpLoadBalancerFrontendPreviewCtrl.frontend.protocol"
+        ></dd>
+        <dt
+            class="preview-list__term"
+            data-translate="iplb_frontend_preview_port"
+        ></dt>
+        <dd
+            class="preview-list__definition"
+            data-ng-bind="::IpLoadBalancerFrontendPreviewCtrl.frontend.port"
+        ></dd>
+        <dt
+            class="preview-list__term"
+            data-translate="iplb_frontend_preview_datacenter"
+        ></dt>
+        <dd
+            class="preview-list__definition"
+            data-ng-bind="::IpLoadBalancerFrontendPreviewCtrl.frontend.region.microRegion.text"
+        ></dd>
+        <dt
+            class="preview-list__term"
+            data-translate="iplb_frontend_preview_default_farm"
+        ></dt>
+        <dd
+            class="preview-list__definition"
+            data-ng-bind="::IpLoadBalancerFrontendPreviewCtrl.frontend.defaultFarmId"
+        ></dd>
+        <dt
+            class="preview-list__term"
             data-ng-if="IpLoadBalancerFrontendPreviewCtrl.frontend.ssl"
-            data-translate="iplb_frontend_preview_default_certificate"></dt>
-        <dd class="preview-list__definition"
+            data-translate="iplb_frontend_preview_default_certificate"
+        ></dt>
+        <dd
+            class="preview-list__definition"
             data-ng-if="IpLoadBalancerFrontendPreviewCtrl.frontend.ssl"
-            data-ng-bind="::IpLoadBalancerFrontendPreviewCtrl.frontend.defaultSslId"></dd>
-        <dt class="preview-list__term"
-            data-translate="iplb_frontend_preview_dedicated_ip_failover"></dt>
+            data-ng-bind="::IpLoadBalancerFrontendPreviewCtrl.frontend.defaultSslId"
+        ></dd>
+        <dt
+            class="preview-list__term"
+            data-translate="iplb_frontend_preview_dedicated_ip_failover"
+        ></dt>
         <dd class="preview-list__definition">
-            <div class="oui-list" data-ng-if="IpLoadBalancerFrontendPreviewCtrl.frontend.dedicatedIpfo.length">
+            <div
+                class="oui-list"
+                data-ng-if="IpLoadBalancerFrontendPreviewCtrl.frontend.dedicatedIpfo.length"
+            >
                 <ul class="oui-list__items">
-                    <li class="oui-list__item" data-ng-repeat="dedicatedIpfo in IpLoadBalancerFrontendPreviewCtrl.frontend.dedicatedIpfo track by $index"
-                        data-ng-bind="::dedicatedIpfo"></li>
+                    <li
+                        class="oui-list__item"
+                        data-ng-repeat="dedicatedIpfo in IpLoadBalancerFrontendPreviewCtrl.frontend.dedicatedIpfo track by $index"
+                        data-ng-bind="::dedicatedIpfo"
+                    ></li>
                 </ul>
             </div>
         </dd>
-        <dt class="preview-list__term"
+        <dt
+            class="preview-list__term"
             data-ng-if="IpLoadBalancerFrontendPreviewCtrl.frontend.protocol !== 'udp'"
-            data-translate="iplb_frontend_preview_restrict_ip_access"></dt>
-        <dd class="preview-list__definition"
+            data-translate="iplb_frontend_preview_restrict_ip_access"
+        ></dt>
+        <dd
+            class="preview-list__definition"
             data-ng-if="IpLoadBalancerFrontendPreviewCtrl.frontend.protocol !== 'udp'"
-            data-ng-bind="::IpLoadBalancerFrontendPreviewCtrl.frontend.allowedSource"></dd>
-        <dt class="preview-list__term"
+            data-ng-bind="::IpLoadBalancerFrontendPreviewCtrl.frontend.allowedSource"
+        ></dd>
+        <dt
+            class="preview-list__term"
             data-ng-if="IpLoadBalancerFrontendPreviewCtrl.frontend.protocol === 'http'"
-            data-translate="iplb_frontend_preview_http_redirection"></dt>
-        <dd class="preview-list__definition"
+            data-translate="iplb_frontend_preview_http_redirection"
+        ></dt>
+        <dd
+            class="preview-list__definition"
             data-ng-if="IpLoadBalancerFrontendPreviewCtrl.frontend.protocol === 'http'"
-            data-ng-bind="::IpLoadBalancerFrontendPreviewCtrl.frontend.redirectLocation"></dd>
-        <dt class="preview-list__term"
+            data-ng-bind="::IpLoadBalancerFrontendPreviewCtrl.frontend.redirectLocation"
+        ></dd>
+        <dt
+            class="preview-list__term"
             data-ng-if="IpLoadBalancerFrontendPreviewCtrl.frontend.protocol === 'http'"
-            data-translate="iplb_frontend_preview_http_header"></dt>
-        <dd class="preview-list__definition"
+            data-translate="iplb_frontend_preview_http_header"
+        ></dt>
+        <dd
+            class="preview-list__definition"
             data-ng-if="IpLoadBalancerFrontendPreviewCtrl.frontend.protocol === 'http'"
-            data-ng-bind="::IpLoadBalancerFrontendPreviewCtrl.frontend.httpHeader"></dd>
-        <dt class="preview-list__term"
+            data-ng-bind="::IpLoadBalancerFrontendPreviewCtrl.frontend.httpHeader"
+        ></dd>
+        <dt
+            class="preview-list__term"
             data-ng-if="IpLoadBalancerFrontendPreviewCtrl.frontend.protocol === 'http' && IpLoadBalancerFrontendPreviewCtrl.frontend.ssl"
-            data-translate="iplb_frontend_preview_hsts"></dt>
-        <dd class="preview-list__definition"
+            data-translate="iplb_frontend_preview_hsts"
+        ></dt>
+        <dd
+            class="preview-list__definition"
             data-ng-if="IpLoadBalancerFrontendPreviewCtrl.frontend.protocol === 'http' && IpLoadBalancerFrontendPreviewCtrl.frontend.ssl"
-            data-ng-bind="::IpLoadBalancerFrontendPreviewCtrl.frontend.hsts"></dd>
-        <dt class="preview-list__term"
-            data-translate="iplb_frontend_preview_active"></dt>
-        <dd class="preview-list__definition"
-            data-ng-bind="::IpLoadBalancerFrontendPreviewCtrl.frontend.disabled ? 'false' : 'true'"></dd>
-        <dt class="preview-list__term"
-            data-translate="iplb_frontend_preview_id"></dt>
-        <dd class="preview-list__definition"
-            data-ng-bind="::IpLoadBalancerFrontendPreviewCtrl.frontend.frontendId"></dd>
+            data-ng-bind="::IpLoadBalancerFrontendPreviewCtrl.frontend.hsts"
+        ></dd>
+        <dt
+            class="preview-list__term"
+            data-translate="iplb_frontend_preview_active"
+        ></dt>
+        <dd
+            class="preview-list__definition"
+            data-ng-bind="::IpLoadBalancerFrontendPreviewCtrl.frontend.disabled ? 'false' : 'true'"
+        ></dd>
+        <dt
+            class="preview-list__term"
+            data-translate="iplb_frontend_preview_id"
+        ></dt>
+        <dd
+            class="preview-list__definition"
+            data-ng-bind="::IpLoadBalancerFrontendPreviewCtrl.frontend.frontendId"
+        ></dd>
     </dl>
 </oui-modal>

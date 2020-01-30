@@ -1,36 +1,36 @@
+angular
+  .module('managerApp')
+  .controller('DeskaasChangeUsernameCtrl', function DeskaasChangeUsernameCtrl(
+    $uibModalInstance,
+  ) {
+    const self = this;
 
+    self.policies = {};
 
-angular.module('managerApp')
-  .controller('DeskaasChangeUsernameCtrl',
-    function DeskaasChangeUsernameCtrl($uibModalInstance) {
-      const self = this;
+    self.values = {
+      newUsername: '',
+    };
 
-      self.policies = {};
+    self.flags = {
+      init: false,
+    };
 
-      self.values = {
-        newUsername: '',
-      };
+    self.cancel = function cancel() {
+      $uibModalInstance.dismiss('cancel');
+    };
 
-      self.flags = {
-        init: false,
-      };
-
-      self.cancel = function cancel() {
+    self.ok = function ok() {
+      if (!self.values.newUsername) {
         $uibModalInstance.dismiss('cancel');
-      };
-
-      self.ok = function ok() {
-        if (!self.values.newUsername) {
-          $uibModalInstance.dismiss('cancel');
-          return;
-        }
-
-        $uibModalInstance.close(self.values);
-      };
-
-      function init() {
-        self.flags.init = false;
+        return;
       }
 
-      init();
-    });
+      $uibModalInstance.close(self.values);
+    };
+
+    function init() {
+      self.flags.init = false;
+    }
+
+    init();
+  });

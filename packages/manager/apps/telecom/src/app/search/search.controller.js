@@ -41,12 +41,14 @@ export default class TelecomSearchController {
   }
 
   hasResults() {
-    return !isEmpty(this.results.services)
-      || !isEmpty(this.results.billingAccount)
-      || !isEmpty(this.results.packs)
-      || !isEmpty(this.results.sms)
-      || !isEmpty(this.results.freefax)
-      || !isEmpty(this.results.overTheBox);
+    return (
+      !isEmpty(this.results.services) ||
+      !isEmpty(this.results.billingAccount) ||
+      !isEmpty(this.results.packs) ||
+      !isEmpty(this.results.sms) ||
+      !isEmpty(this.results.freefax) ||
+      !isEmpty(this.results.overTheBox)
+    );
   }
 
   getServiceLink(billingAccount, service) {

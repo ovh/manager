@@ -13,7 +13,14 @@ angular.module('App').controller(
      * @param WucEmails
      * @param constants
      */
-    constructor($scope, $stateParams, $translate, Alerter, WucEmails, constants) {
+    constructor(
+      $scope,
+      $stateParams,
+      $translate,
+      Alerter,
+      WucEmails,
+      constants,
+    ) {
       this.$scope = $scope;
       this.$stateParams = $stateParams;
       this.$translate = $translate;
@@ -24,9 +31,8 @@ angular.module('App').controller(
 
     $onInit() {
       this.addDelegateShown = false;
-      this.createNicUrl = this.constants.WEBSITE_URLS.new_nic[
-        this.$translate.use()
-      ] || null;
+      this.createNicUrl =
+        this.constants.WEBSITE_URLS.new_nic[this.$translate.use()] || null;
       this.currentAccount = this.$scope.currentActionData.accountName || null;
       this.delegationAccountList = [];
       this.loading = false;
@@ -46,11 +52,13 @@ angular.module('App').controller(
         .then((list) => {
           this.delegationAccountList = list;
         })
-        .catch(err => this.Alerter.alertFromSWS(
-          this.$translate.instant('email_tab_error'),
-          get(err, 'data', err),
-          this.$scope.alerts.main,
-        ))
+        .catch((err) =>
+          this.Alerter.alertFromSWS(
+            this.$translate.instant('email_tab_error'),
+            get(err, 'data', err),
+            this.$scope.alerts.main,
+          ),
+        )
         .finally(() => {
           this.loading = false;
         });
@@ -88,10 +96,12 @@ angular.module('App').controller(
         this.currentAccount,
         delegationAccount,
       )
-        .then(() => remove(
-          this.delegationAccountList,
-          name => name === delegationAccount,
-        ))
+        .then(() =>
+          remove(
+            this.delegationAccountList,
+            (name) => name === delegationAccount,
+          ),
+        )
         .catch((err) => {
           this.Alerter.alertFromSWS(
             this.$translate.instant('email_tab_error'),

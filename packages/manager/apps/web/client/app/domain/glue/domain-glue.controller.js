@@ -15,7 +15,9 @@ angular.module('App').controller(
       this.domain = this.$scope.ctrlDomain.domain;
       this.loading = false;
 
-      this.$scope.$on('domain.tabs.glue.refresh', () => this.refreshTableGlues());
+      this.$scope.$on('domain.tabs.glue.refresh', () =>
+        this.refreshTableGlues(),
+      );
       this.$scope.$on('domain.DomainHostCreate.done', () => {
         this.refreshTableGlues();
         this.Alerter.resetMessage(this.$scope.alerts.main);
@@ -47,7 +49,7 @@ angular.module('App').controller(
 
       return this.Domain.getGlueRecords(this.domain.name)
         .then((hosts) => {
-          this.glueHosts = hosts.map(host => ({ host }));
+          this.glueHosts = hosts.map((host) => ({ host }));
         })
         .catch((err) => {
           set(err, 'type', err.type || 'ERROR');
@@ -68,14 +70,16 @@ angular.module('App').controller(
     }
 
     transformItem(host) {
-      return this.Domain.getGlueRecordDetail(this.domain.name, host.host).then((glueRecord) => {
-        set(
-          glueRecord,
-          'hostToDisplay',
-          this.DomainValidator.constructor.convertHostToUnicode(host.host),
-        );
-        return glueRecord;
-      });
+      return this.Domain.getGlueRecordDetail(this.domain.name, host.host).then(
+        (glueRecord) => {
+          set(
+            glueRecord,
+            'hostToDisplay',
+            this.DomainValidator.constructor.convertHostToUnicode(host.host),
+          );
+          return glueRecord;
+        },
+      );
     }
   },
 );

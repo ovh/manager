@@ -17,24 +17,29 @@ import './index.scss';
 
 const moduleName = 'enterpriseCloudDatabase';
 
-angular.module(moduleName, [
-  'ngUiRouterLayout',
-  'ngOvhPaymentMethod',
-  'oc.lazyLoad',
-  'ui.router',
-  'ovh-api-services',
-  ngOvhCloudUniverseComponents,
-  ovhManagerCore,
-]).config(/* @ngInject */($stateProvider) => {
-  $stateProvider.state('enterprise-cloud-database.**', {
-    url: '/enterprise-cloud-database',
-    lazyLoad: ($transition$) => {
-      const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+angular
+  .module(moduleName, [
+    'ngUiRouterLayout',
+    'ngOvhPaymentMethod',
+    'oc.lazyLoad',
+    'ui.router',
+    'ovh-api-services',
+    ngOvhCloudUniverseComponents,
+    ovhManagerCore,
+  ])
+  .config(
+    /* @ngInject */ ($stateProvider) => {
+      $stateProvider.state('enterprise-cloud-database.**', {
+        url: '/enterprise-cloud-database',
+        lazyLoad: ($transition$) => {
+          const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-      return import('./enterprise-cloud-database.module')
-        .then(mod => $ocLazyLoad.inject(mod.default || mod));
+          return import('./enterprise-cloud-database.module').then((mod) =>
+            $ocLazyLoad.inject(mod.default || mod),
+          );
+        },
+      });
     },
-  });
-});
+  );
 
 export default moduleName;

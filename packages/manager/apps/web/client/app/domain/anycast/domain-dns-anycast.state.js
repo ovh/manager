@@ -6,7 +6,7 @@ export default {
     },
   },
   resolve: {
-    previousState: /* @ngInject */ $transition$ => $transition$.$from(),
+    previousState: /* @ngInject */ ($transition$) => $transition$.$from(),
     goBack: /* @ngInject */ ($state, previousState) => () => {
       if (previousState.name) {
         $state.go(previousState.name);

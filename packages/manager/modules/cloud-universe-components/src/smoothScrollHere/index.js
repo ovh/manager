@@ -4,8 +4,6 @@ import directive from './directive';
 
 const moduleName = 'cucSmoothScrollHere';
 
-angular
-  .module(moduleName, [])
-  .directive('cucSmoothScrollHere', directive);
+angular.module(moduleName, []).directive('cucSmoothScrollHere', directive);
 
 export default moduleName;

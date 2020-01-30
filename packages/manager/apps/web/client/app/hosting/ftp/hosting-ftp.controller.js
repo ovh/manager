@@ -9,7 +9,16 @@ import omit from 'lodash/omit';
 angular.module('App').controller(
   'HostingTabFTPCtrl',
   class HostingTabFTPCtrl {
-    constructor($q, $scope, $state, $stateParams, $translate, Alerter, Hosting, HostingUser) {
+    constructor(
+      $q,
+      $scope,
+      $state,
+      $stateParams,
+      $translate,
+      Alerter,
+      Hosting,
+      HostingUser,
+    ) {
       this.$q = $q;
       this.$scope = $scope;
       this.$state = $state;
@@ -40,7 +49,8 @@ angular.module('App').controller(
         value: null,
       };
 
-      this.$scope.loadFtpInformations = (count, offset) => this.loadFtpInformations(count, offset);
+      this.$scope.loadFtpInformations = (count, offset) =>
+        this.loadFtpInformations(count, offset);
 
       this.$scope.$on(this.Hosting.events.tabFtpRefresh, () => {
         if (get(this.ftpInformations, 'hasMultiFtp', false)) {
@@ -82,8 +92,9 @@ angular.module('App').controller(
           this.startPolling();
           return this.$q.all({
             tab: this.loadTab(10, 0, false),
-            capabilities:
-              this.Hosting.getOfferCapabilities(camelCase(hosting.offer).toLowerCase()),
+            capabilities: this.Hosting.getOfferCapabilities(
+              camelCase(hosting.offer).toLowerCase(),
+            ),
           });
         })
         .then(({ capabilities }) => {
@@ -119,47 +130,36 @@ angular.module('App').controller(
       )
         .then((ftpInformations) => {
           if (
-            ftpInformations != null
-            && !isEmpty(ftpInformations.list.results)
+            ftpInformations != null &&
+            !isEmpty(ftpInformations.list.results)
           ) {
-            const firstUserCredentials = ftpInformations.list.results[0]
-              .serviceManagementCredentials;
+            const firstUserCredentials =
+              ftpInformations.list.results[0].serviceManagementCredentials;
             this.hasResult = true;
             this.firstUser = {
               ftp: firstUserCredentials.ftp,
-              ftpUrl: `ftp://${firstUserCredentials.ftp.user}@${
-                firstUserCredentials.ftp.url
-              }:${firstUserCredentials.ftp.port}/`,
+              ftpUrl: `ftp://${firstUserCredentials.ftp.user}@${firstUserCredentials.ftp.url}:${firstUserCredentials.ftp.port}/`,
               ssh: firstUserCredentials.ssh,
-              sshUrl: `ssh://${firstUserCredentials.ssh.user}@${
-                firstUserCredentials.ssh.url
-              }:${firstUserCredentials.ssh.port}/`,
+              sshUrl: `ssh://${firstUserCredentials.ssh.user}@${firstUserCredentials.ssh.url}:${firstUserCredentials.ssh.port}/`,
             };
           }
 
           /* eslint-disable no-param-reassign */
           forEach(ftpInformations.list.results, (user) => {
             user.ftp = user.serviceManagementCredentials.ftp;
-            user.ftpUrl = `ftp://${
-              user.serviceManagementCredentials.ftp.user
-            }@${user.serviceManagementCredentials.ftp.url}:${
-              user.serviceManagementCredentials.ftp.port
-            }/`;
+            user.ftpUrl = `ftp://${user.serviceManagementCredentials.ftp.user}@${user.serviceManagementCredentials.ftp.url}:${user.serviceManagementCredentials.ftp.port}/`;
             user.ssh = user.serviceManagementCredentials.ssh;
-            user.sshUrl = `ssh://${
-              user.serviceManagementCredentials.ssh.user
-            }@${user.serviceManagementCredentials.ssh.url}:${
-              user.serviceManagementCredentials.ssh.port
-            }/`;
+            user.sshUrl = `ssh://${user.serviceManagementCredentials.ssh.user}@${user.serviceManagementCredentials.ssh.url}:${user.serviceManagementCredentials.ssh.port}/`;
 
             this.primaryUser = user.isPrimaryAccount ? user : null;
           });
           /* eslint-enable no-param-reassign */
 
-          this.primaryUserEnabled = ftpInformations.list.results.length
-            && ftpInformations.list.results[0].isPrimaryAccount
-            ? ftpInformations.list.results[0].state === 'RW'
-            : null;
+          this.primaryUserEnabled =
+            ftpInformations.list.results.length &&
+            ftpInformations.list.results[0].isPrimaryAccount
+              ? ftpInformations.list.results[0].state === 'RW'
+              : null;
           this.ftpInformations = ftpInformations;
         })
         .finally(() => {
@@ -182,7 +182,9 @@ angular.module('App').controller(
       )
         .then(() => {
           this.Alerter.success(
-            this.$translate.instant('hosting_tab_FTP_configuration_change_password_success'),
+            this.$translate.instant(
+              'hosting_tab_FTP_configuration_change_password_success',
+            ),
             this.$scope.alerts.main,
           );
         })
@@ -232,7 +234,9 @@ angular.module('App').controller(
       })
         .then(() => {
           this.Alerter.success(
-            this.$translate.instant('hosting_tab_FTP_configuration_user_modify_success'),
+            this.$translate.instant(
+              'hosting_tab_FTP_configuration_user_modify_success',
+            ),
             this.$scope.alerts.main,
           );
           this.startPolling();
@@ -241,7 +245,9 @@ angular.module('App').controller(
           const idx = indexOf(this.ftpInformations.list.result, element);
           this.ftpInformations.list.result[idx] = assign(element, prev);
           this.Alerter.alertFromSWS(
-            this.$translate.instant('hosting_tab_FTP_configuration_user_modify_fail'),
+            this.$translate.instant(
+              'hosting_tab_FTP_configuration_user_modify_fail',
+            ),
             err,
             this.$scope.alerts.main,
           );

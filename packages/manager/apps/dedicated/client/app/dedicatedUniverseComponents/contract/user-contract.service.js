@@ -7,11 +7,15 @@ export default class {
   }
 
   getAgreementsToValidate(predicate) {
-    return this.getTodoAgreements().then(contracts => contracts.filter(predicate));
+    return this.getTodoAgreements().then((contracts) =>
+      contracts.filter(predicate),
+    );
   }
 
   acceptAgreements(agreements) {
-    const promises = agreements.map(agreement => this.acceptAgreement(agreement));
+    const promises = agreements.map((agreement) =>
+      this.acceptAgreement(agreement),
+    );
     return this.$q.all(promises);
   }
 
@@ -28,7 +32,9 @@ export default class {
         agreed: 'todo',
       },
     }).then((agreements) => {
-      const promises = agreements.map(agreementId => this.getAgreementsDetail(agreementId));
+      const promises = agreements.map((agreementId) =>
+        this.getAgreementsDetail(agreementId),
+      );
       return this.$q.all(promises);
     });
   }
@@ -39,7 +45,7 @@ export default class {
         contract: this.getContract(agreementId),
         agreement: this.getAgreement(agreementId),
       })
-      .then(data => ({
+      .then((data) => ({
         id: agreementId,
         code: data.contract.name,
         pdf: data.contract.pdf,

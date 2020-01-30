@@ -1,46 +1,66 @@
 <div data-ng-controller="DomainDnsManagementCtrl as ctrl">
-    <div data-wizard
-         data-wizard-confirm-button-text="(ctrl.hasZone ? 'domain_dashboard_dns_reset_your_zone' : 'domain_dashboard_dns_activate_zone') | translate"
-         data-wizard-hide-confirm-button="ctrl.hideButtonConfirm"
-         data-wizard-on-cancel="resetAction"
-         data-wizard-on-finish="submit"
-         data-wizard-title="'domain_tab_dns_management_step1_title' | translate">
-
+    <div
+        data-wizard
+        data-wizard-confirm-button-text="(ctrl.hasZone ? 'domain_dashboard_dns_reset_your_zone' : 'domain_dashboard_dns_activate_zone') | translate"
+        data-wizard-hide-confirm-button="ctrl.hideButtonConfirm"
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="submit"
+        data-wizard-title="'domain_tab_dns_management_step1_title' | translate"
+    >
         <div data-wizard-step>
-
             <div class="text-center" data-ng-if="ctrl.loading">
                 <oui-spinner></oui-spinner>
             </div>
 
             <div data-ng-if="!ctrl.loading">
-                <p data-ng-if="ctrl.dnsStatus.isOk && ctrl.dnsStatus.isHosted"
-                   data-translate="domain_tab_dns_management_step1_hostedNameServersOk"></p>
+                <p
+                    data-ng-if="ctrl.dnsStatus.isOk && ctrl.dnsStatus.isHosted"
+                    data-translate="domain_tab_dns_management_step1_hostedNameServersOk"
+                ></p>
 
-                <p data-ng-if="ctrl.dnsStatus.isOk && !ctrl.dnsStatus.isHosted"
-                   data-translate="domain_tab_dns_management_step1_externalNameServersOk"></p>
+                <p
+                    data-ng-if="ctrl.dnsStatus.isOk && !ctrl.dnsStatus.isHosted"
+                    data-translate="domain_tab_dns_management_step1_externalNameServersOk"
+                ></p>
 
-                <p data-ng-if="!ctrl.dnsStatus.isOk && ctrl.nameServers && ctrl.nameServers.length > 0"
-                   data-translate="domain_tab_dns_management_step1_nameServersKo"></p>
+                <p
+                    data-ng-if="!ctrl.dnsStatus.isOk && ctrl.nameServers && ctrl.nameServers.length > 0"
+                    data-translate="domain_tab_dns_management_step1_nameServersKo"
+                ></p>
 
-                <p data-ng-if="!ctrl.dnsStatus.isOk && !(ctrl.nameServers && ctrl.nameServers.length > 0)"
-                   data-translate="domain_tab_dns_management_step1_nameServersKo_no_nameServer"></p>
+                <p
+                    data-ng-if="!ctrl.dnsStatus.isOk && !(ctrl.nameServers && ctrl.nameServers.length > 0)"
+                    data-translate="domain_tab_dns_management_step1_nameServersKo_no_nameServer"
+                ></p>
 
-                <ul data-ng-if="ctrl.nameServers && ctrl.nameServers.length > 0">
-                    <li data-ng-repeat="nameServer in ctrl.nameServers track by $index">
+                <ul
+                    data-ng-if="ctrl.nameServers && ctrl.nameServers.length > 0"
+                >
+                    <li
+                        data-ng-repeat="nameServer in ctrl.nameServers track by $index"
+                    >
                         <span data-ng-bind="nameServer.host"></span>
-                        <span class="label label-danger ml-2"
-                              data-translate="domain_tab_DNS_state_deleting"
-                              data-ng-if="nameServer.toDelete"></span>
+                        <span
+                            class="label label-danger ml-2"
+                            data-translate="domain_tab_DNS_state_deleting"
+                            data-ng-if="nameServer.toDelete"
+                        ></span>
                     </li>
                 </ul>
 
                 <p data-ng-if="!ctrl.hasZone">
-                    <span data-translate="domain_tab_dns_management_step1_noZone_p1"></span>
-                    <span data-translate="domain_tab_dns_management_step1_noZone_p2"></span>
+                    <span
+                        data-translate="domain_tab_dns_management_step1_noZone_p1"
+                    ></span>
+                    <span
+                        data-translate="domain_tab_dns_management_step1_noZone_p2"
+                    ></span>
                 </p>
 
-                <p data-ng-if="ctrl.hasZone && !ctrl.dnsStatus.isOk"
-                   data-translate="domain_tab_dns_management_step1_hasZone"></p>
+                <p
+                    data-ng-if="ctrl.hasZone && !ctrl.dnsStatus.isOk"
+                    data-translate="domain_tab_dns_management_step1_hasZone"
+                ></p>
             </div>
         </div>
     </div>

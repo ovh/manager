@@ -45,22 +45,28 @@ angular.module('Module.license').controller('LicenseDetailsCtrl', [
           $scope.license = license;
 
           if ($scope.license.expiration !== null) {
-            $scope.license.isExpired = moment().isAfter(moment($scope.license.expiration, 'YYYY-MM-DDTHH:mm:ss.SSSZZ'));
+            $scope.license.isExpired = moment().isAfter(
+              moment($scope.license.expiration, 'YYYY-MM-DDTHH:mm:ss.SSSZZ'),
+            );
             $scope.license.expireSoon = moment()
               .add(1, 'months')
-              .isAfter(moment($scope.license.expiration, 'YYYY-MM-DDTHH:mm:ss.SSSZZ'));
+              .isAfter(
+                moment($scope.license.expiration, 'YYYY-MM-DDTHH:mm:ss.SSSZZ'),
+              );
           }
 
           return $scope.license;
         })
         .catch(() => {
-          Alerter.alertFromSWS($translate.instant('license_details_loading_error'));
+          Alerter.alertFromSWS(
+            $translate.instant('license_details_loading_error'),
+          );
         });
     }
 
     function fetchIsChangeOsTaskPending(licence) {
       return License.tasks(licence, 'changeOs')
-        .then(tasks => tasks && tasks.length > 0)
+        .then((tasks) => tasks && tasks.length > 0)
         .then((isTaskRunning) => {
           // The task just finished so we refresh the licence informations.
           if (!isTaskRunning && $scope.changeOsTaskRunning) {
@@ -71,7 +77,9 @@ angular.module('Module.license').controller('LicenseDetailsCtrl', [
           return isTaskRunning;
         })
         .catch(() => {
-          Alerter.alertFromSWS($translate.instant('license_directadmin_changeOs_loading_error'));
+          Alerter.alertFromSWS(
+            $translate.instant('license_directadmin_changeOs_loading_error'),
+          );
         });
     }
 
@@ -134,7 +142,8 @@ angular.module('Module.license').controller('LicenseDetailsCtrl', [
       }
     };
 
-    $scope.upgradeLicense = () => $location.path(`/configuration/license/upgrade/${$scope.license.id}`);
+    $scope.upgradeLicense = () =>
+      $location.path(`/configuration/license/upgrade/${$scope.license.id}`);
 
     $scope.$on('License.Details.Refresh', () => get());
 

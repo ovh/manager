@@ -4,8 +4,10 @@ import keys from 'lodash/keys';
 import last from 'lodash/last';
 import map from 'lodash/map';
 
-angular.module('managerApp')
-  .controller('TelephonySchedulerBankHolidaysCtrl',
+angular
+  .module('managerApp')
+  .controller(
+    'TelephonySchedulerBankHolidaysCtrl',
     function TelephonySchedulerBankHolidaysCtrl(
       $translate,
       $uibModalInstance,
@@ -31,13 +33,15 @@ angular.module('managerApp')
     =            HELPERS            =
     =============================== */
 
-
       self.refreshBankHolidaysList = function refreshBankHolidaysList() {
         self.holidaysLists = {};
 
         angular.forEach(self.yearList, (year) => {
-          self.holidaysLists[year] = TucBankHolidays.getBankHolidays(self.model.country, year,
-            modalData);
+          self.holidaysLists[year] = TucBankHolidays.getBankHolidays(
+            self.model.country,
+            year,
+            modalData,
+          );
         });
       };
 
@@ -45,7 +49,7 @@ angular.module('managerApp')
         if (year) {
           return filter(
             self.holidaysLists[year],
-            bankHoliday => bankHoliday.active && !bankHoliday.disabled,
+            (bankHoliday) => bankHoliday.active && !bankHoliday.disabled,
           );
         }
         let bankHolidays = [];
@@ -104,33 +108,51 @@ angular.module('managerApp')
         // build country list
         self.countryList = map(
           keys(TucBankHolidays.BANK_HOLIDAYS),
-          country => ({
+          (country) => ({
             value: country,
             label: $translate.instant(`country_${country}`),
           }),
         );
 
         // build year list
-        self.yearList = [self.model.year, moment().add(1, 'year').get('year'), moment().add(2, 'year').get('year')];
+        self.yearList = [
+          self.model.year,
+          moment()
+            .add(1, 'year')
+            .get('year'),
+          moment()
+            .add(2, 'year')
+            .get('year'),
+        ];
 
         // get default selected country depending to scheduler timezone
         self.model.country = getCountryModel();
 
         self.loading.init = true;
 
-        return modalData.scheduler.getEvents({
-          'dateStart.from': moment().year(head(self.yearList)).startOf('year').format(),
-          'dateEnd.to': moment().year(last(self.yearList)).endOf('year').format(),
-          categories: 'holidays',
-        }).then(() => {
-          // get the bank holidays dates
-          self.refreshBankHolidaysList();
-        }).finally(() => {
-          self.loading.init = false;
-        });
+        return modalData.scheduler
+          .getEvents({
+            'dateStart.from': moment()
+              .year(head(self.yearList))
+              .startOf('year')
+              .format(),
+            'dateEnd.to': moment()
+              .year(last(self.yearList))
+              .endOf('year')
+              .format(),
+            categories: 'holidays',
+          })
+          .then(() => {
+            // get the bank holidays dates
+            self.refreshBankHolidaysList();
+          })
+          .finally(() => {
+            self.loading.init = false;
+          });
       }
 
       /* -----  End of INITIALIZATION  ------*/
 
       init();
-    });
+    },
+  );

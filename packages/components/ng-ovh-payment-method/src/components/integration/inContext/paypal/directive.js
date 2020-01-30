@@ -2,10 +2,7 @@ import merge from 'lodash/merge';
 
 import controller from './controller';
 
-import {
-  PAYPAL_SCRIPT,
-  PAYPAL_BUTTON_OPTIONS,
-} from './constants';
+import { PAYPAL_SCRIPT, PAYPAL_BUTTON_OPTIONS } from './constants';
 
 const name = 'ovhPaymentMethodIntegrationInContextPaypal';
 
@@ -25,10 +22,17 @@ export default {
 
     // define render method to paypal controller
     paypalCtrl.render = (renderOptions = {}) => {
-      paypal.Button.render(merge({
-        payment: paypalCtrl.submit.bind(paypalCtrl),
-        onAuthorize: paypalCtrl.onAuthorize.bind(paypalCtrl),
-      }, PAYPAL_BUTTON_OPTIONS, renderOptions), tElement[0]);
+      paypal.Button.render(
+        merge(
+          {
+            payment: paypalCtrl.submit.bind(paypalCtrl),
+            onAuthorize: paypalCtrl.onAuthorize.bind(paypalCtrl),
+          },
+          PAYPAL_BUTTON_OPTIONS,
+          renderOptions,
+        ),
+        tElement[0],
+      );
     };
 
     // set integrationCtrl to init state
@@ -36,11 +40,18 @@ export default {
 
     // insert paypal checkout.js script if not yet loaded
     if (!document.getElementById(PAYPAL_SCRIPT.id)) {
-      integrationCtrl.insertElement('script', merge({
-        type: 'text/javascript',
-      }, PAYPAL_SCRIPT), {
-        onload: paypalCtrl.init.bind(paypalCtrl),
-      });
+      integrationCtrl.insertElement(
+        'script',
+        merge(
+          {
+            type: 'text/javascript',
+          },
+          PAYPAL_SCRIPT,
+        ),
+        {
+          onload: paypalCtrl.init.bind(paypalCtrl),
+        },
+      );
     } else {
       paypalCtrl.init();
     }

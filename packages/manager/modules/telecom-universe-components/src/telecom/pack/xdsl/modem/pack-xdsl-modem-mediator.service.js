@@ -3,7 +3,7 @@ import isEmpty from 'lodash/isEmpty';
 import mapValues from 'lodash/mapValues';
 import omit from 'lodash/omit';
 
-export default /* @ngInject */ function ($rootScope, $q, OvhApiXdsl, Poller) {
+export default /* @ngInject */ function($rootScope, $q, OvhApiXdsl, Poller) {
   const self = this;
 
   this.capabilities = {
@@ -37,14 +37,13 @@ export default /* @ngInject */ function ($rootScope, $q, OvhApiXdsl, Poller) {
       }
     }
 
-    OvhApiXdsl.Modem().Aapi().poll(null, {
-      xdslId: serviceName,
-      namespace,
-    }).then(
-      success,
-      error,
-      success,
-    );
+    OvhApiXdsl.Modem()
+      .Aapi()
+      .poll(null, {
+        xdslId: serviceName,
+        namespace,
+      })
+      .then(success, error, success);
   };
 
   this.setTask = function setTask(name) {
@@ -57,7 +56,9 @@ export default /* @ngInject */ function ($rootScope, $q, OvhApiXdsl, Poller) {
 
   this.disableCapabilities = function disableCapabilities() {
     this.capabilities = mapValues(this.capabilities, (val, key) => {
-      if (['canBeManagedByOvh', 'canChangeMtu', 'canChangeFirmware'].indexOf(key)) {
+      if (
+        ['canBeManagedByOvh', 'canChangeMtu', 'canChangeFirmware'].indexOf(key)
+      ) {
         return val;
       }
       return false;
@@ -77,14 +78,18 @@ export default /* @ngInject */ function ($rootScope, $q, OvhApiXdsl, Poller) {
   };
 
   this.open = function open(serviceName, callbackError) {
-    return OvhApiXdsl.Modem().Aapi().get({
-      xdslId: serviceName,
-    }).$promise.then((data) => {
-      self.capabilities = data.capabilities;
-      self.info = omit(data, ['capabilities']);
-      pollModem('packXdslModemTasks', serviceName, callbackError);
-      return data;
-    }).catch(err => $q.reject(err));
+    return OvhApiXdsl.Modem()
+      .Aapi()
+      .get({
+        xdslId: serviceName,
+      })
+      .$promise.then((data) => {
+        self.capabilities = data.capabilities;
+        self.info = omit(data, ['capabilities']);
+        pollModem('packXdslModemTasks', serviceName, callbackError);
+        return data;
+      })
+      .catch((err) => $q.reject(err));
   };
 
   this.close = function close() {

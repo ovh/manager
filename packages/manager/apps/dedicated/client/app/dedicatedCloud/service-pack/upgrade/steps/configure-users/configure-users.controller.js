@@ -3,19 +3,14 @@ import map from 'lodash/map';
 
 export default class {
   /* @ngInject */
-  constructor(
-    $q,
-  ) {
+  constructor($q) {
     this.$q = $q;
   }
 
   $onInit() {
     this.usersWhoCanReceiveSMS = map(
-      filter(
-        this.usersWhoCanReceiveSMS,
-        { isTokenValidator: true },
-      ),
-      user => ({
+      filter(this.usersWhoCanReceiveSMS, { isTokenValidator: true }),
+      (user) => ({
         userName: user.name,
         firstName: user.firstName,
         lastName: user.lastName,
@@ -26,13 +21,11 @@ export default class {
   }
 
   mapUsersWhoCanReceiveSMS() {
-    return this
-      .$q
-      .when({
-        data: this.usersWhoCanReceiveSMS,
-        meta: {
-          totalCount: this.usersWhoCanReceiveSMS.length,
-        },
-      });
+    return this.$q.when({
+      data: this.usersWhoCanReceiveSMS,
+      meta: {
+        totalCount: this.usersWhoCanReceiveSMS.length,
+      },
+    });
   }
 }

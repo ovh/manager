@@ -1,6 +1,14 @@
 class LogsIndexAddModalCtrl {
-  constructor($q, $stateParams, $uibModalInstance, CucControllerHelper, indexInfo, options, quota,
-    LogsIndexService) {
+  constructor(
+    $q,
+    $stateParams,
+    $uibModalInstance,
+    CucControllerHelper,
+    indexInfo,
+    options,
+    quota,
+    LogsIndexService,
+  ) {
     this.$stateParams = $stateParams;
     this.$q = $q;
     this.CucControllerHelper = CucControllerHelper;
@@ -57,10 +65,11 @@ class LogsIndexAddModalCtrl {
       return this.$q.reject();
     }
     this.saving = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () => this.LogsIndexService.createIndex(this.serviceName, this.index)
-        .then(response => this.$uibModalInstance.close(response))
-        .catch(response => this.$uibModalInstance.dismiss(response))
-        .finally(() => this.CucControllerHelper.scrollPageToTop()),
+      loaderFunction: () =>
+        this.LogsIndexService.createIndex(this.serviceName, this.index)
+          .then((response) => this.$uibModalInstance.close(response))
+          .catch((response) => this.$uibModalInstance.dismiss(response))
+          .finally(() => this.CucControllerHelper.scrollPageToTop()),
     });
     return this.saving.load();
   }
@@ -70,14 +79,20 @@ class LogsIndexAddModalCtrl {
       return this.$q.reject();
     }
     this.saving = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () => this.LogsIndexService
-        .updateIndex(this.serviceName, this.indexInfo, this.index)
-        .then(response => this.$uibModalInstance.close(response))
-        .catch(response => this.$uibModalInstance.dismiss(response))
-        .finally(() => this.CucControllerHelper.scrollPageToTop()),
+      loaderFunction: () =>
+        this.LogsIndexService.updateIndex(
+          this.serviceName,
+          this.indexInfo,
+          this.index,
+        )
+          .then((response) => this.$uibModalInstance.close(response))
+          .catch((response) => this.$uibModalInstance.dismiss(response))
+          .finally(() => this.CucControllerHelper.scrollPageToTop()),
     });
     return this.saving.load();
   }
 }
 
-angular.module('managerApp').controller('LogsIndexAddModalCtrl', LogsIndexAddModalCtrl);
+angular
+  .module('managerApp')
+  .controller('LogsIndexAddModalCtrl', LogsIndexAddModalCtrl);

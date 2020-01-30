@@ -2,8 +2,15 @@ import omit from 'lodash/omit';
 
 export default class IpLoadBalancerServerEditCtrl {
   /* @ngInject */
-  constructor($q, $state, $stateParams, CucCloudMessage, CucControllerHelper,
-    IpLoadBalancerConstant, IpLoadBalancerServerService) {
+  constructor(
+    $q,
+    $state,
+    $stateParams,
+    CucCloudMessage,
+    CucControllerHelper,
+    IpLoadBalancerConstant,
+    IpLoadBalancerServerService,
+  ) {
     this.$q = $q;
     this.$state = $state;
     this.$stateParams = $stateParams;
@@ -17,33 +24,40 @@ export default class IpLoadBalancerServerEditCtrl {
 
   initLoaders() {
     this.farmTypeLoader = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () => this.IpLoadBalancerServerService.getFarmType(
-        this.$stateParams.serviceName,
-        this.$stateParams.farmId,
-      )
-        .then((type) => {
-          this.farmType = type;
-        })
-        .catch((err) => {
-          if (err === 'NOTFOUND') {
-            return this.$state.go('network.iplb.detail.server-farm');
-          }
-          return this.CucServiceHelper.errorHandler('iplb_server_request_error');
-        }),
+      loaderFunction: () =>
+        this.IpLoadBalancerServerService.getFarmType(
+          this.$stateParams.serviceName,
+          this.$stateParams.farmId,
+        )
+          .then((type) => {
+            this.farmType = type;
+          })
+          .catch((err) => {
+            if (err === 'NOTFOUND') {
+              return this.$state.go('network.iplb.detail.server-farm');
+            }
+            return this.CucServiceHelper.errorHandler(
+              'iplb_server_request_error',
+            );
+          }),
     });
 
-    this.proxyProtocolVersions = this.CucControllerHelper.request.getArrayLoader({
-      loaderFunction: () => this.IpLoadBalancerServerService.getProxyProtocolVersions(
-        this.$stateParams.serviceName,
-      ),
-    });
+    this.proxyProtocolVersions = this.CucControllerHelper.request.getArrayLoader(
+      {
+        loaderFunction: () =>
+          this.IpLoadBalancerServerService.getProxyProtocolVersions(
+            this.$stateParams.serviceName,
+          ),
+      },
+    );
 
     this.apiServer = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () => this.IpLoadBalancerServerService.getServer(
-        this.$stateParams.serviceName,
-        this.$stateParams.farmId,
-        this.$stateParams.serverId,
-      ).then(server => this.parseServer(server)),
+      loaderFunction: () =>
+        this.IpLoadBalancerServerService.getServer(
+          this.$stateParams.serviceName,
+          this.$stateParams.farmId,
+          this.$stateParams.serverId,
+        ).then((server) => this.parseServer(server)),
     });
   }
 

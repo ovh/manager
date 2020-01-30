@@ -45,7 +45,7 @@
   "iplb_ssl_order_type_iplb_ssl_dv_single": "Comodo DV",
   "iplb_ssl_order_type_iplb_ssl_ev_single": "Comodo EV",
   "iplb_ssl_order_fqdn": "Fully Qualified Domain Name (FQDN)",
-  "iplb_ssl_order_fqdn_tip": "example.com, www.example.com",
+  "iplb_ssl_order_fqdn_tip": "ejemplo.com, www.ejemplo.com",
   "iplb_ssl_order_contact": "Contacto",
   "iplb_ssl_order_email": "Dirección de correo electrónico",
   "iplb_ssl_order_business_category": "Categoría de la organización",

@@ -7,10 +7,20 @@
         data-secondary-action="$ctrl.goBack()"
         data-secondary-label="{{:: 'pci_projects_project_streams_stream_subscriptions_add_cancel_label' | translate }}"
         data-on-dismiss="$ctrl.goBack()"
-        data-loading="$ctrl.isLoading">
-
-        <oui-field data-label="{{:: 'pci_projects_project_streams_stream_subscriptions_add_name_label' | translate }}" data-size="xl">
-            <input class="oui-input" type="text" id="name" name="name" data-ng-model="$ctrl.name" required>
+        data-loading="$ctrl.isLoading"
+    >
+        <oui-field
+            data-label="{{:: 'pci_projects_project_streams_stream_subscriptions_add_name_label' | translate }}"
+            data-size="xl"
+        >
+            <input
+                class="oui-input"
+                type="text"
+                id="name"
+                name="name"
+                data-ng-model="$ctrl.name"
+                required
+            />
         </oui-field>
     </oui-modal>
 </form>

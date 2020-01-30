@@ -1,6 +1,6 @@
 import $ from 'jquery';
 
-export default /* @ngInject */ $timeout => ({
+export default /* @ngInject */ ($timeout) => ({
   restrict: 'A',
   scope: {
     wucOvhFilereaderAction: '&',
@@ -40,7 +40,9 @@ export default /* @ngInject */ $timeout => ({
       reader.onload = onLoadEvent;
 
       if ((onChangeEvent.srcElement || onChangeEvent.target).files[0]) {
-        reader.readAsText((onChangeEvent.srcElement || onChangeEvent.target).files[0]);
+        reader.readAsText(
+          (onChangeEvent.srcElement || onChangeEvent.target).files[0],
+        );
       } else {
         $scope.ngModel = '';
       }

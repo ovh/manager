@@ -1,127 +1,172 @@
 <div data-ng-controller="BackendsAddCtrl">
-
-    <div data-wizard
-         data-wizard-on-cancel="resetAction"
-         data-wizard-on-finish="displayBC"
-         data-wizard-title=":: 'cdn_configuration_backend_upgrade_title' | translate"
-         data-wizard-bread-crumb
-         data-wizard-confirm-button-text=":: 'wizard_pay' | translate">
-
-        <div data-wizard-step
-             data-wizard-step-on-load="loadBackendPrice"
-             data-wizard-step-valid="choices.count">
-
-            <div class="text-center"
-                 data-ng-if="!price">
+    <div
+        data-wizard
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="displayBC"
+        data-wizard-title=":: 'cdn_configuration_backend_upgrade_title' | translate"
+        data-wizard-bread-crumb
+        data-wizard-confirm-button-text=":: 'wizard_pay' | translate"
+    >
+        <div
+            data-wizard-step
+            data-wizard-step-on-load="loadBackendPrice"
+            data-wizard-step-valid="choices.count"
+        >
+            <div class="text-center" data-ng-if="!price">
                 <oui-spinner></oui-spinner>
             </div>
 
             <div data-ng-if="price">
-                <label for="count"
-                       class="control-label"
-                       data-translate="cdn_configuration_backend_upgrade_step1_explanation">
+                <label
+                    for="count"
+                    class="control-label"
+                    data-translate="cdn_configuration_backend_upgrade_step1_explanation"
+                >
                 </label>
-                <input type="number"
-                       class="form-control"
-                       min="1"
-                       max="1000"
-                       data-ng-model="choices.count"
-                       data-ng-pattern="/^[0-9]{1,4}$/" />
-                <span data-translate="cdn_configuration_backend_upgrade_step1_tarif"></span>
-                <span class="text-danger"
-                      data-ng-bind="'cdn_configuration_backend_upgrade_step1_tarif2' | translate:{ t0: price.unitaryPrice }">
+                <input
+                    type="number"
+                    class="form-control"
+                    min="1"
+                    max="1000"
+                    data-ng-model="choices.count"
+                    data-ng-pattern="/^[0-9]{1,4}$/"
+                />
+                <span
+                    data-translate="cdn_configuration_backend_upgrade_step1_tarif"
+                ></span>
+                <span
+                    class="text-danger"
+                    data-ng-bind="'cdn_configuration_backend_upgrade_step1_tarif2' | translate:{ t0: price.unitaryPrice }"
+                >
                 </span>
             </div>
+        </div>
 
-      </div>
-
-        <div data-wizard-step
-             data-wizard-step-on-load="loadBackendOrders"
-             data-wizard-step-valid="choices.duration">
-
-            <div class="text-center"
-                 data-ng-if="!orders">
+        <div
+            data-wizard-step
+            data-wizard-step-on-load="loadBackendOrders"
+            data-wizard-step-valid="choices.duration"
+        >
+            <div class="text-center" data-ng-if="!orders">
                 <oui-spinner></oui-spinner>
             </div>
 
             <div data-ng-if="orders">
-                <label for="duration"
-                       class="control-label"
-                       data-ng-bind="'cdn_configuration_backend_upgrade_step2_durations' | translate:{ t0: choices.count }">
+                <label
+                    for="duration"
+                    class="control-label"
+                    data-ng-bind="'cdn_configuration_backend_upgrade_step2_durations' | translate:{ t0: choices.count }"
+                >
                 </label>
-                <div class="radio"
-                     data-ng-repeat="order in orders track by $index">
+                <div
+                    class="radio"
+                    data-ng-repeat="order in orders track by $index"
+                >
                     <label>
-                        <input type="radio"
-                               name="duration"
-                               value="{{ order.duration.duration }}"
-                               data-ng-model="choices.duration" />
-                        <span data-translate="cdn_configuration_backend_upgrade_step2_duration_total"
-                              data-translate-values="{ t0: order.duration.formattedDuration, t1: order.withoutTax }"></span>
+                        <input
+                            type="radio"
+                            name="duration"
+                            value="{{ order.duration.duration }}"
+                            data-ng-model="choices.duration"
+                        />
+                        <span
+                            data-translate="cdn_configuration_backend_upgrade_step2_duration_total"
+                            data-translate-values="{ t0: order.duration.formattedDuration, t1: order.withoutTax }"
+                        ></span>
                     </label>
                 </div>
             </div>
-
         </div>
 
-        <div data-wizard-step
-             data-wizard-step-valid="contractsValidated.value"
-             data-wizard-step-on-load="updateOrder">
-
-            <p data-ng-bind-html="'cdn_configuration_backend_upgrade_step3_question' | translate:{ t0: choices.count, t1: cdn.serviceName }"></p>
+        <div
+            data-wizard-step
+            data-wizard-step-valid="contractsValidated.value"
+            data-wizard-step-on-load="updateOrder"
+        >
+            <p
+                data-ng-bind-html="'cdn_configuration_backend_upgrade_step3_question' | translate:{ t0: choices.count, t1: cdn.serviceName }"
+            ></p>
             <dl>
-                <dt data-translate="cdn_configuration_backend_upgrade_step3_totalHT"></dt>
-                <dd class="text-danger"
-                    data-ng-bind="choices.order.withoutTax">
-                </dd>
-                <dt data-translate="cdn_configuration_backend_upgrade_step3_totalTTC"></dt>
-                <dd class="text-danger"
-                    data-ng-bind="choices.order.withTax">
-                </dd>
+                <dt
+                    data-translate="cdn_configuration_backend_upgrade_step3_totalHT"
+                ></dt>
+                <dd
+                    class="text-danger"
+                    data-ng-bind="choices.order.withoutTax"
+                ></dd>
+                <dt
+                    data-translate="cdn_configuration_backend_upgrade_step3_totalTTC"
+                ></dt>
+                <dd
+                    class="text-danger"
+                    data-ng-bind="choices.order.withTax"
+                ></dd>
             </dl>
             <p data-translate="cdn_configuration_backend_upgrade_step3_id"></p>
             <div class="checkbox">
                 <label>
-                    <input type="checkbox"
-                           data-ng-model="contractsValidated.value" />
-                    <span data-translate="cdn_configuration_backend_upgrade_step3_contracts"></span>
+                    <input
+                        type="checkbox"
+                        data-ng-model="contractsValidated.value"
+                    />
+                    <span
+                        data-translate="cdn_configuration_backend_upgrade_step3_contracts"
+                    ></span>
                     <span data-ng-repeat="contract in choices.order.contracts">
-                        <span data-ng-show="($index+1) == choices.order.contracts.length"
-                              data-translate="cdn_configuration_backend_upgrade_step3_contracts_and">
+                        <span
+                            data-ng-show="($index+1) == choices.order.contracts.length"
+                            data-translate="cdn_configuration_backend_upgrade_step3_contracts_and"
+                        >
                         </span>
-                        <span data-translate="cdn_configuration_backend_upgrade_step3_contracts_of"></span>
-                        <a target="_blank"
-                           href="{{ contract.url }}"
-                           data-ng-bind="contract.name">
+                        <span
+                            data-translate="cdn_configuration_backend_upgrade_step3_contracts_of"
+                        ></span>
+                        <a
+                            target="_blank"
+                            href="{{ contract.url }}"
+                            data-ng-bind="contract.name"
+                        >
                         </a>
-                        <span data-ng-hide="($index+1) == choices.order.contracts.length">, </span>
-                        <span data-ng-show="($index+1) == choices.order.contracts.length">.</span>
+                        <span
+                            data-ng-hide="($index+1) == choices.order.contracts.length"
+                            >,
+                        </span>
+                        <span
+                            data-ng-show="($index+1) == choices.order.contracts.length"
+                            >.</span
+                        >
                     </span>
                 </label>
             </div>
-
         </div>
 
         <!-- Generation BC -->
-        <div data-wizard-step
-             data-wizard-step-on-load="orderBackends"
-             data-wizard-step-valid="url">
-
-            <div class="text-center"
-                 data-ng-if="!url">
+        <div
+            data-wizard-step
+            data-wizard-step-on-load="orderBackends"
+            data-wizard-step-valid="url"
+        >
+            <div class="text-center" data-ng-if="!url">
                 <oui-spinner></oui-spinner>
-                <p data-translate="cdn_configuration_backend_upgrade_step4_generation_bc"></p>
+                <p
+                    data-translate="cdn_configuration_backend_upgrade_step4_generation_bc"
+                ></p>
             </div>
 
             <div data-ng-if="url">
-                <p data-translate="cdn_configuration_backend_upgrade_step4_bc"></p>
-                <p data-translate="cdn_configuration_backend_upgrade_step4_continue"></p>
-                <p data-translate="cdn_configuration_backend_upgrade_step4_explication2"></p>
-                <em data-translate="cdn_configuration_backend_upgrade_step4_explication"></em>
+                <p
+                    data-translate="cdn_configuration_backend_upgrade_step4_bc"
+                ></p>
+                <p
+                    data-translate="cdn_configuration_backend_upgrade_step4_continue"
+                ></p>
+                <p
+                    data-translate="cdn_configuration_backend_upgrade_step4_explication2"
+                ></p>
+                <em
+                    data-translate="cdn_configuration_backend_upgrade_step4_explication"
+                ></em>
             </div>
-
         </div>
-
     </div>
-
 </div>

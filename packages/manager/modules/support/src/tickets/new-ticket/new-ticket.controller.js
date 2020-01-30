@@ -32,7 +32,7 @@ export default class SupportNewController {
     // user found answer, go back to tickets list
     if (result.isSuccess) {
       this.goToTickets();
-    // answer was not found, go to ticket creation
+      // answer was not found, go to ticket creation
     } else {
       this.step = 'creation';
       this.issue = result.issue;
@@ -62,7 +62,8 @@ export default class SupportNewController {
         this.step = 'created';
         this.ticketId = ticket.ticketId;
         this.ticketNumber = ticket.ticketNumber;
-      }).catch((error) => {
+      })
+      .catch((error) => {
         this.error = {
           message: (error.data || { message: error.statusText }).message,
         };

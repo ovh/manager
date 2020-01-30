@@ -10,10 +10,18 @@ export default class Regions {
     return this.OvhApiCloudProjectRegion.v6()
       .query({
         serviceName: projectId,
-      }).$promise
-      .then(regions => Promise.all(map(regions, id => this.OvhApiCloudProjectRegion.v6().get({
-        serviceName: projectId,
-        id,
-      }).$promise)));
+      })
+      .$promise.then((regions) =>
+        Promise.all(
+          map(
+            regions,
+            (id) =>
+              this.OvhApiCloudProjectRegion.v6().get({
+                serviceName: projectId,
+                id,
+              }).$promise,
+          ),
+        ),
+      );
   }
 }

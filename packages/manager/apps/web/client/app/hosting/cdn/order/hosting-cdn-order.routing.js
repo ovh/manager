@@ -5,8 +5,9 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '/order',
     component: 'hostingCdnOrder',
     resolve: {
-      autoPayWithPreferredPaymentMethod: /* @ngInject */
-        ovhPaymentMethod => ovhPaymentMethod.hasDefaultPaymentMethod(),
+      /* @ngInject */
+      autoPayWithPreferredPaymentMethod: (ovhPaymentMethod) =>
+        ovhPaymentMethod.hasDefaultPaymentMethod(),
 
       catalogAddon: /* @ngInject */ (
         goBackWithError,
@@ -14,9 +15,11 @@ export default /* @ngInject */ ($stateProvider) => {
         user,
         $translate,
         HostingCdnOrderService,
-      ) => HostingCdnOrderService
-        .getCatalogAddon(user.ovhSubsidiary, serviceOption)
-        .catch(error => goBackWithError(get(error, 'data.message', error))),
+      ) =>
+        HostingCdnOrderService.getCatalogAddon(
+          user.ovhSubsidiary,
+          serviceOption,
+        ).catch((error) => goBackWithError(get(error, 'data.message', error))),
 
       checkoutOrderCart: /* @ngInject */ (
         goBack,
@@ -25,22 +28,25 @@ export default /* @ngInject */ ($stateProvider) => {
         $translate,
         $window,
         HostingCdnOrderService,
-      ) => async (
-        autoPayWithPreferredPaymentMethod,
-        cartId,
-      ) => {
+      ) => async (autoPayWithPreferredPaymentMethod, cartId) => {
         try {
-          const order = await HostingCdnOrderService
-            .checkoutOrderCart(autoPayWithPreferredPaymentMethod, cartId);
+          const order = await HostingCdnOrderService.checkoutOrderCart(
+            autoPayWithPreferredPaymentMethod,
+            cartId,
+          );
 
           if (isOptionFree) {
             goBack(
-              $translate.instant('hosting_dashboard_cdn_order_success_activation'),
+              $translate.instant(
+                'hosting_dashboard_cdn_order_success_activation',
+              ),
             );
           } else {
             $window.open(order.url, '_blank');
             goBack(
-              $translate.instant('hosting_dashboard_cdn_order_success', { t0: order.url }),
+              $translate.instant('hosting_dashboard_cdn_order_success', {
+                t0: order.url,
+              }),
             );
           }
         } catch (error) {
@@ -48,20 +54,18 @@ export default /* @ngInject */ ($stateProvider) => {
         }
       },
 
-      goBack: /* @ngInject */ goToHosting => goToHosting,
+      goBack: /* @ngInject */ (goToHosting) => goToHosting,
 
-      goBackWithError: /* @ngInject */ (
-        $translate,
-        goBack,
-      ) => error => goBack(
-        $translate.instant(
-          'hosting_dashboard_cdn_order_error',
-          { message: error },
+      goBackWithError: /* @ngInject */ ($translate, goBack) => (error) =>
+        goBack(
+          $translate.instant('hosting_dashboard_cdn_order_error', {
+            message: error,
+          }),
+          'danger',
         ),
-        'danger',
-      ),
 
-      isOptionFree: /* @ngInject */ serviceOption => serviceOption.planCode === 'cdn_free_business',
+      isOptionFree: /* @ngInject */ (serviceOption) =>
+        serviceOption.planCode === 'cdn_free_business',
 
       prepareOrderCart: /* @ngInject */ (
         goBackWithError,
@@ -72,10 +76,14 @@ export default /* @ngInject */ ($stateProvider) => {
         HostingCdnOrderService,
       ) => async () => {
         try {
-          const cartId = await HostingCdnOrderService
-            .prepareOrderCart(user.ovhSubsidiary);
-          const cart = await HostingCdnOrderService
-            .addItemToCart(cartId, serviceName, serviceOption);
+          const cartId = await HostingCdnOrderService.prepareOrderCart(
+            user.ovhSubsidiary,
+          );
+          const cart = await HostingCdnOrderService.addItemToCart(
+            cartId,
+            serviceName,
+            serviceOption,
+          );
 
           return { cart, cartId };
         } catch (error) {
@@ -85,16 +93,18 @@ export default /* @ngInject */ ($stateProvider) => {
         }
       },
 
-      serviceName: /* @ngInject */ $transition$ => $transition$.params().productId,
+      serviceName: /* @ngInject */ ($transition$) =>
+        $transition$.params().productId,
 
       serviceOption: /* @ngInject */ (
         goBackWithError,
         serviceName,
         $translate,
         HostingCdnOrderService,
-      ) => HostingCdnOrderService
-        .getServiceOption(serviceName)
-        .catch(error => goBackWithError(get(error, 'data.message', error))),
+      ) =>
+        HostingCdnOrderService.getServiceOption(serviceName).catch((error) =>
+          goBackWithError(get(error, 'data.message', error)),
+        ),
     },
   });
 };

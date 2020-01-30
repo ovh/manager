@@ -10,23 +10,22 @@ export default class PciProjectStreamsTokensService {
   }
 
   getAll(projectId, stream) {
-    return this.OvhApiCloudProjectIo
-      .Stream()
+    return this.OvhApiCloudProjectIo.Stream()
       .Token()
       .v6()
       .query({
         serviceName: projectId,
         streamId: stream.id,
       })
-      .$promise
-      .then(tokens => this.$q.all(
-        tokens.map(tokenId => this.get(projectId, stream, tokenId)),
-      ));
+      .$promise.then((tokens) =>
+        this.$q.all(
+          tokens.map((tokenId) => this.get(projectId, stream, tokenId)),
+        ),
+      );
   }
 
   get(projectId, stream, tokenId) {
-    return this.OvhApiCloudProjectIo
-      .Stream()
+    return this.OvhApiCloudProjectIo.Stream()
       .Token()
       .v6()
       .get({
@@ -34,43 +33,44 @@ export default class PciProjectStreamsTokensService {
         streamId: stream.id,
         tokenId,
       })
-      .$promise
-      .then(token => new Token({
-        ...token,
-      }));
+      .$promise.then(
+        (token) =>
+          new Token({
+            ...token,
+          }),
+      );
   }
 
   regenerateTokens(projectId, stream) {
-    return this.deleteAll(projectId, stream)
-      .then(() => this.createTokens(projectId, stream));
+    return this.deleteAll(projectId, stream).then(() =>
+      this.createTokens(projectId, stream),
+    );
   }
 
   deleteAll(projectId, stream) {
-    return this.OvhApiCloudProjectIo
-      .Stream()
+    return this.OvhApiCloudProjectIo.Stream()
       .Token()
       .v6()
       .query({
         serviceName: projectId,
         streamId: stream.id,
       })
-      .$promise
-      .then(tokens => this.$q.all(
-        tokens.map(tokenId => this.delete(projectId, stream, tokenId)),
-      ));
+      .$promise.then((tokens) =>
+        this.$q.all(
+          tokens.map((tokenId) => this.delete(projectId, stream, tokenId)),
+        ),
+      );
   }
 
   delete(projectId, { id: streamId }, tokenId) {
-    return this.OvhApiCloudProjectIo
-      .Stream()
+    return this.OvhApiCloudProjectIo.Stream()
       .Token()
       .v6()
       .delete({
         serviceName: projectId,
         streamId,
         tokenId,
-      })
-      .$promise;
+      }).$promise;
   }
 
   createTokens(projectId, stream) {
@@ -81,16 +81,17 @@ export default class PciProjectStreamsTokensService {
   }
 
   create(projectId, { id: streamId }, action) {
-    return this.OvhApiCloudProjectIo
-      .Stream()
+    return this.OvhApiCloudProjectIo.Stream()
       .Token()
       .v6()
-      .save({
-        serviceName: projectId,
-        streamId,
-      }, {
-        action,
-      })
-      .$promise;
+      .save(
+        {
+          serviceName: projectId,
+          streamId,
+        },
+        {
+          action,
+        },
+      ).$promise;
   }
 }

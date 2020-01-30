@@ -718,5 +718,9 @@
   "user_account_support_level_title": "Mój poziom wsparcia",
   "user_account_ssh_keys_title": "Moje klucze SSH",
   "user_account_users_management_title": "Zarządzanie użytkownikami",
-  "user_account_advanced_title": "Zaawansowane parametry"
+  "user_account_advanced_title": "Zaawansowane parametry",
+  "user_account_security_double_auth_type_totp_delete_error": "Ojej! Wystąpił błąd podczas usuwania weryfikacji dwuetapowej:",
+  "user_account_email_token_resend": "Wyślij ponownie kod aktywacyjny",
+  "user_account_email_token_resend_success": "Nowy kod aktywacyjny został wysłany. Zanim otrzymasz kod aktywacyjny może upłynąć kilka minut.",
+  "user_account_email_token_resend_error": "Wystąpił błąd podczas wysyłki nowego kodu aktywacyjnego."
 }

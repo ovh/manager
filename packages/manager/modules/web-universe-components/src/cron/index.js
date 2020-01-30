@@ -17,20 +17,18 @@ import templateExpert from './cronExpert.html';
 const moduleName = 'wucCron';
 
 angular
-  .module(moduleName, [
-    'ngTranslateAsyncLoader',
-    translate,
-    wucCronValidator,
-  ])
+  .module(moduleName, ['ngTranslateAsyncLoader', translate, wucCronValidator])
   .controller('wucCronEditorCtrl', wucCronEditorCtrl)
   .controller('wucCronSimpleSummaryCtrl', wucCronSimpleSummaryCtrl)
   .directive('wucCronEditor', wucCronEditorDirective)
   .directive('wucCronExpertHelp', wucCronExpertHelpDirective)
   .directive('wucCronSimpleSummary', wucCronSimpleSummaryDirective)
   .run(/* @ngTranslationsInject:json ./translations */)
-  .run(/* @ngInject */($templateCache) => {
-    $templateCache.put('wucCron_cronSimple.html', templateSimple);
-    $templateCache.put('wucCron_cronExpert.html', templateExpert);
-  });
+  .run(
+    /* @ngInject */ ($templateCache) => {
+      $templateCache.put('wucCron_cronSimple.html', templateSimple);
+      $templateCache.put('wucCron_cronExpert.html', templateExpert);
+    },
+  );
 
 export default moduleName;

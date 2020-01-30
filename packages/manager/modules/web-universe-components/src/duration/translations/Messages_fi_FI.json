@@ -1,11 +1,12 @@
 {
-  "duration_day_1": "1 päivä",
-  "duration_day_other": "{{t0}} päivää",
-  "duration_month_1": "1 kuukausi",
-  "duration_month_other": "{{t0}} kk",
-  "duration_year_1": "1 vuosi",
-  "duration_year_other": "{{t0}} vuotta",
-  "duration_upto": "{{t0}} asti",
-  "duration_uptofirstdaynextmonth": "Seuraavan kuun 1. päivään asti",
-  "duration_engage": "Sitoutuminen {{t0}}"
+  "duration_day_1": "1 day",
+  "duration_day_other": "{{t0}} days",
+  "duration_month_1": "1 month",
+  "duration_month_other": "{{t0}} months",
+  "duration_year_1": "1 year",
+  "duration_year_other": "{{t0}} years",
+  "duration_upto": "Until {{t0}}",
+  "duration_uptofirstdaynextmonth": "Until the 1st of next month",
+  "duration_engage": "Sign up {{t0}}",
+  "duration_upto_prorata": "Prorata to Service Expiry Date  ({{t0}})"
 }

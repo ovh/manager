@@ -30,7 +30,10 @@ import translateServiceProvider from './translate/translate.service';
 import sessionService from './session/session.service';
 
 import {
-  LANGUAGES, MANAGER_URLS, REDIRECT_URLS, URLS,
+  LANGUAGES,
+  MANAGER_URLS,
+  REDIRECT_URLS,
+  URLS,
 } from './manager-core.constants';
 
 const moduleName = 'ovhManagerCore';
@@ -58,29 +61,44 @@ angular
   .constant('CORE_URLS', URLS)
   .provider('TranslateService', translateServiceProvider)
   .factory('TranslateInterceptor', translateFactory)
-  .config(($translateProvider, translatePluggableLoaderProvider, TranslateServiceProvider) => {
-    TranslateServiceProvider.setUserLocale();
+  .config(
+    (
+      $translateProvider,
+      translatePluggableLoaderProvider,
+      TranslateServiceProvider,
+    ) => {
+      TranslateServiceProvider.setUserLocale();
 
-    const defaultLanguage = TranslateServiceProvider.getUserLocale();
+      const defaultLanguage = TranslateServiceProvider.getUserLocale();
 
-    $translateProvider.useLoader('translatePluggableLoader');
+      $translateProvider.useLoader('translatePluggableLoader');
 
-    translatePluggableLoaderProvider.useLoader('asyncLoader');
+      translatePluggableLoaderProvider.useLoader('asyncLoader');
 
-    $translateProvider.useLoaderCache(true);
-    $translateProvider.useSanitizeValueStrategy('sanitizeParameters');
-    $translateProvider.useMissingTranslationHandler('translateMissingTranslationHandler');
+      $translateProvider.useLoaderCache(true);
+      $translateProvider.useSanitizeValueStrategy('sanitizeParameters');
+      $translateProvider.useMissingTranslationHandler(
+        'translateMissingTranslationHandler',
+      );
 
-    $translateProvider.preferredLanguage(defaultLanguage);
+      $translateProvider.preferredLanguage(defaultLanguage);
 
-    $translateProvider.use(defaultLanguage);
-    $translateProvider.fallbackLanguage(LANGUAGES.fallback);
-  })
+      $translateProvider.use(defaultLanguage);
+      $translateProvider.fallbackLanguage(LANGUAGES.fallback);
+    },
+  )
   .service('SessionService', sessionService)
   // Fix security issue: https://github.com/angular-translate/angular-translate/issues/1418
-  .factory('translateMissingTranslationHandler', $sanitize => translationId => $sanitize(translationId))
+  .factory(
+    'translateMissingTranslationHandler',
+    ($sanitize) => (translationId) => $sanitize(translationId),
+  )
   .run((tmhDynamicLocaleCache, tmhDynamicLocale, TranslateService) => {
-    const injectAngularLocale = lang => tmhDynamicLocaleCache.put(lang, angular.injector(['ngLocale']).get('$locale'));
+    const injectAngularLocale = (lang) =>
+      tmhDynamicLocaleCache.put(
+        lang,
+        angular.injector(['ngLocale']).get('$locale'),
+      );
     const defaultLanguage = TranslateService.getUserLocale();
     const angularLocale = kebabCase(defaultLanguage);
 
@@ -126,18 +144,22 @@ angular
       .then(() => injectAngularLocale(angularLocale))
       .then(() => tmhDynamicLocale.set(angularLocale));
   })
-  .run(/* @ngInject */ ($rootScope, TranslateService) => {
-    $rootScope.$on('lang.onChange', (event, { lang }) => {
-      TranslateService.setUserLocale(lang);
-      window.location.reload();
-    });
-  })
-  .run(/* @ngInject */ ($document) => {
-    let { 'univers-selected-language': lang } = localStorage;
-    [lang] = lang.split('_');
-    $document.querySelectorAll('html')[0].setAttribute('lang', lang);
-  })
-  .run((ssoAuthentication/* , User */) => {
+  .run(
+    /* @ngInject */ ($rootScope, TranslateService) => {
+      $rootScope.$on('lang.onChange', (event, { lang }) => {
+        TranslateService.setUserLocale(lang);
+        window.location.reload();
+      });
+    },
+  )
+  .run(
+    /* @ngInject */ ($document) => {
+      let { 'univers-selected-language': lang } = localStorage;
+      [lang] = lang.split('_');
+      $document.querySelectorAll('html')[0].setAttribute('lang', lang);
+    },
+  )
+  .run((ssoAuthentication /* , User */) => {
     ssoAuthentication.login(); // .then(() => User.getUser());
   })
   .constant('OVH_SSO_AUTH_LOGIN_URL', '/auth')
@@ -145,7 +167,10 @@ angular
     request(config) {
       const localConfig = config;
       if (/^(\/?engine\/)?2api(-m)?\//.test(localConfig.url)) {
-        localConfig.url = localConfig.url.replace(/^(\/?engine\/)?2api(-m)?/, '');
+        localConfig.url = localConfig.url.replace(
+          /^(\/?engine\/)?2api(-m)?/,
+          '',
+        );
         localConfig.serviceType = 'aapi';
       }
 
@@ -162,52 +187,64 @@ angular
       return localConfig;
     },
   }))
-  .config((ssoAuthenticationProvider, $httpProvider, OVH_SSO_AUTH_LOGIN_URL) => {
-    ssoAuthenticationProvider.setLoginUrl(OVH_SSO_AUTH_LOGIN_URL);
-    ssoAuthenticationProvider.setLogoutUrl(`${OVH_SSO_AUTH_LOGIN_URL}?action=disconnect`);
-    ssoAuthenticationProvider.setSignUpUrl(`${OVH_SSO_AUTH_LOGIN_URL}/signup/new`);
+  .config(
+    (ssoAuthenticationProvider, $httpProvider, OVH_SSO_AUTH_LOGIN_URL) => {
+      ssoAuthenticationProvider.setLoginUrl(OVH_SSO_AUTH_LOGIN_URL);
+      ssoAuthenticationProvider.setLogoutUrl(
+        `${OVH_SSO_AUTH_LOGIN_URL}?action=disconnect`,
+      );
+      ssoAuthenticationProvider.setSignUpUrl(
+        `${OVH_SSO_AUTH_LOGIN_URL}/signup/new`,
+      );
 
-    // if (!constants.prodMode) {
-    ssoAuthenticationProvider.setUserUrl('/engine/apiv6/me');
-    // }
+      // if (!constants.prodMode) {
+      ssoAuthenticationProvider.setUserUrl('/engine/apiv6/me');
+      // }
 
-    ssoAuthenticationProvider.setConfig([
-      {
-        serviceType: 'apiv6',
-        urlPrefix: '/engine/apiv6',
-      },
-      {
-        serviceType: 'aapi',
-        urlPrefix: '/engine/2api',
-      },
-      {
-        serviceType: 'apiv7',
-        urlPrefix: '/engine/apiv7',
-      },
-      {
-        serviceType: 'ws',
-        urlPrefix: '/engine/ws',
-      },
-    ]);
+      ssoAuthenticationProvider.setConfig([
+        {
+          serviceType: 'apiv6',
+          urlPrefix: '/engine/apiv6',
+        },
+        {
+          serviceType: 'aapi',
+          urlPrefix: '/engine/2api',
+        },
+        {
+          serviceType: 'apiv7',
+          urlPrefix: '/engine/apiv7',
+        },
+        {
+          serviceType: 'ws',
+          urlPrefix: '/engine/ws',
+        },
+      ]);
 
-    $httpProvider.interceptors.push('serviceTypeInterceptor');
-    $httpProvider.interceptors.push('OvhSsoAuthInterceptor');
-    $httpProvider.interceptors.push('OvhNgRequestTaggerInterceptor');
-  })
-  .config(/* @ngInject */ ($httpProvider) => {
-    $httpProvider.interceptors.push('TranslateInterceptor');
-  })
+      $httpProvider.interceptors.push('serviceTypeInterceptor');
+      $httpProvider.interceptors.push('OvhSsoAuthInterceptor');
+      $httpProvider.interceptors.push('OvhNgRequestTaggerInterceptor');
+    },
+  )
+  .config(
+    /* @ngInject */ ($httpProvider) => {
+      $httpProvider.interceptors.push('TranslateInterceptor');
+    },
+  )
   .config((OvhHttpProvider) => {
     // OvhHttpProvider.rootPath = constants.swsProxyPath;
     set(OvhHttpProvider, 'clearCacheVerb', ['POST', 'PUT', 'DELETE']);
     set(OvhHttpProvider, 'returnSuccessKey', 'data'); // By default, request return response.data
     set(OvhHttpProvider, 'returnErrorKey', 'data'); // By default, request return error.data
   })
-  .config(/* @ngInject */ ($urlServiceProvider) => {
-    $urlServiceProvider.config.strictMode(false);
-  })
-  .run(/* @ngInject */ (OvhNgRequestTaggerInterceptor) => {
-    OvhNgRequestTaggerInterceptor.setHeaderVersion(Environment.getVersion());
-  });
+  .config(
+    /* @ngInject */ ($urlServiceProvider) => {
+      $urlServiceProvider.config.strictMode(false);
+    },
+  )
+  .run(
+    /* @ngInject */ (OvhNgRequestTaggerInterceptor) => {
+      OvhNgRequestTaggerInterceptor.setHeaderVersion(Environment.getVersion());
+    },
+  );
 
 export default moduleName;

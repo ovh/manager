@@ -4,7 +4,15 @@ import forEach from 'lodash/forEach';
 angular.module('App').controller(
   'PrivateDatabaseBDDsDumpsCtrl',
   class PrivateDatabaseBDDsDumpsCtrl {
-    constructor($q, $scope, $stateParams, $translate, $window, Alerter, PrivateDatabase) {
+    constructor(
+      $q,
+      $scope,
+      $stateParams,
+      $translate,
+      $window,
+      Alerter,
+      PrivateDatabase,
+    ) {
       this.$q = $q;
       this.$scope = $scope;
       this.$stateParams = $stateParams;
@@ -54,11 +62,13 @@ angular.module('App').controller(
       this.privateDatabaseService
         .getDumpsBDD(this.productId, this.database.databaseName)
         .then((dumpsIds) => {
-          this.dumps = dumpsIds.map(id => ({ id }));
+          this.dumps = dumpsIds.map((id) => ({ id }));
         })
         .catch(() => {
           this.alerter.error(
-            this.$translate.instant('privateDatabase_tabs_dumps_fail_retrieve_dumps'),
+            this.$translate.instant(
+              'privateDatabase_tabs_dumps_fail_retrieve_dumps',
+            ),
             this.$scope.alerts.main,
           );
         });
@@ -70,7 +80,7 @@ angular.module('App').controller(
 
     transformItem(item) {
       if (item.transformed) {
-        return this.$q(resolve => resolve(item));
+        return this.$q((resolve) => resolve(item));
       }
       return this.privateDatabaseService
         .getDumpBDD(this.productId, this.database.databaseName, item.id)
@@ -78,7 +88,8 @@ angular.module('App').controller(
           const dump = clone(originalDump);
           dump.id = item.id;
           dump.transformed = true;
-          dump.waitRestore = this.database.waitRestore && dump.id === this.dumpIdRestoring;
+          dump.waitRestore =
+            this.database.waitRestore && dump.id === this.dumpIdRestoring;
 
           return dump;
         });
@@ -143,9 +154,12 @@ angular.module('App').controller(
       this.database.waitRestore = true;
       this.dumpIdRestoring = opts.dumpId;
 
-      this.dumps.filter(dump => dump.id === opts.id).forEach((dump) => {
-        dump.waitRestore = true; // eslint-disable-line no-param-reassign
-      });
+      this.dumps
+        .filter((dump) => dump.id === opts.id)
+        .forEach((dump) => {
+          // eslint-disable-next-line no-param-reassign
+          dump.waitRestore = true;
+        });
     }
 
     onDataBaseRestoredone() {
@@ -153,7 +167,8 @@ angular.module('App').controller(
       this.dumpIdRestoring = null;
 
       this.dumps.forEach((dump) => {
-        delete dump.waitRestore; // eslint-disable-line no-param-reassign
+        // eslint-disable-next-line no-param-reassign
+        delete dump.waitRestore;
       });
       this.alerter.success(
         this.$translate.instant('privateDatabase_tabs_dumps_restore_success'),
@@ -165,13 +180,16 @@ angular.module('App').controller(
       delete this.database.waitRestore;
       this.dumpIdRestoring = null;
 
-      this.dumps.filter(dump => dump.id === opts.id).forEach((dump) => {
-        delete dump.waitRestore; // eslint-disable-line no-param-reassign
-        this.alerter.error(
-          this.$translate.instant('privateDatabase_tabs_dumps_restore_fail'),
-          this.$scope.alerts.main,
-        );
-      });
+      this.dumps
+        .filter((dump) => dump.id === opts.id)
+        .forEach((dump) => {
+          // eslint-disable-next-line no-param-reassign
+          delete dump.waitRestore;
+          this.alerter.error(
+            this.$translate.instant('privateDatabase_tabs_dumps_restore_fail'),
+            this.$scope.alerts.main,
+          );
+        });
     }
   },
 );

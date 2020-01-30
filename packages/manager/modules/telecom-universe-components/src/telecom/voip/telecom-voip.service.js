@@ -53,16 +53,19 @@ export default class {
   fetchAll(withError = true) {
     return this.tucVoipBillingAccount
       .fetchAll(withError)
-      .then(billingAccounts => this.tucVoipService.fetchAll(withError)
-        .then((services) => {
-          const groupedServices = groupBy(services, service => get(service, 'billingAccount'));
+      .then((billingAccounts) =>
+        this.tucVoipService.fetchAll(withError).then((services) => {
+          const groupedServices = groupBy(services, (service) =>
+            get(service, 'billingAccount'),
+          );
 
-          billingAccounts.forEach(
-            billingAccount => billingAccount.addServices(
+          billingAccounts.forEach((billingAccount) =>
+            billingAccount.addServices(
               get(groupedServices, billingAccount.billingAccount, []),
             ),
           );
           return billingAccounts;
-        }));
+        }),
+      );
   }
 }

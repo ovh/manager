@@ -15,12 +15,22 @@ import toArray from 'lodash/toArray';
 import uniqBy from 'lodash/uniqBy';
 
 import { COMMITMENT_PERIODS, PAYMENT_TYPES } from './create.constants';
-import { DATABASE_CONSTANTS, GUIDELINK } from '../enterprise-cloud-database.constants';
+import {
+  DATABASE_CONSTANTS,
+  GUIDELINK,
+} from '../enterprise-cloud-database.constants';
 
 export default class EnterpriseCloudDatabaseCreateCtrl {
   /* @ngInject */
-  constructor($timeout, $translate, $window, CucControllerHelper,
-    CucServiceHelper, CucCloudMessage, enterpriseCloudDatabaseService) {
+  constructor(
+    $timeout,
+    $translate,
+    $window,
+    CucControllerHelper,
+    CucServiceHelper,
+    CucCloudMessage,
+    enterpriseCloudDatabaseService,
+  ) {
     this.$translate = $translate;
     this.$timeout = $timeout;
     this.$window = $window;
@@ -52,7 +62,10 @@ export default class EnterpriseCloudDatabaseCreateCtrl {
 
   loadMessages() {
     this.cucCloudMessage.unSubscribe('enterprise-cloud-database.create');
-    this.messageHandler = this.cucCloudMessage.subscribe('enterprise-cloud-database.create', { onMessage: () => this.refreshMessages() });
+    this.messageHandler = this.cucCloudMessage.subscribe(
+      'enterprise-cloud-database.create',
+      { onMessage: () => this.refreshMessages() },
+    );
   }
 
   refreshMessages() {
@@ -63,11 +76,15 @@ export default class EnterpriseCloudDatabaseCreateCtrl {
     const defaultDb = head(this.databases);
     const defaultRegions = keys(this.databasePlanMap[defaultDb.originalName]);
     const defaultDatacenter = head(defaultRegions);
-    const defaultClusters = this
-      .databasePlanMap[defaultDb.originalName][defaultDatacenter].clusters;
+    const defaultClusters = this.databasePlanMap[defaultDb.originalName][
+      defaultDatacenter
+    ].clusters;
     this.clusters = defaultClusters;
-    this.clusters = sortBy(this.clusters, cluster => cluster.memory.size);
-    const defaultCluster = this.getDefaultCluster(this.clusters, defaultDatacenter);
+    this.clusters = sortBy(this.clusters, (cluster) => cluster.memory.size);
+    const defaultCluster = this.getDefaultCluster(
+      this.clusters,
+      defaultDatacenter,
+    );
     this.populateAdditionalReplicas(defaultCluster, defaultDatacenter);
     this.enterpriseDb = {
       database: defaultDb,
@@ -94,18 +111,27 @@ export default class EnterpriseCloudDatabaseCreateCtrl {
       return;
     }
     this.totalDatabasePrice = {
-      price: this.enterpriseDb.cluster.price.price + this.enterpriseDb.additionalReplica.price,
-      tax: this.enterpriseDb.cluster.price.tax + this.enterpriseDb.additionalReplica.tax,
+      price:
+        this.enterpriseDb.cluster.price.price +
+        this.enterpriseDb.additionalReplica.price,
+      tax:
+        this.enterpriseDb.cluster.price.tax +
+        this.enterpriseDb.additionalReplica.tax,
     };
   }
 
   populateCapabilityDetails(catalog, capabilities, hostCount) {
     map(capabilities, (capability) => {
       const plans = get(catalog, 'plans', []);
-      const plan = find(plans, p => p.planCode === capability.name);
+      const plan = find(plans, (p) => p.planCode === capability.name);
       if (!isEmpty(plan)) {
         // populate supported databases and regions
-        this.populateDatabasesAndRegions(capability, plan, get(capability, 'status'), hostCount);
+        this.populateDatabasesAndRegions(
+          capability,
+          plan,
+          get(capability, 'status'),
+          hostCount,
+        );
       }
     });
   }
@@ -119,21 +145,24 @@ export default class EnterpriseCloudDatabaseCreateCtrl {
         value: 0,
         price: 0,
         tax: 0,
-        label: this.$translate.instant('enterprise_cloud_database_create_additional_replicas_empty'),
+        label: this.$translate.instant(
+          'enterprise_cloud_database_create_additional_replicas_empty',
+        ),
       },
     ];
     const addon = get(cluster, 'nodeAddon', {});
     const price = get(addon, 'price', {});
     const minReplicas = get(cluster, 'minHostCount', 0);
     const maxReplicas = get(cluster, 'maxHostCount', 0);
-    const availableReplicas = get(cluster, ['hostCount', region, 'hostLeft'], 0) - minReplicas;
+    const availableReplicas =
+      get(cluster, ['hostCount', region, 'hostLeft'], 0) - minReplicas;
     if (availableReplicas <= 0) {
       set(cluster, 'numReplicasAvailable', availableReplicas);
       return;
     }
     let numReplicas = maxReplicas - minReplicas;
-    numReplicas = numReplicas <= availableReplicas
-      ? numReplicas : availableReplicas;
+    numReplicas =
+      numReplicas <= availableReplicas ? numReplicas : availableReplicas;
     set(cluster, 'numReplicasAvailable', numReplicas);
     for (let i = 1; i <= numReplicas; i += 1) {
       this.additionalReplicas[i] = {
@@ -141,17 +170,23 @@ export default class EnterpriseCloudDatabaseCreateCtrl {
         planCode: addon.planCode,
         price: price.price * i,
         tax: price.tax * i,
-        label: this.$translate.instant((i === 1
-          ? 'enterprise_cloud_database_create_additional_replica'
-          : 'enterprise_cloud_database_create_additional_replicas'), {
-          replicaCount: i,
-        }),
+        label: this.$translate.instant(
+          i === 1
+            ? 'enterprise_cloud_database_create_additional_replica'
+            : 'enterprise_cloud_database_create_additional_replicas',
+          {
+            replicaCount: i,
+          },
+        ),
       };
     }
   }
 
   getUniqueDatabases() {
-    const allDatabases = flatMap(this.capabilities, capability => capability.databases);
+    const allDatabases = flatMap(
+      this.capabilities,
+      (capability) => capability.databases,
+    );
     return uniqBy(allDatabases, 'originalName');
   }
 
@@ -159,8 +194,10 @@ export default class EnterpriseCloudDatabaseCreateCtrl {
     const configurations = get(plan, 'configurations');
     each(configurations, (conf) => {
       if (conf.name === 'dbms') {
-        const databases = EnterpriseCloudDatabaseCreateCtrl
-          .getUniqueDatabasesAndVersions(get(conf, 'values'), status);
+        const databases = EnterpriseCloudDatabaseCreateCtrl.getUniqueDatabasesAndVersions(
+          get(conf, 'values'),
+          status,
+        );
         set(capability, 'databases', databases, []);
       } else if (conf.name === 'region') {
         set(capability, 'regions', get(conf, 'values'), []);
@@ -202,8 +239,11 @@ export default class EnterpriseCloudDatabaseCreateCtrl {
     const databaseName = this.enterpriseDb.database.originalName;
     const regionMap = this.databasePlanMap[databaseName][region];
     this.clusters = regionMap.clusters;
-    this.clusters = sortBy(this.clusters, cluster => cluster.memory.size);
-    this.enterpriseDb.cluster = this.getDefaultCluster(this.clusters, this.enterpriseDb.datacenter);
+    this.clusters = sortBy(this.clusters, (cluster) => cluster.memory.size);
+    this.enterpriseDb.cluster = this.getDefaultCluster(
+      this.clusters,
+      this.enterpriseDb.datacenter,
+    );
   }
 
   onClusterSelect(cluster) {
@@ -230,7 +270,9 @@ export default class EnterpriseCloudDatabaseCreateCtrl {
         this.order = order;
       })
       .catch((error) => {
-        this.cucServiceHelper.errorHandler('enterprise_cloud_database_create_order_error')(error);
+        this.cucServiceHelper.errorHandler(
+          'enterprise_cloud_database_create_order_error',
+        )(error);
         this.CucControllerHelper.scrollPageToTop();
       })
       .finally(() => {
@@ -246,12 +288,16 @@ export default class EnterpriseCloudDatabaseCreateCtrl {
     this.enterpriseCloudDatabaseService
       .orderCluster(this.order.cart)
       .then((order) => {
-        this.goBackToList(this.$translate.instant('enterprise_cloud_database_create_success', {
-          orderURL: this.getOrdersURL(order.orderId),
-        }));
+        this.goBackToList(
+          this.$translate.instant('enterprise_cloud_database_create_success', {
+            orderURL: this.getOrdersURL(order.orderId),
+          }),
+        );
       })
       .catch((error) => {
-        this.cucServiceHelper.errorHandler('enterprise_cloud_database_create_error')(error);
+        this.cucServiceHelper.errorHandler(
+          'enterprise_cloud_database_create_error',
+        )(error);
         this.CucControllerHelper.scrollPageToTop();
       })
       .finally(() => {

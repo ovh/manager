@@ -10,10 +10,7 @@ import './input-file.less';
 const moduleName = 'tucInputFile';
 
 angular
-  .module(moduleName, [
-    'ngTranslateAsyncLoader',
-    translate,
-  ])
+  .module(moduleName, ['ngTranslateAsyncLoader', translate])
   .directive('tucInputFileChange', tucInputFileChangeDirective)
   .directive('tucInputFile', tucInputFileDirective)
   .run(/* @ngTranslationsInject:json ./translations */);

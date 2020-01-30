@@ -9,7 +9,15 @@ import set from 'lodash/set';
 
 export default class ExchangeResourceDelegationCtrl {
   /* @ngInject */
-  constructor($scope, Exchange, ExchangeResources, $timeout, messaging, navigation, $translate) {
+  constructor(
+    $scope,
+    Exchange,
+    ExchangeResources,
+    $timeout,
+    messaging,
+    navigation,
+    $translate,
+  ) {
     this.services = {
       $scope,
       Exchange,
@@ -36,11 +44,12 @@ export default class ExchangeResourceDelegationCtrl {
       ids: [],
     };
 
-    this.debouncedRetrieveDelegationRights = debounce(this.retrieveDelegationRights, 300);
-    $scope.retrieveDelegationRights = (count, offset) => this.retrieveDelegationRights(
-      count,
-      offset,
+    this.debouncedRetrieveDelegationRights = debounce(
+      this.retrieveDelegationRights,
+      300,
     );
+    $scope.retrieveDelegationRights = (count, offset) =>
+      this.retrieveDelegationRights(count, offset);
     $scope.updateDelegationRight = () => this.updateDelegationRight();
     $scope.hasChanged = () => this.hasChanged();
     $scope.getDelegationList = () => this.delegationList;
@@ -52,7 +61,11 @@ export default class ExchangeResourceDelegationCtrl {
 
   resetSearch() {
     this.form.search = null;
-    this.services.$scope.$broadcast('paginationServerSide.loadPage', 1, 'delegationTable');
+    this.services.$scope.$broadcast(
+      'paginationServerSide.loadPage',
+      1,
+      'delegationTable',
+    );
   }
 
   getChanges() {
@@ -62,7 +75,7 @@ export default class ExchangeResourceDelegationCtrl {
     };
 
     if (this.buffer.changes != null) {
-      changesList.delegationRights = this.buffer.changes.map(account => ({
+      changesList.delegationRights = this.buffer.changes.map((account) => ({
         id: account.id,
         operation: account.newDelegationValue ? 'POST' : 'DELETE',
       }));
@@ -75,7 +88,7 @@ export default class ExchangeResourceDelegationCtrl {
     if (account.newDelegationValue) {
       this.buffer.selected.push(account.id);
     } else {
-      remove(this.buffer.selected, item => item === account.id);
+      remove(this.buffer.selected, (item) => item === account.id);
     }
   }
 
@@ -127,7 +140,9 @@ export default class ExchangeResourceDelegationCtrl {
   }
 
   hasChangedClass(id) {
-    return find(this.buffer.changes, { id }) ? 'font-weight-bold text-info' : null;
+    return find(this.buffer.changes, { id })
+      ? 'font-weight-bold text-info'
+      : null;
   }
 
   hasChanged() {
@@ -136,7 +151,9 @@ export default class ExchangeResourceDelegationCtrl {
 
   updateDelegationRight() {
     this.services.messaging.writeSuccess(
-      this.services.$translate.instant('exchange_RESOURCES_delegation_doing_message'),
+      this.services.$translate.instant(
+        'exchange_RESOURCES_delegation_doing_message',
+      ),
     );
 
     this.services.ExchangeResources.updateResourceDelegation(
@@ -147,13 +164,17 @@ export default class ExchangeResourceDelegationCtrl {
     )
       .then((data) => {
         this.services.messaging.writeSuccess(
-          this.services.$translate.instant('exchange_RESOURCES_delegation_success_message'),
+          this.services.$translate.instant(
+            'exchange_RESOURCES_delegation_success_message',
+          ),
           data,
         );
       })
       .catch((err) => {
         this.services.messaging.writeError(
-          this.services.$translate.instant('exchange_RESOURCES_delegation_error_message'),
+          this.services.$translate.instant(
+            'exchange_RESOURCES_delegation_error_message',
+          ),
           err,
         );
       })
@@ -192,7 +213,9 @@ export default class ExchangeResourceDelegationCtrl {
       })
       .catch((err) => {
         this.services.messaging.writeError(
-          this.services.$translate.instant('exchange_RESOURCES_delegation_loading_error_message'),
+          this.services.$translate.instant(
+            'exchange_RESOURCES_delegation_loading_error_message',
+          ),
           err,
         );
       })

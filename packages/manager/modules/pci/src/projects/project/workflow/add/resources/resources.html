@@ -2,14 +2,17 @@
     data-ng-if="$ctrl.isEditMode"
     data-rows="$ctrl.instances"
     class="datagrid-compact"
-    data-row-loader="$ctrl.loadInstanceDetail($row)">
+    data-row-loader="$ctrl.loadInstanceDetail($row)"
+>
     <oui-column data-title="">
-        <oui-radio class="no-label"
-                   name="instance-select"
-                   data-model="$ctrl.resource"
-                   data-value="$row.id"
-                   data-disabled="!$row.canAddSnapshot()"
-                   data-on-change="$ctrl.selectResource($row)"></oui-radio>
+        <oui-radio
+            class="no-label"
+            name="instance-select"
+            data-model="$ctrl.resource"
+            data-value="$row.id"
+            data-disabled="!$row.canAddSnapshot()"
+            data-on-change="$ctrl.selectResource($row)"
+        ></oui-radio>
     </oui-column>
     <oui-column
         data-title=":: 'pci_projects_project_workflow_instance_name_label' | translate"
@@ -17,13 +20,17 @@
         data-type="string"
         data-searchable
         data-filterable
-        data-sortable="asc">
+        data-sortable="asc"
+    >
         <span data-ng-bind="$row.name"></span>
     </oui-column>
     <oui-column
         data-title=":: 'pci_projects_project_workflow_instance_region_label' | translate"
-        data-property="region">
-        <span data-ng-bind="$ctrl.CucRegionService.getTranslatedMicroRegion($row.region)"></span>
+        data-property="region"
+    >
+        <span
+            data-ng-bind="$ctrl.CucRegionService.getTranslatedMicroRegion($row.region)"
+        ></span>
     </oui-column>
     <oui-column
         data-title=":: 'pci_projects_project_workflow_instance_flavor_label' | translate"
@@ -31,19 +38,25 @@
         data-type="string"
         data-searchable
         data-sortable
-        data-filterable>
+        data-filterable
+    >
     </oui-column>
     <oui-column
         data-title=":: 'pci_projects_project_workflow_instance_status_label' | translate"
-        data-property="status">
-        <span class="oui-status"
+        data-property="status"
+    >
+        <span
+            class="oui-status"
             data-ng-class="{
                 'oui-status_success': $row.statusGroup === 'ACTIVE',
                 'oui-status_warning': $row.statusGroup === 'PENDING',
                 'oui-status_error': $row.statusGroup === 'ERROR',
                 'oui-status_info': $row.statusGroup === $row.status,
-            }">
-            <span data-ng-bind=":: 'pci_projects_project_workflow_instance_status_' + $row.status | translate"></span>
+            }"
+        >
+            <span
+                data-ng-bind=":: 'pci_projects_project_workflow_instance_status_' + $row.status | translate"
+            ></span>
         </span>
     </oui-column>
 </oui-datagrid>
@@ -54,6 +67,7 @@
         data-name="{{ $ctrl.selectedResource.name }}"
         data-model="$ctrl.selectedResource"
         data-label="{{:: $ctrl.selectedResource.name }}"
-        data-values="[$ctrl.selectedResource]">
+        data-values="[$ctrl.selectedResource]"
+    >
     </oui-select-picker>
 </div>

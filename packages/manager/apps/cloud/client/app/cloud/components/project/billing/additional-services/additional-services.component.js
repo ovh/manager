@@ -1,5 +1,6 @@
 const AdditionalServicesComponent = {
-  templateUrl: 'app/cloud/components/project/billing/additional-services/additional-services.component.html',
+  templateUrl:
+    'app/cloud/components/project/billing/additional-services/additional-services.component.html',
   controller: 'AdditionalServicesComponentCtrl',
   controllerAs: '$ctrl',
   bindings: {
@@ -7,4 +8,6 @@ const AdditionalServicesComponent = {
     currencySymbol: '<',
   },
 };
-angular.module('managerApp').component('additionalServices', AdditionalServicesComponent);
+angular
+  .module('managerApp')
+  .component('additionalServices', AdditionalServicesComponent);

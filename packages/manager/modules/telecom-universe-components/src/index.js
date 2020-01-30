@@ -36,52 +36,50 @@ import tucUiSortableHelpers from './uiSortableHelpers';
 import tucUnitHumanize from './unit/humanize';
 import tucValidator from './validator';
 import tucBankHolidays from './bank-holidays';
+import FeatureAvailability from './feature-availability';
 import ListLayoutHelper from './list-layout-helper';
 
 const moduleName = 'ngOvhTelecomUniverseComponents';
 
-angular
-  .module(moduleName, [
-    tucChartjs,
-    tucCsvParser,
-    tucCustomAsterisk,
-    tucDebounce,
-    tucEditableServiceName,
-    tucElapsedTime,
-    tucFileReader,
-    tucFilters,
-    tucGauge,
-    tucHideOutsideClick,
-    tucInputFile,
-    tucInputFilter,
-    tucIpAddress,
-    tucJsplumb,
-    tucOvhPassword,
-    tucPhone,
-    tucResiliation,
-    tucSectionBackLink,
-    tucShippingModeSelection,
-    tucSlider,
-    tucSuccessDrawingCheck,
-    tucTableSort,
-    tucTelecomFax,
-    tucTelecomOtb,
-    tucTelecomPack,
-    tucTelecomRetractation,
-    tucTelecomSms,
-    tucTelecomTelephony,
-    tucTelecomV4Links,
-    tucTelecomVoip,
-    tucToaster,
-    tucToastError,
-    tucUiSortableHelpers,
-    tucUnitHumanize,
-    tucValidator,
-    tucBankHolidays,
-  ]);
+angular.module(moduleName, [
+  tucChartjs,
+  tucCsvParser,
+  tucCustomAsterisk,
+  tucDebounce,
+  tucEditableServiceName,
+  tucElapsedTime,
+  tucFileReader,
+  tucFilters,
+  tucGauge,
+  tucHideOutsideClick,
+  tucInputFile,
+  tucInputFilter,
+  tucIpAddress,
+  tucJsplumb,
+  tucOvhPassword,
+  tucPhone,
+  tucResiliation,
+  tucSectionBackLink,
+  tucShippingModeSelection,
+  tucSlider,
+  tucSuccessDrawingCheck,
+  tucTableSort,
+  tucTelecomFax,
+  tucTelecomOtb,
+  tucTelecomPack,
+  tucTelecomRetractation,
+  tucTelecomSms,
+  tucTelecomTelephony,
+  tucTelecomV4Links,
+  tucTelecomVoip,
+  tucToaster,
+  tucToastError,
+  tucUiSortableHelpers,
+  tucUnitHumanize,
+  tucValidator,
+  tucBankHolidays,
+]);
 
-export {
-  ListLayoutHelper,
-};
+export { FeatureAvailability, ListLayoutHelper };
 
 export default moduleName;

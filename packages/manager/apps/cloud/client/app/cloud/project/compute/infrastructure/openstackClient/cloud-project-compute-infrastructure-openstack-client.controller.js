@@ -3,9 +3,17 @@ import isEmpty from 'lodash/isEmpty';
 import set from 'lodash/set';
 
 class CloudProjectComputeInfrastructureOpenstackClientCtrl {
-  constructor($interval, $q, $stateParams, $translate, CucCloudMessage,
-    CloudProjectComputeInfrastructureOpenstackClientService, CucControllerHelper,
-    OvhApiCloudProjectOpenstackClient, OvhApiCloudProjectRegion) {
+  constructor(
+    $interval,
+    $q,
+    $stateParams,
+    $translate,
+    CucCloudMessage,
+    CloudProjectComputeInfrastructureOpenstackClientService,
+    CucControllerHelper,
+    OvhApiCloudProjectOpenstackClient,
+    OvhApiCloudProjectRegion,
+  ) {
     this.$q = $q;
     this.$stateParams = $stateParams;
     this.$translate = $translate;
@@ -20,8 +28,14 @@ class CloudProjectComputeInfrastructureOpenstackClientCtrl {
     this.messages = [];
     this.emptyOption = 'emptyOption';
     this.region = this.emptyOption;
-    this.minimized = sessionStorage.getItem('CloudProjectComputeInfrastructureOpenstackClientCtrl.minimized') !== 'false';
-    this.maximized = sessionStorage.getItem('CloudProjectComputeInfrastructureOpenstackClientCtrl.maximized') === 'true';
+    this.minimized =
+      sessionStorage.getItem(
+        'CloudProjectComputeInfrastructureOpenstackClientCtrl.minimized',
+      ) !== 'false';
+    this.maximized =
+      sessionStorage.getItem(
+        'CloudProjectComputeInfrastructureOpenstackClientCtrl.maximized',
+      ) === 'true';
     this.actions = {
       help: 'openstack help | less',
       catalog: 'openstack catalog list',
@@ -52,7 +66,6 @@ class CloudProjectComputeInfrastructureOpenstackClientCtrl {
     this.load();
   }
 
-
   initAndMaximizeWithConfig(config) {
     this.OvhApiCloudProjectOpenstackClient.initWithConfig(config);
     this.OvhApiCloudProjectOpenstackClient.maximize();
@@ -60,10 +73,11 @@ class CloudProjectComputeInfrastructureOpenstackClientCtrl {
 
   initLoaders() {
     this.session = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () => this.Service.getSession({
-        serviceName: this.serviceName,
-        term: this.term,
-      }),
+      loaderFunction: () =>
+        this.Service.getSession({
+          serviceName: this.serviceName,
+          term: this.term,
+        }),
     });
     this.regions = this.CucControllerHelper.request.getArrayLoader({
       loaderFunction: () => this.Service.getRegions(this.serviceName),
@@ -72,8 +86,13 @@ class CloudProjectComputeInfrastructureOpenstackClientCtrl {
 
   $onInit() {
     this.initWithConfig(this.$stateParams.hTerm);
-    this.CucCloudMessage.unSubscribe('iaas.pci-project.compute.openstack-console');
-    this.messageHandler = this.CucCloudMessage.subscribe('iaas.pci-project.compute.openstack-console', { onMessage: () => this.refreshMessages() });
+    this.CucCloudMessage.unSubscribe(
+      'iaas.pci-project.compute.openstack-console',
+    );
+    this.messageHandler = this.CucCloudMessage.subscribe(
+      'iaas.pci-project.compute.openstack-console',
+      { onMessage: () => this.refreshMessages() },
+    );
   }
 
   refreshMessages() {
@@ -113,17 +132,30 @@ class CloudProjectComputeInfrastructureOpenstackClientCtrl {
     }
 
     // No cache as it's POST
-    if (!this.session.loading && (this.session.hasErrors || isEmpty(this.session.data))) {
+    if (
+      !this.session.loading &&
+      (this.session.hasErrors || isEmpty(this.session.data))
+    ) {
       this.session.load();
     }
     this.regions.load();
   }
 
   savePrefs() {
-    sessionStorage.setItem('CloudProjectComputeInfrastructureOpenstackClientCtrl.minimized', this.minimized);
-    sessionStorage.setItem('CloudProjectComputeInfrastructureOpenstackClientCtrl.maximized', this.maximized);
+    sessionStorage.setItem(
+      'CloudProjectComputeInfrastructureOpenstackClientCtrl.minimized',
+      this.minimized,
+    );
+    sessionStorage.setItem(
+      'CloudProjectComputeInfrastructureOpenstackClientCtrl.maximized',
+      this.maximized,
+    );
   }
 }
 
-
-angular.module('managerApp').controller('CloudProjectComputeInfrastructureOpenstackClientCtrl', CloudProjectComputeInfrastructureOpenstackClientCtrl);
+angular
+  .module('managerApp')
+  .controller(
+    'CloudProjectComputeInfrastructureOpenstackClientCtrl',
+    CloudProjectComputeInfrastructureOpenstackClientCtrl,
+  );

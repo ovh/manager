@@ -5,25 +5,27 @@ import snakeCase from 'lodash/snakeCase';
 
 export default class ServersCtrl {
   /* @ngInject */
-  constructor(
-    $q,
-    $translate,
-    ouiDatagridService,
-  ) {
+  constructor($q, $translate, ouiDatagridService) {
     this.$q = $q;
     this.$translate = $translate;
     this.ouiDatagridService = ouiDatagridService;
   }
 
   $onInit() {
-    this.criteria = JSON.parse(this.filter).map(criteria => ({
+    this.criteria = JSON.parse(this.filter).map((criteria) => ({
       property: get(criteria, 'field') || 'name',
       operator: get(criteria, 'comparator'),
       value: criteria.reference[0],
     }));
 
-    this.stateEnumFilter = this.getEnumFilter(this.serverStateEnum, 'server_configuration_state_');
-    this.datacenterEnumFilter = this.getEnumFilter(this.datacenterEnum, 'server_datacenter_');
+    this.stateEnumFilter = this.getEnumFilter(
+      this.serverStateEnum,
+      'server_configuration_state_',
+    );
+    this.datacenterEnumFilter = this.getEnumFilter(
+      this.datacenterEnum,
+      'server_datacenter_',
+    );
 
     this.columnsConfig = [
       { name: 'name', sortable: this.getSorting('name') },
@@ -44,7 +46,9 @@ export default class ServersCtrl {
         list,
         (result, item) => ({
           ...result,
-          [item]: this.$translate.instant(`${translationPrefix}${this.constructor.toUpperSnakeCase(item)}`),
+          [item]: this.$translate.instant(
+            `${translationPrefix}${this.constructor.toUpperSnakeCase(item)}`,
+          ),
         }),
         {},
       ),
@@ -57,7 +61,13 @@ export default class ServersCtrl {
 
   loadServers() {
     const currentOffset = this.paginationNumber * this.paginationSize;
-    set(this.ouiDatagridService, 'datagrids.dg-servers.paging.offset', currentOffset < this.paginationTotalCount ? currentOffset : this.paginationTotalCount);
+    set(
+      this.ouiDatagridService,
+      'datagrids.dg-servers.paging.offset',
+      currentOffset < this.paginationTotalCount
+        ? currentOffset
+        : this.paginationTotalCount,
+    );
 
     return this.$q.resolve({
       data: get(this.dedicatedServers, 'data'),
@@ -75,7 +85,7 @@ export default class ServersCtrl {
   }
 
   onCriteriaChange($criteria) {
-    const filter = $criteria.map(criteria => ({
+    const filter = $criteria.map((criteria) => ({
       field: get(criteria, 'property') || 'name',
       comparator: criteria.operator,
       reference: [criteria.value],

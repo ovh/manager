@@ -5,9 +5,9 @@ import map from 'lodash/map';
 import set from 'lodash/set';
 import startsWith from 'lodash/startsWith';
 
-angular
-  .module('Billing')
-  .controller('BillingMainHistoryCtrl', class BillingMainHistoryCtrl {
+angular.module('Billing').controller(
+  'BillingMainHistoryCtrl',
+  class BillingMainHistoryCtrl {
     /* @ngInject */
     constructor(
       $q,
@@ -22,7 +22,7 @@ angular
       OvhApiMe,
       ovhPaymentMethod,
     ) {
-    // Injections
+      // Injections
       this.$q = $q;
       this.$state = $state;
       this.$translate = $translate;
@@ -51,22 +51,34 @@ angular
     }
 
     /**
-   *  Used to create an api v7 request instance including sort and filters
-   */
+     *  Used to create an api v7 request instance including sort and filters
+     */
     getApiv7Request() {
       const criteriaOperatorToApiV7Map = {
         isAfter: 'ge',
         isBefore: 'le',
         contains: 'like',
       };
-      let apiv7Request = this.OvhApiMe.Bill().v7().query().sort(this.datagridConfig.sort.property, this.datagridConfig.sort.dir === 1 ? 'ASC' : 'DESC');
+      let apiv7Request = this.OvhApiMe.Bill()
+        .v7()
+        .query()
+        .sort(
+          this.datagridConfig.sort.property,
+          this.datagridConfig.sort.dir === 1 ? 'ASC' : 'DESC',
+        );
 
       this.datagridConfig.criteria.forEach((criteria) => {
         if (criteria.property === 'date') {
           if (criteria.operator === 'is') {
             apiv7Request = apiv7Request
               .addFilter(criteria.property, 'ge', criteria.value)
-              .addFilter(criteria.property, 'le', moment(criteria.value).add(1, 'day').format('YYYY-MM-DD'));
+              .addFilter(
+                criteria.property,
+                'le',
+                moment(criteria.value)
+                  .add(1, 'day')
+                  .format('YYYY-MM-DD'),
+              );
           } else {
             apiv7Request = apiv7Request.addFilter(
               criteria.property,
@@ -75,8 +87,14 @@ angular
             );
           }
         } else {
-        // it's a search from search input
-          apiv7Request = apiv7Request.addFilter('billId', get(criteriaOperatorToApiV7Map, criteria.operator), startsWith(criteria.value, 'FR') ? criteria.value : `FR${criteria.value}`);
+          // it's a search from search input
+          apiv7Request = apiv7Request.addFilter(
+            'billId',
+            get(criteriaOperatorToApiV7Map, criteria.operator),
+            startsWith(criteria.value, 'FR')
+              ? criteria.value
+              : `FR${criteria.value}`,
+          );
         }
       });
 
@@ -84,23 +102,28 @@ angular
     }
 
     /**
-   *  Apply debt object to bill objects returned by an apiv7 batch call.
-   */
+     *  Apply debt object to bill objects returned by an apiv7 batch call.
+     */
     applyDebtToBills(bills) {
       let billDebtsPromise = this.$q.when([]);
 
       if (this.debtAccount.active) {
-        billDebtsPromise = this.OvhApiMe.Bill().v7().debt().batch('billId', map(bills, 'key'))
+        billDebtsPromise = this.OvhApiMe.Bill()
+          .v7()
+          .debt()
+          .batch('billId', map(bills, 'key'))
           .execute().$promise;
       }
 
-      return billDebtsPromise.then(debts => map(bills, (bill) => {
-        const debt = find(debts, {
-          path: `/me/bill/${bill.key}/debt`,
-        });
+      return billDebtsPromise.then((debts) =>
+        map(bills, (bill) => {
+          const debt = find(debts, {
+            path: `/me/bill/${bill.key}/debt`,
+          });
 
-        return set(bill, 'value.debt', get(debt, 'value', null));
-      }));
+          return set(bill, 'value.debt', get(debt, 'value', null));
+        }),
+      );
     }
 
     trackInvoiceOpening() {
@@ -120,21 +143,25 @@ angular
       this.datagridConfig = $config;
       const apiv7Request = this.getApiv7Request();
 
-      return this.$q.all({
-        count: apiv7Request.clone().execute().$promise,
-        bills: apiv7Request.clone().expand()
-          .offset($config.offset - 1)
-          .limit($config.pageSize)
-          .execute().$promise,
-      }).then(({ count, bills }) => {
-        this.totalBills = count.length;
-        return this.applyDebtToBills(bills).then(billList => ({
-          data: map(billList, 'value'),
-          meta: {
-            totalCount: count.length,
-          },
-        }));
-      });
+      return this.$q
+        .all({
+          count: apiv7Request.clone().execute().$promise,
+          bills: apiv7Request
+            .clone()
+            .expand()
+            .offset($config.offset - 1)
+            .limit($config.pageSize)
+            .execute().$promise,
+        })
+        .then(({ count, bills }) => {
+          this.totalBills = count.length;
+          return this.applyDebtToBills(bills).then((billList) => ({
+            data: map(billList, 'value'),
+            meta: {
+              totalCount: count.length,
+            },
+          }));
+        });
     }
 
     /* -----  End of DATAGRID  ------ */
@@ -144,16 +171,20 @@ angular
   ===================================== */
 
     exportToCsv() {
-    // fetch upto 150 bills in single ajax call
-    // we can not increase more than 150, if we do that API
-    // GET /apiv7/me/bill/{{bill-ids}}/debt?$batch=,
-    // url length goes behind safe limit 2083
+      // fetch upto 150 bills in single ajax call
+      // we can not increase more than 150, if we do that API
+      // GET /apiv7/me/bill/{{bill-ids}}/debt?$batch=,
+      // url length goes behind safe limit 2083
       const limit = 150;
       this.loading.export = true;
 
       const translations = {
-        notAvailable: this.$translate.instant('billing_main_history_table_unavailable'),
-        dueImmediatly: this.$translate.instant('billing_main_history_table_immediately'),
+        notAvailable: this.$translate.instant(
+          'billing_main_history_table_unavailable',
+        ),
+        dueImmediatly: this.$translate.instant(
+          'billing_main_history_table_immediately',
+        ),
         paid: this.$translate.instant('billing_main_history_table_debt_paid'),
       };
       const headers = [
@@ -165,35 +196,60 @@ angular
       ];
 
       if (this.debtAccount.active) {
-        headers.push(this.$translate.instant('billing_main_history_table_balance_due_amount'));
-        headers.push(this.$translate.instant('billing_main_history_table_balance_due_date'));
+        headers.push(
+          this.$translate.instant(
+            'billing_main_history_table_balance_due_amount',
+          ),
+        );
+        headers.push(
+          this.$translate.instant(
+            'billing_main_history_table_balance_due_date',
+          ),
+        );
       }
 
       let fetchedBills = 0;
       const billsPromises = [];
       while (fetchedBills < this.totalBills) {
-        const billsPromise = this.getApiv7Request().expand()
+        const billsPromise = this.getApiv7Request()
+          .expand()
           .offset(fetchedBills)
           .limit(limit)
-          .execute().$promise
-          .then(bills => this.applyDebtToBills(bills));
+          .execute()
+          .$promise.then((bills) => this.applyDebtToBills(bills));
         billsPromises.push(billsPromise);
         fetchedBills += limit;
       }
-      return this.$q.all(billsPromises)
-        .then(response => flatten(response))
+      return this.$q
+        .all(billsPromises)
+        .then((response) => flatten(response))
         .then((billList) => {
           const rows = map(billList, 'value').map((bill) => {
-            let row = [bill.billId, bill.orderId, moment(bill.date).format('L'), bill.priceWithoutTax.text, bill.priceWithTax.text];
+            let row = [
+              bill.billId,
+              bill.orderId,
+              moment(bill.date).format('L'),
+              bill.priceWithoutTax.text,
+              bill.priceWithTax.text,
+            ];
 
             if (this.debtAccount.active) {
               if (!bill.debt) {
-                row.concat([translations.notAvailable, translations.notAvailable]);
+                row.concat([
+                  translations.notAvailable,
+                  translations.notAvailable,
+                ]);
               }
-              const dueAmount = get(bill, 'debt.dueAmount.text', translations.notAvailable);
+              const dueAmount = get(
+                bill,
+                'debt.dueAmount.text',
+                translations.notAvailable,
+              );
               let dueDate;
               if (get(bill, 'debt.dueAmount.value', 0) > 0) {
-                dueDate = get(bill, 'debt.dueDate') ? moment(bill.debt.dueDate).format('L') : translations.dueImmediatly;
+                dueDate = get(bill, 'debt.dueDate')
+                  ? moment(bill.debt.dueDate).format('L')
+                  : translations.dueImmediatly;
               } else {
                 dueDate = translations.paid;
               }
@@ -204,12 +260,20 @@ angular
           });
           return [headers].concat(rows);
         })
-        .then(csvData => this.exportCsv.exportData({
-          separator: ',',
-          datas: csvData,
-        }))
+        .then((csvData) =>
+          this.exportCsv.exportData({
+            separator: ',',
+            datas: csvData,
+          }),
+        )
         .catch((error) => {
-          this.Alerter.error([this.$translate.instant('billing_main_history_export_error'), get(error, 'data.message')].join(' '), 'billing_main_alert');
+          this.Alerter.error(
+            [
+              this.$translate.instant('billing_main_history_export_error'),
+              get(error, 'data.message'),
+            ].join(' '),
+            'billing_main_alert',
+          );
         })
         .finally(() => {
           this.loading.export = false;
@@ -231,7 +295,8 @@ angular
 
     onPostalMailOptionsChange() {
       const postalOptionsModal = this.$uibModal.open({
-        templateUrl: 'billing/main/history/postalMailOptions/billing-main-history-postal-mail-options.html',
+        templateUrl:
+          'billing/main/history/postalMailOptions/billing-main-history-postal-mail-options.html',
         controller: 'BillingHistoryPostalMailOptionsCtrl',
         controllerAs: '$ctrl',
         resolve: {
@@ -240,7 +305,7 @@ angular
       });
 
       return postalOptionsModal.result.catch(() => {
-      // reset the checkbox state in case modal is closed without confirm
+        // reset the checkbox state in case modal is closed without confirm
         this.postalMailOptions.activated = !this.postalMailOptions.activated;
       });
     }
@@ -252,15 +317,18 @@ angular
   ====================================== */
 
     getDebtAccount() {
-      return this.OvhApiMe.DebtAccount().v6().get().$promise.catch((error) => {
-        if (error.status === 404) {
-          return {
-            active: false,
-          };
-        }
+      return this.OvhApiMe.DebtAccount()
+        .v6()
+        .get()
+        .$promise.catch((error) => {
+          if (error.status === 404) {
+            return {
+              active: false,
+            };
+          }
 
-        return this.$q.reject(error);
-      });
+          return this.$q.reject(error);
+        });
     }
 
     $onInit() {
@@ -268,33 +336,55 @@ angular
 
       this.loading.init = true;
 
-      if (this.coreConfig.isRegion('EU') && this.currentUser.billingCountry === 'FR' && this.currentUser.legalform === 'individual') {
-        postalMailOptionPromise = this
-          .OvhApiMe
-          .Billing()
+      if (
+        this.coreConfig.isRegion('EU') &&
+        this.currentUser.billingCountry === 'FR' &&
+        this.currentUser.legalform === 'individual'
+      ) {
+        postalMailOptionPromise = this.OvhApiMe.Billing()
           .InvoicesByPostalMail()
           .v6()
           .get().$promise;
       }
 
-      return this.$q.all({
-        debtAccount: this.getDebtAccount(),
-        hasDefaultPaymentMethod: this.ovhPaymentMethod.hasDefaultPaymentMethod(),
-        invoicesByPostalMail: postalMailOptionPromise,
-      }).then(({ debtAccount, hasDefaultPaymentMethod, invoicesByPostalMail }) => {
-        this.debtAccount = debtAccount;
-        this.debtAccount.active = get(debtAccount, 'active') || get(debtAccount, 'todoAmount.value') > 0 || get(debtAccount, 'dueAmount.value') > 0;
-        this.hasDefaultPaymentMethod = hasDefaultPaymentMethod;
+      return this.$q
+        .all({
+          debtAccount: this.getDebtAccount(),
+          hasDefaultPaymentMethod: this.ovhPaymentMethod.hasDefaultPaymentMethod(),
+          invoicesByPostalMail: postalMailOptionPromise,
+        })
+        .then(
+          ({ debtAccount, hasDefaultPaymentMethod, invoicesByPostalMail }) => {
+            this.debtAccount = debtAccount;
+            this.debtAccount.active =
+              get(debtAccount, 'active') ||
+              get(debtAccount, 'todoAmount.value') > 0 ||
+              get(debtAccount, 'dueAmount.value') > 0;
+            this.hasDefaultPaymentMethod = hasDefaultPaymentMethod;
 
-        // set invoice by postal mail options
-        this.postalMailOptions.enabled = invoicesByPostalMail !== null;
-        this.postalMailOptions.activated = get(invoicesByPostalMail, 'data', false);
-      }).catch((error) => {
-        this.Alerter.error([this.$translate.instant('billing_main_history_loading_errors'), get(error, 'data.message')].join(' '), 'billing_main_alert');
-      }).finally(() => {
-        this.loading.init = false;
-      });
+            // set invoice by postal mail options
+            this.postalMailOptions.enabled = invoicesByPostalMail !== null;
+            this.postalMailOptions.activated = get(
+              invoicesByPostalMail,
+              'data',
+              false,
+            );
+          },
+        )
+        .catch((error) => {
+          this.Alerter.error(
+            [
+              this.$translate.instant('billing_main_history_loading_errors'),
+              get(error, 'data.message'),
+            ].join(' '),
+            'billing_main_alert',
+          );
+        })
+        .finally(() => {
+          this.loading.init = false;
+        });
     }
 
-  /* -----  End of INITIALIZATION  ------ */
-  });
+    /* -----  End of INITIALIZATION  ------ */
+  },
+);

@@ -53,17 +53,16 @@ export default class ExchangeAddSharedAccountCtrl {
       'localPart',
       'required',
     );
-    this.errors.emailLocalPartDoesntRespectsPattern = this.services.formValidation
-      .doesFieldContainsErrors(
-        this.sharedAccountForm,
-        'localPart',
-        'pattern',
-      );
+    this.errors.emailLocalPartDoesntRespectsPattern = this.services.formValidation.doesFieldContainsErrors(
+      this.sharedAccountForm,
+      'localPart',
+      'pattern',
+    );
 
     return (
-      this.errors.emailLocalPartIsEmpty
-      || this.errors.emailLocalPartDoesntRespectsPattern
-      || this.errors.emailIsAlreadyTaken
+      this.errors.emailLocalPartIsEmpty ||
+      this.errors.emailLocalPartDoesntRespectsPattern ||
+      this.errors.emailIsAlreadyTaken
     );
   }
 
@@ -73,38 +72,44 @@ export default class ExchangeAddSharedAccountCtrl {
       'quota',
       'number',
     );
-    this.errors.quotaIsWrong = quotaIsntANumber
-      || this.services.formValidation.doesFieldContainsErrors(
+    this.errors.quotaIsWrong =
+      quotaIsntANumber ||
+      this.services.formValidation.doesFieldContainsErrors(
         this.sharedAccountForm,
         'quota',
         'min',
-      )
-      || this.services.formValidation.doesFieldContainsErrors(
+      ) ||
+      this.services.formValidation.doesFieldContainsErrors(
         this.sharedAccountForm,
         'quota',
         'max',
       );
 
-    return this.errors.quotaIsWrong
-    || (this.sharedAccountForm.unit.$dirty && !isEmpty(this.sharedAccountForm.quota.$error));
+    return (
+      this.errors.quotaIsWrong ||
+      (this.sharedAccountForm.unit.$dirty &&
+        !isEmpty(this.sharedAccountForm.quota.$error))
+    );
   }
 
   buildDisplayName() {
     const firstName = this.accountBeingCreated.firstName || '';
-    const separator = this.accountBeingCreated.firstName && this.accountBeingCreated.lastName ? ' ' : '';
+    const separator =
+      this.accountBeingCreated.firstName && this.accountBeingCreated.lastName
+        ? ' '
+        : '';
     const lastName = this.accountBeingCreated.lastName || '';
 
     this.accountBeingCreated.displayName = `${firstName}${separator}${lastName}`;
   }
 
   emailOnChange() {
-    this.accountBeingCreated.sharedEmailAddress = `${this.localPart}@${
-      this.domain.name
-    }`.toLowerCase();
+    this.accountBeingCreated.sharedEmailAddress = `${this.localPart}@${this.domain.name}`.toLowerCase();
     this.errors.emailIsAlreadyTaken = false;
     const matchingEmaiAddress = this.alreadyTakenEmails.find(
-      alreadyTakenEmail => this.accountBeingCreated.sharedEmailAddress.toUpperCase()
-        === alreadyTakenEmail.toUpperCase(),
+      (alreadyTakenEmail) =>
+        this.accountBeingCreated.sharedEmailAddress.toUpperCase() ===
+        alreadyTakenEmail.toUpperCase(),
     );
     this.errors.emailIsAlreadyTaken = matchingEmaiAddress != null;
   }
@@ -123,24 +128,36 @@ export default class ExchangeAddSharedAccountCtrl {
         );
         this.services.navigation.resetAction();
       } else if (
-        this.optionsToCreateNewAccounts.maxQuota.value
-        < this.optionsToCreateNewAccounts.minQuota.value) {
+        this.optionsToCreateNewAccounts.maxQuota.value <
+        this.optionsToCreateNewAccounts.minQuota.value
+      ) {
         this.services.messaging.writeError(
-          this.services.$translate.instant('exchange_SHARED_ACCOUNTS_total_quota_error_message'),
+          this.services.$translate.instant(
+            'exchange_SHARED_ACCOUNTS_total_quota_error_message',
+          ),
         );
         this.services.navigation.resetAction();
       } else {
         this.domain = head(data.availableDomains);
-        const { value, unit } = this.services.ExchangeSharedAccounts
-          .formatQuota(this.optionsToCreateNewAccounts.maxQuota);
+        const {
+          value,
+          unit,
+        } = this.services.ExchangeSharedAccounts.formatQuota(
+          this.optionsToCreateNewAccounts.maxQuota,
+        );
 
         Object.assign(this.optionsToCreateNewAccounts, {
           quota: angular.copy(this.optionsToCreateNewAccounts.minQuota),
-          availableQuotaUnits: this.services.ExchangeSharedAccounts
-            .getQuotaUnitRange(this.optionsToCreateNewAccounts.minQuota.unit, unit),
-          maxQuota: Object.assign(angular.copy(this.optionsToCreateNewAccounts.maxQuota), {
-            toDisplay: { value, unit },
-          }),
+          availableQuotaUnits: this.services.ExchangeSharedAccounts.getQuotaUnitRange(
+            this.optionsToCreateNewAccounts.minQuota.unit,
+            unit,
+          ),
+          maxQuota: Object.assign(
+            angular.copy(this.optionsToCreateNewAccounts.maxQuota),
+            {
+              toDisplay: { value, unit },
+            },
+          ),
         });
 
         this.accountBeingCreated.quota = this.optionsToCreateNewAccounts.quota.value;
@@ -152,7 +169,8 @@ export default class ExchangeAddSharedAccountCtrl {
 
   isDirty() {
     return (
-      has(this.sharedAccountForm, 'localPart.$dirty') && this.sharedAccountForm.localPart.$dirty
+      has(this.sharedAccountForm, 'localPart.$dirty') &&
+      this.sharedAccountForm.localPart.$dirty
     );
   }
 
@@ -163,32 +181,30 @@ export default class ExchangeAddSharedAccountCtrl {
   convertQuotas() {
     this.selectQuota();
 
-    this.minQuota = this.services.ExchangeSharedAccounts
-      .convertQuota(
-        this.optionsToCreateNewAccounts.minQuota.value,
-        this.optionsToCreateNewAccounts.minQuota.unit,
-        this.optionsToCreateNewAccounts.quota.unit,
-      );
+    this.minQuota = this.services.ExchangeSharedAccounts.convertQuota(
+      this.optionsToCreateNewAccounts.minQuota.value,
+      this.optionsToCreateNewAccounts.minQuota.unit,
+      this.optionsToCreateNewAccounts.quota.unit,
+    );
 
-    this.maxQuota = this.services.ExchangeSharedAccounts
-      .convertQuota(
-        this.optionsToCreateNewAccounts.maxQuota.value,
-        this.optionsToCreateNewAccounts.maxQuota.unit,
-        this.optionsToCreateNewAccounts.quota.unit,
-      );
+    this.maxQuota = this.services.ExchangeSharedAccounts.convertQuota(
+      this.optionsToCreateNewAccounts.maxQuota.value,
+      this.optionsToCreateNewAccounts.maxQuota.unit,
+      this.optionsToCreateNewAccounts.quota.unit,
+    );
   }
 
   selectQuota() {
     if (this.optionsToCreateNewAccounts.quota.value) {
-      this.accountBeingCreated.quota = this.services.ExchangeSharedAccounts
-        .convertQuota(
-          this.optionsToCreateNewAccounts.quota.value,
-          this.optionsToCreateNewAccounts.quota.unit,
-          this.optionsToCreateNewAccounts.minQuota.unit,
-        );
+      this.accountBeingCreated.quota = this.services.ExchangeSharedAccounts.convertQuota(
+        this.optionsToCreateNewAccounts.quota.value,
+        this.optionsToCreateNewAccounts.quota.unit,
+        this.optionsToCreateNewAccounts.minQuota.unit,
+      );
 
-      this.formattedQuota = this.services.ExchangeSharedAccounts
-        .getFormattedQuota(this.optionsToCreateNewAccounts.quota);
+      this.formattedQuota = this.services.ExchangeSharedAccounts.getFormattedQuota(
+        this.optionsToCreateNewAccounts.quota,
+      );
     }
   }
 
@@ -204,13 +220,17 @@ export default class ExchangeAddSharedAccountCtrl {
     )
       .then((data) => {
         this.services.messaging.writeSuccess(
-          this.services.$translate.instant('exchange_SHARED_ACCOUNTS_add_success_message'),
+          this.services.$translate.instant(
+            'exchange_SHARED_ACCOUNTS_add_success_message',
+          ),
           data,
         );
       })
       .catch((failure) => {
         this.services.messaging.writeError(
-          this.services.$translate.instant('exchange_ACTION_add_account_error_message'),
+          this.services.$translate.instant(
+            'exchange_ACTION_add_account_error_message',
+          ),
           failure.data,
         );
       })

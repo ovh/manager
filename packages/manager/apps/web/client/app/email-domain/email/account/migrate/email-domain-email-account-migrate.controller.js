@@ -33,7 +33,8 @@ angular.module('App').controller(
         HOSTED_EXCHANGE: 'HOSTED EXCHANGE',
         PRIVATE_EXCHANGE: 'PRIVATE EXCHANGE',
       };
-      this.email = this.$scope.ctrlEmailDomainEmail.accountMigrationEmail || null;
+      this.email =
+        this.$scope.ctrlEmailDomainEmail.accountMigrationEmail || null;
 
       this.loaders = {
         isInitialRetrievalRunning: true,
@@ -74,7 +75,9 @@ angular.module('App').controller(
       // First, get the models for the service types
       this.WucEmails.getModels().then((data) => {
         this.models = data.models;
-        this.getDestinationServices(this.models['email.domain.MigrationServiceType'].enum);
+        this.getDestinationServices(
+          this.models['email.domain.MigrationServiceType'].enum,
+        );
       });
     }
 
@@ -92,14 +95,14 @@ angular.module('App').controller(
         // Merge destinationServices with serviceTypes, and get available services
         angular.forEach(serviceTypes, (serviceType, index) => {
           if (data[index].length) {
-            const services = map(data[index], destinationService => ({
+            const services = map(data[index], (destinationService) => ({
               id: destinationService,
               name: destinationService,
               type: serviceType,
             }));
 
             this.destinationServices[serviceType] = services;
-            this.availableServices = this.availableServices + 1;
+            this.availableServices += 1;
           }
         });
 
@@ -113,7 +116,7 @@ angular.module('App').controller(
         this.email.domain,
         this.email.accountName,
         type,
-      ).catch(err => this.handleError(err));
+      ).catch((err) => this.handleError(err));
     }
 
     // Get Destination email (@configure.me)
@@ -149,11 +152,12 @@ angular.module('App').controller(
             [this.migrate.destinationEmail] = this.destinationEmails;
           }
         })
-        .catch(err => this.handleError(err))
+        .catch((err) => this.handleError(err))
         .finally(() => {
           this.loaders.isWaitingForDestinationEmails = false;
-          this.isExchange = get(this, 'migrate.destinationService.type')
-            !== this.destinationServiceType.emailPro;
+          this.isExchange =
+            get(this, 'migrate.destinationService.type') !==
+            this.destinationServiceType.emailPro;
         });
     }
 
@@ -198,23 +202,27 @@ angular.module('App').controller(
       )
         .then(() => {
           if (
-            get(this, 'migrate.destinationService.type')
-            === this.destinationServiceType.emailPro
+            get(this, 'migrate.destinationService.type') ===
+            this.destinationServiceType.emailPro
           ) {
             this.Alerter.success(
-              this.$translate.instant('email_tab_modal_migrate_success_emailpro'),
+              this.$translate.instant(
+                'email_tab_modal_migrate_success_emailpro',
+              ),
               this.$scope.alerts.main,
             );
           } else {
             this.Alerter.success(
-              this.$translate.instant('email_tab_modal_migrate_success_exchange'),
+              this.$translate.instant(
+                'email_tab_modal_migrate_success_exchange',
+              ),
               this.$scope.alerts.main,
             );
           }
 
           this.$scope.ctrlEmailDomainEmail.displayEmailsList();
         })
-        .catch(err => this.handleError(err))
+        .catch((err) => this.handleError(err))
         .finally(() => {
           this.loaders.isWaitingForMigration = false;
         });
@@ -235,28 +243,38 @@ angular.module('App').controller(
     }
 
     displayCheckMigrationErrors(errors) {
-      const checkMigrationErrorCodes = errors.map(error => get(error, 'code'));
+      const checkMigrationErrorCodes = errors.map((error) =>
+        get(error, 'code'),
+      );
 
-      const shouldRetry = isEmpty(intersection(checkMigrationErrorCodes, [
-        'ACCOUNT_EMPTY',
-        'DOMAIN_EMPTY',
-        'FORWARD_EXIST',
-        'FORWARD_LOCAL',
-        'MAILINGLIST_EXIST',
-        'MAILPROXY_BAD_INFRA',
-        'MAILPROXY_EMPTY',
-        'UNKNOW',
-      ]));
+      const shouldRetry = isEmpty(
+        intersection(checkMigrationErrorCodes, [
+          'ACCOUNT_EMPTY',
+          'DOMAIN_EMPTY',
+          'FORWARD_EXIST',
+          'FORWARD_LOCAL',
+          'MAILINGLIST_EXIST',
+          'MAILPROXY_BAD_INFRA',
+          'MAILPROXY_EMPTY',
+          'UNKNOW',
+        ]),
+      );
 
       const checkMigrationErrors = [];
       forEach(checkMigrationErrorCodes, (code) => {
-        checkMigrationErrors.push(this.$translate.instant(`email_tab_modal_migrate_errors_check_${code}`));
+        checkMigrationErrors.push(
+          this.$translate.instant(
+            `email_tab_modal_migrate_errors_check_${code}`,
+          ),
+        );
       });
       this.checkMigrationErrors = uniq(checkMigrationErrors);
 
       let shouldRetryLabel = '';
       if (shouldRetry) {
-        shouldRetryLabel = this.$translate.instant('email_tab_modal_migrate_error_check_should_retry');
+        shouldRetryLabel = this.$translate.instant(
+          'email_tab_modal_migrate_error_check_should_retry',
+        );
       }
 
       this.checkMigrationErrorLabel = this.$translate.instant(

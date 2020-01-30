@@ -13,18 +13,32 @@ export default class {
   }
 
   create(serviceName, privateNetwork, subnets) {
-    return this.OvhApiCloudProjectNetworkPrivate.v6().save({
-      serviceName,
-    }, privateNetwork).$promise
-      .then(({ id }) => this.checkPrivateNetworkCreationStatus(serviceName, id))
-      .then(network => this.createSubnets(serviceName, network.id, subnets));
+    return this.OvhApiCloudProjectNetworkPrivate.v6()
+      .save(
+        {
+          serviceName,
+        },
+        privateNetwork,
+      )
+      .$promise.then(({ id }) =>
+        this.checkPrivateNetworkCreationStatus(serviceName, id),
+      )
+      .then((network) => this.createSubnets(serviceName, network.id, subnets));
   }
 
   createSubnets(serviceName, networkId, subnets) {
-    return Promise.all(subnets.map(subnet => this.OvhApiCloudProjectNetworkPrivateSubnet.v6().save({
-      serviceName,
-      networkId,
-    }, subnet).$promise));
+    return Promise.all(
+      subnets.map(
+        (subnet) =>
+          this.OvhApiCloudProjectNetworkPrivateSubnet.v6().save(
+            {
+              serviceName,
+              networkId,
+            },
+            subnet,
+          ).$promise,
+      ),
+    );
   }
 
   checkPrivateNetworkCreationStatus(serviceName, networkId) {

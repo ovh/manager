@@ -16,20 +16,25 @@ angular
     oclazyload,
     uiRouterAngularJs,
   ])
-  .config(/* @ngInject */ ($stateProvider) => {
-    $stateProvider.state('support.**', {
-      lazyLoad: ($transition$) => {
-        const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+  .config(
+    /* @ngInject */ ($stateProvider) => {
+      $stateProvider.state('support.**', {
+        lazyLoad: ($transition$) => {
+          const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-        return import('./support.module')
-          .then(mod => $ocLazyLoad.inject(mod.default || mod));
-      },
-      url: state.url,
-    });
-  })
+          return import('./support.module').then((mod) =>
+            $ocLazyLoad.inject(mod.default || mod),
+          );
+        },
+        url: state.url,
+      });
+    },
+  )
   .run(/* @ngTranslationsInject:json ./translations */)
-  .run(/* @ngInject */ ($transitions, $translate) => {
-    $transitions.onBefore({ to: 'support.**' }, () => $translate.refresh());
-  });
+  .run(
+    /* @ngInject */ ($transitions, $translate) => {
+      $transitions.onBefore({ to: 'support.**' }, () => $translate.refresh());
+    },
+  );
 
 export default moduleName;

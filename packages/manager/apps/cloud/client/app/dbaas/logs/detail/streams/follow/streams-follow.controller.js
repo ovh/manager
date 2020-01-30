@@ -1,6 +1,15 @@
 class LogsStreamsFollowCtrl {
-  constructor($scope, $stateParams, $translate, CucControllerHelper, CucUrlHelper, CucCloudMessage,
-    LogsStreamsService, LogsStreamsFollowService, LogsConstants) {
+  constructor(
+    $scope,
+    $stateParams,
+    $translate,
+    CucControllerHelper,
+    CucUrlHelper,
+    CucCloudMessage,
+    LogsStreamsService,
+    LogsStreamsFollowService,
+    LogsConstants,
+  ) {
     this.$scope = $scope;
     this.$stateParams = $stateParams;
     this.$translate = $translate;
@@ -20,9 +29,11 @@ class LogsStreamsFollowCtrl {
 
   initLoaders() {
     this.stream = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () => this.LogsStreamsService
-        .getAapiStream(this.$stateParams.serviceName, this.$stateParams.streamId)
-        .then((stream) => {
+      loaderFunction: () =>
+        this.LogsStreamsService.getAapiStream(
+          this.$stateParams.serviceName,
+          this.$stateParams.streamId,
+        ).then((stream) => {
           this.LogsStreamsFollowService.openConnection(stream);
           return stream;
         }),
@@ -30,15 +41,25 @@ class LogsStreamsFollowCtrl {
     this.stream.load();
 
     this.testClientUrls = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () => this.LogsStreamsFollowService
-        .getTestClientUrls(this.$stateParams.serviceName)
-        .then((serviceInfo) => {
-          this.rfc5424Url = this.CucUrlHelper.constructor
-            .findUrl(serviceInfo, this.LogsConstants.RFC_URL, false);
-          this.ltsvUrl = this.CucUrlHelper.constructor
-            .findUrl(serviceInfo, this.LogsConstants.LTSV_URL, false);
-          this.gelfUrl = this.CucUrlHelper.constructor
-            .findUrl(serviceInfo, this.LogsConstants.GELF_URL, false);
+      loaderFunction: () =>
+        this.LogsStreamsFollowService.getTestClientUrls(
+          this.$stateParams.serviceName,
+        ).then((serviceInfo) => {
+          this.rfc5424Url = this.CucUrlHelper.constructor.findUrl(
+            serviceInfo,
+            this.LogsConstants.RFC_URL,
+            false,
+          );
+          this.ltsvUrl = this.CucUrlHelper.constructor.findUrl(
+            serviceInfo,
+            this.LogsConstants.LTSV_URL,
+            false,
+          );
+          this.gelfUrl = this.CucUrlHelper.constructor.findUrl(
+            serviceInfo,
+            this.LogsConstants.GELF_URL,
+            false,
+          );
         }),
     });
     this.testClientUrls.load();
@@ -82,13 +103,22 @@ class LogsStreamsFollowCtrl {
   testFlow(type) {
     switch (type) {
       case this.LogsStreamsFollowService.testTypeEnum.GELF:
-        this.LogsStreamsFollowService.copyGELCommandLine(this.stream.data, this.gelfUrl);
+        this.LogsStreamsFollowService.copyGELCommandLine(
+          this.stream.data,
+          this.gelfUrl,
+        );
         break;
       case this.LogsStreamsFollowService.testTypeEnum.LTSV:
-        this.LogsStreamsFollowService.copyLTSVCommandLine(this.stream.data, this.ltsvUrl);
+        this.LogsStreamsFollowService.copyLTSVCommandLine(
+          this.stream.data,
+          this.ltsvUrl,
+        );
         break;
       case this.LogsStreamsFollowService.testTypeEnum.RFC5424:
-        this.LogsStreamsFollowService.copyRFCCommandLine(this.stream.data, this.rfc5424Url);
+        this.LogsStreamsFollowService.copyRFCCommandLine(
+          this.stream.data,
+          this.rfc5424Url,
+        );
         break;
       default:
         break;
@@ -104,4 +134,6 @@ class LogsStreamsFollowCtrl {
   }
 }
 
-angular.module('managerApp').controller('LogsStreamsFollowCtrl', LogsStreamsFollowCtrl);
+angular
+  .module('managerApp')
+  .controller('LogsStreamsFollowCtrl', LogsStreamsFollowCtrl);

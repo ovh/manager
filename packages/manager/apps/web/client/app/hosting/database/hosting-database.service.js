@@ -51,7 +51,9 @@ angular.module('services').service(
         {
           rootPath: 'apiv6',
         },
-      ).then(availableTypes => availableTypes.map(type => type.toUpperCase()));
+      ).then((availableTypes) =>
+        availableTypes.map((type) => type.toUpperCase()),
+      );
     }
 
     /**
@@ -83,7 +85,8 @@ angular.module('services').service(
           database[elt] = database[elt].toUpperCase();
         });
         database.version = `_${snakeCase(database.version)}`;
-        database.quotaPercent = (database.quotaUsed.value / database.quotaSize.value) * 100;
+        database.quotaPercent =
+          (database.quotaUsed.value / database.quotaSize.value) * 100;
 
         return database;
       });
@@ -293,8 +296,10 @@ angular.module('services').service(
      * Get dump options
      */
     dumpDatabaseOptions() {
-      return this.Hosting.getModels().then(models => ({
-        dumpDates: models.models['hosting.web.database.dump.DateEnum'].enum.map(model => this.WucJavaEnum.tr(model)),
+      return this.Hosting.getModels().then((models) => ({
+        dumpDates: models.models['hosting.web.database.dump.DateEnum'].enum.map(
+          (model) => this.WucJavaEnum.tr(model),
+        ),
       }));
     }
 
@@ -315,7 +320,7 @@ angular.module('services').service(
           models: this.Hosting.getModels(),
         })
         .then(({ hosting, capabilities, models }) => ({
-          availableDatabases: capabilities.map(capa => ({
+          availableDatabases: capabilities.map((capa) => ({
             type: this.WucJavaEnum.tr(capa.type),
             quota: capa.quota,
             extraSqlQuota:
@@ -324,7 +329,7 @@ angular.module('services').service(
           })),
           databaseTypes: models.models[
             'hosting.web.database.DatabaseCreationTypeEnum'
-          ].enum.map(m => this.WucJavaEnum.tr(m)),
+          ].enum.map((m) => this.WucJavaEnum.tr(m)),
           primaryLogin: hosting.primaryLogin,
         }));
     }
@@ -477,9 +482,11 @@ angular.module('services').service(
      */
     getTasks(serviceName, status, func) {
       return this.getTaskIds(serviceName, status, func).then((tasksId) => {
-        const promises = tasksId.map(id => this.OvhHttp.get(`/hosting/web/${serviceName}/tasks/${id}`, {
-          rootPath: 'apiv6',
-        }));
+        const promises = tasksId.map((id) =>
+          this.OvhHttp.get(`/hosting/web/${serviceName}/tasks/${id}`, {
+            rootPath: 'apiv6',
+          }),
+        );
         return this.$q.all(promises);
       });
     }

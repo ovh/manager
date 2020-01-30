@@ -63,7 +63,7 @@ export default class ExchangeLicenseHistoryCtrl {
               mode: 'index',
               intersect: false,
               callbacks: {
-                title: data => get(head(data), 'xLabel'),
+                title: (data) => get(head(data), 'xLabel'),
               },
             },
             scales: {
@@ -108,7 +108,9 @@ export default class ExchangeLicenseHistoryCtrl {
         };
 
         this.chart.addSerie(
-          this.$translate.instant('exchange_action_license_history_type_outlook'),
+          this.$translate.instant(
+            'exchange_action_license_history_type_outlook',
+          ),
           licenses.outlook,
           serieOptions,
         );

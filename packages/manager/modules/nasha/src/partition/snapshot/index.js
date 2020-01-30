@@ -5,9 +5,6 @@ import snapshotModule from './snapshot.module';
 
 const moduleName = 'nashaPartitionSnapshot';
 
-angular.module(moduleName, [
-  'ui.router',
-  snapshotModule,
-]);
+angular.module(moduleName, ['ui.router', snapshotModule]);
 
 export default moduleName;

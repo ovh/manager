@@ -5,9 +5,7 @@ import set from 'lodash/set';
 import sha256 from 'fast-sha256';
 import find from 'lodash/find';
 
-import {
-  ANALYTICS_DATA_PLATFORM_CREDENTIALS_INFO,
-} from '../../analytics-data-platform.constants';
+import { ANALYTICS_DATA_PLATFORM_CREDENTIALS_INFO } from '../../analytics-data-platform.constants';
 
 export default class {
   /* @ngInject */
@@ -18,7 +16,9 @@ export default class {
   }
 
   $onInit() {
-    this.credentials = cloneDeep(this.ANALYTICS_DATA_PLATFORM_CREDENTIALS_INFO.credentials);
+    this.credentials = cloneDeep(
+      this.ANALYTICS_DATA_PLATFORM_CREDENTIALS_INFO.credentials,
+    );
     this.setUserList();
     this.credentialsInfo = {
       masterPassword: '',
@@ -33,7 +33,8 @@ export default class {
       this.ANALYTICS_DATA_PLATFORM_CREDENTIALS_INFO.rounds,
       this.ANALYTICS_DATA_PLATFORM_CREDENTIALS_INFO.dkLen,
     );
-    return nacl.encodeBase64(derivedKey)
+    return nacl
+      .encodeBase64(derivedKey)
       .substr(0, this.ANALYTICS_DATA_PLATFORM_CREDENTIALS_INFO.passwordLength);
   }
 
@@ -49,10 +50,14 @@ export default class {
     this.credentialsInfo.generatingPasswords = true;
     this.$timeout(() => {
       forEach(this.credentials, (credential) => {
-        set(credential, 'password', this.generatePassword(
-          `${credential.key}${this.platformDetails.analyticsProjectId}`,
-          this.credentialsInfo.masterPassword,
-        ));
+        set(
+          credential,
+          'password',
+          this.generatePassword(
+            `${credential.key}${this.platformDetails.analyticsProjectId}`,
+            this.credentialsInfo.masterPassword,
+          ),
+        );
       });
       this.setUserList();
       this.credentialsInfo.generatingPasswords = false;

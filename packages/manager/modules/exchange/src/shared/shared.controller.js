@@ -31,9 +31,12 @@ export default class ExchangeTabPublicFolderCtrl {
 
     this.displayPublicFolders();
 
-    $scope.$on(Exchange.events.publicFoldersChanged, () => $scope.$broadcast('paginationServerSide.reload', 'publicFoldersTable'));
+    $scope.$on(Exchange.events.publicFoldersChanged, () =>
+      $scope.$broadcast('paginationServerSide.reload', 'publicFoldersTable'),
+    );
 
-    $scope.retrievingMailingLists = (count, offset) => this.retrievingMailingLists(count, offset);
+    $scope.retrievingMailingLists = (count, offset) =>
+      this.retrievingMailingLists(count, offset);
     $scope.getPublicFoldersList = () => this.publicFoldersList;
     $scope.getLoading = () => this.loading;
     $scope.displayPublicFolders = () => this.displayPublicFolders();
@@ -46,7 +49,10 @@ export default class ExchangeTabPublicFolderCtrl {
   retrievingMailingLists(count, offset) {
     this.services.messaging.resetMessages();
     this.loading = true;
-    const searchString = this.search && this.search.value ? this.search.value.replace(/\\/g, '') : '';
+    const searchString =
+      this.search && this.search.value
+        ? this.search.value.replace(/\\/g, '')
+        : '';
 
     return this.services.ExchangePublicFolders.retrievingPublicFolders(
       this.$routerParams.organization,
@@ -60,7 +66,9 @@ export default class ExchangeTabPublicFolderCtrl {
       })
       .catch((failure) => {
         this.services.messaging.writeError(
-          this.services.$translate.instant('exchange_tab_SHARED_all_error_message'),
+          this.services.$translate.instant(
+            'exchange_tab_SHARED_all_error_message',
+          ),
           failure,
         );
       })
@@ -88,11 +96,19 @@ export default class ExchangeTabPublicFolderCtrl {
     this.showPermissions = true;
     this.services.$scope.selectedFolder = folder;
 
-    this.services.$scope.$broadcast('paginationServerSide.loadPage', 1, 'publicFoldersTable');
+    this.services.$scope.$broadcast(
+      'paginationServerSide.loadPage',
+      1,
+      'publicFoldersTable',
+    );
   }
 
   resetSearch() {
     this.search.value = null;
-    this.services.$scope.$broadcast('paginationServerSide.loadPage', 1, 'publicFoldersTable');
+    this.services.$scope.$broadcast(
+      'paginationServerSide.loadPage',
+      1,
+      'publicFoldersTable',
+    );
   }
 }

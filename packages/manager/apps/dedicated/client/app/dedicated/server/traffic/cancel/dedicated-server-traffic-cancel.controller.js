@@ -3,7 +3,14 @@ import isArray from 'lodash/isArray';
 import set from 'lodash/set';
 
 class ServerCancelTrafficCtrl {
-  constructor($scope, $rootScope, $stateParams, User, Server, ServerOrderTrafficService) {
+  constructor(
+    $scope,
+    $rootScope,
+    $stateParams,
+    User,
+    Server,
+    ServerOrderTrafficService,
+  ) {
     this.$scope = $scope;
     this.$stateParams = $stateParams;
     this.$rootScope = $rootScope;
@@ -24,8 +31,11 @@ class ServerCancelTrafficCtrl {
       {
         isValid: () => !this.user.loading,
         isLoading: () => this.user.loading || this.cancelAction.loading,
-        load: () => this.handleAPIGet(() => this.User.getUser()
-          .then(user => ({ data: user })), this.user),
+        load: () =>
+          this.handleAPIGet(
+            () => this.User.getUser().then((user) => ({ data: user })),
+            this.user,
+          ),
       },
     ];
 
@@ -38,9 +48,16 @@ class ServerCancelTrafficCtrl {
   }
 
   cancelOption() {
-    this.handleAPIGet(() => this.ServerOrderTrafficService
-      .cancelOption(this.$stateParams.productId), this.cancelAction)
-      .then(() => this.$rootScope.$broadcast('dedicated.informations.bandwidth'))
+    this.handleAPIGet(
+      () =>
+        this.ServerOrderTrafficService.cancelOption(
+          this.$stateParams.productId,
+        ),
+      this.cancelAction,
+    )
+      .then(() =>
+        this.$rootScope.$broadcast('dedicated.informations.bandwidth'),
+      )
       .finally(() => this.$scope.resetAction());
   }
 
@@ -69,4 +86,6 @@ class ServerCancelTrafficCtrl {
   }
 }
 
-angular.module('App').controller('ServerCancelTrafficCtrl', ServerCancelTrafficCtrl);
+angular
+  .module('App')
+  .controller('ServerCancelTrafficCtrl', ServerCancelTrafficCtrl);

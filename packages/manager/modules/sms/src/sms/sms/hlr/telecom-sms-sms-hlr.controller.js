@@ -6,8 +6,15 @@ import trimStart from 'lodash/trimStart';
 export default class {
   /* @ngInject */
   constructor(
-    $stateParams, $q, $translate,
-    OvhApiSms, TucSmsMediator, tucValidator, TucToast, TucToastError, SMS_URL,
+    $stateParams,
+    $q,
+    $translate,
+    OvhApiSms,
+    TucSmsMediator,
+    tucValidator,
+    TucToast,
+    TucToastError,
+    SMS_URL,
   ) {
     this.$stateParams = $stateParams;
     this.$q = $q;
@@ -59,15 +66,21 @@ export default class {
     this.hlr.data = null;
     this.api.sms.hlr.resetCache();
     this.api.sms.hlr.resetQueryCache();
-    return this.TucSmsMediator.initDeferred.promise.then(() => this.api.sms.hlr.query({
-      serviceName: this.$stateParams.serviceName,
-    }).$promise.then(hlrIds => hlrIds.sort((a, b) => b - a)
-      .map(id => ({ id })))
-      .then((hlrs) => {
-        this.hlr.data = hlrs;
-        this.service = this.TucSmsMediator.getCurrentSmsService();
-      }))
-      .catch(err => this.TucToastError(err));
+    return this.TucSmsMediator.initDeferred.promise
+      .then(() =>
+        this.api.sms.hlr
+          .query({
+            serviceName: this.$stateParams.serviceName,
+          })
+          .$promise.then((hlrIds) =>
+            hlrIds.sort((a, b) => b - a).map((id) => ({ id })),
+          )
+          .then((hlrs) => {
+            this.hlr.data = hlrs;
+            this.service = this.TucSmsMediator.getCurrentSmsService();
+          }),
+      )
+      .catch((err) => this.TucToastError(err));
   }
 
   /**
@@ -77,20 +90,22 @@ export default class {
    */
   getDetails(item) {
     if (item.transformed) {
-      return this.$q(resolve => resolve(item));
+      return this.$q((resolve) => resolve(item));
     }
     return this.api.sms.hlr
       .get({
         serviceName: this.$stateParams.serviceName,
         id: item.id,
-      }).$promise
-      .then((hlr) => {
+      })
+      .$promise.then((hlr) => {
         set(hlr, 'transformed', true);
         return hlr;
       })
-      .then(hlr => this.fetchPhoneOperator(hlr)
-        .then(operator => assign(hlr, { operatorName: operator.operator }))
-        .catch(() => hlr));
+      .then((hlr) =>
+        this.fetchPhoneOperator(hlr)
+          .then((operator) => assign(hlr, { operatorName: operator.operator }))
+          .catch(() => hlr),
+      );
   }
 
   /**
@@ -99,19 +114,30 @@ export default class {
    */
   send() {
     this.hlr.isSending = true;
-    return this.api.sms.hlr.send({
-      serviceName: this.$stateParams.serviceName,
-    }, {
-      receivers: [this.receiver],
-    }).$promise.then(() => {
-      this.service.creditsLeft -= 0.1;
-      this.TucToast.success(this.$translate.instant('sms_sms_hlr_query_send_success'));
-      return this.refreshHlr();
-    }).catch(() => {
-      this.TucToast.error(this.$translate.instant('sms_sms_hlr_query_send_failed'));
-    }).finally(() => {
-      this.hlr.isSending = false;
-    });
+    return this.api.sms.hlr
+      .send(
+        {
+          serviceName: this.$stateParams.serviceName,
+        },
+        {
+          receivers: [this.receiver],
+        },
+      )
+      .$promise.then(() => {
+        this.service.creditsLeft -= 0.1;
+        this.TucToast.success(
+          this.$translate.instant('sms_sms_hlr_query_send_success'),
+        );
+        return this.refreshHlr();
+      })
+      .catch(() => {
+        this.TucToast.error(
+          this.$translate.instant('sms_sms_hlr_query_send_failed'),
+        );
+      })
+      .finally(() => {
+        this.hlr.isSending = false;
+      });
   }
 
   /**
@@ -123,7 +149,8 @@ export default class {
     if (number) {
       if (startsWith(number, '00')) {
         return `+${trimStart(number, '00')}`;
-      } if (number.charAt(0) === '0') {
+      }
+      if (number.charAt(0) === '0') {
         return `+33${number.slice(1)}`;
       }
     }

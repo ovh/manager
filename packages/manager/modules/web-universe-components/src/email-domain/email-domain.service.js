@@ -176,14 +176,11 @@ export default class {
    * @param {object} data
    */
   setDnsFilter(serviceName, data) {
-    return this.OvhHttp.post(
-      `/email/domain/${serviceName}/changeDnsMXFilter`,
-      {
-        rootPath: 'apiv6',
-        data,
-        broadcast: 'domain.dashboard.refresh',
-      },
-    );
+    return this.OvhHttp.post(`/email/domain/${serviceName}/changeDnsMXFilter`, {
+      rootPath: 'apiv6',
+      data,
+      broadcast: 'domain.dashboard.refresh',
+    });
   }
 
   /**
@@ -290,7 +287,9 @@ export default class {
    */
   getFilter(serviceName, accountName, name) {
     return this.OvhHttp.get(
-      `/email/domain/${serviceName}/account/${accountName}/filter/${window.encodeURIComponent(name)}`,
+      `/email/domain/${serviceName}/account/${accountName}/filter/${window.encodeURIComponent(
+        name,
+      )}`,
       {
         rootPath: 'apiv6',
       },
@@ -305,16 +304,16 @@ export default class {
    * @param rules
    */
   createFilter(serviceName, accountName, filter, rules) {
-    return this.OvhHttp
-      .post(
-        `/email/domain/${serviceName}/account/${accountName}/filter`,
-        {
-          rootPath: 'apiv6',
-          data: filter,
-          broadcast: 'hosting.tabs.emails.filters.refresh',
-        },
-      )
-      .then(() => this.createRules(serviceName, accountName, filter.name, rules));
+    return this.OvhHttp.post(
+      `/email/domain/${serviceName}/account/${accountName}/filter`,
+      {
+        rootPath: 'apiv6',
+        data: filter,
+        broadcast: 'hosting.tabs.emails.filters.refresh',
+      },
+    ).then(() =>
+      this.createRules(serviceName, accountName, filter.name, rules),
+    );
   }
 
   /**
@@ -325,8 +324,9 @@ export default class {
    * @param rules
    */
   updateFilter(serviceName, accountName, filter, rules) {
-    return this.deleteFilter(serviceName, accountName, filter.name)
-      .then(() => this.createFilter(serviceName, accountName, filter, rules));
+    return this.deleteFilter(serviceName, accountName, filter.name).then(() =>
+      this.createFilter(serviceName, accountName, filter, rules),
+    );
   }
 
   /**
@@ -337,7 +337,9 @@ export default class {
    */
   deleteFilter(serviceName, accountName, filterName) {
     return this.OvhHttp.delete(
-      `/email/domain/${serviceName}/account/${accountName}/filter/${encodeURI(filterName)}`,
+      `/email/domain/${serviceName}/account/${accountName}/filter/${encodeURI(
+        filterName,
+      )}`,
       {
         rootPath: 'apiv6',
         broadcast: 'hosting.tabs.emails.filters.refresh',
@@ -354,7 +356,9 @@ export default class {
    */
   changeFilterActivity(serviceName, accountName, filterName, data) {
     return this.OvhHttp.post(
-      `/email/domain/${serviceName}/account/${accountName}/filter/${encodeURI(filterName)}/changeActivity`,
+      `/email/domain/${serviceName}/account/${accountName}/filter/${encodeURI(
+        filterName,
+      )}/changeActivity`,
       {
         rootPath: 'apiv6',
         data,
@@ -372,7 +376,9 @@ export default class {
    */
   changeFilterPriority(serviceName, accountName, filterName, data) {
     return this.OvhHttp.post(
-      `/email/domain/${serviceName}/account/${accountName}/filter/${encodeURI(filterName)}/changePriority`,
+      `/email/domain/${serviceName}/account/${accountName}/filter/${encodeURI(
+        filterName,
+      )}/changePriority`,
       {
         rootPath: 'apiv6',
         data,
@@ -390,7 +396,9 @@ export default class {
    */
   createRule(serviceName, accountName, filterName, data) {
     return this.OvhHttp.post(
-      `/email/domain/${serviceName}/account/${accountName}/filter/${encodeURI(filterName)}/rule`,
+      `/email/domain/${serviceName}/account/${accountName}/filter/${encodeURI(
+        filterName,
+      )}/rule`,
       {
         rootPath: 'apiv6',
         data,
@@ -406,12 +414,11 @@ export default class {
    * @param rules
    */
   createRules(serviceName, accountName, filterName, rules) {
-    return this.$q.all(rules.map(rule => this.createRule(
-      serviceName,
-      accountName,
-      filterName,
-      rule,
-    )));
+    return this.$q.all(
+      rules.map((rule) =>
+        this.createRule(serviceName, accountName, filterName, rule),
+      ),
+    );
   }
 
   /**
@@ -422,16 +429,21 @@ export default class {
    * @returns {Promise}
    */
   getRules(serviceName, accountName, filterName) {
-    return this.OvhHttp
-      .get(
-        `/email/domain/${serviceName}/account/${accountName}/filter/${encodeURI(filterName)}/rule`,
-        {
-          rootPath: 'apiv6',
-        },
+    return this.OvhHttp.get(
+      `/email/domain/${serviceName}/account/${accountName}/filter/${encodeURI(
+        filterName,
+      )}/rule`,
+      {
+        rootPath: 'apiv6',
+      },
+    )
+      .then((rulesId) =>
+        this.$q.all(
+          rulesId.map((id) =>
+            this.getRule(serviceName, accountName, filterName, id),
+          ),
+        ),
       )
-      .then(rulesId => this.$q.all(
-        rulesId.map(id => this.getRule(serviceName, accountName, filterName, id)),
-      ))
       .catch(() => []);
   }
 
@@ -444,7 +456,9 @@ export default class {
    */
   getRule(serviceName, accountName, filterName, id) {
     return this.OvhHttp.get(
-      `/email/domain/${serviceName}/account/${accountName}/filter/${encodeURI(filterName)}/rule/${id}`,
+      `/email/domain/${serviceName}/account/${accountName}/filter/${encodeURI(
+        filterName,
+      )}/rule/${id}`,
       {
         rootPath: 'apiv6',
       },
@@ -462,9 +476,11 @@ export default class {
   deleteRules(serviceName, accountName, filterName, rulesId) {
     return this.$q
       .all(
-        rulesId.map(id => this.deleteRule(serviceName, accountName, filterName, id)),
+        rulesId.map((id) =>
+          this.deleteRule(serviceName, accountName, filterName, id),
+        ),
       )
-      .catch(data => data);
+      .catch((data) => data);
   }
 
   /**
@@ -476,7 +492,9 @@ export default class {
    */
   deleteRule(serviceName, accountName, filterName, id) {
     return this.OvhHttp.delete(
-      `/email/domain/${serviceName}/account/${accountName}/filter/${encodeURI(filterName)}/rule/${id}`,
+      `/email/domain/${serviceName}/account/${accountName}/filter/${encodeURI(
+        filterName,
+      )}/rule/${id}`,
       {
         rootPath: 'apiv6',
         broadcast: 'hosting.tabs.emails.filters.refresh',
@@ -504,12 +522,9 @@ export default class {
    * @param {string} id
    */
   getRedirection(serviceName, id) {
-    return this.OvhHttp.get(
-      `/email/domain/${serviceName}/redirection/${id}`,
-      {
-        rootPath: 'apiv6',
-      },
-    );
+    return this.OvhHttp.get(`/email/domain/${serviceName}/redirection/${id}`, {
+      rootPath: 'apiv6',
+    });
   }
 
   /**
@@ -577,7 +592,7 @@ export default class {
       {
         rootPath: 'apiv6',
       },
-    ).catch(err => ({ account: accountName, err }));
+    ).catch((err) => ({ account: accountName, err }));
   }
 
   /**
@@ -631,15 +646,12 @@ export default class {
    * @param {string} account
    */
   getResponderTasks(serviceName, account) {
-    return this.OvhHttp.get(
-      `/email/domain/${serviceName}/task/responder`,
-      {
-        rootPath: 'apiv6',
-        params: {
-          account,
-        },
+    return this.OvhHttp.get(`/email/domain/${serviceName}/task/responder`, {
+      rootPath: 'apiv6',
+      params: {
+        account,
       },
-    );
+    });
   }
 
   /**
@@ -656,7 +668,7 @@ export default class {
       {
         namespace: 'email.domain.email.responder',
         successRule: {
-          state: task => !task,
+          state: (task) => !task,
         },
       },
     );
@@ -739,14 +751,18 @@ export default class {
       'responder',
     ];
 
-    return this.$q.all(actions.map(action => this.OvhHttp.get(`/email/domain/${serviceName}/task/${action}`, {
-      rootPath: 'apiv6',
-    })
-      .then(data => ({
-        action,
-        ids: data,
-      }))
-      .catch(err => this.$q.reject(err))));
+    return this.$q.all(
+      actions.map((action) =>
+        this.OvhHttp.get(`/email/domain/${serviceName}/task/${action}`, {
+          rootPath: 'apiv6',
+        })
+          .then((data) => ({
+            action,
+            ids: data,
+          }))
+          .catch((err) => this.$q.reject(err)),
+      ),
+    );
   }
 
   /**
@@ -906,13 +922,10 @@ export default class {
    * @param {string} email
    */
   getEmailDelegatedUsage(email) {
-    return this.OvhHttp.post(
-      `/email/domain/delegatedAccount/${email}/usage`,
-      {
-        rootPath: 'apiv6',
-        clearAllCache: this.cache.delegated,
-      },
-    );
+    return this.OvhHttp.post(`/email/domain/delegatedAccount/${email}/usage`, {
+      rootPath: 'apiv6',
+      clearAllCache: this.cache.delegated,
+    });
   }
 
   /**
@@ -935,7 +948,9 @@ export default class {
    */
   getDelegatedFilter(accountName, filterName) {
     return this.OvhHttp.get(
-      `/email/domain/delegatedAccount/${accountName}/filter/${encodeURI(filterName)}`,
+      `/email/domain/delegatedAccount/${accountName}/filter/${encodeURI(
+        filterName,
+      )}`,
       {
         rootPath: 'apiv6',
       },
@@ -950,16 +965,14 @@ export default class {
    * @returns {Promise}
    */
   createDelegatedFilter(accountName, filter, rules) {
-    return this.OvhHttp
-      .post(
-        `/email/domain/delegatedAccount/${accountName}/filter`,
-        {
-          rootPath: 'apiv6',
-          data: filter,
-          broadcast: 'hosting.tabs.emails.delegatedFilters.refresh',
-        },
-      )
-      .then(() => this.createDelegatedRules(accountName, filter.name, rules));
+    return this.OvhHttp.post(
+      `/email/domain/delegatedAccount/${accountName}/filter`,
+      {
+        rootPath: 'apiv6',
+        data: filter,
+        broadcast: 'hosting.tabs.emails.delegatedFilters.refresh',
+      },
+    ).then(() => this.createDelegatedRules(accountName, filter.name, rules));
   }
 
   /**
@@ -970,8 +983,9 @@ export default class {
    * @returns {Promise}
    */
   updateDelegatedFilter(accountName, filter, rules) {
-    return this.deleteDelegatedFilter(accountName, filter.name)
-      .then(() => this.createDelegatedFilter(accountName, filter, rules));
+    return this.deleteDelegatedFilter(accountName, filter.name).then(() =>
+      this.createDelegatedFilter(accountName, filter, rules),
+    );
   }
 
   /**
@@ -981,7 +995,9 @@ export default class {
    */
   deleteDelegatedFilter(accountName, filterName) {
     return this.OvhHttp.delete(
-      `/email/domain/delegatedAccount/${accountName}/filter/${encodeURI(filterName)}`,
+      `/email/domain/delegatedAccount/${accountName}/filter/${encodeURI(
+        filterName,
+      )}`,
       {
         rootPath: 'apiv6',
         broadcast: 'hosting.tabs.emails.delegatedFilters.refresh',
@@ -997,7 +1013,9 @@ export default class {
    */
   changeDelegatedFilterActivity(accountName, filterName, data) {
     return this.OvhHttp.post(
-      `/email/domain/delegatedAccount/${accountName}/filter/${encodeURI(filterName)}/changeActivity`,
+      `/email/domain/delegatedAccount/${accountName}/filter/${encodeURI(
+        filterName,
+      )}/changeActivity`,
       {
         rootPath: 'apiv6',
         data,
@@ -1014,7 +1032,9 @@ export default class {
    */
   changeDelegatedFilterPriority(accountName, filterName, data) {
     return this.OvhHttp.post(
-      `/email/domain/delegatedAccount/${accountName}/filter/${encodeURI(filterName)}/changePriority`,
+      `/email/domain/delegatedAccount/${accountName}/filter/${encodeURI(
+        filterName,
+      )}/changePriority`,
       {
         rootPath: 'apiv6',
         data,
@@ -1031,7 +1051,9 @@ export default class {
    */
   createDelegatedRule(accountName, filterName, data) {
     return this.OvhHttp.post(
-      `/email/domain/delegatedAccount/${accountName}/filter/${encodeURI(filterName)}/rule`,
+      `/email/domain/delegatedAccount/${accountName}/filter/${encodeURI(
+        filterName,
+      )}/rule`,
       {
         rootPath: 'apiv6',
         data,
@@ -1047,18 +1069,23 @@ export default class {
    * @returns {Promise}
    */
   createDelegatedRules(accountName, filterName, rules) {
-    return this.$q.all(rules.map(rule => this.OvhHttp
-      .post(
-        `/email/domain/delegatedAccount/${accountName}/filter/${encodeURI(filterName)}/rule`,
-        {
-          rootPath: 'apiv6',
-          data: {
-            operand: rule.operand,
-            value: rule.value,
-            header: rule.header,
+    return this.$q.all(
+      rules.map((rule) =>
+        this.OvhHttp.post(
+          `/email/domain/delegatedAccount/${accountName}/filter/${encodeURI(
+            filterName,
+          )}/rule`,
+          {
+            rootPath: 'apiv6',
+            data: {
+              operand: rule.operand,
+              value: rule.value,
+              header: rule.header,
+            },
           },
-        },
-      )));
+        ),
+      ),
+    );
   }
 
   /**
@@ -1068,16 +1095,21 @@ export default class {
    * @returns {Promise}
    */
   getDelegatedRules(accountName, filterName) {
-    return this.OvhHttp
-      .get(
-        `/email/domain/delegatedAccount/${accountName}/filter/${encodeURI(filterName)}/rule`,
-        {
-          rootPath: 'apiv6',
-        },
+    return this.OvhHttp.get(
+      `/email/domain/delegatedAccount/${accountName}/filter/${encodeURI(
+        filterName,
+      )}/rule`,
+      {
+        rootPath: 'apiv6',
+      },
+    )
+      .then((rulesId) =>
+        this.$q.all(
+          rulesId.map((id) =>
+            this.getDelegatedRule(accountName, filterName, id),
+          ),
+        ),
       )
-      .then(rulesId => this.$q.all(
-        rulesId.map(id => this.getDelegatedRule(accountName, filterName, id)),
-      ))
       .catch(() => []);
   }
 
@@ -1089,7 +1121,9 @@ export default class {
    */
   getDelegatedRule(accountName, filterName, id) {
     return this.OvhHttp.get(
-      `/email/domain/delegatedAccount/${accountName}/filter/${encodeURI(filterName)}/rule/${id}`,
+      `/email/domain/delegatedAccount/${accountName}/filter/${encodeURI(
+        filterName,
+      )}/rule/${id}`,
       {
         rootPath: 'apiv6',
       },
@@ -1103,7 +1137,11 @@ export default class {
    * @param {array} rulesId
    */
   deleteDelegatedRules(accountName, filterName, rulesId) {
-    return this.$q.all(rulesId.map(id => this.deleteDelegatedRule(accountName, filterName, id)));
+    return this.$q.all(
+      rulesId.map((id) =>
+        this.deleteDelegatedRule(accountName, filterName, id),
+      ),
+    );
   }
 
   /**
@@ -1114,7 +1152,9 @@ export default class {
    */
   deleteDelegatedRule(accountName, filterName, id) {
     return this.OvhHttp.delete(
-      `/email/domain/delegatedAccount/${accountName}/filter/${encodeURI(filterName)}/rule/${id}`,
+      `/email/domain/delegatedAccount/${accountName}/filter/${encodeURI(
+        filterName,
+      )}/rule/${id}`,
       {
         rootPath: 'apiv6',
         broadcast: 'hosting.tabs.emails.delegatedFilters.refresh',
@@ -1240,21 +1280,19 @@ export default class {
     destinationServiceName,
     destinationEmailAddress,
   ) {
-    return this.OvhHttp
-      .get(
-        `/email/domain/${domain}/account/${accountName}/migrate/${destinationServiceName}/destinationEmailAddress/${destinationEmailAddress}/checkMigrate`,
-        {
-          rootPath: 'apiv6',
-        },
-      )
-      .then((data) => {
-        // error codes are returned in success
-        if (isArray(data.error) && !isEmpty(data.error)) {
-          throw data.error;
-        }
+    return this.OvhHttp.get(
+      `/email/domain/${domain}/account/${accountName}/migrate/${destinationServiceName}/destinationEmailAddress/${destinationEmailAddress}/checkMigrate`,
+      {
+        rootPath: 'apiv6',
+      },
+    ).then((data) => {
+      // error codes are returned in success
+      if (isArray(data.error) && !isEmpty(data.error)) {
+        throw data.error;
+      }
 
-        return data;
-      });
+      return data;
+    });
   }
 
   /**

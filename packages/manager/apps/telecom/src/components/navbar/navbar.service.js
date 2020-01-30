@@ -4,12 +4,7 @@ import { MENU } from './navbar.constants';
 
 export default class {
   /* @ngInject */
-  constructor(
-    $q,
-    $rootScope,
-    $translate,
-    REDIRECT_URLS,
-  ) {
+  constructor($q, $rootScope, $translate, REDIRECT_URLS) {
     this.$q = $q;
     this.$rootScope = $rootScope;
     this.$translate = $translate;
@@ -18,10 +13,10 @@ export default class {
 
   getLinks(products) {
     return MENU.map((item) => {
-      const element = ({
+      const element = {
         ...item,
         title: this.$translate.instant(item.name),
-      });
+      };
 
       if (item.urlKey) {
         element.url = get(this.REDIRECT_URLS, item.urlKey);

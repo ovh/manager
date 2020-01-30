@@ -1,0 +1,53 @@
+<div class="pci-project-new h-100">
+    <div class="container h-100">
+        <div class="row minh-100">
+            <form
+                class="col-lg-10 py-5 minh-100 bg-white pci-project-new-view"
+                name="projectForm"
+                novalidate
+            >
+                <!-- title -->
+                <h1 data-translate="pci_project_new_title"></h1>
+
+                <!-- description -->
+                <oui-field
+                    data-label="{{ :: 'pci_project_new_description_label' | translate }}"
+                >
+                    <input
+                        class="oui-input"
+                        type="text"
+                        id="projectDescription"
+                        name="projectDescription"
+                        data-ng-model="$ctrl.model.description"
+                        maxlength="255"
+                    />
+                </oui-field>
+
+                <!-- footer -->
+                <div
+                    class="actions-container d-md-flex flex-row-reverse justify-content-between align-items-center my-3"
+                >
+                    <a
+                        class="oui-button oui-button_primary oui-button_icon-right no-transition"
+                        data-ng-href="{{ $ctrl.getExpressOrderLink() }}"
+                    >
+                        <span
+                            data-translate="pci_project_new_btn_create"
+                        ></span>
+                        <span
+                            class="oui-icon oui-icon_circle oui-icon-chevron-right"
+                            aria-hidden="true"
+                        >
+                        </span>
+                    </a>
+
+                    <a
+                        data-ng-href="{{ :: $ctrl.cancelHref }}"
+                        data-translate="pci_project_new_btn_cancel"
+                    >
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

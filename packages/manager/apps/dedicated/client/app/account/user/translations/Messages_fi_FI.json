@@ -541,7 +541,7 @@
   "user_account_advanced_section_developer_title": "Options for developers ",
   "user_account_advanced_section_developer_label": "I want to enable developer mode on this account ",
   "user_account_advanced_section_developer_interface_opensource": "Develop on our<br />open-source <strong>customer interfaces</strong>",
-  "user_account_advanced_section_developer_component_library": "Access our<br />component<strong>library</strong>",
+  "user_account_advanced_section_developer_component_library": "Access our<br />component <strong>library</strong>",
   "user_account_advanced_section_developer_api": "An <strong>API</strong> <br />to answer your needs",
   "user_account_advanced_section_developer_join_us": "Join us at:",
   "user_account_advanced_section_developer_alert_success_enabled": "Developer mode has been activated. ",
@@ -718,5 +718,9 @@
   "user_account_support_level_title": "Level of Support",
   "user_account_ssh_keys_title": "My SSH keys",
   "user_account_users_management_title": "User management",
-  "user_account_advanced_title": "Advanced settings"
+  "user_account_advanced_title": "Advanced settings",
+  "user_account_security_double_auth_type_totp_delete_error": "Oops! An error has occurred deleting two-factor authentication:",
+  "user_account_email_token_resend": "Resend confirmation code",
+  "user_account_email_token_resend_success": "You have just been sent a new confirmation code.  Please note that you may need to wait a few minutes before you receive it.",
+  "user_account_email_token_resend_error": "An error has occurred sending a new confirmation code."
 }

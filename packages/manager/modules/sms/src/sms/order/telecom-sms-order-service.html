@@ -1,116 +1,133 @@
 <section class="telecom-sms-order">
-
     <div class="text-center" data-ng-if="$ctrl.loading.init">
         <oui-spinner></oui-spinner>
     </div>
 
-    <div class="widget-presentation"
-         data-ng-if="!$ctrl.loading.init">
-
+    <div class="widget-presentation" data-ng-if="!$ctrl.loading.init">
         <header class="widget-presentation-header">
-            <h2 class="widget-presentation-title"
-                data-translate="sms_order_title">
-            </h2>
+            <h2
+                class="widget-presentation-title"
+                data-translate="sms_order_title"
+            ></h2>
         </header>
 
-        <form id="$ctrl.orm"
-              name="$ctrl.orm">
-
+        <form id="$ctrl.orm" name="$ctrl.orm">
             <div class="row">
                 <div class="col-md-6">
-
                     <!-- ACCOUNT -->
                     <div class="form-group">
-                        <label for="account"
-                               class="control-label"
-                               data-translate="sms_order_account_label">
+                        <label
+                            for="account"
+                            class="control-label"
+                            data-translate="sms_order_account_label"
+                        >
                         </label>
-                        <select id="account"
-                                name="account"
-                                class="form-control"
-                                required
-                                data-ng-model="$ctrl.order.account"
-                                data-ng-change="$ctrl.getPrices();"
-                                data-ng-options="smsAccount as smsAccount.label for smsAccount in $ctrl.availableAccounts"
-                                data-ng-disabled="$ctrl.loading.prices">
+                        <select
+                            id="account"
+                            name="account"
+                            class="form-control"
+                            required
+                            data-ng-model="$ctrl.order.account"
+                            data-ng-change="$ctrl.getPrices();"
+                            data-ng-options="smsAccount as smsAccount.label for smsAccount in $ctrl.availableAccounts"
+                            data-ng-disabled="$ctrl.loading.prices"
+                        >
                         </select>
                     </div>
 
                     <!-- CREDIT -->
-                    <div class="form-group"
-                         data-ng-if="$ctrl.order.account">
-                        <label for="credit"
-                               class="control-label"
-                               data-translate="sms_order_credit_label">
+                    <div class="form-group" data-ng-if="$ctrl.order.account">
+                        <label
+                            for="credit"
+                            class="control-label"
+                            data-translate="sms_order_credit_label"
+                        >
                         </label>
-                        <select id="credit"
-                                name="credit"
-                                class="form-control"
-                                required
-                                data-ng-model="$ctrl.order.credit"
-                                data-ng-change="$ctrl.getPrices(); $ctrl.order.customCredit = $ctrl.order.min"
-                                data-ng-options="credit as credit.label for credit in $ctrl.availableCredits"
-                                data-ng-disabled="$ctrl.loading.prices">
+                        <select
+                            id="credit"
+                            name="credit"
+                            class="form-control"
+                            required
+                            data-ng-model="$ctrl.order.credit"
+                            data-ng-change="$ctrl.getPrices(); $ctrl.order.customCredit = $ctrl.order.min"
+                            data-ng-options="credit as credit.label for credit in $ctrl.availableCredits"
+                            data-ng-disabled="$ctrl.loading.prices"
+                        >
                         </select>
                     </div>
 
                     <!-- CUSTOMCREDIT -->
-                    <div class="form-group clearfix"
-                         data-ng-if="$ctrl.customCreditSelected()">
-                        <label for="customCredit"
-                               class="control-label"
-                               data-translate="sms_order_credit_custom_label">
+                    <div
+                        class="form-group clearfix"
+                        data-ng-if="$ctrl.customCreditSelected()"
+                    >
+                        <label
+                            for="customCredit"
+                            class="control-label"
+                            data-translate="sms_order_credit_custom_label"
+                        >
                         </label>
                         <oui-numeric
                             data-min="$ctrl.order.min"
                             data-max="$ctrl.order.max"
                             data-model="$ctrl.order.customCredit"
-                            data-on-change="$ctrl.getDebouncedPrices()">
+                            data-on-change="$ctrl.getDebouncedPrices()"
+                        >
                         </oui-numeric>
                     </div>
 
                     <div data-ng-if="!$ctrl.loading.prices">
-
-                        <div class="form-group"
-                             data-ng-if="detail.detailType !== 'MUTE'"
-                             data-ng-repeat="detail in $ctrl.prices.details">
-                            <label class="control-label"
-                                   data-ng-if="detail.detailType == 'QUANTITY'"
-                                   data-translate="sms_order_price_quantity">
+                        <div
+                            class="form-group"
+                            data-ng-if="detail.detailType !== 'MUTE'"
+                            data-ng-repeat="detail in $ctrl.prices.details"
+                        >
+                            <label
+                                class="control-label"
+                                data-ng-if="detail.detailType == 'QUANTITY'"
+                                data-translate="sms_order_price_quantity"
+                            >
                             </label>
-                            <label class="control-label"
-                                   data-ng-if="detail.detailType == 'GIFT'"
-                                   data-translate="sms_order_price_gift">
+                            <label
+                                class="control-label"
+                                data-ng-if="detail.detailType == 'GIFT'"
+                                data-translate="sms_order_price_gift"
+                            >
                             </label>
-                            <p class="form-control-static font-weight-bold"
-                               data-ng-class="{
+                            <p
+                                class="form-control-static font-weight-bold"
+                                data-ng-class="{
                                    'text-success' : detail.detailType == 'GIFT',
                                    'text-danger' : detail.detailType == 'QUANTITY'
                                }"
-                               data-ng-bind="detail.totalPrice.text">
-                            </p>
+                                data-ng-bind="detail.totalPrice.text"
+                            ></p>
                         </div>
 
                         <div class="form-group">
-                            <label class="control-label"
-                                   data-translate="sms_order_price_total_vat">
+                            <label
+                                class="control-label"
+                                data-translate="sms_order_price_total_vat"
+                            >
                             </label>
-                            <p class="form-control-static font-weight-bold text-danger"
-                               data-ng-bind="$ctrl.prices.prices.tax.text">
-                            </p>
+                            <p
+                                class="form-control-static font-weight-bold text-danger"
+                                data-ng-bind="$ctrl.prices.prices.tax.text"
+                            ></p>
                         </div>
 
                         <div class="form-group">
-                            <label class="control-label"
-                                   data-translate="sms_order_price_total">
+                            <label
+                                class="control-label"
+                                data-translate="sms_order_price_total"
+                            >
                             </label>
-                            <p class="form-control-static font-weight-bold text-danger"
-                               data-ng-bind="$ctrl.prices.prices.withTax.text">
-                            </p>
+                            <p
+                                class="form-control-static font-weight-bold text-danger"
+                                data-ng-bind="$ctrl.prices.prices.withTax.text"
+                            ></p>
                         </div>
-
                     </div>
-
                 </div>
             </div>
 
@@ -119,11 +136,11 @@
             </div>
 
             <div data-ng-if="!$ctrl.loading.prices">
-
-                <div data-ovh-contracts="$ctrl.contracts"
-                     data-full-text="true"
-                     data-ovh-contracts-validated="$ctrl.contractsAccepted">
-                </div>
+                <div
+                    data-ovh-contracts="$ctrl.contracts"
+                    data-full-text="true"
+                    data-ovh-contracts-validated="$ctrl.contractsAccepted"
+                ></div>
 
                 <div class="checkbox">
                     <label>
@@ -131,58 +148,69 @@
                             type="checkbox"
                             name="retract"
                             id="retract"
-                            data-ng-model="$ctrl.retract">
+                            data-ng-model="$ctrl.retract"
+                        />
                         <span data-translate="sms_order_retract"></span>
                     </label>
                 </div>
 
                 <div class="form-group">
-                    <button class="btn btn-link"
-                            type="button"
-                            data-ng-click="$ctrl.showMore = !$ctrl.showMore"
-                            data-translate="sms_order_more_info">
-                    </button>
-                    <div class="alert alert-info"
-                         role="alert"
-                         data-ng-if="$ctrl.showMore"
-                         data-translate="sms_order_retract_info">
-                    </div>
+                    <button
+                        class="btn btn-link"
+                        type="button"
+                        data-ng-click="$ctrl.showMore = !$ctrl.showMore"
+                        data-translate="sms_order_more_info"
+                    ></button>
+                    <div
+                        class="alert alert-info"
+                        role="alert"
+                        data-ng-if="$ctrl.showMore"
+                        data-translate="sms_order_retract_info"
+                    ></div>
                 </div>
 
                 <div data-ng-if="!$ctrl.prices.url">
-                    <button type="button"
-                            role="button"
-                            class="btn btn-primary"
-                            data-ng-disabled="$ctrl.loading.order || !$ctrl.contractsAccepted || !$ctrl.retract"
-                            data-ng-click="$ctrl.doOrder()">
-                        <span class="ovh-font ovh-font-cart my-0 mr-2"
-                              aria-hidden="true"
-                              data-ng-if="!$ctrl.loading.order">
+                    <button
+                        type="button"
+                        role="button"
+                        class="btn btn-primary"
+                        data-ng-disabled="$ctrl.loading.order || !$ctrl.contractsAccepted || !$ctrl.retract"
+                        data-ng-click="$ctrl.doOrder()"
+                    >
+                        <span
+                            class="ovh-font ovh-font-cart my-0 mr-2"
+                            aria-hidden="true"
+                            data-ng-if="!$ctrl.loading.order"
+                        >
                         </span>
-                        <oui-spinner class="mr-2"
-                                     data-ng-if="$ctrl.loading.order"
-                                     data-size="s">
+                        <oui-spinner
+                            class="mr-2"
+                            data-ng-if="$ctrl.loading.order"
+                            data-size="s"
+                        >
                         </oui-spinner>
                         <span data-translate="sms_order_order"></span>
                     </button>
                 </div>
 
-                <div class="mb-3"
-                     data-ng-if="$ctrl.prices.url">
+                <div class="mb-3" data-ng-if="$ctrl.prices.url">
                     <span data-translate="sms_order_bc"></span>
-                    <a target="_blank"
-                       rel="noopener"
-                       title="{{:: 'sms_order_order' | translate}}"
-                       data-ng-href="{{$ctrl.prices.url}}">
+                    <a
+                        target="_blank"
+                        rel="noopener"
+                        title="{{:: 'sms_order_order' | translate}}"
+                        data-ng-href="{{$ctrl.prices.url}}"
+                    >
                         <span data-translate="sms_order_order_url"></span>
-                        <span class="ovh-font ovh-font-newtab ml-2" aria-hidden="true"></span>
+                        <span
+                            class="ovh-font ovh-font-newtab ml-2"
+                            aria-hidden="true"
+                        ></span>
                     </a>
                 </div>
             </div>
         </form>
-
     </div>
     <!-- /.widget-presentation -->
-
 </section>
 <!-- /.telecom-sms-order -->

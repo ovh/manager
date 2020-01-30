@@ -3,7 +3,8 @@ angular.module('managerApp').config(($stateProvider) => {
     url: '/accessories',
     views: {
       'ordersView@telecom.orders': {
-        templateUrl: 'app/telecom/orders/accessories/telecom-orders-accessories.html',
+        templateUrl:
+          'app/telecom/orders/accessories/telecom-orders-accessories.html',
         controller: 'TelecomOrdersAccessoriesCtrl',
         controllerAs: 'AccessoriesOrderCtrl',
       },

@@ -5,59 +5,88 @@
                 <div class="p-md-5 mx-auto">
                     <div class="oui-progress-tracker mx-auto mb-5">
                         <ol class="oui-progress-tracker__steps">
-                            <li class="oui-progress-tracker__step oui-progress-tracker__step_complete">
-                                <span class="oui-progress-tracker__status"></span>
+                            <li
+                                class="oui-progress-tracker__step oui-progress-tracker__step_complete"
+                            >
+                                <span
+                                    class="oui-progress-tracker__status"
+                                ></span>
                             </li>
-                            <li class="oui-progress-tracker__step oui-progress-tracker__step_active">
-                                <span class="oui-progress-tracker__status"></span>
+                            <li
+                                class="oui-progress-tracker__step oui-progress-tracker__step_active"
+                            >
+                                <span
+                                    class="oui-progress-tracker__status"
+                                ></span>
                             </li>
                         </ol>
                     </div>
 
                     <!-- title -->
-                    <h1 data-translate="pci_projects_project_creating_not_paid_title"></h1>
+                    <h1
+                        data-translate="pci_projects_project_creating_not_paid_title"
+                    ></h1>
 
-                    <h2 class="oui-heading_underline"
-                        data-translate="pci_projects_project_creating_not_paid_welcome">
-                    </h2>
+                    <h2
+                        class="oui-heading_underline"
+                        data-translate="pci_projects_project_creating_not_paid_welcome"
+                    ></h2>
 
-                    <p data-translate="pci_projects_project_creating_not_paid_almost_done"></p>
+                    <p
+                        data-translate="pci_projects_project_creating_not_paid_almost_done"
+                    ></p>
 
                     <oui-message
                         aria-close-button-label="{{ :: 'common_close' | translate }}"
                         data-type="warning"
-                        data-dismissable="false">
-                        <span data-translate="pci_projects_project_creating_not_paid"
-                              data-translate-values="{ amount: $ctrl.projectOrder.priceWithoutTax.text }">
+                        data-dismissable="false"
+                    >
+                        <span
+                            data-translate="pci_projects_project_creating_not_paid"
+                            data-translate-values="{ amount: $ctrl.projectOrder.priceWithoutTax.text }"
+                        >
                         </span>
                     </oui-message>
 
-                    <small class="d-block"
-                           data-translate="pci_projects_project_creating_not_paid_explain1">
+                    <small
+                        class="d-block"
+                        data-translate="pci_projects_project_creating_not_paid_explain1"
+                    >
                     </small>
-                    <small data-translate="pci_projects_project_creating_not_paid_explain2"
-                           data-translate-values="{ href: $ctrl.orderUrl }">
+                    <small
+                        data-translate="pci_projects_project_creating_not_paid_explain2"
+                        data-translate-values="{ href: $ctrl.orderUrl }"
+                    >
                     </small>
 
-                    <div class="actions-container d-md-flex flex-row-reverse justify-content-between align-items-center my-3">
-
-                        <a class="oui-button oui-button_primary oui-button_icon-right no-transition"
-                           data-ng-href="{{ $ctrl.projectOrder.url }}"
-                           data-translate-attr="{ title: 'pci_projects_project_creating_finalize_title' }"
-                           data-translate-values="{ orderId: $ctrl.projectOrder.orderId }">
-                            <span data-translate="pci_projects_project_creating_finalize"></span>
-                            <span class="oui-icon oui-icon_circle oui-icon-chevron-right"
-                                  aria-hidden="true">
+                    <div
+                        class="actions-container d-md-flex flex-row-reverse justify-content-between align-items-center my-3"
+                    >
+                        <a
+                            class="oui-button oui-button_primary oui-button_icon-right no-transition"
+                            data-ng-href="{{ $ctrl.projectOrder.url }}"
+                            data-translate-attr="{ title: 'pci_projects_project_creating_finalize_title' }"
+                            data-translate-values="{ orderId: $ctrl.projectOrder.orderId }"
+                        >
+                            <span
+                                data-translate="pci_projects_project_creating_finalize"
+                            ></span>
+                            <span
+                                class="oui-icon oui-icon_circle oui-icon-chevron-right"
+                                aria-hidden="true"
+                            >
                             </span>
                         </a>
 
-                        <button class="oui-button oui-button_link" type="button"
-                                data-translate="pci_projects_project_creating_cancel"
-                                data-translate-attr="{ title: 'pci_projects_project_creating_cancel_title' }"
-                                data-translate-values="{ orderId: $ctrl.projectOrder.orderId }"
-                                data-ng-click="$ctrl.onCancelProjectBtnClick()"
-                                data-ng-disabled="$ctrl.loading.cancel">
-                        </button>
+                        <button
+                            class="oui-button oui-button_link"
+                            type="button"
+                            data-translate="pci_projects_project_creating_cancel"
+                            data-translate-attr="{ title: 'pci_projects_project_creating_cancel_title' }"
+                            data-translate-values="{ orderId: $ctrl.projectOrder.orderId }"
+                            data-ng-click="$ctrl.onCancelProjectBtnClick()"
+                            data-ng-disabled="$ctrl.loading.cancel"
+                        ></button>
                     </div>
                 </div>
             </div>

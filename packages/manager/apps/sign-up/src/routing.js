@@ -9,7 +9,7 @@ export const state = {
   url: '/?lang&ovhSubsidiary&ovhCompany&callback&onsuccess',
   component: signupFormComponent.name,
   resolve: {
-    getRedirectLocation: /* @ngInject */ $location => (nic) => {
+    getRedirectLocation: /* @ngInject */ ($location) => (nic) => {
       const { callback, onsuccess } = $location.search();
 
       if (callback && !SANITIZATION.regex.test(callback)) {
@@ -20,30 +20,35 @@ export const state = {
 
       // use callback for redirection if provided
       if (callback) {
-        return `${callback}${/\?/.test(callback) ? '&' : '?'}account=${accountParam}&ovhSessionSuccess=true`;
+        return `${callback}${
+          /\?/.test(callback) ? '&' : '?'
+        }account=${accountParam}&ovhSessionSuccess=true`;
       }
-
 
       // redirect to login page on success
       if (onsuccess && SANITIZATION.regex.test(onsuccess)) {
-        return `${onsuccess}${/\?/.test(onsuccess) ? '&' : '?'}ovhSessionSuccess=true`;
+        return `${onsuccess}${
+          /\?/.test(onsuccess) ? '&' : '?'
+        }ovhSessionSuccess=true`;
       }
 
       return '/auth/?action=gotomanager';
     },
 
-    getStepByName: /* @ngInject */ steps => name => find(steps, {
-      name,
-    }),
+    getStepByName: /* @ngInject */ (steps) => (name) =>
+      find(steps, {
+        name,
+      }),
 
     isActiveStep: /* @ngInject */ ($state, getStepByName) => (name) => {
       const step = getStepByName(name);
       return $state.is(step.state);
     },
 
-    me: /* @ngInject */ ssoAuthentication => ssoAuthentication
-      .getSsoAuthPendingPromise()
-      .then(() => ssoAuthentication.user),
+    me: /* @ngInject */ (ssoAuthentication) =>
+      ssoAuthentication
+        .getSsoAuthPendingPromise()
+        .then(() => ssoAuthentication.user),
     onStepCancel: /* @ngInject */ ($location, ssoAuthentication) => () => {
       ssoAuthentication.logout($location.search().onsuccess);
     },
@@ -57,9 +62,13 @@ export const state = {
       }
     },
 
-    finishSignUp: /* @ngInject */ ($window, getRedirectLocation, me, signUp) => () => signUp
-      .saveNic(me.model)
-      .then(() => {
+    finishSignUp: /* @ngInject */ (
+      $window,
+      getRedirectLocation,
+      me,
+      signUp,
+    ) => () =>
+      signUp.saveNic(me.model).then(() => {
         // for tracking purposes
         if ($window.sessionStorage) {
           $window.sessionStorage.setItem('ovhSessionSuccess', true);
@@ -71,16 +80,20 @@ export const state = {
         }
       }),
 
-    steps: () => [{
-      name: 'identity',
-      state: 'sign-up.identity',
-    }, {
-      name: 'details',
-      state: 'sign-up.details',
-    }, {
-      name: 'activity',
-      state: 'sign-up.activity',
-    }],
+    steps: () => [
+      {
+        name: 'identity',
+        state: 'sign-up.identity',
+      },
+      {
+        name: 'details',
+        state: 'sign-up.details',
+      },
+      {
+        name: 'activity',
+        state: 'sign-up.activity',
+      },
+    ],
   },
 };
 

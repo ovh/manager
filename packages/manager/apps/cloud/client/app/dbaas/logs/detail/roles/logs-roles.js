@@ -14,7 +14,8 @@ angular.module('managerApp').config(($stateProvider) => {
       url: '/members/:roleId',
       views: {
         logsContent: {
-          templateUrl: 'app/dbaas/logs/detail/roles/members/logs-roles-members.html',
+          templateUrl:
+            'app/dbaas/logs/detail/roles/members/logs-roles-members.html',
           controller: 'LogsRolesMembersCtrl',
           controllerAs: 'ctrl',
         },
@@ -24,7 +25,8 @@ angular.module('managerApp').config(($stateProvider) => {
       url: '/permissions/:roleId',
       views: {
         logsContent: {
-          templateUrl: 'app/dbaas/logs/detail/roles/edit-permissions/edit-permissions.html',
+          templateUrl:
+            'app/dbaas/logs/detail/roles/edit-permissions/edit-permissions.html',
           controller: 'LogsRolesPermissionsCtrl',
           controllerAs: 'ctrl',
         },

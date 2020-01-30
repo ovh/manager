@@ -33,15 +33,15 @@ angular.module('App').controller(
 
       this.canCreate = {
         account:
-          this.quotas.account > 0
-          && this.summary.account - 1 < this.quotas.account,
+          this.quotas.account > 0 &&
+          this.summary.account - 1 < this.quotas.account,
         mailingList: this.quotas.mailingList > 0,
         redirection:
-          this.summary.redirection
-          < this.quotas.redirection + this.quotas.alias,
+          this.summary.redirection <
+          this.quotas.redirection + this.quotas.alias,
         responder:
-          this.quotas.account > 0
-          && this.summary.responder < this.quotas.responder,
+          this.quotas.account > 0 &&
+          this.summary.responder < this.quotas.responder,
       };
 
       this.$scope.configureHelp = () => this.configureHelp();

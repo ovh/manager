@@ -6,14 +6,16 @@
     data-secondary-action="$ctrl.goBack()"
     data-secondary-label="{{:: 'pci_projects_project_instances_instance_reinstall_cancel_label' | translate }}"
     data-on-dismiss="$ctrl.goBack()"
-    data-loading="$ctrl.isLoading">
-
-    <p data-translate="pci_projects_project_instances_instance_reinstall_content"
-        data-translate-values="{ instance: $ctrl.instance.name }"></p>
+    data-loading="$ctrl.isLoading"
+>
+    <p
+        data-translate="pci_projects_project_instances_instance_reinstall_content"
+        data-translate-values="{ instance: $ctrl.instance.name }"
+    ></p>
 
     <oui-message data-type="warning">
-        <span data-translate="pci_projects_project_instances_instance_reinstall_erase_message"></span>
+        <span
+            data-translate="pci_projects_project_instances_instance_reinstall_erase_message"
+        ></span>
     </oui-message>
-
-
 </oui-modal>

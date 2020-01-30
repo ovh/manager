@@ -1,0 +1,18 @@
+{
+  "mxPlan_order_title": "Commande d'un MX PLAN",
+  "mxPlan_order_domain": "Choix du domaine",
+  "mxPlan_order_domain_pick": "Sélectionner un domaine",
+  "mxPlan_order_offer": "Sélectionnez une offre",
+  "mxPlan_order_offer_description_domain": "Le service e-mail sera rattaché à votre nom de domaine sans demande de renouvellement.",
+  "mxPlan_order_contracts": "Validation",
+  "mxPlan_order_generated_purchase_success": "Le bon de commande <a href=\"{{orderUrl}}\" target=\"_blank\">{{orderId}}</a> a été créé avec succès.",
+  "mxPlan_order_generated_success": "Votre commande a été générée avec succès.",
+  "mxPlan_order_generated_success_tracking": "Cliquez ici pour suivre votre commande.",
+  "mxPlan_order_checkout_error": "Une erreur est survenue : {{ message }}",
+  "mxPlan_order_error": "Une erreur est survenue lors de la commande : {{ message }}",
+  "mxPlan_price_without_tax": "Prix HT : ",
+  "mxPlan_price_with_tax": "Prix TTC : ",
+  "mxPlan_order_action": "Commander",
+  "mxPlan_order_activate": "Activer",
+  "mxPlan_order_error_payment": "Une erreur est survenue lors du chargement des moyens de paiement disponibles"
+}

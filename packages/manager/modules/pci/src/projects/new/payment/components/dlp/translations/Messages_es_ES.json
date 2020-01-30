@@ -1,0 +1,6 @@
+{
+  "pci_project_new_payment_dlp_title": "Crédito Digital Launch Pad",
+  "pci_project_new_payment_dlp_info": "Si forma parte del programa DLP, dispone de una cuenta de prepago específica.",
+  "pci_project_new_payment_dlp_amount_available": "Importe de la cuenta: {{amount}}",
+  "pci_project_new_payment_dlp_explain": "El importe se utilizará para abonar el consumo del proyecto de Public Cloud. Una vez agotada esta cantidad, se utilizará automáticamente la forma de pago registrada para garantizar la continuidad de las instancias que haya creado."
+}

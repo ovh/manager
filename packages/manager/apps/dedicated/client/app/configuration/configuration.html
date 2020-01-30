@@ -10,21 +10,27 @@
             class="lead"
             data-ng-if="$ctrl.subsidiary !== 'FR'"
             data-translate="core_top_guides_header"
-            data-translate-values="{ t0: $ctrl.urlToAllGuides }"></p>
-        <div
-            class="row"
-            data-ng-if="$ctrl.subsidiary === 'FR'">
+            data-translate-values="{ t0: $ctrl.urlToAllGuides }"
+        ></p>
+        <div class="row" data-ng-if="$ctrl.subsidiary === 'FR'">
             <p class="lead col-md-offset-1 col-md-10 col-lg-offset-2 col-lg-8">
                 <span data-translate="core_top_guides_header_fr"></span>
                 <a
                     class="oui-link_icon"
                     data-ng-href="{{:: $ctrl.helpCenterURLs.FR }}"
                     target="_blank"
-                    rel="noopener">
+                    rel="noopener"
+                >
                     <span data-translate="otrs_menu_help_center"></span>
-                    <span class="oui-icon oui-icon-external_link" aria-hidden="true"></span>
-                    <span class="sr-only" data-translate="core_new_tab"></span>
-                </a>.
+                    <span
+                        class="oui-icon oui-icon-external_link"
+                        aria-hidden="true"
+                    ></span>
+                    <span
+                        class="sr-only"
+                        data-translate="core_new_tab"
+                    ></span> </a
+                >.
             </p>
         </div>
     </div>
@@ -32,23 +38,28 @@
         <div class="col-md-10 col-lg-8 mx-md-auto">
             <div
                 class="oui-tile mb-5"
-                data-ng-repeat="section in ::$ctrl.sections track by $index">
+                data-ng-repeat="section in ::$ctrl.sections track by $index"
+            >
                 <h2
                     class="oui-tile__title"
-                    data-translate="{{:: 'core_type_of_guide_' + section.name }}"></h2>
+                    data-translate="{{:: 'core_type_of_guide_' + section.name }}"
+                ></h2>
                 <div class="oui-tile__body">
                     <div
                         class="oui-tile__item oui-tile__item_button"
-                        data-ng-repeat="link in ::section.links track by $index">
+                        data-ng-repeat="link in ::section.links track by $index"
+                    >
                         <a
                             target="_blank"
                             class="oui-tile__button oui-button oui-button_link oui-button_icon-right oui-button_full-width"
                             data-ng-href="{{:: link.url }}"
-                            data-at-internet-click="{ name:  link.atInternetClickTag }">
+                            data-at-internet-click="{ name:  link.atInternetClickTag }"
+                        >
                             <span data-translate="{{:: link.title }}"></span>
                             <span
                                 class="oui-icon oui-icon-external_link"
-                                aria-hidden="true"></span>
+                                aria-hidden="true"
+                            ></span>
                         </a>
                     </div>
                 </div>

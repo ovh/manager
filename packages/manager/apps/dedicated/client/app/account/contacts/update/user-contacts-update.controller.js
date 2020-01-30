@@ -52,7 +52,10 @@ angular.module('UserAccount').controller('UserAccount.controllers.update', [
         : [$scope.fieldsInError];
       $scope.fieldsInError.forEach((field) => {
         try {
-          $scope.form.accountForm[camelCase(field)].$setValidity('badInfos', false);
+          $scope.form.accountForm[camelCase(field)].$setValidity(
+            'badInfos',
+            false,
+          );
           $scope.form.accountForm[camelCase(field)].$setDirty(true);
         } catch (err) {
           // eslint-disable-next-line no-console
@@ -62,14 +65,19 @@ angular.module('UserAccount').controller('UserAccount.controllers.update', [
     }
 
     function updateKeyValidity(key, value) {
-      if (value !== $scope.owner[key]
-        && $scope.form
-        && $scope.form.accountForm
-        && $scope.form.accountForm[key]
-        && $scope.form.accountForm[key].$error
-        && $scope.form.accountForm[key].$error.badInfos) {
+      if (
+        value !== $scope.owner[key] &&
+        $scope.form &&
+        $scope.form.accountForm &&
+        $scope.form.accountForm[key] &&
+        $scope.form.accountForm[key].$error &&
+        $scope.form.accountForm[key].$error.badInfos
+      ) {
         try {
-          $scope.form.accountForm[camelCase(key)].$setValidity('badInfos', true);
+          $scope.form.accountForm[camelCase(key)].$setValidity(
+            'badInfos',
+            true,
+          );
         } catch (err) {
           // eslint-disable-next-line no-console
           console.log('field : ', key);
@@ -110,7 +118,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.update', [
     };
 
     $scope.getLanguageName = (code) => {
-      const idx = findIndex($scope.languages, item => item.value === code);
+      const idx = findIndex($scope.languages, (item) => item.value === code);
 
       if (idx > -1) {
         return $scope.languages[idx].name;
@@ -141,7 +149,9 @@ angular.module('UserAccount').controller('UserAccount.controllers.update', [
             $scope.controls.legalforms = legalforms;
           }),
           Contacts.getCountryEnum().then((countries) => {
-            $scope.controls.countries = countries.filter(country => country !== 'UNKNOWN');
+            $scope.controls.countries = countries.filter(
+              (country) => country !== 'UNKNOWN',
+            );
           }),
           Contacts.getGendersEnum().then((genders) => {
             $scope.controls.genders = genders;
@@ -157,9 +167,11 @@ angular.module('UserAccount').controller('UserAccount.controllers.update', [
             $scope.domainsOwner = domains;
           }),
           $scope.currentDomain
-            ? Contacts.getOrderServiceOption($scope.currentDomain).then((opts) => {
-              $scope.hasTrade = find(opts, opt => opt.family === 'trade');
-            })
+            ? Contacts.getOrderServiceOption($scope.currentDomain).then(
+                (opts) => {
+                  $scope.hasTrade = find(opts, (opt) => opt.family === 'trade');
+                },
+              )
             : $q.when(true),
         ])
         .then(
@@ -168,7 +180,11 @@ angular.module('UserAccount').controller('UserAccount.controllers.update', [
           },
           (err) => {
             $scope.domainsOwner = [];
-            Alerter.alertFromSWS($translate.instant('user_account_info_error'), err, $scope.alerts.updateOwner);
+            Alerter.alertFromSWS(
+              $translate.instant('user_account_info_error'),
+              err,
+              $scope.alerts.updateOwner,
+            );
           },
         );
     };
@@ -186,10 +202,17 @@ angular.module('UserAccount').controller('UserAccount.controllers.update', [
         .then(
           (newOwnerData) => {
             $scope.owner = angular.copy(newOwnerData);
-            Alerter.success($translate.instant('useraccount_contacts_owner_success'), $scope.alerts.updateOwner);
+            Alerter.success(
+              $translate.instant('useraccount_contacts_owner_success'),
+              $scope.alerts.updateOwner,
+            );
           },
           (err) => {
-            Alerter.alertFromSWS($translate.instant('useraccount_contacts_owner_error'), err, $scope.alerts.updateOwner);
+            Alerter.alertFromSWS(
+              $translate.instant('useraccount_contacts_owner_error'),
+              err,
+              $scope.alerts.updateOwner,
+            );
           },
         )
         .finally(() => {
@@ -200,30 +223,32 @@ angular.module('UserAccount').controller('UserAccount.controllers.update', [
     };
 
     $scope.init = () => {
-      $q
-        .all({
-          changeOwnerUrl: Contacts.getUrlOf('changeOwner'),
-          domainOrderTradeUrl: Contacts.getUrlOf('domainOrderTrade'),
-          owner: $scope.getOwner(),
-        })
-        .then(({ changeOwnerUrl, domainOrderTradeUrl }) => {
-          $scope.changeOwnerUrl = changeOwnerUrl;
-          $scope.domainOrderTradeUrl = domainOrderTradeUrl.replace('{domain}', $scope.currentDomain);
+      $q.all({
+        changeOwnerUrl: Contacts.getUrlOf('changeOwner'),
+        domainOrderTradeUrl: Contacts.getUrlOf('domainOrderTrade'),
+        owner: $scope.getOwner(),
+      }).then(({ changeOwnerUrl, domainOrderTradeUrl }) => {
+        $scope.changeOwnerUrl = changeOwnerUrl;
+        $scope.domainOrderTradeUrl = domainOrderTradeUrl.replace(
+          '{domain}',
+          $scope.currentDomain,
+        );
 
-          if ($scope.hasTrade && $scope.isReadonly('email')) {
-            $scope.changeOwnerUrl = $scope.domainOrderTradeUrl;
-          }
-          if ($scope.fieldsInError) {
-            $scope.edit(true);
-          }
-        });
+        if ($scope.hasTrade && $scope.isReadonly('email')) {
+          $scope.changeOwnerUrl = $scope.domainOrderTradeUrl;
+        }
+        if ($scope.fieldsInError) {
+          $scope.edit(true);
+        }
+      });
     };
 
     $scope.$watch(
       'ownerModel',
       debounce((newValue) => {
-        $scope.updateOwnerName = newValue.firstName !== $scope.owner.firstName
-          || newValue.lastName !== $scope.owner.lastName;
+        $scope.updateOwnerName =
+          newValue.firstName !== $scope.owner.firstName ||
+          newValue.lastName !== $scope.owner.lastName;
 
         $scope.$apply(() => {
           updateValidity();

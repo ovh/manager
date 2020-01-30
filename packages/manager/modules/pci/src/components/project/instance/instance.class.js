@@ -28,55 +28,46 @@ export default class Instance {
   }
 
   get statusGroup() {
-    if (includes(
-      [
-        'BUILDING',
-        'REBOOT',
-        'REBUILD',
-        'REVERT_RESIZE',
-        'SOFT_DELETED',
-        'VERIFY_RESIZE',
-        'MIGRATING',
-        'RESIZE',
-        'BUILD',
-        'SHUTOFF',
-        'RESCUE',
-        'SHELVED',
-        'SHELVED_OFFLOADED',
-        'RESCUING',
-        'UNRESCUING',
-        'SNAPSHOTTING',
-        'RESUMING',
-        'HARD_REBOOT',
-        'PASSWORD',
-        'PAUSED',
-      ],
-      this.status,
-    )) {
+    if (
+      includes(
+        [
+          'BUILDING',
+          'REBOOT',
+          'REBUILD',
+          'REVERT_RESIZE',
+          'SOFT_DELETED',
+          'VERIFY_RESIZE',
+          'MIGRATING',
+          'RESIZE',
+          'BUILD',
+          'SHUTOFF',
+          'RESCUE',
+          'SHELVED',
+          'SHELVED_OFFLOADED',
+          'RESCUING',
+          'UNRESCUING',
+          'SNAPSHOTTING',
+          'RESUMING',
+          'HARD_REBOOT',
+          'PASSWORD',
+          'PAUSED',
+        ],
+        this.status,
+      )
+    ) {
       return 'PENDING';
     }
 
-    if (includes(
-      [
-        'DELETED',
-        'ERROR',
-        'STOPPED',
-        'SUSPENDED',
-        'UNKNOWN',
-      ],
-      this.status,
-    )) {
+    if (
+      includes(
+        ['DELETED', 'ERROR', 'STOPPED', 'SUSPENDED', 'UNKNOWN'],
+        this.status,
+      )
+    ) {
       return 'ERROR';
     }
 
-    if (includes(
-      [
-        'ACTIVE',
-        'RESCUED',
-        'RESIZED',
-      ],
-      this.status,
-    )) {
+    if (includes(['ACTIVE', 'RESCUED', 'RESIZED'], this.status)) {
       return 'ACTIVE';
     }
 
@@ -107,13 +98,7 @@ export default class Instance {
 
   isOpenStackState() {
     return includes(
-      [
-        'PAUSED',
-        'STOPPED',
-        'SUSPENDED',
-        'SHUTOFF',
-        'RESCUE',
-      ],
+      ['PAUSED', 'STOPPED', 'SUSPENDED', 'SHUTOFF', 'RESCUE'],
       this.status,
     );
   }
@@ -123,11 +108,17 @@ export default class Instance {
   }
 
   get publicIpV4() {
-    return filter(this.ipAddresses, ipAddress => ipAddress.type === 'public' && ipAddress.version === 4);
+    return filter(
+      this.ipAddresses,
+      (ipAddress) => ipAddress.type === 'public' && ipAddress.version === 4,
+    );
   }
 
   get privateIpV4() {
-    return filter(this.ipAddresses, ipAddress => ipAddress.type === 'private' && ipAddress.version === 4);
+    return filter(
+      this.ipAddresses,
+      (ipAddress) => ipAddress.type === 'private' && ipAddress.version === 4,
+    );
   }
 
   hasPublicIpV6() {
@@ -135,15 +126,24 @@ export default class Instance {
   }
 
   get publicIpV6() {
-    return filter(this.ipAddresses, ipAddress => ipAddress.type === 'public' && ipAddress.version === 6);
+    return filter(
+      this.ipAddresses,
+      (ipAddress) => ipAddress.type === 'public' && ipAddress.version === 6,
+    );
   }
 
   isMonthlyBillingEnabled() {
-    return (isObject(this.monthlyBilling) && get(this.monthlyBilling, 'status') === 'ok');
+    return (
+      isObject(this.monthlyBilling) &&
+      get(this.monthlyBilling, 'status') === 'ok'
+    );
   }
 
   isMonthlyBillingPending() {
-    return (isObject(this.monthlyBilling) && get(this.monthlyBilling, 'status') === 'activationPending');
+    return (
+      isObject(this.monthlyBilling) &&
+      get(this.monthlyBilling, 'status') === 'activationPending'
+    );
   }
 
   isMonthlyBillingActivated() {
@@ -161,7 +161,9 @@ export default class Instance {
   get connectionInfos() {
     const user = get(this, 'image.user') || 'user';
     const ip = this.getDefaultIp();
-    return get(this, 'image.type') === 'windows' ? `rdekstop ${ip}` : `ssh ${user}@${ip}`;
+    return get(this, 'image.type') === 'windows'
+      ? `rdekstop ${ip}`
+      : `ssh ${user}@${ip}`;
   }
 
   isApplicationImage() {

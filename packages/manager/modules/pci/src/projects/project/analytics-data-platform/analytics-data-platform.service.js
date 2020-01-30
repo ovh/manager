@@ -4,18 +4,30 @@ import get from 'lodash/get';
 import map from 'lodash/map';
 import set from 'lodash/set';
 import {
-  ANALYTICS_DATA_PLATFORM_STATUS, ANALYTICS_DATA_PLATFORM_CLOUD_CATALOG_NAME,
+  ANALYTICS_DATA_PLATFORM_STATUS,
+  ANALYTICS_DATA_PLATFORM_CLOUD_CATALOG_NAME,
   ANALYTICS_DATA_PLATFORM_PUBLIC_CLOUD_STATUS,
 } from './analytics-data-platform.constants';
 
 export default class AnalyticsDataPlatformService {
   /* @ngInject */
-  constructor($q, $translate, OvhApiAnalytics, OvhApiCloudProject,
-    OvhApiMe, OvhApiOrder, OvhApiOrderCatalogFormatted, OvhApiVrack, Poller) {
+  constructor(
+    $q,
+    $translate,
+    OvhApiAnalytics,
+    OvhApiCloudProject,
+    OvhApiMe,
+    OvhApiOrder,
+    OvhApiOrderCatalogPublic,
+    OvhApiVrack,
+    Poller,
+  ) {
     this.$q = $q;
     this.$translate = $translate;
     this.OvhApiAnalyticsPlatforms = OvhApiAnalytics.Platforms().v6();
-    this.OvhApiAnalyticsPlatformsNode = OvhApiAnalytics.Platforms().Node().v6();
+    this.OvhApiAnalyticsPlatformsNode = OvhApiAnalytics.Platforms()
+      .Node()
+      .v6();
     this.OvhApiAnalyticsCapabilities = OvhApiAnalytics.Capabilities().v6();
     this.ovhApiCloudProject = OvhApiCloudProject.v6();
     this.ovhApiCloudProjectQuota = OvhApiCloudProject.Quota().v6();
@@ -25,8 +37,10 @@ export default class AnalyticsDataPlatformService {
     this.ovhApiCloudProjectUser = OvhApiCloudProject.User().v6();
     this.OvhApiCloudServiceInfos = OvhApiCloudProject.ServiceInfos().v6();
     this.OvhApiOrderCart = OvhApiOrder.Cart().v6();
-    this.OvhApiOrderCartProduct = OvhApiOrder.Cart().Product().v6();
-    this.OvhApiOrderCatalogFormatted = OvhApiOrderCatalogFormatted.v6();
+    this.OvhApiOrderCartProduct = OvhApiOrder.Cart()
+      .Product()
+      .v6();
+    this.OvhApiOrderCatalogPublic = OvhApiOrderCatalogPublic.v6();
     this.OvhApiMeOrder = OvhApiMe.Order().v6();
     this.OvhApiVrack = OvhApiVrack.v6();
     this.OvhApiMe = OvhApiMe;
@@ -43,8 +57,10 @@ export default class AnalyticsDataPlatformService {
    * @memberof AnalyticsDataPlatformService
    */
   assignCart(cartId) {
-    return this.OvhApiOrderCart
-      .assign({ cartId, autoPayWithPreferredPaymentMethod: true }).$promise;
+    return this.OvhApiOrderCart.assign({
+      cartId,
+      autoPayWithPreferredPaymentMethod: true,
+    }).$promise;
   }
 
   /**
@@ -55,15 +71,17 @@ export default class AnalyticsDataPlatformService {
    * @memberof AnalyticsDataPlatformService
    */
   addAnalyticsToCart(cartId) {
-    return this.getAnalyticsCartInfo(cartId)
-      .then(cartItemInfo => this.OvhApiOrderCartProduct.post({
-        cartId,
-        productName: 'analytics',
-        duration: get(cartItemInfo, '[0].prices[0].duration'),
-        planCode: get(cartItemInfo, '[0].planCode'),
-        pricingMode: get(cartItemInfo, '[0].prices[0].pricingMode'),
-        quantity: 1,
-      }).$promise);
+    return this.getAnalyticsCartInfo(cartId).then(
+      (cartItemInfo) =>
+        this.OvhApiOrderCartProduct.post({
+          cartId,
+          productName: 'analytics',
+          duration: get(cartItemInfo, '[0].prices[0].duration'),
+          planCode: get(cartItemInfo, '[0].planCode'),
+          pricingMode: get(cartItemInfo, '[0].prices[0].pricingMode'),
+          quantity: 1,
+        }).$promise,
+    );
   }
 
   /**
@@ -74,9 +92,13 @@ export default class AnalyticsDataPlatformService {
    * @memberof AnalyticsDataPlatformService
    */
   checkoutCart(cartId) {
-    return this.assignCart(cartId)
-      .then(() => this.OvhApiOrderCart
-        .checkout({ cartId, autoPayWithPreferredPaymentMethod: true }).$promise);
+    return this.assignCart(cartId).then(
+      () =>
+        this.OvhApiOrderCart.checkout({
+          cartId,
+          autoPayWithPreferredPaymentMethod: true,
+        }).$promise,
+    );
   }
 
   /**
@@ -87,8 +109,8 @@ export default class AnalyticsDataPlatformService {
    */
   createAnalyticsOrder() {
     return this.createCart()
-      .then(cart => this.addAnalyticsToCart(cart.cartId))
-      .then(analyticsItem => this.checkoutCart(analyticsItem.cartId));
+      .then((cart) => this.addAnalyticsToCart(cart.cartId))
+      .then((analyticsItem) => this.checkoutCart(analyticsItem.cartId));
   }
 
   /**
@@ -98,9 +120,12 @@ export default class AnalyticsDataPlatformService {
    * @memberof AnalyticsDataPlatformService
    */
   createCart() {
-    return this.getAccountDetails()
-      .then(accountDetails => this.OvhApiOrderCart
-        .post({ ovhSubsidiary: accountDetails.ovhSubsidiary }).$promise);
+    return this.getAccountDetails().then(
+      (accountDetails) =>
+        this.OvhApiOrderCart.post({
+          ovhSubsidiary: accountDetails.ovhSubsidiary,
+        }).$promise,
+    );
   }
 
   /**
@@ -112,17 +137,20 @@ export default class AnalyticsDataPlatformService {
    * @memberof AnalyticsDataPlatformService
    */
   createUser(projectId, description) {
-    return this.ovhApiCloudProjectUser.save({ serviceName: projectId }, { description }).$promise
-      .then(user => this.Poller.poll(
-        `/cloud/project/${projectId}/user/${user.id}`,
-        {},
-        {
-          method: 'get',
-          namespace: `analytics-data-platform.user.${user.id}`,
-          successRule: userDetail => userDetail.status === this.CLOUD_STATUS.OK,
-        },
-      )
-        .then(() => user));
+    return this.ovhApiCloudProjectUser
+      .save({ serviceName: projectId }, { description })
+      .$promise.then((user) =>
+        this.Poller.poll(
+          `/cloud/project/${projectId}/user/${user.id}`,
+          {},
+          {
+            method: 'get',
+            namespace: `analytics-data-platform.user.${user.id}`,
+            successRule: (userDetail) =>
+              userDetail.status === this.CLOUD_STATUS.OK,
+          },
+        ).then(() => user),
+      );
   }
 
   /**
@@ -135,8 +163,10 @@ export default class AnalyticsDataPlatformService {
    * @memberof AnalyticsDataPlatformService
    */
   generateUserToken(projectId, userId, password) {
-    return this.ovhApiCloudProjectUser
-      .token({ serviceName: projectId, userId }, { password }).$promise;
+    return this.ovhApiCloudProjectUser.token(
+      { serviceName: projectId, userId },
+      { password },
+    ).$promise;
   }
 
   /**
@@ -146,7 +176,8 @@ export default class AnalyticsDataPlatformService {
    * @memberof AnalyticsDataPlatformService
    */
   getAnalyticsCartInfo(cartId) {
-    return this.OvhApiOrderCartProduct.get({ cartId, productName: 'analytics' }).$promise;
+    return this.OvhApiOrderCartProduct.get({ cartId, productName: 'analytics' })
+      .$promise;
   }
 
   /**
@@ -168,8 +199,10 @@ export default class AnalyticsDataPlatformService {
    * @memberof AnalyticsDataPlatformService
    */
   getFlavors(publicCloudServiceName, region) {
-    return this.OvhApiFlavors.query({ serviceName: publicCloudServiceName, region }).$promise
-      .then(flavors => this.transformFlavors(flavors));
+    return this.OvhApiFlavors.query({
+      serviceName: publicCloudServiceName,
+      region,
+    }).$promise.then((flavors) => this.transformFlavors(flavors));
   }
 
   /**
@@ -181,8 +214,9 @@ export default class AnalyticsDataPlatformService {
    * @memberof AnalyticsDataPlatformService
    */
   getNewToken(publicCloudId, userId, password) {
-    return this.generateUserToken(publicCloudId, userId, password)
-      .then(token => get(token, 'X-Auth-Token'));
+    return this.generateUserToken(publicCloudId, userId, password).then(
+      (token) => get(token, 'X-Auth-Token'),
+    );
   }
 
   /**
@@ -203,7 +237,9 @@ export default class AnalyticsDataPlatformService {
    * @memberof AnalyticsDataPlatformService
    */
   getPublicCloudsQuota(publicCloudServiceName) {
-    return this.ovhApiCloudProjectQuota.query({ serviceName: publicCloudServiceName }).$promise;
+    return this.ovhApiCloudProjectQuota.query({
+      serviceName: publicCloudServiceName,
+    }).$promise;
   }
 
   /**
@@ -214,7 +250,8 @@ export default class AnalyticsDataPlatformService {
    * @memberof AnalyticsDataPlatformService
    */
   getPubliCloudDetails(publicCloudServiceName) {
-    return this.ovhApiCloudProject.get({ serviceName: publicCloudServiceName }).$promise;
+    return this.ovhApiCloudProject.get({ serviceName: publicCloudServiceName })
+      .$promise;
   }
 
   /**
@@ -226,16 +263,18 @@ export default class AnalyticsDataPlatformService {
    */
   getServiceNameFromOrder(orderId) {
     return this.getOrderDetails(orderId)
-      .then(orderDetails => this.Poller.poll(
-        `/me/order/${orderId}/details/${get(orderDetails, [0])}`,
-        {},
-        {
-          method: 'get',
-          namespace: `analytics-data-platform.order.${orderId}`,
-          successRule: orderDetail => orderDetail.domain !== '*',
-        },
-      ))
-      .then(orderDetail => orderDetail.domain);
+      .then((orderDetails) =>
+        this.Poller.poll(
+          `/me/order/${orderId}/details/${get(orderDetails, [0])}`,
+          {},
+          {
+            method: 'get',
+            namespace: `analytics-data-platform.order.${orderId}`,
+            successRule: (orderDetail) => orderDetail.domain !== '*001',
+          },
+        ),
+      )
+      .then((orderDetail) => orderDetail.domain);
   }
 
   /**
@@ -246,7 +285,8 @@ export default class AnalyticsDataPlatformService {
    * @memberof AnalyticsDataPlatformService
    */
   getShhKeys(publicCloudServiceName) {
-    return this.ovhApiSshKey.query({ serviceName: publicCloudServiceName }).$promise;
+    return this.ovhApiSshKey.query({ serviceName: publicCloudServiceName })
+      .$promise;
   }
 
   /**
@@ -257,7 +297,9 @@ export default class AnalyticsDataPlatformService {
    * @memberof AnalyticsDataPlatformService
    */
   getVRacks(publicCloudServiceName) {
-    return this.ovhApiCloudProject.vrack({ serviceName: publicCloudServiceName }).$promise;
+    return this.ovhApiCloudProject.vrack({
+      serviceName: publicCloudServiceName,
+    }).$promise;
   }
 
   /**
@@ -289,33 +331,34 @@ export default class AnalyticsDataPlatformService {
    * @memberof AnalyticsDataPlatformService
    */
   getPriceCatalog(publicCloudPlanCode) {
-    return this.getAccountDetails()
-      .then(({ ovhSubsidiary, currency }) => this.OvhApiOrderCatalogFormatted
-        .get({ catalogName: this.CLOUD_CATALOG_NAME, ovhSubsidiary })
-        .$promise
-        .then((catalog) => {
-          const projectPlan = find(catalog.plans, { planCode: publicCloudPlanCode });
-          if (!projectPlan) {
-            throw new Error({ message: 'Price details not available for public cloud' });
-          }
-          const pricesMap = {};
-          forEach(projectPlan.addonsFamily, (family) => {
-            forEach(family.addons, (price) => {
-              const planCode = get(price, ['plan', 'planCode']);
-              const defaultPlan = get(
-                price,
-                ['plan', 'details', 'pricings', 'default'],
-              );
-              pricesMap[planCode] = get(defaultPlan, ['length'], 0)
-                ? defaultPlan[0]
-                : null;
-            });
+    return this.getAccountDetails().then(({ ovhSubsidiary, currency }) =>
+      this.OvhApiOrderCatalogPublic.get({
+        productName: this.CLOUD_CATALOG_NAME,
+        ovhSubsidiary,
+      }).$promise.then((catalog) => {
+        const projectPlan = find(catalog.plans, {
+          planCode: publicCloudPlanCode,
+        });
+        if (!projectPlan) {
+          throw new Error({
+            message: 'Price details not available for public cloud',
           });
-          return {
-            currency,
-            pricesMap,
-          };
-        }));
+        }
+        const pricesMap = {};
+        forEach(projectPlan.addonFamilies, (family) => {
+          forEach(family.addons, (planCode) => {
+            const addon = find(catalog.addons, { planCode });
+            pricesMap[planCode] = get(addon.pricings, ['length'], 0)
+              ? addon.pricings[0]
+              : null;
+          });
+        });
+        return {
+          currency,
+          pricesMap,
+        };
+      }),
+    );
   }
 
   /**
@@ -325,15 +368,24 @@ export default class AnalyticsDataPlatformService {
    * @memberof AnalyticsDataPlatformService
    */
   getAnalyticsDataPlatforms(projectId) {
-    return this.OvhApiAnalyticsPlatforms.query()
-      .$promise
-      .then((platformIds) => {
-        const promises = platformIds.map(id => this.getAnalyticsDataPlatformDetails(id)
-          .catch(() => ({ osProjectId: null }))); // continue this.$q.all if any one fails
-        return this.$q.all(promises)
-          .then(platforms => platforms
-            .filter(platform => platform.osProjectId === projectId && platform.status !== 'INITIALIZED'));
-      });
+    return this.OvhApiAnalyticsPlatforms.query().$promise.then(
+      (platformIds) => {
+        const promises = platformIds.map((id) =>
+          this.getAnalyticsDataPlatformDetails(id).catch(() => ({
+            osProjectId: null,
+          })),
+        ); // continue this.$q.all if any one fails
+        return this.$q
+          .all(promises)
+          .then((platforms) =>
+            platforms.filter(
+              (platform) =>
+                platform.osProjectId === projectId &&
+                platform.status !== 'INITIALIZED',
+            ),
+          );
+      },
+    );
   }
 
   /**
@@ -382,7 +434,7 @@ export default class AnalyticsDataPlatformService {
       {
         method: 'get',
         namespace: `analytics-data-platform.deploy.status.${platformId}`,
-        successRule: task => !this.isDeploymentInProgress(task),
+        successRule: (task) => !this.isDeploymentInProgress(task),
         interval: 60000,
       },
     );
@@ -397,16 +449,19 @@ export default class AnalyticsDataPlatformService {
    * @memberof AnalyticsDataPlatformService
    */
   deployAnalyticsDataPlatform(serviceName, analyticsDataPlatform) {
-    return this.startPlatformDeploy(serviceName, analyticsDataPlatform)
-      .then(() => this.Poller.poll(
-        `/analytics/platforms/${serviceName}`,
-        {},
-        {
-          method: 'get',
-          namespace: `analytics-data-platform.${serviceName}`,
-          successRule: platformDetails => platformDetails.status !== this.STATUS.TO_DEPLOY,
-        },
-      ));
+    return this.startPlatformDeploy(serviceName, analyticsDataPlatform).then(
+      () =>
+        this.Poller.poll(
+          `/analytics/platforms/${serviceName}`,
+          {},
+          {
+            method: 'get',
+            namespace: `analytics-data-platform.${serviceName}`,
+            successRule: (platformDetails) =>
+              platformDetails.status !== this.STATUS.TO_DEPLOY,
+          },
+        ),
+    );
   }
 
   /**
@@ -418,7 +473,10 @@ export default class AnalyticsDataPlatformService {
    * @memberof AnalyticsDataPlatformService
    */
   startPlatformDeploy(serviceName, analyticsDataPlatform) {
-    return this.OvhApiAnalyticsPlatforms.deploy({ serviceName }, analyticsDataPlatform).$promise;
+    return this.OvhApiAnalyticsPlatforms.deploy(
+      { serviceName },
+      analyticsDataPlatform,
+    ).$promise;
   }
 
   /**
@@ -430,12 +488,16 @@ export default class AnalyticsDataPlatformService {
    */
   transformFlavors(flavors) {
     return map(flavors, (flavor) => {
-      set(flavor, 'displayName', this.$translate.instant('analytics_data_platform_deploy_flavor', {
-        name: flavor.name.toUpperCase(),
-        cpuNumber: flavor.vcpus,
-        ramCapacity: flavor.ram / 1000,
-        diskCapacity: flavor.disk,
-      }));
+      set(
+        flavor,
+        'displayName',
+        this.$translate.instant('analytics_data_platform_deploy_flavor', {
+          name: flavor.name.toUpperCase(),
+          cpuNumber: flavor.vcpus,
+          ramCapacity: flavor.ram / 1000,
+          diskCapacity: flavor.disk,
+        }),
+      );
       return flavor;
     });
   }
@@ -447,7 +509,8 @@ export default class AnalyticsDataPlatformService {
    * @returns Cluster information
    */
   getClusterNode(serviceName, nodeId) {
-    return this.OvhApiAnalyticsPlatformsNode.get({ serviceName, nodeId }).$promise;
+    return this.OvhApiAnalyticsPlatformsNode.get({ serviceName, nodeId })
+      .$promise;
   }
 
   /**
@@ -461,8 +524,11 @@ export default class AnalyticsDataPlatformService {
   }
 
   getClusterNodesDetails(serviceName) {
-    return this.getClusterNodes(serviceName)
-      .then(nodes => this.$q.all(map(nodes, nodeId => this.getClusterNode(serviceName, nodeId))));
+    return this.getClusterNodes(serviceName).then((nodes) =>
+      this.$q.all(
+        map(nodes, (nodeId) => this.getClusterNode(serviceName, nodeId)),
+      ),
+    );
   }
 
   /**
@@ -502,9 +568,11 @@ export default class AnalyticsDataPlatformService {
   }
 
   isDeploymentInProgress(cluster) {
-    return cluster.status === this.STATUS.IN_PROGRESS
-      || cluster.status === this.STATUS.PENDING
-      || cluster.status === this.STATUS.DEPLOYING
-      || cluster.status === this.STATUS.TO_DEPLOY;
+    return (
+      cluster.status === this.STATUS.IN_PROGRESS ||
+      cluster.status === this.STATUS.PENDING ||
+      cluster.status === this.STATUS.DEPLOYING ||
+      cluster.status === this.STATUS.TO_DEPLOY
+    );
   }
 }

@@ -3,7 +3,13 @@ import keys from 'lodash/keys';
 
 export default class ExchangeSharedAccounts {
   /* @ngInject */
-  constructor($translate, Exchange, OvhHttp, WucConverterFactory, WucConverterService) {
+  constructor(
+    $translate,
+    Exchange,
+    OvhHttp,
+    WucConverterFactory,
+    WucConverterService,
+  ) {
     this.services = {
       $translate,
       Exchange,
@@ -13,15 +19,24 @@ export default class ExchangeSharedAccounts {
     };
   }
 
-  retrievingSharedAccounts(organization, exchange, count = 10, offset = 0, search = '') {
-    return this.services.OvhHttp.get(`/sws/exchange/${organization}/${exchange}/sharedAccounts`, {
-      rootPath: '2api',
-      params: {
-        count,
-        offset,
-        search,
+  retrievingSharedAccounts(
+    organization,
+    exchange,
+    count = 10,
+    offset = 0,
+    search = '',
+  ) {
+    return this.services.OvhHttp.get(
+      `/sws/exchange/${organization}/${exchange}/sharedAccounts`,
+      {
+        rootPath: '2api',
+        params: {
+          count,
+          offset,
+          search,
+        },
       },
-    });
+    );
   }
 
   retrievingNewSharedAccountOptions(organization, exchange) {
@@ -100,9 +115,7 @@ export default class ExchangeSharedAccounts {
 
   updatingSharedAccountDelegations(organization, exchange, model) {
     return this.services.OvhHttp.put(
-      `/sws/exchange/${organization}/${exchange}/sharedAccounts/${
-        model.primaryEmail
-      }/delegations-update`,
+      `/sws/exchange/${organization}/${exchange}/sharedAccounts/${model.primaryEmail}/delegations-update`,
       {
         rootPath: '2api',
         data: {
@@ -135,25 +148,23 @@ export default class ExchangeSharedAccounts {
       opts.count,
       offset,
       opts.filter,
-    ).then(accounts => ({
+    ).then((accounts) => ({
       accounts: accounts.list.results,
       headers: keys(accounts.list.results[0]),
     }));
   }
 
   formatQuota({ value, unit }) {
-    const quota = filesize(this.services.WucConverterService.convertToOctet(
-      value,
-      unit,
-      'binary',
-    ),
-    {
-      output: 'object',
-      standard: 'iec',
-      round: 2,
-    });
+    const quota = filesize(
+      this.services.WucConverterService.convertToOctet(value, unit, 'binary'),
+      {
+        output: 'object',
+        standard: 'iec',
+        round: 2,
+      },
+    );
 
-    return ({ value: quota.value, unit: quota.symbol });
+    return { value: quota.value, unit: quota.symbol };
   }
 
   getFormattedQuota(quota) {
@@ -162,26 +173,29 @@ export default class ExchangeSharedAccounts {
   }
 
   getQuotaUnitRange(minQuotaUnit, maxQuotaUnit) {
-    return this.services.WucConverterService
-      .getUnitRange(minQuotaUnit, maxQuotaUnit, 'binary')
-      .map(({ unit }) => unit);
+    return this.services.WucConverterService.getUnitRange(
+      minQuotaUnit,
+      maxQuotaUnit,
+      'binary',
+    ).map(({ unit }) => unit);
   }
 
   convertQuota(value, currentUnit, wantedUnit) {
-    const exponent = findIndex(
-      this.services.WucConverterFactory.binary.units,
-      { unit: wantedUnit },
-    );
-    return filesize(this.services.WucConverterService.convertToOctet(
-      value,
-      currentUnit,
-      'binary',
-    ),
-    {
-      output: 'object',
-      standard: 'iec',
-      round: 2,
-      exponent,
-    }).value;
+    const exponent = findIndex(this.services.WucConverterFactory.binary.units, {
+      unit: wantedUnit,
+    });
+    return filesize(
+      this.services.WucConverterService.convertToOctet(
+        value,
+        currentUnit,
+        'binary',
+      ),
+      {
+        output: 'object',
+        standard: 'iec',
+        round: 2,
+        exponent,
+      },
+    ).value;
   }
 }

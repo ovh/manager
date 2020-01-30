@@ -2,8 +2,15 @@ import get from 'lodash/get';
 import includes from 'lodash/includes';
 
 class OutgoingTraficComponentCtrl {
-  constructor($translate, CucControllerHelper,
-    OvhApiMe, CucRegionService, CucServiceHelper, CLOUD_GEOLOCALISATION, CLOUD_UNIT_CONVERSION) {
+  constructor(
+    $translate,
+    CucControllerHelper,
+    OvhApiMe,
+    CucRegionService,
+    CucServiceHelper,
+    CLOUD_GEOLOCALISATION,
+    CLOUD_UNIT_CONVERSION,
+  ) {
     this.$translate = $translate;
     this.CucControllerHelper = CucControllerHelper;
     this.OvhApiMe = OvhApiMe;
@@ -25,11 +32,13 @@ class OutgoingTraficComponentCtrl {
 
   initCurrency() {
     this.currency = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () => this.OvhApiMe.v6()
-        .get()
-        .$promise
-        .then(me => me.currency)
-        .catch(error => this.CucServiceHelper.errorHandler('cpb_error_message')(error)),
+      loaderFunction: () =>
+        this.OvhApiMe.v6()
+          .get()
+          .$promise.then((me) => me.currency)
+          .catch((error) =>
+            this.CucServiceHelper.errorHandler('cpb_error_message')(error),
+          ),
     });
     return this.currency.load();
   }
@@ -40,19 +49,26 @@ class OutgoingTraficComponentCtrl {
 
   getTrafficByRegion(regionByBandwidth) {
     if (this.isAPACRegion(regionByBandwidth.region)) {
-      const bandwidthUsedInGiB = get(regionByBandwidth, 'outgoingBandwidth.quantity.value', 0);
+      const bandwidthUsedInGiB = get(
+        regionByBandwidth,
+        'outgoingBandwidth.quantity.value',
+        0,
+      );
       // convert GiB to GB
-      const bandwidthUsedInGB = (
-        this.CLOUD_UNIT_CONVERSION.GIBIBYTE_TO_BYTE * bandwidthUsedInGiB
-      ) / this.CLOUD_UNIT_CONVERSION.GIGABYTE_TO_BYTE;
-      return `${bandwidthUsedInGB.toFixed(2)}/${this.FREE_TRAFFIC_PER_APAC_REGION} ${this.$translate.instant('unit_size_GB')}`;
+      const bandwidthUsedInGB =
+        (this.CLOUD_UNIT_CONVERSION.GIBIBYTE_TO_BYTE * bandwidthUsedInGiB) /
+        this.CLOUD_UNIT_CONVERSION.GIGABYTE_TO_BYTE;
+      return `${bandwidthUsedInGB.toFixed(2)}/${
+        this.FREE_TRAFFIC_PER_APAC_REGION
+      } ${this.$translate.instant('unit_size_GB')}`;
     }
     return this.$translate.instant('cpbc_hourly_instance_trafic_unlimitted');
   }
 
   getPriceByRegion(regionByBandwidth) {
     if (this.isAPACRegion(regionByBandwidth.region)) {
-      const bandwidthUsedInTb = regionByBandwidth.outgoingBandwidth.quantity.value;
+      const bandwidthUsedInTb =
+        regionByBandwidth.outgoingBandwidth.quantity.value;
       if (bandwidthUsedInTb > 1) {
         const totalPrice = regionByBandwidth.outgoingBandwidth
           ? regionByBandwidth.outgoingBandwidth.totalPrice
@@ -64,4 +80,6 @@ class OutgoingTraficComponentCtrl {
   }
 }
 
-angular.module('managerApp').controller('OutgoingTraficComponentCtrl', OutgoingTraficComponentCtrl);
+angular
+  .module('managerApp')
+  .controller('OutgoingTraficComponentCtrl', OutgoingTraficComponentCtrl);

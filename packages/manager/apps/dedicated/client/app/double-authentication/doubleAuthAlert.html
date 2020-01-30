@@ -1,17 +1,32 @@
 <div data-ng-controller="DoubleAuthAlertCtrl">
-    <div class="platforms"
-         data-wizard
-         data-wizard-on-cancel="resetAction"
-         data-wizard-on-finish="goToDoubleAuth"
-         data-wizard-title=":: 'doubleauth_modal_alert_title' | translate"
-         data-wizard-title-icon="'icon-delete-account-exchange'">
+    <div
+        class="platforms"
+        data-wizard
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="goToDoubleAuth"
+        data-wizard-title=":: 'doubleauth_modal_alert_title' | translate"
+        data-wizard-title-icon="'icon-delete-account-exchange'"
+    >
         <div data-wizard-step>
             <div class="oui-message oui-message_warning" role="alert">
-                <i class="oui-icon oui-icon-warning_circle oui-icon_bicolor" aria-hidden="true"></i>
+                <i
+                    class="oui-icon oui-icon-warning_circle oui-icon_bicolor"
+                    aria-hidden="true"
+                ></i>
                 <div class="oui-message__body">
-                    <span data-ng-if="backupCodeStatus.remaining === 0" data-translate="doubleauth_modal_alert_message"></span>
-                    <span data-ng-if="backupCodeStatus.remaining === 1" data-translate="doubleauth_modal_alert_message"></span>
-                    <span data-ng-if="backupCodeStatus.remaining > 1" data-translate="doubleauth_modal_alert_message" data-translate-values="{t0: backupCodeStatus.remaining}"></span>
+                    <span
+                        data-ng-if="backupCodeStatus.remaining === 0"
+                        data-translate="doubleauth_modal_alert_message"
+                    ></span>
+                    <span
+                        data-ng-if="backupCodeStatus.remaining === 1"
+                        data-translate="doubleauth_modal_alert_message"
+                    ></span>
+                    <span
+                        data-ng-if="backupCodeStatus.remaining > 1"
+                        data-translate="doubleauth_modal_alert_message"
+                        data-translate-values="{t0: backupCodeStatus.remaining}"
+                    ></span>
                 </div>
             </div>
             <p data-translate="doubleauth_modal_alert_message_regenerate"></p>

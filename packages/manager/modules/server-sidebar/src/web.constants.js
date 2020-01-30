@@ -55,7 +55,9 @@ export const DOMAIN_CONFIG = {
         category: 'ALLDOM',
         fn: (items, compareTo) => {
           const allDoms = map(get(compareTo, 'items', []), 'serviceName');
-          return items.filter(item => !item.parentName || !includes(allDoms, item.parentName));
+          return items.filter(
+            (item) => !item.parentName || !includes(allDoms, item.parentName),
+          );
         },
       },
     },
@@ -67,8 +69,15 @@ export const DOMAIN_CONFIG = {
       icon: 'oui-icon icon-white-background oui-icon-domain-dns',
       app: [WEB],
       filter: {
-        category: 'DOMAIN', // eslint-disable-next-line max-len
-        fn: (items, compareTo) => items.filter(it => isEmpty(find(get(compareTo, 'items', []), { serviceName: it.serviceName }))),
+        category: 'DOMAIN',
+        fn: (items, compareTo) =>
+          items.filter((it) =>
+            isEmpty(
+              find(get(compareTo, 'items', []), {
+                serviceName: it.serviceName,
+              }),
+            ),
+          ),
       },
     },
   ],
@@ -167,7 +176,6 @@ export const EMAIL_CONFIG = {
   regions: ['EU'],
 };
 
-
 export const MICROSOFT_CONFIG = {
   id: 'microsoft',
   children: [
@@ -259,14 +267,6 @@ export const WEB_ORDER_SIDEBAR_CONFIG = [
     app: [WEB],
   },
   {
-    id: 'orderPrivateDatabase',
-    title: 'privateDatabase',
-    icon: 'ovh-font ovh-font-database',
-    state: 'app.sql-order',
-    regions: ['EU'],
-    app: [WEB],
-  },
-  {
     id: 'orderHosting',
     title: 'hosting',
     icon: 'ovh-font ovh-font-hosting',
@@ -332,6 +332,14 @@ export const WEB_ORDER_SIDEBAR_CONFIG = [
     title: 'sharepoint',
     icon: 'ms-Icon ms-Icon--SharepointLogo',
     state: 'app.microsoft.sharepoint.order',
+    regions: ['EU'],
+    app: [WEB],
+  },
+  {
+    id: 'orderCloudDatabase',
+    title: 'cloudDatabase',
+    icon: 'ovh-font ovh-font-database',
+    state: 'app.private-database-order-clouddb',
     regions: ['EU'],
     app: [WEB],
   },

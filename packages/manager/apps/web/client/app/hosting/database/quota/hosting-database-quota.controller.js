@@ -36,7 +36,9 @@ angular.module('App').controller(
         .catch((err) => {
           set(err, 'type', err.type || 'ERROR');
           this.alerter.alertFromSWS(
-            this.$translate.instant('hosting_tab_DATABASES_configuration_check_quota_fail'),
+            this.$translate.instant(
+              'hosting_tab_DATABASES_configuration_check_quota_fail',
+            ),
             get(err, 'data', err),
             this.$scope.alerts.main,
           );

@@ -1,69 +1,86 @@
-<form name="easyHuntingSoundsHelper"
-      data-ng-submit="$ctrl.uploadFile()"
-      novalidate>
-
+<form
+    name="easyHuntingSoundsHelper"
+    data-ng-submit="$ctrl.uploadFile()"
+    novalidate
+>
     <div class="modal-header">
-        <button type="button"
-                class="close float-right"
-                aria-label="{{ ::'cancel' | translate }}"
-                data-ng-click="$ctrl.close()">
+        <button
+            type="button"
+            class="close float-right"
+            aria-label="{{ ::'cancel' | translate }}"
+            data-ng-click="$ctrl.close()"
+        >
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
 
     <div class="modal-body clearfix">
-        <h3 class="modal-title"
-            data-translate="telephony_alias_hunting_sounds_manager">
-        </h3>
+        <h3
+            class="modal-title"
+            data-translate="telephony_alias_hunting_sounds_manager"
+        ></h3>
 
         <div class="form-group">
-            <tuc-input-file data-ng-model="$ctrl.toUpload"
-                        data-ng-accept="audio/*"
-                        data-ng-accept-filter="$ctrl.checkValidAudioExtention(file)">
+            <tuc-input-file
+                data-ng-model="$ctrl.toUpload"
+                data-ng-accept="audio/*"
+                data-ng-accept-filter="$ctrl.checkValidAudioExtention(file)"
+            >
                 <span class="fa fa-upload mr-1"></span>
-                <span data-translate="telephony_alias_hunting_sounds_upload"></span>
+                <span
+                    data-translate="telephony_alias_hunting_sounds_upload"
+                ></span>
             </tuc-input-file>
 
-            <button type="submit"
-                    class="btn btn-default mt-2 float-right no-transition"
-                    data-ng-disabled="$ctrl.isUploading"
-                    data-ng-if="$ctrl.toUpload">
-                <oui-spinner class="mr-2"
-                             data-ng-if="$ctrl.isUploading"
-                             data-size="s">
+            <button
+                type="submit"
+                class="btn btn-default mt-2 float-right no-transition"
+                data-ng-disabled="$ctrl.isUploading"
+                data-ng-if="$ctrl.toUpload"
+            >
+                <oui-spinner
+                    class="mr-2"
+                    data-ng-if="$ctrl.isUploading"
+                    data-size="s"
+                >
                 </oui-spinner>
                 <span data-translate="submit"></span>
             </button>
         </div>
 
-        <div class="form-group"
-             data-ng-if="$ctrl.sounds.length">
-             <label class="control-label"
-                    data-translate="telephony_alias_hunting_sounds_list">
-             </label>
-             <div class="btn-group d-block clearfix mb-4"
-                  role="group"
-                  data-ng-repeat="sound in $ctrl.sounds track by sound.soundId">
-                 <button type="button"
-                         class="btn btn-default w-75"
-                         data-ng-click="$ctrl.chooseSound(sound)"
-                         data-ng-bind=":: sound.name">
-                 </button>
-                 <button type="button"
-                         class="btn btn-default w-25"
-                         data-title="{{:: 'telephony_alias_hunting_sounds_delete' | translate }}"
-                         data-ng-disabled="sound.isDeleting"
-                         data-ng-click="$ctrl.deleteSound(sound)">
-                     <oui-spinner data-ng-if="sound.isDeleting"
-                                  data-size="s">
-                     </oui-spinner>
-                     <span class="ovh-font ovh-font-wrong"
-                           data-ng-if="!sound.isDeleting">
-                     </span>
-                 </button>
-             </div>
+        <div class="form-group" data-ng-if="$ctrl.sounds.length">
+            <label
+                class="control-label"
+                data-translate="telephony_alias_hunting_sounds_list"
+            >
+            </label>
+            <div
+                class="btn-group d-block clearfix mb-4"
+                role="group"
+                data-ng-repeat="sound in $ctrl.sounds track by sound.soundId"
+            >
+                <button
+                    type="button"
+                    class="btn btn-default w-75"
+                    data-ng-click="$ctrl.chooseSound(sound)"
+                    data-ng-bind=":: sound.name"
+                ></button>
+                <button
+                    type="button"
+                    class="btn btn-default w-25"
+                    data-title="{{:: 'telephony_alias_hunting_sounds_delete' | translate }}"
+                    data-ng-disabled="sound.isDeleting"
+                    data-ng-click="$ctrl.deleteSound(sound)"
+                >
+                    <oui-spinner data-ng-if="sound.isDeleting" data-size="s">
+                    </oui-spinner>
+                    <span
+                        class="ovh-font ovh-font-wrong"
+                        data-ng-if="!sound.isDeleting"
+                    >
+                    </span>
+                </button>
+            </div>
         </div>
-
     </div>
-
 </form>

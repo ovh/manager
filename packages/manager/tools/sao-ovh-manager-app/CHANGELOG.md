@@ -1,3 +1,21 @@
+## [1.0.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/sao-ovh-manager-app@1.0.2...@ovh-ux/sao-ovh-manager-app@1.0.3) (2020-01-21)
+
+
+### Bug Fixes
+
+* **template:** remove extra template string ([494b39c](https://github.com/ovh-ux/manager/commit/494b39c7cce5b7feb1528285fbfd28635119cd87))
+
+
+
+## [1.0.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/sao-ovh-manager-app@1.0.1...@ovh-ux/sao-ovh-manager-app@1.0.2) (2020-01-16)
+
+
+### Bug Fixes
+
+* add missing repository field to the package.json template ([0cdd84f](https://github.com/ovh-ux/manager/commit/0cdd84f69677bdc9d7804eebe152f5c222240a93))
+
+
+
 ## [1.0.1](https://github.com/ovh/manager/compare/@ovh-ux/sao-ovh-manager-app@1.0.0...@ovh-ux/sao-ovh-manager-app@1.0.1) (2019-11-15)
 
 

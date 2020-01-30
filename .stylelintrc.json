@@ -1,3 +1,19 @@
 {
-  "extends": "stylelint-config-standard"
+  "extends": "stylelint-config-standard",
+  "plugins": [
+    "stylelint-prettier",
+    "stylelint-scss"
+  ],
+  "rules": {
+    "at-rule-no-unknown": null,
+    "function-calc-no-invalid": null,
+    "prettier/prettier": true,
+    "scss/at-rule-no-unknown": true,
+    "selector-type-no-unknown": [
+      true,
+      {
+        "ignore": ["custom-elements"]
+      }
+    ]
+  }
 }

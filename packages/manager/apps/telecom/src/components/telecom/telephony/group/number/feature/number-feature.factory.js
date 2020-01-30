@@ -10,18 +10,26 @@ angular.module('managerApp').factory('TelephonyGroupNumberFeature', ($q) => {
 
     // check for mandatory options
     if (!mandatoryOptions) {
-      throw new Error('mandatory options must be specified when creating a new TelephonyGroupNumberFeature');
+      throw new Error(
+        'mandatory options must be specified when creating a new TelephonyGroupNumberFeature',
+      );
     } else {
       if (!mandatoryOptions.billingAccount) {
-        throw new Error('billingAccount option must be specified when creating a new TelephonyGroupNumberFeature');
+        throw new Error(
+          'billingAccount option must be specified when creating a new TelephonyGroupNumberFeature',
+        );
       }
 
       if (!mandatoryOptions.serviceName) {
-        throw new Error('serviceName option must be specified when creating a new TelephonyGroupNumberFeature');
+        throw new Error(
+          'serviceName option must be specified when creating a new TelephonyGroupNumberFeature',
+        );
       }
 
       if (!mandatoryOptions.featureType) {
-        throw new Error('featureType option must be specified when creating a new TelephonyGroupNumberFeature');
+        throw new Error(
+          'featureType option must be specified when creating a new TelephonyGroupNumberFeature',
+        );
       }
     }
 
@@ -50,7 +58,9 @@ angular.module('managerApp').factory('TelephonyGroupNumberFeature', ($q) => {
 
   /* ----------  FEATURE OPTIONS  ----------*/
 
-  TelephonyGroupNumberFeature.prototype.setInfos = function setInfos(featureOptions) {
+  TelephonyGroupNumberFeature.prototype.setInfos = function setInfos(
+    featureOptions,
+  ) {
     const self = this;
 
     angular.forEach(keys(featureOptions), (featureOptionKey) => {
@@ -62,7 +72,9 @@ angular.module('managerApp').factory('TelephonyGroupNumberFeature', ($q) => {
 
   /* ----------  EDITION  ----------*/
 
-  TelephonyGroupNumberFeature.prototype.startEdition = function startEdition(attrsToSave) {
+  TelephonyGroupNumberFeature.prototype.startEdition = function startEdition(
+    attrsToSave,
+  ) {
     const self = this;
 
     self.inEdition = true;
@@ -75,7 +87,9 @@ angular.module('managerApp').factory('TelephonyGroupNumberFeature', ($q) => {
     return self;
   };
 
-  TelephonyGroupNumberFeature.prototype.stopEdition = function stopEdition(cancel) {
+  TelephonyGroupNumberFeature.prototype.stopEdition = function stopEdition(
+    cancel,
+  ) {
     const self = this;
 
     if (self.saveForEdition && cancel) {
@@ -90,7 +104,9 @@ angular.module('managerApp').factory('TelephonyGroupNumberFeature', ($q) => {
     return self;
   };
 
-  TelephonyGroupNumberFeature.prototype.hasChange = function hasChangeFunction(attr) {
+  TelephonyGroupNumberFeature.prototype.hasChange = function hasChangeFunction(
+    attr,
+  ) {
     const self = this;
     let hasChange = false;
 

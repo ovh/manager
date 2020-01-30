@@ -99,101 +99,353 @@ import exchangeTemplate from './exchange.html';
 
 export default /* @ngInject */ ($templateCache) => {
   $templateCache.put('exchange/order/order.html', orderTemplate);
-  $templateCache.put('exchange/information/ssl/service-ssl-renew.html', serviceSslRenewTemplate);
-  $templateCache.put('exchange/information/migration-2016/service-migration-2016.html', ServiceMigration2016Template);
-  $templateCache.put('exchange/information/information.html', informationTemplate);
-  $templateCache.put('exchange/information/disk/service-disk-order-space.html', serviceDiskOrderSpaceTemplate);
-  $templateCache.put('exchange/disclaimer/remove/disclaimer-remove.html', disclaimerRemoveTemplate);
-  $templateCache.put('exchange/disclaimer/update/disclaimer-update.html', disclaimerUpdateTemplate);
+  $templateCache.put(
+    'exchange/information/ssl/service-ssl-renew.html',
+    serviceSslRenewTemplate,
+  );
+  $templateCache.put(
+    'exchange/information/migration-2016/service-migration-2016.html',
+    ServiceMigration2016Template,
+  );
+  $templateCache.put(
+    'exchange/information/information.html',
+    informationTemplate,
+  );
+  $templateCache.put(
+    'exchange/information/disk/service-disk-order-space.html',
+    serviceDiskOrderSpaceTemplate,
+  );
+  $templateCache.put(
+    'exchange/disclaimer/remove/disclaimer-remove.html',
+    disclaimerRemoveTemplate,
+  );
+  $templateCache.put(
+    'exchange/disclaimer/update/disclaimer-update.html',
+    disclaimerUpdateTemplate,
+  );
   $templateCache.put('exchange/disclaimer/disclaimer.html', disclaimerTemplate);
-  $templateCache.put('exchange/disclaimer/add/disclaimer-add.html', disclaimerAddTemplate);
-  $templateCache.put('exchange/configure/service-configure.html', serviceConfigureTemplate);
-  $templateCache.put('exchange/group/alias/remove/group-alias-remove.html', groupAliasRemoveTemplate);
-  $templateCache.put('exchange/group/alias/group-alias.html', groupAliasTemplate);
-  $templateCache.put('exchange/group/alias/add/group-alias-add.html', groupAliasAddTemplate);
-  $templateCache.put('exchange/group/remove/group-remove.html', groupRemoveTemplate);
-  $templateCache.put('exchange/group/update/group-update.html', groupUpdateTemplate);
+  $templateCache.put(
+    'exchange/disclaimer/add/disclaimer-add.html',
+    disclaimerAddTemplate,
+  );
+  $templateCache.put(
+    'exchange/configure/service-configure.html',
+    serviceConfigureTemplate,
+  );
+  $templateCache.put(
+    'exchange/group/alias/remove/group-alias-remove.html',
+    groupAliasRemoveTemplate,
+  );
+  $templateCache.put(
+    'exchange/group/alias/group-alias.html',
+    groupAliasTemplate,
+  );
+  $templateCache.put(
+    'exchange/group/alias/add/group-alias-add.html',
+    groupAliasAddTemplate,
+  );
+  $templateCache.put(
+    'exchange/group/remove/group-remove.html',
+    groupRemoveTemplate,
+  );
+  $templateCache.put(
+    'exchange/group/update/group-update.html',
+    groupUpdateTemplate,
+  );
   $templateCache.put('exchange/group/group.html', groupTemplate);
-  $templateCache.put('exchange/group/member/remove/group-member-remove.html', groupMemberRemoveTemplate);
-  $templateCache.put('exchange/group/member/group-member.html', groupMemberTemplate);
-  $templateCache.put('exchange/group/delegation/group-delegation.html', groupDelegationTemplate);
-  $templateCache.put('exchange/group/manager/remove/group-manager-remove.html', groupManagerRemoveTemplate);
-  $templateCache.put('exchange/group/manager/group-manager.html', groupManagerTemplate);
+  $templateCache.put(
+    'exchange/group/member/remove/group-member-remove.html',
+    groupMemberRemoveTemplate,
+  );
+  $templateCache.put(
+    'exchange/group/member/group-member.html',
+    groupMemberTemplate,
+  );
+  $templateCache.put(
+    'exchange/group/delegation/group-delegation.html',
+    groupDelegationTemplate,
+  );
+  $templateCache.put(
+    'exchange/group/manager/remove/group-manager-remove.html',
+    groupManagerRemoveTemplate,
+  );
+  $templateCache.put(
+    'exchange/group/manager/group-manager.html',
+    groupManagerTemplate,
+  );
   $templateCache.put('exchange/group/add/group-add.html', groupAddTemplate);
-  $templateCache.put('exchange/group/accounts/group-accounts.html', groupAccountsTemplate);
+  $templateCache.put(
+    'exchange/group/accounts/group-accounts.html',
+    groupAccountsTemplate,
+  );
   $templateCache.put('exchange/diagnostic/diagnostic.html', diagnosticTemplate);
-  $templateCache.put('exchange/diagnostic/error/diagnostic-error-connective-owa.html', diagnosticErrorConnectiveOwaTemplate);
-  $templateCache.put('exchange/diagnostic/error/diagnostic-error-is-locked.html', diagnosticErrorIsLockedTemplate);
-  $templateCache.put('exchange/diagnostic/error/diagnostic-error-is-spammer.html', diagnosticErrorIsSpammerTemplate);
-  $templateCache.put('exchange/diagnostic/error/diagnostic-error-is-srv-valid.html', diagnosticErrorIsSrvValidTemplate);
-  $templateCache.put('exchange/diagnostic/error/diagnostic-error-can-receive-email.html', diagnosticErrorCanReceiveEmailTemplate);
-  $templateCache.put('exchange/diagnostic/error/diagnostic-error-is-suspended.html', diagnosticErrorIsSuspendedTemplate);
-  $templateCache.put('exchange/diagnostic/error/diagnostic-error-is-mx-valid.html', diagnosticErrorIsMxValidTemplate);
-  $templateCache.put('exchange/diagnostic/error/diagnostic-error-can-send-email.html', diagnosticErrorCanSendEmailTemplate);
-  $templateCache.put('exchange/shared-account/shared-account.html', sharedAccountTemplate);
-  $templateCache.put('exchange/shared-account/update/shared-account-update.html', sharedAccountUpdateTemplate);
-  $templateCache.put('exchange/shared-account/delete/shared-account-delete.html', sharedAccountDeleteTemplate);
-  $templateCache.put('exchange/shared-account/delegation/shared-account-delegation.html', sharedAccountDelegationTemplate);
-  $templateCache.put('exchange/shared-account/add/shared-account-add.html', sharedAccountAddTemplate);
-  $templateCache.put('exchange/shared/remove/shared-remove.html', sharedRemoveTemplate);
-  $templateCache.put('exchange/shared/update/shared-update.html', sharedUpdateTemplate);
+  $templateCache.put(
+    'exchange/diagnostic/error/diagnostic-error-connective-owa.html',
+    diagnosticErrorConnectiveOwaTemplate,
+  );
+  $templateCache.put(
+    'exchange/diagnostic/error/diagnostic-error-is-locked.html',
+    diagnosticErrorIsLockedTemplate,
+  );
+  $templateCache.put(
+    'exchange/diagnostic/error/diagnostic-error-is-spammer.html',
+    diagnosticErrorIsSpammerTemplate,
+  );
+  $templateCache.put(
+    'exchange/diagnostic/error/diagnostic-error-is-srv-valid.html',
+    diagnosticErrorIsSrvValidTemplate,
+  );
+  $templateCache.put(
+    'exchange/diagnostic/error/diagnostic-error-can-receive-email.html',
+    diagnosticErrorCanReceiveEmailTemplate,
+  );
+  $templateCache.put(
+    'exchange/diagnostic/error/diagnostic-error-is-suspended.html',
+    diagnosticErrorIsSuspendedTemplate,
+  );
+  $templateCache.put(
+    'exchange/diagnostic/error/diagnostic-error-is-mx-valid.html',
+    diagnosticErrorIsMxValidTemplate,
+  );
+  $templateCache.put(
+    'exchange/diagnostic/error/diagnostic-error-can-send-email.html',
+    diagnosticErrorCanSendEmailTemplate,
+  );
+  $templateCache.put(
+    'exchange/shared-account/shared-account.html',
+    sharedAccountTemplate,
+  );
+  $templateCache.put(
+    'exchange/shared-account/update/shared-account-update.html',
+    sharedAccountUpdateTemplate,
+  );
+  $templateCache.put(
+    'exchange/shared-account/delete/shared-account-delete.html',
+    sharedAccountDeleteTemplate,
+  );
+  $templateCache.put(
+    'exchange/shared-account/delegation/shared-account-delegation.html',
+    sharedAccountDelegationTemplate,
+  );
+  $templateCache.put(
+    'exchange/shared-account/add/shared-account-add.html',
+    sharedAccountAddTemplate,
+  );
+  $templateCache.put(
+    'exchange/shared/remove/shared-remove.html',
+    sharedRemoveTemplate,
+  );
+  $templateCache.put(
+    'exchange/shared/update/shared-update.html',
+    sharedUpdateTemplate,
+  );
   $templateCache.put('exchange/shared/shared.html', sharedTemplate);
-  $templateCache.put('exchange/shared/popover/shared-popover.html', sharedPopoverTemplate);
+  $templateCache.put(
+    'exchange/shared/popover/shared-popover.html',
+    sharedPopoverTemplate,
+  );
   $templateCache.put('exchange/shared/add/shared-add.html', sharedAddTemplate);
-  $templateCache.put('exchange/shared/permission/remove/shared-permission-remove.html', sharedPermissionRemoveTemplate);
-  $templateCache.put('exchange/shared/permission/update/shared-permission-update.html', sharedPermissionUpdateTemplate);
-  $templateCache.put('exchange/shared/permission/shared-permission.html', sharedPermissionTemplate);
-  $templateCache.put('exchange/wizard-hosted-creation/wizard-hosted-creation.html', wizardHostedCreationTemplate);
-  $templateCache.put('exchange/wizard-hosted-creation/first-step/first-step.html', firstStepTemplate);
-  $templateCache.put('exchange/wizard-hosted-creation/first-step/email-creation/update/update.html', updateTemplate);
-  $templateCache.put('exchange/wizard-hosted-creation/first-step/email-creation/delete/delete.html', deleteTemplate);
-  $templateCache.put('exchange/wizard-hosted-creation/first-step/email-creation/add/add.html', addTemplate);
-  $templateCache.put('exchange/wizard-hosted-creation/first-step/email-creation/email-creation.html', emailCreationTemplate);
-  $templateCache.put('exchange/wizard-hosted-creation/first-step/domain-configuration/domain-configuration.html', domainConfigurationTemplate);
-  $templateCache.put('exchange/wizard-hosted-creation/first-step/header/header.html', firstStepHeaderTemplate);
-  $templateCache.put('exchange/wizard-hosted-creation/summary/automatic/automatic.html', automaticTemplate);
-  $templateCache.put('exchange/wizard-hosted-creation/summary/manual/manual.html', manualTemplate);
-  $templateCache.put('exchange/wizard-hosted-creation/summary/summary.html', summaryTemplate);
-  $templateCache.put('exchange/external-contact/remove/external-contact-remove.html', externalContactRemoveTemplate);
-  $templateCache.put('exchange/external-contact/external-contact.html', externalContactTemplate);
-  $templateCache.put('exchange/external-contact/update/external-contact-update.html', externalContactUpdateTemplate);
-  $templateCache.put('exchange/external-contact/add/external-contact-add.html', externalContactAddTemplate);
+  $templateCache.put(
+    'exchange/shared/permission/remove/shared-permission-remove.html',
+    sharedPermissionRemoveTemplate,
+  );
+  $templateCache.put(
+    'exchange/shared/permission/update/shared-permission-update.html',
+    sharedPermissionUpdateTemplate,
+  );
+  $templateCache.put(
+    'exchange/shared/permission/shared-permission.html',
+    sharedPermissionTemplate,
+  );
+  $templateCache.put(
+    'exchange/wizard-hosted-creation/wizard-hosted-creation.html',
+    wizardHostedCreationTemplate,
+  );
+  $templateCache.put(
+    'exchange/wizard-hosted-creation/first-step/first-step.html',
+    firstStepTemplate,
+  );
+  $templateCache.put(
+    'exchange/wizard-hosted-creation/first-step/email-creation/update/update.html',
+    updateTemplate,
+  );
+  $templateCache.put(
+    'exchange/wizard-hosted-creation/first-step/email-creation/delete/delete.html',
+    deleteTemplate,
+  );
+  $templateCache.put(
+    'exchange/wizard-hosted-creation/first-step/email-creation/add/add.html',
+    addTemplate,
+  );
+  $templateCache.put(
+    'exchange/wizard-hosted-creation/first-step/email-creation/email-creation.html',
+    emailCreationTemplate,
+  );
+  $templateCache.put(
+    'exchange/wizard-hosted-creation/first-step/domain-configuration/domain-configuration.html',
+    domainConfigurationTemplate,
+  );
+  $templateCache.put(
+    'exchange/wizard-hosted-creation/first-step/header/header.html',
+    firstStepHeaderTemplate,
+  );
+  $templateCache.put(
+    'exchange/wizard-hosted-creation/summary/automatic/automatic.html',
+    automaticTemplate,
+  );
+  $templateCache.put(
+    'exchange/wizard-hosted-creation/summary/manual/manual.html',
+    manualTemplate,
+  );
+  $templateCache.put(
+    'exchange/wizard-hosted-creation/summary/summary.html',
+    summaryTemplate,
+  );
+  $templateCache.put(
+    'exchange/external-contact/remove/external-contact-remove.html',
+    externalContactRemoveTemplate,
+  );
+  $templateCache.put(
+    'exchange/external-contact/external-contact.html',
+    externalContactTemplate,
+  );
+  $templateCache.put(
+    'exchange/external-contact/update/external-contact-update.html',
+    externalContactUpdateTemplate,
+  );
+  $templateCache.put(
+    'exchange/external-contact/add/external-contact-add.html',
+    externalContactAddTemplate,
+  );
   $templateCache.put('exchange/task/task.html', taskTemplate);
-  $templateCache.put('exchange/office-attach/dialog/office-attach-dialog.html', officeAttachDialogTemplate);
-  $templateCache.put('exchange/office-attach/office-attach.html', officeAttachTemplate);
-  $templateCache.put('exchange/account/order/account-order.html', accountOrderTemplate);
-  $templateCache.put('exchange/account/home/account-home.html', accountHomeTemplate);
-  $templateCache.put('exchange/account/alias/remove/account-alias-remove.html', accountAliasRemoveTemplate);
-  $templateCache.put('exchange/account/alias/account-alias.html', accountAliasTemplate);
-  $templateCache.put('exchange/account/alias/add/account-alias-add.html', accountAliasAddTemplate);
-  $templateCache.put('exchange/account/remove/account-remove.html', accountRemoveTemplate);
-  $templateCache.put('exchange/account/update/account-update.html', accountUpdateTemplate);
+  $templateCache.put(
+    'exchange/office-attach/dialog/office-attach-dialog.html',
+    officeAttachDialogTemplate,
+  );
+  $templateCache.put(
+    'exchange/office-attach/office-attach.html',
+    officeAttachTemplate,
+  );
+  $templateCache.put(
+    'exchange/account/order/account-order.html',
+    accountOrderTemplate,
+  );
+  $templateCache.put(
+    'exchange/account/home/account-home.html',
+    accountHomeTemplate,
+  );
+  $templateCache.put(
+    'exchange/account/alias/remove/account-alias-remove.html',
+    accountAliasRemoveTemplate,
+  );
+  $templateCache.put(
+    'exchange/account/alias/account-alias.html',
+    accountAliasTemplate,
+  );
+  $templateCache.put(
+    'exchange/account/alias/add/account-alias-add.html',
+    accountAliasAddTemplate,
+  );
+  $templateCache.put(
+    'exchange/account/remove/account-remove.html',
+    accountRemoveTemplate,
+  );
+  $templateCache.put(
+    'exchange/account/update/account-update.html',
+    accountUpdateTemplate,
+  );
   $templateCache.put('exchange/account/account.html', accountTemplate);
-  $templateCache.put('exchange/account/delegation/account-delegation.html', accountDelegationTemplate);
-  $templateCache.put('exchange/account/export-as-csv/account-export-as-csv.html', accountExportAsCsvTemplate);
-  $templateCache.put('exchange/account/add/account-add.html', accountAddTemplate);
-  $templateCache.put('exchange/account/upgrade-300g/account-upgrade-300g.html', accountUpgrade300gTemplate);
-  $templateCache.put('exchange/account/export-as-pst/account-export-as-pst.html', accountExportAsPstTemplate);
-  $templateCache.put('exchange/account/outlook/delete/account-outlook-delete.html', accountOutlookDeleteTemplate);
-  $templateCache.put('exchange/account/outlook/account-outlook.html', accountOutlookTemplate);
-  $templateCache.put('exchange/account/outlook/add/account-outlook-add.html', accountOutlookAddTemplate);
-  $templateCache.put('exchange/account/outlook/deactivate/account-outlook-deactivate.html', accountOutlookDeactivateTemplate);
-  $templateCache.put('exchange/account/outlook/activate/account-outlook-activate.html', accountOutlookActivateTemplate);
-  $templateCache.put('exchange/error-messages.popover.html', errorMessagesPopoverTemplate);
-  $templateCache.put('exchange/resource/remove/resource-remove.html', resourceRemoveTemplate);
-  $templateCache.put('exchange/resource/update/resource-update.html', resourceUpdateTemplate);
+  $templateCache.put(
+    'exchange/account/delegation/account-delegation.html',
+    accountDelegationTemplate,
+  );
+  $templateCache.put(
+    'exchange/account/export-as-csv/account-export-as-csv.html',
+    accountExportAsCsvTemplate,
+  );
+  $templateCache.put(
+    'exchange/account/add/account-add.html',
+    accountAddTemplate,
+  );
+  $templateCache.put(
+    'exchange/account/upgrade-300g/account-upgrade-300g.html',
+    accountUpgrade300gTemplate,
+  );
+  $templateCache.put(
+    'exchange/account/export-as-pst/account-export-as-pst.html',
+    accountExportAsPstTemplate,
+  );
+  $templateCache.put(
+    'exchange/account/outlook/delete/account-outlook-delete.html',
+    accountOutlookDeleteTemplate,
+  );
+  $templateCache.put(
+    'exchange/account/outlook/account-outlook.html',
+    accountOutlookTemplate,
+  );
+  $templateCache.put(
+    'exchange/account/outlook/add/account-outlook-add.html',
+    accountOutlookAddTemplate,
+  );
+  $templateCache.put(
+    'exchange/account/outlook/deactivate/account-outlook-deactivate.html',
+    accountOutlookDeactivateTemplate,
+  );
+  $templateCache.put(
+    'exchange/account/outlook/activate/account-outlook-activate.html',
+    accountOutlookActivateTemplate,
+  );
+  $templateCache.put(
+    'exchange/error-messages.popover.html',
+    errorMessagesPopoverTemplate,
+  );
+  $templateCache.put(
+    'exchange/resource/remove/resource-remove.html',
+    resourceRemoveTemplate,
+  );
+  $templateCache.put(
+    'exchange/resource/update/resource-update.html',
+    resourceUpdateTemplate,
+  );
   $templateCache.put('exchange/resource/resource.html', resourceTemplate);
-  $templateCache.put('exchange/resource/delegation/resource-delegation.html', resourceDelegationTemplate);
-  $templateCache.put('exchange/resource/add/resource-add.html', resourceAddTemplate);
-  $templateCache.put('exchange/domain/mx-autoconfig/domain-mx-autoconfig.html', domainMxAutoconfigTemplate);
-  $templateCache.put('exchange/domain/remove/domain-remove.html', domainRemoveTemplate);
-  $templateCache.put('exchange/domain/update/domain-update.html', domainUpdateTemplate);
-  $templateCache.put('exchange/domain/srv-autoconfig/domain-srv-autoconfig.html', domainSrvAutoconfigTemplate);
+  $templateCache.put(
+    'exchange/resource/delegation/resource-delegation.html',
+    resourceDelegationTemplate,
+  );
+  $templateCache.put(
+    'exchange/resource/add/resource-add.html',
+    resourceAddTemplate,
+  );
+  $templateCache.put(
+    'exchange/domain/mx-autoconfig/domain-mx-autoconfig.html',
+    domainMxAutoconfigTemplate,
+  );
+  $templateCache.put(
+    'exchange/domain/remove/domain-remove.html',
+    domainRemoveTemplate,
+  );
+  $templateCache.put(
+    'exchange/domain/update/domain-update.html',
+    domainUpdateTemplate,
+  );
+  $templateCache.put(
+    'exchange/domain/srv-autoconfig/domain-srv-autoconfig.html',
+    domainSrvAutoconfigTemplate,
+  );
   $templateCache.put('exchange/domain/add/domain-add.html', domainAddTemplate);
   $templateCache.put('exchange/domain/domain.html', domainTemplate);
-  $templateCache.put('exchange/header/remove/exchange-remove.html', exchangeRemoveTemplate);
-  $templateCache.put('exchange/header/license/service-license-history.html', serviceLicenseHistoryTemplate);
+  $templateCache.put(
+    'exchange/header/remove/exchange-remove.html',
+    exchangeRemoveTemplate,
+  );
+  $templateCache.put(
+    'exchange/header/license/service-license-history.html',
+    serviceLicenseHistoryTemplate,
+  );
   $templateCache.put('exchange/header/header.html', headerTemplate);
-  $templateCache.put('exchange/billing/account-renew/billing-account-renew.template.html', billingAccountRenewTemplate);
+  $templateCache.put(
+    'exchange/billing/account-renew/billing-account-renew.template.html',
+    billingAccountRenewTemplate,
+  );
   $templateCache.put('exchange/exchange.html', exchangeTemplate);
 };

@@ -1,12 +1,15 @@
-angular.module('managerApp')
-  .directive('ngTranscludeReplace', /* @ngInject */ $log => ({
+angular.module('managerApp').directive(
+  'ngTranscludeReplace',
+  /* @ngInject */ ($log) => ({
     terminal: true,
     restrict: 'EA',
     link($scope, $element, $attr, ctrl, transclude) {
       if (!transclude) {
-        $log.error('orphan',
-          'Illegal use of ngTranscludeReplace directive in the template! '
-                              + 'No parent directive that requires a transclusion found. ');
+        $log.error(
+          'orphan',
+          'Illegal use of ngTranscludeReplace directive in the template! ' +
+            'No parent directive that requires a transclusion found. ',
+        );
         return;
       }
       transclude((clone) => {
@@ -17,10 +20,11 @@ angular.module('managerApp')
         }
       });
     },
-  }));
+  }),
+);
 
-
-angular.module('managerApp')
+angular
+  .module('managerApp')
   .component('cuiInlineAdder', {
     template: `
             <div class="cui-inline-adder">
@@ -35,7 +39,8 @@ angular.module('managerApp')
       onRemove: '&',
       uniqueProperty: '@',
     },
-  }).directive('cuiInlineAdderGroup', () => ({
+  })
+  .directive('cuiInlineAdderGroup', () => ({
     replace: true,
     restrict: 'E',
     templateUrl: 'app/ui-components/inline-adder/inline-adder-group.html',
@@ -50,7 +55,8 @@ angular.module('managerApp')
       item: '<',
       isNewItem: '<',
     },
-  })).directive('cuiInlineAdderItem', () => ({
+  }))
+  .directive('cuiInlineAdderItem', () => ({
     replace: true,
     restrict: 'E',
     template: `

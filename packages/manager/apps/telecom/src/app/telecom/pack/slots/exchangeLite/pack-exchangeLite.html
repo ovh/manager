@@ -1,28 +1,40 @@
-<div id="pack-exchangeLite"
-     data-ng-controller="PackExchangeLiteCtrl as ExchangeLite">
-    <div class="oui-tile__body"
-         data-ng-if="loaders.services">
+<div
+    id="pack-exchangeLite"
+    data-ng-controller="PackExchangeLiteCtrl as ExchangeLite"
+>
+    <div class="oui-tile__body" data-ng-if="loaders.services">
         <div class="oui-tile__definition text-center">
             <oui-spinner></oui-spinner>
         </div>
     </div>
-    <div class="oui-tile__body"
-         data-ng-if="(!loaders.services && ExchangeLite.exchangeMail.services.length == 0) || true">
-        <div class="oui-tile__definition"
-             data-translate="you_dont_have_any_service">
-        </div>
+    <div
+        class="oui-tile__body"
+        data-ng-if="(!loaders.services && ExchangeLite.exchangeMail.services.length == 0) || true"
+    >
+        <div
+            class="oui-tile__definition"
+            data-translate="you_dont_have_any_service"
+        ></div>
     </div>
-    <div class="oui-tile__body"
-         data-ng-if="!loaders.services && ExchangeLite.exchangeMail.services.length > 0">
+    <div
+        class="oui-tile__body"
+        data-ng-if="!loaders.services && ExchangeLite.exchangeMail.services.length > 0"
+    >
         <ul class="list-unstyled">
-            <li class="oui-tile__item"
-                 data-ng-repeat="service in ExchangeLite.exchangeMail.services track by service.name">
+            <li
+                class="oui-tile__item"
+                data-ng-repeat="service in ExchangeLite.exchangeMail.services track by service.name"
+            >
                 <div class="oui-tile__definition">
-                    <strong class="oui-tile__term d-block"
-                            data-ng-bind="service.name">
+                    <strong
+                        class="oui-tile__term d-block"
+                        data-ng-bind="service.name"
+                    >
                     </strong>
-                    <span class="oui-tile__description"
-                          data-ng-bind="service.domain">
+                    <span
+                        class="oui-tile__description"
+                        data-ng-bind="service.domain"
+                    >
                     </span>
                 </div>
             </li>

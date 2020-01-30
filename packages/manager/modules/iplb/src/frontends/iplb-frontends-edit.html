@@ -1,181 +1,300 @@
 <div class="cui-page__content">
-    <oui-back-button data-heading="{{ ::(ctrl.edition ? 'iplb_frontend_update_title' : 'iplb_frontend_add_title') | translate: { frontendId: ctrl.frontend.frontendId } }}">
+    <oui-back-button
+        data-heading="{{ ::(ctrl.edition ? 'iplb_frontend_update_title' : 'iplb_frontend_add_title') | translate: { frontendId: ctrl.frontend.frontendId } }}"
+    >
     </oui-back-button>
 
     <form novalidate name="ctrl.form">
         <div class="oui-field">
-            <label for="displayName" class="oui-label" data-translate="iplb_frontend_add_name"></label>
+            <label
+                for="displayName"
+                class="oui-label"
+                data-translate="iplb_frontend_add_name"
+            ></label>
             <div class="oui-field__content">
                 <div class="oui-field-control oui-field-control_4">
-                    <input type="text" id="displayName" name="displayName" class="oui-input" data-ng-model="ctrl.frontend.displayName" />
+                    <input
+                        type="text"
+                        id="displayName"
+                        name="displayName"
+                        class="oui-input"
+                        data-ng-model="ctrl.frontend.displayName"
+                    />
                 </div>
             </div>
         </div>
 
         <div class="oui-field">
-            <label for="protocol" class="oui-label" data-translate="iplb_frontend_add_protocol"></label>
+            <label
+                for="protocol"
+                class="oui-label"
+                data-translate="iplb_frontend_add_protocol"
+            ></label>
             <div class="oui-field__content">
-                <oui-radio-toggle-group data-model="ctrl.protocol"
-                    data-on-change="ctrl.onProtocolChange()">
-                    <oui-radio data-ng-repeat="protocol in ctrl.protocols track by $index"
+                <oui-radio-toggle-group
+                    data-model="ctrl.protocol"
+                    data-on-change="ctrl.onProtocolChange()"
+                >
+                    <oui-radio
+                        data-ng-repeat="protocol in ctrl.protocols track by $index"
                         data-text="{{ ::('iplb_frontend_add_protocol_' + protocol) | translate }}"
                         data-value="protocol"
-                        data-disabled="ctrl.isProtocolDisabled(protocol)">
+                        data-disabled="ctrl.isProtocolDisabled(protocol)"
+                    >
                     </oui-radio>
                 </oui-radio-toggle-group>
             </div>
         </div>
 
-        <div class="oui-field"
-            data-ng-class="{ 'oui-field_error': ctrl.form.$submitted && ctrl.form.port.$invalid }">
-            <label for="port" class="oui-label" data-translate="iplb_frontend_add_port"></label>
+        <div
+            class="oui-field"
+            data-ng-class="{ 'oui-field_error': ctrl.form.$submitted && ctrl.form.port.$invalid }"
+        >
+            <label
+                for="port"
+                class="oui-label"
+                data-translate="iplb_frontend_add_port"
+            ></label>
             <div class="oui-field__content">
                 <div class="oui-field-control oui-field-control_1">
-                    <input type="text"
+                    <input
+                        type="text"
                         id="port"
                         name="port"
                         class="oui-input"
                         data-ng-class="{ 'oui-input_error': ctrl.form.$submitted && ctrl.form.port.$invalid }"
                         data-ng-model="ctrl.frontend.port"
-                        required />
+                        required
+                    />
                 </div>
-                <div class="oui-field-helper"
+                <div
+                    class="oui-field-helper"
                     data-translate="iplb_frontend_add_port_tip"
-                    data-translate-values="{ portMax: ctrl.portLimit }">
-                </div>
+                    data-translate-values="{ portMax: ctrl.portLimit }"
+                ></div>
             </div>
         </div>
 
-        <div class="oui-field" data-ng-class="{ 'oui-field_error': ctrl.form.$submitted && ctrl.form.zone.$invalid }">
-            <label for="zone" class="oui-label" data-translate="iplb_frontend_add_datacenter"></label>
+        <div
+            class="oui-field"
+            data-ng-class="{ 'oui-field_error': ctrl.form.$submitted && ctrl.form.zone.$invalid }"
+        >
+            <label
+                for="zone"
+                class="oui-label"
+                data-translate="iplb_frontend_add_datacenter"
+            ></label>
             <div class="oui-field__content">
                 <div class="oui-field-control oui-field-control_4">
-                    <oui-spinner data-ng-show="ctrl.zones.loading"></oui-spinner>
-                    <div class="oui-select"
+                    <oui-spinner
+                        data-ng-show="ctrl.zones.loading"
+                    ></oui-spinner>
+                    <div
+                        class="oui-select"
                         data-ng-class="{ 'oui-select_error': ctrl.form.$submitted && ctrl.form.zone.$invalid }"
-                        data-ng-hide="ctrl.zones.loading">
-                        <select class="oui-select__input"
+                        data-ng-hide="ctrl.zones.loading"
+                    >
+                        <select
+                            class="oui-select__input"
                             name="zone"
                             id="zone"
                             data-ng-model="ctrl.frontend.zone"
                             data-ng-options="zone.id as zone.name for zone in ctrl.zones.data"
                             data-ng-change="ctrl.onZoneChange()"
-                            ui-validate="{ selection: 'ctrl.constructor.validateSelection($value)' }">
-                            <option data-translate="iplb_zone_select_placeholder"></option>
+                            ui-validate="{ selection: 'ctrl.constructor.validateSelection($value)' }"
+                        >
+                            <option
+                                data-translate="iplb_zone_select_placeholder"
+                            ></option>
                         </select>
-                        <i class="oui-icon oui-icon-chevron-down" aria-hidden="true"></i>
+                        <i
+                            class="oui-icon oui-icon-chevron-down"
+                            aria-hidden="true"
+                        ></i>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="oui-field"
-            data-ng-show="ctrl.farms.data.length || ctrl.farms.loading">
-            <label for="farm" class="oui-label" data-translate="iplb_frontend_add_default_farm"></label>
+        <div
+            class="oui-field"
+            data-ng-show="ctrl.farms.data.length || ctrl.farms.loading"
+        >
+            <label
+                for="farm"
+                class="oui-label"
+                data-translate="iplb_frontend_add_default_farm"
+            ></label>
             <div class="oui-field__content">
-                 <div class="oui-field-control oui-field-control_4">
-                    <oui-spinner data-ng-show="ctrl.farms.loading"></oui-spinner>
-                    <div class="oui-select"
-                        data-ng-hide="ctrl.farms.loading">
-                        <select class="oui-select__input"
+                <div class="oui-field-control oui-field-control_4">
+                    <oui-spinner
+                        data-ng-show="ctrl.farms.loading"
+                    ></oui-spinner>
+                    <div class="oui-select" data-ng-hide="ctrl.farms.loading">
+                        <select
+                            class="oui-select__input"
                             name="farm"
                             id="farm"
                             data-ng-model="ctrl.frontend.defaultFarmId"
                             data-ng-options="farm.farmId as ctrl.getFarmName(farm) for farm in ctrl.farms.data"
-                            data-ng-disabled="!ctrl.frontend.zone">
+                            data-ng-disabled="!ctrl.frontend.zone"
+                        >
                         </select>
-                        <i class="oui-icon oui-icon-chevron-down" aria-hidden="true"></i>
+                        <i
+                            class="oui-icon oui-icon-chevron-down"
+                            aria-hidden="true"
+                        ></i>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="oui-field"
-            data-ng-if="ctrl.frontend.ssl">
-            <label for="certificate" class="oui-label" data-translate="iplb_frontend_add_default_certificate"></label>
+        <div class="oui-field" data-ng-if="ctrl.frontend.ssl">
+            <label
+                for="certificate"
+                class="oui-label"
+                data-translate="iplb_frontend_add_default_certificate"
+            ></label>
             <div class="oui-field__content">
-                 <div class="oui-field-control oui-field-control_4">
-                    <oui-spinner data-ng-show="ctrl.certificates.loading"></oui-spinner>
-                    <div class="oui-select"
-                        data-ng-hide="ctrl.certificates.loading">
-                        <select class="oui-select__input"
+                <div class="oui-field-control oui-field-control_4">
+                    <oui-spinner
+                        data-ng-show="ctrl.certificates.loading"
+                    ></oui-spinner>
+                    <div
+                        class="oui-select"
+                        data-ng-hide="ctrl.certificates.loading"
+                    >
+                        <select
+                            class="oui-select__input"
                             name="certificate"
                             id="certificate"
                             data-ng-model="ctrl.frontend.defaultSslId"
-                            data-ng-options="certificate.id as ctrl.constructor.getCertificateName(certificate) for certificate in ctrl.certificates.data">
+                            data-ng-options="certificate.id as ctrl.constructor.getCertificateName(certificate) for certificate in ctrl.certificates.data"
+                        >
                         </select>
-                        <i class="oui-icon oui-icon-chevron-down" aria-hidden="true"></i>
+                        <i
+                            class="oui-icon oui-icon-chevron-down"
+                            aria-hidden="true"
+                        ></i>
                     </div>
                 </div>
             </div>
         </div>
 
-        <cui-advanced-options data-title="'iplb_frontend_add_advanced_options' | translate"
+        <cui-advanced-options
+            data-title="'iplb_frontend_add_advanced_options' | translate"
             data-text="'iplb_frontend_add_advanced_options_info' | translate"
             data-button-text="'iplb_frontend_add_advanced_options_show' | translate"
-            data-expanded="ctrl.edition">
-
+            data-expanded="ctrl.edition"
+        >
             <div class="oui-field">
-                <label for="dedicatedIpfo" class="oui-label" data-translate="iplb_frontend_add_dedicated_ip_failover"></label>
+                <label
+                    for="dedicatedIpfo"
+                    class="oui-label"
+                    data-translate="iplb_frontend_add_dedicated_ip_failover"
+                ></label>
                 <div class="oui-field__content">
                     <div class="oui-field-control oui-field-control_4">
-                        <oui-spinner data-ng-show="ctrl.dedicatedIp.loading"></oui-spinner>
-                        <div class="oui-select"
-                            data-ng-hide="ctrl.dedicatedIp.loading">
-                            <select class="oui-select__input"
+                        <oui-spinner
+                            data-ng-show="ctrl.dedicatedIp.loading"
+                        ></oui-spinner>
+                        <div
+                            class="oui-select"
+                            data-ng-hide="ctrl.dedicatedIp.loading"
+                        >
+                            <select
+                                class="oui-select__input"
                                 name="dedicatedIpfo"
                                 id="dedicatedIpfo"
                                 data-ng-model="ctrl.frontend.dedicatedIpfo"
                                 data-ng-options="ip.id as ip.name for ip in ctrl.failoverIps.data"
-                                multiple></select>
+                                multiple
+                            ></select>
                         </div>
                     </div>
-                    <div class="oui-field-helper oui-field-helper_top"
-                        data-translate="iplb_frontend_add_dedicated_ip_failover_tip"></div>
+                    <div
+                        class="oui-field-helper oui-field-helper_top"
+                        data-translate="iplb_frontend_add_dedicated_ip_failover_tip"
+                    ></div>
                 </div>
             </div>
 
             <div class="oui-field" data-ng-if="ctrl.protocol !== 'udp'">
-                <label for="restrict_ip_access" class="oui-label" data-translate="iplb_frontend_add_restrict_ip_access"></label>
+                <label
+                    for="restrict_ip_access"
+                    class="oui-label"
+                    data-translate="iplb_frontend_add_restrict_ip_access"
+                ></label>
                 <div class="oui-field__content">
                     <div class="oui-field-control oui-field-control_4">
-                        <input type="text" id="restrict_ip_access" name="restrict_ip_access" class="oui-input"
-                 data-ng-model="ctrl.frontend.allowedSource" />
+                        <input
+                            type="text"
+                            id="restrict_ip_access"
+                            name="restrict_ip_access"
+                            class="oui-input"
+                            data-ng-model="ctrl.frontend.allowedSource"
+                        />
                     </div>
-                    <div class="oui-field-helper"
-                        data-translate="iplb_frontend_add_restrict_ip_access_tip"></div>
+                    <div
+                        class="oui-field-helper"
+                        data-translate="iplb_frontend_add_restrict_ip_access_tip"
+                    ></div>
                 </div>
             </div>
 
             <div class="oui-field" data-ng-if="ctrl.type === 'http'">
-                <label for="http_redirection" class="oui-label" data-translate="iplb_frontend_add_http_redirection"></label>
+                <label
+                    for="http_redirection"
+                    class="oui-label"
+                    data-translate="iplb_frontend_add_http_redirection"
+                ></label>
                 <div class="oui-field__content">
                     <div class="oui-field-control oui-field-control_4">
-                        <input type="text" id="http_redirection" name="http_redirection" class="oui-input"
-                 data-ng-model="ctrl.frontend.redirectLocation" />
+                        <input
+                            type="text"
+                            id="http_redirection"
+                            name="http_redirection"
+                            class="oui-input"
+                            data-ng-model="ctrl.frontend.redirectLocation"
+                        />
                     </div>
                 </div>
             </div>
 
             <div class="oui-field" data-ng-if="ctrl.type === 'http'">
-                <label for="http_header" class="oui-label" data-translate="iplb_frontend_add_http_header"></label>
+                <label
+                    for="http_header"
+                    class="oui-label"
+                    data-translate="iplb_frontend_add_http_header"
+                ></label>
                 <div class="oui-field__content">
                     <div class="oui-field-control oui-field-control_4">
-                        <input type="text" id="http_header" name="http_header" class="oui-input"
-                 data-ng-model="ctrl.frontend.httpHeader" />
+                        <input
+                            type="text"
+                            id="http_header"
+                            name="http_header"
+                            class="oui-input"
+                            data-ng-model="ctrl.frontend.httpHeader"
+                        />
                     </div>
-                    <div class="oui-field-helper"
-                        data-translate="iplb_frontend_add_http_header_tip"></div>
+                    <div
+                        class="oui-field-helper"
+                        data-translate="iplb_frontend_add_http_header_tip"
+                    ></div>
                 </div>
             </div>
 
-            <div class="oui-field" data-ng-if="ctrl.type === 'http' && ctrl.frontend.ssl">
+            <div
+                class="oui-field"
+                data-ng-if="ctrl.type === 'http' && ctrl.frontend.ssl"
+            >
                 <div class="oui-field__content">
                     <div class="oui-field-control">
                         <oui-checkbox
                             text="{{ 'iplb_frontend_add_hsts_tip' | translate }}"
                             name="hsts"
-                            model="ctrl.frontend.hsts">
+                            model="ctrl.frontend.hsts"
+                        >
                         </oui-checkbox>
                     </div>
                 </div>
@@ -185,19 +304,25 @@
         <div class="cui-form-actions">
             <oui-spinner data-ng-show="ctrl.saving"></oui-spinner>
             <div data-ng-hide="ctrl.saving">
-                <button type="submit"
+                <button
+                    type="submit"
                     class="oui-button oui-button_primary"
                     data-translate="iplb_frontend_update_confirm"
                     data-ng-click="ctrl.updateFrontend()"
-                    data-ng-show="ctrl.edition"></button>
-                <button type="submit"
+                    data-ng-show="ctrl.edition"
+                ></button>
+                <button
+                    type="submit"
                     class="oui-button oui-button_primary"
                     data-translate="iplb_frontend_add_confirm"
                     data-ng-click="ctrl.createFrontend()"
-                    data-ng-hide="ctrl.edition"></button>
-                <a class="oui-button oui-button_link"
+                    data-ng-hide="ctrl.edition"
+                ></button>
+                <a
+                    class="oui-button oui-button_link"
                     data-translate="iplb_frontend_add_cancel"
-                    data-ui-sref="network.iplb.detail.frontends"></a>
+                    data-ui-sref="network.iplb.detail.frontends"
+                ></a>
             </div>
         </div>
     </form>

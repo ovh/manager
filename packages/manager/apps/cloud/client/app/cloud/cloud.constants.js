@@ -1,6 +1,5 @@
-
-
-angular.module('managerApp')
+angular
+  .module('managerApp')
   .constant('CLOUD_INSTANCE_DEFAULTS', {
     region: 'WAW1',
     image: 'Ubuntu 16.04',
@@ -32,7 +31,13 @@ angular.module('managerApp')
     },
     {
       id: 'accelerated',
-      types: ['ovh.ssd.gpu', 'ovh.ssd.gpu2', 'ovh.ssd.gpu3', 'ovh.ssd.fpga2', 'ovh.raid-nvme.t1'],
+      types: [
+        'ovh.ssd.gpu',
+        'ovh.ssd.gpu2',
+        'ovh.ssd.gpu3',
+        'ovh.ssd.fpga2',
+        'ovh.raid-nvme.t1',
+      ],
       migrationNotAllowed: ['vps'],
       order: 4,
     },
@@ -43,12 +48,7 @@ angular.module('managerApp')
       order: 5,
     },
   ])
-  .constant('CLOUD_FLAVOR_SPECIFIC_IMAGE', [
-    'g1',
-    'g2',
-    'g3',
-    't1',
-  ])
+  .constant('CLOUD_FLAVOR_SPECIFIC_IMAGE', ['g1', 'g2', 'g3', 't1'])
   .constant('CLOUD_INSTANCE_CPU_FREQUENCY', {
     'ovh.vps-ssd': 2.4,
     'ovh.cpu': 3.1,
@@ -89,21 +89,77 @@ angular.module('managerApp')
   })
   .constant('CLOUD_GEOLOCALISATION', {
     instance: {
-      EU: ['SBG1', 'GRA1', 'GRA3', 'GRA5', 'SBG3', 'SBG5', 'WAW1', 'DE1', 'UK1'],
+      EU: [
+        'SBG1',
+        'GRA1',
+        'GRA3',
+        'GRA5',
+        'SBG3',
+        'SBG5',
+        'WAW1',
+        'DE1',
+        'UK1',
+      ],
       CA: ['BHS1', 'BHS3'],
       APAC: ['SYD1', 'SGP1'],
     },
     user: {
-      EU: ['CZ', 'DE', 'ES', 'EU', 'FI', 'FR', 'GB', 'IE', 'IT', 'LT', 'MA', 'NL', 'PL', 'PT', 'SN', 'TN'],
+      EU: [
+        'CZ',
+        'DE',
+        'ES',
+        'EU',
+        'FI',
+        'FR',
+        'GB',
+        'IE',
+        'IT',
+        'LT',
+        'MA',
+        'NL',
+        'PL',
+        'PT',
+        'SN',
+        'TN',
+      ],
       CA: ['ASIA', 'AU', 'CA', 'QC', 'SG', 'WE', 'WS'],
     },
     ipfo: {
-      EU: ['BE', 'CZ', 'DE', 'ES', 'FI', 'FR', 'IE', 'IT', 'LT', 'NL', 'PL', 'PT', 'UK'],
+      EU: [
+        'BE',
+        'CZ',
+        'DE',
+        'ES',
+        'FI',
+        'FR',
+        'IE',
+        'IT',
+        'LT',
+        'NL',
+        'PL',
+        'PT',
+        'UK',
+      ],
       CA: ['CA', 'US'],
     },
   })
   .constant('CLOUD_VM_STATE', {
-    pending: ['BUILD', 'BUILDING', 'REBUILD', 'DELETING', 'RESIZE', 'VERIFY_RESIZE', 'REVERT_RESIZE', 'MIGRATING', 'REBOOT', 'HARD_REBOOT', 'RESCUING', 'UNRESCUING', 'SNAPSHOTTING', 'RESUMING'],
+    pending: [
+      'BUILD',
+      'BUILDING',
+      'REBUILD',
+      'DELETING',
+      'RESIZE',
+      'VERIFY_RESIZE',
+      'REVERT_RESIZE',
+      'MIGRATING',
+      'REBOOT',
+      'HARD_REBOOT',
+      'RESCUING',
+      'UNRESCUING',
+      'SNAPSHOTTING',
+      'RESUMING',
+    ],
     openstack: ['PAUSED', 'STOPPED', 'SUSPENDED', 'SHUTOFF', 'RESCUE'],
     error: ['ERROR'],
   })

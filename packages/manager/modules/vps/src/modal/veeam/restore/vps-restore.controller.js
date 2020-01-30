@@ -29,9 +29,13 @@ export default class VpsRestoreCtrl {
   $onInit() {
     this.loader.init = true;
     this.VpsService.getVeeamAttachedBackup(this.serviceName)
-      .then((data) => { this.attachedBackup = data.length; })
-      .catch(err => this.CucCloudMessage.error(err))
-      .finally(() => { this.loader.init = false; });
+      .then((data) => {
+        this.attachedBackup = data.length;
+      })
+      .catch((err) => this.CucCloudMessage.error(err))
+      .finally(() => {
+        this.loader.init = false;
+      });
   }
 
   cancel() {
@@ -40,10 +44,21 @@ export default class VpsRestoreCtrl {
 
   confirm() {
     this.loader.save = true;
-    this.VpsService
-      .veeamRestorePointRestore(this.serviceName, this.RestorePoint, this.selected.changePassword)
-      .then(() => this.CucCloudMessage.success(this.$translate.instant('vps_configuration_veeam_restore_success')))
-      .catch(() => this.CucCloudMessage.error(this.$translate.instant('vps_configuration_veeam_restore_fail')))
+    this.VpsService.veeamRestorePointRestore(
+      this.serviceName,
+      this.RestorePoint,
+      this.selected.changePassword,
+    )
+      .then(() =>
+        this.CucCloudMessage.success(
+          this.$translate.instant('vps_configuration_veeam_restore_success'),
+        ),
+      )
+      .catch(() =>
+        this.CucCloudMessage.error(
+          this.$translate.instant('vps_configuration_veeam_restore_fail'),
+        ),
+      )
       .finally(() => {
         this.loader.save = false;
         this.$uibModalInstance.close();

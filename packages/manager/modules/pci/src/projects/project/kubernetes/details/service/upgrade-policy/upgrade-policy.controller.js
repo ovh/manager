@@ -18,19 +18,28 @@ export default class kubernetesUpgradePolicyCtrl {
 
   updateUpgradePolicy() {
     this.isUpgrading = true;
-    return this.OvhApiCloudProjectKube.v6().updatePolicy({
-      serviceName: this.projectId,
-      kubeId: this.kubeId,
-    }, {
-      updatePolicy: this.updatePolicy,
-    }).$promise
-      .then(() => this.goBack(
-        this.$translate.instant('kube_service_upgrade_policy_success'),
-      ))
-      .catch(error => this.goBack(
-        this.$translate.instant('kube_service_upgrade_policy_error', {
-          message: get(error, 'data.message'),
-        }), 'error',
-      ));
+    return this.OvhApiCloudProjectKube.v6()
+      .updatePolicy(
+        {
+          serviceName: this.projectId,
+          kubeId: this.kubeId,
+        },
+        {
+          updatePolicy: this.updatePolicy,
+        },
+      )
+      .$promise.then(() =>
+        this.goBack(
+          this.$translate.instant('kube_service_upgrade_policy_success'),
+        ),
+      )
+      .catch((error) =>
+        this.goBack(
+          this.$translate.instant('kube_service_upgrade_policy_error', {
+            message: get(error, 'data.message'),
+          }),
+          'error',
+        ),
+      );
   }
 }

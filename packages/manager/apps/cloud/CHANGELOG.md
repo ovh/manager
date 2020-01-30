@@ -1,3 +1,39 @@
+## [8.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@8.2.1...@ovh-ux/manager-cloud@8.2.2) (2020-01-08)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 212] ([1f85592](https://github.com/ovh/manager/commit/1f8559205e170279929e29e4e52d8e255d688b3d))
+
+
+
+## [8.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@8.2.0...@ovh-ux/manager-cloud@8.2.1) (2019-12-19)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 198] ([1aefea2](https://github.com/ovh/manager/commit/1aefea2e3baf06b45e8187f1e6728d415d880314))
+
+
+
+# [8.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@8.1.1...@ovh-ux/manager-cloud@8.2.0) (2019-12-19)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 184] ([6ec37b2](https://github.com/ovh/manager/commit/6ec37b2226218cecb94307abb01d88ffda824326))
+* **i18n:** add missing translations [CDS 187] ([707ec72](https://github.com/ovh/manager/commit/707ec724fe6852a0c5fa855bfb6911fef977df61))
+* **i18n:** add missing translations [CDS 193] ([9f4801a](https://github.com/ovh/manager/commit/9f4801a3ad577f6e3c9df4d400072237a4589a04))
+* **i18n:** add missing translations [CDS 196] ([acbb2da](https://github.com/ovh/manager/commit/acbb2da34b2d1c2863fd7c2f6cd187b67e065324))
+* rename OVH to OVHcloud in preloading and title ([35fc442](https://github.com/ovh/manager/commit/35fc4420850390e2ad80f322f6d23c87fb6a713a))
+
+
+### Features
+
+* replace formatted cloud catalog api with public ([ac3280b](https://github.com/ovh/manager/commit/ac3280b6c03f17f1240607e1ccfeed79f956eb47))
+
+
+
 ## [8.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@8.1.0...@ovh-ux/manager-cloud@8.1.1) (2019-12-12)
 
 

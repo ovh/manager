@@ -46,7 +46,9 @@ export default class ExchangeAddDisclaimerCtrl {
       } else {
         this.services.navigation.resetAction();
         this.services.messaging.writeError(
-          this.services.$translate.instant('exchange_ACTION_add_disclaimer_no_domains'),
+          this.services.$translate.instant(
+            'exchange_ACTION_add_disclaimer_no_domains',
+          ),
         );
       }
     });
@@ -54,12 +56,9 @@ export default class ExchangeAddDisclaimerCtrl {
 
   selectCurrentDomain() {
     if (get(this.services.navigation, 'currentActionData.domain.name')) {
-      this.data.completeDomain = find(
-        this.availableDomains,
-        {
-          name: this.services.navigation.currentActionData.domain.name,
-        },
-      );
+      this.data.completeDomain = find(this.availableDomains, {
+        name: this.services.navigation.currentActionData.domain.name,
+      });
     }
     if (!this.data.completeDomain) {
       this.data.completeDomain = head(this.availableDomains);
@@ -67,7 +66,11 @@ export default class ExchangeAddDisclaimerCtrl {
   }
 
   isStep1Valid() {
-    return this.data.completeDomain && this.data.content && this.data.content.length < 5000;
+    return (
+      this.data.completeDomain &&
+      this.data.content &&
+      this.data.content.length < 5000
+    );
   }
 
   /**
@@ -95,13 +98,17 @@ export default class ExchangeAddDisclaimerCtrl {
     )
       .then((data) => {
         this.services.messaging.writeSuccess(
-          this.services.$translate.instant('exchange_ACTION_add_disclaimer_success_message'),
+          this.services.$translate.instant(
+            'exchange_ACTION_add_disclaimer_success_message',
+          ),
           data,
         );
       })
       .catch((failure) => {
         this.services.messaging.writeError(
-          this.services.$translate.instant('exchange_ACTION_add_disclaimer_error_message'),
+          this.services.$translate.instant(
+            'exchange_ACTION_add_disclaimer_error_message',
+          ),
           failure,
         );
       })

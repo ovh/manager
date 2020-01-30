@@ -2,12 +2,7 @@ import get from 'lodash/get';
 
 export default class NashaPartitionUpdateCtrl {
   /* @ngInject */
-  constructor(
-    $scope,
-    $translate,
-    CucCloudMessage,
-    OvhApiDedicatedNasha,
-  ) {
+  constructor($scope, $translate, CucCloudMessage, OvhApiDedicatedNasha) {
     this.$scope = $scope;
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
@@ -24,11 +19,13 @@ export default class NashaPartitionUpdateCtrl {
   }
 
   getTasksTodo(operation) {
-    return this.OvhApiDedicatedNasha.Task().v6().query({
-      operation,
-      serviceName: this.data.nashaId,
-      status: 'todo',
-    });
+    return this.OvhApiDedicatedNasha.Task()
+      .v6()
+      .query({
+        operation,
+        serviceName: this.data.nashaId,
+        status: 'todo',
+      });
   }
 
   isSizeChanged() {
@@ -37,13 +34,16 @@ export default class NashaPartitionUpdateCtrl {
 
   checkSize() {
     if (this.data.newSize) {
-      this.data.newSize = parseInt(this.data.newSize.toString().replace('.', ''), 10);
+      this.data.newSize = parseInt(
+        this.data.newSize.toString().replace('.', ''),
+        10,
+      );
     }
   }
 
   getTaskInTodoAndClose() {
-    this.getTasksTodo('clusterLeclercPartitionUpdate')
-      .$promise.then((tasks) => {
+    this.getTasksTodo('clusterLeclercPartitionUpdate').$promise.then(
+      (tasks) => {
         this.goToPartitionPage(
           this.$translate.instant('nasha_partitions_action_update_success', {
             partitionName: this.data.partition.partitionName,
@@ -54,29 +54,38 @@ export default class NashaPartitionUpdateCtrl {
             tasks,
           },
         );
-      });
+      },
+    );
   }
 
   updatePartition() {
     this.loading = true;
-    this.OvhApiDedicatedNasha.Partition().v6().update({
-      serviceName: this.data.nashaId,
-    }, {
-      partitionName: this.data.partition.partitionName,
-      size: this.data.newSize,
-    }).$promise.then(() => {
-      this.getTaskInTodoAndClose();
-    }).catch((error) => {
-      this.goToPartitionPage(
-        this.$translate.instant('nasha_partitions_action_update_failure', {
+    this.OvhApiDedicatedNasha.Partition()
+      .v6()
+      .update(
+        {
+          serviceName: this.data.nashaId,
+        },
+        {
           partitionName: this.data.partition.partitionName,
-          message: get(error, 'data.message'),
-        }),
-        'error',
-      );
-    }).finally(() => {
-      this.loading = false;
-    });
+          size: this.data.newSize,
+        },
+      )
+      .$promise.then(() => {
+        this.getTaskInTodoAndClose();
+      })
+      .catch((error) => {
+        this.goToPartitionPage(
+          this.$translate.instant('nasha_partitions_action_update_failure', {
+            partitionName: this.data.partition.partitionName,
+            message: get(error, 'data.message'),
+          }),
+          'error',
+        );
+      })
+      .finally(() => {
+        this.loading = false;
+      });
   }
 
   dismiss() {

@@ -31,24 +31,34 @@ export default class ExchangeRemoveMemberCtrl {
     )
       .then((success) => {
         this.services.messaging.writeSuccess(
-          this.services.$translate.instant('exchange_GROUPS_remove_member_success_message', {
-            t0: this.member.primaryEmailAddress,
-            t1: this.group.mailingListDisplayName,
-          }),
+          this.services.$translate.instant(
+            'exchange_GROUPS_remove_member_success_message',
+            {
+              t0: this.member.primaryEmailAddress,
+              t1: this.group.mailingListDisplayName,
+            },
+          ),
           success,
         );
       })
       .catch((failure) => {
         this.services.messaging.writeError(
-          this.services.$translate.instant('exchange_GROUPS_remove_member_error_message', {
-            t0: this.member.primaryEmailAddress,
-            t1: this.group.mailingListDisplayName,
-          }),
+          this.services.$translate.instant(
+            'exchange_GROUPS_remove_member_error_message',
+            {
+              t0: this.member.primaryEmailAddress,
+              t1: this.group.mailingListDisplayName,
+            },
+          ),
           failure,
         );
       })
       .finally(() => {
-        this.services.$scope.$broadcast('paginationServerSide.loadPage', 1, 'membersTable');
+        this.services.$scope.$broadcast(
+          'paginationServerSide.loadPage',
+          1,
+          'membersTable',
+        );
       })
       .finally(() => {
         this.services.navigation.resetAction();

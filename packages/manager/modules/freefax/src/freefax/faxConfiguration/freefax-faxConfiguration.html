@@ -1,201 +1,266 @@
 <div data-ng-controller="FreefaxConfigurationCtrl as FaxConfCtrl">
     <div class="oui-tile mb-5">
-        <h3 class="oui-header_3 oui-tile__title"
-            data-translate="freefax_fax_configuration">
-        </h3>
+        <h3
+            class="oui-header_3 oui-tile__title"
+            data-translate="freefax_fax_configuration"
+        ></h3>
         <div class="oui-tile__body text-center" data-ng-if="loading">
             <oui-spinner></oui-spinner>
         </div>
-        <div class="oui-tile__body"
-             data-ng-if="!loading && freeFax && !FaxConfCtrl.editMode">
+        <div
+            class="oui-tile__body"
+            data-ng-if="!loading && freeFax && !FaxConfCtrl.editMode"
+        >
             <ul class="list-unstyled">
                 <li class="oui-tile__item">
                     <div class="oui-tile__definition">
-                        <strong class="oui-tile__term d-block"
-                                data-translate="freefax_expeditor">
+                        <strong
+                            class="oui-tile__term d-block"
+                            data-translate="freefax_expeditor"
+                        >
                         </strong>
-                        <span class="oui-tile__description"
-                              data-ng-bind="freeFax.fromName">
+                        <span
+                            class="oui-tile__description"
+                            data-ng-bind="freeFax.fromName"
+                        >
                         </span>
                     </div>
                 </li>
                 <li class="oui-tile__item">
                     <div class="oui-tile__definition">
-                        <strong class="oui-tile__term d-block"
-                                data-translate="freefax_expeditor_mail">
+                        <strong
+                            class="oui-tile__term d-block"
+                            data-translate="freefax_expeditor_mail"
+                        >
                         </strong>
-                        <span class="oui-tile__description"
-                              data-ng-bind="freeFax.fromEmail">
+                        <span
+                            class="oui-tile__description"
+                            data-ng-bind="freeFax.fromEmail"
+                        >
                         </span>
                     </div>
                 </li>
                 <li class="oui-tile__item">
                     <div class="oui-tile__definition">
-                        <strong class="oui-tile__term d-block"
-                                data-translate="freefax_quality">
+                        <strong
+                            class="oui-tile__term d-block"
+                            data-translate="freefax_quality"
+                        >
                         </strong>
-                        <span class="oui-tile__description"
-                              data-ng-if="freeFax.faxQuality"
-                              data-ng-bind="'freefax_quality_' + freeFax.faxQuality | translate">
+                        <span
+                            class="oui-tile__description"
+                            data-ng-if="freeFax.faxQuality"
+                            data-ng-bind="'freefax_quality_' + freeFax.faxQuality | translate"
+                        >
                         </span>
                     </div>
                 </li>
                 <li class="oui-tile__item">
                     <div class="oui-tile__definition">
-                        <strong class="oui-tile__term d-block"
-                                data-translate="freefax_max_try">
+                        <strong
+                            class="oui-tile__term d-block"
+                            data-translate="freefax_max_try"
+                        >
                         </strong>
-                        <span class="oui-tile__description"
-                              data-ng-bind="freeFax.faxMaxCall">
+                        <span
+                            class="oui-tile__description"
+                            data-ng-bind="freeFax.faxMaxCall"
+                        >
                         </span>
                     </div>
                 </li>
                 <li class="oui-tile__item">
                     <div class="oui-tile__definition">
-                        <strong class="oui-tile__term d-block"
-                                data-translate="freefax_header">
+                        <strong
+                            class="oui-tile__term d-block"
+                            data-translate="freefax_header"
+                        >
                         </strong>
-                        <span class="oui-tile__description"
-                              data-ng-bind="freeFax.faxTagLine">
+                        <span
+                            class="oui-tile__description"
+                            data-ng-bind="freeFax.faxTagLine"
+                        >
                         </span>
                     </div>
                 </li>
                 <li class="oui-tile__item">
                     <div class="oui-tile__definition">
-                        <button class="btn btn-default btn-block"
-                                type="button"
-                                data-ng-click="FaxConfCtrl.enterEditMode()"
-                                data-ng-disabled="FaxConfCtrl.loading"
-                                data-translate="freefax_edit">
-                        </button>
+                        <button
+                            class="btn btn-default btn-block"
+                            type="button"
+                            data-ng-click="FaxConfCtrl.enterEditMode()"
+                            data-ng-disabled="FaxConfCtrl.loading"
+                            data-translate="freefax_edit"
+                        ></button>
                     </div>
                 </li>
             </ul>
         </div>
-        <div class="oui-tile__body"
-             data-ng-if="!loading && freeFax && FaxConfCtrl.editMode">
+        <div
+            class="oui-tile__body"
+            data-ng-if="!loading && freeFax && FaxConfCtrl.editMode"
+        >
             <div class="oui-tile__item">
                 <div class="oui-tile__definition">
-                    <form name="faxConfigurationForm"
-                          data-ng-submit="FaxConfCtrl.submit()">
+                    <form
+                        name="faxConfigurationForm"
+                        data-ng-submit="FaxConfCtrl.submit()"
+                    >
                         <p data-translate="freefax_required_fields"></p>
 
                         <!-- EXPEDITOR -->
-                        <div class="form-group"
-                             data-ng-class="{
+                        <div
+                            class="form-group"
+                            data-ng-class="{
                                  'has-error': faxConfigurationForm.expeditor.$touched && faxConfigurationForm.expeditor.$invalid
-                             }">
-                            <label class="control-label required"
-                                   for="expeditor"
-                                   data-translate="freefax_expeditor">
+                             }"
+                        >
+                            <label
+                                class="control-label required"
+                                for="expeditor"
+                                data-translate="freefax_expeditor"
+                            >
                             </label>
-                            <input class="form-control"
-                                   id="expeditor"
-                                   name="expeditor"
-                                   type="text"
-                                   required
-                                   data-ng-model="freeFax.fromName"
-                                   data-ng-disabled="FaxConfCtrl.loading"
-                                   data-maxlength="50" />
-                            <span class="help-block"
-                                  role="alert"
-                                  data-ng-if="faxConfigurationForm.expeditor.$touched && faxConfigurationForm.expeditor.$invalid"
-                                  data-translate="freefax_expeditor_form_error">
+                            <input
+                                class="form-control"
+                                id="expeditor"
+                                name="expeditor"
+                                type="text"
+                                required
+                                data-ng-model="freeFax.fromName"
+                                data-ng-disabled="FaxConfCtrl.loading"
+                                data-maxlength="50"
+                            />
+                            <span
+                                class="help-block"
+                                role="alert"
+                                data-ng-if="faxConfigurationForm.expeditor.$touched && faxConfigurationForm.expeditor.$invalid"
+                                data-translate="freefax_expeditor_form_error"
+                            >
                             </span>
                         </div>
 
                         <!-- EXPEDITOR MAIL -->
-                        <div class="form-group"
-                             data-ng-class="{
+                        <div
+                            class="form-group"
+                            data-ng-class="{
                                  'has-error': faxConfigurationForm.expeditorMail.$touched && faxConfigurationForm.expeditorMail.$invalid
-                             }">
-                            <label class="control-label required"
-                                   for="expeditorMail"
-                                   data-translate="freefax_expeditor_mail">
+                             }"
+                        >
+                            <label
+                                class="control-label required"
+                                for="expeditorMail"
+                                data-translate="freefax_expeditor_mail"
+                            >
                             </label>
-                            <input class="form-control"
-                                   name="expeditorMail"
-                                   id="expeditorMail"
-                                   type="email"
-                                   required
-                                   data-ng-model="freeFax.fromEmail"
-                                   data-ui-validate="FaxConfCtrl.validator.isEmail($value)"
-                                   data-ng-disabled="FaxConfCtrl.loading"
-                                   data-maxlength="50">
-                            <span class="help-block"
-                                  role="alert"
-                                  data-ng-if="faxConfigurationForm.expeditorMail.$touched && faxConfigurationForm.expeditorMail.$invalid"
-                                  data-translate="freefax_expeditor_mail_form_error">
+                            <input
+                                class="form-control"
+                                name="expeditorMail"
+                                id="expeditorMail"
+                                type="email"
+                                required
+                                data-ng-model="freeFax.fromEmail"
+                                data-ui-validate="FaxConfCtrl.validator.isEmail($value)"
+                                data-ng-disabled="FaxConfCtrl.loading"
+                                data-maxlength="50"
+                            />
+                            <span
+                                class="help-block"
+                                role="alert"
+                                data-ng-if="faxConfigurationForm.expeditorMail.$touched && faxConfigurationForm.expeditorMail.$invalid"
+                                data-translate="freefax_expeditor_mail_form_error"
+                            >
                             </span>
                         </div>
 
                         <!-- QUALITY -->
                         <div class="form-group">
-                            <label class="control-label required"
-                                   for="quality"
-                                   data-translate="freefax_quality">
+                            <label
+                                class="control-label required"
+                                for="quality"
+                                data-translate="freefax_quality"
+                            >
                             </label>
-                            <select class="form-control"
-                                    id="quality"
-                                    name="quality"
-                                    required
-                                    data-ng-model="freeFax.faxQuality"
-                                    data-ng-disabled="FaxConfCtrl.loading"
-                                    data-ng-options="quality.value as quality.label for quality in FaxConfCtrl.qualityOptions">
+                            <select
+                                class="form-control"
+                                id="quality"
+                                name="quality"
+                                required
+                                data-ng-model="freeFax.faxQuality"
+                                data-ng-disabled="FaxConfCtrl.loading"
+                                data-ng-options="quality.value as quality.label for quality in FaxConfCtrl.qualityOptions"
+                            >
                             </select>
                         </div>
 
                         <!-- MAX TRY -->
                         <div class="form-group">
-                            <label class="control-label required"
-                                   for="maxTry"
-                                   data-translate="freefax_max_try">
+                            <label
+                                class="control-label required"
+                                for="maxTry"
+                                data-translate="freefax_max_try"
+                            >
                             </label>
-                            <select class="form-control"
-                                    id="maxTry"
-                                    name="maxTry"
-                                    required
-                                    data-ng-model="freeFax.faxMaxCall"
-                                    data-ng-disabled="FaxConfCtrl.loading"
-                                    data-ng-options="maxRequest as maxRequest for maxRequest in FaxConfCtrl.maxRequestsOptions">
+                            <select
+                                class="form-control"
+                                id="maxTry"
+                                name="maxTry"
+                                required
+                                data-ng-model="freeFax.faxMaxCall"
+                                data-ng-disabled="FaxConfCtrl.loading"
+                                data-ng-options="maxRequest as maxRequest for maxRequest in FaxConfCtrl.maxRequestsOptions"
+                            >
                             </select>
                         </div>
 
                         <!-- NEW PASSWORD -->
                         <div class="form-group">
-                            <label class="control-label"
-                                   for="newPassword"
-                                   data-translate="freefax_reset_password">
+                            <label
+                                class="control-label"
+                                for="newPassword"
+                                data-translate="freefax_reset_password"
+                            >
                             </label>
-                            <button type="button"
-                                    class="btn btn-default btn-block"
-                                    data-ng-if="!FaxConfCtrl.generatedPassword"
-                                    data-translate="freefax_reset_password_btn"
-                                    data-ng-really-click="FaxConfCtrl.generatePassword()"
-                                    data-ng-really-message="{{:: 'freefax_reset_password_confirm' | translate }}"
-                                    data-ng-really-confirm="{{:: 'freefax_ok' | translate }}"
-                                    data-ng-really-cancel="{{:: 'freefax_cancel' | translate }}"
-                                    data-ng-really-window-class="revert-really-buttons"
-                                    data-ng-disabled="FaxConfCtrl.generatingPassword">
-                            </button>
-                            <oui-spinner class="d-inline-block align-middle ml-2"
-                                         data-ng-if="FaxConfCtrl.generatingPassword"
-                                         data-size="s">
+                            <button
+                                type="button"
+                                class="btn btn-default btn-block"
+                                data-ng-if="!FaxConfCtrl.generatedPassword"
+                                data-translate="freefax_reset_password_btn"
+                                data-ng-really-click="FaxConfCtrl.generatePassword()"
+                                data-ng-really-message="{{:: 'freefax_reset_password_confirm' | translate }}"
+                                data-ng-really-confirm="{{:: 'freefax_ok' | translate }}"
+                                data-ng-really-cancel="{{:: 'freefax_cancel' | translate }}"
+                                data-ng-really-window-class="revert-really-buttons"
+                                data-ng-disabled="FaxConfCtrl.generatingPassword"
+                            ></button>
+                            <oui-spinner
+                                class="d-inline-block align-middle ml-2"
+                                data-ng-if="FaxConfCtrl.generatingPassword"
+                                data-size="s"
+                            >
                             </oui-spinner>
-                            <div class="input-group"
-                                 data-ng-if="FaxConfCtrl.generatedPassword">
-                                <input class="form-control"
-                                       id="newPassword"
-                                       type="text"
-                                       readonly
-                                       data-ng-model="FaxConfCtrl.passwordDisplay" />
+                            <div
+                                class="input-group"
+                                data-ng-if="FaxConfCtrl.generatedPassword"
+                            >
+                                <input
+                                    class="form-control"
+                                    id="newPassword"
+                                    type="text"
+                                    readonly
+                                    data-ng-model="FaxConfCtrl.passwordDisplay"
+                                />
                                 <span class="input-group-btn">
-                                    <button type="button"
-                                            class="btn btn-default"
-                                            data-ng-click="FaxConfCtrl.togglePassword();$event.stopPropagation();">
-                                        <span class="fa"
-                                              aria-hidden="true"
-                                              data-ng-class="{'fa-eye': !FaxConfCtrl.showPassword, 'fa-eye-slash': FaxConfCtrl.showPassword}">
+                                    <button
+                                        type="button"
+                                        class="btn btn-default"
+                                        data-ng-click="FaxConfCtrl.togglePassword();$event.stopPropagation();"
+                                    >
+                                        <span
+                                            class="fa"
+                                            aria-hidden="true"
+                                            data-ng-class="{'fa-eye': !FaxConfCtrl.showPassword, 'fa-eye-slash': FaxConfCtrl.showPassword}"
+                                        >
                                         </span>
                                     </button>
                                 </span>
@@ -203,44 +268,56 @@
                         </div>
 
                         <!-- FAX HEADER -->
-                        <div class="form-group"
-                             data-ng-class="{
+                        <div
+                            class="form-group"
+                            data-ng-class="{
                                  'has-error': faxConfigurationForm.faxHeader.$touched && faxConfigurationForm.faxHeader.$invalid
-                             }">
-                            <label class="control-label required"
+                             }"
+                        >
+                            <label
+                                class="control-label required"
                                 for="faxHeader"
-                                data-translate="freefax_header">
+                                data-translate="freefax_header"
+                            >
                             </label>
-                            <input class="form-control"
-                                   id="faxHeader"
-                                   name="faxHeader"
-                                   type="text"
-                                   required
-                                   data-ng-model="freeFax.faxTagLine"
-                                   data-ng-disabled="FaxConfCtrl.loading"
-                                   data-maxlength="50">
-                            <span class="help-block"
-                                  role="alert"
-                                  data-ng-if="faxConfigurationForm.faxHeader.$touched && faxConfigurationForm.faxHeader.$invalid"
-                                  data-translate="freefax_header_form_error">
+                            <input
+                                class="form-control"
+                                id="faxHeader"
+                                name="faxHeader"
+                                type="text"
+                                required
+                                data-ng-model="freeFax.faxTagLine"
+                                data-ng-disabled="FaxConfCtrl.loading"
+                                data-maxlength="50"
+                            />
+                            <span
+                                class="help-block"
+                                role="alert"
+                                data-ng-if="faxConfigurationForm.faxHeader.$touched && faxConfigurationForm.faxHeader.$invalid"
+                                data-translate="freefax_header_form_error"
+                            >
                             </span>
                         </div>
 
                         <div class="form-group">
-                            <button class="btn btn-primary"
-                                    type="submit"
-                                    data-ng-disabled="faxConfigurationForm.$invalid || FaxConfCtrl.loading "
-                                    data-translate="freefax_submit">
-                            </button>
-                            <button class="btn btn-default"
-                                    type="reset"
-                                    data-ng-click="FaxConfCtrl.cancelEditMode()"
-                                    data-ng-disabled="FaxConfCtrl.loading"
-                                    data-translate="freefax_cancel">
-                            </button>
-                            <oui-spinner class="d-inline-block align-middle ml-2"
-                                         data-ng-if="FaxConfCtrl.loading"
-                                         data-size="s">
+                            <button
+                                class="btn btn-primary"
+                                type="submit"
+                                data-ng-disabled="faxConfigurationForm.$invalid || FaxConfCtrl.loading "
+                                data-translate="freefax_submit"
+                            ></button>
+                            <button
+                                class="btn btn-default"
+                                type="reset"
+                                data-ng-click="FaxConfCtrl.cancelEditMode()"
+                                data-ng-disabled="FaxConfCtrl.loading"
+                                data-translate="freefax_cancel"
+                            ></button>
+                            <oui-spinner
+                                class="d-inline-block align-middle ml-2"
+                                data-ng-if="FaxConfCtrl.loading"
+                                data-size="s"
+                            >
                             </oui-spinner>
                         </div>
                     </form>
@@ -249,103 +326,128 @@
         </div>
     </div>
     <div class="oui-tile mb-5">
-        <h3 class="oui-header_3 oui-tile__title"
-            data-translate="freefax_header_help">
-        </h3>
+        <h3
+            class="oui-header_3 oui-tile__title"
+            data-translate="freefax_header_help"
+        ></h3>
         <div class="oui-tile__body">
             <ul class="list-unstyled">
                 <li class="oui-tile__item">
                     <div class="oui-tile__definition">
-                        <strong class="oui-tile__term d-block"
-                                data-translate="freefax_header_variable_column_description">
+                        <strong
+                            class="oui-tile__term d-block"
+                            data-translate="freefax_header_variable_column_description"
+                        >
                         </strong>
                         <span class="oui-tile__description">|</span>
                     </div>
                 </li>
                 <li class="oui-tile__item">
                     <div class="oui-tile__definition">
-                        <strong class="oui-tile__term d-block"
-                                data-translate="freefax_header_variable_task_identifier_description">
+                        <strong
+                            class="oui-tile__term d-block"
+                            data-translate="freefax_header_variable_task_identifier_description"
+                        >
                         </strong>
                         <span class="oui-tile__description">%%i</span>
                     </div>
                 </li>
                 <li class="oui-tile__item">
                     <div class="oui-tile__definition">
-                        <strong class="oui-tile__term d-block"
-                                data-translate="freefax_header_variable_attachment_name_description">
+                        <strong
+                            class="oui-tile__term d-block"
+                            data-translate="freefax_header_variable_attachment_name_description"
+                        >
                         </strong>
                         <span class="oui-tile__description">%%j</span>
                     </div>
                 </li>
                 <li class="oui-tile__item">
                     <div class="oui-tile__definition">
-                        <strong class="oui-tile__term d-block"
-                                data-translate="freefax_header_variable_emission_id_description">
+                        <strong
+                            class="oui-tile__term d-block"
+                            data-translate="freefax_header_variable_emission_id_description"
+                        >
                         </strong>
                         <span class="oui-tile__description">%%l</span>
                     </div>
                 </li>
                 <li class="oui-tile__item">
                     <div class="oui-tile__definition">
-                        <strong class="oui-tile__term d-block"
-                                data-translate="freefax_header_variable_expeditor_email_description">
+                        <strong
+                            class="oui-tile__term d-block"
+                            data-translate="freefax_header_variable_expeditor_email_description"
+                        >
                         </strong>
                         <span class="oui-tile__description">%%m</span>
                     </div>
                 </li>
                 <li class="oui-tile__item">
                     <div class="oui-tile__definition">
-                        <strong class="oui-tile__term d-block"
-                                data-translate="freefax_header_variable_fax_number_description">
+                        <strong
+                            class="oui-tile__term d-block"
+                            data-translate="freefax_header_variable_fax_number_description"
+                        >
                         </strong>
                         <span class="oui-tile__description">%%n</span>
                     </div>
                 </li>
                 <li class="oui-tile__item">
                     <div class="oui-tile__definition">
-                        <strong class="oui-tile__term d-block"
-                                data-translate="freefax_header_variable_session_page_number_description">
+                        <strong
+                            class="oui-tile__term d-block"
+                            data-translate="freefax_header_variable_session_page_number_description"
+                        >
                         </strong>
                         <span class="oui-tile__description">%%p</span>
                     </div>
                 </li>
                 <li class="oui-tile__item">
                     <div class="oui-tile__definition">
-                        <strong class="oui-tile__term d-block"
-                                data-translate="freefax_header_variable_task_page_number_description">
+                        <strong
+                            class="oui-tile__term d-block"
+                            data-translate="freefax_header_variable_task_page_number_description"
+                        >
                         </strong>
                         <span class="oui-tile__description">%%P</span>
                     </div>
                 </li>
                 <li class="oui-tile__item">
                     <div class="oui-tile__definition">
-                        <strong class="oui-tile__term d-block"
-                                data-translate="freefax_header_variable_recipient_id_description">
+                        <strong
+                            class="oui-tile__term d-block"
+                            data-translate="freefax_header_variable_recipient_id_description"
+                        >
                         </strong>
                         <span class="oui-tile__description">%%r</span>
                     </div>
                 </li>
                 <li class="oui-tile__item">
                     <div class="oui-tile__definition">
-                        <strong class="oui-tile__term d-block"
-                                data-translate="freefax_header_variable_session_page_amount_description">
+                        <strong
+                            class="oui-tile__term d-block"
+                            data-translate="freefax_header_variable_session_page_amount_description"
+                        >
                         </strong>
                         <span class="oui-tile__description">%%t</span>
                     </div>
                 </li>
                 <li class="oui-tile__item">
                     <div class="oui-tile__definition">
-                        <strong class="oui-tile__term d-block"
-                                data-translate="freefax_header_variable_task_page_amount_description">
+                        <strong
+                            class="oui-tile__term d-block"
+                            data-translate="freefax_header_variable_task_page_amount_description"
+                        >
                         </strong>
                         <span class="oui-tile__description">%%T</span>
                     </div>
                 </li>
                 <li class="oui-tile__item">
                     <div class="oui-tile__definition">
-                        <strong class="oui-tile__term d-block"
-                                data-translate="freefax_header_variable_expeditor_name_description">
+                        <strong
+                            class="oui-tile__term d-block"
+                            data-translate="freefax_header_variable_expeditor_name_description"
+                        >
                         </strong>
                         <span class="oui-tile__description">%%d</span>
                     </div>

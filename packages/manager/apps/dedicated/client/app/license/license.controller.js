@@ -30,7 +30,11 @@ angular.module('Module.license').controller('LicenseCtrl', [
      */
     $scope.search = (type) => {
       $scope.filterType = type;
-      $scope.$broadcast('paginationServerSide.loadPage', 1, 'licensesPagination');
+      $scope.$broadcast(
+        'paginationServerSide.loadPage',
+        1,
+        'licensesPagination',
+      );
     };
 
     $scope.resetAction = () => $scope.setAction(false);
@@ -55,9 +59,8 @@ angular.module('Module.license').controller('LicenseCtrl', [
       }
     };
 
-    $scope.loadDatagridLicences = ({ offset, pageSize }) => $scope
-      .loadLicenses(pageSize, offset - 1)
-      .then(licenses => ({
+    $scope.loadDatagridLicences = ({ offset, pageSize }) =>
+      $scope.loadLicenses(pageSize, offset - 1).then((licenses) => ({
         data: get(licenses, 'list.results'),
         meta: {
           totalCount: licenses.count,
@@ -74,28 +77,34 @@ angular.module('Module.license').controller('LicenseCtrl', [
       $scope.licencesTableLoading = true;
       return License.get('', {
         params: {
-          filterType: $scope.filterType === 'ALL_TYPE' ? undefined : $scope.filterType,
+          filterType:
+            $scope.filterType === 'ALL_TYPE' ? undefined : $scope.filterType,
           count,
           offset,
         },
-      }).then((licenses) => {
-        if (isArray(get(licenses, 'availableTypes'))) {
-          licenses.availableTypes.push('ALL_TYPE');
-        }
-        angular.forEach(licenses.list.results, (value, idx) => {
-          if (value.expiration !== null) {
-            licenses.list.results[idx].isExpired = moment() // eslint-disable-line
-              .isAfter(moment(value.expiration, 'YYYY-MM-DDTHH:mm:ss.SSSZZ'));
-            licenses.list.results[idx].expireSoon = moment() // eslint-disable-line
-              .add(1, 'months')
-              .isAfter(moment(value.expiration, 'YYYY-MM-DDTHH:mm:ss.SSSZZ'));
+      })
+        .then((licenses) => {
+          if (isArray(get(licenses, 'availableTypes'))) {
+            licenses.availableTypes.push('ALL_TYPE');
           }
+          angular.forEach(licenses.list.results, (value, idx) => {
+            if (value.expiration !== null) {
+              // eslint-disable-next-line no-param-reassign
+              licenses.list.results[idx].isExpired = moment().isAfter(
+                moment(value.expiration, 'YYYY-MM-DDTHH:mm:ss.SSSZZ'),
+              );
+              // eslint-disable-next-line no-param-reassign
+              licenses.list.results[idx].expireSoon = moment()
+                .add(1, 'months')
+                .isAfter(moment(value.expiration, 'YYYY-MM-DDTHH:mm:ss.SSSZZ'));
+            }
+          });
+          $scope.licenses = licenses;
+          return licenses;
+        })
+        .finally(() => {
+          $scope.licencesTableLoading = false;
         });
-        $scope.licenses = licenses;
-        return licenses;
-      }).finally(() => {
-        $scope.licencesTableLoading = false;
-      });
     };
 
     /**

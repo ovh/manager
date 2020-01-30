@@ -7,15 +7,18 @@ export default /* @ngInject */ ($stateProvider) => {
       },
     },
     resolve: {
-      instanceId: /* @ngInject */$transition$ => $transition$.params().instanceId,
+      instanceId: /* @ngInject */ ($transition$) =>
+        $transition$.params().instanceId,
       instance: /* @ngInject */ (
         PciProjectsProjectInstanceService,
         projectId,
         instanceId,
-      ) => PciProjectsProjectInstanceService
-        .get(projectId, instanceId),
-      goBack: /* @ngInject */ goToInstance => goToInstance,
-      breadcrumb: /* @ngInject */ $translate => $translate.instant('pci_projects_project_instances_instance_edit_title'),
+      ) => PciProjectsProjectInstanceService.get(projectId, instanceId),
+      goBack: /* @ngInject */ (goToInstance) => goToInstance,
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant(
+          'pci_projects_project_instances_instance_edit_title',
+        ),
     },
   });
 };

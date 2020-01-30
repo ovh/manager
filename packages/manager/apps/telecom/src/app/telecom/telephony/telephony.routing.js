@@ -24,48 +24,42 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       ...ListLayoutHelper.stateResolves,
       apiPath: () => '/telephony',
-      loadResource: /* @ngInject */ OvhApiTelephonyService => resource => OvhApiTelephonyService
-        .v6()
-        .query({
-          billingAccount: resource.billingAccount,
-        })
-        .$promise
-        .then(services => ({
-          ...resource,
-          numServices: services.length,
-        })),
+      loadResource: /* @ngInject */ (OvhApiTelephonyService) => (resource) =>
+        OvhApiTelephonyService.v6()
+          .query({
+            billingAccount: resource.billingAccount,
+          })
+          .$promise.then((services) => ({
+            ...resource,
+            numServices: services.length,
+          })),
 
-      schema: /* @ngInject */ OvhApiTelephony => OvhApiTelephony
-        .v6()
-        .schema()
-        .$promise,
-      telephonyStatusTypes: /* @ngInject */ schema => get(schema.models, 'telephony.BillingAccountStatusEnum').enum,
+      schema: /* @ngInject */ (OvhApiTelephony) =>
+        OvhApiTelephony.v6().schema().$promise,
+      telephonyStatusTypes: /* @ngInject */ (schema) =>
+        get(schema.models, 'telephony.BillingAccountStatusEnum').enum,
 
-      getBillingAccountLink: /* @ngInject */ $state => ({ billingAccount }) => $state.href(
-        'telecom.telephony.billingAccount',
-        {
+      getBillingAccountLink: /* @ngInject */ ($state) => ({ billingAccount }) =>
+        $state.href('telecom.telephony.billingAccount', {
           billingAccount,
-        },
-      ),
-      getBillingAccountServicesLink: /* @ngInject */ $state => ({ billingAccount }) => $state.href(
-        'telecom.telephony.billingAccount.services',
-        {
+        }),
+      getBillingAccountServicesLink: /* @ngInject */ ($state) => ({
+        billingAccount,
+      }) =>
+        $state.href('telecom.telephony.billingAccount.services', {
           billingAccount,
-        },
-      ),
+        }),
 
-      viewBillingAccount: /* @ngInject */ $state => ({ billingAccount }) => $state.go(
-        'telecom.telephony.billingAccount',
-        {
+      viewBillingAccount: /* @ngInject */ ($state) => ({ billingAccount }) =>
+        $state.go('telecom.telephony.billingAccount', {
           billingAccount,
-        },
-      ),
-      viewBillingAccountServices: /* @ngInject */ $state => ({ billingAccount }) => $state.go(
-        'telecom.telephony.billingAccount.services',
-        {
+        }),
+      viewBillingAccountServices: /* @ngInject */ ($state) => ({
+        billingAccount,
+      }) =>
+        $state.go('telecom.telephony.billingAccount.services', {
           billingAccount,
-        },
-      ),
+        }),
     },
   });
 };

@@ -7,10 +7,7 @@ import map from 'lodash/map';
 import merge from 'lodash/merge';
 import set from 'lodash/set';
 
-import {
-  ENUM_TRANSLATION_RULES,
-  MODEL_DEBOUNCE_DELAY,
-} from './form.constants';
+import { ENUM_TRANSLATION_RULES, MODEL_DEBOUNCE_DELAY } from './form.constants';
 import { WatchableModel } from '../watchableModel.class';
 
 export default class SignUpFormCtrl {
@@ -36,9 +33,17 @@ export default class SignUpFormCtrl {
         let label;
         rule.in = map(rule.in, (value) => {
           if (translationRules.dependsOfCountry) {
-            label = this.$translate.instant(`sign_up_form_enum_${this.model.country.toUpperCase()}_${(translationRules.fallbackFieldName || translationRules.fieldName).toLowerCase()}_${value}`);
+            label = this.$translate.instant(
+              `sign_up_form_enum_${this.model.country.toUpperCase()}_${(
+                translationRules.fallbackFieldName || translationRules.fieldName
+              ).toLowerCase()}_${value}`,
+            );
           } else {
-            label = this.$translate.instant(`sign_up_form_enum_${(translationRules.fallbackFieldName || translationRules.fieldName).toLowerCase()}_${value}`);
+            label = this.$translate.instant(
+              `sign_up_form_enum_${(
+                translationRules.fallbackFieldName || translationRules.fieldName
+              ).toLowerCase()}_${value}`,
+            );
           }
           return {
             label,
@@ -50,7 +55,8 @@ export default class SignUpFormCtrl {
           rule.in.sort((valA, valB) => {
             if (valA.value === rule.defaultValue) {
               return -1;
-            } if (valB.value === rule.defaultValue) {
+            }
+            if (valB.value === rule.defaultValue) {
               return 1;
             }
             return valA.label.localeCompare(valB.label);
@@ -67,9 +73,12 @@ export default class SignUpFormCtrl {
       this.getRulesCancel = this.$q.defer();
     }
 
-    const ruleParams = merge({
-      action: this.action,
-    }, this.model);
+    const ruleParams = merge(
+      {
+        action: this.action,
+      },
+      this.model,
+    );
 
     return this.signUp
       .getCreationRules(ruleParams, this.getRulesCancel)
@@ -84,7 +93,11 @@ export default class SignUpFormCtrl {
             if (defaultValue) {
               set(this.model, modelKey, defaultValue);
             } else if (enumValues && enumValues.length === 1) {
-              set(this.model, modelKey, get(this.rules, `${modelKey}.in[0].value`));
+              set(
+                this.model,
+                modelKey,
+                get(this.rules, `${modelKey}.in[0].value`),
+              );
             }
           }
         });
@@ -131,7 +144,7 @@ export default class SignUpFormCtrl {
       Object.defineProperty(this.model, name, {
         enumerable: true,
         get: () => get(this.model, `$${name}.value`),
-        set: newValue => set(this.model, `$${name}.value`, newValue),
+        set: (newValue) => set(this.model, `$${name}.value`, newValue),
       });
     });
   }
@@ -141,12 +154,11 @@ export default class SignUpFormCtrl {
   ============================= */
 
   $onInit() {
-    return this.signUp.getCreationRulesParams()
-      .then((params) => {
-        this.initModel(params);
-        set(this.me, 'model', this.model);
-        return this.getRules();
-      });
+    return this.signUp.getCreationRulesParams().then((params) => {
+      this.initModel(params);
+      set(this.me, 'model', this.model);
+      return this.getRules();
+    });
   }
 
   /* -----  End of Hooks  ------ */

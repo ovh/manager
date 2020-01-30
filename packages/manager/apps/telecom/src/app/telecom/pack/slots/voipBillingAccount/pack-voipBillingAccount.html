@@ -1,27 +1,34 @@
 <div data-ng-controller="PackVoipBillingAccountCtrl as VoipBillingAccount">
-    <div class="oui-tile__body"
-         data-ng-if="loaders.services">
+    <div class="oui-tile__body" data-ng-if="loaders.services">
         <div class="oui-tile__definition text-center">
             <oui-spinner></oui-spinner>
         </div>
     </div>
-    <div class="oui-tile__body"
-         data-ng-if="!loaders.services && VoipBillingAccount.services.length == 0">
-        <div class="oui-tile__definition"
-             data-translate="you_dont_have_any_service">
-        </div>
+    <div
+        class="oui-tile__body"
+        data-ng-if="!loaders.services && VoipBillingAccount.services.length == 0"
+    >
+        <div
+            class="oui-tile__definition"
+            data-translate="you_dont_have_any_service"
+        ></div>
     </div>
-    <div class="oui-tile__body"
-         data-ng-if="!loaders.services && VoipBillingAccount.services.length > 0">
+    <div
+        class="oui-tile__body"
+        data-ng-if="!loaders.services && VoipBillingAccount.services.length > 0"
+    >
         <ul class="list-unstyled">
-            <li class="oui-tile__item oui-tile__item_button"
-                 data-ng-repeat="service in VoipBillingAccount.services track by service.domain">
+            <li
+                class="oui-tile__item oui-tile__item_button"
+                data-ng-repeat="service in VoipBillingAccount.services track by service.domain"
+            >
                 <div class="oui-tile__definition">
-                    <strong class="oui-tile__term d-block"
-                            data-ng-bind="service">
+                    <strong
+                        class="oui-tile__term d-block"
+                        data-ng-bind="service"
+                    >
                     </strong>
-                    <span class="oui-tile__description"
-                          data-ng-bind="service">
+                    <span class="oui-tile__description" data-ng-bind="service">
                     </span>
                 </div>
             </li>

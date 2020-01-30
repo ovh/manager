@@ -33,13 +33,11 @@ export default class PublicCloudController {
   }
 
   $onInit() {
-    this.$translate.refresh()
-      .then(() => {
-        this.sessionService.getUser()
-          .then((user) => {
-            this.user = user;
-          });
+    this.$translate.refresh().then(() => {
+      this.sessionService.getUser().then((user) => {
+        this.user = user;
       });
+    });
   }
 
   openSidebar() {

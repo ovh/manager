@@ -1,31 +1,33 @@
-<form name="addUserForm"
-      id="addUserForm"
-      data-ng-submit="UsersAddCtrl.add()">
-
+<form name="addUserForm" id="addUserForm" data-ng-submit="UsersAddCtrl.add()">
     <div class="modal-header">
         <button
             type="button"
             class="close float-right"
             aria-label="{{ ::'sms_cancel' | translate }}"
-            data-ng-click="UsersAddCtrl.cancel()">
+            data-ng-click="UsersAddCtrl.cancel()"
+        >
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
 
-    <div class="modal-body"
-         data-ng-if="!UsersAddCtrl.loading.addUser && !UsersAddCtrl.added">
-        <h3 class="modal-title"
-            data-translate="sms_users_add_user_title">
-        </h3>
+    <div
+        class="modal-body"
+        data-ng-if="!UsersAddCtrl.loading.addUser && !UsersAddCtrl.added"
+    >
+        <h3 class="modal-title" data-translate="sms_users_add_user_title"></h3>
 
         <!-- LOGIN -->
-        <div class="form-group"
-             data-ng-class="{
+        <div
+            class="form-group"
+            data-ng-class="{
                  'has-error': addUserForm.login.$touched && addUserForm.login.$invalid
-             }">
-            <label for="login"
-                   class="control-label"
-                   data-translate="sms_users_add_user_login_label">
+             }"
+        >
+            <label
+                for="login"
+                class="control-label"
+                data-translate="sms_users_add_user_login_label"
+            >
             </label>
             <input
                 type="text"
@@ -35,28 +37,39 @@
                 required
                 data-ng-model="UsersAddCtrl.user.login"
                 data-ng-maxlength="40"
-                data-translate-attr="{ placeholder: 'sms_users_add_user_login_placeholder' }" />
-            <span class="help-block"
-                  role="alert"
-                  data-ng-if="addUserForm.login.$touched"
-                  data-ng-messages="addUserForm.login.$error">
-                <span data-ng-message="required"
-                      data-translate="sms_users_add_user_login_error_required">
+                data-translate-attr="{ placeholder: 'sms_users_add_user_login_placeholder' }"
+            />
+            <span
+                class="help-block"
+                role="alert"
+                data-ng-if="addUserForm.login.$touched"
+                data-ng-messages="addUserForm.login.$error"
+            >
+                <span
+                    data-ng-message="required"
+                    data-translate="sms_users_add_user_login_error_required"
+                >
                 </span>
-                <span data-ng-message="maxlength"
-                      data-translate="sms_users_add_user_login_error_maxlength">
+                <span
+                    data-ng-message="maxlength"
+                    data-translate="sms_users_add_user_login_error_maxlength"
+                >
                 </span>
             </span>
         </div>
 
         <!-- PASSWORD -->
-        <div class="form-group"
-             data-ng-class="{
+        <div
+            class="form-group"
+            data-ng-class="{
                  'has-error': addUserForm.password.$touched && addUserForm.password.$invalid
-             }">
-            <label for="password"
-                   class="control-label"
-                   data-translate="sms_users_add_user_password_label">
+             }"
+        >
+            <label
+                for="password"
+                class="control-label"
+                data-translate="sms_users_add_user_password_label"
+            >
             </label>
             <input
                 type="password"
@@ -66,30 +79,37 @@
                 required
                 data-ng-model="UsersAddCtrl.user.password"
                 data-ng-pattern="/^\w{8}$/"
-                data-translate-attr="{ placeholder: 'sms_users_add_user_password_placeholder' }" />
-            <span class="help-block"
-                  role="alert"
-                  data-ng-if="addUserForm.password.$touched"
-                  data-ng-messages="addUserForm.password.$error">
-                <span data-ng-message="required"
-                      data-translate="sms_users_add_user_password_required">
+                data-translate-attr="{ placeholder: 'sms_users_add_user_password_placeholder' }"
+            />
+            <span
+                class="help-block"
+                role="alert"
+                data-ng-if="addUserForm.password.$touched"
+                data-ng-messages="addUserForm.password.$error"
+            >
+                <span
+                    data-ng-message="required"
+                    data-translate="sms_users_add_user_password_required"
+                >
                 </span>
-                <span data-ng-message="pattern"
-                      data-translate="sms_users_add_user_password_error_pattern">
+                <span
+                    data-ng-message="pattern"
+                    data-translate="sms_users_add_user_password_error_pattern"
+                >
                 </span>
             </span>
         </div>
-
     </div>
 
-    <div class="modal-body text-center"
-         data-ng-if="UsersAddCtrl.loading.addUser && !UsersAddCtrl.added">
+    <div
+        class="modal-body text-center"
+        data-ng-if="UsersAddCtrl.loading.addUser && !UsersAddCtrl.added"
+    >
         <oui-spinner></oui-spinner>
         <h4 data-translate="sms_users_add_user_adding"></h4>
     </div>
 
-    <div class="modal-body"
-         data-ng-if="UsersAddCtrl.added">
+    <div class="modal-body" data-ng-if="UsersAddCtrl.added">
         <tuc-success-drawing-check data-draw-success-check="UsersAddCtrl.added">
             <h4 data-translate="sms_users_add_user_added"></h4>
         </tuc-success-drawing-check>
@@ -101,15 +121,15 @@
             class="btn btn-default"
             data-ng-click="UsersAddCtrl.cancel()"
             data-translate="sms_cancel"
-            data-ng-disabled="UsersAddCtrl.loading.addUser || UsersAddCtrl.added">
-        </button>
+            data-ng-disabled="UsersAddCtrl.loading.addUser || UsersAddCtrl.added"
+        ></button>
         <button
             type="submit"
             class="btn btn-primary"
             data-ng-disabled="addUserForm.$invalid ||
                               UsersAddCtrl.loading.addUser ||
                               UsersAddCtrl.added"
-            data-translate="sms_submit">
-        </button>
+            data-translate="sms_submit"
+        ></button>
     </div>
 </form>

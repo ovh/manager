@@ -55,11 +55,13 @@ angular.module('App').controller(
             this.hasResult = true;
           }
         })
-        .catch(err => this.Alerter.alertFromSWS(
-          this.$translate.instant('domain_tab_DYNHOSTLOGIN_table_empty'),
-          err.data || err,
-          this.$scope.alerts.main,
-        ))
+        .catch((err) =>
+          this.Alerter.alertFromSWS(
+            this.$translate.instant('domain_tab_DYNHOSTLOGIN_table_empty'),
+            err.data || err,
+            this.$scope.alerts.main,
+          ),
+        )
         .finally(() => {
           this.loading.init = false;
           if (isEmpty(this.dynHostsLogin)) {
@@ -71,7 +73,7 @@ angular.module('App').controller(
     transformItem(item) {
       return this.Domain.getDynHostLoginDetails(this.product.name, item).then(
         this.constructor.subDomainToPunycode,
-        err => err,
+        (err) => err,
       );
     }
 

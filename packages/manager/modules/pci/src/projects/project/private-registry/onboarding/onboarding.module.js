@@ -9,13 +9,12 @@ import pciProjectPrivateRegistryOnboarding from './onboarding.component';
 const moduleName = 'ovhManagerPciPrivateRegistryOnboardingLazyLoading';
 
 angular
-  .module(moduleName, [
-    'ui.router',
-    create,
-    credentials,
-  ])
+  .module(moduleName, ['ui.router', create, credentials])
   .config(routing)
-  .component('pciProjectPrivateRegistryOnboarding', pciProjectPrivateRegistryOnboarding)
+  .component(
+    'pciProjectPrivateRegistryOnboarding',
+    pciProjectPrivateRegistryOnboarding,
+  )
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

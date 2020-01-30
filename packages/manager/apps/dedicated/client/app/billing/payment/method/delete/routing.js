@@ -19,11 +19,11 @@ export default /* @ngInject */ ($stateProvider) => {
 
       /* ----------  ouiModal layout resolves  ---------- */
 
-      heading: /* @ngInject */ $translate => $translate
-        .instant('billing_payment_method_delete_title'),
+      heading: /* @ngInject */ ($translate) =>
+        $translate.instant('billing_payment_method_delete_title'),
 
-      primaryLabel: /* @ngInject */ $translate => $translate
-        .instant('common_confirm'),
+      primaryLabel: /* @ngInject */ ($translate) =>
+        $translate.instant('common_confirm'),
 
       primaryAction: /* @ngInject */ (
         $translate,
@@ -34,25 +34,30 @@ export default /* @ngInject */ ($stateProvider) => {
       ) => () => {
         set(loaders, 'deleting', true);
 
-        return ovhPaymentMethod.deletePaymentMethod(paymentMethod)
-          .then(() => goPaymentList({
-            type: 'success',
-            text: $translate.instant('billing_payment_method_delete_success'),
-          }))
-          .catch(error => goPaymentList({
-            type: 'error',
-            text: $translate.instant('billing_payment_method_delete_error', {
-              errorMessage: get(error, 'data.message'),
+        return ovhPaymentMethod
+          .deletePaymentMethod(paymentMethod)
+          .then(() =>
+            goPaymentList({
+              type: 'success',
+              text: $translate.instant('billing_payment_method_delete_success'),
             }),
-          }));
+          )
+          .catch((error) =>
+            goPaymentList({
+              type: 'error',
+              text: $translate.instant('billing_payment_method_delete_error', {
+                errorMessage: get(error, 'data.message'),
+              }),
+            }),
+          );
       },
 
-      secondaryLabel: /* @ngInject */ $translate => $translate
-        .instant('common_cancel'),
+      secondaryLabel: /* @ngInject */ ($translate) =>
+        $translate.instant('common_cancel'),
 
-      secondaryAction: /* @ngInject */ goPaymentList => goPaymentList,
+      secondaryAction: /* @ngInject */ (goPaymentList) => goPaymentList,
 
-      loading: /* @ngInject */ loaders => () => loaders.deleting,
+      loading: /* @ngInject */ (loaders) => () => loaders.deleting,
     },
   });
 };

@@ -1,12 +1,12 @@
 <div class="telecom-pack-exchange-individual-add">
-
     <header>
-        <tuc-section-back-link data-tuc-section-back-link-to-state="telecom.packs.pack"></tuc-section-back-link>
+        <tuc-section-back-link
+            data-tuc-section-back-link-to-state="telecom.packs.pack"
+        ></tuc-section-back-link>
         <h1 data-translate="add_an_account"></h1>
     </header>
 
     <div class="telecom-section-content">
-
         <div class="row">
             <div class="col-md-6">
                 <h2>{{ 'account_informations' | translate }}</h2>
@@ -21,7 +21,10 @@
                                 <div>
                                     <div class="row">
                                         <div class="col-xs-12">
-                                            <label class="control-label">{{ 'account_name' | translate }} *</label>
+                                            <label class="control-label"
+                                                >{{ 'account_name' | translate
+                                                }} *</label
+                                            >
                                         </div>
                                     </div>
                                     <div class="row">
@@ -36,29 +39,39 @@
                                                         title="{{ 'title_min_size' | translate }}"
                                                         required
                                                         placeholder="{{ 'account_name' | translate }} *"
-                                                        maxlength="50">
-                                                    <span class="input-group-addon">@</span>
-                                                    <select name="accountDomain"
-                                                            class="form-control"
-                                                            data-ng-model="ctrl.account.domain"
-                                                            data-ng-options="item.value as item.label for item in ctrl.availablesDomains"
-                                                            required>
+                                                        maxlength="50"
+                                                    />
+                                                    <span
+                                                        class="input-group-addon"
+                                                        >@</span
+                                                    >
+                                                    <select
+                                                        name="accountDomain"
+                                                        class="form-control"
+                                                        data-ng-model="ctrl.account.domain"
+                                                        data-ng-options="item.value as item.label for item in ctrl.availablesDomains"
+                                                        required
+                                                    >
                                                     </select>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="input-icons col-xs-2 my-2">
-                                            <span data-ng-show="accountForm.accountName.$dirty
+                                            <span
+                                                data-ng-show="accountForm.accountName.$dirty
                                                         && accountForm.accountName.$valid
                                                         && accountForm.accountDomain.$dirty
                                                         && accountForm.accountDomain.$valid"
-                                                  class="glyphicon glyphicon-ok"
-                                                  aria-hidden="true">
+                                                class="glyphicon glyphicon-ok"
+                                                aria-hidden="true"
+                                            >
                                             </span>
-                                            <span data-ng-show="(accountForm.accountName.$dirty                &&  accountForm.accountName.$invalid)
+                                            <span
+                                                data-ng-show="(accountForm.accountName.$dirty                &&  accountForm.accountName.$invalid)
                                                         || (accountForm.accountName.$dirty &&  accountForm.accountDomain.$invalid)"
-                                                  class="glyphicon glyphicon-remove"
-                                                  aria-hidden="true">
+                                                class="glyphicon glyphicon-remove"
+                                                aria-hidden="true"
+                                            >
                                             </span>
                                         </div>
                                     </div>
@@ -66,19 +79,25 @@
                             </div>
                         </div>
                     </div>
-                    <div data-tuc-ovh-password
-                         data-ovh-pwd="ctrl.account.password"
-                         data-ovh-pwd-confirm="ctrl.account.passwordConfirmation">
-                    </div>
+                    <div
+                        data-tuc-ovh-password
+                        data-ovh-pwd="ctrl.account.password"
+                        data-ovh-pwd-confirm="ctrl.account.passwordConfirmation"
+                    ></div>
 
                     <div class="form-group">
                         <div class="col-xs-10 text-center mt-4">
-                            <input class="btn btn-primary" type="submit" id="submit" data-ng-disabled="ctrl.pendingOrder" value="{{ 'submit'|translate }}" />
+                            <input
+                                class="btn btn-primary"
+                                type="submit"
+                                id="submit"
+                                data-ng-disabled="ctrl.pendingOrder"
+                                value="{{ 'submit'|translate }}"
+                            />
                         </div>
                     </div>
                 </form>
             </div>
         </div>
-
     </div>
 </div>

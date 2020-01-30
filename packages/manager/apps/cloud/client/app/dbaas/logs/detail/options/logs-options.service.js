@@ -6,8 +6,17 @@ import reduce from 'lodash/reduce';
 import set from 'lodash/set';
 
 class LogsOptionsService {
-  constructor($translate, $window, CucControllerHelper, LogsHelperService,
-    OvhApiOrderCartServiceOption, CucServiceHelper, OvhApiDbaas, LogsOfferService, LogsConstants) {
+  constructor(
+    $translate,
+    $window,
+    CucControllerHelper,
+    LogsHelperService,
+    OvhApiOrderCartServiceOption,
+    CucServiceHelper,
+    OvhApiDbaas,
+    LogsOfferService,
+    LogsConstants,
+  ) {
     this.CucControllerHelper = CucControllerHelper;
     this.OvhApiOrderCartServiceOption = OvhApiOrderCartServiceOption;
     this.LogsHelperService = LogsHelperService;
@@ -18,7 +27,9 @@ class LogsOptionsService {
     this.OvhApiDbaasLogs = OvhApiDbaas.Logs();
     this.LogsOfferService = LogsOfferService;
     this.LogsConstants = LogsConstants;
-    this.OptionsApiLexiService = OvhApiDbaas.Logs().Option().v6();
+    this.OptionsApiLexiService = OvhApiDbaas.Logs()
+      .Option()
+      .v6();
   }
 
   /**
@@ -29,8 +40,9 @@ class LogsOptionsService {
    * @memberof LogsOptionsService
    */
   getOffer(serviceName) {
-    return this.LogsOfferService.getOffer(serviceName)
-      .then(offer => this.transformOffer(offer));
+    return this.LogsOfferService.getOffer(serviceName).then((offer) =>
+      this.transformOffer(offer),
+    );
   }
 
   /**
@@ -41,17 +53,32 @@ class LogsOptionsService {
    * @memberof LogsOptionsService
    */
   getOptions(serviceName) {
-    return this.OvhApiOrderCartServiceOption.v6().get({
-      productName: this.LogsConstants.productName,
-      serviceName,
-    }).$promise
-      .then((response) => {
-        forEach(response, option => this.transformOption(option));
-        return response.sort((optionA, optionB) => (optionA.type === optionB.type
-          ? this.CucControllerHelper.constructor.naturalCompare(optionA.detail, optionB.detail)
-          : this.CucControllerHelper.constructor.naturalCompare(optionA.type, optionB.type)));
+    return this.OvhApiOrderCartServiceOption.v6()
+      .get({
+        productName: this.LogsConstants.productName,
+        serviceName,
       })
-      .catch(err => this.LogsHelperService.handleError('logs_options_options_loading_error', err, {}));
+      .$promise.then((response) => {
+        forEach(response, (option) => this.transformOption(option));
+        return response.sort((optionA, optionB) =>
+          optionA.type === optionB.type
+            ? this.CucControllerHelper.constructor.naturalCompare(
+                optionA.detail,
+                optionB.detail,
+              )
+            : this.CucControllerHelper.constructor.naturalCompare(
+                optionA.type,
+                optionB.type,
+              ),
+        );
+      })
+      .catch((err) =>
+        this.LogsHelperService.handleError(
+          'logs_options_options_loading_error',
+          err,
+          {},
+        ),
+      );
   }
 
   /**
@@ -62,7 +89,7 @@ class LogsOptionsService {
    * @memberof LogsOptionsService
    */
   static getOptionsToOrder(options) {
-    return filter(options, option => option.quantity > 0);
+    return filter(options, (option) => option.quantity > 0);
   }
 
   /**
@@ -75,20 +102,39 @@ class LogsOptionsService {
    */
   getOrderConfiguration(options, serviceName) {
     const optionsToOrder = LogsOptionsService.getOptionsToOrder(options);
-    return map(optionsToOrder, option => this.transformOptionForOrder(option, serviceName));
+    return map(optionsToOrder, (option) =>
+      this.transformOptionForOrder(option, serviceName),
+    );
   }
 
   transformManagedOptions(option) {
     set(option, 'type', this.$translate.instant(`${option.reference}-type`));
-    set(option, 'detail', this.$translate.instant(`${option.reference}-detail`));
-    set(option, 'linked_items', option.curNbAlias + option.curNbDashboard + option.curNbIndex + option.curNbRole + option.curNbInput + option.curNbStream);
+    set(
+      option,
+      'detail',
+      this.$translate.instant(`${option.reference}-detail`),
+    );
+    set(
+      option,
+      'linked_items',
+      option.curNbAlias +
+        option.curNbDashboard +
+        option.curNbIndex +
+        option.curNbRole +
+        option.curNbInput +
+        option.curNbStream,
+    );
     return option;
   }
 
   getManagedOptions(serviceName) {
     return this.getSubscribedOptions(serviceName)
-      .then(response => map(response.options, option => this.transformManagedOptions(option)))
-      .catch(this.CucServiceHelper.errorHandler('logs_options_manage_get_error'));
+      .then((response) =>
+        map(response.options, (option) => this.transformManagedOptions(option)),
+      )
+      .catch(
+        this.CucServiceHelper.errorHandler('logs_options_manage_get_error'),
+      );
   }
 
   /**
@@ -99,11 +145,18 @@ class LogsOptionsService {
    * @memberof LogsOptionsService
    */
   getSubscribedOptions(serviceName) {
-    return this.OvhApiDbaasLogs.Accounting().Aapi().me({
-      serviceName,
-    })
-      .$promise
-      .catch(err => this.LogsHelperService.handleError('logs_options_current_options_loading_error', err, {}));
+    return this.OvhApiDbaasLogs.Accounting()
+      .Aapi()
+      .me({
+        serviceName,
+      })
+      .$promise.catch((err) =>
+        this.LogsHelperService.handleError(
+          'logs_options_current_options_loading_error',
+          err,
+          {},
+        ),
+      );
   }
 
   /**
@@ -114,25 +167,24 @@ class LogsOptionsService {
    * @memberof LogsOptionsService
    */
   getSubscribedOptionsByType(serviceName, optionType) {
-    return this.getSubscribedOptions(serviceName)
-      .then((response) => {
-        switch (optionType) {
-          case this.LogsConstants.STREAM_OPTION_REFERENCE:
-            return this.filterOptions(response.options, 'maxNbStream');
-          case this.LogsConstants.INDEX_OPTION_REFERENCE:
-            return this.filterOptions(response.options, 'maxNbIndex');
-          case this.LogsConstants.ALIAS_OPTION_REFERENCE:
-            return this.filterOptions(response.options, 'maxNbAlias');
-          case this.LogsConstants.INPUT_OPTION_REFERENCE:
-            return this.filterOptions(response.options, 'maxNbInput');
-          case this.LogsConstants.ROLE_OPTION_REFERENCE:
-            return this.filterOptions(response.options, 'maxNbRole');
-          case this.LogsConstants.DASHBOARD_OPTION_REFERENCE:
-            return this.filterOptions(response.options, 'maxNbDashboard');
-          default:
-            return response.options;
-        }
-      });
+    return this.getSubscribedOptions(serviceName).then((response) => {
+      switch (optionType) {
+        case this.LogsConstants.STREAM_OPTION_REFERENCE:
+          return this.filterOptions(response.options, 'maxNbStream');
+        case this.LogsConstants.INDEX_OPTION_REFERENCE:
+          return this.filterOptions(response.options, 'maxNbIndex');
+        case this.LogsConstants.ALIAS_OPTION_REFERENCE:
+          return this.filterOptions(response.options, 'maxNbAlias');
+        case this.LogsConstants.INPUT_OPTION_REFERENCE:
+          return this.filterOptions(response.options, 'maxNbInput');
+        case this.LogsConstants.ROLE_OPTION_REFERENCE:
+          return this.filterOptions(response.options, 'maxNbRole');
+        case this.LogsConstants.DASHBOARD_OPTION_REFERENCE:
+          return this.filterOptions(response.options, 'maxNbDashboard');
+        default:
+          return response.options;
+      }
+    });
   }
 
   /**
@@ -144,24 +196,33 @@ class LogsOptionsService {
    */
   /* eslint-disable no-param-reassign */
   getSubscribedOptionsMap(serviceName) {
-    return this.getSubscribedOptions(serviceName)
-      .then((response) => {
-        // Build a map of option vs no. of subscribed instances
-        const optionsCountMap = reduce(response.options, (optionsMap, option) => {
+    return this.getSubscribedOptions(serviceName).then((response) => {
+      // Build a map of option vs no. of subscribed instances
+      const optionsCountMap = reduce(
+        response.options,
+        (optionsMap, option) => {
           optionsMap[option.reference] = optionsMap[option.reference]
-            ? optionsMap[option.reference] += 1
+            ? (optionsMap[option.reference] += 1)
             : 1;
           return optionsMap;
-        }, {});
-        // Build a new data structure with the option information and the no.of instances subscribed
-        return map(
-          keys(optionsCountMap),
-          option => this.transformSubscribedOption(option, optionsCountMap),
-        )
-          .sort((optionA, optionB) => (optionA.type === optionB.type
-            ? this.CucControllerHelper.constructor.naturalCompare(optionA.detail, optionB.detail)
-            : this.CucControllerHelper.constructor.naturalCompare(optionA.type, optionB.type)));
-      });
+        },
+        {},
+      );
+      // Build a new data structure with the option information and the no.of instances subscribed
+      return map(keys(optionsCountMap), (option) =>
+        this.transformSubscribedOption(option, optionsCountMap),
+      ).sort((optionA, optionB) =>
+        optionA.type === optionB.type
+          ? this.CucControllerHelper.constructor.naturalCompare(
+              optionA.detail,
+              optionB.detail,
+            )
+          : this.CucControllerHelper.constructor.naturalCompare(
+              optionA.type,
+              optionB.type,
+            ),
+      );
+    });
   }
 
   /**
@@ -172,24 +233,25 @@ class LogsOptionsService {
    * @memberof LogsOptionsService
    */
   getSubscribedOptionsMapGrouped(serviceName) {
-    return this.getSubscribedOptionsMap(serviceName)
-      .then((options) => {
-        const groupedOptionsMap = options.reduce((groupedOptions, option) => {
-          groupedOptions[option.type] = groupedOptions[option.type]
-            ? groupedOptions[option.type]
-            : { type: option.type, quantity: 0, details: [] };
-          groupedOptions[option.type].quantity += option.quantity
-            * this.LogsConstants.PRODUCT_COUNT[option.id];
-          groupedOptions[option.type].details.push(option);
-          return groupedOptions;
-        }, {});
-        return Object.keys(groupedOptionsMap)
-          .map(groupedOptionsName => groupedOptionsMap[groupedOptionsName])
-          .sort((optionA, optionB) => this.CucControllerHelper.constructor.naturalCompare(
+    return this.getSubscribedOptionsMap(serviceName).then((options) => {
+      const groupedOptionsMap = options.reduce((groupedOptions, option) => {
+        groupedOptions[option.type] = groupedOptions[option.type]
+          ? groupedOptions[option.type]
+          : { type: option.type, quantity: 0, details: [] };
+        groupedOptions[option.type].quantity +=
+          option.quantity * this.LogsConstants.PRODUCT_COUNT[option.id];
+        groupedOptions[option.type].details.push(option);
+        return groupedOptions;
+      }, {});
+      return Object.keys(groupedOptionsMap)
+        .map((groupedOptionsName) => groupedOptionsMap[groupedOptionsName])
+        .sort((optionA, optionB) =>
+          this.CucControllerHelper.constructor.naturalCompare(
             optionA.type,
             optionB.type,
-          ));
-      });
+          ),
+        );
+    });
   }
   /* eslint-enable no-param-reassign */
 
@@ -213,10 +275,18 @@ class LogsOptionsService {
 
   filterOptions(options, max) {
     return options
-      .filter(option => option[max] > 0)
+      .filter((option) => option[max] > 0)
       .map((option) => {
-        set(option, 'type', this.$translate.instant(`${option.reference}-type`));
-        set(option, 'detail', this.$translate.instant(`${option.reference}-detail`));
+        set(
+          option,
+          'type',
+          this.$translate.instant(`${option.reference}-type`),
+        );
+        set(
+          option,
+          'detail',
+          this.$translate.instant(`${option.reference}-detail`),
+        );
         return option;
       });
   }
@@ -275,7 +345,10 @@ class LogsOptionsService {
   showReactivateInfo(option) {
     this.CucControllerHelper.modal.showWarningModal({
       title: this.$translate.instant('logs_options_modal_reactivate_title'),
-      message: this.$translate.instant('logs_options_modal_reactivate_description', { optionType: `${option.type}, ${option.detail}` }),
+      message: this.$translate.instant(
+        'logs_options_modal_reactivate_description',
+        { optionType: `${option.type}, ${option.detail}` },
+      ),
     });
   }
 
@@ -283,21 +356,38 @@ class LogsOptionsService {
     return this.CucControllerHelper.modal.showDeleteModal({
       submitButtonText: this.$translate.instant('logs_options_action_disable'),
       titleText: this.$translate.instant('logs_options_manage_terminate_title'),
-      textHtml: this.$translate.instant('logs_options_manage_terminate_question', { optionType: `${option.type}, ${option.detail}` }),
+      textHtml: this.$translate.instant(
+        'logs_options_manage_terminate_question',
+        { optionType: `${option.type}, ${option.detail}` },
+      ),
     });
   }
 
   terminateOption(serviceName, option) {
-    return this.OptionsApiLexiService.terminate({ serviceName, optionId: option.optionId }).$promise
-      .then((operation) => {
+    return this.OptionsApiLexiService.terminate({
+      serviceName,
+      optionId: option.optionId,
+    })
+      .$promise.then((operation) => {
         this.resetAllCache();
-        return this.LogsHelperService.handleOperation(serviceName, operation.data || operation, 'logs_options_delete_success', { optionType: `${option.type}, ${option.detail}` });
+        return this.LogsHelperService.handleOperation(
+          serviceName,
+          operation.data || operation,
+          'logs_options_delete_success',
+          { optionType: `${option.type}, ${option.detail}` },
+        );
       })
-      .catch(err => this.LogsHelperService.handleError('logs_options_delete_error', err, { optionType: `${option.type}, ${option.detail}` }));
+      .catch((err) =>
+        this.LogsHelperService.handleError('logs_options_delete_error', err, {
+          optionType: `${option.type}, ${option.detail}`,
+        }),
+      );
   }
 
   resetAllCache() {
-    this.OvhApiDbaasLogs.Accounting().Aapi().resetAllCache();
+    this.OvhApiDbaasLogs.Accounting()
+      .Aapi()
+      .resetAllCache();
     this.OptionsApiLexiService.resetAllCache();
   }
 }

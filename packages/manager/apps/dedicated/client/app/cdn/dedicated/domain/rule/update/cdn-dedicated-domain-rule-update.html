@@ -1,56 +1,67 @@
 <div data-ng-controller="CacherulesModifyTtlCtrl">
-
-    <div data-wizard
-         data-wizard-on-cancel="resetAction"
-         data-wizard-on-finish="modify"
-         data-wizard-title=":: 'cdn_configuration_cacherule_update_title' | translate"
-         data-wizard-bread-crumb>
-
-        <div data-wizard-step
-             data-wizard-step-valid="newEntry.ttl &&  newEntry.ttl > 0">
-
-            <p data-translate="cdn_configuration_cacherule_update_step1_question"
-               data-translate-values="{ t0: entry.fileMatch }"></p>
-            <p class="font-weight-bold font-italic"
-               data-translate="cdn_configuration_cacherule_update_step1_info">
-            </p>
+    <div
+        data-wizard
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="modify"
+        data-wizard-title=":: 'cdn_configuration_cacherule_update_title' | translate"
+        data-wizard-bread-crumb
+    >
+        <div
+            data-wizard-step
+            data-wizard-step-valid="newEntry.ttl &&  newEntry.ttl > 0"
+        >
+            <p
+                data-translate="cdn_configuration_cacherule_update_step1_question"
+                data-translate-values="{ t0: entry.fileMatch }"
+            ></p>
+            <p
+                class="font-weight-bold font-italic"
+                data-translate="cdn_configuration_cacherule_update_step1_info"
+            ></p>
             <div class="form-group">
-                <label for="ttl"
-                       class="control-label"
-                       data-translate="cdn_configuration_cacherule_update_step1_current">
+                <label
+                    for="ttl"
+                    class="control-label"
+                    data-translate="cdn_configuration_cacherule_update_step1_current"
+                >
                 </label>
-                <p class="form-control-static"
-                   data-ng-bind="entry.ttl">
-                </p>
+                <p class="form-control-static" data-ng-bind="entry.ttl"></p>
             </div>
             <div class="form-group">
-                <label for="newTtl"
-                       class="control-label">
-                    <span data-translate="cdn_configuration_cacherule_update_step1_new"></span>
-                    <span data-translate="cdn_domain_configuration_cacherule_create_ttl_unit"></span>
+                <label for="newTtl" class="control-label">
+                    <span
+                        data-translate="cdn_configuration_cacherule_update_step1_new"
+                    ></span>
+                    <span
+                        data-translate="cdn_domain_configuration_cacherule_create_ttl_unit"
+                    ></span>
                 </label>
-                <input type="number"
-                       class="form-control"
-                       id="newTtl"
-                       name="newTtl"
-                       min="1" max="214783647"
-                       data-ng-model="newEntry.ttl" />
+                <input
+                    type="number"
+                    class="form-control"
+                    id="newTtl"
+                    name="newTtl"
+                    min="1"
+                    max="214783647"
+                    data-ng-model="newEntry.ttl"
+                />
             </div>
-
         </div>
 
         <div data-wizard-step>
-
-            <p data-translate="cdn_configuration_cacherule_update_step2_summary"></p>
+            <p
+                data-translate="cdn_configuration_cacherule_update_step2_summary"
+            ></p>
             <dl>
-                <dt data-translate="cdn_configuration_cacherule_update_step2_old_ttl"></dt>
+                <dt
+                    data-translate="cdn_configuration_cacherule_update_step2_old_ttl"
+                ></dt>
                 <dd data-ng-bind="entry.ttl"></dd>
-                <dt data-translate="cdn_configuration_cacherule_update_step2_new_ttl"></dt>
+                <dt
+                    data-translate="cdn_configuration_cacherule_update_step2_new_ttl"
+                ></dt>
                 <dd data-ng-bind="newEntry.ttl"></dd>
             </dl>
-
         </div>
-
     </div>
-
 </div>

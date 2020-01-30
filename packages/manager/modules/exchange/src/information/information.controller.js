@@ -57,7 +57,9 @@ export default class ExchangeTabInformationCtrl {
     return this.User.getUser()
       .then((data) => {
         try {
-          this.displayGuides = this.EXCHANGE_CONFIG.URLS.GUIDES.DOCS_HOME[data.ovhSubsidiary];
+          this.displayGuides = this.EXCHANGE_CONFIG.URLS.GUIDES.DOCS_HOME[
+            data.ovhSubsidiary
+          ];
         } catch (exception) {
           this.displayGuides = null;
         }
@@ -104,10 +106,10 @@ export default class ExchangeTabInformationCtrl {
 
   displayRenewDate() {
     return (
-      this.exchange.expiration
-      && this.exchangeVersion.isAfter(2010)
-      && (this.exchangeServiceInfrastructure.isDedicated()
-        || this.exchangeServiceInfrastructure.isDedicatedCluster())
+      this.exchange.expiration &&
+      this.exchangeVersion.isAfter(2010) &&
+      (this.exchangeServiceInfrastructure.isDedicated() ||
+        this.exchangeServiceInfrastructure.isDedicatedCluster())
     );
   }
 
@@ -117,7 +119,9 @@ export default class ExchangeTabInformationCtrl {
     const isNicBilling = includes(this.exchange.nicType, 'BILLING');
 
     return (
-      this.exchangeVersion.isVersion(2013) && isHostedAccount && (isNicAdmin || isNicBilling)
+      this.exchangeVersion.isVersion(2013) &&
+      isHostedAccount &&
+      (isNicAdmin || isNicBilling)
     );
   }
 
@@ -128,38 +132,46 @@ export default class ExchangeTabInformationCtrl {
   shouldDisplaySSLRenew() {
     const now = moment();
     const sslExpirationDate = moment(this.exchange.sslExpirationDate);
-    const aMonthBeforeSSLExpirationDate = moment(this.exchange.sslExpirationDate).subtract(
-      1,
-      'months',
-    );
+    const aMonthBeforeSSLExpirationDate = moment(
+      this.exchange.sslExpirationDate,
+    ).subtract(1, 'months');
     const isAlreadyExpired = now.isAfter(sslExpirationDate);
     const canRenewBeforeExpiration = now.isAfter(aMonthBeforeSSLExpirationDate);
 
-    const isDedicatedAccount = this.exchangeServiceInfrastructure.isDedicated()
-      || this.exchangeServiceInfrastructure.isDedicatedCluster();
-    const is2010DedicatedOrProvider = this.exchangeVersion.isVersion(2010)
-      && !this.exchangeServiceInfrastructure.isHosted();
+    const isDedicatedAccount =
+      this.exchangeServiceInfrastructure.isDedicated() ||
+      this.exchangeServiceInfrastructure.isDedicatedCluster();
+    const is2010DedicatedOrProvider =
+      this.exchangeVersion.isVersion(2010) &&
+      !this.exchangeServiceInfrastructure.isHosted();
 
-    this.shouldDisplaySSLRenewValue = (isDedicatedAccount || is2010DedicatedOrProvider)
-      && (canRenewBeforeExpiration || isAlreadyExpired);
+    this.shouldDisplaySSLRenewValue =
+      (isDedicatedAccount || is2010DedicatedOrProvider) &&
+      (canRenewBeforeExpiration || isAlreadyExpired);
   }
 
   setMessageSSL() {
     const now = moment();
     const sslExpirationDate = moment(this.exchange.sslExpirationDate);
-    const aMonthBeforeSSLExpirationDate = moment(this.exchange.sslExpirationDate).subtract(
-      1,
-      'months',
-    );
+    const aMonthBeforeSSLExpirationDate = moment(
+      this.exchange.sslExpirationDate,
+    ).subtract(1, 'months');
 
     if (this.hasSSLTask) {
-      this.messageSSL = this.$translate.instant('exchange_action_renew_ssl_info');
+      this.messageSSL = this.$translate.instant(
+        'exchange_action_renew_ssl_info',
+      );
     } else if (now.isAfter(sslExpirationDate)) {
-      this.messageSSL = this.$translate.instant('exchange_action_renew_ssl_info_expired');
+      this.messageSSL = this.$translate.instant(
+        'exchange_action_renew_ssl_info_expired',
+      );
     } else if (now.isAfter(aMonthBeforeSSLExpirationDate)) {
-      this.messageSSL = this.$translate.instant('exchange_action_renew_ssl_info_next', {
-        t0: sslExpirationDate.format('L'),
-      });
+      this.messageSSL = this.$translate.instant(
+        'exchange_action_renew_ssl_info_next',
+        {
+          t0: sslExpirationDate.format('L'),
+        },
+      );
     } else {
       this.messageSSL = null;
     }
@@ -167,19 +179,25 @@ export default class ExchangeTabInformationCtrl {
 
   displayOrderDiskSpace() {
     return (
-      this.exchangeVersion.isVersion(2010) && this.exchangeServiceInfrastructure.isProvider()
+      this.exchangeVersion.isVersion(2010) &&
+      this.exchangeServiceInfrastructure.isProvider()
     );
   }
 
   orderDiskSpace() {
     if (this.displayOrderDiskSpace()) {
-      this.navigation.setAction('exchange/information/disk/service-disk-order-space');
+      this.navigation.setAction(
+        'exchange/information/disk/service-disk-order-space',
+      );
     }
   }
 
   loadATooltip() {
     const ipv4 = get(this.exchange, 'serverDiagnostic.ip', '');
-    if (!isEmpty(ipv4) && get(this.exchange, 'serverDiagnostic.isAValid', false)) {
+    if (
+      !isEmpty(ipv4) &&
+      get(this.exchange, 'serverDiagnostic.isAValid', false)
+    ) {
       this.exchange.serverDiagnostic.aTooltip = this.$translate.instant(
         'exchange_dashboard_diag_a_tooltip_ok',
       );
@@ -196,7 +214,10 @@ export default class ExchangeTabInformationCtrl {
 
   loadAaaaTooltip() {
     const ipv6 = get(this.exchange, 'serverDiagnostic.ipV6', '');
-    if (!isEmpty(ipv6) && get(this.exchange, 'serverDiagnostic.isAaaaValid', false)) {
+    if (
+      !isEmpty(ipv6) &&
+      get(this.exchange, 'serverDiagnostic.isAaaaValid', false)
+    ) {
       this.exchange.serverDiagnostic.aaaaTooltip = this.$translate.instant(
         'exchange_dashboard_diag_aaaa_tooltip_ok',
       );
@@ -236,6 +257,10 @@ export default class ExchangeTabInformationCtrl {
   }
 
   getFormattedDiskUsage() {
-    return `${this.exchange.currentDiskUsage.value} ${this.$translate.instant(`unit_size_${this.exchange.currentDiskUsage.unit}`)} / ${this.exchange.totalDiskSize.value} ${this.$translate.instant(`unit_size_${this.exchange.totalDiskSize.unit}`)}`;
+    return `${this.exchange.currentDiskUsage.value} ${this.$translate.instant(
+      `unit_size_${this.exchange.currentDiskUsage.unit}`,
+    )} / ${this.exchange.totalDiskSize.value} ${this.$translate.instant(
+      `unit_size_${this.exchange.totalDiskSize.unit}`,
+    )}`;
   }
 }

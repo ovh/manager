@@ -27,19 +27,33 @@ export default class kubernetesResetCtrl {
    */
   reset() {
     this.isReseting = true;
-    return this.OvhApiCloudProjectKube.v6().reset({
-      serviceName: this.projectId,
-      kubeId: this.kubeId,
-    }, {
-      ...this.model,
-    }).$promise
-      .then(() => this.goBack(
-        this.$translate.instant('pci_projects_project_kubernetes_service_reset_success'),
-      ))
-      .catch(error => this.goBack(
-        this.$translate.instant('pci_projects_project_kubernetes_service_reset_error', {
-          message: get(error, 'data.message'),
-        }), 'error',
-      ));
+    return this.OvhApiCloudProjectKube.v6()
+      .reset(
+        {
+          serviceName: this.projectId,
+          kubeId: this.kubeId,
+        },
+        {
+          ...this.model,
+        },
+      )
+      .$promise.then(() =>
+        this.goBack(
+          this.$translate.instant(
+            'pci_projects_project_kubernetes_service_reset_success',
+          ),
+        ),
+      )
+      .catch((error) =>
+        this.goBack(
+          this.$translate.instant(
+            'pci_projects_project_kubernetes_service_reset_error',
+            {
+              message: get(error, 'data.message'),
+            },
+          ),
+          'error',
+        ),
+      );
   }
 }

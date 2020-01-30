@@ -3,11 +3,10 @@ import set from 'lodash/set';
 import template from './exchange.html';
 import orderTemplate from './order/order.html';
 
-export default /* @ngInject */($stateProvider) => {
-  const getNavigationInformations = currentSectionInformation => /* @ngInject */(
-    Navigator,
-    $rootScope,
-  ) => {
+export default /* @ngInject */ ($stateProvider) => {
+  const getNavigationInformations = (
+    currentSectionInformation,
+  ) => /* @ngInject */ (Navigator, $rootScope) => {
     set($rootScope, 'currentSectionInformation', currentSectionInformation);
     return Navigator.setNavigationInformation({
       leftMenuVisible: true,
@@ -39,7 +38,8 @@ export default /* @ngInject */($stateProvider) => {
   });
 
   $stateProvider.state('app.microsoft.exchange.dedicatedCluster', {
-    url: '/configuration/exchange_dedicatedCluster/:organization/:productId?tab',
+    url:
+      '/configuration/exchange_dedicatedCluster/:organization/:productId?tab',
     template,
     controller: 'ExchangeCtrl',
     controllerAs: 'ctrl',
@@ -48,7 +48,9 @@ export default /* @ngInject */($stateProvider) => {
       tab: null,
     },
     resolve: {
-      navigationInformations: getNavigationInformations('exchange_dedicatedCluster'),
+      navigationInformations: getNavigationInformations(
+        'exchange_dedicatedCluster',
+      ),
     },
   });
 

@@ -5,11 +5,7 @@ import VolumeSnapshot from './snapshot.class';
 
 export default class PciProjectStorageSnapshotsService {
   /* @ngInject */
-  constructor(
-    $q,
-    OvhApiCloudProject,
-    OvhApiCloudProjectVolumeSnapshot,
-  ) {
+  constructor($q, OvhApiCloudProject, OvhApiCloudProjectVolumeSnapshot) {
     this.$q = $q;
     this.OvhApiCloudProject = OvhApiCloudProject;
     this.OvhApiCloudProjectVolumeSnapshot = OvhApiCloudProjectVolumeSnapshot;
@@ -18,98 +14,81 @@ export default class PciProjectStorageSnapshotsService {
   getAll(projectId) {
     let snapshots;
 
-    return this.OvhApiCloudProjectVolumeSnapshot
-      .v6()
+    return this.OvhApiCloudProjectVolumeSnapshot.v6()
       .query({
         serviceName: projectId,
       })
-      .$promise
-      .then((results) => {
+      .$promise.then((results) => {
         snapshots = [...results];
-        const volumeIds = uniq(
-          map(
-            snapshots,
-            snapshot => snapshot.volumeId,
-          ),
-        );
+        const volumeIds = uniq(map(snapshots, (snapshot) => snapshot.volumeId));
 
         return this.$q.all(
           map(
             volumeIds,
-            volumeId => this.OvhApiCloudProject
-              .Volume()
-              .v6()
-              .get({
-                serviceName: projectId,
-                volumeId,
-              })
-              .$promise,
+            (volumeId) =>
+              this.OvhApiCloudProject.Volume()
+                .v6()
+                .get({
+                  serviceName: projectId,
+                  volumeId,
+                }).$promise,
           ),
         );
       })
-      .then(volumes => map(
-        snapshots,
-        snapshot => new VolumeSnapshot({
-          ...snapshot,
-          volume: find(volumes, { id: snapshot.volumeId }),
-        }),
-      ));
+      .then((volumes) =>
+        map(
+          snapshots,
+          (snapshot) =>
+            new VolumeSnapshot({
+              ...snapshot,
+              volume: find(volumes, { id: snapshot.volumeId }),
+            }),
+        ),
+      );
   }
 
   get(projectId, snapshotId) {
-    return this.OvhApiCloudProjectVolumeSnapshot
-      .v6()
+    return this.OvhApiCloudProjectVolumeSnapshot.v6()
       .get({
         serviceName: projectId,
         snapshotId,
       })
-      .$promise
-      .then(snapshot => this.$q.all({
-        snapshot,
-        volume: this.getVolume(projectId, snapshot.volumeId),
-      }))
-      .then(({ snapshot, volume }) => new VolumeSnapshot({
-        ...snapshot,
-        volume,
-      }));
+      .$promise.then((snapshot) =>
+        this.$q.all({
+          snapshot,
+          volume: this.getVolume(projectId, snapshot.volumeId),
+        }),
+      )
+      .then(
+        ({ snapshot, volume }) =>
+          new VolumeSnapshot({
+            ...snapshot,
+            volume,
+          }),
+      );
   }
 
   getVolume(projectId, storageId) {
-    return this.OvhApiCloudProject
-      .Volume()
+    return this.OvhApiCloudProject.Volume()
       .v6()
       .get({
         serviceName: projectId,
         volumeId: storageId,
-      })
-      .$promise;
+      }).$promise;
   }
 
   delete(projectId, { id }) {
-    return this.OvhApiCloudProjectVolumeSnapshot
-      .v6()
-      .delete({
-        serviceName: projectId,
-        snapshotId: id,
-      })
-      .$promise;
+    return this.OvhApiCloudProjectVolumeSnapshot.v6().delete({
+      serviceName: projectId,
+      snapshotId: id,
+    }).$promise;
   }
 
   createVolume(
     projectId,
-    {
-      description,
-      imageId,
-      name,
-      region,
-      size,
-      snapshotId,
-      type,
-      bootable,
-    },
+    { description, imageId, name, region, size, snapshotId, type, bootable },
   ) {
-    return this.OvhApiCloudProject
-      .Volume()
+    return this.OvhApiCloudProject.Volume()
       .v6()
       .save(
         {
@@ -125,7 +104,6 @@ export default class PciProjectStorageSnapshotsService {
           type,
           bootable,
         },
-      )
-      .$promise;
+      ).$promise;
   }
 }

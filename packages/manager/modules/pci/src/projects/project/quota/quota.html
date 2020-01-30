@@ -1,106 +1,189 @@
-<pci-project-quota-header data-guide-url="$ctrl.guideUrl"></pci-project-quota-header>
+<pci-project-quota-header
+    data-guide-url="$ctrl.guideUrl"
+></pci-project-quota-header>
 
 <cui-message-container data-messages="$ctrl.messages"></cui-message-container>
 
 <div class="text-center" data-ng-if="$ctrl.isLoading">
-     <oui-spinner></oui-spinner>
+    <oui-spinner></oui-spinner>
 </div>
 
 <div data-ng-if="!$ctrl.isLoading">
     <!-- THERE IS NO PAYMENT MEAN - SHOW A MESSAGE TO ADD IT -->
-    <div class="oui-box" data-ng-if="$ctrl.isQuotaRestricted() && !$ctrl.defaultPaymentMean">
-        <p class="font-weight-bold" data-translate="pci_projects_project_quota_restricted_account"></p>
-        <p data-translate="pci_projects_project_quota_restricted_account_unlock"
-            data-translate-values="{'url': $ctrl.paymentmeanUrl}">
-        </p>
+    <div
+        class="oui-box"
+        data-ng-if="$ctrl.isQuotaRestricted() && !$ctrl.defaultPaymentMean"
+    >
+        <p
+            class="font-weight-bold"
+            data-translate="pci_projects_project_quota_restricted_account"
+        ></p>
+        <p
+            data-translate="pci_projects_project_quota_restricted_account_unlock"
+            data-translate-values="{'url': $ctrl.paymentmeanUrl}"
+        ></p>
     </div>
 
     <!-- THERE IS A PAYMENT MEAN BUT QUOTA IS RESTRICTED -  -->
-    <div class="oui-box" data-ng-if="$ctrl.isQuotaRestricted() && $ctrl.defaultPaymentMean">
-        <p class="font-weight-bold" data-translate="pci_projects_project_quota_restricted_paymentmean_active"></p>
-        <button class="oui-button oui-button_primary"
-                type="button"
-                data-ng-click="$ctrl.unleashAccount()"
-                data-translate="pci_projects_project_quota_restricted_unlock_button">
-        </button>
+    <div
+        class="oui-box"
+        data-ng-if="$ctrl.isQuotaRestricted() && $ctrl.defaultPaymentMean"
+    >
+        <p
+            class="font-weight-bold"
+            data-translate="pci_projects_project_quota_restricted_paymentmean_active"
+        ></p>
+        <button
+            class="oui-button oui-button_primary"
+            type="button"
+            data-ng-click="$ctrl.unleashAccount()"
+            data-translate="pci_projects_project_quota_restricted_unlock_button"
+        ></button>
     </div>
 
     <!-- ITS NOT RESTRICTED AND THERE IS A PAYMENT MEAN -->
     <div class="oui-box" data-ng-if="!$ctrl.isQuotaRestricted()">
-        <p class="font-weight-bold" data-translate="pci_projects_project_quota_protect_explain"></p>
-        <p write-right-required>{{ :: 'pci_projects_project_quota_protect_more' | translate }}</p>
-        <div
-            data-ng-if="$ctrl.region !== 'US'"
-            data-write-right-required>
+        <p
+            class="font-weight-bold"
+            data-translate="pci_projects_project_quota_protect_explain"
+        ></p>
+        <p write-right-required>
+            {{ :: 'pci_projects_project_quota_protect_more' | translate }}
+        </p>
+        <div data-ng-if="$ctrl.region !== 'US'" data-write-right-required>
             <a
                 class="oui-button oui-button_primary oui-link_icon"
                 data-ng-if=":: $ctrl.quotas.length > 0"
                 data-ng-href="{{:: $ctrl.supportUrl }}"
                 rel="noopener"
-                target="_blank">
-                <span data-translate="pci_projects_project_quota_protect_more_btn"></span>
-                <span class="oui-icon oui-icon-external_link" aria-hidden="true"></span>
-                <span class="sr-only" data-translate="pci_projects_project_quota_open_new_tab"></span>
+                target="_blank"
+            >
+                <span
+                    data-translate="pci_projects_project_quota_protect_more_btn"
+                ></span>
+                <span
+                    class="oui-icon oui-icon-external_link"
+                    aria-hidden="true"
+                ></span>
+                <span
+                    class="sr-only"
+                    data-translate="pci_projects_project_quota_open_new_tab"
+                ></span>
             </a>
 
             <button
                 type="button"
                 class="oui-button oui-button_primary no-transition"
                 data-ng-if=":: !$ctrl.quotas || ($ctrl.quotas && $ctrl.quotas.length === 0)"
-                disabled>
-                <span data-translate="pci_projects_project_quota_protect_more_btn"></span>
-                <span class="oui-icon oui-icon-external_link" aria-hidden="true"></span>
-                <span class="sr-only" data-translate="pci_projects_project_quota_open_new_tab"></span>
+                disabled
+            >
+                <span
+                    data-translate="pci_projects_project_quota_protect_more_btn"
+                ></span>
+                <span
+                    class="oui-icon oui-icon-external_link"
+                    aria-hidden="true"
+                ></span>
+                <span
+                    class="sr-only"
+                    data-translate="pci_projects_project_quota_open_new_tab"
+                ></span>
             </button>
         </div>
 
-        <div
-            data-ng-if="$ctrl.region === 'US'"
-            data-write-right-required>
-            <button type="button"
-                    class="oui-button oui-button_primary no-transition"
-                    data-ng-if="!$ctrl.quotas || ($ctrl.quotas && $ctrl.quotas.length === 0)"
-                    data-ng-disabled="true"
-                    data-translate="pci_projects_project_quota_protect_more_btn">
-            </button>
+        <div data-ng-if="$ctrl.region === 'US'" data-write-right-required>
+            <button
+                type="button"
+                class="oui-button oui-button_primary no-transition"
+                data-ng-if="!$ctrl.quotas || ($ctrl.quotas && $ctrl.quotas.length === 0)"
+                data-ng-disabled="true"
+                data-translate="pci_projects_project_quota_protect_more_btn"
+            ></button>
 
-            <a class="oui-button oui-button_primary no-transition"
+            <a
+                class="oui-button oui-button_primary no-transition"
                 data-ng-if="$ctrl.quotas.length"
                 data-ng-href="{{ $ctrl.supportUrl }}"
-                data-translate="pci_projects_project_quota_protect_more_btn">
+                data-translate="pci_projects_project_quota_protect_more_btn"
+            >
             </a>
         </div>
-
     </div>
 
     <!-- QUOTA TABLE -->
     <strong data-translate="pci_projects_project_quota_current_limit"></strong>
 
     <oui-datagrid data-rows="$ctrl.quotas">
-        <oui-column data-title=":: 'pci_projects_project_quota_region' | translate" data-property="region" data-sortable="asc">
-            <span data-ng-bind=":: $ctrl.CucRegionService.getTranslatedMicroRegion($row.region)"></span>
+        <oui-column
+            data-title=":: 'pci_projects_project_quota_region' | translate"
+            data-property="region"
+            data-sortable="asc"
+        >
+            <span
+                data-ng-bind=":: $ctrl.CucRegionService.getTranslatedMicroRegion($row.region)"
+            ></span>
         </oui-column>
-        <oui-column data-title=":: 'pci_projects_project_quota_instance' | translate" data-property="instance.maxInstances">
+        <oui-column
+            data-title=":: 'pci_projects_project_quota_instance' | translate"
+            data-property="instance.maxInstances"
+        >
             <span> {{ :: $row.instance.usedInstances }} /</span>
-            <span data-ng-if="$row.instance.maxInstances === -1" data-translate="pci_projects_project_quota_instance_unlimited"></span>
-            <span data-ng-if="$row.instance.maxInstances !== -1" data-ng-bind=" :: $row.instance.maxInstances"></span>
+            <span
+                data-ng-if="$row.instance.maxInstances === -1"
+                data-translate="pci_projects_project_quota_instance_unlimited"
+            ></span>
+            <span
+                data-ng-if="$row.instance.maxInstances !== -1"
+                data-ng-bind=" :: $row.instance.maxInstances"
+            ></span>
         </oui-column>
-        <oui-column data-title=":: 'pci_projects_project_quota_core' | translate" data-property="instance.maxCores">
+        <oui-column
+            data-title=":: 'pci_projects_project_quota_core' | translate"
+            data-property="instance.maxCores"
+        >
             <span>{{ :: $row.instance.usedCores }} / </span>
-            <span data-ng-if="$row.instance.maxCores === -1" data-translate="pci_projects_project_quota_instance_unlimited"></span>
-            <span data-ng-if="quota.instance.maxCores !== -1" data-ng-bind=":: $row.instance.maxCores"></span>
+            <span
+                data-ng-if="$row.instance.maxCores === -1"
+                data-translate="pci_projects_project_quota_instance_unlimited"
+            ></span>
+            <span
+                data-ng-if="quota.instance.maxCores !== -1"
+                data-ng-bind=":: $row.instance.maxCores"
+            ></span>
         </oui-column>
-        <oui-column data-title=":: 'pci_projects_project_quota_ram' | translate" data-property="instance.maxRam">
-            <span data-ng-bind=":: $row.instance.usedRAM > 0 ? (($row.instance.usedRAM * 1000000) | cucBytes:2) : $row.instance.usedRAM"></span>
+        <oui-column
+            data-title=":: 'pci_projects_project_quota_ram' | translate"
+            data-property="instance.maxRam"
+        >
+            <span
+                data-ng-bind=":: $row.instance.usedRAM > 0 ? (($row.instance.usedRAM * 1000000) | cucBytes:2) : $row.instance.usedRAM"
+            ></span>
             <span class="mx-1">/</span>
-            <span data-ng-if="$row.instance.maxRam === -1" data-translate="pci_projects_project_quota_instance_unlimited"></span>
-            <span data-ng-if="$row.instance.maxRam !== -1" data-ng-bind=":: ($row.instance.maxRam * 1000000) | cucBytes:2"></span>
+            <span
+                data-ng-if="$row.instance.maxRam === -1"
+                data-translate="pci_projects_project_quota_instance_unlimited"
+            ></span>
+            <span
+                data-ng-if="$row.instance.maxRam !== -1"
+                data-ng-bind=":: ($row.instance.maxRam * 1000000) | cucBytes:2"
+            ></span>
         </oui-column>
-        <oui-column data-title=":: 'pci_projects_project_quota_add_disk' | translate" data-property="volume.maxGigabytes">
-            <span data-ng-bind="$row.volume.usedGigabytes > 0 ? (($row.volume.usedGigabytes * 1000000000) | cucBytes:2) : $row.volume.usedGigabytes"></span>
+        <oui-column
+            data-title=":: 'pci_projects_project_quota_add_disk' | translate"
+            data-property="volume.maxGigabytes"
+        >
+            <span
+                data-ng-bind="$row.volume.usedGigabytes > 0 ? (($row.volume.usedGigabytes * 1000000000) | cucBytes:2) : $row.volume.usedGigabytes"
+            ></span>
             <span class="mx-1">/</span>
-            <span data-ng-if="$row.volume.maxGigabytes === -1" data-translate="pci_projects_project_quota_instance_unlimited"></span>
-            <span data-ng-if="$row.volume.maxGigabytes !== -1" data-ng-bind=":: ($row.volume.maxGigabytes * 1000000000) | cucBytes:2"></span>
+            <span
+                data-ng-if="$row.volume.maxGigabytes === -1"
+                data-translate="pci_projects_project_quota_instance_unlimited"
+            ></span>
+            <span
+                data-ng-if="$row.volume.maxGigabytes !== -1"
+                data-ng-bind=":: ($row.volume.maxGigabytes * 1000000000) | cucBytes:2"
+            ></span>
         </oui-column>
     </oui-datagrid>
 </div>

@@ -3,7 +3,8 @@ angular.module('managerApp').config(($stateProvider) => {
     url: '/portabilityOrder',
     views: {
       'telephonyView@telecom.telephony': {
-        templateUrl: 'app/telecom/telephony/alias/portability/order/telecom-telephony-alias-portability-order.html',
+        templateUrl:
+          'app/telecom/telephony/alias/portability/order/telecom-telephony-alias-portability-order.html',
         controller: 'TelecomTelephonyAliasPortabilityOrderCtrl',
         controllerAs: 'PortabilityOrderCtrl',
       },

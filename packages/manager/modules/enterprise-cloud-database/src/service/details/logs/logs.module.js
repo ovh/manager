@@ -10,7 +10,10 @@ const moduleName = 'enterpriseCloudDatabaseServiceDetailsLogs';
 angular
   .module(moduleName, [grantAdpAccess, revokeAdpAccess])
   .config(routing)
-  .component('enterpriseCloudDatabaseServiceDetailsLogsComponent', enterpriseCloudDatabaseServiceDetailsLogsComponent)
+  .component(
+    'enterpriseCloudDatabaseServiceDetailsLogsComponent',
+    enterpriseCloudDatabaseServiceDetailsLogsComponent,
+  )
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

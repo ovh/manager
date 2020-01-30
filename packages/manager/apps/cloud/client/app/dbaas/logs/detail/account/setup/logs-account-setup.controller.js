@@ -2,8 +2,16 @@ import forEach from 'lodash/forEach';
 import set from 'lodash/set';
 
 class LogsAccountSetupCtrl {
-  constructor($q, $state, $stateParams, CucControllerHelper, CucCloudMessage, LogsAccountService,
-    LogsHomeService, LogsDetailService) {
+  constructor(
+    $q,
+    $state,
+    $stateParams,
+    CucControllerHelper,
+    CucCloudMessage,
+    LogsAccountService,
+    LogsHomeService,
+    LogsDetailService,
+  ) {
     this.$q = $q;
     this.$state = $state;
     this.$stateParams = $stateParams;
@@ -20,20 +28,28 @@ class LogsAccountSetupCtrl {
   }
 
   initLoaders() {
-    this.service = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () => this.LogsDetailService.getServiceDetails(this.serviceName)
-        .then((service) => {
-          this.userName = service.username;
-          return service;
-        }),
-    }).load();
-    this.accountDetails = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () => this.LogsHomeService.getAccountDetails(this.serviceName)
-        .then((account) => {
-          this.fullName = `${account.me.firstname} ${account.me.name}`;
-          return account;
-        }),
-    }).load();
+    this.service = this.CucControllerHelper.request
+      .getHashLoader({
+        loaderFunction: () =>
+          this.LogsDetailService.getServiceDetails(this.serviceName).then(
+            (service) => {
+              this.userName = service.username;
+              return service;
+            },
+          ),
+      })
+      .load();
+    this.accountDetails = this.CucControllerHelper.request
+      .getHashLoader({
+        loaderFunction: () =>
+          this.LogsHomeService.getAccountDetails(this.serviceName).then(
+            (account) => {
+              this.fullName = `${account.me.firstname} ${account.me.name}`;
+              return account;
+            },
+          ),
+      })
+      .load();
   }
 
   resetPasswordRules() {
@@ -58,18 +74,23 @@ class LogsAccountSetupCtrl {
     }
     this.CucCloudMessage.flushChildMessage();
     this.saving = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () => this.LogsAccountService
-        .changePassword(
+      loaderFunction: () =>
+        this.LogsAccountService.changePassword(
           this.serviceName,
           this.newPassword,
           true,
-        )
-        .then(() => {
-          this.$state.go('dbaas.logs.detail.home', { serviceName: this.serviceName }, { reload: true });
+        ).then(() => {
+          this.$state.go(
+            'dbaas.logs.detail.home',
+            { serviceName: this.serviceName },
+            { reload: true },
+          );
         }),
     });
     return this.saving.load();
   }
 }
 
-angular.module('managerApp').controller('LogsAccountSetupCtrl', LogsAccountSetupCtrl);
+angular
+  .module('managerApp')
+  .controller('LogsAccountSetupCtrl', LogsAccountSetupCtrl);

@@ -1,9 +1,6 @@
 {
   class DedicatedServerOVHTasks {
-    constructor(
-      $http,
-      constants,
-    ) {
+    constructor($http, constants) {
       this.$http = $http;
 
       this.constants = constants;
@@ -17,7 +14,7 @@
             active: true,
           },
         })
-        .then(resp => resp.data);
+        .then((resp) => resp.data);
     }
   }
 

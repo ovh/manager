@@ -31,17 +31,15 @@ angular.module('App').controller(
           this.orderNumber = sslReport.providerOrderId;
 
           this.sslReport = filter(
-            map(
-              toPairs(sslReport),
-              sslReportEntry => ({
-                name: sslReportEntry[0],
-                value: sslReportEntry[1],
-              }),
-            ),
-            sslReportEntry => sslReportEntry.value !== 'non-required'
-              && sslReportEntry.value !== 'not-applicable'
-              && sslReportEntry.name !== 'providerOrderId'
-              && !startsWith(sslReportEntry.name, '$'),
+            map(toPairs(sslReport), (sslReportEntry) => ({
+              name: sslReportEntry[0],
+              value: sslReportEntry[1],
+            })),
+            (sslReportEntry) =>
+              sslReportEntry.value !== 'non-required' &&
+              sslReportEntry.value !== 'not-applicable' &&
+              sslReportEntry.name !== 'providerOrderId' &&
+              !startsWith(sslReportEntry.name, '$'),
           );
         })
         .catch((error) => {

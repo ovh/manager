@@ -1,5 +1,6 @@
 import head from 'lodash/head';
 import includes from 'lodash/includes';
+import isEmpty from 'lodash/isEmpty';
 import isObject from 'lodash/isObject';
 
 import { QUOTA_DECIMAL_PRECISION } from './general-informations.constants';
@@ -15,6 +16,7 @@ export default class HostingGeneralInformationsCtrl {
     atInternet,
     Alerter,
     Hosting,
+    hostingEmailService,
     HostingLocalSeo,
     HostingRuntimes,
     hostingSSLCertificate,
@@ -29,6 +31,7 @@ export default class HostingGeneralInformationsCtrl {
     this.atInternet = atInternet;
     this.Alerter = Alerter;
     this.Hosting = Hosting;
+    this.hostingEmailService = hostingEmailService;
     this.HostingLocalSeo = HostingLocalSeo;
     this.HostingRuntimes = HostingRuntimes;
     this.hostingSSLCertificate = hostingSSLCertificate;
@@ -64,13 +67,17 @@ export default class HostingGeneralInformationsCtrl {
 
     this.quotaInformations = `${quotaUsed} / ${quotaSize}`;
 
-    this.$scope.$on('hosting.ssl.reload', () => this.retrievingSSLCertificate());
-    return this.$q.all([
-      this.getUserLogsToken(),
-      this.getScreenshot(),
+    this.$scope.$on('hosting.ssl.reload', () =>
       this.retrievingSSLCertificate(),
-      this.retrievingAvailableOffers(this.serviceName),
-    ])
+    );
+    return this.$q
+      .all([
+        this.getUserLogsToken(),
+        this.getScreenshot(),
+        this.retrievingSSLCertificate(),
+        this.retrievingAvailableOffers(this.serviceName),
+        this.getEmailOfferDetails(this.serviceName),
+      ])
       .then(() => this.HostingRuntimes.getDefault(this.serviceName))
       .then((runtime) => {
         this.defaultRuntime = runtime;
@@ -85,8 +92,9 @@ export default class HostingGeneralInformationsCtrl {
 
   getScreenshot() {
     if (!this.$scope.hosting.isExpired) {
-      return this.OvhApiScreenshot.Aapi().get({ url: this.serviceName }).$promise
-        .then((screenshot) => {
+      return this.OvhApiScreenshot.Aapi()
+        .get({ url: this.serviceName })
+        .$promise.then((screenshot) => {
           this.screenshot = screenshot;
         });
     }
@@ -100,10 +108,9 @@ export default class HostingGeneralInformationsCtrl {
         remoteCheck: true,
         ttl: 3600,
       },
-    })
-      .then((userLogsToken) => {
-        this.userLogsToken = userLogsToken;
-      });
+    }).then((userLogsToken) => {
+      this.userLogsToken = userLogsToken;
+    });
   }
 
   initializeLocalSeo(serviceName) {
@@ -160,16 +167,20 @@ export default class HostingGeneralInformationsCtrl {
 
   canRegenerateSSLCertificate() {
     return (
-      this.hasSSLCertificate()
-      && this.sslCertificate.regenerable
-      && this.hostingSSLCertificate.constructor.testCanBeHandled(this.sslCertificate)
+      this.hasSSLCertificate() &&
+      this.sslCertificate.regenerable &&
+      this.hostingSSLCertificate.constructor.testCanBeHandled(
+        this.sslCertificate,
+      )
     );
   }
 
   canDeleteSSLCertificate() {
     return (
-      this.hasSSLCertificate()
-      && this.hostingSSLCertificate.constructor.testCanBeHandled(this.sslCertificate)
+      this.hasSSLCertificate() &&
+      this.hostingSSLCertificate.constructor.testCanBeHandled(
+        this.sslCertificate,
+      )
     );
   }
 
@@ -183,19 +194,24 @@ export default class HostingGeneralInformationsCtrl {
     }
 
     if (
-      this.hostingSSLCertificate.constructor.testCanBeHandled(this.sslCertificate)
+      this.hostingSSLCertificate.constructor.testCanBeHandled(
+        this.sslCertificate,
+      )
     ) {
-      return `${this.$translate.instant('common_yes')} - ${this.sslCertificate.provider} - ${this.sslCertificate.type}`;
+      return `${this.$translate.instant('common_yes')} - ${
+        this.sslCertificate.provider
+      } - ${this.sslCertificate.type}`;
     }
 
-    return this.$translate.instant(`hosting_dashboard_service_ssl_${this.sslCertificate.status}`);
+    return this.$translate.instant(
+      `hosting_dashboard_service_ssl_${this.sslCertificate.status}`,
+    );
   }
 
   retrievingAvailableOffers(productId) {
-    return this.Hosting.getAvailableOffer(productId)
-      .then((offers) => {
-        this.availableOffers = offers;
-      });
+    return this.Hosting.getAvailableOffer(productId).then((offers) => {
+      this.availableOffers = offers;
+    });
   }
 
   changeOffer() {
@@ -211,10 +227,59 @@ export default class HostingGeneralInformationsCtrl {
       name: 'web::hostname::general-informations::change-main-domain',
       type: 'action',
     });
-    this.$scope.setAction('change-main-domain/hosting-change-main-domain', this.$scope.hosting);
+    this.$scope.setAction(
+      'change-main-domain/hosting-change-main-domain',
+      this.$scope.hosting,
+    );
   }
 
   isHostingOffer() {
-    return !includes(['KIMSUFI_2015', '__60_FREE', 'DEMO_1_G', 'START_1_M', 'START_10_M', '_ASPFREE'], this.$scope.hosting.offer);
+    return !includes(
+      [
+        'KIMSUFI_2015',
+        '__60_FREE',
+        'DEMO_1_G',
+        'START_1_M',
+        'START_10_M',
+        '_ASPFREE',
+      ],
+      this.$scope.hosting.offer,
+    );
+  }
+
+  goToBoostTab() {
+    this.$scope.$parent.$ctrl.setSelectedTab('BOOST');
+  }
+
+  goToPrivateSqlActivation() {
+    return this.$state.go('app.hosting.database.private-sql-activation');
+  }
+
+  getEmailOfferDetails(serviceName) {
+    this.isRetrievingEmailOffer = true;
+    return this.hostingEmailService
+      .getEmailOfferDetails(serviceName)
+      .then((offer) => {
+        this.emailOffer = offer;
+      })
+      .catch((error) => {
+        this.Alerter.alertFromSWS(
+          this.$translate.instant('hosting_dashboard_email_offer_get_error'),
+          error,
+          this.$scope.alerts.main,
+        );
+      })
+      .finally(() => {
+        this.isRetrievingEmailOffer = false;
+      });
+  }
+
+  doesEmailOfferExists() {
+    // empty array means user has no email offer
+    return !isEmpty(this.emailOffer);
+  }
+
+  activateEmailOffer() {
+    this.$state.go('app.hosting.activate', { serviceName: this.serviceName });
   }
 }

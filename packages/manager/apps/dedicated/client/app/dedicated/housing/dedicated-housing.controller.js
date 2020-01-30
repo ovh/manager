@@ -49,12 +49,18 @@ angular.module('App').controller('HousingCtrl', [
         })
         .then((description) => {
           $scope.housing = assign($scope.housing, description);
-          $scope.housing.isExpired = moment(description.expiration).isBefore(moment());
+          $scope.housing.isExpired = moment(description.expiration).isBefore(
+            moment(),
+          );
           $scope.housing.serviceInfos = description;
           $scope.loadingHousingInformations = false;
         })
         .catch((err) => {
-          Alerter.alertFromSWS($translate.instant('housing_tab_stats_failure_load'), err, 'housing_dashboard_alert');
+          Alerter.alertFromSWS(
+            $translate.instant('housing_tab_stats_failure_load'),
+            err,
+            'housing_dashboard_alert',
+          );
           $scope.loadingHousingError = true;
         });
 

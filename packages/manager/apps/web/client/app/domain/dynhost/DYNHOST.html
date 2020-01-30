@@ -1,23 +1,35 @@
-<div class="container-fluid px-0" data-ng-controller="DomainTabDynHostCtrl as ctrlDomainDynHost">
-
-    <div class="text-center" data-ng-if="ctrlDomainDynHost.loading.init || (ctrlDomainDynHost.loading.dynHosts && !ctrlDomainDynHost.hasResult)">
+<div
+    class="container-fluid px-0"
+    data-ng-controller="DomainTabDynHostCtrl as ctrlDomainDynHost"
+>
+    <div
+        class="text-center"
+        data-ng-if="ctrlDomainDynHost.loading.init || (ctrlDomainDynHost.loading.dynHosts && !ctrlDomainDynHost.hasResult)"
+    >
         <oui-spinner data-size="l"></oui-spinner>
     </div>
 
     <!-- // No zone on domain -->
-    <div class="alert alert-warning" role="alert"
-         data-translate="domain_tab_DYNHOST_domain_no_zone"
-         data-translate-values="{ t0: ctrlDomainDynHost.product.displayName }"
-         data-ng-if="!ctrlDomainDynHost.loading.init && !ctrlDomainDynHost.domainHasZone"></div>
+    <div
+        class="alert alert-warning"
+        role="alert"
+        data-translate="domain_tab_DYNHOST_domain_no_zone"
+        data-translate-values="{ t0: ctrlDomainDynHost.product.displayName }"
+        data-ng-if="!ctrlDomainDynHost.loading.init && !ctrlDomainDynHost.domainHasZone"
+    ></div>
 
     <!-- // Domain has zone -->
-    <div data-ng-switch="ctrlDomainDynHost.currentView"
-         data-ng-if="!ctrlDomainDynHost.loading.init && ctrlDomainDynHost.domainHasZone">
+    <div
+        data-ng-switch="ctrlDomainDynHost.currentView"
+        data-ng-if="!ctrlDomainDynHost.loading.init && ctrlDomainDynHost.domainHasZone"
+    >
         <div data-ng-switch-when="dynHostView">
             <div data-ng-include="'domain/dynhost/domain-dynhost.html'"></div>
         </div>
         <div data-ng-switch-when="loginsDynHostView">
-            <div data-ng-include="'domain/dynhost/login/domain-dynhost-login.html'"></div>
+            <div
+                data-ng-include="'domain/dynhost/login/domain-dynhost-login.html'"
+            ></div>
         </div>
         <div ng-switch-default>
             <div data-ng-include="'domain/dynhost/domain-dynhost.html'"></div>

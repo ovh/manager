@@ -1,43 +1,64 @@
-.center { text-align: center; }
+.center {
+  text-align: center;
+}
 
 .left-height-full {
-    height: 100%;
-    float: left;
+  height: 100%;
+  float: left;
 }
+
 .lh30 {
-	line-height: 30px;
+  line-height: 30px;
 }
 
 .black-title {
-	color: #000;
-	font-weight: bold;
-	font-size: 18px;
+  color: #000;
+  font-weight: bold;
+  font-size: 18px;
 }
 
 .fa-10x {
   font-size: 10em !important;
 }
 
-.text-muted { color: #999; }
+.text-muted {
+  color: #999;
+}
 
-.monospace { font-family: Monospace, sans-serif; }
+.monospace {
+  font-family: Monospace, sans-serif;
+}
 
-.no-padding { padding: 0 !important; }
+.no-padding {
+  padding: 0 !important;
+}
 
-.no-margin { margin: 0 !important; }
+.no-margin {
+  margin: 0 !important;
+}
 
-.paddingt10 { padding: 10px 0 !important; }
+.paddingt10 {
+  padding: 10px 0 !important;
+}
 
-.padding10 { padding: 10px !important; }
+.padding10 {
+  padding: 10px !important;
+}
 
-.margint10 { margin-top: 10px !important; }
+.margint10 {
+  margin-top: 10px !important;
+}
 
-.marginl10 { margin-left: 10px !important; }
+.marginl10 {
+  margin-left: 10px !important;
+}
 
-.marginb10 { margin-bottom: 10px !important; }
+.marginb10 {
+  margin-bottom: 10px !important;
+}
 
 .selectable {
-  cursor:pointer;
+  cursor: pointer;
 }
 
 .module-useraccount-menu > .sidebar {
@@ -55,7 +76,7 @@
 }
 
 .module-useraccount-menu .sidebar .navigation-left-title .fa-chevron-left {
-  opacity: .6;
+  opacity: 0.6;
   font-size: 10px;
   width: 8px;
   height: 8px;
@@ -97,7 +118,7 @@
   color: #122844;
 }
 
-.module-useraccount-menu >.sidebar .navigation-left-title .module-useraccount-menu-small {
+.module-useraccount-menu > .sidebar .navigation-left-title .module-useraccount-menu-small {
   display: block;
   font-weight: lighter;
   font-size: 85%;
@@ -111,79 +132,35 @@
 *******************/
 
 .module-useraccount-sections-container {
-	background: none repeat scroll 0 0 #FFFFFF;
-    // margin-right: 10px;
-    // padding: 0 40px;
-    width: auto;
-    max-width: 1610px;
-    color: #737373;
-    line-height: 20px;
+  background: none repeat scroll 0 0 #fff;
+  width: auto;
+  max-width: 1610px;
+  color: #737373;
+  line-height: 20px;
 }
 
 .module-useraccount-sections-wrapped {
-  background: none repeat scroll 0 0 #FFFFFF;
+  background: none repeat scroll 0 0 #fff;
   margin-left: 305px;
   max-width: 1610px;
   padding: 0 40px;
   line-height: 20px;
 }
 
-  /*.module-useraccount-sections-subscriptions-container,*/
-/*.module-useraccount-sections-ssh-container {*/
-	/*border: solid 1px #DDDDDD;*/
-	/*padding: 5px 19px 20px;*/
-	/*border-radius: 4px;*/
-	/*min-height: 100px;*/
-/*}*/
-
-
 /*******************
 	/SECTIONS
 *******************/
-
-/*********************************************************
-	ICONS STUFF
-*********************************************************/
-// .module-useraccount-container i.icon-glass,
-// .module-useraccount-container i.icon-trash,
-// .module-useraccount-container i.icon-ssh-default-on,
-// .module-useraccount-container i.icon-ssh-default-off {
-//     display: inline-block;
-//     width: 16px;
-//     height: 20px;
-//     margin: 0;
-//     background-color: transparent;
-//     background-repeat: no-repeat;
-//     background-position: 0 0;
-// }
-
-// .module-useraccount-container table i { cursor: pointer; }
-
-// .module-useraccount-container i.icon-glass { background: transparent url('../../images/user-account/icn/icn_glass.png') no-repeat 0 0; }
-// .module-useraccount-container i.icon-trash { background: transparent url('../../images/user-account/icn/icn_trash.png') no-repeat 0 0; }
-// .module-useraccount-container i.icon-ssh-default-on,
-// .module-useraccount-container table i.icon-ssh-default-off:hover { background: transparent url('../../images/user-account/icn/icn_ssh_default.png') no-repeat 0 2px; }
-// .module-useraccount-container i.icon-ssh-default-off,
-// .module-useraccount-container table i.icon-ssh-default-on:hover { background: transparent url('../../images/user-account/icn/icn_ssh_default.png') no-repeat 0 -18px; }
-
-
-/*********************************************************
-	!ICONS STUFF
-*********************************************************/
-
-
 
 /*********************************************************
 	SSH
 *********************************************************/
 
 .module-useraccount-container #sshAddKeyLabel {
-	max-width: 510px;
-	min-width: 220px;
-	min-height: 80px;
-	margin-bottom: 0;
+  max-width: 510px;
+  min-width: 220px;
+  min-height: 80px;
+  margin-bottom: 0;
 }
-
 
 /*********************************************************
 	/SSH
@@ -194,16 +171,16 @@
 **********************************************************/
 
 .module-useraccount-container .module-useraccount-sections-infos-container label {
-    color: #333333;
-    font-weight: 700;
+  color: #333;
+  font-weight: 700;
 }
 
 .module-useraccount-container .module-useraccount-sections-infos-container .top-space-5 {
-    margin-top: 5px;
+  margin-top: 5px;
 }
 
 .module-useraccount-container .module-useraccount-sections-infos-container .form-horizontal .control-group {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 /*********************************************************
@@ -219,35 +196,22 @@
 }
 
 .module-useraccount-container .fs-red {
-  color: #E85E5E !important;
+  color: #e85e5e !important;
 }
 
-// .module-useraccount-container h1 {
-//   font-size: 24px;
-// }
-
-// .module-useraccount-container h2 {
-//   font-size: 18px;
-// }
-
-// .module-useraccount-container h3 {
-//   font-size: 16px;
-// }
-
 .module-useraccount-sections-container .button,
-.module-useraccount-sections-container a[role=button]{
+.module-useraccount-sections-container a[role='button'] {
   color: #fff;
   background: #7f8aaf;
   border: 0;
   padding: 10px;
   margin: 10px 0;
-  /*min-width: 213px;*/
   border-radius: 0;
 }
 
 .module-useraccount-sections-container .button[disabled],
-.module-useraccount-sections-container a[role=button][disabled]{
-  opacity: .5;
+.module-useraccount-sections-container a[role='button'][disabled] {
+  opacity: 0.5;
 }
 
 .module-useraccount-container .btn-prev-step {
@@ -319,7 +283,6 @@
   overflow: inherit !important;
 }
 
-
 .module-useraccount-sections-contacts-container td .btn.btn-icon:hover,
 .module-useraccount-sections-contacts-container td .btn.btn-icon:focus,
 .module-useraccount-sections-contacts-container td .btn.btn-icon:active {
@@ -332,7 +295,7 @@
 }
 
 .module-useraccount-container .popover .popover-content .popover-menu .btn-link:hover {
-  color: #ffffff;
+  color: #fff;
   background-color: #54a89b;
   text-decoration: none;
   font-weight: bold;

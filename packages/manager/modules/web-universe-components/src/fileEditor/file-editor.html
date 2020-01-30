@@ -1,30 +1,51 @@
 <div class="file-editor">
     <div class="file-editor-toolbar">
         <div class="d-inline-block">
-            <input type="file" id="fileEditorUpload" data-wuc-ovh-filereader
-                   data-ng-model="fileModel.value">
+            <input
+                type="file"
+                id="fileEditorUpload"
+                data-wuc-ovh-filereader
+                data-ng-model="fileModel.value"
+            />
             <label class="btn btn-icon" for="fileEditorUpload" role="button">
                 <span class="fa fa-upload" aria-hidden="true"></span>
             </label>
         </div>
-        <button type="button" class="btn btn-icon" title="{{:: 'file_editor_common_add' | translate }}"
-                data-ng-click="goToAddItem()"
-                data-ng-show="showButtonAdd">
+        <button
+            type="button"
+            class="btn btn-icon"
+            title="{{:: 'file_editor_common_add' | translate }}"
+            data-ng-click="goToAddItem()"
+            data-ng-show="showButtonAdd"
+        >
             <span class="fa fa-plus" aria-hidden="true"></span>
         </button>
         <span data-ng-show="ngModel.length > 0">|</span>
-        <button type="button" class="btn btn-icon" title="{{:: 'file_editor_common_delete_all' | translate }}"
-                data-ng-click="removeAll()"
-                data-ng-show="ngModel.length > 0">
+        <button
+            type="button"
+            class="btn btn-icon"
+            title="{{:: 'file_editor_common_delete_all' | translate }}"
+            data-ng-click="removeAll()"
+            data-ng-show="ngModel.length > 0"
+        >
             <span class="fa fa-trash-o" aria-hidden="true"></span>
         </button>
         <span data-ng-show="wucFileEditorErrors.length > 0">|</span>
-        <button type="button" class="btn btn-icon text-danger" title="{{:: 'file_editor_common_go_to_next_error' | translate }}"
-                data-ng-click="goToNextError()"
-                data-ng-show="wucFileEditorErrors.length > 0">
-            <span class="fa fa-exclamation-triangle mr-2" aria-hidden="true"></span>
-            <span data-ng-bind-html="(wucFileEditorErrors.length > 1 ? 'file_editor_mailing_list_common_addr_errors_other' : 'file_editor_mailing_list_common_addr_errors_1') | translate: { t0: fileEditorErrors.length }"
-                  data-ng-show="wucFileEditorErrors.length > 0">
+        <button
+            type="button"
+            class="btn btn-icon text-danger"
+            title="{{:: 'file_editor_common_go_to_next_error' | translate }}"
+            data-ng-click="goToNextError()"
+            data-ng-show="wucFileEditorErrors.length > 0"
+        >
+            <span
+                class="fa fa-exclamation-triangle mr-2"
+                aria-hidden="true"
+            ></span>
+            <span
+                data-ng-bind-html="(wucFileEditorErrors.length > 1 ? 'file_editor_mailing_list_common_addr_errors_other' : 'file_editor_mailing_list_common_addr_errors_1') | translate: { t0: fileEditorErrors.length }"
+                data-ng-show="wucFileEditorErrors.length > 0"
+            >
             </span>
         </button>
     </div>
@@ -34,30 +55,46 @@
             <oui-spinner></oui-spinner>
         </div>
         <p data-ng-show="!loader">
-            <a href="#" id="add-new-item"
-               editable-text="newItem.value"
-               onshow="newItem.value = ''"
-               oncancel="newItem.value = wucFileEditorNewItem"
-               onbeforesave="checkAddItem($data)"
-               onaftersave="addItem($data)"
-               data-ng-bind="newItem.value">
+            <a
+                href="#"
+                id="add-new-item"
+                editable-text="newItem.value"
+                onshow="newItem.value = ''"
+                oncancel="newItem.value = wucFileEditorNewItem"
+                onbeforesave="checkAddItem($data)"
+                onaftersave="addItem($data)"
+                data-ng-bind="newItem.value"
+            >
             </a>
         </p>
-        <p class="mt-2" data-ng-repeat="item in ngModel track by $index"
-           data-ng-show="!loader">
-
-            <a href="#" data-editable-text="ngModel[$index]"
-               data-ng-bind="item"
-               data-ng-show="wucFileEditorItemValidator(item)">
+        <p
+            class="mt-2"
+            data-ng-repeat="item in ngModel track by $index"
+            data-ng-show="!loader"
+        >
+            <a
+                href="#"
+                data-editable-text="ngModel[$index]"
+                data-ng-bind="item"
+                data-ng-show="wucFileEditorItemValidator(item)"
+            >
             </a>
 
-            <a href="#" class="text-danger" id="err-{{$index}}" data-editable-text="ngModel[$index]"
-               data-ng-bind="item"
-               data-ng-show="!wucFileEditorItemValidator(item)">
+            <a
+                href="#"
+                class="text-danger"
+                id="err-{{$index}}"
+                data-editable-text="ngModel[$index]"
+                data-ng-bind="item"
+                data-ng-show="!wucFileEditorItemValidator(item)"
+            >
             </a>
 
-            <button type="button" class="btn btn-icon"
-                    data-ng-click="removeItem(item)">
+            <button
+                type="button"
+                class="btn btn-icon"
+                data-ng-click="removeItem(item)"
+            >
                 <span class="fa fa-trash" aria-hidden="true"></span>
             </button>
         </p>

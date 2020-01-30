@@ -79,7 +79,9 @@ angular.module('App').controller(
         }
       };
 
-      this.$scope.$on('domain.dashboard.refresh', () => this.reloadDomain(true));
+      this.$scope.$on('domain.dashboard.refresh', () =>
+        this.reloadDomain(true),
+      );
       this.$scope.$on('$locationChangeStart', () => this.$scope.resetAction());
       this.$scope.$on('transfertLock.get.done', (e, infos) => {
         this.domain.protection = infos.transferLockStatus;
@@ -93,13 +95,14 @@ angular.module('App').controller(
           allDom: this.isAllDom
             ? this.WucAllDom.getServiceInfos(this.$stateParams.allDom)
             : null,
-          alldomOrder: !this.isAllDom ? this.User.getUrlOf('alldomOrder') : null,
+          alldomOrder: !this.isAllDom
+            ? this.User.getUrlOf('alldomOrder')
+            : null,
         })
-        .then(({
-          user, domain, allDom, alldomOrder,
-        }) => {
-          this.isAdminOrBilling = domain.contactAdmin === user.nichandle
-            || domain.contactBilling === user.nichandle;
+        .then(({ user, domain, allDom, alldomOrder }) => {
+          this.isAdminOrBilling =
+            domain.contactAdmin === user.nichandle ||
+            domain.contactBilling === user.nichandle;
           this.domainInfos = domain;
           if (this.isAllDom) {
             this.allDom = this.$stateParams.allDom;
@@ -116,7 +119,11 @@ angular.module('App').controller(
     }
 
     getGuides(subsidiary) {
-      this.autorenewGuide = get(this.constants, `urls.${subsidiary}.guides.autoRenew`, this.constants.urls.FR.guides.autoRenew);
+      this.autorenewGuide = get(
+        this.constants,
+        `urls.${subsidiary}.guides.autoRenew`,
+        this.constants.urls.FR.guides.autoRenew,
+      );
       this.autorenewUrl = `${this.constants.AUTORENEW_URL}?selectedType=DOMAIN&searchText=${this.domainInfos.domain}`;
     }
 
@@ -148,9 +155,10 @@ angular.module('App').controller(
           if (domain.messages.length > 0) {
             const messages = domain.isExpired
               ? filter(
-                domain.messages,
-                message => !/service(\s\w+\s)?expired/i.test(message.message),
-              )
+                  domain.messages,
+                  (message) =>
+                    !/service(\s\w+\s)?expired/i.test(message.message),
+                )
               : domain.messages;
 
             if (messages.length > 0) {
@@ -165,8 +173,7 @@ angular.module('App').controller(
           return this.$q.allSettled([
             this.Hosting.getHosting(domain.name, [404])
               .then((data) => {
-                this.canOrderHosting = data === null
-                  && !this.orderedHosting;
+                this.canOrderHosting = data === null && !this.orderedHosting;
               })
               .catch(() => {
                 this.canOrderHosting = false;
@@ -197,10 +204,12 @@ angular.module('App').controller(
             }),
           ]);
         })
-        .catch(() => this.Alerter.error(
-          this.$translate.instant('domain_dashboard_loading_error'),
-          this.$scope.alerts.page,
-        ))
+        .catch(() =>
+          this.Alerter.error(
+            this.$translate.instant('domain_dashboard_loading_error'),
+            this.$scope.alerts.page,
+          ),
+        )
         .finally(() => {
           this.loading.domainInfos = false;
           this.$scope.$broadcast('domain.refreshData.done');

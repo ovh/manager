@@ -8,9 +8,10 @@ export default /* @ngInject */ ($stateProvider) => {
       'app@': 'managerErrorPage',
     },
     resolve: {
-      cancelLink: /* @ngInject */ $state => $state.href('app'),
-      error: /* @ngInject */ $transition$ => $transition$.params(),
-      submitAction: /* @ngInject */ $window => () => $window.location.reload(),
+      cancelLink: /* @ngInject */ ($state) => $state.href('app'),
+      error: /* @ngInject */ ($transition$) => $transition$.params(),
+      submitAction: /* @ngInject */ ($window) => () =>
+        $window.location.reload(),
     },
   });
 };

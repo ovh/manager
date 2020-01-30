@@ -1,38 +1,51 @@
 <div data-ng-controller="EmailProDomainSrvAutoconfigCtrl as ctrl">
-    <div data-wizard
-         data-wizard-on-cancel="resetAction"
-         data-wizard-on-finish="configSRV"
-         data-wizard-title="'emailpro_tab_domain_diagnostic_srv_title' | translate">
-
-        <div data-wizard-step
-             data-wizard-step-valid="getIsOVHDomain">
-
+    <div
+        data-wizard
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="configSRV"
+        data-wizard-title="'emailpro_tab_domain_diagnostic_srv_title' | translate"
+    >
+        <div data-wizard-step data-wizard-step-valid="getIsOVHDomain">
             <div class="text-center" data-ng-if="ctrl.loading.step1">
                 <oui-spinner></oui-spinner>
             </div>
 
             <div data-ng-if="!ctrl.loading.step1">
-                <p data-ng-if="ctrl.domainDiag.isOvhDomain"
-                   data-translate="emailpro_tab_domain_diagnostic_srv_intro_ovh"
-                   data-translate-values="{ t0: ctrl.domain.displayName }"></p>
-                <p data-ng-if="!ctrl.domainDiag.isOvhDomain"
-                   data-translate="emailpro_tab_domain_diagnostic_srv_no_ovh"></p>
+                <p
+                    data-ng-if="ctrl.domainDiag.isOvhDomain"
+                    data-translate="emailpro_tab_domain_diagnostic_srv_intro_ovh"
+                    data-translate-values="{ t0: ctrl.domain.displayName }"
+                ></p>
+                <p
+                    data-ng-if="!ctrl.domainDiag.isOvhDomain"
+                    data-translate="emailpro_tab_domain_diagnostic_srv_no_ovh"
+                ></p>
                 <dl class="dl-horizontal">
-                    <dt data-translate="emailpro_tab_domain_diagnostic_srv_label_champ"></dt>
-                    <dd data-ng-bind-html="'emailpro_tab_domain_diagnostic_srv_config' | translate: { t0: ctrl.domainDiag.srv.subDomain, t1: ctrl.domainDiag.srv.priority, t2: ctrl.domainDiag.srv.weight, t3: ctrl.domainDiag.srv.port, t4: ctrl.domainDiag.srv.target }"></dd>
+                    <dt
+                        data-translate="emailpro_tab_domain_diagnostic_srv_label_champ"
+                    ></dt>
+                    <dd
+                        data-ng-bind-html="'emailpro_tab_domain_diagnostic_srv_config' | translate: { t0: ctrl.domainDiag.srv.subDomain, t1: ctrl.domainDiag.srv.priority, t2: ctrl.domainDiag.srv.weight, t3: ctrl.domainDiag.srv.port, t4: ctrl.domainDiag.srv.target }"
+                    ></dd>
                 </dl>
             </div>
         </div>
 
         <div data-wizard-step>
-            <p data-ng-bind-html="'emailpro_tab_domain_diagnostic_srv_recap' | translate: {t0: ctrl.domainDiag.srv.subDomain }"></p>
+            <p
+                data-ng-bind-html="'emailpro_tab_domain_diagnostic_srv_recap' | translate: {t0: ctrl.domainDiag.srv.subDomain }"
+            ></p>
 
             <dl class="dl-horizontal">
                 <dt data-translate="emailpro_tab_domain_domain"></dt>
                 <dd data-ng-bind="ctrl.domain.displayName"></dd>
 
-                <dt data-translate="emailpro_tab_domain_diagnostic_srv_label_champ"></dt>
-                <dd data-ng-bind-html="'emailpro_tab_domain_diagnostic_srv_config' | translate: { t0: ctrl.domainDiag.srv.subDomain, t1: ctrl.domainDiag.srv.priority, t2: ctrl.domainDiag.srv.weight, t3: ctrl.domainDiag.srv.port, t4: ctrl.domainDiag.srv.target }"></dd>
+                <dt
+                    data-translate="emailpro_tab_domain_diagnostic_srv_label_champ"
+                ></dt>
+                <dd
+                    data-ng-bind-html="'emailpro_tab_domain_diagnostic_srv_config' | translate: { t0: ctrl.domainDiag.srv.subDomain, t1: ctrl.domainDiag.srv.priority, t2: ctrl.domainDiag.srv.weight, t3: ctrl.domainDiag.srv.port, t4: ctrl.domainDiag.srv.target }"
+                ></dd>
             </dl>
         </div>
     </div>

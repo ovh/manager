@@ -9,9 +9,9 @@ export default /* @ngInject */ ($stateProvider) => {
     layout: 'modal',
     translations: { value: ['.'], format: 'json' },
     resolve: {
-      disableDomainsBulk: /* @ngInject */ BillingAutoRenew => () => BillingAutoRenew
-        .disableAutoRenewForDomains(),
-      goBack: /* @ngInject */ goToAutorenew => goToAutorenew,
+      disableDomainsBulk: /* @ngInject */ (BillingAutoRenew) => () =>
+        BillingAutoRenew.disableAutoRenewForDomains(),
+      goBack: /* @ngInject */ (goToAutorenew) => goToAutorenew,
     },
   });
 };

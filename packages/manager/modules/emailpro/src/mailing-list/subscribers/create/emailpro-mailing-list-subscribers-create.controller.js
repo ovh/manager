@@ -30,37 +30,51 @@ export default class EmailProMXPlanMailingListsCreateSubscriberCtrl {
     this.loading = true;
     const subscribersToAdd = uniq(this.selection);
 
-    return this.EmailProMXPlanMailingLists.addSubscribers(get(this.$scope, 'exchange.associatedDomainName'), {
-      mailingList: this.mailingList.name,
-      users: subscribersToAdd,
-      type: 'subscriber',
-    })
+    return this.EmailProMXPlanMailingLists.addSubscribers(
+      get(this.$scope, 'exchange.associatedDomainName'),
+      {
+        mailingList: this.mailingList.name,
+        users: subscribersToAdd,
+        type: 'subscriber',
+      },
+    )
       .then((tasks) => {
         const task = tasks.pop();
 
         this.Alerter.alertFromSWSBatchResult(
           {
-            OK: this.$translate.instant(subscribersToAdd.length === 1
-              ? 'mailing_list_tab_modal_create_subscriber_success'
-              : 'mailing_list_tab_modal_create_subscribers_success'),
-            PARTIAL: this.$translate.instant('mailing_list_tab_modal_create_subscribers_error'),
-            ERROR: this.$translate.instant('mailing_list_tab_modal_create_subscribers_error'),
+            OK: this.$translate.instant(
+              subscribersToAdd.length === 1
+                ? 'mailing_list_tab_modal_create_subscriber_success'
+                : 'mailing_list_tab_modal_create_subscribers_success',
+            ),
+            PARTIAL: this.$translate.instant(
+              'mailing_list_tab_modal_create_subscribers_error',
+            ),
+            ERROR: this.$translate.instant(
+              'mailing_list_tab_modal_create_subscribers_error',
+            ),
           },
           task,
           this.$scope.alerts.main,
         );
 
-        this.EmailProMXPlanMailingLists.pollState(this.$scope.exchange.associatedDomainName, {
-          id: task.task,
-          successStates: ['noState'],
-          namespace: 'EmailProMXPlanMailingLists.subscribers.poll',
-        });
+        this.EmailProMXPlanMailingLists.pollState(
+          this.$scope.exchange.associatedDomainName,
+          {
+            id: task.task,
+            successStates: ['noState'],
+            namespace: 'EmailProMXPlanMailingLists.subscribers.poll',
+          },
+        );
       })
       .catch((err) => {
         this.Alerter.alertFromSWS(
-          this.$translate.instant(subscribersToAdd.length === 1
-            ? 'mailing_list_tab_modal_create_subscriber_error'
-            : 'mailing_list_tab_modal_create_subscribers_error'),
+          this.$translate.instant(
+            subscribersToAdd.length === 1
+              ? 'mailing_list_tab_modal_create_subscriber_error'
+              : 'mailing_list_tab_modal_create_subscribers_error',
+          ),
           err,
           this.$scope.alerts.main,
         );

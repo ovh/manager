@@ -51,7 +51,9 @@ angular.module('App').controller(
           name: this.selectedAttachedDomain,
           type: 'HOSTING',
         });
-        this.Navigator.navigate(`configuration/hosting/${this.selectedAttachedDomain}`);
+        this.Navigator.navigate(
+          `configuration/hosting/${this.selectedAttachedDomain}`,
+        );
       }, 500);
     }
   },

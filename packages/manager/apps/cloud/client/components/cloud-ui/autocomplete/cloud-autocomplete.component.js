@@ -80,7 +80,8 @@ AutoCompleteController.prototype.filterChange = function filterChange() {
         this.openList();
         this.updateSelected(selected);
         this.filterChange();
-      } else { // else we scroll to the top of the list.
+      } else {
+        // else we scroll to the top of the list.
         this.resetHighlight();
       }
     } else {
@@ -105,14 +106,21 @@ AutoCompleteController.prototype.orderOptions = function orderOptions() {
   this.options = this.$filter('orderBy')(this.options, this.orderBy);
 };
 
-AutoCompleteController.prototype.filterOptions = function filterOptions(filter) {
+AutoCompleteController.prototype.filterOptions = function filterOptions(
+  filter,
+) {
   if (filter) {
-    const displayProperty = this.displayProperty; // eslint-disable-line
+    // eslint-disable-next-line prefer-destructuring
+    const displayProperty = this.displayProperty;
     const filtered = [];
     const regExp = new RegExp(filter, 'g');
     angular.forEach(this.options, (item) => {
       if (item[displayProperty].indexOf(filter) !== -1) {
-        set(item, 'filteredProperty', item[displayProperty].replace(regExp, `<strong>${filter}</strong>`));
+        set(
+          item,
+          'filteredProperty',
+          item[displayProperty].replace(regExp, `<strong>${filter}</strong>`),
+        );
         filtered.push(item);
       }
     });
@@ -132,20 +140,26 @@ AutoCompleteController.prototype.groupOptions = function groupOptions() {
   }
 };
 
-AutoCompleteController.prototype.changeHighlight = function changeHighlight(event) {
+AutoCompleteController.prototype.changeHighlight = function changeHighlight(
+  event,
+) {
   const keyCode = event.which || event.keyCode;
   switch (keyCode) {
     case this.keys.arrowUp:
       if (this.editing) {
         this.moveHightlightUp();
-        this.updateSelected(this.filteredOptions[this.highlightIndex][this.displayProperty]);
+        this.updateSelected(
+          this.filteredOptions[this.highlightIndex][this.displayProperty],
+        );
         event.preventDefault();
       }
       break;
     case this.keys.arrowDown:
       if (this.editing) {
         this.moveHightlightDown();
-        this.updateSelected(this.filteredOptions[this.highlightIndex][this.displayProperty]);
+        this.updateSelected(
+          this.filteredOptions[this.highlightIndex][this.displayProperty],
+        );
         event.preventDefault();
       }
       break;
@@ -170,7 +184,10 @@ AutoCompleteController.prototype.changeHighlight = function changeHighlight(even
   }
 };
 
-AutoCompleteController.prototype.confirmChooseItem = function confirmChooseItem(item, event) {
+AutoCompleteController.prototype.confirmChooseItem = function confirmChooseItem(
+  item,
+  event,
+) {
   this.chooseItem(item);
   this.endEdit();
 
@@ -207,7 +224,9 @@ AutoCompleteController.prototype.updateModel = function updateModel(newModel) {
   }
 };
 
-AutoCompleteController.prototype.updateSelected = function updateSelected(newSelected) {
+AutoCompleteController.prototype.updateSelected = function updateSelected(
+  newSelected,
+) {
   this.currentSelection = newSelected;
 };
 
@@ -237,17 +256,17 @@ AutoCompleteController.prototype.moveHightlightDown = function moveHightlightDow
   }
 };
 
-AutoCompleteController
-  .prototype
-  .scrollDownToHighlightedIndex = function scrollDownToHighlightedIndex() {
-    const list = this.getDomList();
-    const elem = this.getDomListItems()[this.highlightIndex];
-    const listOffsetBottom = list.clientHeight + list.scrollTop - elem.offsetHeight;
-    if (listOffsetBottom < elem.offsetTop) {
-      const scrollPosition = elem.offsetTop + elem.offsetHeight - list.clientHeight;
-      list.scrollTop = scrollPosition;
-    }
-  };
+AutoCompleteController.prototype.scrollDownToHighlightedIndex = function scrollDownToHighlightedIndex() {
+  const list = this.getDomList();
+  const elem = this.getDomListItems()[this.highlightIndex];
+  const listOffsetBottom =
+    list.clientHeight + list.scrollTop - elem.offsetHeight;
+  if (listOffsetBottom < elem.offsetTop) {
+    const scrollPosition =
+      elem.offsetTop + elem.offsetHeight - list.clientHeight;
+    list.scrollTop = scrollPosition;
+  }
+};
 
 AutoCompleteController.prototype.getDomList = function getDomList() {
   return document.querySelector('.cloud-autocomplete__list');
@@ -273,40 +292,46 @@ AutoCompleteController.prototype.decrementHighlightIndexes = function decrementH
   this.adjustHighlightGroupIndexes('up');
 };
 
-AutoCompleteController
-  .prototype
-  .adjustHighlightGroupIndexes = function adjustHighlightGroupIndexes(direction) {
-    if (this.groupBy) {
-      const currItem = this.filteredOptions[this.highlightIndex];
-      this.highlightedGroupKey = this.getArrangedGroupName(currItem[this.groupBy]);
-      let precItem = null;
-      switch (direction) {
-        case 'up':
-          // If we changed group and we are going up, we are on the last element
-          // of the previous group.
-          precItem = this.filteredOptions[this.highlightIndex + 1];
-          if (!precItem || precItem[this.groupBy] !== currItem[this.groupBy]) {
-            this.highlightedGroupIndex = this.groupedOptions[currItem[this.groupBy]].length - 1;
-          }
-          break;
-        default:
-          // If we changed group and we are going down,
-          // we are on the first element of the next group.
-          precItem = this.filteredOptions[this.highlightIndex - 1];
-          if (!precItem || precItem[this.groupBy] !== currItem[this.groupBy]) {
-            this.highlightedGroupIndex = 0;
-          }
-          break;
-      }
+AutoCompleteController.prototype.adjustHighlightGroupIndexes = function adjustHighlightGroupIndexes(
+  direction,
+) {
+  if (this.groupBy) {
+    const currItem = this.filteredOptions[this.highlightIndex];
+    this.highlightedGroupKey = this.getArrangedGroupName(
+      currItem[this.groupBy],
+    );
+    let precItem = null;
+    switch (direction) {
+      case 'up':
+        // If we changed group and we are going up, we are on the last element
+        // of the previous group.
+        precItem = this.filteredOptions[this.highlightIndex + 1];
+        if (!precItem || precItem[this.groupBy] !== currItem[this.groupBy]) {
+          this.highlightedGroupIndex =
+            this.groupedOptions[currItem[this.groupBy]].length - 1;
+        }
+        break;
+      default:
+        // If we changed group and we are going down,
+        // we are on the first element of the next group.
+        precItem = this.filteredOptions[this.highlightIndex - 1];
+        if (!precItem || precItem[this.groupBy] !== currItem[this.groupBy]) {
+          this.highlightedGroupIndex = 0;
+        }
+        break;
     }
-  };
+  }
+};
 
 AutoCompleteController.prototype.placeHighlightOnModel = function placeHighlightOnModel() {
   // When we open the dropdown and a selection was made beforehand
   // we have to scroll and highlight the selected item.
   if (this.ngModel && !this.ngModel.isNew) {
     const selectedModel = this.ngModel;
-    this.highlightIndex = findIndex(this.options, item => item === selectedModel);
+    this.highlightIndex = findIndex(
+      this.options,
+      (item) => item === selectedModel,
+    );
 
     if (this.groupBy) {
       this.highlightedGroupKey = this.getArrangedGroupName(
@@ -316,7 +341,7 @@ AutoCompleteController.prototype.placeHighlightOnModel = function placeHighlight
       const optionToFind = this.options[this.highlightIndex];
       this.highlightedGroupIndex = findIndex(
         this.groupedOptions[this.highlightedGroupKey],
-        item => item === optionToFind,
+        (item) => item === optionToFind,
       );
     }
     this.$timeout(this.scrollDownToHighlightedIndex.bind(this));
@@ -327,12 +352,16 @@ AutoCompleteController.prototype.resetHighlight = function resetHighlight() {
   this.highlightIndex = 0;
 
   if (this.groupBy) {
-    this.highlightedGroupKey = this.getArrangedGroupName(this.filteredOptions[0][this.groupBy]);
+    this.highlightedGroupKey = this.getArrangedGroupName(
+      this.filteredOptions[0][this.groupBy],
+    );
     this.highlightedGroupIndex = 0;
   }
 };
 
-AutoCompleteController.prototype.getArrangedGroupName = function getArrangedGroupName(groupName) {
+AutoCompleteController.prototype.getArrangedGroupName = function getArrangedGroupName(
+  groupName,
+) {
   return isUndefined(groupName) ? 'undefined' : groupName;
 };
 

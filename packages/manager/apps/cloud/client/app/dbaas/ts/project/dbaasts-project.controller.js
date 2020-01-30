@@ -1,7 +1,9 @@
-
-
-angular.module('managerApp').controller('DBaasTsProjectCtrl',
-  function DBaasTsProjectCtrl($scope, $state) {
+angular
+  .module('managerApp')
+  .controller('DBaasTsProjectCtrl', function DBaasTsProjectCtrl(
+    $scope,
+    $state,
+  ) {
     const self = this;
 
     self.loaders = {

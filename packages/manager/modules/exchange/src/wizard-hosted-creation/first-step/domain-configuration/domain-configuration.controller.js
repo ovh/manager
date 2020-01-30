@@ -72,7 +72,9 @@ export default class DomainConfigurationController {
       .then(() => {
         this.homepage.domainName = savedDomainName;
 
-        const domainNameWasRetrievedFromPreferences = !isEmpty(this.homepage.domainName);
+        const domainNameWasRetrievedFromPreferences = !isEmpty(
+          this.homepage.domainName,
+        );
         if (domainNameWasRetrievedFromPreferences) {
           if (this.homepage.domainIsNotManagedByCurrentNIC) {
             this.loaders.IsWaitingForCNAME = true;
@@ -88,7 +90,9 @@ export default class DomainConfigurationController {
       })
       .catch((error) => {
         this.messaging.writeError(
-          this.$translate.instant('exchange_wizardHostedCreation_addDomainName_retrieval_error'),
+          this.$translate.instant(
+            'exchange_wizardHostedCreation_addDomainName_retrieval_error',
+          ),
           error,
         );
         this.scrollToTop();
@@ -115,11 +119,15 @@ export default class DomainConfigurationController {
       this.$routerParams.productId,
     )
       .then((domainData) => {
-        this.availableDomainNames = domainData.availableDomains.map(domain => domain.name);
+        this.availableDomainNames = domainData.availableDomains.map(
+          (domain) => domain.name,
+        );
       })
       .catch((error) => {
         this.messaging.writeError(
-          this.$translate.instant('exchange_wizardHostedCreation_addDomainName_retrieval_error'),
+          this.$translate.instant(
+            'exchange_wizardHostedCreation_addDomainName_retrieval_error',
+          ),
           error,
         );
         this.scrollToTop();
@@ -146,11 +154,12 @@ export default class DomainConfigurationController {
               this.$routerParams.productId,
               domain.taskPendingId,
             )
-            .then(domainCreationTask => ({ domain, domainCreationTask }));
+            .then((domainCreationTask) => ({ domain, domainCreationTask }));
         }
 
         if (this.exchangeStates.constructor.isDeleting(domain)) {
-          throw null; // eslint-disable-line
+          // eslint-disable-next-line no-throw-literal
+          throw null;
         }
 
         return null;
@@ -171,23 +180,25 @@ export default class DomainConfigurationController {
       })
       .then((domainCreationPollingData) => {
         if (isObject(domainCreationPollingData)) {
-          const isWaitingForCNAME = !isEmpty(domainCreationPollingData.cnameToCheck);
+          const isWaitingForCNAME = !isEmpty(
+            domainCreationPollingData.cnameToCheck,
+          );
 
           if (isWaitingForCNAME) {
             this.loaders.IsWaitingForCNAME = true;
             this.homepage.domainHasBeenAssociated = true;
-            this.homepage.cnameToCheck = `${domainCreationPollingData.cnameToCheck}.${
-              domainCreationPollingData.name
-            }`;
+            this.homepage.cnameToCheck = `${domainCreationPollingData.cnameToCheck}.${domainCreationPollingData.name}`;
             this.homepage.domainIsNotManagedByCurrentNIC = true;
 
             return this.homepage
               .savingCheckpoint()
-              .then(() => this.wizardHostedCreationDomainConfiguration.polling(
-                this.$routerParams.organization,
-                this.$routerParams.productId,
-                domainCreationPollingData.taskPendingId,
-              ));
+              .then(() =>
+                this.wizardHostedCreationDomainConfiguration.polling(
+                  this.$routerParams.organization,
+                  this.$routerParams.productId,
+                  domainCreationPollingData.taskPendingId,
+                ),
+              );
           }
         }
 
@@ -285,7 +296,9 @@ export default class DomainConfigurationController {
 
   scrollToBottom() {
     this.$timeout(() => {
-      document.getElementById('domain-configuration-container').scrollIntoView(false);
+      document
+        .getElementById('domain-configuration-container')
+        .scrollIntoView(false);
     });
   }
 
@@ -296,43 +309,48 @@ export default class DomainConfigurationController {
   }
 
   isAddingButtonDisabled() {
-    const domainNameIsOk = (
-      isString(this.homepage.domainName)
-      && !isEmpty(this.homepage.domainName)
-    );
-    const authorityIsOk = !this.homepage.domainIsNotManagedByCurrentNIC
-      && isBoolean(this.homepage.domainIsOnlyForExchange);
-    const configurationModeIsOk = !this.homepage.domainIsNotManagedByCurrentNIC
-      && this.homepage.domainIsOnlyForExchange
-      && isBoolean(this.homepage.isAutoConfigurationMode);
-    const automaticMXRelayIsOk = !this.homepage.domainIsNotManagedByCurrentNIC
-      && !this.homepage.domainIsOnlyForExchange
-      && this.homepage.domainIsAssociatedToEmailService;
-    const mxRelayIsOk = !this.homepage.domainIsNotManagedByCurrentNIC
-      && !this.homepage.domainIsOnlyForExchange
-      && !this.homepage.domainIsAssociatedToEmailService
-      && isObject(this.mxRelayForm)
-      && this.mxRelayForm.mxRelay.$valid;
+    const domainNameIsOk =
+      isString(this.homepage.domainName) && !isEmpty(this.homepage.domainName);
+    const authorityIsOk =
+      !this.homepage.domainIsNotManagedByCurrentNIC &&
+      isBoolean(this.homepage.domainIsOnlyForExchange);
+    const configurationModeIsOk =
+      !this.homepage.domainIsNotManagedByCurrentNIC &&
+      this.homepage.domainIsOnlyForExchange &&
+      isBoolean(this.homepage.isAutoConfigurationMode);
+    const automaticMXRelayIsOk =
+      !this.homepage.domainIsNotManagedByCurrentNIC &&
+      !this.homepage.domainIsOnlyForExchange &&
+      this.homepage.domainIsAssociatedToEmailService;
+    const mxRelayIsOk =
+      !this.homepage.domainIsNotManagedByCurrentNIC &&
+      !this.homepage.domainIsOnlyForExchange &&
+      !this.homepage.domainIsAssociatedToEmailService &&
+      isObject(this.mxRelayForm) &&
+      this.mxRelayForm.mxRelay.$valid;
 
-    const enoughDataToAdd = domainNameIsOk
-      && authorityIsOk
-      && (configurationModeIsOk || mxRelayIsOk || automaticMXRelayIsOk);
+    const enoughDataToAdd =
+      domainNameIsOk &&
+      authorityIsOk &&
+      (configurationModeIsOk || mxRelayIsOk || automaticMXRelayIsOk);
 
     return this.loaders.IsWaitingForCNAME || !enoughDataToAdd;
   }
 
   configurationIsOver() {
-    const formIsValid = this.homepage.domainIsAssociatedToEmailService === false
-      && this.mxRelayForm.$valid === true;
-    const nonManagedDomainConfigurationIsOver = this.homepage.domainIsOnlyForExchange === true
-      || this.homepage.domainIsAssociatedToEmailService === true
-      || formIsValid;
-    const nonManagedDomainIsOver = (
-      this.homepage.domainIsNotManagedByCurrentNIC
-      && nonManagedDomainConfigurationIsOver
-    );
-    const managedDomainIsOver = !this.homepage.domainIsNotManagedByCurrentNIC
-      && this.homepage.isAutoConfigurationMode != null;
+    const formIsValid =
+      this.homepage.domainIsAssociatedToEmailService === false &&
+      this.mxRelayForm.$valid === true;
+    const nonManagedDomainConfigurationIsOver =
+      this.homepage.domainIsOnlyForExchange === true ||
+      this.homepage.domainIsAssociatedToEmailService === true ||
+      formIsValid;
+    const nonManagedDomainIsOver =
+      this.homepage.domainIsNotManagedByCurrentNIC &&
+      nonManagedDomainConfigurationIsOver;
+    const managedDomainIsOver =
+      !this.homepage.domainIsNotManagedByCurrentNIC &&
+      this.homepage.isAutoConfigurationMode != null;
 
     return nonManagedDomainIsOver || managedDomainIsOver;
   }
@@ -341,46 +359,50 @@ export default class DomainConfigurationController {
     const formattedDomainName = this.homepage.domainName.replace(/^www\./, '');
 
     return this.addingDomain()
-      .then(domainCreationTask => this.wizardHostedCreationDomainConfiguration
-        .pollingCNAMEToCheck(
-          this.$routerParams.organization,
-          this.$routerParams.productId,
-          formattedDomainName,
-          domainCreationTask,
-        )
-        .then((domainCreationPollingData) => {
-          this.homepage.domainHasBeenAssociated = true;
-          const domainWasCreatedSuccessfully = isEmpty(domainCreationPollingData.cnameToCheck);
-          this.loaders.IsWaitingForDomainAssociation = false;
+      .then((domainCreationTask) =>
+        this.wizardHostedCreationDomainConfiguration
+          .pollingCNAMEToCheck(
+            this.$routerParams.organization,
+            this.$routerParams.productId,
+            formattedDomainName,
+            domainCreationTask,
+          )
+          .then((domainCreationPollingData) => {
+            this.homepage.domainHasBeenAssociated = true;
+            const domainWasCreatedSuccessfully = isEmpty(
+              domainCreationPollingData.cnameToCheck,
+            );
+            this.loaders.IsWaitingForDomainAssociation = false;
 
-          if (domainWasCreatedSuccessfully) {
-            this.loaders.IsWaitingForCNAME = false;
-            return null;
-          }
-
-          // Sometimes the selected domain is not actually managed by the current NIC,
-          // so another screen must be used
-          this.loaders.IsWaitingForCNAME = true;
-          this.homepage.domainIsNotManagedByCurrentNIC = true;
-          this.homepage.domainHasBeenAssociated = true;
-          this.homepage.cnameToCheck = `${domainCreationPollingData.cnameToCheck}.${
-            domainCreationPollingData.name
-          }`;
-
-          return this.homepage
-            .savingCheckpoint()
-            .then(() => this.wizardHostedCreationDomainConfiguration.polling(
-              this.$routerParams.organization,
-              this.$routerParams.productId,
-              domainCreationTask,
-            ))
-            .finally(() => {
+            if (domainWasCreatedSuccessfully) {
               this.loaders.IsWaitingForCNAME = false;
-              this.homepage.isShowingEmailCustomization = true;
+              return null;
+            }
 
-              return this.homepage.savingCheckpoint();
-            });
-        }))
+            // Sometimes the selected domain is not actually managed by the current NIC,
+            // so another screen must be used
+            this.loaders.IsWaitingForCNAME = true;
+            this.homepage.domainIsNotManagedByCurrentNIC = true;
+            this.homepage.domainHasBeenAssociated = true;
+            this.homepage.cnameToCheck = `${domainCreationPollingData.cnameToCheck}.${domainCreationPollingData.name}`;
+
+            return this.homepage
+              .savingCheckpoint()
+              .then(() =>
+                this.wizardHostedCreationDomainConfiguration.polling(
+                  this.$routerParams.organization,
+                  this.$routerParams.productId,
+                  domainCreationTask,
+                ),
+              )
+              .finally(() => {
+                this.loaders.IsWaitingForCNAME = false;
+                this.homepage.isShowingEmailCustomization = true;
+
+                return this.homepage.savingCheckpoint();
+              });
+          }),
+      )
       .then(() => {
         this.homepage.domainHasBeenAssociated = true;
         this.homepage.isShowingEmailCustomization = true;
@@ -484,7 +506,9 @@ export default class DomainConfigurationController {
   addingDomain() {
     this.homepage.shouldDisabledDomainSelection = true;
     this.loaders.IsWaitingForDomainAssociation = true;
-    const formattedDomainName = punycode.toASCII(this.homepage.domainName.replace(/^www\./, ''));
+    const formattedDomainName = punycode.toASCII(
+      this.homepage.domainName.replace(/^www\./, ''),
+    );
 
     const data = {
       name: formattedDomainName,
@@ -495,7 +519,9 @@ export default class DomainConfigurationController {
         ? this.homepage.isAutoConfigurationMode
         : false,
       main: false,
-      type: this.homepage.domainIsOnlyForExchange ? 'authoritative' : 'nonAuthoritative',
+      type: this.homepage.domainIsOnlyForExchange
+        ? 'authoritative'
+        : 'nonAuthoritative',
     };
 
     if (this.homepage.domainIsAssociatedToEmailService != null) {
@@ -506,11 +532,13 @@ export default class DomainConfigurationController {
     this.scrollToBottom();
     return this.homepage
       .savingCheckpoint()
-      .then(() => this.wizardHostedCreationDomainConfiguration.retrievingDomain(
-        this.$routerParams.organization,
-        this.$routerParams.productId,
-        this.homepage.domainName,
-      ))
+      .then(() =>
+        this.wizardHostedCreationDomainConfiguration.retrievingDomain(
+          this.$routerParams.organization,
+          this.$routerParams.productId,
+          this.homepage.domainName,
+        ),
+      )
       .catch(() => null)
       .then((domain) => {
         const domainState = get(domain, 'state');

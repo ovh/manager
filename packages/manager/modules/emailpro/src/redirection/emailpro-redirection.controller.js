@@ -21,13 +21,17 @@ export default class EmailMXPlanEmailRedirectionCtrl {
     };
     this.redirectionsDetails = [];
 
-    this.$scope.$on('hosting.tabs.emails.redirections.refresh', () => this.refreshTableRedirections());
+    this.$scope.$on('hosting.tabs.emails.redirections.refresh', () =>
+      this.refreshTableRedirections(),
+    );
     this.getQuotas().then(() => this.refreshTableRedirections());
   }
 
   getQuotas() {
     this.loading.quotas = true;
-    return this.WucEmails.getQuotas(get(this.$scope, 'exchange.associatedDomainName'))
+    return this.WucEmails.getQuotas(
+      get(this.$scope, 'exchange.associatedDomainName'),
+    )
       .then((quotas) => {
         this.quotas = quotas;
       })
@@ -55,11 +59,15 @@ export default class EmailMXPlanEmailRedirectionCtrl {
     ];
 
     return this.$q
-      .all(map(
-        this.redirections,
-        ({ id }) => this.WucEmails.getRedirection(get(this.$scope, 'exchange.associatedDomainName'), id),
-      ))
-      .then(data => dataToExport.concat(map(data, d => [d.from, d.to])))
+      .all(
+        map(this.redirections, ({ id }) =>
+          this.WucEmails.getRedirection(
+            get(this.$scope, 'exchange.associatedDomainName'),
+            id,
+          ),
+        ),
+      )
+      .then((data) => dataToExport.concat(map(data, (d) => [d.from, d.to])))
       .finally(() => {
         this.loading.exportCSV = false;
       });
@@ -69,21 +77,28 @@ export default class EmailMXPlanEmailRedirectionCtrl {
     this.loading.redirections = true;
     this.redirections = null;
 
-    return this.WucEmails.getRedirections(get(this.$scope, 'exchange.associatedDomainName'))
+    return this.WucEmails.getRedirections(
+      get(this.$scope, 'exchange.associatedDomainName'),
+    )
       .then((data) => {
-        this.redirections = data.map(id => ({ id }));
+        this.redirections = data.map((id) => ({ id }));
       })
-      .catch(err => this.Alerter.alertFromSWS(
-        this.$translate.instant('email_tab_table_redirections_error'),
-        err,
-        this.$scope.alerts.main,
-      ))
+      .catch((err) =>
+        this.Alerter.alertFromSWS(
+          this.$translate.instant('email_tab_table_redirections_error'),
+          err,
+          this.$scope.alerts.main,
+        ),
+      )
       .finally(() => {
         this.loading.redirections = false;
       });
   }
 
   transformItem({ id }) {
-    return this.WucEmails.getRedirection(get(this.$scope, 'exchange.associatedDomainName'), id);
+    return this.WucEmails.getRedirection(
+      get(this.$scope, 'exchange.associatedDomainName'),
+      id,
+    );
   }
 }

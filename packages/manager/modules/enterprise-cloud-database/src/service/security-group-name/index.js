@@ -5,7 +5,10 @@ const moduleName = 'enterpriseCloudDatabaseServiceSecurityGroupName';
 
 angular
   .module(moduleName, [])
-  .component('enterpriseCloudDatabaseServiceSecurityGroupNameComponent', securityGroupNameComponent)
+  .component(
+    'enterpriseCloudDatabaseServiceSecurityGroupNameComponent',
+    securityGroupNameComponent,
+  )
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

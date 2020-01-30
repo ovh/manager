@@ -5,8 +5,15 @@ import IplbFrontendsPreviewTemplate from './preview/iplb-frontends-preview.html'
 
 export default class IpLoadBalancerFrontendsCtrl {
   /* @ngInject */
-  constructor($state, $stateParams, $translate, CucCloudMessage, CucControllerHelper,
-    IpLoadBalancerActionService, IpLoadBalancerFrontendsService) {
+  constructor(
+    $state,
+    $stateParams,
+    $translate,
+    CucCloudMessage,
+    CucControllerHelper,
+    IpLoadBalancerActionService,
+    IpLoadBalancerFrontendsService,
+  ) {
     this.$state = $state;
     this.$stateParams = $stateParams;
     this.$translate = $translate;
@@ -22,20 +29,23 @@ export default class IpLoadBalancerFrontendsCtrl {
 
   init() {
     this.loading = true;
-    this.IpLoadBalancerFrontendService.getFrontends(this.$stateParams.serviceName)
-      .then((results) => {
-        this.loading = false;
-        this.frontends = results;
-      });
+    this.IpLoadBalancerFrontendService.getFrontends(
+      this.$stateParams.serviceName,
+    ).then((results) => {
+      this.loading = false;
+      this.frontends = results;
+    });
   }
 
   loadFarm(frontend) {
     if (!frontend.defaultFarmId) {
       set(frontend, 'defaultFarm', null);
     }
-    return this.IpLoadBalancerFrontendService
-      .getFarm(frontend.protocol, this.$stateParams.serviceName, frontend.defaultFarmId)
-      .then(farm => ({ defaultFarm: farm }));
+    return this.IpLoadBalancerFrontendService.getFarm(
+      frontend.protocol,
+      this.$stateParams.serviceName,
+      frontend.defaultFarmId,
+    ).then((farm) => ({ defaultFarm: farm }));
   }
 
   update(frontend) {

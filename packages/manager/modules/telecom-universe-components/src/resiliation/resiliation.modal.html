@@ -4,7 +4,8 @@
             type="button"
             class="close float-right"
             aria-label="{{ ::'resiliation_common_cancel' | translate }}"
-            data-ng-click="ContactAddCtrl.cancel()">
+            data-ng-click="ContactAddCtrl.cancel()"
+        >
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
@@ -19,7 +20,8 @@
                             type="checkbox"
                             id="resiliation_message1"
                             name="resiliation_message1"
-                            data-ng-model="ResiliationModelCtrl.resiliation.confirm.one">
+                            data-ng-model="ResiliationModelCtrl.resiliation.confirm.one"
+                        />
                         <span data-translate="resiliation_message1"></span>
                     </label>
                 </div>
@@ -32,7 +34,8 @@
                             type="checkbox"
                             id="resiliation_message2"
                             name="resiliation_message2"
-                            data-ng-model="ResiliationModelCtrl.resiliation.confirm.two">
+                            data-ng-model="ResiliationModelCtrl.resiliation.confirm.two"
+                        />
                         <span data-translate="resiliation_message2"></span>
                     </label>
                 </div>
@@ -40,14 +43,18 @@
         </ul>
     </div>
     <div class="modal-footer">
-        <button type="button"
-                class="btn btn-primary"
-                data-ng-click="$close('ok')"
-                data-ng-disabled="!ResiliationModelCtrl.resiliation.confirm.one || !ResiliationModelCtrl.resiliation.confirm.two"
-                data-translate="resiliation_confirm"></button>
-        <button type="button"
-                class="btn btn-default"
-                data-ng-click="$dismiss('cancel')"
-                data-translate="resiliation_common_cancel"></button>
+        <button
+            type="button"
+            class="btn btn-primary"
+            data-ng-click="$close('ok')"
+            data-ng-disabled="!ResiliationModelCtrl.resiliation.confirm.one || !ResiliationModelCtrl.resiliation.confirm.two"
+            data-translate="resiliation_confirm"
+        ></button>
+        <button
+            type="button"
+            class="btn btn-default"
+            data-ng-click="$dismiss('cancel')"
+            data-translate="resiliation_common_cancel"
+        ></button>
     </div>
 </div>

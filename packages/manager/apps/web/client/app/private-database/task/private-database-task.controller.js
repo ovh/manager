@@ -19,7 +19,7 @@ angular.module('App').controller(
       return this.privateDatabaseService
         .getTasks(this.productId)
         .then((ids) => {
-          this.taskDetails = ids.sort((a, b) => b - a).map(id => ({ id }));
+          this.taskDetails = ids.sort((a, b) => b - a).map((id) => ({ id }));
         })
         .catch(() => {
           this.alerter.error(

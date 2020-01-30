@@ -10,8 +10,7 @@ export default class VeeamEnterpriseTerminateCtrl {
 
   terminate() {
     this.loading = true;
-    this.VeeamEnterpriseService
-      .terminate(this.serviceName)
+    this.VeeamEnterpriseService.terminate(this.serviceName)
       .then((response) => {
         this.VeeamEnterpriseService.unitOfWork.messages.push({
           text: response.message,

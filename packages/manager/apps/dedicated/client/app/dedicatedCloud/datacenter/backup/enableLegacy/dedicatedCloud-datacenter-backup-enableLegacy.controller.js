@@ -1,15 +1,8 @@
-angular
-  .module('App')
-  .controller('ovhManagerPccDatacenterBackupEnableLegacy', class {
+angular.module('App').controller(
+  'ovhManagerPccDatacenterBackupEnableLegacy',
+  class {
     /* @ngInject */
-    constructor(
-      $q,
-      $stateParams,
-      $state,
-      $translate,
-      Alerter,
-      DedicatedCloud,
-    ) {
+    constructor($q, $stateParams, $state, $translate, Alerter, DedicatedCloud) {
       this.$q = $q;
       this.$stateParams = $stateParams;
       this.$state = $state;
@@ -35,10 +28,14 @@ angular
 
       return this.$q
         .all({
-          datacenter: this.DedicatedCloud
-            .getDatacenterInfoProxy(this.$stateParams.productId, this.$stateParams.datacenterId),
-          hosts: this.DedicatedCloud
-            .getHosts(this.$stateParams.productId, this.$stateParams.datacenterId),
+          datacenter: this.DedicatedCloud.getDatacenterInfoProxy(
+            this.$stateParams.productId,
+            this.$stateParams.datacenterId,
+          ),
+          hosts: this.DedicatedCloud.getHosts(
+            this.$stateParams.productId,
+            this.$stateParams.datacenterId,
+          ),
         })
         .then(({ datacenter, hosts }) => {
           this.datacenter = datacenter;
@@ -56,17 +53,26 @@ angular
 
       this.loading.enable = true;
 
-      return this.DedicatedCloud
-        .enableVeeam(this.$stateParams.productId, this.$stateParams.datacenterId)
+      return this.DedicatedCloud.enableVeeam(
+        this.$stateParams.productId,
+        this.$stateParams.datacenterId,
+      )
         .then(() => {
-          this.Alerter.success(this.$translate.instant('dedicatedCloud_tab_veeam_enable_success', {
-            t0: this.datacenter.name,
-          }), 'dedicatedCloudDatacenterAlert');
+          this.Alerter.success(
+            this.$translate.instant('dedicatedCloud_tab_veeam_enable_success', {
+              t0: this.datacenter.name,
+            }),
+            'dedicatedCloudDatacenterAlert',
+          );
         })
         .catch((error) => {
-          this.Alerter.error(this.$translate.instant('dedicatedCloud_tab_veeam_enable_fail', {
-            t0: this.datacenter.name,
-          }), error, 'dedicatedCloudDatacenterAlert');
+          this.Alerter.error(
+            this.$translate.instant('dedicatedCloud_tab_veeam_enable_fail', {
+              t0: this.datacenter.name,
+            }),
+            error,
+            'dedicatedCloudDatacenterAlert',
+          );
         })
         .finally(() => {
           this.loading.enable = false;
@@ -77,4 +83,5 @@ angular
     onCancelBtnClick() {
       return this.$state.go('^');
     }
-  });
+  },
+);

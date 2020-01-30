@@ -20,13 +20,16 @@ export default class SignUpFormAppCtrl {
     this.loading.init = false;
 
     if (rules) {
-      this.isActivityStepVisible = some([
-        'organisation',
-        'vat',
-        'nationalIdentificationNumber',
-        'companyNationalIdentificationNumber',
-        'corporationType',
-      ], fieldName => get(rules, `${fieldName}`) !== undefined);
+      this.isActivityStepVisible = some(
+        [
+          'organisation',
+          'vat',
+          'nationalIdentificationNumber',
+          'companyNationalIdentificationNumber',
+          'corporationType',
+        ],
+        (fieldName) => get(rules, `${fieldName}`) !== undefined,
+      );
     }
   }
 
@@ -35,10 +38,9 @@ export default class SignUpFormAppCtrl {
 
     // call to finishSignUp binding
     if (isFunction(this.finishSignUp)) {
-      return this.finishSignUp()
-        .catch((error) => {
-          this.saveError = error;
-        });
+      return this.finishSignUp().catch((error) => {
+        this.saveError = error;
+      });
     }
 
     return null;

@@ -1,6 +1,5 @@
-angular
-  .module('App')
-  .config(/* @ngInject */($stateProvider) => {
+angular.module('App').config(
+  /* @ngInject */ ($stateProvider) => {
     $stateProvider.state('app.dedicated.server.dashboard.ovh-tasks', {
       url: '/ovh-tasks',
       views: {
@@ -10,4 +9,5 @@ angular
       },
       translations: { value: ['../ovh-tasks'], format: 'json' },
     });
-  });
+  },
+);

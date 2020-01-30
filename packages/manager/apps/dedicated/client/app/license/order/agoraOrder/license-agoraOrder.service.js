@@ -7,14 +7,7 @@ import map from 'lodash/map';
 import set from 'lodash/set';
 
 class LicenseAgoraOrder {
-  constructor(
-    $q,
-    $translate,
-    Alerter,
-    coreConfig,
-    OvhHttp,
-    User,
-  ) {
+  constructor($q, $translate, Alerter, coreConfig, OvhHttp, User) {
     this.$q = $q;
     this.$translate = $translate;
     this.Alerter = Alerter;
@@ -43,12 +36,15 @@ class LicenseAgoraOrder {
       params: {
         ovhSubsidiary: this.coreConfig.getRegion(),
       },
-    }).then(data => data.plans);
+    }).then((data) => data.plans);
   }
 
   getLicenseOfferPlan(licenseType, planCode, ip) {
     return this.getLicenseOffers(licenseType).then((plans) => {
-      const plan = assign({}, find(plans, planItem => planItem.planCode === planCode));
+      const plan = assign(
+        {},
+        find(plans, (planItem) => planItem.planCode === planCode),
+      );
       plan.getPrice = (
         config = {
           options: [],
@@ -66,35 +62,67 @@ class LicenseAgoraOrder {
   getPlanPrice(config) {
     let cartId = '';
 
-    return this.OvhHttp.post('/order/cart', { rootPath: 'apiv6', data: { ovhSubsidiary: this.coreConfig.getRegion() } })
+    return this.OvhHttp.post('/order/cart', {
+      rootPath: 'apiv6',
+      data: { ovhSubsidiary: this.coreConfig.getRegion() },
+    })
       .then((data) => {
         cartId = get(data, 'cartId');
-        return this.OvhHttp.post('/order/cart/{cartId}/assign', { rootPath: 'apiv6', urlParams: { cartId } });
+        return this.OvhHttp.post('/order/cart/{cartId}/assign', {
+          rootPath: 'apiv6',
+          urlParams: { cartId },
+        });
       })
       .then(() => this.pushAgoraPlan({ cartId, config }))
-      .then(plan => this.configureIpField({
-        cartId,
-        itemId: plan.itemId,
-        ip: config.ip,
-      }).then(() => plan))
-      .then(plan => this.$q.all(
-        map(config.options, option => this.pushAgoraPlan({
+      .then((plan) =>
+        this.configureIpField({
           cartId,
-          config: assign({}, config, { planCode: option, options: [], itemId: plan.itemId }),
-          path: `/order/cart/{cartId}/${this.licenseTypeToCatalog[config.licenseType]}/options`,
+          itemId: plan.itemId,
+          ip: config.ip,
+        }).then(() => plan),
+      )
+      .then((plan) =>
+        this.$q.all(
+          map(config.options, (option) =>
+            this.pushAgoraPlan({
+              cartId,
+              config: assign({}, config, {
+                planCode: option,
+                options: [],
+                itemId: plan.itemId,
+              }),
+              path: `/order/cart/{cartId}/${
+                this.licenseTypeToCatalog[config.licenseType]
+              }/options`,
+              urlParams: { cartId },
+            }),
+          ),
+        ),
+      )
+      .then(() =>
+        this.OvhHttp.get('/order/cart/{cartId}/checkout', {
+          rootPath: 'apiv6',
           urlParams: { cartId },
-        })),
-      ))
-      .then(() => this.OvhHttp.get('/order/cart/{cartId}/checkout', { rootPath: 'apiv6', urlParams: { cartId } }))
-      .finally(() => this.OvhHttp.delete('/order/cart/{cartId}', { rootPath: 'apiv6', urlParams: { cartId } }));
+        }),
+      )
+      .finally(() =>
+        this.OvhHttp.delete('/order/cart/{cartId}', {
+          rootPath: 'apiv6',
+          urlParams: { cartId },
+        }),
+      );
   }
 
   pushAgoraPlan(params) {
     set(params, 'path', params.path || '/order/cart/{cartId}/{productId}');
-    set(params, 'urlParams', params.urlParams || {
-      cartId: params.cartId,
-      productId: this.licenseTypeToCatalog[params.config.licenseType],
-    });
+    set(
+      params,
+      'urlParams',
+      params.urlParams || {
+        cartId: params.cartId,
+        productId: this.licenseTypeToCatalog[params.config.licenseType],
+      },
+    );
 
     const payload = {
       rootPath: 'apiv6',
@@ -115,23 +143,28 @@ class LicenseAgoraOrder {
   }
 
   configureIpField({ cartId, itemId, ip }) {
-    return this.OvhHttp.post('/order/cart/{cartId}/item/{itemId}/configuration', {
-      rootPath: 'apiv6',
-      urlParams: {
-        cartId,
-        itemId,
+    return this.OvhHttp.post(
+      '/order/cart/{cartId}/item/{itemId}/configuration',
+      {
+        rootPath: 'apiv6',
+        urlParams: {
+          cartId,
+          itemId,
+        },
+        data: {
+          label: 'ip',
+          value: ip,
+        },
       },
-      data: {
-        label: 'ip',
-        value: ip,
-      },
-    });
+    );
   }
 
   getFinalizeOrderUrl(licenseInfo) {
     const productToOrder = this.getExpressOrderData(licenseInfo);
     return this.User.getUrlOf('express_order')
-      .then(url => `${url}review?products=${JSURL.stringify([productToOrder])}`)
+      .then(
+        (url) => `${url}review?products=${JSURL.stringify([productToOrder])}`,
+      )
       .catch((err) => {
         this.Alerter.error(this.$translate.instant('ip_order_finish_error'));
         return this.$q.reject(err);
@@ -173,4 +206,6 @@ class LicenseAgoraOrder {
   }
 }
 
-angular.module('Module.license').service('LicenseAgoraOrder', LicenseAgoraOrder);
+angular
+  .module('Module.license')
+  .service('LicenseAgoraOrder', LicenseAgoraOrder);

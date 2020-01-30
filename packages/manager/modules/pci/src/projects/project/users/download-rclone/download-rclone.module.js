@@ -20,9 +20,13 @@ angular
   ])
   .config(routing)
   .component('pciProjectUsersDownloadRclone', component)
-  .config(/* @ngInject */($compileProvider) => {
-    $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|s?ftp|mailto|tel|file|data):/);
-  })
+  .config(
+    /* @ngInject */ ($compileProvider) => {
+      $compileProvider.aHrefSanitizationWhitelist(
+        /^\s*(https?|s?ftp|mailto|tel|file|data):/,
+      );
+    },
+  )
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

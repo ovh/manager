@@ -3,8 +3,14 @@ import set from 'lodash/set';
 export default class SharepointUrlCtrl {
   /* @ngInject */
   constructor(
-    $location, $scope, $stateParams, $timeout, $translate,
-    Alerter, constants, MicrosoftSharepointLicenseService,
+    $location,
+    $scope,
+    $stateParams,
+    $timeout,
+    $translate,
+    Alerter,
+    constants,
+    MicrosoftSharepointLicenseService,
   ) {
     this.$location = $location;
     this.$scope = $scope;
@@ -49,17 +55,31 @@ export default class SharepointUrlCtrl {
 
   activatingSharepoint() {
     return this.sharepointService
-      .setSharepointUrl(this.exchangeId, `${this.sharepointUrl}${this.sharepointUrlSuffix}`)
+      .setSharepointUrl(
+        this.exchangeId,
+        `${this.sharepointUrl}${this.sharepointUrlSuffix}`,
+      )
       .then(() => {
-        this.alerter.success(this.$translate.instant('sharepoint_set_url_success_message_text', { t0: this.exchangeId }), this.alerts.main);
+        this.alerter.success(
+          this.$translate.instant('sharepoint_set_url_success_message_text', {
+            t0: this.exchangeId,
+          }),
+          this.alerts.main,
+        );
 
         this.$timeout(() => {
-          this.$location.path(`/configuration/sharepoint/${this.exchangeId}/${this.sharepointDomain}`);
+          this.$location.path(
+            `/configuration/sharepoint/${this.exchangeId}/${this.sharepointDomain}`,
+          );
         }, 3000);
       })
       .catch((err) => {
         set(err, 'type', err.type || 'ERROR');
-        this.alerter.alertFromSWS(this.$translate.instant('sharepoint_set_url_failure_message_text'), err, this.alerts.main);
+        this.alerter.alertFromSWS(
+          this.$translate.instant('sharepoint_set_url_failure_message_text'),
+          err,
+          this.alerts.main,
+        );
       });
   }
 }

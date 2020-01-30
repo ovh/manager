@@ -523,5 +523,6 @@
   "vps_language_lt": "Litewski",
   "vps_language_nl": "Holenderski",
   "vps_language_pl": "Polski",
-  "vps_language_pt": "Portugalski"
+  "vps_language_pt": "Portugalski",
+  "vps_tile_subscription_expiration_date": "Data wygasania"
 }

@@ -17,13 +17,15 @@ angular.module('controllers').controller(
     }
 
     getTasks() {
-      return this.Domain.getZoneDnsTasks(this.$stateParams.productId).then((tasks) => {
-        this.tasks = this.constructor.getTaskStruct(tasks, true);
-      });
+      return this.Domain.getZoneDnsTasks(this.$stateParams.productId).then(
+        (tasks) => {
+          this.tasks = this.constructor.getTaskStruct(tasks, true);
+        },
+      );
     }
 
     static getTaskStruct(tasks, isZone) {
-      return map(tasks, task => ({ id: task, zone: isZone }));
+      return map(tasks, (task) => ({ id: task, zone: isZone }));
     }
 
     transformItem(item) {

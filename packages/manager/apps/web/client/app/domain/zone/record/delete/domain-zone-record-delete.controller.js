@@ -30,32 +30,49 @@ angular.module('App').controller(
           this.$stateParams.productId,
           this.entryToDelete,
         )
-          .then(() => this.Alerter.success(
-            this.$translate.instant('domain_configuration_dns_entry_delete_mass_success'),
-            this.$scope.alerts.main,
-          ))
-          .catch(err => this.Alerter.alertFromSWS(
-            this.$translate.instant('domain_configuration_dns_entry_delete_mass_fail'),
-            err,
-            this.$scope.alerts.main,
-          ))
+          .then(() =>
+            this.Alerter.success(
+              this.$translate.instant(
+                'domain_configuration_dns_entry_delete_mass_success',
+              ),
+              this.$scope.alerts.main,
+            ),
+          )
+          .catch((err) =>
+            this.Alerter.alertFromSWS(
+              this.$translate.instant(
+                'domain_configuration_dns_entry_delete_mass_fail',
+              ),
+              err,
+              this.$scope.alerts.main,
+            ),
+          )
           .finally(() => this.$scope.resetAction());
       }
       return this.Domain.deleteDnsEntry(
         this.$stateParams.productId,
         this.entryToDelete.id,
       )
-        .then(() => this.Alerter.success(
-          this.$translate.instant('domain_configuration_dns_entry_delete_success'),
-          this.$scope.alerts.main,
-        ))
-        .catch(err => this.Alerter.alertFromSWS(
-          this.$translate.instant('domain_configuration_dns_entry_delete_fail', {
-            t0: `${this.entryToDelete.subDomain}.${this.entryToDelete.zone}`,
-          }),
-          err,
-          this.$scope.alerts.main,
-        ))
+        .then(() =>
+          this.Alerter.success(
+            this.$translate.instant(
+              'domain_configuration_dns_entry_delete_success',
+            ),
+            this.$scope.alerts.main,
+          ),
+        )
+        .catch((err) =>
+          this.Alerter.alertFromSWS(
+            this.$translate.instant(
+              'domain_configuration_dns_entry_delete_fail',
+              {
+                t0: `${this.entryToDelete.subDomain}.${this.entryToDelete.zone}`,
+              },
+            ),
+            err,
+            this.$scope.alerts.main,
+          ),
+        )
         .finally(() => this.$scope.resetAction());
     }
   },

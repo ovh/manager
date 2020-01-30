@@ -12,7 +12,7 @@ export default class Group {
   getModels() {
     return this.services.OvhHttp.get('/email/exchange.json', {
       rootPath: 'apiv6',
-    }).then(data => data.models);
+    }).then((data) => data.models);
   }
 
   retrievingOptionsToCreateNewGroup(organization, serviceName) {
@@ -34,8 +34,8 @@ export default class Group {
     return this.services.$q.all({ models, options }).then((data) => {
       const availableDepartRestrictions = data.models[
         'email.exchange.MailingListDepartRestrictionEnum'
-      ].enum.map(m => snakeCase(m).toUpperCase());
-      const availableDomains = data.options.map(domain => ({
+      ].enum.map((m) => snakeCase(m).toUpperCase());
+      const availableDomains = data.options.map((domain) => ({
         name: domain,
         displayName: punycode.toUnicode(domain),
         formattedName: punycode.toUnicode(domain),
@@ -43,7 +43,7 @@ export default class Group {
 
       const availableJoinRestrictions = data.models[
         'email.exchange.MailingListJoinRestrictionEnum'
-      ].enum.map(m => snakeCase(m).toUpperCase());
+      ].enum.map((m) => snakeCase(m).toUpperCase());
 
       return {
         availableDepartRestrictions,
@@ -77,7 +77,13 @@ export default class Group {
   /**
    * Get managers by group
    */
-  retrievingManagersByGroup(organization, serviceName, groupName, count = 10, offset = 0) {
+  retrievingManagersByGroup(
+    organization,
+    serviceName,
+    groupName,
+    count = 10,
+    offset = 0,
+  ) {
     return this.services.OvhHttp.get(
       '/sws/exchange/{organization}/{exchange}/groups/{mailinglist}/managers',
       {

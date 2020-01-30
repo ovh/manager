@@ -23,12 +23,7 @@ import moment from 'moment';
 
 export default class SupportController {
   /* @ngInject */
-  constructor(
-    $q,
-    $state,
-    $translate,
-    ouiDatagridService,
-  ) {
+  constructor($q, $state, $translate, ouiDatagridService) {
     this.$q = $q;
     this.$state = $state;
     this.$translate = $translate;
@@ -38,25 +33,22 @@ export default class SupportController {
   $onInit() {
     this.ticketNumberTypeOptions = { operators: ['is'] };
 
-    this.criteria = map(
-      this.filters,
-      (criterion) => {
-        const propertyName = head(
-          split(criterion.property, '.'),
-        );
+    this.criteria = map(this.filters, (criterion) => {
+      const propertyName = head(split(criterion.property, '.'));
 
-        const translationId = `ovhManagerSupport_ticket_${propertyName}_${criterion.value}`;
-        const value = this.$translate.instant(translationId);
+      const translationId = `ovhManagerSupport_ticket_${propertyName}_${criterion.value}`;
+      const value = this.$translate.instant(translationId);
 
-        return {
-          ...criterion,
-          rawValue: criterion.value,
-          value: value === translationId || includes(value, 'ovhManagerSupport_ticket_')
+      return {
+        ...criterion,
+        rawValue: criterion.value,
+        value:
+          value === translationId ||
+          includes(value, 'ovhManagerSupport_ticket_')
             ? criterion.value
             : value,
-        };
-      },
-    );
+      };
+    });
 
     this.currentTickets = {
       data: this.tickets,
@@ -69,9 +61,7 @@ export default class SupportController {
   getTickets() {
     this.page();
 
-    return this
-      .$q
-      .resolve(this.currentTickets);
+    return this.$q.resolve(this.currentTickets);
   }
 
   filter() {
@@ -79,29 +69,20 @@ export default class SupportController {
       return;
     }
 
-    const result = filter(
-      this.currentTickets.data,
-      ticket => every(
-        this.filters,
-        (currentFilter) => {
-          const targets = currentFilter.property
-            ? [currentFilter.property]
-            : [
-              'ticketNumber',
-              'serviceName.value',
-              'subject',
-            ];
+    const result = filter(this.currentTickets.data, (ticket) =>
+      every(this.filters, (currentFilter) => {
+        const targets = currentFilter.property
+          ? [currentFilter.property]
+          : ['ticketNumber', 'serviceName.value', 'subject'];
 
-          return some(
-            targets,
-            target => SupportController.match(
-              get(ticket, target),
-              currentFilter.operator,
-              currentFilter.value,
-            ),
-          );
-        },
-      ),
+        return some(targets, (target) =>
+          SupportController.match(
+            get(ticket, target),
+            currentFilter.operator,
+            currentFilter.value,
+          ),
+        );
+      }),
     );
 
     this.currentTickets = {
@@ -113,17 +94,9 @@ export default class SupportController {
   }
 
   static match(a, operator, b) {
-    const aValue = isFinite(
-      toNumber(a),
-    )
-      ? a
-      : lowerCase(toString(a));
+    const aValue = isFinite(toNumber(a)) ? a : lowerCase(toString(a));
 
-    const bValue = isFinite(
-      toNumber(b),
-    )
-      ? b
-      : lowerCase(toString(b));
+    const bValue = isFinite(toNumber(b)) ? b : lowerCase(toString(b));
 
     switch (operator) {
       case 'bigger':
@@ -135,14 +108,14 @@ export default class SupportController {
       case 'endsWith':
         return endsWith(aValue, bValue);
       case 'is':
-        return isEqual(aValue, bValue)
-          || (
-            !isFinite(a)
-            && !isFinite(b)
-            && moment(a).isSame(moment(b), 'days')
-          );
+        return (
+          isEqual(aValue, bValue) ||
+          (!isFinite(a) && !isFinite(b) && moment(a).isSame(moment(b), 'days'))
+        );
       case 'isAfter':
-        return moment(a).add(1, 'days').isAfter(moment(b));
+        return moment(a)
+          .add(1, 'days')
+          .isAfter(moment(b));
       case 'isBefore':
         return moment(a).isBefore(moment(b));
       case 'isNot':
@@ -159,17 +132,14 @@ export default class SupportController {
   onCriteriaChange($criteria) {
     this.onGridParamsChange({
       pageNumber: 1,
-      filters: map(
-        $criteria,
-        (criterion) => {
-          const clone = cloneDeep(criterion);
-          delete clone.title;
-          return {
-            ...clone,
-            value: criterion.rawValue || criterion.value,
-          };
-        },
-      ),
+      filters: map($criteria, (criterion) => {
+        const clone = cloneDeep(criterion);
+        delete clone.title;
+        return {
+          ...clone,
+          value: criterion.rawValue || criterion.value,
+        };
+      }),
       tickets: this.tickets,
     });
   }
@@ -183,13 +153,7 @@ export default class SupportController {
     this.ouiDatagridService.datagrids.tickets.paging.offset = offset + 1;
 
     this.currentTickets = {
-      data: take(
-        drop(
-          this.currentTickets.data,
-          offset,
-        ),
-        this.pageSize,
-      ),
+      data: take(drop(this.currentTickets.data, offset), this.pageSize),
       meta: {
         totalCount: this.currentTickets.meta.totalCount,
       },
@@ -207,17 +171,11 @@ export default class SupportController {
   sort() {
     this.ouiDatagridService.datagrids.tickets.paging.currentSorting = {
       columnName: this.sortBy,
-      dir: lowerCase(this.sortOrder) === 'asc'
-        ? 1
-        : -1,
+      dir: lowerCase(this.sortOrder) === 'asc' ? 1 : -1,
     };
 
     this.currentTickets = {
-      data: orderBy(
-        this.tickets,
-        this.sortBy,
-        lowerCase(this.sortOrder),
-      ),
+      data: orderBy(this.tickets, this.sortBy, lowerCase(this.sortOrder)),
       meta: {
         totalCount: this.tickets.length,
       },

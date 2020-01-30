@@ -10,64 +10,80 @@ export default class CarrierSipService {
   }
 
   fetchAll(billingAccount) {
-    return this.OvhApiTelephony.CarrierSip().Iceberg()
+    return this.OvhApiTelephony.CarrierSip()
+      .Iceberg()
       .query()
       .expand('CachedObjectList-Cursor')
       .execute({ billingAccount })
-      .$promise
-      .then(({ data: carrierSipLines }) => (map(
-        carrierSipLines,
-        carrierSipLine => new VoipCarrierSipLine({
-          billingAccount,
-          ...carrierSipLine,
-        }),
-      )));
+      .$promise.then(({ data: carrierSipLines }) =>
+        map(
+          carrierSipLines,
+          (carrierSipLine) =>
+            new VoipCarrierSipLine({
+              billingAccount,
+              ...carrierSipLine,
+            }),
+        ),
+      );
   }
 
   getCarrierSip(billingAccount, serviceName) {
-    return this.OvhApiTelephony.CarrierSip().v6().get({
-      billingAccount,
-      serviceName,
-    }).$promise.then(carrierSip => new VoipCarrierSipLine({
-      ...carrierSip,
-      billingAccount,
-    }));
+    return this.OvhApiTelephony.CarrierSip()
+      .v6()
+      .get({
+        billingAccount,
+        serviceName,
+      })
+      .$promise.then(
+        (carrierSip) =>
+          new VoipCarrierSipLine({
+            ...carrierSip,
+            billingAccount,
+          }),
+      );
   }
 
   getSettings(billingAccount, serviceName) {
-    return this.OvhApiTelephony.CarrierSip().Settings().v6().query({
-      billingAccount,
-      serviceName,
-    }).$promise;
+    return this.OvhApiTelephony.CarrierSip()
+      .Settings()
+      .v6()
+      .query({
+        billingAccount,
+        serviceName,
+      }).$promise;
   }
 
   getServiceInfos(serviceName) {
-    return this.OvhApiTelephony.Lines().v6().getServiceInfos({
-      serviceName,
-    }).$promise;
+    return this.OvhApiTelephony.Lines()
+      .v6()
+      .getServiceInfos({
+        serviceName,
+      }).$promise;
   }
 
   getEndpoints(billingAccount, serviceName) {
-    return this.OvhApiTelephony
-      .CarrierSip()
+    return this.OvhApiTelephony.CarrierSip()
       .Endpoints()
       .v6()
       .query({
         billingAccount,
         serviceName,
       })
-      .$promise
-      .then(endpointsIds => this.$q.all(map(
-        endpointsIds,
-        endpointId => this.OvhApiTelephony
-          .CarrierSip()
-          .Endpoints()
-          .v6()
-          .get({
-            billingAccount,
-            serviceName,
-            id: endpointId,
-          }).$promise,
-      )));
+      .$promise.then((endpointsIds) =>
+        this.$q.all(
+          map(
+            endpointsIds,
+            (endpointId) =>
+              this.OvhApiTelephony.CarrierSip()
+                .Endpoints()
+                .v6()
+                .get({
+                  billingAccount,
+                  serviceName,
+                  id: endpointId,
+                }).$promise,
+          ),
+        ),
+      );
   }
 }

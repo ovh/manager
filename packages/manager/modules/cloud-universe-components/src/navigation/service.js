@@ -4,12 +4,7 @@ import last from 'lodash/last';
 
 export default class CucCloudNavigation {
   /* @ngInject */
-  constructor(
-    $transitions,
-    $state,
-    $stateParams,
-    CuiTabsService,
-  ) {
+  constructor($transitions, $state, $stateParams, CuiTabsService) {
     this.$state = $state;
     this.$stateParams = $stateParams;
     this.CuiTabsService = CuiTabsService;
@@ -23,11 +18,14 @@ export default class CucCloudNavigation {
       const fromParams = transition.params('from');
       const correspondingState = find(
         this.history,
-        elem => elem.state === toState.name && isEqual(elem.stateParams, toParams),
+        (elem) =>
+          elem.state === toState.name && isEqual(elem.stateParams, toParams),
       );
 
       if (correspondingState) {
-        while (last(this.history) !== correspondingState) { this.history.pop(); }
+        while (last(this.history) !== correspondingState) {
+          this.history.pop();
+        }
         this.history.pop();
       } else {
         const element = {
@@ -53,8 +51,10 @@ export default class CucCloudNavigation {
   }
 
   getPreviousState() {
-    const previousState = last(this.history) || this.getActiveTabState() || this.rootElement;
-    previousState.go = () => this.$state.go(previousState.state, previousState.stateParams);
+    const previousState =
+      last(this.history) || this.getActiveTabState() || this.rootElement;
+    previousState.go = () =>
+      this.$state.go(previousState.state, previousState.stateParams);
     return previousState;
   }
 
@@ -65,8 +65,9 @@ export default class CucCloudNavigation {
   findInHistory(stateToFind) {
     return find(
       this.history,
-      state => state.state === stateToFind.state
-        && isEqual(state.stateParams, stateToFind.stateParams),
+      (state) =>
+        state.state === stateToFind.state &&
+        isEqual(state.stateParams, stateToFind.stateParams),
     );
   }
 

@@ -41,10 +41,10 @@ export default class ExchangeAddOutlookCtrl {
 
   isStep1Valid() {
     return (
-      this.model.licenceVersion != null
-      && this.model.duration != null
-      && this.selectedOption != null
-      && this.selectedOption.contractsValidated
+      this.model.licenceVersion != null &&
+      this.model.duration != null &&
+      this.selectedOption != null &&
+      this.selectedOption.contractsValidated
     );
   }
 
@@ -65,7 +65,9 @@ export default class ExchangeAddOutlookCtrl {
       })
       .catch((failure) => {
         this.services.messaging.writeError(
-          this.services.$translate.instant('exchange_ACTION_add_outlook_step2_error_message'),
+          this.services.$translate.instant(
+            'exchange_ACTION_add_outlook_step2_error_message',
+          ),
           failure,
         );
         this.services.navigation.resetAction();
@@ -80,7 +82,7 @@ export default class ExchangeAddOutlookCtrl {
       // keep the selection of duration, if it exists in the new selectioned license version
       const option = find(
         version.options,
-        opt => opt.duration.duration === this.model.duration,
+        (opt) => opt.duration.duration === this.model.duration,
       );
 
       this.selectDuration(option);
@@ -97,18 +99,26 @@ export default class ExchangeAddOutlookCtrl {
       return;
     }
 
-    this.selectedOption.contractsValidated = isEmpty(this.selectedOption.order.contracts);
+    this.selectedOption.contractsValidated = isEmpty(
+      this.selectedOption.order.contracts,
+    );
   }
 
   orderOutlook() {
     this.services.exchangeAccountOutlook
-      .orderOutlook(this.$routerParams.organization, this.$routerParams.productId, this.model)
+      .orderOutlook(
+        this.$routerParams.organization,
+        this.$routerParams.productId,
+        this.model,
+      )
       .then((data) => {
         this.previewOrder = data;
       })
       .catch((failure) => {
         this.services.messaging.writeError(
-          this.services.$translate.instant('exchange_ACTION_add_outlook_step2_error_message'),
+          this.services.$translate.instant(
+            'exchange_ACTION_add_outlook_step2_error_message',
+          ),
           failure,
         );
         this.services.navigation.resetAction();

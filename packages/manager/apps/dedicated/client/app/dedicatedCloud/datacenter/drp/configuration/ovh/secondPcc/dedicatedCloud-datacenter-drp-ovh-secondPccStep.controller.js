@@ -9,9 +9,16 @@ import {
 export default class {
   /* @ngInject */
   constructor(
-    $q, $timeout, $translate, $window,
-    Alerter, DedicatedCloud, dedicatedCloudDrp, ipFeatureAvailability,
-    OvhApiDedicatedCloud, ovhUserPref,
+    $q,
+    $timeout,
+    $translate,
+    $window,
+    Alerter,
+    DedicatedCloud,
+    dedicatedCloudDrp,
+    ipFeatureAvailability,
+    OvhApiDedicatedCloud,
+    ovhUserPref,
     DEDICATED_CLOUD_CONSTANTS,
   ) {
     this.$q = $q;
@@ -36,22 +43,38 @@ export default class {
     this.drpInformations.secondaryDatacenter = null;
     this.selectedSecondaryIpAddress = null;
 
-    this.OvhApiDedicatedCloud.Ip().v6().resetQueryCache();
-    this.OvhApiDedicatedCloud.Ip().v6().resetCache();
+    this.OvhApiDedicatedCloud.Ip()
+      .v6()
+      .resetQueryCache();
+    this.OvhApiDedicatedCloud.Ip()
+      .v6()
+      .resetCache();
 
-    return this.$q.all({
-      datacenters: this.DedicatedCloud.getDatacenters(secondaryPcc.serviceName),
-      ipAddressDetails: this.dedicatedCloudDrp.getPccIpAddressesDetails(secondaryPcc.serviceName),
-    })
+    return this.$q
+      .all({
+        datacenters: this.DedicatedCloud.getDatacenters(
+          secondaryPcc.serviceName,
+        ),
+        ipAddressDetails: this.dedicatedCloudDrp.getPccIpAddressesDetails(
+          secondaryPcc.serviceName,
+        ),
+      })
       .then(({ datacenters, ipAddressDetails }) => {
         this.availableDatacenters = datacenters.results;
-        this.availableIpAddress = ipAddressDetails
-          .filter(({ usageDetails }) => isNull(usageDetails)
-            && !this.UNAVAILABLE_IP_STATUSES.includes(usageDetails)
-            && !this.MAC_ADDRESS_REG_EXP.test(usageDetails));
+        this.availableIpAddress = ipAddressDetails.filter(
+          ({ usageDetails }) =>
+            isNull(usageDetails) &&
+            !this.UNAVAILABLE_IP_STATUSES.includes(usageDetails) &&
+            !this.MAC_ADDRESS_REG_EXP.test(usageDetails),
+        );
       })
       .catch((error) => {
-        this.Alerter.error(`${this.$translate.instant('dedicatedCloud_datacenter_drp_get_state_error')} ${get(error, 'data.message', error)}`, 'dedicatedCloudDatacenterDrpAlert');
+        this.Alerter.error(
+          `${this.$translate.instant(
+            'dedicatedCloud_datacenter_drp_get_state_error',
+          )} ${get(error, 'data.message', error)}`,
+          'dedicatedCloudDatacenterDrpAlert',
+        );
       })
       .finally(() => {
         this.isFetchingOptions = false;
@@ -74,7 +97,12 @@ export default class {
         }
       })
       .catch((error) => {
-        this.Alerter.error(`${this.$translate.instant('dedicatedCloud_datacenter_secondary_datacenter_get_hosts_error')} ${get(error, 'data.message', '')}`, 'dedicatedCloudDatacenterDrpAlert');
+        this.Alerter.error(
+          `${this.$translate.instant(
+            'dedicatedCloud_datacenter_secondary_datacenter_get_hosts_error',
+          )} ${get(error, 'data.message', '')}`,
+          'dedicatedCloudDatacenterDrpAlert',
+        );
       })
       .finally(() => {
         this.isCheckingHosts = false;
@@ -82,18 +110,21 @@ export default class {
   }
 
   isStepValid() {
-    return this.selectedSecondaryPcc
-      && this.drpInformations.secondaryDatacenter
-      && this.selectedSecondaryIpAddress;
+    return (
+      this.selectedSecondaryPcc &&
+      this.drpInformations.secondaryDatacenter &&
+      this.selectedSecondaryIpAddress
+    );
   }
 
   validateConfiguration() {
     this.isLoading = true;
 
-    return this.dedicatedCloudDrp.enableDrp(
-      this.drpInformations,
-      this.drpInformations.primaryPcc.generation !== this.PCC_NEW_GENERATION,
-    )
+    return this.dedicatedCloudDrp
+      .enableDrp(
+        this.drpInformations,
+        this.drpInformations.primaryPcc.generation !== this.PCC_NEW_GENERATION,
+      )
       .then((enableDrp) => {
         if (enableDrp.url !== undefined) {
           this.storeZertoOptionOrderInUserPref(this.drpInformations, enableDrp);
@@ -102,22 +133,35 @@ export default class {
           }
         }
 
-        return this.goToPccDashboard(true)
-          .then(() => {
-            // $timeout necessary to display alerter message
-            this.$timeout(() => {
-              if (!enableDrp.hasAutoPay) {
-                this.displaySuccessMessage(`${this.$translate.instant('dedicatedCloud_datacenter_drp_confirm_order', { billUrl: enableDrp.url })}`);
-              } else {
-                this.displayInfoMessage(`
-                    ${this.$translate.instant('dedicatedCloud_datacenter_drp_confirm_creation_pending')} ${this.$translate.instant('dedicatedCloud_datacenter_drp_confirm_creation_pending_task')}
+        return this.goToPccDashboard(true).then(() => {
+          // $timeout necessary to display alerter message
+          this.$timeout(() => {
+            if (!enableDrp.hasAutoPay) {
+              this.displaySuccessMessage(
+                `${this.$translate.instant(
+                  'dedicatedCloud_datacenter_drp_confirm_order',
+                  { billUrl: enableDrp.url },
+                )}`,
+              );
+            } else {
+              this.displayInfoMessage(`
+                    ${this.$translate.instant(
+                      'dedicatedCloud_datacenter_drp_confirm_creation_pending',
+                    )} ${this.$translate.instant(
+                'dedicatedCloud_datacenter_drp_confirm_creation_pending_task',
+              )}
                 `);
-              }
-            });
+            }
           });
+        });
       })
       .catch((error) => {
-        this.Alerter.error(`${this.$translate.instant('dedicatedCloud_datacenter_drp_confirm_create_error')} ${get(error, 'data.message', error.message)}`, 'dedicatedCloudDatacenterDrpAlert');
+        this.Alerter.error(
+          `${this.$translate.instant(
+            'dedicatedCloud_datacenter_drp_confirm_create_error',
+          )} ${get(error, 'data.message', error.message)}`,
+          'dedicatedCloudDatacenterDrpAlert',
+        );
       })
       .finally(() => {
         this.isLoading = false;

@@ -6,4 +6,6 @@ class LogsStreamsAlertsCtrl {
   }
 }
 
-angular.module('managerApp').controller('LogsStreamsAlertsCtrl', LogsStreamsAlertsCtrl);
+angular
+  .module('managerApp')
+  .controller('LogsStreamsAlertsCtrl', LogsStreamsAlertsCtrl);

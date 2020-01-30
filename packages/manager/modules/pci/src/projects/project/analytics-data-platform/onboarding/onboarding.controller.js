@@ -4,9 +4,7 @@ import { GUIDES } from './onboarding.constants';
 
 export default class {
   /* @ngInject */
-  constructor(
-    $translate,
-  ) {
+  constructor($translate) {
     this.$translate = $translate;
   }
 
@@ -14,7 +12,7 @@ export default class {
     this.illustration = illustration;
     this.guides = reduce(
       GUIDES,
-      (list, guide) => ([
+      (list, guide) => [
         ...list,
         {
           ...guide,
@@ -23,7 +21,7 @@ export default class {
           ),
           description: '',
         },
-      ]),
+      ],
       [],
     );
   }

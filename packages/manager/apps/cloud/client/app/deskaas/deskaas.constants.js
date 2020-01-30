@@ -1,6 +1,5 @@
-
-
-angular.module('managerApp')
+angular
+  .module('managerApp')
   .constant('DESKAAS_ACTIONS', {
     RESTORE: 'refreshVirtualDesktop',
     REBOOT: 'restartVirtualDesktop',

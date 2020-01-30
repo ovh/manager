@@ -40,10 +40,12 @@ angular.module('App').controller(
     accountPasswordCheck(input) {
       input.$setValidity(
         'passwordCheck',
-        !!this.model.password
-          && !/^\s/.test(this.model.password)
-          && !/\s$/.test(this.model.password)
-          && !this.model.password.match(/[ÂÃÄÀÁÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõöøùúûüýþÿ]/),
+        !!this.model.password &&
+          !/^\s/.test(this.model.password) &&
+          !/\s$/.test(this.model.password) &&
+          !this.model.password.match(
+            /[ÂÃÄÀÁÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõöøùúûüýþÿ]/,
+          ),
       );
     }
 
@@ -71,15 +73,23 @@ angular.module('App').controller(
       }
 
       passwordPromise
-        .then(() => this.Alerter.success(
-          this.$translate.instant('email_tab_modal_change_account_password_success'),
-          this.$scope.alerts.main,
-        ))
-        .catch(err => this.Alerter.alertFromSWS(
-          this.$translate.instant('email_tab_modal_change_account_password_error'),
-          err,
-          this.$scope.alerts.main,
-        ))
+        .then(() =>
+          this.Alerter.success(
+            this.$translate.instant(
+              'email_tab_modal_change_account_password_success',
+            ),
+            this.$scope.alerts.main,
+          ),
+        )
+        .catch((err) =>
+          this.Alerter.alertFromSWS(
+            this.$translate.instant(
+              'email_tab_modal_change_account_password_error',
+            ),
+            err,
+            this.$scope.alerts.main,
+          ),
+        )
         .finally(() => this.$scope.resetAction());
     }
   },

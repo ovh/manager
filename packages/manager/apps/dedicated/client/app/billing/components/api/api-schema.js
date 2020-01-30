@@ -6,7 +6,9 @@ angular.module('Billing.services').service('BillingApiSchema', [
 
     this.getSchema = function getSchema(apiName) {
       if (!apiName || !angular.isString(apiName)) {
-        throw new TypeError('ApiSchema.getSchema expects the api name in one string');
+        throw new TypeError(
+          'ApiSchema.getSchema expects the api name in one string',
+        );
       }
 
       return OvhHttp.get('/{apiName}.json', {

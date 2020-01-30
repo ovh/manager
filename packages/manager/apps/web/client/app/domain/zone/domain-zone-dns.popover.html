@@ -1,10 +1,14 @@
 <div class="popover-menu">
-    <button class="btn btn-link" type="button"
-            data-translate="table_modify_entry"
-            data-ng-click="setAction('zone/record/edit/domain-zone-record-edit', { domain: ctrlDomainTabZoneDns.domain, fieldTypes: ctrlDomainTabZoneDns.zone.fieldsTypes, edit: record })">
-    </button>
-    <button class="btn btn-link" type="button"
-            data-translate="table_delete_entry"
-            data-ng-click="setAction('zone/record/delete/domain-zone-record-delete', record)">
-    </button>
+    <button
+        class="btn btn-link"
+        type="button"
+        data-translate="table_modify_entry"
+        data-ng-click="setAction('zone/record/edit/domain-zone-record-edit', { domain: ctrlDomainTabZoneDns.domain, fieldTypes: ctrlDomainTabZoneDns.zone.fieldsTypes, edit: record })"
+    ></button>
+    <button
+        class="btn btn-link"
+        type="button"
+        data-translate="table_delete_entry"
+        data-ng-click="setAction('zone/record/delete/domain-zone-record-delete', record)"
+    ></button>
 </div>

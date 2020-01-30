@@ -11,16 +11,14 @@ import set from 'lodash/set';
 
 export default class CucOvhPoll {
   /* @ngInject */
-  constructor(
-    $q,
-    $interval,
-  ) {
+  constructor($q, $interval) {
     this.$q = $q;
     this.$interval = $interval;
   }
 
   poll(opts) {
-    opts = assignIn({}, omit(opts, 'item'), { items: [opts.item] }); // eslint-disable-line
+    // eslint-disable-next-line no-param-reassign
+    opts = assignIn({}, omit(opts, 'item'), { items: [opts.item] });
     return this.pollArray(opts);
   }
 
@@ -42,45 +40,54 @@ export default class CucOvhPoll {
 
     const deferred = this.$q.defer();
     poller.pollInterval = this.$interval(() => {
-      const promises = map(items, item => this.$q.when(opts.pollFunction(item))
-        .then((newItem) => {
-          if (newItem) {
-            const newItemKeys = keys(newItem);
-            forEach(keys(item), (key) => {
-              if (!includes(newItemKeys, key)) {
-                delete item[key]; // eslint-disable-line
-              }
-            });
-            merge(item, newItem.data ? newItem.data : newItem);
+      const promises = map(items, (item) =>
+        this.$q
+          .when(opts.pollFunction(item))
+          .then((newItem) => {
+            if (newItem) {
+              const newItemKeys = keys(newItem);
+              forEach(keys(item), (key) => {
+                if (!includes(newItemKeys, key)) {
+                  // eslint-disable-next-line no-param-reassign
+                  delete item[key];
+                }
+              });
+              merge(item, newItem.data ? newItem.data : newItem);
 
-            opts.onItemUpdated(item);
-          }
+              opts.onItemUpdated(item);
+            }
 
-          return this.$q.when(opts.stopCondition(item));
-        }).catch(() => { // If an error is encountered, we end the polling.
-          item = null; // eslint-disable-line
-          return true;
-        })
-        .then((stopCondition) => {
-          if (stopCondition) {
-            opts.onItemDone(item);
-          }
+            return this.$q.when(opts.stopCondition(item));
+          })
+          .catch(() => {
+            // If an error is encountered, we end the polling.
+            // eslint-disable-next-line no-param-reassign
+            item = null;
+            return true;
+          })
+          .then((stopCondition) => {
+            if (stopCondition) {
+              opts.onItemDone(item);
+            }
 
-          return {
-            stopping: stopCondition,
-            item,
-          };
-        }));
+            return {
+              stopping: stopCondition,
+              item,
+            };
+          }),
+      );
 
-      this.$q.all(promises)
-        .then((results) => {
-          items = map(filter(results, result => !result.stopping), result => result.item);
+      this.$q.all(promises).then((results) => {
+        items = map(
+          filter(results, (result) => !result.stopping),
+          (result) => result.item,
+        );
 
-          if (!items.length) {
-            poller.kill();
-            deferred.resolve(results);
-          }
-        });
+        if (!items.length) {
+          poller.kill();
+          deferred.resolve(results);
+        }
+      });
     }, opts.interval || 5000);
 
     poller.kill = () => {

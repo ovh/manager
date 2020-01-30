@@ -4,6 +4,7 @@ import get from 'lodash/get';
 import includes from 'lodash/includes';
 import isString from 'lodash/isString';
 import map from 'lodash/map';
+import startsWith from 'lodash/startsWith';
 import some from 'lodash/some';
 import uniq from 'lodash/uniq';
 
@@ -15,6 +16,7 @@ export default class DedicatedServerInterfacesService {
   constructor(
     $http,
     $q,
+    coreConfig,
     OvhApiDedicatedServerOla,
     OvhApiDedicatedServerPhysicalInterface,
     OvhApiDedicatedServerVirtualInterface,
@@ -23,6 +25,7 @@ export default class DedicatedServerInterfacesService {
   ) {
     this.$http = $http;
     this.$q = $q;
+    this.coreConfig = coreConfig;
     this.Ola = OvhApiDedicatedServerOla;
     this.PhysicalInterface = OvhApiDedicatedServerPhysicalInterface;
     this.VirtualInterface = OvhApiDedicatedServerVirtualInterface;
@@ -31,13 +34,16 @@ export default class DedicatedServerInterfacesService {
   }
 
   getNetworkInterfaceControllers(serverName) {
-    return this.PhysicalInterface
-      .v6()
+    return this.PhysicalInterface.v6()
       .query({ serverName })
-      .$promise
-      .then(macs => this.$q.all(
-        macs.map(mac => this.PhysicalInterface.v6().get({ serverName, mac }).$promise),
-      ))
+      .$promise.then((macs) =>
+        this.$q.all(
+          macs.map(
+            (mac) =>
+              this.PhysicalInterface.v6().get({ serverName, mac }).$promise,
+          ),
+        ),
+      )
       .catch((err) => {
         if (err.status === 460) {
           return [];
@@ -47,14 +53,11 @@ export default class DedicatedServerInterfacesService {
       });
   }
 
-  getVirtualNetworkInterfaces(
-    nics,
-    serverName,
-  ) {
+  getVirtualNetworkInterfaces(nics, serverName) {
     const vniUUids = uniq(
       map(
-        nics.filter(
-          ({ virtualNetworkInterface }) => isString(virtualNetworkInterface),
+        nics.filter(({ virtualNetworkInterface }) =>
+          isString(virtualNetworkInterface),
         ),
         'virtualNetworkInterface',
       ),
@@ -63,13 +66,11 @@ export default class DedicatedServerInterfacesService {
     return this.$q.all(
       map(
         vniUUids,
-        uuid => this.VirtualInterface
-          .v6()
-          .get({
+        (uuid) =>
+          this.VirtualInterface.v6().get({
             serverName,
             uuid,
-          })
-          .$promise,
+          }).$promise,
       ),
     );
   }
@@ -83,98 +84,147 @@ export default class DedicatedServerInterfacesService {
 
         return this.getVirtualNetworkInterfaces(nics, serverName);
       })
-      .then(vnis => [
+      .then((vnis) => [
         ...map(
           filter(
             nics,
-            ({ mac }) => !some(
-              vnis,
-              ({ networkInterfaceController }) => includes(networkInterfaceController, mac),
-            ),
+            ({ mac }) =>
+              !some(vnis, ({ networkInterfaceController }) =>
+                includes(networkInterfaceController, mac),
+              ),
           ),
-          ({ mac, linkType: type }) => new Interface({
-            id: mac,
-            name: mac,
-            mac,
-            type,
-            vrack: null,
-            enabled: true, // physical interface is always enabled
-          }),
+          ({ mac, linkType: type }) =>
+            new Interface({
+              id: mac,
+              name: mac,
+              mac,
+              type,
+              vrack: null,
+              enabled: true, // physical interface is always enabled
+            }),
         ),
         ...map(
           vnis,
           ({
-            uuid, name, networkInterfaceController, mode: type, vrack, enabled,
-          }) => new Interface({
-            id: uuid,
+            uuid,
             name,
-            mac: networkInterfaceController.join(', '),
-            type,
+            networkInterfaceController,
+            mode: type,
             vrack,
             enabled,
-          }),
+          }) =>
+            new Interface({
+              id: uuid,
+              name,
+              mac: networkInterfaceController.join(', '),
+              type,
+              vrack,
+              enabled,
+            }),
         ),
       ]);
   }
 
   getTasks(serverName) {
-    return this.$http.get(`/dedicated/server/${serverName}/task?function=${INTERFACE_TASK}`)
-      .then(response => response.data, () => [])
-      .then(taskIds => ({
-        promise: this.waitAllTasks(serverName, taskIds.map(taskId => ({ taskId }))),
+    return this.$http
+      .get(`/dedicated/server/${serverName}/task?function=${INTERFACE_TASK}`)
+      .then(
+        (response) => response.data,
+        () => [],
+      )
+      .then((taskIds) => ({
+        promise: this.waitAllTasks(
+          serverName,
+          taskIds.map((taskId) => ({ taskId })),
+        ),
       }));
   }
 
   disableInterfaces(serverName, interfaces) {
-    return this.$q.all(
-      interfaces
-        .filter(i => i.enabled === true)
-        .map(i => this.VirtualInterface.v6().disable({
-          serverName,
-          uuid: i.id,
-        }, {}).$promise),
-    ).then(tasks => this.waitAllTasks(serverName, tasks));
+    return this.$q
+      .all(
+        interfaces
+          .filter((i) => i.enabled === true)
+          .map(
+            (i) =>
+              this.VirtualInterface.v6().disable(
+                {
+                  serverName,
+                  uuid: i.id,
+                },
+                {},
+              ).$promise,
+          ),
+      )
+      .then((tasks) => this.waitAllTasks(serverName, tasks));
   }
 
   setPrivateAggregation(serverName, name, interfacesToGroup) {
-    return this.Ola.v6().group({ serverName }, {
-      name,
-      virtualNetworkInterfaces: map(interfacesToGroup, 'id'),
-    }).$promise;
+    return this.Ola.v6().group(
+      { serverName },
+      {
+        name,
+        virtualNetworkInterfaces: map(interfacesToGroup, 'id'),
+      },
+    ).$promise;
   }
 
   setDefaultInterfaces(serverName, interfaceToUngroup) {
-    return this.Ola.v6().ungroup({ serverName }, {
-      virtualNetworkInterface: interfaceToUngroup.id,
-    }).$promise;
+    return this.Ola.v6().ungroup(
+      { serverName },
+      {
+        virtualNetworkInterface: interfaceToUngroup.id,
+      },
+    ).$promise;
   }
 
   waitAllTasks(serverName, tasks) {
-    return this.$q.all(tasks.map(task => this.Poller.poll(
-      `/dedicated/server/${serverName}/task/${task.taskId}`,
-      null,
-      { namespace: 'dedicated.server.interfaces.ola', method: 'get' },
-    )));
+    return this.$q.all(
+      tasks.map((task) =>
+        this.Poller.poll(
+          `/dedicated/server/${serverName}/task/${task.taskId}`,
+          null,
+          { namespace: 'dedicated.server.interfaces.ola', method: 'get' },
+        ),
+      ),
+    );
   }
 
   terminateOla(serverName) {
-    return this.$http.delete(`/dedicated/server/${serverName}/option/OLA`)
-      .then(
-        response => response.data,
-        (error) => { throw error; },
-      );
+    return this.$http.delete(`/dedicated/server/${serverName}/option/OLA`).then(
+      (response) => response.data,
+      (error) => {
+        throw error;
+      },
+    );
   }
 
-  getOlaPrice(serviceName) {
-    return this.OvhApiOrderCartServiceOption.v6().get({
-      productName: 'baremetalServers',
-      serviceName,
-    }).$promise
-      .then((options) => {
+  getOlaPrice(serviceName, { datacenter }) {
+    let suffix = 'eu';
+    if (startsWith(datacenter, 'HIL') || startsWith(datacenter, 'VIN')) {
+      suffix = 'us';
+    }
+    if (startsWith(datacenter, 'BHS')) {
+      suffix = 'ca';
+    }
+
+    return this.OvhApiOrderCartServiceOption.v6()
+      .get({
+        productName: 'baremetalServers',
+        serviceName,
+      })
+      .$promise.then((options) => {
+        let planCode = OLA_PLAN_CODE;
+
+        if (this.coreConfig.getRegion() === 'US') {
+          planCode = `${OLA_PLAN_CODE}-${suffix}`;
+        }
+
         const prices = get(
           find(options, {
-            planCode: OLA_PLAN_CODE,
-          }), 'prices',
+            planCode,
+          }),
+          'prices',
         );
         return get(find(prices, { pricingMode: 'default' }), 'price');
       });

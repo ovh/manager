@@ -21,7 +21,10 @@ angular
     'oui',
     'pascalprecht.translate',
   ])
-  .constant('WUC_SUBSIDIARIES_WITH_OPTIONAL_AUTORENEW', SUBSIDIARIES_WITH_OPTIONAL_AUTORENEW)
+  .constant(
+    'WUC_SUBSIDIARIES_WITH_OPTIONAL_AUTORENEW',
+    SUBSIDIARIES_WITH_OPTIONAL_AUTORENEW,
+  )
   .component('wucAutorenewInvite', WucAutorenewInvite)
   .run(/* @ngTranslationsInject:json ./translations */);
 

@@ -32,10 +32,7 @@ export default class ImagesListController {
 
     this.isLoading = true;
 
-    return Promise.all([
-      this.getImages(),
-      this.getSnapshots(),
-    ])
+    return Promise.all([this.getImages(), this.getSnapshots()])
       .then(() => this.findDefaultImage())
       .finally(() => {
         this.isLoading = false;
@@ -43,33 +40,39 @@ export default class ImagesListController {
   }
 
   getImages() {
-    return this.PciProjectImages.getImages(this.serviceName)
-      .then((images) => {
-        this.images = images;
-        this.updateImages(images);
-        return images;
-      });
+    return this.PciProjectImages.getImages(this.serviceName).then((images) => {
+      this.images = images;
+      this.updateImages(images);
+      return images;
+    });
   }
 
   updateImages(images) {
     const [appImages, osImages] = partition(
-      filter(images, image => image.isActive()), image => image.isApp(),
+      filter(images, (image) => image.isActive()),
+      (image) => image.isApp(),
     );
-    this.os = reduce(this.PciProjectImages.constructor.groupByType(osImages),
+    this.os = reduce(
+      this.PciProjectImages.constructor.groupByType(osImages),
       (imagesByType, imagesOfType, type) => ({
         ...imagesByType,
-        [type]: this.PciProjectImages.constructor.groupByDistribution(imagesOfType),
-      }), {});
+        [type]: this.PciProjectImages.constructor.groupByDistribution(
+          imagesOfType,
+        ),
+      }),
+      {},
+    );
     this.apps = appImages;
 
     this.selectedTab = first(keys(this.os));
   }
 
   getSnapshots() {
-    return this.PciProjectImages.getSnapshots(this.serviceName)
-      .then((snapshots) => {
+    return this.PciProjectImages.getSnapshots(this.serviceName).then(
+      (snapshots) => {
         this.snapshots = snapshots;
-      });
+      },
+    );
   }
 
   findDefaultImage() {
@@ -77,7 +80,10 @@ export default class ImagesListController {
       find(this.os, (osList, osType) => {
         find(osList, (osSubList, osName) => {
           find(osSubList, (os) => {
-            const region = find(os.regions, { region: this.region, id: this.defaultImageId });
+            const region = find(os.regions, {
+              region: this.region,
+              id: this.defaultImageId,
+            });
             if (region) {
               this.selectedTab = osType;
               this.distribution = osName;
@@ -91,7 +97,10 @@ export default class ImagesListController {
 
       if (!this.image) {
         find(this.apps, (app) => {
-          const region = find(app.regions, { region: this.region, id: this.defaultImageId });
+          const region = find(app.regions, {
+            region: this.region,
+            id: this.defaultImageId,
+          });
           if (region) {
             this.selectedTab = 'apps';
             this.image = app;
@@ -102,7 +111,10 @@ export default class ImagesListController {
       }
 
       if (!this.image) {
-        const snapshot = find(this.snapshots, { region: this.region, id: this.defaultImageId });
+        const snapshot = find(this.snapshots, {
+          region: this.region,
+          id: this.defaultImageId,
+        });
         if (snapshot) {
           this.selectedTab = 'snapshots';
           this.image = snapshot;
@@ -140,12 +152,14 @@ export default class ImagesListController {
   }
 
   isCompatible(image) {
-    return image.isAvailableInRegion(this.region)
-      && image.isCompatibleWithFlavor(this.flavorType)
-      && image.isCompatibleWithOsTypes(this.osTypes);
+    return (
+      image.isAvailableInRegion(this.region) &&
+      image.isCompatibleWithFlavor(this.flavorType) &&
+      image.isCompatibleWithOsTypes(this.osTypes)
+    );
   }
 
   isDistributionCompatible(images) {
-    return some(images, image => this.isCompatible(image));
+    return some(images, (image) => this.isCompatible(image));
   }
 }

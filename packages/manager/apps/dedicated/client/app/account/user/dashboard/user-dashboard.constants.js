@@ -14,10 +14,12 @@ export const USER_DASHBOARD_SHORTCUTS = [
   {
     key: 'MANAGE_SERVICES',
     state: 'app.account.billing.autorenew',
+    regions: ['EU', 'CA'],
   },
   {
     key: 'ADD_CONTACT',
     state: 'app.account.contacts.services',
+    regions: ['EU'],
   },
 ];
 

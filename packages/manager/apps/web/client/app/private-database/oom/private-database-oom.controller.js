@@ -22,11 +22,15 @@ angular.module('App').controller(
       this.displayType = {
         classic: {
           key: 'premium',
-          value: this.$translate.instant('privateDatabase_order_sql_type_premium_label'),
+          value: this.$translate.instant(
+            'privateDatabase_order_sql_type_premium_label',
+          ),
         },
         public: {
           key: 'dbaas',
-          value: this.$translate.instant('privateDatabase_order_sql_type_dbaas_label'),
+          value: this.$translate.instant(
+            'privateDatabase_order_sql_type_dbaas_label',
+          ),
         },
       };
 

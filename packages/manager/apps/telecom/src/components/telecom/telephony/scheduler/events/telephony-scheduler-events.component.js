@@ -1,5 +1,6 @@
 angular.module('managerApp').component('telephonySchedulerEvents', {
-  templateUrl: 'components/telecom/telephony/scheduler/events/telephony-scheduler-events.html',
+  templateUrl:
+    'components/telecom/telephony/scheduler/events/telephony-scheduler-events.html',
   controller: 'TelephonySchedulerEventsCtrl',
   bindings: {
     event: '=ngModel',

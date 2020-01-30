@@ -1,7 +1,12 @@
 export default class IpLoadBalancerSslCertificateDeleteCtrl {
   /* @ngInject */
-  constructor($stateParams, $uibModalInstance, CucControllerHelper,
-    IpLoadBalancerSslCertificateService, ssl) {
+  constructor(
+    $stateParams,
+    $uibModalInstance,
+    CucControllerHelper,
+    IpLoadBalancerSslCertificateService,
+    ssl,
+  ) {
     this.$stateParams = $stateParams;
     this.$uibModalInstance = $uibModalInstance;
     this.CucControllerHelper = CucControllerHelper;
@@ -14,10 +19,13 @@ export default class IpLoadBalancerSslCertificateDeleteCtrl {
 
   confirm() {
     this.delete = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () => this.IpLoadBalancerSslCertificateService
-        .delete(this.$stateParams.serviceName, this.sslId)
-        .then(response => this.$uibModalInstance.close(response))
-        .catch(error => this.$uibModalInstance.dismiss(error)),
+      loaderFunction: () =>
+        this.IpLoadBalancerSslCertificateService.delete(
+          this.$stateParams.serviceName,
+          this.sslId,
+        )
+          .then((response) => this.$uibModalInstance.close(response))
+          .catch((error) => this.$uibModalInstance.dismiss(error)),
     });
     return this.delete.load();
   }

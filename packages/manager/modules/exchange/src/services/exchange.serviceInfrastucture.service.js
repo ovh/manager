@@ -22,8 +22,8 @@ export default class ExchangeServiceInfrastructure {
     }
 
     return (
-      camelCase(get(exchange, 'offer', '')).toUpperCase()
-      === camelCase(`${infrastructure}`).toUpperCase()
+      camelCase(get(exchange, 'offer', '')).toUpperCase() ===
+      camelCase(`${infrastructure}`).toUpperCase()
     );
   }
 

@@ -14,8 +14,18 @@ import removeTemplate from './remove/telecom-sms-sms-incoming-remove.html';
 export default class {
   /* @ngInject */
   constructor(
-    $filter, $q, $scope, $stateParams, $translate, $timeout, $uibModal, $window,
-    OvhApiSms, OvhApiMe, TucToast, TucToastError,
+    $filter,
+    $q,
+    $scope,
+    $stateParams,
+    $translate,
+    $timeout,
+    $uibModal,
+    $window,
+    OvhApiSms,
+    OvhApiMe,
+    TucToast,
+    TucToastError,
   ) {
     this.$filter = $filter;
     this.$q = $q;
@@ -56,7 +66,9 @@ export default class {
     };
     this.serviceInfos = null;
     this.refresh();
-    this.$scope.$on('$destroy', () => this.$timeout.cancel(this.incoming.poller));
+    this.$scope.$on('$destroy', () =>
+      this.$timeout.cancel(this.incoming.poller),
+    );
   }
 
   /**
@@ -66,18 +78,22 @@ export default class {
   refresh() {
     this.api.smsIncoming.resetAllCache();
     this.incoming.isLoading = true;
-    return this.$q.all({
-      incoming: this.fetchIncomingSms(),
-      serviceInfos: this.fetchServiceInfos(),
-    }).then((results) => {
-      this.incoming.raw = angular.copy(results.incoming);
-      this.serviceInfos = results.serviceInfos;
-      this.applySorting();
-    }).catch((err) => {
-      this.TucToastError(err);
-    }).finally(() => {
-      this.incoming.isLoading = false;
-    });
+    return this.$q
+      .all({
+        incoming: this.fetchIncomingSms(),
+        serviceInfos: this.fetchServiceInfos(),
+      })
+      .then((results) => {
+        this.incoming.raw = angular.copy(results.incoming);
+        this.serviceInfos = results.serviceInfos;
+        this.applySorting();
+      })
+      .catch((err) => {
+        this.TucToastError(err);
+      })
+      .finally(() => {
+        this.incoming.isLoading = false;
+      });
   }
 
   /**
@@ -88,13 +104,21 @@ export default class {
     return this.api.smsIncoming
       .query({
         serviceName: this.$stateParams.serviceName,
-      }).$promise
-      .then(incomingIds => this.$q
-        .all(map(chunk(incomingIds, 50), id => this.api.smsIncoming.getBatch({
-          serviceName: this.$stateParams.serviceName,
-          id,
-        }).$promise))
-        .then(chunkResult => map(flatten(chunkResult), 'value')));
+      })
+      .$promise.then((incomingIds) =>
+        this.$q
+          .all(
+            map(
+              chunk(incomingIds, 50),
+              (id) =>
+                this.api.smsIncoming.getBatch({
+                  serviceName: this.$stateParams.serviceName,
+                  id,
+                }).$promise,
+            ),
+          )
+          .then((chunkResult) => map(flatten(chunkResult), 'value')),
+      );
   }
 
   /**
@@ -152,7 +176,10 @@ export default class {
   getSelection() {
     return filter(
       this.incoming.raw,
-      incoming => incoming && this.incoming.selected && this.incoming.selected[incoming.id],
+      (incoming) =>
+        incoming &&
+        this.incoming.selected &&
+        this.incoming.selected[incoming.id],
     );
   }
 
@@ -162,21 +189,30 @@ export default class {
    */
   deleteSelectedIncoming() {
     const incomings = this.getSelection();
-    const queries = incomings.map(incoming => this.api.smsIncoming.delete({
-      serviceName: this.$stateParams.serviceName,
-      id: incoming.id,
-    }).$promise);
+    const queries = incomings.map(
+      (incoming) =>
+        this.api.smsIncoming.delete({
+          serviceName: this.$stateParams.serviceName,
+          id: incoming.id,
+        }).$promise,
+    );
     this.incoming.isDeleting = true;
     queries.push(this.$timeout(angular.noop, 500)); // avoid clipping
-    this.TucToast.info(this.$translate.instant('sms_sms_incoming_remove_success'));
-    return this.$q.all(queries).then(() => {
-      this.incoming.selected = {};
-      return this.refresh();
-    }).catch((err) => {
-      this.TucToastError(err);
-    }).finally(() => {
-      this.incoming.isDeleting = false;
-    });
+    this.TucToast.info(
+      this.$translate.instant('sms_sms_incoming_remove_success'),
+    );
+    return this.$q
+      .all(queries)
+      .then(() => {
+        this.incoming.selected = {};
+        return this.refresh();
+      })
+      .catch((err) => {
+        this.TucToastError(err);
+      })
+      .finally(() => {
+        this.incoming.isDeleting = false;
+      });
   }
 
   /**
@@ -209,11 +245,17 @@ export default class {
       controllerAs: 'IncomingRemoveCtrl',
       resolve: { incomingSms: () => incomingSms },
     });
-    modal.result.then(() => this.refresh()).catch((error) => {
-      if (error && error.type === 'API') {
-        this.TucToast.error(this.$translate.instant('sms_sms_incoming_remove_ko', { error: get(error, 'msg.data.message') }));
-      }
-    });
+    modal.result
+      .then(() => this.refresh())
+      .catch((error) => {
+        if (error && error.type === 'API') {
+          this.TucToast.error(
+            this.$translate.instant('sms_sms_incoming_remove_ko', {
+              error: get(error, 'msg.data.message'),
+            }),
+          );
+        }
+      });
   }
 
   /**
@@ -222,33 +264,44 @@ export default class {
    */
   exportHistory() {
     this.incoming.isExporting = true;
-    return this.api.sms.getDocument({
-      serviceName: this.$stateParams.serviceName,
-      'creationDatetime.from': moment(this.serviceInfos.creation).format(),
-      'creationDatetime.to': moment().format(),
-      wayType: 'incoming',
-    }).$promise.then((smsDoc) => {
-      const tryGetDocument = () => {
-        this.api.user.document.resetCache();
-        return this.api.user.document.get({
-          id: smsDoc.docId,
-        }).$promise.then((doc) => {
-          if (doc.size > 0) {
-            return doc;
-          }
-          this.incoming.poller = this.$timeout(tryGetDocument, 1000);
-          return this.incoming.poller;
+    return this.api.sms
+      .getDocument({
+        serviceName: this.$stateParams.serviceName,
+        'creationDatetime.from': moment(this.serviceInfos.creation).format(),
+        'creationDatetime.to': moment().format(),
+        wayType: 'incoming',
+      })
+      .$promise.then((smsDoc) => {
+        const tryGetDocument = () => {
+          this.api.user.document.resetCache();
+          return this.api.user.document
+            .get({
+              id: smsDoc.docId,
+            })
+            .$promise.then((doc) => {
+              if (doc.size > 0) {
+                return doc;
+              }
+              this.incoming.poller = this.$timeout(tryGetDocument, 1000);
+              return this.incoming.poller;
+            });
+        };
+        return tryGetDocument().then((doc) => {
+          this.$window.location.href = doc.getUrl;
+          this.$timeout(
+            () => this.api.user.document.delete({ id: doc.id }).$promise,
+            3000,
+          );
         });
-      };
-      return tryGetDocument().then((doc) => {
-        this.$window.location.href = doc.getUrl;
-        this.$timeout(() => this.api.user.document.delete({ id: doc.id }).$promise, 3000);
+      })
+      .catch((error) => {
+        this.TucToast.error(
+          this.$translate.instant('sms_sms_incoming_download_history_ko'),
+        );
+        return this.$q.reject(error);
+      })
+      .finally(() => {
+        this.incoming.isExporting = false;
       });
-    }).catch((error) => {
-      this.TucToast.error(this.$translate.instant('sms_sms_incoming_download_history_ko'));
-      return this.$q.reject(error);
-    }).finally(() => {
-      this.incoming.isExporting = false;
-    });
   }
 }

@@ -56,11 +56,11 @@ export default class ExchangeExportAsPstCtrl {
           const firstTask = this.getTask(firstTaskId);
 
           if (
-            firstTask != null
-            && isString(firstTask.status)
-            && firstTask.status.toUpperCase() !== 'DONE'
-            && isString(firstTask.function)
-            && firstTask.function.toUpperCase() !== 'DELETEEXPORTPSTREQUEST'
+            firstTask != null &&
+            isString(firstTask.status) &&
+            firstTask.status.toUpperCase() !== 'DONE' &&
+            isString(firstTask.function) &&
+            firstTask.function.toUpperCase() !== 'DELETEEXPORTPSTREQUEST'
           ) {
             this.exportStep = 7;
             this.checkExportDetailTask(firstTask);
@@ -131,9 +131,12 @@ export default class ExchangeExportAsPstCtrl {
       },
     )
       .then(() => {
-        this.progress = this.services.$translate.instant('exchange_ACTION_display_pst_progress', {
-          t0: 0,
-        });
+        this.progress = this.services.$translate.instant(
+          'exchange_ACTION_display_pst_progress',
+          {
+            t0: 0,
+          },
+        );
         this.exportStep = 3;
         this.getExportDetails();
       })
@@ -177,7 +180,7 @@ export default class ExchangeExportAsPstCtrl {
         },
       },
     )
-      .then(data => this.checkExportUrlTask(exchange, data.id))
+      .then((data) => this.checkExportUrlTask(exchange, data.id))
       .catch((failure) => {
         this.services.messaging.writeError(
           this.services.$translate.instant('exchange_ACTION_display_pst_error'),
@@ -294,15 +297,25 @@ export default class ExchangeExportAsPstCtrl {
   confirmBtnTitle() {
     switch (this.exportStep) {
       case 2:
-        return this.services.$translate.instant('exchange_ACTION_display_pst_start');
+        return this.services.$translate.instant(
+          'exchange_ACTION_display_pst_start',
+        );
       case 4:
-        return this.services.$translate.instant('exchange_ACTION_display_pst_genlink');
+        return this.services.$translate.instant(
+          'exchange_ACTION_display_pst_genlink',
+        );
       case 6:
-        return this.services.$translate.instant('exchange_ACTION_display_pst_start');
+        return this.services.$translate.instant(
+          'exchange_ACTION_display_pst_start',
+        );
       case -1:
-        return this.services.$translate.instant('exchange_ACTION_display_pst_retry');
+        return this.services.$translate.instant(
+          'exchange_ACTION_display_pst_retry',
+        );
       default:
-        return this.services.$translate.instant('exchange_ACTION_display_pst_close');
+        return this.services.$translate.instant(
+          'exchange_ACTION_display_pst_close',
+        );
     }
   }
 

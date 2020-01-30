@@ -31,18 +31,20 @@ angular.module('App').controller(
     accountPasswordCheck(input) {
       input.$setValidity(
         'passwordCheck',
-        !!this.model.password
-          && !/^\s/.test(this.model.password)
-          && !/\s$/.test(this.model.password)
-          && !this.model.password.match(/[ÂÃÄÀÁÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõöøùúûüýþÿ]/),
+        !!this.model.password &&
+          !/^\s/.test(this.model.password) &&
+          !/\s$/.test(this.model.password) &&
+          !this.model.password.match(
+            /[ÂÃÄÀÁÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõöøùúûüýþÿ]/,
+          ),
       );
     }
 
     isPasswordMatches() {
       return (
-        !!this.model.password
-        && !!this.validation.password
-        && this.model.password === this.validation.password
+        !!this.model.password &&
+        !!this.validation.password &&
+        this.model.password === this.validation.password
       );
     }
 
@@ -52,15 +54,23 @@ angular.module('App').controller(
         this.currentAccount.accountName,
         this.model,
       )
-        .then(() => this.Alerter.success(
-          this.$translate.instant('email_tab_modal_change_account_password_success'),
-          this.$scope.alerts.main,
-        ))
-        .catch(err => this.Alerter.alertFromSWS(
-          this.$translate.instant('email_tab_modal_change_account_password_error'),
-          err.data,
-          this.$scope.alerts.main,
-        ))
+        .then(() =>
+          this.Alerter.success(
+            this.$translate.instant(
+              'email_tab_modal_change_account_password_success',
+            ),
+            this.$scope.alerts.main,
+          ),
+        )
+        .catch((err) =>
+          this.Alerter.alertFromSWS(
+            this.$translate.instant(
+              'email_tab_modal_change_account_password_error',
+            ),
+            err.data,
+            this.$scope.alerts.main,
+          ),
+        )
         .finally(() => this.$scope.resetAction());
     }
   },

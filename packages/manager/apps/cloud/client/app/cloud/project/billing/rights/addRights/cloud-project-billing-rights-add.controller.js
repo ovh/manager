@@ -24,14 +24,23 @@ class CloudProjectBillingRightsAddCtrl {
   validateAddRight() {
     this.CucCloudMessage.flushChildMessage();
     this.loader = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () => this.OvhApiCloud.Project().Acl().v6().add({
-        serviceName: this.$stateParams.projectId,
-      }, {
-        accountId: CloudProjectBillingRightsAddCtrl.normalizedNic(this.right.contact),
-        type: this.right.type,
-      }).$promise
-        .then(res => this.$uibModalInstance.close(res))
-        .catch(res => this.$uibModalInstance.dismiss(res)),
+      loaderFunction: () =>
+        this.OvhApiCloud.Project()
+          .Acl()
+          .v6()
+          .add(
+            {
+              serviceName: this.$stateParams.projectId,
+            },
+            {
+              accountId: CloudProjectBillingRightsAddCtrl.normalizedNic(
+                this.right.contact,
+              ),
+              type: this.right.type,
+            },
+          )
+          .$promise.then((res) => this.$uibModalInstance.close(res))
+          .catch((res) => this.$uibModalInstance.dismiss(res)),
     });
     return this.loader.load();
   }
@@ -52,4 +61,9 @@ class CloudProjectBillingRightsAddCtrl {
   }
 }
 
-angular.module('managerApp').controller('CloudProjectBillingRightsAddCtrl', CloudProjectBillingRightsAddCtrl);
+angular
+  .module('managerApp')
+  .controller(
+    'CloudProjectBillingRightsAddCtrl',
+    CloudProjectBillingRightsAddCtrl,
+  );

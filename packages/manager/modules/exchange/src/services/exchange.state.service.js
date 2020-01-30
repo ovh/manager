@@ -18,7 +18,7 @@ export default class ExchangeStates {
   }
 
   isValidState(value) {
-    return some(this.states, state => state.toUpperCase() === value);
+    return some(this.states, (state) => state.toUpperCase() === value);
   }
 
   static isState(account, state) {
@@ -63,13 +63,15 @@ export default class ExchangeStates {
 
   static isDoing(account) {
     return (
-      ExchangeStates.isState(account, 'TASK_ON_DOING') || ExchangeStates.isState(account, 'DOING')
+      ExchangeStates.isState(account, 'TASK_ON_DOING') ||
+      ExchangeStates.isState(account, 'DOING')
     );
   }
 
   static isInError(account) {
     return (
-      ExchangeStates.isState(account, 'TASK_ON_ERROR') || ExchangeStates.isState(account, 'ERROR')
+      ExchangeStates.isState(account, 'TASK_ON_ERROR') ||
+      ExchangeStates.isState(account, 'ERROR')
     );
   }
 }

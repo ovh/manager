@@ -19,7 +19,18 @@ angular.module('Module.ip.services').service('Iplb', [
     this.BACKEND_WEIGHT_MAX = 100;
 
     this.isOptionOrderable = function isOptionOrderable(serviceName, option) {
-      return $http.get([swsProxypassPath, 'order/ip/loadBalancing', serviceName].join('/')).then(response => response && response.data && response.data.length && ~response.data.indexOf(option), http => $q.reject(http.data));
+      return $http
+        .get(
+          [swsProxypassPath, 'order/ip/loadBalancing', serviceName].join('/'),
+        )
+        .then(
+          (response) =>
+            response &&
+            response.data &&
+            response.data.length &&
+            ~response.data.indexOf(option),
+          (http) => $q.reject(http.data),
+        );
     };
 
     /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
@@ -43,26 +54,53 @@ angular.module('Module.ip.services').service('Iplb', [
          'unannounceIpLoadBalancing',
          'unsetPortRedirection',
          */
-      const managedActions = ['addBackend', 'delBackend', 'setWeight', 'backupStateSet', 'backupStateUnset', 'setStickiness', 'activateSsl', 'desactivateSsl'];
+      const managedActions = [
+        'addBackend',
+        'delBackend',
+        'setWeight',
+        'backupStateSet',
+        'backupStateUnset',
+        'setStickiness',
+        'activateSsl',
+        'desactivateSsl',
+      ];
 
       // @todo filter init todo doing
-      return $http.get([swsProxypassPath, 'ip/loadBalancing', serviceName, 'task'].join('/')).then((response) => {
-        const queue = [];
-        angular.forEach(response.data, (tasksId) => {
-          queue.push(
-            $http.get([swsProxypassPath, 'ip/loadBalancing', serviceName, 'task', tasksId].join('/')).then((resp) => {
-              if (resp.data && resp.data.action && ~managedActions.indexOf(resp.data.action)) {
-                self[`poll${resp.data.action}`]({
-                  serviceName,
-                  taskId: resp.data.id,
-                  taskFunction: resp.data.action,
-                });
-              }
-            }),
-          );
+      return $http
+        .get(
+          [swsProxypassPath, 'ip/loadBalancing', serviceName, 'task'].join('/'),
+        )
+        .then((response) => {
+          const queue = [];
+          angular.forEach(response.data, (tasksId) => {
+            queue.push(
+              $http
+                .get(
+                  [
+                    swsProxypassPath,
+                    'ip/loadBalancing',
+                    serviceName,
+                    'task',
+                    tasksId,
+                  ].join('/'),
+                )
+                .then((resp) => {
+                  if (
+                    resp.data &&
+                    resp.data.action &&
+                    ~managedActions.indexOf(resp.data.action)
+                  ) {
+                    self[`poll${resp.data.action}`]({
+                      serviceName,
+                      taskId: resp.data.id,
+                      taskFunction: resp.data.action,
+                    });
+                  }
+                }),
+            );
+          });
+          return $q.all(queue);
         });
-        return $q.all(queue);
-      });
     };
 
     this.poll = function poll(opts) {
@@ -70,15 +108,28 @@ angular.module('Module.ip.services').service('Iplb', [
       $rootScope.$broadcast(`${opts.namespace}.start`, opts);
 
       // do poll
-      return Poll.poll([swsProxypassPath, 'ip/loadBalancing', opts.serviceName, 'task', opts.taskId].join('/'), null, {
-        namespace: opts.namespace,
-      }).then(resp => resp, err => $q.reject(err));
+      return Poll.poll(
+        [
+          swsProxypassPath,
+          'ip/loadBalancing',
+          opts.serviceName,
+          'task',
+          opts.taskId,
+        ].join('/'),
+        null,
+        {
+          namespace: opts.namespace,
+        },
+      ).then((resp) => resp, (err) => $q.reject(err));
     };
 
     this.killAllPolling = function killAllPolling() {
-      angular.forEach(['setStickiness', 'activateSsl', 'desactivateSsl'], (action) => {
-        Poll.kill({ namespace: `iplb.${action}` });
-      });
+      angular.forEach(
+        ['setStickiness', 'activateSsl', 'desactivateSsl'],
+        (action) => {
+          Poll.kill({ namespace: `iplb.${action}` });
+        },
+      );
     };
 
     /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
@@ -86,40 +137,83 @@ angular.module('Module.ip.services').service('Iplb', [
     // ---
 
     this.getList = function getList() {
-      return $http.get([swsProxypassPath, 'ip/loadBalancing'].join('/')).then(response => response.data || [], http => $q.reject(http.data));
+      return $http
+        .get([swsProxypassPath, 'ip/loadBalancing'].join('/'))
+        .then(
+          (response) => response.data || [],
+          (http) => $q.reject(http.data),
+        );
     };
 
     this.getDetails = function getDetails(serviceName) {
-      return $http.get([swsProxypassPath, 'ip/loadBalancing', serviceName].join('/')).then(response => response.data, http => $q.reject(http.data));
+      return $http
+        .get([swsProxypassPath, 'ip/loadBalancing', serviceName].join('/'))
+        .then((response) => response.data, (http) => $q.reject(http.data));
     };
 
     this.getServiceInfos = function getServiceInfos(serviceName) {
-      return $http.get([swsProxypassPath, 'ip/loadBalancing', serviceName, 'serviceInfos'].join('/')).then(response => response.data, http => $q.reject(http.data));
+      return $http
+        .get(
+          [
+            swsProxypassPath,
+            'ip/loadBalancing',
+            serviceName,
+            'serviceInfos',
+          ].join('/'),
+        )
+        .then((response) => response.data, (http) => $q.reject(http.data));
     };
 
     this.getInternalNatIp = function getInternalNatIp(serviceName, zone) {
       return $http
-        .get([swsProxypassPath, 'ip/loadBalancing', serviceName, 'internalNatIp'].join('/'), {
-          params: { zone },
-          cache: true,
-        })
-        .then(response => response.data && response.data.replace(/"/g, ''), http => $q.reject(http.data));
+        .get(
+          [
+            swsProxypassPath,
+            'ip/loadBalancing',
+            serviceName,
+            'internalNatIp',
+          ].join('/'),
+          {
+            params: { zone },
+            cache: true,
+          },
+        )
+        .then(
+          (response) => response.data && response.data.replace(/"/g, ''),
+          (http) => $q.reject(http.data),
+        );
     };
     this.getProbeIp = function getProbeIp(serviceName, zone) {
       return $http
-        .get([swsProxypassPath, 'ip/loadBalancing', serviceName, 'probeIp'].join('/'), {
-          params: { zone },
-          cache: true,
-        })
-        .then(response => response.data || [], http => $q.reject(http.data));
+        .get(
+          [swsProxypassPath, 'ip/loadBalancing', serviceName, 'probeIp'].join(
+            '/',
+          ),
+          {
+            params: { zone },
+            cache: true,
+          },
+        )
+        .then(
+          (response) => response.data || [],
+          (http) => $q.reject(http.data),
+        );
     };
 
     // Stickiness
     this.setStickiness = function setStickiness(serviceName, stickiness) {
       return $http
-        .post([swsProxypassPath, 'ip/loadBalancing', serviceName, 'stickiness'].join('/'), {
-          stickiness,
-        })
+        .post(
+          [
+            swsProxypassPath,
+            'ip/loadBalancing',
+            serviceName,
+            'stickiness',
+          ].join('/'),
+          {
+            stickiness,
+          },
+        )
         .then(
           (response) => {
             self.pollsetStickiness({
@@ -129,7 +223,7 @@ angular.module('Module.ip.services').service('Iplb', [
             });
             return response.data;
           },
-          http => $q.reject(http.data),
+          (http) => $q.reject(http.data),
         );
     };
     this.pollsetStickiness = function pollsetStickiness(opts) {
@@ -141,7 +235,10 @@ angular.module('Module.ip.services').service('Iplb', [
           taskId: opts.taskId,
           namespace,
         })
-        .then(() => self.setStickinessSuccess(opts), () => self.setStickinessError(opts));
+        .then(
+          () => self.setStickinessSuccess(opts),
+          () => self.setStickinessError(opts),
+        );
     };
     this.setStickinessSuccess = function setStickinessSuccess(opts) {
       return self.getDetails(opts.serviceName).then((infos) => {
@@ -156,25 +253,49 @@ angular.module('Module.ip.services').service('Iplb', [
 
     // Order ssl
     this.getOrderSsl = function getOrderSsl(serviceName, domain) {
-      return $http.get([swsProxypassPath, 'order/ip/loadBalancing', serviceName, 'ssl'].join('/'), { params: { domain } }).then(response => response.data, http => $q.reject(http.data));
+      return $http
+        .get(
+          [swsProxypassPath, 'order/ip/loadBalancing', serviceName, 'ssl'].join(
+            '/',
+          ),
+          { params: { domain } },
+        )
+        .then((response) => response.data, (http) => $q.reject(http.data));
     };
     this.postOrderSsl = function postOrderSsl(serviceName, domain) {
-      return $http.post([swsProxypassPath, 'order/ip/loadBalancing', serviceName, 'ssl'].join('/'), { domain }).then(response => response.data, http => $q.reject(http.data));
+      return $http
+        .post(
+          [swsProxypassPath, 'order/ip/loadBalancing', serviceName, 'ssl'].join(
+            '/',
+          ),
+          { domain },
+        )
+        .then((response) => response.data, (http) => $q.reject(http.data));
     };
 
     // Import ssl
     this.importCustomSsl = function importCustomSsl(serviceName, model) {
-      return $http.post([swsProxypassPath, 'ip/loadBalancing', serviceName, 'importCustomSsl'].join('/'), model).then(
-        (response) => {
-          self.pollactivateSsl({
+      return $http
+        .post(
+          [
+            swsProxypassPath,
+            'ip/loadBalancing',
             serviceName,
-            taskId: response.data.id,
-            taskFunction: response.data.action,
-          });
-          return response.data;
-        },
-        http => $q.reject(http.data),
-      );
+            'importCustomSsl',
+          ].join('/'),
+          model,
+        )
+        .then(
+          (response) => {
+            self.pollactivateSsl({
+              serviceName,
+              taskId: response.data.id,
+              taskFunction: response.data.action,
+            });
+            return response.data;
+          },
+          (http) => $q.reject(http.data),
+        );
     };
     this.pollactivateSsl = function pollactivateSsl(opts) {
       const namespace = `iplb.${opts.taskFunction}`;
@@ -185,7 +306,10 @@ angular.module('Module.ip.services').service('Iplb', [
           taskId: opts.taskId,
           namespace,
         })
-        .then(() => self.activateSslSuccess(opts), () => self.activateSslError(opts));
+        .then(
+          () => self.activateSslSuccess(opts),
+          () => self.activateSslError(opts),
+        );
     };
     this.activateSslSuccess = function activateSslSuccess(opts) {
       return self.getDetails(opts.serviceName).then((infos) => {
@@ -198,17 +322,26 @@ angular.module('Module.ip.services').service('Iplb', [
 
     // Restore ssl
     this.restoreSsl = function restoreSsl(serviceName) {
-      return $http.post([swsProxypassPath, 'ip/loadBalancing', serviceName, 'restoreSsl'].join('/')).then(
-        (response) => {
-          self.polldesactivateSsl({
+      return $http
+        .post(
+          [
+            swsProxypassPath,
+            'ip/loadBalancing',
             serviceName,
-            taskId: response.data.id,
-            taskFunction: response.data.action,
-          });
-          return response.data;
-        },
-        http => $q.reject(http.data),
-      );
+            'restoreSsl',
+          ].join('/'),
+        )
+        .then(
+          (response) => {
+            self.polldesactivateSsl({
+              serviceName,
+              taskId: response.data.id,
+              taskFunction: response.data.action,
+            });
+            return response.data;
+          },
+          (http) => $q.reject(http.data),
+        );
     };
     this.polldesactivateSsl = function polldesactivateSsl(opts) {
       const namespace = `iplb.${opts.taskFunction}`;
@@ -219,7 +352,10 @@ angular.module('Module.ip.services').service('Iplb', [
           taskId: opts.taskId,
           namespace,
         })
-        .then(() => self.desactivateSslSuccess(opts), () => self.desactivateSslError(opts));
+        .then(
+          () => self.desactivateSslSuccess(opts),
+          () => self.desactivateSslError(opts),
+        );
     };
     this.desactivateSslSuccess = function desactivateSslSuccess(opts) {
       return self.getDetails(opts.serviceName).then((infos) => {
@@ -234,10 +370,24 @@ angular.module('Module.ip.services').service('Iplb', [
 
     /* ZONE */
     this.getOrderPop = function getOrderPop(serviceName, pop) {
-      return $http.get([swsProxypassPath, 'order/ip/loadBalancing', serviceName, 'pop'].join('/'), { params: { pop } }).then(response => response.data, http => $q.reject(http.data));
+      return $http
+        .get(
+          [swsProxypassPath, 'order/ip/loadBalancing', serviceName, 'pop'].join(
+            '/',
+          ),
+          { params: { pop } },
+        )
+        .then((response) => response.data, (http) => $q.reject(http.data));
     };
     this.postOrderPop = function postOrderPop(serviceName, pop) {
-      return $http.post([swsProxypassPath, 'order/ip/loadBalancing', serviceName, 'pop'].join('/'), { pop }).then(response => response.data, http => $q.reject(http.data));
+      return $http
+        .post(
+          [swsProxypassPath, 'order/ip/loadBalancing', serviceName, 'pop'].join(
+            '/',
+          ),
+          { pop },
+        )
+        .then((response) => response.data, (http) => $q.reject(http.data));
     };
 
     /* / ZONE */
@@ -245,20 +395,64 @@ angular.module('Module.ip.services').service('Iplb', [
     // Backends
 
     this.getBackends = function getBackends(serviceName) {
-      return $http.get([swsProxypassPath, 'ip/loadBalancing', serviceName, 'backend'].join('/')).then(response => response.data, http => $q.reject(http.data));
+      return $http
+        .get(
+          [swsProxypassPath, 'ip/loadBalancing', serviceName, 'backend'].join(
+            '/',
+          ),
+        )
+        .then((response) => response.data, (http) => $q.reject(http.data));
     };
 
     this.getBackend = function getBackend(serviceName, backend) {
-      return $http.get([swsProxypassPath, 'ip/loadBalancing', serviceName, 'backend', backend].join('/')).then(response => response.data, http => $q.reject(http.data));
+      return $http
+        .get(
+          [
+            swsProxypassPath,
+            'ip/loadBalancing',
+            serviceName,
+            'backend',
+            backend,
+          ].join('/'),
+        )
+        .then((response) => response.data, (http) => $q.reject(http.data));
     };
     this.putBackend = function putBackend(serviceName, backend, data) {
-      return $http.put([swsProxypassPath, 'ip/loadBalancing', serviceName, 'backend', backend].join('/'), data).then(response => response.data, http => $q.reject(http.data));
+      return $http
+        .put(
+          [
+            swsProxypassPath,
+            'ip/loadBalancing',
+            serviceName,
+            'backend',
+            backend,
+          ].join('/'),
+          data,
+        )
+        .then((response) => response.data, (http) => $q.reject(http.data));
     };
     this.deleteBackend = function deleteBackend(serviceName, backend) {
-      return $http.delete([swsProxypassPath, 'ip/loadBalancing', serviceName, 'backend', backend].join('/')).then(response => response.data, http => $q.reject(http.data));
+      return $http
+        .delete(
+          [
+            swsProxypassPath,
+            'ip/loadBalancing',
+            serviceName,
+            'backend',
+            backend,
+          ].join('/'),
+        )
+        .then((response) => response.data, (http) => $q.reject(http.data));
     };
     this.addBackend = function addBackend(serviceName, data) {
-      return $http.post([swsProxypassPath, 'ip/loadBalancing', serviceName, 'backend'].join('/'), data).then(response => response.data, http => $q.reject(http.data));
+      return $http
+        .post(
+          [swsProxypassPath, 'ip/loadBalancing', serviceName, 'backend'].join(
+            '/',
+          ),
+          data,
+        )
+        .then((response) => response.data, (http) => $q.reject(http.data));
     };
 
     function pollWithParam(opts, paramNotif) {
@@ -291,21 +485,56 @@ angular.module('Module.ip.services').service('Iplb', [
     this.polldelBackend = this.pollBackendList;
 
     this.getAllowedBackends = function getAllowedBackends(serviceName) {
-      return $http.get([swsProxypassPath, 'ip/loadBalancing', serviceName, 'allowedBackends'].join('/')).then(response => response.data, http => $q.reject(http.data));
+      return $http
+        .get(
+          [
+            swsProxypassPath,
+            'ip/loadBalancing',
+            serviceName,
+            'allowedBackends',
+          ].join('/'),
+        )
+        .then((response) => response.data, (http) => $q.reject(http.data));
     };
 
     this.setWeight = function setWeight(serviceName, backend, weight) {
-      return $http.post([swsProxypassPath, 'ip/loadBalancing', serviceName, 'backend', backend, 'setWeight'].join('/'), { weight }).then(response => response.data, http => $q.reject(http.data));
+      return $http
+        .post(
+          [
+            swsProxypassPath,
+            'ip/loadBalancing',
+            serviceName,
+            'backend',
+            backend,
+            'setWeight',
+          ].join('/'),
+          { weight },
+        )
+        .then((response) => response.data, (http) => $q.reject(http.data));
     };
     this.pollsetWeight = this.pollBackendList;
 
     this.setBackupState = function setBackupState(serviceName, backend, data) {
-      return $http.post([swsProxypassPath, 'ip/loadBalancing', serviceName, 'backend', backend, 'backupState'].join('/'), data).then(response => response.data, http => $q.reject(http.data));
+      return $http
+        .post(
+          [
+            swsProxypassPath,
+            'ip/loadBalancing',
+            serviceName,
+            'backend',
+            backend,
+            'backupState',
+          ].join('/'),
+          data,
+        )
+        .then((response) => response.data, (http) => $q.reject(http.data));
     };
     this.pollbackupStateSet = this.pollBackendList;
     this.pollbackupStateUnset = this.pollBackendList;
 
-    this.getBackendsInformations = function getBackendsInformations(serviceName) {
+    this.getBackendsInformations = function getBackendsInformations(
+      serviceName,
+    ) {
       const deferred = $q.defer();
 
       if (!self.backendInformations) {
@@ -337,7 +566,10 @@ angular.module('Module.ip.services').service('Iplb', [
       const promise = self.getBackendsInformations(serviceName);
 
       return promise.then((backends) => {
-        const foundBackend = find(backends, _backend => _backend.mainBackendIp === backend);
+        const foundBackend = find(
+          backends,
+          (_backend) => _backend.mainBackendIp === backend,
+        );
 
         return foundBackend;
       });
@@ -346,17 +578,62 @@ angular.module('Module.ip.services').service('Iplb', [
     // Ports redirections
 
     this.getPortsRedirections = function getPortsRedirections(serviceName) {
-      return $http.get([swsProxypassPath, 'ip/loadBalancing', serviceName, 'portsRedirection'].join('/')).then(response => response.data, http => $q.reject(http.data));
+      return $http
+        .get(
+          [
+            swsProxypassPath,
+            'ip/loadBalancing',
+            serviceName,
+            'portsRedirection',
+          ].join('/'),
+        )
+        .then((response) => response.data, (http) => $q.reject(http.data));
     };
 
-    this.getPortsRedirection = function getPortsRedirection(serviceName, srcPort) {
-      return $http.get([swsProxypassPath, 'ip/loadBalancing', serviceName, 'portsRedirection', srcPort].join('/')).then(response => response.data, http => $q.reject(http.data));
+    this.getPortsRedirection = function getPortsRedirection(
+      serviceName,
+      srcPort,
+    ) {
+      return $http
+        .get(
+          [
+            swsProxypassPath,
+            'ip/loadBalancing',
+            serviceName,
+            'portsRedirection',
+            srcPort,
+          ].join('/'),
+        )
+        .then((response) => response.data, (http) => $q.reject(http.data));
     };
     this.addPortsRedirection = function addPortsRedirection(serviceName, data) {
-      return $http.post([swsProxypassPath, 'ip/loadBalancing', serviceName, 'portsRedirection'].join('/'), data).then(response => response.data, http => $q.reject(http.data));
+      return $http
+        .post(
+          [
+            swsProxypassPath,
+            'ip/loadBalancing',
+            serviceName,
+            'portsRedirection',
+          ].join('/'),
+          data,
+        )
+        .then((response) => response.data, (http) => $q.reject(http.data));
     };
-    this.deletePortsRedirection = function deletePortsRedirection(serviceName, srcPort) {
-      return $http.delete([swsProxypassPath, 'ip/loadBalancing', serviceName, 'portsRedirection', srcPort].join('/')).then(response => response.data, http => $q.reject(http.data));
+    this.deletePortsRedirection = function deletePortsRedirection(
+      serviceName,
+      srcPort,
+    ) {
+      return $http
+        .delete(
+          [
+            swsProxypassPath,
+            'ip/loadBalancing',
+            serviceName,
+            'portsRedirection',
+            srcPort,
+          ].join('/'),
+        )
+        .then((response) => response.data, (http) => $q.reject(http.data));
     };
   },
 ]);

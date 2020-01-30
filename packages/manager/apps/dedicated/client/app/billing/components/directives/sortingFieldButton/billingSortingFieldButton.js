@@ -13,8 +13,7 @@ angular.module('Billing.directives').directive('billingSortingFieldButton', [
       controllerAs: '$ctrl',
       controller: 'Billing.directives.billingSortingFieldButtonCtrl',
       replace: false,
-      template:
-            `<button type="button"
+      template: `<button type="button"
                      class="btn btn-link"
                      data-ng-click="$ctrl.onClick()">
                 <span data-ng-bind="$ctrl.label"></span>

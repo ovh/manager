@@ -5,7 +5,13 @@ import set from 'lodash/set';
 
 (() => {
   class ServerOrderTrafficCtrl {
-    constructor($scope, $stateParams, $translate, User, ServerOrderTrafficService) {
+    constructor(
+      $scope,
+      $stateParams,
+      $translate,
+      User,
+      ServerOrderTrafficService,
+    ) {
       this.$scope = $scope;
       this.$stateParams = $stateParams;
       this.$translate = $translate;
@@ -33,35 +39,47 @@ import set from 'lodash/set';
 
       this.steps = [
         {
-          isValid: () => !this.orderables.loading
-            && this.orderables.data.length > 0
-            && this.model.traffic,
+          isValid: () =>
+            !this.orderables.loading &&
+            this.orderables.data.length > 0 &&
+            this.model.traffic,
           isLoading: () => this.orderables.loading,
-          load: () => this.handleAPIGet(() => this.ServerOrderTrafficService
-            .getOrderables($stateParams.productId), this.orderables)
-            .then(() => {
+          load: () =>
+            this.handleAPIGet(
+              () =>
+                this.ServerOrderTrafficService.getOrderables(
+                  $stateParams.productId,
+                ),
+              this.orderables,
+            ).then(() => {
               if (this.orderables.data.length === 1) {
                 this.model.traffic = head(this.orderables.data);
               }
             }),
         },
         {
-          isValid: () => !this.durations.loading
-            && this.durations.data.length > 0
-            && this.model.duration,
+          isValid: () =>
+            !this.durations.loading &&
+            this.durations.data.length > 0 &&
+            this.model.duration,
           isLoading: () => this.durations.loading || this.user.loading,
           load: () => {
-            this.handleAPIGet(() => this.User.getUser().then(user => ({ data: user })), this.user);
-            this.handleAPIGet(() => this.ServerOrderTrafficService
-              .getOrderableDurations(
-                this.$stateParams.productId,
-                this.model.traffic.value,
-              ), this.durations)
-              .then(() => {
-                if (this.durations.data.length === 1) {
-                  this.model.duration = head(this.durations.data);
-                }
-              });
+            this.handleAPIGet(
+              () => this.User.getUser().then((user) => ({ data: user })),
+              this.user,
+            );
+            this.handleAPIGet(
+              () =>
+                this.ServerOrderTrafficService.getOrderableDurations(
+                  this.$stateParams.productId,
+                  this.model.traffic.value,
+                ),
+              this.durations,
+            ).then(() => {
+              if (this.durations.data.length === 1) {
+                this.model.duration = head(this.durations.data);
+              }
+            });
           },
         },
         {
@@ -69,11 +87,15 @@ import set from 'lodash/set';
           isLoading: () => this.bc.loading,
           load: () => {
             this.model.agree = false;
-            this.handleAPIGet(() => this.ServerOrderTrafficService.order(
-              this.$stateParams.productId,
-              this.model.traffic.value,
-              this.model.duration.durations,
-            ), this.bc);
+            this.handleAPIGet(
+              () =>
+                this.ServerOrderTrafficService.order(
+                  this.$stateParams.productId,
+                  this.model.traffic.value,
+                  this.model.duration.durations,
+                ),
+              this.bc,
+            );
           },
         },
         {
@@ -94,9 +116,12 @@ import set from 'lodash/set';
 
     openBC() {
       this.$scope.resetAction();
-      this.$scope.setMessage(this.$translate.instant('server_order_traffic_success', {
-        t0: this.bc.data.url,
-      }), true);
+      this.$scope.setMessage(
+        this.$translate.instant('server_order_traffic_success', {
+          t0: this.bc.data.url,
+        }),
+        true,
+      );
       window.open(this.bc.data.url);
     }
 
@@ -125,5 +150,7 @@ import set from 'lodash/set';
     }
   }
 
-  angular.module('App').controller('ServerOrderTrafficCtrl', ServerOrderTrafficCtrl);
+  angular
+    .module('App')
+    .controller('ServerOrderTrafficCtrl', ServerOrderTrafficCtrl);
 })();

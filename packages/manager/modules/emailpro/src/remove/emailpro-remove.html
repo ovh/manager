@@ -1,78 +1,101 @@
 <div data-ng-controller="EmailProRemoveEmailProCtrl">
-    <div data-wizard
-         data-wizard-bread-crumb
-         data-wizard-confirm-button-text="getSubmitButtonLabel()"
-         data-wizard-on-cancel="resetAction"
-         data-wizard-on-finish="submit"
-         data-wizard-title="exchange.billingPlan + '_resilitation_action_title' | translate">
-
+    <div
+        data-wizard
+        data-wizard-bread-crumb
+        data-wizard-confirm-button-text="getSubmitButtonLabel()"
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="submit"
+        data-wizard-title="exchange.billingPlan + '_resilitation_action_title' | translate"
+    >
         <div data-wizard-step>
-
             <div data-ng-if="!exchange.renewType.deleteAtExpiration">
                 <p
                     data-translate="{{ exchange.billingPlan + '_resilitation_action_intro' }}"
-                    data-translate-values="{ t0: exchange.displayName }"></p>
-                <p data-translate="emailpro_resilitation_action_hosted_warning"></p>
+                    data-translate-values="{ t0: exchange.displayName }"
+                ></p>
+                <p
+                    data-translate="emailpro_resilitation_action_hosted_warning"
+                ></p>
             </div>
 
             <div data-ng-if="exchange.renewType.deleteAtExpiration">
-                <p data-ng-bind-html="'emailpro_resilitation_cancel_action_intro' | translate: { t0: exchange.displayName }"></p>
+                <p
+                    data-ng-bind-html="'emailpro_resilitation_cancel_action_intro' | translate: { t0: exchange.displayName }"
+                ></p>
 
-                <p class="mt-2" data-ng-bind-html="'emailpro_update_billing_periode_intro' | translate"></p>
+                <p
+                    class="mt-2"
+                    data-ng-bind-html="'emailpro_update_billing_periode_intro' | translate"
+                ></p>
 
                 <form class="form-inline">
-                    <span class="mr-3" data-translate="emailpro_update_billing_periode_label"></span>
+                    <span
+                        class="mr-3"
+                        data-translate="emailpro_update_billing_periode_label"
+                    ></span>
 
                     <div class="oui-radio oui-radio_inline">
-                        <input class="oui-radio__input"
-                               type="radio"
-                               id="MONTHLY"
-                               name="renewGroup"
-                               data-ng-model="exchange.renewPeriod"
-                               data-ng-value="'MONTHLY'">
+                        <input
+                            class="oui-radio__input"
+                            type="radio"
+                            id="MONTHLY"
+                            name="renewGroup"
+                            data-ng-model="exchange.renewPeriod"
+                            data-ng-value="'MONTHLY'"
+                        />
                         <label class="oui-radio__label-container" for="MONTHLY">
-                            <span class="oui-radio__label"
-                                  data-translate="emailpro_ACTION_order_accounts_step2_pay_type_monthly"></span>
+                            <span
+                                class="oui-radio__label"
+                                data-translate="emailpro_ACTION_order_accounts_step2_pay_type_monthly"
+                            ></span>
                         </label>
                     </div>
 
                     <div class="oui-radio oui-radio_inline">
-                        <input class="oui-radio__input"
-                               type="radio"
-                               id="YEARLY"
-                               name="renewGroup"
-                               data-ng-model="exchange.renewPeriod"
-                               data-ng-value="'YEARLY'">
+                        <input
+                            class="oui-radio__input"
+                            type="radio"
+                            id="YEARLY"
+                            name="renewGroup"
+                            data-ng-model="exchange.renewPeriod"
+                            data-ng-value="'YEARLY'"
+                        />
                         <label class="oui-radio__label-container" for="YEARLY">
-                            <span class="oui-radio__label"
-                                  data-translate="emailpro_ACTION_order_accounts_step2_pay_type_yearly"></span>
+                            <span
+                                class="oui-radio__label"
+                                data-translate="emailpro_ACTION_order_accounts_step2_pay_type_yearly"
+                            ></span>
                         </label>
                     </div>
                 </form>
             </div>
-
         </div>
 
         <div data-wizard-step>
             <div data-ng-if="!exchange.renewType.deleteAtExpiration">
-                <p data-ng-if="!exchange.deleteAtExpiration"
-                   data-translate="{{ exchange.billingPlan + '_resilitation_action_confirmation' }}"
-                   data-translate-values="{
+                <p
+                    data-ng-if="!exchange.deleteAtExpiration"
+                    data-translate="{{ exchange.billingPlan + '_resilitation_action_confirmation' }}"
+                    data-translate-values="{
                        t0: exchange.displayName,
                        t1: exchange.accountsNumber
-                    }"></p>
-                <p data-ng-if="exchange.deleteAtExpiration"
-                   data-translate="{{ exchange.billingPlan + '_resilitation_cancel_action_confirmation' }}"
-                   data-translate-values="{
+                    }"
+                ></p>
+                <p
+                    data-ng-if="exchange.deleteAtExpiration"
+                    data-translate="{{ exchange.billingPlan + '_resilitation_cancel_action_confirmation' }}"
+                    data-translate-values="{
                        t0: exchange.displayName,
                        t1: exchange.accountsNumber
-                    }"></p>
+                    }"
+                ></p>
             </div>
 
             <p
                 data-ng-if="exchange.renewType.deleteAtExpiration"
                 data-translate="{{ exchange.billingPlan + '_resilitation_cancel_action_confirmation' }}"
-                data-translate-values="{ t0: exchange.displayName }"></p>
+                data-translate-values="{ t0: exchange.displayName }"
+            ></p>
         </div>
     </div>
 </div>

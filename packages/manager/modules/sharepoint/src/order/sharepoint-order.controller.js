@@ -55,20 +55,26 @@ export default class SharepointOrderCtrl {
 
     this.getExchanges()
       .then(() => this.User.getUser())
-      .then(({ ovhSubsidiary }) => { this.userSubsidiary = ovhSubsidiary; })
+      .then(({ ovhSubsidiary }) => {
+        this.userSubsidiary = ovhSubsidiary;
+      })
       .then(() => this.checkReseller())
       .then((isReseller) => {
         this.isReseller = isReseller;
 
         // default mode for normal users is to associate
-        if ((!isReseller || this.isComingFromAssociatedExchange)
-            && this.exchanges && this.exchanges.length > 0) {
+        if (
+          (!isReseller || this.isComingFromAssociatedExchange) &&
+          this.exchanges &&
+          this.exchanges.length > 0
+        ) {
           this.associateExchange = true;
         }
       })
       .finally(() => {
         this.loaders.init = false;
-        this.associatedExchange = this.associatedExchange || head(this.exchanges);
+        this.associatedExchange =
+          this.associatedExchange || head(this.exchanges);
         this.getAccounts();
       });
   }
@@ -82,17 +88,21 @@ export default class SharepointOrderCtrl {
   }
 
   checkReseller() {
-    return this.OvhApiMeVipStatus.v6().get().$promise.then(status => get(status, 'web', false));
+    return this.OvhApiMeVipStatus.v6()
+      .get()
+      .$promise.then((status) => get(status, 'web', false));
   }
 
   getExchanges() {
     return this.Sharepoint.getExchangeServices()
-      .then(exchanges => map(exchanges, (exchange) => {
-        const newExchange = angular.copy(exchange);
-        newExchange.domain = newExchange.name;
-        return newExchange;
-      }))
-      .then(exchanges => this.filterSupportedExchanges(exchanges))
+      .then((exchanges) =>
+        map(exchanges, (exchange) => {
+          const newExchange = angular.copy(exchange);
+          newExchange.domain = newExchange.name;
+          return newExchange;
+        }),
+      )
+      .then((exchanges) => this.filterSupportedExchanges(exchanges))
       .then((exchanges) => {
         this.exchanges = exchanges;
         if (exchanges.length === 0) {
@@ -100,19 +110,21 @@ export default class SharepointOrderCtrl {
         }
         return exchanges;
       })
-      .then(exchanges => this.selectAssociatedExchangeFromRouteParams(exchanges));
+      .then((exchanges) =>
+        this.selectAssociatedExchangeFromRouteParams(exchanges),
+      );
   }
 
   filterSupportedExchanges(exchanges) {
     return thru(
       filter(
-        filter(
-          exchanges,
-          exchange => this.constructor.isSupportedExchangeType(exchange),
+        filter(exchanges, (exchange) =>
+          this.constructor.isSupportedExchangeType(exchange),
         ),
-        exchange => this.isSupportedExchangeAdditionalCondition(exchange),
+        (exchange) => this.isSupportedExchangeAdditionalCondition(exchange),
       ),
-      exchangesList => this.filterExchangesThatAlreadyHaveSharepoint(exchangesList),
+      (exchangesList) =>
+        this.filterExchangesThatAlreadyHaveSharepoint(exchangesList),
     );
   }
 
@@ -121,20 +133,24 @@ export default class SharepointOrderCtrl {
   }
 
   isSupportedExchangeAdditionalCondition(exchange) {
-    return this.Exchange.getExchangeServer(exchange.organization, exchange.name)
-      .then(server => server.individual2010 === false);
+    return this.Exchange.getExchangeServer(
+      exchange.organization,
+      exchange.name,
+    ).then((server) => server.individual2010 === false);
   }
 
   filterExchangesThatAlreadyHaveSharepoint(exchanges) {
-    return this.buildSharepointChecklist(exchanges)
-      .then(checklist => filter(exchanges, (exchange, index) => !checklist[index]));
+    return this.buildSharepointChecklist(exchanges).then((checklist) =>
+      filter(exchanges, (exchange, index) => !checklist[index]),
+    );
   }
 
   selectAssociatedExchangeFromRouteParams(exchanges) {
     this.associatedExchange = find(
       exchanges,
-      exchange => exchange.organization === this.organizationId
-        && exchange.name === this.exchangeId,
+      (exchange) =>
+        exchange.organization === this.organizationId &&
+        exchange.name === this.exchangeId,
     );
     if (this.associatedExchange) {
       this.isComingFromAssociatedExchange = true;
@@ -143,7 +159,7 @@ export default class SharepointOrderCtrl {
 
   buildSharepointChecklist(exchanges) {
     return this.$q.all(
-      map(exchanges, exchange => this.hasSharepoint(exchange)),
+      map(exchanges, (exchange) => this.hasSharepoint(exchange)),
     );
   }
 
@@ -157,8 +173,8 @@ export default class SharepointOrderCtrl {
     return this.Exchange.getAccountIds({
       organizationName: this.associatedExchange.organization,
       exchangeService: this.associatedExchange.domain,
-    }).then(accountEmails => ({
-      data: map(accountEmails, email => ({ email })),
+    }).then((accountEmails) => ({
+      data: map(accountEmails, (email) => ({ email })),
       meta: {
         totalCount: accountEmails.length,
       },
@@ -166,12 +182,11 @@ export default class SharepointOrderCtrl {
   }
 
   getAccount({ email }) {
-    return this.Exchange
-      .getAccount({
-        organizationName: this.associatedExchange.organization,
-        exchangeService: this.associatedExchange.domain,
-        primaryEmailAddress: email,
-      });
+    return this.Exchange.getAccount({
+      organizationName: this.associatedExchange.organization,
+      exchangeService: this.associatedExchange.domain,
+      primaryEmailAddress: email,
+    });
   }
 
   onAssociateChange(associateExchange) {
@@ -192,7 +207,9 @@ export default class SharepointOrderCtrl {
   }
 
   onAccountsSelected(accounts) {
-    this.accountsToAssociate = accounts.map(({ primaryEmailAddress }) => primaryEmailAddress);
+    this.accountsToAssociate = accounts.map(
+      ({ primaryEmailAddress }) => primaryEmailAddress,
+    );
   }
 
   hasSelectedAccounts() {
@@ -201,7 +218,10 @@ export default class SharepointOrderCtrl {
 
   getSharepointOrderUrl() {
     if (this.associateExchange) {
-      if (has(this.associatedExchange, 'name') && this.accountsToAssociate.length >= 1) {
+      if (
+        has(this.associatedExchange, 'name') &&
+        this.accountsToAssociate.length >= 1
+      ) {
         return this.Sharepoint.getSharepointOrderUrl(
           this.associatedExchange.name,
           this.accountsToAssociate,

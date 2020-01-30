@@ -21,18 +21,17 @@ angular.module('controllers').controller(
 
     deleteDomain() {
       this.loading = true;
-      return this.Domain.deleteOption(
-        this.domain.name,
-        this.option.option,
-      )
-        .then(() => this.Alerter.success(
-          this.$translate.instant('domain_tab_options_delete_success'),
-          this.$scope.alerts.main,
-        ))
+      return this.Domain.deleteOption(this.domain.name, this.option.option)
+        .then(() =>
+          this.Alerter.success(
+            this.$translate.instant('domain_tab_options_delete_success'),
+            this.$scope.alerts.main,
+          ),
+        )
         .catch((err) => {
           this.Alerter.alertFromSWS(
             this.$translate.instant('domain_tab_options_delete_error'),
-            Object.assign({}, err, { type: err.type || 'ERROR' }),
+            { ...err, type: err.type || 'ERROR' },
             this.$scope.alerts.main,
           );
         })

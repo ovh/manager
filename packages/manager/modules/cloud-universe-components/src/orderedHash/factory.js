@@ -57,7 +57,7 @@ export default () => {
       this.sortedKeys = [];
       this.items = {};
     };
-  }());
+  })();
 
   // /////////////////////
   //      METHODS      //
@@ -76,13 +76,13 @@ export default () => {
 
   OrderedHash.prototype.getItems = function getItems() {
     const self = this;
-    return map(this.sortedKeys, itemKey => self.items[itemKey]);
+    return map(this.sortedKeys, (itemKey) => self.items[itemKey]);
   };
 
   OrderedHash.prototype.removeItem = function removeItem(item) {
     const itemKey = typeof item === 'object' ? item[this.accessKey] : item;
     delete this.items[itemKey];
-    remove(this.sortedKeys, key => key === itemKey);
+    remove(this.sortedKeys, (key) => key === itemKey);
   };
 
   OrderedHash.prototype.get = function get(item) {
@@ -98,14 +98,13 @@ export default () => {
   };
 
   OrderedHash.prototype.replaceItem = function replaceItem(oldItem, newItem) {
-    const oldItemKey = typeof oldItem === 'object' ? oldItem[this.accessKey] : oldItem;
-
+    const oldItemKey =
+      typeof oldItem === 'object' ? oldItem[this.accessKey] : oldItem;
 
     const oldKeyIndex = indexOf(this.sortedKeys, oldItemKey);
 
-
-    const newItemKey = typeof newItem === 'object' ? newItem[this.accessKey] : newItem;
-
+    const newItemKey =
+      typeof newItem === 'object' ? newItem[this.accessKey] : newItem;
 
     const newItemKeyIndex = indexOf(this.sortedKeys, newItemKey);
 
