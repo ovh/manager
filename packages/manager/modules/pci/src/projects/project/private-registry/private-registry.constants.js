@@ -37,12 +37,18 @@ export const GUIDES = [
   },
 ];
 export const REGION = 'GRA7';
-export const GUIDE_LINKS = {
-  CREATING_AND_USING_A_PRIVATE_IMAGE:
-    'https://docs.ovh.com/gb/en/private-registry/creating-and-using-a-private-image/',
-  USING_PRIVATE_REGISTRY_WITH_KUBERNETES:
-    'https://docs.ovh.com/gb/en/private-registry/using-private-registry-with-kubernetes/',
-};
+export const GUIDE_LINKS = [
+  {
+    key: 'CREATING_AND_USING_A_PRIVATE_IMAGE',
+    url:
+      'https://docs.ovh.com/gb/en/private-registry/creating-and-using-a-private-image/',
+  },
+  {
+    key: 'USING_PRIVATE_REGISTRY_WITH_KUBERNETES',
+    url:
+      'https://docs.ovh.com/gb/en/private-registry/using-private-registry-with-kubernetes/',
+  },
+];
 
 export const DELETE_CONFIRMATION_INPUT = /^DELETE$/;
 

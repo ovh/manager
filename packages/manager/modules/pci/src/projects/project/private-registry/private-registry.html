@@ -4,19 +4,11 @@
             data-text="{{:: 'pci_project_guides_header' | translate }}"
         >
             <oui-guide-menu-item
-                data-href="{{ $ctrl.GUIDE_LINKS.CREATING_AND_USING_A_PRIVATE_IMAGE }}"
-                data-external
+                data-ng-repeat="guide in $ctrl.GUIDE_LINKS track by $index"
+                data-href="{{ guide.url }}"
             >
                 <span
-                    data-translate="private_registry_guide_creating_and_using_a_private_image"
-                ></span>
-            </oui-guide-menu-item>
-            <oui-guide-menu-item
-                href="{{ $ctrl.GUIDE_LINKS.USING_PRIVATE_REGISTRY_WITH_KUBERNETES }}"
-                data-external
-            >
-                <span
-                    data-translate="private_registry_guide_using_private_registry_with_kubernetes"
+                    data-translate="{{ 'private_registry_guide_' + guide.key.toLowerCase() }}"
                 ></span>
             </oui-guide-menu-item>
         </oui-guide-menu>

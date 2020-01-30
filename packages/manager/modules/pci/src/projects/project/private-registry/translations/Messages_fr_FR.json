@@ -52,7 +52,7 @@
   "private_registry_query_error": "Échec de l'obtention des registres privés: {{ message }}",
   "private_registry_onboarding_content1": "Vous n'avez pas encore de service Registre privé géré.",
   "private_registry_onboarding_content2": "Gérez le dépôt de vos briques logicielles, sous la forme d'images Docker ou de chart Helm.",
-  "private_registry_onboarding_content3": "Disposez d'un espace pour stocker vos images logicielles, ainsi que de toutes les fonctionnalités du projet open source Harbor pour en garantir la sécurité. Ce service est disponible via le réseau haute performance d’OVH afin d’accélérer vos déploiements.",
+  "private_registry_onboarding_content3": "Disposez d'un espace pour stocker vos images logicielles, ainsi que de toutes les fonctionnalités du projet open source Harbor pour en garantir la sécurité. Ce service est disponible via le réseau haute performance d’OVHcloud afin d’accélérer vos déploiements.",
   "private_registry_onboarding_action_label": "Créer un registre",
   "private_registry_onboarding_guides_configure_title": "Registre privé",
   "private_registry_onboarding_guides_registry_title": "Gérer le Registre",
@@ -63,5 +63,5 @@
   "private_registry_accept_beta_terms": "les termes de la bêta",
   "private_registry_new_project_contracts": "J’ai lu et j’accepte les contrats : {{ contractsLinks }}.",
   "private_registry_guide_creating_and_using_a_private_image": "Création et utilisation d'images privées",
-  "private_registry_guide_using_private_registry_with_kubernetes": "Utilisation d'OVH Managed Private Registry avec OVH Managed Kubernetes"
+  "private_registry_guide_using_private_registry_with_kubernetes": "Utilisation d'OVHcloud Managed Private Registry avec OVHcloud Managed Kubernetes"
 }
