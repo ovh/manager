@@ -509,7 +509,7 @@ export default function () {
         return currentSearch;
       }
       items = items || this.items;
-      if (find(items, { id: item.id })) {
+      if (find(items, { id: item.id, parentId: item.parentId })) {
         currentSearch.found = true;
         currentSearch.path.push(item);
       } else {
