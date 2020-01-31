@@ -12,9 +12,7 @@ angular
     'HostingDatabaseCreateCtrl',
     (
       $location,
-      $q,
       $scope,
-      $state,
       $stateParams,
       $timeout,
       $translate,
