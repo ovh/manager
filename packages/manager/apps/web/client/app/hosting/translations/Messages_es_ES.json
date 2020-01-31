@@ -1400,5 +1400,10 @@
   "hosting_tab_DATABASES_configuration_order_title_private": "Solicite una base de datos SQL privada",
   "hosting_tab_DATABASES_table_header_server_address_tooltip": "Utilice el nombre del host proporcionado para conectarse a su instancia, ya que la dirección IP asociada puede cambiar con el tiempo.",
   "hosting_dashboard_service_privatesql_active_long": "Activar una base de datos SQL privada",
-  "hosting_dashboard_service_privatesql_active_remaining": "{{ count }} base(s) de datos SQL privada(s) no activa(s)"
+  "hosting_dashboard_service_privatesql_active_remaining": "{{ count }} base(s) de datos SQL privada(s) no activa(s)",
+  "hosting_dashboard_service_activate_email": "Activar mi solución de correo",
+  "hosting_dashboard_service_email_address": "Direcciones de correo",
+  "hosting_dashboard_service_common_active": "Activo",
+  "hosting_dashboard_service_common_inactive": "Inactivo",
+  "hosting_dashboard_email_offer_get_error": "No se ha podido cargar la dirección de correo."
 }

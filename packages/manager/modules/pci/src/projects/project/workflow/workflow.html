@@ -70,15 +70,14 @@
             </oui-column>
             <oui-column
                 data-title=":: 'pci_workflow_last_execution' | translate"
-                data-property="executions"
+                data-property="latestExecution"
                 data-sortable
                 data-searchable
                 data-filterable
                 data-type="date"
             >
                 <span
-                    data-ng-if="$row.executions && $row.executions.length"
-                    data-ng-bind="$row.executions[$row.executions.length - 1].executedAt | date: 'medium' : 'UTC'"
+                    data-ng-bind="$row.latestExecution | date: 'medium': 'UTC'"
                 ></span>
             </oui-column>
             <oui-column

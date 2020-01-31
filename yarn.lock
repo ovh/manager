@@ -1919,7 +1919,7 @@
   dependencies:
     lodash "^4.17.15"
 
-"@ovh-ux/ng-ovh-api-wrappers@^4.0.6":
+"@ovh-ux/ng-ovh-api-wrappers@^4.0.4", "@ovh-ux/ng-ovh-api-wrappers@^4.0.6":
   version "4.0.6"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-api-wrappers/-/ng-ovh-api-wrappers-4.0.6.tgz#fd3dc4fe745b3ea8c306a71bbbadb2e6aebe1e90"
   integrity sha512-8RSU/Gu+f5JyxJFGPq2vmoBhsKa4oO7o6hzs4Br3aaC0nosrIZznsDzcO182TVjbI6al21HHcIsGh+N5m9YZ1A==
@@ -1986,7 +1986,7 @@
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-form-flat/-/ng-ovh-form-flat-4.0.3.tgz#bec2c9fda11a7105eb22fa682fd06ebbe93121d2"
   integrity sha512-EoksIcNePhYn084aObERqqWBenebMTgkK0TV8L13qhgjTDwhJyO0qsCOI0UpChv0kBpEoGi/GDurgZjz6v1TxA==
 
-"@ovh-ux/ng-ovh-http@^4.0.6":
+"@ovh-ux/ng-ovh-http@^4.0.4", "@ovh-ux/ng-ovh-http@^4.0.6":
   version "4.0.6"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-http/-/ng-ovh-http-4.0.6.tgz#c1a9191029636dc391653bbef2bdb6df12d5334e"
   integrity sha512-gcDg57C/atvLO1jMaj6gwc5IbRWUhuJxKugEJtYCxgGXxNUp251r2QjeDIVFkRBVP7b8htecYfteJa9dCP8vAA==
@@ -2086,7 +2086,7 @@
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-stop-event/-/ng-ovh-stop-event-1.0.2.tgz#05e18310ccc09e5009b285c9b6a0e61267959997"
   integrity sha512-4JDMTKds20LmceQ9rNfGmlD2m2e3JAMwAGZp20Xm/3jMtEzvic+gdNzQYlvvExUA9+YOXN9BZ7EMMRWMXZHS6Q==
 
-"@ovh-ux/ng-ovh-swimming-poll@^4.0.2":
+"@ovh-ux/ng-ovh-swimming-poll@^4.0.1", "@ovh-ux/ng-ovh-swimming-poll@^4.0.2":
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-swimming-poll/-/ng-ovh-swimming-poll-4.0.2.tgz#fc64d107c7bd40f4c6517115d0d8af8655b95198"
   integrity sha512-3pjF2BKf0QhLU+2Ytukq7O+qST2qPWTHvrkI1KC59vWNGweNYEnZuLKzeSExvnfqQjReX81ohOyxgbzxTVzhCA==
@@ -12904,10 +12904,10 @@ ovh-angular-ui-confirm-modal@^1.0.2:
   resolved "https://registry.yarnpkg.com/ovh-angular-ui-confirm-modal/-/ovh-angular-ui-confirm-modal-1.0.2.tgz#92e6736588a4fb1de6353f1a17ab1962679a698d"
   integrity sha512-3V17DbzWjUjl9sKCd25Oycn+7eqg6iW+DpizwVmixHFzDNDMnpKSGmxRLrOq+q9YNE7IepoAKWjoSiy2+zOEEg==
 
-ovh-api-services@^9.31.0:
-  version "9.31.0"
-  resolved "https://registry.yarnpkg.com/ovh-api-services/-/ovh-api-services-9.31.0.tgz#974cf3df5b50380f63ec8d7ff853e7b9cabffa3c"
-  integrity sha512-zCXq5nq5QF14qy2RaAlkfWlL8GcV+2rh9wUEXFaxdA2ke23J/mtk8VU6t6njzHNSkAXjqNhE0oA0Hc9x1Fl3MQ==
+ovh-api-services@^9.35.0:
+  version "9.35.0"
+  resolved "https://registry.yarnpkg.com/ovh-api-services/-/ovh-api-services-9.35.0.tgz#849258b17537521f6cc21b4fb77f568cbb059cbe"
+  integrity sha512-dnt2HKWe0mKmYY8e2CIRkf76bPBlNDQA7pfsBx/lRPIlqWq7EWljWFhhqd2mSYEuEDqKYVrTSCb46Kl5YNh5ig==
   dependencies:
     lodash "^4.17.15"
 
@@ -12965,6 +12965,13 @@ ovh-ui-kit@^2.35.2:
   version "2.35.2"
   resolved "https://registry.yarnpkg.com/ovh-ui-kit/-/ovh-ui-kit-2.35.2.tgz#a34d4e080a253cb851a0076af460aa80f0650785"
   integrity sha512-GMXKhh3/lsXPD3KRLKs1c5D5iO876KMG8gInnSRZCunqPzjRrLlJSi8P5Z5Qv7WUEaY4yWMg8J1Gsr7NTn0K6A==
+  dependencies:
+    less-plugin-remcalc "^0.1.0"
+
+ovh-ui-kit@^2.38.0:
+  version "2.38.0"
+  resolved "https://registry.yarnpkg.com/ovh-ui-kit/-/ovh-ui-kit-2.38.0.tgz#8b6e6fb7952b3519638d0543eb196a68ce827dac"
+  integrity sha512-WOBjGbIc2SF89fr0DWDwwPzRdf2AN+fqPODxbTZjX+P//zYZzcTrH6OvbhOhNZb+mY8cblY79TYHW5+SN+JKGA==
   dependencies:
     less-plugin-remcalc "^0.1.0"
 

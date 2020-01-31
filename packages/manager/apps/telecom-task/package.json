@@ -39,7 +39,7 @@
     "jsplumb": "^2.12.0",
     "ng-csv": "^0.3.6",
     "oclazyload": "^1.1.0",
-    "ovh-api-services": "^9.31.0",
+    "ovh-api-services": "^9.35.0",
     "ovh-manager-webfont": "^1.2.0",
     "ovh-ngstrap": "^4.0.2",
     "ovh-ui-angular": "^3.12.0",

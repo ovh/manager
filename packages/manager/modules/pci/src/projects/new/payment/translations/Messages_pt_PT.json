@@ -6,6 +6,6 @@
   "pci_project_new_payment_btn_continue_credit": "Creditar e criar o meu projeto",
   "pci_project_new_payment_btn_cancel": "Cancelar",
   "pci_project_new_payment_create_error": "Ocorreu um erro ao adicionar o seu método de pagamento. Tente novamente.",
-  "pci_project_new_payment_checkout_error": "Ocorreu um erro na criação do seu projeto Public Cloud. Tente novamente. Tente novamente.",
-  "pci_project_new_payment_challenge_error_payment_method_deactivated": "Não foi possível verificar o seu método de pagamento. Tente novamente. Este foi desativado. Por favor, escolha outro método de pagamento para que você possa criar um novo projeto."
+  "pci_project_new_payment_checkout_error": "Ocorreu um erro na criação do seu projeto Public Cloud. Tente novamente.",
+  "pci_project_new_payment_challenge_error_payment_method_deactivated": "Não foi possível verificar o seu método de pagamento. Este foi desativado. Selecione outro método de pagamento para poder criar um novo projeto."
 }

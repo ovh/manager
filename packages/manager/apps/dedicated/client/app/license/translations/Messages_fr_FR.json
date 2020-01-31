@@ -684,5 +684,8 @@
   "license_potential_problem_isOsPlesk10andLater": "Le serveur ne semble pas exécuter une distribution Plesk 10",
   "license_potential_problem_isOsPlesk12": "Le serveur ne semble pas exécuter une distribution Plesk 12",
   "license_potential_problem_isWindowsOs": "Le serveur ne semble pas exécuter une version de Windows",
-  "license_potential_problem_isOsPleskOnyx": "Le serveur ne semble pas exécuter une distribution Plesk Onyx"
+  "license_potential_problem_isOsPleskOnyx": "Le serveur ne semble pas exécuter une distribution Plesk Onyx",
+  "license_designation_CPANEL_premier_option": "jusqu'à {{ numberOfCPANEL }} comptes CPANEL",
+  "license_designation_CPANEL_admin_option": "2-5 comptes CPANEL",
+  "license_designation_CPANEL_pro_option": "6-30 comptes CPANEL"
 }

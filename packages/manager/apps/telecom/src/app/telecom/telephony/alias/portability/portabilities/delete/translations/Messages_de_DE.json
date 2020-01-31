@@ -1,0 +1,9 @@
+{
+  "portabilities_delete_title": "Dokument löschen",
+  "portabilities_delete_action": "Sind Sie sicher, dass Sie das Dokument löschen möchten?",
+  "portabilities_delete_document_processing": "Das Dokument wird gelöscht...",
+  "portabilities_delete_document_succeed": "Das Dokument wurde gelöscht.",
+  "portabilities_delete_document_failed": "Das Dokument konnte nicht gelöscht werden.",
+  "portabilities_delete_submit": "Bestätigen",
+  "portabilities_delete_cancel": "Abbrechen"
+}
