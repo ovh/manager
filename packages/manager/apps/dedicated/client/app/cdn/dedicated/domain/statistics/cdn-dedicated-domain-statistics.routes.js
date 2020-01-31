@@ -8,6 +8,7 @@ angular.module('App').config(($stateProvider) => {
         controller: 'CdnDomainStatisticsCtrl',
         controllerAs: '$ctrl',
       },
+      translations: { value: ['.'], format: 'json' },
     },
   });
 });
