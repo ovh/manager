@@ -1,3 +1,12 @@
+## [1.0.4](https://github.com/ovh-ux/manager/compare/@ovh-ux/sao-ovh-manager-app@1.0.3...@ovh-ux/sao-ovh-manager-app@1.0.4) (2020-01-31)
+
+
+### Bug Fixes
+
+* **template:** set right application name ([#2141](https://github.com/ovh-ux/manager/issues/2141)) ([738e54d](https://github.com/ovh-ux/manager/commit/738e54d1ab50aeee6e7584de23a35a34a4446bcb))
+
+
+
 ## [1.0.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/sao-ovh-manager-app@1.0.2...@ovh-ux/sao-ovh-manager-app@1.0.3) (2020-01-21)
 
 

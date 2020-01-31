@@ -1,3 +1,15 @@
+## [11.3.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@11.3.8...@ovh-ux/manager-dedicated@11.3.9) (2020-01-31)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 240] ([e872cf2](https://github.com/ovh/manager/commit/e872cf2afe638dff86dbed7af3d8715637cf02b7))
+* **i18n:** add missing translations [CDS 245] ([84b48d3](https://github.com/ovh/manager/commit/84b48d3dc92e11806ff73de4902fdaf5e5b4cdf8))
+* **i18n:** add missing translations [CDS 246] ([7f8d0cf](https://github.com/ovh/manager/commit/7f8d0cfc9fbe4438a06a5da23685ab5a551baeda))
+* **licence:** display readable cpanel options ([#2059](https://github.com/ovh/manager/issues/2059)) ([9e3bae2](https://github.com/ovh/manager/commit/9e3bae2e698e2315afa583f456fa872684d7068c)), closes [#2036](https://github.com/ovh/manager/issues/2036)
+
+
+
 ## [11.3.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@11.3.7...@ovh-ux/manager-dedicated@11.3.8) (2020-01-27)
 
 

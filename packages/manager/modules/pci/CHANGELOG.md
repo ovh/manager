@@ -1,3 +1,16 @@
+## [3.9.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.9.3...@ovh-ux/manager-pci@3.9.4) (2020-01-31)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 241] ([ab1a322](https://github.com/ovh/manager/commit/ab1a32288ca8ed763832f15538cce95516475f00))
+* **i18n:** add missing translations [CDS 242] ([5999617](https://github.com/ovh/manager/commit/5999617d4fbe77fdc4f5d8d3f3f5fdbf254d52a9))
+* **i18n:** add missing translations [CDS 243] ([56fae1b](https://github.com/ovh/manager/commit/56fae1b8a458ab0ad9923313d56d8c943c0af085))
+* **i18n:** add missing translations [CDS 246] ([7f8d0cf](https://github.com/ovh/manager/commit/7f8d0cfc9fbe4438a06a5da23685ab5a551baeda))
+* **pci.projects.workflow:** display latest execution date ([#2082](https://github.com/ovh/manager/issues/2082)) ([a465314](https://github.com/ovh/manager/commit/a4653140bbe80be1c6b9f107c3e1c0b4bce29b59))
+
+
+
 ## [3.9.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.9.2...@ovh-ux/manager-pci@3.9.3) (2020-01-30)
 
 
