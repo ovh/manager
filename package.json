@@ -27,9 +27,10 @@
     "split": "scripts/split.js",
     "test": "yarn lint",
     "version": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
-    "vuepress:build": "vuepress build docs",
+    "vuepress:build": "yarn run vuepress:prebuild && vuepress build docs",
     "vuepress:deploy": "yarn run vuepress:build && gh-pages -d docs/.vuepress/dist -m \"docs: update documentation\"",
-    "vuepress:dev": "vuepress dev docs"
+    "vuepress:dev": "yarn run vuepress:prebuild && vuepress dev docs",
+    "vuepress:prebuild": "scripts/list-packages.js"
   },
   "devDependencies": {
     "@commitlint/cli": "^8.3.3",
