@@ -1,5 +1,5 @@
 angular.module('App').config(($stateProvider) => {
-  $stateProvider.state('app.networks.cdn.dedicated.ssl', {
+  $stateProvider.state('app.networks.cdn.dedicated.manage.ssl', {
     url: '/ssl',
     views: {
       cdnView: {

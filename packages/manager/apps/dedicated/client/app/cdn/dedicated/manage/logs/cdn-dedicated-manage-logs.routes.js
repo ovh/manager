@@ -1,5 +1,5 @@
 angular.module('App').config(($stateProvider) => {
-  $stateProvider.state('app.networks.cdn.dedicated.logs', {
+  $stateProvider.state('app.networks.cdn.dedicated.manage.logs', {
     url: '/logs',
     views: {
       cdnView: {
