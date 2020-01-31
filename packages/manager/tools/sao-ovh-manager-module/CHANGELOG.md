@@ -1,3 +1,12 @@
+## [1.0.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/sao-ovh-manager-module@1.0.2...@ovh-ux/sao-ovh-manager-module@1.0.3) (2020-01-31)
+
+
+### Bug Fixes
+
+* **template:** update component naming generation ([#2144](https://github.com/ovh-ux/manager/issues/2144)) ([6b98b9e](https://github.com/ovh-ux/manager/commit/6b98b9e5f702b4f2314825230d2a51ef7f384f44))
+
+
+
 ## [1.0.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/sao-ovh-manager-module@1.0.1...@ovh-ux/sao-ovh-manager-module@1.0.2) (2020-01-16)
 
 

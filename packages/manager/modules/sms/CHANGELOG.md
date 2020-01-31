@@ -1,3 +1,12 @@
+## [7.5.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@7.5.1...@ovh-ux/manager-sms@7.5.2) (2020-01-31)
+
+
+### Bug Fixes
+
+* **sms.compose:** restrict commercial clause for FR sub ([#2146](https://github.com/ovh/manager/issues/2146)) ([b64d72d](https://github.com/ovh/manager/commit/b64d72d659e834e800ceae89bee3462792cc62a2))
+
+
+
 ## [7.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@7.5.0...@ovh-ux/manager-sms@7.5.1) (2020-01-08)
 
 
