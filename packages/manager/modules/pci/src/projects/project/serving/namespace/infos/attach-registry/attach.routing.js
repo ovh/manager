@@ -9,7 +9,7 @@ export default /* @ngInject */ ($stateProvider) => {
       },
       layout: 'modal',
       resolve: {
-        goBack: /* @ngInject */ goToNamespaceInfos => goToNamespaceInfos,
+        goBack: /* @ngInject */ (goToNamespaceInfos) => goToNamespaceInfos,
         breadcrumb: () => null,
       },
     });

@@ -12,8 +12,8 @@ export default /* @ngInject */ ($stateProvider) => {
       },
       layout: 'modal',
       resolve: {
-        goBack: /* @ngInject */ goToNamespaceTokens => goToNamespaceTokens,
-        resource: /* @ngInject */ $stateParams => $stateParams.resource,
+        goBack: /* @ngInject */ (goToNamespaceTokens) => goToNamespaceTokens,
+        resource: /* @ngInject */ ($stateParams) => $stateParams.resource,
         breadcrumb: () => null,
       },
     });

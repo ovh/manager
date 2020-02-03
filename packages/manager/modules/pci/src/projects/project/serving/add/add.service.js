@@ -27,7 +27,7 @@ export default class OvhManagerPciServingAddService {
       .then((regions) => {
         const promises = map(
           regions,
-          regionName => ({
+          (regionName) => ({
             name: regionName,
             hasEnoughQuota: () => true,
           }),

@@ -2,6 +2,8 @@ import get from 'lodash/get';
 
 import { PRESET_IMAGE, BUILD_IMAGE } from './add.constants';
 
+const EXTENSION = ['.h5', '.onnx', '.pmml'];
+
 export default class PciServingNamespaceModelsAddController {
   /* @ngInject */
   constructor(
@@ -17,6 +19,10 @@ export default class PciServingNamespaceModelsAddController {
   }
 
   $onInit() {
+    this.FOLDER_MODE = 'folder';
+    this.FILE_MODE = 'file';
+    this.mode = this.FOLDER_MODE;
+
     this.isAdding = false;
 
     this.model = {
@@ -34,19 +40,32 @@ export default class PciServingNamespaceModelsAddController {
       this.PRESET_IMAGE,
     ];
 
-    this.paths = [];
+    this.folders = [];
+    this.files = [];
     this.getContainerFiles();
   }
 
   getContainerFiles() {
+    this.containerLoading = true;
     this.PciProjectStorageContainersService.getContainer(
       this.projectId, this.namespace.containerId,
     ).then((container) => {
-      this.paths = container.objects.map(({ name }) => {
+      this.folders = container.objects.map(({ name }) => {
         const split = name.split('/');
         split.pop();
         return split.join('/');
-      }).filter(path => path !== '');
+      }).filter((path) => path !== '');
+
+      this.files = container.objects.map(({ name }) => name).filter((path) => {
+        for (let i = 0; i < EXTENSION.length; i += 1) {
+          if (path.endsWith(EXTENSION[i])) {
+            return true;
+          }
+        }
+        return false;
+      });
+    }).finally(() => {
+      this.containerLoading = false;
     });
   }
 
@@ -62,10 +81,14 @@ export default class PciServingNamespaceModelsAddController {
     }).then(() => this.goBack(
       this.$translate.instant('pci_projects_project_serving_namespace_models_add_success'),
     ))
-      .catch(error => this.goBack(
+      .catch((error) => this.goBack(
         this.$translate.instant('pci_projects_project_serving_namespace_models_add_error', {
           message: get(error, 'data.message'),
         }), 'error',
       ));
+  }
+
+  resetMode() {
+    this.model.storagePath = null;
   }
 }

@@ -13,7 +13,8 @@
   "pci_projects_project_serving_namespace_models_add_instances": "Instance configuration",
   "pci_projects_project_serving_namespace_models_add_instances_info": "During preview only one type of instances is available. Additional flavors will be created to fit specific needs.",
   "pci_projects_project_serving_namespace_models_add_autoscaling": "Auto Scaling",
-  "pci_projects_project_serving_namespace_models_add_storage_path_info": "Select the path to your model directory on the Object Storage",
+  "pci_projects_project_serving_namespace_models_add_storage_path_info_file": "Select the path to your model file on the Object Storage. Your file must ends with: h5 / pmml or onnx",
+  "pci_projects_project_serving_namespace_models_add_storage_path_info_folder": "Select the path to your model directory on the Object Storage",
   "pci_projects_project_serving_namespace_models_add_storage_path_no_path": "Your object storage seems empty, you can upload your model here",
   "pci_projects_project_serving_namespace_models_common_add": "Deploy",
   "pci_projects_project_serving_namespace_models_common_cancel": "Cancel",
@@ -22,5 +23,7 @@
   "pci_projects_project_serving_namespace_models_storage_scale_min": "Min Instances",
   "pci_projects_project_serving_namespace_models_storage_scale_max": "Max Instances",
   "pci_projects_project_serving_namespace_models_add_autoscaling_info": "During the preview phase, the auto-scaling settings are not customizable.",
-  "pci_projects_project_serving_namespace_models_add_model_preset_info": "More informations"
+  "pci_projects_project_serving_namespace_models_add_model_preset_info": "More informations",
+  "pci_projects_project_serving_namespace_models_add_folder_mode": "Folder",
+  "pci_projects_project_serving_namespace_models_add_file_mode": "File"
 }

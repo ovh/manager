@@ -32,7 +32,7 @@ export default class OvhManagerPciServingModelService {
         namespaceId,
       })
       .$promise
-      .then(models => models.map(model => new NamespaceModel({ ...model })));
+      .then((models) => models.map((model) => new NamespaceModel({ ...model })));
   }
 
   get(serviceName, namespaceId, modelId) {
@@ -46,7 +46,7 @@ export default class OvhManagerPciServingModelService {
         modelId,
       })
       .$promise
-      .then(model => new NamespaceModel({
+      .then((model) => new NamespaceModel({
         ...model,
       }));
   }

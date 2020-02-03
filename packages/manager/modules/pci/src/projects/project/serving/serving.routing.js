@@ -4,7 +4,7 @@ export default /* @ngInject */ ($stateProvider) => {
       url: '/serving',
       component: 'pciProjectServing',
 
-      redirectTo: transition => transition.injector().get('$q').all([
+      redirectTo: (transition) => transition.injector().get('$q').all([
         transition.injector().getAsync('lab'),
         transition.injector().getAsync('namespaces'),
       ]).then(([lab, namespaces]) => {
@@ -15,7 +15,7 @@ export default /* @ngInject */ ($stateProvider) => {
       }),
 
       resolve: {
-        breadcrumb: /* @ngInject */ $translate => $translate.instant('pci_projects_project_serving_title'),
+        breadcrumb: /* @ngInject */ ($translate) => $translate.instant('pci_projects_project_serving_title'),
         lab: /* @ngInject */ (
           PciProjectLabsService,
           projectId,
@@ -25,26 +25,26 @@ export default /* @ngInject */ ($stateProvider) => {
           PciProjectServingService,
           projectId,
         ) => PciProjectServingService.getAll(projectId),
-        viewNamespace: /* @ngInject */ ($state, projectId) => namespace => $state.go('pci.projects.project.serving.namespace', {
+        viewNamespace: /* @ngInject */ ($state, projectId) => (namespace) => $state.go('pci.projects.project.serving.namespace', {
           projectId,
           namespaceId: namespace.id,
         }),
-        listModels: /* @ngInject */ ($state, projectId) => namespace => $state.go('pci.projects.project.serving.namespace.models', {
+        listModels: /* @ngInject */ ($state, projectId) => (namespace) => $state.go('pci.projects.project.serving.namespace.models', {
           projectId,
           namespaceId: namespace.id,
         }),
-        deployModel: /* @ngInject */ ($state, projectId) => namespace => $state.go('pci.projects.project.serving.namespace.models.add', {
+        deployModel: /* @ngInject */ ($state, projectId) => (namespace) => $state.go('pci.projects.project.serving.namespace.models.add', {
           projectId,
           namespaceId: namespace.id,
         }),
-        deleteNamespace: /* @ngInject */ ($state, projectId) => namespace => $state.go('pci.projects.project.serving.delete', {
+        deleteNamespace: /* @ngInject */ ($state, projectId) => (namespace) => $state.go('pci.projects.project.serving.delete', {
           projectId,
           namespaceId: namespace.id,
         }),
         addNamespaceLink: /* @ngInject */($state, projectId) => $state.href('pci.projects.project.serving.add', {
           projectId,
         }),
-        namespaceLink: /* @ngInject */ ($state, projectId) => namespace => $state.href('pci.projects.project.serving.namespace', {
+        namespaceLink: /* @ngInject */ ($state, projectId) => (namespace) => $state.href('pci.projects.project.serving.namespace', {
           projectId,
           namespaceId: namespace.id,
         }),

@@ -12,8 +12,8 @@ export default /* @ngInject */ ($stateProvider) => {
         namespaceId: null,
       },
       resolve: {
-        goBack: /* @ngInject */ goToNamespace => goToNamespace,
-        namespaceId: /* @ngInject */ $stateParams => $stateParams.namespaceId,
+        goBack: /* @ngInject */ (goToNamespace) => goToNamespace,
+        namespaceId: /* @ngInject */ ($stateParams) => $stateParams.namespaceId,
         breadcrumb: () => null,
       },
     });

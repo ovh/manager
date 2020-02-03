@@ -6,7 +6,7 @@ export default /* @ngInject */ ($stateProvider) => {
         'content@pci.projects.project.serving.namespace': 'ovhManagerPciProjectServingNamespaceModelsAddComponent',
       },
       resolve: {
-        goBack: /* @ngInject */ goToNamespaceModels => goToNamespaceModels,
+        goBack: /* @ngInject */ (goToNamespaceModels) => goToNamespaceModels,
         flavors: /* @ngInject */ (
           OvhManagerPciServingNamespaceModelsAddServiceCapabilities,
           projectId,
@@ -21,7 +21,7 @@ export default /* @ngInject */ ($stateProvider) => {
           projectId,
           containerId: namespace.containerId,
         }),
-        breadcrumb: /* @ngInject */ $translate => $translate.instant('pci_projects_project_serving_namespace_models_add'),
+        breadcrumb: /* @ngInject */ ($translate) => $translate.instant('pci_projects_project_serving_namespace_models_add'),
       },
     });
 };

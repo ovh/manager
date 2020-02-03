@@ -23,7 +23,7 @@ export default class PciServingNamespaceModelsDeleteController {
       .then(() => this.goBack(
         this.$translate.instant('pci_projects_project_serving_delete_success'),
       ))
-      .catch(error => this.goBack(
+      .catch((error) => this.goBack(
         this.$translate.instant('pci_projects_project_serving_delete_error', {
           message: get(error, 'data.message'),
         }), 'error',

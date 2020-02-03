@@ -9,7 +9,7 @@ export default /* @ngInject */ ($stateProvider) => {
         servingView: 'ovhManagerPciProjectServingNamespaceTokens',
       },
       resolve: {
-        jwtToken: /* @ngInject */ $stateParams => $stateParams.jwtToken,
+        jwtToken: /* @ngInject */ ($stateParams) => $stateParams.jwtToken,
         addToken: /* @ngInject */ (
           $state, projectId, namespaceId,
         ) => () => $state.go('pci.projects.project.serving.namespace.tokens.add', {
@@ -19,7 +19,7 @@ export default /* @ngInject */ ($stateProvider) => {
 
         deleteToken: /* @ngInject */ (
           $state, projectId, namespaceId,
-        ) => tokenId => $state.go('pci.projects.project.serving.namespace.tokens.delete', {
+        ) => (tokenId) => $state.go('pci.projects.project.serving.namespace.tokens.delete', {
           projectId,
           namespaceId,
           tokenId,
@@ -27,7 +27,7 @@ export default /* @ngInject */ ($stateProvider) => {
 
         updateToken: /* @ngInject */ (
           $state, projectId, namespaceId,
-        ) => tokenId => $state.go('pci.projects.project.serving.namespace.tokens.update', {
+        ) => (tokenId) => $state.go('pci.projects.project.serving.namespace.tokens.update', {
           projectId,
           namespaceId,
           tokenId,
@@ -57,7 +57,7 @@ export default /* @ngInject */ ($stateProvider) => {
           return promise;
         },
 
-        breadcrumb: /* @ngInject */ $translate => $translate.instant('pci_projects_project_serving_namespace_tokens'),
+        breadcrumb: /* @ngInject */ ($translate) => $translate.instant('pci_projects_project_serving_namespace_tokens'),
       },
     });
 };

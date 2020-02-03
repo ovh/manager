@@ -32,7 +32,7 @@ export default class PciServingNamespaceTokensAddController {
       .then(({ token }) => this.goBack({
         textHtml: this.$translate.instant('pci_projects_project_serving_namespace_tokens_add_success'),
       }, 'success', token))
-      .catch(error => this.goBack(
+      .catch((error) => this.goBack(
         this.$translate.instant('pci_projects_project_serving_namespace_tokens_add_error', {
           message: get(error, 'data.message'),
         }), 'error',

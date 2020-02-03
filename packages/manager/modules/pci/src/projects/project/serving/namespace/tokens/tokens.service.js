@@ -48,7 +48,7 @@ export default class OvhManagerPciServingTokenService {
         namespaceId,
       })
       .$promise
-      .then(tokens => tokens.map(token => new Token({ ...token })));
+      .then((tokens) => tokens.map((token) => new Token({ ...token })));
   }
 
   get(serviceName, namespaceId, tokenId) {
@@ -62,7 +62,7 @@ export default class OvhManagerPciServingTokenService {
         tokenId,
       })
       .$promise
-      .then(token => new Token({
+      .then((token) => new Token({
         ...token,
       }));
   }

@@ -15,7 +15,7 @@ export default /* @ngInject */ ($stateProvider) => {
 
         deleteModel: /* @ngInject */ (
           $state, projectId, namespaceId,
-        ) => modelId => $state.go('pci.projects.project.serving.namespace.models.delete', {
+        ) => (modelId) => $state.go('pci.projects.project.serving.namespace.models.delete', {
           projectId,
           namespaceId,
           modelId,
@@ -23,7 +23,7 @@ export default /* @ngInject */ ($stateProvider) => {
 
         updateModel: /* @ngInject */ (
           $state, projectId, namespaceId,
-        ) => modelId => $state.go('pci.projects.project.serving.namespace.models.update', {
+        ) => (modelId) => $state.go('pci.projects.project.serving.namespace.models.update', {
           projectId,
           namespaceId,
           modelId,
@@ -31,7 +31,7 @@ export default /* @ngInject */ ($stateProvider) => {
 
         generateToken: /* @ngInject */ (
           $state, projectId, namespaceId,
-        ) => modelId => $state.go('pci.projects.project.serving.namespace.tokens.add', {
+        ) => (modelId) => $state.go('pci.projects.project.serving.namespace.tokens.add', {
           projectId,
           namespaceId,
           modelId,
@@ -61,7 +61,7 @@ export default /* @ngInject */ ($stateProvider) => {
           return promise;
         },
 
-        breadcrumb: /* @ngInject */ $translate => $translate.instant('pci_projects_project_serving_namespace_models'),
+        breadcrumb: /* @ngInject */ ($translate) => $translate.instant('pci_projects_project_serving_namespace_models'),
       },
     });
 };

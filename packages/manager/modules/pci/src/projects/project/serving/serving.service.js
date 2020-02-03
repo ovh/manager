@@ -18,7 +18,7 @@ export default class PciProjectServingService {
         serviceName: projectId,
       })
       .$promise
-      .then(namespaces => namespaces.map(namespace => new Namespace({ ...namespace })));
+      .then((namespaces) => namespaces.map((namespace) => new Namespace({ ...namespace })));
   }
 
   get(projectId, namespaceId) {
@@ -30,7 +30,7 @@ export default class PciProjectServingService {
         namespaceId,
       })
       .$promise
-      .then(namespace => new Namespace({
+      .then((namespace) => new Namespace({
         ...namespace,
       }));
   }

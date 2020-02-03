@@ -27,7 +27,7 @@
             data-header="{{ :: 'pci_projects_project_serving_namespace_models_add_model' | translate }}"
             data-editable="!$ctrl.isAdding"
             data-valid="$ctrl.model.workflowTemplate == $ctrl.PRESET_IMAGE || $ctrl.model.storagePath"
-            data-loading="$ctrl.isAdding">
+            data-loading="$ctrl.isAdding || $ctrl.containerLoading">
             <div class="container-fluid px-0" data-ng-if="$ctrl.model.workflowTemplate == $ctrl.PRESET_IMAGE">
                 <div class="row">
                     <div class="col-md-6 col-xl-4 my-3"
@@ -55,21 +55,40 @@
             </div>
 
             <div data-ng-if="$ctrl.model.workflowTemplate == $ctrl.BUILD_IMAGE">
-                <div data-ng-if="$ctrl.paths.length">
-                    <span data-translate="pci_projects_project_serving_namespace_models_add_storage_path_info"></span>
+                <div data-ng-if="$ctrl.folders.length">
 
-                    <oui-field data-size="xl" data-ng-if="$ctrl.paths.length">
+                    <oui-radio-toggle-group data-model="$ctrl.mode" data-on-change="$ctrl.resetMode()">
+                        <oui-radio data-value="$ctrl.FOLDER_MODE" >
+                            {{ :: 'pci_projects_project_serving_namespace_models_add_folder_mode' | translate }}
+                        </oui-radio>
+                        <oui-radio data-value="$ctrl.FILE_MODE">
+                            {{ :: 'pci_projects_project_serving_namespace_models_add_file_mode' | translate }}
+                        </oui-radio>
+                    </oui-radio-toggle-group>
+                    <oui-field data-ng-if="$ctrl.mode === $ctrl.FOLDER_MODE" data-size="xl"
+                               data-help-text="{{ :: 'pci_projects_project_serving_namespace_models_add_storage_path_info_folder' | translate }}">
                         <oui-select
-                            disabled="$ctrl.paths.length == 0"
-                            id="storagePath"
-                            name="storagePath"
-                            model="$ctrl.model.storagePath"
-                            items="$ctrl.paths"
+                            data-disabled="!$ctrl.folders.length"
+                            id="storagePathFolder"
+                            data-name="storagePath"
+                            data-model="$ctrl.model.storagePath"
+                            data-items="$ctrl.folders"
+                            data-required>
+                        </oui-select>
+                    </oui-field>
+                    <oui-field data-ng-if="$ctrl.mode === $ctrl.FILE_MODE" data-size="xl"
+                               data-help-text="{{ :: 'pci_projects_project_serving_namespace_models_add_storage_path_info_file' | translate }}">
+                        <oui-select
+                            data-disabled="!$ctrl.files.length"
+                            id="storagePathFile"
+                            data-name="storagePath"
+                            data-model="$ctrl.model.storagePath"
+                            data-items="$ctrl.files"
                             data-required>
                         </oui-select>
                     </oui-field>
                 </div>
-                <button class="oui-button oui-button_link" ng-click="$ctrl.goToContainer()" data-ng-if="!$ctrl.paths.length">
+                <button class="oui-button oui-button_link" ng-click="$ctrl.goToContainer()" data-ng-if="!$ctrl.files.length && !$ctrl.folders.length">
                     <span class="text-danger"
                           data-translate="pci_projects_project_serving_namespace_models_add_storage_path_no_path"></span>
                 </button>

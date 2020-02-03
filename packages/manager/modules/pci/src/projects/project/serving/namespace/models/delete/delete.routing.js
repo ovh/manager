@@ -12,8 +12,8 @@ export default /* @ngInject */ ($stateProvider) => {
         modelId: null,
       },
       resolve: {
-        goBack: /* @ngInject */ goToNamespaceModels => goToNamespaceModels,
-        modelId: /* @ngInject */ $stateParams => $stateParams.modelId,
+        goBack: /* @ngInject */ (goToNamespaceModels) => goToNamespaceModels,
+        modelId: /* @ngInject */ ($stateParams) => $stateParams.modelId,
         breadcrumb: () => null,
       },
     });

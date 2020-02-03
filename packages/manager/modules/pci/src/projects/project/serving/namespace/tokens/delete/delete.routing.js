@@ -12,8 +12,8 @@ export default /* @ngInject */ ($stateProvider) => {
         tokenId: null,
       },
       resolve: {
-        goBack: /* @ngInject */ goToNamespaceTokens => goToNamespaceTokens,
-        tokenId: /* @ngInject */ $stateParams => $stateParams.tokenId,
+        goBack: /* @ngInject */ (goToNamespaceTokens) => goToNamespaceTokens,
+        tokenId: /* @ngInject */ ($stateParams) => $stateParams.tokenId,
         breadcrumb: () => null,
       },
     });

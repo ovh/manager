@@ -5,8 +5,8 @@ export default /* @ngInject */ ($stateProvider) => {
       component: 'pciProjectServingNamespace',
 
       resolve: {
-        breadcrumb: /* @ngInject */ namespace => namespace.description,
-        namespaceId: /* @ngInject */ $transition$ => $transition$.params().namespaceId,
+        breadcrumb: /* @ngInject */ (namespace) => namespace.description,
+        namespaceId: /* @ngInject */ ($transition$) => $transition$.params().namespaceId,
         namespace: /* @ngInject */ (
           PciProjectServingService,
           projectId,

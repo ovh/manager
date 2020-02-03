@@ -3,7 +3,7 @@ export default /* @ngInject */($stateProvider) => {
     url: '/new',
     component: 'ovhManagerPciServingAdd',
     resolve: {
-      breadcrumb: /* @ngInject */ $translate => $translate.instant('pci_projects_project_serving_add_title'),
+      breadcrumb: /* @ngInject */ ($translate) => $translate.instant('pci_projects_project_serving_add_title'),
       cancelLink: /* @ngInject */ ($state, projectId) => $state.href('pci.projects.project.serving', {
         projectId,
       }),
@@ -17,7 +17,7 @@ export default /* @ngInject */($stateProvider) => {
         CucCloudMessage,
         ovhManagerPciServingAdd,
         projectId,
-      ) => namespaceCreation => ovhManagerPciServingAdd
+      ) => (namespaceCreation) => ovhManagerPciServingAdd
         .addNamespace(projectId, namespaceCreation)
         .then(({ name, id }) => {
           const promise = $state.go('pci.projects.project.serving.namespace.infos', {

@@ -27,7 +27,7 @@ export default class PciServingNamespaceInfosDetachRegistryController {
       .then(() => this.goBack(
         this.$translate.instant('pci_projects_project_serving_namespace_infos_detach_registry_success'),
       ))
-      .catch(error => this.goBack(
+      .catch((error) => this.goBack(
         this.$translate.instant('pci_projects_project_serving_namespace_infos_detach_registry_error', {
           message: get(error, 'data.message'),
         }), 'error',
