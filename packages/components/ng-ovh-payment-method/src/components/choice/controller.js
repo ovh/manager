@@ -16,7 +16,9 @@ export default class {
       .getDefaultPaymentMethod()
       .then((defaultPaymentMethod) => {
         this.defaultPaymentMethod = defaultPaymentMethod;
-        this.model = true;
+        this.model = this.defaultPaymentMethod
+          ? this.defaultPaymentMethod
+          : false;
       })
       .catch((error) => {
         this.$log.error(
