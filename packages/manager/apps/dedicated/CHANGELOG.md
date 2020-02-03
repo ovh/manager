@@ -1,3 +1,12 @@
+## [11.3.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@11.3.9...@ovh-ux/manager-dedicated@11.3.10) (2020-02-03)
+
+
+### Bug Fixes
+
+* **dedicated.server:** add us missing translation ([c63dc95](https://github.com/ovh/manager/commit/c63dc95467d89363109df9675f775b7389e6c57e))
+
+
+
 ## [11.3.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@11.3.8...@ovh-ux/manager-dedicated@11.3.9) (2020-01-31)
 
 
