@@ -34,6 +34,7 @@
     ></cui-message-container>
 
     <oui-datagrid
+        id="publicCloudInstancesDatagrid"
         data-rows="$ctrl.instances"
         data-row-loader="$ctrl.loadInstanceDetail($row)"
     >
@@ -248,6 +249,14 @@
                 <span
                     data-translate="pci_projects_project_instances_add_label"
                 ></span>
+            </button>
+            <button
+                type="button"
+                class="ml-2 float-right oui-button oui-button_secondary oui-button_icon-only oui-button_small-width"
+                aria-label="{{:: 'pci_projects_project_instances_refresh' | translate }}"
+                data-ng-click="$ctrl.refreshInstances()"
+            >
+                <span class="fa fa-refresh" aria-hidden="true"></span>
             </button>
         </extra-top>
     </oui-datagrid>
