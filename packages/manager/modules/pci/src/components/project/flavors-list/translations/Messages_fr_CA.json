@@ -14,6 +14,8 @@
   "pci_project_flavors_spec_disk": "Stockage :",
   "pci_project_flavors_spec_bandwidth": "Bande passante :",
   "pci_project_flavors_spec_bandwidth_detail": "{{ bandwidth }} Mbps",
+  "pci_project_flavors_spec_model": "Modèle :",
+  "pci_project_flavors_spec_nvme": "Stockage NVMe :",
 
   "pci_project_flavors_price_hourly": "{{price}} HT/h",
   "pci_project_flavors_price_monthly": "À partir de {{price}} HT/mois",

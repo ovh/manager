@@ -1203,5 +1203,17 @@
   "server_error_bandwidth_order": "Ocorreu um erro aquando da encomenda da largura de banda: {{error}}",
   "plan_bandwidth-1000-burst-2gbps-infra": "2 Gbps de largura de banda pública - Tráfego ilimitado",
   "server_order_bandwidth_info": "O montante indicado corresponde ao montante faturado na próxima renovação da sua opção.",
-  "server_order_bandwidth_warning": "A alteração da sua largura de banda será aplicada alguns minutos após a ativação da opção."
+  "server_order_bandwidth_warning": "A alteração da sua largura de banda será aplicada alguns minutos após a ativação da opção.",
+  "plan_vrack-bandwidth-1000-option-us": "1 Gbps de largura de banda privada garantida - Tráfego ilimitado - Opção vRack",
+  "plan_vrack-bandwidth-3000-option-us": "3 Gbps de largura de banda privada garantida - Tráfego ilimitado - Opção vRack",
+  "plan_vrack-bandwidth-1000-option-infra-us": "1 Gbps de largura de banda privada garantida - Tráfego ilimitado - Opção vRack",
+  "plan_vrack-bandwidth-3000-option-infra-us": "3 Gbps de largura de banda privada garantida - Tráfego ilimitado - Opção vRack",
+  "plan_vrack-bandwidth-4000-option-infra-us": "4 Gbps de largura de banda privada garantida - Tráfego ilimitado - Opção vRack",
+  "plan_vrack-bandwidth-5000-option-infra-us": "5 Gbps de largura de banda privada garantida - Tráfego ilimitado - Opção vRack",
+  "plan_bandwidth-1000-adv-us": "1Gbps de largura de banda pública - Tráfego ilimitado",
+  "plan_bandwidth-guaranteed-1000-ultimate-2019v1-us": "1 Gbps de largura de banda pública garantida - Tráfego ilimitado - Opção Ultimate",
+  "plan_bandwidth-guaranteed-2000-ultimate-2019v1-us": "2 Gbps de largura de banda pública garantida - Tráfego ilimitado - Opção Ultimate",
+  "plan_bandwidth-guaranteed-3000-ultimate-2019v1-us": "3 Gbps de largura de banda pública garantida - Tráfego ilimitado - Opção Ultimate",
+  "plan_bandwidth-guaranteed-3000-ultimate-2019v2-us": "3 Gbps de largura de banda pública garantida - Tráfego ilimitado - Opção Ultimate",
+  "plan_bandwidth-guaranteed-4000-ultimate-2019v1-us": "4 Gbps de largura de banda pública garantida - Tráfego ilimitado - Opção Ultimate"
 }
