@@ -1,8 +1,12 @@
 import get from 'lodash/get';
 
-import { PRESET_IMAGE, BUILD_IMAGE } from './add.constants';
-
-const EXTENSION = ['.h5', '.onnx', '.pmml'];
+import {
+  PRESET_IMAGE,
+  BUILD_IMAGE,
+  EXTENSION,
+  FOLDER_MODE,
+  FILE_MODE,
+} from './add.constants';
 
 export default class PciServingNamespaceModelsAddController {
   /* @ngInject */
@@ -16,11 +20,11 @@ export default class PciServingNamespaceModelsAddController {
     this.PciProjectStorageContainersService = PciProjectStorageContainersService;
     this.PRESET_IMAGE = PRESET_IMAGE;
     this.BUILD_IMAGE = BUILD_IMAGE;
+    this.FOLDER_MODE = FOLDER_MODE;
+    this.FILE_MODE = FILE_MODE;
   }
 
   $onInit() {
-    this.FOLDER_MODE = 'folder';
-    this.FILE_MODE = 'file';
     this.mode = this.FOLDER_MODE;
 
     this.isAdding = false;
