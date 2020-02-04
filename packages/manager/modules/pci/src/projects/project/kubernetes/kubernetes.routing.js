@@ -1,7 +1,7 @@
 import get from 'lodash/get';
 import map from 'lodash/map';
 import max from 'lodash/max';
-import { REGION, VERSION_ENUM_KEY } from './kubernetes.constants';
+import { VERSION_ENUM_KEY } from './kubernetes.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.kubernetes', {
@@ -47,9 +47,7 @@ export default /* @ngInject */ ($stateProvider) => {
           .query({
             serviceName: projectId,
           })
-          .$promise.then((kubernetes) =>
-            map(kubernetes, (id) => ({ id, region: REGION })),
-          ),
+          .$promise.then((kubernetes) => map(kubernetes, (id) => ({ id }))),
 
       /* @ngInject */
       versions: (OvhApiCloud) =>

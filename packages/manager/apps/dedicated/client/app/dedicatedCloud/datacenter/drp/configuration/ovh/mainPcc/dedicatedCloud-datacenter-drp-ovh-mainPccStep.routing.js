@@ -19,6 +19,7 @@ export default /* @ngInject */ ($stateProvider) => {
         },
       },
       resolve: {
+        configurationStepName: () => 'mainPccStep',
         datacenterId: /* @ngInject */ ($transition$) =>
           $transition$.params().datacenterId,
         drpInformations: /* @ngInject */ ($transition$) =>
@@ -36,13 +37,17 @@ export default /* @ngInject */ ($stateProvider) => {
       },
     })
     .state('app.dedicatedClouds.datacenter.drp.ovh.mainPccStep.legacyOrderIp', {
+      url: '/legacyOrderIp',
       controller: 'IpLegacyOrderCtrl',
+      controllerAs: 'ctrl',
       template: legacyTemplate,
       layout: 'modal',
       translations: { value: ['.'], format: 'json' },
     })
     .state('app.dedicatedClouds.datacenter.drp.ovh.mainPccStep.orderIp', {
+      url: '/orderIp',
       controller: 'agoraIpOrderCtrl',
+      controllerAs: 'ctrl',
       template,
       layout: 'modal',
       translations: { value: ['.'], format: 'json' },

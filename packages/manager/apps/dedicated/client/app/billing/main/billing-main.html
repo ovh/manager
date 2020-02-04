@@ -1,33 +1,23 @@
-<div class="billing-main">
-    <!-- Header -->
-    <header class="page-header">
-        <h1 data-translate="billing_main_title"></h1>
-    </header>
-    <!-- End of Header -->
+<oui-page-header heading="{{:: 'billing_main_title' | translate }}">
+    <oui-header-tabs>
+        <oui-header-tabs-item
+            ng-if=":: $ctrl.coreConfig.getRegion() === 'US'"
+            state="app.account.billing.main.pay-as-you-go"
+            text="{{:: 'billing_main_pay_as_you_go_tab' | translate }}"
+        ></oui-header-tabs-item>
+        <oui-header-tabs-item
+            state="app.account.billing.main.history"
+            text="{{:: 'billing_main_bills_tab' | translate }}"
+        ></oui-header-tabs-item>
+        <oui-header-tabs-item
+            state="app.account.billing.main.payments"
+            text="{{:: 'billing_main_payments_tab' | translate }}"
+        ></oui-header-tabs-item>
+    </oui-header-tabs>
+</oui-page-header>
 
-    <!-- Tabs -->
-    <responsive-tabs>
-        <responsive-tab
-            data-ng-if="$ctrl.coreConfig.getRegion() === 'US'"
-            data-state="app.account.billing.main.pay-as-you-go"
-        >
-            <span data-translate="billing_main_pay_as_you_go_tab"></span>
-        </responsive-tab>
-        <responsive-tab data-state="app.account.billing.main.history">
-            <span data-translate="billing_main_bills_tab"></span>
-        </responsive-tab>
-        <responsive-tab data-state="app.account.billing.main.payments">
-            <span data-translate="billing_main_payments_tab"></span>
-        </responsive-tab>
-        <responsive-tab-more>
-            <i class="fa fa-plus"></i>
-        </responsive-tab-more>
-    </responsive-tabs>
-    <!-- End of Tabs -->
+<div class="tab-content">
+    <div data-ovh-alert="billing_main_alert"></div>
 
-    <div class="tab-content">
-        <div data-ovh-alert="billing_main_alert"></div>
-
-        <div data-ui-view></div>
-    </div>
+    <div data-ui-view></div>
 </div>

@@ -39,7 +39,7 @@ export default class {
       DEDICATEDCLOUD_DATACENTER_DRP_OPTIONS.onPremise
         ? true
         : this.dedicatedCloudDrp.constructor.formatStatus(
-            get(this.drpInformations, 'remoteSiteInformation.state'),
+            get(this.currentDrp, 'remoteSiteInformation.state'),
           ) === DEDICATEDCLOUD_DATACENTER_DRP_STATUS.delivered;
 
     this.ipValidator = (() => ({

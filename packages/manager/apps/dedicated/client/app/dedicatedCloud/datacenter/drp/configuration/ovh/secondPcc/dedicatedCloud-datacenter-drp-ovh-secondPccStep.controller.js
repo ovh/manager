@@ -10,29 +10,19 @@ export default class {
   /* @ngInject */
   constructor(
     $q,
-    $timeout,
     $translate,
-    $window,
-    Alerter,
     DedicatedCloud,
     dedicatedCloudDrp,
     ipFeatureAvailability,
     OvhApiDedicatedCloud,
-    ovhUserPref,
-    DEDICATED_CLOUD_CONSTANTS,
   ) {
     this.$q = $q;
-    this.$timeout = $timeout;
     this.$translate = $translate;
-    this.$window = $window;
-    this.Alerter = Alerter;
     this.DedicatedCloud = DedicatedCloud;
     this.dedicatedCloudDrp = dedicatedCloudDrp;
     this.ipFeatureAvailability = ipFeatureAvailability;
     this.OvhApiDedicatedCloud = OvhApiDedicatedCloud;
-    this.ovhUserPref = ovhUserPref;
     this.MAC_ADDRESS_REG_EXP = DEDICATEDCLOUD_DATACENTER_DRP_IP_USAGE_MAC_ADDRESS_REG_EXP;
-    this.PCC_NEW_GENERATION = DEDICATED_CLOUD_CONSTANTS.pccNewGeneration;
     this.UNAVAILABLE_IP_STATUSES = DEDICATEDCLOUD_DATACENTER_DRP_UNAVAILABLE_IP_STATUS;
   }
 
@@ -42,6 +32,12 @@ export default class {
     this.drpInformations.secondaryPcc = secondaryPcc;
     this.drpInformations.secondaryDatacenter = null;
     this.selectedSecondaryIpAddress = null;
+
+    this.ipOrderLink = this.getIpOrderLink(
+      this.drpInformations.drpType,
+      this.ipFeatureAvailability.allowIPFailoverOrder(),
+      this.configurationStepName,
+    );
 
     this.OvhApiDedicatedCloud.Ip()
       .v6()
@@ -69,11 +65,10 @@ export default class {
         );
       })
       .catch((error) => {
-        this.Alerter.error(
+        this.displayErrorMessage(
           `${this.$translate.instant(
             'dedicatedCloud_datacenter_drp_get_state_error',
           )} ${get(error, 'data.message', error)}`,
-          'dedicatedCloudDatacenterDrpAlert',
         );
       })
       .finally(() => {
@@ -84,7 +79,10 @@ export default class {
   checkIfDatacenterHasHosts(datacenterId) {
     this.isCheckingHosts = true;
     this.isSecondaryDatacenterWithoutHosts = false;
-    this.hostsStateLink = '';
+    this.hostsOrderLink = this.getHostsOrderLink(
+      datacenterId,
+      this.drpInformations.secondaryPcc.serviceName,
+    );
 
     return this.DedicatedCloud.getHosts(
       this.drpInformations.secondaryPcc.serviceName,
@@ -92,16 +90,12 @@ export default class {
     )
       .then(({ length: hostsCount }) => {
         this.isSecondaryDatacenterWithoutHosts = hostsCount === 0;
-        if (this.isSecondaryDatacenterWithoutHosts) {
-          this.hostsStateLink = `app.dedicatedClouds.datacenter.hosts({ productId: '${this.drpInformations.secondaryPcc.serviceName}', datacenterId: ${datacenterId} })`;
-        }
       })
       .catch((error) => {
-        this.Alerter.error(
+        this.displayErrorMessage(
           `${this.$translate.instant(
             'dedicatedCloud_datacenter_secondary_datacenter_get_hosts_error',
           )} ${get(error, 'data.message', '')}`,
-          'dedicatedCloudDatacenterDrpAlert',
         );
       })
       .finally(() => {
@@ -118,53 +112,10 @@ export default class {
   }
 
   validateConfiguration() {
-    this.isLoading = true;
+    this.isValidating = true;
 
-    return this.dedicatedCloudDrp
-      .enableDrp(
-        this.drpInformations,
-        this.drpInformations.primaryPcc.generation !== this.PCC_NEW_GENERATION,
-      )
-      .then((enableDrp) => {
-        if (enableDrp.url !== undefined) {
-          this.storeZertoOptionOrderInUserPref(this.drpInformations, enableDrp);
-          if (!enableDrp.hasAutoPay) {
-            this.$window.open(enableDrp.url, '_blank');
-          }
-        }
-
-        return this.goToPccDashboard(true).then(() => {
-          // $timeout necessary to display alerter message
-          this.$timeout(() => {
-            if (!enableDrp.hasAutoPay) {
-              this.displaySuccessMessage(
-                `${this.$translate.instant(
-                  'dedicatedCloud_datacenter_drp_confirm_order',
-                  { billUrl: enableDrp.url },
-                )}`,
-              );
-            } else {
-              this.displayInfoMessage(`
-                    ${this.$translate.instant(
-                      'dedicatedCloud_datacenter_drp_confirm_creation_pending',
-                    )} ${this.$translate.instant(
-                'dedicatedCloud_datacenter_drp_confirm_creation_pending_task',
-              )}
-                `);
-            }
-          });
-        });
-      })
-      .catch((error) => {
-        this.Alerter.error(
-          `${this.$translate.instant(
-            'dedicatedCloud_datacenter_drp_confirm_create_error',
-          )} ${get(error, 'data.message', error.message)}`,
-          'dedicatedCloudDatacenterDrpAlert',
-        );
-      })
-      .finally(() => {
-        this.isLoading = false;
-      });
+    return this.setupConfiguration(this.drpInformations).finally(() => {
+      this.isValidating = false;
+    });
   }
 }

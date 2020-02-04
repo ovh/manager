@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-telecom",
-  "version": "11.4.2",
+  "version": "11.4.3",
   "private": true,
   "description": "OVHcloud Telecom control panel.",
   "repository": {
@@ -120,7 +120,7 @@
     "ovh-angular-responsive-tabs": "^4.0.0",
     "ovh-angular-timeline": "^1.5.2",
     "ovh-angular-ui-confirm-modal": "^1.0.2",
-    "ovh-api-services": "^9.34.0",
+    "ovh-api-services": "^9.35.0",
     "ovh-manager-webfont": "^1.0.1",
     "ovh-ng-input-password": "^1.2.5",
     "ovh-ngstrap": "^4.0.2",
