@@ -68,7 +68,8 @@ module.exports = (env = {}) => {
   );
 
   // Extra config files
-  const extras = glob.sync('./.extras-EU/**/*.js');
+  const extrasRegion = glob.sync(`./.extras-EU/**/*.js`);
+  const extras = glob.sync('./.extras/**/*.js');
 
   return merge(config, {
     entry: _.assign(
@@ -84,6 +85,7 @@ module.exports = (env = {}) => {
       },
       bundles,
       extras.length > 0 ? { extras } : {},
+      extrasRegion.length > 0 ? { extrasRegion } : {},
     ),
     output: {
       path: path.resolve(__dirname, 'dist'),
