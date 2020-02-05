@@ -49,7 +49,7 @@
     "@ovh-ux/ng-ovh-swimming-poll": "^4.0.2",
     "@ovh-ux/ng-ovh-user-pref": "^1.0.2",
     "@ovh-ux/ng-ovh-utils": "^14.0.6",
-    "@ovh-ux/ng-ovh-web-universe-components": "^7.0.0",
+    "@ovh-ux/ng-ovh-web-universe-components": "^7.0.0 || ^8.0.0",
     "@ovh-ux/ng-pagination-front": "^8.0.1",
     "@ovh-ux/ng-q-allsettled": "^1.0.1",
     "@ovh-ux/ng-tail-logs": "^2.0.1",
