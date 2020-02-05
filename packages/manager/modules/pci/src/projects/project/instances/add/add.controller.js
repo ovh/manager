@@ -19,6 +19,7 @@ export default class PciInstancesAddController {
   constructor(
     $q,
     $translate,
+    coreConfig,
     CucCloudMessage,
     cucUcentsToCurrencyFilter,
     OvhApiCloudProjectInstance,
@@ -26,6 +27,7 @@ export default class PciInstancesAddController {
   ) {
     this.$q = $q;
     this.$translate = $translate;
+    this.coreConfig = coreConfig;
     this.CucCloudMessage = CucCloudMessage;
     this.cucUcentsToCurrencyFilter = cucUcentsToCurrencyFilter;
     this.OvhApiCloudProjectInstance = OvhApiCloudProjectInstance;
@@ -68,6 +70,12 @@ export default class PciInstancesAddController {
     };
     this.selectedPrivateNetwork = this.defaultPrivateNetwork;
     this.availablePrivateNetworks = [this.defaultPrivateNetwork];
+    this.automatedBackup = {
+      available: this.coreConfig.getRegion() !== 'US',
+      selected: false,
+      schedule: null,
+      price: null,
+    };
   }
 
   loadMessages() {
@@ -147,6 +155,13 @@ export default class PciInstancesAddController {
     }
   }
 
+  getBackupPrice() {
+    return this.PciProjectsProjectInstanceService.getSnapshotMonthlyPrice(
+      this.projectId,
+      this.instance,
+    );
+  }
+
   showImageNavigation() {
     return (
       this.model.image &&
@@ -158,7 +173,15 @@ export default class PciInstancesAddController {
     if (!isEmpty(this.model.datacenter)) {
       this.quota = new Quota(this.model.datacenter.quota.instance);
       this.generateInstanceName();
+      if (this.automatedBackup.available) {
+        this.automatedBackup.selected = false;
+        this.automatedBackup.schedule = null;
+        return this.getBackupPrice().then((price) => {
+          this.automatedBackup.price = price;
+        });
+      }
     }
+    return this.$q.when();
   }
 
   onInstanceChange() {
@@ -255,6 +278,14 @@ export default class PciInstancesAddController {
 
     if (this.model.image.type !== 'linux') {
       this.instance.userData = null;
+    }
+
+    if (this.automatedBackup.available && this.automatedBackup.selected) {
+      const { schedule } = this.automatedBackup;
+      this.instance.autobackup = {
+        cron: `${schedule.cronPattern.minutes} ${schedule.cronPattern.hour} ${schedule.cronPattern.dom} ${schedule.cronPattern.month} ${schedule.cronPattern.dow}`,
+        rotation: schedule.rotation,
+      };
     }
 
     return this.PciProjectsProjectInstanceService.save(

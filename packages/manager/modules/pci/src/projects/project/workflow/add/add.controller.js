@@ -62,7 +62,7 @@ export default class {
 
   getPriceEstimation() {
     this.isLoadingPriceEstimate = true;
-    return this.PciProjectsProjectInstanceService.getBackupPriceEstimation(
+    return this.PciProjectsProjectInstanceService.getSnapshotMonthlyPrice(
       this.projectId,
       this.workflow.resource,
     )
