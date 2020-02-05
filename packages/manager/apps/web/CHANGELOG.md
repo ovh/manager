@@ -1,3 +1,12 @@
+## [13.44.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.44.0...@ovh-ux/manager-web@13.44.1) (2020-02-05)
+
+
+### Bug Fixes
+
+* **hosting.database:** fix private sql activation ([#2190](https://github.com/ovh/manager/issues/2190)) ([8a1f4c0](https://github.com/ovh/manager/commit/8a1f4c0753af48df878a4321c315a7d664f5386f))
+
+
+
 # [13.44.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.43.2...@ovh-ux/manager-web@13.44.0) (2020-01-31)
 
 
