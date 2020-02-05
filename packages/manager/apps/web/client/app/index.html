@@ -68,7 +68,13 @@
                         </div>
 
                         <!-- /Skip content target -->
-                        <ovh-chatbot></ovh-chatbot>
+                        <ovh-chatbot
+                            data-ng-if="$ctrl.user.ovhSubsidiary"
+                            data-universe="WEB"
+                            data-language="{{$ctrl.currentLanguage}}"
+                            data-country="{{$ctrl.user.ovhSubsidiary}}"
+                        ></ovh-chatbot>
+
                         <div data-ui-view class="pb-5"></div>
                     </div>
                 </div>
