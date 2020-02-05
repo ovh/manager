@@ -52,13 +52,13 @@
         data-submit-text="{{:: 'privatesql_activation_order' | translate }}"
         data-on-submit="$ctrl.performCheckout()"
     >
-        <ovh-manager-order-contracts
+        <ovh-contracts-summary
             data-ng-if="$ctrl.checkout.contracts.length && !$ctrl.success"
             data-name="acceptContracts"
             data-items="$ctrl.checkout.contracts"
             data-model="$ctrl.acceptContracts"
         >
-        </ovh-manager-order-contracts>
+        </ovh-contracts-summary>
         <oui-message data-type="error" data-ng-if="$ctrl.error.checkout">
             <p data-translate="privatesql_activation_checkout_error"></p>
             <p
