@@ -16,7 +16,6 @@ import ngAtInternetUiRouterPlugin from '@ovh-ux/ng-at-internet-ui-router-plugin'
 import ngOvhCheckboxTable from '@ovh-ux/ng-ovh-checkbox-table';
 import ngOvhApiWrappers from '@ovh-ux/ng-ovh-api-wrappers';
 import ngOvhBrowserAlert from '@ovh-ux/ng-ovh-browser-alert';
-import ngOvhChatbot from '@ovh-ux/ng-ovh-chatbot';
 import ngOvhHttp from '@ovh-ux/ng-ovh-http';
 import ngOvhMondialRelay from '@ovh-ux/ng-ovh-mondial-relay';
 import ngOvhSsoAuth from '@ovh-ux/ng-ovh-sso-auth';
@@ -77,7 +76,6 @@ angular
       ngOvhCheckboxTable,
       ngOvhApiWrappers,
       ngOvhBrowserAlert,
-      ngOvhChatbot,
       ngOvhHttp,
       ngOvhMondialRelay,
       ngOvhSsoAuth,
