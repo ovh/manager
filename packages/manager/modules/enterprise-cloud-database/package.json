@@ -19,12 +19,12 @@
     "directory": "packages/manager/modules/enterprise-cloud-database"
   },
   "license": "BSD-3-Clause",
-  "files": [
-    "dist"
-  ],
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
   "browser": "./dist/umd/enterprise-cloud-database.js",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "rollup -c --environment BUILD:production",
     "dev": "rollup -c --environment BUILD:development",
