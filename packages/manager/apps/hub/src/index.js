@@ -1,5 +1,6 @@
 import 'script-loader!jquery'; // eslint-disable-line
 import 'script-loader!moment/min/moment-with-locales.min.js'; //eslint-disable-line
+
 import { Environment } from '@ovh-ux/manager-config';
 import angular from 'angular';
 import 'angular-translate';
@@ -23,6 +24,7 @@ import preload from './components/manager-preload';
 import catalog from './catalog';
 import dashboard from './dashboard';
 
+import controller from './controller';
 import routing from './routing';
 import './index.scss';
 import 'ovh-ui-kit/dist/oui.css';
@@ -52,6 +54,7 @@ angular
       __NG_APP_INJECTIONS__,
     ].filter(isString),
   )
+  .controller('HubController', controller)
   .config(
     /* @ngInject */ ($locationProvider) => $locationProvider.hashPrefix(''),
   )
