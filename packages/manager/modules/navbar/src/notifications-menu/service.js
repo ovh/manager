@@ -1,24 +1,20 @@
+import moment from 'moment';
 import set from 'lodash/set';
 
-import moment from 'moment';
-import { ACTIVE_STATUS, ACKNOWLEDGED_STATUS, REFRESH_TIME } from './constants';
+import {
+  ACTIVE_STATUS,
+  ACKNOWLEDGED_STATUS,
+  COMPLETED_STATUS,
+  REFRESH_TIME,
+} from './constants';
 
 export default class Notifications {
   /* @ngInject */
-  constructor(
-    $interval,
-    $q,
-    $translate,
-    atInternet,
-    OvhApiNotificationAapi,
-    ovhManagerNavbarMenuHeaderBuilder,
-  ) {
+  constructor($interval, $q, $translate, OvhApiNotificationAapi) {
     this.$interval = $interval;
     this.$q = $q;
     this.$translate = $translate;
-    this.atInternet = atInternet;
     this.OvhApiNotificationAapi = OvhApiNotificationAapi;
-    this.NavbarBuilder = ovhManagerNavbarMenuHeaderBuilder;
   }
 
   getNotifications(lang, target) {
@@ -35,26 +31,30 @@ export default class Notifications {
   readNotifications(notification, status) {
     set(notification, 'updating', true);
 
-    return this.updateNotifications
-      .post({
-        [status]: notification.id,
-      })
+    return this.updateNotifications({
+      [status]: [notification.id],
+    })
       .then(() => {
-        set(notification, 'isActive', !notification.isActive);
-        set(notification, 'acknowledged', true);
+        set(notification, 'status', status);
+        set(notification, 'isActive', ACTIVE_STATUS === status);
+        set(notification, 'isCompleted', COMPLETED_STATUS === status);
+        set(notification, 'acknowledged', ACKNOWLEDGED_STATUS.includes(status));
       })
       .finally(() => {
         set(notification, 'updating', false);
+        return notification;
       });
   }
 
   toggleSublinkAction(toUpdate, linkClicked) {
     if (toUpdate.isActive && !toUpdate.updating) {
-      return this.readNotifications(toUpdate, 'completed');
+      // mark as read
+      return this.readNotifications(toUpdate, 'acknowledged');
     }
 
     if (!toUpdate.isActive && !toUpdate.updating && !linkClicked) {
-      return this.readNotifications(toUpdate, 'acknowledged');
+      // mark as unread
+      return this.readNotifications(toUpdate, 'delivered');
     }
 
     return this.$q.when();
@@ -64,13 +64,12 @@ export default class Notifications {
     return moment(dateTime).fromNow();
   }
 
-  convertToSubLink(notification) {
+  static convertToSubLink(notification) {
     return {
       ...notification,
-      actionClicked: (toUpdate) => this.toggleSublinkAction(toUpdate),
-      acknowledged: notification.status.includes(ACKNOWLEDGED_STATUS),
-      isActive: notification.status.includes(ACTIVE_STATUS),
-      linkClicked: (toUpdate) => this.toggleSublinkAction(toUpdate, true),
+      acknowledged: ACKNOWLEDGED_STATUS.includes(notification.status),
+      isActive: ACTIVE_STATUS === notification.status,
+      isCompleted: COMPLETED_STATUS === notification.status,
       time: Notifications.formatTime(notification.date),
       url: notification.urlDetails.href,
     };
@@ -85,23 +84,5 @@ export default class Notifications {
         set(notification, 'time', Notifications.formatTime(notification.date));
       });
     }, REFRESH_TIME);
-  }
-
-  acknowledgeAll() {
-    if (this.navbarContent) {
-      const toAcknowledge = this.navbarContent.subLinks.filter(
-        (subLink) => !subLink.acknowledged && subLink.isActive,
-      );
-      if (toAcknowledge.length) {
-        this.OvhApiNotificationAapi.post({
-          acknowledged: toAcknowledge.map((x) => x.id),
-        }).$promise.then(() => {
-          toAcknowledge.forEach((sublink) => {
-            set(sublink, 'acknowledged', true);
-          });
-        });
-      }
-      this.navbarContent.iconAnimated = false;
-    }
   }
 }
