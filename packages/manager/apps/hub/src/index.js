@@ -5,6 +5,7 @@ import angular from 'angular';
 import 'angular-translate';
 import uiRouter, { RejectType } from '@uirouter/angularjs';
 import ngOvhUiRouterLineProgress from '@ovh-ux/ng-ui-router-line-progress';
+import isString from 'lodash/isString';
 
 import 'ovh-ui-angular';
 import ovhManagerCore from '@ovh-ux/manager-core';
@@ -30,23 +31,27 @@ Environment.setRegion(__WEBPACK_REGION__);
 Environment.setVersion(__VERSION__);
 
 angular
-  .module('managerHubApp', [
-    'pascalprecht.translate',
-    atInternet,
-    catalog,
-    dashboard,
-    errorPage,
-    ngOvhUiRouterLineProgress,
-    'pascalprecht.translate',
-    'oui',
-    ovhManagerCore,
-    ovhManagerHub,
-    ovhManagerNavbar,
-    ovhManagerOrderTracking,
-    'pascalprecht.translate',
-    preload,
-    uiRouter,
-  ])
+  .module(
+    'managerHubApp',
+    [
+      'pascalprecht.translate',
+      atInternet,
+      catalog,
+      dashboard,
+      errorPage,
+      ngOvhUiRouterLineProgress,
+      'pascalprecht.translate',
+      'oui',
+      ovhManagerCore,
+      ovhManagerHub,
+      ovhManagerNavbar,
+      ovhManagerOrderTracking,
+      'pascalprecht.translate',
+      preload,
+      uiRouter,
+      __NG_APP_INJECTIONS__,
+    ].filter(isString),
+  )
   .config(
     /* @ngInject */ ($locationProvider) => $locationProvider.hashPrefix(''),
   )
