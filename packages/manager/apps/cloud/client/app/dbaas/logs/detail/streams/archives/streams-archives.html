@@ -27,16 +27,19 @@
         page-size="25"
     >
         <oui-column
-            title="::'streams_archives_file_name' | translate"
-            property="filename"
+            data-title="::'streams_archives_file_name' | translate"
+            data-property="filename"
         ></oui-column>
         <oui-column
-            title="::'streams_archives_size' | translate"
-            property="size"
+            data-title="::'streams_archives_size' | translate"
+            data-property="size"
         >
             {{$row.size | bytes: 1:true:"B"}}
         </oui-column>
-        <oui-column title="::'streams_archives_signatures' | translate">
+        <oui-column
+            data-title="::'streams_archives_signatures' | translate"
+            data-property="sha256"
+        >
             <div
                 data-translate="streams_archives_md5_value"
                 data-translate-values="{{$row}}"
@@ -47,8 +50,8 @@
             ></div>
         </oui-column>
         <oui-column
-            title="::'streams_archives_status' | translate"
-            property="retrievalState"
+            data-title="::'streams_archives_status' | translate"
+            data-property="retrievalState"
         >
             <span
                 class="oui-status"
