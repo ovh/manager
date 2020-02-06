@@ -16,8 +16,8 @@
   "pci_projects_project_welcome": "Bienvenue sur la nouvelle interface Public Cloud",
   "pci_projects_project_welcome_feedback": "Feedback",
   "pci_projects_project_welcome_legacy": "Retourner vers l'ancienne interface",
-  "pci_projects_project_forward": "Nous allons basculer sur l'ancienne interface Cloud",
+  "pci_projects_project_forward": "Vous allez basculer sur l'ancienne interface.",
   "pci_projects_project_forward_feedback": "Donnez nous votre avis",
   "pci_projects_project_forward_legacy": "Continuer vers l'ancienne interface",
-  "pci_projects_project_forward_content": "Merci d'avoir essayé la nouvelle version Public Cloud. Dites-nous ce que vous avez aimé et ce qui ne vous a pas plu. Vos commentaires permettront de l'améliorer."
+  "pci_projects_project_forward_content": "Attention, cette interface ne sera plus accessible à compter du 25 février 2020. Vous devez désormais utiliser uniquement la nouvelle interface."
 }
