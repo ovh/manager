@@ -45,8 +45,32 @@
             data-type-options="$ctrl.getStateEnumFilter()"
             data-filterable
         >
+            <a
+                data-ng-href="{{ $ctrl.getOrderTrackingHref($row, $ctrl.filter) }}"
+                data-ng-if="$ctrl.allowOrderTracking"
+                data-translate-attr="{ title: 'orders_tracking' }"
+            >
+                <span
+                    class="oui-status"
+                    data-ng-class="{
+                        'oui-status_error': $value === 'cancelled'
+                                         || $value === 'notPaid'
+                                         || $value === 'notPaid',
+                        'oui-status_info': $value === 'cancelling'
+                                        || $value === 'checking'
+                                        || $value === 'delivering',
+                        'oui-status_warning': $value === 'documentsRequested'
+                                           || $value === 'unknown',
+                        'oui-status_success': $value === 'delivered',
+                      }"
+                    data-ng-bind="('orders_order_status_' + $value) | translate"
+                >
+                </span>
+            </a>
+
             <span
                 class="oui-status"
+                data-ng-if="!$ctrl.allowOrderTracking"
                 data-ng-class="{
                     'oui-status_error': $value === 'cancelled'
                                      || $value === 'notPaid'

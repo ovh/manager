@@ -16,6 +16,7 @@ export default class BillingOrdersCtrl {
     criteria,
     currentUser,
     filter,
+    getOrderTrackingHref,
     goToOrder,
     goToOrderRetractation,
     updateFilterParam,
@@ -29,6 +30,7 @@ export default class BillingOrdersCtrl {
     this.schema = schema;
     this.criteria = criteria || [];
     this.filter = filter;
+    this.getOrderTrackingHref = getOrderTrackingHref;
     this.goToOrder = goToOrder;
     this.goToOrderRetractation = goToOrderRetractation;
     this.updateFilterParam = updateFilterParam;
