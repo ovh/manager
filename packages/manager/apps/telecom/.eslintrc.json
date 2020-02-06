@@ -1,7 +1,8 @@
 {
   "globals": {
     "moment": true,
-    "__VERSION__": true
+    "__VERSION__": true,
+    "__NG_APP_INJECTIONS__": true
   },
   "rules": {
     "no-underscore-dangle": 0
