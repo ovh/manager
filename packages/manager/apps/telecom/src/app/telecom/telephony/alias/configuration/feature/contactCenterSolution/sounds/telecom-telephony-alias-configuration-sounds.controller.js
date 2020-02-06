@@ -52,7 +52,6 @@ angular.module('managerApp').controller(
           this.sounds = sounds
             .concat({ soundId: null, name: this.$translate.instant('none') })
             .reverse();
-          this.maxWaitTime = Math.round(this.queueOptions.maxWaitTime / 60);
 
           this.copyOptions = angular.copy(this.options);
           this.copyQueueOptions = angular.copy(this.queueOptions);
