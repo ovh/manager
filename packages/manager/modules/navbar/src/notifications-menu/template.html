@@ -8,15 +8,169 @@
 <oui-navbar-dropdown
     data-ng-if="!$ctrl.isLoading"
     name="notifications"
-    data-text="{{:: $ctrl.menuTitle }}"
     data-icon-class="oui-icon oui-icon-bell"
-    data-icon-animated=":: $ctrl.iconIsAnimated"
-    data-on-click="$ctrl.acknowledgeAll()"
+    data-icon-animated="$ctrl.numberOfActiveNotifications > 0"
+    data-on-click="$ctrl.openMenu()"
+    data-icon-badge="$ctrl.numberOfActiveNotifications"
 >
-    <oui-navbar-notification
-        data-links="::$ctrl.sublinks"
-        data-align="end"
-        data-fixed
+    <div
+        role="menu"
+        class="oui-navbar-menu
+            oui-navbar-menu_end
+            oui-navbar-menu_panel
+            hub-navbar-menu"
     >
-    </oui-navbar-notification>
+        <ul class="oui-navbar-menu__body oui-navbar-list">
+            <li
+                class="oui-navbar-menu__item oui-navbar-notification"
+                data-ng-repeat="(time, sublinks) in ::$ctrl.groupedSublinks"
+            >
+                <!-- header -->
+                <div
+                    class="hub-navbar-notification_header"
+                    data-ng-bind="time"
+                ></div>
+                <!-- content -->
+                <div
+                    class="hub-navbar-notification_content"
+                    data-ng-repeat="menuLink in sublinks track by menuLink.id"
+                >
+                    <!-- icon -->
+                    <span
+                        class="oui-icon oui-icon_bicolor oui-navbar-notification__icon"
+                        data-ng-class=":: {
+                            'oui-icon_bicolor': menuLink.level !== 'incident',
+                            'oui-icon-error_circle': menuLink.level === 'error',
+                            'oui-icon-success_circle': menuLink.level === 'success',
+                            'oui-icon-info_circle': menuLink.level === 'info',
+                            'oui-icon-warning_circle': menuLink.level === 'warning',
+                            'oui-icon-clock-wait': menuLink.level === 'incident'
+                        }"
+                        aria-hidden="true"
+                    >
+                    </span>
+
+                    <!-- Link (href) -->
+                    <a
+                        class="oui-navbar-notification__content"
+                        data-ng-if="::menuLink.url"
+                        data-ng-init="$ctrl.notificationsCreated = $last"
+                        data-ng-click="$ctrl.toggleSublinkAction(menuLink, true)"
+                        data-ng-href="{{::menuLink.url}}"
+                    >
+                        <div class="oui-navbar-notification__header">
+                            <span
+                                class="oui-navbar-notification__title"
+                                data-ng-bind=":: menuLink.subject"
+                            ></span>
+                            <span
+                                class="oui-status oui-status_error hub-status_error"
+                                data-ng-if="menuLink.isActive"
+                                data-translate="navbar_notification_new"
+                            >
+                            </span>
+                        </div>
+                        <div class="oui_navbar-notification__body">
+                            <div
+                                class="oui-navbar-notification__description"
+                                data-ng-bind-html=":: menuLink.description"
+                            ></div>
+                        </div>
+                    </a>
+                    <!-- /Link (href) -->
+
+                    <!-- Link (ui-sref) -->
+                    <a
+                        class="oui-navbar-notification__content"
+                        data-ng-if="::menuLink.state"
+                        data-ng-init="$ctrl.notificationsCreated = $last"
+                        data-ng-click="$ctrl.toggleSublinkAction(menuLink, true)"
+                        data-ui-sref="{{::$ctrl.getFullSref()}}"
+                    >
+                        <div class="oui-navbar-notification__header">
+                            <span
+                                class="oui-navbar-notification__title"
+                                data-ng-bind=":: menuLink.subject"
+                            ></span>
+                            <span
+                                class="oui-status oui-status_error hub-status_error"
+                                data-ng-if="menuLink.isActive"
+                                data-translate="navbar_notification_new"
+                            >
+                            </span>
+                        </div>
+                        <div class="oui_navbar-notification__body">
+                            <div
+                                class="oui-navbar-notification__description"
+                                data-ng-bind-html=":: menuLink.description"
+                            ></div>
+                        </div>
+                    </a>
+                    <!-- /Link (ui-sref) -->
+
+                    <button
+                        class="oui-navbar-notification__action"
+                        type="button"
+                        data-ng-if="!menuLink.isCompleted"
+                        data-ng-click="$ctrl.toggleSublinkAction(menuLink, false)"
+                        data-oui-tooltip="{{menuLink.isActive ?
+                            $ctrl.translations.notification.markRead :
+                            $ctrl.translations.notification.markUnread
+                        }}"
+                    >
+                        <span
+                            class="oui-icon oui-icon-shape-dot"
+                            data-ng-if="menuLink.isActive"
+                            aria-hidden="true"
+                        ></span>
+                        <span
+                            class="oui-icon oui-icon-shape-circle"
+                            data-ng-if="!menuLink.isActive"
+                            aria-hidden="true"
+                        ></span>
+                    </button>
+                </div>
+            </li>
+            <li
+                class="oui-navbar-menu__item oui-navbar-notification oui-navbar-notification-placeholder"
+                data-ng-if="$ctrl.sublinks.length === 0"
+            >
+                <div class="oui-navbar-notification-placeholder__content">
+                    <span
+                        class="oui-icon oui-icon_bicolor oui-icon-success_circle oui-navbar-notification__icon"
+                        aria-hidden="true"
+                    >
+                    </span>
+                    <div
+                        class="oui-navbar-notification-placeholder__title"
+                        data-ng-bind="::$ctrl.translations.notification.noNotification"
+                    ></div>
+                    <div
+                        class="oui-navbar-notification-placeholder__description"
+                        data-ng-bind="::$ctrl.translations.notification.noNotificationDescription"
+                    ></div>
+                </div>
+            </li>
+            <li
+                class="oui-navbar-menu__item oui-navbar-notification oui-navbar-notification-placeholder"
+                data-ng-if="!$ctrl.sublinks"
+            >
+                <div class="oui-navbar-notification-placeholder__content">
+                    <span
+                        class="oui-icon oui-icon_bicolor oui-icon-error_circle oui-navbar-notification__icon"
+                        aria-hidden="true"
+                    >
+                    </span>
+                    <div
+                        class="oui-navbar-notification-placeholder__title"
+                        data-ng-bind="::$ctrl.translations.notification.errorInNotification"
+                    ></div>
+                    <div
+                        class="oui-navbar-notification-placeholder__description"
+                        data-ng-bind="::$ctrl.translations.notification.errorInNotificationDescription"
+                    ></div>
+                </div>
+            </li>
+        </ul>
+    </div>
 </oui-navbar-dropdown>
