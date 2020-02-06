@@ -43,12 +43,9 @@ angular.module('App').controller(
       };
 
       this.$scope.$on('domain.dashboard.refresh', () => this.loadDomain());
-      return this.$q.all(
-        this.loadDomain(),
-        this.loadQuotas(),
-        this.loadServiceInfos(),
-        this.loadUrls(),
-      );
+      return this.$q
+        .all([this.loadDomain(), this.loadQuotas(), this.loadServiceInfos()])
+        .then(() => this.loadUrls());
     }
 
     loadDomain() {
@@ -126,7 +123,13 @@ angular.module('App').controller(
 
     loadUrls() {
       this.loading.urls = true;
-      this.urls.delete = `${this.constants.AUTORENEW_URL}?selectedType=EMAIL_DOMAIN&searchText=${this.$stateParams.productId}`;
+      if (/hosting/.test(this.domain.offer)) {
+        this.urls.delete = `#/configuration/hosting/${encodeURIComponent(
+          this.$stateParams.productId,
+        )}/terminateEmail?tab=GENERAL_INFORMATIONS`;
+      } else {
+        this.urls.delete = `${this.constants.AUTORENEW_URL}?selectedType=EMAIL_DOMAIN&searchText=${this.$stateParams.productId}`;
+      }
       this.urls.manageContacts = `#/useraccount/contacts?tab=SERVICES&serviceName=${this.$stateParams.productId}`;
       return this.User.getUrlOf('changeOwner')
         .then((link) => {
