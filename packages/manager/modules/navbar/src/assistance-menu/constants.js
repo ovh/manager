@@ -120,7 +120,28 @@ export const CHATBOT_SUBSIDIARIES = ['FR'];
 
 export const AVAILABLE_SUPPORT_LEVEL = ['business', 'enterprise'];
 
-export const ALL_SUPPORT_LEVEL_SUBSIDIARY = ['FR'];
+export const ALL_SUPPORT_LEVEL_SUBSIDIARY = [
+  'ASIA',
+  'AU',
+  'CA',
+  'CZ',
+  'DE',
+  'ES',
+  'FI',
+  'FR',
+  'GB',
+  'IE',
+  'IT',
+  'LT',
+  'NL',
+  'PL',
+  'PT',
+  'QC',
+  'SG',
+  'SN',
+  'WE',
+  'WS',
+];
 
 export const INACTIVE_SUPPORT_LEVEL = ['premium-accredited'];
 
