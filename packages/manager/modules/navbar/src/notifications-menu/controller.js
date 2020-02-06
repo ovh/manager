@@ -1,9 +1,8 @@
-import isEmpty from 'lodash/isEmpty';
+import groupBy from 'lodash/groupBy';
 import filter from 'lodash/filter';
-import some from 'lodash/some';
 
 import { Environment } from '@ovh-ux/manager-config';
-import { ANIMATED_STATUS } from './constants';
+import { MAX_NOTIFICATIONS } from './constants';
 
 export default class NotificationsCtrl {
   /* @ngInject */
@@ -13,6 +12,7 @@ export default class NotificationsCtrl {
     atInternet,
     NavbarNotifications,
     ovhManagerNavbarMenuHeaderBuilder,
+    ouiNavbarConfiguration,
     TranslateService,
   ) {
     this.$q = $q;
@@ -21,12 +21,14 @@ export default class NotificationsCtrl {
     this.NavbarBuilder = ovhManagerNavbarMenuHeaderBuilder;
     this.NavbarNotifications = NavbarNotifications;
     this.TranslateService = TranslateService;
+    this.translations = ouiNavbarConfiguration.translations;
 
     this.REGION = Environment.getRegion();
   }
 
   $onInit() {
     this.isLoading = true;
+    this.numberOfActiveNotifications = 0;
 
     return this.$translate
       .refresh()
@@ -39,24 +41,36 @@ export default class NotificationsCtrl {
       .then(({ menuTitle, sublinks }) => {
         this.NavbarNotifications.setRefreshTime(sublinks);
         this.menuTitle = menuTitle;
-        this.iconIsAnimated = NotificationsCtrl.shouldAnimateIcon(sublinks);
-        this.sublinks = sublinks;
+        if (sublinks.length > MAX_NOTIFICATIONS) {
+          this.sublinks = sublinks.slice(0, MAX_NOTIFICATIONS);
+        } else {
+          this.sublinks = sublinks;
+        }
+        this.numberOfActiveNotifications = this.getNumberOfActiveNotifications();
+        this.groupedSublinks = groupBy(this.sublinks, 'time');
       })
       .finally(() => {
         this.isLoading = false;
       });
   }
 
-  getMenuTitle() {
-    return this.NavbarBuilder.buildMenuHeader(
-      this.$translate.instant('navbar_notification_title'),
+  getNumberOfActiveNotifications() {
+    return filter(this.sublinks, (notification) => notification.isActive)
+      .length;
+  }
+
+  toggleSublinkAction(toUpdate, linkClicked) {
+    this.NavbarNotifications.toggleSublinkAction(toUpdate, linkClicked).then(
+      (notification) => {
+        this.numberOfActiveNotifications = this.getNumberOfActiveNotifications();
+        return notification;
+      },
     );
   }
 
-  static shouldAnimateIcon(sublinks) {
-    return some(
-      sublinks,
-      ({ isActive, level }) => ANIMATED_STATUS.includes(level) && isActive,
+  getMenuTitle() {
+    return this.NavbarBuilder.buildMenuHeader(
+      this.$translate.instant('navbar_notification_title'),
     );
   }
 
@@ -67,35 +81,16 @@ export default class NotificationsCtrl {
     )
       .then((notifications) =>
         notifications.map((notification) =>
-          this.NavbarNotifications.convertToSubLink(notification),
+          this.NavbarNotifications.constructor.convertToSubLink(notification),
         ),
       )
       .catch(() => undefined);
   }
 
-  acknowledgeAll() {
+  openMenu() {
     this.atInternet.trackClick({
       name: 'notifications',
       type: 'action',
     });
-
-    const notificationsToAcknowledge = filter(
-      this.sublinks,
-      ({ acknowledged, isActive }) => !acknowledged && isActive,
-    );
-
-    if (!isEmpty(notificationsToAcknowledge)) {
-      return this.NavbarNotifications.updateNotifications({
-        acknowledged: notificationsToAcknowledge.map(({ id }) => id),
-      }).then(() => {
-        this.sublinks = this.sublinks.map((sublink) => ({
-          ...sublink,
-          acknowledged: false,
-        }));
-        this.iconIsAnimated = false;
-      });
-    }
-
-    return this.$q.when();
   }
 }
