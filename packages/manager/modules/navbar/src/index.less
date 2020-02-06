@@ -25,6 +25,85 @@
   }
 }
 
+.hub-navbar-menu {
+  @navbar-menu-background-color: #f1f5f9;
+  @navbar-menu-content-background-color: #ffffff;
+  @navbar-menu-content-hover-background-color: #bef1ff;
+  @navbar-alert-background-color: #c11b1b;
+  @navbar-menu-content-color: #113f6d;
+  @navbar-menu-content-shadow-color: #e3e6e8;
+
+  top: 2.85rem;
+
+  .oui-navbar-list {
+    background-color: @navbar-menu-background-color;
+  }
+
+  .oui-navbar-notification {
+    flex-direction: column;
+  }
+
+  .oui-navbar-notification:hover {
+    background-color: @navbar-menu-background-color;
+  }
+
+  .hub-navbar-notification_header {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  .oui-navbar-menu__item {
+    border-bottom: none;
+  }
+
+  .oui-navbar-menu__item_active {
+    background-color: @navbar-menu-background-color;
+  }
+
+  .hub-navbar-notification_content {
+    display: flex;
+    margin-bottom: 10px;
+    padding: 15px 10px;
+    background-color: @navbar-menu-content-background-color;
+    border-radius: 10px;
+    text-decoration: none;
+    color: @navbar-menu-content-color;
+    box-shadow: 0 0.5rem 0.8rem 0 @navbar-menu-content-shadow-color;
+  }
+
+  .hub-navbar-notification_content:hover {
+    text-decoration: none !important;
+    background-color: @navbar-menu-content-hover-background-color;
+  }
+
+  .oui-status_error {
+    background-color: @navbar-alert-background-color;
+    padding: 0 0.625rem;
+    border-radius: 10pt;
+    color: @navbar-menu-content-background-color;
+    margin-left: 5px;
+    font-size: 0.8rem;
+    font-weight: bold;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .hub-navbar-menu.oui-navbar-menu_notifications > .oui-navbar-list {
+    max-height: none;
+  }
+
+  .hub-navbar-menu {
+    .oui-navbar-notification__action {
+      visibility: hidden;
+    }
+
+    .hub-navbar-notification_content:hover .oui-navbar-notification__action {
+      visibility: visible;
+    }
+  }
+}
+
 @media screen and (max-width: (@oui-responsive-breakpoint-medium - 1px)) {
   .oui-navbar-link_icon {
     padding: @oui-navbar-link-padding-h 0;
