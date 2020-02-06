@@ -19,8 +19,8 @@ module.exports = (env = {}) => {
   );
 
   // Extra config files
+  const extras = glob.sync(`./.extras/**/*.js`);
   const extrasRegion = glob.sync(`./.extras-${REGION}/**/*.js`);
-  const extras = glob.sync('./.extras/**/*.js');
 
   return merge(config, {
     entry: {
