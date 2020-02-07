@@ -1,7 +1,7 @@
 {
   "pci_projects_project_serving_namespace_tokens_add_error": "Une erreur est survenue durant la création du token : {{ message }}",
   "pci_projects_project_serving_namespace_tokens_add_success": "Votre token a été généré avec succès, enregistrez-le",
-  "pci_projects_project_serving_namespace_tokens_add": "Généré un token",
+  "pci_projects_project_serving_namespace_tokens_add": "Générer un token",
   "pci_projects_project_serving_namespace_tokens_common_add": "Générer",
   "pci_projects_project_serving_namespace_tokens_common_cancel": "Annuler",
   "pci_projects_project_serving_namespace_tokens_resource": "Ressource",
