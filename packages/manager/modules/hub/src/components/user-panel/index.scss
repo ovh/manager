@@ -1,0 +1,56 @@
+.manager-hub-user-panel {
+  $bg-color: #def8ff;
+  $link-color: #0050d7;
+  $link-separator-color: #bef1ff;
+
+  @import 'bootstrap4/scss/_functions.scss';
+  @import 'bootstrap4/scss/_variables.scss';
+  @import 'bootstrap4/scss/_mixins.scss';
+  @import 'bootstrap4/scss/_utilities.scss';
+  @import 'bootstrap4/scss/_grid.scss';
+  @import 'bootstrap4/scss/_buttons.scss';
+  @import 'bootstrap4/scss/_button-group.scss';
+
+  background-color: $bg-color;
+  width: 22rem;
+  padding: 2rem;
+  padding-top: 3rem;
+  position: absolute;
+  right: 0;
+
+  @include media-breakpoint-down(sm) {
+    display: none;
+  }
+
+  &_divider {
+    display: block;
+    border-top: 1px solid $link-separator-color;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  hr {
+    border: none;
+    height: 1px;
+    color: $link-separator-color;
+    background-color: $link-separator-color;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  &_links {
+    > a,
+    button {
+      font-weight: bold !important;
+      color: $link-color;
+      padding: 0 !important;
+
+      .oui-icon {
+        color: $link-color;
+        font-size: 1.5rem;
+        vertical-align: middle;
+        margin-right: 1rem;
+      }
+    }
+  }
+}

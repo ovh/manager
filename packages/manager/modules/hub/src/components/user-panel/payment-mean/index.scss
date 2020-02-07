@@ -1,0 +1,20 @@
+.manager-hub-payment-mean {
+  $payment-bg-color: #bef1ff;
+
+  > a {
+    background: $payment-bg-color;
+    border-radius: 0.5rem;
+    color: inherit;
+    border: none;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+    width: 100%;
+    text-decoration: none;
+  }
+
+  &_status {
+    font-size: 0.8rem;
+    font-weight: bold;
+  }
+}
