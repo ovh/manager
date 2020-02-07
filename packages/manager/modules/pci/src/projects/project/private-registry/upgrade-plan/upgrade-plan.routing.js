@@ -1,5 +1,3 @@
-import map from 'lodash/map';
-
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.private-registry.upgrade-plan', {
     url: '/upgrade-plan?registryId',
@@ -17,15 +15,7 @@ export default /* @ngInject */ ($stateProvider) => {
         $transition$.params().registryId,
 
       plans: /* @ngInject */ (getAvailableUpgrades, registryId) =>
-        getAvailableUpgrades({ id: registryId }).then((plans) =>
-          map(plans, (plan) => ({
-            ...plan,
-            // Waiting for API to provide ...
-            planCode: `registry.${plan.name
-              .substring(0, 1)
-              .toLowerCase()}-plan-equivalent.hour.monthly.postpaid`,
-          })),
-        ),
+        getAvailableUpgrades({ id: registryId }),
     },
   });
 };

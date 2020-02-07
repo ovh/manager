@@ -1,14 +1,22 @@
 <h2 data-translate="private_registry_upgrade_plan"></h2>
 
 <cui-message-container data-messages="$ctrl.messages"></cui-message-container>
+<oui-spinner data-ng-if="$ctrl.loading" data-size="s"></oui-spinner>
 
-<pci-private-registry-upgrade-plan
-    data-cancel-link="$ctrl.cancelLink"
-    data-plans="$ctrl.plans"
-    data-project-id="$ctrl.projectId"
-    data-registry-id="$ctrl.registryId"
-    data-user="$ctrl.user"
-    data-on-success="$ctrl.onSuccess()"
-    data-on-error="$ctrl.onError(error)"
->
-</pci-private-registry-upgrade-plan>
+<form name="upgradeOffer">
+    <pci-private-registry-upgrade-plan
+        data-plans="$ctrl.plans"
+        data-project-id="$ctrl.projectId"
+        data-registry-id="$ctrl.registryId"
+        data-user="$ctrl.user"
+        data-on-change="$ctrl.changeMethod(modelValue)"
+    >
+    </pci-private-registry-upgrade-plan>
+    <oui-form-actions
+        class="mt-4"
+        data-on-submit="$ctrl.upgradeOffer()"
+        data-href="{{ $ctrl.cancelLink }}"
+        data-submit-text="{{ 'private_registry_upgrade_plan' | translate }}"
+    >
+    </oui-form-actions>
+</form>

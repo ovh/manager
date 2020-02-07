@@ -1,5 +1,6 @@
 import get from 'lodash/get';
 import set from 'lodash/set';
+import includes from 'lodash/includes';
 
 export default class RegistyPlan {
   constructor(resource) {
@@ -24,10 +25,18 @@ export default class RegistyPlan {
   }
 
   hasUnlimitedBandwidth() {
-    return get(this, 'blobs.technical.bandwidth.unlimited', false);
+    return get(this, 'blobs.technical.bandwidth.unlimited');
   }
 
   hasVulnerabilityScanning() {
-    return get(this, 'features.vulnerability', false);
+    return get(this, 'features.vulnerability');
+  }
+
+  showCoreRegistryNinetyNine() {
+    return includes(this, 'SMALL');
+  }
+
+  showOtherComponents() {
+    return includes(this, 'MEDIUM') || includes(this, 'LARGE');
   }
 }

@@ -2,9 +2,14 @@ import get from 'lodash/get';
 
 export default class {
   /* @ngInject */
-  constructor($translate, CucCloudMessage) {
+  constructor(
+    $translate,
+    CucCloudMessage,
+    OvhApiCloudProjectContainerRegistryPlan,
+  ) {
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
+    this.OvhApiCloudProjectContainerRegistryPlan = OvhApiCloudProjectContainerRegistryPlan;
   }
 
   $onInit() {
@@ -31,6 +36,10 @@ export default class {
     );
   }
 
+  changeMethod(value) {
+    this.selectedPlan = value;
+  }
+
   onError(error) {
     this.CucCloudMessage.error(
       this.$translate.instant('private_registry_upgrade_plan_error', {
@@ -38,5 +47,24 @@ export default class {
       }),
       'pci.projects.project.private-registry.upgrade-plan',
     );
+  }
+
+  upgradeOffer() {
+    this.loading = true;
+    return this.OvhApiCloudProjectContainerRegistryPlan.v6()
+      .update(
+        {
+          serviceName: this.projectId,
+          registryID: this.registryId,
+        },
+        {
+          planID: this.selectedPlan.code,
+        },
+      )
+      .$promise.then(() => this.onSuccess())
+      .catch((error) => this.onError({ error }))
+      .finally(() => {
+        this.loading = false;
+      });
   }
 }

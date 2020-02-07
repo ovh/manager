@@ -17,27 +17,23 @@ export default class {
     this.isLoading = true;
     this.registry.region = this.REGION;
     return this.privateRegistryService
-      .acceptAgreements(this.registryContracts)
-      .then(() =>
-        this.privateRegistryService
-          .create(this.projectId, this.registry)
-          .then((res) =>
-            this.goBack(
-              this.$translate.instant('private_registry_onboarding_success', {
-                registryName: this.registry.name,
-              }),
-              'success',
-              res.id,
-            ),
-          )
-          .catch((error) =>
-            this.goBack(
-              this.$translate.instant('private_registry_onboarding_error', {
-                message: get(error, 'data.message'),
-              }),
-              'error',
-            ),
-          ),
+      .create(this.projectId, this.registry)
+      .then((res) =>
+        this.goBack(
+          this.$translate.instant('private_registry_onboarding_success', {
+            registryName: this.registry.name,
+          }),
+          'success',
+          res.id,
+        ),
+      )
+      .catch((error) =>
+        this.goBack(
+          this.$translate.instant('private_registry_onboarding_error', {
+            message: get(error, 'data.message'),
+          }),
+          'error',
+        ),
       );
   }
 
