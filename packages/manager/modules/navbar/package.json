@@ -13,12 +13,12 @@
     "directory": "packages/manager/components/navbar"
   },
   "license": "BSD-3-Clause",
-  "files": [
-    "dist"
-  ],
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
   "browser": "./dist/umd/welcome.js",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "rollup -c --environment BUILD:production",
     "dev": "rollup -c --environment BUILD:development",
