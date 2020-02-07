@@ -8,7 +8,7 @@
   "pci_projects_project_serving_namespace_models_add_type_build-image": "Custom Model",
   "pci_projects_project_serving_namespace_models_add_type_build-image_popover": "Deploy your custom model",
   "pci_projects_project_serving_namespace_models_add_name": "Your model name",
-  "pci_projects_project_serving_namespace_models_add_name_help": "The model name must start with a lowercase or uppercase alphanumeric character ( a to z and 0 to 9) and can include the following character:  « - ».",
+  "pci_projects_project_serving_namespace_models_add_name_help": "Model name must consist of lower case alphanumeric characters or '-', start with an alphabetic character, and end with an alphanumeric character (e.g. 'my-name',  or 'abc-123')",
   "pci_projects_project_serving_namespace_models_add_model": "Model",
   "pci_projects_project_serving_namespace_models_add_instances": "Instance configuration",
   "pci_projects_project_serving_namespace_models_add_instances_info": "During preview only one type of instances is available. Additional flavors will be created to fit specific needs.",
