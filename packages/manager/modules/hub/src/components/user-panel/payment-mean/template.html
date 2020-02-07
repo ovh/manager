@@ -1,0 +1,35 @@
+<div class="manager-hub-payment-mean">
+    <button
+        class="d-flex flex-row align-items-center p-2 px-3"
+        data-ng-click="$ctrl.goToPaymentMethods()"
+    >
+        <span class="mr-auto oui-icon oui-icon-credit-card_concept"></span>
+        <oui-skeleton
+            size="s"
+            data-ng-repeat="i in [1,2]"
+            data-ng-if="$ctrl.isLoading"
+        ></oui-skeleton>
+        <div class="m-auto" data-ng-if="!$ctrl.isLoading">
+            <strong
+                class="d-block"
+                data-translate="hub_payment_mean_title"
+            ></strong>
+            <span
+                class="d-block"
+                data-ng-bind="$ctrl.paymentMethod.label"
+            ></span>
+            <span
+                class="oui-status"
+                data-ng-class="{
+                    'oui-status_info': ['CREATED', 'CANCELING', 'CREATING'].includes($ctrl.paymentMethod.status),
+                    'oui-status_error': ['CANCELED', 'ERROR', 'EXPIRED'].includes($ctrl.paymentMethod.status),
+                    'oui-status_warning': ['MAINTENANCE', 'PAUSED'].includes($ctrl.paymentMethod.status),
+                    'oui-status_success': ['VALID'].includes($ctrl.paymentMethod.status),
+                    }"
+                data-ng-bind="'hub_payment_mean_status_' + $ctrl.paymentMethod.status | translate"
+            >
+            </span>
+        </div>
+        <span class="ml-auto oui-icon oui-icon-arrow-right_extra-thin"></span>
+    </button>
+</div>

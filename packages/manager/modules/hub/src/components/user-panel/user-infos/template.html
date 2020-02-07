@@ -1,0 +1,69 @@
+<div class="manager-hub-user-infos">
+    <span
+        class="initials"
+        data-ng-class="{
+            'initials-centered': !$ctrl.isExpanded,
+            'm-3': $ctrl.isExpanded,
+            'float-left': $ctrl.isExpanded
+          }"
+    >
+        <span data-ng-if="$ctrl.me" data-ng-bind="$ctrl.getNameInitials()">
+        </span>
+    </span>
+    <p class="oui-chip" data-ng-if="!$ctrl.isExpanded">
+        <oui-skeleton
+            class="mx-auto"
+            data-ng-if="!$ctrl.supportLevel"
+            data-size="xs"
+        ></oui-skeleton>
+        <small
+            data-ng-if="$ctrl.supportLevel"
+            data-ng-bind="('hub_user_support_level_' + $ctrl.supportLevel.level) | translate"
+        ></small>
+    </p>
+    <p data-ng-if="!$ctrl.me">
+        <oui-skeleton class="mx-auto" data-size="s"></oui-skeleton>
+    </p>
+    <p class="user-name" data-ng-if="$ctrl.me" data-ng-clikc="">
+        <button
+            class="btn btn-link"
+            data-ng-class="{
+                    expanded: $ctrl.isExpanded
+                }"
+            data-ng-click="$ctrl.isExpanded = !$ctrl.isExpanded"
+        >
+            <span data-ng-bind="$ctrl.getDisplayName()"></span>
+            <span
+                class="oui-icon"
+                data-ng-class="{
+                    'oui-icon-chevron-up': !$ctrl.isExpanded,
+                    'oui-icon-chevron-down': $ctrl.isExpanded,
+                  }"
+            >
+            </span>
+        </button>
+    </p>
+    <div data-ng-if="!$ctrl.isExpanded">
+        <p data-ng-if="!$ctrl.me">
+            <oui-skeleton class="mx-auto" data-size="m"></oui-skeleton>
+            <oui-skeleton class="mx-auto" data-size="s"></oui-skeleton>
+        </p>
+        <p data-ng-if="$ctrl.me">
+            <small class="d-block" data-ng-bind="$ctrl.me.email"></small>
+            <small
+                class="d-block"
+                data-ng-bind="$ctrl.getDisplayNicHandle()"
+            ></small>
+        </p>
+    </div>
+    <div class="text-left pb-2 links" data-ng-if="$ctrl.isExpanded">
+        <hr />
+        <a
+            href="#"
+            class="m-3"
+            data-ng-click="$ctrl.logout()"
+            data-translate="hub_user_logout"
+        >
+        </a>
+    </div>
+</div>
