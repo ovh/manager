@@ -18,7 +18,7 @@ Generate a module named `foo`:
 $ yarn run generate:module ./packages/manager/modules/foo
 ```
 
-[View a demo](https://github.com/ovh/manager/blob/master/DEVELOP.md#generate-module).
+[View a demo](https://ovh.github.io/manager/guide/scripts.html#generate-a-module-or-an-application).
 
 ## Related
 
