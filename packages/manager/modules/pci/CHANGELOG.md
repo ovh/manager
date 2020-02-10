@@ -1,3 +1,24 @@
+# [3.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.9.4...@ovh-ux/manager-pci@3.10.0) (2020-02-10)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 250] ([b743a43](https://github.com/ovh/manager/commit/b743a439ed7bca2f967b6741319d87d00c87ce56))
+* **i18n:** add missing translations [CDS 253] ([af278ae](https://github.com/ovh/manager/commit/af278ae2fc02e3654a81528983d099fa50d89539))
+* **i18n:** add missing translations [CDS 254] ([09285b9](https://github.com/ovh/manager/commit/09285b9fd8e61b1d1b5b3ff55b942b477e5339f9))
+* **i18n:** add missing translations [CDS 255] ([2285fc1](https://github.com/ovh/manager/commit/2285fc134246478a0bf7ea7f1f79fd81efb93eb1))
+* **i18n:** add missing translations [CDS 257] ([6befb57](https://github.com/ovh/manager/commit/6befb57598963000fb94fec86b8f32d9eb66eeff))
+* **pci.components.flavors.list:** add addon information ([#2099](https://github.com/ovh/manager/issues/2099)) ([4a88df3](https://github.com/ovh/manager/commit/4a88df3d3e2cb6c62eba20846e4bd8771fefd452))
+* **pci.project:** change message for eol old interface ([#2177](https://github.com/ovh/manager/issues/2177)) ([0d18397](https://github.com/ovh/manager/commit/0d18397d495126f4d5dda692373924cadb84ef5f))
+* **pci.project.kubernetes:** remove static region setting ([#2175](https://github.com/ovh/manager/issues/2175)) ([b2ebaf8](https://github.com/ovh/manager/commit/b2ebaf87e1ea8c6758a858b8afc220d1d7dace62))
+
+
+### Features
+
+* **pci.project:** set up an automated backup ([#2166](https://github.com/ovh/manager/issues/2166)) ([5f432fe](https://github.com/ovh/manager/commit/5f432fed7387baa0e79eb49c71420e8eff56acc0))
+
+
+
 ## [3.9.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.9.3...@ovh-ux/manager-pci@3.9.4) (2020-01-31)
 
 

@@ -1,3 +1,14 @@
+## [13.44.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.44.1...@ovh-ux/manager-web@13.44.2) (2020-02-10)
+
+
+### Bug Fixes
+
+* **domain.dashboard:** disable correctly switch if they are unavailable ([06e6685](https://github.com/ovh/manager/commit/06e668531a09c4b24721934780a41bbc55c2f69b))
+* **i18n:** add missing translations [CDS 250] ([b743a43](https://github.com/ovh/manager/commit/b743a439ed7bca2f967b6741319d87d00c87ce56))
+* **i18n:** add missing translations [CDS 256] ([7fbf40a](https://github.com/ovh/manager/commit/7fbf40aa0a2516faa874365d64d9376bf86fe04c))
+
+
+
 ## [13.44.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.44.0...@ovh-ux/manager-web@13.44.1) (2020-02-05)
 
 

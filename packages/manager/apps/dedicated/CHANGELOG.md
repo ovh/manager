@@ -1,3 +1,24 @@
+# [11.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@11.3.11...@ovh-ux/manager-dedicated@11.4.0) (2020-02-10)
+
+
+### Bug Fixes
+
+* **billing.payment.method.add:** new contact model in US ([#2217](https://github.com/ovh/manager/issues/2217)) ([feb7f2a](https://github.com/ovh/manager/commit/feb7f2aa9a0bb31dc65b903166e6c43896922449))
+* **dedicatedcloud.datacenter.drp:** fix use of preference key ([9ac7cf2](https://github.com/ovh/manager/commit/9ac7cf233d215e01fa5fcbc7b0e98abc67c29667))
+* **i18n:** add missing translations [CDS 253] ([af278ae](https://github.com/ovh/manager/commit/af278ae2fc02e3654a81528983d099fa50d89539))
+* **i18n:** add missing translations [CDS 254] ([09285b9](https://github.com/ovh/manager/commit/09285b9fd8e61b1d1b5b3ff55b942b477e5339f9))
+* **i18n:** add missing translations [CDS 255] ([2285fc1](https://github.com/ovh/manager/commit/2285fc134246478a0bf7ea7f1f79fd81efb93eb1))
+* **i18n:** add missing translations [CDS 256] ([7fbf40a](https://github.com/ovh/manager/commit/7fbf40aa0a2516faa874365d64d9376bf86fe04c))
+* **i18n:** add missing translations [CDS 257] ([6befb57](https://github.com/ovh/manager/commit/6befb57598963000fb94fec86b8f32d9eb66eeff))
+* **server.interfaces:** set right vrack guide ([#2168](https://github.com/ovh/manager/issues/2168)) ([4735503](https://github.com/ovh/manager/commit/47355033fdb8121292faad301881baffa99ee1ec))
+
+
+### Features
+
+* **billing.orders:** add tracking link on order status ([#2209](https://github.com/ovh/manager/issues/2209)) ([f925103](https://github.com/ovh/manager/commit/f92510321e932d17d28002014b39e9cfe77bd796))
+
+
+
 ## [11.3.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@11.3.10...@ovh-ux/manager-dedicated@11.3.11) (2020-02-10)
 
 

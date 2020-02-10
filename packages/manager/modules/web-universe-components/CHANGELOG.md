@@ -1,3 +1,19 @@
+# [8.0.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@7.4.0...@ovh-ux/ng-ovh-web-universe-components@8.0.0) (2020-02-10)
+
+
+### Code Refactoring
+
+* **v6uiswitch:** remove unused directive ([0889f78](https://github.com/ovh/manager/commit/0889f7840aac1df9e1daa218c2c86f5f58674f82))
+
+
+### BREAKING CHANGES
+
+* **v6uiswitch:** v6UISwitch is deleted, as it is replaced by oui-switch, and is now no more used
+
+Signed-off-by: Jérémy De-Cesare <jeremy.de-cesare@corp.ovh.com>
+
+
+
 # [7.4.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@7.3.0...@ovh-ux/ng-ovh-web-universe-components@7.4.0) (2020-01-24)
 
 

@@ -1,3 +1,14 @@
+## [11.4.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@11.4.3...@ovh-ux/manager-telecom@11.4.4) (2020-02-10)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 253] ([af278ae](https://github.com/ovh/manager/commit/af278ae2fc02e3654a81528983d099fa50d89539))
+* **telecom.plugandfax.settings:** add translations path ([#2216](https://github.com/ovh/manager/issues/2216)) ([6916f24](https://github.com/ovh/manager/commit/6916f247dca2d329e0b060a44358bcf2f69b1929))
+* **telephony.alias.ccs.sounds:** set maxWaitTime in seconds ([#2213](https://github.com/ovh/manager/issues/2213)) ([49fd214](https://github.com/ovh/manager/commit/49fd214241db8bea6f77e38e8a7e201d5c0c55f7))
+
+
+
 ## [11.4.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@11.4.2...@ovh-ux/manager-telecom@11.4.3) (2020-01-31)
 
 
