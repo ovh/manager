@@ -1,3 +1,12 @@
+## [11.3.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@11.3.10...@ovh-ux/manager-dedicated@11.3.11) (2020-02-10)
+
+
+### Bug Fixes
+
+* **i18n:** correct wrong translation ([91b0e39](https://github.com/ovh/manager/commit/91b0e39bd579d048ba11e69f9a013ebc61904817))
+
+
+
 ## [11.3.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@11.3.9...@ovh-ux/manager-dedicated@11.3.10) (2020-02-03)
 
 
