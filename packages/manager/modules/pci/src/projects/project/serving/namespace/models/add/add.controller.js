@@ -6,6 +6,7 @@ import {
   EXTENSION,
   FOLDER_MODE,
   FILE_MODE,
+  COMPATIBILITY_GUIDE_URL,
 } from './add.constants';
 
 export default class PciServingNamespaceModelsAddController {
@@ -22,6 +23,7 @@ export default class PciServingNamespaceModelsAddController {
     this.BUILD_IMAGE = BUILD_IMAGE;
     this.FOLDER_MODE = FOLDER_MODE;
     this.FILE_MODE = FILE_MODE;
+    this.COMPATIBILITY_GUIDE_URL = COMPATIBILITY_GUIDE_URL;
   }
 
   $onInit() {

@@ -75,6 +75,12 @@
             </div>
 
             <div data-ng-if="$ctrl.model.workflowTemplate == $ctrl.BUILD_IMAGE">
+                <oui-message type="info">
+                    <a
+                        href="{{ $ctrl.COMPATIBILITY_GUIDE_URL }}"
+                        data-translate="pci_projects_project_serving_namespace_models_add_custom_info"
+                    ></a>
+                </oui-message>
                 <div data-ng-if="$ctrl.folders.length">
                     <oui-radio-toggle-group
                         data-model="$ctrl.mode"

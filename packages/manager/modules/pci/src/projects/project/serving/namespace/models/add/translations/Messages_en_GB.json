@@ -25,5 +25,7 @@
   "pci_projects_project_serving_namespace_models_add_autoscaling_info": "During the preview phase, the auto-scaling settings are not customizable.",
   "pci_projects_project_serving_namespace_models_add_model_preset_info": "More informations",
   "pci_projects_project_serving_namespace_models_add_folder_mode": "Folder",
-  "pci_projects_project_serving_namespace_models_add_file_mode": "File"
+  "pci_projects_project_serving_namespace_models_add_file_mode": "File",
+  "pci_projects_project_serving_namespace_models_add_custom_info": "Click here to found our compability matrix"
+
 }

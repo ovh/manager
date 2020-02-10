@@ -1,15 +1,15 @@
+import { GUIDE_URL } from './namespace.constants';
+
 export default class PciServingNamespaceController {
   /* @ngInject */
-  constructor(
-    CucCloudMessage,
-    CucRegionService,
-  ) {
+  constructor(CucCloudMessage, CucRegionService) {
     this.CucCloudMessage = CucCloudMessage;
     this.CucRegionService = CucRegionService;
   }
 
   $onInit() {
     this.loadMessages();
+    this.guideUrl = GUIDE_URL;
   }
 
   loadMessages() {
