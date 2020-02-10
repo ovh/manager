@@ -1,21 +1,18 @@
 import get from 'lodash/get';
 import map from 'lodash/map';
 import template from 'lodash/template';
-import { REGION } from '../private-registry.constants';
 
 export default class {
   /* @ngInject */
   constructor($translate, pciPrivateRegistryService) {
     this.$translate = $translate;
     this.privateRegistryService = pciPrivateRegistryService;
-    this.isLoading = false;
-    this.REGION = REGION;
+    this.loading = false;
     this.registry = {};
   }
 
   create() {
-    this.isLoading = true;
-    this.registry.region = this.REGION;
+    this.loading = true;
     return this.privateRegistryService
       .acceptAgreements(this.registryContracts)
       .then(() =>
@@ -49,10 +46,11 @@ export default class {
   }
 
   getAvailablePlans() {
-    this.availablePlans = this.plans(this.registry.region.name);
+    this.registry.region = this.registry.region.name;
+    this.availablePlans = this.plans(this.registry.region);
   }
 
   changeMethod(value) {
-    this.registry.selectedPlan = value;
+    this.registry.planID = value.code;
   }
 }

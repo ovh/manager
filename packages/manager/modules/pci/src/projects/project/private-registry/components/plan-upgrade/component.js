@@ -10,6 +10,7 @@ export default {
     projectId: '<',
     registryId: '<',
     user: '<',
+    onChange: '&',
   },
   controller,
   template,

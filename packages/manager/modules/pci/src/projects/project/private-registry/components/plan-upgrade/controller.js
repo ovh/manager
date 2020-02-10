@@ -5,14 +5,9 @@ import RegistryPlan from './RegistryPlan.class';
 
 export default class {
   /* @ngInject */
-  constructor(
-    CucCloudMessage,
-    OvhApiOrderCatalogPublic,
-    OvhApiCloudProjectContainerRegistryPlan,
-  ) {
+  constructor(CucCloudMessage, OvhApiOrderCatalogPublic) {
     this.CucCloudMessage = CucCloudMessage;
     this.OvhApiOrderCatalogPublic = OvhApiOrderCatalogPublic;
-    this.OvhApiCloudProjectContainerRegistryPlan = OvhApiCloudProjectContainerRegistryPlan;
   }
 
   $onInit() {
@@ -35,28 +30,16 @@ export default class {
           'registryLimits.imageStorage',
         );
         [this.selectedPlan] = this.detailedPlans;
+        this.onSelected(this.selectedPlan);
       })
       .finally(() => {
         this.loading = false;
       });
   }
 
-  upgradeOffer() {
-    this.loading = true;
-    return this.OvhApiCloudProjectContainerRegistryPlan.v6()
-      .update(
-        {
-          serviceName: this.projectId,
-          registryID: this.registryId,
-        },
-        {
-          planID: this.selectedPlan.id,
-        },
-      )
-      .$promise.then(() => this.onSuccess())
-      .catch((error) => this.onError({ error }))
-      .finally(() => {
-        this.loading = false;
-      });
+  onSelected(model) {
+    if (this.onChange) {
+      this.onChange({ modelValue: model });
+    }
   }
 }

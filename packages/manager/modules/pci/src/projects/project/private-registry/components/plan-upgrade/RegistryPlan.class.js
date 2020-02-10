@@ -1,4 +1,5 @@
 import get from 'lodash/get';
+import includes from 'lodash/includes';
 
 export default class RegistyPlan {
   constructor(resource) {
@@ -27,5 +28,13 @@ export default class RegistyPlan {
 
   hasVulnerabilityScanning() {
     return get(this, 'features.vulnerability');
+  }
+
+  showCoreRegistryNinetyNine() {
+    return includes(this, 'SMALL');
+  }
+
+  showOtherComponents() {
+    return includes(this, 'MEDIUM') || includes(this, 'LARGE');
   }
 }

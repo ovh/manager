@@ -32,16 +32,12 @@ export default /* @ngInject */ ($stateProvider) => {
           );
           return $q.all(agreementPromises);
         }),
+
       plans: /* @ngInject */ (capabilities) => (regionName) => {
         const { plans } = find(capabilities, { regionName });
-        return map(plans, (plan) => ({
-          ...plan,
-          // Waiting for API to provide ...
-          planCode: `registry.${plan.name
-            .substring(0, 1)
-            .toLowerCase()}-plan-equivalent.hour.monthly.postpaid`,
-        }));
+        return plans;
       },
+
       goBack: /* @ngInject */ (goBackToList) => goBackToList,
     },
   });
