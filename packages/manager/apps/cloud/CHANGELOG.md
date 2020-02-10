@@ -1,3 +1,17 @@
+# [8.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@8.2.2...@ovh-ux/manager-cloud@8.3.0) (2020-02-10)
+
+
+### Bug Fixes
+
+* **dbaas.logs.detail.streams.archives:** hide skeleton ([#2205](https://github.com/ovh/manager/issues/2205)) ([e46d3bb](https://github.com/ovh/manager/commit/e46d3bb63e18c629795d747badb9b48c77eb356e))
+
+
+### Features
+
+* **dbaas.logs:** support new protocol ([#2191](https://github.com/ovh/manager/issues/2191)) ([77bcada](https://github.com/ovh/manager/commit/77bcadaae4856f07ec9478dd3cb8f39eca1147d0))
+
+
+
 ## [8.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@8.2.1...@ovh-ux/manager-cloud@8.2.2) (2020-01-08)
 
 

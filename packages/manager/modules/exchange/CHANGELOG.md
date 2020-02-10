@@ -1,3 +1,12 @@
+# [1.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@1.3.1...@ovh-ux/manager-exchange@1.4.0) (2020-02-10)
+
+
+### Features
+
+* **exchange.mfa:** add exchange mfa ([#2094](https://github.com/ovh/manager/issues/2094)) ([0c1d61b](https://github.com/ovh/manager/commit/0c1d61bef7343dcb6fad7fcbc8b60f72c641ed8e))
+
+
+
 ## [1.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@1.3.0...@ovh-ux/manager-exchange@1.3.1) (2019-12-18)
 
 
