@@ -13,7 +13,11 @@ import reduce from 'lodash/reduce';
 import set from 'lodash/set';
 import some from 'lodash/some';
 
-import { OWNER_CHANGE_URL } from './general-information.constants';
+import {
+  DNSSEC_STATUS,
+  OWNER_CHANGE_URL,
+  PROTECTION_TYPES,
+} from './general-information.constants';
 
 export default class DomainTabGeneralInformationsCtrl {
   /* @ngInject */
@@ -93,8 +97,16 @@ export default class DomainTabGeneralInformationsCtrl {
       refreshAlert: false,
     };
     this.vm = {
-      protection: { uiSwitch: {} },
-      dnssec: { uiSwitch: {} },
+      protection: {
+        isUnavailable: false,
+        enabled:
+          this.domain.protection.toLowerCase() === PROTECTION_TYPES.LOCKED,
+      },
+      dnssec: {
+        isUnavailable: false,
+        enabled:
+          this.domain.dnssecStatus.toLowerCase() === DNSSEC_STATUS.ENABLE,
+      },
       hosting: {
         web: {
           sites: [],
@@ -117,18 +129,22 @@ export default class DomainTabGeneralInformationsCtrl {
       (event) => {
         this.$scope.$on(event, () => {
           this.domain = this.$scope.ctrlDomain.domain;
-          this.setSwitchStates();
+          this.updateVmStatus();
         });
       },
     );
+
     this.$scope.$on('domain.protection.lock.cancel', () => {
-      this.vm.protection.uiSwitch.checked = false;
+      this.vm.protection.enabled = false;
+      this.isSwitchingProtectionStatus = false;
     });
     this.$scope.$on('domain.protection.unlock.cancel', () => {
-      this.vm.protection.uiSwitch.checked = true;
+      this.vm.protection.enabled = true;
+      this.isSwitchingProtectionStatus = false;
     });
     this.$scope.$on('domain.dnssec.lock.unlock.cancel', () => {
-      this.vm.dnssec.uiSwitch.checked = !this.vm.dnssec.uiSwitch.checked;
+      this.vm.dnssec.enabled = !this.vm.dnssec.enabled;
+      this.isSwitchingDnssecStatus = false;
     });
     this.$scope.$on('Domain.Options.Delete', () =>
       this.getAllOptionDetails(this.domain.name),
@@ -141,7 +157,7 @@ export default class DomainTabGeneralInformationsCtrl {
       this.start10MarketUrl = start10mMarket;
     });
 
-    this.setSwitchStates();
+    this.updateVmStatus();
     this.getAllNameServer(this.domain.name);
     this.getHostingInfos(this.domain.name);
     this.getAssociatedHostingsSubdomains();
@@ -420,20 +436,36 @@ export default class DomainTabGeneralInformationsCtrl {
       });
   }
 
-  setSwitchStates() {
-    this.vm.protection.uiSwitch.checked =
-      this.domain.protection === 'locked' ||
-      this.domain.protection === 'locking';
-    this.vm.protection.uiSwitch.pending = /ing$/i.test(this.domain.protection);
-    this.vm.protection.uiSwitch.disabled =
-      /ing$/i.test(this.domain.protection) ||
-      this.domain.protection === 'unavailable';
+  updateVmStatus() {
+    this.isSwitchingProtectionStatus = false;
+    this.isSwitchingDnssecStatus = false;
+    this.updateVmDnssecStatus();
+    this.updateVmProtectionStatus();
+  }
 
-    this.vm.dnssec.uiSwitch.checked = /enable/i.test(this.domain.dnssecStatus);
-    this.vm.dnssec.uiSwitch.pending = /progress/i.test(
-      this.domain.dnssecStatus,
-    );
-    this.vm.dnssec.uiSwitch.disabled = this.vm.dnssec.uiSwitch.pending;
+  updateVmDnssecStatus() {
+    this.vm.dnssec.enabled = [
+      DNSSEC_STATUS.ENABLED,
+      DNSSEC_STATUS.ENABLE_IN_PROGRESS,
+    ].includes(this.domain.dnssecStatus.toLowerCase());
+
+    this.vm.dnssec.isUnavailable = [
+      DNSSEC_STATUS.DISABLE_IN_PROGRESS,
+      DNSSEC_STATUS.ENABLE_IN_PROGRESS,
+    ].includes(this.domain.dnssecStatus.toLowerCase());
+  }
+
+  updateVmProtectionStatus() {
+    this.vm.protection.enabled = [
+      PROTECTION_TYPES.LOCKING,
+      PROTECTION_TYPES.LOCKED,
+    ].includes(this.domain.protection.toLowerCase());
+
+    this.vm.protection.isUnavailable = [
+      PROTECTION_TYPES.LOCKING,
+      PROTECTION_TYPES.UNLOCKING,
+      PROTECTION_TYPES.UNAVAILABLE,
+    ].includes(this.domain.protection.toLowerCase());
   }
 
   getUpdateOwnerUrl(domain) {
@@ -510,11 +542,17 @@ export default class DomainTabGeneralInformationsCtrl {
   }
 
   switchTheStateOfProtection() {
-    if (this.vm.protection.uiSwitch.checked) {
-      this.$scope.setAction('lock/enable/domain-lock-enable', this.domain);
-    } else {
+    this.isSwitchingProtectionStatus = true;
+    if (this.vm.protection.enabled) {
       this.$scope.setAction('lock/disable/domain-lock-disable', this.domain);
+    } else {
+      this.$scope.setAction('lock/enable/domain-lock-enable', this.domain);
     }
+  }
+
+  switchDnssecStatus() {
+    this.isSwitchingDnssecStatus = true;
+    this.$scope.setAction('dns/sec/domain-dns-sec', this.domain);
   }
 
   // Utilities ------------------------------------------

@@ -1,6 +1,5 @@
 <tail-logs>
     <div
-        class="row ml-0"
         data-ng-repeat="log in $ctrl.logger.logs track by $index"
         data-ng-class="{
             'text-primary' : log.message.status >= 200 && log.message.status < 300,
@@ -8,11 +7,7 @@
             'text-danger'  : log.message.status > 499
         }"
     >
-        <span
-            data-ng-bind="log.message.source"
-            title="ip_source"
-            class="col-md-1"
-        ></span>
+        <span data-ng-bind="log.message.source" title="ip_source"></span>
         <span title="ident">-</span>
         <span data-ng-bind="log.message.user" title="user"></span>
         [<span

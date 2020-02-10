@@ -31,6 +31,9 @@
   "pci_projects_project_instances_add_privateNetwork_label": "Réseau privé attaché",
   "pci_projects_project_instances_add_privateNetwork_none": "Aucun",
 
+  "pci_projects_project_instances_add_automated_backup_label": "Sauvegarde automatisée des instances",
+  "pci_projects_project_instances_add_automated_backup_infos": "Cette fonctionnalité vous permet de sauvegarder votre instance de manière automatique selon l'ordonnancement de votre choix.",
+
 
   "pci_projects_project_instances_add_billing_title": "Sélectionnez une période de facturation",
   "pci_projects_project_instances_add_billing_montly_discount_message": "Le forfait mensuel est facturé dès le démarrage de l'instance et permet d'économiser 50% sur le prix des serveurs.",

@@ -5,6 +5,7 @@ export default {
   bindings: {
     schedule: '=?',
     isEditMode: '<',
+    isCustomizable: '<',
   },
   controller,
   template,

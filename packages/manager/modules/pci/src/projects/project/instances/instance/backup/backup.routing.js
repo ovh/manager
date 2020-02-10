@@ -8,12 +8,12 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     layout: 'modal',
     resolve: {
-      priceEstimation: /* @ngInject */ (
+      monthlyPrice: /* @ngInject */ (
         PciProjectsProjectInstanceService,
         projectId,
         instance,
       ) =>
-        PciProjectsProjectInstanceService.getBackupPriceEstimation(
+        PciProjectsProjectInstanceService.getSnapshotMonthlyPrice(
           projectId,
           instance,
         ),

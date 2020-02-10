@@ -20,12 +20,12 @@
   },
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
-  "files": [
-    "dist"
-  ],
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
   "browser": "./dist/umd/ng-ovh-order-tracking.js",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "rollup -c --environment BUILD:production",
     "dev": "rollup -c --environment BUILD:development",

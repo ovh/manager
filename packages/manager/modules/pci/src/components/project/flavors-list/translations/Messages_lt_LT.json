@@ -15,5 +15,7 @@
   "pci_project_flavors_price_hourly": "{{price}} ex. VAT/hour",
   "pci_project_flavors_price_monthly": "From {{price}} ex. VAT/month",
   "pci_project_flavors_quota": "Increase your quota",
-  "pci_project_flavors_category_definition_iops": "IOPS instances deliver the fastest disk transactions in the Public Cloud range."
+  "pci_project_flavors_category_definition_iops": "IOPS instances deliver the fastest disk transactions in the Public Cloud range.",
+  "pci_project_flavors_spec_model": "Model",
+  "pci_project_flavors_spec_nvme": "NVMe storage:"
 }

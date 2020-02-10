@@ -16,9 +16,7 @@ export default class {
 
   $onInit() {
     if (!this.currentDrp.isSuccessAlertDisable) {
-      return this.dedicatedCloudDrp.setDisableSuccessAlertPreference(
-        this.currentDrp.serviceName,
-      );
+      return this.disableSuccessAlert();
     }
 
     return Promise.resolve(null);
@@ -27,6 +25,7 @@ export default class {
   disableSuccessAlert() {
     return this.dedicatedCloudDrp.setDisableSuccessAlertPreference(
       this.currentDrp.serviceName,
+      true,
     );
   }
 

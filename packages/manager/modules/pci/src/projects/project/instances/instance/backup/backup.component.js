@@ -7,7 +7,7 @@ export default {
   bindings: {
     projectId: '<',
     instance: '<',
-    priceEstimation: '<',
+    monthlyPrice: '<',
     goBack: '<',
   },
 };

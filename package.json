@@ -14,7 +14,6 @@
     "build": "node --experimental-worker scripts/build.js",
     "clean": "lerna clean -y && yarn run clean:dist && npx rimraf node_modules",
     "clean:dist": "npx rimraf \"packages/**/dist?(-EU|-CA|-US)\"",
-    "docs:update-readme": "scripts/update-readme.js",
     "generate:app": "sao ./packages/manager/tools/sao-ovh-manager-app",
     "generate:module": "sao ./packages/manager/tools/sao-ovh-manager-module",
     "lint": "run-p lint:*",
@@ -27,9 +26,10 @@
     "split": "scripts/split.js",
     "test": "yarn lint",
     "version": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
-    "vuepress:build": "vuepress build docs",
+    "vuepress:build": "yarn run vuepress:prebuild && vuepress build docs",
     "vuepress:deploy": "yarn run vuepress:build && gh-pages -d docs/.vuepress/dist -m \"docs: update documentation\"",
-    "vuepress:dev": "vuepress dev docs"
+    "vuepress:dev": "yarn run vuepress:prebuild && vuepress dev docs",
+    "vuepress:prebuild": "scripts/list-packages.js"
   },
   "devDependencies": {
     "@commitlint/cli": "^8.3.3",
@@ -61,7 +61,6 @@
     "lerna": "^3.18.1",
     "lint-staged": "^9.5.0",
     "lodash": "^4.17.11",
-    "markdown-magic": "^0.1.25",
     "npm-run-all": "^4.1.5",
     "octonode": "^0.9.5",
     "ora": "^3.4.0",

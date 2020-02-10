@@ -1755,7 +1755,20 @@ export default class Exchange {
           exchangeService: name,
         },
       },
-    ).then(this.getSuccessDataOrReject);
+    );
+  }
+
+  updateExchangeServer(organizationName, exchangeService, data) {
+    return this.services.OvhApiEmailExchange.service()
+      .server()
+      .v6()
+      .update(
+        {
+          organizationName,
+          exchangeService,
+        },
+        data,
+      ).$promise;
   }
 
   /**

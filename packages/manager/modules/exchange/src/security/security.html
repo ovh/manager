@@ -1,0 +1,414 @@
+<div data-ng-controller="ExchangeServicesConfigureCtrl as ctrl">
+    <div
+        class="text-center"
+        data-ng-if="ctrl.loaders.details && !ctrl.loaders.put"
+    >
+        <oui-spinner></oui-spinner>
+        <span data-translate="exchange_ACTION_loading"></span>
+    </div>
+
+    <div
+        class="text-center"
+        data-ng-if="!ctrl.loaders.details && ctrl.loaders.put"
+    >
+        <oui-spinner></oui-spinner>
+        <span data-translate="exchange_ACTION_sending"></span>
+    </div>
+
+    <form
+        name="ctrl.serviceForm"
+        novalidate
+        data-ng-if="!ctrl.loaders.details && !ctrl.loaders.put"
+        data-ng-submit="ctrl.submitting()"
+    >
+        <h2
+            class="oui-heading_underline"
+            data-ng-if="ctrl.isMfaAvailable"
+            data-translate="exchange_ACTION_configure_services_label_mfa"
+        ></h2>
+
+        <div class="form-group" data-ng-if="ctrl.isMfaAvailable">
+            <oui-radio-toggle-group model="ctrl.owaMfa" class="float-left">
+                <oui-radio value="true">
+                    <span data-translate="spf_value_true"></span>
+                </oui-radio>
+                <oui-radio value="false">
+                    <span data-translate="spf_value_false"></span>
+                </oui-radio>
+            </oui-radio-toggle-group>
+
+            <oui-popover class="mt-2">
+                <button
+                    type="button"
+                    class="oui-popover-button"
+                    oui-popover-trigger
+                ></button>
+                <oui-popover-content>
+                    <div
+                        data-ng-bind-html="'exchange_ACTION_configure_help_mfa_text' | translate"
+                    ></div>
+                </oui-popover-content>
+            </oui-popover>
+        </div>
+
+        <h2
+            class="oui-heading_underline"
+            data-translate="exchange_ACTION_configure_services_label_account_locker"
+        ></h2>
+
+        <!-- Lockout Threshold -->
+        <div
+            class="form-group"
+            data-ng-class="{ 'has-error': ctrl.serviceForm.lockoutThreshold.$invalid && ctrl.serviceForm.lockoutThreshold.$dirty }"
+        >
+            <oui-field
+                label="{{:: 'exchange_ACTION_configure_services_label_lockoutThreshold' | translate}}"
+                help-text="{{:: 'exchange_ACTION_configure_services_help_lockoutThreshold' | translate}}"
+            >
+                <oui-numeric
+                    id="lockoutThreshold"
+                    class="float-left"
+                    data-name="lockoutThreshold"
+                    data-model="ctrl.service.lockoutThreshold"
+                    data-min="0"
+                    data-max="14"
+                >
+                </oui-numeric>
+                <oui-popover class="mt-2">
+                    <button
+                        type="button"
+                        class="oui-popover-button"
+                        data-oui-popover-trigger
+                    ></button>
+                    <oui-popover-content>
+                        <div
+                            data-ng-bind-html="'exchange_ACTION_configure_help_lockoutThreshold_text' | translate"
+                        ></div>
+                    </oui-popover-content>
+                </oui-popover>
+            </oui-field>
+        </div>
+
+        <!-- Lockout Observation Window -->
+        <div
+            class="form-group"
+            data-ng-class="{ 'has-error': ctrl.serviceForm.lockoutObservationWindow.$invalid && (ctrl.serviceForm.lockoutDuration.$dirty || ctrl.serviceForm.lockoutObservationWindow.$dirty) && ctrl.service.lockoutThreshold !== 0 && ctrl.service.lockoutThreshold != null }"
+            data-ng-if="ctrl.service.lockoutThreshold != null && ctrl.service.lockoutThreshold !== 0"
+        >
+            <oui-field
+                data-label="{{:: 'exchange_ACTION_configure_services_label_lockoutObservationWindow' | translate}}"
+                data-help-text="{{:: 'exchange_ACTION_configure_services_tooltip_minutes' | translate}}"
+            >
+                <oui-numeric
+                    id="lockoutObservationWindow"
+                    class="float-left"
+                    data-name="lockoutObservationWindow"
+                    data-model="ctrl.service.lockoutObservationWindow"
+                    data-min="1"
+                    data-max="ctrl.service.lockoutDuration != null && ctrl.service.lockoutDuration < 90 ? ctrl.service.lockoutDuration : 90"
+                >
+                </oui-numeric>
+                <oui-popover class="mt-2">
+                    <button
+                        type="button"
+                        class="oui-popover-button"
+                        data-oui-popover-trigger
+                    ></button>
+                    <oui-popover-content>
+                        <div
+                            data-ng-bind-html="'exchange_ACTION_configure_help_lockoutObservationWindow_text' | translate"
+                        ></div>
+                    </oui-popover-content>
+                </oui-popover>
+            </oui-field>
+        </div>
+
+        <!-- Lockout Duration -->
+        <div
+            class="form-group"
+            data-ng-class="{ 'has-error': ctrl.serviceForm.lockoutDuration.$invalid && (ctrl.serviceForm.lockoutDuration.$dirty || ctrl.serviceForm.lockoutObservationWindow.$dirty) && ctrl.service.lockoutThreshold !== 0 && ctrl.service.lockoutThreshold != null }"
+            data-ng-if="ctrl.service.lockoutThreshold != null && ctrl.service.lockoutThreshold !== 0"
+        >
+            <oui-field
+                label="{{:: 'exchange_ACTION_configure_services_label_lockoutDuration' | translate}}"
+                help-text="{{:: 'exchange_ACTION_configure_services_tooltip_minutes' | translate}}"
+            >
+                <oui-numeric
+                    id="lockoutDuration"
+                    class="float-left"
+                    data-name="lockoutDuration"
+                    data-model="ctrl.service.lockoutDuration"
+                    data-min="ctrl.service.lockoutObservationWindow != null ? ctrl.service.lockoutObservationWindow : 1"
+                    data-max="90"
+                >
+                </oui-numeric>
+                <oui-popover class="mt-2">
+                    <button
+                        type="button"
+                        class="oui-popover-button"
+                        data-oui-popover-trigger
+                    ></button>
+                    <oui-popover-content>
+                        <div
+                            data-ng-bind-html="'exchange_ACTION_configure_help_lockoutDuration_text' | translate"
+                        ></div>
+                    </oui-popover-content>
+                </oui-popover>
+            </oui-field>
+        </div>
+
+        <h2 class="oui-heading_underline">Sécurité des comptes</h2>
+
+        <!-- Complexity Enabled -->
+        <oui-checkbox
+            id="complexityEnabled"
+            name="complexityEnabled"
+            data-model="ctrl.service.complexityEnabled"
+            data-text="{{::'exchange_ACTION_configure_services_label_complexityEnabled' | translate}}"
+        >
+        </oui-checkbox>
+
+        <!-- Min password Age -->
+        <div
+            class="form-group"
+            data-ng-class="{ 'has-error': ctrl.serviceForm.minPasswordAge.$invalid && ctrl.serviceForm.minPasswordAge.$dirty }"
+        >
+            <oui-field
+                label="{{:: 'exchange_ACTION_configure_services_label_minPasswordAge' | translate}}"
+                help-text="{{:: 'exchange_ACTION_configure_services_tooltip_days' | translate}}"
+            >
+                <oui-numeric
+                    id="minPasswordAge"
+                    class="float-left"
+                    data-name="minPasswordAge"
+                    data-model="ctrl.service.minPasswordAge"
+                    data-min="0"
+                    data-max="90"
+                >
+                </oui-numeric>
+                <oui-popover class="mt-2">
+                    <button
+                        type="button"
+                        class="oui-popover-button"
+                        data-oui-popover-trigger
+                    ></button>
+                    <oui-popover-content>
+                        <div
+                            data-ng-bind-html="'exchange_ACTION_configure_help_minPasswordAge_text' | translate"
+                        ></div>
+                    </oui-popover-content>
+                </oui-popover>
+            </oui-field>
+        </div>
+
+        <!-- Max password Age -->
+        <div
+            class="form-group"
+            data-ng-class="{ 'has-error': ctrl.serviceForm.maxPasswordAge.$invalid && ctrl.serviceForm.maxPasswordAge.$dirty }"
+        >
+            <oui-field
+                label="{{:: 'exchange_ACTION_configure_services_label_maxPasswordAge' | translate}}"
+                help-text="{{:: 'exchange_ACTION_configure_services_tooltip_days' | translate}}"
+            >
+                <oui-numeric
+                    id="maxPasswordAge"
+                    class="float-left"
+                    data-name="maxPasswordAge"
+                    data-model="ctrl.service.maxPasswordAge"
+                    data-min="0"
+                    data-max="90"
+                >
+                </oui-numeric>
+                <oui-popover class="mt-2">
+                    <button
+                        type="button"
+                        class="oui-popover-button"
+                        data-oui-popover-trigger
+                    ></button>
+                    <oui-popover-content>
+                        <div
+                            data-ng-bind-html="'exchange_ACTION_configure_help_maxPasswordAge_text' | translate"
+                        ></div>
+                    </oui-popover-content>
+                </oui-popover>
+            </oui-field>
+        </div>
+
+        <!-- Password History Count -->
+        <div
+            class="form-group"
+            data-ng-class="{ 'has-error': ctrl.serviceForm.passwordHistoryCount.$invalid && ctrl.serviceForm.passwordHistoryCount.$dirty }"
+            data-ng-if="ctrl.service.maxPasswordAge > 0"
+        >
+            <oui-field
+                label="{{:: 'exchange_ACTION_configure_services_label_passwordHistoryCount' | translate}}"
+                help-text="{{:: 'exchange_ACTION_configure_services_label_passwordHistoryCount' | translate}}"
+            >
+                <oui-numeric
+                    id="passwordHistoryCount"
+                    class="float-left"
+                    data-name="passwordHistoryCount"
+                    data-model="ctrl.service.passwordHistoryCount"
+                    data-min="0"
+                    data-max="100"
+                >
+                </oui-numeric>
+                <oui-popover class="mt-2">
+                    <button
+                        type="button"
+                        class="oui-popover-button"
+                        data-oui-popover-trigger
+                    ></button>
+                    <oui-popover-content>
+                        <div
+                            data-ng-bind-html="'exchange_ACTION_configure_help_minPasswordLength_text' | translate"
+                        ></div>
+                    </oui-popover-content>
+                </oui-popover>
+            </oui-field>
+        </div>
+
+        <!-- Min password Length -->
+        <div
+            class="form-group"
+            data-ng-class="{ 'has-error': ctrl.serviceForm.minPasswordLength.$invalid && ctrl.serviceForm.minPasswordLength.$dirty }"
+        >
+            <oui-field
+                label="{{:: 'exchange_ACTION_configure_services_label_minPasswordLength' | translate}}"
+                help-text="{{:: 'minPasswordLength_unit_value_0' | translate}}"
+            >
+                <oui-numeric
+                    id="minPasswordLength"
+                    class="float-left"
+                    data-name="minPasswordLength"
+                    data-model="ctrl.service.minPasswordLength"
+                    data-min="0"
+                    data-max="14"
+                >
+                </oui-numeric>
+                <oui-popover class="mt-2">
+                    <button
+                        type="button"
+                        class="oui-popover-button"
+                        data-oui-popover-trigger
+                    ></button>
+                    <oui-popover-content>
+                        <div
+                            data-ng-bind-html="'exchange_ACTION_configure_help_minPasswordLength_text' | translate"
+                        ></div>
+                    </oui-popover-content>
+                </oui-popover>
+            </oui-field>
+        </div>
+
+        <h2 class="oui-heading_underline">Sécurité des messages</h2>
+
+        <div class="form-group">
+            <label
+                class="oui-label"
+                data-translate="exchange_ACTION_configure_services_label_incoming_messages"
+            ></label>
+            <div class="clearfix">
+                <oui-checkbox
+                    id="checkDKIM"
+                    class="float-left"
+                    data-model="ctrl.service.spamAndVirusConfiguration.checkDKIM"
+                    data-text="{{::'exchange_ACTION_configure_services_label_dkim' | translate}}"
+                >
+                </oui-checkbox>
+                <oui-popover class="mt-2">
+                    <button
+                        type="button"
+                        class="oui-popover-button"
+                        oui-popover-trigger
+                    ></button>
+                    <oui-popover-content>
+                        <div
+                            data-ng-bind-html="'exchange_ACTION_configure_help_dkim_text' | translate"
+                        ></div>
+                    </oui-popover-content>
+                </oui-popover>
+            </div>
+            <div class="clearfix">
+                <oui-checkbox
+                    id="checkSPF"
+                    class="float-left"
+                    data-model="ctrl.service.spamAndVirusConfiguration.checkSPF"
+                    data-text="{{::'exchange_ACTION_configure_services_label_spf' | translate}}"
+                >
+                </oui-checkbox>
+                <oui-popover class="mt-2">
+                    <button
+                        type="button"
+                        class="oui-popover-button"
+                        oui-popover-trigger
+                    ></button>
+                    <oui-popover-content>
+                        <div
+                            data-ng-bind-html="'exchange_ACTION_configure_help_spf_text' | translate"
+                        ></div>
+                    </oui-popover-content>
+                </oui-popover>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label
+                class="oui-label"
+                data-translate="exchange_ACTION_configure_services_label_spam"
+            ></label>
+            <div class="clearfix">
+                <oui-checkbox
+                    id="tagSpam"
+                    class="float-left"
+                    data-model="ctrl.service.spamAndVirusConfiguration.tagSpam"
+                    data-text="{{::'exchange_ACTION_configure_services_label_tag_spam' | translate}}"
+                >
+                </oui-checkbox>
+                <oui-popover class="mt-2">
+                    <button
+                        type="button"
+                        class="oui-popover-button"
+                        oui-popover-trigger
+                    ></button>
+                    <oui-popover-content>
+                        <div
+                            data-ng-bind-html="'exchange_ACTION_configure_help_spam_text' | translate"
+                        ></div>
+                    </oui-popover-content>
+                </oui-popover>
+            </div>
+            <div class="clearfix">
+                <oui-checkbox
+                    id="putInJunk"
+                    class="float-left"
+                    data-model="ctrl.service.spamAndVirusConfiguration.putInJunk"
+                    data-text="{{::'exchange_ACTION_configure_services_label_putinjunk' | translate}}"
+                >
+                </oui-checkbox>
+                <oui-popover class="mt-2">
+                    <button
+                        type="button"
+                        class="oui-popover-button"
+                        oui-popover-trigger
+                    ></button>
+                    <oui-popover-content>
+                        <div
+                            data-ng-bind-html="'exchange_ACTION_configure_help_putinjunk_text' | translate"
+                        ></div>
+                    </oui-popover-content>
+                </oui-popover>
+            </div>
+        </div>
+        <oui-button
+            variant="secondary"
+            type="button"
+            data-on-click="ctrl.resetValues()"
+        >
+            <span data-translate="exchange_common_cancel"></span>
+        </oui-button>
+        <oui-button variant="primary" type="submit">
+            <span data-translate="exchange_common_save_modification"></span>
+        </oui-button>
+    </form>
+</div>

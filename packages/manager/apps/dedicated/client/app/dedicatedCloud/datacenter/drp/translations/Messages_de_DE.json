@@ -14,5 +14,7 @@
   "dedicatedCloud_datacenter_onPremise_step_one": "OVH Datacenter",
   "dedicatedCloud_datacenter_onPremise_step_two": "On-Premise-Datacenter",
   "dedicatedCloud_datacenter_install_plan": "Installieren",
-  "dedicatedCloud_datacenter_install_in_error": "Bei der Installation des Plans ist ein Fehler aufgetreten. Bitte kontaktieren Sie den Support"
+  "dedicatedCloud_datacenter_install_in_error": "Bei der Installation des Plans ist ein Fehler aufgetreten. Bitte kontaktieren Sie den Support",
+  "dedicatedCloud_datacenter_no_ip_pool": "Sie haben keinen IP-Adressen-Pool zu Ihrer Verfügung.",
+  "dedicatedCloud_datacenter_order_please": "Bitte bestellen Sie einen solchen."
 }

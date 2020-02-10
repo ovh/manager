@@ -2,7 +2,7 @@
   "pci_projects_project_instances_instance_backup_title": "Criação de um backup",
   "pci_projects_project_instances_instance_backup_name_label": "Introduza o nome do seu backup:",
   "pci_projects_project_instances_instance_backup_warning_message": "A sua instância será suspensa durante alguns segundos e o desempenho de leitura/escrita do disco poderá ser afetado até que o backup termine.",
-  "pci_projects_project_instances_instance_backup_price": "({{ size }}, ou seja cerca de {{ price }} /mês + IVA)",
+  "pci_projects_project_instances_instance_backup_price": "Preço: {{ price }}/mês por GB + IVA",
   "pci_projects_project_instances_instance_backup_submit_label": "Confirmar",
   "pci_projects_project_instances_instance_backup_cancel_label": "Anular",
   "pci_projects_project_instances_instance_backup_success_message": "O backup {{ backup }}está em processo de criação",

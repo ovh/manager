@@ -8,5 +8,6 @@ angular.module('App').config(($stateProvider) => {
         controllerAs: '$ctrl',
       },
     },
+    translations: { value: ['.'], format: 'json' },
   });
 });

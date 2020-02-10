@@ -2,3 +2,4 @@ node_modules
 dist
 dist-*
 .memsourcerc.yaml
+docs/.vuepress/public/assets/json/packages.json

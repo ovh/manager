@@ -48,7 +48,10 @@ export default class {
         maxExecutionCount: 0,
         valid: true,
       },
-      {
+    ];
+
+    if (this.isCustomizable || !angular.isDefined(this.isCustomizable)) {
+      this.WORKFLOW_SCHEDULES.push({
         name: SCHEDULE_ENUM.CUSTOM,
         description: CUSTOM_DESCRIPTION,
         cronPattern: {
@@ -61,8 +64,9 @@ export default class {
         rotation: 1,
         maxExecutionCount: 0,
         valid: true,
-      },
-    ];
+      });
+    }
+
     this.help = {
       openMonthHelp: false,
       openDowHelp: false,

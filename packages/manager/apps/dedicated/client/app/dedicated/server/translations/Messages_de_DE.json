@@ -1203,5 +1203,17 @@
   "server_error_vrack_attach": "Beim Verbinden des privaten Netzwerks ist ein Fehler aufgetreten: {{error}}",
   "server_error_vrack_detach": "Beim Trennen des privaten Netzwerks ist ein Fehler aufgetreten: {{error}}",
   "server_order_bandwidth_info": "Der angezeigte Betrag entspricht dem Betrag für die nächste Verlängerung Ihrer Option.",
-  "server_order_bandwidth_warning": "Die Änderung Ihrer Bandbreite wird einige Minuten nach Aktivierung der Option angewendet."
+  "server_order_bandwidth_warning": "Die Änderung Ihrer Bandbreite wird einige Minuten nach Aktivierung der Option angewendet.",
+  "plan_vrack-bandwidth-1000-option-us": "1Gbps garantierte private Bandbreite - unbeschränkter Datenverkehr - vRack-Option",
+  "plan_vrack-bandwidth-3000-option-us": "3Gbps garantierte private Bandbreite - unbeschränkter Datenverkehr - vRack-Option",
+  "plan_vrack-bandwidth-1000-option-infra-us": "1Gbps garantierte private Bandbreite - unbeschränkter Datenverkehr - vRack-Option",
+  "plan_vrack-bandwidth-3000-option-infra-us": "3Gbps garantierte private Bandbreite - unbeschränkter Datenverkehr - vRack-Option",
+  "plan_vrack-bandwidth-4000-option-infra-us": "4Gbps garantierte private Bandbreite - unbeschränkter Datenverkehr - vRack-Option",
+  "plan_vrack-bandwidth-5000-option-infra-us": "5Gbps garantierte private Bandbreite - unbeschränkter Datenverkehr - vRack-Option",
+  "plan_bandwidth-1000-adv-us": "1Gbps öffentliche Bandbreite - unbeschränkter Datenverkehr",
+  "plan_bandwidth-guaranteed-1000-ultimate-2019v1-us": "1Gbps garantierte öffentliche Bandbreite - unbeschränkter Datenverkehr - ultimative Option",
+  "plan_bandwidth-guaranteed-2000-ultimate-2019v1-us": "2Gbps garantierte öffentliche Bandbreite - unbeschränkter Datenverkehr - ultimative Option",
+  "plan_bandwidth-guaranteed-3000-ultimate-2019v1-us": "3Gbps garantierte öffentliche Bandbreite - unbeschränkter Datenverkehr - ultimative Option",
+  "plan_bandwidth-guaranteed-3000-ultimate-2019v2-us": "3Gbps garantierte öffentliche Bandbreite - unbeschränkter Datenverkehr - ultimative Option",
+  "plan_bandwidth-guaranteed-4000-ultimate-2019v1-us": "4Gbps garantierte öffentliche Bandbreite - unbeschränkter Datenverkehr - ultimative Option"
 }

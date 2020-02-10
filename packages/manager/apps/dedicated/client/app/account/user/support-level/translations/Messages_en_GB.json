@@ -20,5 +20,6 @@
   "user_account_support_level_section_premium_description": "Direct access to our experts for day-to-day support with configuring and using our solution, along with support during critical incidents.",
   "user_account_support_level_section_business_description": "24/7 customer support with a response time that is adapted to major challenges.",
   "user_account_support_level_section_enterprise_description": "24/7 customer support through a privileged relationship with a dedicated team to help you face your business challenges.",
-  "user_account_support_level_section_title_annex_1": "Our support solutions are changing. Please note that by default, all customers who do not sign up to a support option will receive standard support."
+  "user_account_support_level_section_title_annex_1": "Our support solutions are changing. Please note that by default, all customers who do not sign up to a support option will receive standard support.",
+  "user_account_support_level_section_title_annex_all_available": "All OVHcloud customers are provided with Standard support by default, if they do not sign up to any specific support levels."
 }

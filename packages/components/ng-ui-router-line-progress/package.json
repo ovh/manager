@@ -20,13 +20,13 @@
   },
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "browser": "./dist/umd/ng-ui-router-line-progress.js",
   "files": [
     "dist",
     "examples"
   ],
-  "main": "./dist/cjs/index.js",
-  "module": "./dist/esm/index.js",
-  "browser": "./dist/umd/ng-ui-router-line-progress.js",
   "scripts": {
     "build": "rollup -c --environment BUILD:production",
     "dev": "rollup -c --environment BUILD:development",

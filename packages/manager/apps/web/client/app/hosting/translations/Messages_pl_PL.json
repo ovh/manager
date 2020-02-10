@@ -1379,7 +1379,7 @@
   "hosting_dashboard_general_informations": "Informacje ogólne",
   "hosting_dashboard_configuration": "Konfiguracja",
   "hosting_dashboard_access": "Dostęp",
-  "common_api_hostingWeb-1": "Nie możesz wybrać tej oferty, ponieważ Twój obecny pakiet ma więcej kont e-mail niż oferta, którą chciałeś wybrać.",
+  "common_api_hostingWeb-1": "Nie możesz wybrać tej oferty, ponieważ Twój obecny pakiet zawiera więcej kont e-mail niż oferta, którą chciałeś wybrać.",
   "hosting_tab_WEBSITE_COACH": "WebSite Coach",
   "hosting_tab_BOOST_request_description_billing_new": "Z dniem 1 listopada 2019 r. cena ulega zmianie. Cena netto za każdy dzień użytkowania oraz za każdy poziom pakietu wyniesie: {{cena}}.",
   "hosting_dashboard_service_datacenter_gra2": "Gravelines 2",
@@ -1399,5 +1399,10 @@
   "hosting_tab_DATABASES_configuration_order_title_button_private": "Zamówienie prywatnej bazy danych SQL",
   "hosting_tab_DATABASES_configuration_order_title_private": "Zamówienie prywatnej bazy danych SQL",
   "hosting_dashboard_service_privatesql_active_long": "Włączenie prywatnej bazy SQL",
-  "hosting_dashboard_service_privatesql_active_remaining": "Liczba niewłączonych prywatnych baz danych SQL: {{ count }}"
+  "hosting_dashboard_service_privatesql_active_remaining": "Liczba niewłączonych prywatnych baz danych SQL: {{ count }}",
+  "hosting_dashboard_service_activate_email": "Włącz mój pakiet e-mail",
+  "hosting_dashboard_service_email_address": "Adresy e-mail",
+  "hosting_dashboard_service_common_active": "Aktywny",
+  "hosting_dashboard_service_common_inactive": "Nieaktywny",
+  "hosting_dashboard_email_offer_get_error": "Nie można pobrać adresu e-mail"
 }
