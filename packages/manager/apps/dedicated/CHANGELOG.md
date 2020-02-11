@@ -1,3 +1,12 @@
+## [11.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@11.4.0...@ovh-ux/manager-dedicated@11.4.1) (2020-02-11)
+
+
+### Bug Fixes
+
+* **config:** change url for rescue guide ([7087086](https://github.com/ovh/manager/commit/708708675d78f4ccd758a8551e3728cc0a00625b))
+
+
+
 # [11.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@11.3.11...@ovh-ux/manager-dedicated@11.4.0) (2020-02-10)
 
 
