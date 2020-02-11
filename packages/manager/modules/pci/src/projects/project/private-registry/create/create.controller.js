@@ -38,6 +38,6 @@ export default class {
   }
 
   changeMethod(value) {
-    this.registry.planID = value.code;
+    this.registry.planID = value.id;
   }
 }
