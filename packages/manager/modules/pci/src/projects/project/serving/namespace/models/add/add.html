@@ -83,7 +83,7 @@
                         data-translate="pci_projects_project_serving_namespace_models_add_custom_info"
                     ></a>
                 </oui-message>
-                <div data-ng-if="$ctrl.folders.length">
+                <div data-ng-if="$ctrl.folders.length || $ctrl.files.length">
                     <oui-radio-toggle-group
                         data-model="$ctrl.mode"
                         data-on-change="$ctrl.resetMode()"
