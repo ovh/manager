@@ -1,4 +1,5 @@
 {
+  "private_registry_upgrade_plan": "Changer de plan",
   "private_registry_upgrade_plan_description": "Vous pouvez à tout moment migrer d'un plan à un plan plus important. La prise en compte des nouvelles limites est effective en quelques dizaines de secondes, sans perte de données ni changement de configuration nécessaire. Si vous créez, modifiez ou supprimez un service en cours de mois, vous serez facturé uniquement pour les heures effectives de votre plan. Le trafic est illimité et inclus, quelque soit sa destination.",
   "private_registry_upgrade_plan_connections": "{{ total }} connexions simultanées ({{ concurrency }} * {{ connectionsNumber }})",
   "private_registry_upgrade_plan_vulnerability": "Scan des vulnérabilités",

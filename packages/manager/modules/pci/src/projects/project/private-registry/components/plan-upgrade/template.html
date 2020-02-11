@@ -1,6 +1,6 @@
 <p data-translate="private_registry_upgrade_plan_description"></p>
 
-<oui-spinner data-ng-if="$ctrl.loading" data-size="s"></oui-spinner>
+<oui-spinner data-ng-if="$ctrl.loading" data-size="s"> </oui-spinner>
 
 <div class="row mb-4" data-ng-if="!$ctrl.loading">
     <oui-select-picker
@@ -19,9 +19,9 @@
                 <li
                     data-translate="private_registry_upgrade_plan_connections"
                     data-translate-values="{
-                        total: plan.simultaneousConnections,
-                        concurrency: plan.concurrency,
-                        connectionsNumber: plan.connectionsNumber
+                        total: plan.registryLimits.parallelRequest,
+                        concurrency: (plan.registryLimits.parallelRequest / $ctrl.CONNECTION_CONSTANT),
+                        connectionsNumber: $ctrl.CONNECTION_CONSTANT
                     }"
                 ></li>
                 <li

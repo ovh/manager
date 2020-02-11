@@ -1,11 +1,10 @@
 import get from 'lodash/get';
-import set from 'lodash/set';
 import includes from 'lodash/includes';
+import { PLAN_CONSTANT } from './constants';
 
 export default class RegistyPlan {
   constructor(resource) {
     Object.assign(this, resource);
-    set(this, 'displayName', get(this, 'name[0]'));
   }
 
   get capacity() {
@@ -33,10 +32,13 @@ export default class RegistyPlan {
   }
 
   showCoreRegistryNinetyNine() {
-    return includes(this, 'SMALL');
+    return includes(this, PLAN_CONSTANT.SMALL);
   }
 
   showOtherComponents() {
-    return includes(this, 'MEDIUM') || includes(this, 'LARGE');
+    return (
+      includes(this, PLAN_CONSTANT.MEDIUM) ||
+      includes(this, PLAN_CONSTANT.LARGE)
+    );
   }
 }
