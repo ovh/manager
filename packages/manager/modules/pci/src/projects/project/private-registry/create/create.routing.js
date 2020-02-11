@@ -18,21 +18,6 @@ export default /* @ngInject */ ($stateProvider) => {
           hasEnoughQuota: () => true,
         })),
 
-      registryContracts: /* @ngInject */ ($q, pciPrivateRegistryService) =>
-        pciPrivateRegistryService.getAgreements().then((agreements) => {
-          const agreementPromises = map(agreements || [], (agreement) =>
-            pciPrivateRegistryService
-              .getContractInfo(agreement.id)
-              .then((contract) =>
-                Object.assign(contract, {
-                  id: agreement.id,
-                  validated: agreement.validated,
-                }),
-              ),
-          );
-          return $q.all(agreementPromises);
-        }),
-
       plans: /* @ngInject */ (capabilities) => (regionName) => {
         const { plans } = find(capabilities, { regionName });
         return plans;

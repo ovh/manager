@@ -3,11 +3,15 @@ import map from 'lodash/map';
 import sortBy from 'lodash/sortBy';
 import RegistryPlan from './RegistryPlan.class';
 
+import { CONNECTION_CONSTANT } from './constants';
+
 export default class {
   /* @ngInject */
-  constructor(CucCloudMessage, OvhApiOrderCatalogPublic) {
+  constructor($timeout, CucCloudMessage, OvhApiOrderCatalogPublic) {
+    this.$timeout = $timeout;
     this.CucCloudMessage = CucCloudMessage;
     this.OvhApiOrderCatalogPublic = OvhApiOrderCatalogPublic;
+    this.CONNECTION_CONSTANT = CONNECTION_CONSTANT;
   }
 
   $onInit() {

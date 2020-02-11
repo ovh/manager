@@ -19,9 +19,9 @@
                 <li
                     data-translate="private_registry_upgrade_plan_connections"
                     data-translate-values="{
-                        total: plan.simultaneousConnections,
-                        concurrency: plan.concurrency,
-                        connectionsNumber: plan.connectionsNumber
+                        total: plan.registryLimits.parallelRequest,
+                        concurrency: (plan.registryLimits.parallelRequest / $ctrl.CONNECTION_CONSTANT),
+                        connectionsNumber: $ctrl.CONNECTION_CONSTANT
                     }"
                 ></li>
                 <li
