@@ -57,7 +57,7 @@
     "@ovh-ux/ng-ovh-user-pref": "^1.0.2",
     "@ovh-ux/ng-pagination-front": "^8.0.1",
     "@ovh-ux/ng-q-allsettled": "^1.0.1",
-    "@ovh-ux/ng-tail-logs": "^2.0.1",
+    "@ovh-ux/ng-tail-logs": "^2.0.2",
     "@ovh-ux/ng-translate-async-loader": "^2.0.3",
     "@ovh-ux/ng-ui-router-layout": "^3.2.0",
     "@ovh-ux/ng-ui-router-line-progress": "^1.1.0",

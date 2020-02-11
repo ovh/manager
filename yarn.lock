@@ -2127,10 +2127,10 @@
   dependencies:
     lodash "^4.17.15"
 
-"@ovh-ux/ng-tail-logs@^2.0.1":
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-tail-logs/-/ng-tail-logs-2.0.1.tgz#3125ab929e3f70c3ef95770ea43a3db5aaf27896"
-  integrity sha512-MrXBeCzj3abdb8lREjYt5dx+jhOMyV/PaPTBoNn8wCZtweU223WHWS+FnUOCkae5ZHpBk33Hp6KvTBrkQ/SfBA==
+"@ovh-ux/ng-tail-logs@^2.0.2":
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-tail-logs/-/ng-tail-logs-2.0.2.tgz#0231443aa12878e80cc5e201be1359832e0f8c7c"
+  integrity sha512-OCMHTktcOIkIfSMOcF7/a6FcQzaJzNNzuEXDiZ/pfQRx2ZNRpnu2ESRifd75iIqY+KW6eU2y65r/pchgjpeA5g==
   dependencies:
     lodash "^4.17.15"
 
