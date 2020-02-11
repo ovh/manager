@@ -1,7 +1,7 @@
 import angular from 'angular';
 import flatten from 'lodash/flatten';
 import get from 'lodash/get';
-import uniq from 'lodash/uniq';
+import uniqBy from 'lodash/uniqBy';
 
 export default /* @ngInject */ ($q, $timeout, $http) => class {
   constructor(opts) {
@@ -21,7 +21,7 @@ export default /* @ngInject */ ($q, $timeout, $http) => class {
     return this.source
       .then((source) => $http.get(`${source}&sort=asc&limit=500`))
       .then((response) => {
-        this.logs = uniq(
+        this.logs = uniqBy(
           flatten([...this.logs, get(response, 'data.messages', [])]),
           (log) => log.message._id, // eslint-disable-line no-underscore-dangle
         );
