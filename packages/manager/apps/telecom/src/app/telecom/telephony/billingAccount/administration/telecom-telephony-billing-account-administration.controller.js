@@ -3,8 +3,8 @@ angular
   .controller(
     'TelecomTelephonyBillingAccountAdministrationCtrl',
     function TelecomTelephonyBillingAccountAdministrationCtrl(
-      $translate,
       $stateParams,
+      $translate,
       TelephonyMediator,
     ) {
       const self = this;
@@ -16,7 +16,7 @@ angular
     ====================================== */
 
       function init() {
-        TelephonyMediator.getGroup($stateParams.billingAccount).then(
+        return TelephonyMediator.getGroup($stateParams.billingAccount).then(
           (group) => {
             self.actions = [
               {
