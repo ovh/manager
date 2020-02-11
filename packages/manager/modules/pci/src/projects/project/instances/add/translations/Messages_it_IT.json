@@ -37,5 +37,7 @@
   "pci_projects_project_instances_add_success_multiple_message": "Le istanze sono state aggiunte.",
   "pci_projects_project_instances_add_error_save": "Si è verificato un errore durante l’aggiunta dell'istanza {{ instance }}: {{ message }}",
   "pci_projects_project_instances_add_error_multiple_save": "Si è verificato un errore durante l’aggiunta delle istanze: {{message}}",
-  "pci_project_instances_instance_add_region_bandwidth_extra": "Il traffico di rete pubblico in uscita dalle istanze è incluso nel prezzo in tutte le localizzazioni disponibili, fatta eccezione per l’Asia Pacifica (Singapore e Sydney): in questa Region, su ogni progetto Public Cloud è incluso 1 TB/mese di traffico pubblico in uscita. Al superamento di questa soglia, ogni GB di traffico supplementare viene fatturato {{ price }}. Il traffico in entrata dalla rete pubblica è sempre incluso, in tutte le localizzazioni."
+  "pci_project_instances_instance_add_region_bandwidth_extra": "Il traffico di rete pubblico in uscita dalle istanze è incluso nel prezzo in tutte le localizzazioni disponibili, fatta eccezione per l’Asia Pacifica (Singapore e Sydney): in questa Region, su ogni progetto Public Cloud è incluso 1 TB/mese di traffico pubblico in uscita. Al superamento di questa soglia, ogni GB di traffico supplementare viene fatturato {{ price }}. Il traffico in entrata dalla rete pubblica è sempre incluso, in tutte le localizzazioni.",
+  "pci_projects_project_instances_add_automated_backup_label": "Backup automatico delle istanze",
+  "pci_projects_project_instances_add_automated_backup_infos": "Questa funzionalità consente di effettuare una copia dell’istanza in modo automatico, in base alla frequenza pianificata."
 }
