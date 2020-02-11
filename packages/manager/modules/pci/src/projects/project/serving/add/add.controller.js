@@ -1,12 +1,20 @@
 import get from 'lodash/get';
-
+import map from 'lodash/map';
+import mapValues from 'lodash/mapValues';
+import keyBy from 'lodash/keyBy';
 
 export default class PciServingAddController {
   /* @ngInject */
-  constructor($translate, PciProjectStorageContainersService, CucCloudMessage) {
+  constructor(
+    $translate,
+    PciProjectStorageContainersService,
+    CucCloudMessage,
+    CucRegionService,
+  ) {
     this.$translate = $translate;
     this.PciProjectStorageContainersService = PciProjectStorageContainersService;
     this.CucCloudMessage = CucCloudMessage;
+    this.CucRegionService = CucRegionService;
   }
 
   $onInit() {
@@ -27,6 +35,20 @@ export default class PciServingAddController {
     this.containers = [];
     this.containersFilter = [];
 
+    // Convert region code to user readable text
+    this.namedRegion = mapValues(
+      keyBy(
+        map(this.regions, (region) => ({
+          ...this.CucRegionService.getRegion(region.name),
+          name: region.name,
+          continentCode: region.continentCode,
+          hasEnoughQuota: region.hasEnoughQuota(),
+        })),
+        'name',
+      ),
+      'microRegion.text',
+    );
+
     this.listContainers();
 
     this.loadMessages();
@@ -34,21 +56,29 @@ export default class PciServingAddController {
 
   listContainers() {
     this.containerLoading = true;
-    this.PciProjectStorageContainersService.getAll(
-      this.projectId,
-    ).then((containers) => {
-      this.containers = containers;
-      this.filterContainers();
-    }).finally(() => {
-      this.containerLoading = false;
-    });
+    this.PciProjectStorageContainersService.getAll(this.projectId)
+      .then((containers) => {
+        this.containers = containers;
+        this.filterContainers();
+      })
+      .finally(() => {
+        this.containerLoading = false;
+      });
   }
 
   filterContainers() {
     if (this.model.region && this.containers.length > 0) {
       this.containersFilter = this.containers
-        .filter(({ region, archive }) => region === this.model.region.name && !archive)
-        .map(({ name }) => name);
+        .filter(
+          ({ region, archive }) =>
+            region === this.model.region.name && !archive,
+        )
+        .map(({ name }) => {
+          return {
+            name,
+            description: `${name} - ${this.model.region.name}`,
+          };
+        });
     }
 
     if (!this.containersFilter.length) {
@@ -61,8 +91,10 @@ export default class PciServingAddController {
   onStepperFinish() {
     this.loading = true;
 
-    const container = this.attachType === this.ATTACH
-      ? this.model.containerSelect : this.model.containerInput;
+    const container =
+      this.attachType === this.ATTACH
+        ? this.model.containerSelect.name
+        : this.model.containerInput;
 
     return this.addNamespace({
       region: this.model.region.name,
