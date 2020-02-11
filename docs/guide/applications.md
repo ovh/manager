@@ -30,18 +30,11 @@ Depending on the requested region, the URL to access the API will be different
 
 ### How to start the application?
 
-#### Using `yarn workspace` <Badge text="recommended"/>
-
 ```sh
 $ yarn workspace @ovh-ux/manager-web run start:dev
 ```
 
-#### Using alternative
-
-```sh
-$ cd packages/manager/apps/web
-$ yarn run start:dev
-```
+Go to <http://localhost:9000>
 
 ### How to build the application?
 
@@ -63,15 +56,11 @@ They can be started in different region with a given environment variable.
 ### How to start the application?
 
 ```sh
-$ export REGION=EU && yarn workspace @ovh-ux/manager-dedicated run start:dev
+$ export REGION=EU
+$ yarn workspace @ovh-ux/manager-dedicated run start:dev
 ```
 
-or:
-
-```sh
-$ cd packages/manager/apps/dedicated # or cloud
-$ export REGION=EU && yarn run start:dev
-```
+Go to <http://localhost:9000>
 
 ### How to build the application?
 
@@ -90,15 +79,11 @@ Application can be started in different region with a given environment variable
 ### How to start the application?
 
 ```sh
-$ export REGION=EU && yarn workspace @ovh-ux/manager-public-cloud run start:dev
+$ export REGION=EU
+$ yarn workspace @ovh-ux/manager-public-cloud run start:dev
 ```
 
-or:
-
-```sh
-$ cd packages/manager/apps/public-cloud
-$ export REGION=EU && yarn run start:dev
-```
+Go to <http://localhost:9000>
 
 ### How to build the application?
 
@@ -116,12 +101,7 @@ $ yarn run build -p @ovh-ux/manager-public-cloud
 $ yarn workspace @ovh-ux/manager-telecom run start:dev
 ```
 
-or:
-
-```sh
-$ cd packages/manager/apps/telecom
-$ yarn run start:dev
-```
+Go to <http://localhost:9000>
 
 ### How to build the application?
 
