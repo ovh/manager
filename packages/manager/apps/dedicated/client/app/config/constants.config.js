@@ -599,7 +599,7 @@ const constants = {
           {
             title: 'core_sd_top_guide_7_title',
             atInternetClickTag: 'TopGuide-DedicatedServers-7',
-            url: 'https://www.ovh.co.uk/g920.rescue_mode',
+            url: 'https://docs.ovh.com/ca/en/dedicated/rescue-mode',
           },
         ],
       },
