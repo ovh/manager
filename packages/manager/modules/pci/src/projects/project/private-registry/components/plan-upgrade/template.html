@@ -1,8 +1,5 @@
 <p data-translate="private_registry_upgrade_plan_description"></p>
-
-<oui-spinner data-ng-if="$ctrl.loading" data-size="s"> </oui-spinner>
-
-<div class="row mb-4" data-ng-if="!$ctrl.loading">
+<div class="row mb-4">
     <oui-select-picker
         class="col-md-4"
         data-ng-repeat="plan in $ctrl.detailedPlans track by plan.id"
@@ -15,7 +12,9 @@
     >
         <oui-select-picker-section>
             <ul class="list-unstyled">
-                <li data-ng-bind="plan.capacity | cucBytes"></li>
+                <li
+                    data-ng-bind="plan.registryLimits.imageStorage | cucBytes"
+                ></li>
                 <li
                     data-translate="private_registry_upgrade_plan_connections"
                     data-translate-values="{
@@ -26,24 +25,21 @@
                 ></li>
                 <li
                     data-translate="private_registry_upgrade_core_registry_99"
-                    data-ng-if="plan.showCoreRegistryNinetyNine()"
+                    data-ng-if="plan.name === $ctrl.PLAN_CONSTANT.SMALL"
                 ></li>
                 <li
                     data-translate="private_registry_upgrade_core_registry_95"
-                    data-ng-if="!plan.showCoreRegistryNinetyNine()"
+                    data-ng-if="plan.name !== $ctrl.PLAN_CONSTANT.SMALL"
                 ></li>
                 <li
                     data-translate="private_registry_upgrade_other_components"
-                    data-ng-if="plan.showOtherComponents()"
+                    data-ng-if="plan.name !== $ctrl.PLAN_CONSTANT.SMALL"
                 ></li>
                 <li
-                    data-ng-if="plan.hasVulnerabilityScanning()"
+                    data-ng-if="plan.features.vulnerability"
                     data-translate="private_registry_upgrade_plan_vulnerability"
                 ></li>
-                <li
-                    data-ng-if="plan.hasUnlimitedBandwidth()"
-                    data-translate="private_registry_upgrade_plan_traffic"
-                ></li>
+                <li data-translate="private_registry_upgrade_plan_traffic"></li>
             </ul>
         </oui-select-picker-section>
     </oui-select-picker>

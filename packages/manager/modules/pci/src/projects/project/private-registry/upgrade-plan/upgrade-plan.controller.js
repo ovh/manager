@@ -58,7 +58,7 @@ export default class {
           registryID: this.registryId,
         },
         {
-          planID: this.selectedPlan.code,
+          planID: this.selectedPlan.id,
         },
       )
       .$promise.then(() => this.onSuccess())

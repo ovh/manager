@@ -1,44 +1,18 @@
-import find from 'lodash/find';
-import map from 'lodash/map';
 import sortBy from 'lodash/sortBy';
-import RegistryPlan from './RegistryPlan.class';
 
-import { CONNECTION_CONSTANT } from './constants';
+import { CONNECTION_CONSTANT, PLAN_CONSTANT } from './constants';
 
 export default class {
   /* @ngInject */
-  constructor($timeout, CucCloudMessage, OvhApiOrderCatalogPublic) {
-    this.$timeout = $timeout;
-    this.CucCloudMessage = CucCloudMessage;
-    this.OvhApiOrderCatalogPublic = OvhApiOrderCatalogPublic;
+  constructor() {
     this.CONNECTION_CONSTANT = CONNECTION_CONSTANT;
+    this.PLAN_CONSTANT = PLAN_CONSTANT;
   }
 
   $onInit() {
-    this.loading = true;
-    return this.OvhApiOrderCatalogPublic.v6()
-      .get({
-        productName: 'cloud',
-        ovhSubsidiary: this.user.ovhSubsidiary,
-      })
-      .$promise.then(({ addons }) => {
-        this.detailedPlans = sortBy(
-          map(
-            this.plans,
-            (plan) =>
-              new RegistryPlan({
-                ...plan,
-                ...find(addons, { planCode: plan.planCode }),
-              }),
-          ),
-          'registryLimits.imageStorage',
-        );
-        [this.selectedPlan] = this.detailedPlans;
-        this.onSelected(this.selectedPlan);
-      })
-      .finally(() => {
-        this.loading = false;
-      });
+    this.detailedPlans = sortBy(this.plans, 'registryLimits.imageStorage');
+    [this.selectedPlan] = this.detailedPlans;
+    this.onSelected(this.selectedPlan);
   }
 
   onSelected(model) {
