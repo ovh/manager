@@ -142,7 +142,7 @@ export default class PrivateDatabaseOrderCloudDbCtrl {
   validateCheckout() {
     this.loadingCheckout = true;
     return this.PrivateDatabaseOrderCloudDb.validateCheckout(this.cartId, {
-      autoPayWithPreferredPaymentMethod: this.autoPayWithPreferredPaymentMethod,
+      autoPayWithPreferredPaymentMethod: !!this.defaultPaymentMethod,
       waiveRetractionPeriod: false,
     })
       .then(({ prices, url }) => {
