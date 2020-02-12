@@ -179,5 +179,8 @@
   "telephony_line_phone_configuration_config_soft_key_label_1": "SoftKeyLabel1",
   "telephony_line_phone_configuration_config_soft_key_label_2": "SoftKeyLabel2",
   "telephony_line_phone_configuration_config_soft_key_label_3": "SoftKeyLabel3",
-  "telephony_line_phone_configuration_config_soft_key_label_4": "SoftKeyLabel4"
+  "telephony_line_phone_configuration_config_soft_key_label_4": "SoftKeyLabel4",
+  "telephony_line_phone_configuration_config_handfree_send_volume": "Volume micro du haut parleur",
+  "telephony_line_phone_configuration_config_handset_send_volume": "Volume micro du combiné",
+  "telephony_line_phone_configuration_config_headset_send_volume": "Volume micro du casque (valeur recommandée : 30)"
 }
