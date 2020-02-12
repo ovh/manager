@@ -21,7 +21,7 @@
     "@ovh-ux/ng-at-internet": "^4.0.0",
     "@ovh-ux/ng-ovh-cloud-universe-components": "^1.4.0",
     "@ovh-ux/ng-ovh-doc-url": "^1.0.0",
-    "@ovh-ux/ng-ovh-sidebar-menu": "^8.4.4",
+    "@ovh-ux/ng-ovh-sidebar-menu": "^8.5.1",
     "@uirouter/angularjs": "^1.0.23",
     "angular": "^1.7.5",
     "angular-chart.js": "^1.1.1",
