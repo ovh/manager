@@ -620,5 +620,6 @@
   "common_subscription_contacts_billing": "Fatturazione",
   "common_subscription_contacts_tech": "Tecnico",
   "common_unavailable_information": "Informazione non disponibile",
-  "common_resiliate_contact_support": "Per disattivare questo servizio, contatta il nostro supporto tecnico al numero <strong>02 5560 0423</strong> o apri un ticket."
+  "common_resiliate_contact_support": "Per disattivare questo servizio, contatta il nostro supporto tecnico al numero <strong>02 5560 0423</strong> o apri un ticket.",
+  "common_alerts_message_see_less": "Nascondi il dettaglio degli errori"
 }
