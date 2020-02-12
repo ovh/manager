@@ -4,7 +4,7 @@ import sortBy from 'lodash/sortBy';
 import pccViewTemplate from './dashboard/dashboard.html';
 
 angular.module('App').config(
-  /* @ngInject */ ($stateProvider, $urlServiceProvider) => {
+  /* @ngInject */ ($stateProvider) => {
     $stateProvider.state('app.dedicatedClouds', {
       resolve: {
         currentService: /* @ngInject */ ($transition$, DedicatedCloud) =>
@@ -111,19 +111,5 @@ angular.module('App').config(
       reloadOnSearch: false,
       translations: { value: ['.'], format: 'json' },
     });
-
-    // ensure compatibility with links sended by emails
-    // like #/configuration/dedicated_cloud/pcc-123456?action=confirmcancel&token=myToken
-    // make a redirect to the new url of ui route
-    $urlServiceProvider.rules.when(
-      '/configuration/dedicated_cloud/:productId?action&token',
-      (match) => {
-        if (match.action === 'confirmcancel') {
-          return `/configuration/dedicated_cloud/${match.productId}/terminate-confirm?token=${match.token}`;
-        }
-
-        return false;
-      },
-    );
   },
 );
