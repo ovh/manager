@@ -14,7 +14,7 @@ export default class HostingDatabaseOrderPrivateCtrl {
   checkout() {
     this.checkoutLoading = true;
 
-    this.checkoutOrderCart(this.autoPayWithPreferredPaymentMethod, this.cartId);
+    this.checkoutOrderCart(!!this.defaultPaymentMethod, this.cartId);
   }
 
   async initDurationStep() {

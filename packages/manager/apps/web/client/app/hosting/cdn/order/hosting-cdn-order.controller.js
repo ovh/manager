@@ -49,9 +49,7 @@ export default class {
 
     this.checkoutOrderCart(
       // Autovalidate if the order is free
-      this.isOptionFree
-        ? this.isOptionFree
-        : this.autoPayWithPreferredPaymentMethod,
+      this.isOptionFree ? this.isOptionFree : !!this.defaultPaymentMethod,
       this.cartId,
     );
   }

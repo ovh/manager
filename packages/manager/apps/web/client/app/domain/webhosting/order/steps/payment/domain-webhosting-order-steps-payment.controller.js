@@ -39,6 +39,7 @@ export default class {
   }
 
   preparePayment() {
-    this.stepper.autoPayWithPreferredPaymentMethod = this.autoPayWithPreferredPaymentMethod;
+    this.stepper.autoPayWithPreferredPaymentMethod = !!this
+      .defaultPaymentMethod;
   }
 }

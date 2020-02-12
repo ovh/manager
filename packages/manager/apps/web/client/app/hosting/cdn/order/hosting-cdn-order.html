@@ -59,7 +59,7 @@
             <!-- Payment Means -->
             <ovh-payment-method-choice
                 data-ng-if="::!$ctrl.isOptionFree"
-                data-model="$ctrl.autoPayWithPreferredPaymentMethod"
+                data-model="$ctrl.defaultPaymentMethod"
                 data-error-callback="$ctrl.goBackWithError()"
             >
             </ovh-payment-method-choice>
