@@ -12,7 +12,6 @@
   "vdi_alias_changed": "Le changement d'alias a été effectué.",
   "vdi_username_changing": "Le changement d'username est en cours.",
   "vdi_username_changed": "Le changement d'username a été effectué.",
-  "vdi_terminate_confirming": "La suppression du service est programmée.",
   "vdi_confirm_delete": "Vous ne pourrez plus à accéder à votre desktop. Il sera supprimé, ainsi que l’ensemble des données qui y sont stockées. Souhaitez-vous continuer?",
   "vdi_deleting": "Le desktop est en cours de suppression. Un email vous a été envoyé afin de confirmer la demande.",
   "vdi_deleted": "Le desktop va être supprimé. Un email de confrmation vous a été envoyé.",

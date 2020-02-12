@@ -119,13 +119,6 @@ angular
       }
     */
 
-    function handleCancelConfirmation() {
-      if ($stateParams.action === 'confirmTerminate') {
-        return self.confirmTerminate($stateParams.serviceName);
-      }
-      return $q.when();
-    }
-
     function updateTasksStatus(taskDetail, isUserTask) {
       self.tasksHandler.addOrUpdate(taskDetail, isUserTask);
     }
@@ -143,7 +136,6 @@ angular
       self.tasksHandler = new TasksHandler();
 
       self.serviceName = $stateParams.serviceName;
-      self.token = $stateParams.token;
 
       self.flags.init.serviceInfos = true;
       self.flags.init.details = true;
@@ -159,7 +151,6 @@ angular
               self.flags.init.getTasks = true;
               self.flags.init.user = true;
               $q.all([
-                handleCancelConfirmation(),
                 initTasks ? self.getRunningTasks() : $q.when(),
                 self.getUser(),
                 $stateParams.followTask
@@ -744,63 +735,6 @@ angular
           );
         });
       });
-    };
-
-    function confirmTerminate(terminateParams) {
-      let promise;
-
-      if (terminateParams.token && terminateParams.reason) {
-        promise = OvhApiDeskaasService.v6().confirmTerminate(
-          {
-            serviceName: $stateParams.serviceName,
-          },
-          {
-            token: terminateParams.token,
-            reason: terminateParams.reason,
-            commentary: terminateParams.commentary,
-          },
-        ).$promise;
-      } else {
-        return $q.when();
-      }
-
-      return handleServiceMethodCall(
-        promise,
-        $translate.instant('vdi_terminate_confirming'),
-        'confirmingTerminate',
-      ).then((response) => {
-        handleTask(response.taskId, true);
-      });
-    }
-
-    self.confirmTerminate = function confirmTerminateFn() {
-      return CucControllerHelper.modal
-        .showModal({
-          modalConfig: {
-            templateUrl:
-              'app/deskaas/deskaas-confirm-terminate/deskaas-confirm-terminate.html',
-            controller: 'DeskaasConfirmTerminateCtrl',
-            controllerAs: 'DeskaasConfirmTerminateCtrl',
-            backdrop: 'static',
-            size: 'md',
-            resolve: {
-              service() {
-                return self.serviceName;
-              },
-              token() {
-                return $stateParams.token;
-              },
-            },
-          },
-        })
-        .then((modalData) => {
-          confirmTerminate(modalData).catch((err) => {
-            const msg = get(err, 'data.message', '');
-            CucCloudMessage.error(
-              [$translate.instant('common_api_error'), msg].join(' '),
-            );
-          });
-        });
     };
 
     self.getDetails = function getDetails() {
