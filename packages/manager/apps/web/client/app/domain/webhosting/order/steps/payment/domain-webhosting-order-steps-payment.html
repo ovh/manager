@@ -2,7 +2,7 @@
     data-header="{{:: 'domain_webhosting_order_payment_step_title' | translate }}"
     data-on-focus="$ctrl.getCheckout()"
     data-loading="$ctrl.stepper.loadingCheckout"
-    data-valid="$ctrl.autoPayWithPreferredPaymentMethod != null && $ctrl.agreeContracts"
+    data-valid="$ctrl.defaultPaymentMethod != null && $ctrl.agreeContracts"
     data-prevent-next="true"
     data-on-cancel="$ctrl.goBackToDashboard()"
     data-on-submit="$ctrl.preparePayment()"
@@ -27,9 +27,7 @@
     </div>
 
     <form name="$ctrl.paymentMeans" novalidate>
-        <ovh-payment-method-choice
-            data-model="$ctrl.autoPayWithPreferredPaymentMethod"
-        >
+        <ovh-payment-method-choice data-model="$ctrl.defaultPaymentMethod">
         </ovh-payment-method-choice>
     </form>
 
