@@ -32,7 +32,7 @@
     "@ovh-ux/ng-ovh-form-flat": "^4.0.3",
     "@ovh-ux/ng-ovh-http": "^4.0.6",
     "@ovh-ux/ng-ovh-request-tagger": "^1.1.0",
-    "@ovh-ux/ng-ovh-sidebar-menu": "^8.5.0",
+    "@ovh-ux/ng-ovh-sidebar-menu": "^8.5.1",
     "@ovh-ux/ng-ovh-sso-auth": "^4.2.3",
     "@ovh-ux/ng-ovh-swimming-poll": "^4.0.2",
     "@ovh-ux/ng-ui-router-layout": "^3.2.0",
