@@ -87,13 +87,12 @@ export const MENU = [
         regions: ['CA', 'EU'],
       },
       {
-        beta: true,
         id: 'private-registry',
         options: {
           state: 'pci.projects.project.private-registry',
         },
         title: 'Managed Private Registry',
-        regions: ['EU'],
+        regions: ['CA', 'EU'],
       },
       {
         id: 'workflow-management',
