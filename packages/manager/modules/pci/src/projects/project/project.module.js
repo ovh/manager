@@ -26,6 +26,7 @@ import vouchers from './vouchers';
 import regions from './regions';
 import routing from './project.routing';
 import streams from './streams';
+import serving from './serving';
 import workflow from './workflow';
 
 import './project.less';
@@ -58,6 +59,7 @@ angular
     vouchers,
     streams,
     workflow,
+    serving,
   ])
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */);
