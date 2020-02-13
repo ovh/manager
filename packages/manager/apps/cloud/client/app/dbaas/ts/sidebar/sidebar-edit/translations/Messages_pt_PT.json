@@ -1,8 +1,0 @@
-{
- "dbaasts_project_delete_title": "Eliminação de um projeto",
- "dbaasts_project_delete_info": "Vai receber, num prazo de 24h, um e-mail para validar a eliminação definitiva de todos os recursos do projeto. Esta ação é irreversível, todos os dados serão de imediato eliminados e todas as chaves da API serão invalidadas.",
- "dbaasts_project_delete_info_bill": "Uma última fatura correspondente aos recursos a pedido será enviada nas 24h subsequentes à sua confirmação.",
- "dbaasts_project_delete_info_credits": "À emissão desta fatura, o seu crédito inutilizado associado a este projeto será igualmente perdido e não poderá ser reembolsado.",
- "dbaasts_project_delete_email_sent": "Receberá um e-mail de confirmação num prazo de 24h.",
- "dbaasts_sidebar_edit_name_error": "Ocorreu um erro aquando da alteração do nome."
-}
