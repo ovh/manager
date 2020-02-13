@@ -68,9 +68,6 @@ export const ORDER_URLS = {
       PL: 'https://www.ovh.pl/storage-solutions/veeam-enterprise.xml',
       PT: 'https://www.ovh.pt/storage-solutions/veeam-enterprise.xml',
     },
-    dbaas: {
-      FR: 'https://www.ovh.com/fr/dbaas/timeseries/',
-    },
     cloud_desktop: {
       CZ: 'https://www.ovh.cz/cloud/cloud-desktop/',
       DE: 'https://www.ovh.de/cloud/cloud-desktop/',
@@ -361,9 +358,6 @@ export const ORDER_URLS = {
     },
     veeam: {},
     veeam_enterprise: {},
-    dbaas: {
-      US: 'https://us.ovhcloud.com/dbaas/timeseries/',
-    },
     vrack: {
       US:
         "https://us.ovhcloud.com/order/express/#/express/review?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",

@@ -1,8 +1,0 @@
-{
- "dbaasts_project_delete_title": "Deleting a project. ",
- "dbaasts_project_delete_info": "An email will be sent within 24 hours to confirm the permanent deletion of all the project resources. This action is irreversible, all data will be lost immediately and all API keys will be invalidated.",
- "dbaasts_project_delete_info_bill": "A final invoice for your on-demand usage will be published within 24 hours of confirmation.",
- "dbaasts_project_delete_info_credits": "Following this bill, your unused credit associated with this project will also be lost and it cannot be refunded.",
- "dbaasts_project_delete_email_sent": "You will be sent a confirmation email within 24 hours. ",
- "dbaasts_sidebar_edit_name_error": "There was an error when changing name. "
-}

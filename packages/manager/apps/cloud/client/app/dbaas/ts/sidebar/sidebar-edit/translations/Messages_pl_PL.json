@@ -1,8 +1,0 @@
-{
- "dbaasts_project_delete_title": "Usuwanie projektu",
- "dbaasts_project_delete_info": "W ciągu 24 godzin otrzymasz e-mail dotyczący potwierdzenia definitywnego usunięcia wszystkich zasobów projektu. Operacja ta jest nieodwracalna. Wszystkie dane zostaną natychmiast usunięte. Wszystkie klucze API zostaną unieważnione.",
- "dbaasts_project_delete_info_bill": "Ostatnia faktura za wykorzystane zasoby zostanie wystawiona w ciagu 24 godzin od potwierdzenia.",
- "dbaasts_project_delete_info_credits": "Niewykorzystane zasilenie przypisane do tego projektu zostanie utracone. Nie podlega ono zwrotowi.",
- "dbaasts_project_delete_email_sent": "W ciągu 24 godzin otrzymasz e-mail dotyczący potwierdzenia.",
- "dbaasts_sidebar_edit_name_error": "Wystąpił błąd podczas pobierania nazwy."
-}
