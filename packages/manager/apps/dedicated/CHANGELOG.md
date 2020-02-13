@@ -1,3 +1,13 @@
+## [11.4.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@11.4.2...@ovh-ux/manager-dedicated@11.4.3) (2020-02-13)
+
+
+### Bug Fixes
+
+* **account.user.support.level:** enable worldwide ([3772c8e](https://github.com/ovh/manager/commit/3772c8e5fc09277d5ebee649f5c784577ad18227))
+* **i18n:** add missing translations ([3613358](https://github.com/ovh/manager/commit/361335880bbdaa1b39c027faa6a2987f135feeb0))
+
+
+
 ## [11.4.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@11.4.1...@ovh-ux/manager-dedicated@11.4.2) (2020-02-12)
 
 

@@ -1,3 +1,17 @@
+# [1.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@1.4.1...@ovh-ux/manager-exchange@1.5.0) (2020-02-13)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations ([3613358](https://github.com/ovh/manager/commit/361335880bbdaa1b39c027faa6a2987f135feeb0))
+
+
+### Features
+
+* **exchange.external-contacts:** use datagrid component through iceberg ([#2204](https://github.com/ovh/manager/issues/2204)) ([98f4e76](https://github.com/ovh/manager/commit/98f4e76cfc3edee45bed7b0bf7b9679dd81c2104))
+
+
+
 ## [1.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@1.4.0...@ovh-ux/manager-exchange@1.4.1) (2020-02-12)
 
 
