@@ -22,33 +22,27 @@ export default class ExchangeTabExternalContactsCtrl {
     this.$routerParams = Exchange.getParams();
     this.contactsLoading = false;
     this.contacts = null;
-    this.filter = null;
-
-    $scope.$on(Exchange.events.externalcontactsChanged, () =>
-      $scope.$broadcast('paginationServerSide.reload', 'externalContactsTable'),
-    );
 
     $scope.getContacts = () => this.contacts;
-    $scope.getContactsLoading = () => this.contactsLoading;
-    $scope.loadContacts = () => this.loadContacts();
   }
 
-  onSearchValueChange() {
-    this.loadContacts();
-  }
-
-  loadContacts(count, offset) {
+  loadContacts({ offset, pageSize, criteria }) {
     this.contactsLoading = true;
-
-    this.services.ExchangeExternalContacts.gettingContacts(
+    return this.services.ExchangeExternalContacts.gettingContacts(
       this.$routerParams.organization,
       this.$routerParams.productId,
-      count,
+      pageSize,
       offset,
-      this.filter,
+      criteria.length > 0 ? criteria[0].value : null,
     )
-      .then((contacts) => {
-        this.contacts = contacts;
+      .then(({ data, count }) => {
+        this.contacts = data;
+        return {
+          data,
+          meta: {
+            totalCount: count,
+          },
+        };
       })
       .catch((data) => {
         this.services.messaging.writeError(
@@ -60,11 +54,6 @@ export default class ExchangeTabExternalContactsCtrl {
       })
       .finally(() => {
         this.contactsLoading = false;
-        this.services.$scope.$broadcast(
-          'paginationServerSide.loadPage',
-          1,
-          'externalContactsTable',
-        );
       });
   }
 }
