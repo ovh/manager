@@ -1,8 +1,0 @@
-{
- "dbaasts_project_delete_title": "Elimina un progetto",
- "dbaasts_project_delete_info": "Nelle prossime 24 ore riceverai un'email per confermare l'eliminazione di tutte le risorse del tuo progetto. Questa operazione è irreversibile e comporta la cancellazione definitiva di tutti i dati. Le chiavi API non saranno più valide.",
- "dbaasts_project_delete_info_bill": "L'ultima fattura corrispondente ai tuoi consumi on demand verrà emessa entro 24 ore dalla tua conferma.",
- "dbaasts_project_delete_info_credits": "Una volta ricevuta la fattura, l'eventuale credito non utilizzato associato al tuo progetto verrà perso e non sarà possibile richiederne il rimborso.",
- "dbaasts_project_delete_email_sent": "Riceverai un'email di conferma entro 24 ore",
- "dbaasts_sidebar_edit_name_error": "Si è verificato un errore durante la modifica del nome."
-}
