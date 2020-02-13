@@ -14,13 +14,17 @@ export default class {
     return this.privateRegistryService
       .create(this.projectId, this.registry)
       .then((res) =>
-        this.goBack(
-          this.$translate.instant('private_registry_onboarding_success', {
+        this.goBack({
+          text: this.$translate.instant('private_registry_onboarding_success', {
             registryName: this.registry.name,
           }),
-          'success',
-          res.id,
-        ),
+          link: {
+            text: this.$translate.instant(
+              'private_registry_onboarding_success_link',
+            ),
+            value: this.getCredentialsLink(res.id),
+          },
+        }),
       )
       .catch((error) =>
         this.goBack(

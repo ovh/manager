@@ -81,9 +81,7 @@ export default class {
   }
 
   create() {
-    return this.$state.go(
-      'pci.projects.project.private-registry.onboarding.create',
-    );
+    return this.$state.go('pci.projects.project.private-registry.create');
   }
 
   generateCredentials() {

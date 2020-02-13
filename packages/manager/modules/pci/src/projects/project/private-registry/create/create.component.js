@@ -6,11 +6,11 @@ const component = {
   controller,
   bindings: {
     availableRegions: '<',
+    getCredentialsLink: '<',
     goBack: '<',
     plans: '<',
     projectId: '<',
     registryContracts: '<',
-    acceptTermsAndConditions: '<',
     user: '<',
   },
 };

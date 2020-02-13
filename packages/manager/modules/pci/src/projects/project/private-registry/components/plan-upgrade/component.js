@@ -5,6 +5,7 @@ export default {
   bindings: {
     plans: '<',
     onChange: '&',
+    user: '<',
   },
   controller,
   template,

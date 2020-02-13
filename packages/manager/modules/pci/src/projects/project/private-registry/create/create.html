@@ -34,13 +34,12 @@
     </oui-step-form>
     <oui-step-form
         data-header="{{:: 'private_registry_create_choose_plan' | translate }}"
-        data-on-cancel="$ctrl.cancel()"
+        data-on-cancel="$ctrl.goBack()"
         data-on-focus="$ctrl.showPlans = true"
         data-on-submit="$ctrl.create()"
     >
         <pci-private-registry-upgrade-plan
             data-ng-if="$ctrl.showPlans"
-            data-cancel-link="$ctrl.cancelLink"
             data-plans="$ctrl.availablePlans"
             data-user="$ctrl.user"
             data-on-change="$ctrl.changeMethod(modelValue)"

@@ -11,7 +11,6 @@ export default /* @ngInject */ ($stateProvider) => {
 
       capabilities: /* @ngInject */ (pciPrivateRegistryService, projectId) =>
         pciPrivateRegistryService.getCapabilities(projectId),
-      acceptTermsAndConditions: () => true,
       availableRegions: /* @ngInject */ (capabilities) =>
         map(capabilities, (capability) => ({
           name: capability.regionName,
@@ -22,6 +21,13 @@ export default /* @ngInject */ ($stateProvider) => {
         const { plans } = find(capabilities, { regionName });
         return plans;
       },
+
+      getCredentialsLink: /* @ngInject */ ($state, projectId) => (registryId) =>
+        $state.href('pci.projects.project.private-registry.credentials', {
+          projectId,
+          registryId,
+          confirmationRequired: true,
+        }),
 
       goBack: /* @ngInject */ (goBackToList) => goBackToList,
     },
