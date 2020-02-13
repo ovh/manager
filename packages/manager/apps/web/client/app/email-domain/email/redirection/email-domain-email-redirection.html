@@ -27,7 +27,7 @@
                 <dt data-translate="email_tab_redirections_quota"></dt>
                 <dd
                     class="text-nowrap"
-                    data-ng-bind="ctrlEmailDomainEmailRedirection.redirections.length + ' / ' + (ctrlEmailDomainEmail.quotas.redirection || '0')"
+                    data-ng-bind="ctrlEmailDomainEmailRedirection.redirections.length + ' / ' + ((ctrlEmailDomainEmail.quotas.redirection + ctrlEmailDomainEmail.quotas.alias) || '0')"
                 ></dd>
             </dl>
 
@@ -71,7 +71,7 @@
                 type="button"
                 data-translate="email_tab_button_emails_create_redirection"
                 data-ng-click="setAction('email-domain/email/redirection/create/email-domain-email-redirection-create')"
-                data-ng-if="ctrlEmailDomainEmailRedirection.redirections.length < (ctrlEmailDomainEmail.quotas.redirection + ctrlEmailDomainEmail.quotas.alias)"
+                data-ng-disabled="ctrlEmailDomainEmailRedirection.loading.redirections || ctrlEmailDomainEmailRedirection.redirections.length >= (ctrlEmailDomainEmail.quotas.redirection + ctrlEmailDomainEmail.quotas.alias)"
             ></button>
             <button
                 class="btn btn-block btn-default"
