@@ -1,6 +1,7 @@
 import angular from 'angular';
 
 import component from './component';
+import './styles.less';
 
 const moduleName = 'ovhManagerPrivateRegistryPlanUpgrade';
 
