@@ -1,0 +1,6 @@
+{
+  "exchange_account_mfa_delete_title": "Eliminar la doble autenticación en todas las cuentas",
+  "exchange_account_mfa_delete_description": "¿Quiere eliminar la doble autenticación en todas las cuentas?",
+  "exchange_account_mfa_delete_success": "Se ha eliminado la doble autenticación en todas las cuentas.",
+  "exchange_account_mfa_delete_error": "Se ha producido un error al eliminar la doble autenticación en todas las cuentas: {{errorMessage}}"
+}
