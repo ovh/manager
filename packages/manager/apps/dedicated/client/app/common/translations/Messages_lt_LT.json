@@ -620,5 +620,6 @@
   "common_subscription_contacts_billing": "Billing",
   "common_subscription_contacts_tech": "Technical",
   "common_unavailable_information": "Information unavailable",
-  "common_resiliate_contact_support": "To cancel this service, please call our support team on: <strong>0333 370 0425</strong>. Thank you for choosing OVH."
+  "common_resiliate_contact_support": "To cancel this service, please call our support team on: <strong>0333 370 0425</strong>. Thank you for choosing OVH.",
+  "common_alerts_message_see_less": "Hide error details"
 }

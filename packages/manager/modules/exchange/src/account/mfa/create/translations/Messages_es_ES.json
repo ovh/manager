@@ -1,0 +1,6 @@
+{
+  "exchange_account_mfa_create_title": "Activación de la doble autenticación en todas las cuentas",
+  "exchange_account_mfa_create_description": "¿Quiere activar la doble autenticación en todas las cuentas?",
+  "exchange_account_mfa_create_success": "Se ha activado la doble autenticación en todas las cuentas.",
+  "exchange_account_mfa_create_error": "Se ha producido un error al activar la doble autenticación en todas las cuentas: {{errorMessage}}"
+}
