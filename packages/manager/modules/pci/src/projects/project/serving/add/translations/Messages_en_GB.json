@@ -6,7 +6,7 @@
   "pci_projects_project_serving_add_container_title": "Object Storage Container Name",
   "pci_projects_project_serving_add_container_help": "Name of the new private container.",
   "pci_projects_project_serving_add_success": "Your namespace {{ name }} has been created",
-  "pci_projects_project_serving_add_error": "An error occur during the namespace creation: {{ errorMessage }}",
+  "pci_projects_project_serving_add_error": "An error occurred during the namespace creation: {{ errorMessage }}",
   "pci_projects_project_serving_add_container_attach": "Attach to an existing container",
   "pci_projects_project_serving_attach_container_help": "Please choose a container in the list",
   "pci_projects_project_serving_add_container_new": "Create a container"

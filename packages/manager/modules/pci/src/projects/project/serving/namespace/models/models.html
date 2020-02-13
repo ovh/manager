@@ -44,7 +44,7 @@
             </span>
         </oui-column>
         <oui-column
-            data-title=":: 'pci_projects_project_serving_namespace_models_api_status' | translate"
+            data-title=":: 'pci_projects_project_serving_namespace_models_api_statusVERSION_STATUS' | translate"
             data-property="apiStatus"
         >
             <span
@@ -64,16 +64,19 @@
             data-searchable
             data-filterable
         >
-            <a data-ng-href="{{$row.url}}" target="_blank" rel="noopener"
-                >{{$row.url}}</a
-            >
+            <a
+                data-ng-href="{{$row.url}}"
+                target="_blank"
+                rel="noopener"
+                data-ng-bind="$row.url"
+            ></a>
         </oui-column>
         <oui-column
             data-title=":: 'pci_projects_project_serving_namespace_models_date' | translate"
             data-property="createdAt"
             data-type="date"
         >
-            {{ $row.createdAt | date : 'short' }}
+            <span data-ng-bind="$row.createdAt | date : 'short'"></span>
         </oui-column>
         <oui-column
             data-title=":: 'pci_projects_project_serving_namespace_models_version' | translate"

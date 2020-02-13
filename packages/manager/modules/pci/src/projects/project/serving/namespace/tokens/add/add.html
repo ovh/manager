@@ -38,8 +38,8 @@
             data-size="auto"
         >
             <div
-                data-ng-repeat="group in $ctrl.GROUPS"
-                ng-init="$ctrl.token.groups[group] = false"
+                data-ng-repeat="group in $ctrl.GROUPS track by $index"
+                data-ng-init="$ctrl.token.groups[group] = false"
             >
                 <oui-checkbox
                     data-name="$group"
@@ -47,9 +47,9 @@
                     data-on-change="$ctrl.changeGroup(group, modelValue)"
                     data-description="{{:: 'pci_projects_project_serving_namespace_tokens_group_help_' + group | translate }}"
                 >
-                    {{::
-                    'pci_projects_project_serving_namespace_tokens_group_name_'
-                    + group | translate }}
+                    <span
+                        data-translate="pci_projects_project_serving_namespace_tokens_group_name_{{group}}"
+                    ></span>
                 </oui-checkbox>
             </div>
         </oui-field>

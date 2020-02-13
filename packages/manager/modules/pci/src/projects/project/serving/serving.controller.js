@@ -1,11 +1,6 @@
 export default class PciServingController {
   /* @ngInject */
-  constructor(
-    $translate,
-    CucCloudMessage,
-    CucRegionService,
-  ) {
-    this.$translate = $translate;
+  constructor(CucCloudMessage, CucRegionService) {
     this.CucCloudMessage = CucCloudMessage;
     this.CucRegionService = CucRegionService;
   }

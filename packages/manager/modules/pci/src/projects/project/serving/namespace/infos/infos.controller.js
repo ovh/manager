@@ -1,18 +1,8 @@
-
 export default class PciServingNamespaceInfosController {
   /* @ngInject */
-  constructor(
-    $scope,
-    $state,
-    $translate,
-    CucCloudMessage,
-    CucControllerHelper,
-  ) {
-    this.$scope = $scope;
-    this.$state = $state;
+  constructor($translate, CucCloudMessage) {
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
-    this.CucControllerHelper = CucControllerHelper;
   }
 
   $onInit() {
@@ -20,8 +10,13 @@ export default class PciServingNamespaceInfosController {
   }
 
   loadMessages() {
-    this.CucCloudMessage.unSubscribe('pci.projects.project.serving.namespace.infos');
-    this.messageHandler = this.CucCloudMessage.subscribe('pci.projects.project.serving.namespace.infos', { onMessage: () => this.refreshMessages() });
+    this.CucCloudMessage.unSubscribe(
+      'pci.projects.project.serving.namespace.infos',
+    );
+    this.messageHandler = this.CucCloudMessage.subscribe(
+      'pci.projects.project.serving.namespace.infos',
+      { onMessage: () => this.refreshMessages() },
+    );
   }
 
   refreshMessages() {

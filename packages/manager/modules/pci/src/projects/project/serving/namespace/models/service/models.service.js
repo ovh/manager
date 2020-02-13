@@ -2,14 +2,12 @@ import NamespaceModel from './model.class';
 
 export default class OvhManagerPciServingModelService {
   /* @ngInject */
-  constructor($q, OvhApiCloudProjectAi) {
-    this.$q = $q;
+  constructor(OvhApiCloudProjectAi) {
     this.OvhApiCloudProjectAi = OvhApiCloudProjectAi;
   }
 
   add(serviceName, namespaceId, modelCreation) {
-    return this.OvhApiCloudProjectAi
-      .Serving()
+    return this.OvhApiCloudProjectAi.Serving()
       .Model()
       .v6()
       .save(
@@ -18,26 +16,24 @@ export default class OvhManagerPciServingModelService {
           namespaceId,
         },
         modelCreation,
-      )
-      .$promise;
+      ).$promise;
   }
 
   getAll(serviceName, namespaceId) {
-    return this.OvhApiCloudProjectAi
-      .Serving()
+    return this.OvhApiCloudProjectAi.Serving()
       .Model()
       .v6()
       .query({
         serviceName,
         namespaceId,
       })
-      .$promise
-      .then((models) => models.map((model) => new NamespaceModel({ ...model })));
+      .$promise.then((models) =>
+        models.map((model) => new NamespaceModel({ ...model })),
+      );
   }
 
   get(serviceName, namespaceId, modelId) {
-    return this.OvhApiCloudProjectAi
-      .Serving()
+    return this.OvhApiCloudProjectAi.Serving()
       .Model()
       .v6()
       .get({
@@ -45,28 +41,27 @@ export default class OvhManagerPciServingModelService {
         namespaceId,
         modelId,
       })
-      .$promise
-      .then((model) => new NamespaceModel({
-        ...model,
-      }));
+      .$promise.then(
+        (model) =>
+          new NamespaceModel({
+            ...model,
+          }),
+      );
   }
 
   delete(serviceName, namespaceId, { id: modelId }) {
-    return this.OvhApiCloudProjectAi
-      .Serving()
+    return this.OvhApiCloudProjectAi.Serving()
       .Model()
       .v6()
       .delete({
         serviceName,
         namespaceId,
         modelId,
-      })
-      .$promise;
+      }).$promise;
   }
 
   update(serviceName, namespaceId, modelId) {
-    return this.OvhApiCloudProjectAi
-      .Serving()
+    return this.OvhApiCloudProjectAi.Serving()
       .Model()
       .v6()
       .edit(
@@ -76,7 +71,6 @@ export default class OvhManagerPciServingModelService {
           modelId,
         },
         null,
-      )
-      .$promise;
+      ).$promise;
   }
 }

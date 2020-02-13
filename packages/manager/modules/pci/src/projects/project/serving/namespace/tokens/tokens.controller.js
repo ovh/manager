@@ -1,11 +1,6 @@
 export default class PciServingNamespaceTokensController {
   /* @ngInject */
-  constructor(
-    $q,
-    $translate,
-    CucCloudMessage,
-  ) {
-    this.$q = $q;
+  constructor($translate, CucCloudMessage) {
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
   }
@@ -15,8 +10,13 @@ export default class PciServingNamespaceTokensController {
   }
 
   loadMessages() {
-    this.CucCloudMessage.unSubscribe('pci.projects.project.serving.namespace.tokens');
-    this.messageHandler = this.CucCloudMessage.subscribe('pci.projects.project.serving.namespace.tokens', { onMessage: () => this.refreshMessages() });
+    this.CucCloudMessage.unSubscribe(
+      'pci.projects.project.serving.namespace.tokens',
+    );
+    this.messageHandler = this.CucCloudMessage.subscribe(
+      'pci.projects.project.serving.namespace.tokens',
+      { onMessage: () => this.refreshMessages() },
+    );
   }
 
   refreshMessages() {

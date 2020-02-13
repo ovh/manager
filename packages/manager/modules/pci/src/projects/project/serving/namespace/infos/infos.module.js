@@ -11,19 +11,19 @@ import component from './infos.component';
 
 const moduleName = 'ovhManagerPciProjectServingNamespaceInfos';
 
-angular.module(moduleName, [
-  'ngTranslateAsyncLoader',
-  'oui',
-  'ovh-api-services',
-  'pascalprecht.translate',
-  'ui.router',
-  registry,
-  attachRegistry,
-  detachRegistry,
-])
+angular
+  .module(moduleName, [
+    'ngTranslateAsyncLoader',
+    'oui',
+    'ovh-api-services',
+    'pascalprecht.translate',
+    'ui.router',
+    registry,
+    attachRegistry,
+    detachRegistry,
+  ])
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */)
   .component('ovhManagerPciProjectServingNamespaceInfosComponent', component);
-
 
 export default moduleName;

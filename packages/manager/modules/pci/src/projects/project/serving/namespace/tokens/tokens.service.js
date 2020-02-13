@@ -2,14 +2,12 @@ import Token from './token.class';
 
 export default class OvhManagerPciServingTokenService {
   /* @ngInject */
-  constructor($q, OvhApiCloudProjectAi) {
-    this.$q = $q;
+  constructor(OvhApiCloudProjectAi) {
     this.OvhApiCloudProjectAi = OvhApiCloudProjectAi;
   }
 
   add(serviceName, namespaceId, tokenCreation) {
-    return this.OvhApiCloudProjectAi
-      .Serving()
+    return this.OvhApiCloudProjectAi.Serving()
       .Token()
       .v6()
       .save(
@@ -18,13 +16,11 @@ export default class OvhManagerPciServingTokenService {
           namespaceId,
         },
         tokenCreation,
-      )
-      .$promise;
+      ).$promise;
   }
 
   update(serviceName, namespaceId, tokenId) {
-    return this.OvhApiCloudProjectAi
-      .Serving()
+    return this.OvhApiCloudProjectAi.Serving()
       .Token()
       .v6()
       .edit(
@@ -34,26 +30,24 @@ export default class OvhManagerPciServingTokenService {
           tokenId,
         },
         null,
-      )
-      .$promise;
+      ).$promise;
   }
 
   getAll(serviceName, namespaceId) {
-    return this.OvhApiCloudProjectAi
-      .Serving()
+    return this.OvhApiCloudProjectAi.Serving()
       .Token()
       .v6()
       .query({
         serviceName,
         namespaceId,
       })
-      .$promise
-      .then((tokens) => tokens.map((token) => new Token({ ...token })));
+      .$promise.then((tokens) =>
+        tokens.map((token) => new Token({ ...token })),
+      );
   }
 
   get(serviceName, namespaceId, tokenId) {
-    return this.OvhApiCloudProjectAi
-      .Serving()
+    return this.OvhApiCloudProjectAi.Serving()
       .Token()
       .v6()
       .get({
@@ -61,22 +55,22 @@ export default class OvhManagerPciServingTokenService {
         namespaceId,
         tokenId,
       })
-      .$promise
-      .then((token) => new Token({
-        ...token,
-      }));
+      .$promise.then(
+        (token) =>
+          new Token({
+            ...token,
+          }),
+      );
   }
 
   delete(serviceName, namespaceId, { id: tokenId }) {
-    return this.OvhApiCloudProjectAi
-      .Serving()
+    return this.OvhApiCloudProjectAi.Serving()
       .Token()
       .v6()
       .delete({
         serviceName,
         namespaceId,
         tokenId,
-      })
-      .$promise;
+      }).$promise;
   }
 }

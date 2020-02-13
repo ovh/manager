@@ -1,17 +1,7 @@
-import { API_STATUS, VERSION_STATUS } from './models.constants';
-
 export default class PciServingNamespaceModelsController {
   /* @ngInject */
-  constructor(
-    $q,
-    $translate,
-    CucCloudMessage,
-  ) {
-    this.$q = $q;
-    this.$translate = $translate;
+  constructor(CucCloudMessage) {
     this.CucCloudMessage = CucCloudMessage;
-    this.API_STATUS = API_STATUS;
-    this.VERSION_STATUS = VERSION_STATUS;
   }
 
   $onInit() {
@@ -19,8 +9,13 @@ export default class PciServingNamespaceModelsController {
   }
 
   loadMessages() {
-    this.CucCloudMessage.unSubscribe('pci.projects.project.serving.namespace.models');
-    this.messageHandler = this.CucCloudMessage.subscribe('pci.projects.project.serving.namespace.models', { onMessage: () => this.refreshMessages() });
+    this.CucCloudMessage.unSubscribe(
+      'pci.projects.project.serving.namespace.models',
+    );
+    this.messageHandler = this.CucCloudMessage.subscribe(
+      'pci.projects.project.serving.namespace.models',
+      { onMessage: () => this.refreshMessages() },
+    );
   }
 
   refreshMessages() {
