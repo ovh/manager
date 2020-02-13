@@ -1,0 +1,21 @@
+<div class="d-flex">
+    <pci-project-offer-badge
+        data-title="{{ $ctrl.offer.name.content }}"
+        data-color="{{ $ctrl.offer.name.color }}"
+        data-background="{{ $ctrl.offer.name.background }}"
+    ></pci-project-offer-badge>
+    <div class="ml-2">
+        <strong
+            class="pci-project-offer-highlight"
+            data-ng-if="$ctrl.offer.highlight"
+            data-ng-bind="$ctrl.offer.highlight.content"
+            data-ng-style="{
+                'color': $ctrl.offer.highlight.color
+            }"
+        ></strong>
+        <p data-ng-bind="$ctrl.offer.description"></p>
+    </div>
+</div>
+<pci-project-offer-notice
+    data-notice-link="{{ $ctrl.offer.noticeLink }}"
+></pci-project-offer-notice>
