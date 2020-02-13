@@ -1,4 +1,5 @@
 import get from 'lodash/get';
+import uniq from 'lodash/uniq';
 
 import {
   PRESET_IMAGE,
@@ -56,13 +57,15 @@ export default class PciServingNamespaceModelsAddController {
       this.namespace.containerId,
     )
       .then((container) => {
-        this.folders = container.objects
-          .map(({ name }) => {
-            const split = name.split('/');
-            split.pop();
-            return split.join('/');
-          })
-          .filter((path) => path !== '');
+        this.folders = uniq(
+          container.objects
+            .map(({ name }) => {
+              const split = name.split('/');
+              split.pop();
+              return split.join('/');
+            })
+            .filter((path) => path !== ''),
+        );
 
         this.files = container.objects
           .map(({ name }) => name)
