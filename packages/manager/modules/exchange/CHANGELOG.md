@@ -1,3 +1,12 @@
+## [1.5.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@1.5.1...@ovh-ux/manager-exchange@1.5.2) (2020-02-14)
+
+
+### Bug Fixes
+
+* **account.mfa:** apply en translations for pl subsidiary ([44d21af](https://github.com/ovh/manager/commit/44d21afca0b03ada58c6964fbabcff71c20df42f))
+
+
+
 ## [1.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@1.5.0...@ovh-ux/manager-exchange@1.5.1) (2020-02-14)
 
 
