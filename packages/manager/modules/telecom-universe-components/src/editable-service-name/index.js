@@ -10,6 +10,7 @@ const moduleName = 'tucEditableServiceName';
 angular
   .module(moduleName, [translate])
   .controller('tucEditableServiceNameCtrl', tucEditableServiceNameCtrl)
-  .directive('tucEditableServiceName', tucEditableServiceNameDirective);
+  .directive('tucEditableServiceName', tucEditableServiceNameDirective)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
