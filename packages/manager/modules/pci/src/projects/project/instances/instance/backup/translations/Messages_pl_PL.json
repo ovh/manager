@@ -2,7 +2,7 @@
   "pci_projects_project_instances_instance_backup_title": "Tworzenie kopii zapasowej",
   "pci_projects_project_instances_instance_backup_name_label": "Wpisz nazwę kopii zapasowej:",
   "pci_projects_project_instances_instance_backup_warning_message": "Twoja instancja będzie zawieszona przez kilka sekund. Następnie wydajność odczytu/zapisu dysku może się zmniejszyć, aż do zakończenia tworzenia kopii.",
-  "pci_projects_project_instances_instance_backup_price": "({{ size }}, czyli około {{ price }} netto/m-c)",
+  "pci_projects_project_instances_instance_backup_price": "Cena: {{ price }} netto/m-c/VM",
   "pci_projects_project_instances_instance_backup_submit_label": "Potwierdź",
   "pci_projects_project_instances_instance_backup_cancel_label": "Anuluj",
   "pci_projects_project_instances_instance_backup_success_message": "Trwa tworzenie kopii instancji {{ backup }}.",
