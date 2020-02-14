@@ -1,5 +1,5 @@
 export const PLAN_CONSTANT = {
-  SMALL: 'SMALL',
+  SMALL: 'S',
 };
 
 export const HOURLYTOMONTHLY = {

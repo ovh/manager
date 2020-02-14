@@ -30,8 +30,6 @@ angular
     onboarding,
     priceComponent,
     updateRegistry,
-    credentials,
-    apiUrl,
     upgradePlan,
     'ngTranslateAsyncLoader',
     'pascalprecht.translate',
