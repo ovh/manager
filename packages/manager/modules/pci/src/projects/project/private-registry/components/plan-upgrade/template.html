@@ -8,22 +8,25 @@
         data-ng-repeat="plan in $ctrl.detailedPlans track by plan.id"
         name="plan"
         data-model="$ctrl.selectedPlan"
-        data-label="{{:: plan.name }}"
+        data-label="{{:: plan.name }}"
         data-variant="light"
         data-on-change="$ctrl.onSelected(modelValue)"
         data-values="[plan]"
     >
         <oui-select-picker-section>
             <ul class="list-unstyled">
-                <li
-                    data-ng-bind="plan.registryLimits.imageStorage | cucBytes"
-                ></li>
+                <li>
+                    <span
+                        data-translate="private_registry_upgrade_plan_available_storage"
+                    ></span>
+                    <span data-ng-bind="plan.capacity | cucBytes"></span>
+                </li>
                 <li
                     data-translate="private_registry_upgrade_plan_connections"
                     data-translate-values="{
                         total: plan.registryLimits.parallelRequest,
                         concurrency: (plan.registryLimits.parallelRequest / plan.concurrency),
-                        connectionsNumber: plan.connectionsNumber
+                        connectionsNumber: plan.concurrency
                     }"
                 ></li>
                 <li
