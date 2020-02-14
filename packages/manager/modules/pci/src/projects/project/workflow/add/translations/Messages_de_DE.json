@@ -16,7 +16,7 @@
   "pci_workflow_add_error": "Beim Erstellen des Workflow-Schedules ist ein Fehler aufgetreten: {{ message }}",
   "pci_workflow_create_general-info_title": "Geben Sie einen Namen für Ihren Schedule ein",
   "pci_workflow_create_workflow_name": "Schedule-Name",
-  "pci_workflow_create_price_title": "Jedes Backup kostet etwa",
+  "pci_workflow_create_price_title": "Jede Sicherung wird in Rechnung gestellt",
   "pci_workflow_create_price": "{{ price }} / Monat (zzgl. MwSt.)",
   "pci_workflow_create_cron_title": "UNIX-Cron-Format",
   "pci_workflow_create_cron_timezone": "Zeitzone UTC",
@@ -73,5 +73,7 @@
   "pci_projects_project_workflow_instance_status_RESCUING": "Neustart (Rescue)",
   "pci_projects_project_workflow_instance_status_UNRESCUING": "Neustart",
   "pci_projects_project_workflow_instance_status_SNAPSHOTTING": "Instance Backup wird erstellt",
-  "pci_projects_project_workflow_instance_status_RESUMING": "Wird fortgesetzt"
+  "pci_projects_project_workflow_instance_status_RESUMING": "Wird fortgesetzt",
+  "pci_workflow_create_price_monthly": "{{ price }} ohne MWSt./Monat/GB",
+  "pci_workflow_create_monthly_backup_price": "Jede Sicherung wird in Rechnung gestellt: {{ price }} ohne MWSt./Monat/GB"
 }
