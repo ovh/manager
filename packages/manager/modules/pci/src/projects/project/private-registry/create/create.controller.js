@@ -19,10 +19,11 @@ export default class {
             registryName: this.registry.name,
           }),
           link: {
+            type: 'state',
             text: this.$translate.instant(
               'private_registry_onboarding_success_link',
             ),
-            value: this.getCredentialsLink(res.id),
+            state: this.getCredentialsLink(res.id),
           },
         }),
       )

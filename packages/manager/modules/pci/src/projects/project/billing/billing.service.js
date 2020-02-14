@@ -238,6 +238,38 @@ export default class CloudProjectBillingService {
     );
   }
 
+  initPrivateRegistry() {
+    // take only registry type
+    const privateRegistryResources = flatten(
+      map(
+        filter(this.data.hourlyBilling.resourcesUsage, {
+          type: 'registry',
+        }),
+        'resources',
+      ),
+    );
+
+    this.data.privateRegistry = flatten(
+      map(privateRegistryResources, (privateRegistryResource) => {
+        return map(privateRegistryResource.components, (resourceComponent) => {
+          const component = resourceComponent;
+          component.region = privateRegistryResource.region;
+          return component;
+        });
+      }),
+    );
+
+    this.data.totals.hourly.privateRegistry = this.data.privateRegistry.reduce(
+      (total, component) => total + component.totalPrice,
+      0,
+    );
+
+    this.data.totals.hourly.privateRegistry = this.constructor.roundNumber(
+      this.data.totals.hourly.privateRegistry || 0,
+      2,
+    );
+  }
+
   getConsumptionDetails(hourlyBillingInfo, monthlyBillingInfo) {
     return this.getDataInitialized().then(() => {
       this.data.hourlyBilling = hourlyBillingInfo;
@@ -252,6 +284,7 @@ export default class CloudProjectBillingService {
           this.initSnapshotList(),
           this.initVolumeList(),
           this.initInstanceBandwidth(),
+          this.initPrivateRegistry(),
         ])
         .then(() => {
           this.data.totals.monthly.total = this.constructor.roundNumber(
@@ -264,7 +297,8 @@ export default class CloudProjectBillingService {
               this.data.totals.hourly.objectStorage +
               this.data.totals.hourly.archiveStorage +
               this.data.totals.hourly.volume +
-              this.data.totals.hourly.bandwidth,
+              this.data.totals.hourly.bandwidth +
+              this.data.totals.hourly.privateRegistry,
             2,
           );
           this.data.totals.total = this.constructor.roundNumber(
