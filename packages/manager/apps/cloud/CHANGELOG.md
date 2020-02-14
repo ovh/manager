@@ -1,3 +1,12 @@
+## [8.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@8.3.0...@ovh-ux/manager-cloud@8.3.1) (2020-02-14)
+
+
+### Bug Fixes
+
+* **dbaas.logs.detail.inputs.console:** set right component name ([#2257](https://github.com/ovh/manager/issues/2257)) ([a2abc9a](https://github.com/ovh/manager/commit/a2abc9a11bd110d2ef8fd840bd87c73cb73ae10d))
+
+
+
 # [8.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@8.2.2...@ovh-ux/manager-cloud@8.3.0) (2020-02-10)
 
 
