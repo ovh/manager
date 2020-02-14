@@ -1,0 +1,6 @@
+{
+  "exchange_account_mfa_create_title": "Aktivierung der Zwei-Faktor-Authentifizierung für alle Accounts",
+  "exchange_account_mfa_create_description": "Möchten Sie die Zwei-Faktor-Authentifizierung für alle Accounts aktivieren?",
+  "exchange_account_mfa_create_success": "Die Zwei-Faktor-Authentifizierung wurde für alle Accounts aktiviert.",
+  "exchange_account_mfa_create_error": "Bei der Aktivierung der Zwei-Faktor-Authentifizierung für alle Accounts ist ein Fehler aufgetreten: {{errorMessage}}"
+}

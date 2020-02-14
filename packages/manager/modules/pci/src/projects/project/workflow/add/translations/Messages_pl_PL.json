@@ -16,7 +16,7 @@
   "pci_workflow_add_error": "Wystąpił błąd podczas tworzenia harmonogramu workflowu: {{message}}.",
   "pci_workflow_create_general-info_title": "Nadaj nazwę harmonogramowi",
   "pci_workflow_create_workflow_name": "Nazwa harmonogramu",
-  "pci_workflow_create_price_title": "Każda kopia zapasowa będzie płatna w przybliżeniu",
+  "pci_workflow_create_price_title": "Każda kopia zapasowa będzie płatna w",
   "pci_workflow_create_price": "{{ price }} netto/m-c",
   "pci_workflow_create_cron_title": "Format UNIX cron",
   "pci_workflow_create_cron_timezone": "Strefa czasowa: UTC",
@@ -73,5 +73,7 @@
   "pci_projects_project_workflow_instance_status_RESCUING": "Restart (tryb Rescue)",
   "pci_projects_project_workflow_instance_status_UNRESCUING": "Restart",
   "pci_projects_project_workflow_instance_status_SNAPSHOTTING": "Tworzenie kopii instancji",
-  "pci_projects_project_workflow_instance_status_RESUMING": "Trwa wznawianie"
+  "pci_projects_project_workflow_instance_status_RESUMING": "Trwa wznawianie",
+  "pci_workflow_create_price_monthly": "{{ price }} netto/m-c/GB",
+  "pci_workflow_create_monthly_backup_price": "Każda kopia zapasowa będzie płatna w: {{ price }} netto/m-c/GB"
 }
