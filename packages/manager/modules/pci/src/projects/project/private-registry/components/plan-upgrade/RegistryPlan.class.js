@@ -23,6 +23,10 @@ export default class RegistyPlan {
     return get(this, 'blobs.technical.connection.clients.number', 0);
   }
 
+  get cores() {
+    return this.name === 'S';
+  }
+
   hasUnlimitedBandwidth() {
     return get(this, 'blobs.technical.bandwidth.unlimited');
   }

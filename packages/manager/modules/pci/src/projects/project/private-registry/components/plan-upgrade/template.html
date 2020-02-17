@@ -31,11 +31,11 @@
                 ></li>
                 <li
                     data-translate="private_registry_upgrade_core_registry_99"
-                    data-ng-if="plan.name === $ctrl.PLAN_CONSTANT.SMALL"
+                    data-ng-if="plan.cores"
                 ></li>
                 <li
                     data-translate="private_registry_upgrade_core_registry_95"
-                    data-ng-if="plan.name !== $ctrl.PLAN_CONSTANT.SMALL"
+                    data-ng-if="!plan.cores"
                 ></li>
                 <li
                     data-translate="private_registry_upgrade_other_components"
