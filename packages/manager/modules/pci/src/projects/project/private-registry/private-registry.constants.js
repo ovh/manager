@@ -8,6 +8,7 @@ export const PRIVATE_REGISTRY_STATUS_MAP = {
   RESTORING: 'warning',
   SUSPENDING: 'warning',
   DELETING: 'warning',
+  SCALING_UP: 'info',
 };
 
 export const PRIVATE_REGISTRY_STATUS = {
@@ -20,6 +21,7 @@ export const PRIVATE_REGISTRY_STATUS = {
   RESTORING: 'RESTORING',
   SUSPENDING: 'SUSPENDING',
   DELETING: 'DELETING',
+  SCALING_UP: 'SCALING_UP',
 };
 
 export const GUIDES = [
@@ -36,7 +38,6 @@ export const GUIDES = [
     link: 'https://docs.ovh.com/',
   },
 ];
-export const REGION = 'GRA7';
 export const GUIDE_LINKS = [
   {
     key: 'CREATING_AND_USING_A_PRIVATE_IMAGE',
@@ -53,7 +54,6 @@ export const GUIDE_LINKS = [
     url: 'https://docs.ovh.com/gb/en/private-registry/using-helm-chart-museum/',
   },
 ];
-
 export const DELETE_CONFIRMATION_INPUT = /^DELETE$/;
 
 export default {
@@ -62,5 +62,4 @@ export default {
   GUIDES,
   GUIDE_LINKS,
   DELETE_CONFIRMATION_INPUT,
-  REGION,
 };

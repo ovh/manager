@@ -15,6 +15,11 @@ export default /* @ngInject */ ($stateProvider) => {
             : 'pci.projects.project.private-registry.onboarding',
         ),
     resolve: {
+      upgradePlan: /* @ngInject */ ($state, projectId) => (registryId) =>
+        $state.go('pci.projects.project.private-registry.upgrade-plan', {
+          projectId,
+          registryId,
+        }),
       createLink: /* @ngInject */ ($state, projectId) =>
         $state.href('pci.projects.project.private-registry.create', {
           projectId,
@@ -111,6 +116,12 @@ export default /* @ngInject */ ($stateProvider) => {
           .then((registries) =>
             map(registries, (registry) => new PrivateRegistry(registry)),
           ),
+
+      getAvailableUpgrades: /* @ngInject */ (
+        pciPrivateRegistryService,
+        projectId,
+      ) => (registry) =>
+        pciPrivateRegistryService.getAvailableUpgrades(projectId, registry.id),
 
       getRegistryPlan: /* @ngInject */ (
         pciPrivateRegistryService,
