@@ -1,12 +1,24 @@
 import angular from 'angular';
-import component from './create.component';
-import routing from './create.routing';
+import '@ovh-ux/manager-core';
+import '@uirouter/angularjs';
+import 'oclazyload';
 
-const moduleName = 'pciProjectPrivateRegistryCreateComponent';
+const moduleName = 'ovhManagerPciProjectPrivateRegistryLazyloading';
 
 angular
-  .module(moduleName, [])
-  .config(routing)
-  .component('pciProjectPrivateRegistryCreate', component);
+  .module(moduleName, ['ui.router', 'oc.lazyLoad', 'ovhManagerCore'])
+  .config(
+    /* @ngInject */ ($stateProvider) => {
+      $stateProvider.state('pci.projects.project.private-registry.create.**', {
+        url: '/create',
+        lazyLoad: ($transition$) => {
+          const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+          return import('./create.module').then((mod) =>
+            $ocLazyLoad.inject(mod.default || mod),
+          );
+        },
+      });
+    },
+  );
 
 export default moduleName;

@@ -3,7 +3,7 @@
   "private_registry_common_confirm": "Confirmer",
   "private_registry_common_close": "Fermer",
   "private_registry_common_delete": "Supprimer",
-  "private_registry_title": "Registre privé géré",
+  "private_registry_title": "Managed Private Registry",
   "private_registry_create_registry": "Créer un registre privé",
   "private_registry_name": "Nom du Registre",
   "private_registry_plan": "Plan",
@@ -49,7 +49,8 @@
   "private_registry_update_name_label": "Choisir un nom pour le Registre privé",
   "private_registry_update_success": "Le nom de Registre privé a été renommé en {{ newRegistryName }}",
   "private_registry_update_error": "Une erreur s'est produite lors du changement de nom du Registre privé {{ registryName }}: {{ message }}",
-  "private_registry_onboarding_success": "Votre registre privé {{ registryName }} a été créé. Vous serez en mesure de générer des informations d'identification pour accéder à votre registre une fois celui-ci disponible.",
+  "private_registry_onboarding_success": "Votre service de registry privé {{ registryName }} a été créé.",
+  "private_registry_onboarding_success_link": "Générez un premier jeu d'identifiants pour y accéder.",
   "private_registry_onboarding_error": "Échec de la création du Registre privé: {{ message }}",
   "private_registry_harbor_api_title": "API du Registre privé",
   "private_registry_harbor_api_url": "URL API de votre Registre privé",
@@ -65,6 +66,5 @@
   "private_registry_onboarding_generate": "Générer des informations d'identification",
   "private_registry_beta_warning": "Ce produit est actuellement en version bêta, vous devez accepter les termes de la version bêta pour continuer.",
   "private_registry_accept": "J'accepte",
-  "private_registry_accept_beta_terms": "les termes de la bêta",
-  "private_registry_new_project_contracts": "J’ai lu et j’accepte les contrats : {{ contractsLinks }}."
+  "private_registry_accept_beta_terms": "les termes de la bêta"
 }

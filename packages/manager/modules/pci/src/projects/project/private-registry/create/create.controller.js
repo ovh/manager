@@ -1,31 +1,31 @@
 import get from 'lodash/get';
-import map from 'lodash/map';
-import template from 'lodash/template';
-import { REGION } from '../private-registry.constants';
 
 export default class {
   /* @ngInject */
   constructor($translate, pciPrivateRegistryService) {
     this.$translate = $translate;
     this.privateRegistryService = pciPrivateRegistryService;
-    this.isLoading = false;
-    this.REGION = REGION;
+    this.loading = false;
     this.registry = {};
   }
 
   create() {
-    this.isLoading = true;
-    this.registry.region = this.REGION;
+    this.loading = true;
     return this.privateRegistryService
       .create(this.projectId, this.registry)
       .then((res) =>
-        this.goBack(
-          this.$translate.instant('private_registry_onboarding_success', {
+        this.goBack({
+          text: this.$translate.instant('private_registry_onboarding_success', {
             registryName: this.registry.name,
           }),
-          'success',
-          res.id,
-        ),
+          link: {
+            type: 'state',
+            text: this.$translate.instant(
+              'private_registry_onboarding_success_link',
+            ),
+            state: this.getCredentialsLink(res.id),
+          },
+        }),
       )
       .catch((error) =>
         this.goBack(
@@ -37,14 +37,12 @@ export default class {
       );
   }
 
-  getCompiledLinks(linkTemplate) {
-    return map(this.registryContracts, (contract) => {
-      const compile = template(linkTemplate);
-      return compile(contract);
-    }).join(', ');
+  getAvailablePlans() {
+    this.registry.region = this.registry.region.name;
+    this.availablePlans = this.plans(this.registry.region);
   }
 
-  back() {
-    this.goBack(null, null);
+  changeMethod(value) {
+    this.registry.planID = value.id;
   }
 }

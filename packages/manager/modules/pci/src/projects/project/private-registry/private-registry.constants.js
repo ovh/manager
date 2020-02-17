@@ -38,7 +38,6 @@ export const GUIDES = [
     link: 'https://docs.ovh.com/',
   },
 ];
-export const REGION = 'GRA7';
 export const GUIDELINK = 'https://docs.ovh.com/';
 export const DELETE_CONFIRMATION_INPUT = /^DELETE$/;
 
@@ -48,5 +47,4 @@ export default {
   GUIDES,
   GUIDELINK,
   DELETE_CONFIRMATION_INPUT,
-  REGION,
 };
