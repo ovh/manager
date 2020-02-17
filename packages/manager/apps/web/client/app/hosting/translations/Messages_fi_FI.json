@@ -221,7 +221,7 @@
   "hosting_dashboard_cdn_flush_error": "An error has occurred processing your request to clear the CDN cache.",
   "hosting_dashboard_service_flush_cdn_doing": "Clearing...",
   "hosting_dashboard_service_terminate_cdn_question": "Are you sure that you want to cancel your CDN service? ",
-  "hosting_dashboard_service_terminate_cdn_title": "CDN service cancellation ",
+  "hosting_dashboard_service_terminate_cdn_title": "CDN service cancellation",
   "hosting_dashboard_service_terminate_cdn_success": "Your CDN cancellation request has been processed. An email containing the closure procedure will be sent to you.",
   "hosting_dashboard_service_terminate_cdn_error": "An error has occurred cancelling the CDN.",
   "hosting_dashboard_service_ssl_impossible": "You cannot order an SSL certificate if the CDN is enabled. ",
@@ -1392,5 +1392,12 @@
   "hosting_dashboard_service_email_address": "Email addresses",
   "hosting_dashboard_service_common_active": "Enabled",
   "hosting_dashboard_service_common_inactive": "Disabled",
-  "hosting_dashboard_email_offer_get_error": "Unable to retrieve email address"
+  "hosting_dashboard_email_offer_get_error": "Unable to retrieve email address",
+  "hosting_dashboard_service_terminate_email": "Cancel the email option",
+  "hosting_dashboard_service_terminate_email_title": "Email option cancellation",
+  "hosting_dashboard_service_terminate_email_question": "Are you sure you want to cancel the email option?",
+  "hosting_dashboard_service_terminate_email_question_domain": "Are you sure you want to cancel the email option linked to the <strong>{{ domain }}</strong> domain?",
+  "hosting_dashboard_service_terminate_email_success": "Your email option cancellation request has been submitted. You will be sent an email detailing the closure procedure.",
+  "hosting_dashboard_service_terminate_email_error": "An error has occurred cancelling the email option.",
+  "hosting_dashboard_service_terminate_email_options_error": "An error has occurred retrieving the email options."
 }

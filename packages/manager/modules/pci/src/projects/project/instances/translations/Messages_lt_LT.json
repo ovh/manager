@@ -52,5 +52,6 @@
   "pci_projects_project_instances_error_query": "An error has occurred retrieving the volumes.",
   "pci_projects_project_instances_vrack_none": "You have not yet configured the vRack.",
   "pci_projects_project_instances_vrack_create": "Create a vRack ",
-  "pci_projects_project_instances_autobackup_label": "Create an automatic backup"
+  "pci_projects_project_instances_autobackup_label": "Create an automatic backup",
+  "pci_projects_project_instances_refresh": "Update instances"
 }
