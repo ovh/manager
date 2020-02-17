@@ -12,8 +12,50 @@ export default /* @ngInject */ ($stateProvider) => {
       tab: null,
     },
     resolve: {
+      emailOptionIds: /* @ngInject */ (hostingEmailService, serviceName) =>
+        hostingEmailService.getEmailOptionList(serviceName),
+      emailOptionDetachInformation: /* @ngInject */ (
+        $q,
+        emailOptionServiceInfos,
+        ovhManagerProductOffersDetachService,
+      ) =>
+        $q.all(
+          emailOptionServiceInfos.map(({ serviceId }) =>
+            ovhManagerProductOffersDetachService
+              .getAvailableDetachPlancodes(serviceId)
+              .then((plancodes) => ({
+                serviceId,
+                detachPlancodes: plancodes,
+              })),
+          ),
+        ),
+      emailOptionServiceInfos: /* @ngInject */ (
+        $q,
+        emailOptionIds,
+        hostingEmailService,
+        OvhApiEmailDomain,
+        serviceName,
+      ) =>
+        $q
+          .all(
+            emailOptionIds.map((emailOptionId) =>
+              hostingEmailService
+                .getEmailOptionServiceInformation(serviceName, emailOptionId)
+                .then(
+                  ({ resource }) =>
+                    OvhApiEmailDomain.v6().serviceInfos({
+                      serviceName: resource.name,
+                    }).$promise,
+                ),
+            ),
+          )
+          .then((servicesInformation) => servicesInformation.flatten()),
+      pendingTasks: /* @ngInject */ (HostingTask, serviceName) =>
+        HostingTask.getPending(serviceName).catch(() => []),
       serviceName: /* @ngInject */ ($transition$) =>
         $transition$.params().productId,
+      goToDetachEmail: /* @ngInject */ ($state) => () =>
+        $state.go('app.hosting.detachEmail'),
       goToHosting: /* @ngInject */ ($state, $timeout, Alerter) => (
         message = false,
         type = 'success',

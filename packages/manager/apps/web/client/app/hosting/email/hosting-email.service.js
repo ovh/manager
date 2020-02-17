@@ -19,8 +19,24 @@ export default class HostingEmailService {
     this.OvhApiOrderCart = OvhApiOrder.Cart().v6();
   }
 
-  getEmailOfferDetails(serviceName) {
-    return this.OvhApiHostingWebEmailOption.query({ serviceName }).$promise;
+  getEmailOptionList(serviceName) {
+    return this.OvhApiHostingWebEmailOption.query({
+      serviceName,
+    }).$promise.catch((error) => {
+      // 460 occurs when hosting is expired
+      if (error.status === 460) {
+        return [];
+      }
+
+      return error;
+    });
+  }
+
+  getEmailOptionServiceInformation(serviceName, emailOptionId) {
+    return this.OvhApiHostingWebEmailOption.serviceInfo({
+      id: emailOptionId,
+      serviceName,
+    }).$promise;
   }
 
   createCart(ovhSubsidiary) {

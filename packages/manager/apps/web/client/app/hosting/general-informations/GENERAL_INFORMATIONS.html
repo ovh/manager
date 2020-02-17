@@ -6,6 +6,7 @@
 
     <div data-ng-if="hosting">
         <div data-ovh-alert="{{alerts.main}}"></div>
+
         <oui-message
             data-type="info"
             data-ng-if="hosting.offer === 'KIMSUFI_2015'"
@@ -372,24 +373,24 @@
                     >
                         <oui-tile-description>
                             <span
-                                data-ng-if="!$ctrl.isRetrievingEmailOffer"
-                                data-ng-bind="$ctrl.doesEmailOfferExists()  ? ('hosting_dashboard_service_common_active' | translate) : ('hosting_dashboard_service_common_inactive' | translate)"
+                                data-ng-bind=":: $ctrl.doesEmailOfferExists() ? ('hosting_dashboard_service_common_active' | translate) : ('hosting_dashboard_service_common_inactive' | translate)"
                             ></span>
-                            <oui-spinner
-                                data-ng-if="$ctrl.isRetrievingEmailOffer"
-                            ></oui-spinner>
                         </oui-tile-description>
-                        <oui-action-menu
-                            data-compact
-                            data-align="end"
-                            data-ng-if="!$ctrl.isRetrievingEmailOffer"
-                        >
+                        <oui-action-menu data-compact data-align="end">
                             <oui-action-menu-item
-                                data-ng-if="!$ctrl.doesEmailOfferExists()"
                                 data-on-click="$ctrl.activateEmailOffer()"
+                                data-ng-if="!$ctrl.doesEmailOfferExists()"
                             >
                                 <span
                                     data-translate="hosting_dashboard_service_activate_email"
+                                ></span>
+                            </oui-action-menu-item>
+                            <oui-action-menu-item
+                                data-ng-if="$ctrl.isDetachEmailOptionAvailable"
+                                data-on-click="$ctrl.goToDetachEmail()"
+                            >
+                                <span
+                                    data-translate="hosting_dashboard_service_detach_email_option"
                                 ></span>
                             </oui-action-menu-item>
                             <oui-action-menu-item

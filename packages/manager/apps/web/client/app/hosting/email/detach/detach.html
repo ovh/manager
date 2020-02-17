@@ -1,0 +1,27 @@
+<div data-ovh-alert="detach"></div>
+
+<oui-back-button on-click="$ctrl.goBack()">
+    <span data-translate="hosting_email_detach_option_title"></span>
+</oui-back-button>
+
+<p>
+    <span
+        data-translate="hosting_email_detach_option_description"
+        data-translate-values="{
+          'emailOption': '<strong>' + $ctrl.emailOptionName + '</strong>',
+          'hosting': '<strong>' + $ctrl.serviceName + '</strong>',
+        }"
+    ></span>
+    <strong
+        data-translate="hosting_email_detach_option_warning_irreversible"
+    ></strong>
+</p>
+
+<ovh-manager-product-offers
+    pricing-type="$ctrl.pricingType"
+    user="$ctrl.user"
+    on-error="$ctrl.onError(error)"
+    on-success="$ctrl.onSuccess(detachResult)"
+    workflow-type="$ctrl.workflow.type"
+    workflow-options="$ctrl.workflow.options"
+></ovh-manager-product-offers>
