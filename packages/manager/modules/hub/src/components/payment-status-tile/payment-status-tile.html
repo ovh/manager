@@ -1,0 +1,108 @@
+<ovh-manager-hub-tile
+    data-badge-text="{{ $ctrl.data.badgeText }}"
+    data-button-text="{{ ::'ovh_manager_hub_payment_status_tile_see_all' | translate }}"
+    data-heading="{{ ::'ovh_manager_hub_payment_status_tile_title' | translate }}"
+    data-href="{{ ::$ctrl.data.autorenewLink }}"
+    data-on-click="$ctrl.atInternet.trackClick({
+        name: ($ctrl.trackingPrefix + '::show-all'),
+        type: 'action',
+    })"
+>
+    <div class="oui-tile__loader" data-ng-if="$ctrl.data.loading">
+        <oui-spinner size="m"></oui-spinner>
+    </div>
+    <table class="oui-datagrid" data-ng-if="!$ctrl.data.loading">
+        <tbody>
+            <tr
+                class="oui-datagrid__row"
+                data-ng-repeat="record in $ctrl.data.records"
+            >
+                <td class="oui-datagrid__cell responsive-cell">
+                    <a
+                        class="oui-link service-name-link"
+                        data-ng-if="record.url"
+                        data-ng-href="{{:: record.url }}"
+                        data-ng-bind="::record.alternativeId"
+                        data-track-on="click"
+                        data-track-name="{{ ::$ctrl.trackingPrefix + '::go-to-service' }}"
+                    >
+                    </a>
+                    <span
+                        data-ng-if="!record.url"
+                        data-ng-bind="::record.alternativeId"
+                    ></span>
+                </td>
+                <td class="oui-datagrid__cell responsive-cell">
+                    <span class="service-status">
+                        <span
+                            class="oui-status oui-status_error"
+                            data-ng-if="record.hasDebt()"
+                            data-translate="ovh_manager_hub_payment_status_tile_status_pending_debt"
+                        >
+                        </span>
+                        <span data-ng-if="record.isOneShot()">-</span>
+                        <span
+                            class="oui-status"
+                            data-ng-class="{
+                                'oui-status_error': $ctrl.SERVICE_STATES.error.includes(record.getRenew()),
+                                'oui-status_warning': $ctrl.SERVICE_STATES.warning.includes(record.getRenew()),
+                                'oui-status_success': $ctrl.SERVICE_STATES.success.includes(record.getRenew()),
+                            }"
+                            data-ng-if="!record.hasDebt() && !record.isOneShot()"
+                            data-translate="{{:: 'ovh_manager_hub_payment_status_tile_status_' + record.getRenew() | translate }}"
+                        ></span>
+                        <span
+                            data-ng-if="record.hasDebt()"
+                            data-translate="ovh_manager_hub_payment_status_tile_now"
+                            data-translate-values="{
+                                date: (record.expiration | date: 'dd/MM/yy')
+                            }"
+                        ></span>
+                    </span>
+                    <span class="service-expiry">
+                        <span
+                            data-ng-if="record.isOneShot() && !record.isResiliated() && !record.hasPendingResiliation()"
+                            >-</span
+                        >
+                        <span
+                            data-ng-if="record.hasManualRenew() && !record.isResiliated() && !record.hasDebt()"
+                            data-translate="ovh_manager_hub_payment_status_tile_before"
+                            data-translate-values="{
+                                date: (record.expiration | date: 'dd/MM/yy')
+                            }"
+                        >
+                        </span>
+                        <span
+                            data-ng-if="record.isResiliated() || record.hasPendingResiliation()"
+                            data-translate="ovh_manager_hub_payment_status_tile_renew"
+                            data-translate-values="{
+                                date: (record.expiration | date: 'dd/MM/yy')
+                            }"
+                        >
+                        </span>
+                        <span
+                            data-ng-if="record.hasAutomaticRenewal() && !record.isOneShot() && !record.hasDebt() && !record.isResiliated() && !record.hasPendingResiliation()"
+                            data-ng-bind="record.expiration | date: 'MMMM yyyy'"
+                        >
+                        </span>
+                    </span>
+                </td>
+                <td class="oui-datagrid__cell">
+                    <oui-action-menu data-align="end" data-compact>
+                        <oui-action-menu-item
+                            data-href="{{ ::$ctrl.getManageServiceLink(record.alternativeId) }}"
+                            data-on-click="$ctrl.atInternet.trackClick({
+                                name: ($ctrl.trackingPrefix + '::action::go-to-manage-service'),
+                                type: 'action',
+                            })"
+                        >
+                            <span
+                                data-translate="ovh_manager_hub_payment_status_tile_manage_service"
+                            ></span>
+                        </oui-action-menu-item>
+                    </oui-action-menu>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</ovh-manager-hub-tile>
