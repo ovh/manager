@@ -66,5 +66,9 @@
   "private_registry_onboarding_generate": "Générer des informations d'identification",
   "private_registry_beta_warning": "Ce produit est actuellement en version bêta, vous devez accepter les termes de la version bêta pour continuer.",
   "private_registry_accept": "J'accepte",
-  "private_registry_accept_beta_terms": "les termes de la bêta"
+  "private_registry_accept_beta_terms": "les termes de la bêta",
+  "private_registry_new_project_contracts": "J’ai lu et j’accepte les contrats : {{ contractsLinks }}.",
+  "private_registry_guide_creating_and_using_a_private_image": "Création et utilisation d'images privées",
+  "private_registry_guide_using_private_registry_with_kubernetes": "Utilisation d'OVHcloud Managed Private Registry avec OVHcloud Managed Kubernetes",
+  "private_registry_guide_using_the_helm_chart_museum": "Utilisation du Helm chart museum"
 }
