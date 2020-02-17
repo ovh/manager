@@ -19,7 +19,11 @@
             data-messages="$ctrl.messages"
         ></cui-message-container>
 
-        <oui-datagrid class="mt-5" data-rows="$ctrl.registries">
+        <oui-datagrid
+            class="mt-5"
+            data-rows="$ctrl.registries"
+            data-row-loader="$ctrl.getRegistryPlan($row)"
+        >
             <oui-column
                 data-title=":: 'private_registry_name' | translate"
                 data-property="name"
@@ -28,6 +32,14 @@
                 data-sortable="asc"
                 data-filterable
             ></oui-column>
+            <oui-column
+                data-title=":: 'private_registry_plan' | translate"
+                data-property="plan.displayName"
+                data-searchable
+                data-sortable
+                data-type="string"
+            >
+            </oui-column>
             <oui-column
                 data-title=":: 'private_registry_harbor_version' | translate"
                 data-property="version"
@@ -49,6 +61,17 @@
                     data-ng-bind=":: ('private_registry_common_status_' + $row.status) | translate"
                 >
                 </span>
+            </oui-column>
+            <oui-column
+                data-title=":: 'private_registry_consumption' | translate"
+            >
+                <span
+                    data-translate="private_registry_consumption_display"
+                    data-translate-values="{
+                        used: ($row.size | cucBytes),
+                        limit: ($row.limit | cucBytes)
+                    }"
+                ></span>
             </oui-column>
             <oui-action-menu
                 data-align="end"
@@ -77,12 +100,12 @@
                     ></span>
                 </oui-action-menu-item>
                 <oui-action-menu-item
-                    data-on-click="$ctrl.update($row.id, $row.name)"
+                    data-on-click="$ctrl.updateRegistry($row.id, $row.name)"
                 >
                     <span data-translate="private_registry_rename"></span>
                 </oui-action-menu-item>
                 <oui-action-menu-item
-                    data-on-click="$ctrl.delete($row.id, $row.name)"
+                    data-on-click="$ctrl.deleteRegistry($row.id, $row.name)"
                     data-disabled="($row.status !== $ctrl.PRIVATE_REGISTRY_STATUS.READY && $row.status !== $ctrl.PRIVATE_REGISTRY_STATUS.ERROR)"
                 >
                     <span
@@ -91,7 +114,10 @@
                 </oui-action-menu-item>
             </oui-action-menu>
             <extra-top>
-                <oui-button data-on-click="$ctrl.create()">
+                <a
+                    class="oui-button oui-button_secondary oui-button_icon-left"
+                    data-ng-href="{{ $ctrl.createLink }}"
+                >
                     <span
                         class="oui-icon oui-icon-add"
                         aria-hidden="true"
@@ -99,8 +125,9 @@
                     <span
                         data-translate="private_registry_create_registry"
                     ></span>
-                </oui-button>
+                </a>
                 <button
+                    type="button"
                     class="float-right oui-button oui-button_secondary oui-button_icon-only oui-button_small-width"
                     data-title="{{:: 'private_registry_refresh' | translate }}"
                     data-ng-click="$ctrl.refreshRegistryList()"
