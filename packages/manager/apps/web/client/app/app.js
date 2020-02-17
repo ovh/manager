@@ -28,6 +28,7 @@ import ngUiRouterLineProgress from '@ovh-ux/ng-ui-router-line-progress';
 import ovhManagerBanner from '@ovh-ux/manager-banner';
 import ovhManagerCatalogPrice from '@ovh-ux/manager-catalog-price';
 import ovhManagerNavbar from '@ovh-ux/manager-navbar';
+import ovhManagerProductOffers from '@ovh-ux/manager-product-offers';
 import uiRouter, { RejectType } from '@uirouter/angularjs';
 import ovhManagerServerSidebar from '@ovh-ux/manager-server-sidebar';
 import ovhManagerMfaEnrollment from '@ovh-ux/mfa-enrollment';
@@ -103,6 +104,7 @@ angular
       ovhManagerBanner,
       ovhManagerCatalogPrice,
       ovhManagerNavbar,
+      ovhManagerProductOffers,
       'moment-picker',
       'oui',
       emailpro,
