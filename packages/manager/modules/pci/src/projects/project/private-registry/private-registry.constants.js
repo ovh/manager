@@ -8,6 +8,7 @@ export const PRIVATE_REGISTRY_STATUS_MAP = {
   RESTORING: 'warning',
   SUSPENDING: 'warning',
   DELETING: 'warning',
+  SCALING_UP: 'info',
 };
 
 export const PRIVATE_REGISTRY_STATUS = {
@@ -20,6 +21,7 @@ export const PRIVATE_REGISTRY_STATUS = {
   RESTORING: 'RESTORING',
   SUSPENDING: 'SUSPENDING',
   DELETING: 'DELETING',
+  SCALING_UP: 'SCALING_UP',
 };
 
 export const GUIDES = [
