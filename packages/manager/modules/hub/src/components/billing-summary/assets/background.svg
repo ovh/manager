@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="276" height="287" viewBox="0 0 276 287">
+    <defs>
+        <linearGradient id="prefix__b" x1="50%" x2="50%" y1="0%" y2="100%">
+            <stop offset="0%" stop-color="#2FB5F6"/>
+            <stop offset="100%" stop-color="#157EEA"/>
+        </linearGradient>
+        <rect id="prefix__a" width="276" height="287" x="0" y="0" rx="0"/>
+    </defs>
+    <g fill="none" fill-rule="evenodd">
+        <mask id="prefix__c" fill="#fff">
+            <use xlink:href="#prefix__a"/>
+        </mask>
+        <use fill="url(#prefix__b)" transform="matrix(1 0 0 -1 0 287)" xlink:href="#prefix__a"/>
+        <g opacity=".245" style="mix-blend-mode:screen" fill="#D8D8D8" mask="url(#prefix__c)">
+            <g>
+                <path d="M0 196.704L170 97 170 294z" opacity=".68" transform="translate(-58 -60)"/>
+                <path d="M170 193.08L253 145 253 240z" opacity=".188" transform="translate(-58 -60)"/>
+                <path d="M212 122.329L250 99 250 143z" opacity=".389" transform="translate(-58 -60)"/>
+                <path d="M250 146.08L333 98 333 193z" opacity=".413" transform="translate(-58 -60)"/>
+                <path d="M332 146.08L415 98 415 193z" opacity=".151" transform="translate(-58 -60) matrix(-1 0 0 1 747 0)"/>
+                <path d="M332 192.561L415 146 415 239z" opacity=".339" transform="translate(-58 -60)"/>
+                <path d="M250 239.08L333 191 333 286z" opacity=".77" transform="translate(-58 -60)"/>
+                <path d="M170 146.08L253 98 253 193z" opacity=".392" transform="translate(-58 -60) matrix(-1 0 0 1 423 0)"/>
+                <path d="M0 291.651L170 194 170 390z" opacity=".369" transform="translate(-58 -60) matrix(-1 0 0 1 170 0)"/>
+                <path d="M0 97.651L170 0 170 196z" opacity=".475" transform="translate(-58 -60) matrix(-1 0 0 1 170 0)"/>
+            </g>
+        </g>
+    </g>
+</svg>
