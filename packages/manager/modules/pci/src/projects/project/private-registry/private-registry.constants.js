@@ -48,6 +48,10 @@ export const GUIDE_LINKS = [
     url:
       'https://docs.ovh.com/gb/en/private-registry/using-private-registry-with-kubernetes/',
   },
+  {
+    key: 'USING_THE_HELM_CHART_MUSEUM',
+    url: 'https://docs.ovh.com/gb/en/private-registry/using-helm-chart-museum/',
+  },
 ];
 
 export const DELETE_CONFIRMATION_INPUT = /^DELETE$/;
