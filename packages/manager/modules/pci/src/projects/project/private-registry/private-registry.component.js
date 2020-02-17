@@ -5,6 +5,7 @@ export default {
   template,
   controller,
   bindings: {
+    getRegistryDetails: '<',
     copyApiUrl: '<',
     createLink: '<',
     deleteRegistry: '<',
@@ -15,5 +16,6 @@ export default {
     refreshRegistryList: '<',
     registries: '<',
     updateRegistry: '<',
+    upgradePlan: '<',
   },
 };
