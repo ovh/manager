@@ -34,7 +34,9 @@
             type="string"
             searchable
             filterable
-        ></oui-column>
+        >
+            <oui-clipboard data-model="$row.value"></oui-clipboard>
+        </oui-column>
         <oui-column
             title="::'logs_tokens_col_platform' | translate"
             property="cluster.hostname"
