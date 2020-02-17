@@ -11,8 +11,12 @@
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
   "main": "./src/index.js",
+  "devDependencies": {
+    "lodash": "^4.17.15"
+  },
   "peerDependencies": {
     "@ovh-ux/manager-core": "^7.5.0",
+    "@ovh-ux/ng-translate-async-loader": "^2.0.2",
     "@uirouter/angularjs": "^1.0.23",
     "angular": "^1.7.5",
     "angular-translate": "^2.18.1",

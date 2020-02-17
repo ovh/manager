@@ -1,0 +1,82 @@
+.manager-hub-billing-summary {
+  $bg-color: #4495ee;
+  $bg-image: url("./assets/background.svg");
+  $text-color: white;
+  $btn-color: #3046d1;
+
+  background-color: $bg-color;
+  background-image: $bg-image;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: $text-color;
+  text-align: center;
+  border-radius: 0.5rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+
+  > h3 {
+    font-size: 1.25rem;
+    font-weight: bold;
+  }
+
+  &_billing-link {
+    background-color: $btn-color;
+    display: inline-block;
+    color: $text-color;
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.25rem 0.5rem 0.25rem 0.5rem;
+    margin-top: 1.5rem;
+    font-weight: 600;
+
+    .oui-icon {
+      color: $text-color;
+      line-height: 1rem;
+      vertical-align: middle;
+    }
+  }
+
+  p {
+    font-weight: bold;
+
+    .oui-icon {
+      color: white;
+      font-weight: bold;
+    }
+  }
+
+  .oui-ui-select {
+    width: 15rem;
+    margin: auto;
+
+    button {
+      background-color: transparent;
+      border-color: $text-color;
+      border-width: 2px;
+      color: $text-color;
+    }
+
+    .ui-select-dropdown {
+      background-color: $bg-color;
+      border-color: $text-color;
+      border-width: 2px;
+      box-shadow: none;
+    }
+
+    .oui-icon::before {
+      color: $text-color;
+    }
+  }
+
+  .ui-select-match:hover {
+    background-color: transparent;
+    border-color: $text-color;
+  }
+
+  &_bill-total {
+    font-weight: 300;
+    font-size: 3.5rem;
+    white-space: nowrap;
+    display: block;
+  }
+}
