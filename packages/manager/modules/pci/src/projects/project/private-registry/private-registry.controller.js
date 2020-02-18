@@ -1,14 +1,14 @@
 import {
   PRIVATE_REGISTRY_STATUS,
   PRIVATE_REGISTRY_STATUS_MAP,
-  GUIDELINK,
+  GUIDE_LINKS,
 } from './private-registry.constants';
 
 export default class {
   /* @ngInject */
   constructor(CucCloudMessage) {
     this.CucCloudMessage = CucCloudMessage;
-    this.guideLink = GUIDELINK;
+    this.GUIDE_LINKS = GUIDE_LINKS;
     this.PRIVATE_REGISTRY_STATUS = PRIVATE_REGISTRY_STATUS;
     this.PRIVATE_REGISTRY_STATUS_MAP = PRIVATE_REGISTRY_STATUS_MAP;
   }
