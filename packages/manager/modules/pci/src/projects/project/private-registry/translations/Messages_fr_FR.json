@@ -32,7 +32,7 @@
   "private_registry_common_status_TO_SUSPENDING": "Suspension",
   "private_registry_common_status_DELETING": "En cours de suppression",
   "private_registry_common_status_DONE": "Terminé",
-  "private_registry_common_status_SCALING_UP": "Changement de plan en cours",
+  "private_registry_common_status_SCALING_UP": "Changement de plan",
   "private_registry_guide_main": "Guides",
   "private_registry_header_guides": "Guide de registre privé",
   "private_registry_generate_credentials": "Générer de nouvelles informations d'identification",

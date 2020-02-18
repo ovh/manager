@@ -16,7 +16,8 @@
         class="mt-4"
         data-on-submit="$ctrl.upgradeOffer()"
         data-href="{{ $ctrl.cancelLink }}"
-        data-submit-text="{{ 'private_registry_upgrade_plan' | translate }}"
+        data-submit-text="{{:: 'private_registry_upgrade_plan' | translate }}"
+        data-cancel-text="{{:: 'private_registry_upgrade_plan_cancel' | translate }}"
     >
     </oui-form-actions>
 </form>

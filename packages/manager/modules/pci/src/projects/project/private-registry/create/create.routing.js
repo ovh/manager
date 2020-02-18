@@ -22,12 +22,9 @@ export default /* @ngInject */ ($stateProvider) => {
         return plans;
       },
 
-      getCredentialsLink: /* @ngInject */ ($state, projectId) => (registryId) =>
-        $state.href('pci.projects.project.private-registry.credentials', {
-          projectId,
-          registryId,
-          confirmationRequired: true,
-        }),
+      getCredentialsState: /* @ngInject */ (projectId) => (registryId) =>
+        `pci.projects.project.private-registry.credentials({projectId:
+          '${projectId}', registryId: '${registryId}', confirmationRequired: true})`,
 
       goBack: /* @ngInject */ (goBackToList) => goBackToList,
     },

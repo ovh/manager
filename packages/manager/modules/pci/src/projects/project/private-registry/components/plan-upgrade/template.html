@@ -2,7 +2,7 @@
 
 <oui-spinner data-ng-if="$ctrl.loading" data-size="s"></oui-spinner>
 
-<div class="row mb-4">
+<div class="row mb-3">
     <oui-select-picker
         class="col-md-4 mb-3"
         data-ng-repeat="plan in $ctrl.detailedPlans track by plan.id"
@@ -31,15 +31,15 @@
                 ></li>
                 <li
                     data-translate="private_registry_upgrade_core_registry_99"
-                    data-ng-if="plan.cores"
+                    data-ng-if="plan.isSmall()"
                 ></li>
                 <li
                     data-translate="private_registry_upgrade_core_registry_95"
-                    data-ng-if="!plan.cores"
+                    data-ng-if="!plan.isSmall()"
                 ></li>
                 <li
                     data-translate="private_registry_upgrade_other_components"
-                    data-ng-if="plan.name !== $ctrl.PLAN_CONSTANT.SMALL"
+                    data-ng-if="!plan.isSmall()"
                 ></li>
                 <li
                     data-ng-if="plan.features.vulnerability"
@@ -61,8 +61,10 @@
     </oui-select-picker>
 </div>
 <div class="container">
-    <span
-        class="italic"
-        data-translate="private_registry_upgrade_plan_warning"
-    ></span>
+    <div class="row justify-content-center align-items-center">
+        <span
+            class="italic"
+            data-translate="private_registry_upgrade_plan_warning"
+        ></span>
+    </div>
 </div>

@@ -2,8 +2,8 @@ import get from 'lodash/get';
 import set from 'lodash/set';
 
 export default class RegistyPlan {
-  constructor(resource) {
-    Object.assign(this, resource);
+  constructor(planDetails) {
+    Object.assign(this, planDetails);
     set(this, 'name', get(this, 'name[0]'));
   }
 
@@ -23,7 +23,7 @@ export default class RegistyPlan {
     return get(this, 'blobs.technical.connection.clients.number', 0);
   }
 
-  get cores() {
+  isSmall() {
     return this.name === 'S';
   }
 

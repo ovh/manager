@@ -23,7 +23,7 @@ export default class {
             text: this.$translate.instant(
               'private_registry_onboarding_success_link',
             ),
-            state: this.getCredentialsLink(res.id),
+            state: this.getCredentialsState(res.id),
           },
         }),
       )

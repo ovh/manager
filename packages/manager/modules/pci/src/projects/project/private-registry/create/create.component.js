@@ -6,7 +6,7 @@ const component = {
   controller,
   bindings: {
     availableRegions: '<',
-    getCredentialsLink: '<',
+    getCredentialsState: '<',
     goBack: '<',
     plans: '<',
     projectId: '<',

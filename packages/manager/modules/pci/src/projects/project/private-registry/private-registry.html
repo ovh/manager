@@ -76,7 +76,7 @@
                 data-ng-if="$row.status !== $ctrl.PRIVATE_REGISTRY_STATUS.DELETING"
             >
                 <oui-action-menu-item
-                    data-disabled="$row.plan.displayName === 'L'"
+                    data-disabled="$row.plan.displayName === 'L' || $row.status === $ctrl.PRIVATE_REGISTRY_STATUS.SCALING_UP"
                     data-on-click="$ctrl.upgradePlan($row.id)"
                 >
                     <span data-translate="private_registry_upgrade_plan"></span>
