@@ -2,6 +2,5 @@
   "private_registry_upgrade_plan": "Changer de plan",
   "private_registry_upgrade_plan_breadcrumb": "Changer de plan",
   "private_registry_upgrade_plan_success": "Votre plan a été modifié",
-  "private_registry_upgrade_plan_error": "Une erreur est survenue lors de la modification de votre plan : {{ message }}",
-  "private_registry_upgrade_plan_cancel": "Annuler"
+  "private_registry_upgrade_plan_error": "Une erreur est survenue lors de la modification de votre plan : {{ message }}"
 }
