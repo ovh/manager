@@ -74,9 +74,18 @@
                 class="oui-field__helper"
                 data-translate="pci_projects_new_voucher_form_field_amount"
                 data-translate-values="{ amount: $ctrl.model.voucher.credit.text }"
-                data-ng-if="$ctrl.model.voucher.value && $ctrl.model.voucher.valid"
+                data-ng-if="$ctrl.model.voucher.value
+                    && $ctrl.model.voucher.valid
+                    && $ctrl.deals
+                    && $ctrl.deals.voucher
+                    && !$ctrl.deals.voucher.total_credit"
             >
             </span>
+            <pci-project-offer
+                data-ng-if="$ctrl.isOnOffer()"
+                data-offer="$ctrl.deals"
+            >
+            </pci-project-offer>
             <span
                 class="oui-field__error"
                 data-ng-if="$ctrl.model.voucher.value && !$ctrl.model.voucher.valid && $ctrl.model.voucher.error"

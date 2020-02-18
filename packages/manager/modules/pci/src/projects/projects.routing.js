@@ -1,6 +1,7 @@
 import map from 'lodash/map';
 
 import Project from './Project.class';
+import Offer from '../components/project/offer/offer.class';
 
 import { GUIDES_URL } from '../components/project/guides-header/guides-header.constants';
 
@@ -22,8 +23,12 @@ export default /* @ngInject */ ($stateProvider) => {
       breadcrumb: /* @ngInject */ () => null,
       confirmDeletion: /* @ngInject */ ($state) => (project) =>
         $state.go('pci.projects.remove', { projectId: project.project_id }),
-      /* @ngInject */
-      defaultProject: (PciProjectsService) =>
+      deals: /* @ngInject */ ($q, OvhApiCloud) =>
+        OvhApiCloud.Aapi()
+          .getDeals()
+          .$promise.then((deals) => new Offer(deals))
+          .catch(() => $q.when({ active: false })),
+      defaultProject: /* @ngInject */ (PciProjectsService) =>
         PciProjectsService.getDefaultProject(),
       getProject: /* @ngInject */ (OvhApiCloudProject) => (project) =>
         OvhApiCloudProject.v6()
