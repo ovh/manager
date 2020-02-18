@@ -27,12 +27,28 @@
         data-on-change="$ctrl.selectBilling(modelValue)"
         data-disabled="$ctrl.disabled && $ctrl.monthly"
     >
+        <oui-select-picker-picture>
+            <pci-project-offer-badge
+                data-ng-if="$ctrl.offer"
+                data-title="{{:: $ctrl.offer.name.content }}"
+                data-color="{{:: $ctrl.offer.name.color }}"
+                data-background="{{:: $ctrl.offer.name.background }}"
+            ></pci-project-offer-badge>
+        </oui-select-picker-picture>
         <oui-select-picker-section data-ng-if="$ctrl.prices">
             <span
                 data-translate="pci_project_flavors_billing_price_hourly"
                 data-translate-values="{ price: $ctrl.formatPrice($ctrl.prices.hourly) }"
             >
             </span>
+            <strong
+                class="ml-2"
+                data-ng-if="$ctrl.offer"
+                data-ng-bind="$ctrl.offer.value"
+                data-ng-style="{
+                'color': $ctrl.offer.highlight.color
+            }"
+            ></strong>
         </oui-select-picker-section>
     </oui-select-picker>
 </div>

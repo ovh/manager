@@ -7,6 +7,7 @@ import 'ovh-api-services';
 import add from './add';
 import credit from './credit';
 
+import component from './vouchers.component';
 import routing from './vouchers.routing';
 import service from './service';
 
@@ -22,6 +23,7 @@ angular
     'ui.router',
   ])
   .config(routing)
+  .component('pciProjectVouchers', component)
   .service('CloudVouchersService', service)
   .run(/* @ngTranslationsInject:json ./translations */);
 
