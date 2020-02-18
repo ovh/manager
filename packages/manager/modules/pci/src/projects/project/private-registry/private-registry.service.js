@@ -2,6 +2,8 @@ import concat from 'lodash/concat';
 import map from 'lodash/map';
 import template from 'lodash/template';
 
+import { PRIVATE_REGISTRY_STATUS } from './private-registry.constants';
+
 export default class pciPrivateRegistryService {
   /* @ngInject */
   constructor($q, OvhApiCloud, OvhApiCloudProject, OvhApiMe) {
@@ -18,6 +20,7 @@ export default class pciPrivateRegistryService {
       .Plan()
       .v6();
     this.OvhApiAgreements = OvhApiMe.Agreements().v6();
+    this.PRIVATE_REGISTRY_STATUS = PRIVATE_REGISTRY_STATUS;
   }
 
   create(projectId, registry) {
@@ -132,5 +135,12 @@ export default class pciPrivateRegistryService {
       const compile = template(linkTemplate);
       return compile(contract);
     }).join(', ');
+  }
+
+  isDeploymentInProgress(registry) {
+    return (
+      registry.status === this.PRIVATE_REGISTRY_STATUS.SCALING_UP ||
+      registry.status === this.PRIVATE_REGISTRY_STATUS.INSTALLING
+    );
   }
 }
