@@ -53,6 +53,7 @@
   },
   "devDependencies": {
     "@ovh-ux/manager-webpack-config": "^3.3.0",
+    "glob": "^7.1.6",
     "lodash": "^4.17.15",
     "webpack-merge": "^4.2.2"
   }
