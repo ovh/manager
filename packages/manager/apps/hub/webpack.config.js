@@ -1,4 +1,5 @@
 const _ = require('lodash');
+const glob = require('glob');
 const path = require('path');
 const webpack = require('webpack'); // eslint-disable-line
 const merge = require('webpack-merge');
@@ -17,8 +18,16 @@ module.exports = (env = {}) => {
     REGION ? Object.assign(env, { region: REGION }) : env,
   );
 
+  // Extra config files
+  const extrasRegion = glob.sync(`./.extras-${REGION}/**/*.js`);
+  const extras = glob.sync('./.extras/**/*.js');
+
   return merge(config, {
-    entry: path.resolve('./src/index.js'),
+    entry: {
+      main: path.resolve('./src/index.js'),
+      ...(extras.length > 0 ? { extras } : {}),
+      ...(extrasRegion.length > 0 ? { extrasRegion } : {}),
+    },
     output: {
       path: path.join(__dirname, 'dist'),
       filename: '[name].[chunkhash].bundle.js',
@@ -37,6 +46,9 @@ module.exports = (env = {}) => {
           ? `'${process.env.NODE_ENV}'`
           : '"development"',
         __WEBPACK_REGION__: `'${REGION}'`,
+        __NG_APP_INJECTIONS__: process.env.NG_APP_INJECTIONS
+          ? `'${process.env.NG_APP_INJECTIONS}'`
+          : 'null',
       }),
     ],
   });
