@@ -1,3 +1,22 @@
+# [13.45.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.44.2...@ovh-ux/manager-web@13.45.0) (2020-02-19)
+
+
+### Bug Fixes
+
+* apply some en translations for pl subsidiary ([f1029d9](https://github.com/ovh/manager/commit/f1029d9f4e69fe02979dbdad2ad4a00f48bfe268))
+* **email.redirect:** display management link when quota exceeded ([#2248](https://github.com/ovh/manager/issues/2248)) ([10145d3](https://github.com/ovh/manager/commit/10145d302d0e8e0205cb769ad85e5c37af85e2b7))
+* **hosting:** fix private database activation ([#2239](https://github.com/ovh/manager/issues/2239)) ([861c86f](https://github.com/ovh/manager/commit/861c86fb3e45aec4bc038588829b96dffd7228f5))
+* **i18n:** add missing translations [CDS 268] ([aed8ad7](https://github.com/ovh/manager/commit/aed8ad7798453cbb7f131cc89aacb3be8b812355))
+* **i18n:** add missing translations [CDS 270] ([93040ec](https://github.com/ovh/manager/commit/93040ec095ab2a5037bf146a033bc598d61300d9))
+
+
+### Features
+
+* **hosting:** add email domain terminate redirection ([d016bbb](https://github.com/ovh/manager/commit/d016bbb60785423af6dbf97e8fcff8f2c5e1640a))
+* **hosting:** add email option terminate ([9fd1068](https://github.com/ovh/manager/commit/9fd106846d3bb21b0b3ee5599a98e86a08459e31))
+
+
+
 ## [13.44.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.44.1...@ovh-ux/manager-web@13.44.2) (2020-02-10)
 
 
