@@ -1404,5 +1404,12 @@
   "hosting_dashboard_service_email_address": "Adresy e-mail",
   "hosting_dashboard_service_common_active": "Aktywny",
   "hosting_dashboard_service_common_inactive": "Nieaktywny",
-  "hosting_dashboard_email_offer_get_error": "Nie można pobrać adresu e-mail"
+  "hosting_dashboard_email_offer_get_error": "Nie można pobrać adresu e-mail",
+  "hosting_dashboard_service_terminate_email": "Cancel the email option",
+  "hosting_dashboard_service_terminate_email_title": "Email option cancellation",
+  "hosting_dashboard_service_terminate_email_question": "Are you sure you want to cancel the email option?",
+  "hosting_dashboard_service_terminate_email_question_domain": "Are you sure you want to cancel the email option linked to the <strong>{{ domain }}</strong> domain?",
+  "hosting_dashboard_service_terminate_email_success": "Your email option cancellation request has been submitted. You will be sent an email detailing the closure procedure.",
+  "hosting_dashboard_service_terminate_email_error": "An error has occurred cancelling the email option.",
+  "hosting_dashboard_service_terminate_email_options_error": "An error has occurred retrieving the email options."
 }
