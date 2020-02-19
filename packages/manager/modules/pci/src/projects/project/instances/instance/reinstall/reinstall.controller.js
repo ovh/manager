@@ -10,6 +10,9 @@ export default class PciInstanceReinstallController {
 
   $onInit() {
     this.isLoading = false;
+    this.reinstallSuccessMessage =
+      this.reinstallSuccessMessage ||
+      'pci_projects_project_instances_instance_reinstall_success_message';
   }
 
   reinstallInstance() {
@@ -20,12 +23,9 @@ export default class PciInstanceReinstallController {
     )
       .then(() =>
         this.goBack(
-          this.$translate.instant(
-            'pci_projects_project_instances_instance_reinstall_success_message',
-            {
-              instance: this.instance.name,
-            },
-          ),
+          this.$translate.instant(this.reinstallSuccessMessage, {
+            instance: this.instance.name,
+          }),
         ),
       )
       .catch((err) =>

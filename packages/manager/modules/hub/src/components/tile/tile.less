@@ -1,0 +1,81 @@
+ovh-manager-hub-tile {
+  @import 'ovh-ui-kit/packages/oui-color/_variables';
+  @import 'ovh-ui-kit/packages/oui-responsive/_variables';
+
+  @text-color: rgb(40, 85, 196);
+
+  .ovh-manager-hub-tile {
+    padding: 1.5rem 0 0 0;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 8px 0 @oui-color-mischka;
+
+    &__header {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    &__button-container {
+      margin-top: 0.1rem;
+    }
+
+    .oui-tile__title {
+      color: @oui-color-sapphire;
+      font-weight: bold;
+      margin-left: 1rem;
+      margin-bottom: 0;
+    }
+
+    &__badge {
+      color: @text-color;
+      background-color: @oui-color-charlotte;
+      font-size: 0.9rem;
+      line-height: 1.6rem;
+      margin-left: 0.3rem;
+      overflow: unset;
+    }
+
+    .hub-button {
+      font-weight: bold;
+      text-decoration: none;
+      color: @text-color;
+      border-radius: 0.5rem;
+      padding: 0.3rem 0.8rem 0.4rem 0.8rem;
+      margin-right: 1rem;
+
+      &__right-arrow {
+        vertical-align: text-bottom;
+        color: @text-color;
+
+        &::before {
+          vertical-align: bottom;
+          width: 1.4rem;
+          height: 1.4rem;
+          font-size: 1.4rem;
+          line-height: 1.4rem;
+        }
+      }
+
+      &:hover {
+        background-color: @oui-color-charlotte;
+        box-shadow: 1px -1px 5px 1px @oui-color-mischka;
+      }
+
+      &:visited {
+        color: @text-color;
+      }
+
+      @media screen and (max-width: (@oui-responsive-breakpoint-phone - 1)) {
+        margin-right: 0;
+
+        &:hover {
+          background-color: transparent;
+          box-shadow: none;
+        }
+
+        &__text {
+          display: none;
+        }
+      }
+    }
+  }
+}

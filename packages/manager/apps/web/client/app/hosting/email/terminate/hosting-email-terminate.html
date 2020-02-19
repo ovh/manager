@@ -1,0 +1,31 @@
+<oui-modal
+    data-heading="{{:: 'hosting_dashboard_service_terminate_email_title' | translate }}"
+    data-loading="$ctrl.isLoading"
+    data-on-dismiss="$ctrl.goBack()"
+    data-primary-action="$ctrl.terminateEmail()"
+    data-primary-disabled="$ctrl.isTerminating || !$ctrl.emailOption"
+    data-primary-label="{{:: 'common_confirm' | translate }}"
+    data-secondary-action="$ctrl.goBack()"
+    data-secondary-disabled="$ctrl.isTerminating"
+    data-secondary-label="{{:: 'common_cancel' | translate }}"
+>
+    <p
+        data-ng-if="$ctrl.emailOptions.length !== 1"
+        data-translate="hosting_dashboard_service_terminate_email_question"
+    ></p>
+    <p
+        data-ng-if="$ctrl.emailOptions.length === 1"
+        data-translate="hosting_dashboard_service_terminate_email_question_domain"
+        data-translate-values="{
+           domain: $ctrl.emailOption.domain
+       }"
+    ></p>
+    <oui-select
+        data-name="option"
+        data-items="$ctrl.emailOptions"
+        data-ng-if="$ctrl.emailOptions.length !== 1"
+        data-match="domain"
+        data-disabled="$ctrl.emailOptions.length <= 1"
+        data-model="$ctrl.emailOption"
+    ></oui-select>
+</oui-modal>

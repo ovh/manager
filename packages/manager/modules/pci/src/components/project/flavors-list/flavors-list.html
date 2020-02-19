@@ -8,6 +8,7 @@
     >
         <oui-tabs-item
             data-ng-repeat="flavorByCategory in $ctrl.flavors track by flavorByCategory.category"
+            data-ng-if="$ctrl.isFlavorCategoryIncluded(flavorByCategory.category)"
             data-id="{{flavorByCategory.category}}"
             data-heading="{{:: flavorByCategory.title }}"
         >
@@ -157,6 +158,13 @@
                             ></span>
                         </oui-select-picker-section>
                     </oui-select-picker>
+                </div>
+                <div
+                    data-ng-if="$ctrl.singleFlavorWarning && (flavorByCategory.flavors.length === 1 && $ctrl.flavor === flavorByCategory.flavors[0])"
+                >
+                    <oui-message type="warning">
+                        <span data-ng-bind="::$ctrl.singleFlavorWarning"></span>
+                    </oui-message>
                 </div>
             </div>
         </oui-tabs-item>

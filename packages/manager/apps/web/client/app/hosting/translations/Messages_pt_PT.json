@@ -221,7 +221,7 @@
   "hosting_dashboard_cdn_flush_error": "Ocorreu um erro aquando do pedido de limpeza da cache CDN.",
   "hosting_dashboard_service_flush_cdn_doing": "Limpeza em curso...",
   "hosting_dashboard_service_terminate_cdn_question": "Quer mesmo eliminar a CDN?",
-  "hosting_dashboard_service_terminate_cdn_title": "Eliminação do serviço CDN",
+  "hosting_dashboard_service_terminate_cdn_title": "Rescisão do serviço CDN",
   "hosting_dashboard_service_terminate_cdn_success": "O seu pedido de eliminação do CDN foi tomado em conta. Em breve, irá receber um e-mail com o procedimento de eliminação.",
   "hosting_dashboard_service_terminate_cdn_error": "Erro ao processar a eliminação do CDN.",
   "hosting_dashboard_service_ssl_impossible": "Não pode encomendar um certificado SSL se o CDN estiver ativado.",
@@ -1405,5 +1405,12 @@
   "hosting_dashboard_service_email_address": "Endereços de e-mail",
   "hosting_dashboard_service_common_active": "Ativo",
   "hosting_dashboard_service_common_inactive": "Inativo",
-  "hosting_dashboard_email_offer_get_error": "Não é possível recuperar o endereço de e-mail"
+  "hosting_dashboard_email_offer_get_error": "Não é possível recuperar o endereço de e-mail",
+  "hosting_dashboard_service_terminate_email": "Rescindir a opção de e-mail",
+  "hosting_dashboard_service_terminate_email_title": "Rescisão da opção de e-mail",
+  "hosting_dashboard_service_terminate_email_question": "Tem a certeza de que pretende cancelar a opção de e-mail?",
+  "hosting_dashboard_service_terminate_email_question_domain": "Tem a certeza de que pretende cancelar a opção de e-mail associada ao domínio <strong>{{ domain }}</strong>?",
+  "hosting_dashboard_service_terminate_email_success": "O seu pedido de rescisão da opção de e-mail foi bem recebida. Receberá um e-mail com o respetivo procedimento de cancelamento.",
+  "hosting_dashboard_service_terminate_email_error": "Ocorreu um erro durante a rescisão da opção de e-mail.",
+  "hosting_dashboard_service_terminate_email_options_error": "Ocorreu um erro ao obter as opções de e-mail."
 }

@@ -14,6 +14,14 @@ export const MENU = [
         },
         title: 'Instances',
       },
+      {
+        beta: true,
+        id: 'baremetal',
+        options: {
+          state: 'pci.projects.project.baremetal',
+        },
+        title: 'Bare Metal',
+      },
     ],
     title: 'Compute',
   },
@@ -123,6 +131,15 @@ export const MENU = [
           state: 'pci.projects.project.streams',
         },
         title: 'ioStream',
+        regions: ['EU'],
+      },
+      {
+        id: 'serving',
+        beta: true,
+        options: {
+          state: 'pci.projects.project.serving',
+        },
+        title: 'Serving Engine',
         regions: ['EU'],
       },
     ],

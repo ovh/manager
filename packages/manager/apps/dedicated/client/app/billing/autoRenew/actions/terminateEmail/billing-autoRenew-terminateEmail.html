@@ -5,19 +5,10 @@
     data-terminate-service="$ctrl.terminateEmail()"
     data-go-back="$ctrl.goBack()"
 >
-    <div data-ng-if="!$ctrl.isHosting">
-        <oui-message data-type="warning">
-            <span
-                data-translate="autorenew_service_EMAIL_DOMAIN_terminate_info"
-            ></span>
-        </oui-message>
-        <p
-            data-translate="autorenew_service_EMAIL_DOMAIN_terminate_procedure"
-        ></p>
-    </div>
-    <oui-message data-ng-if="$ctrl.isHosting" data-type="warning">
+    <oui-message data-type="warning" class="mb-4">
         <span
-            data-translate="autorenew_service_EMAIL_DOMAIN_terminate_info_impossible"
+            data-translate="autorenew_service_EMAIL_DOMAIN_terminate_info"
         ></span>
     </oui-message>
+    <p data-translate="autorenew_service_EMAIL_DOMAIN_terminate_procedure"></p>
 </billing-autorenew-terminate>

@@ -5,8 +5,9 @@ export default {
   controller,
   template,
   bindings: {
-    projectId: '<',
-    instance: '<',
     goBack: '<',
+    instance: '<',
+    projectId: '<',
+    reinstallSuccessMessage: '<',
   },
 };

@@ -7,6 +7,7 @@ import 'ovh-api-services';
 import 'ovh-ui-angular';
 
 import analyticsDataPlatform from './analytics-data-platform';
+import baremetal from './baremetal';
 import billing from './billing';
 import contacts from './contacts';
 import creating from './creating';
@@ -25,6 +26,7 @@ import vouchers from './vouchers';
 import regions from './regions';
 import routing from './project.routing';
 import streams from './streams';
+import serving from './serving';
 import workflow from './workflow';
 
 import './project.less';
@@ -34,6 +36,7 @@ const moduleName = 'ovhManagerPciProject';
 angular
   .module(moduleName, [
     analyticsDataPlatform,
+    baremetal,
     billing,
     contacts,
     creating,
@@ -56,6 +59,7 @@ angular
     vouchers,
     streams,
     workflow,
+    serving,
   ])
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */);

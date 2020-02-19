@@ -3,6 +3,10 @@ import template from './vps-veeam.html';
 
 export default {
   controller,
+  bindings: {
+    goToVeeamRestore: '<',
+    goToVeeamMount: '<',
+  },
   name: 'vpsVeeam',
   template,
 };

@@ -43,6 +43,7 @@ class LogsHelperService {
   pollOperation(serviceName, operation) {
     this.killPoller();
     return this.CucCloudPoll.poll({
+      interval: 3000,
       item: operation,
       pollFunction: (opn) =>
         this.OperationApiService.get({

@@ -1,0 +1,159 @@
+<form
+    novalidate
+    name="form"
+    data-ng-submit="form.$valid && $ctrl.confirm()"
+    class="vps-reinstall"
+>
+    <oui-modal
+        data-title="{{:: 'vps_configuration_reinstall_title' | translate}}"
+        data-primary-label="{{ ::'vps_common_confirm' | translate }}"
+        data-secondary-action="$ctrl.cancel()"
+        data-secondary-label="{{ ::'vps_common_cancel' | translate }}"
+        data-on-dismiss="$ctrl.cancel()"
+        data-loading="$ctrl.loaders.init || $ctrl.loaders.template || $ctrl.loaders.save"
+    >
+        <!-- distribution -->
+        <oui-field
+            data-label="{{ ::'vps_configuration_reinstall_step1_question' | translate }}"
+            data-help-text="{{(!$ctrl.summary.windowsActivated ? 'vps_configuration_reinstall_windows_option' : '') | translate}}"
+        >
+            <div class="oui-select">
+                <select
+                    name="templates"
+                    id="templates"
+                    class="oui-select__input"
+                    data-ng-options="template as template.name + ' (' + template.bitFormat + ' ' + ('vps_configuration_reinstall_bitFormat' | translate) +')' for template in $ctrl.templates | orderBy: 'name' track by template.name"
+                    data-ng-model="$ctrl.template.value"
+                    data-ng-change="$ctrl.loadPackages($ctrl.template.value.distribution)"
+                    required
+                >
+                    <option
+                        value=""
+                        disabled
+                        selected
+                        data-translate="vps_configuration_reinstall_step1_os"
+                    ></option>
+                </select>
+                <span
+                    class="oui-icon oui-icon-chevron-down"
+                    aria-hidden="true"
+                ></span>
+            </div>
+        </oui-field>
+
+        <!-- available packages (info box) -->
+        <div data-ng-if="$ctrl.template.packages">
+            <div
+                class="text-center"
+                data-size="s"
+                data-ng-if="$ctrl.loaders.packages"
+            >
+                <oui-spinner></oui-spinner>
+            </div>
+            <div data-ng-if="!$ctrl.loaders.packages">
+                <label
+                    class="oui-label"
+                    data-translate="vps_configuration_reinstall_step1_packages"
+                ></label>
+                <div class="alert alert-info">
+                    <span
+                        data-ng-if="$ctrl.template.packages.length === 0"
+                        data-translate="vps_configuration_reinstall_step1_packages_empty"
+                    ></span>
+                    <ul
+                        data-ng-if="$ctrl.template.packages.length !== 0"
+                        class="row-fluid"
+                    >
+                        <li
+                            class="span5"
+                            data-ng-class-odd="'odd'"
+                            data-ng-class-even="'offset2'"
+                            data-ng-repeat="package in $ctrl.template.packages track by package.alias"
+                        >
+                            <span
+                                data-ng-bind="package.alias + ' (' + package.version + ')'"
+                            ></span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- languages -->
+        <div
+            data-ng-if="$ctrl.template.value && $ctrl.template.value.availableLanguage.length > 1"
+        >
+            <label
+                for="language"
+                class="oui-label"
+                data-translate="vps_configuration_reinstall_step1_select_language"
+            ></label>
+            <div class="oui-select">
+                <select
+                    name="language"
+                    id="language"
+                    class="oui-select__input"
+                    data-ng-options="language as $ctrl.getLanguageTraduction(language) for language in $ctrl.template.value.availableLanguage | orderBy: getLanguageTraduction track by language"
+                    data-ng-model="$ctrl.template.language"
+                >
+                    <option
+                        value=""
+                        disabled
+                        selected
+                        data-translate="vps_configuration_reinstall_step1_language"
+                    ></option>
+                </select>
+                <span
+                    class="oui-icon oui-icon-chevron-down"
+                    aria-hidden="true"
+                ></span>
+            </div>
+        </div>
+
+        <!-- ssh keys -->
+        <div
+            data-ng-if="$ctrl.template.value && ($ctrl.template.language || $ctrl.template.value.availableLanguage.length === 0) && !$ctrl.constructor.isWindows($ctrl.template.value)"
+        >
+            <label
+                for="sshKey"
+                class="oui-label"
+                data-translate="vps_configuration_reinstall_step1_select_ssh_key"
+                data-oui-tooltip="{{::'vps_configuration_reinstall_step1_select_ssh_key_help' | translate}}"
+            ></label>
+            <div class="oui-select">
+                <!-- we need style overflow until something is set to handle multiple select-->
+                <select
+                    name="sshkey"
+                    id="sshKey"
+                    class="oui-select__input ssh-keys"
+                    size="8"
+                    multiple
+                    data-ng-options="sshKey for sshKey in $ctrl.userSshKeys | orderBy track by sshKey"
+                    data-ng-model="$ctrl.template.sshKeys"
+                    data-ng-if="$ctrl.userSshKeys.length > 0"
+                >
+                    <option value="" disabled selected></option>
+                </select>
+            </div>
+            <span
+                data-ng-if="!$ctrl.userSshKeys || $ctrl.userSshKeys.count === 0"
+                data-translate="vps_configuration_reinstall_step1_select_ssh_key_no"
+            ></span>
+            <span
+                data-ng-if="$ctrl.template.sshKeys && $ctrl.template.sshKeys.length > 0"
+                data-translate="vps_configuration_reinstall_step1_unselect_ssh_key"
+            ></span>
+        </div>
+
+        <!-- send password -->
+        <oui-checkbox
+            data-ng-if="$ctrl.template.sshKeys && $ctrl.template.sshKeys.length > 0 && !$ctrl.constructor.isWindows($ctrl.template.value)"
+            data-text="{{ 'vps_configuration_reinstall_step1_sendPassword' | translate }}"
+            data-description="{{ 'vps_configuration_reinstall_step2_alert2' | translate }}"
+            id="sendPassword"
+            name="sendPassword"
+            data-model="$ctrl.template.sendPassword"
+        >
+        </oui-checkbox>
+    </oui-modal>
+</form>

@@ -6,6 +6,7 @@ export default {
   template,
   bindings: {
     addInstance: '<',
+    betaWarning: '<',
     createBackupInstance: '<',
     deleteInstance: '<',
     editInstance: '<',
@@ -17,6 +18,7 @@ export default {
     instanceLink: '<',
     instances: '<',
     projectId: '<',
+    refreshInstances: '<',
     reinstallInstance: '<',
     resumeInstance: '<',
     scheduleAutoBackup: '<',

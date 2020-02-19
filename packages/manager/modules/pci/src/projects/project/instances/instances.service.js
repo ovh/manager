@@ -4,7 +4,6 @@ import includes from 'lodash/includes';
 import filter from 'lodash/filter';
 import find from 'lodash/find';
 import map from 'lodash/map';
-import round from 'lodash/round';
 import reduce from 'lodash/reduce';
 import some from 'lodash/some';
 
@@ -17,7 +16,6 @@ import {
   BANDWIDTH_CONSUMPTION,
   BANDWIDTH_LIMIT,
   BANDWIDTH_OUT_INVOICE,
-  INSTANCE_BACKUP_CONSUMPTION,
 } from './instances.constants';
 
 export default class PciProjectInstanceService {
@@ -70,6 +68,13 @@ export default class PciProjectInstanceService {
         ),
       ),
     );
+  }
+
+  getInstanceFlavor(projectId, instance) {
+    return this.OvhApiCloudProjectFlavor.v6().get({
+      serviceName: projectId,
+      flavorId: instance.flavorId,
+    }).$promise;
   }
 
   getInstanceDetails(projectId, instance) {
@@ -243,7 +248,11 @@ export default class PciProjectInstanceService {
       return get(
         catalog,
         `snapshot.monthly.postpaid.${instance.region}`,
-        get(catalog, 'snapshot.monthly.postpaid', false),
+        get(
+          catalog,
+          'snapshot.monthly.postpaid',
+          get(catalog, 'snapshot.monthly', false),
+        ),
       );
     });
   }

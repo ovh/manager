@@ -7,13 +7,13 @@
             >
                 <oui-tile-button
                     data-text="{{ ::$ctrl.actions.rebootRescue.text }}"
-                    data-on-click="$ctrl.actions.rebootRescue.callback()"
+                    data-on-click="$ctrl.goToRebootRescue()"
                     data-ng-if="$ctrl.actions.rebootRescue.isAvailable()"
                 >
                 </oui-tile-button>
                 <oui-tile-button
                     data-text="{{ ::$ctrl.actions.reboot.text }}"
-                    data-on-click="$ctrl.actions.reboot.callback()"
+                    data-on-click="$ctrl.goToReboot()"
                     data-ng-if="$ctrl.actions.reboot.isAvailable()"
                 >
                 </oui-tile-button>
@@ -27,13 +27,13 @@
                 </oui-tile-button>
                 <oui-tile-button
                     data-text="{{ ::$ctrl.actions.reinstall.text }}"
-                    data-on-click="$ctrl.actions.reinstall.callback()"
+                    data-on-click="$ctrl.goToReinstall()"
                     data-ng-if="$ctrl.actions.reinstall.isAvailable()"
                 >
                 </oui-tile-button>
                 <oui-tile-button
                     data-text="{{ ::$ctrl.actions.kvm.text }}"
-                    data-on-click="$ctrl.actions.kvm.callback()"
+                    data-on-click="$ctrl.goToKvm($ctrl.vps.data.noVNC)"
                     data-ng-if="$ctrl.actions.kvm.isAvailable()"
                 >
                 </oui-tile-button>
@@ -218,7 +218,7 @@
                             <oui-action-menu-item
                                 data-ng-if="$ctrl.actions.displayIps.isAvailable()"
                                 data-text="{{ ::$ctrl.actions.displayIps.text }}"
-                                data-on-click="$ctrl.actions.displayIps.callback()"
+                                data-on-click="$ctrl.goToDisplayIps()"
                             >
                             </oui-action-menu-item>
                         </oui-action-menu>
@@ -253,7 +253,7 @@
                         >
                             <oui-action-menu-item
                                 data-text="{{ ::$ctrl.actions.reverseDns.text }}"
-                                data-on-click="$ctrl.actions.reverseDns.callback()"
+                                data-on-click="$ctrl.goToReverseDns()"
                             ></oui-action-menu-item>
                         </oui-action-menu>
                     </oui-tile-definition>
@@ -385,12 +385,12 @@
                             <oui-action-menu-item
                                 data-ng-if="$ctrl.actions.manageSla.isAvailable()"
                                 data-text="{{ ::$ctrl.actions.manageSla.text }}"
-                                data-on-click="$ctrl.actions.manageSla.callback()"
+                                data-on-click="$ctrl.goToMonitoringSla(!$ctrl.vps.data.slaMonitoring)"
                             ></oui-action-menu-item>
                             <oui-action-menu-item
                                 data-ng-if="$ctrl.actions.viewIpSla.isAvailable()"
                                 data-text="{{ ::$ctrl.actions.viewIpSla.text }}"
-                                data-on-click="$ctrl.actions.viewIpSla.callback()"
+                                data-on-click="$ctrl.goToMonitoringSla(true, true)"
                             ></oui-action-menu-item>
                         </oui-action-menu>
                     </oui-tile-definition>
@@ -452,7 +452,7 @@
                             <oui-action-menu-item
                                 data-text="{{::$ctrl.backupStorageActions.terminate.text}}"
                                 aria-label="{{::$ctrl.backupStorageActions.terminate.text}}"
-                                data-on-click="$ctrl.backupStorageActions.terminate.callback()"
+                                data-on-click="$ctrl.goToTerminateOption('ftpBackup')"
                                 data-ng-if="$ctrl.summary.data.ftpBackup.optionActivated"
                             >
                             </oui-action-menu-item>
@@ -486,28 +486,28 @@
                             <oui-action-menu-item
                                 data-text="{{::$ctrl.snapshotActions.delete.text}}"
                                 aria-label="{{::$ctrl.snapshotActions.delete.text}}"
-                                data-on-click="$ctrl.snapshotActions.delete.callback()"
+                                data-on-click="$ctrl.goToSnapshotDelete()"
                                 data-ng-if="$ctrl.summary.data.snapshot.optionActivated && $ctrl.snapshotActions.delete.isAvailable()"
                             >
                             </oui-action-menu-item>
                             <oui-action-menu-item
                                 data-text="{{::$ctrl.snapshotActions.restore.text}}"
                                 aria-label="{{::$ctrl.snapshotActions.restore.text}}"
-                                data-on-click="$ctrl.snapshotActions.restore.callback()"
+                                data-on-click="$ctrl.goToSnapshotRestore()"
                                 data-ng-if="$ctrl.summary.data.snapshot.optionActivated && $ctrl.snapshotActions.restore.isAvailable()"
                             >
                             </oui-action-menu-item>
                             <oui-action-menu-item
                                 data-text="{{::$ctrl.snapshotActions.take.text}}"
                                 aria-label="{{::$ctrl.snapshotActions.take.text}}"
-                                data-on-click="$ctrl.snapshotActions.take.callback()"
+                                data-on-click="$ctrl.goToSnapshotTake()"
                                 data-ng-if="$ctrl.summary.data.snapshot.optionActivated && $ctrl.snapshotActions.take.isAvailable()"
                             >
                             </oui-action-menu-item>
                             <oui-action-menu-item
                                 data-text="{{::$ctrl.snapshotActions.terminate.text}}"
                                 aria-label="{{::$ctrl.snapshotActions.terminate.text}}"
-                                data-on-click="$ctrl.snapshotActions.terminate.callback()"
+                                data-on-click="$ctrl.goToTerminateOption('snapshot')"
                                 data-ng-if="$ctrl.summary.data.snapshot.optionActivated && $ctrl.snapshotActions.terminate.isAvailable()"
                             >
                             </oui-action-menu-item>
@@ -556,7 +556,7 @@
                             <oui-action-menu-item
                                 data-text="{{::$ctrl.veeamActions.terminate.text}}"
                                 aria-label="{{::$ctrl.veeamActions.terminate.text}}"
-                                data-on-click="$ctrl.veeamActions.terminate.callback()"
+                                data-on-click="$ctrl.goToTerminateOption('automatedBackup')"
                                 data-ng-if="$ctrl.summary.data.veeamActivated"
                             >
                             </oui-action-menu-item>
@@ -600,7 +600,7 @@
                                 data-ng-if="$ctrl.actions.terminateAdditionalDiskOption.isAvailable()"
                                 data-text="{{::$ctrl.actions.terminateAdditionalDiskOption.text}}"
                                 aria-label="{{::$ctrl.actions.terminateAdditionalDiskOption.text}}"
-                                data-on-click="$ctrl.actions.terminateAdditionalDiskOption.callback()"
+                                data-on-click="$ctrl.goToTerminateOption('additionalDisk')"
                             >
                             </oui-action-menu-item>
                         </oui-action-menu>
@@ -629,7 +629,7 @@
                                 data-text="{{::$ctrl.actions.terminateWindows.text}}"
                                 aria-label="{{::$ctrl.actions.terminateWindows.text}}"
                                 data-ng-if="$ctrl.summary.data.windowsActivated && $ctrl.actions.terminateWindows.isAvailable()"
-                                data-on-click="$ctrl.actions.terminateWindows.callback()"
+                                data-on-click="$ctrl.goToTerminateOption('windows')"
                             >
                             </oui-action-menu-item>
                             <oui-action-menu-item

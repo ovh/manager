@@ -17,5 +17,6 @@
   "pci_project_flavors_quota": "Increase your quota",
   "pci_project_flavors_category_definition_iops": "IOPS instances deliver the fastest disk transactions in the Public Cloud range.",
   "pci_project_flavors_spec_model": "Model",
-  "pci_project_flavors_spec_nvme": "NVMe storage:"
+  "pci_project_flavors_spec_nvme": "NVMe storage:",
+  "pci_project_flavors_category_definition_baremetal": "Bare metal instances offer hardware servers on demand. They are delivered in a few minutes, and can be billed on an hourly or monthly basis."
 }

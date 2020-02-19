@@ -52,6 +52,8 @@
         <oui-datagrid
             data-ng-if="!$ctrl.debtAccount.active"
             data-rows-loader="$ctrl.getBills($config)"
+            data-on-criteria-change="$ctrl.onCriteriaChange($criteria)"
+            data-criteria="$ctrl.criteria"
         >
             <oui-column
                 data-title=":: 'billing_main_history_table_id' | translate"
@@ -146,6 +148,8 @@
         <oui-datagrid
             data-ng-if="$ctrl.debtAccount.active"
             data-rows-loader="$ctrl.getBills($config)"
+            data-on-criteria-change="$ctrl.onCriteriaChange($criteria)"
+            data-criteria="$ctrl.criteria"
         >
             <oui-column
                 data-title=":: 'billing_main_history_table_id' | translate"

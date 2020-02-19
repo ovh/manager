@@ -17,5 +17,6 @@
   "pci_project_flavors_quota": "Aumenta la tua quota",
   "pci_project_flavors_category_definition_iops": "Le istanze IOPS garantiscono le transazioni disco più veloci di tutta la gamma Public Cloud.",
   "pci_project_flavors_spec_model": "Modello:",
-  "pci_project_flavors_spec_nvme": "Storage NVMe:"
+  "pci_project_flavors_spec_nvme": "Storage NVMe:",
+  "pci_project_flavors_category_definition_baremetal": "Le istanze bare metal offrono server fisici on demand, disponibili in pochi minuti e fatturati su base oraria o mensile."
 }
