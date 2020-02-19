@@ -1,3 +1,12 @@
+## [3.11.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.11.0...@ovh-ux/manager-pci@3.11.1) (2020-02-19)
+
+
+### Bug Fixes
+
+* **pci.projects.serving:** display translations ([#2290](https://github.com/ovh/manager/issues/2290)) ([7780840](https://github.com/ovh/manager/commit/7780840c60b62fff3258102bd99cd98d9d775739))
+
+
+
 # [3.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.10.3...@ovh-ux/manager-pci@3.11.0) (2020-02-19)
 
 
