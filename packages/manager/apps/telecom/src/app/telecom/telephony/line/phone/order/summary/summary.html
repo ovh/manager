@@ -1,0 +1,196 @@
+<header class="widget-presentation-header">
+    <h2
+        class="widget-presentation-title"
+        data-translate="telephony_line_phone_order_summary_title"
+    ></h2>
+</header>
+
+<div class="text-center" data-ng-if="$ctrl.isStepLoading">
+    <oui-spinner></oui-spinner>
+</div>
+
+<div data-ng-if="!$ctrl.isStepLoading">
+    <!-- PRICE SUMMARY TABLE -->
+    <h3 data-translate="telephony_line_phone_order_summary"></h3>
+    <div class="table-responsive">
+        <table
+            class="table"
+            data-ng-class="{
+                    'table-hover table-striped': $ctrl.order.summary.details.length > 1
+                }"
+        >
+            <thead>
+                <tr>
+                    <th
+                        scope="col"
+                        data-translate="telephony_line_phone_order_table_description"
+                    ></th>
+                    <th
+                        scope="col"
+                        class="text-sm-right th-price-unit"
+                        data-translate="telephony_line_phone_order_table_unit_price"
+                    ></th>
+                    <th
+                        scope="col"
+                        class="text-sm-right th-quantity"
+                        data-translate="telephony_line_phone_order_table_quantity"
+                    ></th>
+                    <th
+                        scope="col"
+                        class="text-sm-right th-total"
+                        data-translate="telephony_line_phone_order_table_total"
+                    ></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr
+                    data-ng-repeat="detail in $ctrl.order.summary.details track by $index"
+                >
+                    <th scope="row" data-ng-bind="detail.description"></th>
+                    <td
+                        class="text-sm-right text-price font-weight-bold"
+                        data-ng-bind="detail.unitPrice.text"
+                    ></td>
+                    <td
+                        class="text-sm-right"
+                        data-ng-bind="detail.quantity"
+                    ></td>
+                    <td
+                        class="text-sm-right text-price font-weight-bold"
+                        data-ng-bind="detail.totalPrice.text"
+                    ></td>
+                </tr>
+            </tbody>
+            <tfoot class="text-right">
+                <tr>
+                    <td
+                        colspan="3"
+                        data-translate="telephony_line_phone_order_prices_tax_free_total"
+                    ></td>
+                    <td
+                        class="text-price font-weight-bold"
+                        data-ng-bind="$ctrl.order.summary.prices.withoutTax.text"
+                    ></td>
+                </tr>
+                <tr>
+                    <td
+                        colspan="3"
+                        data-translate="telephony_line_phone_order_prices_tax_total"
+                    ></td>
+                    <td
+                        class="text-price font-weight-bold"
+                        data-ng-bind="$ctrl.order.summary.prices.tax.text"
+                    ></td>
+                </tr>
+                <tr>
+                    <td
+                        colspan="3"
+                        data-translate="telephony_line_phone_order_prices_with_tax_total"
+                    ></td>
+                    <td
+                        class="text-price font-weight-bold"
+                        data-ng-bind="$ctrl.order.summary.prices.withTax.text"
+                    ></td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
+    <!-- SHIPPING CONTACT -->
+    <h3
+        class="mt-4"
+        data-translate="telephony_line_phone_order_shipping_contact"
+    ></h3>
+    <div class="badge d-inline-block align-top mr-3">
+        <span class="fa fa-user fa-5x" aria-hidden="true"></span>
+    </div>
+    <div class="d-inline-block">
+        <p
+            class="mb-1"
+            data-ng-bind="$ctrl.order.contact.lastName + ' ' + $ctrl.order.contact.firstName"
+        ></p>
+        <p class="mb-1" data-ng-bind="$ctrl.order.contact.address.line1"></p>
+        <p
+            class="mb-1"
+            data-ng-bind="$ctrl.order.contact.address.zip + ' ' + $ctrl.order.contact.address.city"
+        ></p>
+    </div>
+
+    <!-- SHIPPING MODE -->
+    <h3
+        class="mt-4"
+        data-translate="telephony_line_phone_order_shipping_mode"
+    ></h3>
+    <p
+        data-ng-if="$ctrl.order.shipping.mode === 'mondialRelay'"
+        data-translate="telephony_line_phone_order_shipping_mode_mondial_relay"
+        data-translate-values="{
+            name: $ctrl.order.shipping.relay.name,
+            street: $ctrl.order.shipping.relay.address,
+            city: $ctrl.order.shipping.relay.city
+        }"
+    ></p>
+    <p
+        data-ng-if="$ctrl.order.shipping.mode !== 'mondialRelay'"
+        data-translate="telephony_line_phone_order_shipping_mode_other"
+    ></p>
+
+    <!-- CONTRACTS -->
+    <h3 class="mt-4" data-translate="telephony_line_phone_order_contracts"></h3>
+    <div
+        class="mb-4"
+        data-ovh-contracts="$ctrl.order.summary.contracts"
+        data-full-text="false"
+        data-ovh-contracts-validated="$ctrl.order.isContractsAccepted"
+    ></div>
+
+    <div data-ng-if="!$ctrl.phone">
+        <hr />
+        <label class="d-block mb-2">
+            <input
+                type="radio"
+                data-ng-value="true"
+                data-ng-model="$ctrl.order.retract"
+            />
+            <span
+                class="ml-2"
+                data-translate="telephony_line_phone_order_retract"
+            >
+            </span>
+        </label>
+        <label class="d-block mb-2">
+            <input
+                type="radio"
+                data-ng-value="false"
+                data-ng-model="$ctrl.order.retract"
+            />
+            <span
+                class="ml-2"
+                data-translate="telephony_line_phone_order_noretract"
+            >
+            </span>
+        </label>
+    </div>
+
+    <hr class="oui-horizontal-line_dark mt-3" />
+
+    <div class="d-flex justify-content-between">
+        <button
+            type="button"
+            class="oui-button oui-button_secondary oui-button_icon-left mt-2 mr-auto"
+            data-ng-click="$ctrl.backShipping()"
+        >
+            <span data-translate="telephony_line_phone_order_order_prev"></span>
+        </button>
+        <button
+            type="button"
+            class="oui-button oui-button_primary oui-button_icon-right mt-2"
+            data-ng-disabled="!$ctrl.order.isContractsAccepted || $ctrl.isSubmiting"
+            data-ng-click="$ctrl.submitOrder()"
+        >
+            <span
+                data-translate="telephony_line_phone_order_order_final"
+            ></span>
+        </button>
+    </div>
+</div>

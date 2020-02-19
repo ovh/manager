@@ -1,0 +1,36 @@
+<div>
+    <header class="widget-presentation-header">
+        <h2
+            class="widget-presentation-title"
+            data-translate="telephony_line_phone_order_order_title"
+        ></h2>
+    </header>
+    <div
+        class="alert alert-info"
+        role="alert"
+        data-ng-if="!$ctrl.returnSuccess && !$ctrl.order.success"
+        data-translate="telephony_line_phone_order_rma_pending_info"
+    ></div>
+    <div
+        class="alert alert-success"
+        role="alert"
+        data-ng-if="$ctrl.returnSuccess"
+        data-translate="telephony_line_phone_order_return_success"
+    ></div>
+    <div
+        class="alert alert-success"
+        role="alert"
+        data-ng-if="$ctrl.order.success"
+        data-translate="telephony_line_phone_order_success"
+    ></div>
+    <p>
+        <a
+            class="btn btn-primary"
+            target="_blank"
+            rel="noopener"
+            data-ng-href="{{ $ctrl.pdfBaseUrl + $ctrl.rmas[0].id }}"
+            data-translate="telephony_line_phone_order_rma_pdf_download"
+        >
+        </a>
+    </p>
+</div>
