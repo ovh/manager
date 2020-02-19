@@ -1,0 +1,79 @@
+.hub-carousel {
+  @text-color: rgb(40, 85, 196);
+  @error-color: rgb(193, 27, 27);
+  @error-bg-color: rgb(255, 210, 221);
+
+  position: relative;
+
+  .oui-message__body_warning,
+  .oui-message__body_info,
+  .oui-message_info {
+    padding-bottom: 1rem;
+    color: @error-color;
+    border: transparent;
+    background-color: @error-bg-color;
+  }
+
+  .oui-message__body {
+    cursor: pointer;
+  }
+
+  .carousel-inner {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .carousel-item {
+    position: relative;
+    display: none;
+    float: left;
+    width: 100%;
+    backface-visibility: hidden;
+  }
+
+  .carousel-item.active {
+    display: block;
+  }
+
+  .right-navigate {
+    color: @text-color;
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    cursor: pointer;
+  }
+
+  .circular-tile-container {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    bottom: 1rem;
+  }
+
+  .circular-tile {
+    display: inline-block;
+    margin: 0.25rem;
+    border-radius: 0.625rem;
+    background-color: #fff;
+    padding: 0.1875rem;
+  }
+
+  .selectedOption {
+    background-color: @error-color;
+  }
+
+  .oui-icon-warning_extra-thin {
+    &::after {
+      background: transparent;
+    }
+
+    z-index: 0;
+    position: absolute;
+    display: block;
+    top: 0.875rem;
+    left: 1rem;
+    color: @text-color;
+    font-size: 1.625rem;
+  }
+}

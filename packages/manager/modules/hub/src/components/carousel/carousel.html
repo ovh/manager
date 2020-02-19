@@ -1,0 +1,44 @@
+<div class="hub-carousel">
+    <div class="carousel-inner">
+        <div
+            data-ng-repeat="notification in $ctrl.notifications track by $index"
+            class="carousel-item"
+            data-ng-class="{'active': notification.active}"
+        >
+            <div
+                data-ng-class=":: 'oui-message oui-message_' + notification.level"
+                role="alert"
+                class="ng-scope oui-message oui-message_info"
+            >
+                <span
+                    class="oui-icon oui-icon_bicolor oui-icon-warning_extra-thin"
+                    aria-hidden="true"
+                ></span>
+                <a
+                    class="oui-message__body oui-message__body_info"
+                    data-ng-class=":: 'oui-message__body_' + notification.level"
+                    href="notification.urlDetails.href"
+                >
+                    <span
+                        data-translate="ovh_cloud_hub_attention"
+                        class="oui-font-bold"
+                    ></span>
+                    <span data-ng-bind="notification.description"></span>
+                </a>
+            </div>
+        </div>
+        <div class="circular-tile-container">
+            <div
+                data-ng-repeat="el in $ctrl.notifications track by $index"
+                class="circular-tile"
+                data-ng-class="{selectedOption:el.active}"
+            ></div>
+        </div>
+    </div>
+
+    <span
+        class="oui-icon oui-icon-arrow-right_extra-thin right-navigate"
+        aria-hidden="true"
+        data-ng-click="$ctrl.nextAlert()"
+    ></span>
+</div>
