@@ -1,11 +1,12 @@
 {
- "cpbc_hourly_instance_col_name": "Nome",
- "cpbc_hourly_instance_col_consumption": "Consumo",
- "cpbc_hourly_instance_col_consumption_tooltip": "Faturado no início do mês seguinte.",
- "cpbc_hourly_instance_detail_title": "Servidores",
- "cpbc_object_storage_detail_title": "Armazenamento de objetos",
- "cpbc_archive_storage_detail_title": "Armazenamento de arquivos",
- "cpbc_snapshot_detail_title": "Armazenamento de backups",
- "cpbc_volume_detail_title": "Discos adicionais",
- "cpbc_hourly_instance_trafic_title": "Tráfego público de saída das instâncias"
+  "cpbc_hourly_instance_col_name": "Nome",
+  "cpbc_hourly_instance_col_consumption": "Consumo",
+  "cpbc_hourly_instance_col_consumption_tooltip": "Faturado no início do mês seguinte.",
+  "cpbc_hourly_instance_detail_title": "Servidores",
+  "cpbc_object_storage_detail_title": "Armazenamento de objetos",
+  "cpbc_archive_storage_detail_title": "Armazenamento de arquivos",
+  "cpbc_snapshot_detail_title": "Armazenamento de backups",
+  "cpbc_volume_detail_title": "Discos adicionais",
+  "cpbc_hourly_instance_trafic_title": "Tráfego público de saída das instâncias",
+  "cpbc_hourly_private_registry_title": "Managed Private Registry"
 }

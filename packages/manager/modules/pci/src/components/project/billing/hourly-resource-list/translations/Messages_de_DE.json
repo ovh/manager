@@ -1,11 +1,12 @@
 {
- "cpbc_hourly_instance_col_name": "Name",
- "cpbc_hourly_instance_col_consumption": "Verbrauch",
- "cpbc_hourly_instance_col_consumption_tooltip": "Am Anfang des Folgemonats abgerechnet.",
- "cpbc_hourly_instance_detail_title": "Server",
- "cpbc_object_storage_detail_title": "Objektspeicher",
- "cpbc_archive_storage_detail_title": "Archivspeicher",
- "cpbc_snapshot_detail_title": "Backup-Speicher",
- "cpbc_volume_detail_title": "Zusätzliche Festplatten",
- "cpbc_hourly_instance_trafic_title": "Ausgehender öffentlicher Traffic der Instanzen"
+  "cpbc_hourly_instance_col_name": "Name",
+  "cpbc_hourly_instance_col_consumption": "Verbrauch",
+  "cpbc_hourly_instance_col_consumption_tooltip": "Am Anfang des Folgemonats abgerechnet.",
+  "cpbc_hourly_instance_detail_title": "Server",
+  "cpbc_object_storage_detail_title": "Objektspeicher",
+  "cpbc_archive_storage_detail_title": "Archivspeicher",
+  "cpbc_snapshot_detail_title": "Backup-Speicher",
+  "cpbc_volume_detail_title": "Zusätzliche Festplatten",
+  "cpbc_hourly_instance_trafic_title": "Aus den Instanzen ausgehender öffentlicher Datenverkehr ",
+  "cpbc_hourly_private_registry_title": "Managed Private Registry"
 }
