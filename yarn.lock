@@ -12822,10 +12822,15 @@ ovh-ui-angular@^3.15.0:
     popper.js "^1.14.4"
     ui-select "^0.19.8"
 
-ovh-ui-kit-bs@^2.1.1, ovh-ui-kit-bs@^2.1.2, ovh-ui-kit-bs@^2.2.0:
+ovh-ui-kit-bs@^2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/ovh-ui-kit-bs/-/ovh-ui-kit-bs-2.2.0.tgz#6c64d96326e88194a597ba333de8dc188268ba62"
   integrity sha512-ggt3UHSvUVmwu6EXrq6WIPQtFZrWan9cz72mp1GmHFOBmSCk0HIsbENoAXzAcNx+wdFFWov2DD8w7MgkmFZj0A==
+
+ovh-ui-kit-bs@^2.3.1:
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/ovh-ui-kit-bs/-/ovh-ui-kit-bs-2.3.1.tgz#5e9ed74d0f5eb630eb7039213f31f5eea386c11f"
+  integrity sha512-ng89qxy4ObnC9RPek+qnrb1Nlj7XK/H+cUWqhF2oKHU527xO4hrVET6Yvaz36GRQSmfYX5PMk8vnMphyS11HZA==
 
 ovh-ui-kit@2.40.0, ovh-ui-kit@^2.40.0, ovh-ui-kit@~2.40.0:
   version "2.40.0"
@@ -16271,6 +16276,8 @@ strip-ansi@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/strip-ansi/-/strip-ansi-4.0.0.tgz#a8479022eb1ac368a871389b635262c505ee368f"
   integrity sha1-qEeQIusaw2iocTibY1JixQXuNo8=
+  dependencies:
+    ansi-regex "^3.0.0"
 
 strip-ansi@^5.0.0, strip-ansi@^5.1.0, strip-ansi@^5.2.0:
   version "5.2.0"
