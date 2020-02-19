@@ -1,3 +1,21 @@
+# [11.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@11.4.3...@ovh-ux/manager-dedicated@11.5.0) (2020-02-19)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 261] ([aa18579](https://github.com/ovh/manager/commit/aa18579b28f4c6052c66707bf1e12fc1e683e7e5))
+* **i18n:** add missing translations [CDS 262] ([9b6f242](https://github.com/ovh/manager/commit/9b6f242faaffcc1423598a5e3dc9ed7458908b37))
+* **i18n:** add missing translations [CDS 263] ([97fdd70](https://github.com/ovh/manager/commit/97fdd700eb597bbec065bd6ef8d3598544d7ad71))
+
+
+### Features
+
+* **billing.autorenew:** add hosting email option terminate redirection ([d26fab1](https://github.com/ovh/manager/commit/d26fab14355152709f320c55246d715501c66882))
+* **billing.history:** add date filter to url ([#2231](https://github.com/ovh/manager/issues/2231)) ([7495337](https://github.com/ovh/manager/commit/74953378d3beb0f1d523b2367733ce250b70266f))
+* **dedicated.server.interfaces:** add guides url for all subs ([#2251](https://github.com/ovh/manager/issues/2251)) ([bde1b13](https://github.com/ovh/manager/commit/bde1b132edd71e4762f4a6205a132776d3d33f5b))
+
+
+
 ## [11.4.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@11.4.2...@ovh-ux/manager-dedicated@11.4.3) (2020-02-13)
 
 

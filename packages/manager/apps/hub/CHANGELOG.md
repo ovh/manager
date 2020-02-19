@@ -1,3 +1,12 @@
+# [0.1.0-alpha.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.1.0-alpha.0...@ovh-ux/manager-hub-app@0.1.0-alpha.1) (2020-02-19)
+
+
+### Bug Fixes
+
+* **hub:** add missing injection in webpack config ([#2276](https://github.com/ovh/manager/issues/2276)) ([f30e9e5](https://github.com/ovh/manager/commit/f30e9e5b106eab0501eba48105ce1775bf7fa048))
+
+
+
 # [0.1.0-alpha.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.0.0...@ovh-ux/manager-hub-app@0.1.0-alpha.0) (2020-01-31)
 
 

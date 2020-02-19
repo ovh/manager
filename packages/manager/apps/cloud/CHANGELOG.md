@@ -1,3 +1,12 @@
+## [8.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@8.3.1...@ovh-ux/manager-cloud@8.3.2) (2020-02-19)
+
+
+### Bug Fixes
+
+* **dbaas.logs.detail:** reduce polling interval to 3s ([#2250](https://github.com/ovh/manager/issues/2250)) ([e55d42e](https://github.com/ovh/manager/commit/e55d42e167ced78f0ce77b183569b29304233f77))
+
+
+
 ## [8.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@8.3.0...@ovh-ux/manager-cloud@8.3.1) (2020-02-14)
 
 
