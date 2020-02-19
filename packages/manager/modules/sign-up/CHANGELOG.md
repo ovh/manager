@@ -1,3 +1,12 @@
+## [1.1.1](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@1.1.0...@ovh-ux/sign-up@1.1.1) (2020-02-19)
+
+
+### Bug Fixes
+
+* **signup:** i18n ([78f9ae8](https://github.com/ovh/manager/commit/78f9ae8d0b345b3f73a8a5b132bd38110798267a))
+
+
+
 # [1.1.0](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@1.0.10...@ovh-ux/sign-up@1.1.0) (2019-12-10)
 
 
