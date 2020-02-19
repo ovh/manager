@@ -1,3 +1,13 @@
+## [0.1.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-enterprise-cloud-database@0.1.10...@ovh-ux/manager-enterprise-cloud-database@0.1.11) (2020-02-19)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 267] ([612c712](https://github.com/ovh/manager/commit/612c712e6b627cff42a854058d68a29ab7a4679e))
+* add missing label and contracts ([#2226](https://github.com/ovh/manager/issues/2226)) ([5dd56f7](https://github.com/ovh/manager/commit/5dd56f7831b4b75f16f28750a923d328a6b1071b))
+
+
+
 ## [0.1.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-enterprise-cloud-database@0.1.9...@ovh-ux/manager-enterprise-cloud-database@0.1.10) (2019-11-27)
 
 

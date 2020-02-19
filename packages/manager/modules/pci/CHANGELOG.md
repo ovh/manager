@@ -1,3 +1,28 @@
+# [3.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.10.3...@ovh-ux/manager-pci@3.11.0) (2020-02-19)
+
+
+### Bug Fixes
+
+* apply some en translations for pl subsidiary ([f1029d9](https://github.com/ovh/manager/commit/f1029d9f4e69fe02979dbdad2ad4a00f48bfe268))
+* **i18n:** add missing translations [CDS 260] ([6ef9f93](https://github.com/ovh/manager/commit/6ef9f93672fcdad1103345a7fafc9e271bc3f49f))
+* **i18n:** add missing translations [CDS 261] ([aa18579](https://github.com/ovh/manager/commit/aa18579b28f4c6052c66707bf1e12fc1e683e7e5))
+* **i18n:** add missing translations [CDS 262] ([9b6f242](https://github.com/ovh/manager/commit/9b6f242faaffcc1423598a5e3dc9ed7458908b37))
+* **i18n:** add missing translations [CDS 265] ([f4121ed](https://github.com/ovh/manager/commit/f4121ed566f773ef584f89c77e61949cc7233f8c))
+* **i18n:** add missing translations [CDS 268] ([aed8ad7](https://github.com/ovh/manager/commit/aed8ad7798453cbb7f131cc89aacb3be8b812355))
+* **i18n:** add missing translations [CDS 270] ([93040ec](https://github.com/ovh/manager/commit/93040ec095ab2a5037bf146a033bc598d61300d9))
+* **i18n:** add missing translations [CDS 271] ([3508861](https://github.com/ovh/manager/commit/35088612b6d53dabc1ba649be21009c0aff0b81a))
+* **i18n:** add missing translations [CDS 272] ([b339ba9](https://github.com/ovh/manager/commit/b339ba902192165b2633c8987a4220aa6a7976d5))
+* **pci.project.add:** add fallback for automated backup price ([#2277](https://github.com/ovh/manager/issues/2277)) ([ce4f44a](https://github.com/ovh/manager/commit/ce4f44a3ca2e8d34cda03a9981511c05a22ee0e0))
+
+
+### Features
+
+* **pci:** add baremetal ([218080a](https://github.com/ovh/manager/commit/218080a49dfd4d01bf9d8b0f4b7a6e9ebeee75b5))
+* **pci.instances:** provide a refresh action ([171f117](https://github.com/ovh/manager/commit/171f1178826e33293c245f8750cd042e9024225f))
+* **pci.project:** add serving engine ([#1878](https://github.com/ovh/manager/issues/1878)) ([3b8634d](https://github.com/ovh/manager/commit/3b8634d6f369cb15ca4fa077ebc37c33b37b8bac))
+
+
+
 ## [3.10.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.10.2...@ovh-ux/manager-pci@3.10.3) (2020-02-14)
 
 

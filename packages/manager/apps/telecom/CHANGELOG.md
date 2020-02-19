@@ -1,3 +1,15 @@
+## [11.4.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@11.4.4...@ovh-ux/manager-telecom@11.4.5) (2020-02-19)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 268] ([aed8ad7](https://github.com/ovh/manager/commit/aed8ad7798453cbb7f131cc89aacb3be8b812355))
+* **i18n:** add missing translations [CDS 271] ([3508861](https://github.com/ovh/manager/commit/35088612b6d53dabc1ba649be21009c0aff0b81a))
+* **telephony.line.phone.configuration:** add config translations ([#2241](https://github.com/ovh/manager/issues/2241)) ([29ee9d3](https://github.com/ovh/manager/commit/29ee9d38242a64b07ef0b8e1ac013a6bd4ede24c))
+* **telephony.portability:** display full list ([#2244](https://github.com/ovh/manager/issues/2244)) ([99d92d0](https://github.com/ovh/manager/commit/99d92d0e56d9ec10b876d3ab437528c7cc37557f))
+
+
+
 ## [11.4.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@11.4.3...@ovh-ux/manager-telecom@11.4.4) (2020-02-10)
 
 
