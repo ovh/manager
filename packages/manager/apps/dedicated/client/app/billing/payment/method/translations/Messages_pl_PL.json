@@ -16,11 +16,5 @@
   "billing_payment_method_table_action_download_procedure": "Pobierz dokument i prześlij go do nas pocztą.",
   "billing_payment_method_table_action_description_edit": "Zmień opis",
   "billing_payment_method_table_action_set_default": "Ustaw tę metodę płatności jako domyślną",
-  "billing_payment_method_table_action_delete": "Usuń tę metodę płatności",
-  "billing_payment_method_edit_error": "Wystąpił błąd podczas modyfikowania opisu:",
-  "billing_payment_method_edit_success": "Nastąpiła zmiana opisu Twojej metody płatności.",
-  "billing_payment_method_default_error": "Wystąpił błąd podczas zmiany Twojej domyślnej metody płatności.",
-  "billing_payment_method_default_success": "Twoja domyślna metoda płatności została zmieniona.",
-  "billing_payment_method_delete_error": "Wystąpił błąd podczas usuwania metody płatności.",
-  "billing_payment_method_delete_success": "Twoja metoda płatności została usunięta."
+  "billing_payment_method_table_action_delete": "Usuń tę metodę płatności"
 }

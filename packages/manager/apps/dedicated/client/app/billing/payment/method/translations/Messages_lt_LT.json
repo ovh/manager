@@ -16,11 +16,5 @@
   "billing_payment_method_table_action_download_procedure": "Download the procedure to return by post",
   "billing_payment_method_table_action_description_edit": "Edit description",
   "billing_payment_method_table_action_set_default": "Make this the default payment method",
-  "billing_payment_method_table_action_delete": "Delete this payment method",
-  "billing_payment_method_edit_error": "An error occured when modifying the description:",
-  "billing_payment_method_edit_success": "The change to your payment method description has been saved.",
-  "billing_payment_method_default_error": "An error has occurred modifying your default payment method.",
-  "billing_payment_method_default_success": "Your payment method has been modified.",
-  "billing_payment_method_delete_error": "An error has occurred deleting your payment method.",
-  "billing_payment_method_delete_success": "Your payment method has been deleted."
+  "billing_payment_method_table_action_delete": "Delete this payment method"
 }

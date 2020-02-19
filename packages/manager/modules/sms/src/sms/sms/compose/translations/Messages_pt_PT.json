@@ -61,7 +61,6 @@
   "sms_sms_compose_send": "Enviar",
   "sms_sms_compose_status_success": "Votre SMS a bien été envoyé",
   "sms_sms_compose_status_failed": "Une erreur est survenue lors de l’envoi de votre SMS",
-  "sms_sms_compose_status_invalid_receivers": "Votre SMS n’a pu être envoyé aux numéros suivants : ",
   "sms_sms_compose_open_new_tab": "Nova janela",
   "sms_sms_compose_tips_title": "Dicas",
   "sms_sms_compose_tip_compose_title": "Composition d’un SMS",

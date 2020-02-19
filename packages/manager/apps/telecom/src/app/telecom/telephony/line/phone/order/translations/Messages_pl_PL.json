@@ -24,7 +24,6 @@
   "telephony_line_phone_order_process_exchange2": "Vous payez la caution du nouveau matériel lors de la commande. Celle de l'ancien matériel vous est restituée sous 10 jours après réception de l'équipement par nos services.",
   "telephony_line_phone_order_return_phone": "Renvoyer mon équipement actuel ({{ phone }})",
   "telephony_line_phone_order_return_address_title": "Adresse de retour :",
-  "telephony_line_phone_order_return_address_content": "OVH SAS<br />Service Après Vente<br />13 rue Kellermann<br />59100 Roubaix",
   "telephony_line_phone_order_shipping_title": "Dostarczanie",
   "telephony_line_phone_order_shipping_contact": "Contact de livraison",
   "telephony_line_phone_order_shipping_mode": "Mode de livraison",

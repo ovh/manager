@@ -1,17 +1,9 @@
 {
- "cpc_tab_infra": "Infra.",
- "cpc_tab_snapshot": "Copies instantanées",
- "cpc_tab_volume": "Disques suppl.",
- "cpc_tab_ssh": "Clés SSH",
- "cpc_tab_loadbalancer": "Répartiteur de charge",
- "cpc_tab_project": "Gestion et conso. du projet",
- "cpb_tab_quota": "Quota",
- "cpc_message": "Le Cloud OVH arrive en Allemagne ! <a href=\"http://superlienverslapage\">Découvrez notre centre de données de Limburg.</a>",
- "cloud_message_pci_uk1": "Ouverture de notre nouvelle région UK1 à Londres, au Royaume-Uni !",
- "cloud_message_pci_uk1_link": "Découvrez ce que cela signifie pour vous",
- "cloud_message_pci_de1": "Ouverture de notre nouvelle région DE1 à Francfort, en Allemagne!",
- "cloud_message_pci_de1_link": "Découvrez ce que cela signifie pour vous",
- "cloud_message_pci_g3": "Nouveau : lancement de nos instances GPU G3-30 et G3-120, pour vos projets en science des données ou en apprentissage mécanique.",
- "cloud_message_pci_no_link": "En savoir plus...",
- "cloud_message_pci_bandwitdh_xmas": "Du 19 décembre 2017 au 8 janvier 2018 inclus, profitez d'une bande passante réseau allant jusqu'à 10 Gbits/s (au global) pour les instances C2-120, B2-120, R2-240 et G3-120."
+  "cpc_tab_infra": "Infra.",
+  "cpc_tab_snapshot": "Copies instantanées",
+  "cpc_tab_volume": "Disques suppl.",
+  "cpc_tab_ssh": "Clés SSH",
+  "cpc_tab_loadbalancer": "Répartiteur de charge",
+  "cpc_tab_project": "Gestion et conso. du projet",
+  "cpb_tab_quota": "Quota"
 }

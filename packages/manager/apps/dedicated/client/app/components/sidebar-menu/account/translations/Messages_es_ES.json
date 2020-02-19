@@ -19,7 +19,7 @@
   "menu_vouchers": "Códigos promocionales",
   "menu_billing": "Facturación",
   "menu_bills": "Mis facturas",
-  "menu_tickets": "Mis solicitudes de asistencia",
+  "menu_support": "Mis solicitudes de asistencia",
   "menu_payment_methods": "Formas de pago",
   "menu_subscriptions": "Mis suscripciones",
   "menu_ssh": "Mis llaves SSH",
@@ -30,6 +30,5 @@
   "menu_users_management": "Gestión de los usuarios",
   "menu_emails": "Mensajes recibidos",
   "menu_contacts": "Mis contactos",
-  "menu_agreements": "Mis contratos",
-  "menu_support": "Mis solicitudes de asistencia"
+  "menu_agreements": "Mis contratos"
 }
