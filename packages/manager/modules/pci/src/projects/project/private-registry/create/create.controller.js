@@ -13,18 +13,11 @@ export default class {
     this.loading = true;
     return this.privateRegistryService
       .create(this.projectId, this.registry)
-      .then((res) =>
+      .then(() =>
         this.goBack({
           text: this.$translate.instant('private_registry_onboarding_success', {
             registryName: this.registry.name,
           }),
-          link: {
-            type: 'state',
-            text: this.$translate.instant(
-              'private_registry_onboarding_success_link',
-            ),
-            state: this.getCredentialsState(res.id),
-          },
         }),
       )
       .catch((error) =>

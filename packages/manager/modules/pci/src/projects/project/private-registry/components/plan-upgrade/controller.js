@@ -22,7 +22,7 @@ export default class {
     this.loading = true;
     return this.OvhApiOrderCatalogPublic.v6()
       .get({
-        productName: 'cloudPreprod',
+        productName: 'cloud',
         ovhSubsidiary: this.user.ovhSubsidiary,
       })
       .$promise.then(({ addons }) => {

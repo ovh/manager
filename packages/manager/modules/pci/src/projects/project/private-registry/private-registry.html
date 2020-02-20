@@ -31,7 +31,6 @@
                 data-type="string"
                 data-searchable
                 data-sortable="asc"
-                data-filterable
             ></oui-column>
             <oui-column
                 data-title=":: 'private_registry_plan' | translate"
@@ -54,7 +53,6 @@
                 data-type="string"
                 data-searchable
                 data-sortable
-                data-filterable
             >
                 <span
                     class="oui-status"
@@ -80,7 +78,7 @@
                 data-ng-if="$row.status !== $ctrl.PRIVATE_REGISTRY_STATUS.DELETING"
             >
                 <oui-action-menu-item
-                    data-disabled="$row.plan.displayName === 'L' || $row.status === $ctrl.PRIVATE_REGISTRY_STATUS.SCALING_UP"
+                    data-disabled="$row.plan.displayName === 'L' || $ctrl.pciPrivateRegistryService.isDeploymentInProgress($row)"
                     data-on-click="$ctrl.upgradePlan($row.id)"
                 >
                     <span data-translate="private_registry_upgrade_plan"></span>

@@ -24,7 +24,7 @@ export default /* @ngInject */ ($stateProvider) => {
 
       getCredentialsState: /* @ngInject */ (projectId) => (registryId) =>
         `pci.projects.project.private-registry.credentials({projectId:
-          '${projectId}', registryId: '${registryId}', confirmationRequired: true})`,
+          '${projectId}', registryId: '${registryId}'})`,
 
       goBack: /* @ngInject */ (goBackToList) => goBackToList,
     },

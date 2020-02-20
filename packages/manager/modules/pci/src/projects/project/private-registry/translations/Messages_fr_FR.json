@@ -14,7 +14,7 @@
   "private_registry_consumption_display": "{{ used }} / {{ limit }}",
   "private_registry_harbor_ui": "Interface utilisateur Harbor",
   "private_registry_harbor_api": "API Harbor",
-  "private_registry_regenerate_creds": "Régénérer les informations d'identification",
+  "private_registry_regenerate_creds": "Générer les informations d'identification",
   "private_registry_rename": "Renommer",
   "private_registry_delete": "Supprimer le Registre privé",
   "private_registry_delete_confirmation": "Êtes-vous sûr de vouloir supprimer le registre privé  {{ registryName }}?",
@@ -49,8 +49,7 @@
   "private_registry_update_name_label": "Choisir un nom pour le Registre privé",
   "private_registry_update_success": "Le nom de Registre privé a été renommé en {{ newRegistryName }}",
   "private_registry_update_error": "Une erreur s'est produite lors du changement de nom du Registre privé {{ registryName }}: {{ message }}",
-  "private_registry_onboarding_success": "Votre service de registry privé {{ registryName }} a été créé.",
-  "private_registry_onboarding_success_link": "Générez un premier jeu d'identifiants pour y accéder.",
+  "private_registry_onboarding_success": "Votre registre privé {{ registryName }} est en cours de création. L'installation peut prendre quelques minutes. Utilisez le bouton de Refresh pour actualiser l'état. Une fois votre registre privé créé, générez un jeu d'identifiants pour y accéder.",
   "private_registry_onboarding_error": "Échec de la création du Registre privé: {{ message }}",
   "private_registry_harbor_api_title": "API du Registre privé",
   "private_registry_harbor_api_url": "URL API de votre Registre privé",
@@ -70,5 +69,6 @@
   "private_registry_new_project_contracts": "J’ai lu et j’accepte les contrats : {{ contractsLinks }}.",
   "private_registry_guide_creating_and_using_a_private_image": "Création et utilisation d'images privées",
   "private_registry_guide_using_private_registry_with_kubernetes": "Utilisation d'OVHcloud Managed Private Registry avec OVHcloud Managed Kubernetes",
-  "private_registry_guide_using_the_helm_chart_museum": "Utilisation du Helm chart museum"
+  "private_registry_guide_using_the_helm_chart_museum": "Utilisation du Helm chart museum",
+  "private_registry_common_cancel": "Annuler"
 }

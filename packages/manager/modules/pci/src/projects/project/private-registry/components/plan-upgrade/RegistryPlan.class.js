@@ -15,14 +15,6 @@ export default class RegistyPlan {
     return get(this, 'blobs.technical.connection.total', 0);
   }
 
-  get concurrency() {
-    return get(this, 'blobs.technical.connection.clients.concurrency', 0);
-  }
-
-  get connectionsNumber() {
-    return get(this, 'blobs.technical.connection.clients.number', 0);
-  }
-
   isSmall() {
     return this.name === 'S';
   }
