@@ -28,6 +28,7 @@ import coreConfig from './config';
 import translateFactory from './translate/translate.factory';
 import translateServiceProvider from './translate/translate.service';
 import sessionService from './session/session.service';
+import redirectionService from './redirection/redirection.service';
 
 import {
   LANGUAGES,
@@ -88,6 +89,7 @@ angular
     },
   )
   .service('SessionService', sessionService)
+  .service('RedirectionService', redirectionService)
   // Fix security issue: https://github.com/angular-translate/angular-translate/issues/1418
   .factory(
     'translateMissingTranslationHandler',
