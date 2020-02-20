@@ -1,7 +1,7 @@
 angular.module('App').config(
   /* @ngInject */ ($stateProvider) => {
-    $stateProvider.state('app.dedicatedClouds.datacenter.backup', {
-      url: '/backup',
+    $stateProvider.state('app.dedicatedClouds.datacenter.backup-old', {
+      url: '/backup-old',
       reloadOnSearch: false,
       views: {
         pccDatacenterView: {
