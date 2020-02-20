@@ -12,7 +12,7 @@
     <!-- THERE IS NO PAYMENT MEAN - SHOW A MESSAGE TO ADD IT -->
     <div
         class="oui-box"
-        data-ng-if="$ctrl.isQuotaRestricted() && !$ctrl.defaultPaymentMean"
+        data-ng-if="$ctrl.isQuotaRestricted() && !$ctrl.hasDefaultPaymentMethod"
     >
         <p
             class="font-weight-bold"
@@ -27,7 +27,7 @@
     <!-- THERE IS A PAYMENT MEAN BUT QUOTA IS RESTRICTED -  -->
     <div
         class="oui-box"
-        data-ng-if="$ctrl.isQuotaRestricted() && $ctrl.defaultPaymentMean"
+        data-ng-if="$ctrl.isQuotaRestricted() && $ctrl.hasDefaultPaymentMethod"
     >
         <p
             class="font-weight-bold"

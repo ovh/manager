@@ -9,6 +9,12 @@ export default class {
     this.OvhApiMe = OvhApiMe;
   }
 
+  /**
+   * WARNING: should not be used anymore!!!
+   * Need to use ovhPaymentMethod.getDefaultPaymentMethod instead.
+   *
+   * @deprecated since version 3.11.1
+   */
   getDefaultPaymentMean(region) {
     if (region !== 'US') {
       return this.OvhApiMe.PaymentMean()
