@@ -1,118 +1,118 @@
-<div class="dedicatedCloud-datacenter">
-    <div
-        class="text-center mt-5"
-        data-ng-if="$ctrl.loadingInformations && !$ctrl.loadingError"
-    >
-        <oui-spinner data-size="l"></oui-spinner>
-    </div>
+<div
+    class="text-center mt-5"
+    data-ng-if="$ctrl.loadingInformations && !$ctrl.loadingError"
+>
+    <oui-spinner data-size="l"></oui-spinner>
+</div>
 
-    <div data-ng-if="!$ctrl.loadingInformations">
-        <header class="page-header" role="banner">
-            <div class="row">
-                <div class="col-md-9">
-                    <form name="formEditDisplayName" novalidate>
-                        <div
-                            class="mb-3"
-                            data-ng-if="!datacenterName.editMode && !datacenterDescription.editMode"
-                        >
-                            <div class="d-flex">
-                                <h1
-                                    class="oui-header_2 d-inline-block mb-0 word-break"
-                                    data-ng-bind="datacenterName.model || 'dedicatedCloud_datacenter_no_name' | translate:{ t0: datacenter.id }"
-                                ></h1>
-                                <button
-                                    type="button"
-                                    title="{{ 'wizard_modify' | translate }}"
-                                    class="btn btn-icon my-auto ml-2"
-                                    data-ng-click="editDescription(datacenterName.model, 'dedicatedCloud_datacenter_name')"
-                                >
-                                    <span
-                                        class="oui-icon oui-icon-pen_line oui-icon_small"
-                                        aria-hidden="true"
-                                    ></span>
-                                </button>
-                            </div>
-                            <em
-                                data-ng-bind="datacenterDescription.model || ('dedicatedCloud_datacenter_no_description' | translate)"
-                                class="align-middle"
-                            >
-                            </em>
-                            <button
-                                type="button"
-                                title="{{ 'wizard_modify' | translate }}"
-                                class="btn btn-icon my-auto ml-2 d-inline-block align-middle"
-                                data-ng-click="editDescription(datacenterDescription.model, 'dedicatedCloud_datacenter_description')"
-                            >
-                                <span
-                                    class="oui-icon oui-icon-pen_line"
-                                    aria-hidden="true"
-                                ></span>
-                            </button>
-                        </div>
-                    </form>
+<div data-ng-if="!$ctrl.loadingInformations">
+    <header class="oui-page-header">
+        <div class="oui-page-header__container">
+            <div class="oui-page-header__content">
+                <div class="d-flex">
+                    <h1
+                        class="oui-page-header__title"
+                        data-ng-bind="datacenterName.model || 'dedicatedCloud_datacenter_no_name' | translate:{ t0: datacenter.id }"
+                    ></h1>
+                    <button
+                        type="button"
+                        class="btn btn-icon ml-2"
+                        data-ng-click=":: editDescription(datacenterName.model, 'dedicatedCloud_datacenter_name')"
+                    >
+                        <span
+                            class="oui-icon oui-icon-pen_line oui-icon_small"
+                            aria-hidden="true"
+                        ></span>
+                        <span
+                            class="sr-only"
+                            data-translate="{{:: 'wizard_modify' | translate }}"
+                        ></span>
+                    </button>
+                </div>
+
+                <div class="d-flex">
+                    <h2
+                        class="oui-page-header__description"
+                        data-ng-bind="datacenterDescription.model || ('dedicatedCloud_datacenter_no_description' | translate)"
+                    ></h2>
+
+                    <button
+                        type="button"
+                        class="btn btn-icon ml-2"
+                        data-ng-click=":: editDescription(datacenterDescription.model, 'dedicatedCloud_datacenter_description')"
+                    >
+                        <span
+                            class="oui-icon oui-icon-pen_line oui-icon_small"
+                            aria-hidden="true"
+                        ></span>
+                        <span
+                            class="sr-only"
+                            data-translate="{{:: 'wizard_modify' | translate }}"
+                        ></span>
+                    </button>
                 </div>
             </div>
-        </header>
+        </div>
 
-        <!-- Tabs -->
-        <oui-header-tabs class="oui-page-header">
+        <oui-header-tabs>
             <oui-header-tabs-item
-                data-state="app.dedicatedClouds.datacenter.dashboard"
-                data-text="{{:: 'dedicatedCloud_tab_dashboard' | translate }}"
+                state="app.dedicatedClouds.datacenter.dashboard"
+                text="{{:: 'dedicatedCloud_tab_dashboard' | translate }}"
             ></oui-header-tabs-item>
             <oui-header-tabs-item
-                data-state="app.dedicatedClouds.datacenter.hosts"
-                data-text="{{:: 'dedicatedCloud_tab_host' | translate }}"
+                state="app.dedicatedClouds.datacenter.hosts"
+                text="{{:: 'dedicatedCloud_tab_host' | translate }}"
             ></oui-header-tabs-item>
             <oui-header-tabs-item
-                data-state="app.dedicatedClouds.datacenter.datastores"
-                data-text="{{:: 'dedicatedCloud_tab_datastore' | translate }}"
+                state="app.dedicatedClouds.datacenter.datastores"
+                text="{{:: 'dedicatedCloud_tab_datastore' | translate }}"
             ></oui-header-tabs-item>
             <oui-header-tabs-item
-                data-state="app.dedicatedClouds.datacenter.backup"
-                data-text="{{:: 'dedicatedCloud_tab_backup' | translate }}"
+                state="app.dedicatedClouds.datacenter.backup"
+                text="{{:: 'dedicatedCloud_tab_backup' | translate }}"
             ></oui-header-tabs-item>
             <oui-header-tabs-item
-                data-state="app.dedicatedClouds.datacenter.drp"
-                data-ng-if="$ctrl.isDrpAvailable"
-                data-text="{{:: 'dedicatedCloud_tab_drp' | translate }}"
+                state="app.dedicatedClouds.datacenter.drp"
+                ng-if=":: $ctrl.isDrpAvailable"
+                text="{{:: 'dedicatedCloud_tab_drp' | translate }}"
             ></oui-header-tabs-item>
         </oui-header-tabs>
-        <div class="tab-content">
-            <div
-                class="alert"
-                role="alert"
-                data-ng-class="alertType"
-                data-ng-show="message"
-            >
-                <i
-                    class="close icon-remove"
-                    data-ng-click="resetMessage()"
-                    aria-hidden="true"
-                ></i>
-                <span data-ng-bind-html="message"></span>
-            </div>
+    </header>
 
-            <div
-                data-ovh-alert="{{ :: $ctrl.DEDICATED_CLOUD_DATACENTER.alertId }}"
-            ></div>
-
-            <div class="text-center" data-ng-if="loading">
-                <oui-spinner></oui-spinner>
-            </div>
-
-            <div data-ui-view="pccDatacenterView" data-ng-if="!loading"></div>
+    <div class="tab-content">
+        <div
+            class="alert"
+            role="alert"
+            data-ng-class="alertType"
+            data-ng-show="message"
+        >
+            <i
+                class="oui-icon oui-icon-close"
+                data-ng-click="resetMessage()"
+                aria-hidden="true"
+            ></i>
+            <span data-ng-bind-html="message"></span>
         </div>
+
+        <div
+            data-ovh-alert="{{ :: $ctrl.DEDICATED_CLOUD_DATACENTER.alertId }}"
+        ></div>
+
+        <div class="text-center" data-ng-if="loading">
+            <oui-spinner></oui-spinner>
+        </div>
+
+        <div data-ui-view="pccDatacenterView" data-ng-if="!loading"></div>
     </div>
+</div>
 
-    <div id="currentAction" class="modal fade currentAction" role="dialog">
-        <div class="modal-dialog">
-            <div
-                id="modal-container"
-                class="modal-content"
-                data-ng-include="stepPath"
-            ></div>
-            <div id="modal-help" class="help4wizards"></div>
-        </div>
+<div id="currentAction" class="modal fade currentAction" role="dialog">
+    <div class="modal-dialog">
+        <div
+            id="modal-container"
+            class="modal-content"
+            data-ng-include="stepPath"
+        ></div>
+        <div id="modal-help" class="help4wizards"></div>
     </div>
 </div>
