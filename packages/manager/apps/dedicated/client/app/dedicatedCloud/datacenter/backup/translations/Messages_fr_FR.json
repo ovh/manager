@@ -1,0 +1,15 @@
+{
+  "datacenter_backup_title": "Backup",
+  "datacenter_backup_enabled": "Sauvegarde activée",
+  "datacenter_backup_choose_offers": "Choix de la solution de sauvegarde",
+  "datacenter_backup_update_offer": "Sélectionner l’offre",
+  "datacenter_backup_daily_report_title": "Rapport journalier de sauvegarde",
+  "datacenter_backup_daily_report_description": "Sélectionnez les options de votre rapport journalier de sauvegarde",
+  "datacenter_backup_capability_backupDurationInReport": "Durée de la sauvegarde",
+  "datacenter_backup_capability_backupSizeInReport": "Taille de la sauvegarde",
+  "datacenter_backup_capability_diskSizeInReport": "Taille du disque",
+  "datacenter_backup_capability_fullDayInReport": "Sauvegarde complète journalière",
+  "datacenter_backup_capability_restorePointInReport": "Restaurer mes points",
+  "datacenter_backup_capability_mailAddress": "Envoyer le rapport journalier de sauvegarde à une adresse e-mail spécifique",
+  "datacenter_backup_capability_update": "Valider les options du rapport"
+}
