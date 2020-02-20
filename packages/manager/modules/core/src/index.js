@@ -17,10 +17,7 @@ import 'angular-dynamic-locale';
 import 'angular-translate';
 import 'angular-translate-loader-pluggable';
 
-import '@ovh-ux/ng-ovh-swimming-poll';
-import '@ovh-ux/ng-ovh-api-wrappers';
 import '@ovh-ux/ng-ovh-request-tagger';
-import 'ovh-api-services';
 
 import '@uirouter/angularjs';
 
@@ -40,12 +37,9 @@ const moduleName = 'ovhManagerCore';
 
 angular
   .module(moduleName, [
-    'ngOvhSwimmingPoll',
-    'ngOvhApiWrappers',
     'ngSanitize',
     'angular-translate-loader-pluggable',
     'ngOvhRequestTagger',
-    'ovh-api-services',
     'pascalprecht.translate',
     'tmh.dynamicLocale',
     coreConfig,
