@@ -6,6 +6,7 @@ import pccViewTemplate from './dashboard/dedicatedCloud-dashboard.html';
 angular.module('App').config(
   /* @ngInject */ ($stateProvider, $urlServiceProvider) => {
     $stateProvider.state('app.dedicatedClouds', {
+      redirectTo: 'app.dedicatedClouds.dashboard',
       resolve: {
         currentService: /* @ngInject */ ($transition$, DedicatedCloud) =>
           DedicatedCloud.getSelected($transition$.params().productId, true),

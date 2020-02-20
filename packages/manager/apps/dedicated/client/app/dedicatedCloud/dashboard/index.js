@@ -5,7 +5,7 @@ import legacy from './legacy';
 import options from './tiles/options';
 import serviceManagement from './tiles/service-management';
 
-import component from './dedicatedCloud-dashboard.component';
+import routing from './dedicatedCloud-dashboard.routing';
 
 const moduleName = 'ovhManagerPccDashboard';
 
@@ -20,7 +20,7 @@ angular
     serviceManagement,
     'ui.router',
   ])
-  .component(component.name, component)
+  .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
