@@ -5,7 +5,7 @@ import legacy from './legacy';
 import options from './tiles/options';
 import serviceManagement from './tiles/service-management';
 
-import component from './dashboard.component';
+import component from './dedicatedCloud-dashboard.component';
 
 const moduleName = 'ovhManagerPccDashboard';
 

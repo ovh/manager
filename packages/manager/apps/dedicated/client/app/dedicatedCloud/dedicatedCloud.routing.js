@@ -1,7 +1,7 @@
 import get from 'lodash/get';
 import sortBy from 'lodash/sortBy';
 
-import pccViewTemplate from './dashboard/dashboard.html';
+import pccViewTemplate from './dashboard/dedicatedCloud-dashboard.html';
 
 angular.module('App').config(
   /* @ngInject */ ($stateProvider, $urlServiceProvider) => {

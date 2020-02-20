@@ -1,4 +1,4 @@
-import template from './dashboard.html';
+import template from './dedicatedCloud-dashboard.html';
 
 export default {
   bindings: {
