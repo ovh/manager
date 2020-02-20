@@ -7,22 +7,21 @@
                 data-ng-bind="$ctrl.badgeText"
             ></span>
         </p>
-        <p class="hub-tile__button-container">
-            <a
-                class="oui-button oui-button_link hub-button"
-                data-ng-href="{{$ctrl.href}}"
-                data-ng-click="$ctrl.onClick()"
-            >
-                <span
-                    class="hub-button__text"
-                    data-ng-bind="::$ctrl.buttonText"
-                ></span>
-                <span
-                    class="oui-icon oui-icon-arrow-right_extra-thin hub-button__right-arrow"
-                    aria-hidden="true"
-                ></span>
-            </a>
-        </p>
+        <a
+            class="oui-button oui-button_link hub-button"
+            data-ng-if="$ctrl.href"
+            data-ng-href="{{:: $ctrl.href }}"
+            data-ng-click="$ctrl.onClick()"
+        >
+            <span
+                class="hub-button__text"
+                data-ng-bind="::$ctrl.buttonText"
+            ></span>
+            <span
+                class="oui-icon oui-icon-arrow-right_extra-thin hub-button__right-arrow"
+                aria-hidden="true"
+            ></span>
+        </a>
     </div>
     <div class="oui-tile__body" data-ng-transclude></div>
 </div>

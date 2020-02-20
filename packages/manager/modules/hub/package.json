@@ -16,6 +16,7 @@
     "@uirouter/angularjs": "^1.0.23",
     "angular": "^1.7.5",
     "angular-translate": "^2.18.1",
+    "bootstrap4": "twbs/bootstrap#v4.0.0",
     "ovh-ui-kit": "^3.6.0"
   }
 }
