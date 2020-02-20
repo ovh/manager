@@ -8,6 +8,7 @@ export default {
     serviceName: '<',
     partition: '<',
     goToPartitionAccessPage: '<',
+    partitionDetails: '<',
   },
   controller,
   controllerAs: 'NashaPartitionAccessAddCtrl',
