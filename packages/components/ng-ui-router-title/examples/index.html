@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>@ovh-ux/ng-ui-router-title</title>
+    </head>
+    <body ng-app="myApp">
+        <nav>
+            <a ui-sref="foo">Foo</a>
+            <a ui-sref="foo.bar">Bar</a>
+            <a ui-sref="foo.bar.baz">Baz</a>
+        </nav>
+        <ui-view></ui-view>
+        <script src="https://unpkg.com/angular@latest/angular.js"></script>
+        <script src="https://unpkg.com/@uirouter/angularjs@latest/release/angular-ui-router.js"></script>
+        <script src="https://unpkg.com/@ovh-ux/ng-ui-router-title@latest"></script>
+        <script>
+            var myApp = angular
+                .module('myApp', ['ui.router', 'ngUiRouterTitle'])
+                .config(function($stateProvider) {
+                    $stateProvider.state('foo', {
+                        url: '/foo',
+                        template: '<h2>Foo</h2>',
+                        resolve: {
+                            $title: function() {
+                                return 'foo';
+                            },
+                        },
+                    });
+                    $stateProvider.state('foo.bar', {
+                        url: '/bar',
+                        template: '<h2>Bar</h2>',
+                        resolve: {
+                            $title: function() {
+                                return 'bar';
+                            },
+                        },
+                    });
+                    $stateProvider.state('foo.bar.baz', {
+                        url: '/baz',
+                        template: '<h2>Baz</h2>',
+                        resolve: {
+                            $title: function() {
+                                return 'baz';
+                            },
+                        },
+                    });
+                });
+        </script>
+    </body>
+</html>
