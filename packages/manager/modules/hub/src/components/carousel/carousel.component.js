@@ -3,7 +3,7 @@ import template from './carousel.html';
 
 export default {
   bindings: {
-    notifications: '<',
+    items: '<',
   },
   controller,
   template,

@@ -8,7 +8,6 @@ import 'ovh-ui-angular';
 import ovhManagerCore from '@ovh-ux/manager-core';
 import ovhManagerHub from '@ovh-ux/manager-hub';
 import ovhManagerNavbar from '@ovh-ux/manager-navbar';
-import ovhManagerHub from '@ovh-ux/manager-hub';
 
 import atInternet from './components/at-internet';
 import preload from './components/manager-preload';
@@ -26,6 +25,7 @@ angular
     'pascalprecht.translate',
     atInternet,
     dashboard,
+    'pascalprecht.translate',
     'oui',
     ovhManagerCore,
     ovhManagerHub,
@@ -41,4 +41,5 @@ angular
     /* @ngInject */ ($translate, $transitions) => {
       $transitions.onBefore({ to: 'app.**' }, () => $translate.refresh());
     },
-  );
+  )
+  .run(/* @ngTranslationsInject:json ./translations */);

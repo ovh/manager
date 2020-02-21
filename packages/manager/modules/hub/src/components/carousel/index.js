@@ -1,6 +1,5 @@
 import angular from 'angular';
 import 'angular-translate';
-import 'ovh-api-services';
 
 import './styles.less';
 
