@@ -1,3 +1,12 @@
+## [1.1.3](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@1.1.2...@ovh-ux/sign-up@1.1.3) (2020-02-21)
+
+
+### Bug Fixes
+
+* **form.details:** fix state field for DE language ([835fcc9](https://github.com/ovh/manager/commit/835fcc96537d1ca1250409772512b4544cd7f063))
+
+
+
 ## [1.1.2](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@1.1.1...@ovh-ux/sign-up@1.1.2) (2020-02-21)
 
 
