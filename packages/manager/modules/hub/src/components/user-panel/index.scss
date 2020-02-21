@@ -15,8 +15,6 @@
   width: 22rem;
   padding: 2rem;
   padding-top: 3rem;
-  position: absolute;
-  right: 0;
 
   @include media-breakpoint-down(sm) {
     display: none;
