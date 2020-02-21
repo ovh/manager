@@ -109,7 +109,7 @@
                         data-ng-options="language.value as language.label for language in $ctrl.signUpFormCtrl.rules.language.in"
                         data-ng-model="$ctrl.signUpFormCtrl.model.language"
                         data-ng-required="$ctrl.signUpFormCtrl.rules.language.mandatory"
-                        data-ng-disabled="$ctrl.signUpFormCtrl.rules.language.in.length === 1"
+                        data-ng-disabled="$ctrl.signUpFormCtrl.rules.language.in.length === 0"
                     >
                     </select>
                     <span
