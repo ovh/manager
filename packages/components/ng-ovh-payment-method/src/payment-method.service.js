@@ -13,26 +13,26 @@ import OvhPaymentMethodLegacy from './legacy/payment-method-legacy';
 export default class OvhPaymentMethodService {
   /* @ngInject */
   constructor(
+    $http,
     $log,
     $q,
     $translate,
     $window,
     coreConfig,
-    OvhApiMe,
     paymentMethodPageUrl,
   ) {
+    this.$http = $http;
     this.$q = $q;
     this.$translate = $translate;
     this.$window = $window;
     this.coreConfig = coreConfig;
-    this.OvhApiMe = OvhApiMe;
 
     this.ovhPaymentMethodLegacy = new OvhPaymentMethodLegacy(
+      $http,
       $log,
       $q,
       $translate,
       $window,
-      OvhApiMe,
       coreConfig.getRegion(),
     );
 
@@ -67,11 +67,10 @@ export default class OvhPaymentMethodService {
   /* ----------  Payment types  ---------- */
 
   getAvailablePaymentMethodTypes() {
-    return this.OvhApiMe.Payment()
-      .Method()
-      .v6()
-      .availableMethods()
-      .$promise.then((paymentTypes) => {
+    return this.$http
+      .get('/me/payment/availableMethods')
+      .then(({ data }) => data)
+      .then((paymentTypes) => {
         const registerablePaymentTypes = filter(paymentTypes, {
           registerable: true,
         });
@@ -125,25 +124,18 @@ export default class OvhPaymentMethodService {
 
     const addParams = params;
     addParams.paymentType = paymentMethodType.paymentType;
-    return this.OvhApiMe.Payment()
-      .Method()
-      .v6()
-      .save({}, addParams)
-      .$promise.then((response) => {
+    return this.$http
+      .post('/me/payment/method', addParams)
+      .then(({ data }) => data)
+      .then((response) => {
         if (has(params, 'orderId') && has(response, 'paymentMethodId')) {
-          return this.OvhApiMe.Order()
-            .v6()
-            .pay(
-              {
-                orderId: params.orderId,
+          return this.$http
+            .post(`/me/order/${params.orderId}/pay`, {
+              paymentMethod: {
+                id: response.paymentMethodId,
               },
-              {
-                paymentMethod: {
-                  id: response.paymentMethodId,
-                },
-              },
-            )
-            .$promise.then(() => response);
+            })
+            .then(() => response);
         }
 
         return this.$q.when(response);
@@ -165,15 +157,9 @@ export default class OvhPaymentMethodService {
       );
     }
 
-    return this.OvhApiMe.Payment()
-      .Method()
-      .v6()
-      .edit(
-        {
-          paymentMethodId: paymentMethod.paymentMethodId,
-        },
-        params,
-      ).$promise;
+    return this.$http
+      .put(`/me/payment/method/${paymentMethod.paymentMethodId}`, params)
+      .then(({ data }) => data);
   }
 
   /**
@@ -209,15 +195,11 @@ export default class OvhPaymentMethodService {
       );
     }
 
-    return this.OvhApiMe.Payment()
-      .Method()
-      .v6()
-      .challenge(
-        {
-          paymentMethodId: paymentMethod.paymentMethodId,
-        },
-        { challenge },
-      ).$promise;
+    return this.$http
+      .post(`/me/payment/method/${paymentMethod.paymentMethodId}/challenge`, {
+        challenge,
+      })
+      .then(({ data }) => data);
   }
 
   /**
@@ -227,16 +209,13 @@ export default class OvhPaymentMethodService {
    *  @return {Promise}
    */
   finalizePaymentMethod(paymentValidation, finalizeData = {}) {
-    return this.OvhApiMe.Payment()
-      .Method()
-      .v6()
-      .finalize(
-        {
-          paymentMethodId: paymentValidation.paymentMethodId,
-        },
+    return this.$http
+      .post(
+        `/me/payment/method/${paymentValidation.paymentMethodId}/finalize`,
         finalizeData,
       )
-      .$promise.then((paymentMethod) => new OvhPaymentMethod(paymentMethod));
+      .then(({ data }) => data)
+      .then((paymentMethod) => new OvhPaymentMethod(paymentMethod));
   }
 
   /**
@@ -252,24 +231,18 @@ export default class OvhPaymentMethodService {
       );
     }
 
-    return this.OvhApiMe.Payment()
-      .Method()
-      .v6()
-      .delete({
-        paymentMethodId: paymentMethod.paymentMethodId,
-      }).$promise;
+    return this.$http
+      .delete(`/me/payment/method/${paymentMethod.paymentMethodId}`)
+      .then(({ data }) => data);
   }
 
   /* ----------  New payment methods  ---------- */
 
   getPaymentMethod(paymentMethodId) {
-    return this.OvhApiMe.Payment()
-      .Method()
-      .v6()
-      .get({
-        paymentMethodId,
-      })
-      .$promise.then(
+    return this.$http
+      .get(`/me/payment/method/${paymentMethodId}`)
+      .then(({ data }) => data)
+      .then(
         (paymentMethodOptions) => new OvhPaymentMethod(paymentMethodOptions),
       );
   }
@@ -280,17 +253,17 @@ export default class OvhPaymentMethodService {
    *  @return {Promise}                   That returns an Array of OvhPaymentMethod
    */
   getPaymentMethods(options = DEFAULT_OPTIONS) {
-    return this.OvhApiMe.Payment()
-      .Method()
-      .v6()
-      .query(
-        options.onlyValid
-          ? {
-              status: 'VALID',
-            }
-          : {},
-      )
-      .$promise.then((paymentMethodIds) =>
+    const params = options.onlyValid
+      ? {
+          status: 'VALID',
+        }
+      : {};
+    return this.$http
+      .get('/me/payment/method', {
+        params,
+      })
+      .then(({ data }) => data)
+      .then((paymentMethodIds) =>
         this.$q.all(
           map(paymentMethodIds, (paymentMethodId) =>
             this.getPaymentMethod(paymentMethodId),

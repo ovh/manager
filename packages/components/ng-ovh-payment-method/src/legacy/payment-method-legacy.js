@@ -1,4 +1,4 @@
-import { filter, flatten, get, has, map, startCase } from 'lodash-es';
+import { filter, flatten, get, has, map } from 'lodash-es';
 
 import {
   DEFAULT_OPTIONS,
@@ -19,12 +19,12 @@ import OvhPaymentMeanType from './mean/payment-mean-type.class';
 
 export default class OvhPaymentMethodLegacy {
   /* @ngInject */
-  constructor($log, $q, $translate, $window, OvhApiMe, target) {
+  constructor($http, $log, $q, $translate, $window, target) {
+    this.$http = $http;
     this.$log = $log;
     this.$q = $q;
     this.$translate = $translate;
     this.$window = $window;
-    this.OvhApiMe = OvhApiMe;
     this.target = target;
   }
 
@@ -111,9 +111,9 @@ export default class OvhPaymentMethodLegacy {
     return this.$q
       .all({
         infos: availablePromise,
-        availableMeans: this.OvhApiMe.AvailableAutomaticPaymentMeans()
-          .v6()
-          .get().$promise,
+        availableMeans: this.$http
+          .get('/me/availableAutomaticPaymentMeans')
+          .then(({ data }) => data),
       })
       .then(({ infos, availableMeans }) => {
         const registerablePaymentMeans = filter(infos, (paymentMeanInfos) => {
@@ -141,23 +141,6 @@ export default class OvhPaymentMethodLegacy {
   /* =====================================
   =            Payment Means            =
   ===================================== */
-
-  /**
-   *  Get the right v6 resource for /me/paymentMean APIs.
-   *
-   *  @param  {String} paymentMeanType The type of payment mean that will be used to determine
-   *                                   the API route (and so the right resource)
-   *  @return {ngResource}
-   */
-  getPaymentMeanResource(paymentMeanType) {
-    return this.OvhApiMe.PaymentMean()
-      [
-        startCase(paymentMeanType)
-          .split(' ')
-          .join('')
-      ]()
-      .v6();
-  }
 
   /**
    *  Get all payment means of the logged user.
@@ -205,24 +188,25 @@ export default class OvhPaymentMethodLegacy {
       });
     }
 
-    const resource = this.getPaymentMeanResource(paymentMeanType);
+    const params =
+      paymentMeanType === 'bankAccount' && options.onlyValid
+        ? {
+            state: 'valid',
+          }
+        : {};
 
-    return resource
-      .query(
-        paymentMeanType === 'bankAccount' && options.onlyValid
-          ? {
-              state: 'valid',
-            }
-          : {},
-      )
-      .$promise.then((paymentMeanIds) =>
+    return this.$http
+      .get(`/me/paymentMean/${paymentMeanType}`, {
+        params,
+      })
+      .then(({ data }) => data)
+      .then((paymentMeanIds) =>
         this.$q.all(
           map(paymentMeanIds, (paymentMeanId) =>
-            resource
-              .get({
-                id: paymentMeanId,
-              })
-              .$promise.then((mean) => {
+            this.$http
+              .get(`/me/paymentMean/${paymentMeanType}/${paymentMeanId}`)
+              .then(({ data }) => data)
+              .then((mean) => {
                 let paymentMean;
                 switch (paymentMeanType) {
                   case PAYMENT_MEAN_TYPE_ENUM.BANK_ACCOUNT:
@@ -260,9 +244,10 @@ export default class OvhPaymentMethodLegacy {
       delete addParams.default;
     }
 
-    return this.getPaymentMeanResource(paymentMean.meanType)
-      .save({}, addParams)
-      .$promise.then((result) => {
+    return this.$http
+      .post(`/me/paymentMean/${paymentMean.meanType}`, addParams)
+      .then(({ data }) => data)
+      .then((result) => {
         if (result.url && paymentMean.meanType !== 'bankAccount') {
           if (!params.returnUrl) {
             this.$window.open(result.url, '_blank');
@@ -281,12 +266,9 @@ export default class OvhPaymentMethodLegacy {
    *  @return {Promise}
    */
   editPaymentMean(paymentMean, params) {
-    return this.getPaymentMeanResource(paymentMean.meanType).edit(
-      {
-        id: paymentMean.id,
-      },
-      params,
-    ).$promise;
+    return this.$http
+      .put(`/me/paymentMean/${paymentMean.meanType}/${paymentMean.id}`, params)
+      .then(({ data }) => data);
   }
 
   /**
@@ -295,14 +277,12 @@ export default class OvhPaymentMethodLegacy {
    *  @return {Promise}
    */
   setPaymentMeanAsDefault(paymentMean) {
-    return this.getPaymentMeanResource(
-      paymentMean.meanType,
-    ).chooseAsDefaultPaymentMean(
-      {
-        id: paymentMean.id,
-      },
-      null,
-    ).$promise;
+    return this.$http
+      .post(
+        `/me/paymentMean/${paymentMean.meanType}/${paymentMean.id}/chooseAsDefaultPaymentMean`,
+        null,
+      )
+      .then(({ data }) => data);
   }
 
   /**
@@ -311,9 +291,11 @@ export default class OvhPaymentMethodLegacy {
    *  @return {Promise}
    */
   deletePaymentMean(paymentMean) {
-    return this.getPaymentMeanResource(paymentMean.meanType).delete({
-      id: paymentMean.id,
-    }).$promise;
+    return this.$http
+      .delete(
+        `/me/paymentMean/${paymentMean.meanType}/${paymentMean.id}/chooseAsDefaultPaymentMean`,
+      )
+      .then(({ data }) => data);
   }
 
   /**
@@ -323,12 +305,14 @@ export default class OvhPaymentMethodLegacy {
    *  @return {Promise}
    */
   challengePaymentMean(paymentMean, challenge) {
-    return this.getPaymentMeanResource(paymentMean.meanType).challenge(
-      {
-        id: paymentMean.id,
-      },
-      { challenge },
-    ).$promise;
+    return this.$http
+      .post(
+        `/me/paymentMean/${paymentMean.meanType}/${paymentMean.id}/challenge`,
+        {
+          challenge,
+        },
+      )
+      .then(({ data }) => data);
   }
 
   /* =====  End of Payment Means  ====== */

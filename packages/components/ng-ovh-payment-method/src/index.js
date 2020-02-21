@@ -3,8 +3,6 @@ import 'angular-translate';
 import '@ovh-ux/ng-translate-async-loader';
 import '@ovh-ux/manager-core';
 
-import 'ovh-api-services';
-
 import components from './components';
 import paymentMethodProvider from './payment-method.provider';
 import paymentMethodHelperService from './payment-method-helper.service';
@@ -22,7 +20,6 @@ angular
   .module(moduleName, [
     components,
     'ngTranslateAsyncLoader',
-    'ovh-api-services',
     'pascalprecht.translate',
     'ovhManagerCore',
   ])
