@@ -40,6 +40,7 @@
                         data-ng-model="$ctrl.signUpFormCtrl.model.country"
                         data-ng-required="$ctrl.signUpFormCtrl.rules.country.mandatory"
                         data-ng-disabled="$ctrl.signUpFormCtrl.rules.country.in.length === 1"
+                        data-ng-change="$ctrl.onCountryChange()"
                     >
                     </select>
                     <span
