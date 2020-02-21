@@ -6,11 +6,11 @@ import regionsList from '../../../../../components/project/regions-list';
 const moduleName = 'ovhManagerDataProcessingSubmitJobRegionSelectorComponent';
 
 angular
-  .module(moduleName, [
-    'ui.router',
-    regionsList,
-  ])
-  .component('dataprocessingSubmitJobRegionSelectorComponent', regionSelectorComponent)
+  .module(moduleName, ['ui.router', regionsList])
+  .component(
+    'dataprocessingSubmitJobRegionSelectorComponent',
+    regionSelectorComponent,
+  )
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

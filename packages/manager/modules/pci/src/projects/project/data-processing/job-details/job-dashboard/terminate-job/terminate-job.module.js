@@ -5,7 +5,8 @@ import routing from './terminate-job.routing';
 
 const moduleName = 'ovhManagerDataProcessingTerminateJobModalComponent';
 
-angular.module(moduleName, [])
+angular
+  .module(moduleName, [])
   .config(routing)
   .component('dataprocessingTerminateJobModal', component)
   .run(/* @ngTranslationsInject:json ./translations */);

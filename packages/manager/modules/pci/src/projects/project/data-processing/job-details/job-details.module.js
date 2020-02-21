@@ -10,13 +10,12 @@ import jobLogs from './job-logs';
 const moduleName = 'ovhManagerDataProcessingSubmitJobComponent';
 
 angular
-  .module(moduleName, [
-    'ui.router',
-    jobDashboard,
-    jobLogs,
-  ])
+  .module(moduleName, ['ui.router', jobDashboard, jobLogs])
   .config(routing)
-  .component('dataProcessingJobDetailsComponent', dataProcessingJobDetailsComponent)
+  .component(
+    'dataProcessingJobDetailsComponent',
+    dataProcessingJobDetailsComponent,
+  )
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

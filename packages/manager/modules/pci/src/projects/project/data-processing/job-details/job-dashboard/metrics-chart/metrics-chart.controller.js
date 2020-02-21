@@ -50,11 +50,12 @@ export default class {
             },
           },
         ],
-        xAxes: [{
-          id: 'x-axis',
-          display: false,
-          position: 'bottom',
-        },
+        xAxes: [
+          {
+            id: 'x-axis',
+            display: false,
+            position: 'bottom',
+          },
         ],
       },
     };

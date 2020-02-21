@@ -5,11 +5,13 @@ export const GUIDES = [
   },
   {
     id: 'quick_start',
-    link: 'https://docs.ovh.com/gb/en/analytics/labs/data-platform/setup-data-pipeline/',
+    link:
+      'https://docs.ovh.com/gb/en/analytics/labs/data-platform/setup-data-pipeline/',
   },
   {
     id: 'monitor_job',
-    link: 'https://docs.ovh.com/gb/en/analytics/labs/data-platform/manage-users/',
+    link:
+      'https://docs.ovh.com/gb/en/analytics/labs/data-platform/manage-users/',
   },
 ];
 

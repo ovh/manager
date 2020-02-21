@@ -1,10 +1,5 @@
 import moment from 'moment';
-import {
-  random,
-  mapValues,
-  keyBy,
-  startCase,
-} from 'lodash';
+import { random, mapValues, keyBy, startCase } from 'lodash';
 import {
   DATA_PROCESSING_STATUS_TO_CLASS,
   DATA_PROCESSING_STATUSES,
@@ -32,8 +27,10 @@ const memoryConversions = {
  */
 export const formatDuration = (value) => {
   const duration = moment.duration(value);
-  return Math.floor(duration.asHours()) + moment.utc(duration.asMilliseconds())
-    .format(':mm:ss');
+  return (
+    Math.floor(duration.asHours()) +
+    moment.utc(duration.asMilliseconds()).format(':mm:ss')
+  );
 };
 
 /**
@@ -60,7 +57,6 @@ export const convertMemory = (value, unit) => {
   return (bytes / memoryConversions[unit]).toFixed(2) + unit;
 };
 
-
 /**
  * Build a UI friendly job object from API response
  * @param job A job object from APIv6
@@ -68,19 +64,35 @@ export const convertMemory = (value, unit) => {
  *  type: string, vcores: number, ram: string, status: string}}
  */
 export const summarizeSparkJob = (job) => {
-  const engineParameters = mapValues(keyBy(job.engineParameters, 'name'), 'value');
-  engineParameters.arguments = Object.prototype.hasOwnProperty.call(engineParameters, 'arguments') ? engineParameters.arguments.split(',') : [];
+  const engineParameters = mapValues(
+    keyBy(job.engineParameters, 'name'),
+    'value',
+  );
+  engineParameters.arguments = Object.prototype.hasOwnProperty.call(
+    engineParameters,
+    'arguments',
+  )
+    ? engineParameters.arguments.split(',')
+    : [];
   const sparkJob = {
     ...job,
-    vcores: (parseFloat(engineParameters.driver_cores)
-      + parseFloat(engineParameters.executor_cores)
-      * parseFloat(engineParameters.executor_num)),
-    ram: convertMemory((parseMemory(engineParameters.driver_memory)
-      + parseMemory(engineParameters.executor_memory)
-      * parseFloat(engineParameters.executor_num)).toString(), 'Gi'),
+    vcores:
+      parseFloat(engineParameters.driver_cores) +
+      parseFloat(engineParameters.executor_cores) *
+        parseFloat(engineParameters.executor_num),
+    ram: convertMemory(
+      (
+        parseMemory(engineParameters.driver_memory) +
+        parseMemory(engineParameters.executor_memory) *
+          parseFloat(engineParameters.executor_num)
+      ).toString(),
+      'Gi',
+    ),
     type: 'Spark',
     status: startCase(job.status.toLowerCase()),
-    duration: job.endDate ? (moment(job.endDate) - moment(job.creationDate)).valueOf() : 0,
+    duration: job.endDate
+      ? (moment(job.endDate) - moment(job.creationDate)).valueOf()
+      : 0,
     engineParameters,
   };
   return sparkJob;
@@ -163,7 +175,8 @@ export const nameGenerator = () => {
     'lucky',
     'gleaming',
     'public',
-    'tan'];
+    'tan',
+  ];
   const names = [
     'peebles',
     'mayor',
@@ -448,8 +461,12 @@ export const nameGenerator = () => {
  * @param job {*} Job to check
  * @return {boolean} true if job is in a running state
  */
-export const isJobRunning = job => [DATA_PROCESSING_STATUSES.PENDING,
-  DATA_PROCESSING_STATUSES.RUNNING, DATA_PROCESSING_STATUSES.SUBMITTED].includes(job.status);
+export const isJobRunning = (job) =>
+  [
+    DATA_PROCESSING_STATUSES.PENDING,
+    DATA_PROCESSING_STATUSES.RUNNING,
+    DATA_PROCESSING_STATUSES.SUBMITTED,
+  ].includes(job.status);
 
 /**
  * Get a CSS class name from a given job status
@@ -464,6 +481,54 @@ export const getClassFromStatus = (status) => {
   return 'error';
 };
 
+/**
+ * Converts a Datagrid criteria list to Iceberg filter predicates
+ * @param name
+ * @param operator
+ * @param value
+ * @return {{name: string, value: string, operator: string}|{name: string, value: string, operator: string}}
+ */
+export const datagridToIcebergFilter = (name, operator, value) => {
+  switch (operator) {
+    case 'containsNot':
+      return {
+        name,
+        operator: 'nlike',
+        value: `*${value}*`,
+      };
+    case 'startsWith':
+      return {
+        name,
+        operator: 'like',
+        value: `${value}*`,
+      };
+    case 'endsWith':
+      return {
+        name,
+        operator: 'like',
+        value: `*${value}`,
+      };
+    case 'is':
+      return {
+        name,
+        operator: 'eq',
+        value,
+      };
+    case 'isNot':
+      return {
+        name,
+        operator: 'neq',
+        value,
+      };
+    default:
+      return {
+        name,
+        operator: 'like',
+        value: `*${value}*`,
+      };
+  }
+};
+
 export default {
   parseMemory,
   formatDuration,
@@ -472,4 +537,5 @@ export default {
   nameGenerator,
   isJobRunning,
   getClassFromStatus,
+  datagridToIcebergFilter,
 };

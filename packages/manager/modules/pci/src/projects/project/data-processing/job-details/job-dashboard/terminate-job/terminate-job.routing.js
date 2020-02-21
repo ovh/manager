@@ -1,6 +1,7 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider
-    .state('pci.projects.project.data-processing.job-details.dashboard.terminate', {
+  $stateProvider.state(
+    'pci.projects.project.data-processing.job-details.dashboard.terminate',
+    {
       url: '/terminate',
       views: {
         modal: {
@@ -14,9 +15,10 @@ export default /* @ngInject */ ($stateProvider) => {
         projectId: null,
       },
       resolve: {
-        projectId: $transition$ => $transition$.params().projectId,
-        jobId: $transition$ => $transition$.params().jobId,
-        jobName: $transition$ => $transition$.params().jobName,
+        projectId: ($transition$) => $transition$.params().projectId,
+        jobId: ($transition$) => $transition$.params().jobId,
+        jobName: ($transition$) => $transition$.params().jobName,
       },
-    });
+    },
+  );
 };

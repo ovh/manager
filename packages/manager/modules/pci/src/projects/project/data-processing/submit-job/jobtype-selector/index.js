@@ -6,9 +6,7 @@ import jobTypeSelectorComponent from './jobtype-selector.component';
 const moduleName = 'ovhManagerDataProcessingSubmitJobTypeSelector';
 
 angular
-  .module(moduleName, [
-    'ui.router',
-  ])
+  .module(moduleName, ['ui.router'])
   .component('dataprocessingSubmitJobTypeSelector', jobTypeSelectorComponent)
   .run(/* @ngTranslationsInject:json ./translations */);
 

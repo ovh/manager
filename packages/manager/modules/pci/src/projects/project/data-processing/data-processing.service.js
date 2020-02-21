@@ -6,18 +6,10 @@ export default class DataProcessingService {
   constructor($q, OvhApiCloudProjectDataProcessing) {
     this.logs = [];
     this.$q = $q;
-    this.OvhApiCloudProjectDataProcessingJobs = OvhApiCloudProjectDataProcessing
-      .Jobs()
-      .iceberg();
-    this.OvhApiCloudProjectDataProcessingCapabilities = OvhApiCloudProjectDataProcessing
-      .Capabilities()
-      .iceberg();
-    this.OvhApiCloudProjectDataProcessingAuthorization = OvhApiCloudProjectDataProcessing
-      .Authorization()
-      .iceberg();
-    this.OvhApiCloudProjectDataProcessingMetrics = OvhApiCloudProjectDataProcessing
-      .Metrics()
-      .iceberg();
+    this.OvhApiCloudProjectDataProcessingJobs = OvhApiCloudProjectDataProcessing.Jobs().iceberg();
+    this.OvhApiCloudProjectDataProcessingCapabilities = OvhApiCloudProjectDataProcessing.Capabilities().iceberg();
+    this.OvhApiCloudProjectDataProcessingAuthorization = OvhApiCloudProjectDataProcessing.Authorization().iceberg();
+    this.OvhApiCloudProjectDataProcessingMetrics = OvhApiCloudProjectDataProcessing.Metrics().iceberg();
   }
 
   /**
@@ -26,10 +18,9 @@ export default class DataProcessingService {
    * @return {Promise<any>}
    */
   getAuthorization(projectId) {
-    return this.OvhApiCloudProjectDataProcessingAuthorization
-      .query()
-      .execute({ serviceName: projectId })
-      .$promise;
+    return this.OvhApiCloudProjectDataProcessingAuthorization.query().execute({
+      serviceName: projectId,
+    }).$promise;
   }
 
   /**
@@ -38,26 +29,45 @@ export default class DataProcessingService {
    * @return {*}
    */
   authorize(projectId) {
-    return this.OvhApiCloudProjectDataProcessingAuthorization
-      .post()
-      .execute({ serviceName: projectId })
-      .$promise;
+    return this.OvhApiCloudProjectDataProcessingAuthorization.post().execute({
+      serviceName: projectId,
+    }).$promise;
   }
 
   /**
    * Retrieve list of jobs
    * @param projectId string List jobs related to this project id
+   * @param offset int Offset to start from
+   * @param pageSize int Number of results to retrieve from API
+   * @param sort string Name of field to sort from
+   * @param filters Array List of Iceberg filters to apply
    * @return {Promise<any>}
    */
-  getJobs(projectId) {
-    // TODO implement filters
-    return this.OvhApiCloudProjectDataProcessingJobs
-      .query()
+  getJobs(
+    projectId,
+    offset = 0,
+    pageSize = 25,
+    sort = 'creationDate',
+    filters = null,
+  ) {
+    let res = this.OvhApiCloudProjectDataProcessingJobs.query()
       .expand('CachedObjectList-Pages')
-      .limit(250)
-      .execute({ serviceName: projectId })
-      .$promise
-      .then(jobs => jobs.data.map(job => summarizeJob(job)));
+      .limit(pageSize)
+      .offset(offset)
+      .sort(sort, 'desc');
+    if (filters !== null) {
+      filters.forEach((filter) => {
+        res = res.addFilter(filter.name, filter.operator, filter.value);
+      });
+    }
+    return res.execute({ serviceName: projectId }).$promise.then((jobs) => {
+      return {
+        data: jobs.data.map((job) => summarizeJob(job)),
+        meta: {
+          totalCount: jobs.headers['x-pagination-elements'],
+        },
+      };
+    });
   }
 
   /**
@@ -67,14 +77,12 @@ export default class DataProcessingService {
    * @return {Promise<any>}
    */
   getJob(projectId, jobId) {
-    return this.OvhApiCloudProjectDataProcessingJobs
-      .get()
+    return this.OvhApiCloudProjectDataProcessingJobs.get()
       .execute({
         serviceName: projectId,
         jobId,
       })
-      .$promise
-      .then(job => summarizeJob(job.data));
+      .$promise.then((job) => summarizeJob(job.data));
   }
 
   /**
@@ -83,11 +91,9 @@ export default class DataProcessingService {
    * @return {Promise<any>}
    */
   getCapabilities(projectId) {
-    return this.OvhApiCloudProjectDataProcessingCapabilities
-      .query()
+    return this.OvhApiCloudProjectDataProcessingCapabilities.query()
       .execute({ serviceName: projectId })
-      .$promise
-      .then(capabilities => keyBy(capabilities.data, e => e.name));
+      .$promise.then((capabilities) => keyBy(capabilities.data, (e) => e.name));
   }
 
   /**
@@ -97,10 +103,10 @@ export default class DataProcessingService {
    * @return {Promise<any>}
    */
   submitJob(projectId, job) {
-    return this.OvhApiCloudProjectDataProcessingJobs
-      .post()
-      .execute({ serviceName: projectId, ...job })
-      .$promise;
+    return this.OvhApiCloudProjectDataProcessingJobs.post().execute({
+      serviceName: projectId,
+      ...job,
+    }).$promise;
   }
 
   /**
@@ -110,13 +116,10 @@ export default class DataProcessingService {
    * @return {Promise<any>}
    */
   terminateJob(projectId, jobId) {
-    return this.OvhApiCloudProjectDataProcessingJobs
-      .delete()
-      .execute({
-        serviceName: projectId,
-        jobId,
-      })
-      .$promise;
+    return this.OvhApiCloudProjectDataProcessingJobs.delete().execute({
+      serviceName: projectId,
+      jobId,
+    }).$promise;
   }
 
   /**
@@ -129,15 +132,13 @@ export default class DataProcessingService {
    * @return {*}
    */
   getLogs(projectId, jobId, from) {
-    return this.OvhApiCloudProjectDataProcessingJobs
-      .logs()
+    return this.OvhApiCloudProjectDataProcessingJobs.logs()
       .execute({
         serviceName: projectId,
         from,
         jobId,
       })
-      .$promise
-      .then(res => res.data);
+      .$promise.then((res) => res.data);
   }
 
   /**
@@ -146,11 +147,8 @@ export default class DataProcessingService {
    * @return {*}
    */
   getMetricsToken(projectId) {
-    return this.OvhApiCloudProjectDataProcessingMetrics
-      .query()
-      .execute({
-        serviceName: projectId,
-      })
-      .$promise;
+    return this.OvhApiCloudProjectDataProcessingMetrics.query().execute({
+      serviceName: projectId,
+    }).$promise;
   }
 }

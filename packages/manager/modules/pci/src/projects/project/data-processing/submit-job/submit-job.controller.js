@@ -3,8 +3,14 @@ import { convertMemory } from '../data-processing.utils';
 
 export default class {
   /* @ngInject */
-  constructor($scope, $state, $translate, CucCloudMessage, dataProcessingService,
-    CucRegionService) {
+  constructor(
+    $scope,
+    $state,
+    $translate,
+    CucCloudMessage,
+    dataProcessingService,
+    CucRegionService,
+  ) {
     this.$scope = $scope;
     this.$state = $state; // router state
     this.$translate = $translate;
@@ -33,9 +39,15 @@ export default class {
    * Fetch available regions from capabilities and update binding
    */
   updateAvailableRegions() {
-    const engine = find(this.capabilities, e => e.name === this.state.jobEngine.engine);
-    const version = find(engine.availableVersions, v => v.name === this.state.jobEngine.version);
-    this.regions = version.availableRegions.map(region => ({
+    const engine = find(
+      this.capabilities,
+      (e) => e.name === this.state.jobEngine.engine,
+    );
+    const version = find(
+      engine.availableVersions,
+      (v) => v.name === this.state.jobEngine.version,
+    );
+    this.regions = version.availableRegions.map((region) => ({
       name: region,
       hasEnoughQuota: () => true,
     }));
@@ -74,8 +86,7 @@ export default class {
     this.isSubmitting = true;
     let args = '';
     if (this.state.jobConfig.arguments.length > 0) {
-      args = this.state.jobConfig.arguments.map(o => o.title)
-        .join(',');
+      args = this.state.jobConfig.arguments.map((o) => o.title).join(',');
     }
     const payload = {
       containerName: this.state.jobConfig.swiftContainer,
@@ -125,16 +136,22 @@ export default class {
         value: this.state.jobConfig.mainClass,
       });
     }
-    this.dataProcessingService.submitJob(this.projectId, payload)
-      .then(() => {
-        this.$state.go('pci.projects.project.data-processing', { projectId: this.projectId }, { reload: true });
-      }, () => {
+    this.dataProcessingService.submitJob(this.projectId, payload).then(
+      () => {
+        this.$state.go(
+          'pci.projects.project.data-processing',
+          { projectId: this.projectId },
+          { reload: true },
+        );
+      },
+      () => {
         if (this.submitRetries < 2) {
           this.submitRetries += 1;
           this.onSubmitJobHandler();
         } else {
           this.isSubmitting = false;
         }
-      });
+      },
+    );
   }
 }

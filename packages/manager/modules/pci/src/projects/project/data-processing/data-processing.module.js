@@ -29,16 +29,12 @@ angular
   .component('dataProcessingComponent', dataProcessingComponent)
   .service('dataProcessingService', dataProcessingService)
   // setup a templating filter to parse dates using Moment.js
-  .filter('momentFormat', () => (value, format) => moment(value)
-    .format(format))
-  .filter('momentCalendar', () => value => moment(value)
-    .calendar())
-  .filter('momentRelative', () => value => moment(value)
-    .fromNow())
-  .filter('momentISO', () => value => moment(value)
-    .toISOString())
+  .filter('momentFormat', () => (value, format) => moment(value).format(format))
+  .filter('momentCalendar', () => (value) => moment(value).calendar())
+  .filter('momentRelative', () => (value) => moment(value).fromNow())
+  .filter('momentISO', () => (value) => moment(value).toISOString())
   // setup a templating filter to return nicely formatted durations
-  .filter('duration', () => value => formatDuration(value))
+  .filter('duration', () => (value) => formatDuration(value))
   .filter('memory', () => (value, unit) => convertMemory(value, unit))
   .run(/* @ngTranslationsInject:json ./translations */);
 

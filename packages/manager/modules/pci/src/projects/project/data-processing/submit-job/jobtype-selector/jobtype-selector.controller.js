@@ -10,17 +10,18 @@ export default class {
 
   $onChanges() {
     if (this.jobEngines !== undefined) {
-      this.availableEngines = Object.values(this.jobEngines)
-        .map(engine => ({
-          name: startCase(engine.name),
-          description: this.$translate.instant(`data_processing_submit_job_${engine.name}_description`),
-          versions: engine.availableVersions.map(v => ({
-            id: `${engine.name}@${v.name}`,
-            engine: engine.name,
-            version: v.name,
-            description: v.description,
-          })),
-        }));
+      this.availableEngines = Object.values(this.jobEngines).map((engine) => ({
+        name: startCase(engine.name),
+        description: this.$translate.instant(
+          `data_processing_submit_job_${engine.name}_description`,
+        ),
+        versions: engine.availableVersions.map((v) => ({
+          id: `${engine.name}@${v.name}`,
+          engine: engine.name,
+          version: v.name,
+          description: v.description,
+        })),
+      }));
     }
   }
 

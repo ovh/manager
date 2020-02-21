@@ -23,7 +23,10 @@ angular
     metricsToken,
   ])
   .config(routing)
-  .component('dataProcessingJobDetailsDashboardComponent', dataProcessingJobDetailsComponent)
+  .component(
+    'dataProcessingJobDetailsDashboardComponent',
+    dataProcessingJobDetailsComponent,
+  )
   .service('PciStoragesContainersService', PciStoragesContainersService)
   .run(/* @ngTranslationsInject:json ./translations */);
 

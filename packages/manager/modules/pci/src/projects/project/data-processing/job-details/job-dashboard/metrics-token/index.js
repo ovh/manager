@@ -4,20 +4,21 @@ import 'oclazyload';
 
 const moduleName = 'ovhManagerDataProcessingMetricsTokenModal';
 
-angular
-  .module(moduleName, [
-    'ui.router',
-    'oc.lazyLoad',
-  ])
-  .config(/* @ngInject */($stateProvider) => {
-    $stateProvider.state('pci.projects.project.data-processing.job-details.dashboard.metrics-token.**', {
-      url: '/metrics',
-      lazyLoad: ($transition$) => {
-        const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
-        return import('./metrics-token.module')
-          .then(mod => $ocLazyLoad.inject(mod.default || mod));
+angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
+  /* @ngInject */ ($stateProvider) => {
+    $stateProvider.state(
+      'pci.projects.project.data-processing.job-details.dashboard.metrics-token.**',
+      {
+        url: '/metrics',
+        lazyLoad: ($transition$) => {
+          const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+          return import('./metrics-token.module').then((mod) =>
+            $ocLazyLoad.inject(mod.default || mod),
+          );
+        },
       },
-    });
-  });
+    );
+  },
+);
 
 export default moduleName;

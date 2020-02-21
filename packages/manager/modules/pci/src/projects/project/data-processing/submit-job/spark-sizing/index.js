@@ -6,9 +6,7 @@ import SparkSizingComponent from './spark-sizing.component';
 const moduleName = 'ovhManagerDataProcessingSubmitJobSparkSizing';
 
 angular
-  .module(moduleName, [
-    'ui.router',
-  ])
+  .module(moduleName, ['ui.router'])
   .component('dataprocessingSubmitJobSparkSizing', SparkSizingComponent)
   .run(/* @ngTranslationsInject:json ./translations */);
 

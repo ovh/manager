@@ -5,7 +5,8 @@ import routing from './metrics-token.routing';
 
 const moduleName = 'ovhManagerDataProcessingMetricsTokenModalComponent';
 
-angular.module(moduleName, [])
+angular
+  .module(moduleName, [])
   .config(routing)
   .component('dataprocessingMetricsTokenModal', component)
   .run(/* @ngTranslationsInject:json ./translations */);

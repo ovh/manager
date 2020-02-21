@@ -1,4 +1,4 @@
-export default /* @ngInject */($stateProvider) => {
+export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.data-processing.onboarding', {
     url: '/onboarding',
     component: 'dataprocessingOnboardingComponent',

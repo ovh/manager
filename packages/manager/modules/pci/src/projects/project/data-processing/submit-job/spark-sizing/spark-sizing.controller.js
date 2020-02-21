@@ -9,7 +9,9 @@ export default class {
   /* @ngInject */
   constructor() {
     // let's do some bindings
-    this.onClickAdvancedConfigurationHandler = this.onClickAdvancedConfigurationHandler.bind(this);
+    this.onClickAdvancedConfigurationHandler = this.onClickAdvancedConfigurationHandler.bind(
+      this,
+    );
     // create state
     this.state = {};
   }
@@ -58,14 +60,22 @@ export default class {
    * Use sizing template to update all the individual cores/memory fields of current state
    */
   updateStateFromTemplate() {
-    const driverTpl = this.driverTemplates[parseInt(this.state.driverTemplate, 10) - 1];
-    const workerTpl = this.workerTemplates[parseInt(this.state.workerTemplate, 10) - 1];
+    const driverTpl = this.driverTemplates[
+      parseInt(this.state.driverTemplate, 10) - 1
+    ];
+    const workerTpl = this.workerTemplates[
+      parseInt(this.state.workerTemplate, 10) - 1
+    ];
     // compute driver overhead in Mb while ensuring Spark's minimum
-    const driverMemoryOverheadMb = Math.max(driverTpl.memory / 1e6 * MEMORY_OVERHEAD_RATIO,
-      MIN_MEMORY_OVERHEAD_MB);
+    const driverMemoryOverheadMb = Math.max(
+      (driverTpl.memory / 1e6) * MEMORY_OVERHEAD_RATIO,
+      MIN_MEMORY_OVERHEAD_MB,
+    );
     // compute worker overhead in Mb while ensuring Spark's minimum
-    const workerMemoryOverheadMb = Math.max(workerTpl.memory / 1e6 * MEMORY_OVERHEAD_RATIO,
-      MIN_MEMORY_OVERHEAD_MB);
+    const workerMemoryOverheadMb = Math.max(
+      (workerTpl.memory / 1e6) * MEMORY_OVERHEAD_RATIO,
+      MIN_MEMORY_OVERHEAD_MB,
+    );
     Object.assign(this.state, {
       driverCores: driverTpl.cores,
       driverMemoryGb: driverTpl.memory / 1e9,
@@ -76,12 +86,28 @@ export default class {
     });
   }
 
+  /**
+   * Compute the estimated price /min depending on job sizing.
+   * @return {number}
+   */
   computePrice() {
     const {
-      workerMemoryGb, driverMemoryGb, workerCount, workerMemoryOverheadMb,
-      driverMemoryOverheadMb, driverCores, workerCores
+      workerMemoryGb,
+      driverMemoryGb,
+      workerCount,
+      workerMemoryOverheadMb,
+      driverMemoryOverheadMb,
+      driverCores,
+      workerCores,
     } = this.state;
-    return (workerMemoryGb + workerMemoryOverheadMb / 1e3) * 0.01 * workerCount
-      + (driverMemoryGb + driverMemoryOverheadMb / 1e3) * 0.01 + (driverCores + workerCores) * 0.02;
+    const pricePerGb = 0; // free during beta
+    const pricePerCore = 0; // free during beta
+    return (
+      (workerMemoryGb + workerMemoryOverheadMb / 1e3) *
+        pricePerGb *
+        workerCount +
+      (driverMemoryGb + driverMemoryOverheadMb / 1e3) * pricePerCore +
+      (driverCores + workerCores) * pricePerCore
+    );
   }
 }

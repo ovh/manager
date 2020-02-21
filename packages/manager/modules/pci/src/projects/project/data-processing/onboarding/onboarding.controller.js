@@ -4,7 +4,13 @@ import { GUIDES } from './onboarding.constants';
 
 export default class {
   /* @ngInject */
-  constructor($translate, $state, $q, dataProcessingService, PciProjectLabsService) {
+  constructor(
+    $translate,
+    $state,
+    $q,
+    dataProcessingService,
+    PciProjectLabsService,
+  ) {
     this.$translate = $translate;
     this.$state = $state;
     this.$q = $q;
@@ -19,7 +25,7 @@ export default class {
     this.isActivated = this.lab.isActivated();
     this.guides = reduce(
       GUIDES,
-      (list, guide) => ([
+      (list, guide) => [
         ...list,
         {
           ...guide,
@@ -28,7 +34,7 @@ export default class {
           ),
           description: '',
         },
-      ]),
+      ],
       [],
     );
   }
@@ -40,15 +46,21 @@ export default class {
   authorizeService() {
     let labPromise;
     if (this.agreedLab) {
-      labPromise = this.pciProjectLabsService.activateLab(this.projectId, this.lab);
+      labPromise = this.pciProjectLabsService.activateLab(
+        this.projectId,
+        this.lab,
+      );
     } else {
       labPromise = this.$q.resolve();
     }
     labPromise.then(() => {
-      this.dataProcessingService.authorize(this.projectId)
-        .then(() => {
-          this.$state.go('pci.projects.project.data-processing', {}, { reload: true });
-        });
+      this.dataProcessingService.authorize(this.projectId).then(() => {
+        this.$state.go(
+          'pci.projects.project.data-processing',
+          {},
+          { reload: true },
+        );
+      });
     });
   }
 }

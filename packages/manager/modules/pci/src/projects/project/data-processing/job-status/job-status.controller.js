@@ -1,6 +1,6 @@
 import {
   DATA_PROCESSING_STATUS_TO_CLASS,
-  DATA_PROCESSING_STATUSES
+  DATA_PROCESSING_STATUSES,
 } from '../data-processing.constants';
 
 export default class {
@@ -13,7 +13,9 @@ export default class {
   getStatusText() {
     const normalizedStatus = this.status.toUpperCase();
     if (normalizedStatus in DATA_PROCESSING_STATUSES) {
-      return this.$translate.instant(`data_processing_job_status_${this.status.toLowerCase()}`);
+      return this.$translate.instant(
+        `data_processing_job_status_${this.status.toLowerCase()}`,
+      );
     }
     return this.$translate.instant('data_processing_job_status_unknown');
   }

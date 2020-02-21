@@ -1,10 +1,6 @@
 import { filter, find } from 'lodash';
 import { ARGUMENTS_VALIDATION_PATTERN } from './spark-config.constants';
 import { nameGenerator } from '../../data-processing.utils';
-import {
-  ANALYTICS_DATA_PLATFORM_STATUS,
-  ANALYTICS_DATA_PLATFORM_STATUS_MAP
-} from '../../../analytics-data-platform/analytics-data-platform.constants';
 
 export default class {
   /* @ngInject */
@@ -28,7 +24,8 @@ export default class {
       mainApplicationCodeFileNotFound: false, // used by UI to show a warning when file is not found
       mainApplicationCodeFileInvalid: false, // used by UI to show a warning when file is not found
     };
-    this.sparkConfigService.listContainers(this.projectId)
+    this.sparkConfigService
+      .listContainers(this.projectId)
       .then((containers) => {
         this.swiftContainers = containers;
       });
@@ -36,9 +33,10 @@ export default class {
 
   $onChanges() {
     if (this.region !== null) {
-      this.swiftContainersInRegion = filter(this.swiftContainers,
-        c => c.region === this.region.substr(0, 3))
-        .map(container => container.name);
+      this.swiftContainersInRegion = filter(
+        this.swiftContainers,
+        (c) => c.region === this.region.substr(0, 3),
+      ).map((container) => container.name);
     }
   }
 
@@ -47,9 +45,12 @@ export default class {
    * Object list is retrieved from API for selected container.
    */
   onContainerChangeHandler() {
-    const containerId = find(this.swiftContainers, c => (
-      c.name === this.state.swiftContainer && c.region === this.region.substr(0, 3)))
-      .id;
+    const containerId = find(
+      this.swiftContainers,
+      (c) =>
+        c.name === this.state.swiftContainer &&
+        c.region === this.region.substr(0, 3),
+    ).id;
     this.sparkConfigService
       .listObjects(this.projectId, containerId)
       .then((container) => {
@@ -61,9 +62,15 @@ export default class {
   }
 
   onMainApplicationCodeChangeHandler() {
-    const obj = find(this.containerObjects, o => o.name === this.state.mainApplicationCode);
-    this.state.mainApplicationCodeFileInvalid = (obj !== undefined && (obj.contentType !== 'application/java-archive' && this.state.jobType === 'java'));
-    this.state.mainApplicationCodeFileNotFound = (obj === undefined);
+    const obj = find(
+      this.containerObjects,
+      (o) => o.name === this.state.mainApplicationCode,
+    );
+    this.state.mainApplicationCodeFileInvalid =
+      obj !== undefined &&
+      obj.contentType !== 'application/java-archive' &&
+      this.state.jobType === 'java';
+    this.state.mainApplicationCodeFileNotFound = obj === undefined;
     this.onChangeHandler(this.state);
   }
 

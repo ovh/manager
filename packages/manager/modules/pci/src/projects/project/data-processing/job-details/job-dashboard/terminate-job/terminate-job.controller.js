@@ -7,9 +7,14 @@ export default class {
   }
 
   deleteJob() {
-    this.dataProcessingService.terminateJob(this.projectId, this.jobId)
+    this.dataProcessingService
+      .terminateJob(this.projectId, this.jobId)
       .then(() => {
-        this.$state.go('pci.projects.project.data-processing.job-details.dashboard', { projectId: this.projectId }, { reload: true });
+        this.$state.go(
+          'pci.projects.project.data-processing.job-details.dashboard',
+          { projectId: this.projectId },
+          { reload: true },
+        );
       });
   }
 
@@ -18,6 +23,9 @@ export default class {
   }
 
   closeModal() {
-    this.$state.go('pci.projects.project.data-processing.job-details.dashboard', { projectId: this.projectId });
+    this.$state.go(
+      'pci.projects.project.data-processing.job-details.dashboard',
+      { projectId: this.projectId },
+    );
   }
 }

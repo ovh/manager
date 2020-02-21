@@ -1,6 +1,13 @@
 export default class {
   /* @ngInject */
-  constructor($scope, $state, $timeout, $uibModal, CucCloudMessage, dataProcessingJobLogsService) {
+  constructor(
+    $scope,
+    $state,
+    $timeout,
+    $uibModal,
+    CucCloudMessage,
+    dataProcessingJobLogsService,
+  ) {
     this.$scope = $scope; // router state
     this.$state = $state; // router state
     this.$timeout = $timeout;
@@ -24,7 +31,12 @@ export default class {
     const logsUrl = this.logger.logs.logsAddress;
     if (logsUrl !== undefined && logsUrl !== null) {
       const matches = logsUrl.match(re);
-      this.logger.downloadObject(this.projectId, this.job.region, matches[1], matches[2]);
+      this.logger.downloadObject(
+        this.projectId,
+        this.job.region,
+        matches[1],
+        matches[2],
+      );
       this.isDownloadButtonDisabled = true;
       this.$timeout(() => {
         this.isDownloadButtonDisabled = false;

@@ -20,7 +20,10 @@ angular
     sparkConfig,
   ])
   .config(routing)
-  .component('dataProcessingSubmitJobComponent', dataProcessingSubmitJobComponent)
+  .component(
+    'dataProcessingSubmitJobComponent',
+    dataProcessingSubmitJobComponent,
+  )
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

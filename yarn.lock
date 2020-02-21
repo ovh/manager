@@ -12789,12 +12789,6 @@ ovh-api-services@^9.40.0:
   dependencies:
     lodash "^4.17.15"
 
-"ovh-api-services@git+https://github.com/Hugoch/ovh-api-services.git#feat/analytics-data-compute":
-  version "9.29.0"
-  resolved "git+https://github.com/Hugoch/ovh-api-services.git#cb1a7f33e54d9e69a0686f546f862c86eb74a170"
-  dependencies:
-    lodash "^4.17.15"
-
 ovh-common-style@^3.2.2, ovh-common-style@ovh-ux/ovh-common-style#^3.2.2:
   version "3.2.2"
   resolved "https://codeload.github.com/ovh-ux/ovh-common-style/tar.gz/cd9f7bea9240b7e2334ae5cd7e74529478b271d4"

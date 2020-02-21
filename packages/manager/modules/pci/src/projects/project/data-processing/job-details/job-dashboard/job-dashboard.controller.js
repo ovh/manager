@@ -1,14 +1,25 @@
 import { find, unzip } from 'lodash';
 import moment from 'moment';
 import {
-  DATA_PROCESSING_STATUS_TO_CLASS, DATA_PROCESSING_STATUSES,
-  DATA_PROCESSING_UI_URL, METRICS_REFRESH_INTERVAL,
+  DATA_PROCESSING_STATUS_TO_CLASS,
+  DATA_PROCESSING_STATUSES,
+  DATA_PROCESSING_UI_URL,
+  METRICS_REFRESH_INTERVAL,
 } from '../../data-processing.constants';
 
 export default class {
   /* @ngInject */
-  constructor($scope, $state, $resource, $timeout, $uibModal, CucCloudMessage,
-    dataProcessingService, CucRegionService, PciStoragesContainersService) {
+  constructor(
+    $scope,
+    $state,
+    $resource,
+    $timeout,
+    $uibModal,
+    CucCloudMessage,
+    dataProcessingService,
+    CucRegionService,
+    PciStoragesContainersService,
+  ) {
     this.$scope = $scope;
     this.$state = $state; // router state
     this.$timeout = $timeout;
@@ -21,13 +32,17 @@ export default class {
     this.containerId = null;
     this.metricsTimer = null;
     // setup metrics retrieval
-    this.warp10 = $resource('https://warp10.gra1.metrics.ovh.net/api/v0/exec', {}, {
-      query: {
-        method: 'POST',
-        transformRequest: [],
-        isArray: true,
+    this.warp10 = $resource(
+      'https://warp10.gra1.metrics.ovh.net/api/v0/exec',
+      {},
+      {
+        query: {
+          method: 'POST',
+          transformRequest: [],
+          isArray: true,
+        },
       },
-    });
+    );
     // setup metrics container
     this.metrics = {
       totalMemory: {
@@ -47,13 +62,15 @@ export default class {
 
   $onInit() {
     // retrieve container id for the job
-    this.containerService.getAll(this.projectId)
-      .then((containers) => {
-        const container = find(containers, c => c.name === this.job.containerName);
-        if (container !== undefined) {
-          this.containerId = container.id;
-        }
-      });
+    this.containerService.getAll(this.projectId).then((containers) => {
+      const container = find(
+        containers,
+        (c) => c.name === this.job.containerName,
+      );
+      if (container !== undefined) {
+        this.containerId = container.id;
+      }
+    });
     // start metrics retrieval
     this.queryMetrics();
   }
@@ -73,7 +90,10 @@ export default class {
     this.queryMetricsActiveTasks();
     this.queryMetricsDiskUsed();
     if (this.job.endDate === null) {
-      this.metricsTimer = this.$timeout(() => this.queryMetrics(), METRICS_REFRESH_INTERVAL);
+      this.metricsTimer = this.$timeout(
+        () => this.queryMetrics(),
+        METRICS_REFRESH_INTERVAL,
+      );
     }
   }
 
@@ -87,12 +107,10 @@ export default class {
     let startDate;
     let endDate;
     if (this.isJobRunning()) {
-      startDate = moment()
-        .subtract(5, 'minutes');
+      startDate = moment().subtract(5, 'minutes');
       endDate = moment();
     } else {
-      startDate = moment(this.job.endDate)
-        .subtract(5, 'minutes');
+      startDate = moment(this.job.endDate).subtract(5, 'minutes');
       endDate = moment(this.job.endDate);
     }
     return {
@@ -107,16 +125,24 @@ export default class {
   queryMetricsTotalMemory() {
     const d = this.computeDates();
     this.warp10
-      .query(`[ '${this.metricsToken.data.token}' 'spark_jvm_memory_usage' { 'qty' 'used' 'mem_type' 'total' 'job-id' '${this.job.id}' } '${d.startDate.toISOString()}' '${d.endDate.toISOString()}' ] FETCH SORT [ SWAP [ 'executor-id' ] reducer.sum ] REDUCE`)
-      .$promise
-      .then((series) => {
-        if (series.length > 0 && series[0][0] !== undefined && 'v' in series[0][0]) {
+      .query(
+        `[ '${
+          this.metricsToken.data.token
+        }' 'spark_jvm_memory_usage' { 'qty' 'used' 'mem_type' 'total' 'job-id' '${
+          this.job.id
+        }' } '${d.startDate.toISOString()}' '${d.endDate.toISOString()}' ] FETCH SORT [ SWAP [ 'executor-id' ] reducer.sum ] REDUCE`,
+      )
+      .$promise.then((series) => {
+        if (
+          series.length > 0 &&
+          series[0][0] !== undefined &&
+          'v' in series[0][0]
+        ) {
           let data = series[0][0].v;
           data = unzip(data);
           this.metrics.totalMemory = {
-            labels: data[0].map(o => moment(o / 1e3)
-              .format('hh:mm:ss')),
-            data: data[1].map(o => parseInt(o / 1e6, 10)),
+            labels: data[0].map((o) => moment(o / 1e3).format('hh:mm:ss')),
+            data: data[1].map((o) => parseInt(o / 1e6, 10)),
           };
         }
       });
@@ -128,16 +154,24 @@ export default class {
   queryMetricsDiskUsed() {
     const d = this.computeDates();
     this.warp10
-      .query(`[ '${this.metricsToken.data.token}' 'spark_block_manager' { 'qty' 'diskSpaceUsed_MB' 'type' 'disk' 'job-id' '${this.job.id}' } '${d.startDate.toISOString()}' '${d.endDate.toISOString()}' ] FETCH SORT`)
-      .$promise
-      .then((series) => {
-        if (series.length > 0 && series[0][0] !== undefined && 'v' in series[0][0]) {
+      .query(
+        `[ '${
+          this.metricsToken.data.token
+        }' 'spark_block_manager' { 'qty' 'diskSpaceUsed_MB' 'type' 'disk' 'job-id' '${
+          this.job.id
+        }' } '${d.startDate.toISOString()}' '${d.endDate.toISOString()}' ] FETCH SORT`,
+      )
+      .$promise.then((series) => {
+        if (
+          series.length > 0 &&
+          series[0][0] !== undefined &&
+          'v' in series[0][0]
+        ) {
           let data = series[0][0].v;
           data = unzip(data);
           this.metrics.blockManagerDiskUsed = {
-            labels: data[0].map(o => moment(o / 1e3)
-              .format('hh:mm:ss')),
-            data: data[1].map(o => Math.floor(o / 1e6)),
+            labels: data[0].map((o) => moment(o / 1e3).format('hh:mm:ss')),
+            data: data[1].map((o) => Math.floor(o / 1e6)),
           };
         }
       });
@@ -149,16 +183,24 @@ export default class {
   queryMetricsActiveTasks() {
     const d = this.computeDates();
     this.warp10
-      .query(`[ '${this.metricsToken.data.token}' 'spark_executor' { 'qty' 'activeTasks' 'type' 'threadpool' 'job-id' '${this.job.id}' } '${d.startDate.toISOString()}' '${d.endDate.toISOString()}' ] FETCH SORT`)
-      .$promise
-      .then((series) => {
-        if (series.length > 0 && series[0][0] !== undefined && 'v' in series[0][0]) {
+      .query(
+        `[ '${
+          this.metricsToken.data.token
+        }' 'spark_executor' { 'qty' 'activeTasks' 'type' 'threadpool' 'job-id' '${
+          this.job.id
+        }' } '${d.startDate.toISOString()}' '${d.endDate.toISOString()}' ] FETCH SORT`,
+      )
+      .$promise.then((series) => {
+        if (
+          series.length > 0 &&
+          series[0][0] !== undefined &&
+          'v' in series[0][0]
+        ) {
           let data = series[0][0].v;
           data = unzip(data);
           this.metrics.activeTasks = {
-            labels: data[0].map(o => moment(o / 1e3)
-              .format('hh:mm:ss')),
-            data: data[1].map(o => Math.floor(o)),
+            labels: data[0].map((o) => moment(o / 1e3).format('hh:mm:ss')),
+            data: data[1].map((o) => Math.floor(o)),
           };
         }
       });
@@ -168,29 +210,37 @@ export default class {
    * Load a modal asking confirmation to terminate current job
    */
   terminateJob() {
-    this.$state.go('pci.projects.project.data-processing.job-details.dashboard.terminate', {
-      projectId: this.projectId,
-      jobId: this.job.id,
-      jobName: this.job.name,
-    });
+    this.$state.go(
+      'pci.projects.project.data-processing.job-details.dashboard.terminate',
+      {
+        projectId: this.projectId,
+        jobId: this.job.id,
+        jobName: this.job.name,
+      },
+    );
   }
 
   /**
    * Load a modal with metrics token and instructions
    */
   showMetrics() {
-    this.$state.go('pci.projects.project.data-processing.job-details.dashboard.metrics-token', {
-      projectId: this.projectId,
-      jobId: this.job.id,
-      jobName: this.job.name,
-    });
+    this.$state.go(
+      'pci.projects.project.data-processing.job-details.dashboard.metrics-token',
+      {
+        projectId: this.projectId,
+        jobId: this.job.id,
+        jobName: this.job.name,
+      },
+    );
   }
 
   /**
    * Redirect to billing console in manager
    */
   showBillingConsole() {
-    this.$state.go('pci.projects.project.billing', { projectId: this.projectId });
+    this.$state.go('pci.projects.project.billing', {
+      projectId: this.projectId,
+    });
   }
 
   /**
@@ -208,7 +258,10 @@ export default class {
    * @return {boolean} true if job is Submitted, Pending, Running
    */
   isJobRunning() {
-    return [DATA_PROCESSING_STATUSES.PENDING, DATA_PROCESSING_STATUSES.RUNNING,
-      DATA_PROCESSING_STATUSES.SUBMITTED].includes(this.job.status);
+    return [
+      DATA_PROCESSING_STATUSES.PENDING,
+      DATA_PROCESSING_STATUSES.RUNNING,
+      DATA_PROCESSING_STATUSES.SUBMITTED,
+    ].includes(this.job.status);
   }
 }

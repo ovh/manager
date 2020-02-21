@@ -4,20 +4,18 @@ import 'oclazyload';
 
 const moduleName = 'ovhManagerDataProcessingQuickTerminateModal';
 
-angular
-  .module(moduleName, [
-    'ui.router',
-    'oc.lazyLoad',
-  ])
-  .config(/* @ngInject */($stateProvider) => {
+angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
+  /* @ngInject */ ($stateProvider) => {
     $stateProvider.state('pci.projects.project.data-processing.terminate.**', {
       url: '/terminate',
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
-        return import('./terminate-job.module')
-          .then(mod => $ocLazyLoad.inject(mod.default || mod));
+        return import('./terminate-job.module').then((mod) =>
+          $ocLazyLoad.inject(mod.default || mod),
+        );
       },
     });
-  });
+  },
+);
 
 export default moduleName;

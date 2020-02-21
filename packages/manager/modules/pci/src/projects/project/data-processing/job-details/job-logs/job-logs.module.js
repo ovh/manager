@@ -10,12 +10,12 @@ import jobLogsService from './job-logs.service';
 const moduleName = 'ovhManagerDataProcessingJobLogsComponent';
 
 angular
-  .module(moduleName, [
-    'ui.router',
-    'luegg.directives',
-  ])
+  .module(moduleName, ['ui.router', 'luegg.directives'])
   .config(routing)
-  .component('dataprocessingJobLogsComponent', dataProcessingJobDetailsComponent)
+  .component(
+    'dataprocessingJobLogsComponent',
+    dataProcessingJobDetailsComponent,
+  )
   .service('dataProcessingJobLogsService', jobLogsService)
   .run(/* @ngTranslationsInject:json ./translations */);
 

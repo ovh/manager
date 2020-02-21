@@ -9,6 +9,9 @@ export default class {
   }
 
   closeModal() {
-    this.$state.go('pci.projects.project.data-processing.job-details.dashboard', { projectId: this.projectId });
+    this.$state.go(
+      'pci.projects.project.data-processing.job-details.dashboard',
+      { projectId: this.projectId },
+    );
   }
 }

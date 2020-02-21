@@ -8,9 +8,7 @@ import SparkConfigService from './spark-config.service';
 const moduleName = 'ovhManagerDataProcessingSubmitJobSparkConfig';
 
 angular
-  .module(moduleName, [
-    'ui.router',
-  ])
+  .module(moduleName, ['ui.router'])
   .component('dataprocessingSubmitJobSparkConfig', SparkConfigComponent)
   .service('PciStoragesContainersService', PciStoragesContainersService)
   .service('SparkConfigService', SparkConfigService)
