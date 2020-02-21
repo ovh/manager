@@ -17,8 +17,7 @@
         role="menu"
         class="oui-navbar-menu
             oui-navbar-menu_end
-            oui-navbar-menu_panel
-            hub-navbar-menu"
+            oui-navbar-menu_panel"
     >
         <ul class="oui-navbar-menu__body oui-navbar-list">
             <li
@@ -27,12 +26,12 @@
             >
                 <!-- header -->
                 <div
-                    class="hub-navbar-notification_header"
+                    class="manager-navbar-notification_header"
                     data-ng-bind="time"
                 ></div>
                 <!-- content -->
                 <div
-                    class="hub-navbar-notification_content"
+                    class="manager-navbar-notification_content"
                     data-ng-repeat="menuLink in sublinks track by menuLink.id"
                 >
                     <!-- icon -->
@@ -64,7 +63,7 @@
                                 data-ng-bind=":: menuLink.subject"
                             ></span>
                             <span
-                                class="oui-status oui-status_error hub-status_error"
+                                class="oui-status oui-status_error manager-navbar-status_error"
                                 data-ng-if="menuLink.isActive"
                                 data-translate="navbar_notification_new"
                             >
@@ -78,57 +77,6 @@
                         </div>
                     </a>
                     <!-- /Link (href) -->
-
-                    <!-- Link (ui-sref) -->
-                    <a
-                        class="oui-navbar-notification__content"
-                        data-ng-if="::menuLink.state"
-                        data-ng-init="$ctrl.notificationsCreated = $last"
-                        data-ng-click="$ctrl.toggleSublinkAction(menuLink, true)"
-                        data-ui-sref="{{::$ctrl.getFullSref()}}"
-                    >
-                        <div class="oui-navbar-notification__header">
-                            <span
-                                class="oui-navbar-notification__title"
-                                data-ng-bind=":: menuLink.subject"
-                            ></span>
-                            <span
-                                class="oui-status oui-status_error hub-status_error"
-                                data-ng-if="menuLink.isActive"
-                                data-translate="navbar_notification_new"
-                            >
-                            </span>
-                        </div>
-                        <div class="oui_navbar-notification__body">
-                            <div
-                                class="oui-navbar-notification__description"
-                                data-ng-bind-html=":: menuLink.description"
-                            ></div>
-                        </div>
-                    </a>
-                    <!-- /Link (ui-sref) -->
-
-                    <button
-                        class="oui-navbar-notification__action"
-                        type="button"
-                        data-ng-if="!menuLink.isCompleted"
-                        data-ng-click="$ctrl.toggleSublinkAction(menuLink, false)"
-                        data-oui-tooltip="{{menuLink.isActive ?
-                            $ctrl.translations.notification.markRead :
-                            $ctrl.translations.notification.markUnread
-                        }}"
-                    >
-                        <span
-                            class="oui-icon oui-icon-shape-dot"
-                            data-ng-if="menuLink.isActive"
-                            aria-hidden="true"
-                        ></span>
-                        <span
-                            class="oui-icon oui-icon-shape-circle"
-                            data-ng-if="!menuLink.isActive"
-                            aria-hidden="true"
-                        ></span>
-                    </button>
                 </div>
             </li>
             <li
