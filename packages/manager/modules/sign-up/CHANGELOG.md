@@ -1,3 +1,12 @@
+## [1.1.2](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@1.1.1...@ovh-ux/sign-up@1.1.2) (2020-02-21)
+
+
+### Bug Fixes
+
+* **signup:** language not selectable ([#2242](https://github.com/ovh/manager/issues/2242)) ([848fffe](https://github.com/ovh/manager/commit/848fffe0a04aa24555d4ed564f8bc945aa4e0072))
+
+
+
 ## [1.1.1](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@1.1.0...@ovh-ux/sign-up@1.1.1) (2020-02-19)
 
 
