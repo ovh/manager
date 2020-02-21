@@ -2,7 +2,6 @@ import angular from 'angular';
 import 'angular-translate';
 
 import 'ovh-ui-angular';
-import 'ovh-api-services';
 import '@ovh-ux/manager-core';
 import '@ovh-ux/ng-at-internet';
 
@@ -18,7 +17,6 @@ angular
   .module(moduleName, [
     'ngAtInternet',
     'oui',
-    'ovh-api-services',
     'ovhManagerCore',
     'pascalprecht.translate',
     menuHeader,

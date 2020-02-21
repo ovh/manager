@@ -2,7 +2,6 @@ import angular from 'angular';
 import 'angular-translate';
 
 import '@ovh-ux/manager-core';
-import 'ovh-api-services';
 
 import languagePicker from './language-picker';
 
@@ -13,7 +12,6 @@ const moduleName = 'ovhManagerNavbarLanguageMenu';
 angular
   .module(moduleName, [
     'ovhManagerCore',
-    'ovh-api-services',
     'pascalprecht.translate',
     languagePicker,
   ])

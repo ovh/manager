@@ -4,7 +4,6 @@ import '@ovh-ux/ng-translate-async-loader';
 import '@ovh-ux/manager-core';
 import '@ovh-ux/manager-account-sidebar';
 import 'moment';
-import 'ovh-api-services';
 import 'ovh-ui-angular';
 
 import languageMenu from './language-menu';
@@ -26,7 +25,6 @@ angular
     'ngTranslateAsyncLoader',
     'ovhManagerCore',
     'ovhManagerAccountSidebar',
-    'ovh-api-services',
     'oui',
     languageMenu,
     notificationsMenu,

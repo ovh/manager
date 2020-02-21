@@ -2,30 +2,37 @@ import { User } from '@ovh-ux/manager-models';
 
 export default class {
   /* @ngInject */
-  constructor($q, OvhApiMe, OvhApiUniverses) {
+  constructor($http, $q) {
+    this.$http = $http;
     this.$q = $q;
-    this.OvhApiMe = OvhApiMe;
-    this.OvhApiUniverses = OvhApiUniverses;
   }
 
   getUser() {
     return this.$q
       .all({
-        user: this.OvhApiMe.v6().get().$promise,
-        certificates: this.OvhApiMe.v6().certificates().$promise,
+        user: this.$http.get('/me').then(({ data }) => data),
+        certificates: this.$http
+          .get('/me/certificates')
+          .then(({ data }) => data),
       })
       .then(({ user, certificates }) => new User(user, certificates));
   }
 
   getSupportLevel() {
-    return this.OvhApiMe.v6()
-      .supportLevel()
-      .$promise.catch(() => Promise.resolve(null));
+    return this.$http
+      .get('/me/supportLevel')
+      .then(({ data }) => data)
+      .catch(() => Promise.resolve(null));
   }
 
   getUniverses(version) {
-    return this.OvhApiUniverses.Aapi().query({
-      version,
-    }).$promise;
+    return this.$http
+      .get('/universes', {
+        serviceType: 'aapi',
+        params: {
+          version,
+        },
+      })
+      .then(({ data }) => data);
   }
 }

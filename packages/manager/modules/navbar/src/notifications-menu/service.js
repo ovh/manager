@@ -10,7 +10,8 @@ import {
 
 export default class Notifications {
   /* @ngInject */
-  constructor($interval, $q, $translate, OvhApiNotificationAapi) {
+  constructor($http, $interval, $q, $translate, OvhApiNotificationAapi) {
+    this.$http = $http;
     this.$interval = $interval;
     this.$q = $q;
     this.$translate = $translate;
@@ -18,14 +19,23 @@ export default class Notifications {
   }
 
   getNotifications(lang, target) {
-    return this.OvhApiNotificationAapi.query({
-      lang,
-      target,
-    }).$promise;
+    return this.$http
+      .get('/notification', {
+        serviceType: 'aapi',
+        params: {
+          lang,
+          target,
+        },
+      })
+      .then(({ data }) => data);
   }
 
   updateNotifications(status) {
-    return this.OvhApiNotificationAapi.post(status).$promise;
+    return this.$http
+      .post('/notification', status, {
+        serviceType: 'aapi',
+      })
+      .then(({ data }) => data);
   }
 
   readNotifications(notification, status) {
