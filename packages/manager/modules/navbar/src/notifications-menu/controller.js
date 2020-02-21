@@ -68,10 +68,6 @@ export default class NotificationsCtrl {
     );
   }
 
-  getFullSref() {
-    return `${this.state}(${JSON.stringify(this.stateParams)})`;
-  }
-
   getMenuTitle() {
     return this.NavbarBuilder.buildMenuHeader(
       this.$translate.instant('navbar_notification_title'),
