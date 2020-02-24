@@ -1,3 +1,4 @@
+import forOwn from 'lodash/forOwn';
 import get from 'lodash/get';
 import constants from './redirection.constants';
 
@@ -7,8 +8,17 @@ export default class RedirectionService {
     this.coreConfig = coreConfig;
   }
 
-  getURL(id) {
+  getURL(id, params = {}) {
     const regionConstants = constants[this.coreConfig.getRegion()];
-    return get(regionConstants, id);
+    let url = get(regionConstants, id);
+    if (url) {
+      const keyValidator = /^[\w-]+$/;
+      forOwn(params, (value, key) => {
+        if (keyValidator.test(key)) {
+          url = url.replace(`:${key}`, encodeURIComponent(value));
+        }
+      });
+    }
+    return url;
   }
 }
