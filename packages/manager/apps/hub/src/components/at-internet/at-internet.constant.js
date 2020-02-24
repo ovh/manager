@@ -1,11 +1,11 @@
 export default {
   EU: {
-    level2: '11',
+    level2: '12',
   },
   CA: {
-    level2: '11',
+    level2: '12',
   },
   US: {
-    level2: '56',
+    level2: '67',
   },
 };
