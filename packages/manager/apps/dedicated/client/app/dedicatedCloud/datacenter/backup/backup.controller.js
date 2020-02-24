@@ -3,5 +3,6 @@ export default class {
   constructor($translate, Alerter) {
     this.$translate = $translate;
     this.Alerter = Alerter;
+    this.backup = {};
   }
 }

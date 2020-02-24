@@ -3,8 +3,9 @@ import template from './template.html';
 
 export default {
   bindings: {
-    onChange: '&',
-    plans: '<',
+    backup: '<',
+    backupOffers: '<',
+    previewMode: '<',
     user: '<',
   },
   controller,

@@ -1,7 +1,3 @@
-import get from 'lodash/get';
-
-import { BACKUP_STATE_DISABLED, BACKUP_OFFER_LEGACY } from './backup.constants';
-
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.dedicatedClouds.datacenter.backup', {
     url: '/backup',
@@ -15,10 +11,10 @@ export default /* @ngInject */ ($stateProvider) => {
         .injector()
         .getAsync('backup')
         .then((backup) => {
-          if (get(backup, 'state', null) === BACKUP_STATE_DISABLED) {
+          if (backup.isInactive()) {
             return { state: 'app.dedicatedClouds.datacenter.backup.new' };
           }
-          if (get(backup, 'backupOffer', null) === BACKUP_OFFER_LEGACY) {
+          if (backup.isLegacy()) {
             return { state: 'app.dedicatedClouds.datacenter.backup.legacy' };
           }
           return false;

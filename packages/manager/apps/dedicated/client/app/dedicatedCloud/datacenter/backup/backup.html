@@ -9,7 +9,10 @@
 
     <section class="datacenter-backup-offers">
         <h4 class="mb-0" data-translate="datacenter_backup_choose_offers"></h4>
-        <div style="height:300px;"></div>
+        <dedicated-cloud-datacenter-backup-offers
+            data-backup-offers="$ctrl.offers"
+            data-backup="$ctrl.backup"
+        ></dedicated-cloud-datacenter-backup-offers>
         <oui-button
             data-variant="primary"
             data-text="{{ 'datacenter_backup_update_offer' | translate }}"

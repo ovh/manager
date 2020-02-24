@@ -3,11 +3,11 @@ import angular from 'angular';
 import component from './component';
 import './styles.less';
 
-const moduleName = 'ovhManagerDedicatedCloudBackupPlanUpgrade';
+const moduleName = 'ovhManagerDedicatedCloudBackupOffers';
 
 angular
   .module(moduleName, [])
-  .component('dedicatedCloudBackupPlanUpgrade', component)
+  .component('dedicatedCloudDatacenterBackupOffers', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

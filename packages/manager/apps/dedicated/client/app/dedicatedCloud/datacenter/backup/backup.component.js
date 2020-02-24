@@ -3,8 +3,8 @@ import template from './backup.html';
 
 export default {
   bindings: {
-    datacenterId: '<',
     backupOffers: '<',
+    datacenterId: '<',
     productId: '<',
   },
   controller,

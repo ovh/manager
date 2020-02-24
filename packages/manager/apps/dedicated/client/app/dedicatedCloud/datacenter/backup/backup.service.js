@@ -1,3 +1,5 @@
+import Backup from './backup.class';
+
 export default class {
   /* @ngInject */
   constructor($q, OvhApiDedicatedCloudDatacenter) {
@@ -6,6 +8,8 @@ export default class {
   }
 
   getBackup(serviceName, datacenterId) {
-    return this.backupApi.get({ serviceName, datacenterId }).$promise;
+    return this.backupApi
+      .get({ serviceName, datacenterId })
+      .$promise.then((backup) => new Backup(backup));
   }
 }
