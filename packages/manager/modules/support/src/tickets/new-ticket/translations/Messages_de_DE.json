@@ -35,6 +35,7 @@
   "ovhManagerSupport_new_serviceType_cdn_webstorage": "WebStorage CDN",
   "ovhManagerSupport_new_serviceType_cdn_website": "WebSite CDN",
   "ovhManagerSupport_new_serviceType_cdn_dedicated": "Dedicated CDN",
+  "ovhManagerSupport_new_serviceType_container_registry": "Managed Private Registry",
   "ovhManagerSupport_new_serviceType_hosting_private_database": "Private Datenbank",
   "ovhManagerSupport_new_serviceType_domain_zone": "Zone",
   "ovhManagerSupport_new_serviceType_ip_loadbalancing": "Loadbalancing-IP",
