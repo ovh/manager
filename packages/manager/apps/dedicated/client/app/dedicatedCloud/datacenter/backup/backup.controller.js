@@ -1,6 +1,7 @@
 export default class {
   /* @ngInject */
-  constructor($translate) {
+  constructor($translate, Alerter) {
     this.$translate = $translate;
+    this.Alerter = Alerter;
   }
 }
