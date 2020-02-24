@@ -8,7 +8,6 @@
   "enterprise_cloud_database_storage_size": "{{ size }} GB",
   "enterprise_cloud_database_engine": "DBMS",
   "enterprise_cloud_database_admin_credentials": "Admin credentials",
-  "enterprise_cloud_database_admin_credentials_username": "Username :",
   "enterprise_cloud_database_admin_credentials_password": "Password :",
   "enterprise_cloud_database_update_password": "Update Password",
   "enterprise_cloud_database_renewal_date": "Renewal date",
@@ -29,6 +28,6 @@
   "enterprise_cloud_database_connection_message": "The addition of IP address or IP ranges make it possible to secure your cluster.",
   "enterprise_cloud_database_common_status_ON": "On",
   "enterprise_cloud_database_common_status_OFF": "Off",
-  "enterprise_cloud_database_manage_cluster": "Manage cluster",
+  "enterprise_cloud_database_admin_credentials_username": "Username :",
   "enterprise_cloud_database_manage_nodes": "Manage nodes"
 }

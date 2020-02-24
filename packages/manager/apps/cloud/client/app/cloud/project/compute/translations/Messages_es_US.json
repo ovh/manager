@@ -5,13 +5,5 @@
   "cpc_tab_ssh": "Clés SSH",
   "cpc_tab_loadbalancer": "Balanceador de carga",
   "cpc_tab_project": "Gestión y consumo del proyecto",
-  "cpb_tab_quota": "Límite",
-  "cpc_message": "¡El cloud de OVH ya está en Alemania! <a href=\"http://superlienverslapage\">Descubra nuestro centro de datos de Limburgo.</a>",
-  "cloud_message_pci_uk1": "UK1, ¡una nueva región disponible en Londres, en el Reino Unido!",
-  "cloud_message_pci_uk1_link": "Descubra lo que esto implica para usted",
-  "cloud_message_pci_de1": "DE1, ¡una nueva región disponible en Frankfurt, Alemania!",
-  "cloud_message_pci_de1_link": "Descubra lo que esto implica para usted",
-  "cloud_message_pci_g3": "Noticia de última hora: Lanzamiento de las instancias GPU G3-30 y G3-120, para proyectos de «data science» o «machine learning».",
-  "cloud_message_pci_no_link": "En savoir plus...",
-  "cloud_message_pci_bandwitdh_xmas": "Del 19 de diciembre de 2017 al 8 de enero de 2018 (ambos inclusive), disfrute de un ancho de banda  a nivel mundial de hasta 10 Gbits/s en las instancias C2-120, B2-120, R2-240 y G3-120."
+  "cpb_tab_quota": "Límite"
 }

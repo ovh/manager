@@ -19,7 +19,7 @@
   "menu_vouchers": "Meine Gutscheine",
   "menu_billing": "Abrechnung",
   "menu_bills": "Meine Rechnungen",
-  "menu_tickets": "Meine Support-Anfragen",
+  "menu_support": "Meine Support-Anfragen",
   "menu_payment_methods": "Zahlungsarten",
   "menu_subscriptions": "Meine Abos",
   "menu_ssh": "Meine SSH Keys",
@@ -30,6 +30,5 @@
   "menu_users_management": "Verwaltung der Benutzer",
   "menu_emails": "Empfangene E-Mails",
   "menu_contacts": "Meine Kontakte",
-  "menu_agreements": "Meine Verträge",
-  "menu_support": "Meine Support-Anfragen"
+  "menu_agreements": "Meine Verträge"
 }

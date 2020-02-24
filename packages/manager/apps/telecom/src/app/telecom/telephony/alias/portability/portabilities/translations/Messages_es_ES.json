@@ -45,7 +45,6 @@
   "telephony_alias_portabilities_cancel_error": "Oups ! Une erreur est survenue lors de l'annulation de votre demande de portabilité.",
   "telephony_alias_portabilities_load_error": "¡Vaya! Se ha producido un error al cargar las portabilidades: {{error}}.",
   "telephony_alias_portabilities_attach_form": "Adjuntar el formulario de solicitud de portabilidad firmado",
-  "telephony_alias_portabilities_attach_info": "Solo para solicitudes de portabilidad sin código RIO.",
   "telephony_alias_portabilities_attach_list_files": "Lista de documentos enviados",
   "telephony_alias_portabilities_attach_file_name": "Nombre del documento",
   "telephony_alias_portabilities_attach_delete": "Eliminar"

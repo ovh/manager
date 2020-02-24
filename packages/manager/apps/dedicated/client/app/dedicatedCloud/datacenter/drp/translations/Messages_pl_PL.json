@@ -9,7 +9,6 @@
   "dedicatedCloud_datacenter_activate_zerto_drp": "Aktywuj DRP Zerto",
   "dedicatedCloud_datacenter_ovh_step_one": "Główne centrum danych",
   "dedicatedCloud_datacenter_ovh_step_two": "Zapasowe centrum danych",
-  "dedicatedCloud_datacenter_ovh_step_three": "Potwierdź",
   "dedicatedCloud_datacenter_drp_get_state_error": "Wystąpił błąd podczas pobierania informacji o Twoim DRP. ",
   "dedicatedCloud_datacenter_onPremise_step_one": "Centrum danych OVH",
   "dedicatedCloud_datacenter_onPremise_step_two": "Własne centrum danych",

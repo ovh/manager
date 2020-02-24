@@ -16,7 +16,7 @@
   "telephony_alias_config_contactCenterSolution_sounds_closure_action_to_play_help": "Lorsque la durée maximale d’attente dans la file est atteinte ou que les lignes de votre file d’appels sont déconnectées, l’appelant tombera sur le répondeur de la ligne sélectionnée ou entendra une annonce de fermeture.",
   "telephony_alias_config_contactCenterSolution_sounds_add_sound": "Ajouter un son",
   "telephony_alias_config_contactCenterSolution_sounds_add_voicemail": "Eine Auto-Antwort hinzufügen",
-  "telephony_alias_config_contactCenterSolution_sounds_time_in_minutes": "Temps exprimé en minutes.",
+  "telephony_alias_config_contactCenterSolution_sounds_time_in_seconds": "Zeit, ausgedrückt in Sekunden.",
   "telephony_alias_config_contactCenterSolution_sounds_action_to_play": "Action à jouer",
   "telephony_alias_config_contactCenterSolution_sounds_action_voicemail": "Renvoyer sur un répondeur.",
   "telephony_alias_config_contactCenterSolution_sounds_closure_action_playback": "Jouer une annonce de fermeture.",
@@ -28,6 +28,5 @@
   "telephony_alias_config_contactCenterSolution_sounds_get_options_error": "Une erreur est survenue lors de la récupération des options des sons et de l’attente de la file d’appels.",
   "telephony_alias_config_contactCenterSolution_sounds_upload_error": "Une erreur est survenue lors du téléchargement du fichier.",
   "telephony_alias_config_contactCenterSolution_sounds_update_success": "Les options des sons et de l’attente de la file d’appels ont été mises à jour.",
-  "telephony_alias_config_contactCenterSolution_sounds_update_error": "Une erreur est survenue lors la mise à jour des options de la file d’appels.",
-  "telephony_alias_config_contactCenterSolution_sounds_time_in_seconds": "Zeit, ausgedrückt in Sekunden."
+  "telephony_alias_config_contactCenterSolution_sounds_update_error": "Une erreur est survenue lors la mise à jour des options de la file d’appels."
 }

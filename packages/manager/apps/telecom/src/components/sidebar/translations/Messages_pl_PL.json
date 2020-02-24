@@ -34,6 +34,5 @@
   "telecom_sidebar_section_v4": "Manager V4",
   "telecom_sidebar_actions_menu_sms": "SMS",
   "telecom_sidebar_actions_menu_sms_hlr": "HLR",
-  "telecom_sidebar_actions_menu_fax": "Faks",
-  "telecom_sidebar_pack_load_error": "Oops, une erreur est survenue lors du chargement de vos services."
+  "telecom_sidebar_actions_menu_fax": "Faks"
 }

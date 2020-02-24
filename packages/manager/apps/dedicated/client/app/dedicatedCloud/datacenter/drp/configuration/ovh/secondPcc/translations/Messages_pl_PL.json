@@ -4,7 +4,6 @@
   "dedicatedCloud_datacenter_secondary_datacenter_list": "Lista zapasowych centrów danych",
   "dedicatedCloud_datacenter_secondary_datacenter_name_placeholder": "Wybierz zapasowe centrum danych",
   "dedicatedCloud_datacenter_secondary_ip_address_pool_available": "Pula publicznych adresów IP dostępna na zapasowej infrastrukturze Hosted Private Cloud",
-  "dedicatedCloud_datacenter_order_ip_secondary_pcc": "Brak dostępnej puli adresów IP na tej infrastrukturze Hosted Private Cloud.  <a ui-sref=\"{{sref}}\">Zamów pulę</a> lub wybierz inną infrastrukturę Hosted Private Cloud.",
   "dedicatedCloud_datacenter_secondary_ip_address_pool_available_placeholder": "Wybierz wolny publiczny adres IP",
   "dedicatedCloud_datacenter_secondary_datacenter_ip_public": "IP publiczne",
   "dedicatedCloud_datacenter_secondary_datacenter_ip_public_placeholder": "Publiczny adres IP",

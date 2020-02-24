@@ -25,11 +25,5 @@
   "vrack_cloud_save_name": "Guardar la modificación del nombre",
   "vrack_cloud_description_max_length": "La descripción no puede exceder los {{ max }} caracteres.",
   "vrack_cloud_description_character_count": "Caracteres utilizados: {{ count }} de {{ max }}",
-  "vrack_private_cloud_vm_network_label": "vm-network",
-  "vrack_move_dialog_title": "Traslado de un centro de datos Private Cloud",
-  "vrack_move_dialog_intro": "Usted ha seleccionado un servicio de tipo «Datacenter Private Cloud». Este servicio no puede ser huérfano y debe transferirse obligatoriamente a otro vRack.",
-  "vrack_move_dialog_warning_notice": "Esta operación implica una interrupción del servicio de 5 minutos aproximadamente.",
-  "vrack_move_dialog_choose_vrack_label": "vRack de destino:",
-  "vrack_move_dialog_choose_vrack_default_option": "Seleccione un vRack",
-  "vrack_move_dialog_request_error": "Lo sentimos: la operación de traslado del centro de datos no ha podido realizarse."
+  "vrack_private_cloud_vm_network_label": "vm-network"
 }

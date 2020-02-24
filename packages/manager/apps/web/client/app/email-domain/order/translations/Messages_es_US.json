@@ -1,24 +1,3 @@
 {
-  "mxPlan_order_title": "Contratar un plan MX ",
-  "mxPlan_order_error_no_domain": "Para configurar un plan MX, debe disponer al menos de un dominio.",
-  "mxPlan_order_step1_title": "1. Configuración del plan MX ",
-  "mxPlan_order_step1_domain": "Dominio",
-  "mxPlan_order_step1_offer": "Type d'offre",
-  "mxPlan_order_step1_error": "Se ha producido un error al recuperar los datos del pedido ({{t0}}).",
-  "mxPlan_order_step2_title": "2. Seleccione una oferta",
-  "mxPlan_order_step2_product_description": "Para más información, consulte la <a href=\"{{t0}}\" target=\"{{t1}}\">descripción de nuestros productos. {{t2}}</a>",
-  "mxPlan_order_step2_duration_fail": "Se ha producido un error al recuperar la duración disponible.",
-  "mxPlan_order_step2_price_fail": "Se ha producido un error al cargar los precios para la duración indicada.",
-  "mxPlan_order_step2_duration": "Al abonar el pedido, el servicio se asociará a su dominio sin solicitud de renovación.",
-  "mxPlan_order_step3_title": "3. Validación",
-  "mxPlan_order_step3_contracts_check": "He leído y acepto los contratos.",
-  "mxPlan_order_step3_question": "Haga clic en \"Generar la orden de pedido\" para contratar un plan MX.",
-  "mxPlan_order_step3_contracts_ask": "Lea y acepte los siguientes contratos y haga clic en «Siguiente»:",
-  "mxPlan_order_step3_generate": "Generar la orden de pedido",
-  "mxPlan_order_step3_generating": "Generando la orden de pedido...",
-  "mxPlan_order_step3_generated": "La orden de pedido se ha generado correctamente.",
-  "mxPlan_order_step3_clic_here": "Para confirmar su pedido, haga clic en el botón «Abonar».",
-  "mxPlan_order_step3_pay_button": "Régler",
-  "mxPlan_order_step3_bc_information": "Se abrirá una nueva pestaña y el sistema le redirigirá automáticamente a la interfaz de pago de OVH.",
-  "mxPlan_order_step3_fail": "Se ha producido un error al generar la orden de pedido."
+  "mxPlan_order_title": "Contratar un plan MX "
 }
