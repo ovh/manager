@@ -1,5 +1,5 @@
 <div class="row mb-3">
-    <div data-ng-if="!$ctrl.previewMode">
+    <div data-ng-if="!$ctrl.previewMode" class="d-flex">
         <oui-select-picker
             class="col-md-4 mb-3"
             data-ng-repeat="offer in $ctrl.backupOffers track by offer.offerName"
@@ -14,7 +14,6 @@
                 <span
                     class="oui-status oui-status_success"
                     data-translate="dedicatedCloud_offer_current_offer"
-                    data-ng-if="$ctrl.actualOffer === offer.offerName"
                 ></span>
                 <ul class="offer-list-style">
                     <li
@@ -60,11 +59,12 @@
                 </ul>
             </oui-select-picker-section>
             <oui-select-picker-footer>
-                <private-registry-price
-                    data-price="offer.pricings[0].price"
-                    data-tax="offer.pricings[0].tax"
+                <dedicated-price
+                    data-hide-tax="true"
+                    data-price="offer.getPrice()"
+                    data-tax="offer.getTax()"
                     data-user="$ctrl.user"
-                ></private-registry-price>
+                ></dedicated-price>
             </oui-select-picker-footer>
         </oui-select-picker>
     </div>
@@ -125,11 +125,12 @@
                 </ul>
             </oui-select-picker-section>
             <oui-select-picker-footer>
-                <private-registry-price
+                <dedicated-price
+                    data-hide-tax="true"
                     data-price="offer.getPrice()"
                     data-tax="offer.getTax()"
                     data-user="$ctrl.user"
-                ></private-registry-price>
+                ></dedicated-price>
             </oui-select-picker-footer>
         </oui-select-picker>
     </div>

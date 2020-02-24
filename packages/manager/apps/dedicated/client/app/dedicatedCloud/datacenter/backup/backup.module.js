@@ -11,6 +11,7 @@ import component from './backup.component';
 import routing from './backup.routing';
 import backupService from './backup.service';
 import backupOffers from './components/offers';
+import price from './components/price';
 
 const moduleName = 'ovhManagerDedicatedCloudBackupModule';
 
@@ -22,6 +23,7 @@ angular
     'ovh-api-services',
     'pascalprecht.translate',
     backupOffers,
+    price,
   ])
   .config(routing)
   .component('ovhManagerDedicatedCloudBackup', component)
