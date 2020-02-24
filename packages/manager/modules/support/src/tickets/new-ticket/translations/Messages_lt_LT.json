@@ -1,7 +1,5 @@
 {
-  "ovhManagerSupport_new_serviceType_carrier_sip": "SIP provider",
-  "ovhManagerSupport_new_serviceType_hosting_reseller": "Plesk web hosting",
-  "ovhManagerSupport_new_creation_optional": "{{label}} (optional)",
+  "ovhManagerSupport_new_open_new_tab": "Opens a new tab",
   "ovhManagerSupport_new_category": "Topic",
   "ovhManagerSupport_new_category_billing": "Billing and orders",
   "ovhManagerSupport_new_category_assistance": "Technical advice ",
@@ -30,6 +28,7 @@
   "ovhManagerSupport_new_serviceType_xdsl": "xDSL",
   "ovhManagerSupport_new_serviceType_vrack": "vRack",
   "ovhManagerSupport_new_serviceType_domain": "Domain",
+  "ovhManagerSupport_new_serviceType_carrier_sip": "SIP provider",
   "ovhManagerSupport_new_serviceType_cdn_webstorage": "WebStorage CDN",
   "ovhManagerSupport_new_serviceType_cdn_website": "WebSite CDN",
   "ovhManagerSupport_new_serviceType_cdn_dedicated": "Dedicated CDN",
@@ -63,6 +62,7 @@
   "ovhManagerSupport_new_serviceType_pack_xdsl": "xDSL pack",
   "ovhManagerSupport_new_serviceType_router": "Router",
   "ovhManagerSupport_new_serviceType_HOSTING_DOMAIN": "Web hosting & domain",
+  "ovhManagerSupport_new_serviceType_hosting_reseller": "Plesk web hosting",
   "ovhManagerSupport_new_serviceType_dedicated_nas": "Dedicated NAS",
   "ovhManagerSupport_new_serviceType_dedicated_nasha": "Dedicated HA-NAS",
   "ovhManagerSupport_new_serviceType_cloud": "Public Cloud",
@@ -87,8 +87,6 @@
   "ovhManagerSupport_new_service": "Service concerned",
   "ovhManagerSupport_new_service_unknown": "This service is not listed and/or I do not have this service yet",
   "ovhManagerSupport_new_issue": "Question",
-  "ovhManagerSupport_new_guides": "Guides",
-  "ovhManagerSupport_new_tips": "Tips",
   "ovhManagerSupport_new_back": "Back to ticket list",
   "ovhManagerSupport_new_helpfull": "Have you found the answer to your question?",
   "ovhManagerSupport_new_helpfull_yes": "Yes",
@@ -107,11 +105,11 @@
   "ovhManagerSupport_new_creation_tip_forum": "Our forum:",
   "ovhManagerSupport_new_creation_tip_2": "Have you found the answer to your question in the meantime?",
   "ovhManagerSupport_new_creation_tip_3": "If so, please <a ui-sref=\"{{ state }}\">close your ticket</a> directly via the OVH Control Panel.",
+  "ovhManagerSupport_new_creation_optional": "{{label}} (optional)",
   "ovhManagerSupport_new_business_web": "Web",
   "ovhManagerSupport_new_business_telecom": "Telecom",
   "ovhManagerSupport_new_business_cloud": "Cloud",
   "ovhManagerSupport_new_business_1": "Want to get your project reviewed?",
   "ovhManagerSupport_new_business_2": "Please detail your needs by sending an email to the following email address:",
-  "ovhManagerSupport_new_business_3": "Support tickets sent to this email address will not be processed.",
-  "ovhManagerSupport_new_open_new_tab": "Opens a new tab"
+  "ovhManagerSupport_new_business_3": "Support tickets sent to this email address will not be processed."
 }

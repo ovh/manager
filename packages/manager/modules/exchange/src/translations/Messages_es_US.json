@@ -816,8 +816,6 @@
   "exchange_DIAGNOSTICS_status_canSendEmail_help_li2": "La contraseña no es correcta",
   "exchange_DIAGNOSTICS_status_canSendEmail_help_li3": "Su cuenta está bloqueada por el envío de spam.",
   "exchange_DIAGNOSTICS_status_canSendEmail_help_li4": "Se ha producido un incidente en la infraestructura Exchange",
-  "exchange_DIAGNOSTICS_status_support_ticket_subject": "Diagnóstico Exchange",
-  "exchange_DIAGNOSTICS_status_support_ticket_body": "Por favor, conserve la siguiente información, que le será de utilidad para el diagnóstico de su estado.",
   "exchange_DIAGNOSTICS_create_ticket": "Crear un solicitud de soporte",
   "exchange_tab_GROUPS_back_button": "Volver",
   "exchange_tab_GROUPS_header": "Groupes",
