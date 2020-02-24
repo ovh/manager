@@ -1,11 +1,12 @@
 {
- "cpbc_hourly_instance_col_name": "Nazwa",
- "cpbc_hourly_instance_col_consumption": "Zużycie",
- "cpbc_hourly_instance_col_consumption_tooltip": "Płatności na początku kolejnego miesiąca",
- "cpbc_hourly_instance_detail_title": "Serwery",
- "cpbc_object_storage_detail_title": "Object Storage",
- "cpbc_archive_storage_detail_title": "Cloud Archive",
- "cpbc_snapshot_detail_title": "Przechowywanie kopii zapasowych",
- "cpbc_volume_detail_title": "Dodatkowe dyski",
- "cpbc_hourly_instance_trafic_title": "Ruch wychodzący z instancji do Internetu"
+  "cpbc_hourly_instance_col_name": "Nazwa",
+  "cpbc_hourly_instance_col_consumption": "Zużycie",
+  "cpbc_hourly_instance_col_consumption_tooltip": "Płatności na początku kolejnego miesiąca",
+  "cpbc_hourly_instance_detail_title": "Serwery",
+  "cpbc_object_storage_detail_title": "Object Storage",
+  "cpbc_archive_storage_detail_title": "Cloud Archive",
+  "cpbc_snapshot_detail_title": "Przechowywanie kopii zapasowych",
+  "cpbc_volume_detail_title": "Dodatkowe dyski",
+  "cpbc_hourly_instance_trafic_title": "Ruch wychodzący z instancji do Internetu",
+  "cpbc_hourly_private_registry_title": "Managed Private Registry"
 }

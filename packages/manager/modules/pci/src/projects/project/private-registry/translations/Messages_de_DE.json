@@ -44,7 +44,7 @@
   "private_registry_update_name_label": "Namen für das Private Registry auswählen",
   "private_registry_update_success": "Das Private Registry wurde als {{ newRegistryName }} umbenannt",
   "private_registry_update_error": "Beim Ändern des Namens des Private Registry {{ registryName }} ist ein Fehler aufgetreten: {{ message }}",
-  "private_registry_onboarding_success": "Ihr Private Registry {{ registryName }} wurde erstellt.",
+  "private_registry_onboarding_success": "Ihr privates Register {{ registryName }} wird gerade erstellt. Dieser Vorgang kann einige Minuten in Anspruch nehmen. Verwenden Sie die Schaltfläche Aktualisieren, um den Bericht zu aktualisieren. Sobald Ihr private register erstellt wurde, generieren Sie einen Satz von Zugangsdaten, um darauf zuzugreifen.",
   "private_registry_onboarding_error": "Fehler bei der Erstellung des Private Registry: {{ message }}",
   "private_registry_harbor_api_title": "Private-Registry-API",
   "private_registry_harbor_api_url": "URL der Private-Registry-API",
@@ -65,10 +65,11 @@
   "private_registry_upgrade_plan": "Angebot ändern",
   "private_registry_consumption": "Verwendeter Speicherplatz / Verfügbarer Speicherplatz",
   "private_registry_consumption_display": "{{ used }} / {{ limit }}",
-  "private_registry_common_status_SCALING_UP": "Das Angebot wird geändert",
+  "private_registry_common_status_SCALING_UP": "Änderung des Pakets",
   "private_registry_onboarding_success_link": "Erstellen Sie für den Zugang eine erste Kennung. ",
   "private_registry_new_project_contracts": "Ich habe die folgenden Verträge gelesen und akzeptiere diese: {{ contractsLinks }}.",
   "private_registry_guide_creating_and_using_a_private_image": "Erstellen und Verwenden von privaten Bildern",
   "private_registry_guide_using_private_registry_with_kubernetes": "Verwendung von OVHcloud Managed Private Registry mit OVHcloud Managed Kubernetes",
-  "private_registry_guide_using_the_helm_chart_museum": "Verwenden des Helm-Chart-Museums"
+  "private_registry_guide_using_the_helm_chart_museum": "Verwenden des Helm-Chart-Museums",
+  "private_registry_common_cancel": "Abbrechen"
 }

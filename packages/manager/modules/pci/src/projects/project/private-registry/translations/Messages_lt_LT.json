@@ -10,7 +10,7 @@
   "private_registry_status": "Status",
   "private_registry_harbor_ui": "Harbor user interface",
   "private_registry_harbor_api": "Harbor API",
-  "private_registry_regenerate_creds": "Regenerate identification details ",
+  "private_registry_regenerate_creds": "Generate identification details",
   "private_registry_rename": "Rename",
   "private_registry_delete": "Delete private registry",
   "private_registry_delete_confirmation": "Are you sure you want to delete the {{ registryName }} private registry?",
@@ -44,7 +44,7 @@
   "private_registry_update_name_label": "Choose a private registry name",
   "private_registry_update_success": "The private registry name has changed to {{ newRegistryName }}",
   "private_registry_update_error": "An error has occurred changing the {{ registryName }} private registry: {{ message }}",
-  "private_registry_onboarding_success": "Your {{ registryName }} private registry service has been created.",
+  "private_registry_onboarding_success": "Creating your {{ registryName }} private registry... This operation could take a few minutes. Click the Refresh button to refresh its status. Once your private registry has been created, generate a set of identification details to access it.",
   "private_registry_onboarding_error": "Unable to create private registry: {{ message }}",
   "private_registry_harbor_api_title": "Private registry API",
   "private_registry_harbor_api_url": "URL for your private registry API",
@@ -65,10 +65,11 @@
   "private_registry_upgrade_plan": "Change plan",
   "private_registry_consumption": "Space used / Available space",
   "private_registry_consumption_display": "{{ used }} / {{ limit }}",
-  "private_registry_common_status_SCALING_UP": "Changing plan...",
+  "private_registry_common_status_SCALING_UP": "Changing plan",
   "private_registry_onboarding_success_link": "Generate the first set of credentials to access it.",
   "private_registry_new_project_contracts": "I have read and accept the following contracts: {{ contractsLinks }}.",
   "private_registry_guide_creating_and_using_a_private_image": "Creating and using private images",
   "private_registry_guide_using_private_registry_with_kubernetes": "Using OVHcloud Managed Private Registry with OVHcloud Managed Kubernetes",
-  "private_registry_guide_using_the_helm_chart_museum": "Using Helm ChartMuseum"
+  "private_registry_guide_using_the_helm_chart_museum": "Using Helm ChartMuseum",
+  "private_registry_common_cancel": "Cancel"
 }
