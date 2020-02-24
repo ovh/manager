@@ -19,7 +19,7 @@
   "menu_vouchers": "I tuoi voucher",
   "menu_billing": "Fatturazione",
   "menu_bills": "Le tue fatture",
-  "menu_tickets": "Le tue richieste di assistenza",
+  "menu_support": "Le tue richieste di assistenza",
   "menu_payment_methods": "Modalità di pagamento",
   "menu_subscriptions": "I tuoi abbonamenti",
   "menu_ssh": "Le tue chiavi SSH",
@@ -30,6 +30,5 @@
   "menu_users_management": "Gestione utenti",
   "menu_emails": "Email ricevute",
   "menu_contacts": "I tuoi contatti",
-  "menu_agreements": "I tuoi contratti ",
-  "menu_support": "Le tue richieste di assistenza"
+  "menu_agreements": "I tuoi contratti "
 }

@@ -19,7 +19,7 @@
   "menu_vouchers": "My vouchers",
   "menu_billing": "Billing",
   "menu_bills": "My bills",
-  "menu_tickets": "My support requests ",
+  "menu_support": "My support tickets ",
   "menu_payment_methods": "Payment method",
   "menu_subscriptions": "My subscriptions",
   "menu_ssh": "My SSH keys",
@@ -30,6 +30,5 @@
   "menu_users_management": "User management",
   "menu_emails": "Emails received",
   "menu_contacts": "My contacts",
-  "menu_agreements": "My contracts",
-  "menu_support": "My support tickets "
+  "menu_agreements": "My contracts"
 }

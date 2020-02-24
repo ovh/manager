@@ -4,7 +4,6 @@
   "dedicatedCloud_datacenter_secondary_datacenter_list": "Liste des datacenters secondaires",
   "dedicatedCloud_datacenter_secondary_datacenter_name_placeholder": "Choisissez le datacenter secondaire",
   "dedicatedCloud_datacenter_secondary_ip_address_pool_available": "Pool d’adresses IP publiques disponible du Private Cloud secondaire",
-  "dedicatedCloud_datacenter_order_ip_secondary_pcc": "Vous n’avez aucun pool d’adresses IP disponible sur ce Private Cloud. Veuillez en <a ui-sref=\"{{sref}}\">commander</a> ou choisissez un autre Private Cloud.",
   "dedicatedCloud_datacenter_secondary_ip_address_pool_available_placeholder": "Choisissez une adresse IP publique libre",
   "dedicatedCloud_datacenter_secondary_datacenter_ip_public": "IP publique",
   "dedicatedCloud_datacenter_secondary_datacenter_ip_public_placeholder": "Adresse IP publique",

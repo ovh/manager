@@ -16,7 +16,6 @@
   "telephony_alias_config_contactCenterSolution_sounds_closure_action_to_play_help": "Lorsque la durée maximale d’attente dans la file est atteinte ou que les lignes de votre file d’appels sont déconnectées, l’appelant tombera sur le répondeur de la ligne sélectionnée ou entendra une annonce de fermeture.",
   "telephony_alias_config_contactCenterSolution_sounds_add_sound": "Ajouter un son",
   "telephony_alias_config_contactCenterSolution_sounds_add_voicemail": "Adicionar uma resposta automática",
-  "telephony_alias_config_contactCenterSolution_sounds_time_in_minutes": "Temps exprimé en minutes.",
   "telephony_alias_config_contactCenterSolution_sounds_action_to_play": "Action à jouer",
   "telephony_alias_config_contactCenterSolution_sounds_action_voicemail": "Renvoyer sur un répondeur.",
   "telephony_alias_config_contactCenterSolution_sounds_closure_action_playback": "Jouer une annonce de fermeture.",
