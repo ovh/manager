@@ -30,6 +30,7 @@ export default {
     support: `${managerRoot.EU}/manager/dedicated/${URI.support}`,
     supportLevel: `${managerRoot.EU}/manager/dedicated/${URI.supportLevel}`,
     tasks: 'http://travaux.ovh.net/',
+    ticket: `${managerRoot.EU}/manager/dedicated/#/support/tickets/:ticketId`,
     userEmails: `${managerRoot.EU}/manager/dedicated/${URI.userEmails}`,
   },
   CA: {
@@ -44,6 +45,7 @@ export default {
     support: `${managerRoot.CA}/manager/${URI.support}`,
     supportLevel: `${managerRoot.CA}/manager/${URI.supportLevel}`,
     tasks: '',
+    ticket: `${managerRoot.EU}/dedicated/#/support/tickets/:ticketId`,
     userEmails: `${managerRoot.CA}/manager/${URI.userEmails}`,
   },
   US: {
@@ -56,6 +58,7 @@ export default {
     support: `${managerRoot.US}/manager/dedicated/${URI.support}`,
     supportLevel: '',
     tasks: '',
+    ticket: `${managerRoot.US}/manager/dedicated/#/ticket/:ticketId`,
     userEmails: `${managerRoot.US}/manager/dedicated/${URI.userEmails}`,
   },
 };
