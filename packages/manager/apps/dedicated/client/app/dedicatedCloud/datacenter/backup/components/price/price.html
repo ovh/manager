@@ -31,7 +31,7 @@
             data-translate="price_ht_label"
             data-translate-values="{ price: $ctrl.getPriceText($ctrl.price) }"
         ></span>
-        <ng-template data-ng-if="$!ctrl.hideTax">
+        <ng-template data-ng-if="!$ctrl.hideTax">
             (<span
                 data-translate="price_ttc_label"
                 data-translate-values="{ price: $ctrl.getPriceText($ctrl.price + $ctrl.tax) }"
