@@ -10,11 +10,15 @@
             data-on-change="$ctrl.onSelected(modelValue)"
             data-values="[offer]"
         >
+            <div data-ng-if="offer.offerName === $ctrl.actualOffer">
+                <oui-select-picker-description>
+                    <span
+                        class="oui-status oui-status_success"
+                        data-translate="dedicatedCloud_offer_current_offer"
+                    ></span>
+                </oui-select-picker-description>
+            </div>
             <oui-select-picker-section>
-                <span
-                    class="oui-status oui-status_success"
-                    data-translate="dedicatedCloud_offer_current_offer"
-                ></span>
                 <ul class="offer-list-style">
                     <li
                         data-translate="dedicatedCloud_offer_upgrade_custom_report"
@@ -65,6 +69,7 @@
                     data-tax="offer.getTax()"
                     data-user="$ctrl.user"
                 ></dedicated-price>
+                <span data-translate="dedicatedCloud_offer_price_per_vm"></span>
             </oui-select-picker-footer>
         </oui-select-picker>
     </div>
@@ -131,6 +136,7 @@
                     data-tax="offer.getTax()"
                     data-user="$ctrl.user"
                 ></dedicated-price>
+                <span data-translate="dedicatedCloud_offer_price_per_vm"></span>
             </oui-select-picker-footer>
         </oui-select-picker>
     </div>
