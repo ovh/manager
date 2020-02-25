@@ -2,16 +2,25 @@ import concat from 'lodash/concat';
 import map from 'lodash/map';
 import template from 'lodash/template';
 
+import { PRIVATE_REGISTRY_STATUS } from './private-registry.constants';
+
 export default class pciPrivateRegistryService {
   /* @ngInject */
   constructor($q, OvhApiCloud, OvhApiCloudProject, OvhApiMe) {
     this.$q = $q;
     this.OvhApiCloud = OvhApiCloud.v6();
     this.OvhApiPrivateRegistry = OvhApiCloudProject.ContainerRegistry().v6();
+    this.OvhApiPrivateRegistryPlan = OvhApiCloudProject.ContainerRegistry()
+      .Plan()
+      .v6();
     this.OvhApiPrivateRegistryUser = OvhApiCloudProject.ContainerRegistry()
       .Users()
       .v6();
+    this.OvhApiPrivateRegistryPlan = OvhApiCloudProject.ContainerRegistry()
+      .Plan()
+      .v6();
     this.OvhApiAgreements = OvhApiMe.Agreements().v6();
+    this.PRIVATE_REGISTRY_STATUS = PRIVATE_REGISTRY_STATUS;
   }
 
   create(projectId, registry) {
@@ -40,6 +49,12 @@ export default class pciPrivateRegistryService {
     ).$promise;
   }
 
+  getCapabilities(projectId) {
+    return this.OvhApiPrivateRegistry.getCapabilities({
+      serviceName: projectId,
+    }).$promise;
+  }
+
   getRegistryList(projectId, clearCache = false) {
     if (clearCache) {
       this.OvhApiPrivateRegistry.resetCache();
@@ -52,6 +67,20 @@ export default class pciPrivateRegistryService {
 
   getRegistry(serviceName, registryID) {
     return this.OvhApiPrivateRegistry.get({
+      serviceName,
+      registryID,
+    }).$promise;
+  }
+
+  getRegistryPlan(serviceName, registryID) {
+    return this.OvhApiPrivateRegistryPlan.get({
+      serviceName,
+      registryID,
+    }).$promise;
+  }
+
+  getAvailableUpgrades(serviceName, registryID) {
+    return this.OvhApiPrivateRegistryPlan.getCapabilities({
       serviceName,
       registryID,
     }).$promise;
@@ -106,5 +135,12 @@ export default class pciPrivateRegistryService {
       const compile = template(linkTemplate);
       return compile(contract);
     }).join(', ');
+  }
+
+  isDeploymentInProgress(registry) {
+    return (
+      registry.status === this.PRIVATE_REGISTRY_STATUS.SCALING_UP ||
+      registry.status === this.PRIVATE_REGISTRY_STATUS.INSTALLING
+    );
   }
 }

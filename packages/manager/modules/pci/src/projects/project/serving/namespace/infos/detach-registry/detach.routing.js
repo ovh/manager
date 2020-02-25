@@ -1,6 +1,7 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider
-    .state('pci.projects.project.serving.namespace.infos.detach-registry', {
+  $stateProvider.state(
+    'pci.projects.project.serving.namespace.infos.detach-registry',
+    {
       url: '/detach-registry',
       views: {
         modal: {
@@ -12,5 +13,6 @@ export default /* @ngInject */ ($stateProvider) => {
         goBack: /* @ngInject */ (goToNamespaceInfos) => goToNamespaceInfos,
         breadcrumb: () => null,
       },
-    });
+    },
+  );
 };
