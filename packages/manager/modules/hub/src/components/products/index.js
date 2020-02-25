@@ -1,7 +1,7 @@
 import angular from 'angular';
 import 'angular-translate';
 
-import hubTile from '../components/tile';
+import hubTile from '../tile';
 
 import component from './products.component';
 
