@@ -18,5 +18,7 @@
   "pci_projects_project_forward_feedback": "Dar mi opinión",
   "pci_projects_project_forward_legacy": "Ir a la antigua interfaz",
   "pci_projects_project_forward_content": "Atención: A partir del 25 de febrero de 2020 no será posible acceder a la antigua interfaz y solo podrá utilizar la nueva interfaz del área de cliente.",
-  "pci_projects_project_welcome_feedback": "Sugerencias"
+  "pci_projects_project_welcome_feedback": "Sugerencias",
+  "pci_projects_project_keystone_upgrade": "Important change on March 24, 2020. Please anticipate the switch to <strong>Keystone v3</strong>.",
+  "pci_projects_project_keystone_upgrade_more": "More information"
 }

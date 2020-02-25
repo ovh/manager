@@ -15,26 +15,25 @@
             <div class="pci-project-banner d-flex justify-content-between p-2">
                 <div class="d-none d-md-block">
                     <span
-                        class="font-weight-bold oui-color-sapphire"
-                        data-translate="pci_projects_project_welcome"
-                    >
-                    </span>
+                        class="oui-icon oui-icon-warning_extra-thin oui-color-warning-dark float-left mx-2"
+                    ></span>
+                    <span
+                        data-translate="pci_projects_project_keystone_upgrade"
+                    ></span>
                     <a
-                        class="pci-project-banner__feeback"
                         rel="noopener"
                         target="_blank"
-                        data-ng-href="{{ $ctrl.feedbackUrl }}"
-                        data-translate="pci_projects_project_welcome_feedback"
+                        class="oui-link_icon pci-project-link_light"
+                        href="http://travaux.ovh.net/?do=details&id=42179"
                     >
+                        <span
+                            data-translate="pci_projects_project_keystone_upgrade_more"
+                        ></span>
+                        <span
+                            class="oui-icon oui-icon-external_link"
+                            aria-hidden="true"
+                        ></span>
                     </a>
-                </div>
-                <div class="ml-auto">
-                    <button
-                        type="button"
-                        class="oui-link pci-project-link_light"
-                        data-ng-click="$ctrl.goToLegacy()"
-                        data-translate="pci_projects_project_welcome_legacy"
-                    ></button>
                 </div>
             </div>
             <div
