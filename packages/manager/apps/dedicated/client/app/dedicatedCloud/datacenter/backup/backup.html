@@ -1,6 +1,5 @@
-<div class="datacenter-backup">
-    <h1 data-translate="datacenter_backup_title"></h1>
-
+<h1 data-translate="datacenter_backup_title"></h1>
+<div class="datacenter-backup" data-ui-view>
     <div data-ovh-alert="app.dedicatedClouds.datacenter.backup"></div>
 
     <oui-switch data-model="true" data-on-change="$ctrl.deactivate()">
@@ -9,10 +8,6 @@
 
     <section class="datacenter-backup-offers">
         <h4 class="mb-0" data-translate="datacenter_backup_choose_offers"></h4>
-        <dedicated-cloud-datacenter-backup-offers
-            data-backup-offers="$ctrl.offers"
-            data-backup="$ctrl.backup"
-        ></dedicated-cloud-datacenter-backup-offers>
         <oui-button
             data-variant="primary"
             data-text="{{ 'datacenter_backup_update_offer' | translate }}"
