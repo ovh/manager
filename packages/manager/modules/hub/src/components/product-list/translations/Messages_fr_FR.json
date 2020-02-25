@@ -1,0 +1,23 @@
+{
+  "hub_product_listing_domain": "Domaine",
+  "hub_product_listing_offer": "Offre",
+  "hub_product_listing_expiration_date": "Date d'expiration",
+  "hub_product_listing_offer_diamond": "Diamant",
+  "hub_product_listing_offer_gold": "Or",
+  "hub_product_listing_offer_platinum": "Platinum",
+  "hub_product_listing_dns_type": "DNS",
+  "hub_product_listing_dns_type_hosted": "Hégerbé",
+  "hub_product_listing_dns_type_external": "Externe",
+  "hub_product_listing_owo": "Affichage Whois",
+  "hub_product_listing_owo_true": "Oui",
+  "hub_product_listing_owo_false": "Désactivé",
+  "hub_product_listing_dnssec": "DNSSEC",
+  "hub_product_listing_transfer_lock": "Protection contre le transfert",
+  "hub_product_listing_transfer_locked": "Activée",
+  "hub_product_listing_transfer_locking": "En cours d'activation",
+  "hub_product_listing_transfer_unavailable": "Indisponible",
+  "hub_product_listing_transfer_unlocked": "Désactivée",
+  "hub_product_listing_transfer_unlocking": "En cours de désactivation",
+  "hub_product_listing_true": "Activé",
+  "hub_product_listing_false": "Désactivé"
+}
