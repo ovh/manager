@@ -1,15 +1,12 @@
-@background-color: rgb(239, 249, 253);
-@link-color: rgb(77, 111, 146);
+@background-color: rgb(254, 234, 134);
+@text-color: rgb(139, 97, 17);
+@link-color: rgb(0, 80, 215);
 
 .pci-project-banner {
-  font-size: 0.875rem;
+  color: @text-color !important;
   background-color: @background-color;
 
-  &__feeback::before {
-    content: '> ';
-  }
-
   .pci-project-link_light {
-    color: @link-color;
+    color: @link-color !important;
   }
 }
