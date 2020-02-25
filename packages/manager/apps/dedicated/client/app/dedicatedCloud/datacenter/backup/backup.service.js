@@ -120,6 +120,17 @@ export default class BackupService {
       );
   }
 
+  updateBackupCapabilities(serviceName, datacenterId, properties) {
+    return this.backupApi.changeProperties(
+      { serviceName, datacenterId },
+      properties,
+    ).$promise;
+  }
+
+  disableBackup(serviceName, datacenterId) {
+    return this.backupApi.disable({ serviceName, datacenterId }).$promise;
+  }
+
   static getAddonsByAddonFamily(plan, family) {
     return get(find(get(plan, 'addonsFamily'), { family }), 'addons');
   }
