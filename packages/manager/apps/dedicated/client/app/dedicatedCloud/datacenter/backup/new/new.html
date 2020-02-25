@@ -1,0 +1,55 @@
+<div
+    data-ovh-alert="app.dedicatedClouds.datacenter.backup.new"
+    id="backupNewMainAlert"
+></div>
+<p data-translate="dedicatedCloud_datacenter_backup_new_description1"></p>
+<p
+    data-ng-bind-html="::'dedicatedCloud_datacenter_backup_new_description2' | translate"
+></p>
+<strong>
+    <a
+        target="_blank"
+        rel="noopener"
+        class="oui-link_icon"
+        data-ng-href="{{ ::$ctrl.VEEAM_TARIFF_DETAILS_URL }}"
+    >
+        <span
+            data-translate="dedicatedCloud_datacenter_backup_new_tariff_url"
+        ></span>
+        <span
+            class="oui-icon oui-icon-arrow-right_extra-thin"
+            aria-hidden="true"
+        ></span>
+    </a>
+</strong>
+<oui-stepper class="mt-3" data-on-finish="$ctrl.orderBackup()">
+    <oui-step-form
+        data-header="{{ 'dedicatedCloud_datacenter_backup_new_choose_offer' | translate }}"
+        data-submit-text="{{ 'dedicatedCloud_datacenter_backup_new_choose_offer_action' | translate }}"
+        data-prevent-next="!$ctrl.data.selectedOffer.backupOffer"
+        data-valid="$ctrl.data.selectedOffer.backupOffer"
+    >
+        <dedicated-cloud-datacenter-backup-offers
+            data-backup="$ctrl.data.selectedOffer"
+            data-backup-offers="$ctrl.backupOffers"
+            data-preview-mode="false"
+            data-user="$ctrl.currentUser"
+        >
+        </dedicated-cloud-datacenter-backup-offers>
+    </oui-step-form>
+    <oui-step-form
+        data-header="{{ 'dedicatedCloud_datacenter_backup_new_validate_conditions'| translate }}"
+        data-submit_text="{{ 'dedicatedCloud_datacenter_backup_new_activate_offer_action' | translate }}"
+        data-prevent-next="!$ctrl.data.conditionsAccepted"
+        data-valid="$ctrl.data.conditionsAccepted"
+        data-navigation="!$ctrl.data.orderInProgress"
+        data-editable="!$ctrl.data.orderInProgress"
+    >
+        <ovh-manager-dedicated-cloud-backup-terms-of-use
+            data-datcenter-id="{{ $ctrl.datacenterId }}"
+            data-mode="{{ $ctrl.MODES.NEW }}"
+            data-model="$ctrl.data.conditionsAccepted"
+        >
+        </ovh-manager-dedicated-cloud-backup-terms-of-use>
+    </oui-step-form>
+</oui-stepper>
