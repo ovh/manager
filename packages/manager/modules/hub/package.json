@@ -16,6 +16,8 @@
   },
   "peerDependencies": {
     "@ovh-ux/manager-core": "^7.5.0",
+    "@ovh-ux/ng-ovh-payment-method": "^5.2.0",
+    "@ovh-ux/ng-ovh-sso-auth": "^4.2.3",
     "@ovh-ux/ng-translate-async-loader": "^2.0.2",
     "@uirouter/angularjs": "^1.0.23",
     "angular": "^1.7.5",

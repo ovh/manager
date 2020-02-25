@@ -1,0 +1,82 @@
+.manager-hub-user-infos {
+  $bg-color: white;
+  $border-radius: 0.5rem;
+  $circle-radius: 2.5rem;
+  $circle-color: #4bb2f6;
+  $link-color: #385cdb;
+
+  background-color: $bg-color;
+  box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.075);
+  text-align: center;
+  border-radius: $border-radius;
+  padding: 0.25rem;
+
+  a {
+    color: $link-color;
+    font-weight: bold;
+  }
+
+  hr {
+    height: 2px;
+    border: 0;
+    color: #eee;
+    background-color: #eee;
+    margin-top: 2rem;
+  }
+
+  &_text-small {
+    font-size: 0.8rem;
+  }
+
+  &_initials {
+    width: $circle-radius * 2;
+    height: $circle-radius * 2;
+    display: block;
+    font-size: $circle-radius;
+    padding-top: $circle-radius * 0.2;
+    background-color: $circle-color;
+    color: white;
+    border-radius: $circle-radius;
+    text-align: center;
+  }
+
+  &_initials-centered {
+    position: relative;
+    top: -$circle-radius;
+    margin: auto;
+    margin-bottom: $circle-radius * -1.25;
+  }
+
+  &_user-name {
+    span {
+      color: $link-color;
+      font-weight: bold;
+    }
+
+    .oui-icon {
+      font-size: 1rem;
+      vertical-align: middle;
+      margin-left: 0.2rem;
+    }
+
+    button.btn.btn-link {
+      text-decoration: none;
+    }
+
+    &__expanded {
+      button.btn.btn-link {
+        padding-top: 1.5rem;
+        font-size: 1.2rem;
+      }
+    }
+  }
+
+  &_links {
+    clear: both;
+
+    button.btn.btn-link {
+      color: $link-color;
+      font-weight: bold;
+    }
+  }
+}
