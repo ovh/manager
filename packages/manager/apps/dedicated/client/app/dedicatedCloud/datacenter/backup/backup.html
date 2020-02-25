@@ -1,0 +1,65 @@
+<div class="datacenter-backup">
+    <h1 data-translate="datacenter_backup_title"></h1>
+
+    <div data-ovh-alert="app.dedicatedClouds.datacenter.backup"></div>
+
+    <oui-switch data-model="true" data-on-change="$ctrl.deactivate()">
+    </oui-switch>
+    <span data-translate="datacenter_backup_enabled"></span>
+
+    <section class="datacenter-backup-offers">
+        <h4 class="mb-0" data-translate="datacenter_backup_choose_offers"></h4>
+        <dedicated-cloud-datacenter-backup-offers
+            data-backup-offers="$ctrl.offers"
+            data-backup="$ctrl.backup"
+        ></dedicated-cloud-datacenter-backup-offers>
+        <oui-button
+            data-variant="primary"
+            data-text="{{ 'datacenter_backup_update_offer' | translate }}"
+        ></oui-button>
+    </section>
+
+    <section class="datacenter-backup-capabilities">
+        <h4
+            class="mb-0"
+            data-translate="datacenter_backup_daily_report_title"
+        ></h4>
+        <p data-translate="datacenter_backup_daily_report_description"></p>
+        <form name="form">
+            <oui-checkbox data-model="$ctrl.currentBackupOffer">
+                <span
+                    data-translate="datacenter_backup_capability_backupDurationInReport"
+                ></span>
+            </oui-checkbox>
+            <oui-checkbox data-model="$ctrl.currentBackupOffer">
+                <span
+                    data-translate="datacenter_backup_capability_backupSizeInReport"
+                ></span>
+            </oui-checkbox>
+            <oui-checkbox data-model="$ctrl.currentBackupOffer">
+                <span
+                    data-translate="datacenter_backup_capability_diskSizeInReport"
+                ></span>
+            </oui-checkbox>
+            <oui-checkbox data-model="$ctrl.currentBackupOffer">
+                <span
+                    data-translate="datacenter_backup_capability_fullDayInReport"
+                ></span>
+            </oui-checkbox>
+            <oui-checkbox data-model="$ctrl.currentBackupOffer">
+                <span
+                    data-translate="datacenter_backup_capability_restorePointInReport"
+                ></span>
+            </oui-checkbox>
+            <oui-checkbox data-model="$ctrl.currentBackupOffer">
+                <span
+                    data-translate="datacenter_backup_capability_mailAddress"
+                ></span>
+            </oui-checkbox>
+            <oui-button
+                data-variant="primary"
+                data-text="{{ 'datacenter_backup_capability_update' | translate }}"
+            ></oui-button>
+        </form>
+    </section>
+</div>

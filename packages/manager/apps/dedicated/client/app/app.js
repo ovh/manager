@@ -58,6 +58,8 @@ import dedicatedServerBandwidth from './dedicated/server/bandwidth/bandwidth.mod
 import dedicatedServerInterfaces from './dedicated/server/interfaces/interfaces.module';
 import dedicatedServerServers from './dedicated/server/servers/servers.module';
 
+import datacenterBackup from './dedicatedCloud/datacenter/backup';
+
 Environment.setRegion(__WEBPACK_REGION__);
 Environment.setVersion(__VERSION__);
 
@@ -72,6 +74,7 @@ angular
       'chart.js',
       'controllers',
       contactsService,
+      datacenterBackup,
       dedicatedCloudDatacenterDrp,
       dedicatedServerBandwidth,
       dedicatedServerInterfaces,
