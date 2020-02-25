@@ -5,7 +5,8 @@ import service from './registry.service';
 
 const moduleName = 'ovhManagerPciProjectServingNamespaceInfosRegistry';
 
-angular.module(moduleName, [])
+angular
+  .module(moduleName, [])
   .service('OvhManagerPciServingRegistryService', service);
 
 export default moduleName;
