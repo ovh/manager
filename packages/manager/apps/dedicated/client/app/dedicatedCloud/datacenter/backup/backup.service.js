@@ -1,15 +1,155 @@
-import Backup from './backup.class';
+import find from 'lodash/find';
+import get from 'lodash/get';
+import map from 'lodash/map';
+import remove from 'lodash/remove';
+import sortBy from 'lodash/sortBy';
 
-export default class {
+import { BACKUP_OFFER_LEGACY, CATALOG_INFO } from './backup.constants';
+import Backup from './backup.class';
+import BackupOffer from './backup-offer.class';
+
+export default class BackupService {
   /* @ngInject */
-  constructor($q, OvhApiDedicatedCloudDatacenter) {
+  constructor($q, OvhApiDedicatedCloudDatacenter, OvhApiOrder, WucOrderCartService) {
     this.$q = $q;
     this.backupApi = OvhApiDedicatedCloudDatacenter.Backup().v6();
+    this.catalogApi = OvhApiOrder.CatalogFormatted().v6();
+    this.WucOrderCartService = WucOrderCartService;
+  }
+
+  addConfigToCart(cartItem, datacenterId, offerType) {
+    return this.$q
+      .all([
+        this.WucOrderCartService.addConfigurationItem(
+          cartItem.cartId,
+          cartItem.itemId,
+          'datacenter_id',
+          datacenterId,
+        ).$promise,
+        this.WucOrderCartService.addConfigurationItem(
+          cartItem.cartId,
+          cartItem.itemId,
+          'offer_type',
+          offerType,
+        ).$promise,
+      ])
+      .then(() => cartItem);
+  }
+
+  assignCart(cart) {
+    return this.WucOrderCartService.assignCart(cart.cartId);
+  }
+
+  checkoutCart(cart) {
+    return this.WucOrderCartService.checkoutCart(cart.cartId, {
+      autoPayWithPreferredPaymentMethod: true,
+    });
+  }
+
+  createCart(ovhSubsidiary) {
+    return this.WucOrderCartService.createNewCart(ovhSubsidiary);
+  }
+
+  getOrderableBackupOption(productId) {
+    return this.WucOrderCartService.getProductServiceOptions(
+      'privateCloud',
+      productId,
+    ).$promise.then((addons) =>
+      find(addons, { family: CATALOG_INFO.ADDON_FAMILY_NAME }),
+    );
+  }
+
+  addOptionToCart(option, cart, productId) {
+    return this.WucOrderCartService.addProductServiceOptionToCart(
+      cart.cartId,
+      'privateCloud',
+      productId,
+      {
+        cartId: cart.cartId,
+        duration: get(option, 'prices[0].duration'),
+        planCode: option.planCode,
+        pricingMode: get(option, 'prices[0].pricingMode'),
+        quantity: 1,
+      },
+    ).$promise.then((cartItem) => cartItem);
+  }
+
+  orderBackup(ovhSubsidiary, productId, datacenterId, offerType) {
+    return this.createCart(ovhSubsidiary)
+      .then((cart) => this.assignCart(cart))
+      .then((cart) =>
+        this.getOrderableBackupOption(productId).then((option) => ({
+          option,
+          cart,
+        })),
+      )
+      .then(({ option, cart }) => this.addOptionToCart(option, cart, productId))
+      .then((cartItem) =>
+        this.addConfigToCart(cartItem, datacenterId, offerType),
+      )
+      .then((cartItem) => this.checkoutCart(cartItem));
   }
 
   getBackup(serviceName, datacenterId) {
     return this.backupApi
       .get({ serviceName, datacenterId })
       .$promise.then((backup) => new Backup(backup));
+  }
+
+  getOfferCapabilities(serviceName, datacenterId) {
+    return this.backupApi.offerCapabilities({ serviceName, datacenterId })
+      .$promise;
+  }
+
+  getCatalog(ovhSubsidiary) {
+    return this.catalogApi.get({ catalogName: 'privateCloud', ovhSubsidiary })
+      .$promise;
+  }
+
+  getBackupOffers(serviceName, datacenterId, ovhSubsidiary) {
+    return this.$q
+      .all([
+        this.getOfferCapabilities(serviceName, datacenterId),
+        this.getCatalog(ovhSubsidiary),
+      ])
+      .then(([backupOffers, catalog]) =>
+        sortBy(
+          BackupService.transformBackupOffers(backupOffers, catalog),
+          'price',
+        ),
+      );
+  }
+
+  static getAddonsByAddonFamily(plan, family) {
+    return get(find(get(plan, 'addonsFamily'), { family }), 'addons');
+  }
+
+  static transformBackupOffers(backupOffers, catalog) {
+    remove(backupOffers, (offer) => offer.offerName === BACKUP_OFFER_LEGACY);
+    return map(backupOffers, (offer) => {
+      const backupManagedAddon = find(
+        BackupService.getAddonsByAddonFamily(
+          get(catalog, 'plans[0]'),
+          CATALOG_INFO.ADDON_FAMILY_NAME,
+        ),
+        (addon) => get(addon, 'plan.planCode') === CATALOG_INFO.ADDON_PLAN_CODE,
+      );
+      const backupJobOfferAddons = BackupService.getAddonsByAddonFamily(
+        get(backupManagedAddon, 'plan'),
+        CATALOG_INFO.ADDON_BACKUP_JOB_OFFER_FAMILY_NAME,
+      );
+      return new BackupOffer({
+        ...offer,
+        price: get(
+          find(
+            backupJobOfferAddons,
+            (addon) =>
+              get(addon, 'plan.planCode') ===
+              `pcc-option-backup-managed-${offer.offerName}-s`,
+          ),
+          'plan.details.pricings.pcc-servicepack-default[0].priceInUcents',
+        ),
+      });
+    });
   }
 }

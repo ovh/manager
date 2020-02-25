@@ -29,6 +29,17 @@ export default /* @ngInject */ ($stateProvider) => {
         productId,
         datacenterId,
       ) => datacenterBackupService.getBackup(productId, datacenterId),
+      backupOffers: /* @ngInject */ (
+        datacenterBackupService,
+        productId,
+        datacenterId,
+        currentUser,
+      ) =>
+        datacenterBackupService.getBackupOffers(
+          productId,
+          datacenterId,
+          currentUser.ovhSubsidiary,
+        ),
       goToNewBackup: /* @ngInject */ ($state, datacenterId, productId) => () =>
         $state.go('app.dedicatedClouds.datacenter.backup.new', {
           datacenterId,
