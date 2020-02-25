@@ -1,3 +1,12 @@
+# [3.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.12.0...@ovh-ux/manager-pci@3.13.0) (2020-02-25)
+
+
+### Features
+
+* **pci.project.banner:** keystone migration alert ([#2321](https://github.com/ovh/manager/issues/2321)) ([d5d2aba](https://github.com/ovh/manager/commit/d5d2aba844ea0ff0051597c9d77a58a824aa73ac))
+
+
+
 # [3.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.11.1...@ovh-ux/manager-pci@3.12.0) (2020-02-25)
 
 
