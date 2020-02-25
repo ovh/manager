@@ -1,3 +1,12 @@
+# [0.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@0.1.5...@ovh-ux/manager-vps@0.2.0) (2020-02-25)
+
+
+### Features
+
+* **pci:** add private registry ([#2271](https://github.com/ovh/manager/issues/2271)) ([3dec2cb](https://github.com/ovh/manager/commit/3dec2cb7b9a1a741fdf3dc73622bc1a62b44af6e))
+
+
+
 ## [0.1.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@0.1.4...@ovh-ux/manager-vps@0.1.5) (2020-01-13)
 
 

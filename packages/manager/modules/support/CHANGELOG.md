@@ -1,3 +1,12 @@
+# [0.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@0.4.8...@ovh-ux/manager-support@0.5.0) (2020-02-25)
+
+
+### Features
+
+* **pci:** add private registry ([#2271](https://github.com/ovh/manager/issues/2271)) ([3dec2cb](https://github.com/ovh/manager/commit/3dec2cb7b9a1a741fdf3dc73622bc1a62b44af6e))
+
+
+
 ## [0.4.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@0.4.7...@ovh-ux/manager-support@0.4.8) (2019-12-10)
 
 
