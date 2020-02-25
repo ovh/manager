@@ -11,6 +11,7 @@ const URI = {
   billing: '#/billing/history',
   catalog: '#/catalog',
   contacts: '#/contacts/services',
+  domain: '#/configuration/domain/:domain',
   orders: '#/billing/orders',
   paymentMethod: '#/billing/payment/method',
   services: '#/billing/autoRenew',
@@ -25,6 +26,7 @@ export default {
     billing: `${managerRoot.EU}/manager/dedicated/${URI.billing}`,
     catalog: `${managerRoot.EU}/manager/${URI.catalog}`,
     contacts: `${managerRoot.EU}/manager/dedicated/${URI.contacts}`,
+    domain: `${managerRoot.EU}/manager/web/${URI.domain}`,
     guides: {
       home: {
         CZ: `${guidesRoot}/cz/cs/`,
@@ -59,6 +61,7 @@ export default {
     billing: `${managerRoot.CA}/manager/${URI.billing}`,
     catalog: `${managerRoot.CA}/manager/${URI.catalog}`,
     contacts: '',
+    domain: '',
     guides: {
       home: {
         ASIA: `${guidesRoot}/ca/en/`,
@@ -84,6 +87,7 @@ export default {
     billing: `${managerRoot.US}/manager/dedicated/${URI.billing}`,
     catalog: `${managerRoot.US}/manager/${URI.catalog}`,
     contacts: '',
+    domain: '',
     guides: {
       home: {
         US: 'https://support.us.ovhcloud.com',
