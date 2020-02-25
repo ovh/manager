@@ -25,6 +25,7 @@ angular
     'pascalprecht.translate',
     atInternet,
     dashboard,
+    'pascalprecht.translate',
     'oui',
     ovhManagerCore,
     ovhManagerHub,
@@ -40,4 +41,5 @@ angular
     /* @ngInject */ ($translate, $transitions) => {
       $transitions.onBefore({ to: 'app.**' }, () => $translate.refresh());
     },
-  );
+  )
+  .run(/* @ngTranslationsInject:json ./translations */);
