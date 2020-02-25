@@ -21,6 +21,7 @@ export const MENU = [
           state: 'pci.projects.project.baremetal',
         },
         title: 'Bare Metal',
+        regions: ['EU', 'CA'],
       },
     ],
     title: 'Compute',
