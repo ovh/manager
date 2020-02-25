@@ -10,6 +10,9 @@
   "datacenter_backup_capability_diskSizeInReport": "Taille du disque",
   "datacenter_backup_capability_fullDayInReport": "Sauvegarde complète journalière",
   "datacenter_backup_capability_restorePointInReport": "Restaurer mes points",
-  "datacenter_backup_capability_mailAddress": "Envoyer le rapport journalier de sauvegarde à une adresse e-mail spécifique",
-  "datacenter_backup_capability_update": "Valider les options du rapport"
+  "datacenter_backup_capability_sendReportToCustomeEmail": "Envoyer le rapport journalier de sauvegarde à une adresse e-mail spécifique",
+  "datacenter_backup_capability_update": "Valider les options du rapport",
+  "datacenter_backup_capability_update_error": "Une erreur est survenue lors de la mise à jour de vos paramètres de sauvegarde : {{ message }}",
+  "datacenter_backup_capability_update_success": "Les modifications apportées à votre rapport journalier de sauvegarde ont bien été prises en compte.",
+  "datacenter_backup_capability_update_email_success": "Celui-ci sera envoyé à l’adresse e-mail suivante : {{emailAddress}}"
 }
