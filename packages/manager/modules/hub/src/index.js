@@ -4,10 +4,10 @@ import '@ovh-ux/manager-core';
 import '@uirouter/angularjs';
 import 'angular-translate';
 
-import ovhManagerHubProducts from './products';
-import ovhManagerHubCarousel from './components/carousel';
-import ovhManagerHubTile from './components/tile';
 import billingSummary from './components/billing-summary';
+import ovhManagerHubCarousel from './components/carousel';
+import ovhManagerHubProducts from './components/products';
+import ovhManagerHubTile from './components/tile';
 
 const moduleName = 'ovhManagerHub';
 
