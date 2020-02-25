@@ -1,0 +1,95 @@
+<div class="manager-hub-user-infos">
+    <span
+        class="manager-hub-user-infos_initials"
+        data-ng-class="{
+            'manager-hub-user-infos_initials-centered': !$ctrl.isExpanded,
+            'float-left': $ctrl.isExpanded
+          }"
+        data-ng-if="$ctrl.me"
+        aria-hidden="true"
+        data-ng-bind="$ctrl.getNameInitials()"
+    >
+    </span>
+    <p class="oui-chip" data-ng-if="!$ctrl.isExpanded">
+        <oui-skeleton
+            class="mx-auto"
+            data-ng-if="!$ctrl.supportLevel"
+            data-size="xs"
+        ></oui-skeleton>
+        <span
+            class="manager-hub-user-infos_text-small"
+            data-ng-if="$ctrl.supportLevel"
+            data-ng-bind="('hub_user_support_level_' + $ctrl.supportLevel.level) | translate"
+        ></span>
+    </p>
+    <p data-ng-if="!$ctrl.me">
+        <oui-skeleton class="mx-auto" data-size="s"></oui-skeleton>
+    </p>
+    <div
+        class="manager-hub-user-infos_user-name mb-2"
+        data-ng-class="{
+         'manager-hub-user-infos_user-name__expanded': $ctrl.isExpanded,
+       }"
+        data-ng-if="$ctrl.me"
+    >
+        <button
+            type="button"
+            role="button"
+            class="btn btn-link"
+            data-ng-click="$ctrl.isExpanded = !$ctrl.isExpanded"
+        >
+            <span data-ng-bind="$ctrl.getDisplayName()"></span>
+            <span
+                class="oui-icon"
+                aria-hidden="true"
+                data-ng-class="{
+                    'oui-icon-chevron-up': $ctrl.isExpanded,
+                    'oui-icon-chevron-down': !$ctrl.isExpanded,
+                  }"
+            >
+            </span>
+            <span
+                class="sr-only"
+                data-ng-if="$ctrl.isExpanded"
+                data-translate="hub_user_actions_aria_reduce"
+            >
+            </span>
+            <span
+                class="sr-only"
+                data-ng-if="!$ctrl.isExpanded"
+                data-translate="hub_user_actions_aria_expand"
+            >
+            </span>
+        </button>
+    </div>
+    <div data-ng-if="!$ctrl.isExpanded">
+        <p data-ng-if="!$ctrl.me">
+            <oui-skeleton class="mx-auto" data-size="m"></oui-skeleton>
+            <oui-skeleton class="mx-auto" data-size="s"></oui-skeleton>
+        </p>
+        <p data-ng-if="$ctrl.me">
+            <span
+                class="d-block manager-hub-user-infos_text-small"
+                data-ng-bind="$ctrl.me.email"
+            >
+            </span>
+            <span
+                class="d-block manager-hub-user-infos_text-small"
+                data-ng-bind="$ctrl.getDisplayNicHandle()"
+            ></span>
+        </p>
+    </div>
+    <div
+        class="text-left pb-2 manager-hub-user-infos_links"
+        data-ng-if="$ctrl.isExpanded"
+    >
+        <hr />
+        <button
+            type="button"
+            role="button"
+            class="btn btn-link"
+            data-ng-click="$ctrl.logout()"
+            data-translate="hub_user_logout"
+        ></button>
+    </div>
+</div>
