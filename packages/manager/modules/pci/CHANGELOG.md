@@ -1,3 +1,21 @@
+# [3.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.11.1...@ovh-ux/manager-pci@3.12.0) (2020-02-25)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 283] ([d3a1ee4](https://github.com/ovh/manager/commit/d3a1ee4f90bfc3a1771e3b5438c7ae32d330e615))
+* **i18n:** add missing translations [CDS 284] ([3814701](https://github.com/ovh/manager/commit/38147014501d9c28c054e15a8b060a32ad1dc7e1))
+* **pci.project.sidebar:** disable baremetal instances for us region ([#2314](https://github.com/ovh/manager/issues/2314)) ([145aff3](https://github.com/ovh/manager/commit/145aff3db12690406486b46f3f1b2e0b270bc0e5))
+
+
+### Features
+
+* **pci:** add private registry ([#2271](https://github.com/ovh/manager/issues/2271)) ([3dec2cb](https://github.com/ovh/manager/commit/3dec2cb7b9a1a741fdf3dc73622bc1a62b44af6e))
+* **pci.components:** add component to display special offers ([b42ea49](https://github.com/ovh/manager/commit/b42ea49bfdada0ecd372d361d7612b53e58ade09))
+* **pci.projects:** add instance deals ([cccc197](https://github.com/ovh/manager/commit/cccc197554d80ba537560e26b2771d33f906d170))
+
+
+
 ## [3.11.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.11.0...@ovh-ux/manager-pci@3.11.1) (2020-02-19)
 
 
