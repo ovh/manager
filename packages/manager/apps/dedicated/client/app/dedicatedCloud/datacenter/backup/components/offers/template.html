@@ -1,0 +1,137 @@
+<div class="row mb-3">
+    <div data-ng-if="!$ctrl.previewMode" class="d-flex">
+        <oui-select-picker
+            class="col-md-4 mb-3"
+            data-ng-repeat="offer in $ctrl.backupOffers track by offer.offerName"
+            name="offer"
+            data-model="$ctrl.selectedOffer"
+            data-label="{{:: 'dedicatedCloud_offer_' + offer.offerName | translate }}"
+            data-variant="light"
+            data-on-change="$ctrl.onSelected(modelValue)"
+            data-values="[offer]"
+        >
+            <oui-select-picker-section>
+                <span
+                    class="oui-status oui-status_success"
+                    data-translate="dedicatedCloud_offer_current_offer"
+                ></span>
+                <ul class="offer-list-style">
+                    <li
+                        data-translate="dedicatedCloud_offer_upgrade_custom_report"
+                        data-ng-if="offer.hasCustomReport()"
+                    ></li>
+                    <li
+                        data-translate="dedicatedCloud_offer_upgrade_encrypted_backup"
+                        data-ng-if="offer.hasEncryption()"
+                    ></li>
+                    <li
+                        data-translate="dedicatedCloud_offer_upgrade_retention_points"
+                        data-translate-values="{
+                            retention: offer.getRetentionCount(),
+                        }"
+                    ></li>
+                    <li
+                        data-translate="dedicatedCloud_offer_upgrade_full_backups"
+                        data-translate-values="{
+                            fullBackups: offer.getMinimumFullBackupsCount(),
+                        }"
+                    ></li>
+                    <li
+                        data-translate="dedicatedCloud_offer_upgrade_replication"
+                        data-ng-if="offer.hasReplication()"
+                    ></li>
+                    <li
+                        data-ng-if="offer.hasBackupDays()"
+                        data-translate="dedicatedCloud_offer_upgrade_choice_backup_days"
+                    ></li>
+                    <li
+                        data-ng-if="offer.hasScheduleHour()"
+                        data-translate="dedicatedCloud_offer_upgrade_choice_backup_time"
+                    ></li>
+                    <li
+                        data-ng-if="offer.isPremium()"
+                        data-translate="dedicatedCloud_offer_upgrade_long_term_retention"
+                    ></li>
+                    <li
+                        data-ng-if="offer.hasProxyPerHost()"
+                        data-translate="dedicatedCloud_offer_upgrade_proxy_backup"
+                    ></li>
+                </ul>
+            </oui-select-picker-section>
+            <oui-select-picker-footer>
+                <dedicated-price
+                    data-hide-tax="true"
+                    data-price="offer.getPrice()"
+                    data-tax="offer.getTax()"
+                    data-user="$ctrl.user"
+                ></dedicated-price>
+            </oui-select-picker-footer>
+        </oui-select-picker>
+    </div>
+    <div data-ng-if="$ctrl.previewMode">
+        <oui-select-picker
+            class="col-md-4 mb-3"
+            data-ng-repeat="offer in $ctrl.backupOffers track by offer.offerName"
+            name="offer"
+            data-ng-if="offer.offerName === $ctrl.backup.backupOffer"
+            data-model="$ctrl.selectedOffer"
+            data-label="{{:: 'dedicatedCloud_offer_' + offer.offerName | translate }}"
+            data-variant="light"
+            data-on-change="$ctrl.onSelected(modelValue)"
+            data-values="[offer]"
+        >
+            <oui-select-picker-section>
+                <ul class="offer-list-style">
+                    <li
+                        data-translate="dedicatedCloud_offer_upgrade_custom_report"
+                        data-ng-if="offer.hasCustomReport()"
+                    ></li>
+                    <li
+                        data-translate="dedicatedCloud_offer_upgrade_encrypted_backup"
+                        data-ng-if="offer.hasEncryption()"
+                    ></li>
+                    <li
+                        data-translate="dedicatedCloud_offer_upgrade_retention_points"
+                        data-translate-values="{
+                            retention: offer.getRetentionCount(),
+                        }"
+                    ></li>
+                    <li
+                        data-translate="dedicatedCloud_offer_upgrade_full_backups"
+                        data-translate-values="{
+                            fullBackups: offer.getMinimumFullBackupsCount(),
+                        }"
+                    ></li>
+                    <li
+                        data-translate="dedicatedCloud_offer_upgrade_replication"
+                        data-ng-if="offer.hasReplication()"
+                    ></li>
+                    <li
+                        data-ng-if="offer.hasBackupDays()"
+                        data-translate="dedicatedCloud_offer_upgrade_choice_backup_days"
+                    ></li>
+                    <li
+                        data-ng-if="offer.hasScheduleHour()"
+                        data-translate="dedicatedCloud_offer_upgrade_choice_backup_time"
+                    ></li>
+                    <li
+                        data-ng-if="offer.isPremium()"
+                        data-translate="dedicatedCloud_offer_upgrade_long_term_retention"
+                    ></li>
+                    <li
+                        data-ng-if="offer.hasProxyPerHost()"
+                        data-translate="dedicatedCloud_offer_upgrade_proxy_backup"
+                    ></li>
+                </ul>
+            </oui-select-picker-section>
+            <oui-select-picker-footer>
+                <dedicated-price
+                    data-hide-tax="true"
+                    data-price="offer.getPrice()"
+                    data-tax="offer.getTax()"
+                    data-user="$ctrl.user"
+                ></dedicated-price>
+            </oui-select-picker-footer>
+        </oui-select-picker>
+    </div>
+</div>
