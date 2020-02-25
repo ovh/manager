@@ -1,3 +1,36 @@
+## [11.4.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@11.4.4...@ovh-ux/manager-telecom@11.4.5) (2020-02-19)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 268] ([aed8ad7](https://github.com/ovh/manager/commit/aed8ad7798453cbb7f131cc89aacb3be8b812355))
+* **i18n:** add missing translations [CDS 271] ([3508861](https://github.com/ovh/manager/commit/35088612b6d53dabc1ba649be21009c0aff0b81a))
+* **telephony.line.phone.configuration:** add config translations ([#2241](https://github.com/ovh/manager/issues/2241)) ([29ee9d3](https://github.com/ovh/manager/commit/29ee9d38242a64b07ef0b8e1ac013a6bd4ede24c))
+* **telephony.portability:** display full list ([#2244](https://github.com/ovh/manager/issues/2244)) ([99d92d0](https://github.com/ovh/manager/commit/99d92d0e56d9ec10b876d3ab437528c7cc37557f))
+
+
+
+## [11.4.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@11.4.3...@ovh-ux/manager-telecom@11.4.4) (2020-02-10)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 253] ([af278ae](https://github.com/ovh/manager/commit/af278ae2fc02e3654a81528983d099fa50d89539))
+* **telecom.plugandfax.settings:** add translations path ([#2216](https://github.com/ovh/manager/issues/2216)) ([6916f24](https://github.com/ovh/manager/commit/6916f247dca2d329e0b060a44358bcf2f69b1929))
+* **telephony.alias.ccs.sounds:** set maxWaitTime in seconds ([#2213](https://github.com/ovh/manager/issues/2213)) ([49fd214](https://github.com/ovh/manager/commit/49fd214241db8bea6f77e38e8a7e201d5c0c55f7))
+
+
+
+## [11.4.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@11.4.2...@ovh-ux/manager-telecom@11.4.3) (2020-01-31)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 239] ([4ca5833](https://github.com/ovh/manager/commit/4ca5833e915bd781fc27ca599c05453baba41804))
+* **i18n:** add missing translations [CDS 242] ([5999617](https://github.com/ovh/manager/commit/5999617d4fbe77fdc4f5d8d3f3f5fdbf254d52a9))
+
+
+
 ## [11.4.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@11.4.1...@ovh-ux/manager-telecom@11.4.2) (2020-01-24)
 
 

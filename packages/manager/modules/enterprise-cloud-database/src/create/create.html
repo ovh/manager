@@ -366,13 +366,14 @@
                 >
                 </enterprise-cloud-database-payment-info-component>
                 <div class="row">
-                    <div
-                        class="col-md-6"
-                        data-ng-if="$ctrl.order"
-                        data-ovh-contracts="$ctrl.order.contracts"
-                        data-full-text="false"
-                        data-ovh-contracts-validated="$ctrl.contractsAccepted"
-                    ></div>
+                    <div class="col-md-6" data-ng-if="$ctrl.order">
+                        <ovh-contracts-summary
+                            data-items="$ctrl.order.contracts"
+                            data-model="$ctrl.contractsAccepted"
+                            data-name="agreements"
+                        >
+                        </ovh-contracts-summary>
+                    </div>
                 </div>
                 <!-- deployment in progress -->
                 <div

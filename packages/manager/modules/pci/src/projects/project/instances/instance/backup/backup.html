@@ -26,12 +26,10 @@
                 required
                 data-ng-maxlength="255"
             />
-
             <span
                 data-translate="pci_projects_project_instances_instance_backup_price"
                 data-translate-values="{
-                    size: (($ctrl.instance.flavor.disk * 1000000000 || 0) | cucBytes:2:'true'),
-                    price: $ctrl.priceEstimation.totalPrice.text || '?'
+                    price: $ctrl.monthlyPrice.price.text || '?'
                 }"
             ></span>
         </oui-field>

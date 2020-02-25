@@ -4,6 +4,8 @@ import template from './dedicatedCloud-datacenter-drp-onPremise-onPremisePccStep
 export default {
   bindings: {
     drpInformations: '=',
+    setDisableSuccessAlertPreference: '<',
+    setupConfiguration: '<',
     storeZertoOptionOrderInUserPref: '<',
 
     displayErrorMessage: '<',

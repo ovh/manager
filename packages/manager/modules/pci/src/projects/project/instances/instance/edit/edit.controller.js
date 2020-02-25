@@ -35,6 +35,12 @@ export default class PciInstanceEditController {
     this.model = {
       isInstanceFlex: false,
     };
+    this.imageEditMessage =
+      this.imageEditMessage ||
+      'pci_projects_project_instances_instance_edit_reboot_message';
+    this.imageEditSuccessMessage =
+      this.imageEditSuccessMessage ||
+      'pci_projects_project_instances_instance_edit_image_success_message';
 
     this.loadMessages();
   }
@@ -164,12 +170,9 @@ export default class PciInstanceEditController {
     )
       .then(() =>
         this.goBack(
-          this.$translate.instant(
-            'pci_projects_project_instances_instance_edit_image_success_message',
-            {
-              instance: this.editInstance.name,
-            },
-          ),
+          this.$translate.instant(this.imageEditSuccessMessage, {
+            instance: this.editInstance.name,
+          }),
         ),
       )
       .catch((err) => {

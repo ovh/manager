@@ -1,3 +1,100 @@
+# [11.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@11.4.3...@ovh-ux/manager-dedicated@11.5.0) (2020-02-19)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 261] ([aa18579](https://github.com/ovh/manager/commit/aa18579b28f4c6052c66707bf1e12fc1e683e7e5))
+* **i18n:** add missing translations [CDS 262] ([9b6f242](https://github.com/ovh/manager/commit/9b6f242faaffcc1423598a5e3dc9ed7458908b37))
+* **i18n:** add missing translations [CDS 263] ([97fdd70](https://github.com/ovh/manager/commit/97fdd700eb597bbec065bd6ef8d3598544d7ad71))
+
+
+### Features
+
+* **billing.autorenew:** add hosting email option terminate redirection ([d26fab1](https://github.com/ovh/manager/commit/d26fab14355152709f320c55246d715501c66882))
+* **billing.history:** add date filter to url ([#2231](https://github.com/ovh/manager/issues/2231)) ([7495337](https://github.com/ovh/manager/commit/74953378d3beb0f1d523b2367733ce250b70266f))
+* **dedicated.server.interfaces:** add guides url for all subs ([#2251](https://github.com/ovh/manager/issues/2251)) ([bde1b13](https://github.com/ovh/manager/commit/bde1b132edd71e4762f4a6205a132776d3d33f5b))
+
+
+
+## [11.4.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@11.4.2...@ovh-ux/manager-dedicated@11.4.3) (2020-02-13)
+
+
+### Bug Fixes
+
+* **account.user.support.level:** enable worldwide ([3772c8e](https://github.com/ovh/manager/commit/3772c8e5fc09277d5ebee649f5c784577ad18227))
+* **i18n:** add missing translations ([3613358](https://github.com/ovh/manager/commit/361335880bbdaa1b39c027faa6a2987f135feeb0))
+
+
+
+## [11.4.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@11.4.1...@ovh-ux/manager-dedicated@11.4.2) (2020-02-12)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations ([8e73275](https://github.com/ovh/manager/commit/8e732758ca4c82c9907282f30dae14a00fcb60ff))
+
+
+
+## [11.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@11.4.0...@ovh-ux/manager-dedicated@11.4.1) (2020-02-11)
+
+
+### Bug Fixes
+
+* **config:** change url for rescue guide ([7087086](https://github.com/ovh/manager/commit/708708675d78f4ccd758a8551e3728cc0a00625b))
+
+
+
+# [11.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@11.3.11...@ovh-ux/manager-dedicated@11.4.0) (2020-02-10)
+
+
+### Bug Fixes
+
+* **billing.payment.method.add:** new contact model in US ([#2217](https://github.com/ovh/manager/issues/2217)) ([feb7f2a](https://github.com/ovh/manager/commit/feb7f2aa9a0bb31dc65b903166e6c43896922449))
+* **dedicatedcloud.datacenter.drp:** fix use of preference key ([9ac7cf2](https://github.com/ovh/manager/commit/9ac7cf233d215e01fa5fcbc7b0e98abc67c29667))
+* **i18n:** add missing translations [CDS 253] ([af278ae](https://github.com/ovh/manager/commit/af278ae2fc02e3654a81528983d099fa50d89539))
+* **i18n:** add missing translations [CDS 254] ([09285b9](https://github.com/ovh/manager/commit/09285b9fd8e61b1d1b5b3ff55b942b477e5339f9))
+* **i18n:** add missing translations [CDS 255] ([2285fc1](https://github.com/ovh/manager/commit/2285fc134246478a0bf7ea7f1f79fd81efb93eb1))
+* **i18n:** add missing translations [CDS 256] ([7fbf40a](https://github.com/ovh/manager/commit/7fbf40aa0a2516faa874365d64d9376bf86fe04c))
+* **i18n:** add missing translations [CDS 257] ([6befb57](https://github.com/ovh/manager/commit/6befb57598963000fb94fec86b8f32d9eb66eeff))
+* **server.interfaces:** set right vrack guide ([#2168](https://github.com/ovh/manager/issues/2168)) ([4735503](https://github.com/ovh/manager/commit/47355033fdb8121292faad301881baffa99ee1ec))
+
+
+### Features
+
+* **billing.orders:** add tracking link on order status ([#2209](https://github.com/ovh/manager/issues/2209)) ([f925103](https://github.com/ovh/manager/commit/f92510321e932d17d28002014b39e9cfe77bd796))
+
+
+
+## [11.3.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@11.3.10...@ovh-ux/manager-dedicated@11.3.11) (2020-02-10)
+
+
+### Bug Fixes
+
+* **i18n:** correct wrong translation ([91b0e39](https://github.com/ovh/manager/commit/91b0e39bd579d048ba11e69f9a013ebc61904817))
+
+
+
+## [11.3.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@11.3.9...@ovh-ux/manager-dedicated@11.3.10) (2020-02-03)
+
+
+### Bug Fixes
+
+* **dedicated.server:** add us missing translation ([c63dc95](https://github.com/ovh/manager/commit/c63dc95467d89363109df9675f775b7389e6c57e))
+
+
+
+## [11.3.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@11.3.8...@ovh-ux/manager-dedicated@11.3.9) (2020-01-31)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 240] ([e872cf2](https://github.com/ovh/manager/commit/e872cf2afe638dff86dbed7af3d8715637cf02b7))
+* **i18n:** add missing translations [CDS 245] ([84b48d3](https://github.com/ovh/manager/commit/84b48d3dc92e11806ff73de4902fdaf5e5b4cdf8))
+* **i18n:** add missing translations [CDS 246] ([7f8d0cf](https://github.com/ovh/manager/commit/7f8d0cfc9fbe4438a06a5da23685ab5a551baeda))
+* **licence:** display readable cpanel options ([#2059](https://github.com/ovh/manager/issues/2059)) ([9e3bae2](https://github.com/ovh/manager/commit/9e3bae2e698e2315afa583f456fa872684d7068c)), closes [#2036](https://github.com/ovh/manager/issues/2036)
+
+
+
 ## [11.3.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@11.3.7...@ovh-ux/manager-dedicated@11.3.8) (2020-01-27)
 
 

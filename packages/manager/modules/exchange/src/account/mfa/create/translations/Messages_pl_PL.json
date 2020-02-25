@@ -1,0 +1,6 @@
+{
+  "exchange_account_mfa_create_title": "Włączenie weryfikacji dwuetapowej na wszystkich kontach",
+  "exchange_account_mfa_create_description": "Czy na pewno chcesz włączyć weryfikację dwuetapową na wszystkich kontach?",
+  "exchange_account_mfa_create_success": "Weryfikacja dwuetapowa została usunięta na wszystkich kontach. ",
+  "exchange_account_mfa_create_error": "Wystąpił błąd podczas włączania weryfikacji dwuetapowej na wszystkich kontach: {{errorMessage}}"
+}

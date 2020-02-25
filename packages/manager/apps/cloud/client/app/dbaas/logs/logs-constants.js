@@ -100,6 +100,7 @@ angular.module('managerApp').constant('LogsConstants', {
     LTSV_LINE: 'LTSV line',
     LTSV_NUL: 'LTSV nul',
     CAP_N_PROTO: 'Cap’n’Proto',
+    BEATS: 'Beats',
   },
   URL_TYPES: {
     TCP_TLS_GELF: {
@@ -161,6 +162,10 @@ angular.module('managerApp').constant('LogsConstants', {
     UDP_CAP_N_PROTO: {
       PORT: 'UDP',
       MESSAGE: 'CAP_N_PROTO',
+    },
+    TCP_TLS_BEATS: {
+      PORT: 'TCP_TLS',
+      MESSAGE: 'BEATS',
     },
   },
   DATA_STORAGE: {

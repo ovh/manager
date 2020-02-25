@@ -25,8 +25,8 @@ export default class ExchangeAccountHomeController {
     $q,
     $scope,
     $translate,
-
     Exchange,
+    coreConfig,
     exchangeAccount,
     exchangeAccountTypes,
     exchangeAccountOutlook,
@@ -44,6 +44,7 @@ export default class ExchangeAccountHomeController {
     this.$translate = $translate;
 
     this.Exchange = Exchange;
+    this.coreConfig = coreConfig;
     this.exchangeAccount = exchangeAccount;
     this.exchangeAccountTypes = exchangeAccountTypes;
     this.exchangeAccountOutlook = exchangeAccountOutlook;
@@ -118,6 +119,20 @@ export default class ExchangeAccountHomeController {
     return this.fetchingGridColumnsLastSavedParameters()
       .then(() => this.fetchingCanUserSubscribeToOfficeAttach())
       .then(() => this.fetchingAccountCreationOptions())
+      .then(() =>
+        this.Exchange.getExchangeServer(
+          this.$routerParams.organization,
+          this.$routerParams.productId,
+        ),
+      )
+      .then((exchangeServer) => {
+        this.exchangeServer = exchangeServer;
+        this.isMfaAvailable =
+          this.coreConfig.isRegion('EU') &&
+          this.exchangeSelectedService.isMfaAvailable();
+
+        return this.updateColumnsParameters();
+      })
       .finally(() => {
         this.initialLoading = false;
       });
@@ -238,14 +253,7 @@ export default class ExchangeAccountHomeController {
           return null;
         }
 
-        const newCompanyColumnParameter = this.computeDefaultCompanyColumnParameter();
-        const changesHaveBeenDone = this.computeDatagridColumnParameters(
-          newCompanyColumnParameter,
-        );
-
-        return changesHaveBeenDone
-          ? this.savingDatagridColumnParameters()
-          : null;
+        return this.updateColumnsParameters();
       })
       .then(() => this.datagridData)
       .catch((error) => {
@@ -291,14 +299,7 @@ export default class ExchangeAccountHomeController {
           return null;
         }
 
-        const newCompanyColumnParameter = this.computeDefaultCompanyColumnParameter();
-        const changesHaveBeenDone = this.computeDatagridColumnParameters(
-          newCompanyColumnParameter,
-        );
-
-        return changesHaveBeenDone
-          ? this.savingDatagridColumnParameters()
-          : null;
+        return this.updateColumnsParameters();
       })
       .catch((error) => {
         this.messaging.writeError(
@@ -471,11 +472,26 @@ export default class ExchangeAccountHomeController {
     });
   }
 
-  computeDefaultCompanyColumnParameter() {
-    return {
-      name: 'company',
-      hidden: !this.accounts.some((account) => !isEmpty(account.company)),
-    };
+  updateColumnsParameters() {
+    const newColumnParameters = this.computeDefaultColumnParameters();
+    const changesHaveBeenDone = this.computeDatagridColumnParameters(
+      newColumnParameters,
+    );
+
+    return changesHaveBeenDone ? this.savingDatagridColumnParameters() : null;
+  }
+
+  computeDefaultColumnParameters() {
+    return [
+      {
+        name: 'company',
+        hidden: !this.accounts.some((account) => !isEmpty(account.company)),
+      },
+      {
+        name: 'mfa',
+        hidden: !this.isMfaAvailable,
+      },
+    ];
   }
 
   computeDatagridColumnParameters(newParameters) {
@@ -545,5 +561,13 @@ export default class ExchangeAccountHomeController {
       DATAGRID_COLUMN_PARAMETERS_PREFERENCE_NAME,
       this.gridParameters.columnParameters.current,
     );
+  }
+
+  openAllAccountsMFACreateDialog() {
+    this.navigation.setAction('exchange/account/mfa/bulk-create');
+  }
+
+  openAllAccountsMFADeleteDialog() {
+    this.navigation.setAction('exchange/account/mfa/bulk-delete');
   }
 }

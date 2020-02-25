@@ -15,5 +15,8 @@
   "pci_project_flavors_price_hourly": "{{price}} netto/godz.",
   "pci_project_flavors_price_monthly": "Od {{price}} netto/m-c",
   "pci_project_flavors_quota": "Zwiększ limity",
-  "pci_project_flavors_category_definition_iops": "Instancje IOPS gwarantują najszybsze transakcje dyskowe spośród rozwiązań Public Cloud."
+  "pci_project_flavors_category_definition_iops": "Instancje IOPS gwarantują najszybsze transakcje dyskowe spośród rozwiązań Public Cloud.",
+  "pci_project_flavors_spec_model": "Model:",
+  "pci_project_flavors_spec_nvme": "Dyski NVMe",
+  "pci_project_flavors_category_definition_baremetal": "Bare metal instances offer hardware servers on demand. They are delivered in a few minutes, and can be billed on an hourly or monthly basis."
 }

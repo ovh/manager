@@ -7,6 +7,7 @@ import isString from 'lodash/isString';
 import kebabCase from 'lodash/kebabCase';
 import map from 'lodash/map';
 import merge from 'lodash/merge';
+import reduce from 'lodash/reduce';
 import remove from 'lodash/remove';
 import set from 'lodash/set';
 import some from 'lodash/some';
@@ -265,7 +266,13 @@ export default class {
         this.$scope.hosting.sqlPriveInfo.nbDataBaseInclude = this.$scope.hosting.offerCapabilities.privateDatabases.length;
         this.$scope.hosting.sqlPriveInfo.nbDataBaseActive =
           this.$scope.hosting.sqlPriveInfo.nbDataBaseInclude -
-          privateDbCapabilities.length;
+          reduce(
+            privateDbCapabilities,
+            (sum, capability) => {
+              return sum + capability.available > 0 ? capability.available : 0;
+            },
+            0,
+          );
       });
     };
 

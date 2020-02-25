@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-sms",
-  "version": "7.5.1",
+  "version": "7.5.2",
   "private": true,
   "description": "SMS product.",
   "repository": {
@@ -19,7 +19,7 @@
   "devDependencies": {
     "@ovh-ux/component-rollup-config": "^7.0.0",
     "bootstrap": "~3.3.7",
-    "ovh-ui-kit": "^2.35.2"
+    "ovh-ui-kit": "^2.40.0"
   },
   "peerDependencies": {
     "@ovh-ux/manager-core": "^7.6.2",

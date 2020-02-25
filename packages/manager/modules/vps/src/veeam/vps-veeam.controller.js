@@ -8,7 +8,6 @@ export default class {
     $translate,
     CucCloudMessage,
     CucControllerHelper,
-    VpsActionService,
     VpsService,
   ) {
     this.$scope = $scope;
@@ -17,7 +16,6 @@ export default class {
     this.CucCloudMessage = CucCloudMessage;
     this.CucControllerHelper = CucControllerHelper;
     this.serviceName = $stateParams.serviceName;
-    this.VpsActionService = VpsActionService;
     this.VpsService = VpsService;
 
     this.loaders = {
@@ -105,17 +103,5 @@ export default class {
       .finally(() => {
         this.veeamTab.loading = false;
       });
-  }
-
-  restore(restorePoint) {
-    this.VpsActionService.restore(this.serviceName, restorePoint);
-  }
-
-  mount(restorePoint) {
-    this.VpsActionService.mount(this.serviceName, restorePoint);
-  }
-
-  unmount(restorePoint) {
-    this.VpsActionService.unmount(this.serviceName, restorePoint);
   }
 }

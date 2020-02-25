@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-enterprise-cloud-database",
-  "version": "0.1.10",
+  "version": "0.1.11",
   "private": true,
   "description": "Enterprise Cloud Databases product.",
   "keywords": [
@@ -19,12 +19,12 @@
     "directory": "packages/manager/modules/enterprise-cloud-database"
   },
   "license": "BSD-3-Clause",
-  "files": [
-    "dist"
-  ],
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
   "browser": "./dist/umd/enterprise-cloud-database.js",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "rollup -c --environment BUILD:production",
     "dev": "rollup -c --environment BUILD:development",
@@ -46,8 +46,8 @@
   "peerDependencies": {
     "@ovh-ux/manager-core": "^7.6.2",
     "@ovh-ux/ng-ovh-cloud-universe-components": "^1.5.0",
-    "@ovh-ux/ng-ovh-contracts": "^3.0.0",
-    "@ovh-ux/ng-ovh-payment-method": "^5.0.3",
+    "@ovh-ux/ng-ovh-contracts": "^3.1.1",
+    "@ovh-ux/ng-ovh-payment-method": "^5.2.0",
     "@ovh-ux/ng-ovh-toaster": "^1.0.3",
     "@ovh-ux/ng-translate-async-loader": "^2.0.2",
     "@ovh-ux/ng-ui-router-layout": "^3.2.0",

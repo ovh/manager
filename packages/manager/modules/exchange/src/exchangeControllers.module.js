@@ -53,6 +53,7 @@ import ExchangeRemoveAccountCtrl from './account/remove/account-remove.controlle
 import ExchangeUpdateAccountCtrl from './account/update/account-update.controller';
 import ExchangeUpgrade300GCtrl from './account/upgrade-300g/account-upgrade-300g.controller';
 import ExchangeUpdateRenewCtrl from './billing/account-renew/renew.controller';
+import ExchangeAccountMfaCtrl from './account/mfa/account-mfa.controller';
 import ExchangeTabDiagnosticsCtrl from './diagnostic/diagnostic.controller';
 import ExchangeAddDisclaimerCtrl from './disclaimer/add/disclaimer-add.controller';
 import ExchangeDisclaimerCtrl from './disclaimer/disclaimer.controller';
@@ -81,6 +82,7 @@ import exchangeWizardHostedCreationEmailCreationDeleteController from './wizard-
 import exchangeWizardHostedCreationEmailCreationUpdateController from './wizard-hosted-creation/first-step/email-creation/update/update.controller';
 import exchangeWizardHostedCreationAutoController from './wizard-hosted-creation/summary/automatic/automatic.controller';
 import exchangeWizardHostedCreationManualController from './wizard-hosted-creation/summary/manual/manual.controller';
+import ExchangeServicesConfigureCtrl from './security/security.controller';
 
 const moduleName = 'Module.exchange.controllers';
 
@@ -166,6 +168,7 @@ angular
   .controller('ExchangeUpdateAccountCtrl', ExchangeUpdateAccountCtrl)
   .controller('ExchangeUpgrade300GCtrl', ExchangeUpgrade300GCtrl)
   .controller('ExchangeUpdateRenewCtrl', ExchangeUpdateRenewCtrl)
+  .controller('ExchangeAccountMfaCtrl', ExchangeAccountMfaCtrl)
   .controller('ExchangeTabDiagnosticsCtrl', ExchangeTabDiagnosticsCtrl)
   .controller('ExchangeAddDisclaimerCtrl', ExchangeAddDisclaimerCtrl)
   .controller('ExchangeDisclaimerCtrl', ExchangeDisclaimerCtrl)
@@ -226,6 +229,7 @@ angular
   .controller(
     'exchangeWizardHostedCreationManualController',
     exchangeWizardHostedCreationManualController,
-  );
+  )
+  .controller('ExchangeServicesConfigureCtrl', ExchangeServicesConfigureCtrl);
 
 export default moduleName;

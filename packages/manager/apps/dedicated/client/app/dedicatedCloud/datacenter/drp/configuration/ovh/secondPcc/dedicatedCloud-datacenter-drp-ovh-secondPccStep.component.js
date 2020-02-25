@@ -4,14 +4,15 @@ import template from './dedicatedCloud-datacenter-drp-ovh-secondPccStep.html';
 export default {
   bindings: {
     availablePccs: '<',
+    configurationStepName: '<',
     currentUser: '<',
     drpInformations: '=',
-    storeZertoOptionOrderInUserPref: '<',
+    getIpOrderLink: '<',
+    getHostsOrderLink: '<',
+    setDisableSuccessAlertPreference: '<',
+    setupConfiguration: '<',
 
     displayErrorMessage: '<',
-    displayInfoMessage: '<',
-    displaySuccessMessage: '<',
-    goToPccDashboard: '<',
     goToPreviousStep: '<',
   },
   controller,

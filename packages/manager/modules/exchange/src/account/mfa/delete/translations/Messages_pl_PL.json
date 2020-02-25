@@ -1,0 +1,6 @@
+{
+  "exchange_account_mfa_delete_title": "Usuń weryfikację dwuetapową na wszystkich kontach",
+  "exchange_account_mfa_delete_description": "Czy na pewno chcesz usunąć weryfikację dwuetapową na wszystkich kontach?",
+  "exchange_account_mfa_delete_success": "Weryfikacja dwuetapowa została usunięta na wszystkich kontach. ",
+  "exchange_account_mfa_delete_error": "Wystąpił błąd podczas usuwania weryfikacji dwuetapowej na wszystkich kontach: {{errorMessage}}"
+}

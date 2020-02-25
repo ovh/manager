@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-vrack",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "private": true,
   "description": "vRack product.",
   "keywords": [
@@ -19,10 +19,10 @@
     "directory": "packages/manager/modules/vrack"
   },
   "license": "BSD-3-Clause",
+  "main": "./src/index.js",
   "files": [
     "dist"
   ],
-  "main": "./src/index.js",
   "dependencies": {
     "lodash": "^4.17.15",
     "moment": "^2.22.2"

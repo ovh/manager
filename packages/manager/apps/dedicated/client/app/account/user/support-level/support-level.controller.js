@@ -21,7 +21,7 @@ export default class UserAccountSupportLevelCtrl {
           url: get(
             URLS,
             `${this.currentUser.ovhSubsidiary.toUpperCase()}.${level}`,
-            `FR.${level}`,
+            get(URLS, `FR.${level}`),
           ),
         }),
     );

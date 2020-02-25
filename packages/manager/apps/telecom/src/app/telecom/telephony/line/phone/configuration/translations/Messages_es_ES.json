@@ -1,0 +1,5 @@
+{
+  "telephony_line_phone_configuration_config_handfree_send_volume": "Volumen micrófono del altavoz",
+  "telephony_line_phone_configuration_config_handset_send_volume": "Volumen micrófono del terminal",
+  "telephony_line_phone_configuration_config_headset_send_volume": "Volumen micrófono de los auriculares (valor recomendado: 30)"
+}

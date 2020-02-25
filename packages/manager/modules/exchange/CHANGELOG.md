@@ -1,3 +1,75 @@
+## [1.5.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@1.5.3...@ovh-ux/manager-exchange@1.5.4) (2020-02-19)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 260] ([6ef9f93](https://github.com/ovh/manager/commit/6ef9f93672fcdad1103345a7fafc9e271bc3f49f))
+* **i18n:** add missing translations [CDS 262] ([9b6f242](https://github.com/ovh/manager/commit/9b6f242faaffcc1423598a5e3dc9ed7458908b37))
+* **i18n:** add missing translations [CDS 263] ([97fdd70](https://github.com/ovh/manager/commit/97fdd700eb597bbec065bd6ef8d3598544d7ad71))
+* **i18n:** add missing translations [CDS 265] ([f4121ed](https://github.com/ovh/manager/commit/f4121ed566f773ef584f89c77e61949cc7233f8c))
+* **i18n:** add missing translations [CDS 267] ([612c712](https://github.com/ovh/manager/commit/612c712e6b627cff42a854058d68a29ab7a4679e))
+
+
+
+## [1.5.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@1.5.2...@ovh-ux/manager-exchange@1.5.3) (2020-02-14)
+
+
+### Bug Fixes
+
+* **account.mfa:** apply en translations for pl subsidiary ([f865f62](https://github.com/ovh/manager/commit/f865f622d0751e1d11d04138784da84e8f3e6ddd))
+
+
+
+## [1.5.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@1.5.1...@ovh-ux/manager-exchange@1.5.2) (2020-02-14)
+
+
+### Bug Fixes
+
+* **account.mfa:** apply en translations for pl subsidiary ([44d21af](https://github.com/ovh/manager/commit/44d21afca0b03ada58c6964fbabcff71c20df42f))
+
+
+
+## [1.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@1.5.0...@ovh-ux/manager-exchange@1.5.1) (2020-02-14)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 265] ([6b95a12](https://github.com/ovh/manager/commit/6b95a12abda34982f6e75189f718a468b4f2d7b9))
+
+
+
+# [1.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@1.4.1...@ovh-ux/manager-exchange@1.5.0) (2020-02-13)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations ([3613358](https://github.com/ovh/manager/commit/361335880bbdaa1b39c027faa6a2987f135feeb0))
+
+
+### Features
+
+* **exchange.external-contacts:** use datagrid component through iceberg ([#2204](https://github.com/ovh/manager/issues/2204)) ([98f4e76](https://github.com/ovh/manager/commit/98f4e76cfc3edee45bed7b0bf7b9679dd81c2104))
+
+
+
+## [1.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@1.4.0...@ovh-ux/manager-exchange@1.4.1) (2020-02-12)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations ([8e73275](https://github.com/ovh/manager/commit/8e732758ca4c82c9907282f30dae14a00fcb60ff))
+
+
+
+# [1.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@1.3.1...@ovh-ux/manager-exchange@1.4.0) (2020-02-10)
+
+
+### Features
+
+* **exchange.mfa:** add exchange mfa ([#2094](https://github.com/ovh/manager/issues/2094)) ([0c1d61b](https://github.com/ovh/manager/commit/0c1d61bef7343dcb6fad7fcbc8b60f72c641ed8e))
+
+
+
 ## [1.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@1.3.0...@ovh-ux/manager-exchange@1.3.1) (2019-12-18)
 
 

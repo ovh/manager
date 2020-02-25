@@ -13,12 +13,12 @@
     "directory": "packages/manager/modules/server-sidebar"
   },
   "license": "BSD-3-Clause",
-  "files": [
-    "dist"
-  ],
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
   "browser": "./dist/umd/server-sidebar.js",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "rollup -c --environment BUILD:production",
     "dev": "rollup -c --environment BUILD:development",
@@ -35,13 +35,13 @@
   },
   "devDependencies": {
     "@ovh-ux/component-rollup-config": "^7.0.0",
-    "ovh-ui-kit": "^2.35.2"
+    "ovh-ui-kit": "^2.40.0"
   },
   "peerDependencies": {
     "@ovh-ux/manager-config": "^0.4.0",
     "@ovh-ux/manager-core": "^7.6.2",
     "@ovh-ux/ng-ovh-cloud-universe-components": "^1.5.0",
-    "@ovh-ux/ng-ovh-sidebar-menu": "^8.4.4",
+    "@ovh-ux/ng-ovh-sidebar-menu": "^8.5.1",
     "@ovh-ux/ng-translate-async-loader": "^2.0.0",
     "angular": "^1.7.8",
     "angular-translate": "^2.18.1",

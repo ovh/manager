@@ -16,15 +16,14 @@
   },
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
+  "main": "./dist/index.js",
   "files": [
     "dist"
   ],
-  "main": "./dist/index.js",
   "scripts": {
     "build": "tsc",
     "dev": "yarn run build",
     "dev:watch": "tsc -w",
-    "postinstall": "yarn run build",
     "lint": "run-p lint:ts lint:md",
     "lint:md": "eslint --quiet --fix --format=pretty --ext .md .",
     "lint:ts": "eslint --quiet --fix --format=pretty ./src/**/*.ts",

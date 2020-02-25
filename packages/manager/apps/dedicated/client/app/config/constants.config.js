@@ -15,6 +15,8 @@ const constants = {
         guides: {
           home: 'http://prirucky.ovh.cz/',
           privateCloudHome: 'https://docs.ovh.com/cz/cs/private-cloud/',
+          vrack:
+            'https://docs.ovh.com/cz/cs/dedicated/konfigurace-dedikovanych-serveru-vrack/',
         },
         presentations: {
           home: 'https://www.ovh.cz/private-cloud/',
@@ -51,6 +53,8 @@ const constants = {
           sshChange:
             'https://www.ovh.de/g2069.replacing_your_lost_ssh_key_pair',
           billing: 'https://docs.ovh.com/de/billing/',
+          vrack:
+            'https://docs.ovh.com/de/dedicated/mehrere-dedizierte-server-im-vrack-konfigurieren/',
         },
         presentations: {
           home: 'https://www.ovh.de/private-cloud/',
@@ -87,6 +91,8 @@ const constants = {
           sshChange:
             'https://www.ovh.es/g2069.replacing_your_lost_ssh_key_pair',
           billing: 'https://docs.ovh.com/es/billing/',
+          vrack:
+            'https://docs.ovh.com/es/dedicated/configurar-vrack-en-servidor-dedicado/',
         },
         presentations: {
           home: 'https://www.ovh.es/private-cloud/',
@@ -119,6 +125,8 @@ const constants = {
             'https://www.ovh-hosting.fi/g2366.virtuaalikoneen_root-salasanan_vaihto',
           ipv6Vps: 'https://www.ovh-hosting.fi/g2365.vps-ipv6',
           billing: 'https://docs.ovh.com/fi/billing/',
+          vrack:
+            'https://docs.ovh.com/fi/dedicated/usean-dedikoidun-palvelimen-konfigurointi-vrack/',
         },
         presentations: {
           home: 'https://www.ovh-hosting.fi/private-cloud/',
@@ -172,6 +180,8 @@ const constants = {
             'http://docs.ovh.com/fr/fr/cloud/dedicated/find-disk-serial-number/',
           vmEncryption: 'https://docs.ovh.com/fr/private-cloud/vm-encrypt/',
           billing: 'https://docs.ovh.com/fr/billing/',
+          vrack:
+            'https://docs.ovh.com/fr/dedicated/configurer-plusieurs-serveurs-dedies-dans-le-vrack/',
         },
         presentations: {
           home: 'https://www.ovh.com/fr/private-cloud/',
@@ -226,6 +236,8 @@ const constants = {
             'https://docs.ovh.com/gb/en/public-cloud/replacing_your_lost_ssh_key_pair/',
           vmEncryption: 'https://docs.ovh.com/gb/en/private-cloud/vm-encrypt/',
           billing: 'https://docs.ovh.com/gb/en/billing/',
+          vrack:
+            'https://docs.ovh.com/gb/en/dedicated/configuring-vrack-on-dedicated-servers/',
         },
         presentations: {
           home: 'https://www.ovh.co.uk/private-cloud/',
@@ -264,6 +276,8 @@ const constants = {
           sshChange:
             'https://www.ovh.it/g2069.replacing_your_lost_ssh_key_pair',
           billing: 'https://docs.ovh.com/it/billing/',
+          vrack:
+            'https://docs.ovh.com/it/dedicated/configurare-server-dedicati-vrack/',
         },
         presentations: {
           home: 'https://www.ovh.it/private-cloud/',
@@ -302,6 +316,8 @@ const constants = {
           sshChange:
             'https://www.ovh.lt/g2069.replacing_your_lost_ssh_key_pair',
           billing: 'https://docs.ovh.com/lt/billing/',
+          vrack:
+            'https://docs.ovh.com/lt/dedicated/configuring-vrack-on-dedicated-servers/',
         },
         presentations: {
           home: 'https://www.ovh.lt/private-cloud/',
@@ -338,6 +354,8 @@ const constants = {
           sshChange:
             'https://www.ovh.nl/g2069.replacing_your_lost_ssh_key_pair',
           billing: 'https://docs.ovh.com/nl/billing/',
+          vrack:
+            'https://docs.ovh.com/nl/dedicated/configuratie-meerdere-dedicated-servers-op-vrack/',
         },
         presentations: {
           home: 'https://www.ovh.nl/private-cloud/',
@@ -376,6 +394,8 @@ const constants = {
           shhChange:
             'https://www.ovh.pl/g2069.replacing_your_lost_ssh_key_pair',
           billing: 'https://docs.ovh.com/pl/billing/',
+          vrack:
+            'https://docs.ovh.com/pl/dedicated/konfiguracja-kilku-serwerow-dedykowanych-vrack/',
         },
         presentations: {
           home: 'https://www.ovh.pl/private-cloud/',
@@ -415,6 +435,8 @@ const constants = {
           sshChange:
             'https://www.ovh.pt/g2069.replacing_your_lost_ssh_key_pair',
           billing: 'https://docs.ovh.com/pt/billing/',
+          vrack:
+            'https://docs.ovh.com/pt/dedicated/configurar-varios-servidores-dedicados-no-vrack/',
         },
         presentations: {
           home: 'https://www.ovh.pt/private-cloud/',
@@ -453,6 +475,8 @@ const constants = {
           sshChange:
             'https://www.ovh.ie/g2069.replacing_your_lost_ssh_key_pair',
           billing: 'https://docs.ovh.com/ie/en/billing/',
+          vrack:
+            'https://docs.ovh.com/ie/en/dedicated/configuring-vrack-on-dedicated-servers/',
         },
         presentations: {
           home: 'https://www.ovh.ie/private-cloud/',
@@ -575,7 +599,7 @@ const constants = {
           {
             title: 'core_sd_top_guide_7_title',
             atInternetClickTag: 'TopGuide-DedicatedServers-7',
-            url: 'https://www.ovh.co.uk/g920.rescue_mode',
+            url: 'https://docs.ovh.com/ca/en/dedicated/rescue-mode',
           },
         ],
       },

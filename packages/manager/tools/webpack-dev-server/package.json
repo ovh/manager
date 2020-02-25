@@ -13,10 +13,10 @@
   },
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
+  "main": "dist/index.js",
   "files": [
     "dist"
   ],
-  "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
     "dev": "yarn run build",

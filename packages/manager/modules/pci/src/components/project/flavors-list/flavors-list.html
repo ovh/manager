@@ -8,6 +8,7 @@
     >
         <oui-tabs-item
             data-ng-repeat="flavorByCategory in $ctrl.flavors track by flavorByCategory.category"
+            data-ng-if="$ctrl.isFlavorCategoryIncluded(flavorByCategory.category)"
             data-id="{{flavorByCategory.category}}"
             data-heading="{{:: flavorByCategory.title }}"
         >
@@ -66,6 +67,27 @@
                                     data-ng-bind="(flavor.disk | cucBytes:2:false:'GB') + ' ' + (flavor.diskType | uppercase)"
                                 ></span>
                             </div>
+                            <div
+                                class="d-flex justify-content-between"
+                                data-ng-if="flavor.getNvme()"
+                            >
+                                <span
+                                    data-translate="pci_project_flavors_spec_nvme"
+                                ></span>
+                                <span>
+                                    <span
+                                        data-ng-if="flavor.getNvmeCount() > 1"
+                                    >
+                                        <span
+                                            data-ng-bind="flavor.getNvmeCount()"
+                                        ></span>
+                                        <span>x</span>
+                                    </span>
+                                    <span
+                                        data-ng-bind="flavor.getNvmeCapacity() | cucBytes:2:false:'GB'"
+                                    ></span>
+                                </span>
+                            </div>
                             <div class="d-flex justify-content-between">
                                 <span
                                     data-translate="pci_project_flavors_spec_bandwidth"
@@ -81,6 +103,25 @@
                                     data-ng-if="!flavor.outboundBandwidth"
                                     >-</span
                                 >
+                            </div>
+                            <div
+                                class="d-flex justify-content-between"
+                                data-ng-if="flavor.getGpu()"
+                            >
+                                <span
+                                    data-translate="pci_project_flavors_spec_model"
+                                ></span>
+                                <span>
+                                    <span data-ng-if="flavor.getGpuCount() > 1">
+                                        <span
+                                            data-ng-bind="flavor.getGpuCount()"
+                                        ></span>
+                                        <span>x</span>
+                                    </span>
+                                    <span
+                                        data-ng-bind="flavor.getGpuModel()"
+                                    ></span>
+                                </span>
                             </div>
                         </oui-select-picker-section>
                         <oui-select-picker-section>
@@ -117,6 +158,13 @@
                             ></span>
                         </oui-select-picker-section>
                     </oui-select-picker>
+                </div>
+                <div
+                    data-ng-if="$ctrl.singleFlavorWarning && (flavorByCategory.flavors.length === 1 && $ctrl.flavor === flavorByCategory.flavors[0])"
+                >
+                    <oui-message type="warning">
+                        <span data-ng-bind="::$ctrl.singleFlavorWarning"></span>
+                    </oui-message>
                 </div>
             </div>
         </oui-tabs-item>

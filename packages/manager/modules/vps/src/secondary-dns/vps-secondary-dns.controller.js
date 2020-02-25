@@ -2,10 +2,9 @@ import map from 'lodash/map';
 
 export default class {
   /* @ngInject */
-  constructor($stateParams, CucCloudMessage, VpsActionService, VpsService) {
+  constructor($stateParams, CucCloudMessage, VpsService) {
     this.serviceName = $stateParams.serviceName;
     this.CucCloudMessage = CucCloudMessage;
-    this.VpsActionService = VpsActionService;
     this.VpsService = VpsService;
 
     this.loaders = {
@@ -41,17 +40,5 @@ export default class {
         return data.list.results;
       })
       .catch((err) => this.CucCloudMessage.error(err));
-  }
-
-  add() {
-    this.VpsActionService.addSecondaryDns(this.serviceName).finally(() =>
-      this.refreshSecondaryDnsList(),
-    );
-  }
-
-  deleteOne(domain) {
-    this.VpsActionService.deleteSecondaryDns(this.serviceName, domain).finally(
-      () => this.refreshSecondaryDnsList(),
-    );
   }
 }

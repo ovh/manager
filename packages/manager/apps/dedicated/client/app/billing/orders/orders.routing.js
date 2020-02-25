@@ -41,11 +41,19 @@ export default /* @ngInject */ ($stateProvider) => {
         return undefined;
       },
       schema: /* @ngInject */ (OvhApiMe) => OvhApiMe.v6().schema().$promise,
+
+      getOrderTrackingHref: /* @ngInject */ ($state) => (order, filter) =>
+        $state.href('app.account.billing.order', {
+          orderId: order.orderId,
+          ordersFilter: filter,
+        }),
+
       goToOrder: /* @ngInject */ ($state) => (order, filter) =>
         $state.go('app.account.billing.order', {
           orderId: order.orderId,
           ordersFilter: filter,
         }),
+
       goToOrderRetractation: /* @ngInject */ ($state) => ({ orderId }) =>
         $state.go('app.account.billing.retract', {
           id: orderId,

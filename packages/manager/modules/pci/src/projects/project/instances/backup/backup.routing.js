@@ -15,12 +15,12 @@ export default /* @ngInject */ ($stateProvider) => {
         projectId,
         instanceId,
       ) => PciProjectsProjectInstanceService.get(projectId, instanceId),
-      priceEstimation: /* @ngInject */ (
+      monthlyPrice: /* @ngInject */ (
         PciProjectsProjectInstanceService,
         projectId,
         instance,
       ) =>
-        PciProjectsProjectInstanceService.getBackupPriceEstimation(
+        PciProjectsProjectInstanceService.getSnapshotMonthlyPrice(
           projectId,
           instance,
         ),

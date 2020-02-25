@@ -13,7 +13,6 @@ import ngAtInternet from '@ovh-ux/ng-at-internet';
 import ngOvhCloudUniverseComponents from '@ovh-ux/ng-ovh-cloud-universe-components';
 import ngOvhDocUrl from '@ovh-ux/ng-ovh-doc-url';
 
-import VpsActionService from './vps-action.service';
 import VpsTaskService from './vps-task.service';
 import VpsNotificationIpv6Service from './import/notification.service';
 import VpsService from './import/vps.service';
@@ -26,7 +25,6 @@ import ovhManagerVpsAdditionnalDisk from './additional-disk';
 import ovhManagerVpsBackupStorage from './backup-storage';
 import ovhManagerVpsCloudDatabase from './cloud-database';
 import ovhManagerVpsDashboard from './dashboard';
-import ovhManagerVpsModal from './modal';
 import ovhManagerVpsMonitoring from './monitoring';
 import ovhManagerVpsSecondaryDns from './secondary-dns';
 import ovhManagerVpsSnapshot from './snapshot';
@@ -61,13 +59,11 @@ angular
     ovhManagerVpsSecondaryDns,
     ovhManagerVpsSnapshot,
     ovhManagerVpsUpgrade,
-    ovhManagerVpsModal,
     ovhManagerVpsVeeam,
     ovhManagerVpsWindows,
   ])
   .component(detailComponent.name, detailComponent)
   .component(headerComponent.name, headerComponent)
-  .service('VpsActionService', VpsActionService)
   .service('VpsTaskService', VpsTaskService)
   .service('VpsNotificationIpv6', VpsNotificationIpv6Service)
   .service('VpsService', VpsService)

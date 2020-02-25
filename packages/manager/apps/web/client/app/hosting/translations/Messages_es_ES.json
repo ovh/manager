@@ -1405,5 +1405,12 @@
   "hosting_dashboard_service_email_address": "Direcciones de correo",
   "hosting_dashboard_service_common_active": "Activo",
   "hosting_dashboard_service_common_inactive": "Inactivo",
-  "hosting_dashboard_email_offer_get_error": "No se ha podido cargar la dirección de correo."
+  "hosting_dashboard_email_offer_get_error": "No se ha podido cargar la dirección de correo.",
+  "hosting_dashboard_service_terminate_email": "Dar de baja la opción de correo",
+  "hosting_dashboard_service_terminate_email_title": "Baja de la opción de correo",
+  "hosting_dashboard_service_terminate_email_question": "¿Seguro que quiere dar de baja la opción de correo?",
+  "hosting_dashboard_service_terminate_email_question_domain": "¿Seguro que quiere dar de baja la opción de correo asociada al dominio <strong>{{ domain }}</strong>?",
+  "hosting_dashboard_service_terminate_email_success": "La solicitud de baja de la opción de correo se ha enviado. Recibirá por correo electrónico un mensaje con el procedimiento de cierre.",
+  "hosting_dashboard_service_terminate_email_error": "Se ha producido un error al dar de baja la opción de correo.",
+  "hosting_dashboard_service_terminate_email_options_error": "Se ha producido un error al cargar las opciones de correo."
 }

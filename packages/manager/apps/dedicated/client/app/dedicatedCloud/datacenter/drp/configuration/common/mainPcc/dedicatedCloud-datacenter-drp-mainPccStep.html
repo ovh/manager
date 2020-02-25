@@ -21,18 +21,12 @@
 
     <div data-ng-if="$ctrl.availableIpAddress.length === 0">
         <oui-message data-type="warning">
-            <span
-                data-translate="dedicatedCloud_datacenter_order_ip"
-                data-translate-values="{ 'sref': 'app.dedicatedClouds.datacenter.drp.ovh.mainPccStep.legacyOrderIp'}"
-                data-translate-compile
-                data-ng-if="$ctrl.ipFeatureAvailability.allowIPFailoverOrder()"
-            ></span>
-            <span
-                data-translate="dedicatedCloud_datacenter_order_ip"
-                data-translate-values="{ 'sref': 'app.dedicatedClouds.datacenter.drp.ovh.mainPccStep.orderIp' }"
-                data-translate-compile
-                data-ng-if="$ctrl.ipFeatureAvailability.allowIPFailoverAgoraOrder()"
-            ></span>
+            <span data-translate="dedicatedCloud_datacenter_no_ip_pool"></span>
+            <a
+                class="oui-link"
+                data-ng-href="{{:: $ctrl.ipOrderLink }}"
+                data-translate="dedicatedCloud_datacenter_order_please"
+            ></a>
         </oui-message>
     </div>
     <oui-field

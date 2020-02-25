@@ -37,5 +37,7 @@
   "pci_projects_project_instances_add_success_multiple_message": "As instâncias foram adicionadas.",
   "pci_projects_project_instances_add_error_save": "Ocorreu um erro ao adicionar a instância {{ instance }}: {{ message }}",
   "pci_projects_project_instances_add_error_multiple_save": "Ocorreu um erro ao adicionar as instâncias: {{ message }}",
-  "pci_project_instances_instance_add_region_bandwidth_extra": "O tráfego público de saída das instâncias está incluído no preço das instâncias em todas as localizações, exceto para a região da Ásia-Pacífico (Singapura e Sydney). Nestas duas regiões, está incluído um tráfego público de saída de 1 TB/mês para cada projeto Public Cloud. Acima desse limite, cada GB adicional será faturado {{ price }}. O tráfego de entrada a partir da rede pública está incluído em todas as situações e regiões."
+  "pci_project_instances_instance_add_region_bandwidth_extra": "O tráfego público de saída das instâncias está incluído no preço das instâncias em todas as localizações, exceto para a região da Ásia-Pacífico (Singapura e Sydney). Nestas duas regiões, está incluído um tráfego público de saída de 1 TB/mês para cada projeto Public Cloud. Acima desse limite, cada GB adicional será faturado {{ price }}. O tráfego de entrada a partir da rede pública está incluído em todas as situações e regiões.",
+  "pci_projects_project_instances_add_automated_backup_label": "Backup automatizado das instâncias",
+  "pci_projects_project_instances_add_automated_backup_infos": "Esta funcionalidade permite-lhe fazer um backup da sua instância de forma automática em função da ordem à sua escolha."
 }

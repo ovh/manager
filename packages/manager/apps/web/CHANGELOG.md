@@ -1,3 +1,65 @@
+# [13.45.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.44.2...@ovh-ux/manager-web@13.45.0) (2020-02-19)
+
+
+### Bug Fixes
+
+* apply some en translations for pl subsidiary ([f1029d9](https://github.com/ovh/manager/commit/f1029d9f4e69fe02979dbdad2ad4a00f48bfe268))
+* **email.redirect:** display management link when quota exceeded ([#2248](https://github.com/ovh/manager/issues/2248)) ([10145d3](https://github.com/ovh/manager/commit/10145d302d0e8e0205cb769ad85e5c37af85e2b7))
+* **hosting:** fix private database activation ([#2239](https://github.com/ovh/manager/issues/2239)) ([861c86f](https://github.com/ovh/manager/commit/861c86fb3e45aec4bc038588829b96dffd7228f5))
+* **i18n:** add missing translations [CDS 268] ([aed8ad7](https://github.com/ovh/manager/commit/aed8ad7798453cbb7f131cc89aacb3be8b812355))
+* **i18n:** add missing translations [CDS 270] ([93040ec](https://github.com/ovh/manager/commit/93040ec095ab2a5037bf146a033bc598d61300d9))
+
+
+### Features
+
+* **hosting:** add email domain terminate redirection ([d016bbb](https://github.com/ovh/manager/commit/d016bbb60785423af6dbf97e8fcff8f2c5e1640a))
+* **hosting:** add email option terminate ([9fd1068](https://github.com/ovh/manager/commit/9fd106846d3bb21b0b3ee5599a98e86a08459e31))
+
+
+
+## [13.44.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.44.1...@ovh-ux/manager-web@13.44.2) (2020-02-10)
+
+
+### Bug Fixes
+
+* **domain.dashboard:** disable correctly switch if they are unavailable ([06e6685](https://github.com/ovh/manager/commit/06e668531a09c4b24721934780a41bbc55c2f69b))
+* **i18n:** add missing translations [CDS 250] ([b743a43](https://github.com/ovh/manager/commit/b743a439ed7bca2f967b6741319d87d00c87ce56))
+* **i18n:** add missing translations [CDS 256] ([7fbf40a](https://github.com/ovh/manager/commit/7fbf40aa0a2516faa874365d64d9376bf86fe04c))
+
+
+
+## [13.44.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.44.0...@ovh-ux/manager-web@13.44.1) (2020-02-05)
+
+
+### Bug Fixes
+
+* **hosting.database:** fix private sql activation ([#2190](https://github.com/ovh/manager/issues/2190)) ([8a1f4c0](https://github.com/ovh/manager/commit/8a1f4c0753af48df878a4321c315a7d664f5386f))
+
+
+
+# [13.44.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.43.2...@ovh-ux/manager-web@13.44.0) (2020-01-31)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 238] ([e3fea4e](https://github.com/ovh/manager/commit/e3fea4e156e30c6907f353d2cf3efd566a95d0b8))
+* **i18n:** add missing translations [CDS 239] ([4ca5833](https://github.com/ovh/manager/commit/4ca5833e915bd781fc27ca599c05453baba41804))
+* **i18n:** add missing translations [CDS 240] ([e872cf2](https://github.com/ovh/manager/commit/e872cf2afe638dff86dbed7af3d8715637cf02b7))
+* **i18n:** add missing translations [CDS 241] ([ab1a322](https://github.com/ovh/manager/commit/ab1a32288ca8ed763832f15538cce95516475f00))
+* **i18n:** add missing translations [CDS 242] ([5999617](https://github.com/ovh/manager/commit/5999617d4fbe77fdc4f5d8d3f3f5fdbf254d52a9))
+* **i18n:** add missing translations [CDS 245] ([84b48d3](https://github.com/ovh/manager/commit/84b48d3dc92e11806ff73de4902fdaf5e5b4cdf8))
+* **i18n:** add missing translations [CDS 246] ([7f8d0cf](https://github.com/ovh/manager/commit/7f8d0cfc9fbe4438a06a5da23685ab5a551baeda))
+
+
+### Features
+
+* **hosting.offer.upgrade:** display prorata ([#2110](https://github.com/ovh/manager/issues/2110)) ([818465f](https://github.com/ovh/manager/commit/818465f48f0d25565f8fa7ec44eaac0963b33ec5))
+* **web:** private sql upgrade prorata ([#2087](https://github.com/ovh/manager/issues/2087)) ([3c68f6d](https://github.com/ovh/manager/commit/3c68f6d8caf4d3c14d48079bd6dd8a1e050d71ce))
+* **web:** update private-sql activation ([#1991](https://github.com/ovh/manager/issues/1991)) ([9d020db](https://github.com/ovh/manager/commit/9d020db77aa9d6cce8f44997cf620b0568dc313b))
+* **web.hosting.email:** extract translations ([#2128](https://github.com/ovh/manager/issues/2128)) ([e1a9b82](https://github.com/ovh/manager/commit/e1a9b824c1ed04a3d7cf7395372766211a01a632))
+
+
+
 ## [13.43.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.43.1...@ovh-ux/manager-web@13.43.2) (2020-01-28)
 
 

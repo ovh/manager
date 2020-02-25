@@ -5,9 +5,11 @@ export default {
   template,
   controller,
   bindings: {
-    projectId: '<',
-    instanceId: '<',
-    instance: '<',
     goBack: '<',
+    imageEditMessage: '<',
+    imageEditSuccessMessage: '<',
+    instance: '<',
+    instanceId: '<',
+    projectId: '<',
   },
 };

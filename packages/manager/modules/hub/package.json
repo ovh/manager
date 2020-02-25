@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-hub",
-  "version": "0.0.0",
+  "version": "0.1.0-alpha.1",
   "private": true,
   "description": "OVHcloud set of components for Manager Hub",
   "repository": {
@@ -15,6 +15,7 @@
     "@ovh-ux/manager-core": "^7.5.0",
     "@uirouter/angularjs": "^1.0.23",
     "angular": "^1.7.5",
-    "angular-translate": "^2.18.1"
+    "angular-translate": "^2.18.1",
+    "ovh-ui-kit": "^3.6.0"
   }
 }

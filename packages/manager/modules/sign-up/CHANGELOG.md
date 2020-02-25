@@ -1,3 +1,30 @@
+## [1.1.3](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@1.1.2...@ovh-ux/sign-up@1.1.3) (2020-02-21)
+
+
+### Bug Fixes
+
+* **form.details:** fix state field for DE language ([835fcc9](https://github.com/ovh/manager/commit/835fcc96537d1ca1250409772512b4544cd7f063))
+
+
+
+## [1.1.2](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@1.1.1...@ovh-ux/sign-up@1.1.2) (2020-02-21)
+
+
+### Bug Fixes
+
+* **signup:** language not selectable ([#2242](https://github.com/ovh/manager/issues/2242)) ([848fffe](https://github.com/ovh/manager/commit/848fffe0a04aa24555d4ed564f8bc945aa4e0072))
+
+
+
+## [1.1.1](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@1.1.0...@ovh-ux/sign-up@1.1.1) (2020-02-19)
+
+
+### Bug Fixes
+
+* **signup:** i18n ([78f9ae8](https://github.com/ovh/manager/commit/78f9ae8d0b345b3f73a8a5b132bd38110798267a))
+
+
+
 # [1.1.0](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@1.0.10...@ovh-ux/sign-up@1.1.0) (2019-12-10)
 
 

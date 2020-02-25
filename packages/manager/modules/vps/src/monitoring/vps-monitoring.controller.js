@@ -10,19 +10,11 @@ import {
 
 export default class {
   /* @ngInject */
-  constructor(
-    $q,
-    $stateParams,
-    $translate,
-    CucCloudMessage,
-    VpsActionService,
-    VpsService,
-  ) {
+  constructor($q, $stateParams, $translate, CucCloudMessage, VpsService) {
     this.$q = $q;
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
     this.serviceName = $stateParams.serviceName;
-    this.VpsActionService = VpsActionService;
     this.VpsService = VpsService;
 
     this.loaders = {

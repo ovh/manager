@@ -1,0 +1,6 @@
+{
+  "exchange_account_mfa_delete_title" : "Supprimer la double authentification sur l'ensemble des comptes",
+  "exchange_account_mfa_delete_description" : "Souhaitez-vous supprimer la double authentification sur l'ensemble des comptes ?",
+  "exchange_account_mfa_delete_success" : "La double authentification a été supprimée sur l'ensemble des comptes avec succès.",
+  "exchange_account_mfa_delete_error" : "Une erreur est survenue lors de la suppression de la double authentification sur l'ensemble des comptes : {{errorMessage}}"
+}

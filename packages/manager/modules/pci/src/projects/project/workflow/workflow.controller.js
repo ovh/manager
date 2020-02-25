@@ -1,4 +1,4 @@
-import set from 'lodash/set';
+import Workflow from './Workflow.class';
 
 export default class {
   /* @ngInject */
@@ -29,9 +29,9 @@ export default class {
         instanceId: workflow.instanceId,
         serviceName: this.projectId,
       })
-      .$promise.then((instance) => {
-        set(workflow, 'instanceName', instance.name);
-        return workflow;
-      });
+      .$promise.then(
+        (instance) =>
+          new Workflow({ ...workflow, instanceName: instance.name }),
+      );
   }
 }

@@ -15,5 +15,8 @@
   "pci_project_flavors_price_hourly": "{{price}}/hora + IVA",
   "pci_project_flavors_price_monthly": "Desde {{price}}/mes + IVA",
   "pci_project_flavors_quota": "Aumentar los límites de mi cuota",
-  "pci_project_flavors_category_definition_iops": "Las instancias IOPS ofrecen las transacciones de disco más rápidas de Public Cloud."
+  "pci_project_flavors_category_definition_iops": "Las instancias IOPS ofrecen las transacciones de disco más rápidas de Public Cloud.",
+  "pci_project_flavors_spec_model": "Modelo:",
+  "pci_project_flavors_spec_nvme": "Almacenamiento NVMe:",
+  "pci_project_flavors_category_definition_baremetal": "Las instancias bare metal ofrecen servidores físicos bajo demanda, con entrega en cuestión de minutos y facturación mensual o por horas."
 }

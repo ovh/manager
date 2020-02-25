@@ -263,15 +263,27 @@
                     data-term="{{ ::'domain_dashboard_protection_transfert' | translate }}"
                 >
                     <oui-tile-description>
+                        <oui-switch
+                            class="mt-2 d-inline-block"
+                            data-disabled="$ctrl.vm.protection.isUnavailable"
+                            data-model="$ctrl.vm.protection.enabled"
+                            data-on-change="$ctrl.switchTheStateOfProtection()"
+                        ></oui-switch>
                         <span
-                            class="align-middle mt-2"
-                            data-wuc-v6-ui-switch
-                            data-ng-change="$ctrl.switchTheStateOfProtection()"
-                            data-ng-model="$ctrl.vm.protection.uiSwitch"
-                            data-oui-tooltip="{{($ctrl.domain.protection === 'unlocking' ||
-                              $ctrl.domain.protection === 'locking' ||
-                              $ctrl.domain.protection === 'unavailable') ? ('domain_dashboard_protection_' + $ctrl.domain.protection | translate) : ''}}"
+                            class="mt-2 ml-1 d-inline-block align-middle oui-status"
+                            data-ng-if="!$ctrl.isSwitchingProtectionStatus"
+                            data-translate="{{ 'domain_dashboard_protection_' + $ctrl.domain.protection }}"
+                            data-ng-class="{
+                              'oui-status_success': $ctrl.vm.protection.enabled,
+                              'oui-status_warning': $ctrl.vm.protection.isUnavailable,
+                              'oui-status_error': !$ctrl.vm.protection.enabled && !$ctrl.vm.protection.isUnavailable
+                            }"
                         ></span>
+                        <oui-spinner
+                            class="mt-2 ml-1 align-middle"
+                            size="s"
+                            data-ng-if="$ctrl.isSwitchingProtectionStatus"
+                        ></oui-spinner>
                         <button
                             class="btn btn-link ml-3 p-0"
                             type="button"
@@ -308,15 +320,27 @@
                     data-term="{{ ::'domain_dashboard_dnssec' | translate }}"
                 >
                     <oui-tile-description>
+                        <oui-switch
+                            class="mt-2 d-inline-block"
+                            data-disabled="$ctrl.vm.dnssec.isUnavailable"
+                            data-model="$ctrl.vm.dnssec.enabled"
+                            data-on-change="$ctrl.switchDnssecStatus()"
+                        ></oui-switch>
                         <span
-                            class="align-middle mt-2"
-                            data-wuc-v6-ui-switch
-                            data-ng-change="setAction('dns/sec/domain-dns-sec', $ctrl.domain)"
-                            data-ng-disabled="!$ctrl.domain.zoneDnssecSupported"
-                            data-ng-model="$ctrl.vm.dnssec.uiSwitch"
-                            data-oui-tooltip="{{($ctrl.domain.dnssecStatus === 'ENABLE_IN_PROGRESS' ||
-                              $ctrl.domain.dnssecStatus === 'DISABLE_IN_PROGRESS') ? ('domain_configuration_dnssec_' + $ctrl.domain.dnssecStatus | translate) : ''}}"
+                            class="mt-2 ml-1 d-inline-block align-middle oui-status"
+                            data-ng-if="!$ctrl.isSwitchingDnssecStatus"
+                            data-translate="{{ 'domain_configuration_dnssec_' + $ctrl.domain.dnssecStatus }}"
+                            data-ng-class="{
+                              'oui-status_success': $ctrl.vm.dnssec.enabled,
+                              'oui-status_warning': $ctrl.vm.dnssec.isUnavailable,
+                              'oui-status_error': !$ctrl.vm.dnssec.enabled && !$ctrl.vm.dnssec.isUnavailable
+                            }"
                         ></span>
+                        <oui-spinner
+                            class="mt-2 ml-1 align-middle"
+                            size="s"
+                            data-ng-if="$ctrl.isSwitchingDnssecStatus"
+                        ></oui-spinner>
                     </oui-tile-description>
                 </oui-tile-definition>
                 <!-- WHOIS configuration  -->

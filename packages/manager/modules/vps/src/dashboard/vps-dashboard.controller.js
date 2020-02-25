@@ -26,7 +26,6 @@ export default class {
     CucCloudMessage,
     CucControllerHelper,
     CucRegionService,
-    VpsActionService,
     VpsService,
   ) {
     this.$filter = $filter;
@@ -38,7 +37,6 @@ export default class {
     this.CucControllerHelper = CucControllerHelper;
     this.CucCloudMessage = CucCloudMessage;
     this.CucRegionService = CucRegionService;
-    this.VpsActionService = VpsActionService;
     this.VpsService = VpsService;
 
     this.DASHBOARD_FEATURES = DASHBOARD_FEATURES;
@@ -169,8 +167,6 @@ export default class {
       },
       terminate: {
         text: this.$translate.instant('vps_configuration_desactivate_option'),
-        callback: () =>
-          this.VpsActionService.terminateBackupStorageOption(this.serviceName),
         isAvailable: () => !this.vps.loading,
       },
     };
@@ -187,7 +183,6 @@ export default class {
         text: this.$translate.instant(
           'vps_configuration_delete_snapshot_title_button',
         ),
-        callback: () => this.VpsActionService.deleteSnapshot(this.serviceName),
         isAvailable: () =>
           !this.summary.loading &&
           this.summary.data.snapshot.creationDate &&
@@ -206,7 +201,6 @@ export default class {
         text: this.$translate.instant(
           'vps_configuration_snapshot_restore_title_button',
         ),
-        callback: () => this.VpsActionService.restoreSnapshot(this.serviceName),
         isAvailable: () =>
           !this.summary.loading &&
           this.summary.data.snapshot.creationDate &&
@@ -216,7 +210,6 @@ export default class {
         text: this.$translate.instant(
           'vps_configuration_snapshot_take_title_button',
         ),
-        callback: () => this.VpsActionService.takeSnapshot(this.serviceName),
         isAvailable: () =>
           !this.summary.loading &&
           this.summary.data.snapshot.optionActivated &&
@@ -225,8 +218,6 @@ export default class {
       },
       terminate: {
         text: this.$translate.instant('vps_configuration_desactivate_option'),
-        callback: () =>
-          this.VpsActionService.terminateSnapshotOption(this.serviceName),
         isAvailable: () =>
           !this.summary.loading && this.summary.data.snapshot.optionActivated,
       },
@@ -251,8 +242,6 @@ export default class {
       },
       terminate: {
         text: this.$translate.instant('vps_configuration_desactivate_option'),
-        callback: () =>
-          this.VpsActionService.terminateVeeamOption(this.serviceName),
         isAvailable: () => !this.vps.loading,
       },
     };
@@ -304,8 +293,6 @@ export default class {
           },
           kvm: {
             text: this.$translate.instant('vps_configuration_kvm_title_button'),
-            callback: () =>
-              this.VpsActionService.kvm(this.serviceName, this.vps.data.noVNC),
             isAvailable: () => !this.loaders.polling && !this.vps.loading,
           },
           manageAutorenew: {
@@ -340,22 +327,14 @@ export default class {
           },
           displayIps: {
             text: this.$translate.instant('vps_dashboard_ips_additional'),
-            callback: () => this.VpsActionService.displayIps(this.serviceName),
             isAvailable: () => !this.vps.loading && !this.loaders.ip,
           },
           manageSla: {
             text: this.$translate.instant('vps_common_manage'),
-            callback: () =>
-              this.VpsActionService.monitoringSla(
-                this.serviceName,
-                !this.vps.data.slaMonitoring,
-              ),
             isAvailable: () => !this.vps.loading && !this.loaders.polling,
           },
           viewIpSla: {
             text: this.$translate.instant('vps_dashboard_monitoring_sla_ips'),
-            callback: () =>
-              this.VpsActionService.monitoringSla(this.serviceName, true, true),
             isAvailable: () => !this.vps.loading,
           },
           orderAdditionalDiskOption: {
@@ -376,7 +355,6 @@ export default class {
             text: this.$translate.instant(
               'vps_configuration_reboot_title_button',
             ),
-            callback: () => this.VpsActionService.reboot(this.serviceName),
             isAvailable: () => !this.loaders.polling && !this.vps.loading,
           },
           rebuild: {
@@ -393,7 +371,6 @@ export default class {
             text: this.$translate.instant(
               'vps_configuration_reinstall_title_button',
             ),
-            callback: () => this.VpsActionService.reinstall(this.serviceName),
             isAvailable: () =>
               !this.loaders.polling &&
               !this.vps.loading &&
@@ -401,14 +378,12 @@ export default class {
           },
           rebootRescue: {
             text: this.$translate.instant('vps_configuration_reboot_rescue'),
-            callback: () => this.VpsActionService.rescue(this.serviceName),
             isAvailable: () => !this.loaders.polling && !this.vps.loading,
           },
           reverseDns: {
             text: this.$translate.instant(
               'vps_configuration_reversedns_title_button',
             ),
-            callback: () => this.VpsActionService.reverseDns(this.serviceName),
             isAvailable: () => !this.loaders.ip,
           },
           terminate: {
@@ -419,18 +394,12 @@ export default class {
             text: this.$translate.instant(
               'vps_configuration_desactivate_option',
             ),
-            callback: () =>
-              this.VpsActionService.terminateAdditionalDiskOption(
-                this.serviceName,
-              ),
             isAvailable: () => !this.loaders.disk && !this.canOrderDisk,
           },
           terminateWindows: {
             text: this.$translate.instant(
               'vps_configuration_desactivate_option',
             ),
-            callback: () =>
-              this.VpsActionService.terminateWindows(this.serviceName),
             isAvailable: () =>
               !this.summary.loading && this.summary.data.windowsActivated,
           },

@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-navbar",
-  "version": "2.3.0",
+  "version": "2.3.1",
   "private": true,
   "description": "A navbar component shared across all control panel.",
   "homepage": "https://github.com/ovh/manager/tree/master/packages/manager/modules/navbar#readme",
@@ -13,12 +13,12 @@
     "directory": "packages/manager/components/navbar"
   },
   "license": "BSD-3-Clause",
-  "files": [
-    "dist"
-  ],
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
   "browser": "./dist/umd/welcome.js",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "rollup -c --environment BUILD:production",
     "dev": "rollup -c --environment BUILD:development",
@@ -34,7 +34,7 @@
   },
   "devDependencies": {
     "@ovh-ux/component-rollup-config": "^7.0.0",
-    "ovh-ui-kit": "^2.35.2"
+    "ovh-ui-kit": "^2.40.0"
   },
   "peerDependencies": {
     "@ovh-ux/manager-config": "^0.4.0",

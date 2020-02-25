@@ -1,3 +1,12 @@
+## [2.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-navbar@2.3.0...@ovh-ux/manager-navbar@2.3.1) (2020-02-13)
+
+
+### Bug Fixes
+
+* **assistance.menu:** update constants ([469f8cc](https://github.com/ovh/manager/commit/469f8cc436f8f35a2e479925fdb89f112b89b2ed))
+
+
+
 # [2.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-navbar@2.2.0...@ovh-ux/manager-navbar@2.3.0) (2019-12-19)
 
 

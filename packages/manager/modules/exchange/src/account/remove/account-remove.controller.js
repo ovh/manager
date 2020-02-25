@@ -1,19 +1,28 @@
 export default class ExchangeRemoveAccountCtrl {
   /* @ngInject */
-  constructor($scope, Exchange, navigation, messaging, $translate) {
+  constructor(
+    $q,
+    $scope,
+    $timeout,
+    Exchange,
+    exchangeAccount,
+    navigation,
+    messaging,
+    $translate,
+  ) {
     this.services = {
+      $q,
       $scope,
+      $timeout,
       Exchange,
+      exchangeAccount,
       navigation,
       messaging,
       $translate,
     };
 
-    $scope.submit = () => this.submit();
     $scope.getTitle = () => this.getTitle();
-
     this.$routerParams = Exchange.getParams();
-
     this.account = navigation.currentActionData;
     this.removeAccountInsteadOfReset = Exchange.removeAccountInsteadOfReset(
       Exchange.value,
@@ -27,7 +36,9 @@ export default class ExchangeRemoveAccountCtrl {
   }
 
   submit() {
-    this.services.Exchange.removingAccount(
+    this.isLoading = true;
+
+    return this.services.Exchange.removingAccount(
       this.$routerParams.organization,
       this.$routerParams.productId,
       this.account.primaryEmailAddress,
@@ -58,6 +69,7 @@ export default class ExchangeRemoveAccountCtrl {
       })
       .finally(() => {
         this.services.navigation.resetAction();
+        this.isLoading = false;
       });
   }
 }

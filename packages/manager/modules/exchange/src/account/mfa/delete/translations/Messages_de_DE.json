@@ -1,0 +1,6 @@
+{
+  "exchange_account_mfa_delete_title": "Die Zwei-Faktor-Authentifizierung für alle Accounts löschen",
+  "exchange_account_mfa_delete_description": "Möchten Sie die Zwei-Faktor-Authentifizierung für alle Accounts löschen?",
+  "exchange_account_mfa_delete_success": "Die Zwei-Faktor-Authentifizierung wurde für alle Accounts gelöscht.",
+  "exchange_account_mfa_delete_error": "Bei der Aufhebung der Zwei-Faktor-Authentifizierung für alle Accounts ist ein Fehler aufgetreten: {{errorMessage}}"
+}

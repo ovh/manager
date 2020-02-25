@@ -1405,5 +1405,12 @@
   "hosting_dashboard_service_email_address": "E-Mail-Adressen",
   "hosting_dashboard_service_common_active": "Aktiv",
   "hosting_dashboard_service_common_inactive": "Inaktiv",
-  "hosting_dashboard_email_offer_get_error": "Es ist unmöglich, die E-Mail-Adresse wiederherzustellen."
+  "hosting_dashboard_email_offer_get_error": "Es ist unmöglich, die E-Mail-Adresse wiederherzustellen.",
+  "hosting_dashboard_service_terminate_email": "Die Option „E-Mail“ kündigen",
+  "hosting_dashboard_service_terminate_email_title": "Kündigung der Option „E-Mail“",
+  "hosting_dashboard_service_terminate_email_question": "Sind Sie sicher, dass Sie die Option „E-Mail“ kündigen möchten?",
+  "hosting_dashboard_service_terminate_email_question_domain": "Sind Sie sicher, dass Sie die Option „E-Mail“ für diese Domain kündigen möchten <strong>{{ domain }}</strong> ?",
+  "hosting_dashboard_service_terminate_email_success": "Ihrem Wunsch, die Option „E-Mail“ zu kündigen, wird entsprochen. Sie erhalten eine E-Mail mit weiteren Angaben zur Schließung.",
+  "hosting_dashboard_service_terminate_email_error": "Bei der Kündigung der Option „E-Mail“ ist ein Fehler aufgetreten.",
+  "hosting_dashboard_service_terminate_email_options_error": "Beim Abruf der Optionen „E-Mail“ ist ein Fehler aufgetreten."
 }

@@ -26,13 +26,10 @@ import ExchangePublicFolders from './shared/shared.service';
 import wizardHostedCreationDomainConfiguration from './wizard-hosted-creation/first-step/domain-configuration/domain-configuration.service';
 import wizardHostedCreationEmailCreation from './wizard-hosted-creation/first-step/email-creation/email-creation.service';
 
-import ExchangeServicesConfigureCtrl from './configure/service-configure.controller';
-
 const moduleName = 'Module.exchange.services';
 
 angular
   .module(moduleName, [])
-  .controller('ExchangeServicesConfigureCtrl', ExchangeServicesConfigureCtrl)
   .service('exchangeAccount', exchangeAccount)
   .service('exchangeAccountTypes', exchangeAccountTypes)
   .service('exchangeAccountOutlook', exchangeAccountOutlook)

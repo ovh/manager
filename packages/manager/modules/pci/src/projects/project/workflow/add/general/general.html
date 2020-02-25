@@ -17,8 +17,8 @@
     <span data-translate="pci_workflow_create_price_title"></span>
     <strong data-ng-if="$ctrl.price">
         <span
-            data-translate="pci_workflow_create_price"
-            data-translate-values="{ price: $ctrl.price.totalPrice.text }"
+            data-translate="pci_workflow_create_price_monthly"
+            data-translate-values="{ price: $ctrl.price.price.text }"
         ></span>
     </strong>
     <strong data-ng-if="!$ctrl.price" class="text-danger">
