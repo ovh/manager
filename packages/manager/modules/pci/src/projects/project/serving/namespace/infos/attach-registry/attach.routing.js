@@ -1,10 +1,12 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider
-    .state('pci.projects.project.serving.namespace.infos.attach-registry', {
+  $stateProvider.state(
+    'pci.projects.project.serving.namespace.infos.attach-registry',
+    {
       url: '/attach-registry',
       views: {
         modal: {
-          component: 'ovhManagerPciProjectServingNamespaceInfosAttachRegistryComponent',
+          component:
+            'ovhManagerPciProjectServingNamespaceInfosAttachRegistryComponent',
         },
       },
       layout: 'modal',
@@ -12,5 +14,6 @@ export default /* @ngInject */ ($stateProvider) => {
         goBack: /* @ngInject */ (goToNamespaceInfos) => goToNamespaceInfos,
         breadcrumb: () => null,
       },
-    });
+    },
+  );
 };

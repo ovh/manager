@@ -1,8 +1,4 @@
-export const PROCESSING_API_STATUS = [
-  'pending',
-  'starting',
-  'scaling',
-];
+export const PROCESSING_API_STATUS = ['pending', 'starting', 'scaling'];
 
 export const API_STATUS = {
   pending: 'pending',
@@ -32,10 +28,7 @@ export const PROCESSING_VERSION_STATUS = [
   'rollback',
 ];
 
-export const ERROR_VERSION_STATUS = [
-  'failed',
-  'build-error',
-];
+export const ERROR_VERSION_STATUS = ['failed', 'build-error'];
 
 export default {
   PROCESSING_API_STATUS,

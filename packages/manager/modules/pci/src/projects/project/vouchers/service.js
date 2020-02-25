@@ -20,7 +20,7 @@ export default class CloudVouchersService {
       .catch(() => voucher);
   }
 
-  transformItem(projectId, voucherId) {
+  transformItem(projectId, voucherId, offer) {
     return this.OvhApiCloudProjectCredit.v6()
       .get({
         serviceName: projectId,
@@ -28,17 +28,18 @@ export default class CloudVouchersService {
       })
       .$promise.then((voucher) =>
         voucher.bill ? this.futureVoucherWithPdfUrl(voucher) : voucher,
-      );
+      )
+      .then((voucher) => (offer ? { ...voucher, ...offer.voucher } : voucher));
   }
 
-  getVouchers(projectId) {
+  getVouchers(projectId, offer) {
     return this.OvhApiCloudProjectCredit.v6()
       .query({
         serviceName: projectId,
       })
       .$promise.then((voucherIds) => {
         const promises = map(voucherIds, (id) =>
-          this.transformItem(projectId, id),
+          this.transformItem(projectId, id, offer),
         );
         return this.$q.all(promises);
       });

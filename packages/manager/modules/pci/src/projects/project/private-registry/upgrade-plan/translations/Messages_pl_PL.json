@@ -1,0 +1,6 @@
+{
+  "private_registry_upgrade_plan": "Zmień pakiet",
+  "private_registry_upgrade_plan_breadcrumb": "Zmień pakiet",
+  "private_registry_upgrade_plan_success": "Twój pakiet został zmieniony",
+  "private_registry_upgrade_plan_error": "Wystąpił błąd podczas zmiany pakietu: {{message}}"
+}

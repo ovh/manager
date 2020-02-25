@@ -2,8 +2,14 @@ import has from 'lodash/has';
 
 export default class {
   /* @ngInject */
-  constructor($scope, $stateParams, $translate, CucCloudMessage, CucControllerHelper,
-    VpsService) {
+  constructor(
+    $scope,
+    $stateParams,
+    $translate,
+    CucCloudMessage,
+    CucControllerHelper,
+    VpsService,
+  ) {
     this.$scope = $scope;
     this.serviceName = $stateParams.serviceName;
     this.$translate = $translate;

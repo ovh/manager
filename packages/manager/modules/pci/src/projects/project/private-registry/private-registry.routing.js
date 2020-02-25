@@ -1,3 +1,6 @@
+import map from 'lodash/map';
+import PrivateRegistry from './PrivateRegistry.class';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.private-registry', {
     url: '/private-registry',
@@ -12,6 +15,51 @@ export default /* @ngInject */ ($stateProvider) => {
             : 'pci.projects.project.private-registry.onboarding',
         ),
     resolve: {
+      upgradePlan: /* @ngInject */ ($state, projectId) => (registryId) =>
+        $state.go('pci.projects.project.private-registry.upgrade-plan', {
+          projectId,
+          registryId,
+        }),
+      createLink: /* @ngInject */ ($state, projectId) =>
+        $state.href('pci.projects.project.private-registry.create', {
+          projectId,
+        }),
+      deleteRegistry: /* @ngInject */ ($state, projectId) => (
+        registryId,
+        registryName,
+      ) =>
+        $state.go('pci.projects.project.private-registry.delete', {
+          projectId,
+          registryId,
+          registryName,
+        }),
+      updateRegistry: /* @ngInject */ ($state, projectId) => (
+        registryId,
+        registryName,
+      ) =>
+        $state.go('pci.projects.project.private-registry.update', {
+          projectId,
+          registryId,
+          registryName,
+        }),
+
+      generateCredentials: /* @ngInject */ ($state, projectId) => (
+        registryId,
+      ) =>
+        $state.go('pci.projects.project.private-registry.credentials', {
+          projectId,
+          registryId,
+          confirmationRequired: true,
+        }),
+
+      copyApiUrl: /* @ngInject */ ($state, projectId) => (registryId, url) =>
+        $state.go('pci.projects.project.private-registry.api-url', {
+          projectId,
+          registryId,
+          url,
+        }),
+
+      refreshRegistryList: /* @ngInject */ ($state) => () => $state.reload(),
       goBackToList: /* @ngInject */ ($state, CucCloudMessage, projectId) => (
         message = false,
         type = 'success',
@@ -63,7 +111,29 @@ export default /* @ngInject */ ($stateProvider) => {
       },
 
       registries: /* @ngInject */ (pciPrivateRegistryService, projectId) =>
-        pciPrivateRegistryService.getRegistryList(projectId, true),
+        pciPrivateRegistryService
+          .getRegistryList(projectId, true)
+          .then((registries) =>
+            map(registries, (registry) => new PrivateRegistry(registry)),
+          ),
+
+      getAvailableUpgrades: /* @ngInject */ (
+        pciPrivateRegistryService,
+        projectId,
+      ) => (registry) =>
+        pciPrivateRegistryService.getAvailableUpgrades(projectId, registry.id),
+
+      getRegistryPlan: /* @ngInject */ (
+        pciPrivateRegistryService,
+        projectId,
+      ) => (registry) =>
+        pciPrivateRegistryService.getRegistryPlan(projectId, registry.id).then(
+          (plan) =>
+            new PrivateRegistry({
+              ...registry,
+              plan,
+            }),
+        ),
 
       list: /* @ngInject */ ($state, projectId) => () =>
         $state.go('pci.projects.project.private-registry', {

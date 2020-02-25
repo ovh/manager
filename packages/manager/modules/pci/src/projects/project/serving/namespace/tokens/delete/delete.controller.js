@@ -2,10 +2,7 @@ import get from 'lodash/get';
 
 export default class PciServingNamespaceTokensDeleteController {
   /* @ngInject */
-  constructor(
-    $translate,
-    OvhManagerPciServingTokensService,
-  ) {
+  constructor($translate, OvhManagerPciServingTokensService) {
     this.$translate = $translate;
     this.OvhManagerPciServingTokensService = OvhManagerPciServingTokensService;
   }
@@ -21,13 +18,23 @@ export default class PciServingNamespaceTokensDeleteController {
       this.namespaceId,
       { id: this.tokenId },
     )
-      .then(() => this.goBack(
-        this.$translate.instant('pci_projects_project_serving_namespace_tokens_delete_success'),
-      ))
-      .catch((error) => this.goBack(
-        this.$translate.instant('pci_projects_project_serving_namespace_tokens_delete_error', {
-          message: get(error, 'data.message'),
-        }), 'error',
-      ));
+      .then(() =>
+        this.goBack(
+          this.$translate.instant(
+            'pci_projects_project_serving_namespace_tokens_delete_success',
+          ),
+        ),
+      )
+      .catch((error) =>
+        this.goBack(
+          this.$translate.instant(
+            'pci_projects_project_serving_namespace_tokens_delete_error',
+            {
+              message: get(error, 'data.message'),
+            },
+          ),
+          'error',
+        ),
+      );
   }
 }

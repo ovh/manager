@@ -1,5 +1,8 @@
 import {
-  PROCESSING_VERSION_STATUS, ERROR_VERSION_STATUS, VERSION_STATUS, API_STATUS,
+  PROCESSING_VERSION_STATUS,
+  ERROR_VERSION_STATUS,
+  VERSION_STATUS,
+  API_STATUS,
 } from '../models.constants';
 
 export default class NamespaceModel {

@@ -9,5 +9,6 @@ export default {
     number: '<?',
     monthlyBilling: '=?',
     disabled: '<?',
+    offer: '<?',
   },
 };
