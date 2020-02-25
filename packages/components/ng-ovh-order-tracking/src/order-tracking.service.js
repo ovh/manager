@@ -1,0 +1,65 @@
+import flatten from 'lodash/flatten';
+import map from 'lodash/map';
+import reverse from 'lodash/reverse';
+
+export default class OrderTrackingService {
+  /* @ngInject */
+  constructor($http, $q) {
+    this.$http = $http;
+    this.$q = $q;
+  }
+
+  getOrderDetails(order) {
+    return this.$http
+      .get(`/me/order/${order.orderId}/details`, {
+        headers: {
+          'X-Pagination-Mode': 'CachedObjectList-Pages',
+        },
+      })
+      .then(({ data }) => data);
+  }
+
+  getOrderStatus(order) {
+    return this.$http
+      .get(`/me/order/${order.orderId}/status`)
+      .then(({ data }) => ({
+        ...order,
+        status: data,
+      }));
+  }
+
+  getOrderFollowUp(orderId) {
+    return this.$http
+      .get(`/me/order/${orderId}/followUp`)
+      .then(({ data }) => data);
+  }
+
+  getCompleteHistory(order) {
+    return this.getOrderFollowUp(order.orderId)
+      .then((followUp) => {
+        const history = reverse(
+          flatten(map(followUp, (follow) => reverse(follow.history))),
+        );
+        if (order.status === 'notPaid' && history.length === 0) {
+          history.push({
+            date: order.date,
+            label: 'custom_payment_waiting',
+          });
+        }
+        return {
+          followUp,
+          history,
+        };
+      })
+      .catch((err) => {
+        // 404 is returned for older orders that does not contains followUp and history
+        if (err.status === 404) {
+          return {
+            followUp: {},
+            history: [],
+          };
+        }
+        return this.$q.reject(err);
+      });
+  }
+}

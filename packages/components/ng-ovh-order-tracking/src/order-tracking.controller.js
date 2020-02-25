@@ -1,7 +1,4 @@
 import angular from 'angular';
-import flatten from 'lodash/flatten';
-import map from 'lodash/map';
-import reverse from 'lodash/reverse';
 
 const ORDER_DEFAULT_HISTORY_LENGTH = 3;
 const SECONDS = 1000;
@@ -10,10 +7,11 @@ const ORDER_FOLLOW_UP_POLLING_INTERVAL = 60 * SECONDS;
 
 export default class OvhOrderTrackingController {
   /* @ngInject */
-  constructor($log, $q, $timeout, OvhApiMeOrder) {
+  constructor($log, $q, $timeout, OrderTracking, OvhApiMeOrder) {
     this.$log = $log;
     this.$q = $q;
     this.$timeout = $timeout;
+    this.OrderTracking = OrderTracking;
     this.OvhApiMeOrder = OvhApiMeOrder;
     this.maxHistoryLength = ORDER_DEFAULT_HISTORY_LENGTH;
   }
@@ -43,7 +41,7 @@ export default class OvhOrderTrackingController {
         orderId: this.orderId,
       })
       .$promise.then((order) =>
-        this.getOrderStatus(order).then(({ status }) => {
+        this.OrderTracking.getOrderStatus(order).then(({ status }) => {
           const orderWithStatus = order;
           orderWithStatus.status = status;
           return orderWithStatus;
@@ -72,67 +70,17 @@ export default class OvhOrderTrackingController {
     this.cancelOrderFollowUpPolling();
   }
 
-  getOrderStatus() {
-    return this.OvhApiMeOrder.v6().getStatus({
-      orderId: this.orderId,
-    }).$promise;
-  }
-
-  getOrderFollowUp() {
-    return this.OvhApiMeOrder.v6().followUp({
-      orderId: this.orderId,
-    }).$promise;
-  }
-
-  getOrderDetails() {
-    return this.OvhApiMeOrder.v6()
-      .getDetails({
-        orderId: this.orderId,
-      })
-      .$promise.then((details) =>
-        this.$q.all(
-          details.map(
-            (id) =>
-              this.OvhApiMeOrder.v6().getDetail({
-                orderId: this.orderId,
-                detailId: id,
-              }).$promise,
-          ),
-        ),
-      );
-  }
-
   pollOrderFollowUp(interval = ORDER_FOLLOW_UP_POLLING_INTERVAL) {
     this.polling.orderFollowUp = this.$timeout(() => {
       this.OvhApiMeOrder.v6().resetAllCache();
-      this.getOrderFollowUp()
-        .then((followUp) => {
+      this.OrderTracking.getCompleteHistory(this.order)
+        .then(({ followUp, history }) => {
           this.orderFollowUp = followUp;
-          this.orderHistory = reverse(
-            flatten(map(followUp, (follow) => reverse(follow.history))),
-          );
-          if (
-            this.order.status === 'notPaid' &&
-            this.orderHistory.length === 0
-          ) {
-            this.orderHistory.push({
-              date: this.order.date,
-              label: 'custom_payment_waiting',
-            });
-          }
+          this.orderHistory = history;
           this.orderHistory.push({
             date: this.order.date,
             label: 'custom_creation',
           });
-        })
-        .catch((err) => {
-          // 404 is returned for older orders that does not contains followUp and history
-          if (err.status === 404) {
-            this.orderFollowUp = {};
-            this.orderHistory = [];
-          } else {
-            this.$log.error(err);
-          }
         })
         .finally(() => {
           if (this.polling.orderFollowUp) {
@@ -145,7 +93,7 @@ export default class OvhOrderTrackingController {
   pollOrderDetails(interval = ORDER_DETAILS_POLLING_INTERVAL) {
     this.polling.orderDetails = this.$timeout(() => {
       this.OvhApiMeOrder.v6().resetAllCache();
-      this.getOrderDetails()
+      this.OrderTracking.getOrderDetails(this.order)
         .then((details) => {
           this.orderDetails = details;
         })
