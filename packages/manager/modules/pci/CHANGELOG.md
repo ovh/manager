@@ -1,3 +1,12 @@
+## [3.13.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.13.0...@ovh-ux/manager-pci@3.13.1) (2020-02-26)
+
+
+### Bug Fixes
+
+* **pci.instances:** notification instances baremetal early adopter ([#2338](https://github.com/ovh/manager/issues/2338)) ([5356448](https://github.com/ovh/manager/commit/53564480705c846eefc67c452a3a7f8b3b77bf03))
+
+
+
 # [3.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.12.0...@ovh-ux/manager-pci@3.13.0) (2020-02-25)
 
 
