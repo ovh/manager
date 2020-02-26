@@ -1,28 +1,39 @@
 <div data-ovh-alert="app.dedicatedClouds.datacenter.backup.new"></div>
-<p data-translate="dedicatedCloud_datacenter_backup_new_description1"></p>
-<p
-    data-ng-bind-html="::'dedicatedCloud_datacenter_backup_new_description2' | translate"
-></p>
-<strong>
+<div data-ng-if="!$ctrl.backup.isLegacy()">
+    <p data-translate="dedicatedCloud_datacenter_backup_new_description1"></p>
+    <p
+        data-ng-bind-html="::'dedicatedCloud_datacenter_backup_new_description2' | translate"
+    ></p>
     <a
         target="_blank"
         rel="noopener"
         class="oui-link_icon"
         data-ng-href="{{ ::$ctrl.backupTariffUrl }}"
     >
-        <span
+        <strong
             data-translate="dedicatedCloud_datacenter_backup_new_tariff_url"
-        ></span>
+        ></strong>
         <span
             class="oui-icon oui-icon-arrow-right_extra-thin"
             aria-hidden="true"
         ></span>
     </a>
-</strong>
+</div>
+<div data-ng-if="$ctrl.backup.isLegacy()">
+    <dedicated-cloud-datacenter-backup-legacy></dedicated-cloud-datacenter-backup-legacy>
+    <oui-button
+        class="mt-3"
+        data-on-click="$ctrl.showOrderFlow = true"
+        data-ng-if="!$ctrl.showOrderFlow"
+        ><span data-translate="datacenter_backup_legacy_update_button"></span
+    ></oui-button>
+</div>
+
 <oui-stepper
     class="mt-3"
     data-on-finish="$ctrl.orderBackup()"
     data-current-index="$ctrl.data.currentStep"
+    data-ng-if="($ctrl.backup.isLegacy() && $ctrl.showOrderFlow) || !$ctrl.backup.isLegacy()"
 >
     <oui-step-form
         data-header="{{ ::'dedicatedCloud_datacenter_backup_new_choose_offer' | translate }}"

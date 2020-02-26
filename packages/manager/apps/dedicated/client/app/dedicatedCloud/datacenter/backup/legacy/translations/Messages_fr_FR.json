@@ -1,0 +1,7 @@
+{
+  "dedicatedCloud_datacenter_backup_legacy_message_1": "Depuis le {{ date }}, la gamme Veeam Backup a évolué.",
+  "dedicatedCloud_datacenter_backup_legacy_message_2": "Vous pouvez choisir entre 3 nouvelles offres pour protéger vos machines virtuelles (VM) : <strong>Standard</strong>, <strong>Advanced</strong> ou <strong>Premium</strong>.",
+  "dedicatedCloud_datacenter_backup_legacy_message_3": "N’oubliez pas de mettre à jour votre solution !",
+  "dedicatedCloud_datacenter_backup_legacy_message_link": "Consulter en détail la nouvelle gamme Veeam Backup",
+  "dedicatedCloud_datacenter_backup_legacy_update_button": "Mettre à jour ma solution de sauvegarde"
+}
