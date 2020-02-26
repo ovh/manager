@@ -77,7 +77,6 @@ export default class JobLogsService {
    * @return {*}
    */
   pollLogs(projectId, jobId, from) {
-    // FIXME return this.dataProcessingService.getLogs(projectId, jobId, from)
     return this.dataProcessingService
       .getLogs(projectId, jobId, from)
       .then((data) => ({

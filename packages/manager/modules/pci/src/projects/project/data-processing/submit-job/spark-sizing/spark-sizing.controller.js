@@ -1,8 +1,6 @@
 import {
-  DRIVER_TEMPLATES,
   MEMORY_OVERHEAD_RATIO,
   MIN_MEMORY_OVERHEAD_MB,
-  WORKER_TEMPLATES,
 } from './spark-sizing.constants';
 
 export default class {
@@ -14,11 +12,11 @@ export default class {
     );
     // create state
     this.state = {};
+    this.driverTemplates = null;
+    this.workerTemplates = null;
   }
 
   $onInit() {
-    this.driverTemplates = DRIVER_TEMPLATES;
-    this.workerTemplates = WORKER_TEMPLATES;
     this.minMemoryOverheadMb = MIN_MEMORY_OVERHEAD_MB;
     // initialize component state
     this.state = {
@@ -44,6 +42,10 @@ export default class {
    */
   $onChanges() {
     Object.assign(this.values, this.state);
+    if (this.templates !== undefined) {
+      this.driverTemplates = this.templates;
+      this.workerTemplates = this.templates;
+    }
   }
 
   /**
@@ -60,30 +62,32 @@ export default class {
    * Use sizing template to update all the individual cores/memory fields of current state
    */
   updateStateFromTemplate() {
-    const driverTpl = this.driverTemplates[
-      parseInt(this.state.driverTemplate, 10) - 1
-    ];
-    const workerTpl = this.workerTemplates[
-      parseInt(this.state.workerTemplate, 10) - 1
-    ];
-    // compute driver overhead in Mb while ensuring Spark's minimum
-    const driverMemoryOverheadMb = Math.max(
-      (driverTpl.memory / 1e6) * MEMORY_OVERHEAD_RATIO,
-      MIN_MEMORY_OVERHEAD_MB,
-    );
-    // compute worker overhead in Mb while ensuring Spark's minimum
-    const workerMemoryOverheadMb = Math.max(
-      (workerTpl.memory / 1e6) * MEMORY_OVERHEAD_RATIO,
-      MIN_MEMORY_OVERHEAD_MB,
-    );
-    Object.assign(this.state, {
-      driverCores: driverTpl.cores,
-      driverMemoryGb: driverTpl.memory / 1e9,
-      driverMemoryOverheadMb,
-      workerCores: workerTpl.cores,
-      workerMemoryGb: workerTpl.memory / 1e9,
-      workerMemoryOverheadMb,
-    });
+    if (this.driverTemplates !== null && this.workerTemplates !== null) {
+      const driverTpl = this.driverTemplates[
+        parseInt(this.state.driverTemplate, 10) - 1
+      ];
+      const workerTpl = this.workerTemplates[
+        parseInt(this.state.workerTemplate, 10) - 1
+      ];
+      // compute driver overhead in Mb while ensuring Spark's minimum
+      const driverMemoryOverheadMb = Math.max(
+        (driverTpl.memory / 1e6) * MEMORY_OVERHEAD_RATIO,
+        MIN_MEMORY_OVERHEAD_MB,
+      );
+      // compute worker overhead in Mb while ensuring Spark's minimum
+      const workerMemoryOverheadMb = Math.max(
+        (workerTpl.memory / 1e6) * MEMORY_OVERHEAD_RATIO,
+        MIN_MEMORY_OVERHEAD_MB,
+      );
+      Object.assign(this.state, {
+        driverCores: driverTpl.cores,
+        driverMemoryGb: driverTpl.memory / 1e9,
+        driverMemoryOverheadMb,
+        workerCores: workerTpl.cores,
+        workerMemoryGb: workerTpl.memory / 1e9,
+        workerMemoryOverheadMb,
+      });
+    }
   }
 
   /**

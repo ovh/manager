@@ -7,14 +7,12 @@ export default class {
     $scope,
     $state,
     $translate,
-    CucCloudMessage,
     dataProcessingService,
     CucRegionService,
   ) {
     this.$scope = $scope;
     this.$state = $state; // router state
     this.$translate = $translate;
-    this.cucCloudMessage = CucCloudMessage;
     this.dataProcessingService = dataProcessingService;
     this.cucRegionService = CucRegionService;
     // let's do some function binding
@@ -66,7 +64,11 @@ export default class {
    * @param jobType Selected job type
    */
   onChangeJobTypeHandler(jobType) {
-    this.state.jobEngine = jobType;
+    const e = find(this.capabilities, (o) => o.name === jobType.engine);
+    this.state.jobEngine = {
+      ...jobType,
+      templates: e.templates,
+    };
   }
 
   onSubmitJobSizingHandler() {

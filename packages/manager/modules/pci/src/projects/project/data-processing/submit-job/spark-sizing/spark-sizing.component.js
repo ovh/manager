@@ -8,5 +8,6 @@ export default {
   bindings: {
     values: '<',
     validate: '<',
+    templates: '<',
   },
 };
