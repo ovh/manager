@@ -8,6 +8,11 @@ export default {
     {
       title: 'hub_product_listing_domain',
       property: 'displayName',
+      template: `
+        <a data-ng-href="{{ ('hosting' | redirection: { hosting: $row.serviceName }) }}"
+           data-ng-bind="$row.displayName">
+        </a>
+      `,
       sortable: 'asc',
       searchable: true,
     },
