@@ -97,7 +97,11 @@
                     ></span>
                 </div>
             </div>
-            <oui-checkbox data-model="$ctrl.model.autoPay" class="mt-3">
+            <oui-checkbox
+                data-model="$ctrl.model.autoPay"
+                class="mt-3"
+                data-ng-if="$ctrl.region !== 'US'"
+            >
                 <span data-translate="server_order_bandwidth_auto_pay"></span>
             </oui-checkbox>
 
