@@ -29,7 +29,7 @@
             data-translate="manager_hub_carousel_see_next"
         ></span>
     </button>
-    <div class="circular-tile-container">
+    <div class="circular-tile-container" data-ng-if="$ctrl.items.length > 1">
         <div
             data-ng-repeat="el in $ctrl.items track by $index"
             class="circular-tile"
