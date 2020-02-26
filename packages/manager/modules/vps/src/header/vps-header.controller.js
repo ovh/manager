@@ -8,6 +8,8 @@ import {
   TAB_FEATURES,
 } from './vps-header.constants';
 
+import { PRODUCT_NAME } from '../constants';
+
 export default class {
   /* @ngInject */
   constructor(
@@ -18,7 +20,6 @@ export default class {
     CucProductsService,
     OvhApiMe,
     VpsNotificationIpv6,
-    VpsService,
   ) {
     this.$rootScope = $rootScope;
     this.$translate = $translate;
@@ -27,14 +28,12 @@ export default class {
     this.CucProductsService = CucProductsService;
     this.OvhApiMe = OvhApiMe;
     this.VpsNotificationIpv6 = VpsNotificationIpv6;
-    this.VpsService = VpsService;
 
     this.description = this.serviceName;
 
     this.loaders = {
       init: false,
     };
-    this.vps = {};
     this.stopNotification = {
       autoRenew: true,
       ipV6: true,
@@ -42,38 +41,20 @@ export default class {
   }
 
   $onInit() {
-    this.loaders.init = true;
     this.$rootScope.$on('changeDescription', (event, data) => {
       this.description = data;
     });
-    this.showDatabaseTab = false;
-    this.CucFeatureAvailabilityService.hasFeaturePromise(
-      'VPS',
-      'cloudDatabase',
-    ).then((hasFeature) => {
-      this.showDatabaseTab = hasFeature;
+    this.showDatabaseTab = this.hasCloudDatabaseFeature;
+    this.description = this.vps.displayName;
+    this.checkMessages(this.vps);
+    this.$rootScope.$on('tasks.success', (event, opt) => {
+      if (opt === this.serviceName) {
+        this.checkMessages(this.vps);
+      }
     });
-    this.VpsService.getSelectedVps(this.serviceName)
-      .then((vps) => {
-        this.vps = vps;
-        this.description = vps.displayName;
-        this.checkMessages(vps);
-        this.$rootScope.$on('tasks.success', (event, opt) => {
-          if (opt === this.serviceName) {
-            this.checkMessages(vps);
-          }
-        });
-      })
-      .catch(() =>
-        this.CucCloudMessage.error(
-          this.$translate.instant('vps_dashboard_loading_error'),
-        ),
-      )
-      .finally(() => {
-        this.loaders.init = false;
-      });
+
     this.description = this.CucProductsService.getDisplayName(
-      'VPS',
+      PRODUCT_NAME,
       this.serviceName,
     );
     this.features = this.getFeatures();

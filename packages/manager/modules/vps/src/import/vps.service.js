@@ -63,7 +63,10 @@ export default /* @ngInject */ function VpsService(
         }
         return $q.reject(vps);
       })
-      .then(() => result, (http) => $q.reject(http.data));
+      .then(
+        () => result,
+        (http) => $q.reject(http.data),
+      );
   };
 
   this.getTaskInError = function getTaskInError(serviceName) {
@@ -81,7 +84,10 @@ export default /* @ngInject */ function VpsService(
         }
         return $q.reject(vps);
       })
-      .then(() => result, (http) => $q.reject(http.data));
+      .then(
+        () => result,
+        (http) => $q.reject(http.data),
+      );
   };
 
   function resetTabVeeam() {
@@ -440,7 +446,7 @@ export default /* @ngInject */ function VpsService(
         }
         return $q.reject(result);
       })
-      .catch(CucServiceHelper.errorHandler('vps_dashboard_loading_error'));
+      .catch((error) => error);
   };
 
   /*
@@ -869,9 +875,10 @@ export default /* @ngInject */ function VpsService(
   this.getOptionSnapshotFormated = function getOptionSnapshotFormated(
     serviceName,
   ) {
-    return this.getOptionDetails(serviceName, 'snapshot').then(
-      (optionDetails) => head(optionDetails.results),
-    );
+    return this.getOptionDetails(
+      serviceName,
+      'snapshot',
+    ).then((optionDetails) => head(optionDetails.results));
   };
 
   this.getPriceOptions = function getPriceOptions(vps) {
