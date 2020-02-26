@@ -3,9 +3,10 @@ import get from 'lodash/get';
 
 export default class {
   /* @ngInject */
-  constructor($window, Server) {
+  constructor($window, Server, coreConfig) {
     this.$window = $window;
     this.Server = Server;
+    this.region = coreConfig.getRegion();
   }
 
   $onInit() {
@@ -88,7 +89,7 @@ export default class {
       this.Server.bareMetalPublicBandwidthPlaceOrder(
         this.serverName,
         this.model.plan,
-        this.model.autoPay,
+        this.region === 'US' || this.model.autoPay,
       )
         .then((result) => {
           this.model.orderUrl = result.order.url;

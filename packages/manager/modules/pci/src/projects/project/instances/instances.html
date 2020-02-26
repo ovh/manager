@@ -3,8 +3,19 @@
     data-type="warning"
     data-dismissable
 >
+    <span
+        data-translate="pci_projects_project_instances_beta_subscribe_labs"
+    ></span>
+</oui-message>
+
+<oui-message
+    data-ng-if="$ctrl.betaWarning"
+    data-type="warning"
+    data-dismissable
+>
     <span data-ng-bind="$ctrl.betaWarning"></span>
 </oui-message>
+
 <div data-ui-view>
     <oui-page-header
         data-heading="{{:: 'pci_projects_project_instances_title' | translate }}"
