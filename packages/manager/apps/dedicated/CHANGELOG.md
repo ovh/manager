@@ -1,3 +1,12 @@
+## [11.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@11.5.0...@ovh-ux/manager-dedicated@11.5.1) (2020-02-26)
+
+
+### Bug Fixes
+
+* **dedicated.server:** force autopay bandwidth in us ([#2334](https://github.com/ovh/manager/issues/2334)) ([216213f](https://github.com/ovh/manager/commit/216213f6c4a4a7412c1ba33042a8886b7818700f))
+
+
+
 # [11.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@11.4.3...@ovh-ux/manager-dedicated@11.5.0) (2020-02-19)
 
 
