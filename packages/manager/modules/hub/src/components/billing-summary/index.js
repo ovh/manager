@@ -15,7 +15,7 @@ angular
     ovhManagerCore,
     'pascalprecht.translate',
   ])
-  .component('ovhManagerHubUserBillingSummary', component)
+  .component('hubBillingSummary', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

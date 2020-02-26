@@ -6,13 +6,14 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
     url: '/',
     component: 'hubDashboard',
     resolve: {
+      bills: /* @ngInject */ (hub) => hub.data.bills,
       hub: /* @ngInject */ ($http) =>
         $http
           .get('/hub', {
             serviceType: 'aapi',
           })
           .then(({ data }) => data),
-
+      me: /* @ngInject */ (hub) => hub.data.me.data,
       notifications: /* @ngInject */ ($translate, hub) =>
         map(
           filter(hub.data.notifications.data, (notification) =>
