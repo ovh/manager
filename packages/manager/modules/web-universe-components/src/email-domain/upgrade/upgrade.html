@@ -6,12 +6,17 @@
     </oui-back-button>
 
     <oui-stepper>
-        <oui-step-form data-header="{{ ::'email_domain_upgrade_step_header_offer' | translate }}"
-            data-editable="!$ctrl.loading.upgrading" data-valid="$ctrl.model.offer"
+        <oui-step-form
+            data-header="{{ ::'email_domain_upgrade_step_header_offer' | translate }}"
+            data-editable="!$ctrl.loading.upgrading"
+            data-valid="$ctrl.model.offer"
             data-prevent-next="!$ctrl.model.offer"
             data-on-focus="$ctrl.displaySelectedOffer = false"
-            data-on-submit="$ctrl.displaySelectedOffer = true">
-            <p data-translate="email_domain_upgrade_step_header_offer_description"></p>
+            data-on-submit="$ctrl.displaySelectedOffer = true"
+        >
+            <p
+                data-translate="email_domain_upgrade_step_header_offer_description"
+            ></p>
             <div class="row">
                 <oui-select-picker
                     data-ng-if="$ctrl.displaySelectedOffer"
@@ -20,14 +25,16 @@
                     name="{{:: $ctrl.model.offer.name }}"
                     data-model="$ctrl.model.offer"
                     data-values="[$ctrl.model.offer]"
-                    data-variant="light">
+                    data-variant="light"
+                >
                     <oui-select-picker-footer>
-                        <ovh-manager-order-catalog-price
+                        <ovh-manager-catalog-price
                             data-convert-to-ucents
                             data-user="$ctrl.user"
                             data-price="$ctrl.model.offer.duration.prices.withoutTax.value"
-                            data-tax="$ctrl.model.offer.duration.prices.tax.value">
-                        </ovh-manager-order-catalog-price>
+                            data-tax="$ctrl.model.offer.duration.prices.tax.value"
+                        >
+                        </ovh-manager-catalog-price>
                     </oui-select-picker-footer>
                 </oui-select-picker>
 
@@ -39,30 +46,47 @@
                     name="offers"
                     data-model="$ctrl.model.offer"
                     data-values="[product]"
-                    data-variant="light">
+                    data-variant="light"
+                >
                     <oui-select-picker-footer>
-                        <ovh-manager-order-catalog-price
+                        <ovh-manager-catalog-price
                             data-convert-to-ucents
                             data-user="$ctrl.user"
                             data-price="product.duration.prices.withoutTax.value"
-                            data-tax="product.duration.prices.tax.value">
-                        </ovh-manager-order-catalog-price>
+                            data-tax="product.duration.prices.tax.value"
+                        >
+                        </ovh-manager-catalog-price>
                     </oui-select-picker-footer>
                 </oui-select-picker>
             </div>
         </oui-step-form>
 
-        <oui-step-form data-header="{{:: 'email_domain_upgrade_step_header_validation' | translate }}"
+        <oui-step-form
+            data-header="{{:: 'email_domain_upgrade_step_header_validation' | translate }}"
             data-submit-text="{{ ::'email_domain_upgrade_upgrade_button_label' | translate }}"
             data-cancel-text="{{ ::'email_domain_upgrade_cancel_button_label' | translate }}"
-            data-valid="$ctrl.model.agree" data-on-cancel="$ctrl.goBack()" data-on-submit="$ctrl.upgrade()"
-            data-editable="!$ctrl.loading.upgrading" data-prevent-next="!$ctrl.model.agree">
+            data-valid="$ctrl.model.agree"
+            data-on-cancel="$ctrl.goBack()"
+            data-on-submit="$ctrl.upgrade()"
+            data-editable="!$ctrl.loading.upgrading"
+            data-prevent-next="!$ctrl.model.agree"
+        >
             <div class="row mb-2">
-                <dl class="oui-description oui-description_horizontal oui-heading_underline col-md-2">
-                    <dt data-translate="email_domain_upgrade_price_without_tax"></dt>
-                    <dd data-ng-bind="$ctrl.model.offer.duration.prices.withoutTax.text"></dd>
-                    <dt data-translate="email_domain_upgrade_price_with_tax"></dt>
-                    <dd data-ng-bind="$ctrl.model.offer.duration.prices.withTax.text"></dd>
+                <dl
+                    class="oui-description oui-description_horizontal oui-heading_underline col-md-2"
+                >
+                    <dt
+                        data-translate="email_domain_upgrade_price_without_tax"
+                    ></dt>
+                    <dd
+                        data-ng-bind="$ctrl.model.offer.duration.prices.withoutTax.text"
+                    ></dd>
+                    <dt
+                        data-translate="email_domain_upgrade_price_with_tax"
+                    ></dt>
+                    <dd
+                        data-ng-bind="$ctrl.model.offer.duration.prices.withTax.text"
+                    ></dd>
                 </dl>
             </div>
             <p data-translate="email_domain_upgrade_contracts_accept"></p>
@@ -70,12 +94,19 @@
                 data-ng-if="$ctrl.model.offer.duration"
                 name="agreeContracts"
                 data-items="$ctrl.model.offer.duration.contracts"
-                data-model="$ctrl.model.agree">
+                data-model="$ctrl.model.agree"
+            >
             </ovh-contracts-summary>
-            <div class="ml-2 mb-3 inline-block d-flex align-items-center" data-ng-if="$ctrl.loading.upgrading">
+            <div
+                class="ml-2 mb-3 inline-block d-flex align-items-center"
+                data-ng-if="$ctrl.loading.upgrading"
+            >
                 <oui-spinner data-size="s"></oui-spinner>
-                <span class="text-success pl-1" data-translate="email_domain_upgrade_in_progress"
-                    data-translate-values="{ newOffer: $ctrl.model.offer.displayName }"></span>
+                <span
+                    class="text-success pl-1"
+                    data-translate="email_domain_upgrade_in_progress"
+                    data-translate-values="{ newOffer: $ctrl.model.offer.displayName }"
+                ></span>
             </div>
         </oui-step-form>
     </oui-stepper>

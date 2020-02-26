@@ -28,6 +28,7 @@ import ngTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
 import ngUiRouterLayout from '@ovh-ux/ng-ui-router-layout';
 import ngUiRouterLineProgress from '@ovh-ux/ng-ui-router-line-progress';
 import ovhManagerBanner from '@ovh-ux/manager-banner';
+import ovhManagerCatalogPrice from '@ovh-ux/manager-catalog-price';
 import ovhManagerNavbar from '@ovh-ux/manager-navbar';
 import uiRouter, { RejectType } from '@uirouter/angularjs';
 import ovhManagerServerSidebar from '@ovh-ux/manager-server-sidebar';
@@ -44,7 +45,6 @@ import domainDnsZone from './dns-zone';
 import emailDomainOrder from './email-domain/order';
 import errorPage from './error-page/error-page.module';
 import hosting from './hosting/hosting.module';
-import orderCatalogPrice from './components/manager-order-catalog-price';
 import privateDatabase from './private-database';
 import zone from './domain/zone/zone.module';
 
@@ -101,6 +101,7 @@ angular
     'ovh-api-services',
     ovhManagerMfaEnrollment,
     ovhManagerBanner,
+    ovhManagerCatalogPrice,
     ovhManagerNavbar,
     'moment-picker',
     'oui',
@@ -115,7 +116,6 @@ angular
     emailDomainOrder,
     errorPage,
     hosting,
-    orderCatalogPrice,
     privateDatabase,
     zone,
     emailDomainUpgradeModule,
