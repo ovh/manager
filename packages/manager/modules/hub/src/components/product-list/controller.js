@@ -16,13 +16,9 @@ export default class ManagerHubBillingProductList {
     if (!this.product) {
       throw new Error('Missing required product attribute');
     }
-    if (!get(PRODUCTS, this.product)) {
-      throw new Error(`Missing configuration for product '${this.product}'`);
-    }
-
     this.isLoading = true;
 
-    this.route = get(PRODUCTS, `${this.product}.route`);
+    this.route = get(PRODUCTS, `${this.product}.route`, this.product);
     this.columns = get(PRODUCTS, `${this.product}.columns`);
     this.formater = get(PRODUCTS, `${this.product}.formater`);
 
@@ -39,10 +35,11 @@ export default class ManagerHubBillingProductList {
     return this.fetchProducts()
       .then((products) => this.fetchProductsBilling(products))
       .then((products) => {
-        if (!this.columns) {
+        if (!this.columns.length) {
           this.columns = map(keysIn(products[0]), (key) => ({
             title: key,
             property: key,
+            filterable: true,
             sortable: true,
           }));
         }
