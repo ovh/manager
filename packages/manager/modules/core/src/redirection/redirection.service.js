@@ -10,6 +10,14 @@ export default class RedirectionService {
     this.coreConfig = coreConfig;
   }
 
+  /**
+   * Returns the absolute URL identified by 'id'.
+   * In case url with dynamic parts, the 'params' parameter is used to set them.
+   * @example
+   * // with domain equals to 'https://www.ovh.com/manager/web/domain/:domainId'
+   * getURL('domain', { domainId: 'foo.bar' }
+   * @returns https://www.ovh.com/manager/web/domain/foo.bar
+   */
   getURL(id, params = {}) {
     const regionConstants = constants[this.coreConfig.getRegion()];
     let url = get(regionConstants, id);

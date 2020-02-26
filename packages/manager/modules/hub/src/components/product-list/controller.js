@@ -24,6 +24,8 @@ export default class ManagerHubBillingProductList {
 
     this.route = get(PRODUCTS, `${this.product}.route`);
     this.columns = get(PRODUCTS, `${this.product}.columns`);
+    this.formater = get(PRODUCTS, `${this.product}.formater`);
+
     this.columns = map(this.columns, (column) => ({
       ...column,
       title: this.$translate.instant(column.title),
@@ -37,7 +39,6 @@ export default class ManagerHubBillingProductList {
     return this.fetchProducts()
       .then((products) => this.fetchProductsBilling(products))
       .then((products) => {
-        this.products = products;
         if (!this.columns) {
           this.columns = map(keysIn(products[0]), (key) => ({
             title: key,
@@ -45,6 +46,10 @@ export default class ManagerHubBillingProductList {
             sortable: true,
           }));
         }
+        return products;
+      })
+      .then((products) => {
+        this.products = this.formater ? map(products, this.formater) : products;
       })
       .finally(() => {
         this.isLoading = false;
