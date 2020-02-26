@@ -7,13 +7,14 @@ import 'angular-translate';
 import component from './new.component';
 import offers from '../components/offers';
 import routing from './new.routing';
+import backupLegacy from '../legacy';
 import termsOfUse from '../components/termsOfUse';
 
 const moduleName = 'ovhManagerDedicatedCloudBackupNewModule';
 
 angular
   .module(moduleName, [
-    'ngTranslateAsyncLoader',
+    backupLegacy,
     'oui',
     'ovh-api-services',
     'pascalprecht.translate',

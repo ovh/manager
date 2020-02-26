@@ -29,6 +29,9 @@ export default class {
       orderCreationInProgress: false,
       selectedOffer: {},
     };
+    if (this.backup.isLegacy()) {
+      this.showOrderFlow = false;
+    }
   }
 
   handleOrderError(error) {

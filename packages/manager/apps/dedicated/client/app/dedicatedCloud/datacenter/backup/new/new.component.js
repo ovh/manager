@@ -3,6 +3,7 @@ import template from './new.html';
 
 export default {
   bindings: {
+    backup: '<',
     backupOffers: '<',
     backupTariffUrl: '@',
     currentUser: '<',

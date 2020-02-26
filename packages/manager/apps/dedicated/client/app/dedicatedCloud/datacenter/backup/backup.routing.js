@@ -24,13 +24,8 @@ export default /* @ngInject */ ($stateProvider) => {
               state: 'app.dedicatedClouds.datacenter.backup.spla-licence',
             };
           }
-          if (backup.isInactive()) {
+          if (backup.isInactive() || backup.isLegacy()) {
             return { state: 'app.dedicatedClouds.datacenter.backup.new' };
-          }
-          if (backup.isLegacy()) {
-            return {
-              state: 'app.dedicatedClouds.datacenter.backup.legacy',
-            };
           }
           return false;
         }),
