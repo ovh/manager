@@ -446,7 +446,7 @@ export default /* @ngInject */ function VpsService(
         }
         return $q.reject(result);
       })
-      .catch(CucServiceHelper.errorHandler('vps_dashboard_loading_error'));
+      .catch((error) => error);
   };
 
   /*

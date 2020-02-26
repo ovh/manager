@@ -2,6 +2,8 @@ import kebabCase from 'lodash/kebabCase';
 
 import template from './vps.html';
 
+import { FEATURE_CLOUDDATABASE, PRODUCT_NAME } from './constants';
+
 import detailComponent from './detail/vps-detail.component';
 import headerComponent from './header/vps-header.component';
 
@@ -31,6 +33,19 @@ export default /* @ngInject */ ($stateProvider) => {
             .$promise.then((capabilities) =>
               capabilities.map((capability) => kebabCase(capability)),
             ),
+        hasCloudDatabaseFeature: /* @ngInject */ (
+          CucFeatureAvailabilityService,
+        ) =>
+          CucFeatureAvailabilityService.hasFeaturePromise(
+            PRODUCT_NAME,
+            FEATURE_CLOUDDATABASE,
+          ),
+        plan: /* @ngInject */ (serviceName, VpsService) =>
+          VpsService.getServiceInfos(serviceName).then((plan) => ({
+            ...plan,
+            creation: moment(plan.creation).format('LL'),
+            expiration: moment(plan.expiration).format('LL'),
+          })),
         serviceName: /* @ngInject */ ($transition$) =>
           $transition$.params().serviceName,
         stateVps: /* @ngInject */ ($q, serviceName, OvhApiVps) =>
@@ -55,6 +70,12 @@ export default /* @ngInject */ ($stateProvider) => {
               }
               return true;
             }),
+        tabSummary: /* @ngInject */ (serviceName, VpsService) => {
+          const forceRefresh = true;
+          return VpsService.getTabSummary(serviceName, forceRefresh);
+        },
+        vps: /* @ngInject */ (serviceName, VpsService) =>
+          VpsService.getSelectedVps(serviceName),
       },
       views: {
         'vpsHeader@vps': {
