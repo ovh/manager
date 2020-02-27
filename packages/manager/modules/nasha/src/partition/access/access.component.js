@@ -10,6 +10,7 @@ export default {
     task: '<',
     serviceName: '<',
     partition: '<',
+    partitionDetails: '<',
   },
   controller,
   controllerAs: 'NashaPartitionAccessCtrl',
