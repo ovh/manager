@@ -1,3 +1,12 @@
+## [3.13.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.13.1...@ovh-ux/manager-pci@3.13.2) (2020-02-27)
+
+
+### Bug Fixes
+
+* **pci.project.quota:** use ngOvhPaymentMethod ([#2300](https://github.com/ovh/manager/issues/2300)) ([4d9a4ae](https://github.com/ovh/manager/commit/4d9a4ae3c8eac4ef125eab5714c2a9c1c74d5e45))
+
+
+
 ## [3.13.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.13.0...@ovh-ux/manager-pci@3.13.1) (2020-02-26)
 
 
