@@ -141,6 +141,7 @@
     "validator": "^3.39.0"
   },
   "devDependencies": {
+    "@ovh-ux/manager-models": "^0.0.0 || ^1.0.0",
     "@ovh-ux/manager-webpack-config": "^3.1.1",
     "eslint-plugin-angular": "^4.0.1",
     "glob": "^7.1.4",

@@ -2,7 +2,7 @@ import filter from 'lodash/filter';
 import map from 'lodash/map';
 import uniq from 'lodash/uniq';
 
-import BillingService from '../../../models/BillingService.class';
+import { BillingService } from '@ovh-ux/manager-models';
 
 import { AVAILABLE_SERVICES } from './user-contacts.constants';
 

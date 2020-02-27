@@ -6,6 +6,7 @@ import reduce from 'lodash/reduce';
 import set from 'lodash/set';
 import values from 'lodash/values';
 
+import { BillingService } from '@ovh-ux/manager-models';
 import {
   AUTORENEW_EVENT,
   CONTRACTS_IDS,
@@ -14,8 +15,6 @@ import {
   SERVICE_STATES,
   SERVICE_STATUS,
 } from './autorenew.constants';
-
-import BillingService from '../../models/BillingService.class';
 
 export default class {
   /* @ngInject */
