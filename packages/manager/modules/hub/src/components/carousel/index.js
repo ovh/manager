@@ -11,7 +11,6 @@ angular
   .module(moduleName, [
     'oui',
     'ngTranslateAsyncLoader',
-    'ovh-api-services',
     'pascalprecht.translate',
   ])
   .component('ovhManagerHubCarousel', carousel)
