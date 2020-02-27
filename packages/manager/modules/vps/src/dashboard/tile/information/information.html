@@ -60,6 +60,26 @@
         term="{{ ::'vps_dashboard_distribution' | translate }}"
         description="{{ ::$ctrl.vps.distribution.name }}"
     >
+        <oui-action-menu
+            compact
+            align="end"
+            ng-if="$ctrl.actions.reinstall.isAvailable() || $ctrl.actions.rebuild.isAvailable()"
+        >
+            <oui-action-menu-item
+                data-on-click="$ctrl.goToReinstall()"
+                data-ng-if="$ctrl.actions.reinstall.isAvailable()"
+            >
+                <span data-ng-bind="::$ctrl.actions.reinstall.text"></span>
+            </oui-action-menu-item>
+            <oui-action-menu-item
+                data-on-click="$ctrl.actions.rebuild.callback()"
+                data-ng-if="$ctrl.actions.rebuild.isAvailable()"
+            >
+                <span
+                    data-translate="vps_configuration_reinstall_title_button"
+                ></span>
+            </oui-action-menu-item>
+        </oui-action-menu>
     </oui-tile-definition>
     <oui-tile-definition
         term="{{ ::('vps_zone' | translate)+' ('+('vps_cluster' | translate)+')' }}"
