@@ -2,9 +2,10 @@ import constants from './constants';
 
 export default class ManagerHubUserPanelCtrl {
   /* @ngInject */
-  constructor($q, $rootScope, OvhApiMe, RedirectionService) {
+  constructor($q, $rootScope, atInternet, OvhApiMe, RedirectionService) {
     this.$q = $q;
     this.$rootScope = $rootScope;
+    this.atInternet = atInternet;
     this.OvhApiMe = OvhApiMe;
     this.RedirectionService = RedirectionService;
   }
@@ -20,6 +21,10 @@ export default class ManagerHubUserPanelCtrl {
   }
 
   openChatbot() {
+    this.atInternet.trackClick({
+      name: 'hub::sidebar::useful-links::action::chatbot',
+      type: 'action',
+    });
     this.$rootScope.$emit('ovh-chatbot:open');
   }
 }

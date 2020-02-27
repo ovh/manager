@@ -1,5 +1,6 @@
 import angular from 'angular';
 import '@ovh-ux/manager-core';
+import '@ovh-ux/ng-at-internet';
 import '@ovh-ux/ng-translate-async-loader';
 import 'angular-translate';
 
@@ -10,6 +11,7 @@ const moduleName = 'ovhManagerHubShortcuts';
 
 angular
   .module(moduleName, [
+    'ngAtInternet',
     'ngTranslateAsyncLoader',
     'oui',
     'ovhManagerCore',
