@@ -1,4 +1,5 @@
 import filter from 'lodash/filter';
+import head from 'lodash/head';
 import map from 'lodash/map';
 import { BillingService } from '@ovh-ux/manager-models';
 
@@ -39,6 +40,26 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
             ),
           }),
         ),
+      order: /* @ngInject */ ($q, hub, OrderTracking) => {
+        const lastOrder = hub.data.lastOrder.data;
+        return $q
+          .all({
+            status: OrderTracking.getOrderStatus(lastOrder),
+            details: OrderTracking.getOrderDetails(lastOrder),
+          })
+          .then(({ status, details }) => ({
+            ...lastOrder,
+            status,
+            ...head(details),
+          }))
+          .then((order) =>
+            OrderTracking.getCompleteHistory(order).then((history) => ({
+              ...order,
+              ...history,
+            })),
+          );
+      },
+
       services: /* @ngInject */ (hub) => hub.data.services.data.data,
       trackingPrefix: () => 'hub::dashboard::activity::payment-status',
     },

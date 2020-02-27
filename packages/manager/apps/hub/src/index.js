@@ -9,6 +9,7 @@ import 'ovh-ui-angular';
 import ovhManagerCore from '@ovh-ux/manager-core';
 import ovhManagerHub from '@ovh-ux/manager-hub';
 import ovhManagerNavbar from '@ovh-ux/manager-navbar';
+import ovhManagerOrderTracking from '@ovh-ux/ng-ovh-order-tracking';
 
 import head from 'lodash/head';
 
@@ -33,6 +34,7 @@ angular
     ovhManagerCore,
     ovhManagerHub,
     ovhManagerNavbar,
+    ovhManagerOrderTracking,
     preload,
     uiRouter,
   ])

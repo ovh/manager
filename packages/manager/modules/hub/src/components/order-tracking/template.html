@@ -1,0 +1,35 @@
+<div class="manager-hub-billing-summary" data-ng-if="$ctrl.orderTrackingLink">
+    <h3 data-translate="hub_order_tracking_title"></h3>
+    <span
+        class="oui-status oui-status_info"
+        data-ng-bind="$ctrl.order.domain"
+    ></span>
+    <div class="mb-3">
+        <span
+            class="font-weight-bold"
+            data-ng-bind="$ctrl.currentStatus.date | date:'shortDate'"
+        ></span>
+        <span
+            data-translate="{{ 'order_tracking_history_' + $ctrl.currentStatus.label }}"
+        ></span>
+        <span
+            class="oui-icon"
+            aria-hidden="true"
+            data-ng-class="{
+                'oui-icon-close_extra-thin': $ctrl.ERROR_STATUS.includes($ctrl.currentStatus.label),
+                'oui-icon-ok_extra-thin': !$ctrl.ERROR_STATUS.includes($ctrl.currentStatus.label)
+            }"
+        ></span>
+    </div>
+    <a
+        class="oui-button oui-button_primary oui-button_icon-right"
+        data-ng-href="{{:: $ctrl.orderTrackingLink }}"
+    >
+        <span data-translate="hub_order_tracking_see_all"></span>
+        <span
+            class="oui-icon oui-icon-arrow-right_extra-thin"
+            aria-hidden="true"
+        >
+        </span>
+    </a>
+</div>
