@@ -1,3 +1,12 @@
+## [1.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-nasha@1.0.0...@ovh-ux/manager-nasha@1.0.1) (2020-02-27)
+
+
+### Bug Fixes
+
+* **nasha.partition.access:** enable RO access for NFS ([#2302](https://github.com/ovh/manager/issues/2302)) ([85743fd](https://github.com/ovh/manager/commit/85743fdda7d02fb33e27cfac4a92e7e63c7ad3c9))
+
+
+
 # [1.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-nasha@0.0.0...@ovh-ux/manager-nasha@1.0.0) (2019-11-27)
 
 

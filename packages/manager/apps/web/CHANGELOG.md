@@ -1,3 +1,12 @@
+## [13.45.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.45.0...@ovh-ux/manager-web@13.45.1) (2020-02-27)
+
+
+### Bug Fixes
+
+* **hosting.ovhconfig:** ensure if configuration is available ([#2333](https://github.com/ovh/manager/issues/2333)) ([20fbf66](https://github.com/ovh/manager/commit/20fbf663caec46f07aa9a65529b6922f3af83793))
+
+
+
 # [13.45.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.44.2...@ovh-ux/manager-web@13.45.0) (2020-02-19)
 
 

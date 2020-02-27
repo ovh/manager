@@ -1,3 +1,12 @@
+## [11.5.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@11.5.1...@ovh-ux/manager-dedicated@11.5.2) (2020-02-27)
+
+
+### Bug Fixes
+
+* **billing.terminate:** encode uri for ip block ([#2347](https://github.com/ovh/manager/issues/2347)) ([06c144d](https://github.com/ovh/manager/commit/06c144dee95d31242e25d4be830b35508fee32e9))
+
+
+
 ## [11.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@11.5.0...@ovh-ux/manager-dedicated@11.5.1) (2020-02-26)
 
 
