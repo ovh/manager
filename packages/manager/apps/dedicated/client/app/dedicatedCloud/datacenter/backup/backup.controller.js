@@ -41,6 +41,9 @@ export default class {
   }
 
   updateBackupCapabilities() {
+    if (!this.backup.isActive()) {
+      return;
+    }
     this.loader.updatingCapabilities = true;
     return this.dedicatedCloudDatacenterBackupService
       .updateBackupCapabilities(

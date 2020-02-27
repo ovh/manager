@@ -1,0 +1,8 @@
+{
+  "dedicatedCloud_datacenter_backup_delete_title": "Désactivation de la sauvegarde",
+  "dedicatedCloud_datacenter_backup_delete_description": "Souhaitez-vous désactiver la sauvegarde pour le datacentre {{datacenter}} ? Vous devrez vérifier la désactivation de la sauvegarde pour chaque machine virtuelle depuis vSphere. Attention, cette action supprimera définitivement toutes vos sauvegardes.",
+  "dedicatedCloud_datacenter_backup_delete_cancel": "Annuler",
+  "dedicatedCloud_datacenter_backup_delete_confirm": "Désactiver la sauvegarde",
+  "dedicatedCloud_datacenter_backup_delete_success": "Votre solution de sauvegarde est désactivée. Il faut jusqu'à 24 heures pour le désactiver.",
+  "dedicatedCloud_datacenter_backup_delete_error": "Une erreur s'est produite lors de la désactivation de votre service de sauvegarde : {{message}}"
+}

@@ -134,7 +134,7 @@ export default class BackupService {
   }
 
   disableBackup(serviceName, datacenterId) {
-    return this.backupApi.disable({ serviceName, datacenterId }).$promise;
+    return this.backupApi.disable({ serviceName, datacenterId }, {}).$promise;
   }
 
   static getAddonsByAddonFamily(plan, family) {

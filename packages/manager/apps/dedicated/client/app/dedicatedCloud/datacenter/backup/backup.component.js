@@ -11,6 +11,8 @@ export default {
     messageToShow: '<',
     productId: '<',
     scrollToTop: '<',
+    backup: '<',
+    goToDeleteBackup: '<',
   },
   controller,
   template,

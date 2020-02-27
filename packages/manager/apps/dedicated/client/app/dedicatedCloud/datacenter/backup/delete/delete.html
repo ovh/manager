@@ -1,0 +1,16 @@
+<oui-modal
+    data-title="{{:: 'dedicatedCloud_datacenter_backup_delete_title' | translate }}"
+    data-on-dismiss="$ctrl.goToBackup()"
+    data-primary-action="$ctrl.delete()"
+    data-secondary-action="$ctrl.goToBackup()"
+    data-type="warning"
+    data-primary-label="{{:: 'dedicatedCloud_datacenter_backup_delete_confirm' | translate }}"
+    data-secondary-label="{{:: 'dedicatedCloud_datacenter_backup_delete_cancel' | translate }}"
+    data-loading="$ctrl.deleting"
+    data-primary-disabled="!$ctrl.backup.isActive()"
+>
+    <p
+        data-translate="dedicatedCloud_datacenter_backup_delete_description"
+        data-translate-values="{ datacenter: $ctrl.productId }"
+    ></p>
+</oui-modal>

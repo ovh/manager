@@ -4,6 +4,9 @@ export const BACKUP_OFFER_ADVANCED = 'advanced';
 export const BACKUP_OFFER_CLASSIC = 'classic';
 
 export const BACKUP_STATE_DISABLED = 'disabled';
+export const BACKUP_STATE_REMOVING = 'removing';
+export const BACKUP_STATE_ENABLED = 'enabled';
+
 export const CATALOG_INFO = {
   ADDON_FAMILY_NAME: 'backup',
   ADDON_PLAN_CODE: 'pcc-option-backup-managed',

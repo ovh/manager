@@ -4,11 +4,28 @@
 ></h1>
 <div data-ui-view>
     <div class="datacenter-backup">
-        <div data-ovh-alert="{{ ::$ctrl.alertMain }}"></div>
-        <oui-switch data-model="true" data-on-change="$ctrl.deactivate()">
+        <div data-ovh-alert="{{ $ctrl.alertMain }}"></div>
+        <oui-message
+            class="mb-3"
+            data-ng-if="!$ctrl.backup.isActive()"
+            data-type="info"
+        >
+            <span
+                data-translate="{{ 'dedicatedCloud_datacenter_backup_state_' + $ctrl.backup.state }}"
+            ></span>
+            <p
+                data-translate="dedicatedCloud_datacenter_backup_not_manageable"
+            ></p>
+        </oui-message>
+        <oui-switch
+            data-model="$ctrl.backup.isActive()"
+            data-on-change="$ctrl.goToDeleteBackup()"
+            data-disabled="!$ctrl.backup.isActive()"
+        >
         </oui-switch>
-        <span data-translate="dedicatedCloud_datacenter_backup_enabled"></span>
-
+        <span
+            data-translate="{{ 'dedicatedCloud_datacenter_backup_state_' + $ctrl.backup.state }}"
+        ></span>
         <section class="datacenter-backup-offers">
             <h4
                 class="mb-3"
@@ -19,9 +36,10 @@
                 data-backup="$ctrl.backup"
                 data-preview-mode="false"
                 data-user="$ctrl.currentUser"
+                data-disabled="!$ctrl.backup.isActive()"
             ></dedicated-cloud-datacenter-backup-offers>
             <oui-button
-                data-disabled="$ctrl.actualOffer === $ctrl.backup.backupOffer"
+                data-disabled="!$ctrl.backup.isActive() || $ctrl.actualOffer === $ctrl.backup.backupOffer"
                 data-variant="primary"
                 data-on-click="$ctrl.goToUpgradeOffer()"
             >
@@ -46,7 +64,9 @@
                 novalidate
                 data-ng-submit="backupCapabilitiesForm.$valid && $ctrl.updateBackupCapabilities()"
             >
-                <fieldset data-ng-disabled="$ctrl.loader.updatingCapabilities">
+                <fieldset
+                    data-ng-disabled="$ctrl.loader.updatingCapabilities || !$ctrl.backup.isActive()"
+                >
                     <oui-checkbox
                         data-model="$ctrl.backup.backupDurationInReport"
                     >

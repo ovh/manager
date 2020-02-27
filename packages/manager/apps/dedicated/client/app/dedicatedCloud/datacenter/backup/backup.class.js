@@ -1,7 +1,7 @@
-import get from 'lodash/get';
-
 import {
   BACKUP_STATE_DISABLED,
+  BACKUP_STATE_REMOVING,
+  BACKUP_STATE_ENABLED,
   BACKUP_OFFER_LEGACY,
   BACKUP_OFFER_ADVANCED,
   BACKUP_OFFER_PREMIUM,
@@ -52,18 +52,30 @@ export default class Backup {
   }
 
   isInactive() {
-    return get(this, 'state', null) === BACKUP_STATE_DISABLED;
+    return this.state === BACKUP_STATE_DISABLED;
+  }
+
+  isActive() {
+    return this.state === BACKUP_STATE_ENABLED;
+  }
+
+  isRemoving() {
+    return this.state === BACKUP_STATE_REMOVING;
   }
 
   isLegacy() {
-    return get(this, 'backupOffer', null) === BACKUP_OFFER_LEGACY;
+    return this.backupOffer === BACKUP_OFFER_LEGACY;
   }
 
   isAdvanced() {
-    return get(this, 'backupOffer', null) === BACKUP_OFFER_ADVANCED;
+    return this.backupOffer === BACKUP_OFFER_ADVANCED;
   }
 
   isPremium() {
-    return get(this, 'backupOffer', null) === BACKUP_OFFER_PREMIUM;
+    return this.backupOffer === BACKUP_OFFER_PREMIUM;
+  }
+
+  setState(state) {
+    this.state = state;
   }
 }

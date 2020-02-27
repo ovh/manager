@@ -9,6 +9,7 @@
         data-variant="light"
         data-on-change="$ctrl.onSelected(modelValue)"
         data-values="[offer]"
+        data-disabled="$ctrl.disabled"
     >
         <oui-select-picker-description
             data-ng-if="offer.offerName === $ctrl.actualOffer"
@@ -47,6 +48,7 @@
         data-variant="light"
         data-on-change="$ctrl.onSelected(modelValue)"
         data-values="[offer]"
+        data-disabled="$ctrl.disabled"
     >
         <oui-select-picker-section>
             <span

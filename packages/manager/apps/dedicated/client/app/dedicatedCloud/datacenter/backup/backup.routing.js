@@ -82,7 +82,16 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('app.dedicatedClouds.license', {
           productId,
         }),
-      goToBackup: ($state, Alerter, datacenterId, productId) => (
+      goToDeleteBackup: /* @ngInject */ (
+        $state,
+        datacenterId,
+        productId,
+      ) => () =>
+        $state.go('app.dedicatedClouds.datacenter.backup.delete', {
+          datacenterId,
+          productId,
+        }),
+      goToBackup: ($state, datacenterId, productId) => (
         message = false,
         type = 'success',
       ) => {

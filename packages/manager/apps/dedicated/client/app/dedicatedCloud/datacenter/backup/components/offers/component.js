@@ -7,6 +7,7 @@ export default {
     backupOffers: '<',
     previewMode: '<',
     user: '<',
+    disabled: '<',
   },
   controller,
   template,

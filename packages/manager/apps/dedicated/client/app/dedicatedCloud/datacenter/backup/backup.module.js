@@ -14,6 +14,8 @@ import backupOffers from './components/offers';
 import backupUpgrade from './upgrade';
 import backupNew from './new';
 import splaLicence from './splaLicence';
+import backupOfferDetails from './components/offer-details';
+import backupDelete from './delete';
 
 const moduleName = 'ovhManagerDedicatedCloudBackupModule';
 
@@ -24,10 +26,12 @@ angular
     'oui',
     'ovh-api-services',
     'pascalprecht.translate',
+    backupOfferDetails,
     backupOffers,
     backupNew,
     splaLicence,
     backupUpgrade,
+    backupDelete,
   ])
   .config(routing)
   .component('dedicatedCloudDatacenterBackup', component)
