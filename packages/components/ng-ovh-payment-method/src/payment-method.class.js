@@ -139,17 +139,16 @@ export default class OvhPaymentMethod {
    */
   getStatusCategory() {
     switch (this.status) {
-      case 'CREATED':
-      case 'CANCELING':
-      case 'CREATING':
-        return 'info';
       case 'CANCELED':
       case 'ERROR':
       case 'EXPIRED':
         return 'error';
+      case 'CANCELING':
+      case 'CREATING':
       case 'MAINTENANCE':
       case 'PAUSED':
         return 'warning';
+      case 'CREATED':
       case 'VALID':
         return 'success';
       default:
