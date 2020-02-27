@@ -8,6 +8,7 @@ import isUndefined from 'lodash/isUndefined';
 import pick from 'lodash/pick';
 import set from 'lodash/set';
 import snakeCase from 'lodash/snakeCase';
+import toNumber from 'lodash/toNumber';
 
 angular
   .module('services')
@@ -333,6 +334,14 @@ angular
         },
         data: {
           description,
+        },
+        broadcast: 'global_display_name_change',
+        broadcastParam: {
+          stateParams: {
+            productId: serviceName,
+            datacenterId: toNumber(datacenterId),
+          },
+          displayName: description,
         },
       });
 
