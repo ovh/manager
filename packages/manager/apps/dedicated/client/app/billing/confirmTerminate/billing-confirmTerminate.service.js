@@ -26,7 +26,10 @@ angular
       return this.getServiceApi(serviceId)
         .then((serviceApi) => {
           serviceType = this.getServiceTypeFromPrefix(serviceApi.route.path);
-          return serviceApi.route.url;
+          return serviceApi.route.url.replace(
+            serviceApi.resource.name,
+            window.encodeURIComponent(serviceApi.resource.name),
+          );
         })
         .then((url) =>
           OvhHttp.get(`${url}/serviceInfos`, {
