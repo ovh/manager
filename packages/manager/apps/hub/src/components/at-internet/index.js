@@ -2,7 +2,6 @@ import angular from 'angular';
 import ngAtInternet from '@ovh-ux/ng-at-internet';
 import ngAtInternetUiRouterPlugin from '@ovh-ux/ng-at-internet-ui-router-plugin';
 import ovhManagerCore from '@ovh-ux/manager-core';
-import 'ovh-api-services';
 
 import TRACKING from './at-internet.constant';
 
@@ -10,7 +9,6 @@ const moduleName = 'hubAtInternet';
 
 angular
   .module(moduleName, [
-    'ovh-api-services',
     ovhManagerCore,
     ngAtInternet,
     ngAtInternetUiRouterPlugin,
@@ -31,12 +29,13 @@ angular
     },
   )
   .run(
-    /* @ngInject */ (atInternet, coreConfig, OvhApiMe) => {
+    /* @ngInject */ ($http, atInternet, coreConfig) => {
       const config = TRACKING[coreConfig.getRegion()] || {};
 
-      OvhApiMe.v6()
-        .get()
-        .$promise.then((me) => {
+      return $http
+        .get('/me')
+        .then(({ data }) => data)
+        .then((me) => {
           config.countryCode = me.country;
           config.currencyCode = me.currency && me.currency.code;
           config.visitorId = me.customerCode;
