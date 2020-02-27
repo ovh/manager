@@ -58,13 +58,13 @@ angular
       function init() {
         $rootScope.$on(
           'global_display_name_change',
-          (evt, { displayName, serviceName }) => {
+          (evt, { displayName, serviceName, stateParams }) => {
             SidebarMenu.updateItemDisplay(
               {
                 title: displayName,
               },
               {
-                stateParams: {
+                stateParams: stateParams || {
                   productId: serviceName,
                 },
               },
