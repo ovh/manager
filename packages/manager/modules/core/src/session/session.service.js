@@ -1,11 +1,11 @@
 export default class SessionService {
   /* @ngInject */
 
-  constructor(OvhApiMe) {
-    this.OvhApiMe = OvhApiMe.v6();
+  constructor($http) {
+    this.$http = $http;
   }
 
   getUser() {
-    return this.OvhApiMe.get().$promise;
+    return this.$http.get('/me').then(({ data }) => data);
   }
 }
