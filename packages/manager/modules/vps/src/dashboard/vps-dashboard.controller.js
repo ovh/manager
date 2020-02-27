@@ -6,7 +6,10 @@ import isArray from 'lodash/isArray';
 import isEmpty from 'lodash/isEmpty';
 import map from 'lodash/map';
 
-import { DASHBOARD_FEATURES } from './vps-dashboard.constants';
+import {
+  DASHBOARD_FEATURES,
+  NEW_RANGE_VERSION,
+} from './vps-dashboard.constants';
 import {
   CHANGE_OWNER_URL,
   CONTACTS_URL,
@@ -49,6 +52,8 @@ export default class {
   }
 
   $onInit() {
+    this.isVpsNewRange = this.stateVps.model.version === NEW_RANGE_VERSION;
+
     this.initActions();
     this.initLoaders();
 
@@ -247,7 +252,7 @@ export default class {
       .then((changeOwnerHref) => {
         this.actions = {
           changeName: {
-            text: this.$translate.instant('vps_common_edit'),
+            text: this.$translate.instant('vps_dashboard_display_name_edit'),
             callback: () =>
               this.CucControllerHelper.modal.showNameChangeModal({
                 serviceName: this.serviceName,
@@ -380,17 +385,13 @@ export default class {
   }
 
   getRegionsGroup(regions) {
-    this.regionsGroup = [];
+    let detailedRegions = [];
     if (regions) {
-      this.detailedRegions = !isArray(regions)
+      detailedRegions = !isArray(regions)
         ? [this.CucRegionService.getRegion(regions)]
         : map(regions, (region) => this.CucRegionService.getRegion(region));
     }
-    this.regionsGroup = groupBy(this.detailedRegions, 'country');
-  }
-
-  hasMultipleRegions() {
-    return isArray(this.detailedRegions) && this.detailedRegions.length > 1;
+    this.regionsGroup = groupBy(detailedRegions, 'country');
   }
 
   static getActionStateParamString(params) {

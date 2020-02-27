@@ -16,6 +16,7 @@ import ovhManagerVpsDashboardRebootRescue from './modal/password';
 import ovhManagerVpsDashboardReinstall from './modal/reinstall';
 import ovhManagerVpsDashboardReverseDns from './modal/reverse-dns';
 import ovhManagerVpsDashboardTerminateOption from './modal/terminate-option';
+import ovhManagerVpsDashboardTile from './tile';
 import ovhManagerVpsDashboardSnapshotDelete from './modal/snapshot-delete';
 import ovhManagerVpsDashboardSnapshotRestore from './modal/snapshot-restore';
 import ovhManagerVpsDashboardSnapshotTake from './modal/snapshot-take';
@@ -37,6 +38,7 @@ angular
     ovhManagerVpsDashboardSnapshotRestore,
     ovhManagerVpsDashboardSnapshotTake,
     ovhManagerVpsDashboardTerminateOption,
+    ovhManagerVpsDashboardTile,
     'ui.router',
   ])
   .component(component.name, component)
