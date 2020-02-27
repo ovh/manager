@@ -3,7 +3,8 @@ import get from 'lodash/get';
 import map from 'lodash/map';
 import range from 'lodash/range';
 
-import BillingService from '../../models/BillingService.class';
+import { BillingService } from '@ovh-ux/manager-models';
+
 import { NIC_ALL } from './autorenew.constants';
 
 export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {

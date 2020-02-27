@@ -1,6 +1,6 @@
 import get from 'lodash/get';
 
-import BillingService from '../../../../models/BillingService.class';
+import { BillingService } from '@ovh-ux/manager-models';
 
 export default class {
   /* @ngInject */
