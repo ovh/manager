@@ -18,31 +18,37 @@ export default class ManagerHubShortcutsCtrl {
         id: 'services',
         icon: 'oui-icon-multi-device_concept',
         url: this.RedirectionService.getURL('services'),
+        tracking: 'hub::sidebar::shortcuts::go-to-services',
       },
       {
         id: 'bills',
         icon: 'oui-icon-receipt_concept',
         url: this.RedirectionService.getURL('billing'),
+        tracking: 'hub::sidebar::shortcuts::go-to-bills',
       },
       {
-        id: 'assistance',
+        id: 'supportLevel',
         icon: 'oui-icon-lifebuoy_concept',
-        url: this.RedirectionService.getURL('support'),
+        url: this.RedirectionService.getURL('supportLevel'),
+        tracking: 'hub::sidebar::shortcuts::go-to-support-level',
       },
       {
         id: 'products',
         icon: 'oui-icon-book-open_concept',
         url: '#',
+        tracking: 'hub::sidebar::shortcuts::go-to-catalog',
       },
       {
         id: 'emails',
         icon: 'oui-icon-envelop-letter_concept',
         url: this.RedirectionService.getURL('userEmails'),
+        tracking: 'hub::sidebar::shortcuts::go-to-emails',
       },
       {
         id: 'contacts',
         icon: 'oui-icon-book-contact_concept',
         url: this.RedirectionService.getURL('contacts'),
+        tracking: 'hub::sidebar::shortcuts::go-to-contacts',
       },
     ];
 

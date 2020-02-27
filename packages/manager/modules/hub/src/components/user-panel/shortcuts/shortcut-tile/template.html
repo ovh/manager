@@ -1,5 +1,10 @@
 <div class="manager-hub-shortcut-tile">
-    <a data-ng-href="{{ $ctrl.url }}">
+    <a
+        data-ng-href="{{ $ctrl.url }}"
+        data-track-on="click"
+        data-track-name="{{ $ctrl.tracking }}"
+        data-track-type="navigation"
+    >
         <span class="manager-hub-shortcut-tile_icon" aria-hidden="true">
             <span class="oui-icon" data-ng-class="$ctrl.icon"> </span>
             <span

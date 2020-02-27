@@ -18,7 +18,11 @@
         <span class="manager-hub-user-panel_divider" aria-hidden="true"></span>
         <a
             target="_blank"
-            data-ng-href="{{ $ctrl.RedirectionService.getURL('help') }}"
+            rel="noopener"
+            data-ng-href="{{ :: $ctrl.RedirectionService.getURL('help') }}"
+            data-track-on="click"
+            data-track-name="hub::sidebar::useful-links::go-to-helpcenter"
+            data-track-type="navigation"
         >
             <span class="oui-icon oui-icon-lifebuoy_concept" aria-hidden="true">
             </span>
@@ -46,7 +50,11 @@
         <span class="manager-hub-user-panel_divider" aria-hidden="true"></span>
         <a
             target="_blank"
-            data-ng-href="{{ $ctrl.RedirectionService.getURL('tasks') }}"
+            rel="noopener"
+            data-ng-href="{{ :: $ctrl.RedirectionService.getURL('tasks') }}"
+            data-track-on="click"
+            data-track-name="hub::sidebar::useful-links::go-to-ovh-status"
+            data-track-type="navigation"
         >
             <span
                 class="oui-icon oui-icon-traffic-cone_concept"
@@ -56,7 +64,12 @@
             <span data-translate="hub_links_tasks"></span>
         </a>
         <span class="manager-hub-user-panel_divider" aria-hidden="true"></span>
-        <a data-ng-href="{{ $ctrl.RedirectionService.getURL('support') }}">
+        <a
+            data-ng-href="{{ :: $ctrl.RedirectionService.getURL('support') }}"
+            data-track-on="click"
+            data-track-name="hub::sidebar::useful-links::go-to-create-ticket"
+            data-track-type="navigation"
+        >
             <span
                 class="oui-icon oui-icon-user-support_concept"
                 aria-hidden="true"
