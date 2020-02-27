@@ -7,6 +7,14 @@
 ></ovh-manager-hub-carousel>
 <h2 data-translate="manager_hub_dashboard_overview"></h2>
 <div class="row">
+    <div class="col-md-8">
+        <hub-payment-status
+            data-services="$ctrl.billingServices.data"
+            data-tracking-prefix="{{ $ctrl.trackingPrefix }}"
+            data-total-count="$ctrl.billingServices.count"
+        >
+        </hub-payment-status>
+    </div>
     <div class="col-md-4">
         <hub-billing-summary bills="$ctrl.bills"></hub-billing-summary>
     </div>

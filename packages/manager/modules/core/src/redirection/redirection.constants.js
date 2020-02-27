@@ -5,6 +5,7 @@ const managerRoot = {
 };
 
 const URI = {
+  autorenew: '#/billing/autorenew',
   billing: '#/billing/history',
   contacts: '#/contacts/services',
   paymentMethod: '#/billing/payment/method',
@@ -16,6 +17,7 @@ const URI = {
 
 export default {
   EU: {
+    autorenew: `${managerRoot.EU}/manager/dedicated/${URI.autorenew}`,
     billing: `${managerRoot.EU}/manager/dedicated/${URI.billing}`,
     contacts: `${managerRoot.EU}/manager/dedicated/${URI.contacts}`,
     help: 'https://help.ovhcloud.com',
@@ -27,6 +29,7 @@ export default {
     userEmails: `${managerRoot.EU}/manager/dedicated/${URI.userEmails}`,
   },
   CA: {
+    autorenew: `${managerRoot.CA}/manager/dedicated/${URI.autorenew}`,
     billing: `${managerRoot.CA}/manager/${URI.billing}`,
     contacts: '',
     help: 'https://help.ovhcloud.com',
