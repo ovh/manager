@@ -10,7 +10,12 @@ import BackupOffer from './backup-offer.class';
 
 export default class BackupService {
   /* @ngInject */
-  constructor($q, OvhApiDedicatedCloudDatacenter, OvhApiOrder, WucOrderCartService) {
+  constructor(
+    $q,
+    OvhApiDedicatedCloudDatacenter,
+    OvhApiOrder,
+    WucOrderCartService,
+  ) {
     this.$q = $q;
     this.backupApi = OvhApiDedicatedCloudDatacenter.Backup().v6();
     this.catalogApi = OvhApiOrder.CatalogFormatted().v6();
@@ -25,36 +30,30 @@ export default class BackupService {
           cartItem.itemId,
           'datacenter_id',
           datacenterId,
-        ).$promise,
+        ),
         this.WucOrderCartService.addConfigurationItem(
           cartItem.cartId,
           cartItem.itemId,
           'offer_type',
           offerType,
-        ).$promise,
+        ),
       ])
       .then(() => cartItem);
   }
 
   assignCart(cart) {
-    return this.WucOrderCartService.assignCart(cart.cartId);
+    return this.WucOrderCartService.assignCart(cart.cartId).then(() => cart);
   }
 
   checkoutCart(cart) {
-    return this.WucOrderCartService.checkoutCart(cart.cartId, {
-      autoPayWithPreferredPaymentMethod: true,
-    });
-  }
-
-  createCart(ovhSubsidiary) {
-    return this.WucOrderCartService.createNewCart(ovhSubsidiary);
+    return this.WucOrderCartService.checkoutCart(cart.cartId);
   }
 
   getOrderableBackupOption(productId) {
     return this.WucOrderCartService.getProductServiceOptions(
       'privateCloud',
       productId,
-    ).$promise.then((addons) =>
+    ).then((addons) =>
       find(addons, { family: CATALOG_INFO.ADDON_FAMILY_NAME }),
     );
   }
@@ -65,17 +64,16 @@ export default class BackupService {
       'privateCloud',
       productId,
       {
-        cartId: cart.cartId,
         duration: get(option, 'prices[0].duration'),
         planCode: option.planCode,
         pricingMode: get(option, 'prices[0].pricingMode'),
         quantity: 1,
       },
-    ).$promise.then((cartItem) => cartItem);
+    );
   }
 
-  orderBackup(ovhSubsidiary, productId, datacenterId, offerType) {
-    return this.createCart(ovhSubsidiary)
+  createBackupOrder(ovhSubsidiary, productId, datacenterId, offerType) {
+    return this.WucOrderCartService.createNewCart(ovhSubsidiary)
       .then((cart) => this.assignCart(cart))
       .then((cart) =>
         this.getOrderableBackupOption(productId).then((option) => ({
@@ -87,7 +85,11 @@ export default class BackupService {
       .then((cartItem) =>
         this.addConfigToCart(cartItem, datacenterId, offerType),
       )
-      .then((cartItem) => this.checkoutCart(cartItem));
+      .then((cartItem) =>
+        this.WucOrderCartService.getCheckoutInformations(
+          cartItem.cartId,
+        ).then((checkoutInfo) => ({ ...checkoutInfo, cartItem })),
+      );
   }
 
   getBackup(serviceName, datacenterId) {
