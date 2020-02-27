@@ -1,103 +1,105 @@
 <h1 data-translate="datacenter_backup_title"></h1>
-<div class="datacenter-backup" data-ui-view>
-    <div data-ovh-alert="{{ $ctrl.alertMain }}" id="backupMainAlert"></div>
-    <oui-switch data-model="true" data-on-change="$ctrl.deactivate()">
-    </oui-switch>
-    <span data-translate="datacenter_backup_enabled"></span>
+<div data-ui-view>
+    <div class="datacenter-backup">
+        <div data-ovh-alert="{{ $ctrl.alertMain }}" id="backupMainAlert"></div>
+        <oui-switch data-model="true" data-on-change="$ctrl.deactivate()">
+        </oui-switch>
+        <span data-translate="datacenter_backup_enabled"></span>
 
-    <section class="datacenter-backup-offers">
-        <h4 class="mb-3" data-translate="datacenter_backup_choose_offers"></h4>
-        <dedicated-cloud-datacenter-backup-offers
-            data-backup-offers="$ctrl.backupOffers"
-            data-backup="$ctrl.backup"
-            data-preview-mode="false"
-            data-user="$ctrl.currentUser"
-        ></dedicated-cloud-datacenter-backup-offers>
-        <oui-button
-            data-variant="primary"
-            data-text="{{ 'datacenter_backup_update_offer' | translate }}"
-        ></oui-button>
-    </section>
+        <section class="datacenter-backup-offers">
+            <h4 class="mb-3" data-translate="datacenter_backup_choose_offers"></h4>
+            <dedicated-cloud-datacenter-backup-offers
+                data-backup-offers="$ctrl.backupOffers"
+                data-backup="$ctrl.backup"
+                data-preview-mode="false"
+                data-user="$ctrl.currentUser"
+            ></dedicated-cloud-datacenter-backup-offers>
+            <oui-button
+                data-variant="primary"
+                data-text="{{ 'datacenter_backup_update_offer' | translate }}"
+            ></oui-button>
+        </section>
 
-    <section class="datacenter-backup-capabilities">
-        <h4
-            class="mb-3 mt-2"
-            data-translate="datacenter_backup_daily_report_title"
-        ></h4>
-        <p data-translate="datacenter_backup_daily_report_description"></p>
-        <form
-            name="backupCapabilitiesForm"
-            id="backupCapabilitiesForm"
-            class="font-weight-normal oui-field__control_xl"
-            novalidate
-            data-ng-submit="backupCapabilitiesForm.$valid && $ctrl.updateBackupCapabilities()"
-        >
-            <fieldset data-ng-disabled="$ctrl.loader.updatingCapabilities">
-                <oui-checkbox data-model="$ctrl.backup.backupDurationInReport">
-                    <span
-                        data-ng-class="{ 'font-weight-bold': $ctrl.backup.backupDurationInReport }"
-                        data-translate="datacenter_backup_capability_backupDurationInReport"
-                    ></span>
-                </oui-checkbox>
-                <oui-checkbox data-model="$ctrl.backup.backupSizeInReport">
-                    <span
-                        data-ng-class="{ 'font-weight-bold': $ctrl.backup.backupSizeInReport }"
-                        data-translate="datacenter_backup_capability_backupSizeInReport"
-                    ></span>
-                </oui-checkbox>
-                <oui-checkbox data-model="$ctrl.backup.diskSizeInReport">
-                    <span
-                        data-ng-class="{ 'font-weight-bold': $ctrl.backup.diskSizeInReport }"
-                        data-translate="datacenter_backup_capability_diskSizeInReport"
-                    ></span>
-                </oui-checkbox>
-                <oui-checkbox data-model="$ctrl.backup.fullDayInReport">
-                    <span
-                        data-ng-class="{ 'font-weight-bold': $ctrl.backup.fullDayInReport }"
-                        data-translate="datacenter_backup_capability_fullDayInReport"
-                    ></span>
-                </oui-checkbox>
-                <oui-checkbox data-model="$ctrl.backup.restorePointInReport">
-                    <span
-                        data-ng-class="{ 'font-weight-bold': $ctrl.backup.restorePointInReport }"
-                        data-translate="datacenter_backup_capability_restorePointInReport"
-                    ></span>
-                </oui-checkbox>
-                <oui-checkbox
-                    data-model="$ctrl.backup.sendReportToCustomeEmail"
-                    data-ng-if=":: $ctrl.backup.isAdvanced() || $ctrl.backup.isPremium()"
-                >
-                    <span
-                        data-ng-class="{ 'font-weight-bold': $ctrl.backup.sendReportToCustomeEmail }"
-                        data-translate="datacenter_backup_capability_sendReportToCustomeEmail"
-                    ></span>
-                    <oui-field
-                        data-size="xl"
-                        data-ng-if="$ctrl.backup.sendReportToCustomeEmail"
+        <section class="datacenter-backup-capabilities">
+            <h4
+                class="mb-3 mt-2"
+                data-translate="datacenter_backup_daily_report_title"
+            ></h4>
+            <p data-translate="datacenter_backup_daily_report_description"></p>
+            <form
+                name="backupCapabilitiesForm"
+                id="backupCapabilitiesForm"
+                class="font-weight-normal oui-field__control_xl"
+                novalidate
+                data-ng-submit="backupCapabilitiesForm.$valid && $ctrl.updateBackupCapabilities()"
+            >
+                <fieldset data-ng-disabled="$ctrl.loader.updatingCapabilities">
+                    <oui-checkbox data-model="$ctrl.backup.backupDurationInReport">
+                        <span
+                            data-ng-class="{ 'font-weight-bold': $ctrl.backup.backupDurationInReport }"
+                            data-translate="datacenter_backup_capability_backupDurationInReport"
+                        ></span>
+                    </oui-checkbox>
+                    <oui-checkbox data-model="$ctrl.backup.backupSizeInReport">
+                        <span
+                            data-ng-class="{ 'font-weight-bold': $ctrl.backup.backupSizeInReport }"
+                            data-translate="datacenter_backup_capability_backupSizeInReport"
+                        ></span>
+                    </oui-checkbox>
+                    <oui-checkbox data-model="$ctrl.backup.diskSizeInReport">
+                        <span
+                            data-ng-class="{ 'font-weight-bold': $ctrl.backup.diskSizeInReport }"
+                            data-translate="datacenter_backup_capability_diskSizeInReport"
+                        ></span>
+                    </oui-checkbox>
+                    <oui-checkbox data-model="$ctrl.backup.fullDayInReport">
+                        <span
+                            data-ng-class="{ 'font-weight-bold': $ctrl.backup.fullDayInReport }"
+                            data-translate="datacenter_backup_capability_fullDayInReport"
+                        ></span>
+                    </oui-checkbox>
+                    <oui-checkbox data-model="$ctrl.backup.restorePointInReport">
+                        <span
+                            data-ng-class="{ 'font-weight-bold': $ctrl.backup.restorePointInReport }"
+                            data-translate="datacenter_backup_capability_restorePointInReport"
+                        ></span>
+                    </oui-checkbox>
+                    <oui-checkbox
+                        data-model="$ctrl.backup.sendReportToCustomeEmail"
+                        data-ng-if=":: $ctrl.backup.isAdvanced() || $ctrl.backup.isPremium()"
                     >
-                        <input
-                            class="oui-input"
-                            type="email"
-                            data-ng-model="$ctrl.backup.mailAddress"
-                            name="email"
-                            maxlength="250"
-                            required
-                            id="email"
-                        />
-                    </oui-field>
-                </oui-checkbox>
-                <oui-button
-                    data-variant="primary"
-                    data-text="{{ ::'datacenter_backup_capability_update' | translate }}"
-                    data-disabled="!backupCapabilitiesForm.$dirty"
-                    type="submit"
-                    data-ng-if="!$ctrl.loader.updatingCapabilities"
-                ></oui-button>
-                <oui-spinner
-                    data-size="m"
-                    data-ng-if="$ctrl.loader.updatingCapabilities"
-                ></oui-spinner>
-            </fieldset>
-        </form>
-    </section>
+                        <span
+                            data-ng-class="{ 'font-weight-bold': $ctrl.backup.sendReportToCustomeEmail }"
+                            data-translate="datacenter_backup_capability_sendReportToCustomeEmail"
+                        ></span>
+                        <oui-field
+                            data-size="xl"
+                            data-ng-if="$ctrl.backup.sendReportToCustomeEmail"
+                        >
+                            <input
+                                class="oui-input"
+                                type="email"
+                                data-ng-model="$ctrl.backup.mailAddress"
+                                name="email"
+                                maxlength="250"
+                                required
+                                id="email"
+                            />
+                        </oui-field>
+                    </oui-checkbox>
+                    <oui-button
+                        data-variant="primary"
+                        data-text="{{ ::'datacenter_backup_capability_update' | translate }}"
+                        data-disabled="!backupCapabilitiesForm.$dirty"
+                        type="submit"
+                        data-ng-if="!$ctrl.loader.updatingCapabilities"
+                    ></oui-button>
+                    <oui-spinner
+                        data-size="m"
+                        data-ng-if="$ctrl.loader.updatingCapabilities"
+                    ></oui-spinner>
+                </fieldset>
+            </form>
+        </section>
+    </div>
 </div>

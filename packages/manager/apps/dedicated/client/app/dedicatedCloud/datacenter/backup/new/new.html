@@ -22,7 +22,7 @@
         ></span>
     </a>
 </strong>
-<oui-stepper class="mt-3" data-on-finish="$ctrl.orderBackup()">
+<oui-stepper class="mt-3" data-on-finish="$ctrl.orderBackup()" data-current-index="$ctrl.data.currentStep">
     <oui-step-form
         data-header="{{ 'dedicatedCloud_datacenter_backup_new_choose_offer' | translate }}"
         data-submit-text="{{ 'dedicatedCloud_datacenter_backup_new_choose_offer_action' | translate }}"
@@ -32,7 +32,7 @@
         <dedicated-cloud-datacenter-backup-offers
             data-backup="$ctrl.data.selectedOffer"
             data-backup-offers="$ctrl.backupOffers"
-            data-preview-mode="false"
+            data-preview-mode="$ctrl.data.currentStep !== 0"
             data-user="$ctrl.currentUser"
         >
         </dedicated-cloud-datacenter-backup-offers>
@@ -42,14 +42,19 @@
         data-submit_text="{{ 'dedicatedCloud_datacenter_backup_new_activate_offer_action' | translate }}"
         data-prevent-next="!$ctrl.data.conditionsAccepted"
         data-valid="$ctrl.data.conditionsAccepted"
+        data-loading="$ctrl.data.orderCreationInProgress"
         data-navigation="!$ctrl.data.orderInProgress"
         data-editable="!$ctrl.data.orderInProgress"
+        data-on-focus="$ctrl.createBackupOrder()"
     >
         <ovh-manager-dedicated-cloud-backup-terms-of-use
-            data-datcenter-id="{{ $ctrl.datacenterId }}"
+            data-ng-if="$ctrl.data.backupOrder"
+            data-datacenter-id="{{ $ctrl.datacenterId }}"
             data-mode="{{ $ctrl.MODES.NEW }}"
             data-model="$ctrl.data.conditionsAccepted"
+            data-conditions-url="{{ $ctrl.data.backupOrder.contracts[0].url }}"
         >
         </ovh-manager-dedicated-cloud-backup-terms-of-use>
+        <oui-spinner data-ng-if="$ctrl.data.orderInProgress" data-size="m"></oui-spinner>
     </oui-step-form>
 </oui-stepper>
