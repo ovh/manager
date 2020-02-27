@@ -5,8 +5,9 @@ import { BillingService } from '@ovh-ux/manager-models';
 
 export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
   $stateProvider.state('app', {
-    url: '/',
-    component: 'hubDashboard',
+    url: '',
+    abstract: true,
+    redirectTo: 'app.dashboard',
     resolve: {
       bills: /* @ngInject */ (hub) => hub.data.bills,
       hub: /* @ngInject */ ($http) =>
