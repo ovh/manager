@@ -128,6 +128,9 @@ angular.module('services').service(
      * @param {string} id
      */
     getFromId(serviceName, id) {
+      if (!id) {
+        return this.$q.resolve(new OvhConfig({}));
+      }
       return this.OvhHttp.get(`/hosting/web/${serviceName}/ovhConfig/${id}`, {
         rootPath: 'apiv6',
         cache: this.cache,

@@ -10,9 +10,8 @@ export default /* @ngInject */ ($stateProvider) => {
 
       region: /* @ngInject */ (coreConfig) => coreConfig.getRegion(),
 
-      /* @ngInject */
-      defaultPaymentMean: (PciProjectQuota, region) =>
-        PciProjectQuota.getDefaultPaymentMean(region),
+      hasDefaultPaymentMethod: /* @ngInject */ (ovhPaymentMethod) =>
+        ovhPaymentMethod.hasDefaultPaymentMethod(),
 
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('pci_projects_project_quota'),
