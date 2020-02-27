@@ -1,5 +1,6 @@
 import filter from 'lodash/filter';
 import map from 'lodash/map';
+import { BillingService } from '@ovh-ux/manager-models';
 
 export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
   $stateProvider.state('app', {
@@ -14,6 +15,13 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
           })
           .then(({ data }) => data),
       me: /* @ngInject */ (hub) => hub.data.me.data,
+      billingServices: /* @ngInject */ (hub) => ({
+        count: hub.data.billingServices.data.count,
+        data: map(
+          hub.data.billingServices.data.data,
+          (service) => new BillingService(service),
+        ),
+      }),
       notifications: /* @ngInject */ ($translate, hub) =>
         map(
           filter(hub.data.notifications.data, (notification) =>

@@ -4,7 +4,9 @@ export default {
   bindings: {
     bills: '<',
     me: '<',
+    billingServices: '<',
     notifications: '<',
+    trackingPrefix: '<',
     services: '<',
   },
   template,
