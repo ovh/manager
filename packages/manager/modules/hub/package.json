@@ -16,13 +16,16 @@
   },
   "peerDependencies": {
     "@ovh-ux/manager-core": "^7.5.0",
+    "@ovh-ux/ng-ovh-api-wrappers": "^3.0.0",
     "@ovh-ux/ng-ovh-payment-method": "^5.2.0",
     "@ovh-ux/ng-ovh-sso-auth": "^4.2.3",
+    "@ovh-ux/ng-ovh-swimming-poll": "^4.0.1",
     "@ovh-ux/ng-translate-async-loader": "^2.0.2",
     "@uirouter/angularjs": "^1.0.23",
     "angular": "^1.7.5",
     "angular-translate": "^2.18.1",
     "bootstrap4": "twbs/bootstrap#v4.0.0",
+    "ovh-api-services": "^9.27.1",
     "ovh-ui-kit": "^3.6.0"
   }
 }
