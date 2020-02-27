@@ -3,7 +3,7 @@ import template from './quota.html';
 
 export default {
   bindings: {
-    defaultPaymentMean: '<',
+    hasDefaultPaymentMethod: '<',
     guideUrl: '<',
     projectId: '<',
     quotas: '<',
