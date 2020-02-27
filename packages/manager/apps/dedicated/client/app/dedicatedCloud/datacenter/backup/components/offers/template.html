@@ -9,6 +9,7 @@
             data-variant="light"
             data-on-change="$ctrl.onSelected(modelValue)"
             data-values="[offer]"
+            data-disabled="$ctrl.disabled"
         >
             <div data-ng-if="offer.offerName === $ctrl.actualOffer">
                 <oui-select-picker-description>

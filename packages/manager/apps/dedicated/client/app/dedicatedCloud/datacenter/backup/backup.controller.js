@@ -12,8 +12,6 @@ export default class {
     this.$anchorScroll = $anchorScroll;
     this.$location = $location;
     this.$translate = $translate;
-    this.Alerter = Alerter;
-    this.backup = {};
     this.alerter = Alerter;
     this.datacenterBackupService = datacenterBackupService;
   }
@@ -31,6 +29,9 @@ export default class {
   }
 
   updateBackupCapabilities() {
+    if (!this.backup.isActive()) {
+      return;
+    }
     this.loader.updatingCapabilities = true;
     const capabilities = {
       backupDurationInReport: this.backup.backupDurationInReport,

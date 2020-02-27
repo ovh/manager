@@ -45,6 +45,15 @@ export default /* @ngInject */ ($stateProvider) => {
           datacenterId,
           productId,
         }),
+      goToDeleteBackup: /* @ngInject */ (
+        $state,
+        datacenterId,
+        productId,
+      ) => () =>
+        $state.go('app.dedicatedClouds.datacenter.backup.delete', {
+          datacenterId,
+          productId,
+        }),
       goToBackup: ($state, Alerter, datacenterId, productId) => (
         message = false,
         type = 'success',

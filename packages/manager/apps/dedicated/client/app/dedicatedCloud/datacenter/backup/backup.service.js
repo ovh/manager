@@ -10,7 +10,12 @@ import BackupOffer from './backup-offer.class';
 
 export default class BackupService {
   /* @ngInject */
-  constructor($q, OvhApiDedicatedCloudDatacenter, OvhApiOrder, WucOrderCartService) {
+  constructor(
+    $q,
+    OvhApiDedicatedCloudDatacenter,
+    OvhApiOrder,
+    WucOrderCartService,
+  ) {
     this.$q = $q;
     this.backupApi = OvhApiDedicatedCloudDatacenter.Backup().v6();
     this.catalogApi = OvhApiOrder.CatalogFormatted().v6();
@@ -128,7 +133,7 @@ export default class BackupService {
   }
 
   disableBackup(serviceName, datacenterId) {
-    return this.backupApi.disable({ serviceName, datacenterId }).$promise;
+    return this.backupApi.disable({ serviceName, datacenterId }, {}).$promise;
   }
 
   static getAddonsByAddonFamily(plan, family) {

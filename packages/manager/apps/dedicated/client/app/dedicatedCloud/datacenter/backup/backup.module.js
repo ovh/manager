@@ -12,6 +12,7 @@ import routing from './backup.routing';
 import backupService from './backup.service';
 import backupOffers from './components/offers';
 import backupNew from './new';
+import backupDelete from './delete';
 
 const moduleName = 'ovhManagerDedicatedCloudBackupModule';
 
@@ -24,6 +25,7 @@ angular
     'pascalprecht.translate',
     backupOffers,
     backupNew,
+    backupDelete,
   ])
   .config(routing)
   .component('ovhManagerDedicatedCloudBackup', component)

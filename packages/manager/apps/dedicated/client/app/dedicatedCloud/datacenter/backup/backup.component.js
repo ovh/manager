@@ -8,6 +8,7 @@ export default {
     datacenterId: '<',
     productId: '<',
     backup: '<',
+    goToDeleteBackup: '<',
   },
   controller,
   template,
