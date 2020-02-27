@@ -22,10 +22,7 @@ export default class OrderTrackingService {
   getOrderStatus(order) {
     return this.$http
       .get(`/me/order/${order.orderId}/status`)
-      .then(({ data }) => ({
-        ...order,
-        status: data,
-      }));
+      .then(({ data }) => data);
   }
 
   getOrderFollowUp(orderId) {

@@ -6,8 +6,9 @@ export default {
     me: '<',
     billingServices: '<',
     notifications: '<',
-    trackingPrefix: '<',
+    order: '<',
     services: '<',
+    trackingPrefix: '<',
   },
   template,
 };
