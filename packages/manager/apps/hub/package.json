@@ -24,6 +24,7 @@
     "@ovh-ux/manager-config": "^0.4.0",
     "@ovh-ux/manager-core": "^7.5.0",
     "@ovh-ux/manager-hub": "^0.0.0 || ^0.1.0-alpha.0",
+    "@ovh-ux/manager-models": "^0.0.0 || ^0.1.0",
     "@ovh-ux/manager-navbar": "^2.2.0",
     "@ovh-ux/ng-at-internet": "^4.0.4",
     "@ovh-ux/ng-at-internet-ui-router-plugin": "^2.0.4",

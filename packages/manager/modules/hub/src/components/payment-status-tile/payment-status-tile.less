@@ -1,13 +1,9 @@
-ovh-manager-hub-payment-status-tile {
+hub-payment-status {
   @import 'ovh-ui-kit/packages/oui-responsive/_variables';
   @primary-color: rgb(40, 89, 192);
 
-  .oui-datagrid__cell {
-    padding: 0.313rem 1rem;
-
-    &:last-child {
-      text-align: right;
-    }
+  .oui-datagrid__cell:last-of-type {
+    text-align: right;
   }
 
   .oui-datagrid__row:nth-child(even) .oui-datagrid__cell {
@@ -72,26 +68,8 @@ ovh-manager-hub-payment-status-tile {
   }
 
   @media screen and (max-width: (@oui-responsive-breakpoint-phone - 1)) {
-    .responsive-cell {
-      display: block;
-      height: fit-content;
-    }
-
-    .oui-datagrid__cell {
-      white-space: normal;
-
-      &:first-child {
-        border-bottom: none;
-      }
-    }
-
-    .oui-status {
-      white-space: normal;
-    }
-
-    .service-status {
-      display: block;
-      margin-bottom: 0.3rem;
+    .oui-datagrid__cell:first-of-type {
+      border-bottom: none;
     }
   }
 }
