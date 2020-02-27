@@ -964,6 +964,7 @@
   "terminate_service_type_hosting_privateDatabase": "Hébergement base SQL privée",
   "terminate_service_type_hosting_reseller": "Hébergement multisite",
   "terminate_service_type_hosting_web": "Hébergement web",
+  "terminate_service_type_ip_service": "IP",
   "terminate_service_type_ipLoadbalancing": "Load Balancing",
   "terminate_service_type_ip_loadBalancing": "Équilibreur de charge IP",
   "terminate_service_type_license_cloudLinux": "Licence CloudLinux",

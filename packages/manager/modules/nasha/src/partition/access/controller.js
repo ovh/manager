@@ -63,12 +63,6 @@ export default class NashaPartitionAccessCtrl {
         nasha: this.OvhApiDedicatedNasha.v6().get({
           serviceName: this.serviceName,
         }).$promise,
-        partition: this.OvhApiDedicatedNasha.Partition()
-          .v6()
-          .get({
-            serviceName: this.serviceName,
-            partitionName: this.partition,
-          }).$promise,
         accesses: this.OvhApiDedicatedNasha.Partition()
           .Access()
           .v6()
@@ -79,7 +73,7 @@ export default class NashaPartitionAccessCtrl {
       })
       .then((data) => {
         this.data.nasha = data.nasha;
-        this.data.partition = data.partition;
+        this.data.partition = this.partitionDetails;
         this.table.accessIps = data.accesses.map((ip) => ({
           ip,
         }));

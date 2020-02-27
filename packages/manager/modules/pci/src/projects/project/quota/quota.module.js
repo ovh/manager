@@ -5,6 +5,7 @@ import '@ovh-ux/manager-core';
 import '@ovh-ux/ng-ovh-cloud-universe-components';
 import '@ovh-ux/ng-ovh-api-wrappers'; // should be a peer dependency of ovh-api-services
 import '@ovh-ux/ng-translate-async-loader';
+import '@ovh-ux/ng-ovh-payment-method';
 import 'ovh-api-services';
 import 'ovh-ui-angular';
 
@@ -25,6 +26,7 @@ angular
     'ovhManagerCore',
     'ovh-api-services',
     'pascalprecht.translate',
+    'ngOvhPaymentMethod',
   ])
   .component('pciProjectQuota', component)
   .service('PciProjectQuota', service)
