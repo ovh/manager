@@ -1,4 +1,5 @@
 import angular from 'angular';
+import ngAtInternet from '@ovh-ux/ng-at-internet';
 import component from './component';
 
 import './index.scss';
@@ -10,7 +11,7 @@ import userInfos from './user-infos';
 const moduleName = 'ovhManagerHubUserPanel';
 
 angular
-  .module(moduleName, [paymentMean, shortcuts, userInfos])
+  .module(moduleName, [ngAtInternet, paymentMean, shortcuts, userInfos])
   .component('ovhManagerHubUserPanel', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 

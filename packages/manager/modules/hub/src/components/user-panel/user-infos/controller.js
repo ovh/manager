@@ -3,8 +3,9 @@ import toUpper from 'lodash/toUpper';
 
 export default class ManagerHubUserInfosCtrl {
   /* @ngInject */
-  constructor($q, OvhApiMe, ssoAuthentication) {
+  constructor($q, atInternet, OvhApiMe, ssoAuthentication) {
     this.$q = $q;
+    this.atInternet = atInternet;
     this.OvhApiMe = OvhApiMe;
     this.ssoAuthentication = ssoAuthentication;
   }
@@ -46,6 +47,10 @@ export default class ManagerHubUserInfosCtrl {
   }
 
   logout() {
+    this.atInternet.trackClick({
+      name: 'hub::sidebar::profile::go-to-log-out',
+      type: 'action',
+    });
     return this.ssoAuthentication.logout();
   }
 }

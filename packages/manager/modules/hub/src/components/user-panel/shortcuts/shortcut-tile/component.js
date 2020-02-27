@@ -9,5 +9,6 @@ export default {
     icon: '<',
     url: '<',
     notifications: '<?',
+    tracking: '<?',
   },
 };
