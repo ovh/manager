@@ -24,9 +24,12 @@ export default class {
 
   $onInit() {
     this.data = {
+      backupOrder: null,
       conditionsAccepted: false,
-      selectedOffer: {},
+      currentStep: 0,
       orderInProgress: false,
+      orderCreationInProgress: false,
+      selectedOffer: {},
     };
   }
 
@@ -35,15 +38,43 @@ export default class {
     this.$anchorScroll();
   }
 
-  orderBackup() {
-    this.data.orderInProgress = true;
+  handleOrderError(error) {
+    this.alerter.error(
+      this.$translate.instant(
+        'dedicatedCloud_datacenter_backup_new_create_error',
+        {
+          message: get(error, ['data', 'message'], error.message),
+        },
+      ),
+      'app.dedicatedClouds.datacenter.backup.new',
+    );
+    this.scrollToTop();
+    this.data.currentStep = 0;
+  }
+
+  createBackupOrder() {
+    this.data.backupOrder = null;
+    this.data.orderCreationInProgress = true;
     return this.datacenterBackupService
-      .orderBackup(
+      .createBackupOrder(
         this.currentUser.ovhSubsidiary,
         this.productId,
         this.datacenterId,
         this.data.selectedOffer.backupOffer,
       )
+      .then((order) => {
+        this.data.backupOrder = order;
+      })
+      .catch((error) => this.handleOrderError(error))
+      .finally(() => {
+        this.data.orderCreationInProgress = false;
+      });
+  }
+
+  orderBackup() {
+    this.data.orderInProgress = true;
+    return this.datacenterBackupService
+      .checkoutCart(this.data.backupOrder.cartItem)
       .then(() => {
         return this.goToBackup(
           this.$translate.instant(
@@ -55,18 +86,7 @@ export default class {
           ),
         );
       })
-      .catch((error) => {
-        this.alerter.error(
-          this.$translate.instant(
-            'dedicatedCloud_datacenter_backup_new_create_error',
-            {
-              message: get(error, ['data', 'message'], error.message),
-            },
-          ),
-          'app.dedicatedClouds.datacenter.backup.new',
-        );
-        this.scrollToTop();
-      })
+      .catch((error) => this.handleOrderError(error))
       .finally(() => {
         this.data.orderInProgress = false;
       });
