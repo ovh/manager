@@ -1,5 +1,16 @@
 <section class="container-fluid cui-page__content cui-page__content-flex">
     <div class="row d-lg-flex">
+        <div class="col-xm-12 col-md-4" data-ng-if="$ctrl.isVpsNewRange">
+            <vps-dashboard-tile-information
+                actions="$ctrl.actions"
+                regions-group="$ctrl.regionsGroup"
+                vps="$ctrl.vps"
+                go-to-kvm="$ctrl.goToKvm"
+                go-to-reboot="$ctrl.goToReboot"
+                go-to-reboot-rescue="$ctrl.goToRebootRescue"
+            >
+            </vps-dashboard-tile-information>
+        </div>
         <div class="col-xm-12 col-md-4" data-ng-if="!$ctrl.vps.isExpired">
             <oui-tile
                 data-heading="{{ ::'vps_tile_shortcut' | translate }}"
@@ -121,37 +132,19 @@
                     data-term="{{ ::'vps_dashboard_localisation' | translate }}"
                 >
                     <oui-tile-description>
-                        <div data-ng-if="!$ctrl.hasMultipleRegions()">
-                            <i
-                                class="flag-icon {{ ::$ctrl.detailedRegions[0].icon }} flag flag__icon-sm mr-1"
-                                aria-hidden="true"
-                            ></i>
-                            <span
-                                data-ng-bind=":: $ctrl.detailedRegions[0].microRegion.text"
-                            ></span>
-                            <span
-                                data-ng-if="::$ctrl.detailedRegions[0].country"
-                            >
-                                -
-                            </span>
-                            <small
-                                data-ng-bind=":: $ctrl.detailedRegions[0].country"
-                            ></small>
-                        </div>
                         <div
-                            data-ng-if="$ctrl.hasMultipleRegions()"
-                            data-ng-repeat="(key, regions) in $ctrl.regionsGroup track by $index"
+                            data-ng-repeat="(key, regions) in $ctrl.regionsGroup track by key"
                         >
-                            <i
+                            <span
                                 class="flag-icon {{ ::regions[0].icon }} flag flag__icon-sm mr-1"
                                 aria-hidden="true"
-                            ></i>
+                            ></span>
                             <span
-                                data-ng-repeat="region in regions track by $index"
-                                data-ng-bind=":: region.macroRegion.code + (!$last ? ', ' : '')"
+                                data-ng-repeat="region in ::regions track by region.microRegion.code"
+                                data-ng-bind=":: region.microRegion.text + (!$last ? ', ' : '')"
                             ></span>
                             <span data-ng-if="::key"> - </span>
-                            <small data-ng-bind="::key"></small>
+                            <span data-ng-bind="::key"></span>
                         </div>
                     </oui-tile-description>
                 </oui-tile-definition>
