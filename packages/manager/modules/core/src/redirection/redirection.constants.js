@@ -10,6 +10,7 @@ const URI = {
   paymentMethod: '#/billing/payment/method',
   services: '#/billing/autoRenew',
   support: '#/ticket',
+  supportLevel: '#/useraccount/support/level',
   userEmails: '#/useraccount/emails',
 };
 
@@ -21,6 +22,7 @@ export default {
     paymentMethod: `${managerRoot.EU}/manager/dedicated/${URI.paymentMethod}`,
     services: `${managerRoot.EU}/manager/dedicated/${URI.services}`,
     support: `${managerRoot.EU}/manager/dedicated/${URI.support}`,
+    supportLevel: `${managerRoot.EU}/manager/dedicated/${URI.supportLevel}`,
     tasks: 'http://travaux.ovh.net/',
     userEmails: `${managerRoot.EU}/manager/dedicated/${URI.userEmails}`,
   },
@@ -31,6 +33,7 @@ export default {
     paymentMethod: `${managerRoot.CA}/manager/${URI.paymentMethod}`,
     services: `${managerRoot.CA}/manager/${URI.services}`,
     support: `${managerRoot.CA}/manager/${URI.support}`,
+    supportLevel: `${managerRoot.CA}/manager/${URI.supportLevel}`,
     tasks: '',
     userEmails: `${managerRoot.CA}/manager/${URI.userEmails}`,
   },
@@ -41,6 +44,7 @@ export default {
     paymentMethod: `${managerRoot.US}/manager/dedicated/${URI.paymentMethod}`,
     services: `${managerRoot.US}/manager/dedicated/${URI.services}`,
     support: `${managerRoot.US}/manager/dedicated/${URI.support}`,
+    supportLevel: '',
     tasks: '',
     userEmails: `${managerRoot.US}/manager/dedicated/${URI.userEmails}`,
   },
