@@ -12,8 +12,6 @@ export default class {
     this.$anchorScroll = $anchorScroll;
     this.$location = $location;
     this.$translate = $translate;
-    this.Alerter = Alerter;
-    this.backup = {};
     this.alerter = Alerter;
     this.datacenterBackupService = datacenterBackupService;
   }
