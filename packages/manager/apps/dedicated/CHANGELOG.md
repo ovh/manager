@@ -1,3 +1,12 @@
+## [11.5.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@11.5.2...@ovh-ux/manager-dedicated@11.5.3) (2020-02-28)
+
+
+### Bug Fixes
+
+* **billing.terminate:** encode uri ([#2355](https://github.com/ovh/manager/issues/2355)) ([547ed7c](https://github.com/ovh/manager/commit/547ed7c234ef5e05bfa228571ab6174817445954))
+
+
+
 ## [11.5.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@11.5.1...@ovh-ux/manager-dedicated@11.5.2) (2020-02-27)
 
 
