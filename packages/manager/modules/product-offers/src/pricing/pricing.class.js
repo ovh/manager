@@ -3,7 +3,7 @@ import moment from 'moment';
 
 import GenericPricingHelper from './generic-pricing.helper';
 
-import { ISO_DURATION_FORMAT } from './pricing.constants';
+import { PRICING_CAPACITIES, ISO_DURATION_FORMAT } from './pricing.constants';
 
 /** Class representing a catalog Pricing.
  *  For class properties, see the order.catalog.public.Pricing[]
@@ -45,5 +45,13 @@ export default class Pricing {
    */
   hasExtraPricing() {
     return !!this.extraPricing;
+  }
+
+  /**
+   * Determines if pricing has renew capacity
+   * @return {boolean}
+   */
+  hasRenewCapacity() {
+    return this.capacities.includes(PRICING_CAPACITIES.RENEW);
   }
 }
