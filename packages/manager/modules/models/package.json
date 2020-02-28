@@ -9,6 +9,7 @@
     "directory": "packages/manager/modules/models"
   },
   "license": "BSD-3-Clause",
+  "author": "OVH SAS",
   "main": "index.js",
   "dependencies": {
     "moment": "^2.24.0"
