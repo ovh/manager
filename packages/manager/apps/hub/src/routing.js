@@ -10,6 +10,7 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
     redirectTo: 'app.dashboard',
     resolve: {
       bills: /* @ngInject */ (hub) => hub.data.bills,
+      catalog: /* @ngInject */ (hub) => hub.data.catalog,
       hub: /* @ngInject */ ($http) =>
         $http
           .get('/hub', {

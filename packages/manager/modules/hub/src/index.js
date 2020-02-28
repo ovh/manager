@@ -7,6 +7,7 @@ import 'angular-translate';
 
 import billingSummary from './components/billing-summary';
 import ovhManagerHubCarousel from './components/carousel';
+import ovhManagerHubCatalogItems from './components/catalog-items';
 import ovhManagerHubOrderTracking from './components/order-tracking';
 import ovhManagerHubPaymentStatusTile from './components/payment-status-tile';
 import ovhManagerHubProducts from './components/products';
@@ -21,6 +22,7 @@ angular.module(moduleName, [
   'pascalprecht.translate',
   'ui.router',
   ovhManagerHubCarousel,
+  ovhManagerHubCatalogItems,
   ovhManagerHubOrderTracking,
   ovhManagerHubPaymentStatusTile,
   ovhManagerHubTile,
