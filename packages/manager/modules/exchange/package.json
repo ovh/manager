@@ -30,7 +30,7 @@
     "angular-translate": "^2.18.1",
     "angular-ui-bootstrap": "~1.3.3",
     "ng-ckeditor": "^2.0.5",
-    "ovh-api-services": "^9.27.1",
+    "ovh-api-services": "^9.39.1",
     "ovh-ui-angular": "^3.11.0"
   }
 }
