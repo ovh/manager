@@ -1,10 +1,12 @@
 import angular from 'angular';
+import endsWith from 'lodash/endsWith';
+import find from 'lodash/find';
+import get from 'lodash/get';
 import has from 'lodash/has';
 import map from 'lodash/map';
 import pickBy from 'lodash/pickBy';
 import reduce from 'lodash/reduce';
 import startsWith from 'lodash/startsWith';
-import endsWith from 'lodash/endsWith';
 
 import Container from './container.class';
 import ContainerObject from './container-object.class';
@@ -21,6 +23,8 @@ import {
   X_CONTAINER_HEADERS_REGEX,
   X_CONTAINER_READ,
   X_CONTAINER_READ_PUBLIC_VALUE,
+  CONTAINER_COMMERCIAL_NAME,
+  PUBLIC_CLOUD_PRODUCT_NAME,
 } from './containers.constants';
 
 export default class PciStoragesContainersService {
@@ -31,12 +35,14 @@ export default class PciStoragesContainersService {
     coreConfig,
     OvhApiCloudProjectStorage,
     OvhApiCloudProjectUser,
+    OvhApiOrderCatalogPublic,
   ) {
     this.$http = $http;
     this.$q = $q;
     this.coreConfig = coreConfig;
     this.OvhApiCloudProjectStorage = OvhApiCloudProjectStorage;
     this.OvhApiCloudProjectUser = OvhApiCloudProjectUser;
+    this.OvhApiOrderCatalogPublic = OvhApiOrderCatalogPublic;
   }
 
   getAccessAndToken(projectId) {
@@ -367,5 +373,30 @@ export default class PciStoragesContainersService {
     }
 
     return this.$q.resolve();
+  }
+
+  getPriceEstimation(ovhSubsidiary) {
+    return this.OvhApiOrderCatalogPublic.v6()
+      .get({
+        productName: PUBLIC_CLOUD_PRODUCT_NAME,
+        ovhSubsidiary,
+      })
+      .$promise.then((catalog) => {
+        let priceObj = null;
+        find(get(catalog, 'addons', []), (addon) => {
+          return (
+            get(addon, 'blobs.commercial.name', null) ===
+              CONTAINER_COMMERCIAL_NAME &&
+            find(get(addon, 'pricings', []), (pricing) => {
+              if (get(pricing, 'capacities', []).includes('renew')) {
+                priceObj = pricing;
+                return true;
+              }
+              return false;
+            })
+          );
+        });
+        return priceObj;
+      });
   }
 }

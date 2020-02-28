@@ -10,5 +10,6 @@ export default {
     regions: '<',
     goBack: '<',
     cancelLink: '<',
+    user: '<',
   },
 };
