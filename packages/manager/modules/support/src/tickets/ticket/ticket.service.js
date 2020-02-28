@@ -1,7 +1,7 @@
 import map from 'lodash/map';
 import set from 'lodash/set';
 
-import Ticket from './ticket.class';
+import { Ticket } from '@ovh-ux/manager-models';
 
 export default class TicketService {
   /* @ngInject */
@@ -49,17 +49,15 @@ export default class TicketService {
     return this.get(id)
       .then((ticketFromApi) => this.buildFromApi(ticketFromApi))
       .then((ticket) =>
-        this.ticketMessageService
-          .query(id)
-          .then((messagesFromApi) =>
-            set(
-              ticket,
-              'messages',
-              map(messagesFromApi, (messageFromApi) =>
-                this.ticketMessageService.buildFromApi(messageFromApi),
-              ),
+        this.ticketMessageService.query(id).then((messagesFromApi) =>
+          set(
+            ticket,
+            'messages',
+            map(messagesFromApi, (messageFromApi) =>
+              this.ticketMessageService.buildFromApi(messageFromApi),
             ),
           ),
+        ),
       );
   }
 
