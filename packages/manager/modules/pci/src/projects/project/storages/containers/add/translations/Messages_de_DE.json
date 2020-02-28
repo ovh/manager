@@ -15,5 +15,6 @@
   "pci_projects_project_storages_containers_add_save_form": "Container wird erstellt",
   "pci_projects_project_storages_containers_add_success_message": "Der Container {{ container }} wurde hinzugefügt.",
   "pci_projects_project_storages_containers_add_error_post": "Beim Hinzufügen des Containers {{ container }} ist ein Fehler aufgetreten: {{ message }}.",
-  "pci_projects_project_storages_containers_add_archive_title": "Archivcontainer erstellen"
+  "pci_projects_project_storages_containers_add_archive_title": "Archivcontainer erstellen",
+  "pci_projects_project_storages_containers_add_type_price": "{{ price }} ohne MWSt./Monat/GB"
 }

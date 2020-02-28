@@ -15,5 +15,6 @@
   "pci_projects_project_storages_containers_add_save_form": "Deleting container...",
   "pci_projects_project_storages_containers_add_success_message": "The {{container}} container has been added. ",
   "pci_projects_project_storages_containers_add_error_post": "There was an error when adding the {{ container }} container: {{ message }}.",
-  "pci_projects_project_storages_containers_add_archive_title": "Create an object container"
+  "pci_projects_project_storages_containers_add_archive_title": "Create an object container",
+  "pci_projects_project_storages_containers_add_type_price": "{{ price }} ex. VAT/month/GB"
 }
