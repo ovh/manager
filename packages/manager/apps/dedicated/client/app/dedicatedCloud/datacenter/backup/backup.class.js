@@ -28,7 +28,10 @@ export default class Backup {
     this.backupDurationInReport = this.backupDurationInReport
       ? this.backupDurationInReport
       : false;
-    this.sendReportToCustomeEmail = this.mailAddress !== null;
+  }
+
+  get sendReportToCustomerEmail() {
+    return this.mailAddress !== null;
   }
 
   isInactive() {

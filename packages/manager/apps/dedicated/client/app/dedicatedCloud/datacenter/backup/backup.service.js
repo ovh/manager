@@ -1,5 +1,6 @@
 import find from 'lodash/find';
 import get from 'lodash/get';
+import includes from 'lodash/includes';
 import map from 'lodash/map';
 import remove from 'lodash/remove';
 import sortBy from 'lodash/sortBy';
@@ -59,14 +60,17 @@ export default class BackupService {
   }
 
   addOptionToCart(option, cart, productId) {
+    const price = find(get(option, 'prices'), (priceObj) => {
+      return includes(get(priceObj, 'capacities'), 'installation');
+    });
     return this.WucOrderCartService.addProductServiceOptionToCart(
       cart.cartId,
       'privateCloud',
       productId,
       {
-        duration: get(option, 'prices[0].duration'),
-        planCode: option.planCode,
-        pricingMode: get(option, 'prices[0].pricingMode'),
+        duration: get(price, 'duration'),
+        planCode: get(option, 'planCode'),
+        pricingMode: get(price, 'pricingMode'),
         quantity: 1,
       },
     );

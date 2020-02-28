@@ -7,17 +7,19 @@
         <span data-translate="datacenter_backup_enabled"></span>
 
         <section class="datacenter-backup-offers">
-            <h4 class="mb-3" data-translate="datacenter_backup_choose_offers"></h4>
+            <h4
+                class="mb-3"
+                data-translate="datacenter_backup_choose_offers"
+            ></h4>
             <dedicated-cloud-datacenter-backup-offers
                 data-backup-offers="$ctrl.backupOffers"
                 data-backup="$ctrl.backup"
                 data-preview-mode="false"
                 data-user="$ctrl.currentUser"
             ></dedicated-cloud-datacenter-backup-offers>
-            <oui-button
-                data-variant="primary"
-                data-text="{{ 'datacenter_backup_update_offer' | translate }}"
-            ></oui-button>
+            <oui-button data-variant="primary">
+                <span data-translate="datacenter_backup_update_offer"></span>
+            </oui-button>
         </section>
 
         <section class="datacenter-backup-capabilities">
@@ -29,12 +31,14 @@
             <form
                 name="backupCapabilitiesForm"
                 id="backupCapabilitiesForm"
-                class="font-weight-normal oui-field__control_xl"
+                class="oui-field__control_xl"
                 novalidate
                 data-ng-submit="backupCapabilitiesForm.$valid && $ctrl.updateBackupCapabilities()"
             >
                 <fieldset data-ng-disabled="$ctrl.loader.updatingCapabilities">
-                    <oui-checkbox data-model="$ctrl.backup.backupDurationInReport">
+                    <oui-checkbox
+                        data-model="$ctrl.backup.backupDurationInReport"
+                    >
                         <span
                             data-ng-class="{ 'font-weight-bold': $ctrl.backup.backupDurationInReport }"
                             data-translate="datacenter_backup_capability_backupDurationInReport"
@@ -58,7 +62,9 @@
                             data-translate="datacenter_backup_capability_fullDayInReport"
                         ></span>
                     </oui-checkbox>
-                    <oui-checkbox data-model="$ctrl.backup.restorePointInReport">
+                    <oui-checkbox
+                        data-model="$ctrl.backup.restorePointInReport"
+                    >
                         <span
                             data-ng-class="{ 'font-weight-bold': $ctrl.backup.restorePointInReport }"
                             data-translate="datacenter_backup_capability_restorePointInReport"
