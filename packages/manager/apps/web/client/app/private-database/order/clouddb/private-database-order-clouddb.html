@@ -123,7 +123,7 @@
             data-name="payment"
             data-header="{{:: 'private_database_order_clouddb_payment' | translate }}"
             data-on-focus="$ctrl.prepareCheckout()"
-            data-valid="$ctrl.autoPayWithPreferredPaymentMethod !== undefined && $ctrl.agreeContracts"
+            data-valid="$ctrl.agreeContracts"
             data-prevent-next
             data-submit-text="{{:: 'private_database_order_clouddb_payment_pay' | translate }}"
             data-loading="$ctrl.loadingCheckout"
