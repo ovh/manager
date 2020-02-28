@@ -12,6 +12,7 @@
   "author": "OVH SAS",
   "main": "./src/index.js",
   "devDependencies": {
+    "bootstrap4": "twbs/bootstrap#v4.0.0",
     "lodash": "^4.17.15"
   },
   "peerDependencies": {
@@ -27,6 +28,7 @@
     "angular-translate": "^2.18.1",
     "bootstrap4": "twbs/bootstrap#v4.0.0",
     "ovh-api-services": "^9.39.1",
+    "ovh-ui-angular": "^3.15.0",
     "ovh-ui-kit": "^3.6.0"
   }
 }
