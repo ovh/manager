@@ -1,7 +1,7 @@
 import mapValues from 'lodash/mapValues';
 
+import { Ticket } from '@ovh-ux/manager-models';
 import { FROM as TICKET_MESSAGE_FROM } from './ticket/message/message.constants';
-import { STATUS as TICKET_STATUS } from './ticket/ticket.constants';
 
 export default class TicketsService {
   /* @ngInject */
@@ -29,7 +29,7 @@ export default class TicketsService {
 
   buildGridColumnStateTypeOptions() {
     return {
-      values: mapValues(TICKET_STATUS, (status) =>
+      values: mapValues(Ticket.Status, (status) =>
         this.ticketService.translateState(status),
       ),
     };

@@ -1,6 +1,6 @@
 import get from 'lodash/get';
+import { Ticket as SupportTicket } from '@ovh-ux/manager-models';
 import { MAX_TICKETS_TO_DISPLAY } from './constants';
-import SupportTicket from './ticket.class';
 
 export default class ManagerHubSupportCtrl {
   /* @ngInject */
