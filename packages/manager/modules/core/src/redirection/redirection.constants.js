@@ -4,6 +4,8 @@ const managerRoot = {
   US: 'https://us.ovhcloud.com',
 };
 
+const guidesRoot = 'https://docs.ovh.com';
+
 const URI = {
   billing: '#/billing/history',
   contacts: '#/contacts/services',
@@ -18,6 +20,25 @@ export default {
   EU: {
     billing: `${managerRoot.EU}/manager/dedicated/${URI.billing}`,
     contacts: `${managerRoot.EU}/manager/dedicated/${URI.contacts}`,
+    guides: {
+      home: {
+        CZ: `${guidesRoot}/cz/cs/`,
+        DE: `${guidesRoot}/de/`,
+        ES: `${guidesRoot}/es/`,
+        FI: `${guidesRoot}/fi/`,
+        FR: `${guidesRoot}/fr/`,
+        GB: `${guidesRoot}/gb/en/`,
+        IE: `${guidesRoot}/ie/en/`,
+        IT: `${guidesRoot}/it/`,
+        LT: `${guidesRoot}/lt/`,
+        MA: `${guidesRoot}/gb/en/`,
+        NL: `${guidesRoot}/nl/`,
+        PL: `${guidesRoot}/pl/`,
+        PT: `${guidesRoot}/pt/`,
+        SN: `${guidesRoot}/gb/en/`,
+        TN: `${guidesRoot}/gb/en/`,
+      },
+    },
     help: 'https://help.ovhcloud.com',
     paymentMethod: `${managerRoot.EU}/manager/dedicated/${URI.paymentMethod}`,
     services: `${managerRoot.EU}/manager/dedicated/${URI.services}`,
@@ -30,6 +51,17 @@ export default {
   CA: {
     billing: `${managerRoot.CA}/manager/${URI.billing}`,
     contacts: '',
+    guides: {
+      home: {
+        ASIA: `${guidesRoot}/ca/en/`,
+        AU: `${guidesRoot}/ca/en/`,
+        CA: `${guidesRoot}/ca/en/`,
+        QC: `${guidesRoot}/ca/fr/`,
+        SG: `${guidesRoot}/ca/en/`,
+        WE: `${guidesRoot}/ca/en/`,
+        WS: `${guidesRoot}/ca/en/`,
+      },
+    },
     help: 'https://help.ovhcloud.com',
     paymentMethod: `${managerRoot.CA}/manager/${URI.paymentMethod}`,
     services: `${managerRoot.CA}/manager/${URI.services}`,
@@ -42,6 +74,11 @@ export default {
   US: {
     billing: `${managerRoot.US}/manager/dedicated/${URI.billing}`,
     contacts: '',
+    guides: {
+      home: {
+        US: 'https://support.us.ovhcloud.com',
+      },
+    },
     help: 'https://help.ovhcloud.com',
     paymentMethod: `${managerRoot.US}/manager/dedicated/${URI.paymentMethod}`,
     services: `${managerRoot.US}/manager/dedicated/${URI.services}`,
