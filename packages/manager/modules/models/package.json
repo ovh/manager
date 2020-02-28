@@ -3,6 +3,11 @@
   "version": "0.0.0",
   "private": true,
   "description": "Set of classes representing API data ",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ovh/manager.git",
+    "directory": "packages/manager/modules/models"
+  },
   "license": "BSD-3-Clause",
   "main": "index.js",
   "dependencies": {
