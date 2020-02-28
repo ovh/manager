@@ -39,7 +39,8 @@
                     </ovh-manager-catalog-price>
                 </oui-select-picker-label>
                 <oui-select-picker-description
-                    data-ng-if="pricing.hasExtraPricing() && !pricing.extraPricing.isFree()"
+                    data-ng-if="pricing.hasExtraPricing()
+                      && (!pricing.extraPricing.isFree() || pricing.extraPricing.hasRenewCapacity())"
                 >
                     <ovh-manager-product-offers-extra-pricing-detail
                         pricing="pricing.extraPricing"
