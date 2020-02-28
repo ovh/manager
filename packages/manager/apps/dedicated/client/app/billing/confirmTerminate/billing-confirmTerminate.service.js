@@ -48,7 +48,12 @@ angular
       token,
     ) {
       return this.getServiceApi(serviceId)
-        .then((serviceApi) => serviceApi.route.url)
+        .then((serviceApi) =>
+          serviceApi.route.url.replace(
+            serviceApi.resource.name,
+            window.encodeURIComponent(serviceApi.resource.name),
+          ),
+        )
         .then((url) =>
           OvhHttp.post(`${url}/confirmTermination`, {
             rootPath: 'apiv6',
