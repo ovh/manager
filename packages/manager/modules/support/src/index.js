@@ -1,6 +1,8 @@
 import angular from 'angular';
 
 import ngAtInternet from '@ovh-ux/ng-at-internet';
+import '@ovh-ux/ng-ovh-api-wrappers';
+import '@ovh-ux/ng-ovh-swimming-poll';
 import managerCore from '@ovh-ux/manager-core';
 import uiRouterAngularJs from '@uirouter/angularjs';
 import oclazyload from 'oclazyload';
@@ -14,6 +16,7 @@ angular
     managerCore,
     ngAtInternet,
     oclazyload,
+    'ovh-api-services',
     uiRouterAngularJs,
   ])
   .config(

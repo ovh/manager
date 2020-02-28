@@ -19,6 +19,7 @@
     "@ovh-ux/manager-core": "^7.6.2",
     "@ovh-ux/ng-at-internet": "^4.0.3",
     "@ovh-ux/ng-ovh-api-wrappers": "^4.0.5",
+    "@ovh-ux/ng-ovh-swimming-poll": "^4.0.2",
     "@ovh-ux/ng-translate-async-loader": "^2.0.2",
     "@uirouter/angularjs": "^1.0.23",
     "angular": "^1.7.8",
