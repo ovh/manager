@@ -3,7 +3,7 @@ import {
   getClassFromStatus,
   datagridToIcebergFilter,
 } from './data-processing.utils';
-import { DATA_PROCESSING_UI_URL } from './data-processing.constants';
+import { DATA_PROCESSING_GUIDE_URL } from './data-processing.constants';
 
 export default class {
   /* @ngInject */
@@ -19,7 +19,7 @@ export default class {
     this.cucRegionService = CucRegionService;
     this.isJobRunning = isJobRunning;
     this.getClassFromStatus = getClassFromStatus;
-    this.DATA_PROCESSING_UI_URL = DATA_PROCESSING_UI_URL;
+    this.guideUrl = DATA_PROCESSING_GUIDE_URL;
   }
 
   $onInit() {

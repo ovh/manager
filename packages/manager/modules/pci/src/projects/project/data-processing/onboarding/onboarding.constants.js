@@ -1,17 +1,15 @@
 export const GUIDES = [
   {
     id: 'overview',
-    link: 'https://docs.ovh.com/gb/en/analytics/labs/data-platform/overview/',
+    link: 'https://docs.ovh.com/gb/en/data-processing/overview/',
   },
   {
     id: 'quick_start',
-    link:
-      'https://docs.ovh.com/gb/en/analytics/labs/data-platform/setup-data-pipeline/',
+    link: 'https://docs.ovh.com/gb/en/data-processing/submit-javascala/',
   },
   {
     id: 'monitor_job',
-    link:
-      'https://docs.ovh.com/gb/en/analytics/labs/data-platform/manage-users/',
+    link: 'https://docs.ovh.com/gb/en/data-processing/monitor/',
   },
 ];
 

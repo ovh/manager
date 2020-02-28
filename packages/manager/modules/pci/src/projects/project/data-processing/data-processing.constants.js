@@ -21,10 +21,14 @@ export const DATA_PROCESSING_UI_URL = {
   GRA5: 'https://adc.gra.dataconvergence.ovh.com',
 };
 
+export const DATA_PROCESSING_GUIDE_URL =
+  'https://docs.ovh.com/gb/en/data-processing/';
+
 export default {
   DATA_PROCESSING_STATUS_TO_CLASS,
   DATA_PROCESSING_STATUSES,
   DATA_PROCESSING_UI_URL,
+  DATA_PROCESSING_GUIDE_URL,
 };
 
 export const METRICS_REFRESH_INTERVAL = 5000;
