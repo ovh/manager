@@ -1,0 +1,9 @@
+<div class="row" data-ng-repeat="item in $ctrl.items track by item.productName">
+    <a
+        class="col-md-4 text-center oui-tile d-block d-flex align-items-center"
+        data-ng-href="{{:: item.order }}"
+    >
+        <span class="oui-icon oui-icon-add" aria-hidden="true"></span>
+        <span data-ng-bind="item.description"></span>
+    </a>
+</div>

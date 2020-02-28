@@ -1,0 +1,5 @@
+<p data-translate="manager_hub_order_dashboard_description"></p>
+<div data-ng-repeat="(universe, products) in $ctrl.catalog track by universe">
+    <h2 data-ng-bind=":: universe"></h2>
+    <hub-order-items data-items="products"></hub-order-items>
+</div>

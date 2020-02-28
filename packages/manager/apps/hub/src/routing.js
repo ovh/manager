@@ -1,12 +1,16 @@
 import filter from 'lodash/filter';
+import groupBy from 'lodash/groupBy';
 import map from 'lodash/map';
 
 export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
   $stateProvider.state('app', {
     url: '/',
-    component: 'hubDashboard',
+    componentProvider: /* @ngInject */ (services) =>
+      services.count === 0 ? 'hubOrderDashboard' : 'hubDashboard',
     resolve: {
       bills: /* @ngInject */ (hub) => hub.data.bills,
+      catalog: /* @ngInject */ (hub) =>
+        groupBy(hub.data.catalog.data, 'universe'),
       hub: /* @ngInject */ ($http) =>
         $http
           .get('/hub', {
@@ -31,7 +35,7 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
             ),
           }),
         ),
-      services: /* @ngInject */ (hub) => hub.data.services.data.data,
+      services: /* @ngInject */ (hub) => hub.data.services.data,
     },
   });
 

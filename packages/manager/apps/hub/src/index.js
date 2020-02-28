@@ -12,6 +12,7 @@ import ovhManagerNavbar from '@ovh-ux/manager-navbar';
 import atInternet from './components/at-internet';
 import preload from './components/manager-preload';
 import dashboard from './dashboard';
+import orderDashboard from './order-dashboard';
 
 import routing from './routing';
 import './index.scss';
@@ -24,6 +25,7 @@ angular
   .module('managerHubApp', [
     'pascalprecht.translate',
     atInternet,
+    orderDashboard,
     dashboard,
     'pascalprecht.translate',
     'oui',
