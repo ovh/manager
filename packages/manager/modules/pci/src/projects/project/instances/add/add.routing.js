@@ -25,6 +25,7 @@ export default /* @ngInject */ ($stateProvider) => {
                   ? deals
                   : null,
               )
+              .catch(() => null)
           : $q.when(null),
 
       privateNetworks: /* @ngInject */ (
