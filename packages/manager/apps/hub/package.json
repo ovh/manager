@@ -23,6 +23,7 @@
   "dependencies": {
     "@ovh-ux/manager-config": "^0.4.0",
     "@ovh-ux/manager-core": "^7.5.0",
+    "@ovh-ux/manager-error-page": "^1.3.0",
     "@ovh-ux/manager-hub": "^0.0.0 || ^0.1.0-alpha.0",
     "@ovh-ux/manager-models": "^0.0.0 || ^0.1.0",
     "@ovh-ux/manager-navbar": "^2.2.0",
