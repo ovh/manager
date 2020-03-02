@@ -3,6 +3,7 @@ import template from './terms-of-use.html';
 
 export default {
   bindings: {
+    backupTariffUrl: '@',
     conditionsUrl: '@',
     datacenterId: '@',
     mode: '@',

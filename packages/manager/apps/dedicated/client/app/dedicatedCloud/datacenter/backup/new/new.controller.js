@@ -1,6 +1,5 @@
 import get from 'lodash/get';
 
-import { VEEAM_TARIFF_DETAILS_URL } from '../backup.constants';
 import { MODES } from '../components/termsOfUse/terms-of-use.constants';
 
 export default class {
@@ -19,7 +18,6 @@ export default class {
     this.datacenterBackupService = datacenterBackupService;
 
     this.MODES = MODES;
-    this.VEEAM_TARIFF_DETAILS_URL = VEEAM_TARIFF_DETAILS_URL;
   }
 
   $onInit() {
@@ -31,11 +29,6 @@ export default class {
       orderCreationInProgress: false,
       selectedOffer: {},
     };
-  }
-
-  scrollToTop() {
-    this.$location.hash('backupNewMainAlert');
-    this.$anchorScroll();
   }
 
   handleOrderError(error) {
@@ -81,7 +74,7 @@ export default class {
             'dedicatedCloud_datacenter_backup_new_create_success',
             {
               offerType: this.data.selectedOffer.backupOffer,
-              guideLink: this.VEEAM_TARIFF_DETAILS_URL,
+              guideLink: this.backupTariffUrl,
             },
           ),
         );

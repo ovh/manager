@@ -1,3 +1,7 @@
+import get from 'lodash/get';
+
+import { BACKUP_TARIFF_URL } from './backup.constants';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.dedicatedClouds.datacenter.backup', {
     url: '/backup',
@@ -40,6 +44,8 @@ export default /* @ngInject */ ($stateProvider) => {
           datacenterId,
           currentUser.ovhSubsidiary,
         ),
+      backupTariffUrl: /* @ngInject */ (currentUser) =>
+        get(BACKUP_TARIFF_URL, currentUser.ovhSubsidiary, BACKUP_TARIFF_URL.FR),
       goToNewBackup: /* @ngInject */ ($state, datacenterId, productId) => () =>
         $state.go('app.dedicatedClouds.datacenter.backup.new', {
           datacenterId,
@@ -72,6 +78,8 @@ export default /* @ngInject */ ($stateProvider) => {
         }
         return promise;
       },
+      scrollToTop: () => () =>
+        document.getElementById('dedicatedCloud_datacenter_backup_header').scrollIntoView(),
     },
   });
 };

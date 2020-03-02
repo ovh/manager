@@ -3,11 +3,12 @@ import template from './backup.html';
 
 export default {
   bindings: {
+    backup: '<',
     backupOffers: '<',
     currentUser: '<',
     datacenterId: '<',
     productId: '<',
-    backup: '<',
+    scrollToTop: '<',
   },
   controller,
   template,

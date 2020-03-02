@@ -8,26 +8,43 @@ import {
 } from './backup.constants';
 
 export default class Backup {
-  constructor(backup) {
-    Object.assign(this, backup);
-    this.initializeBackup();
-  }
+  constructor({
+    backupDurationInReport,
+    backupOffer,
+    backupSizeInReport,
+    diskSizeInReport,
+    encryption,
+    fullDayInReport,
+    hostname,
+    mailAddress,
+    replicationZone,
+    restorePointInReport,
+    scheduleHour,
+    state,
+    vmwareVmId,
+  }) {
+    Object.assign(this, {
+      backupDurationInReport,
+      backupOffer,
+      backupSizeInReport,
+      diskSizeInReport,
+      encryption,
+      fullDayInReport,
+      hostname,
+      mailAddress,
+      replicationZone,
+      restorePointInReport,
+      scheduleHour,
+      state,
+      vmwareVmId,
+    });
 
-  initializeBackup() {
-    this.backupSizeInReport = this.backupSizeInReport
-      ? this.backupSizeInReport
-      : false;
-    this.fullDayInReport = this.fullDayInReport ? this.fullDayInReport : false;
-    this.restorePointInReport = this.restorePointInReport
-      ? this.restorePointInReport
-      : false;
-    this.diskSizeInReport = this.diskSizeInReport
-      ? this.diskSizeInReport
-      : false;
-    this.encryption = this.encryption ? this.encryption : false;
-    this.backupDurationInReport = this.backupDurationInReport
-      ? this.backupDurationInReport
-      : false;
+    this.backupSizeInReport = backupSizeInReport || false;
+    this.fullDayInReport = fullDayInReport || false;
+    this.restorePointInReport = restorePointInReport || false;
+    this.diskSizeInReport = diskSizeInReport || false;
+    this.encryption = encryption || false;
+    this.backupDurationInReport = backupDurationInReport || false;
   }
 
   get sendReportToCustomerEmail() {

@@ -23,11 +23,6 @@ export default class {
     };
   }
 
-  scrollToTop() {
-    this.$location.hash('backupMainAlert');
-    this.$anchorScroll();
-  }
-
   updateBackupCapabilities() {
     this.loader.updatingCapabilities = true;
     const capabilities = {
@@ -39,15 +34,15 @@ export default class {
       mailAddress: this.backup.mailAddress,
       backupOffer: this.backup.backupOffer,
     };
-    this.datacenterBackupService
+    return this.datacenterBackupService
       .updateBackupCapabilities(this.productId, this.datacenterId, capabilities)
       .then(() => {
         let message = this.$translate.instant(
-          'datacenter_backup_capability_update_success',
+          'dedicatedCloud_datacenter_backup_capability_update_success',
         );
         if (this.backup.mailAddress) {
           message = `${message} ${this.$translate.instant(
-            'datacenter_backup_capability_update_email_success',
+            'dedicatedCloud_datacenter_backup_capability_update_email_success',
             {
               emailAddress: this.backup.mailAddress,
             },
@@ -57,7 +52,7 @@ export default class {
       })
       .catch((error) => {
         this.alerter.error(
-          this.$translate.instant('datacenter_backup_capability_update_error', {
+          this.$translate.instant('dedicatedCloud_datacenter_backup_capability_update_error', {
             message: get(error, ['data', 'message'], error.message),
           }),
           this.alertMain,
