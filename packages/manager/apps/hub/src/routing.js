@@ -62,7 +62,7 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
           );
       },
 
-      services: /* @ngInject */ (hub) => hub.data.services.data.data,
+      services: /* @ngInject */ (hub) => hub.data.services.data,
       trackingPrefix: () => 'hub::dashboard::activity::payment-status',
     },
   });
