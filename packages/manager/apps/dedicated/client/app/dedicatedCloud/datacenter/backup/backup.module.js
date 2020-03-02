@@ -12,6 +12,7 @@ import routing from './backup.routing';
 import backupService from './backup.service';
 import backupOffers from './components/offers';
 import backupNew from './new';
+import splaLicence from './splaLicence';
 
 const moduleName = 'ovhManagerDedicatedCloudBackupModule';
 
@@ -24,6 +25,7 @@ angular
     'pascalprecht.translate',
     backupOffers,
     backupNew,
+    splaLicence,
   ])
   .config(routing)
   .component('ovhManagerDedicatedCloudBackup', component)
