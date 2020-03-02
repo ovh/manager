@@ -6,7 +6,7 @@ const moduleName = 'ovhManagerDedicatedCloudBackupTermsOfUse';
 
 angular
   .module(moduleName, [])
-  .component('ovhManagerDedicatedCloudBackupTermsOfUse', component)
+  .component('dedicatedCloudDatacenterBackupTermsOfUse', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

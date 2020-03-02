@@ -13,6 +13,7 @@ export default class {
   /* @ngInject */
   constructor($attrs, TranslateService) {
     this.$attrs = $attrs;
+    this.isUndefined = isUndefined;
     this.TranslateService = TranslateService;
   }
 

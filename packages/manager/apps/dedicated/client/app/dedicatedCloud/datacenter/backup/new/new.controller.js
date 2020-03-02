@@ -9,13 +9,13 @@ export default class {
     $location,
     $translate,
     Alerter,
-    datacenterBackupService,
+    dedicatedCloudDatacenterBackupService,
   ) {
     this.$anchorScroll = $anchorScroll;
     this.$location = $location;
     this.$translate = $translate;
     this.alerter = Alerter;
-    this.datacenterBackupService = datacenterBackupService;
+    this.dedicatedCloudDatacenterBackupService = dedicatedCloudDatacenterBackupService;
 
     this.MODES = MODES;
   }
@@ -48,7 +48,7 @@ export default class {
   createBackupOrder() {
     this.data.backupOrder = null;
     this.data.orderCreationInProgress = true;
-    return this.datacenterBackupService
+    return this.dedicatedCloudDatacenterBackupService
       .createBackupOrder(
         this.currentUser.ovhSubsidiary,
         this.productId,
@@ -66,7 +66,7 @@ export default class {
 
   orderBackup() {
     this.data.orderInProgress = true;
-    return this.datacenterBackupService
+    return this.dedicatedCloudDatacenterBackupService
       .checkoutCart(this.data.backupOrder.cartItem)
       .then(() => {
         return this.goToBackup(

@@ -26,8 +26,8 @@ angular
     backupNew,
   ])
   .config(routing)
-  .component('ovhManagerDedicatedCloudBackup', component)
-  .service('datacenterBackupService', backupService)
+  .component('dedicatedCloudDatacenterBackup', component)
+  .service('dedicatedCloudDatacenterBackupService', backupService)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

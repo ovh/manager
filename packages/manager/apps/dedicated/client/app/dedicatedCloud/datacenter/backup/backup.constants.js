@@ -48,7 +48,7 @@ export const BACKUP_TARIFF_URL = {
   SG:
     'https://www.ovhcloud.com/en-sg/enterprise/products/hosted-private-cloud/prices/',
   SN:
-    'https://www.ovhcloud.com/en/enterprise/products/hosted-private-cloud/prices/',
+    'https://www.ovhcloud.com/fr-sn/enterprise/products/hosted-private-cloud/prices/',
   TN:
     'https://www.ovhcloud.com/fr-tn/enterprise/products/hosted-private-cloud/prices/',
   US:

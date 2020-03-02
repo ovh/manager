@@ -19,6 +19,6 @@ angular
     termsOfUse,
   ])
   .config(routing)
-  .component('ovhManagerDedicatedCloudBackupNew', component);
+  .component('dedicatedCloudDatacenterBackupNew', component);
 
 export default moduleName;

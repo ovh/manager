@@ -7,7 +7,7 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '/backup',
     views: {
       pccDatacenterView: {
-        component: 'ovhManagerDedicatedCloudBackup',
+        component: 'dedicatedCloudDatacenterBackup',
       },
     },
     redirectTo: (transition) =>
@@ -29,17 +29,21 @@ export default /* @ngInject */ ($stateProvider) => {
       datacenterId: /* @ngInject */ ($transition$) =>
         $transition$.params().datacenterId,
       backup: /* @ngInject */ (
-        datacenterBackupService,
+        dedicatedCloudDatacenterBackupService,
         productId,
         datacenterId,
-      ) => datacenterBackupService.getBackup(productId, datacenterId),
+      ) =>
+        dedicatedCloudDatacenterBackupService.getBackup(
+          productId,
+          datacenterId,
+        ),
       backupOffers: /* @ngInject */ (
-        datacenterBackupService,
+        dedicatedCloudDatacenterBackupService,
         productId,
         datacenterId,
         currentUser,
       ) =>
-        datacenterBackupService.getBackupOffers(
+        dedicatedCloudDatacenterBackupService.getBackupOffers(
           productId,
           datacenterId,
           currentUser.ovhSubsidiary,
@@ -79,7 +83,9 @@ export default /* @ngInject */ ($stateProvider) => {
         return promise;
       },
       scrollToTop: () => () =>
-        document.getElementById('dedicatedCloud_datacenter_backup_header').scrollIntoView(),
+        document
+          .getElementById('dedicatedCloud_datacenter_backup_header')
+          .scrollIntoView(),
     },
   });
 };

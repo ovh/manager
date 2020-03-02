@@ -27,12 +27,11 @@
             <span
                 data-translate="dedicatedCloud_datacenter_backup_offer_price_from"
             ></span>
-            <dedicated-price
-                data-hide-tax="true"
-                data-price="offer.getPrice()"
-                data-tax="offer.getTax()"
+            <ovh-manager-catalog-price
+                data-price="offer.price"
                 data-user="$ctrl.user"
-            ></dedicated-price>
+            >
+            </ovh-manager-catalog-price>
             <span
                 data-translate="dedicatedCloud_datacenter_backup_offer_price_per_vm"
             ></span>
@@ -58,12 +57,11 @@
             ></dedicated-cloud-datacenter-backup-offer-details>
         </oui-select-picker-section>
         <oui-select-picker-footer>
-            <dedicated-price
-                data-hide-tax="true"
-                data-price="offer.getPrice()"
-                data-tax="offer.getTax()"
+            <ovh-manager-catalog-price
+                data-price="offer.price"
                 data-user="$ctrl.user"
-            ></dedicated-price>
+            >
+            </ovh-manager-catalog-price>
             <span
                 data-translate="dedicatedCloud_datacenter_backup_offer_price_per_vm"
             ></span>

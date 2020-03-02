@@ -1,7 +1,7 @@
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.dedicatedClouds.datacenter.backup.new', {
     url: '/new',
-    component: 'ovhManagerDedicatedCloudBackupNew',
+    component: 'dedicatedCloudDatacenterBackupNew',
     redirectTo: (transition) =>
       transition
         .injector()

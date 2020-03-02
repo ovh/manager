@@ -1,4 +1,5 @@
 import get from 'lodash/get';
+import pick from 'lodash/pick';
 
 export default class {
   /* @ngInject */
@@ -7,13 +8,13 @@ export default class {
     $location,
     $translate,
     Alerter,
-    datacenterBackupService,
+    dedicatedCloudDatacenterBackupService,
   ) {
     this.$anchorScroll = $anchorScroll;
     this.$location = $location;
     this.$translate = $translate;
     this.alerter = Alerter;
-    this.datacenterBackupService = datacenterBackupService;
+    this.dedicatedCloudDatacenterBackupService = dedicatedCloudDatacenterBackupService;
   }
 
   $onInit() {
@@ -25,17 +26,20 @@ export default class {
 
   updateBackupCapabilities() {
     this.loader.updatingCapabilities = true;
-    const capabilities = {
-      backupDurationInReport: this.backup.backupDurationInReport,
-      backupSizeInReport: this.backup.backupSizeInReport,
-      diskSizeInReport: this.backup.diskSizeInReport,
-      fullDayInReport: this.backup.fullDayInReport,
-      restorePointInReport: this.backup.restorePointInReport,
-      mailAddress: this.backup.mailAddress,
-      backupOffer: this.backup.backupOffer,
-    };
-    return this.datacenterBackupService
-      .updateBackupCapabilities(this.productId, this.datacenterId, capabilities)
+    return this.dedicatedCloudDatacenterBackupService
+      .updateBackupCapabilities(
+        this.productId,
+        this.datacenterId,
+        pick(this.backup, [
+          'backupDurationInReport',
+          'backupSizeInReport',
+          'diskSizeInReport',
+          'fullDayInReport',
+          'restorePointInReport',
+          'mailAddress',
+          'backupOffer',
+        ]),
+      )
       .then(() => {
         let message = this.$translate.instant(
           'dedicatedCloud_datacenter_backup_capability_update_success',
@@ -52,9 +56,12 @@ export default class {
       })
       .catch((error) => {
         this.alerter.error(
-          this.$translate.instant('dedicatedCloud_datacenter_backup_capability_update_error', {
-            message: get(error, ['data', 'message'], error.message),
-          }),
+          this.$translate.instant(
+            'dedicatedCloud_datacenter_backup_capability_update_error',
+            {
+              message: get(error, ['data', 'message'], error.message),
+            },
+          ),
           this.alertMain,
         );
       })
