@@ -3,10 +3,6 @@ import angular from 'angular';
 import isNil from 'lodash/isNil';
 
 import { ACTIONS, LINKS } from './project.constants';
-import { LEGACY_URLS } from './legacy-forward/forward.constants';
-
-import controller from './legacy-forward/forward.controller';
-import template from './legacy-forward/forward.html';
 
 export default class ProjectController {
   /* @ngInject */
@@ -38,7 +34,6 @@ export default class ProjectController {
         isNil(regions) || regions.includes(coreConfig.getRegion()),
     );
     this.links = LINKS;
-    this.LEGACY_URL = LEGACY_URLS[coreConfig.getRegion()];
   }
 
   $onInit() {
@@ -60,27 +55,6 @@ export default class ProjectController {
       .finally(() => {
         this.loading = false;
       });
-  }
-
-  get feedbackUrl() {
-    const { language } = this.user;
-
-    return language.includes('fr') ? __FEEDBACK_URL_FR__ : __FEEDBACK_URL_EN__;
-  }
-
-  goToLegacy() {
-    this.atInternet.trackClick({
-      name: 'public-cloud_menu_back-to-cloud',
-      type: 'action',
-    });
-    return this.$uibModal.open({
-      template,
-      controller,
-      controllerAs: '$ctrl',
-      resolve: {
-        feedbackUrl: () => this.feedbackUrl,
-      },
-    });
   }
 
   closeSidebar() {
