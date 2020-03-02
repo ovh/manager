@@ -46,7 +46,7 @@
     >
         <ovh-manager-dedicated-cloud-backup-terms-of-use
             data-ng-if="$ctrl.data.backupOrder"
-            data-backup-tariff-url="{{ $ctrl.backupTariffUrl }}"
+            data-backup-tariff-url="{{ ::$ctrl.backupTariffUrl }}"
             data-datacenter-id="{{ $ctrl.datacenterId }}"
             data-mode="{{ $ctrl.MODES.NEW }}"
             data-model="$ctrl.data.conditionsAccepted"
