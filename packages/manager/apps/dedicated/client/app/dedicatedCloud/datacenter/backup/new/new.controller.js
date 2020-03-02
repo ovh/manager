@@ -74,7 +74,6 @@ export default class {
             'dedicatedCloud_datacenter_backup_new_create_success',
             {
               offerType: this.data.selectedOffer.backupOffer,
-              guideLink: this.backupTariffUrl,
             },
           ),
         );

@@ -1,4 +1,7 @@
 import angular from 'angular';
+import '@ovh-ux/ng-translate-async-loader';
+import 'ovh-ui-angular';
+import 'angular-translate';
 
 import ovhManagerCatalogPrice from '@ovh-ux/manager-catalog-price';
 
@@ -9,7 +12,13 @@ import './styles.less';
 const moduleName = 'ovhManagerDedicatedCloudBackupOffers';
 
 angular
-  .module(moduleName, [offerDetails, ovhManagerCatalogPrice])
+  .module(moduleName, [
+    'ngTranslateAsyncLoader',
+    'oui',
+    'pascalprecht.translate',
+    offerDetails,
+    ovhManagerCatalogPrice,
+  ])
   .component('dedicatedCloudDatacenterBackupOffers', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 

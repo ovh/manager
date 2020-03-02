@@ -7,11 +7,13 @@ export default class {
     $anchorScroll,
     $location,
     $translate,
+    $timeout,
     Alerter,
     dedicatedCloudDatacenterBackupService,
   ) {
     this.$anchorScroll = $anchorScroll;
     this.$location = $location;
+    this.$timeout = $timeout;
     this.$translate = $translate;
     this.alerter = Alerter;
     this.dedicatedCloudDatacenterBackupService = dedicatedCloudDatacenterBackupService;
@@ -22,6 +24,19 @@ export default class {
     this.loader = {
       updatingCapabilities: false,
     };
+    this.$timeout(() => this.showMessage());
+  }
+
+  showMessage() {
+    if (get(this.messageToShow, 'message')) {
+      this.alerter.set(
+        `alert-${this.messageToShow.type}`,
+        this.messageToShow.message,
+        null,
+        this.alertMain,
+      );
+      this.messageToShow = null;
+    }
   }
 
   updateBackupCapabilities() {

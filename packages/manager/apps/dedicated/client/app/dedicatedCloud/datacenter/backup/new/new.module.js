@@ -1,6 +1,8 @@
 import angular from 'angular';
+import '@ovh-ux/ng-translate-async-loader';
 import 'ovh-api-services';
 import 'ovh-ui-angular';
+import 'angular-translate';
 
 import component from './new.component';
 import offers from '../components/offers';
@@ -12,10 +14,12 @@ const moduleName = 'ovhManagerDedicatedCloudBackupNewModule';
 
 angular
   .module(moduleName, [
-    offers,
-    offerDetails,
+    'ngTranslateAsyncLoader',
     'oui',
     'ovh-api-services',
+    'pascalprecht.translate',
+    offers,
+    offerDetails,
     termsOfUse,
   ])
   .config(routing)

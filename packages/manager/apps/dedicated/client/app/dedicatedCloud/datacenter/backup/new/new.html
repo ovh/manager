@@ -25,8 +25,8 @@
     data-current-index="$ctrl.data.currentStep"
 >
     <oui-step-form
-        data-header="{{ 'dedicatedCloud_datacenter_backup_new_choose_offer' | translate }}"
-        data-submit-text="{{ 'dedicatedCloud_datacenter_backup_new_choose_offer_action' | translate }}"
+        data-header="{{ ::'dedicatedCloud_datacenter_backup_new_choose_offer' | translate }}"
+        data-submit-text="{{ ::'dedicatedCloud_datacenter_backup_new_choose_offer_action' | translate }}"
         data-prevent-next="!$ctrl.data.selectedOffer.backupOffer"
         data-valid="$ctrl.data.selectedOffer.backupOffer"
     >
@@ -39,8 +39,8 @@
         </dedicated-cloud-datacenter-backup-offers>
     </oui-step-form>
     <oui-step-form
-        data-header="{{ 'dedicatedCloud_datacenter_backup_new_validate_conditions'| translate }}"
-        data-submit_text="{{ 'dedicatedCloud_datacenter_backup_new_activate_offer_action' | translate }}"
+        data-header="{{ ::'dedicatedCloud_datacenter_backup_new_validate_conditions'| translate }}"
+        data-submit_text="{{ ::'dedicatedCloud_datacenter_backup_new_activate_offer_action' | translate }}"
         data-prevent-next="!$ctrl.data.conditionsAccepted"
         data-valid="$ctrl.data.conditionsAccepted"
         data-loading="$ctrl.data.orderCreationInProgress"
@@ -51,10 +51,10 @@
         <dedicated-cloud-datacenter-backup-terms-of-use
             data-ng-if="$ctrl.data.backupOrder"
             data-backup-tariff-url="{{ ::$ctrl.backupTariffUrl }}"
-            data-datacenter-id="{{ $ctrl.datacenterId }}"
-            data-mode="{{ $ctrl.MODES.NEW }}"
+            data-datacenter-id="{{ ::$ctrl.datacenterId }}"
+            data-mode="{{ ::$ctrl.MODES.NEW }}"
             data-model="$ctrl.data.conditionsAccepted"
-            data-conditions-url="{{ $ctrl.data.backupOrder.contracts[0].url }}"
+            data-conditions-url="{{ ::$ctrl.data.backupOrder.contracts[0].url }}"
         >
         </dedicated-cloud-datacenter-backup-terms-of-use>
         <oui-spinner

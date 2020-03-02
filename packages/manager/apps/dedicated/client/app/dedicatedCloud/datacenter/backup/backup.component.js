@@ -7,6 +7,7 @@ export default {
     backupOffers: '<',
     currentUser: '<',
     datacenterId: '<',
+    messageToShow: '<',
     productId: '<',
     scrollToTop: '<',
   },

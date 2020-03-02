@@ -23,6 +23,7 @@ export default /* @ngInject */ ($stateProvider) => {
           }
           return false;
         }),
+    params: { messageToShow: null },
     resolve: {
       productId: /* @ngInject */ ($transition$) =>
         $transition$.params().productId,
@@ -50,37 +51,32 @@ export default /* @ngInject */ ($stateProvider) => {
         ),
       backupTariffUrl: /* @ngInject */ (currentUser) =>
         get(BACKUP_TARIFF_URL, currentUser.ovhSubsidiary, BACKUP_TARIFF_URL.FR),
+      messageToShow: /* @ngInject */ ($transition$) =>
+        $transition$.params().messageToShow,
       goToNewBackup: /* @ngInject */ ($state, datacenterId, productId) => () =>
         $state.go('app.dedicatedClouds.datacenter.backup.new', {
           datacenterId,
           productId,
         }),
-      goToBackup: ($state, Alerter, datacenterId, productId) => (
+      goToBackup: ($state, datacenterId, productId) => (
         message = false,
         type = 'success',
       ) => {
         const reload = message && type === 'success';
-        const promise = $state.go(
+        return $state.go(
           'app.dedicatedClouds.datacenter.backup',
           {
             productId,
             datacenterId,
+            messageToShow: {
+              type,
+              message,
+            },
           },
           {
             reload,
           },
         );
-
-        if (message) {
-          promise.then(() =>
-            Alerter.set(
-              `alert-${type}`,
-              message,
-              'app.dedicatedClouds.datacenter.backup',
-            ),
-          );
-        }
-        return promise;
       },
       scrollToTop: () => () =>
         document
