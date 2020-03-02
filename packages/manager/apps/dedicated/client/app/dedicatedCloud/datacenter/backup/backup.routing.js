@@ -13,13 +13,24 @@ export default /* @ngInject */ ($stateProvider) => {
     redirectTo: (transition) =>
       transition
         .injector()
-        .getAsync('backup')
-        .then((backup) => {
+        .get('$q')
+        .all([
+          transition.injector().getAsync('licence'),
+          transition.injector().getAsync('backup'),
+        ])
+        .then(([licence, backup]) => {
+          if (!licence.isSplaActive) {
+            return {
+              state: 'app.dedicatedClouds.datacenter.backup.spla-licence',
+            };
+          }
           if (backup.isInactive()) {
             return { state: 'app.dedicatedClouds.datacenter.backup.new' };
           }
           if (backup.isLegacy()) {
-            return { state: 'app.dedicatedClouds.datacenter.backup.legacy' };
+            return {
+              state: 'app.dedicatedClouds.datacenter.backup.legacy',
+            };
           }
           return false;
         }),
@@ -58,7 +69,16 @@ export default /* @ngInject */ ($stateProvider) => {
           datacenterId,
           productId,
         }),
-      goToBackup: ($state, datacenterId, productId) => (
+      licence: /* @ngInject */ (currentService, DedicatedCloud, productId) =>
+        DedicatedCloud.getDatacenterLicence(
+          productId,
+          currentService.usesLegacyOrder,
+        ),
+      licenceLink: /* @ngInject */ ($state, productId) =>
+        $state.href('app.dedicatedClouds.license', {
+          productId,
+        }),
+      goToBackup: ($state, Alerter, datacenterId, productId) => (
         message = false,
         type = 'success',
       ) => {
