@@ -1,3 +1,12 @@
+## [3.13.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.13.2...@ovh-ux/manager-pci@3.13.3) (2020-03-02)
+
+
+### Bug Fixes
+
+* **instances.add:** prevent error if call to /credit crash ([#2374](https://github.com/ovh/manager/issues/2374)) ([384d018](https://github.com/ovh/manager/commit/384d018e23a9571551ee707c9feb412d1c94d408))
+
+
+
 ## [3.13.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.13.1...@ovh-ux/manager-pci@3.13.2) (2020-02-27)
 
 
