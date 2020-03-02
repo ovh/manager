@@ -79,10 +79,7 @@ export default class {
   checkIfDatacenterHasHosts(datacenterId) {
     this.isCheckingHosts = true;
     this.isSecondaryDatacenterWithoutHosts = false;
-    this.hostsOrderLink = this.getHostsOrderLink(
-      datacenterId,
-      this.drpInformations.secondaryPcc.serviceName,
-    );
+    this.hostsOrderLink = this.getHostsOrderLink();
 
     return this.DedicatedCloud.getHosts(
       this.drpInformations.secondaryPcc.serviceName,
