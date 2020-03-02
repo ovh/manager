@@ -1,7 +1,5 @@
 {
   "globals": {
-    "__FEEDBACK_URL_EN__": true,
-    "__FEEDBACK_URL_FR__": true,
     "moment": true
   }
 }
