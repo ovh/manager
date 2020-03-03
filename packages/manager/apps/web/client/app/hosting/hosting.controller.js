@@ -7,7 +7,6 @@ import isString from 'lodash/isString';
 import kebabCase from 'lodash/kebabCase';
 import map from 'lodash/map';
 import merge from 'lodash/merge';
-import reduce from 'lodash/reduce';
 import remove from 'lodash/remove';
 import set from 'lodash/set';
 import some from 'lodash/some';
@@ -256,24 +255,21 @@ export default class {
       this.$scope.hosting.sqlPriveInfo = {
         nbDataBaseActive: 0,
         nbDataBaseInclude: 0,
-        offerCapabilitiesPDB: null,
-        databaseCreationCapabilitiesPDB: null,
       };
 
-      this.HostingDatabase.getPrivateDatabaseCapabilities(
-        this.$stateParams.productId,
-      ).then((privateDbCapabilities) => {
-        this.$scope.hosting.sqlPriveInfo.nbDataBaseInclude = this.$scope.hosting.offerCapabilities.privateDatabases.length;
-        this.$scope.hosting.sqlPriveInfo.nbDataBaseActive =
-          this.$scope.hosting.sqlPriveInfo.nbDataBaseInclude -
-          reduce(
-            privateDbCapabilities,
-            (sum, capability) => {
-              return sum + capability.available > 0 ? capability.available : 0;
-            },
-            0,
-          );
-      });
+      return this.$q
+        .all({
+          privateDatabaseIds: this.HostingDatabase.getPrivateDatabaseIds(
+            this.$stateParams.productId,
+          ),
+          hasPrivateSqlToActivate: this.HostingDatabase.getHasPrivateSqlToActivate(
+            this.$stateParams.productId,
+          ),
+        })
+        .then(({ privateDatabaseIds, hasPrivateSqlToActivate }) => {
+          this.$scope.hosting.sqlPriveInfo.privateDatabaseIds = privateDatabaseIds;
+          this.$scope.hosting.sqlPriveInfo.hasPrivateDatabaseToActivate = hasPrivateSqlToActivate;
+        });
     };
 
     //---------------------------------------------
@@ -641,14 +637,14 @@ export default class {
     }
   }
 
-  getLinkedPrivateDatabases() {
-    return this.Hosting.getPrivateDatabasesLinked(
+  getPrivateDatabases() {
+    return this.HostingDatabase.getPrivateDatabaseIds(
       this.$stateParams.productId,
-    ).then((databases) =>
+    ).then((databaseIds) =>
       this.$q.all(
-        databases.map((databaseName) =>
-          this.$scope.isAdminPrivateDb(databaseName).then((isAdmin) => ({
-            name: databaseName,
+        databaseIds.map((id) =>
+          this.$scope.isAdminPrivateDb(id).then((isAdmin) => ({
+            name: id,
             isAdmin,
           })),
         ),
@@ -721,7 +717,7 @@ export default class {
           ),
           hostingProxy: this.Hosting.getHosting(this.$stateParams.productId),
           hostingUrl: this.User.getUrlOfEndsWithSubsidiary('hosting'),
-          linkedDatabases: this.getLinkedPrivateDatabases,
+          privateDatabases: this.getPrivateDatabases(),
           domainOrderUrl: this.User.getUrlOf('domainOrder'),
         });
       })
@@ -730,7 +726,7 @@ export default class {
           serviceInfos,
           hostingProxy,
           hostingUrl,
-          databases,
+          privateDatabases,
           domainOrderUrl,
         }) => {
           this.$scope.hosting.serviceInfos = serviceInfos;
@@ -745,7 +741,7 @@ export default class {
           this.$scope.ssh = hostingProxy.serviceManagementAccess.ssh;
           this.$scope.sshUrl = `ssh://${hostingProxy.serviceManagementAccess.ssh.url}:${hostingProxy.serviceManagementAccess.ssh.port}/`;
           this.$scope.urls.hosting = hostingUrl;
-          this.$scope.privateDatabasesLinked = databases;
+          this.$scope.privateDatabases = privateDatabases;
           this.$scope.urlDomainOrder = domainOrderUrl;
           this.setUrchin();
 
