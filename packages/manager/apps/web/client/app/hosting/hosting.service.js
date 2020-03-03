@@ -726,19 +726,6 @@ import union from 'lodash/union';
           data: {},
         });
       }
-
-      /**
-       * Get linked private databases
-       * @param {string} serviceName
-       */
-      getPrivateDatabasesLinked(serviceName) {
-        return this.OvhHttp.get(
-          `/hosting/web/${serviceName}/privateDatabases`,
-          {
-            rootPath: 'apiv6',
-          },
-        );
-      }
     },
   );
 }

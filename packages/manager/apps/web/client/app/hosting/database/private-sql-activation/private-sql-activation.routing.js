@@ -9,17 +9,13 @@ export default /* @ngInject */ ($stateProvider) => {
     component: 'hostingDatabasePrivateSqlActivation',
     redirectTo: (transition) =>
       Promise.all([
-        transition.injector().getAsync('Hosting'),
         transition.injector().getAsync('HostingDatabase'),
         transition.injector().getAsync('hosting'),
-      ]).then(([Hosting, HostingDatabase, hosting]) =>
-        HostingDatabase.getPrivateDatabaseCapabilities(hosting).then(
-          (capabilities) =>
-            Hosting.getPrivateDatabasesLinked(hosting).then((privateDbs) =>
-              privateDbs.length < capabilities.length
-                ? false
-                : { state: 'app.hosting' },
-            ),
+      ]).then(([HostingDatabase, hosting]) =>
+        HostingDatabase.getHasPrivateSqlToActivate(
+          hosting,
+        ).then((hasPrivateSqlToActivate) =>
+          hasPrivateSqlToActivate ? false : { state: 'app.hosting' },
         ),
       ),
     resolve: {

@@ -450,66 +450,62 @@
                         </oui-action-menu>
                     </oui-tile-definition>
                     <oui-tile-definition
-                        data-term="{{ ::'hosting_dashboard_service_privatesql' | translate }}"
+                        data-term="{{:: 'hosting_dashboard_service_privatesql' | translate }}"
                     >
                         <oui-tile-description>
-                            <div
-                                data-ng-if="hosting.sqlPriveInfo.nbDataBaseActive > 0"
-                                data-wuc-progress-bar-element-counter
-                                data-wuc-pbec-nb-elements="hosting.sqlPriveInfo.nbDataBaseActive"
-                                data-wuc-pbec-max-elements="hosting.sqlPriveInfo.nbDataBaseInclude"
-                                data-wuc-pbec-upper-limit="cloudWebUnlimitedQuantity"
-                            ></div>
                             <p
-                                data-ng-if="hosting.sqlPriveInfo.nbDataBaseInclude === 0"
-                            >
-                                0
-                            </p>
-                            <p
-                                data-ng-if="hosting.sqlPriveInfo.nbDataBaseInclude > hosting.sqlPriveInfo.nbDataBaseActive"
-                                data-translate="hosting_dashboard_service_privatesql_active_remaining"
-                                data-translate-values="{
-                                   count: hosting.sqlPriveInfo.nbDataBaseInclude - hosting.sqlPriveInfo.nbDataBaseActive,
-                               }"
+                                data-ng-if="!hosting.sqlPriveInfo.hasPrivateDatabaseToActivate"
+                                data-ng-bind="privateDatabases.length"
                             ></p>
-                            <oui-action-menu
-                                data-text="{{ ::'hosting_dashboard_service_privatesql_more' | translate }}"
-                                data-ng-if="privateDatabasesLinked.length > 0"
-                            >
-                                <div
-                                    data-ng-repeat="privateDb in privateDatabasesLinked track by privateDb.name"
-                                >
-                                    <oui-action-menu-item
-                                        data-text="{{::privateDb.name}}"
-                                        data-ng-if="!privateDb.isAdmin"
-                                        data-disabled
-                                    ></oui-action-menu-item>
-                                    <oui-action-menu-item
-                                        data-ng-if="privateDb.isAdmin"
-                                        data-text="{{::privateDb.name}}"
-                                        data-href="#/configuration/private_database/{{ privateDb.name }}"
-                                    >
-                                    </oui-action-menu-item>
-                                </div>
-                            </oui-action-menu>
+
+                            <p
+                                data-ng-if="hosting.sqlPriveInfo.hasPrivateDatabaseToActivate"
+                                data-translate="hosting_dashboard_service_privatesql_active_remaining"
+                                data-translate-values="{ count: 1 }"
+                            ></p>
                         </oui-tile-description>
                         <oui-action-menu data-compact data-align="end">
+                            <div
+                                data-ng-if="!hosting.sqlPriveInfo.hasPrivateDatabaseToActivate"
+                                data-ng-repeat="privateDb in privateDatabases track by privateDb.name"
+                            >
+                                <oui-action-menu-item
+                                    data-ng-if="privateDb.isAdmin"
+                                    data-href="#/configuration/private_database/{{ privateDb.name }}"
+                                >
+                                    <span
+                                        data-translate="hosting_tab_LOCAL_SEO_access_interface"
+                                    ></span>
+                                </oui-action-menu-item>
+                            </div>
+
+                            <div
+                                data-ng-if="hosting.sqlPriveInfo.hasPrivateDatabaseToActivate"
+                            >
+                                <oui-action-menu-item
+                                    data-ng-if="sqlPriveState !== 'check' && sqlPriveState !== 'doing'"
+                                    data-ui-sref="app.hosting.database.private-sql-activation"
+                                >
+                                    <span
+                                        data-translate="hosting_dashboard_service_privatesql_active"
+                                    ></span>
+                                </oui-action-menu-item>
+                                <oui-action-menu-item
+                                    data-ng-if="sqlPriveState === 'check' || sqlPriveState === 'doing'"
+                                    data-disabled
+                                >
+                                    <span
+                                        data-translate="hosting_dashboard_service_privatesql_active_doing"
+                                    ></span
+                                ></oui-action-menu-item>
+                            </div>
+
                             <oui-action-menu-item
-                                data-ng-if="hosting.sqlPriveInfo.nbDataBaseInclude > 0 && hosting.sqlPriveInfo.nbDataBaseActive < hosting.sqlPriveInfo.nbDataBaseInclude && sqlPriveState !== 'doing'"
-                                data-text="{{ ::'hosting_dashboard_service_privatesql_active' | translate }}"
-                                data-disabled="sqlPriveState === 'check' || sqlPriveState === 'doing'"
-                                data-on-click="$ctrl.goToPrivateSqlActivation()"
-                            ></oui-action-menu-item>
-                            <oui-action-menu-item
-                                data-ng-if="hosting.sqlPriveInfo.nbDataBaseInclude > 0 && hosting.sqlPriveInfo.nbDataBaseActive < hosting.sqlPriveInfo.nbDataBaseInclude && sqlPriveState === 'doing'"
-                                data-text="{{ ::'hosting_dashboard_service_privatesql_active_doing' | translate }}"
-                                data-disabled="sqlPriveState === 'check' || sqlPriveState === 'doing'"
-                                data-on-click="$ctrl.goToPrivateSqlActivation()"
-                            ></oui-action-menu-item>
-                            <oui-action-menu-item
-                                data-text="{{ ::'hosting_dashboard_service_privatesql_order' | translate }}"
                                 data-ui-sref="app.hosting.database.order-private"
                             >
+                                <span
+                                    data-translate="hosting_dashboard_service_privatesql_order"
+                                ></span>
                             </oui-action-menu-item>
                         </oui-action-menu>
                     </oui-tile-definition>
