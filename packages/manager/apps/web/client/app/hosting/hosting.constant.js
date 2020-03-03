@@ -21,4 +21,17 @@ angular
     DELETING: 'deleting',
     REGENERATING: 'regenerating',
     UPDATING: 'updating',
-  });
+  })
+  .constant('HOSTING_UPGRADES', [
+    'CLOUDWEB_1',
+    'CLOUDWEB_2',
+    'CLOUDWEB_3',
+    'KS',
+    'PERFORMANCE_1',
+    'PERFORMANCE_2',
+    'PERFORMANCE_3',
+    'PERFORMANCE_4',
+    'PERSO',
+    'PRO',
+    'START',
+  ]);

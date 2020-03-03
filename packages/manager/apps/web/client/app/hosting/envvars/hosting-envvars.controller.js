@@ -1,5 +1,4 @@
 import clone from 'lodash/clone';
-import get from 'lodash/get';
 import isArray from 'lodash/isArray';
 import isEmpty from 'lodash/isEmpty';
 
@@ -88,13 +87,7 @@ angular.module('App').controller(
      */
     loadCapabilities() {
       return this.Hosting.getSelected(this.$stateParams.productId)
-        .then((hosting) => {
-          const offer = get(hosting, 'offer', '')
-            .toLowerCase()
-            .replace('_', '');
-
-          return this.Hosting.getOfferCapabilities(offer);
-        })
+        .then((hosting) => this.Hosting.getOfferCapabilities(hosting.offer))
         .then((capabilities) => {
           this.maxEnvvars = capabilities.envVars;
         })

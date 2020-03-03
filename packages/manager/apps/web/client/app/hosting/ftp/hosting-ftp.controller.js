@@ -1,5 +1,4 @@
 import assign from 'lodash/assign';
-import camelCase from 'lodash/camelCase';
 import forEach from 'lodash/forEach';
 import get from 'lodash/get';
 import indexOf from 'lodash/indexOf';
@@ -92,9 +91,7 @@ angular.module('App').controller(
           this.startPolling();
           return this.$q.all({
             tab: this.loadTab(10, 0, false),
-            capabilities: this.Hosting.getOfferCapabilities(
-              camelCase(hosting.offer).toLowerCase(),
-            ),
+            capabilities: this.Hosting.getOfferCapabilities(hosting.offer),
           });
         })
         .then(({ capabilities }) => {
