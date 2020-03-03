@@ -25,6 +25,10 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
           (service) => new BillingService(service),
         ),
       }),
+      goToProductPage: /* @ngInject */ ($state) => (product) =>
+        $state.go('app.products', {
+          product: product.toLowerCase(),
+        }),
       notifications: /* @ngInject */ ($translate, hub) =>
         map(
           filter(hub.data.notifications.data, (notification) =>
