@@ -10,6 +10,11 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
           filter(catalog.data, ({ highlight }) => highlight),
           'universe',
         ),
+
+      goToProductPage: /* @ngInject */ ($state) => (product) =>
+        $state.go('app.dashboard.products', {
+          product: product.toLowerCase(),
+        }),
     },
     componentProvider: /* @ngInject */ (services) =>
       services.count === 0 ? 'hubOrderDashboard' : 'hubDashboard',

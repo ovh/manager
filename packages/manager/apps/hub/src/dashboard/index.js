@@ -3,6 +3,7 @@ import angular from 'angular';
 import 'angular-translate';
 
 import ovhManagerHub from '@ovh-ux/manager-hub';
+import listingPage from './products-list';
 import orderDashboard from './order-dashboard';
 import welcome from './welcome';
 
@@ -14,6 +15,7 @@ const moduleName = 'ovhManagerHubDashboard';
 
 angular
   .module(moduleName, [
+    listingPage,
     'pascalprecht.translate',
     ovhManagerHub,
     orderDashboard,

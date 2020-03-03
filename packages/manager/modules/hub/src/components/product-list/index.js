@@ -13,6 +13,6 @@ angular
     ovhManagerCore,
     'pascalprecht.translate',
   ])
-  .component('ovhManagerHubUserProductTile', component);
+  .component('hubProductListing', component);
 
 export default moduleName;

@@ -6,6 +6,7 @@ export default {
     feedbackUrl: '<',
     me: '<',
     billingServices: '<',
+    goToProductPage: '<',
     notifications: '<',
     order: '<',
     services: '<',

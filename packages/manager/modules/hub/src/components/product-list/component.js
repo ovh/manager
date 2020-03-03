@@ -1,4 +1,4 @@
-import controller from './controller';
+// import controller from './controller';
 import template from './template.html';
 
 /*
@@ -9,9 +9,11 @@ import template from './template.html';
  */
 
 export default {
-  controller,
+  // controller,
   template,
   bindings: {
-    product: '<',
+    columns: '<',
+    products: '<',
+    productType: '<',
   },
 };
