@@ -444,47 +444,6 @@ angular
         },
       );
 
-    /* ------- SUB DATACENTER BACKUP -------*/
-
-    this.getVeeam = (serviceName, datacenterId, forceRefresh) =>
-      OvhHttp.get(
-        '/dedicatedCloud/{serviceName}/datacenter/{datacenterId}/backup',
-        {
-          rootPath: 'apiv6',
-          urlParams: {
-            serviceName,
-            datacenterId,
-          },
-          clearCache: forceRefresh,
-        },
-      );
-
-    this.enableVeeam = (serviceName, datacenterId) =>
-      OvhHttp.post(
-        '/dedicatedCloud/{serviceName}/datacenter/{datacenterId}/backup/enable',
-        {
-          rootPath: 'apiv6',
-          urlParams: {
-            serviceName,
-            datacenterId,
-          },
-          broadcast: 'datacenter.veeam.reload',
-        },
-      );
-
-    this.disableVeeam = (serviceName, datacenterId) =>
-      OvhHttp.post(
-        '/dedicatedCloud/{serviceName}/datacenter/{datacenterId}/backup/disable',
-        {
-          rootPath: 'apiv6',
-          urlParams: {
-            serviceName,
-            datacenterId,
-          },
-          broadcast: 'datacenter.veeam.reload',
-        },
-      );
-
     /* ------- SUB DATACENTER LICENCES -------*/
 
     this.getDatacenterLicence = (serviceName, serviceUsesLegacyOrder) => {
