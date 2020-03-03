@@ -1,3 +1,19 @@
+# [11.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@11.5.3...@ovh-ux/manager-dedicated@11.6.0) (2020-03-03)
+
+
+### Bug Fixes
+
+* **pcc:** remove legacy call to get automatic payment methods ([a527291](https://github.com/ovh/manager/commit/a52729196c345d4a5e13398393056385b3969667))
+* **pcc.datacenter.drp:** remove unsued zssp password regenerate ([825ab37](https://github.com/ovh/manager/commit/825ab3787df66a2b270a6c5a7f63921f8b4fbbbb))
+* **pcc.drp:** use correct links to order missing options ([cabb7a3](https://github.com/ovh/manager/commit/cabb7a3b310647d1339e1fd1cccbe55ca01ad6e0))
+
+
+### Features
+
+* **pcc:** enable zerto for US accounts ([36d2b4c](https://github.com/ovh/manager/commit/36d2b4cbe692be706a619559f607c059fe2a7e6c))
+
+
+
 ## [11.5.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@11.5.2...@ovh-ux/manager-dedicated@11.5.3) (2020-02-28)
 
 
