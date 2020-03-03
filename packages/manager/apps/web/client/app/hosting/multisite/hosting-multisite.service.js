@@ -1,5 +1,4 @@
 import assign from 'lodash/assign';
-import camelCase from 'lodash/camelCase';
 import forEach from 'lodash/forEach';
 import get from 'lodash/get';
 import isArray from 'lodash/isArray';
@@ -231,20 +230,6 @@ angular.module('services').service(
           },
         )
         .then((response) => response.data);
-    }
-
-    /**
-     * Get offer capabilities
-     * @param {string} offer
-     */
-    getCapabilities(offer) {
-      return this.OvhHttp.get('/hosting/web/offerCapabilities', {
-        rootPath: 'apiv6',
-        params: {
-          offer: camelCase(offer).toLowerCase(),
-        },
-        cache: 'hosting.web.capabilities',
-      });
     }
 
     /**
