@@ -7,13 +7,13 @@ import routing from './job-logs.routing';
 import dataProcessingJobDetailsComponent from './job-logs.component';
 import jobLogsService from './job-logs.service';
 
-const moduleName = 'ovhManagerDataProcessingJobLogsComponent';
+const moduleName = 'ovhManagerPciProjectDataProcessingJobLogsComponent';
 
 angular
   .module(moduleName, ['ui.router', 'luegg.directives'])
   .config(routing)
   .component(
-    'dataprocessingJobLogsComponent',
+    'pciProjectDataProcessingJobLogsComponent',
     dataProcessingJobDetailsComponent,
   )
   .service('dataProcessingJobLogsService', jobLogsService)

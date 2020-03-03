@@ -1,3 +1,4 @@
+<p data-translate="data_processing_submit_job_sizing_description"></p>
 <div ng-if="!$ctrl.state.advancedSizing">
     <form novalidate name="sizingForm">
         <oui-field
@@ -16,8 +17,11 @@
                         ng-repeat="template in $ctrl.driverTemplates"
                         value="{{ template.id }}"
                     >
-                        {{ :: template.cores + ' vCores' }} - {{ ::
-                        template.memory/1e9 + 'Gb memory' }}
+                        {{ :: template.cores }} {{ ::
+                        'data_processing_submit_job_sizing_template_cores_label'
+                        | translate }} - {{ :: template.memory/1e9 }} {{ ::
+                        'data_processing_submit_job_sizing_template_memory_label'
+                        | translate }}
                     </option>
                 </select>
                 <span
@@ -42,8 +46,11 @@
                         ng-repeat="template in $ctrl.workerTemplates"
                         value="{{ template.id }}"
                     >
-                        {{ :: template.cores + ' vCores' }} - {{ ::
-                        template.memory/1e9 + 'Gbmemory' }}
+                        {{ :: template.cores }} {{ ::
+                        'data_processing_submit_job_sizing_template_cores_label'
+                        | translate }} - {{ :: template.memory/1e9 }} {{ ::
+                        'data_processing_submit_job_sizing_template_memory_label'
+                        | translate }}
                     </option>
                 </select>
                 <span
@@ -66,7 +73,8 @@
         </oui-field>
         <div class="sizing__pricing">
             {{ :: 'data_processing_submit_job_stepper_spark_estimated_price' |
-            translate }} <b>{{ $ctrl.computePrice().toFixed(3) }}€/min</b>
+            translate }}
+            <strong>{{ $ctrl.computePrice().toFixed(3) }}€/min</strong>
         </div>
         <button
             class="oui-button oui-button_link sizing__advanced-button"
@@ -82,14 +90,13 @@
     <form novalidate name="advancedSizingForm">
         <oui-field
             data-label="{{:: 'data_processing_submit_job_stepper_spark_driver_cores_label' | translate }}"
-            data-help-text="{{:: 'data_processing_submit_job_stepper_spark_driver_cores_description' | translate }}"
         >
             <div class="sizing__advanced-units-container">
                 <oui-numeric
                     name="driver-cores"
                     data-model="$ctrl.state.driverCores"
                     data-min="1"
-                    data-max="10"
+                    data-max="8"
                 >
                 </oui-numeric>
             </div>
@@ -97,44 +104,41 @@
         </oui-field>
         <oui-field
             data-label="{{:: 'data_processing_submit_job_stepper_spark_driver_memory_label' | translate }}"
-            data-help-text="{{:: 'data_processing_submit_job_stepper_spark_driver_memory_description' | translate }}"
         >
             <div class="sizing__advanced-units-container">
                 <oui-numeric
                     name="driver-memory"
                     data-model="$ctrl.state.driverMemoryGb"
                     data-min="1"
-                    data-max="64"
+                    data-max="30"
                 >
                 </oui-numeric>
             </div>
-            <span class="sizing__advanced-units">Gb</span>
+            <span class="sizing__advanced-units">GB</span>
         </oui-field>
         <oui-field
             data-label="{{:: 'data_processing_submit_job_stepper_spark_driver_memory_overhead_label' | translate }}"
-            data-help-text="{{:: 'data_processing_submit_job_stepper_spark_driver_memory_overhead_description' | translate }}"
         >
             <div class="sizing__advanced-units-container">
                 <oui-numeric
                     name="driver-memory-overhead"
                     data-model="$ctrl.state.driverMemoryOverheadMb"
                     data-min="$ctrl.minMemoryOverheadMb"
-                    data-max="64000"
+                    data-max="30000"
                 >
                 </oui-numeric>
             </div>
-            <span class="sizing__advanced-units">Mb</span>
+            <span class="sizing__advanced-units">MB</span>
         </oui-field>
         <oui-field
             data-label="{{:: 'data_processing_submit_job_stepper_spark_worker_cores_label' | translate }}"
-            data-help-text="{{:: 'data_processing_submit_job_stepper_spark_worker_cores_description' | translate }}"
         >
             <div class="sizing__advanced-units-container">
                 <oui-numeric
                     name="worker-cores"
                     data-model="$ctrl.state.workerCores"
                     data-min="1"
-                    data-max="10"
+                    data-max="8"
                 >
                 </oui-numeric>
             </div>
@@ -149,11 +153,11 @@
                     name="worker-memory"
                     data-model="$ctrl.state.workerMemoryGb"
                     data-min="1"
-                    data-max="64"
+                    data-max="30"
                 >
                 </oui-numeric>
             </div>
-            <span class="sizing__advanced-units">Gb</span>
+            <span class="sizing__advanced-units">GB</span>
         </oui-field>
         <oui-field
             data-label="{{:: 'data_processing_submit_job_stepper_spark_worker_memory_overhead_label' | translate }}"
@@ -164,11 +168,11 @@
                     name="worker-memory-overhead"
                     data-model="$ctrl.state.workerMemoryOverheadMb"
                     data-min="$ctrl.minMemoryOverheadMb"
-                    data-max="64000"
+                    data-max="30000"
                 >
                 </oui-numeric>
             </div>
-            <span class="sizing__advanced-units">Mb</span>
+            <span class="sizing__advanced-units">MB</span>
         </oui-field>
         <oui-field
             data-label="{{:: 'data_processing_submit_job_stepper_spark_worker_count_label' | translate }}"
@@ -184,7 +188,10 @@
         <div class="sizing__pricing">
             {{ :: 'data_processing_submit_job_stepper_spark_estimated_price' |
             translate }}
-            <b><span ng-bind="$ctrl.computePrice().toFixed(3)"></span>€/min</b>
+            <strong
+                ><span ng-bind="$ctrl.computePrice().toFixed(3)"></span
+                >€/min</strong
+            >
         </div>
         <button
             class="oui-button oui-button_link sizing__advanced-button"

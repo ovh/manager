@@ -140,11 +140,7 @@ export default class {
     }
     this.dataProcessingService.submitJob(this.projectId, payload).then(
       () => {
-        this.$state.go(
-          'pci.projects.project.data-processing',
-          { projectId: this.projectId },
-          { reload: true },
-        );
+        this.goBack();
       },
       () => {
         if (this.submitRetries < 2) {

@@ -68,18 +68,18 @@
                 data-sortable="desc"
             >
                 <span
-                    title="{{ ::$row.creationDate | momentFormat:'MMMM Do YYYY, h:mm:ss a'}}"
-                    data-ng-bind="::$row.creationDate | momentRelative"
-                ></span>
+                    title="{{ $ctrl.moment($row.creationDate).format('MMMM Do YYYY, h:mm:ss a') }}"
+                    >{{ $ctrl.moment($row.creationDate).fromNow() }}</span
+                >
             </oui-column>
             <oui-column
                 data-title="::'data_processing_job_status' | translate"
                 data-property="status"
                 data-sortable
             >
-                <dataprocessing-job-status
+                <pci-project-data-processing-job-status
                     data-status="$row.status"
-                ></dataprocessing-job-status>
+                ></pci-project-data-processing-job-status>
             </oui-column>
             <oui-action-menu data-align="end" data-compact>
                 <oui-action-menu-item data-on-click="$ctrl.showJob($row.id)">
@@ -88,7 +88,7 @@
                     ></span>
                 </oui-action-menu-item>
                 <oui-action-menu-item
-                    data-href="{{ $ctrl.DATA_PROCESSING_UI_URL[$row.region]+'/'+$row.id }}"
+                    data-href="{{ $ctrl.getDataProcessingUiUrl($row.region, $row.id) }}"
                     data-ng-if="$ctrl.isJobRunning($row)"
                     data-external
                 >
@@ -97,17 +97,9 @@
                     ></span>
                 </oui-action-menu-item>
                 <oui-action-menu-item
-                    data-on-click="$ctrl.showJob($row.id)"
-                    data-external
-                >
-                    <span
-                        data-translate="data_processing_list_button_job_monitoring"
-                    ></span>
-                </oui-action-menu-item>
-                <oui-action-menu-item
-                    class="joblist__action-button__danger"
+                    class="text-danger"
                     data-ng-if="$ctrl.isJobRunning($row)"
-                    data-on-click="$ctrl.terminateJob($row)"
+                    data-on-click="$ctrl.terminateJob($row.id, $row.name)"
                 >
                     <span
                         data-translate="data_processing_list_button_job_terminate"
@@ -115,19 +107,15 @@
                 </oui-action-menu-item>
             </oui-action-menu>
             <extra-top>
-                <div class="row">
-                    <div class="col-auto mr-auto">
-                        <oui-button data-on-click="$ctrl.submitJob()">
-                            <span
-                                class="oui-icon oui-icon-add"
-                                aria-hidden="true"
-                            ></span>
-                            <span
-                                data-translate="data_processing_create_button_label"
-                            ></span>
-                        </oui-button>
-                    </div>
-                </div>
+                <oui-button data-on-click="$ctrl.submitJob()">
+                    <span
+                        class="oui-icon oui-icon-add"
+                        aria-hidden="true"
+                    ></span>
+                    <span
+                        data-translate="data_processing_create_button_label"
+                    ></span>
+                </oui-button>
             </extra-top>
         </oui-datagrid>
     </div>

@@ -3,11 +3,14 @@ import chartjs from 'angular-chart.js';
 
 import dataProcessingMetricsChartComponent from './metrics-chart.component';
 
-const moduleName = 'OvhManagerDataProcessingMetricsChartComponent';
+const moduleName = 'OvhManagerPciProjectDataProcessingMetricsChartComponent';
 
 angular
   .module(moduleName, [chartjs])
-  .component('dataprocessingMetricsChart', dataProcessingMetricsChartComponent)
+  .component(
+    'pciProjectDataProcessingMetricsChart',
+    dataProcessingMetricsChartComponent,
+  )
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

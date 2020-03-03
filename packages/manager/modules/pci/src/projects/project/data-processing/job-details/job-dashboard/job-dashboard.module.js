@@ -11,7 +11,8 @@ import metricsToken from './metrics-token';
 import jobLogs from '../job-logs';
 import metricsChart from './metrics-chart';
 
-const moduleName = 'ovhManagerDataProcessingJobDetailsDashboardComponent';
+const moduleName =
+  'ovhManagerPciProjectDataProcessingJobDetailsDashboardComponent';
 
 angular
   .module(moduleName, [
@@ -24,7 +25,7 @@ angular
   ])
   .config(routing)
   .component(
-    'dataProcessingJobDetailsDashboardComponent',
+    'pciProjectDataProcessingJobDetailsDashboard',
     dataProcessingJobDetailsComponent,
   )
   .service('PciStoragesContainersService', PciStoragesContainersService)

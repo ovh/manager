@@ -1,11 +1,12 @@
 import { find, unzip } from 'lodash';
 import moment from 'moment';
+import { getDataProcessingUiUrl } from '../../data-processing.utils';
 import {
   DATA_PROCESSING_STATUS_TO_CLASS,
   DATA_PROCESSING_STATUSES,
-  DATA_PROCESSING_UI_URL,
   METRICS_REFRESH_INTERVAL,
 } from '../../data-processing.constants';
+import { WARP10_URL } from './job-dashboard.constants';
 
 export default class {
   /* @ngInject */
@@ -27,13 +28,14 @@ export default class {
     this.dataProcessingService = dataProcessingService;
     this.cucRegionService = CucRegionService;
     this.DATA_PROCESSING_STATUS_TO_CLASS = DATA_PROCESSING_STATUS_TO_CLASS;
-    this.DATA_PROCESSING_UI_URL = DATA_PROCESSING_UI_URL;
+    this.getDataProcessingUiUrl = getDataProcessingUiUrl;
     this.containerService = PciStoragesContainersService;
     this.containerId = null;
     this.metricsTimer = null;
+    this.moment = moment;
     // setup metrics retrieval
     this.warp10 = $resource(
-      'https://warp10.gra1.metrics.ovh.net/api/v0/exec',
+      WARP10_URL,
       {},
       {
         query: {
@@ -204,53 +206,6 @@ export default class {
           };
         }
       });
-  }
-
-  /**
-   * Load a modal asking confirmation to terminate current job
-   */
-  terminateJob() {
-    this.$state.go(
-      'pci.projects.project.data-processing.job-details.dashboard.terminate',
-      {
-        projectId: this.projectId,
-        jobId: this.job.id,
-        jobName: this.job.name,
-      },
-    );
-  }
-
-  /**
-   * Load a modal with metrics token and instructions
-   */
-  showMetrics() {
-    this.$state.go(
-      'pci.projects.project.data-processing.job-details.dashboard.metrics-token',
-      {
-        projectId: this.projectId,
-        jobId: this.job.id,
-        jobName: this.job.name,
-      },
-    );
-  }
-
-  /**
-   * Redirect to billing console in manager
-   */
-  showBillingConsole() {
-    this.$state.go('pci.projects.project.billing', {
-      projectId: this.projectId,
-    });
-  }
-
-  /**
-   * Redirect to Object storage Manager view, showing job container
-   */
-  browseObjectStorage() {
-    this.$state.go('pci.projects.project.storages.objects.object', {
-      projectId: this.projectId,
-      containerId: this.containerId,
-    });
   }
 
   /**

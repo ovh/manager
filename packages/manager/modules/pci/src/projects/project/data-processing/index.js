@@ -4,7 +4,7 @@ import ngOvhCloudUniverseComponents from '@ovh-ux/ng-ovh-cloud-universe-componen
 import '@uirouter/angularjs';
 import 'oclazyload';
 
-const moduleName = 'ovhManagerDataProcessing';
+const moduleName = 'ovhManagerPciProjectDataProcessing';
 
 angular
   .module(moduleName, [

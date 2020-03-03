@@ -8,5 +8,6 @@ export default {
   bindings: {
     projectId: '<',
     capabilities: '<',
+    goBack: '<',
   },
 };

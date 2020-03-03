@@ -13,4 +13,9 @@ export const GUIDES = [
   },
 ];
 
-export default { GUIDES };
+export const SPARK_URL = 'https://spark.apache.org/';
+
+export default {
+  GUIDES,
+  SPARK_URL,
+};

@@ -7,25 +7,10 @@ export default class {
   }
 
   deleteJob() {
-    this.dataProcessingService
+    return this.dataProcessingService
       .terminateJob(this.projectId, this.jobId)
       .then(() => {
-        this.$state.go(
-          'pci.projects.project.data-processing.job-details.dashboard',
-          { projectId: this.projectId },
-          { reload: true },
-        );
+        return this.goBack();
       });
-  }
-
-  dismissModal() {
-    this.closeModal();
-  }
-
-  closeModal() {
-    this.$state.go(
-      'pci.projects.project.data-processing.job-details.dashboard',
-      { projectId: this.projectId },
-    );
   }
 }

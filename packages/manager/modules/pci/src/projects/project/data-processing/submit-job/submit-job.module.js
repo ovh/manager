@@ -9,7 +9,8 @@ import sparkConfig from './spark-config';
 
 import dataProcessingSubmitJobComponent from './submit-job.component';
 
-const moduleName = 'ovhManagerDataProcessingSubmitJobComponent';
+const moduleName =
+  'ovhManagerPciProjectDataProcessingSubmitJobComponentLazyLoading';
 
 angular
   .module(moduleName, [
@@ -21,7 +22,7 @@ angular
   ])
   .config(routing)
   .component(
-    'dataProcessingSubmitJobComponent',
+    'pciProjectDataProcessingSubmitJobComponent',
     dataProcessingSubmitJobComponent,
   )
   .run(/* @ngTranslationsInject:json ./translations */);

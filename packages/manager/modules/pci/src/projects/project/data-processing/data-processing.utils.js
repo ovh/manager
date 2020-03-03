@@ -1,5 +1,5 @@
 import moment from 'moment';
-import { random, mapValues, keyBy, startCase } from 'lodash';
+import { get, random, mapValues, keyBy, startCase } from 'lodash';
 import {
   DATA_PROCESSING_STATUS_TO_CLASS,
   DATA_PROCESSING_STATUSES,
@@ -475,10 +475,7 @@ export const isJobRunning = (job) =>
  */
 export const getClassFromStatus = (status) => {
   const normalizedStatus = status.toUpperCase();
-  if (normalizedStatus in DATA_PROCESSING_STATUS_TO_CLASS) {
-    return DATA_PROCESSING_STATUS_TO_CLASS[normalizedStatus];
-  }
-  return 'error';
+  return get(DATA_PROCESSING_STATUS_TO_CLASS, normalizedStatus, 'error');
 };
 
 /**
@@ -529,6 +526,16 @@ export const datagridToIcebergFilter = (name, operator, value) => {
   }
 };
 
+/**
+ * Build URL to access data processing job depending on region
+ * @param region string Public cloud region
+ * @param id string Id of job to retrieve UI for
+ * @return {string} URL to job UI
+ */
+export const getDataProcessingUiUrl = (region, id) => {
+  return `https://adc.${region.toLowerCase()}.dataconvergence.ovh.com/${id}`;
+};
+
 export default {
   parseMemory,
   formatDuration,
@@ -538,4 +545,5 @@ export default {
   isJobRunning,
   getClassFromStatus,
   datagridToIcebergFilter,
+  getDataProcessingUiUrl,
 };

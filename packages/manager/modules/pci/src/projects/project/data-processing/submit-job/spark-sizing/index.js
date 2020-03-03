@@ -3,11 +3,14 @@ import '@uirouter/angularjs';
 
 import SparkSizingComponent from './spark-sizing.component';
 
-const moduleName = 'ovhManagerDataProcessingSubmitJobSparkSizing';
+const moduleName = 'ovhManagerPciProjectDataProcessingSubmitJobSparkSizing';
 
 angular
   .module(moduleName, ['ui.router'])
-  .component('dataprocessingSubmitJobSparkSizing', SparkSizingComponent)
+  .component(
+    'pciProjectDataProcessingSubmitJobSparkSizing',
+    SparkSizingComponent,
+  )
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

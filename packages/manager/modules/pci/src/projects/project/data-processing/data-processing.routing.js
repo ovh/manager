@@ -1,8 +1,7 @@
 export default /* @ngInject */ ($stateProvider) =>
   $stateProvider.state('pci.projects.project.data-processing', {
-    cache: false,
     url: '/data-processing',
-    component: 'dataProcessingComponent',
+    component: 'pciProjectDataProcessingComponent',
     redirectTo: (transition) =>
       Promise.all([
         transition.injector().getAsync('authorization'),
@@ -29,7 +28,25 @@ export default /* @ngInject */ ($stateProvider) =>
             projectId,
             jobId,
           },
+          {
+            reload: true,
+          },
         ),
+      showJobs: /* @ngInject */ ($state, projectId) => () =>
+        $state.go(
+          'pci.projects.project.data-processing',
+          { projectId },
+          {
+            reload: true,
+          },
+        ),
+      terminateJob: /* @ngInject */ ($state, projectId) => (jobId, jobName) => {
+        $state.go('pci.projects.project.data-processing.terminate', {
+          projectId,
+          jobId,
+          jobName,
+        });
+      },
       lab: /* @ngInject */ (PciProjectLabsService, projectId) =>
         PciProjectLabsService.getLabByName(projectId, 'dataProcessing'),
     },

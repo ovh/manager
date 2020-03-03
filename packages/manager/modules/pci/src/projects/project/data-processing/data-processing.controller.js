@@ -1,7 +1,9 @@
+import moment from 'moment';
 import {
   isJobRunning,
   getClassFromStatus,
   datagridToIcebergFilter,
+  getDataProcessingUiUrl,
 } from './data-processing.utils';
 import { DATA_PROCESSING_GUIDE_URL } from './data-processing.constants';
 
@@ -20,6 +22,8 @@ export default class {
     this.isJobRunning = isJobRunning;
     this.getClassFromStatus = getClassFromStatus;
     this.guideUrl = DATA_PROCESSING_GUIDE_URL;
+    this.moment = moment;
+    this.getDataProcessingUiUrl = getDataProcessingUiUrl;
   }
 
   $onInit() {
@@ -59,16 +63,5 @@ export default class {
       sort.property,
       filters,
     );
-  }
-
-  /**
-   * Load a modal asking confirmation to terminate current job
-   */
-  terminateJob(job) {
-    this.$state.go('pci.projects.project.data-processing.terminate', {
-      projectId: this.projectId,
-      jobId: job.id,
-      jobName: job.name,
-    });
   }
 }

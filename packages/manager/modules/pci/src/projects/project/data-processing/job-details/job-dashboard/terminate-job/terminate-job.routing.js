@@ -5,7 +5,7 @@ export default /* @ngInject */ ($stateProvider) => {
       url: '/terminate',
       views: {
         modal: {
-          component: 'dataprocessingTerminateJobModal',
+          component: 'pciProjectDataProcessingTerminateJobModal',
         },
       },
       layout: 'modal',
@@ -15,9 +15,10 @@ export default /* @ngInject */ ($stateProvider) => {
         projectId: null,
       },
       resolve: {
-        projectId: ($transition$) => $transition$.params().projectId,
-        jobId: ($transition$) => $transition$.params().jobId,
-        jobName: ($transition$) => $transition$.params().jobName,
+        jobId: /* @ngInject */ ($transition$) => $transition$.params().jobId,
+        jobName: /* @ngInject */ ($transition$) =>
+          $transition$.params().jobName,
+        goBack: /* @ngInject */ (showJob, jobId) => () => showJob(jobId),
       },
     },
   );

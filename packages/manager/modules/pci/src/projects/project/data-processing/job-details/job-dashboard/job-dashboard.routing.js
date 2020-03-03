@@ -3,21 +3,52 @@ export default /* @ngInject */ ($stateProvider) =>
     'pci.projects.project.data-processing.job-details.dashboard',
     {
       url: '/dashboard',
-      component: 'dataProcessingJobDetailsDashboardComponent',
+      component: 'pciProjectDataProcessingJobDetailsDashboard',
       resolve: {
-        // retrieve project id from url params
-        projectId: ($transition$) => $transition$.params().projectId,
         // retrieve job id from url params
-        jobId: ($transition$) => $transition$.params().jobId,
-        job: (
+        jobId: /* @ngInject */ ($transition$) => $transition$.params().jobId,
+        job: /* @ngInject */ (
           // retrieve job from service
           dataProcessingService,
           projectId,
           jobId,
         ) => dataProcessingService.getJob(projectId, jobId),
-        metricsToken: (dataProcessingService, projectId) =>
+        metricsToken: /* @ngInject */ (dataProcessingService, projectId) =>
           dataProcessingService.getMetricsToken(projectId),
-        breadcrumb: ($translate) =>
+        terminateJob: /* @ngInject */ ($state, projectId, job) => () => {
+          $state.go(
+            'pci.projects.project.data-processing.job-details.dashboard.terminate',
+            {
+              projectId,
+              jobId: job.id,
+              jobName: job.name,
+            },
+          );
+        },
+        showMetrics: /* @ngInject */ ($state, projectId, job) => () => {
+          $state.go(
+            'pci.projects.project.data-processing.job-details.dashboard.metrics-token',
+            {
+              projectId,
+              jobId: job.id,
+              jobName: job.name,
+            },
+          );
+        },
+        showBillingConsole: /* @ngInject */ ($state, projectId) => () => {
+          $state.go('pci.projects.project.billing', {
+            projectId,
+          });
+        },
+        browseObjectStorage: /* @ngInject */ ($state, projectId) => (
+          containerId,
+        ) => {
+          $state.go('pci.projects.project.storages.objects.object', {
+            projectId,
+            containerId,
+          });
+        },
+        breadcrumb: /* @ngInject */ ($translate) =>
           $translate.instant('data_processing_details_dashboard_label'), // update breadcrumb with "Dashboard"
       },
     },

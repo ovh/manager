@@ -1,6 +1,6 @@
 import reduce from 'lodash/reduce';
 import illustration from './assets/data-processing.png';
-import { GUIDES } from './onboarding.constants';
+import { GUIDES, SPARK_URL } from './onboarding.constants';
 
 export default class {
   /* @ngInject */
@@ -23,6 +23,7 @@ export default class {
   $onInit() {
     this.illustration = illustration;
     this.isActivated = this.lab.isActivated();
+    this.sparkUrl = SPARK_URL;
     this.guides = reduce(
       GUIDES,
       (list, guide) => [
@@ -53,13 +54,9 @@ export default class {
     } else {
       labPromise = this.$q.resolve();
     }
-    labPromise.then(() => {
+    return labPromise.then(() => {
       this.dataProcessingService.authorize(this.projectId).then(() => {
-        this.$state.go(
-          'pci.projects.project.data-processing',
-          {},
-          { reload: true },
-        );
+        this.goBack();
       });
     });
   }

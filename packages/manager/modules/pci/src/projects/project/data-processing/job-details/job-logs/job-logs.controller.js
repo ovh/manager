@@ -1,3 +1,6 @@
+import moment from 'moment';
+import { DATA_PROCESSING_API_STATUSES } from '../../data-processing.constants';
+
 export default class {
   /* @ngInject */
   constructor(
@@ -13,6 +16,7 @@ export default class {
     this.$timeout = $timeout;
     this.dataProcessingJobLogsService = dataProcessingJobLogsService;
     this.logger = dataProcessingJobLogsService;
+    this.moment = moment;
     // let's do some binding
     this.downloadLogs = this.downloadLogs.bind(this);
     this.isDownloadButtonDisabled = false;
@@ -24,6 +28,12 @@ export default class {
 
   $onDestroy() {
     this.logger.stopLogsPolling();
+  }
+
+  isJobTerminated() {
+    return (
+      this.job.status.toUpperCase() === DATA_PROCESSING_API_STATUSES.TERMINATED
+    );
   }
 
   downloadLogs() {

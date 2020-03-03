@@ -1,7 +1,11 @@
+import { GRAFANA_URL, GUIDES_MONITOR_JOB_URL } from './metrics-token.constants';
+
 export default class {
   /* @ngInject */
   constructor($state) {
     this.$state = $state;
+    this.grafanaUrl = GRAFANA_URL;
+    this.docsMonitoringUrl = GUIDES_MONITOR_JOB_URL;
   }
 
   dismissModal() {
@@ -9,9 +13,6 @@ export default class {
   }
 
   closeModal() {
-    this.$state.go(
-      'pci.projects.project.data-processing.job-details.dashboard',
-      { projectId: this.projectId },
-    );
+    this.goBack();
   }
 }

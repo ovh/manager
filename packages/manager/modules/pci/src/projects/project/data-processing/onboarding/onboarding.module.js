@@ -3,12 +3,13 @@ import '@uirouter/angularjs';
 import onboardingComponent from './onboarding.component';
 import routing from './onboarding.routing';
 
-const moduleName = 'ovhManagerDataProcessingOnboardingComponent';
+const moduleName =
+  'ovhManagerPciProjectDataProcessingOnboardingComponentLazyLoading';
 
 angular
   .module(moduleName, ['ui.router'])
   .config(routing)
-  .component('dataprocessingOnboardingComponent', onboardingComponent)
+  .component('pciProjectDataProcessingOnboardingComponent', onboardingComponent)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

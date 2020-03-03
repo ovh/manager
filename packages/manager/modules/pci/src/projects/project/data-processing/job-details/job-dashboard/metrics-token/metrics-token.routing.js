@@ -5,7 +5,7 @@ export default /* @ngInject */ ($stateProvider) => {
       url: '/metrics',
       views: {
         modal: {
-          component: 'dataprocessingMetricsTokenModal',
+          component: 'pciProjectDataProcessingMetricsTokenModal',
         },
       },
       layout: 'modal',
@@ -14,10 +14,10 @@ export default /* @ngInject */ ($stateProvider) => {
         projectId: null,
       },
       resolve: {
-        projectId: ($transition$) => $transition$.params().projectId,
-        jobId: ($transition$) => $transition$.params().jobId,
-        metricsToken: (dataProcessingService, projectId) =>
+        jobId: /* @ngInject */ ($transition$) => $transition$.params().jobId,
+        metricsToken: /* @ngInject */ (dataProcessingService, projectId) =>
           dataProcessingService.getMetricsToken(projectId),
+        goBack: /* @ngInject */ (showJob, jobId) => () => showJob(jobId),
       },
     },
   );

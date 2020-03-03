@@ -3,7 +3,7 @@ import '@uirouter/angularjs';
 import 'oclazyload';
 import PciStoragesContainersService from '../../../storages/containers/containers.service';
 
-const moduleName = 'ovhManagerDataProcessingJobLogs';
+const moduleName = 'ovhManagerPciProjectDataProcessingJobLogs';
 
 angular
   .module(moduleName, ['ui.router', 'oc.lazyLoad'])

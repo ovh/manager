@@ -9,5 +9,10 @@ export default {
     job: '<',
     projectId: '<',
     metricsToken: '<',
+    terminateJob: '<',
+    showMetrics: '<',
+    showBillingConsole: '<',
+    browseObjectStorage: '<',
+    goBack: '<',
   },
 };

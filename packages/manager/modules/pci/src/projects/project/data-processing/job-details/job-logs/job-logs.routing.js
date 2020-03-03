@@ -3,19 +3,17 @@ export default /* @ngInject */ ($stateProvider) =>
     'pci.projects.project.data-processing.job-details.logs',
     {
       url: '/logs',
-      component: 'dataprocessingJobLogsComponent',
+      component: 'pciProjectDataProcessingJobLogsComponent',
       resolve: {
-        // retrieve project id from url params
-        projectId: ($transition$) => $transition$.params().projectId,
         // retrieve job id from url params
-        jobId: ($transition$) => $transition$.params().jobId,
-        job: (
+        jobId: /* @ngInject */ ($transition$) => $transition$.params().jobId,
+        job: /* @ngInject */ (
           // retrieve job from service
           dataProcessingService,
           projectId,
           jobId,
         ) => dataProcessingService.getJob(projectId, jobId),
-        breadcrumb: ($translate) =>
+        breadcrumb: /* @ngInject */ ($translate) =>
           $translate.instant('data_processing_details_logs_title'), // update breadcrumb with "/ Logs"
       },
     },

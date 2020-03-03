@@ -2,11 +2,14 @@ import angular from 'angular';
 
 import dataProcessingJobStatusComponent from './job-status.component';
 
-const moduleName = 'OvhManagerDataProcessingJobStatusComponent';
+const moduleName = 'OvhManagerPciProjectDataProcessingJobStatusComponent';
 
 angular
   .module(moduleName, [])
-  .component('dataprocessingJobStatus', dataProcessingJobStatusComponent)
+  .component(
+    'pciProjectDataProcessingJobStatus',
+    dataProcessingJobStatusComponent,
+  )
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
