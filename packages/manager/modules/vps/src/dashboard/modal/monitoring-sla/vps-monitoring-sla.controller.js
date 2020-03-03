@@ -5,12 +5,12 @@ export default class VpsMonitoringSlaCtrl {
     this.CucCloudMessage = CucCloudMessage;
     this.VpsService = VpsService;
     this.CucControllerHelper = CucControllerHelper;
-    this.currentState = !this.state;
     this.title = this.$translate.instant('vps_configuration_sla_title_enable');
     this.vps = {};
   }
 
   $onInit() {
+    this.currentState = !this.state;
     if (this.currentState) {
       this.title = this.$translate.instant(
         'vps_configuration_sla_title_disable',
