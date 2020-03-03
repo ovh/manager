@@ -1,16 +1,15 @@
-import controller from './backup.controller';
-import template from './backup.html';
+import controller from './upgrade.controller';
+import template from './template.html';
 
 export default {
   bindings: {
     backup: '<',
     backupOffers: '<',
+    backupTariffUrl: '<',
     currentUser: '<',
     datacenterId: '<',
-    goToUpgradeOffer: '<',
-    messageToShow: '<',
+    goToBackup: '<',
     productId: '<',
-    scrollToTop: '<',
   },
   controller,
   template,

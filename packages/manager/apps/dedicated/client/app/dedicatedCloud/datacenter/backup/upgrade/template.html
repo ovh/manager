@@ -1,0 +1,30 @@
+<oui-modal
+    data-title="{{:: 'dedicatedCloud_datacenter_backup_upgrade_title' | translate }}"
+    data-on-dismiss="$ctrl.goToBackup()"
+    data-primary-action="$ctrl.upgrade()"
+    data-secondary-action="$ctrl.goToBackup()"
+    data-type="warning"
+    data-primary-label="{{:: 'dedicatedCloud_datacenter_backup_upgrade_confirm' | translate: { name: $ctrl.backup.backupOffer } }}"
+    data-secondary-label="{{:: 'dedicatedCloud_datacenter_backup_upgrade_cancel' | translate }}"
+    data-loading="$ctrl.upgrading"
+    data-primary-disabled="!$ctrl.conditionsAccepted"
+>
+    <p
+        data-translate="dedicatedCloud_datacenter_backup_upgrade_description"
+        data-translate-values="{ name: $ctrl.BACKUP_NAME[$ctrl.backup.backupOffer] }"
+    ></p>
+    <p
+        data-translate="dedicatedCloud_datacenter_backup_upgrade_description_features"
+    ></p>
+    <dedicated-cloud-datacenter-backup-offer-details
+        data-offer="$ctrl.selectedOffer"
+    ></dedicated-cloud-datacenter-backup-offer-details>
+    <dedicated-cloud-datacenter-backup-terms-of-use
+        data-backup-tariff-url="{{ $ctrl.backupTariffUrl }}"
+        data-datacenter-id="{{ $ctrl.datacenterId }}"
+        data-mode="{{ $ctrl.MODES.UPGRADE }}"
+        data-model="$ctrl.conditionsAccepted"
+        data-conditions-url="{{ $ctrl.data.backupOrder.contracts[0].url }}"
+    >
+    </dedicated-cloud-datacenter-backup-terms-of-use>
+</oui-modal>

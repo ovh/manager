@@ -4,23 +4,26 @@ import 'ovh-api-services';
 import 'ovh-ui-angular';
 import 'angular-translate';
 
-import component from './new.component';
-import offers from '../components/offers';
-import routing from './new.routing';
+import backupOfferDetails from '../components/offer-details';
+import component from './upgrade.component';
 import termsOfUse from '../components/termsOfUse';
 
-const moduleName = 'ovhManagerDedicatedCloudBackupNewModule';
+import routing from './upgrade.routing';
+
+const moduleName = 'ovhManagerDedicatedCloudBackupUpgradeModule';
 
 angular
   .module(moduleName, [
+    backupOfferDetails,
     'ngTranslateAsyncLoader',
-    'oui',
     'ovh-api-services',
+    'oui',
     'pascalprecht.translate',
-    offers,
     termsOfUse,
+    'ui.router',
   ])
   .config(routing)
-  .component('dedicatedCloudDatacenterBackupNew', component);
+  .component('dedicatedCloudDatacenterBackupUpgrade', component)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
