@@ -41,15 +41,12 @@ export default class {
       )
       .then(() =>
         this.goToBackup(
-          [
-            this.$translate.instant(
-              'dedicatedCloud_datacenter_backup_upgrade_success_1',
-              { offer: this.backup.backupOffer },
-            ),
-            this.$translate.instant(
-              'dedicatedCloud_datacenter_backup_upgrade_success_2',
-            ),
-          ].join(' '),
+          `${this.$translate.instant(
+            'dedicatedCloud_datacenter_backup_upgrade_success_1',
+            { offer: this.backup.backupOffer },
+          )} ${this.$translate.instant(
+            'dedicatedCloud_datacenter_backup_upgrade_success_2',
+          )}`,
         ),
       )
       .finally(() => {
