@@ -251,10 +251,6 @@ export default class HostingGeneralInformationsCtrl {
     this.$scope.$parent.$ctrl.setSelectedTab('BOOST');
   }
 
-  goToPrivateSqlActivation() {
-    return this.$state.go('app.hosting.database.private-sql-activation');
-  }
-
   getEmailOfferDetails(serviceName) {
     this.isRetrievingEmailOffer = true;
     return this.hostingEmailService
