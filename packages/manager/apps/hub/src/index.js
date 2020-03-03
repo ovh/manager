@@ -4,6 +4,7 @@ import { Environment } from '@ovh-ux/manager-config';
 import angular from 'angular';
 import 'angular-translate';
 import uiRouter, { RejectType } from '@uirouter/angularjs';
+import ngOvhUiRouterLineProgress from '@ovh-ux/ng-ui-router-line-progress';
 
 import 'ovh-ui-angular';
 import ovhManagerCore from '@ovh-ux/manager-core';
@@ -33,12 +34,13 @@ angular
     atInternet,
     dashboard,
     errorPage,
-    'pascalprecht.translate',
+    ngOvhUiRouterLineProgress,
     'oui',
     ovhManagerCore,
     ovhManagerHub,
     ovhManagerNavbar,
     ovhManagerOrderTracking,
+    'pascalprecht.translate',
     preload,
     uiRouter,
   ])
