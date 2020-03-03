@@ -11,6 +11,7 @@ import component from './backup.component';
 import routing from './backup.routing';
 import backupService from './backup.service';
 import backupOffers from './components/offers';
+import backupUpgrade from './upgrade';
 import backupNew from './new';
 import splaLicence from './splaLicence';
 
@@ -26,6 +27,7 @@ angular
     backupOffers,
     backupNew,
     splaLicence,
+    backupUpgrade,
   ])
   .config(routing)
   .component('dedicatedCloudDatacenterBackup', component)

@@ -10,14 +10,14 @@
         data-on-change="$ctrl.onSelected(modelValue)"
         data-values="[offer]"
     >
-        <div data-ng-if="offer.offerName === $ctrl.actualOffer">
-            <oui-select-picker-description>
-                <span
-                    class="oui-status oui-status_success"
-                    data-translate="dedicatedCloud_datacenter_backup_offer_current_offer"
-                ></span>
-            </oui-select-picker-description>
-        </div>
+        <oui-select-picker-description
+            data-ng-if="offer.offerName === $ctrl.actualOffer"
+        >
+            <span
+                class="oui-status oui-status_success"
+                data-translate="dedicatedCloud_datacenter_backup_offer_current_offer"
+            ></span>
+        </oui-select-picker-description>
         <oui-select-picker-section>
             <dedicated-cloud-datacenter-backup-offer-details
                 data-offer="offer"
