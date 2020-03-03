@@ -17,7 +17,7 @@
 
             <form
                 name="hostingCreateDatabaseForm"
-                data-ng-if="capabilities && dbVersions && capabilities.length > 0"
+                data-ng-if="capabilities && dbVersions"
             >
                 <p
                     data-translate="hosting_tab_DATABASES_configuration_create_step1_question"
@@ -111,90 +111,6 @@
                     </div>
                 </fieldset>
             </form>
-
-            <div
-                data-ng-if="capabilities && dbVersions && capabilities.length === 0"
-            >
-                <p
-                    class="text-danger"
-                    data-translate="hosting_tab_DATABASES_configuration_create_step1_no_db_left"
-                ></p>
-                <!-- NOT SQL PRIV -->
-                <ul
-                    class="list-unstyled mt-2"
-                    data-ng-if="hosting.sqlPriveInfo.nbDataBaseActive >= hosting.sqlPriveInfo.nbDataBaseInclude"
-                >
-                    <!-- MUTU PERSO -->
-                    <li data-ng-if="isPerso()">
-                        <button
-                            class="btn btn-link text-left text-wrap p-0"
-                            type="button"
-                            data-translate="hosting_tab_DATABASES_configuration_create_upgrade_perso"
-                            data-ui-sref="app.hosting.upgrade({ productId: hosting.serviceName })"
-                        ></button>
-                    </li>
-
-                    <!-- MUTU PRO -->
-                    <li data-ng-if="isPro()">
-                        <button
-                            class="btn btn-link text-left text-wrap p-0"
-                            type="button"
-                            data-translate="hosting_tab_DATABASES_configuration_create_upgrade_pro"
-                            data-ui-sref="app.hosting.upgrade({ productId: hosting.serviceName })"
-                        ></button>
-                    </li>
-
-                    <!-- OTHER MUTU -->
-                    <li data-ng-if="!isPerf() && !isStart()">
-                        <button
-                            class="btn btn-link text-left text-wrap p-0"
-                            type="button"
-                            data-translate="hosting_tab_DATABASES_configuration_create_order_db"
-                            data-ng-click="setAction('database/order/hosting-database-order')"
-                        ></button>
-                    </li>
-
-                    <!-- ALL WITHOUT PERF -->
-                    <li data-ng-if="!isPerf()">
-                        <button
-                            class="btn btn-link text-left text-wrap p-0"
-                            type="button"
-                            data-translate="hosting_tab_DATABASES_configuration_create_order_db_server"
-                            data-ng-click="buyPrivateDb() && !isStart()"
-                        ></button>
-                    </li>
-                </ul>
-
-                <ul
-                    class="list-unstyled mt-2"
-                    data-ng-if="hosting.sqlPriveInfo.nbDataBaseActive < hosting.sqlPriveInfo.nbDataBaseInclude"
-                >
-                    <li data-ng-if="!isStart()">
-                        <a
-                            data-ng-href="{{guide}}"
-                            target="_blank"
-                            title="{{:: 'hosting_tab_DATABASES_configuration_create_db_create' | translate }} {{:: 'common_newtab' | translate }}"
-                        >
-                            <span
-                                data-translate="hosting_tab_DATABASES_configuration_create_db_create"
-                            ></span>
-                            <span
-                                class="fa fa-external-link"
-                                aria-hidden="true"
-                            ></span>
-                        </a>
-                    </li>
-
-                    <li data-ng-if="isStart()">
-                        <button
-                            class="btn btn-link text-left text-wrap p-0"
-                            type="button"
-                            data-translate="hosting_tab_DATABASES_configuration_create_upgrade_start"
-                            data-ui-sref="app.hosting.upgrade({ productId: hosting.serviceName })"
-                        ></button>
-                    </li>
-                </ul>
-            </div>
         </div>
 
         <div data-wizard-step data-wizard-step-valid="isStep2Valid()">
