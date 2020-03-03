@@ -122,30 +122,13 @@
     </div>
 
     <h3
-        class="oui-heading_4"
-        data-translate="dedicatedCloud_datacenter_drp_confirm_zssp_password_title"
-    ></h3>
-    <oui-button
-        class="d-inline-block"
-        data-variant="secondary"
-        data-disabled="$ctrl.generatingPassword || $ctrl.isProvisionning()"
-        data-on-click="$ctrl.regenerateZsspPassword()"
-        data-ng-if="!$ctrl.generatingPassword"
-    >
-        <span
-            data-translate="dedicatedCloud_datacenter_drp_confirm_zssp_password_action_text"
-        ></span>
-    </oui-button>
-    <oui-spinner data-ng-if="$ctrl.generatingPassword"></oui-spinner>
-
-    <h3
         class="oui-heading_4 mt-5"
         data-translate="dedicatedCloud_datacenter_drp_confirm_delete_drp_title"
     ></h3>
     <oui-button
         data-variant="secondary"
         data-on-click="$ctrl.goToDeleteDrpModal()"
-        data-disabled="!$ctrl.deleteActionAvailable || $ctrl.generatingPassword || $ctrl.isProvisionning() || $ctrl.currentDrp.vpnStatus === $ctrl.VPN_STATUS.configuring"
+        data-disabled="!$ctrl.deleteActionAvailable || $ctrl.isProvisionning() || $ctrl.currentDrp.vpnStatus === $ctrl.VPN_STATUS.configuring"
     >
         <span
             data-translate="dedicatedCloud_datacenter_drp_confirm_delete_drp_action_text"
