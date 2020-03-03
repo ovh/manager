@@ -9,7 +9,7 @@
         </p>
         <a
             class="oui-button oui-button_link hub-button"
-            data-ng-if="$ctrl.href"
+            data-ng-if="$ctrl.href || $ctrl.onClick"
             data-ng-href="{{:: $ctrl.href }}"
             data-ng-click="$ctrl.onClick()"
         >
