@@ -6,6 +6,8 @@ import indexOf from 'lodash/indexOf';
 import isArray from 'lodash/isArray';
 import isEmpty from 'lodash/isEmpty';
 import map from 'lodash/map';
+import replace from 'lodash/replace';
+import toLower from 'lodash/toLower';
 import union from 'lodash/union';
 
 {
@@ -26,6 +28,7 @@ import union from 'lodash/union';
         constants,
         WucConverterService,
         HOSTING,
+        HOSTING_UPGRADES,
         OvhHttp,
         Poll,
       ) {
@@ -36,6 +39,7 @@ import union from 'lodash/union';
         this.constants = constants;
         this.WucConverterService = WucConverterService;
         this.HOSTING = HOSTING;
+        this.HOSTING_UPGRADES = HOSTING_UPGRADES;
         this.OvhHttp = OvhHttp;
         this.Poll = Poll;
 
@@ -433,10 +437,14 @@ import union from 'lodash/union';
        * @param {string} offer
        */
       getOfferCapabilities(offer) {
+        const formattedOffer = this.HOSTING_UPGRADES.includes(offer)
+          ? offer
+          : replace(toLower(offer), /_/g, '');
+
         return this.OvhHttp.get('/hosting/web/offerCapabilities', {
           rootPath: 'apiv6',
           params: {
-            offer,
+            offer: formattedOffer,
           },
         });
       }
