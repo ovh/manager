@@ -1,4 +1,5 @@
-// import controller from './controller';
+import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
+import controller from './controller';
 import template from './template.html';
 
 /*
@@ -19,11 +20,12 @@ import template from './template.html';
  */
 
 export default {
-  // controller,
+  controller,
   template,
   bindings: {
+    ...ListLayoutHelper.componentBindings,
     columns: '<',
-    products: '<',
+    onColumnChange: '<',
     productType: '<',
   },
 };
