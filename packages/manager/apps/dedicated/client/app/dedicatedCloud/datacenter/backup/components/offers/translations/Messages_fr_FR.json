@@ -1,0 +1,8 @@
+{
+  "dedicatedCloud_datacenter_backup_offer_classic": "Veeam Backup Standard",
+  "dedicatedCloud_datacenter_backup_offer_premium": "Veeam Backup Premium",
+  "dedicatedCloud_datacenter_backup_offer_advanced": "Veeam Backup Advanced",
+  "dedicatedCloud_datacenter_backup_offer_current_offer": "Offre actuelle",
+  "dedicatedCloud_datacenter_backup_offer_price_per_vm": "{{price}}/VM",
+  "dedicatedCloud_datacenter_backup_offer_price_from": "À partir de {{price}}"
+}
