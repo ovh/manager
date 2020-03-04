@@ -1,3 +1,12 @@
+## [11.4.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@11.4.6...@ovh-ux/manager-telecom@11.4.7) (2020-03-04)
+
+
+### Bug Fixes
+
+* **deps:** use latest for @ovh-ux/manager-core ([#2394](https://github.com/ovh/manager/issues/2394)) ([fd0a25b](https://github.com/ovh/manager/commit/fd0a25b11bd5119649daf3b1605bb56bf70f3ff9))
+
+
+
 ## [11.4.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@11.4.5...@ovh-ux/manager-telecom@11.4.6) (2020-03-04)
 
 
