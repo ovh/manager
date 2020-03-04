@@ -1,5 +1,6 @@
 {
   "manager_hub_dashboard_welcome": "Bienvenue {{ name }} !",
+  "manager_hub_dashboard_feedback": "Nouveau dashboard : n'hésitez pas à nous <a href=\"{{ url }}\" target=\"_blank\" rel=\"noopener\">partager vos feedbacks</a>",
   "manager_hub_dashboard_overview": "Vue d'ensemble de mon activité",
   "manager_hub_dashboard_services": "Mes produits et services"
 }
