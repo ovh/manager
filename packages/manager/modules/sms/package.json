@@ -22,7 +22,7 @@
     "ovh-ui-kit": "^2.40.0"
   },
   "peerDependencies": {
-    "@ovh-ux/manager-core": "^7.6.2",
+    "@ovh-ux/manager-core": "^8.0.0",
     "@ovh-ux/manager-telecom-styles": "^3.1.0",
     "@ovh-ux/ng-at-internet": "^4.0.0",
     "@ovh-ux/ng-at-internet-ui-router-plugin": "^2.0.0",
