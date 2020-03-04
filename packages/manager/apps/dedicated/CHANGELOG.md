@@ -1,3 +1,20 @@
+# [11.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@11.6.0...@ovh-ux/manager-dedicated@11.7.0) (2020-03-04)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 289] ([77faed3](https://github.com/ovh/manager/commit/77faed30cdbe3584ddf5129ef5cd569f1a5ea5bc))
+* **translations:** clean translations files ([#2284](https://github.com/ovh/manager/issues/2284)) ([b842838](https://github.com/ovh/manager/commit/b842838fc54abd206c512fc2372a4ce39127ad24))
+
+
+### Features
+
+* **dedicated.pcc:** create state for PCC dashboard ([3265700](https://github.com/ovh/manager/commit/3265700fb23207b8b3f4ef31f899cff21319dcb7))
+* **pcc.datacenter:** update sidebar when changing description ([16d8f5e](https://github.com/ovh/manager/commit/16d8f5e69bf243690187b63834a9aa83a9d36f78))
+* **sidebar:** allow updating by other criterias than mere productId ([dabf76f](https://github.com/ovh/manager/commit/dabf76fea1ad084def6a829fbdfd3c7f397ad575))
+
+
+
 # [11.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@11.5.3...@ovh-ux/manager-dedicated@11.6.0) (2020-03-03)
 
 

@@ -1,3 +1,12 @@
+## [2.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@2.6.0...@ovh-ux/manager-public-cloud@2.6.1) (2020-03-04)
+
+
+### Bug Fixes
+
+* **pci.project.sidebar:** set the right color for the beta status badge ([#2296](https://github.com/ovh/manager/issues/2296)) ([dc082d9](https://github.com/ovh/manager/commit/dc082d94b5cd4a329f2f97c89ec6c4c63e92982b))
+
+
+
 # [2.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@2.5.5...@ovh-ux/manager-public-cloud@2.6.0) (2020-01-16)
 
 

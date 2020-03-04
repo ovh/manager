@@ -1,3 +1,19 @@
+# [1.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@1.5.4...@ovh-ux/manager-exchange@1.6.0) (2020-03-04)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 276] ([002b82c](https://github.com/ovh/manager/commit/002b82c48603620777e5d6cc093165c6310669e9))
+* **i18n:** add missing translations [CDS 289] ([77faed3](https://github.com/ovh/manager/commit/77faed30cdbe3584ddf5129ef5cd569f1a5ea5bc))
+* **translations:** clean translations files ([#2284](https://github.com/ovh/manager/issues/2284)) ([b842838](https://github.com/ovh/manager/commit/b842838fc54abd206c512fc2372a4ce39127ad24))
+
+
+### Features
+
+* **exchange:** add url without offer and redirect ([#2285](https://github.com/ovh/manager/issues/2285)) ([6b46266](https://github.com/ovh/manager/commit/6b46266671a342ef4cd038d07ad9984dab828788))
+
+
+
 ## [1.5.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@1.5.3...@ovh-ux/manager-exchange@1.5.4) (2020-02-19)
 
 

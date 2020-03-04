@@ -1,3 +1,12 @@
+## [5.0.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom-task@5.0.2...@ovh-ux/manager-telecom-task@5.0.3) (2020-03-04)
+
+
+### Bug Fixes
+
+* **translations:** clean translations files ([#2284](https://github.com/ovh/manager/issues/2284)) ([b842838](https://github.com/ovh/manager/commit/b842838fc54abd206c512fc2372a4ce39127ad24))
+
+
+
 ## [5.0.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom-task@5.0.1...@ovh-ux/manager-telecom-task@5.0.2) (2019-11-22)
 
 

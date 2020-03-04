@@ -1,3 +1,12 @@
+## [8.3.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@8.3.2...@ovh-ux/manager-cloud@8.3.3) (2020-03-04)
+
+
+### Bug Fixes
+
+* **translations:** clean translations files ([#2284](https://github.com/ovh/manager/issues/2284)) ([b842838](https://github.com/ovh/manager/commit/b842838fc54abd206c512fc2372a4ce39127ad24))
+
+
+
 ## [8.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@8.3.1...@ovh-ux/manager-cloud@8.3.2) (2020-02-19)
 
 

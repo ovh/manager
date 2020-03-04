@@ -1,3 +1,12 @@
+## [1.3.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@1.3.2...@ovh-ux/manager-server-sidebar@1.3.3) (2020-03-04)
+
+
+### Bug Fixes
+
+* **controller:** restore items loading on click ([#2291](https://github.com/ovh/manager/issues/2291)) ([1af4ecf](https://github.com/ovh/manager/commit/1af4ecf0b4d8b8138c150f10ed8ee6721ad6bfb4))
+
+
+
 ## [1.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@1.3.1...@ovh-ux/manager-server-sidebar@1.3.2) (2020-01-27)
 
 

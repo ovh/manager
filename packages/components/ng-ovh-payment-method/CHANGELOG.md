@@ -1,3 +1,25 @@
+# [6.0.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-payment-method@5.2.0...@ovh-ux/ng-ovh-payment-method@6.0.0) (2020-03-04)
+
+
+### Bug Fixes
+
+* **ng-ovh-payment-method:** payment status category ([2565820](https://github.com/ovh/manager/commit/25658208eb0e2696abdf64d11b55493dff288d1d))
+
+
+### Features
+
+* **components.choice:** return object if payment method is selected ([b79a4d9](https://github.com/ovh/manager/commit/b79a4d9cb4aca94b7fda5d09a3de3542ac135268))
+* **hub:** add user panel ([#2225](https://github.com/ovh/manager/issues/2225)) ([6529c70](https://github.com/ovh/manager/commit/6529c7011b198b3b672c93f01f721e737f8de013))
+
+
+### BREAKING CHANGES
+
+* **components.choice:** the two-way binded model will now store an object the representing default payment method, instead of just setting a boolean value
+
+Signed-off-by: Jérémy De-Cesare <jeremy.de-cesare@corp.ovh.com>
+
+
+
 # [5.2.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-payment-method@5.1.1...@ovh-ux/ng-ovh-payment-method@5.2.0) (2019-12-20)
 
 

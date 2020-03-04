@@ -1,3 +1,12 @@
+# [1.2.0](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@1.1.3...@ovh-ux/sign-up@1.2.0) (2020-03-04)
+
+
+### Features
+
+* **form.detail:** update phone country on country change ([#2297](https://github.com/ovh/manager/issues/2297)) ([8953a69](https://github.com/ovh/manager/commit/8953a694ab03e316fd17ef9ce17620347aef86cf))
+
+
+
 ## [1.1.3](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@1.1.2...@ovh-ux/sign-up@1.1.3) (2020-02-21)
 
 

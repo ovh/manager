@@ -1,3 +1,27 @@
+# [8.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@7.6.3...@ovh-ux/manager-core@8.0.0) (2020-03-04)
+
+
+### Code Refactoring
+
+* **core:** remove ovh-api-services ([#2299](https://github.com/ovh/manager/issues/2299)) ([0fb664a](https://github.com/ovh/manager/commit/0fb664ab5c790bb53eb1caefb124bef8a558a839))
+
+
+### Features
+
+* add order tracking tile ([aa7b1d3](https://github.com/ovh/manager/commit/aa7b1d3f0b11bb24cb4d4cc525abff602ec2d0c2))
+* payment status tile ([7f80e6a](https://github.com/ovh/manager/commit/7f80e6ad5952644aac3ea496e1f1aba3ce4d5599))
+* **core:** add redirection service ([daccb3a](https://github.com/ovh/manager/commit/daccb3a797e02b6835facab3affdef6b3bae8d20))
+* **core:** add supportLevel redirection ([2d040c4](https://github.com/ovh/manager/commit/2d040c461ae12ad1a1d5ff26274701f2b8802baa))
+
+
+### BREAKING CHANGES
+
+* **core:** remove ovh-api-services peer dependency
+
+Signed-off-by: frenauvh <florian.renaut@corp.ovh.com>
+
+
+
 ## [7.6.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@7.6.2...@ovh-ux/manager-core@7.6.3) (2019-12-10)
 
 
