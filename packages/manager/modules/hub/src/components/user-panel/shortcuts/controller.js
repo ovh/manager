@@ -35,8 +35,8 @@ export default class ManagerHubShortcutsCtrl {
       {
         id: 'products',
         icon: 'oui-icon-book-open_concept',
-        url: '#',
         tracking: 'hub::sidebar::shortcuts::go-to-catalog',
+        url: this.RedirectionService.getURL('catalog'),
       },
       {
         id: 'emails',
