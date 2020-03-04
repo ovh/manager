@@ -160,10 +160,6 @@ export const ORDER_URLS = {
       FR:
         'https://www.ovh.com/manager/public-cloud/#/pci/projects/default/kubernetes/new',
     },
-    orderSql: {
-      FR:
-        'https://www.ovh.com/manager/web/#/configuration/sql_order?orderType=dbaas',
-    },
     orderDomain: {
       CZ: 'https://www.ovh.cz/cgi-bin/newOrder/order.cgi',
       DE: 'https://www.ovh.de/order/domain/',
@@ -544,16 +540,6 @@ export const SIDEBAR_ORDER_CONFIG = [
     external: true,
     app: [CLOUD],
     regions: ['EU'],
-  },
-  {
-    id: 'order-clouddb',
-    title: 'clouddb',
-    icon: 'ovh-font ovh-font-database',
-    linkId: 'orderSql',
-    target: '_blank',
-    external: true,
-    app: [CLOUD],
-    regions: [],
   },
   {
     id: 'order-logs',
