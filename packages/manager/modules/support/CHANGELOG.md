@@ -1,3 +1,12 @@
+## [0.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@0.5.0...@ovh-ux/manager-support@0.5.1) (2020-03-04)
+
+
+### Bug Fixes
+
+* **translations:** clean translations files ([#2284](https://github.com/ovh/manager/issues/2284)) ([b842838](https://github.com/ovh/manager/commit/b842838fc54abd206c512fc2372a4ce39127ad24))
+
+
+
 # [0.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@0.4.8...@ovh-ux/manager-support@0.5.0) (2020-02-25)
 
 

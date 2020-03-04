@@ -1,3 +1,13 @@
+## [0.1.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@0.1.3...@ovh-ux/manager-iplb@0.1.4) (2020-03-04)
+
+
+### Bug Fixes
+
+* **iplb:** manage links by region ([#2308](https://github.com/ovh/manager/issues/2308)) ([b6a0ea9](https://github.com/ovh/manager/commit/b6a0ea92b76bebccfab642d2cf9d66b96c129791))
+* **translations:** clean translations files ([#2284](https://github.com/ovh/manager/issues/2284)) ([b842838](https://github.com/ovh/manager/commit/b842838fc54abd206c512fc2372a4ce39127ad24))
+
+
+
 ## [0.1.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@0.1.2...@ovh-ux/manager-iplb@0.1.3) (2020-01-08)
 
 

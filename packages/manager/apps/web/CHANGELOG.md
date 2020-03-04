@@ -1,3 +1,12 @@
+## [13.45.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.45.1...@ovh-ux/manager-web@13.45.2) (2020-03-04)
+
+
+### Bug Fixes
+
+* **translations:** clean translations files ([#2284](https://github.com/ovh/manager/issues/2284)) ([b842838](https://github.com/ovh/manager/commit/b842838fc54abd206c512fc2372a4ce39127ad24))
+
+
+
 ## [13.45.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.45.0...@ovh-ux/manager-web@13.45.1) (2020-02-27)
 
 
