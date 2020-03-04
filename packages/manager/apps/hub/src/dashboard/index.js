@@ -7,6 +7,7 @@ import orderDashboard from './order-dashboard';
 
 import component from './dashboard.component';
 import routing from './routing';
+import './dashboard.scss';
 
 const moduleName = 'ovhManagerHubDashboard';
 
