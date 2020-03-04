@@ -1,7 +1,12 @@
 <oui-page-header data-heading="{{ $ctrl.productType }}"></oui-page-header>
 <oui-datagrid
-    data-rows="$ctrl.products"
+    id="{{ $ctrl.productType }}"
+    data-rows-loader="$ctrl.loadPage()"
     data-columns="$ctrl.columns"
-    data-on-criteria-change="$ctrl.onFilter($criteria)"
+    data-customizable
+    on-columns-parameters-change="$ctrl.onColumnChange(id, columns)"
+    data-on-page-change="$ctrl.onPageChange($pagination)"
+    data-on-criteria-change="$ctrl.onCriteriaChange($criteria)"
+    data-page-size="{{ $ctrl.paginationSize }}"
 >
 </oui-datagrid>
