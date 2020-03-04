@@ -17,7 +17,7 @@
     "lodash": "^4.17.15"
   },
   "peerDependencies": {
-    "@ovh-ux/manager-core": "^7.5.0",
+    "@ovh-ux/manager-core": "^8.0.0",
     "@ovh-ux/ng-at-internet": "^4.0.2",
     "@uirouter/angularjs": "^1.0.23",
     "angular": "^1.7.5",

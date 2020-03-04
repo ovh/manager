@@ -16,7 +16,7 @@
     "moment": "^2.24.0"
   },
   "peerDependencies": {
-    "@ovh-ux/manager-core": "^7.6.2",
+    "@ovh-ux/manager-core": "^8.0.0",
     "@ovh-ux/ng-at-internet": "^4.0.3",
     "@ovh-ux/ng-ovh-api-wrappers": "^4.0.5",
     "@ovh-ux/ng-translate-async-loader": "^2.0.2",
