@@ -50,34 +50,6 @@ export default class {
     this.isVpnNotConfigured = this.hasNoVpnConfiguration();
   }
 
-  regenerateZsspPassword() {
-    this.generatingPassword = true;
-    return this.dedicatedCloudDrp
-      .regenerateZsspPassword(this.drpInformations)
-      .then(() => {
-        this.Alerter.success(
-          `
-          ${this.$translate.instant(
-            'dedicatedCloud_datacenter_drp_confirm_create_success_part_two',
-            { email: this.email },
-          )}
-        `,
-          'dedicatedCloudDatacenterDrpAlert',
-        );
-      })
-      .catch((error) => {
-        this.Alerter.error(
-          `${this.$translate.instant(
-            'dedicatedCloud_datacenter_drp_confirm_zssp_password_regenerate_error',
-          )} ${get(error, 'message', '')}`,
-          'dedicatedCloudDatacenterDrpAlert',
-        );
-      })
-      .finally(() => {
-        this.generatingPassword = false;
-      });
-  }
-
   isProvisionning() {
     return (
       DEDICATEDCLOUD_DATACENTER_DRP_STATUS.delivering === this.currentDrp.state

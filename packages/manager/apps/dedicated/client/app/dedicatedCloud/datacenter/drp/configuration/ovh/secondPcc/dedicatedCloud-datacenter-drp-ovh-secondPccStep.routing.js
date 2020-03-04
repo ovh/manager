@@ -57,13 +57,11 @@ export default /* @ngInject */ ($stateProvider) => {
         configurationStepName: () => 'secondPccStep',
         drpInformations: /* @ngInject */ ($transition$) =>
           $transition$.params().drpInformations,
-        getHostsOrderLink: /* @ngInject */ ($state) => (
-          datacenterId,
-          pccServiceName,
-        ) =>
-          $state.href(
-            `app.dedicatedClouds.datacenter.hosts({ productId: '${pccServiceName}', datacenterId: ${datacenterId} })`,
-          ),
+        getHostsOrderLink: /* @ngInject */ ($state) => (datacenterId, pccId) =>
+          $state.href('app.dedicatedClouds.datacenter.hosts', {
+            productId: pccId,
+            datacenterId,
+          }),
         goToPreviousStep: /* @ngInject */ ($state) => (drpInformations) =>
           $state.go('app.dedicatedClouds.datacenter.drp.ovh.mainPccStep', {
             drpInformations,
