@@ -122,58 +122,5 @@ angular.module('services').service(
             .catch((http) => this.$q.reject(http)),
       );
     }
-
-    /**
-     * Get SQL Perso allowed durations
-     * @param serviceName
-     * @param version
-     */
-    getSqlPersoAllowedDurations(serviceName, version) {
-      return this.OvhHttp.get(
-        `/order/hosting/web/${serviceName}/extraSqlPerso`,
-        {
-          rootPath: 'apiv6',
-          params: {
-            offer: version,
-          },
-        },
-      );
-    }
-
-    /**
-     * Get SQL Perso price bu duration
-     * @param serviceName
-     * @param version
-     * @param duration
-     */
-    getSqlPersoPrice(serviceName, version, duration) {
-      return this.OvhHttp.get(
-        `/order/hosting/web/${serviceName}/extraSqlPerso/${duration}`,
-        {
-          rootPath: 'apiv6',
-          params: {
-            offer: version,
-          },
-        },
-      );
-    }
-
-    /**
-     * Order SQL Perso
-     * @param serviceName
-     * @param version
-     * @param duration
-     */
-    orderSqlPerso(serviceName, version, duration) {
-      return this.OvhHttp.post(
-        `/order/hosting/web/${serviceName}/extraSqlPerso/${duration}`,
-        {
-          rootPath: 'apiv6',
-          data: {
-            offer: version,
-          },
-        },
-      );
-    }
   },
 );
