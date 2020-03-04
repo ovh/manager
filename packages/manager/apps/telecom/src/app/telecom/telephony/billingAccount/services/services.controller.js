@@ -1,5 +1,5 @@
 import startCase from 'lodash/startCase';
-import { ListLayoutHelper } from '@ovh-ux/ng-ovh-telecom-universe-components';
+import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 
 export default class TelecomTelephonyBillingAccountServicesController extends ListLayoutHelper.ListLayoutCtrl {
   /* @ngInject */

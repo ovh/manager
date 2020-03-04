@@ -1,4 +1,4 @@
-import { ListLayoutHelper } from '@ovh-ux/ng-ovh-telecom-universe-components';
+import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 
 export default class TelecomTelephonyController extends ListLayoutHelper.ListLayoutCtrl {
   /* @ngInject */

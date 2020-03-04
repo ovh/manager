@@ -1,4 +1,4 @@
-import { ListLayoutHelper } from '@ovh-ux/ng-ovh-telecom-universe-components';
+import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 
 import controller from './telephony.controller';
 import template from './telephony.html';
