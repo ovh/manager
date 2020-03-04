@@ -1919,7 +1919,7 @@
   dependencies:
     lodash "^4.17.15"
 
-"@ovh-ux/ng-ovh-api-wrappers@^4.0.4", "@ovh-ux/ng-ovh-api-wrappers@^4.0.6":
+"@ovh-ux/ng-ovh-api-wrappers@^4.0.6":
   version "4.0.6"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-api-wrappers/-/ng-ovh-api-wrappers-4.0.6.tgz#fd3dc4fe745b3ea8c306a71bbbadb2e6aebe1e90"
   integrity sha512-8RSU/Gu+f5JyxJFGPq2vmoBhsKa4oO7o6hzs4Br3aaC0nosrIZznsDzcO182TVjbI6al21HHcIsGh+N5m9YZ1A==
