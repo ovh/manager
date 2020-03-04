@@ -12,7 +12,7 @@
             <ul class="oui-list__items">
                 <li
                     class="oui-list__item"
-                    data-ng-repeat="service in data.data track by service.serviceId"
+                    data-ng-repeat="service in data.data  | limitTo: $ctrl.DISPLAYED_PRODUCTS_NUMBER track by service.serviceId"
                 >
                     <a
                         data-ng-href="{{:: service.url }}"
