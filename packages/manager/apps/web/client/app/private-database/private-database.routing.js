@@ -46,27 +46,7 @@ export default /* @ngInject */ ($stateProvider) => {
   });
 
   $stateProvider.state('app.sql-order', {
-    url: '/configuration/sql_order?orderType&currentHosting',
-    params: {
-      currentHosting: { value: null, squash: true },
-      orderType: { value: 'private' },
-    },
-    templateUrl: 'private-database/order/sql-database-order.html',
-    controller: 'SqlDatabaseOrderCtrl',
-    resolve: {
-      navigationInformations: [
-        'Navigator',
-        '$rootScope',
-        (Navigator, $rootScope) => {
-          // eslint-disable-next-line no-param-reassign
-          $rootScope.currentSectionInformation = 'private_database';
-          return Navigator.setNavigationInformation({
-            leftMenuVisible: true,
-            configurationSelected: true,
-          });
-        },
-      ],
-    },
-    translations: { value: ['../private-database'], format: 'json' },
+    redirectTo: 'app.private-database-order-clouddb',
+    url: '/configuration/sql_order',
   });
 };
