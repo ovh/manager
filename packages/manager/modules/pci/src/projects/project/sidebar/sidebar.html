@@ -103,6 +103,11 @@
                                             data-ng-bind=":: subitem.title"
                                         ></span>
                                         <span
+                                            data-ng-if="subitem.alpha"
+                                            class="oui-status oui-status_alpha ml-2"
+                                            data-translate="cloud_sidebar_alpha_project"
+                                        ></span>
+                                        <span
                                             data-ng-if="subitem.beta"
                                             class="oui-status oui-status_beta ml-2"
                                             data-translate="cloud_sidebar_beta_project"
