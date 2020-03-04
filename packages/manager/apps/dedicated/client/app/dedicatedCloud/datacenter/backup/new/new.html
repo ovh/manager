@@ -1,0 +1,80 @@
+<div data-ovh-alert="app.dedicatedClouds.datacenter.backup.new"></div>
+<div data-ng-if="!$ctrl.backup.isLegacy()">
+    <p data-translate="dedicatedCloud_datacenter_backup_new_description1"></p>
+    <p
+        data-ng-bind-html="::'dedicatedCloud_datacenter_backup_new_description2' | translate"
+    ></p>
+    <a
+        target="_blank"
+        rel="noopener"
+        class="oui-link_icon"
+        data-ng-href="{{ ::$ctrl.backupTariffUrl }}"
+    >
+        <strong
+            data-translate="dedicatedCloud_datacenter_backup_new_tariff_url"
+        ></strong>
+        <span
+            class="oui-icon oui-icon-arrow-right_extra-thin datacenter-backup-right-arrow"
+            aria-hidden="true"
+        ></span>
+    </a>
+</div>
+<div data-ng-if="$ctrl.backup.isLegacy()">
+    <dedicated-cloud-datacenter-backup-legacy></dedicated-cloud-datacenter-backup-legacy>
+    <oui-button
+        class="mt-3"
+        data-on-click="$ctrl.showOrderFlow = true"
+        data-ng-if="!$ctrl.showOrderFlow"
+        ><span
+            data-translate="dedicatedCloud_datacenter_backup_legacy_update_button"
+        ></span
+    ></oui-button>
+</div>
+
+<oui-stepper
+    class="mt-3"
+    data-on-finish="$ctrl.orderBackup()"
+    data-current-index="$ctrl.data.currentStep"
+    data-ng-if="($ctrl.backup.isLegacy() && $ctrl.showOrderFlow) || !$ctrl.backup.isLegacy()"
+>
+    <oui-step-form
+        data-header="{{ ::'dedicatedCloud_datacenter_backup_new_choose_offer' | translate }}"
+        data-submit-text="{{ ::'dedicatedCloud_datacenter_backup_new_choose_offer_action' | translate }}"
+        data-prevent-next="!$ctrl.data.selectedOffer.backupOffer"
+        data-valid="$ctrl.data.selectedOffer.backupOffer"
+        data-navigation="!($ctrl.data.orderInProgress || $ctrl.data.orderCreationInProgress)"
+        data-editable="!($ctrl.data.orderInProgress || $ctrl.data.orderCreationInProgress)"
+    >
+        <dedicated-cloud-datacenter-backup-offers
+            data-backup="$ctrl.data.selectedOffer"
+            data-backup-offers="$ctrl.backupOffers"
+            data-preview-mode="$ctrl.data.currentStep !== 0"
+            data-user="$ctrl.currentUser"
+        >
+        </dedicated-cloud-datacenter-backup-offers>
+    </oui-step-form>
+    <oui-step-form
+        data-header="{{ ::'dedicatedCloud_datacenter_backup_new_validate_conditions'| translate }}"
+        data-submit_text="{{ ::'dedicatedCloud_datacenter_backup_new_activate_offer_action' | translate }}"
+        data-prevent-next="!$ctrl.data.conditionsAccepted"
+        data-valid="$ctrl.data.conditionsAccepted"
+        data-loading="$ctrl.data.orderCreationInProgress"
+        data-navigation="!$ctrl.data.orderInProgress"
+        data-editable="!$ctrl.data.orderInProgress"
+        data-on-focus="$ctrl.createBackupOrder()"
+    >
+        <dedicated-cloud-datacenter-backup-terms-of-use
+            data-ng-if="$ctrl.data.backupOrder"
+            data-backup-tariff-url="{{ ::$ctrl.backupTariffUrl }}"
+            data-datacenter-id="{{ ::$ctrl.datacenterId }}"
+            data-mode="{{ ::$ctrl.MODES.NEW }}"
+            data-model="$ctrl.data.conditionsAccepted"
+            data-conditions-url="{{ ::$ctrl.data.backupOrder.contracts[0].url }}"
+        >
+        </dedicated-cloud-datacenter-backup-terms-of-use>
+        <oui-spinner
+            data-ng-if="$ctrl.data.orderInProgress"
+            data-size="m"
+        ></oui-spinner>
+    </oui-step-form>
+</oui-stepper>

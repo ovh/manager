@@ -56,6 +56,8 @@ import dedicatedServerBandwidth from './dedicated/server/bandwidth/bandwidth.mod
 import dedicatedServerInterfaces from './dedicated/server/interfaces/interfaces.module';
 import dedicatedServerServers from './dedicated/server/servers/servers.module';
 
+import datacenterBackup from './dedicatedCloud/datacenter/backup';
+
 Environment.setVersion(__VERSION__);
 
 const moduleName = 'App';
@@ -71,6 +73,7 @@ angular
       'chart.js',
       'controllers',
       contactsService,
+      datacenterBackup,
       dedicatedCloudDatacenterDrp,
       dedicatedServerBandwidth,
       dedicatedServerInterfaces,

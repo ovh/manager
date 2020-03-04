@@ -1,0 +1,42 @@
+<ul>
+    <li
+        data-translate="dedicatedCloud_datacenter_backup_offer_upgrade_custom_report"
+        data-ng-if="$ctrl.offer.customReport"
+    ></li>
+    <li
+        data-translate="dedicatedCloud_datacenter_backup_offer_upgrade_encrypted_backup"
+        data-ng-if="$ctrl.offer.encryption"
+    ></li>
+    <li
+        data-translate="dedicatedCloud_datacenter_backup_offer_upgrade_retention_points"
+        data-translate-values="{
+            retention: $ctrl.offer.retention,
+        }"
+    ></li>
+    <li
+        data-translate="dedicatedCloud_datacenter_backup_offer_upgrade_full_backups"
+        data-translate-values="{
+            fullBackups: $ctrl.offer.minimumFullBackups,
+        }"
+    ></li>
+    <li
+        data-translate="dedicatedCloud_datacenter_backup_offer_upgrade_replication"
+        data-ng-if="$ctrl.offer.replication"
+    ></li>
+    <li
+        data-ng-if="$ctrl.offer.backupDays"
+        data-translate="dedicatedCloud_datacenter_backup_offer_upgrade_choice_backup_days"
+    ></li>
+    <li
+        data-ng-if="$ctrl.offer.scheduleHour"
+        data-translate="dedicatedCloud_datacenter_backup_offer_upgrade_choice_backup_time"
+    ></li>
+    <li
+        data-ng-if="$ctrl.offer.isPremium()"
+        data-translate="dedicatedCloud_datacenter_backup_offer_upgrade_long_term_retention"
+    ></li>
+    <li
+        data-ng-if="$ctrl.offer.proxyPerHost"
+        data-translate="dedicatedCloud_datacenter_backup_offer_upgrade_proxy_backup"
+    ></li>
+</ul>
