@@ -75,8 +75,6 @@ export const REDIRECT_URLS = {
     'https://www.ovh.com/manager/dedicated/index.html#/billing/orders?status=in-progress',
   orders:
     'https://www.ovh.com/manager/dedicated/index.html#/billing/orders?status=all',
-  orderSql:
-    'https://www.ovh.com/manager/web/#/configuration/sql_order?orderType=dbaas',
   services:
     'https://www.ovh.com/manager/dedicated/index.html#/billing/autoRenew',
   servicesAgreements:
