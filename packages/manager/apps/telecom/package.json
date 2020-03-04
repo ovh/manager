@@ -24,7 +24,7 @@
     "@ovh-ux/manager-beta-preference": "^1.0.0",
     "@ovh-ux/manager-carrier-sip": "^1.0.0",
     "@ovh-ux/manager-config": "^0.4.0",
-    "@ovh-ux/manager-core": "^7.6.2",
+    "@ovh-ux/manager-core": "^8.0.0",
     "@ovh-ux/manager-error-page": "^1.0.0",
     "@ovh-ux/manager-freefax": "^6.0.0",
     "@ovh-ux/manager-navbar": "^2.2.0",

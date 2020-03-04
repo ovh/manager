@@ -1898,14 +1898,6 @@
     shuffle-seed "^1.1.6"
     titleize "^2.1.0"
 
-"@ovh-ux/manager-core@^7.3.0", "@ovh-ux/manager-core@^7.5.0", "@ovh-ux/manager-core@^7.6.0", "@ovh-ux/manager-core@^7.6.2":
-  version "7.6.2"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-core/-/manager-core-7.6.2.tgz#feb47b957ec5a3e9c738138d66be5785f21ba022"
-  integrity sha512-cJV89OTuaJDKgYhkhcy6X0zBt2LrRX49lwbxb1qxB6BTh0IPDb7zS1e3+U2pkgXkNnH7gc6RA+HhBYQWLcTwWw==
-  dependencies:
-    "@ovh-ux/ng-translate-async-loader" "^2.0.2"
-    lodash "^4.17.15"
-
 "@ovh-ux/ng-at-internet-ui-router-plugin@^2.0.4":
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-at-internet-ui-router-plugin/-/ng-at-internet-ui-router-plugin-2.0.4.tgz#8ec418910ef9ffa8bb353894de3d5842cf9f9384"
@@ -2157,7 +2149,7 @@
   dependencies:
     lodash "^4.17.15"
 
-"@ovh-ux/ng-translate-async-loader@^2.0.2", "@ovh-ux/ng-translate-async-loader@^2.0.3":
+"@ovh-ux/ng-translate-async-loader@^2.0.3":
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-translate-async-loader/-/ng-translate-async-loader-2.0.3.tgz#256c53fc65ce07e8cf8412ac5c20bda0da8f1273"
   integrity sha512-PpO/B0HvSx4A5UMYRMMv8kWn7TPS2WGAGzvuCE2mu0jtZw71hwaFWdLlkYoBfhUQNKNKmkJbSW/xK+QLibcZIA==
