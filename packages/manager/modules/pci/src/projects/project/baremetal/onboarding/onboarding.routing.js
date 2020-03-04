@@ -17,6 +17,14 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.go('pci.projects.project.baremetal.add', {
           projectId,
         }),
+      projectId: /* @ngInject */ ($transition$) =>
+        $transition$.params().projectId,
+      isEnabled: /* @ngInject */ (OvhApiCloudProjectRegion, projectId) =>
+        OvhApiCloudProjectRegion.v6()
+          .query({
+            serviceName: projectId,
+          })
+          .$promise.then((regions) => regions.includes('BHS-IRONIC-LAB')),
     },
   });
 };
