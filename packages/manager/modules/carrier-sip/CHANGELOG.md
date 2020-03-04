@@ -1,3 +1,12 @@
+## [1.0.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-carrier-sip@1.0.4...@ovh-ux/manager-carrier-sip@1.0.5) (2020-03-04)
+
+
+### Bug Fixes
+
+* **deps:** use latest for @ovh-ux/manager-core ([#2394](https://github.com/ovh/manager/issues/2394)) ([fd0a25b](https://github.com/ovh/manager/commit/fd0a25b11bd5119649daf3b1605bb56bf70f3ff9))
+
+
+
 ## [1.0.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-carrier-sip@1.0.3...@ovh-ux/manager-carrier-sip@1.0.4) (2019-11-22)
 
 

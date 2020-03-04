@@ -1,3 +1,12 @@
+## [13.45.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.45.2...@ovh-ux/manager-web@13.45.3) (2020-03-04)
+
+
+### Bug Fixes
+
+* **deps:** use latest for @ovh-ux/manager-core ([#2394](https://github.com/ovh/manager/issues/2394)) ([fd0a25b](https://github.com/ovh/manager/commit/fd0a25b11bd5119649daf3b1605bb56bf70f3ff9))
+
+
+
 ## [13.45.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.45.1...@ovh-ux/manager-web@13.45.2) (2020-03-04)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-sms",
-  "version": "7.5.3",
+  "version": "7.5.4",
   "private": true,
   "description": "SMS product.",
   "repository": {

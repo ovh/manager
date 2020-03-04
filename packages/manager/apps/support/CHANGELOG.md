@@ -1,3 +1,12 @@
+## [0.1.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-support-app@0.1.2...@ovh-ux/manager-support-app@0.1.3) (2020-03-04)
+
+
+### Bug Fixes
+
+* **deps:** use latest for @ovh-ux/manager-core ([#2394](https://github.com/ovh/manager/issues/2394)) ([fd0a25b](https://github.com/ovh/manager/commit/fd0a25b11bd5119649daf3b1605bb56bf70f3ff9))
+
+
+
 ## [0.1.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-support-app@0.1.1...@ovh-ux/manager-support-app@0.1.2) (2019-11-22)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-hub-app",
-  "version": "0.2.0-alpha.0",
+  "version": "0.2.0-alpha.1",
   "private": true,
   "repository": {
     "type": "git",
@@ -32,7 +32,7 @@
     "@ovh-ux/ng-ovh-api-wrappers": "^4.0.4",
     "@ovh-ux/ng-ovh-http": "^4.0.4",
     "@ovh-ux/ng-ovh-order-tracking": "^0.1.0",
-    "@ovh-ux/ng-ovh-payment-method": "^6.0.0",
+    "@ovh-ux/ng-ovh-payment-method": "^6.0.1",
     "@ovh-ux/ng-ovh-request-tagger": "^1.1.0",
     "@ovh-ux/ng-ovh-sso-auth": "^4.2.3",
     "@ovh-ux/ng-ovh-swimming-poll": "^4.0.1",
