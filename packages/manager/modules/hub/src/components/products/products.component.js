@@ -1,3 +1,4 @@
+import controller from './controller';
 import template from './products.html';
 
 export default {
@@ -5,5 +6,6 @@ export default {
     products: '<',
     onProductSelect: '&',
   },
+  controller,
   template,
 };

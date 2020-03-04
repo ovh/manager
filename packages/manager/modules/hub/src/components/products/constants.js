@@ -1,0 +1,3 @@
+export const DISPLAYED_PRODUCTS_NUMBER = 4;
+
+export default { DISPLAYED_PRODUCTS_NUMBER };
