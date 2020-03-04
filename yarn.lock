@@ -12782,10 +12782,10 @@ ovh-angular-ui-confirm-modal@^1.0.2:
   resolved "https://registry.yarnpkg.com/ovh-angular-ui-confirm-modal/-/ovh-angular-ui-confirm-modal-1.0.2.tgz#92e6736588a4fb1de6353f1a17ab1962679a698d"
   integrity sha512-3V17DbzWjUjl9sKCd25Oycn+7eqg6iW+DpizwVmixHFzDNDMnpKSGmxRLrOq+q9YNE7IepoAKWjoSiy2+zOEEg==
 
-ovh-api-services@^9.38.0:
-  version "9.38.0"
-  resolved "https://registry.yarnpkg.com/ovh-api-services/-/ovh-api-services-9.38.0.tgz#a2a3cffec7ac2f93a1434e2e0a383984bb52f284"
-  integrity sha512-1hQvdndCb1CAT3DDahr2/sEw8iyeG239Tf8ig5dMOCJIiw0Di+BhTnmjM6MX86flny2O+tBVEeYhXrvAWJfpJg==
+ovh-api-services@^9.40.0:
+  version "9.40.0"
+  resolved "https://registry.yarnpkg.com/ovh-api-services/-/ovh-api-services-9.40.0.tgz#c61fd9c23527ed5c8c9a50820f0d760f2bf965fa"
+  integrity sha512-lnCi2hsSTQ7+RKccWNIEWpJLbCvV1RgvrAFSWAXtfkq5EBOT6X6jpsgwmLVYvZeysiX9DQ5ur7DpDykomudLyw==
   dependencies:
     lodash "^4.17.15"
 
@@ -12816,10 +12816,10 @@ ovh-ngstrap@^4.0.2:
   resolved "https://registry.yarnpkg.com/ovh-ngstrap/-/ovh-ngstrap-4.0.2.tgz#059291bfb9f59b78df991e476dd2ede0507cb3c9"
   integrity sha1-BZKRv7n1m3jfmR5HbdLt4FB8s8k=
 
-ovh-ui-angular@^3.15.0:
-  version "3.15.0"
-  resolved "https://registry.yarnpkg.com/ovh-ui-angular/-/ovh-ui-angular-3.15.0.tgz#e4f4901d1122de46c37d06cbb5ee521a124da4d7"
-  integrity sha512-wK6PIFnCaKihbZdWHiJPnB3w2a8F0JW4N3KXv8lsmQQBfY9QEDsyzWmq6FjTWuPZ/EBlYXrOZAOuz3LYbqD8NQ==
+ovh-ui-angular@^3.15.1:
+  version "3.15.1"
+  resolved "https://registry.yarnpkg.com/ovh-ui-angular/-/ovh-ui-angular-3.15.1.tgz#b766938452630b06a3d59fbe9c5b94d6f7e05af2"
+  integrity sha512-EcfYUP5dZFSNX5Tqy0Bd1zaqyEVBnypMTGs6O/qoqemmhYEP6nXJLvheiqxXagt/wka/jyyJDzqMCQmo4EXUBQ==
   dependencies:
     bloodhound-js "^1.2.3"
     clipboard "^2.0.1"

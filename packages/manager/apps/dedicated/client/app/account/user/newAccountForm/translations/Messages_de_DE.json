@@ -38,7 +38,7 @@
   "signup_field_ovhSubsidiary": "OVH Filiale",
   "signup_field_timezone": "Zeitzone",
   "signup_field_customerCode": "Kundenkennung",
-  "signup_field_signup_field_italianSdi": "SDI-Nummer",
+  "signup_field_italianSDI": "SDI-Nummer",
   "signup_enum_legalform_association": "Verein",
   "signup_enum_legalform_corporation": "Unternehmen",
   "signup_enum_legalform_personalcorporation": "Einzelunternehmen",
@@ -708,6 +708,5 @@
   "signup_enum_IT_area_VT": "Viterbo (Latium)",
   "signup_enum_IT_area_BT": "Barletta-Andria-Trani (Apulien)",
   "signup_enum_IT_area_FM": "Fermo (Marken)",
-  "signup_enum_IT_area_MB": "Monza E Brianza (Lombardei)",
-  "signup_field_italianSDI": "SDI-Nummer"
+  "signup_enum_IT_area_MB": "Monza E Brianza (Lombardei)"
 }

@@ -130,4 +130,29 @@ export default class OvhPaymentMethod {
   isLegacy() {
     return !isNull(this.original);
   }
+
+  /**
+   * Returns the category of the status between : 'error', 'warning', 'info', 'success'.
+   * The category is a pure frontend value and is set arbitrarily. It is meant to be used
+   * for displaying and formatting the status correctly.
+   * @return {String} category
+   */
+  getStatusCategory() {
+    switch (this.status) {
+      case 'CANCELED':
+      case 'ERROR':
+      case 'EXPIRED':
+        return 'error';
+      case 'CANCELING':
+      case 'CREATING':
+      case 'MAINTENANCE':
+      case 'PAUSED':
+        return 'warning';
+      case 'CREATED':
+      case 'VALID':
+        return 'success';
+      default:
+        return 'info';
+    }
+  }
 }

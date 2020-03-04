@@ -1,4 +1,5 @@
 import filter from 'lodash/filter';
+import get from 'lodash/get';
 import set from 'lodash/set';
 import groupBy from 'lodash/groupBy';
 import head from 'lodash/head';
@@ -16,6 +17,7 @@ export default class IpLoadBalancerHomeCtrl {
     $state,
     $stateParams,
     $translate,
+    coreConfig,
     CucControllerHelper,
     CucCloudMessage,
     CucFeatureAvailabilityService,
@@ -34,6 +36,7 @@ export default class IpLoadBalancerHomeCtrl {
     this.$state = $state;
     this.$stateParams = $stateParams;
     this.$translate = $translate;
+    this.coreConfig = coreConfig;
     this.CucControllerHelper = CucControllerHelper;
     this.CucCloudMessage = CucCloudMessage;
     this.CucFeatureAvailabilityService = CucFeatureAvailabilityService;
@@ -226,7 +229,7 @@ export default class IpLoadBalancerHomeCtrl {
       manageAutorenew: {
         text: this.$translate.instant('iplb_manage'),
         href: this.CucControllerHelper.navigation.constructor.getUrl(
-          RENEW_URL,
+          get(RENEW_URL, this.coreConfig.getRegion(), 'EU'),
           { serviceName: this.serviceName, serviceType: 'IP_LOADBALANCER' },
         ),
         isAvailable: () =>
@@ -235,7 +238,7 @@ export default class IpLoadBalancerHomeCtrl {
       manageContact: {
         text: this.$translate.instant('iplb_manage'),
         href: this.CucControllerHelper.navigation.constructor.getUrl(
-          CONTACTS_URL,
+          get(CONTACTS_URL, this.coreConfig.getRegion(), 'EU'),
           {
             serviceName: this.serviceName,
           },

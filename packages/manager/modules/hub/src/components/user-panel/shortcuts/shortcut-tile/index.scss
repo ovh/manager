@@ -1,0 +1,46 @@
+.manager-hub-shortcut-tile {
+  $icon-bg-color: white;
+  $link-color: #12185e;
+  $notification-pill-font-color: white;
+  $notification-pill-bg-color: #b91a1a;
+  $notification-pill-size: 1.3rem;
+
+  text-align: center;
+
+  > a {
+    color: $link-color;
+    font-weight: 600;
+  }
+
+  &_icon {
+    display: block;
+    width: 4rem;
+    height: 4rem;
+    margin: auto;
+    background-color: $icon-bg-color;
+    border-radius: 0.4rem;
+    position: relative;
+  }
+
+  &_description {
+    font-size: 0.8rem;
+  }
+
+  .oui-icon {
+    font-size: 1.8rem;
+    margin-top: 1.2rem;
+  }
+
+  &_notification {
+    color: $notification-pill-font-color;
+    background-color: $notification-pill-bg-color;
+    border-radius: $notification-pill-size;
+    width: $notification-pill-size;
+    height: $notification-pill-size;
+    line-height: $notification-pill-size;
+    display: block;
+    position: absolute;
+    top: -$notification-pill-size * 0.2;
+    right: -$notification-pill-size * 0.2;
+  }
+}

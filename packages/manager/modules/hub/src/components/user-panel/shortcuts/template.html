@@ -1,0 +1,21 @@
+<div class="manager-hub-shortcuts">
+    <strong data-translate="hub_user_panel_shortcuts_title"> </strong>
+    <div
+        class="d-flex justify-content-between mt-4"
+        data-ng-repeat="row in $ctrl.shortcuts track by $index"
+    >
+        <div
+            class="manager-hub-shortcuts_tile"
+            data-ng-repeat="shortcut in row track by shortcut.id"
+        >
+            <ovh-manager-hub-shortcut-tile
+                data-label="shortcut.label"
+                data-icon="shortcut.icon"
+                data-url="shortcut.url"
+                data-notifications="shortcut.notifications"
+                data-tracking="shortcut.tracking"
+            >
+            </ovh-manager-hub-shortcut-tile>
+        </div>
+    </div>
+</div>

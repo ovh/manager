@@ -136,15 +136,14 @@ export default class SignUpDetailsCtrl {
 
   onCountryChange() {
     return this.signUpFormCtrl.getRules().then(() => {
-      const changePhoneCountry =
-        (!this.signUpFormCtrl.model.phoneCountry ||
-          this.signUpFormCtrl.model.phoneCountry === 'UNKNOWN') &&
-        this.signUpFormCtrl.model.country;
-
-      if (changePhoneCountry) {
+      if (this.canChangePhoneCountry()) {
         this.signUpFormCtrl.model.phoneCountry = this.signUpFormCtrl.model.country;
       }
     });
+  }
+
+  canChangePhoneCountry() {
+    return !this.phoneModel.value && this.signUpFormCtrl.model.country;
   }
 
   onPhoneCountryChange() {
@@ -182,6 +181,10 @@ export default class SignUpDetailsCtrl {
         phonePrefix,
       ),
     );
+
+    if (this.canChangePhoneCountry()) {
+      this.signUpFormCtrl.model.phoneCountry = this.signUpFormCtrl.model.country;
+    }
 
     // clean zip code
     this.zipModel.value = this.signUpFormCtrl.model.zip;

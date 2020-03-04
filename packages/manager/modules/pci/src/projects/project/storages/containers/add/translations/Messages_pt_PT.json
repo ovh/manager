@@ -15,5 +15,6 @@
   "pci_projects_project_storages_containers_add_save_form": "Criação do container em curso",
   "pci_projects_project_storages_containers_add_success_message": "O container {{ container }} foi adicionado.",
   "pci_projects_project_storages_containers_add_error_post": "Ocorreu um erro ao adicionar o container {{ container }}: {{ message }}.",
-  "pci_projects_project_storages_containers_add_archive_title": "Criar um container de arquivos"
+  "pci_projects_project_storages_containers_add_archive_title": "Criar um container de arquivos",
+  "pci_projects_project_storages_containers_add_type_price": "{{ price }}/mês por GB + IVA"
 }

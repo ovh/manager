@@ -16,11 +16,5 @@
   "billing_payment_method_table_action_download_procedure": "Descargar el documento que deberá enviar por correo postal",
   "billing_payment_method_table_action_description_edit": "Modificar la descripción",
   "billing_payment_method_table_action_set_default": "Establecer como forma de pago por defecto",
-  "billing_payment_method_table_action_delete": "Eliminar esta forma de pago",
-  "billing_payment_method_edit_error": "Se ha producido un error al modificar la descripción:",
-  "billing_payment_method_edit_success": "La descripción de la forma de pago se ha modificado correctamente.",
-  "billing_payment_method_default_error": "Se ha producido un error al modificar la forma de pago por defecto.",
-  "billing_payment_method_default_success": "La forma de pago por defecto se ha modificado correctamente.",
-  "billing_payment_method_delete_error": "Se ha producido un error al eliminar la forma de pago.",
-  "billing_payment_method_delete_success": "La forma de pago se ha eliminado correctamente."
+  "billing_payment_method_table_action_delete": "Eliminar esta forma de pago"
 }

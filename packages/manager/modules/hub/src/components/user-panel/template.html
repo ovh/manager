@@ -1,0 +1,81 @@
+<div class="manager-hub-user-panel">
+    <div class="mb-3">
+        <ovh-manager-hub-user-infos
+            data-me="$ctrl.me"
+            data-support-level="$ctrl.supportLevel"
+        >
+        </ovh-manager-hub-user-infos>
+    </div>
+    <div class="mb-4">
+        <ovh-manager-hub-payment-mean> </ovh-manager-hub-payment-mean>
+    </div>
+    <div class="mb-4">
+        <ovh-manager-hub-shortcuts data-notifications="$ctrl.notifications">
+        </ovh-manager-hub-shortcuts>
+    </div>
+    <div class="manager-hub-user-panel_links">
+        <strong data-translate="hub_links_title"></strong>
+        <span class="manager-hub-user-panel_divider" aria-hidden="true"></span>
+        <a
+            target="_blank"
+            rel="noopener"
+            data-ng-href="{{ :: $ctrl.RedirectionService.getURL('help') }}"
+            data-track-on="click"
+            data-track-name="hub::sidebar::useful-links::go-to-helpcenter"
+            data-track-type="navigation"
+        >
+            <span class="oui-icon oui-icon-lifebuoy_concept" aria-hidden="true">
+            </span>
+            <span data-translate="hub_links_help_center"></span>
+        </a>
+        <div data-ng-if="$ctrl.hasChatbot">
+            <span
+                class="manager-hub-user-panel_divider"
+                aria-hidden="true"
+            ></span>
+            <button
+                class="btn btn-link"
+                type="button"
+                role="button"
+                data-ng-click="$ctrl.openChatbot()"
+            >
+                <span
+                    class="oui-icon oui-icon-speech-bubble_concept"
+                    aria-hidden="true"
+                >
+                </span>
+                <span data-translate="hub_links_chatbot"></span>
+            </button>
+        </div>
+        <span class="manager-hub-user-panel_divider" aria-hidden="true"></span>
+        <a
+            target="_blank"
+            rel="noopener"
+            data-ng-href="{{ :: $ctrl.RedirectionService.getURL('tasks') }}"
+            data-track-on="click"
+            data-track-name="hub::sidebar::useful-links::go-to-ovh-status"
+            data-track-type="navigation"
+        >
+            <span
+                class="oui-icon oui-icon-traffic-cone_concept"
+                aria-hidden="true"
+            >
+            </span>
+            <span data-translate="hub_links_tasks"></span>
+        </a>
+        <span class="manager-hub-user-panel_divider" aria-hidden="true"></span>
+        <a
+            data-ng-href="{{ :: $ctrl.RedirectionService.getURL('support') }}"
+            data-track-on="click"
+            data-track-name="hub::sidebar::useful-links::go-to-create-ticket"
+            data-track-type="navigation"
+        >
+            <span
+                class="oui-icon oui-icon-user-support_concept"
+                aria-hidden="true"
+            >
+            </span>
+            <span data-translate="hub_links_create_ticket"></span>
+        </a>
+    </div>
+</div>

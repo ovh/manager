@@ -1,0 +1,41 @@
+<div
+    data-ng-repeat="item in $ctrl.items track by $index"
+    role="alert"
+    class="oui-message oui-message_error"
+    data-ng-if="$index === $ctrl.index"
+>
+    <span
+        class="oui-icon oui-icon_bicolor oui-icon-warning_extra-thin"
+        aria-hidden="true"
+    ></span>
+    <a
+        class="oui-message__body oui-message__body_error"
+        data-ng-href="{{ item.urlDetails.href }}"
+    >
+        <span data-ng-bind="item.description"></span>
+    </a>
+    <button
+        class="oui-button oui-button_icon-alone float-right"
+        type="button"
+        data-ng-if="$ctrl.items.length > 1"
+    >
+        <span
+            class="oui-icon oui-icon-arrow-right_extra-thin"
+            aria-hidden="true"
+            data-ng-click="$ctrl.nextAlert()"
+        ></span>
+        <span
+            class="sr-only"
+            data-translate="manager_hub_carousel_see_next"
+        ></span>
+    </button>
+    <div class="circular-tile-container" data-ng-if="$ctrl.items.length > 1">
+        <div
+            data-ng-repeat="el in $ctrl.items track by $index"
+            class="circular-tile"
+            data-ng-class="{
+                    'circular-tile_active' : $index === $ctrl.index
+                }"
+        ></div>
+    </div>
+</div>

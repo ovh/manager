@@ -83,9 +83,10 @@ export default class MXPlanOrderCtrl {
 
   validateCheckout() {
     this.loading.checkout = true;
-    return this.order(this.model.autoPayWithPreferredPaymentMethod)
+    const autoPayWithPreferredPaymentMethod = !!this.model.defaultPaymentMethod;
+    return this.order(autoPayWithPreferredPaymentMethod)
       .then((order) => {
-        if (order.url && !this.model.autoPayWithPreferredPaymentMethod) {
+        if (order.url && !autoPayWithPreferredPaymentMethod) {
           this.$window.open(order.url, '_blank');
           return this.Alerter.success(
             this.$translate.instant('mxPlan_order_generated_purchase_success', {

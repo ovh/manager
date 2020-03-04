@@ -19,7 +19,7 @@
   "menu_vouchers": "Moje kody",
   "menu_billing": "Płatności",
   "menu_bills": "Faktury",
-  "menu_tickets": "Moje pytania dotyczące pomocy",
+  "menu_support": "Moje zgłoszenia",
   "menu_payment_methods": "Sposoby płatności",
   "menu_subscriptions": "Moje abonamenty",
   "menu_ssh": "Moje klucze SSH",
@@ -30,6 +30,5 @@
   "menu_users_management": "Zarządzanie użytkownikami ",
   "menu_emails": "Otrzymane e-maile",
   "menu_contacts": "Moje kontakty",
-  "menu_agreements": "Regulaminy",
-  "menu_support": "Moje zgłoszenia"
+  "menu_agreements": "Regulaminy"
 }

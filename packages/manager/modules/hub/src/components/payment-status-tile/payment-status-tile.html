@@ -1,0 +1,108 @@
+<ovh-manager-hub-tile
+    data-badge-text="{{ $ctrl.totalCount }}"
+    data-button-text="{{ ::'ovh_manager_hub_payment_status_tile_see_all' | translate }}"
+    data-heading="{{ ::'ovh_manager_hub_payment_status_tile_title' | translate }}"
+    data-href="{{ ::$ctrl.autorenewLink }}"
+    data-on-click="$ctrl.onLinkClick()"
+>
+    <div class="oui-datagrid-responsive-container">
+        <div class="oui-datagrid-responsive-container__sticky-container">
+            <div class="oui-datagrid-responsive-containr__overflow-container">
+                <table class="oui-datagrid" data-ng-if="!$ctrl.data.loading">
+                    <tbody>
+                        <tr
+                            class="oui-datagrid__row"
+                            data-ng-repeat="service in $ctrl.services track by service.serviceId"
+                        >
+                            <td
+                                class="oui-datagrid__cell d-block d-md-table-cell h-100"
+                            >
+                                <a
+                                    class="oui-link service-name-link"
+                                    data-ng-if="service.url"
+                                    data-ng-href="{{:: service.url }}"
+                                    data-ng-bind="::service.domain"
+                                    data-track-on="click"
+                                    data-track-name="{{ ::$ctrl.trackingPrefix + '::go-to-service' }}"
+                                >
+                                </a>
+                                <span
+                                    data-ng-if="!service.url"
+                                    data-ng-bind="::service.domain"
+                                ></span>
+                            </td>
+                            <td
+                                class="oui-datagrid__cell d-md-table-cell d-block h-100"
+                            >
+                                <div class="d-block d-md-inline mb-1">
+                                    <span
+                                        class="oui-status oui-status_error"
+                                        data-ng-if="service.hasDebt()"
+                                        data-translate="ovh_manager_hub_payment_status_tile_status_pending_debt"
+                                    >
+                                    </span>
+                                    <span data-ng-if="service.isOneShot()"
+                                        >-</span
+                                    >
+                                    <span
+                                        class="oui-status mw-100"
+                                        data-ng-class="{
+                                                'oui-status_error': $ctrl.SERVICE_STATES.error.includes(service.getRenew()),
+                                                'oui-status_warning': $ctrl.SERVICE_STATES.warning.includes(service.getRenew()),
+                                                'oui-status_success': $ctrl.SERVICE_STATES.success.includes(service.getRenew()),
+                                            }"
+                                        data-ng-if="!service.hasDebt() && !service.isOneShot()"
+                                        data-translate="{{:: 'ovh_manager_hub_payment_status_tile_status_' + service.getRenew() | translate }}"
+                                    ></span>
+                                    <span
+                                        data-ng-if="service.hasDebt()"
+                                        data-translate="ovh_manager_hub_payment_status_tile_now"
+                                    ></span>
+                                </div>
+                                <div class="d-md-inline mb-1">
+                                    <span
+                                        data-ng-if="service.isOneShot() && !service.isResiliated() && !service.hasPendingResiliation()"
+                                        >-</span
+                                    >
+                                    <span
+                                        data-ng-if="service.hasManualRenew() && !service.isResiliated() && service.hasDebt()"
+                                        data-translate="ovh_manager_hub_payment_status_tile_before"
+                                        data-translate-values="{
+                                                date: service.formattedExpiration
+                                            }"
+                                    >
+                                    </span>
+                                    <span
+                                        data-ng-if="service.isResiliated() || service.hasPendingResiliation()"
+                                        data-translate="ovh_manager_hub_payment_status_tile_renew"
+                                        data-translate-values="{
+                                                date: service.formattedExpiration
+                                            }"
+                                    >
+                                    </span>
+                                    <span
+                                        data-ng-if="service.hasAutomaticRenewal() && !service.isOneShot() && !service.hasDebt() && !service.isResiliated() && !service.hasPendingResiliation()"
+                                        data-ng-bind="service.formattedExpiration"
+                                    >
+                                    </span>
+                                </div>
+                            </td>
+                            <td class="oui-datagrid__cell">
+                                <oui-action-menu data-align="end" data-compact>
+                                    <oui-action-menu-item
+                                        data-href="{{ ::$ctrl.getServiceManagementLink(service) }}"
+                                        data-on-click="$ctrl.onServiceManagementClick()"
+                                    >
+                                        <span
+                                            data-translate="ovh_manager_hub_payment_status_tile_manage_service"
+                                        ></span>
+                                    </oui-action-menu-item>
+                                </oui-action-menu>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</ovh-manager-hub-tile>

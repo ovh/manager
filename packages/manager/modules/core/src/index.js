@@ -17,10 +17,7 @@ import 'angular-dynamic-locale';
 import 'angular-translate';
 import 'angular-translate-loader-pluggable';
 
-import '@ovh-ux/ng-ovh-swimming-poll';
-import '@ovh-ux/ng-ovh-api-wrappers';
 import '@ovh-ux/ng-ovh-request-tagger';
-import 'ovh-api-services';
 
 import '@uirouter/angularjs';
 
@@ -28,6 +25,7 @@ import coreConfig from './config';
 import translateFactory from './translate/translate.factory';
 import translateServiceProvider from './translate/translate.service';
 import sessionService from './session/session.service';
+import redirectionService from './redirection/redirection.service';
 
 import {
   LANGUAGES,
@@ -40,12 +38,9 @@ const moduleName = 'ovhManagerCore';
 
 angular
   .module(moduleName, [
-    'ngOvhSwimmingPoll',
-    'ngOvhApiWrappers',
     'ngSanitize',
     'angular-translate-loader-pluggable',
     'ngOvhRequestTagger',
-    'ovh-api-services',
     'pascalprecht.translate',
     'tmh.dynamicLocale',
     coreConfig,
@@ -88,6 +83,7 @@ angular
     },
   )
   .service('SessionService', sessionService)
+  .service('RedirectionService', redirectionService)
   // Fix security issue: https://github.com/angular-translate/angular-translate/issues/1418
   .factory(
     'translateMissingTranslationHandler',

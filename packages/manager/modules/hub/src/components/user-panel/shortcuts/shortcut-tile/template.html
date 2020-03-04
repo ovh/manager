@@ -1,0 +1,23 @@
+<div class="manager-hub-shortcut-tile">
+    <a
+        data-ng-href="{{ $ctrl.url }}"
+        data-track-on="click"
+        data-track-name="{{ $ctrl.tracking }}"
+        data-track-type="navigation"
+    >
+        <span class="manager-hub-shortcut-tile_icon" aria-hidden="true">
+            <span class="oui-icon" data-ng-class="$ctrl.icon"> </span>
+            <span
+                class="manager-hub-shortcut-tile_notification"
+                data-ng-if="$ctrl.notifications"
+                data-ng-bind="$ctrl.notifications"
+            >
+            </span>
+        </span>
+        <span
+            class="manager-hub-shortcut-tile_description"
+            data-ng-bind="$ctrl.label"
+        >
+        </span>
+    </a>
+</div>

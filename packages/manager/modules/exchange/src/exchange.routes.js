@@ -14,6 +14,26 @@ export default /* @ngInject */ ($stateProvider) => {
     });
   };
 
+  $stateProvider.state('app.exchange', {
+    url: '/configuration/exchange/:organization/:productId',
+    resolve: {
+      organization: /* @ngInject */ ($transition$) =>
+        $transition$.params().organization,
+      productId: /* @ngInject */ ($transition$) =>
+        $transition$.params().productId,
+      exchange: /* @ngInject */ (Exchange, organization, productId) =>
+        Exchange.getExchangeDetails(organization, productId),
+    },
+    redirectTo: (transition) =>
+      transition
+        .injector()
+        .getAsync('exchange')
+        .then(
+          (exchange) =>
+            `app.microsoft.exchange.${exchange.offer.toLowerCase()}`,
+        ),
+  });
+
   $stateProvider.state('app.microsoft.exchange', {
     abstract: true,
     template: '<div data-ui-view></div>',

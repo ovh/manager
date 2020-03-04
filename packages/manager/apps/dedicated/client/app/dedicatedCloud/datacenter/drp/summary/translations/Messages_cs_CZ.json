@@ -12,8 +12,6 @@
   "dedicatedCloud_datacenter_drp_confirm_create_error": "Une erreur est survenue lors de l’activation de votre PRA.",
   "dedicatedCloud_datacenter_drp_confirm_summary_title": "Résumé de la configuration de votre PRA",
   "dedicatedCloud_datacenter_drp_confirm_summary_drp_type": "Type de plan de reprise d’activité",
-  "dedicatedCloud_datacenter_drp_confirm_summary_main_datacenter": "Datacenter principal",
-  "dedicatedCloud_datacenter_drp_confirm_summary_main_pcc": "Private Cloud principal",
   "dedicatedCloud_datacenter_drp_confirm_summary_secondary_datacenter": "Datacenter secondaire",
   "dedicatedCloud_datacenter_drp_confirm_summary_secondary_pcc": "Private Cloud secondaire",
   "dedicatedCloud_datacenter_drp_confirm_delete_drp_title": "Supprimer définitivement votre PRA",

@@ -2,8 +2,9 @@
 <html>
     <head>
         <title>ManagerHub App</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
     </head>
-    <body data-ng-app="managerHubApp" data-ng-strict-di>
+    <body data-ng-app="managerHubApp" data-ng-strict-di class="h-100">
         <div
             id="managerPreload"
             class="d-flex text-center"
@@ -32,6 +33,9 @@
             }"
         >
         </ovh-manager-navbar>
-        <div data-ui-view></div>
+        <div class="d-flex h-100" data-ui-view="app">
+            <div data-ui-view class="container-fluid"></div>
+            <ovh-manager-hub-user-panel></ovh-manager-hub-user-panel>
+        </div>
     </body>
 </html>

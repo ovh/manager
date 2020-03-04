@@ -123,12 +123,12 @@
                         }"
                     >
                     </span>
-                    <ovh-manager-order-catalog-price
+                    <ovh-manager-catalog-price
                         data-price="pricing.price"
                         data-tax="pricing.tax"
                         data-user="$ctrl.user"
                     >
-                    </ovh-manager-order-catalog-price>
+                    </ovh-manager-catalog-price>
                 </oui-radio>
             </oui-field>
         </oui-step-form>
@@ -165,9 +165,7 @@
             </div>
 
             <!-- Payment Means -->
-            <ovh-payment-method-choice
-                data-model="$ctrl.autoPayWithPreferredPaymentMethod"
-            >
+            <ovh-payment-method-choice data-model="$ctrl.defaultPaymentMethod">
             </ovh-payment-method-choice>
 
             <!-- Contracts -->

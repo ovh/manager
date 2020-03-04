@@ -23,6 +23,7 @@ export default class PciStoragesContainersAddController {
     this.loadMessages();
 
     this.isLoading = false;
+    this.loadingPrice = false;
 
     this.displaySelectedRegion = false;
     this.displaySelectedType = false;
@@ -63,6 +64,21 @@ export default class PciStoragesContainersAddController {
 
   onTypesFocus() {
     this.displaySelectedType = false;
+    this.loadingPrice = true;
+    this.PciProjectStorageContainersService.getPriceEstimation(
+      this.user.ovhSubsidiary,
+    )
+      .then((price) => {
+        this.price = price;
+        if (this.price !== null) {
+          this.price.formatedPrice = this.getFormatedPrice(
+            price.price / 100000000,
+          );
+        }
+      })
+      .finally(() => {
+        this.loadingPrice = false;
+      });
   }
 
   onTypeChange() {
@@ -98,5 +114,14 @@ export default class PciStoragesContainersAddController {
       .finally(() => {
         this.isLoading = false;
       });
+  }
+
+  getFormatedPrice(price) {
+    const languageLocale = this.user.language.replace('_', '-');
+    return Intl.NumberFormat(languageLocale, {
+      style: 'currency',
+      currency: this.user.currency.code,
+      maximumSignificantDigits: 1,
+    }).format(price);
   }
 }
