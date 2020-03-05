@@ -1,9 +1,24 @@
 <oui-page-header data-heading="{{ $ctrl.productType }}"></oui-page-header>
 <oui-datagrid
-    id="{{ $ctrl.productType }}"
+    data-ng-if="$ctrl.rows"
+    id="{{ $ctrl.datagridId }}"
+    data-rows="$ctrl.rows"
+    data-columns="$ctrl.columns"
+    data-customizable
+    data-criteria="$ctrl.criteria"
+    on-columns-parameters-change="$ctrl.onColumnChange(id, columns)"
+    data-on-page-change="$ctrl.onPageChange($pagination)"
+    data-on-criteria-change="$ctrl.onCriteriaChange($criteria)"
+    data-page-size="{{ $ctrl.paginationSize }}"
+>
+</oui-datagrid>
+<oui-datagrid
+    data-ng-if="!$ctrl.rows"
+    id="{{ $ctrl.datagridId }}"
     data-rows-loader="$ctrl.loadPage()"
     data-columns="$ctrl.columns"
     data-customizable
+    data-criteria="$ctrl.criteria"
     on-columns-parameters-change="$ctrl.onColumnChange(id, columns)"
     data-on-page-change="$ctrl.onPageChange($pagination)"
     data-on-criteria-change="$ctrl.onCriteriaChange($criteria)"
