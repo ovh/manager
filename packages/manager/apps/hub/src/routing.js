@@ -26,9 +26,11 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
         ),
       }),
       goToProductPage: /* @ngInject */ ($state) => (product) =>
-        $state.go('app.products', {
-          product: product.toLowerCase(),
-        }),
+        product.includes('EXCHANGE')
+          ? $state.go('app.exchange')
+          : $state.go('app.products', {
+              product: product.toLowerCase(),
+            }),
       notifications: /* @ngInject */ ($translate, hub) =>
         map(
           filter(hub.data.notifications.data, (notification) =>
