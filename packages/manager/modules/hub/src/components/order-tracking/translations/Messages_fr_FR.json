@@ -1,4 +1,5 @@
 {
   "hub_order_tracking_title": "Dernière commande",
-  "hub_order_tracking_see_all": "Voir mes commandes"
+  "hub_order_tracking_see_all": "Voir mes commandes",
+  "hub_order_tracking_error": "Impossible de récupérer le suivi de commande"
 }

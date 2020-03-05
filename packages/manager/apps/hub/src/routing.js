@@ -1,7 +1,50 @@
 import filter from 'lodash/filter';
+import get from 'lodash/get';
 import head from 'lodash/head';
 import map from 'lodash/map';
 import { BillingService } from '@ovh-ux/manager-models';
+import mapValues from 'lodash/mapValues';
+
+const parseErrors = (data) =>
+  mapValues(data.data, (value) =>
+    value.status === 'ERROR'
+      ? {
+          status: value.status,
+          error: value.data,
+        }
+      : value,
+  );
+
+const transformBillingServices = (services) => {
+  return services.error
+    ? services
+    : {
+        count: get(services, 'data.count'),
+        data: map(services.data.data, (service) => new BillingService(service)),
+      };
+};
+
+const transformOrder = ($q, lastOrder, OrderTracking) => {
+  const latestOrder = lastOrder.data;
+  return latestOrder
+    ? $q
+        .all({
+          status: OrderTracking.getOrderStatus(latestOrder),
+          details: OrderTracking.getOrderDetails(latestOrder),
+        })
+        .then(({ status, details }) => ({
+          ...latestOrder,
+          status,
+          ...head(details),
+        }))
+        .then((order) =>
+          OrderTracking.getCompleteHistory(order).then((history) => ({
+            ...order,
+            ...history,
+          })),
+        )
+    : $q.resolve();
+};
 
 export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
   $stateProvider.state('app', {
@@ -12,25 +55,18 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
       sidebar: /* @ngInject */ ($rootScope) => {
         $rootScope.$broadcast('sidebar:loaded');
       },
-      bills: /* @ngInject */ (hub) => hub.data.bills,
-      catalog: /* @ngInject */ (hub) => hub.data.catalog,
-      hub: /* @ngInject */ ($http) =>
-        $http
-          .get('/hub', {
-            serviceType: 'aapi',
-          })
-          .then(({ data }) => data),
-      me: /* @ngInject */ (hub) => hub.data.me.data,
-      billingServices: /* @ngInject */ (hub) => ({
-        count: hub.data.billingServices.data.count,
-        data: map(
-          hub.data.billingServices.data.data,
-          (service) => new BillingService(service),
+      billingServices: /* @ngInject */ (hub) =>
+        transformBillingServices(hub.billingServices),
+      refreshBillingServices: /* @ngInject */ (refresh) => () =>
+        refresh('billingServices').then((billingServices) =>
+          transformBillingServices(billingServices),
         ),
-      }),
+      bills: /* @ngInject */ (hub) => hub.bills,
+      catalog: /* @ngInject */ (hub) => hub.catalog,
+      me: /* @ngInject */ (hub) => hub.me.data,
       notifications: /* @ngInject */ ($translate, hub) =>
         map(
-          filter(hub.data.notifications.data, (notification) =>
+          filter(hub.notifications.data, (notification) =>
             ['warning', 'error'].includes(notification.level),
           ),
           (notification) => ({
@@ -45,30 +81,28 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
             ),
           }),
         ),
-      order: /* @ngInject */ ($q, hub, OrderTracking) => {
-        const lastOrder = hub.data.lastOrder.data;
-        return lastOrder
-          ? $q
-              .all({
-                status: OrderTracking.getOrderStatus(lastOrder),
-                details: OrderTracking.getOrderDetails(lastOrder),
-              })
-              .then(({ status, details }) => ({
-                ...lastOrder,
-                status,
-                ...head(details),
-              }))
-              .then((order) =>
-                OrderTracking.getCompleteHistory(order).then((history) => ({
-                  ...order,
-                  ...history,
-                })),
-              )
-          : $q.resolve();
-      },
+      order: /* @ngInject */ ($q, hub, OrderTracking) =>
+        transformOrder($q, hub.lastOrder, OrderTracking),
+      refreshOrder: /* @ngInject */ (refresh) => () =>
+        refresh('lastOrder').then((lastOrder) => transformOrder(lastOrder)),
+      services: /* @ngInject */ (hub) => hub.services,
 
-      services: /* @ngInject */ (hub) => hub.data.services.data,
-      feedbackUrl: /* @ngInject */ (hub) => hub.data.survey,
+      hub: /* @ngInject */ ($http) =>
+        $http
+          .get('/hub', {
+            serviceType: 'aapi',
+          })
+          .then(({ data }) => parseErrors(data)),
+
+      trackingPrefix: () => 'hub::dashboard::activity::payment-status',
+      feedbackUrl: /* @ngInject */ (hub) => hub.survey,
+
+      refresh: /* @ngInject */ ($http) => (type) =>
+        $http
+          .get(`/hub/${type}`, {
+            serviceType: 'aapi',
+          })
+          .then(({ data }) => parseErrors(data)),
     },
   });
 

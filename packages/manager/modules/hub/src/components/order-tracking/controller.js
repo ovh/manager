@@ -14,4 +14,15 @@ export default class ManagerHubBillingSummaryCtrl {
       label: 'custom_creation',
     };
   }
+
+  refreshTile() {
+    this.loading = true;
+    return this.refresh()
+      .then((order) => {
+        this.order = order;
+      })
+      .finally(() => {
+        this.loading = false;
+      });
+  }
 }
