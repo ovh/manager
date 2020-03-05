@@ -42,6 +42,7 @@
         ></ovh-manager-navbar-notifications-menu>
         <ovh-manager-navbar-user-menu
             data-user="$ctrl.user"
+            data-on-click="$ctrl.onUserClick()"
         ></ovh-manager-navbar-user-menu>
     </oui-navbar-aside>
     <oui-navbar-toggler
@@ -52,6 +53,15 @@
         <div data-ng-transclude="sidebar"></div>
     </oui-navbar-toggler>
 </oui-navbar>
+<div
+    class="ovh-sidebar-wrapper"
+    data-ng-class="{
+        'sidebar-expand': $ctrl.sidebarExpand,
+     }"
+    data-ng-attr-aria-expanded="{{ $ctrl.isSidebarVisible }}"
+>
+    <ovh-manager-hub-user-panel></ovh-manager-hub-user-panel>
+</div>
 <div
     class="tour-backdrop w-100 h-100 d-none d-lg-block"
     data-ng-if="$ctrl.shouldShowWalkMe"
