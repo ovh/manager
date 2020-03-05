@@ -26,6 +26,7 @@ import dashboard from './dashboard';
 
 import controller from './controller';
 import routing from './routing';
+import './index.less';
 import './index.scss';
 import 'ovh-ui-kit/dist/oui.css';
 
