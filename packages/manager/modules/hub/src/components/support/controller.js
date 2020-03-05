@@ -12,6 +12,7 @@ export default class ManagerHubSupportCtrl {
   }
 
   $onInit() {
+    this.error = false;
     this.isLoading = true;
     this.guideURL = this.RedirectionService.getURL('guides.home', {
       ovhSubsidiary: this.me.ovhSubsidiary,
@@ -25,6 +26,9 @@ export default class ManagerHubSupportCtrl {
             .map((ticket) => new SupportTicket(ticket));
         }
         this.ticketsCount = count;
+      })
+      .catch(() => {
+        this.error = true;
       })
       .finally(() => {
         this.isLoading = false;

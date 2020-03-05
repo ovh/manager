@@ -11,6 +11,7 @@ export default class ManagerHubBillingSummaryCtrl {
   }
 
   $onInit() {
+    this.loading = true;
     const loadBills = this.$q
       .when(this.bills ? this.bills : this.fetchBills())
       .then(({ data }) => {
@@ -41,21 +42,28 @@ export default class ManagerHubBillingSummaryCtrl {
       [this.billingPeriod] = this.periods;
     });
 
-    return this.$q.all([loadBills, loadDebt]);
+    return this.$q.all([loadBills, loadDebt]).finally(() => {
+      this.loading = false;
+    });
   }
 
   onPeriodChange() {
     this.bills = null;
     this.formattedBillingPrice = null;
 
-    return this.fetchBills(this.billingPeriod.value).then(({ data }) => {
-      this.bills = data;
-      this.formattedBillingPrice = this.getFormattedPrice(
-        data.total,
-        get(data, 'currency.code'),
-      );
-      this.buildPeriodFilter(data.period);
-    });
+    this.loading = true;
+    return this.fetchBills(this.billingPeriod.value)
+      .then(({ data }) => {
+        this.bills = data;
+        this.formattedBillingPrice = this.getFormattedPrice(
+          data.total,
+          get(data, 'currency.code'),
+        );
+        this.buildPeriodFilter(data.period);
+      })
+      .finally(() => {
+        this.loading = false;
+      });
   }
 
   getFormattedPrice(price, currency) {
@@ -130,5 +138,16 @@ export default class ManagerHubBillingSummaryCtrl {
       })
       .then(({ data }) => data)
       .then(({ data }) => data.debt);
+  }
+
+  refreshTile() {
+    this.loading = true;
+    return this.refresh()
+      .then(({ bills }) => {
+        this.bills = bills.data;
+      })
+      .finally(() => {
+        this.loading = false;
+      });
   }
 }

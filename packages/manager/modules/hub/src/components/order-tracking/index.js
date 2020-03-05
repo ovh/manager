@@ -4,6 +4,8 @@ import 'angular-translate';
 import 'ovh-ui-angular';
 import '@ovh-ux/ng-ovh-order-tracking';
 
+import ovhManagerHubTileError from '../tile-error';
+
 import component from './component';
 
 import './index.scss';
@@ -15,6 +17,7 @@ angular
     'ngOvhOrderTracking',
     'ngTranslateAsyncLoader',
     'oui',
+    ovhManagerHubTileError,
     'pascalprecht.translate',
   ])
   .component('hubOrderTracking', component)
