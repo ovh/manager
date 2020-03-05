@@ -1,22 +1,8 @@
-<div
-    class="d-inline-flex oui-navbar-link oui-navbar-link_icon py-0"
-    data-ng-if="$ctrl.isLoading"
->
-    <span class="oui-icon oui-icon-user"></span>
-    <oui-spinner data-size="s"></oui-spinner>
-</div>
 <oui-navbar-dropdown
     data-ng-if="!$ctrl.isLoading"
     name="user"
     data-text="{{:: $ctrl.menuTitle }}"
     data-icon-class="oui-icon oui-icon-user"
+    data-on-click="$ctrl.onClick()"
 >
-    <oui-navbar-menu
-        data-header-breadcrumb="{{ :: $ctrl.user.nichandle }}"
-        data-header-title="{{:: $ctrl.user.firstname + ' ' + $ctrl.user.name }}"
-        data-links="::$ctrl.sublinks"
-        data-align="end"
-        data-fixed
-    >
-    </oui-navbar-menu>
 </oui-navbar-dropdown>
