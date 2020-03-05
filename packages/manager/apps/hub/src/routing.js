@@ -44,22 +44,24 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
         ),
       order: /* @ngInject */ ($q, hub, OrderTracking) => {
         const lastOrder = hub.data.lastOrder.data;
-        return $q
-          .all({
-            status: OrderTracking.getOrderStatus(lastOrder),
-            details: OrderTracking.getOrderDetails(lastOrder),
-          })
-          .then(({ status, details }) => ({
-            ...lastOrder,
-            status,
-            ...head(details),
-          }))
-          .then((order) =>
-            OrderTracking.getCompleteHistory(order).then((history) => ({
-              ...order,
-              ...history,
-            })),
-          );
+        return lastOrder
+          ? $q
+              .all({
+                status: OrderTracking.getOrderStatus(lastOrder),
+                details: OrderTracking.getOrderDetails(lastOrder),
+              })
+              .then(({ status, details }) => ({
+                ...lastOrder,
+                status,
+                ...head(details),
+              }))
+              .then((order) =>
+                OrderTracking.getCompleteHistory(order).then((history) => ({
+                  ...order,
+                  ...history,
+                })),
+              )
+          : $q.resolve();
       },
 
       services: /* @ngInject */ (hub) => hub.data.services.data,
