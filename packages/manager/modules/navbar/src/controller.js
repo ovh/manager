@@ -9,10 +9,21 @@ import { KEY } from './walk-me/walkme.constants';
 
 export default class {
   /* @ngInject */
-  constructor($scope, $translate, $window, Navbar, ovhUserPref, WalkMe) {
+  constructor(
+    $rootScope,
+    $scope,
+    $translate,
+    $window,
+    atInternet,
+    Navbar,
+    ovhUserPref,
+    WalkMe,
+  ) {
+    this.$rootScope = $rootScope;
     this.$scope = $scope;
     this.$translate = $translate;
     this.$window = $window;
+    this.atInternet = atInternet;
     this.Navbar = Navbar;
     this.ovhUserPref = ovhUserPref;
     this.WalkMe = WalkMe;
@@ -21,6 +32,12 @@ export default class {
   $onInit() {
     this.isLoading = true;
     this.brand = this.buildBrand();
+    this.isSidebarVisible = false;
+
+    this.$rootScope.$on('ovh::sidebar::hide', () => {
+      this.isSidebarVisible = false;
+      this.sidebarExpand = false;
+    });
 
     if (has(this.navbarOptions, 'toggle')) {
       this.togglerisLoading = true;
@@ -112,5 +129,15 @@ export default class {
     this.tour.end();
     this.WalkMe.end();
     this.shouldShowWalkMe = false;
+  }
+
+  onUserClick() {
+    this.isSidebarVisible = !this.isSidebarVisible;
+    if (this.isSidebarVisible) {
+      this.atInternet.trackClick({
+        name: 'navbar::action::user-bar',
+        type: 'action',
+      });
+    }
   }
 }
