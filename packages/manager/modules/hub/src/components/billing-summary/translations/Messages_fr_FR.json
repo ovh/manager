@@ -6,5 +6,6 @@
   "hub_billing_summary_debt": "Il vous reste {{ debt }} à régler",
   "hub_billing_summary_debt_pay": "Solder ma dette",
   "hub_billing_summary_debt_null": "Payé",
-  "hub_billing_summary_display_bills": "Voir les factures"
+  "hub_billing_summary_display_bills": "Voir les factures",
+  "hub_billing_summary_display_bills_error": "Impossible de récupérer le montant total"
 }

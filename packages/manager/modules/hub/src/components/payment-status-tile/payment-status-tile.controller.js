@@ -27,4 +27,16 @@ export default class PaymentStatusTileCtrl {
       type: 'action',
     });
   }
+
+  refreshTile() {
+    this.loading = true;
+    return this.refresh()
+      .then(({ count, data }) => {
+        this.totalCount = count;
+        this.services = data;
+      })
+      .finally(() => {
+        this.loading = false;
+      });
+  }
 }
