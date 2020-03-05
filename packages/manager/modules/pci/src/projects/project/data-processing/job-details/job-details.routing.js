@@ -1,7 +1,7 @@
 export default /* @ngInject */ ($stateProvider) =>
   $stateProvider.state('pci.projects.project.data-processing.job-details', {
     url: '/:jobId',
-    component: 'pciProjectDataProcessingJobDetailsComponent',
+    component: 'pciProjectDataProcessingJobDetails',
     redirectTo: 'pci.projects.project.data-processing.job-details.dashboard',
     resolve: {
       // retrieve job id from url params

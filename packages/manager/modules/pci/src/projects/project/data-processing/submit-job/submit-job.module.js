@@ -1,4 +1,5 @@
 import angular from 'angular';
+import angularTranslate from 'angular-translate';
 import '@uirouter/angularjs';
 
 import routing from './submit-job.routing';
@@ -9,12 +10,12 @@ import sparkConfig from './spark-config';
 
 import dataProcessingSubmitJobComponent from './submit-job.component';
 
-const moduleName =
-  'ovhManagerPciProjectDataProcessingSubmitJobComponentLazyLoading';
+const moduleName = 'ovhManagerPciProjectDataProcessingSubmitJob';
 
 angular
   .module(moduleName, [
     'ui.router',
+    angularTranslate,
     regionSelector,
     jobTypeSelector,
     sparkSizing,
@@ -22,7 +23,7 @@ angular
   ])
   .config(routing)
   .component(
-    'pciProjectDataProcessingSubmitJobComponent',
+    'pciProjectDataProcessingSubmitJob',
     dataProcessingSubmitJobComponent,
   )
   .run(/* @ngTranslationsInject:json ./translations */);

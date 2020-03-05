@@ -2,7 +2,7 @@ import angular from 'angular';
 
 import dataProcessingJobStatusComponent from './job-status.component';
 
-const moduleName = 'OvhManagerPciProjectDataProcessingJobStatusComponent';
+const moduleName = 'OvhManagerPciProjectDataProcessingJobStatusLazyLoading';
 
 angular
   .module(moduleName, [])

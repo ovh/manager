@@ -1,4 +1,5 @@
 import angular from 'angular';
+import angularTranslate from 'angular-translate';
 import '@uirouter/angularjs';
 
 import routing from './job-details.routing';
@@ -7,14 +8,13 @@ import dataProcessingJobDetailsComponent from './job-details.component';
 import jobDashboard from './job-dashboard';
 import jobLogs from './job-logs';
 
-const moduleName =
-  'ovhManagerPciProjectDataProcessingSubmitJobComponentLazyLoading';
+const moduleName = 'ovhManagerPciProjectDataProcessingSubmitJob';
 
 angular
-  .module(moduleName, ['ui.router', jobDashboard, jobLogs])
+  .module(moduleName, ['ui.router', angularTranslate, jobDashboard, jobLogs])
   .config(routing)
   .component(
-    'pciProjectDataProcessingJobDetailsComponent',
+    'pciProjectDataProcessingJobDetails',
     dataProcessingJobDetailsComponent,
   )
   .run(/* @ngTranslationsInject:json ./translations */);

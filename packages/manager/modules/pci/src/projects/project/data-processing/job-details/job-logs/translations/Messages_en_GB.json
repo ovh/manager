@@ -1,0 +1,10 @@
+{
+  "data_processing_details_logs_title": "Logs",
+  "data_processing_details_logs_swift": "You job is not running anymore. You can find your logs in your Swift Object Storage.",
+  "data_processing_details_logs_swift_download_label": "Download logs",
+  "data_processing_details_logs_terminated": "Your job was terminated, no logs were produced.",
+  "data_processing_details_logs_default_message": "Waiting for logs...",
+  "data_processing_details_charts_total_memory": "Total memory usage last 5 m (Mi)",
+  "data_processing_details_charts_num_active_tasks": "# of active tasks last 5 m",
+  "data_processing_details_charts_blockmanager_disk": "Blockmanager disk used last 5 m"
+}

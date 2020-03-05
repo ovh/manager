@@ -3,16 +3,8 @@ import { convertMemory } from '../data-processing.utils';
 
 export default class {
   /* @ngInject */
-  constructor(
-    $scope,
-    $state,
-    $translate,
-    dataProcessingService,
-    CucRegionService,
-  ) {
-    this.$scope = $scope;
-    this.$state = $state; // router state
-    this.$translate = $translate;
+  constructor($state, dataProcessingService, CucRegionService) {
+    this.$state = $state;
     this.dataProcessingService = dataProcessingService;
     this.cucRegionService = CucRegionService;
     // let's do some function binding

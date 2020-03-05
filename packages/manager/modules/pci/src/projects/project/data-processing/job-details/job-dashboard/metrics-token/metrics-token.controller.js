@@ -8,10 +8,6 @@ export default class {
     this.docsMonitoringUrl = GUIDES_MONITOR_JOB_URL;
   }
 
-  dismissModal() {
-    this.closeModal();
-  }
-
   closeModal() {
     this.goBack();
   }

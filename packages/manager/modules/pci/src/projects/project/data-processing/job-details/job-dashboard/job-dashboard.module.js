@@ -1,4 +1,5 @@
 import angular from 'angular';
+import angularTranslate from 'angular-translate';
 import '@uirouter/angularjs';
 
 import routing from './job-dashboard.routing';
@@ -11,12 +12,12 @@ import metricsToken from './metrics-token';
 import jobLogs from '../job-logs';
 import metricsChart from './metrics-chart';
 
-const moduleName =
-  'ovhManagerPciProjectDataProcessingJobDetailsDashboardComponent';
+const moduleName = 'ovhManagerPciProjectDataProcessingJobDetailsDashboard';
 
 angular
   .module(moduleName, [
     'ui.router',
+    angularTranslate,
     jobStatus,
     terminateJob,
     jobLogs,

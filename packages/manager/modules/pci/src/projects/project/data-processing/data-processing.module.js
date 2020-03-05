@@ -1,4 +1,5 @@
 import angular from 'angular';
+import angularTranslate from 'angular-translate';
 import '@ovh-ux/ng-ovh-swimming-poll';
 
 import routing from './data-processing.routing';
@@ -12,10 +13,11 @@ import labs from '../../../components/project/labs';
 import terminateJob from './terminate-job';
 import { convertMemory, formatDuration } from './data-processing.utils';
 
-const moduleName = 'ovhManagerPciProjectDataProcessingComponentLazyLoading';
+const moduleName = 'ovhManagerPciProjectDataProcessing';
 
 angular
   .module(moduleName, [
+    angularTranslate,
     'ngOvhSwimmingPoll',
     submitJob,
     jobDetails,
@@ -25,7 +27,7 @@ angular
     terminateJob,
   ])
   .config(routing)
-  .component('pciProjectDataProcessingComponent', dataProcessingComponent)
+  .component('pciProjectDataProcessing', dataProcessingComponent)
   .service('dataProcessingService', dataProcessingService)
   // setup a templating filter to return nicely formatted durations
   .filter('dataProcessingDuration', () => (value) => formatDuration(value))

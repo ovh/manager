@@ -3,7 +3,7 @@ export default /* @ngInject */ ($stateProvider) =>
     'pci.projects.project.data-processing.job-details.logs',
     {
       url: '/logs',
-      component: 'pciProjectDataProcessingJobLogsComponent',
+      component: 'pciProjectDataProcessingJobLogs',
       resolve: {
         // retrieve job id from url params
         jobId: /* @ngInject */ ($transition$) => $transition$.params().jobId,

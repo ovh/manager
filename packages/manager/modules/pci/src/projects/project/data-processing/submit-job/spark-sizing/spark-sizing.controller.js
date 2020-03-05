@@ -42,7 +42,7 @@ export default class {
    */
   $onChanges() {
     Object.assign(this.values, this.state);
-    if (this.templates !== undefined) {
+    if (this.templates) {
       this.driverTemplates = this.templates;
       this.workerTemplates = this.templates;
     }

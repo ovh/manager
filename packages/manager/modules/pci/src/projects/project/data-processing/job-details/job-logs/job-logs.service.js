@@ -99,7 +99,7 @@ export default class JobLogsService {
         containers,
         (c) => c.name === containerName && c.region === region.substr(0, 3),
       );
-      return container !== undefined ? container.id : null;
+      return container ? container.id : null;
     });
   }
 

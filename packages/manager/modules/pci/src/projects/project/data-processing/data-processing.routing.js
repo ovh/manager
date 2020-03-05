@@ -1,7 +1,7 @@
 export default /* @ngInject */ ($stateProvider) =>
   $stateProvider.state('pci.projects.project.data-processing', {
     url: '/data-processing',
-    component: 'pciProjectDataProcessingComponent',
+    component: 'pciProjectDataProcessing',
     redirectTo: (transition) =>
       Promise.all([
         transition.injector().getAsync('authorization'),

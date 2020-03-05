@@ -1,13 +1,13 @@
 import angular from 'angular';
+import angularTranslate from 'angular-translate';
 
 import component from './metrics-token.component';
 import routing from './metrics-token.routing';
 
-const moduleName =
-  'ovhManagerPciProjectDataProcessingMetricsTokenModalComponent';
+const moduleName = 'ovhManagerPciProjectDataProcessingMetricsTokenModal';
 
 angular
-  .module(moduleName, [])
+  .module(moduleName, [angularTranslate])
   .config(routing)
   .component('pciProjectDataProcessingMetricsTokenModal', component)
   .run(/* @ngTranslationsInject:json ./translations */);

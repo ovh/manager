@@ -67,7 +67,7 @@ export default class {
       (o) => o.name === this.state.mainApplicationCode,
     );
     this.state.mainApplicationCodeFileInvalid =
-      obj !== undefined &&
+      obj &&
       obj.contentType !== 'application/java-archive' &&
       this.state.jobType === 'java';
     this.state.mainApplicationCodeFileNotFound = obj === undefined;

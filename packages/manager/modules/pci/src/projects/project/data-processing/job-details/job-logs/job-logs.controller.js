@@ -1,21 +1,21 @@
 import moment from 'moment';
+import { formatLogsDate } from './job-logs.utils';
 import { DATA_PROCESSING_API_STATUSES } from '../../data-processing.constants';
 
 export default class {
   /* @ngInject */
   constructor(
     $scope,
-    $state,
     $timeout,
     $uibModal,
     CucCloudMessage,
     dataProcessingJobLogsService,
   ) {
-    this.$scope = $scope; // router state
-    this.$state = $state; // router state
+    this.$scope = $scope;
     this.$timeout = $timeout;
     this.dataProcessingJobLogsService = dataProcessingJobLogsService;
     this.logger = dataProcessingJobLogsService;
+    this.formatLogsDate = formatLogsDate;
     this.moment = moment;
     // let's do some binding
     this.downloadLogs = this.downloadLogs.bind(this);
@@ -39,7 +39,7 @@ export default class {
   downloadLogs() {
     const re = /https:\/\/storage\.[a-z0-9]+\.cloud.ovh.net\/v1\/AUTH_[a-z0-9]+\/(.*)\/(.*)/;
     const logsUrl = this.logger.logs.logsAddress;
-    if (logsUrl !== undefined && logsUrl !== null) {
+    if (logsUrl) {
       const matches = logsUrl.match(re);
       this.logger.downloadObject(
         this.projectId,

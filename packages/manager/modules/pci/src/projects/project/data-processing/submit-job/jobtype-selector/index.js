@@ -3,7 +3,8 @@ import '@uirouter/angularjs';
 
 import jobTypeSelectorComponent from './jobtype-selector.component';
 
-const moduleName = 'ovhManagerPciProjectDataProcessingSubmitJobTypeSelector';
+const moduleName =
+  'ovhManagerPciProjectDataProcessingSubmitJobTypeSelectorLazyLoading';
 
 angular
   .module(moduleName, ['ui.router'])

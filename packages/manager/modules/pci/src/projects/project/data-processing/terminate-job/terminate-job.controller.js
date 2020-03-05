@@ -14,10 +14,6 @@ export default class {
       });
   }
 
-  dismissModal() {
-    this.closeModal();
-  }
-
   closeModal() {
     this.goBack();
   }

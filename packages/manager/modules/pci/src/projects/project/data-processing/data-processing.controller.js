@@ -52,7 +52,7 @@ export default class {
    */
   getJobs({ offset, pageSize, sort, criteria }) {
     const filters = criteria.map((c) => {
-      const name = c.name === undefined ? 'name' : c.name;
+      const name = c.name || 'name';
       return datagridToIcebergFilter(name, c.operator, c.value);
     });
     const pageOffset = Math.ceil(offset / pageSize);

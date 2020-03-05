@@ -3,7 +3,7 @@ import chartjs from 'angular-chart.js';
 
 import dataProcessingMetricsChartComponent from './metrics-chart.component';
 
-const moduleName = 'OvhManagerPciProjectDataProcessingMetricsChartComponent';
+const moduleName = 'OvhManagerPciProjectDataProcessingMetricsChartLazyLoading';
 
 angular
   .module(moduleName, [chartjs])

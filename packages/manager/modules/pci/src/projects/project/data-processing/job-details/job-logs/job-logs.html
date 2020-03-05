@@ -1,5 +1,5 @@
 <div data-ui-view>
-    <div class="logger col-md-12" data-scroll-glue>
+    <div class="logger" data-scroll-glue>
         <div
             data-ng-if="$ctrl.logger.logs.logsAddress === null && !$ctrl.isJobTerminated()"
         >
@@ -8,8 +8,7 @@
                 ng-repeat="entry in $ctrl.logger.logs.logs track by entry.id"
             >
                 <span class="logger__entry-message"
-                    >{{($ctrl.moment(entry.id /
-                    1000000.).toISOString()).padEnd(25,' ') }} {{ entry.content
+                    >{{ $ctrl.formatLogsDate(entry.id) }} {{ entry.content
                     }}</span
                 >
             </div>

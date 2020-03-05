@@ -7,8 +7,7 @@ import 'ovh-ui-angular';
 import component from './terminate-job.component';
 import routing from './terminate-job.routing';
 
-const moduleName =
-  'ovhManagerPciProjectDataProcessingTerminateJobModalComponentLazyLoading';
+const moduleName = 'ovhManagerPciProjectDataProcessingTerminateJobModal';
 
 angular
   .module(moduleName, [

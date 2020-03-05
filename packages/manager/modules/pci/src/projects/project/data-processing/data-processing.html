@@ -60,7 +60,11 @@
                 data-property="vcores"
                 data-sortable
             >
-                <span>{{ $row.vcores }}c/{{ $row.ram }}</span>
+                <span
+                    >{{ $row.vcores }}{{ ::
+                    'data_processing_job_cores_abbreviation' | translate }}/{{
+                    $row.ram }}</span
+                >
             </oui-column>
             <oui-column
                 data-title="::'data_processing_job_creation_date' | translate"

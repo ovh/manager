@@ -2,7 +2,8 @@ import angular from 'angular';
 import '@uirouter/angularjs';
 import 'oclazyload';
 
-const moduleName = 'ovhManagerPciProjectDataProcessingQuickTerminateModal';
+const moduleName =
+  'ovhManagerPciProjectDataProcessingQuickTerminateModalLazyLoading';
 
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
   /* @ngInject */ ($stateProvider) => {

@@ -5,7 +5,8 @@ import SparkConfigComponent from './spark-config.component';
 import PciStoragesContainersService from '../../../storages/containers/containers.service';
 import SparkConfigService from './spark-config.service';
 
-const moduleName = 'ovhManagerPciProjectDataProcessingSubmitJobSparkConfig';
+const moduleName =
+  'ovhManagerPciProjectDataProcessingSubmitJobSparkConfigLazyLoading';
 
 angular
   .module(moduleName, ['ui.router'])

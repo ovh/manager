@@ -12,7 +12,6 @@ export default class {
   /* @ngInject */
   constructor(
     $scope,
-    $state,
     $resource,
     $timeout,
     $uibModal,
@@ -22,7 +21,6 @@ export default class {
     PciStoragesContainersService,
   ) {
     this.$scope = $scope;
-    this.$state = $state; // router state
     this.$timeout = $timeout;
     this.cucCloudMessage = CucCloudMessage;
     this.dataProcessingService = dataProcessingService;
@@ -69,7 +67,7 @@ export default class {
         containers,
         (c) => c.name === this.job.containerName,
       );
-      if (container !== undefined) {
+      if (container) {
         this.containerId = container.id;
       }
     });
@@ -135,11 +133,7 @@ export default class {
         }' } '${d.startDate.toISOString()}' '${d.endDate.toISOString()}' ] FETCH SORT [ SWAP [ 'executor-id' ] reducer.sum ] REDUCE`,
       )
       .$promise.then((series) => {
-        if (
-          series.length > 0 &&
-          series[0][0] !== undefined &&
-          'v' in series[0][0]
-        ) {
+        if (series.length > 0 && series[0][0] && 'v' in series[0][0]) {
           let data = series[0][0].v;
           data = unzip(data);
           this.metrics.totalMemory = {
@@ -164,11 +158,7 @@ export default class {
         }' } '${d.startDate.toISOString()}' '${d.endDate.toISOString()}' ] FETCH SORT`,
       )
       .$promise.then((series) => {
-        if (
-          series.length > 0 &&
-          series[0][0] !== undefined &&
-          'v' in series[0][0]
-        ) {
+        if (series.length > 0 && series[0][0] && 'v' in series[0][0]) {
           let data = series[0][0].v;
           data = unzip(data);
           this.metrics.blockManagerDiskUsed = {
@@ -193,11 +183,7 @@ export default class {
         }' } '${d.startDate.toISOString()}' '${d.endDate.toISOString()}' ] FETCH SORT`,
       )
       .$promise.then((series) => {
-        if (
-          series.length > 0 &&
-          series[0][0] !== undefined &&
-          'v' in series[0][0]
-        ) {
+        if (series.length > 0 && series[0][0] && 'v' in series[0][0]) {
           let data = series[0][0].v;
           data = unzip(data);
           this.metrics.activeTasks = {

@@ -1,0 +1,10 @@
+{
+  "data_processing_details_logs_title": "Logs",
+  "data_processing_details_logs_swift": "Votre job est terminé. Retrouvez ses logs dans votre conteneur d'objets.",
+  "data_processing_details_logs_swift_download_label": "Télécharger les logs",
+  "data_processing_details_logs_terminated": "Votre job a été stoppé. Aucun log n'est disponible.",
+  "data_processing_details_logs_default_message": "En attente de logs…",
+  "data_processing_details_charts_total_memory": "Utilisation mémoire sur les 5 dernières minutes (Mi)",
+  "data_processing_details_charts_num_active_tasks": "# de tâches actives sur les 5 dernières minutes",
+  "data_processing_details_charts_blockmanager_disk": "Utilisation disque Blockmanager sur les 5 dernières minutes"
+}

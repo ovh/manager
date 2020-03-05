@@ -9,7 +9,7 @@ export default class {
   }
 
   $onChanges() {
-    if (this.jobEngines !== undefined) {
+    if (this.jobEngines) {
       this.availableEngines = Object.values(this.jobEngines).map((engine) => ({
         name: startCase(engine.name),
         description: this.$translate.instant(
