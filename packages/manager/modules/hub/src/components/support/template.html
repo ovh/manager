@@ -6,11 +6,19 @@
     data-href="{{ ::$ctrl.RedirectionService.getURL('support') }}"
     data-on-click="$ctrl.onSeeMore()"
 >
-    <div class="manager-hub-support" data-ng-if="!$ctrl.isLoading">
-        <div data-ng-if="$ctrl.tickets.length > 0">
+    <hub-tile-error
+        ng-if="$ctrl.error && !$ctrl.isLoading"
+        message="{{:: 'hub_support_error' | translate }}"
+        refresh="$ctrl.$onInit()"
+    >
+    </hub-tile-error>
+
+    <div class="manager-hub-support" data-ng-if="!$ctrl.error">
+        <div data-ng-if="$ctrl.tickets.length > 0 || $ctrl.isLoading">
             <table class="w-100">
                 <tbody>
                     <tr
+                        data-ng-if="!$ctrl.isLoading"
                         data-ng-repeat="ticket in $ctrl.tickets track by ticket.ticketId"
                     >
                         <td
@@ -38,6 +46,14 @@
                             >
                                 <span data-translate="hub_support_read"></span>
                             </a>
+                        </td>
+                    </tr>
+                    <tr
+                        data-ng-if="$ctrl.isLoading"
+                        data-ng-repeat="loader in [1,2]"
+                    >
+                        <td data-ng-repeat="skeleton in [1,2]">
+                            <oui-skeleton size="s"></oui-skeleton>
                         </td>
                     </tr>
                 </tbody>
