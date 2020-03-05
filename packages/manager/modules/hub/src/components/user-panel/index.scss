@@ -12,14 +12,9 @@
   @import 'bootstrap4/scss/_button-group.scss';
 
   background-color: $bg-color;
-  width: 22rem;
   height: 100%;
   padding: 2rem;
   padding-top: 3rem;
-
-  @include media-breakpoint-down(sm) {
-    display: none;
-  }
 
   &_divider {
     display: block;

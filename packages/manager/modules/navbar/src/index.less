@@ -4,6 +4,7 @@
 @import '~ovh-ui-kit/packages/oui-navbar/_variables';
 @import '~ovh-ui-kit/packages/oui-responsive/_variables';
 @import '~ovh-ui-kit/packages/oui-typography/_variables';
+@import './variables.less';
 
 .oui-navbar-link_active {
   .oui-navbar-link::after {
@@ -42,5 +43,46 @@
       width: @small-icon-size;
       height: @small-icon-size;
     }
+  }
+}
+
+.oui-navbar-backdrop {
+  display: none;
+}
+
+.ovh-sidebar-wrapper {
+  position: absolute;
+  right: 0;
+  z-index: 99;
+  overflow-x: hidden;
+  transition: padding 0.1s ease-out, opacity 0.2s ease-out;
+  box-shadow: @oui-navbar-menu-box-shadow;
+  opacity: 0;
+  padding-left: @ovh-sidebar-width;
+  pointer-events: none;
+
+  .manager-hub-user-panel {
+    width: 0;
+  }
+
+  .sidebar-show() {
+    width: @ovh-sidebar-width;
+    padding-left: 0;
+    opacity: 1;
+    pointer-events: auto;
+
+    .manager-hub-user-panel {
+      width: @ovh-sidebar-width;
+    }
+  }
+
+  &.sidebar-expand {
+    @media screen and (min-width: (@oui-responsive-breakpoint-medium - 1px)) {
+      .sidebar-show();
+    }
+  }
+
+  &[aria-expanded='true'] {
+    .sidebar-show();
   }
 }
