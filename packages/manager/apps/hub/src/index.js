@@ -23,6 +23,7 @@ import catalog from './catalog';
 import dashboard from './dashboard';
 
 import routing from './routing';
+import './index.less';
 import './index.scss';
 import 'ovh-ui-kit/dist/oui.css';
 
