@@ -12,9 +12,11 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
         ),
 
       goToProductPage: /* @ngInject */ ($state) => (product) =>
-        $state.go('app.dashboard.products', {
-          product: product.toLowerCase(),
-        }),
+        product.includes('EXCHANGE')
+          ? $state.go('app.dashboard.exchange')
+          : $state.go('app.dashboard.products', {
+              product: product.toLowerCase(),
+            }),
     },
     componentProvider: /* @ngInject */ (services) =>
       services.count === 0 ? 'hubOrderDashboard' : 'hubDashboard',

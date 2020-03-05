@@ -15,6 +15,7 @@ export default {
   bindings: {
     ...ListLayoutHelper.componentBindings,
     columns: '<',
+    rows: '<?',
     onColumnChange: '<',
     productType: '<',
   },
