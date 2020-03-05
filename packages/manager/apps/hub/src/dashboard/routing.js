@@ -1,4 +1,5 @@
 import filter from 'lodash/filter';
+import get from 'lodash/get';
 import groupBy from 'lodash/groupBy';
 import map from 'lodash/map';
 
@@ -7,12 +8,12 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
     url: '/',
     resolve: {
       products: /* @ngInject */ (catalog, services) =>
-        services.count === 0
+        get(services, 'data.count') === 0
           ? groupBy(
               filter(catalog.data, ({ highlight }) => highlight),
               'universe',
             )
-          : map(services.data, (service, productType) => ({
+          : map(services.data.data, (service, productType) => ({
               ...service,
               productType,
             })),

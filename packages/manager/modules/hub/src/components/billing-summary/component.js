@@ -8,5 +8,6 @@ export default {
     bills: '<?',
     debt: '<?',
     trackingPrefix: '@',
+    refresh: '&',
   },
 };

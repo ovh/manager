@@ -3,6 +3,9 @@ import '@ovh-ux/ng-at-internet';
 import '@ovh-ux/ng-translate-async-loader';
 import ovhManagerCore from '@ovh-ux/manager-core';
 import 'angular-translate';
+
+import ovhManagerHubTileError from '../tile-error';
+
 import component from './component';
 
 import './index.scss';
@@ -11,10 +14,11 @@ const moduleName = 'ovhManagerHubBillingSummary';
 
 angular
   .module(moduleName, [
+    'ngAtInternet',
     'ngTranslateAsyncLoader',
     'oui',
     ovhManagerCore,
-    'ngAtInternet',
+    ovhManagerHubTileError,
     'pascalprecht.translate',
   ])
   .component('hubBillingSummary', component)

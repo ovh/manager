@@ -5,10 +5,20 @@
     data-href="{{ ::$ctrl.autorenewLink }}"
     data-on-click="$ctrl.onLinkClick()"
 >
-    <div class="oui-datagrid-responsive-container">
+    <hub-tile-error
+        ng-if="!$ctrl.services && !$ctrl.loading"
+        message="{{:: 'ovh_manager_hub_payment_status_tile_error' | translate }}"
+        refresh="$ctrl.refreshTile()"
+    >
+    </hub-tile-error>
+
+    <div
+        class="oui-datagrid-responsive-container"
+        data-ng-if="$ctrl.services || $ctrl.loading"
+    >
         <div class="oui-datagrid-responsive-container__sticky-container">
             <div class="oui-datagrid-responsive-containr__overflow-container">
-                <table class="oui-datagrid" data-ng-if="!$ctrl.data.loading">
+                <table class="oui-datagrid">
                     <tbody>
                         <tr
                             class="oui-datagrid__row"
@@ -98,6 +108,18 @@
                                         ></span>
                                     </oui-action-menu-item>
                                 </oui-action-menu>
+                            </td>
+                        </tr>
+                        <tr
+                            class="oui-datagrid__row"
+                            data-ng-if="$ctrl.loading"
+                            data-ng-repeat="row in [1,2,3,4] track by $index"
+                        >
+                            <td
+                                data-ng-repeat="skeleton in [1,2]"
+                                class="oui-datagrid__cell"
+                            >
+                                <oui-skeleton size="s"></oui-skeleton>
                             </td>
                         </tr>
                     </tbody>

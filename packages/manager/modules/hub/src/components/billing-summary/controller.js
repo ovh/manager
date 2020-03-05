@@ -11,6 +11,7 @@ export default class ManagerHubBillingSummaryCtrl {
   }
 
   $onInit() {
+    this.loading = true;
     const loadBills = this.$q
       .when(this.bills ? this.bills : this.fetchBills())
       .then(({ data }) => {
@@ -41,7 +42,9 @@ export default class ManagerHubBillingSummaryCtrl {
       [this.billingPeriod] = this.periods;
     });
 
-    return this.$q.all([loadBills, loadDebt]);
+    return this.$q.all([loadBills, loadDebt]).finally(() => {
+      this.loading = false;
+    });
   }
 
   onPeriodChange() {
@@ -130,5 +133,16 @@ export default class ManagerHubBillingSummaryCtrl {
       })
       .then(({ data }) => data)
       .then(({ data }) => data.debt);
+  }
+
+  refreshTile() {
+    this.loading = true;
+    return this.refresh()
+      .then(({ bills }) => {
+        this.bills = bills.data;
+      })
+      .finally(() => {
+        this.loading = false;
+      });
   }
 }
