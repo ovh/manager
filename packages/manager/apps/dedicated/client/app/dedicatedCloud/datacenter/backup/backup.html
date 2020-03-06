@@ -20,7 +20,7 @@
         <oui-switch
             data-model="$ctrl.backup.isActive()"
             data-on-change="$ctrl.goToDeleteBackup()"
-            data-disabled="!$ctrl.backup.isActive()"
+            data-ng-if="$ctrl.backup.isActive()"
         >
         </oui-switch>
         <span
