@@ -1,3 +1,5 @@
+export const BACKUP_MINIMUM_HOST_COUNT = 2;
+
 export const BACKUP_OFFER_LEGACY = 'legacy';
 export const BACKUP_OFFER_PREMIUM = 'premium';
 export const BACKUP_OFFER_ADVANCED = 'advanced';
@@ -64,6 +66,7 @@ export const BACKUP_TARIFF_URL = {
 };
 
 export default {
+  BACKUP_MINIMUM_HOST_COUNT,
   BACKUP_OFFER_LEGACY,
   BACKUP_OFFER_PREMIUM,
   BACKUP_OFFER_ADVANCED,
