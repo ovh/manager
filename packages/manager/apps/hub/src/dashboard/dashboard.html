@@ -17,6 +17,19 @@
     </div>
     <div class="col-md-4">
         <hub-billing-summary bills="$ctrl.bills"></hub-billing-summary>
+    </div>
+</div>
+<div class="row mt-4">
+    <div class="col-md-8">
+        <ovh-manager-hub-tile>
+            <ovh-manager-hub-support
+                data-me="$ctrl.me"
+                data-tickets="$ctrl.tickets"
+            >
+            </ovh-manager-hub-support>
+        </ovh-manager-hub-tile>
+    </div>
+    <div class="col-md-4">
         <hub-order-tracking order="$ctrl.order"></hub-order-tracking>
     </div>
 </div>
