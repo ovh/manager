@@ -3,3 +3,53 @@
 @import '~bootstrap4/scss/_mixins';
 @import '~bootstrap4/scss/_utilities.scss';
 @import '~bootstrap4/scss/_grid.scss';
+@import '@ovh-ux/manager-hub/src/variables.scss';
+
+.oui-navbar {
+  background-color: initial;
+  box-shadow: 0 0 6px 0 rgba(0, 14, 156, 0.2);
+
+  .oui-navbar__brand {
+    color: $hub-brand-color;
+  }
+
+  .oui-navbar-link {
+    color: $hub-link-color;
+    font-weight: bold;
+
+    .oui-icon {
+      color: $hub-link-color;
+    }
+  }
+
+  .oui-navbar-link:hover,
+  .oui-navbar-link:focus,
+  .oui-navbar-link_tertiary:hover,
+  .oui-navbar-link_tertiary[aria-expanded='true'],
+  .oui-navbar-link_tertiary:focus {
+    background-color: initial;
+  }
+
+  .oui-navbar-link_primary {
+    color: $hub-text-color;
+    font-weight: $hub-text-weight;
+    font-size: $hub-font-size;
+    line-height: 0.5rem;
+    padding-top: 1.2rem;
+    border-bottom: 2px solid transparent;
+  }
+
+  .oui-navbar-link_active {
+    background-color: initial;
+    border-bottom: 2px solid $hub-link-color;
+    box-sizing: border-box;
+  }
+}
+
+h1,
+h2 {
+  font-size: $hub-title-size;
+  font-weight: $hub-title-weight;
+  color: $hub-title-color;
+  margin-top: 1rem;
+}
