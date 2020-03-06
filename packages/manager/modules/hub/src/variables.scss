@@ -1,0 +1,41 @@
+$hub-brand-color: #001191;
+
+$hub-title-color: #001758;
+$hub-title-weight: 400;
+$hub-title-size: 1.75rem;
+
+$hub-subtitle-weight: 800;
+$hub-subtitle-size: 1.25rem;
+
+$hub-text-color: #4d5592;
+$hub-text-weight: 400;
+
+$hub-font-size: 1rem;
+$hub-link-color: #0050d7;
+
+$hub-button-bg-color: #3046d1;
+$hub-button-fg-color: white;
+
+$hub-tile-border-radius: 0.5rem;
+$hub-tile-padding: 1rem 0 1rem 0;
+
+@mixin hub-link-button {
+  background-color: $hub-button-bg-color;
+  display: inline-block;
+  color: $hub-button-fg-color;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.25rem 0.5rem 0.25rem 0.5rem;
+  font-weight: 600;
+
+  .oui-icon {
+    color: $hub-button-fg-color;
+    font-size: 0.75rem;
+    vertical-align: middle;
+  }
+
+  &:hover {
+    color: $hub-button-fg-color;
+    text-decoration: none;
+  }
+}
