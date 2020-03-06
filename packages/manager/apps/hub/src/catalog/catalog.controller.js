@@ -11,37 +11,40 @@ export default class CatalogController {
     return groupBy(items, 'universe');
   }
 
-  onCategoryChange() {
-    const items = this.products.filter((product) =>
-      CatalogController.filterByEnum(
-        product,
-        this.selectedCategories,
-        'category',
-      ),
-    );
-    this.items = CatalogController.groupItems(items);
-  }
-
-  onUniverseChange() {
-    const items = this.products.filter((product) =>
-      CatalogController.filterByEnum(
-        product,
-        this.selectedUniverses,
-        'universe',
-      ),
-    );
-    this.items = CatalogController.groupItems(items);
-  }
-
-  onSearch(searchText) {
+  filterItems() {
     const items = this.products.filter(
       (product) =>
-        !searchText ||
-        product.category.includes(searchText) ||
-        product.universe.includes(searchText) ||
-        product.productName.includes(searchText),
+        this.matchCategories(product) &&
+        this.matchUniverses(product) &&
+        this.matchSearchText(product),
     );
+
     this.items = CatalogController.groupItems(items);
+  }
+
+  matchCategories(product) {
+    return CatalogController.filterByEnum(
+      product,
+      this.selectedCategories,
+      'category',
+    );
+  }
+
+  matchUniverses(product) {
+    return CatalogController.filterByEnum(
+      product,
+      this.selectedUniverses,
+      'universe',
+    );
+  }
+
+  matchSearchText(product) {
+    return (
+      !this.searchText ||
+      product.category.includes(this.searchText) ||
+      product.universe.includes(this.searchText) ||
+      product.productName.includes(this.searchText)
+    );
   }
 
   reset() {
