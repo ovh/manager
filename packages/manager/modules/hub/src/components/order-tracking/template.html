@@ -1,4 +1,4 @@
-<div class="manager-hub-billing-summary" data-ng-if="$ctrl.orderTrackingLink">
+<div class="manager-hub-order-tracking" data-ng-if="$ctrl.orderTrackingLink">
     <h3 data-translate="hub_order_tracking_title"></h3>
     <span
         class="oui-status oui-status_info"
@@ -22,7 +22,7 @@
         ></span>
     </div>
     <a
-        class="oui-button oui-button_primary oui-button_icon-right"
+        class="manager-hub-order-tracking_button"
         data-ng-href="{{:: $ctrl.orderTrackingLink }}"
     >
         <span data-translate="hub_order_tracking_see_all"></span>
