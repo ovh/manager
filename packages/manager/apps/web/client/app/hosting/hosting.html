@@ -31,8 +31,9 @@
                                 <button
                                     class="btn btn-icon my-auto ml-2"
                                     type="button"
-                                    title="{{ 'wizard_modify' | translate }}"
+                                    title="{{:: 'wizard_modify' | translate }}"
                                     data-ng-click="editDisplayName()"
+                                    data-ng-if="!hosting.isExpired"
                                 >
                                     <span
                                         class="oui-icon oui-icon-pen_line oui-icon_small"
@@ -104,7 +105,7 @@
                         </wuc-service-expiration-date>
                     </form>
                 </div>
-                <div class="col-sm-3 d-flex">
+                <div class="col-sm-3 d-flex" data-ng-if="!hosting.isExpired">
                     <div class="btn-group ml-auto mt-4">
                         <button
                             type="button"
@@ -121,7 +122,10 @@
                         </button>
                         <ul class="dropdown-menu dropdown-menu-right m-0 p-0">
                             <li data-ng-if="urlDomainOrder">
-                                <i class="fa fa-plus" aria-hidden="true"></i>
+                                <span
+                                    class="fa fa-plus"
+                                    aria-hidden="true"
+                                ></span>
                                 <button
                                     class="btn btn-link"
                                     type="button"
@@ -130,8 +134,9 @@
                                     data-track-name="web::hosting::add-domain"
                                     data-track-click="action"
                                 >
-                                    {{ 'hosting_dashboard_add_domain' |
-                                    translate }}
+                                    <span
+                                        data-translate="hosting_dashboard_add_domain"
+                                    ></span>
                                 </button>
                             </li>
                         </ul>
