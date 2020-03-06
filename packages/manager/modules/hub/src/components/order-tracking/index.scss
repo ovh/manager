@@ -1,6 +1,21 @@
-hub-order-tracking {
+.manager-hub-order-tracking {
   @import '~bootstrap4/scss/_functions';
   @import '~bootstrap4/scss/_variables';
   @import '~bootstrap4/scss/_mixins';
   @import '~bootstrap4/scss/_utilities.scss';
+  @import '@ovh-ux/manager-hub/src/variables.scss';
+
+  &_button {
+    @include hub-link-button;
+  }
+
+  background-color: #85d9fd;
+  text-align: center;
+  border-radius: $hub-tile-border-radius;
+  padding: $hub-tile-padding;
+
+  > h3 {
+    font-size: $hub-subtitle-size;
+    font-weight: $hub-subtitle-weight;
+  }
 }
