@@ -17,15 +17,16 @@
                 data-translate="dedicatedCloud_datacenter_backup_not_manageable"
             ></p>
         </oui-message>
-        <oui-switch
-            data-model="$ctrl.backup.isActive()"
-            data-on-change="$ctrl.goToDeleteBackup()"
-            data-disabled="!$ctrl.backup.isActive()"
-        >
-        </oui-switch>
-        <span
-            data-translate="{{ 'dedicatedCloud_datacenter_backup_state_' + $ctrl.backup.state }}"
-        ></span>
+        <div data-ng-if="$ctrl.backup.isActive()">
+            <oui-switch
+                data-model="$ctrl.backup.isActive()"
+                data-on-change="$ctrl.goToDeleteBackup()"
+            >
+            </oui-switch>
+            <span
+                data-translate="{{ 'dedicatedCloud_datacenter_backup_state_' + $ctrl.backup.state }}"
+            ></span>
+        </div>
         <section class="datacenter-backup-offers">
             <h4
                 class="mb-3"
