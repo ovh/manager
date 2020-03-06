@@ -39,11 +39,12 @@ export default class CatalogController {
   }
 
   matchSearchText(product) {
+    const search = this.searchText && this.searchText.toLowerCase();
     return (
-      !this.searchText ||
-      product.category.includes(this.searchText) ||
-      product.universe.includes(this.searchText) ||
-      product.productName.includes(this.searchText)
+      !search ||
+      product.category.toLowerCase().includes(search) ||
+      product.universe.toLowerCase().includes(search) ||
+      product.name.toLowerCase().includes(search)
     );
   }
 
