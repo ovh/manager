@@ -1,8 +1,9 @@
+@import '@ovh-ux/manager-hub/src/variables.scss';
+
 .manager-hub-billing-summary {
   $bg-color: #4495ee;
-  $bg-image: url("./assets/background.svg");
+  $bg-image: url('./assets/background.svg');
   $text-color: white;
-  $btn-color: #3046d1;
 
   background-color: $bg-color;
   background-image: $bg-image;
@@ -10,30 +11,20 @@
   background-size: cover;
   color: $text-color;
   text-align: center;
-  border-radius: 0.5rem;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+  border-radius: $hub-tile-border-radius;
+  padding: $hub-tile-padding;
+  width: 100%;
+  height: 100%;
 
   > h3 {
-    font-size: 1.25rem;
-    font-weight: bold;
+    font-size: $hub-subtitle-size;
+    font-weight: $hub-subtitle-weight;
   }
 
   &_billing-link {
-    background-color: $btn-color;
-    display: inline-block;
-    color: $text-color;
-    border: none;
-    border-radius: 0.5rem;
-    padding: 0.25rem 0.5rem 0.25rem 0.5rem;
-    margin-top: 1.5rem;
-    font-weight: 600;
+    @include hub-link-button;
 
-    .oui-icon {
-      color: $text-color;
-      line-height: 1rem;
-      vertical-align: middle;
-    }
+    margin-top: 2rem;
   }
 
   p {
@@ -46,8 +37,8 @@
   }
 
   .oui-ui-select {
-    width: 15rem;
-    margin: auto;
+    width: 100%;
+    padding: 0 1rem;
 
     button {
       background-color: transparent;
@@ -74,8 +65,8 @@
   }
 
   &_bill-total {
-    font-weight: 300;
-    font-size: 3.5rem;
+    font-weight: 600;
+    font-size: calc(2rem + 1vw);
     white-space: nowrap;
     display: block;
   }
