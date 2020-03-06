@@ -1,6 +1,9 @@
 import get from 'lodash/get';
 
-import { BACKUP_TARIFF_URL } from './backup.constants';
+import {
+  BACKUP_TARIFF_URL,
+  BACKUP_MINIMUM_HOST_COUNT,
+} from './backup.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.dedicatedClouds.datacenter.backup', {
@@ -17,11 +20,17 @@ export default /* @ngInject */ ($stateProvider) => {
         .all([
           transition.injector().getAsync('licence'),
           transition.injector().getAsync('backup'),
+          transition.injector().getAsync('hosts'),
         ])
-        .then(([licence, backup]) => {
+        .then(([licence, backup, hosts]) => {
           if (!licence.isSplaActive) {
             return {
               state: 'app.dedicatedClouds.datacenter.backup.spla-licence',
+            };
+          }
+          if (hosts.length < BACKUP_MINIMUM_HOST_COUNT) {
+            return {
+              state: 'app.dedicatedClouds.datacenter.backup.minimum-hosts',
             };
           }
           if (backup.isInactive() || backup.isLegacy()) {
@@ -108,6 +117,8 @@ export default /* @ngInject */ ($stateProvider) => {
         }
         return promise;
       },
+      hosts: /* @ngInject */ (datacenterId, DedicatedCloud, productId) =>
+        DedicatedCloud.getHosts(productId, datacenterId),
       scrollToTop: () => () =>
         document
           .getElementById('dedicatedCloud_datacenter_backup_header')

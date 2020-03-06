@@ -7,15 +7,16 @@ import 'angular-translate';
 
 import './backup.less';
 
-import component from './backup.component';
-import routing from './backup.routing';
-import backupService from './backup.service';
-import backupOffers from './components/offers';
-import backupUpgrade from './upgrade';
-import backupNew from './new';
-import splaLicence from './splaLicence';
-import backupOfferDetails from './components/offer-details';
 import backupDelete from './delete';
+import backupNew from './new';
+import backupOfferDetails from './components/offer-details';
+import backupOffers from './components/offers';
+import backupService from './backup.service';
+import backupUpgrade from './upgrade';
+import component from './backup.component';
+import minimumHosts from './minimumHosts';
+import routing from './backup.routing';
+import splaLicence from './splaLicence';
 
 const moduleName = 'ovhManagerDedicatedCloudBackupModule';
 
@@ -26,12 +27,13 @@ angular
     'oui',
     'ovh-api-services',
     'pascalprecht.translate',
+    backupDelete,
     backupOfferDetails,
     backupOffers,
     backupNew,
-    splaLicence,
     backupUpgrade,
-    backupDelete,
+    minimumHosts,
+    splaLicence,
   ])
   .config(routing)
   .component('dedicatedCloudDatacenterBackup', component)
