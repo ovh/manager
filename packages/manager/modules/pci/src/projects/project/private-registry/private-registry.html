@@ -5,11 +5,12 @@
         >
             <oui-guide-menu-item
                 data-ng-repeat="guide in $ctrl.GUIDE_LINKS track by $index"
-                data-href="{{ guide.url }}"
+                data-href="{{:: guide.url }}"
                 data-external
+                data-on-click="$ctrl.trackClick('PCI_PROJECTS_PRIVATEREGISTRY_GUIDE' + ($index + 1))"
             >
                 <span
-                    data-translate="{{ 'private_registry_guide_' + guide.key.toLowerCase() }}"
+                    data-translate="{{:: 'private_registry_guide_' + guide.key.toLowerCase() }}"
                 ></span>
             </oui-guide-menu-item>
         </oui-guide-menu>
@@ -87,17 +88,18 @@
                     data-external
                     data-href="{{:: $row.url }}"
                     data-disabled="$row.status !== $ctrl.PRIVATE_REGISTRY_STATUS.READY"
+                    data-on-click="$ctrl.trackClick('PCI_PROJECTS_PRIVATEREGISTRY_HARBOR-UI')"
                 >
                     <span data-translate="private_registry_harbor_ui"></span>
                 </oui-action-menu-item>
                 <oui-action-menu-item
-                    data-on-click="$ctrl.copyApiUrl($row.id, $row.url)"
+                    data-on-click="$ctrl.copyApiUrl($row.id, $row.url); $ctrl.trackClick('PCI_PROJECTS_PRIVATEREGISTRY_API-URL')"
                     data-disabled="$row.status !== $ctrl.PRIVATE_REGISTRY_STATUS.READY"
                 >
                     <span data-translate="private_registry_harbor_api"></span>
                 </oui-action-menu-item>
                 <oui-action-menu-item
-                    data-on-click="$ctrl.generateCredentials($row.id, $row.name, $row.url)"
+                    data-on-click="$ctrl.generateCredentials($row.id, $row.name, $row.url); $ctrl.trackClick('PCI_PROJECTS_PRIVATEREGISTRY_CREDENTIALS')"
                     data-disabled="$row.status !== $ctrl.PRIVATE_REGISTRY_STATUS.READY"
                 >
                     <span
@@ -105,12 +107,12 @@
                     ></span>
                 </oui-action-menu-item>
                 <oui-action-menu-item
-                    data-on-click="$ctrl.updateRegistry($row.id, $row.name)"
+                    data-on-click="$ctrl.updateRegistry($row.id, $row.name); $ctrl.trackClick('PCI_PROJECTS_PRIVATEREGISTRY_UPDATE')"
                 >
                     <span data-translate="private_registry_rename"></span>
                 </oui-action-menu-item>
                 <oui-action-menu-item
-                    data-on-click="$ctrl.deleteRegistry($row.id, $row.name)"
+                    data-on-click="$ctrl.deleteRegistry($row.id, $row.name); $ctrl.trackClick('PCI_PROJECTS_PRIVATEREGISTRY_DELETE')"
                     data-disabled="($row.status !== $ctrl.PRIVATE_REGISTRY_STATUS.READY && $row.status !== $ctrl.PRIVATE_REGISTRY_STATUS.ERROR)"
                 >
                     <span
@@ -122,6 +124,9 @@
                 <a
                     class="oui-button oui-button_secondary oui-button_icon-left"
                     data-ng-href="{{ $ctrl.createLink }}"
+                    data-track-on="click"
+                    data-track-name="PCI_PROJECTS_PRIVATEREGISTRY_CREATE"
+                    data-track-type="action"
                 >
                     <span
                         class="oui-icon oui-icon-add"

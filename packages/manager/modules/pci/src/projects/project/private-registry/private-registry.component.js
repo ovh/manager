@@ -15,6 +15,7 @@ export default {
     projectId: '<',
     refreshRegistryList: '<',
     registries: '<',
+    trackClick: '<',
     updateRegistry: '<',
     upgradePlan: '<',
   },

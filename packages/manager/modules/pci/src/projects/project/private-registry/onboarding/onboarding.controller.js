@@ -85,6 +85,7 @@ export default class {
   }
 
   generateCredentials() {
+    this.trackClick('PCI_PROJECTS_PRIVATEREGISTRY_ALERT_CREDENTIALS');
     return this.$state.go(
       'pci.projects.project.private-registry.onboarding.credentials',
       {

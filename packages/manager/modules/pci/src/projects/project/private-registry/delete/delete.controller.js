@@ -15,6 +15,7 @@ export default class PrivateRegistryDeleteCtrl {
 
   deletePrivateRegistry() {
     this.isLoading = true;
+    this.trackClick('PCI_PROJECTS_PRIVATEREGISTRY_DELETE_CONFIRM');
     return this.privateRegistryService
       .delete(this.projectId, this.registryId)
       .then(() =>
@@ -33,5 +34,10 @@ export default class PrivateRegistryDeleteCtrl {
           'error',
         ),
       );
+  }
+
+  cancel(tag) {
+    this.trackClick(tag);
+    this.goBack();
   }
 }
