@@ -133,11 +133,12 @@
                 data-header="{{:: 'hosting_order_upgrade_step_header_contracts' | translate }}"
                 data-valid="$ctrl.model.agree"
             >
-                <div
-                    data-contracts="$ctrl.model.duration.contracts"
-                    data-full-text="false"
-                    data-ng-model="$ctrl.model.agree"
-                ></div>
+                <ovh-contracts-summary
+                    name="agreeContracts"
+                    data-items="$ctrl.model.duration.contracts"
+                    data-model="$ctrl.model.agree"
+                >
+                </ovh-contracts-summary>
             </oui-step-form>
 
             <oui-step-form
