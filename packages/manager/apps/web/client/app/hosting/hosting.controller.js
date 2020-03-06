@@ -717,37 +717,27 @@ export default class {
           ),
           hostingProxy: this.Hosting.getHosting(this.$stateParams.productId),
           hostingUrl: this.User.getUrlOfEndsWithSubsidiary('hosting'),
-          privateDatabases: this.getPrivateDatabases(),
           domainOrderUrl: this.User.getUrlOf('domainOrder'),
         });
       })
-      .then(
-        ({
-          serviceInfos,
-          hostingProxy,
-          hostingUrl,
-          privateDatabases,
-          domainOrderUrl,
-        }) => {
-          this.$scope.hosting.serviceInfos = serviceInfos;
-          this.$scope.hostingProxy = hostingProxy;
-          this.$scope.ftp = hostingProxy.serviceManagementAccess.ftp;
-          this.$scope.ftpUrl = `ftp://${hostingProxy.serviceManagementAccess.ftp.url}:${hostingProxy.serviceManagementAccess.ftp.port}/`;
-          this.$scope.http = hostingProxy.serviceManagementAccess.http;
-          this.$scope.httpUrl = `http://${hostingProxy.serviceManagementAccess.http.url}:${hostingProxy.serviceManagementAccess.http.port}/`;
-          this.$scope.isCdnFree =
-            this.Hosting.constructor.isPerfOffer(hostingProxy.offer) ||
-            this.$scope.hosting.isCloudWeb;
-          this.$scope.ssh = hostingProxy.serviceManagementAccess.ssh;
-          this.$scope.sshUrl = `ssh://${hostingProxy.serviceManagementAccess.ssh.url}:${hostingProxy.serviceManagementAccess.ssh.port}/`;
-          this.$scope.urls.hosting = hostingUrl;
-          this.$scope.privateDatabases = privateDatabases;
-          this.$scope.urlDomainOrder = domainOrderUrl;
-          this.setUrchin();
+      .then(({ serviceInfos, hostingProxy, hostingUrl, domainOrderUrl }) => {
+        this.$scope.hosting.serviceInfos = serviceInfos;
+        this.$scope.hostingProxy = hostingProxy;
+        this.$scope.ftp = hostingProxy.serviceManagementAccess.ftp;
+        this.$scope.ftpUrl = `ftp://${hostingProxy.serviceManagementAccess.ftp.url}:${hostingProxy.serviceManagementAccess.ftp.port}/`;
+        this.$scope.http = hostingProxy.serviceManagementAccess.http;
+        this.$scope.httpUrl = `http://${hostingProxy.serviceManagementAccess.http.url}:${hostingProxy.serviceManagementAccess.http.port}/`;
+        this.$scope.isCdnFree =
+          this.Hosting.constructor.isPerfOffer(hostingProxy.offer) ||
+          this.$scope.hosting.isCloudWeb;
+        this.$scope.ssh = hostingProxy.serviceManagementAccess.ssh;
+        this.$scope.sshUrl = `ssh://${hostingProxy.serviceManagementAccess.ssh.url}:${hostingProxy.serviceManagementAccess.ssh.port}/`;
+        this.$scope.urls.hosting = hostingUrl;
+        this.$scope.urlDomainOrder = domainOrderUrl;
+        this.setUrchin();
 
-          return this.User.getUrlOf('guides');
-        },
-      )
+        return this.User.getUrlOf('guides');
+      })
       .then((guides) => {
         if (guides) {
           // GLOBAL ALERT TO UPGRADE APACHE
@@ -813,9 +803,16 @@ export default class {
         this.$scope.loadingHostingError = true;
         this.Alerter.error(err);
       })
+      .then(() => this.handlePrivateDatabases())
       .finally(() => {
         this.$scope.loadingHostingInformations = false;
       });
+  }
+
+  handlePrivateDatabases() {
+    return this.getPrivateDatabases().then((privateDatabases) => {
+      this.$scope.privateDatabases = privateDatabases;
+    });
   }
 
   setSelectedTab(tab) {
