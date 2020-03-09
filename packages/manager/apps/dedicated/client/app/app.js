@@ -293,4 +293,9 @@ angular
         });
       });
   })
+  .run(
+    /* @ngInject */ ($translate, $transitions) => {
+      $transitions.onBefore({ to: 'app.**' }, () => $translate.refresh());
+    },
+  )
   .constant('UNIVERSE', 'DEDICATED');

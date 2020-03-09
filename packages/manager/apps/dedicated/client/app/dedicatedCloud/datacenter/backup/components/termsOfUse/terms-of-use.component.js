@@ -6,7 +6,6 @@ export default {
     backupTariffUrl: '@',
     conditionsUrl: '@',
     datacenterId: '@',
-    mode: '@',
     model: '=',
   },
   controller,
