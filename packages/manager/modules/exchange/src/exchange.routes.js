@@ -1,3 +1,4 @@
+import camelCase from 'lodash/camelCase';
 import set from 'lodash/set';
 
 import template from './exchange.html';
@@ -29,8 +30,7 @@ export default /* @ngInject */ ($stateProvider) => {
         .injector()
         .getAsync('exchange')
         .then(
-          (exchange) =>
-            `app.microsoft.exchange.${exchange.offer.toLowerCase()}`,
+          (exchange) => `app.microsoft.exchange.${camelCase(exchange.offer)}`,
         ),
   });
 
