@@ -35,9 +35,13 @@
         <ovh-manager-navbar
             data-navbar-options="{
                 universe: 'hub',
-                version: 'beta'
+                version: 'beta',
+                toggle: {
+                    event: 'sidebar:loaded',
+                },
             }"
             data-sidebar-expand="true"
+            data-sidebar-links="{}"
         >
         </ovh-manager-navbar>
         <div class="d-flex h-100 hub-main-view" data-ui-view="app">
