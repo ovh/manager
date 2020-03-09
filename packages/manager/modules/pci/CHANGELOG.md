@@ -1,3 +1,12 @@
+## [3.14.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.14.0...@ovh-ux/manager-pci@3.14.1) (2020-03-09)
+
+
+### Bug Fixes
+
+* **project.baremetal:** rename "beta" to "alpha" ([#2429](https://github.com/ovh/manager/issues/2429)) ([14651f1](https://github.com/ovh/manager/commit/14651f1b2a66645a8d4c2d9187e59f7596c7d9f7))
+
+
+
 # [3.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.13.6...@ovh-ux/manager-pci@3.14.0) (2020-03-09)
 
 
