@@ -8,5 +8,6 @@ export default {
     projectId: '<',
     registryId: '<',
     registryContracts: '<',
+    trackClick: '<',
   },
 };

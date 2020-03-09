@@ -8,7 +8,6 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate('private_registry_create'),
-
       capabilities: /* @ngInject */ (pciPrivateRegistryService, projectId) =>
         pciPrivateRegistryService.getCapabilities(projectId),
       availableRegions: /* @ngInject */ (capabilities) =>

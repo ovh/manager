@@ -15,11 +15,19 @@ export default /* @ngInject */ ($stateProvider) => {
             : 'pci.projects.project.private-registry.onboarding',
         ),
     resolve: {
-      upgradePlan: /* @ngInject */ ($state, projectId) => (registryId) =>
-        $state.go('pci.projects.project.private-registry.upgrade-plan', {
+      upgradePlan: /* @ngInject */ (
+        $state,
+        pciPrivateRegistryService,
+        projectId,
+      ) => (registryId) => {
+        pciPrivateRegistryService.trackClick(
+          'PCI_PROJECTS_PRIVATEREGISTRY_CHANGEPLAN',
+        );
+        return $state.go('pci.projects.project.private-registry.upgrade-plan', {
           projectId,
           registryId,
-        }),
+        });
+      },
       createLink: /* @ngInject */ ($state, projectId) =>
         $state.href('pci.projects.project.private-registry.create', {
           projectId,
@@ -142,6 +150,8 @@ export default /* @ngInject */ ($stateProvider) => {
 
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('private_registry_title'),
+      trackClick: /* @ngInject */ (pciPrivateRegistryService) => (tag) =>
+        pciPrivateRegistryService.trackClick(tag),
     },
   });
 };

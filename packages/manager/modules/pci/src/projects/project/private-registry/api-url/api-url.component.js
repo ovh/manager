@@ -2,8 +2,11 @@ import controller from './api-url.controller';
 import template from './api-url.html';
 
 const component = {
-  template,
+  bindings: {
+    trackClick: '<',
+  },
   controller,
+  template,
 };
 
 export default component;

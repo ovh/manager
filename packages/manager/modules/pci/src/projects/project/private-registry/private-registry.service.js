@@ -6,8 +6,9 @@ import { PRIVATE_REGISTRY_STATUS } from './private-registry.constants';
 
 export default class pciPrivateRegistryService {
   /* @ngInject */
-  constructor($q, OvhApiCloud, OvhApiCloudProject, OvhApiMe) {
+  constructor($q, atInternet, OvhApiCloud, OvhApiCloudProject, OvhApiMe) {
     this.$q = $q;
+    this.atInternet = atInternet;
     this.OvhApiCloud = OvhApiCloud.v6();
     this.OvhApiPrivateRegistry = OvhApiCloudProject.ContainerRegistry().v6();
     this.OvhApiPrivateRegistryPlan = OvhApiCloudProject.ContainerRegistry()
@@ -142,5 +143,12 @@ export default class pciPrivateRegistryService {
       registry.status === this.PRIVATE_REGISTRY_STATUS.SCALING_UP ||
       registry.status === this.PRIVATE_REGISTRY_STATUS.INSTALLING
     );
+  }
+
+  trackClick(name) {
+    this.atInternet.trackClick({
+      name,
+      type: 'action',
+    });
   }
 }

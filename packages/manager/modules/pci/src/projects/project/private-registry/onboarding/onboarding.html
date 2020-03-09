@@ -10,11 +10,18 @@
     ></cui-message-container>
 
     <div data-ng-if="!$ctrl.registryId">
-        <oui-button data-variant="primary" data-on-click="$ctrl.create()">
+        <button
+            class="oui-button oui-button_primary oui-button_icon-left mb-2"
+            data-ng-click="$ctrl.create()"
+            type="button"
+            data-track-on="click"
+            data-track-name="PCI_PROJECTS_PRIVATEREGISTRY_CREATEFIRST"
+            data-track-type="navigation"
+        >
             <span
                 data-translate="private_registry_onboarding_action_label"
             ></span>
-        </oui-button>
+        </button>
     </div>
 
     <oui-spinner

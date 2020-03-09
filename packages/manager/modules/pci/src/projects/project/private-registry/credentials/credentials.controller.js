@@ -2,7 +2,7 @@ import get from 'lodash/get';
 
 export default class PrivateRegistryDeleteCtrl {
   /* @ngInject */
-  constructor($stateParams, $translate, $window, pciPrivateRegistryService) {
+  constructor($translate, $window, pciPrivateRegistryService) {
     this.$translate = $translate;
     this.$window = $window;
     this.privateRegistryService = pciPrivateRegistryService;
@@ -49,6 +49,12 @@ export default class PrivateRegistryDeleteCtrl {
   }
 
   goToHarborUI() {
+    this.trackClick('PCI_PROJECTS_PRIVATEREGISTRY_CREDENTIALS_CONFIRM');
     this.$window.open(this.harborURL, '_blank');
+  }
+
+  cancel(message, type, tag) {
+    this.trackClick(tag);
+    return this.goToList(message, type);
   }
 }

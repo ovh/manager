@@ -11,6 +11,7 @@ const component = {
     plans: '<',
     projectId: '<',
     registryContracts: '<',
+    trackClick: '<',
     user: '<',
   },
 };

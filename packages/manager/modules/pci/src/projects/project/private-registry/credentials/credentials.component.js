@@ -5,11 +5,12 @@ const component = {
   template,
   controller,
   bindings: {
-    goBack: '<',
-    registry: '<',
-    projectId: '<',
-    goToList: '<',
     confirmationRequired: '<',
+    goBack: '<',
+    goToList: '<',
+    projectId: '<',
+    registry: '<',
+    trackClick: '<',
   },
 };
 
