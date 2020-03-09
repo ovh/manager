@@ -29,55 +29,10 @@
                     class="manager-navbar-notification_header"
                     data-ng-bind="time"
                 ></div>
+                <navbar-notifications-list
+                    sublinks="sublinks"
+                ></navbar-notifications-list>
                 <!-- content -->
-                <div
-                    class="manager-navbar-notification_content"
-                    data-ng-repeat="menuLink in sublinks track by menuLink.id"
-                >
-                    <!-- icon -->
-                    <span
-                        class="oui-icon oui-icon_bicolor oui-navbar-notification__icon"
-                        data-ng-class=":: {
-                            'oui-icon_bicolor': menuLink.level !== 'incident',
-                            'oui-icon-error_circle': menuLink.level === 'error',
-                            'oui-icon-success_circle': menuLink.level === 'success',
-                            'oui-icon-info_circle': menuLink.level === 'info',
-                            'oui-icon-warning_circle': menuLink.level === 'warning',
-                            'oui-icon-clock-wait': menuLink.level === 'incident'
-                        }"
-                        aria-hidden="true"
-                    >
-                    </span>
-
-                    <!-- Link (href) -->
-                    <a
-                        class="oui-navbar-notification__content"
-                        data-ng-if="::menuLink.url"
-                        data-ng-init="$ctrl.notificationsCreated = $last"
-                        data-ng-click="$ctrl.toggleSublinkAction(menuLink, true)"
-                        data-ng-href="{{::menuLink.url}}"
-                    >
-                        <div class="oui-navbar-notification__header">
-                            <span
-                                class="oui-navbar-notification__title"
-                                data-ng-bind=":: menuLink.subject"
-                            ></span>
-                            <span
-                                class="oui-status oui-status_error manager-navbar-status_error"
-                                data-ng-if="menuLink.isActive"
-                                data-translate="navbar_notification_new"
-                            >
-                            </span>
-                        </div>
-                        <div class="oui_navbar-notification__body">
-                            <div
-                                class="oui-navbar-notification__description"
-                                data-ng-bind-html=":: menuLink.description"
-                            ></div>
-                        </div>
-                    </a>
-                    <!-- /Link (href) -->
-                </div>
             </li>
             <li
                 class="oui-navbar-menu__item oui-navbar-notification oui-navbar-notification-placeholder"
