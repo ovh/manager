@@ -7,7 +7,6 @@ import isString from 'lodash/isString';
 import kebabCase from 'lodash/kebabCase';
 import map from 'lodash/map';
 import merge from 'lodash/merge';
-import reduce from 'lodash/reduce';
 import remove from 'lodash/remove';
 import set from 'lodash/set';
 import some from 'lodash/some';
@@ -256,24 +255,21 @@ export default class {
       this.$scope.hosting.sqlPriveInfo = {
         nbDataBaseActive: 0,
         nbDataBaseInclude: 0,
-        offerCapabilitiesPDB: null,
-        databaseCreationCapabilitiesPDB: null,
       };
 
-      this.HostingDatabase.getPrivateDatabaseCapabilities(
-        this.$stateParams.productId,
-      ).then((privateDbCapabilities) => {
-        this.$scope.hosting.sqlPriveInfo.nbDataBaseInclude = this.$scope.hosting.offerCapabilities.privateDatabases.length;
-        this.$scope.hosting.sqlPriveInfo.nbDataBaseActive =
-          this.$scope.hosting.sqlPriveInfo.nbDataBaseInclude -
-          reduce(
-            privateDbCapabilities,
-            (sum, capability) => {
-              return sum + capability.available > 0 ? capability.available : 0;
-            },
-            0,
-          );
-      });
+      return this.$q
+        .all({
+          privateDatabaseIds: this.HostingDatabase.getPrivateDatabaseIds(
+            this.$stateParams.productId,
+          ),
+          hasPrivateSqlToActivate: this.HostingDatabase.getHasPrivateSqlToActivate(
+            this.$stateParams.productId,
+          ),
+        })
+        .then(({ privateDatabaseIds, hasPrivateSqlToActivate }) => {
+          this.$scope.hosting.sqlPriveInfo.privateDatabaseIds = privateDatabaseIds;
+          this.$scope.hosting.sqlPriveInfo.hasPrivateDatabaseToActivate = hasPrivateSqlToActivate;
+        });
     };
 
     //---------------------------------------------
@@ -641,14 +637,14 @@ export default class {
     }
   }
 
-  getLinkedPrivateDatabases() {
-    return this.Hosting.getPrivateDatabasesLinked(
+  getPrivateDatabases() {
+    return this.HostingDatabase.getPrivateDatabaseIds(
       this.$stateParams.productId,
-    ).then((databases) =>
+    ).then((databaseIds) =>
       this.$q.all(
-        databases.map((databaseName) =>
-          this.$scope.isAdminPrivateDb(databaseName).then((isAdmin) => ({
-            name: databaseName,
+        databaseIds.map((id) =>
+          this.$scope.isAdminPrivateDb(id).then((isAdmin) => ({
+            name: id,
             isAdmin,
           })),
         ),
@@ -721,37 +717,27 @@ export default class {
           ),
           hostingProxy: this.Hosting.getHosting(this.$stateParams.productId),
           hostingUrl: this.User.getUrlOfEndsWithSubsidiary('hosting'),
-          linkedDatabases: this.getLinkedPrivateDatabases,
           domainOrderUrl: this.User.getUrlOf('domainOrder'),
         });
       })
-      .then(
-        ({
-          serviceInfos,
-          hostingProxy,
-          hostingUrl,
-          databases,
-          domainOrderUrl,
-        }) => {
-          this.$scope.hosting.serviceInfos = serviceInfos;
-          this.$scope.hostingProxy = hostingProxy;
-          this.$scope.ftp = hostingProxy.serviceManagementAccess.ftp;
-          this.$scope.ftpUrl = `ftp://${hostingProxy.serviceManagementAccess.ftp.url}:${hostingProxy.serviceManagementAccess.ftp.port}/`;
-          this.$scope.http = hostingProxy.serviceManagementAccess.http;
-          this.$scope.httpUrl = `http://${hostingProxy.serviceManagementAccess.http.url}:${hostingProxy.serviceManagementAccess.http.port}/`;
-          this.$scope.isCdnFree =
-            this.Hosting.constructor.isPerfOffer(hostingProxy.offer) ||
-            this.$scope.hosting.isCloudWeb;
-          this.$scope.ssh = hostingProxy.serviceManagementAccess.ssh;
-          this.$scope.sshUrl = `ssh://${hostingProxy.serviceManagementAccess.ssh.url}:${hostingProxy.serviceManagementAccess.ssh.port}/`;
-          this.$scope.urls.hosting = hostingUrl;
-          this.$scope.privateDatabasesLinked = databases;
-          this.$scope.urlDomainOrder = domainOrderUrl;
-          this.setUrchin();
+      .then(({ serviceInfos, hostingProxy, hostingUrl, domainOrderUrl }) => {
+        this.$scope.hosting.serviceInfos = serviceInfos;
+        this.$scope.hostingProxy = hostingProxy;
+        this.$scope.ftp = hostingProxy.serviceManagementAccess.ftp;
+        this.$scope.ftpUrl = `ftp://${hostingProxy.serviceManagementAccess.ftp.url}:${hostingProxy.serviceManagementAccess.ftp.port}/`;
+        this.$scope.http = hostingProxy.serviceManagementAccess.http;
+        this.$scope.httpUrl = `http://${hostingProxy.serviceManagementAccess.http.url}:${hostingProxy.serviceManagementAccess.http.port}/`;
+        this.$scope.isCdnFree =
+          this.Hosting.constructor.isPerfOffer(hostingProxy.offer) ||
+          this.$scope.hosting.isCloudWeb;
+        this.$scope.ssh = hostingProxy.serviceManagementAccess.ssh;
+        this.$scope.sshUrl = `ssh://${hostingProxy.serviceManagementAccess.ssh.url}:${hostingProxy.serviceManagementAccess.ssh.port}/`;
+        this.$scope.urls.hosting = hostingUrl;
+        this.$scope.urlDomainOrder = domainOrderUrl;
+        this.setUrchin();
 
-          return this.User.getUrlOf('guides');
-        },
-      )
+        return this.User.getUrlOf('guides');
+      })
       .then((guides) => {
         if (guides) {
           // GLOBAL ALERT TO UPGRADE APACHE
@@ -817,9 +803,16 @@ export default class {
         this.$scope.loadingHostingError = true;
         this.Alerter.error(err);
       })
+      .then(() => this.handlePrivateDatabases())
       .finally(() => {
         this.$scope.loadingHostingInformations = false;
       });
+  }
+
+  handlePrivateDatabases() {
+    return this.getPrivateDatabases().then((privateDatabases) => {
+      this.$scope.privateDatabases = privateDatabases;
+    });
   }
 
   setSelectedTab(tab) {

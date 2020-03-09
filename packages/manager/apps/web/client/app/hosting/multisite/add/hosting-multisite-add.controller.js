@@ -218,7 +218,7 @@ angular
         $q.all([futuresOptions, futureHosting])
           .then(() => {
             const promises = [
-              HostingDomain.getCapabilities($scope.hosting.offer),
+              Hosting.getOfferCapabilities($scope.hosting.offer),
             ];
 
             if ($scope.model.domainsCount === -1) {

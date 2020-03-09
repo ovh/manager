@@ -34,8 +34,6 @@ angular
       'https://www.ovh.com/manager/dedicated/index.html#/billing/orders?status=in-progress',
     orders:
       'https://www.ovh.com/manager/dedicated/index.html#/billing/orders?status=all',
-    orderSql:
-      'https://www.ovh.com/manager/web/#/configuration/sql_order?orderType=dbaas',
     privateDatabase:
       'https://www.ovh.com/manager/web/#/configuration/private_database/{serviceName}',
     services:

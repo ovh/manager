@@ -1,6 +1,9 @@
 import clone from 'lodash/clone';
 import forEach from 'lodash/forEach';
 import snakeCase from 'lodash/snakeCase';
+import some from 'lodash/some';
+
+import { PRIVATE_SQL_PLAN_CODE } from './hosting-database.constants';
 
 angular.module('services').service(
   'HostingDatabase',
@@ -297,9 +300,9 @@ angular.module('services').service(
      */
     dumpDatabaseOptions() {
       return this.Hosting.getModels().then((models) => ({
-        dumpDates: models.models['hosting.web.database.dump.DateEnum'].enum.map(
-          (model) => this.WucJavaEnum.tr(model),
-        ),
+        dumpDates: models.models[
+          'hosting.web.database.dump.DateEnum'
+        ].enum.map((model) => this.WucJavaEnum.tr(model)),
       }));
     }
 
@@ -393,35 +396,22 @@ angular.module('services').service(
     }
 
     /**
-     * Activate private database
      * @param {string} serviceName
-     * @param {number} ram
-     * @param {string} version
+     * @return {string[]} The ids of the SQL databases linked to this service
      */
-    activateDatabasePrivate(serviceName, ram, version) {
-      return this.OvhHttp.post(
-        `/hosting/web/${serviceName}/activatePrivateDatabase`,
-        {
-          rootPath: 'apiv6',
-          data: {
-            ram,
-            version,
-          },
-        },
-      );
+    getPrivateDatabaseIds(serviceName) {
+      return this.OvhHttp.get(`/hosting/web/${serviceName}/privateDatabases`, {
+        rootPath: 'apiv6',
+      });
     }
 
-    /**
-     * Get private database capabilities
-     * @param {string} serviceName
-     */
-    getPrivateDatabaseCapabilities(serviceName) {
+    getHasPrivateSqlToActivate(serviceName) {
       return this.OvhHttp.get(
-        `/hosting/web/${serviceName}/privateDatabaseCreationCapabilities`,
+        `/order/cartServiceOption/webHosting/${serviceName}`,
         {
           rootPath: 'apiv6',
         },
-      );
+      ).then((options) => some(options, { planCode: PRIVATE_SQL_PLAN_CODE }));
     }
 
     /**

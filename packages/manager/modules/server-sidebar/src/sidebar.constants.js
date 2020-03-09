@@ -1,4 +1,3 @@
-import get from 'lodash/get';
 import { DEDICATED, CLOUD } from './constants';
 
 export const DEDICATED_SERVER_CONFIG = {
@@ -129,15 +128,7 @@ export const MICROSOFT_CONFIG = {
         {
           path: '/email/exchange',
           icon: 'ms-Icon ms-Icon--ExchangeLogo',
-          getState: ({ offer }) => {
-            const states = {
-              provider: 'app.microsoft.exchange.provider',
-              dedicated: 'app.microsoft.exchange.dedicated',
-              dedicatedCluster: 'app.microsoft.exchange.dedicatedCluster',
-              hosted: 'app.microsoft.exchange.hosted',
-            };
-            return get(states, offer);
-          },
+          state: 'app.microsoft.exchange',
           stateParams: ['organization', 'productId'],
           app: [DEDICATED],
         },

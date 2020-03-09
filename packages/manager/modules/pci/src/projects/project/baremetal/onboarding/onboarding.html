@@ -7,7 +7,20 @@
     <p data-translate="pci_projects_project_baremetal_onboarding_content3"></p>
     <p data-translate="pci_projects_project_baremetal_onboarding_content4"></p>
 
-    <oui-button data-variant="primary" data-on-click="$ctrl.addInstance()">
+    <oui-message
+        data-ng-if="!$ctrl.isEnabled"
+        data-type="info"
+        data-dismissable
+    >
+        <span
+            data-translate="pci_projects_project_instances_beta_subscribe_labs"
+        ></span>
+    </oui-message>
+    <oui-button
+        data-variant="primary"
+        data-ng-if="$ctrl.isEnabled"
+        data-on-click="$ctrl.addInstance()"
+    >
         <span
             data-translate="pci_projects_project_baremetal_onboarding_action_label"
         ></span>

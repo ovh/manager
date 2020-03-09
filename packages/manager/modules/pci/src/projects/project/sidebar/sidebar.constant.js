@@ -15,7 +15,7 @@ export const MENU = [
         title: 'Instances',
       },
       {
-        beta: true,
+        alpha: true,
         id: 'baremetal',
         options: {
           state: 'pci.projects.project.baremetal',

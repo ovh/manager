@@ -113,11 +113,7 @@ angular.module('App').controller(
      */
     loadCapabilities() {
       this.Hosting.getSelected(this.$stateParams.productId)
-        .then((hosting) => {
-          const offer = hosting.offer.toLowerCase().replace('_', '');
-
-          return this.Hosting.getOfferCapabilities(offer);
-        })
+        .then((hosting) => this.Hosting.getOfferCapabilities(hosting.offer))
         .then((capabilities) => {
           this.maxRuntimes = capabilities.runtimes;
         })
