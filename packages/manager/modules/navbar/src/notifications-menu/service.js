@@ -35,10 +35,12 @@ export default class Notifications {
       [status]: [notification.id],
     })
       .then(() => {
-        set(notification, 'status', status);
-        set(notification, 'isActive', ACTIVE_STATUS === status);
-        set(notification, 'isCompleted', COMPLETED_STATUS === status);
-        set(notification, 'acknowledged', ACKNOWLEDGED_STATUS.includes(status));
+        Object.assign(notification, {
+          status,
+          isActive: ACTIVE_STATUS === status,
+          isCompleted: COMPLETED_STATUS === status,
+          acknowledged: ACKNOWLEDGED_STATUS.includes(status),
+        });
       })
       .finally(() => {
         set(notification, 'updating', false);
