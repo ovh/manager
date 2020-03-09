@@ -1,3 +1,12 @@
+## [11.7.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@11.7.2...@ovh-ux/manager-dedicated@11.7.3) (2020-03-09)
+
+
+### Bug Fixes
+
+* **ip:** disable old iplb tab ([#2434](https://github.com/ovh/manager/issues/2434)) ([3048905](https://github.com/ovh/manager/commit/3048905b5d709358b73a8fcdd36c515395af656f))
+
+
+
 ## [11.7.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@11.7.1...@ovh-ux/manager-dedicated@11.7.2) (2020-03-09)
 
 
