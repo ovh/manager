@@ -1,4 +1,4 @@
-<ul>
+<ul data-ng-if="!$ctrl.currentOffer">
     <li
         data-translate="dedicatedCloud_datacenter_backup_offer_upgrade_custom_report"
         data-ng-if="$ctrl.offer.customReport"
@@ -38,5 +38,69 @@
     <li
         data-ng-if="$ctrl.offer.proxyPerHost"
         data-translate="dedicatedCloud_datacenter_backup_offer_upgrade_proxy_backup"
+    ></li>
+</ul>
+<ul data-ng-if="$ctrl.currentOffer">
+    <li
+        data-translate="dedicatedCloud_datacenter_backup_offer_upgrade_custom_report"
+        data-ng-if="$ctrl.offer.customReport !== $ctrl.currentOffer.customReport"
+    ></li>
+    <li
+        data-translate="dedicatedCloud_datacenter_backup_offer_upgrade_encrypted_backup"
+        data-ng-if="$ctrl.offer.encryption !== $ctrl.currentOffer.encryption"
+    ></li>
+    <li data-ng-if="$ctrl.offer.retention !== $ctrl.currentOffer.retention">
+        <span
+            data-translate="dedicatedCloud_datacenter_backup_offer_upgrade_retention_points"
+            data-translate-values="{
+                retention: $ctrl.offer.retention,
+            }"
+        >
+        </span>
+        <span
+            data-translate="dedicatedCloud_datacenter_backup_offer_upgrade_old_count"
+            data-translate-values="{
+                count: $ctrl.currentOffer.retention,
+            }"
+        >
+        </span>
+    </li>
+    <li
+        data-ng-if="$ctrl.offer.minimumFullBackups !== $ctrl.currentOffer.minimumFullBackups"
+    >
+        <span
+            data-translate="dedicatedCloud_datacenter_backup_offer_upgrade_full_backups"
+            data-translate-values="{
+                fullBackups: $ctrl.offer.minimumFullBackups,
+            }"
+        >
+        </span>
+        <span
+            data-translate="dedicatedCloud_datacenter_backup_offer_upgrade_old_count"
+            data-translate-values="{
+                count: $ctrl.currentOffer.minimumFullBackups,
+            }"
+        >
+        </span>
+    </li>
+    <li
+        data-translate="dedicatedCloud_datacenter_backup_offer_upgrade_replication"
+        data-ng-if="$ctrl.offer.replication !== $ctrl.currentOffer.replication"
+    ></li>
+    <li
+        data-translate="dedicatedCloud_datacenter_backup_offer_upgrade_choice_backup_days"
+        data-ng-if="$ctrl.offer.backupDays !== $ctrl.currentOffer.backupDays"
+    ></li>
+    <li
+        data-translate="dedicatedCloud_datacenter_backup_offer_upgrade_choice_backup_time"
+        data-ng-if="$ctrl.offer.scheduleHour !== $ctrl.currentOffer.scheduleHour"
+    ></li>
+    <li
+        data-ng-if="$ctrl.offer.isPremium() || $ctrl.currentOffer.isPremium()"
+        data-translate="dedicatedCloud_datacenter_backup_offer_upgrade_long_term_retention"
+    ></li>
+    <li
+        data-translate="dedicatedCloud_datacenter_backup_offer_upgrade_proxy_backup"
+        data-ng-if="$ctrl.offer.proxyPerHost !== $ctrl.currentOffer.proxyPerHost"
     ></li>
 </ul>

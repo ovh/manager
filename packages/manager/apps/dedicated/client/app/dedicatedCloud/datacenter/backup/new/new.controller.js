@@ -1,6 +1,5 @@
 import get from 'lodash/get';
 
-import { MODES } from '../components/termsOfUse/terms-of-use.constants';
 import { BACKUP_STATE_ENABLING } from '../backup.constants';
 
 export default class {
@@ -9,8 +8,6 @@ export default class {
     this.$translate = $translate;
     this.alerter = Alerter;
     this.dedicatedCloudDatacenterBackupService = dedicatedCloudDatacenterBackupService;
-
-    this.MODES = MODES;
   }
 
   $onInit() {

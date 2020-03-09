@@ -3,6 +3,7 @@ import template from './template.html';
 
 export default {
   bindings: {
+    actualOffer: '<',
     backup: '<',
     backupOffers: '<',
     backupTariffUrl: '<',

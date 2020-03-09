@@ -65,14 +65,13 @@ export default /* @ngInject */ ($stateProvider) => {
         ),
       backupTariffUrl: /* @ngInject */ (currentUser) =>
         get(BACKUP_TARIFF_URL, currentUser.ovhSubsidiary, BACKUP_TARIFF_URL.FR),
-      goToUpgradeOffer: /* @ngInject */ (
-        $state,
-        productId,
-        datacenterId,
-      ) => () =>
+      goToUpgradeOffer: /* @ngInject */ ($state, productId, datacenterId) => (
+        actualOffer,
+      ) =>
         $state.go('app.dedicatedClouds.datacenter.backup.upgrade', {
           datacenterId,
           productId,
+          actualOffer,
         }),
       goToNewBackup: /* @ngInject */ ($state, datacenterId, productId) => () =>
         $state.go('app.dedicatedClouds.datacenter.backup.new', {
