@@ -3,6 +3,7 @@ import template from './delete-secondary-dns.html';
 
 export default {
   bindings: {
+    domain: '<',
     goBackToSecondaryDns: '<',
     serviceName: '<',
   },
