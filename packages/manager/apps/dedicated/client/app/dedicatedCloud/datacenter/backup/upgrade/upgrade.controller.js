@@ -2,16 +2,11 @@ import find from 'lodash/find';
 import get from 'lodash/get';
 import pick from 'lodash/pick';
 
-import { MODES } from '../components/termsOfUse/terms-of-use.constants';
-import { BACKUP_NAME } from './upgrade.constants';
-
 export default class {
   /* @ngInject */
   constructor($translate, dedicatedCloudDatacenterBackupService) {
     this.$translate = $translate;
     this.dedicatedCloudDatacenterBackupService = dedicatedCloudDatacenterBackupService;
-    this.MODES = MODES;
-    this.BACKUP_NAME = BACKUP_NAME;
   }
 
   $onInit() {
@@ -21,7 +16,11 @@ export default class {
         offerName: this.backup.backupOffer,
       });
     }
-    this.conditionsAccepted = false;
+    if (this.actualOffer) {
+      this.currentOffer = find(this.backupOffers, {
+        offerName: this.actualOffer,
+      });
+    }
   }
 
   upgrade() {

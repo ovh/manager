@@ -42,7 +42,7 @@
             <oui-button
                 data-disabled="!$ctrl.backup.isActive() || $ctrl.actualOffer === $ctrl.backup.backupOffer"
                 data-variant="primary"
-                data-on-click="$ctrl.goToUpgradeOffer()"
+                data-on-click="$ctrl.goToUpgradeOffer($ctrl.actualOffer)"
             >
                 <span
                     data-translate="dedicatedCloud_datacenter_backup_update_offer"

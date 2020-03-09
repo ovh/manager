@@ -17,7 +17,7 @@ angular
     'pascalprecht.translate',
   ])
   .config(routing)
-  .run(/* @ngTranslationsInject:json ./translations */)
-  .component('dedicatedCloudDatacenterBackupDelete', component);
+  .component('dedicatedCloudDatacenterBackupDelete', component)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
