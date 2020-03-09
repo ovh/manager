@@ -4,10 +4,17 @@
         data-ng-href="{{ :: $ctrl.RedirectionService.getURL('paymentMethod') }}"
     >
         <span
+            data-ng-if="!$ctrl.paymentMethod.icon"
             class="mr-auto oui-icon oui-icon-credit-card_concept"
             aria-hidden="true"
         >
         </span>
+        <img
+            data-ng-if="$ctrl.paymentMethod.icon"
+            data-ng-src="{{:: $ctrl.paymentMethod.icon.data }}"
+            alt="{{:: $ctrl.paymentMethod.label }}"
+            aria-hidden="true"
+        />
         <oui-skeleton size="s" data-ng-if="$ctrl.isLoading"> </oui-skeleton>
         <div class="m-auto" data-ng-if="!$ctrl.isLoading">
             <strong
