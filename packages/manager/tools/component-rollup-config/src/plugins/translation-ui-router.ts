@@ -2,7 +2,7 @@ import get from 'lodash/get';
 import has from 'lodash/has';
 import map from 'lodash/map';
 import last from 'lodash/last';
-import { createFilter } from 'rollup-pluginutils';
+import { createFilter } from '@rollup/pluginutils';
 import { walk } from 'estree-walker';
 import MagicString from 'magic-string';
 import utils from './translation-utils';

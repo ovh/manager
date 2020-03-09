@@ -1,16 +1,16 @@
 import { get, isString, mergeWith } from 'lodash';
 import babel from 'rollup-plugin-babel';
 import camelcase from 'camelcase';
-import commonjs from 'rollup-plugin-commonjs';
+import commonjs from '@rollup/plugin-commonjs';
 import html from 'rollup-plugin-html';
-import image from 'rollup-plugin-img';
-import json from 'rollup-plugin-json';
+import image from '@rollup/plugin-image';
+import json from '@rollup/plugin-json';
 import lessInject from '@ovh-ux/rollup-plugin-less-inject';
 import lessPluginRemcalc from 'less-plugin-remcalc';
 import lessTildeImporter from '@ovh-ux/rollup-plugin-less-tilde-importer';
 import path from 'path';
 import peerdeps from 'rollup-plugin-peer-deps-external';
-import resolve from 'rollup-plugin-node-resolve';
+import resolve from '@rollup/plugin-node-resolve';
 import sass from 'rollup-plugin-sass';
 
 import translationInject from './plugins/translation-inject';
