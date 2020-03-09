@@ -145,7 +145,7 @@ class LogsInputsAddConfigureCtrl {
       return this.$q.reject();
     }
     if (!this.flowggerForm.$dirty) {
-      return this.goToNetworkPage();
+      return this.goToInputs();
     }
     this.CucCloudMessage.flushChildMessage();
     this.saving = this.CucControllerHelper.request.getHashLoader({
@@ -155,7 +155,7 @@ class LogsInputsAddConfigureCtrl {
           this.input.data,
           this.configuration.flowgger,
         )
-          .then(() => this.goToNetworkPage())
+          .then(() => this.goToInputs())
           .finally(() => this.CucControllerHelper.scrollPageToTop()),
     });
     return this.saving.load();
@@ -180,7 +180,7 @@ class LogsInputsAddConfigureCtrl {
       });
     }
     if (!this.logstashForm.$dirty) {
-      return this.goToNetworkPage();
+      this.goToInputs();
     }
     this.CucCloudMessage.flushChildMessage();
     this.saving = this.CucControllerHelper.request.getHashLoader({
@@ -190,18 +190,10 @@ class LogsInputsAddConfigureCtrl {
           this.input.data,
           this.configuration.logstash,
         )
-          .then(() => this.goToNetworkPage())
+          .then(() => this.goToInputs())
           .finally(() => this.CucControllerHelper.scrollPageToTop()),
     });
     return this.saving.load();
-  }
-
-  goToNetworkPage() {
-    this.$state.go('dbaas.logs.detail.inputs.editwizard.networks', {
-      serviceName: this.serviceName,
-      inputId: this.inputId,
-    });
-    return this.$q.resolve();
   }
 
   getFlowggerLogFormats() {
@@ -210,6 +202,12 @@ class LogsInputsAddConfigureCtrl {
 
   getDelimiters() {
     return this.LogsInputsService.getDelimiters();
+  }
+
+  goToInputs() {
+    return this.$state.go('dbaas.logs.detail.inputs', {
+      serviceName: this.serviceName,
+    });
   }
 }
 

@@ -1,4 +1,7 @@
+import isEmpty from 'lodash/isEmpty';
+import map from 'lodash/map';
 import set from 'lodash/set';
+import trim from 'lodash/trim';
 
 class LogsInputsService {
   constructor(
@@ -33,7 +36,6 @@ class LogsInputsService {
       .v6();
     this.CucServiceHelper = CucServiceHelper;
     this.LogsHelperService = LogsHelperService;
-
     this.initializeData();
   }
 
@@ -75,6 +77,7 @@ class LogsInputsService {
         name: 'inputs_logs_configure_format_cap_proto',
       },
     ];
+    this.allowedNetworks = [];
   }
 
   getFlowggerLogFormats() {
@@ -96,7 +99,7 @@ class LogsInputsService {
   addInput(serviceName, input) {
     return this.InputsApiLexiService.create(
       { serviceName },
-      this.constructor.transformInputToSave(input),
+      this.transformInputToSave(input),
     )
       .$promise.then((operation) => {
         this.resetAllCache();
@@ -411,6 +414,9 @@ class LogsInputsService {
       [input.info.engine.name, input.info.engine.version].join(' '),
     );
     set(input, 'info.exposedPort', parseInt(input.info.exposedPort, 10));
+    if (Array.isArray(input.info.allowedNetworks)) {
+      set(input, 'info.allowedNetworks', input.info.allowedNetworks.join(', '));
+    }
     set(
       input,
       'actionsMap',
@@ -530,6 +536,8 @@ class LogsInputsService {
         return this.LogsHelperService.handleOperation(
           serviceName,
           operation.data || operation,
+          'logs_inputs_update_success',
+          { inputTitle: input.info.title },
         );
       })
       .catch((err) =>
@@ -555,6 +563,8 @@ class LogsInputsService {
         return this.LogsHelperService.handleOperation(
           serviceName,
           operation.data || operation,
+          'logs_inputs_update_success',
+          { inputTitle: input.info.title },
         );
       })
       .catch((err) =>
@@ -580,7 +590,7 @@ class LogsInputsService {
         serviceName,
         inputId: input.info.inputId,
       },
-      this.constructor.transformInputToSave(input),
+      this.transformInputToSave(input),
     )
       .$promise.then((operation) => {
         this.resetAllCache();
@@ -628,15 +638,21 @@ class LogsInputsService {
     return details;
   }
 
-  static transformInputToSave(input) {
+  transformInputToSave(input) {
+    if (!isEmpty(trim(input.info.allowedNetworks))) {
+      this.allowedNetworks = map(
+        input.info.allowedNetworks.split(','),
+        (source) => trim(source),
+      );
+    } else {
+      this.allowedNetworks = [];
+    }
     return {
       title: input.info.title,
       description: input.info.description,
       engineId: input.info.engineId,
       optionId: input.info.optionId ? input.info.optionId : undefined,
-      allowedNetworks: input.info.allowedNetworks
-        ? input.info.allowedNetworks
-        : [],
+      allowedNetworks: this.allowedNetworks,
       streamId: input.info.streamId,
       singleInstanceEnabled: input.info.singleInstanceEnabled,
       exposedPort: input.info.exposedPort.toString(),
