@@ -44,6 +44,10 @@
     border-bottom: 2px solid $hub-link-color;
     box-sizing: border-box;
   }
+
+  .oui-navbar-toggler__hamburger span {
+    background: $hub-link-color !important;
+  }
 }
 
 h1,
