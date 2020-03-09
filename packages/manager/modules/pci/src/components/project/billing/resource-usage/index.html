@@ -1,13 +1,13 @@
 <span
-    data-ng-if="$ctrl.privateRegistry.length === 0"
+    data-ng-if="$ctrl.resourceUsage.length === 0"
     data-translate="pci_billing_private_registry_no_entry"
     class="cloud-billing-resource-no-data"
 >
 </span>
 <oui-datagrid
-    data-rows="$ctrl.privateRegistry"
+    data-rows="$ctrl.resourceUsage"
     class="datagrid-without-pagination"
-    data-ng-if="$ctrl.privateRegistry.length > 0"
+    data-ng-if="$ctrl.resourceUsage.length > 0"
 >
     <oui-column
         data-title="::'pci_billing_private_registry_region' | translate"

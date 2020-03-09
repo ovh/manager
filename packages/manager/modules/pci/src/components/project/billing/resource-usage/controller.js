@@ -1,4 +1,4 @@
-export default class BillingPrivateRegistryCtrl {
+export default class BillingResourceUsageCtrl {
   /* @ngInject */
   constructor(CucRegionService) {
     this.CucRegionService = CucRegionService;

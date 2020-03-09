@@ -6,7 +6,7 @@ import 'ovh-ui-angular';
 
 import component from './component';
 
-const moduleName = 'ovhManagerPciComponentsProjectBillingPrivateRegistry';
+const moduleName = 'ovhManagerPciComponentsProjectBillingResourceUsage';
 
 angular
   .module(moduleName, [
