@@ -9,6 +9,9 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
     abstract: true,
     redirectTo: 'app.dashboard',
     resolve: {
+      sidebar: /* @ngInject */ ($rootScope) => {
+        $rootScope.$broadcast('sidebar:loaded');
+      },
       bills: /* @ngInject */ (hub) => hub.data.bills,
       catalog: /* @ngInject */ (hub) => hub.data.catalog,
       hub: /* @ngInject */ ($http) =>
