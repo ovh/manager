@@ -1,3 +1,12 @@
+## [1.6.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@1.6.1...@ovh-ux/manager-exchange@1.6.2) (2020-03-09)
+
+
+### Bug Fixes
+
+* **exchange:** update redirection state ([#2430](https://github.com/ovh/manager/issues/2430)) ([5f48355](https://github.com/ovh/manager/commit/5f483556ecbe9a55c0a52c9d28535dda45af3ce4))
+
+
+
 ## [1.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@1.6.0...@ovh-ux/manager-exchange@1.6.1) (2020-03-04)
 
 
