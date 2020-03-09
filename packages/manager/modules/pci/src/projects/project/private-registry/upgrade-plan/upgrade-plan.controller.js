@@ -6,10 +6,12 @@ export default class {
     $translate,
     CucCloudMessage,
     OvhApiCloudProjectContainerRegistryPlan,
+    pciPrivateRegistryService,
   ) {
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
     this.OvhApiCloudProjectContainerRegistryPlan = OvhApiCloudProjectContainerRegistryPlan;
+    this.privateRegistryService = pciPrivateRegistryService;
   }
 
   $onInit() {
@@ -51,6 +53,9 @@ export default class {
 
   upgradeOffer() {
     this.loading = true;
+    this.trackClick(
+      `PCI_PROJECTS_PRIVATEREGISTRY_CHANGEPLAN_CONFIRM_${this.selectedPlan.name}`,
+    );
     return this.OvhApiCloudProjectContainerRegistryPlan.v6()
       .update(
         {

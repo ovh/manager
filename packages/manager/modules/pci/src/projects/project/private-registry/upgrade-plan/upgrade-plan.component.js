@@ -8,6 +8,7 @@ export default {
     plans: '<',
     projectId: '<',
     registryId: '<',
+    trackClick: '<',
     user: '<',
   },
   controller,

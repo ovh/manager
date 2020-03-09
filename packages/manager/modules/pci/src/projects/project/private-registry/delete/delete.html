@@ -8,8 +8,8 @@
         data-heading="{{:: 'private_registry_delete' | translate }}"
         data-primary-label="{{:: 'private_registry_common_delete' | translate }}"
         data-secondary-label="{{:: 'common_cancel' | translate }}"
-        data-secondary-action="$ctrl.goBack()"
-        data-on-dismiss="$ctrl.goBack()"
+        data-secondary-action="$ctrl.cancel('PCI_PROJECTS_PRIVATEREGISTRY_DELETE_CANCEL')"
+        data-on-dismiss="$ctrl.cancel('PCI_PROJECTS_PRIVATEREGISTRY_DELETE_CLOSE')"
         data-loading="$ctrl.isLoading"
         data-type="warning"
     >

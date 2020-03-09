@@ -15,6 +15,7 @@
     </oui-step-form>
     <oui-step-form
         data-header="{{:: 'private_registry_create_name_cluster' | translate }}"
+        data-on-submit="$ctrl.trackClick('PCI_PROJECTS_PRIVATEREGISTRY_CREATE_VERSION_NEXT')"
     >
         <oui-field
             label="{{ ::'private_registry_create_name_label' | translate }}"
@@ -34,7 +35,7 @@
     </oui-step-form>
     <oui-step-form
         data-header="{{:: 'private_registry_create_choose_plan' | translate }}"
-        data-on-cancel="$ctrl.goBack()"
+        data-on-cancel="$ctrl.goBack(); $ctrl.trackClick('PRIVATEREGISTRY_CREATE_PLAN_CANCEL');"
         data-on-focus="$ctrl.showPlans = true"
         data-on-submit="$ctrl.create()"
         data-submit-text="{{ ::'private_registry_create_button' | translate }}"

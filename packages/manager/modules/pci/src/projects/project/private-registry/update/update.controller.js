@@ -19,6 +19,7 @@ export default class {
     if (this.newRegistryName === this.registryName) {
       return this.goBack();
     }
+    this.trackClick('PCI_PROJECTS_PRIVATEREGISTRY_UPDATE_CONFIRM');
     this.isLoading = true;
     return this.privateRegistryService
       .update(this.projectId, this.registryId, this.newRegistryName)
@@ -38,5 +39,10 @@ export default class {
           'error',
         ),
       );
+  }
+
+  cancel(tag) {
+    this.trackClick(tag);
+    return this.goBack();
   }
 }

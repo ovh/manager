@@ -6,6 +6,7 @@ const component = {
   controller,
   bindings: {
     goBack: '<',
+    trackClick: '<',
   },
 };
 
