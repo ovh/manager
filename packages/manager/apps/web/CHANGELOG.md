@@ -1,3 +1,12 @@
+## [13.45.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.45.4...@ovh-ux/manager-web@13.45.5) (2020-03-09)
+
+
+### Bug Fixes
+
+* **navbar:** overload max-height notification ([#2431](https://github.com/ovh/manager/issues/2431)) ([ca9e114](https://github.com/ovh/manager/commit/ca9e114906aebe308dfc053377ad1503a79bdb61))
+
+
+
 ## [13.45.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.45.3...@ovh-ux/manager-web@13.45.4) (2020-03-09)
 
 
