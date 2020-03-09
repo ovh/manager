@@ -1,3 +1,13 @@
+## [3.13.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.13.5...@ovh-ux/manager-pci@3.13.6) (2020-03-09)
+
+
+### Bug Fixes
+
+* **pci.instance:** check bare metal instances region activated ([422533e](https://github.com/ovh/manager/commit/422533ea511293bb6bb18a5a7c4b0326f2172933))
+* **pci.instance:** switch message type for bare metal instances ([70cd7b1](https://github.com/ovh/manager/commit/70cd7b14289076aa31a978784ccbde5aecc77ae3))
+
+
+
 ## [3.13.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.13.4...@ovh-ux/manager-pci@3.13.5) (2020-03-04)
 
 

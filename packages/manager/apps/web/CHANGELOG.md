@@ -1,3 +1,14 @@
+## [13.45.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.45.3...@ovh-ux/manager-web@13.45.4) (2020-03-09)
+
+
+### Bug Fixes
+
+* **hosting:** overhaul of the way PrivateSql activation is handled ([6ae1975](https://github.com/ovh/manager/commit/6ae197555e464a3e4940bdae541e94d1d368961d))
+* **hosting:** remove duplicated function ([f660633](https://github.com/ovh/manager/commit/f66063322b923ea400f018d90ea5e2c91b03e430))
+* **web.hosting:** hide action button when service is expired ([5d7f459](https://github.com/ovh/manager/commit/5d7f459ff462df2778f8af357dbae8ba108002ad))
+
+
+
 ## [13.45.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.45.2...@ovh-ux/manager-web@13.45.3) (2020-03-04)
 
 

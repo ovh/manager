@@ -1,3 +1,13 @@
+## [1.3.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@1.3.4...@ovh-ux/manager-server-sidebar@1.3.5) (2020-03-09)
+
+
+### Bug Fixes
+
+* **constants:** redirect to exchange root state ([#2406](https://github.com/ovh/manager/issues/2406)) ([70491a2](https://github.com/ovh/manager/commit/70491a2eb55195d9b25471f4ee309cfe6c1bd250))
+* **server-sidebar:** remove deprecated and unused link to SQL order ([066433e](https://github.com/ovh/manager/commit/066433eb361d1b1e2f332c20c528f6823cf43b2d))
+
+
+
 ## [1.3.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@1.3.3...@ovh-ux/manager-server-sidebar@1.3.4) (2020-03-04)
 
 

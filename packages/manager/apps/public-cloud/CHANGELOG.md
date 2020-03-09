@@ -1,3 +1,12 @@
+## [2.6.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@2.6.2...@ovh-ux/manager-public-cloud@2.6.3) (2020-03-09)
+
+
+### Bug Fixes
+
+* **pci.instance:** check bare metal instances region activated ([422533e](https://github.com/ovh/manager/commit/422533ea511293bb6bb18a5a7c4b0326f2172933))
+
+
+
 ## [2.6.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@2.6.1...@ovh-ux/manager-public-cloud@2.6.2) (2020-03-04)
 
 
