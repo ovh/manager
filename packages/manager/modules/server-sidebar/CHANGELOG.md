@@ -1,3 +1,12 @@
+## [1.3.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@1.3.5...@ovh-ux/manager-server-sidebar@1.3.6) (2020-03-09)
+
+
+### Bug Fixes
+
+* use correct state for exchange ([#2424](https://github.com/ovh/manager/issues/2424)) ([d5167d1](https://github.com/ovh/manager/commit/d5167d1bdc1f3d9a18e0389d2060661be4cde17b))
+
+
+
 ## [1.3.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@1.3.4...@ovh-ux/manager-server-sidebar@1.3.5) (2020-03-09)
 
 
