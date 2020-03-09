@@ -1,3 +1,12 @@
+## [8.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@8.0.0...@ovh-ux/manager-core@8.0.1) (2020-03-09)
+
+
+### Bug Fixes
+
+* **core:** remove deprecated and unused link to SQL order ([f9fc766](https://github.com/ovh/manager/commit/f9fc76607ac1ed5c8430162abedeefa518aab382))
+
+
+
 # [8.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@7.6.3...@ovh-ux/manager-core@8.0.0) (2020-03-04)
 
 
