@@ -1,3 +1,12 @@
+# [3.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.13.6...@ovh-ux/manager-pci@3.14.0) (2020-03-09)
+
+
+### Features
+
+* **pc.private.registry:** add tracking ([#2408](https://github.com/ovh/manager/issues/2408)) ([5c8653b](https://github.com/ovh/manager/commit/5c8653b72cf63939f38028884b7da78d65fe6fa4))
+
+
+
 ## [3.13.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.13.5...@ovh-ux/manager-pci@3.13.6) (2020-03-09)
 
 
