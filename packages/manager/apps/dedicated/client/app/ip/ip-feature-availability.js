@@ -11,7 +11,7 @@ angular.module('Module.ip.services').service(
     }
 
     hasIpLoadBalancing() {
-      return this.deny('US');
+      return this.deny('CA', 'EU', 'US');
     }
 
     allowIPFailoverImport() {
