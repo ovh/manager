@@ -4,6 +4,7 @@ $hub-title-color: #001758;
 $hub-title-weight: 400;
 $hub-title-size: 1.75rem;
 
+$hub-subtitle-color: #001758;
 $hub-subtitle-weight: 800;
 $hub-subtitle-size: 1.25rem;
 
@@ -16,6 +17,8 @@ $hub-link-color: #0050d7;
 
 $hub-button-bg-color: #3046d1;
 $hub-button-fg-color: white;
+
+$hub-pill-color: #bef1ff;
 
 $hub-tile-border-radius: 0.5rem;
 $hub-tile-padding: 1rem 0 1rem 0;
@@ -44,4 +47,13 @@ $hub-status-success-color: rgb(38, 132, 3);
     color: $hub-button-fg-color;
     text-decoration: none;
   }
+}
+
+@mixin hub-pill {
+  background-color: $hub-pill-color;
+  border-radius: 1rem;
+  font-size: 0.9rem;
+  color: $hub-link-color;
+  margin-left: 0.5rem;
+  padding: 0.3rem 0.5rem;
 }
