@@ -1,6 +1,7 @@
 import 'script-loader!jquery'; // eslint-disable-line
 import angular from 'angular';
 import 'angular-translate';
+import ngAtInternet from '@ovh-ux/ng-at-internet';
 
 import ovhManagerBanner from '@ovh-ux/manager-banner';
 import ovhManagerHub from '@ovh-ux/manager-hub';
@@ -17,7 +18,9 @@ const moduleName = 'ovhManagerHubDashboard';
 angular
   .module(moduleName, [
     listingPage,
+    ngAtInternet,
     orderDashboard,
+    ovhManagerBanner,
     ovhManagerHub,
     'pascalprecht.translate',
     welcome,

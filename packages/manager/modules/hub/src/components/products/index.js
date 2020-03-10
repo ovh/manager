@@ -1,5 +1,6 @@
 import angular from 'angular';
 import 'angular-translate';
+import '@ovh-ux/ng-at-internet';
 
 import hubTile from '../tile';
 
@@ -8,7 +9,7 @@ import component from './products.component';
 const moduleName = 'ovhManagerHubProducts';
 
 angular
-  .module(moduleName, ['pascalprecht.translate', hubTile])
+  .module(moduleName, ['ngAtInternet', 'pascalprecht.translate', hubTile])
   .component('hubProducts', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
