@@ -1,3 +1,12 @@
+## [1.3.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@1.3.6...@ovh-ux/manager-server-sidebar@1.3.7) (2020-03-10)
+
+
+### Bug Fixes
+
+* **constants:** enable dbaas.logs for ca region ([#2447](https://github.com/ovh/manager/issues/2447)) ([d8634cc](https://github.com/ovh/manager/commit/d8634ccc46d70fc180e55b60979ed4b0977773fb))
+
+
+
 ## [1.3.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@1.3.5...@ovh-ux/manager-server-sidebar@1.3.6) (2020-03-09)
 
 
