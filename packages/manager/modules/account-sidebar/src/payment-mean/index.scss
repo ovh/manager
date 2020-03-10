@@ -1,0 +1,49 @@
+.manager-hub-payment-mean {
+  @import '@ovh-ux/manager-hub/src/variables.scss';
+
+  $payment-bg-color: #bef1ff;
+
+  > a {
+    background: $payment-bg-color;
+    border-radius: 0.5rem;
+    color: inherit;
+    border: none;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+    width: 100%;
+    text-decoration: none;
+    transition: background-color 250ms;
+  }
+
+  > a:hover {
+    background-color: $p-200;
+  }
+
+  img {
+    width: 2.5rem;
+  }
+
+  h3 {
+    font-size: 0.85rem;
+    margin: 0;
+    padding: 0;
+  }
+
+  &_label {
+    font-size: 0.75rem;
+  }
+
+  &_status {
+    font-size: 0.8rem;
+    font-weight: bold;
+  }
+
+  .oui-icon {
+    color: $hub-title-color;
+  }
+
+  .oui-icon-arrow-right_extra-thin {
+    color: $p-500;
+  }
+}

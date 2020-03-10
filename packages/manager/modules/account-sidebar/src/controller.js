@@ -1,6 +1,6 @@
 import constants from './constants';
 
-export default class ManagerHubUserPanelCtrl {
+export default class OvhManagerAccountSidebarCtrl {
   /* @ngInject */
   constructor(
     $q,
@@ -25,7 +25,11 @@ export default class ManagerHubUserPanelCtrl {
         this.hasChatbot = constants.CHATBOT_SUBSIDIARIES.includes(
           ovhSubsidiary,
         );
-        this.links = this.getLinks();
+      })
+      .then(() => this.$translate.refresh())
+      .then(() => this.getLinks())
+      .then((links) => {
+        this.links = links;
       });
   }
 
@@ -53,7 +57,7 @@ export default class ManagerHubUserPanelCtrl {
         action: () => {
           this.openChatbot();
         },
-        icon: 'oui-icon oui-icon-lifebuoy_concept',
+        icon: 'oui-icon oui-icon-speech-bubble_concept',
         label: this.$translate.instant('hub_links_chatbot'),
       });
     }

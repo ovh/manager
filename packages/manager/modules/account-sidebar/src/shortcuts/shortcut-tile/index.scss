@@ -1,15 +1,19 @@
 .manager-hub-shortcut-tile {
-  $icon-bg-color: white;
-  $link-color: #12185e;
-  $notification-pill-font-color: white;
+  @import '@ovh-ux/manager-hub/src/variables.scss';
+
+  $notification-pill-font-color: $hub-background-color;
   $notification-pill-bg-color: #b91a1a;
-  $notification-pill-size: 1.3rem;
+  $notification-pill-size: 1.2rem;
 
   text-align: center;
 
   > a {
-    color: $link-color;
+    color: $hub-title-color;
     font-weight: 600;
+
+    &:hover {
+      text-decoration: none;
+    }
   }
 
   &_icon {
@@ -17,21 +21,29 @@
     width: 4rem;
     height: 4rem;
     margin: auto;
-    background-color: $icon-bg-color;
+    background-color: $hub-background-color;
     border-radius: 0.4rem;
     position: relative;
+
+    &:hover {
+      background-color: $p-200;
+    }
   }
 
   &_description {
     font-size: 0.8rem;
+    font-weight: 600;
   }
 
   .oui-icon {
-    font-size: 1.8rem;
-    margin-top: 1.2rem;
+    font-size: 2rem;
+    margin-top: 1rem;
+    color: $p-800;
   }
 
   &_notification {
+    font-size: 0.75rem;
+    font-weight: bold;
     color: $notification-pill-font-color;
     background-color: $notification-pill-bg-color;
     border-radius: $notification-pill-size;

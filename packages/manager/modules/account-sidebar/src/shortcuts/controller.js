@@ -1,12 +1,13 @@
 import chunk from 'lodash/chunk';
+import filter from 'lodash/filter';
 import find from 'lodash/find';
-import forEach from 'lodash/forEach';
-import keys from 'lodash/keys';
+import get from 'lodash/get';
 import map from 'lodash/map';
 
 export default class ManagerHubShortcutsCtrl {
   /* @ngInject */
-  constructor($translate, $q, RedirectionService) {
+  constructor($http, $translate, $q, RedirectionService) {
+    this.$http = $http;
     this.$translate = $translate;
     this.$q = $q;
     this.RedirectionService = RedirectionService;
@@ -54,6 +55,13 @@ export default class ManagerHubShortcutsCtrl {
 
     return this.$translate
       .refresh()
+      .then(() => this.fetchBillingNotifications())
+      .then((notifications) => {
+        const billShortcut = find(shortcuts, { id: 'bills' });
+        if (billShortcut) {
+          billShortcut.notificationsCount = notifications.length;
+        }
+      })
       .then(() => {
         return map(shortcuts, (shortcut) => ({
           ...shortcut,
@@ -63,13 +71,25 @@ export default class ManagerHubShortcutsCtrl {
         }));
       })
       .then((result) => {
-        forEach(keys(this.notifications), (id) => {
-          const toNotify = find(shortcuts, { id });
-          if (toNotify) {
-            toNotify.notifications = this.notifications[id];
-          }
-        });
         this.shortcuts = chunk(result, 3);
+      });
+  }
+
+  fetchBillingNotifications() {
+    const notificationsPromise = this.notifications
+      ? this.$q.when(this.notifications)
+      : this.$http.get('/hub/notifications', {
+          serviceType: 'aapi',
+        });
+
+    return notificationsPromise
+      .then(({ data }) => get(data, 'data.notifications.data'))
+      .then((notifications) => {
+        return filter(notifications, (notification) => {
+          return get(notification, 'urlDetails.relativePath', '').startsWith(
+            '/billing',
+          );
+        });
       });
   }
 }

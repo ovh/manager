@@ -1,9 +1,19 @@
 import capitalize from 'lodash/capitalize';
 import toUpper from 'lodash/toUpper';
 
+import { EXCLUDED_ROLES } from './constants';
+
 export default class ManagerHubUserInfosCtrl {
   /* @ngInject */
-  constructor($q, atInternet, OvhApiMe, RedirectionService, ssoAuthentication) {
+  constructor(
+    $http,
+    $q,
+    atInternet,
+    OvhApiMe,
+    RedirectionService,
+    ssoAuthentication,
+  ) {
+    this.$http = $http;
     this.$q = $q;
     this.atInternet = atInternet;
     this.OvhApiMe = OvhApiMe;
@@ -14,7 +24,11 @@ export default class ManagerHubUserInfosCtrl {
   $onInit() {
     this.userAccountUrl = this.RedirectionService.getURL('userAccount');
     this.isExpanded = false;
-    return this.$q.all([this.fetchMe(), this.fetchSupportLevel()]);
+    return this.$q.all([
+      this.fetchRole(),
+      this.fetchMe(),
+      this.fetchSupportLevel(),
+    ]);
   }
 
   fetchMe() {
@@ -36,16 +50,20 @@ export default class ManagerHubUserInfosCtrl {
       });
   }
 
+  fetchRole() {
+    return this.$http.get('/auth/details').then(({ data }) => {
+      if (!EXCLUDED_ROLES.includes(data.method)) {
+        this.role = data.method;
+      }
+    });
+  }
+
   getNameInitials() {
     return toUpper(`${this.me.firstname[0]}${this.me.name[0]}`);
   }
 
   getDisplayName() {
     return `${capitalize(this.me.firstname)} ${capitalize(this.me.name)}`;
-  }
-
-  getDisplayNicHandle() {
-    return toUpper(this.me.nichandle.replace(/-ovh$/, ''));
   }
 
   logout() {
