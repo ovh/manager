@@ -1,70 +1,12 @@
 hub-payment-status {
   @import 'ovh-ui-kit/packages/oui-responsive/_variables';
-  @primary-color: rgb(40, 89, 192);
 
   .oui-datagrid__cell:last-of-type {
     text-align: right;
   }
 
   .oui-datagrid__row:nth-child(even) .oui-datagrid__cell {
-    background-color: #fff;
-  }
-
-  .oui-status {
-    max-width: none;
-  }
-
-  .oui-action-button,
-  .oui-action-menu-button {
-    border-color: #fff;
-
-    circle {
-      fill: @primary-color;
-    }
-  }
-
-  .oui-action-button[aria-expanded='true'],
-  .oui-action-menu-button[aria-expanded='true'],
-  .oui-action-button:hover,
-  .oui-action-button:focus,
-  .oui-action-menu-button:hover,
-  .oui-action-menu-button:focus {
-    background-color: @primary-color;
-    border-color: @primary-color;
-
-    circle {
-      fill: #fff;
-    }
-  }
-
-  .service-name-link {
-    color: @primary-color;
-    font-weight: bold;
-  }
-
-  .service-status {
-    .oui-status_error,
-    .oui-status_warning,
-    .oui-status_success {
-      font-weight: bold;
-    }
-
-    .oui-status_error {
-      color: rgb(193, 27, 27);
-    }
-
-    .oui-status_warning {
-      color: rgb(139, 97, 17);
-    }
-
-    .oui-status_success {
-      color: rgb(38, 132, 3);
-    }
-  }
-
-  .service-expiry {
-    color: rgb(96, 104, 158);
-    vertical-align: middle;
+    background-color: initial;
   }
 
   @media screen and (max-width: (@oui-responsive-breakpoint-phone - 1)) {
