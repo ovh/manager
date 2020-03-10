@@ -1,5 +1,8 @@
 <div data-ui-view>
-    <div class="hub-banner px-3 py-2">
+    <div
+        class="hub-banner px-3 py-2"
+        data-track-on="click"
+        data-track-name="{{:: $ctrl.trackingPrefix + '::action::feedback' }}">
         <span
             data-translate="manager_hub_dashboard_feedback"
             data-translate-values="{ url: $ctrl.feedbackUrl }"
@@ -15,6 +18,7 @@
         <ovh-manager-hub-carousel
             class="w-100"
             items="$ctrl.notifications"
+            tracking-prefix="{{ $ctrl.trackingPrefix }}"
         ></ovh-manager-hub-carousel>
     </div>
     <h2 data-translate="manager_hub_dashboard_overview"></h2>
@@ -47,12 +51,16 @@
             </ovh-manager-hub-tile>
         </div>
         <div class="col-md-4">
-            <hub-order-tracking order="$ctrl.order"></hub-order-tracking>
+            <hub-order-tracking
+                order="$ctrl.order"
+                tracking-prefix="{{ $ctrl.trackingPrefix }}">
+            </hub-order-tracking>
         </div>
     </div>
     <h2 data-translate="manager_hub_dashboard_services"></h2>
     <hub-products
         products="$ctrl.services.data"
         on-product-select="$ctrl.goToProductPage(productType)"
+        tracking-prefix="{{ $ctrl.trackingPrefix }}"
     ></hub-products>
 </div>
