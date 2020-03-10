@@ -80,4 +80,11 @@ angular
       });
     },
   )
+  .run(
+    /* @ngInject */ ($rootScope, $transitions) => {
+      $transitions.onSuccess({ to: 'error' }, () => {
+        $rootScope.$emit('ovh::sidebar::hide');
+      });
+    },
+  )
   .run(/* @ngTranslationsInject:json ./translations */);
