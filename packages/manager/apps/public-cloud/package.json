@@ -23,6 +23,7 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-public-cloud' --include-dependencies -- npm run dev:watch --if-present"
   },
   "dependencies": {
+    "@ovh-ux/manager-account-sidebar": "^0.0.0 || ^1.0.0",
     "@ovh-ux/manager-cloud-styles": "^0.3.1",
     "@ovh-ux/manager-config": "^0.4.0",
     "@ovh-ux/manager-core": "^8.0.0",

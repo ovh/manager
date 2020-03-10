@@ -1,6 +1,6 @@
 import constants from './constants';
 
-export default class ManagerHubUserPanelCtrl {
+export default class OvhManagerAccountSidebarCtrl {
   /* @ngInject */
   constructor(
     $q,
