@@ -15,7 +15,7 @@ export default class RedirectionService {
     let url = get(regionConstants, id);
 
     // if url is an object, then it depends on the ovhSUbsidiary
-    if (keys(url).length) {
+    if (!isString(url) && keys(url).length) {
       url = get(url, params.ovhSubsidiary);
     }
 
