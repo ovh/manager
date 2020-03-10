@@ -1,4 +1,5 @@
 import angular from 'angular';
+import '@ovh-ux/ng-at-internet';
 import '@ovh-ux/ng-translate-async-loader';
 import 'angular-translate';
 import 'ovh-ui-angular';
@@ -10,6 +11,7 @@ const moduleName = 'ovhManagerHubSupport';
 
 angular
   .module(moduleName, [
+    'ngAtInternet',
     'ngTranslateAsyncLoader',
     'oui',
     'pascalprecht.translate',
