@@ -1,14 +1,12 @@
 import angular from 'angular';
 import 'angular-translate';
 import 'ovh-ui-angular';
-import uiRouter from '@uirouter/angularjs';
 import ngOvhTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
 import ovhManagerHub from '@ovh-ux/manager-hub';
 
 import component from './order-dashboard.component';
-import welcome from '../welcome';
 
-const moduleName = 'ovhManagerHubOrderDashboard';
+const moduleName = 'ovhManagerHubDashboardWelcome';
 
 angular
   .module(moduleName, [
@@ -16,10 +14,8 @@ angular
     'oui',
     ovhManagerHub,
     'pascalprecht.translate',
-    uiRouter,
-    welcome,
   ])
-  .component('hubOrderDashboard', component)
+  .component('hubDashboardWelcome', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
