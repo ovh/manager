@@ -21,6 +21,7 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-hub-app' --include-dependencies -- npm run dev:watch --if-present"
   },
   "dependencies": {
+    "@ovh-ux/manager-banner": "^1.1.3",
     "@ovh-ux/manager-config": "^0.4.0",
     "@ovh-ux/manager-core": "^8.0.0",
     "@ovh-ux/manager-error-page": "^1.3.0",
