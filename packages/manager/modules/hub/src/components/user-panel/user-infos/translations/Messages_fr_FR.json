@@ -6,5 +6,6 @@
   "hub_user_support_level_enterprise": "Support Enterprise",
   "hub_user_logout": "Me déconnecter",
   "hub_user_actions_aria_expand": "Voir les actions disponibles",
-  "hub_user_actions_aria_reduce": "Masquer les actions disponibles"
+  "hub_user_actions_aria_reduce": "Masquer les actions disponibles",
+  "hub_user_account": "Mon compte"
 }

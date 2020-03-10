@@ -1,15 +1,17 @@
 <div class="manager-hub-user-infos">
-    <span
+    <a
         class="manager-hub-user-infos_initials"
         data-ng-class="{
             'manager-hub-user-infos_initials-centered': !$ctrl.isExpanded,
             'float-left': $ctrl.isExpanded
           }"
         data-ng-if="$ctrl.me"
-        aria-hidden="true"
+        aria-label="{{:: 'hub_user_account' | translate }}"
         data-ng-bind="$ctrl.getNameInitials()"
-    >
-    </span>
+        data-ng-href="{{:: $ctrl.userAccountUrl }}"
+        data-track-on="click"
+        data-track-name="hub::sidebar::profile::go-to-account"
+    ></a>
     <p class="oui-chip" data-ng-if="!$ctrl.isExpanded">
         <oui-skeleton
             class="mx-auto"
