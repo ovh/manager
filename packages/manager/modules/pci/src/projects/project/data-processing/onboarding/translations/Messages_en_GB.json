@@ -1,5 +1,5 @@
 {
-  "data_processing_onboarding_content_1": "Data Processing is easy-to-use, cost effective and fully managed cloud service to easily run <a href=\"http://spark.apache.org/\" target=\"_blank\" rel=\"noopener\">Apache Spark</a> jobs.",
+  "data_processing_onboarding_content_1": "Data Processing is easy-to-use, cost effective and fully managed cloud service to easily run <a class=\"oui-link oui-link_icon\" href=\"https://spark.apache.org/\" target=\"_blank\" rel=\"noopener\">Apache Spark<span class=\"oui-icon oui-icon-external_link\" aria-hidden=\"true\"></span></a> jobs.",
   "data_processing_onboarding_content_2": "With Data Processing, your job is launched in seconds and you pay per minute only for used resources. Deployment and monitoring is automated, focus on your code. You can run data processing, analytics and machine learning jobs using Java, Scala or Python with standard libraries.",
   "data_processing_onboarding_content_3": "By continuing, you allow OVH Data Processing service to access content of your object storage containers in the current project in order to run your code and save job logs.",
   "data_processing_onboarding_action_label": "Submit my first processing job",
