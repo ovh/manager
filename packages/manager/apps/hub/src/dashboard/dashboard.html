@@ -22,7 +22,11 @@
             </hub-payment-status>
         </div>
         <div class="col-md-4">
-            <hub-billing-summary bills="$ctrl.bills"></hub-billing-summary>
+            <hub-billing-summary
+                bills="$ctrl.bills"
+                tracking-prefix="hub::dashboard::activity"
+            >
+        </hub-billing-summary>
         </div>
     </div>
     <div class="row mt-4">
