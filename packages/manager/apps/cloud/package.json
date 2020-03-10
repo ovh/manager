@@ -108,7 +108,7 @@
     "office-ui-fabric-core": "^11.0.0",
     "ovh-angular-list-view": "ovh-ux/ovh-angular-list-view#^0.1.5",
     "ovh-angular-responsive-page-switcher": "^1.1.1",
-    "ovh-api-services": "^9.40.0",
+    "ovh-api-services": "^9.41.0",
     "ovh-common-style": "ovh-ux/ovh-common-style#^3.2.2",
     "ovh-jquery-ui-draggable-ng": "ovh-ux/ovh-jquery-ui-draggable-ng#^0.0.5",
     "ovh-manager-webfont": "ovh-ux/ovh-manager-webfont#^1.1.0",
