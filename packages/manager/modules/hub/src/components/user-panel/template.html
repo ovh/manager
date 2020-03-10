@@ -13,69 +13,47 @@
         <ovh-manager-hub-shortcuts data-notifications="$ctrl.notifications">
         </ovh-manager-hub-shortcuts>
     </div>
-    <div class="manager-hub-user-panel_links">
+    <div data-ng-if="$ctrl.links" class="manager-hub-user-panel_links">
         <strong data-translate="hub_links_title"></strong>
-        <span class="manager-hub-user-panel_divider" aria-hidden="true"></span>
-        <a
-            target="_blank"
-            rel="noopener"
-            data-ng-href="{{ :: $ctrl.RedirectionService.getURL('help') }}"
-            data-track-on="click"
-            data-track-name="hub::sidebar::useful-links::go-to-helpcenter"
-            data-track-type="navigation"
-        >
-            <span class="oui-icon oui-icon-lifebuoy_concept" aria-hidden="true">
-            </span>
-            <span data-translate="hub_links_help_center"></span>
-        </a>
-        <div data-ng-if="$ctrl.hasChatbot">
+        <div data-ng-repeat="link in $ctrl.links track by $index">
             <span
                 class="manager-hub-user-panel_divider"
+                data-ng-if="link.href || link.action"
                 aria-hidden="true"
-            ></span>
+            >
+            </span>
+            <a
+                target="_blank"
+                rel="noopener"
+                data-ng-if="link.href"
+                data-ng-href="{{:: link.href }}"
+                data-track-on="click"
+                data-track-name="{{:: link.tracking }}"
+                data-track-type="navigation"
+            >
+                <span
+                    data-ng-if="link.icon"
+                    class="{{:: link.icon }}"
+                    aria-hidden="true"
+                >
+                </span>
+                <span data-ng-bind=":: link.label"></span>
+            </a>
             <button
                 class="btn btn-link"
                 type="button"
                 role="button"
-                data-ng-click="$ctrl.openChatbot()"
+                data-ng-if="link.action"
+                data-ng-click="link.action()"
             >
                 <span
-                    class="oui-icon oui-icon-speech-bubble_concept"
+                    data-ng-if="link.icon"
+                    class="{{:: link.icon }}"
                     aria-hidden="true"
                 >
                 </span>
-                <span data-translate="hub_links_chatbot"></span>
+                <span data-ng-bind=":: link.label"></span>
             </button>
         </div>
-        <span class="manager-hub-user-panel_divider" aria-hidden="true"></span>
-        <a
-            target="_blank"
-            rel="noopener"
-            data-ng-href="{{ :: $ctrl.RedirectionService.getURL('tasks') }}"
-            data-track-on="click"
-            data-track-name="hub::sidebar::useful-links::go-to-ovh-status"
-            data-track-type="navigation"
-        >
-            <span
-                class="oui-icon oui-icon-traffic-cone_concept"
-                aria-hidden="true"
-            >
-            </span>
-            <span data-translate="hub_links_tasks"></span>
-        </a>
-        <span class="manager-hub-user-panel_divider" aria-hidden="true"></span>
-        <a
-            data-ng-href="{{ :: $ctrl.RedirectionService.getURL('support') }}"
-            data-track-on="click"
-            data-track-name="hub::sidebar::useful-links::go-to-create-ticket"
-            data-track-type="navigation"
-        >
-            <span
-                class="oui-icon oui-icon-user-support_concept"
-                aria-hidden="true"
-            >
-            </span>
-            <span data-translate="hub_links_create_ticket"></span>
-        </a>
     </div>
 </div>
