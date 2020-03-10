@@ -10,6 +10,9 @@
         <a
             class="manager-hub-support_more"
             data-ng-href="{{:: $ctrl.RedirectionService.getURL('support') }}"
+            data-track-on="click"
+            data-track-name="{{:: $ctrl.trackingPrefix + '::assistance::show-all' }}"
+            data-track-type="navigation"
         >
             <span data-translate="hub_support_see_more"></span>
             <span
@@ -43,6 +46,9 @@
                         <a
                             data-translate="hub_support_read"
                             data-ng-href="{{:: $ctrl.RedirectionService.getURL('ticket', { ticketId: ticket.ticketId }) }}"
+                            data-track-on="click"
+                            data-track-name="{{:: $ctrl.trackingPrefix + '::assistance::go-to-ticket' }}"
+                            data-track-type="navigation"
                         >
                         </a>
                     </td>
