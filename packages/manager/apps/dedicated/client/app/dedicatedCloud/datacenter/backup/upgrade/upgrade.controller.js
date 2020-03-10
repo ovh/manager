@@ -2,15 +2,20 @@ import find from 'lodash/find';
 import get from 'lodash/get';
 import pick from 'lodash/pick';
 
+import { BACKUP_OFFER_NAME } from '../backup.constants';
+
 export default class {
   /* @ngInject */
   constructor($translate, dedicatedCloudDatacenterBackupService) {
     this.$translate = $translate;
     this.dedicatedCloudDatacenterBackupService = dedicatedCloudDatacenterBackupService;
+
+    this.BACKUP_OFFER_NAME = BACKUP_OFFER_NAME;
   }
 
   $onInit() {
     this.upgrading = false;
+    this.dataReplicationConditionAccepted = false;
     if (this.backup && this.backup.backupOffer) {
       this.selectedOffer = find(this.backupOffers, {
         offerName: this.backup.backupOffer,
@@ -43,9 +48,13 @@ export default class {
         this.goToBackup(
           `${this.$translate.instant(
             'dedicatedCloud_datacenter_backup_upgrade_success_1',
-            { offer: this.backup.backupOffer },
+            {
+              actualOffer: get(this.BACKUP_OFFER_NAME, this.actualOffer),
+              newOffer: get(this.BACKUP_OFFER_NAME, this.backup.backupOffer),
+            },
           )} ${this.$translate.instant(
             'dedicatedCloud_datacenter_backup_upgrade_success_2',
+            { operationsUrl: this.operationsUrl },
           )}`,
         ),
       )

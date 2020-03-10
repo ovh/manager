@@ -8,6 +8,7 @@ export default {
     currentUser: '<',
     datacenterId: '<',
     goToUpgradeOffer: '<',
+    operationsUrl: '<',
     productId: '<',
     scrollToTop: '<',
     goToDeleteBackup: '<',

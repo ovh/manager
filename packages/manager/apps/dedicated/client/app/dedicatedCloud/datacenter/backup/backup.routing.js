@@ -33,7 +33,7 @@ export default /* @ngInject */ ($stateProvider) => {
               state: 'app.dedicatedClouds.datacenter.backup.minimum-hosts',
             };
           }
-          if (backup.isInactive() || backup.isLegacy()) {
+          if (backup.isInactive() || (backup.isLegacy() && backup.isActive())) {
             return { state: 'app.dedicatedClouds.datacenter.backup.new' };
           }
           return false;
@@ -118,6 +118,11 @@ export default /* @ngInject */ ($stateProvider) => {
       },
       hosts: /* @ngInject */ (datacenterId, DedicatedCloud, productId) =>
         DedicatedCloud.getHosts(productId, datacenterId),
+      operationsUrl: /* @ngInject */ ($state, datacenterId, productId) =>
+        $state.href('app.dedicatedClouds.operation', {
+          datacenterId,
+          productId,
+        }),
       scrollToTop: () => () =>
         document
           .getElementById('dedicatedCloud_datacenter_backup_header')

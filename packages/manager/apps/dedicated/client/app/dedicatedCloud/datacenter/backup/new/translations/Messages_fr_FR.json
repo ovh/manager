@@ -6,6 +6,6 @@
   "dedicatedCloud_datacenter_backup_new_choose_offer_action": "Choisir l'offre",
   "dedicatedCloud_datacenter_backup_new_validate_conditions": "Validation des conditions d’utilisation",
   "dedicatedCloud_datacenter_backup_new_activate_offer_action": "Activer l’offre",
-  "dedicatedCloud_datacenter_backup_new_create_success": "Votre offre est en cours d'activation. Vous êtes maintenant abonné·e à la solution Veeam Backup {{ offerType }}. Si vous souhaitez changer d’offre, merci d’attendre 15 jours pour tout autre changement.",
+  "dedicatedCloud_datacenter_backup_new_create_success": "Votre demande d'activation de l'offre Veeam backup {{offerType}} est en cours. Vous pouvez suivre l'avancement des tâches <a href='{{operationsUrl}}'>ici</a>.",
   "dedicatedCloud_datacenter_backup_new_create_error": "Impossible de créer une offre de sauvegarde : {{ message }}"
 }

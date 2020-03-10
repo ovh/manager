@@ -1,9 +1,17 @@
 import get from 'lodash/get';
 import pick from 'lodash/pick';
 
+import { BACKUP_OFFER_NAME } from './backup.constants';
+
 export default class {
   /* @ngInject */
-  constructor($translate, Alerter, dedicatedCloudDatacenterBackupService) {
+  constructor(
+    $timeout,
+    $translate,
+    Alerter,
+    dedicatedCloudDatacenterBackupService,
+  ) {
+    this.$timeout = $timeout;
     this.$translate = $translate;
     this.alerter = Alerter;
     this.dedicatedCloudDatacenterBackupService = dedicatedCloudDatacenterBackupService;
@@ -15,6 +23,22 @@ export default class {
     this.loader = {
       updatingCapabilities: false,
     };
+    this.$timeout(() => this.createProgressAlert());
+  }
+
+  createProgressAlert() {
+    if (!this.backup.isActive()) {
+      this.alerter.success(
+        this.$translate.instant(
+          `dedicatedCloud_datacenter_backup_state_${this.backup.state}`,
+          {
+            operationsUrl: this.operationsUrl,
+            name: get(BACKUP_OFFER_NAME, this.backup.backupOffer),
+          },
+        ),
+        this.alertMain,
+      );
+    }
   }
 
   updateBackupCapabilities() {
