@@ -1,7 +1,6 @@
 import angular from 'angular';
 import component from './component';
 import '@ovh-ux/ng-at-internet';
-import '@ovh-ux/ng-ovh-sso-auth';
 import '@ovh-ux/ng-translate-async-loader';
 import 'angular-translate';
 
@@ -12,7 +11,6 @@ angular
   .module(moduleName, [
     'ngAtInternet',
     'ngTranslateAsyncLoader',
-    'ngOvhSsoAuth',
     'oui',
     'pascalprecht.translate',
   ])
