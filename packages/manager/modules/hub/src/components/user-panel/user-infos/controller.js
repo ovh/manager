@@ -3,14 +3,16 @@ import toUpper from 'lodash/toUpper';
 
 export default class ManagerHubUserInfosCtrl {
   /* @ngInject */
-  constructor($q, atInternet, OvhApiMe, ssoAuthentication) {
+  constructor($q, atInternet, OvhApiMe, RedirectionService, ssoAuthentication) {
     this.$q = $q;
     this.atInternet = atInternet;
     this.OvhApiMe = OvhApiMe;
     this.ssoAuthentication = ssoAuthentication;
+    this.RedirectionService = RedirectionService;
   }
 
   $onInit() {
+    this.userAccountUrl = this.RedirectionService.getURL('userAccount');
     this.isExpanded = false;
     return this.$q.all([this.fetchMe(), this.fetchSupportLevel()]);
   }
