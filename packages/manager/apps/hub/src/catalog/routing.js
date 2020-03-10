@@ -9,8 +9,6 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       products: /* @ngInject */ (catalog) =>
         filter(catalog.data, ({ category }) => category),
-      categories: /* @ngInject */ (products) =>
-        uniq(map(products, 'category')).sort(),
       universes: /* @ngInject */ (products) =>
         uniq(map(products, 'universe')).sort(),
     },
