@@ -120,21 +120,6 @@ export default class {
         }),
     });
 
-    if (!['US'].includes(this.REGION)) {
-      sublinks.push({
-        title: this.$translate.instant('navbar_assistance_telephony_contact'),
-        url:
-          get(this.URLS, 'support_contact', {})[this.subsidiary] ||
-          get(this.URLS, 'support_contact.FR'),
-        isExternal: true,
-        click: () =>
-          this.atInternet.trackClick({
-            name: 'assistance::helpline',
-            type: 'action',
-          }),
-      });
-    }
-
     if (CHATBOT_SUBSIDIARIES.includes(this.subsidiary)) {
       sublinks.push({
         title: `${this.$translate.instant(
