@@ -1,4 +1,5 @@
 import angular from 'angular';
+import '@ovh-ux/ng-at-internet';
 import '@ovh-ux/ng-translate-async-loader';
 import ovhManagerCore from '@ovh-ux/manager-core';
 import 'angular-translate';
@@ -13,6 +14,7 @@ angular
     'ngTranslateAsyncLoader',
     'oui',
     ovhManagerCore,
+    'ngAtInternet',
     'pascalprecht.translate',
   ])
   .component('hubBillingSummary', component)

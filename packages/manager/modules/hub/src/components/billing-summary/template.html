@@ -27,8 +27,13 @@
          debt: $ctrl.formattedDebtPrice
        }"
     ></p>
-    <a class="manager-hub-billing-summary_billing-link"
-       data-ng-href="{{:: $ctrl.RedirectionService.getURL('billing') }}">
+    <a
+        class="manager-hub-billing-summary_billing-link"
+        data-ng-href="{{:: $ctrl.RedirectionService.getURL('billing') }}"
+        data-track-on="click"
+        data-track-name="{{:: $ctrl.trackingPrefix + '::billing::show-all' }}"
+        data-track-type="navigation"
+    >
         <span data-translate="hub_billing_summary_display_bills"></span>
         <span
             class="oui-icon oui-icon-arrow-right_extra-thin"
