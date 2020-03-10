@@ -61,3 +61,55 @@ h2 {
 .minw-0 {
   min-width: 0;
 }
+
+h3 {
+  font-size: $hub-subtitle-size;
+  font-weight: $hub-subtitle-weight;
+  color: $hub-title-color;
+}
+
+.oui-status {
+  max-width: none;
+  line-height: 0.85rem;
+
+  &_error,
+  &_warning,
+  &_success {
+    font-weight: bold;
+  }
+
+  &_error {
+    color: $hub-status-error-color;
+  }
+
+  &_warning {
+    color: $hub-status-warning-color;
+  }
+
+  &_success {
+    color: $hub-status-success-color;
+  }
+}
+
+.oui-action-button,
+.oui-action-menu-button {
+  border-color: $hub-button-fg-color;
+
+  circle {
+    fill: $hub-button-bg-color;
+  }
+}
+
+.oui-action-button[aria-expanded='true'],
+.oui-action-menu-button[aria-expanded='true'],
+.oui-action-button:hover,
+.oui-action-button:focus,
+.oui-action-menu-button:hover,
+.oui-action-menu-button:focus {
+  background-color: $hub-button-bg-color;
+  border-color: $hub-button-bg-color;
+
+  circle {
+    fill: $hub-button-fg-color;
+  }
+}
