@@ -3,6 +3,7 @@ import moment from 'moment';
 import 'moment/min/locales';
 import '@ovh-ux/ng-translate-async-loader';
 import '@ovh-ux/manager-core';
+import '@ovh-ux/manager-account-sidebar';
 import 'ovh-api-services';
 import 'ovh-ui-angular';
 
@@ -21,6 +22,7 @@ angular
   .module(moduleName, [
     'ngTranslateAsyncLoader',
     'ovhManagerCore',
+    'ovhManagerAccountSidebar',
     'ovh-api-services',
     'oui',
     notificationsMenu,
