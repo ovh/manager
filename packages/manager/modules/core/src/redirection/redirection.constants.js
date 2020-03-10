@@ -17,6 +17,7 @@ const URI = {
   services: '#/billing/autoRenew',
   support: '#/ticket',
   supportLevel: '#/useraccount/support/level',
+  userAccount: '#/useraccount/dashboard',
   userEmails: '#/useraccount/emails',
 };
 
@@ -54,6 +55,7 @@ export default {
     supportLevel: `${managerRoot.EU}/manager/dedicated/${URI.supportLevel}`,
     tasks: 'http://travaux.ovh.net/',
     ticket: `${managerRoot.EU}/manager/dedicated/#/support/tickets/:ticketId`,
+    userAccount: `${managerRoot.EU}/manager/dedicated/${URI.userAccount}`,
     userEmails: `${managerRoot.EU}/manager/dedicated/${URI.userEmails}`,
   },
   CA: {
@@ -81,6 +83,7 @@ export default {
     supportLevel: `${managerRoot.CA}/manager/${URI.supportLevel}`,
     tasks: '',
     ticket: `${managerRoot.EU}/dedicated/#/support/tickets/:ticketId`,
+    userAccount: `${managerRoot.CA}/manager/dedicated/${URI.userAccount}`,
     userEmails: `${managerRoot.CA}/manager/${URI.userEmails}`,
   },
   US: {
@@ -100,6 +103,7 @@ export default {
     supportLevel: '',
     tasks: '',
     ticket: `${managerRoot.US}/manager/dedicated/#/ticket/:ticketId`,
+    userAccount: `${managerRoot.US}/manager/dedicated/${URI.userAccount}`,
     userEmails: `${managerRoot.US}/manager/dedicated/${URI.userEmails}`,
   },
 };
