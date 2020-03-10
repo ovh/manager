@@ -10,6 +10,7 @@ import { KEY } from './walk-me/walkme.constants';
 export default class {
   /* @ngInject */
   constructor(
+    $rootScope,
     $scope,
     $translate,
     $window,
@@ -18,6 +19,7 @@ export default class {
     ovhUserPref,
     WalkMe,
   ) {
+    this.$rootScope = $rootScope;
     this.$scope = $scope;
     this.$translate = $translate;
     this.$window = $window;
@@ -31,6 +33,11 @@ export default class {
     this.isLoading = true;
     this.brand = this.buildBrand();
     this.isSidebarVisible = false;
+
+    this.$rootScope.$on('ovh::sidebar::hide', () => {
+      this.isSidebarVisible = false;
+      this.sidebarExpand = false;
+    });
 
     if (has(this.navbarOptions, 'toggle')) {
       this.togglerisLoading = true;
