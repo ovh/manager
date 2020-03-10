@@ -194,8 +194,11 @@
                                                 data-align="end"
                                             >
                                                 <oui-action-menu-item
-                                                    data-href="{{ $ctrl.upgradeLink }}">
-                                                    <span data-translate="emailpro_dashboard_accounts_upgrade_mxPlan"></span>
+                                                    data-href="{{ $ctrl.upgradeLink }}"
+                                                >
+                                                    <span
+                                                        data-translate="emailpro_dashboard_accounts_upgrade_mxPlan"
+                                                    ></span>
                                                 </oui-action-menu-item>
                                             </oui-action-menu>
                                         </div>
@@ -312,6 +315,18 @@
                 ></h3>
                 <div class="oui-tile__body">
                     <ul class="list-unstyled">
+                        <li
+                            class="oui-tile__item"
+                            data-ng-if="!exchange.isMXPlan"
+                        >
+                            <div class="oui-tile__definition">
+                                <strong
+                                    class="oui-tile__term d-block"
+                                    data-translate="emailpro_tab_INFORMATIONS_server"
+                                ></strong>
+                                <span data-ng-bind="exchange.hostname"></span>
+                            </div>
+                        </li>
                         <li class="oui-tile__item">
                             <div class="oui-tile__definition">
                                 <strong
