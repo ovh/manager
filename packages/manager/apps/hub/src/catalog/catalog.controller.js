@@ -1,6 +1,8 @@
 import groupBy from 'lodash/groupBy';
 import includes from 'lodash/includes';
 import isEmpty from 'lodash/isEmpty';
+import map from 'lodash/map';
+import uniq from 'lodash/uniq';
 
 export default class CatalogController {
   $onInit() {
@@ -11,6 +13,10 @@ export default class CatalogController {
     return groupBy(items, 'universe');
   }
 
+  static getAvailableCategories(products) {
+    return uniq(map(products, 'category')).sort();
+  }
+
   filterItems() {
     const items = this.products.filter(
       (product) =>
@@ -18,7 +24,7 @@ export default class CatalogController {
         this.matchUniverses(product) &&
         this.matchSearchText(product),
     );
-
+    this.categories = CatalogController.getAvailableCategories(items);
     this.items = CatalogController.groupItems(items);
   }
 
@@ -50,6 +56,7 @@ export default class CatalogController {
 
   reset() {
     this.items = CatalogController.groupItems(this.products);
+    this.categories = CatalogController.getAvailableCategories(this.products);
     this.selectedCategories = [];
     this.selectedUniverses = [];
     this.searchText = null;
