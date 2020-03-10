@@ -17,6 +17,7 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
           : $state.go('app.dashboard.products', {
               product: product.toLowerCase(),
             }),
+      trackingPrefix: () => 'hub::dashboard',
     },
     componentProvider: /* @ngInject */ (services) =>
       services.count === 0 ? 'hubOrderDashboard' : 'hubDashboard',
