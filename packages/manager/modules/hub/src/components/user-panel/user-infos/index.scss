@@ -28,7 +28,7 @@
     font-size: 0.8rem;
   }
 
-  &_initials {
+  & &_initials {
     width: $circle-radius * 2;
     height: $circle-radius * 2;
     display: block;
@@ -38,6 +38,7 @@
     color: white;
     border-radius: $circle-radius;
     text-align: center;
+    font-weight: normal;
   }
 
   &_initials-centered {
