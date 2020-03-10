@@ -258,7 +258,7 @@ export const LOGS_CONFIG = {
   ],
   icon: 'fa fa-bar-chart',
   app: [CLOUD],
-  regions: ['EU'],
+  regions: ['EU', 'CA'],
 };
 
 export const IPLB_CONFIG = {
