@@ -1,3 +1,12 @@
+## [3.14.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.14.1...@ovh-ux/manager-pci@3.14.2) (2020-03-10)
+
+
+### Bug Fixes
+
+* **pci.failover.ips:** make filter works ([#2446](https://github.com/ovh/manager/issues/2446)) ([52a373f](https://github.com/ovh/manager/commit/52a373f6fda6f9889a899164eeb7e71e4c644ac6))
+
+
+
 ## [3.14.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.14.0...@ovh-ux/manager-pci@3.14.1) (2020-03-09)
 
 
