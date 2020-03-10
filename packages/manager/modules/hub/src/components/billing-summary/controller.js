@@ -2,10 +2,11 @@ import get from 'lodash/get';
 
 export default class ManagerHubBillingSummaryCtrl {
   /* @ngInject */
-  constructor($http, $q, $translate, RedirectionService) {
+  constructor($http, $q, $translate, atInternet, RedirectionService) {
     this.$http = $http;
     this.$q = $q;
     this.$translate = $translate;
+    this.atInternet = atInternet;
     this.RedirectionService = RedirectionService;
   }
 
@@ -63,6 +64,28 @@ export default class ManagerHubBillingSummaryCtrl {
   }
 
   fetchBills(monthlyPeriod = 1) {
+    switch (monthlyPeriod) {
+      case 1:
+        this.atInternet.trackClick({
+          name: `${this.trackingPrefix}::order::action::go-to-one-month`,
+          type: 'action',
+        });
+        break;
+      case 3:
+        this.atInternet.trackClick({
+          name: `${this.trackingPrefix}::order::action::go-to-three-month`,
+          type: 'action',
+        });
+        break;
+      case 6:
+        this.atInternet.trackClick({
+          name: `${this.trackingPrefix}::order::action::go-to-six-month`,
+          type: 'action',
+        });
+        break;
+      default:
+        break;
+    }
     return this.$http
       .get('/hub/bills', {
         serviceType: 'aapi',
