@@ -9,6 +9,9 @@ export default class ManagerHubBillingSummaryCtrl {
   }
 
   $onInit() {
-    this.currentStatus = maxBy(this.order.history, 'date');
+    this.currentStatus = maxBy(this.order.history, 'date') || {
+      date: this.order.date,
+      label: 'custom_creation',
+    };
   }
 }
