@@ -5,6 +5,7 @@ export default {
   bindings: {
     backup: '<',
     backupOffers: '<',
+    currentOfferLabel: '<',
     previewMode: '<',
     user: '<',
     disabled: '<',

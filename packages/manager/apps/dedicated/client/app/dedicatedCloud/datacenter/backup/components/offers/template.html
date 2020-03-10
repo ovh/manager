@@ -12,7 +12,7 @@
         data-disabled="$ctrl.disabled && (offer.offerName !== $ctrl.actualOffer)"
     >
         <oui-select-picker-description
-            data-ng-if="!$ctrl.previewMode && (offer.offerName === $ctrl.actualOffer)"
+            data-ng-if="!$ctrl.previewMode && (offer.offerName === $ctrl.actualOffer) && $ctrl.currentOfferLabel"
         >
             <span
                 class="oui-status oui-status_success"

@@ -66,7 +66,7 @@ export default class {
               message: get(error, ['data', 'message'], error.message),
             },
           ),
-          'error',
+          'danger',
         );
       })
       .finally(() => {

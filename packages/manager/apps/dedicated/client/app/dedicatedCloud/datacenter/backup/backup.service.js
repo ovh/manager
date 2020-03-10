@@ -20,6 +20,7 @@ export default class BackupService {
     this.$q = $q;
     this.backupApi = OvhApiDedicatedCloudDatacenter.Backup().v6();
     this.catalogApi = OvhApiOrder.CatalogFormatted().v6();
+    this.cartApi = OvhApiOrder.Cart().v6();
     this.WucOrderCartService = WucOrderCartService;
   }
 
@@ -47,7 +48,10 @@ export default class BackupService {
   }
 
   checkoutCart(cart) {
-    return this.WucOrderCartService.checkoutCart(cart.cartId);
+    return this.cartApi.checkout(
+      { cartId: cart.cartId },
+      { autoPayWithPreferredPaymentMethod: true },
+    ).$promise;
   }
 
   getOrderableBackupOption(productId) {
