@@ -1,10 +1,6 @@
 import get from 'lodash/get';
 
-import {
-  BACKUP_OFFER_CLASSIC,
-  BACKUP_OFFER_NAME,
-  BACKUP_STATE_ENABLING,
-} from '../backup.constants';
+import { BACKUP_OFFER_NAME, BACKUP_STATE_ENABLING } from '../backup.constants';
 
 export default class {
   /* @ngInject */
@@ -22,7 +18,7 @@ export default class {
       orderInProgress: false,
       orderCreationInProgress: false,
       selectedOffer: {
-        backupOffer: BACKUP_OFFER_CLASSIC,
+        backupOffer: null,
       },
     };
     if (this.backup.isLegacy()) {
