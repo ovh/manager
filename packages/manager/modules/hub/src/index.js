@@ -14,7 +14,6 @@ import ovhManagerHubProducts from './components/products';
 import ovhManagerHubProductList from './components/product-list';
 import ovhManagerHubSupport from './components/support';
 import ovhManagerHubTile from './components/tile';
-import userPanel from './components/user-panel';
 
 const moduleName = 'ovhManagerHub';
 
@@ -31,7 +30,6 @@ angular.module(moduleName, [
   ovhManagerHubProductList,
   ovhManagerHubSupport,
   ovhManagerHubTile,
-  userPanel,
 ]);
 
 export default moduleName;
