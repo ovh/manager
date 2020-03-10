@@ -20,7 +20,9 @@
     </a>
 </div>
 <div data-ng-if="$ctrl.backup.isLegacy()">
-    <dedicated-cloud-datacenter-backup-legacy></dedicated-cloud-datacenter-backup-legacy>
+    <dedicated-cloud-datacenter-backup-legacy
+        data-backup-tariff-url="::$ctrl.backupTariffUrl"
+    ></dedicated-cloud-datacenter-backup-legacy>
     <oui-button
         class="mt-3"
         data-on-click="$ctrl.showOrderFlow = true"

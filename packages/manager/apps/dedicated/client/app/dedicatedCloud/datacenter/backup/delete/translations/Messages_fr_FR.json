@@ -4,6 +4,6 @@
   "dedicatedCloud_datacenter_backup_delete_description_2": "Attention, cette action supprimera définitivement toutes vos sauvegardes.",
   "dedicatedCloud_datacenter_backup_delete_cancel": "Annuler",
   "dedicatedCloud_datacenter_backup_delete_confirm": "Désactiver la sauvegarde",
-  "dedicatedCloud_datacenter_backup_delete_success": "Votre solution de sauvegarde est désactivée. Il faut jusqu'à 24 heures pour le désactiver.",
+  "dedicatedCloud_datacenter_backup_delete_success": "Votre demande de désactivation de votre offre Veeam {{name}} est en cours. L'opération prendra 24h.",
   "dedicatedCloud_datacenter_backup_delete_error": "Une erreur s'est produite lors de la désactivation de votre service de sauvegarde : {{message}}"
 }

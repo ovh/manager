@@ -7,9 +7,6 @@ export default class DatacenterBackupOffersCtrl {
       this.selectedOffer = find(this.backupOffers, {
         offerName: this.backup.backupOffer,
       });
-    } else {
-      [this.selectedOffer] = this.backupOffers;
-      this.onSelected(this.selectedOffer);
     }
   }
 

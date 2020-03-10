@@ -2,6 +2,7 @@
     data-title="{{:: 'dedicatedCloud_datacenter_backup_upgrade_title' | translate }}"
     data-on-dismiss="$ctrl.goToBackup()"
     data-primary-action="$ctrl.upgrade()"
+    data-primary-disabled="!$ctrl.dataReplicationConditionAccepted"
     data-secondary-action="$ctrl.goToBackup()"
     data-type="warning"
     data-primary-label="{{:: 'dedicatedCloud_datacenter_backup_upgrade_confirm' | translate: { name: $ctrl.backup.backupOffer } }}"
@@ -11,16 +12,12 @@
     <p
         data-translate="dedicatedCloud_datacenter_backup_upgrade_description"
         data-translate-values="{
-            currentOffer: $ctrl.currentOffer.offerName,
-            selectedOffer: $ctrl.selectedOffer.offerName
+            currentOffer: $ctrl.BACKUP_OFFER_NAME[$ctrl.currentOffer.offerName],
+            selectedOffer: $ctrl.BACKUP_OFFER_NAME[$ctrl.selectedOffer.offerName]
         }"
     ></p>
     <p
-        data-ng-bind="::(
-            ($ctrl.selectedOffer.price > $ctrl.currentOffer.price)
-                ? 'dedicatedCloud_datacenter_backup_upgrade_description_gain_features'
-                : 'dedicatedCloud_datacenter_backup_upgrade_description_lose_features'
-            ) | translate"
+        data-translate="dedicatedCloud_datacenter_backup_upgrade_description_features"
     ></p>
     <dedicated-cloud-datacenter-backup-offer-details
         data-offer="$ctrl.selectedOffer"
@@ -32,4 +29,9 @@
     <p
         data-translate="dedicatedCloud_datacenter_backup_upgrade_description_billing"
     ></p>
+    <oui-checkbox data-model="$ctrl.dataReplicationConditionAccepted">
+        <strong
+            data-translate="dedicatedCloud_datacenter_backup_upgrade_replication_condition"
+        ></strong>
+    </oui-checkbox>
 </oui-modal>

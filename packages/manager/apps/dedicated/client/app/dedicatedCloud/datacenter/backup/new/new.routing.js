@@ -7,7 +7,9 @@ export default /* @ngInject */ ($stateProvider) => {
         .injector()
         .getAsync('backup')
         .then((backup) => {
-          if (!(backup.isInactive() || backup.isLegacy())) {
+          if (
+            !(backup.isInactive() || (backup.isLegacy() && backup.isActive()))
+          ) {
             return { state: 'app.dedicatedClouds.datacenter.backup' };
           }
           return false;

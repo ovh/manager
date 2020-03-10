@@ -1,6 +1,10 @@
 import get from 'lodash/get';
 
-import { BACKUP_STATE_ENABLING } from '../backup.constants';
+import {
+  BACKUP_OFFER_CLASSIC,
+  BACKUP_OFFER_NAME,
+  BACKUP_STATE_ENABLING,
+} from '../backup.constants';
 
 export default class {
   /* @ngInject */
@@ -17,7 +21,9 @@ export default class {
       currentStep: 0,
       orderInProgress: false,
       orderCreationInProgress: false,
-      selectedOffer: {},
+      selectedOffer: {
+        backupOffer: BACKUP_OFFER_CLASSIC,
+      },
     };
     if (this.backup.isLegacy()) {
       this.showOrderFlow = false;
@@ -67,7 +73,11 @@ export default class {
           this.$translate.instant(
             'dedicatedCloud_datacenter_backup_new_create_success',
             {
-              offerType: this.data.selectedOffer.backupOffer,
+              offerType: get(
+                BACKUP_OFFER_NAME,
+                this.data.selectedOffer.backupOffer,
+              ),
+              operationsUrl: this.operationsUrl,
             },
           ),
         );

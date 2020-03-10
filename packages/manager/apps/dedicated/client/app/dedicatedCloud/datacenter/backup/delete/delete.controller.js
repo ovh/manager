@@ -1,6 +1,6 @@
 import get from 'lodash/get';
 
-import { BACKUP_STATE_REMOVING } from '../backup.constants';
+import { BACKUP_OFFER_NAME, BACKUP_STATE_REMOVING } from '../backup.constants';
 
 export default class {
   /* @ngInject */
@@ -26,6 +26,7 @@ export default class {
         return this.goToBackup(
           this.$translate.instant(
             'dedicatedCloud_datacenter_backup_delete_success',
+            { name: get(BACKUP_OFFER_NAME, this.backup.backupOffer) },
           ),
           'success',
         );

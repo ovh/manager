@@ -10,6 +10,7 @@ export default {
     currentUser: '<',
     datacenterId: '<',
     goToBackup: '<',
+    operationsUrl: '<',
     productId: '<',
   },
   controller,

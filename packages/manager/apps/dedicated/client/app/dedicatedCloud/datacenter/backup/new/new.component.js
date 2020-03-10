@@ -10,6 +10,7 @@ export default {
     datacenterId: '<',
     goToBackup: '<',
     productId: '<',
+    operationsUrl: '<',
     scrollToTop: '<',
   },
   controller,
