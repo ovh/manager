@@ -19,6 +19,11 @@ $hub-button-fg-color: white;
 $hub-tile-border-radius: 0.5rem;
 $hub-tile-padding: 1rem 0 1rem 0;
 
+$hub-status-error-color: rgb(193, 27, 27);
+$hub-status-expired-color: rgb(96, 104, 158);
+$hub-status-warning-color: rgb(139, 97, 17);
+$hub-status-success-color: rgb(38, 132, 3);
+
 @mixin hub-link-button {
   background-color: $hub-button-bg-color;
   display: inline-block;
