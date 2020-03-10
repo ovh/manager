@@ -12,7 +12,7 @@ export default class PaymentStatusTileCtrl {
 
   onLinkClick() {
     this.atInternet.trackClick({
-      name: `${this.trackingPrefix}::show-all`,
+      name: `${this.trackingPrefix}::activity::payment-status::show-all`,
       type: 'action',
     });
   }
@@ -23,7 +23,7 @@ export default class PaymentStatusTileCtrl {
 
   onServiceManagementClick() {
     this.atInternet.trackClick({
-      name: `${this.trackingPrefix}::action::go-to-manage-service`,
+      name: `${this.trackingPrefix}::activity::payment-status::action::go-to-manage-service`,
       type: 'action',
     });
   }
