@@ -43,14 +43,12 @@
         </div>
         <div class="row mt-4">
             <div class="col-md-8">
-                <ovh-manager-hub-tile>
-                    <ovh-manager-hub-support
-                        data-me="$ctrl.me"
-                        data-tickets="$ctrl.tickets"
-                        data-tracking-prefix="hub::dashboard::activity"
-                    >
-                    </ovh-manager-hub-support>
-                </ovh-manager-hub-tile>
+                <ovh-manager-hub-support
+                    data-me="$ctrl.me"
+                    data-tickets="$ctrl.tickets"
+                    data-tracking-prefix="{{ $ctrl.trackingPrefix }}"
+                >
+                </ovh-manager-hub-support>
             </div>
             <div class="col-md-4">
                 <hub-order-tracking
