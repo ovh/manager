@@ -1,3 +1,12 @@
+# [2.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-navbar@2.3.3...@ovh-ux/manager-navbar@2.4.0) (2020-03-11)
+
+
+### Features
+
+* **assistance-menu:** remove useless support contact support ([#2401](https://github.com/ovh/manager/issues/2401)) ([dcb8db9](https://github.com/ovh/manager/commit/dcb8db93628eb70f34a85a5ec8920a0bbfe4d900))
+
+
+
 ## [2.3.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-navbar@2.3.2...@ovh-ux/manager-navbar@2.3.3) (2020-03-04)
 
 
