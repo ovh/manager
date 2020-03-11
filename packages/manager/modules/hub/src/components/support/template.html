@@ -44,12 +44,12 @@
                     </td>
                     <td class="text-right">
                         <a
-                            data-translate="hub_support_read"
                             data-ng-href="{{:: $ctrl.RedirectionService.getURL('ticket', { ticketId: ticket.ticketId }) }}"
                             data-track-on="click"
                             data-track-name="{{:: $ctrl.trackingPrefix + '::assistance::go-to-ticket' }}"
                             data-track-type="navigation"
                         >
+                            <span data-translate="hub_support_read"></span>
                         </a>
                     </td>
                 </tr>
