@@ -1,0 +1,10 @@
+@import '~ovh-ui-kit/packages/oui-responsive/_variables';
+
+ovh-responsive-breakpoint-watcher {
+  display: none;
+  opacity: 0;
+
+  @media screen and (min-width: (@oui-responsive-breakpoint-medium - 1px)) {
+    opacity: 1;
+  }
+}

@@ -9,6 +9,7 @@ import notificationsMenu from './notifications-menu';
 import userMenu from './user-menu';
 import walkMe from './walk-me';
 
+import breakpointWatcher from './responsive-breakpoint-watcher/responsive-breakpoint-watcher.directive';
 import navbarComponent from './component';
 import service from './service';
 
@@ -27,6 +28,7 @@ angular
     walkMe,
   ])
   .component('ovhManagerNavbar', navbarComponent)
+  .directive('ovhResponsiveBreakpointWatcher', breakpointWatcher)
   .service('Navbar', service)
   .run(/* @ngTranslationsInject:json ./translations */);
 

@@ -55,11 +55,12 @@
 </oui-navbar>
 <div
     class="ovh-sidebar-wrapper"
-    data-ng-class="{
-        'sidebar-expand': $ctrl.sidebarExpand,
-     }"
     data-ng-attr-aria-expanded="{{ $ctrl.isSidebarVisible }}"
 >
+    <ovh-responsive-breakpoint-watcher
+        data-on-change="$ctrl.onBreakpointChange(isResponsive)"
+    >
+    </ovh-responsive-breakpoint-watcher>
     <ovh-manager-hub-user-panel></ovh-manager-hub-user-panel>
 </div>
 <div

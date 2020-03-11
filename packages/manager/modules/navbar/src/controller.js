@@ -30,6 +30,7 @@ export default class {
   $onInit() {
     this.isLoading = true;
     this.brand = this.buildBrand();
+    this.isResponsiveMode = false;
     this.isSidebarVisible = false;
 
     if (has(this.navbarOptions, 'toggle')) {
@@ -125,12 +126,33 @@ export default class {
   }
 
   onUserClick() {
-    this.isSidebarVisible = !this.isSidebarVisible;
-    if (this.isSidebarVisible) {
-      this.atInternet.trackClick({
-        name: 'navbar::action::user-bar',
-        type: 'action',
-      });
+    let toggleSidebar = true;
+
+    // with sidebarExpand option, toggle sidebar only in responsive mode
+    // (since it's otherwise always visible)
+    if (this.sidebarExpand) {
+      toggleSidebar = this.isResponsiveMode === true;
+    }
+
+    if (toggleSidebar) {
+      this.isSidebarVisible = !this.isSidebarVisible;
+      if (this.isSidebarVisible) {
+        this.atInternet.trackClick({
+          name: 'navbar::action::user-bar',
+          type: 'action',
+        });
+      }
+    }
+  }
+
+  onBreakpointChange(isResponsive) {
+    this.isResponsiveMode = isResponsive;
+
+    // hide the sidebar when switching to responsive mode
+    if (isResponsive) {
+      this.isSidebarVisible = false;
+    } else if (this.sidebarExpand) {
+      this.isSidebarVisible = true;
     }
   }
 }
