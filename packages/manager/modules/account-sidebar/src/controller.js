@@ -53,7 +53,7 @@ export default class OvhManagerAccountSidebarCtrl {
         action: () => {
           this.openChatbot();
         },
-        icon: 'oui-icon oui-icon-lifebuoy_concept',
+        icon: 'oui-icon oui-icon-speech-bubble_concept',
         label: this.$translate.instant('hub_links_chatbot'),
       });
     }
