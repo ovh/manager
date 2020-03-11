@@ -1,0 +1,104 @@
+<oui-tile
+    class="vps-dashboard-tile-configuration h-100"
+    data-heading="{{ :: 'vps_dashboard_tile_configuration_title' | translate }}"
+>
+    <oui-tile-definition
+        data-term="{{ ::'vps_dashboard_product' | translate }}"
+        data-description="{{ ::$ctrl.vps.model }}"
+    >
+    </oui-tile-definition>
+
+    <oui-tile-definition
+        data-term="{{ ::'vps_dashboard_tile_configuration_vcore' | translate }}"
+    >
+        <oui-tile-description>
+            <span data-ng-bind=":: $ctrl.vps.vcore"></span>
+            <p
+                class="p-0"
+                data-translate="vps_dashboard_tile_configuration_vcore_upscale"
+            ></p>
+        </oui-tile-description>
+    </oui-tile-definition>
+
+    <oui-tile-definition
+        data-term="{{ ::'vps_dashboard_tile_configuration_memory' | translate }}"
+    >
+        <oui-tile-description
+            data-ng-if="$ctrl.configurationTile.upgrades.memory"
+        >
+            <oui-radio-toggle-group
+                data-model="$ctrl.configurationTile.model.memory"
+                data-on-change="$ctrl.goToUpgrade('memory')"
+            >
+                <oui-radio data-value="$ctrl.currentPlan">
+                    <span
+                        data-ng-bind=":: $ctrl.stateVps.model.memory | cucBytes:0:false:'MiB'"
+                    ></span>
+                </oui-radio>
+                <oui-radio
+                    data-value="$ctrl.configurationTile.upgrades.memory.plan"
+                >
+                    <span
+                        data-ng-bind=":: ($ctrl.stateVps.model.memory * 2) | cucBytes:0:false:'MiB'"
+                    ></span>
+                </oui-radio>
+            </oui-radio-toggle-group>
+            <p
+                class="mt-2 mb-0"
+                data-translate="vps_dashboard_tile_configuration_memory_double"
+                data-translate-values="{ price: $ctrl.configurationTile.upgrades.memory.diff.text }"
+            ></p>
+        </oui-tile-description>
+
+        <oui-tile-description
+            data-ng-if="!$ctrl.configurationTile.upgrades.memory"
+        >
+            <span data-ng-bind=":: $ctrl.stateVps.model.disk"></span>
+            <p
+                class="p-0"
+                data-translate="vps_dashboard_tile_configuration_memory_add_upscale"
+            ></p>
+        </oui-tile-description>
+    </oui-tile-definition>
+
+    <oui-tile-definition
+        data-term="{{ ::'vps_dashboard_tile_configuration_storage' | translate }}"
+    >
+        <oui-tile-description
+            data-ng-if="$ctrl.configurationTile.upgrades.storage"
+        >
+            <oui-radio-toggle-group
+                data-model="$ctrl.configurationTile.model.storage"
+                data-on-change="$ctrl.goToUpgrade('storage')"
+            >
+                <oui-radio data-value="$ctrl.currentPlan">
+                    <span
+                        data-ng-bind=":: $ctrl.stateVps.model.disk | cucBytes:0:false:'GB'"
+                    ></span>
+                </oui-radio>
+                <oui-radio
+                    data-value="$ctrl.configurationTile.upgrades.storage.plan"
+                >
+                    <span
+                        data-ng-bind=":: ($ctrl.stateVps.model.disk * 2) | cucBytes:0:false:'GB'"
+                    ></span>
+                </oui-radio>
+            </oui-radio-toggle-group>
+            <p
+                class="mt-2 mb-0"
+                data-translate="vps_dashboard_tile_configuration_storage_double"
+                data-translate-values="{ price: $ctrl.configurationTile.upgrades.storage.diff.text }"
+            ></p>
+        </oui-tile-description>
+
+        <oui-tile-description
+            data-ng-if="!$ctrl.configurationTile.upgrades.storage"
+        >
+            <span data-ng-bind=":: $ctrl.stateVps.model.disk"></span>
+            <p
+                class="p-0"
+                data-translate="vps_dashboard_tile_configuration_storage_add_upscale"
+            ></p>
+        </oui-tile-description>
+    </oui-tile-definition>
+</oui-tile>
