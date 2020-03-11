@@ -1,5 +1,5 @@
 <div class="oui-tile ovh-manager-hub-tile">
-    <div class="ovh-manager-hub-tile__header">
+    <div class="d-flex justify-content-between">
         <h3>
             <span data-ng-bind="::$ctrl.heading"></span>
             <span
@@ -8,7 +8,7 @@
             ></span>
         </h3>
         <a
-            class="oui-button oui-button_link hub-button"
+            class="oui-button oui-button_link oui-button_icon-right hub-button pr-4"
             data-ng-if="$ctrl.href || $ctrl.onClick"
             data-ng-href="{{:: $ctrl.href }}"
             data-ng-click="$ctrl.onClick()"
@@ -18,7 +18,7 @@
                 data-ng-bind="::$ctrl.buttonText"
             ></span>
             <span
-                class="oui-icon oui-icon-arrow-right_extra-thin hub-button__right-arrow"
+                class="oui-icon oui-icon-arrow-right_extra-thin align-middle ml-0"
                 aria-hidden="true"
             ></span>
         </a>
