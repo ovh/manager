@@ -2,8 +2,14 @@ export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('vps.detail.dashboard.monitoring-sla', {
     url: '/monitoring-sla',
     params: {
-      state: null,
-      preview: null,
+      state: {
+        type: 'bool',
+        value: false,
+      },
+      preview: {
+        type: 'bool',
+        value: false,
+      },
     },
     views: {
       modal: {
