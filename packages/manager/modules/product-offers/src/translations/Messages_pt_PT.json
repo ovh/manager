@@ -1,0 +1,19 @@
+{
+  "ovh_product_offers_pricing_header": "Preço",
+  "ovh_product_offers_confirmation_header": "Confirmação",
+  "ovh_product_offers_pricing_duration": "{{ duration }}:",
+  "ovh_product_offers_pricing_day": "{{ number }} dia",
+  "ovh_product_offers_pricing_days": "{{ number }} dias",
+  "ovh_product_offers_pricing_month": "{{number}} mês",
+  "ovh_product_offers_pricing_months": "{{number}} meses",
+  "ovh_product_offers_pricing_extra_pricing": "Custos adicionais:",
+  "ovh_product_offers_pricing_capacity_detach": "Dissociação",
+  "ovh_product_offers_pricing_capacity_installation": "Instalação",
+  "ovh_product_offers_pricing_capacity_renew": "Renovação",
+  "ovh_product_offers_pricing_capacity_upgrade": "Atualização",
+  "ovh_product_offers_confirmation_pay": "Pagar",
+  "ovh_product_offers_confirmation_activate": "Ativar",
+  "ovh_product_offers_total_price_without_tax": "Preço s/ IVA:",
+  "ovh_product_offers_total_price_with_tax": "Preço c/ IVA:",
+  "ovh_product_offers_duration": "Duração:"
+}
