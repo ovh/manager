@@ -13,8 +13,15 @@ export default class CatalogController {
     return groupBy(items, 'universe');
   }
 
-  static getAvailableCategories(products) {
-    return uniq(map(products, 'category')).sort();
+  getAvailableCategories() {
+    const items = this.products.filter((product) =>
+      CatalogController.filterByEnum(
+        product,
+        this.selectedUniverses,
+        'universe',
+      ),
+    );
+    return uniq(map(items, 'category')).sort();
   }
 
   filterItems() {
@@ -25,12 +32,11 @@ export default class CatalogController {
         this.matchSearchText(product),
     );
     this.items = CatalogController.groupItems(items);
-    return items;
   }
 
   onUniverseChange() {
-    const items = this.filterItems();
-    this.categories = CatalogController.getAvailableCategories(items);
+    this.filterItems();
+    this.categories = this.getAvailableCategories();
   }
 
   matchCategories(product) {
@@ -61,7 +67,7 @@ export default class CatalogController {
 
   reset() {
     this.items = CatalogController.groupItems(this.products);
-    this.categories = CatalogController.getAvailableCategories(this.products);
+    this.categories = this.getAvailableCategories(this.products);
     this.selectedCategories = [];
     this.selectedUniverses = [];
     this.searchText = null;
