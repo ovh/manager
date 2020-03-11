@@ -4,9 +4,10 @@ import { MAX_TICKETS_TO_DISPLAY } from './constants';
 
 export default class ManagerHubSupportCtrl {
   /* @ngInject */
-  constructor($http, $q, RedirectionService) {
+  constructor($http, $q, atInternet, RedirectionService) {
     this.$http = $http;
     this.$q = $q;
+    this.atInternet = atInternet;
     this.RedirectionService = RedirectionService;
   }
 
@@ -17,12 +18,13 @@ export default class ManagerHubSupportCtrl {
     });
     return this.$q
       .when(this.tickets ? this.tickets : this.fetchTickets())
-      .then((tickets) => {
-        if (Array.isArray(tickets)) {
-          this.tickets = tickets
+      .then(({ data, count }) => {
+        if (Array.isArray(data)) {
+          this.tickets = data
             .slice(0, MAX_TICKETS_TO_DISPLAY)
             .map((ticket) => new SupportTicket(ticket));
         }
+        this.ticketsCount = count;
       })
       .finally(() => {
         this.isLoading = false;
@@ -35,6 +37,13 @@ export default class ManagerHubSupportCtrl {
         serviceType: 'aapi',
       })
       .then(({ data }) => data)
-      .then((result) => get(result, 'data.support.data.data'));
+      .then((result) => get(result, 'data.support.data'));
+  }
+
+  onSeeMore() {
+    this.atInternet.trackClick({
+      name: `${this.trackingPrefix}::activity::assistance::show-all`,
+      type: 'navigation',
+    });
   }
 }
