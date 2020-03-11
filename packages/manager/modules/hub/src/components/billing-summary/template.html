@@ -20,13 +20,23 @@
         </span>
         <span data-translate="hub_billing_summary_debt_null"></span>
     </p>
-    <p
-        data-ng-if="$ctrl.debt.dueAmount.value > 0"
-        data-translate="hub_billing_summary_debt"
-        data-translate-values="{
-         debt: $ctrl.formattedDebtPrice
-       }"
-    ></p>
+    <p data-ng-if="$ctrl.debt.dueAmount.value > 0">
+        <span
+            data-translate="hub_billing_summary_debt"
+            data-translate-values="{
+                debt: $ctrl.formattedDebtPrice
+              }"
+        >
+        </span>
+        <a
+            class="d-block"
+            data-ng-href="{{:: $ctrl.RedirectionService.getURL('debtPay') }}"
+            data-translate="hub_billing_summary_debt_pay"
+            target="_blank"
+            rel="noopener"
+        >
+        </a>
+    </p>
     <a
         class="manager-hub-billing-summary_billing-link"
         data-ng-href="{{ $ctrl.getBillingURL() }}"
