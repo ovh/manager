@@ -9,11 +9,6 @@ ovh-manager-hub-tile {
     border-radius: 0.5rem;
     box-shadow: 0 0 8px 0 @oui-color-mischka;
 
-    &__header {
-      display: flex;
-      justify-content: space-between;
-    }
-
     .oui-tile__title {
       color: @oui-color-sapphire;
       font-weight: bold;
@@ -30,24 +25,11 @@ ovh-manager-hub-tile {
     }
 
     .hub-button {
-      font-weight: bold;
-      text-decoration: none;
-      color: @text-color;
       border-radius: 0.5rem;
-      padding: 0.3rem 0.8rem 0.4rem 0.8rem;
-      margin-right: 1rem;
 
-      &__right-arrow {
-        vertical-align: text-bottom;
+      .oui-icon::before {
         color: @text-color;
-
-        &::before {
-          vertical-align: bottom;
-          width: 1.4rem;
-          height: 1.4rem;
-          font-size: 1.4rem;
-          line-height: 1.4rem;
-        }
+        font-size: 1.5rem;
       }
 
       &:hover {
