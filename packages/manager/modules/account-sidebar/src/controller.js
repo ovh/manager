@@ -25,7 +25,11 @@ export default class OvhManagerAccountSidebarCtrl {
         this.hasChatbot = constants.CHATBOT_SUBSIDIARIES.includes(
           ovhSubsidiary,
         );
-        this.links = this.getLinks();
+      })
+      .then(() => this.$translate.refresh())
+      .then(() => this.getLinks())
+      .then((links) => {
+        this.links = links;
       });
   }
 
