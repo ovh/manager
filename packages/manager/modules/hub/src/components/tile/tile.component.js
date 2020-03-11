@@ -7,6 +7,7 @@ export default {
     heading: '@',
     href: '@',
     onClick: '&?',
+    hideHeading: '<?',
   },
   template,
   transclude: true,

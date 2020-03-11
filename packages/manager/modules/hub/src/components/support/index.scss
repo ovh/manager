@@ -19,13 +19,11 @@
   }
 
   table {
-    margin-top: 1rem;
-
     tr {
       border-bottom: 1px solid #eee;
 
       td {
-        padding-bottom: 1rem;
+        padding: 1rem 0;
       }
 
       td:first-child {
@@ -50,6 +48,5 @@
     background-repeat: no-repeat;
     height: 12rem;
     background-position: center;
-    margin-top: -2rem;
   }
 }
