@@ -113,3 +113,9 @@ h3 {
     fill: $hub-button-fg-color;
   }
 }
+
+a,
+.oui-link {
+  color: $hub-link-color;
+  font-weight: $hub-font-weight-semibold;
+}
