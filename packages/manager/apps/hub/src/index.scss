@@ -5,6 +5,18 @@
 @import '~bootstrap4/scss/_grid.scss';
 @import '@ovh-ux/manager-hub/src/variables.scss';
 
+.oui-field__label {
+  color: $hub-text-color;
+}
+
+.oui-icon {
+  color: $hub-primary-color;
+}
+
+.oui-input-group_search .oui-icon {
+  color: $hub-primary-color;
+}
+
 .oui-navbar {
   background-color: initial;
   box-shadow: 0 0 6px 0 rgba(0, 14, 156, 0.2);
@@ -118,4 +130,42 @@ a,
 .oui-link {
   color: $hub-primary-color;
   font-weight: $hub-font-weight-semibold;
+}
+
+.oui-ui-select,
+.oui-ui-select_multiple {
+  .ui-select-match-container {
+    border-color: $hub-border-color;
+
+    &:focus,
+    &:hover {
+      box-shadow: none;
+      border-color: $hub-border-color;
+      background-color: rgb(239, 249, 253);
+    }
+
+    &:focus {
+      border-color: $hub-primary-color;
+      color: $hub-primary-color;
+    }
+  }
+}
+
+.oui-input {
+  border-color: $hub-border-color;
+  border-radius: 0;
+  box-shadow: none;
+  transition: all ease-in 200ms;
+
+  &:focus,
+  &:hover {
+    box-shadow: none;
+    border-color: $hub-border-color;
+    background-color: rgb(239, 249, 253);
+  }
+
+  &:focus {
+    border-color: $hub-primary-color;
+    color: $hub-primary-color;
+  }
 }
