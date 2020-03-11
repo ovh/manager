@@ -1,41 +1,66 @@
-<h1 data-translate="manager_hub_catalog"></h1>
-<div class="d-flex justify-content-around align-items-center flex-wrap">
-    <span class="oui-field__label" data-translate="manager_hub_catalog_filter">
-    </span>
-    <oui-field
-        label="{{:: 'manager_hub_catalog_universe' | translate }}"
-        size="m"
+<div class="container-fluid">
+    <h1 data-translate="manager_hub_catalog"></h1>
+    <form
+        novalidate
+        class="d-flex justify-content-around align-items-center flex-wrap"
     >
-        <oui-select
-            name="universe"
-            model="$ctrl.selectedUniverses"
-            items="$ctrl.universes"
-            multiple
-            on-change="$ctrl.onUniverseChange()"
+        <span
+            class="oui-field__label"
+            data-translate="manager_hub_catalog_filter"
         >
-        </oui-select>
-    </oui-field>
-    <oui-field
-        label="{{:: 'manager_hub_catalog_category' | translate }}"
-        size="m"
-    >
-        <oui-select
-            name="category"
-            model="$ctrl.selectedCategories"
-            items="$ctrl.categories"
-            multiple
-            on-change="$ctrl.filterItems()"
+        </span>
+        <oui-field
+            label="{{:: 'manager_hub_catalog_universe' | translate }}"
+            size="m"
         >
-        </oui-select>
-    </oui-field>
-    <oui-search
-        data-model="$ctrl.searchText"
-        data-on-reset="$ctrl.filterItems()"
-        data-on-submit="$ctrl.filterItems()"
-    >
-    </oui-search>
-    <oui-button data-variant="link" on-click="$ctrl.reset()">
-        <span data-translate="manager_hub_catalog_reset"></span>
-    </oui-button>
+            <oui-select
+                name="universe"
+                model="$ctrl.selectedUniverses"
+                items="$ctrl.universes"
+                multiple
+                on-change="$ctrl.onUniverseChange()"
+            >
+            </oui-select>
+        </oui-field>
+        <oui-field
+            label="{{:: 'manager_hub_catalog_category' | translate }}"
+            size="m"
+        >
+            <oui-select
+                name="category"
+                model="$ctrl.selectedCategories"
+                items="$ctrl.categories"
+                multiple
+                on-change="$ctrl.filterItems()"
+            >
+            </oui-select>
+        </oui-field>
+        <div class="oui-search">
+            <div class="oui-input-group oui-input-group_search mb-0">
+                <input
+                    type="text"
+                    class="oui-input"
+                    data-ng-model="$ctrl.searchText"
+                />
+                <button
+                    class="oui-button right-0"
+                    type="button"
+                    data-ng-click="$ctrl.filterItems()"
+                >
+                    <span
+                        class="oui-icon oui-icon-search"
+                        aria-hidden="true"
+                    ></span>
+                    <span
+                        class="sr-only"
+                        data-translate="manager_hub_catalog_search"
+                    ></span>
+                </button>
+            </div>
+        </div>
+        <oui-button data-variant="link" on-click="$ctrl.reset()">
+            <span data-translate="manager_hub_catalog_reset"></span>
+        </oui-button>
+    </form>
+    <hub-catalog-items items="$ctrl.items"></hub-catalog-items>
 </div>
-<hub-catalog-items items="$ctrl.items"></hub-catalog-items>
