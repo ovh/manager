@@ -11,6 +11,7 @@ const URI = {
   billing: '#/billing/history',
   catalog: '#/catalog',
   contacts: '#/contacts/services',
+  debtPay: '#/billing/history/debt/all/pay',
   domain: '#/configuration/domain/:domain',
   orders: '#/billing/orders',
   paymentMethod: '#/billing/payment/method',
@@ -27,6 +28,7 @@ export default {
     billing: `${managerRoot.EU}/manager/dedicated/${URI.billing}`,
     catalog: `${managerRoot.EU}/manager/${URI.catalog}`,
     contacts: `${managerRoot.EU}/manager/dedicated/${URI.contacts}`,
+    debtPay: `${managerRoot.EU}/manager/dedicated/${URI.debtPay}`,
     domain: `${managerRoot.EU}/manager/web/${URI.domain}`,
     guides: {
       home: {
@@ -63,6 +65,7 @@ export default {
     billing: `${managerRoot.CA}/manager/${URI.billing}`,
     catalog: `${managerRoot.CA}/manager/${URI.catalog}`,
     contacts: '',
+    debtPay: `${managerRoot.CA}/manager/${URI.debtPay}`,
     domain: '',
     guides: {
       home: {
@@ -90,6 +93,7 @@ export default {
     billing: `${managerRoot.US}/manager/dedicated/${URI.billing}`,
     catalog: `${managerRoot.US}/manager/${URI.catalog}`,
     contacts: '',
+    debtPay: `${managerRoot.US}/manager/dedicated/${URI.debtPay}`,
     domain: '',
     guides: {
       home: {
