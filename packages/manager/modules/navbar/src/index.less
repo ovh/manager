@@ -129,6 +129,21 @@
   display: none;
 }
 
+ovh-manager-navbar-notifications-menu,
+ovh-manager-navbar-user-menu {
+  button {
+    cursor: pointer;
+  }
+}
+
+.ovh-manager-navbar-user-menu_expanded {
+  @media screen and (min-width: (@oui-responsive-breakpoint-medium - 1px)) {
+    button {
+      cursor: default;
+    }
+  }
+}
+
 .ovh-sidebar-wrapper {
   position: absolute;
   right: 0;
