@@ -1,3 +1,12 @@
+## [2.6.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@2.6.4...@ovh-ux/manager-public-cloud@2.6.5) (2020-03-11)
+
+
+### Bug Fixes
+
+* set the right favicons path ([#2467](https://github.com/ovh/manager/issues/2467)) ([2ee63eb](https://github.com/ovh/manager/commit/2ee63ebb9687e3ba8f2df56789fdfef16d74f6f8))
+
+
+
 ## [2.6.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@2.6.3...@ovh-ux/manager-public-cloud@2.6.4) (2020-03-09)
 
 

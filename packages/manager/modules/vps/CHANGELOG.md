@@ -1,3 +1,13 @@
+## [0.2.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@0.2.2...@ovh-ux/manager-vps@0.2.3) (2020-03-11)
+
+
+### Bug Fixes
+
+* **dashboard:** monitoring activation ([#2388](https://github.com/ovh/manager/issues/2388)) ([ab97ddd](https://github.com/ovh/manager/commit/ab97ddd886883121e46685efc562a5841583d607))
+* **secondary.dns:** add resolve to parameter to the modal ([#2416](https://github.com/ovh/manager/issues/2416)) ([636ee8e](https://github.com/ovh/manager/commit/636ee8eb2bf4bd6f2c0cc1854a81a2a0bf415085))
+
+
+
 ## [0.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@0.2.1...@ovh-ux/manager-vps@0.2.2) (2020-03-04)
 
 
