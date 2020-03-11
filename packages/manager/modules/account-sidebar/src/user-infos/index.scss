@@ -35,7 +35,7 @@
     font-size: $circle-radius;
     padding-top: $circle-radius * 0.2;
     background-color: $circle-color;
-    color: white;
+    color: white !important;
     border-radius: $circle-radius;
     text-align: center;
     font-weight: normal;
