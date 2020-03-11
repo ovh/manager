@@ -53,23 +53,6 @@ const EU = {
     SN: 'https://www.ovh.sn/support/',
     TN: 'https://www.ovh.com/tn/support/',
   },
-  support_contact: {
-    CZ: 'http://www.ovh.cz/podpora/',
-    DE: 'http://www.ovh.de/support/',
-    ES: 'http://www.ovh.es/soporte/',
-    FI: 'http://www.ovh-hosting.fi/tuki/',
-    FR: 'https://www.ovh.com/fr/support/nous-contacter/',
-    GB: 'http://www.ovh.co.uk/support/',
-    IE: 'http://www.ovh.ie/support/',
-    IT: 'http://www.ovh.it/supporto/',
-    LT: 'http://www.ovh.lt/pagalba/',
-    MA: 'https://www.ovh.ma/support/',
-    NL: 'http://www.ovh.nl/support/',
-    PL: 'https://www.ovh.pl/pomoc/',
-    PT: 'https://www.ovh.pt/suporte/',
-    SN: 'https://www.ovh.sn/support/',
-    TN: 'https://www.ovh.com/tn/support/',
-  },
   guides: {
     home: {
       CZ: 'https://docs.ovh.com/cz/cs/',

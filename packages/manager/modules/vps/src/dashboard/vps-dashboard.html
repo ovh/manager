@@ -385,7 +385,7 @@
                             <oui-action-menu-item
                                 data-ng-if="$ctrl.actions.manageSla.isAvailable()"
                                 data-text="{{ ::$ctrl.actions.manageSla.text }}"
-                                data-on-click="$ctrl.goToMonitoringSla(!$ctrl.vps.data.slaMonitoring)"
+                                data-on-click="$ctrl.goToMonitoringSla(false, !$ctrl.vps.data.slaMonitoring)"
                             ></oui-action-menu-item>
                             <oui-action-menu-item
                                 data-ng-if="$ctrl.actions.viewIpSla.isAvailable()"
@@ -397,7 +397,6 @@
                 </div>
             </oui-tile>
         </div>
-
         <div
             class="col-xm-12 col-md-4"
             data-ng-if="!$ctrl.vps.data.isExpired && $ctrl.hasFeature($ctrl.DASHBOARD_FEATURES.summary)"
