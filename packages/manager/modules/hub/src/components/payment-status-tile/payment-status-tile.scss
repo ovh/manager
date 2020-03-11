@@ -5,11 +5,6 @@ hub-payment-status {
   @import '~bootstrap4/scss/_utilities.scss';
   @import '~@ovh-ux/manager-hub/src/variables.scss';
 
-  .service-name-link {
-    color: $hub-link-color;
-    font-weight: bold;
-  }
-
   .service-expiry {
     color: $hub-status-expired-color;
     vertical-align: middle;
