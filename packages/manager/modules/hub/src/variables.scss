@@ -1,4 +1,5 @@
 $hub-brand-color: #001191;
+$hub-primary-color: #0050d7;
 
 $hub-title-color: #001758;
 $hub-title-weight: 400;
@@ -12,7 +13,6 @@ $hub-text-weight: 400;
 
 $hub-font-size: 1rem;
 $hub-font-weight-semibold: 600;
-$hub-link-color: #0050d7;
 
 $hub-button-bg-color: #3046d1;
 $hub-button-fg-color: white;
@@ -24,6 +24,9 @@ $hub-status-error-color: rgb(193, 27, 27);
 $hub-status-expired-color: rgb(96, 104, 158);
 $hub-status-warning-color: rgb(139, 97, 17);
 $hub-status-success-color: rgb(38, 132, 3);
+
+$hub-border-color: #bef1ff;
+$hub-border-radius-default: 6pt;
 
 @mixin hub-link-button {
   background-color: $hub-button-bg-color;

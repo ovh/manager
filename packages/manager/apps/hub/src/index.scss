@@ -14,11 +14,11 @@
   }
 
   .oui-navbar-link {
-    color: $hub-link-color;
+    color: $hub-primary-color;
     font-weight: bold;
 
     .oui-icon {
-      color: $hub-link-color;
+      color: $hub-primary-color;
     }
   }
 
@@ -41,12 +41,12 @@
 
   .oui-navbar-link_active {
     background-color: initial;
-    border-bottom: 2px solid $hub-link-color;
+    border-bottom: 2px solid $hub-primary-color;
     box-sizing: border-box;
   }
 
   .oui-navbar-toggler__hamburger span {
-    background: $hub-link-color !important;
+    background: $hub-primary-color !important;
   }
 }
 
@@ -116,6 +116,6 @@ h3 {
 
 a,
 .oui-link {
-  color: $hub-link-color;
+  color: $hub-primary-color;
   font-weight: $hub-font-weight-semibold;
 }
