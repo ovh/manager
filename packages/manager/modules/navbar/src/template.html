@@ -48,6 +48,9 @@
             data-universe="$ctrl.navbarOptions.universe"
         ></ovh-manager-navbar-assistance-menu>
         <ovh-manager-navbar-user-menu
+            data-ng-class="{
+                'ovh-manager-navbar-user-menu_expanded': $ctrl.sidebarExpand,
+            }"
             data-user="$ctrl.user"
             data-on-click="$ctrl.onUserClick()"
         ></ovh-manager-navbar-user-menu>
@@ -64,7 +67,7 @@
     class="ovh-sidebar-wrapper"
     data-ng-class="{
         'sidebar-expand': $ctrl.sidebarExpand,
-     }"
+    }"
     data-ng-attr-aria-expanded="{{ $ctrl.isSidebarVisible }}"
 >
     <ovh-manager-account-sidebar></ovh-manager-account-sidebar>
