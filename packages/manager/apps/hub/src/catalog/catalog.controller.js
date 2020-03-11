@@ -24,8 +24,13 @@ export default class CatalogController {
         this.matchUniverses(product) &&
         this.matchSearchText(product),
     );
-    this.categories = CatalogController.getAvailableCategories(items);
     this.items = CatalogController.groupItems(items);
+    return items;
+  }
+
+  onUniverseChange() {
+    const items = this.filterItems();
+    this.categories = CatalogController.getAvailableCategories(items);
   }
 
   matchCategories(product) {
