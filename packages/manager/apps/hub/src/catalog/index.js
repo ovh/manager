@@ -8,6 +8,8 @@ import ovhManagerHub from '@ovh-ux/manager-hub';
 import component from './catalog.component';
 import routing from './routing';
 
+import './catalog.scss';
+
 const moduleName = 'ovhManagerHubCatalogPage';
 
 angular
