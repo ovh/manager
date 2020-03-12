@@ -1,18 +1,18 @@
 <div class="row">
     <div
-        class="col-md-6 col-xl-4 mb-2"
-        data-ng-repeat="(product, data) in $ctrl.products track by product"
+        class="col-md-6 mb-2 mb-md-4"
+        data-ng-repeat="product in $ctrl.products | limitTo: ($ctrl.expand ? $ctrl.products.length : $ctrl.DEFAULT_DISPLAYED_TILES) track by product.productType"
     >
         <ovh-manager-hub-tile
-            heading="{{:: 'manager_hub_products_' + product | translate }}"
-            badge-text="{{ data.count }}"
+            heading="{{:: 'manager_hub_products_' + product.productType | translate }}"
+            badge-text="{{ product.count }}"
             class="oui-list"
             data-on-click="$ctrl.onProductSelect({ productType: product })"
         >
             <ul class="oui-list__items">
                 <li
                     class="oui-list__item"
-                    data-ng-repeat="service in data.data  | limitTo: $ctrl.DISPLAYED_PRODUCTS_NUMBER track by service.serviceId"
+                    data-ng-repeat="service in product.data  | limitTo: $ctrl.DISPLAYED_PRODUCTS_NUMBER track by service.serviceId"
                 >
                     <a
                         data-ng-href="{{:: service.url }}"
@@ -26,3 +26,20 @@
         </ovh-manager-hub-tile>
     </div>
 </div>
+<button
+    type="button"
+    class="oui-button oui-button_full-width oui-button_link oui-button_icon-right mb-5"
+    data-ng-click="$ctrl.toggleExpand()"
+>
+    <span
+        data-translate="{{ $ctrl.expand ? 'manager_hub_products_see_less' : 'manager_hub_products_see_more' }}"
+    ></span>
+    <span
+        class="oui-icon"
+        aria-hidden="true"
+        data-ng-class="{
+            'oui-icon-chevron-up_extra-thin' : $ctrl.expand,
+            'oui-icon-chevron-down_extra-thin': !$ctrl.expand
+        }"
+    ></span>
+</button>

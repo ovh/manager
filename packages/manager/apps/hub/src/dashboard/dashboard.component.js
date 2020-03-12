@@ -9,7 +9,7 @@ export default {
     goToProductPage: '<',
     notifications: '<',
     order: '<',
-    services: '<',
+    products: '<',
     trackingPrefix: '<',
   },
   template,
