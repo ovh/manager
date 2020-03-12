@@ -36,7 +36,6 @@ angular.module('App').controller(
       this.edit = this.$scope.currentActionData.edit || false;
       this.subdomainPreset =
         this.$scope.currentActionData.subdomainPreset || '';
-
       this.loading = {
         checkSubDomain: false,
         resume: false,
@@ -79,7 +78,7 @@ angular.module('App').controller(
           this.model.fieldType,
           this.model.subDomainToDisplay,
           this.model.ttl,
-          this.model.target.value,
+          this.model.target,
         ]),
         () => {
           this.generateTarget();
@@ -88,11 +87,19 @@ angular.module('App').controller(
       );
     }
 
+    bindModelValue(fieldType, modelTarget, value) {
+      set(this.model.target, modelTarget, value);
+      this.setTargetValue(fieldType);
+    }
+
     initializeTarget() {
       this.model.target = {};
       if (this.model.fieldType.toLowerCase() === 'dkim') {
         this.model.target.t = { y: false, s: true };
         this.model.target.s = '';
+        this.model.target.k = { rsa: false };
+        this.model.target.h = { sha1: false, sha256: false };
+        this.model.target.value = '';
       }
       this.setTargetValue(this.model.fieldType);
     }
