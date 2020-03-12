@@ -1,0 +1,56 @@
+@import '@ovh-ux/manager-hub/src/variables.scss';
+
+.oui-button {
+  transition: all ease-in 200ms;
+  border-radius: $hub-border-radius-default;
+
+  &.oui-button_secondary {
+    border: 2px solid $hub-primary-color;
+
+    &,
+    .oui-icon {
+      color: $hub-primary-color;
+    }
+
+    &:hover,
+    &:focus {
+      background-color: rgb(239, 249, 253);
+    }
+  }
+
+  &.oui-button_icon-only {
+    background-color: transparent;
+    color: $hub-primary-color;
+
+    &:hover,
+    &:focus {
+      background-color: $hub-primary-color;
+      border: 2px solid transparent;
+      border-radius: $hub-border-radius-default;
+
+      &,
+      .oui-icon {
+        color: #fff;
+      }
+    }
+
+    &:disabled {
+      background-color: transparent;
+      color: rgb(196, 207, 219);
+    }
+  }
+
+  &:disabled {
+    &,
+    &:hover,
+    &:focus {
+      background-color: #c4cfdb;
+      border: 0;
+      color: #113f6d;
+
+      & .oui-icon::before {
+        color: #113f6d;
+      }
+    }
+  }
+}
