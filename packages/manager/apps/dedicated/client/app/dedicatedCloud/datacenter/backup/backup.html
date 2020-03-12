@@ -23,6 +23,15 @@
             ></span>
         </div>
         <section class="datacenter-backup-offers">
+            <oui-message
+                data-type="warning"
+                class="mb-3"
+                data-ng-if="$ctrl.backupOffersUnderProcess"
+            >
+                <span
+                    data-translate="dedicatedCloud_datacenter_backup_upgrade_blocked"
+                ></span>
+            </oui-message>
             <h4
                 class="mb-3"
                 data-translate="dedicatedCloud_datacenter_backup_choose_offers"
@@ -36,7 +45,7 @@
                 data-disabled="!$ctrl.backup.isActive()"
             ></dedicated-cloud-datacenter-backup-offers>
             <oui-button
-                data-disabled="!$ctrl.backup.isActive() || $ctrl.actualOffer === $ctrl.backup.backupOffer"
+                data-disabled="!$ctrl.backup.isActive() || $ctrl.actualOffer === $ctrl.backup.backupOffer || $ctrl.backupOffersUnderProcess"
                 data-variant="primary"
                 data-on-click="$ctrl.goToUpgradeOffer($ctrl.actualOffer)"
             >
@@ -51,8 +60,20 @@
                 class="mb-3 mt-2"
                 data-translate="dedicatedCloud_datacenter_backup_daily_report_title"
             ></h4>
+            <oui-message
+                data-type="warning"
+                class="mb-3"
+                data-ng-if="$ctrl.backupOffersUnderProcess"
+            >
+                <span
+                    data-translate="dedicatedCloud_datacenter_backup_change_options_blocked"
+                ></span>
+            </oui-message>
             <p
-                data-translate="dedicatedCloud_datacenter_backup_daily_report_description"
+                data-translate="dedicatedCloud_datacenter_backup_daily_report_description_1"
+            ></p>
+            <p
+                data-translate="dedicatedCloud_datacenter_backup_daily_report_description_2"
             ></p>
             <form
                 name="backupCapabilitiesForm"
@@ -124,7 +145,7 @@
                     <oui-button
                         data-variant="primary"
                         data-text="{{ ::'dedicatedCloud_datacenter_backup_capability_update' | translate }}"
-                        data-disabled="!backupCapabilitiesForm.$dirty"
+                        data-disabled="!backupCapabilitiesForm.$dirty || $ctrl.backupOffersUnderProcess"
                         type="submit"
                         data-ng-if="!$ctrl.loader.updatingCapabilities"
                     ></oui-button>

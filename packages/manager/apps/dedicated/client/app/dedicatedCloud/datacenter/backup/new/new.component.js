@@ -5,9 +5,11 @@ export default {
   bindings: {
     backup: '<',
     backupOffers: '<',
+    backupOffersUnderProcess: '<',
     backupTariffUrl: '@',
     currentUser: '<',
     datacenterId: '<',
+    enabledBackupOffer: '<',
     goToBackup: '<',
     productId: '<',
     operationsUrl: '<',

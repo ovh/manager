@@ -1,4 +1,10 @@
+import filter from 'lodash/filter';
+import find from 'lodash/find';
 import get from 'lodash/get';
+import map from 'lodash/map';
+import some from 'lodash/some';
+
+import Backup from './backup.class';
 
 import {
   BACKUP_TARIFF_URL,
@@ -43,6 +49,40 @@ export default /* @ngInject */ ($stateProvider) => {
         $transition$.params().productId,
       datacenterId: /* @ngInject */ ($transition$) =>
         $transition$.params().datacenterId,
+      datacenterBackups: /* @ngInject */ (
+        $q,
+        datacenterList,
+        dedicatedCloudDatacenterBackupService,
+        productId,
+        datacenterId,
+      ) =>
+        $q.all(
+          map(
+            filter(
+              datacenterList,
+              (datacenter) => datacenter.id !== parseInt(datacenterId, 10),
+            ),
+            (datacenter) =>
+              dedicatedCloudDatacenterBackupService
+                .getBackup(productId, datacenter.id)
+                .then(
+                  (backup) =>
+                    new Backup({
+                      ...backup,
+                      datacenterId: datacenter.id,
+                    }),
+                ),
+          ),
+        ),
+      backupOffersUnderProcess: /* @ngInject */ (datacenterBackups) =>
+        some(
+          datacenterBackups,
+          // If a backup is neither active nor inactive,
+          // it may be in processing states like enabling, disabling etc
+          (backup) => !backup.isActive() && !backup.isInactive(),
+        ),
+      enabledBackupOffer: /* @ngInject */ (datacenterBackups) =>
+        find(datacenterBackups, (backup) => backup.isActive()),
       backup: /* @ngInject */ (
         dedicatedCloudDatacenterBackupService,
         productId,
