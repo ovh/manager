@@ -2,6 +2,8 @@ import angular from 'angular';
 import '@ovh-ux/ng-translate-async-loader';
 import ovhManagerCore from '@ovh-ux/manager-core';
 import 'angular-translate';
+import products from '../products';
+
 import component from './component';
 
 const moduleName = 'ovhManagerHubProductTile';
@@ -12,6 +14,7 @@ angular
     'oui',
     ovhManagerCore,
     'pascalprecht.translate',
+    products,
   ])
   .component('hubProductListing', component);
 
