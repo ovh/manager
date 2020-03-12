@@ -12,6 +12,7 @@ export default class Backup {
     backupDurationInReport,
     backupOffer,
     backupSizeInReport,
+    datacenterId,
     diskSizeInReport,
     encryption,
     fullDayInReport,
@@ -27,6 +28,7 @@ export default class Backup {
       backupDurationInReport,
       backupOffer,
       backupSizeInReport,
+      datacenterId,
       diskSizeInReport,
       encryption,
       fullDayInReport,
@@ -73,9 +75,5 @@ export default class Backup {
 
   isPremium() {
     return this.backupOffer === BACKUP_OFFER_PREMIUM;
-  }
-
-  setState(state) {
-    this.state = state;
   }
 }

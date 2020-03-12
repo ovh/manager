@@ -22,7 +22,7 @@ export default class {
     return this.dedicatedCloudDatacenterBackupService
       .disableBackup(this.productId, this.datacenterId)
       .then(() => {
-        this.backup.setState(BACKUP_STATE_REMOVING);
+        this.backup.state = BACKUP_STATE_REMOVING;
         return this.goToBackup(
           this.$translate.instant(
             'dedicatedCloud_datacenter_backup_delete_success',

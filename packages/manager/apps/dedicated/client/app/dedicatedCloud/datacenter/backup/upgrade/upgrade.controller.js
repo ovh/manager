@@ -16,15 +16,17 @@ export default class {
   $onInit() {
     this.upgrading = false;
     this.dataReplicationConditionAccepted = false;
-    if (this.backup && this.backup.backupOffer) {
-      this.selectedOffer = find(this.backupOffers, {
-        offerName: this.backup.backupOffer,
-      });
-    }
+    this.selectedOffer = find(this.backupOffers, {
+      offerName: this.backup.backupOffer,
+    });
     if (this.actualOffer) {
       this.currentOffer = find(this.backupOffers, {
         offerName: this.actualOffer,
       });
+      this.dataReplicationConditionAccepted = !(
+        this.selectedOffer.replication &&
+        this.currentOffer.replication !== this.selectedOffer.replication
+      );
     }
   }
 

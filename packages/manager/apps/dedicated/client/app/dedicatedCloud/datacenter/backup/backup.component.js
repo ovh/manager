@@ -5,6 +5,7 @@ export default {
   bindings: {
     backup: '<',
     backupOffers: '<',
+    backupOffersUnderProcess: '<',
     currentUser: '<',
     datacenterId: '<',
     goToUpgradeOffer: '<',
