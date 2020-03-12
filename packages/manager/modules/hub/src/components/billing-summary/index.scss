@@ -51,6 +51,8 @@
       border-color: $text-color;
       border-width: 2px;
       box-shadow: none;
+      width: calc(100% - 2rem);
+      left: 1rem;
     }
 
     .oui-icon::before {
