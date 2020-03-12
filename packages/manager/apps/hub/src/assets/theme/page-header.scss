@@ -1,0 +1,14 @@
+@import '@ovh-ux/manager-hub/src/variables.scss';
+
+.oui-page-header {
+  background: $hub-background-color;
+
+  .oui-page-header__container {
+    padding-left: 0;
+  }
+
+  h1 {
+    color: $hub-primary-color;
+    font-weight: 400;
+  }
+}

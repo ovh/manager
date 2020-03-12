@@ -1,10 +1,12 @@
 <oui-page-header
+    class="mb-2"
     data-heading="{{:: 'manager_hub_products_' + $ctrl.productType | translate }}"
 ></oui-page-header>
 <oui-datagrid
     data-ng-if="$ctrl.rows"
     id="{{ $ctrl.datagridId }}"
     data-rows="$ctrl.rows"
+    data-row-loader="$ctrl.loadRow($row)"
     data-columns="$ctrl.columns"
     data-customizable
     data-criteria="$ctrl.criteria"
@@ -18,6 +20,7 @@
     data-ng-if="!$ctrl.rows"
     id="{{ $ctrl.datagridId }}"
     data-rows-loader="$ctrl.loadPage()"
+    data-row-loader="$ctrl.loadRow($row)"
     data-columns="$ctrl.columns"
     data-customizable
     data-criteria="$ctrl.criteria"
