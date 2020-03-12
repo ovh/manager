@@ -31,7 +31,7 @@ const getFirstColumnTemplate = (propertyId) => ({
   title: propertyId,
   property: propertyId,
   template: `
-      <a data-ng-href="{{ $row.url }}" data-ng-bind="$row.${propertyId}"></a>
+      <a data-ng-href="{{ $row.managerLink }}" data-ng-bind="$row.${propertyId}"></a>
     `,
   searchable: true,
   filterable: true,
@@ -76,6 +76,13 @@ export const resolves = {
         ),
       ),
     }),
+  loadRow: /* @ngInject */ (products, propertyId) => (service) => ({
+    ...service,
+    managerLink: get(
+      products.find(({ resource }) => resource.name === service[propertyId]),
+      'url',
+    ),
+  }),
   columns: /* @ngInject */ (dataModel, displayedColumns, propertyId) => {
     const columns = mapApiProperties(dataModel.properties).filter(
       ({ title, type }) => type && title !== propertyId,
