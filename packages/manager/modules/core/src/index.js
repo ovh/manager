@@ -29,6 +29,7 @@ import redirectionFilter from './redirection/redirection.filter';
 import redirectionService from './redirection/redirection.service';
 
 import {
+  HOSTNAME_REGIONS,
   LANGUAGES,
   MANAGER_URLS,
   REDIRECT_URLS,
@@ -246,3 +247,24 @@ angular
   );
 
 export default moduleName;
+
+export const bootstrapApplication = () => {
+  return fetch('/engine/2api/configuration')
+    .then((response) => {
+      if (response.status === 401) {
+        window.location.assign(
+          `/auth?action=disconnect&onsuccess=${encodeURIComponent(
+            window.location.href,
+          )}`,
+        );
+      }
+      return response.json();
+    })
+    .catch(() => ({
+      region: HOSTNAME_REGIONS[window.location.hostname],
+    }))
+    .then((configuration) => {
+      Environment.setRegion(configuration.region);
+      return configuration;
+    });
+};
