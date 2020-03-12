@@ -37,5 +37,7 @@
   "manager_hub_products_VEEAM_VEEAM_ENTERPRISE": "Veeam Enterpise",
   "manager_hub_products_VPS": "VPS",
   "manager_hub_products_VRACK": "vRacks",
-  "manager_hub_products_XDSL": "xDSL"
+  "manager_hub_products_XDSL": "xDSL",
+  "manager_hub_products_see_less": "Voir moins de services",
+  "manager_hub_products_see_more": "Voir plus de services"
 }
