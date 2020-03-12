@@ -29,7 +29,7 @@
     ></p>
     <a
         class="manager-hub-billing-summary_billing-link"
-        data-ng-href="{{:: $ctrl.RedirectionService.getURL('billing') }}"
+        data-ng-href="{{ $ctrl.getBillingURL() }}"
         data-track-on="click"
         data-track-name="{{:: $ctrl.trackingPrefix + '::billing::show-all' }}"
         data-track-type="navigation"
