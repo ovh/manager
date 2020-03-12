@@ -19,6 +19,7 @@ export default class ManagerHubBillingSummaryCtrl {
           data.total,
           get(data, 'currency.code'),
         );
+        this.buildPeriodFilter(data.period);
         return this.bills;
       });
     const loadDebt = this.$q
@@ -46,12 +47,14 @@ export default class ManagerHubBillingSummaryCtrl {
   onPeriodChange() {
     this.bills = null;
     this.formattedBillingPrice = null;
+
     return this.fetchBills(this.billingPeriod.value).then(({ data }) => {
       this.bills = data;
       this.formattedBillingPrice = this.getFormattedPrice(
         data.total,
         get(data, 'currency.code'),
       );
+      this.buildPeriodFilter(data.period);
     });
   }
 
@@ -61,6 +64,29 @@ export default class ManagerHubBillingSummaryCtrl {
       currency,
       maximumSignificantdigits: 1,
     }).format(price);
+  }
+
+  buildPeriodFilter({ from, to }) {
+    this.periodFilter = [
+      {
+        field: 'date',
+        comparator: 'isAfter',
+        reference: [from],
+      },
+      {
+        field: 'date',
+        comparator: 'isBefore',
+        reference: [to],
+      },
+    ];
+  }
+
+  getBillingURL() {
+    const url = this.RedirectionService.getURL('billing');
+    const separator = url.indexOf('?') >= 0 ? '&' : '?';
+    return `${url}${separator}filters=${encodeURIComponent(
+      JSON.stringify(this.periodFilter),
+    )}`;
   }
 
   fetchBills(monthlyPeriod = 1) {
