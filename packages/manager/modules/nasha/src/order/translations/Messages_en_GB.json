@@ -1,4 +1,4 @@
 {
- "nasha_order_title": "Order a HA-NAS",
- "nasha_order_validationPending": "Please finalise the payment for your <a href=\"{{url}}\" target=\"_blank\">purchase order</a>."
+  "nasha_order_title": "Order a HA-NAS",
+  "nasha_order_validationPending": "Please finalise the payment for your <a href=\"{{url}}\" target=\"_blank\">purchase order</a>."
 }

@@ -1212,5 +1212,6 @@
   "server_error_ola_terminate": "Si è verificato un errore durante la disattivazione del servizio: {{error}}",
   "server_error_vrack_attach": "Si è verificato un errore durante l'associazione della rete privata: {{error}}",
   "server_error_vrack_detach": "Si è verificato un errore durante la separazione della rete privata: {{error}}",
-  "server_error_bandwidth_order": "Si è verificato un errore durante l'ordine della banda passante: {{error}}"
+  "server_error_bandwidth_order": "Si è verificato un errore durante l'ordine della banda passante: {{error}}",
+  "plan_bandwidth-1000-burst-2gbps-infra-us": "2 Gbps di banda passante pubblica - Traffico illimitato"
 }
