@@ -62,10 +62,6 @@ export default class ManagerHubUserInfosCtrl {
     return `${capitalize(this.me.firstname)} ${capitalize(this.me.name)}`;
   }
 
-  getDisplayNicHandle() {
-    return toUpper(this.me.nichandle.replace(/-ovh$/, ''));
-  }
-
   logout() {
     this.atInternet.trackClick({
       name: 'hub::sidebar::profile::go-to-log-out',

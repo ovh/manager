@@ -1,20 +1,14 @@
 .manager-hub-user-infos {
-  $bg-color: white;
-  $border-radius: 0.5rem;
+  @import '@ovh-ux/manager-hub/src/variables.scss';
+
   $circle-radius: 2.5rem;
   $circle-color: #4bb2f6;
-  $link-color: #385cdb;
 
-  background-color: $bg-color;
+  background-color: $hub-background-color;
   box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.075);
   text-align: center;
-  border-radius: $border-radius;
+  border-radius: $hub-border-radius-default;
   padding: 0.25rem;
-
-  a {
-    color: $link-color;
-    font-weight: bold;
-  }
 
   hr {
     height: 2px;
@@ -25,7 +19,7 @@
   }
 
   &_text-small {
-    font-size: 0.8rem;
+    font-size: 0.9rem;
   }
 
   & &_initials {
@@ -35,7 +29,7 @@
     font-size: $circle-radius;
     padding-top: $circle-radius * 0.2;
     background-color: $circle-color;
-    color: white !important;
+    color: $hub-background-color !important;
     border-radius: $circle-radius;
     text-align: center;
     font-weight: normal;
@@ -49,8 +43,8 @@
   }
 
   &_user-name {
-    &__login {
-      color: $link-color;
+    span {
+      color: $hub-primary-color;
       font-weight: bold;
     }
 
@@ -75,8 +69,8 @@
   &_links {
     clear: both;
 
-    .btn.btn-link {
-      color: $link-color;
+    button.btn.btn-link {
+      color: $hub-primary-color;
       font-weight: bold;
     }
   }
