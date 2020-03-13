@@ -1,27 +1,21 @@
 import angular from 'angular';
-import 'angular-translate';
-import 'ovh-ui-angular';
-import uiRouter from '@uirouter/angularjs';
-import ngOvhTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
-import ovhManagerHub from '@ovh-ux/manager-hub';
+import '@uirouter/angularjs';
+import 'oclazyload';
 
-import component from './catalog.component';
-import routing from './routing';
+const moduleName = 'ovhManagerHubCatalogPageLazyLoading';
 
-import './catalog.scss';
+angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
+  /* @ngInject */ ($stateProvider) => {
+    $stateProvider.state('app.catalog.**', {
+      url: '/catalog',
+      lazyLoad: ($transition$) => {
+        const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-const moduleName = 'ovhManagerHubCatalogPage';
-
-angular
-  .module(moduleName, [
-    ngOvhTranslateAsyncLoader,
-    'oui',
-    ovhManagerHub,
-    'pascalprecht.translate',
-    uiRouter,
-  ])
-  .component('hubCatalog', component)
-  .config(routing)
-  .run(/* @ngTranslationsInject:json ./translations */);
-
+        return import('./catalog.module').then((mod) =>
+          $ocLazyLoad.inject(mod.default || mod),
+        );
+      },
+    });
+  },
+);
 export default moduleName;
