@@ -27,7 +27,7 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
       trackingPrefix: () => 'hub::dashboard',
     },
     componentProvider: /* @ngInject */ (services) =>
-      services.count === 0 ? 'hubOrderDashboard' : 'hubDashboard',
+      get(services, 'data.count') === 0 ? 'hubOrderDashboard' : 'hubDashboard',
   });
 
   $urlRouterProvider.otherwise('/');
