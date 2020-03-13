@@ -46,6 +46,6 @@ angular
   .run(/* @ngInject */($templateCache) => {
     $templateCache.put('ng-ovh-actions-menu/template-inner.html', innerTemplate);
   })
-  .run(/* @ngTranslationsInject ./translations */);
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

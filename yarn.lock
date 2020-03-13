@@ -1912,13 +1912,6 @@
   dependencies:
     lodash "^4.17.15"
 
-"@ovh-ux/ng-ovh-actions-menu@^5.0.4":
-  version "5.0.4"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-actions-menu/-/ng-ovh-actions-menu-5.0.4.tgz#10cce5e9cbd768b1c79680ecc523ddc5ca52c778"
-  integrity sha512-OLNLOJ2eStRFh2JU8zoVu8tckbo1G72xPU3jCpgBk2jwINXwkmxS9MDj9xE2bj0/ddzs5+BR8/i8ZHIA+qbrBQ==
-  dependencies:
-    lodash "^4.17.15"
-
 "@ovh-ux/ng-ovh-api-wrappers@^4.0.6":
   version "4.0.6"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-api-wrappers/-/ng-ovh-api-wrappers-4.0.6.tgz#fd3dc4fe745b3ea8c306a71bbbadb2e6aebe1e90"
