@@ -9,65 +9,64 @@
             data-translate-values="{ url: $ctrl.feedbackUrl }"
         ></span>
     </div>
-    <div class="container-fluid">
-        <hub-dashboard-welcome
-            data-name="$ctrl.me.firstname"
-        ></hub-dashboard-welcome>
-        <div
-            class="d-flex flex-wrap flex-lg-nowrap w-100 minw-0 align-items-center justify-content-between"
-        >
-            <ovh-manager-banner class="mb-4"></ovh-manager-banner>
-            <ovh-manager-hub-carousel
-                class="w-100"
-                items="$ctrl.notifications"
-                tracking-prefix="{{ $ctrl.trackingPrefix }}"
-            ></ovh-manager-hub-carousel>
-        </div>
-        <h2 data-translate="manager_hub_dashboard_overview"></h2>
-        <div class="row">
-            <div class="col-md-8">
-                <hub-payment-status
-                    services="$ctrl.billingServices.data"
-                    tracking-prefix="{{ $ctrl.trackingPrefix }}"
-                    total-count="$ctrl.billingServices.count"
-                    refresh="$ctrl.refreshBillingServices()"
-                >
-                </hub-payment-status>
-            </div>
-            <div class="col-md-4">
-                <hub-billing-summary
-                    bills="$ctrl.bills"
-                    tracking-prefix="hub::dashboard::activity"
-                    refresh="$ctrl.refresh('bills')"
-                >
-                </hub-billing-summary>
-            </div>
-        </div>
-        <div class="row mt-4">
-            <div class="col-md-8">
-                <ovh-manager-hub-support
-                    data-me="$ctrl.me"
-                    data-tickets="$ctrl.tickets"
-                    data-tracking-prefix="{{ $ctrl.trackingPrefix }}"
-                >
-                </ovh-manager-hub-support>
-            </div>
-            <div class="col-md-4">
-                <hub-order-tracking
-                    order="$ctrl.order"
-                    tracking-prefix="{{ $ctrl.trackingPrefix }}"
-                    refresh="$ctrl.refreshOrder()"
-                >
-                </hub-order-tracking>
-            </div>
-        </div>
-        <h2 data-translate="manager_hub_dashboard_services"></h2>
-        <hub-products
-            products="$ctrl.products"
-            on-product-select="$ctrl.goToProductPage(productType)"
+    <hub-dashboard-welcome
+        class="mt-2"
+        data-name="$ctrl.me.firstname"
+    ></hub-dashboard-welcome>
+    <div
+        class="d-flex flex-wrap flex-lg-nowrap w-100 minw-0 align-items-center justify-content-between"
+    >
+        <ovh-manager-banner class="mb-4"></ovh-manager-banner>
+        <ovh-manager-hub-carousel
+            class="w-100"
+            items="$ctrl.notifications"
             tracking-prefix="{{ $ctrl.trackingPrefix }}"
-            on-expand="$ctrl.expandProducts(expand)"
-            expand="$ctrl.expand"
-        ></hub-products>
+        ></ovh-manager-hub-carousel>
     </div>
+    <h2 data-translate="manager_hub_dashboard_overview"></h2>
+    <div class="row">
+        <div class="col-md-8">
+            <hub-payment-status
+                services="$ctrl.billingServices.data"
+                tracking-prefix="{{ $ctrl.trackingPrefix }}"
+                total-count="$ctrl.billingServices.count"
+                refresh="$ctrl.refreshBillingServices()"
+            >
+            </hub-payment-status>
+        </div>
+        <div class="col-md-4">
+            <hub-billing-summary
+                bills="$ctrl.bills"
+                tracking-prefix="hub::dashboard::activity"
+                refresh="$ctrl.refresh('bills')"
+            >
+            </hub-billing-summary>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-md-8">
+            <ovh-manager-hub-support
+                data-me="$ctrl.me"
+                data-tickets="$ctrl.tickets"
+                data-tracking-prefix="{{ $ctrl.trackingPrefix }}"
+            >
+            </ovh-manager-hub-support>
+        </div>
+        <div class="col-md-4">
+            <hub-order-tracking
+                order="$ctrl.order"
+                tracking-prefix="{{ $ctrl.trackingPrefix }}"
+                refresh="$ctrl.refreshOrder()"
+            >
+            </hub-order-tracking>
+        </div>
+    </div>
+    <h2 data-translate="manager_hub_dashboard_services"></h2>
+    <hub-products
+        products="$ctrl.products"
+        on-product-select="$ctrl.goToProductPage(productType)"
+        tracking-prefix="{{ $ctrl.trackingPrefix }}"
+        on-expand="$ctrl.expandProducts(expand)"
+        expand="$ctrl.expand"
+    ></hub-products>
 </div>
