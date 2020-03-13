@@ -1,4 +1,3 @@
-import mapValues from 'lodash/mapValues';
 import pick from 'lodash/pick';
 
 import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
@@ -7,11 +6,7 @@ import { urlQueryParams, params, component, resolves } from './config';
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.dashboard.exchange', {
     url: `email_exchange_service?${urlQueryParams}`,
-    // prevent reloading all resolves as we already have the data but save to url for bookmarking
-    params: mapValues(params, (param) => ({
-      ...param,
-      dynamic: true,
-    })),
+    params,
     component,
     resolve: {
       ...resolves,
