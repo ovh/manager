@@ -6,6 +6,8 @@ import angular from 'angular';
 import 'angular-translate';
 import uiRouter, { RejectType } from '@uirouter/angularjs';
 import ngOvhUiRouterLineProgress from '@ovh-ux/ng-ui-router-line-progress';
+import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
+
 import isString from 'lodash/isString';
 
 import 'ovh-ui-angular';
@@ -43,6 +45,7 @@ angular
       dashboard,
       errorPage,
       ngOvhUiRouterLineProgress,
+      ngUiRouterBreadcrumb,
       'pascalprecht.translate',
       'oui',
       ovhManagerCore,
