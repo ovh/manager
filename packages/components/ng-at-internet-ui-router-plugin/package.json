@@ -9,7 +9,11 @@
     "tracking",
     "ui-router"
   ],
-  "repository": "ovh-ux/ng-at-internet-ui-router-plugin",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ovh/manager.git",
+    "directory": "packages/components/ng-at-internet-ui-router-plugin"
+  },
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
   "files": [
@@ -20,30 +24,18 @@
   "browser": "./dist/umd/ng-at-internet-ui-router-plugin.js",
   "scripts": {
     "build": "rollup -c --environment BUILD:production",
-    "dev": "rollup -cw --environment BUILD:development",
-    "lint": "run-p lint:js lint:md",
-    "lint:js": "eslint --quiet --fix --format=pretty src",
-    "lint:md": "eslint --quiet --fix --format=pretty --ext .md .",
+    "dev": "rollup -c --environment BUILD:development",
+    "dev:watch": "yarn run dev --watch",
     "prepare": "yarn run build",
-    "test": "yarn run lint",
-    "version": "npx conventional-changelog-cli -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
-    "postversion": "git push && git push --tags"
+    "start": "lerna exec --stream --scope='@ovh-ux/ng-at-internet-ui-router-plugin' --include-dependencies -- yarn run build",
+    "start:dev": "lerna exec --stream --scope='@ovh-ux/ng-at-internet-ui-router-plugin' --include-dependencies -- yarn run dev",
+    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/ng-at-internet-ui-router-plugin' --include-dependencies -- yarn run dev:watch"
   },
   "dependencies": {
     "lodash": "^4.17.15"
   },
   "devDependencies": {
-    "@commitlint/cli": "^8.2.0",
-    "@commitlint/config-angular": "^8.2.0",
-    "@ovh-ux/component-rollup-config": "^7.0.0",
-    "eslint": "^6.8.0",
-    "eslint-config-airbnb-base": "^14.0.0",
-    "eslint-formatter-pretty": "^3.0.1",
-    "eslint-plugin-import": "^2.19.1",
-    "eslint-plugin-markdown": "^1.0.1",
-    "husky": "^3.1.0",
-    "lint-staged": "^9.5.0",
-    "npm-run-all": "^4.1.5"
+    "@ovh-ux/component-rollup-config": "^7.0.0"
   },
   "peerDependencies": {
     "@ovh-ux/ng-at-internet": "^4.0.0",
