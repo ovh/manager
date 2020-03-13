@@ -1,32 +1,21 @@
-import 'script-loader!jquery'; // eslint-disable-line
 import angular from 'angular';
-import 'angular-translate';
-import ngAtInternet from '@ovh-ux/ng-at-internet';
+import '@uirouter/angularjs';
+import 'oclazyload';
 
-import ovhManagerBanner from '@ovh-ux/manager-banner';
-import ovhManagerHub from '@ovh-ux/manager-hub';
-import listingPage from './products-list';
-import orderDashboard from './order-dashboard';
-import welcome from './welcome';
+const moduleName = 'ovhManagerHubDashboardLazyLoading';
 
-import component from './dashboard.component';
-import routing from './routing';
-import './dashboard.scss';
+angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
+  /* @ngInject */ ($stateProvider) => {
+    $stateProvider.state('app.dashboard.**', {
+      url: '/',
+      lazyLoad: ($transition$) => {
+        const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-const moduleName = 'ovhManagerHubDashboard';
-
-angular
-  .module(moduleName, [
-    listingPage,
-    ngAtInternet,
-    orderDashboard,
-    ovhManagerBanner,
-    ovhManagerHub,
-    'pascalprecht.translate',
-    welcome,
-  ])
-  .component('hubDashboard', component)
-  .config(routing)
-  .run(/* @ngTranslationsInject:json ./translations */);
-
+        return import('./dashboard.module').then((mod) =>
+          $ocLazyLoad.inject(mod.default || mod),
+        );
+      },
+    });
+  },
+);
 export default moduleName;
