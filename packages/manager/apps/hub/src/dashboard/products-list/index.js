@@ -17,7 +17,7 @@ angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
       },
     });
 
-    $stateProvider.state('app.dashboard.product.**', {
+    $stateProvider.state('app.dashboard.products.**', {
       url: ':product',
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
