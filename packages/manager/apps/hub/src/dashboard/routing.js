@@ -39,7 +39,7 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
       expand: /* @ngInject */ ($transition$) => $transition$.params().expand,
     },
     componentProvider: /* @ngInject */ (services) =>
-      services.count === 0 ? 'hubOrderDashboard' : 'hubDashboard',
+      get(services, 'data.count') === 0 ? 'hubOrderDashboard' : 'hubDashboard',
   });
 
   $urlRouterProvider.otherwise('/');
