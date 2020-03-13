@@ -17,4 +17,8 @@ export default class {
       type: 'action',
     });
   }
+
+  switchToAlert(index) {
+    this.index = index;
+  }
 }
