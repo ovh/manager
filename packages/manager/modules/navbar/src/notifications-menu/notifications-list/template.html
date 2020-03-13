@@ -22,7 +22,7 @@
         class="oui-navbar-notification__content"
         data-ng-if="::menuLink.url"
         data-ng-init="$ctrl.notificationsCreated = $last"
-        data-ng-click="$ctrl.toggleSublinkAction(menuLink, true)"
+        data-ng-click="$ctrl.onSublinkClick({ menuLink, linkClicked: true })"
         data-ng-href="{{::menuLink.url}}"
     >
         <div class="oui-navbar-notification__header">
@@ -45,4 +45,25 @@
         </div>
     </a>
     <!-- /Link (href) -->
+    <button
+        class="oui-navbar-notification__action"
+        type="button"
+        data-ng-if="!menuLink.isCompleted"
+        data-ng-click="$ctrl.onSublinkClick({ menuLink })"
+        data-oui-tooltip="{{(menuLink.isActive ?
+            'navbar_notifications_list_read' :
+            'navbar_notifications_list_unread') | translate
+        }}"
+    >
+        <span
+            class="oui-icon oui-icon-shape-dot"
+            data-ng-if="menuLink.isActive"
+            aria-hidden="true"
+        ></span>
+        <span
+            class="oui-icon oui-icon-shape-circle"
+            data-ng-if="!menuLink.isActive"
+            aria-hidden="true"
+        ></span>
+    </button>
 </div>
