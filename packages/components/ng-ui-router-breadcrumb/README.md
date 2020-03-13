@@ -11,6 +11,8 @@ yarn add @ovh-ux/ng-ui-router-breadcrumb
 ```
 ## Usage
 
+### `breadcrumb` resolve
+
 ```js
 import angular from 'angular';
 import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
@@ -30,6 +32,37 @@ angular
           breadcrumb: function () {
             return 'foo';
           }
+        }
+      });
+  });
+```
+
+### `hideBreadcrumb` resolve
+
+This is meant to be used if you want to hide the breadcrumb for some state but display it for some children. 
+
+```js
+import angular from 'angular';
+import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
+import uiRouter from '@uirouter/angularjs';
+
+angular
+  .module('myApp', [
+    ngUiRouterBreadcrumb,
+    uiRouter,
+  ])
+  .config(/* @ngInject */ ($stateProvider) => {
+    $stateProvider
+      .state('foo', {
+        url: '/foo',
+        template: '<h2>Foo</h2>',
+        resolve: {
+          breadcrumb: function () {
+            return 'foo';
+          },
+          hideBreadcrumb: function() {
+            return true
+          } 
         }
       });
   });
