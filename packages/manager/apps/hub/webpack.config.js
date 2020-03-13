@@ -37,6 +37,14 @@ module.exports = (env = {}) => {
       basePath: './src',
       lessPath: ['./node_modules'],
       root: path.resolve(__dirname, './src'),
+      assets: {
+        files: [
+          {
+            from: path.resolve(__dirname, './src/assets/images'),
+            to: 'assets/images/',
+          },
+        ],
+      },
     },
     REGION ? Object.assign(env, { region: REGION }) : env,
   );
