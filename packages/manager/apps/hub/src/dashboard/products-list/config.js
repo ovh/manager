@@ -97,6 +97,9 @@ export const resolves = {
         : !displayedColumns.includes(column.title),
     }));
   },
+  hideBreadcrumb: () => false,
+  breadcrumb: /* @ngInject */ ($translate, productType) =>
+    $translate.instant(`manager_hub_products_${productType}`),
 };
 
 export default {

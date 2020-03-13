@@ -47,8 +47,11 @@
             data-sidebar-links="{}"
         >
         </ovh-manager-navbar>
-        <div class="d-flex h-100 hub-main-view" data-ui-view="app">
-            <div data-ui-view class="w-100"></div>
+        <div class="container-fluid pt-4">
+            <ui-router-breadcrumb></ui-router-breadcrumb>
+            <div class="h-100 hub-main-view" data-ui-view="app">
+                <div data-ui-view class="w-100"></div>
+            </div>
         </div>
 
         <ovh-chatbot
