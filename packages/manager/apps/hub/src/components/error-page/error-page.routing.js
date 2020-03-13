@@ -12,6 +12,7 @@ export default /* @ngInject */ ($stateProvider) => {
       error: /* @ngInject */ ($transition$) => $transition$.params(),
       submitAction: /* @ngInject */ ($window) => () =>
         $window.location.reload(),
+      breadcrumb: () => null,
     },
   });
 };
