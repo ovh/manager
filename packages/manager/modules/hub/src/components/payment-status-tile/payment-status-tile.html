@@ -98,16 +98,12 @@
                                 </div>
                             </td>
                             <td class="oui-datagrid__cell">
-                                <oui-action-menu data-align="end" data-compact>
-                                    <oui-action-menu-item
-                                        data-href="{{ ::$ctrl.getServiceManagementLink(service) }}"
-                                        data-on-click="$ctrl.onServiceManagementClick()"
-                                    >
-                                        <span
-                                            data-translate="ovh_manager_hub_payment_status_tile_manage_service"
-                                        ></span>
-                                    </oui-action-menu-item>
-                                </oui-action-menu>
+                                <a
+                                    data-ng-href="{{ $ctrl.getServiceManagementLink(service) }}"
+                                    data-ng-click="$ctrl.onServiceManagementClick()"
+                                    data-translate="ovh_manager_hub_payment_status_tile_manage_service"
+                                >
+                                </a>
                             </td>
                         </tr>
                         <tr
