@@ -44,6 +44,7 @@ export const params = {
   columns: {
     squash: true,
     value: '[]',
+    dynamic: true,
   },
   ...ListLayoutHelper.stateParams,
 };
