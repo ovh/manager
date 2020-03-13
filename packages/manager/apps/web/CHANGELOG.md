@@ -1,3 +1,12 @@
+## [13.45.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.45.5...@ovh-ux/manager-web@13.45.6) (2020-03-13)
+
+
+### Bug Fixes
+
+* **domain.zone.record:** fix preview of dkim ([#2488](https://github.com/ovh/manager/issues/2488)) ([bb240f4](https://github.com/ovh/manager/commit/bb240f4650a9e03d75430aed1756e7287ac1e7de))
+
+
+
 ## [13.45.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.45.4...@ovh-ux/manager-web@13.45.5) (2020-03-09)
 
 
