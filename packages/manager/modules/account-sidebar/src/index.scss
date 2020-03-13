@@ -1,7 +1,5 @@
 .manager-hub-user-panel {
-  $bg-color: #def8ff;
-  $link-color: #0050d7;
-  $link-separator-color: #bef1ff;
+  $sidebar-bg-color: #def8ff;
 
   @import 'bootstrap4/scss/_functions.scss';
   @import 'bootstrap4/scss/_variables.scss';
@@ -10,34 +8,30 @@
   @import 'bootstrap4/scss/_grid.scss';
   @import 'bootstrap4/scss/_buttons.scss';
   @import 'bootstrap4/scss/_button-group.scss';
+  @import '@ovh-ux/manager-hub/src/variables.scss';
 
-  background-color: $bg-color;
+  background-color: $sidebar-bg-color;
   height: 100%;
   padding: 2rem;
   padding-top: 3rem;
 
-  &_divider {
-    display: block;
-    border-top: 1px solid $link-separator-color;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
+  h3 {
+    font-size: 1rem;
   }
 
-  hr {
-    border: none;
-    height: 1px;
-    color: $link-separator-color;
-    background-color: $link-separator-color;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
+  &_divider {
+    display: block;
+    border-top: 1px solid darken($sidebar-bg-color, 10%);
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
   }
 
   &_links {
     a,
-    button {
-      font-weight: bold !important;
-      color: $link-color;
-      padding: 0 !important;
+    .btn-link {
+      font-weight: bold;
+      color: $hub-primary-color;
+      padding: 0;
 
       .oui-icon {
         font-size: 1.5rem;
