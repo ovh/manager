@@ -30,12 +30,14 @@
         ></span>
     </button>
     <div class="circular-tile-container" data-ng-if="$ctrl.items.length > 1">
-        <div
+        <button
+            type="button"
             data-ng-repeat="el in $ctrl.items track by $index"
             class="circular-tile"
             data-ng-class="{
                     'circular-tile_active' : $index === $ctrl.index
                 }"
-        ></div>
+            data-ng-click="$ctrl.switchToAlert($index)"
+        ></button>
     </div>
 </div>
