@@ -6,7 +6,7 @@
     <oui-datagrid
         data-ng-if="$ctrl.rows"
         id="{{ $ctrl.datagridId }}"
-        data-rows="$ctrl.rows"
+        data-rows-loader="$ctrl.loadStaticRows()"
         data-row-loader="$ctrl.loadRow($row)"
         data-columns="$ctrl.columns"
         data-customizable
