@@ -2,7 +2,7 @@
 
 > Generate a random codename
 
-[![Downloads](https://badgen.net/npm/dt/@ovh-ux/codename-generator)](https://npmjs.com/package/@ovh-ux/codename-generator) [![Dependencies](https://badgen.net/david/dep/ovh-ux/codename-generator)](https://npmjs.com/package/@ovh-ux/codename-generator?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/codename-generator)](https://npmjs.com/package/@ovh-ux/codename-generator?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
+[![Downloads](https://badgen.net/npm/dt/@ovh-ux/codename-generator)](https://npmjs.com/package/@ovh-ux/codename-generator) [![Dependencies](https://badgen.net/david/dep/ovh-ux/manager/packages/manager/tools/codename-generator)](https://npmjs.com/package/@ovh-ux/codename-generator?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/manager/packages/manager/tools/codename-generator)](https://npmjs.com/package/@ovh-ux/codename-generator?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
 
 ## Installation
 
@@ -106,7 +106,7 @@ Calcium Gorilla
 
 ## Contributing
 
-Always feel free to help out! Whether it's [filing bugs and feature requests](https://github.com/ovh-ux/codename-generator/issues/new) or working on some of the [open issues](https://github.com/ovh-ux/codename-generator/issues), our [contributing guide](CONTRIBUTING.md) will help get you started.
+Always feel free to help out! Whether it's [filing bugs and feature requests](https://github.com/ovh/manager/issues/new) or working on some of the [open issues](https://github.com/ovh/manager/issues), our [contributing guide](https://github.com/ovh/manager/blob/master/CONTRIBUTING.md) will help get you started.
 
 ## License
 
