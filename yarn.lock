@@ -1947,13 +1947,6 @@
   dependencies:
     lodash "^4.17.15"
 
-"@ovh-ux/ng-ovh-checkbox-table@^1.0.4":
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-checkbox-table/-/ng-ovh-checkbox-table-1.0.4.tgz#2783e0d1abac196392bf5ff0b98942890c09e2cf"
-  integrity sha512-HoFgoY53cOjfhPTuHWneUvmHQnUZ2vGanD3XkZfNFPCoz3XDYGhf2XXTo6RNWF1l1/+grX1svX3QQO7dg4PFuA==
-  dependencies:
-    lodash "^4.17.15"
-
 "@ovh-ux/ng-ovh-contact@^4.0.5":
   version "4.0.5"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-contact/-/ng-ovh-contact-4.0.5.tgz#1579e3f2b8fbb8f501bc5765b782107ec059ab56"
