@@ -51,14 +51,19 @@ export default class ManagerHubBillingSummaryCtrl {
     this.bills = null;
     this.formattedBillingPrice = null;
 
-    return this.fetchBills(this.billingPeriod.value).then(({ data }) => {
-      this.bills = data;
-      this.formattedBillingPrice = this.getFormattedPrice(
-        data.total,
-        get(data, 'currency.code'),
-      );
-      this.buildPeriodFilter(data.period);
-    });
+    this.loading = true;
+    return this.fetchBills(this.billingPeriod.value)
+      .then(({ data }) => {
+        this.bills = data;
+        this.formattedBillingPrice = this.getFormattedPrice(
+          data.total,
+          get(data, 'currency.code'),
+        );
+        this.buildPeriodFilter(data.period);
+      })
+      .finally(() => {
+        this.loading = false;
+      });
   }
 
   getFormattedPrice(price, currency) {
