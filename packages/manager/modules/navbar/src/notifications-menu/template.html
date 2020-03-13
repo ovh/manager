@@ -30,6 +30,7 @@
                     data-ng-bind="time"
                 ></div>
                 <navbar-notifications-list
+                    on-sublink-click="$ctrl.toggleSublinkAction(menuLink, linkClicked)"
                     sublinks="sublinks"
                 ></navbar-notifications-list>
                 <!-- content -->
