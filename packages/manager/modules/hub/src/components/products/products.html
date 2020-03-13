@@ -7,7 +7,7 @@
             heading="{{:: 'manager_hub_products_' + product.productType | translate }}"
             badge-text="{{ product.count }}"
             class="oui-list"
-            data-on-click="$ctrl.onProductSelect({ productType: product })"
+            data-on-click="$ctrl.onProductSelect({ productType: product.productType })"
         >
             <ul class="oui-list__items">
                 <li
@@ -18,7 +18,7 @@
                         data-ng-href="{{:: service.url }}"
                         data-ng-bind="service.resource.displayName || service.resource.name"
                         data-track-on="click"
-                        data-track-name="{{ $ctrl.trackingPrefix + '::product::' + product + '::go-to-service' }}"
+                        data-track-name="{{ $ctrl.trackingPrefix + '::product::' + product.productType + '::go-to-service' }}"
                     >
                     </a>
                 </li>
