@@ -6,8 +6,8 @@ const moduleName = 'ovhManagerHubCatalogPageLazyLoading';
 
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
   /* @ngInject */ ($stateProvider) => {
-    $stateProvider.state('app.catalog.**', {
-      url: '/catalog',
+    $stateProvider.state('app.dashboard.catalog.**', {
+      url: 'catalog',
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
