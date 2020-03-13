@@ -8,5 +8,9 @@
   "vps_dashboard_tile_configuration_upgrade_action_validation_with_no_payment_method_monthly": "En cliquant sur « Valider et payer », vous allez être redirigé vers un bon de commande pour régler la somme de {{ price }} due au prorata temporis.",
   "vps_dashboard_tile_configuration_upgrade_action_validation_with_no_payment_method_upfront": "En cliquant sur « Valider et payer », vous allez être redirigé vers un bon de commande pour régler la somme de {{ price }} supplémentaires pour les {{ monthCount }} mois restants de votre engagement.",
   "vps_dashboard_tile_configuration_upgrade_action_validate_and_pay": "Valider et payer",
-  "vps_dashboard_tile_configuration_upgrade_action_cancel": "Annuler"
+  "vps_dashboard_tile_configuration_upgrade_action_cancel": "Annuler",
+  "vps_dashboard_tile_configuration_upgrade_success_title": "Votre modification a bien été prise en compte",
+  "vps_dashboard_tile_configuration_upgrade_success_explain": "Une fois l’évolution de votre VPS effectuée dans un délai maximum de 2 heures, vous recevrez un e-mail de confirmation. Le redémarrage de votre VPS sera nécessaire pour profiter de votre nouvelle configuration.",
+  "vps_dashboard_tile_configuration_upgrade_success_follow_order": "Suivre ma commande",
+  "vps_dashboard_tile_configuration_upgrade_error": "Une erreur est survenue lors de l'amélioration de votre VPS."
 }

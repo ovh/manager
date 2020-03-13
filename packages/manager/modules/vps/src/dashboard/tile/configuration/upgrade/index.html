@@ -1,21 +1,33 @@
-<div class="vps-dashboard-tile-configuration-upgrade">
-    <span
-        class="d-block"
-        data-translate="{{ 'vps_dashboard_tile_configuration_upgrade_' + $ctrl.resolve.upgradeType + '_action_details' }}"
-        data-translate-values="{ memoryQuantity: $ctrl.resolve.vps.ram.value, storageQuantity: $ctrl.resolve.stateVps.model.disk }"
-    >
-    </span>
+<div
+    class="vps-dashboard-tile-configuration-upgrade"
+    data-ng-switch="$ctrl.resolve.upgradeStatus"
+>
+    <div data-ng-switch-when="success">
+        <p
+            data-translate="vps_dashboard_tile_configuration_upgrade_success_explain"
+        ></p>
+    </div>
 
-    <span
-        class="d-block"
-        data-translate="vps_dashboard_tile_configuration_upgrade_action_price"
-        data-translate-values="{ price: $ctrl.resolve.availableConfigTileUpgrades[$ctrl.resolve.upgradeType].diff.text }"
-    >
-    </span>
+    <div data-ng-switch-default>
+        <span
+            class="d-block"
+            data-translate="{{ 'vps_dashboard_tile_configuration_upgrade_' + $ctrl.resolve.upgradeType + '_action_details' }}"
+            data-translate-values="{ memoryQuantity: $ctrl.resolve.vps.ram.value, storageQuantity: $ctrl.resolve.stateVps.model.disk }"
+        >
+        </span>
 
-    <span
-        class="d-block"
-        data-translate="vps_dashboard_tile_configuration_upgrade_action_validation"
-    >
-    </span>
+        <span
+            class="d-block"
+            data-translate="vps_dashboard_tile_configuration_upgrade_action_price"
+            data-translate-values="{ price: $ctrl.resolve.configurationTile[$ctrl.resolve.upgradeType].diff.text }"
+        >
+        </span>
+
+        <span
+            class="d-block"
+            data-translate="vps_dashboard_tile_configuration_upgrade_action_validation"
+            data-translate-values="{ prorataPrice: $ctrl.resolve.upgradeInfo.order.prices.withTax.text }"
+        >
+        </span>
+    </div>
 </div>

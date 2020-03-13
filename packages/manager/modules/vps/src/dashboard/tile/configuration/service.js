@@ -75,12 +75,23 @@ class ConfigurationTileService {
    *  Get informations about the upgrades available from configuration tile in the dashboard.
    *  These plans will be useful for upgrade modal.
    *
-   *  @param  {Array}   availableUpgrades response from the GET /order/upgrade/vps/{serviceName} API call.
    *  @param  {Object}  catalog           response from the GET /order/catalog/public/virtualprivateserver.
    *
    *  @return {Object}
    */
   getAvailableUpgrades(catalog) {
+    if (this.vpsModel.vcore === 8) {
+      // if vps elite - no upgrade available from configuration tile
+      return {
+        memory: {
+          plan: null,
+        },
+        storage: {
+          plan: null,
+        },
+      };
+    }
+
     // get next ram plan infos
     const nextRamVps = find(catalog.products, ({ blobs }) => {
       if (!get(blobs, 'technical')) {

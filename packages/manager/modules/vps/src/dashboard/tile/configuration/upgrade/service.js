@@ -4,10 +4,18 @@ export default class VpsUpgradeService {
     this.$http = $http;
   }
 
-  getUpgrade(serviceName, planCode) {
+  getUpgrade(serviceName, planCode, params) {
     return this.$http
       .get(`/order/upgrade/vps/${serviceName}/${planCode}`, {
-        params: { quantity: 1 },
+        params,
+      })
+      .then(({ data }) => data);
+  }
+
+  startUpgrade(serviceName, planCode, httpData) {
+    return this.$http
+      .post(`/order/upgrade/vps/${serviceName}/${planCode}`, {
+        data: httpData,
       })
       .then(({ data }) => data);
   }

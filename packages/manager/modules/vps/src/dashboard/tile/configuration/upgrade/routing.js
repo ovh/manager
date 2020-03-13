@@ -1,13 +1,15 @@
 import get from 'lodash/get';
 import set from 'lodash/set';
 
+import { Environment } from '@ovh-ux/manager-config';
 import VpsConfigurationTile from '../service';
+import { ORDER_TRACKING_URLS } from './constants';
 
 import component from './component';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('vps.detail.dashboard.configuration.upgrade', {
-    url: '/upgrade/{upgradeType:memory|storage}',
+    url: '/upgrade/{upgradeType:memory|storage}?upgradeStatus&upgradeOrderId',
     layout: 'ouiModal',
     redirectTo: (transition) => {
       const $q = transition.injector().get('$q');
@@ -66,21 +68,56 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     component: component.name,
     resolve: {
-      upgradeType: ($transition$) => $transition$.params().upgradeType,
+      upgradeType: /* @ngInject */ ($transition$) =>
+        $transition$.params().upgradeType,
+
+      upgradeStatus: /* @ngInject */ ($transition$) =>
+        $transition$.params().upgradeStatus,
+
+      upgradeOrderId: /* @ngInject */ ($transition$) =>
+        $transition$.params().upgradeOrderId,
 
       redirectTo: () => 'vps.detail.dashboard',
 
-      // upgradeInfo: /* @ngInject */ (
-      //   availableConfigTileUpgrades,
-      //   serviceName,
-      //   upgradeType,
-      //   vpsUpgrade
-      // ) => vpsUpgrade
-      //   .getUpgrade(serviceName, get(availableConfigTileUpgrades, `${upgradeType}.plan.planCode`)),
+      upgradeInfo: /* @ngInject */ (
+        configurationTile,
+        serviceName,
+        upgradeStatus,
+        upgradeType,
+        vpsUpgrade,
+      ) => {
+        if (upgradeStatus === 'success') {
+          return true;
+        }
+
+        return vpsUpgrade.getUpgrade(
+          serviceName,
+          get(configurationTile.upgrades, `${upgradeType}.plan.planCode`),
+          { quantity: 1 },
+        );
+      },
+
+      loaders: () => ({
+        upgrade: false,
+      }),
 
       /* ----------  ouiModal layout resolves  ---------- */
 
-      heading: /* @ngInject */ ($translate, stateVps, upgradeType, vps) => {
+      type: /* @ngInject */ (upgradeStatus) => upgradeStatus,
+
+      heading: /* @ngInject */ (
+        $translate,
+        stateVps,
+        upgradeStatus,
+        upgradeType,
+        vps,
+      ) => {
+        if (upgradeStatus === 'success') {
+          return $translate.instant(
+            'vps_dashboard_tile_configuration_upgrade_success_title',
+          );
+        }
+
         const translationKey = `vps_dashboard_tile_configuration_upgrade_${upgradeType}_action_title`;
         const translationValues =
           upgradeType === 'memory'
@@ -96,17 +133,84 @@ export default /* @ngInject */ ($stateProvider) => {
         return $translate.instant(translationKey, translationValues);
       },
 
-      primaryLabel: /* @ngInject */ ($translate) =>
-        $translate.instant(
-          'vps_dashboard_tile_configuration_upgrade_action_validate_and_pay',
-        ),
+      primaryLabel: /* @ngInject */ ($translate, upgradeStatus) => {
+        const translationKey =
+          upgradeStatus === 'success'
+            ? 'vps_dashboard_tile_configuration_upgrade_success_follow_order'
+            : 'vps_dashboard_tile_configuration_upgrade_action_validate_and_pay';
 
-      secondaryLabel: /* @ngInject */ ($translate) =>
-        $translate.instant(
-          'vps_dashboard_tile_configuration_upgrade_action_cancel',
-        ),
+        return $translate.instant(translationKey);
+      },
+
+      primaryAction: /* @ngInject */ (
+        $state,
+        $translate,
+        $window,
+        configurationTile,
+        goBack,
+        loaders,
+        serviceName,
+        upgradeOrderId,
+        upgradeStatus,
+        upgradeType,
+        vpsUpgrade,
+      ) => () => {
+        if (upgradeStatus === 'success') {
+          return $window.location.replace(
+            `${get(
+              ORDER_TRACKING_URLS,
+              Environment.getRegion(),
+            )}/${upgradeOrderId}`,
+          );
+        }
+
+        // launch the upgrade
+        set(loaders, 'upgrade', true);
+        return vpsUpgrade
+          .startUpgrade(
+            serviceName,
+            get(configurationTile.upgrades, `${upgradeType}.plan.planCode`),
+            {
+              quantity: 1,
+              autoPayWithPreferredPaymentMethod: true,
+            },
+          )
+          .then(({ order }) =>
+            $state.go(
+              'vps.detail.dashboard.configuration.upgrade',
+              {
+                upgradeStatus: 'success',
+                upgradeOrderId: order.orderId,
+              },
+              {
+                location: false,
+              },
+            ),
+          )
+          .catch((error) =>
+            goBack(
+              $translate.instant(
+                'vps_dashboard_tile_configuration_upgrade_error',
+              ),
+              'error',
+              error,
+            ),
+          )
+          .finally(() => {
+            set(loaders, 'upgrade', false);
+          });
+      },
+
+      secondaryLabel: /* @ngInject */ ($translate, upgradeStatus) =>
+        !upgradeStatus
+          ? $translate.instant(
+              'vps_dashboard_tile_configuration_upgrade_action_cancel',
+            )
+          : null,
 
       secondaryAction: /* @ngInject */ (goBack) => () => goBack(),
+
+      loading: /* @ngInject */ (loaders) => () => loaders.upgrade,
     },
   });
 };
