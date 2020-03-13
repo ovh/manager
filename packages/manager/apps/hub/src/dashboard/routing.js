@@ -44,6 +44,9 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
           expand,
         }),
       expand: /* @ngInject */ ($transition$) => $transition$.params().expand,
+      hideBreadcrumb: () => true,
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('manager_hub_dashboard'),
     },
     componentProvider: /* @ngInject */ (services) =>
       get(services, 'data.count') === 0 ? 'hubOrderDashboard' : 'hubDashboard',
