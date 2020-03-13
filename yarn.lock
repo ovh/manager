@@ -1954,13 +1954,6 @@
   dependencies:
     lodash "^4.17.15"
 
-"@ovh-ux/ng-ovh-contact@^4.0.5":
-  version "4.0.5"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-contact/-/ng-ovh-contact-4.0.5.tgz#1579e3f2b8fbb8f501bc5765b782107ec059ab56"
-  integrity sha512-WwguSi4fapRUVm/2w4dmraOOMJiShtm5l+BnEGL4aCqcX/Cb+JwHkiN0ZKgeG3811stbnWTwlCTTT8H2o6hUHQ==
-  dependencies:
-    lodash "^4.17.15"
-
 "@ovh-ux/ng-ovh-contacts@^2.0.3":
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-contacts/-/ng-ovh-contacts-2.0.3.tgz#c18c5d2bdf4ec3b43009fee6bf2fba12e8c1e747"

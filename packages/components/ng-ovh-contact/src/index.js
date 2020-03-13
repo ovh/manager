@@ -45,6 +45,6 @@ angular
     $templateCache.put('ngOvhContacts/choice/templates/match.tpl.html', choiceMatchTemplate);
     $templateCache.put('ngOvhContacts/choice/templates/select.tpl.html', choiceSelectTemplate);
   })
-  .run(/* @ngTranslationsInject ./translations */);
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
