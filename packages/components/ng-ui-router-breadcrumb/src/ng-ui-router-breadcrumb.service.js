@@ -12,51 +12,59 @@ export default class BreadcrumbService {
   }
 
   buildBreadcrumb(transition) {
-    return transition.promise.then(() => {
-      this.breadcrumb = [];
-
-      let state = this.$state.$current;
-
-      while (state.parent) {
-        const breadcrumbResolvable = state.resolvables.find(
-          (resolvable) => resolvable.token === 'breadcrumb',
+    let state = this.$state.$current;
+    return transition.promise
+      .then(() => {
+        const hideBreadcrumbResolvable = state.resolvables.find(
+          (resolvable) => resolvable.token === 'hideBreadcrumb',
         );
+        return hideBreadcrumbResolvable
+          ? transition.injector(state.name).getAsync('hideBreadcrumb')
+          : this.$q.when(false);
+      })
+      .then((hideBreadcrumb) => {
+        this.breadcrumb = [];
 
-        if (!state.self.abstract || breadcrumbResolvable) {
-          const entry = {
-            name: state.name,
-            promise: breadcrumbResolvable
-              ? transition.injector(state.name).getAsync('breadcrumb')
-              : this.$q.when(state.name),
-            url: state.self.abstract
-              ? null
-              : this.$state.href(state.name, this.$state.params, {
-                  absolute: true,
-                }),
-            active: this.$state.is(state.name),
-          };
+        while (state.parent && !hideBreadcrumb) {
+          const breadcrumbResolvable = state.resolvables.find(
+            (resolvable) => resolvable.token === 'breadcrumb',
+          );
 
-          this.breadcrumb.unshift(entry);
+          if (!state.self.abstract || breadcrumbResolvable) {
+            const entry = {
+              name: state.name,
+              promise: breadcrumbResolvable
+                ? transition.injector(state.name).getAsync('breadcrumb')
+                : this.$q.when(state.name),
+              url: state.self.abstract
+                ? null
+                : this.$state.href(state.name, this.$state.params, {
+                    absolute: true,
+                  }),
+              active: this.$state.is(state.name),
+            };
 
-          entry.promise.then((value) => {
-            if (value) {
-              entry.name = value;
-            } else {
-              this.breadcrumb = this.breadcrumb.filter(
-                (breadcrumbEntry) => breadcrumbEntry !== entry,
-              );
-            }
-          });
+            this.breadcrumb.unshift(entry);
+
+            entry.promise.then((value) => {
+              if (value) {
+                entry.name = value;
+              } else {
+                this.breadcrumb = this.breadcrumb.filter(
+                  (breadcrumbEntry) => breadcrumbEntry !== entry,
+                );
+              }
+            });
+          }
+
+          state = state.parent.self.$$state();
         }
 
-        state = state.parent.self.$$state();
-      }
-
-      return this.$q
-        .all(this.breadcrumb.map((entry) => entry.promise))
-        .then(() => this.notifyAll())
-        .then(() => this.breadcrumb);
-    });
+        return this.$q
+          .all(this.breadcrumb.map((entry) => entry.promise))
+          .then(() => this.notifyAll())
+          .then(() => this.breadcrumb);
+      });
   }
 
   subscribe(listener) {
