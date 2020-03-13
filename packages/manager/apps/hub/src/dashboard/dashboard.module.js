@@ -11,6 +11,8 @@ import welcome from './welcome';
 import component from './dashboard.component';
 import routing from './routing';
 
+import './dashboard.scss';
+
 const moduleName = 'ovhManagerHubDashboard';
 
 angular
