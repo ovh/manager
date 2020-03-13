@@ -23,7 +23,6 @@ import head from 'lodash/head';
 import atInternet from './components/at-internet';
 import errorPage from './components/error-page';
 import preload from './components/manager-preload';
-import catalog from './catalog';
 import dashboard from './dashboard';
 
 import controller from './controller';
@@ -39,14 +38,11 @@ angular
   .module(
     'managerHubApp',
     [
-      'pascalprecht.translate',
       atInternet,
-      catalog,
       dashboard,
       errorPage,
       ngOvhUiRouterLineProgress,
       ngUiRouterBreadcrumb,
-      'pascalprecht.translate',
       'oui',
       ovhManagerCore,
       ovhManagerHub,
