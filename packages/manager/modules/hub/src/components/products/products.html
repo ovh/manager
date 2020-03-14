@@ -30,6 +30,8 @@
     type="button"
     class="oui-button oui-button_full-width oui-button_link oui-button_icon-right mb-5"
     data-ng-click="$ctrl.toggleExpand()"
+    data-track-on="click"
+    data-track-name="{{:: $ctrl.trackingPrefix + '::product::expand' }}"
 >
     <span
         data-translate="{{ $ctrl.expand ? 'manager_hub_products_see_less' : 'manager_hub_products_see_more' }}"
