@@ -7,7 +7,14 @@ import sortBy from 'lodash/sortBy';
 
 export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
   $stateProvider.state('app.dashboard', {
-    url: '/',
+    url: '/?expand',
+    params: {
+      expand: {
+        value: null,
+        squash: true,
+        dynamic: true,
+      },
+    },
     resolve: {
       products: /* @ngInject */ (catalog, services) =>
         get(services, 'data.count') === 0
@@ -32,6 +39,11 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
               product: product.toLowerCase(),
             }),
       trackingPrefix: () => 'hub::dashboard',
+      expandProducts: /* @ngInject */ ($state) => (expand) =>
+        $state.go('.', {
+          expand,
+        }),
+      expand: /* @ngInject */ ($transition$) => $transition$.params().expand,
     },
     componentProvider: /* @ngInject */ (services) =>
       get(services, 'data.count') === 0 ? 'hubOrderDashboard' : 'hubDashboard',
