@@ -66,6 +66,8 @@
             products="$ctrl.products"
             on-product-select="$ctrl.goToProductPage(productType)"
             tracking-prefix="{{ $ctrl.trackingPrefix }}"
+            on-expand="$ctrl.expandProducts(expand)"
+            expand="$ctrl.expand"
         ></hub-products>
     </div>
 </div>

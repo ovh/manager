@@ -6,6 +6,8 @@ export default {
     feedbackUrl: '<',
     me: '<',
     billingServices: '<',
+    expand: '<',
+    expandProducts: '<',
     goToProductPage: '<',
     notifications: '<',
     order: '<',
