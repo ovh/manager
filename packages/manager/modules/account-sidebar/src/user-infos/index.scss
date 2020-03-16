@@ -49,7 +49,7 @@
   }
 
   &_user-name {
-    span {
+    &__login {
       color: $link-color;
       font-weight: bold;
     }
