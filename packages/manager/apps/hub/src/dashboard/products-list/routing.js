@@ -20,7 +20,7 @@ export default /* @ngInject */ ($stateProvider) => {
           .get('/')
           .then(({ data: schema }) =>
             find(schema.apis, ({ path }) =>
-              new RegExp(`^${path}`).test(resourcePath),
+              new RegExp(`^${path}/`).test(resourcePath),
             ),
           )
           .then(({ path }) => $http.get(`${path}.json`))
