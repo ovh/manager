@@ -25,7 +25,7 @@
     "@ovh-ux/manager-telecom-styles": "^3.1.0",
     "@ovh-ux/ng-at-internet": "^4.0.4",
     "@ovh-ux/ng-at-internet-ui-router-plugin": "^2.0.4",
-    "@ovh-ux/ng-ovh-api-wrappers": "^4.0.6",
+    "@ovh-ux/ng-ovh-api-wrappers": "^4.0.7",
     "@ovh-ux/ng-ovh-checkbox-table": "^1.0.4",
     "@ovh-ux/ng-ovh-contracts": "^3.1.1",
     "@ovh-ux/ng-ovh-request-tagger": "^1.1.0",
@@ -48,7 +48,7 @@
     "ng-csv": "^0.3.6",
     "oclazyload": "^1.1.0",
     "ovh-angular-ui-confirm-modal": "^1.0.2",
-    "ovh-api-services": "^9.41.0",
+    "ovh-api-services": "^9.41.1",
     "ovh-ngstrap": "^4.0.2",
     "validator-js": "^0.2.1"
   },
