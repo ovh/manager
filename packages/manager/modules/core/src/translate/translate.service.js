@@ -121,6 +121,15 @@ export default class TranslateServiceProvider {
     return this.LANGUAGES.defaultLoc;
   }
 
+  /**
+   * BCP 47 (also known as IETF language tag) is an international standard to identify human languages
+   * @param {string} language The language to convert, in the OVHcloud format (i.e.: 'fr_FR')
+   * @returns {string} The languag converted to BCP 47 (i.e.: 'fr-FR')
+   */
+  static convertFromOVHToBCP47(language) {
+    return language.replace('_', '-');
+  }
+
   $get() {
     return {
       getUserLocale: (locale) => this.getUserLocale(locale),
