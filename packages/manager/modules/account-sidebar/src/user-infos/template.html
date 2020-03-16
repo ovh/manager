@@ -40,7 +40,11 @@
             class="btn btn-link"
             data-ng-click="$ctrl.isExpanded = !$ctrl.isExpanded"
         >
-            <span data-ng-bind="$ctrl.getDisplayName()"></span>
+            <span
+                class="manager-hub-user-infos_user-name__login"
+                data-ng-bind="$ctrl.getDisplayName()"
+            >
+            </span>
             <span
                 class="oui-icon"
                 aria-hidden="true"
@@ -63,6 +67,14 @@
             >
             </span>
         </button>
+        <div>
+            <span
+                class="oui-status oui-status_warning"
+                data-ng-if="!$ctrl.isExpanded && $ctrl.role !== 'provider'"
+                data-ng-bind=":: ('hub_user_role_' + $ctrl.role) | translate"
+            >
+            </span>
+        </div>
     </div>
     <div data-ng-if="!$ctrl.isExpanded">
         <p data-ng-if="!$ctrl.me">
