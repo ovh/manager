@@ -1,0 +1,9 @@
+@import '@ovh-ux/manager-hub/src/variables.scss';
+
+.oui-message__body_error,
+.oui-message_error {
+  padding-bottom: 1rem;
+  color: $hub-status-error-color;
+  border: transparent;
+  background-color: $hub-status-error-bg-color;
+}
