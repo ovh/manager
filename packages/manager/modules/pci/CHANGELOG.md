@@ -1,3 +1,12 @@
+## [3.14.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.14.2...@ovh-ux/manager-pci@3.14.3) (2020-03-16)
+
+
+### Bug Fixes
+
+* **kubernetes.details.container:** fix translation typo ([6354cb5](https://github.com/ovh/manager/commit/6354cb56456c69d2afbe9683615a3888253b46a0)), closes [#2444](https://github.com/ovh/manager/issues/2444)
+
+
+
 ## [3.14.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.14.1...@ovh-ux/manager-pci@3.14.2) (2020-03-10)
 
 

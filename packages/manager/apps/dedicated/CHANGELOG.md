@@ -1,3 +1,12 @@
+## [11.7.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@11.7.3...@ovh-ux/manager-dedicated@11.7.4) (2020-03-16)
+
+
+### Bug Fixes
+
+* **billing.history.postalmailoptions:** display the right message ([ebad704](https://github.com/ovh/manager/commit/ebad70427611c0c69d75791f202f5bbd3e452276)), closes [#2444](https://github.com/ovh/manager/issues/2444)
+
+
+
 ## [11.7.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@11.7.2...@ovh-ux/manager-dedicated@11.7.3) (2020-03-09)
 
 
