@@ -24,7 +24,7 @@
             <!-- Tile item :: Created -->
             <oui-tile-definition
                 data-term="{{ :: 'data_processing_details_information_creation_date_label' | translate }}"
-                data-description="{{ $ctrl.moment(job.creationDate).calendar() }}"
+                data-description="{{ $ctrl.moment($ctrl.job.creationDate).format('YYYY-MM-DD, HH:mm:ss') }}"
             >
             </oui-tile-definition>
             <!-- Tile item :: Elapsed time -->

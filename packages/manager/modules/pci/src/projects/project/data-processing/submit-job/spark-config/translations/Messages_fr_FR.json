@@ -12,7 +12,7 @@
   "data_processing_submit_job_stepper_spark_jar_file_help": "Chemin vers votre fichier JAR au sein de votre conteneur d'objets",
   "data_processing_submit_job_stepper_spark_version_label": "Version de Spark",
   "data_processing_submit_job_stepper_spark_arguments_label": "Arguments (optionnel)",
-  "data_processing_submit_job_stepper_spark_arguments_placeholder": "Pressez la touche <Entrer> pour ajouter un argument",
+  "data_processing_submit_job_stepper_spark_arguments_placeholder": "Pressez la touche <kbd>Entrer</kbd> pour ajouter un argument",
   "data_processing_submit_job_stepper_spark_invalid_jar_label": "Ce fichier ne semble pas être un JAR valide.",
   "data_processing_submit_job_stepper_spark_not_found_file_label": "Ce fichier ne semble pas exister dans le conteneur sélectionné."
 }

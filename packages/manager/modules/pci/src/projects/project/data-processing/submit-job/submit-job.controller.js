@@ -21,6 +21,7 @@ export default class {
     // we use this trick to trigger a state update of child component. This circumvent the missing
     // onChange event on oui-field components.
     this.jobSizingValidate = false;
+    this.jobConfigurationValidate = false;
     this.submitRetries = 0;
     this.isSubmitting = false;
   }
@@ -143,5 +144,10 @@ export default class {
         }
       },
     );
+  }
+
+  onFocusJobConfigHandler() {
+    this.submitRetries = 0;
+    this.isSubmitting = false;
   }
 }

@@ -62,15 +62,6 @@ export default class {
   }
 
   onMainApplicationCodeChangeHandler() {
-    const obj = find(
-      this.containerObjects,
-      (o) => o.name === this.state.mainApplicationCode,
-    );
-    this.state.mainApplicationCodeFileInvalid =
-      obj &&
-      obj.contentType !== 'application/java-archive' &&
-      this.state.jobType === 'java';
-    this.state.mainApplicationCodeFileNotFound = obj === undefined;
     this.onChangeHandler(this.state);
   }
 
@@ -103,5 +94,24 @@ export default class {
    */
   onMainClassChangeHandler() {
     this.onChangeHandler(this.state);
+  }
+
+  /**
+   * Validate that the Main Class field is valid or not
+   */
+  validateMainApplicationCode(value) {
+    const containerObject = find(
+      this.containerObjects,
+      (o) => o.name === value,
+    );
+    this.state.mainApplicationCodeFileInvalid =
+      containerObject &&
+      containerObject.contentType !== 'application/java-archive' &&
+      this.state.jobType === 'java';
+    this.state.mainApplicationCodeFileNotFound = containerObject === undefined;
+    return (
+      !this.state.mainApplicationCodeFileInvalid &&
+      !this.state.mainApplicationCodeFileNotFound
+    );
   }
 }

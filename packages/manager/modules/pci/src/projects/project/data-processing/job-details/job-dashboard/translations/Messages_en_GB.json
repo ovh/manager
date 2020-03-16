@@ -2,7 +2,7 @@
   "data_processing_details_information_label": "Information",
   "data_processing_details_information_status_label": "Status",
   "data_processing_details_information_region_label": "Region",
-  "data_processing_details_information_creation_date_label": "Created",
+  "data_processing_details_information_creation_date_label": "Creation date",
   "data_processing_details_information_elapsed_label": "Elapsed time",
   "data_processing_details_actions_show_ui_label": "Open job user interface",
   "data_processing_details_actions_show_grafana_label": "Monitor job",

@@ -7,6 +7,7 @@
   "data_processing_submit_job_stepper_job_type_title": "Select job type",
   "data_processing_submit_job_stepper_sizing_title": "Define compute and memory",
   "data_processing_submit_job_stepper_configure_title": "Configure your job",
+  "data_processing_submit_job_stepper_submit_error_title": "An unexpected error occurred",
   "data_processing_submit_job_pyspark_description": "Submit a Python working directory with a Conda requirements file.",
   "data_processing_submit_job_button_label": "Submit job",
   "data_processing_submit_job_spinner_label": "working on it...",

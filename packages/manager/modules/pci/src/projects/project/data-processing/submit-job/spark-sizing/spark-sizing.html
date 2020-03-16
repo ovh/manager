@@ -14,7 +14,7 @@
                     required
                 >
                     <option
-                        ng-repeat="template in $ctrl.driverTemplates"
+                        ng-repeat="template in $ctrl.driverTemplates track by template.id"
                         value="{{ template.id }}"
                     >
                         {{ :: template.cores }} {{ ::
@@ -96,7 +96,7 @@
                     name="driver-cores"
                     data-model="$ctrl.state.driverCores"
                     data-min="1"
-                    data-max="16"
+                    data-max="8"
                 >
                 </oui-numeric>
             </div>
@@ -110,7 +110,7 @@
                     name="driver-memory"
                     data-model="$ctrl.state.driverMemoryGb"
                     data-min="1"
-                    data-max="60"
+                    data-max="30"
                 >
                 </oui-numeric>
             </div>
@@ -124,7 +124,7 @@
                     name="driver-memory-overhead"
                     data-model="$ctrl.state.driverMemoryOverheadMb"
                     data-min="$ctrl.minMemoryOverheadMb"
-                    data-max="60000"
+                    data-max="30000"
                 >
                 </oui-numeric>
             </div>
@@ -138,7 +138,7 @@
                     name="worker-cores"
                     data-model="$ctrl.state.workerCores"
                     data-min="1"
-                    data-max="16"
+                    data-max="8"
                 >
                 </oui-numeric>
             </div>
@@ -153,7 +153,7 @@
                     name="worker-memory"
                     data-model="$ctrl.state.workerMemoryGb"
                     data-min="1"
-                    data-max="60"
+                    data-max="30"
                 >
                 </oui-numeric>
             </div>
@@ -167,7 +167,7 @@
                     name="worker-memory-overhead"
                     data-model="$ctrl.state.workerMemoryOverheadMb"
                     data-min="$ctrl.minMemoryOverheadMb"
-                    data-max="60000"
+                    data-max="30000"
                 >
                 </oui-numeric>
             </div>
