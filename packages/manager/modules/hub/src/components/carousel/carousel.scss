@@ -1,0 +1,28 @@
+ovh-manager-hub-carousel {
+  @import '../../variables.scss';
+
+  .circular-tile {
+    display: inline-block;
+    margin: 0.25rem;
+    border-radius: 0.625rem;
+    background-color: #fff;
+    padding: 0.1875rem;
+    border: $hub-status-error-color;
+
+    &_active {
+      background-color: $hub-status-error-color;
+    }
+  }
+
+  .oui-icon-warning_extra-thin {
+    &::after {
+      background: transparent;
+    }
+
+    position: absolute;
+    display: block;
+    top: 0.875rem;
+    left: 1rem;
+    font-size: 1.625rem;
+  }
+}
