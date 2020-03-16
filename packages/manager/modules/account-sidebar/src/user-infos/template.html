@@ -82,10 +82,16 @@
         </p>
     </div>
     <div
-        class="text-left pb-2 manager-hub-user-infos_links"
+        class="text-left manager-hub-user-infos_links"
         data-ng-if="$ctrl.isExpanded"
     >
-        <hr />
+        <hr class="mb-1" />
+        <a
+            class="btn btn-link"
+            data-ng-href="{{:: $ctrl.userAccountUrl }}"
+            data-translate="hub_user_account"
+        ></a>
+        <hr class="my-1" />
         <button
             type="button"
             role="button"
