@@ -30,6 +30,7 @@ import ovhManagerVpsSecondaryDns from './secondary-dns';
 import ovhManagerVpsSnapshot from './snapshot';
 import ovhManagerVpsUpgrade from './upgrade';
 import ovhManagerVpsUpscaleConfigurationPrice from './upscale/configuration-price';
+import ovhManagerVpsUpscaleModelPrice from './upscale/model-price';
 import ovhManagerVpsUpscaleSummaryPrice from './upscale/summary-price';
 import ovhManagerVpsVeeam from './veeam';
 import ovhManagerVpsWindows from './windows';
@@ -62,6 +63,7 @@ angular
     ovhManagerVpsSnapshot,
     ovhManagerVpsUpgrade,
     ovhManagerVpsUpscaleConfigurationPrice,
+    ovhManagerVpsUpscaleModelPrice,
     ovhManagerVpsUpscaleSummaryPrice,
     ovhManagerVpsVeeam,
     ovhManagerVpsWindows,
