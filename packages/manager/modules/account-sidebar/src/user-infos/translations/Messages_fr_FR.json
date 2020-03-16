@@ -7,5 +7,7 @@
   "hub_user_logout": "Me déconnecter",
   "hub_user_actions_aria_expand": "Voir les actions disponibles",
   "hub_user_actions_aria_reduce": "Masquer les actions disponibles",
-  "hub_user_account": "Gérer mon compte"
+  "hub_user_account": "Gérer mon compte",
+  "hub_user_role_user": "Connecté en tant que sous-utilisateur",
+  "hub_user_role_none": "Connecté en lecture seule"
 }
