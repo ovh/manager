@@ -18,4 +18,14 @@
     font-size: $hub-subtitle-size;
     font-weight: $hub-subtitle-weight;
   }
+
+  a.oui-status {
+    padding: 0.5rem;
+    text-decoration: none;
+    background-color: #bef1ff; // P-100
+
+    &:hover {
+      background-color: #def8ff; // P-75
+    }
+  }
 }
