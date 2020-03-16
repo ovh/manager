@@ -37,7 +37,7 @@ export default class {
   }
 
   downloadLogs() {
-    const re = /https:\/\/storage\.[a-zA-Z0-9]+\.cloud.ovh.net\/v1\/AUTH_[a-z0-9]+\/(.*)\/(.*)/;
+    const re = /https:\/\/storage\.[a-z0-9]+\.cloud.ovh.net\/v1\/AUTH_[a-z0-9]+\/(.*)\/(.*)/;
     const logsUrl = this.logger.logs.logsAddress;
     if (logsUrl) {
       const matches = logsUrl.match(re);

@@ -1,5 +1,8 @@
 import { filter, find } from 'lodash';
-import { ARGUMENTS_VALIDATION_PATTERN } from './spark-config.constants';
+import {
+  ARGUMENTS_VALIDATION_PATTERN,
+  PYTHON_ENV_FILENAME,
+} from './spark-config.constants';
 import { nameGenerator } from '../../data-processing.utils';
 
 export default class {
@@ -22,7 +25,8 @@ export default class {
       arguments: [],
       jobName: nameGenerator(),
       mainApplicationCodeFileNotFound: false, // used by UI to show a warning when file is not found
-      mainApplicationCodeFileInvalid: false, // used by UI to show a warning when file is not found
+      mainApplicationCodeFileInvalid: false, // used by UI to show a warning when main application file is invalid
+      pythonEnvironmentMissing: false, // used by UI to show a warning when environment.yml file is missing
     };
     this.sparkConfigService
       .listContainers(this.projectId)
@@ -62,6 +66,29 @@ export default class {
   }
 
   onMainApplicationCodeChangeHandler() {
+    const fileObject = find(
+      this.containerObjects,
+      (o) => o.name === this.state.mainApplicationCode,
+    );
+    // check for proper JAR
+    this.state.mainApplicationCodeFileInvalid =
+      fileObject &&
+      fileObject.contentType !== 'application/java-archive' &&
+      this.state.jobType === 'java';
+    // check if file exists
+    this.state.mainApplicationCodeFileNotFound = fileObject === undefined;
+    // check if environment file exists
+    const environmentFileObject = find(
+      this.containerObjects,
+      (o) => o.name === PYTHON_ENV_FILENAME,
+    );
+    this.state.pythonEnvironmentMissing =
+      !environmentFileObject && this.state.jobType === 'python';
+    // check for field global validity (files exist)
+    this.valid =
+      !this.state.pythonEnvironmentMissing &&
+      !this.state.mainApplicationCodeFileNotFound &&
+      !this.state.mainApplicationCodeFileInvalid;
     this.onChangeHandler(this.state);
   }
 
@@ -94,24 +121,5 @@ export default class {
    */
   onMainClassChangeHandler() {
     this.onChangeHandler(this.state);
-  }
-
-  /**
-   * Validate that the Main Class field is valid or not
-   */
-  validateMainApplicationCode(value) {
-    const containerObject = find(
-      this.containerObjects,
-      (o) => o.name === value,
-    );
-    this.state.mainApplicationCodeFileInvalid =
-      containerObject &&
-      containerObject.contentType !== 'application/java-archive' &&
-      this.state.jobType === 'java';
-    this.state.mainApplicationCodeFileNotFound = containerObject === undefined;
-    return (
-      !this.state.mainApplicationCodeFileInvalid &&
-      !this.state.mainApplicationCodeFileNotFound
-    );
   }
 }

@@ -1,4 +1,3 @@
-import moment from 'moment';
 import {
   isJobRunning,
   getClassFromStatus,
@@ -22,7 +21,6 @@ export default class {
     this.isJobRunning = isJobRunning;
     this.getClassFromStatus = getClassFromStatus;
     this.guideUrl = DATA_PROCESSING_GUIDE_URL;
-    this.moment = moment;
     this.getDataProcessingUiUrl = getDataProcessingUiUrl;
   }
 
@@ -63,5 +61,17 @@ export default class {
       sort.property,
       filters,
     );
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  formatDate(dt) {
+    // this method needs to use current instance of moment, so it cannot static
+    return moment(dt).format('MMMM Do YYYY, h:mm:ss a');
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  formatDateFromNow(dt) {
+    // this method needs to use current instance of moment, so it cannot static
+    return moment(dt).fromNow();
   }
 }

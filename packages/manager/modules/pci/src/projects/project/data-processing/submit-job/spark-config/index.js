@@ -9,7 +9,7 @@ const moduleName =
   'ovhManagerPciProjectDataProcessingSubmitJobSparkConfigLazyLoading';
 
 angular
-  .module(moduleName, ['ui.router', 'ui.validate'])
+  .module(moduleName, ['ui.router'])
   .component(
     'pciProjectDataProcessingSubmitJobSparkConfig',
     SparkConfigComponent,

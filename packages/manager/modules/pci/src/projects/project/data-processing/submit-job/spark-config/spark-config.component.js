@@ -8,6 +8,7 @@ export default {
   bindings: {
     values: '<',
     validate: '<',
+    valid: '=',
     projectId: '<',
     region: '<',
     onChangeHandler: '<',

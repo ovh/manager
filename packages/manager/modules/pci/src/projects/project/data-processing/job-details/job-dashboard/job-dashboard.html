@@ -24,7 +24,7 @@
             <!-- Tile item :: Created -->
             <oui-tile-definition
                 data-term="{{ :: 'data_processing_details_information_creation_date_label' | translate }}"
-                data-description="{{ $ctrl.moment($ctrl.job.creationDate).format('YYYY-MM-DD, HH:mm:ss') }}"
+                data-description="{{ $ctrl.formatDateToCalendar(job.creationDate) }}"
             >
             </oui-tile-definition>
             <!-- Tile item :: Elapsed time -->
@@ -34,10 +34,10 @@
             >
             </oui-tile-definition>
             <!-- Tile item :: Total memory -->
-            <span class="information-tile__definition"
-                >{{ :: 'data_processing_details_charts_total_memory' | translate
-                }}</span
-            >
+            <span
+                class="information-tile__definition"
+                data-translate="data_processing_details_charts_total_memory"
+            ></span>
             <div
                 class="chart__nodata-container"
                 ng-if="$ctrl.metrics.totalMemory.data.length === 0"

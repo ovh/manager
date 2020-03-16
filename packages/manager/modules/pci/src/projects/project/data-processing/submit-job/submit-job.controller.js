@@ -3,8 +3,9 @@ import { convertMemory } from '../data-processing.utils';
 
 export default class {
   /* @ngInject */
-  constructor($state, dataProcessingService, CucRegionService) {
+  constructor($scope, $state, dataProcessingService, CucRegionService) {
     this.$state = $state;
+    this.$scope = $scope;
     this.dataProcessingService = dataProcessingService;
     this.cucRegionService = CucRegionService;
     // let's do some function binding
@@ -21,9 +22,10 @@ export default class {
     // we use this trick to trigger a state update of child component. This circumvent the missing
     // onChange event on oui-field components.
     this.jobSizingValidate = false;
-    this.jobConfigurationValidate = false;
     this.submitRetries = 0;
     this.isSubmitting = false;
+    this.isConfigureStepValid = false;
+    this.currentIndex = 0;
   }
 
   /**
@@ -78,6 +80,7 @@ export default class {
   }
 
   onSubmitJobHandler() {
+    const lastIndex = this.currentIndex;
     this.isSubmitting = true;
     let args = '';
     if (this.state.jobConfig.arguments.length > 0) {
@@ -141,13 +144,16 @@ export default class {
           this.onSubmitJobHandler();
         } else {
           this.isSubmitting = false;
+          this.currentIndex = lastIndex - 1;
+          // this is a trick to circumvent limitations of the stepper component.
+          // in case of error, it allows user to submit again through the stepper.
+          // fixes https://projects.dsi.ovh/browse/MANAGER-4599
+          setTimeout(() => {
+            this.currentIndex = lastIndex;
+            this.$scope.$apply();
+          }, 0);
         }
       },
     );
-  }
-
-  onFocusJobConfigHandler() {
-    this.submitRetries = 0;
-    this.isSubmitting = false;
   }
 }

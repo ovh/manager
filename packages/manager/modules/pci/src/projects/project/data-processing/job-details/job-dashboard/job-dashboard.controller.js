@@ -1,5 +1,4 @@
 import { find, unzip } from 'lodash';
-import moment from 'moment';
 import { getDataProcessingUiUrl } from '../../data-processing.utils';
 import {
   DATA_PROCESSING_STATUS_TO_CLASS,
@@ -30,7 +29,6 @@ export default class {
     this.containerService = PciStoragesContainersService;
     this.containerId = null;
     this.metricsTimer = null;
-    this.moment = moment;
     // setup metrics retrieval
     this.warp10 = $resource(
       WARP10_URL,
@@ -204,5 +202,11 @@ export default class {
       DATA_PROCESSING_STATUSES.RUNNING,
       DATA_PROCESSING_STATUSES.SUBMITTED,
     ].includes(this.job.status);
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  formatDateToCalendar(dt) {
+    // this method needs to use current instance of moment, so it cannot static
+    return moment(dt).calendar();
   }
 }

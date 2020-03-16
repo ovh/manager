@@ -1,4 +1,4 @@
-<form name="inputForm">
+<form novalidate name="inputForm">
     <oui-field
         data-label="{{:: 'data_processing_submit_job_stepper_spark_job_name_label' | translate }}"
         data-help-text="{{:: 'data_processing_submit_job_stepper_spark_job_name_help' | translate }}"
@@ -79,10 +79,6 @@
         ng-if="$ctrl.state.jobType === 'java' || $ctrl.state.jobType === 'python'"
         data-label="{{ $ctrl.state.jobType === 'java'? 'data_processing_submit_job_stepper_spark_jar_file_label':'data_processing_submit_job_stepper_spark_python_file_label' | translate }}"
         data-help-text="{{:: 'data_processing_submit_job_stepper_spark_jar_file_help' | translate }}"
-        data-error-messages="{
-            notFound: ('data_processing_submit_job_stepper_spark_not_found_file_label' | translate),
-            incorrectFileType: ('data_processing_submit_job_stepper_spark_invalid_jar_label' | translate)
-        }"
         size="xl"
     >
         <input
@@ -94,15 +90,58 @@
             data-ng-change="$ctrl.onMainApplicationCodeChangeHandler()"
             data-oui-autocomplete="$ctrl.containerObjects"
             data-oui-autocomplete-property="name"
-            data-ui-validate="{
-                    dummyMethodCall: '$value.length && $ctrl.validateMainApplicationCode($value)',
-                    notFound: '!$value.length || !$ctrl.state.mainApplicationCodeFileNotFound',
-                    incorrectFileType: '!$value.length || !$ctrl.state.mainApplicationCodeFileInvalid'
-               }"
             required
             minlength="1"
             maxlength="512"
         />
+        <div
+            class="oui-field__warning-show"
+            data-ng-if="$ctrl.state.mainApplicationCodeFileNotFound"
+        >
+            <span ng-messages="mainApplicationCodeFileNotFound" role="alert">
+                <span
+                    class="oui-icon oui-icon-warning_circle"
+                    aria-hidden="true"
+                ></span>
+                <span>
+                    {{
+                    ::'data_processing_submit_job_stepper_spark_not_found_file_label'
+                    | translate }}
+                </span>
+            </span>
+        </div>
+        <div
+            class="oui-field__warning-show"
+            data-ng-if="$ctrl.state.pythonEnvironmentMissing"
+        >
+            <span ng-messages="pythonRequirementsFileNotFound" role="alert">
+                <span
+                    class="oui-icon oui-icon-warning_circle"
+                    aria-hidden="true"
+                ></span>
+                <span>
+                    {{
+                    ::'data_processing_submit_job_stepper_spark_no_python_environment_label'
+                    | translate }}
+                </span>
+            </span>
+        </div>
+        <div
+            class="oui-field__warning-show"
+            data-ng-if="$ctrl.state.mainApplicationCodeFileInvalid"
+        >
+            <span ng-messages="mainApplicationCodeFileInvalid" role="alert">
+                <span
+                    class="oui-icon oui-icon-warning_circle"
+                    aria-hidden="true"
+                ></span>
+                <span>
+                    {{
+                    ::'data_processing_submit_job_stepper_spark_invalid_jar_label'
+                    | translate }}
+                </span>
+            </span>
+        </div>
     </oui-field>
     <oui-field
         data-label="{{:: 'data_processing_submit_job_stepper_spark_main_class_label' | translate }}"
@@ -141,7 +180,7 @@
             id="argument"
             name="argument"
             data-ng-model="$ctrl.currentArgument"
-            data-ng-change="$event.keyCode == 13 && $ctrl.onSubmitArgumentHandler($event)"
+            data-ng-keyup="$event.keyCode == 13 && $ctrl.onSubmitArgumentHandler($event)"
             placeholder="{{:: 'data_processing_submit_job_stepper_spark_arguments_placeholder' | translate }}"
             minlength="1"
             maxlength="32"

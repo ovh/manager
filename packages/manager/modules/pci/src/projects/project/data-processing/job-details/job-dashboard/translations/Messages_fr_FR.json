@@ -24,5 +24,8 @@
   "data_processing_details_configuration_jar_file_label": "Fichier JAR",
   "data_processing_details_configuration_main_class_label": "Classe principale",
   "data_processing_details_configuration_arguments_label": "Arguments",
-  "data_processing_details_no_data": "Pas de données"
+  "data_processing_details_no_data": "Pas de données",
+  "data_processing_details_charts_total_memory": "Utilisation mémoire sur les 5 dernières minutes (Mi)",
+  "data_processing_details_charts_num_active_tasks": "# de tâches actives sur les 5 dernières minutes",
+  "data_processing_details_charts_blockmanager_disk": "Utilisation disque Blockmanager sur les 5 dernières minutes"
 }

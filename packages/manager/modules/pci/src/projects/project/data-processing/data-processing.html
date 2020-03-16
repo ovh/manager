@@ -3,7 +3,7 @@
         <oui-guide-menu
             data-text="{{:: 'pci_project_guides_header' | translate }}"
         >
-            <oui-guide-menu-item href="{{ $ctrl.guideUrl }}" external>
+            <oui-guide-menu-item href="{{ $ctrl.guideUrl }}" data-external>
                 <span
                     data-translate="pci_project_guides_header_all_guides"
                 ></span>
@@ -71,9 +71,8 @@
                 data-property="creationDate"
                 data-sortable="desc"
             >
-                <span
-                    title="{{ $ctrl.moment($row.creationDate).format('MMMM Do YYYY, h:mm:ss a') }}"
-                    >{{ $ctrl.moment($row.creationDate).fromNow() }}</span
+                <span title="{{ $ctrl.formatDate($row.creationDate) }}"
+                    >{{ $ctrl.formatDateFromNow($row.creationDate) }}</span
                 >
             </oui-column>
             <oui-column
