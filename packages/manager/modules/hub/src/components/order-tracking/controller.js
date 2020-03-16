@@ -4,7 +4,8 @@ import maxBy from 'lodash/maxBy';
 export default class ManagerHubBillingSummaryCtrl {
   /* @ngInject */
   constructor(RedirectionService) {
-    this.orderTrackingLink = RedirectionService.getURL('orders');
+    this.RedirectionService = RedirectionService;
+    this.ordersTrackingLink = RedirectionService.getURL('orders');
     this.ERROR_STATUS = ERROR_STATUS;
   }
 
@@ -13,6 +14,9 @@ export default class ManagerHubBillingSummaryCtrl {
       date: this.order.date,
       label: 'custom_creation',
     };
+    this.orderTrackingLink = this.RedirectionService.getURL('order', {
+      orderId: this.order.orderId,
+    });
   }
 
   refreshTile() {
@@ -20,6 +24,9 @@ export default class ManagerHubBillingSummaryCtrl {
     return this.refresh()
       .then((order) => {
         this.order = order;
+        this.orderTrackingLink = this.RedirectionService.getURL('order', {
+          orderId: order.orderId,
+        });
       })
       .finally(() => {
         this.loading = false;
