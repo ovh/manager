@@ -1,6 +1,8 @@
 import capitalize from 'lodash/capitalize';
 import toUpper from 'lodash/toUpper';
 
+import { EXCLUDED_ROLES } from './constants';
+
 export default class ManagerHubUserInfosCtrl {
   /* @ngInject */
   constructor(
@@ -50,7 +52,9 @@ export default class ManagerHubUserInfosCtrl {
 
   fetchRole() {
     return this.$http.get('/auth/details').then(({ data }) => {
-      this.role = data.method;
+      if (!EXCLUDED_ROLES.includes(data.method)) {
+        this.role = data.method;
+      }
     });
   }
 
