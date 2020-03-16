@@ -2,9 +2,9 @@ import angular from 'angular';
 import 'angular-translate';
 import '@ovh-ux/ng-at-internet';
 
-import './styles.less';
-
 import carousel from './carousel.component';
+
+import './carousel.scss';
 
 const moduleName = 'ovhManagerHubCarouselComponent';
 
