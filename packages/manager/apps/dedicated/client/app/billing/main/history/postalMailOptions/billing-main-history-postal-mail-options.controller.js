@@ -4,16 +4,12 @@ angular.module('Billing').controller(
   'BillingHistoryPostalMailOptionsCtrl',
   class {
     constructor(
-      $state,
-      $stateParams,
       $translate,
       $uibModalInstance,
       Alerter,
       OvhApiMe,
       postalMailOptionsActivated,
     ) {
-      this.$state = $state;
-      this.$stateParams = $stateParams;
       this.$translate = $translate;
       this.$uibModalInstance = $uibModalInstance;
       this.Alerter = Alerter;
@@ -37,7 +33,7 @@ angular.module('Billing').controller(
         .$promise.then(() => {
           this.Alerter.success(
             this.$translate.instant(
-              this.$stateParams.activate === 'true'
+              this.postalMailOptionsActivated
                 ? 'billing_main_history_postal_mail_options_activate_success'
                 : 'billing_main_history_postal_mail_options_desactivate_success',
             ),

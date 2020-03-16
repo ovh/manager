@@ -23,28 +23,28 @@
                 class="text-warning"
                 data-ng-if="!$ctrl.hasDefaultPaymentMethod && $ctrl.debtAccount.dueAmount.value > 0"
                 data-translate="billing_main_history_debt_to_pay"
-                data-translate-values="{ t0: $ctrl.debtAccount.dueAmount.text }"
+                data-translate-values="{ t0: $ctrl.debtAccount.dueAmount.text }"
             ></p>
 
             <p
                 class="text-info"
                 data-ng-if="$ctrl.hasDefaultPaymentMethod && $ctrl.debtAccount.dueAmount.value > 0"
                 data-translate="billing_main_history_debt_automatically_collected"
-                data-translate-values="{ t0: $ctrl.debtAccount.dueAmount.text }"
+                data-translate-values="{ t0: $ctrl.debtAccount.dueAmount.text }"
             ></p>
 
             <p
                 class="text-warning"
                 data-ng-if="!$ctrl.hasDefaultPaymentMethod && $ctrl.debtAccount.todoAmount.value > 0"
                 data-translate="billing_main_history_debt_to_pay"
-                data-translate-values="{ t0: $ctrl.debtAccount.todoAmount.text }"
+                data-translate-values="{ t0: $ctrl.debtAccount.todoAmount.text }"
             ></p>
 
             <p
                 class="text-info"
                 data-ng-if="$ctrl.hasDefaultPaymentMethod && $ctrl.debtAccount.todoAmount.value > 0"
                 data-translate="billing_main_history_debt_automatically_collected"
-                data-translate-values="{ t0: $ctrl.debtAccount.todoAmount.text }"
+                data-translate-values="{ t0: $ctrl.debtAccount.todoAmount.text }"
             ></p>
         </div>
 
