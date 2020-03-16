@@ -1,6 +1,7 @@
 import BillingService from './BillingService/BillingService.class';
+import Price from './Price/Price.class';
 import Ticket from './support/ticket/ticket.class';
 
-export { BillingService, Ticket };
+export { BillingService, Price, Ticket };
 
-export default { BillingService, Ticket };
+export default { BillingService, Price, Ticket };
