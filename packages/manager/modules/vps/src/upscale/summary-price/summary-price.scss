@@ -1,0 +1,22 @@
+vps-upscale-summary-price {
+  .oui-box {
+    min-width: 25rem;
+    background: #e0f6fd;
+    border: 2px solid #59d2ef;
+  }
+
+  .vps-upscale-summary-price__price-frequency {
+    font-size: 0.8rem;
+  }
+
+  .vps-upscale-summary-price__price-label {
+    margin-top: 2px;
+    align-self: center;
+    font-weight: 600;
+  }
+
+  .vps-upscale-summary-price__price-value {
+    font-size: 2rem;
+    font-weight: 400;
+  }
+}
