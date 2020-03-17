@@ -1888,23 +1888,6 @@
   dependencies:
     "@types/node" ">= 8"
 
-"@ovh-ux/codename-generator@^1.0.0":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/codename-generator/-/codename-generator-1.0.2.tgz#6945a47cfbca60f8fb182c31eaa2399ceff33c5a"
-  integrity sha512-5885d5zgYhL6QWPXLaLEFkdNhdYALJVZJfGztPMJOwqyw62crSdxjJHhia0iGBYIPIOoZTl9Q/hfHee8M+u+sg==
-  dependencies:
-    commander "^4.0.0"
-    moment "^2.24.0"
-    shuffle-seed "^1.1.6"
-    titleize "^2.1.0"
-
-"@ovh-ux/ng-at-internet@^4.0.4":
-  version "4.0.4"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-at-internet/-/ng-at-internet-4.0.4.tgz#a40933f0af18548fd8e94c5d8c105bb0ff6c79af"
-  integrity sha512-T4tpI083V8b9qm11HPl+ImzGgv3tTsPJ+y7v0InA9mDdM00RZNp/3mm+qJBQnqQe8kCrLn+OBgabjknlHpS2Mg==
-  dependencies:
-    lodash "^4.17.15"
-
 "@ovh-ux/ng-ovh-actions-menu@^5.0.4":
   version "5.0.4"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-actions-menu/-/ng-ovh-actions-menu-5.0.4.tgz#10cce5e9cbd768b1c79680ecc523ddc5ca52c778"
@@ -1912,10 +1895,10 @@
   dependencies:
     lodash "^4.17.15"
 
-"@ovh-ux/ng-ovh-api-wrappers@^4.0.6":
-  version "4.0.6"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-api-wrappers/-/ng-ovh-api-wrappers-4.0.6.tgz#fd3dc4fe745b3ea8c306a71bbbadb2e6aebe1e90"
-  integrity sha512-8RSU/Gu+f5JyxJFGPq2vmoBhsKa4oO7o6hzs4Br3aaC0nosrIZznsDzcO182TVjbI6al21HHcIsGh+N5m9YZ1A==
+"@ovh-ux/ng-ovh-api-wrappers@^4.0.7":
+  version "4.0.7"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-api-wrappers/-/ng-ovh-api-wrappers-4.0.7.tgz#f07cff3c42ef1c9d1655e2300617528a7d8b2f4f"
+  integrity sha512-oylG6ae9LKsUolZK9ORdd6yAu90VRX/45Ss9tZBMlUN7uHeyVMPpdzAJtY0DzgoRTwX++KteOu8bcUj5kTIM4A==
   dependencies:
     lodash "^4.17.15"
 
@@ -2132,20 +2115,20 @@
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-translate-async-loader/-/ng-translate-async-loader-2.0.3.tgz#256c53fc65ce07e8cf8412ac5c20bda0da8f1273"
   integrity sha512-PpO/B0HvSx4A5UMYRMMv8kWn7TPS2WGAGzvuCE2mu0jtZw71hwaFWdLlkYoBfhUQNKNKmkJbSW/xK+QLibcZIA==
 
-"@ovh-ux/rollup-plugin-less-inject@^1.0.2":
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/rollup-plugin-less-inject/-/rollup-plugin-less-inject-1.0.3.tgz#a59d40397b0145543d9b5c600f60cdd75449cfd1"
-  integrity sha512-XZMiXE3a6Lu5BBKa+9++q/4gTybuo+jkio/Qtsc4tFThxjYDzpWqGm9nv5I4B49hfWsMoYAW9Pov274WPervpw==
+"@ovh-ux/rollup-plugin-less-inject@^1.0.4":
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/rollup-plugin-less-inject/-/rollup-plugin-less-inject-1.0.4.tgz#07c1adb4b275a6bd122798640077c219cf1f52b0"
+  integrity sha512-Fouqa+1aBbgoRordznbIUv63jgQ2TOTzPyP3gYXgQcGjaP/IU4aXw36AY89jkHcTwg1UfEk3/N1nKuejcKwFPA==
   dependencies:
     estree-walker "^0.9.0"
     less "^3.9.0"
     lodash "^4.17.15"
     rollup-pluginutils "^2.8.2"
 
-"@ovh-ux/rollup-plugin-less-tilde-importer@^1.0.1":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/rollup-plugin-less-tilde-importer/-/rollup-plugin-less-tilde-importer-1.0.1.tgz#55827f7e1e5bb9375df8285b0c73f466831d0581"
-  integrity sha512-j0bZT4kYoa/fmt3Jsk8RyS2NyTs1COFmHaBSlA23j1An7yte/DyxzTIF2Ubt3hu3APNBmva/gsMblwK652xHMQ==
+"@ovh-ux/rollup-plugin-less-tilde-importer@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/rollup-plugin-less-tilde-importer/-/rollup-plugin-less-tilde-importer-1.0.2.tgz#7dbd5100da3d1733d45149998f3b760aa7fda469"
+  integrity sha512-0JQjnUJeI9o05YKJ2yWjrilANvzXMgY+GoAJy8M7qnZXWad0pZnlriyvwHDPhZ04uy4oHmsAOF9WPO0szoMr8w==
   dependencies:
     magic-string "^0.25.4"
     rollup-pluginutils "^2.8.2"
@@ -2813,15 +2796,10 @@ acorn@^5.3.0:
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-5.7.3.tgz#67aa231bf8812974b85235a96771eb6bd07ea279"
   integrity sha512-T/zvzYRfbVojPWahDsE5evJdHb3oJoQfFbsrKM7w5Zcs++Tr257tia3BmMP8XYVjp1S9RZXQMh7gao96BlqZOw==
 
-acorn@^6.0.5:
-  version "6.1.1"
-  resolved "https://registry.yarnpkg.com/acorn/-/acorn-6.1.1.tgz#7d25ae05bb8ad1f9b699108e1094ecd7884adc1f"
-  integrity sha512-jPTiwtOxaHNaAPg/dmrJ/beuzLRnXtB0kQPQ8JpotKJgTB6rX6c8mlf315941pyjBSaPg8NHXS9fhP4u17DpGA==
-
-acorn@^6.2.1:
-  version "6.3.0"
-  resolved "https://registry.yarnpkg.com/acorn/-/acorn-6.3.0.tgz#0087509119ffa4fc0a0041d1e93a417e68cb856e"
-  integrity sha512-/czfa8BwS88b9gWQVhc8eknunSA2DoJpJyTQkhheIf5E48u1N0R4q/YxxsAeqRrmK9TQ/uYfgLDfZo91UlANIA==
+acorn@^6.0.5, acorn@^6.2.1:
+  version "6.4.1"
+  resolved "https://registry.yarnpkg.com/acorn/-/acorn-6.4.1.tgz#531e58ba3f51b9dacb9a6646ca4debf5b14ca474"
+  integrity sha512-ZVA9k326Nwrj3Cj9jlh3wGFutC2ZornPNARZwsNYqQYgN0EsV2d53w5RN/co65Ohn4sUAUtb1rSUAOD6XN9idA==
 
 acorn@^7.1.0:
   version "7.1.0"
@@ -12853,10 +12831,10 @@ ovh-angular-ui-confirm-modal@^1.0.2:
   resolved "https://registry.yarnpkg.com/ovh-angular-ui-confirm-modal/-/ovh-angular-ui-confirm-modal-1.0.2.tgz#92e6736588a4fb1de6353f1a17ab1962679a698d"
   integrity sha512-3V17DbzWjUjl9sKCd25Oycn+7eqg6iW+DpizwVmixHFzDNDMnpKSGmxRLrOq+q9YNE7IepoAKWjoSiy2+zOEEg==
 
-ovh-api-services@^9.41.0:
-  version "9.41.0"
-  resolved "https://registry.yarnpkg.com/ovh-api-services/-/ovh-api-services-9.41.0.tgz#5aec975f48d61890f032c0cee7035caf43b51444"
-  integrity sha512-JCRf9hf/o1cmsRGPVW3szb7hEng1cLpBgD5TxrGJICIMOvQLIUz6jYESVil/+TWCPydtVWSehJcbty6cSGJ74A==
+ovh-api-services@^9.41.1:
+  version "9.41.1"
+  resolved "https://registry.yarnpkg.com/ovh-api-services/-/ovh-api-services-9.41.1.tgz#872dd4501c89bd2a16cfb6659e316722e365a3eb"
+  integrity sha512-ZtrvvNd5Be/LLH5pBFOEWIS+ICN3YjxqF85b0HaWN1EvEi4XqtOtfxwjGVfmYdbuRs2RX73br9K1t6Ed6Thf4A==
   dependencies:
     lodash "^4.17.15"
 
