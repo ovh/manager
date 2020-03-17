@@ -4,20 +4,21 @@ import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 import { urlQueryParams, params, component, resolves } from './config';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.dashboard.email_exchange_service', {
-    url: `email_exchange_service?${urlQueryParams}`,
+  $stateProvider.state('app.dashboard.ms_services_sharepoint', {
+    url: `ms_services_sharepoint?${urlQueryParams}`,
     params,
     component,
     resolve: {
       ...resolves,
       ...pick(ListLayoutHelper.stateResolves, ['onListParamsChange', 'filter']),
-      productType: /* @ngInject */ () => 'EMAIL_EXCHANGE_SERVICE',
-      apiPath: /* @ngInject */ () => '/email/exchange',
+      productType: () => 'MS_SERVICES_SHAREPOINT',
+      apiPath: () => '/msServices',
+      resourcePath: () => '/msServices/{serviceName}/sharepoint',
       schema: /* @ngInject */ ($http, apiPath) =>
         $http.get(`${apiPath}.json`).then(({ data }) => data),
       rows: /* @ngInject */ ($http) =>
         $http
-          .get('/exchanges', {
+          .get('/sharepoints', {
             serviceType: 'aapi',
           })
           .then(({ data }) => data),
