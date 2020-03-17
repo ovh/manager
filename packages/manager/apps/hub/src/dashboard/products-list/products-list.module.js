@@ -3,6 +3,9 @@ import angular from 'angular';
 import ovhManagerHub from '@ovh-ux/manager-hub';
 
 import exchangeRouting from './exchange.routing';
+import ipRouting from './ip.routing';
+import sharepointRouting from './sharepoint.routing';
+
 import routing from './routing';
 
 const moduleName = 'ovhManagerHubProductListingPage';
@@ -10,6 +13,8 @@ const moduleName = 'ovhManagerHubProductListingPage';
 angular
   .module(moduleName, [ovhManagerHub])
   .config(routing)
-  .config(exchangeRouting);
+  .config(exchangeRouting)
+  .config(ipRouting)
+  .config(sharepointRouting);
 
 export default moduleName;
