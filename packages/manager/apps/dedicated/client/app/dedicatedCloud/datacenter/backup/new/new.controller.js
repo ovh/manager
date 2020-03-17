@@ -1,4 +1,5 @@
 import get from 'lodash/get';
+import pick from 'lodash/pick';
 
 import {
   BACKUP_OFFER_CLASSIC,
@@ -8,7 +9,8 @@ import {
 
 export default class {
   /* @ngInject */
-  constructor($translate, Alerter, dedicatedCloudDatacenterBackupService) {
+  constructor($q, $translate, Alerter, dedicatedCloudDatacenterBackupService) {
+    this.$q = $q;
     this.$translate = $translate;
     this.alerter = Alerter;
     this.dedicatedCloudDatacenterBackupService = dedicatedCloudDatacenterBackupService;
@@ -53,13 +55,15 @@ export default class {
   createBackupOrder() {
     this.data.backupOrder = null;
     this.data.orderCreationInProgress = true;
-    return this.dedicatedCloudDatacenterBackupService
-      .createBackupOrder(
-        this.currentUser.ovhSubsidiary,
-        this.productId,
-        this.datacenterId,
-        this.data.selectedOffer.backupOffer,
-      )
+    return (this.backup.isLegacy()
+      ? this.$q.when({})
+      : this.dedicatedCloudDatacenterBackupService.createBackupOrder(
+          this.currentUser.ovhSubsidiary,
+          this.productId,
+          this.datacenterId,
+          this.data.selectedOffer.backupOffer,
+        )
+    )
       .then((order) => {
         this.data.backupOrder = order;
       })
@@ -71,8 +75,26 @@ export default class {
 
   orderBackup() {
     this.data.orderInProgress = true;
-    return this.dedicatedCloudDatacenterBackupService
-      .checkoutCart(this.data.backupOrder.cartItem)
+    return (this.backup.isLegacy()
+      ? this.dedicatedCloudDatacenterBackupService.updateBackupCapabilities(
+          this.productId,
+          this.datacenterId,
+          {
+            ...pick(this.backup, [
+              'backupDurationInReport',
+              'backupSizeInReport',
+              'diskSizeInReport',
+              'fullDayInReport',
+              'restorePointInReport',
+              'mailAddress',
+            ]),
+            backupOffer: this.data.selectedOffer.backupOffer,
+          },
+        )
+      : this.dedicatedCloudDatacenterBackupService.checkoutCart(
+          this.data.backupOrder.cartItem,
+        )
+    )
       .then(() => {
         this.backup.state = BACKUP_STATE_ENABLING;
         return this.goToBackup(

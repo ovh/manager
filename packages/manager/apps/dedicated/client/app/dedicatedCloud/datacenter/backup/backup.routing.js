@@ -7,6 +7,7 @@ import some from 'lodash/some';
 import Backup from './backup.class';
 
 import {
+  BACKUP_CONDITIONS_URL,
   BACKUP_TARIFF_URL,
   BACKUP_MINIMUM_HOST_COUNT,
 } from './backup.constants';
@@ -70,6 +71,10 @@ export default /* @ngInject */ ($stateProvider) => {
                     new Backup({
                       ...backup,
                       datacenterId: datacenter.id,
+                      datacenterName:
+                        datacenter.description ||
+                        datacenter.displayName ||
+                        datacenter.id.toString(),
                     }),
                 ),
           ),
@@ -102,6 +107,12 @@ export default /* @ngInject */ ($stateProvider) => {
           productId,
           datacenterId,
           currentUser.ovhSubsidiary,
+        ),
+      backupConditionsUrl: /* @ngInject */ (currentUser) =>
+        get(
+          BACKUP_CONDITIONS_URL,
+          currentUser.ovhSubsidiary,
+          BACKUP_CONDITIONS_URL.FR,
         ),
       backupTariffUrl: /* @ngInject */ (currentUser) =>
         get(BACKUP_TARIFF_URL, currentUser.ovhSubsidiary, BACKUP_TARIFF_URL.FR),

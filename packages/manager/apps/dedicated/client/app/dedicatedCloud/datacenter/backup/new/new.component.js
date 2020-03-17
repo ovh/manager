@@ -4,6 +4,7 @@ import template from './new.html';
 export default {
   bindings: {
     backup: '<',
+    backupConditionsUrl: '@',
     backupOffers: '<',
     backupOffersUnderProcess: '<',
     backupTariffUrl: '@',

@@ -2,6 +2,7 @@
 <div data-ng-if="!$ctrl.backup.isLegacy()">
     <p data-translate="dedicatedCloud_datacenter_backup_new_description1"></p>
     <p
+        data-ng-if="!$ctrl.enabledBackupOffer"
         data-ng-bind-html="::'dedicatedCloud_datacenter_backup_new_description2' | translate"
     ></p>
     <p>
@@ -28,6 +29,7 @@
 <div data-ng-if="$ctrl.backup.isLegacy()">
     <dedicated-cloud-datacenter-backup-legacy
         data-backup-tariff-url="::$ctrl.backupTariffUrl"
+        data-enabled-backup-offer="$ctrl.enabledBackupOffer"
     ></dedicated-cloud-datacenter-backup-legacy>
     <oui-button
         class="mt-3"
@@ -51,7 +53,7 @@
             data-translate="dedicatedCloud_datacenter_backup_new_restricted_offer_choice"
             data-translate-values="{
                 offer: $ctrl.BACKUP_OFFER_NAME[$ctrl.enabledBackupOffer.backupOffer],
-                datacenterId: $ctrl.enabledBackupOffer.datacenterId
+                datacenterName: $ctrl.enabledBackupOffer.datacenterName
               }"
         >
         </span>
@@ -99,11 +101,9 @@
             data-on-focus="$ctrl.createBackupOrder()"
         >
             <dedicated-cloud-datacenter-backup-terms-of-use
-                data-ng-if="$ctrl.data.backupOrder"
-                data-backup-tariff-url="{{ ::$ctrl.backupTariffUrl }}"
                 data-datacenter-id="{{ ::$ctrl.datacenterId }}"
                 data-model="$ctrl.data.conditionsAccepted"
-                data-conditions-url="{{ ::$ctrl.data.backupOrder.contracts[0].url }}"
+                data-conditions-url="{{ ::$ctrl.backupConditionsUrl }}"
             >
             </dedicated-cloud-datacenter-backup-terms-of-use>
             <oui-spinner
