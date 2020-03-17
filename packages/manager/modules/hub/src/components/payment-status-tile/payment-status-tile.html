@@ -3,7 +3,7 @@
     data-button-text="{{ ::'ovh_manager_hub_payment_status_tile_see_all' | translate }}"
     data-heading="{{ ::'ovh_manager_hub_payment_status_tile_title' | translate }}"
     data-href="{{ ::$ctrl.autorenewLink }}"
-    data-on-click="$ctrl.onLinkClick()"
+    datang-attr-on-click="{{ $ctrl.autorenewLink && $ctrl.onLinkClick() }}"
 >
     <hub-tile-error
         ng-if="!$ctrl.services && !$ctrl.loading"
@@ -97,7 +97,10 @@
                                     </span>
                                 </div>
                             </td>
-                            <td class="oui-datagrid__cell">
+                            <td
+                                class="oui-datagrid__cell"
+                                data-ng-if="$ctrl.autorenewLink"
+                            >
                                 <a
                                     data-ng-href="{{ $ctrl.getServiceManagementLink(service) }}"
                                     data-ng-click="$ctrl.onServiceManagementClick()"
