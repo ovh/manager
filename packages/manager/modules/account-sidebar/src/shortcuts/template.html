@@ -1,12 +1,15 @@
-<div class="manager-hub-shortcuts">
+<div>
     <h3 data-translate="hub_user_panel_shortcuts_title"></h3>
     <div
-        class="d-flex justify-content-between mt-4"
-        data-ng-repeat="row in $ctrl.shortcuts track by $index"
+        class="d-flex flex-wrap"
+        data-ng-class="{
+            'justify-content-around': $ctrl.shortcuts.length > 2,
+            'justify-content-start': $ctrl.shortcuts.length < 2
+        }"
     >
         <div
-            class="manager-hub-shortcuts_tile"
-            data-ng-repeat="shortcut in row track by shortcut.id"
+            class="account-sidebar-shortcuts_links mt-4"
+            data-ng-repeat="shortcut in $ctrl.shortcuts track by shortcut.id"
         >
             <ovh-manager-hub-shortcut-tile
                 data-label="shortcut.label"
