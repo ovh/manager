@@ -1968,14 +1968,6 @@
   dependencies:
     lodash "^4.17.15"
 
-"@ovh-ux/ng-ovh-doc-url@^1.0.0", "@ovh-ux/ng-ovh-doc-url@^1.0.2":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-doc-url/-/ng-ovh-doc-url-1.0.2.tgz#8547a50af5ed0e0a2f4f96721a66d37474f4f942"
-  integrity sha512-6tM3K4JOxv9jP5clBW0azvh4TqUUnuzUXC0pJZiWNad2KaJp34ZT3qXzcpUmONwZQQ9ooBovL4sQWpskG6ZVbg==
-  dependencies:
-    lodash "~4.17.15"
-    urijs "^1.19.2"
-
 "@ovh-ux/ng-ovh-export-csv@^1.0.2":
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-export-csv/-/ng-ovh-export-csv-1.0.2.tgz#4d0a285db8580e482226855d61e52f5467ee561c"
