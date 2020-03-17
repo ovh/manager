@@ -25,7 +25,7 @@ import isNumber from 'lodash/isNumber';
  * @description
  * Provider allowing configuration for atInternet service.
  */
-export default /* @ngInject */ function (AT_INTERNET_CUSTOM_VARS) {
+export default /* @ngInject */ function(AT_INTERNET_CUSTOM_VARS) {
   const config = {
     enabled: false, // enable or disable tracking
     debug: false, // enable or disable logging tracking in JS console
@@ -144,8 +144,11 @@ export default /* @ngInject */ function (AT_INTERNET_CUSTOM_VARS) {
      * Returns a randomized string of length "len"
      */
     function getRandomString(len) {
-      const alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-      return map(new Array(len), () => alphabet.charAt(Math.floor(Math.random() * alphabet.length))).join('');
+      const alphabet =
+        'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+      return map(new Array(len), () =>
+        alphabet.charAt(Math.floor(Math.random() * alphabet.length)),
+      ).join('');
     }
 
     /**
@@ -173,7 +176,9 @@ export default /* @ngInject */ function (AT_INTERNET_CUSTOM_VARS) {
       // no level2 ? use default and warn
       if (angular.isUndefined(data.level2)) {
         data.level2 = 0;
-        $log.warn('atinternet level2 attribute undefined: use default unclassified level2 "0". Please fix it!');
+        $log.warn(
+          'atinternet level2 attribute undefined: use default unclassified level2 "0". Please fix it!',
+        );
       }
     }
 
@@ -192,7 +197,7 @@ export default /* @ngInject */ function (AT_INTERNET_CUSTOM_VARS) {
          *     a { b { c : [value] }}}
          */
         each(keys, (key, idx) => {
-          if (idx === (keys.length - 1) && conf.format) {
+          if (idx === keys.length - 1 && conf.format) {
             tmp[key] = conf.format.replace('%s', data[attr]);
           } else {
             tmp[key] = tmp[key] || {};
@@ -212,7 +217,6 @@ export default /* @ngInject */ function (AT_INTERNET_CUSTOM_VARS) {
     }
 
     return {
-
       isTagAvailable: isAtInternetTagAvailable,
 
       /**
@@ -310,7 +314,10 @@ export default /* @ngInject */ function (AT_INTERNET_CUSTOM_VARS) {
             atinternetTag.page.send(pageData);
             logDebugInfos('atinternet.trackpage: ', pageData);
           } else {
-            $log.error('atinternet.trackPage invalid data: missing name attribute', pageData);
+            $log.error(
+              'atinternet.trackPage invalid data: missing name attribute',
+              pageData,
+            );
           }
         }
       },
@@ -345,11 +352,19 @@ export default /* @ngInject */ function (AT_INTERNET_CUSTOM_VARS) {
       trackClick(clickData) {
         if (isAtInternetTagAvailable()) {
           updateData(clickData);
-          if (indexOf(['action', 'navigation', 'download', 'exit'], clickData.type) >= 0) {
+          if (
+            indexOf(
+              ['action', 'navigation', 'download', 'exit'],
+              clickData.type,
+            ) >= 0
+          ) {
             atinternetTag.click.send(clickData);
             logDebugInfos('atinternet.trackclick: ', clickData);
           } else {
-            $log.error("atinternet.trackClick invalid or missing 'type' attribute for data", clickData);
+            $log.error(
+              "atinternet.trackClick invalid or missing 'type' attribute for data",
+              clickData,
+            );
           }
         }
       },
@@ -395,15 +410,27 @@ export default /* @ngInject */ function (AT_INTERNET_CUSTOM_VARS) {
 
           // Check if product data has all required attributes
           if (!productData.page) {
-            $log.error('atinternet.trackProduct missing page attribute: ', productData);
+            $log.error(
+              'atinternet.trackProduct missing page attribute: ',
+              productData,
+            );
             return;
           }
           if (!productData.name) {
-            $log.error('atinternet.trackProduct missing name attribute: ', productData);
+            $log.error(
+              'atinternet.trackProduct missing name attribute: ',
+              productData,
+            );
             return;
           }
-          if (isUndefined(productData.price) && isUndefined(productData.priceTaxFree)) {
-            $log.error('atinternet.trackProduct missing price attribute: ', productData);
+          if (
+            isUndefined(productData.price) &&
+            isUndefined(productData.priceTaxFree)
+          ) {
+            $log.error(
+              'atinternet.trackProduct missing price attribute: ',
+              productData,
+            );
             return;
           }
 
@@ -475,11 +502,17 @@ export default /* @ngInject */ function (AT_INTERNET_CUSTOM_VARS) {
         if (isAtInternetTagAvailable()) {
           updateData(eventData);
           if (!eventData.page) {
-            $log.error('atinternet.trackEvent missing page attribute: ', eventData);
+            $log.error(
+              'atinternet.trackEvent missing page attribute: ',
+              eventData,
+            );
             return;
           }
           if (!eventData.event) {
-            $log.error('atinternet.trackEvent missing eventData attribute: ', eventData);
+            $log.error(
+              'atinternet.trackEvent missing eventData attribute: ',
+              eventData,
+            );
             return;
           }
           atinternetTag.page.set({

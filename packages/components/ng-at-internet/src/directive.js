@@ -59,7 +59,7 @@ export /* @ngInject */ function trackOnDirective(atInternet) {
     link($scope, $element, $attr) {
       $element.on($scope.trackOn, () => {
         const clickData = {
-          name: $attr.trackName || (`${$attr.id}-${$scope.trackOn}`),
+          name: $attr.trackName || `${$attr.id}-${$scope.trackOn}`,
           type: $attr.trackType || 'action',
         };
 

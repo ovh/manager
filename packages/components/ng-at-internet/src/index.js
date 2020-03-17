@@ -36,7 +36,9 @@ angular
         } else {
           // Limit number of delegate track in queue.
           if (trackPageRequestQueue.length > settings.queueLimit) {
-            throw new Error('atinternet too much requests are waiting in track page request queue');
+            throw new Error(
+              'atinternet too much requests are waiting in track page request queue',
+            );
           }
           trackPageRequestQueue.push(trackInfos);
         }
