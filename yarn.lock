@@ -1981,11 +1981,6 @@
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-export-csv/-/ng-ovh-export-csv-1.0.2.tgz#4d0a285db8580e482226855d61e52f5467ee561c"
   integrity sha512-PowQkwV3Aj8Pa/EGhaULnzVL69GBmlJUj3QIYOGoxSqH0Tw7snnNuSaSGCj1Ob92Nv5ovWcL2Ie5Z+wHq6juBQ==
 
-"@ovh-ux/ng-ovh-form-flat@^4.0.3":
-  version "4.0.3"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-form-flat/-/ng-ovh-form-flat-4.0.3.tgz#bec2c9fda11a7105eb22fa682fd06ebbe93121d2"
-  integrity sha512-EoksIcNePhYn084aObERqqWBenebMTgkK0TV8L13qhgjTDwhJyO0qsCOI0UpChv0kBpEoGi/GDurgZjz6v1TxA==
-
 "@ovh-ux/ng-ovh-http@^4.0.4", "@ovh-ux/ng-ovh-http@^4.0.6":
   version "4.0.6"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-http/-/ng-ovh-http-4.0.6.tgz#c1a9191029636dc391653bbef2bdb6df12d5334e"
