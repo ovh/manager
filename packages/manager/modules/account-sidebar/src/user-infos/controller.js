@@ -43,10 +43,17 @@ export default class ManagerHubUserInfosCtrl {
     if (this.supportLevel) {
       return this.$q.when(this.supportLevel);
     }
+    this.loading = true;
     return this.OvhApiMe.v6()
       .supportLevel()
       .$promise.then((supportLevel) => {
         this.supportLevel = supportLevel;
+      })
+      .catch(() => {
+        this.supportLevel = null;
+      })
+      .finally(() => {
+        this.loading = false;
       });
   }
 
