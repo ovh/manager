@@ -1888,16 +1888,6 @@
   dependencies:
     "@types/node" ">= 8"
 
-"@ovh-ux/codename-generator@^1.0.0":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/codename-generator/-/codename-generator-1.0.2.tgz#6945a47cfbca60f8fb182c31eaa2399ceff33c5a"
-  integrity sha512-5885d5zgYhL6QWPXLaLEFkdNhdYALJVZJfGztPMJOwqyw62crSdxjJHhia0iGBYIPIOoZTl9Q/hfHee8M+u+sg==
-  dependencies:
-    commander "^4.0.0"
-    moment "^2.24.0"
-    shuffle-seed "^1.1.6"
-    titleize "^2.1.0"
-
 "@ovh-ux/ng-at-internet-ui-router-plugin@^2.0.4":
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-at-internet-ui-router-plugin/-/ng-at-internet-ui-router-plugin-2.0.4.tgz#8ec418910ef9ffa8bb353894de3d5842cf9f9384"
