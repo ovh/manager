@@ -45,6 +45,8 @@ export default /* @ngInject */ ($stateProvider) => {
             }),
           );
       },
+      packName: /* @ngInject */ ($transition$) =>
+        $transition$.params().packName,
     },
     translations: {
       value: [
