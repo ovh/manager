@@ -2038,11 +2038,6 @@
     draggable "^4.2.0"
     lodash "^4.17.11"
 
-"@ovh-ux/ng-ovh-proxy-request@^1.0.1":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-proxy-request/-/ng-ovh-proxy-request-1.0.1.tgz#7f7985c4f43b5ca6df3ab977c0057e2b200ff970"
-  integrity sha512-WYoxhvQV8qMOw0BztQnkkvovRj20G5m2/MQN3d1mqi+oZEOiHEALnfwN0CNjt+UpJi/dZ90eRxBO9DqGqWu6/g==
-
 "@ovh-ux/ng-ovh-responsive-popover@^5.0.1":
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-responsive-popover/-/ng-ovh-responsive-popover-5.0.1.tgz#780686a8c35d96ff402a07bf09d5bf43fb83202f"
