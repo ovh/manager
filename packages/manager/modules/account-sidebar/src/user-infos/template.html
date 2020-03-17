@@ -15,7 +15,7 @@
     <p class="oui-chip" data-ng-if="!$ctrl.isExpanded">
         <oui-skeleton
             class="mx-auto"
-            data-ng-if="!$ctrl.supportLevel"
+            data-ng-if="$ctrl.loading"
             data-size="xs"
         ></oui-skeleton>
         <span
