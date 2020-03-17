@@ -1,3 +1,4 @@
+import head from 'lodash/head';
 import packXdslAccessIpv6 from './access/ipv6/pack-xdsl-access-ipv6.html';
 import packXdslAccessProfil from './access/profil/pack-xdsl-access-profil.html';
 import xdslAccessLnsRatelimit from './access/rateLimit/xdsl-access-lns-ratelimit.html';
@@ -29,6 +30,29 @@ angular.module('managerApp').run(($templateCache) => {
 });
 
 angular.module('managerApp').config(($stateProvider) => {
+  $stateProvider.state('telecom.packs.pack.xdsl-redirection', {
+    url: '/xdsl/:serviceName',
+    resolve: {
+      serviceName: /* @ngInject */ ($transition$) =>
+        $transition$.params().serviceName,
+      lines: /* @ngInject */ (OvhApiXdslLines, serviceName) =>
+        OvhApiXdslLines.v6().query({
+          xdslId: serviceName,
+        }).$promise,
+    },
+    redirectTo: (transition) =>
+      transition
+        .injector()
+        .getAsync('lines')
+        .then((lines) => ({
+          state: 'telecom.packs.pack.xdsl',
+          params: {
+            ...transition.params(),
+            number: head(lines),
+          },
+        })),
+  });
+
   $stateProvider.state('telecom.packs.pack.xdsl', {
     url: '/xdsl/:serviceName/lines/:number',
     views: {
