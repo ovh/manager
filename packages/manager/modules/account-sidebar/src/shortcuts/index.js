@@ -7,6 +7,8 @@ import 'angular-translate';
 import component from './component';
 import shortcutTile from './shortcut-tile';
 
+import './index.scss';
+
 const moduleName = 'ovhManagerHubShortcuts';
 
 angular
