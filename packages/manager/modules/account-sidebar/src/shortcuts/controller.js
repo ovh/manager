@@ -1,13 +1,11 @@
-import chunk from 'lodash/chunk';
 import filter from 'lodash/filter';
 import find from 'lodash/find';
 import get from 'lodash/get';
-import map from 'lodash/map';
+import isEmpty from 'lodash/isEmpty';
 
 export default class ManagerHubShortcutsCtrl {
   /* @ngInject */
-  constructor($http, $translate, $q, RedirectionService) {
-    this.$http = $http;
+  constructor($translate, $q, coreConfig, RedirectionService) {
     this.$translate = $translate;
     this.$q = $q;
     this.RedirectionService = RedirectionService;
@@ -63,15 +61,17 @@ export default class ManagerHubShortcutsCtrl {
         }
       })
       .then(() => {
-        return map(shortcuts, (shortcut) => ({
-          ...shortcut,
-          label: this.$translate.instant(
-            `hub_user_panel_shortcuts_link_${shortcut.id}`,
-          ),
-        }));
+        return shortcuts
+          .filter(({ url }) => url || !isEmpty(url))
+          .map((shortcut) => ({
+            ...shortcut,
+            label: this.$translate.instant(
+              `hub_user_panel_shortcuts_link_${shortcut.id}`,
+            ),
+          }));
       })
       .then((result) => {
-        this.shortcuts = chunk(result, 3);
+        this.shortcuts = result;
       });
   }
 
