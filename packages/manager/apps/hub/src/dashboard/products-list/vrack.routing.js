@@ -1,23 +1,24 @@
+import get from 'lodash/get';
 import pick from 'lodash/pick';
 
 import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 import { urlQueryParams, params, component, resolves } from './config';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.dashboard.email_exchange_service', {
-    url: `email_exchange_service?${urlQueryParams}`,
+  $stateProvider.state('app.dashboard.vrack', {
+    url: `vrack?${urlQueryParams}`,
     params,
     component,
     resolve: {
       ...resolves,
       ...pick(ListLayoutHelper.stateResolves, ['onListParamsChange', 'filter']),
-      productType: /* @ngInject */ () => 'EMAIL_EXCHANGE_SERVICE',
-      apiPath: /* @ngInject */ () => '/email/exchange',
+      productType: /* @ngInject */ () => 'VRACK',
+      apiPath: /* @ngInject */ () => '/vrack',
       schema: /* @ngInject */ ($http, apiPath) =>
         $http.get(`${apiPath}.json`).then(({ data }) => data),
       rows: /* @ngInject */ ($http) =>
         $http
-          .get('/exchanges', {
+          .get('/vracks', {
             serviceType: 'aapi',
           })
           .then(({ data }) => data),
@@ -29,6 +30,14 @@ export default /* @ngInject */ ($stateProvider) => {
       paginationSize: /* @ngInject */ ($transition$) =>
         $transition$.params().pageSize,
       paginationTotalCount: /* @ngInject */ (rows) => rows.length,
+      loadRow: /* @ngInject */ (products) => (service) => ({
+        ...service,
+        serviceName: service.id,
+        managerLink: get(
+          products.find(({ resource }) => resource.name === service.id),
+          'url',
+        ),
+      }),
     },
   });
 };
