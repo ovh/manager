@@ -1976,11 +1976,6 @@
     lodash "~4.17.15"
     urijs "^1.19.2"
 
-"@ovh-ux/ng-ovh-export-csv@^1.0.2":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-export-csv/-/ng-ovh-export-csv-1.0.2.tgz#4d0a285db8580e482226855d61e52f5467ee561c"
-  integrity sha512-PowQkwV3Aj8Pa/EGhaULnzVL69GBmlJUj3QIYOGoxSqH0Tw7snnNuSaSGCj1Ob92Nv5ovWcL2Ie5Z+wHq6juBQ==
-
 "@ovh-ux/ng-ovh-form-flat@^4.0.3":
   version "4.0.3"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-form-flat/-/ng-ovh-form-flat-4.0.3.tgz#bec2c9fda11a7105eb22fa682fd06ebbe93121d2"
