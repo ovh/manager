@@ -2,7 +2,7 @@
 
 > Form Design for v6 manager.
 
-[![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-ovh-form-flat)](https://npmjs.com/package/@ovh-ux/ng-ovh-form-flat) [![Dependencies](https://badgen.net/david/dep/ovh-ux/ng-ovh-form-flat)](https://npmjs.com/package/@ovh-ux/ng-ovh-form-flat?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/ng-ovh-form-flat)](https://npmjs.com/package/@ovh-ux/ng-ovh-form-flat?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
+[![npm version](https://badgen.net/npm/v/@ovh-ux/ng-ovh-form-flat)](https://www.npmjs.com/package/@ovh-ux/ng-ovh-form-flat) [![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-ovh-form-flat)](https://npmjs.com/package/@ovh-ux/ng-ovh-form-flat) [![Dependencies](https://badgen.net/david/dep/ovh/manager/packages/components/ng-ovh-form-flat)](https://npmjs.com/package/@ovh-ux/ng-ovh-form-flat?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh/manager/packages/components/ng-ovh-form-flat)](https://npmjs.com/package/@ovh-ux/ng-ovh-form-flat?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
 
 ## Install
 
@@ -189,7 +189,7 @@ $ yarn test
 
 ## Contributing
 
-Always feel free to help out! Whether it's [filing bugs and feature requests](https://github.com/ovh-ux/ng-ovh-form-flat/issues/new) or working on some of the [open issues](https://github.com/ovh-ux/ng-ovh-form-flat/issues), our [contributing guide](CONTRIBUTING.md) will help get you started.
+Always feel free to help out! Whether it's [filing bugs and feature requests](https://github.com/ovh/manager/issues/new) or working on some of the [open issues](https://github.com/ovh/manager/issues), our [contributing guide](https://github.com/ovh/manager/blob/master/CONTRIBUTING.md) will help get you started.
 
 ## License
 
