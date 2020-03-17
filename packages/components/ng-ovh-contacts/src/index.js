@@ -17,12 +17,8 @@ import ouiUiSelectMatchTemplate from './form/oui-ui-select-flag/match.tpl.html';
 const moduleName = 'ngOvhContacts';
 
 angular
-  .module(moduleName, [
-    'pascalprecht.translate',
-    'oui',
-    'ovh-api-services',
-  ])
-  .run(/* @ngTranslationsInject ./translations */)
+  .module(moduleName, ['pascalprecht.translate', 'oui', 'ovh-api-services'])
+  .run(/* @ngTranslationsInject:json ./translations */)
   .provider('ovhContacts', ovhContactsProvider)
   .directive('ovhContactForm', ovhContactFormDirective)
   .run(($templateCache) => {
@@ -39,9 +35,18 @@ angular
       ovhContactsFormFieldsetTemplate,
     );
 
-    $templateCache.put('oui-ui-select-flag/match.tpl.html', ouiUiSelectMatchTemplate);
-    $templateCache.put('oui-ui-select-flag/choices.tpl.html', ouiUiSelectChoicesTemplate);
-    $templateCache.put('oui-ui-select-flag/select.tpl.html', ouiUiSelectTemplate);
+    $templateCache.put(
+      'oui-ui-select-flag/match.tpl.html',
+      ouiUiSelectMatchTemplate,
+    );
+    $templateCache.put(
+      'oui-ui-select-flag/choices.tpl.html',
+      ouiUiSelectChoicesTemplate,
+    );
+    $templateCache.put(
+      'oui-ui-select-flag/select.tpl.html',
+      ouiUiSelectTemplate,
+    );
   });
 
 export default moduleName;
