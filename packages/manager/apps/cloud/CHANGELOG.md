@@ -1,3 +1,22 @@
+# [8.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@8.3.4...@ovh-ux/manager-cloud@8.4.0) (2020-03-18)
+
+
+### Bug Fixes
+
+* **deps:** use latest for @ovh-ux/manager-core ([#2394](https://github.com/ovh/manager/issues/2394)) ([df1a12b](https://github.com/ovh/manager/commit/df1a12bc132cebb55f0a70a317e406ee78574faa))
+* **i18n:** add missing translations [CDS 306] ([cc24d7b](https://github.com/ovh/manager/commit/cc24d7b4bccd25c2b5e2d7d95c6525850a7d0d4f))
+* **i18n:** add missing translations [CDS 307] ([f5295a2](https://github.com/ovh/manager/commit/f5295a2c34752721d7cc4c7cb01516f1ac295b2d))
+* **i18n:** add missing translations [CDS 308] ([8f8fdfc](https://github.com/ovh/manager/commit/8f8fdfceb1401aa71f43329beb491538b2c8304e))
+* **i18n:** add missing translations [CDS 312] ([8da048e](https://github.com/ovh/manager/commit/8da048e14f8d4666e76ccd1ef56bfab0c819a563))
+* **navbar:** remove beta version ([#2473](https://github.com/ovh/manager/issues/2473)) ([7968e3b](https://github.com/ovh/manager/commit/7968e3b99135a2c133df2647d363b414e5a210b1))
+
+
+### Features
+
+* **dbaas.logs:** allow bulk input networks ([#2272](https://github.com/ovh/manager/issues/2272)) ([79b393f](https://github.com/ovh/manager/commit/79b393f1f88dbe4e4f6e8d2d65b26fb7d0b0cac2))
+
+
+
 ## [8.3.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@8.3.3...@ovh-ux/manager-cloud@8.3.4) (2020-03-04)
 
 

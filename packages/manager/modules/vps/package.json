@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-vps",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "private": true,
   "description": "VPS product.",
   "repository": {
@@ -21,7 +21,7 @@
   },
   "peerDependencies": {
     "@ovh-ux/manager-core": "^8.0.0",
-    "@ovh-ux/ng-at-internet": "^4.0.0",
+    "@ovh-ux/ng-at-internet": "^5.0.0",
     "@ovh-ux/ng-ovh-cloud-universe-components": "^1.4.3",
     "@ovh-ux/ng-ovh-doc-url": "^1.0.0",
     "@ovh-ux/ng-ui-router-layout": "^3.2.0",

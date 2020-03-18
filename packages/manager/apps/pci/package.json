@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-pci-app",
-  "version": "2.2.3",
+  "version": "2.2.4",
   "private": true,
   "description": "Public Cloud Instance standalone application.",
   "repository": {
@@ -23,7 +23,7 @@
     "@ovh-ux/manager-config": "^0.4.0",
     "@ovh-ux/manager-core": "^8.0.0",
     "@ovh-ux/manager-pci": "^3.0.0",
-    "@ovh-ux/ng-at-internet": "^4.0.4",
+    "@ovh-ux/ng-at-internet": "^5.0.0",
     "@ovh-ux/ng-ovh-api-wrappers": "^4.0.7",
     "@ovh-ux/ng-ovh-apiv7": "^2.0.0",
     "@ovh-ux/ng-ovh-cloud-universe-components": "^1.4.3",

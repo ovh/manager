@@ -1,3 +1,12 @@
+## [0.2.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@0.2.3...@ovh-ux/manager-vps@0.2.4) (2020-03-18)
+
+
+### Bug Fixes
+
+* add missing label for PostgreSQL database ([#2557](https://github.com/ovh/manager/issues/2557)) ([2400d51](https://github.com/ovh/manager/commit/2400d51accdabc5c813851ad9dfd76b1047e8143))
+
+
+
 ## [0.2.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@0.2.2...@ovh-ux/manager-vps@0.2.3) (2020-03-11)
 
 
