@@ -16,8 +16,8 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
       },
     },
     resolve: {
-      products: /* @ngInject */ (catalog, services) =>
-        get(services, 'data.count') === 0
+      products: /* @ngInject */ (catalog, order, services) =>
+        get(services, 'data.count') === 0 && !order
           ? groupBy(
               filter(catalog.data, ({ highlight }) => highlight),
               'universe',
@@ -61,7 +61,7 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
         $translate.instant('manager_hub_dashboard'),
     },
     componentProvider: /* @ngInject */ (order, services) =>
-      get(services, 'data.count') === 0 && !order.data
+      get(services, 'data.count') === 0 && !order
         ? 'hubOrderDashboard'
         : 'hubDashboard',
   });
