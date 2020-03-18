@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-hub",
-  "version": "0.2.0-alpha.1",
+  "version": "0.3.0-alpha.0",
   "private": true,
   "description": "OVHcloud set of components for Manager Hub",
   "repository": {
@@ -21,7 +21,7 @@
   "peerDependencies": {
     "@ovh-ux/manager-core": "^8.0.0",
     "@ovh-ux/manager-ng-layout-helpers": "^0.0.0 || ^1.0.0",
-    "@ovh-ux/ng-at-internet": "^4.0.4",
+    "@ovh-ux/ng-at-internet": "^5.0.0",
     "@ovh-ux/ng-ovh-api-wrappers": "^3.0.0",
     "@ovh-ux/ng-ovh-order-tracking": "^0.1.0",
     "@ovh-ux/ng-ovh-payment-method": "^6.0.1",
