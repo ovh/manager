@@ -4,6 +4,7 @@ import get from 'lodash/get';
 export default class ManagerHubBillingProductList extends ListLayoutHelper.ListLayoutCtrl {
   $onInit() {
     this.datagridId = `dg-${this.productType}`;
+    this.defaultFilterColumn = this.propertyId;
 
     super.$onInit();
   }

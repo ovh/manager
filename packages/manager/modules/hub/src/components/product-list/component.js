@@ -19,5 +19,6 @@ export default {
     loadRow: '<',
     onColumnChange: '<',
     productType: '<',
+    propertyId: '<',
   },
 };
