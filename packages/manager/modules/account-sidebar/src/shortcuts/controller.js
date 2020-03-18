@@ -5,7 +5,8 @@ import isEmpty from 'lodash/isEmpty';
 
 export default class ManagerHubShortcutsCtrl {
   /* @ngInject */
-  constructor($translate, $q, coreConfig, RedirectionService) {
+  constructor($http, $translate, $q, RedirectionService) {
+    this.$http = $http;
     this.$translate = $translate;
     this.$q = $q;
     this.RedirectionService = RedirectionService;
