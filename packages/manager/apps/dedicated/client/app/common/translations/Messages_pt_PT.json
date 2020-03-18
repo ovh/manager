@@ -548,8 +548,6 @@
   "ovh_task_follow_button": "Informação sobre o incidente (falha técnica)",
   "ovh_task_follow_modal_title": "Acompanhe a resolução do incidente",
   "ovh_task_follow_modal_comment": "Última atualização: {{t 0 }}",
-  "preload_welcome": "Bem-vindo(a) à",
-  "preload_manager_ovh": "Área de Cliente OVHcloud",
   "otrs_menu_assistance": "Assistência",
   "otrs_menu_assistance_expanded": "Ajuda",
   "otrs_menu_all_guides": "Manuais OVH",

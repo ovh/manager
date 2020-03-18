@@ -3,7 +3,6 @@ const merge = require('webpack-merge');
 const path = require('path');
 const fs = require('fs');
 const glob = require('glob');
-const _ = require('lodash');
 const webpackConfig = require('@ovh-ux/manager-webpack-config');
 
 function foundNodeModulesFolder(checkedDir, cwd = '.') {
@@ -29,20 +28,21 @@ function readNgAppInjections(file) {
   return injections;
 }
 
-function getNgAppInjections(region) {
-  const injections = [
-    ...readNgAppInjections(`./.extras-${region}/ng-app-injections`),
-    ...readNgAppInjections('./.extras/ng-app-injections'),
-  ];
+function getNgAppInjections(regions) {
+  return regions.reduce((ngAppInjections, region) => {
+    const injections = [
+      ...readNgAppInjections(`./.extras-${region}/ng-app-injections`),
+      ...readNgAppInjections('./.extras/ng-app-injections'),
+    ];
 
-  const ngAppInjections = injections.map((val) => `'${val}'`).join(',');
-
-  return ngAppInjections || 'null';
+    return {
+      ...ngAppInjections,
+      [region]: JSON.stringify(injections),
+    };
+  }, {});
 }
 
 module.exports = (env = {}) => {
-  const REGION = _.upperCase(env.region || process.env.REGION || 'EU');
-
   const { config } = webpackConfig(
     {
       template: './client/app/index.html',
@@ -73,27 +73,24 @@ module.exports = (env = {}) => {
         ],
       },
     },
-    REGION ? Object.assign(env, { region: REGION }) : env,
+    env,
   );
 
   config.plugins.push(
     new webpack.DefinePlugin({
       WEBPACK_ENV: {
-        region: JSON.stringify(env.region),
         production: JSON.stringify(env.production),
       },
     }),
   );
 
   // Extra config files
-  const extrasRegion = glob.sync(`./.extras-${REGION}/**/*.js`);
   const extras = glob.sync('./.extras/**/*.js');
 
   return merge(config, {
     entry: {
       main: path.resolve('./client/app/index.js'),
       ...(extras.length > 0 ? { extras } : {}),
-      ...(extrasRegion.length > 0 ? { extrasRegion } : {}),
     },
     output: {
       path: path.resolve(__dirname, 'dist'),
@@ -109,8 +106,7 @@ module.exports = (env = {}) => {
     },
     plugins: [
       new webpack.DefinePlugin({
-        __NG_APP_INJECTIONS__: getNgAppInjections(REGION),
-        __WEBPACK_REGION__: `'${REGION}'`,
+        __NG_APP_INJECTIONS__: getNgAppInjections(['EU', 'CA', 'US']),
       }),
     ],
     optimization: {
