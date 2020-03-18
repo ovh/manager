@@ -56,9 +56,16 @@ export default class OvhContactsFormCtrl {
   static traverseRules(rules, callback, prefix) {
     keys(rules).forEach((ruleKey) => {
       if (!has(rules, `${ruleKey}.fullType`)) {
-        OvhContactsFormCtrl.traverseRules(get(rules, ruleKey), callback, ruleKey);
+        OvhContactsFormCtrl.traverseRules(
+          get(rules, ruleKey),
+          callback,
+          ruleKey,
+        );
       } else {
-        callback(get(rules, ruleKey), prefix ? `${prefix}.${ruleKey}` : ruleKey);
+        callback(
+          get(rules, ruleKey),
+          prefix ? `${prefix}.${ruleKey}` : ruleKey,
+        );
       }
     });
   }
@@ -74,7 +81,9 @@ export default class OvhContactsFormCtrl {
       if (phonePrefix) {
         const alternativePhonePrefix = `00${phonePrefix.replace('+', '')}`;
         if (startsWith(phoneNumberParam, alternativePhonePrefix)) {
-          phoneNumber = `${phonePrefix}${phoneNumberParam.slice(alternativePhonePrefix.length)}`;
+          phoneNumber = `${phonePrefix}${phoneNumberParam.slice(
+            alternativePhonePrefix.length,
+          )}`;
         }
       }
     }
@@ -98,7 +107,10 @@ export default class OvhContactsFormCtrl {
       const phoneModel = this.formCtrl.phone;
       const modelValue = phoneModel.$modelValue;
       const viewValue = phoneModel.$viewValue;
-      const phoneModelValid = phoneModel.$validators.pattern(modelValue, viewValue);
+      const phoneModelValid = phoneModel.$validators.pattern(
+        modelValue,
+        viewValue,
+      );
       phoneModel.$setValidity('pattern', phoneModelValid);
 
       // set the focus to phone field to fix error display
@@ -123,8 +135,9 @@ export default class OvhContactsFormCtrl {
 
   validatePhoneNumber() {
     if (this.rules.phone.regularExpression) {
-      return new RegExp(this.rules.phone.regularExpression)
-        .test(this.model.phone);
+      return new RegExp(this.rules.phone.regularExpression).test(
+        this.model.phone,
+      );
     }
     return true;
   }
@@ -141,23 +154,37 @@ export default class OvhContactsFormCtrl {
   }
 
   getProvinceLabel(forLabel) {
-    let areaTranslationKey = forLabel ? 'ovh_contact_form_address_area' : 'ovh_contact_form_address_area_optional';
+    let areaTranslationKey = forLabel
+      ? 'ovh_contact_form_address_area'
+      : 'ovh_contact_form_address_area_optional';
     if (['US', 'WE'].indexOf(this.model.address.country) > -1) {
-      areaTranslationKey = forLabel ? 'ovh_contact_form_address_state' : 'ovh_contact_form_address_state_optional';
+      areaTranslationKey = forLabel
+        ? 'ovh_contact_form_address_state'
+        : 'ovh_contact_form_address_state_optional';
     } else if (this.model.address.country === 'CA') {
-      areaTranslationKey = forLabel ? 'ovh_contact_form_address_province' : 'ovh_contact_form_address_province_optional';
+      areaTranslationKey = forLabel
+        ? 'ovh_contact_form_address_province'
+        : 'ovh_contact_form_address_province_optional';
     }
 
     return this.$translate.instant(areaTranslationKey);
   }
 
   getRules() {
-    const predefinedFields = get(PREDEFINED_CONTACT_PROFILES, this.predefinedProfile, null);
+    const predefinedFields = get(
+      PREDEFINED_CONTACT_PROFILES,
+      this.predefinedProfile,
+      null,
+    );
 
-    return this.ovhContacts.getCreationRules({
-      country: this.model.address.country,
-      phoneCountry: this.models.phone.country,
-    }, predefinedFields)
+    return this.ovhContacts
+      .getCreationRules(
+        {
+          country: this.model.address.country,
+          phoneCountry: this.models.phone.country,
+        },
+        predefinedFields,
+      )
       .then((rules) => {
         this.rules = rules;
 
@@ -165,7 +192,10 @@ export default class OvhContactsFormCtrl {
         if (!this.initialDefaultValues) {
           this.initialDefaultValues = {};
           OvhContactsFormCtrl.traverseRules(rules, (rule, ruleKey) => {
-            if (ruleKey !== 'phoneCountry' && (rule.defaultValue || rule.initialValue)) {
+            if (
+              ruleKey !== 'phoneCountry' &&
+              (rule.defaultValue || rule.initialValue)
+            ) {
               set(this.initialDefaultValues, ruleKey, rule.defaultValue);
               set(this.model, ruleKey, rule.initialValue || rule.defaultValue);
               if (ruleKey === 'address.country') {
@@ -181,14 +211,21 @@ export default class OvhContactsFormCtrl {
         // sort the enums that need to be sorted
         filter(ENUMS_TO_TRANSFORM, { sort: true }).forEach((enumDef) => {
           if (has(rules, enumDef.path)) {
-            const sortedEnum = get(rules, `${enumDef.path}.enum`, []).sort((valA, valB) => {
-              if (valA.value === get(this.initialDefaultValues, enumDef.path)) {
-                return -1;
-              } if (valB.value === get(this.initialDefaultValues, enumDef.path)) {
-                return 1;
-              }
-              return valA.label.localeCompare(valB.label);
-            });
+            const sortedEnum = get(rules, `${enumDef.path}.enum`, []).sort(
+              (valA, valB) => {
+                if (
+                  valA.value === get(this.initialDefaultValues, enumDef.path)
+                ) {
+                  return -1;
+                }
+                if (
+                  valB.value === get(this.initialDefaultValues, enumDef.path)
+                ) {
+                  return 1;
+                }
+                return valA.label.localeCompare(valB.label);
+              },
+            );
 
             set(rules, `${enumDef.path}.enum`, sortedEnum);
           }

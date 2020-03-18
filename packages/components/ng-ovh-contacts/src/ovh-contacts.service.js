@@ -40,10 +40,11 @@ export default class OvhContactsService {
    *  @return {Promise} That returns an Object representing a contact.
    */
   convertNicToContact(nicToConvert = null) {
-    return this.$q.all({
-      nic: nicToConvert ? this.$q.when(nicToConvert) : this.getConnectedNic(),
-      apiSchemas: this.getMeSchemas(),
-    })
+    return this.$q
+      .all({
+        nic: nicToConvert ? this.$q.when(nicToConvert) : this.getConnectedNic(),
+        apiSchemas: this.getMeSchemas(),
+      })
       .then(({ nic, apiSchemas }) => {
         const contactProperties = OvhContactsHelper.mergeContactEnumsProperties(
           get(apiSchemas, 'models["contact.Contact"].properties'),
@@ -67,8 +68,10 @@ export default class OvhContactsService {
   createContact(contactParam) {
     const contact = contactParam;
 
-    return this.OvhApiMe.Contact().v6().create({}, contact).$promise
-      .then(({ id }) => {
+    return this.OvhApiMe.Contact()
+      .v6()
+      .create({}, contact)
+      .$promise.then(({ id }) => {
         contact.id = id;
         return new OvhContact(contact);
       });
@@ -83,10 +86,12 @@ export default class OvhContactsService {
       return this.$q.when(connectedNic);
     }
 
-    return this.OvhApiMe.v6().get().$promise.then((nic) => {
-      connectedNic = nic;
-      return nic;
-    });
+    return this.OvhApiMe.v6()
+      .get()
+      .$promise.then((nic) => {
+        connectedNic = nic;
+        return nic;
+      });
   }
 
   /**
@@ -102,37 +107,45 @@ export default class OvhContactsService {
     let promise;
 
     if (this.target === 'EU') {
-      promise = this.OvhApiMe.Contact().v7().query()
+      promise = this.OvhApiMe.Contact()
+        .v7()
+        .query()
         .expand()
         .execute()
-        .$promise
-        .then((contactsList) => {
+        .$promise.then((contactsList) => {
           const contacts = reject(contactsList, ['value', null]);
           return map(contacts, 'value');
         });
     } else {
-      promise = this.OvhApiMe.Contact().v6().query().$promise
-        .then((contactIds) => this.$q.all(map(contactIds, (contactId) => {
-          const contactPromise = this.OvhApiMe.Contact().v6().get({
-            contactId,
-          });
-          return contactPromise.$promise;
-        })));
+      promise = this.OvhApiMe.Contact()
+        .v6()
+        .query()
+        .$promise.then((contactIds) =>
+          this.$q.all(
+            map(contactIds, (contactId) => {
+              const contactPromise = this.OvhApiMe.Contact()
+                .v6()
+                .get({
+                  contactId,
+                });
+              return contactPromise.$promise;
+            }),
+          ),
+        );
     }
 
-    return promise
-      .then((contactsList) => {
-        let contacts = contactsList;
+    return promise.then((contactsList) => {
+      let contacts = contactsList;
 
-        if (options.avoidDuplicates) {
-          contacts = OvhContactsHelper.filterSimilarContacts(contacts);
-        }
-        if (options.customFilter && angular.isFunction(options.customFilter)) {
-          contacts = options.customFilter(contacts);
-        }
+      if (options.avoidDuplicates) {
+        contacts = OvhContactsHelper.filterSimilarContacts(contacts);
+      }
+      if (options.customFilter && angular.isFunction(options.customFilter)) {
+        contacts = options.customFilter(contacts);
+      }
 
-        return map(contacts, (contactOptions) => new OvhContact(contactOptions));
-      });
+      return map(contacts, (contactOptions) => new OvhContact(contactOptions));
+    });
   }
 
   /**
@@ -149,14 +162,21 @@ export default class OvhContactsService {
         set(options, 'ovhCompany', me.ovhCompany);
         set(options, 'ovhSubsidiary', me.ovhSubsidiary);
         set(options, 'country', options.country || me.country);
-        set(options, 'phoneCountry', options.phoneCountry || options.country || me.country);
+        set(
+          options,
+          'phoneCountry',
+          options.phoneCountry || options.country || me.country,
+        );
 
         return options;
       })
-      .then((rulesOptions) => this.$q.all({
-        apiSchemas: this.getMeSchemas(),
-        creationRules: this.OvhApiNewAccount.v6().rules({}, rulesOptions).$promise,
-      }))
+      .then((rulesOptions) =>
+        this.$q.all({
+          apiSchemas: this.getMeSchemas(),
+          creationRules: this.OvhApiNewAccount.v6().rules({}, rulesOptions)
+            .$promise,
+        }),
+      )
       .then(({ apiSchemas, creationRules }) => {
         const rules = OvhContactsHelper.mergeContactPropertiesWithCreationRules(
           apiSchemas,
@@ -183,11 +203,15 @@ export default class OvhContactsService {
           const rule = ruleParam;
 
           rule.enum = map(rule.enum, (enumVal) => {
-            let translationKey = `ovh_contact_form_${snakeCase(rule.fullType)}_${enumVal}`;
+            let translationKey = `ovh_contact_form_${snakeCase(
+              rule.fullType,
+            )}_${enumVal}`;
             const enumExtra = find(ENUMS_TO_TRANSFORM, { path: rule.name });
 
             if (enumExtra && enumExtra.dependsOfCountry) {
-              translationKey = `ovh_contact_form_${snakeCase(rule.fullType !== 'string' ? rule.fullType : rule.name)}_${options.country}_${enumVal}`;
+              translationKey = `ovh_contact_form_${snakeCase(
+                rule.fullType !== 'string' ? rule.fullType : rule.name,
+              )}_${options.country}_${enumVal}`;
             }
 
             return {
@@ -210,10 +234,12 @@ export default class OvhContactsService {
       return this.$q.when(meSchemas);
     }
 
-    return this.OvhApiMe.v6().schema().$promise.then((schemas) => {
-      meSchemas = schemas;
-      return schemas;
-    });
+    return this.OvhApiMe.v6()
+      .schema()
+      .$promise.then((schemas) => {
+        meSchemas = schemas;
+        return schemas;
+      });
   }
 
   /**
@@ -229,15 +255,16 @@ export default class OvhContactsService {
    *                               of given nic.
    */
   findMatchingContactFromNic(fromNic = null, contactList = null) {
-    return this.$q.all({
-      nic: fromNic ? this.$q.when(fromNic) : this.getConnectedNic(),
-      contacts: contactList ? this.$q.when(contactList) : this.getContacts(),
-    })
+    return this.$q
+      .all({
+        nic: fromNic ? this.$q.when(fromNic) : this.getConnectedNic(),
+        contacts: contactList ? this.$q.when(contactList) : this.getContacts(),
+      })
       .then(({ nic, contacts }) => {
         const converPromise = this.convertNicToContact(nic);
-        return converPromise.then((nicToContact) => OvhContactsHelper.findMatchingContactFromNic(
-          nicToContact, contacts,
-        ));
+        return converPromise.then((nicToContact) =>
+          OvhContactsHelper.findMatchingContactFromNic(nicToContact, contacts),
+        );
       });
   }
 }

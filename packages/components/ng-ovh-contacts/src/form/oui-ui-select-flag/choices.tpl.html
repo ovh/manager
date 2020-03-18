@@ -1,11 +1,15 @@
 <ul class="ui-select-choices ui-select-choices-content">
-    <li class="ui-select-choices-group"
-        id="ui-select-choices-{{ $select.generatedId }}">
-        <div class="ui-select-choices-group-label"
+    <li
+        class="ui-select-choices-group"
+        id="ui-select-choices-{{ $select.generatedId }}"
+    >
+        <div
+            class="ui-select-choices-group-label"
             ng-if="::$select.isGrouped"
-            ng-bind="$group.name">
-        </div>
-        <button class="ui-select-choices-row"
+            ng-bind="$group.name"
+        ></div>
+        <button
+            class="ui-select-choices-row"
             ng-attr-id="ui-select-choices-row-{{ $select.generatedId }}-{{$index}}"
             ng-class="{
                 'ui-select-choices-row_grouped': $select.isGrouped,
@@ -15,7 +19,8 @@
             ng-disabled="$select.isDisabled(this)"
             role="option"
             tabindex="-1"
-            type="button">
+            type="button"
+        >
             <span class="ui-select-choices-row-inner"></span>
             <span class="oui-icon oui-icon-success" aria-hidden="true"></span>
         </button>

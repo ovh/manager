@@ -7,7 +7,9 @@ export default class OvhContact {
     this.spareEmail = options.spareEmail || null;
     this.email = options.email || null;
     this.phone = OvhContactsHelper.normalizePhoneNumber(options.phone || null);
-    this.cellPhone = OvhContactsHelper.normalizePhoneNumber(options.cellPhone || null);
+    this.cellPhone = OvhContactsHelper.normalizePhoneNumber(
+      options.cellPhone || null,
+    );
     this.fax = options.fax || null;
     this.id = options.id || null;
     this.firstName = options.firstName || null;
@@ -18,8 +20,10 @@ export default class OvhContact {
     this.legalForm = options.legalForm || null;
 
     this.nationality = options.nationality || null;
-    this.nationalIdentificationNumber = options.nationalIdentificationNumber || null;
-    this.companyNationalIdentificationNumber = options.companyNationalIdentificationNumber || null;
+    this.nationalIdentificationNumber =
+      options.nationalIdentificationNumber || null;
+    this.companyNationalIdentificationNumber =
+      options.companyNationalIdentificationNumber || null;
     this.birthCity = options.birthCity || null;
     this.birthZip = options.birthZip || null;
     this.birthCountry = options.birthCountry || null;

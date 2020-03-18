@@ -17,6 +17,12 @@ export default class ovhContactsProvider {
 
   /* @ngInject */
   $get($q, $translate, OvhApiMe, OvhApiNewAccount) {
-    return new OvhContactsService($q, $translate, OvhApiMe, OvhApiNewAccount, this.target);
+    return new OvhContactsService(
+      $q,
+      $translate,
+      OvhApiMe,
+      OvhApiNewAccount,
+      this.target,
+    );
   }
 }

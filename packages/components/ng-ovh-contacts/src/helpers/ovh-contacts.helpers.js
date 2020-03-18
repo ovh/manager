@@ -15,9 +15,7 @@ import map from 'lodash/map';
 import set from 'lodash/set';
 import startsWith from 'lodash/startsWith';
 
-import {
-  CONTACT_TO_NIC_FIELDS_MAPPING,
-} from '../ovh-contacts.constants';
+import { CONTACT_TO_NIC_FIELDS_MAPPING } from '../ovh-contacts.constants';
 
 const getMappedKey = (property, prefix) => {
   let mappedKey = property;
@@ -82,7 +80,9 @@ export default class OvhContactsHelper {
       if (phonePrefix) {
         const alternativePhonePrefix = `00${phonePrefix.replace('+', '')}`;
         if (startsWith(phoneNumber, alternativePhonePrefix)) {
-          phoneNumber = `${phonePrefix}${phoneNumber.slice(alternativePhonePrefix.length)}`;
+          phoneNumber = `${phonePrefix}${phoneNumber.slice(
+            alternativePhonePrefix.length,
+          )}`;
         }
       }
     }
@@ -144,7 +144,10 @@ export default class OvhContactsHelper {
    *  @param  {Object} contactAddressProperties contact.Address enum properties
    *  @return {Object}                          Merged  enum properties.
    */
-  static mergeContactEnumsProperties(contactProperties, contactAddressProperties) {
+  static mergeContactEnumsProperties(
+    contactProperties,
+    contactAddressProperties,
+  ) {
     const contactProps = contactProperties;
     const contactAddressProps = contactAddressProperties;
 
@@ -171,31 +174,48 @@ export default class OvhContactsHelper {
    *  @return {Object}                      An object with necessary fields for contact creation.
    */
   static mergeContactPropertiesWithCreationRules(
-    apiSchemas, rules, predefinedProperties, nicValue,
+    apiSchemas,
+    rules,
+    predefinedProperties,
+    nicValue,
   ) {
     const meContactApi = find(apiSchemas.apis, {
       path: '/me/contact',
     });
 
     // take the POST operations parameters as the API schema allows null value and POST not...
-    const postParams = keyBy(find(meContactApi.operations, {
-      httpMethod: 'POST',
-    }).parameters, 'name');
-    const addressProps = get(apiSchemas, 'models["contact.Address"].properties');
-    const addressPostParam = keyBy(map(addressProps, (param) => {
-      const postParam = param;
-      postParam.required = !postParam.canBeNull;
-      postParam.name = last(postParam.name.split('.'));
-      delete postParam.canBeNull;
-      return postParam;
-    }), 'name');
+    const postParams = keyBy(
+      find(meContactApi.operations, {
+        httpMethod: 'POST',
+      }).parameters,
+      'name',
+    );
+    const addressProps = get(
+      apiSchemas,
+      'models["contact.Address"].properties',
+    );
+    const addressPostParam = keyBy(
+      map(addressProps, (param) => {
+        const postParam = param;
+        postParam.required = !postParam.canBeNull;
+        postParam.name = last(postParam.name.split('.'));
+        delete postParam.canBeNull;
+        return postParam;
+      }),
+      'name',
+    );
 
     const contactProps = OvhContactsHelper.mergeContactEnumsProperties(
       postParams,
       addressPostParam,
     );
 
-    const setContactFieldRule = (contactProp, rule, fullType, keyPrefix = '') => {
+    const setContactFieldRule = (
+      contactProp,
+      rule,
+      fullType,
+      keyPrefix = '',
+    ) => {
       // set enum if propery have one
       if (fullType.indexOf('.') > -1) {
         const typeEnum = get(apiSchemas, `models['${fullType}'].enum`, null);
@@ -221,7 +241,11 @@ export default class OvhContactsHelper {
       );
 
       // set regular expression if provided by rule
-      set(contactProps, `${contactProp}.regularExpression`, rule.regularExpression);
+      set(
+        contactProps,
+        `${contactProp}.regularExpression`,
+        rule.regularExpression,
+      );
 
       // set prefix and example if provided by rule
       set(contactProps, `${contactProp}.prefix`, rule.prefix);
@@ -246,7 +270,12 @@ export default class OvhContactsHelper {
           );
 
           if (rule) {
-            setContactFieldRule(propertyKeyPath, rule, fullProperty.fullType, prefix);
+            setContactFieldRule(
+              propertyKeyPath,
+              rule,
+              fullProperty.fullType,
+              prefix,
+            );
           } else {
             delete props[propKey];
           }
@@ -265,7 +294,11 @@ export default class OvhContactsHelper {
       fullType: 'nichandle.CountryEnum',
       canBeNull: 1,
     });
-    setContactFieldRule('phoneCountry', get(rules, 'phoneCountry'), 'nichandle.CountryEnum');
+    setContactFieldRule(
+      'phoneCountry',
+      get(rules, 'phoneCountry'),
+      'nichandle.CountryEnum',
+    );
 
     return contactProps;
   }

@@ -8,17 +8,21 @@ export const CONTACT_TO_NIC_FIELDS_MAPPING = {
   },
 };
 
-export const ENUMS_TO_TRANSFORM = [{
-  path: 'address.country',
-  sort: true,
-}, {
-  path: 'address.province',
-  sort: true,
-  dependsOfCountry: true,
-}, {
-  path: 'phoneCountry',
-  sort: true,
-}];
+export const ENUMS_TO_TRANSFORM = [
+  {
+    path: 'address.country',
+    sort: true,
+  },
+  {
+    path: 'address.province',
+    sort: true,
+    dependsOfCountry: true,
+  },
+  {
+    path: 'phoneCountry',
+    sort: true,
+  },
+];
 
 export const GET_LIST_DEFAULT_OPTIONS = {
   avoidDuplicates: true,
