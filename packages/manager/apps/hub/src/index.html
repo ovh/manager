@@ -50,13 +50,17 @@
             data-sidebar-links="{}"
         >
         </ovh-manager-navbar>
-        <div
-            class="px-3 px-md-0 d-sm-flex justify-content-center overflow-auto h-100"
-            data-ui-view="app"
-        >
-            <div class="h-100 hub-main-view pt-4">
-                <ui-router-breadcrumb></ui-router-breadcrumb>
-                <div data-ui-view class="w-100"></div>
+        <div class="position-relative w-100 h-100 overflow-auto">
+            <div class="position-absolute w-100">
+                <div
+                    class="px-3 px-md-0 d-sm-flex justify-content-center h-100 mb-5"
+                    data-ui-view="app"
+                >
+                    <div class="h-100 hub-main-view pt-4">
+                        <ui-router-breadcrumb></ui-router-breadcrumb>
+                        <div data-ui-view class="w-100"></div>
+                    </div>
+                </div>
             </div>
         </div>
 
