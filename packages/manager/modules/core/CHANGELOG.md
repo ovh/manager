@@ -1,3 +1,20 @@
+# [8.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@8.0.1...@ovh-ux/manager-core@8.1.0) (2020-03-18)
+
+
+### Bug Fixes
+
+* **core:** redirection service getURL ([8ba62bf](https://github.com/ovh/manager/commit/8ba62bff18d959bd76e6575c4529cd1a2500f2f8))
+
+
+### Features
+
+* **core:** add guides urls ([91200a7](https://github.com/ovh/manager/commit/91200a79eafa0442f714868699db91f4026c635d))
+* **core:** add redirection filter ([9008c76](https://github.com/ovh/manager/commit/9008c76791b92df9b94efe6b63426a9017e243dc))
+* **core:** add ticket redirection url ([0d86da4](https://github.com/ovh/manager/commit/0d86da45740eea58c1a258e4ac5a8dc275c2d321))
+* **redirection:** add catalog url ([e1f2cb8](https://github.com/ovh/manager/commit/e1f2cb8d645d9bbf8e37094cf7277adf0ef7c19e))
+
+
+
 ## [8.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@8.0.0...@ovh-ux/manager-core@8.0.1) (2020-03-09)
 
 
