@@ -1,3 +1,37 @@
+# [0.3.0-alpha.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.2.0-alpha.1...@ovh-ux/manager-hub-app@0.3.0-alpha.0) (2020-03-18)
+
+
+### Bug Fixes
+
+* **catalog:** handle case for search text ([0015a40](https://github.com/ovh/manager/commit/0015a407d3c91cacd2bb515d27f6de30f30173bb))
+* **catalog:** use all criteria to sort ([8b82899](https://github.com/ovh/manager/commit/8b82899f909e22ea7b17f91c14cf387fb7882604))
+* **dashboard:** add order tracking tile ([#2443](https://github.com/ovh/manager/issues/2443)) ([6bb718c](https://github.com/ovh/manager/commit/6bb718cb880168bca0c44b9f3160dd51b1416645))
+* **deps:** use latest for @ovh-ux/manager-core ([#2394](https://github.com/ovh/manager/issues/2394)) ([df1a12b](https://github.com/ovh/manager/commit/df1a12bc132cebb55f0a70a317e406ee78574faa))
+* **i18n:** add missing translations [CDS 300] ([12a38cc](https://github.com/ovh/manager/commit/12a38ccd6d421ff6294a771623e712f1d314ecfe))
+* **i18n:** add missing translations [CDS 304] ([597a3cc](https://github.com/ovh/manager/commit/597a3cc4040ff6aa62df01693efa02a16fa41b8b))
+* **i18n:** add missing translations [CDS 305] ([d672369](https://github.com/ovh/manager/commit/d6723692af4b6908c09d92fb8071982f45258143))
+* **i18n:** add missing translations [CDS 306] ([cc24d7b](https://github.com/ovh/manager/commit/cc24d7b4bccd25c2b5e2d7d95c6525850a7d0d4f))
+* **i18n:** add missing translations [CDS 307] ([f5295a2](https://github.com/ovh/manager/commit/f5295a2c34752721d7cc4c7cb01516f1ac295b2d))
+* **i18n:** add missing translations [CDS 308] ([8f8fdfc](https://github.com/ovh/manager/commit/8f8fdfceb1401aa71f43329beb491538b2c8304e))
+* **i18n:** add missing translations [CDS 311] ([de12c2a](https://github.com/ovh/manager/commit/de12c2a807d080b4718225995e0b191110c1e523))
+* **i18n:** add missing translations [CDS 312] ([8da048e](https://github.com/ovh/manager/commit/8da048e14f8d4666e76ccd1ef56bfab0c819a563))
+* fetch orders only if there is some ([#2405](https://github.com/ovh/manager/issues/2405)) ([c94bbff](https://github.com/ovh/manager/commit/c94bbff4351370bdfc7ddc7339b6c6b2e8f6fe9e))
+
+
+### Features
+
+* add filters to product page ([96fb590](https://github.com/ovh/manager/commit/96fb590315d54a444ef805bf03da97b2ea6d5058))
+* add generic listing product page ([085ef31](https://github.com/ovh/manager/commit/085ef317fb7330bcd8a35f41f7f666cf479c9251))
+* add special configuration for exchange service ([4cbea8a](https://github.com/ovh/manager/commit/4cbea8afa74ac99a07a82813cf88fd00126893d2))
+* **catalog:** add page with filters ([563c1cd](https://github.com/ovh/manager/commit/563c1cdd1c50c171a5d8e914b871638287361c1d))
+* **catalog:** sort filters by alphabetical order ([b974376](https://github.com/ovh/manager/commit/b97437671dab168e5db502242379b72d8916de9a))
+* **catalog:** update category filter depending on selected universe ([c8248ae](https://github.com/ovh/manager/commit/c8248ae8ef378e1796213a6cc902f578e8d47c1a))
+* **dashboard:** add order dashboard if there is no product ([bdc2341](https://github.com/ovh/manager/commit/bdc234175e5c0789d9bf75e2d0120e5bc9d1238e))
+* **dashboard:** share welcome message ([#2448](https://github.com/ovh/manager/issues/2448)) ([4c8c67e](https://github.com/ovh/manager/commit/4c8c67e56e8c13b4d0e53fe26afc5425c6a4223f))
+* add feedback banner ([55c0205](https://github.com/ovh/manager/commit/55c0205068888edcbbef6545eefc8a258146fe12))
+
+
+
 # [0.2.0-alpha.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.2.0-alpha.0...@ovh-ux/manager-hub-app@0.2.0-alpha.1) (2020-03-04)
 
 

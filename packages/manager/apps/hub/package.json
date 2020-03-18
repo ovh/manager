@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-hub-app",
-  "version": "0.2.0-alpha.1",
+  "version": "0.3.0-alpha.0",
   "private": true,
   "repository": {
     "type": "git",
@@ -28,8 +28,8 @@
     "@ovh-ux/manager-models": "^1.0.0",
     "@ovh-ux/manager-navbar": "^2.2.0",
     "@ovh-ux/manager-ng-layout-helpers": "^0.0.0 || ^1.0.0",
-    "@ovh-ux/ng-at-internet": "^4.0.4",
-    "@ovh-ux/ng-at-internet-ui-router-plugin": "^2.0.4",
+    "@ovh-ux/ng-at-internet": "^5.0.0",
+    "@ovh-ux/ng-at-internet-ui-router-plugin": "^3.0.0",
     "@ovh-ux/ng-ovh-api-wrappers": "^4.0.7",
     "@ovh-ux/ng-ovh-http": "^4.0.4",
     "@ovh-ux/ng-ovh-order-tracking": "^0.1.0",

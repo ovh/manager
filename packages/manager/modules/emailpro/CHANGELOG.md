@@ -1,3 +1,17 @@
+# [1.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@1.5.1...@ovh-ux/manager-emailpro@1.6.0) (2020-03-18)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 306] ([cc24d7b](https://github.com/ovh/manager/commit/cc24d7b4bccd25c2b5e2d7d95c6525850a7d0d4f))
+
+
+### Features
+
+* **emailpro:** add server field ([#2417](https://github.com/ovh/manager/issues/2417)) ([e083420](https://github.com/ovh/manager/commit/e083420c4bee3215688f6057898bf45a65d7a12e))
+
+
+
 ## [1.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@1.5.0...@ovh-ux/manager-emailpro@1.5.1) (2020-01-24)
 
 

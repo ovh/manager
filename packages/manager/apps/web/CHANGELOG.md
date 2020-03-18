@@ -1,3 +1,13 @@
+## [13.45.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.45.6...@ovh-ux/manager-web@13.45.7) (2020-03-18)
+
+
+### Bug Fixes
+
+* **deps:** use latest for @ovh-ux/manager-core ([#2394](https://github.com/ovh/manager/issues/2394)) ([df1a12b](https://github.com/ovh/manager/commit/df1a12bc132cebb55f0a70a317e406ee78574faa))
+* **hosting.upgrade:** use "ovh-contracts-summary" component ([#2379](https://github.com/ovh/manager/issues/2379)) ([0e62a68](https://github.com/ovh/manager/commit/0e62a688feea8bccdf94b372b6f117f85795b2c6))
+
+
+
 ## [13.45.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.45.5...@ovh-ux/manager-web@13.45.6) (2020-03-13)
 
 

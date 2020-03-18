@@ -1,3 +1,28 @@
+# [3.0.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-at-internet-ui-router-plugin@2.0.4...@ovh-ux/ng-at-internet-ui-router-plugin@3.0.0) (2020-03-18)
+
+
+### Bug Fixes
+
+* **deps:** upgrade component-rollup-config to v6.0.2 ([#14](https://github.com/ovh/manager/issues/14)) ([31b72b9](https://github.com/ovh/manager/commit/31b72b98278012d0359539f7bfab947c10d5abfc))
+* remove jshint ([c31970d](https://github.com/ovh/manager/commit/c31970d105dcf178e7ed3ba8f920a3fed685b98a))
+
+
+### Code Refactoring
+
+* update stack with component-rollup-config ([#4](https://github.com/ovh/manager/issues/4)) ([a5357f1](https://github.com/ovh/manager/commit/a5357f12b45e77e775be23b36a370185049db8ef))
+
+
+### Features
+
+* **chore:** bump angular-ui-router to version ^1.0.0. ([2a78b2a](https://github.com/ovh/manager/commit/2a78b2a0a82069d404bf9ddfb0f5bbc90661fa4f))
+
+
+### BREAKING CHANGES
+
+* module is now named `ngAtInternetUiRouterPlugin`
+
+
+
 ## [2.0.4](https://github.com/ovh-ux/ng-at-internet-ui-router-plugin/compare/v2.0.3...v2.0.4) (2020-01-08)
 
 

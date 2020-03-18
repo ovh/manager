@@ -1,3 +1,22 @@
+# [5.0.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-at-internet@4.0.4...@ovh-ux/ng-at-internet@5.0.0) (2020-03-18)
+
+
+### Bug Fixes
+
+* **deps:** upgrade component-rollup-config to v6.0.2 ([#15](https://github.com/ovh/manager/issues/15)) ([d9a8307](https://github.com/ovh/manager/commit/d9a8307f3819ca7c439a7fd6e51197913409dd76))
+
+
+### Code Refactoring
+
+* update stack with component-rollup-config ([#8](https://github.com/ovh/manager/issues/8)) ([46e01ba](https://github.com/ovh/manager/commit/46e01ba295bbe84f140ddb7820ec4648b8e50927))
+
+
+### BREAKING CHANGES
+
+* module is now named `ngAtInternet`
+
+
+
 ## [4.0.4](https://github.com/ovh-ux/ng-at-internet/compare/v4.0.3...v4.0.4) (2020-01-09)
 
 
