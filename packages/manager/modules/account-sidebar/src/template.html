@@ -1,4 +1,4 @@
-<div class="manager-hub-user-panel">
+<div class="manager-hub-user-panel h-100">
     <div class="mb-3">
         <ovh-manager-hub-user-infos
             data-me="$ctrl.me"
@@ -13,7 +13,7 @@
         <ovh-manager-hub-shortcuts data-notifications="$ctrl.notifications">
         </ovh-manager-hub-shortcuts>
     </div>
-    <div data-ng-if="$ctrl.links" class="manager-hub-user-panel_links">
+    <div data-ng-if="$ctrl.links" class="manager-hub-user-panel_links mb-5">
         <h3 data-translate="hub_links_title"></h3>
         <div data-ng-repeat="link in $ctrl.links track by $index">
             <span
