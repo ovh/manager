@@ -1909,13 +1909,6 @@
   dependencies:
     lodash "^4.17.11"
 
-"@ovh-ux/ng-ovh-browser-alert@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-browser-alert/-/ng-ovh-browser-alert-1.0.0.tgz#77df85d3a176e37b67568d70342ebbfd97a2d1cd"
-  integrity sha512-cnejEOSui5t69nZh+VXflDpKd2E+wnY+XjJVVVM6zq+y+jZjUiiXuhA7/rYIFQVljJ9/d6fu2cSvQB7AqzT1qg==
-  dependencies:
-    bowser "^1.8.0"
-
 "@ovh-ux/ng-ovh-chatbot@^2.0.2":
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-chatbot/-/ng-ovh-chatbot-2.0.2.tgz#461e3dfb536cbf072194d23f4ef12580d101fed5"
