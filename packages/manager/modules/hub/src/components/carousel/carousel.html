@@ -12,7 +12,7 @@
         class="oui-message__body oui-message__body_error"
         data-ng-href="{{ item.urlDetails.href }}"
     >
-        <span data-ng-bind="item.description"></span>
+        <span data-ng-bind-html="item.description"></span>
     </a>
     <button
         class="oui-button oui-button_icon-alone float-right"
