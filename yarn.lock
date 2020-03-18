@@ -1979,13 +1979,6 @@
   dependencies:
     lodash "^4.17.15"
 
-"@ovh-ux/ng-ovh-simple-country-list@^1.0.1":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-simple-country-list/-/ng-ovh-simple-country-list-1.0.1.tgz#1e2787d3bd7caa37cea52329e7856b40ebe0caee"
-  integrity sha512-IcG3FQMPTrP7UI8FkCTdCDQTvw4deLuZEXv6kTH5OeV0vsYP7ZV7Nc3mje2RhGRUp3BnxBEOwkVmQwega/ReDA==
-  dependencies:
-    lodash "^4.17.15"
-
 "@ovh-ux/ng-ovh-slider@^1.0.2":
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-slider/-/ng-ovh-slider-1.0.2.tgz#3275d03ef7aadf96048e9f9fd7b9b36a80ba4966"
