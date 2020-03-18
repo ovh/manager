@@ -43,6 +43,7 @@ import ovhManagerVeeamCloudConnect from '@ovh-ux/manager-veeam-cloud-connect';
 import ovhManagerVps from '@ovh-ux/manager-vps';
 import ovhManagerVrack from '@ovh-ux/manager-vrack';
 import ovhManagerIplb from '@ovh-ux/manager-iplb';
+import { detach as detachPreloader } from '@ovh-ux/manager-preloader';
 import account from './account';
 import config from './config/config';
 import contactsService from './account/contacts/service/contacts-service.module';
@@ -52,18 +53,18 @@ import dedicatedUniverseComponents from './dedicatedUniverseComponents';
 import errorPage from './error/error.module';
 import ovhManagerPccDashboard from './dedicatedCloud/dashboard';
 import ovhManagerPccResourceUpgrade from './dedicatedCloud/resource/upgrade';
-import preload from './components/manager-preload/manager-preload.module';
 
 import dedicatedServerBandwidth from './dedicated/server/bandwidth/bandwidth.module';
 import dedicatedServerInterfaces from './dedicated/server/interfaces/interfaces.module';
 import dedicatedServerServers from './dedicated/server/servers/servers.module';
 
-Environment.setRegion(__WEBPACK_REGION__);
 Environment.setVersion(__VERSION__);
+
+const moduleName = 'App';
 
 angular
   .module(
-    'App',
+    moduleName,
     [
       __NG_APP_INJECTIONS__,
       account,
@@ -132,7 +133,6 @@ angular
       ovhManagerVrack,
       ovhPaymentMethod,
       'pascalprecht.translate',
-      preload,
       'services',
       'ui.bootstrap',
       'ui.router',
@@ -290,4 +290,14 @@ angular
         });
       });
   })
-  .constant('UNIVERSE', 'DEDICATED');
+  .constant('UNIVERSE', 'DEDICATED')
+  .run(
+    /* @ngInject */ ($rootScope, $transitions) => {
+      const unregisterHook = $transitions.onSuccess({}, () => {
+        detachPreloader();
+        unregisterHook();
+      });
+    },
+  );
+
+export default moduleName;

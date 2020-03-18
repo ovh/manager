@@ -548,8 +548,6 @@
   "ovh_task_follow_button": "Störungsdetails",
   "ovh_task_follow_modal_title": "Störungsnachverfolgung",
   "ovh_task_follow_modal_comment": "Letztes Update: {{t 0 }}",
-  "preload_welcome": "Herzlich willkommen in Ihrem",
-  "preload_manager_ovh": "OVH Kundencenter",
   "otrs_menu_assistance": "Support",
   "otrs_menu_assistance_expanded": "Hilfe",
   "otrs_menu_all_guides": "Alle Anleitungen",

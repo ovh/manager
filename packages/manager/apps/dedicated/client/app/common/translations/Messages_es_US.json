@@ -547,8 +547,6 @@
   "ovh_task_follow_button": "Detalle de la incidencia",
   "ovh_task_follow_modal_title": "Seguimiento de la incidencia",
   "ovh_task_follow_modal_comment": "Última actualización: {{t 0 }}",
-  "preload_welcome": "Bienvenidos al",
-  "preload_manager_ovh": "Manager OVH",
   "otrs_menu_assistance": "Soporte",
   "otrs_menu_assistance_expanded": "Besoin d'aide",
   "otrs_menu_all_guides": "Todas las guías",

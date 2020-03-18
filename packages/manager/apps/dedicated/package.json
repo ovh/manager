@@ -11,10 +11,7 @@
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
   "scripts": {
-    "build": "yarn build:eu && yarn build:ca && yarn build:us",
-    "build:ca": "webpack --env.production --env.region=\"CA\" && mv dist dist-CA",
-    "build:eu": "webpack --env.production && mv dist dist-EU",
-    "build:us": "webpack --env.production --env.region=\"US\" && mv dist dist-US",
+    "build": "webpack --env.production",
     "dev": "webpack-dev-server",
     "dev:watch": "yarn run dev",
     "start": "lerna exec --stream --scope='@ovh-ux/manager-dedicated' --include-dependencies -- npm run build --if-present",
@@ -34,6 +31,7 @@
     "@ovh-ux/manager-iplb": "^0.0.0 || ^0.1.0",
     "@ovh-ux/manager-nasha": "^0.0.0 || ^1.0.0",
     "@ovh-ux/manager-navbar": "^2.2.0",
+    "@ovh-ux/manager-preloader": "^0.0.0 || ^1.0.0",
     "@ovh-ux/manager-server-sidebar": "^1.0.0",
     "@ovh-ux/manager-support": "^0.5.0",
     "@ovh-ux/manager-veeam-cloud-connect": "^0.0.0 || ^1.0.0",
@@ -138,7 +136,8 @@
     "ui-select": "^0.19.8",
     "ui-utils": "angular-ui/ui-utils#~0.2.3",
     "urijs": "^1.19.1",
-    "validator": "^3.39.0"
+    "validator": "^3.39.0",
+    "whatwg-fetch": "^3.0.0"
   },
   "devDependencies": {
     "@ovh-ux/manager-models": "^0.0.0 || ^1.0.0",

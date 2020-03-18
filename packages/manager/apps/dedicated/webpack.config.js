@@ -3,7 +3,6 @@ const merge = require('webpack-merge');
 const path = require('path');
 const fs = require('fs');
 const glob = require('glob');
-const _ = require('lodash');
 const webpackConfig = require('@ovh-ux/manager-webpack-config');
 
 function foundNodeModulesFolder(checkedDir, cwd = '.') {
@@ -19,8 +18,6 @@ function foundNodeModulesFolder(checkedDir, cwd = '.') {
 }
 
 module.exports = (env = {}) => {
-  const REGION = _.upperCase(env.region || process.env.REGION || 'EU');
-
   const { config } = webpackConfig(
     {
       template: './client/app/index.html',
@@ -51,7 +48,7 @@ module.exports = (env = {}) => {
         ],
       },
     },
-    REGION ? Object.assign(env, { region: REGION }) : env,
+    env,
   );
 
   config.plugins.push(
@@ -64,14 +61,12 @@ module.exports = (env = {}) => {
   );
 
   // Extra config files
-  const extrasRegion = glob.sync(`./.extras-${REGION}/**/*.js`);
   const extras = glob.sync('./.extras/**/*.js');
 
   return merge(config, {
     entry: {
       main: path.resolve('./client/app/index.js'),
       ...(extras.length > 0 ? { extras } : {}),
-      ...(extrasRegion.length > 0 ? { extrasRegion } : {}),
     },
     output: {
       path: path.resolve(__dirname, 'dist'),
@@ -90,7 +85,6 @@ module.exports = (env = {}) => {
         __NG_APP_INJECTIONS__: process.env.NG_APP_INJECTIONS
           ? `'${process.env.NG_APP_INJECTIONS}'`
           : 'null',
-        __WEBPACK_REGION__: `'${REGION}'`,
       }),
     ],
     optimization: {
