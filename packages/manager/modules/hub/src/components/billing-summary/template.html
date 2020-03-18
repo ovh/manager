@@ -23,7 +23,9 @@
             data-ng-bind-html="$ctrl.formattedBillingPrice"
         >
         </span>
-        <p data-ng-if="$ctrl.debt.dueAmount.value === 0">
+        <p
+            data-ng-if="$ctrl.bills.total > 0 && $ctrl.debt.dueAmount.value === 0"
+        >
             <span
                 class="oui-icon oui-icon-check-circle_line align-middle mr-2"
                 aria-hidden="true"
@@ -48,6 +50,10 @@
             >
             </a>
         </p>
+        <p
+            data-ng-if="$ctrl.bills.total === 0"
+            data-translate="hub_billing_summary_debt_no_bills"
+        ></p>
         <a
             class="manager-hub-billing-summary_billing-link"
             data-ng-href="{{ $ctrl.getBillingURL() }}"
