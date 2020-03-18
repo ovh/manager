@@ -56,13 +56,20 @@
 
     button.btn.btn-link {
       text-decoration: none;
+      width: 100%;
     }
 
     &__expanded {
       button.btn.btn-link {
-        padding-top: 1.5rem;
-        font-size: 1.2rem;
+        display: inline-block;
+        padding: 0;
+        max-width: 8rem;
+        margin-top: 1rem;
       }
+    }
+
+    &__login {
+      white-space: initial;
     }
   }
 
