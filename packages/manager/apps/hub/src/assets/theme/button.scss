@@ -18,6 +18,10 @@
     }
   }
 
+  &.oui-button_icon-alone .oui-icon {
+    color: $hub-primary-color;
+  }
+
   &.oui-button_icon-only {
     background-color: transparent;
     color: $hub-primary-color;
