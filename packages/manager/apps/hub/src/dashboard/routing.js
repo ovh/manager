@@ -48,8 +48,10 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('manager_hub_dashboard'),
     },
-    componentProvider: /* @ngInject */ (services) =>
-      get(services, 'data.count') === 0 ? 'hubOrderDashboard' : 'hubDashboard',
+    componentProvider: /* @ngInject */ (order, services) =>
+      get(services, 'data.count') === 0 && !order.data
+        ? 'hubOrderDashboard'
+        : 'hubDashboard',
   });
 
   $urlRouterProvider.otherwise('/');
