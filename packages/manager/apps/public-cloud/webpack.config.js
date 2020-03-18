@@ -19,30 +19,16 @@ module.exports = (env = {}) => {
         ],
       },
     },
-    process.env.REGION
-      ? Object.assign(env, { region: process.env.REGION })
-      : env,
+    env,
   );
 
-  let WEBPACK_REGION;
-
-  if (env.region) {
-    WEBPACK_REGION = `${env.region}`;
-  } else {
-    WEBPACK_REGION = process.env.REGION
-      ? `${process.env.REGION.toUpperCase()}`
-      : 'EU';
-  }
-
   // Extra config files
-  const extrasRegion = glob.sync(`./.extras-${WEBPACK_REGION}/**/*.js`);
   const extras = glob.sync('./.extras/**/*.js');
 
   return merge(config, {
     entry: {
       main: './src/index.js',
       ...(extras.length > 0 ? { extras } : {}),
-      ...(extrasRegion.length > 0 ? { extrasRegion } : {}),
     },
     output: {
       path: path.join(__dirname, 'dist'),
@@ -56,7 +42,6 @@ module.exports = (env = {}) => {
         __NODE_ENV__: process.env.NODE_ENV
           ? `'${process.env.NODE_ENV}'`
           : '"development"',
-        __WEBPACK_REGION__: `'${WEBPACK_REGION}'`,
       }),
       new webpack.ProvidePlugin({
         $: 'jquery',
