@@ -1,7 +1,7 @@
 import angular from 'angular';
 import moment from 'moment';
 
-export default /* @ngInject */ function ($location) {
+export default /* @ngInject */ function($location) {
   const self = this;
   const internalCache = {};
   const internalStatus = {
@@ -31,7 +31,9 @@ export default /* @ngInject */ function ($location) {
 
     if (typeof opts.datas === 'string') {
       csvContent = opts.datas;
-    } else if (Object.prototype.toString.call(opts.datas) === '[object Array]') {
+    } else if (
+      Object.prototype.toString.call(opts.datas) === '[object Array]'
+    ) {
       angular.forEach(opts.datas, (line) => {
         lines.push(line.join(seperator));
       });
@@ -41,11 +43,13 @@ export default /* @ngInject */ function ($location) {
     }
 
     if (navigator.platform.toUpperCase().indexOf('WIN') > -1) {
-      dataString = `data:text/csv;charset=windows-1252;base64,${
-        btoa(unescape(encodeURIComponent(csvContent)))}`;
+      dataString = `data:text/csv;charset=windows-1252;base64,${btoa(
+        unescape(encodeURIComponent(csvContent)),
+      )}`;
     } else {
-      dataString = `data:text/csv;charset=utf-8;base64,${
-        btoa(unescape(encodeURIComponent(csvContent)))}`;
+      dataString = `data:text/csv;charset=utf-8;base64,${btoa(
+        unescape(encodeURIComponent(csvContent)),
+      )}`;
     }
 
     const link = document.createElement('a');
@@ -87,7 +91,8 @@ export default /* @ngInject */ function ($location) {
       throw new Error('invalide status');
     }
 
-    internalCache[options.instanceName.toString()].status = internalStatus[status];
+    internalCache[options.instanceName.toString()].status =
+      internalStatus[status];
 
     if (status === 'error') {
       if (error) {
@@ -126,39 +131,52 @@ export default /* @ngInject */ function ($location) {
    * @return undefined
    * */
   this.wroughtDataForCsv = function wroughtDataForCsv(options, callHimself) {
-    if (!options || !options.instanceName || !options.iterator || !options.keepGoing) {
+    if (
+      !options ||
+      !options.instanceName ||
+      !options.iterator ||
+      !options.keepGoing
+    ) {
       throw new Error('[wroughtDataForCsv()]: missing options');
     }
 
     if (!callHimself && self.getExportCsvStatus === internalStatus.doing) {
-      wroughtDataForCsvError(options, new Error(`the process ${options.instanceName
-      } is already in progress`));
+      wroughtDataForCsvError(
+        options,
+        new Error(`the process ${options.instanceName} is already in progress`),
+      );
     }
 
     saveDataSnapshot(options);
     setDataStatus(options, 'doing');
 
-    options.iterator(options.internalData).then(() => {
-      if (options.notify) {
-        options.notify(options.internalData);
-      }
-
-      options.keepGoing(options.internalData).then((keepGoing) => {
-        if (keepGoing) {
-          self.wroughtDataForCsv(options, true);
-        } else {
-          if (options.done) {
-            options.done(options.internalData);
-          }
-
-          delete internalCache[options.instanceName.toString()];
+    options.iterator(options.internalData).then(
+      () => {
+        if (options.notify) {
+          options.notify(options.internalData);
         }
-      }, (err) => {
+
+        options.keepGoing(options.internalData).then(
+          (keepGoing) => {
+            if (keepGoing) {
+              self.wroughtDataForCsv(options, true);
+            } else {
+              if (options.done) {
+                options.done(options.internalData);
+              }
+
+              delete internalCache[options.instanceName.toString()];
+            }
+          },
+          (err) => {
+            wroughtDataForCsvError(options, err);
+          },
+        );
+      },
+      (err) => {
         wroughtDataForCsvError(options, err);
-      });
-    }, (err) => {
-      wroughtDataForCsvError(options, err);
-    });
+      },
+    );
   };
 
   this.getExportCsvStatus = function getExportCsvStatus(instanceName) {
@@ -167,7 +185,8 @@ export default /* @ngInject */ function ($location) {
     }
 
     return internalCache[instanceName]
-      ? internalCache[instanceName].status : internalStatus.notFound;
+      ? internalCache[instanceName].status
+      : internalStatus.notFound;
   };
 
   this.getExportCsvError = function getExportCsvError(instanceName) {
@@ -176,7 +195,8 @@ export default /* @ngInject */ function ($location) {
     }
 
     return internalCache[instanceName] && internalCache[instanceName].error
-      ? internalCache[instanceName].error : null;
+      ? internalCache[instanceName].error
+      : null;
   };
 
   Object.defineProperty(self, 'statusEnum', {

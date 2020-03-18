@@ -4,7 +4,8 @@ import directive from './directive';
 
 const moduleName = 'ngOvhExportCsv';
 
-angular.module(moduleName, [])
+angular
+  .module(moduleName, [])
   .service('exportCsv', service)
   .directive('exportCsv', directive);
 
