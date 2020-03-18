@@ -1,3 +1,17 @@
+## [0.5.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@0.5.2...@ovh-ux/manager-support@0.5.3) (2020-03-18)
+
+
+### Bug Fixes
+
+* **deps:** use latest for @ovh-ux/manager-core ([#2394](https://github.com/ovh/manager/issues/2394)) ([df1a12b](https://github.com/ovh/manager/commit/df1a12bc132cebb55f0a70a317e406ee78574faa))
+* **i18n:** add missing translations [CDS 304] ([597a3cc](https://github.com/ovh/manager/commit/597a3cc4040ff6aa62df01693efa02a16fa41b8b))
+* **i18n:** add missing translations [CDS 306] ([cc24d7b](https://github.com/ovh/manager/commit/cc24d7b4bccd25c2b5e2d7d95c6525850a7d0d4f))
+* **i18n:** add missing translations [CDS 307] ([f5295a2](https://github.com/ovh/manager/commit/f5295a2c34752721d7cc4c7cb01516f1ac295b2d))
+* **i18n:** add missing translations [CDS 308] ([8f8fdfc](https://github.com/ovh/manager/commit/8f8fdfceb1401aa71f43329beb491538b2c8304e))
+* **i18n:** add missing translations [CDS 311] ([de12c2a](https://github.com/ovh/manager/commit/de12c2a807d080b4718225995e0b191110c1e523))
+
+
+
 ## [0.5.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@0.5.1...@ovh-ux/manager-support@0.5.2) (2020-03-04)
 
 

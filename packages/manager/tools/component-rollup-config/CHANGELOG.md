@@ -1,3 +1,12 @@
+## [7.0.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/component-rollup-config@7.0.0...@ovh-ux/component-rollup-config@7.0.1) (2020-03-18)
+
+
+### Performance Improvements
+
+* **deps:** upgrade rollup and rollup plugins ([519e2ab](https://github.com/ovh-ux/manager/commit/519e2ab190fe631758fd2ac100f61d6934a3f334))
+
+
+
 # [7.0.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/component-rollup-config@6.0.2...@ovh-ux/component-rollup-config@7.0.0) (2019-10-15)
 
 
