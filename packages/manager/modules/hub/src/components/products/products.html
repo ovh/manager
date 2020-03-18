@@ -29,6 +29,7 @@
 <button
     type="button"
     class="oui-button oui-button_full-width oui-button_link oui-button_icon-right mb-5"
+    data-ng-if="$ctrl.products.length > $ctrl.DEFAULT_DISPLAYED_TILES"
     data-ng-click="$ctrl.toggleExpand()"
     data-track-on="click"
     data-track-name="{{:: $ctrl.trackingPrefix + '::product::expand' }}"
