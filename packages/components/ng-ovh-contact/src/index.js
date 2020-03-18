@@ -14,11 +14,7 @@ import provider from './provider';
 import choiceMatchTemplate from './choice/templates/match.tpl.html';
 import choiceSelectTemplate from './choice/templates/select.tpl.html';
 
-import {
-  EDITION,
-  PROTOTYPE_PATH,
-  EMAIL_REGEX,
-} from './constants';
+import { EDITION, PROTOTYPE_PATH, EMAIL_REGEX } from './constants';
 
 import './index.less';
 
@@ -41,10 +37,18 @@ angular
   .component('ovhContactEdit', editComponent)
   .factory('OvhContact', factory)
   .provider('ovhContact', provider)
-  .run(/* @ngInject */ ($templateCache) => {
-    $templateCache.put('ngOvhContacts/choice/templates/match.tpl.html', choiceMatchTemplate);
-    $templateCache.put('ngOvhContacts/choice/templates/select.tpl.html', choiceSelectTemplate);
-  })
+  .run(
+    /* @ngInject */ ($templateCache) => {
+      $templateCache.put(
+        'ngOvhContacts/choice/templates/match.tpl.html',
+        choiceMatchTemplate,
+      );
+      $templateCache.put(
+        'ngOvhContacts/choice/templates/select.tpl.html',
+        choiceSelectTemplate,
+      );
+    },
+  )
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

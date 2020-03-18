@@ -4,22 +4,26 @@ const config = rollupConfig({
   input: './src/index.js',
 });
 
-const outputs = [config.es({
-  output: {
-    sourcemap: false,
-  },
-})];
+const outputs = [
+  config.es({
+    output: {
+      sourcemap: false,
+    },
+  }),
+];
 
 if (process.env.BUILD === 'production') {
   outputs.push(config.cjs());
-  outputs.push(config.umd({
-    output: {
-      globals: {
-        angular: 'angular',
-        moment: 'moment',
+  outputs.push(
+    config.umd({
+      output: {
+        globals: {
+          angular: 'angular',
+          moment: 'moment',
+        },
       },
-    },
-  }));
+    }),
+  );
 }
 
 export default outputs;

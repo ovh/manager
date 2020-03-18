@@ -5,7 +5,7 @@ import head from 'lodash/head';
 import isFunction from 'lodash/isFunction';
 import sortBy from 'lodash/sortBy';
 
-export default /* @ngInject */ function ($q, ovhContact) {
+export default /* @ngInject */ function($q, ovhContact) {
   const self = this;
 
   self.loading = {
@@ -26,8 +26,9 @@ export default /* @ngInject */ function ($q, ovhContact) {
     if (search) {
       return filter(
         self.list,
-        (contact) => contact.firstName.toLowerCase().indexOf(search.toLowerCase())
-          || contact.lastName.toLowerCase().indexOf(search.toLowerCase()),
+        (contact) =>
+          contact.firstName.toLowerCase().indexOf(search.toLowerCase()) ||
+          contact.lastName.toLowerCase().indexOf(search.toLowerCase()),
       );
     }
 
@@ -54,31 +55,47 @@ export default /* @ngInject */ function ($q, ovhContact) {
     if (!self.customList) {
       initPromise = ovhContact.getContactList().then((contacts) => {
         // check if there is a filter to apply
-        self.list = sortBy(self.filter && isFunction(self.filter()) ? self.filter()(contacts) : contacts, 'lastName');
+        self.list = sortBy(
+          self.filter && isFunction(self.filter())
+            ? self.filter()(contacts)
+            : contacts,
+          'lastName',
+        );
 
         // auto select a contact from connected nic
-        if (!self.ovhContactCtrl.contact
-          && self.list.length === 0
-          && self.options.autoCreateContact) {
-          initPromise = ovhContact.convertConnectedUserToContact()
-            .then((contactFromNic) => contactFromNic.create().then(() => {
-              ovhContact.addContact(contactFromNic);
-              self.ovhContactCtrl.contact = contactFromNic;
-            }));
+        if (
+          !self.ovhContactCtrl.contact &&
+          self.list.length === 0 &&
+          self.options.autoCreateContact
+        ) {
+          initPromise = ovhContact
+            .convertConnectedUserToContact()
+            .then((contactFromNic) =>
+              contactFromNic.create().then(() => {
+                ovhContact.addContact(contactFromNic);
+                self.ovhContactCtrl.contact = contactFromNic;
+              }),
+            );
         } else if (!self.ovhContactCtrl.contact) {
           initPromise = ovhContact.getConnectedUser().then((user) => {
-            self.ovhContactCtrl.contact = find(self.list, {
-              lastName: user.name,
-              firstName: user.firstname,
-              email: user.email,
-            }) || self.list[0];
+            self.ovhContactCtrl.contact =
+              find(self.list, {
+                lastName: user.name,
+                firstName: user.firstname,
+                email: user.email,
+              }) || self.list[0];
           });
         } else if (!find(self.list, { id: self.ovhContactCtrl.contact.id })) {
           self.ovhContactCtrl.contact = head(self.list);
         }
       });
     } else {
-      self.list = sortBy(self.filter && isFunction(self.filter()) ? self.filter()(self.customList) : self.customList, 'lastName');
+      self.list = sortBy(
+        self.filter && isFunction(self.filter())
+          ? self.filter()(self.customList)
+          : self.customList,
+        'lastName',
+      );
       self.ovhContactCtrl.contact = head(self.list);
     }
 

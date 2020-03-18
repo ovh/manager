@@ -4,13 +4,15 @@ import get from 'lodash/get';
 import set from 'lodash/set';
 import moment from 'moment';
 
-export default /* @ngInject */ function (OvhApiMe, CONTACT_PROTOTYPE_PATH) {
+export default /* @ngInject */ function(OvhApiMe, CONTACT_PROTOTYPE_PATH) {
   const getDatas = function getDatas(instance) {
     const datas = {};
 
     angular.forEach(CONTACT_PROTOTYPE_PATH, (path) => {
       if (path === 'birthDay') {
-        datas.birthDay = angular.isDate(instance.birthDay) ? moment(instance.birthDay).format('YYYY-MM-DD') : undefined;
+        datas.birthDay = angular.isDate(instance.birthDay)
+          ? moment(instance.birthDay).format('YYYY-MM-DD')
+          : undefined;
       } else {
         set(datas, path, get(instance, path));
       }
@@ -18,7 +20,6 @@ export default /* @ngInject */ function (OvhApiMe, CONTACT_PROTOTYPE_PATH) {
 
     return datas;
   };
-
 
   function OvhContact(options = {}) {
     // from api
@@ -49,13 +50,15 @@ export default /* @ngInject */ function (OvhApiMe, CONTACT_PROTOTYPE_PATH) {
 
     this.nationality = options.nationality || 'FR';
     this.nationalIdentificationNumber = options.nationalIdentificationNumber;
-    this.companyNationalIdentificationNumber = options.companyNationalIdentificationNumber;
+    this.companyNationalIdentificationNumber =
+      options.companyNationalIdentificationNumber;
     this.birthCity = options.birthCity;
     this.birthZip = options.birthZip;
     this.birthCountry = options.birthCountry || 'FR';
-    this.birthDay = options.birthDay && moment(new Date(options.birthDay)).isValid()
-      ? new Date(options.birthDay)
-      : undefined;
+    this.birthDay =
+      options.birthDay && moment(new Date(options.birthDay)).isValid()
+        ? new Date(options.birthDay)
+        : undefined;
 
     // custom attributes
     this.inEdition = false;
@@ -69,55 +72,64 @@ export default /* @ngInject */ function (OvhApiMe, CONTACT_PROTOTYPE_PATH) {
   }
 
   /**
-  *  @ngdoc method
-  *  @name ovhContact.object:OvhContact#save
-  *  @methodOf ovhContact.object:OvhContact
-  *
-  *  @description
-  *  Save the current contact instance options. Call PUT /me/contact/{contactId} API.
-  *
-  *  @returns {Promise} That returns the current instance of OvhContact.
-  */
+   *  @ngdoc method
+   *  @name ovhContact.object:OvhContact#save
+   *  @methodOf ovhContact.object:OvhContact
+   *
+   *  @description
+   *  Save the current contact instance options. Call PUT /me/contact/{contactId} API.
+   *
+   *  @returns {Promise} That returns the current instance of OvhContact.
+   */
   OvhContact.prototype.save = function save() {
     const self = this;
 
-    return OvhApiMe.Contact().v6().save({
-      contactId: self.id,
-    }, getDatas(self)).$promise.then(() => self);
+    return OvhApiMe.Contact()
+      .v6()
+      .save(
+        {
+          contactId: self.id,
+        },
+        getDatas(self),
+      )
+      .$promise.then(() => self);
   };
 
   /**
-  *  @ngdoc method
-  *  @name ovhContact.object:OvhContact#create
-  *  @methodOf ovhContact.object:OvhContact
-  *
-  *  @description
-  *  Create an ovh contact with the current options. Call POST /me/contact/{contactId} API.
-  *
-  *  @returns {Promise} That returns the current instance of OvhContact created.
-  */
+   *  @ngdoc method
+   *  @name ovhContact.object:OvhContact#create
+   *  @methodOf ovhContact.object:OvhContact
+   *
+   *  @description
+   *  Create an ovh contact with the current options. Call POST /me/contact/{contactId} API.
+   *
+   *  @returns {Promise} That returns the current instance of OvhContact created.
+   */
   OvhContact.prototype.create = function create() {
     const self = this;
 
-    return OvhApiMe.Contact().v6().create({}, getDatas(self)).$promise.then((contact) => {
-      self.id = contact.id;
-      return self;
-    });
+    return OvhApiMe.Contact()
+      .v6()
+      .create({}, getDatas(self))
+      .$promise.then((contact) => {
+        self.id = contact.id;
+        return self;
+      });
   };
 
   /* ----------  EDITION  ----------*/
 
   /**
-  *  @ngdoc method
-  *  @name ovhContact.object:OvhContact#startEdition
-  *  @methodOf ovhContact.object:OvhContact
-  *
-  *  @description
-  *  Start the edition of a contact.
-  *  Create a copy of current options to allow you to revert when necessary.
-  *
-  *  @returns {OvhContact} The current instance of OvhContact.
-  */
+   *  @ngdoc method
+   *  @name ovhContact.object:OvhContact#startEdition
+   *  @methodOf ovhContact.object:OvhContact
+   *
+   *  @description
+   *  Start the edition of a contact.
+   *  Create a copy of current options to allow you to revert when necessary.
+   *
+   *  @returns {OvhContact} The current instance of OvhContact.
+   */
   OvhContact.prototype.startEdition = function startEdition() {
     const self = this;
 
@@ -132,18 +144,18 @@ export default /* @ngInject */ function (OvhApiMe, CONTACT_PROTOTYPE_PATH) {
   };
 
   /**
-  *  @ngdoc method
-  *  @name ovhContact.object:OvhContact#stopEdition
-  *  @methodOf ovhContact.object:OvhContact
-  *
-  *  @description
-  *  Stop the edition of the contact.
-  *
-  *  @param {Boolean=} cancel Flag telling if we have to reset saved options
-  *  when startEdition has been called.
-  *
-  *  @returns {OvhContact} The current instance of OvhContact.
-  */
+   *  @ngdoc method
+   *  @name ovhContact.object:OvhContact#stopEdition
+   *  @methodOf ovhContact.object:OvhContact
+   *
+   *  @description
+   *  Stop the edition of the contact.
+   *
+   *  @param {Boolean=} cancel Flag telling if we have to reset saved options
+   *  when startEdition has been called.
+   *
+   *  @returns {OvhContact} The current instance of OvhContact.
+   */
   OvhContact.prototype.stopEdition = function stopEdition(cancel) {
     const self = this;
 
@@ -151,7 +163,11 @@ export default /* @ngInject */ function (OvhApiMe, CONTACT_PROTOTYPE_PATH) {
 
     if (self.saveForEdition && cancel) {
       angular.forEach(CONTACT_PROTOTYPE_PATH, (objectPath) => {
-        set(self, objectPath, angular.copy(get(self.saveForEdition, objectPath)));
+        set(
+          self,
+          objectPath,
+          angular.copy(get(self.saveForEdition, objectPath)),
+        );
       });
     }
 
@@ -162,18 +178,18 @@ export default /* @ngInject */ function (OvhApiMe, CONTACT_PROTOTYPE_PATH) {
   };
 
   /**
-  *  @ngdoc method
-  *  @name ovhContact.object:OvhContact#hasChange
-  *  @methodOf ovhContact.object:OvhContact
-  *
-  *  @description
-  *  Check if the contact options have been modified since startEdition has been called.
-  *
-  *  @param {String=} path Path of the attributes of the contact to check.
-  *  If not provided, this will check all attributes paths of the instance.
-  *
-  *  @returns {Boolean} True if an options has changed. False otherwise.
-  */
+   *  @ngdoc method
+   *  @name ovhContact.object:OvhContact#hasChange
+   *  @methodOf ovhContact.object:OvhContact
+   *
+   *  @description
+   *  Check if the contact options have been modified since startEdition has been called.
+   *
+   *  @param {String=} path Path of the attributes of the contact to check.
+   *  If not provided, this will check all attributes paths of the instance.
+   *
+   *  @returns {Boolean} True if an options has changed. False otherwise.
+   */
   OvhContact.prototype.hasChange = function hasChange(path) {
     const self = this;
 

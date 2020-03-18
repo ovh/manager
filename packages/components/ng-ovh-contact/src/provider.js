@@ -8,7 +8,7 @@ import set from 'lodash/set';
 import snakeCase from 'lodash/snakeCase';
 import some from 'lodash/some';
 
-export default function () {
+export default function() {
   const self = this;
 
   self.$get = /* @ngInject */ function $get(
@@ -19,41 +19,43 @@ export default function () {
     CONTACT_EMAIL_REGEX,
   ) {
     /**
-    *  @ngdoc service
-    *  @name ovhContact.service:ovhContact
-    *
-    *  @requires $q
-    *  @requires $translate
-    *  @requires OvhContact
-    *  @requires OvhApiMe
-    *
-    *  @description
-    *  The `ovhContact` service is the actual core of ovhContact module.
-    *  This service manage the contacts of the connected user.
-    */
+     *  @ngdoc service
+     *  @name ovhContact.service:ovhContact
+     *
+     *  @requires $q
+     *  @requires $translate
+     *  @requires OvhContact
+     *  @requires OvhApiMe
+     *
+     *  @description
+     *  The `ovhContact` service is the actual core of ovhContact module.
+     *  This service manage the contacts of the connected user.
+     */
 
     const ovhContactService = {};
     let contacts = [];
     let schemas = null;
 
     /**
-    *  @private
-    *  Get /me ovh api schema. Call GET /me.json.
-    */
+     *  @private
+     *  Get /me ovh api schema. Call GET /me.json.
+     */
     function getApiSchemas() {
       if (!schemas) {
-        return OvhApiMe.v6().schema().$promise.then((apiSchemas) => {
-          schemas = apiSchemas;
-          return schemas;
-        });
+        return OvhApiMe.v6()
+          .schema()
+          .$promise.then((apiSchemas) => {
+            schemas = apiSchemas;
+            return schemas;
+          });
       }
       return $q.when(schemas);
     }
 
     /**
-    *  @private
-    *  Convert nic address inforamtions to set contact.address informations.
-    */
+     *  @private
+     *  Convert nic address inforamtions to set contact.address informations.
+     */
     function convertNicAddressToContactAddress(nic) {
       // keys are the contact address fields names / values are nic fields names
       const addressMapping = {
@@ -75,9 +77,9 @@ export default function () {
     }
 
     /**
-    *  @private
-    *  Convert a nic to contact.
-    */
+     *  @private
+     *  Convert a nic to contact.
+     */
     function convertNicToContact(nic) {
       // keys are the contact fields names / values are nic fields names
       const fieldMapping = {
@@ -88,65 +90,74 @@ export default function () {
       const contact = {};
 
       // iterate into contact model to set nic infos
-      angular.forEach(keys(schemas.models['contact.Contact'].properties), (key) => {
-        if (key === 'address') {
-          contact.address = convertNicAddressToContactAddress(nic);
-        } else if (key === 'birthDay') {
-          if (new RegExp(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/).test(nic[key])) {
-            const splittedDate = nic[key].split('/');
-            contact[key] = splittedDate.reverse().join('-');
+      angular.forEach(
+        keys(schemas.models['contact.Contact'].properties),
+        (key) => {
+          if (key === 'address') {
+            contact.address = convertNicAddressToContactAddress(nic);
+          } else if (key === 'birthDay') {
+            if (new RegExp(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/).test(nic[key])) {
+              const splittedDate = nic[key].split('/');
+              contact[key] = splittedDate.reverse().join('-');
+            } else {
+              contact[key] = null;
+            }
+          } else if (
+            fieldMapping[key] &&
+            (has(nic, fieldMapping[key]) ||
+              has(nic, fieldMapping[key.toLowerCase()]))
+          ) {
+            contact[key] =
+              nic[fieldMapping[key]] ||
+              nic[fieldMapping[key.toLowerCase()]] ||
+              null;
+          } else if (has(nic, key) || has(nic, key.toLowerCase())) {
+            contact[key] = nic[key] || nic[key.toLowerCase()] || null;
           } else {
             contact[key] = null;
           }
-        } else if (fieldMapping[key]
-          && (has(nic, fieldMapping[key]) || has(nic, fieldMapping[key.toLowerCase()]))) {
-          contact[key] = nic[fieldMapping[key]] || nic[fieldMapping[key.toLowerCase()]] || null;
-        } else if (has(nic, key) || has(nic, key.toLowerCase())) {
-          contact[key] = nic[key] || nic[key.toLowerCase()] || null;
-        } else {
-          contact[key] = null;
-        }
-      });
+        },
+      );
 
       return contact;
     }
 
-
     /* ----------  CONTACT LIST MANAGEMENT  ----------*/
 
     /**
-    *  @ngdoc method
-    *  @name ovhContact.service:ovhContact#addContact
-    *  @methodOf ovhContact.service:ovhContact
-    *
-    *  @description
-    *  Add a contact into contacts list.
-    *
-    *  @param {Object|OvhContact} contactOptions An object with options
-    *  or an instance of OvhContact.
-    *
-    *  @return {OvhContact} The added contact.
-    */
+     *  @ngdoc method
+     *  @name ovhContact.service:ovhContact#addContact
+     *  @methodOf ovhContact.service:ovhContact
+     *
+     *  @description
+     *  Add a contact into contacts list.
+     *
+     *  @param {Object|OvhContact} contactOptions An object with options
+     *  or an instance of OvhContact.
+     *
+     *  @return {OvhContact} The added contact.
+     */
     ovhContactService.addContact = function addContact(contactOptions) {
-      const addedContact = contactOptions instanceof OvhContact
-        ? contactOptions
-        : new OvhContact(contactOptions);
+      const addedContact =
+        contactOptions instanceof OvhContact
+          ? contactOptions
+          : new OvhContact(contactOptions);
       contacts.push(addedContact);
       return addedContact;
     };
 
     /**
-    *  @ngdoc method
-    *  @name ovhContact.service:ovhContact#getContactList
-    *  @methodOf ovhContact.service:ovhContact
-    *
-    *  @description
-    *  Get the entire list of contacts. This use api v7 to get all contacts details.
-    *
-    *  @param {Boolean} refresh Flag telling to fully recreate the contact list.
-    *
-    *  @return {Promise} That return an Array of OvhContact.
-    */
+     *  @ngdoc method
+     *  @name ovhContact.service:ovhContact#getContactList
+     *  @methodOf ovhContact.service:ovhContact
+     *
+     *  @description
+     *  Get the entire list of contacts. This use api v7 to get all contacts details.
+     *
+     *  @param {Boolean} refresh Flag telling to fully recreate the contact list.
+     *
+     *  @return {Promise} That return an Array of OvhContact.
+     */
     ovhContactService.getContactList = function getContactList(refresh) {
       const selff = this;
 
@@ -154,25 +165,18 @@ export default function () {
         contacts = [];
       }
 
-      return OvhApiMe
-        .Contact()
+      return OvhApiMe.Contact()
         .v7()
         .query()
         .expand()
         .execute()
-        .$promise
-        .then((contactsList) => {
+        .$promise.then((contactsList) => {
           // filter contact that are not already added
           // this avoid loosing contact object reference
           // then add contact to contact list (at given index)
 
-
-          const contactsToAdd = reject(
-            map(
-              contactsList,
-              'value',
-            ),
-            (contact) => some(contacts, {
+          const contactsToAdd = reject(map(contactsList, 'value'), (contact) =>
+            some(contacts, {
               id: contact.id,
             }),
           );
@@ -186,15 +190,15 @@ export default function () {
     };
 
     /**
-    *  @ngdoc method
-    *  @name ovhContact.service:ovhContact#getCreationRules
-    *  @methodOf ovhContact.service:ovhContact
-    *
-    *  @description
-    *  Get the rules for creating a new ovh contact.
-    *
-    *  @return {Object} Representing the rules for creating an new contact.
-    */
+     *  @ngdoc method
+     *  @name ovhContact.service:ovhContact#getCreationRules
+     *  @methodOf ovhContact.service:ovhContact
+     *
+     *  @description
+     *  Get the rules for creating a new ovh contact.
+     *
+     *  @return {Object} Representing the rules for creating an new contact.
+     */
     ovhContactService.getCreationRules = function getCreationRules() {
       let models = null;
 
@@ -203,15 +207,20 @@ export default function () {
           if (angular.isDefined(models[value.fullType])) {
             if (models[value.fullType]) {
               if (angular.isArray(models[value.fullType].enum)) {
-                const enumId = models[value.fullType].id.replace(/Enum$/, '').toLowerCase();
+                const enumId = models[value.fullType].id
+                  .replace(/Enum$/, '')
+                  .toLowerCase();
                 set(rules, `${key}.values`, []);
                 angular.forEach(models[value.fullType].enum, (enumValue) => {
                   rules[key].values.push({
-                    label: $translate
-                      .instant([['country', 'language']
-                        .indexOf(enumId) > -1
-                        ? enumId
-                        : snakeCase(`ovh_contact_edit_${enumId}`), enumValue].join('_')),
+                    label: $translate.instant(
+                      [
+                        ['country', 'language'].indexOf(enumId) > -1
+                          ? enumId
+                          : snakeCase(`ovh_contact_edit_${enumId}`),
+                        enumValue,
+                      ].join('_'),
+                    ),
                     value: enumValue,
                   });
                 });
@@ -237,42 +246,42 @@ export default function () {
         return rules;
       }
 
-      return getApiSchemas()
-        .then(({ models: schemaModels }) => {
-          models = schemaModels;
-          return updateCreationRules(models['contact.Contact'].properties);
-        });
+      return getApiSchemas().then(({ models: schemaModels }) => {
+        models = schemaModels;
+        return updateCreationRules(models['contact.Contact'].properties);
+      });
     };
 
     /* ----------  CONNECTED USER  ----------*/
 
     /**
-    *  @ngdoc method
-    *  @name ovhContact.service:ovhContact#getConnectedUser
-    *  @methodOf ovhContact.service:ovhContact
-    *
-    *  @description
-    *  Get the connected user informations. Call GET /me API.
-    *
-    *  @return {Object} Representing the connected user.
-    */
+     *  @ngdoc method
+     *  @name ovhContact.service:ovhContact#getConnectedUser
+     *  @methodOf ovhContact.service:ovhContact
+     *
+     *  @description
+     *  Get the connected user informations. Call GET /me API.
+     *
+     *  @return {Object} Representing the connected user.
+     */
     ovhContactService.getConnectedUser = function getConnectedUser() {
       return OvhApiMe.v6().get().$promise;
     };
 
     /**
-    *  @ngdoc method
-    *  @name ovhContact.service:ovhContact#convertConnectedUserToContact
-    *  @methodOf ovhContact.service:ovhContact
-    *
-    *  @description
-    *  Convert the connected user nic to an ovh contact.
-    *
-    *  @return {Promise} That returns an OvhContact instance.
-    */
+     *  @ngdoc method
+     *  @name ovhContact.service:ovhContact#convertConnectedUserToContact
+     *  @methodOf ovhContact.service:ovhContact
+     *
+     *  @description
+     *  Convert the connected user nic to an ovh contact.
+     *
+     *  @return {Promise} That returns an OvhContact instance.
+     */
     ovhContactService.convertConnectedUserToContact = function convertConnectedUserToContact() {
-      return this.getConnectedUser()
-        .then((nic) => getApiSchemas().then(() => new OvhContact(convertNicToContact(nic))));
+      return this.getConnectedUser().then((nic) =>
+        getApiSchemas().then(() => new OvhContact(convertNicToContact(nic))),
+      );
     };
 
     return ovhContactService;

@@ -2,7 +2,7 @@ import snakeCase from 'lodash/snakeCase';
 import startsWith from 'lodash/startsWith';
 import moment from 'moment';
 
-export default /* @ngInject */ function (
+export default /* @ngInject */ function(
   $timeout,
   $anchorScroll,
   ovhContact,
@@ -43,8 +43,9 @@ export default /* @ngInject */ function (
 
     const savePromise = self.ovhContactCtrl.contact.id
       ? self.ovhContactCtrl.contact.save()
-      : self.ovhContactCtrl.contact.create()
-        .then(() => ovhContact.addContact(self.ovhContactCtrl.contact));
+      : self.ovhContactCtrl.contact
+          .create()
+          .then(() => ovhContact.addContact(self.ovhContactCtrl.contact));
 
     return savePromise
       .then(
@@ -64,8 +65,13 @@ export default /* @ngInject */ function (
   function clear() {
     self.saveError = null;
 
-    self.sortedFieldsByCountry = CONTACT_EDITION[`SORTED_FIELDS_${self.ovhContactCtrl.contact.country}`] || CONTACT_EDITION.SORTED_FIELDS_DEFAULT;
-    alwaysVisibleFieldsByCountry = CONTACT_EDITION[`ALWAYS_VISIBLE_FIELDS_${self.ovhContactCtrl.contact.country}`] || CONTACT_EDITION.ALWAYS_VISIBLE_FIELDS_DEFAULT;
+    self.sortedFieldsByCountry =
+      CONTACT_EDITION[`SORTED_FIELDS_${self.ovhContactCtrl.contact.country}`] ||
+      CONTACT_EDITION.SORTED_FIELDS_DEFAULT;
+    alwaysVisibleFieldsByCountry =
+      CONTACT_EDITION[
+        `ALWAYS_VISIBLE_FIELDS_${self.ovhContactCtrl.contact.country}`
+      ] || CONTACT_EDITION.ALWAYS_VISIBLE_FIELDS_DEFAULT;
   }
 
   function formatPhoneNumbers(phoneNumber) {
@@ -73,9 +79,11 @@ export default /* @ngInject */ function (
   }
 
   self.isVisibleField = function isVisibleField(field) {
-    let isVisible = !!(self.creationRules
-      && self.creationRules[field]
-      && self.creationRules[field].canBeNull === 0);
+    let isVisible = !!(
+      self.creationRules &&
+      self.creationRules[field] &&
+      self.creationRules[field].canBeNull === 0
+    );
 
     if (!isVisible && alwaysVisibleFieldsByCountry.indexOf(field) !== -1) {
       isVisible = true;
@@ -125,16 +133,23 @@ export default /* @ngInject */ function (
     // use timeout to force phone number to be undefined if only country dial code or to be
     // prefixed by "+"(international format) if phone number value starts with country dialcode
     $timeout(() => {
-      const countryData = $($event.target).intlTelInput('getSelectedCountryData');
-      if (self.ovhContactCtrl.contact[field] === countryData.dialCode
-        || !self.ovhContactCtrl.contact[field]) {
+      const countryData = $($event.target).intlTelInput(
+        'getSelectedCountryData',
+      );
+      if (
+        self.ovhContactCtrl.contact[field] === countryData.dialCode ||
+        !self.ovhContactCtrl.contact[field]
+      ) {
         self.ovhContactCtrl.contact[field] = undefined;
-      } else if (startsWith(self.ovhContactCtrl.contact[field], countryData.dialCode)) {
-        self.ovhContactCtrl.contact[field] = `+${self.ovhContactCtrl.contact[field]}`;
+      } else if (
+        startsWith(self.ovhContactCtrl.contact[field], countryData.dialCode)
+      ) {
+        self.ovhContactCtrl.contact[
+          field
+        ] = `+${self.ovhContactCtrl.contact[field]}`;
       }
     });
   };
-
 
   self.$onInit = function $onInit() {
     self.loading.init = true;

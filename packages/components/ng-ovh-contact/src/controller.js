@@ -1,6 +1,6 @@
 import isUndefined from 'lodash/isUndefined';
 
-export default /* @ngInject */ function ($q, $timeout, ovhContact, OvhContact) {
+export default /* @ngInject */ function($q, $timeout, ovhContact, OvhContact) {
   const self = this;
   let tmpContact = null;
 
@@ -34,7 +34,9 @@ export default /* @ngInject */ function ($q, $timeout, ovhContact, OvhContact) {
     // check params
     self.onlyCreate = self.onlyCreate === 'true';
     if (self.initDeferred && isUndefined(self.initDeferred.promise)) {
-      throw new Error('ng-ovh-contact: initDeferred must be a deferred object.');
+      throw new Error(
+        'ng-ovh-contact: initDeferred must be a deferred object.',
+      );
     }
 
     if (self.onlyCreate) {

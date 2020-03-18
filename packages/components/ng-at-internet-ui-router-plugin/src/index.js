@@ -18,53 +18,52 @@ const moduleName = 'ngAtInternetUiRouterPlugin';
  * Plugin for at-internet when using ui-router
  */
 angular
-  .module(moduleName, [
-    'ngAtInternet',
-    'ui.router',
-  ])
-  .config(/* @ngInject */ ($transitionsProvider) => {
-    $transitionsProvider.onBefore({}, (transition) => {
-      transition.addResolvable({
-        token: 'atInternetStateDecorator',
-        deps: ['$injector', 'atInternet', 'atInternetUiRouterPlugin'],
-        resolveFn($injector, atInternet, atInternetUiRouterPlugin) {
-          const state = transition.to();
-          const options = state.atInternet;
-          const ignore = options && options.ignore;
-          const trackPage = {};
+  .module(moduleName, ['ngAtInternet', 'ui.router'])
+  .config(
+    /* @ngInject */ ($transitionsProvider) => {
+      $transitionsProvider.onBefore({}, (transition) => {
+        transition.addResolvable({
+          token: 'atInternetStateDecorator',
+          deps: ['$injector', 'atInternet', 'atInternetUiRouterPlugin'],
+          resolveFn($injector, atInternet, atInternetUiRouterPlugin) {
+            const state = transition.to();
+            const options = state.atInternet;
+            const ignore = options && options.ignore;
+            const trackPage = {};
 
-          if (atInternetUiRouterPlugin.isStateTrackEnabled() && !ignore) {
-            trackPage.name = state.name;
-            if (options) {
-              if (options.rename) {
-                trackPage.name = options.rename;
-                if (angular.isFunction(options.rename)) {
-                  trackPage.name = $injector.invoke(options.rename);
+            if (atInternetUiRouterPlugin.isStateTrackEnabled() && !ignore) {
+              trackPage.name = state.name;
+              if (options) {
+                if (options.rename) {
+                  trackPage.name = options.rename;
+                  if (angular.isFunction(options.rename)) {
+                    trackPage.name = $injector.invoke(options.rename);
+                  }
+                }
+                if (options.level2) {
+                  trackPage.level2 = options.level2;
+                  if (angular.isFunction(options.level2)) {
+                    trackPage.level2 = $injector.invoke(options.level2);
+                  }
                 }
               }
-              if (options.level2) {
-                trackPage.level2 = options.level2;
-                if (angular.isFunction(options.level2)) {
-                  trackPage.level2 = $injector.invoke(options.level2);
-                }
-              }
-            }
 
-            // apply state filters if any
-            forEach(atInternetUiRouterPlugin.getStateFilters(), (filter) => {
-              if (isFunction(filter)) {
-                trackPage.name = filter.apply(null, [trackPage.name]);
+              // apply state filters if any
+              forEach(atInternetUiRouterPlugin.getStateFilters(), (filter) => {
+                if (isFunction(filter)) {
+                  trackPage.name = filter.apply(null, [trackPage.name]);
+                }
+              });
+              if (trackPage.name) {
+                atInternet.trackPage(trackPage);
               }
-            });
-            if (trackPage.name) {
-              atInternet.trackPage(trackPage);
             }
-          }
-        },
+          },
+        });
+        return transition;
       });
-      return transition;
-    });
-  })
+    },
+  )
   .provider('atInternetUiRouterPlugin', provider);
 
 export default moduleName;
