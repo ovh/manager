@@ -1930,11 +1930,6 @@
   dependencies:
     lodash "^4.17.15"
 
-"@ovh-ux/ng-ovh-jquery-ui-droppable@^1.0.2":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-jquery-ui-droppable/-/ng-ovh-jquery-ui-droppable-1.0.2.tgz#2e508c1270eff053e1cf211a1215ae67c9718d7a"
-  integrity sha512-7ZIlL6wTdu5T9k6A/vmQgJKDZrb/C1Zee63Y/AlY2hmx8cZdUOBbQHNHw2HBT3wJ3qf22L8CU7yKbme5z7+8dQ==
-
 "@ovh-ux/ng-ovh-jsplumb@^5.0.2":
   version "5.0.2"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-jsplumb/-/ng-ovh-jsplumb-5.0.2.tgz#87672708257473acf822359330dab9b05bf2a75c"

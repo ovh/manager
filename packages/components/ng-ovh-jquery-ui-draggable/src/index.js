@@ -4,8 +4,6 @@ import directive from './directive';
 
 const moduleName = 'ngOvhJqueryUiDraggable';
 
-angular
-  .module(moduleName, [])
-  .directive('draggable', directive);
+angular.module(moduleName, []).directive('draggable', directive);
 
 export default moduleName;
