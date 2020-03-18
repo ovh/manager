@@ -1,0 +1,48 @@
+<div
+    class="browser-alert__container"
+    data-ng-if="!isDismissed && (isDeprecated || !isSupported)"
+>
+    <div data-ng-if="isDeprecated && isSupported && !isDismissed">
+        <div
+            class="oui-message oui-message_warning"
+            role="alert"
+            style="margin: 0 auto"
+        >
+            <span
+                class="oui-icon oui-icon-warning_circle oui-icon_bicolor"
+                aria-hidden="true"
+            ></span>
+            <p class="oui-message__body">
+                <span data-translate="browser_alert_deprecated"></span>
+                <span data-translate="browser_alert_update"></span>
+            </p>
+            <button
+                class="oui-icon oui-icon-close oui-message__close-button"
+                type="button"
+                data-ng-click="$ctrl.dismissAlert()"
+            >
+                <span
+                    class="sr-only"
+                    style="display: none;"
+                    data-translate="browser_alert_close"
+                ></span>
+            </button>
+        </div>
+    </div>
+    <div data-ng-if="!isSupported && !isDismissed">
+        <div
+            class="oui-message oui-message_error"
+            role="alert"
+            style="margin: 0 auto"
+        >
+            <span
+                class="oui-icon oui-icon-error_circle oui-icon_bicolor"
+                aria-hidden="true"
+            ></span>
+            <p class="oui-message__body">
+                <span data-translate="browser_alert_not_supported"></span>
+                <span data-translate="browser_alert_update"></span>
+            </p>
+        </div>
+    </div>
+</div>

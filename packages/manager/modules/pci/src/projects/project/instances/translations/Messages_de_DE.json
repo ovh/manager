@@ -1,6 +1,6 @@
 {
   "pci_projects_project_instances_title": "Instanzen",
-  "pci_projects_project_instances_beta_subscribe_labs": "Get an early access to our BareMetal instances by filling out the registration form available on <a href=\"https://labs.ovh.com/bare-metal-on-public-cloud\" target=\"_blank\">the dedicated OVH Labs page.</a>.",
+  "pci_projects_project_instances_beta_subscribe_labs": "Seien Sie unter den ersten, die unsere Bare-Metal-Instanzen nutzen. Füllen Sie dazu das Anmeldeformular auf der speziellen Seite der OVHcloud Labs aus: <a href=\"https://labs.ovh.com/bare-metal-on-public-cloud\" target=\"_blank\">.",
   "pci_projects_project_instances_name_label": "Name",
   "pci_projects_project_instances_region_label": "Standort",
   "pci_projects_project_instances_flavor_label": "Modell",

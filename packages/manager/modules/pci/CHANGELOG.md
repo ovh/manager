@@ -1,3 +1,38 @@
+# [3.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.14.3...@ovh-ux/manager-pci@3.15.0) (2020-03-18)
+
+
+### Bug Fixes
+
+* **deps:** use latest for @ovh-ux/manager-core ([#2394](https://github.com/ovh/manager/issues/2394)) ([df1a12b](https://github.com/ovh/manager/commit/df1a12bc132cebb55f0a70a317e406ee78574faa))
+* **i18n:** add missing translations [CDS 297] ([196a7f4](https://github.com/ovh/manager/commit/196a7f414fbc1a6a8e247a81c3dfc83f59868f7d))
+* **i18n:** add missing translations [CDS 303] ([f959cd3](https://github.com/ovh/manager/commit/f959cd3982d025ee450e5d7466aab74a5d5412c4))
+* **i18n:** add missing translations [CDS 304] ([597a3cc](https://github.com/ovh/manager/commit/597a3cc4040ff6aa62df01693efa02a16fa41b8b))
+* **i18n:** add missing translations [CDS 305] ([d672369](https://github.com/ovh/manager/commit/d6723692af4b6908c09d92fb8071982f45258143))
+* **i18n:** add missing translations [CDS 306] ([cc24d7b](https://github.com/ovh/manager/commit/cc24d7b4bccd25c2b5e2d7d95c6525850a7d0d4f))
+* **i18n:** add missing translations [CDS 307] ([f5295a2](https://github.com/ovh/manager/commit/f5295a2c34752721d7cc4c7cb01516f1ac295b2d))
+* **i18n:** add missing translations [CDS 308] ([8f8fdfc](https://github.com/ovh/manager/commit/8f8fdfceb1401aa71f43329beb491538b2c8304e))
+* **i18n:** add missing translations [CDS 311] ([de12c2a](https://github.com/ovh/manager/commit/de12c2a807d080b4718225995e0b191110c1e523))
+* **i18n:** add missing translations [CDS 312] ([8da048e](https://github.com/ovh/manager/commit/8da048e14f8d4666e76ccd1ef56bfab0c819a563))
+* **kubernetes.details.service.terminate:** add confirmation field ([8f04718](https://github.com/ovh/manager/commit/8f0471817de8ab9da50db9ed7111cc0c2be1eb3a))
+* **kubernetes.details.service.terminate:** remove extra content ([7fd573f](https://github.com/ovh/manager/commit/7fd573f60ba182018e6dbd153dd1eb42d8769c34))
+* **kubernetes.details.service.terminate:** update success message ([8570444](https://github.com/ovh/manager/commit/85704449656f999fb0add1d3fd4a9f08ebed2fae))
+
+
+### Features
+
+* **pci.instance:** add gateway information to dashboard ([#2442](https://github.com/ovh/manager/issues/2442)) ([95b5e1c](https://github.com/ovh/manager/commit/95b5e1c6f121ac1bb1c67b2434610e759d466832))
+
+
+
+## [3.14.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.14.2...@ovh-ux/manager-pci@3.14.3) (2020-03-16)
+
+
+### Bug Fixes
+
+* **kubernetes.details.container:** fix translation typo ([6354cb5](https://github.com/ovh/manager/commit/6354cb56456c69d2afbe9683615a3888253b46a0)), closes [#2444](https://github.com/ovh/manager/issues/2444)
+
+
+
 ## [3.14.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.14.1...@ovh-ux/manager-pci@3.14.2) (2020-03-10)
 
 
