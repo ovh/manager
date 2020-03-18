@@ -1,8 +1,8 @@
 hub-payment-status {
-  @import '~bootstrap4/scss/_functions';
-  @import '~bootstrap4/scss/_variables';
-  @import '~bootstrap4/scss/_mixins';
-  @import '~bootstrap4/scss/_utilities.scss';
+  @import '~bootstrap/scss/_functions';
+  @import '~bootstrap/scss/_variables';
+  @import '~bootstrap/scss/_mixins';
+  @import '~bootstrap/scss/_utilities.scss';
   @import '~@ovh-ux/manager-hub/src/variables.scss';
 
   .service-expiry {
