@@ -15,7 +15,7 @@
     "@ovh-ux/manager-models": "^0.0.0 || ^1.0.0"
   },
   "devDependencies": {
-    "bootstrap4": "twbs/bootstrap#v4.0.0",
+    "bootstrap": "^4.4.1",
     "lodash": "^4.17.15"
   },
   "peerDependencies": {
@@ -31,7 +31,6 @@
     "@uirouter/angularjs": "^1.0.23",
     "angular": "^1.7.5",
     "angular-translate": "^2.18.1",
-    "bootstrap4": "twbs/bootstrap#v4.0.0",
     "ovh-api-services": "^9.39.1",
     "ovh-ui-angular": "^3.15.0",
     "ovh-ui-kit": "^3.6.0"
