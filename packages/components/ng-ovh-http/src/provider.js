@@ -26,7 +26,7 @@ import indexOf from 'lodash/indexOf';
 import URI from 'urijs';
 import 'urijs/src/URITemplate';
 
-export default function () {
+export default function() {
   const self = this;
 
   self.rootPath = '';
@@ -34,7 +34,12 @@ export default function () {
   self.returnSuccessKey = null;
   self.returnErrorKey = null;
 
-  self.$get = /* @ngInject */ function $get($http, $q, $rootScope, $cacheFactory) {
+  self.$get = /* @ngInject */ function $get(
+    $http,
+    $q,
+    $rootScope,
+    $cacheFactory,
+  ) {
     const api = {};
 
     api.cache = {};
@@ -56,37 +61,47 @@ export default function () {
       }
 
       // ------------ URL CRAFTING ------------
-      const requestUrl = URI.expand(
-        opt.url,
-        (opt.urlParams || {}),
-      )
+      const requestUrl = URI.expand(opt.url, opt.urlParams || {})
         .search(opt.params || {})
         .toString();
       const requestBody = opt.data ? angular.toJson(opt.data) : {};
 
       // ------------ CHECKING OPTION INTEGRITY ------------
 
-      if (angular.isDefined(opt.cache) && (!angular.isString(opt.cache) || opt.cache === '')) {
+      if (
+        angular.isDefined(opt.cache) &&
+        (!angular.isString(opt.cache) || opt.cache === '')
+      ) {
         throw new Error('cache must be string (not empty)');
       }
       if (angular.isDefined(opt.cacheTTL) && !angular.isNumber(opt.cacheTTL)) {
         throw new Error('cacheTTL must be number (milliseconds)');
       }
-      if (angular.isDefined(opt.clearAllCache)
-                  && !((angular.isString(opt.clearAllCache) && opt.clearAllCache !== '')
-                  || angular.isArray(opt.clearAllCache)
-                  || opt.clearAllCache === true
-                  || opt.clearAllCache === false)
+      if (
+        angular.isDefined(opt.clearAllCache) &&
+        !(
+          (angular.isString(opt.clearAllCache) && opt.clearAllCache !== '') ||
+          angular.isArray(opt.clearAllCache) ||
+          opt.clearAllCache === true ||
+          opt.clearAllCache === false
+        )
       ) {
-        throw new Error('clearAllCache must be array of string (not empty), string or boolean');
+        throw new Error(
+          'clearAllCache must be array of string (not empty), string or boolean',
+        );
       }
-      if (angular.isDefined(opt.clearCache)
-                  && !((angular.isString(opt.clearCache) && opt.clearCache !== '')
-                  || angular.isArray(opt.clearCache)
-                  || opt.clearCache === true
-                  || opt.clearCache === false)
+      if (
+        angular.isDefined(opt.clearCache) &&
+        !(
+          (angular.isString(opt.clearCache) && opt.clearCache !== '') ||
+          angular.isArray(opt.clearCache) ||
+          opt.clearCache === true ||
+          opt.clearCache === false
+        )
       ) {
-        throw new Error('clearCache must be array of string (not empty), string or boolean');
+        throw new Error(
+          'clearCache must be array of string (not empty), string or boolean',
+        );
       }
 
       // ------------ CACHE INIT ------------
@@ -98,21 +113,25 @@ export default function () {
         }
       }
 
-
       // ------------ CACHE ALL HANDLING ------------
 
       if (
-        angular.isDefined(opt.clearAllCache)
-        && opt.clearAllCache !== null
-        && opt.clearAllCache !== false
+        angular.isDefined(opt.clearAllCache) &&
+        opt.clearAllCache !== null &&
+        opt.clearAllCache !== false
       ) {
         if (opt.clearAllCache === true && angular.isDefined(opt.cache)) {
           api.cache[opt.cache].removeAll();
           api.cacheTTL[opt.cache] = {};
         } else if (angular.isArray(opt.clearAllCache)) {
           angular.forEach(opt.clearAllCache, (cache) => {
-            if (angular.isDefined(cache) && (!angular.isString(cache) || cache === '')) {
-              throw new Error('clearAllCache must be array of string (not empty), string or boolean');
+            if (
+              angular.isDefined(cache) &&
+              (!angular.isString(cache) || cache === '')
+            ) {
+              throw new Error(
+                'clearAllCache must be array of string (not empty), string or boolean',
+              );
             }
             if (api.cache[cache]) {
               api.cache[cache].removeAll();
@@ -128,17 +147,22 @@ export default function () {
       // ------------ CACHE URL HANDLING ------------
 
       if (
-        angular.isDefined(opt.clearCache)
-        && opt.clearCache !== null
-        && opt.clearCache !== false
+        angular.isDefined(opt.clearCache) &&
+        opt.clearCache !== null &&
+        opt.clearCache !== false
       ) {
         if (opt.clearCache === true && angular.isDefined(opt.cache)) {
           api.cache[opt.cache].remove(requestUrl);
           delete api.cacheTTL[opt.cache][requestUrl];
         } else if (angular.isArray(opt.clearCache)) {
           angular.forEach(opt.clearCache, (cache) => {
-            if (angular.isDefined(cache) && (!angular.isString(cache) || cache === '')) {
-              throw new Error('clearCache must be array of string (not empty), string or boolean');
+            if (
+              angular.isDefined(cache) &&
+              (!angular.isString(cache) || cache === '')
+            ) {
+              throw new Error(
+                'clearCache must be array of string (not empty), string or boolean',
+              );
             }
             if (api.cache[cache]) {
               api.cache[cache].remove(requestUrl);
@@ -153,12 +177,15 @@ export default function () {
 
       // ------------ CACHE BY VERB HANDLING ------------
 
-      if (opt.cache
-        && indexOf(
-          angular.isDefined(opt.clearCacheVerb)
-          && opt.clearCacheVerb !== null ? opt.clearCacheVerb : self.clearCacheVerb,
+      if (
+        opt.cache &&
+        indexOf(
+          angular.isDefined(opt.clearCacheVerb) && opt.clearCacheVerb !== null
+            ? opt.clearCacheVerb
+            : self.clearCacheVerb,
           opt.method.toUpperCase(),
-        ) !== -1) {
+        ) !== -1
+      ) {
         api.cache[opt.cache].remove(requestUrl);
         delete api.cacheTTL[opt.clearCache][requestUrl];
       }
@@ -186,34 +213,60 @@ export default function () {
         serviceType: opt.serviceType,
         timeout: opt.timeout,
         headers: opt.headers,
-        cache: opt.method.toLowerCase() === 'get' && api.cache[opt.cache] ? api.cache[opt.cache] : false,
-      }).then((response) => {
-        if (opt.broadcast) {
-          if (opt.broadcastParam) {
-            $rootScope.$broadcast(opt.broadcast, opt.broadcastParam, response);
-          } else {
-            $rootScope.$broadcast(opt.broadcast, response);
+        cache:
+          opt.method.toLowerCase() === 'get' && api.cache[opt.cache]
+            ? api.cache[opt.cache]
+            : false,
+      }).then(
+        (response) => {
+          if (opt.broadcast) {
+            if (opt.broadcastParam) {
+              $rootScope.$broadcast(
+                opt.broadcast,
+                opt.broadcastParam,
+                response,
+              );
+            } else {
+              $rootScope.$broadcast(opt.broadcast, response);
+            }
           }
-        }
 
-        if (angular.isString(opt.returnSuccessKey) && opt.returnSuccessKey !== '') {
-          return response[opt.returnSuccessKey];
-        }
-        return response;
-      }, (error) => {
-        if (angular.isString(opt.returnErrorKey) && opt.returnErrorKey !== '') {
-          return $q.reject(error[opt.returnErrorKey]);
-        }
-        return $q.reject(error);
-      });
+          if (
+            angular.isString(opt.returnSuccessKey) &&
+            opt.returnSuccessKey !== ''
+          ) {
+            return response[opt.returnSuccessKey];
+          }
+          return response;
+        },
+        (error) => {
+          if (
+            angular.isString(opt.returnErrorKey) &&
+            opt.returnErrorKey !== ''
+          ) {
+            return $q.reject(error[opt.returnErrorKey]);
+          }
+          return $q.reject(error);
+        },
+      );
     }
 
     api.schema = function schema(basePath, options) {
-      return $http.get(angular.isObject(options)
-        && angular.isDefined(options.rootPath)
-        && options.rootPath !== null ? options.rootPath : self.rootPath + basePath, {
-        cache: true,
-      }).then((response) => response.data, (reason) => $q.reject(reason));
+      return $http
+        .get(
+          angular.isObject(options) &&
+            angular.isDefined(options.rootPath) &&
+            options.rootPath !== null
+            ? options.rootPath
+            : self.rootPath + basePath,
+          {
+            cache: true,
+          },
+        )
+        .then(
+          (response) => response.data,
+          (reason) => $q.reject(reason),
+        );
     };
 
     api.models = function models(basePath, name, options) {
@@ -221,7 +274,9 @@ export default function () {
         if (!name) {
           return schema.models;
         }
-        return schema.models[name] ? schema.models[name].enum : $q.reject(schema.models);
+        return schema.models[name]
+          ? schema.models[name].enum
+          : $q.reject(schema.models);
       });
     };
 
@@ -229,37 +284,40 @@ export default function () {
       return window.encodeURIComponent(param);
     };
 
-    angular.forEach(['get', 'put', 'post', 'delete', 'patch'], (operationType) => {
-      api[operationType] = function Api(url, optionsParams) {
-        let options = optionsParams;
-        if (!angular.isObject(options)) {
-          options = {};
-        }
-        options.method = operationType.toUpperCase();
-        options.url = (
-          angular.isDefined(options.rootPath)
-          && options.rootPath !== null ? options.rootPath : self.rootPath
-        ) + url;
-
-        if (angular.isDefined(options.returnSuccessKey)) {
-          if (!angular.isString(options.returnSuccessKey)) {
-            throw new Error('returnSuccessKey must be string');
+    angular.forEach(
+      ['get', 'put', 'post', 'delete', 'patch'],
+      (operationType) => {
+        api[operationType] = function Api(url, optionsParams) {
+          let options = optionsParams;
+          if (!angular.isObject(options)) {
+            options = {};
           }
-        } else {
-          options.returnSuccessKey = self.returnSuccessKey;
-        }
+          options.method = operationType.toUpperCase();
+          options.url =
+            (angular.isDefined(options.rootPath) && options.rootPath !== null
+              ? options.rootPath
+              : self.rootPath) + url;
 
-        if (angular.isDefined(options.returnErrorKey)) {
-          if (!angular.isString(options.returnErrorKey)) {
-            throw new Error('returnErrorKey must be string');
+          if (angular.isDefined(options.returnSuccessKey)) {
+            if (!angular.isString(options.returnSuccessKey)) {
+              throw new Error('returnSuccessKey must be string');
+            }
+          } else {
+            options.returnSuccessKey = self.returnSuccessKey;
           }
-        } else {
-          options.returnErrorKey = self.returnErrorKey;
-        }
 
-        return operation(options);
-      };
-    });
+          if (angular.isDefined(options.returnErrorKey)) {
+            if (!angular.isString(options.returnErrorKey)) {
+              throw new Error('returnErrorKey must be string');
+            }
+          } else {
+            options.returnErrorKey = self.returnErrorKey;
+          }
+
+          return operation(options);
+        };
+      },
+    );
 
     return api;
   };
