@@ -53,9 +53,10 @@ class LogsInputsAddEditCtrl {
     if (this.editMode) {
       this.input = this.CucControllerHelper.request.getHashLoader({
         loaderFunction: () =>
-          this.LogsInputsService.getInput(this.serviceName, this.inputId).then(
-            (input) => this.LogsInputsService.transformInput(input),
-          ),
+          this.LogsInputsService.getInput(
+            this.serviceName,
+            this.inputId,
+          ).then((input) => this.LogsInputsService.transformInput(input)),
       });
     }
     this.details = this.CucControllerHelper.request.getHashLoader({
@@ -95,9 +96,14 @@ class LogsInputsAddEditCtrl {
     return this.inputAddEdit
       .load()
       .then((successData) => {
-        this.gotToNextStep(this.inputId || successData[0].item.inputId);
+        if (successData[0].item) {
+          return this.gotToNextStep(
+            this.inputId || successData[0].item.inputId,
+          );
+        }
+        return this.$q.reject();
       })
-      .catch(() => this.CucControllerHelper.scrollPageToTop());
+      .finally(() => this.CucControllerHelper.scrollPageToTop());
   }
 
   gotToNextStep(inputId) {

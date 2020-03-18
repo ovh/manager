@@ -314,6 +314,20 @@
                         </dd>
                         <dt
                             class="oui-tile__term"
+                            data-translate="pci_projects_project_instances_instance_gateway"
+                        ></dt>
+                        <dd class="oui-tile__description">
+                            <oui-clipboard
+                                data-ng-if="$ctrl.instance.hasPublicIpV4()"
+                                data-model="$ctrl.instance.publicIpV4[0].gatewayIp"
+                            ></oui-clipboard>
+                            <span
+                                data-ng-if="!$ctrl.instance.publicIpV4[0].gatewayIp"
+                                >-</span
+                            >
+                        </dd>
+                        <dt
+                            class="oui-tile__term"
                             data-translate="pci_projects_project_instances_instance_reverse_ip_label"
                         ></dt>
                         <dd class="oui-tile__description">

@@ -4,23 +4,36 @@
         data-ng-href="{{ :: $ctrl.RedirectionService.getURL('paymentMethod') }}"
     >
         <span
+            data-ng-if="!$ctrl.paymentMethod.icon"
             class="mr-auto oui-icon oui-icon-credit-card_concept"
             aria-hidden="true"
         >
         </span>
+        <img
+            data-ng-if="$ctrl.paymentMethod.icon"
+            data-ng-src="{{:: $ctrl.paymentMethod.icon.data }}"
+            alt="{{:: $ctrl.paymentMethod.label }}"
+            aria-hidden="true"
+        />
         <oui-skeleton size="s" data-ng-if="$ctrl.isLoading"> </oui-skeleton>
         <div class="m-auto" data-ng-if="!$ctrl.isLoading">
             <strong
                 class="d-block"
                 data-translate="hub_payment_mean_title"
             ></strong>
-            <p class="m-0" data-ng-bind=":: $ctrl.paymentMethod.label"></p>
-            <span
-                class="oui-status manager-hub-payment-mean_status"
-                data-ng-class="'oui-status_' + $ctrl.paymentMethod.getStatusCategory()"
-                data-ng-bind=":: 'hub_payment_mean_status_' + $ctrl.paymentMethod.status | translate"
-            >
-            </span>
+            <div data-ng-if="$ctrl.paymentMethod">
+                <p class="m-0" data-ng-bind=":: $ctrl.paymentMethod.label"></p>
+                <span
+                    class="oui-status manager-hub-payment-mean_status"
+                    data-ng-class="'oui-status_' + $ctrl.paymentMethod.getStatusCategory()"
+                    data-ng-bind=":: 'hub_payment_mean_status_' + $ctrl.paymentMethod.status | translate"
+                >
+                </span>
+            </div>
+            <p
+                data-ng-if="!$ctrl.paymentMethod"
+                data-translate="hub_payment_mean_none"
+            ></p>
         </div>
         <span
             class="ml-auto oui-icon oui-icon-arrow-right_extra-thin"

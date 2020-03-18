@@ -35,7 +35,7 @@
   "ovhManagerSupport_new_serviceType_cdn_webstorage": "Cdn WebStorage",
   "ovhManagerSupport_new_serviceType_cdn_website": "Cdn WebSite",
   "ovhManagerSupport_new_serviceType_cdn_dedicated": "Cdn dédié",
-    "ovhManagerSupport_new_serviceType_container_registry": "Managed Private Registry",
+  "ovhManagerSupport_new_serviceType_container_registry": "Managed Private Registry",
   "ovhManagerSupport_new_serviceType_hosting_private_database": "Base de données privée",
   "ovhManagerSupport_new_serviceType_domain_zone": "Zone",
   "ovhManagerSupport_new_serviceType_ip_loadbalancing": "IP load balancing",
@@ -79,7 +79,6 @@
   "ovhManagerSupport_new_serviceType_cloud_db": "Cloud Databases",
   "ovhManagerSupport_new_serviceType_dbaas_logs": "Logs",
   "ovhManagerSupport_new_serviceType_dbaas_queue": "Queues",
-  "ovhManagerSupport_new_serviceType_dbaas_timeseries": "Time series",
   "ovhManagerSupport_new_serviceType_deskaas": "Bureau virtuel à distance",
   "ovhManagerSupport_new_serviceType_ssl": "SSL",
   "ovhManagerSupport_new_serviceType_ssl_gateway": "SSL Gateway",
@@ -125,5 +124,4 @@
   "ovhManagerSupport_new_business_1": "Un projet à étudier?",
   "ovhManagerSupport_new_business_2": "Merci de nous détailler vos besoins en nous envoyant un e-mail à l'adresse :",
   "ovhManagerSupport_new_business_3": "Les demandes d'assistances reçues à cette adresse ne seront pas traitées."
-
 }

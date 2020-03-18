@@ -84,6 +84,21 @@
         </oui-field>
 
         <oui-field
+            label="{{ ::'inputs_logs_networks_title' | translate }}"
+            size="xl"
+            help-text="{{ ::'inputs_logs_networks_ip_address_example' | translate }}"
+        >
+            <textarea
+                class="oui-textarea"
+                id="input_allowed_networks"
+                name="input_allowed_networks"
+                data-ng-class="{'oui-input_error': ctrl.form.$submitted && ctrl.form.input_allowed_networks.$invalid}"
+                data-ng-model="ctrl.input.data.info.allowedNetworks"
+            >
+            </textarea>
+        </oui-field>
+
+        <oui-field
             label="{{ ::'inputs_logs_edit_stream_field' | translate }}"
             size="xl"
         >

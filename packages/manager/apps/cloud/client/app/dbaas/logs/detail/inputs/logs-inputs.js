@@ -87,16 +87,5 @@ angular.module('managerApp').config(($stateProvider) => {
           controllerAs: 'ctrl',
         },
       },
-    })
-    .state('dbaas.logs.detail.inputs.editwizard.networks', {
-      url: '/networks',
-      views: {
-        logsInputsAdd: {
-          templateUrl:
-            'app/dbaas/logs/detail/inputs/add/networks/logs-inputs-add-networks.html',
-          controller: 'LogsInputsAddNetworksCtrl',
-          controllerAs: 'ctrl',
-        },
-      },
     });
 });

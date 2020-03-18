@@ -3,5 +3,5 @@
   "private_registry_create_region": "Selecione uma localização",
   "private_registry_create_name_cluster": "Nome do cluster",
   "private_registry_create_choose_plan": "Escolha o seu plano",
-  "private_registry_create_button": "Create"
+  "private_registry_create_button": "Criar"
 }

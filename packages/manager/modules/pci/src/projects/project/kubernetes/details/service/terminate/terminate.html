@@ -7,6 +7,7 @@
     <oui-modal
         data-title="{{ ::'kube_service_terminate_title' | translate }}"
         data-primary-label="{{ ::'kube_service_terminate_common_confirm' | translate }}"
+        data-primary-disabled="!$ctrl.terminateConfirmation"
         data-secondary-action="$ctrl.goBack()"
         data-secondary-label="{{ ::'kube_service_terminate_common_cancel' | translate }}"
         data-on-dismiss="$ctrl.goBack()"
@@ -20,5 +21,16 @@
         <oui-message data-type="warning">
             <span data-translate="kube_service_terminate_warning"></span>
         </oui-message>
+        <oui-field
+            data-label="{{:: 'kube_service_terminate_enter' | translate }}"
+        >
+            <input
+                class="oui-input"
+                type="text"
+                name="kubeClusterTerminateConfirm"
+                data-ng-model="$ctrl.terminateConfirmation"
+                data-ng-pattern="$ctrl.TERMINATE_INPUT"
+                required>
+        </oui-field>
     </oui-modal>
 </form>

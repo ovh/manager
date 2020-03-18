@@ -37,7 +37,6 @@ import tucUnitHumanize from './unit/humanize';
 import tucValidator from './validator';
 import tucBankHolidays from './bank-holidays';
 import FeatureAvailability from './feature-availability';
-import ListLayoutHelper from './list-layout-helper';
 
 const moduleName = 'ngOvhTelecomUniverseComponents';
 
@@ -80,6 +79,6 @@ angular.module(moduleName, [
   tucBankHolidays,
 ]);
 
-export { FeatureAvailability, ListLayoutHelper };
+export { FeatureAvailability };
 
 export default moduleName;

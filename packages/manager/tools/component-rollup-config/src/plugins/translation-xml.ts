@@ -1,4 +1,4 @@
-import { createFilter } from 'rollup-pluginutils';
+import { createFilter } from '@rollup/pluginutils';
 import get from 'lodash/get';
 import mapValues from 'lodash/mapValues';
 import set from 'lodash/set';

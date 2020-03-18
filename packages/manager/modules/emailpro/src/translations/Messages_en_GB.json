@@ -854,5 +854,6 @@
   "emailpro_tab_EXTERNAL_CONTACT": "External contacts ",
   "emailpro_tab_MAILING_LIST": "Mailing-lists",
   "emailpro_tab_REDIRECTION": "Redirections",
-  "emailpro_navigation_more": "More"
+  "emailpro_navigation_more": "More",
+  "emailpro_tab_INFORMATIONS_server": "Server"
 }

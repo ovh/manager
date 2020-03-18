@@ -50,12 +50,6 @@ module.exports = (env = {}) => {
     },
     plugins: [
       new webpack.DefinePlugin({
-        __FEEDBACK_URL_EN__: process.env.FEEDBACK_URL_EN
-          ? `'${process.env.FEEDBACK_URL_EN}'`
-          : 'null',
-        __FEEDBACK_URL_FR__: process.env.FEEDBACK_URL_FR
-          ? `'${process.env.FEEDBACK_URL_FR}'`
-          : 'null',
         __NG_APP_INJECTIONS__: process.env.NG_APP_INJECTIONS
           ? `'${process.env.NG_APP_INJECTIONS}'`
           : 'null',

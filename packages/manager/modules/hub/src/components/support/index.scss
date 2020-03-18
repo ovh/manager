@@ -1,0 +1,70 @@
+.manager-hub-support {
+  $title-color: #00185e;
+  $pill-color: #bef1ff;
+  $link-color: #0050d7;
+  $service-color: #4d5592;
+
+  @import 'bootstrap4/scss/_functions.scss';
+  @import 'bootstrap4/scss/_variables.scss';
+  @import 'bootstrap4/scss/_mixins.scss';
+  @import 'bootstrap4/scss/_utilities.scss';
+
+  h3 {
+    display: inline-block;
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: $title-color;
+  }
+
+  &_count {
+    background-color: $pill-color;
+    border-radius: 1rem;
+    font-size: 0.75rem;
+    color: $title-color;
+    margin-left: 0.5rem;
+    padding: 0.2rem 0.5rem 0.2rem 0.5rem;
+  }
+
+  &_more {
+    float: right;
+    margin-top: 0.25rem;
+  }
+
+  table {
+    margin-top: 1rem;
+
+    tr {
+      border-bottom: 1px solid #eee;
+
+      td {
+        padding-bottom: 1rem;
+      }
+
+      td:first-child {
+        padding-left: 1rem;
+      }
+    }
+  }
+
+  a {
+    color: $link-color;
+    font-weight: 600;
+
+    > .oui-icon {
+      color: $link-color;
+      font-size: 0.75rem;
+      margin-left: 0.5rem;
+    }
+  }
+
+  &_service {
+    color: $service-color;
+  }
+
+  &_illustration {
+    background-image: url('./assets/assistance.png');
+    background-repeat: no-repeat;
+    height: 12rem;
+    background-position: center;
+  }
+}

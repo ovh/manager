@@ -1,4 +1,4 @@
-import { createFilter } from 'rollup-pluginutils';
+import { createFilter } from '@rollup/pluginutils';
 import isEmpty from 'lodash/isEmpty';
 import MagicString from 'magic-string';
 import utils from './translation-utils';

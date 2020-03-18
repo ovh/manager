@@ -14,6 +14,7 @@ import {
 export default class {
   /* @ngInject */
   constructor(
+    $http,
     $q,
     OvhApiDedicatedCloud,
     OvhApiMe,
@@ -21,6 +22,7 @@ export default class {
     ovhPaymentMethod,
     ovhUserPref,
   ) {
+    this.$http = $http;
     this.$q = $q;
     this.OvhApiDedicatedCloud = OvhApiDedicatedCloud;
     this.OvhApiMe = OvhApiMe;
@@ -100,11 +102,11 @@ export default class {
   }
 
   getDrpState(serviceInformations) {
-    return this.OvhApiDedicatedCloud.Datacenter()
-      .Zerto()
-      .v6()
-      .state(serviceInformations, null)
-      .$promise.then((state) => ({ ...state, ...serviceInformations }));
+    return this.$http
+      .get(
+        `/dedicatedCloud/${serviceInformations.serviceName}/datacenter/${serviceInformations.datacenterId}/disasterRecovery/zerto/status`,
+      )
+      .then(({ data: state }) => ({ ...state, ...serviceInformations }));
   }
 
   getDefaultLocalVraNetwork(serviceInformations) {

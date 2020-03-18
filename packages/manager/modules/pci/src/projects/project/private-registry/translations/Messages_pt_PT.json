@@ -10,7 +10,7 @@
   "private_registry_status": "Estado",
   "private_registry_harbor_ui": "Interface do utilizador Harbor",
   "private_registry_harbor_api": "API Harbor",
-  "private_registry_regenerate_creds": "Regenerar informações de identificação",
+  "private_registry_regenerate_creds": "Gerar informações de identificação",
   "private_registry_rename": "Alterar o nome",
   "private_registry_delete": "Eliminar o registo privado",
   "private_registry_delete_confirmation": "Tem a certeza de que quer eliminar o registo privado {{ registryName }}?",
@@ -44,7 +44,7 @@
   "private_registry_update_name_label": "Escolher um nome para o registo privado",
   "private_registry_update_success": "O nome do registo privado foi alterado para {{ newRegistryName }}",
   "private_registry_update_error": "Ocorreu um erro ao mudar o nome do registo privado {{ registryName }}: {{ message }}",
-  "private_registry_onboarding_success": "O seu registo privado {{ registryName }} foi criado.",
+  "private_registry_onboarding_success": "O seu registo privado {{ registryName }} está a ser criado. Esta instalação pode levar alguns minutos. Utilize o botão Refresh para atualizar o estado. Uma vez o seu registo privado criado, gere as credenciais de acesso.",
   "private_registry_onboarding_error": "A criação do registo privado falhou: {{ message }}",
   "private_registry_harbor_api_title": "API do registo privado",
   "private_registry_harbor_api_url": "URL API do registo privado",
@@ -65,11 +65,11 @@
   "private_registry_upgrade_plan": "Mudar de plano",
   "private_registry_consumption": "Espaço utilizado / Espaço disponível",
   "private_registry_consumption_display": "{{ used }} / {{ limit }}{{ used }} / {{ limit }}",
-  "private_registry_common_status_SCALING_UP": "Mudança de plano em curso",
+  "private_registry_common_status_SCALING_UP": "Mudança de plano",
   "private_registry_onboarding_success_link": "Crie os primeiros identificadores para aceder.",
   "private_registry_new_project_contracts": "Li e aceito os contratos: {{ contractsLinks }}.",
   "private_registry_guide_creating_and_using_a_private_image": "Criação e utilização de imagens privadas",
   "private_registry_guide_using_private_registry_with_kubernetes": "Utilização do Managed Private Registry com o Managed Kubernetes",
   "private_registry_guide_using_the_helm_chart_museum": "Utilização do Helm Chart Museum",
-  "private_registry_common_cancel": "Cancel"
+  "private_registry_common_cancel": "Cancelar"
 }

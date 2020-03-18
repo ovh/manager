@@ -5,10 +5,12 @@ import { BillingService } from '@ovh-ux/manager-models';
 
 export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
   $stateProvider.state('app', {
-    url: '/',
-    component: 'hubDashboard',
+    url: '',
+    abstract: true,
+    redirectTo: 'app.dashboard',
     resolve: {
       bills: /* @ngInject */ (hub) => hub.data.bills,
+      catalog: /* @ngInject */ (hub) => hub.data.catalog,
       hub: /* @ngInject */ ($http) =>
         $http
           .get('/hub', {
@@ -42,26 +44,29 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
         ),
       order: /* @ngInject */ ($q, hub, OrderTracking) => {
         const lastOrder = hub.data.lastOrder.data;
-        return $q
-          .all({
-            status: OrderTracking.getOrderStatus(lastOrder),
-            details: OrderTracking.getOrderDetails(lastOrder),
-          })
-          .then(({ status, details }) => ({
-            ...lastOrder,
-            status,
-            ...head(details),
-          }))
-          .then((order) =>
-            OrderTracking.getCompleteHistory(order).then((history) => ({
-              ...order,
-              ...history,
-            })),
-          );
+        return lastOrder
+          ? $q
+              .all({
+                status: OrderTracking.getOrderStatus(lastOrder),
+                details: OrderTracking.getOrderDetails(lastOrder),
+              })
+              .then(({ status, details }) => ({
+                ...lastOrder,
+                status,
+                ...head(details),
+              }))
+              .then((order) =>
+                OrderTracking.getCompleteHistory(order).then((history) => ({
+                  ...order,
+                  ...history,
+                })),
+              )
+          : $q.resolve();
       },
 
-      services: /* @ngInject */ (hub) => hub.data.services.data.data,
+      services: /* @ngInject */ (hub) => hub.data.services.data,
       trackingPrefix: () => 'hub::dashboard::activity::payment-status',
+      feedbackUrl: /* @ngInject */ (hub) => hub.data.survey,
     },
   });
 

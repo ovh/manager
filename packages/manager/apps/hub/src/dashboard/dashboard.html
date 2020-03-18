@@ -1,24 +1,34 @@
-<h1
-    data-translate="manager_hub_dashboard_welcome"
-    data-translate-values="{ name: $ctrl.me.firstname }"
-></h1>
-<ovh-manager-hub-carousel
-    items="$ctrl.notifications"
-></ovh-manager-hub-carousel>
-<h2 data-translate="manager_hub_dashboard_overview"></h2>
-<div class="row">
-    <div class="col-md-8">
-        <hub-payment-status
-            data-services="$ctrl.billingServices.data"
-            data-tracking-prefix="{{ $ctrl.trackingPrefix }}"
-            data-total-count="$ctrl.billingServices.count"
-        >
-        </hub-payment-status>
+<div data-ui-view>
+    <div class="hub-banner px-3 py-2">
+        <span
+            data-translate="manager_hub_dashboard_feedback"
+            data-translate-values="{ url: $ctrl.feedbackUrl }"
+        ></span>
     </div>
-    <div class="col-md-4">
-        <hub-billing-summary bills="$ctrl.bills"></hub-billing-summary>
-        <hub-order-tracking order="$ctrl.order"></hub-order-tracking>
+    <hub-dashboard-welcome
+        data-name="$ctrl.me.firstname"
+    ></hub-dashboard-welcome>
+    <ovh-manager-hub-carousel
+        items="$ctrl.notifications"
+    ></ovh-manager-hub-carousel>
+    <h2 data-translate="manager_hub_dashboard_overview"></h2>
+    <div class="row">
+        <div class="col-md-8">
+            <hub-payment-status
+                data-services="$ctrl.billingServices.data"
+                data-tracking-prefix="{{ $ctrl.trackingPrefix }}"
+                data-total-count="$ctrl.billingServices.count"
+            >
+            </hub-payment-status>
+        </div>
+        <div class="col-md-4">
+            <hub-billing-summary bills="$ctrl.bills"></hub-billing-summary>
+            <hub-order-tracking order="$ctrl.order"></hub-order-tracking>
+        </div>
     </div>
+    <h2 data-translate="manager_hub_dashboard_services"></h2>
+    <hub-products
+        products="$ctrl.services.data"
+        on-product-select="$ctrl.goToProductPage(productType)"
+    ></hub-products>
 </div>
-<h2 data-translate="manager_hub_dashboard_services"></h2>
-<hub-products products="$ctrl.services"></hub-products>
