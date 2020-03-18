@@ -1,0 +1,25 @@
+<div class="ui-select-container ovh-contact-select ui-select-bootstrap clearfix"
+     data-ng-class="{ 'open': $select.open }">
+    <div class="ui-select-match clearfix"></div>
+
+    <div class="ui-select-dropdown ui-select-dropdown-container dropdown"
+         data-ng-class="{ open: $select.open }"
+         data-ng-show="$select.open">
+        <div class="search-container">
+            <input type="search" autocomplete="off" tabindex="-1"
+                   aria-expanded="true"
+                   aria-label="{{ $select.baseTitle }}"
+                   aria-owns="ui-select-choices-{{ $select.generatedId }}"
+                   aria-activedescendant="ui-select-choices-row-{{ $select.generatedId }}-{{ $select.activeIndex }}"
+                   class="form-control ui-select-search"
+                   data-ng-class="{ 'ui-select-search-hidden' : !$select.searchEnabled }"
+                   data-ng-model="$select.search"
+                   data-ng-show="$select.open"
+                   placeholder="{{$select.placeholder}}">
+        </div>
+
+        <div class="ui-select-choices"></div>
+        <div class="ui-select-no-choice"></div>
+
+    </div>
+</div>

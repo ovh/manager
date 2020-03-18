@@ -1,0 +1,83 @@
+@padding-base-vertical: 6px;
+@padding-base-horizontal: 22px;
+@border-radius-base: 4px;
+@brand-danger: #d9534f;
+
+.ovh-contact {
+  .ovh-contact-choice {
+    .ovh-contact-select {
+      cursor: default;
+      position: relative;
+
+      .ui-select-match {
+        height: auto;
+        box-shadow: none;
+      }
+
+      .ui-select-dropdown-container {
+        position: absolute;
+        left: -22px;
+        right: -22px;
+        border: 2px solid #e1e4df;
+        border-radius: @border-radius-base;
+        margin-top: -1px;
+        padding: @padding-base-vertical @padding-base-horizontal;
+        background-color: #fff;
+        z-index: 1000;
+
+        .ui-select-dropdown {
+          max-height: 200px;
+          overflow-x: hidden;
+          overflow-y: auto;
+          border: 0;
+          position: static;
+          width: 100%;
+          box-shadow: none;
+
+          .ui-select-choices-group {
+            display: block;
+          }
+        }
+      }
+
+      &.direction-up {
+        .ui-select-match {
+          border-top: 0;
+          margin-top: -3px;
+        }
+
+        .ui-select-dropdown-container {
+          border-bottom: 0;
+        }
+      }
+
+      &.open:not(.direction-up) {
+        .ui-select-match {
+          border-bottom: 0;
+        }
+
+        .ui-select-dropdown-container {
+          border-top: 0;
+        }
+      }
+    }
+  }
+
+  .ovh-contact-edit {
+    .intl-tel-input {
+      width: 100%;
+
+      input.ng-invalid.ng-dirty {
+        border-color: @brand-danger;
+
+        &:focus {
+          box-shadow: none;
+        }
+      }
+    }
+
+    [data-ng-messages][role=alert] {
+      margin-top: 4px;
+    }
+  }
+}
