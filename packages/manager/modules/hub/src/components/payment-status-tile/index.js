@@ -6,6 +6,7 @@ import 'ovh-ui-angular';
 import paymentStatusTile from './payment-status-tile.component';
 import hubTile from '../tile';
 import ovhManagerHubTileError from '../tile-error';
+import ovhManagerProducts from '../products';
 
 import './payment-status-tile.scss';
 import './payment-status-tile.less';
@@ -19,6 +20,7 @@ angular
     'ngTranslateAsyncLoader',
     'oui',
     ovhManagerHubTileError,
+    ovhManagerProducts,
   ])
   .component('hubPaymentStatus', paymentStatusTile)
   .run(/* @ngTranslationsInject:json ./translations */);
