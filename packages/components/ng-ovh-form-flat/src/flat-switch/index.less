@@ -2,16 +2,16 @@
 @flat-switch-width: 50px;
 @flat-switch-height: 26px;
 @flat-switch-radius: @flat-switch-height;
-@flat-switch-background-color: #E5E6EA;
-@flat-switch-background-color-active: #DFEEEB;
-@flat-switch-enable-text-color: #FFF;
-@flat-switch-disable-text-color: #BDBDBD;
+@flat-switch-background-color: #e5e6ea;
+@flat-switch-background-color-active: #dfeeeb;
+@flat-switch-enable-text-color: #fff;
+@flat-switch-disable-text-color: #bdbdbd;
 
 // Cursor
 @flat-switch-cursor-size: 28px;
 @flat-switch-cursor-width: @flat-switch-cursor-size;
 @flat-switch-cursor-height: @flat-switch-cursor-size;
-@flat-switch-cursor-color: #FFF;
+@flat-switch-cursor-color: #fff;
 @flat-switch-cursor-color: hsl(168, 32%, 54%); //#65afa0;
 @flat-switch-cursor-border-color: #53a191;
 @flat-switch-cursor-radius: 50%;
@@ -31,11 +31,15 @@
     top: 2px;
     left: 0;
     background-color: @flat-switch-background-color;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12) inset, 0 1px 2px rgba(0, 0, 0, 0.24) inset;
+    box-shadow:
+      0 1px 3px rgba(0, 0, 0, 0.12) inset,
+      0 1px 2px rgba(0, 0, 0, 0.24) inset;
 
     .flat-switch-default-text {
       display: block;
-      width: @flat-switch-width - @flat-switch-cursor-width - (@flat-switch-radius / 2);
+      width:
+        @flat-switch-width - @flat-switch-cursor-width -
+        (@flat-switch-radius / 2);
       height: @flat-switch-height;
       position: absolute;
       text-align: center;

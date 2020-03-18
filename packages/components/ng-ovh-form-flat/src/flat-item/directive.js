@@ -20,7 +20,7 @@
    </file>
    </example>
  */
-export default function () {
+export default function() {
   return {
     restrict: 'C',
     require: ['^flatInputContainer', 'ngModel'],
@@ -56,7 +56,9 @@ export default function () {
           } else {
             containerCtrl.setEmpty(false);
           }
-          containerCtrl.checkLabelVisibility($scope.$eval(attrs.keepLabelWhenEmpty));
+          containerCtrl.checkLabelVisibility(
+            $scope.$eval(attrs.keepLabelWhenEmpty),
+          );
           containerCtrl.checkValidity();
         },
       );
