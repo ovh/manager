@@ -558,7 +558,7 @@
   "inputs_logs_networks_title": "Rete di fiducia",
   "inputs_logs_networks_add_remove_network_title": "Aggiungi/Rimuovi reti di fiducia",
   "inputs_logs_networks_ip_address": "Indirizzo IP della rete di fiducia",
-  "inputs_logs_networks_ip_address_example": "Esempio: 5.196.85.154/32 o 5.196.2.0/26",
+  "inputs_logs_networks_ip_address_example": "La lista degli indirizzi IP cliente che hanno accesso allo strumento di raccolta (IPv4). Formato: 1.2.3.4, 42.42.42.0/24",
   "inputs_logs_networks_allow_tooltip": "Finché non autorizzi nessuna rete, la tua sicurezza è compromessa in quanto chiunque può accedere alla tua applicazione.",
   "logs_inputs_network_add_success": "La rete {{network}} è stata aggiunta correttamente allo strumento di raccolta {{inputTitle}}",
   "logs_inputs_network_remove_success": "La rete {{network}} è stata rimossa correttamente dallo strumento di raccolta {{inputTitle}}",

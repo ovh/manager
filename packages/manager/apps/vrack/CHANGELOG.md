@@ -1,3 +1,12 @@
+## [0.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-app@0.3.1...@ovh-ux/manager-vrack-app@0.3.2) (2020-03-18)
+
+
+### Bug Fixes
+
+* **deps:** use latest for @ovh-ux/manager-core ([#2394](https://github.com/ovh/manager/issues/2394)) ([df1a12b](https://github.com/ovh/manager/commit/df1a12bc132cebb55f0a70a317e406ee78574faa))
+
+
+
 ## [0.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-app@0.3.0...@ovh-ux/manager-vrack-app@0.3.1) (2020-03-04)
 
 

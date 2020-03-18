@@ -1,3 +1,12 @@
+## [2.6.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@2.6.5...@ovh-ux/manager-public-cloud@2.6.6) (2020-03-18)
+
+
+### Bug Fixes
+
+* **deps:** use latest for @ovh-ux/manager-core ([#2394](https://github.com/ovh/manager/issues/2394)) ([df1a12b](https://github.com/ovh/manager/commit/df1a12bc132cebb55f0a70a317e406ee78574faa))
+
+
+
 ## [2.6.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@2.6.4...@ovh-ux/manager-public-cloud@2.6.5) (2020-03-11)
 
 
