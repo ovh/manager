@@ -1,7 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html class="h-100">
     <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+        />
 
         <link rel="shortcut icon" href="assets/images/favicon.png" />
         <link rel="apple-touch-icon" href="assets/images/touchicon-180.png" />
@@ -11,7 +14,7 @@
         data-ng-app="managerHubApp"
         data-ng-strict-di
         data-ng-controller="HubController as $ctrl"
-        class="h-100"
+        class="h-100 overflow-hidden"
     >
         <div
             id="managerPreload"
@@ -47,9 +50,12 @@
             data-sidebar-links="{}"
         >
         </ovh-manager-navbar>
-        <div class="container-fluid pt-4">
-            <ui-router-breadcrumb></ui-router-breadcrumb>
-            <div class="h-100 hub-main-view" data-ui-view="app">
+        <div
+            class="px-3 px-md-0 d-sm-flex justify-content-center overflow-auto h-100"
+            data-ui-view="app"
+        >
+            <div class="h-100 hub-main-view pt-4">
+                <ui-router-breadcrumb></ui-router-breadcrumb>
                 <div data-ui-view class="w-100"></div>
             </div>
         </div>

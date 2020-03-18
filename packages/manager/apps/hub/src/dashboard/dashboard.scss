@@ -1,16 +1,11 @@
 hub-dashboard {
-  @import '../assets/theme/index.scss';
-
-  > div {
-    max-width: $hub-view-max-width;
-    margin: auto;
-  }
-
   .hub-banner {
     background-color: #f5feff;
     color: #4d5592;
     position: absolute;
-    top: 45px;
+    top: 44px;
+    left: 0;
     width: 100%;
+    z-index: 1;
   }
 }
