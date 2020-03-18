@@ -473,6 +473,7 @@
   "vps_database_version_mysql_57": "MySQL 5.7",
   "vps_database_version_postgresql_10": "PostgreSQL 10",
   "vps_database_version_postgresql_11": "PostgreSQL 11",
+  "vps_database_version_postgresql_12": "PostgreSQL 12",
   "vps_database_version_postgresql_94": "PostgreSQL 9.4",
   "vps_database_version_postgresql_95": "PostgreSQL 9.5",
   "vps_database_version_postgresql_96": "PostgreSQL 9.6",
