@@ -4,7 +4,7 @@
   "kube_service_terminate_title": "Delete cluster",
   "kube_service_terminate_warning": "Deleting it will permanently erase all corresponding data. The process of deletion does not entitle you to a refund.",
   "kube_service_terminate_enter": "Type TERMINATE in the following field to confirm your action.",
-  "kube_service_terminate_success": "Your request to delete the Kubernetes cluster has been processed. You have been sent an email regarding this request, and you will need to confirm your deletion request via this email.",
+  "kube_service_terminate_success": "Your request to delete the Kubernetes cluster has been processed.",
   "kube_service_terminate_error": "An error has occurred deleting your cluster: {{ message }}",
   "kube_service_terminate_description": "Are you sure you want to delete the {{ clusterName }} cluster?"
 }
