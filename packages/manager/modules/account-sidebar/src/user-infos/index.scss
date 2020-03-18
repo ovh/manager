@@ -73,9 +73,13 @@
   &_links {
     clear: both;
 
-    button.btn.btn-link {
+    .btn.btn-link {
       color: $hub-primary-color;
       font-weight: bold;
+
+      &:hover {
+        color: $hub-primary-color-darker;
+      }
     }
   }
 }
