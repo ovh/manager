@@ -93,8 +93,10 @@ angular
             conditionOptions,
             self.featureType === 'sip' ? 'day' : 'weekDay',
           ) || 'monday';
-
-        if (self.featureType === 'sip') {
+        if (
+          (self.featureType === 'sip' && conditionOptions.state === 'DRAFT') ||
+          (self.featureType === 'sip' && conditionOptions.id)
+        ) {
           timeFrom = get(conditionOptions, 'hourBegin');
           timeTo = get(conditionOptions, 'hourEnd');
 
@@ -117,7 +119,6 @@ angular
             : '17:29:59';
         }
         self.policy = get(conditionOptions, 'policy') || 'available';
-
         return self;
       };
 
