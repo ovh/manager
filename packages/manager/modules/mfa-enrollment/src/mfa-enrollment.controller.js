@@ -7,12 +7,9 @@ import {
 
 export default class mfaEnrollmentCtrl {
   /* @ngInject */
-  constructor($state, CORE_MANAGER_URLS, coreConfig) {
+  constructor($state, CORE_MANAGER_URLS) {
     this.$state = $state;
-    const mfaBaseUrl = get(
-      CORE_MANAGER_URLS,
-      `${coreConfig.getRegion()}.dedicated`,
-    );
+    const mfaBaseUrl = get(CORE_MANAGER_URLS, 'dedicated');
     const mfaUrlPath = '#/useraccount/security/mfa';
     this.mfaUrl = `${mfaBaseUrl}/${mfaUrlPath}`;
 
