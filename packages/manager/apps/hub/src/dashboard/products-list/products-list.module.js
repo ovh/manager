@@ -1,5 +1,6 @@
 import angular from 'angular';
 
+import atInternet from '@ovh-ux/ng-at-internet';
 import ovhManagerHub from '@ovh-ux/manager-hub';
 
 import exchangeRouting from './exchange.routing';
@@ -12,7 +13,7 @@ import routing from './routing';
 const moduleName = 'ovhManagerHubProductListingPage';
 
 angular
-  .module(moduleName, [ovhManagerHub])
+  .module(moduleName, [atInternet, ovhManagerHub])
   .config(routing)
   .config(exchangeRouting)
   .config(ipRouting)

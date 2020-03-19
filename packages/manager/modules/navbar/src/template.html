@@ -21,6 +21,7 @@
                 text="{{:: link.title }}"
                 href="{{:: link.url }}"
                 variant="{{:: link.isPrimary ? 'primary' : 'secondary' }}"
+                on-click="$ctrl.onUniverseChange(link.name)"
             >
             </oui-navbar-link>
         </div>

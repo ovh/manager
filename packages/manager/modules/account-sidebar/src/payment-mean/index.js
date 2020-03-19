@@ -1,6 +1,7 @@
 import angular from 'angular';
 import component from './component';
 import '@ovh-ux/manager-core';
+import '@ovh-ux/ng-at-internet';
 import '@ovh-ux/ng-ovh-swimming-poll';
 import '@ovh-ux/ng-ovh-api-wrappers';
 import '@ovh-ux/ng-ovh-payment-method';
@@ -13,6 +14,7 @@ const moduleName = 'ovhManagerHubPaymentMean';
 
 angular
   .module(moduleName, [
+    'ngAtInternet',
     'ngOvhSwimmingPoll',
     'ngOvhApiWrappers',
     'ngOvhPaymentMethod',
