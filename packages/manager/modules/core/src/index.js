@@ -52,7 +52,13 @@ angular
   ])
   .constant('constants', {})
   .constant('CORE_LANGUAGES', LANGUAGES)
-  .constant('CORE_MANAGER_URLS', MANAGER_URLS)
+  .provider(
+    'CORE_MANAGER_URLS',
+    /* @ngInject */ (coreConfigProvider) => ({
+      URLS: MANAGER_URLS[coreConfigProvider.getRegion()],
+      $get: () => MANAGER_URLS[coreConfigProvider.getRegion()],
+    }),
+  )
   .constant('CORE_REDIRECT_URLS', REDIRECT_URLS)
   .constant('CORE_URLS', URLS)
   .provider('TranslateService', translateServiceProvider)
