@@ -16,6 +16,7 @@
             <p
                 class="p-0"
                 data-translate="vps_dashboard_tile_configuration_vcore_upscale"
+                data-ng-if="!$ctrl.vpsUpgradeTask"
             ></p>
         </oui-tile-description>
     </oui-tile-definition>
@@ -24,19 +25,23 @@
         data-term="{{ ::'vps_dashboard_tile_configuration_memory' | translate }}"
     >
         <oui-tile-description
-            data-ng-if="$ctrl.configurationTile.upgrades.memory"
+            data-ng-if="$ctrl.configurationTile.upgrades.memory.plan"
         >
             <oui-radio-toggle-group
                 data-model="$ctrl.configurationTile.model.memory"
                 data-on-change="$ctrl.goToUpgrade('memory')"
             >
-                <oui-radio data-value="$ctrl.currentPlan">
+                <oui-radio
+                    data-value="$ctrl.currentPlan"
+                    data-disabled="$ctrl.vpsUpgradeTask"
+                >
                     <span
                         data-ng-bind=":: $ctrl.stateVps.model.memory | cucBytes:0:false:'MiB'"
                     ></span>
                 </oui-radio>
                 <oui-radio
                     data-value="$ctrl.configurationTile.upgrades.memory.plan"
+                    data-disabled="$ctrl.vpsUpgradeTask"
                 >
                     <span
                         data-ng-bind=":: ($ctrl.stateVps.model.memory * 2) | cucBytes:0:false:'MiB'"
@@ -51,12 +56,15 @@
         </oui-tile-description>
 
         <oui-tile-description
-            data-ng-if="!$ctrl.configurationTile.upgrades.memory"
+            data-ng-if="!$ctrl.configurationTile.upgrades.memory.plan"
         >
-            <span data-ng-bind=":: $ctrl.stateVps.model.disk"></span>
+            <span
+                data-ng-bind=":: $ctrl.stateVps.model.memory | cucBytes:0:false:'MiB'"
+            ></span>
             <p
                 class="p-0"
                 data-translate="vps_dashboard_tile_configuration_memory_add_upscale"
+                data-ng-if="!$ctrl.vpsUpgradeTask"
             ></p>
         </oui-tile-description>
     </oui-tile-definition>
@@ -65,19 +73,23 @@
         data-term="{{ ::'vps_dashboard_tile_configuration_storage' | translate }}"
     >
         <oui-tile-description
-            data-ng-if="$ctrl.configurationTile.upgrades.storage"
+            data-ng-if="$ctrl.configurationTile.upgrades.storage.plan"
         >
             <oui-radio-toggle-group
                 data-model="$ctrl.configurationTile.model.storage"
                 data-on-change="$ctrl.goToUpgrade('storage')"
             >
-                <oui-radio data-value="$ctrl.currentPlan">
+                <oui-radio
+                    data-value="$ctrl.currentPlan"
+                    data-disabled="$ctrl.vpsUpgradeTask"
+                >
                     <span
                         data-ng-bind=":: $ctrl.stateVps.model.disk | cucBytes:0:false:'GB'"
                     ></span>
                 </oui-radio>
                 <oui-radio
                     data-value="$ctrl.configurationTile.upgrades.storage.plan"
+                    data-disabled="$ctrl.vpsUpgradeTask"
                 >
                     <span
                         data-ng-bind=":: ($ctrl.stateVps.model.disk * 2) | cucBytes:0:false:'GB'"
@@ -92,12 +104,15 @@
         </oui-tile-description>
 
         <oui-tile-description
-            data-ng-if="!$ctrl.configurationTile.upgrades.storage"
+            data-ng-if="!$ctrl.configurationTile.upgrades.storage.plan"
         >
-            <span data-ng-bind=":: $ctrl.stateVps.model.disk"></span>
+            <span
+                data-ng-bind=":: $ctrl.stateVps.model.disk | cucBytes:0:false:'GB'"
+            ></span>
             <p
                 class="p-0"
                 data-translate="vps_dashboard_tile_configuration_storage_add_upscale"
+                data-ng-if="!$ctrl.vpsUpgradeTask"
             ></p>
         </oui-tile-description>
     </oui-tile-definition>

@@ -1477,4 +1477,14 @@ export default /* @ngInject */ function VpsService(
       (vps) => moment(vps.expiration).diff(moment().date(), 'days') > 0,
     );
   };
+
+  this.getCatalog = function(ovhSubsidiary) {
+    return $http
+      .get(`/order/catalog/public/${apiCatalogProductName}`, {
+        params: {
+          ovhSubsidiary,
+        },
+      })
+      .then(({ data }) => data);
+  };
 }

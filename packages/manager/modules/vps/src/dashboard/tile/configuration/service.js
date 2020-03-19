@@ -109,9 +109,11 @@ class ConfigurationTileService {
       );
     });
 
-    const nextRamVpsPlan = find(this.availableUpgrades, {
-      planCode: nextRamVps.name,
-    });
+    const nextRamVpsPlan = nextRamVps
+      ? find(this.availableUpgrades, {
+          planCode: nextRamVps.name,
+        })
+      : null;
 
     // get next storage plan infos
     const nextStorageVps = find(catalog.products, ({ blobs }) => {
@@ -130,24 +132,30 @@ class ConfigurationTileService {
       );
     });
 
-    const nextStorageVpsPlan = find(this.availableUpgrades, {
-      planCode: nextStorageVps.name,
-    });
+    const nextStorageVpsPlan = nextStorageVps
+      ? find(this.availableUpgrades, {
+          planCode: nextStorageVps.name,
+        })
+      : null;
 
     return {
       memory: {
         plan: nextRamVpsPlan,
-        diff: ConfigurationTileService.getPlanPriceDiff(
-          nextRamVpsPlan,
-          this.currentPlan,
-        ),
+        diff: nextRamVpsPlan
+          ? ConfigurationTileService.getPlanPriceDiff(
+              nextRamVpsPlan,
+              this.currentPlan,
+            )
+          : null,
       },
       storage: {
         plan: nextStorageVpsPlan,
-        diff: ConfigurationTileService.getPlanPriceDiff(
-          nextStorageVpsPlan,
-          this.currentPlan,
-        ),
+        diff: nextStorageVpsPlan
+          ? ConfigurationTileService.getPlanPriceDiff(
+              nextStorageVpsPlan,
+              this.currentPlan,
+            )
+          : null,
       },
     };
   }

@@ -59,8 +59,11 @@ export default /* @ngInject */ ($stateProvider) => {
         return promise;
       },
 
-      availableUpgrades: /* ngInject */ (serviceName, VpsService) =>
-        VpsService.getAvailableUpgrades(serviceName),
+      availableUpgrades: /* @ngInject */ (serviceName, vpsUpgradeTile) =>
+        vpsUpgradeTile.getAvailableUpgrades(serviceName),
+
+      vpsUpgradeTask: /* @ngInject */ (serviceName, vpsUpgradeTile) =>
+        vpsUpgradeTile.getUpgradeTask(serviceName),
 
       configurationTile: /* @ngInject */ (
         availableUpgrades,
