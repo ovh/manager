@@ -163,22 +163,24 @@ export const PCI_REDIRECT_URLS = {
   },
   CA: {
     addCreditCard:
-      'https://ca.ovh.com/manager/index.html#/billing/mean/add?meanType=creditCard',
-    billing: 'https://ca.ovh.com/manager/index.html#/billing/history',
+      'https://ca.ovh.com/manager/dedicated/index.html#/billing/mean/add?meanType=creditCard',
+    billing: 'https://ca.ovh.com/manager/dedicated/index.html#/billing/history',
     contacts: null, // not yet available to CA users
     horizon:
       'https://horizon.cloud.ovh.net/openstackdashboard?username={username}',
     ipAction:
-      'https://ca.ovh.com/manager/index.html#/configuration/ip?action={action}&ip={ip}&ipBlock={ipBlock}',
-    paymentMeans: 'https://ca.ovh.com/manager/index.html#/billing/mean', // should not be used anymore
+      'https://ca.ovh.com/manager/dedicated/index.html#/configuration/ip?action={action}&ip={ip}&ipBlock={ipBlock}',
+    paymentMeans:
+      'https://ca.ovh.com/manager/dedicated/index.html#/billing/mean', // should not be used anymore
     paymentMethods:
-      'https://ca.ovh.com/manager/index.html#/billing/payment/method',
+      'https://ca.ovh.com/manager/dedicated/index.html#/billing/payment/method',
     paymentMethodAdd:
-      'https://ca.ovh.com/manager/index.html#/billing/payment/method/add',
-    support: 'https://ca.ovh.com/manager/index.html#/support',
+      'https://ca.ovh.com/manager/dedicated/index.html#/billing/payment/method/add',
+    support: 'https://ca.ovh.com/manager/dedicated/index.html#/support',
     vRack:
-      'https://ca.ovh.com/manager/index.html#/configuration/vrack?landingTo=networks',
-    myAccount: 'https://ca.ovh.com/manager/index.html#/useraccount/dashboard',
+      'https://ca.ovh.com/manager/dedicated/index.html#/configuration/vrack?landingTo=networks',
+    myAccount:
+      'https://ca.ovh.com/manager/dedicated/index.html#/useraccount/dashboard',
   },
   US: {
     addCreditCard:

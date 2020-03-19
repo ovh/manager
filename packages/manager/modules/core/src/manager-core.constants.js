@@ -570,7 +570,7 @@ export const URLS = {
 
 export const MANAGER_URLS = {
   CA: {
-    dedicated: 'https://ca.ovh.com/manager',
+    dedicated: 'https://ca.ovh.com/manager/dedicated',
     publicCloud: 'https://ca.ovh.com/manager/public-cloud',
     repsac: 'https://ca.ovh.com/manager/cloud/repsac',
     sunrise: 'https://ca.ovh.com/manager/sunrise',
