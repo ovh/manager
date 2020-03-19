@@ -1,6 +1,6 @@
 <div class="manager-hub-payment-mean">
     <a
-        class="d-flex flex-row align-items-center p-2 px-3"
+        class="d-flex flex-row align-items-center p-2"
         data-ng-href="{{ :: $ctrl.RedirectionService.getURL('paymentMethod') }}"
     >
         <span
@@ -17,7 +17,7 @@
             class="mr-1"
         />
         <oui-skeleton size="s" data-ng-if="$ctrl.isLoading"> </oui-skeleton>
-        <div class="m-auto" data-ng-if="!$ctrl.isLoading">
+        <div class="m-auto p-1" data-ng-if="!$ctrl.isLoading">
             <strong
                 class="d-block"
                 data-translate="hub_payment_mean_title"
