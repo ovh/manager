@@ -9,10 +9,7 @@ import tabDirective from './tab/directive';
 const moduleName = 'ngOvhResponsiveTabs';
 
 angular
-  .module(moduleName, [
-    'ui.bootstrap',
-    'ui.router',
-  ])
+  .module(moduleName, ['ui.bootstrap', 'ui.router'])
   .directive('responsiveTabs', directive)
   .directive('responsiveTab', tabDirective)
   .directive('responsiveTabMore', moreDirective);

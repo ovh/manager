@@ -12,7 +12,8 @@ export default /* @ngInject */ ($parse, $state) => ({
   template: (elm, attrs) => {
     if (angular.isDefined(attrs.dropdown)) {
       return templateDropdown;
-    } if (angular.isDefined(attrs.url)) {
+    }
+    if (angular.isDefined(attrs.url)) {
       return templateUrl;
     }
     return template;
@@ -37,7 +38,9 @@ export default /* @ngInject */ ($parse, $state) => ({
       if ($scope.state) {
         $scope.stateParams = $scope.stateParams || {};
         $scope.stateOptions = $scope.stateOptions || {};
-        if ($state.includes($scope.state, $scope.stateParams, $scope.stateOptions)) {
+        if (
+          $state.includes($scope.state, $scope.stateParams, $scope.stateOptions)
+        ) {
           // when responsive-tab wasn't in the DOM (ng-if)
           tabsetCtrl.select($scope);
         }

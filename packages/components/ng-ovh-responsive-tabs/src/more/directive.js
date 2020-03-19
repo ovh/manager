@@ -17,7 +17,11 @@ export default /* @ngInject */ ($state) => ({
       // so it trigger the $watch('active') from the original tab.
       $scope.select = (selectedTab) => {
         if (!selectedTab.disabled) {
-          $state.go(selectedTab.state, selectedTab.stateParams, selectedTab.stateOptions);
+          $state.go(
+            selectedTab.state,
+            selectedTab.stateParams,
+            selectedTab.stateOptions,
+          );
           tabsetCtrl.select(selectedTab);
         }
       };

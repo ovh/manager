@@ -39,9 +39,8 @@ export default class {
     if (this.data.asArray) {
       return;
     }
-    this.data.asArray = map(
-      this.data.list,
-      (country) => get(
+    this.data.asArray = map(this.data.list, (country) =>
+      get(
         country,
         `lang.${this.data.selectedLanguage}`,
         get(country, 'lang.iso'),
@@ -69,9 +68,8 @@ export default class {
     if (this.data.asObject) {
       return;
     }
-    this.data.asObject = mapValues(
-      this.data.list,
-      (country) => get(
+    this.data.asObject = mapValues(this.data.list, (country) =>
+      get(
         country,
         `lang.${this.data.selectedLanguage}`,
         get(country, 'lang.iso'),
@@ -91,17 +89,14 @@ export default class {
     if (this.data.asDataForSelect) {
       return;
     }
-    this.data.asDataForSelect = map(
-      this.data.list,
-      (country, isoCode) => ({
-        value: isoCode,
-        label: get(
-          country,
-          `lang.${this.data.selectedLanguage}`,
-          get(country, 'lang.iso'),
-        ),
-      }),
-    );
+    this.data.asDataForSelect = map(this.data.list, (country, isoCode) => ({
+      value: isoCode,
+      label: get(
+        country,
+        `lang.${this.data.selectedLanguage}`,
+        get(country, 'lang.iso'),
+      ),
+    }));
   }
 
   get asDataForSelect() {

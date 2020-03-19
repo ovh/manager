@@ -10,11 +10,7 @@ import map from 'lodash/map';
 import controller from './controller';
 import template from './template.html';
 
-export default /* @ngInject */ (
-  $window,
-  $state,
-  $transitions,
-) => ({
+export default /* @ngInject */ ($window, $state, $transitions) => ({
   restrict: 'AE',
   replace: true,
   transclude: true,
@@ -97,16 +93,18 @@ export default /* @ngInject */ (
 
       if (visibleTabs.length < tabsetCtrl.tabs.length) {
         // Hide all not eligibles elements
-        tabsetCtrl.setTabs(map(tabsetCtrl.tabs, (tab, index) => {
-          if (!includes(visibleTabs, index) && has(tab, '$tab')) {
-            tab.$tab.addClass('hidden').attr('aria-hidden', 'true');
-            return {
-              ...tab,
-              hidden: true,
-            };
-          }
-          return tab;
-        }));
+        tabsetCtrl.setTabs(
+          map(tabsetCtrl.tabs, (tab, index) => {
+            if (!includes(visibleTabs, index) && has(tab, '$tab')) {
+              tab.$tab.addClass('hidden').attr('aria-hidden', 'true');
+              return {
+                ...tab,
+                hidden: true,
+              };
+            }
+            return tab;
+          }),
+        );
       } else if (has(tabsetCtrl.tabMore, '$tab')) {
         // All elements are visible; hide "more" tab.
         tabsetCtrl.tabMore.$tab.addClass('hidden').attr('aria-hidden', 'true');
@@ -123,7 +121,10 @@ export default /* @ngInject */ (
       // At init, select the tab associated with the state.
       // ...or, if user manually modify the url, we need to select it.
       angular.forEach(tabsetCtrl.tabs, (tab) => {
-        if (!tab.active && $state.includes(tab.state, tab.stateParams, tab.stateOptions)) {
+        if (
+          !tab.active &&
+          $state.includes(tab.state, tab.stateParams, tab.stateOptions)
+        ) {
           tabsetCtrl.select(tab);
         }
       });
