@@ -8,7 +8,8 @@
   }
 
   h1 {
-    color: $hub-primary-color;
-    font-weight: 400;
+    font-size: $hub-title-size;
+    font-weight: $hub-title-weight;
+    color: $hub-title-color;
   }
 }
