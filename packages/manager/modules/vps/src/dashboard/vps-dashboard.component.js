@@ -22,6 +22,8 @@ export default {
     stateVps: '<',
     tabSummary: '<',
     vps: '<',
+
+    vpsUpgradeTask: '<',
   },
   controller,
   name: 'ovhManagerVpsDashboard',
