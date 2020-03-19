@@ -19,7 +19,6 @@ angular
     'pascalprecht.translate',
     menuHeader,
   ])
-  .component('ovhManagerNavbarUserMenu', component)
-  .run(/* @ngTranslationsInject:json ./translations */);
+  .component('ovhManagerNavbarUserMenu', component);
 
 export default moduleName;
