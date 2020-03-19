@@ -46,7 +46,7 @@
                     event: 'sidebar:loaded',
                 },
             }"
-            data-sidebar-expand="true"
+            data-sidebar-expand="shouldExpandSidebar"
             data-sidebar-links="{}"
         >
         </ovh-manager-navbar>
@@ -56,7 +56,12 @@
                     class="px-3 px-md-0 d-sm-flex justify-content-center h-100 mb-5"
                     data-ui-view="app"
                 >
-                    <div class="h-100 hub-main-view pt-4">
+                    <div
+                        class="h-100 hub-main-view pt-4"
+                        data-ng-class="{
+                            'hub-main-view_sidebar_expanded': shouldExpandSidebar
+                         }"
+                    >
                         <ui-router-breadcrumb></ui-router-breadcrumb>
                         <div data-ui-view class="w-100"></div>
                     </div>
