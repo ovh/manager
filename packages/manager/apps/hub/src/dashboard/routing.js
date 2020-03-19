@@ -39,11 +39,7 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
           name: `${trackingPrefix}::product::${product}::show-all`,
           type: 'action',
         });
-        return product.includes('EXCHANGE')
-          ? $state.go('app.dashboard.exchange')
-          : $state.go('app.dashboard.products', {
-              product: product.toLowerCase(),
-            });
+        return $state.go(`app.dashboard.${product.toLowerCase()}`);
       },
       trackingPrefix: () => 'hub::dashboard',
       expandProducts: /* @ngInject */ ($state) => (expand) =>
