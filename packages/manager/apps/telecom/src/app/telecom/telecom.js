@@ -1,3 +1,7 @@
+import './orders/orders.bundle';
+import './pack/pack.bundle';
+import './telephony/telephony.bundle';
+
 angular.module('managerApp').config(($stateProvider) => {
   $stateProvider.state('telecom', {
     url: '',

@@ -72,3 +72,9 @@ import 'script-loader!bootstrap-tour/build/js/bootstrap-tour-standalone.min.js';
 import 'bootstrap-tour/build/css/bootstrap-tour.min.css';
 
 import './app';
+
+import './telecom/telecom.constant';
+import './telecom/telecom.controller';
+import './telecom/telecom';
+import '../components/components.bundle';
+import './config/all';
