@@ -44,6 +44,12 @@
     }
   }
 
+  &.oui-button_link {
+    color: $hub-primary-color;
+    font-weight: $hub-font-weight-semibold;
+    text-decoration: none;
+  }
+
   &:disabled {
     &,
     &:hover,

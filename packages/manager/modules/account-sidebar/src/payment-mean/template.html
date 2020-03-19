@@ -2,6 +2,8 @@
     <a
         class="d-flex flex-row align-items-center p-2 px-3"
         data-ng-href="{{ :: $ctrl.RedirectionService.getURL('paymentMethod') }}"
+        data-track-on="click"
+        data-track-name="hub::sidebar::payment::go-to-payment-method"
     >
         <span
             data-ng-if="!$ctrl.paymentMethod.icon"
