@@ -2,11 +2,11 @@ import get from 'lodash/get';
 
 export default class EmailOfferActivateCtrl {
   /* @ngInject */
-  constructor($translate, hostingEmailService, Alerter, MANAGER_URLS) {
+  constructor($translate, hostingEmailService, Alerter, CORE_MANAGER_URLS) {
     this.$translate = $translate;
     this.hostingEmailService = hostingEmailService;
     this.Alerter = Alerter;
-    this.MANAGER_URLS = MANAGER_URLS;
+    this.MANAGER_URLS = CORE_MANAGER_URLS;
   }
 
   $onInit() {
@@ -50,7 +50,7 @@ export default class EmailOfferActivateCtrl {
       .then((order) =>
         this.goToHosting(
           this.$translate.instant('hosting_email_address_activation_success', {
-            orderTrackURL: `${this.MANAGER_URLS.dedicated}billing/order/${order.orderId}`,
+            orderTrackURL: `${this.MANAGER_URLS.dedicated}/billing/order/${order.orderId}`,
           }),
         ),
       )
