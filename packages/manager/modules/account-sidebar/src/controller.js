@@ -21,9 +21,10 @@ export default class OvhManagerAccountSidebarCtrl {
   $onInit() {
     return this.$q
       .when(this.me ? this.me : this.OvhApiMe.v6().get().$promise)
-      .then(({ ovhSubsidiary }) => {
+      .then((me) => {
+        this.me = me;
         this.hasChatbot = constants.CHATBOT_SUBSIDIARIES.includes(
-          ovhSubsidiary,
+          me.ovhSubsidiary,
         );
       })
       .then(() => this.$translate.refresh())
@@ -43,39 +44,38 @@ export default class OvhManagerAccountSidebarCtrl {
 
   getLinks() {
     const trackingPrefix = 'hub::sidebar::useful-links';
-    const links = [];
-
-    links.push({
-      href: this.RedirectionService.getURL('help'),
-      tracking: `${trackingPrefix}::go-to-helpcenter`,
-      icon: 'oui-icon oui-icon-lifebuoy_concept',
-      label: this.$translate.instant('hub_links_help_center'),
-    });
-
-    if (this.hasChatbot) {
-      links.push({
-        action: () => {
-          this.openChatbot();
-        },
-        icon: 'oui-icon oui-icon-speech-bubble_concept',
-        label: this.$translate.instant('hub_links_chatbot'),
-      });
-    }
-
-    links.push({
-      href: this.RedirectionService.getURL('tasks'),
-      tracking: `${trackingPrefix}::go-to-ovh-status`,
-      icon: 'oui-icon oui-icon-traffic-cone_concept',
-      label: this.$translate.instant('hub_links_tasks'),
-    });
-
-    links.push({
-      href: this.RedirectionService.getURL('support'),
-      tracking: `${trackingPrefix}::go-to-create-ticket`,
-      icon: 'oui-icon oui-icon-user-support_concept',
-      label: this.$translate.instant('hub_links_create_ticket'),
-    });
-
-    return links;
+    return [
+      {
+        href: this.RedirectionService.getURL('help', {
+          ovhSubsidiary: this.me.ovhSubsidiary,
+        }),
+        tracking: `${trackingPrefix}::go-to-helpcenter`,
+        icon: 'oui-icon oui-icon-lifebuoy_concept',
+        label: this.$translate.instant('hub_links_help_center'),
+      },
+      ...(this.hasChatbot
+        ? [
+            {
+              action: () => {
+                this.openChatbot();
+              },
+              icon: 'oui-icon oui-icon-speech-bubble_concept',
+              label: this.$translate.instant('hub_links_chatbot'),
+            },
+          ]
+        : []),
+      {
+        href: this.RedirectionService.getURL('tasks'),
+        tracking: `${trackingPrefix}::go-to-ovh-status`,
+        icon: 'oui-icon oui-icon-traffic-cone_concept',
+        label: this.$translate.instant('hub_links_tasks'),
+      },
+      {
+        href: this.RedirectionService.getURL('support'),
+        tracking: `${trackingPrefix}::go-to-create-ticket`,
+        icon: 'oui-icon oui-icon-user-support_concept',
+        label: this.$translate.instant('hub_links_create_ticket'),
+      },
+    ];
   }
 }

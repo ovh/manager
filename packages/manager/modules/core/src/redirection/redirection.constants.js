@@ -5,6 +5,7 @@ const managerRoot = {
 };
 
 const guidesRoot = 'https://docs.ovh.com';
+const helpRoot = 'https://help.ovhcloud.com';
 
 const URI = {
   autorenew: '#/billing/autorenew',
@@ -50,7 +51,20 @@ export default {
         TN: `${guidesRoot}/gb/en/`,
       },
     },
-    help: 'https://help.ovhcloud.com',
+    help: {
+      DE: `${helpRoot}/de`,
+      ES: `${helpRoot}/es-es`,
+      FR: `${helpRoot}/fr`,
+      GB: `${helpRoot}/en-gb`,
+      IE: `${helpRoot}/en-ie`,
+      IT: `${helpRoot}/it`,
+      MA: `${helpRoot}/fr-ma`,
+      NL: `${helpRoot}/nl`,
+      PL: `${helpRoot}/pl`,
+      PT: `${helpRoot}/pt`,
+      SN: `${helpRoot}/fr-sn`,
+      TN: `${helpRoot}/fr-tn`,
+    },
     order: `${managerRoot.EU}/manager/dedicated/${URI.order}`,
     orders: `${managerRoot.EU}/manager/dedicated/${URI.orders}`,
     paymentMethod: `${managerRoot.EU}/manager/dedicated/${URI.paymentMethod}`,
@@ -80,7 +94,15 @@ export default {
         WS: `${guidesRoot}/ca/en/`,
       },
     },
-    help: 'https://help.ovhcloud.com',
+    help: {
+      ASIA: `${helpRoot}/asia`,
+      AU: `${helpRoot}/en-au`,
+      CA: `${helpRoot}/en-ca`,
+      QC: `${helpRoot}/fr-ca`,
+      SG: `${helpRoot}/en-sg`,
+      WE: `${helpRoot}/en`,
+      WS: `${helpRoot}/es`,
+    },
     order: `${managerRoot.CA}/manager/dedicated/${URI.order}`,
     orders: `${managerRoot.CA}/manager/${URI.orders}`,
     paymentMethod: `${managerRoot.CA}/manager/${URI.paymentMethod}`,
@@ -103,7 +125,9 @@ export default {
         US: 'https://support.us.ovhcloud.com',
       },
     },
-    help: 'https://help.ovhcloud.com',
+    help: {
+      US: 'https://us.ovhcloud.com/support',
+    },
     paymentMethod: `${managerRoot.US}/manager/dedicated/${URI.paymentMethod}`,
     services: '',
     support: `${managerRoot.US}/manager/dedicated/${URI.support}`,
