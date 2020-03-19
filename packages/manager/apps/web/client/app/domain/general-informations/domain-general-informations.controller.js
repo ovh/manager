@@ -39,6 +39,7 @@ export default class DomainTabGeneralInformationsCtrl {
     WucAllDom,
     DOMAIN,
     goToDnsAnycast,
+    CORE_MANAGER_URLS,
   ) {
     this.$scope = $scope;
     this.$rootScope = $rootScope;
@@ -57,6 +58,7 @@ export default class DomainTabGeneralInformationsCtrl {
     this.constants = constants;
     this.DOMAIN = DOMAIN;
     this.goToDnsAnycast = goToDnsAnycast;
+    this.CORE_MANAGER_URLS = CORE_MANAGER_URLS;
   }
 
   $onInit() {
@@ -471,7 +473,7 @@ export default class DomainTabGeneralInformationsCtrl {
   getUpdateOwnerUrl(domain) {
     const ownerUrlInfo = { target: '', error: '' };
     if (has(domain, 'name') && has(domain, 'whoisOwner.id')) {
-      ownerUrlInfo.target = `${this.constants.MANAGER_URLS.dedicated}${OWNER_CHANGE_URL}${domain.name}/${domain.whoisOwner.id}`;
+      ownerUrlInfo.target = `${this.CORE_MANAGER_URLS.dedicated}/${OWNER_CHANGE_URL}${domain.name}/${domain.whoisOwner.id}`;
     } else if (!has(domain, 'name')) {
       ownerUrlInfo.error = this.$translate.instant(
         'domain_tab_REDIRECTION_add_step4_server_cname_error',

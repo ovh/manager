@@ -10,8 +10,8 @@ import values from 'lodash/values';
 angular.module('UserAccount').service('UseraccountSshService', [
   'OvhHttp',
   '$q',
-  'constants',
-  function UserAccountSshService(OvhHttp, $q, constants) {
+  'CORE_MANAGER_URLS',
+  function UserAccountSshService(OvhHttp, $q, CORE_MANAGER_URLS) {
     const CLOUD_CACHE_KEY = 'UNIVERS_DEDICATED_USER_ACCOUNT_SSH_CLOUD';
     const self = this;
 
@@ -176,7 +176,7 @@ angular.module('UserAccount').service('UseraccountSshService', [
     };
 
     self.getSshCloudUrl = function getSshCloudUrl(serviceName) {
-      return `${constants.MANAGER_URLS.publicCloud}pci/projects/${serviceName}/ssh/add`;
+      return `${CORE_MANAGER_URLS.publicCloud}/pci/projects/${serviceName}/ssh/add`;
     };
   },
 ]);
