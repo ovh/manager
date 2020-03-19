@@ -9,4 +9,8 @@ hub-payment-status {
     color: $hub-status-expired-color;
     vertical-align: middle;
   }
+
+  p {
+    color: $hub-text-color;
+  }
 }
