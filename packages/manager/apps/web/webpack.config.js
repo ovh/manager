@@ -46,7 +46,6 @@ module.exports = (env = {}) => {
   config.plugins.push(
     new webpack.DefinePlugin({
       WEBPACK_ENV: {
-        region: JSON.stringify(env.region),
         production: JSON.stringify(env.production),
       },
     }),
@@ -66,10 +65,5 @@ module.exports = (env = {}) => {
     resolve: {
       mainFields: ['module', 'browser', 'main'],
     },
-    plugins: [
-      new webpack.DefinePlugin({
-        __WEBPACK_REGION__: `'${env.region.toUpperCase()}'`,
-      }),
-    ],
   });
 };
