@@ -7,7 +7,8 @@
             heading="{{:: 'manager_hub_products_' + product.productType | translate }}"
             badge-text="{{ product.count }}"
             class="oui-list"
-            data-on-click="$ctrl.onProductSelect({ productType: product.productType })"
+            on-click="$ctrl.onProductSelect({ productType: product.productType })"
+            button-text="{{ 'manager_hub_products_see_all' | translate }}"
         >
             <ul class="oui-list__items">
                 <li
@@ -32,7 +33,7 @@
     data-ng-if="$ctrl.products.length > $ctrl.DEFAULT_DISPLAYED_TILES"
     data-ng-click="$ctrl.toggleExpand()"
     data-track-on="click"
-    data-track-name="{{:: $ctrl.trackingPrefix + '::product::expand' }}"
+    data-track-name="{{:: $ctrl.trackingPrefix + '::product::show_more' }}"
 >
     <span
         data-translate="{{ $ctrl.expand ? 'manager_hub_products_see_less' : 'manager_hub_products_see_more' }}"
