@@ -11,5 +11,6 @@ export default {
     vps: '<',
     stateVps: '<',
     goToUpgrade: '<',
+    vpsUpgradeTask: '<',
   },
 };

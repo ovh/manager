@@ -97,6 +97,9 @@ export default /* @ngInject */ ($stateProvider) => {
         );
       },
 
+      hasDefaultPaymentMethod: /* @ngInject */ (ovhPaymentMethod) =>
+        ovhPaymentMethod.hasDefaultPaymentMethod(),
+
       loaders: () => ({
         upgrade: false,
       }),
@@ -148,6 +151,7 @@ export default /* @ngInject */ ($stateProvider) => {
         $window,
         configurationTile,
         goBack,
+        hasDefaultPaymentMethod,
         loaders,
         serviceName,
         upgradeOrderId,
@@ -172,11 +176,18 @@ export default /* @ngInject */ ($stateProvider) => {
             get(configurationTile.upgrades, `${upgradeType}.plan.planCode`),
             {
               quantity: 1,
-              autoPayWithPreferredPaymentMethod: true,
+              autoPayWithPreferredPaymentMethod: hasDefaultPaymentMethod,
             },
           )
-          .then(({ order }) =>
-            $state.go(
+          .then(({ order }) => {
+            if (!hasDefaultPaymentMethod) {
+              return $window.location.replace(order.url);
+            }
+
+            // start checking for upgrade task
+            // vpsUpgrade.startUpgradePolling();
+
+            return $state.go(
               'vps.detail.dashboard.configuration.upgrade',
               {
                 upgradeStatus: 'success',
@@ -185,8 +196,8 @@ export default /* @ngInject */ ($stateProvider) => {
               {
                 location: false,
               },
-            ),
-          )
+            );
+          })
           .catch((error) =>
             goBack(
               $translate.instant(
