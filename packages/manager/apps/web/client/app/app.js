@@ -144,7 +144,6 @@ angular
     aapiHeaderName: 'X-Ovh-Session',
     flags_options: config.constants.flags_options,
     algorithm_options: config.constants.algorithm_options,
-    MANAGER_URLS: config.constants.MANAGER_URLS,
     HOSTING: config.constants.HOSTING,
     NO_AUTORENEW_COUNTRIES: config.constants.NO_AUTORENEW_COUNTRIES,
     DOMAIN: config.constants.DOMAIN,
@@ -301,14 +300,14 @@ angular
       forEach(URLS_REDIRECTED_TO_DEDICATED, (url) => {
         $urlRouterProvider.when(url, [
           '$window',
-          'constants',
           '$location',
-          ($window, constants, $location) => {
+          'CORE_MANAGER_URLS',
+          ($window, $location, CORE_MANAGER_URLS) => {
             const lastPartOfUrl = $location.url().substring(1);
             set(
               $window,
               'location',
-              `${constants.MANAGER_URLS.dedicated}${lastPartOfUrl}`,
+              `${CORE_MANAGER_URLS.dedicated}/${lastPartOfUrl}`,
             );
           },
         ]);
@@ -430,17 +429,17 @@ angular
     'turystyka.pl',
   ])
   .run([
-    'constants',
     '$location',
+    'CORE_MANAGER_URLS',
     'URLS_REDIRECTED_TO_DEDICATED',
-    (constants, $location, URLS_REDIRECTED_TO_DEDICATED) => {
+    ($location, CORE_MANAGER_URLS, URLS_REDIRECTED_TO_DEDICATED) => {
       forEach(
         filter(URLS_REDIRECTED_TO_DEDICATED, (url) =>
           url.test(window.location.href),
         ),
         () => {
           const lastPartOfUrl = $location.url().substring(1);
-          window.location = `${constants.MANAGER_URLS.dedicated}${lastPartOfUrl}`;
+          window.location = `${CORE_MANAGER_URLS.dedicated}/${lastPartOfUrl}`;
         },
       );
     },

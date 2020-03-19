@@ -108,7 +108,11 @@ angular
     errorPage,
   ])
   .config(
-    /* @ngInject */ ($urlServiceProvider, $locationProvider, MANAGER_URLS) => {
+    /* @ngInject */ (
+      $urlServiceProvider,
+      $locationProvider,
+      CORE_MANAGER_URLSProvider, // eslint-disable-line camelcase
+    ) => {
       const dedicatedRedirections = [
         '/paas/veeam-enterprise',
         '/paas/veeam',
@@ -121,7 +125,9 @@ angular
         $urlServiceProvider.rules.when(
           new RegExp(`^${redirectionPrefix}`),
           (match, { path }) => {
-            const { origin, pathname } = new URL(MANAGER_URLS.dedicated);
+            const { origin, pathname } = new URL(
+              CORE_MANAGER_URLSProvider.URLS.dedicated,
+            );
             window.location.replace(`${origin}${pathname}#${path}`);
           },
         );

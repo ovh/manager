@@ -89,20 +89,6 @@ angular
       },
     },
   })
-  .constant('MANAGER_URLS', {
-    web: 'https://www.ovh.com/manager/web/index.html#/',
-    dedicated: 'https://www.ovh.com/manager/dedicated/index.html#/',
-    cloud: 'https://www.ovh.com/manager/cloud/repsac/index.html#/',
-    publicCloud: 'https://www.ovh.com/manager/public-cloud/index.html#/',
-    oldTelecom: 'https://www.ovhtelecom.fr/espaceclient/index.html#/',
-    telecom: 'https://www.ovhtelecom.fr/manager/index.html#/',
-    sunrise: 'https://www.ovh.com/manager/sunrise/index.html#/',
-    partners: 'https://www.ovh.com/manager/partners/',
-    gamma: 'https://www.ovh.com/manager/sunrise/index.html#/',
-    v3: 'https://www.ovh.com/managerv3/home.pl',
-    portal: 'https://www.ovh.com/manager/portal/index.html#/',
-    labs: 'https://www.ovh.com/manager/sunrise/uxlabs/#!/',
-  })
   .constant('REDIRECT_URLS', {
     billing:
       'https://www.ovh.com/manager/dedicated/index.html#/billing/history',

@@ -1,15 +1,6 @@
 angular
   .module('managerApp')
   .constant('UNIVERSE', 'CLOUD')
-  .constant('MANAGER_URLS', {
-    dedicated: 'https://us.ovhcloud.com/manager/dedicated/index.html#/',
-    cloud: 'https://us.ovhcloud.com/manager/cloud/repsac/index.html#/',
-    publicCloud:
-      'https://www.us.ovhcloud.com/manager/public-cloud/index.html#/',
-    sunrise: 'https://us.ovhcloud.com/manager/sunrise/index.html#/',
-    gamma: 'https://ca.ovh.com/manager/sunrise/index.html#/',
-    portal: 'https://www.ovh.com/manager/portal/index.html#/',
-  })
   .constant('REDIRECT_URLS', {
     support: 'https://us.ovhcloud.com/manager/dedicated/index.html#/support',
     billing:
