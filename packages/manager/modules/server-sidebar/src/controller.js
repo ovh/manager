@@ -1,3 +1,4 @@
+import camelCase from 'lodash/camelCase';
 import compact from 'lodash/compact';
 import each from 'lodash/each';
 import filter from 'lodash/filter';
@@ -15,7 +16,6 @@ import reduce from 'lodash/reduce';
 import sumBy from 'lodash/sumBy';
 import zipObject from 'lodash/zipObject';
 
-import { MANAGER_URLS } from './constants';
 import { SIDEBAR_CONFIG } from './sidebar.constants';
 import { ORDER_URLS, SIDEBAR_ORDER_CONFIG } from './order.constants';
 import { WEB_SIDEBAR_CONFIG, WEB_ORDER_SIDEBAR_CONFIG } from './web.constants';
@@ -35,6 +35,7 @@ export default class OvhManagerServerSidebarController {
     OvhApiUniverses,
     SessionService,
     SidebarMenu,
+    CORE_MANAGER_URLS,
   ) {
     this.$q = $q;
     this.$rootScope = $rootScope;
@@ -45,6 +46,7 @@ export default class OvhManagerServerSidebarController {
     this.OvhApiUniverses = OvhApiUniverses;
     this.SessionService = SessionService;
     this.SidebarMenu = SidebarMenu;
+    this.CORE_MANAGER_URLS = CORE_MANAGER_URLS;
   }
 
   $onInit() {
@@ -167,11 +169,7 @@ export default class OvhManagerServerSidebarController {
         if (hasSubItems || has(service, 'link')) {
           link = get(service, 'link');
         } else if (has(service, 'stateUrl') && isExternal) {
-          link = get(MANAGER_URLS, [
-            this.coreConfig.getRegion(),
-            service.app[0],
-            'FR',
-          ]);
+          link = get(this.CORE_MANAGER_URLS, camelCase(service.app[0]));
           link += service.stateUrl;
         }
         const menuItem = this.SidebarMenu.addMenuItem(

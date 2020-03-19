@@ -100,12 +100,13 @@ export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
             isEnterpriseCustomer: /* @ngInject */ (currentUser) =>
               currentUser.isEnterprise,
 
-            getSMSAutomaticRenewalURL: /* @ngInject */ (constants) => (
+            getSMSAutomaticRenewalURL: /* @ngInject */ (CORE_MANAGER_URLS) => (
               service,
             ) =>
-              `${constants.MANAGER_URLS.telecom}sms/${service.serviceId}/options/recredit`,
-            getSMSCreditBuyingURL: /* @ngInject */ (constants) => (service) =>
-              `${constants.MANAGER_URLS.telecom}sms/${service.serviceId}/order`,
+              `${CORE_MANAGER_URLS.telecom}sms/${service.serviceId}/options/recredit`,
+            getSMSCreditBuyingURL: /* @ngInject */ (CORE_MANAGER_URLS) => (
+              service,
+            ) => `${CORE_MANAGER_URLS.telecom}/sms/${service.serviceId}/order`,
 
             goToAutorenew: /* @ngInject */ ($state, $timeout, Alerter) => (
               message = false,
