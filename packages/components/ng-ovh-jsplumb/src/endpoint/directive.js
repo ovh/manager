@@ -84,7 +84,7 @@
  */
 import difference from 'lodash/difference';
 
-export default /* @ngInject */ function ($rootScope, $parse) {
+export default /* @ngInject */ function($rootScope, $parse) {
   return {
     restrict: 'A',
     require: '^jsplumbInstance',
@@ -96,10 +96,15 @@ export default /* @ngInject */ function ($rootScope, $parse) {
 
           $scope.$applyAsync(() => {
             const jsplumbInstance = instanceCtrl.getInstance();
-            const endpointSourceOptions = $parse(attr.jsplumbEndpointSourceOptions)($scope);
-            const endpointTargetOptions = $parse(attr.jsplumbEndpointTargetOptions)($scope);
+            const endpointSourceOptions = $parse(
+              attr.jsplumbEndpointSourceOptions,
+            )($scope);
+            const endpointTargetOptions = $parse(
+              attr.jsplumbEndpointTargetOptions,
+            )($scope);
 
-            $scope.connectionIds = $parse(attr.jsplumbEndpointConnectionIds)($scope) || [];
+            $scope.connectionIds =
+              $parse(attr.jsplumbEndpointConnectionIds)($scope) || [];
 
             // add class to element
             $element.addClass('_jsPlumb_ng_endpoint');
@@ -121,11 +126,17 @@ export default /* @ngInject */ function ($rootScope, $parse) {
               const deletedIds = difference(oldIds, newIds) || [];
 
               if (newIds && newIds.length) {
-                instanceCtrl.connectEndpointsMultiple($element.attr('id'), newIds);
+                instanceCtrl.connectEndpointsMultiple(
+                  $element.attr('id'),
+                  newIds,
+                );
               }
 
               if (deletedIds && deletedIds.length) {
-                instanceCtrl.disconnectEndpointsMultiple($element.attr('id'), deletedIds);
+                instanceCtrl.disconnectEndpointsMultiple(
+                  $element.attr('id'),
+                  deletedIds,
+                );
               }
             });
 
@@ -145,7 +156,12 @@ export default /* @ngInject */ function ($rootScope, $parse) {
               $rootScope.$broadcast('jsplumb.endpoint.idChanged', newId, oldId);
             });
 
-            $rootScope.$broadcast('jsplumb.endpoint.created', $element.attr('id'), $scope.connectionIds, jsplumbInstance);
+            $rootScope.$broadcast(
+              'jsplumb.endpoint.created',
+              $element.attr('id'),
+              $scope.connectionIds,
+              jsplumbInstance,
+            );
 
             $scope.$on('$destroy', () => {
               jsplumbInstance.removeAllEndpoints($element);

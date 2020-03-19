@@ -93,9 +93,9 @@ angular.module('services').service(
     getUserCreationCapabilities() {
       return this.Hosting.getModels().then((models) => ({
         maxUser: 1000,
-        stateAvailable: models.models['hosting.web.user.StateEnum'].enum.map(
-          (m) => snakeCase(m).toUpperCase(),
-        ),
+        stateAvailable: models.models[
+          'hosting.web.user.StateEnum'
+        ].enum.map((m) => snakeCase(m).toUpperCase()),
       }));
     }
 
