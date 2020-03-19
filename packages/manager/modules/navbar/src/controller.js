@@ -143,4 +143,11 @@ export default class {
       });
     }
   }
+
+  onUniverseChange(universe) {
+    this.atInternet.trackClick({
+      name: `navbar::entry::${universe}`,
+      type: 'action',
+    });
+  }
 }

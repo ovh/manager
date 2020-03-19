@@ -3,7 +3,8 @@
     data-button-text="{{ ::'ovh_manager_hub_payment_status_tile_see_all' | translate }}"
     data-heading="{{ ::'ovh_manager_hub_payment_status_tile_title' | translate }}"
     data-href="{{ ::$ctrl.autorenewLink }}"
-    datang-attr-on-click="{{ $ctrl.autorenewLink && $ctrl.onLinkClick() }}"
+    data-on-click="$ctrl.onLinkClick()"
+    data-hide-action="!$ctrl.autorenewLink"
 >
     <hub-tile-error
         ng-if="!$ctrl.services && !$ctrl.loading"

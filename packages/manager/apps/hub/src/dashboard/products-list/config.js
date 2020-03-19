@@ -31,7 +31,11 @@ const getFirstColumnTemplate = (propertyId) => ({
   title: propertyId,
   property: propertyId,
   template: `
-      <a data-ng-href="{{ $row.managerLink }}" data-ng-bind="$row.${propertyId}"></a>
+      <a
+        data-ng-href="{{ $row.managerLink }}"
+        data-ng-bind="$row.${propertyId}"
+        data-track-on="click"
+        data-track-name="hub::product-listing::go-to-service"></a>
     `,
   searchable: true,
   filterable: true,
