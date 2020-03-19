@@ -32,12 +32,19 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
               ),
             ),
 
-      goToProductPage: /* @ngInject */ ($state) => (product) =>
-        product.includes('EXCHANGE')
+      goToProductPage: /* @ngInject */ ($state, atInternet, trackingPrefix) => (
+        product,
+      ) => {
+        atInternet.trackClick({
+          name: `${trackingPrefix}::product::${product}::show-all`,
+          type: 'action',
+        });
+        return product.includes('EXCHANGE')
           ? $state.go('app.dashboard.exchange')
           : $state.go('app.dashboard.products', {
               product: product.toLowerCase(),
-            }),
+            });
+      },
       trackingPrefix: () => 'hub::dashboard',
       expandProducts: /* @ngInject */ ($state) => (expand) =>
         $state.go('.', {

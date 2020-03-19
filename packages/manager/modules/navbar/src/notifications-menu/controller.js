@@ -89,7 +89,7 @@ export default class NotificationsCtrl {
 
   openMenu() {
     this.atInternet.trackClick({
-      name: 'notifications',
+      name: 'navbar::action::notifications',
       type: 'action',
     });
   }
