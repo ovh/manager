@@ -28,15 +28,18 @@ function readNgAppInjections(file) {
   return injections;
 }
 
-function getNgAppInjections(region) {
-  const injections = [
-    ...readNgAppInjections(`./.extras-${region}/ng-app-injections`),
-    ...readNgAppInjections('./.extras/ng-app-injections'),
-  ];
+function getNgAppInjections(regions) {
+  return regions.reduce((ngAppInjections, region) => {
+    const injections = [
+      ...readNgAppInjections(`./.extras-${region}/ng-app-injections`),
+      ...readNgAppInjections('./.extras/ng-app-injections'),
+    ];
 
-  const ngAppInjections = injections.map((val) => `'${val}'`).join(',');
-
-  return ngAppInjections || 'null';
+    return {
+      ...ngAppInjections,
+      [region]: JSON.stringify(injections),
+    };
+  }, {});
 }
 
 module.exports = (env = {}) => {
@@ -68,14 +71,12 @@ module.exports = (env = {}) => {
   );
 
   // Extra config files
-  const extrasRegion = glob.sync('./.extras-EU/**/*.js');
   const extras = glob.sync('./.extras/**/*.js');
 
   return merge(config, {
     entry: {
       main: path.resolve('./src/app/index.js'),
       ...(extras.length > 0 ? { extras } : {}),
-      ...(extrasRegion.length > 0 ? { extrasRegion } : {}),
     },
     output: {
       path: path.resolve(__dirname, 'dist'),
@@ -86,7 +87,7 @@ module.exports = (env = {}) => {
     },
     plugins: [
       new webpack.DefinePlugin({
-        __NG_APP_INJECTIONS__: getNgAppInjections('EU'),
+        __NG_APP_INJECTIONS__: getNgAppInjections(['EU']),
         WEBPACK_ENV: {
           production: !!env.production,
         },
