@@ -101,8 +101,11 @@
         <a
             class="btn btn-link"
             data-ng-href="{{:: $ctrl.userAccountUrl }}"
-            data-translate="hub_user_account"
-        ></a>
+            data-track-on="click"
+            data-track-name="hub::sidebar::profile::go-to-account"
+        >
+            <span data-translate="hub_user_account"></span>
+        </a>
         <hr class="my-1" />
         <button
             type="button"
