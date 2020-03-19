@@ -30,6 +30,7 @@ export default class {
     CucControllerHelper,
     CucRegionService,
     VpsService,
+    vpsUpgradeTile,
   ) {
     this.$filter = $filter;
     this.$q = $q;
@@ -41,6 +42,7 @@ export default class {
     this.CucCloudMessage = CucCloudMessage;
     this.CucRegionService = CucRegionService;
     this.VpsService = VpsService;
+    this.vpsUpgradeTile = vpsUpgradeTile;
 
     this.DASHBOARD_FEATURES = DASHBOARD_FEATURES;
 
@@ -56,6 +58,7 @@ export default class {
 
     this.initActions();
     this.initLoaders();
+    this.initUpgradePolling();
 
     this.$scope.$on('tasks.pending', (event, opt) => {
       if (opt === this.serviceName) {
@@ -85,6 +88,25 @@ export default class {
           'vps_dashboard_loading_error',
         )} ${this.tabSummary.map(({ message }) => message)}`,
       );
+    }
+  }
+
+  initUpgradePolling() {
+    if (this.vpsUpgradeTask) {
+      this.vpsUpgradeTile.startUpgradeTaskPolling(this.vpsUpgradeTask, {
+        onItemDone: () => {
+          this.CucCloudMessage.success(
+            this.$translate.instant('vps_dashboard_upgrade_success'),
+          );
+
+          this.vpsUpgradeTask = null;
+        },
+        onItemUpdated: () => {
+          this.CucCloudMessage.info(
+            this.$translate.instant('vps_dashboard_upgrade_doing'),
+          );
+        },
+      });
     }
   }
 

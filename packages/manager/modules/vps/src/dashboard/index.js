@@ -4,6 +4,8 @@ import '@uirouter/angularjs';
 import component from './vps-dashboard.component';
 import routing from './vps-dashboard.routing';
 
+import vpsUpgradeTileService from './tile/configuration/upgrade/service';
+
 import vpsTileStatusItem from './vpsTileStatus/vps-tile-status.component';
 
 import ovhManagerVpsDashboardRebuild from './rebuild';
@@ -41,6 +43,7 @@ angular
     ovhManagerVpsDashboardTile,
     'ui.router',
   ])
+  .service('vpsUpgradeTile', vpsUpgradeTileService)
   .component(component.name, component)
   .component(vpsTileStatusItem.name, vpsTileStatusItem)
   .config(routing)
