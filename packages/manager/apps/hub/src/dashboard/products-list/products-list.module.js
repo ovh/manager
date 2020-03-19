@@ -5,6 +5,7 @@ import ovhManagerHub from '@ovh-ux/manager-hub';
 import exchangeRouting from './exchange.routing';
 import ipRouting from './ip.routing';
 import sharepointRouting from './sharepoint.routing';
+import vrackRouting from './vrack.routing';
 
 import routing from './routing';
 
@@ -15,6 +16,7 @@ angular
   .config(routing)
   .config(exchangeRouting)
   .config(ipRouting)
-  .config(sharepointRouting);
+  .config(sharepointRouting)
+  .config(vrackRouting);
 
 export default moduleName;
