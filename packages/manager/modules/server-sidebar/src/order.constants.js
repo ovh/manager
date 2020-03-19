@@ -1,8 +1,7 @@
-import { DEDICATED, CLOUD, MANAGER_URLS } from './constants';
+import { DEDICATED, CLOUD } from './constants';
 
 export const ORDER_URLS = {
   EU: {
-    ...MANAGER_URLS.EU,
     dedicated_cloud: {
       CZ: 'https://www.ovh.cz/sddc/',
       DE: 'https://www.ovh.de/sddc/',
@@ -255,7 +254,6 @@ export const ORDER_URLS = {
     },
   },
   CA: {
-    ...MANAGER_URLS.CA,
     dedicated_cloud: {
       ASIA: 'https://www.ovh.com/asia/sddc/',
       AU: 'https://www.ovh.com.au/sddc/',
@@ -345,7 +343,6 @@ export const ORDER_URLS = {
     },
   },
   US: {
-    ...MANAGER_URLS.US,
     dedicated_cloud: {
       US: 'https://us.ovhcloud.com/products/hosted-private-cloud/',
     },

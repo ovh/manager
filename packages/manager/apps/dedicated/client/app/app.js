@@ -155,7 +155,6 @@ angular
     travauxUrl: config.constants.travauxUrl,
     aapiHeaderName: 'X-Ovh-Session',
     vrackUrl: config.constants.vrackUrl,
-    MANAGER_URLS: config.constants.MANAGER_URLS,
     REDIRECT_URLS: config.constants.REDIRECT_URLS,
     DEFAULT_LANGUAGE: config.constants.DEFAULT_LANGUAGE,
     FALLBACK_LANGUAGE: config.constants.FALLBACK_LANGUAGE,
