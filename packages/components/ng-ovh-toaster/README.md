@@ -2,7 +2,7 @@
 
 > A factory to create toast
 
-[![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-ovh-toaster)](https://npmjs.com/package/@ovh-ux/ng-ovh-toaster) [![Dependencies](https://badgen.net/david/dep/ovh-ux/ng-ovh-toaster)](https://npmjs.com/package/@ovh-ux/ng-ovh-toaster?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/ng-ovh-toaster)](https://npmjs.com/package/@ovh-ux/ng-ovh-toaster?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
+[![npm version](https://badgen.net/npm/v/@ovh-ux/ng-ovh-toaster)](https://www.npmjs.com/package/@ovh-ux/ng-ovh-toaster) [![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-ovh-toaster)](https://npmjs.com/package/@ovh-ux/ng-ovh-toaster) [![Dependencies](https://badgen.net/david/dep/ovh/manager/packages/components/ng-ovh-toaster)](https://npmjs.com/package/@ovh-ux/ng-ovh-toaster?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh/manager/packages/components/ng-ovh-toaster)](https://npmjs.com/package/@ovh-ux/ng-ovh-toaster?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
 
 ---
 
@@ -93,7 +93,7 @@ $ yarn test
 
 ## Contributing
 
-Always feel free to help out! Whether it's [filing bugs and feature requests](https://github.com/ovh-ux/ng-ovh-toaster/issues/new) or working on some of the [open issues](https://github.com/ovh-ux/ng-ovh-toaster/issues), our [contributing guide](CONTRIBUTING.md) will help get you started.
+Always feel free to help out! Whether it's [filing bugs and feature requests](https://github.com/ovh/manager/issues/new) or working on some of the [open issues](https://github.com/ovh/manager/issues), our [contributing guide](https://github.com/ovh/manager/blob/master/CONTRIBUTING.md) will help get you started.
 
 ## License
 
