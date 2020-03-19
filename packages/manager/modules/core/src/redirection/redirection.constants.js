@@ -1,11 +1,15 @@
 const managerRoot = {
-  EU: 'https://www.ovh.com',
-  CA: 'https://ca.ovh.com',
-  US: 'https://us.ovhcloud.com',
+  EU: 'https://www.ovh.com/manager',
+  CA: 'https://ca.ovh.com/manager',
+  US: 'https://us.ovhcloud.com/manager',
 };
 
 const guidesRoot = 'https://docs.ovh.com';
 const helpRoot = 'https://help.ovhcloud.com';
+
+const universes = {
+  dedicated: '/dedicated',
+};
 
 const URI = {
   autorenew: '#/billing/autorenew',
@@ -20,18 +24,18 @@ const URI = {
   services: '#/billing/autoRenew',
   support: '#/ticket',
   supportLevel: '#/useraccount/support/level',
+  ticket: '#/support/tickets/:ticketId',
   userAccount: '#/useraccount/dashboard',
   userEmails: '#/useraccount/emails',
 };
 
 export default {
   EU: {
-    autorenew: `${managerRoot.EU}/manager/dedicated/${URI.autorenew}`,
-    billing: `${managerRoot.EU}/manager/dedicated/${URI.billing}`,
-    catalog: `${managerRoot.EU}/manager/${URI.catalog}`,
-    contacts: `${managerRoot.EU}/manager/dedicated/${URI.contacts}`,
-    debtPay: `${managerRoot.EU}/manager/dedicated/${URI.debtPay}`,
-    domain: `${managerRoot.EU}/manager/web/${URI.domain}`,
+    autorenew: `${managerRoot.EU}/${universes.dedicated}/${URI.autorenew}`,
+    billing: `${managerRoot.EU}/${universes.dedicated}/${URI.billing}`,
+    catalog: `${managerRoot.EU}/${URI.catalog}`,
+    contacts: `${managerRoot.EU}/${universes.dedicated}/${URI.contacts}`,
+    debtPay: `${managerRoot.EU}/${universes.dedicated}/${URI.debtPay}`,
     guides: {
       home: {
         CZ: `${guidesRoot}/cz/cs/`,
@@ -65,23 +69,23 @@ export default {
       SN: `${helpRoot}/fr-sn`,
       TN: `${helpRoot}/fr-tn`,
     },
-    order: `${managerRoot.EU}/manager/dedicated/${URI.order}`,
-    orders: `${managerRoot.EU}/manager/dedicated/${URI.orders}`,
-    paymentMethod: `${managerRoot.EU}/manager/dedicated/${URI.paymentMethod}`,
-    services: `${managerRoot.EU}/manager/dedicated/${URI.services}`,
-    support: `${managerRoot.EU}/manager/dedicated/${URI.support}`,
-    supportLevel: `${managerRoot.EU}/manager/dedicated/${URI.supportLevel}`,
+    order: `${managerRoot.EU}/${universes.dedicated}/${URI.order}`,
+    orders: `${managerRoot.EU}/${universes.dedicated}/${URI.orders}`,
+    paymentMethod: `${managerRoot.EU}/${universes.dedicated}/${URI.paymentMethod}`,
+    services: `${managerRoot.EU}/${universes.dedicated}/${URI.services}`,
+    support: `${managerRoot.EU}/${universes.dedicated}/${URI.support}`,
+    supportLevel: `${managerRoot.EU}/${universes.dedicated}/${URI.supportLevel}`,
     tasks: 'http://travaux.ovh.net/',
-    ticket: `${managerRoot.EU}/manager/dedicated/#/support/tickets/:ticketId`,
-    userAccount: `${managerRoot.EU}/manager/dedicated/${URI.userAccount}`,
-    userEmails: `${managerRoot.EU}/manager/dedicated/${URI.userEmails}`,
+    ticket: `${managerRoot.EU}/${universes.dedicated}/${URI.ticket}`,
+    userAccount: `${managerRoot.EU}/${universes.dedicated}/${URI.userAccount}`,
+    userEmails: `${managerRoot.EU}/${universes.dedicated}/${URI.userEmails}`,
   },
   CA: {
-    autorenew: `${managerRoot.CA}/manager/dedicated/${URI.autorenew}`,
-    billing: `${managerRoot.CA}/manager/${URI.billing}`,
-    catalog: `${managerRoot.CA}/manager/${URI.catalog}`,
+    autorenew: `${managerRoot.CA}/${universes.dedicated}/${URI.autorenew}`,
+    billing: `${managerRoot.CA}/${URI.billing}`,
+    catalog: `${managerRoot.CA}/${URI.catalog}`,
     contacts: '',
-    debtPay: `${managerRoot.CA}/manager/${URI.debtPay}`,
+    debtPay: `${managerRoot.CA}/${URI.debtPay}`,
     domain: '',
     guides: {
       home: {
@@ -103,22 +107,22 @@ export default {
       WE: `${helpRoot}/en`,
       WS: `${helpRoot}/es`,
     },
-    order: `${managerRoot.CA}/manager/dedicated/${URI.order}`,
-    orders: `${managerRoot.CA}/manager/${URI.orders}`,
-    paymentMethod: `${managerRoot.CA}/manager/${URI.paymentMethod}`,
-    services: `${managerRoot.CA}/manager/${URI.services}`,
-    support: `${managerRoot.CA}/manager/${URI.support}`,
-    supportLevel: `${managerRoot.CA}/manager/${URI.supportLevel}`,
+    order: `${managerRoot.CA}/${universes.dedicated}/${URI.order}`,
+    orders: `${managerRoot.CA}/${URI.orders}`,
+    paymentMethod: `${managerRoot.CA}/${URI.paymentMethod}`,
+    services: `${managerRoot.CA}/${URI.services}`,
+    support: `${managerRoot.CA}/${URI.support}`,
+    supportLevel: `${managerRoot.CA}/${URI.supportLevel}`,
     tasks: 'http://travaux.ovh.net/',
-    ticket: `${managerRoot.EU}/dedicated/#/support/tickets/:ticketId`,
-    userAccount: `${managerRoot.CA}/manager/dedicated/${URI.userAccount}`,
-    userEmails: `${managerRoot.CA}/manager/${URI.userEmails}`,
+    ticket: `${managerRoot.CA}/${universes.dedicated}/${URI.ticket}`,
+    userAccount: `${managerRoot.CA}/${universes.dedicated}/${URI.userAccount}`,
+    userEmails: `${managerRoot.CA}/${URI.userEmails}`,
   },
   US: {
-    billing: `${managerRoot.US}/manager/dedicated/${URI.billing}`,
-    catalog: `${managerRoot.US}/manager/${URI.catalog}`,
+    billing: `${managerRoot.US}/${universes.dedicated}/${URI.billing}`,
+    catalog: `${managerRoot.US}/${URI.catalog}`,
     contacts: '',
-    debtPay: `${managerRoot.US}/manager/dedicated/${URI.debtPay}`,
+    debtPay: `${managerRoot.US}/${universes.dedicated}/${URI.debtPay}`,
     domain: '',
     guides: {
       home: {
@@ -128,13 +132,13 @@ export default {
     help: {
       US: 'https://us.ovhcloud.com/support',
     },
-    paymentMethod: `${managerRoot.US}/manager/dedicated/${URI.paymentMethod}`,
+    paymentMethod: `${managerRoot.US}/${universes.dedicated}/${URI.paymentMethod}`,
     services: '',
-    support: `${managerRoot.US}/manager/dedicated/${URI.support}`,
+    support: `${managerRoot.US}/${universes.dedicated}/${URI.support}`,
     supportLevel: '',
     tasks: '',
-    ticket: `${managerRoot.US}/manager/dedicated/#/ticket/:ticketId`,
-    userAccount: `${managerRoot.US}/manager/dedicated/${URI.userAccount}`,
+    ticket: `${managerRoot.US}/${universes.dedicated}/${URI.ticket}`,
+    userAccount: `${managerRoot.US}/${universes.dedicated}/${URI.userAccount}`,
     userEmails: '',
   },
 };
