@@ -1,0 +1,10 @@
+import './dnssec/batch/domains-dnssec-batch.controller';
+import './dnssec/domains-dnssec.service';
+import './dnssec/simple/activate/domains-dnssec-simple-activate.controller';
+import './dnssec/simple/deactivate/domains-dnssec-simple-deactivate.controller';
+import './domains.component';
+import './domains.controller';
+import './domains.routes';
+import './domains.service';
+import './export-csv/domains-export-to-csv.controller';
+import './renew/domains-renew.controller';
