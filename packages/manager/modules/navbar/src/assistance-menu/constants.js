@@ -1,6 +1,7 @@
 const CA = {
-  supportTicket: 'https://ca.ovh.com/manager/#/support',
-  supportLevel: 'https://ca.ovh.com/manager/#/useraccount/support/level',
+  supportTicket: 'https://ca.ovh.com/manager/dedicated/#/support',
+  supportLevel:
+    'https://ca.ovh.com/manager/dedicated/#/useraccount/support/level',
   support: {
     ASIA: 'https://www.ovh.com/asia/support/',
     AU: 'https://www.ovh.com.au/support/',

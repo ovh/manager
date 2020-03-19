@@ -4,7 +4,8 @@ export const NOT_PAID_REDIRECT_URLS = {
       'https://www.ovh.com/manager/dedicated/index.html#/billing/orders?status=all',
   },
   CA: {
-    orders: 'https://ca.ovh.com/manager/index.html#/billing/orders?status=all',
+    orders:
+      'https://ca.ovh.com/manager/dedicated/index.html#/billing/orders?status=all',
   },
   US: {
     orders:
