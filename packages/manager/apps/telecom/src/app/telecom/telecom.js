@@ -6,8 +6,6 @@ angular.module('managerApp').config(($stateProvider) => {
   $stateProvider.state('telecom', {
     url: '',
     templateUrl: 'app/telecom/telecom.html',
-    controller: 'TelecomCtrl',
-    controllerAs: 'TelecomCtrl',
     abstract: true,
     translations: { value: ['../common', '.'], format: 'json' },
     resolve: {

@@ -11,8 +11,8 @@
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
   "scripts": {
-    "build": "webpack --env.region=eu --env.production",
-    "dev": "webpack-dev-server --env.region=eu",
+    "build": "webpack --env.production",
+    "dev": "webpack-dev-server",
     "dev:watch": "yarn run dev",
     "start": "lerna exec --stream --scope='@ovh-ux/manager-telecom' --include-dependencies -- npm run build --if-present",
     "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-telecom' --include-dependencies -- npm run dev --if-present",
@@ -30,6 +30,7 @@
     "@ovh-ux/manager-navbar": "^2.2.0",
     "@ovh-ux/manager-ng-layout-helpers": "^0.0.0 || ^1.0.0",
     "@ovh-ux/manager-overthebox": "^5.0.0",
+    "@ovh-ux/manager-preloader": "^0.0.0 || ^1.0.0",
     "@ovh-ux/manager-sms": "^7.2.0",
     "@ovh-ux/manager-telecom-dashboard": "^5.0.0",
     "@ovh-ux/manager-telecom-styles": "^3.1.0",
@@ -132,7 +133,8 @@
     "punycode": "^1.4.1",
     "ui-select": "^0.19.4",
     "urijs": "^1.18.0",
-    "validator": "^11.1.0"
+    "validator": "^11.1.0",
+    "whatwg-fetch": "^3.0.0"
   },
   "devDependencies": {
     "@ovh-ux/manager-webpack-config": "^3.0.0",

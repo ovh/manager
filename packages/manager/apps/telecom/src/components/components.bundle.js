@@ -1,4 +1,3 @@
-import './manager-preload/manager-preload.module';
 import './matchmedia-ng/matchmedia-ng.config';
 import './moment/moment.constant';
 import './moment/moment';
