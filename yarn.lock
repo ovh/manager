@@ -1979,33 +1979,12 @@
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-toaster/-/ng-ovh-toaster-1.0.4.tgz#adab5366929fd57d03aaa9b39645154c761d5d85"
   integrity sha512-PpeXSzCkpChohe82HMgxnsDqsLJrJa2ZUaXEWGFlYWE/242U5fLEfA58ScNChRQRcanqx8TcycIG2dHfPJf3rQ==
 
-"@ovh-ux/ng-ovh-user-pref@^1.0.2":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-user-pref/-/ng-ovh-user-pref-1.0.2.tgz#4ee3dfd607ff7f72c14b45068b52905f66f69724"
-  integrity sha512-Z6e2PO+5NMWAfhEkEvoeG4qQ4X8godLWAM6OpBpPePyR/a3mH/WG9/ZzaTB0w6cpgup7C6l5Shb4fCxV7N7dWg==
-  dependencies:
-    lodash "^4.17.15"
-
 "@ovh-ux/ng-ovh-utils@^14.0.6":
   version "14.0.6"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-utils/-/ng-ovh-utils-14.0.6.tgz#34012c02afe1bf04380735430d6c3acca9bdfd77"
   integrity sha512-q+QI+N7CYT4AIEHiOWBXEHHtV56D8ykzCj9bTrhEbpJWru3lpHtTBQk58vZmWdoPGMTdRP7zXQ6sFyYUO40r3A==
   dependencies:
     filesize "^3.6.1"
-    lodash "^4.17.15"
-
-"@ovh-ux/ng-pagination-front@^8.0.1":
-  version "8.0.1"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-pagination-front/-/ng-pagination-front-8.0.1.tgz#d21b68472aed41ef78fdbc3b22cde8610e75a449"
-  integrity sha512-TrjtY/CKhPBBD73eVSIJXu092FtgcIo6p4th5/p9ViB/3ButVvwTGkRE75vnTd6UQtgJxjTqdygJa6J7Juc/xw==
-  dependencies:
-    lodash "^4.17.15"
-
-"@ovh-ux/ng-tail-logs@^2.0.2":
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-tail-logs/-/ng-tail-logs-2.0.2.tgz#0231443aa12878e80cc5e201be1359832e0f8c7c"
-  integrity sha512-OCMHTktcOIkIfSMOcF7/a6FcQzaJzNNzuEXDiZ/pfQRx2ZNRpnu2ESRifd75iIqY+KW6eU2y65r/pchgjpeA5g==
-  dependencies:
     lodash "^4.17.15"
 
 "@ovh-ux/ng-translate-async-loader@^2.0.3":

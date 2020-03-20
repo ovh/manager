@@ -1,0 +1,36 @@
+// stylelint-disable-next-line selector-type-no-unknown
+tail-logs {
+  .tail-logs {
+    background-color: #122844;
+    color: white;
+    font-family: monospace;
+    padding: 10px;
+    height: 500px;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    &__cursor {
+      content: '';
+      display: inline-block;
+      background-color: white;
+      vertical-align: top;
+      width: 8px;
+      height: 17px;
+      animation: tail-logs-blink 1s step-end infinite;
+    }
+  }
+
+  @keyframes tail-logs-blink {
+    0% {
+      opacity: 1;
+    }
+
+    50% {
+      opacity: 0;
+    }
+
+    100% {
+      opacity: 1;
+    }
+  }
+}
