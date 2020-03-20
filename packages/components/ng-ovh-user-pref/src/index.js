@@ -8,9 +8,7 @@ import provider from './provider';
 const moduleName = 'ngOvhUserPref';
 
 angular
-  .module(moduleName, [
-    'ngOvhProxyRequest',
-  ])
+  .module(moduleName, ['ngOvhProxyRequest'])
   .constant('OVH_USER_PREF', constant)
   .provider('ovhUserPref', provider);
 

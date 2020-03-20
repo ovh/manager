@@ -6,9 +6,7 @@ import directive from './directive';
 const moduleName = 'ngPaginationFront';
 
 angular
-  .module(moduleName, [
-    'ui.bootstrap',
-  ])
+  .module(moduleName, ['ui.bootstrap'])
   .directive('paginationFront', directive);
 
 export default moduleName;

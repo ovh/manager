@@ -10,7 +10,12 @@ export default function ovhAngularUserPrefProvider() {
 
   self.paramsInjector = function paramsInjector(str, params, prefix) {
     const notNullParams = params || {};
-    return [prefix || '', str.replace(/\{([^}]+)\}/, (replacer, key) => encodeURIComponent(notNullParams[key] || ''))].join('/');
+    return [
+      prefix || '',
+      str.replace(/\{([^}]+)\}/, (replacer, key) =>
+        encodeURIComponent(notNullParams[key] || ''),
+      ),
+    ].join('/');
   };
 
   /**
@@ -57,9 +62,14 @@ export default function ovhAngularUserPrefProvider() {
    * @description
    * <p>Getter / setter for preferences</p>
    */
-  self.$get = /* @ngInject */ function $get(ovhProxyRequest, $q, OVH_USER_PREF) {
+  self.$get = /* @ngInject */ function $get(
+    ovhProxyRequest,
+    $q,
+    OVH_USER_PREF,
+  ) {
     const ovhUserPrefService = {};
-    config.apiv6Path = config.apiv6Path || removeTrailingSlashes(ovhProxyRequest.pathPrefix());
+    config.apiv6Path =
+      config.apiv6Path || removeTrailingSlashes(ovhProxyRequest.pathPrefix());
 
     // default : CATEGORY_TYPE (_DETAILS)*
     config.regex = config.regex || /^[A-Z]+_[A-Z][A-Z0-9]*(?:_[A-Z0-9]*)*$/;
@@ -76,10 +86,11 @@ export default function ovhAngularUserPrefProvider() {
     ovhUserPrefService.getKeys = function getKeys(opts) {
       const options = assign(opts || {}, { serviceType: 'apiv6' });
 
-      return ovhProxyRequest.get(
-        self.paramsInjector(OVH_USER_PREF.path.get, null, config.apiv6Path),
-        options,
-      )
+      return ovhProxyRequest
+        .get(
+          self.paramsInjector(OVH_USER_PREF.path.get, null, config.apiv6Path),
+          options,
+        )
         .then((resp) => (resp ? resp.data : []));
     };
 
@@ -96,11 +107,15 @@ export default function ovhAngularUserPrefProvider() {
     ovhUserPrefService.getValue = function getValue(key, opts) {
       const options = assign(opts || {}, { serviceType: 'apiv6' });
 
-      return ovhProxyRequest.get(self.paramsInjector(
-        OVH_USER_PREF.path.getKey,
-        { key },
-        config.apiv6Path,
-      ), options)
+      return ovhProxyRequest
+        .get(
+          self.paramsInjector(
+            OVH_USER_PREF.path.getKey,
+            { key },
+            config.apiv6Path,
+          ),
+          options,
+        )
         .then((resp) => {
           try {
             return angular.fromJson(resp.data.value);
@@ -134,17 +149,23 @@ export default function ovhAngularUserPrefProvider() {
       }
       pendingCreationRequests[key] = createCanceller; // set new canceller
 
-      return ovhProxyRequest.post(
-        self.paramsInjector(OVH_USER_PREF.path.create, null, config.apiv6Path),
-        {
-          key,
-          value: angular.toJson(value),
-        },
-        {
-          serviceType: 'apiv6',
-          timeout: createCanceller.promise,
-        },
-      ).then((resp) => (resp ? resp.data : resp))
+      return ovhProxyRequest
+        .post(
+          self.paramsInjector(
+            OVH_USER_PREF.path.create,
+            null,
+            config.apiv6Path,
+          ),
+          {
+            key,
+            value: angular.toJson(value),
+          },
+          {
+            serviceType: 'apiv6',
+            timeout: createCanceller.promise,
+          },
+        )
+        .then((resp) => (resp ? resp.data : resp))
         .finally(() => {
           if (pendingCreationRequests[key] === createCanceller) {
             delete pendingCreationRequests[key]; // create done, remove pending canceller
@@ -167,35 +188,47 @@ export default function ovhAngularUserPrefProvider() {
         return $q.reject('Invalid format key');
       }
 
-      return ovhUserPrefService.getValue(key)
-        .then((value) => ovhProxyRequest.post(
-          self.paramsInjector(OVH_USER_PREF.path.assign, null, config.apiv6Path),
-          {
-            key,
-            value: angular.toJson(assign(value, newValue)),
-          },
-          {
-            serviceType: 'apiv6',
-          },
-        ), (err) => {
-          // if key is not found, create it
-          if (err && err.status === 404) {
-            return ovhProxyRequest.post(
-              self.paramsInjector(OVH_USER_PREF.path.create, null, config.apiv6Path),
+      return ovhUserPrefService
+        .getValue(key)
+        .then(
+          (value) =>
+            ovhProxyRequest.post(
+              self.paramsInjector(
+                OVH_USER_PREF.path.assign,
+                null,
+                config.apiv6Path,
+              ),
               {
                 key,
-                value: angular.toJson(newValue),
+                value: angular.toJson(assign(value, newValue)),
               },
               {
                 serviceType: 'apiv6',
               },
-            );
-          }
-          return $q.reject(err);
-        })
+            ),
+          (err) => {
+            // if key is not found, create it
+            if (err && err.status === 404) {
+              return ovhProxyRequest.post(
+                self.paramsInjector(
+                  OVH_USER_PREF.path.create,
+                  null,
+                  config.apiv6Path,
+                ),
+                {
+                  key,
+                  value: angular.toJson(newValue),
+                },
+                {
+                  serviceType: 'apiv6',
+                },
+              );
+            }
+            return $q.reject(err);
+          },
+        )
         .then((resp) => (resp ? resp.data : resp));
     };
-
 
     /**
      * @ngdoc function
@@ -216,16 +249,18 @@ export default function ovhAngularUserPrefProvider() {
         delete pendingCreationRequests[key]; // delete canceller reference
       }
 
-      return ovhProxyRequest.delete(
-        self.paramsInjector(
-          OVH_USER_PREF.path.remove,
-          { key },
-          config.apiv6Path,
-        ),
-        {
-          serviceType: 'apiv6',
-        },
-      ).then((resp) => (resp ? resp.data : resp));
+      return ovhProxyRequest
+        .delete(
+          self.paramsInjector(
+            OVH_USER_PREF.path.remove,
+            { key },
+            config.apiv6Path,
+          ),
+          {
+            serviceType: 'apiv6',
+          },
+        )
+        .then((resp) => (resp ? resp.data : resp));
     };
 
     return ovhUserPrefService;

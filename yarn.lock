@@ -1987,13 +1987,6 @@
     filesize "^3.6.1"
     lodash "^4.17.15"
 
-"@ovh-ux/ng-q-allsettled@^1.0.1":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-q-allsettled/-/ng-q-allsettled-1.0.1.tgz#2effcc5655f8a22c363a7b45f3644022708c4c4d"
-  integrity sha512-ygbXJg4Qg5fUeZ4mk1YNdTORgArC7Y9IftVYv8AyLiiVQVVKO+/cKeleEJfaAVTjzZWhh0JY9bqmafDGbwrbEA==
-  dependencies:
-    lodash "^4.17.15"
-
 "@ovh-ux/rollup-plugin-less-inject@^1.0.4":
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/@ovh-ux/rollup-plugin-less-inject/-/rollup-plugin-less-inject-1.0.4.tgz#07c1adb4b275a6bd122798640077c219cf1f52b0"
