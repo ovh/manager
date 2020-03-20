@@ -39,7 +39,16 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
           name: `${trackingPrefix}::product::${product}::show-all`,
           type: 'action',
         });
-        return $state.go(`app.dashboard.${product.toLowerCase()}`);
+        return (
+          $state
+            .go(`app.dashboard.${product.toLowerCase()}`)
+            // If the transition error, it means the state doesn't exist
+            .catch(() =>
+              $state.go('app.dashboard.products', {
+                product: product.toLowerCase(),
+              }),
+            )
+        );
       },
       trackingPrefix: () => 'hub::dashboard',
       expandProducts: /* @ngInject */ ($state) => (expand) =>
