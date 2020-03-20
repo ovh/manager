@@ -656,9 +656,9 @@ angular
           ),
         ),
         defaultType: 'TRAFFIC',
-        periods: models.data.models['dedicated.server.MrtgPeriodEnum'].enum.map(
-          (period) => snakeCase(period).toUpperCase(),
-        ),
+        periods: models.data.models[
+          'dedicated.server.MrtgPeriodEnum'
+        ].enum.map((period) => snakeCase(period).toUpperCase()),
         defaultPeriod: 'DAILY',
       }));
     };
@@ -1510,7 +1510,10 @@ angular
             );
           });
 
-          return $q.all(promises).then(() => returnData, () => returnData);
+          return $q.all(promises).then(
+            () => returnData,
+            () => returnData,
+          );
         },
         () => null,
       );
@@ -1611,7 +1614,10 @@ angular
         },
         urlPath: 'order/dedicated/server/{serviceName}',
         proxypass: true,
-      }).then((details) => details, () => null);
+      }).then(
+        (details) => details,
+        () => null,
+      );
     };
 
     this.getValidBandwidthPlans = function getValidBandwidthPlans(
