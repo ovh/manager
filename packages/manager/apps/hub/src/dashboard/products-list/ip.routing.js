@@ -5,7 +5,7 @@ import { urlQueryParams, params, component, resolves } from './config';
 import { genericProductResolve } from './routing';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.dashboard.ip', {
+  $stateProvider.state('app.dashboard.ip_service', {
     url: `ip_service?${urlQueryParams}`,
     params,
     component,

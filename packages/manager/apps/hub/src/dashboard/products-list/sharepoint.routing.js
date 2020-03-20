@@ -4,7 +4,7 @@ import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 import { urlQueryParams, params, component, resolves } from './config';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.dashboard.sharepoint', {
+  $stateProvider.state('app.dashboard.ms_services_sharepoint', {
     url: `ms_services_sharepoint?${urlQueryParams}`,
     params,
     component,

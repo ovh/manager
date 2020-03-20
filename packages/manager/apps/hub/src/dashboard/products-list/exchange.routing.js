@@ -4,7 +4,7 @@ import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 import { urlQueryParams, params, component, resolves } from './config';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.dashboard.exchange', {
+  $stateProvider.state('app.dashboard.email_exchange_service', {
     url: `email_exchange_service?${urlQueryParams}`,
     params,
     component,

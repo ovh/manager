@@ -6,7 +6,29 @@ const moduleName = 'ovhManagerHubDashboardLazyLoading';
 
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
   /* @ngInject */ ($stateProvider) => {
-    $stateProvider.state('app.dashboard.exchange.**', {
+    $stateProvider.state('app.dashboard.email_exchange_service.**', {
+      url: 'email_exchange_service',
+      lazyLoad: ($transition$) => {
+        const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+
+        return import('./products-list.module').then((mod) =>
+          $ocLazyLoad.inject(mod.default || mod),
+        );
+      },
+    });
+
+    $stateProvider.state('app.dashboard.ip_service.**', {
+      url: 'email_exchange_service',
+      lazyLoad: ($transition$) => {
+        const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+
+        return import('./products-list.module').then((mod) =>
+          $ocLazyLoad.inject(mod.default || mod),
+        );
+      },
+    });
+
+    $stateProvider.state('app.dashboard.ms_services_sharepoint.**', {
       url: 'email_exchange_service',
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
