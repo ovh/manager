@@ -2001,13 +2001,6 @@
   dependencies:
     lodash "^4.17.15"
 
-"@ovh-ux/ng-q-allsettled@^1.0.1":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-q-allsettled/-/ng-q-allsettled-1.0.1.tgz#2effcc5655f8a22c363a7b45f3644022708c4c4d"
-  integrity sha512-ygbXJg4Qg5fUeZ4mk1YNdTORgArC7Y9IftVYv8AyLiiVQVVKO+/cKeleEJfaAVTjzZWhh0JY9bqmafDGbwrbEA==
-  dependencies:
-    lodash "^4.17.15"
-
 "@ovh-ux/ng-tail-logs@^2.0.2":
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-tail-logs/-/ng-tail-logs-2.0.2.tgz#0231443aa12878e80cc5e201be1359832e0f8c7c"
