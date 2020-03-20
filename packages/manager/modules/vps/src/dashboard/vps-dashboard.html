@@ -11,7 +11,10 @@
             >
             </vps-dashboard-tile-information>
         </div>
-        <div class="col-xm-12 col-md-4" data-ng-if="!$ctrl.vps.isExpired">
+        <div
+            class="col-xm-12 col-md-4"
+            data-ng-if="!$ctrl.vps.isExpired && !$ctrl.isVpsNewRange"
+        >
             <oui-tile
                 data-heading="{{ ::'vps_tile_shortcut' | translate }}"
                 class="h-100"
