@@ -57,7 +57,7 @@ export const component = 'hubProductListing';
 
 export const resolves = {
   products: /* @ngInject */ (productType, services) =>
-    services.data.data[productType].data,
+    get(services, `data.data.${productType}.data`),
   resourcePath: /* @ngInject */ (products) => get(head(products), 'route.path'),
   propertyId: /* @ngInject */ (products) => get(head(products), 'propertyId'),
   dataModel: /* @ngInject */ (resourcePath, schema) => {
