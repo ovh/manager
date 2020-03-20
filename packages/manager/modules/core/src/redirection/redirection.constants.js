@@ -87,7 +87,7 @@ export default {
     services: `${managerRoot.CA}/manager/${URI.services}`,
     support: `${managerRoot.CA}/manager/${URI.support}`,
     supportLevel: `${managerRoot.CA}/manager/${URI.supportLevel}`,
-    tasks: '',
+    tasks: 'http://travaux.ovh.net/',
     ticket: `${managerRoot.EU}/dedicated/#/support/tickets/:ticketId`,
     userAccount: `${managerRoot.CA}/manager/dedicated/${URI.userAccount}`,
     userEmails: `${managerRoot.CA}/manager/${URI.userEmails}`,
