@@ -10,6 +10,7 @@ export default {
     backupTariffUrl: '@',
     currentUser: '<',
     datacenterId: '<',
+    defaultPaymentMethod: '<',
     enabledBackupOffer: '<',
     goToBackup: '<',
     productId: '<',

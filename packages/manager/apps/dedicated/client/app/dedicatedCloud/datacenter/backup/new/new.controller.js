@@ -1,5 +1,4 @@
 import get from 'lodash/get';
-import pick from 'lodash/pick';
 
 import {
   BACKUP_OFFER_CLASSIC,
@@ -25,6 +24,9 @@ export default class {
       currentStep: 0,
       orderInProgress: false,
       orderCreationInProgress: false,
+      manualOrderValidationRequired: !(
+        this.backup.isLegacy() || !!this.defaultPaymentMethod
+      ),
       selectedOffer: {
         backupOffer: get(
           this.enabledBackupOffer,
@@ -80,32 +82,29 @@ export default class {
           this.productId,
           this.datacenterId,
           {
-            ...pick(this.backup, [
-              'backupDurationInReport',
-              'backupSizeInReport',
-              'diskSizeInReport',
-              'fullDayInReport',
-              'restorePointInReport',
-              'mailAddress',
-            ]),
+            ...this.backup,
             backupOffer: this.data.selectedOffer.backupOffer,
           },
         )
       : this.dedicatedCloudDatacenterBackupService.checkoutCart(
           this.data.backupOrder.cartItem,
+          !!this.defaultPaymentMethod,
         )
     )
-      .then(() => {
+      .then((order) => {
         this.backup.state = BACKUP_STATE_ENABLING;
         return this.goToBackup(
           this.$translate.instant(
-            'dedicatedCloud_datacenter_backup_new_create_success',
+            this.data.manualOrderValidationRequired
+              ? 'dedicatedCloud_datacenter_backup_new_order_success'
+              : 'dedicatedCloud_datacenter_backup_new_create_success',
             {
               offerType: get(
                 this.BACKUP_OFFER_NAME,
                 this.data.selectedOffer.backupOffer,
               ),
               operationsUrl: this.operationsUrl,
+              orderUrl: order.url,
             },
           ),
         );

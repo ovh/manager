@@ -1,6 +1,5 @@
 import find from 'lodash/find';
 import get from 'lodash/get';
-import pick from 'lodash/pick';
 
 import { BACKUP_OFFER_NAME } from '../backup.constants';
 
@@ -29,19 +28,7 @@ export default class {
   upgrade() {
     this.upgrading = true;
     return this.dedicatedCloudDatacenterBackupService
-      .updateBackupCapabilities(
-        this.productId,
-        this.datacenterId,
-        pick(this.backup, [
-          'backupDurationInReport',
-          'backupSizeInReport',
-          'diskSizeInReport',
-          'fullDayInReport',
-          'restorePointInReport',
-          'mailAddress',
-          'backupOffer',
-        ]),
-      )
+      .updateBackupCapabilities(this.productId, this.datacenterId, this.backup)
       .then(() =>
         this.goToBackup(
           `${this.$translate.instant(

@@ -1,5 +1,6 @@
 {
   "dedicatedCloud_datacenter_backup_title": "Backup",
+  "dedicatedCloud_datacenter_backup_guides": "Guides",
   "dedicatedCloud_datacenter_backup_state_enabled": "Sauvegarde activée",
   "dedicatedCloud_datacenter_backup_state_enabling": "Votre demande d'activation de l'offre Veeam backup est en cours. Vous pouvez suivre l'avancement des tâches <a href='{{operationsUrl}}'>ici</a>.",
   "dedicatedCloud_datacenter_backup_state_migrating": "Votre demande de modification de l'offre Veeam backup est en cours. Vous pouvez suivre l'avancement des tâches <a href='{{operationsUrl}}'>ici</a>.",

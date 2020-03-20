@@ -14,6 +14,10 @@ export default /* @ngInject */ ($stateProvider) => {
           }
           return false;
         }),
+    resolve: {
+      defaultPaymentMethod: (ovhPaymentMethod) =>
+        ovhPaymentMethod.getDefaultPaymentMethod(),
+    },
     translations: { value: ['.'], format: 'json' },
   });
 };

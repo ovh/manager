@@ -2,10 +2,15 @@ import find from 'lodash/find';
 import get from 'lodash/get';
 import includes from 'lodash/includes';
 import map from 'lodash/map';
+import pick from 'lodash/pick';
 import remove from 'lodash/remove';
 import sortBy from 'lodash/sortBy';
 
-import { BACKUP_OFFER_LEGACY, CATALOG_INFO } from './backup.constants';
+import {
+  BACKUP_PROPERTIES_MAP,
+  BACKUP_OFFER_LEGACY,
+  CATALOG_INFO,
+} from './backup.constants';
 import Backup from './backup.class';
 import BackupOffer from './backup-offer.class';
 
@@ -47,10 +52,10 @@ export default class BackupService {
     return this.WucOrderCartService.assignCart(cart.cartId).then(() => cart);
   }
 
-  checkoutCart(cart) {
+  checkoutCart(cart, autoPayWithPreferredPaymentMethod) {
     return this.cartApi.checkout(
       { cartId: cart.cartId },
-      { autoPayWithPreferredPaymentMethod: true },
+      { autoPayWithPreferredPaymentMethod },
     ).$promise;
   }
 
@@ -130,10 +135,10 @@ export default class BackupService {
       );
   }
 
-  updateBackupCapabilities(serviceName, datacenterId, properties) {
+  updateBackupCapabilities(serviceName, datacenterId, backup) {
     return this.backupApi.changeProperties(
       { serviceName, datacenterId },
-      properties,
+      pick(backup, get(BACKUP_PROPERTIES_MAP, backup.backupOffer)),
     ).$promise;
   }
 

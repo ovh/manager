@@ -34,7 +34,9 @@ export default class {
       .catch((error) => {
         return this.goToBackup(
           this.$translate.instant(
-            'dedicatedCloud_datacenter_backup_delete_error',
+            error.status === 403
+              ? 'dedicatedCloud_datacenter_backup_delete_error_403'
+              : 'dedicatedCloud_datacenter_backup_delete_error',
             {
               message: get(error, ['data', 'message'], error.message),
             },

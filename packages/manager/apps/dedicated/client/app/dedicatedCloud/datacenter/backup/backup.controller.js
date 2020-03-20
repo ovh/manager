@@ -1,7 +1,6 @@
 import get from 'lodash/get';
-import pick from 'lodash/pick';
 
-import { BACKUP_OFFER_NAME } from './backup.constants';
+import { BACKUP_GUIDES_URL, BACKUP_OFFER_NAME } from './backup.constants';
 
 export default class {
   /* @ngInject */
@@ -15,6 +14,8 @@ export default class {
     this.$translate = $translate;
     this.alerter = Alerter;
     this.dedicatedCloudDatacenterBackupService = dedicatedCloudDatacenterBackupService;
+
+    this.BACKUP_GUIDES_URL = BACKUP_GUIDES_URL;
   }
 
   $onInit() {
@@ -47,19 +48,7 @@ export default class {
     }
     this.loader.updatingCapabilities = true;
     return this.dedicatedCloudDatacenterBackupService
-      .updateBackupCapabilities(
-        this.productId,
-        this.datacenterId,
-        pick(this.backup, [
-          'backupDurationInReport',
-          'backupSizeInReport',
-          'diskSizeInReport',
-          'fullDayInReport',
-          'restorePointInReport',
-          'mailAddress',
-          'backupOffer',
-        ]),
-      )
+      .updateBackupCapabilities(this.productId, this.datacenterId, this.backup)
       .then(() => {
         let message = this.$translate.instant(
           'dedicatedCloud_datacenter_backup_capability_update_success',

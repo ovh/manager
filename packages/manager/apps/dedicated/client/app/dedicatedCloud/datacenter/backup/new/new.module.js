@@ -1,4 +1,5 @@
 import angular from 'angular';
+import '@ovh-ux/ng-ovh-payment-method';
 import '@ovh-ux/ng-translate-async-loader';
 import 'ovh-api-services';
 import 'ovh-ui-angular';
@@ -14,10 +15,11 @@ const moduleName = 'ovhManagerDedicatedCloudBackupNewModule';
 
 angular
   .module(moduleName, [
-    backupLegacy,
+    'ngOvhPaymentMethod',
     'oui',
     'ovh-api-services',
     'pascalprecht.translate',
+    backupLegacy,
     offers,
     termsOfUse,
   ])

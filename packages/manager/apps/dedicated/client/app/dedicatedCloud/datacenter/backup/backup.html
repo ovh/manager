@@ -1,7 +1,23 @@
-<h1
-    id="dedicatedCloud_datacenter_backup_header"
-    data-translate="dedicatedCloud_datacenter_backup_title"
-></h1>
+<div class="datacenter-backup-header">
+    <h1
+        class="datacenter-backup-title"
+        id="dedicatedCloud_datacenter_backup_header"
+        data-translate="dedicatedCloud_datacenter_backup_title"
+    ></h1>
+    <oui-guide-menu
+        class="mt-2"
+        data-text="{{:: 'dedicatedCloud_datacenter_backup_guides' | translate }}"
+    >
+        <oui-guide-menu-item
+            data-ng-href="{{:: $ctrl.BACKUP_GUIDES_URL }}"
+            data-external="true"
+        >
+            <span
+                data-translate="dedicatedCloud_datacenter_backup_title"
+            ></span>
+        </oui-guide-menu-item>
+    </oui-guide-menu>
+</div>
 <div data-ui-view>
     <div class="datacenter-backup">
         <div data-ovh-alert="{{ $ctrl.alertMain }}"></div>
@@ -39,7 +55,7 @@
             <dedicated-cloud-datacenter-backup-offers
                 data-backup-offers="$ctrl.backupOffers"
                 data-backup="$ctrl.backup"
-                data-current-offer-label="$ctrl.backup.isActive()"
+                data-current-offer-label="true"
                 data-preview-mode="false"
                 data-user="$ctrl.currentUser"
                 data-disabled="!$ctrl.backup.isActive()"
