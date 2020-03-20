@@ -36,7 +36,7 @@
 import angular from 'angular';
 import omit from 'lodash/omit';
 
-export default /* @ngInject */ function ($timeout) {
+export default /* @ngInject */ function($timeout) {
   return {
     restrict: 'A',
     scope: {
@@ -59,13 +59,17 @@ export default /* @ngInject */ function ($timeout) {
       }
 
       function autoUpdateState() {
-        if ($scope.idsAll
-          && $scope.idsAll.length
-          && $scope.idsAll.length === Object.keys($scope.idsSelected).length) {
+        if (
+          $scope.idsAll &&
+          $scope.idsAll.length &&
+          $scope.idsAll.length === Object.keys($scope.idsSelected).length
+        ) {
           setStateTo(2); // All selected
-        } else if ($scope.idsAll
-          && $scope.idsAll.length
-          && Object.keys($scope.idsSelected).length > 0) {
+        } else if (
+          $scope.idsAll &&
+          $scope.idsAll.length &&
+          Object.keys($scope.idsSelected).length > 0
+        ) {
           setStateTo(1);
         } else {
           setStateTo(0);
@@ -73,21 +77,33 @@ export default /* @ngInject */ function ($timeout) {
       }
 
       $scope.$watch('idsAll', () => {
-        if (!angular.isUndefined($scope.idsAll) && angular.isArray($scope.idsAll)) {
+        if (
+          !angular.isUndefined($scope.idsAll) &&
+          angular.isArray($scope.idsAll)
+        ) {
           $scope.idsSelected = {};
           autoUpdateState();
         }
       });
 
-      $scope.$watch('idsSelected', () => {
-        // remove all ids with checked=false
-        $scope.idsSelected = omit($scope.idsSelected, (isChecked) => !isChecked);
-        autoUpdateState();
-      }, true);
+      $scope.$watch(
+        'idsSelected',
+        () => {
+          // remove all ids with checked=false
+          $scope.idsSelected = omit(
+            $scope.idsSelected,
+            (isChecked) => !isChecked,
+          );
+          autoUpdateState();
+        },
+        true,
+      );
 
       function getIdsSelectedOf(ids) {
         angular.forEach(ids, (value) => {
-          $scope.idsSelected[angular.isDefined($scope.id) ? value[$scope.id] : value] = true;
+          $scope.idsSelected[
+            angular.isDefined($scope.id) ? value[$scope.id] : value
+          ] = true;
         });
       }
 
@@ -102,8 +118,9 @@ export default /* @ngInject */ function ($timeout) {
 
           // test if this page is already checked
           angular.forEach($scope.idsPage, (value) => {
-            pageAlreadyAdd = pageAlreadyAdd
-              && (angular.isDefined($scope.id)
+            pageAlreadyAdd =
+              pageAlreadyAdd &&
+              (angular.isDefined($scope.id)
                 ? $scope.idsSelected[value[$scope.id]]
                 : $scope.idsSelected[value]) === true;
           });

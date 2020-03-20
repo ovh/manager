@@ -9,7 +9,10 @@
 
     $onInit() {
       this.refreshMap();
-      this.$scope.$watch(() => this.region, () => this.refreshMap());
+      this.$scope.$watch(
+        () => this.region,
+        () => this.refreshMap(),
+      );
     }
 
     refreshMap() {

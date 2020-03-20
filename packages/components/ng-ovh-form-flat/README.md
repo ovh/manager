@@ -34,7 +34,7 @@ OVH form flat can design thoses elements:
 
 ---
 
-** :warning: Note :warning: **
+:warning: **Note** :warning:
 
 * In OVH form flat, labels aren't display until the placeholder is visible.
 * `div` tags are optionals. If you use it, you will have a first structure with a label at top, and input below. If you already have a style which position your label where you want, you can keep it and evade adding `div row / col-xx-xx`.
