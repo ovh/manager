@@ -37,9 +37,11 @@ export default /* @ngInject */ ($q) => {
     changed = true;
 
     // push the pending import
-    pending.push(translationPromise.then((tr) => {
-      Object.assign(translations, tr);
-    }));
+    pending.push(
+      translationPromise.then((tr) => {
+        Object.assign(translations, tr);
+      }),
+    );
   };
 
   return loader;
