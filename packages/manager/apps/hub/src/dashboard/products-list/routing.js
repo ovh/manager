@@ -23,6 +23,11 @@ export default /* @ngInject */ ($stateProvider) => {
     url: `:product?${urlQueryParams}`,
     params,
     component,
+    redirectTo: (trans) =>
+      trans
+        .injector()
+        .getAsync('products')
+        .then((products) => (products ? false : 'app.dashboard')),
     resolve: {
       ...ListLayoutHelper.stateResolves,
       ...resolves,
