@@ -1,8 +1,8 @@
-# Translate async loader
+# ng-translate-async-loader
 
 > AngularJS translate asynchronous loader
 
-[![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-translate-async-loader)](https://npmjs.com/package/@ovh-ux/ng-translate-async-loader) [![Dependencies](https://badgen.net/david/dep/ovh-ux/ng-translate-async-loader)](https://npmjs.com/package/@ovh-ux/ng-translate-async-loader?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/ng-translate-async-loader)](https://npmjs.com/package/@ovh-ux/ng-translate-async-loader?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
+[![npm version](https://badgen.net/npm/v/@ovh-ux/ng-ovh-sso-auth)](https://www.npmjs.com/package/@ovh-ux/ng-ovh-sso-auth) [![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-ovh-sso-auth)](https://npmjs.com/package/@ovh-ux/ng-ovh-sso-auth) [![Dependencies](https://badgen.net/david/dep/ovh/manager/packages/components/ng-ovh-sso-auth)](https://npmjs.com/package/@ovh-ux/ng-ovh-sso-auth?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh/manager/packages/components/ng-ovh-sso-auth)](https://npmjs.com/package/@ovh-ux/ng-ovh-sso-auth?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
 
 ## Install
 
@@ -31,7 +31,7 @@ $ yarn test
 
 ## Contributing
 
-Always feel free to help out! Whether it's [filing bugs and feature requests](https://github.com/ovh-ux/ng-translate-async-loader/issues/new) or working on some of the [open issues](https://github.com/ovh-ux/ng-translate-async-loader/issues), our [contributing guide](CONTRIBUTING.md) will help get you started.
+Always feel free to help out! Whether it's [filing bugs and feature requests](https://github.com/ovh/manager/issues/new) or working on some of the [open issues](https://github.com/ovh/manager/issues), our [contributing guide](https://github.com/ovh/manager/blob/master/CONTRIBUTING.md) will help get you started.
 
 ## License
 
