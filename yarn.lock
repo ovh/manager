@@ -1957,11 +1957,6 @@
   dependencies:
     lodash "^4.17.15"
 
-"@ovh-ux/ng-ovh-stop-event@^1.0.2":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-stop-event/-/ng-ovh-stop-event-1.0.2.tgz#05e18310ccc09e5009b285c9b6a0e61267959997"
-  integrity sha512-4JDMTKds20LmceQ9rNfGmlD2m2e3JAMwAGZp20Xm/3jMtEzvic+gdNzQYlvvExUA9+YOXN9BZ7EMMRWMXZHS6Q==
-
 "@ovh-ux/ng-ovh-swimming-poll@^4.0.1", "@ovh-ux/ng-ovh-swimming-poll@^4.0.2":
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-swimming-poll/-/ng-ovh-swimming-poll-4.0.2.tgz#fc64d107c7bd40f4c6517115d0d8af8655b95198"
