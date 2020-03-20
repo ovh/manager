@@ -63,7 +63,7 @@ export default class OvhPaymentMethodService {
     }).then(
       (paymentMethods) =>
         find(paymentMethods, {
-          default: true,
+          defaultPaymentMean: true,
         }) || null,
     );
   }
