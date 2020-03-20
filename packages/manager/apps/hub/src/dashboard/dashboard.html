@@ -61,12 +61,14 @@
             </hub-order-tracking>
         </div>
     </div>
-    <h2 data-translate="manager_hub_dashboard_services"></h2>
-    <hub-products
-        products="$ctrl.products"
-        on-product-select="$ctrl.goToProductPage(productType)"
-        tracking-prefix="{{ $ctrl.trackingPrefix }}"
-        on-expand="$ctrl.expandProducts(expand)"
-        expand="$ctrl.expand"
-    ></hub-products>
+    <div data-ng-if="$ctrl.products.length">
+        <h2 data-translate="manager_hub_dashboard_services"></h2>
+        <hub-products
+            products="$ctrl.products"
+            on-product-select="$ctrl.goToProductPage(productType)"
+            tracking-prefix="{{ $ctrl.trackingPrefix }}"
+            on-expand="$ctrl.expandProducts(expand)"
+            expand="$ctrl.expand"
+        ></hub-products>
+    </div>
 </div>
