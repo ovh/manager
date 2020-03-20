@@ -1,5 +1,6 @@
 <div class="pagination-container">
-    <ul data-uib-pagination
+    <ul
+        data-uib-pagination
         data-total-items="totalItems"
         data-max-size="maxSize"
         data-boundary-links="true"
@@ -10,29 +11,37 @@
         data-previous-text="&lsaquo;"
         data-next-text="&rsaquo;"
         data-first-text="&laquo;"
-        data-last-text="&raquo;"></ul>
+        data-last-text="&raquo;"
+    ></ul>
 
     <div class="form-inline pull-right">
-        <select class="form-control"
-                name="itemsPerPageSelect"
-                data-ng-show="goToPage !== 'false'"
-                data-ng-model="itemsPerPage"
-                data-ng-options="size for size in [5, 10, 20, 40, 80, 100]">
-            <option value=""
-                    selected="selected"
-                    disabled data-ng-bind="itemPerPagePlaceholder">
+        <select
+            class="form-control"
+            name="itemsPerPageSelect"
+            data-ng-show="goToPage !== 'false'"
+            data-ng-model="itemsPerPage"
+            data-ng-options="size for size in [5, 10, 20, 40, 80, 100]"
+        >
+            <option
+                value=""
+                selected="selected"
+                disabled
+                data-ng-bind="itemPerPagePlaceholder"
+            >
             </option>
         </select>
-        <input class="form-control"
-               name="currentPageInput"
-               type="number"
-               min="1"
-               placeholder="{{pagePlaceholder}}"
-               data-ng-show="goToPage !== 'false'"
-               data-ng-model="goPage"
-               data-ng-model-options="{ debounce: {'default': 500} }"
-               data-ng-change="changePage()"
-               data-ng-blur="goPage = null"
-               data-ng-keypress="changePageKeyPress($event);" />
+        <input
+            class="form-control"
+            name="currentPageInput"
+            type="number"
+            min="1"
+            placeholder="{{pagePlaceholder}}"
+            data-ng-show="goToPage !== 'false'"
+            data-ng-model="goPage"
+            data-ng-model-options="{ debounce: {'default': 500} }"
+            data-ng-change="changePage()"
+            data-ng-blur="goPage = null"
+            data-ng-keypress="changePageKeyPress($event);"
+        />
     </div>
 </div>

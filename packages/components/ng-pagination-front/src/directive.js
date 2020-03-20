@@ -27,7 +27,10 @@ export default /* @ngInject */ ($q) => ({
     saveName: '@?',
   },
   link: ($scope) => {
-    const saveName = typeof $scope.saveName === 'string' && $scope.saveName.length ? `pagination_front_items_per_page_${$scope.saveName}` : 'pagination_front_items_per_page';
+    const saveName =
+      typeof $scope.saveName === 'string' && $scope.saveName.length
+        ? `pagination_front_items_per_page_${$scope.saveName}`
+        : 'pagination_front_items_per_page';
 
     $scope.currentPage = 1;
     if ($scope.fakeCurrentPage) {
@@ -50,16 +53,18 @@ export default /* @ngInject */ ($q) => ({
 
     const doTransform = (items) => {
       const rejectedItem = {};
-      const promise = $q.all(
-        items.map(
-          (item) => $q.when($scope.transformItem({ item }))
-            .then((transformed) => {
-              $scope.onTransformItemNotify({ item: transformed });
-              return transformed;
-            })
-            .catch(() => rejectedItem),
-        ),
-      )
+      const promise = $q
+        .all(
+          items.map((item) =>
+            $q
+              .when($scope.transformItem({ item }))
+              .then((transformed) => {
+                $scope.onTransformItemNotify({ item: transformed });
+                return transformed;
+              })
+              .catch(() => rejectedItem),
+          ),
+        )
         .then((itemList) => {
           const filtredItems = itemList.filter((item) => item !== rejectedItem);
           $scope.onTransformItemDone({ items: filtredItems });
@@ -101,22 +106,27 @@ export default /* @ngInject */ ($q) => ({
       }
     };
 
-    const isInt = (value) => !isNaN(value)
-        && parseInt(Number(value), 10) === value
-        && !isNaN(parseInt(value, 10));
+    const isInt = (value) =>
+      !isNaN(value) &&
+      parseInt(Number(value), 10) === value &&
+      !isNaN(parseInt(value, 10));
 
-    $scope.$watch('items', (nv) => {
-      if (nv !== undefined) {
-        if (angular.isObject(nv) && !angular.isArray(nv)) {
-          $scope.arrayItems = toArray($scope.items);
-        } else {
-          $scope.arrayItems = $scope.items;
+    $scope.$watch(
+      'items',
+      (nv) => {
+        if (nv !== undefined) {
+          if (angular.isObject(nv) && !angular.isArray(nv)) {
+            $scope.arrayItems = toArray($scope.items);
+          } else {
+            $scope.arrayItems = $scope.items;
+          }
+          $scope.arrayItems = $scope.arrayItems || [];
+          $scope.totalItems = $scope.arrayItems.length;
+          paginates();
         }
-        $scope.arrayItems = $scope.arrayItems || [];
-        $scope.totalItems = $scope.arrayItems.length;
-        paginates();
-      }
-    }, true);
+      },
+      true,
+    );
 
     // Watch change page
     $scope.$watch('currentPage', (page) => {

@@ -9,9 +9,7 @@ import './index.less';
 const moduleName = 'ngTailLogs';
 
 angular
-  .module(moduleName, [
-    'luegg.directives',
-  ])
+  .module(moduleName, ['luegg.directives'])
   .component('tailLogs', component)
   .service('TailLogs', service);
 

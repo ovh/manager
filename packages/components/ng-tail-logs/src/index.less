@@ -10,7 +10,7 @@ tail-logs {
     overflow-x: hidden;
 
     &__cursor {
-      content: "";
+      content: '';
       display: inline-block;
       background-color: white;
       vertical-align: top;
@@ -21,8 +21,16 @@ tail-logs {
   }
 
   @keyframes tail-logs-blink {
-    0% { opacity: 1; }
-    50% { opacity: 0; }
-    100% { opacity: 1; }
+    0% {
+      opacity: 1;
+    }
+
+    50% {
+      opacity: 0;
+    }
+
+    100% {
+      opacity: 1;
+    }
   }
 }
