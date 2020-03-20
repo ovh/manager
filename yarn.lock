@@ -1979,13 +1979,6 @@
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-toaster/-/ng-ovh-toaster-1.0.4.tgz#adab5366929fd57d03aaa9b39645154c761d5d85"
   integrity sha512-PpeXSzCkpChohe82HMgxnsDqsLJrJa2ZUaXEWGFlYWE/242U5fLEfA58ScNChRQRcanqx8TcycIG2dHfPJf3rQ==
 
-"@ovh-ux/ng-ovh-user-pref@^1.0.2":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-user-pref/-/ng-ovh-user-pref-1.0.2.tgz#4ee3dfd607ff7f72c14b45068b52905f66f69724"
-  integrity sha512-Z6e2PO+5NMWAfhEkEvoeG4qQ4X8godLWAM6OpBpPePyR/a3mH/WG9/ZzaTB0w6cpgup7C6l5Shb4fCxV7N7dWg==
-  dependencies:
-    lodash "^4.17.15"
-
 "@ovh-ux/ng-ovh-utils@^14.0.6":
   version "14.0.6"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-utils/-/ng-ovh-utils-14.0.6.tgz#34012c02afe1bf04380735430d6c3acca9bdfd77"
