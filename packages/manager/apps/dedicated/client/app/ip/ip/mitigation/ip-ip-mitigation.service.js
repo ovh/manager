@@ -55,7 +55,10 @@ angular.module('Module.ip.services').service('IpMitigation', [
             { ipOnMitigation: ip },
             { serviceType: 'apiv6' },
           )
-          .then((data) => data.data, (http) => $q.reject(http.data));
+          .then(
+            (data) => data.data,
+            (http) => $q.reject(http.data),
+          );
       }
       if (mitigation === 'DEFAULT') {
         return $http
@@ -67,7 +70,10 @@ angular.module('Module.ip.services').service('IpMitigation', [
               serviceType: 'apiv6',
             },
           )
-          .then((data) => data.data, (http) => $q.reject(http.data));
+          .then(
+            (data) => data.data,
+            (http) => $q.reject(http.data),
+          );
       }
       return $q.reject(ipBlock);
     };
@@ -79,9 +85,10 @@ angular.module('Module.ip.services').service('IpMitigation', [
           `ip/${window.encodeURIComponent(ipBlock)}/mitigation/${ip}`,
         ),
       ].join('/');
-      return $http
-        .get(url)
-        .then((result) => result.data, (http) => $q.reject(http.data));
+      return $http.get(url).then(
+        (result) => result.data,
+        (http) => $q.reject(http.data),
+      );
     };
 
     this.getMitigationStatisticsScale = function getMitigationStatisticsScale() {
@@ -135,7 +142,10 @@ angular.module('Module.ip.services').service('IpMitigation', [
               serviceType: 'aapi',
             },
           )
-          .then((data) => data.data, (http) => $q.reject(http.data));
+          .then(
+            (data) => data.data,
+            (http) => $q.reject(http.data),
+          );
       }
       return $q.reject(ip);
     };

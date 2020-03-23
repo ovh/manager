@@ -6,7 +6,7 @@ Have any questions? Check out the contributing docs at https://github.com/ovh/ma
 
 | Question         | Answer
 | ---------------- | ---
-| Branch?          | `master` for hotfix / `develop` for bug fixes <!-- see below -->
+| Branch?          | `master` for hotfix / `develop` for bug fixes <!-- target branch -->
 | Bug fix?         | yes/no
 | New feature?     | yes/no
 | Breaking change? | yes/no

@@ -44,7 +44,7 @@
   "private_registry_update_name_label": "Wybierz nazwę dla Prywatnego rejestru",
   "private_registry_update_success": "Nazwa Prywatnego rejestru została zmieniona na {{ newRegistryName }}",
   "private_registry_update_error": "Wystąpił błąd podczas zmiany nazwy Prywatnego rejestru {{ registryName }}: {{ message }}",
-  "private_registry_onboarding_success": "Twój prywatny rejestr {{registryName}} został utworzony.",
+  "private_registry_onboarding_success": "Trwa tworzenie Twojego prywatnego rejestru {{registryName}} Ta operacja może zająć kilka minut. Wciśnij przycisk Refresh, aby zaktualizować status. Po utworzeniu prywatnego rejestru wygeneruj dane do logowania, aby uzyskać do niego dostęp.",
   "private_registry_onboarding_error": "Nie udało się utworzyć Prywatnego rejestru: {{ message }}",
   "private_registry_harbor_api_title": "API Prywatnego rejestru",
   "private_registry_harbor_api_url": "URL API Prywatnego rejestru",
@@ -61,15 +61,15 @@
   "private_registry_beta_warning": "Produkt ten występuje obecnie w wersji beta. Aby kontynuować, zaakceptuj warunki korzystania z wersji beta.",
   "private_registry_accept": "Akceptuję",
   "private_registry_accept_beta_terms": "Warunki korzystania z wersji beta",
-  "private_registry_plan": "Plan",
+  "private_registry_plan": "Pakiet",
   "private_registry_upgrade_plan": "Zmień pakiet",
   "private_registry_consumption": "Wykorzystana przestrzeń / Dostępna przestrzeń",
   "private_registry_consumption_display": "{{used}} / {{limit}}",
-  "private_registry_common_status_SCALING_UP": "Trwa zmiana pakietu",
+  "private_registry_common_status_SCALING_UP": "Zmiana pakietu",
   "private_registry_onboarding_success_link": "Aby się do niego zalogować, wygeneruj pierwszy login i hasło.",
   "private_registry_new_project_contracts": "Przeczytałem i akceptuję regulaminy: {{ contractsLinks }}.",
   "private_registry_guide_creating_and_using_a_private_image": "Tworzenie i wykorzystywanie prywatnych obrazów",
   "private_registry_guide_using_private_registry_with_kubernetes": "Korzystanie z Managed Private Registry w powiązaniu z Managed Kubernetes",
   "private_registry_guide_using_the_helm_chart_museum": "Korzystanie z Helm ChartMuseum",
-  "private_registry_common_cancel": "Cancel"
+  "private_registry_common_cancel": "Anuluj"
 }
