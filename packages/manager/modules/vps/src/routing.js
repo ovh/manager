@@ -76,6 +76,15 @@ export default /* @ngInject */ ($stateProvider) => {
         },
         vps: /* @ngInject */ (serviceName, VpsService) =>
           VpsService.getSelectedVps(serviceName),
+
+        catalog: /* @ngInject */ (connectedUser, VpsService) => VpsService
+          .getCatalog(connectedUser.ovhSubsidiary),
+
+        goToUpgradeSuccess: /* @ngInject */ ($state) => (params, options) => $state.go(
+          'vps.detail.dashboard.configuration.upgrade',
+          params,
+          options,
+        ),
       },
       views: {
         'vpsHeader@vps': {

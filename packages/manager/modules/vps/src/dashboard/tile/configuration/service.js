@@ -12,7 +12,7 @@ class ConfigurationTileService {
 
   get currentPlan() {
     return find(this.availableUpgrades, {
-      planCode: this.vpsModel.name.replace('2020', ''),
+      planCode: this.vpsModel.name,
     });
   }
 
