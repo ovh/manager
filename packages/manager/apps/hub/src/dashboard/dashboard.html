@@ -35,7 +35,13 @@
             </hub-payment-status>
         </div>
         <div class="col-md-4">
+            <hub-enterprise-billing-summary
+                data-ng-if="$ctrl.me.isEnterprise"
+                tracking-prefix="hub::dashboard::activity"
+            >
+            </hub-enterprise-billing-summary>
             <hub-billing-summary
+                data-ng-if="!$ctrl.me.isEnterprise"
                 bills="$ctrl.bills"
                 tracking-prefix="hub::dashboard::activity"
                 refresh="$ctrl.refresh('bills')"
@@ -54,6 +60,7 @@
         </div>
         <div class="col-md-4">
             <hub-order-tracking
+                data-ng-if="!$ctrl.me.isEnterprise"
                 order="$ctrl.order"
                 tracking-prefix="{{ $ctrl.trackingPrefix }}"
                 refresh="$ctrl.refreshOrder()"
