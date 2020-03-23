@@ -30,7 +30,8 @@
   @navbar-menu-background-color: #f1f5f9;
   @navbar-menu-content-background-color: #ffffff;
   @navbar-menu-content-hover-background-color: #bef1ff;
-  @navbar-alert-background-color: #c11b1b;
+  @navbar-alert-error-background-color: #c11b1b;
+  @navbar-alert-info-background-color: #0050d7;
   @navbar-menu-content-color: #113f6d;
   @navbar-menu-content-shadow-color: #e3e6e8;
 
@@ -82,14 +83,21 @@
     background-color: @navbar-menu-content-hover-background-color;
   }
 
-  .oui-status_error {
-    background-color: @navbar-alert-background-color;
+  .oui-status {
     padding: 0 0.625rem;
     border-radius: 10pt;
-    color: @navbar-menu-content-background-color;
     margin-left: 5px;
     font-size: 0.8rem;
     font-weight: bold;
+    color: @navbar-menu-content-background-color;
+  }
+
+  .oui-status_error {
+    background-color: @navbar-alert-error-background-color;
+  }
+
+  .oui-status_info {
+    background-color: @navbar-alert-info-background-color;
   }
 }
 
