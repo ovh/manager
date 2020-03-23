@@ -1957,13 +1957,6 @@
   dependencies:
     lodash "^4.17.15"
 
-"@ovh-ux/ng-ovh-swimming-poll@^4.0.1", "@ovh-ux/ng-ovh-swimming-poll@^4.0.2":
-  version "4.0.2"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-swimming-poll/-/ng-ovh-swimming-poll-4.0.2.tgz#fc64d107c7bd40f4c6517115d0d8af8655b95198"
-  integrity sha512-3pjF2BKf0QhLU+2Ytukq7O+qST2qPWTHvrkI1KC59vWNGweNYEnZuLKzeSExvnfqQjReX81ohOyxgbzxTVzhCA==
-  dependencies:
-    lodash "^4.17.15"
-
 "@ovh-ux/ng-ovh-toaster@^1.0.4":
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-toaster/-/ng-ovh-toaster-1.0.4.tgz#adab5366929fd57d03aaa9b39645154c761d5d85"
