@@ -8,7 +8,7 @@ const guidesRoot = 'https://docs.ovh.com';
 const helpRoot = 'https://help.ovhcloud.com';
 
 const universes = {
-  dedicated: '/dedicated',
+  dedicated: 'dedicated',
 };
 
 const URI = {
@@ -119,6 +119,7 @@ export default {
   },
   US: {
     billing: `${managerRoot.US}/${universes.dedicated}/${URI.billing}`,
+    billingEnterprise: 'https://billing.us.ovhcloud.com/login',
     catalog: `${managerRoot.US}/${URI.catalog}`,
     contacts: '',
     debtPay: `${managerRoot.US}/${universes.dedicated}/${URI.debtPay}`,
