@@ -1,4 +1,4 @@
-import UserModel from './user/User.class';
+import { User as UserModel } from '@ovh-ux/manager-models';
 
 angular.module('App').config(
   /* @ngInject */ ($stateProvider) => {
