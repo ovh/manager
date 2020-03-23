@@ -1,11 +1,6 @@
 hub-catalog {
   @import '../../assets/theme/index.scss';
 
-  > div {
-    max-width: $hub-view-max-width;
-    margin: auto;
-  }
-
   .right-0 {
     right: 0;
   }
