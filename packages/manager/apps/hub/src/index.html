@@ -52,18 +52,17 @@
         </ovh-manager-navbar>
         <div class="position-relative w-100 h-100 overflow-auto">
             <div class="position-absolute w-100 h-100">
-                <div
-                    class="px-3 px-md-0 d-sm-flex justify-content-center mb-5"
-                    data-ui-view="app"
-                >
+                <div class="mb-5" data-ui-view="app">
                     <div
                         class="hub-main-view pt-4"
                         data-ng-class="{
                             'hub-main-view_sidebar_expanded': shouldExpandSidebar
                          }"
                     >
-                        <ui-router-breadcrumb></ui-router-breadcrumb>
-                        <div data-ui-view class="w-100"></div>
+                        <div class="mx-3">
+                            <ui-router-breadcrumb></ui-router-breadcrumb>
+                        </div>
+                        <div data-ui-view class="container-fluid"></div>
                     </div>
                 </div>
             </div>

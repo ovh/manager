@@ -6,12 +6,6 @@
 @import '@ovh-ux/manager-hub/src/variables.scss';
 @import './assets/theme/index.scss';
 
-.hub-main-view {
-  > * {
-    max-width: $hub-view-max-width;
-  }
-}
-
 .oui-field__label {
   color: $hub-text-color;
 }
