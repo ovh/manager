@@ -6,11 +6,14 @@
         >
         </ovh-manager-hub-user-infos>
     </div>
-    <div class="mb-4">
+    <div data-ng-if="!$ctrl.me.isEnterprise" class="mb-4">
         <ovh-manager-hub-payment-mean> </ovh-manager-hub-payment-mean>
     </div>
     <div class="mb-4">
-        <ovh-manager-hub-shortcuts data-notifications="$ctrl.notifications">
+        <ovh-manager-hub-shortcuts
+            data-me="::$ctrl.me"
+            data-notifications="$ctrl.notifications"
+        >
         </ovh-manager-hub-shortcuts>
     </div>
     <div data-ng-if="$ctrl.links" class="manager-hub-user-panel_links mb-5">

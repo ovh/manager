@@ -2,7 +2,7 @@ import filter from 'lodash/filter';
 import get from 'lodash/get';
 import head from 'lodash/head';
 import map from 'lodash/map';
-import { BillingService } from '@ovh-ux/manager-models';
+import { BillingService, User } from '@ovh-ux/manager-models';
 import mapValues from 'lodash/mapValues';
 
 const parseErrors = (data) =>
@@ -63,7 +63,9 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
         ),
       bills: /* @ngInject */ (hub) => hub.bills,
       catalog: /* @ngInject */ (hub) => hub.catalog,
-      me: /* @ngInject */ (hub) => hub.me.data,
+      certificates: /* @ngInject */ (hub) => hub.certificates.data,
+      me: /* @ngInject */ (certificates, hub) =>
+        new User(hub.me.data, certificates),
       notifications: /* @ngInject */ ($translate, hub) =>
         map(
           filter(hub.notifications.data, (notification) =>
