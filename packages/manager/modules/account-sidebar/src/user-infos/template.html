@@ -84,6 +84,12 @@
         <p data-ng-if="$ctrl.me">
             <span
                 class="d-block manager-hub-user-infos_text-small"
+                data-ng-if="$ctrl.me.organisation"
+                data-ng-bind="$ctrl.me.organisation"
+            >
+            </span>
+            <span
+                class="d-block manager-hub-user-infos_text-small"
                 data-ng-bind="$ctrl.me.email"
             >
             </span>
