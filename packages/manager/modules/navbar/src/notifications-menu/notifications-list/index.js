@@ -8,6 +8,8 @@ import '@ovh-ux/ng-at-internet';
 
 import component from './component';
 
+import './list.scss';
+
 const moduleName = 'ovhManagerNavbarNotificationsList';
 
 angular
