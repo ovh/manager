@@ -1,6 +1,6 @@
 <div
     data-ng-repeat="menuLink in $ctrl.sublinks track by menuLink.id"
-    class="manager-navbar-notification_content"
+    class="manager-navbar-notification_content position-relative"
 >
     <!-- icon -->
     <span
@@ -25,20 +25,17 @@
         data-ng-click="$ctrl.onSublinkClick({ menuLink, linkClicked: true })"
         data-ng-href="{{::menuLink.url}}"
     >
-        <div class="oui-navbar-notification__header">
-            <span
-                class="oui-navbar-notification__title"
-                data-ng-bind=":: menuLink.subject"
-            ></span>
-        </div>
-        <div class="oui_navbar-notification__body">
-            <div
-                class="oui-navbar-notification__description"
-                data-ng-bind-html=":: menuLink.description"
-            ></div>
-        </div>
+        <div
+            class="oui-navbar-notification__header oui-navbar-notification__title"
+            data-ng-bind=":: menuLink.subject"
+        ></div>
+        <div
+            class="oui_navbar-notification__body oui-navbar-notification__description"
+            data-ng-bind-html=":: menuLink.description"
+        ></div>
     </a>
     <!-- /Link (href) -->
+
     <button
         class="oui-navbar-notification_status oui-status"
         data-ng-class="{
