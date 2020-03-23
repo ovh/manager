@@ -23,7 +23,9 @@ export default class ManagerHubShortcutsCtrl {
       {
         id: 'bills',
         icon: 'oui-icon-receipt_concept',
-        url: this.RedirectionService.getURL('billing'),
+        url: this.me.isEnterprise
+          ? this.RedirectionService.getURL('billingEnterprise')
+          : this.RedirectionService.getURL('billing'),
         tracking: 'hub::sidebar::shortcuts::go-to-bills',
       },
       {
