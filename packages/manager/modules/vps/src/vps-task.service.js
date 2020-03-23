@@ -35,15 +35,6 @@ export default class VpsTaskService {
           type,
         },
       })
-      .then((response) => {
-        response.data.push({
-          id: 4444,
-          progress: 0,
-          state: 'doing',
-          type: 'upgradeVm',
-        });
-        return response;
-      })
       .then((data) => data.data)
       .catch((error) => this.$q.reject(error.data));
   }

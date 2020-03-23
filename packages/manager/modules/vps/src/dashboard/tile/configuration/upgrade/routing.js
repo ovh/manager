@@ -151,6 +151,7 @@ export default /* @ngInject */ ($stateProvider) => {
         $window,
         configurationTile,
         goBack,
+        goToUpgradeSuccess,
         hasDefaultPaymentMethod,
         loaders,
         serviceName,
@@ -184,19 +185,13 @@ export default /* @ngInject */ ($stateProvider) => {
               return $window.location.replace(order.url);
             }
 
-            // start checking for upgrade task
-            // vpsUpgrade.startUpgradePolling();
-
-            return $state.go(
-              'vps.detail.dashboard.configuration.upgrade',
-              {
-                upgradeStatus: 'success',
-                upgradeOrderId: order.orderId,
-              },
-              {
-                location: false,
-              },
-            );
+            return goToUpgradeSuccess({
+              upgradeStatus: 'success',
+              upgradeOrderId: order.orderId,
+            }, {
+              location: false,
+              reload: 'vps.detail.dashboard',
+            });
           })
           .catch((error) =>
             goBack(

@@ -16,7 +16,7 @@
             <p
                 class="p-0"
                 data-translate="vps_dashboard_tile_configuration_vcore_upscale"
-                data-ng-if="!$ctrl.vpsUpgradeTask"
+                data-ng-if="!$ctrl.vpsUpgradeTask && !$ctrl.isMaxEliteVcore"
             ></p>
         </oui-tile-description>
     </oui-tile-definition>
@@ -64,7 +64,8 @@
             <p
                 class="p-0"
                 data-translate="vps_dashboard_tile_configuration_memory_add_upscale"
-                data-ng-if="!$ctrl.vpsUpgradeTask"
+                data-translate-values="{ href: $ctrl.upscaleHref() }"
+                data-ng-if="!$ctrl.vpsUpgradeTask && !$ctrl.isMaxEliteRam"
             ></p>
         </oui-tile-description>
     </oui-tile-definition>
@@ -112,7 +113,8 @@
             <p
                 class="p-0"
                 data-translate="vps_dashboard_tile_configuration_storage_add_upscale"
-                data-ng-if="!$ctrl.vpsUpgradeTask"
+                data-translate-values="{ href: $ctrl.upscaleHref() }"
+                data-ng-if="!$ctrl.vpsUpgradeTask && !$ctrl.isMaxEliteStorage"
             ></p>
         </oui-tile-description>
     </oui-tile-definition>
