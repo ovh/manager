@@ -12,5 +12,6 @@ export default {
     stateVps: '<',
     goToUpgrade: '<',
     vpsUpgradeTask: '<',
+    upscaleHref: '<',
   },
 };
