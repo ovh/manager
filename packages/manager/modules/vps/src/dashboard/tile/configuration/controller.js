@@ -14,4 +14,10 @@ export default class VpsDashboardTileConfigurationCtrl {
       this.isMaxEliteVcore && this.stateVps.model.disk === 640;
     this.isVpsStarter = this.stateVps.model.name.indexOf('starter') >= 0;
   }
+
+  $onInit() {
+    this.isMaxEliteVcore = this.vps.vcore === 8;
+    this.isMaxEliteRam = this.isMaxEliteVcore && this.vps.ram.value === 32;
+    this.isMaxEliteStorage = this.isMaxEliteVcore && this.stateVps.model.disk === 640;
+  }
 }
