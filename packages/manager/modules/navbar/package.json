@@ -29,6 +29,7 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-navbar' --include-dependencies -- yarn run dev:watch"
   },
   "dependencies": {
+    "@ovh-ux/manager-models": "^1.0.0",
     "lodash": "^4.17.15",
     "moment": "^2.24.0"
   },
