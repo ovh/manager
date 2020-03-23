@@ -1,3 +1,5 @@
+import { User } from '@ovh-ux/manager-models';
+
 export default class {
   /* @ngInject */
   constructor($q, OvhApiMe, OvhApiUniverses) {
@@ -12,11 +14,7 @@ export default class {
         user: this.OvhApiMe.v6().get().$promise,
         certificates: this.OvhApiMe.v6().certificates().$promise,
       })
-      .then(({ user, certificates }) =>
-        Object.assign(user, {
-          isEnterprise: certificates.includes('enterprise'),
-        }),
-      );
+      .then(({ user, certificates }) => new User(user, certificates));
   }
 
   getSupportLevel() {

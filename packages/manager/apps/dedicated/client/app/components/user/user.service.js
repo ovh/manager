@@ -1,5 +1,6 @@
 import flatten from 'lodash/flatten';
-import indexOf from 'lodash/indexOf';
+
+import { User } from '@ovh-ux/manager-models';
 
 angular.module('services').service('User', [
   '$http',
@@ -29,18 +30,20 @@ angular.module('services').service('User', [
               userPromiseRunning = false;
 
               if (result) {
-                user = {
-                  ...result.me,
-                  firstName: result.me.firstname,
-                  lastName: result.me.name,
-                  billingCountry: result.me.country,
-                  customerCode: result.me.customerCode,
-                  isEnterprise: indexOf(result.certificates, 'enterprise') > -1,
-                  isVATNeeded:
-                    ['CA', 'QC', 'WE', 'WS'].indexOf(
-                      result.me.ovhSubsidiary,
-                    ) === -1,
-                };
+                user = new User(
+                  {
+                    ...result.me,
+                    firstName: result.me.firstname,
+                    lastName: result.me.name,
+                    billingCountry: result.me.country,
+                    customerCode: result.me.customerCode,
+                    isVATNeeded:
+                      ['CA', 'QC', 'WE', 'WS'].indexOf(
+                        result.me.ovhSubsidiary,
+                      ) === -1,
+                  },
+                  result.certificates,
+                );
               }
             }),
         );
