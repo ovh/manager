@@ -1957,11 +1957,6 @@
   dependencies:
     lodash "^4.17.15"
 
-"@ovh-ux/ng-ovh-toaster@^1.0.4":
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-toaster/-/ng-ovh-toaster-1.0.4.tgz#adab5366929fd57d03aaa9b39645154c761d5d85"
-  integrity sha512-PpeXSzCkpChohe82HMgxnsDqsLJrJa2ZUaXEWGFlYWE/242U5fLEfA58ScNChRQRcanqx8TcycIG2dHfPJf3rQ==
-
 "@ovh-ux/ng-ovh-utils@^14.0.6":
   version "14.0.6"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-utils/-/ng-ovh-utils-14.0.6.tgz#34012c02afe1bf04380735430d6c3acca9bdfd77"
