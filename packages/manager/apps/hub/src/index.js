@@ -60,8 +60,12 @@ angular
   )
   .config(routing)
   .run(
-    /* @ngInject */ ($translate, $transitions) => {
+    /* @ngInject */ ($rootScope, $translate, $transitions) => {
       $transitions.onBefore({ to: 'app.**' }, () => $translate.refresh());
+
+      $transitions.onSuccess({ to: 'error' }, () => {
+        $rootScope.$emit('ovh::sidebar::hide');
+      });
     },
   )
   .run(($translate) => {
