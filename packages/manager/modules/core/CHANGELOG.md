@@ -1,3 +1,12 @@
+# [8.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@8.1.0...@ovh-ux/manager-core@8.2.0) (2020-03-24)
+
+
+### Features
+
+* **core:** add none serviceType ([5a2ff28](https://github.com/ovh/manager/commit/5a2ff28d832ae3fb1eb6f6e795c5e05401b9fcd5))
+
+
+
 # [8.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@8.0.1...@ovh-ux/manager-core@8.1.0) (2020-03-18)
 
 

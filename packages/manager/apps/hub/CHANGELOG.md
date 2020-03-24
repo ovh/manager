@@ -1,3 +1,12 @@
+# [0.4.0-alpha.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.3.0-alpha.0...@ovh-ux/manager-hub-app@0.4.0-alpha.0) (2020-03-24)
+
+
+### Features
+
+* **hub:** add chatbot integration ([398651c](https://github.com/ovh/manager/commit/398651c538b9e8f614cb049913c5df78ec3790a1))
+
+
+
 # [0.3.0-alpha.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.2.0-alpha.1...@ovh-ux/manager-hub-app@0.3.0-alpha.0) (2020-03-18)
 
 

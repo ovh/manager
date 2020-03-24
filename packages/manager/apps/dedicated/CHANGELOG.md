@@ -1,3 +1,12 @@
+# [11.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@11.7.6...@ovh-ux/manager-dedicated@11.8.0) (2020-03-24)
+
+
+### Features
+
+* **livechat:** update chatbot integration ([8684441](https://github.com/ovh/manager/commit/868444101f5db496e19dacdda622eafeff2f2a6a))
+
+
+
 ## [11.7.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@11.7.5...@ovh-ux/manager-dedicated@11.7.6) (2020-03-24)
 
 
