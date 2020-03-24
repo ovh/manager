@@ -1,4 +1,5 @@
 {
+  "data_processing_terminate_job_title": "Kill job",
   "data_processing_terminate_job_description_1": "You are about to kill job",
   "data_processing_terminate_job_description_2": "You may loose currently processed data.",
   "data_processing_terminate_job_delete_button": "Kill job",
