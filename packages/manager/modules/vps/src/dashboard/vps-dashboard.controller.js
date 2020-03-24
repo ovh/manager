@@ -398,8 +398,12 @@ export default class {
             text: this.$translate.instant(
               'vps_configuration_upgradevps_title_button',
             ),
-            state: 'vps.detail.upgrade',
-            stateParams: { serviceName: this.serviceName },
+            state: this.isVpsNewRange
+              ? 'vps.detail.upscale'
+              : 'vps.detail.upgrade',
+            stateParams: {
+              serviceName: this.serviceName,
+            },
             isAvailable: () => !this.loaders.polling,
           },
         };
