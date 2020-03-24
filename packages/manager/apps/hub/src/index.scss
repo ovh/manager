@@ -21,6 +21,7 @@
 .oui-navbar {
   background-color: initial;
   box-shadow: 0 0 6px 0 rgba(0, 14, 156, 0.2);
+  z-index: 100;
 
   .oui-navbar__brand {
     color: $hub-brand-color;
