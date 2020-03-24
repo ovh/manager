@@ -61,8 +61,19 @@ angular
   )
   .config(routing)
   .run(
-    /* @ngInject */ ($translate, $transitions) => {
+    /* @ngInject */ ($rootScope, $translate, $transitions) => {
       $transitions.onBefore({ to: 'app.**' }, () => $translate.refresh());
+
+      $transitions.onSuccess({ to: 'error' }, () => {
+        $rootScope.$emit('ovh::sidebar::hide');
+      });
+
+      $transitions.onEnter({}, () => {
+        set($rootScope, 'shouldExpandSidebar', false);
+      });
+      $transitions.onSuccess({ to: 'app.dashboard' }, () => {
+        set($rootScope, 'shouldExpandSidebar', true);
+      });
     },
   )
   .run(($translate) => {
@@ -85,23 +96,6 @@ angular
             { location: false },
           );
         }
-      });
-    },
-  )
-  .run(
-    /* @ngInject */ ($rootScope, $transitions) => {
-      $transitions.onSuccess({ to: 'error' }, () => {
-        $rootScope.$emit('ovh::sidebar::hide');
-      });
-    },
-  )
-  .run(
-    /* @ngInject */ ($rootScope, $transitions) => {
-      $transitions.onEnter({}, () => {
-        set($rootScope, 'shouldExpandSidebar', false);
-      });
-      $transitions.onSuccess({ to: 'app.dashboard' }, () => {
-        set($rootScope, 'shouldExpandSidebar', true);
       });
     },
   )
