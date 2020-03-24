@@ -1,0 +1,30 @@
+.actions-tile__browse-btn .oui-button:disabled,
+.actions-tile__browse-btn .oui-button:disabled:hover,
+.actions-tile__browse-btn .oui-button:disabled:focus {
+  background-color: white;
+  border: 0;
+  color: #d5d7dc;
+}
+
+.chart__nodata-container {
+  padding: 50px 0;
+  text-align: center;
+  width: 100%;
+  font-weight: 400;
+  color: #999;
+}
+
+.chart__container {
+  width: 100%;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.information-tile__definition {
+  display: flex;
+  color: #999;
+  font-size: 0.875rem;
+  font-weight: 400;
+  border-top: 1px solid #eaeaea;
+  padding: 0.813rem 0;
+}

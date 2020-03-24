@@ -12700,6 +12700,13 @@ ovh-api-services@^9.41.1:
   dependencies:
     lodash "^4.17.15"
 
+ovh-api-services@^9.40.0:
+  version "9.40.0"
+  resolved "https://registry.yarnpkg.com/ovh-api-services/-/ovh-api-services-9.40.0.tgz#c61fd9c23527ed5c8c9a50820f0d760f2bf965fa"
+  integrity sha512-lnCi2hsSTQ7+RKccWNIEWpJLbCvV1RgvrAFSWAXtfkq5EBOT6X6jpsgwmLVYvZeysiX9DQ5ur7DpDykomudLyw==
+  dependencies:
+    lodash "^4.17.15"
+
 ovh-common-style@^3.2.2, ovh-common-style@ovh-ux/ovh-common-style#^3.2.2:
   version "3.2.2"
   resolved "https://codeload.github.com/ovh-ux/ovh-common-style/tar.gz/cd9f7bea9240b7e2334ae5cd7e74529478b271d4"
