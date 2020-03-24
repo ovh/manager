@@ -21,12 +21,13 @@
             class="oui-status oui-status_info"
             data-ng-bind="$ctrl.order.orderId"
         ></span>
-        <div class="mb-3">
+        <div class="mb-3 d-flex justify-content-center">
             <span
-                class="font-weight-bold"
+                class="font-weight-bold mr-1"
                 data-ng-bind="$ctrl.currentStatus.date | date:'shortDate'"
             ></span>
             <span
+                class="mr-1"
                 data-translate="{{:: 'order_tracking_history_' + $ctrl.currentStatus.label }}"
             ></span>
             <span
