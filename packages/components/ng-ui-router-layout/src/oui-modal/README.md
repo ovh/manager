@@ -156,11 +156,11 @@ $stateProvider
   });
 ````
 
-This will open a ouiModal without backdrop and with `ESC` key disabled. For available options, see the [uibModal options](https://angular-ui.github.io/bootstrap/versioned-docs/1.3.3/#/modal). Note that uiState's options like controller, controllerAs, etc... won't be taken in consideration in that object. 
+This will open a ouiModal without backdrop and with `ESC` key disabled. For available options, see the [uibModal options](https://angular-ui.github.io/bootstrap/versioned-docs/1.3.3/#/modal). Note that uiState's options like controller, controllerAs, etc... won't be taken in consideration in that object.
 
 ### ouiModal options
 
-*For ouiModal options (all options except `redirectTo`), see the [oui-modal documentation](https://ovh-ux.github.io/ovh-ui-kit/?path=/story/components-modal--simple) for more informations.*
+*For ouiModal options (all options except `redirectTo`), see the [oui-modal documentation](https://ovh.github.io/ovh-ui-kit/?path=/story/components-modal--simple) for more informations.*
 
 All options can be provided through ui-state resolves.
 

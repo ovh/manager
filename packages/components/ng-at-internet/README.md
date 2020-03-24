@@ -79,10 +79,9 @@ atInternet.trackClick({
 Tracking using the directive :
 
 Attributes
-  - `track-on` : event to track (click, onFinish, onchange, etc)
-  - `track-name` : Name of action (optional) Id will be used if absent
-  - `track-type` : event type (optional) Possible values : action/navigation/download/exit
-
+- `track-on` : event to track (click, onFinish, onchange, etc)
+- `track-name` : Name of action (optional) Id will be used if absent
+- `track-type` : event type (optional) Possible values : action/navigation/download/exit
 
 ```html
 <button id="btnAction" data-track-on="click"></button>
