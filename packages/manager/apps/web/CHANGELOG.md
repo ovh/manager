@@ -1,3 +1,12 @@
+## [13.45.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.45.7...@ovh-ux/manager-web@13.45.8) (2020-03-24)
+
+
+### Bug Fixes
+
+* **hosting.cdn.order:** set autopay only if default payment method exists ([#2591](https://github.com/ovh/manager/issues/2591)) ([8bd5105](https://github.com/ovh/manager/commit/8bd5105d9490dba925f45b4929f9cdb88bbed5e5))
+
+
+
 ## [13.45.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.45.6...@ovh-ux/manager-web@13.45.7) (2020-03-18)
 
 

@@ -1,3 +1,12 @@
+## [11.7.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@11.7.5...@ovh-ux/manager-dedicated@11.7.6) (2020-03-24)
+
+
+### Bug Fixes
+
+* **billing:** correct credit order message ([#2576](https://github.com/ovh/manager/issues/2576)) ([01d2fca](https://github.com/ovh/manager/commit/01d2fca400e147708b86bc9b7a74f80ad12a1391))
+
+
+
 ## [11.7.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@11.7.4...@ovh-ux/manager-dedicated@11.7.5) (2020-03-18)
 
 
