@@ -47,7 +47,7 @@ class ConfigurationTileService {
    *
    *  @param {Object} vps      The informations provided by 2API
    *  @param {Object} vpsModel The model attribute provided by
-   *                           GET /vps/{servicName} (not present in 2API...)
+   *                           GET /vps/{serviceName} (not present in 2API...)
    *
    *  @return {ConfigurationTileService}
    */
@@ -102,6 +102,8 @@ class ConfigurationTileService {
       const storage = get(blobs, 'technical.storage.disks[0].capacity');
       const ram = get(blobs, 'technical.memory.size');
 
+      // try to find the VPS in the same range that have the double RAM
+      // than the current plan
       return (
         cpu === this.vps.vcore &&
         storage === this.vpsModel.disk &&
@@ -125,6 +127,8 @@ class ConfigurationTileService {
       const ram = get(blobs, 'technical.memory.size');
       const storage = get(blobs, 'technical.storage.disks[0].capacity');
 
+      // try to find the VPS in the same range that have the double storage (disk)
+      // than the current plan
       return (
         cpu === this.vps.vcore &&
         ram === this.vps.ram.value &&
@@ -138,6 +142,7 @@ class ConfigurationTileService {
         })
       : null;
 
+    // return an object with calculated plans and price diff
     return {
       memory: {
         plan: nextRamVpsPlan,
