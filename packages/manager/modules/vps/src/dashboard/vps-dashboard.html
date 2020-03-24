@@ -93,7 +93,10 @@
             </oui-tile>
         </div>
 
-        <div class="col-xm-12 col-md-4" data-ng-if="!$ctrl.vps.isExpired">
+        <div
+            class="col-xm-12 col-md-4"
+            data-ng-if="!$ctrl.vps.isExpired && !$ctrl.isVpsNewRange"
+        >
             <oui-tile
                 data-heading="{{ ::'vps_tile_configuration' | translate }}"
                 class=" h-100"
@@ -154,7 +157,11 @@
             </oui-tile>
         </div>
 
-        <div class="col-xm-12 col-md-4" data-ui-view="configurationTile"></div>
+        <div
+            class="col-xm-12 col-md-4"
+            data-ui-view="configurationTile"
+            data-ng-if="$ctrl.isVpsNewRange"
+        ></div>
 
         <div class="col-xm-12 col-md-4" data-ng-if="!$ctrl.vps.isExpired">
             <oui-tile

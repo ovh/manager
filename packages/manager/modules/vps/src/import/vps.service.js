@@ -31,6 +31,8 @@ export default /* @ngInject */ function VpsService(
 
   const vpsTabVeeamCache = $cacheFactory('UNIVERS_WEB_VPS_TABS_VEEAM');
 
+  const apiCatalogProductName = 'virtualprivateserver';
+
   const vpsTabBackupStorageCache = $cacheFactory(
     'UNIVERS_WEB_VPS_TABS_BACKUP_STORAGE',
   );
