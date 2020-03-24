@@ -20,7 +20,6 @@
     "moment": "^2.19"
   },
   "peerDependencies": {
-    "@ovh-ux/manager-catalog-price": "^1.0.1",
     "@ovh-ux/manager-core": "^8.0.0",
     "@ovh-ux/manager-models": "^1.0.0",
     "@ovh-ux/manager-product-offers": "^1.0.1 || 2.0.0",
