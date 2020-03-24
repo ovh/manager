@@ -23,7 +23,9 @@
     <p data-ng-if="!$ctrl.me">
         <oui-skeleton class="mx-auto" data-size="s"></oui-skeleton>
     </p>
-    <div class="manager-hub-user-infos_user-name mb-2" data-ng-if="$ctrl.me">
+    <div class="manager-hub-user-infos_user-name mb-2"
+         data-ng-if="$ctrl.me"
+         data-navi-id="account-sidebar-block">
         <button
             type="button"
             role="button"
