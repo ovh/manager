@@ -8,6 +8,7 @@ export default class OvhPaymentMean {
     this.registrable = options.registrable;
     this.description = options.description;
     this.defaultPaymentMean = options.defaultPaymentMean;
+    this.icon = options.icon;
   }
 
   toPaymentMethod() {
@@ -17,6 +18,7 @@ export default class OvhPaymentMean {
       description: this.description,
       status: snakeCase(this.state).toUpperCase(),
       default: this.defaultPaymentMean,
+      icon: this.icon,
     };
   }
 }
