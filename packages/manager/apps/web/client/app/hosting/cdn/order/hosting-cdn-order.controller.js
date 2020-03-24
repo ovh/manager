@@ -47,11 +47,7 @@ export default class {
   checkout() {
     this.checkoutLoading = true;
 
-    this.checkoutOrderCart(
-      // Autovalidate if the order is free
-      this.isOptionFree ? this.isOptionFree : !!this.defaultPaymentMethod,
-      this.cartId,
-    );
+    this.checkoutOrderCart(!!this.defaultPaymentMethod, this.cartId);
   }
 
   getDuration(interval) {
