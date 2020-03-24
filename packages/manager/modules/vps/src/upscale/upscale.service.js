@@ -1,22 +1,30 @@
 import isString from 'lodash/isString';
 
-import TranslateService from '../../../core/src/translate/translate.service';
-import { UNITS } from '../../../models/Price/price.constants';
+/* eslint-disable import/extensions */
+import TranslateService from '@ovh-ux/manager-core/src/translate/translate.service';
+
+import { PRICING_MODES } from './upscale.constants';
 
 export default class {
+  static convertPricingMode(pricingMode) {
+    if (pricingMode.startsWith(PRICING_MODES.UPFRONT)) {
+      return PRICING_MODES.UPFRONT;
+    }
+
+    return PRICING_MODES.MONTHLY;
+  }
+
   /**
    * @param {@ovh-ux/manager-models:Price} price
    * @param {string} language Formatted the OVHcloud way
    */
-  static buildPriceToDisplay({ value, unit, currency }, language) {
+  static buildPriceToDisplay({ value, currency }, language) {
     const bcp47Language = TranslateService.convertFromOVHToBCP47(language);
-
-    const valueToFormat = unit === UNITS.MICROCENTS ? value / 100000000 : value;
 
     return Intl.NumberFormat(bcp47Language, {
       style: 'currency',
       currency,
-    }).format(valueToFormat);
+    }).format(value);
   }
 
   static validateLanguage(language) {
