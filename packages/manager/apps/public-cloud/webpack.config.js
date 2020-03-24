@@ -1,8 +1,31 @@
+const fs = require('fs');
 const glob = require('glob');
 const merge = require('webpack-merge');
 const path = require('path');
 const webpackConfig = require('@ovh-ux/manager-webpack-config');
 const webpack = require('webpack');
+
+function readNgAppInjections(file) {
+  let injections = [];
+  if (fs.existsSync(file)) {
+    injections = fs
+      .readFileSync(file, 'utf8')
+      .split('\n')
+      .filter((value) => value !== '');
+  }
+  return injections;
+}
+
+function getNgAppInjections(region) {
+  const injections = [
+    ...readNgAppInjections(`./.extras-${region}/ng-app-injections`),
+    ...readNgAppInjections('./.extras/ng-app-injections'),
+  ];
+
+  const ngAppInjections = injections.map((val) => `'${val}'`).join(',');
+
+  return ngAppInjections || 'null';
+}
 
 module.exports = (env = {}) => {
   const { config } = webpackConfig(
@@ -50,9 +73,7 @@ module.exports = (env = {}) => {
     },
     plugins: [
       new webpack.DefinePlugin({
-        __NG_APP_INJECTIONS__: process.env.NG_APP_INJECTIONS
-          ? `'${process.env.NG_APP_INJECTIONS}'`
-          : 'null',
+        __NG_APP_INJECTIONS__: getNgAppInjections(WEBPACK_REGION),
         __NODE_ENV__: process.env.NODE_ENV
           ? `'${process.env.NODE_ENV}'`
           : '"development"',

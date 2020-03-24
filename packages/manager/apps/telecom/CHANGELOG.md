@@ -1,3 +1,12 @@
+# [11.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@11.4.8...@ovh-ux/manager-telecom@11.5.0) (2020-03-24)
+
+
+### Features
+
+* **livechat:** update chatbot integration ([c9e3009](https://github.com/ovh/manager/commit/c9e300947db08b0c4af9c614a0c3268ad402d5db))
+
+
+
 ## [11.4.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@11.4.7...@ovh-ux/manager-telecom@11.4.8) (2020-03-18)
 
 

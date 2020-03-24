@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-telecom",
-  "version": "11.4.8",
+  "version": "11.5.0",
   "private": true,
   "description": "OVHcloud Telecom control panel.",
   "repository": {
@@ -39,7 +39,6 @@
     "@ovh-ux/ng-ovh-actions-menu": "^5.0.4",
     "@ovh-ux/ng-ovh-api-wrappers": "^4.0.7",
     "@ovh-ux/ng-ovh-browser-alert": "^1.0.0",
-    "@ovh-ux/ng-ovh-chatbot": "^2.0.2",
     "@ovh-ux/ng-ovh-checkbox-table": "^1.0.4",
     "@ovh-ux/ng-ovh-contact": "^4.0.5",
     "@ovh-ux/ng-ovh-contracts": "^3.1.1",

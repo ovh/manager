@@ -6,6 +6,7 @@ class CloudMainController {
     $transitions,
     $translate,
     CucProductsService,
+    SessionService,
   ) {
     this.$document = $document;
     this.$interval = $interval;
@@ -13,10 +14,17 @@ class CloudMainController {
     this.$transitions = $transitions;
     this.$translate = $translate;
     this.CucProductsService = CucProductsService;
+    this.SessionService = SessionService;
   }
 
   $onInit() {
     this.expiringProject = null;
+
+    [this.currentLanguage] = this.$translate.use().split('_');
+
+    this.SessionService.getUser().then((user) => {
+      this.user = user;
+    });
 
     this.$transitions.onStart({}, () => this.closeSidebar());
   }

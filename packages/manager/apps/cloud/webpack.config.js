@@ -21,6 +21,28 @@ function foundNodeModulesFolder(checkedDir, cwd = '.') {
   return null;
 }
 
+function readNgAppInjections(file) {
+  let injections = [];
+  if (fs.existsSync(file)) {
+    injections = fs
+      .readFileSync(file, 'utf8')
+      .split('\n')
+      .filter((value) => value !== '');
+  }
+  return injections;
+}
+
+function getNgAppInjections(region) {
+  const injections = [
+    ...readNgAppInjections(`./.extras-${region}/ng-app-injections`),
+    ...readNgAppInjections('./.extras/ng-app-injections'),
+  ];
+
+  const ngAppInjections = injections.map((val) => `'${val}'`).join(',');
+
+  return ngAppInjections || 'null';
+}
+
 fs.readdirSync(folder).forEach((file) => {
   // skip config folder, it'll be added later depending on current environment
   if (file === 'config') {
@@ -60,6 +82,7 @@ module.exports = (env = {}) => {
   );
 
   // Extra config files
+  const extrasRegion = glob.sync(`./.extras-EU/**/*.js`);
   const extras = glob.sync('./.extras/**/*.js');
 
   return merge(config, {
@@ -76,6 +99,7 @@ module.exports = (env = {}) => {
       },
       bundles,
       extras.length > 0 ? { extras } : {},
+      extrasRegion.length > 0 ? { extrasRegion } : {},
     ),
     output: {
       path: path.resolve(__dirname, 'dist'),
@@ -91,6 +115,7 @@ module.exports = (env = {}) => {
     plugins: [
       new webpack.DefinePlugin({
         __WEBPACK_REGION__: `'${REGION}'`,
+        __NG_APP_INJECTIONS__: getNgAppInjections(REGION),
       }),
     ],
   });

@@ -55,7 +55,12 @@
                 </div>
             </div>
 
-            <ovh-chatbot></ovh-chatbot>
+            <ovh-chatbot
+                data-ng-if="$ctrl.user.ovhSubsidiary"
+                data-language="{{$ctrl.currentLanguage}}"
+                data-country="{{$ctrl.user.ovhSubsidiary}}"
+            ></ovh-chatbot>
+
             <public-cloud-dark-mode></public-cloud-dark-mode>
         </div>
     </body>

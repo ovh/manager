@@ -1909,13 +1909,6 @@
   dependencies:
     lodash "^4.17.11"
 
-"@ovh-ux/ng-ovh-chatbot@^2.0.2":
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-chatbot/-/ng-ovh-chatbot-2.0.2.tgz#461e3dfb536cbf072194d23f4ef12580d101fed5"
-  integrity sha512-5BeYAMb/ExgP6CfO120rJrIDk6KOugMDylrGs8+OqRz8yXFJCOON7EMYnQXe8aYdyioIdl+q8dFuA3sQLRc95Q==
-  dependencies:
-    lodash "^4.17.15"
-
 "@ovh-ux/ng-ovh-line-diagnostics@^3.0.4":
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-line-diagnostics/-/ng-ovh-line-diagnostics-3.0.4.tgz#b15daee55d93180056cfe0f49fc133f1463e9a97"
