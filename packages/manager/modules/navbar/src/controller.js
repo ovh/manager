@@ -2,6 +2,7 @@ import angular from 'angular';
 
 import get from 'lodash/get';
 import has from 'lodash/has';
+import isEmpty from 'lodash/isEmpty';
 import omit from 'lodash/omit';
 
 import { BRAND, NON_PRIMARY_ITEMS } from './constants';
@@ -96,7 +97,9 @@ export default class {
         if (link.name === get(this.navbarOptions, 'universe')) {
           return {
             ...omit(link, 'url'),
-            subLinks: this.sidebarLinks,
+            ...(isEmpty(this.sidebarLinks)
+              ? { url: '#' }
+              : { subLinks: this.sidebarLinks }),
             click: () => this.universeClick(),
           };
         }
