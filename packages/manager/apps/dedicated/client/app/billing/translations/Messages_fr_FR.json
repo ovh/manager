@@ -776,7 +776,7 @@
   "fidelity_header_balance": "Solde",
   "fidelity_points": "point(s)",
   "fidelity_creditOrder_title": "Créditer votre compte",
-  "fidelity_creditOrder_step1_msg": "Vous pouvez créditer votre compte pour régler vos factures, ou anticiper le paiement des factures suivantes. (1 point = 0,01 {{t0}} HT)",
+  "fidelity_creditOrder_step1_msg": "Vous pouvez créditer votre compte pour régler vos achats, ou pour renouveler vos services, lors d'un renouvellement dit \"manuel\". (1 point = 0,01 {{t0}} HT)",
   "fidelity_creditOrder_step1_amount": "Montant (en points)",
   "fidelity_creditOrder_step1_erreurformat": "Le montant saisi est incorrect, veuillez utiliser uniquement des chiffres.",
   "fidelity_creditOrder_step1_erreurmin": "Le montant du crédit doit être au moins de {{t0}} points.",
