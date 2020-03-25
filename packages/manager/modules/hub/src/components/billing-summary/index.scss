@@ -3,13 +3,12 @@
 .manager-hub-billing-summary {
   $bg-color: #4495ee;
   $bg-image: url('./assets/background.svg');
-  $text-color: white;
 
   background-color: $bg-color;
   background-image: $bg-image;
   background-repeat: no-repeat;
   background-size: cover;
-  color: $text-color;
+  color: $p-000-white;
   text-align: center;
   border-radius: $hub-tile-border-radius;
   padding: $hub-tile-padding;
@@ -17,7 +16,7 @@
   height: 100%;
 
   > h3 {
-    color: white;
+    color: $p-000-white;
   }
 
   &_billing-link {
@@ -30,12 +29,12 @@
     font-weight: bold;
 
     .oui-icon {
-      color: white;
+      color: $p-000-white;
       font-weight: bold;
     }
 
     > a {
-      color: white;
+      color: $p-000-white;
       margin-bottom: -1.5rem;
       text-decoration: underline !important;
     }
@@ -47,14 +46,14 @@
 
     button {
       background-color: transparent;
-      border-color: $text-color;
+      border-color: $p-000-white;
       border-width: 2px;
-      color: $text-color;
+      color: $p-000-white;
     }
 
     .ui-select-dropdown {
       background-color: $bg-color;
-      border-color: $text-color;
+      border-color: $p-000-white;
       border-width: 2px;
       box-shadow: none;
       width: calc(100% - 2rem);
@@ -62,13 +61,13 @@
     }
 
     .oui-icon::before {
-      color: $text-color;
+      color: $p-000-white;
     }
   }
 
   .ui-select-match:hover {
     background-color: transparent;
-    border-color: $text-color;
+    border-color: $p-000-white;
   }
 
   &_bill-total {

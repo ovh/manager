@@ -2,7 +2,6 @@
   @import '@ovh-ux/manager-hub/src/variables.scss';
 
   $circle-radius: 2.5rem;
-  $circle-color: #4bb2f6;
 
   background-color: $p-000-white;
   box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.075);
@@ -28,7 +27,7 @@
     display: block;
     font-size: $circle-radius;
     padding-top: $circle-radius * 0.2;
-    background-color: $circle-color;
+    background-color: $p-300;
     color: $p-000-white !important;
     border-radius: $circle-radius;
     text-align: center;
