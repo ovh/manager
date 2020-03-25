@@ -43,11 +43,6 @@
   }
 
   &_user-name {
-    span {
-      color: $hub-primary-color;
-      font-weight: bold;
-    }
-
     .oui-icon {
       font-size: 1rem;
       vertical-align: middle;
@@ -57,6 +52,11 @@
     button.btn.btn-link {
       text-decoration: none;
       width: 100%;
+
+      span {
+        color: $hub-primary-color;
+        font-weight: bold;
+      }
     }
 
     &__expanded {
@@ -88,5 +88,10 @@
         color: $hub-primary-color-darker;
       }
     }
+  }
+
+  .oui-status {
+    font-size: 0.8rem;
+    font-weight: bold;
   }
 }
