@@ -3,22 +3,24 @@
         <header role="banner">
             <tuc-section-back-link
                 data-tuc-section-back-link-to-state="telecom.packs.pack"
-                data-tuc-section-back-link-title="{{ DetailCtrl.pack.description || DetailCtrl.pack.packName }}"
+                data-tuc-section-back-link-title="{{ $ctrl.pack.description || $ctrl.pack.packName }}"
             >
             </tuc-section-back-link>
             <h1
                 data-translate="hosted_email_detail_title"
-                data-translate-values="{name: DetailCtrl.serviceName}"
+                data-translate-values="{name: $ctrl.serviceName}"
             ></h1>
         </header>
     </div>
 
+    <tuc-toast-message></tuc-toast-message>
+
     <main class="telecom-section-content" role="main">
-        <div class="text-center" data-ng-if="DetailCtrl.loading">
+        <div class="text-center" data-ng-if="$ctrl.loading">
             <oui-spinner></oui-spinner>
         </div>
 
-        <div class="row" data-ng-if="!DetailCtrl.loading">
+        <div class="row" data-ng-if="!$ctrl.loading">
             <!-- General information -->
             <div class="col-md-6 col-xs-12 widget-presentation">
                 <h2
@@ -33,7 +35,7 @@
                     ></dt>
                     <dd
                         class="service-item"
-                        data-ng-bind="DetailCtrl.configuration.type.label"
+                        data-ng-bind="$ctrl.account.offer.label"
                     ></dd>
                     <!-- END OF TYPE -->
 
@@ -44,11 +46,11 @@
                     ></dt>
                     <dd class="service-item">
                         <span
-                            data-ng-class="DetailCtrl.configuration.status.icon"
+                            data-ng-class="$ctrl.configuration.status.icon"
                             aria-hidden="true"
                         ></span>
                         <span
-                            data-ng-bind="DetailCtrl.configuration.status.label"
+                            data-ng-bind="$ctrl.configuration.status.label"
                         ></span>
                     </dd>
                     <!-- END OF STATUS -->
@@ -62,10 +64,10 @@
                         class="service-item"
                         data-translate="hosted_email_detail_quota_value"
                         data-translate-values="{
-                              value: DetailCtrl.account.size.human,
-                              valueUnit: DetailCtrl.account.size.unit,
-                              total: DetailCtrl.account.quota.human,
-                              totalUnit: DetailCtrl.account.quota.unit}"
+                              value: $ctrl.account.size.human,
+                              valueUnit: $ctrl.account.size.unit,
+                              total: $ctrl.account.quota.human,
+                              totalUnit: $ctrl.account.quota.unit}"
                     ></dd>
                     <!-- END OF QUOTA -->
 
@@ -76,14 +78,14 @@
                     ></dt>
                     <dd class="service-item">
                         <a
-                            data-ng-href="{{DetailCtrl.configuration.webmailUrl}}"
+                            data-ng-href="{{$ctrl.configuration.webmailUrl}}"
                             data-translate-attr="{title:'hosted_email_detail_open_webmail'}"
-                            title="{{DetailCtrl.configuration.webmailUrl}} {{::'common_newtab' | translate}}"
+                            title="{{$ctrl.configuration.webmailUrl}} {{::'common_newtab' | translate}}"
                             rel="noopener"
                             target="_blank"
                         >
                             <span
-                                data-ng-bind="DetailCtrl.configuration.webmailUrl"
+                                data-ng-bind="$ctrl.configuration.webmailUrl"
                             ></span>
                             <span
                                 class="ovh-font ovh-font-newtab"
@@ -101,13 +103,13 @@
                     <dd class="service-item">
                         <span
                             class="label label-success"
-                            data-ng-if="DetailCtrl.account.kavEnvabled"
+                            data-ng-if="$ctrl.account.antivirusEnabled"
                             data-translate="hosted_email_detail_active"
                         >
                         </span>
                         <span
                             class="label label-danger"
-                            data-ng-if="!DetailCtrl.account.kavEnvabled"
+                            data-ng-if="!$ctrl.account.antivirusEnabled"
                             data-translate="hosted_email_detail_inactive"
                         >
                         </span>
@@ -122,13 +124,13 @@
                     <dd class="service-item">
                         <span
                             class="label label-success"
-                            data-ng-if="DetailCtrl.account.kasEnvabled"
+                            data-ng-if="$ctrl.account.antispamEnabled"
                             data-translate="hosted_email_detail_active"
                         >
                         </span>
                         <span
                             class="label label-danger"
-                            data-ng-if="!DetailCtrl.account.kasEnvabled"
+                            data-ng-if="!$ctrl.account.antispamEnabled"
                             data-translate="hosted_email_detail_inactive"
                         >
                         </span>
@@ -144,7 +146,7 @@
                     data-translate="hosted_email_detail_client_configuration"
                 ></h2>
                 <div
-                    data-ng-repeat="service in DetailCtrl.configuration.services track by service.type"
+                    data-ng-repeat="service in $ctrl.configuration.services track by service.type"
                     class="mb-3"
                 >
                     <button
@@ -162,7 +164,7 @@
                         >
                         </i>
                         <span
-                            data-ng-bind="('hosted_email_detail_server_' + service.type) | translate"
+                            data-ng-bind="('hosted_email_detail_server_' + service.service) | translate"
                         ></span>
                     </button>
                     <div data-ng-if="service.visible">
@@ -226,7 +228,7 @@
             </div>
         </div>
 
-        <div class="row" data-ng-if="!DetailCtrl.loading">
+        <div class="row" data-ng-if="!$ctrl.loading">
             <!-- Change password -->
             <div class="col-md-6 col-xs-12 widget-presentation">
                 <h2
@@ -235,7 +237,7 @@
                 ></h2>
                 <form
                     name="passwordChange"
-                    data-ng-submit="DetailCtrl.changePassword()"
+                    data-ng-submit="$ctrl.changePassword()"
                 >
                     <label
                         for="password"
@@ -245,22 +247,22 @@
                         <ovh-ng-input-password
                             class="col-xs-6"
                             name="password"
-                            data-ng-model="DetailCtrl.password"
-                            data-strength="DetailCtrl.getStrength(value)"
-                            data-rules="DetailCtrl.passwordRules"
+                            data-ng-model="$ctrl.password"
+                            data-strength="$ctrl.getStrength(value)"
+                            data-rules="$ctrl.passwordRules"
                         >
                         </ovh-ng-input-password>
                     </div>
                     <button
                         class="btn btn-primary"
                         type="submit"
-                        data-ng-disabled="passwordChange.$invalid || DetailCtrl.changingPassword"
+                        data-ng-disabled="passwordChange.$invalid || $ctrl.changingPassword"
                     >
                         <span
                             data-translate="hosted_email_detail_client_change_password_submit"
                         ></span>
                         <oui-spinner
-                            data-ng-if="DetailCtrl.changingPassword"
+                            data-ng-if="$ctrl.changingPassword"
                             data-size="s"
                         >
                         </oui-spinner>
@@ -283,29 +285,29 @@
                 <button
                     type="button"
                     class="btn btn-default"
-                    data-ng-click="DetailCtrl.askForDelete = true"
-                    data-ng-if="!DetailCtrl.askForDelete"
+                    data-ng-click="$ctrl.askForDelete = true"
+                    data-ng-if="!$ctrl.askForDelete"
                     data-translate="delete"
                 ></button>
 
-                <div data-ng-if="DetailCtrl.askForDelete">
+                <div data-ng-if="$ctrl.askForDelete">
                     <button
                         type="button"
                         class="btn btn-default"
-                        data-ng-disabled="DetailCtrl.accountDeleting"
+                        data-ng-disabled="$ctrl.accountDeleting"
                         data-translate="cancel"
-                        data-ng-click="DetailCtrl.askForDelete = false"
+                        data-ng-click="$ctrl.askForDelete = false"
                     ></button>
 
                     <button
                         type="button"
                         class="btn btn-primary"
-                        data-ng-disabled="DetailCtrl.accountDeleting"
-                        data-ng-click="DetailCtrl.onDeleteAccountConfirmClick()"
+                        data-ng-disabled="$ctrl.accountDeleting"
+                        data-ng-click="$ctrl.onDeleteAccountConfirmClick()"
                     >
                         <oui-spinner
                             class="mr-2"
-                            data-ng-if="DetailCtrl.accountDeleting"
+                            data-ng-if="$ctrl.accountDeleting"
                             data-size="s"
                         >
                         </oui-spinner>
