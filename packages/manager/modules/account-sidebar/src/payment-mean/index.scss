@@ -1,10 +1,8 @@
 .manager-hub-payment-mean {
   @import '@ovh-ux/manager-hub/src/variables.scss';
 
-  $payment-bg-color: #bef1ff;
-
   > a {
-    background: $payment-bg-color;
+    background: $p-100;
     border-radius: 0.5rem;
     color: inherit;
     border: none;

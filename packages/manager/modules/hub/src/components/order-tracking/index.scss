@@ -9,7 +9,7 @@
     @include hub-link-button;
   }
 
-  background-color: #85d9fd;
+  background-color: $p-200;
   text-align: center;
   border-radius: $hub-tile-border-radius;
   padding: $hub-tile-padding;
@@ -22,10 +22,10 @@
   a.oui-status {
     padding: 0.5rem;
     text-decoration: none;
-    background-color: #bef1ff; // P-100
+    background-color: $p-100;
 
     &:hover {
-      background-color: #def8ff; // P-75
+      background-color: $p-075;
     }
   }
 }
