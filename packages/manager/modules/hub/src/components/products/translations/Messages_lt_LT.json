@@ -28,5 +28,14 @@
   "manager_hub_products_VEEAM_VEEAM_ENTERPRISE": "Veeam Enterpise",
   "manager_hub_products_VPS": "VPS",
   "manager_hub_products_VRACK": "vRacks",
-  "manager_hub_products_XDSL": "xDSL"
+  "manager_hub_products_XDSL": "xDSL",
+  "manager_hub_products_LICENSE_WINDOWS": "Windows Licences",
+  "manager_hub_products_LICENSE_OFFICE": "Office 365 Licences",
+  "manager_hub_products_LICENSE_CLOUD_LINUX": "CloudLinux Licences",
+  "manager_hub_products_LICENSE_CPANEL": "cPanel Licences ",
+  "manager_hub_products_LICENSE_PLESK": "Plesk Licences",
+  "manager_hub_products_LICENSE_DIRECTADMIN": "DirectAdmin Licences",
+  "manager_hub_products_LICENSE_VIRTUOZZO": "Virtuozzo Licences ",
+  "manager_hub_products_LICENSE_WORKLIGHT": "Worklight Licences",
+  "manager_hub_products_LICENSE_SQLSERVER": "SQL Server Licences "
 }
