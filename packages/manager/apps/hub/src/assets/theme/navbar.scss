@@ -1,0 +1,47 @@
+@import '@ovh-ux/manager-hub/src/variables.scss';
+
+.oui-navbar {
+  background-color: initial;
+  box-shadow: 0 0 6px 0 rgba(0, 14, 156, 0.2);
+  z-index: 100;
+
+  .oui-navbar__brand {
+    color: $hub-brand-color;
+  }
+
+  .oui-navbar-link {
+    color: $p-500;
+    font-weight: bold;
+
+    .oui-icon {
+      color: $p-500;
+    }
+  }
+
+  .oui-navbar-link:hover,
+  .oui-navbar-link:focus,
+  .oui-navbar-link_tertiary:hover,
+  .oui-navbar-link_tertiary[aria-expanded='true'],
+  .oui-navbar-link_tertiary:focus {
+    background-color: initial;
+  }
+
+  .oui-navbar-link_primary {
+    color: $hub-text-color;
+    font-weight: $hub-text-weight;
+    font-size: $hub-font-size;
+    line-height: 0.5rem;
+    padding-top: 1.2rem;
+    border-bottom: 2px solid transparent;
+  }
+
+  .oui-navbar-link_active {
+    background-color: initial;
+    border-bottom: 2px solid $p-500;
+    box-sizing: border-box;
+  }
+
+  .oui-navbar-toggler__hamburger span {
+    background: $p-500 !important;
+  }
+}

@@ -1,0 +1,22 @@
+@import '@ovh-ux/manager-hub/src/variables.scss';
+
+h1,
+h2 {
+  font-size: $hub-title-size;
+  font-weight: $hub-title-weight;
+  color: $hub-title-color;
+  margin-top: 1rem;
+}
+
+h3 {
+  font-size: $hub-subtitle-size;
+  font-weight: $hub-subtitle-weight;
+  color: $hub-title-color;
+}
+
+a,
+.oui-link {
+  color: $p-500;
+  font-weight: $hub-font-weight-semibold;
+  text-decoration: none;
+}

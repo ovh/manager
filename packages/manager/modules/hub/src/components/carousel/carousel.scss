@@ -7,10 +7,10 @@ ovh-manager-hub-carousel {
     border-radius: 0.625rem;
     background-color: #fff;
     padding: 0.1875rem;
-    border: $hub-status-error-color;
+    border: $ae-500;
 
     &_active {
-      background-color: $hub-status-error-color;
+      background-color: $ae-500;
     }
   }
 

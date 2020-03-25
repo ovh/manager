@@ -4,7 +4,7 @@
   $circle-radius: 2.5rem;
   $circle-color: #4bb2f6;
 
-  background-color: $hub-background-color;
+  background-color: $p-000-white;
   box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.075);
   text-align: center;
   border-radius: $hub-border-radius-default;
@@ -29,7 +29,7 @@
     font-size: $circle-radius;
     padding-top: $circle-radius * 0.2;
     background-color: $circle-color;
-    color: $hub-background-color !important;
+    color: $p-000-white !important;
     border-radius: $circle-radius;
     text-align: center;
     font-weight: normal;
@@ -54,7 +54,7 @@
       width: 100%;
 
       span {
-        color: $hub-primary-color;
+        color: $p-500;
         font-weight: bold;
       }
     }
@@ -81,11 +81,11 @@
     clear: both;
 
     .btn.btn-link {
-      color: $hub-primary-color;
+      color: $p-500;
       font-weight: bold;
 
       &:hover {
-        color: $hub-primary-color-darker;
+        color: $p-700;
       }
     }
   }
