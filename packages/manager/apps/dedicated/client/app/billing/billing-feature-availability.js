@@ -5,7 +5,7 @@ export default class {
   }
 
   allowOrderTracking() {
-    return this.deny('US');
+    return this.allow('CA', 'EU', 'US');
   }
 
   allow(...args) {
