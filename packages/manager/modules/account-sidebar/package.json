@@ -12,6 +12,7 @@
   "author": "OVH SAS",
   "main": "src/index.js",
   "devDependencies": {
+    "@ovh-ux/manager-hub": "^0.3.0-alpha.0",
     "lodash": "^4.17.15"
   },
   "peerDependencies": {
