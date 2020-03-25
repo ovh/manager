@@ -1,3 +1,5 @@
+import camelCase from 'lodash/camelCase';
+
 /**
  * Service to handle option detachment for a given service
  */
@@ -85,6 +87,7 @@ export default class ProductOffersDetachService {
         this.OVH_PAYMENT_METHOD_TYPE.PAYPAL,
       ].includes(paymentMethod.paymentType)
     ) {
+      paymentParameters.paymentMean = camelCase(paymentMethod.paymentType);
       paymentParameters.paymentMeanId = paymentMethod.paymentMeanId;
     }
 
