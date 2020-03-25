@@ -1,1 +1,19 @@
-*    @antleblanc @AxelPeter @cbourgois @FredericEspiau @frenautvh @ganeshkumar1989 @JeremyDec @Jisay @jleveugle @lizardK @marie-j @radireddy @varun257
+* @antleblanc @lizardK
+
+# Documentation
+/docs/ @ovh/team-manager-documentation
+
+# Components
+/packages/components/ @ovh/team-manager-dev
+
+# Applications
+/packages/manager/apps/ @ovh/team-manager-dev
+
+# Modules
+/packages/manager/modules/ @ovh/team-manager-dev
+
+# Build / Tooling
+/packages/manager/tools/ @ovh/team-manager-build
+
+# Continuous Integration
+/scripts/ @ovh/team-manager-continuous-integration
