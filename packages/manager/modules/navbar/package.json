@@ -40,7 +40,7 @@
   "peerDependencies": {
     "@ovh-ux/manager-account-sidebar": "^0.0.0 || ^1.0.0",
     "@ovh-ux/manager-config": "^0.4.0",
-    "@ovh-ux/manager-core": "^8.0.0",
+    "@ovh-ux/manager-core": "^8.0.0 || ^9.0.0",
     "@ovh-ux/ng-at-internet": "^5.0.0",
     "@ovh-ux/ng-ovh-sso-auth": "^4.2.3",
     "@ovh-ux/ng-ovh-user-pref": "^1.0.0",

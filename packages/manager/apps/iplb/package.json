@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "@ovh-ux/manager-config": "^0.4.0",
-    "@ovh-ux/manager-core": "^8.0.0",
+    "@ovh-ux/manager-core": "^8.0.0 || ^9.0.0",
     "@ovh-ux/manager-iplb": "^0.0.0 || ^0.1.0",
     "@ovh-ux/ng-at-internet": "^5.0.0",
     "@ovh-ux/ng-ovh-api-wrappers": "^4.0.7",
