@@ -5,11 +5,11 @@
   border-radius: $hub-border-radius-default;
 
   &.oui-button_secondary {
-    border: 2px solid $hub-primary-color;
+    border: 2px solid $p-500;
 
     &,
     .oui-icon {
-      color: $hub-primary-color;
+      color: $p-500;
     }
 
     &:hover,
@@ -19,16 +19,16 @@
   }
 
   &.oui-button_icon-alone .oui-icon {
-    color: $hub-primary-color;
+    color: $p-500;
   }
 
   &.oui-button_icon-only {
     background-color: transparent;
-    color: $hub-primary-color;
+    color: $p-500;
 
     &:hover,
     &:focus {
-      background-color: $hub-primary-color;
+      background-color: $p-500;
       border: 2px solid transparent;
       border-radius: $hub-border-radius-default;
 
@@ -45,7 +45,7 @@
   }
 
   &.oui-button_link {
-    color: $hub-primary-color;
+    color: $p-500;
     font-weight: $hub-font-weight-semibold;
     text-decoration: none;
   }
@@ -62,5 +62,28 @@
         color: #113f6d;
       }
     }
+  }
+}
+
+.oui-action-button,
+.oui-action-menu-button {
+  border-color: $hub-button-fg-color;
+
+  circle {
+    fill: $hub-button-bg-color;
+  }
+}
+
+.oui-action-button[aria-expanded='true'],
+.oui-action-menu-button[aria-expanded='true'],
+.oui-action-button:hover,
+.oui-action-button:focus,
+.oui-action-menu-button:hover,
+.oui-action-menu-button:focus {
+  background-color: $hub-button-bg-color;
+  border-color: $hub-button-bg-color;
+
+  circle {
+    fill: $hub-button-fg-color;
   }
 }

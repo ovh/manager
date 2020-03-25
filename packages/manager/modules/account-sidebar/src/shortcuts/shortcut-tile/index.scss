@@ -1,7 +1,7 @@
 .manager-hub-shortcut-tile {
   @import '@ovh-ux/manager-hub/src/variables.scss';
 
-  $notification-pill-font-color: $hub-background-color;
+  $notification-pill-font-color: $p-000-white;
   $notification-pill-bg-color: #b91a1a;
   $notification-pill-size: 1.3rem;
 
@@ -17,7 +17,7 @@
     width: 4rem;
     height: 4rem;
     margin: auto;
-    background-color: $hub-background-color;
+    background-color: $p-000-white;
     border-radius: 0.4rem;
     position: relative;
   }
@@ -30,7 +30,7 @@
   .oui-icon {
     font-size: 2rem;
     margin-top: 1rem;
-    background-color: $hub-background-color;
+    background-color: $p-000-white;
     color: $hub-title-color;
   }
 
