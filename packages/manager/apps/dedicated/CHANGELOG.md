@@ -1,3 +1,17 @@
+# [11.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@11.8.0...@ovh-ux/manager-dedicated@11.9.0) (2020-03-25)
+
+
+### Bug Fixes
+
+* **billing:** update sepa procedure message ([#2630](https://github.com/ovh/manager/issues/2630)) ([1f0f1e2](https://github.com/ovh/manager/commit/1f0f1e2baece0b38cc8e0c1a80fb44af828c6d93))
+
+
+### Features
+
+* **billing.orders:** enable order tracking is us ([#2548](https://github.com/ovh/manager/issues/2548)) ([04ca14e](https://github.com/ovh/manager/commit/04ca14e5f5920614758f742317555d03fd273503))
+
+
+
 # [11.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@11.7.6...@ovh-ux/manager-dedicated@11.8.0) (2020-03-24)
 
 
