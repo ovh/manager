@@ -1,35 +1,39 @@
 <div
     data-ng-repeat="item in $ctrl.items track by $index"
     role="alert"
-    class="oui-message oui-message_error"
+    class="oui-message oui-message_error pl-3"
     data-ng-if="$index === $ctrl.index"
 >
-    <span
-        class="oui-icon oui-icon_bicolor oui-icon-warning_extra-thin"
-        aria-hidden="true"
-    ></span>
-    <a
-        class="oui-message__body oui-message__body_error"
-        data-ng-href="{{ item.urlDetails.href }}"
-    >
-        <span data-ng-bind-html="item.description"></span>
-    </a>
-    <button
-        class="oui-button oui-button_icon-alone float-right"
-        type="button"
-        data-ng-if="$ctrl.items.length > 1"
-    >
-        <span
-            class="oui-icon oui-icon-arrow-right_extra-thin"
-            aria-hidden="true"
-            data-ng-click="$ctrl.nextAlert()"
-        ></span>
-        <span
-            class="sr-only"
-            data-translate="manager_hub_carousel_see_next"
-        ></span>
-    </button>
-    <div class="w-100 text-center mt-1" data-ng-if="$ctrl.items.length > 1">
+    <div class="d-flex justify-content-between align-items-center">
+        <div class="d-flex align-items-center w-100 minw-0">
+            <span
+                class="oui-icon oui-icon_bicolor oui-icon-warning_extra-thin mr-2"
+                aria-hidden="true"
+            ></span>
+            <a
+                class="oui-message__body oui-message__body_error p-0"
+                data-ng-href="{{ item.urlDetails.href }}"
+            >
+                <span data-ng-bind-html="item.description"></span>
+            </a>
+        </div>
+        <button
+            class="oui-button oui-button_icon-alone"
+            type="button"
+            data-ng-if="$ctrl.items.length > 1"
+        >
+            <span
+                class="oui-icon oui-icon-arrow-right_extra-thin align-middle"
+                aria-hidden="true"
+                data-ng-click="$ctrl.nextAlert()"
+            ></span>
+            <span
+                class="sr-only"
+                data-translate="manager_hub_carousel_see_next"
+            ></span>
+        </button>
+    </div>
+    <div class="w-100 text-center" data-ng-if="$ctrl.items.length > 1">
         <button
             type="button"
             data-ng-repeat="el in $ctrl.items track by $index"
