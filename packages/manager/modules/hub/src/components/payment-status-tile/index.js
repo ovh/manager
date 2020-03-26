@@ -1,4 +1,3 @@
-import 'ovh-ui-kit/dist/oui.css';
 import ngAtInternet from '@ovh-ux/ng-at-internet';
 import '@ovh-ux/ng-translate-async-loader';
 import 'ovh-ui-angular';
