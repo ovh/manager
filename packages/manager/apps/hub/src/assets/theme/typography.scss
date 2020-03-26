@@ -19,7 +19,7 @@ h3 {
   font-weight: $jupiter-font-weight;
   color: $p-800;
 
-  span {
+  * {
     color: inherit;
   }
 }
@@ -29,4 +29,8 @@ a,
   color: $p-500;
   font-weight: $hub-font-weight-semibold;
   text-decoration: none;
+
+  * {
+    color: inherit;
+  }
 }

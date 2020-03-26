@@ -15,9 +15,20 @@
   border-radius: $hub-tile-border-radius;
   padding: $hub-tile-padding;
 
+  p,
+  span {
+    color: $p-800;
+  }
+
   > h3 {
     font-size: $jupiter-font-size;
     font-weight: $jupiter-font-weight;
+  }
+
+  a {
+    span {
+      color: $p-000-white;
+    }
   }
 
   a.oui-status {
