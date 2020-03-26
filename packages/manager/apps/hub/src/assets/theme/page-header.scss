@@ -4,13 +4,14 @@
 .oui-page-header {
   background: $p-000-white;
 
-  .oui-page-header__container {
-    padding-left: 0;
-  }
-
-  h1 {
+  &__title {
     font-size: $saturn-font-size;
     font-weight: $saturn-font-weight;
-    color: $p-800;
+    color: $saturn-color;
+  }
+
+  &__container {
+    padding-left: 0;
+    padding-bottom: $base-spacing-small;
   }
 }
