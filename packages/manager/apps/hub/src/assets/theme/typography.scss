@@ -33,4 +33,10 @@ a,
   * {
     color: inherit;
   }
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: $p-700;
+  }
 }
