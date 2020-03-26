@@ -4,7 +4,7 @@ import filter from 'lodash/filter';
 import find from 'lodash/find';
 import remove from 'lodash/remove';
 
-export default /* @ngInject */ function ($scope, $timeout, $window) {
+export default /* @ngInject */ function($scope, $timeout, $window) {
   const self = this;
 
   this.getInstance = function getInstance() {
@@ -54,7 +54,10 @@ export default /* @ngInject */ function ($scope, $timeout, $window) {
   };
 
   // Detach connection between 2 endpoints
-  this.disconnectEndpoints = function disconnectEndpoints(sourceIdOrConnection, targetId) {
+  this.disconnectEndpoints = function disconnectEndpoints(
+    sourceIdOrConnection,
+    targetId,
+  ) {
     let sourceId = sourceIdOrConnection;
     let connection = sourceIdOrConnection;
     if (!targetId) {
@@ -114,7 +117,10 @@ export default /* @ngInject */ function ($scope, $timeout, $window) {
     return targetList;
   }
 
-  this.connectEndpointsMultiple = function connectEndpointsMultiple(sourceId, targetListParam) {
+  this.connectEndpointsMultiple = function connectEndpointsMultiple(
+    sourceId,
+    targetListParam,
+  ) {
     let targetList = targetListParam;
     // forecast this connection
     targetList.forEach((id) => {
@@ -136,7 +142,10 @@ export default /* @ngInject */ function ($scope, $timeout, $window) {
     }
   };
 
-  this.disconnectEndpointsMultiple = function disconnectEndpointsMultiple(sourceId, targetList) {
+  this.disconnectEndpointsMultiple = function disconnectEndpointsMultiple(
+    sourceId,
+    targetList,
+  ) {
     angular.forEach(targetList, (targetId) => {
       // Let's disconnect!
       self.disconnectEndpoints(sourceId, targetId);
@@ -145,13 +154,18 @@ export default /* @ngInject */ function ($scope, $timeout, $window) {
 
   this.getConnection = function getConnection(sourceId, targetId) {
     const connections = $scope.instance.getAllConnections();
-    return find(connections, { sourceId, targetId })
-      || find(connections, { sourceId: targetId, targetId: sourceId });
+    return (
+      find(connections, { sourceId, targetId }) ||
+      find(connections, { sourceId: targetId, targetId: sourceId })
+    );
   };
 
   this.getConnections = function getConnections(id) {
     const connections = $scope.instance.getAllConnections();
-    return filter(connections, (conn) => (conn.sourceId === id) || (conn.targetId === id));
+    return filter(
+      connections,
+      (conn) => conn.sourceId === id || conn.targetId === id,
+    );
   };
 
   this.connectionExists = function connectionExists(sourceId, targetId) {
@@ -160,7 +174,7 @@ export default /* @ngInject */ function ($scope, $timeout, $window) {
 
   $scope.$on('jsplumb.endpoint.idChanged', (evt, newId, oldId) => {
     // remove old connections
-    if (oldId && (oldId !== newId)) {
+    if (oldId && oldId !== newId) {
       self.getConnections(oldId).forEach((conn) => {
         self.disconnectEndpoints(conn.sourceId, conn.targetId);
       });
@@ -168,7 +182,7 @@ export default /* @ngInject */ function ($scope, $timeout, $window) {
 
     // Create new connections
     self.connectionForecast
-      .filter((conn) => (conn.sourceId === newId) || (conn.targetId === newId))
+      .filter((conn) => conn.sourceId === newId || conn.targetId === newId)
       .forEach((conn) => {
         $scope.instance.connect({
           source: conn.sourceId,
@@ -177,9 +191,12 @@ export default /* @ngInject */ function ($scope, $timeout, $window) {
       });
   });
 
-  $scope.$on('jsplumb.endpoint.created', (evt, endpointId, endpointConnectionIds) => {
-    self.connectEndpointsMultiple(endpointId, endpointConnectionIds);
-  });
+  $scope.$on(
+    'jsplumb.endpoint.created',
+    (evt, endpointId, endpointConnectionIds) => {
+      self.connectEndpointsMultiple(endpointId, endpointConnectionIds);
+    },
+  );
 
   const onResizePage = debounce(() => {
     $timeout(() => {
@@ -205,10 +222,14 @@ export default /* @ngInject */ function ($scope, $timeout, $window) {
    * the window.on("resize") binding because it will be triggered as soon as window is resized.
    */
   const windowElt = angular.element($window);
-  $scope.$watch(() => ({
-    h: windowElt.height(),
-    w: windowElt.width(),
-  }), onResizePage, true);
+  $scope.$watch(
+    () => ({
+      h: windowElt.height(),
+      w: windowElt.width(),
+    }),
+    onResizePage,
+    true,
+  );
 
   $scope.$on('jsplumb.endpoint.created', onResizePage);
 }

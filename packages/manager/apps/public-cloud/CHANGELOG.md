@@ -1,3 +1,12 @@
+# [2.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@2.6.6...@ovh-ux/manager-public-cloud@2.7.0) (2020-03-24)
+
+
+### Features
+
+* **livechat:** update chatbot integration ([76ef221](https://github.com/ovh/manager/commit/76ef221930f8895ba927ece408774c33e9dcc0ed))
+
+
+
 ## [2.6.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@2.6.5...@ovh-ux/manager-public-cloud@2.6.6) (2020-03-18)
 
 

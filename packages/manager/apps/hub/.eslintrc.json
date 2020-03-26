@@ -3,6 +3,7 @@
     "__NODE_ENV__": true,
     "__VERSION__": true,
     "__WEBPACK_REGION__": true,
-    "moment": true
+    "moment": true,
+    "__NG_APP_INJECTIONS__": true
   }
 }

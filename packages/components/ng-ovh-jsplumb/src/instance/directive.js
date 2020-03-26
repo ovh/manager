@@ -56,7 +56,7 @@ import angular from 'angular';
 
 import controller from './controller';
 
-export default /* @ngInject */ function ($rootScope, $parse) {
+export default /* @ngInject */ function($rootScope, $parse) {
   return {
     restrict: 'A',
     scope: true,
@@ -69,10 +69,9 @@ export default /* @ngInject */ function ($rootScope, $parse) {
           // add class to element
           $element.addClass('_jsPlumb_ng_instance');
 
-          $scope.instance = jsPlumb.getInstance(angular.extend(
-            instanceOptions || {},
-            { Container: $element },
-          ));
+          $scope.instance = jsPlumb.getInstance(
+            angular.extend(instanceOptions || {}, { Container: $element }),
+          );
 
           /*= ==============================================
           =            Extend jsplumb instance            =
@@ -93,7 +92,10 @@ export default /* @ngInject */ function ($rootScope, $parse) {
           /**
            *  Make a connection between 2 endpoints
            */
-          $scope.instance.connectEndpoints = function connectEndpoints(sourceId, targetId) {
+          $scope.instance.connectEndpoints = function connectEndpoints(
+            sourceId,
+            targetId,
+          ) {
             return jsplumbInstanceCtrl.connectEndpoints(sourceId, targetId);
           };
 
@@ -104,7 +106,10 @@ export default /* @ngInject */ function ($rootScope, $parse) {
             sourceIdOrConnection,
             targetId,
           ) {
-            return jsplumbInstanceCtrl.disconnectEndpoints(sourceIdOrConnection, targetId);
+            return jsplumbInstanceCtrl.disconnectEndpoints(
+              sourceIdOrConnection,
+              targetId,
+            );
           };
 
           /**
@@ -112,20 +117,26 @@ export default /* @ngInject */ function ($rootScope, $parse) {
            *  endpoint id.
            *  This method checks in both direction : from source to target or from target to source.
            */
-          $scope.instance
-            .getConnectionBySourceIdAndTargetId = function getConnectionBySourceIdAndTargetId(
-              sourceId,
-              targetId,
-            ) {
-              return jsplumbInstanceCtrl.getConnection(sourceId, targetId);
-            };
+          $scope.instance.getConnectionBySourceIdAndTargetId = function getConnectionBySourceIdAndTargetId(
+            sourceId,
+            targetId,
+          ) {
+            return jsplumbInstanceCtrl.getConnection(sourceId, targetId);
+          };
 
           /* -----  End of Extend jsplumb instance  ------*/
 
           $rootScope.$broadcast('jsplumb.instance.created', $scope.instance);
 
           $scope.instance.bind('connection', (info, originalEvent) => {
-            $rootScope.$broadcast('jsplumb.instance.connection', info.connection, info.sourceEndpoint, info.targetEndpoint, $scope.instance, originalEvent);
+            $rootScope.$broadcast(
+              'jsplumb.instance.connection',
+              info.connection,
+              info.sourceEndpoint,
+              info.targetEndpoint,
+              $scope.instance,
+              originalEvent,
+            );
 
             // call apply only if it's not a programmatically connection
             if (originalEvent) {
@@ -134,17 +145,36 @@ export default /* @ngInject */ function ($rootScope, $parse) {
           });
 
           $scope.instance.bind('mouseover', (info, originalEvent) => {
-            $rootScope.$broadcast('jsplumb.instance.connection.mouseover', info, $scope.instance, originalEvent);
+            $rootScope.$broadcast(
+              'jsplumb.instance.connection.mouseover',
+              info,
+              $scope.instance,
+              originalEvent,
+            );
           });
 
           $scope.instance.bind('mouseout', (info, originalEvent) => {
-            $rootScope.$broadcast('jsplumb.instance.connection.mouseout', info, $scope.instance, originalEvent);
+            $rootScope.$broadcast(
+              'jsplumb.instance.connection.mouseout',
+              info,
+              $scope.instance,
+              originalEvent,
+            );
           });
 
-          $scope.instance.bind('beforeDrop', (info) => (jsplumbInstanceCtrl.connectionExists(info.sourceId, info.targetId) ? null : info.connection));
+          $scope.instance.bind('beforeDrop', (info) =>
+            jsplumbInstanceCtrl.connectionExists(info.sourceId, info.targetId)
+              ? null
+              : info.connection,
+          );
 
           $scope.instance.bind('click', (connection, originalEvent) => {
-            $rootScope.$broadcast('jsplumb.instance.connection.click', connection, $scope.instance, originalEvent);
+            $rootScope.$broadcast(
+              'jsplumb.instance.connection.click',
+              connection,
+              $scope.instance,
+              originalEvent,
+            );
 
             // call apply only if it's not a programmatically connection
             if (originalEvent) {
@@ -153,7 +183,14 @@ export default /* @ngInject */ function ($rootScope, $parse) {
           });
 
           $scope.instance.bind('connectionDetached', (info, originalEvent) => {
-            $rootScope.$broadcast('jsplumb.instance.connection.detached', info.connection, info.sourceEndpoint, info.targetEndpoint, $scope.instance, originalEvent);
+            $rootScope.$broadcast(
+              'jsplumb.instance.connection.detached',
+              info.connection,
+              info.sourceEndpoint,
+              info.targetEndpoint,
+              $scope.instance,
+              originalEvent,
+            );
 
             // call apply only if it's not a programmatically connection
             if (originalEvent) {

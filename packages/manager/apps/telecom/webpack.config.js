@@ -4,6 +4,7 @@ const fs = require('fs');
 const glob = require('glob');
 const _ = require('lodash');
 const webpackConfig = require('@ovh-ux/manager-webpack-config');
+const webpack = require('webpack');
 
 const folder = './src/app/telecom';
 const bundles = {};
@@ -18,6 +19,28 @@ function foundNodeModulesFolder(checkedDir, cwd = '.') {
   }
 
   return null;
+}
+
+function readNgAppInjections(file) {
+  let injections = [];
+  if (fs.existsSync(file)) {
+    injections = fs
+      .readFileSync(file, 'utf8')
+      .split('\n')
+      .filter((value) => value !== '');
+  }
+  return injections;
+}
+
+function getNgAppInjections(region) {
+  const injections = [
+    ...readNgAppInjections(`./.extras-${region}/ng-app-injections`),
+    ...readNgAppInjections('./.extras/ng-app-injections'),
+  ];
+
+  const ngAppInjections = injections.map((val) => `'${val}'`).join(',');
+
+  return ngAppInjections || 'null';
 }
 
 fs.readdirSync(folder).forEach((file) => {
@@ -61,7 +84,8 @@ module.exports = (env = {}) => {
   );
 
   // Extra config files
-  const extras = glob.sync('./.extras-EU/**/*.js');
+  const extrasRegion = glob.sync('./.extras-EU/**/*.js');
+  const extras = glob.sync('./.extras/**/*.js');
 
   return merge(config, {
     entry: _.assign(
@@ -76,6 +100,7 @@ module.exports = (env = {}) => {
       },
       bundles,
       extras.length > 0 ? { extras } : {},
+      extrasRegion.length > 0 ? { extrasRegion } : {},
     ),
     output: {
       path: path.resolve(__dirname, 'dist'),
@@ -84,5 +109,10 @@ module.exports = (env = {}) => {
     resolve: {
       mainFields: ['module', 'browser', 'main'],
     },
+    plugins: [
+      new webpack.DefinePlugin({
+        __NG_APP_INJECTIONS__: getNgAppInjections('EU'),
+      }),
+    ],
   });
 };

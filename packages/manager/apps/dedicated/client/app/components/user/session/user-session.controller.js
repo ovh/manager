@@ -5,15 +5,22 @@ angular.module('App').controller(
   'SessionCtrl',
   class {
     /* @ngInject */
-    constructor($document, $scope, $state, $transitions, $translate) {
+    constructor($document, $scope, $state, $transitions, $translate, User) {
       this.$document = $document;
       this.$scope = $scope;
       this.$state = $state;
       this.$transitions = $transitions;
       this.$translate = $translate;
+      this.User = User;
     }
 
     $onInit() {
+      [this.currentLanguage] = this.$translate.use().split('_');
+
+      this.User.getUser().then((user) => {
+        this.user = user;
+      });
+
       set(this.$document, 'title', this.$translate.instant('global_app_title'));
 
       this.hooksToUnsubscribe = [

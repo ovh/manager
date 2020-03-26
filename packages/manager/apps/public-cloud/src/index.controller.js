@@ -33,6 +33,8 @@ export default class PublicCloudController {
   }
 
   $onInit() {
+    [this.currentLanguage] = this.$translate.use().split('_');
+
     this.$translate.refresh().then(() => {
       this.sessionService.getUser().then((user) => {
         this.user = user;

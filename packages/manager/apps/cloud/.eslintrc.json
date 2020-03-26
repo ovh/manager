@@ -6,6 +6,7 @@
     "moment": true,
     "Terminal": true,
     "URI": true,
-    "validator": true
+    "validator": true,
+    "__NG_APP_INJECTIONS__": true
   }
 }

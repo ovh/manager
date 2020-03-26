@@ -2,12 +2,13 @@ import isString from 'lodash/isString';
 
 export default class WebAppCtrl {
   /* @ngInject */
-  constructor($document, $scope, $timeout, $translate) {
+  constructor($document, $rootScope, $scope, $timeout, $translate, User) {
     this.$document = $document;
     this.$scope = $scope;
     this.$timeout = $timeout;
     this.$translate = $translate;
-
+    this.User = User;
+    this.$rootScope = $rootScope;
     this.$onInit();
   }
 
@@ -21,6 +22,12 @@ export default class WebAppCtrl {
 
     this.$scope.$on('navbar.loaded', () => {
       this.isNavbarLoaded = true;
+    });
+
+    [this.currentLanguage] = this.$translate.use().split('_');
+
+    this.User.getUser().then((user) => {
+      this.user = user;
     });
 
     // Scroll to anchor id
