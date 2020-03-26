@@ -8,5 +8,6 @@
   "hub_payment_mean_status_CREATING": "Creating",
   "hub_payment_mean_status_MAINTENANCE": "Under maintenance",
   "hub_payment_mean_status_PAUSED": "Paused",
-  "hub_payment_mean_status_VALID": "Valid"
+  "hub_payment_mean_status_VALID": "Valid",
+  "hub_payment_mean_none": "No payment method"
 }

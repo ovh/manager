@@ -1,3 +1,12 @@
+# [8.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@8.4.0...@ovh-ux/manager-cloud@8.5.0) (2020-03-24)
+
+
+### Features
+
+* **livechat:** update chatbot integration ([e8e7ef5](https://github.com/ovh/manager/commit/e8e7ef5fb59ccf3a96af77825106a9de28910a8d))
+
+
+
 # [8.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@8.3.4...@ovh-ux/manager-cloud@8.4.0) (2020-03-18)
 
 

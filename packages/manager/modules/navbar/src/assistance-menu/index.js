@@ -2,7 +2,6 @@ import angular from 'angular';
 import 'angular-translate';
 
 import '@ovh-ux/ng-at-internet';
-import '@ovh-ux/ng-ovh-chatbot';
 
 import 'ovh-ui-angular';
 
@@ -16,7 +15,6 @@ angular
   .module(moduleName, [
     'ovhManagerCore',
     'ngAtInternet',
-    'ngOvhChatbot',
     'oui',
     'pascalprecht.translate',
     menuHeader,

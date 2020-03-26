@@ -1,10 +1,12 @@
 import 'script-loader!jquery'; // eslint-disable-line
 import 'script-loader!moment/min/moment-with-locales.min.js'; //eslint-disable-line
+
 import { Environment } from '@ovh-ux/manager-config';
 import angular from 'angular';
 import 'angular-translate';
 import uiRouter, { RejectType } from '@uirouter/angularjs';
 import ngOvhUiRouterLineProgress from '@ovh-ux/ng-ui-router-line-progress';
+import isString from 'lodash/isString';
 
 import 'ovh-ui-angular';
 import ovhManagerCore from '@ovh-ux/manager-core';
@@ -22,6 +24,7 @@ import preload from './components/manager-preload';
 import catalog from './catalog';
 import dashboard from './dashboard';
 
+import controller from './controller';
 import routing from './routing';
 import './index.scss';
 import 'ovh-ui-kit/dist/oui.css';
@@ -30,23 +33,28 @@ Environment.setRegion(__WEBPACK_REGION__);
 Environment.setVersion(__VERSION__);
 
 angular
-  .module('managerHubApp', [
-    'pascalprecht.translate',
-    atInternet,
-    catalog,
-    dashboard,
-    errorPage,
-    ngOvhUiRouterLineProgress,
-    'pascalprecht.translate',
-    'oui',
-    ovhManagerCore,
-    ovhManagerHub,
-    ovhManagerNavbar,
-    ovhManagerOrderTracking,
-    'pascalprecht.translate',
-    preload,
-    uiRouter,
-  ])
+  .module(
+    'managerHubApp',
+    [
+      'pascalprecht.translate',
+      atInternet,
+      catalog,
+      dashboard,
+      errorPage,
+      ngOvhUiRouterLineProgress,
+      'pascalprecht.translate',
+      'oui',
+      ovhManagerCore,
+      ovhManagerHub,
+      ovhManagerNavbar,
+      ovhManagerOrderTracking,
+      'pascalprecht.translate',
+      preload,
+      uiRouter,
+      __NG_APP_INJECTIONS__,
+    ].filter(isString),
+  )
+  .controller('HubController', controller)
   .config(
     /* @ngInject */ ($locationProvider) => $locationProvider.hashPrefix(''),
   )

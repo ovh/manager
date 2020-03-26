@@ -1188,5 +1188,6 @@
   "server_error_ola_terminate": "Wystąpił błąd podczas rezygnacji z usługi: {{error}}.",
   "server_error_vrack_attach": "Wystąpił błąd podczas dodawania sieci prywatnej: {{error}}.",
   "server_error_vrack_detach": "Wystąpił błąd podczas odłączania sieci prywatnej: {{error}}.",
-  "server_error_bandwidth_order": "Wystąpił błąd podczas zamawiania przepustowości: {{error}}."
+  "server_error_bandwidth_order": "Wystąpił błąd podczas zamawiania przepustowości: {{error}}.",
+  "plan_bandwidth-1000-burst-2gbps-infra-us": "2 Gbps przepustowości do sieci publicznej - nieograniczony transfer"
 }

@@ -8,7 +8,6 @@ import ngAtInternet from '@ovh-ux/ng-at-internet';
 import ngAtInternetUiRouterPlugin from '@ovh-ux/ng-at-internet-ui-router-plugin';
 import ngOvhApiWrappers from '@ovh-ux/ng-ovh-api-wrappers';
 import ngOvhBrowserAlert from '@ovh-ux/ng-ovh-browser-alert';
-import ngOvhChatbot from '@ovh-ux/ng-ovh-chatbot';
 import ngOvhExportCsv from '@ovh-ux/ng-ovh-export-csv';
 import ngOvhHttp from '@ovh-ux/ng-ovh-http';
 import ngOvhOtrs from '@ovh-ux/ng-ovh-otrs';
@@ -94,7 +93,6 @@ angular
       ngAtInternetUiRouterPlugin,
       ngOvhApiWrappers,
       ngOvhBrowserAlert,
-      ngOvhChatbot,
       ngOvhHttp,
       ngOvhOtrs,
       ngOvhProxyRequest,

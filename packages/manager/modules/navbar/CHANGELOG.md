@@ -1,3 +1,12 @@
+# [2.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-navbar@2.4.0...@ovh-ux/manager-navbar@2.5.0) (2020-03-24)
+
+
+### Features
+
+* **livechat:** enable chatbot for PL subsidiary ([e328725](https://github.com/ovh/manager/commit/e328725ddaf6ebce45eb656b361ed3fe18652daf))
+
+
+
 # [2.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-navbar@2.3.3...@ovh-ux/manager-navbar@2.4.0) (2020-03-11)
 
 

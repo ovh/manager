@@ -1,3 +1,12 @@
+## [3.15.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.15.0...@ovh-ux/manager-pci@3.15.1) (2020-03-24)
+
+
+### Bug Fixes
+
+* **pci:** update keystone migration message ([#2614](https://github.com/ovh/manager/issues/2614)) ([9fe7cf6](https://github.com/ovh/manager/commit/9fe7cf6baefc231737b94a362c2cecbbe5eaeb39))
+
+
+
 # [3.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.14.3...@ovh-ux/manager-pci@3.15.0) (2020-03-18)
 
 

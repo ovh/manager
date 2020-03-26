@@ -216,6 +216,10 @@ angular
           serviceType: 'ws',
           urlPrefix: '/engine/ws',
         },
+        {
+          serviceType: 'none',
+          urlPrefix: '',
+        },
       ]);
 
       $httpProvider.interceptors.push('serviceTypeInterceptor');
