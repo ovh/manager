@@ -1,15 +1,17 @@
+@import 'oui4/dist/scss/_tokens';
 @import '@ovh-ux/manager-hub/src/variables.scss';
 
 .oui-page-header {
-  background: $hub-background-color;
+  background: $p-000-white;
 
-  .oui-page-header__container {
-    padding-left: 0;
+  &__title {
+    font-size: $saturn-font-size;
+    font-weight: $saturn-font-weight;
+    color: $saturn-color;
   }
 
-  h1 {
-    font-size: $hub-title-size;
-    font-weight: $hub-title-weight;
-    color: $hub-title-color;
+  &__container {
+    padding-left: 0;
+    padding-bottom: $base-spacing-small;
   }
 }

@@ -1,6 +1,7 @@
 import flatten from 'lodash/flatten';
 import map from 'lodash/map';
 import reverse from 'lodash/reverse';
+import { WAITING_PAYMENT_LABEL } from './order-tracking.constants';
 
 export default class OrderTrackingService {
   /* @ngInject */
@@ -40,7 +41,7 @@ export default class OrderTrackingService {
         if (order.status === 'notPaid' && history.length === 0) {
           history.push({
             date: order.date,
-            label: 'custom_payment_waiting',
+            label: WAITING_PAYMENT_LABEL,
           });
         }
         return {

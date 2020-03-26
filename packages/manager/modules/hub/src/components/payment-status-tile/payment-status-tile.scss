@@ -3,14 +3,15 @@ hub-payment-status {
   @import '~bootstrap/scss/_variables';
   @import '~bootstrap/scss/_mixins';
   @import '~bootstrap/scss/_utilities.scss';
-  @import '~@ovh-ux/manager-hub/src/variables.scss';
+  @import '~oui4/dist/scss/_tokens';
 
-  .service-expiry {
-    color: $hub-status-expired-color;
-    vertical-align: middle;
+  .hub-payment-status_small {
+    font-size: $mercury-font-size;
   }
 
-  p {
-    color: $hub-text-color;
+  @media screen and (max-width: $device-breakpoint-phone-max-width) {
+    .oui-datagrid__cell:first-of-type {
+      border-bottom: none;
+    }
   }
 }

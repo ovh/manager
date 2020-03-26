@@ -1,14 +1,15 @@
 .manager-hub-shortcut-tile {
+  @import 'oui4/dist/scss/_tokens';
   @import '@ovh-ux/manager-hub/src/variables.scss';
 
-  $notification-pill-font-color: $hub-background-color;
+  $notification-pill-font-color: $p-000-white;
   $notification-pill-bg-color: #b91a1a;
   $notification-pill-size: 1.2rem;
 
   text-align: center;
 
   > a {
-    color: $hub-title-color;
+    color: $p-800;
     font-weight: 600;
 
     &:hover {
@@ -21,7 +22,7 @@
     width: 4rem;
     height: 4rem;
     margin: auto;
-    background-color: $hub-background-color;
+    background-color: $p-000-white;
     border-radius: 0.4rem;
     position: relative;
 

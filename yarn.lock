@@ -12650,6 +12650,11 @@ osenv@0, osenv@^0.1.4, osenv@^0.1.5:
     os-homedir "^1.0.0"
     os-tmpdir "^1.0.0"
 
+"oui4@npm:@ovh-ux/ui-kit":
+  version "4.0.4"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ui-kit/-/ui-kit-4.0.4.tgz#cd4ea9f6fbc41c68dc90cfdb09ca9ebfce057a6d"
+  integrity sha512-Z0jvGnjcabragt91+BT6VlfvejDAiWRMejtFis0EmCUOEpNGGBQaGAptQ15NKJub7gjfd0RMVkrgL0XunuwORQ==
+
 ovh-angular-list-view@ovh-ux/ovh-angular-list-view#^0.1.5:
   version "0.1.5"
   resolved "https://codeload.github.com/ovh-ux/ovh-angular-list-view/tar.gz/e0b8ed735bc2431f10f32f73d665d78da93dd77a"
