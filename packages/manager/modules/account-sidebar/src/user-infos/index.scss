@@ -8,9 +8,10 @@
   text-align: center;
   border-radius: $hub-border-radius-default;
   padding: 0.25rem;
+  color: $hub-text-color;
 
   hr {
-    height: 2px;
+    height: 1px;
     border: 0;
     color: #eee;
     background-color: #eee;
@@ -46,6 +47,7 @@
       font-size: 1rem;
       vertical-align: middle;
       margin-left: 0.2rem;
+      font-weight: 600;
     }
 
     button.btn.btn-link {
@@ -54,16 +56,7 @@
 
       span {
         color: $p-500;
-        font-weight: bold;
-      }
-    }
-
-    &__expanded {
-      button.btn.btn-link {
-        display: inline-block;
-        padding: 0;
-        max-width: 8rem;
-        margin-top: 1rem;
+        font-weight: 600;
       }
     }
 
@@ -81,7 +74,7 @@
 
     .btn.btn-link {
       color: $p-500;
-      font-weight: bold;
+      font-weight: 600;
 
       &:hover {
         color: $p-700;
