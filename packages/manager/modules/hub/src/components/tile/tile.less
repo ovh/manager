@@ -1,47 +1,38 @@
 ovh-manager-hub-tile {
-  @import 'ovh-ui-kit/packages/oui-color/_variables';
-  @import 'ovh-ui-kit/packages/oui-responsive/_variables';
-
-  @text-color: rgb(40, 85, 196);
+  @import 'oui4/dist/less/_tokens';
 
   .ovh-manager-hub-tile {
-    padding: 1rem;
-    border-radius: 0.5rem;
-    box-shadow: 0 0 8px 0 @oui-color-mischka;
-
-    .oui-tile__title {
-      color: @oui-color-sapphire;
-      font-weight: bold;
-      margin-bottom: 0;
-    }
+    padding: @base-spacing-medium;
+    border-radius: @base-border-radius-large;
+    box-shadow: @base-box-shadow-secondary;
 
     &__badge {
-      color: @text-color;
-      background-color: @oui-color-charlotte;
-      font-size: 0.9rem;
+      background-color: @p-100;
+      color: @p-700;
+      font-size: @mercury-font-size;
       line-height: 1.6rem;
       margin-left: 0.3rem;
       overflow: unset;
     }
 
     .hub-button {
-      border-radius: 0.5rem;
+      border-radius: @base-border-radius-large;
 
       .oui-icon::before {
-        color: @text-color;
+        color: @p-500;
         font-size: 1.5rem;
       }
 
       &:hover {
-        background-color: @oui-color-charlotte;
-        box-shadow: 1px -1px 5px 1px @oui-color-mischka;
+        background-color: @p-100;
+        box-shadow: @base-box-shadow-primary;
       }
 
       &:visited {
-        color: @text-color;
+        color: @p-700;
       }
 
-      @media screen and (max-width: (@oui-responsive-breakpoint-phone - 1)) {
+      @media screen and (max-width: @device-breakpoint-phone-max-width) {
         margin-right: 0;
 
         &:hover {
