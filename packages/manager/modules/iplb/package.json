@@ -17,7 +17,7 @@
     "moment": "^2.19"
   },
   "peerDependencies": {
-    "@ovh-ux/manager-core": "^8.0.0",
+    "@ovh-ux/manager-core": "^8.0.0 || ^9.0.0",
     "@ovh-ux/ng-at-internet": "^4.0.0",
     "@ovh-ux/ng-ovh-cloud-universe-components": "^1.4.0",
     "@ovh-ux/ng-ovh-doc-url": "^1.0.0",

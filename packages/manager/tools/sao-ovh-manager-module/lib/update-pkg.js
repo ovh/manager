@@ -12,7 +12,7 @@ module.exports = ({ name, description }) => ({
   author: 'OVH SAS',
   main: './src/index.js',
   peerDependencies: {
-    '@ovh-ux/manager-core': '^7.5.0',
+    '@ovh-ux/manager-core': '^9.0.0',
     '@uirouter/angularjs': '^1.0.23',
     angular: '^1.7.5',
     'angular-translate': '^2.18.1',

@@ -20,7 +20,7 @@
     "oui4": "npm:@ovh-ux/ui-kit"
   },
   "peerDependencies": {
-    "@ovh-ux/manager-core": "^8.0.0",
+    "@ovh-ux/manager-core": "^8.0.0 || ^9.0.0",
     "@ovh-ux/manager-ng-layout-helpers": "^0.0.0 || ^1.0.0",
     "@ovh-ux/ng-at-internet": "^5.0.0",
     "@ovh-ux/ng-ovh-api-wrappers": "^3.0.0",
