@@ -3,13 +3,17 @@
 
   $notification-pill-font-color: $p-000-white;
   $notification-pill-bg-color: #b91a1a;
-  $notification-pill-size: 1.3rem;
+  $notification-pill-size: 1.2rem;
 
   text-align: center;
 
   > a {
     color: $hub-title-color;
     font-weight: 600;
+
+    &:hover {
+      text-decoration: none;
+    }
   }
 
   &_icon {
@@ -20,21 +24,26 @@
     background-color: $p-000-white;
     border-radius: 0.4rem;
     position: relative;
+
+    &:hover {
+      background-color: $p-200;
+    }
   }
 
   &_description {
     font-size: 0.8rem;
-    font-weight: bold;
+    font-weight: 600;
   }
 
   .oui-icon {
     font-size: 2rem;
     margin-top: 1rem;
-    background-color: $p-000-white;
     color: $hub-title-color;
   }
 
   &_notification {
+    font-size: 0.75rem;
+    font-weight: bold;
     color: $notification-pill-font-color;
     background-color: $notification-pill-bg-color;
     border-radius: $notification-pill-size;

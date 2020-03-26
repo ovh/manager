@@ -20,11 +20,11 @@
         />
         <oui-skeleton size="s" data-ng-if="$ctrl.isLoading"> </oui-skeleton>
         <div class="m-auto p-1 minw-0" data-ng-if="!$ctrl.isLoading">
-            <strong
-                class="d-block"
-                data-translate="hub_payment_mean_title"
-            ></strong>
-            <div data-ng-if="$ctrl.paymentMethod">
+            <h3 data-translate="hub_payment_mean_title"></h3>
+            <div
+                data-ng-if="$ctrl.paymentMethod"
+                class="manager-hub-payment-mean_label"
+            >
                 <p
                     class="m-0 text-truncate"
                     data-ng-bind=":: $ctrl.paymentMethod.label"

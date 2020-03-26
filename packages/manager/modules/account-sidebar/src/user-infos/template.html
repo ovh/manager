@@ -1,10 +1,6 @@
 <div class="manager-hub-user-infos">
     <a
-        class="manager-hub-user-infos_initials"
-        data-ng-class="{
-            'manager-hub-user-infos_initials-centered': !$ctrl.isExpanded,
-            'float-left': $ctrl.isExpanded
-          }"
+        class="manager-hub-user-infos_initials manager-hub-user-infos_initials-centered"
         data-ng-if="$ctrl.me"
         aria-label="{{:: 'hub_user_account' | translate }}"
         data-ng-bind="$ctrl.getNameInitials()"
@@ -12,7 +8,7 @@
         data-track-on="click"
         data-track-name="hub::sidebar::profile::go-to-account"
     ></a>
-    <p class="oui-chip" data-ng-if="!$ctrl.isExpanded">
+    <p class="oui-chip">
         <oui-skeleton
             class="mx-auto"
             data-ng-if="$ctrl.loading"
@@ -27,13 +23,7 @@
     <p data-ng-if="!$ctrl.me">
         <oui-skeleton class="mx-auto" data-size="s"></oui-skeleton>
     </p>
-    <div
-        class="manager-hub-user-infos_user-name mb-2"
-        data-ng-class="{
-         'manager-hub-user-infos_user-name__expanded': $ctrl.isExpanded,
-       }"
-        data-ng-if="$ctrl.me"
-    >
+    <div class="manager-hub-user-infos_user-name mb-2" data-ng-if="$ctrl.me">
         <button
             type="button"
             role="button"
@@ -70,36 +60,34 @@
         <div>
             <span
                 class="manager-hub-user-infos_role oui-status oui-status_warning"
-                data-ng-if="!$ctrl.isExpanded && $ctrl.role"
+                data-ng-if="$ctrl.role"
                 data-ng-bind=":: ('hub_user_role_' + $ctrl.role) | translate"
             >
             </span>
         </div>
     </div>
-    <div data-ng-if="!$ctrl.isExpanded">
-        <p data-ng-if="!$ctrl.me">
-            <oui-skeleton class="mx-auto" data-size="m"></oui-skeleton>
-            <oui-skeleton class="mx-auto" data-size="s"></oui-skeleton>
-        </p>
-        <p data-ng-if="$ctrl.me">
-            <span
-                class="d-block manager-hub-user-infos_text-small"
-                data-ng-if="$ctrl.me.organisation"
-                data-ng-bind="$ctrl.me.organisation"
-            >
-            </span>
-            <span
-                class="d-block manager-hub-user-infos_text-small text-break"
-                data-ng-bind="$ctrl.me.email"
-            >
-            </span>
-            <span
-                class="d-block manager-hub-user-infos_text-small"
-                data-ng-if="$ctrl.me.email !== $ctrl.me.nichandle"
-                data-ng-bind="$ctrl.me.nichandle"
-            ></span>
-        </p>
-    </div>
+    <p data-ng-if="!$ctrl.me">
+        <oui-skeleton class="mx-auto" data-size="m"></oui-skeleton>
+        <oui-skeleton class="mx-auto" data-size="s"></oui-skeleton>
+    </p>
+    <p data-ng-if="$ctrl.me">
+        <span
+            class="d-block manager-hub-user-infos_text-small"
+            data-ng-if="$ctrl.me.organisation"
+            data-ng-bind="$ctrl.me.organisation"
+        >
+        </span>
+        <span
+            class="d-block manager-hub-user-infos_text-small text-break"
+            data-ng-bind="$ctrl.me.email"
+        >
+        </span>
+        <span
+            class="d-block manager-hub-user-infos_text-small"
+            data-ng-if="$ctrl.me.email !== $ctrl.me.nichandle"
+            data-ng-bind="$ctrl.me.nichandle"
+        ></span>
+    </p>
     <div
         class="text-left manager-hub-user-infos_links"
         data-ng-if="$ctrl.isExpanded"

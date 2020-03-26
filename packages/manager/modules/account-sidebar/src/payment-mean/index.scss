@@ -11,11 +11,25 @@
     outline: inherit;
     width: 100%;
     text-decoration: none;
+    transition: background-color 250ms;
+  }
+
+  > a:hover {
+    background-color: $p-200;
   }
 
   img {
-    width: 24px;
-    height: 24px;
+    width: 2.5rem;
+  }
+
+  h3 {
+    font-size: 0.85rem;
+    margin: 0;
+    padding: 0;
+  }
+
+  &_label {
+    font-size: 0.75rem;
   }
 
   &_status {
@@ -25,5 +39,9 @@
 
   .oui-icon {
     color: $hub-title-color;
+  }
+
+  .oui-icon-arrow-right_extra-thin {
+    color: $p-500;
   }
 }
