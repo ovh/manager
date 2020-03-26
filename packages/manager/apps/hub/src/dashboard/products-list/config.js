@@ -15,7 +15,10 @@ const matchingTypes = {
   string: 'string',
 };
 
-const mapApiProperties = (properties) =>
+const getSorting = ({ sort, sortOrder }, property) =>
+  sort === property ? sortOrder.toLowerCase() : true;
+
+const mapApiProperties = (properties, sorting) =>
   map(properties, (value, name) => ({
     title: name,
     property: name,
@@ -24,10 +27,10 @@ const mapApiProperties = (properties) =>
       : matchingTypes[value.type],
     searchable: true,
     filterable: true,
-    sortable: true,
+    sortable: getSorting(sorting, name),
   }));
 
-const getFirstColumnTemplate = (propertyId) => ({
+const getFirstColumnTemplate = (propertyId, sorting) => ({
   title: propertyId,
   property: propertyId,
   template: `
@@ -39,7 +42,7 @@ const getFirstColumnTemplate = (propertyId) => ({
     `,
   searchable: true,
   filterable: true,
-  sortable: 'asc',
+  sortable: getSorting(sorting, propertyId),
 });
 
 export const urlQueryParams = `columns&${ListLayoutHelper.urlQueryParams}`;
@@ -88,11 +91,18 @@ export const resolves = {
       'url',
     ),
   }),
-  columns: /* @ngInject */ (dataModel, displayedColumns, propertyId) => {
-    const columns = mapApiProperties(dataModel.properties).filter(
-      ({ title, type }) => type && title !== propertyId,
-    );
-    columns.unshift(getFirstColumnTemplate(propertyId));
+  columns: /* @ngInject */ (
+    dataModel,
+    displayedColumns,
+    propertyId,
+    sort,
+    sortOrder,
+  ) => {
+    const columns = mapApiProperties(dataModel.properties, {
+      sort,
+      sortOrder,
+    }).filter(({ title, type }) => type && title !== propertyId);
+    columns.unshift(getFirstColumnTemplate(propertyId, { sort, sortOrder }));
     return columns.map((column, index) => ({
       ...column,
       title: startCase(column.title),
