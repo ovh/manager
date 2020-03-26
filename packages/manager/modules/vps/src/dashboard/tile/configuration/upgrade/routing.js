@@ -77,16 +77,19 @@ export default /* @ngInject */ ($stateProvider) => {
       upgradeOrderId: /* @ngInject */ ($transition$) =>
         $transition$.params().upgradeOrderId,
 
+      upgradeSuccess: /* @ngInject */ (upgradeStatus) =>
+        upgradeStatus === 'success',
+
       redirectTo: () => 'vps.detail.dashboard',
 
       upgradeInfo: /* @ngInject */ (
         configurationTile,
         serviceName,
-        upgradeStatus,
+        upgradeSuccess,
         upgradeType,
         vpsUpgrade,
       ) => {
-        if (upgradeStatus === 'success') {
+        if (upgradeSuccess) {
           return true;
         }
 
@@ -111,11 +114,11 @@ export default /* @ngInject */ ($stateProvider) => {
       heading: /* @ngInject */ (
         $translate,
         stateVps,
-        upgradeStatus,
+        upgradeSuccess,
         upgradeType,
         vps,
       ) => {
-        if (upgradeStatus === 'success') {
+        if (upgradeSuccess) {
           return $translate.instant(
             'vps_dashboard_tile_configuration_upgrade_success_title',
           );
@@ -136,11 +139,10 @@ export default /* @ngInject */ ($stateProvider) => {
         return $translate.instant(translationKey, translationValues);
       },
 
-      primaryLabel: /* @ngInject */ ($translate, upgradeStatus) => {
-        const translationKey =
-          upgradeStatus === 'success'
-            ? 'vps_dashboard_tile_configuration_upgrade_success_follow_order'
-            : 'vps_dashboard_tile_configuration_upgrade_action_validate_and_pay';
+      primaryLabel: /* @ngInject */ ($translate, upgradeSuccess) => {
+        const translationKey = upgradeSuccess
+          ? 'vps_dashboard_tile_configuration_upgrade_success_follow_order'
+          : 'vps_dashboard_tile_configuration_upgrade_action_validate_and_pay';
 
         return $translate.instant(translationKey);
       },
@@ -156,11 +158,11 @@ export default /* @ngInject */ ($stateProvider) => {
         loaders,
         serviceName,
         upgradeOrderId,
-        upgradeStatus,
+        upgradeSuccess,
         upgradeType,
         vpsUpgrade,
       ) => () => {
-        if (upgradeStatus === 'success') {
+        if (upgradeSuccess) {
           return $window.location.replace(
             `${get(
               ORDER_TRACKING_URLS,
@@ -185,13 +187,16 @@ export default /* @ngInject */ ($stateProvider) => {
               return $window.location.replace(order.url);
             }
 
-            return goToUpgradeSuccess({
-              upgradeStatus: 'success',
-              upgradeOrderId: order.orderId,
-            }, {
-              location: false,
-              reload: 'vps.detail.dashboard',
-            });
+            return goToUpgradeSuccess(
+              {
+                upgradeStatus: 'success',
+                upgradeOrderId: order.orderId,
+              },
+              {
+                location: false,
+                reload: 'vps.detail.dashboard',
+              },
+            );
           })
           .catch((error) =>
             goBack(
