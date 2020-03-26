@@ -1,4 +1,5 @@
 .manager-hub-payment-mean {
+  @import 'oui4/dist/scss/_tokens';
   @import '@ovh-ux/manager-hub/src/variables.scss';
 
   > a {
@@ -24,6 +25,6 @@
   }
 
   .oui-icon {
-    color: $hub-title-color;
+    color: $p-800;
   }
 }

@@ -4,6 +4,7 @@
   @import '~bootstrap/scss/_mixins';
   @import '~bootstrap/scss/_utilities.scss';
   @import '@ovh-ux/manager-hub/src/variables.scss';
+  @import 'oui4/dist/scss/_tokens';
 
   &_button {
     @include hub-link-button;
@@ -15,8 +16,8 @@
   padding: $hub-tile-padding;
 
   > h3 {
-    font-size: $hub-subtitle-size;
-    font-weight: $hub-subtitle-weight;
+    font-size: $jupiter-font-size;
+    font-weight: $jupiter-font-weight;
   }
 
   a.oui-status {
