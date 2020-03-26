@@ -132,6 +132,8 @@ export default {
     help: {
       US: 'https://us.ovhcloud.com/support',
     },
+    order: `${managerRoot.US}/${universes.dedicated}/${URI.order}`,
+    orders: `${managerRoot.US}/${universes.dedicated}/${URI.orders}`,
     paymentMethod: `${managerRoot.US}/${universes.dedicated}/${URI.paymentMethod}`,
     services: '',
     support: `${managerRoot.US}/${universes.dedicated}/${URI.support}`,
