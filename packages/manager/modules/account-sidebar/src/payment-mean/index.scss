@@ -1,10 +1,9 @@
 .manager-hub-payment-mean {
+  @import 'oui4/dist/scss/_tokens';
   @import '@ovh-ux/manager-hub/src/variables.scss';
 
-  $payment-bg-color: #bef1ff;
-
   > a {
-    background: $payment-bg-color;
+    background: $p-100;
     border-radius: 0.5rem;
     color: inherit;
     border: none;
@@ -40,7 +39,7 @@
   }
 
   .oui-icon {
-    color: $hub-title-color;
+    color: $p-800;
   }
 
   .oui-icon-arrow-right_extra-thin {

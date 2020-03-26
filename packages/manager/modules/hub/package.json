@@ -16,7 +16,8 @@
   },
   "devDependencies": {
     "bootstrap": "^4.4.1",
-    "lodash": "^4.17.15"
+    "lodash": "^4.17.15",
+    "oui4": "npm:@ovh-ux/ui-kit"
   },
   "peerDependencies": {
     "@ovh-ux/manager-core": "^8.0.0",
