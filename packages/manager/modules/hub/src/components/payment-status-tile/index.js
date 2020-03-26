@@ -8,7 +8,6 @@ import ovhManagerHubTileError from '../tile-error';
 import ovhManagerProducts from '../products';
 
 import './payment-status-tile.scss';
-import './payment-status-tile.less';
 
 const moduleName = 'ovhManagerHubPaymentStatusTile';
 
