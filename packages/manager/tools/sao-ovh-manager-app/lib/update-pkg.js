@@ -22,7 +22,7 @@ module.exports = ({ name }) => ({
   },
   dependencies: {
     '@ovh-ux/manager-config': '^0.4.0',
-    '@ovh-ux/manager-core': '^7.5.0',
+    '@ovh-ux/manager-core': '^9.0.0',
     [`@ovh-ux/manager-${name}`]: '^0.0.0',
     '@ovh-ux/ng-ovh-api-wrappers': '^4.0.4',
     '@ovh-ux/ng-ovh-http': '^4.0.4',
