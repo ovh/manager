@@ -1,4 +1,7 @@
-import { ERROR_STATUS } from '@ovh-ux/ng-ovh-order-tracking';
+import {
+  WAITING_PAYMENT_LABEL,
+  ERROR_STATUS,
+} from '@ovh-ux/ng-ovh-order-tracking';
 import maxBy from 'lodash/maxBy';
 
 export default class ManagerHubBillingSummaryCtrl {
@@ -17,6 +20,10 @@ export default class ManagerHubBillingSummaryCtrl {
     this.orderTrackingLink = this.RedirectionService.getURL('order', {
       orderId: this.order.orderId,
     });
+
+    if (this.currentStatus.label === WAITING_PAYMENT_LABEL) {
+      this.isWaitingPayment = true;
+    }
   }
 
   refreshTile() {

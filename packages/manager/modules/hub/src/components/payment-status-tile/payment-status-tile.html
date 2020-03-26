@@ -48,7 +48,7 @@
                                     data-ng-bind="::service.domain"
                                 ></span>
                                 <p
-                                    class="mb-0"
+                                    class="mb-0 hub-payment-status_small"
                                     data-translate="{{:: 'manager_hub_products_' + service.serviceType }}"
                                 ></p>
                             </td>
@@ -74,10 +74,6 @@
                                             }"
                                         data-ng-if="!service.hasDebt() && !service.isOneShot()"
                                         data-translate="{{:: 'ovh_manager_hub_payment_status_tile_status_' + service.getRenew() | translate }}"
-                                    ></span>
-                                    <span
-                                        data-ng-if="service.hasDebt()"
-                                        data-translate="ovh_manager_hub_payment_status_tile_now"
                                     ></span>
                                 </div>
                                 <div class="d-lg-inline mb-1">
@@ -106,6 +102,10 @@
                                         data-ng-bind="service.formattedExpiration"
                                     >
                                     </span>
+                                    <span
+                                        data-ng-if="service.hasDebt()"
+                                        data-translate="ovh_manager_hub_payment_status_tile_now"
+                                    ></span>
                                 </div>
                             </td>
                             <td

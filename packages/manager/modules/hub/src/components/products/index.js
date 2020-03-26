@@ -5,6 +5,7 @@ import '@ovh-ux/ng-at-internet';
 import hubTile from '../tile';
 
 import component from './products.component';
+import './index.scss';
 
 const moduleName = 'ovhManagerHubProducts';
 
