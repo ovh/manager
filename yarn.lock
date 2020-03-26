@@ -1888,20 +1888,6 @@
   dependencies:
     "@types/node" ">= 8"
 
-"@ovh-ux/ng-at-internet-ui-router-plugin@^2.0.4":
-  version "2.0.4"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-at-internet-ui-router-plugin/-/ng-at-internet-ui-router-plugin-2.0.4.tgz#8ec418910ef9ffa8bb353894de3d5842cf9f9384"
-  integrity sha512-GkqSJfu2r5ZexykPc7QYmu97SSN3St7pA+IjkH8lpBGscPOE6r1H82ljBpA3m2pXxApC9+FTzvVlu+eTN+DCMA==
-  dependencies:
-    lodash "^4.17.15"
-
-"@ovh-ux/ng-at-internet@^4.0.4":
-  version "4.0.4"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-at-internet/-/ng-at-internet-4.0.4.tgz#a40933f0af18548fd8e94c5d8c105bb0ff6c79af"
-  integrity sha512-T4tpI083V8b9qm11HPl+ImzGgv3tTsPJ+y7v0InA9mDdM00RZNp/3mm+qJBQnqQe8kCrLn+OBgabjknlHpS2Mg==
-  dependencies:
-    lodash "^4.17.15"
-
 "@ovh-ux/ng-ovh-actions-menu@^5.0.4":
   version "5.0.4"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-actions-menu/-/ng-ovh-actions-menu-5.0.4.tgz#10cce5e9cbd768b1c79680ecc523ddc5ca52c778"

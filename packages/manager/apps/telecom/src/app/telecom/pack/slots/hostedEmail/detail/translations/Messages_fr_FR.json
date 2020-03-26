@@ -49,7 +49,7 @@
   "hosted_email_detail_client_delete_account_confirm": "Confirmer la suppression",
   "hosted_email_detail_client_delete_account_success": "Votre compte {{email}} est en cours de suppression.",
   "hosted_email_detail_client_delete_account_error": "Oups ! La suppression du compte a échoué.",
-  "input_password_strength":"Robustesse du mot de passe : ",
+  "input_password_strength":"Robustesse du mot de passe :",
   "input_password_danger":"Faible",
   "input_password_warning":"Bonne",
   "input_password_success":"Élevée"

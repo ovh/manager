@@ -57,7 +57,7 @@ export default class PackHostedEmailDetailCtrl {
       });
   }
 
-  toHuman(valueParam) {
+  convertToReadableValue(valueParam) {
     let value = valueParam;
     const orig = value;
     const units = [
@@ -124,11 +124,10 @@ export default class PackHostedEmailDetailCtrl {
         };
         return this.configuration;
       })
-      .catch((err) => {
+      .catch(() => {
         this.TucToast.error(
           this.$translate.instant('hosted_email_detail_loading_error'),
         );
-        return this.$q.reject(err);
       });
   }
 
@@ -150,15 +149,14 @@ export default class PackHostedEmailDetailCtrl {
             `hosted_email_detail_${snakeCase(this.account.offer)}`,
           ),
         };
-        this.account.quota = this.toHuman(account.quota.value);
-        this.account.size = this.toHuman(account.size.value);
+        this.account.quota = this.convertToReadableValue(account.quota.value);
+        this.account.size = this.convertToReadableValue(account.size.value);
         return this.account;
       })
-      .catch((error) => {
+      .catch(() => {
         this.TucToast.error(
           this.$translate.instant('hosted_email_detail_loading_error'),
         );
-        return this.$q.reject(error);
       });
   }
 
@@ -187,19 +185,17 @@ export default class PackHostedEmailDetailCtrl {
         );
         return this.$state.go('telecom.packs.pack');
       })
-      .catch((error) => {
+      .catch(() => {
         this.TucToast.error(
           this.$translate.instant('hosted_email_detail_change_password_error'),
         );
-        return this.$q.reject(error);
       })
       .finally(() => {
         this.changingPassword = false;
       });
   }
 
-  // eslint-disable-next-line class-methods-use-this
-  getStrength(val) {
+  static getPasswordStrength(val) {
     return (val.length - 8) / 12;
   }
 
