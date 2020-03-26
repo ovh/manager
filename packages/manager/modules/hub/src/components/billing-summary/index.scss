@@ -1,7 +1,7 @@
-@import '@ovh-ux/manager-hub/src/variables.scss';
-
 .manager-hub-billing-summary {
-  $bg-color: #4495ee;
+  @import '@ovh-ux/manager-hub/src/variables.scss';
+
+  $bg-color: $p-300;
   $bg-image: url('./assets/background.svg');
 
   background-color: $bg-color;
@@ -44,6 +44,8 @@
 
   .oui-ui-select {
     width: 100%;
+    max-width: 15rem;
+    margin: auto;
     padding: 0 1rem;
 
     button {
@@ -60,6 +62,15 @@
       box-shadow: none;
       width: calc(100% - 2rem);
       left: 1rem;
+
+      .ui-select-choices-row {
+        font-weight: 600;
+
+        &:hover {
+          color: $p-000-white;
+          background-color: $p-700;
+        }
+      }
     }
 
     .oui-icon::before {

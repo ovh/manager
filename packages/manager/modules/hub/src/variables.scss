@@ -1,4 +1,4 @@
-@import 'oui4/dist/scss/tokens/_colors.scss';
+@import 'oui4/dist/scss/_tokens';
 
 $hub-brand-color: #001191;
 
@@ -28,6 +28,7 @@ $hub-border-radius-default: 6pt;
   border-radius: 0.5rem;
   padding: 0.25rem 0.5rem 0.25rem 0.5rem;
   font-weight: 600;
+  transition: box-shadow 0.2s ease-in;
 
   .oui-icon {
     color: $hub-button-fg-color;
@@ -37,6 +38,8 @@ $hub-border-radius-default: 6pt;
 
   &:hover {
     color: $hub-button-fg-color;
+    background-color: $p-700;
+    box-shadow: $base-box-shadow-secondary;
     text-decoration: none;
   }
 }
