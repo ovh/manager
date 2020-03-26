@@ -16,6 +16,7 @@ import navbarComponent from './component';
 import service from './service';
 
 import './index.less';
+import './index.scss';
 
 const moduleName = 'ovhManagerNavbar';
 
