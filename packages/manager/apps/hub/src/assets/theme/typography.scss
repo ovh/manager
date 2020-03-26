@@ -1,18 +1,27 @@
-@import 'oui4/dist/scss/tokens/_colors.scss';
+@import 'oui4/dist/scss/_tokens';
 @import '@ovh-ux/manager-hub/src/variables.scss';
+
+span,
+p {
+  color: $p-800-text;
+}
 
 h1,
 h2 {
-  font-size: $hub-title-size;
-  font-weight: $hub-title-weight;
-  color: $hub-title-color;
+  font-size: $saturn-font-size;
+  font-weight: $saturn-font-weight;
+  color: $p-800;
   margin-top: 1rem;
 }
 
 h3 {
-  font-size: $hub-subtitle-size;
-  font-weight: $hub-subtitle-weight;
-  color: $hub-title-color;
+  font-size: $jupiter-font-size;
+  font-weight: $jupiter-font-weight;
+  color: $p-800;
+
+  * {
+    color: inherit;
+  }
 }
 
 a,
@@ -20,4 +29,14 @@ a,
   color: $p-500;
   font-weight: $hub-font-weight-semibold;
   text-decoration: none;
+
+  * {
+    color: inherit;
+  }
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: $p-700;
+  }
 }

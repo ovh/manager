@@ -1,21 +1,26 @@
-@import 'oui4/dist/scss/tokens/_colors.scss';
-@import '@ovh-ux/manager-hub/src/variables.scss';
-
 .oui-navbar {
+  @import '~oui4/dist/scss/_tokens';
+
+  background-color: $p-000-white;
   background-color: initial;
-  box-shadow: 0 0 6px 0 rgba(0, 14, 156, 0.2);
+  box-shadow: $base-box-shadow-primary;
   z-index: 100;
 
   .oui-navbar__brand {
-    color: $hub-brand-color;
+    color: $p-700;
   }
 
   .oui-navbar-link {
-    color: $p-500;
-    font-weight: bold;
+    color: $p-800-text !important;
+    font-weight: normal !important;
 
     .oui-icon {
-      color: $p-500;
+      color: $p-500 !important;
+    }
+
+    &_tertiary {
+      font-weight: bold !important;
+      color: $p-500 !important;
     }
   }
 
@@ -28,9 +33,8 @@
   }
 
   .oui-navbar-link_primary {
-    color: $hub-text-color;
-    font-weight: $hub-text-weight;
-    font-size: $hub-font-size;
+    color: $p-000-white;
+    font-size: 1rem;
     line-height: 0.5rem;
     padding-top: 1.2rem;
     border-bottom: 2px solid transparent;

@@ -1,4 +1,3 @@
-import 'ovh-ui-kit/dist/oui.css';
 import ngAtInternet from '@ovh-ux/ng-at-internet';
 import '@ovh-ux/ng-translate-async-loader';
 import 'ovh-ui-angular';
@@ -9,7 +8,6 @@ import ovhManagerHubTileError from '../tile-error';
 import ovhManagerProducts from '../products';
 
 import './payment-status-tile.scss';
-import './payment-status-tile.less';
 
 const moduleName = 'ovhManagerHubPaymentStatusTile';
 
