@@ -95,10 +95,8 @@ export const stateResolves = {
 
   filter: /* @ngInject */ ($transition$) => $transition$.params().filter,
 
-  sort: /* @ngInject */ (resources) =>
-    get(resources.headers, 'x-pagination-sort'),
-  sortOrder: /* @ngInject */ (resources) =>
-    get(resources.headers, 'x-pagination-sort-order'),
+  sort: /* @ngInject */ ($transition$) => $transition$.params().sort,
+  sortOrder: /* @ngInject */ ($transition$) => $transition$.params().sortOrder,
 };
 
 export const stateParams = {
