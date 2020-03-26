@@ -28,9 +28,9 @@ import dashboard from './dashboard';
 
 import controller from './controller';
 import routing from './routing';
+import 'ovh-ui-kit/dist/oui.css';
 import './index.less';
 import './index.scss';
-import 'ovh-ui-kit/dist/oui.css';
 
 Environment.setRegion(__WEBPACK_REGION__);
 Environment.setVersion(__VERSION__);
