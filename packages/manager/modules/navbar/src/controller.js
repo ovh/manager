@@ -98,7 +98,7 @@ export default class {
           return {
             ...omit(link, 'url'),
             ...(isEmpty(this.sidebarLinks)
-              ? { url: '#' }
+              ? { url: link.url }
               : { subLinks: this.sidebarLinks }),
             click: () => this.universeClick(),
           };

@@ -1,198 +1,195 @@
-@import '~ovh-ui-kit/packages/oui/_settings';
-@import '~ovh-ui-kit/packages/oui-color/_variables';
-@import '~ovh-ui-kit/packages/oui-icons/_icons';
-@import '~ovh-ui-kit/packages/oui-navbar/_variables';
-@import '~ovh-ui-kit/packages/oui-responsive/_variables';
-@import '~ovh-ui-kit/packages/oui-typography/_variables';
-@import '~@ovh-ux/manager-account-sidebar/src/variables.less';
+ovh-manager-navbar {
+  @import 'oui4/dist/less/_tokens';
+  @import '~ovh-ui-kit/packages/oui/_settings';
+  @import '~ovh-ui-kit/packages/oui-icons/_icons';
+  @import '~ovh-ui-kit/packages/oui-navbar/_variables';
+  @import '~ovh-ui-kit/packages/oui-typography/_variables';
+  @import '~@ovh-ux/manager-account-sidebar/src/variables.less';
 
-.oui-navbar-link_active {
-  .oui-navbar-link::after {
-    content: @oui-icon-index-chevron-left;
-  }
-}
-
-.oui-navbar-menu_toggle {
-  button.oui-navbar-link::after {
-    content: @oui-icon-index-chevron-right;
-    font-family: @oui-global-base-font-family-icon;
-    font-size: @oui-navbar-arrow-size;
-    color: @oui-navbar-arrow-color;
-    padding: 0;
-    position: absolute;
-    top: 50%;
-    right: @oui-navbar-arrow-size;
-    transform: translateY(-50%);
-  }
-}
-
-.oui-navbar-menu {
-  @navbar-menu-background-color: #f1f5f9;
-  @navbar-menu-content-background-color: #ffffff;
-  @navbar-menu-content-hover-background-color: #bef1ff;
-  @navbar-alert-error-background-color: #c11b1b;
-  @navbar-alert-info-background-color: #0050d7;
-  @navbar-menu-content-color: #113f6d;
-  @navbar-menu-content-shadow-color: #e3e6e8;
-
-  top: @oui-navbar-height;
-
-  .oui-navbar-list {
-    background-color: @navbar-menu-background-color;
-  }
-
-  .oui-navbar-notification {
-    flex-direction: column;
-  }
-
-  .oui-navbar-notification:hover {
-    background-color: @navbar-menu-background-color;
-  }
-
-  .manager-navbar-notification_header {
-    font-size: 1.1rem;
-    font-weight: bold;
-    margin-bottom: 10px;
-  }
-
-  .oui-navbar-notification__header {
-    max-width: 8rem;
-  }
-
-  .oui-navbar-notification__description {
-    max-height: none;
-  }
-
-  .oui-navbar-menu__item {
-    border-bottom: none;
-  }
-
-  .oui-navbar-menu__item_active {
-    background-color: @navbar-menu-background-color;
-  }
-
-  .manager-navbar-notification_content {
-    display: flex;
-    margin-bottom: 10px;
-    padding: 15px 10px;
-    background-color: @navbar-menu-content-background-color;
-    border-radius: 10px;
-    text-decoration: none;
-    color: @navbar-menu-content-color;
-    box-shadow: 0 0.5rem 0.8rem 0 @navbar-menu-content-shadow-color;
-  }
-
-  .manager-navbar-notification_content:hover {
-    text-decoration: none !important;
-    background-color: @navbar-menu-content-hover-background-color;
-  }
-
-  .oui-status {
-    padding: 0 0.625rem;
-    border-radius: 10pt;
-    margin-left: 5px;
-    font-size: 0.8rem;
-    font-weight: bold;
-    color: @navbar-menu-content-background-color;
-  }
-
-  .oui-status_error {
-    background-color: @navbar-alert-error-background-color;
-  }
-
-  .oui-status_info {
-    background-color: @navbar-alert-info-background-color;
-  }
-}
-
-@media screen and (min-width: 1024px) {
-  .manager-navbar-menu.oui-navbar-menu_notifications > .oui-navbar-list {
-    max-height: none;
-  }
-
-  .manager-navbar-menu {
-    .oui-navbar-notification__action {
-      visibility: hidden;
-    }
-
-    .manager-navbar-notification_content:hover .oui-navbar-notification__action {
-      visibility: visible;
+  .oui-navbar-link_active {
+    .oui-navbar-link::after {
+      content: @oui-icon-index-chevron-left;
     }
   }
-}
 
-@media screen and (max-width: (@oui-responsive-breakpoint-medium - 1px)) {
+  .oui-navbar-menu_toggle {
+    button.oui-navbar-link::after {
+      content: @oui-icon-index-chevron-right;
+      font-family: @oui-global-base-font-family-icon;
+      font-size: @oui-navbar-arrow-size;
+      color: @oui-navbar-arrow-color;
+      padding: 0;
+      position: absolute;
+      top: 50%;
+      right: @oui-navbar-arrow-size;
+      transform: translateY(-50%);
+    }
+  }
+
+  .oui-navbar-menu {
+    @navbar-menu-content-shadow-color: rgba(0, 14, 156, 0.1);
+
+    top: @oui-navbar-height;
+
+    &_panel {
+      background-color: @p-075;
+    }
+
+    .oui-navbar-notification {
+      flex-direction: column;
+      padding: @base-spacing-medium;
+
+      &__header {
+        max-width: 8rem;
+        letter-spacing: @earth-letter-spacing;
+        line-height: @earth-line-height;
+      }
+
+      &__description {
+        max-height: none;
+        font-weight: @venus-font-weight;
+        line-height: @venus-line-height;
+        letter-spacing: @venus-letter-spacing;
+      }
+
+      &__content {
+        color: @p-800-text;
+      }
+    }
+
+    .manager-navbar-notification {
+      &_header {
+        font-size: @mars-font-size;
+        font-weight: bold;
+        margin-bottom: @base-spacing-medium;
+      }
+
+      &_content {
+        padding: @base-spacing-medium;
+        margin-bottom: @base-spacing-medium;
+        background-color: @p-000;
+        border-radius: @base-border-radius-large;
+        text-decoration: none;
+        color: @p-800-text;
+        box-shadow: @base-box-shadow-primary;
+
+        &:hover {
+          text-decoration: none;
+          background-color: @p-100;
+        }
+      }
+    }
+
+    .oui-navbar-menu__item {
+      border-bottom: none;
+
+      &_active {
+        background-color: @p-100;
+      }
+    }
+  }
+
+  @media screen and (min-width: @device-breakpoint-tablet) {
+    ovh-manager-navbar-user-menu {
+      margin-right: @base-spacing-large;
+    }
+
+    .manager-navbar-menu.oui-navbar-menu_notifications > .oui-navbar-list {
+      max-height: none;
+    }
+
+    .manager-navbar-menu {
+      .oui-navbar-notification__action {
+        visibility: hidden;
+      }
+
+      .manager-navbar-notification_content:hover .oui-navbar-notification__action {
+        visibility: visible;
+      }
+    }
+  }
+
+  @media screen and (max-width: (@device-breakpoint-medium - 1px)) {
+    .oui-navbar-link_icon {
+      padding: @oui-navbar-link-padding-h 0;
+    }
+  }
+
   .oui-navbar-link_icon {
-    padding: @oui-navbar-link-padding-h 0;
-  }
-}
+    &,
+    &:focus,
+    &:hover {
+      .oui-icon {
+        margin-right: 0.25rem;
+      }
 
-.oui-navbar-link_icon {
-  &,
-  &:focus,
-  &:hover {
-    .navbar-small-icon {
-      @small-icon-size: 1.25rem;
+      .navbar-small-icon {
+        @small-icon-size: 1.25rem;
 
-      font-size: @small-icon-size;
-      width: @small-icon-size;
-      height: @small-icon-size;
+        font-size: @small-icon-size;
+        width: @small-icon-size;
+        height: @small-icon-size;
+      }
+    }
+
+    .oui-icon__badge {
+      background-color: @ae-500;
     }
   }
-}
 
-.oui-navbar-backdrop {
-  display: none;
-}
-
-ovh-manager-navbar-notifications-menu,
-ovh-manager-navbar-user-menu {
-  button {
-    cursor: pointer;
+  .oui-navbar-backdrop {
+    display: none;
   }
-}
 
-.ovh-manager-navbar-user-menu_expanded {
-  @media screen and (min-width: (@oui-responsive-breakpoint-medium - 1px)) {
+  ovh-manager-navbar-notifications-menu,
+  ovh-manager-navbar-user-menu {
     button {
-      cursor: default;
+      cursor: pointer;
     }
   }
-}
 
-.ovh-sidebar-wrapper {
-  position: absolute;
-  right: 0;
-  z-index: 99;
-  overflow-x: hidden;
-  transition: padding 0.1s ease-out, opacity 0.2s ease-out;
-  box-shadow: @oui-navbar-menu-box-shadow;
-  opacity: 0;
-  padding-left: @ovh-sidebar-width;
-  pointer-events: none;
-
-  .manager-hub-user-panel {
-    width: 0;
+  .ovh-manager-navbar-user-menu_expanded {
+    @media screen and (min-width: (@device-breakpoint-medium - 1px)) {
+      button {
+        cursor: default;
+      }
+    }
   }
 
-  .sidebar-show() {
-    width: @ovh-sidebar-width;
-    padding-left: 0;
-    opacity: 1;
-    pointer-events: auto;
+  .ovh-sidebar-wrapper {
+    position: absolute;
+    right: 0;
+    z-index: 99;
+    overflow-x: hidden;
+    transition: padding 0.1s ease-out, opacity 0.2s ease-out;
+    box-shadow: @oui-navbar-menu-box-shadow;
+    opacity: 0;
+    padding-left: @ovh-sidebar-width;
+    pointer-events: none;
 
     .manager-hub-user-panel {
-      width: @ovh-sidebar-width;
+      width: 0;
     }
-  }
 
-  &.sidebar-expand {
-    @media screen and (min-width: (@oui-responsive-breakpoint-medium - 1px)) {
+    .sidebar-show() {
+      width: @ovh-sidebar-width;
+      padding-left: 0;
+      opacity: 1;
+      pointer-events: auto;
+
+      .manager-hub-user-panel {
+        width: @ovh-sidebar-width;
+      }
+    }
+
+    &.sidebar-expand {
+      @media screen and (min-width: (@device-breakpoint-medium - 1px)) {
+        .sidebar-show();
+      }
+    }
+
+    &[aria-expanded='true'] {
       .sidebar-show();
     }
-  }
-
-  &[aria-expanded='true'] {
-    .sidebar-show();
   }
 }

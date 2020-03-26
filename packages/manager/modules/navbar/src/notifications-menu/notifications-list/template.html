@@ -1,6 +1,6 @@
 <div
     data-ng-repeat="menuLink in $ctrl.sublinks track by menuLink.id"
-    class="manager-navbar-notification_content position-relative"
+    class="manager-navbar-notification_content position-relative d-flex"
 >
     <!-- icon -->
     <span
@@ -37,10 +37,10 @@
     <!-- /Link (href) -->
 
     <button
-        class="oui-navbar-notification_status oui-status"
+        class="oui-status"
         data-ng-class="{
-                'oui-status_error': !menuLink.isActive,
-                'oui-status_info': menuLink.isActive
+                'oui-status_info': !menuLink.isActive,
+                'oui-status_error': menuLink.isActive
             }"
         type="button"
         data-ng-if="!menuLink.isCompleted"
