@@ -19,7 +19,6 @@ import ovhManagerOrderTracking from '@ovh-ux/ng-ovh-order-tracking';
 import get from 'lodash/get';
 import has from 'lodash/has';
 import head from 'lodash/head';
-import set from 'lodash/set';
 
 import atInternet from './components/at-internet';
 import errorPage from './components/error-page';
@@ -67,13 +66,6 @@ angular
 
       $transitions.onSuccess({ to: 'error' }, () => {
         $rootScope.$emit('ovh::sidebar::hide');
-      });
-
-      $transitions.onEnter({}, () => {
-        set($rootScope, 'shouldExpandSidebar', false);
-      });
-      $transitions.onSuccess({ to: 'app.dashboard' }, () => {
-        set($rootScope, 'shouldExpandSidebar', true);
       });
     },
   )

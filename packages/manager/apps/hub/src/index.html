@@ -47,7 +47,7 @@
                     event: 'sidebar:loaded',
                 },
             }"
-            data-sidebar-expand="shouldExpandSidebar"
+            data-sidebar-expand="true"
             data-sidebar-links="{}"
         >
         </ovh-manager-navbar>
@@ -55,15 +55,15 @@
             <div class="position-absolute w-100 h-100">
                 <div class="mb-5" data-ui-view="app">
                     <div
-                        class="hub-main-view pt-4"
-                        data-ng-class="{
-                            'hub-main-view_sidebar_expanded': shouldExpandSidebar
-                         }"
+                        class="hub-main-view hub-main-view_sidebar_expanded pt-4"
                     >
                         <div class="mx-3">
                             <ui-router-breadcrumb></ui-router-breadcrumb>
                         </div>
-                        <div data-ui-view class="container-fluid"></div>
+                        <div
+                            data-ui-view
+                            class="container-fluid hub-main-view_container"
+                        ></div>
                     </div>
                 </div>
             </div>

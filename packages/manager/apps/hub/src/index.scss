@@ -9,3 +9,10 @@
 .minw-0 {
   min-width: 0;
 }
+
+.hub-main-view {
+  &_container {
+    max-width: 80rem; // 1280px with 16px font size
+    margin: auto;
+  }
+}
