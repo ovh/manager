@@ -9,5 +9,6 @@
   "hub_payment_mean_status_MAINTENANCE": "Wartungsarbeiten laufen",
   "hub_payment_mean_status_PAUSED": "Pausiert",
   "hub_payment_mean_status_VALID": "Gültig",
-  "hub_payment_mean_none": "Kein Zahlungsmittel"
+  "hub_payment_mean_none": "Kein Zahlungsmittel",
+  "hub_payment_mean_status_TOO_MANY_FAILURES": "Ungültig"
 }
