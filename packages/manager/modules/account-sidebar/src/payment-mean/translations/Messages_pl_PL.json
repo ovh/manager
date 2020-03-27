@@ -9,5 +9,6 @@
   "hub_payment_mean_status_MAINTENANCE": "Trwają prace konserwacyjne...",
   "hub_payment_mean_status_PAUSED": "Zatrzymana",
   "hub_payment_mean_status_VALID": "Poprawny",
-  "hub_payment_mean_none": "Brak zdefiniowanego sposobu płatności"
+  "hub_payment_mean_none": "Brak zdefiniowanego sposobu płatności",
+  "hub_payment_mean_status_TOO_MANY_FAILURES": "Nieprawidłowy"
 }

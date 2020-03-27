@@ -708,5 +708,6 @@
   "signup_enum_IT_area_VT": "Viterbo (Lázio)",
   "signup_enum_IT_area_BT": "Barletta-Andria-Trani (Puglia)",
   "signup_enum_IT_area_FM": "Fermo (Marche)",
-  "signup_enum_IT_area_MB": "Monza E Brianza (Lombardia)"
+  "signup_enum_IT_area_MB": "Monza E Brianza (Lombardia)",
+  "signup_field_managerLanguage": "Idioma da Área de Cliente"
 }
