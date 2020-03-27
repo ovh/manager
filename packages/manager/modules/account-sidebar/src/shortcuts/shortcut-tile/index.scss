@@ -1,59 +1,61 @@
-.manager-hub-shortcut-tile {
-  @import 'oui4/dist/scss/_tokens';
-  @import '@ovh-ux/manager-hub/src/variables.scss';
+ovh-manager-hub-shortcut-tile {
+  .manager-hub-shortcut-tile {
+    @import 'oui4/dist/scss/_tokens';
+    @import '@ovh-ux/manager-hub/src/variables.scss';
 
-  $notification-pill-font-color: $p-000-white;
-  $notification-pill-bg-color: #b91a1a;
-  $notification-pill-size: 1.2rem;
+    $notification-pill-font-color: $p-000-white;
+    $notification-pill-bg-color: #b91a1a;
+    $notification-pill-size: 1.2rem;
 
-  text-align: center;
+    text-align: center;
 
-  > a {
-    color: $p-800;
-    font-weight: 600;
+    > a {
+      color: $p-800;
+      font-weight: 600;
 
-    &:hover {
-      text-decoration: none;
+      &:hover {
+        text-decoration: none;
+      }
     }
-  }
 
-  &_icon {
-    display: block;
-    width: 4rem;
-    height: 4rem;
-    margin: auto;
-    background-color: $p-000-white;
-    border-radius: 0.4rem;
-    position: relative;
+    &_icon {
+      display: block;
+      width: 4rem;
+      height: 4rem;
+      margin: auto;
+      background-color: $p-000-white;
+      border-radius: 0.4rem;
+      position: relative;
 
-    &:hover {
-      background-color: $p-200;
+      &:hover {
+        background-color: $p-200;
+      }
     }
-  }
 
-  &_description {
-    font-size: 0.8rem;
-    font-weight: 600;
-  }
+    &_description {
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
 
-  .oui-icon {
-    font-size: 2rem;
-    margin-top: 1rem;
-    color: $p-800;
-  }
+    .oui-icon {
+      font-size: 2rem;
+      margin-top: 1rem;
+      color: $p-800;
+    }
 
-  &_notification {
-    font-size: 0.75rem;
-    font-weight: bold;
-    color: $notification-pill-font-color;
-    background-color: $notification-pill-bg-color;
-    border-radius: $notification-pill-size;
-    width: $notification-pill-size;
-    height: $notification-pill-size;
-    line-height: $notification-pill-size;
-    display: block;
-    position: absolute;
-    top: -$notification-pill-size * 0.2;
-    right: -$notification-pill-size * 0.2;
+    &_notification {
+      font-size: 0.75rem;
+      font-weight: bold;
+      color: $notification-pill-font-color;
+      background-color: $notification-pill-bg-color;
+      border-radius: $notification-pill-size;
+      width: $notification-pill-size;
+      height: $notification-pill-size;
+      line-height: $notification-pill-size;
+      display: block;
+      position: absolute;
+      top: -$notification-pill-size * 0.2;
+      right: -$notification-pill-size * 0.2;
+    }
   }
 }
