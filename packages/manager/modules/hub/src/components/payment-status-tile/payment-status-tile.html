@@ -75,10 +75,6 @@
                                         data-ng-if="!service.hasDebt() && !service.isOneShot()"
                                         data-translate="{{:: 'ovh_manager_hub_payment_status_tile_status_' + service.getRenew() | translate }}"
                                     ></span>
-                                    <span
-                                        data-ng-if="service.hasDebt()"
-                                        data-translate="ovh_manager_hub_payment_status_tile_now"
-                                    ></span>
                                 </div>
                                 <div class="d-lg-inline mb-1">
                                     <span
@@ -106,6 +102,10 @@
                                         data-ng-bind="service.formattedExpiration"
                                     >
                                     </span>
+                                    <span
+                                        data-ng-if="service.hasDebt()"
+                                        data-translate="ovh_manager_hub_payment_status_tile_now"
+                                    ></span>
                                 </div>
                             </td>
                             <td
