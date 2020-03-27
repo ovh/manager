@@ -5,6 +5,7 @@
     data-hide-heading="$ctrl.tickets.length === 0"
     data-href="{{ ::$ctrl.RedirectionService.getURL('support') }}"
     data-on-click="$ctrl.onSeeMore()"
+    data-navi-id="help-block"
 >
     <hub-tile-error
         ng-if="$ctrl.error && !$ctrl.isLoading"
@@ -28,6 +29,7 @@
                                 class="oui-datagrid__row"
                                 data-ng-if="!$ctrl.isLoading"
                                 data-ng-repeat="ticket in $ctrl.tickets track by ticket.ticketId"
+                                data-navi-id="{{:: 'helpBlock-' + ticket.serviceName }}"
                             >
                                 <td
                                     class="oui-datagrid__cell font-weight-bold"
@@ -51,6 +53,7 @@
                                         data-track-on="click"
                                         data-track-name="{{:: $ctrl.trackingPrefix + '::activity::assistance::go-to-ticket' }}"
                                         data-track-type="navigation"
+                                        data-navi-id="{{:: 'helpBlock-' + ticket.serviceName + '-go-to-ticket' }}"
                                     >
                                         <span
                                             data-translate="hub_support_read"
