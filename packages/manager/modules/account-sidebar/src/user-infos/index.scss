@@ -33,6 +33,10 @@
     border-radius: $circle-radius;
     text-align: center;
     font-weight: normal;
+
+    &:hover {
+      text-decoration: none;
+    }
   }
 
   &_initials-centered {
@@ -71,13 +75,16 @@
 
   &_links {
     clear: both;
+    text-decoration: none;
 
     .btn.btn-link {
       color: $p-500;
       font-weight: 600;
+      text-decoration: none;
 
       &:hover {
         color: $p-700;
+        text-decoration: none;
       }
     }
   }
