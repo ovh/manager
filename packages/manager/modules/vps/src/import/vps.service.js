@@ -31,6 +31,8 @@ export default /* @ngInject */ function VpsService(
 
   const vpsTabVeeamCache = $cacheFactory('UNIVERS_WEB_VPS_TABS_VEEAM');
 
+  const apiCatalogProductName = 'virtualprivateserver';
+
   const vpsTabBackupStorageCache = $cacheFactory(
     'UNIVERS_WEB_VPS_TABS_BACKUP_STORAGE',
   );
@@ -1476,5 +1478,15 @@ export default /* @ngInject */ function VpsService(
     return this.getSelectedVps(serviceName).then(
       (vps) => moment(vps.expiration).diff(moment().date(), 'days') > 0,
     );
+  };
+
+  this.getCatalog = function(ovhSubsidiary) {
+    return $http
+      .get(`/order/catalog/public/${apiCatalogProductName}`, {
+        params: {
+          ovhSubsidiary,
+        },
+      })
+      .then(({ data }) => data);
   };
 }

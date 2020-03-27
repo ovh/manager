@@ -1,6 +1,8 @@
 import { DASHBOARD_FEATURES } from './vps-dashboard.constants';
 import component from './vps-dashboard.component';
 
+import VpsConfigurationTile from './tile/configuration/service';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('vps.detail.dashboard', {
     url: '/dashboard',
@@ -8,6 +10,7 @@ export default /* @ngInject */ ($stateProvider) => {
       'vpsContent@vps.detail': {
         component: component.name,
       },
+      'configurationTile@vps.detail.dashboard': 'vpsDashboardTileConfiguration',
     },
     resolve: {
       features: /* @ngInject */ (capabilities) =>
@@ -55,6 +58,34 @@ export default /* @ngInject */ ($stateProvider) => {
         }
         return promise;
       },
+
+      availableUpgrades: /* @ngInject */ (serviceName, vpsUpgradeTile) =>
+        vpsUpgradeTile.getAvailableUpgrades(serviceName),
+
+      vpsUpgradeTask: /* @ngInject */ (serviceName, vpsUpgradeTile) =>
+        vpsUpgradeTile.getUpgradeTask(serviceName),
+
+      configurationTile: /* @ngInject */ (
+        availableUpgrades,
+        catalog,
+        stateVps, // from apiv6
+        vps, // from 2api
+      ) => ({
+        upgrades: VpsConfigurationTile.setVps(vps, stateVps.model)
+          .setAvailableUpgrades(availableUpgrades)
+          .getAvailableUpgrades(catalog),
+        model: {
+          memory: VpsConfigurationTile.currentPlan,
+          storage: VpsConfigurationTile.currentPlan,
+        },
+      }),
+
+      upscaleHref: /* @ngInject */ ($state) => $state.href('vps.detail.upscale'),
+
+      goToUpgrade: /* @ngInject */ ($state) => (upgradeType) =>
+        $state.go(`vps.detail.dashboard.configuration.upgrade`, {
+          upgradeType,
+        }),
     },
   });
 };

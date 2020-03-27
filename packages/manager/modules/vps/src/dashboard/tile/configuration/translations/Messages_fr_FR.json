@@ -1,5 +1,6 @@
 {
   "vps_dashboard_tile_configuration_title": "Votre configuration",
+  "vps_dashboard_tile_configuration_vcore": "vCores",
   "vps_dashboard_tile_configuration_vcore_upscale": "Ajouter des vCores en passant à la <a href=\"{{href}}\">gamme supérieure</a>",
   "vps_dashboard_tile_configuration_memory": "Mémoire",
   "vps_dashboard_tile_configuration_memory_add": "Ajouter de la mémoire",

@@ -153,8 +153,17 @@ angular
         };
 
         // close state modal when exiting the state
-        state.onExit = () => {
+        state.onExit = (transition) => {
           modalInstance.close();
+          // call state declaration onExit function if present
+          let onExitFn = state.self.onExit;
+          if (isArray(onExitFn)) {
+            onExitFn = last(onExitFn);
+          }
+
+          if (isFunction(onExitFn)) {
+            onExitFn(transition);
+          }
         };
       });
     },

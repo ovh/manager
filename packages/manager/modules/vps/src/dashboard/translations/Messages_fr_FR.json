@@ -1,0 +1,4 @@
+{
+  "vps_dashboard_upgrade_success": "L’ajout de ressources sur votre VPS est terminé. N’oubliez pas d’effectuer un redémarrage pour activer la nouvelle configuration.",
+  "vps_dashboard_upgrade_doing": "L’ajout de ressources sur votre VPS est en cours."
+}

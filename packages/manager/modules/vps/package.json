@@ -24,6 +24,7 @@
     "@ovh-ux/ng-at-internet": "^5.0.0",
     "@ovh-ux/ng-ovh-cloud-universe-components": "^1.4.3",
     "@ovh-ux/ng-ovh-doc-url": "^1.0.0",
+    "@ovh-ux/ng-ovh-payment-method": "^6.0.1",
     "@ovh-ux/ng-translate-async-loader": "^2.0.3",
     "@ovh-ux/ng-ui-router-layout": "^3.2.0",
     "@uirouter/angularjs": "^1.0.23",
