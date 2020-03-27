@@ -10,8 +10,8 @@ export default {
     catalog: '<',
     vps: '<',
     stateVps: '<',
+    getUpscaleHref: '<',
     goToUpgrade: '<',
     vpsUpgradeTask: '<',
-    upscaleHref: '<',
   },
 };
