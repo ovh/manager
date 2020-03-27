@@ -17,7 +17,7 @@ Manager is the control panel built on top of the [OVHcloud API](https://api.ovh.
 - [Yarn](https://yarnpkg.com/lang/en/) >= 1.21.1
 - Supported OSes: GNU/Linux, macOS and Windows
 
-To install these prerequisites, you can follow the [How To section](https://ovh.github.io/manager/guide/how-to/) of the documentation.
+To install these prerequisites, you can follow the [How To section](https://ovh.github.io/manager/how-to/) of the documentation.
 
 ## Install
 
