@@ -3,9 +3,12 @@
 @import '~bootstrap/scss/_mixins';
 @import '~bootstrap/scss/_utilities.scss';
 @import '~bootstrap/scss/_grid.scss';
-@import '@ovh-ux/manager-hub/src/variables.scss';
-@import './assets/theme/index.scss';
 
-.minw-0 {
-  min-width: 0;
+.hub-main-view {
+  @import '@ovh-ux/manager-hub/src/variables.scss';
+  @import './assets/theme/index.scss';
+
+  .minw-0 {
+    min-width: 0;
+  }
 }
