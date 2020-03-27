@@ -4,5 +4,6 @@
   "manager_hub_catalog_universe": "Universo",
   "manager_hub_catalog_category": "Categoría",
   "manager_hub_catalog_search": "Buscar",
-  "manager_hub_catalog_reset": "Borrar los filtros"
+  "manager_hub_catalog_reset": "Borrar los filtros",
+  "manager_hub_catalog_breadcrumb": "Catálogo"
 }
