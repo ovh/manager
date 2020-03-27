@@ -9,6 +9,7 @@
             class="oui-list"
             on-click="$ctrl.onProductSelect({ productType: product.productType })"
             button-text="{{ 'manager_hub_products_see_all' | translate }}"
+            data-navi-id="{{:: product.productType + '-block' }}"
         >
             <ul class="oui-list__items">
                 <li
@@ -20,6 +21,7 @@
                         data-ng-bind="service.resource.displayName || service.resource.name"
                         data-track-on="click"
                         data-track-name="{{ $ctrl.trackingPrefix + '::product::' + product.productType + '::go-to-service' }}"
+                        data-navi-id="{{:: product.productType + '-' + service.resource.name }}"
                     >
                     </a>
                 </li>
