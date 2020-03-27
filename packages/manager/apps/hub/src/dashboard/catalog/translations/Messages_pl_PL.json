@@ -4,5 +4,6 @@
   "manager_hub_catalog_universe": "Gama produktów",
   "manager_hub_catalog_category": "Kategoria",
   "manager_hub_catalog_search": "Szukaj",
-  "manager_hub_catalog_reset": "Wyczyść filtrowanie"
+  "manager_hub_catalog_reset": "Wyczyść filtrowanie",
+  "manager_hub_catalog_breadcrumb": "Katalog"
 }

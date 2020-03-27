@@ -9,5 +9,6 @@
   "hub_payment_mean_status_MAINTENANCE": "En cours de maintenance",
   "hub_payment_mean_status_PAUSED": "En pause",
   "hub_payment_mean_status_VALID": "Valide",
+  "hub_payment_mean_status_TOO_MANY_FAILURES": "Invalide",
   "hub_payment_mean_none": "Pas de moyen de paiement"
 }
