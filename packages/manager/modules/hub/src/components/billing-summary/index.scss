@@ -1,92 +1,94 @@
-.manager-hub-billing-summary {
-  @import '@ovh-ux/manager-hub/src/variables.scss';
+hub-billing-summary {
+  .manager-hub-billing-summary {
+    @import '@ovh-ux/manager-hub/src/variables.scss';
 
-  $bg-color: $p-300;
-  $bg-image: url('./assets/background.svg');
+    $bg-color: $p-300;
+    $bg-image: url('./assets/background.svg');
 
-  background-color: $bg-color;
-  background-image: $bg-image;
-  background-repeat: no-repeat;
-  background-size: cover;
-  color: $p-000-white;
-  text-align: center;
-  border-radius: $hub-tile-border-radius;
-  padding: $hub-tile-padding;
-  width: 100%;
-  height: 100%;
-
-  > h3 {
+    background-color: $bg-color;
+    background-image: $bg-image;
+    background-repeat: no-repeat;
+    background-size: cover;
     color: $p-000-white;
-  }
-
-  &_billing-link {
-    @include hub-link-button;
-
-    margin-top: 2rem;
-  }
-
-  p,
-  span {
-    font-weight: bold;
-    color: inherit;
-
-    .oui-icon {
-      color: $p-000-white;
-      font-weight: bold;
-    }
-
-    > a {
-      color: $p-000-white;
-      margin-bottom: -1.5rem;
-      text-decoration: underline !important;
-    }
-  }
-
-  .oui-ui-select {
+    text-align: center;
+    border-radius: $hub-tile-border-radius;
+    padding: $hub-tile-padding;
     width: 100%;
-    max-width: 15rem;
-    margin: auto;
-    padding: 0 1rem;
+    height: 100%;
 
-    button {
-      background-color: transparent;
-      border-color: $p-000-white;
-      border-width: 2px;
+    > h3 {
       color: $p-000-white;
     }
 
-    .ui-select-dropdown {
-      background-color: $bg-color;
-      border-color: $p-000-white;
-      border-width: 2px;
-      box-shadow: none;
-      width: calc(100% - 2rem);
-      left: 1rem;
+    &_billing-link {
+      @include hub-link-button;
 
-      .ui-select-choices-row {
-        font-weight: 600;
+      margin-top: 2rem;
+    }
 
-        &:hover {
-          color: $p-000-white;
-          background-color: $p-700;
-        }
+    p,
+    span {
+      font-weight: bold;
+      color: $p-000-white;
+
+      .oui-icon {
+        color: $p-000-white;
+        font-weight: bold;
+      }
+
+      > a {
+        color: $p-000-white;
+        margin-bottom: -1.5rem;
+        text-decoration: underline !important;
       }
     }
 
-    .oui-icon::before {
-      color: $p-000-white;
+    .oui-ui-select {
+      width: 100%;
+      max-width: 15rem;
+      margin: auto;
+      padding: 0 1rem;
+
+      button {
+        background-color: transparent;
+        border-color: $p-000-white;
+        border-width: 2px;
+        color: $p-000-white;
+      }
+
+      .ui-select-dropdown {
+        background-color: $bg-color;
+        border-color: $p-000-white;
+        border-width: 2px;
+        box-shadow: none;
+        width: calc(100% - 2rem);
+        left: 1rem;
+
+        .ui-select-choices-row {
+          font-weight: 600;
+
+          &:hover {
+            color: $p-000-white;
+            background-color: $p-700;
+          }
+        }
+      }
+
+      .oui-icon::before {
+        color: $p-000-white;
+      }
     }
-  }
 
-  .ui-select-match:hover {
-    background-color: transparent;
-    border-color: $p-000-white;
-  }
+    .ui-select-match:hover {
+      background-color: transparent;
+      border-color: $p-000-white;
+    }
 
-  &_bill-total {
-    font-weight: 600;
-    font-size: calc(2rem + 1vw);
-    white-space: nowrap;
-    display: block;
+    &_bill-total {
+      font-weight: 600;
+      font-size: calc(2rem + 1vw);
+      white-space: nowrap;
+      display: block;
+    }
   }
 }
