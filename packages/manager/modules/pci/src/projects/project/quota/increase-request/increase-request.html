@@ -1,0 +1,28 @@
+<form novalidate name="increase-quota-form">
+    <oui-modal
+        data-heading="{{ 'pci_projects_project_quota_increase_title' | translate }}"
+        data-primary-action="$ctrl.increaseQuota()"
+        data-primary-label="{{:: 'pci_projects_project_quota_increase_submit_label' | translate }}"
+        data-primary-disabled="$ctrl.isLoading"
+        data-secondary-action="$ctrl.goBack()"
+        data-secondary-label="{{:: 'pci_projects_project_quota_increase_cancel_label' | translate }}"
+        data-on-dismiss="$ctrl.goBack()"
+        data-loading="$ctrl.isLoading"
+    >
+        <p
+            data-translate="pci_projects_project_quota_increase_content"
+            data-translate-values="{ 'projectId': $ctrl.projectId }"
+        ></p>
+
+        <oui-field label="{{ $ctrl.issueTypeFieldsStr }}" size="xl">
+            <textarea
+                class="oui-textarea"
+                id="description"
+                name="description"
+                ng-model="$ctrl.issueTypeDescription"
+                required
+            >
+            </textarea>
+        </oui-field>
+    </oui-modal>
+</form>

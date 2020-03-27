@@ -13,12 +13,14 @@ import header from '../../../components/project/quota-region-header';
 import component from './quota.component';
 import routing from './quota.routing';
 import service from './quota.service';
+import increaseQuota from './increase-request';
 
 const moduleName = 'ovhManagerPciProjectQuota';
 
 angular
   .module(moduleName, [
     header,
+    increaseQuota,
     'ovhManagerCore',
     'ngOvhCloudUniverseComponents',
     'ngTranslateAsyncLoader',
