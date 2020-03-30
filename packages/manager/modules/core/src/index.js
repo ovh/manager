@@ -192,7 +192,7 @@ angular
         `${OVH_SSO_AUTH_LOGIN_URL}?action=disconnect`,
       );
       ssoAuthenticationProvider.setSignUpUrl(
-        `${OVH_SSO_AUTH_LOGIN_URL}/signup/new`,
+        `${OVH_SSO_AUTH_LOGIN_URL}/signup/new/`,
       );
 
       // if (!constants.prodMode) {
