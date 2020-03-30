@@ -10,7 +10,12 @@ export default /* @ngInject */ ($stateProvider) => {
     component,
     resolve: {
       ...resolves,
-      ...pick(ListLayoutHelper.stateResolves, ['onListParamsChange', 'filter']),
+      ...pick(ListLayoutHelper.stateResolves, [
+        'onListParamsChange',
+        'filter',
+        'sort',
+        'sortOrder',
+      ]),
       productType: /* @ngInject */ () => 'EMAIL_EXCHANGE_SERVICE',
       apiPath: /* @ngInject */ () => '/email/exchange',
       schema: /* @ngInject */ ($http, apiPath) =>
