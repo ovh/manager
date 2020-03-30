@@ -50,8 +50,11 @@ angular.module('Module.ip.services').service(
           ).then((dedicatedServers) =>
             this.handleErrorOrServices(dedicatedServers),
           ),
+          this.fetchProducts(PRODUCT_TYPES.vps.apiTypeName).then((vps) =>
+            this.handleErrorOrServices(vps),
+          ),
         ])
-        .then(([privateClouds, dedicatedServers]) => [
+        .then(([privateClouds, dedicatedServers, vps]) => [
           ...privateClouds.map((privateCloud) => ({
             ...privateCloud,
             type: PRODUCT_TYPES.privateCloud.typeName,
@@ -59,6 +62,10 @@ angular.module('Module.ip.services').service(
           ...dedicatedServers.map((dedicatedServer) => ({
             ...dedicatedServer,
             type: PRODUCT_TYPES.dedicatedServer.typeName,
+          })),
+          ...vps.map((vpsService) => ({
+            ...vpsService,
+            type: PRODUCT_TYPES.vps.typeName,
           })),
         ]);
     }
