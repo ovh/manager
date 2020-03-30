@@ -10,6 +10,7 @@ import {
 angular.module('Module.ip.services').service(
   'IpAgoraOrder',
   class {
+    /* @ngInject */
     constructor($q, OvhHttp) {
       this.$q = $q;
       this.OvhHttp = OvhHttp;
