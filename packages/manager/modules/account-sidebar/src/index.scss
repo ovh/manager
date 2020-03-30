@@ -17,6 +17,12 @@ ovh-manager-account-sidebar {
 
     h3 {
       font-size: 1rem;
+      font-weight: $jupiter-font-weight;
+      color: $p-800;
+
+      * {
+        color: inherit;
+      }
     }
 
     &_divider {
