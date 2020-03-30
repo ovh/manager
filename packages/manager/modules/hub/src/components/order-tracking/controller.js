@@ -15,7 +15,10 @@ export default class ManagerHubBillingSummaryCtrl {
   $onInit() {
     this.currentStatus = maxBy(this.order.history, 'date') || {
       date: this.order.date,
-      label: 'custom_creation',
+      label:
+        this.order.status === 'delivered'
+          ? 'INVOICE_IN_PROGRESS'
+          : 'custom_creation',
     };
     this.orderTrackingLink = this.RedirectionService.getURL('order', {
       orderId: this.order.orderId,
