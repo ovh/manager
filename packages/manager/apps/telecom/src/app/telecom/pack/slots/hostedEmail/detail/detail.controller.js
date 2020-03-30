@@ -4,6 +4,8 @@ import isObject from 'lodash/isObject';
 import map from 'lodash/map';
 import snakeCase from 'lodash/snakeCase';
 
+import { PASSWORD_VALIDATOR } from './detail.constant';
+
 export default class PackHostedEmailDetailCtrl {
   /* @ngInject */
   constructor(
@@ -45,7 +47,7 @@ export default class PackHostedEmailDetailCtrl {
           'hosted_email_detail_change_password_rule_special',
           { list: '#{}()[]-|@=*+/!:;' },
         ),
-        validator: /^[\w~"#'{}(\\)[\]\-|\\^@=*+/!:;.,?<>%*µÀÁÂÃÄÅàáâãäåÒÓÔÕÖØòóôõöøÈÉÊËèéêëÇçÌÍÎÏìíîïÙÚÛÜùúûüÿÑñ]+$/,
+        validator: PASSWORD_VALIDATOR,
         immediateWarning: true,
       },
     ];
