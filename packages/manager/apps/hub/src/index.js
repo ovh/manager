@@ -25,6 +25,8 @@ import errorPage from './components/error-page';
 import preload from './components/manager-preload';
 import dashboard from './dashboard';
 
+import { BILLING_REDIRECTIONS } from './constants';
+
 import controller from './controller';
 import routing from './routing';
 import 'ovh-ui-kit/dist/oui.css';
@@ -97,6 +99,13 @@ angular
       $transitions.onSuccess({ to: 'error' }, () => {
         $rootScope.$emit('ovh::sidebar::hide');
       });
+    },
+  )
+  .run(
+    /* @ngInject */ (ssoAuthentication) => {
+      if (!BILLING_REDIRECTIONS.includes(window.location.href)) {
+        ssoAuthentication.login();
+      }
     },
   )
   .run(/* @ngTranslationsInject:json ./translations */);
