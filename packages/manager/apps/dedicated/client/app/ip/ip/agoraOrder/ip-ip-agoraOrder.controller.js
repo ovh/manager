@@ -118,7 +118,7 @@ angular.module('Module.ip.controllers').controller(
         return 'EUROPE';
       }
       if (serviceExt === 'net') {
-        return 'APAC/CANADA';
+        return 'CANADA - ASIA';
       }
 
       return 'USA';
