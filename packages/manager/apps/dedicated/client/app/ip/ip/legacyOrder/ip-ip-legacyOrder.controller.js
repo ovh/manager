@@ -131,6 +131,10 @@ angular.module('Module.ip.controllers').controller(
             return null;
           }
 
+          if (infos.vpsInfos.model.version === '2019v1') {
+            return this.$state.go('app.ip.agora-order');
+          }
+
           if (has(infos, 'serviceIsAllowed')) {
             return null;
           }
