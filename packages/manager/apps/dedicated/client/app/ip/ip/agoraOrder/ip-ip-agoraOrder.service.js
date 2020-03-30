@@ -19,8 +19,12 @@ angular.module('Module.ip.services').service(
     }
 
     handleErrorOrServices({ errors, results }) {
-      if (isArray(errors) && !isEmpty(errors)) {
-        return this.$q.reject(errors);
+      const filteredErrors = errors.filter(({ msg }) => {
+        const [errorCode] = msg.match(/\d+/);
+        return parseInt(errorCode, 10) !== 400;
+      });
+      if (isArray(filteredErrors) && !isEmpty(filteredErrors)) {
+        return this.$q.reject(filteredErrors);
       }
 
       return get(results, '[0].services', []);
