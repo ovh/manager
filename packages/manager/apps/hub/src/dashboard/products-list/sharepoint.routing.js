@@ -10,7 +10,12 @@ export default /* @ngInject */ ($stateProvider) => {
     component,
     resolve: {
       ...resolves,
-      ...pick(ListLayoutHelper.stateResolves, ['onListParamsChange', 'filter']),
+      ...pick(ListLayoutHelper.stateResolves, [
+        'onListParamsChange',
+        'filter',
+        'sort',
+        'sortOrder',
+      ]),
       productType: () => 'MS_SERVICES_SHAREPOINT',
       apiPath: () => '/msServices',
       resourcePath: () => '/msServices/{serviceName}/sharepoint',
