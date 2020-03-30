@@ -28,7 +28,7 @@
         data-term="{{ ::'vps_dashboard_tile_configuration_memory' | translate }}"
     >
         <oui-tile-description
-            data-ng-if="$ctrl.configurationTile.upgrades.memory.plan"
+            data-ng-if="$ctrl.configurationTile.upgrades.memory.plan && !$ctrl.isVpsStarter"
         >
             <oui-radio-toggle-group
                 data-model="$ctrl.configurationTile.model.memory"
@@ -59,7 +59,7 @@
         </oui-tile-description>
 
         <oui-tile-description
-            data-ng-if="!$ctrl.configurationTile.upgrades.memory.plan"
+            data-ng-if="!$ctrl.configurationTile.upgrades.memory.plan || $ctrl.isVpsStarter"
         >
             <span
                 data-ng-bind=":: $ctrl.stateVps.model.memory | cucBytes:0:false:'MiB'"
@@ -77,7 +77,7 @@
         data-term="{{ ::'vps_dashboard_tile_configuration_storage' | translate }}"
     >
         <oui-tile-description
-            data-ng-if="$ctrl.configurationTile.upgrades.storage.plan"
+            data-ng-if="$ctrl.configurationTile.upgrades.storage.plan && !$ctrl.isVpsStarter"
         >
             <oui-radio-toggle-group
                 data-model="$ctrl.configurationTile.model.storage"
@@ -108,7 +108,7 @@
         </oui-tile-description>
 
         <oui-tile-description
-            data-ng-if="!$ctrl.configurationTile.upgrades.storage.plan"
+            data-ng-if="!$ctrl.configurationTile.upgrades.storage.plan || $ctrl.isVpsStarter"
         >
             <span
                 data-ng-bind=":: $ctrl.stateVps.model.disk | cucBytes:0:false:'GB'"
