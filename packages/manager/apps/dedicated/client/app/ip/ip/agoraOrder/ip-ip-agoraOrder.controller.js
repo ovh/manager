@@ -129,16 +129,16 @@ angular.module('Module.ip.controllers').controller(
 
       this.model.params = {};
 
-      const ipOffersPromise = this.IpAgoraOrder.getIpOffers().then(
-        (ipOffers) => {
-          const ipOfferDetails = ipOffers.map(this.createOfferDto.bind(this));
-          this.ipOffers = filter(ipOfferDetails, {
-            productRegion: AgoraIpOrderCtrl.getRegionFromServiceName(
-              this.model.selectedService.serviceName,
-            ),
-          });
-        },
-      );
+      const ipOffersPromise = this.IpAgoraOrder.getIpOffers(
+        this.user.ovhSubsidiary,
+      ).then((ipOffers) => {
+        const ipOfferDetails = ipOffers.map(this.createOfferDto.bind(this));
+        this.ipOffers = filter(ipOfferDetails, {
+          productRegion: AgoraIpOrderCtrl.getRegionFromServiceName(
+            this.model.selectedService.serviceName,
+          ),
+        });
+      });
 
       const ipOrganisationPromise = this.IpOrganisation.getIpOrganisation().then(
         (organisations) => {
