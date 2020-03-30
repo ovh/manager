@@ -76,7 +76,6 @@
   "ovhManagerSupport_new_serviceType_cloud_db": "Cloud Database",
   "ovhManagerSupport_new_serviceType_dbaas_logs": "Log",
   "ovhManagerSupport_new_serviceType_dbaas_queue": "Queue",
-  "ovhManagerSupport_new_serviceType_dbaas_timeseries": "Time Series",
   "ovhManagerSupport_new_serviceType_deskaas": "Desktop remoto virtuale",
   "ovhManagerSupport_new_serviceType_ssl": "SSL",
   "ovhManagerSupport_new_serviceType_ssl_gateway": "SSL Gateway",

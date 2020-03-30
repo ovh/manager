@@ -41,7 +41,6 @@
   "server_sidebar_order_item_licence_title": "Licence",
   "server_sidebar_order_item_NAS_title": "NAS",
   "server_sidebar_order_item_NASHA_title": "NAS-HA",
-  "server_sidebar_order_item_dbaas_ts_title": "Metrics",
   "server_sidebar_order_item_paas_cda_title": "Cloud Disk Array",
   "server_sidebar_order_item_paas_veeam_title": "Veeam CC",
   "server_sidebar_order_item_paas_veeam_enterprise_title": "Veeam Enterprise",
