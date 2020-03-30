@@ -11,7 +11,12 @@ export default /* @ngInject */ ($stateProvider) => {
     component,
     resolve: {
       ...resolves,
-      ...pick(ListLayoutHelper.stateResolves, ['onListParamsChange', 'filter']),
+      ...pick(ListLayoutHelper.stateResolves, [
+        'onListParamsChange',
+        'filter',
+        'sort',
+        'sortOrder',
+      ]),
       productType: /* @ngInject */ () => 'VRACK',
       apiPath: /* @ngInject */ () => '/vrack',
       schema: /* @ngInject */ ($http, apiPath) =>
