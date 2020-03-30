@@ -1,3 +1,12 @@
+## [8.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@8.2.0...@ovh-ux/manager-core@8.2.1) (2020-03-30)
+
+
+### Bug Fixes
+
+* add missing trailing slash for sign-up url ([#2671](https://github.com/ovh/manager/issues/2671)) ([5d087f4](https://github.com/ovh/manager/commit/5d087f456f65af1d00439a6522c4bf8c9aaeb7d5))
+
+
+
 # [8.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@8.1.0...@ovh-ux/manager-core@8.2.0) (2020-03-24)
 
 
