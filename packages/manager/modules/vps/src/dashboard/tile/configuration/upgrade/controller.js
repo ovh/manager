@@ -1,5 +1,5 @@
 import get from 'lodash/get';
-import startsWith from 'lodash/startsWith'
+import startsWith from 'lodash/startsWith';
 
 export default class VpsDashboardTileConfigurationUpgradeCtrl {
   $onInit() {
@@ -9,6 +9,5 @@ export default class VpsDashboardTileConfigurationUpgradeCtrl {
     );
 
     this.isUpfront = startsWith(firstPlanPricingMode, 'upfront');
-    this.isDegressivity = startsWith(firstPlanPricingMode, 'degressivity');
   }
-};
+}
