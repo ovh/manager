@@ -29,6 +29,7 @@ ovh-manager-hub-payment-mean {
       font-size: 0.85rem;
       margin: 0;
       padding: 0;
+      line-height: 1.5rem;
     }
 
     &_label {
@@ -38,6 +39,9 @@ ovh-manager-hub-payment-mean {
     &_status {
       font-size: 0.8rem;
       font-weight: bold;
+      max-width: none;
+      line-height: 0.85rem;
+      color: $as-500;
     }
 
     .oui-icon {
