@@ -4,6 +4,9 @@ import head from 'lodash/head';
 import map from 'lodash/map';
 import { BillingService, User } from '@ovh-ux/manager-models';
 import mapValues from 'lodash/mapValues';
+import set from 'lodash/set';
+
+import { BILLING_REDIRECTIONS } from './constants';
 
 const parseErrors = (data) =>
   mapValues(data.data, (value) =>
@@ -107,6 +110,19 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
           .then(({ data }) => parseErrors(data)),
     },
   });
+
+  BILLING_REDIRECTIONS.map((url) =>
+    $urlRouterProvider.when(
+      url,
+      /* @ngInject */ ($location, $window, CORE_MANAGER_URLS) => {
+        set(
+          $window,
+          'location',
+          `${CORE_MANAGER_URLS.dedicated}/#${$location.url()}`,
+        );
+      },
+    ),
+  );
 
   $urlRouterProvider.otherwise('/');
 };
