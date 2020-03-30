@@ -16,7 +16,10 @@
         <div
             class="d-flex flex-wrap flex-lg-nowrap w-100 minw-0 align-items-center justify-content-between"
         >
-            <ovh-manager-banner class="mb-4"></ovh-manager-banner>
+            <ovh-manager-banner
+                class="mb-4"
+                tracker="{{ $ctrl.trackingPrefix + '::event-banner' }}"
+            ></ovh-manager-banner>
             <ovh-manager-hub-carousel
                 class="w-100"
                 items="$ctrl.notifications"
