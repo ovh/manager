@@ -9,6 +9,7 @@ import uniq from 'lodash/uniq';
 angular.module('Module.ip.controllers').controller(
   'agoraIpOrderCtrl',
   class AgoraIpOrderCtrl {
+    /* @ngInject */
     constructor(
       $q,
       $rootScope,
