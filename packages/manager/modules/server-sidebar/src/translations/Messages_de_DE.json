@@ -28,7 +28,9 @@
   "server_sidebar_item_office_title": "Office",
   "server_sidebar_item_sharepoint_title": "SharePoint",
   "server_sidebar_item_domain_all_title": "Alle meine Domains",
+  "server_sidebar_item_servers_all_title": "Alle meine Server",
   "server_sidebar_item_domain_operations_title": "Laufende Operationen",
+  "server_sidebar_item_enterprise_cloud_database_title": "Enterprise Cloud Databases",
   "server_sidebar_order_item_vps_title": "VPS",
   "server_sidebar_order_item_dedicated_server_title": "Dedicated Server",
   "server_sidebar_order_item_cloud_project_title": "Cloud Projekt",
@@ -39,7 +41,6 @@
   "server_sidebar_order_item_licence_title": "Lizenz",
   "server_sidebar_order_item_NAS_title": "NAS",
   "server_sidebar_order_item_NASHA_title": "HA-NAS",
-  "server_sidebar_order_item_dbaas_ts_title": "Metrics",
   "server_sidebar_order_item_paas_cda_title": "Cloud Disk Array",
   "server_sidebar_order_item_paas_veeam_title": "Veeam CC",
   "server_sidebar_order_item_paas_veeam_enterprise_title": "Veeam Enterprise",
@@ -58,8 +59,6 @@
   "server_sidebar_order_item_office_title": "O365",
   "server_sidebar_order_item_sharepoint_title": "SharePoint",
   "server_sidebar_order_item_zone_title": "DNS-Zone",
-  "server_sidebar_item_servers_all_title": "Alle meine Server",
-  "server_sidebar_item_enterprise_cloud_database_title": "Enterprise Cloud Databases",
   "server_sidebar_order_item_enterprise_cloud_database_title": "Enterprise Cloud Databases",
   "server_sidebar_order_item_cloudDatabase_title": "Cloud DB"
 }
