@@ -38,11 +38,13 @@ angular.module('Module.ip.services').service(
     getServices() {
       return this.$q
         .all([
-          this.fetchProducts(PRODUCT_TYPES.privateCloud.apiTypeName).then(
-            this.handleErrorOrServices,
-          ),
-          this.fetchProducts(PRODUCT_TYPES.dedicatedServer.apiTypeName).then(
-            this.handleErrorOrServices,
+          this.fetchProducts(
+            PRODUCT_TYPES.privateCloud.apiTypeName,
+          ).then((privateClouds) => this.handleErrorOrServices(privateClouds)),
+          this.fetchProducts(
+            PRODUCT_TYPES.dedicatedServer.apiTypeName,
+          ).then((dedicatedServers) =>
+            this.handleErrorOrServices(dedicatedServers),
           ),
         ])
         .then(([privateClouds, dedicatedServers]) => [
