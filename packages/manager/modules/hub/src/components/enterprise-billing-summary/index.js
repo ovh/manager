@@ -8,6 +8,7 @@ import 'ovh-ui-angular';
 import ovhManagerBillingSummary from '../billing-summary';
 
 import component from './component';
+import './index.scss';
 
 const moduleName = 'ovhManagerHubEnterpriseBillingSummary';
 
