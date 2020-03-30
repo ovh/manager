@@ -1,3 +1,4 @@
+@import '~ovh-ui-kit/packages/oui-navbar/_variables';
 @import '~ovh-ui-kit/packages/oui-sidebar/_variables.less';
 @import '~ovh-ui-kit/packages/oui-responsive/_variables.less';
 @import './_variables.less';
@@ -8,7 +9,7 @@ cloud-sidebar {
   width: 100%;
   height: 100%;
   z-index: 1;
-  box-shadow: 0 2pt 10pt rgba(40, 89, 192, 0.25);
+  box-shadow: 0 6px 6px rgba(0, 14, 156, 0.2);
 
   @media screen and (max-width: @oui-responsive-breakpoint-tablet) {
     position: absolute;
@@ -101,6 +102,10 @@ cloud-sidebar {
 
   .project-list-toggle {
     padding: 6px 13px;
+
+    > .oui-icon {
+      vertical-align: initial;
+    }
   }
 
   .project-list {
