@@ -25,6 +25,10 @@ ovh-manager-account-sidebar {
       }
     }
 
+    p {
+      line-height: inherit;
+    }
+
     &_divider {
       display: block;
       border-top: 1px solid darken($p-075, 10%);

@@ -39,6 +39,11 @@
     }
   }
 
+  p.oui-chip {
+    color: $p-700;
+    line-height: 1.875rem;
+  }
+
   &_initials-centered {
     position: relative;
     top: -$circle-radius;
