@@ -15,6 +15,10 @@ ovh-manager-account-sidebar {
     padding-top: 3rem;
     overflow: auto;
 
+    .minw-0 {
+      min-width: 0;
+    }
+
     h3 {
       font-size: 1rem;
       font-weight: $jupiter-font-weight;
