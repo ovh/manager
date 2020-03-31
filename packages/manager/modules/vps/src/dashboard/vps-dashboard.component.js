@@ -16,6 +16,7 @@ export default {
     goToSnapshotTake: '<',
     goToSnapshotRestore: '<',
     goToTerminateOption: '<',
+    goBack: '<',
 
     plan: '<',
     serviceName: '<',

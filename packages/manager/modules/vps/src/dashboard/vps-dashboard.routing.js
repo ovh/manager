@@ -48,9 +48,10 @@ export default /* @ngInject */ ($stateProvider) => {
         message = false,
         type = 'success',
         data,
+        options = {},
       ) => {
         const state = 'vps.detail.dashboard';
-        const promise = $state.go(state, data);
+        const promise = $state.go(state, data, options);
         if (message) {
           promise.then(() => {
             CucCloudMessage[type]({ textHtml: message }, state);

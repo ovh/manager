@@ -38,10 +38,9 @@ export default class VpsUpgradeService {
     ).then((tasks) => head(tasks));
   }
 
-  startUpgradeTaskPolling(upgradeTask, options = {}) {
+  startUpgradeTaskPolling(serviceName, upgradeTask, options = {}) {
     const fullOptions = {
-      pollFunction: (task) =>
-        this.VpsTaskService.getTask(this.serviceName, task.id),
+      pollFunction: (task) => this.VpsTaskService.getTask(serviceName, task.id),
       stopCondition: (task) => includes(['done', 'error'], task.state),
       ...options,
     };
