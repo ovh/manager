@@ -8,6 +8,8 @@ export const VERSION_AGORA_MAPPING = {
   '2018v1': '2018v4',
   '2017v2': '2018v5',
   '2017v3': '2018v6',
+  '2017v1': '2017v1',
+  '2018v2': '2018v2',
 };
 
 export default {
