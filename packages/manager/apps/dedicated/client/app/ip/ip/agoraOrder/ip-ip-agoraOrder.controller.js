@@ -1,10 +1,13 @@
 import filter from 'lodash/filter';
+import find from 'lodash/find';
 import get from 'lodash/get';
 import head from 'lodash/head';
 import last from 'lodash/last';
 import map from 'lodash/map';
 import range from 'lodash/range';
 import uniq from 'lodash/uniq';
+
+import { PRODUCT_TYPES } from './ip-ip-agoraOrder.constant';
 
 angular.module('Module.ip.controllers').controller(
   'agoraIpOrderCtrl',
@@ -41,6 +44,7 @@ angular.module('Module.ip.controllers').controller(
       };
 
       this.loading = {};
+      this.user = this.$state.params.user;
 
       // need to be scoped because of how wizard-step works
       this.$scope.loadServices = this.loadServices.bind(this);
@@ -62,6 +66,12 @@ angular.module('Module.ip.controllers').controller(
         .then((results) => {
           this.user = results.user;
           this.services = results.services;
+
+          if (this.$state.params.service) {
+            this.model.selectedService = find(this.services, {
+              serviceName: this.$state.params.service.serviceName,
+            });
+          }
         })
         .catch((err) => {
           this.Alerter.error(this.$translate.instant('ip_order_loading_error'));
@@ -132,7 +142,15 @@ angular.module('Module.ip.controllers').controller(
       const ipOffersPromise = this.IpAgoraOrder.getIpOffers(
         this.user.ovhSubsidiary,
       ).then((ipOffers) => {
-        const ipOfferDetails = ipOffers.map(this.createOfferDto.bind(this));
+        let ipOfferDetails = ipOffers.map(this.createOfferDto.bind(this));
+        if (
+          this.model.selectedService &&
+          this.model.selectedService.type === PRODUCT_TYPES.vps.typeName
+        ) {
+          ipOfferDetails = ipOfferDetails.filter(({ productShortName }) =>
+            productShortName.includes('failover'),
+          );
+        }
         this.ipOffers = filter(ipOfferDetails, {
           productRegion: AgoraIpOrderCtrl.getRegionFromServiceName(
             this.model.selectedService.serviceName,
