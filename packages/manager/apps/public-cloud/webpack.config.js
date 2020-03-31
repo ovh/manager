@@ -16,15 +16,18 @@ function readNgAppInjections(file) {
   return injections;
 }
 
-function getNgAppInjections(region) {
-  const injections = [
-    ...readNgAppInjections(`./.extras-${region}/ng-app-injections`),
-    ...readNgAppInjections('./.extras/ng-app-injections'),
-  ];
+function getNgAppInjections(regions) {
+  return regions.reduce((ngAppInjections, region) => {
+    const injections = [
+      ...readNgAppInjections(`./.extras-${region}/ng-app-injections`),
+      ...readNgAppInjections('./.extras/ng-app-injections'),
+    ];
 
-  const ngAppInjections = injections.map((val) => `'${val}'`).join(',');
-
-  return ngAppInjections || 'null';
+    return {
+      ...ngAppInjections,
+      [region]: JSON.stringify(injections),
+    };
+  }, {});
 }
 
 module.exports = (env = {}) => {
@@ -42,30 +45,16 @@ module.exports = (env = {}) => {
         ],
       },
     },
-    process.env.REGION
-      ? Object.assign(env, { region: process.env.REGION })
-      : env,
+    env,
   );
 
-  let WEBPACK_REGION;
-
-  if (env.region) {
-    WEBPACK_REGION = `${env.region}`;
-  } else {
-    WEBPACK_REGION = process.env.REGION
-      ? `${process.env.REGION.toUpperCase()}`
-      : 'EU';
-  }
-
   // Extra config files
-  const extrasRegion = glob.sync(`./.extras-${WEBPACK_REGION}/**/*.js`);
   const extras = glob.sync('./.extras/**/*.js');
 
   return merge(config, {
     entry: {
       main: './src/index.js',
       ...(extras.length > 0 ? { extras } : {}),
-      ...(extrasRegion.length > 0 ? { extrasRegion } : {}),
     },
     output: {
       path: path.join(__dirname, 'dist'),
@@ -73,11 +62,10 @@ module.exports = (env = {}) => {
     },
     plugins: [
       new webpack.DefinePlugin({
-        __NG_APP_INJECTIONS__: getNgAppInjections(WEBPACK_REGION),
+        __NG_APP_INJECTIONS__: getNgAppInjections(['EU', 'CA', 'US']),
         __NODE_ENV__: process.env.NODE_ENV
           ? `'${process.env.NODE_ENV}'`
           : '"development"',
-        __WEBPACK_REGION__: `'${WEBPACK_REGION}'`,
       }),
       new webpack.ProvidePlugin({
         $: 'jquery',
