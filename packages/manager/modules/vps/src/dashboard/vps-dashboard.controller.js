@@ -93,20 +93,27 @@ export default class {
 
   initUpgradePolling() {
     if (this.vpsUpgradeTask) {
-      this.vpsUpgradeTile.startUpgradeTaskPolling(this.vpsUpgradeTask, {
-        onItemDone: () => {
-          this.CucCloudMessage.success(
-            this.$translate.instant('vps_dashboard_upgrade_success'),
-          );
+      this.vpsUpgradeTile.startUpgradeTaskPolling(
+        this.serviceName,
+        this.vpsUpgradeTask,
+        {
+          onItemDone: ({ state }) => {
+            this.CucCloudMessage.flushMessages();
 
-          this.vpsUpgradeTask = null;
+            this.goBack(
+              this.$translate.instant(`vps_dashboard_upgrade_${state}`),
+              state === 'done' ? 'success' : 'error',
+              {},
+              { reload: true },
+            );
+          },
+          onItemUpdated: () => {
+            this.CucCloudMessage.info(
+              this.$translate.instant('vps_dashboard_upgrade_doing'),
+            );
+          },
         },
-        onItemUpdated: () => {
-          this.CucCloudMessage.info(
-            this.$translate.instant('vps_dashboard_upgrade_doing'),
-          );
-        },
-      });
+      );
     }
   }
 
