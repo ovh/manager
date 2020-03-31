@@ -39,7 +39,7 @@
                     data-disabled="$ctrl.vpsUpgradeTask"
                 >
                     <span
-                        data-ng-bind=":: $ctrl.stateVps.model.memory | cucBytes:0:false:'MiB'"
+                        data-ng-bind=":: ($ctrl.stateVps.model.memory / 1024) | cucBytes:0:false:'GB'"
                     ></span>
                 </oui-radio>
                 <oui-radio
@@ -47,7 +47,7 @@
                     data-disabled="$ctrl.vpsUpgradeTask"
                 >
                     <span
-                        data-ng-bind=":: ($ctrl.stateVps.model.memory * 2) | cucBytes:0:false:'MiB'"
+                        data-ng-bind=":: ($ctrl.stateVps.model.memory * 2 / 1024) | cucBytes:0:false:'GB'"
                     ></span>
                 </oui-radio>
             </oui-radio-toggle-group>
@@ -62,7 +62,7 @@
             data-ng-if="!$ctrl.configurationTile.upgrades.memory.plan || $ctrl.isVpsStarter"
         >
             <span
-                data-ng-bind=":: $ctrl.stateVps.model.memory | cucBytes:0:false:'MiB'"
+                data-ng-bind=":: ($ctrl.stateVps.model.memory / 1024) | cucBytes:0:false:'GB'"
             ></span>
             <p
                 class="p-0"
