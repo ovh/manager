@@ -3,9 +3,10 @@ import template from './payment-status-tile.html';
 
 export default {
   bindings: {
-    trackingPrefix: '@?',
+    refresh: '&',
     services: '<',
     totalCount: '<',
+    trackingPrefix: '@?',
   },
   controller,
   template,

@@ -1,39 +1,74 @@
-<div class="manager-hub-billing-summary">
+<div class="manager-hub-billing-summary" data-navi-id="totalBills-block">
     <h3 data-translate="hub_billing_summary_title"></h3>
-    <oui-select
-        data-model="$ctrl.billingPeriod"
-        data-items="$ctrl.periods"
-        data-on-change="$ctrl.onPeriodChange()"
-        data-match="label"
-    >
-    </oui-select>
+    <hub-tile-error
+        data-ng-if="!$ctrl.bills && !$ctrl.loading"
+        data-message="{{:: 'hub_billing_summary_display_bills_error' | translate }}"
+        data-refresh="$ctrl.refreshTile()"
+    ></hub-tile-error>
     <span
+        data-ng-if="$ctrl.loading"
         class="manager-hub-billing-summary_bill-total"
-        data-ng-bind-html="$ctrl.bills ? $ctrl.formattedBillingPrice : '…'"
+        >…</span
     >
-    </span>
-    <p data-ng-if="$ctrl.debt.dueAmount.value === 0">
+    <div data-ng-if="$ctrl.bills && !$ctrl.loading">
+        <oui-select
+            data-model="$ctrl.billingPeriod"
+            data-items="$ctrl.periods"
+            data-on-change="$ctrl.onPeriodChange()"
+            data-match="label"
+            data-navi-id="totalBills-dropdown"
+        >
+        </oui-select>
         <span
-            class="oui-icon oui-icon-check-circle_line align-middle mr-2"
-            aria-hidden="true"
+            class="manager-hub-billing-summary_bill-total"
+            data-ng-bind-html="$ctrl.formattedBillingPrice"
         >
         </span>
-        <span data-translate="hub_billing_summary_debt_null"></span>
-    </p>
-    <p
-        data-ng-if="$ctrl.debt.dueAmount.value > 0"
-        data-translate="hub_billing_summary_debt"
-        data-translate-values="{
-         debt: $ctrl.formattedDebtPrice
-       }"
-    ></p>
-    <a class="manager-hub-billing-summary_billing-link"
-       data-ng-href="{{:: $ctrl.RedirectionService.getURL('billing') }}">
-        <span data-translate="hub_billing_summary_display_bills"></span>
-        <span
-            class="oui-icon oui-icon-arrow-right_extra-thin"
-            aria-hidden="true"
+        <p
+            data-ng-if="$ctrl.bills.total > 0 && $ctrl.debt.dueAmount.value === 0"
         >
-        </span>
-    </a>
+            <span
+                class="oui-icon oui-icon-check-circle_line align-middle mr-2"
+                aria-hidden="true"
+            >
+            </span>
+            <span data-translate="hub_billing_summary_debt_null"></span>
+        </p>
+        <p data-ng-if="$ctrl.debt.dueAmount.value > 0">
+            <span
+                data-translate="hub_billing_summary_debt"
+                data-translate-values="{
+                    debt: $ctrl.formattedDebtPrice
+                }"
+            >
+            </span>
+            <a
+                class="d-block"
+                data-ng-href="{{:: $ctrl.RedirectionService.getURL('debtPay') }}"
+                data-translate="hub_billing_summary_debt_pay"
+                target="_blank"
+                rel="noopener"
+            >
+            </a>
+        </p>
+        <p
+            class="mt-3"
+            data-ng-if="$ctrl.bills.total === 0"
+            data-translate="hub_billing_summary_debt_no_bills"
+        ></p>
+        <a
+            class="manager-hub-billing-summary_billing-link"
+            data-ng-href="{{ $ctrl.getBillingURL() }}"
+            data-track-on="click"
+            data-track-name="{{:: $ctrl.trackingPrefix + '::billing::show-all' }}"
+            data-track-type="navigation"
+            data-navi-id="totalBills-go-to-bills"
+        >
+            <span data-translate="hub_billing_summary_display_bills"></span>
+            <span
+                class="oui-icon oui-icon-arrow-right_extra-thin"
+                aria-hidden="true"
+            ></span>
+        </a>
+    </div>
 </div>

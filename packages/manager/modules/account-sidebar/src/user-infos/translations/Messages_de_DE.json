@@ -1,0 +1,13 @@
+{
+  "hub_user_support_level_standard": "Standard Support",
+  "hub_user_support_level_premium": "Premium Support",
+  "hub_user_support_level_premium-accredited": "Premium Accredited Support",
+  "hub_user_support_level_business": "Business Support",
+  "hub_user_support_level_enterprise": "Enterprise Support",
+  "hub_user_logout": "Abmelden",
+  "hub_user_actions_aria_expand": "Die verfügbaren Aktionen anzeigen",
+  "hub_user_actions_aria_reduce": "Die verfügbaren Aktionen verbergen",
+  "hub_user_account": "Meinen Account verwalten",
+  "hub_user_role_user": "Als Subuser angemeldet",
+  "hub_user_role_none": "Nur mit Lesefunktion angemeldet"
+}

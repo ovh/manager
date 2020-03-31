@@ -5,6 +5,9 @@ export const ERROR_STATUS = [
   'notPaid',
 ];
 
+export const WAITING_PAYMENT_LABEL = 'custom_payment_waiting';
+
 export default {
   ERROR_STATUS,
+  WAITING_PAYMENT_LABEL,
 };

@@ -6,6 +6,8 @@ import angular from 'angular';
 import 'angular-translate';
 import uiRouter, { RejectType } from '@uirouter/angularjs';
 import ngOvhUiRouterLineProgress from '@ovh-ux/ng-ui-router-line-progress';
+import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
+
 import isString from 'lodash/isString';
 
 import 'ovh-ui-angular';
@@ -21,13 +23,15 @@ import head from 'lodash/head';
 import atInternet from './components/at-internet';
 import errorPage from './components/error-page';
 import preload from './components/manager-preload';
-import catalog from './catalog';
 import dashboard from './dashboard';
+
+import { BILLING_REDIRECTIONS } from './constants';
 
 import controller from './controller';
 import routing from './routing';
-import './index.scss';
 import 'ovh-ui-kit/dist/oui.css';
+import './index.less';
+import './index.scss';
 
 Environment.setRegion(__WEBPACK_REGION__);
 Environment.setVersion(__VERSION__);
@@ -36,13 +40,11 @@ angular
   .module(
     'managerHubApp',
     [
-      'pascalprecht.translate',
       atInternet,
-      catalog,
       dashboard,
       errorPage,
       ngOvhUiRouterLineProgress,
-      'pascalprecht.translate',
+      ngUiRouterBreadcrumb,
       'oui',
       ovhManagerCore,
       ovhManagerHub,
@@ -60,8 +62,13 @@ angular
   )
   .config(routing)
   .run(
-    /* @ngInject */ ($translate, $transitions) => {
+    /* @ngInject */ ($anchorScroll, $rootScope, $translate, $transitions) => {
       $transitions.onBefore({ to: 'app.**' }, () => $translate.refresh());
+      $transitions.onSuccess({}, () => $anchorScroll('hub-scroll-top'));
+
+      $transitions.onSuccess({ to: 'error' }, () => {
+        $rootScope.$emit('ovh::sidebar::hide');
+      });
     },
   )
   .run(($translate) => {
@@ -85,6 +92,20 @@ angular
           );
         }
       });
+    },
+  )
+  .run(
+    /* @ngInject */ ($rootScope, $transitions) => {
+      $transitions.onSuccess({ to: 'error' }, () => {
+        $rootScope.$emit('ovh::sidebar::hide');
+      });
+    },
+  )
+  .run(
+    /* @ngInject */ (ssoAuthentication) => {
+      if (!BILLING_REDIRECTIONS.includes(window.location.href)) {
+        ssoAuthentication.login();
+      }
     },
   )
   .run(/* @ngTranslationsInject:json ./translations */);

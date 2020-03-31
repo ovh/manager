@@ -1,14 +1,21 @@
 <!DOCTYPE html>
-<html>
+<html class="h-100">
     <head>
-        <title>ManagerHub App</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+        />
+
+        <link rel="shortcut icon" href="assets/images/favicon.png" />
+        <link rel="apple-touch-icon" href="assets/images/touchicon-180.png" />
+        <title>OVHcloud</title>
     </head>
     <body
         data-ng-app="managerHubApp"
         data-ng-strict-di
         data-ng-controller="HubController as $ctrl"
-        class="h-100"
+        class="h-100 overflow-hidden"
+        id="hub-scroll-top"
     >
         <div
             id="managerPreload"
@@ -35,12 +42,31 @@
         <ovh-manager-navbar
             data-navbar-options="{
                 universe: 'hub',
+                version: 'beta',
+                toggle: {
+                    event: 'sidebar:loaded',
+                },
             }"
+            data-sidebar-expand="true"
+            data-sidebar-links="{}"
         >
         </ovh-manager-navbar>
-        <div class="d-flex h-100" data-ui-view="app">
-            <div data-ui-view class="w-100"></div>
-            <ovh-manager-hub-user-panel></ovh-manager-hub-user-panel>
+        <div class="position-relative w-100 h-100 overflow-auto">
+            <div class="position-absolute w-100 h-100">
+                <div class="mb-5" data-ui-view="app">
+                    <div
+                        class="hub-main-view hub-main-view_sidebar_expanded pt-4"
+                    >
+                        <div class="mx-3">
+                            <ui-router-breadcrumb></ui-router-breadcrumb>
+                        </div>
+                        <div
+                            data-ui-view
+                            class="container-fluid hub-main-view_container"
+                        ></div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <ovh-chatbot
