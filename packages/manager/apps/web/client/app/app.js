@@ -266,7 +266,8 @@ angular
   ])
   .config([
     '$stateProvider',
-    ($stateProvider) => {
+    '$urlRouterProvider',
+    ($stateProvider, $urlRouterProvider) => {
       /**
        * ALL DOM
        */
@@ -290,6 +291,8 @@ angular
         },
         translations: { value: ['domain', 'hosting'], format: 'json' },
       });
+
+      $urlRouterProvider.otherwise('/configuration');
     },
   ])
   .constant('COMPOSED_TLD', [
