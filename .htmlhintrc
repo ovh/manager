@@ -17,7 +17,7 @@
   "space-tab-mixed-disabled": "space",
   "spec-char-escape": false,
   "src-not-empty": true,
-  "style-disabled": true,
+  "style-disabled": false,
   "tag-pair": true,
   "tag-self-close": false,
   "tagname-lowercase": true,
