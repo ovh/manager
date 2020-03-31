@@ -53,5 +53,7 @@
   "manager_hub_products_LICENCE_WORKLIGHT": "Licencje Worklight",
   "manager_hub_products_LICENCE_SQLSERVER": "Licencje SQL Server",
   "manager_hub_products_SSL_GATEWAY": "SSL Gateway",
-  "manager_hub_products_see_all": "Zobacz wszystko"
+  "manager_hub_products_see_all": "Zobacz wszystko",
+  "manager_hub_products_IP_LOADBALANCER": "IP Load Balancer",
+  "manager_hub_products_EXCHANGE": "Microsoft Exchange"
 }
