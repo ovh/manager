@@ -1,3 +1,12 @@
+## [2.0.3](https://github.com/ovh/manager/compare/@ovh-ux/ng-tail-logs@2.0.2...@ovh-ux/ng-tail-logs@2.0.3) (2020-04-01)
+
+
+### Bug Fixes
+
+* **service:** use uniqBy instead of uniq ([#38](https://github.com/ovh/manager/issues/38)) ([0c447bd](https://github.com/ovh/manager/commit/0c447bde5e26dfac11434ffe89bccef72984321c)), closes [#19](https://github.com/ovh/manager/issues/19)
+
+
+
 ## [2.0.2](https://github.com/ovh-ux/ng-tail-logs/compare/v2.0.1...v2.0.2) (2020-02-11)
 
 

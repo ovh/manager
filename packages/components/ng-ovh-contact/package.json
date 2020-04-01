@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-contact",
-  "version": "4.0.5",
+  "version": "5.0.0",
   "description": "Helps you dealing with OVHcloud contacts from /me/contact API.",
   "keywords": [
     "angularjs",
@@ -41,7 +41,7 @@
     "@ovh-ux/component-rollup-config": "^7.0.0"
   },
   "peerDependencies": {
-    "@ovh-ux/ng-translate-async-loader": "^2.0.0",
+    "@ovh-ux/ng-translate-async-loader": "^2.1.0",
     "angular": "^1.7.8",
     "angular-translate": "^2.18.1",
     "angular-ui-bootstrap": "~1.3.3",

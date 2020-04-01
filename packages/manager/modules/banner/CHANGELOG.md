@@ -1,3 +1,12 @@
+# [1.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-banner@1.1.4...@ovh-ux/manager-banner@1.2.0) (2020-04-01)
+
+
+### Features
+
+* allow to add static tracking ([7b7efa6](https://github.com/ovh/manager/commit/7b7efa646ebbe5b94d0daef52fea3c47a838c8c2))
+
+
+
 ## [1.1.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-banner@1.1.3...@ovh-ux/manager-banner@1.1.4) (2020-03-04)
 
 

@@ -1,3 +1,17 @@
+# [0.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@0.2.4...@ovh-ux/manager-vps@0.3.0) (2020-04-01)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 320] ([fe4fad9](https://github.com/ovh/manager/commit/fe4fad9fac5b65388ac6b5b1480d33cbbc4bbab1))
+
+
+### Features
+
+* **upgrade.constants:** add APAC models ([#2667](https://github.com/ovh/manager/issues/2667)) ([917a495](https://github.com/ovh/manager/commit/917a4951b626532032e782236215c7032c05a42c))
+
+
+
 ## [0.2.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@0.2.3...@ovh-ux/manager-vps@0.2.4) (2020-03-18)
 
 

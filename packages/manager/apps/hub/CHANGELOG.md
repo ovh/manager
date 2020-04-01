@@ -1,3 +1,84 @@
+# [1.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.4.0-alpha.0...@ovh-ux/manager-hub-app@1.0.0) (2020-04-01)
+
+
+### Bug Fixes
+
+* **dashboard:** fix check for no products ([12c8e6d](https://github.com/ovh/manager/commit/12c8e6d4c0cd48423b328cee153dc8dd1accd197))
+* **hub:** always display sidebar, increase max-width ([#2660](https://github.com/ovh/manager/issues/2660)) ([013d141](https://github.com/ovh/manager/commit/013d141399a0d95540be039468d3b73ac283e0d1))
+* **i18n:** add missing translations [CDS 322] ([7ee8c8b](https://github.com/ovh/manager/commit/7ee8c8b64e5fea8e42d9a34f10eb806acf6b1286))
+* **loading:** hide elements during loading ([#2683](https://github.com/ovh/manager/issues/2683)) ([e3aa29e](https://github.com/ovh/manager/commit/e3aa29e5d92aa86849abb2854571c4564b335393))
+* **product-lists:** inject sort and sortOrder parameters ([a440af8](https://github.com/ovh/manager/commit/a440af893ce1d9b0dfb76f6115a1f9adc3028503))
+* **products-list:** add sorting ([9fc8184](https://github.com/ovh/manager/commit/9fc8184b6bee93e94429336b69807e3f4310ac6c))
+* fix sidebar width ([#2635](https://github.com/ovh/manager/issues/2635)) ([513471d](https://github.com/ovh/manager/commit/513471dd669de42ae14ce5c2c31263b45a9ef7c4))
+* handle overflow ([#2553](https://github.com/ovh/manager/issues/2553)) ([a143d75](https://github.com/ovh/manager/commit/a143d755ac7d3b3f1895f5917e9cd60dbdb1f9ee))
+* increase navbar z-index ([1df877c](https://github.com/ovh/manager/commit/1df877cac18ea2ea80961b6591c8cb80d7ab33f3))
+* remove height 100% ([eccb62f](https://github.com/ovh/manager/commit/eccb62f8dd2811d83b8d0cec2b937257aaf6cd24))
+* sidebar width ([1450cf3](https://github.com/ovh/manager/commit/1450cf3af4ed155e07ce586052f581b4108c485c))
+* take full height ([ea08dc5](https://github.com/ovh/manager/commit/ea08dc5b8a06ba9e5862dfb376495ba73303cce5))
+* **catalog:** fix category filter when no universe is selected ([933aa02](https://github.com/ovh/manager/commit/933aa02fe38dcdb7fde7400dafebe1b23ab42b72))
+* **catalog:** fix search display ([d2c9420](https://github.com/ovh/manager/commit/d2c9420cff0113cc986eae2e428d0c4fad65f939))
+* **catalog:** update available categories on universe change only ([d7388a0](https://github.com/ovh/manager/commit/d7388a0f5b8c3edf68df381d4ad71c76fac3abaa))
+* **dashboard:** fix feedback banner display ([ab9effd](https://github.com/ovh/manager/commit/ab9effd977157d99d7df8fb515f83bab4984aea4))
+* **dashboard.order:** add margins ([#2497](https://github.com/ovh/manager/issues/2497)) ([350c48b](https://github.com/ovh/manager/commit/350c48be6c0826c620102adcbdf67fe9577742cd))
+* **dashboard.products-list:** be more specific to match api route ([#2520](https://github.com/ovh/manager/issues/2520)) ([de7409d](https://github.com/ovh/manager/commit/de7409df22713a96f2c5a125cde59bac3427bbc2))
+* **dashboard.products-list:** set columns as a dynamic parameter ([91de817](https://github.com/ovh/manager/commit/91de817c8f8c480567aac7a1fc7d8f7983db1110))
+* **i18n:** add missing translations [CDS 314] ([6cb1de2](https://github.com/ovh/manager/commit/6cb1de2873cb762174dd19f86cfd7ed8fff2b654))
+* **i18n:** add missing translations [CDS 315] ([adb83a1](https://github.com/ovh/manager/commit/adb83a141830eb81c1ad7cc48104d67779955c98))
+* **i18n:** add missing translations [CDS 318] ([adc933a](https://github.com/ovh/manager/commit/adc933a02442933a3335681d5abb97e4ac55879a))
+* **i18n:** add missing translations [CDS 320] ([fe4fad9](https://github.com/ovh/manager/commit/fe4fad9fac5b65388ac6b5b1480d33cbbc4bbab1))
+* **i18n:** add missing translations [CDS 323] ([77728ef](https://github.com/ovh/manager/commit/77728efb393d8cb27402df92f299cab815390e64))
+* **navbar:** fix responsive links ([900dcff](https://github.com/ovh/manager/commit/900dcffa209b8a39bbc3b89247a7380721c8080f))
+* **support:** add tile style & tracking ([483ecf9](https://github.com/ovh/manager/commit/483ecf9403bdcbbd20f11f61f52980a47d1c0c66))
+* take full available width ([f830740](https://github.com/ovh/manager/commit/f830740a855716804b30db3c67ed484d8a6e8b58))
+* **translations:** clean translations files ([#2668](https://github.com/ovh/manager/issues/2668)) ([43c0f80](https://github.com/ovh/manager/commit/43c0f80be6031e176d9c802d991ce7b1eda29f21))
+
+
+### Code Refactoring
+
+* **hub:** move user panel to @ovh-ux/manager-account-sidebar ([19731b0](https://github.com/ovh/manager/commit/19731b059cc882a40d395c2ca4b3fbd0d19dbdf5))
+
+
+### Features
+
+* **hub:** update application bootstraping ([e611e3e](https://github.com/ovh/manager/commit/e611e3ef36ade793e43507a31eac66353dd1c1b9))
+* add billing tile for enterprise customers ([6264de1](https://github.com/ovh/manager/commit/6264de1b01162a71fdb6b9a166e2b7d63c668c43))
+* add breadcrumb ([d77db36](https://github.com/ovh/manager/commit/d77db3636e5fb83afca095195505fe65731acb12))
+* add favicon ([#2508](https://github.com/ovh/manager/issues/2508)) ([6364bab](https://github.com/ovh/manager/commit/6364bab5f366cc9c0de86ff07b82d517bb6e0076))
+* add lazyloading ([#2494](https://github.com/ovh/manager/issues/2494)) ([82fa571](https://github.com/ovh/manager/commit/82fa571a66bf5e1dd72a961b28b091fd3896bde0))
+* add missing tracking ([#2577](https://github.com/ovh/manager/issues/2577)) ([8d11c15](https://github.com/ovh/manager/commit/8d11c15e7b05fbe0a716cf48046098da3e1aed53))
+* style refactoring ([f8d8c38](https://github.com/ovh/manager/commit/f8d8c382ee93f77248539f2a5f1ebb475110fca1))
+* update tracking ([911cfc0](https://github.com/ovh/manager/commit/911cfc0162c729de2aa6079f0a6e3c1bc5759757))
+* **dashboard:** update feedback banner wording ([d87c8fe](https://github.com/ovh/manager/commit/d87c8feb1084a8f0f9285555e3ae519cad45e9b2))
+* add ODS theme ([1e9e877](https://github.com/ovh/manager/commit/1e9e877994731bc7d5faec0c83d3b04780f3f0c0))
+* add redirection for billing emails ([53876f6](https://github.com/ovh/manager/commit/53876f6c1bbf6aed551ee32ff5f74afdac733e79))
+* add theme and styling ([34a0d5e](https://github.com/ovh/manager/commit/34a0d5e5775dc9cd5b47cdd7b6811aa2acd5adfe))
+* scroll to top when state changes ([41b101b](https://github.com/ovh/manager/commit/41b101bd82247170f822fc2555852053c2f4bc1e))
+* update panel for enterprise customers in US ([e180cca](https://github.com/ovh/manager/commit/e180cca4a03dc40f793e1034fbf8ae5ad249e140))
+* update style and theme ([6899182](https://github.com/ovh/manager/commit/68991820bfd9a701f3b8b00a8f1fd651ee90255c))
+* **billing-summary:** add tracking ([#2451](https://github.com/ovh/manager/issues/2451)) ([19ee7ba](https://github.com/ovh/manager/commit/19ee7bae8e6bfa7099f9cd3c8ecada7e6afc23e2))
+* **catalog:** improve seach filters display ([308cb4f](https://github.com/ovh/manager/commit/308cb4fb2e200b993d071320bab2bb88d8aac448))
+* **dashboard:** add error and refresh handling ([14c3e8a](https://github.com/ovh/manager/commit/14c3e8a15fc2bd07259043cec7a4b060b934525b))
+* **dashboard:** add ovh-manager-banner ([#2465](https://github.com/ovh/manager/issues/2465)) ([afab68a](https://github.com/ovh/manager/commit/afab68a04b39fd57f0b23fb096d298727fc5dcd4))
+* **dashboard:** add redirection if product does not exist ([#2605](https://github.com/ovh/manager/issues/2605)) ([064e606](https://github.com/ovh/manager/commit/064e606bdea6f2b2903cb430a9274b40c9c6cc0a))
+* **dashboard:** add support tile ([35b3699](https://github.com/ovh/manager/commit/35b3699f70bc996e6857a1274f5ead50c9663a2b))
+* **dashboard:** add tracking ([3325750](https://github.com/ovh/manager/commit/3325750754d9182397f9fb57f489b95877f76fea))
+* **dashboard:** display order dashboard only if there is no order ([#2564](https://github.com/ovh/manager/issues/2564)) ([112d934](https://github.com/ovh/manager/commit/112d934b8cadafd8ae1380577338aef68c5dfa98))
+* **dashboard:** hide products tile if no products ([#2604](https://github.com/ovh/manager/issues/2604)) ([cdb328e](https://github.com/ovh/manager/commit/cdb328ebc4a746bbacc211e650c8095d9e365e53))
+* **dashboard:** sort products by descending count ([#2506](https://github.com/ovh/manager/issues/2506)) ([765c53e](https://github.com/ovh/manager/commit/765c53ef2855d609eb3700ef7cfc98a20d624f6e))
+* **navbar:** manager-hub sidebar integration ([29a9f57](https://github.com/ovh/manager/commit/29a9f57e3b67fc955e3c2865a2b927e7247c9cb8))
+* **product-list:** inject url for each products ([dabc924](https://github.com/ovh/manager/commit/dabc92438b96f8da8cc116a9f162e75f770b4812))
+* **products:** limit number of tiles displayed ([#2485](https://github.com/ovh/manager/issues/2485)) ([7e0841a](https://github.com/ovh/manager/commit/7e0841a9856bba6ea82a0908305630753d9e91ed))
+* **products-list:** add special products configuration ([ca0116a](https://github.com/ovh/manager/commit/ca0116ac6941095408df49eeea813e4d35493d30))
+* **support:** add tracking ([#2452](https://github.com/ovh/manager/issues/2452)) ([6a65908](https://github.com/ovh/manager/commit/6a659088b5a66efb2f1e6bd253b03750cd909496))
+* add beta version to navbar ([d852b09](https://github.com/ovh/manager/commit/d852b099bedeb611ce3b8c317a1dae0c508e7dbd))
+
+
+### BREAKING CHANGES
+
+* **hub:** init @ovh-ux/manager-account-sidebar module
+
+
+
 # [0.4.0-alpha.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.3.0-alpha.0...@ovh-ux/manager-hub-app@0.4.0-alpha.0) (2020-03-24)
 
 

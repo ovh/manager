@@ -1,3 +1,12 @@
+# [1.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@1.6.2...@ovh-ux/manager-exchange@1.7.0) (2020-04-01)
+
+
+### Features
+
+* redirect dedicated for CA ([7c1fde6](https://github.com/ovh/manager/commit/7c1fde6107fb85b084a6b27a1c0962e3c2fdd6ba))
+
+
+
 ## [1.6.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@1.6.1...@ovh-ux/manager-exchange@1.6.2) (2020-03-09)
 
 

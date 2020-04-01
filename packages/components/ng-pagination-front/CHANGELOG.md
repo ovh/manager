@@ -1,3 +1,23 @@
+# [9.0.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-pagination-front@8.0.1...@ovh-ux/ng-pagination-front@9.0.0) (2020-04-01)
+
+
+### Bug Fixes
+
+* remove custom styles to prefer ovh-ui-kit-bs ([55c555d](https://github.com/ovh/manager/commit/55c555d233ba41dbaa75623de5208b3293405ebe))
+
+
+### Code Refactoring
+
+* update stack with component-rollup-config ([#7](https://github.com/ovh/manager/issues/7)) ([cc12131](https://github.com/ovh/manager/commit/cc12131f955efddf1c9e7c949e30263076f3ae4f))
+
+
+### BREAKING CHANGES
+
+* ovh-ui-kit-bs is now needed in the host of this library
+* module is now named as `ngPaginationFront`
+
+
+
 ## [8.0.1](https://github.com/ovh-ux/ng-pagination-front/compare/v8.0.0...v8.0.1) (2020-01-07)
 
 

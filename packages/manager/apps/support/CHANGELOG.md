@@ -1,3 +1,17 @@
+# [1.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-support-app@0.1.4...@ovh-ux/manager-support-app@1.0.0) (2020-04-01)
+
+
+### Code Refactoring
+
+* **hub:** move user panel to @ovh-ux/manager-account-sidebar ([19731b0](https://github.com/ovh/manager/commit/19731b059cc882a40d395c2ca4b3fbd0d19dbdf5))
+
+
+### BREAKING CHANGES
+
+* **hub:** init @ovh-ux/manager-account-sidebar module
+
+
+
 ## [0.1.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-support-app@0.1.3...@ovh-ux/manager-support-app@0.1.4) (2020-03-18)
 
 

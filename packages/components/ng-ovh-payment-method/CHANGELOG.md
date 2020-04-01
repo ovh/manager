@@ -1,3 +1,18 @@
+# [6.1.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-payment-method@6.0.1...@ovh-ux/ng-ovh-payment-method@6.1.0) (2020-04-01)
+
+
+### Bug Fixes
+
+* **legacy.mean:** add icon as property for model ([0e002e6](https://github.com/ovh/manager/commit/0e002e61899a16d9977927ac8fbd5391ce0b4b83))
+* **service:** find default payment method ([#2603](https://github.com/ovh/manager/issues/2603)) ([cba00ae](https://github.com/ovh/manager/commit/cba00aecf98b23f714021eddc855756afa6950ed))
+
+
+### Features
+
+* add some payment method status mapping ([#2685](https://github.com/ovh/manager/issues/2685)) ([ea52bb3](https://github.com/ovh/manager/commit/ea52bb3471fbec349d2be438d7e7e1ebca637190))
+
+
+
 ## [6.0.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-payment-method@6.0.0...@ovh-ux/ng-ovh-payment-method@6.0.1) (2020-03-04)
 
 

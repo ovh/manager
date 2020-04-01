@@ -1,3 +1,41 @@
+# [3.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-navbar@2.5.0...@ovh-ux/manager-navbar@3.0.0) (2020-04-01)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 322] ([7ee8c8b](https://github.com/ovh/manager/commit/7ee8c8b64e5fea8e42d9a34f10eb806acf6b1286))
+* handle overflow ([#2553](https://github.com/ovh/manager/issues/2553)) ([a143d75](https://github.com/ovh/manager/commit/a143d755ac7d3b3f1895f5917e9cd60dbdb1f9ee))
+* sidebar width ([1450cf3](https://github.com/ovh/manager/commit/1450cf3af4ed155e07ce586052f581b4108c485c))
+* update help center url for subsidiaries ([f602228](https://github.com/ovh/manager/commit/f6022283866aa28c2d68fffee9180f8cf00c2436))
+* **navbar:** menus cursor pointer ([bb414a3](https://github.com/ovh/manager/commit/bb414a3e87873d1959af7ca1aade21802ba2f374))
+
+
+### Code Refactoring
+
+* **hub:** move user panel to @ovh-ux/manager-account-sidebar ([19731b0](https://github.com/ovh/manager/commit/19731b059cc882a40d395c2ca4b3fbd0d19dbdf5))
+
+
+### Features
+
+* add missing tracking ([#2577](https://github.com/ovh/manager/issues/2577)) ([8d11c15](https://github.com/ovh/manager/commit/8d11c15e7b05fbe0a716cf48046098da3e1aed53))
+* add translation ([6fca317](https://github.com/ovh/manager/commit/6fca317f4cac49fb7bcb1ae42d17b2959c19a5d1))
+* update panel for enterprise customers in US ([e180cca](https://github.com/ovh/manager/commit/e180cca4a03dc40f793e1034fbf8ae5ad249e140))
+* update style and theme ([6899182](https://github.com/ovh/manager/commit/68991820bfd9a701f3b8b00a8f1fd651ee90255c))
+* update styles ([566be04](https://github.com/ovh/manager/commit/566be0409e08c06344b1e67e6b0fe812a8475f67))
+* **navbar:** manager-hub sidebar integration ([29a9f57](https://github.com/ovh/manager/commit/29a9f57e3b67fc955e3c2865a2b927e7247c9cb8))
+* **navbar:** remove language & assistance menu ([a595155](https://github.com/ovh/manager/commit/a595155bdc4215aeb4a7da19fa987fe0cc695b45))
+* **notifications:** update menu ([ee1e419](https://github.com/ovh/manager/commit/ee1e419cec3797dd0c6e5ac087bf3b2c159bc0ee)), closes [#MANAGER-4292](https://github.com/ovh/manager/issues/MANAGER-4292)
+
+
+### BREAKING CHANGES
+
+* **hub:** init @ovh-ux/manager-account-sidebar module
+* **navbar:** Language menu is no longer available from navbar
+
+Signed-off-by: Marie JONES <marie.jones@corp.ovh.com>
+
+
+
 # [2.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-navbar@2.4.0...@ovh-ux/manager-navbar@2.5.0) (2020-03-24)
 
 

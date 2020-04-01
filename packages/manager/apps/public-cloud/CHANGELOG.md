@@ -1,3 +1,29 @@
+# [3.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@2.7.0...@ovh-ux/manager-public-cloud@3.0.0) (2020-04-01)
+
+
+### Bug Fixes
+
+* **loading:** hide elements during loading ([#2683](https://github.com/ovh/manager/issues/2683)) ([e3aa29e](https://github.com/ovh/manager/commit/e3aa29e5d92aa86849abb2854571c4564b335393))
+* **public-cloud:** remove custom navbar styles ([d296c28](https://github.com/ovh/manager/commit/d296c283c5e834991c07a4393a2432d090b22e8f))
+
+
+### Code Refactoring
+
+* **hub:** move user panel to @ovh-ux/manager-account-sidebar ([19731b0](https://github.com/ovh/manager/commit/19731b059cc882a40d395c2ca4b3fbd0d19dbdf5))
+
+
+### Features
+
+* **notifications:** update menu ([ee1e419](https://github.com/ovh/manager/commit/ee1e419cec3797dd0c6e5ac087bf3b2c159bc0ee)), closes [#MANAGER-4292](https://github.com/ovh/manager/issues/MANAGER-4292)
+* **public-cloud:** add application bootstrap ([#2565](https://github.com/ovh/manager/issues/2565)) ([7f48a69](https://github.com/ovh/manager/commit/7f48a690d77ac26b8257cc433c2e086e6c2636c1))
+
+
+### BREAKING CHANGES
+
+* **hub:** init @ovh-ux/manager-account-sidebar module
+
+
+
 # [2.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@2.6.6...@ovh-ux/manager-public-cloud@2.7.0) (2020-03-24)
 
 

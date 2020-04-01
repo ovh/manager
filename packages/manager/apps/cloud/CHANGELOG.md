@@ -1,3 +1,23 @@
+# [9.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@8.5.0...@ovh-ux/manager-cloud@9.0.0) (2020-04-01)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 318] ([adc933a](https://github.com/ovh/manager/commit/adc933a02442933a3335681d5abb97e4ac55879a))
+* **translations:** clean translations files ([#2668](https://github.com/ovh/manager/issues/2668)) ([43c0f80](https://github.com/ovh/manager/commit/43c0f80be6031e176d9c802d991ce7b1eda29f21))
+
+
+### Code Refactoring
+
+* **hub:** move user panel to @ovh-ux/manager-account-sidebar ([19731b0](https://github.com/ovh/manager/commit/19731b059cc882a40d395c2ca4b3fbd0d19dbdf5))
+
+
+### BREAKING CHANGES
+
+* **hub:** init @ovh-ux/manager-account-sidebar module
+
+
+
 # [8.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@8.4.0...@ovh-ux/manager-cloud@8.5.0) (2020-03-24)
 
 

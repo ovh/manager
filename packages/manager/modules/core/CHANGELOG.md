@@ -1,3 +1,32 @@
+# [9.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@8.2.1...@ovh-ux/manager-core@9.0.0) (2020-04-01)
+
+
+### Bug Fixes
+
+* hide links not available in the US ([#2532](https://github.com/ovh/manager/issues/2532)) ([d6edff6](https://github.com/ovh/manager/commit/d6edff6a0b2fc788c4b650e34e60e1a9100db830))
+* update help center url for subsidiaries ([f602228](https://github.com/ovh/manager/commit/f6022283866aa28c2d68fffee9180f8cf00c2436))
+
+
+### Features
+
+* **core:** add bootstrapApplication to retrieve configuration ([c4d8d52](https://github.com/ovh/manager/commit/c4d8d52a828427e3948a84a306df255a8097e009))
+* redirect dedicated for CA ([7c1fde6](https://github.com/ovh/manager/commit/7c1fde6107fb85b084a6b27a1c0962e3c2fdd6ba))
+* return MANAGER_URLS depending on region ([362d238](https://github.com/ovh/manager/commit/362d2381a3ff49ce206a58da635341ba8829f3d9))
+* update style and theme ([6899182](https://github.com/ovh/manager/commit/68991820bfd9a701f3b8b00a8f1fd651ee90255c))
+* **billing-summary:** add debt pay ([62d1e27](https://github.com/ovh/manager/commit/62d1e274b27814bc1f984c69f1205a2aa6eeda55))
+* **order-tracking:** clickable order id ([93ca803](https://github.com/ovh/manager/commit/93ca80343de335f7e6b11fecfa1896ef51a6933c))
+* **redirection:** add link to travaux for CA ([#2601](https://github.com/ovh/manager/issues/2601)) ([7807ccc](https://github.com/ovh/manager/commit/7807ccc1a3f9aa09b35d2283ce9415a9ff16e68d))
+* **redirection:** add url for enterprise customers ([b6cc48f](https://github.com/ovh/manager/commit/b6cc48f14f2a461bb313047bcd736da3f3bca62a))
+* **redirection:** add user account constants ([bb8a88d](https://github.com/ovh/manager/commit/bb8a88d214c4b6683821e3cf563f7b535af4e432))
+* **redirection:** update urls for CA region ([cb9cd13](https://github.com/ovh/manager/commit/cb9cd1343f9a6e94249d3a85eb0ec50ed386fbdc))
+
+
+### BREAKING CHANGES
+
+* CORE_MANAGER_URLS is now filtered according to region
+
+
+
 ## [8.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@8.2.0...@ovh-ux/manager-core@8.2.1) (2020-03-30)
 
 

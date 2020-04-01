@@ -1,3 +1,12 @@
+## [1.3.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@1.3.7...@ovh-ux/manager-server-sidebar@1.3.8) (2020-04-01)
+
+
+### Bug Fixes
+
+* **translations:** clean translations files ([#2668](https://github.com/ovh/manager/issues/2668)) ([43c0f80](https://github.com/ovh/manager/commit/43c0f80be6031e176d9c802d991ce7b1eda29f21))
+
+
+
 ## [1.3.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@1.3.6...@ovh-ux/manager-server-sidebar@1.3.7) (2020-03-10)
 
 

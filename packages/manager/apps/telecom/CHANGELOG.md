@@ -1,3 +1,30 @@
+# [12.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@11.5.0...@ovh-ux/manager-telecom@12.0.0) (2020-04-01)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 326] ([71a8479](https://github.com/ovh/manager/commit/71a8479c97928d98bfa76f09b2064fa397c7f299))
+* **loading:** hide elements during loading ([#2683](https://github.com/ovh/manager/issues/2683)) ([e3aa29e](https://github.com/ovh/manager/commit/e3aa29e5d92aa86849abb2854571c4564b335393))
+
+
+### Code Refactoring
+
+* **hub:** move user panel to @ovh-ux/manager-account-sidebar ([19731b0](https://github.com/ovh/manager/commit/19731b059cc882a40d395c2ca4b3fbd0d19dbdf5))
+
+
+### Features
+
+* **pack:** add redirection if line is not specified ([f3560f2](https://github.com/ovh/manager/commit/f3560f2e0825ff12e92908f9df43e382e751f510))
+* **telecom:** add application bootstrap ([d3e317c](https://github.com/ovh/manager/commit/d3e317c1d0463ea2fb338dcc189cf214f2768e8f))
+* **xdsl.access:** retrieve price and model for exchange modem from api ([#2210](https://github.com/ovh/manager/issues/2210)) ([c128dd6](https://github.com/ovh/manager/commit/c128dd6ef9bc1e444789d66c0fd8f8bb4ed34687))
+
+
+### BREAKING CHANGES
+
+* **hub:** init @ovh-ux/manager-account-sidebar module
+
+
+
 # [11.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@11.4.8...@ovh-ux/manager-telecom@11.5.0) (2020-03-24)
 
 
