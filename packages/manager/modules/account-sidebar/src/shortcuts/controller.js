@@ -5,10 +5,11 @@ import isEmpty from 'lodash/isEmpty';
 
 export default class ManagerHubShortcutsCtrl {
   /* @ngInject */
-  constructor($http, $translate, $q, RedirectionService) {
+  constructor($http, $translate, $q, coreConfig, RedirectionService) {
     this.$http = $http;
     this.$translate = $translate;
     this.$q = $q;
+    this.coreConfig = coreConfig;
     this.RedirectionService = RedirectionService;
   }
 
@@ -34,12 +35,18 @@ export default class ManagerHubShortcutsCtrl {
         url: this.RedirectionService.getURL('supportLevel'),
         tracking: 'hub::sidebar::shortcuts::go-to-support-level',
       },
-      {
+    ];
+
+    if (!this.coreConfig.isRegion('US')) {
+      shortcuts.push({
         id: 'products',
         icon: 'oui-icon-book-open_concept',
         tracking: 'hub::sidebar::shortcuts::go-to-catalog',
         url: this.RedirectionService.getURL('catalog'),
-      },
+      });
+    }
+
+    shortcuts.push(
       {
         id: 'emails',
         icon: 'oui-icon-envelop-letter_concept',
@@ -52,7 +59,7 @@ export default class ManagerHubShortcutsCtrl {
         url: this.RedirectionService.getURL('contacts'),
         tracking: 'hub::sidebar::shortcuts::go-to-contacts',
       },
-    ];
+    );
 
     return this.$translate
       .refresh()
