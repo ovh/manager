@@ -104,6 +104,7 @@
                 data-datacenter-id="{{ ::$ctrl.datacenterId }}"
                 data-model="$ctrl.data.conditionsAccepted"
                 data-conditions-url="{{ ::$ctrl.backupConditionsUrl }}"
+                data-replication-disabled="!$ctrl.data.selectedOfferDetails.replication"
             >
             </dedicated-cloud-datacenter-backup-terms-of-use>
             <oui-spinner

@@ -1,3 +1,4 @@
+import find from 'lodash/find';
 import get from 'lodash/get';
 
 import {
@@ -34,6 +35,7 @@ export default class {
           BACKUP_OFFER_CLASSIC,
         ),
       },
+      selectedOfferDetails: null,
     };
     if (this.backup.isLegacy()) {
       this.showOrderFlow = false;
@@ -57,6 +59,9 @@ export default class {
   createBackupOrder() {
     this.data.backupOrder = null;
     this.data.orderCreationInProgress = true;
+    this.data.selectedOfferDetails = find(this.backupOffers, {
+      offerName: this.data.selectedOffer.backupOffer,
+    });
     return (this.backup.isLegacy()
       ? this.$q.when({})
       : this.dedicatedCloudDatacenterBackupService.createBackupOrder(

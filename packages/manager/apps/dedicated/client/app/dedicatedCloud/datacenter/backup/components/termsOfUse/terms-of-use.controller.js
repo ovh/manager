@@ -3,7 +3,7 @@ import set from 'lodash/set';
 export default class {
   $onInit() {
     this.data = {
-      dataReplication: false,
+      dataReplication: this.replicationDisabled,
       generalConditions: false,
     };
   }

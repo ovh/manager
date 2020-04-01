@@ -6,6 +6,7 @@ export default {
     conditionsUrl: '@',
     datacenterId: '@',
     model: '=',
+    replicationDisabled: '<',
   },
   controller,
   template,
