@@ -1,3 +1,12 @@
+## [14.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@14.0.0...@ovh-ux/manager-web@14.0.1) (2020-04-01)
+
+
+### Bug Fixes
+
+* add redirection for billing and useraccount ([#2704](https://github.com/ovh/manager/issues/2704)) ([c4eeab0](https://github.com/ovh/manager/commit/c4eeab0b634d80b6ac38084843e3c43bfd210784))
+
+
+
 # [14.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.46.0...@ovh-ux/manager-web@14.0.0) (2020-04-01)
 
 
