@@ -1,3 +1,12 @@
+## [3.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-navbar@3.0.0...@ovh-ux/manager-navbar@3.0.1) (2020-04-01)
+
+
+### Bug Fixes
+
+* don't redirect to url if there is a action associated with universe ([#2701](https://github.com/ovh/manager/issues/2701)) ([894f283](https://github.com/ovh/manager/commit/894f283cf873f9352205d27a0dbea7407a58d64b))
+
+
+
 # [3.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-navbar@2.5.0...@ovh-ux/manager-navbar@3.0.0) (2020-04-01)
 
 
