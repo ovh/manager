@@ -45,7 +45,20 @@ ovh-manager-hub-payment-mean {
       font-weight: bold;
       max-width: none;
       line-height: 0.85rem;
-      color: $as-500;
+    }
+
+    .oui-status {
+      &_error {
+        color: $ae-500;
+      }
+
+      &_warning {
+        color: $aw-500;
+      }
+
+      &_success {
+        color: $as-500;
+      }
     }
 
     .oui-icon {
