@@ -1,6 +1,6 @@
 <div class="row">
     <div
-        class="col-md-6 mb-2 mb-md-4"
+        class="col-md-6 col-lg-4 mb-2 mb-md-4"
         data-ng-repeat="product in $ctrl.products | limitTo: ($ctrl.expand ? $ctrl.products.length : $ctrl.DEFAULT_DISPLAYED_TILES) track by product.productType"
     >
         <ovh-manager-hub-tile
