@@ -5,7 +5,7 @@ export const DNSSEC_STATUS = {
   ENABLE_IN_PROGRESS: 'enable_in_progress',
 };
 
-export const OWNER_CHANGE_URL = 'useraccount/contact/';
+export const OWNER_CHANGE_URL = '#/useraccount/contact/';
 
 export const PROTECTION_TYPES = {
   LOCKED: 'locked',
