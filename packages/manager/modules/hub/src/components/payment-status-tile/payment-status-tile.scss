@@ -1,6 +1,17 @@
 hub-payment-status {
-  @import '~bootstrap4/scss/_functions';
-  @import '~bootstrap4/scss/_variables';
-  @import '~bootstrap4/scss/_mixins';
-  @import '~bootstrap4/scss/_utilities.scss';
+  @import '~bootstrap/scss/_functions';
+  @import '~bootstrap/scss/_variables';
+  @import '~bootstrap/scss/_mixins';
+  @import '~bootstrap/scss/_utilities.scss';
+  @import '~oui4/dist/scss/_tokens';
+
+  .hub-payment-status_small {
+    font-size: $mercury-font-size;
+  }
+
+  @media screen and (max-width: $device-breakpoint-phone-max-width) {
+    .oui-datagrid__cell:first-of-type {
+      border-bottom: none;
+    }
+  }
 }

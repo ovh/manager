@@ -15,7 +15,10 @@ const matchingTypes = {
   string: 'string',
 };
 
-const mapApiProperties = (properties) =>
+const getSorting = ({ sort, sortOrder }, property) =>
+  sort === property ? sortOrder.toLowerCase() : true;
+
+const mapApiProperties = (properties, sorting) =>
   map(properties, (value, name) => ({
     title: name,
     property: name,
@@ -24,18 +27,22 @@ const mapApiProperties = (properties) =>
       : matchingTypes[value.type],
     searchable: true,
     filterable: true,
-    sortable: true,
+    sortable: getSorting(sorting, name),
   }));
 
-const getFirstColumnTemplate = (propertyId) => ({
+const getFirstColumnTemplate = (propertyId, sorting) => ({
   title: propertyId,
   property: propertyId,
   template: `
-      <a data-ng-href="{{ $row.url }}" data-ng-bind="$row.${propertyId}"></a>
+      <a
+        data-ng-href="{{ $row.managerLink }}"
+        data-ng-bind="$row.${propertyId}"
+        data-track-on="click"
+        data-track-name="hub::product-listing::go-to-service"></a>
     `,
   searchable: true,
   filterable: true,
-  sortable: 'asc',
+  sortable: getSorting(sorting, propertyId),
 });
 
 export const urlQueryParams = `columns&${ListLayoutHelper.urlQueryParams}`;
@@ -44,6 +51,7 @@ export const params = {
   columns: {
     squash: true,
     value: '[]',
+    dynamic: true,
   },
   ...ListLayoutHelper.stateParams,
 };
@@ -52,7 +60,7 @@ export const component = 'hubProductListing';
 
 export const resolves = {
   products: /* @ngInject */ (productType, services) =>
-    services.data[productType].data,
+    get(services, `data.data.${productType}.data`),
   resourcePath: /* @ngInject */ (products) => get(head(products), 'route.path'),
   propertyId: /* @ngInject */ (products) => get(head(products), 'propertyId'),
   dataModel: /* @ngInject */ (resourcePath, schema) => {
@@ -76,11 +84,25 @@ export const resolves = {
         ),
       ),
     }),
-  columns: /* @ngInject */ (dataModel, displayedColumns, propertyId) => {
-    const columns = mapApiProperties(dataModel.properties).filter(
-      ({ title, type }) => type && title !== propertyId,
-    );
-    columns.unshift(getFirstColumnTemplate(propertyId));
+  loadRow: /* @ngInject */ (products, propertyId) => (service) => ({
+    ...service,
+    managerLink: get(
+      products.find(({ resource }) => resource.name === service[propertyId]),
+      'url',
+    ),
+  }),
+  columns: /* @ngInject */ (
+    dataModel,
+    displayedColumns,
+    propertyId,
+    sort,
+    sortOrder,
+  ) => {
+    const columns = mapApiProperties(dataModel.properties, {
+      sort,
+      sortOrder,
+    }).filter(({ title, type }) => type && title !== propertyId);
+    columns.unshift(getFirstColumnTemplate(propertyId, { sort, sortOrder }));
     return columns.map((column, index) => ({
       ...column,
       title: startCase(column.title),
@@ -89,6 +111,9 @@ export const resolves = {
         : !displayedColumns.includes(column.title),
     }));
   },
+  hideBreadcrumb: () => false,
+  breadcrumb: /* @ngInject */ ($translate, productType) =>
+    $translate.instant(`manager_hub_products_${productType}`),
 };
 
 export default {

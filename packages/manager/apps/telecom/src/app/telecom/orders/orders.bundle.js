@@ -1,0 +1,10 @@
+import './accessories/telecom-orders-accessories.controller';
+import './accessories/telecom-orders-accessories';
+import './alias/orders-alias.constants';
+import './alias/telecom-orders-alias.controller';
+import './alias/telecom-orders-alias';
+import './show/telecom-orders-show.controller';
+import './show/telecom-orders-show';
+import './sms/telecom-orders-sms';
+import './telecom-orders.controller';
+import './telecom-orders';

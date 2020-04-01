@@ -1,15 +1,17 @@
 import angular from 'angular';
 import 'angular-translate';
-
-import './styles.less';
+import '@ovh-ux/ng-at-internet';
 
 import carousel from './carousel.component';
+
+import './carousel.scss';
 
 const moduleName = 'ovhManagerHubCarouselComponent';
 
 angular
   .module(moduleName, [
     'oui',
+    'ngAtInternet',
     'ngTranslateAsyncLoader',
     'pascalprecht.translate',
   ])

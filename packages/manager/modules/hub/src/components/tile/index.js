@@ -1,4 +1,3 @@
-import 'ovh-ui-kit/dist/oui.css';
 import './tile.less';
 
 import tile from './tile.component';

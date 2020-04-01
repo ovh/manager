@@ -42,9 +42,9 @@ export default class OfficeAttach {
   }
 
   retrievingIfUserAlreadyHasSubscribed(serviceName) {
-    return this.retrievingServiceName(serviceName).then(
-      (officeAttachServiceName) => isString(officeAttachServiceName),
-    );
+    return this.retrievingServiceName(
+      serviceName,
+    ).then((officeAttachServiceName) => isString(officeAttachServiceName));
   }
 
   savingHidingPreferences() {

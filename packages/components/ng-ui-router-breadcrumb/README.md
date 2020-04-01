@@ -11,6 +11,8 @@ yarn add @ovh-ux/ng-ui-router-breadcrumb
 ```
 ## Usage
 
+### `breadcrumb` resolve
+
 ```js
 import angular from 'angular';
 import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
@@ -35,6 +37,37 @@ angular
   });
 ```
 
+### `hideBreadcrumb` resolve
+
+This is meant to be used if you want to hide the breadcrumb for some state but display it for some children. 
+
+```js
+import angular from 'angular';
+import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
+import uiRouter from '@uirouter/angularjs';
+
+angular
+  .module('myApp', [
+    ngUiRouterBreadcrumb,
+    uiRouter,
+  ])
+  .config(/* @ngInject */ ($stateProvider) => {
+    $stateProvider
+      .state('foo', {
+        url: '/foo',
+        template: '<h2>Foo</h2>',
+        resolve: {
+          breadcrumb: function () {
+            return 'foo';
+          },
+          hideBreadcrumb: function() {
+            return true
+          } 
+        }
+      });
+  });
+```
+
 ## Test
 
 ```sh
@@ -48,7 +81,7 @@ $ yarn test
 
 ## Contributing
 
-Always feel free to help out! Whether it's [filing bugs and feature requests](https://github.com/ovh-ux/manager/issues/new) or working on some of the [open issues](https://github.com/ovh-ux/manager/issues), our [contributing guide](https://github.com/ovh-ux/manager/blob/master/CONTRIBUTING.md) will help get you started.
+Always feel free to help out! Whether it's [filing bugs and feature requests](https://github.com/ovh/manager/issues/new) or working on some of the [open issues](https://github.com/ovh/manager/issues), our [contributing guide](https://github.com/ovh/manager/blob/master/CONTRIBUTING.md) will help get you started.
 
 ## License
 

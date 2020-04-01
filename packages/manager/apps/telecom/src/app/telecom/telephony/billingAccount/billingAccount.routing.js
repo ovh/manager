@@ -24,9 +24,9 @@ export default /* @ngInject */ ($stateProvider) => {
       initTelephony($q, $stateParams, TelephonyMediator) {
         // init all groups, lines and numbers
         TelephonyMediator.init().then(() =>
-          TelephonyMediator.getGroup($stateParams.billingAccount).then(
-            (group) => TelephonyMediator.setCurrentGroup(group),
-          ),
+          TelephonyMediator.getGroup(
+            $stateParams.billingAccount,
+          ).then((group) => TelephonyMediator.setCurrentGroup(group)),
         );
         return $q.when({ init: true });
       },

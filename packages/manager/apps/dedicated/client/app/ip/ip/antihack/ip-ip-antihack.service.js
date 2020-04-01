@@ -29,7 +29,10 @@ angular.module('Module.ip.services').service('IpAntihack', [
             `ip/${window.encodeURIComponent(ipBlock)}/antihack/${ip}`,
           ].join('/'),
         )
-        .then((data) => data.data, (http) => $q.reject(http.data));
+        .then(
+          (data) => data.data,
+          (http) => $q.reject(http.data),
+        );
     };
 
     this.unblockIp = function unblockIp(ipBlock, ip) {
@@ -40,7 +43,10 @@ angular.module('Module.ip.services').service('IpAntihack', [
             `ip/${window.encodeURIComponent(ipBlock)}/antihack/${ip}/unblock`,
           ].join('/'),
         )
-        .then((data) => data.data, (http) => $q.reject(http.data));
+        .then(
+          (data) => data.data,
+          (http) => $q.reject(http.data),
+        );
     };
   },
 ]);

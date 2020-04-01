@@ -88,7 +88,7 @@ Handle `@ngTranslationsInject` comment in order to facilitate dynamic import of 
 
 The format is as follows: `@ngTranslationsInject:{format} [translations]`
 
-`format` is a string which represent the format of translations files (xml, json, ...)
+`format` is a string which represent the format of translations files (XML, json, ...)
 `translations` is multiple strings separated by a space
 
 ```js

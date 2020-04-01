@@ -3,6 +3,7 @@ import template from './template.html';
 
 const component = {
   bindings: {
+    onClick: '&?',
     user: '<',
   },
   controller,

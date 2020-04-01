@@ -523,16 +523,6 @@ const constants = {
         cs_CZ: 'http://www.ovh.cz/podpora/new_nic.xml',
       },
     },
-    MANAGER_URLS: {
-      portal: 'https://www.ovh.com/manager/portal/index.html#/',
-      web: 'https://www.ovh.com/manager/web/index.html#/',
-      dedicated: 'https://www.ovh.com/manager/dedicated/index.html#/',
-      cloud: 'https://www.ovh.com/manager/cloud/repsac/index.html#/',
-      publicCloud: 'https://www.ovh.com/manager/public-cloud/index.html#/',
-      telecom: 'https://www.ovhtelecom.fr/manager/index.html#/',
-      sunrise: 'https://www.ovh.com/manager/sunrise/index.html#/',
-      partners: 'https://www.ovh.com/manager/partners',
-    },
     TOP_GUIDES: {
       all: {
         fr_FR: 'https://docs.ovh.com/fr/dedicated/',
@@ -1071,12 +1061,6 @@ const constants = {
         cs_CZ: 'http://www.ovh.cz/podpora/new_nic.xml',
       },
     },
-    MANAGER_URLS: {
-      dedicated: 'https://ca.ovh.com/manager/index.html#/',
-      cloud: 'https://ca.ovh.com/manager/cloud/repsac/index.html#/',
-      publicCloud: 'https://ca.ovh.com/manager/public-cloud/index.html#/',
-      sunrise: 'https://ca.ovh.com/manager/sunrise/index.html#/',
-    },
     TOP_GUIDES: {},
     accountCreation: {
       default: 'http://www.ovh.com/ca/fr/support/new_nic.xml',
@@ -1143,7 +1127,7 @@ const constants = {
         'https://ca.ovh.com/fr/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
     },
     REDIRECT_URLS: {
-      listTicket: 'https://ca.ovh.com/manager/index.html#/ticket',
+      listTicket: 'https://ca.ovh.com/manager/dedicated/index.html#/ticket',
     },
     SUPPORT: {
       ASIA: '+65 3163 8340',
@@ -1238,12 +1222,6 @@ const constants = {
         fi_FI: 'http://www.ovh-hosting.fi/tuki/new_nic.xml',
         cs_CZ: 'http://www.ovh.cz/podpora/new_nic.xml',
       },
-    },
-    MANAGER_URLS: {
-      dedicated: 'https://www.us.ovhcloud.com/manager/dedicated/',
-      cloud: 'https://www.us.ovhcloud.com/manager/cloud/repsac',
-      publicCloud:
-        'https://www.us.ovhcloud.com/manager/public-cloud/index.html#/',
     },
     TOP_GUIDES: {
       sd: {

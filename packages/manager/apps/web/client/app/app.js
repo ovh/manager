@@ -1,5 +1,3 @@
-import filter from 'lodash/filter';
-import forEach from 'lodash/forEach';
 import get from 'lodash/get';
 import has from 'lodash/has';
 import isObject from 'lodash/isObject';
@@ -36,6 +34,7 @@ import emailpro from '@ovh-ux/manager-emailpro';
 import exchange from '@ovh-ux/manager-exchange';
 import office from '@ovh-ux/manager-office';
 import sharepoint from '@ovh-ux/manager-sharepoint';
+import { detach as detachPreloader } from '@ovh-ux/manager-preloader';
 import moment from 'moment';
 
 import config from './config/config';
@@ -54,12 +53,13 @@ import hostingEmailActivateModule from './hosting/email/activate';
 import './css/source.less';
 import './css/source.scss';
 
-Environment.setRegion(__WEBPACK_REGION__);
 Environment.setVersion(__VERSION__);
+
+const moduleName = 'App';
 
 angular
   .module(
-    'App',
+    moduleName,
     [
       ovhManagerCore,
       ngPaginationFront,
@@ -121,8 +121,8 @@ angular
       emailDomainUpgradeModule,
       hostingEmail,
       hostingEmailActivateModule,
-      __NG_APP_INJECTIONS__,
-    ].filter(isString), // __NG_APP_INJECTIONS__ can be null)
+      ...get(__NG_APP_INJECTIONS__, Environment.getRegion(), []),
+    ].filter(isString),
   )
   .constant('constants', {
     prodMode: config.prodMode,
@@ -146,7 +146,6 @@ angular
     aapiHeaderName: 'X-Ovh-Session',
     flags_options: config.constants.flags_options,
     algorithm_options: config.constants.algorithm_options,
-    MANAGER_URLS: config.constants.MANAGER_URLS,
     HOSTING: config.constants.HOSTING,
     NO_AUTORENEW_COUNTRIES: config.constants.NO_AUTORENEW_COUNTRIES,
     DOMAIN: config.constants.DOMAIN,
@@ -267,15 +266,10 @@ angular
       $locationProvider.hashPrefix('');
     },
   ])
-  .constant('URLS_REDIRECTED_TO_DEDICATED', [
-    new RegExp('/useraccount/.*'),
-    new RegExp('/billing/.*'),
-  ])
   .config([
     '$stateProvider',
     '$urlRouterProvider',
-    'URLS_REDIRECTED_TO_DEDICATED',
-    ($stateProvider, $urlRouterProvider, URLS_REDIRECTED_TO_DEDICATED) => {
+    ($stateProvider, $urlRouterProvider) => {
       /**
        * ALL DOM
        */
@@ -298,22 +292,6 @@ angular
           currentSection: () => 'all_dom',
         },
         translations: { value: ['domain', 'hosting'], format: 'json' },
-      });
-
-      forEach(URLS_REDIRECTED_TO_DEDICATED, (url) => {
-        $urlRouterProvider.when(url, [
-          '$window',
-          'constants',
-          '$location',
-          ($window, constants, $location) => {
-            const lastPartOfUrl = $location.url().substring(1);
-            set(
-              $window,
-              'location',
-              `${constants.MANAGER_URLS.dedicated}${lastPartOfUrl}`,
-            );
-          },
-        ]);
       });
 
       $urlRouterProvider.otherwise('/configuration');
@@ -432,37 +410,6 @@ angular
     'turystyka.pl',
   ])
   .run([
-    'constants',
-    '$location',
-    'URLS_REDIRECTED_TO_DEDICATED',
-    (constants, $location, URLS_REDIRECTED_TO_DEDICATED) => {
-      forEach(
-        filter(URLS_REDIRECTED_TO_DEDICATED, (url) =>
-          url.test(window.location.href),
-        ),
-        () => {
-          const lastPartOfUrl = $location.url().substring(1);
-          window.location = `${constants.MANAGER_URLS.dedicated}${lastPartOfUrl}`;
-        },
-      );
-    },
-  ])
-  .run([
-    'ssoAuthentication',
-    'URLS_REDIRECTED_TO_DEDICATED',
-    (authentication, URLS_REDIRECTED_TO_DEDICATED) => {
-      forEach(
-        filter(
-          URLS_REDIRECTED_TO_DEDICATED,
-          (url) => !url.test(window.location.href),
-        ),
-        () => {
-          authentication.login();
-        },
-      );
-    },
-  ])
-  .run([
     '$rootScope',
     ($rootScope) => {
       $rootScope.$on('$locationChangeStart', () => {
@@ -554,4 +501,14 @@ angular
       });
     },
   )
-  .run(/* @ngTranslationsInject:json ./translations */);
+  .run(/* @ngTranslationsInject:json ./translations */)
+  .run(
+    /* @ngInject */ ($rootScope, $transitions) => {
+      const unregisterHook = $transitions.onSuccess({}, () => {
+        detachPreloader();
+        unregisterHook();
+      });
+    },
+  );
+
+export default moduleName;

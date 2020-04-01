@@ -20,9 +20,9 @@ angular
       }
 
       function getNumber() {
-        return TelephonyMediator.getGroup($stateParams.billingAccount).then(
-          (group) => group.getNumber($stateParams.serviceName),
-        );
+        return TelephonyMediator.getGroup(
+          $stateParams.billingAccount,
+        ).then((group) => group.getNumber($stateParams.serviceName));
       }
 
       function getTerminationTask() {

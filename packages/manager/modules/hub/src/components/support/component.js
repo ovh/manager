@@ -7,5 +7,6 @@ export default {
   bindings: {
     me: '<',
     tickets: '<?',
+    trackingPrefix: '@',
   },
 };

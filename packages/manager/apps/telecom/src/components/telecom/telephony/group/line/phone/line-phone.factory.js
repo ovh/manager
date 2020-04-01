@@ -101,7 +101,10 @@ angular
             billingAccount: self.billingAccount,
             serviceName: self.serviceName,
           })
-          .$promise.then((phoneOptions) => phoneOptions, () => null);
+          .$promise.then(
+            (phoneOptions) => phoneOptions,
+            () => null,
+          );
       };
 
       TelephonyGroupLinePhone.prototype.getSip = function getSip() {
@@ -171,7 +174,10 @@ angular
                       serviceName: self.serviceName,
                       id: RMAId,
                     })
-                    .$promise.then((RMADetails) => RMADetails, () => null),
+                    .$promise.then(
+                      (RMADetails) => RMADetails,
+                      () => null,
+                    ),
                 );
               });
               return $q.all(RMADetailsRequests);

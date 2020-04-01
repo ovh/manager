@@ -8,7 +8,7 @@
 
 ## Intro
 
-Manager is the control panel built on top of the [OVHcloud API](https://api.ovh.com/) and based on our [UI Framework](https://github.com/ovh-ux/ovh-ui-kit). It helps you to manage your products.
+Manager is the control panel built on top of the [OVHcloud API](https://api.ovh.com/) and based on our [UI Framework](https://github.com/ovh/ovh-ui-kit). It helps you to manage your products.
 
 ## Prerequisites
 
@@ -17,7 +17,7 @@ Manager is the control panel built on top of the [OVHcloud API](https://api.ovh.
 - [Yarn](https://yarnpkg.com/lang/en/) >= 1.21.1
 - Supported OSes: GNU/Linux, macOS and Windows
 
-To install these prerequisites, you can follow the [How To section](https://ovh.github.io/manager/guide/how-to/) of the documentation.
+To install these prerequisites, you can follow the [How To section](https://ovh.github.io/manager/how-to/) of the documentation.
 
 ## Install
 
@@ -41,7 +41,7 @@ For full documentation, visit [ovh.github.io/manager](https://ovh.github.io/mana
 
 ## Contributing
 
-Always feel free to help out! Whether it's [filing bugs and feature requests](https://github.com/ovh-ux/manager/issues/new) or working on some of the [open issues](https://github.com/ovh-ux/manager/issues), our [contributing guide](CONTRIBUTING.md) will help get you started.
+Always feel free to help out! Whether it's [filing bugs and feature requests](https://github.com/ovh/manager/issues/new) or working on some of the [open issues](https://github.com/ovh/manager/issues), our [contributing guide](CONTRIBUTING.md) will help get you started.
 
 ## Stay Tuned
 

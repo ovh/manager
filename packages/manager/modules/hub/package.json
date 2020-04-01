@@ -15,11 +15,12 @@
     "@ovh-ux/manager-models": "^0.0.0 || ^1.0.0"
   },
   "devDependencies": {
-    "bootstrap4": "twbs/bootstrap#v4.0.0",
-    "lodash": "^4.17.15"
+    "bootstrap": "^4.4.1",
+    "lodash": "^4.17.15",
+    "oui4": "npm:@ovh-ux/ui-kit"
   },
   "peerDependencies": {
-    "@ovh-ux/manager-core": "^8.0.0",
+    "@ovh-ux/manager-core": "^8.0.0 || ^9.0.0",
     "@ovh-ux/manager-ng-layout-helpers": "^0.0.0 || ^1.0.0",
     "@ovh-ux/ng-at-internet": "^5.0.0",
     "@ovh-ux/ng-ovh-api-wrappers": "^3.0.0",
@@ -31,7 +32,6 @@
     "@uirouter/angularjs": "^1.0.23",
     "angular": "^1.7.5",
     "angular-translate": "^2.18.1",
-    "bootstrap4": "twbs/bootstrap#v4.0.0",
     "ovh-api-services": "^9.39.1",
     "ovh-ui-angular": "^3.15.0",
     "ovh-ui-kit": "^3.6.0"

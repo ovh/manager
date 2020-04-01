@@ -7,7 +7,10 @@ import includes from 'lodash/includes';
 import isEmpty from 'lodash/isEmpty';
 import set from 'lodash/set';
 
-import { XDSL_NO_INCIDENT_CODE } from './pack-xdsl-access.constants';
+import {
+  XDSL_NO_INCIDENT_CODE,
+  XDSL_EXCHANGE_MODEM,
+} from './pack-xdsl-access.constants';
 
 angular.module('managerApp').controller(
   'XdslAccessCtrl',
@@ -165,6 +168,7 @@ angular.module('managerApp').controller(
         this.getLinesDetails(),
         this.getDiagnostic(),
         this.getIncident(),
+        this.getModemExchange(),
       ]);
     }
 
@@ -505,6 +509,49 @@ angular.module('managerApp').controller(
         })
         .finally(() => {
           this.$scope.loaders.incident = false;
+        });
+    }
+
+    /**
+     * Retrieve modem detail for exchange if available
+     */
+    getModemExchange() {
+      return this.OvhApiXdsl.Modem()
+        .v6()
+        .getComfortExchange({
+          xdslId: this.$stateParams.serviceName,
+        })
+        .$promise.then((result) => {
+          this.$scope.access.xdsl.canExchange = true;
+          this.$scope.access.xdsl.newModel = result.newModel
+            .replace(/\./g, ' ')
+            .toUpperCase();
+          this.$scope.access.xdsl.priceHT = result.price.value;
+          this.$scope.access.xdsl.priceTTC = result.priceWithTax.value;
+        })
+        .catch((error) => {
+          if (error.data.message.includes(XDSL_EXCHANGE_MODEM.errBase)) {
+            // It's the last model modem or a RMA is already done
+            const typeMessage = error.data.message.substring(0, 6);
+            this.$scope.access.xdsl.canExchange = false;
+            switch (typeMessage) {
+              case XDSL_EXCHANGE_MODEM.errorCodeLast:
+                this.$scope.access.xdsl.messageCantExchange =
+                  'xdsl_modem_comfort_exchange_already_last_model';
+                break;
+              case XDSL_EXCHANGE_MODEM.errorCodeRMA:
+                this.$scope.access.xdsl.messageCantExchange =
+                  'xdsl_modem_comfort_exchange_already_opened_rma';
+                break;
+              case XDSL_EXCHANGE_MODEM.errorCodeSDSL:
+                this.$scope.access.xdsl.messageCantExchange =
+                  'xdsl_modem_comfort_exchange_not_replace_modem_sdsl';
+                break;
+              default:
+                this.TucToastError(error.data.message);
+                break;
+            }
+          }
         });
     }
   },

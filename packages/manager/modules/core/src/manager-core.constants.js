@@ -570,7 +570,7 @@ export const URLS = {
 
 export const MANAGER_URLS = {
   CA: {
-    dedicated: 'https://ca.ovh.com/manager',
+    dedicated: 'https://ca.ovh.com/manager/dedicated',
     publicCloud: 'https://ca.ovh.com/manager/public-cloud',
     repsac: 'https://ca.ovh.com/manager/cloud/repsac',
     sunrise: 'https://ca.ovh.com/manager/sunrise',
@@ -590,7 +590,14 @@ export const MANAGER_URLS = {
   },
 };
 
+export const HOSTNAME_REGIONS = {
+  'www.ovh.com': 'EU',
+  'ca.ovh.com': 'CA',
+  'us.ovhcloud.com': 'US',
+};
+
 export default {
+  HOSTNAME_REGIONS,
   LANGUAGES,
   MANAGER_URLS,
   REDIRECT_URLS,

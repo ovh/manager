@@ -34,9 +34,10 @@ class LogsInputsHomeCtrl {
   delete(input) {
     this.delete = this.CucControllerHelper.request.getHashLoader({
       loaderFunction: () =>
-        this.LogsInputsService.deleteInput(this.serviceName, input).finally(
-          () => this.CucControllerHelper.scrollPageToTop(),
-        ),
+        this.LogsInputsService.deleteInput(
+          this.serviceName,
+          input,
+        ).finally(() => this.CucControllerHelper.scrollPageToTop()),
     });
     this.delete.load().then(() => this.runLoaders());
   }

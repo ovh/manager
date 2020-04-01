@@ -13,6 +13,7 @@
   "signup_field_legalform": "Type de compte",
   "signup_field_country": "Pays",
   "signup_field_language": "Langue",
+  "signup_field_managerLanguage": "Langue de l'espace client",
   "signup_field_firstname": "Prénom",
   "signup_field_name": "Nom",
   "signup_field_email": "E-mail",

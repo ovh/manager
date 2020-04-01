@@ -28,7 +28,10 @@ angular.module('Module.ip.services').service('IpSpam', [
           ].join('/'),
           { serviceType: 'aapi' },
         )
-        .then((data) => data.data, (http) => $q.reject(http.data));
+        .then(
+          (data) => data.data,
+          (http) => $q.reject(http.data),
+        );
 
     this.getIpSpamStats = (
       block,
@@ -52,7 +55,10 @@ angular.module('Module.ip.services').service('IpSpam', [
             },
           },
         )
-        .then((data) => data.data, (http) => $q.reject(http.data));
+        .then(
+          (data) => data.data,
+          (http) => $q.reject(http.data),
+        );
 
     this.unblockIp = (block, ipSpamming) =>
       $http

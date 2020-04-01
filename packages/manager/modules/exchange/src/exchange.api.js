@@ -17,7 +17,10 @@ export default class APIExchange {
         return WucApi[verb](
           `${constants.swsProxyRootPath}email/exchange${path}`,
           options,
-        ).then((data) => data, (reason) => $q.reject(reason));
+        ).then(
+          (data) => data,
+          (reason) => $q.reject(reason),
+        );
       };
     });
   }

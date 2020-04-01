@@ -1,82 +1,95 @@
-.manager-hub-billing-summary {
-  $bg-color: #4495ee;
-  $bg-image: url("./assets/background.svg");
-  $text-color: white;
-  $btn-color: #3046d1;
+@import '@ovh-ux/manager-hub/src/variables.scss';
+
+@mixin manager-hub-billing-summary {
+  $bg-color: $p-300;
+  $bg-image: url('../../assets/billing-background.svg');
 
   background-color: $bg-color;
   background-image: $bg-image;
   background-repeat: no-repeat;
   background-size: cover;
-  color: $text-color;
+  color: $p-000-white;
   text-align: center;
-  border-radius: 0.5rem;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+  border-radius: $hub-tile-border-radius;
+  padding: $hub-tile-padding;
+  width: 100%;
 
   > h3 {
-    font-size: 1.25rem;
-    font-weight: bold;
+    color: $p-000-white;
   }
 
   &_billing-link {
-    background-color: $btn-color;
-    display: inline-block;
-    color: $text-color;
-    border: none;
-    border-radius: 0.5rem;
-    padding: 0.25rem 0.5rem 0.25rem 0.5rem;
-    margin-top: 1.5rem;
-    font-weight: 600;
+    @include hub-link-button;
 
-    .oui-icon {
-      color: $text-color;
-      line-height: 1rem;
-      vertical-align: middle;
-    }
+    margin-top: 2rem;
   }
 
-  p {
+  p,
+  span {
     font-weight: bold;
+    color: $p-000-white;
 
     .oui-icon {
-      color: white;
+      color: $p-000-white;
       font-weight: bold;
+    }
+
+    > a {
+      color: $p-000-white;
+      margin-bottom: -1.5rem;
+      text-decoration: underline !important;
     }
   }
 
   .oui-ui-select {
-    width: 15rem;
+    width: 100%;
+    max-width: 15rem;
     margin: auto;
+    padding: 0 1rem;
 
     button {
       background-color: transparent;
-      border-color: $text-color;
+      border-color: $p-000-white;
       border-width: 2px;
-      color: $text-color;
+      color: $p-000-white;
     }
 
     .ui-select-dropdown {
       background-color: $bg-color;
-      border-color: $text-color;
+      border-color: $p-000-white;
       border-width: 2px;
       box-shadow: none;
+      width: calc(100% - 2rem);
+      left: 1rem;
+
+      .ui-select-choices-row {
+        font-weight: 600;
+
+        &:hover {
+          color: $p-000-white;
+          background-color: $p-700;
+        }
+      }
     }
 
     .oui-icon::before {
-      color: $text-color;
+      color: $p-000-white;
     }
   }
 
   .ui-select-match:hover {
     background-color: transparent;
-    border-color: $text-color;
+    border-color: $p-000-white;
   }
 
   &_bill-total {
-    font-weight: 300;
-    font-size: 3.5rem;
+    font-weight: 600;
+    font-size: calc(2rem + 1vw);
     white-space: nowrap;
     display: block;
   }
+}
+
+hub-billing-summary .manager-hub-billing-summary {
+  @include manager-hub-billing-summary;
 }

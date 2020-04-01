@@ -548,8 +548,6 @@
   "ovh_task_follow_button": "Détail de l'incident",
   "ovh_task_follow_modal_title": "Suivi de l'incident",
   "ovh_task_follow_modal_comment": "Dernière mise à jour : {{t 0 }}",
-  "preload_welcome": "Bienvenue sur votre",
-  "preload_manager_ovh": "Espace client OVHcloud",
   "otrs_menu_assistance": "Assistance",
   "otrs_menu_assistance_expanded": "Besoin d'aide",
   "otrs_menu_all_guides": "Tous les guides",
