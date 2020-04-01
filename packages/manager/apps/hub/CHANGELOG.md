@@ -1,3 +1,12 @@
+## [1.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@1.0.0...@ovh-ux/manager-hub-app@1.0.1) (2020-04-01)
+
+
+### Bug Fixes
+
+* add encoding meta ([#2697](https://github.com/ovh/manager/issues/2697)) ([6a4bbce](https://github.com/ovh/manager/commit/6a4bbcee9c2e292cadc013c6ae6711dfc8b989b2))
+
+
+
 # [1.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.4.0-alpha.0...@ovh-ux/manager-hub-app@1.0.0) (2020-04-01)
 
 
