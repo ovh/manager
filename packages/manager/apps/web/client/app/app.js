@@ -1,3 +1,5 @@
+import filter from 'lodash/filter';
+import forEach from 'lodash/forEach';
 import get from 'lodash/get';
 import has from 'lodash/has';
 import isObject from 'lodash/isObject';
@@ -266,10 +268,15 @@ angular
       $locationProvider.hashPrefix('');
     },
   ])
+  .constant('URLS_REDIRECTED_TO_DEDICATED', [
+    new RegExp('/useraccount/.*'),
+    new RegExp('/billing/.*'),
+  ])
   .config([
     '$stateProvider',
     '$urlRouterProvider',
-    ($stateProvider, $urlRouterProvider) => {
+    'URLS_REDIRECTED_TO_DEDICATED',
+    ($stateProvider, $urlRouterProvider, URLS_REDIRECTED_TO_DEDICATED) => {
       /**
        * ALL DOM
        */
@@ -292,6 +299,22 @@ angular
           currentSection: () => 'all_dom',
         },
         translations: { value: ['domain', 'hosting'], format: 'json' },
+      });
+
+      forEach(URLS_REDIRECTED_TO_DEDICATED, (url) => {
+        $urlRouterProvider.when(url, [
+          '$window',
+          '$location',
+          'CORE_MANAGER_URLS',
+          ($window, $location, CORE_MANAGER_URLS) => {
+            const lastPartOfUrl = $location.url().substring(1);
+            set(
+              $window,
+              'location',
+              `${CORE_MANAGER_URLS.dedicated}/${lastPartOfUrl}`,
+            );
+          },
+        ]);
       });
 
       $urlRouterProvider.otherwise('/configuration');
@@ -408,6 +431,37 @@ angular
     'tourism.pl',
     'travel.pl',
     'turystyka.pl',
+  ])
+  .run([
+    '$location',
+    'CORE_MANAGER_URLS',
+    'URLS_REDIRECTED_TO_DEDICATED',
+    ($location, CORE_MANAGER_URLS, URLS_REDIRECTED_TO_DEDICATED) => {
+      forEach(
+        filter(URLS_REDIRECTED_TO_DEDICATED, (url) =>
+          url.test(window.location.href),
+        ),
+        () => {
+          const lastPartOfUrl = $location.url().substring(1);
+          window.location = `${CORE_MANAGER_URLS.dedicated}/${lastPartOfUrl}`;
+        },
+      );
+    },
+  ])
+  .run([
+    'ssoAuthentication',
+    'URLS_REDIRECTED_TO_DEDICATED',
+    (authentication, URLS_REDIRECTED_TO_DEDICATED) => {
+      forEach(
+        filter(
+          URLS_REDIRECTED_TO_DEDICATED,
+          (url) => !url.test(window.location.href),
+        ),
+        () => {
+          authentication.login();
+        },
+      );
+    },
   ])
   .run([
     '$rootScope',
