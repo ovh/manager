@@ -1055,23 +1055,16 @@
                     <div
                         data-ng-if="!PortabilityOrderCtrl.order.lineToRedirectAliasTo"
                     >
-                        <button
-                            type="button"
-                            class="btn btn-default"
-                            data-voip-service-choice-popover="{
-                                        popoverPlacement: 'right auto',
-                                        popoverClass: 'telephony-service-choice-popover',
-                                        popoverAppendToBody: true,
-                                        popoverIsOpen: false
-                                    }"
-                            data-available-types="['sip']"
-                            data-on-choice-validated="PortabilityOrderCtrl.onChooseRedirectToLine"
-                            data-on-choice-cancel=""
-                        >
-                            <span
-                                data-translate="telephony_alias_portability_order_redirect_line_choose"
-                            ></span>
-                        </button>
+                        <oui-search
+                                model="PortabilityOrderCtrl.lineToRedirectAliasTo"
+                                autocomplete="PortabilityOrderCtrl.autocompleteRedirectLines"
+                                autocomplete-property="domain"
+                                placeholder="Search for lines"
+                                on-change="PortabilityOrderCtrl.onRedirectLineSearchChanged(modelValue)"
+                                autocomplete-on-select="PortabilityOrderCtrl.onRedirectLineSearchSelected(value)"
+                                on-reset="PortabilityOrderCtrl.onRedirectLineSearchReset(modelValue)"
+                            >
+                        </oui-search>
                     </div>
                 </div>
 
