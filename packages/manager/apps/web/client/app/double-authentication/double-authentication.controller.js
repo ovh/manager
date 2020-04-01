@@ -18,7 +18,7 @@ angular.module('App').controller(
        * Go to double auth
        */
       this.$scope.goToDoubleAuth = () => {
-        this.$location.path('/useraccount/security');
+        this.$location.path('#/useraccount/security');
         this.$scope.resetAction();
       };
     }

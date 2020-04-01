@@ -311,7 +311,7 @@ angular
             set(
               $window,
               'location',
-              `${CORE_MANAGER_URLS.dedicated}/${lastPartOfUrl}`,
+              `${CORE_MANAGER_URLS.dedicated}/#/${lastPartOfUrl}`,
             );
           },
         ]);
@@ -443,7 +443,7 @@ angular
         ),
         () => {
           const lastPartOfUrl = $location.url().substring(1);
-          window.location = `${CORE_MANAGER_URLS.dedicated}/${lastPartOfUrl}`;
+          window.location = `${CORE_MANAGER_URLS.dedicated}/#/${lastPartOfUrl}`;
         },
       );
     },

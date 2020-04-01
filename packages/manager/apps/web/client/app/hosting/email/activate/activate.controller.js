@@ -50,7 +50,7 @@ export default class EmailOfferActivateCtrl {
       .then((order) =>
         this.goToHosting(
           this.$translate.instant('hosting_email_address_activation_success', {
-            orderTrackURL: `${this.MANAGER_URLS.dedicated}/billing/order/${order.orderId}`,
+            orderTrackURL: `${this.MANAGER_URLS.dedicated}/#/billing/order/${order.orderId}`,
           }),
         ),
       )
