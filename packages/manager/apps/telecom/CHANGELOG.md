@@ -1,3 +1,12 @@
+## [12.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@12.0.0...@ovh-ux/manager-telecom@12.0.1) (2020-04-01)
+
+
+### Bug Fixes
+
+* **deps:** add missing dependencies ([#2694](https://github.com/ovh/manager/issues/2694)) ([ca107e5](https://github.com/ovh/manager/commit/ca107e51ceaa77daf6966ad4e0f3758d3b47c689))
+
+
+
 # [12.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@11.5.0...@ovh-ux/manager-telecom@12.0.0) (2020-04-01)
 
 
