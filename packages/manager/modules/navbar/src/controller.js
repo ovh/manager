@@ -97,7 +97,7 @@ export default class {
         if (link.name === get(this.navbarOptions, 'universe')) {
           return {
             ...omit(link, 'url'),
-            ...(isEmpty(this.sidebarLinks)
+            ...(isEmpty(this.sidebarLinks) && !this.universeClick
               ? { url: link.url }
               : { subLinks: this.sidebarLinks }),
             click: () => this.universeClick(),
