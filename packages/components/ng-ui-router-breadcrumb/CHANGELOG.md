@@ -1,3 +1,12 @@
+# [1.1.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ui-router-breadcrumb@1.0.1...@ovh-ux/ng-ui-router-breadcrumb@1.1.0) (2020-04-01)
+
+
+### Features
+
+* **service:** add option to hide breadcrumb ([7116942](https://github.com/ovh/manager/commit/71169425be26d8ac4f5d4787aba2991b9cf9591f))
+
+
+
 ## [1.0.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/ng-ui-router-breadcrumb@1.0.0...@ovh-ux/ng-ui-router-breadcrumb@1.0.1) (2019-10-17)
 
 

@@ -1,3 +1,27 @@
+# [2.0.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-user-pref@1.0.2...@ovh-ux/ng-ovh-user-pref@2.0.0) (2020-04-01)
+
+
+### Bug Fixes
+
+* **provider:** udpate name of injected proxy request provider ([#8](https://github.com/ovh/manager/issues/8)) ([d2d4184](https://github.com/ovh/manager/commit/d2d4184564bb765853436b313cf991e372458903))
+
+
+### Code Refactoring
+
+* add missing ng prefix to the angular module name ([09ac8da](https://github.com/ovh/manager/commit/09ac8da3ca228a89664bdc113e8d7b7ee1cc0648))
+
+
+### Features
+
+* es module refactoring ([84814c3](https://github.com/ovh/manager/commit/84814c3f8737fd73dbf8719faaf9210a669d7bb6))
+
+
+### BREAKING CHANGES
+
+* module is now named as `ngOvhUserPref`
+
+
+
 ## [1.0.2](https://github.com/ovh-ux/ng-ovh-user-pref/compare/v1.0.1...v1.0.2) (2020-01-09)
 
 

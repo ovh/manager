@@ -1,3 +1,17 @@
+# [6.0.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-jsplumb@5.0.2...@ovh-ux/ng-ovh-jsplumb@6.0.0) (2020-04-01)
+
+
+### Code Refactoring
+
+* update stack with component-rollup-config ([#6](https://github.com/ovh/manager/issues/6)) ([153f7ee](https://github.com/ovh/manager/commit/153f7ee655ec30980d12a330e361592118214a6a))
+
+
+### BREAKING CHANGES
+
+* module is now named `ngOvhJsplumb`
+
+
+
 ## [5.0.2](https://github.com/ovh-ux/ng-ovh-jsplumb/compare/v5.0.1...v5.0.2) (2020-01-08)
 
 

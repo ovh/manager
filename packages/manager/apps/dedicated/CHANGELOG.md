@@ -1,3 +1,32 @@
+# [12.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@11.9.0...@ovh-ux/manager-dedicated@12.0.0) (2020-04-01)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 314] ([6cb1de2](https://github.com/ovh/manager/commit/6cb1de2873cb762174dd19f86cfd7ed8fff2b654))
+* **i18n:** add missing translations [CDS 322] ([7ee8c8b](https://github.com/ovh/manager/commit/7ee8c8b64e5fea8e42d9a34f10eb806acf6b1286))
+* **loading:** hide elements during loading ([#2683](https://github.com/ovh/manager/issues/2683)) ([e3aa29e](https://github.com/ovh/manager/commit/e3aa29e5d92aa86849abb2854571c4564b335393))
+* **translations:** clean translations files ([#2668](https://github.com/ovh/manager/issues/2668)) ([43c0f80](https://github.com/ovh/manager/commit/43c0f80be6031e176d9c802d991ce7b1eda29f21))
+
+
+### Code Refactoring
+
+* **hub:** move user panel to @ovh-ux/manager-account-sidebar ([19731b0](https://github.com/ovh/manager/commit/19731b059cc882a40d395c2ca4b3fbd0d19dbdf5))
+
+
+### Features
+
+* **dedicated:** add application bootstrap ([9fe6c63](https://github.com/ovh/manager/commit/9fe6c63fed6d252a090563c3b075825ce32abb23))
+* **dedicated:** add manager language in useraccount ([9304fe6](https://github.com/ovh/manager/commit/9304fe6016619f33cf28ef95ffb840b756eaa2a4))
+* **notifications:** update menu ([ee1e419](https://github.com/ovh/manager/commit/ee1e419cec3797dd0c6e5ac087bf3b2c159bc0ee)), closes [#MANAGER-4292](https://github.com/ovh/manager/issues/MANAGER-4292)
+
+
+### BREAKING CHANGES
+
+* **hub:** init @ovh-ux/manager-account-sidebar module
+
+
+
 # [11.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@11.8.0...@ovh-ux/manager-dedicated@11.9.0) (2020-03-25)
 
 

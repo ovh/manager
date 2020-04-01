@@ -1,3 +1,12 @@
+## [1.0.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-product-offers@1.0.2...@ovh-ux/manager-product-offers@1.0.3) (2020-04-01)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 314] ([6cb1de2](https://github.com/ovh/manager/commit/6cb1de2873cb762174dd19f86cfd7ed8fff2b654))
+
+
+
 ## [1.0.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-product-offers@1.0.1...@ovh-ux/manager-product-offers@1.0.2) (2020-03-18)
 
 

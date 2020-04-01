@@ -1,3 +1,20 @@
+# [2.1.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-translate-async-loader@2.0.3...@ovh-ux/ng-translate-async-loader@2.1.0) (2020-04-01)
+
+
+### Bug Fixes
+
+* **deps:** upgrade component-rollup-config to v3.0.1 ([6acb8bf](https://github.com/ovh/manager/commit/6acb8bf019036e3c345d735051c6f6b9929a35c5))
+* **deps:** upgrade component-rollup-config to v5.0.0 ([41c70be](https://github.com/ovh/manager/commit/41c70be557ac52699072c70bbf32f1896dad5f8f))
+* **deps:** upgrade component-rollup-config to v6.0.2 ([#38](https://github.com/ovh/manager/issues/38)) ([36a378d](https://github.com/ovh/manager/commit/36a378d03459622b8d22890ea59333476247c950))
+* **devdependencies:** bump eslint and husky ([4d379b4](https://github.com/ovh/manager/commit/4d379b4ffb4799b7f0d7266d67364b0420182ed6))
+
+
+### Features
+
+* initial commit ([eb1a255](https://github.com/ovh/manager/commit/eb1a255a0b3ba4a5a33c390cee45a2865a7b30b9))
+
+
+
 ## [2.0.3](https://github.com/ovh-ux/ng-translate-async-loader/compare/v2.0.2...v2.0.3) (2019-12-30)
 
 

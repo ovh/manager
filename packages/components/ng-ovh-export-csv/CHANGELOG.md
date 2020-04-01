@@ -1,3 +1,19 @@
+# [2.0.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-export-csv@1.0.2...@ovh-ux/ng-ovh-export-csv@2.0.0) (2020-04-01)
+
+
+### Code Refactoring
+
+* update stack with component-rollup-config ([#7](https://github.com/ovh/manager/issues/7)) ([b0f6a3f](https://github.com/ovh/manager/commit/b0f6a3f153a9bc9aa32b2cd33e66cedca8b2ea25))
+
+
+### BREAKING CHANGES
+
+* module is now named as `ngOvhExportCsv`
+
+Co-authored-by: Florian Renaut <florian.renaut@corp.ovh.com>
+
+
+
 ## [1.0.2](https://github.com/ovh-ux/ng-ovh-export-csv/compare/v1.0.1...v1.0.2) (2020-01-07)
 
 

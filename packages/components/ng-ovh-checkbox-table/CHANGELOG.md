@@ -1,3 +1,24 @@
+# [2.0.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-checkbox-table@1.0.4...@ovh-ux/ng-ovh-checkbox-table@2.0.0) (2020-04-01)
+
+
+### Bug Fixes
+
+* **deps:** upgrade component-rollup-config to v6.0.2 ([#20](https://github.com/ovh/manager/issues/20)) ([c7c6212](https://github.com/ovh/manager/commit/c7c62126cb4d566511f9fae423ecc763f8ff6029))
+* **directive:** apply eslint rules ([fa7abff](https://github.com/ovh/manager/commit/fa7abffd8cdb7b6bf357e6f9a84624fd5b6b6b7e))
+* remove jshint ([60ab1dc](https://github.com/ovh/manager/commit/60ab1dc656c57752c4ed74715fc791f9686bbbdb))
+
+
+### Code Refactoring
+
+* update stack with component-rollup-config ([39b2ca6](https://github.com/ovh/manager/commit/39b2ca63a775e5c30588cd72d204953acdfc3e8e))
+
+
+### BREAKING CHANGES
+
+* module is now named `ngOvhCheckboxTable`
+
+
+
 ## [1.0.4](https://github.com/ovh-ux/ng-ovh-checkbox-table/compare/v1.0.3...v1.0.4) (2020-01-08)
 
 

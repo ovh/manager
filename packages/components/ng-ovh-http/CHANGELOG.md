@@ -1,3 +1,25 @@
+# [5.0.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-http@4.0.6...@ovh-ux/ng-ovh-http@5.0.0) (2020-04-01)
+
+
+### Bug Fixes
+
+* **dependency injection:** add missing ng-inject ([3755519](https://github.com/ovh/manager/commit/37555193b21f2b6c0472a8f5b583faeed3f49a43))
+* **deps:** upgrade component-rollup-config to v6.0.2 ([#24](https://github.com/ovh/manager/issues/24)) ([5a6bf6a](https://github.com/ovh/manager/commit/5a6bf6ad5b4658fbb7ce77728153871c6aca99e8))
+* **deps:** upgrade npm-run-all to v4.1.5 ([0c0f732](https://github.com/ovh/manager/commit/0c0f732311c124efb10890d2925c9c6ba23f8d02))
+* **provider:** apply eslint rules ([e094f5e](https://github.com/ovh/manager/commit/e094f5ed5b032f72aa328cb8c2dab51f234a77e4))
+
+
+### Code Refactoring
+
+* add missing ng prefix to the angular module name ([f8a10d0](https://github.com/ovh/manager/commit/f8a10d0a9842b2b2979a65da221e3e8ab211cde6))
+
+
+### BREAKING CHANGES
+
+* module is now named as `ngOvhHttp`
+
+
+
 ## [4.0.6](https://github.com/ovh-ux/ng-ovh-http/compare/v4.0.5...v4.0.6) (2020-01-08)
 
 

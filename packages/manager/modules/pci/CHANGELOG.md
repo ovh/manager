@@ -1,3 +1,24 @@
+# [3.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.15.1...@ovh-ux/manager-pci@3.16.0) (2020-04-01)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 314] ([6cb1de2](https://github.com/ovh/manager/commit/6cb1de2873cb762174dd19f86cfd7ed8fff2b654))
+* **i18n:** add missing translations [CDS 315] ([adb83a1](https://github.com/ovh/manager/commit/adb83a141830eb81c1ad7cc48104d67779955c98))
+* **i18n:** add missing translations [CDS 318] ([adc933a](https://github.com/ovh/manager/commit/adc933a02442933a3335681d5abb97e4ac55879a))
+* **i18n:** add missing translations [CDS 323] ([77728ef](https://github.com/ovh/manager/commit/77728efb393d8cb27402df92f299cab815390e64))
+* **i18n:** add missing translations [CDS 324] ([c909758](https://github.com/ovh/manager/commit/c909758f7e0b278a3d0a1ac2ea56bbaeff95e2f6))
+* **i18n:** add missing translations [CDS 326] ([71a8479](https://github.com/ovh/manager/commit/71a8479c97928d98bfa76f09b2064fa397c7f299))
+* **i18n:** add missing translations [CDS 329] ([a68c0e9](https://github.com/ovh/manager/commit/a68c0e952e2d60227e486bbaad3d666e8bb2e7c1))
+* **translations:** clean translations files ([#2668](https://github.com/ovh/manager/issues/2668)) ([43c0f80](https://github.com/ovh/manager/commit/43c0f80be6031e176d9c802d991ce7b1eda29f21))
+
+
+### Features
+
+* redirect dedicated for CA ([7c1fde6](https://github.com/ovh/manager/commit/7c1fde6107fb85b084a6b27a1c0962e3c2fdd6ba))
+
+
+
 ## [3.15.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.15.0...@ovh-ux/manager-pci@3.15.1) (2020-03-24)
 
 
