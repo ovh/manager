@@ -265,12 +265,12 @@ export const METRICS_CONFIG = {
       state: 'dbaas.metrics.detail.dashboard',
       stateParams: ['serviceName'],
       icon: 'ovh-font ovh-font-graph',
-      app: [CLOUD],
+      app: [DEDICATED],
       searchKeys: ['IOT', 'Metrics', 'Monitoring', 'Time Series', 'TimeSeries'],
     },
   ],
   icon: 'ovh-font ovh-font-graph',
-  app: [CLOUD],
+  app: [DEDICATED],
   regions: ['EU'],
 };
 
