@@ -69,7 +69,7 @@ export default class ManagerHubBillingSummaryCtrl {
   getFormattedPrice(price, currency) {
     return Intl.NumberFormat(this.$translate.use().replace('_', '-'), {
       style: 'currency',
-      currency,
+      currency: currency || get(this.me, 'currency.code'),
       maximumSignificantdigits: 1,
     }).format(price);
   }

@@ -7,6 +7,7 @@ export default {
   bindings: {
     bills: '<?',
     debt: '<?',
+    me: '<',
     trackingPrefix: '@',
     refresh: '&',
   },
