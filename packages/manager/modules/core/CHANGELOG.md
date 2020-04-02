@@ -1,3 +1,12 @@
+## [9.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@9.0.0...@ovh-ux/manager-core@9.0.1) (2020-04-02)
+
+
+### Bug Fixes
+
+* **core:** add credentials to configuration call ([cfd31b4](https://github.com/ovh/manager/commit/cfd31b4234a08c34d9a9fb090744f278e16d5387))
+
+
+
 # [9.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@8.2.1...@ovh-ux/manager-core@9.0.0) (2020-04-01)
 
 
