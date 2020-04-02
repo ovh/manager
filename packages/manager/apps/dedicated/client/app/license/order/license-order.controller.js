@@ -495,7 +495,6 @@ angular
         () => {
           $scope.loaders.bc = false;
           $scope.order = null;
-          $(document).scrollTop($(document).height());
           if ($scope.agoraEnabled && $scope.selected.duration) {
             $scope.getAgoraUrl();
           }
