@@ -1,3 +1,12 @@
+## [12.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@12.0.0...@ovh-ux/manager-dedicated@12.0.1) (2020-04-02)
+
+
+### Bug Fixes
+
+* **license:** avoid hiding navbar ([#2725](https://github.com/ovh/manager/issues/2725)) ([a5657b9](https://github.com/ovh/manager/commit/a5657b9990c7562ac920a7a4228015841db9ca1b))
+
+
+
 # [12.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@11.9.0...@ovh-ux/manager-dedicated@12.0.0) (2020-04-01)
 
 
