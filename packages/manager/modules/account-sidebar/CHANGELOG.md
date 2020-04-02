@@ -1,3 +1,12 @@
+# [1.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-sidebar@1.0.0...@ovh-ux/manager-account-sidebar@1.1.0) (2020-04-02)
+
+
+### Features
+
+* activate catalog for the US ([#2707](https://github.com/ovh/manager/issues/2707)) ([d678b0d](https://github.com/ovh/manager/commit/d678b0d32720a8ca0544e1b356397700aef2d74e))
+
+
+
 # [1.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-sidebar@0.0.0...@ovh-ux/manager-account-sidebar@1.0.0) (2020-04-01)
 
 
