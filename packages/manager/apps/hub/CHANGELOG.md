@@ -1,3 +1,12 @@
+## [1.0.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@1.0.1...@ovh-ux/manager-hub-app@1.0.2) (2020-04-02)
+
+
+### Bug Fixes
+
+* **dashboard:** handle empty bill list ([#2715](https://github.com/ovh/manager/issues/2715)) ([3f9378e](https://github.com/ovh/manager/commit/3f9378e27d4b0e526d6a5f4a8f7ce15b16610e65))
+
+
+
 ## [1.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@1.0.0...@ovh-ux/manager-hub-app@1.0.1) (2020-04-01)
 
 
