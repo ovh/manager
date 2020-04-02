@@ -259,7 +259,13 @@ angular
 export default moduleName;
 
 export const bootstrapApplication = () => {
-  return fetch('/engine/2api/configuration')
+  return fetch('/engine/2api/configuration', {
+    headers: {
+      'Content-Type': 'application/json;charset=utf-8',
+      Accept: 'application/json',
+    },
+    credentials: 'same-origin',
+  })
     .then((response) => {
       if (response.status === 401) {
         window.location.assign(
