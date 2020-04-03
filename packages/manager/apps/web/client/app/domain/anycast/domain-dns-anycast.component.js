@@ -8,5 +8,6 @@ export default {
     domainName: '<',
     goToDns: '<',
     goBack: '<',
+    user: '<',
   },
 };

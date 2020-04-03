@@ -1,79 +1,90 @@
+import find from 'lodash/find';
+import get from 'lodash/get';
+import {
+  DNS_ANYCAST_SERVICE_TYPE,
+  DNS_ANYCAST_PLANCODE,
+  DNS_ANYCAST_PRICING_MODE,
+  DNS_ANYCAST_DURATION,
+} from './domain-dns-anycast.constants';
+
 export default class DomainDnsAnycastActivateCtrl {
   /* @ngInject */
-  constructor($translate, $window, Alerter, atInternet, Domain) {
-    this.$translate = $translate;
-    this.$window = $window;
-    this.Alerter = Alerter;
-    this.atInternet = atInternet;
-    this.Domain = Domain;
+  constructor($q, WucOrderCartService) {
+    this.$q = $q;
+    this.WucOrderCartService = WucOrderCartService;
   }
 
   $onInit() {
-    this.domainId = this.domainName;
-    this.optionName = 'dnsAnycast';
-    this.loading = false;
-    this.loadOptionDetails();
-  }
-
-  loadOptionDetails() {
     this.loading = true;
-    this.error = null;
-
-    return this.Domain.getOptionDetails(this.domainId, this.optionName)
-      .then((data) => {
-        this.optionDetails = data;
-      })
-      .catch(() => {
-        this.error = this.$translate.instant(
-          'domain_configuration_dnsanycast_fail',
+    return this.fetchCatalogOffer(this.domainName)
+      .then((offer) => {
+        this.offer = offer;
+        this.offerPrice = find(this.offer.prices, {
+          pricingMode: DNS_ANYCAST_PRICING_MODE,
+          duration: DNS_ANYCAST_DURATION,
+        });
+        return this.fetchNewCart().then((cart) =>
+          this.WucOrderCartService.addProductServiceOptionToCart(
+            cart.cartId,
+            DNS_ANYCAST_SERVICE_TYPE,
+            this.domainName,
+            {
+              duration: this.offerPrice.duration,
+              planCode: this.offer.planCode,
+              pricingMode: this.offerPrice.pricingMode,
+              quantity: this.offerPrice.minimumQuantity,
+            },
+          )
+            .then(() =>
+              this.WucOrderCartService.getCheckoutInformations(cart.cartId),
+            )
+            .then((checkout) => {
+              this.cart = cart;
+              this.checkoutInfos = checkout;
+            }),
         );
+      })
+      .catch((error) => {
+        this.error = get(error, 'data.message', error);
       })
       .finally(() => {
         this.loading = false;
       });
   }
 
-  orderDnsanycast() {
-    this.url = null;
-    this.error = null;
-    this.loading = true;
-
-    return this.Domain.orderOption(
-      this.domainId,
-      this.optionName,
-      this.optionDetails.duration.duration,
-    )
-      .then((order) => {
-        this.order = order;
-        this.url = order.url;
-      })
-      .catch(() => {
-        this.error = this.$translate.instant(
-          'domain_configuration_dnsanycast_fail',
-        );
-      })
-      .finally(() => {
-        this.loading = false;
-      });
+  fetchNewCart() {
+    return this.WucOrderCartService.createNewCart(
+      this.user.ovhSubsidiary,
+    ).then((cart) =>
+      this.WucOrderCartService.assignCart(cart.cartId).then(() => cart),
+    );
   }
 
-  displayBC() {
-    this.atInternet.trackOrder({
-      name: `[domain]::${this.optionName}[${this.optionName}]`,
-      page: 'web::payment-pending',
-      orderId: this.order.orderId,
-      priceTaxFree: this.order.prices.withoutTax.value,
-      price: this.order.prices.withTax.value,
-      status: 1,
-    });
-    this.goToDns().then(() => {
-      this.Alerter.success(
-        this.$translate.instant('domain_order_dns_anycast_success', {
-          t0: this.url,
-        }),
-        'domain_alert_main',
-      );
-    });
-    this.$window.open(this.url, '_blank');
+  fetchCatalogOffer(serviceName) {
+    return this.WucOrderCartService.getProductServiceOptions(
+      DNS_ANYCAST_SERVICE_TYPE,
+      serviceName,
+    ).then((options) => find(options, { planCode: DNS_ANYCAST_PLANCODE }));
+  }
+
+  performCheckout() {
+    this.isCheckoutPending = true;
+    return this.$q((resolve, reject) => {
+      this.WucOrderCartService.checkoutCart(this.cart.cartId, {
+        autoPayWithPreferredPaymentMethod: !!this.defaultPaymentMethod,
+        waiveRetractationPeriod: false,
+      })
+        .then(resolve)
+        .catch(reject);
+    })
+      .then((checkout) => {
+        this.checkoutSuccess = checkout;
+      })
+      .catch((error) => {
+        this.error = get(error, 'data.message', error);
+      })
+      .finally(() => {
+        this.isCheckoutPending = false;
+      });
   }
 }

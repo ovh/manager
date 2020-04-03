@@ -527,11 +527,11 @@
                     <oui-tile-description>
                         <p data-ng-if="$ctrl.options.dnsAnycast">
                             <span
-                                data-translate="{{ 'domain_dashboard_options_status_' + ($ctrl.options.dnsAnycast.optionActivated ? 'enabled' : 'disabled') }}"
+                                data-translate="{{ 'domain_dashboard_options_status_' + ($ctrl.options.dnsAnycast.isTerminated ? 'disabled' : 'enabled') }}"
                             >
                             </span>
                             <span
-                                data-ng-if="!$ctrl.options.dnsAnycast.optionActivated"
+                                data-ng-if="$ctrl.options.dnsAnycast.isTerminated"
                             >
                                 (<span
                                     data-translate="domain_dashboard_options_dns_anycast_expiry"
@@ -549,7 +549,7 @@
                     <oui-action-menu
                         data-compact
                         data-align="end"
-                        data-ng-if="$ctrl.options.dnsAnycast && $ctrl.options.dnsAnycast.optionActivated"
+                        data-ng-if="$ctrl.options.dnsAnycast && !$ctrl.options.dnsAnycast.isTerminated"
                     >
                         <oui-action-menu-item
                             aria-label="{{ ::'domain_dashboard_options_desactivate_option' | translate }}"
