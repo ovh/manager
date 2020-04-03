@@ -1,3 +1,5 @@
+import NProgress from 'nprogress';
+
 import {
   WELCOME_MESSAGES,
   LOADING_MESSAGES,
@@ -29,10 +31,14 @@ export const attach = () => {
   }
 
   document.body.appendChild(document.importNode(template.content, true));
+
+  NProgress.configure({ parent: '#managerPreloader' });
+  NProgress.start();
 };
 
 export const detach = () => {
   document.querySelector('#managerPreloader').classList.add('loaded');
+  NProgress.done();
 };
 
 export default {
