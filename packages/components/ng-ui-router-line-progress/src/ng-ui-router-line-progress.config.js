@@ -2,7 +2,7 @@ import NProgress from 'nprogress';
 
 export default /* @ngInject */ ($transitions) => {
   $transitions.onBefore({}, (transition) => {
-    if (!transition.ignored()) {
+    if (!transition.ignored() && transition.from().name !== '') {
       NProgress.start();
     }
   });
