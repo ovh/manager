@@ -579,12 +579,18 @@
                     data-term="{{ ::'domain_dashboard_options_dns_anycast' | translate }}"
                 >
                     <oui-tile-description>
-                        <p
-                            data-ng-if="$ctrl.options.dnsAnycast.optionActivated"
-                        >
+                        <p data-ng-if="$ctrl.options.dnsAnycast">
                             <span
-                                data-translate="domain_dashboard_options_status_enabled"
+                                data-translate="{{ 'domain_dashboard_options_status_' + ($ctrl.options.dnsAnycast.isTerminated ? 'disabled' : 'enabled') }}"
                             >
+                            </span>
+                            <span
+                                data-ng-if="$ctrl.options.dnsAnycast.isTerminated"
+                            >
+                                (<span
+                                    data-translate="domain_dashboard_options_dns_anycast_expiry"
+                                    data-translate-values="{ date: ($ctrl.options.dnsAnycast.expirationDate | date:'mediumDate') }"
+                                ></span>)
                             </span>
                         </p>
                         <span
@@ -593,6 +599,20 @@
                         >
                         </span>
                     </oui-tile-description>
+                    <oui-action-menu
+                        data-compact
+                        data-align="end"
+                        data-ng-if="$ctrl.options.dnsAnycast && !$ctrl.options.dnsAnycast.isTerminated"
+                    >
+                        <oui-action-menu-item
+                            aria-label="{{ ::'domain_dashboard_options_desactivate_option' | translate }}"
+                            data-on-click="setAction('options/delete/domain-options-delete', { domain: $ctrl.domain, option: $ctrl.options.dnsAnycast })"
+                        >
+                            <span
+                                data-translate="domain_dashboard_options_desactivate_option"
+                            ></span>
+                        </oui-action-menu-item>
+                    </oui-action-menu>
                 </oui-tile-definition>
             </oui-tile>
         </div>

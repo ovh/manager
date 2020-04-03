@@ -448,13 +448,14 @@ export default class DomainTabGeneralInformationsCtrl {
       })
       .then(() => {
         return this.$http
-          .get(`/domain/zone/${this.domain.name}/option/anycast`, {
+          .get(`/domain/zone/${this.domain.name}/option/anycast/serviceInfos`, {
             serviceType: 'apiv6',
           })
           .then(({ data }) => {
             this.options.dnsAnycast = {
               option: 'dnsAnycast',
               optionActivated: true,
+              isTerminated: get(data, 'renew.mode') === 'deleteAtExpiration',
               ...data,
             };
           })
@@ -465,7 +466,7 @@ export default class DomainTabGeneralInformationsCtrl {
                 optionActivated: false,
               };
             }
-            return error.status !== 404 ? this.$q.reject(error) : null;
+            return this.$q.reject(error);
           });
       })
       .catch((err) =>
