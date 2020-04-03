@@ -283,12 +283,16 @@ export default class OrderCartService {
   ) {
     return this.OvhApiOrder.CartServiceOption()
       .v6()
-      .post({
-        cartId,
-        productName,
-        serviceName,
-        ...serviceOption,
-      }).$promise;
+      .post(
+        {
+          productName,
+          serviceName,
+        },
+        {
+          cartId,
+          ...serviceOption,
+        },
+      ).$promise;
   }
 
   /**
