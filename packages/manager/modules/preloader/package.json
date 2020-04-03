@@ -22,6 +22,9 @@
     "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-preloader' --include-dependencies -- yarn run dev",
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-preloader' --include-dependencies -- yarn run dev:watch"
   },
+  "dependencies": {
+    "nprogress": "^0.2.0"
+  },
   "devDependencies": {
     "@ovh-ux/component-rollup-config": "^7.0.0"
   }

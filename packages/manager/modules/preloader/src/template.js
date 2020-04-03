@@ -99,6 +99,10 @@ const buildStyle = (messages) => {
     display: flex !important;
   }
 
+  #managerPreloader #nprogress .bar {
+    background: #000E9C;
+  }
+
   #managerPreloader.loaded {
     transition: opacity 800ms 1s, visibility 1800ms;
     opacity: 0;
@@ -119,7 +123,7 @@ const buildStyle = (messages) => {
   }
 
   #managerPreloader .logo path {
-    fill: #0050D7;
+    fill: #000E9C;
   }
 
   #managerPreloader ul {
@@ -139,7 +143,7 @@ const buildStyle = (messages) => {
   }
 
   #managerPreloader li p {
-    color: #0050d7;
+    color: #00185E;
     font-size: 28px;
     letter-spacing: 0;
     line-height: 35px;
@@ -150,7 +154,7 @@ const buildStyle = (messages) => {
 
   #managerPreloader li h1 {
     margin-top: 10px;
-    color: #0050d7;
+    color: #00185E;
     font-size: 36px;
     letter-spacing: 0;
     line-height: 45px;
