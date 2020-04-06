@@ -29,6 +29,7 @@
     "bootstrap": "~3.3.0",
     "chart.js": "chartjs/Chart.js#^2.0",
     "moment": "^2.24.0",
+    "oclazyload": "^1.1.0",
     "ovh-api-services": "^9.39.1",
     "ovh-ui-angular": "^3.11.0",
     "ovh-ui-kit": "~2.35.2",
