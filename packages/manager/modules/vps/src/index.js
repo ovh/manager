@@ -1,73 +1,37 @@
 import angular from 'angular';
-
 import '@uirouter/angularjs';
-import 'angular-translate';
-import 'ovh-api-services';
-import 'ovh-ui-angular';
-import 'angular-ui-bootstrap';
-import 'angular-chart.js';
+import 'oclazyload';
 
-import ovhManagerCore from '@ovh-ux/manager-core';
-import ngUiRouterLayout from '@ovh-ux/ng-ui-router-layout';
-import ngAtInternet from '@ovh-ux/ng-at-internet';
-import ngOvhCloudUniverseComponents from '@ovh-ux/ng-ovh-cloud-universe-components';
-import ngOvhDocUrl from '@ovh-ux/ng-ovh-doc-url';
+import template from './vps.html';
 
-import VpsTaskService from './vps-task.service';
-import VpsNotificationIpv6Service from './import/notification.service';
-import VpsService from './import/vps.service';
+const moduleName = 'ovhManagerVpsLazyLoading';
 
-import detailComponent from './detail/vps-detail.component';
-import headerComponent from './header/vps-header.component';
-import routing from './routing';
+angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
+  /* @ngInject */ ($stateProvider) => {
+    $stateProvider
+      .state('vps', {
+        url: '/iaas/vps',
+        template,
+        abstract: true,
+        resolve: {
+          currentUser: /* @ngInject */ (OvhApiMe) =>
+            OvhApiMe.v6().get().$promise,
+        },
+        translations: {
+          value: ['../common', '../vps'],
+          format: 'json',
+        },
+      })
+      .state('vps.detail.**', {
+        url: '/{serviceName}',
+        lazyLoad: ($transition$) => {
+          const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-import ovhManagerVpsAdditionnalDisk from './additional-disk';
-import ovhManagerVpsBackupStorage from './backup-storage';
-import ovhManagerVpsCloudDatabase from './cloud-database';
-import ovhManagerVpsDashboard from './dashboard';
-import ovhManagerVpsMonitoring from './monitoring';
-import ovhManagerVpsSecondaryDns from './secondary-dns';
-import ovhManagerVpsSnapshot from './snapshot';
-import ovhManagerVpsUpgrade from './upgrade';
-import ovhManagerVpsVeeam from './veeam';
-import ovhManagerVpsWindows from './windows';
-
-import 'ovh-ui-kit/dist/oui.css';
-import './vps.less';
-import './vps.scss';
-
-const moduleName = 'ovhManagerVps';
-
-angular
-  .module(moduleName, [
-    'chart.js',
-    ovhManagerCore,
-    'pascalprecht.translate',
-    'ui.router',
-    'ovh-api-services',
-    'oui',
-    'ui.bootstrap',
-    ngAtInternet,
-    ngOvhDocUrl,
-    ngOvhCloudUniverseComponents,
-    ngUiRouterLayout,
-    ovhManagerVpsAdditionnalDisk,
-    ovhManagerVpsBackupStorage,
-    ovhManagerVpsCloudDatabase,
-    ovhManagerVpsDashboard,
-    ovhManagerVpsMonitoring,
-    ovhManagerVpsSecondaryDns,
-    ovhManagerVpsSnapshot,
-    ovhManagerVpsUpgrade,
-    ovhManagerVpsVeeam,
-    ovhManagerVpsWindows,
-  ])
-  .component(detailComponent.name, detailComponent)
-  .component(headerComponent.name, headerComponent)
-  .service('VpsTaskService', VpsTaskService)
-  .service('VpsNotificationIpv6', VpsNotificationIpv6Service)
-  .service('VpsService', VpsService)
-  .config(routing)
-  .run(/* @ngTranslationsInject:json ./translations */);
-
+          return import('./vps.module').then((mod) =>
+            $ocLazyLoad.inject(mod.default || mod),
+          );
+        },
+      });
+  },
+);
 export default moduleName;
