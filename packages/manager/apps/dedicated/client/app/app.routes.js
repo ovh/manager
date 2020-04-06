@@ -11,7 +11,7 @@ angular.module('App').config(
       },
       templateUrl: 'app.html',
       translations: {
-        value: ['common', 'double-authentication', 'user-contracts'],
+        value: ['common', 'double-authentication'],
         format: 'json',
       },
       url: '',
