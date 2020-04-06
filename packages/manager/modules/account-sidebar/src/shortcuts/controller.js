@@ -1,6 +1,3 @@
-import filter from 'lodash/filter';
-import find from 'lodash/find';
-import get from 'lodash/get';
 import isEmpty from 'lodash/isEmpty';
 
 export default class ManagerHubShortcutsCtrl {
@@ -56,13 +53,6 @@ export default class ManagerHubShortcutsCtrl {
 
     return this.$translate
       .refresh()
-      .then(() => this.fetchBillingNotifications())
-      .then((notifications) => {
-        const billShortcut = find(shortcuts, { id: 'bills' });
-        if (billShortcut) {
-          billShortcut.notificationsCount = notifications.length;
-        }
-      })
       .then(() => {
         return shortcuts
           .filter(({ url }) => url || !isEmpty(url))
@@ -75,24 +65,6 @@ export default class ManagerHubShortcutsCtrl {
       })
       .then((result) => {
         this.shortcuts = result;
-      });
-  }
-
-  fetchBillingNotifications() {
-    const notificationsPromise = this.notifications
-      ? this.$q.when(this.notifications)
-      : this.$http.get('/hub/notifications', {
-          serviceType: 'aapi',
-        });
-
-    return notificationsPromise
-      .then(({ data }) => get(data, 'data.notifications.data'))
-      .then((notifications) => {
-        return filter(notifications, (notification) => {
-          return get(notification, 'urlDetails.relativePath', '').startsWith(
-            '/billing',
-          );
-        });
       });
   }
 }

@@ -19,13 +19,14 @@ ovh-manager-hub-shortcut-tile {
     }
 
     &_icon {
-      display: block;
+      display: flex;
       width: 4rem;
       height: 4rem;
       margin: auto;
       background-color: $p-000-white;
       border-radius: 0.4rem;
-      position: relative;
+      justify-content: center;
+      align-items: center;
 
       &:hover {
         background-color: $p-200;
@@ -41,21 +42,6 @@ ovh-manager-hub-shortcut-tile {
       font-size: 2rem;
       margin-top: 1rem;
       color: $p-800;
-    }
-
-    &_notification {
-      font-size: 0.75rem;
-      font-weight: bold;
-      color: $notification-pill-font-color;
-      background-color: $notification-pill-bg-color;
-      border-radius: $notification-pill-size;
-      width: $notification-pill-size;
-      height: $notification-pill-size;
-      line-height: $notification-pill-size;
-      display: block;
-      position: absolute;
-      top: -$notification-pill-size * 0.2;
-      right: -$notification-pill-size * 0.2;
     }
   }
 }
