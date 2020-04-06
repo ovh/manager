@@ -1,3 +1,17 @@
+# [1.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@1.0.2...@ovh-ux/manager-hub-app@1.1.0) (2020-04-06)
+
+
+### Bug Fixes
+
+* **products-list:** keep column filter when page is updated ([#2737](https://github.com/ovh/manager/issues/2737)) ([79aa522](https://github.com/ovh/manager/commit/79aa522676d997c7ea1f56678c3bf7347bf806c7))
+
+
+### Features
+
+* **dashboard:** update feedback banner wording ([#2736](https://github.com/ovh/manager/issues/2736)) ([6bf5226](https://github.com/ovh/manager/commit/6bf522610d423de223d077e9c9cd7d61609e6933))
+
+
+
 ## [1.0.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@1.0.1...@ovh-ux/manager-hub-app@1.0.2) (2020-04-02)
 
 

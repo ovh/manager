@@ -1,3 +1,17 @@
+# [12.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@12.0.1...@ovh-ux/manager-dedicated@12.1.0) (2020-04-06)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 328] ([44f364b](https://github.com/ovh/manager/commit/44f364b7ab7c10b323acd59d6b185c9b00707c7f))
+
+
+### Features
+
+* **billing.confirm-terminate:** revamp termination form ([c22d44f](https://github.com/ovh/manager/commit/c22d44f66357127f98bab8fd3d559e846888b965))
+
+
+
 ## [12.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@12.0.0...@ovh-ux/manager-dedicated@12.0.1) (2020-04-02)
 
 

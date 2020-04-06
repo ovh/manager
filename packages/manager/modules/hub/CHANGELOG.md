@@ -1,3 +1,12 @@
+## [1.0.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@1.0.1...@ovh-ux/manager-hub@1.0.2) (2020-04-06)
+
+
+### Bug Fixes
+
+* **products-list:** keep column filter when page is updated ([#2737](https://github.com/ovh/manager/issues/2737)) ([79aa522](https://github.com/ovh/manager/commit/79aa522676d997c7ea1f56678c3bf7347bf806c7))
+
+
+
 ## [1.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@1.0.0...@ovh-ux/manager-hub@1.0.1) (2020-04-02)
 
 

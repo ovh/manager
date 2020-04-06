@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-hub-app",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "private": true,
   "repository": {
     "type": "git",
@@ -41,7 +41,7 @@
     "@ovh-ux/ng-ovh-user-pref": "^2.0.0",
     "@ovh-ux/ng-translate-async-loader": "^2.1.0",
     "@ovh-ux/ng-ui-router-breadcrumb": "^1.1.0",
-    "@ovh-ux/ng-ui-router-line-progress": "^1.1.0",
+    "@ovh-ux/ng-ui-router-line-progress": "^1.2.0",
     "@uirouter/angularjs": "^1.0.23",
     "angular": "^1.7.5",
     "angular-aria": "^1.7.8",

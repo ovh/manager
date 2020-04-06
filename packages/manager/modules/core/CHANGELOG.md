@@ -1,3 +1,12 @@
+## [9.0.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@9.0.1...@ovh-ux/manager-core@9.0.2) (2020-04-06)
+
+
+### Bug Fixes
+
+* **constants:** add missing cloud entry ([#2740](https://github.com/ovh/manager/issues/2740)) ([330f7e7](https://github.com/ovh/manager/commit/330f7e75f6425ed49bb8c0fcc886f505b8d74c23))
+
+
+
 ## [9.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@9.0.0...@ovh-ux/manager-core@9.0.1) (2020-04-02)
 
 
