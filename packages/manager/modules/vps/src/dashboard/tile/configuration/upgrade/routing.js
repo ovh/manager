@@ -100,8 +100,8 @@ export default /* @ngInject */ ($stateProvider) => {
         );
       },
 
-      hasDefaultPaymentMethod: /* @ngInject */ (ovhPaymentMethod) =>
-        ovhPaymentMethod.hasDefaultPaymentMethod(),
+      hasDefaultPaymentMethod: /* @ngInject */ (defaultPaymentMethod) =>
+        !!defaultPaymentMethod,
 
       loaders: () => ({
         upgrade: false,
@@ -184,7 +184,16 @@ export default /* @ngInject */ ($stateProvider) => {
           )
           .then(({ order }) => {
             if (!hasDefaultPaymentMethod) {
-              return $window.location.replace(order.url);
+              $window.open(order.url);
+              return goBack(
+                $translate.instant(
+                  'vps_dashboard_tile_configuration_upgrade_no_payment_method_success',
+                  {
+                    href: order.url,
+                    orderId: order.orderId,
+                  },
+                ),
+              );
             }
 
             return goToUpgradeSuccess(
