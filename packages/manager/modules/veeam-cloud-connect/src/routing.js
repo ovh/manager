@@ -1,18 +1,8 @@
-import template from './template.html';
 import headerTemplate from './header/veeam-dashboard-header.html';
 import headerCtrl from './header/veeam-dashboard-header.controller';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider
-    .state('veeam-cloud-connect', {
-      url: '/paas/veeam',
-      abstract: true,
-      template,
-      translations: {
-        value: ['.'],
-        format: 'json',
-      },
-    })
     .state('veeam-cloud-connect.detail', {
       url: '/{serviceName}',
       views: {
