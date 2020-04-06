@@ -1,8 +1,0 @@
-export const SPECIAL_CONDITIONS_SUBSIDIARIES = ['US'];
-
-export const TERMINATION_FORM_NAME = 'termination';
-
-export default {
-  SPECIAL_CONDITIONS_SUBSIDIARIES,
-  TERMINATION_FORM_NAME,
-};
