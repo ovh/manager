@@ -573,12 +573,14 @@ export const MANAGER_URLS = {
     dedicated: 'https://ca.ovh.com/manager/dedicated',
     publicCloud: 'https://ca.ovh.com/manager/public-cloud',
     repsac: 'https://ca.ovh.com/manager/cloud/repsac',
+    cloud: 'https://ca.ovh.com/manager/cloud/repsac',
     sunrise: 'https://ca.ovh.com/manager/sunrise',
   },
   EU: {
     dedicated: 'https://www.ovh.com/manager/dedicated',
     publicCloud: 'https://www.ovh.com/manager/public-cloud',
     repsac: 'https://www.ovh.com/manager/cloud/repsac',
+    cloud: 'https://www.ovh.com/manager/cloud/repsac',
     sunrise: 'https://www.ovh.com/manager/sunrise',
     telecom: 'https://www.ovhtelecom.fr/manager',
     web: 'https://www.ovh.com/manager/web',
@@ -587,6 +589,7 @@ export const MANAGER_URLS = {
     dedicated: 'https://us.ovhcloud.com/manager/dedicated',
     publicCloud: 'https://us.ovhcloud.com/manager/public-cloud',
     repsac: 'https://us.ovhcloud.com/manager/cloud/repsac',
+    cloud: 'https://us.ovhcloud.com/manager/cloud/repsac',
   },
 };
 
