@@ -8,7 +8,6 @@ export default {
     label: '<',
     icon: '<',
     url: '<',
-    notificationsCount: '<?',
     tracking: '<?',
   },
 };
