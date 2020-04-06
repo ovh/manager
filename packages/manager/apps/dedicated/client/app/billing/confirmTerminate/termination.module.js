@@ -8,7 +8,6 @@ angular
   .module(moduleName, ['ui.router'])
   .config(routing)
   .service('BillingTerminate', service)
-  .component('billingConfirmTermination', component)
-  .run(/* @ngTranslationsInject:json ./translations */);
+  .component('billingConfirmTermination', component);
 
 export default moduleName;
