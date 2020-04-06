@@ -105,7 +105,6 @@ angular
       ovhManagerNavbar,
       'moment-picker',
       'oui',
-      'Module.exchange',
       emailpro,
       exchange,
       office,

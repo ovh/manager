@@ -1,47 +1,31 @@
 import angular from 'angular';
-import ovhManagerCore from '@ovh-ux/manager-core';
+import '@uirouter/angularjs';
+import 'oclazyload';
 
-import accountRenew from './billing/account-renew/renew.module';
-import ExchangeAccountMfaCreate from './account/mfa/create';
-import ExchangeAccountMfaDelete from './account/mfa/delete';
+import APIExchange from './exchange.api';
+import Exchange from './exchange.service';
+import ExchangePassword from './exchange.password.service';
 
-import components from './exchangeComponents.module';
-import controllers from './exchangeControllers.module';
-import directives from './exchangeDirectives.module';
-import services from './exchangeServices.module';
-import routing from './exchange.routes';
-import cacheTemplate from './exchange.template';
-
-import {
-  EXCHANGE_MX_CONFIG,
-  EXCHANGE_CONFIG_URL,
-  EXCHANGE_CONFIG,
-} from './exchange.constants';
-
-import './css/exchangeDiagnostic.css';
-
-const moduleName = 'Module.exchange';
+const moduleName = 'ovhManagerExchangeLazyLoading';
 
 angular
-  .module(moduleName, [
-    'ngOvhUtils',
-    'ngRoute',
-    'ui.bootstrap',
-    'ngSanitize',
-    'ng.ckeditor',
-    accountRenew,
-    components,
-    controllers,
-    directives,
-    ovhManagerCore,
-    services,
-    ExchangeAccountMfaCreate,
-    ExchangeAccountMfaDelete,
-  ])
-  .constant('EXCHANGE_MX_CONFIG', EXCHANGE_MX_CONFIG)
-  .constant('EXCHANGE_CONFIG_URL', EXCHANGE_CONFIG_URL)
-  .constant('EXCHANGE_CONFIG', EXCHANGE_CONFIG)
-  .config(routing)
-  .run(cacheTemplate);
+  .module(moduleName, ['ui.router', 'oc.lazyLoad'])
+  .config(
+    /* @ngInject */ ($stateProvider) => {
+      $stateProvider.state('app.exchange.**', {
+        url: '/configuration/exchange/:organization/:productId',
+        lazyLoad: ($transition$) => {
+          const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+
+          return import('./exchange.module').then((mod) =>
+            $ocLazyLoad.inject(mod.default || mod),
+          );
+        },
+      });
+    },
+  )
+  .service('APIExchange', APIExchange)
+  .service('Exchange', Exchange)
+  .service('ExchangePassword', ExchangePassword);
 
 export default moduleName;
