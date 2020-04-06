@@ -1,99 +1,39 @@
-import get from 'lodash/get';
+import { SPECIAL_CONDITIONS_SUBSIDIARIES } from './confirm-terminate.constants';
 
 export default class TerminateServiceCtrl {
   /* @ngInject */
-  constructor($q, $stateParams, BillingTerminate, User) {
-    this.$q = $q;
-    this.$stateParams = $stateParams;
+  constructor($translate, Alerter, BillingTerminate) {
+    this.$translate = $translate;
+    this.Alerter = Alerter;
     this.BillingTerminate = BillingTerminate;
-    this.User = User;
   }
 
   $onInit() {
-    this.reasons = [
-      'LACK_OF_PERFORMANCES',
-      'TOO_EXPENSIVE',
-      'TOO_HARD_TO_USE',
-      'NOT_RELIABLE',
-      'NOT_NEEDED_ANYMORE',
-      'MIGRATED_TO_COMPETITOR',
-      'MIGRATED_TO_ANOTHER_OVH_PRODUCT',
-      'FEATURES_DONT_SUIT_ME',
-      'UNSATIFIED_BY_CUSTOMER_SUPPORT',
-      'NO_ANSWER',
-      'OTHER',
-    ];
-    this.futureUses = [
-      'SUBSCRIBE_AN_OTHER_SERVICE',
-      'SUBSCRIBE_SIMILAR_SERVICE_WITH_COMPETITOR',
-      'SUBSCRIBE_OTHER_KIND_OF_SERVICE_WITH_COMPETITOR',
-      'NOT_REPLACING_SERVICE',
-      'NO_ANSWER',
-      'OTHER',
-    ];
-
-    this.serviceId = this.$stateParams.id;
-    this.serviceState = null;
-    this.token = this.$stateParams.token;
-    this.loading = true;
-    this.userLoading = true;
-    this.terminating = false;
-    this.error = false;
-    this.globalError = null;
-
-    if (!this.token || !this.serviceId) {
-      this.globalError = true;
-      return;
-    }
-
-    this.$q.all([this.loadUser(), this.loadService()]).catch(() => {
-      this.globalError = true;
-    });
+    this.model = {};
   }
 
-  loadUser() {
-    return this.User.getUser()
-      .then((user) => {
-        this.USVersion = user && user.ovhSubsidiary === 'US';
-      })
-      .finally(() => {
-        this.userLoading = false;
-      });
-  }
-
-  loadService() {
-    return this.BillingTerminate.getServiceInfo(this.serviceId)
-      .then((serviceInfos) => {
-        this.serviceInfos = serviceInfos;
-        return this.BillingTerminate.getServiceApi(serviceInfos.serviceId);
-      })
-      .then((service) => {
-        this.serviceState = get(service, 'resource.state');
-      })
-      .finally(() => {
-        this.loading = false;
-      });
+  hasSpecialConditions() {
+    return SPECIAL_CONDITIONS_SUBSIDIARIES.includes(this.user.ovhSubsidiary);
   }
 
   confirmTermination() {
-    this.terminating = true;
-    this.BillingTerminate.confirmTermination(
-      this.serviceId,
-      this.serviceInfos.domain,
-      this.futureUse,
-      this.reason,
-      this.commentary,
-      this.token,
-    )
-      .then(() => {
-        this.error = false;
-        this.serviceState = 'suspending';
-      })
-      .catch(() => {
-        this.error = true;
-      })
+    this.loading = true;
+    return this.BillingTerminate.confirmTermination(this.service, this.token)
+      .then(() => this.BillingTerminate.answerForm(this.service, this.model))
+      .then(() =>
+        this.Alerter.success(
+          this.$translate.instant('billing_confirm_termination_success'),
+        ),
+      )
+      .catch((error) =>
+        this.Alerter.error(
+          this.$translate.instant('billing_confirm_termination_error', {
+            message: error.message,
+          }),
+        ),
+      )
       .finally(() => {
-        this.terminating = false;
+        this.loading = false;
       });
   }
 }
