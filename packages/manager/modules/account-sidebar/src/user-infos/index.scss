@@ -33,9 +33,25 @@
     border-radius: $circle-radius;
     text-align: center;
     font-weight: normal;
+  }
 
-    &:hover {
+  & &_profile {
+    &_link {
+      color: $p-500;
+      font-weight: 600;
+    }
+
+    &:hover,
+    &:focus {
       text-decoration: none;
+
+      .manager-hub-user-infos_initials {
+        background-color: $p-400;
+      }
+
+      .manager-hub-user-infos_profile_link {
+        color: $p-700;
+      }
     }
   }
 
