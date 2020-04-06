@@ -542,7 +542,7 @@ export const SIDEBAR_ORDER_CONFIG = [
     id: 'order-logs',
     title: 'logs',
     icon: 'fa fa-bar-chart',
-    state: 'dbaas.logs.welcome',
+    state: 'dbaas-logs.welcome',
     linkId: 'CLOUD',
     linkPart: '#/dbaas/logs/welcome',
     app: [CLOUD],
