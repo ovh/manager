@@ -1,10 +1,13 @@
 import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 import get from 'lodash/get';
+import map from 'lodash/map';
 
 export default class ManagerHubBillingProductList extends ListLayoutHelper.ListLayoutCtrl {
   $onInit() {
     this.datagridId = `dg-${this.productType}`;
     this.defaultFilterColumn = this.propertyId;
+
+    this.getDisplayedColumns(this.columns);
 
     super.$onInit();
   }
@@ -24,5 +27,27 @@ export default class ManagerHubBillingProductList extends ListLayoutHelper.ListL
         meta,
       });
     });
+  }
+
+  onListParamsChange(params) {
+    // workaround to prevent uirouter from resetting columns parameter as it is dynamic
+    return this.onParamsChange({
+      ...params,
+      columns: this.displayedColumns,
+    });
+  }
+
+  getDisplayedColumns(columns) {
+    this.displayedColumns = JSON.stringify(
+      map(
+        columns.filter(({ hidden }) => !hidden),
+        ({ name, property }) => name || property,
+      ),
+    );
+  }
+
+  onColumnChange(id, columns) {
+    this.getDisplayedColumns(columns);
+    return this.onListParamsChange();
   }
 }

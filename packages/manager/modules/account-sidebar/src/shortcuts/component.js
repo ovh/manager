@@ -6,6 +6,5 @@ export default {
   controller,
   bindings: {
     me: '<',
-    notifications: '<?',
   },
 };
