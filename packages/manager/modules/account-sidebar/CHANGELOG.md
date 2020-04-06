@@ -1,3 +1,12 @@
+# [1.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-sidebar@1.1.0...@ovh-ux/manager-account-sidebar@1.2.0) (2020-04-06)
+
+
+### Features
+
+* **shortcuts:** remove notifications on bills ([#2738](https://github.com/ovh/manager/issues/2738)) ([d058c63](https://github.com/ovh/manager/commit/d058c6332634847096f9f414da6f384f7f46279a))
+
+
+
 # [1.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-sidebar@1.0.0...@ovh-ux/manager-account-sidebar@1.1.0) (2020-04-02)
 
 

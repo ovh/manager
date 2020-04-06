@@ -1,3 +1,17 @@
+# [1.2.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ui-router-line-progress@1.1.0...@ovh-ux/ng-ui-router-line-progress@1.2.0) (2020-04-06)
+
+
+### Bug Fixes
+
+* **line-progress:** disable progress for first transition ([2d01bca](https://github.com/ovh/manager/commit/2d01bcac17a2ae104c6f55f2760f7e039dcb0afd))
+
+
+### Features
+
+* **preloader:** add progress line ([a15b789](https://github.com/ovh/manager/commit/a15b7890c21e17e9e1b6b264d3c34d31e12ef84e))
+
+
+
 # [1.1.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ui-router-line-progress@1.0.1...@ovh-ux/ng-ui-router-line-progress@1.1.0) (2019-11-28)
 
 
