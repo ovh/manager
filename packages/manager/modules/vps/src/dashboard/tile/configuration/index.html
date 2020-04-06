@@ -66,7 +66,7 @@
             ></span>
             <p
                 class="p-0"
-                data-translate="vps_dashboard_tile_configuration_memory_add_upscale"
+                data-translate="{{ $ctrl.isMaxEliteVcore ? 'vps_dashboard_tile_configuration_memory_add_upscale_elite' : 'vps_dashboard_tile_configuration_memory_add_upscale' }}"
                 data-translate-values="{ href: $ctrl.getUpscaleHref() }"
                 data-ng-if="!$ctrl.vpsUpgradeTask && !$ctrl.isMaxEliteRam"
             ></p>
@@ -115,7 +115,7 @@
             ></span>
             <p
                 class="p-0"
-                data-translate="vps_dashboard_tile_configuration_storage_add_upscale"
+                data-translate="{{ $ctrl.isMaxEliteVcore ? 'vps_dashboard_tile_configuration_storage_add_upscale_elite' : 'vps_dashboard_tile_configuration_storage_add_upscale' }}"
                 data-translate-values="{ href: $ctrl.getUpscaleHref() }"
                 data-ng-if="!$ctrl.vpsUpgradeTask && !$ctrl.isMaxEliteStorage"
             ></p>
