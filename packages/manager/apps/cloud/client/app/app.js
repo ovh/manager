@@ -31,6 +31,7 @@ import ngTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
 import ngOvhActionsMenu from '@ovh-ux/ng-ovh-actions-menu';
 import ngOvhCloudUniverseComponents from '@ovh-ux/ng-ovh-cloud-universe-components';
 import ngOvhJqueryUiDroppable from '@ovh-ux/ng-ovh-jquery-ui-droppable';
+import ovhManagerDbaasLogs from '@ovh-ux/manager-dbaas-logs';
 import ovhManagerBanner from '@ovh-ux/manager-banner';
 import ovhManagerNavbar from '@ovh-ux/manager-navbar';
 import ovhManagerServerSidebar from '@ovh-ux/manager-server-sidebar';
@@ -103,6 +104,7 @@ angular
 
       ngTranslateAsyncLoader,
       cloudUniverseComponents,
+      ovhManagerDbaasLogs,
       ovhManagerBanner,
       ovhManagerNavbar,
       ovhManagerServerSidebar,

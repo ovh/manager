@@ -6,13 +6,17 @@ angular.module('managerApp').config(($stateProvider) => {
   };
 
   $stateProvider
+    .state('dbaas', {
+      url: '/dbaas',
+      abstract: true,
+      translations: {
+        value: ['../../common', '../../cloud'],
+        format: 'json',
+      },
+    })
     .state('dbaas.metrics', {
       url: '/metrics',
-      views: {
-        dbaasContainer: {
-          templateUrl: 'app/dbaas/dbaas-metrics/metrics.html',
-        },
-      },
+      templateUrl: 'app/dbaas/dbaas-metrics/metrics.html',
       abstract: true,
       translations: {
         value: ['.'],
