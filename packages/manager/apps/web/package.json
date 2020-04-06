@@ -106,6 +106,7 @@
     "moment": "^2.24.0",
     "ng-ckeditor": "^2.0.5",
     "ng-slide-down": "TheRusskiy/ng-slide-down#^1.0.0",
+    "oclazyload": "^1.1.0",
     "office-ui-fabric-core": "^11.0.0",
     "ovh-api-services": "^9.42.0",
     "ovh-manager-webfont": "ovh-ux/ovh-manager-webfont#^1.0.1",
