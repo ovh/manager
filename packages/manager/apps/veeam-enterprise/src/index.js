@@ -5,11 +5,11 @@ import 'script-loader!moment/min/moment-with-locales.min';
 
 import angular from 'angular';
 
-import '@ovh-ux/manager-core';
-import '@ovh-ux/manager-veeam-enterprise';
+import ovhManagerCore from '@ovh-ux/manager-core';
+import ovhManagerVeeamEnterprise from '@ovh-ux/manager-veeam-enterprise';
 
 import { momentConfiguration } from './config';
 
 angular
-  .module('veeamEnterpriseApp', ['ovhManagerCore', 'ovhManagerVeeamEnterprise'])
+  .module('veeamEnterpriseApp', [ovhManagerCore, ovhManagerVeeamEnterprise])
   .config(momentConfiguration);
