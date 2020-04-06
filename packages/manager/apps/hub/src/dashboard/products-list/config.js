@@ -74,16 +74,6 @@ export const resolves = {
   },
   displayedColumns: /* @ngInject */ ($transition$) =>
     JSON.parse($transition$.params().columns),
-  onColumnChange: /* @ngInject */ ($state, $transition$) => (id, columns) =>
-    $state.go('.', {
-      ...$transition$.params(),
-      columns: JSON.stringify(
-        map(
-          columns.filter(({ hidden }) => !hidden),
-          'name',
-        ),
-      ),
-    }),
   loadRow: /* @ngInject */ (products, propertyId) => (service) => ({
     ...service,
     managerLink: get(
@@ -114,6 +104,7 @@ export const resolves = {
   hideBreadcrumb: () => false,
   breadcrumb: /* @ngInject */ ($translate, productType) =>
     $translate.instant(`manager_hub_products_${productType}`),
+  onParamsChange: ListLayoutHelper.stateResolves.onListParamsChange,
 };
 
 export default {
