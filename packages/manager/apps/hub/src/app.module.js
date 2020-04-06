@@ -1,9 +1,8 @@
-import 'script-loader!moment/min/moment-with-locales.min.js'; //eslint-disable-line
-
 import { Environment } from '@ovh-ux/manager-config';
 import angular from 'angular';
 import 'angular-translate';
 import uiRouter, { RejectType } from '@uirouter/angularjs';
+import moment from 'moment';
 import ngOvhUiRouterLineProgress from '@ovh-ux/ng-ui-router-line-progress';
 import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
 
@@ -18,7 +17,6 @@ import { detach as detachPreloader } from '@ovh-ux/manager-preloader';
 
 import get from 'lodash/get';
 import has from 'lodash/has';
-import head from 'lodash/head';
 
 import atInternet from './components/at-internet';
 import errorPage from './components/error-page';
@@ -70,9 +68,21 @@ angular
       });
     },
   )
-  .run(($translate) => {
-    moment.locale(head($translate.use().split('_')));
-  })
+  .run(
+    /* @ngInject */ ($translate) => {
+      let lang = $translate.use();
+
+      if (['en_GB', 'es_US', 'fr_CA'].includes(lang)) {
+        lang = lang.toLowerCase().replace('_', '-');
+      } else {
+        [lang] = lang.split('_');
+      }
+
+      return import(`moment/locale/${lang}.js`)
+        .catch(() => moment.locale('fr'))
+        .then(() => moment.locale(lang));
+    },
+  )
   .run(
     /* @ngInject */ ($state) => {
       $state.defaultErrorHandler((error) => {

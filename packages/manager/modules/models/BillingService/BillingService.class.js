@@ -3,7 +3,7 @@ import head from 'lodash/head';
 import includes from 'lodash/includes';
 import isNull from 'lodash/isNull';
 import snakeCase from 'lodash/snakeCase';
-import 'moment';
+import moment from 'moment';
 
 import { DEBT_STATUS } from './billing-service.constants';
 
