@@ -1,18 +1,14 @@
-export default class BillingTerminate {
-  /* @ngInject */
-  constructor(OvhHttp) {
-    this.OvhHttp = OvhHttp;
-  }
-
-  // eslint-disable-next-line class-methods-use-this
-  getServiceTypeFromPrefix(serviceApiPrefix) {
+export default /* @ngInject */ function BillingTerminate($q, OvhHttp) {
+  this.getServiceTypeFromPrefix = function getServiceTypeFromPrefix(
+    serviceApiPrefix,
+  ) {
     return serviceApiPrefix
       .replace(/^\//, '')
       .replace(/\/\{.+$/, '')
       .replace(/\//g, '_');
-  }
+  };
 
-  getServiceApi(serviceId, forceRefresh) {
+  this.getServiceApi = function getServiceApi(serviceId, forceRefresh) {
     const params = {
       rootPath: 'apiv6',
       cache: 'billingTerminateService',
@@ -20,10 +16,10 @@ export default class BillingTerminate {
     if (forceRefresh) {
       delete params.cache;
     }
-    return this.OvhHttp.get(`/service/${serviceId}`, params);
-  }
+    return OvhHttp.get(`/service/${serviceId}`, params);
+  };
 
-  getServiceInfo(serviceId) {
+  this.getServiceInfo = function getServiceInfo(serviceId) {
     let serviceType;
     return this.getServiceApi(serviceId)
       .then((serviceApi) => {
@@ -34,14 +30,14 @@ export default class BillingTerminate {
         );
       })
       .then((url) =>
-        this.OvhHttp.get(`${url}/serviceInfos`, {
+        OvhHttp.get(`${url}/serviceInfos`, {
           rootPath: 'apiv6',
         }),
       )
       .then((serviceInfos) => ({ ...serviceInfos, serviceType }));
-  }
+  };
 
-  confirmTermination(
+  this.confirmTermination = function confirmTermination(
     serviceId,
     serviceName,
     futureUse,
@@ -57,7 +53,7 @@ export default class BillingTerminate {
         ),
       )
       .then((url) =>
-        this.OvhHttp.post(`${url}/confirmTermination`, {
+        OvhHttp.post(`${url}/confirmTermination`, {
           rootPath: 'apiv6',
           data: {
             reason,
@@ -66,5 +62,5 @@ export default class BillingTerminate {
           },
         }),
       );
-  }
+  };
 }
