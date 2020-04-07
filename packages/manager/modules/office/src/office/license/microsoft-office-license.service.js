@@ -1,7 +1,7 @@
 import JSURL from 'jsurl';
-import moment from 'moment';
 import each from 'lodash/each';
 import map from 'lodash/map';
+import 'moment';
 
 export default class MicrosoftOfficeLicenseService {
   /* @ngInject */

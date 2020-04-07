@@ -1,6 +1,6 @@
 import angular from 'angular';
-import moment from 'moment';
 import set from 'lodash/set';
+import 'moment';
 
 export default /* @ngInject */ function(
   $stateParams,

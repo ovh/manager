@@ -1,4 +1,6 @@
 import get from 'lodash/get';
+import 'moment';
+
 import { REDIRECT_URLS } from '../constants';
 
 export default class VeeamCloudConnectDashboardCtrl {

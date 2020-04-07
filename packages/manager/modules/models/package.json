@@ -11,10 +11,10 @@
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
   "main": "index.js",
-  "dependencies": {
-    "moment": "^2.24.0"
-  },
   "devDependencies": {
     "lodash": "^4.17.15"
+  },
+  "peerDependencies": {
+    "moment": "^2.24.0"
   }
 }

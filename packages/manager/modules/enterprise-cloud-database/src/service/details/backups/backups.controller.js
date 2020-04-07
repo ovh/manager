@@ -1,6 +1,6 @@
 import assign from 'lodash/assign';
 import compact from 'lodash/compact';
-import moment from 'moment';
+import 'moment';
 
 import { MESSAGE_CONTAINER } from '../details.constants';
 import { STATUS } from '../../../enterprise-cloud-database.constants';

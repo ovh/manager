@@ -118,7 +118,7 @@
     "matchmedia-ng": "^1.0.8",
     "messenger": "HubSpot/messenger#~1.4.1",
     "microplugin": "^0.0.3",
-    "moment": "^2.20.1",
+    "moment": "^2.24.0",
     "ng-ckeditor": "^2.0.5",
     "ng-slide-down": "TheRusskiy/ng-slide-down#^1.0.0",
     "oclazyload": "^1.1.0",

@@ -24,8 +24,7 @@
     "dist"
   ],
   "dependencies": {
-    "lodash": "^4.17.15",
-    "moment": "^2.22.2"
+    "lodash": "^4.17.15"
   },
   "devDependencies": {
     "@ovh-ux/component-rollup-config": "^7.0.0",

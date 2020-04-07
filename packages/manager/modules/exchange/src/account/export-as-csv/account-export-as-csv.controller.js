@@ -3,6 +3,7 @@ import forEach from 'lodash/forEach';
 import includes from 'lodash/includes';
 import isEmpty from 'lodash/isEmpty';
 import set from 'lodash/set';
+import 'moment';
 
 export default class ExchangeExportToCsvAccountsCtrl {
   /* @ngInject */

@@ -4,6 +4,7 @@ import get from 'lodash/get';
 import head from 'lodash/head';
 import map from 'lodash/map';
 import max from 'lodash/max';
+import 'moment';
 
 export default class ExchangeHeaderLicence {
   /* @ngInject */

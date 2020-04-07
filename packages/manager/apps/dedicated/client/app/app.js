@@ -1,7 +1,6 @@
 import { Environment } from '@ovh-ux/manager-config';
 import get from 'lodash/get';
 import has from 'lodash/has';
-import head from 'lodash/head';
 import set from 'lodash/set';
 import isString from 'lodash/isString';
 import ngAtInternet from '@ovh-ux/ng-at-internet';
@@ -270,9 +269,21 @@ angular
       get(constants, 'REDIRECT_URLS.listTicket', null),
     );
   })
-  .run(($translate) => {
-    moment.locale(head($translate.use().split('_')));
-  })
+  .run(
+    /* @ngInject */ ($translate) => {
+      let lang = $translate.use();
+
+      if (['en_GB', 'es_US', 'fr_CA'].includes(lang)) {
+        lang = lang.toLowerCase().replace('_', '-');
+      } else {
+        [lang] = lang.split('_');
+      }
+
+      return import(`script-loader!moment/locale/${lang}.js`).then(() =>
+        moment.locale(lang),
+      );
+    },
+  )
   .run((constants, atInternet, OvhApiMe) => {
     const level2 = constants.target === 'US' ? '57' : '10';
 

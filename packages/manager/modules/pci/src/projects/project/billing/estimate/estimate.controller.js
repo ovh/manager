@@ -1,6 +1,7 @@
 import head from 'lodash/head';
 import isEmpty from 'lodash/isEmpty';
 import isNull from 'lodash/isNull';
+import 'moment';
 
 import alertAddController from './alert/add/controller';
 import alertAddTemplate from './alert/add/template.html';

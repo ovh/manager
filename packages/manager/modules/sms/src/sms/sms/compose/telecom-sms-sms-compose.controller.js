@@ -14,8 +14,8 @@ import sortBy from 'lodash/sortBy';
 import sum from 'lodash/sum';
 import sumBy from 'lodash/sumBy';
 import union from 'lodash/union';
-import moment from 'moment';
 import isEmpty from 'lodash/isEmpty';
+import 'moment';
 
 import addPhonebookController from './addPhonebookContact/telecom-sms-sms-compose-addPhonebookContact.controller';
 import addPhonebookTemplate from './addPhonebookContact/telecom-sms-sms-compose-addPhonebookContact.html';

@@ -13,8 +13,7 @@
   "main": "src/index.js",
   "dependencies": {
     "filesize": "^3.6.1",
-    "lodash": "^4.17.15",
-    "moment": "^2.24.0"
+    "lodash": "^4.17.15"
   },
   "peerDependencies": {
     "@ovh-ux/manager-core": "^8.0.0 || ^9.0.0",
@@ -29,6 +28,7 @@
     "angular": "^1.7.5",
     "angular-translate": "^2.18.1",
     "angular-ui-bootstrap": "~1.3.3",
+    "moment": "^2.24.0",
     "ng-ckeditor": "^2.0.5",
     "ovh-api-services": "^9.39.1",
     "ovh-ui-angular": "^3.11.0"

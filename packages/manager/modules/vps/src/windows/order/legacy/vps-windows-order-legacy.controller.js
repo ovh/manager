@@ -1,4 +1,5 @@
 import forEach from 'lodash/forEach';
+import 'moment';
 
 export default class VpsWindowsOrderLegacyCtrl {
   /* @ngInject */

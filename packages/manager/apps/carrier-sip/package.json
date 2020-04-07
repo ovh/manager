@@ -52,7 +52,7 @@
     "ip-address": "^5.9.2",
     "jquery": "^3.4.1",
     "jsplumb": "^2.11.2",
-    "moment": "^2.15.2",
+    "moment": "^2.24.0",
     "ng-csv": "^0.3.6",
     "oclazyload": "^1.1.0",
     "ovh-api-services": "^9.42.0",

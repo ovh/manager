@@ -3,7 +3,7 @@ import chunk from 'lodash/chunk';
 import filter from 'lodash/filter';
 import flatten from 'lodash/flatten';
 import map from 'lodash/map';
-import moment from 'moment';
+import 'moment';
 
 export default class {
   /* @ngInject */
