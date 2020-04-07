@@ -33,6 +33,8 @@ export default /* @ngInject */ function VpsService(
 
   const apiCatalogProductName = 'virtualprivateserver';
 
+  const apiCatalogProductNameUs = 'vpsSandbox';
+
   const vpsTabBackupStorageCache = $cacheFactory(
     'UNIVERS_WEB_VPS_TABS_BACKUP_STORAGE',
   );
@@ -1482,11 +1484,18 @@ export default /* @ngInject */ function VpsService(
 
   this.getCatalog = function(ovhSubsidiary) {
     return $http
-      .get(`/order/catalog/public/${apiCatalogProductName}`, {
-        params: {
-          ovhSubsidiary,
+      .get(
+        `/order/catalog/public/${
+          ovhSubsidiary === 'US'
+            ? apiCatalogProductNameUs
+            : apiCatalogProductName
+        }`,
+        {
+          params: {
+            ovhSubsidiary,
+          },
         },
-      })
+      )
       .then(({ data }) => data);
   };
 }
