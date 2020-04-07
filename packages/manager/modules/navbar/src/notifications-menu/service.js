@@ -1,5 +1,5 @@
-import moment from 'moment';
 import set from 'lodash/set';
+import 'moment';
 
 import {
   ACTIVE_STATUS,

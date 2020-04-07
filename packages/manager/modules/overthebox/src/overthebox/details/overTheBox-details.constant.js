@@ -1,6 +1,6 @@
 import head from 'lodash/head';
 import get from 'lodash/get';
-import moment from 'moment';
+import 'moment';
 
 export default {
   chart: {

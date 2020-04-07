@@ -6,6 +6,7 @@ import reduce from 'lodash/reduce';
 import round from 'lodash/round';
 import some from 'lodash/some';
 import uniq from 'lodash/uniq';
+import 'moment';
 
 import BlockStorage from './block.class';
 import Region from './region.class';

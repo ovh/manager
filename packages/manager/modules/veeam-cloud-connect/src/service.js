@@ -9,6 +9,7 @@ import map from 'lodash/map';
 import set from 'lodash/set';
 import sum from 'lodash/sum';
 import uniqBy from 'lodash/uniqBy';
+import 'moment';
 
 const taskMessages = {
   updateRepositoryQuota: 'veeam_storage_update_quota_',

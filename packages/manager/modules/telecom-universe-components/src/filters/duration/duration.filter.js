@@ -1,5 +1,5 @@
 import isFinite from 'lodash/isFinite';
-import moment from 'moment';
+import 'moment';
 
 export default /* @ngInject */ ($filter) =>
   function durationFilter(seconds) {

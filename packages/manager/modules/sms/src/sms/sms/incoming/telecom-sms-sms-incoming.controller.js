@@ -4,7 +4,7 @@ import filter from 'lodash/filter';
 import flatten from 'lodash/flatten';
 import get from 'lodash/get';
 import map from 'lodash/map';
-import moment from 'moment';
+import 'moment';
 
 import readController from './read/telecom-sms-sms-incoming-read.controller';
 import readTemplate from './read/telecom-sms-sms-incoming-read.html';

@@ -5,6 +5,7 @@ import includes from 'lodash/includes';
 import isArray from 'lodash/isArray';
 import isEmpty from 'lodash/isEmpty';
 import map from 'lodash/map';
+import 'moment';
 
 import { DASHBOARD_FEATURES } from './vps-dashboard.constants';
 import {

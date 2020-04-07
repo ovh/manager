@@ -115,7 +115,7 @@
     "matchmedia-ng": "^1.0.8",
     "matchmedia-polyfill": "^0.3.2",
     "messenger": "HubSpot/messenger#1.4.1",
-    "moment": "^2.15.2",
+    "moment": "^2.24.0",
     "ng-csv": "^0.3.6",
     "ng-slide-down": "TheRusskiy/ng-slide-down#^1.0.0",
     "ngSmoothScroll": "d-oliveros/angular-smooth-scroll#~1.7.1",

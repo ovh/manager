@@ -12,8 +12,7 @@
   "author": "OVH SAS",
   "main": "./src/index.js",
   "dependencies": {
-    "lodash": "4.17.15",
-    "moment": "^2.22.2"
+    "lodash": "4.17.15"
   },
   "devDependencies": {
     "@ovh-ux/component-rollup-config": "^7.0.0"
@@ -31,6 +30,7 @@
     "angular": "^1.7.5",
     "angularjs-scroll-glue": "^2.2.0",
     "bootstrap4": "twbs/bootstrap#v4.0.0",
+    "moment": "^2.24.0",
     "oclazyload": "^1.1.0",
     "ovh-angular-responsive-tabs": "^4.0.0",
     "ovh-angular-ui-confirm-modal": "^1.0.2",

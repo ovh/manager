@@ -2,6 +2,7 @@ import head from 'lodash/head';
 import keys from 'lodash/keys';
 import reduce from 'lodash/reduce';
 import values from 'lodash/values';
+import 'moment';
 
 export default class IpLoadBalancerGraphCtrl {
   /* @ngInject */

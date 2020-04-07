@@ -1,5 +1,5 @@
 import set from 'lodash/set';
-import moment from 'moment';
+import 'moment';
 
 /**
  * tucElapsedTime directive is a simple directive to display elapsed time

@@ -1,7 +1,7 @@
 import forEach from 'lodash/forEach';
 import find from 'lodash/find';
 import pull from 'lodash/pull';
-import moment from 'moment';
+import 'moment';
 
 export default /* @ngInject */ ($timeout, $http, $q) => {
   const toRefresh = [];
