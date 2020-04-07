@@ -41,8 +41,8 @@ module.exports = ({ name }) => ({
     'angular-translate-loader-pluggable': '^1.3.1',
     jquery: '^2.1.3',
     'ovh-api-services': '^9.26.0',
-    'ovh-ui-angular': '^3.9.9',
-    'ovh-ui-kit': '^2.35.3',
+    'ovh-ui-angular': '^3.16.0',
+    'ovh-ui-kit': '^2.41.0',
     flatpickr: '~4.5.2',
   },
   devDependencies: {

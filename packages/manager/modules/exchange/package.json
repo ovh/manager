@@ -32,6 +32,6 @@
     "ng-ckeditor": "^2.0.5",
     "oclazyload": "^1.1.0",
     "ovh-api-services": "^9.39.1",
-    "ovh-ui-angular": "^3.11.0"
+    "ovh-ui-angular": "^3.16.0"
   }
 }
