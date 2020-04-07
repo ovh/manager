@@ -776,7 +776,7 @@
   "fidelity_header_balance": "Saldo",
   "fidelity_points": "punto(i)",
   "fidelity_creditOrder_title": "Ricarica il tuo conto",
-  "fidelity_creditOrder_step1_msg": "Ricarica il tuo conto per saldare le tue fatture o pagare in anticipo le fatture successive. (1 punto = 0,01 {{t0}} + IVA)",
+  "fidelity_creditOrder_step1_msg": "È possibile aggiungere credito sul conto per pagare i propri acquisti o i servizi su cui è attivo il rinnovo manuale. (1 punto = 0,01 {{t0}} +IVA)",
   "fidelity_creditOrder_step1_amount": "Credito (in punti)",
   "fidelity_creditOrder_step1_erreurformat": "L'importo inserito non è corretto: utilizza solo cifre.",
   "fidelity_creditOrder_step1_erreurmin": "Il credito deve essere di almeno {{t0}} punti.",
