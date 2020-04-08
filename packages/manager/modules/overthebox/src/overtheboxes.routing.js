@@ -2,11 +2,6 @@ import get from 'lodash/get';
 import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('overTheBoxes', {
-    url: '/overTheBox',
-    abstract: true,
-  });
-
   $stateProvider.state('overTheBoxes.index', {
     url: `?${ListLayoutHelper.urlQueryParams}`,
     component: 'ovhManagerOverTheBoxes',
