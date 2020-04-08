@@ -8,6 +8,7 @@ export default {
     projectId: '<',
     quotas: '<',
     region: '<',
+    increaseQuotaLink: '<',
   },
   controller,
   template,
