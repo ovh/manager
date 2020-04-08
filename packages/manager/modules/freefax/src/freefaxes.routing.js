@@ -1,11 +1,6 @@
 import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('freefaxes', {
-    url: '/freefax',
-    abstract: true,
-  });
-
   $stateProvider.state('freefaxes.index', {
     url: `?${ListLayoutHelper.urlQueryParams}`,
     component: 'ovhManagerFreefaxes',
