@@ -1,25 +1,34 @@
 <div class="manager-hub-user-infos">
     <a
-        class="manager-hub-user-infos_initials manager-hub-user-infos_initials-centered"
+        class="manager-hub-user-infos_profile"
         data-ng-if="$ctrl.me"
         aria-label="{{:: 'hub_user_account' | translate }}"
-        data-ng-bind="$ctrl.getNameInitials()"
         data-ng-href="{{:: $ctrl.userAccountUrl }}"
         data-track-on="click"
         data-track-name="hub::sidebar::profile::go-to-account"
-    ></a>
-    <p class="oui-chip">
-        <oui-skeleton
-            class="mx-auto"
-            data-ng-if="$ctrl.loading"
-            data-size="xs"
-        ></oui-skeleton>
+        oui-tooltip="{{ 'hub_user_account' | translate }}"
+    >
         <span
-            class="manager-hub-user-infos_text-small"
-            data-ng-if="$ctrl.supportLevel"
-            data-ng-bind="('hub_user_support_level_' + $ctrl.supportLevel.level) | translate"
+            class="manager-hub-user-infos_initials manager-hub-user-infos_initials-centered"
+            data-ng-bind="$ctrl.getNameInitials()"
         ></span>
-    </p>
+        <p class="oui-chip mb-1">
+            <oui-skeleton
+                class="mx-auto"
+                data-ng-if="$ctrl.loading"
+                data-size="xs"
+            ></oui-skeleton>
+            <span
+                class="manager-hub-user-infos_text-small"
+                data-ng-if="$ctrl.supportLevel"
+                data-ng-bind="('hub_user_support_level_' + $ctrl.supportLevel.level) | translate"
+            ></span>
+        </p>
+        <p
+            class="manager-hub-user-infos_profile_link mb-1"
+            data-ng-bind="$ctrl.getDisplayName()"
+        ></p>
+    </a>
     <p data-ng-if="!$ctrl.me">
         <oui-skeleton class="mx-auto" data-size="s"></oui-skeleton>
     </p>
@@ -28,39 +37,6 @@
         data-ng-if="$ctrl.me"
         data-navi-id="account-sidebar-block"
     >
-        <button
-            type="button"
-            role="button"
-            class="btn btn-link"
-            data-ng-click="$ctrl.isExpanded = !$ctrl.isExpanded"
-        >
-            <span
-                class="manager-hub-user-infos_user-name__login"
-                data-ng-bind="$ctrl.getDisplayName()"
-            >
-            </span
-            >&nbsp;<span
-                class="oui-icon"
-                aria-hidden="true"
-                data-ng-class="{
-                    'oui-icon-chevron-up': $ctrl.isExpanded,
-                    'oui-icon-chevron-down': !$ctrl.isExpanded,
-                  }"
-            >
-            </span>
-            <span
-                class="sr-only"
-                data-ng-if="$ctrl.isExpanded"
-                data-translate="hub_user_actions_aria_reduce"
-            >
-            </span>
-            <span
-                class="sr-only"
-                data-ng-if="!$ctrl.isExpanded"
-                data-translate="hub_user_actions_aria_expand"
-            >
-            </span>
-        </button>
         <div>
             <span
                 class="manager-hub-user-infos_role oui-status oui-status_warning"
@@ -92,19 +68,7 @@
             data-ng-bind="$ctrl.me.nichandle"
         ></span>
     </p>
-    <div
-        class="text-left manager-hub-user-infos_links"
-        data-ng-if="$ctrl.isExpanded"
-    >
-        <hr class="mb-1" />
-        <a
-            class="btn btn-link"
-            data-ng-href="{{:: $ctrl.userAccountUrl }}"
-            data-track-on="click"
-            data-track-name="hub::sidebar::profile::go-to-account"
-        >
-            <span data-translate="hub_user_account"></span>
-        </a>
+    <div class="text-left manager-hub-user-infos_links">
         <hr class="my-1" />
         <button
             type="button"

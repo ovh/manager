@@ -8,6 +8,7 @@ import '@ovh-ux/manager-account-sidebar';
 import 'ovh-api-services';
 import 'ovh-ui-angular';
 
+import languageMenu from './language-menu';
 import notificationsMenu from './notifications-menu';
 import userMenu from './user-menu';
 import walkMe from './walk-me';
@@ -28,6 +29,7 @@ angular
     'ovhManagerAccountSidebar',
     'ovh-api-services',
     'oui',
+    languageMenu,
     notificationsMenu,
     userMenu,
     walkMe,

@@ -1,3 +1,12 @@
+# [3.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-navbar@3.0.1...@ovh-ux/manager-navbar@3.1.0) (2020-04-08)
+
+
+### Features
+
+* revert language menu deletion and upgrade it ([64b7bad](https://github.com/ovh/manager/commit/64b7bad5c0c28130c478640eabfc4473030c16dd))
+
+
+
 ## [3.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-navbar@3.0.0...@ovh-ux/manager-navbar@3.0.1) (2020-04-01)
 
 

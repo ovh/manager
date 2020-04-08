@@ -12,5 +12,6 @@
   "user_account_dashboard_last_bill_see": "Rechnung anzeigen",
   "user_account_dashboard_profile": "Mein Profil",
   "user_account_dashboard_profile_edit": "Mein Profil bearbeiten",
-  "user_account_dashboard_profile_support_level": "Mein Support-Level:"
+  "user_account_dashboard_profile_support_level": "Mein Support-Level:",
+  "user_account_dashboard_customer_code": "Customer code"
 }

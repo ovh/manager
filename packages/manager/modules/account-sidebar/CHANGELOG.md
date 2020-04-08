@@ -1,3 +1,12 @@
+# [1.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-sidebar@1.2.0...@ovh-ux/manager-account-sidebar@1.3.0) (2020-04-08)
+
+
+### Features
+
+* **user-infos:** replace expanded menu by permanent one ([01de821](https://github.com/ovh/manager/commit/01de8215629d5fdb48cbab0ae5753d127cc29c0e))
+
+
+
 # [1.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-sidebar@1.1.0...@ovh-ux/manager-account-sidebar@1.2.0) (2020-04-06)
 
 
