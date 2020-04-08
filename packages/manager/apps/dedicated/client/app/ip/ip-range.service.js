@@ -1,9 +1,10 @@
+/* eslint-disable class-methods-use-this */
 import forEach from 'lodash/forEach';
 import padStart from 'lodash/padStart';
 import times from 'lodash/times';
 
-angular.module('Module.ip.services').service('IpRange', function IpRange() {
-  function convertIpToBin(_ip) {
+export default class {
+  convertIpToBin(_ip) {
     let ip = _ip;
     let bin = '';
     let sectionBin = '';
@@ -21,7 +22,7 @@ angular.module('Module.ip.services').service('IpRange', function IpRange() {
     return bin;
   }
 
-  function convertBinToIp(bin) {
+  convertBinToIp(bin) {
     let i;
     let ip = '';
 
@@ -32,18 +33,18 @@ angular.module('Module.ip.services').service('IpRange', function IpRange() {
     return ip;
   }
 
-  function getStrCopy(str, _copies) {
+  getStrCopy(str, _copies) {
     const copies = _copies > 0 ? _copies : 1;
 
     return times(copies, () => str).join('');
   }
 
-  function convertDecToBase(dec, base, _length, padding = '0') {
+  convertDecToBase(dec, base, _length, padding = '0') {
     let num = dec.toString(base);
     const length = _length || num.length;
     if (num.length !== length) {
       if (num.length < length) {
-        num = getStrCopy(padding, length - num.length) + num;
+        num = this.getStrCopy(padding, length - num.length) + num;
       } else {
         throw new Error(
           `convertDecToBase(): num(${num}).length > length(${length}) too long.`,
@@ -53,11 +54,11 @@ angular.module('Module.ip.services').service('IpRange', function IpRange() {
     return num;
   }
 
-  function convertDecToIp(dec) {
-    return convertBinToIp(convertDecToBase(dec, 2, 32));
+  convertDecToIp(dec) {
+    return this.convertBinToIp(this.convertDecToBase(dec, 2, 32));
   }
 
-  function applySubnetBin(_ipBin, subnetBin, filler) {
+  applySubnetBin(_ipBin, subnetBin, filler) {
     let ipBin = _ipBin;
     for (let i = 0; i < 32; i += 1) {
       if (subnetBin.charAt(i) === '0') {
@@ -72,13 +73,12 @@ angular.module('Module.ip.services').service('IpRange', function IpRange() {
   }
 
   // Returns *ALL* IP of the range!
-  this.getRangeForIpv4Block = function getRangeForIpv4Block(ipBlock) {
+  getRangeForIpv4Block(ipBlock) {
     // @todo IPv6.
     if (!/\/(.+)$/.test(ipBlock) || !/\./.test(ipBlock)) {
       return [ipBlock];
     }
 
-    // damn!
     let i;
     let subnetBin = '';
     let ipFromBin;
@@ -92,18 +92,18 @@ angular.module('Module.ip.services').service('IpRange', function IpRange() {
     // calculate start IP
     const ipfrom = ipBlock.substring(0, ipBlock.indexOf('/'));
 
-    ipFromBin = convertIpToBin(ipfrom);
-    ipFromBin = applySubnetBin(ipFromBin, subnetBin, '0');
+    ipFromBin = this.convertIpToBin(ipfrom);
+    ipFromBin = this.applySubnetBin(ipFromBin, subnetBin, '0');
 
-    const ipToBin = applySubnetBin(ipFromBin, subnetBin, '1');
+    const ipToBin = this.applySubnetBin(ipFromBin, subnetBin, '1');
 
     const ipFromBinDec = parseInt(ipFromBin, 2);
     const ipToBinDec = parseInt(ipToBin, 2);
 
     for (i = ipFromBinDec; i <= ipToBinDec; i += 1) {
-      range.push(convertDecToIp(i));
+      range.push(this.convertDecToIp(i));
     }
 
     return range;
-  };
-});
+  }
+}
