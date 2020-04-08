@@ -1,0 +1,10 @@
+{
+  "dedicatedCloud_datacenter_backup_delete_title": "Desativação do backup",
+  "dedicatedCloud_datacenter_backup_delete_description_1": "Pretende desativar o backup para este datacenter {{datacenter}}? Deverá verificar a desativação do backup para cada máquina virtual a partir do vSphere.",
+  "dedicatedCloud_datacenter_backup_delete_description_2": "Atenção: esta ação eliminará definitivamente todos os seus backups.",
+  "dedicatedCloud_datacenter_backup_delete_cancel": "Cancelar",
+  "dedicatedCloud_datacenter_backup_delete_confirm": "Desativar o backup",
+  "dedicatedCloud_datacenter_backup_delete_success": "O pedido de desativação da oferta Veeam Backup {{name}} está em curso. A operação poderá demorar até 24 horas.",
+  "dedicatedCloud_datacenter_backup_delete_error": "Ocorreu um erro ao desativar o seu serviço de backup: {{ message }}",
+  "dedicatedCloud_datacenter_backup_delete_error_403": "Ocorreu um erro ao desativar o seu serviço de backup: {{message}}. Contacte o nosso suporte para resolver este problema."
+}
