@@ -109,7 +109,6 @@ angular
       exchange,
       office,
       sharepoint,
-      'Module.emailpro',
       domain,
       domainDnsZone,
       emailDomainOrder,
