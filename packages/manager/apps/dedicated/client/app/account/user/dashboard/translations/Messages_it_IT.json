@@ -12,5 +12,6 @@
   "user_account_dashboard_last_bill_see": "Visualizza la tua fattura",
   "user_account_dashboard_profile": "Il tuo profilo",
   "user_account_dashboard_profile_edit": "Modifica il tuo profilo",
-  "user_account_dashboard_profile_support_level": "Il tuo livello di supporto"
+  "user_account_dashboard_profile_support_level": "Il tuo livello di supporto",
+  "user_account_dashboard_customer_code": "Customer code"
 }

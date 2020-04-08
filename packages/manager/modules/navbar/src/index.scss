@@ -10,16 +10,22 @@
   }
 
   .oui-navbar-link {
-    color: $p-800-text !important;
-    font-weight: normal !important;
-
     .oui-icon {
-      color: $p-500 !important;
+      color: $p-500;
+    }
+
+    &_primary {
+      color: $p-800-text;
+      font-weight: normal;
+      font-size: 1rem;
+      line-height: 0.5rem;
+      padding-top: 1.2rem;
+      border-bottom: 2px solid transparent;
     }
 
     &_tertiary {
-      font-weight: bold !important;
-      color: $p-500 !important;
+      font-weight: bold;
+      color: $p-500;
     }
   }
 
@@ -29,14 +35,6 @@
   .oui-navbar-link_tertiary[aria-expanded='true'],
   .oui-navbar-link_tertiary:focus {
     background-color: initial;
-  }
-
-  .oui-navbar-link_primary {
-    color: $p-000-white;
-    font-size: 1rem;
-    line-height: 0.5rem;
-    padding-top: 1.2rem;
-    border-bottom: 2px solid transparent;
   }
 
   .oui-navbar-link_active {

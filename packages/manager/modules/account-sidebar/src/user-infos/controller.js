@@ -1,4 +1,3 @@
-import capitalize from 'lodash/capitalize';
 import toUpper from 'lodash/toUpper';
 
 import { EXCLUDED_ROLES } from './constants';
@@ -23,7 +22,6 @@ export default class ManagerHubUserInfosCtrl {
 
   $onInit() {
     this.userAccountUrl = this.RedirectionService.getURL('userAccount');
-    this.isExpanded = false;
     return this.$q.all([
       this.fetchRole(),
       this.fetchMe(),
@@ -70,7 +68,7 @@ export default class ManagerHubUserInfosCtrl {
   }
 
   getDisplayName() {
-    return `${capitalize(this.me.firstname)} ${capitalize(this.me.name)}`;
+    return `${this.me.firstname} ${this.me.name}`;
   }
 
   logout() {

@@ -62,10 +62,22 @@
                                     <strong
                                         data-ng-bind=":: $ctrl.user.firstname + ' ' + $ctrl.user.name"
                                     ></strong>
-                                    <p
-                                        data-ng-bind="::$ctrl.user.nichandle"
-                                    ></p>
+                                    <p data-ng-bind="::$ctrl.user.email"></p>
                                 </div>
+                                <dl>
+                                    <dt
+                                        data-translate="user_account_dashboard_nichandle"
+                                    ></dt>
+                                    <dd
+                                        data-ng-bind="$ctrl.user.nichandle"
+                                    ></dd>
+                                    <dt
+                                        data-translate="user_account_dashboard_customer_code"
+                                    ></dt>
+                                    <dd
+                                        data-ng-bind="$ctrl.user.customerCode"
+                                    ></dd>
+                                </dl>
                                 <address>
                                     <span
                                         data-ng-bind=":: $ctrl.user.address"
@@ -76,7 +88,6 @@
                                     ></span>
                                 </address>
                                 <p data-ng-bind="::$ctrl.user.phone"></p>
-                                <p data-ng-bind="::$ctrl.user.email"></p>
                                 <p
                                     data-ng-if="$ctrl.supportLevel.isAvailable($ctrl.user.ovhSubsidiary)"
                                 >
