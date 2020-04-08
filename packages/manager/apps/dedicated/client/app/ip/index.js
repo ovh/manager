@@ -4,6 +4,11 @@ import '@uirouter/angularjs';
 import 'angular-translate';
 import 'ovh-ui-angular';
 
+import filterAvailableIpText from './filters/availableIpText';
+import filterIpFilterByService from './filters/ipFilterByService';
+import filterIpFirewallRulePort from './filters/ipFirewallRulePort';
+import filterIpPunycode from './filters/ipPunycode';
+
 import component from './ip.component';
 import ipExpandIpv6 from './ip-expand-ipv6.service';
 import ipFeatureAvailability from './ip-feature-availability.service';
@@ -22,6 +27,10 @@ angular
     'ui.bootstrap',
     'ui.router',
   ])
+  .filter('availableIpText', filterAvailableIpText)
+  .filter('ipFilterByService', filterIpFilterByService)
+  .filter('ipFirewallRulePort', filterIpFirewallRulePort)
+  .filter('ipPunycode', filterIpPunycode)
   .component('ip', component)
   .config(routing)
   .service('IpExpandIpv6', ipExpandIpv6)
