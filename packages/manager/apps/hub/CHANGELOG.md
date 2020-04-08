@@ -1,3 +1,12 @@
+## [1.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@1.1.0...@ovh-ux/manager-hub-app@1.1.1) (2020-04-08)
+
+
+### Bug Fixes
+
+* **dashboard:** add bottom space ([#2757](https://github.com/ovh/manager/issues/2757)) ([cb2b08b](https://github.com/ovh/manager/commit/cb2b08b86eb16665ae3cc428c8b90e2fbbf0bf15))
+
+
+
 # [1.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@1.0.2...@ovh-ux/manager-hub-app@1.1.0) (2020-04-06)
 
 

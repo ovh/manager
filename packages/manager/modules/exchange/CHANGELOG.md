@@ -1,3 +1,12 @@
+## [1.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@1.7.0...@ovh-ux/manager-exchange@1.7.1) (2020-04-08)
+
+
+### Bug Fixes
+
+* **exchange:** add commercial version translation ([#2760](https://github.com/ovh/manager/issues/2760)) ([38f35c5](https://github.com/ovh/manager/commit/38f35c5ea46e5acd42f069cbbebb30506c6996a7))
+
+
+
 # [1.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@1.6.2...@ovh-ux/manager-exchange@1.7.0) (2020-04-01)
 
 
