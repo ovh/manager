@@ -403,6 +403,7 @@
   "dedicatedCloud_USER_change_password_minLength": "Longueur minimale :",
   "dedicatedCloud_USER_change_password_specialMandatory": "Au minimum un caractère spécial",
   "dedicatedCloud_USER_change_password_uppercaseLetterMandatory": "Doit contenir des lettres majuscules",
+  "dedicatedCloud_USER_change_password_denied_chars": "Ne doit pas contenir les caractères suivants : {{ chars }}",
   "dedicatedCloud_USER_reset_password_success": "Un nouveau mot de passe pour <b>{{t0}}</b> sera envoyé dans quelques instants au nicAdmin du service.",
   "dedicatedCloud_USER_reset_password_mail_success": "Un nouveau mot de passe pour <b>{{t0}}</b> sera envoyé dans quelques instants à l'email indiqué.",
   "dedicatedCloud_USER_reset_password_fail": "Une erreur est survenue lors de la réinitialisation du mot de passe de l'utilisateur {{t0}}",
