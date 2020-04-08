@@ -2,22 +2,31 @@ import angular from 'angular';
 import '@uirouter/angularjs';
 import 'oclazyload';
 
-import '@ovh-ux/manager-core';
+import freefax from './freefax';
 
 import { FREEFAX_AVAILABILITY } from './feature-availability/feature-availability.constants';
 
-import component from './freefaxes.component';
-import routing from './freefaxes.routing';
-import freefax from './freefax';
+const moduleName = 'ovhManagerFreeFaxesLazyLoading';
 
-const moduleName = 'ovhManagerFreeFaxes';
+angular.module(moduleName, ['ui.router', 'oc.lazyLoad', freefax]).config(
+  /* @ngInject */ ($stateProvider) => {
+    $stateProvider
+      .state('freefaxes', {
+        url: '/freefax',
+        abstract: true,
+      })
+      .state('freefaxes.index.**', {
+        url: '',
+        lazyLoad: ($transition$) => {
+          const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-angular
-  .module(moduleName, ['ui.router', 'ovhManagerCore', 'oc.lazyLoad', freefax])
-  .config(routing)
-  .component('ovhManagerFreefaxes', component)
-  .run(/* @ngTranslationsInject:json ./translations */);
-
-export { FREEFAX_AVAILABILITY };
+          return import('./freefax.module').then((mod) =>
+            $ocLazyLoad.inject(mod.default || mod),
+          );
+        },
+      });
+  },
+);
 
 export default moduleName;
+export { FREEFAX_AVAILABILITY };
