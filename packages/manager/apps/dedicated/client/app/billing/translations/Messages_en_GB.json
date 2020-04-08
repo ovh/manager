@@ -776,7 +776,7 @@
   "fidelity_header_balance": "Balance",
   "fidelity_points": "point(s)",
   "fidelity_creditOrder_title": "Credit your account",
-  "fidelity_creditOrder_step1_msg": "You can credit your account to settle your bills, or to pay for upcoming bills in advance. (1 point = 0.01 {{t0}} ex. VAT)",
+  "fidelity_creditOrder_step1_msg": "You can credit your account to pay for your orders, or to renew your services, when a renewal says “manual”. (1 point = 0.01 {{t0}} ex. VAT)",
   "fidelity_creditOrder_step1_amount": "Amount (in points)",
   "fidelity_creditOrder_step1_erreurformat": "The amount entered is incorrect. Please use numbers only. ",
   "fidelity_creditOrder_step1_erreurmin": "The amount of credit must be at least {{t0}} points.",
