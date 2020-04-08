@@ -7,9 +7,6 @@ import 'angular-translate';
 import 'ovh-api-services';
 import 'ovh-ui-angular';
 
-import 'ovh-ui-kit/dist/oui.css';
-import './logs-account-setup.scss';
-
 import component from './logs-account-setup.component';
 import routing from './logs-account-setup.routing';
 

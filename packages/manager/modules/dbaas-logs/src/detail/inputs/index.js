@@ -11,7 +11,7 @@ import 'ovh-ui-kit/dist/oui.css';
 
 import add from './add';
 import component from './logs-inputs.component';
-import console from './console';
+import inputConsole from './console';
 import home from './home';
 import routing from './logs-inputs.routing';
 import service from './logs-inputs.service';
@@ -27,7 +27,7 @@ angular
     'pascalprecht.translate',
     'ui.router',
     add,
-    console,
+    inputConsole,
     home,
   ])
   .config(routing)

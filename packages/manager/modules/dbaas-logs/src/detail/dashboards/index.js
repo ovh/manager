@@ -7,9 +7,6 @@ import 'angular-translate';
 import 'ovh-api-services';
 import 'ovh-ui-angular';
 
-import 'ovh-ui-kit/dist/oui.css';
-import './logs-dashboards.scss';
-
 import addTool from '../options/addtool';
 import component from './logs-dashboards.component';
 import crud from './crud';

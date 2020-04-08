@@ -7,9 +7,6 @@ import 'angular-translate';
 import 'ovh-api-services';
 import 'ovh-ui-angular';
 
-import 'ovh-ui-kit/dist/oui.css';
-import './aliases-link.scss';
-
 import component from './aliases-link.component';
 import dualList from '../../../components/dual-list';
 import routing from './aliases-link.routing';

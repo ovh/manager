@@ -6,9 +6,6 @@ import '@uirouter/angularjs';
 import 'angular-translate';
 import ngOvhDocUrl from '@ovh-ux/ng-ovh-doc-url';
 
-import 'ovh-ui-kit/dist/oui.css';
-import 'bootstrap/less/bootstrap.less';
-import './logs-welcome.scss';
 import './logs-welcome.less';
 
 import component from './logs-welcome.component';

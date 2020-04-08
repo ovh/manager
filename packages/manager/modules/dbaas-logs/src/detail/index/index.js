@@ -7,9 +7,6 @@ import 'angular-translate';
 import 'ovh-api-services';
 import 'ovh-ui-angular';
 
-import 'ovh-ui-kit/dist/oui.css';
-import './logs-index.scss';
-
 import add from './add';
 import addTool from '../options/addtool';
 import component from './logs-index.component';

@@ -7,10 +7,6 @@ import 'angular-translate';
 import 'ovh-ui-angular';
 import 'ovh-api-services';
 
-import 'ovh-ui-kit/dist/oui.css';
-import 'bootstrap/less/bootstrap.less';
-import './logs-list.scss';
-
 import component from './logs-list.component';
 import listHeader from '../header/list';
 import logsDetail from '../detail';

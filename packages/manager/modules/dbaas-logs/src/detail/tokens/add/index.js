@@ -7,10 +7,6 @@ import 'angular-translate';
 import 'ovh-ui-angular';
 import 'ovh-api-services';
 
-import 'ovh-ui-kit/dist/oui.css';
-import 'bootstrap/less/bootstrap.less';
-import './logs-tokens-add.scss';
-
 import component from './logs-tokens-add.component';
 import routing from './logs-tokens-add.routing';
 import logsTokenAddCtrl from './logs-token-add.controller';

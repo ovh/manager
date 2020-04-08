@@ -7,9 +7,6 @@ import 'angular-translate';
 import 'ovh-api-services';
 import 'ovh-ui-angular';
 
-import 'ovh-ui-kit/dist/oui.css';
-import './logs-add-tool.scss';
-
 import component from './logs-add-tool.component';
 
 const moduleName = 'ovhManagerDbaasLogsDetailOptionsAddTool';

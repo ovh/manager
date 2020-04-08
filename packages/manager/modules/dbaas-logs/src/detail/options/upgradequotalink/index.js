@@ -7,9 +7,6 @@ import 'angular-translate';
 import 'ovh-api-services';
 import 'ovh-ui-angular';
 
-import 'ovh-ui-kit/dist/oui.css';
-import './logs-upgrade-quota-link.scss';
-
 import component from './logs-upgrade-quota-link.component';
 
 const moduleName = 'ovhManagerDbaasLogsDetailOptionsUpgradeQuotaLink';

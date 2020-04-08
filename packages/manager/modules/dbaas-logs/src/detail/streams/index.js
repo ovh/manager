@@ -7,8 +7,6 @@ import 'angular-translate';
 import 'ovh-api-services';
 import 'ovh-ui-angular';
 
-import 'ovh-ui-kit/dist/oui.css';
-import './logs-streams.scss';
 import './logs-streams.less';
 
 import add from './add';

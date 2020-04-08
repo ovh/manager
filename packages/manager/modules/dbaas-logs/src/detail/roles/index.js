@@ -7,8 +7,6 @@ import 'angular-translate';
 import 'ovh-api-services';
 import 'ovh-ui-angular';
 
-import 'ovh-ui-kit/dist/oui.css';
-import './logs-roles.scss';
 import './logs-roles.less';
 
 import add from './add';

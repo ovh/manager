@@ -8,9 +8,6 @@ import 'angular-translate';
 import 'ovh-api-services';
 import 'ovh-ui-angular';
 
-import 'ovh-ui-kit/dist/oui.css';
-import './logs-home.scss';
-
 import account from './account';
 import capped from './capped';
 import component from './logs-home.component';

@@ -7,9 +7,7 @@ import 'angular-translate';
 import 'ovh-api-services';
 import 'ovh-ui-angular';
 
-import 'ovh-ui-kit/dist/oui.css';
 import './alerts-home.less';
-import './alerts-home.scss';
 
 import component from './alerts-home.component';
 import routing from './alerts-home.routing';

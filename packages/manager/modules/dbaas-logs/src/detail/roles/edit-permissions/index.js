@@ -7,9 +7,6 @@ import 'angular-translate';
 import 'ovh-api-services';
 import 'ovh-ui-angular';
 
-import 'ovh-ui-kit/dist/oui.css';
-import './edit-permissions.scss';
-
 import component from './edit-permissions.component';
 import dualList from '../../../components/dual-list';
 import routing from './edit-permissions.routing';

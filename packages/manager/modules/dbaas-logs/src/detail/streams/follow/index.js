@@ -9,9 +9,6 @@ import 'script-loader!angular-websocket/dist/angular-websocket';
 import 'ovh-api-services';
 import 'ovh-ui-angular';
 
-import 'ovh-ui-kit/dist/oui.css';
-import './streams-follow.scss';
-
 import component from './streams-follow.component';
 import routing from './streams-follow.routing';
 import service from './streams-follow.service';

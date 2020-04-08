@@ -7,9 +7,6 @@ import 'angular-translate';
 import 'ovh-api-services';
 import 'ovh-ui-angular';
 
-import 'ovh-ui-kit/dist/oui.css';
-import './logs-aliases-home.scss';
-
 import addTool from '../../options/addtool';
 import component from './logs-aliases-home.component';
 import routing from './logs-aliases-home.routing';

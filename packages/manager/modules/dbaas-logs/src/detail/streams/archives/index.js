@@ -7,9 +7,6 @@ import 'angular-translate';
 import 'ovh-api-services';
 import 'ovh-ui-angular';
 
-import 'ovh-ui-kit/dist/oui.css';
-import './streams-archives.scss';
-
 import component from './streams-archives.component';
 import routing from './streams-archives.routing';
 import service from './streams-archives.service';

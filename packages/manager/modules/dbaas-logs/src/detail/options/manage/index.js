@@ -7,9 +7,6 @@ import 'angular-translate';
 import 'ovh-api-services';
 import 'ovh-ui-angular';
 
-import 'ovh-ui-kit/dist/oui.css';
-import './logs-options-manage.scss';
-
 import aliases from '../../aliases';
 import component from './logs-options-manage.component';
 import overview from './overview';

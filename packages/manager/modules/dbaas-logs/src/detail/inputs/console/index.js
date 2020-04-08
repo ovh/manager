@@ -8,9 +8,6 @@ import 'angular-translate';
 import 'ovh-api-services';
 import 'ovh-ui-angular';
 
-import 'ovh-ui-kit/dist/oui.css';
-import './logs-inputs-console.scss';
-
 import component from './logs-inputs-console.component';
 import routing from './logs-inputs-console.routing';
 

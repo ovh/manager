@@ -9,6 +9,8 @@ import 'ovh-api-services';
 import 'ovh-ui-angular';
 
 import 'ovh-ui-kit/dist/oui.css';
+import 'bootstrap/less/bootstrap.less';
+import './logs.scss';
 
 import component from './logs.component';
 import constants from './logs.constants';
