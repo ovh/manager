@@ -1,0 +1,23 @@
+{
+  "domains_newdnszone_order_title": "Ajouter une zone DNS",
+  "domains_newdnszone_order_step1_title": "Entrez un nom de domaine",
+  "domains_newdnszone_order_step1_zonename": "Nom de domaine",
+  "domains_newdnszone_order_step1_zonename_pending": "Vérification de la disponibilité du nom de la zone...",
+  "domains_newdnszone_order_step2_title": "Détails",
+  "domains_newdnszone_order_step2_minimized": "Activer les entrées minimales ?",
+  "domains_newdnszone_order_step2_minimized_yes": "Oui",
+  "domains_newdnszone_order_step2_minimized_no": "Non",
+  "domains_newdnszone_order_example": "Exemple d'utilisation d'ajout d'une zone :",
+  "domains_newdnszone_order_usage": "Vous avez un domaine chez un autre prestataire et vous souhaitez le transférer chez nous. Afin d'éviter l'interruption de services, vous pouvez ajouter une zone DNS avant d'initier le transfert.",
+  "domains_newdnszone_order_reminder": "N'oubliez pas de changer les serveurs DNS pour que la zone soit prise en compte.",
+  "domains_newdnszone_order_subtitle": "pour configurer votre domaine vers vos différents services.",
+  "domains_newdnszone_zone_invalid_title": "La création d'une zone DNS est possible uniquement si vous remplissez toutes les conditions suivantes :",
+  "domains_newdnszone_zone_invalid_domain_active": "Le domaine existe et est actif",
+  "domains_newdnszone_zone_invalid_domain_soa": "Le SOA du domaine doit être correctement mis en place dans sa zone DNS",
+  "domains_newdnszone_zone_invalid_domain_a": "Aucune opération ou bon de commande ne doit être en cours chez OVH pour ce domaine",
+  "domains_newdnszone_zone_invalid_domain_zone": "Cette zone DNS ne doit pas déjà être enregistrée chez OVH",
+  "domains_newdnszone_zone_invalid_domain_guide": "Consulter le guide",
+  "domains_newdnszone_order_help_add": "Ajouter une zone DNS",
+  "domains_newdnszone_order_success": "L'activation de votre zone DNS a été réalisée",
+  "domains_newdnszone_order_error": "Une erreur est survenue lors de la commande de la zone DNS : {{ message }}"
+}

@@ -1,14 +1,9 @@
 import set from 'lodash/set';
 
-import controller from './dns-zone-new.controller';
-import template from './dns-zone-new.html';
-
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.dns-zone-new', {
     url: '/configuration/new_dns_zone',
-    controller,
-    controllerAs: 'ctrlNewDnsZone',
-    template,
+    component: 'domainDnsZoneNew',
     resolve: {
       navigationInformations: /* @ngInject */ (Navigator, $rootScope) => {
         set($rootScope, 'currentSectionInformation', 'newDnsZone');
@@ -17,7 +12,52 @@ export default /* @ngInject */ ($stateProvider) => {
           configurationSelected: true,
         });
       },
+
+      catalog: /* @ngInject */ (OvhApiOrder, user) =>
+        OvhApiOrder.Catalog()
+          .Public()
+          .v6()
+          .get({
+            productName: 'dns',
+            ovhSubsidiary: user.ovhSubsidiary,
+          }).$promise,
+
+      goBack: /* @ngInject */ ($state, $timeout, Alerter) => (
+        message = false,
+        type = 'success',
+      ) => {
+        const reload = message && type === 'success';
+
+        const promise = $state.go(
+          'app.dns-zone-new',
+          {},
+          {
+            reload,
+          },
+        );
+
+        if (message) {
+          promise.then(() =>
+            $timeout(() =>
+              Alerter.set(
+                `alert-${type}`,
+                message,
+                null,
+                'newdnszone.alerts.main',
+              ),
+            ),
+          );
+        }
+
+        return promise;
+      },
+
+      isZoneValid: /* @ngInject */ (newDnsZone) => (name) =>
+        newDnsZone
+          .getZoneNameValidation(name)
+          .then(() => true)
+          .catch(() => false),
     },
-    translations: { value: ['.', '../../domains'], format: 'json' },
+    translations: { value: ['.'], format: 'json' },
   });
 };
