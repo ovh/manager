@@ -1,3 +1,12 @@
+# [12.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@12.1.0...@ovh-ux/manager-dedicated@12.2.0) (2020-04-08)
+
+
+### Features
+
+* **account.user-dashboard:** display nichandle and customer code ([ddd789a](https://github.com/ovh/manager/commit/ddd789ad3265a6bb8d4ac5a4e9ac328998ff9dd0))
+
+
+
 # [12.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@12.0.1...@ovh-ux/manager-dedicated@12.1.0) (2020-04-06)
 
 
