@@ -1,5 +1,6 @@
 import angular from 'angular';
 import forEach from 'lodash/forEach';
+import isArray from 'lodash/isArray';
 import isFunction from 'lodash/isFunction';
 
 import '@ovh-ux/ng-at-internet';
@@ -30,13 +31,16 @@ angular
             const options = state.atInternet;
             const ignore = options && options.ignore;
             const trackPage = {};
-
             if (atInternetUiRouterPlugin.isStateTrackEnabled() && !ignore) {
               trackPage.name = state.name;
               if (options) {
                 if (options.rename) {
                   trackPage.name = options.rename;
-                  if (angular.isFunction(options.rename)) {
+
+                  if (
+                    angular.isFunction(options.rename) ||
+                    isArray(options.rename)
+                  ) {
                     trackPage.name = $injector.invoke(options.rename);
                   }
                 }
