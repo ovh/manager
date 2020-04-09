@@ -71,10 +71,12 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <div
-                                    data-ovh-contracts="$ctrl.convertToVoicefaxForm.serviceName.informations.contracts"
-                                    data-ovh-contracts-validated="$ctrl.convertToVoicefaxForm.contracts"
-                                ></div>
+                                <ovh-contracts-summary
+                                    data-items="$ctrl.convertToVoicefaxForm.serviceName.informations.contracts"
+                                    data-model="$ctrl.convertToVoicefaxForm.contracts"
+                                    data-name="telephonyFaxConvertToVoicefaxContracts"
+                                >
+                                </ovh-contracts-summary>
                             </div>
                             <div
                                 class="form-group mb-3"

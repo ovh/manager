@@ -221,11 +221,12 @@
                             class="col-xs-12"
                             data-ng-if="LineSimultaneousLinesCtrl.contracts"
                         >
-                            <div
-                                data-ovh-contracts="LineSimultaneousLinesCtrl.contracts"
-                                data-full-text="true"
-                                data-ovh-contracts-validated="LineSimultaneousLinesCtrl.contractsAccepted"
-                            ></div>
+                            <ovh-contracts-summary
+                                data-items="LineSimultaneousLinesCtrl.contracts"
+                                data-model="LineSimultaneousLinesCtrl.contractsAccepted"
+                                data-name="telephonyLineCallsSimultaneousLinesContracts"
+                            >
+                            </ovh-contracts-summary>
                         </div>
 
                         <div class="col-xs-12">

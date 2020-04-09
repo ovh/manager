@@ -35,13 +35,14 @@
                         </oui-spinner>
                     </span>
                 </div>
-                <div
+                <ovh-contracts-summary
                     class="mb-3"
                     data-ng-if="Credit.contracts.length > 0"
-                    data-ovh-contracts="Credit.contracts"
-                    data-full-text="false"
-                    data-ovh-contracts-validated="Credit.contractsAccepted"
-                ></div>
+                    data-items="Credit.contracts"
+                    data-model="Credit.contractsAccepted"
+                    data-name="freefaxCreditContracts"
+                >
+                </ovh-contracts-summary>
                 <button
                     type="button"
                     class="btn btn-primary"
