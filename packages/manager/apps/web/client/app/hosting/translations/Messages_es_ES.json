@@ -27,8 +27,6 @@
   "hosting_dashboard_service_home_ssh_newtab": "Acceso SSH al cluster (nueva pestaña)",
   "hosting_dashboard_service_boostOffer_disabled": "Desactivado",
   "hosting_dashboard_service_boostOffer_unavailable": "No disponible",
-  "hosting_dashboard_service_main_domain": "Dominio principal",
-  "hosting_dashboard_service_main_domain_change": "Cambiar el dominio principal",
   "hosting_dashboard_service_regenerate_ssl_success": "La solicitud de regeneración del certificado se ha enviado.",
   "hosting_dashboard_service_regenerate_ssl_error": "Se ha producido un error al solicitar la regeneración del certificado.",
   "hosting_dashboard_disk_usage": "Espacio en disco",

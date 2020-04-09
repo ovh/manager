@@ -27,8 +27,6 @@
   "hosting_dashboard_service_home_ssh_newtab": "SSH-Zugang zum Cluster (neuer Tab)",
   "hosting_dashboard_service_boostOffer_disabled": "Deaktiviert",
   "hosting_dashboard_service_boostOffer_unavailable": "Nicht verfügbar",
-  "hosting_dashboard_service_main_domain": "Hauptdomain",
-  "hosting_dashboard_service_main_domain_change": "Hauptdomain ändern",
   "hosting_dashboard_service_regenerate_ssl_success": "Ihre Anfrage zur erneuten Erstellung des Zertifikats ist erfolgreich eingegangen.",
   "hosting_dashboard_service_regenerate_ssl_error": "Bei der Verlängerung des Zertifikats ist ein Fehler aufgetreten.",
   "hosting_dashboard_disk_usage": "Speicherplatz",

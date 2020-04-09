@@ -27,8 +27,6 @@
   "hosting_dashboard_service_home_ssh_newtab": "SSH access to cluster (new tab)",
   "hosting_dashboard_service_boostOffer_disabled": "Disabled",
   "hosting_dashboard_service_boostOffer_unavailable": "Unavailable",
-  "hosting_dashboard_service_main_domain": "Primary domain ",
-  "hosting_dashboard_service_main_domain_change": "Change primary domain ",
   "hosting_dashboard_service_regenerate_ssl_success": "Your request to regenerate a certificate has been processed. ",
   "hosting_dashboard_service_regenerate_ssl_error": "An error has occurred regenerating your certificate. ",
   "hosting_dashboard_disk_usage": "Disk space",

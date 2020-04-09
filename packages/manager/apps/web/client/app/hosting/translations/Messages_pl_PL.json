@@ -27,8 +27,6 @@
   "hosting_dashboard_service_home_ssh_newtab": "Dostęp SSH do klastra (nowa zakładka)",
   "hosting_dashboard_service_boostOffer_disabled": "Wyłączony",
   "hosting_dashboard_service_boostOffer_unavailable": "Niedostępne",
-  "hosting_dashboard_service_main_domain": "Domena główna",
-  "hosting_dashboard_service_main_domain_change": "Zmiana domeny głównej",
   "hosting_dashboard_service_regenerate_ssl_success": "Zlecenie ponownego wygenerowania certyfikatu zostało zarejestrowane.",
   "hosting_dashboard_service_regenerate_ssl_error": "Wystąpił błąd podczas ponownego generowania certyfikatu.",
   "hosting_dashboard_disk_usage": "Przestrzeń dyskowa",
