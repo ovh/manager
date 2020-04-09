@@ -4,6 +4,7 @@ import '@uirouter/angularjs';
 import 'angular-translate';
 import 'ovh-ui-angular';
 
+import antispam from './antispam';
 import filterAvailableIpText from './filters/availableIpText';
 import filterIpFilterByService from './filters/ipFilterByService';
 import filterIpFirewallRulePort from './filters/ipFirewallRulePort';
@@ -19,6 +20,7 @@ const moduleName = 'ovhManagerDedicatedIp';
 
 angular
   .module(moduleName, [
+    antispam,
     'ngOvhUtils',
     'ngRoute',
     'ngSanitize',
