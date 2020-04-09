@@ -19,7 +19,7 @@
             <button
                 type="button"
                 class="btn btn-link"
-                data-ng-click="setAction('ip/block/description/edit/ip-ip-block-description-edit', { ipBlock: ipBlock })"
+                data-ng-click="$ctrl.goToBlockDescriptionEdit({ 'ipBlock': ipBlock.ipBlock, 'serviceName': filters.service.serviceName })"
                 data-ng-bind="ipBlock.description && ('ip_description_edit_title' | translate) || ('ip_description_new_title' | translate)"
             ></button>
         </li>
@@ -29,7 +29,7 @@
             <button
                 type="button"
                 class="btn btn-link"
-                data-ng-click="setAction('ip/reverse/add/ip-ip-reverse-add', { ipBlock: ipBlock })"
+                data-ng-click="$ctrl.goToReverseAdd({ 'ipBlock': ipBlock.ipBlock, 'serviceName': filters.service.serviceName })"
                 data-translate="ip_table_manage_add_ipv6block"
             ></button>
         </li>
@@ -39,23 +39,22 @@
             <button
                 type="button"
                 class="btn btn-link"
-                data-ng-click="setAction('ip/reverse/ip-ip-reverse', { ipBlock: ipBlock })"
+                data-ng-click="$ctrl.goToReverse({ 'ipBlock': ipBlock.ipBlock, 'serviceName': filters.service.serviceName })"
                 data-translate="ip_table_manage_delegate_ipv6block"
             ></button>
         </li>
 
         <li
-            class="divider"
             data-ng-if="ipBlock.type === 'FAILOVER'"
+            class="divider"
             role="separator"
         ></li>
 
-        <!-- ORGANISATION -->
         <li data-ng-if="ipBlock.type === 'FAILOVER' && ipBlock.organizationId">
             <button
                 type="button"
                 class="btn btn-link"
-                data-ng-click="setAction('ip/organisation/view/ip-ip-organisation-view', { ipBlock: ipBlock })"
+                data-ng-click="$ctrl.goToOrganisationView({ 'ipBlock': ipBlock.ipBlock, 'serviceName': filters.service.serviceName })"
                 data-translate="ip_table_manage_view_iporganisation_details"
             ></button>
         </li>
@@ -64,30 +63,35 @@
             <button
                 type="button"
                 class="btn btn-link"
-                data-ng-click="setAction('ip/organisation/change/ip-ip-organisation-change', { ipBlock: ipBlock })"
+                data-ng-click="$ctrl.goToOrganisationChange({ 'ipBlock': ipBlock.ipBlock, 'serviceName': filters.service.serviceName })"
                 data-translate="ip_table_manage_view_iporganisation_change"
             ></button>
         </li>
 
-        <!-- IPMOVE -->
         <li data-ng-if="ipBlock.type === 'FAILOVER'">
             <button
                 type="button"
                 class="btn btn-link"
-                data-ng-click="setAction('ip/block/move/ip-ip-block-move', { ipBlock: ipBlock })"
+                data-ng-click="$ctrl.goToBlockMove({ 'ipBlock': ipBlock.ipBlock, 'serviceName': filters.service.serviceName })"
                 data-translate="ip_table_manage_move_ipblock"
             ></button>
         </li>
 
-        <!-- IP DELETE -->
-        <li data-ng-if="ipBlock.type == 'FAILOVER'">
+        <li data-ng-if="ipBlock.type === 'FAILOVER'">
             <button
                 type="button"
                 class="btn btn-link"
-                data-ng-click="setAction('ip/block/delete/ip-ip-block-delete', { ipBlock: ipBlock })"
-                data-oui-tooltip="{{ !ipBlock.canBeTerminated ? ('ip_failover_impossible_delete' | translate) : '' }}"
+                data-ng-if="ipBlock.canBeTerminated"
+                data-ng-click="$ctrl.goToBlockDelete({ 'ipBlock': ipBlock.ipBlock, 'serviceName': filters.service.serviceName })"
+                data-translate="ip_table_manage_delete_ipblock"
+            ></button>
+            <button
+                type="button"
+                class="btn btn-link"
+                data-ng-if="!ipBlock.canBeTerminated"
+                data-oui-tooltip="{{ 'ip_failover_impossible_delete' | translate }}"
                 data-oui-tooltip-placement="left"
-                data-ng-disabled="!ipBlock.canBeTerminated"
+                disabled
                 data-translate="ip_table_manage_delete_ipblock"
             ></button>
         </li>

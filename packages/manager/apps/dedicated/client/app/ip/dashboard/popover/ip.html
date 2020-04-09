@@ -19,7 +19,7 @@
             <button
                 type="button"
                 class="btn btn-link"
-                data-ng-click="setAction('ip/block/description/edit/ip-ip-block-description-edit', { ipBlock: ipBlock })"
+                data-ng-click="$ctrl.goToBlockDescriptionEdit({ 'ipBlock': ipBlock.ipBlock, 'serviceName': filters.service.serviceName })"
                 data-ng-bind="ipBlock.description && ('ip_description_edit_title' | translate) || ('ip_description_new_title' | translate)"
             ></button>
         </li>
@@ -28,7 +28,7 @@
             <button
                 type="button"
                 class="btn btn-link"
-                data-ng-click="setAction('ip/reverse/update/ip-ip-reverse-update', { ipBlock: ipBlock, ip: ip })"
+                data-ng-click="$ctrl.goToReverseUpdate({ 'ipBlock': ipBlock.ipBlock, 'ip': ip.ip, 'serviceName': filters.service.serviceName, 'serviceType': ipBlock.service.category })"
                 data-translate="ip_table_manage_reverse"
             ></button>
         </li>
@@ -57,7 +57,7 @@
             <button
                 type="button"
                 class="btn btn-link"
-                data-ng-click="setAction('ip/block/description/edit/ip-ip-block-description-edit', { ipBlock: ipBlock })"
+                data-ng-click="$ctrl.goToBlockDescriptionEdit({ 'ipBlock': ipBlock.ipBlock, 'serviceName': filters.service.serviceName })"
                 data-ng-bind="ipBlock.description && ('ip_description_edit_title' | translate) || ('ip_description_new_title' | translate)"
             ></button>
         </li>
@@ -67,7 +67,7 @@
             <button
                 type="button"
                 class="btn btn-link"
-                data-ng-click="setAction('ip/reverse/update/ip-ip-reverse-update', { ipBlock: ipBlock, ip: ip })"
+                data-ng-click="$ctrl.goToReverseUpdate({ 'ipBlock': ipBlock.ipBlock, 'ip': ip.ip, 'serviceName': filters.service.serviceName, 'serviceType': ipBlock.service.category })"
                 data-translate="ip_table_manage_reverse"
             ></button>
         </li>
@@ -83,30 +83,37 @@
             <button
                 type="button"
                 class="btn btn-link"
-                data-ng-click="setAction('ip/virtual-mac/add/ip-ip-virtual-mac-add', { ipBlock: ipBlock, ip: ip })"
+                data-ng-if="ipBlock.service.category === 'DEDICATED' && ipBlock.service.virtualmac.status === 'OK' && !ipBlock.service.virtualmac.virtualMacsByIp[ip.ip]"
                 data-translate="ip_table_manage_add_virtualmac"
-                data-ng-disabled="ipBlock.service.category !== 'DEDICATED' || ipBlock.service.virtualmac.status !== 'OK' || ipBlock.service.virtualmac.virtualMacsByIp[ip.ip]"
+                data-ng-click="$ctrl.goToVirtualMacAdd({ 'ipBlock': ipBlock.ipBlock, 'ip': ip.ip, 'serviceName': filters.service.serviceName, 'serviceType': ipBlock.service.category })"
+            ></button>
+            <button
+                type="button"
+                class="btn btn-link"
+                data-ng-if="ipBlock.service.category !== 'DEDICATED' || ipBlock.service.virtualmac.status !== 'OK' || ipBlock.service.virtualmac.virtualMacsByIp[ip.ip]"
+                data-translate="ip_table_manage_add_virtualmac"
                 data-oui-tooltip-placement="left"
-                data-oui-tooltip="{{ ipBlock.service.category === 'DEDICATED' && ipBlock.service.virtualmac.status === 'OK' && ipBlock.service.virtualmac.virtualMacsByIp[ip.ip] ? getVirtualMacMessage(ipBlock) : '' }}"
+                data-oui-tooltip="{{:: getVirtualMacMessage(ipBlock) }}"
+                disabled
             ></button>
         </li>
         <li
-            data-ng-if="ipBlock.service.category === 'DEDICATED' && ipBlock.type == 'FAILOVER' && ipBlock.service.virtualmac.status === 'OK' && ipBlock.service.virtualmac.virtualMacsByIp[ip.ip]"
+            data-ng-if="ipBlock.service.category === 'DEDICATED' && ipBlock.type === 'FAILOVER' && ipBlock.service.virtualmac.status === 'OK' && ipBlock.service.virtualmac.virtualMacsByIp[ip.ip]"
         >
             <button
                 type="button"
                 class="btn btn-link"
-                data-ng-click="setAction('ip/virtual-mac/ip-ip-virtual-mac', { ipBlock: ipBlock, ip: ip })"
+                data-ng-click="$ctrl.goToVirtualMac({ 'ipBlock': ipBlock.ipBlock, 'ip': ip.ip, 'serviceName': filters.service.serviceName, 'serviceType': ipBlock.service.category })"
                 data-translate="ip_table_manage_view_virtualmac"
             ></button>
         </li>
         <li
-            data-ng-if="ipBlock.service.category == 'DEDICATED' && ipBlock.type == 'FAILOVER' && ipBlock.service.virtualmac.status === 'OK' && ipBlock.service.virtualmac.virtualMacsByIp[ip.ip]"
+            data-ng-if="ipBlock.service.category === 'DEDICATED' && ipBlock.type === 'FAILOVER' && ipBlock.service.virtualmac.status === 'OK' && ipBlock.service.virtualmac.virtualMacsByIp[ip.ip]"
         >
             <button
                 type="button"
                 class="btn btn-link"
-                data-ng-click="setAction('ip/virtual-mac/delete/ip-ip-virtual-mac-delete', { ipBlock: ipBlock, ip: ip })"
+                data-ng-click="$ctrl.goToVirtualMacDelete({ 'ipBlock': ipBlock.ipBlock, 'ip': ip.ip, 'serviceName': filters.service.serviceName, 'serviceType': ipBlock.service.category })"
                 data-translate="ip_table_manage_del_virtualmac"
             ></button>
         </li>
@@ -119,54 +126,54 @@
 
         <!-- MITIGATION::SWITCH DEFAULT > PERMANENT -->
         <li
-            data-ng-if="(!ip.mitigation || ip.mitigation == 'DEFAULT') && ipBlock.service.category !== 'HOUSING'"
+            data-ng-if="(!ip.mitigation || ip.mitigation === 'DEFAULT') && ipBlock.service.category !== 'HOUSING'"
         >
             <button
                 type="button"
                 class="btn btn-link"
-                data-ng-click="setAction('ip/mitigation/update/ip-ip-mitigation-update', { ipBlock: ipBlock, ip: ip })"
+                data-ng-click="$ctrl.goToMitigationUpdate({ 'ipBlock': ipBlock.ipBlock, 'ip': ip.ip, 'serviceName': filters.service.serviceName })"
                 data-translate="ip_table_manage_mitigation_DEFAULT_to_PERMANENT"
             ></button>
         </li>
         <!-- MITIGATION::SWITCH PERMANENT > DEFAULT -->
         <li
-            data-ng-if="ip.mitigation == 'PERMANENT' && ipBlock.service.category !== 'HOUSING'"
+            data-ng-if="ip.mitigation === 'PERMANENT' && ipBlock.service.category !== 'HOUSING'"
         >
             <button
                 type="button"
                 class="btn btn-link"
-                data-ng-click="setAction('ip/mitigation/update/ip-ip-mitigation-update', { ipBlock: ipBlock, ip: ip })"
+                data-ng-click="$ctrl.goToMitigationUpdate({ 'ipBlock': ipBlock.ipBlock, 'ip': ip.ip, 'serviceName': filters.service.serviceName })"
                 data-translate="ip_table_manage_mitigation_PERMANENT_to_AUTO"
             ></button>
         </li>
 
         <!-- MITIGATION::STATS -->
         <li
-            data-ng-if="(ip.mitigation == 'PERMANENT' || ip.mitigation == 'FORCED')"
+            data-ng-if="(ip.mitigation === 'PERMANENT' || ip.mitigation === 'FORCED')"
         >
             <button
                 type="button"
                 class="btn btn-link"
-                data-ng-click="setAction('ip/mitigation/statistics/ip-ip-mitigation-statistics', { ipBlock: ipBlock, ip: ip })"
+                data-ng-click="$ctrl.goToMitigationStatistics({ 'ipBlock': ipBlock.ipBlock, 'ip': ip.ip, 'serviceName': filters.service.serviceName })"
                 data-translate="ip_table_manage_mitigation_stats"
             ></button>
         </li>
 
+        <!-- TODO  -->
         <li
             class="divider"
-            data-ng-if="ip.gameMitigation && ipBlock.service.category !== 'HOUSING'"
             role="separator"
+            data-ng-if="ip.gameMitigation && ipBlock.service.category !== 'CLOUD'"
         ></li>
 
         <!-- GAME MITIGATION -->
-        <li
-            data-ng-if="ip.gameMitigation && ipBlock.service.category !== 'CLOUD'"
-        >
+        <li>
             <button
                 type="button"
                 class="btn btn-link"
-                data-ng-click="displayGameFirewall(ipBlock, ip)"
+                data-ng-click="$ctrl.goToFirewallGame({ 'ipBlock': ipBlock.ipBlock, 'ip': ip.ip, 'serviceName': filters.service.serviceName })"
                 data-translate="ip_table_manage_game_mitigation"
+                data-ng-if="ip.gameMitigation && ipBlock.service.category !== 'CLOUD'"
             ></button>
         </li>
 
@@ -178,39 +185,38 @@
 
         <!-- FIREWALL::NEW -->
         <li
-            data-ng-if="ip.mitigation != 'FORCED' && ip.firewall == 'NOT_CONFIGURED' && ipBlock.service.category !== 'HOUSING'"
+            data-ng-if="ip.mitigation !== 'FORCED' && ip.firewall === 'NOT_CONFIGURED' && ipBlock.service.category !== 'HOUSING'"
         >
             <button
                 type="button"
                 class="btn btn-link"
-                data-ng-click="setAction('ip/firewall/toggle/ip-ip-firewall-toggle', { ipBlock: ipBlock, ip: ip })"
+                data-ng-click="$ctrl.goToFirewallToggle({ 'ipBlock': ipBlock.ipBlock, 'ip': ip.ip, 'serviceName': filters.service.serviceName })"
                 data-translate="ip_table_manage_firewall_configure"
             ></button>
         </li>
         <!-- FIREWALL::ENABLE -->
         <li
-            data-ng-if="ip.mitigation != 'FORCED' && ip.firewall == 'DEACTIVATED'"
+            data-ng-if="ip.mitigation !== 'FORCED' && ip.firewall === 'DEACTIVATED'"
         >
             <button
                 type="button"
                 class="btn btn-link"
-                data-ng-click="setAction('ip/firewall/toggle/ip-ip-firewall-toggle', { ipBlock: ipBlock, ip: ip })"
+                data-ng-click="$ctrl.goToFirewallToggle({ 'ipBlock': ipBlock.ipBlock, 'ip': ip.ip, 'serviceName': filters.service.serviceName })"
                 data-translate="ip_table_manage_firewall_enable"
             ></button>
         </li>
         <!-- FIREWALL::DISABLE -->
         <li
-            data-ng-if="(!ip.mitigation || ip.mitigation == 'DEFAULT') && ip.firewall == 'ACTIVATED'"
+            data-ng-if="(!ip.mitigation || ip.mitigation === 'DEFAULT') && ip.firewall === 'ACTIVATED'"
         >
             <button
                 type="button"
                 class="btn btn-link"
-                data-ng-click="setAction('ip/firewall/toggle/ip-ip-firewall-toggle', { ipBlock: ipBlock, ip: ip })"
+                data-ng-click="$ctrl.goToFirewallToggle({ 'ipBlock': ipBlock.ipBlock, 'ip': ip.ip, 'serviceName': filters.service.serviceName })"
                 data-translate="ip_table_manage_firewall_disable"
             ></button>
         </li>
-        <!-- FIREWALL::DISABLED -->
-        <li data-ng-if="ip.mitigation && ip.mitigation != 'DEFAULT'">
+        <li data-ng-if="ip.mitigation && ip.mitigation !== 'DEFAULT'">
             <button
                 type="button"
                 class="btn btn-link"
@@ -221,18 +227,18 @@
             ></button>
         </li>
         <!-- FIREWALL::CONFIGURE -->
-        <li data-ng-if="ip.firewall && ip.firewall != 'NOT_CONFIGURED'">
+        <li data-ng-if="ip.firewall && ip.firewall !== 'NOT_CONFIGURED'">
             <button
                 type="button"
                 class="btn btn-link"
-                data-ng-click="displayFirewall(ipBlock, ip)"
+                data-ng-click="$ctrl.goToFirewall({ 'ip': ip.ip, 'ipBlock': ipBlock.ipBlock, 'serviceName': filters.service.serviceName })"
                 data-translate="ip_table_manage_firewall_rules"
             ></button>
         </li>
 
         <li
-            class="divider"
             data-ng-if="ip.spam === 'BLOCKED_FOR_SPAM' || ip.arp === 'BLOCKED'"
+            class="divider"
             role="separator"
         ></li>
 
@@ -241,7 +247,7 @@
             <button
                 type="button"
                 class="btn btn-link"
-                data-ng-click="displayAntispam(ipBlock, ip)"
+                data-ng-click="$ctrl.goToAntispam({ 'ip': ipBlock.ipBlock, 'ipSpamming': ip.ip, 'serviceName': filters.service.serviceName })"
                 data-translate="ip_table_manage_antispam_unblock"
             ></button>
         </li>
@@ -251,7 +257,7 @@
             <button
                 type="button"
                 class="btn btn-link"
-                data-ng-click="setAction('ip/antihack/ip-ip-antihack', { ipBlock: ipBlock, ip: ip })"
+                data-ng-click="$ctrl.goToAntihack({ 'ipBlock': ipBlock.ipBlock, 'ip': ip.ip, 'serviceName': filters.service.serviceName })"
                 data-translate="ip_table_manage_view_antihack"
             ></button>
         </li>
@@ -261,14 +267,14 @@
             <button
                 type="button"
                 class="btn btn-link"
-                data-ng-click="setAction('ip/arp/ip-ip-arp', { ipBlock: ipBlock, ip: ip })"
+                data-ng-click="$ctrl.goToArp({ 'ipBlock': ipBlock.ipBlock, 'ip': ip.ip, 'serviceName': filters.service.serviceName })"
                 data-translate="ip_table_manage_view_arp"
             ></button>
         </li>
 
         <li
             class="divider"
-            data-ng-if="ipBlock.type == 'FAILOVER' && ipBlock.isUniq"
+            data-ng-if="ipBlock.type === 'FAILOVER' && ipBlock.isUniq"
             role="separator"
         ></li>
 
@@ -279,7 +285,7 @@
             <button
                 type="button"
                 class="btn btn-link"
-                data-ng-click="setAction('ip/organisation/view/ip-ip-organisation-view', { ipBlock: ipBlock })"
+                data-ng-click="$ctrl.goToOrganisationView({ 'ipBlock': ipBlock.ipBlock, 'serviceName': filters.service.serviceName })"
                 data-translate="ip_table_manage_view_iporganisation_details"
             ></button>
         </li>
@@ -290,7 +296,7 @@
             <button
                 type="button"
                 class="btn btn-link"
-                data-ng-click="setAction('ip/organisation/change/ip-ip-organisation-change', { ipBlock: ipBlock })"
+                data-ng-click="$ctrl.goToOrganisationChange({ 'ipBlock': ipBlock.ipBlock, 'serviceName': filters.service.serviceName })"
                 data-translate="ip_table_manage_view_iporganisation_change"
             ></button>
         </li>
@@ -300,7 +306,7 @@
             <button
                 type="button"
                 class="btn btn-link"
-                data-ng-click="setAction('ip/block/move/ip-ip-block-move', { ipBlock: ipBlock })"
+                data-ng-click="$ctrl.goToBlockMove({ 'ipBlock': ipBlock.ipBlock, 'serviceName': filters.service.serviceName })"
                 data-translate="ip_table_manage_move_ipblock"
             ></button>
         </li>
@@ -310,11 +316,18 @@
             <button
                 type="button"
                 class="btn btn-link"
-                data-ng-click="setAction('ip/block/delete/ip-ip-block-delete', { ipBlock: ipBlock })"
-                data-ng-disabled="!ipBlock.canBeTerminated"
-                data-oui-tooltip="{{ !ipBlock.canBeTerminated ? ('ip_failover_impossible_delete' | translate) : '' }}"
-                data-oui-tooltip-placement="left"
+                data-ng-click="$ctrl.goToBlockDelete({ 'ipBlock': ipBlock.ipBlock, 'serviceName': filters.service.serviceName })"
+                data-ng-if="ipBlock.canBeTerminated"
                 data-translate="ip_table_manage_delete_ipblock"
+            ></button>
+            <button
+                type="button"
+                class="btn btn-link"
+                data-ng-if="!ipBlock.canBeTerminated"
+                data-translate="ip_table_manage_delete_ipblock"
+                data-oui-tooltip="{{:: 'ip_failover_impossible_delete' | translate }}"
+                data-oui-tooltip-placement="left"
+                disabled
             ></button>
         </li>
     </ul>
