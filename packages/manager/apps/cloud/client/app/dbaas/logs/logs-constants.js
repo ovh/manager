@@ -283,8 +283,10 @@ angular.module('managerApp').constant('LogsConstants', {
   },
   INPUT_DEFAULT_PORT: 6514,
   basicOffer: 'logs-basic',
+  ldpOffer: 'logs-account',
   offertypes: {
     BASIC: 'Basic',
+    ACCOUNT: 'Account',
     PRO: 'Pro',
   },
   productName: 'logs',
@@ -292,7 +294,6 @@ angular.module('managerApp').constant('LogsConstants', {
   DASHBOARD_OPTION_REFERENCE: 'logs-dashboard',
   INDEX_OPTION_REFERENCE: 'logs-index',
   INPUT_OPTION_REFERENCE: 'logs-input',
-  ROLE_OPTION_REFERENCE: 'logs-role',
   STREAM_OPTION_REFERENCE: 'logs-stream',
   PRODUCT_COUNT: {
     'logs-input-2': 2,

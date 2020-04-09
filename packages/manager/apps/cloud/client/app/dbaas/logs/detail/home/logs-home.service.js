@@ -427,6 +427,8 @@ class LogsHomeService {
       set(account, 'offer.description', '');
     } else if (account.offer.reference === this.LogsConstants.basicOffer) {
       set(account, 'offer.description', this.LogsConstants.offertypes.BASIC);
+    } else if (account.offer.reference === this.LogsConstants.ldpOffer) {
+      set(account, 'offer.description', this.LogsConstants.offertypes.ACCOUNT);
     } else {
       const dataVolume = this.$translate.instant('logs_home_data_volume');
       const dataVolumeValue = this.$translate.instant(account.offer.reference);

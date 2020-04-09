@@ -16,22 +16,12 @@ class LogsRolesCtrl {
   }
 
   initLoaders() {
-    this.quota = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () => this.LogsRolesService.getQuota(this.serviceName),
-    });
 
     this.roles = this.CucControllerHelper.request.getArrayLoader({
       loaderFunction: () => this.LogsRolesService.getRoles(this.serviceName),
     });
 
-    this.roleOptions = this.CucControllerHelper.request.getArrayLoader({
-      loaderFunction: () =>
-        this.LogsRolesService.getSubscribedOptions(this.serviceName),
-    });
-
-    this.quota.load();
     this.roles.load();
-    this.roleOptions.load();
   }
 
   add(info) {
@@ -45,8 +35,6 @@ class LogsRolesCtrl {
           backdrop: 'static',
           resolve: {
             roleInfo: () => info,
-            options: () => this.roleOptions,
-            quota: () => this.quota,
           },
         },
       })

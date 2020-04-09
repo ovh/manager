@@ -5,15 +5,11 @@ class LogsRoleAddModalCtrl {
     $uibModalInstance,
     CucControllerHelper,
     LogsRolesService,
-    options,
-    quota,
     roleInfo,
   ) {
     this.$stateParams = $stateParams;
     this.$q = $q;
     this.CucControllerHelper = CucControllerHelper;
-    this.options = options;
-    this.quota = quota;
     this.roleInfo = roleInfo;
     this.LogsRolesService = LogsRolesService;
     this.$uibModalInstance = $uibModalInstance;
@@ -34,14 +30,12 @@ class LogsRoleAddModalCtrl {
     this.title = 'logs_role_modal_add_title';
     this.role.description = '';
     this.role.name = '';
-    this.role.optionId = null;
   }
 
   populateRole() {
     this.title = 'logs_role_modal_edit_title';
     this.role.description = this.roleInfo.description;
     this.role.name = this.roleInfo.name;
-    this.role.optionId = this.roleInfo.optionId;
   }
 
   static checkIsEdit(roleInfo) {
