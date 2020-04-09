@@ -1,0 +1,73 @@
+<div
+    data-wizard
+    data-wizard-on-cancel="goBack"
+    data-wizard-on-finish="addOrganisation"
+    data-wizard-title="formOrganisation.edit && ('ip_organisation_edit_title' | translate) || ('ip_organisation_add_title' | translate)"
+>
+    <div
+        data-wizard-step
+        data-wizard-step-valid="formOrganisation.formValid && !load.loading && !load.request"
+    >
+        <div class="text-center" data-ng-if="load.loading">
+            <oui-spinner></oui-spinner>
+            <p data-translate="ip_organisation_add_loading_step1"></p>
+        </div>
+
+        <div ng-if="!load.loading">
+            <p
+                class="alert alert-info"
+                data-ng-hide="formOrganisation.edit"
+                role="alert"
+            >
+                <span data-translate="ip_organisation_add_info"></span>
+            </p>
+            <ip-organisation-add-or-edit-form
+                scope="$ctrl.$scope"
+            ></ip-organisation-add-or-edit-form>
+        </div>
+    </div>
+
+    <div data-wizard-step>
+        <div class="text-center" data-ng-show="load.loading">
+            <oui-spinner></oui-spinner>
+            <p data-translate="ip_organisation_add_loading_step2"></p>
+        </div>
+        <div data-ng-hide="load.loading">
+            <div
+                class="alert alert-info"
+                role="alert"
+                data-translate="ip_organisation_add_step2"
+            ></div>
+            <dl class="dl-horizontal">
+                <dt data-translate="ip_organisation_table_type"></dt>
+                <dd data-ng-bind="newOrganisation.registry"></dd>
+                <dt data-translate="ip_organisation_table_lastname"></dt>
+                <dd data-ng-bind="newOrganisation.lastname"></dd>
+                <dt data-translate="ip_organisation_table_firstname"></dt>
+                <dd data-ng-bind="newOrganisation.firstname"></dd>
+                <dt data-translate="ip_organisation_table_country"></dt>
+                <dd
+                    data-ng-bind="('country_' + newOrganisation.country) | ducTranslateAlt: newOrganisation.country"
+                ></dd>
+                <dt data-translate="ip_organisation_table_email"></dt>
+                <dd data-ng-bind="newOrganisation.abuse_mailbox"></dd>
+                <dt data-translate="ip_organisation_table_address"></dt>
+                <dd data-ng-bind="newOrganisation.address"></dd>
+                <dt
+                    data-ng-if="showState()"
+                    data-translate="ip_organisation_table_state"
+                ></dt>
+                <dd
+                    data-ng-if="showState()"
+                    data-ng-bind="newOrganisation.state"
+                ></dd>
+                <dt data-translate="ip_organisation_table_zip"></dt>
+                <dd data-ng-bind="newOrganisation.zip || '-'"></dd>
+                <dt data-translate="ip_organisation_table_city"></dt>
+                <dd data-ng-bind="newOrganisation.city"></dd>
+                <dt data-translate="ip_organisation_table_phone"></dt>
+                <dd data-ng-bind="newOrganisation.phone"></dd>
+            </dl>
+        </div>
+    </div>
+</div>
