@@ -5,6 +5,9 @@ export default {
   bindings: {
     products: '<',
     onProductSelect: '&',
+    trackingPrefix: '@',
+    onExpand: '&?',
+    expand: '<?',
   },
   controller,
   template,

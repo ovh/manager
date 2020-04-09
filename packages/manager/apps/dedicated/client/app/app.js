@@ -2,8 +2,8 @@ import { Environment } from '@ovh-ux/manager-config';
 import get from 'lodash/get';
 import has from 'lodash/has';
 import head from 'lodash/head';
-import isString from 'lodash/isString';
 import set from 'lodash/set';
+import isString from 'lodash/isString';
 import ngAtInternet from '@ovh-ux/ng-at-internet';
 import ngAtInternetUiRouterPlugin from '@ovh-ux/ng-at-internet-ui-router-plugin';
 import ngOvhApiWrappers from '@ovh-ux/ng-ovh-api-wrappers';
@@ -42,29 +42,30 @@ import ovhManagerVeeamCloudConnect from '@ovh-ux/manager-veeam-cloud-connect';
 import ovhManagerVps from '@ovh-ux/manager-vps';
 import ovhManagerVrack from '@ovh-ux/manager-vrack';
 import ovhManagerIplb from '@ovh-ux/manager-iplb';
+import { detach as detachPreloader } from '@ovh-ux/manager-preloader';
 import account from './account';
 import config from './config/config';
 import contactsService from './account/contacts/service/contacts-service.module';
 import dedicatedCloudDatacenterDrp from './dedicatedCloud/datacenter/drp';
 import dedicatedCloudDatacenterDashboardDeleteDrp from './dedicatedCloud/datacenter/dashboard/deleteDrp';
 import dedicatedUniverseComponents from './dedicatedUniverseComponents';
-import errorPage from './error/error.module';
+import errorPage from './error';
 import ovhManagerPccDashboard from './dedicatedCloud/dashboard';
 import ovhManagerPccResourceUpgrade from './dedicatedCloud/resource/upgrade';
-import preload from './components/manager-preload/manager-preload.module';
 
 import dedicatedServerBandwidth from './dedicated/server/bandwidth/bandwidth.module';
 import dedicatedServerInterfaces from './dedicated/server/interfaces/interfaces.module';
 import dedicatedServerServers from './dedicated/server/servers/servers.module';
 
-Environment.setRegion(__WEBPACK_REGION__);
 Environment.setVersion(__VERSION__);
+
+const moduleName = 'App';
 
 angular
   .module(
-    'App',
+    moduleName,
     [
-      __NG_APP_INJECTIONS__,
+      ...get(__NG_APP_INJECTIONS__, Environment.getRegion(), []),
       account,
       ovhManagerCore,
       'Billing',
@@ -130,7 +131,6 @@ angular
       ovhManagerVrack,
       ovhPaymentMethod,
       'pascalprecht.translate',
-      preload,
       'services',
       'ui.bootstrap',
       'ui.router',
@@ -155,7 +155,6 @@ angular
     travauxUrl: config.constants.travauxUrl,
     aapiHeaderName: 'X-Ovh-Session',
     vrackUrl: config.constants.vrackUrl,
-    MANAGER_URLS: config.constants.MANAGER_URLS,
     REDIRECT_URLS: config.constants.REDIRECT_URLS,
     DEFAULT_LANGUAGE: config.constants.DEFAULT_LANGUAGE,
     FALLBACK_LANGUAGE: config.constants.FALLBACK_LANGUAGE,
@@ -288,4 +287,14 @@ angular
         });
       });
   })
-  .constant('UNIVERSE', 'DEDICATED');
+  .constant('UNIVERSE', 'DEDICATED')
+  .run(
+    /* @ngInject */ ($rootScope, $transitions) => {
+      const unregisterHook = $transitions.onSuccess({}, () => {
+        detachPreloader();
+        unregisterHook();
+      });
+    },
+  );
+
+export default moduleName;

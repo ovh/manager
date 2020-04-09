@@ -1,5 +1,7 @@
 export default class {
-  constructor() {
+  /* @ngInject */
+  constructor(atInternet) {
+    this.atInternet = atInternet;
     this.index = 0;
   }
 
@@ -9,5 +11,14 @@ export default class {
     } else {
       this.index += 1;
     }
+
+    this.atInternet.trackClick({
+      name: `${this.trackingPrefix}::alert::action`,
+      type: 'action',
+    });
+  }
+
+  switchToAlert(index) {
+    this.index = index;
   }
 }

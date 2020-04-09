@@ -7,6 +7,7 @@ import '@ovh-ux/manager-core';
 import '@ovh-ux/ng-at-internet';
 
 import menuHeader from '../navbar-menu-header';
+import ovhManagerNavbarNotificationsList from './notifications-list';
 
 import service from './service';
 import component from './component';
@@ -21,6 +22,7 @@ angular
     'ovhManagerCore',
     'pascalprecht.translate',
     menuHeader,
+    ovhManagerNavbarNotificationsList,
   ])
   .component('ovhManagerNavbarNotificationsMenu', component)
   .service('NavbarNotifications', service)

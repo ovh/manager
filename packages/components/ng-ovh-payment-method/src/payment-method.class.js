@@ -142,6 +142,7 @@ export default class OvhPaymentMethod {
       case 'CANCELED':
       case 'ERROR':
       case 'EXPIRED':
+      case 'TOO_MANY_FAILURES':
         return 'error';
       case 'CANCELING':
       case 'CREATING':

@@ -1,8 +1,12 @@
-<oui-page-header data-heading="{{ $ctrl.productType }}"></oui-page-header>
+<oui-page-header
+    class="mb-2"
+    data-heading="{{:: 'manager_hub_products_' + $ctrl.productType | translate }}"
+></oui-page-header>
 <oui-datagrid
     data-ng-if="$ctrl.rows"
     id="{{ $ctrl.datagridId }}"
-    data-rows="$ctrl.rows"
+    data-rows-loader="$ctrl.loadStaticRows()"
+    data-row-loader="$ctrl.loadRow($row)"
     data-columns="$ctrl.columns"
     data-customizable
     data-criteria="$ctrl.criteria"
@@ -10,12 +14,14 @@
     data-on-page-change="$ctrl.onPageChange($pagination)"
     data-on-criteria-change="$ctrl.onCriteriaChange($criteria)"
     data-page-size="{{ $ctrl.paginationSize }}"
+    data-on-sort-change="$ctrl.onSortChange($sort)"
 >
 </oui-datagrid>
 <oui-datagrid
     data-ng-if="!$ctrl.rows"
     id="{{ $ctrl.datagridId }}"
     data-rows-loader="$ctrl.loadPage()"
+    data-row-loader="$ctrl.loadRow($row)"
     data-columns="$ctrl.columns"
     data-customizable
     data-criteria="$ctrl.criteria"
@@ -23,5 +29,6 @@
     data-on-page-change="$ctrl.onPageChange($pagination)"
     data-on-criteria-change="$ctrl.onCriteriaChange($criteria)"
     data-page-size="{{ $ctrl.paginationSize }}"
+    data-on-sort-change="$ctrl.onSortChange($sort)"
 >
 </oui-datagrid>

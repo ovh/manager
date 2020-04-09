@@ -548,8 +548,6 @@
   "ovh_task_follow_button": "Incident details",
   "ovh_task_follow_modal_title": "Track incident",
   "ovh_task_follow_modal_comment": "Last updated: {{t 0 }}",
-  "preload_welcome": "Welcome to your",
-  "preload_manager_ovh": "OVHcloud Control Panel",
   "otrs_menu_assistance": "Help ",
   "otrs_menu_assistance_expanded": "Need help?",
   "otrs_menu_all_guides": "All guides",

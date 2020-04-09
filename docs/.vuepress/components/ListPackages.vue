@@ -10,17 +10,17 @@
 
     <ul v-if="success">
       <li
-        v-for="pkg in packages"
-        v-bind:key="pkg.package.name">
+        v-for="{ package: { name, description, repository, version } } in packages"
+        v-bind:key="name">
         <a
-          v-bind:href="'https://github.com/ovh/manager/tree/master/' + pkg.package.repository.directory"
+          v-bind:href="'https://github.com/ovh/manager/tree/master/' + repository.directory"
           rel="noopener noreferrer"
           target="_blank">
-          {{ pkg.package.name }}@{{ pkg.package.version }}
+          {{ name }}@{{ version }}
         </a>
         <br>
         <span>
-          <strong>Description</strong>: {{ pkg.package.description ? pkg.package.description : 'n/a' }}
+          <strong>Description</strong>: {{ description || 'n/a' }}
         </span>
         <hr>
       </li>

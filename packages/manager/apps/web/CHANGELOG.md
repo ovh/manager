@@ -1,3 +1,50 @@
+## [14.0.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@14.0.1...@ovh-ux/manager-web@14.0.2) (2020-04-01)
+
+
+### Bug Fixes
+
+* update redirection to billing ([#2708](https://github.com/ovh/manager/issues/2708)) ([0abe7bf](https://github.com/ovh/manager/commit/0abe7bf50736bb968e8404b9229636afdfe052eb))
+
+
+
+## [14.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@14.0.0...@ovh-ux/manager-web@14.0.1) (2020-04-01)
+
+
+### Bug Fixes
+
+* add redirection for billing and useraccount ([#2704](https://github.com/ovh/manager/issues/2704)) ([c4eeab0](https://github.com/ovh/manager/commit/c4eeab0b634d80b6ac38084843e3c43bfd210784))
+
+
+
+# [14.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.46.0...@ovh-ux/manager-web@14.0.0) (2020-04-01)
+
+
+### Bug Fixes
+
+* **loading:** hide elements during loading ([#2683](https://github.com/ovh/manager/issues/2683)) ([e3aa29e](https://github.com/ovh/manager/commit/e3aa29e5d92aa86849abb2854571c4564b335393))
+* redirect to /configuration by default ([#2679](https://github.com/ovh/manager/issues/2679)) ([e139f14](https://github.com/ovh/manager/commit/e139f149899b594394bf974b6b329c7ad2bee590))
+* **i18n:** add missing translations [CDS 315] ([adb83a1](https://github.com/ovh/manager/commit/adb83a141830eb81c1ad7cc48104d67779955c98))
+* **translations:** clean translations files ([#2668](https://github.com/ovh/manager/issues/2668)) ([43c0f80](https://github.com/ovh/manager/commit/43c0f80be6031e176d9c802d991ce7b1eda29f21))
+
+
+### Code Refactoring
+
+* **hub:** move user panel to @ovh-ux/manager-account-sidebar ([19731b0](https://github.com/ovh/manager/commit/19731b059cc882a40d395c2ca4b3fbd0d19dbdf5))
+
+
+### Features
+
+* **web:** add application bootstrap ([61485c0](https://github.com/ovh/manager/commit/61485c0ef7b9fd7c6cbaef899d79e355296c764f))
+* add redirection for billing emails ([53876f6](https://github.com/ovh/manager/commit/53876f6c1bbf6aed551ee32ff5f74afdac733e79))
+* **notifications:** update menu ([ee1e419](https://github.com/ovh/manager/commit/ee1e419cec3797dd0c6e5ac087bf3b2c159bc0ee)), closes [#MANAGER-4292](https://github.com/ovh/manager/issues/MANAGER-4292)
+
+
+### BREAKING CHANGES
+
+* **hub:** init @ovh-ux/manager-account-sidebar module
+
+
+
 # [13.46.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.45.8...@ovh-ux/manager-web@13.46.0) (2020-03-24)
 
 

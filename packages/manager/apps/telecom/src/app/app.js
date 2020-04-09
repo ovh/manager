@@ -14,6 +14,7 @@ import ovhManagerTelecomTask from '@ovh-ux/manager-telecom-task';
 import ngAtInternet from '@ovh-ux/ng-at-internet';
 import ngAtInternetUiRouterPlugin from '@ovh-ux/ng-at-internet-ui-router-plugin';
 import ngOvhCheckboxTable from '@ovh-ux/ng-ovh-checkbox-table';
+import ngOvhUiConfirmModal from '@ovh-ux/ng-ovh-ui-confirm-modal';
 import ngOvhApiWrappers from '@ovh-ux/ng-ovh-api-wrappers';
 import ngOvhBrowserAlert from '@ovh-ux/ng-ovh-browser-alert';
 import ngOvhHttp from '@ovh-ux/ng-ovh-http';
@@ -33,6 +34,7 @@ import ngOvhSidebarMenu from '@ovh-ux/ng-ovh-sidebar-menu';
 import ngOvhSimpleCountryList from '@ovh-ux/ng-ovh-simple-country-list';
 import ngOvhLineDiagnostics from '@ovh-ux/ng-ovh-line-diagnostics';
 import ngOvhContact from '@ovh-ux/ng-ovh-contact';
+import { detach as detachPreloader } from '@ovh-ux/manager-preloader';
 
 import uiRouter, { RejectType } from '@uirouter/angularjs';
 import TelecomAppCtrl from './app.controller';
@@ -50,12 +52,13 @@ import 'ovh-ui-kit-bs/dist/ovh-ui-kit-bs.css';
 import './app-scss.scss';
 import './app.less';
 
-Environment.setRegion('EU');
 Environment.setVersion(__VERSION__);
+
+const moduleName = 'managerApp';
 
 angular
   .module(
-    'managerApp',
+    moduleName,
     [
       'angular-inview',
       'angular-translate-loader-pluggable',
@@ -95,7 +98,7 @@ angular
       ngOvhSidebarMenu,
       ngOvhSimpleCountryList,
       'ovh-angular-timeline',
-      'ovh-angular-ui-confirm-modal',
+      ngOvhUiConfirmModal,
       'ovh-api-services',
       'ovh-ng-input-password',
       ovhManagerBetaPreference,
@@ -124,7 +127,7 @@ angular
       telephony,
       portabilities,
       searchPage,
-      __NG_APP_INJECTIONS__,
+      ...get(__NG_APP_INJECTIONS__, Environment.getRegion(), []),
     ].filter(isString),
   )
 
@@ -273,4 +276,14 @@ angular
       });
     },
   )
-  .run(/* @ngTranslationsInject:json ./common/translations */);
+  .run(/* @ngTranslationsInject:json ./common/translations */)
+  .run(
+    /* @ngInject */ ($rootScope, $transitions) => {
+      const unregisterHook = $transitions.onSuccess({}, () => {
+        detachPreloader();
+        unregisterHook();
+      });
+    },
+  );
+
+export default moduleName;

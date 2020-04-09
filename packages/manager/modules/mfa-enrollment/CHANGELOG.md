@@ -1,3 +1,12 @@
+## [1.0.2](https://github.com/ovh/manager/compare/@ovh-ux/mfa-enrollment@1.0.1...@ovh-ux/mfa-enrollment@1.0.2) (2020-04-01)
+
+
+### Bug Fixes
+
+* update url ([781297e](https://github.com/ovh/manager/commit/781297e33c4ec45aa49f0cc8074e2e2bc8f3bba6))
+
+
+
 ## [1.0.1](https://github.com/ovh/manager/compare/@ovh-ux/mfa-enrollment@1.0.0...@ovh-ux/mfa-enrollment@1.0.1) (2020-03-04)
 
 

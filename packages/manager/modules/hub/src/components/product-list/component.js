@@ -1,4 +1,5 @@
 import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
+import omit from 'lodash/omit';
 import controller from './controller';
 import template from './template.html';
 
@@ -13,10 +14,12 @@ export default {
   controller,
   template,
   bindings: {
-    ...ListLayoutHelper.componentBindings,
+    ...omit(ListLayoutHelper.componentBindings, 'onListParamsChange'),
+    onParamsChange: '<',
     columns: '<',
     rows: '<?',
-    onColumnChange: '<',
+    loadRow: '<',
     productType: '<',
+    propertyId: '<',
   },
 };

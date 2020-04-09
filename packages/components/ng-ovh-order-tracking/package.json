@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-order-tracking",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "OVH order tracking",
   "keywords": [
     "angularjs",
@@ -43,7 +43,7 @@
     "@ovh-ux/component-rollup-config": "^7.0.0"
   },
   "peerDependencies": {
-    "@ovh-ux/ng-translate-async-loader": "^2.0.2",
+    "@ovh-ux/ng-translate-async-loader": "^2.1.0",
     "angular": "^1.7.5",
     "angular-translate": "^2.18.1",
     "ovh-api-services": "^9.39.1",

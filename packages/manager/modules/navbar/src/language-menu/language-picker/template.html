@@ -1,0 +1,19 @@
+<div class="oui-navbar-list_dropdown p-4">
+    <span
+        class="oui-navbar-list__title"
+        data-translate="navbar_language_picker"
+    ></span>
+    <ul class="oui-navbar-list">
+        <li
+            class="oui-navbar-list__item"
+            data-ng-repeat="lang in $ctrl.availableLangs"
+        >
+            <button
+                class="oui-navbar-link oui-navbar-link_tertiary p-0"
+                data-ng-click="$ctrl.changeLang(lang)"
+                type="button"
+                data-ng-bind="lang.title"
+            ></button>
+        </li>
+    </ul>
+</div>

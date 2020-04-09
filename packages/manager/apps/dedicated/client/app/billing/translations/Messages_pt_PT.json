@@ -776,7 +776,7 @@
   "fidelity_header_balance": "Saldo",
   "fidelity_points": "ponto(s)",
   "fidelity_creditOrder_title": "Creditar a sua conta",
-  "fidelity_creditOrder_step1_msg": "Pode creditar a sua conta para pagar as suas faturas ou para antecipar o pagamento das próximas faturas. (1 ponto = 0,01 {{t0}} s/IVA)",
+  "fidelity_creditOrder_step1_msg": "Pode creditar a sua conta para pagar as suas compras, ou para renovar os seus serviços numa renovação “manual”. (1 ponto = 0,01 {{t0}} s/IVA)",
   "fidelity_creditOrder_step1_amount": "Montante (em pontos)",
   "fidelity_creditOrder_step1_erreurformat": "O montante introduzido é incorreto; só é possível usar números.",
   "fidelity_creditOrder_step1_erreurmin": "O montante do crédito deve ser, no mínimo, {{t0}} pontos.",

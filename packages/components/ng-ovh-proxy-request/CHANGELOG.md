@@ -1,3 +1,27 @@
+# [2.0.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-proxy-request@1.0.1...@ovh-ux/ng-ovh-proxy-request@2.0.0) (2020-04-01)
+
+
+### Bug Fixes
+
+* remove jshint ([5c53613](https://github.com/ovh/manager/commit/5c536131330265aef258849f22d85fb385efa71d))
+
+
+### Code Refactoring
+
+* add missing ng prefix to the angular module name ([11985c8](https://github.com/ovh/manager/commit/11985c8cb29f4d7f3efed52d56f8e7dc6bd4043f))
+
+
+### Features
+
+* **ovh-angular-proxy-request:** es module refactoring ([89dc76d](https://github.com/ovh/manager/commit/89dc76d040992c18225c6dd3d9e2c69940aafc76))
+
+
+### BREAKING CHANGES
+
+* module is now named as `ngOvhProxyRequest`
+
+
+
 ## [1.0.1](https://github.com/ovh-ux/ng-ovh-proxy-request/compare/v1.0.0...v1.0.1) (2020-01-07)
 
 

@@ -1950,6 +1950,11 @@
   dependencies:
     lodash "^4.17.15"
 
+"@ovh-ux/ng-ovh-ui-confirm-modal@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-ui-confirm-modal/-/ng-ovh-ui-confirm-modal-1.0.0.tgz#dac86294340ed8952a22c7192b6863f2d1276c14"
+  integrity sha512-+FRt9MVT9aq3DHb1/34Oa21Yr8ZHl+vp9Y74fSJITlRATykgEnLlZHp2av4QglSpn/QZ5DOhfwkYidQAEzcW0Q==
+
 "@ovh-ux/ng-ovh-utils@^14.0.6":
   version "14.0.6"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-utils/-/ng-ovh-utils-14.0.6.tgz#34012c02afe1bf04380735430d6c3acca9bdfd77"
@@ -1958,22 +1963,22 @@
     filesize "^3.6.1"
     lodash "^4.17.15"
 
-"@ovh-ux/rollup-plugin-less-inject@^1.0.4":
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/rollup-plugin-less-inject/-/rollup-plugin-less-inject-1.0.4.tgz#07c1adb4b275a6bd122798640077c219cf1f52b0"
-  integrity sha512-Fouqa+1aBbgoRordznbIUv63jgQ2TOTzPyP3gYXgQcGjaP/IU4aXw36AY89jkHcTwg1UfEk3/N1nKuejcKwFPA==
+"@ovh-ux/rollup-plugin-less-inject@^1.0.5":
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/rollup-plugin-less-inject/-/rollup-plugin-less-inject-1.0.5.tgz#02285367219f72056faf06deeacaeb357f16633c"
+  integrity sha512-YJLkfmi0pljQ5OG1z4oDIV0f0AVFFRJqcPbK29xc33yER5OSZ4KkanJpIFKoXslfBRxOqXR251SlXGVkLMjJ8w==
   dependencies:
-    estree-walker "^0.9.0"
+    estree-walker "^2.0.1"
     less "^3.9.0"
     lodash "^4.17.15"
     rollup-pluginutils "^2.8.2"
 
-"@ovh-ux/rollup-plugin-less-tilde-importer@^1.0.2":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/rollup-plugin-less-tilde-importer/-/rollup-plugin-less-tilde-importer-1.0.2.tgz#7dbd5100da3d1733d45149998f3b760aa7fda469"
-  integrity sha512-0JQjnUJeI9o05YKJ2yWjrilANvzXMgY+GoAJy8M7qnZXWad0pZnlriyvwHDPhZ04uy4oHmsAOF9WPO0szoMr8w==
+"@ovh-ux/rollup-plugin-less-tilde-importer@^1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/rollup-plugin-less-tilde-importer/-/rollup-plugin-less-tilde-importer-1.0.3.tgz#fe3235522ec3ac340c01a9693fa4b0ae679f5548"
+  integrity sha512-v+Fa7vKcVmiM0iEIFjvcq8+NvFyRz0ELbGOy3IKxQR28u9HvMEvnw6qAj57BNbSVKH5d5QlYSCafgM7FYMW3nA==
   dependencies:
-    magic-string "^0.25.4"
+    magic-string "^0.25.7"
     rollup-pluginutils "^2.8.2"
 
 "@ovh-ux/translate-async-loader@^1.0.8":
@@ -3766,6 +3771,11 @@ bootstrap@^4.3.1:
   version "4.3.1"
   resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-4.3.1.tgz#280ca8f610504d99d7b6b4bfc4b68cec601704ac"
   integrity sha512-rXqOmH1VilAt2DyPzluTi2blhk17bO7ef+zLLPlWvG494pDxcM234pJ8wTc/6R40UWizAIIMgxjvxZg5kmsbag==
+
+bootstrap@^4.4.1:
+  version "4.4.1"
+  resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-4.4.1.tgz#8582960eea0c5cd2bede84d8b0baf3789c3e8b01"
+  integrity sha512-tbx5cHubwE6e2ZG7nqM3g/FZ5PQEDMWmMGNrCUBVRPHXTJaH7CBDdsLeu3eCh3B1tzAxTnAbtmrzvWEvT2NNEA==
 
 bootstrap@~3.3.0, bootstrap@~3.3.7:
   version "3.3.7"
@@ -7238,15 +7248,15 @@ estree-walker@^0.6.0, estree-walker@^0.6.1:
   resolved "https://registry.yarnpkg.com/estree-walker/-/estree-walker-0.6.1.tgz#53049143f40c6eb918b23671d1fe3219f3a1b362"
   integrity sha512-SqmZANLWS0mnatqbSfRP5g8OXZC12Fgg1IwNtLsyHDzJizORW4khDfjPqJZsemPWBB2uqykUah5YpQ6epsqC/w==
 
-estree-walker@^0.9.0:
-  version "0.9.0"
-  resolved "https://registry.yarnpkg.com/estree-walker/-/estree-walker-0.9.0.tgz#9116372f09c02fd88fcafb0c04343631012a0aa6"
-  integrity sha512-12U47o7XHUX329+x3FzNVjCx3SHEzMF0nkDv7r/HnBzX/xNTKxajBk6gyygaxrAFtLj39219oMfbtxv4KpaOiA==
-
 estree-walker@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/estree-walker/-/estree-walker-1.0.1.tgz#31bc5d612c96b704106b477e6dd5d8aa138cb700"
   integrity sha512-1fMXF3YP4pZZVozF8j/ZLfvnR8NSIljt56UhbZ5PeeDmmGHpgpdwQt7ITlGvYaQukCvuBRMLEiKiYC+oeIg4cg==
+
+estree-walker@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/estree-walker/-/estree-walker-2.0.1.tgz#f8e030fb21cefa183b44b7ad516b747434e7a3e0"
+  integrity sha512-tF0hv+Yi2Ot1cwj9eYHtxC0jB9bmjacjQs6ZBTj82H8JwUywFuc+7E83NWfNMwHXZc11mjfFcVXPe9gEP4B8dg==
 
 esutils@^2.0.2:
   version "2.0.3"
@@ -11157,6 +11167,13 @@ magic-string@^0.25.2, magic-string@^0.25.4:
   dependencies:
     sourcemap-codec "^1.4.4"
 
+magic-string@^0.25.7:
+  version "0.25.7"
+  resolved "https://registry.yarnpkg.com/magic-string/-/magic-string-0.25.7.tgz#3f497d6fd34c669c6798dcb821f2ef31f5445051"
+  integrity sha512-4CrMT5DOHTDk4HYDlzmwu4FVCcIYI8gauveasrdCu2IKIFOJ3f0v/8MDGJCDL9oD2ppz/Av1b0Nj345H9M+XIA==
+  dependencies:
+    sourcemap-codec "^1.4.4"
+
 majo@^0.6.2:
   version "0.6.3"
   resolved "https://registry.yarnpkg.com/majo/-/majo-0.6.3.tgz#ac8f35a64c644c87eaccddf940891f157a183846"
@@ -12645,6 +12662,11 @@ osenv@0, osenv@^0.1.4, osenv@^0.1.5:
     os-homedir "^1.0.0"
     os-tmpdir "^1.0.0"
 
+"oui4@npm:@ovh-ux/ui-kit":
+  version "4.0.4"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ui-kit/-/ui-kit-4.0.4.tgz#cd4ea9f6fbc41c68dc90cfdb09ca9ebfce057a6d"
+  integrity sha512-Z0jvGnjcabragt91+BT6VlfvejDAiWRMejtFis0EmCUOEpNGGBQaGAptQ15NKJub7gjfd0RMVkrgL0XunuwORQ==
+
 ovh-angular-list-view@ovh-ux/ovh-angular-list-view#^0.1.5:
   version "0.1.5"
   resolved "https://codeload.github.com/ovh-ux/ovh-angular-list-view/tar.gz/e0b8ed735bc2431f10f32f73d665d78da93dd77a"
@@ -12668,11 +12690,6 @@ ovh-angular-timeline@^1.5.2:
   integrity sha1-k0DUvxvp4yc42Hwu/EDecIgkHZE=
   dependencies:
     angular "^1.3.15"
-
-ovh-angular-ui-confirm-modal@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/ovh-angular-ui-confirm-modal/-/ovh-angular-ui-confirm-modal-1.0.2.tgz#92e6736588a4fb1de6353f1a17ab1962679a698d"
-  integrity sha512-3V17DbzWjUjl9sKCd25Oycn+7eqg6iW+DpizwVmixHFzDNDMnpKSGmxRLrOq+q9YNE7IepoAKWjoSiy2+zOEEg==
 
 ovh-api-services@^9.42.0:
   version "9.42.0"
@@ -18061,6 +18078,11 @@ websocket-extensions@>=0.1.1:
   version "0.1.3"
   resolved "https://registry.yarnpkg.com/websocket-extensions/-/websocket-extensions-0.1.3.tgz#5d2ff22977003ec687a4b87073dfbbac146ccf29"
   integrity sha512-nqHUnMXmBzT0w570r2JpJxfiSD1IzoI+HGVdd3aZ0yNi3ngvQ4jv1dtHt5VGxfI2yj5yqImPhOK4vmIh2xMbGg==
+
+whatwg-fetch@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/whatwg-fetch/-/whatwg-fetch-3.0.0.tgz#fc804e458cc460009b1a2b966bc8817d2578aefb"
+  integrity sha512-9GSJUgz1D4MfyKU7KRqwOjXCXTqWdFNvEr7eUBYchQiVc744mqK/MzXPNR2WsPkmkOa4ywfg8C2n8h+13Bey1Q==
 
 whatwg-url@^7.0.0:
   version "7.1.0"

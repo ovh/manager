@@ -6,31 +6,13 @@ import map from 'lodash/map';
 import union from 'lodash/union';
 import words from 'lodash/words';
 
-import { Environment } from '@ovh-ux/manager-config';
 import { LANG_PATTERN } from './constants';
 
 export default class {
   /* @ngInject */
-  constructor(
-    $q,
-    $scope,
-    $translate,
-    atInternet,
-    CORE_LANGUAGES,
-    NavbarNotifications,
-    ovhManagerNavbarMenuHeaderBuilder,
-    TranslateService,
-  ) {
-    this.$q = $q;
-    this.$scope = $scope;
-    this.$translate = $translate;
-    this.atInternet = atInternet;
+  constructor(CORE_LANGUAGES, TranslateService) {
     this.LANGUAGES = CORE_LANGUAGES.available;
-    this.NavbarBuilder = ovhManagerNavbarMenuHeaderBuilder;
-    this.NavbarNotifications = NavbarNotifications;
     this.TranslateService = TranslateService;
-
-    this.REGION = Environment.getRegion();
   }
 
   $onInit() {
@@ -78,11 +60,6 @@ export default class {
     }
 
     return langs;
-  }
-
-  changeLang(lang) {
-    this.currentLanguage = lang;
-    return this.$scope.$emit('lang.onChange', { lang: lang.key });
   }
 
   getSublinks() {

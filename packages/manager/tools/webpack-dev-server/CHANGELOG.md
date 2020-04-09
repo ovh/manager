@@ -1,3 +1,12 @@
+# [2.6.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-webpack-dev-server@2.5.0...@ovh-ux/manager-webpack-dev-server@2.6.0) (2020-04-01)
+
+
+### Features
+
+* **manager-webpack-dev-server:** use process env as region fallback ([41f4fed](https://github.com/ovh-ux/manager/commit/41f4fed8be23ef831f35caee13794de288e94367))
+
+
+
 # [2.5.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-webpack-dev-server@2.4.0...@ovh-ux/manager-webpack-dev-server@2.5.0) (2019-10-23)
 
 

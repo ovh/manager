@@ -1,3 +1,28 @@
+# [6.0.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-responsive-tabs@5.0.3...@ovh-ux/ng-ovh-responsive-tabs@6.0.0) (2020-04-01)
+
+
+### Bug Fixes
+
+* export module name ([#12](https://github.com/ovh/manager/issues/12)) ([656a3a3](https://github.com/ovh/manager/commit/656a3a3879cdee09315960f3e8a60250d0228ab1))
+* remove jshint ([cd6d428](https://github.com/ovh/manager/commit/cd6d4281ce540cd30a8f55125e06d55499ec57d0))
+
+
+### Code Refactoring
+
+* update stack with component-rollup-config ([#8](https://github.com/ovh/manager/issues/8)) ([416b4a8](https://github.com/ovh/manager/commit/416b4a80ffc667ba522c9e2a1fd104fe39ce2a0c))
+
+
+### Features
+
+* **chore:** bump angular-ui-router version to ^1.0.0. ([18680d3](https://github.com/ovh/manager/commit/18680d37da9591a6e720672d1533e58acf3fb80a))
+
+
+### BREAKING CHANGES
+
+* module is now named `ngOvhResponsiveTabs`
+
+
+
 ## [5.0.3](https://github.com/ovh-ux/ng-ovh-responsive-tabs/compare/v5.0.2...v5.0.3) (2020-01-08)
 
 

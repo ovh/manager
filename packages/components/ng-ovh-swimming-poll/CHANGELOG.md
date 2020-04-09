@@ -1,3 +1,23 @@
+# [5.0.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-swimming-poll@4.0.2...@ovh-ux/ng-ovh-swimming-poll@5.0.0) (2020-04-01)
+
+
+### Bug Fixes
+
+* remove jshint ([5fa1af2](https://github.com/ovh/manager/commit/5fa1af2e4e5ddef2bb57a37d36cc14b82f5f136a))
+* **bower:** change format for repository ([2605657](https://github.com/ovh/manager/commit/260565711b8fd07b16e37aed04b7d9037227c09e))
+
+
+### Code Refactoring
+
+* update stack with component-rollup-config ([154aaf2](https://github.com/ovh/manager/commit/154aaf20620d21b2d2fac0f75ef1bc403e7c390c))
+
+
+### BREAKING CHANGES
+
+* module is now named as `ngOvhSwimmingPoll`
+
+
+
 ## [4.0.2](https://github.com/ovh-ux/ng-ovh-swimming-poll/compare/v4.0.1...v4.0.2) (2020-01-07)
 
 

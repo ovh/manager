@@ -2,12 +2,8 @@ const merge = require('webpack-merge');
 const path = require('path');
 const fs = require('fs');
 const glob = require('glob');
-const _ = require('lodash');
-const webpackConfig = require('@ovh-ux/manager-webpack-config');
 const webpack = require('webpack');
-
-const folder = './src/app/telecom';
-const bundles = {};
+const webpackConfig = require('@ovh-ux/manager-webpack-config');
 
 function foundNodeModulesFolder(checkedDir, cwd = '.') {
   if (fs.existsSync(`${cwd}/node_modules/${checkedDir}`)) {
@@ -32,28 +28,19 @@ function readNgAppInjections(file) {
   return injections;
 }
 
-function getNgAppInjections(region) {
-  const injections = [
-    ...readNgAppInjections(`./.extras-${region}/ng-app-injections`),
-    ...readNgAppInjections('./.extras/ng-app-injections'),
-  ];
+function getNgAppInjections(regions) {
+  return regions.reduce((ngAppInjections, region) => {
+    const injections = [
+      ...readNgAppInjections(`./.extras-${region}/ng-app-injections`),
+      ...readNgAppInjections('./.extras/ng-app-injections'),
+    ];
 
-  const ngAppInjections = injections.map((val) => `'${val}'`).join(',');
-
-  return ngAppInjections || 'null';
+    return {
+      ...ngAppInjections,
+      [region]: JSON.stringify(injections),
+    };
+  }, {});
 }
-
-fs.readdirSync(folder).forEach((file) => {
-  const stats = fs.lstatSync(`${folder}/${file}`);
-  if (stats.isDirectory()) {
-    const jsFiles = glob.sync(`${folder}/${file}/**/*.js`, {
-      ignore: `${folder}/${file}/carrierSip/*.js`,
-    });
-    if (jsFiles.length > 0) {
-      bundles[file] = jsFiles;
-    }
-  }
-});
 
 module.exports = (env = {}) => {
   const { config } = webpackConfig(
@@ -84,24 +71,13 @@ module.exports = (env = {}) => {
   );
 
   // Extra config files
-  const extrasRegion = glob.sync('./.extras-EU/**/*.js');
   const extras = glob.sync('./.extras/**/*.js');
 
   return merge(config, {
-    entry: _.assign(
-      {
-        main: './src/app/index.js',
-        telecom: glob.sync('./src/app/telecom/*.js'),
-        components: glob.sync('./src/components/**/*.js'),
-        config: [
-          './src/app/config/all.js',
-          `./src/app/config/${env.production ? 'prod' : 'dev'}.js`,
-        ],
-      },
-      bundles,
-      extras.length > 0 ? { extras } : {},
-      extrasRegion.length > 0 ? { extrasRegion } : {},
-    ),
+    entry: {
+      main: path.resolve('./src/app/index.js'),
+      ...(extras.length > 0 ? { extras } : {}),
+    },
     output: {
       path: path.resolve(__dirname, 'dist'),
       filename: '[name].[chunkhash].bundle.js',
@@ -111,7 +87,10 @@ module.exports = (env = {}) => {
     },
     plugins: [
       new webpack.DefinePlugin({
-        __NG_APP_INJECTIONS__: getNgAppInjections('EU'),
+        __NG_APP_INJECTIONS__: getNgAppInjections(['EU']),
+        WEBPACK_ENV: {
+          production: !!env.production,
+        },
       }),
     ],
   });

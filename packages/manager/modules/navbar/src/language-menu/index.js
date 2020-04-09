@@ -4,7 +4,7 @@ import 'angular-translate';
 import '@ovh-ux/manager-core';
 import 'ovh-api-services';
 
-import menuHeader from '../navbar-menu-header';
+import languagePicker from './language-picker';
 
 import component from './component';
 
@@ -15,7 +15,7 @@ angular
     'ovhManagerCore',
     'ovh-api-services',
     'pascalprecht.translate',
-    menuHeader,
+    languagePicker,
   ])
   .component('ovhManagerNavbarLanguageMenu', component)
   .run(/* @ngTranslationsInject:json ./translations */);

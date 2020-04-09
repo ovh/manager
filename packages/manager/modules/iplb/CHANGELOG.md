@@ -1,3 +1,12 @@
+# [0.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@0.1.5...@ovh-ux/manager-iplb@0.2.0) (2020-04-01)
+
+
+### Features
+
+* redirect dedicated for CA ([7c1fde6](https://github.com/ovh/manager/commit/7c1fde6107fb85b084a6b27a1c0962e3c2fdd6ba))
+
+
+
 ## [0.1.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@0.1.4...@ovh-ux/manager-iplb@0.1.5) (2020-03-04)
 
 

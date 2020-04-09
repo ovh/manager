@@ -8,6 +8,7 @@ const component = {
     langOptions: '<?',
     navbarOptions: '<?',
     sidebarLinks: '<?',
+    sidebarExpand: '<?', // always display sidebar in non-responsive view
     universeClick: '&?',
   },
   controller,

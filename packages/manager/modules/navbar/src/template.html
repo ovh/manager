@@ -21,6 +21,7 @@
                 text="{{:: link.title }}"
                 href="{{:: link.url }}"
                 variant="{{:: link.isPrimary ? 'primary' : 'secondary' }}"
+                on-click="$ctrl.onUniverseChange(link.name)"
             >
             </oui-navbar-link>
         </div>
@@ -43,12 +44,12 @@
         <ovh-manager-navbar-notifications-menu
             data-subsidiary="{{:: $ctrl.user.ovhSubsidiary }}"
         ></ovh-manager-navbar-notifications-menu>
-        <ovh-manager-navbar-assistance-menu
-            data-subsidiary="{{:: $ctrl.user.ovhSubsidiary }}"
-            data-universe="$ctrl.navbarOptions.universe"
-        ></ovh-manager-navbar-assistance-menu>
         <ovh-manager-navbar-user-menu
+            data-ng-class="{
+                'ovh-manager-navbar-user-menu_expanded': $ctrl.sidebarExpand,
+            }"
             data-user="$ctrl.user"
+            data-on-click="$ctrl.onUserClick()"
         ></ovh-manager-navbar-user-menu>
     </oui-navbar-aside>
     <oui-navbar-toggler
@@ -59,6 +60,16 @@
         <div data-ng-transclude="sidebar"></div>
     </oui-navbar-toggler>
 </oui-navbar>
+<div
+    data-ng-if="$ctrl.user"
+    class="ovh-sidebar-wrapper h-100"
+    data-ng-class="{
+        'sidebar-expand': $ctrl.sidebarExpand,
+    }"
+    data-ng-attr-aria-expanded="{{ $ctrl.isSidebarVisible }}"
+>
+    <ovh-manager-account-sidebar me="$ctrl.user"></ovh-manager-account-sidebar>
+</div>
 <div
     class="tour-backdrop w-100 h-100 d-none d-lg-block"
     data-ng-if="$ctrl.shouldShowWalkMe"

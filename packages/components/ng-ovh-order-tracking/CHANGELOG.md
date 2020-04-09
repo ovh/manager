@@ -1,3 +1,12 @@
+# [0.2.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-order-tracking@0.1.0...@ovh-ux/ng-ovh-order-tracking@0.2.0) (2020-04-01)
+
+
+### Features
+
+* update style and theme ([6899182](https://github.com/ovh/manager/commit/68991820bfd9a701f3b8b00a8f1fd651ee90255c))
+
+
+
 # [0.1.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-order-tracking@0.0.1...@ovh-ux/ng-ovh-order-tracking@0.1.0) (2020-03-04)
 
 

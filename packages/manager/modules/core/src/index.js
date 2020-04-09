@@ -29,6 +29,7 @@ import redirectionFilter from './redirection/redirection.filter';
 import redirectionService from './redirection/redirection.service';
 
 import {
+  HOSTNAME_REGIONS,
   LANGUAGES,
   MANAGER_URLS,
   REDIRECT_URLS,
@@ -52,7 +53,13 @@ angular
   ])
   .constant('constants', {})
   .constant('CORE_LANGUAGES', LANGUAGES)
-  .constant('CORE_MANAGER_URLS', MANAGER_URLS)
+  .provider(
+    'CORE_MANAGER_URLS',
+    /* @ngInject */ (coreConfigProvider) => ({
+      URLS: MANAGER_URLS[coreConfigProvider.getRegion()],
+      $get: () => MANAGER_URLS[coreConfigProvider.getRegion()],
+    }),
+  )
   .constant('CORE_REDIRECT_URLS', REDIRECT_URLS)
   .constant('CORE_URLS', URLS)
   .provider('TranslateService', translateServiceProvider)
@@ -192,7 +199,7 @@ angular
         `${OVH_SSO_AUTH_LOGIN_URL}?action=disconnect`,
       );
       ssoAuthenticationProvider.setSignUpUrl(
-        `${OVH_SSO_AUTH_LOGIN_URL}/signup/new`,
+        `${OVH_SSO_AUTH_LOGIN_URL}/signup/new/`,
       );
 
       // if (!constants.prodMode) {
@@ -250,3 +257,30 @@ angular
   );
 
 export default moduleName;
+
+export const bootstrapApplication = () => {
+  return fetch('/engine/2api/configuration', {
+    headers: {
+      'Content-Type': 'application/json;charset=utf-8',
+      Accept: 'application/json',
+    },
+    credentials: 'same-origin',
+  })
+    .then((response) => {
+      if (response.status === 401) {
+        window.location.assign(
+          `/auth?action=disconnect&onsuccess=${encodeURIComponent(
+            window.location.href,
+          )}`,
+        );
+      }
+      return response.json();
+    })
+    .catch(() => ({
+      region: HOSTNAME_REGIONS[window.location.hostname],
+    }))
+    .then((configuration) => {
+      Environment.setRegion(configuration.region);
+      return configuration;
+    });
+};

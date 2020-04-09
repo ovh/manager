@@ -117,7 +117,6 @@
   "billing_autorenew_service_type_CAAS_CONTAINERS": "CaaS Containers",
   "billing_autorenew_service_type_CAAS_REGISTRY": "CaaS Registry",
   "billing_autorenew_service_type_DBAAS_QUEUE": "DBaaS Queue",
-  "billing_autorenew_service_type_DBAAS_TIMESERIES": "DBaaS Timeseries",
   "billing_autorenew_service_type_DBAAS_LOGS": "Logs Data Platform",
   "billing_autorenew_service_type_DEDICATED_CEPH": "Ceph as a Service",
   "billing_autorenew_service_type_DESKAAS": "Cloud Desktop",

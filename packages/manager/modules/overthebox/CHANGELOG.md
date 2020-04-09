@@ -1,3 +1,12 @@
+## [5.2.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@5.2.2...@ovh-ux/manager-overthebox@5.2.3) (2020-04-03)
+
+
+### Bug Fixes
+
+* **overthebox:** fix missing message for expiration warning help ([#2731](https://github.com/ovh/manager/issues/2731)) ([5c2a3e8](https://github.com/ovh/manager/commit/5c2a3e8bf719b84aa047589d448df7cc7958162a))
+
+
+
 ## [5.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@5.2.1...@ovh-ux/manager-overthebox@5.2.2) (2020-03-18)
 
 

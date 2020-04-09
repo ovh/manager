@@ -776,7 +776,7 @@
   "fidelity_header_balance": "Saldo",
   "fidelity_points": "punto(s)",
   "fidelity_creditOrder_title": "Recargar la cuenta",
-  "fidelity_creditOrder_step1_msg": "Puede recargar su cuenta para abonar sus facturas o adelantar el pago de las siguientes facturas (1 punto = 0,01 {{t0}} IVA no incl.).",
+  "fidelity_creditOrder_step1_msg": "Puede recargar su cuenta para para abonar sus compras o renovar sus servicios mediante una renovación «manual». (1 punto = 0,01 {{t0}} + IVA)",
   "fidelity_creditOrder_step1_amount": "Importe (en puntos)",
   "fidelity_creditOrder_step1_erreurformat": "El importe introducido es incorrecto. Introduzca únicamente cifras.",
   "fidelity_creditOrder_step1_erreurmin": "El importe de la recarga debe ser de al menos {{t0}} puntos.",

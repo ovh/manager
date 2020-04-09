@@ -1128,16 +1128,6 @@ module.exports = {
       { value: 13, label: '13 - ECDSAP256SHA256' },
       { value: 14, label: '14 - ECDSAP384SHA384' },
     ],
-    MANAGER_URLS: {
-      portal: 'https://www.ovh.com/manager/portal/index.html#/',
-      web: 'https://www.ovh.com/manager/web/index.html#/',
-      dedicated: 'https://www.ovh.com/manager/dedicated/index.html#/',
-      cloud: 'https://www.ovh.com/manager/cloud/repsac/index.html#/',
-      publicCloud: 'https://www.ovh.com/manager/public-cloud/index.html#/',
-      telecom: 'https://www.ovhtelecom.fr/manager/index.html#/',
-      sunrise: 'https://www.ovh.com/manager/sunrise/index.html#/',
-      partners: 'https://www.ovh.com/manager/partners',
-    },
     NO_AUTORENEW_COUNTRIES: ['CZ', 'PL', 'CA', 'US', 'WS', 'MA', 'TN', 'SN'],
     REDIRECT_URLS: {
       support: 'https://www.ovh.com/manager/dedicated/index.html#/support',
@@ -1394,7 +1384,7 @@ module.exports = {
     ],
     NO_AUTORENEW_COUNTRIES: ['CZ', 'PL', 'CA', 'US', 'WS', 'MA', 'TN', 'SN'],
     REDIRECT_URLS: {
-      support: 'https://ca.ovh.com/manager/index.html#/support',
+      support: 'https://ca.ovh.com/manager/dedicated/index.html#/support',
     },
     ORDER_URL: {
       ASIA: 'https://ca.ovh.com/asia/order/express/#/express/review?products=',

@@ -1,3 +1,23 @@
+# [5.0.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-form-flat@4.0.3...@ovh-ux/ng-ovh-form-flat@5.0.0) (2020-04-01)
+
+
+### Bug Fixes
+
+* **deps:** upgrade component-rollup-config to v6.0.2 ([#14](https://github.com/ovh/manager/issues/14)) ([dbb6d10](https://github.com/ovh/manager/commit/dbb6d1010167c0d6d279bace250e9ad5177ec002))
+* remove jshint ([2168045](https://github.com/ovh/manager/commit/216804549bb860a2d3e941fcbe2ecd1c18cdfc34))
+
+
+### Code Refactoring
+
+* update stack with component-rollup-config ([84b9b58](https://github.com/ovh/manager/commit/84b9b58ed294cf8cd12acd57f6d883a64bb9c1cc))
+
+
+### BREAKING CHANGES
+
+* module is now named `ngOvhFormFlat`
+
+
+
 ## [4.0.3](https://github.com/ovh-ux/ng-ovh-form-flat/compare/v4.0.2...v4.0.3) (2019-10-22)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-navbar",
-  "version": "2.5.0",
+  "version": "3.1.0",
   "private": true,
   "description": "A navbar component shared across all control panel.",
   "homepage": "https://github.com/ovh/manager/tree/master/packages/manager/modules/navbar#readme",
@@ -29,20 +29,23 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-navbar' --include-dependencies -- yarn run dev:watch"
   },
   "dependencies": {
+    "@ovh-ux/manager-models": "^1.0.0",
     "lodash": "^4.17.15",
     "moment": "^2.24.0"
   },
   "devDependencies": {
     "@ovh-ux/component-rollup-config": "^7.0.0",
+    "oui4": "npm:@ovh-ux/ui-kit",
     "ovh-ui-kit": "^2.40.0"
   },
   "peerDependencies": {
+    "@ovh-ux/manager-account-sidebar": "^0.0.0 || ^1.0.0",
     "@ovh-ux/manager-config": "^0.4.0",
-    "@ovh-ux/manager-core": "^8.0.0",
+    "@ovh-ux/manager-core": "^8.0.0 || ^9.0.0",
     "@ovh-ux/ng-at-internet": "^5.0.0",
     "@ovh-ux/ng-ovh-sso-auth": "^4.2.3",
-    "@ovh-ux/ng-ovh-user-pref": "^1.0.0",
-    "@ovh-ux/ng-translate-async-loader": "^2.0.0",
+    "@ovh-ux/ng-ovh-user-pref": "^2.0.0",
+    "@ovh-ux/ng-translate-async-loader": "^2.1.0",
     "angular": "^1.7.8",
     "angular-translate": "^2.18.1",
     "bootstrap-tour": "^0.12.0",

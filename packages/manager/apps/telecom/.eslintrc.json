@@ -2,7 +2,8 @@
   "globals": {
     "moment": true,
     "__VERSION__": true,
-    "__NG_APP_INJECTIONS__": true
+    "__NG_APP_INJECTIONS__": true,
+    "WEBPACK_ENV": true
   },
   "rules": {
     "no-underscore-dangle": 0
