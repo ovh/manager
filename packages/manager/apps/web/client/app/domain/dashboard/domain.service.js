@@ -1464,6 +1464,19 @@ angular.module('services').service(
     }
 
     /**
+     * Terminate DNS Anycast
+     * @param {string} serviceName
+     */
+    terminateDnsAnycast(serviceName) {
+      return this.OvhHttp.post(
+        `/domain/zone/${serviceName}/anycast/terminate`,
+        {
+          rootPath: 'apiv6',
+        },
+      );
+    }
+
+    /**
      * Get Owner
      * @param {string} serviceName
      */
