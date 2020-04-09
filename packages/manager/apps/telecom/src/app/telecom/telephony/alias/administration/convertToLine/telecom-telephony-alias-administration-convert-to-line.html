@@ -73,10 +73,12 @@
                             </span>
                         </div>
                     </div>
-                    <div
-                        data-ovh-contracts="AliasConvertCtrl.contracts"
-                        data-ovh-contracts-validated="AliasConvertCtrl.contractsAccepted"
-                    ></div>
+                    <ovh-contracts-summary
+                        data-items="AliasConvertCtrl.contracts"
+                        data-model="AliasConvertCtrl.contractsAccepted"
+                        data-name="telephonyAliasAdministrationConvertToLineContracts"
+                    >
+                    </ovh-contracts-summary>
                     <div class="mt-4">
                         <hr />
                         <tuc-telephony-bulk-action

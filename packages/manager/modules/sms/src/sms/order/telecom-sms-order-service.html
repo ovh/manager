@@ -136,11 +136,12 @@
             </div>
 
             <div data-ng-if="!$ctrl.loading.prices">
-                <div
-                    data-ovh-contracts="$ctrl.contracts"
-                    data-full-text="true"
-                    data-ovh-contracts-validated="$ctrl.contractsAccepted"
-                ></div>
+                <ovh-contracts-summary
+                    data-items="$ctrl.contracts"
+                    data-model="$ctrl.contractsAccepted"
+                    data-name="smsOrderContracts"
+                >
+                </ovh-contracts-summary>
 
                 <div class="checkbox">
                     <label>
