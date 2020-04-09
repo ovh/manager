@@ -2,6 +2,7 @@ import clone from 'lodash/clone';
 import isEmpty from 'lodash/isEmpty';
 
 import anycastState from './anycast/domain-dns-anycast.state';
+import anycastStateTerminate from './anycast/terminate/terminate.state';
 import dnsState from './dns/domain-dns.state';
 import redirectionState from './redirection/domain-redirection.state';
 import dynHostState from './dynhost/domain-dynhost.state';
@@ -35,6 +36,10 @@ export default /* @ngInject */ ($stateProvider) => {
         $transition$.params().productId,
       goToWebhostingOrder: /* @ngInject */ ($state) => () =>
         $state.go('app.domain.product.webhosting.order'),
+      getDnsAnycast: /* @ngInject */ (Domain, domainName) =>
+        Domain.getDetails(domainName, ['dnsanycast']).then(
+          (res) => res.dnsanycast,
+        ),
       navigationInformations: [
         'Navigator',
         '$rootScope',
@@ -56,8 +61,10 @@ export default /* @ngInject */ ($stateProvider) => {
 
       goToDns: /* @ngInject */ ($state) => () =>
         $state.go('app.domain.product.dns'),
-      goToDnsAnycast: /* @ngInject */ ($state) => () =>
-        $state.go('app.domain.product.anycast'),
+      goToDnsAnycast: /* @ngInject */ ($state, getDnsAnycast) => () =>
+        getDnsAnycast.status === 'enabled'
+          ? $state.go('app.domain.product.anycast-terminate')
+          : $state.go('app.domain.product.anycast'),
     },
     translations: {
       value: [
@@ -88,6 +95,10 @@ export default /* @ngInject */ ($stateProvider) => {
         $transition$.params().productId,
       goToWebhostingOrder: /* @ngInject */ ($state) => () =>
         $state.go('app.domain.alldom.webhosting.order'),
+      getDnsAnycast: /* @ngInject */ (Domain, domainName) =>
+        Domain.getDetails(domainName, ['dnsanycast']).then(
+          (res) => res.dnsanycast,
+        ),
       navigationInformations: [
         'Navigator',
         '$rootScope',
@@ -109,8 +120,10 @@ export default /* @ngInject */ ($stateProvider) => {
 
       goToDns: /* @ngInject */ ($state) => () =>
         $state.go('app.domain.alldom.dns'),
-      goToDnsAnycast: /* @ngInject */ ($state) => () =>
-        $state.go('app.domain.alldom.anycast'),
+      goToDnsAnycast: /* @ngInject */ ($state, getDnsAnycast) => () =>
+        getDnsAnycast.status === 'enabled'
+          ? $state.go('app.domain.alldom.anycast-terminate')
+          : $state.go('app.domain.alldom.anycast'),
     },
     translations: {
       value: [
@@ -129,6 +142,10 @@ export default /* @ngInject */ ($stateProvider) => {
     $stateProvider.state(
       `app.domain.${stateType}.anycast`,
       clone(anycastState),
+    );
+    $stateProvider.state(
+      `app.domain.${stateType}.anycast-terminate`,
+      clone(anycastStateTerminate),
     );
     $stateProvider.state(`app.domain.${stateType}.dns`, clone(dnsState));
     $stateProvider.state(
