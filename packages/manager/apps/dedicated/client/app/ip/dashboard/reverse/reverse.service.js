@@ -1,8 +1,6 @@
-export default class IpReverse {
+export default class {
   /* @ngInject */
-  constructor($q, constants, IpExpandIpv6, OvhApiIp, OvhApiVpsIps) {
-    this.$q = $q;
-    this.constants = constants;
+  constructor(IpExpandIpv6, OvhApiIp, OvhApiVpsIps) {
     this.IpExpandIpv6 = IpExpandIpv6;
     this.OvhApiIp = OvhApiIp;
     this.OvhApiVpsIps = OvhApiVpsIps;
@@ -88,5 +86,3 @@ export default class IpReverse {
       }).$promise;
   }
 }
-
-angular.module('Module.ip.services').service('IpReverse', IpReverse);
