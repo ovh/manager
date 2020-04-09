@@ -1,0 +1,16 @@
+<div
+    data-wizard
+    data-wizard-on-cancel="goBack"
+    data-wizard-on-finish="enableDisableGameFirewallRule"
+    data-wizard-title="'ip_game_mitigation_firewall_enable_title_' + $ctrl.firewall.firewallModeEnabled | translate"
+>
+    <div data-wizard-step data-wizard-step-valid="!$ctrl.loading">
+        <p
+            data-ng-hide="$ctrl.loading"
+            data-translate="{{ 'ip_game_mitigation_firewall_enable_info_' + $ctrl.firewall.firewallModeEnabled }}"
+        ></p>
+        <div class="text-center" data-ng-show="$ctrl.loading">
+            <oui-spinner></oui-spinner>
+        </div>
+    </div>
+</div>
