@@ -8,8 +8,9 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
         .injector()
         .get('publicCloud')
         .getDefaultProject()
-        .then((projectId) =>
-          projectId
+        .then((projectId) => {
+          const $window = trans.injector().get('$window');
+          return projectId
             ? {
                 state: 'pci.projects.project',
                 params: {
@@ -17,11 +18,12 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
                 },
               }
             : {
-                state: trans.params().onboarding
-                  ? 'pci.projects.onboarding'
-                  : 'pci.projects.new',
-              },
-        ),
+                state:
+                  $window.location.search.search('onboarding') !== -1
+                    ? 'pci.projects.onboarding'
+                    : 'pci.projects.new',
+              };
+        }),
     resolve: {
       rootState: () => 'app',
     },
