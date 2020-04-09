@@ -1,8 +1,5 @@
 import { DEDICATEDCLOUD_DATACENTER_DRP_OPTIONS } from '../../../dedicatedCloud-datacenter-drp.constants';
 
-import legacyTemplate from '../../../../../../ip/ip/legacyOrder/ip-ip-legacyOrder.html';
-import template from '../../../../../../ip/ip/agoraOrder/ip-ip-agoraOrder.html';
-
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider
     .state('app.dedicatedClouds.datacenter.drp.ovh.mainPccStep', {
@@ -36,20 +33,36 @@ export default /* @ngInject */ ($stateProvider) => {
           ),
       },
     })
-    .state('app.dedicatedClouds.datacenter.drp.ovh.mainPccStep.legacyOrderIp', {
-      url: '/legacyOrderIp',
-      controller: 'IpLegacyOrderCtrl',
-      controllerAs: 'ctrl',
-      template: legacyTemplate,
+    .state('app.dedicatedClouds.datacenter.drp.ovh.mainPccStep.ipOrder', {
+      url: '/orderIp',
+      views: {
+        modal: {
+          component: 'ipDashboardOrder',
+        },
+      },
       layout: 'modal',
+      resolve: {
+        goBack: /* @ngInject */ ($state) => (params, transitionParams) =>
+          $state.go('^', params, transitionParams),
+      },
       translations: { value: ['.'], format: 'json' },
     })
-    .state('app.dedicatedClouds.datacenter.drp.ovh.mainPccStep.orderIp', {
-      url: '/orderIp',
-      controller: 'agoraIpOrderCtrl',
-      controllerAs: 'ctrl',
-      template,
+    .state('app.dedicatedClouds.datacenter.drp.ovh.mainPccStep.ipOrderLegacy', {
+      url: '/legacyOrderIp',
+      views: {
+        modal: {
+          component: 'ipDashboardOrderLegacy',
+        },
+      },
       layout: 'modal',
+      resolve: {
+        goBack: /* @ngInject */ ($state) => (params, transitionParams) =>
+          $state.go('^', params, transitionParams),
+        goToOrganisation: /* @ngInject */ ($state) => (
+          params,
+          transitionParams,
+        ) => $state.go('app.ip.organisation', params, transitionParams),
+      },
       translations: { value: ['.'], format: 'json' },
     });
 };

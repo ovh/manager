@@ -8,6 +8,9 @@ import {
   DEDICATEDCLOUD_DATACENTER_ZERTO,
 } from './dedicatedCloud-datacenter-drp.constants';
 
+import ipOrder from '../../../ip/dashboard/order';
+import ipOrderLegacy from '../../../ip/dashboard/order-legacy';
+
 import component from './dedicatedCloud-datacenter-drp.component';
 import onPremiseTypeConfiguration from './configuration/onPremise';
 import ovhTypeConfiguration from './configuration/ovh';
@@ -30,6 +33,8 @@ const zertoConstantName = 'DEDICATEDCLOUD_DATACENTER_ZERTO';
 
 angular
   .module(moduleName, [
+    ipOrder,
+    ipOrderLegacy,
     onPremiseTypeConfiguration,
     ovhTypeConfiguration,
     summary,

@@ -1,8 +1,5 @@
 import flatten from 'lodash/flatten';
 
-import legacyTemplate from '../../../../../../ip/ip/legacyOrder/ip-ip-legacyOrder.html';
-import template from '../../../../../../ip/ip/agoraOrder/ip-ip-agoraOrder.html';
-
 import component from './dedicatedCloud-datacenter-drp-ovh-secondPccStep.component';
 
 import {
@@ -78,20 +75,38 @@ export default /* @ngInject */ ($stateProvider) => {
           ),
       },
     })
-    .state('app.dedicatedClouds.datacenter.drp.ovh.secondPccStep.orderIp', {
+    .state('app.dedicatedClouds.datacenter.drp.ovh.secondPccStep.ipOrder', {
       url: '/orderIp',
-      controller: 'agoraIpOrderCtrl',
-      template,
+      views: {
+        modal: {
+          component: 'ipDashboardOrder',
+        },
+      },
       layout: 'modal',
+      resolve: {
+        goBack: /* @ngInject */ ($state) => (params, transitionParams) =>
+          $state.go('^', params, transitionParams),
+      },
       translations: { value: ['.'], format: 'json' },
     })
     .state(
-      'app.dedicatedClouds.datacenter.drp.ovh.secondPccStep.legacyOrderIp',
+      'app.dedicatedClouds.datacenter.drp.ovh.secondPccStep.ipOrderLegacy',
       {
         url: '/legacyOrderIp',
-        controller: 'IpLegacyOrderCtrl',
-        template: legacyTemplate,
+        views: {
+          modal: {
+            component: 'ipDashboardOrderLegacy',
+          },
+        },
         layout: 'modal',
+        resolve: {
+          goBack: /* @ngInject */ ($state) => (params, transitionParams) =>
+            $state.go('^', params, transitionParams),
+          goToOrganisation: /* @ngInject */ ($state) => (
+            params,
+            transitionParams,
+          ) => $state.go('app.ip.organisation', params, transitionParams),
+        },
         translations: { value: ['.'], format: 'json' },
       },
     );

@@ -9,7 +9,7 @@ export default {
     datacenters: '<datacenterList',
     defaultLocalVraNetwork: '<?',
     drpInformations: '=',
-    getIpOrderLink: '<',
+    getUrlToOrderIp: '<',
     goBackToChoice: '<',
     goToNextStep: '<',
     ipAddressDetails: '<',

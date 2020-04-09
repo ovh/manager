@@ -7,8 +7,8 @@ export default {
     configurationStepName: '<',
     currentUser: '<',
     drpInformations: '=',
-    getIpOrderLink: '<',
     getHostsOrderLink: '<',
+    getUrlToOrderIp: '<',
     setDisableSuccessAlertPreference: '<',
     setupConfiguration: '<',
 

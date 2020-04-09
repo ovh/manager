@@ -21,14 +21,14 @@ export default /* @ngInject */ ($stateProvider) => {
         DedicatedCloud.getDatacenters($stateParams.productId).then(
           ({ results }) => results,
         ),
-      getIpOrderLink: /* @ngInject */ ($state) => (
+      getUrlToOrderIp: /* @ngInject */ ($state) => (
         drpType,
-        isLegacyOrder,
+        isOrderLegacy,
         pccStep,
       ) =>
         $state.href(
           `app.dedicatedClouds.datacenter.drp.${drpType}.${pccStep}.${
-            isLegacyOrder ? 'legacyOrderIp' : 'orderIp'
+            isOrderLegacy ? 'ipOrderLegacy' : 'ipOrder'
           }`,
         ),
       setDisableSuccessAlertPreference: /* @ngInject */ (dedicatedCloudDrp) => (

@@ -33,9 +33,9 @@ export default class {
     this.drpInformations.secondaryDatacenter = null;
     this.selectedSecondaryIpAddress = null;
 
-    this.ipOrderLink = this.getIpOrderLink(
+    this.urlToOrderIp = this.getUrlToOrderIp(
       this.drpInformations.drpType,
-      this.ipFeatureAvailability.allowIPFailoverOrder(),
+      this.ipFeatureAvailability.allowIPFailoverOrderLegacy(),
       this.configurationStepName,
     );
 

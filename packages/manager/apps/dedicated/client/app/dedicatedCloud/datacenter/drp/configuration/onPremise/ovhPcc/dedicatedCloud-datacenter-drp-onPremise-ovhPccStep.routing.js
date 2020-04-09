@@ -1,8 +1,5 @@
 import { DEDICATEDCLOUD_DATACENTER_DRP_OPTIONS } from '../../../dedicatedCloud-datacenter-drp.constants';
 
-import legacyTemplate from '../../../../../../ip/ip/legacyOrder/ip-ip-legacyOrder.html';
-import template from '../../../../../../ip/ip/agoraOrder/ip-ip-agoraOrder.html';
-
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider
     .state('app.dedicatedClouds.datacenter.drp.onPremise.ovhPccStep', {
@@ -50,20 +47,38 @@ export default /* @ngInject */ ($stateProvider) => {
       },
     })
     .state(
-      'app.dedicatedClouds.datacenter.drp.onPremise.ovhPccStep.legacyOrderIp',
+      'app.dedicatedClouds.datacenter.drp.onPremise.ovhPccStep.ipOrderLegacy',
       {
         url: '/legacy-order-ip',
-        controller: 'IpLegacyOrderCtrl',
-        template: legacyTemplate,
+        views: {
+          modal: {
+            component: 'ipDashboardOrderLegacy',
+          },
+        },
         layout: 'modal',
+        resolve: {
+          goBack: /* @ngInject */ ($state) => (params, transitionParams) =>
+            $state.go('^', params, transitionParams),
+          goToOrganisation: /* @ngInject */ ($state) => (
+            params,
+            transitionParams,
+          ) => $state.go('app.ip.organisation', params, transitionParams),
+        },
         translations: { value: ['.'], format: 'json' },
       },
     )
-    .state('app.dedicatedClouds.datacenter.drp.onPremise.ovhPccStep.orderIp', {
+    .state('app.dedicatedClouds.datacenter.drp.onPremise.ovhPccStep.ipOrder', {
       url: '/order-ip',
-      controller: 'agoraIpOrderCtrl',
-      template,
+      views: {
+        modal: {
+          component: 'ipDashboardOrder',
+        },
+      },
       layout: 'modal',
+      resolve: {
+        goBack: /* @ngInject */ ($state) => (params, transitionParams) =>
+          $state.go('^', params, transitionParams),
+      },
       translations: { value: ['.'], format: 'json' },
     });
 };

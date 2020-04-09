@@ -44,9 +44,9 @@ export default class {
       ].includes(ip),
     );
 
-    this.ipOrderLink = this.getIpOrderLink(
+    this.urlToOrderIp = this.getUrlToOrderIp(
       this.drpInformations.drpType,
-      this.ipFeatureAvailability.allowIPFailoverOrder(),
+      this.ipFeatureAvailability.allowIPFailoverOrderLegacy(),
       this.configurationStepName,
     );
   }
