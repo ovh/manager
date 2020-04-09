@@ -10,6 +10,7 @@ import filterIpFilterByService from './filters/ipFilterByService';
 import filterIpFirewallRulePort from './filters/ipFirewallRulePort';
 import filterIpPunycode from './filters/ipPunycode';
 import firewall from './firewall';
+import firewallGame from './firewall-game';
 
 import component from './ip.component';
 import ipExpandIpv6 from './ip-expand-ipv6.service';
@@ -23,6 +24,7 @@ angular
   .module(moduleName, [
     antispam,
     firewall,
+    firewallGame,
     'ngOvhUtils',
     'ngRoute',
     'ngSanitize',
