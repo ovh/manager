@@ -60,7 +60,6 @@ import 'ovh-angular-responsive-tabs';
 import 'ng-slide-down';
 import 'script-loader!angularjs-scroll-glue/src/scrollglue.js';
 import 'ovh-angular-timeline/dist/ovh-angular-timeline.js';
-import 'ovh-angular-ui-confirm-modal';
 import 'ovh-ng-input-password';
 import 'ovh-ui-angular';
 import 'angular-translate-loader-pluggable';

@@ -33,6 +33,7 @@
     "@ovh-ux/ng-ovh-sso-auth": "^4.2.3",
     "@ovh-ux/ng-ovh-swimming-poll": "^5.0.0",
     "@ovh-ux/ng-ovh-telecom-universe-components": "^4.0.0",
+    "@ovh-ux/ng-ovh-ui-confirm-modal": "^1.0.0",
     "@ovh-ux/ng-pagination-front": "^9.0.0",
     "@uirouter/angularjs": "^1.0.23",
     "CSV-JS": "^1.2.0",
@@ -49,7 +50,6 @@
     "lodash": "^4.17.15",
     "ng-csv": "^0.3.6",
     "oclazyload": "^1.1.0",
-    "ovh-angular-ui-confirm-modal": "^1.0.2",
     "ovh-api-services": "^9.42.0",
     "ovh-ngstrap": "^4.0.2",
     "validator-js": "^0.2.1"
