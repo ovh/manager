@@ -10,6 +10,7 @@ export default /* @ngInject */ ($stateProvider) => {
         $transition$.params().packName,
       serviceName: /* @ngInject */ ($transition$) =>
         $transition$.params().serviceName,
+      goBack: /* ngInject */ ($state) => () => $state.go('telecom.packs.pack'),
     },
   });
 };

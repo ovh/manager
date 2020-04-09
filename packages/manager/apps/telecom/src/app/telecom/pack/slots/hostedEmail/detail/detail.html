@@ -1,11 +1,9 @@
 <section class="telecom-section">
     <div class="telecom-section-header">
         <header role="banner">
-            <tuc-section-back-link
-                data-tuc-section-back-link-to-state="telecom.packs.pack"
-                data-tuc-section-back-link-title="{{ $ctrl.pack.description || $ctrl.pack.packName }}"
-            >
-            </tuc-section-back-link>
+            <oui-back-button data-on-click="::$ctrl.goBack()">
+                <span>{{ $ctrl.pack.description || $ctrl.pack.packName }}</span>
+            </oui-back-button>
             <h1
                 data-translate="hosted_email_detail_title"
                 data-translate-values="{name: $ctrl.serviceName}"
