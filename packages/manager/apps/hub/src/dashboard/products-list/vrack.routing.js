@@ -44,5 +44,8 @@ export default /* @ngInject */ ($stateProvider) => {
         ),
       }),
     },
+    atInternet: {
+      rename: 'app::dashboard::products::vrack',
+    },
   });
 };

@@ -3,6 +3,8 @@ import angular from 'angular';
 import atInternet from '@ovh-ux/ng-at-internet';
 import ovhManagerHub from '@ovh-ux/manager-hub';
 
+import ngAtInternetUiRouterPlugin from '@ovh-ux/ng-at-internet-ui-router-plugin';
+
 import exchangeRouting from './exchange.routing';
 import ipRouting from './ip.routing';
 import sharepointRouting from './sharepoint.routing';
@@ -13,7 +15,7 @@ import routing from './routing';
 const moduleName = 'ovhManagerHubProductListingPage';
 
 angular
-  .module(moduleName, [atInternet, ovhManagerHub])
+  .module(moduleName, [atInternet, ngAtInternetUiRouterPlugin, ovhManagerHub])
   .config(routing)
   .config(exchangeRouting)
   .config(ipRouting)
