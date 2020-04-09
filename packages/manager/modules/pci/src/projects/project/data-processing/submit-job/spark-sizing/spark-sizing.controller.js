@@ -45,6 +45,7 @@ export default class {
     if (this.templates) {
       this.driverTemplates = this.templates;
       this.workerTemplates = this.templates;
+      this.updateStateFromTemplate();
     }
   }
 
