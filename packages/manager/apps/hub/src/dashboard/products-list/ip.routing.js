@@ -24,5 +24,8 @@ export default /* @ngInject */ ($stateProvider) => {
       }),
       productType: () => 'IP_SERVICE',
     },
+    atInternet: {
+      rename: 'app::dashboard::products::ip-service',
+    },
   });
 };
