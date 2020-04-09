@@ -1,5 +1,4 @@
 <form
-    data-ng-controller="IpAddIpv6Ctrl"
     name="addIpv6ReverseForm"
     novalidate
     data-ng-submit="isValid.all() && addIpv6()"
@@ -7,10 +6,10 @@
     <oui-modal
         data-heading="{{:: 'ip_table_manage_add_ipv6block_reverse' | translate }}"
         data-primary-label="{{:: 'ip_table_manage_add_ipv6block_validate' | translate }}"
-        data-secondary-action="resetAction()"
+        data-secondary-action="$ctrl.goBack()"
         data-secondary-label="{{:: 'ip_table_manage_add_ipv6block_cancel' | translate }}"
         data-loading="$ctrl.isLoading"
-        data-on-dismiss="resetAction()"
+        data-on-dismiss="$ctrl.goBack()"
     >
         <oui-message data-type="info">
             <span
@@ -23,7 +22,7 @@
                 type="text"
                 id="ipBlock"
                 name="ipBlock"
-                data-ng-model="data.ipBlock.ipBlock"
+                data-ng-model="$ctrl.ipBlock.ipBlock"
                 disabled
             />
         </oui-field>
