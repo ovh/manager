@@ -1,0 +1,19 @@
+<div
+    data-wizard
+    data-wizard-on-cancel="goBack"
+    data-wizard-on-finish="removeGameFirewallRule"
+    data-wizard-title=":: 'ip_game_mitigation_rule_remove_title' | translate"
+>
+    <div data-wizard-step data-wizard-step-valid="!$ctrl.loading">
+        <div
+            data-ng-hide="$ctrl.loading"
+            data-ng-bind-html="'ip_game_mitigation_rule_remove' | translate:{
+                    t0: $ctrl.rule.protocol,
+                    t1: $ctrl.rule.ports.from + ($ctrl.rule.ports.to && $ctrl.rule.ports.to !== $ctrl.rule.ports.from ? ' - ' + $ctrl.rule.ports.to : '')
+                }"
+        ></div>
+        <div class="text-center" data-ng-show="$ctrl.loading">
+            <oui-spinner></oui-spinner>
+        </div>
+    </div>
+</div>
