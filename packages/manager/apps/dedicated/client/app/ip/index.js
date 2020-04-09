@@ -9,6 +9,7 @@ import filterAvailableIpText from './filters/availableIpText';
 import filterIpFilterByService from './filters/ipFilterByService';
 import filterIpFirewallRulePort from './filters/ipFirewallRulePort';
 import filterIpPunycode from './filters/ipPunycode';
+import firewall from './firewall';
 
 import component from './ip.component';
 import ipExpandIpv6 from './ip-expand-ipv6.service';
@@ -21,6 +22,7 @@ const moduleName = 'ovhManagerDedicatedIp';
 angular
   .module(moduleName, [
     antispam,
+    firewall,
     'ngOvhUtils',
     'ngRoute',
     'ngSanitize',
