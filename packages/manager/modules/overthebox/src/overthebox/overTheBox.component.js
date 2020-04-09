@@ -8,7 +8,7 @@ import '@ovh-ux/ng-ovh-telecom-universe-components';
 import '@ovh-ux/ng-ui-router-title';
 import '@ovh-ux/ng-tail-logs';
 import 'ovh-angular-responsive-tabs';
-import 'ovh-angular-ui-confirm-modal';
+import ngOvhUiConfirmModal from '@ovh-ux/ng-ovh-ui-confirm-modal';
 
 import 'ovh-ui-kit/dist/oui.css';
 import 'ovh-ui-kit-bs/dist/ovh-ui-kit-bs.css';
@@ -36,7 +36,7 @@ angular
     'ngTailLogs',
     'ngOvhTelecomUniverseComponents',
     'ngUiRouterTitle',
-    'ovh-angular-ui-confirm-modal',
+    ngOvhUiConfirmModal,
     configure,
     details,
     docs,
