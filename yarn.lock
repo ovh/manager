@@ -1963,22 +1963,22 @@
     filesize "^3.6.1"
     lodash "^4.17.15"
 
-"@ovh-ux/rollup-plugin-less-inject@^1.0.4":
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/rollup-plugin-less-inject/-/rollup-plugin-less-inject-1.0.4.tgz#07c1adb4b275a6bd122798640077c219cf1f52b0"
-  integrity sha512-Fouqa+1aBbgoRordznbIUv63jgQ2TOTzPyP3gYXgQcGjaP/IU4aXw36AY89jkHcTwg1UfEk3/N1nKuejcKwFPA==
+"@ovh-ux/rollup-plugin-less-inject@^1.0.5":
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/rollup-plugin-less-inject/-/rollup-plugin-less-inject-1.0.5.tgz#02285367219f72056faf06deeacaeb357f16633c"
+  integrity sha512-YJLkfmi0pljQ5OG1z4oDIV0f0AVFFRJqcPbK29xc33yER5OSZ4KkanJpIFKoXslfBRxOqXR251SlXGVkLMjJ8w==
   dependencies:
-    estree-walker "^0.9.0"
+    estree-walker "^2.0.1"
     less "^3.9.0"
     lodash "^4.17.15"
     rollup-pluginutils "^2.8.2"
 
-"@ovh-ux/rollup-plugin-less-tilde-importer@^1.0.2":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/rollup-plugin-less-tilde-importer/-/rollup-plugin-less-tilde-importer-1.0.2.tgz#7dbd5100da3d1733d45149998f3b760aa7fda469"
-  integrity sha512-0JQjnUJeI9o05YKJ2yWjrilANvzXMgY+GoAJy8M7qnZXWad0pZnlriyvwHDPhZ04uy4oHmsAOF9WPO0szoMr8w==
+"@ovh-ux/rollup-plugin-less-tilde-importer@^1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/rollup-plugin-less-tilde-importer/-/rollup-plugin-less-tilde-importer-1.0.3.tgz#fe3235522ec3ac340c01a9693fa4b0ae679f5548"
+  integrity sha512-v+Fa7vKcVmiM0iEIFjvcq8+NvFyRz0ELbGOy3IKxQR28u9HvMEvnw6qAj57BNbSVKH5d5QlYSCafgM7FYMW3nA==
   dependencies:
-    magic-string "^0.25.4"
+    magic-string "^0.25.7"
     rollup-pluginutils "^2.8.2"
 
 "@ovh-ux/translate-async-loader@^1.0.8":
@@ -7248,15 +7248,15 @@ estree-walker@^0.6.0, estree-walker@^0.6.1:
   resolved "https://registry.yarnpkg.com/estree-walker/-/estree-walker-0.6.1.tgz#53049143f40c6eb918b23671d1fe3219f3a1b362"
   integrity sha512-SqmZANLWS0mnatqbSfRP5g8OXZC12Fgg1IwNtLsyHDzJizORW4khDfjPqJZsemPWBB2uqykUah5YpQ6epsqC/w==
 
-estree-walker@^0.9.0:
-  version "0.9.0"
-  resolved "https://registry.yarnpkg.com/estree-walker/-/estree-walker-0.9.0.tgz#9116372f09c02fd88fcafb0c04343631012a0aa6"
-  integrity sha512-12U47o7XHUX329+x3FzNVjCx3SHEzMF0nkDv7r/HnBzX/xNTKxajBk6gyygaxrAFtLj39219oMfbtxv4KpaOiA==
-
 estree-walker@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/estree-walker/-/estree-walker-1.0.1.tgz#31bc5d612c96b704106b477e6dd5d8aa138cb700"
   integrity sha512-1fMXF3YP4pZZVozF8j/ZLfvnR8NSIljt56UhbZ5PeeDmmGHpgpdwQt7ITlGvYaQukCvuBRMLEiKiYC+oeIg4cg==
+
+estree-walker@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/estree-walker/-/estree-walker-2.0.1.tgz#f8e030fb21cefa183b44b7ad516b747434e7a3e0"
+  integrity sha512-tF0hv+Yi2Ot1cwj9eYHtxC0jB9bmjacjQs6ZBTj82H8JwUywFuc+7E83NWfNMwHXZc11mjfFcVXPe9gEP4B8dg==
 
 esutils@^2.0.2:
   version "2.0.3"
@@ -11164,6 +11164,13 @@ magic-string@^0.25.2, magic-string@^0.25.4:
   version "0.25.4"
   resolved "https://registry.yarnpkg.com/magic-string/-/magic-string-0.25.4.tgz#325b8a0a79fc423db109b77fd5a19183b7ba5143"
   integrity sha512-oycWO9nEVAP2RVPbIoDoA4Y7LFIJ3xRYov93gAyJhZkET1tNuB0u7uWkZS2LpBWTJUWnmau/To8ECWRC+jKNfw==
+  dependencies:
+    sourcemap-codec "^1.4.4"
+
+magic-string@^0.25.7:
+  version "0.25.7"
+  resolved "https://registry.yarnpkg.com/magic-string/-/magic-string-0.25.7.tgz#3f497d6fd34c669c6798dcb821f2ef31f5445051"
+  integrity sha512-4CrMT5DOHTDk4HYDlzmwu4FVCcIYI8gauveasrdCu2IKIFOJ3f0v/8MDGJCDL9oD2ppz/Av1b0Nj345H9M+XIA==
   dependencies:
     sourcemap-codec "^1.4.4"
 
