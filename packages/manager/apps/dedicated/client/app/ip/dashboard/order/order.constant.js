@@ -1,20 +1,5 @@
 export const FETCH_PRICE_MAX_TRIES = 5;
 
-export const PRODUCT_TYPES = {
-  dedicatedServer: {
-    apiTypeName: 'SERVER',
-    typeName: 'DEDICATED',
-  },
-  privateCloud: {
-    apiTypeName: 'DEDICATED_CLOUD',
-    typeName: 'PRIVATE_CLOUD',
-  },
-  vps: {
-    apiTypeName: 'VPS',
-    typeName: 'VPS',
-  },
-};
-
 export const IP_LOCATION_GROUPS = [
   { labels: ['APAC/CANADA', 'CANADA - ASIA'], countries: ['au', 'ca', 'sg'] },
   {
@@ -38,6 +23,21 @@ export const IP_LOCATION_GROUPS = [
   },
   { labels: ['USA'], countries: ['us'] },
 ];
+
+export const PRODUCT_TYPES = {
+  dedicatedServer: {
+    apiTypeName: 'SERVER',
+    typeName: 'DEDICATED',
+  },
+  privateCloud: {
+    apiTypeName: 'DEDICATED_CLOUD',
+    typeName: 'PRIVATE_CLOUD',
+  },
+  vps: {
+    apiTypeName: 'VPS',
+    typeName: 'VPS',
+  },
+};
 
 export default {
   FETCH_PRICE_MAX_TRIES,
