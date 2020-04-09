@@ -6,6 +6,10 @@ const state = {
     },
   },
   resolve: {
+    getDnsAnycast: /* @ngInject */ (Domain, domainName) =>
+      Domain.getDetails(domainName, ['dnsanycast']).then(
+        (res) => res.dnsanycast,
+      ),
     previousState: /* @ngInject */ ($transition$) => $transition$.$from(),
     goBack: /* @ngInject */ ($state, previousState) => () => {
       if (previousState.name) {
