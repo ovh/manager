@@ -1,3 +1,12 @@
+# [3.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.16.0...@ovh-ux/manager-pci@3.17.0) (2020-04-10)
+
+
+### Features
+
+* **pci.projects:** add data processing service ([#2369](https://github.com/ovh/manager/issues/2369)) ([b6c3ce9](https://github.com/ovh/manager/commit/b6c3ce9dc2e521e586acbd983e8614f1e52a9e7b))
+
+
+
 # [3.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.15.1...@ovh-ux/manager-pci@3.16.0) (2020-04-01)
 
 
