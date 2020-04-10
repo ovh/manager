@@ -525,5 +525,8 @@
   "vps_language_nl": "Niederländisch",
   "vps_language_pl": "Polnisch",
   "vps_language_pt": "Portugiesisch",
-  "vps_tile_subscription_expiration_date": "Ablaufdatum"
+  "vps_tile_subscription_expiration_date": "Ablaufdatum",
+  "vps_new_range_available_introduction": "Unsere VPS-Reihen entwickeln sich weiter, Ihr Kundencenter auch.",
+  "vps_new_range_available_call_to_upgrade_1": "Um die neuen Möglichkeiten zu nutzen, <a href=\"{{href}}\">bestellen Sie ein neues Modell</a> in Ihrem Kundencenter, übertragen Sie Ihre Daten und kündigen Sie dann Ihren vorherigen Server.",
+  "vps_new_range_available_call_to_upgrade_2": "Bringen Sie Ihr Gerät<a href=\"{{href}}\">mit nur wenigen Klicks auf die nächste Stufe</a>, um die neuen Möglichkeiten zu nutzen."
 }

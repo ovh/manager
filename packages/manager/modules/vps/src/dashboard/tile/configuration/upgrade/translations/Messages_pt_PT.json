@@ -1,0 +1,11 @@
+{
+  "vps_dashboard_tile_configuration_upgrade_memory_action_title": "Melhorar a memória do seu VPS de {{ currentMemory }} para {{ nextMemory }} GB",
+  "vps_dashboard_tile_configuration_upgrade_memory_action_details": "Está prestes a adicionar {{ memoryQuantity }} de memória ao seu VPS.",
+  "vps_dashboard_tile_configuration_upgrade_storage_action_title": "Melhorar o armazenamento do seu VPS de {{ currentStorage }} para {{ nextStorage }} GB",
+  "vps_dashboard_tile_configuration_upgrade_storage_action_details": "Está prestes a adicionar {{ storageQuantity }} de armazenamento ao seu VPS.",
+  "vps_dashboard_tile_configuration_upgrade_action_price": "Esta evolução terá um custo adicional de {{ price }} por mês.",
+  "vps_dashboard_tile_configuration_upgrade_action_validation": "Ao validar a sua escolha, será faturado o montante proporcional de {{ prorataPrice }} para o mês em curso.",
+  "vps_dashboard_tile_configuration_upgrade_action_validation_with_no_payment_method_monthly": "Ao clicar em “Validar e pagar”, será redirecionado para uma nota de encomenda para pagar o montante de {{ price }} numa base pro rata temporis.",
+  "vps_dashboard_tile_configuration_upgrade_action_validation_with_no_payment_method_upfront": "Ao clicar em “Validar e pagar”, será redirecionado para uma nota de encomenda para pagar o montante adicional de {{ price }} para os {{ monthCount }} meses restantes do seu compromisso.",
+  "vps_dashboard_tile_configuration_upgrade_action_validate_and_pay": "Validar e pagar"
+}

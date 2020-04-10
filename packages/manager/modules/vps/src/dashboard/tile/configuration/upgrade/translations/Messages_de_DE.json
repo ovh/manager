@@ -1,0 +1,11 @@
+{
+  "vps_dashboard_tile_configuration_upgrade_memory_action_title": "Den RAM Ihres VPS von {{ currentMemory }} auf {{ nextMemory }} GB erhöhen",
+  "vps_dashboard_tile_configuration_upgrade_memory_action_details": "Sie sind im Begriff, Ihrem VPS {{ memoryQuantity }} Speicher hinzuzufügen.",
+  "vps_dashboard_tile_configuration_upgrade_storage_action_title": "Die Speicherkapazität Ihres VPS von {{ currentStorage }} auf {{ nextStorage }} GB erhöhen.",
+  "vps_dashboard_tile_configuration_upgrade_storage_action_details": "Sie sind im Begriff, Ihrem VPS {{ storageQuantity }} Speicherkapazität hinzuzufügen.",
+  "vps_dashboard_tile_configuration_upgrade_action_price": "Diese Erweiterung wird Ihnen mit {{ price }} pro Monat zusätzlich berechnet.",
+  "vps_dashboard_tile_configuration_upgrade_action_validation": "Wenn Sie Ihre Auswahl bestätigen, wird Ihnen anteilig {{ prorataPrice }} für den laufenden Monat berechnet.",
+  "vps_dashboard_tile_configuration_upgrade_action_validation_with_no_payment_method_monthly": "Wenn Sie auf „bestätigen und bezahlen“ klicken, werden Sie zu einem Bestellschein weitergeleitet. Dort können Sie den fälligen anteiligen Betrag {{ price }} bezahlen.",
+  "vps_dashboard_tile_configuration_upgrade_action_validation_with_no_payment_method_upfront": "Wenn Sie auf „bestätigen und bezahlen“ klicken, werden Sie zu einem Bestellschein weitergeleitet. Dort können Sie den fälligen zusätzlichen Betrag von {{ price }} für die verbleibenden {{monthCount }} Monate Ihres Abonnements bezahlen.",
+  "vps_dashboard_tile_configuration_upgrade_action_validate_and_pay": "Bestätigen und bezahlen"
+}
