@@ -124,10 +124,10 @@ angular.module('Module.ip.controllers').controller(
 
     static getRegionFromServiceName(serviceName) {
       const serviceExt = last(serviceName.split('.'));
-      if (serviceExt === 'eu') {
+      if (['eu', 'net'].includes(serviceExt)) {
         return 'EUROPE';
       }
-      if (serviceExt === 'net') {
+      if (serviceExt === 'ca') {
         return 'CANADA - ASIA';
       }
 
