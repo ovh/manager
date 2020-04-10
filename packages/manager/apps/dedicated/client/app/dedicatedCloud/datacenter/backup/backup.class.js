@@ -63,6 +63,10 @@ export default class Backup {
     return this.state === BACKUP_STATE_ENABLED;
   }
 
+  isProcessing() {
+    return !(this.isActive() || this.isInactive());
+  }
+
   isRemoving() {
     return this.state === BACKUP_STATE_REMOVING;
   }

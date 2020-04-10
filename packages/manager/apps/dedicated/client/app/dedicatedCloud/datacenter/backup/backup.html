@@ -42,7 +42,7 @@
             <oui-message
                 data-type="warning"
                 class="mb-3"
-                data-ng-if="$ctrl.backupOffersUnderProcess"
+                data-ng-if="(!$ctrl.backup.isProcessing()) && $ctrl.backupOffersUnderProcess"
             >
                 <span
                     data-translate="dedicatedCloud_datacenter_backup_upgrade_blocked"

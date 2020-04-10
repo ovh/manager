@@ -28,7 +28,7 @@ export default class {
   }
 
   createProgressAlert() {
-    if (!(this.backup.isActive() || this.backup.isInactive())) {
+    if (this.backup.isProcessing()) {
       this.alerter.success(
         this.$translate.instant(
           `dedicatedCloud_datacenter_backup_state_${this.backup.state}`,

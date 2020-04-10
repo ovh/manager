@@ -84,7 +84,7 @@ export default /* @ngInject */ ($stateProvider) => {
           datacenterBackups,
           // If a backup is neither active nor inactive,
           // it may be in processing states like enabling, disabling etc
-          (backup) => !backup.isActive() && !backup.isInactive(),
+          (backup) => backup.isProcessing(),
         ),
       enabledBackupOffer: /* @ngInject */ (datacenterBackups) =>
         find(datacenterBackups, (backup) => backup.isActive()),
