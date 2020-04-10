@@ -1,7 +1,6 @@
 import find from 'lodash/find';
 import get from 'lodash/get';
 import groupBy from 'lodash/groupBy';
-import includes from 'lodash/includes';
 import isArray from 'lodash/isArray';
 import isEmpty from 'lodash/isEmpty';
 import map from 'lodash/map';
@@ -136,7 +135,7 @@ export default class {
   }
 
   hasAdditionalDiskOption() {
-    if (!includes(this.vps.availableOptions, 'ADDITIONAL_DISK')) {
+    if (!this.tabSummary.additionalDisk.optionAvailable) {
       this.hasAdditionalDisk = false;
       return this.hasAdditionalDisk;
     }
@@ -358,7 +357,7 @@ export default class {
               this.$state.go('vps.detail.windows.order', {
                 serviceName: this.serviceName,
               }),
-            isAvailable: () => !this.tabSummary.windowsActivated,
+            isAvailable: () => !this.tabSummary.windows.optionActivated,
           },
           reboot: {
             text: this.$translate.instant(
