@@ -6,6 +6,7 @@ export default {
   bindings: {
     goToVeeamRestore: '<',
     goToVeeamMount: '<',
+    tabSummary: '<',
   },
   name: 'vpsVeeam',
   template,

@@ -79,18 +79,18 @@
         <div
             data-ng-if="$ctrl.veeam.data.state == 'disabled' && !$ctrl.vps.loading"
         >
+            <div
+                data-ng-if="($ctrl.vps.data.hasVeeam || $ctrl.tabSummary.veeam.optionAvailable) && $ctrl.vps.data.canOrder"
+            >
+                <p data-translate="vps_tab_VEEAM_dashboard_not_activated"></p>
+                <button
+                    class="oui-button oui-button_primary"
+                    data-translate="vps_configuration_veeam_order_title_button"
+                    data-ui-sref="vps.detail.veeam.order"
+                ></button>
+            </div>
             <p
-                data-ng-if="$ctrl.vps.data.hasVeeam && $ctrl.vps.data.canOrder"
-                data-translate="vps_tab_VEEAM_dashboard_not_activated"
-            ></p>
-            <button
-                class="oui-button oui-button_primary"
-                data-translate="vps_configuration_veeam_order_title_button"
-                data-ui-sref="vps.detail.veeam.order"
-                data-ng-if="$ctrl.vps.data.hasVeeam && $ctrl.vps.data.canOrder"
-            ></button>
-            <p
-                data-ng-if="!$ctrl.vps.data.hasVeeam"
+                data-ng-if="!$ctrl.vps.data.hasVeeam && !$ctrl.tabSummary.veeam.optionAvailable"
                 data-translate="vps_tab_VEEAM_dashboard_veeam_unavailable"
             ></p>
             <p

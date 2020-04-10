@@ -384,12 +384,12 @@
                     >
                         <oui-tile-description>
                             <span
-                                data-ng-if="$ctrl.stateVps.model.availableOptions.indexOf('ftpbackup') > -1"
+                                data-ng-if="$ctrl.tabSummary.ftpBackup.optionAvailable"
                                 data-translate="{{ 'vps_status_' + ($ctrl.tabSummary.ftpBackup.optionActivated ? 'enabled' : 'disabled') }}"
                             >
                             </span>
                             <span
-                                data-ng-if="$ctrl.stateVps.model.availableOptions.indexOf('ftpbackup') === -1"
+                                data-ng-if="!$ctrl.tabSummary.ftpBackup.optionAvailable"
                                 data-translate="vps_option_unavailable"
                             >
                             </span>
@@ -397,7 +397,7 @@
                         <oui-action-menu
                             data-compact
                             data-align="end"
-                            data-ng-if="$ctrl.stateVps.model.availableOptions.indexOf('ftpbackup') > -1"
+                            data-ng-if="$ctrl.tabSummary.ftpBackup.optionAvailable"
                         >
                             <oui-action-menu-item
                                 data-text="{{::$ctrl.backupStorageActions.manage.text}}"
@@ -488,12 +488,12 @@
                     >
                         <oui-tile-description>
                             <span
-                                data-ng-if="$ctrl.stateVps.model.availableOptions.indexOf('automatedBackup') > -1"
-                                data-translate="{{ 'vps_status_' + ($ctrl.tabSummary.veeamActivated ? 'enabled' : 'disabled') }}"
+                                data-ng-if="$ctrl.tabSummary.veeam.optionAvailable"
+                                data-translate="{{ 'vps_status_' + ($ctrl.tabSummary.veeam.optionActivated ? 'enabled' : 'disabled') }}"
                             >
                             </span>
                             <span
-                                data-ng-if="$ctrl.stateVps.model.availableOptions.indexOf('automatedBackup') === -1"
+                                data-ng-if="!$ctrl.tabSummary.veeam.optionAvailable"
                                 data-translate="vps_option_unavailable"
                             >
                             </span>
@@ -501,27 +501,27 @@
                         <oui-action-menu
                             data-compact
                             data-align="end"
-                            data-ng-if="$ctrl.stateVps.model.availableOptions.indexOf('automatedBackup') > -1"
+                            data-ng-if="$ctrl.tabSummary.veeam.optionAvailable"
                         >
                             <oui-action-menu-item
                                 data-text="{{::$ctrl.veeamActions.manage.text}}"
                                 aria-label="{{::$ctrl.veeamActions.manage.text}}"
                                 data-on-click="$ctrl.veeamActions.manage.callback()"
-                                data-ng-if="$ctrl.tabSummary.veeamActivated"
+                                data-ng-if="$ctrl.tabSummary.veeam.optionActivated"
                             >
                             </oui-action-menu-item>
                             <oui-action-menu-item
                                 data-text="{{::$ctrl.veeamActions.terminate.text}}"
                                 aria-label="{{::$ctrl.veeamActions.terminate.text}}"
                                 data-on-click="$ctrl.goToTerminateOption('automatedBackup')"
-                                data-ng-if="$ctrl.tabSummary.veeamActivated"
+                                data-ng-if="$ctrl.tabSummary.veeam.optionActivated"
                             >
                             </oui-action-menu-item>
                             <oui-action-menu-item
                                 data-text="{{::$ctrl.veeamActions.order.text}}"
                                 aria-label="{{::$ctrl.veeamActions.order.text}}"
                                 data-on-click="$ctrl.veeamActions.order.callback()"
-                                data-ng-if="!$ctrl.tabSummary.veeamActivated"
+                                data-ng-if="!$ctrl.tabSummary.veeam.optionActivated"
                             >
                             </oui-action-menu-item>
                         </oui-action-menu>
@@ -531,12 +531,12 @@
                     >
                         <oui-tile-description>
                             <span
-                                data-ng-if="$ctrl.stateVps.model.availableOptions.indexOf('additionalDisk') > -1"
+                                data-ng-if="$ctrl.tabSummary.additionalDisk.optionAvailable"
                                 data-translate="{{ 'vps_status_' + ($ctrl.hasAdditionalDisk ? 'enabled' : 'disabled') }}"
                             >
                             </span>
                             <span
-                                data-ng-if="$ctrl.stateVps.model.availableOptions.indexOf('additionalDisk') === -1"
+                                data-ng-if="!$ctrl.tabSummary.additionalDisk.optionAvailable"
                                 data-translate="vps_option_unavailable"
                             >
                             </span>
@@ -544,7 +544,7 @@
                         <oui-action-menu
                             data-compact
                             data-align="end"
-                            data-ng-if="$ctrl.stateVps.model.availableOptions.indexOf('additionalDisk') > -1"
+                            data-ng-if="$ctrl.tabSummary.additionalDisk.optionAvailable"
                         >
                             <oui-action-menu-item
                                 data-ng-if="$ctrl.actions.orderAdditionalDiskOption.isAvailable()"
@@ -567,12 +567,12 @@
                     >
                         <oui-tile-description>
                             <span
-                                data-ng-if="$ctrl.stateVps.model.availableOptions.indexOf('windows') > -1"
-                                data-translate="{{ 'vps_status_' + ($ctrl.tabSummary.windowsActivated ? 'enabled' : 'disabled') }}"
+                                data-ng-if="$ctrl.tabSummary.windows.optionAvailable"
+                                data-translate="{{ 'vps_status_' + ($ctrl.tabSummary.windows.optionActivated ? 'enabled' : 'disabled') }}"
                             >
                             </span>
                             <span
-                                data-ng-if="$ctrl.stateVps.model.availableOptions.indexOf('windows') === -1"
+                                data-ng-if="!$ctrl.tabSummary.windows.optionAvailable"
                                 data-translate="vps_option_unavailable"
                             >
                             </span>
@@ -580,19 +580,19 @@
                         <oui-action-menu
                             data-compact
                             data-align="end"
-                            data-ng-if="$ctrl.stateVps.model.availableOptions.indexOf('windows') > -1"
+                            data-ng-if="$ctrl.tabSummary.windows.optionAvailable"
                         >
                             <oui-action-menu-item
                                 data-text="{{::$ctrl.actions.terminateWindows.text}}"
                                 aria-label="{{::$ctrl.actions.terminateWindows.text}}"
-                                data-ng-if="$ctrl.tabSummary.windowsActivated && $ctrl.actions.terminateWindows.isAvailable()"
+                                data-ng-if="$ctrl.tabSummary.windows.optionActivated && $ctrl.actions.terminateWindows.isAvailable()"
                                 data-on-click="$ctrl.goToTerminateOption('windows')"
                             >
                             </oui-action-menu-item>
                             <oui-action-menu-item
                                 data-text="{{::$ctrl.actions.orderWindows.text}}"
                                 aria-label="{{::$ctrl.actions.orderWindows.text}}"
-                                data-ng-if="!$ctrl.tabSummary.windowsActivated && $ctrl.actions.orderWindows.isAvailable()"
+                                data-ng-if="!$ctrl.tabSummary.windows.optionActivated && $ctrl.actions.orderWindows.isAvailable()"
                                 data-on-click="$ctrl.actions.orderWindows.callback()"
                             >
                             </oui-action-menu-item>
