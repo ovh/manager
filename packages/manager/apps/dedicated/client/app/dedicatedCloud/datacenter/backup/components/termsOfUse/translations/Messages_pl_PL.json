@@ -1,0 +1,6 @@
+{
+  "dedicatedCloud_datacenter_backup_terms_of_use_description1": "Czy jesteś pewien/-na, że chcesz aktywować opcję tworzenia kopii zapasowych w centrum danych {{datacenter}}?",
+  "dedicatedCloud_datacenter_backup_terms_of_use_description2": "Uwaga, ta operacja będzie fakturowana według ilości i rozmiarów zreplikowanych maszyn wirtualnych.",
+  "dedicatedCloud_datacenter_backup_terms_of_use_general_conditions": "Przeczytałem/-am i akceptuję <a href='{{url}}' target='_blank'>ogólne warunki korzystania z usługi</a>",
+  "dedicatedCloud_datacenter_backup_terms_of_use_data_replication": "Zatwierdzam replikację danych"
+}

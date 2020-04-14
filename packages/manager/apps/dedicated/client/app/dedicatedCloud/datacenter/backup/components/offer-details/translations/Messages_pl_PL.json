@@ -6,5 +6,6 @@
   "dedicatedCloud_datacenter_backup_offer_upgrade_replication": "Replikacja w innym centrum danych",
   "dedicatedCloud_datacenter_backup_offer_upgrade_choice_backup_days": "Wybór dni tworzenia każdej z kopii zapasowych",
   "dedicatedCloud_datacenter_backup_offer_upgrade_choice_backup_time": "Wybór godziny rozpoczęcia tworzenia kopii zapasowych",
-  "dedicatedCloud_datacenter_backup_offer_upgrade_proxy_backup": "1 backup proxy / host"
+  "dedicatedCloud_datacenter_backup_offer_upgrade_proxy_backup": "1 backup proxy / host",
+  "dedicatedCloud_datacenter_backup_offer_upgrade_long_term_retention": "11 punktów retencji długoterminowej (retencja GFS)"
 }
