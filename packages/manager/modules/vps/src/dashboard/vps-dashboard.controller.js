@@ -73,6 +73,13 @@ export default class {
     });
   }
 
+  $onDestroy() {
+    if (this.vpsUpgradeTask) {
+      this.vpsUpgradeTile.stopUpgradeTaskPolling();
+      this.vpsUpgradeTask = null;
+    }
+  }
+
   initLoaders() {
     this.getRegionsGroup(this.vps.location.datacentre);
     if (!this.vps.isExpired) {

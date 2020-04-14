@@ -7,6 +7,8 @@ export default class VpsUpgradeService {
     this.$http = $http;
     this.CucOvhPoll = CucOvhPoll;
     this.VpsTaskService = VpsTaskService;
+
+    this.upgradeTaskPolling = null;
   }
 
   getAvailableUpgrades(serviceName) {
@@ -38,6 +40,12 @@ export default class VpsUpgradeService {
     ).then((tasks) => head(tasks));
   }
 
+  stopUpgradeTaskPolling() {
+    if (this.upgradeTaskPolling) {
+      this.upgradeTaskPolling.kill();
+    }
+  }
+
   startUpgradeTaskPolling(serviceName, upgradeTask, options = {}) {
     const fullOptions = {
       pollFunction: (task) => this.VpsTaskService.getTask(serviceName, task.id),
@@ -45,6 +53,11 @@ export default class VpsUpgradeService {
       ...options,
     };
 
-    return this.CucOvhPoll.poll({ item: upgradeTask, ...fullOptions });
+    this.upgradeTaskPolling = this.CucOvhPoll.poll({
+      item: upgradeTask,
+      ...fullOptions,
+    });
+
+    return this.upgradeTaskPolling;
   }
 }
