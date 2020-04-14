@@ -1,11 +1,12 @@
+import angular from 'angular';
 import 'angular-translate';
+
 import component from './terminate.component';
-import confirmTerminate from './confirm-terminate';
 
 const moduleName = 'domainAnycastTerminate';
 
 angular
-  .module(moduleName, ['oui', 'pascalprecht.translate', confirmTerminate])
+  .module(moduleName, ['oui', 'pascalprecht.translate'])
   .component('domainAnycastTerminate', component);
 
 export default moduleName;

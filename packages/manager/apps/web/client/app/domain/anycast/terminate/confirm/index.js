@@ -1,14 +1,12 @@
 import angular from 'angular';
-import '@uirouter/angularjs';
+import 'angular-translate';
 
-import routing from './confirm-terminate.routing';
-import confirmTerminate from './confirm-terminate.component';
+import confirmTerminate from './confirm.component';
 
 const moduleName = 'domainAnycastConfirmTerminate';
 
 angular
-  .module(moduleName, ['ui.router'])
-  .config(routing)
+  .module(moduleName, ['oui', 'pascalprecht.translate'])
   .component('domainAnycastConfirmTerminate', confirmTerminate)
   .run(/* @ngTranslationsInject:json ./translations */);
 

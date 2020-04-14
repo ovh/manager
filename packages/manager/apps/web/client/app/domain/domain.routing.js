@@ -3,6 +3,7 @@ import isEmpty from 'lodash/isEmpty';
 
 import anycastState from './anycast/domain-dns-anycast.state';
 import anycastStateTerminate from './anycast/terminate/terminate.state';
+import anycastStateTerminateConfirm from './anycast/terminate/confirm/confirm.state';
 import dnsState from './dns/domain-dns.state';
 import redirectionState from './redirection/domain-redirection.state';
 import dynHostState from './dynhost/domain-dynhost.state';
@@ -65,6 +66,8 @@ export default /* @ngInject */ ($stateProvider) => {
         getDnsAnycast.status === 'enabled'
           ? $state.go('app.domain.product.anycast-terminate')
           : $state.go('app.domain.product.anycast'),
+      goToTerminate: /* @ngInject */ ($state) => () =>
+        $state.go('app.domain.product.anycast-terminate.confirm'),
     },
     translations: {
       value: [
@@ -124,6 +127,8 @@ export default /* @ngInject */ ($stateProvider) => {
         getDnsAnycast.status === 'enabled'
           ? $state.go('app.domain.alldom.anycast-terminate')
           : $state.go('app.domain.alldom.anycast'),
+      goToTerminate: /* @ngInject */ ($state) => () =>
+        $state.go('app.domain.alldom.anycast-terminate.confirm'),
     },
     translations: {
       value: [
@@ -146,6 +151,10 @@ export default /* @ngInject */ ($stateProvider) => {
     $stateProvider.state(
       `app.domain.${stateType}.anycast-terminate`,
       clone(anycastStateTerminate),
+    );
+    $stateProvider.state(
+      `app.domain.${stateType}.anycast-terminate.confirm`,
+      clone(anycastStateTerminateConfirm),
     );
     $stateProvider.state(`app.domain.${stateType}.dns`, clone(dnsState));
     $stateProvider.state(

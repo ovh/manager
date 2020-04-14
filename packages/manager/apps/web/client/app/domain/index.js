@@ -2,6 +2,7 @@ import generalInformationsState from './general-informations/domain-general-info
 
 import anycast from './anycast';
 import anycastTerminate from './anycast/terminate';
+import confirmAnycastTerminate from './anycast/terminate/confirm';
 import emailObfuscation from './email-obfuscation/index';
 import optin from './optin/index';
 import webhosting from './webhosting';
@@ -15,6 +16,7 @@ angular
   .module(moduleName, [
     anycast,
     anycastTerminate,
+    confirmAnycastTerminate,
     emailObfuscation,
     optin,
     webhosting,
