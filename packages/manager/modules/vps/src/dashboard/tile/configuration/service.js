@@ -197,7 +197,7 @@ class ConfigurationTileService {
             )
           : null,
         upfrontDiff:
-          nextRamVpsPlan && this.isUpfront
+          nextStorageVpsPlan && this.isUpfront
             ? ConfigurationTileService.getPlanUpfrontPriceDiff(
                 nextStorageVpsPlan,
                 this.currentPlan,

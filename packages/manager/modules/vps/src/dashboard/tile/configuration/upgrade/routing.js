@@ -83,6 +83,7 @@ export default /* @ngInject */ ($stateProvider) => {
       redirectTo: () => 'vps.detail.dashboard',
 
       upgradeInfo: /* @ngInject */ (
+        $q,
         configurationTile,
         serviceName,
         upgradeSuccess,
@@ -93,11 +94,19 @@ export default /* @ngInject */ ($stateProvider) => {
           return true;
         }
 
-        return vpsUpgrade.getUpgrade(
-          serviceName,
-          get(configurationTile.upgrades, `${upgradeType}.plan.planCode`),
-          { quantity: 1 },
-        );
+        return vpsUpgrade
+          .getUpgrade(
+            serviceName,
+            get(configurationTile.upgrades, `${upgradeType}.plan.planCode`),
+            { quantity: 1 },
+          )
+          .catch((error) => {
+            if (error.status === 400) {
+              return { error };
+            }
+
+            return $q.reject(error);
+          });
       },
 
       hasDefaultPaymentMethod: /* @ngInject */ (defaultPaymentMethod) =>
@@ -109,11 +118,13 @@ export default /* @ngInject */ ($stateProvider) => {
 
       /* ----------  ouiModal layout resolves  ---------- */
 
-      type: /* @ngInject */ (upgradeStatus) => upgradeStatus,
+      type: /* @ngInject */ (upgradeInfo, upgradeStatus) =>
+        upgradeInfo.error ? 'warning' : upgradeStatus,
 
       heading: /* @ngInject */ (
         $translate,
         stateVps,
+        upgradeInfo,
         upgradeSuccess,
         upgradeType,
         vps,
@@ -122,6 +133,9 @@ export default /* @ngInject */ ($stateProvider) => {
           return $translate.instant(
             'vps_dashboard_tile_configuration_upgrade_success_title',
           );
+        }
+        if (upgradeInfo.error) {
+          return null;
         }
 
         const translationKey = `vps_dashboard_tile_configuration_upgrade_${upgradeType}_action_title`;
@@ -139,7 +153,17 @@ export default /* @ngInject */ ($stateProvider) => {
         return $translate.instant(translationKey, translationValues);
       },
 
-      primaryLabel: /* @ngInject */ ($translate, upgradeSuccess) => {
+      primaryLabel: /* @ngInject */ (
+        $translate,
+        upgradeInfo,
+        upgradeSuccess,
+      ) => {
+        if (upgradeInfo.error) {
+          return $translate.instant(
+            'vps_dashboard_tile_configuration_upgrade_button_ok',
+          );
+        }
+
         const translationKey = upgradeSuccess
           ? 'vps_dashboard_tile_configuration_upgrade_success_follow_order'
           : 'vps_dashboard_tile_configuration_upgrade_action_validate_and_pay';
@@ -157,6 +181,7 @@ export default /* @ngInject */ ($stateProvider) => {
         hasDefaultPaymentMethod,
         loaders,
         serviceName,
+        upgradeInfo,
         upgradeOrderId,
         upgradeSuccess,
         upgradeType,
@@ -169,6 +194,9 @@ export default /* @ngInject */ ($stateProvider) => {
               Environment.getRegion(),
             )}/${upgradeOrderId}`,
           );
+        }
+        if (upgradeInfo.error) {
+          return goBack();
         }
 
         // launch the upgrade
@@ -221,8 +249,12 @@ export default /* @ngInject */ ($stateProvider) => {
           });
       },
 
-      secondaryLabel: /* @ngInject */ ($translate, upgradeStatus) =>
-        !upgradeStatus
+      secondaryLabel: /* @ngInject */ (
+        $translate,
+        upgradeInfo,
+        upgradeStatus,
+      ) =>
+        !upgradeStatus && !upgradeInfo.error
           ? $translate.instant(
               'vps_dashboard_tile_configuration_upgrade_action_cancel',
             )
