@@ -1,42 +1,53 @@
 {
-  "name": "ovh-angular-responsive-page-switcher",
-  "version": "1.1.1",
+  "name": "@ovh-ux/ng-ovh-responsive-page-switcher",
+  "version": "0.0.0",
   "description": "It detects available width for displaying page in 2 distinct modes",
-  "main": "./dist/ovh-angular-responsive-page-switcher.min.js",
-  "repository": "ovh-ux/ovh-angular-responsive-page-switcher",
-  "author": "OVH SAS",
+  "keywords": [
+    "page",
+    "responsive",
+    "switcher",
+    "angularjs",
+    "ovhcloud"
+  ],
+  "repository": "ovh-ux/ng-ovh-responsive-page-switcher",
   "license": "BSD-3-Clause",
+  "author": "OVH SAS",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "browser": "./dist/umd/ng-ovh-responsive-page-switcher.js",
   "scripts": {
-    "test": "grunt test",
-    "fix": "eslint . --fix --quiet --ext .js"
+    "build": "rollup -c",
+    "dev": "rollup -c --watch",
+    "lint": "run-p lint:js lint:md",
+    "lint:js": "eslint --quiet --fix --format=pretty src",
+    "lint:md": "eslint --quiet --fix --format=pretty --ext .md .",
+    "prepare": "rollup -c",
+    "test": "yarn run lint",
+    "version": "npx conventional-changelog-cli -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
+    "postversion": "git push && git push --tags"
+  },
+  "dependencies": {
+    "lodash": "^4.17.11"
   },
   "devDependencies": {
-    "eslint": "^4.1.1",
-    "eslint-config-ovh": "^0.1.1",
-    "grunt": "0.4.x",
-    "grunt-autoprefixer": "~2.2.0",
-    "grunt-bump": "~0.3.0",
-    "grunt-complexity": "~0.1.0",
-    "grunt-contrib-clean": "~0.6.0",
-    "grunt-contrib-concat": "~0.5.0",
-    "grunt-contrib-connect": "^0.10.1",
-    "grunt-contrib-copy": "~0.7.0",
-    "grunt-contrib-csslint": "~0.4.0",
-    "grunt-contrib-cssmin": "~0.12.2",
-    "grunt-contrib-jshint": "~0.11.0",
-    "grunt-contrib-less": "~1.0.0",
-    "grunt-contrib-uglify": "~0.8.0",
-    "grunt-contrib-watch": "~0.6.1",
-    "grunt-eslint": "^20.0.0",
-    "grunt-karma": "~0.10.1",
-    "grunt-injector": "^0.6.0",
-    "grunt-ng-annotate": "~0.10.0",
-    "grunt-wiredep": "^2.0.0",
-    "jshint-stylish": "~1.0.0",
-    "jasmine-core": "^2.6.4",
-    "karma": "~0.13.0",
-    "karma-jasmine": "~0.3.0",
-    "karma-phantomjs-launcher": "~1.0.0",
-    "matchdep": "^0.3.0"
+    "@commitlint/cli": "^8.3.5",
+    "@commitlint/config-angular": "^8.3.4",
+    "@ovh-ux/component-rollup-config": "^7.0.1",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-formatter-pretty": "^3.0.1",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-markdown": "^1.0.0",
+    "husky": "^4.2.3",
+    "lint-staged": "^10.1.2",
+    "npm-run-all": "^4.1.5"
+  },
+  "peerDependencies": {
+    "angular": "^1.7.5",
+    "angular-animate": "^1.5.0",
+    "matchmedia-ng": "~1.0.5"
   }
 }

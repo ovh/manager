@@ -1,77 +1,27 @@
-# ovh-angular-responsive-page-switcher
+# ng-ovh-responsive-page-switcher
 
-![githubbanner](https://user-images.githubusercontent.com/3379410/27423240-3f944bc4-5731-11e7-87bb-3ff603aff8a7.png)
+> It detects available width for displaying page in 2 distinct modes
 
-[![Maintenance](https://img.shields.io/maintenance/yes/2018.svg)]() [![Chat on gitter](https://img.shields.io/gitter/room/ovh/ux.svg)](https://gitter.im/ovh/ux) [![Build Status](https://travis-ci.org/ovh-ux/ovh-angular-responsive-page-switcher.svg)](https://travis-ci.org/ovh-ux/ovh-angular-responsive-page-switcher)
+[![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-ovh-responsive-page-switcher)](https://npmjs.com/package/@ovh-ux/ng-ovh-responsive-page-switcher)[![Dependencies](https://badgen.net/david/dep/ovh-ux/ng-ovh-responsive-page-switcher)](https://npmjs.com/package/@ovh-ux/ng-ovh-responsive-page-switcher?activeTab=dependencies)[![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/ng-ovh-responsive-page-switcher)](https://npmjs.com/package/@ovh-ux/ng-ovh-responsive-page-switcher?activeTab=dependencies)[![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
 
-[![NPM](https://nodei.co/npm/ovh-angular-responsive-page-switcher.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/ovh-angular-responsive-page-switcher/)
 
-> `ovh-angular-responsive-page-switcher` module is a set of 2 directives (`responsive-switch` and `responsive-switch-page`) that enable to display content like pages.
+## Install
 
-It detects available width for displaying page in 2 distinct modes :
-
-* `switch` mode : one page is displayed at a time ;
-* `sidebyside` mode : pages are displayed side by side.
-
-## Table of contents
-* [Dependencies](#dependencies)
-* [Installation](#installation)
-* [Usage and example](#usage-and-example)
-* [Module Components](#module-components)
-
-## Dependencies
-
-`ovh-angular-responsive-page-switcher` module depends on different modules :
-
-* [matchmedia-ng](https://github.com/AnalogJ/matchmedia-ng)
-* [angular-animate](https://docs.angularjs.org/api/ngAnimate)
-
-__Note__ : `ovh-angular-responsive-page-switcher` is suitable with [ovh-angular-responsive-popover](https://github.com/ovh-ux/ovh-angular-responsive-popover).
-
-## Installation
-
-### Download module with bower
-
-```bash
-$ bower install ovh-angular-responsive-page-switcher --save
+```sh
+yarn add @ovh-ux/ng-ovh-responsive-page-switcher
 ```
 
-This will also download the dependencies.
+## Usage
 
-### Styles
+```js
+import angular from 'angular';
+import ngOvhResponsivePageSwitcher from '@ovh-ux/ng-ovh-responsive-page-switcher';
 
-In your less file, import the ovh-angular-responsive-page-switcher.less file located in dist/less folder :
-
-```less
-@import "dist/less/ovh-angular-responsive-page-switcher.less";
+angular
+  .module('myApp', [
+    ngOvhResponsivePageSwitcher,
+  ]);
 ```
-
-### HTML
-
-Load the module script, its dependencies and your app file :
-
-```html
-<script src="jquery.js" type="text/javascript"></script>
-<script src="angular.js" type="text/javascript"></script>
-<script src="angular-animate.js" type="text/javascript"></script>
-<script src="matchmedia-ng.js" type="text/javascript"></script>
-<script src="ovh-angular-responsive-page-switcher.js" type="text/javascript"></script>
-<script src="your-app.js" type="text/javascript"></script>
-```
-
-### JS
-
-Load the module in your application by adding it as a dependent module :
-
-```javascript
-angular.module('app', ['ovh-angular-responsive-popover']);
-```
-
-## Usage and example
-
-### Usage
-
-#### HTML
 
 Directives `responsive-switch` and `responsive-switch-page` will be used. `responsive-switch-page` requires `responsive-switch`, so first we create this directive :
 
@@ -82,17 +32,20 @@ Directives `responsive-switch` and `responsive-switch-page` will be used. `respo
 </div>
 ```
 
-### Example
+## Test
 
-You can run a sample example after git cloning the project by running these commands :
-
-```bash
-$ npm install
-$ bower install
-$ grunt serve
+```sh
+yarn test
 ```
 
-The example is now running at `http://localhost:7711/example/`.
+## Related
+
+`ng-ovh-responsive-page-switcher` module depends on different modules :
+
+* [matchmedia-ng](https://github.com/AnalogJ/matchmedia-ng)
+* [angular-animate](https://docs.angularjs.org/api/ngAnimate)
+
+__Note__ : `ng-ovh-responsive-page-switcher` is suitable with [ng-ovh-responsive-popover](https://github.com/ovh-ux/ng-ovh-responsive-popover).
 
 ## Module Components
 
@@ -105,23 +58,8 @@ The example is now running at `http://localhost:7711/example/`.
 
 ## Contributing
 
-You've developed a new cool feature ? Fixed an annoying bug ? We'd be happy
-to hear from you !
-
-Have a look in [CONTRIBUTING.md](https://github.com/ovh-ux/ovh-angular-responsive-page-switcher/blob/master/CONTRIBUTING.md)
-
-## Run the tests
-
-```
-$ npm test
-```
-
-## Related links
-
-* Contribute: https://github.com/ovh-ux/ovh-angular-responsive-page-switcher/blob/master/CONTRIBUTING.md
-* Report bugs: https://github.com/ovh-ux/ovh-angular-responsive-page-switcher/issues
-* Get latest version: https://github.com/ovh-ux/ovh-angular-responsive-page-switcher
+Always feel free to help out! Whether it's [filing bugs and feature requests](https://github.com/ovh-ux/ng-ovh-responsive-page-switcher/issues/new) or working on some of the [open issues](https://github.com/ovh-ux/ng-ovh-responsive-page-switcher/issues), our [contributing guide](CONTRIBUTING.md) will help get you started.
 
 ## License
 
-See https://github.com/ovh-ux/ovh-angular-responsive-page-switcher/blob/master/LICENSE
+[BSD-3-Clause](LICENSE) © OVH SAS
