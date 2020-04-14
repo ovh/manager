@@ -1449,6 +1449,19 @@ angular.module('services').service(
     }
 
     /**
+     * Get DNS Anycast details
+     * @param {string} serviceName
+     */
+    getDnsAnycastDetails(serviceName) {
+      return this.OvhHttp.get(
+        `/domain/zone/${serviceName}/anycast/serviceInfos`,
+        {
+          rootPath: 'apiv6',
+        },
+      );
+    }
+
+    /**
      * Get DNS Anycast status
      * @param {string} serviceName
      */

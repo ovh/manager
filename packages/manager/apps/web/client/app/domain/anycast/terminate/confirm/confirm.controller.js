@@ -1,7 +1,6 @@
 export default class DomainDnsAnycastConfirmTerminateCtrl {
   /* @ngInject */
-  constructor($state, Domain) {
-    this.$state = $state;
+  constructor(Domain) {
     this.Domain = Domain;
     this.loading = false;
   }
@@ -10,6 +9,7 @@ export default class DomainDnsAnycastConfirmTerminateCtrl {
     this.loading = true;
     return this.Domain.terminateDnsAnycast(this.domainName)
       .then(() => this.goBack())
+      .catch((err) => this.setError(err.message))
       .finally(() => {
         this.goBack();
         this.loading = false;
