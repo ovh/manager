@@ -1,8 +1,6 @@
-/*global angular*/
-
 /**
  * @ngdoc directive
- * @name ovh-angular-timeline.directive:timeline-event
+ * @name ng-ovh-timeline.directive:timeline-event
  * @restrict AE
  *
  * @description
@@ -14,20 +12,18 @@
  *
  * You typically embed a `timeline-badge` and `timeline-panel` element within a `timeline-event`.
  */
-angular.module('ovh-angular-timeline').directive('timelineEvent', function() {
-  'use strict';
+export default /* @ngInject */ function () {
   return {
     require: '^timeline',
     restrict: 'AE',
     transclude: true,
     template: '<li ng-transclude></li>',
-    link: function(scope, element, attrs) {
+    link(scope, element, attrs) {
+      const distribution = {};
 
-      var distribution = {};
-
-      var applyInvertion = function(elt, options) {
-        var liElt = elt.find('li');
-        if ('undefined' !== typeof options.side) {
+      const applyInvertion = (elt, options) => {
+        const liElt = elt.find('li');
+        if (typeof options.side !== 'undefined') {
           // Invertion has to be forced
           switch (options.side) {
             case 'right':
@@ -36,8 +32,7 @@ angular.module('ovh-angular-timeline').directive('timelineEvent', function() {
             default:
               liElt.removeClass('timeline-inverted');
           }
-        }
-        else {
+        } else {
           // Check if toggle side
           switch (options.distribute) {
             case 'right':
@@ -53,21 +48,20 @@ angular.module('ovh-angular-timeline').directive('timelineEvent', function() {
         }
       };
 
-      scope.$watch(attrs.side, function(newVal) {
+      scope.$watch(attrs.side, (newVal) => {
         distribution.side = newVal;
         applyInvertion(element, distribution);
       });
 
-      scope.$watch('$index', function(ind) {
+      scope.$watch('$index', (ind) => {
         distribution.index = ind;
         applyInvertion(element, distribution);
       });
 
-      scope.$watch(attrs.distribute, function(newVal) {
+      scope.$watch(attrs.distribute, (newVal) => {
         distribution.distribute = newVal;
         applyInvertion(element, distribution);
       });
-
-    }
+    },
   };
-});
+}

@@ -1,4 +1,4 @@
-# Contributing to ovh-angular-timeline
+# Contributing to ng-ovh-timeline
 
 This project accepts contributions. In order to contribute, you should
 pay attention to a few things:
@@ -11,16 +11,16 @@ pay attention to a few things:
 
 # Coding and documentation Style
 
-Refer to [https://github.com/ovh-ux/eslint-config-ovh](https://github.com/ovh-ux/eslint-config-ovh)
+Refer to [eslint-config-airbnb-base](https://github.com/airbnb/javascript/tree/master/packages/eslint-config-airbnb-base)
 
 # Submitting Modifications
 
-The contributions should be submitted through GitHub Pull Requests.
+The contributions should be submitted through Github Pull Requests.
 
 # Licensing for new files
 
-ovh-angular-timeline is licensed under a BSD-3-Clause license. Anything
-contributed to ovh-angular-timeline must be released under this license.
+ng-ovh-timeline is licensed under a BSD-3-Clause license. Anything
+contributed to ng-ovh-timeline must be released under this license.
 
 When introducing a new file into the project, please make sure it has a
 copyright header making clear under which license it's being released.
