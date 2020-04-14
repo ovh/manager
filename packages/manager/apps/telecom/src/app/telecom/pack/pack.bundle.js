@@ -129,7 +129,6 @@ import './xdsl/orderFollowUp/pack-xdsl-orderFollowUp.controller';
 import './xdsl/orderFollowUp/pack-xdsl-orderFollowUp';
 import './xdsl/pack-xdsl.constant';
 import './xdsl/pack-xdsl.controller';
-import './xdsl/pack-xdsl';
 import './xdsl/resiliation/pack-xdsl-resiliation.controller';
 import './xdsl/resiliation/pack-xdsl-resiliation';
 import './xdsl/tasks/pack-xdsl-tasks.controller';
