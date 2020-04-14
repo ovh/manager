@@ -4,15 +4,17 @@
             data-translate="domain_configuration_dnsanycast_terminate_title"
         ></span>
     </oui-back-button>
+    <div data-ovh-alert="domain.terminateDnsAnycast"></div>
     <p
         data-translate="domain_configuration_dnsanycast_terminate_description1"
     ></p>
     <p
         data-translate="domain_configuration_dnsanycast_terminate_description2"
+        data-translate-values="{ date: ($ctrl.dnsAnycastDetails.nextBillingDate | date:'mediumDate') }"
     ></p>
     <oui-button
         class="mt-4"
-        data-on-click="$ctrl.terminate()"
+        data-on-click="$ctrl.goToTerminate()"
         data-variant="primary"
     >
         <span

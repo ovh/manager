@@ -1,4 +1,4 @@
-export default {
+const state = {
   url: '/anycast-terminate',
   views: {
     domainView: {
@@ -7,12 +7,23 @@ export default {
   },
   resolve: {
     previousState: /* @ngInject */ ($transition$) => $transition$.$from(),
+    dnsAnycastDetails: /* @ngInject */ (Domain, domainName) =>
+      Domain.getDnsAnycastDetails(domainName),
+    setError: /* @ngInject */ (Alerter) => (message) =>
+      Alerter.error(message, 'domain.terminateDnsAnycast'),
     goBack: /* @ngInject */ ($state, previousState) => () => {
-      if (previousState.name) {
-        $state.go(previousState.name);
-      } else {
-        $state.go('app.domain.product.dns');
-      }
+      return $state.go(
+        previousState.name
+          ? previousState.name
+          : 'app.domain.product.information',
+      );
     },
+    breadcrumb: /* @ngInject */ ($translate) =>
+      $translate.instant('domain_configuration_dnsanycast_terminate_title'),
   },
+};
+
+export default /* @ngInject */ ($stateProvider) => {
+  $stateProvider.state('app.domain.product.terminate_anycast', { ...state });
+  $stateProvider.state('app.alldom.domain.terminate_anycast', { ...state });
 };

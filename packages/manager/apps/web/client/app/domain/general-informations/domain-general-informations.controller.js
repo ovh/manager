@@ -49,6 +49,7 @@ export default class DomainTabGeneralInformationsCtrl {
     WucAllDom,
     DOMAIN,
     goToDnsAnycast,
+    goToTerminateAnycast,
   ) {
     this.$http = $http;
     this.$scope = $scope;
@@ -75,6 +76,7 @@ export default class DomainTabGeneralInformationsCtrl {
     this.coreURLBuilder = coreURLBuilder;
     this.DOMAIN = DOMAIN;
     this.goToDnsAnycast = goToDnsAnycast;
+    this.goToTerminateAnycast = goToTerminateAnycast;
     this.DOMAIN_STATE_TYPE = DOMAIN_STATE_TYPE;
   }
 
@@ -188,7 +190,7 @@ export default class DomainTabGeneralInformationsCtrl {
     this.updateOwnerUrl = this.getUpdateOwnerUrl(this.domain);
 
     this.getRules();
-    this.getCurrentUserNic();
+    this.loggedInUser = this.coreConfig.getUser()?.nichandle;
 
     if (this.isAllDom) {
       this.getAllDomInfos(this.$stateParams.allDom);
@@ -466,7 +468,7 @@ export default class DomainTabGeneralInformationsCtrl {
                 optionActivated: false,
               };
             }
-            return this.$q.reject(error);
+            return error.status !== 404 ? this.$q.reject(error) : null;
           });
       })
       .catch((err) =>
@@ -580,12 +582,6 @@ export default class DomainTabGeneralInformationsCtrl {
       .finally(() => {
         this.loading.whoIs = false;
       });
-  }
-
-  getCurrentUserNic() {
-    return this.WucUser.getUser().then(({ nichandle }) => {
-      this.loggedInUser = nichandle;
-    });
   }
 
   // Actions --------------------------------------------

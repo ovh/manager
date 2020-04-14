@@ -575,11 +575,12 @@
                 data-loading="$ctrl.loading.options"
             >
                 <oui-tile-definition
-                    data-ng-if="$ctrl.options.dnsAnycast.optionActivated"
                     data-term="{{ ::'domain_dashboard_options_dns_anycast' | translate }}"
                 >
                     <oui-tile-description>
-                        <p data-ng-if="$ctrl.options.dnsAnycast">
+                        <p
+                            data-ng-if="$ctrl.options.dnsAnycast.optionActivated"
+                        >
                             <span
                                 data-translate="{{ 'domain_dashboard_options_status_' + ($ctrl.options.dnsAnycast.isTerminated ? 'disabled' : 'enabled') }}"
                             >
@@ -590,7 +591,8 @@
                                 (<span
                                     data-translate="domain_dashboard_options_dns_anycast_expiry"
                                     data-translate-values="{ date: ($ctrl.options.dnsAnycast.expirationDate | date:'mediumDate') }"
-                                ></span>)
+                                ></span
+                                >)
                             </span>
                         </p>
                         <span
@@ -602,11 +604,11 @@
                     <oui-action-menu
                         data-compact
                         data-align="end"
-                        data-ng-if="$ctrl.options.dnsAnycast && !$ctrl.options.dnsAnycast.isTerminated"
+                        data-ng-if="$ctrl.options.dnsAnycast.optionActivated && !$ctrl.options.dnsAnycast.isTerminated"
                     >
                         <oui-action-menu-item
                             aria-label="{{ ::'domain_dashboard_options_desactivate_option' | translate }}"
-                            data-on-click="setAction('options/delete/domain-options-delete', { domain: $ctrl.domain, option: $ctrl.options.dnsAnycast })"
+                            data-on-click="$ctrl.goToTerminateAnycast()"
                         >
                             <span
                                 data-translate="domain_dashboard_options_desactivate_option"

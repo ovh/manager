@@ -5,23 +5,23 @@
 
     <div data-ng-if="!$ctrl.isCheckoutPending">
         <p
-            data-ng-bind-html="'domain_configuration_dnsanycast_step2_question' | translate: { t0: $ctrl.domainName }"
+            data-ng-bind-html="'domain_configuration_anycast_order_description' | translate: { t0: $ctrl.domainName }"
         ></p>
         <p class="mb-4">
             <span
-                data-translate="domain_configuration_dnsanycast_step3_explication2"
+                data-translate="domain_configuration_anycast_payment_acceptance_delay_info"
             ></span>
             <span
-                data-translate="domain_configuration_dnsanycast_step3_explication3"
+                data-translate="domain_configuration_anycast_propagation_delay_info"
             ></span>
         </p>
     </div>
 
     <oui-message data-type="success" data-ng-if="$ctrl.checkoutSuccess">
-        <p data-translate="domain_configuration_dnsanycast_order_success"></p>
+        <p data-translate="domain_configuration_anycast_order_success"></p>
         <p
             data-ng-if="$ctrl.checkoutSuccess.url"
-            data-translate="domain_configuration_dnsanycast_order_success_bc"
+            data-translate="domain_configuration_anycast_order_success_bc"
         ></p>
         <a
             class="oui-button oui-button_secondary"
@@ -31,7 +31,7 @@
             data-ng-if="$ctrl.checkoutSuccess.url"
         >
             <span
-                data-translate="domain_configuration_dnsanycast_order_success_bc_link"
+                data-translate="domain_configuration_anycast_order_success_bc_link"
             ></span>
             <span
                 class="oui-icon oui-icon-external_link"

@@ -1,12 +1,11 @@
-import controller from './terminate.controller';
-import template from './terminate.html';
+import template from './template.html';
 
 export default {
   bindings: {
+    dnsAnycastDetails: '<',
     domainName: '<',
-    goToDns: '<',
     goBack: '<',
+    goToTerminate: '<',
   },
-  controller,
   template,
 };

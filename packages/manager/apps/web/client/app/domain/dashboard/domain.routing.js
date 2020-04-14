@@ -72,6 +72,10 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.go('app.domain.product.dns'),
       goToDnsAnycast: /* @ngInject */ ($state) => () =>
         $state.go('app.domain.product.anycast'),
+      goToTerminateAnycast: /* @ngInject */ ($state) => () =>
+        $state.go('app.domain.product.terminate_anycast'),
+      goToTerminate: /* @ngInject */ ($state) => () =>
+        $state.go('app.domain.product.terminate_anycast.confirm'),
     },
     translations: {
       value: [
@@ -124,6 +128,10 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.go('app.alldom.domain.dns'),
       goToDnsAnycast: /* @ngInject */ ($state) => () =>
         $state.go('app.alldom.domain.anycast'),
+      goToTerminateAnycast: /* @ngInject */ ($state) => () =>
+        $state.go('app.alldom.product.terminate_anycast'),
+      goToTerminate: /* @ngInject */ ($state) => () =>
+        $state.go('app.alldom.product.terminate_anycast.confirm'),
     },
     translations: {
       value: [

@@ -1449,6 +1449,16 @@ angular.module('services').service(
     }
 
     /**
+     * Get DNS Anycast details
+     * @param {string} serviceName
+     */
+    getDnsAnycastDetails(serviceName) {
+      return this.$http.get(
+        `/domain/zone/${serviceName}/option/anycast/serviceInfos`,
+      );
+    }
+
+    /**
      * Get DNS Anycast status
      * @param {string} serviceName
      */
@@ -1467,11 +1477,11 @@ angular.module('services').service(
      * Terminate DNS Anycast
      * @param {string} serviceName
      */
-    terminateDnsAnycast(serviceName) {
-      return this.OvhHttp.post(
-        `/domain/zone/${serviceName}/anycast/terminate`,
+    terminateDnsAnycast(serviceName, renew) {
+      return this.$http.put(
+        `/domain/zonex/${serviceName}/option/anycast/serviceInfos`,
         {
-          rootPath: 'apiv6',
+          renew,
         },
       );
     }
