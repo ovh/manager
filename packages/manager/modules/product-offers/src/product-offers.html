@@ -63,7 +63,7 @@
           ) && $ctrl.workflow.agreeContracts"
         data-on-focus="$ctrl.workflow.getValidationInformation()"
         data-prevent-next
-        data-submit-text="{{:: ($ctrl.workflow.isFreePricing() ? 'ovh_product_offers_confirmation_activate' : 'ovh_product_offers_confirmation_pay') | translate }}"
+        data-submit-text="{{ ($ctrl.workflow.isFreePricing() ? 'ovh_product_offers_confirmation_activate' : 'ovh_product_offers_confirmation_pay') | translate }}"
         data-loading="$ctrl.workflow.loading.getOfferValidationInformation || $ctrl.workflow.loading.validateOffer"
     >
         <div data-ng-if="!$ctrl.workflow.isFreePricing()">
