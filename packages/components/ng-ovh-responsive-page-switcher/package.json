@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-responsive-page-switcher",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "It detects available width for displaying page in 2 distinct modes",
   "keywords": [
     "page",
