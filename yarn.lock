@@ -12698,12 +12698,6 @@ ovh-api-services@^9.42.0:
   dependencies:
     lodash "^4.17.15"
 
-"ovh-api-services@git+https://github.com/ovh-ux/ovh-api-services.git#feat/pack-xdsl-hosted-email":
-  version "9.41.1"
-  resolved "git+https://github.com/ovh-ux/ovh-api-services.git#458eaeda962608353a4a2e60d326f35fc25381a7"
-  dependencies:
-    lodash "^4.17.15"
-
 ovh-common-style@^3.2.2, ovh-common-style@ovh-ux/ovh-common-style#^3.2.2:
   version "3.2.2"
   resolved "https://codeload.github.com/ovh-ux/ovh-common-style/tar.gz/cd9f7bea9240b7e2334ae5cd7e74529478b271d4"
