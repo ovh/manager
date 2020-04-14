@@ -9,6 +9,7 @@ export default {
     goToKvm: '<',
     goToReboot: '<',
     goToRebootRescue: '<',
+    goToReinstall: '<',
   },
   template,
 };
