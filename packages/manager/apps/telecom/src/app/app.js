@@ -34,6 +34,7 @@ import ngOvhSidebarMenu from '@ovh-ux/ng-ovh-sidebar-menu';
 import ngOvhSimpleCountryList from '@ovh-ux/ng-ovh-simple-country-list';
 import ngOvhLineDiagnostics from '@ovh-ux/ng-ovh-line-diagnostics';
 import ngOvhContact from '@ovh-ux/ng-ovh-contact';
+import ngOvhTimeline from '@ovh-ux/ng-ovh-timeline';
 import { detach as detachPreloader } from '@ovh-ux/manager-preloader';
 
 import uiRouter, { RejectType } from '@uirouter/angularjs';
@@ -97,7 +98,7 @@ angular
       'ovh-angular-responsive-tabs',
       ngOvhSidebarMenu,
       ngOvhSimpleCountryList,
-      'ovh-angular-timeline',
+      ngOvhTimeline,
       ngOvhUiConfirmModal,
       'ovh-api-services',
       'ovh-ng-input-password',
