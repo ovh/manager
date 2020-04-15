@@ -256,7 +256,7 @@
     <div class="row d-lg-flex">
         <div
             class="col-xm-12 col-md-4"
-            data-ng-if="!$ctrl.vps.isExpired && $ctrl.hasFeature($ctrl.DASHBOARD_FEATURES.status)"
+            data-ng-if="!$ctrl.vps.isExpired && $ctrl.hasFeature($ctrl.DASHBOARD_FEATURES.status) && !$ctrl.isVpsNewRange"
         >
             <oui-tile
                 data-heading="{{ ::'vps_dashboard_state_services' | translate }}"
