@@ -1,3 +1,18 @@
+# [14.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@14.0.2...@ovh-ux/manager-web@14.1.0) (2020-04-15)
+
+
+### Features
+
+* **emailpro:** lazy load emailpro root state ([f46535f](https://github.com/ovh/manager/commit/f46535f79d8881f6a42599091ffddb6e7288f4b6))
+* **exchange:** lazy load exchange root state ([63e6bbb](https://github.com/ovh/manager/commit/63e6bbb23b14ea820d0f50500db9b881d12775a6))
+
+
+### Performance Improvements
+
+* import dynamically moment locales ([#2755](https://github.com/ovh/manager/issues/2755)) ([5f3320d](https://github.com/ovh/manager/commit/5f3320d92802a1f4a6d65baf60f74917b8e58f4a))
+
+
+
 ## [14.0.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@14.0.1...@ovh-ux/manager-web@14.0.2) (2020-04-01)
 
 

@@ -1,3 +1,17 @@
+## [3.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-navbar@3.1.0...@ovh-ux/manager-navbar@3.1.1) (2020-04-15)
+
+
+### Bug Fixes
+
+* **notifications-menu:** force to display block ([#2775](https://github.com/ovh/manager/issues/2775)) ([a52f616](https://github.com/ovh/manager/commit/a52f6168fd52eba74c24fcb4afaaa022704dbf2d))
+
+
+### Performance Improvements
+
+* import dynamically moment locales ([#2755](https://github.com/ovh/manager/issues/2755)) ([5f3320d](https://github.com/ovh/manager/commit/5f3320d92802a1f4a6d65baf60f74917b8e58f4a))
+
+
+
 # [3.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-navbar@3.0.1...@ovh-ux/manager-navbar@3.1.0) (2020-04-08)
 
 

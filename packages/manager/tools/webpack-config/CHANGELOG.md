@@ -1,3 +1,12 @@
+## [3.3.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-webpack-config@3.3.0...@ovh-ux/manager-webpack-config@3.3.1) (2020-04-15)
+
+
+### Performance Improvements
+
+* add plugin to optimize css asset minification ([55ba59e](https://github.com/ovh-ux/manager/commit/55ba59e53516cd633e3f3848e63800daeaa3e171))
+
+
+
 # [3.3.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-webpack-config@3.2.2...@ovh-ux/manager-webpack-config@3.3.0) (2019-10-28)
 
 

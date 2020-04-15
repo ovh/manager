@@ -1,3 +1,17 @@
+# [1.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-cloud-connect@1.0.3...@ovh-ux/manager-veeam-cloud-connect@1.1.0) (2020-04-15)
+
+
+### Features
+
+* **veeam-cloud-connect:** lazy load veam cloud connect root state ([4b9d78d](https://github.com/ovh/manager/commit/4b9d78d8dcba2453f66dd2f18abc559f1c490858))
+
+
+### Performance Improvements
+
+* import dynamically moment locales ([#2755](https://github.com/ovh/manager/issues/2755)) ([5f3320d](https://github.com/ovh/manager/commit/5f3320d92802a1f4a6d65baf60f74917b8e58f4a))
+
+
+
 ## [1.0.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-cloud-connect@1.0.2...@ovh-ux/manager-veeam-cloud-connect@1.0.3) (2020-03-04)
 
 

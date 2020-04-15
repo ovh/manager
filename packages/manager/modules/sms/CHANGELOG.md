@@ -1,3 +1,17 @@
+# [7.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@7.5.5...@ovh-ux/manager-sms@7.6.0) (2020-04-15)
+
+
+### Features
+
+* **sms:** lazy load sms root state ([2291467](https://github.com/ovh/manager/commit/22914675eb9e1bc87baf917210955fe13efb38e5))
+
+
+### Performance Improvements
+
+* import dynamically moment locales ([#2755](https://github.com/ovh/manager/issues/2755)) ([5f3320d](https://github.com/ovh/manager/commit/5f3320d92802a1f4a6d65baf60f74917b8e58f4a))
+
+
+
 ## [7.5.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@7.5.4...@ovh-ux/manager-sms@7.5.5) (2020-03-18)
 
 

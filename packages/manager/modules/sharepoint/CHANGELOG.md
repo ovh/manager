@@ -1,3 +1,12 @@
+# [1.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-sharepoint@1.0.6...@ovh-ux/manager-sharepoint@1.1.0) (2020-04-15)
+
+
+### Features
+
+* **sharepoint:** lazy load sharepoint root state ([bc1302d](https://github.com/ovh/manager/commit/bc1302daec212acb9a69d6e9c20970ee77bcfdf3))
+
+
+
 ## [1.0.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-sharepoint@1.0.5...@ovh-ux/manager-sharepoint@1.0.6) (2019-11-22)
 
 
