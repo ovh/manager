@@ -31,6 +31,7 @@ import ngTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
 import ngOvhActionsMenu from '@ovh-ux/ng-ovh-actions-menu';
 import ngOvhCloudUniverseComponents from '@ovh-ux/ng-ovh-cloud-universe-components';
 import ngOvhJqueryUiDroppable from '@ovh-ux/ng-ovh-jquery-ui-droppable';
+import ngOvhResponsivePageSwitcher from '@ovh-ux/ng-ovh-responsive-page-switcher';
 import ovhManagerBanner from '@ovh-ux/manager-banner';
 import ovhManagerNavbar from '@ovh-ux/manager-navbar';
 import ovhManagerServerSidebar from '@ovh-ux/manager-server-sidebar';
@@ -87,7 +88,7 @@ angular
       'mgcrea.ngStrap.tooltip',
       'mgcrea.ngStrap.helpers.dimensions',
       'mgcrea.ngStrap.core',
-      'ovh-angular-responsive-page-switcher',
+      ngOvhResponsivePageSwitcher,
 
       'ng-slide-down',
       ngOvhJsplumb,
