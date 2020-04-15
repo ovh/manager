@@ -1935,6 +1935,13 @@
     draggable "^4.2.0"
     lodash "^4.17.11"
 
+"@ovh-ux/ng-ovh-responsive-page-switcher@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-responsive-page-switcher/-/ng-ovh-responsive-page-switcher-1.0.0.tgz#22b3618a214dbc6345c0ae480d24ce08bd3a661f"
+  integrity sha512-sZaxKUmIJuSaWmI1UfYskQ052MqyQ9WjF1h88VwH/w9V20QDqsBOT1hRukJshk0d5uN/PznEk38yFszc1SYLbw==
+  dependencies:
+    lodash "^4.17.11"
+
 "@ovh-ux/ng-ovh-responsive-popover@^5.0.1":
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-responsive-popover/-/ng-ovh-responsive-popover-5.0.1.tgz#780686a8c35d96ff402a07bf09d5bf43fb83202f"
@@ -12678,11 +12685,6 @@ ovh-angular-list-view@ovh-ux/ovh-angular-list-view#^0.1.5:
   dependencies:
     angular-mock "^1.0.0"
     less-plugin-remcalc "^0.0.1"
-
-ovh-angular-responsive-page-switcher@^1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/ovh-angular-responsive-page-switcher/-/ovh-angular-responsive-page-switcher-1.1.1.tgz#eed3fb6ab1610ed30fa2fde424767ced79b6f676"
-  integrity sha512-vTjrnA9nH96dnfUGvyBGveLB7tk62bV6wFhzl3Bim4FLgnVwkH77M9EAGxyuNFuOfH0UWu1/6qgP3jKPagZDeg==
 
 ovh-angular-responsive-tabs@^4.0.0:
   version "4.0.0"
