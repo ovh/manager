@@ -18,6 +18,7 @@ export default {
     goToTerminateOption: '<',
     goBack: '<',
 
+    isVpsNewRange: '<',
     plan: '<',
     serviceName: '<',
     stateVps: '<',
