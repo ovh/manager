@@ -6,6 +6,7 @@ import head from 'lodash/head';
 import isArray from 'lodash/isArray';
 import map from 'lodash/map';
 import values from 'lodash/values';
+import 'moment';
 
 import IplbHomeUpdateQuotaTemplate from './updateQuota/iplb-update-quota.html';
 

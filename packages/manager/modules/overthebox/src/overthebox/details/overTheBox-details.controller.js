@@ -1,9 +1,9 @@
 import angular from 'angular';
-import moment from 'moment';
 import isArray from 'lodash/isArray';
 import forEach from 'lodash/forEach';
 import map from 'lodash/map';
 import sortBy from 'lodash/sortBy';
+import 'moment';
 
 export default /* @ngInject */ function(
   $scope,

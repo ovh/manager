@@ -2,7 +2,6 @@ import filter from 'lodash/filter';
 import forEach from 'lodash/forEach';
 import get from 'lodash/get';
 import has from 'lodash/has';
-import isObject from 'lodash/isObject';
 import isString from 'lodash/isString';
 import set from 'lodash/set';
 
@@ -37,7 +36,6 @@ import exchange from '@ovh-ux/manager-exchange';
 import office from '@ovh-ux/manager-office';
 import sharepoint from '@ovh-ux/manager-sharepoint';
 import { detach as detachPreloader } from '@ovh-ux/manager-preloader';
-import moment from 'moment';
 
 import config from './config/config';
 import domain from './domain';
@@ -107,12 +105,10 @@ angular
       ovhManagerNavbar,
       'moment-picker',
       'oui',
-      'Module.exchange',
       emailpro,
       exchange,
       office,
       sharepoint,
-      'Module.emailpro',
       domain,
       domainDnsZone,
       emailDomainOrder,
@@ -484,17 +480,21 @@ angular
       }
     },
   ])
-  .run([
-    '$translate',
-    ($translate) => {
-      const selectedLanguageValue = $translate.use();
+  .run(
+    /* @ngInject */ ($translate) => {
+      let lang = $translate.use();
 
-      if (isObject(moment) && isString(selectedLanguageValue)) {
-        const locale = selectedLanguageValue.replace(/_/, '-');
-        moment.locale(locale);
+      if (['en_GB', 'es_US', 'fr_CA'].includes(lang)) {
+        lang = lang.toLowerCase().replace('_', '-');
+      } else {
+        [lang] = lang.split('_');
       }
+
+      return import(`script-loader!moment/locale/${lang}.js`).then(() =>
+        moment.locale(lang),
+      );
     },
-  ])
+  )
   .run([
     'storage',
     (storage) => {

@@ -1,6 +1,6 @@
 import angular from 'angular';
-import moment from 'moment';
 import map from 'lodash/map';
+import 'moment';
 
 export default class MicrosoftOfficeLicenseConsumptionCtrl {
   /* @ngInject */

@@ -1,7 +1,7 @@
 import get from 'lodash/get';
 import isString from 'lodash/isString';
 import angular from 'angular';
-import moment from 'moment';
+import 'moment';
 import { DEFAULT_TARGET, RENEW_URL } from './service-status-action.constant';
 
 export default class {

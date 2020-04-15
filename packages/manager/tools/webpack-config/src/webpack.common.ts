@@ -6,6 +6,9 @@ import CopyWebpackPlugin from 'copy-webpack-plugin';
 import get from 'lodash/get';
 import set from 'lodash/set';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import TerserJSPlugin from 'terser-webpack-plugin';
+import OptimizeCSSAssetsPlugin from 'optimize-css-assets-webpack-plugin';
+
 const webpack = require('webpack');
 
 const cacheLoader = {
@@ -230,6 +233,7 @@ export = opts => {
     }, // \module
 
     optimization: {
+      minimizer: [new TerserJSPlugin({}), new OptimizeCSSAssetsPlugin({})],
       runtimeChunk: 'single',
       // bundle spliting configuration
       splitChunks: {

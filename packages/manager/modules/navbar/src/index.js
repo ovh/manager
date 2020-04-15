@@ -1,10 +1,9 @@
 import angular from 'angular';
-import moment from 'moment';
-import 'moment/min/locales';
 import '@ovh-ux/ng-at-internet';
 import '@ovh-ux/ng-translate-async-loader';
 import '@ovh-ux/manager-core';
 import '@ovh-ux/manager-account-sidebar';
+import 'moment';
 import 'ovh-api-services';
 import 'ovh-ui-angular';
 
@@ -36,12 +35,6 @@ angular
   ])
   .component('ovhManagerNavbar', navbarComponent)
   .service('Navbar', service)
-  .config(
-    /* @ngInject */ (TranslateServiceProvider) => {
-      // set moment locale
-      moment.locale(TranslateServiceProvider.getUserLocale());
-    },
-  )
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
