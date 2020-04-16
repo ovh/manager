@@ -373,7 +373,8 @@ export default class {
               }),
             isAvailable: () =>
               !this.loaders.polling &&
-              this.hasFeature(DASHBOARD_FEATURES.rebuild),
+              (this.hasFeature(DASHBOARD_FEATURES.rebuild) ||
+                this.isVpsNewRange),
           },
           reinstall: {
             text: this.$translate.instant(
@@ -381,7 +382,8 @@ export default class {
             ),
             isAvailable: () =>
               !this.loaders.polling &&
-              this.hasFeature(DASHBOARD_FEATURES.reinstall),
+              this.hasFeature(DASHBOARD_FEATURES.reinstall) &&
+              !this.isVpsNewRange,
           },
           rebootRescue: {
             text: this.$translate.instant('vps_configuration_reboot_rescue'),
