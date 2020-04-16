@@ -14,6 +14,7 @@ import ovhManagerTelecomTask from '@ovh-ux/manager-telecom-task';
 import ngAtInternet from '@ovh-ux/ng-at-internet';
 import ngAtInternetUiRouterPlugin from '@ovh-ux/ng-at-internet-ui-router-plugin';
 import ngOvhCheckboxTable from '@ovh-ux/ng-ovh-checkbox-table';
+import ngOvhUiConfirmModal from '@ovh-ux/ng-ovh-ui-confirm-modal';
 import ngOvhApiWrappers from '@ovh-ux/ng-ovh-api-wrappers';
 import ngOvhBrowserAlert from '@ovh-ux/ng-ovh-browser-alert';
 import ngOvhHttp from '@ovh-ux/ng-ovh-http';
@@ -33,6 +34,7 @@ import ngOvhSidebarMenu from '@ovh-ux/ng-ovh-sidebar-menu';
 import ngOvhSimpleCountryList from '@ovh-ux/ng-ovh-simple-country-list';
 import ngOvhLineDiagnostics from '@ovh-ux/ng-ovh-line-diagnostics';
 import ngOvhContact from '@ovh-ux/ng-ovh-contact';
+import ngOvhTimeline from '@ovh-ux/ng-ovh-timeline';
 import { detach as detachPreloader } from '@ovh-ux/manager-preloader';
 
 import uiRouter, { RejectType } from '@uirouter/angularjs';
@@ -95,8 +97,8 @@ angular
       'ovh-angular-responsive-tabs',
       ngOvhSidebarMenu,
       ngOvhSimpleCountryList,
-      'ovh-angular-timeline',
-      'ovh-angular-ui-confirm-modal',
+      ngOvhTimeline,
+      ngOvhUiConfirmModal,
       'ovh-api-services',
       'ovh-ng-input-password',
       ovhManagerBetaPreference,

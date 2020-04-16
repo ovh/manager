@@ -2,7 +2,7 @@ import execa from 'execa';
 import inquirer from 'inquirer';
 
 const applications = new Set([
-  '@ovh-ux/manager-hub',
+  '@ovh-ux/manager-hub-app',
   '@ovh-ux/manager-dedicated',
   '@ovh-ux/manager-cloud',
   '@ovh-ux/manager-public-cloud',

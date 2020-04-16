@@ -2,7 +2,7 @@
   "name": "@ovh-ux/manager-hub",
   "version": "1.0.2",
   "private": true,
-  "description": "OVHcloud set of components for Manager Hub",
+  "description": "Set of components for Manager Hub",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ovh/manager.git",

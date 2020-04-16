@@ -56,5 +56,6 @@
   "manager_hub_products_SSL_GATEWAY": "SSL Gateway",
   "manager_hub_products_see_all": "Alles anzeigen",
   "manager_hub_products_IP_LOADBALANCER": "IP-Loadbalancer",
-  "manager_hub_products_EXCHANGE": "Microsoft Exchange "
+  "manager_hub_products_EXCHANGE": "Microsoft Exchange ",
+  "manager_hub_products_LICENCE_SQL_SERVER": "SQL Server Lizenzen"
 }

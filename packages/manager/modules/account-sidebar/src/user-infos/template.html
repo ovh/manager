@@ -32,7 +32,6 @@
     <p data-ng-if="!$ctrl.me">
         <oui-skeleton class="mx-auto" data-size="s"></oui-skeleton>
     </p>
-
     <div
         class="manager-hub-user-infos_user-name mb-2"
         data-ng-if="$ctrl.me"
@@ -42,7 +41,7 @@
             <span
                 class="manager-hub-user-infos_role oui-status oui-status_warning"
                 data-ng-if="$ctrl.role"
-                data-ng-bind=":: ('hub_user_role_' + $ctrl.role) | translate"
+                data-translate="{{:: 'hub_user_role_' + $ctrl.role }}"
             >
             </span>
         </div>

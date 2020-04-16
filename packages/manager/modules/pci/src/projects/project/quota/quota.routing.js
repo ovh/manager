@@ -15,6 +15,11 @@ export default /* @ngInject */ ($stateProvider) => {
 
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('pci_projects_project_quota'),
+
+      increaseQuotaLink: /* @ngInject */ ($state, projectId) =>
+        $state.href('pci.projects.project.quota.increase', {
+          projectId,
+        }),
     },
   });
 };

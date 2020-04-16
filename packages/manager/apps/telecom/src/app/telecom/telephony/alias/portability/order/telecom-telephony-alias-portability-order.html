@@ -1220,11 +1220,12 @@
                             </div>
                         </div>
 
-                        <div
-                            data-ovh-contracts="PortabilityOrderCtrl.contracts"
-                            data-full-text="true"
-                            data-ovh-contracts-validated="PortabilityOrderCtrl.order.isContractsAccepted"
-                        ></div>
+                        <ovh-contracts-summary
+                            data-items="PortabilityOrderCtrl.contracts"
+                            data-model="PortabilityOrderCtrl.order.isContractsAccepted"
+                            data-name="telephonyAliasPortabilityOrderContracts"
+                        >
+                        </ovh-contracts-summary>
                     </div>
                     <!-- prices and contracts -->
 

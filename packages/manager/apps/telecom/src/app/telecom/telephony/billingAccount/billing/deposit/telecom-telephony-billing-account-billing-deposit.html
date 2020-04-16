@@ -109,11 +109,12 @@
                             class="form-group"
                             data-ng-if="BillingDepositCtrl.contracts.length"
                         >
-                            <div
-                                data-ovh-contracts="BillingDepositCtrl.contracts"
-                                data-full-text="false"
-                                data-ovh-contracts-validated="BillingDepositCtrl.contractsAccepted"
-                            ></div>
+                            <ovh-contracts-summary
+                                data-items="BillingDepositCtrl.contracts"
+                                data-model="BillingDepositCtrl.contractsAccepted"
+                                data-name="BillingDepositFormContracts"
+                            >
+                            </ovh-contracts-summary>
                         </div>
 
                         <div class="form-group">

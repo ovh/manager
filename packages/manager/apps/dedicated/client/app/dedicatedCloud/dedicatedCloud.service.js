@@ -2,12 +2,14 @@ import assign from 'lodash/assign';
 import camelCase from 'lodash/camelCase';
 import flatten from 'lodash/flatten';
 import includes from 'lodash/includes';
+import indexOf from 'lodash/indexOf';
 import isObject from 'lodash/isObject';
 import isString from 'lodash/isString';
 import isUndefined from 'lodash/isUndefined';
 import pick from 'lodash/pick';
 import set from 'lodash/set';
 import snakeCase from 'lodash/snakeCase';
+import some from 'lodash/some';
 import toNumber from 'lodash/toNumber';
 
 angular
@@ -895,7 +897,7 @@ angular
 
       if (
         policy.deniedChars.length &&
-        ~policy.deniedChars.indexOf(user.password)
+        some(policy.deniedChars, (ch) => ~indexOf(user.password, ch))
       ) {
         return false;
       }

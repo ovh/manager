@@ -19,11 +19,12 @@
                 <span data-translate="telephony_add_group_infos"></span>
             </oui-message>
             <p data-translate="telephony_add_group_contracts"></p>
-            <div
-                data-ovh-contracts="AddGroupCtrl.contracts"
-                data-full-text="true"
-                data-ovh-contracts-validated="AddGroupCtrl.contractsAccepted"
-            ></div>
+            <ovh-contracts-summary
+                data-items="AddGroupCtrl.contracts"
+                data-model="AddGroupCtrl.contractsAccepted"
+                data-name="telephonyBillingAccountAdministrationAddGroupContracts"
+            >
+            </ovh-contracts-summary>
             <div class="row mb-5">
                 <div class="col-md-7 col-lg-5">
                     <button

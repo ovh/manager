@@ -48,7 +48,7 @@ import contactsService from './account/contacts/service/contacts-service.module'
 import dedicatedCloudDatacenterDrp from './dedicatedCloud/datacenter/drp';
 import dedicatedCloudDatacenterDashboardDeleteDrp from './dedicatedCloud/datacenter/dashboard/deleteDrp';
 import dedicatedUniverseComponents from './dedicatedUniverseComponents';
-import errorPage from './error/error.module';
+import errorPage from './error';
 import ovhManagerPccDashboard from './dedicatedCloud/dashboard';
 import ovhManagerPccResourceUpgrade from './dedicatedCloud/resource/upgrade';
 

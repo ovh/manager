@@ -35,7 +35,14 @@ export default /* @ngInject */ ($stateProvider) => {
         DedicatedServerInterfacesService,
         server,
         serverName,
-      ) => DedicatedServerInterfacesService.getOlaPrice(serverName, server),
+        ola,
+      ) => {
+        // option price is only available for servers migrated to agora
+        if (ola.isAvailable() && (!ola.isActivated() || !ola.isConfigured())) {
+          return DedicatedServerInterfacesService.getOlaPrice(serverName, server);
+        }
+        return [];
+      },
       orderPrivateBandwidthLink: /* @ngInject */ (
         $state,
         isLegacy,

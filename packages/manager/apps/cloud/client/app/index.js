@@ -47,7 +47,6 @@ import 'ovh-common-style';
 import 'script-loader!messenger/build/js/messenger.js';
 import 'script-loader!messenger/build/js/messenger-theme-future.js';
 import 'script-loader!messenger/build/js/messenger-theme-flat.js';
-import 'ovh-angular-responsive-page-switcher';
 import 'ovh-api-services';
 import 'script-loader!chart.js/dist/Chart.js';
 import 'script-loader!angular-chart.js/dist/angular-chart.js';
