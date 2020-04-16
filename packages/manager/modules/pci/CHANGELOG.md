@@ -1,3 +1,22 @@
+# [3.18.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.17.1...@ovh-ux/manager-pci@3.18.0) (2020-04-16)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 335] ([eae91e9](https://github.com/ovh/manager/commit/eae91e9fbf779b3c6e0a34066725d42df764639a))
+* **i18n:** add missing translations [CDS 338] ([ce7c630](https://github.com/ovh/manager/commit/ce7c630ccb50b1dc4535756b392947adbbf4c62a))
+* **i18n:** add missing translations [CDS 340] ([d9355bb](https://github.com/ovh/manager/commit/d9355bb0179b8673c4a00109899993341ed01fa2))
+* **i18n:** add missing translations [CDS 351] ([c76b783](https://github.com/ovh/manager/commit/c76b783ee6ef33f08cb22361ef45eb583cff3221))
+* **i18n:** add missing translations [CDS 353] ([dd57828](https://github.com/ovh/manager/commit/dd578281ceaa43df230eb4e78aa264f78c57827b))
+* **private-registry.create:** fix wrong translation in create page ([#2717](https://github.com/ovh/manager/issues/2717)) ([ca7a268](https://github.com/ovh/manager/commit/ca7a2688ab5e6b96bafc3aacfa6a932013ae3b92))
+
+
+### Features
+
+* **pci.quota:** request quota increase in-app ([#2664](https://github.com/ovh/manager/issues/2664)) ([3f45937](https://github.com/ovh/manager/commit/3f459371834023e6ffd1f3e3b32f2b54431e400f))
+
+
+
 ## [3.17.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.17.0...@ovh-ux/manager-pci@3.17.1) (2020-04-15)
 
 

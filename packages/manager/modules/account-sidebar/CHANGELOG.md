@@ -1,3 +1,12 @@
+## [1.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-sidebar@1.3.0...@ovh-ux/manager-account-sidebar@1.3.1) (2020-04-16)
+
+
+### Bug Fixes
+
+* **user-infos:** display translation when loaded ([#2728](https://github.com/ovh/manager/issues/2728)) ([2bd18dd](https://github.com/ovh/manager/commit/2bd18dd12ac0d7065f74e4b1d9ab772f1164dca8))
+
+
+
 # [1.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-sidebar@1.2.0...@ovh-ux/manager-account-sidebar@1.3.0) (2020-04-08)
 
 
