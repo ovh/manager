@@ -1,3 +1,12 @@
+## [6.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax@6.3.0...@ovh-ux/manager-freefax@6.3.1) (2020-04-16)
+
+
+### Bug Fixes
+
+* use ovh-contracts-summary component ([#2650](https://github.com/ovh/manager/issues/2650)) ([1bd8d23](https://github.com/ovh/manager/commit/1bd8d2390f77c7fa3b970121070bfdd234e1809a))
+
+
+
 # [6.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax@6.2.2...@ovh-ux/manager-freefax@6.3.0) (2020-04-15)
 
 

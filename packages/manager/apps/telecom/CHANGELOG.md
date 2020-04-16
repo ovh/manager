@@ -1,3 +1,13 @@
+## [12.0.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@12.0.2...@ovh-ux/manager-telecom@12.0.3) (2020-04-16)
+
+
+### Bug Fixes
+
+* use ovh-contracts-summary component ([#2650](https://github.com/ovh/manager/issues/2650)) ([1bd8d23](https://github.com/ovh/manager/commit/1bd8d2390f77c7fa3b970121070bfdd234e1809a))
+* **i18n:** add missing translations [CDS 337] ([94eb225](https://github.com/ovh/manager/commit/94eb225484020949ed1ef946755bdbc4f228efc8))
+
+
+
 ## [12.0.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@12.0.1...@ovh-ux/manager-telecom@12.0.2) (2020-04-15)
 
 
