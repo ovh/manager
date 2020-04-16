@@ -31,11 +31,13 @@ export default /* @ngInject */ (
         target: 'DISCLAIMER',
         type: 'SWITCH_TABS',
       },
-      {
-        label: $translate.instant('emailpro_tab_TASKS'),
-        target: 'TASK',
-        type: 'SWITCH_TABS',
-      },
+      Environment.getRegion() === 'EU'
+        ? {
+            label: $translate.instant('emailpro_tab_TASKS'),
+            target: 'TASK',
+            type: 'SWITCH_TABS',
+          }
+        : null,
       {
         type: 'SEPARATOR',
       },

@@ -131,7 +131,11 @@
                 >
                 </oui-header-tabs-item>
                 <oui-header-tabs-dropdown data-text="{{ tabMenu.title }}">
-                    <div data-ng-repeat="item in tabMenu.items">
+                    <div
+                        data-ng-repeat="item in tabMenu.items"
+                        data-ng-if="item"
+                        data-track-by="$index"
+                    >
                         <oui-header-tabs-divider
                             data-ng-if="item.type === 'SEPARATOR'"
                         ></oui-header-tabs-divider>
