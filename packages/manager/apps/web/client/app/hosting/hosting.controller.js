@@ -31,6 +31,7 @@ export default class {
     emailOptionIds,
     emailOptionDetachInformation,
     goToDetachEmail,
+    goToDetachPrivateDB,
     User,
     HostingDatabase,
     HostingDomain,
@@ -40,6 +41,8 @@ export default class {
     HostingTask,
     pendingTasks,
     PrivateDatabase,
+    privateDatabasesDetachable,
+    privateDatabasesIds,
     HOSTING_STATUS,
   ) {
     this.$scope = $scope;
@@ -59,6 +62,7 @@ export default class {
     this.emailOptionIds = emailOptionIds;
     this.emailOptionDetachInformation = emailOptionDetachInformation;
     this.goToDetachEmail = goToDetachEmail;
+    this.goToDetachPrivateDB = goToDetachPrivateDB;
     this.User = User;
     this.HostingDatabase = HostingDatabase;
     this.HostingDomain = HostingDomain;
@@ -68,6 +72,8 @@ export default class {
     this.HostingTask = HostingTask;
     this.pendingTasks = pendingTasks;
     this.PrivateDatabase = PrivateDatabase;
+    this.privateDatabasesDetachable = privateDatabasesDetachable;
+    this.privateDatabasesIds = privateDatabasesIds;
   }
 
   $onInit() {
@@ -82,7 +88,9 @@ export default class {
 
     this.$scope.emailOptionIds = this.emailOptionIds;
     this.$scope.emailOptionDetachInformation = this.emailOptionDetachInformation;
+    this.$scope.privateDatabasesDetachable = this.privateDatabasesDetachable;
     this.$scope.goToDetachEmail = this.goToDetachEmail;
+    this.$scope.goToDetachPrivateDB = this.goToDetachPrivateDB;
     this.$scope.pendingTasks = this.pendingTasks;
 
     this.$scope.stepPath = '';
@@ -270,19 +278,11 @@ export default class {
         nbDataBaseInclude: 0,
       };
 
-      return this.$q
-        .all({
-          privateDatabaseIds: this.HostingDatabase.getPrivateDatabaseIds(
-            this.$stateParams.productId,
-          ),
-          hasPrivateSqlToActivate: this.HostingDatabase.getHasPrivateSqlToActivate(
-            this.$stateParams.productId,
-          ),
-        })
-        .then(({ privateDatabaseIds, hasPrivateSqlToActivate }) => {
-          this.$scope.hosting.sqlPriveInfo.privateDatabaseIds = privateDatabaseIds;
-          this.$scope.hosting.sqlPriveInfo.hasPrivateDatabaseToActivate = hasPrivateSqlToActivate;
-        });
+      return this.HostingDatabase.getHasPrivateSqlToActivate(
+        this.$stateParams.productId,
+      ).then((hasPrivateSqlToActivate) => {
+        this.$scope.hosting.sqlPriveInfo.hasPrivateDatabaseToActivate = hasPrivateSqlToActivate;
+      });
     };
 
     //---------------------------------------------
@@ -645,16 +645,12 @@ export default class {
   }
 
   getPrivateDatabases() {
-    return this.HostingDatabase.getPrivateDatabaseIds(
-      this.$stateParams.productId,
-    ).then((databaseIds) =>
-      this.$q.all(
-        databaseIds.map((id) =>
-          this.$scope.isAdminPrivateDb(id).then((isAdmin) => ({
-            name: id,
-            isAdmin,
-          })),
-        ),
+    return this.$q.all(
+      this.privateDatabasesIds.map((id) =>
+        this.$scope.isAdminPrivateDb(id).then((isAdmin) => ({
+          name: id,
+          isAdmin,
+        })),
       ),
     );
   }
