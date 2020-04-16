@@ -1,4 +1,5 @@
 import has from 'lodash/has';
+import 'moment';
 
 export default class {
   /* @ngInject */

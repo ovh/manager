@@ -1,3 +1,5 @@
+import 'moment';
+
 export default class ContainerObject {
   constructor(resource) {
     this.retrievalDate = null;

@@ -1,3 +1,12 @@
+# [6.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax@6.2.2...@ovh-ux/manager-freefax@6.3.0) (2020-04-15)
+
+
+### Features
+
+* **freefax:** lazy load freefax root state ([a5ccedf](https://github.com/ovh/manager/commit/a5ccedf1a8f735966ed9f0d56f8e07a3acf4c5f0))
+
+
+
 ## [6.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax@6.2.1...@ovh-ux/manager-freefax@6.2.2) (2020-03-18)
 
 

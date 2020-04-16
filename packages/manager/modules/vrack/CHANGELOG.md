@@ -1,3 +1,17 @@
+# [0.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack@0.5.4...@ovh-ux/manager-vrack@0.6.0) (2020-04-15)
+
+
+### Features
+
+* **vrack:** lazy load vrack root states ([61ad1ea](https://github.com/ovh/manager/commit/61ad1ea4eacb6cbece458525952efb3c9e61ea56))
+
+
+### Performance Improvements
+
+* import dynamically moment locales ([#2755](https://github.com/ovh/manager/issues/2755)) ([5f3320d](https://github.com/ovh/manager/commit/5f3320d92802a1f4a6d65baf60f74917b8e58f4a))
+
+
+
 ## [0.5.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack@0.5.3...@ovh-ux/manager-vrack@0.5.4) (2020-03-04)
 
 

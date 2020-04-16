@@ -1,3 +1,12 @@
+# [7.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms-app@7.1.5...@ovh-ux/manager-sms-app@7.2.0) (2020-04-15)
+
+
+### Features
+
+* **sms:** lazy load sms root state ([2291467](https://github.com/ovh/manager/commit/22914675eb9e1bc87baf917210955fe13efb38e5))
+
+
+
 ## [7.1.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms-app@7.1.4...@ovh-ux/manager-sms-app@7.1.5) (2020-03-18)
 
 

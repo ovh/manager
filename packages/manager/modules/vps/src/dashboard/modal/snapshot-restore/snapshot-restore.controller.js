@@ -1,3 +1,5 @@
+import 'moment';
+
 export default class VpsRestoreSnapshotCtrl {
   /* @ngInject */
   constructor($translate, CucControllerHelper, CucCloudMessage, VpsService) {

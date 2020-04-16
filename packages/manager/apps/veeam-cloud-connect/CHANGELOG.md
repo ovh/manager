@@ -1,3 +1,12 @@
+# [1.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-cloud-connect-app@1.0.2...@ovh-ux/manager-veeam-cloud-connect-app@1.1.0) (2020-04-15)
+
+
+### Features
+
+* **veeam-cloud-connect:** lazy load veam cloud connect root state ([4b9d78d](https://github.com/ovh/manager/commit/4b9d78d8dcba2453f66dd2f18abc559f1c490858))
+
+
+
 ## [1.0.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-cloud-connect-app@1.0.1...@ovh-ux/manager-veeam-cloud-connect-app@1.0.2) (2020-03-18)
 
 

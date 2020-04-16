@@ -1,3 +1,17 @@
+# [1.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@1.6.0...@ovh-ux/manager-emailpro@1.7.0) (2020-04-15)
+
+
+### Features
+
+* **emailpro:** lazy load emailpro root state ([f46535f](https://github.com/ovh/manager/commit/f46535f79d8881f6a42599091ffddb6e7288f4b6))
+
+
+### Performance Improvements
+
+* import dynamically moment locales ([#2755](https://github.com/ovh/manager/issues/2755)) ([5f3320d](https://github.com/ovh/manager/commit/5f3320d92802a1f4a6d65baf60f74917b8e58f4a))
+
+
+
 # [1.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@1.5.1...@ovh-ux/manager-emailpro@1.6.0) (2020-03-18)
 
 

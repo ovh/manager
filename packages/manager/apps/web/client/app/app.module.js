@@ -1,6 +1,6 @@
 /* eslint-disable import/no-webpack-loader-syntax, import/no-unresolved, import/extensions */
 import 'babel-polyfill';
-import 'script-loader!moment/min/moment-with-locales.min.js';
+import 'script-loader!moment/min/moment.min.js';
 import 'jquery-ui/ui/core.js';
 import 'jquery-ui/ui/widget.js';
 import 'jquery-ui/ui/widgets/mouse.js';

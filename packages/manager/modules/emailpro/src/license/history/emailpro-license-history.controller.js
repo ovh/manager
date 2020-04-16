@@ -1,6 +1,6 @@
 import angular from 'angular';
 import set from 'lodash/set';
-import moment from 'moment';
+import 'moment';
 
 export default /* @ngInject */ (
   $rootScope,

@@ -1,6 +1,6 @@
-import moment from 'moment';
 import controller from './billing.controller';
 import template from './billing.html';
+import 'moment';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.billing', {

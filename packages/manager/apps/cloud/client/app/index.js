@@ -9,7 +9,7 @@ import 'angular-ui-bootstrap';
 import 'angular-cookies';
 import 'script-loader!angular-dynamic-locale/src/tmhDynamicLocale.js';
 import 'angular-messages';
-import 'script-loader!moment/min/moment-with-locales.js';
+import 'script-loader!moment/min/moment.min.js';
 import 'angular-moment';
 import 'angular-resource';
 import 'angular-sanitize';

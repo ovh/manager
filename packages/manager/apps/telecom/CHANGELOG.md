@@ -1,3 +1,12 @@
+## [12.0.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@12.0.1...@ovh-ux/manager-telecom@12.0.2) (2020-04-15)
+
+
+### Performance Improvements
+
+* import dynamically moment locales ([#2755](https://github.com/ovh/manager/issues/2755)) ([5f3320d](https://github.com/ovh/manager/commit/5f3320d92802a1f4a6d65baf60f74917b8e58f4a))
+
+
+
 ## [12.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@12.0.0...@ovh-ux/manager-telecom@12.0.1) (2020-04-01)
 
 

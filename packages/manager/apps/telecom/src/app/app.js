@@ -64,7 +64,6 @@ angular
       'angular-inview',
       'angular-translate-loader-pluggable',
       'matchmedia-ng',
-      'momentjs',
       'ngAnimate',
       'ngAria',
       ngAtInternet,
@@ -153,13 +152,21 @@ angular
   .config((LineDiagnosticsProvider) => {
     LineDiagnosticsProvider.setPathPrefix('/xdsl/{serviceName}');
   })
+  .run(
+    /* @ngInject */ ($translate) => {
+      let lang = $translate.use();
 
-  /*= =========  TRANSLATOR  ========== */
-  .config((TranslateServiceProvider) => {
-    const defaultLanguage = TranslateServiceProvider.getUserLocale();
-    // set moment locale
-    moment.locale(defaultLanguage.split('_')[0]);
-  })
+      if (['en_GB', 'es_US', 'fr_CA'].includes(lang)) {
+        lang = lang.toLowerCase().replace('_', '-');
+      } else {
+        [lang] = lang.split('_');
+      }
+
+      return import(`script-loader!moment/locale/${lang}.js`).then(() =>
+        moment.locale(lang),
+      );
+    },
+  )
 
   /*= =========  PAGE TRACKING  ========== */
   .config(

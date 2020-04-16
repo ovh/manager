@@ -1,3 +1,5 @@
+import 'moment';
+
 export default class VpsOptionTerminateCtrl {
   /* @ngInject */
   constructor($translate, CucControllerHelper, CucCloudMessage, VpsService) {

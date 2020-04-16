@@ -10,6 +10,7 @@ import 'script-loader!messenger/build/js/messenger-theme-flat.js';
 
 import angular from 'angular';
 import ovhManagerVrack from '@ovh-ux/manager-vrack';
+
 import './index.scss';
 
 angular.module('vrackApp', [ovhManagerVrack]).config(

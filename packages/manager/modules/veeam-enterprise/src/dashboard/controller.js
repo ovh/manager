@@ -1,3 +1,5 @@
+import 'moment';
+
 import { RENEW_URL } from '../constants';
 
 export default class VeeamEnterpriseDashboardCtrl {

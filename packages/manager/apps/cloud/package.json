@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-cloud",
-  "version": "9.0.1",
+  "version": "9.0.2",
   "private": true,
   "description": "OVHcloud Cloud control panel.",
   "repository": {
@@ -60,7 +60,7 @@
     "@ovh-ux/ng-tail-logs": "^2.0.3",
     "@ovh-ux/ng-translate-async-loader": "^2.1.0",
     "@ovh-ux/ng-ui-router-layout": "^3.2.0",
-    "@ovh-ux/ng-ui-router-line-progress": "^1.1.0",
+    "@ovh-ux/ng-ui-router-line-progress": "^1.2.0",
     "@uirouter/angularjs": "^1.0.23",
     "angular": "^1.7.5",
     "angular-animate": "~1.7.8",
