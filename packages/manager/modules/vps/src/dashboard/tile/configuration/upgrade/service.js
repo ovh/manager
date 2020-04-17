@@ -27,9 +27,7 @@ export default class VpsUpgradeService {
 
   startUpgrade(serviceName, planCode, httpData) {
     return this.$http
-      .post(`/order/upgrade/vps/${serviceName}/${planCode}`, {
-        data: httpData,
-      })
+      .post(`/order/upgrade/vps/${serviceName}/${planCode}`, httpData)
       .then(({ data }) => data);
   }
 
