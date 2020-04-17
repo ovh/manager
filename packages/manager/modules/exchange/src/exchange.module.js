@@ -1,7 +1,6 @@
 import angular from 'angular';
 import ovhManagerCore from '@ovh-ux/manager-core';
 
-import accountRenew from './billing/account-renew/renew.module';
 import ExchangeAccountMfaCreate from './account/mfa/create';
 import ExchangeAccountMfaDelete from './account/mfa/delete';
 
@@ -29,7 +28,6 @@ angular
     'ui.bootstrap',
     'ngSanitize',
     'ng.ckeditor',
-    accountRenew,
     components,
     controllers,
     directives,
