@@ -1,36 +1,17 @@
-<div class="cui-page__content">
+<section class="cui-page__content">
     <span class="oui-header_3" data-translate="logs_roles_title"></span>
     <p data-translate="logs_roles_description"></p>
 
-    <p>
-        {{ctrl.quota.data.configured}}/{{ctrl.quota.data.max}}
-        <span data-translate="logs_roles_total_used"></span>
-        (<logs-upgrade-quota-link></logs-upgrade-quota-link>)
-        <a
-            class="oui-link"
-            data-oui-tooltip="{{'logs_roles_tooltip' | translate}}"
-        >
-            <i
-                class="oui-icon oui-icon-help_circle logs-inputs-roles-tooltip"
-                aria-hidden="true"
-            ></i>
-        </a>
-    </p>
-
     <oui-datagrid data-rows="ctrl.roles.data" data-page-size="10">
         <extra-top>
-            <logs-add-tool
-                data-ng-if="!ctrl.quota.loading"
-                data-text="{{ ::'logs_roles_add' | translate }}"
-                data-tool-type="{{ ::'logs_roles_name' | translate }}"
-                data-current-usage="ctrl.quota.data.configured"
-                data-max-usage="ctrl.quota.data.max"
-                data-callback="ctrl.add()"
+            <button
+                type="button"
+                class="oui-button oui-button_secondary"
+                data-ng-click="ctrl.add()"
             >
-            </logs-add-tool>
-            <oui-spinner
-                data-ng-if="ctrl.quota.loading || ctrl.delete.loading"
-            ></oui-spinner>
+                <i class="oui-icon oui-icon-add pr-1" aria-hidden="true"></i> {{
+                ::'logs_roles_add' | translate }}
+            </button>
         </extra-top>
         <oui-column
             data-title=":: 'logs_roles_col_name' | translate"
@@ -63,19 +44,6 @@
             data-filterable
         ></oui-column>
         <oui-column
-            data-title="::'logs_roles_col_link' | translate"
-            data-property="info.optionId"
-            data-sortable
-            type="string"
-        >
-            <i
-                data-ng-if="$row.info.optionId"
-                class="oui-icon oui-icon-check_line"
-                aria-hidden="true"
-            ></i>
-            <span data-ng-if="!$row.info.optionId"> - </span>
-        </oui-column>
-        <oui-column
             data-title="::'logs_col_last_modified' | translate"
             data-property="info.updatedAt"
             data-sortable
@@ -106,4 +74,4 @@
             ></oui-action-menu-item>
         </oui-action-menu>
     </oui-datagrid>
-</div>
+</section>
