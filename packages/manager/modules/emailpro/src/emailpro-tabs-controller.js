@@ -19,7 +19,9 @@ export default /* @ngInject */ (
     Environment.getRegion() === 'EU' && $scope.exchange.isMXPlan
       ? 'MAILING_LIST'
       : null,
-    $scope.exchange.isMXPlan ? 'REDIRECTION' : null,
+    Environment.getRegion() === 'EU' && $scope.exchange.isMXPlan
+      ? 'REDIRECTION'
+      : null,
     'EXTERNAL_CONTACT',
   ].filter((tab) => !isNull(tab));
 
