@@ -1,3 +1,5 @@
+import uniq from 'lodash/uniq';
+
 export default class {
   /* @ngInject */
   constructor($translate, AccountContactsService) {
@@ -18,6 +20,19 @@ export default class {
           }),
           {},
         ),
+      hideOperators: true,
+    };
+  }
+
+  getContactColumnFilter(type) {
+    return {
+      values: uniq(this.services.map((service) => service[type])).reduce(
+        (contacts, contact) => ({
+          ...contacts,
+          [contact]: contact,
+        }),
+        {},
+      ),
       hideOperators: true,
     };
   }

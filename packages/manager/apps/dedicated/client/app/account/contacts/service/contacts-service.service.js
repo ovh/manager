@@ -2,6 +2,7 @@ import filter from 'lodash/filter';
 import map from 'lodash/map';
 import uniq from 'lodash/uniq';
 import sortBy from 'lodash/sortBy';
+import forEach from 'lodash/forEach';
 
 import { BillingService } from '@ovh-ux/manager-models';
 
@@ -51,9 +52,13 @@ export default class {
         const availableServices = filter(services, (service) =>
           AVAILABLE_SERVICES.includes(service.category),
         );
-        return sortBy(availableServices, ['serviceName', 'category']).map(
-          (service) => new BillingService(service),
-        );
+        const promises = [];
+        forEach(availableServices, (service) => {
+          promises.push(this.getServiceInfos(service));
+        });
+        return Promise.all(promises).then((data) => {
+          return sortBy(data, ['serviceName', 'category']);
+        });
       });
   }
 
