@@ -32,7 +32,6 @@ export default class OvhManagerServerSidebarController {
     coreConfig,
     CucFeatureAvailabilityService,
     OvhApiService,
-    OvhApiUniverses,
     SessionService,
     SidebarMenu,
     CORE_MANAGER_URLS,
@@ -43,7 +42,6 @@ export default class OvhManagerServerSidebarController {
     this.coreConfig = coreConfig;
     this.CucFeatureAvailabilityService = CucFeatureAvailabilityService;
     this.OvhApiService = OvhApiService;
-    this.OvhApiUniverses = OvhApiUniverses;
     this.SessionService = SessionService;
     this.SidebarMenu = SidebarMenu;
     this.CORE_MANAGER_URLS = CORE_MANAGER_URLS;
@@ -53,15 +51,11 @@ export default class OvhManagerServerSidebarController {
     this.SidebarMenu.setInitializationPromise(
       this.$translate
         .refresh()
-        .then(() => this.OvhApiUniverses.Aapi().query().$promise)
-        .then((universes) => {
+        .then(() => {
           this.SIDEBAR_CONFIG = SIDEBAR_CONFIG;
           this.SIDEBAR_ORDER_CONFIG = SIDEBAR_ORDER_CONFIG;
 
-          if (
-            this.universe === 'WEB' &&
-            find(universes, { universe: this.universe.toLowerCase() })
-          ) {
+          if (this.universe === 'WEB') {
             this.SIDEBAR_CONFIG = WEB_SIDEBAR_CONFIG;
             this.SIDEBAR_ORDER_CONFIG = WEB_ORDER_SIDEBAR_CONFIG;
           }
