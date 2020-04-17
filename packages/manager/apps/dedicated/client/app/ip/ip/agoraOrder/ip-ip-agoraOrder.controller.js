@@ -5,6 +5,7 @@ import head from 'lodash/head';
 import last from 'lodash/last';
 import map from 'lodash/map';
 import range from 'lodash/range';
+import set from 'lodash/set';
 import uniq from 'lodash/uniq';
 
 import { PRODUCT_TYPES } from './ip-ip-agoraOrder.constant';
@@ -139,6 +140,8 @@ angular.module('Module.ip.controllers').controller(
 
       this.model.params = {};
 
+      let vpsIpCountryAvailablePromise = this.$q.when(null);
+
       const ipOffersPromise = this.IpAgoraOrder.getIpOffers(
         this.user.ovhSubsidiary,
       ).then((ipOffers) => {
@@ -150,11 +153,30 @@ angular.module('Module.ip.controllers').controller(
           ipOfferDetails = ipOfferDetails.filter(({ productShortName }) =>
             productShortName.includes('failover'),
           );
+
+          vpsIpCountryAvailablePromise = this.IpAgoraOrder.getVpsIpCountryAvailable(
+            this.model.selectedService.serviceName,
+          );
         }
         this.ipOffers = filter(ipOfferDetails, {
           productRegion: AgoraIpOrderCtrl.getRegionFromServiceName(
             this.model.selectedService.serviceName,
           ),
+        });
+
+        return vpsIpCountryAvailablePromise.then((countries) => {
+          if (countries !== null) {
+            this.ipOffers = this.ipOffers.map((ipOffer) => {
+              set(
+                ipOffer,
+                'countries',
+                ipOffer.countries.filter(
+                  ({ code }) => countries.indexOf(code.toLowerCase()) > -1,
+                ),
+              );
+              return ipOffer;
+            });
+          }
         });
       });
 

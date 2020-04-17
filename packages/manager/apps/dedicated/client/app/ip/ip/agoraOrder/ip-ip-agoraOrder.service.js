@@ -175,5 +175,11 @@ angular.module('Module.ip.services').service(
 
       return productToOrder;
     }
+
+    getVpsIpCountryAvailable(serviceName) {
+      return this.OvhHttp.get(`/vps/${serviceName}/ipCountryAvailable`, {
+        rootPath: 'apiv6',
+      });
+    }
   },
 );
