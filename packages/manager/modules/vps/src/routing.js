@@ -27,10 +27,15 @@ export default /* @ngInject */ ($stateProvider) => {
       resolve: {
         connectedUser: /* @ngInject */ (OvhApiMe) =>
           OvhApiMe.v6().get().$promise,
-        capabilities: /* @ngInject */ (serviceName, OvhApiVpsCapabilities) =>
-          OvhApiVpsCapabilities.Aapi()
-            .query({ serviceName })
-            .$promise.then((capabilities) =>
+        capabilities: /* @ngInject */ ($http, serviceName, stateVps) =>
+          $http
+            .get(`/vps/capabilities/${serviceName}`, {
+              serviceType: 'aapi',
+              params: {
+                modelName: stateVps.model.name,
+              },
+            })
+            .then((capabilities) =>
               capabilities.map((capability) => kebabCase(capability)),
             ),
         defaultPaymentMethod: /* @ngInject */ (ovhPaymentMethod) =>
