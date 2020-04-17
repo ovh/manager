@@ -1,3 +1,12 @@
+# [9.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@9.0.3...@ovh-ux/manager-cloud@9.1.0) (2020-04-17)
+
+
+### Features
+
+* **cloud.logs:** remove options concern on roles ([#2792](https://github.com/ovh/manager/issues/2792)) ([229c411](https://github.com/ovh/manager/commit/229c4118acafd6a1b1c3945cc436fe6175f5d328))
+
+
+
 ## [9.0.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@9.0.2...@ovh-ux/manager-cloud@9.0.3) (2020-04-16)
 
 
