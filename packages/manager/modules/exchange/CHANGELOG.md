@@ -1,3 +1,12 @@
+## [1.8.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@1.8.0...@ovh-ux/manager-exchange@1.8.1) (2020-04-17)
+
+
+### Bug Fixes
+
+* load renew module ([#2800](https://github.com/ovh/manager/issues/2800)) ([b5ed9d8](https://github.com/ovh/manager/commit/b5ed9d8f0019140d160d23c8b98e20fed927793d))
+
+
+
 # [1.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@1.7.1...@ovh-ux/manager-exchange@1.8.0) (2020-04-15)
 
 
