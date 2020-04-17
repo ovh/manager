@@ -27,7 +27,7 @@ angular
 
       this.$onInit = function $onInit() {
         self.billingAccounts = {
-          ids: [],
+          accounts: [],
           paginated: null,
           current: $stateParams.billingAccount,
           selected: null,
@@ -54,28 +54,32 @@ angular
 
         return $q
           .all({
-            billingAccounts: OvhApiTelephony.v6().query().$promise,
+            billingAccounts: OvhApiTelephony.v7()
+              .query()
+              .expand()
+              .execute().$promise,
             numberCount: getNumberCount,
             lineCount: getLineCount,
           })
           .then(
             (result) => {
-              self.billingAccounts.ids = result.billingAccounts.map(
-                (billingAccount) => ({ id: billingAccount }),
+              self.billingAccounts.accounts = result.billingAccounts.reduce(
+                (accounts, account) => {
+                  if (
+                    account.value.billingAccount !==
+                    self.billingAccounts.current
+                  ) {
+                    accounts.push(account.value);
+                  }
+                  return accounts;
+                },
+                [],
               );
               self.numberCount = result.numberCount;
               self.lineCount = result.lineCount;
             },
             (err) => new TucToastError(err),
           );
-      };
-
-      self.fetchBillingAccountDetails = function fetchBillingAccountDetails(
-        billingAccount,
-      ) {
-        return OvhApiTelephony.v6().get({
-          billingAccount: billingAccount.id,
-        }).$promise;
       };
 
       self.selectBillingAccount = function selectBillingAccount(ba) {
