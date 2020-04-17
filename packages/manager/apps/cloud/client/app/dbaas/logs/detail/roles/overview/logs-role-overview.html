@@ -27,36 +27,44 @@
             <div data-ng-if="ctrl.role.permissions.length > 0">
                 <div data-ng-if="ctrl.permissions.stream.length > 0">
                     <span class="pl-0 preview-list__list-heading">Stream</span>
-                    <ul
-                        data-ng-repeat="stream in ctrl.permissions.stream track by $index"
-                    >
-                        {{stream.title}}
+                    <ul>
+                        <li
+                            data-ng-repeat="stream in ctrl.permissions.stream track by $index"
+                        >
+                            {{stream.title}}
+                        </li>
                     </ul>
                 </div>
                 <div data-ng-if="ctrl.permissions.index.length > 0">
                     <span class="pl-0 preview-list__list-heading">Index</span>
-                    <ul
-                        data-ng-repeat="index in ctrl.permissions.index track by $index"
-                    >
-                        {{index.name}}
+                    <ul>
+                        <li
+                            data-ng-repeat="index in ctrl.permissions.index track by $index"
+                        >
+                            {{index.name}}
+                        </li>
                     </ul>
                 </div>
                 <div data-ng-if="ctrl.permissions.alias.length > 0">
                     <span class="pl-0 preview-list__list-heading">Alias</span>
-                    <ul
-                        data-ng-repeat="alias in ctrl.permissions.alias track by $index"
-                    >
-                        {{alias.name}}
+                    <ul>
+                        <li
+                            data-ng-repeat="alias in ctrl.permissions.alias track by $index"
+                        >
+                            {{alias.name}}
+                        </li>
                     </ul>
                 </div>
                 <div data-ng-if="ctrl.permissions.dashboard.length > 0">
                     <span class="pl-0 preview-list__list-heading"
                         >Dashboard</span
                     >
-                    <ul
-                        data-ng-repeat="dashboard in ctrl.permissions.dashboard track by $index"
-                    >
-                        {{dashboard.title}}
+                    <ul>
+                        <li
+                            data-ng-repeat="dashboard in ctrl.permissions.dashboard track by $index"
+                        >
+                            {{dashboard.title}}
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -68,19 +76,14 @@
         ></dt>
         <dd class="preview-list__definition">
             <span data-ng-if="ctrl.role.members.length === 0"> - </span>
-            <ul
-                class="pl-0"
-                data-ng-repeat="member in ctrl.role.members track by $index"
-                data-ng-bind="member.username"
-            ></ul>
+            <ul>
+                <li
+                    data-ng-repeat="member in ctrl.role.members track by $index"
+                >
+                    {{member.username}}
+                    <small data-ng-if="member.note">- {{member.note}}</small>
+                </li>
+            </ul>
         </dd>
-        <dt
-            class="preview-list__term"
-            data-translate="logs_role_overview_linked_option"
-        ></dt>
-        <dd
-            class="preview-list__definition"
-            data-ng-bind=":: ctrl.role.info.optionId ? 'common_yes' : 'common_no' | translate"
-        ></dd>
     </dl>
 </oui-modal>

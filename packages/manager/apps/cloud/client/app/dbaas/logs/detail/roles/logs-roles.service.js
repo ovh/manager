@@ -8,7 +8,6 @@ class LogsRolesService {
     LogsDashboardsService,
     LogsHelperService,
     LogsIndexService,
-    LogsOptionsService,
     LogsConstants,
     LogsStreamsService,
     OvhApiDbaas,
@@ -19,7 +18,6 @@ class LogsRolesService {
     this.CucServiceHelper = CucServiceHelper;
     this.CucControllerHelper = CucControllerHelper;
     this.LogsDashboardsService = LogsDashboardsService;
-    this.LogsOptionsService = LogsOptionsService;
     this.LogsAliasesService = LogsAliasesService;
     this.LogsIndexService = LogsIndexService;
     this.LogsStreamsService = LogsStreamsService;
@@ -46,14 +44,10 @@ class LogsRolesService {
     this.RolesAapiService = OvhApiDbaas.Logs()
       .Role()
       .Aapi();
-    this.AccountingAapiService = OvhApiDbaas.Logs()
-      .Accounting()
-      .Aapi();
 
     this.newRole = {
       description: '',
       name: '',
-      optionId: null,
     };
     this.permissions = {
       dashboard: [],
@@ -208,27 +202,6 @@ class LogsRolesService {
     return this.LogsApiService.logDetail({ serviceName }).$promise;
   }
 
-  getQuota(serviceName) {
-    return this.AccountingAapiService.me({ serviceName })
-      .$promise.then((me) => {
-        const quota = {
-          max: me.total.maxNbRole,
-          mainOfferMax: me.offer.maxNbRole,
-          mainOfferCurrent: me.offer.curNbRole,
-          configured: me.total.curNbRole,
-          currentUsage: (me.total.curNbRole * 100) / me.total.maxNbRole,
-        };
-        return quota;
-      })
-      .catch((err) =>
-        this.LogsHelperService.handleError(
-          'logs_roles_quota_get_error',
-          err,
-          {},
-        ),
-      );
-  }
-
   getRoles(serviceName) {
     return this.RolesApiService.query({ serviceName })
       .$promise.then((roles) => {
@@ -246,20 +219,12 @@ class LogsRolesService {
     return this.RolesAapiService.get({ serviceName, roleId }).$promise;
   }
 
-  getSubscribedOptions(serviceName) {
-    return this.LogsOptionsService.getSubscribedOptionsByType(
-      serviceName,
-      this.LogsConstants.ROLE_OPTION_REFERENCE,
-    );
-  }
-
   addRole(serviceName, object) {
     return this.RolesApiService.create(
       { serviceName },
       {
         description: object.description,
         name: object.name,
-        optionId: object.optionId,
       },
     )
       .$promise.then((operation) => {
@@ -284,7 +249,6 @@ class LogsRolesService {
       {
         description: object.description,
         name: object.name,
-        optionId: object.optionId,
       },
     )
       .$promise.then((operation) => {
@@ -387,7 +351,6 @@ class LogsRolesService {
     this.RolesApiService.resetAllCache();
     this.RolesAapiService.resetAllCache();
     this.MembersApiService.resetAllCache();
-    this.AccountingAapiService.resetAllCache();
   }
 }
 
