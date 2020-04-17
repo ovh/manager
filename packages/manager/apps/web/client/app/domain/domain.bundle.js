@@ -82,10 +82,6 @@ import './webhosting/order/steps/module/domain-webhosting-order-steps-module.con
 import './webhosting/order/steps/module/domain-webhosting-order-steps-module.controller';
 import './webhosting/order/steps/payment/domain-webhosting-order-steps-payment.component';
 import './webhosting/order/steps/payment/domain-webhosting-order-steps-payment.controller';
-import './zone/activate/activate.component';
-import './zone/activate/activate.constants';
-import './zone/activate/activate.controller';
-import './zone/activate/activate.routing';
 import './zone/default-ttl/domain-zone-default-ttl.controller';
 import './zone/delete-all/domain-zone-delete-all.controller';
 import './zone/domain-zone-dns.controller';

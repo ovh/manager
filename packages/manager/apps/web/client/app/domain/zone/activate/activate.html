@@ -1,26 +1,70 @@
-<oui-modal
-    data-heading="{{:: 'web_domain_zone_activation' | translate }}"
-    data-primary-action="$ctrl.order()"
-    data-primary-label="{{:: 'web_domain_zone_activation_confirm' | translate }}"
-    data-secondary-action="$ctrl.goBack()"
-    data-secondary-label="{{:: 'web_domain_zone_activation_cancel' | translate }}"
-    data-on-dismiss="$ctrl.goBack()"
->
-    <p data-translate="web_domain_zone_activation_question"></p>
-    <oui-radio
-        data-name="zoneTemplate"
-        data-model="$ctrl.template"
-        data-value="$ctrl.TEMPLATES.MINIMIZED"
+<div data-ovh-alert="app.domain.product.zoneactivate"></div>
+
+<oui-back-button data-on-click="$ctrl.goBack()">
+    <span data-translate="web_domain_zone_activation"></span>
+</oui-back-button>
+
+<div class="text-center" data-ng-if="$ctrl.loading">
+    <oui-spinner></oui-spinner>
+</div>
+
+<div data-ng-if="!$ctrl.loading">
+    <p data-translate="web_domain_zone_activation_description"></p>
+
+    <oui-stepper
+        data-current-index="$ctrl.currentIndex"
+        data-on-finish="$ctrl.checkout()"
     >
-        <span
-            data-translate="web_domain_zone_activation_template_minimized"
-        ></span>
-    </oui-radio>
-    <oui-radio
-        data-name="zoneTemplate"
-        data-model="$ctrl.template"
-        data-value="$ctrl.TEMPLATES.BASIC"
-    >
-        <span data-translate="web_domain_zone_activation_template_basic"></span>
-    </oui-radio>
-</oui-modal>
+        <oui-step-form
+            data-header="{{:: 'web_domain_zone_activation_step_header_duration' | translate }}"
+            data-editable="$ctrl.isEditable && !$ctrl.checkoutLoading"
+            data-on-focus="$ctrl.resetCart()"
+        >
+            <oui-field>
+                <oui-radio
+                    name="interval"
+                    data-ng-repeat="pricing in ::$ctrl.prices track by $index"
+                    data-model="$ctrl.price"
+                    data-value="pricing"
+                    data-required
+                >
+                    <span data-ng-bind="$ctrl.getDuration(pricing.interval)"></span>
+                    <span>:</span>
+                    <ovh-manager-catalog-price
+                        data-price="pricing.value"
+                        data-user="$ctrl.user"
+                    >
+                    </ovh-manager-catalog-price>
+                </oui-radio>
+            </oui-field>
+        </oui-step-form>
+        <oui-step-form
+            name="checkout"
+            data-header="{{:: ($ctrl.price.value === 0 ? 'web_domain_zone_activation_step_header_activation' : 'web_domain_zone_activation_step_header_payment') | translate }}"
+            data-submit-text="{{:: ($ctrl.price.value === 0 ? 'web_domain_zone_activation_submit_activate' : 'web_domain_zone_activation_submit_pay') | translate }}"
+            data-cancel-text="{{:: 'web_domain_zone_activation_cancel' | translate }}"
+            data-editable="::false"
+            data-description="{{:: ($ctrl.price.value === 0 ? 'web_domain_zone_activation_step_description_activation' : '') | translate }}"
+            data-loading="$ctrl.checkoutLoading"
+            data-valid="$ctrl.agreeContracts"
+            data-on-focus="$ctrl.prepareCheckout()"
+            data-on-cancel="$ctrl.goBack()"
+            data-prevent-next
+        >
+            <ovh-payment-method-choice
+                data-ng-if="::!$ctrl.price.value === 0"
+                data-model="$ctrl.defaultPaymentMethod"
+                data-error-callback="$ctrl.goBack()"
+            >
+            </ovh-payment-method-choice>
+
+            <ovh-contracts-summary
+                name="agreeContracts"
+                data-ng-if="$ctrl.cart"
+                data-items="$ctrl.cart.contracts"
+                data-model="$ctrl.agreeContracts"
+            >
+            </ovh-contracts-summary>
+        </oui-step-form>
+    </oui-stepper>
+</div>
