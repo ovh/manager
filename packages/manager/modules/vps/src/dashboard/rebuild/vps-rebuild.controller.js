@@ -16,7 +16,7 @@ export default class VpsRebuildController {
     this.isLoading = true;
     return this.vpsRebuild
       .rebuildVps(this.serviceName, options)
-      .then(() => this.goBack())
+      .then(() => this.goBack(false, 'success', {}, { reload: true }))
       .then(() => {
         this.displaySuccess();
       })

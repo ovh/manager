@@ -16,12 +16,16 @@ export default {
     goToSnapshotTake: '<',
     goToSnapshotRestore: '<',
     goToTerminateOption: '<',
+    goBack: '<',
 
+    isVpsNewRange: '<',
     plan: '<',
     serviceName: '<',
     stateVps: '<',
     tabSummary: '<',
     vps: '<',
+
+    vpsUpgradeTask: '<',
   },
   controller,
   name: 'ovhManagerVpsDashboard',

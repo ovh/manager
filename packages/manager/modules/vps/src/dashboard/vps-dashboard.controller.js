@@ -6,7 +6,10 @@ import isArray from 'lodash/isArray';
 import isEmpty from 'lodash/isEmpty';
 import map from 'lodash/map';
 
-import { DASHBOARD_FEATURES } from './vps-dashboard.constants';
+import {
+  DASHBOARD_FEATURES,
+  NEW_RANGE_VERSION,
+} from './vps-dashboard.constants';
 import {
   CHANGE_OWNER_URL,
   CONTACTS_URL,
@@ -27,6 +30,7 @@ export default class {
     CucControllerHelper,
     CucRegionService,
     VpsService,
+    vpsUpgradeTile,
   ) {
     this.$filter = $filter;
     this.$q = $q;
@@ -38,6 +42,7 @@ export default class {
     this.CucCloudMessage = CucCloudMessage;
     this.CucRegionService = CucRegionService;
     this.VpsService = VpsService;
+    this.vpsUpgradeTile = vpsUpgradeTile;
 
     this.DASHBOARD_FEATURES = DASHBOARD_FEATURES;
 
@@ -49,8 +54,11 @@ export default class {
   }
 
   $onInit() {
+    this.isVpsNewRange = this.stateVps.model.version === NEW_RANGE_VERSION;
+
     this.initActions();
     this.initLoaders();
+    this.initUpgradePolling();
 
     this.$scope.$on('tasks.pending', (event, opt) => {
       if (opt === this.serviceName) {
@@ -63,6 +71,13 @@ export default class {
         this.$state.reload();
       }
     });
+  }
+
+  $onDestroy() {
+    if (this.vpsUpgradeTask) {
+      this.vpsUpgradeTile.stopUpgradeTaskPolling();
+      this.vpsUpgradeTask = null;
+    }
   }
 
   initLoaders() {
@@ -79,6 +94,32 @@ export default class {
         `${this.$translate.instant(
           'vps_dashboard_loading_error',
         )} ${this.tabSummary.map(({ message }) => message)}`,
+      );
+    }
+  }
+
+  initUpgradePolling() {
+    if (this.vpsUpgradeTask) {
+      this.vpsUpgradeTile.startUpgradeTaskPolling(
+        this.serviceName,
+        this.vpsUpgradeTask,
+        {
+          onItemDone: ({ state }) => {
+            this.CucCloudMessage.flushMessages();
+
+            this.goBack(
+              this.$translate.instant(`vps_dashboard_upgrade_${state}`),
+              state === 'done' ? 'success' : 'error',
+              {},
+              { reload: true },
+            );
+          },
+          onItemUpdated: () => {
+            this.CucCloudMessage.info(
+              this.$translate.instant('vps_dashboard_upgrade_doing'),
+            );
+          },
+        },
       );
     }
   }
@@ -247,7 +288,7 @@ export default class {
       .then((changeOwnerHref) => {
         this.actions = {
           changeName: {
-            text: this.$translate.instant('vps_common_edit'),
+            text: this.$translate.instant('vps_dashboard_display_name_edit'),
             callback: () =>
               this.CucControllerHelper.modal.showNameChangeModal({
                 serviceName: this.serviceName,
@@ -332,7 +373,8 @@ export default class {
               }),
             isAvailable: () =>
               !this.loaders.polling &&
-              this.hasFeature(DASHBOARD_FEATURES.rebuild),
+              (this.hasFeature(DASHBOARD_FEATURES.rebuild) ||
+                this.isVpsNewRange),
           },
           reinstall: {
             text: this.$translate.instant(
@@ -340,7 +382,8 @@ export default class {
             ),
             isAvailable: () =>
               !this.loaders.polling &&
-              this.hasFeature(DASHBOARD_FEATURES.reinstall),
+              this.hasFeature(DASHBOARD_FEATURES.reinstall) &&
+              !this.isVpsNewRange,
           },
           rebootRescue: {
             text: this.$translate.instant('vps_configuration_reboot_rescue'),
@@ -380,17 +423,13 @@ export default class {
   }
 
   getRegionsGroup(regions) {
-    this.regionsGroup = [];
+    let detailedRegions = [];
     if (regions) {
-      this.detailedRegions = !isArray(regions)
+      detailedRegions = !isArray(regions)
         ? [this.CucRegionService.getRegion(regions)]
         : map(regions, (region) => this.CucRegionService.getRegion(region));
     }
-    this.regionsGroup = groupBy(this.detailedRegions, 'country');
-  }
-
-  hasMultipleRegions() {
-    return isArray(this.detailedRegions) && this.detailedRegions.length > 1;
+    this.regionsGroup = groupBy(detailedRegions, 'country');
   }
 
   static getActionStateParamString(params) {

@@ -180,7 +180,7 @@ export default class VpsReinstallCtrl {
       this.template.sshKeys,
       this.template.sendPassword ? 0 : 1,
     )
-      .then(() => this.cancel())
+      .then(() => this.goBack(false, 'success', {}, { reload: true }))
       .catch(() => this.cancel())
       .finally(() => {
         this.loaders.save = false;
