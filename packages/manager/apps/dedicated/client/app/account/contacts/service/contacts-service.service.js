@@ -2,6 +2,7 @@ import filter from 'lodash/filter';
 import map from 'lodash/map';
 import uniq from 'lodash/uniq';
 import sortBy from 'lodash/sortBy';
+import forEach from 'lodash/forEach';
 
 import { BillingService } from '@ovh-ux/manager-models';
 

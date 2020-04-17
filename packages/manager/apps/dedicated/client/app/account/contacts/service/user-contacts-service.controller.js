@@ -22,6 +22,19 @@ export default class UserContactsServiceController {
     };
   }
 
+  getContactColumnFilter(type) {
+    return {
+      values: uniq(this.services.map((service) => service[type])).reduce(
+        (contacts, contact) => ({
+          ...contacts,
+          [contact]: contact,
+        }),
+        {},
+      ),
+      hideOperators: true,
+    };
+  }
+
   onCriteriaChange(criteria) {
     this.updateCriteria(criteria);
   }
