@@ -83,7 +83,7 @@ export const DOMAIN_CONFIG = {
   ],
   icon: 'ovh-font ovh-font-domain',
   app: [WEB],
-  regions: ['EU'],
+  regions: ['EU', 'CA'],
 };
 
 export const HOSTING_CONFIG = {
@@ -101,7 +101,7 @@ export const HOSTING_CONFIG = {
   ],
   icon: 'ovh-font ovh-font-hosting',
   app: [WEB],
-  regions: ['EU'],
+  regions: ['EU', 'CA'],
 };
 
 export const PRIVATE_DATABASE_CONFIG = {
@@ -151,6 +151,7 @@ export const EMAIL_CONFIG = {
       stateParams: ['productId'],
       icon: 'ovh-font ovh-font-mail',
       app: [WEB],
+      regions: ['EU'],
     },
     {
       path: '/email/mxplan',
@@ -160,6 +161,7 @@ export const EMAIL_CONFIG = {
       loadOnState: 'app.email.mxplan',
       icon: 'ovh-font ovh-font-mail',
       app: [WEB],
+      regions: ['EU', 'CA'],
     },
     {
       path: '/email/domain/delegatedAccount',
@@ -169,11 +171,12 @@ export const EMAIL_CONFIG = {
       loadOnState: 'app.email.delegate',
       icon: 'ovh-font ovh-font-mail',
       app: [WEB],
+      regions: ['EU'],
     },
   ],
   icon: 'ovh-font ovh-font-mail',
   app: [WEB],
-  regions: ['EU'],
+  regions: ['EU', 'CA'],
 };
 
 export const MICROSOFT_CONFIG = {
@@ -240,6 +243,7 @@ export const WEB_SIDEBAR_CONFIG = [
   EMAIL_CONFIG,
   MICROSOFT_CONFIG,
 ];
+
 export const WEB_ORDER_SIDEBAR_CONFIG = [
   {
     id: 'orderDomain',
