@@ -776,7 +776,7 @@
   "fidelity_header_balance": "Saldo",
   "fidelity_points": "punkty",
   "fidelity_creditOrder_title": "Zasil konto",
-  "fidelity_creditOrder_step1_msg": "Możesz zasilić swoje konto punktami, którymi będziesz mógł regulować faktury (1 punkt = 0,01 {{t0}} netto) ",
+  "fidelity_creditOrder_step1_msg": "Podczas „ręcznego” odnowienia usługi możesz zasilić Twoje konto, aby opłacić zamówienia lub odnowić usługi. (1 punkt = 0,01 {{t0}} netto)",
   "fidelity_creditOrder_step1_amount": "Kwota (w punktach)",
   "fidelity_creditOrder_step1_erreurformat": "Podana kwota jest nieprawidłowa.",
   "fidelity_creditOrder_step1_erreurmin": "Minimalna kwota zasilenia to {{t0}} punktów.",

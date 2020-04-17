@@ -856,5 +856,6 @@
   "dedicatedCloud_options_zerto_waiting_vpn_message_part_one": "Um die Aktivierung Ihres Zerto DRP abzuschließen,",
   "dedicatedCloud_options_zerto_waiting_vpn_message_part_two": "fügen Sie bitte VPN-IPs in den DRP-Einstellungen hinzu",
   "dedicatedCloud_tab_host_id": "ID",
-  "dedicatedCloud_tab_datastores_id": "ID"
+  "dedicatedCloud_tab_datastores_id": "ID",
+  "dedicatedCloud_USER_change_password_denied_chars": "Die folgenden Zeichen sind nicht zulässig: {{ chars }}"
 }

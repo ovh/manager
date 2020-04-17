@@ -13,5 +13,7 @@
   "dedicatedCloud_datacenter_onPremise_step_one": "Centrum danych OVH",
   "dedicatedCloud_datacenter_onPremise_step_two": "Własne centrum danych",
   "dedicatedCloud_datacenter_install_plan": "Instaluj",
-  "dedicatedCloud_datacenter_install_in_error": "Wystąpił błąd podczas instalacji planu. Skontaktuj się z Działem Wsparcia Klienta."
+  "dedicatedCloud_datacenter_install_in_error": "Wystąpił błąd podczas instalacji planu. Skontaktuj się z Działem Wsparcia Klienta.",
+  "dedicatedCloud_datacenter_no_ip_pool": "Brak dostępnej puli adresów IP.",
+  "dedicatedCloud_datacenter_order_please": "Zamów pulę"
 }
