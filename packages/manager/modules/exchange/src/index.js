@@ -2,6 +2,8 @@ import angular from 'angular';
 import '@uirouter/angularjs';
 import 'oclazyload';
 
+import billingAccountRenew from './billing/account-renew/renew.module';
+
 import APIExchange from './exchange.api';
 import Exchange from './exchange.service';
 import ExchangePassword from './exchange.password.service';
@@ -9,7 +11,7 @@ import ExchangePassword from './exchange.password.service';
 const moduleName = 'ovhManagerExchangeLazyLoading';
 
 angular
-  .module(moduleName, ['ui.router', 'oc.lazyLoad'])
+  .module(moduleName, [billingAccountRenew, 'ui.router', 'oc.lazyLoad'])
   .config(
     /* @ngInject */ ($stateProvider) => {
       $stateProvider.state('app.exchange.**', {
