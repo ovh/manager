@@ -1,16 +1,12 @@
-import filter from 'lodash/filter';
 import map from 'lodash/map';
 import uniq from 'lodash/uniq';
-import sortBy from 'lodash/sortBy';
 
 import { BillingService } from '@ovh-ux/manager-models';
 
-import { AVAILABLE_SERVICES } from '../user-contacts.constants';
 
 export default class {
   /* @ngInject */
-  constructor(OvhApiOvhProduct, OvhHttp) {
-    this.OvhApiOvhProduct = OvhApiOvhProduct;
+  constructor(OvhHttp) {
     this.OvhHttp = OvhHttp;
   }
 
@@ -47,19 +43,14 @@ export default class {
   }
 
   getServices() {
-    return this.OvhApiOvhProduct.Aapi()
-      .query()
-      .$promise.then((services) => {
-        const availableServices = filter(services, (service) =>
-          AVAILABLE_SERVICES.includes(service.category),
-        );
-        return sortBy(availableServices, ['serviceName', 'category']).map(
-          (service) => new BillingService(service),
-        );
-      });
+    return this.OvhHttp.get(`/contacts/services`, {
+      rootPath: '2api',
+    }).then((services) =>
+      services.map((service) => new BillingService(service)),
+    );
   }
 
   static getAvailableCategories(services) {
-    return uniq(map(services, 'category'));
+    return uniq(map(services, 'serviceType'));
   }
 }

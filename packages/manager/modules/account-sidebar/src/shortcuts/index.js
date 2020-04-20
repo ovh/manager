@@ -8,6 +8,7 @@ import component from './component';
 import shortcutTile from './shortcut-tile';
 
 import './index.scss';
+import ShortcutService from './service';
 
 const moduleName = 'ovhManagerHubShortcuts';
 
@@ -21,6 +22,7 @@ angular
     shortcutTile,
   ])
   .component('ovhManagerHubShortcuts', component)
+  .service('ShortcutService', ShortcutService)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

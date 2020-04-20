@@ -17,28 +17,28 @@
     </oui-datagrid-column>
     <oui-datagrid-column
         data-title=":: 'account_contacts_service_category' | translate"
-        data-property="category"
+        data-property="serviceType"
         data-filterable
         data-type="options"
         data-type-options="$ctrl.getCategoryColumnFilter()"
     >
-        <span
-            data-translate="{{:: 'account_contacts_service_category_' + $row.category }}"
-        ></span>
     </oui-datagrid-column>
     <oui-datagrid-column
         data-title=":: 'account_contacts_service_contact_admin' | translate"
         data-property="contactAdmin"
+        data-filterable
     >
     </oui-datagrid-column>
     <oui-datagrid-column
         data-title=":: 'account_contacts_service_contact_tech' | translate"
         data-property="contactTech"
+        data-filterable
     >
     </oui-datagrid-column>
     <oui-datagrid-column
         data-title=":: 'account_contacts_service_contact_billing' | translate"
         data-property="contactBilling"
+        data-filterable
     >
     </oui-datagrid-column>
     <oui-action-menu data-compact data-placement="end">

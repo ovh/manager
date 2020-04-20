@@ -1,12 +1,12 @@
 import isEmpty from 'lodash/isEmpty';
+import get from 'lodash/get';
 
 export default class ManagerHubShortcutsCtrl {
   /* @ngInject */
-  constructor($http, $translate, $q, RedirectionService) {
-    this.$http = $http;
+  constructor($translate, RedirectionService, ShortcutService) {
     this.$translate = $translate;
-    this.$q = $q;
     this.RedirectionService = RedirectionService;
+    this.ShortcutService = ShortcutService;
   }
 
   $onInit() {
@@ -43,28 +43,35 @@ export default class ManagerHubShortcutsCtrl {
         url: this.RedirectionService.getURL('userEmails'),
         tracking: 'hub::sidebar::shortcuts::go-to-emails',
       },
-      {
-        id: 'contacts',
-        icon: 'oui-icon-book-contact_concept',
-        url: this.RedirectionService.getURL('contacts'),
-        tracking: 'hub::sidebar::shortcuts::go-to-contacts',
-      },
     ];
 
-    return this.$translate
-      .refresh()
-      .then(() => {
-        return shortcuts
-          .filter(({ url }) => url || !isEmpty(url))
-          .map((shortcut) => ({
-            ...shortcut,
-            label: this.$translate.instant(
-              `hub_user_panel_shortcuts_link_${shortcut.id}`,
-            ),
-          }));
-      })
+    return this.ShortcutService.canChangeContact()
       .then((result) => {
-        this.shortcuts = result;
+        if (get(result, 'data.canChangeContacts', false)) {
+          shortcuts.push({
+            id: 'contacts',
+            icon: 'oui-icon-book-contact_concept',
+            url: this.RedirectionService.getURL('contacts'),
+            tracking: 'hub::sidebar::shortcuts::go-to-contacts',
+          });
+        }
+      })
+      .finally(() => {
+        return this.$translate
+          .refresh()
+          .then(() => {
+            return shortcuts
+              .filter(({ url }) => url || !isEmpty(url))
+              .map((shortcut) => ({
+                ...shortcut,
+                label: this.$translate.instant(
+                  `hub_user_panel_shortcuts_link_${shortcut.id}`,
+                ),
+              }));
+          })
+          .then((result) => {
+            this.shortcuts = result;
+          });
       });
   }
 }

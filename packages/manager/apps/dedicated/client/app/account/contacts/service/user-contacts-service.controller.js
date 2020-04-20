@@ -12,9 +12,7 @@ export default class {
         .reduce(
           (categories, category) => ({
             ...categories,
-            [category]: this.$translate.instant(
-              `account_contacts_service_category_${category}`,
-            ),
+            [category]: category,
           }),
           {},
         ),

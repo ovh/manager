@@ -27,7 +27,7 @@ export default /* @ngInject */ ($stateProvider) => {
         services,
       ) =>
         getServiceInfos(
-          find(services, { serviceName, category: categoryType }),
+          find(services, { serviceName, serviceType: categoryType }),
         ),
       serviceName: /* @ngInject */ ($transition$) =>
         $transition$.params().service,

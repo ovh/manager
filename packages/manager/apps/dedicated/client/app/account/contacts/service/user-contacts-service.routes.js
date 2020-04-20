@@ -36,16 +36,19 @@ export default /* @ngInject */ ($stateProvider) => {
           }
 
           if ($transition$.params().category) {
-            criteria.push({
-              operator: 'is',
-              property: 'category',
-              value: $transition$.params().category,
-              title: $translate.instant(
-                `account_contacts_service_category_${
-                  $transition$.params().category
-                }`,
-              ),
-            });
+            const key = `account_contacts_service_category_${
+              $transition$.params().category
+            }`;
+            const title = $translate.instant(key);
+
+            if (title !== key) {
+              criteria.push({
+                operator: 'is',
+                property: 'category',
+                value: $transition$.params().category,
+                title,
+              });
+            }
           }
 
           return criteria;
@@ -65,8 +68,8 @@ export default /* @ngInject */ ($stateProvider) => {
         $transition$.params().category,
       editContacts: /* @ngInject */ ($state) => (service) =>
         $state.go(`${stateName}.edit`, {
-          service: service.serviceName,
-          categoryType: service.category,
+          service: get(service, 'serviceName'),
+          categoryType: get(service, 'serviceType'),
         }),
       /* @ngInject */
       getServiceInfos: (AccountContactsService) => (service) =>
