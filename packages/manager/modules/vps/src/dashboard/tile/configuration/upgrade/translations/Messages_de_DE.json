@@ -13,5 +13,8 @@
   "vps_dashboard_tile_configuration_upgrade_success_explain": "Sie erhalten eine Bestätigung per E-Mail, wenn die Erweiterung Ihres VPS erfolgt ist. Dies dauert höchstens 2 Stunden. Um Ihre neue Konfiguration zu nutzen, müssen Sie Ihren VPS neu starten.",
   "vps_dashboard_tile_configuration_upgrade_success_follow_order": "Meine Bestellung verfolgen",
   "vps_dashboard_tile_configuration_upgrade_no_payment_method_success": "Ihre Anfrage wurde registriert. Das Upgrade wird aktiv, sobald die Bezahlung des folgenden Bestellscheins <a target=\"_blank\" rel=\"noopener\" href=\"{{ href }}\">{{ orderId }}</a> eingeht.",
-  "vps_dashboard_tile_configuration_upgrade_error": "Bei der Erweiterung Ihres VPS ist ein Fehler aufgetreten."
+  "vps_dashboard_tile_configuration_upgrade_error": "Bei der Erweiterung Ihres VPS ist ein Fehler aufgetreten.",
+  "vps_dashboard_tile_configuration_upgrade_action_validation_with_payment_method_upfront": "Wenn Sie auf „bestätigen und bezahlen“ klicken, wird Ihnen insgesamt {{ price }} für die verbleibende Vertragslaufzeit berechnet.",
+  "vps_dashboard_tile_configuration_upgrade_catched_error": "Dieser VPS ist entweder nicht mit dem angefragten Angebot kompatibel, oder Sie haben bereits ein Upgrade für diesen VPS bestellt.",
+  "vps_dashboard_tile_configuration_upgrade_button_ok": "OK"
 }

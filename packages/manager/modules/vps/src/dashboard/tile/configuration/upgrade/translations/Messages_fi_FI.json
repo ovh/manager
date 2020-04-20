@@ -13,5 +13,8 @@
   "vps_dashboard_tile_configuration_upgrade_success_explain": "The resources will be added to your VPS within 2 hours. You will receive a confirmation email once this is complete. You will need to reboot your VPS for the new configuration to work.",
   "vps_dashboard_tile_configuration_upgrade_success_follow_order": "Track my order",
   "vps_dashboard_tile_configuration_upgrade_no_payment_method_success": "Your request has been processed. The upgrade process will begin once payment has been received for the following purchase order: <a target=\"_blank\" rel=\"noopener\" href=\"{{ href }}\">{{ orderId }}</a>.",
-  "vps_dashboard_tile_configuration_upgrade_error": "An error has occurred upgrading your VPS."
+  "vps_dashboard_tile_configuration_upgrade_error": "An error has occurred upgrading your VPS.",
+  "vps_dashboard_tile_configuration_upgrade_action_validation_with_payment_method_upfront": "By clicking “Confirm and pay”, you will be billed a total of {{ price }} for the remaining period of your contract.",
+  "vps_dashboard_tile_configuration_upgrade_catched_error": "This VPS is not compatible with the plan selected, or you already have an ongoing upgrade request for this VPS.",
+  "vps_dashboard_tile_configuration_upgrade_button_ok": "OK"
 }

@@ -13,5 +13,8 @@
   "vps_dashboard_tile_configuration_upgrade_success_explain": "W ciągu dwóch godzin od wdrożenia zmiany na serwerze VPS otrzymasz e-mail z potwierdzeniem. Nowa konfiguracja zacznie działać po zrestartowaniu serwera.",
   "vps_dashboard_tile_configuration_upgrade_success_follow_order": "Sprawdzanie statusu zamówienia",
   "vps_dashboard_tile_configuration_upgrade_no_payment_method_success": "Twoje zlecenie zostało zarejestrowane. Upgrade rozpocznie się po zaksięgowaniu płatności za zamówienie <a target=\"_blank\" rel=\"noopener\" href=\"{{href}}\">{{orderId}}</a>.",
-  "vps_dashboard_tile_configuration_upgrade_error": "Wystąpił błąd podczas upgrade’u Twojego VPS."
+  "vps_dashboard_tile_configuration_upgrade_error": "Wystąpił błąd podczas upgrade’u Twojego VPS.",
+  "vps_dashboard_tile_configuration_upgrade_action_validation_with_payment_method_upfront": "Po kliknięciu przycisku „Zatwierdź i zapłać” naliczymy kwotę całkowitą w wysokości {{price}} za czas pozostały do końca umowy.",
+  "vps_dashboard_tile_configuration_upgrade_catched_error": "Ten VPS nie jest kompatybilny z zamówionym pakietem lub przetwarzane jest już zlecenie upgrade’u tego VPS. ",
+  "vps_dashboard_tile_configuration_upgrade_button_ok": "OK"
 }
