@@ -525,5 +525,8 @@
   "vps_language_lt": "Lituanien",
   "vps_language_nl": "Néerlandais",
   "vps_language_pl": "Polonais",
-  "vps_language_pt": "Portugais"
+  "vps_language_pt": "Portugais",
+  "vps_new_range_available_introduction": "Nos gammes de VPS évoluent, votre espace client aussi.",
+  "vps_new_range_available_call_to_upgrade_1": "Pour profiter des nouveautés, <a href=\"{{href}}\">commandez un nouveau modèle</a> dans votre espace client, transférez vos données, puis résiliez votre ancien serveur.",
+  "vps_new_range_available_call_to_upgrade_2": "Pour en profiter, faites évoluer votre machine <a href=\"{{href}}\">en quelques clics.</a>"
 }

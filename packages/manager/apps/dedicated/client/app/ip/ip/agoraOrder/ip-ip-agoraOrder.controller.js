@@ -1,14 +1,19 @@
 import filter from 'lodash/filter';
+import find from 'lodash/find';
 import get from 'lodash/get';
 import head from 'lodash/head';
 import last from 'lodash/last';
 import map from 'lodash/map';
 import range from 'lodash/range';
+import set from 'lodash/set';
 import uniq from 'lodash/uniq';
+
+import { PRODUCT_TYPES } from './ip-ip-agoraOrder.constant';
 
 angular.module('Module.ip.controllers').controller(
   'agoraIpOrderCtrl',
   class AgoraIpOrderCtrl {
+    /* @ngInject */
     constructor(
       $q,
       $rootScope,
@@ -40,6 +45,7 @@ angular.module('Module.ip.controllers').controller(
       };
 
       this.loading = {};
+      this.user = this.$state.params.user;
 
       // need to be scoped because of how wizard-step works
       this.$scope.loadServices = this.loadServices.bind(this);
@@ -61,6 +67,12 @@ angular.module('Module.ip.controllers').controller(
         .then((results) => {
           this.user = results.user;
           this.services = results.services;
+
+          if (this.$state.params.service) {
+            this.model.selectedService = find(this.services, {
+              serviceName: this.$state.params.service.serviceName,
+            });
+          }
         })
         .catch((err) => {
           this.Alerter.error(this.$translate.instant('ip_order_loading_error'));
@@ -113,11 +125,11 @@ angular.module('Module.ip.controllers').controller(
 
     static getRegionFromServiceName(serviceName) {
       const serviceExt = last(serviceName.split('.'));
-      if (serviceExt === 'eu') {
+      if (['eu', 'net'].includes(serviceExt)) {
         return 'EUROPE';
       }
-      if (serviceExt === 'net') {
-        return 'APAC/CANADA';
+      if (serviceExt === 'ca') {
+        return 'CANADA - ASIA';
       }
 
       return 'USA';
@@ -128,16 +140,45 @@ angular.module('Module.ip.controllers').controller(
 
       this.model.params = {};
 
-      const ipOffersPromise = this.IpAgoraOrder.getIpOffers().then(
-        (ipOffers) => {
-          const ipOfferDetails = ipOffers.map(this.createOfferDto.bind(this));
-          this.ipOffers = filter(ipOfferDetails, {
-            productRegion: AgoraIpOrderCtrl.getRegionFromServiceName(
-              this.model.selectedService.serviceName,
-            ),
-          });
-        },
-      );
+      let vpsIpCountryAvailablePromise = this.$q.when(null);
+
+      const ipOffersPromise = this.IpAgoraOrder.getIpOffers(
+        this.user.ovhSubsidiary,
+      ).then((ipOffers) => {
+        let ipOfferDetails = ipOffers.map(this.createOfferDto.bind(this));
+        if (
+          this.model.selectedService &&
+          this.model.selectedService.type === PRODUCT_TYPES.vps.typeName
+        ) {
+          ipOfferDetails = ipOfferDetails.filter(({ productShortName }) =>
+            productShortName.includes('failover'),
+          );
+
+          vpsIpCountryAvailablePromise = this.IpAgoraOrder.getVpsIpCountryAvailable(
+            this.model.selectedService.serviceName,
+          );
+        }
+        this.ipOffers = filter(ipOfferDetails, {
+          productRegion: AgoraIpOrderCtrl.getRegionFromServiceName(
+            this.model.selectedService.serviceName,
+          ),
+        });
+
+        return vpsIpCountryAvailablePromise.then((countries) => {
+          if (countries !== null) {
+            this.ipOffers = this.ipOffers.map((ipOffer) => {
+              set(
+                ipOffer,
+                'countries',
+                ipOffer.countries.filter(
+                  ({ code }) => countries.indexOf(code.toLowerCase()) > -1,
+                ),
+              );
+              return ipOffer;
+            });
+          }
+        });
+      });
 
       const ipOrganisationPromise = this.IpOrganisation.getIpOrganisation().then(
         (organisations) => {
