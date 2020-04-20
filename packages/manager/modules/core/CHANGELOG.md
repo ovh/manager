@@ -1,3 +1,12 @@
+# [9.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@9.0.2...@ovh-ux/manager-core@9.1.0) (2020-04-20)
+
+
+### Features
+
+* **core:** add function to convert language from OVH to BCP 47 ([0fbdb29](https://github.com/ovh/manager/commit/0fbdb29a75a8344318f6372da9726a5738d4a745))
+
+
+
 ## [9.0.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@9.0.1...@ovh-ux/manager-core@9.0.2) (2020-04-06)
 
 

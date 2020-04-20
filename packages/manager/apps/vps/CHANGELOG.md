@@ -1,3 +1,12 @@
+# [0.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps-app@0.2.0...@ovh-ux/manager-vps-app@0.3.0) (2020-04-20)
+
+
+### Features
+
+* **vps:** update dependencies ([6850c3c](https://github.com/ovh/manager/commit/6850c3c47d72c38aba2e70a2c26b89dc5ba58f09))
+
+
+
 # [0.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps-app@0.1.4...@ovh-ux/manager-vps-app@0.2.0) (2020-04-15)
 
 

@@ -1,3 +1,12 @@
+# [3.3.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ui-router-layout@3.2.0...@ovh-ux/ng-ui-router-layout@3.3.0) (2020-04-20)
+
+
+### Features
+
+* **ng-ui-router-layout:** add initial state onExit callback ([3edfc51](https://github.com/ovh/manager/commit/3edfc51b691e3b253712194019f5fb36923d27eb))
+
+
+
 # [3.2.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ui-router-layout@3.1.0...@ovh-ux/ng-ui-router-layout@3.2.0) (2019-11-13)
 
 
