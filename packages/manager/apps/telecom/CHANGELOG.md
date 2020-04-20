@@ -1,3 +1,12 @@
+## [12.0.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@12.0.3...@ovh-ux/manager-telecom@12.0.4) (2020-04-20)
+
+
+### Bug Fixes
+
+* **telephony.time-condition:** add condition for draft time ([#2571](https://github.com/ovh/manager/issues/2571)) ([479b5a3](https://github.com/ovh/manager/commit/479b5a36197564b0c341c6b3580615b48d834e12))
+
+
+
 ## [12.0.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@12.0.2...@ovh-ux/manager-telecom@12.0.3) (2020-04-16)
 
 
