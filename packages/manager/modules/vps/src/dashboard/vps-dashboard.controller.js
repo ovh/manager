@@ -416,7 +416,7 @@ export default class {
             ),
             state: 'vps.detail.upgrade',
             stateParams: { serviceName: this.serviceName },
-            isAvailable: () => !this.loaders.polling,
+            isAvailable: () => !this.loaders.polling && !this.isVpsNewRange,
           },
         };
       });
