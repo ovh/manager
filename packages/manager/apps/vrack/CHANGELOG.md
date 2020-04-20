@@ -1,3 +1,12 @@
+# [0.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-app@0.3.2...@ovh-ux/manager-vrack-app@0.4.0) (2020-04-15)
+
+
+### Features
+
+* **vrack:** lazy load vrack root states ([61ad1ea](https://github.com/ovh/manager/commit/61ad1ea4eacb6cbece458525952efb3c9e61ea56))
+
+
+
 ## [0.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-app@0.3.1...@ovh-ux/manager-vrack-app@0.3.2) (2020-03-18)
 
 

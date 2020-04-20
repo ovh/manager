@@ -1,3 +1,17 @@
+## [1.0.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@1.0.2...@ovh-ux/manager-hub@1.0.3) (2020-04-16)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 335] ([eae91e9](https://github.com/ovh/manager/commit/eae91e9fbf779b3c6e0a34066725d42df764639a))
+
+
+### Performance Improvements
+
+* **support:** optimize asset compression ([#2748](https://github.com/ovh/manager/issues/2748)) ([223a608](https://github.com/ovh/manager/commit/223a608ed785ee761fc0a0fa265eaf6852993e4c))
+
+
+
 ## [1.0.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@1.0.1...@ovh-ux/manager-hub@1.0.2) (2020-04-06)
 
 

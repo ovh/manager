@@ -1,3 +1,12 @@
+# [0.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-enterprise-app@0.1.4...@ovh-ux/manager-veeam-enterprise-app@0.2.0) (2020-04-15)
+
+
+### Features
+
+* **veeam-enterprise:** lazy load veam enterprise root state ([9d32cee](https://github.com/ovh/manager/commit/9d32ceea2255b425779dc86fd55a1d3a58df29f6))
+
+
+
 ## [0.1.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-enterprise-app@0.1.3...@ovh-ux/manager-veeam-enterprise-app@0.1.4) (2020-03-18)
 
 

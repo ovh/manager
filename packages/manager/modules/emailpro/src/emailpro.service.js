@@ -1,5 +1,4 @@
 import angular from 'angular';
-import moment from 'moment';
 import punycode from 'punycode';
 import camelCase from 'lodash/camelCase';
 import find from 'lodash/find';
@@ -9,6 +8,7 @@ import map from 'lodash/map';
 import max from 'lodash/max';
 import set from 'lodash/set';
 import snakeCase from 'lodash/snakeCase';
+import 'moment';
 
 export default class EmailPro {
   /* @ngInject */

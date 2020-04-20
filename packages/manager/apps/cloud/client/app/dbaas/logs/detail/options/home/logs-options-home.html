@@ -4,16 +4,16 @@
         data-on-click="ctrl.goToHomePage()"
     >
     </oui-back-button>
-
-    <p class="oui-paragraph">
-        <span data-translate="log_options_intro_text"></span>
-        <span data-translate="logs_options_description_manage"></span>
-        <a
-            data-translate="logs_options_manage_link"
-            data-ui-sref="dbaas.logs.detail.options.manage"
-        ></a
-        >.
-    </p>
+    <div class="row mb-4">
+        <p class="oui-paragraph ml-4">
+            <span data-translate="logs_options_description_manage"></span>
+            <a
+                data-translate="logs_options_manage_link"
+                data-ui-sref="dbaas.logs.detail.options.manage"
+            ></a
+            >.
+        </p>
+    </div>
 
     <oui-spinner
         data-ng-show="ctrl.currentOptions.loading || ctrl.selectedOffer.loading"

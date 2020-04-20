@@ -1,5 +1,4 @@
 /* eslint-disable import/no-webpack-loader-syntax, import/no-unresolved, import/extensions */
-
 import 'babel-polyfill';
 import 'angular';
 import 'angular-animate';
@@ -18,7 +17,7 @@ import 'angular-translate';
 import 'angular-translate-loader-partial';
 import 'angular-translate-storage-cookie';
 import 'angular-translate-storage-local';
-import 'script-loader!moment/min/moment-with-locales.min.js';
+import 'script-loader!moment/min/moment.min.js';
 import 'script-loader!fullcalendar/dist/fullcalendar.js';
 import 'angular-ui-calendar';
 import 'script-loader!ui-select/dist/select.js';
@@ -59,7 +58,6 @@ import 'angular-leaflet-directive';
 import 'ovh-angular-responsive-tabs';
 import 'ng-slide-down';
 import 'script-loader!angularjs-scroll-glue/src/scrollglue.js';
-import 'ovh-angular-timeline/dist/ovh-angular-timeline.js';
 import 'ovh-ng-input-password';
 import 'ovh-ui-angular';
 import 'angular-translate-loader-pluggable';

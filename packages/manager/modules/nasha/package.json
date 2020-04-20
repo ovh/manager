@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-nasha",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "private": true,
   "description": "NAS-HA product.",
   "repository": {
@@ -24,6 +24,7 @@
     "angular": "^1.7.5",
     "angular-translate": "^2.18.1",
     "angular-ui-bootstrap": "1.3.3",
+    "oclazyload": "^1.1.0",
     "ovh-api-services": "^9.39.1",
     "ovh-ui-angular": "^3.11.0",
     "ovh-ui-kit": "~2.35.2",

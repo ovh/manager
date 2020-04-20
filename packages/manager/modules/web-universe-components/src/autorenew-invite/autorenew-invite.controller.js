@@ -2,7 +2,7 @@ import get from 'lodash/get';
 import includes from 'lodash/includes';
 import isArray from 'lodash/isArray';
 import isEmpty from 'lodash/isEmpty';
-import moment from 'moment';
+import 'moment';
 
 export default class {
   /* @ngInject */

@@ -9,7 +9,7 @@ import uiRouter, { RejectType } from '@uirouter/angularjs';
 import 'jquery-ui/ui/widget';
 import 'jquery-ui/ui/widgets/mouse';
 import 'jquery-ui/ui/widgets/draggable';
-import 'script-loader!moment/min/moment-with-locales.min.js';
+import 'script-loader!moment/min/moment.min.js';
 import 'script-loader!angular-ui-validate/dist/validate.js';
 import 'ovh-ui-angular';
 import 'script-loader!bootstrap-tour/build/js/bootstrap-tour-standalone.min';
@@ -70,11 +70,19 @@ angular
     /* @ngInject */ ($locationProvider) => $locationProvider.hashPrefix(''),
   )
   .config(routing)
-  .config(
-    /* @ngInject */ (TranslateServiceProvider) => {
-      const defaultLanguage = TranslateServiceProvider.getUserLocale();
-      // set moment locale
-      moment.locale(defaultLanguage.split('_')[0]);
+  .run(
+    /* @ngInject */ ($translate) => {
+      let lang = $translate.use();
+
+      if (['en_GB', 'es_US', 'fr_CA'].includes(lang)) {
+        lang = lang.toLowerCase().replace('_', '-');
+      } else {
+        [lang] = lang.split('_');
+      }
+
+      return import(`script-loader!moment/locale/${lang}.js`).then(() =>
+        moment.locale(lang),
+      );
     },
   )
   .run(

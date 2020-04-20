@@ -5,9 +5,6 @@ import exchangeAccountTypes from './account/accountTypes.service';
 import exchangeAccountOutlook from './account/outlook/account-outlook.service';
 import diagnostic from './diagnostic/diagnostic.service';
 import ExchangeDomains from './domain/domain.service';
-import APIExchange from './exchange.api';
-import ExchangePassword from './exchange.password.service';
-import Exchange from './exchange.service';
 import ExchangeExternalContacts from './external-contact/external-contact.service';
 import group from './group/group.service';
 import exchangeHeader from './header/header.service';
@@ -35,9 +32,6 @@ angular
   .service('exchangeAccountOutlook', exchangeAccountOutlook)
   .service('diagnostic', diagnostic)
   .service('ExchangeDomains', ExchangeDomains)
-  .service('APIExchange', APIExchange)
-  .service('ExchangePassword', ExchangePassword)
-  .service('Exchange', Exchange)
   .service('ExchangeExternalContacts', ExchangeExternalContacts)
   .service('group', group)
   .service('exchangeHeader', exchangeHeader)

@@ -1,3 +1,30 @@
+# [9.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@9.0.3...@ovh-ux/manager-cloud@9.1.0) (2020-04-17)
+
+
+### Features
+
+* **cloud.logs:** remove options concern on roles ([#2792](https://github.com/ovh/manager/issues/2792)) ([229c411](https://github.com/ovh/manager/commit/229c4118acafd6a1b1c3945cc436fe6175f5d328))
+
+
+
+## [9.0.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@9.0.2...@ovh-ux/manager-cloud@9.0.3) (2020-04-16)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 332] ([ccc518f](https://github.com/ovh/manager/commit/ccc518f3964004ded5f82b04f626f95226ab157c))
+
+
+
+## [9.0.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@9.0.1...@ovh-ux/manager-cloud@9.0.2) (2020-04-15)
+
+
+### Performance Improvements
+
+* import dynamically moment locales ([#2755](https://github.com/ovh/manager/issues/2755)) ([5f3320d](https://github.com/ovh/manager/commit/5f3320d92802a1f4a6d65baf60f74917b8e58f4a))
+
+
+
 ## [9.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@9.0.0...@ovh-ux/manager-cloud@9.0.1) (2020-04-01)
 
 

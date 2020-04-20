@@ -34,6 +34,7 @@ import ngOvhSidebarMenu from '@ovh-ux/ng-ovh-sidebar-menu';
 import ngOvhSimpleCountryList from '@ovh-ux/ng-ovh-simple-country-list';
 import ngOvhLineDiagnostics from '@ovh-ux/ng-ovh-line-diagnostics';
 import ngOvhContact from '@ovh-ux/ng-ovh-contact';
+import ngOvhTimeline from '@ovh-ux/ng-ovh-timeline';
 import { detach as detachPreloader } from '@ovh-ux/manager-preloader';
 
 import uiRouter, { RejectType } from '@uirouter/angularjs';
@@ -63,7 +64,6 @@ angular
       'angular-inview',
       'angular-translate-loader-pluggable',
       'matchmedia-ng',
-      'momentjs',
       'ngAnimate',
       'ngAria',
       ngAtInternet,
@@ -97,7 +97,7 @@ angular
       'ovh-angular-responsive-tabs',
       ngOvhSidebarMenu,
       ngOvhSimpleCountryList,
-      'ovh-angular-timeline',
+      ngOvhTimeline,
       ngOvhUiConfirmModal,
       'ovh-api-services',
       'ovh-ng-input-password',
@@ -152,13 +152,21 @@ angular
   .config((LineDiagnosticsProvider) => {
     LineDiagnosticsProvider.setPathPrefix('/xdsl/{serviceName}');
   })
+  .run(
+    /* @ngInject */ ($translate) => {
+      let lang = $translate.use();
 
-  /*= =========  TRANSLATOR  ========== */
-  .config((TranslateServiceProvider) => {
-    const defaultLanguage = TranslateServiceProvider.getUserLocale();
-    // set moment locale
-    moment.locale(defaultLanguage.split('_')[0]);
-  })
+      if (['en_GB', 'es_US', 'fr_CA'].includes(lang)) {
+        lang = lang.toLowerCase().replace('_', '-');
+      } else {
+        [lang] = lang.split('_');
+      }
+
+      return import(`script-loader!moment/locale/${lang}.js`).then(() =>
+        moment.locale(lang),
+      );
+    },
+  )
 
   /*= =========  PAGE TRACKING  ========== */
   .config(

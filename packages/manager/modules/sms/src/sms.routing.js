@@ -2,11 +2,6 @@ import get from 'lodash/get';
 import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('sms', {
-    url: '/sms',
-    abstract: true,
-  });
-
   $stateProvider.state('sms.index', {
     url: `?${ListLayoutHelper.urlQueryParams}`,
     views: {

@@ -8,7 +8,9 @@ import 'script-loader!bootstrap/dist/js/bootstrap';
 import { Environment } from '@ovh-ux/manager-config';
 
 import angular from 'angular';
-import '@ovh-ux/manager-vps';
+import cloudUniverseComponents from '@ovh-ux/ng-ovh-cloud-universe-components';
+import ovhManagerVps from '@ovh-ux/manager-vps';
+import ovhManagerCore from '@ovh-ux/manager-core';
 
 import { momentConfiguration } from './config';
 
@@ -17,7 +19,7 @@ import 'ovh-ui-kit-bs/dist/ovh-ui-kit-bs.css';
 Environment.setRegion(__WEBPACK_REGION__);
 
 angular
-  .module('vpsApp', ['ovhManagerVps'])
+  .module('vpsApp', [cloudUniverseComponents, ovhManagerCore, ovhManagerVps])
   .config(
     /* @ngInject */ (CucConfigProvider, coreConfigProvider) => {
       CucConfigProvider.setRegion(coreConfigProvider.getRegion());

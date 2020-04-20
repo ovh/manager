@@ -92,6 +92,10 @@ module.exports = (env = {}) => {
       mainFields: ['module', 'browser', 'main'],
     },
     plugins: [
+      new webpack.ContextReplacementPlugin(
+        /moment[/\\]locale$/,
+        /cs|de|en-gb|es|es-us|fi|fr-ca|fr|it|lt|pl|pt/,
+      ),
       new webpack.DefinePlugin({
         __NG_APP_INJECTIONS__: getNgAppInjections(['EU']),
       }),

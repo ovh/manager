@@ -18,8 +18,7 @@ import startsWith from 'lodash/startsWith';
 import take from 'lodash/take';
 import toNumber from 'lodash/toNumber';
 import toString from 'lodash/toString';
-
-import moment from 'moment';
+import 'moment';
 
 export default class SupportController {
   /* @ngInject */

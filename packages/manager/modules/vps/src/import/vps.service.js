@@ -3,6 +3,7 @@ import head from 'lodash/head';
 import includes from 'lodash/includes';
 import remove from 'lodash/remove';
 import set from 'lodash/set';
+import 'moment';
 
 import { ADDITIONAL_DISK, IP_PRIMARY_TYPE } from './constants';
 

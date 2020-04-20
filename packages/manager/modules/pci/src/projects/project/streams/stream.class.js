@@ -1,4 +1,5 @@
 import find from 'lodash/find';
+import 'moment';
 
 import { KIND, STATUS, THROTTLING } from './streams.constants';
 

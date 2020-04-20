@@ -125,6 +125,15 @@ export const MENU = [
         title: 'Analytics Data Platform',
       },
       {
+        id: 'data-processing',
+        beta: true,
+        options: {
+          state: 'pci.projects.project.data-processing',
+        },
+        title: 'Data Processing',
+        regions: ['EU'],
+      },
+      {
         id: 'io-stream',
         beta: true,
         options: {

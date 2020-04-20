@@ -1,4 +1,4 @@
-import moment from 'moment';
+import 'moment';
 
 export default /* @ngInject */ function($http) {
   this.getGraphData = function getGraphData(opts) {

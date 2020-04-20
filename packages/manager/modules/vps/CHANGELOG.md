@@ -1,3 +1,26 @@
+# [0.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@0.4.0...@ovh-ux/manager-vps@0.5.0) (2020-04-20)
+
+
+### Features
+
+* **upgrade:** add APAC plan codes ([#2782](https://github.com/ovh/manager/issues/2782)) ([88f7b85](https://github.com/ovh/manager/commit/88f7b85faf6db2480a85b5d35e9148f547685b2e))
+
+
+
+# [0.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@0.3.0...@ovh-ux/manager-vps@0.4.0) (2020-04-15)
+
+
+### Features
+
+* **vps:** lazy load vps root state ([28cc74e](https://github.com/ovh/manager/commit/28cc74ee6c5f8789892978fc297ba47b0a2a20ea))
+
+
+### Performance Improvements
+
+* import dynamically moment locales ([#2755](https://github.com/ovh/manager/issues/2755)) ([5f3320d](https://github.com/ovh/manager/commit/5f3320d92802a1f4a6d65baf60f74917b8e58f4a))
+
+
+
 # [0.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@0.2.4...@ovh-ux/manager-vps@0.3.0) (2020-04-01)
 
 

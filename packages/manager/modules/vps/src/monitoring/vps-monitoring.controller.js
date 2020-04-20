@@ -1,6 +1,7 @@
 import find from 'lodash/find';
 import forEach from 'lodash/forEach';
 import get from 'lodash/get';
+import 'moment';
 
 import {
   VPS_MONITORING_BPS_OPTIONS,

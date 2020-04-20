@@ -4,6 +4,7 @@ import groupBy from 'lodash/groupBy';
 import isArray from 'lodash/isArray';
 import isEmpty from 'lodash/isEmpty';
 import map from 'lodash/map';
+import 'moment';
 
 import {
   DASHBOARD_FEATURES,
