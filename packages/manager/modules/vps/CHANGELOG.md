@@ -1,3 +1,12 @@
+# [0.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@0.4.0...@ovh-ux/manager-vps@0.5.0) (2020-04-20)
+
+
+### Features
+
+* **upgrade:** add APAC plan codes ([#2782](https://github.com/ovh/manager/issues/2782)) ([88f7b85](https://github.com/ovh/manager/commit/88f7b85faf6db2480a85b5d35e9148f547685b2e))
+
+
+
 # [0.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@0.3.0...@ovh-ux/manager-vps@0.4.0) (2020-04-15)
 
 
