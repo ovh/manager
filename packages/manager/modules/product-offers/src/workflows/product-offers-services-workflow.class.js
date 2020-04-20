@@ -10,7 +10,7 @@ export default class ServicesWorkflow extends Workflow {
    * @param {Object} workflowOptions Specific options
    * for this workflow, must contains the following values:
    * - {serviceId}: Id of the service on which to detach an option
-   * - {detachPlancode}: Item representing the option to detach
+   * - {detachPlancodes}: Item representing the option to detach
    * - {durationToUse}: Duration to use, will override the default pricing
    * duration.
    * @param {Object} DetachService   Service to handle request to perform a
