@@ -60,7 +60,6 @@ import './subdomain/add/domain-subdomain-add.controller';
 import './tasks/domain-tasks.controller';
 import './tasks/domain-tasks.state';
 import './uk-transfert-tag/domain-uk-transfert-tag.controller';
-import './webhosting-enable/domain-enable-web-hosting.controller';
 import './webhosting/domain-webhosting.routing';
 import './webhosting/index';
 import './webhosting/order/domain-webhosting-order-offer.class';

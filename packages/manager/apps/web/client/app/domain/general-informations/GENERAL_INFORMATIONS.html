@@ -1,4 +1,4 @@
-<div class="container-fluid px-0">
+<div class="container-fluid px-0" ui-view>
     <div data-ovh-alert="{{alerts.main}}"></div>
     <div class="row d-lg-flex">
         <div class="col-md-4 mb-5">
@@ -144,9 +144,11 @@
                         data-ng-if="ctrlDomain.canOrderHosting && ctrlDomain.isAdminOrBilling"
                     >
                         <oui-action-menu-item
-                            data-text="{{ ::'domain_configuration_action_enable' | translate }}"
-                            data-on-click="$ctrl.showWebHostingOrderWithStartOffer()"
+                            href="{{:: $ctrl.enableWebhostingLink }}"
                         >
+                            <span
+                                data-translate="domain_configuration_action_enable"
+                            ></span>
                         </oui-action-menu-item>
                     </oui-action-menu>
                 </oui-tile-definition>
@@ -172,7 +174,7 @@
                         data-ng-if="!$ctrl.loading.associatedHosting && ctrlDomain.canOrderHosting && ctrlDomain.isAdminOrBilling"
                     >
                         <oui-action-menu-item
-                            data-text="{{ ::'domain_configuration_enable_web_hosting' | translate }}"
+                            data-text="{{ ::'domain_configuration_order_web_hosting' | translate }}"
                             data-on-click="$ctrl.goToWebhostingOrder()"
                         ></oui-action-menu-item>
                     </oui-action-menu>
