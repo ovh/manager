@@ -27,7 +27,7 @@
                                     </div>
                                 </li>
                                 <li
-                                    data-ng-if="exchange.serverDiagnostic.version === 15"
+                                    data-ng-if="exchange.serverDiagnostic.version === 15 && !currentRegionCA"
                                     class="oui-tile__item"
                                 >
                                     <div class="oui-tile__definition">
@@ -105,7 +105,7 @@
                                 </li>
                                 <li
                                     class="oui-tile__item"
-                                    data-ng-if="exchange.isMXPlan"
+                                    data-ng-if="exchange.isMXPlan && !currentRegionCA"
                                 >
                                     <div class="oui-tile__definition">
                                         <strong
@@ -133,7 +133,7 @@
                                 </li>
                                 <li
                                     class="oui-tile__item"
-                                    data-ng-if="exchange.isMXPlan"
+                                    data-ng-if="exchange.isMXPlan && !currentRegionCA"
                                 >
                                     <div class="oui-tile__definition">
                                         <strong
@@ -189,7 +189,7 @@
                                                 data-ng-bind="exchange.accountsNumber"
                                             ></span>
                                             <oui-action-menu
-                                                data-ng-if="exchange.isMXPlan && exchange.accountsNumber <= 100"
+                                                data-ng-if="exchange.isMXPlan && exchange.accountsNumber <= 100 && !currentRegionCA"
                                                 data-compact
                                                 data-align="end"
                                             >
@@ -206,7 +206,7 @@
                                 </li>
                                 <li
                                     class="oui-tile__item"
-                                    data-ng-if="exchange.isMXPlan"
+                                    data-ng-if="exchange.isMXPlan && !currentRegionCA"
                                 >
                                     <div class="oui-tile__definition">
                                         <strong
@@ -221,7 +221,7 @@
 
                                 <li
                                     class="oui-tile__item"
-                                    data-ng-if="exchange.isMXPlan"
+                                    data-ng-if="exchange.isMXPlan && !currentRegionCA"
                                 >
                                     <div class="oui-tile__definition">
                                         <strong
