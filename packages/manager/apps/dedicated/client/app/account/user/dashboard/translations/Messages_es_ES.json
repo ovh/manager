@@ -13,5 +13,6 @@
   "user_account_dashboard_profile": "Mi perfil",
   "user_account_dashboard_profile_edit": "Editar mi perfil",
   "user_account_dashboard_profile_support_level": "Mi nivel de soporte:",
-  "user_account_dashboard_customer_code": "Customer code"
+  "user_account_dashboard_customer_code": "Número de cliente",
+  "user_account_dashboard_nichandle": "ID de cliente"
 }
