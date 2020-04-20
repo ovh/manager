@@ -2,7 +2,9 @@
     <div class="telecom-section-header">
         <header role="banner">
             <oui-back-button data-on-click="::$ctrl.goBack()">
-                <span>{{ $ctrl.pack.description || $ctrl.pack.packName }}</span>
+                <span
+                    data-ng-bind="$ctrl.pack.description || $ctrl.pack.packName"
+                ></span>
             </oui-back-button>
             <h1
                 data-translate="hosted_email_detail_title"

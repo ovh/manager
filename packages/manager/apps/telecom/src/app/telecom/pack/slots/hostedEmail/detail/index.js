@@ -8,7 +8,7 @@ import 'ovh-ui-angular';
 import component from './detail.component';
 import routing from './detail.routing';
 
-const moduleName = 'ovhTelecomPackHostedEmailDetail';
+const moduleName = 'ovhManagerTelecomPackHostedEmailDetail';
 
 angular
   .module(moduleName, [
@@ -17,7 +17,7 @@ angular
     angularTranslate,
     'oui',
   ])
-  .component('detail', component)
+  .component('packSlotHostedEmailDetail', component)
   .config(routing);
 
 export default moduleName;
