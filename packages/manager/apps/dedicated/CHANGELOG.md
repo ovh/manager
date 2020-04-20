@@ -1,3 +1,27 @@
+# [12.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@12.2.3...@ovh-ux/manager-dedicated@12.3.0) (2020-04-20)
+
+
+### Bug Fixes
+
+* **ip:** add missing annotations ([176f903](https://github.com/ovh/manager/commit/176f903be42c2697b197e4f0f3b7af369f42a75e))
+* **ip:** filter correctly vps by region ([e03bd10](https://github.com/ovh/manager/commit/e03bd10e8d7057daa0ddd11483d539ac58d18415))
+* **ip:** filter expired services ([ebf3662](https://github.com/ovh/manager/commit/ebf36626eb77480824726c3224d9f7ae65b7cf8c))
+* **ip:** use correct label for APAC ip ([d99439e](https://github.com/ovh/manager/commit/d99439e9c5736caba869603fabd1c11054f9b075))
+* **ip:** use handling method through array function ([0c0675d](https://github.com/ovh/manager/commit/0c0675dc901f46d89619a2d9be97fc34d2e9415e))
+* **vps2020:** filter list of available countries for VPS ([8ae6fa6](https://github.com/ovh/manager/commit/8ae6fa6820d023ff707c4a0cdaf0765ff087771b))
+
+
+### Features
+
+* **dedicated:** add manager models dep ([8a00966](https://github.com/ovh/manager/commit/8a00966c9e5a32aa08785f215a0184d62868416c))
+* **ip:** add vps services to agora ip order ([543416c](https://github.com/ovh/manager/commit/543416c8e51f4b0811bf4899cb011beb930bfaa1))
+* **ip:** preselect vps service from legacy order modal ([6d7d2bd](https://github.com/ovh/manager/commit/6d7d2bd17c8812ebf7eecb0a8d2c172ef614c998))
+* **ip:** redirect vps new range to agora order modal ([18b7b3a](https://github.com/ovh/manager/commit/18b7b3ae8466d0969867802c25a1931eabc95e9a))
+* **ip:** use subsidiary for ip offers ([fc9b16d](https://github.com/ovh/manager/commit/fc9b16d1d937e23b9b74f5f41cdd4aad52781294))
+* **vps:** update dependencies ([6850c3c](https://github.com/ovh/manager/commit/6850c3c47d72c38aba2e70a2c26b89dc5ba58f09))
+
+
+
 ## [12.2.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@12.2.2...@ovh-ux/manager-dedicated@12.2.3) (2020-04-20)
 
 
