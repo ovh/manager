@@ -10,6 +10,7 @@ import {
 angular.module('Module.ip.services').service(
   'IpAgoraOrder',
   class {
+    /* @ngInject */
     constructor($q, OvhHttp) {
       this.$q = $q;
       this.OvhHttp = OvhHttp;
@@ -18,8 +19,12 @@ angular.module('Module.ip.services').service(
     }
 
     handleErrorOrServices({ errors, results }) {
-      if (isArray(errors) && !isEmpty(errors)) {
-        return this.$q.reject(errors);
+      const filteredErrors = errors.filter(({ msg }) => {
+        const [errorCode] = msg.match(/\d+/);
+        return parseInt(errorCode, 10) !== 400;
+      });
+      if (isArray(filteredErrors) && !isEmpty(filteredErrors)) {
+        return this.$q.reject(filteredErrors);
       }
 
       return get(results, '[0].services', []);
@@ -37,14 +42,19 @@ angular.module('Module.ip.services').service(
     getServices() {
       return this.$q
         .all([
-          this.fetchProducts(PRODUCT_TYPES.privateCloud.apiTypeName).then(
-            this.handleErrorOrServices,
+          this.fetchProducts(
+            PRODUCT_TYPES.privateCloud.apiTypeName,
+          ).then((privateClouds) => this.handleErrorOrServices(privateClouds)),
+          this.fetchProducts(
+            PRODUCT_TYPES.dedicatedServer.apiTypeName,
+          ).then((dedicatedServers) =>
+            this.handleErrorOrServices(dedicatedServers),
           ),
-          this.fetchProducts(PRODUCT_TYPES.dedicatedServer.apiTypeName).then(
-            this.handleErrorOrServices,
+          this.fetchProducts(PRODUCT_TYPES.vps.apiTypeName).then((vps) =>
+            this.handleErrorOrServices(vps),
           ),
         ])
-        .then(([privateClouds, dedicatedServers]) => [
+        .then(([privateClouds, dedicatedServers, vps]) => [
           ...privateClouds.map((privateCloud) => ({
             ...privateCloud,
             type: PRODUCT_TYPES.privateCloud.typeName,
@@ -52,6 +62,10 @@ angular.module('Module.ip.services').service(
           ...dedicatedServers.map((dedicatedServer) => ({
             ...dedicatedServer,
             type: PRODUCT_TYPES.dedicatedServer.typeName,
+          })),
+          ...vps.map((vpsService) => ({
+            ...vpsService,
+            type: PRODUCT_TYPES.vps.typeName,
           })),
         ]);
     }
@@ -160,6 +174,12 @@ angular.module('Module.ip.services').service(
       }
 
       return productToOrder;
+    }
+
+    getVpsIpCountryAvailable(serviceName) {
+      return this.OvhHttp.get(`/vps/${serviceName}/ipCountryAvailable`, {
+        rootPath: 'apiv6',
+      });
     }
   },
 );

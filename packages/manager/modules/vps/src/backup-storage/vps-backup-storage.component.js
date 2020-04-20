@@ -8,6 +8,7 @@ export default {
     goToEditBackupStorage: '<',
     goToPassword: '<',
     serviceName: '<',
+    tabSummary: '<',
   },
   controller,
   name: 'ovhManagerVpsBackupStorage',

@@ -9,6 +9,10 @@ export const PRODUCT_TYPES = {
     apiTypeName: 'DEDICATED_CLOUD',
     typeName: 'PRIVATE_CLOUD',
   },
+  vps: {
+    apiTypeName: 'VPS',
+    typeName: 'VPS',
+  },
 };
 
 export default {

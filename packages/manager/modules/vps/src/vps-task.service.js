@@ -1,3 +1,4 @@
+import filter from 'lodash/filter';
 import forEach from 'lodash/forEach';
 import includes from 'lodash/includes';
 import set from 'lodash/set';
@@ -18,7 +19,11 @@ export default class VpsTaskService {
 
   initPoller(serviceName, containerName) {
     this.getPendingTasks(serviceName).then((tasks) =>
-      this.startTaskPolling(serviceName, containerName, tasks),
+      this.startTaskPolling(
+        serviceName,
+        containerName,
+        filter(tasks, (task) => task.type !== 'upgradeVm'),
+      ),
     );
   }
 
