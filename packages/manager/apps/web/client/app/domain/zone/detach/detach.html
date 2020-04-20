@@ -1,0 +1,17 @@
+<oui-back-button on-click="$ctrl.goBack()">
+    <span data-translate="web_domain_zone_detach"></span>
+</oui-back-button>
+
+<div data-ovh-alert></div>
+
+<p data-translate="web_domain_zone_detach_description"></p>
+
+<ovh-manager-product-offers
+    on-error="$ctrl.onError(error)"
+    on-success="$ctrl.onSuccess(order)"
+    pricing-type="$ctrl.PRICING_TYPE"
+    user="$ctrl.user"
+    workflow-type="$ctrl.WORKFLOW_TYPE"
+    workflow-options="$ctrl.WORKFLOW_OPTIONS"
+>
+</ovh-manager-product-offers>
