@@ -136,7 +136,10 @@ export default class {
   }
 
   hasAdditionalDiskOption() {
-    if (!this.tabSummary.additionalDisk.optionAvailable) {
+    if (
+      !this.tabSummary.additionalDisk ||
+      !this.tabSummary.additionalDisk.optionAvailable
+    ) {
       this.hasAdditionalDisk = false;
       return this.hasAdditionalDisk;
     }
