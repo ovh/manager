@@ -1,3 +1,13 @@
+## [12.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@12.3.0...@ovh-ux/manager-dedicated@12.3.1) (2020-04-21)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 363] ([33e18d9](https://github.com/ovh/manager/commit/33e18d9ca00a9428eaf70f76ea2adc92c32891d6))
+* **payment:** add legal disclaimer ([#2821](https://github.com/ovh/manager/issues/2821)) ([25e248c](https://github.com/ovh/manager/commit/25e248c356be23572c0adbeae522d95dd107a45c))
+
+
+
 # [12.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@12.2.3...@ovh-ux/manager-dedicated@12.3.0) (2020-04-20)
 
 
