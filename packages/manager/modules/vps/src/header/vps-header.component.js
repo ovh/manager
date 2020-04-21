@@ -5,6 +5,7 @@ export default {
   bindings: {
     capabilities: '<',
     hasCloudDatabaseFeature: '<',
+    hasBackupStorage: '<',
     serviceName: '<',
     vps: '<',
   },

@@ -1,5 +1,6 @@
 import kebabCase from 'lodash/kebabCase';
 
+import { NEW_RANGE_VERSION } from './dashboard/vps-dashboard.constants';
 import { FEATURE_CLOUDDATABASE, PRODUCT_NAME } from './constants';
 
 import detailComponent from './detail/vps-detail.component';
@@ -45,6 +46,11 @@ export default /* @ngInject */ ($stateProvider) => {
         }
         return promise;
       },
+      hasBackupStorage: /* @ngInject */ (isVpsNewRange, tabSummary) => {
+        return tabSummary.ftpBackup.optionActivated || !isVpsNewRange;
+      },
+      isVpsNewRange: /* @ngInject */ (stateVps) =>
+        stateVps.model.version === NEW_RANGE_VERSION,
       plan: /* @ngInject */ (serviceName, VpsService) =>
         VpsService.getServiceInfos(serviceName).then((plan) => ({
           ...plan,

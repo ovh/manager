@@ -16,5 +16,6 @@
   "billing_payment_method_table_action_download_procedure": "Dokument herunterladen, das per Post zurückzusenden ist",
   "billing_payment_method_table_action_description_edit": "Beschreibung ändern",
   "billing_payment_method_table_action_set_default": "Dieses Zahlungsmittel als Standardzahlungsmittel festlegen",
-  "billing_payment_method_table_action_delete": "Dieses Zahlungsmittel löschen"
+  "billing_payment_method_table_action_delete": "Dieses Zahlungsmittel löschen",
+  "billing_payment_method_credit_card_disclaimer": "Die Registrierung eines Zahlungsmittels ist erforderlich, wenn Sie Dienstleistungen mit automatischer Verlängerung nutzen. Sie können dies jederzeit ändern. Sollten Sie keine Dienste mit automatischer Verlängerung nutzen und Ihr Zahlungsmittel löschen wollen, wenden Sie sich bitte an unseren Kundenservice, indem Sie ein Ticket erstellen."
 }

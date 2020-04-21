@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-pci",
-  "version": "3.18.1",
+  "version": "3.18.2",
   "private": true,
   "description": "Public Cloud Instance product.",
   "repository": {
@@ -44,7 +44,7 @@
     "@ovh-ux/ng-q-allsettled": "^2.0.0",
     "@ovh-ux/ng-translate-async-loader": "^2.1.0",
     "@ovh-ux/ng-ui-router-breadcrumb": "^1.1.0",
-    "@ovh-ux/ng-ui-router-layout": "^3.2.0",
+    "@ovh-ux/ng-ui-router-layout": "^3.3.1",
     "@uirouter/angularjs": "^1.0.15",
     "angular": "^1.7.5",
     "angular-animate": "^1.7.5",

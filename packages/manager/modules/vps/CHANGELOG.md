@@ -1,3 +1,13 @@
+## [0.6.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@0.6.1...@ovh-ux/manager-vps@0.6.2) (2020-04-21)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 363] ([33e18d9](https://github.com/ovh/manager/commit/33e18d9ca00a9428eaf70f76ea2adc92c32891d6))
+* **vps:** remove backup storage for new range ([e979e74](https://github.com/ovh/manager/commit/e979e74114813d3e8bc2af2a4a8c32baca56f951))
+
+
+
 ## [0.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@0.6.0...@ovh-ux/manager-vps@0.6.1) (2020-04-21)
 
 
