@@ -1,3 +1,4 @@
+import get from 'lodash/get';
 import Workflow from './product-offers-workflow.class';
 
 /**
@@ -81,7 +82,9 @@ export default class ServicesWorkflow extends Workflow {
   validateOffer() {
     this.updateLoadingStatus('validateOffer');
 
-    const autoPayWithPreferredPaymentMethod = !!this.defaultPaymentMethod;
+    const autoPayWithPreferredPaymentMethod =
+      !!this.defaultPaymentMethod || this.isFreePricing();
+
     let detachResult;
 
     this.validationParameters.autoPayWithPreferredPaymentMethod = autoPayWithPreferredPaymentMethod;
@@ -93,7 +96,7 @@ export default class ServicesWorkflow extends Workflow {
 
         return autoPayWithPreferredPaymentMethod
           ? this.workflowService.payDetach(
-              detachResult.orderId,
+              detachResult,
               this.defaultPaymentMethod,
             )
           : this.$q.when();
@@ -105,7 +108,10 @@ export default class ServicesWorkflow extends Workflow {
         };
 
         if (autoPayWithPreferredPaymentMethod) {
-          validatedDetach.paymentMethodLabel = this.defaultPaymentMethod.label;
+          validatedDetach.paymentMethodLabel = get(
+            this.defaultPaymentMethod,
+            'label',
+          );
         }
 
         this.onSuccess({
