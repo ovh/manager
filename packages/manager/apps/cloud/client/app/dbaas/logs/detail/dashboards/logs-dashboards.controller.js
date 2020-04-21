@@ -28,15 +28,10 @@ class LogsDashboardsCtrl {
    * @memberof LogsDashboardsCtrl
    */
   initLoaders() {
-    this.quota = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () =>
-        this.LogsDashboardsService.getQuota(this.serviceName),
-    });
     this.dashboards = this.CucControllerHelper.request.getArrayLoader({
       loaderFunction: () =>
         this.LogsDashboardsService.getDashboards(this.serviceName),
     });
-    this.quota.load();
     this.dashboards.load();
   }
 
@@ -71,15 +66,11 @@ class LogsDashboardsCtrl {
    * @memberof LogsDashboardsCtrl
    */
   duplicate(dashboard) {
-    if (this.isBasicOffer(this.quota.data)) {
-      this.showOfferUpgradeInfo();
-    } else {
-      this.$state.go('dbaas.logs.detail.dashboards.duplicate', {
-        serviceName: this.serviceName,
-        dashboardId: dashboard.dashboardId,
-        dashboardName: dashboard.title,
-      });
-    }
+    this.$state.go('dbaas.logs.detail.dashboards.duplicate', {
+      serviceName: this.serviceName,
+      dashboardId: dashboard.dashboardId,
+      dashboardName: dashboard.title,
+    });
   }
 
   /**
@@ -125,37 +116,6 @@ class LogsDashboardsCtrl {
    */
   getGraylogUrl(aapiDashboard) {
     return this.LogsDashboardsService.getDashboardGraylogUrl(aapiDashboard);
-  }
-
-  /**
-   * Checks if the user has a basic offer
-   *
-   * @returns true if the user is subscribed to a basic offer
-   * @memberof LogsDashboardsCtrl
-   */
-  isBasicOffer(offerObj) {
-    return offerObj.reference === this.LogsConstants.basicOffer;
-  }
-
-  /**
-   * show a modal dialog asking user to upgrade before creating more dashboards
-   *
-   * @memberof LogsDashboardsCtrl
-   */
-  showOfferUpgradeInfo() {
-    return this.CucControllerModalHelper.showInfoModal({
-      titleText: this.$translate.instant(
-        'options_upgradequotalink_increase_quota_title',
-      ),
-      text: this.$translate.instant('logs_dashboards_basic_offer_info_message'),
-      okButtonText: this.$translate.instant(
-        'options_upgradequotalink_increase_quota_upgrade',
-      ),
-    }).then(() =>
-      this.$state.go('dbaas.logs.detail.offer', {
-        serveiceName: this.serviceName,
-      }),
-    );
   }
 }
 
