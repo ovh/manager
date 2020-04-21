@@ -1,0 +1,3 @@
+{
+  "data_processing_submit_job_spark_description": "Inicie um job Apache Spark utilizando um JAR Java/Scala ou o código Python com dependências Conda."
+}
