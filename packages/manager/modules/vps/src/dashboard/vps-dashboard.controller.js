@@ -6,10 +6,7 @@ import isEmpty from 'lodash/isEmpty';
 import map from 'lodash/map';
 import 'moment';
 
-import {
-  DASHBOARD_FEATURES,
-  NEW_RANGE_VERSION,
-} from './vps-dashboard.constants';
+import { DASHBOARD_FEATURES } from './vps-dashboard.constants';
 import {
   CHANGE_OWNER_URL,
   CONTACTS_URL,
@@ -54,8 +51,6 @@ export default class {
   }
 
   $onInit() {
-    this.isVpsNewRange = this.stateVps.model.version === NEW_RANGE_VERSION;
-
     this.initActions();
     this.initLoaders();
     this.initUpgradePolling();
