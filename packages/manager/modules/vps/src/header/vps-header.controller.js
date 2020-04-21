@@ -57,7 +57,14 @@ export default class {
       PRODUCT_NAME,
       this.serviceName,
     );
-    this.features = this.getFeatures();
+    const features = this.getFeatures();
+
+    this.features = features.filter(
+      ({ title }) =>
+        title !== TAB_FEATURES[0].title ||
+        (title === TAB_FEATURES[0].title && this.hasBackupStorage),
+    );
+
     [this.feature] = this.features;
   }
 
@@ -67,6 +74,7 @@ export default class {
         this.capabilities.includes(feature),
       ),
       (feature) => ({
+        title: feature,
         textId: `vps_tab_${snakeCase(feature)}`,
         state: `vps.detail.${feature}`,
       }),

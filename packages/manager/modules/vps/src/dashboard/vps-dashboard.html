@@ -387,6 +387,7 @@
                 <div data-ng-if="!$ctrl.loaders.disk">
                     <oui-tile-definition
                         data-term="{{ ::'vps_tab_backup_storage' | translate }}"
+                        data-ng-if="$ctrl.hasBackupStorage"
                     >
                         <oui-tile-description>
                             <span
