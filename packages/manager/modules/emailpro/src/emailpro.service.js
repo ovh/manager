@@ -2,6 +2,7 @@ import angular from 'angular';
 import punycode from 'punycode';
 import camelCase from 'lodash/camelCase';
 import find from 'lodash/find';
+import get from 'lodash/get';
 import isEmpty from 'lodash/isEmpty';
 import keys from 'lodash/keys';
 import map from 'lodash/map';
@@ -20,8 +21,9 @@ export default class EmailPro {
     $stateParams,
     $timeout,
     $translate,
-
+    coreConfig,
     constants,
+    EMAILPRO_CONFIG,
     OvhHttp,
   ) {
     this.$cacheFactory = $cacheFactory;
@@ -32,6 +34,11 @@ export default class EmailPro {
     this.$timeout = $timeout;
     this.$translate = $translate;
 
+    this.apiRoutes = get(
+      EMAILPRO_CONFIG.API_ROUTES,
+      coreConfig.getRegion(),
+      {},
+    );
     this.constants = constants;
     this.OvhHttp = OvhHttp;
 
@@ -253,49 +260,55 @@ export default class EmailPro {
   }
 
   getRedirectionTasks(domainName) {
-    return this.OvhHttp.get('/email/domain/{domain}/task/redirection', {
-      rootPath: 'apiv6',
-      urlParams: {
-        domain: domainName,
-      },
-    }).then((ids) => {
-      const promises = map(ids, (id) =>
-        this.getSubTaskDetails(true, domainName, id),
-      );
-      return this.$q.all(promises);
-    });
+    return this.apiRoutes.TASKS_REDIRECTION
+      ? this.OvhHttp.get(this.apiRoutes.TASKS_REDIRECTION, {
+          rootPath: 'apiv6',
+          urlParams: {
+            domain: domainName,
+          },
+        }).then((ids) => {
+          const promises = map(ids, (id) =>
+            this.getSubTaskDetails(true, domainName, id),
+          );
+          return this.$q.all(promises);
+        })
+      : this.$q.when([]);
   }
 
   getMailingListTasks(domainName) {
-    return this.OvhHttp.get('/email/domain/{domain}/task/mailinglist', {
-      rootPath: 'apiv6',
-      urlParams: {
-        domain: domainName,
-      },
-    }).then((ids) => {
-      const promises = map(ids, (id) =>
-        this.getSubTaskDetails(false, domainName, id),
-      );
-      return this.$q.all(promises);
-    });
+    return this.apiRoutes.TASKS_MAILING_LIST
+      ? this.OvhHttp.get(this.apiRoutes.TASKS_MAILING_LIST, {
+          rootPath: 'apiv6',
+          urlParams: {
+            domain: domainName,
+          },
+        }).then((ids) => {
+          const promises = map(ids, (id) =>
+            this.getSubTaskDetails(false, domainName, id),
+          );
+          return this.$q.all(promises);
+        })
+      : this.$q.when([]);
   }
 
   getSubTaskDetails(redirection, domainName, taskId) {
-    let url = '/email/domain/{domain}/task/mailinglist/{id}';
+    let url = this.apiRoutes.TASK_MAILING_LIST;
     if (redirection) {
-      url = '/email/domain/{domain}/task/redirection/{id}';
+      url = this.apiRoutes.TASK_REDIRECTION;
     }
-    return this.OvhHttp.get(url, {
-      rootPath: 'apiv6',
-      urlParams: {
-        domain: domainName,
-        id: taskId,
-      },
-    }).then((res) => {
-      res.todoDate = res.date;
-      res.finishDate = res.date;
-      return res;
-    });
+    return url
+      ? this.OvhHttp.get(url, {
+          rootPath: 'apiv6',
+          urlParams: {
+            domain: domainName,
+            id: taskId,
+          },
+        }).then((res) => {
+          res.todoDate = res.date;
+          res.finishDate = res.date;
+          return res;
+        })
+      : this.$q.when({});
   }
 
   getMxTasks(serviceName) {
