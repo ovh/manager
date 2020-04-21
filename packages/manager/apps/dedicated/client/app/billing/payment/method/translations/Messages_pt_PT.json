@@ -16,5 +16,6 @@
   "billing_payment_method_table_action_download_procedure": "Descarregar o documento que deverá enviar por correio",
   "billing_payment_method_table_action_description_edit": "Alterar a descrição",
   "billing_payment_method_table_action_set_default": "Definir este método de pagamento por predefinição",
-  "billing_payment_method_table_action_delete": "Eliminar este método de pagamento"
+  "billing_payment_method_table_action_delete": "Eliminar este método de pagamento",
+  "billing_payment_method_credit_card_disclaimer": "O registo de um meio de pagamento é obrigatório caso esteja a utilizar Serviços com renovação automática. Poderá alterá-lo a qualquer momento. Se não tiver serviços em renovação automática e desejar eliminar o seu meio de pagamento, por favor contacte a nossa equipa de apoio a clientes criando um ticket."
 }

@@ -16,5 +16,6 @@
   "billing_payment_method_table_action_download_procedure": "Scarica la procedura da compilare e restituire via posta",
   "billing_payment_method_table_action_description_edit": "Modifica la descrizione",
   "billing_payment_method_table_action_set_default": "Imposta questo metodo di pagamento come predefinito",
-  "billing_payment_method_table_action_delete": "Elimina questo metodo di pagamento"
+  "billing_payment_method_table_action_delete": "Elimina questo metodo di pagamento",
+  "billing_payment_method_credit_card_disclaimer": "La registrazione delle modalità di pagamento è obbligatoria se si utilizzano Servizi a rinnovo automatico. Puoi modificarle in ogni momento. Se non disponi di servizi a rinnovo automatico e vuoi eliminare queste modalità di pagamento, contatto il team assistenza clienti creando un ticket."
 }
