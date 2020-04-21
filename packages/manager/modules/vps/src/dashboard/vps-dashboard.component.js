@@ -18,6 +18,7 @@ export default {
     goToTerminateOption: '<',
     goBack: '<',
 
+    hasBackupStorage: '<',
     isVpsNewRange: '<',
     plan: '<',
     serviceName: '<',

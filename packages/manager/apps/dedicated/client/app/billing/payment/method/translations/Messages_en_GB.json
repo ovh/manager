@@ -16,5 +16,6 @@
   "billing_payment_method_table_action_download_procedure": "Download the procedure to return by post",
   "billing_payment_method_table_action_description_edit": "Edit description",
   "billing_payment_method_table_action_set_default": "Make this the default payment method",
-  "billing_payment_method_table_action_delete": "Delete this payment method"
+  "billing_payment_method_table_action_delete": "Delete this payment method",
+  "billing_payment_method_credit_card_disclaimer": "The registration of a means of payment is mandatory if you are using Services with automatic renewal. You can change it at any time. If you do not have services in automatic renewal and wish to delete your means of payment, please contact our customer support team by creating a ticket."
 }

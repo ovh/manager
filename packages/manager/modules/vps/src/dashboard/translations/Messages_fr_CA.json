@@ -1,0 +1,5 @@
+{
+  "vps_dashboard_upgrade_done": "L’évolution de votre VPS est terminé. N’oubliez pas d’effectuer un redémarrage pour activer la nouvelle configuration.",
+  "vps_dashboard_upgrade_error": "Une erreur est survenue lors de la demande d‘évolution sur votre VPS.",
+  "vps_dashboard_upgrade_doing": "L‘évolution est actuellement en cours sur votre VPS. Un message vous informera quand vous pourrez redémarrer votre serveur pour activer la nouvelle configuration."
+}

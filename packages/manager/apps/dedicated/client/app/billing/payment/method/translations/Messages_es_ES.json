@@ -16,5 +16,6 @@
   "billing_payment_method_table_action_download_procedure": "Descargar el documento que deberá enviar por correo postal",
   "billing_payment_method_table_action_description_edit": "Modificar la descripción",
   "billing_payment_method_table_action_set_default": "Establecer como forma de pago por defecto",
-  "billing_payment_method_table_action_delete": "Eliminar esta forma de pago"
+  "billing_payment_method_table_action_delete": "Eliminar esta forma de pago",
+  "billing_payment_method_credit_card_disclaimer": "Es obligatorio registrar un medio de pago si va a renovar sus servicios de forma automática. Puede modificarlo cuando desee. Si no cuenta con servicios que se renuevan de forma automática y desea eliminar este medio de pago, cree un ticket para ponerse en contacto con nuestro equipo de atención al cliente."
 }

@@ -1,0 +1,5 @@
+{
+  "vps_dashboard_upgrade_done": "Zmiana oferty serwera VPS została zakończona. Pamiętaj, że aktywacja nowej konfigurację nastąpi po zrestartowaniu serwera.",
+  "vps_dashboard_upgrade_error": "Wystąpił błąd podczas zmiany oferty serwera VPS.",
+  "vps_dashboard_upgrade_doing": "Trwa zmiana oferty serwera VPS. Poinformujemy Cię, kiedy będziesz mógł zrestartować serwer, aby aktywować nową konfigurację."
+}

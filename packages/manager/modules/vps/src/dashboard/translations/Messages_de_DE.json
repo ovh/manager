@@ -1,0 +1,5 @@
+{
+  "vps_dashboard_upgrade_done": "Ihr VPS wurde aktualisiert. Bitte denken Sie daran, Ihren VPS neu zu starten, damit die neue Konfiguration funktioniert.",
+  "vps_dashboard_upgrade_error": "Bei der Anfrage für das Upgrade Ihres VPS ist ein Fehler aufgetreten.",
+  "vps_dashboard_upgrade_doing": "Ihr VPS wird aktualisiert. Sie erhalten eine Benachrichtigung, sobald Sie Ihren Server neu starten können, um die neue Konfiguration zu aktivieren."
+}
