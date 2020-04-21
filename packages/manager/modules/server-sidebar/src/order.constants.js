@@ -286,6 +286,12 @@ export const ORDER_URLS = {
     },
   },
   CA: {
+    orderDomain: {
+      CA: 'https://www.ovh.com/ca',
+    },
+    orderHosting: {
+      CA: 'https://www.ovh.com/ca',
+    },
     dedicated_cloud: {
       ASIA: 'https://www.ovh.com/asia/sddc/',
       AU: 'https://www.ovh.com.au/sddc/',
