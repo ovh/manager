@@ -37,11 +37,19 @@ export default class EmailProTabInformationCtrl {
 
     if (this.$scope.exchange.isMXPlan) {
       this.$q.all({
-        quotas: this.getQuotas(),
+        quotas: this.$scope.currentRegionCA
+          ? this.$q.when({})
+          : this.getQuotas(),
         accounts: this.getAccountsConfigured(),
-        emailsDomain: this.getEmailsDomain(),
-        mailingLists: this.getMailingLists(),
-        redirections: this.getRedirections(),
+        emailsDomain: this.$scope.currentRegionCA
+          ? this.$q.when({})
+          : this.getEmailsDomain(),
+        mailingLists: this.$scope.currentRegionCA
+          ? this.$q.when({})
+          : this.getMailingLists(),
+        redirections: this.$scope.currentRegionCA
+          ? this.$q.when({})
+          : this.getRedirections(),
       });
 
       this.upgradeLink = this.$state.href('app.email.mxplan.upgrade', {
