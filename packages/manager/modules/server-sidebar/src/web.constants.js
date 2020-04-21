@@ -32,6 +32,7 @@ export const DOMAIN_CONFIG = {
       stateParams: ['productId'],
       loadOnStateParams: ['allDom'],
       app: [WEB],
+      regions: ['EU'],
       icon: 'ovh-font ovh-font-domain',
       types: [
         {
@@ -119,7 +120,7 @@ export const PRIVATE_DATABASE_CONFIG = {
   ],
   icon: 'ovh-font ovh-font-database',
   app: [WEB],
-  regions: ['EU'],
+  regions: ['EU', 'CA'],
 };
 
 export const EMAIL_PRO_CONFIG = {
@@ -252,14 +253,14 @@ export const WEB_ORDER_SIDEBAR_CONFIG = [
     linkId: 'orderDomain',
     target: '_blank',
     app: [WEB],
-    regions: ['EU'],
+    regions: ['EU', 'CA'],
   },
   {
     id: 'orderZone',
     title: 'zone',
     icon: 'oui-icon oui-icon-domain-dns',
     state: 'app.dns-zone-new',
-    regions: ['EU'],
+    regions: ['EU', 'CA'],
     app: [WEB],
   },
   {
@@ -269,7 +270,7 @@ export const WEB_ORDER_SIDEBAR_CONFIG = [
     linkId: 'orderHosting',
     target: '_blank',
     app: [WEB],
-    regions: ['EU'],
+    regions: ['EU', 'CA'],
   },
   {
     id: 'orderCloudWeb',
@@ -294,7 +295,7 @@ export const WEB_ORDER_SIDEBAR_CONFIG = [
     title: 'mxplan',
     icon: 'ovh-font ovh-font-mail',
     state: 'app.mx-plan',
-    regions: ['EU'],
+    regions: ['EU', 'CA'],
     app: [WEB],
   },
   {
