@@ -136,7 +136,10 @@ export default class {
   }
 
   hasAdditionalDiskOption() {
-    if (!this.tabSummary.additionalDisk.optionAvailable) {
+    if (
+      !this.tabSummary.additionalDisk ||
+      !this.tabSummary.additionalDisk.optionAvailable
+    ) {
       this.hasAdditionalDisk = false;
       return this.hasAdditionalDisk;
     }
@@ -416,7 +419,7 @@ export default class {
             ),
             state: 'vps.detail.upgrade',
             stateParams: { serviceName: this.serviceName },
-            isAvailable: () => !this.loaders.polling,
+            isAvailable: () => !this.loaders.polling && !this.isVpsNewRange,
           },
         };
       });
