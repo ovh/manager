@@ -1,3 +1,12 @@
+## [0.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@0.6.0...@ovh-ux/manager-vps@0.6.1) (2020-04-21)
+
+
+### Bug Fixes
+
+* **vps:** remove double state in routing ([#2824](https://github.com/ovh/manager/issues/2824)) ([5917c83](https://github.com/ovh/manager/commit/5917c8366e388f970577071c1060dc756703a09c))
+
+
+
 # [0.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@0.5.0...@ovh-ux/manager-vps@0.6.0) (2020-04-20)
 
 

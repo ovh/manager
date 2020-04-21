@@ -1,3 +1,12 @@
+## [3.3.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ui-router-layout@3.3.0...@ovh-ux/ng-ui-router-layout@3.3.1) (2020-04-21)
+
+
+### Bug Fixes
+
+* **vps:** remove double state in routing ([#2824](https://github.com/ovh/manager/issues/2824)) ([5917c83](https://github.com/ovh/manager/commit/5917c8366e388f970577071c1060dc756703a09c))
+
+
+
 # [3.3.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ui-router-layout@3.2.0...@ovh-ux/ng-ui-router-layout@3.3.0) (2020-04-20)
 
 
