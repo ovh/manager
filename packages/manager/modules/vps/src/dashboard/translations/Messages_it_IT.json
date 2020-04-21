@@ -1,0 +1,5 @@
+{
+  "vps_dashboard_upgrade_done": "L’upgrade del VPS è completato. Per attivare la nuova configurazione è necessario riavviare il VPS.",
+  "vps_dashboard_upgrade_error": "Si è verificato un errore durante la richiesta di upgrade del VPS.",
+  "vps_dashboard_upgrade_doing": "Upgrade del VPS in corso... Riceverai un messaggio quando sarà possibile riavviare il server per attivare la nuova configurazione."
+}
