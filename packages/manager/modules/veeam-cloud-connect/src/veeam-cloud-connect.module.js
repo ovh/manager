@@ -21,6 +21,7 @@ import updateOffer from './dashboard/update-offer/veeam-update-offer.component';
 import './index.less';
 
 import 'ovh-ui-kit/dist/oui.css';
+import 'ovh-ui-kit/dist/oui-olt.css';
 
 const moduleName = 'ovhManagerVeeamCloudConnect';
 

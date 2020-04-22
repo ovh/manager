@@ -28,6 +28,7 @@ import { SANITIZATION } from './constants';
 // styles
 import './assets/theme/index.less';
 import 'ovh-ui-kit/dist/oui.css';
+import 'ovh-ui-kit/dist/oui-olt.css';
 import './index.scss';
 
 Environment.setRegion(__WEBPACK_REGION__);
