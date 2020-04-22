@@ -18,6 +18,7 @@ import VeeamEnterpriseLicenseTerminateComponent from './dashboard/terminate/term
 import routing from './routing';
 
 import 'ovh-ui-kit/dist/oui.css';
+import 'ovh-ui-kit/dist/oui-olt.css';
 import './index.less';
 import './index.scss';
 

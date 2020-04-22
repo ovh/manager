@@ -12,7 +12,9 @@ import { state } from './support.routing';
 
 import 'font-awesome/css/font-awesome.css';
 import 'ovh-ui-kit/dist/oui.css';
-import 'ovh-ui-kit-bs/dist/ovh-ui-kit-bs.css';
+import 'ovh-ui-kit/dist/oui-olt.css';
+import 'ovh-ui-kit-bs/dist/ovh-ui-kit-bs.min.css';
+import 'ovh-ui-kit-bs/dist/oui-bs3-olt.css';
 
 import './support.scss';
 

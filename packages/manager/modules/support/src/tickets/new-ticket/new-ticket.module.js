@@ -19,6 +19,7 @@ import {
 } from './new-ticket.service';
 
 import 'ovh-ui-kit/dist/oui.css';
+import 'ovh-ui-kit/dist/oui-olt.css';
 
 const moduleName = 'ovhManagerSupportTicketsNew';
 
