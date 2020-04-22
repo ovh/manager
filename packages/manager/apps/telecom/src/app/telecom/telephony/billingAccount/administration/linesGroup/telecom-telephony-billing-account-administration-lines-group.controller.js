@@ -22,6 +22,7 @@ angular
       OvhApiTelephony,
       TucToast,
       TucToastError,
+      iceberg,
     ) {
       const self = this;
 
@@ -54,26 +55,18 @@ angular
 
         return $q
           .all({
-            billingAccounts: OvhApiTelephony.v7()
+            billingAccounts: iceberg('/telephony')
               .query()
-              .expand()
+              .expand('CachedObjectList-Pages')
               .execute().$promise,
             numberCount: getNumberCount,
             lineCount: getLineCount,
           })
           .then(
             (result) => {
-              self.billingAccounts.accounts = result.billingAccounts.reduce(
-                (accounts, account) => {
-                  if (
-                    account.value.billingAccount !==
-                    self.billingAccounts.current
-                  ) {
-                    accounts.push(account.value);
-                  }
-                  return accounts;
-                },
-                [],
+              self.billingAccounts.accounts = result.billingAccounts.data.filter(
+                (account) =>
+                  account.billingAccount !== self.billingAccounts.current,
               );
               self.numberCount = result.numberCount;
               self.lineCount = result.lineCount;
