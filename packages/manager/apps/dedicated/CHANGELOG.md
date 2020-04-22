@@ -1,3 +1,12 @@
+## [12.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@12.3.1...@ovh-ux/manager-dedicated@12.3.2) (2020-04-22)
+
+
+### Bug Fixes
+
+* **dedicated.ip:** can order ip addresses again ([e1cfc8a](https://github.com/ovh/manager/commit/e1cfc8a331adf418efbed11fbbc085d67f476f71))
+
+
+
 ## [12.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@12.3.0...@ovh-ux/manager-dedicated@12.3.1) (2020-04-21)
 
 
