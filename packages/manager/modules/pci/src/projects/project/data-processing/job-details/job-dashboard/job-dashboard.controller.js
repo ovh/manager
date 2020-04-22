@@ -4,6 +4,8 @@ import {
   DATA_PROCESSING_STATUS_TO_CLASS,
   DATA_PROCESSING_STATUSES,
   METRICS_REFRESH_INTERVAL,
+  JOB_TYPE_JAVA,
+  JOB_TYPE_PYTHON,
 } from '../../data-processing.constants';
 import { WARP10_URL } from './job-dashboard.constants';
 
@@ -25,6 +27,8 @@ export default class {
     this.dataProcessingService = dataProcessingService;
     this.cucRegionService = CucRegionService;
     this.DATA_PROCESSING_STATUS_TO_CLASS = DATA_PROCESSING_STATUS_TO_CLASS;
+    this.JOB_TYPE_JAVA = JOB_TYPE_JAVA;
+    this.JOB_TYPE_PYTHON = JOB_TYPE_PYTHON;
     this.getDataProcessingUiUrl = getDataProcessingUiUrl;
     this.containerService = PciStoragesContainersService;
     this.containerId = null;

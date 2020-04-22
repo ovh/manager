@@ -20,6 +20,7 @@
   "data_processing_details_configuration_swift_container_label": "Conteneur de stockage objet",
   "data_processing_details_configuration_job_type_label": "Job type",
   "data_processing_details_configuration_jar_file_label": "JAR file",
+  "data_processing_details_configuration_python_file_label": "Python file",
   "data_processing_details_configuration_main_class_label": "Main class",
   "data_processing_details_configuration_arguments_label": "Arguments",
   "data_processing_details_no_data": "No data available",

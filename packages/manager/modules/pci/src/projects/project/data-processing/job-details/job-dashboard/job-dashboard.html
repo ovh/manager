@@ -181,12 +181,21 @@
             >
             </oui-tile-definition>
             <oui-tile-definition
+                data-ng-if="$ctrl.job.engineParameters.job_type === $ctrl.JOB_TYPE_PYTHON"
+                data-term="{{ ::'data_processing_details_configuration_python_file_label' | translate }}"
+                title="{{ ::'data_processing_details_configuration_jar_python_label' | translate }}"
+                data-description="{{ $ctrl.job.engineParameters.main_application_code }}"
+            >
+            </oui-tile-definition>
+            <oui-tile-definition
+                data-ng-if="$ctrl.job.engineParameters.job_type === $ctrl.JOB_TYPE_JAVA"
                 data-term="{{ ::'data_processing_details_configuration_jar_file_label' | translate }}"
                 title="{{ ::'data_processing_details_configuration_jar_file_label' | translate }}"
                 data-description="{{ $ctrl.job.engineParameters.main_application_code }}"
             >
             </oui-tile-definition>
             <oui-tile-definition
+                data-ng-if="$ctrl.job.engineParameters.job_type === $ctrl.JOB_TYPE_JAVA"
                 data-term="{{ ::'data_processing_details_configuration_main_class_label' | translate }}"
                 title="{{ ::'data_processing_details_configuration_main_class_label' | translate }}"
                 data-description="{{ $ctrl.job.engineParameters.main_class_name  }}"

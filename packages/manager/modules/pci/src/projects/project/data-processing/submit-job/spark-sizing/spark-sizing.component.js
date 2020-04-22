@@ -9,5 +9,6 @@ export default {
     values: '<',
     validate: '<',
     templates: '<',
+    jobParameters: '<',
   },
 };

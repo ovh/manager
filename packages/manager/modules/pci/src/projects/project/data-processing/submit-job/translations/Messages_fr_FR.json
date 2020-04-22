@@ -10,5 +10,22 @@
   "data_processing_submit_job_stepper_submit_error_title": "Une erreur est survenue",
   "data_processing_submit_job_button_label": "Démarrer le job",
   "data_processing_submit_job_spinner_label": "lancement en cours…",
-  "data_processing_submit_job_error_label": "Une erreur est survenue, nous ne pouvons pas démarrer votre job pour le moment."
+  "data_processing_submit_job_error_label": "Une erreur est survenue, nous ne pouvons pas démarrer votre job pour le moment.",
+  "data_processing_submit_job_error_message_odp_job_engine_unsupportedValue": "Erreur de saisie : le type de job demandé n'est pas supporté",
+  "data_processing_submit_job_error_message_odp_job_engineVersion_unsupportedValue": "Erreur de saisie : la version de moteur demandée n'est pas supportée",
+  "data_processing_submit_job_error_message_odp_job_region_unsupportedRegion": "Erreur de saisie : la région demandée n'est pas supportée",
+  "data_processing_submit_job_error_message_odp_job_main_class_name_fieldMissing": "Erreur de saisie : la classe Main de votre job n'est pas renseignée",
+  "data_processing_submit_job_error_message_odp_job_executorMemory_tooBig": "Erreur de saisie : la mémoire demandée pour les workers est trop importante",
+  "data_processing_submit_job_error_message_odp_job_executorMemory_tooSmall": "Erreur de saisie : la mémoire demandée pour les workers est trop petite",
+  "data_processing_submit_job_error_message_odp_job_driverMemory_tooBig": "Erreur de saisie : la mémoire demandée pour le driver est trop importante",
+  "data_processing_submit_job_error_message_odp_job_driverMemory_tooSmall": "Erreur de saisie : la mémoire demandée pour le driver est trop petite",
+  "data_processing_submit_job_error_message_odp_job_executorMemoryOverhead_tooBig": "Erreur de saisie : l'overhead mémoire demandé pour les workers est trop important",
+  "data_processing_submit_job_error_message_odp_job_executorMemoryOverhead_tooSmall": "Erreur de saisie : l'overhead mémoire demandé pour les workers est trop petit",
+  "data_processing_submit_job_error_message_odp_job_driverMemoryOverhead_tooBig": "Erreur de saisie : l'overhead mémoire demandé pour le driver est trop important",
+  "data_processing_submit_job_error_message_odp_job_driverMemoryOverhead_tooSmall": "Erreur de saisie : l'overhead mémoire demandé pour le driver est trop petit",
+  "data_processing_submit_job_error_message_odp_job_totalExecutorMemory_tooBig": "Erreur de saisie : la somme de la mémoire et de l'overhead demandés pour les workers est trop importante",
+  "data_processing_submit_job_error_message_odp_job_totalDriverMemory_tooBig": "Erreur de saisie : la somme de la mémoire et de l'overhead demandés pour le driver est trop importante",
+  "data_processing_submit_job_error_message_odp_project_notEnoughQuotas": "Erreur de quotas : les quotas de votre projet Public Cloud sont insuffisants. Veuillez aller à la page suivante pour <a class=\"oui-link oui-link_icon\" href=\"{{ url }}\">gérer votre quota Public Cloud<span class=\"oui-icon oui-icon-external_link\" aria-hidden=\"true\"></span></a>",
+  "data_processing_submit_job_error_message_odp_mainApplicationCode_notFound": "Erreur de saisie : le fichier demandé est introuvable sur le conteneur Object Storage que vous avez spécifié",
+  "data_processing_submit_job_error_message_odp_condaEnvironment_isRequired": "Erreur de saisie : aucun fichier d'environment Conda n'a été trouvé sur le conteneur Object Storage que vous avez spécifié"
 }

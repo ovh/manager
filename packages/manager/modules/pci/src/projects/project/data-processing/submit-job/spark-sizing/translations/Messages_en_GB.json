@@ -1,5 +1,5 @@
 {
-  "data_processing_submit_job_sizing_template_memory_label": "GB memory",
+  "data_processing_submit_job_sizing_template_memory_label": "GiB memory",
   "data_processing_submit_job_sizing_template_cores_label": "vCores",
   "data_processing_submit_job_sizing_description": "Your Spark job is ran by a driver node which distributes tasks to executors. Define cores and memory allocated to your nodes and the number of workers you want to run in parallel",
   "data_processing_submit_job_stepper_spark_driver_template_label": "Driver template",
@@ -15,5 +15,6 @@
   "data_processing_submit_job_stepper_spark_worker_memory_label": "Executor memory",
   "data_processing_submit_job_stepper_spark_worker_memory_description": "Select the amount of memory per Spark executor",
   "data_processing_submit_job_stepper_spark_worker_memory_overhead_label": "Executor memory overhead",
-  "data_processing_submit_job_stepper_spark_estimated_price": "Estimated price: "
+  "data_processing_submit_job_stepper_spark_estimated_price": "Estimated price: ",
+  "data_processing_submit_job_stepper_spark_memory_overhead_autocompute_label": "Automatically compute"
 }
