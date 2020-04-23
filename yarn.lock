@@ -1962,11 +1962,6 @@
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-timeline/-/ng-ovh-timeline-1.0.0.tgz#5673ba74e5f936db42ef4fbb79c5cb872543768b"
   integrity sha512-K4gsLqJqa5ix4lPJzNO81S2DtK848x7dn/RvpZYUNB21A6Z2ZBUcW66zKmjmo1i47woOYRhfXjAIupIH0TGs0w==
 
-"@ovh-ux/ng-ovh-ui-confirm-modal@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-ui-confirm-modal/-/ng-ovh-ui-confirm-modal-1.0.0.tgz#dac86294340ed8952a22c7192b6863f2d1276c14"
-  integrity sha512-+FRt9MVT9aq3DHb1/34Oa21Yr8ZHl+vp9Y74fSJITlRATykgEnLlZHp2av4QglSpn/QZ5DOhfwkYidQAEzcW0Q==
-
 "@ovh-ux/ng-ovh-utils@^14.0.6":
   version "14.0.6"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-utils/-/ng-ovh-utils-14.0.6.tgz#34012c02afe1bf04380735430d6c3acca9bdfd77"
