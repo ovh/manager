@@ -9,7 +9,7 @@
   "dedicatedCloud_datacenter_backup_new_choose_offer_action": "Wybierz ofertę",
   "dedicatedCloud_datacenter_backup_new_validate_conditions": "Akceptacja warunków korzystania",
   "dedicatedCloud_datacenter_backup_new_activate_offer_action": "Aktywuj ofertę",
-  "dedicatedCloud_datacenter_backup_new_create_success": "Twój wniosek o aktywację oferty Veeam backup {{offerType}} jest w trakcie przetwarzania. Możesz śledzić kolejne etapy <a href=\"{{operationsUrl}}\">tutaj</a>.",
+  "dedicatedCloud_datacenter_backup_new_create_success": "Twoje zlecenie aktywacji usługi Veeam Backup {{offerType}} jest w trakcie przetwarzania. <a href=\"{{operationsUrl}}\">Tutaj</a>możesz śledzić status zadań.",
   "dedicatedCloud_datacenter_backup_new_create_error": "Nie można utworzyć oferty tworzenia kopii zapasowej: {{message}}.",
   "dedicatedCloud_datacenter_backup_new_order_success": " Możesz śledzić kolejne etapy <a href=\"{{operationsUrl}}\">tutaj</a>."
 }

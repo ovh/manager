@@ -9,7 +9,7 @@
   "dedicatedCloud_datacenter_backup_new_choose_offer_action": "Scegli il servizio",
   "dedicatedCloud_datacenter_backup_new_validate_conditions": "Accetta le condizioni di utilizzo",
   "dedicatedCloud_datacenter_backup_new_activate_offer_action": "Attiva il servizio",
-  "dedicatedCloud_datacenter_backup_new_create_success": "L’attivazione della soluzione Veeam Backup  {{offerType}} è in corso. Lo stato di avanzamento dell’operazione è disponibile <a href='{{operationsUrl}}'>qui</a>.<p><a target='_blank' rel='noopener' class='oui-link_icon' href='{{guideUrl}}'>Per configurare il servizio, consulta la guida di Veeam<strong></strong><span class='oui-icon oui-icon-arrow-right_extra-thin datacenter-backup-right-arrow' aria-hidden='true'></span></a></p>",
+  "dedicatedCloud_datacenter_backup_new_create_success": "L’attivazione della soluzione Veeam Backup  {{offerType}} è in corso. Lo stato di avanzamento dell’operazione è disponibile <a href='{{operationsUrl}}'>qui</a>.",
   "dedicatedCloud_datacenter_backup_new_order_success": "Il <a target='_blank' rel='noopener' href='{{orderUrl}}'>buono d’ordine</a> per l’attivazione della soluzione Veeam backup {{offerType}} è stato generato correttamente. Una volta convalidato, lo stato di avanzamento dell’operazione è disponibile <a href='{{operationsUrl}}'>qui</a>.",
   "dedicatedCloud_datacenter_backup_new_create_error": "Impossibile creare una soluzione di backup: {{ message }}"
 }
