@@ -17,5 +17,5 @@
   "billing_payment_method_table_action_description_edit": "Modificar la descripción",
   "billing_payment_method_table_action_set_default": "Establecer como forma de pago por defecto",
   "billing_payment_method_table_action_delete": "Eliminar esta forma de pago",
-  "billing_payment_method_credit_card_disclaimer": "Es obligatorio registrar un medio de pago si va a renovar sus servicios de forma automática. Puede modificarlo cuando desee. Si no cuenta con servicios que se renuevan de forma automática y desea eliminar este medio de pago, cree un ticket para ponerse en contacto con nuestro equipo de atención al cliente."
+  "billing_payment_method_credit_card_disclaimer": "Es necesario registrar una forma de pago para utilizar la renovación automática. Podrá modificarla en cualquier momento. Si no tiene activada la renovación automática y quiere eliminar su forma de pago, puede ponerse en contacto con nuestro equipo de soporte mediante un tíquet de asistencia."
 }

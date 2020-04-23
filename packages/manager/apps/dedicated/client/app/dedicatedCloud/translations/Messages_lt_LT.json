@@ -856,5 +856,6 @@
   "dedicatedCloud_options_zerto_waiting_vpn_message_part_one": "To finish enabling your Zerto DRP,",
   "dedicatedCloud_options_zerto_waiting_vpn_message_part_two": "please add the VPN IP addresses in the DRP settings",
   "dedicatedCloud_tab_host_id": "ID",
-  "dedicatedCloud_tab_datastores_id": "ID"
+  "dedicatedCloud_tab_datastores_id": "ID",
+  "dedicatedCloud_USER_change_password_denied_chars": "Must not contain the following characters: {{ chars }}"
 }
