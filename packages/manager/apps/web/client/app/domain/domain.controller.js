@@ -13,8 +13,10 @@ angular.module('App').controller(
       $timeout,
       $translate,
       Alerter,
+      allDomInfos,
       constants,
       Domain,
+      domainInfos,
       associatedHostings,
       goToWebhostingOrder,
       isEmailDomainAvailable,
@@ -32,8 +34,10 @@ angular.module('App').controller(
       this.$timeout = $timeout;
       this.$translate = $translate;
       this.Alerter = Alerter;
+      this.allDomInfos = allDomInfos;
       this.constants = constants;
       this.Domain = Domain;
+      this.domainInfos = domainInfos;
       this.associatedHostings = associatedHostings;
       this.goToWebhostingOrder = goToWebhostingOrder;
       this.isEmailDomainAvailable = isEmailDomainAvailable;
@@ -95,24 +99,18 @@ angular.module('App').controller(
       return this.$q
         .all({
           user: this.User.getUser(),
-          domain: this.Domain.getServiceInfo(this.$stateParams.productId),
-          allDom: this.isAllDom
-            ? this.WucAllDom.getServiceInfos(this.$stateParams.allDom)
-            : null,
           alldomOrder: !this.isAllDom
             ? this.User.getUrlOf('alldomOrder')
             : null,
         })
-        .then(({ user, domain, allDom, alldomOrder }) => {
+        .then(({ user, alldomOrder }) => {
           this.isAdminOrBilling =
-            domain.contactAdmin === user.nichandle ||
-            domain.contactBilling === user.nichandle;
-          this.domainInfos = domain;
+            this.domainInfos.contactAdmin === user.nichandle ||
+            this.domainInfos.contactBilling === user.nichandle;
           if (this.isAllDom) {
             this.allDom = this.$stateParams.allDom;
-            this.allDomInfos = allDom;
           } else if (alldomOrder) {
-            this.alldomURL = `${alldomOrder}${domain.domain}`;
+            this.alldomURL = `${alldomOrder}${this.domainInfos.domain}`;
           }
           this.getGuides(user.ovhSubsidiary);
         })
