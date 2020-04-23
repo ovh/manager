@@ -23,12 +23,12 @@ $logger-text-color: #5a6a7d;
   overflow-wrap: break-word;
   white-space: pre-wrap;
   letter-spacing: 0.14px;
-  font-family: "Roboto Mono Regular", monospace;
+  font-family: 'Roboto Mono Regular', monospace;
   font-size: 0.85rem;
 }
 
 .logger__cursor {
-  content: "";
+  content: '';
   display: inline-block;
   background-color: #ccc;
   vertical-align: top;
