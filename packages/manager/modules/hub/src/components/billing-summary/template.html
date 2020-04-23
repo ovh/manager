@@ -7,7 +7,7 @@
     ></hub-tile-error>
     <span
         data-ng-if="$ctrl.loading"
-        class="manager-hub-billing-summary_bill-total"
+        class="manager-hub-billing-summary__bill-total"
         >…</span
     >
     <div data-ng-if="$ctrl.bills && !$ctrl.loading">
@@ -20,7 +20,7 @@
         >
         </oui-select>
         <span
-            class="manager-hub-billing-summary_bill-total"
+            class="manager-hub-billing-summary__bill-total"
             data-ng-bind-html="$ctrl.formattedBillingPrice"
         >
         </span>
@@ -57,7 +57,7 @@
             data-translate="hub_billing_summary_debt_no_bills"
         ></p>
         <a
-            class="manager-hub-billing-summary_billing-link"
+            class="manager-hub-billing-summary__billing-link oui-button oui-button_primary oui-button_icon-right"
             data-ng-href="{{ $ctrl.getBillingURL() }}"
             data-track-on="click"
             data-track-name="{{:: $ctrl.trackingPrefix + '::billing::show-all' }}"

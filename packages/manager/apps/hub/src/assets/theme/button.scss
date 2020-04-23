@@ -2,8 +2,23 @@
 @import '@ovh-ux/manager-hub/src/variables.scss';
 
 .oui-button {
-  transition: all ease-in 200ms;
   border-radius: $hub-border-radius-default;
+  display: inline-block;
+  font-weight: 600;
+  line-height: 1rem;
+  padding: 0.5rem;
+  transition: all ease-in 200ms;
+  text-overflow: unset;
+
+  .oui-icon {
+    color: inherit;
+    font-size: 0.75rem;
+    vertical-align: initial;
+  }
+
+  &.oui-button_primary {
+    @include hub-link-button;
+  }
 
   &.oui-button_secondary {
     border: 2px solid $p-500;
@@ -19,8 +34,22 @@
     }
   }
 
-  &.oui-button_icon-alone .oui-icon {
-    color: $p-500;
+  &.oui-button_icon-left .oui-icon {
+    margin-right: 0.5rem;
+  }
+
+  &.oui-button_icon-right .oui-icon {
+    margin-left: 0.5rem;
+  }
+
+  &.oui-button_icon-alone {
+    padding: 0;
+    margin: 0;
+
+    .oui-icon {
+      color: $p-500;
+      font-size: 1.5rem;
+    }
   }
 
   &.oui-button_icon-only {
@@ -49,6 +78,15 @@
     color: $p-500;
     font-weight: $hub-font-weight-semibold;
     text-decoration: none;
+
+    &:hover {
+      background-color: $p-100;
+      box-shadow: $base-box-shadow-primary;
+    }
+
+    &:visited {
+      color: $p-700;
+    }
   }
 
   &:disabled {
@@ -63,10 +101,6 @@
         color: #113f6d;
       }
     }
-  }
-
-  * {
-    color: inherit;
   }
 }
 

@@ -11,23 +11,19 @@ ovh-manager-hub-tile {
       overflow: unset;
     }
 
+    &__header {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+    }
+
+    &__title {
+      flex: 1;
+    }
+
     .hub-button {
       text-overflow: initial;
       border-radius: @base-border-radius-large;
-
-      .oui-icon::before {
-        color: @p-500;
-        font-size: 1.5rem;
-      }
-
-      &:hover {
-        background-color: @p-100;
-        box-shadow: @base-box-shadow-primary;
-      }
-
-      &:visited {
-        color: @p-700;
-      }
 
       @media screen and (max-width: @device-breakpoint-phone-max-width) {
         margin-right: 0;

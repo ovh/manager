@@ -1,9 +1,12 @@
 @import 'oui4/dist/scss/_tokens';
 @import '@ovh-ux/manager-hub/src/variables.scss';
 
-span,
-p {
+body {
   color: $p-800-text;
+}
+
+p {
+  color: unset;
 }
 
 h1,
@@ -18,10 +21,6 @@ h3 {
   font-size: $jupiter-font-size;
   font-weight: $jupiter-font-weight;
   color: $p-800;
-
-  * {
-    color: inherit;
-  }
 }
 
 a,
@@ -29,10 +28,6 @@ a,
   color: $p-500;
   font-weight: $hub-font-weight-semibold;
   text-decoration: none;
-
-  * {
-    color: inherit;
-  }
 
   &:hover,
   &:focus,
