@@ -7,17 +7,13 @@
   @import 'oui4/dist/scss/_tokens';
 
   background-color: $p-200;
+  color: $p-800;
   text-align: center;
   border-radius: $hub-tile-border-radius;
   padding: 1rem;
 
-  &_button {
-    @include hub-link-button;
-  }
-
-  p,
-  span {
-    color: $p-800;
+  &__button {
+    margin-top: 1rem;
   }
 
   > h3 {
@@ -27,9 +23,7 @@
   }
 
   a {
-    span {
-      color: $p-000-white;
-    }
+    color: $p-000-white;
   }
 
   a.oui-status {

@@ -1,5 +1,9 @@
 @import 'oui4/dist/scss/tokens/_colors.scss';
 
+.oui-message {
+  border-radius: 0.5rem;
+}
+
 .oui-message__body_error,
 .oui-message_error {
   padding-bottom: 1rem;
