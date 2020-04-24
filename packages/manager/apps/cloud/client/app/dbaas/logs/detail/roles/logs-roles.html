@@ -12,6 +12,10 @@
                 <i class="oui-icon oui-icon-add pr-1" aria-hidden="true"></i> {{
                 ::'logs_roles_add' | translate }}
             </button>
+            <oui-spinner
+                size="s"
+                data-ng-if="ctrl.quota.loading || ctrl.delete.loading"
+            ></oui-spinner>
         </extra-top>
         <oui-column
             data-title=":: 'logs_roles_col_name' | translate"
