@@ -48,7 +48,7 @@
     "@ovh-ux/ng-ovh-responsive-page-switcher": "^2.0.0",
     "@ovh-ux/ng-ovh-responsive-popover": "^5.0.1",
     "@ovh-ux/ng-ovh-responsive-tabs": "^6.0.0",
-    "@ovh-ux/ng-ovh-sidebar-menu": "^8.5.1",
+    "@ovh-ux/ng-ovh-sidebar-menu": "^9.0.0",
     "@ovh-ux/ng-ovh-slider": "^2.0.0",
     "@ovh-ux/ng-ovh-sso-auth": "^4.2.3",
     "@ovh-ux/ng-ovh-sso-auth-modal-plugin": "^4.0.0",
