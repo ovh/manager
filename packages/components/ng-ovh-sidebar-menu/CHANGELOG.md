@@ -1,3 +1,12 @@
+# [9.0.0](https://github.com/ovh-ux/ng-ovh-sidebar-menu/compare/v8.5.1...v9.0.0) (2020-04-24)
+
+
+### Features
+
+* apply ovhcloud light theme ([ef0f5c5](https://github.com/ovh-ux/ng-ovh-sidebar-menu/commit/ef0f5c544a419afbad4f15edd21ad9ddd63000c6))
+
+
+
 ## [8.5.1](https://github.com/ovh-ux/ng-ovh-sidebar-menu/compare/v8.5.0...v8.5.1) (2020-01-30)
 
 
