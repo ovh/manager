@@ -42,7 +42,9 @@
   },
   "peerDependencies": {
     "angular": "^1.5.0",
-    "angular-cookies": "^1.5.0",
-    "jquery": "^2.1.3"
+    "angular-cookies": "^1.5.0"
+  },
+  "optionalDependencies": {
+    "whatwg-fetch": "^3.0.0"
   }
 }

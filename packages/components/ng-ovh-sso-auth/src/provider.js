@@ -325,13 +325,13 @@ export default function() {
     this.login = function login() {
       const self = this;
 
-      // use jQuery ajax for checking if SESSION cookie setted
-      $.ajax({
-        url: self.getUserUrl(),
-        method: 'GET',
+      // use fetch for checking if SESSION cookie is set
+      fetch(self.getUserUrl(), {
         headers,
+        credentials: 'same-origin',
       })
-        .done((data) => {
+        .then((data) => data.json())
+        .then((data) => {
           self.user = data; // store user infos
           isLogged = true;
 
@@ -339,10 +339,10 @@ export default function() {
             self.goToSignUpPage();
           }
         })
-        .fail(() => {
+        .catch(() => {
           isLogged = false;
         })
-        .always(() => {
+        .finally(() => {
           self.userId = self.getUserIdCookie(); // store USERID
           deferredObj.login.resolve();
         });
