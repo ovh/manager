@@ -33,11 +33,20 @@
     "split": "scripts/split.js",
     "start": "node -r esm scripts/start/index.js",
     "test": "yarn lint",
-    "version": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md"
+    "test:e2e:chromium": "npx rimraf ./reports && testcafe chromium",
+    "test:e2e:chromium:headless": "npx rimraf ./reports && testcafe chromium:headless",
+    "test:e2e:firefox": "npx rimraf ./reports && testcafe firefox",
+    "test:e2e:firefox:headless": "npx rimraf ./reports && testcafe firefox:headless",
+    "version": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
+    "vuepress:build": "yarn run vuepress:prebuild && vuepress build docs",
+    "vuepress:deploy": "yarn run vuepress:build && gh-pages -d docs/.vuepress/dist -m \"docs: update documentation\"",
+    "vuepress:dev": "yarn run vuepress:prebuild && vuepress dev docs",
+    "vuepress:prebuild": "scripts/list-packages.js"
   },
   "devDependencies": {
     "@commitlint/cli": "^8.3.3",
     "@commitlint/config-angular": "^8.2.0",
+    "@ffmpeg-installer/ffmpeg": "^1.0.20",
     "@ovh-ux/codename-generator": "^1.0.0",
     "babel-eslint": "^10.0.3",
     "commander": "^2.20.0",
@@ -79,6 +88,9 @@
     "stylelint-config-standard": "^19.0.0",
     "stylelint-prettier": "^1.1.2",
     "stylelint-scss": "^3.13.0",
+    "testcafe": "^1.8.4",
+    "testcafe-angular-selectors": "^0.4.1",
+    "testcafe-reporter-html": "^1.4.6",
     "vuepress": "^1.2.0"
   },
   "engines": {
