@@ -1,11 +1,11 @@
 import isEmpty from 'lodash/isEmpty';
+import get from 'lodash/get';
 import map from 'lodash/map';
 
 export default class {
   /* @ngInject */
-  constructor($q, $stateParams, $translate, CucCloudMessage, VpsService) {
+  constructor($q, $translate, CucCloudMessage, VpsService) {
     this.$q = $q;
-    this.serviceName = $stateParams.serviceName;
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
     this.VpsService = VpsService;
@@ -15,33 +15,31 @@ export default class {
       disk: false,
     };
     this.additionnalDisks = [];
-    this.hasAdditionalDiskOption = null;
   }
 
   $onInit() {
+    this.hasAdditionalDiskOption = get(
+      this.tabSummary,
+      'additionalDisk.optionAvailable',
+      false,
+    );
     this.hasAdditionalDisk();
   }
 
   hasAdditionalDisk() {
     this.loaders.init = true;
-    this.VpsService.hasAdditionalDiskOption(this.serviceName)
-      .then(() => {
-        this.hasAdditionalDiskOption = true;
-        if (this.hasAdditionalDiskOption) {
-          this.loadAdditionalDisks();
-        }
-      })
-      .catch(() => {
-        this.hasAdditionalDiskOption = false;
-      })
-      .finally(() => {
-        this.loaders.init = false;
-      });
+    const additionalDiskPromise = this.hasAdditionalDiskOption
+      ? this.loadAdditionalDisks()
+      : this.$q.when();
+
+    return additionalDiskPromise.finally(() => {
+      this.loaders.init = false;
+    });
   }
 
   loadAdditionalDisks() {
     this.loaders.disk = true;
-    this.VpsService.getDisks(this.serviceName)
+    return this.VpsService.getDisks(this.serviceName)
       .then((data) => {
         const promises = map(data, (elem) =>
           this.VpsService.getDiskInfo(this.serviceName, elem),

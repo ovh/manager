@@ -539,7 +539,7 @@
                         <oui-tile-description>
                             <span
                                 data-ng-if="$ctrl.tabSummary.additionalDisk.optionAvailable"
-                                data-translate="{{ 'vps_status_' + ($ctrl.hasAdditionalDisk ? 'enabled' : 'disabled') }}"
+                                data-translate="{{ 'vps_status_' + ($ctrl.hasAdditionalDisk && !$ctrl.canOrderDisk ? 'enabled' : 'disabled') }}"
                             >
                             </span>
                             <span
