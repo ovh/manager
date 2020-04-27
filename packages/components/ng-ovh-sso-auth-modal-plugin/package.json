@@ -39,9 +39,6 @@
     "start:dev": "lerna exec --stream --scope='@ovh-ux/ng-ovh-sso-auth-modal-plugin' --include-dependencies -- yarn run dev",
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/ng-ovh-sso-auth-modal-plugin' --include-dependencies -- yarn run dev:watch"
   },
-  "dependencies": {
-    "lodash": "~4.17.11"
-  },
   "devDependencies": {
     "@ovh-ux/component-rollup-config": "^9.0.0 || ^10.0.0"
   },
