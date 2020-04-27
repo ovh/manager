@@ -14,9 +14,9 @@
   "dedicatedCloudDashboardTilesOptionsServicePack_displayName_pcidss": "Payment Card Industry Data Security Standard (PCI DSS)",
   "dedicatedCloudDashboardTilesOptionsServicePack_fullDisplayName_pcidss": "Payment Card Industry Data Security Standard (PCI DSS) Zertifizierung",
   "dedicatedCloudDashboardTilesOptionsServicePack_description_pcidss": "Kreditkartendaten sind Ziel zahlreicher Pirating- und Phishing-Versuche. Dank PCI DSS hat OVH strengste Sicherheitsmaßnahmen umgesetzt, um ein maximales Sicherheitsniveau für Ihre Zahlungsinfrastrukturen zu gewährleisten.",
-  "dedicatedCloudDashboardTilesOptionsServicePack_displayName_hds": "Hosting von Gesundheitsdaten (HDS)",
+  "dedicatedCloudDashboardTilesOptionsServicePack_displayName_hds": "Hosting von Gesundheitsdaten und HDS-Zertifizierung",
   "dedicatedCloudDashboardTilesOptionsServicePack_fullDisplayName_hds": "Hosting von Gesundheitsdaten (HDS) Zertifizierung",
-  "dedicatedCloudDashboardTilesOptionsServicePack_description_hds": "Gesundheitsdaten und Gesundheitsinformationssysteme sind essentieller Bestandteil der Privatsphäre von Patienten. OVH ist sich der besonderen Herausforderungen bewusst und hat all sein Wissen und seine Expertise eingesetzt, um ein Hosting für Gesundheitsdaten anzubieten, das auch höchsten Sicherheitsanforderungen genügt (französische HDS-Zertifizierung).",
+  "dedicatedCloudDashboardTilesOptionsServicePack_description_hds": "Der Schutz der Gesundheitsdaten und -informationssysteme erfolgt in einem bestimmten Rechtsrahmen. OVHcloud bietet eine Lösung zum Hosting von Gesundheitsdaten mit strengen Maßnahmen zur Zugriffssicherung an. Diese Lösung entspricht den Regelungen zahlreicher Länder, darunter Frankreich (HDS-Zertifizierung), Deutschland, Italien, das Vereinigte Königreich und Polen.",
   "dedicatedCloudDashboardTilesOptionsServicePack_displayName_hipaa": "Health Insurance Portability and Accountability Act (HIPAA)",
   "dedicatedCloudDashboardTilesOptionsServicePack_fullDisplayName_hipaa": "Health Insurance Portability and Accountability Act (HIPAA) Zertifizierung",
   "dedicatedCloudDashboardTilesOptionsServicePack_description_hipaa": "Payment Card Industry Data Security Standard (PCI DSS)"
