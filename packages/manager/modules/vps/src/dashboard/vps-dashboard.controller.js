@@ -281,6 +281,7 @@ export default class {
   }
 
   initActions() {
+    const isEuRegion = this.coreConfig.isRegion('EU');
     return this.CucControllerHelper.navigation
       .getConstant(get(CHANGE_OWNER_URL, this.coreConfig.getRegion(), {}))
       .then((changeOwnerHref) => {
@@ -313,8 +314,9 @@ export default class {
             ),
             isAvailable: () =>
               !this.loaders.plan &&
-              this.hasFeature(DASHBOARD_FEATURES.autorenew),
-            external: !this.coreConfig.isRegion('EU'),
+              this.hasFeature(DASHBOARD_FEATURES.autorenew) &&
+              !(this.plan.renew.automatic && this.plan.renew.forced),
+            external: !isEuRegion,
           },
           manageContact: {
             text: this.$translate.instant('vps_common_manage'),
@@ -322,7 +324,7 @@ export default class {
               get(CONTACTS_URL, this.coreConfig.getRegion()),
               { serviceName: this.serviceName },
             ),
-            isAvailable: this.coreConfig.isRegion('EU'),
+            isAvailable: isEuRegion,
           },
           manageIps: {
             text: this.$translate.instant(
