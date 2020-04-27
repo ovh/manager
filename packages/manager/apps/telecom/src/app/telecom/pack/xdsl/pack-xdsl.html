@@ -3,24 +3,23 @@
         <oui-spinner></oui-spinner>
     </div>
 
-    <div class="telecom-section-header">
-        <header
-            class="page-header"
-            role="banner"
-            data-ng-if="!PackXdslCtrl.loading.init"
-        >
-            <tuc-section-back-link
-                data-ng-if="PackXdslCtrl.content.back.state && PackXdslCtrl.content.status === 'active'"
-                data-ng-click="PackXdslCtrl.backState()"
-                data-tuc-section-back-link-title="{{ PackXdslCtrl.pack.general.description || PackXdslCtrl.pack.general.packName || PackXdslCtrl.access.description || PackXdslCtrl.access.accessName }}"
-            ></tuc-section-back-link>
-            <!-- ACCESS TITLE -->
-            <tuc-editable-service-name
-                data-tuc-editable-service-name-title="PackXdslCtrl.access.description || PackXdslCtrl.access.accessName"
-                data-tuc-editable-service-name-service-name="PackXdslCtrl.access.accessName"
-                data-tuc-editable-service-name-title-on-save="PackXdslCtrl.accessDescriptionSave"
-            >
-            </tuc-editable-service-name>
+    <div class="telecom-section-header" data-ng-if="!PackXdslCtrl.loading.init">
+        <header class="oui-page-header">
+            <div class="oui-page-header__container">
+                <div class="oui-page-header__content">
+                    <tuc-section-back-link
+                        data-ng-if="PackXdslCtrl.content.back.state && PackXdslCtrl.content.status === 'active'"
+                        data-ng-click="PackXdslCtrl.backState()"
+                        data-tuc-section-back-link-title="{{ PackXdslCtrl.pack.general.description || PackXdslCtrl.pack.general.packName || PackXdslCtrl.access.description || PackXdslCtrl.access.accessName }}"
+                    ></tuc-section-back-link>
+
+                    <tuc-editable-service-name
+                        data-tuc-editable-service-name-title="PackXdslCtrl.access.description || PackXdslCtrl.access.accessName"
+                        data-tuc-editable-service-name-service-name="PackXdslCtrl.access.accessName"
+                        data-tuc-editable-service-name-title-on-save="PackXdslCtrl.accessDescriptionSave"
+                    ></tuc-editable-service-name>
+                </div>
+            </div>
         </header>
 
         <nav role="navigation">

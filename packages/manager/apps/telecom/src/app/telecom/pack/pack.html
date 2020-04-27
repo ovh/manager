@@ -22,13 +22,17 @@
 
     <div data-ng-if="!Pack.loader.page && !Pack.inError">
         <div class="telecom-section-header">
-            <header class="page-header" role="banner">
-                <tuc-editable-service-name
-                    data-tuc-editable-service-name-title="Pack.pack.description || Pack.pack.offerDescription"
-                    data-tuc-editable-service-name-service-name="Pack.pack.packName"
-                    data-tuc-editable-service-name-title-on-save="Pack.packDescriptionSave"
-                >
-                </tuc-editable-service-name>
+            <header class="oui-page-header">
+                <div class="oui-page-header__container">
+                    <div class="oui-page-header__content">
+                        <tuc-editable-service-name
+                            data-tuc-editable-service-name-title="Pack.pack.description || Pack.pack.offerDescription"
+                            data-tuc-editable-service-name-service-name="Pack.pack.packName"
+                            data-tuc-editable-service-name-title-on-save="Pack.packDescriptionSave"
+                        >
+                        </tuc-editable-service-name>
+                    </div>
+                </div>
             </header>
         </div>
         <!-- /.telecom-section-header -->

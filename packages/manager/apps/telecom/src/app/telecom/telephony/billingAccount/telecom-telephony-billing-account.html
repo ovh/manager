@@ -6,15 +6,18 @@
 
     <div data-ng-if="!BillingAccountCtrl.loading.init">
         <div class="telecom-section-header">
-            <header class="page-header" role="banner">
-                <!-- GROUP TITLE -->
-                <tuc-editable-service-name
-                    data-tuc-editable-service-name-title="BillingAccountCtrl.group.getDisplayedName()"
-                    data-tuc-editable-service-name-title-on-save="BillingAccountCtrl.groupNameSave"
-                    data-tuc-editable-service-name-service-name="BillingAccountCtrl.group.billingAccount"
-                    data-maxlength="25"
-                >
-                </tuc-editable-service-name>
+            <header class="oui-page-header">
+                <div class="oui-page-header__container">
+                    <div class="oui-page-header__content">
+                        <tuc-editable-service-name
+                            data-tuc-editable-service-name-title="BillingAccountCtrl.group.getDisplayedName()"
+                            data-tuc-editable-service-name-title-on-save="BillingAccountCtrl.groupNameSave"
+                            data-tuc-editable-service-name-service-name="BillingAccountCtrl.group.billingAccount"
+                            data-maxlength="25"
+                        >
+                        </tuc-editable-service-name>
+                    </div>
+                </div>
             </header>
 
             <!-- GROUP ACTIONS -->
