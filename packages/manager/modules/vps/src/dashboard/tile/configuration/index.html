@@ -19,7 +19,7 @@
                 data-translate-values="{
                   href: $ctrl.getUpscaleHref()
                 }"
-                data-ng-if="!$ctrl.vpsUpgradeTask && !$ctrl.isMaxEliteVcore"
+                data-ng-if="!$ctrl.vpsUpgradeTask && !$ctrl.isMaxEliteVcore && !$ctrl.isInRescueMode"
             ></p>
         </oui-tile-description>
     </oui-tile-definition>
@@ -36,7 +36,7 @@
             >
                 <oui-radio
                     data-value="$ctrl.currentPlan"
-                    data-disabled="$ctrl.vpsUpgradeTask"
+                    data-disabled="$ctrl.vpsUpgradeTask && !$ctrl.isInRescueMode"
                 >
                     <span
                         data-ng-bind=":: ($ctrl.stateVps.model.memory / 1024) | cucBytes:0:false:'GB'"
@@ -44,7 +44,7 @@
                 </oui-radio>
                 <oui-radio
                     data-value="$ctrl.configurationTile.upgrades.memory.plan"
-                    data-disabled="$ctrl.vpsUpgradeTask"
+                    data-disabled="$ctrl.vpsUpgradeTask && !$ctrl.isInRescueMode"
                 >
                     <span
                         data-ng-bind=":: ($ctrl.stateVps.model.memory * 2 / 1024) | cucBytes:0:false:'GB'"
@@ -68,7 +68,7 @@
                 class="p-0"
                 data-translate="{{ $ctrl.isMaxEliteVcore ? 'vps_dashboard_tile_configuration_memory_add_upscale_elite' : 'vps_dashboard_tile_configuration_memory_add_upscale' }}"
                 data-translate-values="{ href: $ctrl.getUpscaleHref() }"
-                data-ng-if="!$ctrl.vpsUpgradeTask && !$ctrl.isMaxEliteRam"
+                data-ng-if="!$ctrl.vpsUpgradeTask && !$ctrl.isMaxEliteRam && !$ctrl.isInRescueMode"
             ></p>
         </oui-tile-description>
     </oui-tile-definition>
@@ -85,7 +85,7 @@
             >
                 <oui-radio
                     data-value="$ctrl.currentPlan"
-                    data-disabled="$ctrl.vpsUpgradeTask"
+                    data-disabled="$ctrl.vpsUpgradeTask && !$ctrl.isInRescueMode"
                 >
                     <span
                         data-ng-bind=":: $ctrl.stateVps.model.disk | cucBytes:0:false:'GB'"
@@ -93,7 +93,7 @@
                 </oui-radio>
                 <oui-radio
                     data-value="$ctrl.configurationTile.upgrades.storage.plan"
-                    data-disabled="$ctrl.vpsUpgradeTask"
+                    data-disabled="$ctrl.vpsUpgradeTask && !$ctrl.isInRescueMode"
                 >
                     <span
                         data-ng-bind=":: ($ctrl.stateVps.model.disk * 2) | cucBytes:0:false:'GB'"
@@ -117,7 +117,7 @@
                 class="p-0"
                 data-translate="{{ $ctrl.isMaxEliteVcore ? 'vps_dashboard_tile_configuration_storage_add_upscale_elite' : 'vps_dashboard_tile_configuration_storage_add_upscale' }}"
                 data-translate-values="{ href: $ctrl.getUpscaleHref() }"
-                data-ng-if="!$ctrl.vpsUpgradeTask && !$ctrl.isMaxEliteStorage"
+                data-ng-if="!$ctrl.vpsUpgradeTask && !$ctrl.isMaxEliteStorage && !$ctrl.isInRescueMode"
             ></p>
         </oui-tile-description>
     </oui-tile-definition>
