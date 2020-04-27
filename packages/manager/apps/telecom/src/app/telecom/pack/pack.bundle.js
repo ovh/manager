@@ -60,7 +60,7 @@ import './slots/voipEcoFax/activation/pack-voipEcoFax-activation.controller';
 import './slots/voipEcoFax/activation/pack-voipEcoFax-activation';
 import './slots/voipEcoFax/pack-voipEcoFax.controller';
 import './slots/voipLine/activation/pack-voipLine-activation.controller';
-import './slots/voipLine/activation/pack-voipLine-activation';
+import './slots/voipLine/activation/pack-voipLine-activation.module';
 import './slots/voipLine/pack-voipLine.controller';
 import './slots/xdslAccess/pack-xdslAccess.controller';
 import './xdsl/access/comfortExchange/pack-xdsl-access-comfort-exchange.component';

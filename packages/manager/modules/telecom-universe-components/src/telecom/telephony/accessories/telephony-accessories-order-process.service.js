@@ -76,6 +76,35 @@ export default /* @ngInject */ function(
     return $q.when(orderProcess);
   };
 
+  self.getAvailableAccessoriesCompatible = function getAvailableAccessoriesCompatible(
+    brand,
+    country,
+  ) {
+    if (!orderProcess.accessoriesList) {
+      return OvhApiTelephony.v6()
+        .accessories({
+          country: country || 'fr',
+          brand,
+        })
+        .$promise.then((accessoriesList) => {
+          orderProcess.accessoriesList = map(accessoriesList, (accessory) =>
+            angular.extend(accessory, {
+              url: TUC_TELEPHONY_LINE_PHONE_ACCESSORIES[accessory.name]
+                ? TUC_TELEPHONY_LINE_PHONE_ACCESSORIES[accessory.name].url
+                : null,
+              img: TUC_TELEPHONY_LINE_PHONE_ACCESSORIES[accessory.name]
+                ? TUC_TELEPHONY_LINE_PHONE_ACCESSORIES[accessory.name].img
+                : null,
+              quantity: 0,
+            }),
+          );
+
+          return orderProcess;
+        });
+    }
+    return $q.when(orderProcess);
+  };
+
   /* -----  End of ACCESSORIES  ------*/
 
   /*= ===============================

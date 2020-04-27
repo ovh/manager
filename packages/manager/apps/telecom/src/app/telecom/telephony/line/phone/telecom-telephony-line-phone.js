@@ -6,7 +6,7 @@ angular.module('managerApp').config(($stateProvider) => {
         templateUrl:
           'app/telecom/telephony/line/phone/telecom-telephony-line-phone.html',
         controller: 'TelecomTelephonyLinePhoneCtrl',
-        controllerAs: 'LinePhoneCtrl',
+        controllerAs: '$ctrl',
       },
     },
     translations: { value: ['.'], format: 'json' },
