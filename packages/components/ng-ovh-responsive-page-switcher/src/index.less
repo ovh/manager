@@ -1,0 +1,146 @@
+
+@switcher-animation-duration: 0.5s;
+@switcher-transform-duration: 150ms;
+@switcher-animation-maxwidth: 500px;
+
+.responsive-switch {
+    overflow: hidden;
+
+    &_mobile {
+        .responsive-switch-page-right, .responsive-switch-page-left {
+            width: 100%;
+        }
+    }
+
+    &.responsive-switch-switch {
+        position: relative;
+        width: 100%;  //can be override
+
+        .responsive-switch-page {
+            &.responsive-switch-page-left {
+                .responsive-switch-page-wrapper {
+                    &.ng-enter {
+                        left: -100%;
+                        &.ng-enter-active {
+                            transform: translateX(100%);
+                        }
+                    }
+                    &.ng-leave {
+                        &.ng-leave-active {
+                            transform: translateX(-100%);
+                        }
+                    }
+                }
+            }
+            &.responsive-switch-page-right {
+                .responsive-switch-page-wrapper {
+                    &.ng-enter {
+                        left: 100%;
+                        &.ng-enter-active {
+                            transform: translateX(-100%);
+                        }
+                    }
+                    &.ng-leave {
+                        left : 0;
+                        &.ng-leave-active {
+                            transform: translateX(100%);
+                        }
+                    }
+                }
+            }
+            .responsive-switch-page-wrapper {
+                position: relative;
+                overflow-x: hidden;
+                &.ng-enter, &.ng-leave {
+                    transition: transform @switcher-transform-duration cubic-bezier(0.250, 0.250, 0.750, 0.750);
+                    transform: translateX(0px);
+                    top: 0;
+                }
+                &.ng-enter {
+                    position: relative;
+                    opacity: 0;
+                    &.ng-enter-active {
+                        opacity: 1;
+                    }
+                }
+                &.ng-leave {
+                    position: absolute;
+                }
+            }
+        }
+    }
+
+    &.responsive-switch-sidebyside {
+        display: flex;
+        .responsive-switch-page {
+            display: flex;
+            align-items: stretch;
+
+            &.responsive-switch-page-right {
+                .responsive-switch-page-wrapper {
+                    overflow-x: hidden;
+                    animation-duration: @switcher-animation-duration;
+                    animation-timing-function: ease;
+                    animation-fill-mode: backwards;
+                    display: block;
+                    &.ng-enter {
+                        animation-name: horizontalexpand;
+                        animation-play-state: paused;
+                        visibility: hidden;
+                        &.ng-enter-active {
+                            visibility: visible;
+                            animation-play-state: running;
+                        }
+                    }
+                    &.ng-leave {
+                        animation-name: horizontalcollapse;
+                        animation-play-state: paused;
+                        &.ng-leave-active {
+                            animation-play-state: running;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .responsive-switch-page {
+        float: left;
+
+        &.responsive-switch-page-right {
+            overflow-y: auto;
+            overflow-x: hidden;
+            .responsive-switch-page-wrapper {
+                .responsive-switch-page-content {
+                    padding: 10px;
+                }
+            }
+        }
+
+        .responsive-switch-page-wrapper {
+            min-height: 100px;          //can be override
+
+            .responsive-switch-page-content {
+                overflow: auto;
+                min-height: 100px;      //can be override
+            }
+        }
+    }
+}
+
+@keyframes horizontalexpand {
+    from {
+        max-width: 0px;
+    }
+    to {
+        max-width: @switcher-animation-maxwidth;
+    }
+}
+@keyframes horizontalcollapse {
+    from {
+        max-width: @switcher-animation-maxwidth;
+    }
+    to {
+        max-width: 0px;
+    }
+}
