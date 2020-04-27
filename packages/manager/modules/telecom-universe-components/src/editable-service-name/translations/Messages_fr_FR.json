@@ -1,0 +1,6 @@
+{
+  "tuc_editableServiceName_change": "Changer le nom du service",
+  "tuc_editableServiceName_label": "Veuillez insérer le nouveau nom de ce service",
+  "tuc_editableServiceName_confirm": "Confirmer",
+  "tuc_editableServiceName_cancel": "Annuler"
+}
