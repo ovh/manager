@@ -1,11 +1,11 @@
 {
   "telephony_line_phone_configuration_title": "Custom Plug & Phone settings",
   "telephony_line_phone_configuration_cancel_manage": "Cancel modifications",
-  "telephony_line_phone_configuration_load_error": "Oops, an error has occurred loading your phone settings.",
-  "telephony_line_phone_configuration_save_error": "Oops, an error has occurred saving your phone settings.",
+  "telephony_line_phone_configuration_load_error": "Oops! An error has occurred loading your phone settings.",
+  "telephony_line_phone_configuration_save_error": "Oops! An error has occurred saving your phone settings.",
   "telephony_line_phone_configuration_saving": "Modifying configurations.",
   "telephony_line_phone_configuration_save_success": "Your phone settings have been saved.",
-  "telephony_line_phone_configuration_default_info": "Important: some advanced settings may also be reset to their default values.",
+  "telephony_line_phone_configuration_default_info": "Important! Some advanced settings may also be reset to their default values.",
   "telephony_line_phone_configuration_mode_standard": "Standard settings",
   "telephony_line_phone_configuration_mode_expert": "Advanced settings",
   "telephony_line_phone_configuration_mode_manage_button": "Manage settings",
@@ -182,5 +182,12 @@
   "telephony_line_phone_configuration_config_soft_key_label_4": "SoftKeyLabel4",
   "telephony_line_phone_configuration_config_handfree_send_volume": "Loudspeaker microphone volume",
   "telephony_line_phone_configuration_config_handset_send_volume": "Receiver microphone volume",
-  "telephony_line_phone_configuration_config_headset_send_volume": "Headset microphone volume (recommended value: 30)"
+  "telephony_line_phone_configuration_config_headset_send_volume": "Headset microphone volume (recommended value: 30)",
+  "telephony_line_phone_configuration_config_handset_1_ipui": "Handset 1 IPUI",
+  "telephony_line_phone_configuration_config_handset_2_ipui": "Handset 2 IPUI",
+  "telephony_line_phone_configuration_config_handset_3_ipui": "Handset 3 IPUI",
+  "telephony_line_phone_configuration_config_handset_4_ipui": "Handset 4 IPUI",
+  "telephony_line_phone_configuration_config_handset_5_ipui": "Handset 5 IPUI",
+  "telephony_line_phone_configuration_config_handset_6_ipui": "Handset 6 IPUI",
+  "telephony_line_phone_configuration_config_timer_for_registration": "Timer For Registration"
 }

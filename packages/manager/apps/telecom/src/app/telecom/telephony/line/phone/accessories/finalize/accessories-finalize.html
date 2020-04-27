@@ -1,0 +1,59 @@
+<div class="telecom-telephony-line-phone-accessories-finalize">
+    <div class="text-center" data-ng-if="$ctrl.loading.init">
+        <oui-spinner></oui-spinner>
+    </div>
+
+    <form data-ng-if="!$ctrl.loading.init">
+        <div class="alert alert-danger" role="alert" data-ng-if="$ctrl.error">
+            <p>
+                <span
+                    data-translate="telephony_line_phone_accessories_finalize_error"
+                ></span>
+                <span data-ng-bind="$ctrl.error.data.message"></span>
+            </p>
+        </div>
+
+        <div data-ng-if="!$ctrl.error" class="widget-presentation">
+            <h2
+                class="widget-presentation-title"
+                data-translate="telephony_line_phone_accessories_finalize_title"
+            ></h2>
+
+            <p
+                class="alert alert-success"
+                role="alert"
+                data-translate="telephony_line_phone_accessories_finalize_success"
+            ></p>
+
+            <dl class="dl-horizontal">
+                <dt
+                    data-translate="telephony_line_phone_accessories_finalize_order_id"
+                ></dt>
+                <dd>
+                    <a
+                        target="_blank"
+                        data-ng-href="{{ $ctrl.order.url }}"
+                        data-ng-bind="$ctrl.order.orderId"
+                    >
+                    </a>
+                </dd>
+
+                <dt
+                    data-translate="telephony_line_phone_accessories_finalize_order_total_ht"
+                ></dt>
+                <dd
+                    class="text-price"
+                    data-ng-bind="$ctrl.order.prices.withoutTax.text"
+                ></dd>
+
+                <dt
+                    data-translate="telephony_line_phone_accessories_finalize_order_total_ttc"
+                ></dt>
+                <dd
+                    class="text-price"
+                    data-ng-bind="$ctrl.order.prices.withTax.text"
+                ></dd>
+            </dl>
+        </div>
+    </form>
+</div>

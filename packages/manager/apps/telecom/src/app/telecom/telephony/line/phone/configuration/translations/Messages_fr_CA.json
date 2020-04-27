@@ -182,5 +182,12 @@
   "telephony_line_phone_configuration_config_soft_key_label_4": "SoftKeyLabel4",
   "telephony_line_phone_configuration_config_handfree_send_volume": "Volume micro du haut parleur",
   "telephony_line_phone_configuration_config_handset_send_volume": "Volume micro du combiné",
-  "telephony_line_phone_configuration_config_headset_send_volume": "Volume micro du casque (valeur recommandée : 30)"
+  "telephony_line_phone_configuration_config_headset_send_volume": "Volume micro du casque (valeur recommandée : 30)",
+  "telephony_line_phone_configuration_config_handset_1_ipui": "Handset 1 IPUI",
+  "telephony_line_phone_configuration_config_handset_2_ipui": "Handset 2 IPUI",
+  "telephony_line_phone_configuration_config_handset_3_ipui": "Handset 3 IPUI",
+  "telephony_line_phone_configuration_config_handset_4_ipui": "Handset 4 IPUI",
+  "telephony_line_phone_configuration_config_handset_5_ipui": "Handset 5 IPUI",
+  "telephony_line_phone_configuration_config_handset_6_ipui": "Handset 6 IPUI",
+  "telephony_line_phone_configuration_config_timer_for_registration": "Timer For Registration"
 }
