@@ -83,7 +83,7 @@ export default class {
 
   checkMessages(vps) {
     this.isExpired(vps);
-    this.isInRescueMode(vps.netbootMode);
+    this.displayWarningForRescueMode(this.isInRescueMode);
     this.checkIfStopNotification('ipV6', true, vps);
   }
 
@@ -101,8 +101,8 @@ export default class {
     }
   }
 
-  isInRescueMode(netbootMode) {
-    if (netbootMode === 'RESCUE') {
+  displayWarningForRescueMode(isInRescueMode) {
+    if (isInRescueMode) {
       this.CucCloudMessage.warning(
         {
           textHtml: this.$translate.instant(

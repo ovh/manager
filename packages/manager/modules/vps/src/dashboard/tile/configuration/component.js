@@ -8,6 +8,7 @@ export default {
   bindings: {
     configurationTile: '<',
     catalog: '<',
+    isInRescueMode: '<',
     vps: '<',
     stateVps: '<',
     getUpscaleHref: '<',
