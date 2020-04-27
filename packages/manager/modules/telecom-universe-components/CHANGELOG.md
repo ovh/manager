@@ -1,3 +1,12 @@
+# [4.6.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@4.5.1...@ovh-ux/ng-ovh-telecom-universe-components@4.6.0) (2020-04-27)
+
+
+### Features
+
+* add update phone range ([#2445](https://github.com/ovh/manager/issues/2445)) ([e610b48](https://github.com/ovh/manager/commit/e610b48e0f37ef859a92f4bc6973466d6f12c310))
+
+
+
 ## [4.5.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@4.5.0...@ovh-ux/ng-ovh-telecom-universe-components@4.5.1) (2020-04-15)
 
 
