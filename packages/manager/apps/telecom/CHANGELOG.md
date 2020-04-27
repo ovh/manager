@@ -1,3 +1,12 @@
+# [12.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@12.0.4...@ovh-ux/manager-telecom@12.1.0) (2020-04-27)
+
+
+### Features
+
+* add update phone range ([#2445](https://github.com/ovh/manager/issues/2445)) ([e610b48](https://github.com/ovh/manager/commit/e610b48e0f37ef859a92f4bc6973466d6f12c310))
+
+
+
 ## [12.0.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@12.0.3...@ovh-ux/manager-telecom@12.0.4) (2020-04-20)
 
 
