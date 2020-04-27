@@ -1,13 +1,13 @@
 {
   "pci_projects_new_voucher_question": "Posiadasz voucher?",
-  "pci_projects_new_voucher_form_field": "Wprowadzanie kuponu",
+  "pci_projects_new_voucher_form_field": "Wprowadź kod vouchera",
   "pci_projects_new_voucher_form_field_amount": "Kwota zasilenia: {{ amount }}",
   "pci_projects_new_voucher_form_field_error_invalid": "Nieprawidłowy kod",
   "pci_projects_new_voucher_form_field_error_no_longer_valid": "Nieprawidłowy kod",
-  "pci_projects_new_voucher_form_field_error_default": "Wystąpił problem podczas modyfikowania projektu.",
+  "pci_projects_new_voucher_form_field_error_default": "Wystąpił problem podczas weryfikacji kodu.",
   "pci_projects_new_voucher_form_add": "Dodaj",
-  "pci_projects_new_voucher_form_add_title": "Dodawanie kuponu",
-  "pci_projects_new_voucher_form_remove": "Odłącz",
-  "pci_projects_new_voucher_form_remove_title": "Wprowadź kod vouchera",
-  "pci_projects_new_voucher_form_reset_error": "Wystąpił błąd podczas wycofywania kuponu."
+  "pci_projects_new_voucher_form_add_title": "Wprowadź kod vouchera",
+  "pci_projects_new_voucher_form_remove": "Usuń",
+  "pci_projects_new_voucher_form_remove_title": "Usuń kod vouchera",
+  "pci_projects_new_voucher_form_reset_error": "Wystąpił błąd podczas usuwania kodu vouchera."
 }
