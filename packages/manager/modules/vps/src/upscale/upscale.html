@@ -239,11 +239,25 @@
             prevent-next="true"
             valid="$ctrl.agreeContracts"
         >
-            <ovh-contracts-summary
-                data-ng-if="$ctrl.order"
-                items="$ctrl.order.contracts"
-                model="$ctrl.agreeContracts"
-            ></ovh-contracts-summary>
+            <div data-ng-if="$ctrl.order">
+                <oui-checkbox
+                    model="$ctrl.agreeContracts"
+                    data-ng-if="$ctrl.order && $ctrl.agreements"
+                >
+                    <span
+                        data-translate="vps_upscale_agreements"
+                        data-translate-values="{
+                            'conditions': $ctrl.agreements.termsOfService,
+                            'policy': $ctrl.agreements.privacyPolicy
+                          }"
+                    ></span>
+                </oui-checkbox>
+                <ovh-contracts-summary
+                    data-ng-if="$ctrl.order && !$ctrl.agreements"
+                    items="$ctrl.order.contracts"
+                    model="$ctrl.agreeContracts"
+                ></ovh-contracts-summary>
+            </div>
         </oui-step-form>
         <oui-step-form
             header="{{ :: 'vps_upscale_summary' | translate }}"
