@@ -1,3 +1,14 @@
+## [1.2.3](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@1.2.2...@ovh-ux/sign-up@1.2.3) (2020-04-28)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 368] ([d6f6809](https://github.com/ovh/manager/commit/d6f6809ea899cfbd3118f1ee242e0ccc4db7ee8e))
+* **i18n:** add missing translations [CDS 369] ([38691ec](https://github.com/ovh/manager/commit/38691eccb391af0d2c9e7b700bdfd2839ef3da85))
+* **sign-up:** use differents labels depending on selected legalform ([#2768](https://github.com/ovh/manager/issues/2768)) ([baa5a7d](https://github.com/ovh/manager/commit/baa5a7d17d8c053b8291844884a9f8695f01f6af))
+
+
+
 ## [1.2.2](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@1.2.1...@ovh-ux/sign-up@1.2.2) (2020-04-16)
 
 

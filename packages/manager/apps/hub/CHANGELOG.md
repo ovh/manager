@@ -1,3 +1,20 @@
+# [1.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@1.1.4...@ovh-ux/manager-hub-app@1.2.0) (2020-04-28)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 356] ([d2ae13f](https://github.com/ovh/manager/commit/d2ae13f6679c081a2514a9dafad4955265a4d9bd))
+* **i18n:** add missing translations [CDS 357] ([409dc06](https://github.com/ovh/manager/commit/409dc06ae0fc802fe23b859a037347d60908fe4e))
+
+
+### Features
+
+* add skip nav functionality ([#2849](https://github.com/ovh/manager/issues/2849)) ([5d1d8df](https://github.com/ovh/manager/commit/5d1d8df3428595032a37d58bb5b41a9fb1eff95e))
+* **catalog:** add tracking ([#2724](https://github.com/ovh/manager/issues/2724)) ([4c04c0d](https://github.com/ovh/manager/commit/4c04c0d93829a01b957bdfa7af8c6e5436521264))
+* **products:** update navigation tracking ([80676e9](https://github.com/ovh/manager/commit/80676e9d1c48575f5bed89de558bf910381f4a28))
+
+
+
 ## [1.1.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@1.1.3...@ovh-ux/manager-hub-app@1.1.4) (2020-04-20)
 
 

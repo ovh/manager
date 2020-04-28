@@ -1,3 +1,13 @@
+# [1.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@1.0.3...@ovh-ux/manager-hub@1.1.0) (2020-04-28)
+
+
+### Features
+
+* **catalog:** add tracking ([#2724](https://github.com/ovh/manager/issues/2724)) ([4c04c0d](https://github.com/ovh/manager/commit/4c04c0d93829a01b957bdfa7af8c6e5436521264))
+* **products:** update navigation tracking ([80676e9](https://github.com/ovh/manager/commit/80676e9d1c48575f5bed89de558bf910381f4a28))
+
+
+
 ## [1.0.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@1.0.2...@ovh-ux/manager-hub@1.0.3) (2020-04-16)
 
 

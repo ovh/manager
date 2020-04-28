@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-telecom",
-  "version": "12.1.1",
+  "version": "12.1.2",
   "private": true,
   "description": "OVHcloud Telecom control panel.",
   "repository": {
@@ -37,7 +37,7 @@
     "@ovh-ux/manager-telecom-styles": "^3.1.0",
     "@ovh-ux/manager-telecom-task": "^5.0.0",
     "@ovh-ux/ng-at-internet": "^5.0.0",
-    "@ovh-ux/ng-at-internet-ui-router-plugin": "^3.0.0",
+    "@ovh-ux/ng-at-internet-ui-router-plugin": "^3.1.0",
     "@ovh-ux/ng-ovh-actions-menu": "^5.0.4",
     "@ovh-ux/ng-ovh-api-wrappers": "^4.0.7",
     "@ovh-ux/ng-ovh-browser-alert": "^2.0.0",
@@ -57,8 +57,8 @@
     "@ovh-ux/ng-ovh-sso-auth-modal-plugin": "^3.0.4",
     "@ovh-ux/ng-ovh-swimming-poll": "^5.0.0",
     "@ovh-ux/ng-ovh-telecom-universe-components": "^4.0.0",
-    "@ovh-ux/ng-ovh-timeline": "^1.0.0",
-    "@ovh-ux/ng-ovh-ui-confirm-modal": "^1.0.0",
+    "@ovh-ux/ng-ovh-timeline": "^2.0.0",
+    "@ovh-ux/ng-ovh-ui-confirm-modal": "^2.0.0",
     "@ovh-ux/ng-ovh-user-pref": "^2.0.0",
     "@ovh-ux/ng-pagination-front": "^9.0.0",
     "@ovh-ux/ng-q-allsettled": "^2.0.0",
