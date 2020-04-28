@@ -1,3 +1,12 @@
+## [12.1.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@12.1.1...@ovh-ux/manager-telecom@12.1.2) (2020-04-28)
+
+
+### Bug Fixes
+
+* **telephony:** allow contact edition for foreign numbers ([#2785](https://github.com/ovh/manager/issues/2785)) ([31226cc](https://github.com/ovh/manager/commit/31226cc62848dd8a0982fe429df6ffb2eef5b764))
+
+
+
 ## [12.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@12.1.0...@ovh-ux/manager-telecom@12.1.1) (2020-04-28)
 
 

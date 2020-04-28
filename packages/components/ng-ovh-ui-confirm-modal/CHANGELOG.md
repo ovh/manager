@@ -1,3 +1,17 @@
+# [2.0.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-ui-confirm-modal@1.0.0...@ovh-ux/ng-ovh-ui-confirm-modal@2.0.0) (2020-04-28)
+
+
+### Code Refactoring
+
+* update stack with component-rollup-config ([#10](https://github.com/ovh/manager/issues/10)) ([ede4bc8](https://github.com/ovh/manager/commit/ede4bc8eb7359f6425ff1719186f18430ca33a9d))
+
+
+### BREAKING CHANGES
+
+* module is now named ngOvhUiConfirmModal
+
+
+
 # [1.0.0](https://github.com/ovh-ux/ng-ovh-ui-confirm-modal/compare/1.0.2...1.0.0) (2020-04-08)
 
 

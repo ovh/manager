@@ -1,3 +1,17 @@
+## [12.3.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@12.3.2...@ovh-ux/manager-dedicated@12.3.3) (2020-04-28)
+
+
+### Bug Fixes
+
+* **dedicated.cloud:** update some hpc texts ([#2825](https://github.com/ovh/manager/issues/2825)) ([9e4a574](https://github.com/ovh/manager/commit/9e4a5749f4a565a5faadea548b63ea6c55a56d44))
+* **i18n:** add missing translations [CDS 356] ([d2ae13f](https://github.com/ovh/manager/commit/d2ae13f6679c081a2514a9dafad4955265a4d9bd))
+* **i18n:** add missing translations [CDS 357] ([409dc06](https://github.com/ovh/manager/commit/409dc06ae0fc802fe23b859a037347d60908fe4e))
+* **i18n:** add missing translations [CDS 363] ([7744b56](https://github.com/ovh/manager/commit/7744b566803e45dd7863d43b21764b5a935fd52f))
+* **i18n:** add missing translations [CDS 368] ([d6f6809](https://github.com/ovh/manager/commit/d6f6809ea899cfbd3118f1ee242e0ccc4db7ee8e))
+* **i18n:** add missing translations [CDS 369] ([38691ec](https://github.com/ovh/manager/commit/38691eccb391af0d2c9e7b700bdfd2839ef3da85))
+
+
+
 ## [12.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@12.3.1...@ovh-ux/manager-dedicated@12.3.2) (2020-04-22)
 
 
