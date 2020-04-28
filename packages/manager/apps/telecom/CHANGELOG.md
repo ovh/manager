@@ -1,3 +1,12 @@
+## [12.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@12.1.0...@ovh-ux/manager-telecom@12.1.1) (2020-04-28)
+
+
+### Bug Fixes
+
+* **telephony.line.phone:** fix phone config for new phones ([#2857](https://github.com/ovh/manager/issues/2857)) ([ff6fef5](https://github.com/ovh/manager/commit/ff6fef5298ed5fe35dbfec8d29c958f58ee02b52))
+
+
+
 # [12.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@12.0.4...@ovh-ux/manager-telecom@12.1.0) (2020-04-27)
 
 
