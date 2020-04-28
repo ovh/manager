@@ -1166,6 +1166,9 @@ module.exports = {
       TELECOM: 'TELECOM',
       SUNRISE: 'SUNRISE',
     },
+    DOMAIN: {
+      domainUnlockRegistry: {},
+    },
     HOSTING: {
       OFFERS: {
         START_10_M: {
@@ -1307,6 +1310,9 @@ module.exports = {
         SN: 'https://www.ovh.sn/order/express/',
         TN: 'https://www.ovh.com/tn/order/express/',
         WE: 'https://www.ovh.com/us/order/express/',
+      },
+      TOOLS: {
+        ZONE_CHECK: 'https://www.zonemaster.net/',
       },
     },
     COMODO: {
