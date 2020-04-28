@@ -1,0 +1,23 @@
+{
+  "domains_newdnszone_order_title": "Adding a DNS zone",
+  "domains_newdnszone_order_step1_title": "Enter a domain name",
+  "domains_newdnszone_order_step1_zonename": "Domain name",
+  "domains_newdnszone_order_step1_zonename_pending": "Checking zone name availability...",
+  "domains_newdnszone_order_step2_title": "Details",
+  "domains_newdnszone_order_step2_minimized": "Enable minimal records?",
+  "domains_newdnszone_order_step2_minimized_yes": "Yes",
+  "domains_newdnszone_order_step2_minimized_no": "No",
+  "domains_newdnszone_order_example": "Example of how to add a zone:",
+  "domains_newdnszone_order_usage": "Got a domain registered with another service provider, and looking to transfer it to us? To avoid any service interruptions, you can add a DNS zone before you begin transferring the domain name.",
+  "domains_newdnszone_order_reminder": "Remember to change the DNS servers, so that the zone is taken into account. ",
+  "domains_newdnszone_order_subtitle": "to configure your domain for your different services. ",
+  "domains_newdnszone_zone_invalid_title": "You can only create a DNS zone if the following criteria are met:",
+  "domains_newdnszone_zone_invalid_domain_active": "The domain exists and it is active ",
+  "domains_newdnszone_zone_invalid_domain_soa": "The domain's SOA must be correctly set up in its DNS zone ",
+  "domains_newdnszone_zone_invalid_domain_a": "There must be no actions in progress at OVHcloud for this domain ",
+  "domains_newdnszone_zone_invalid_domain_zone": "This DNS zone cannot already be registered with OVHcloud",
+  "domains_newdnszone_zone_invalid_domain_guide": "View guide ",
+  "domains_newdnszone_order_help_add": "Adding a DNS zone",
+  "domains_newdnszone_order_success": "Your DNS zone has been enabled",
+  "domains_newdnszone_order_error": "An error has occurred ordering the DNS zone: {{ message }}"
+}

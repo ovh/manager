@@ -1,12 +1,5 @@
 class LogsDashboardsService {
-  constructor(
-    $q,
-    OvhApiDbaas,
-    LogsOptionsService,
-    LogsHelperService,
-    LogsConstants,
-    CucUrlHelper,
-  ) {
+  constructor($q, OvhApiDbaas, LogsHelperService, LogsConstants, CucUrlHelper) {
     this.$q = $q;
     this.DashboardsApiService = OvhApiDbaas.Logs()
       .Dashboard()
@@ -14,13 +7,9 @@ class LogsDashboardsService {
     this.DashboardsAapiService = OvhApiDbaas.Logs()
       .Dashboard()
       .Aapi();
-    this.AccountingAapiService = OvhApiDbaas.Logs()
-      .Accounting()
-      .Aapi();
     this.DetailsAapiService = OvhApiDbaas.Logs()
       .Details()
       .Aapi();
-    this.LogsOptionsService = LogsOptionsService;
     this.LogsHelperService = LogsHelperService;
     this.LogsConstants = LogsConstants;
     this.CucUrlHelper = CucUrlHelper;
@@ -154,49 +143,6 @@ class LogsDashboardsService {
   }
 
   /**
-   * returns objecy containing total number of dashboards and total number of dashboards used
-   *
-   * @param {any} serviceName
-   * @returns quota object containing max (total number dashboards)
-   *          and configured (number of dashboards used)
-   * @memberof LogsDashboardsService
-   */
-  getQuota(serviceName) {
-    return this.AccountingAapiService.me({ serviceName })
-      .$promise.then((me) => ({
-        max: me.total.maxNbDashboard,
-        configured: me.total.curNbDashboard,
-        reference: me.total.reference,
-      }))
-      .catch((err) =>
-        this.LogsHelperService.handleError(
-          'logs_dashboards_quota_get_error',
-          err,
-          {},
-        ),
-      );
-  }
-
-  /**
-   * Retrieves options associated with main offer
-   * @param {string} serviceName
-   */
-  getMainOffer(serviceName) {
-    return this.AccountingAapiService.me({ serviceName })
-      .$promise.then((me) => ({
-        max: me.offer.maxNbDashboard,
-        current: me.offer.curNbDashboard,
-      }))
-      .catch((err) =>
-        this.LogsHelperService.handleError(
-          'logs_main_offer_get_error',
-          err,
-          {},
-        ),
-      );
-  }
-
-  /**
    * delete dashboard
    *
    * @param {any} serviceName
@@ -240,7 +186,6 @@ class LogsDashboardsService {
       { serviceName },
       {
         description: dashboard.description,
-        optionId: dashboard.optionId,
         title: dashboard.title,
       },
     )
@@ -307,7 +252,6 @@ class LogsDashboardsService {
       {
         title: dashboard.title,
         description: dashboard.description,
-        optionId: dashboard.optionId,
       },
     )
       .$promise.then((operation) => {
@@ -345,17 +289,6 @@ class LogsDashboardsService {
   }
 
   /**
-   * retrives all subscribed options of type dashboards
-   * @param {string} serviceName
-   */
-  getSubscribedOptions(serviceName) {
-    return this.LogsOptionsService.getSubscribedOptionsByType(
-      serviceName,
-      this.LogsConstants.DASHBOARD_OPTION_REFERENCE,
-    );
-  }
-
-  /**
    * extracts graylog URL from dashboard. Shows error message on UI if no graylog URL is found.
    *
    * @param {any} dashboard
@@ -380,7 +313,6 @@ class LogsDashboardsService {
   static transformDashboardToDuplicate(dashboard) {
     const toDuplicate = {
       description: dashboard.description,
-      optionId: dashboard.optionId,
       streamId: dashboard.streamId,
       title: dashboard.title,
     };
@@ -391,7 +323,6 @@ class LogsDashboardsService {
   }
 
   resetAllCache() {
-    this.AccountingAapiService.resetAllCache();
     this.DashboardsApiService.resetAllCache();
     this.DashboardsAapiService.resetAllCache();
     // refresh home page last modified dashboard

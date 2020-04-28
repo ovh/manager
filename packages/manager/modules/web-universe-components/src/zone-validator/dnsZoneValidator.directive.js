@@ -1,5 +1,5 @@
 /* eslint-disable no-param-reassign */
-angular.module('App').directive('zoneNameValidator', ($q, newDnsZone) => ({
+export default /* @ngInject */ ($q, newDnsZone) => ({
   require: 'ngModel',
   link(scope, element, attrs, ngModel) {
     ngModel.$asyncValidators.zoneName = (modelValue, viewValue) => {
@@ -23,5 +23,5 @@ angular.module('App').directive('zoneNameValidator', ($q, newDnsZone) => ({
       return deferred.promise;
     };
   },
-}));
+});
 /* eslint-enable no-param-reassign */

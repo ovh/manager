@@ -16,7 +16,6 @@ class LogsRolesCtrl {
   }
 
   initLoaders() {
-
     this.roles = this.CucControllerHelper.request.getArrayLoader({
       loaderFunction: () => this.LogsRolesService.getRoles(this.serviceName),
     });

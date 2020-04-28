@@ -53,5 +53,6 @@
   "pci_projects_project_instances_error_query": "Wystąpił błąd podczas pobierania wolumenów.",
   "pci_projects_project_instances_vrack_none": "Jeszcze nie skonfigurowałeś sieci vRack.",
   "pci_projects_project_instances_vrack_create": "Utwórz vRack",
-  "pci_projects_project_instances_autobackup_label": "Utwórz automatyzowane kopie zapasowe"
+  "pci_projects_project_instances_autobackup_label": "Utwórz automatyzowane kopie zapasowe",
+  "pci_projects_project_instances_refresh": "Aktualizacja instancji"
 }

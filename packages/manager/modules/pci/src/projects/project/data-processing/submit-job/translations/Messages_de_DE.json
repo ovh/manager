@@ -1,0 +1,14 @@
+{
+  "data_processing_submit_job_title": "Einen neuen Auftrag starten",
+  "data_processing_submit_job_description_1": "Mit OVHcloud Analytics Data Compute können Sie ganz nach Bedarf Aufträge mit Apache Spark starten. Dabei können Sie festlegen, wieviel RAM und vCPU genutzt werden soll.",
+  "data_processing_submit_job_description_2": "Laden Sie Ihren Code im JAR- oder Python-Format in einen Swift-Container hoch, und führen Sie ihn mit dem unten stehenden Interface aus. Sie können in Echtzeit mitverfolgen, wie Ihr Auftrag ausgeführt wird: mit Logs und Metriken.",
+  "data_processing_submit_job_description_3": "Sie haben in Echtzeit Zugriff auf die Logs und Metriken Ihres Auftrags.",
+  "data_processing_submit_job_stepper_region_title": "Region auswählen",
+  "data_processing_submit_job_stepper_job_type_title": "Art des Auftrags auswählen",
+  "data_processing_submit_job_stepper_sizing_title": "Umfang des Auftrags bestimmen",
+  "data_processing_submit_job_stepper_configure_title": "Ihren Auftrag konfigurieren",
+  "data_processing_submit_job_stepper_submit_error_title": "Es ist ein Fehler aufgetreten",
+  "data_processing_submit_job_button_label": "Den Auftrag starten",
+  "data_processing_submit_job_spinner_label": "der Auftrag wird gestartet...",
+  "data_processing_submit_job_error_label": "Es ist ein Fehler aufgetreten. Im Moment können wir Ihren Auftrag nicht starten."
+}

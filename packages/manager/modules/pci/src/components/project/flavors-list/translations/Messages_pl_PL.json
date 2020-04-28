@@ -18,5 +18,5 @@
   "pci_project_flavors_category_definition_iops": "Instancje IOPS gwarantują najszybsze transakcje dyskowe spośród rozwiązań Public Cloud.",
   "pci_project_flavors_spec_model": "Model:",
   "pci_project_flavors_spec_nvme": "Dyski NVMe",
-  "pci_project_flavors_category_definition_baremetal": "Bare metal instances offer hardware servers on demand. They are delivered in a few minutes, and can be billed on an hourly or monthly basis."
+  "pci_project_flavors_category_definition_baremetal": "Instancje bare metal oferują serwery fizyczne na żądanie, które są dostarczane w ciągu kilku minut i są fakturowane w trybie godzinowym lub miesięcznym."
 }

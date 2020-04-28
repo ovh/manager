@@ -68,13 +68,12 @@
                     <span class="oui-radio__section">
                         <p>
                             {{offer.maxNbStream}} {{'logs_offer_streams' |
-                            translate}}, {{offer.maxNbDashboard}}
-                            {{'logs_offer_tables' | translate}}
-                            <span data-ng-if="offer.maxNbInput > 0">,</span>
-                        </p>
-                        <p data-ng-if="offer.maxNbInput > 0">
-                            {{offer.maxNbInput}} {{'logs_offer_collection_tools'
-                            | translate}}
+                            translate}}
+                            <span data-ng-if="offer.maxNbInput > 0"
+                                >, {{offer.maxNbInput}}
+                                {{'logs_offer_collection_tools' |
+                                translate}}</span
+                            >
                         </p>
                     </span>
                     <span class="oui-radio__section text-right">

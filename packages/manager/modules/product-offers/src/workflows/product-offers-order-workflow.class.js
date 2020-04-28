@@ -24,9 +24,7 @@ export default class OrderWorkflow extends Workflow {
    *  - {serviceNameToAddProduct}: Service name of which we will add product/addon.
    *  If set, the order will consist to add option to an existing service.
    *  If null, the order concerns an new product.
-   *  - {onBeforePricingGetPlancode}: Method called to get the product/addon plan
-   *  code, which will be called after configuration phase, and before pricing
-   *  step. Plan code example : webHosting, cloudDB.
+   *  - {planCode}: planCode to use. Plan code example : webHosting, cloudDB.
    *  - {onGetConfiguration}:
    *  Method to get configuration items that will be added to the order
    *  cart, called when fetching checkout information.
@@ -76,13 +74,11 @@ export default class OrderWorkflow extends Workflow {
   }
 
   /**
-   * Get the pricings from the catalog, which match the plan code, which is get
-   * by linked method 'onBeforePricingGetPlancode'.
+   * Get the pricings from the catalog matching the planCode
    * @return {Promise} Promise of the catalog pricings
    */
   getPricings() {
     this.pricing = null;
-    this.planCode = this.onBeforePricingGetPlancode();
 
     if (!this.planCode) {
       throw new Error('ovhProductOffers-OrderWorkflow: Invalid plan code');

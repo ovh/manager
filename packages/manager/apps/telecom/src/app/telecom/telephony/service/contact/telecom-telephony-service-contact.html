@@ -947,58 +947,59 @@
                             data-ng-bind=":: ServiceContactCtrl.getStatusLabel()"
                         ></p>
                     </div>
+                </div>
+                <!-- End of UNIVERSAL DIRECTORY -->
 
-                    <div class="form-group mt-4">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <hr />
-                                <tuc-telephony-bulk-action
-                                    data-service-type="all"
-                                    data-billing-account="{{ ServiceContactCtrl.bulkDatas.billingAccount }}"
-                                    data-service-name="{{ ServiceContactCtrl.bulkDatas.serviceName }}"
-                                    data-custom-class="link d-block pl-0 mb-3"
-                                    data-ng-disabled="!ServiceContactCtrl.isEditing || ServiceContactCtrl.isLoading ||  contactForm.$invalid"
-                                    data-bulk-infos="ServiceContactCtrl.bulkDatas.infos"
-                                    data-get-bulk-params="ServiceContactCtrl.getBulkParams"
-                                    data-on-success="ServiceContactCtrl.onBulkSuccess"
-                                    data-on-error="ServiceContactCtrl.onBulkError"
+                <!-- EDITING ACTIONS -->
+                <div class="form-group mt-4">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <hr />
+                            <tuc-telephony-bulk-action
+                                data-service-type="all"
+                                data-billing-account="{{ ServiceContactCtrl.bulkDatas.billingAccount }}"
+                                data-service-name="{{ ServiceContactCtrl.bulkDatas.serviceName }}"
+                                data-custom-class="link d-block pl-0 mb-3"
+                                data-ng-disabled="!ServiceContactCtrl.isEditing || ServiceContactCtrl.isLoading ||  contactForm.$invalid"
+                                data-bulk-infos="ServiceContactCtrl.bulkDatas.infos"
+                                data-get-bulk-params="ServiceContactCtrl.getBulkParams"
+                                data-on-success="ServiceContactCtrl.onBulkSuccess"
+                                data-on-error="ServiceContactCtrl.onBulkError"
+                            >
+                            </tuc-telephony-bulk-action>
+                            <button
+                                type="button"
+                                class="btn btn-default"
+                                data-ng-if="!ServiceContactCtrl.isEditing"
+                                data-translate="telephony_service_contact_edit"
+                                data-ng-click="ServiceContactCtrl.isEditing = true"
+                            ></button>
+                            <button
+                                type="submit"
+                                class="btn btn-primary"
+                                data-ng-if="ServiceContactCtrl.isEditing"
+                                data-ng-disabled="!ServiceContactCtrl.isEditing || ServiceContactCtrl.isUpdating || contactForm.$invalid"
+                            >
+                                <oui-spinner
+                                    class="mr-2"
+                                    data-ng-if="ServiceContactCtrl.isUpdating"
+                                    data-size="s"
                                 >
-                                </tuc-telephony-bulk-action>
-                                <button
-                                    type="button"
-                                    class="btn btn-default"
-                                    data-ng-if="!ServiceContactCtrl.isEditing"
-                                    data-translate="telephony_service_contact_edit"
-                                    data-ng-click="ServiceContactCtrl.isEditing = true"
-                                ></button>
-                                <button
-                                    type="submit"
-                                    class="btn btn-primary"
-                                    data-ng-if="ServiceContactCtrl.isEditing"
-                                    data-ng-disabled="!ServiceContactCtrl.isEditing || ServiceContactCtrl.isUpdating || contactForm.$invalid"
-                                >
-                                    <oui-spinner
-                                        class="mr-2"
-                                        data-ng-if="ServiceContactCtrl.isUpdating"
-                                        data-size="s"
-                                    >
-                                    </oui-spinner>
-                                    <span
-                                        data-translate="telephony_service_contact_apply"
-                                    ></span>
-                                </button>
-                                <button
-                                    type="button"
-                                    class="btn btn-link"
-                                    data-ng-if="ServiceContactCtrl.isEditing"
-                                    data-translate="cancel"
-                                    data-ng-click="ServiceContactCtrl.cancelEdition()"
-                                ></button>
-                            </div>
+                                </oui-spinner>
+                                <span
+                                    data-translate="telephony_service_contact_apply"
+                                ></span>
+                            </button>
+                            <button
+                                type="button"
+                                class="btn btn-link"
+                                data-ng-if="ServiceContactCtrl.isEditing"
+                                data-translate="cancel"
+                                data-ng-click="ServiceContactCtrl.cancelEdition()"
+                            ></button>
                         </div>
                     </div>
                 </div>
-                <!-- End of UNIVERSAL DIRECTORY -->
                 <!-- /.widget-presentation -->
             </form>
         </div>
