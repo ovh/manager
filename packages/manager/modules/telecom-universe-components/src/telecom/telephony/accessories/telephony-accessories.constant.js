@@ -81,6 +81,8 @@ export const TELEPHONY_LINE_PHONE_ACCESSORIES = {
   'cisco.ext8800': {
     url:
       'https://www.ovhtelecom.fr/telephonie/comparatif-accessoires-telephone.xml/',
+    img:
+      'https://www.ovhtelecom.fr/images/telephonie/2020/cisco/accessory-cisco-ext8800-90-90.png',
   },
   'cisco.cp8800': {
     url:
@@ -137,6 +139,10 @@ export const TELEPHONY_LINE_PHONE_ACCESSORIES = {
       'https://www.ovhtelecom.fr/images/telephonie/2020/poly/accessory-poly-savi8220-90-90.png',
   },
   'poly.apc43': {
+    img:
+      'https://www.ovhtelecom.fr/images/telephonie/2020/poly/accessory-poly-apc43-90-90.png',
+  },
+  'poly.aps11': {
     img:
       'https://www.ovhtelecom.fr/images/telephonie/2020/poly/accessory-poly-apc43-90-90.png',
   },
