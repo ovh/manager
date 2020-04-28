@@ -1,3 +1,12 @@
+## [12.1.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@12.1.2...@ovh-ux/manager-telecom@12.1.3) (2020-04-28)
+
+
+### Bug Fixes
+
+* **telephony.line.phone.order.choice:** fix links for images and technical docs ([#2863](https://github.com/ovh/manager/issues/2863)) ([63a3acd](https://github.com/ovh/manager/commit/63a3acd13cee84a2b4d0d7ccca6e668eba587925))
+
+
+
 ## [12.1.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@12.1.1...@ovh-ux/manager-telecom@12.1.2) (2020-04-28)
 
 
