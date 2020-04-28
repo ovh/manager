@@ -176,11 +176,6 @@ export default class UpscaleController {
     );
   }
 
-  static isValueAvailable(path, value, currentConfiguration) {
-    const currentConfigurationValue = get(currentConfiguration, path, 0);
-    return value !== currentConfigurationValue;
-  }
-
   getRangeEliteConfigurationPricing() {
     if (
       UpscaleController.isRangeEliteConfigurationComplete(
@@ -191,6 +186,8 @@ export default class UpscaleController {
         this.rangeConfiguration,
         this.range.formattedName.toLowerCase(),
       );
+
+      this.isNewPlanCodeDifferent = this.planCode !== this.vps.model.name;
 
       const matchingPlanCode = this.upscaleOptions.find(
         ({ planCode }) => planCode === this.planCode,
