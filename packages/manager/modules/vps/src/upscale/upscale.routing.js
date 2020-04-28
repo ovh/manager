@@ -5,6 +5,8 @@ export default /* @ngInject */ function($stateProvider) {
   $stateProvider.state('vps.detail.upscale', {
     url: '/upscale',
     resolve: {
+      agreements: /* @ngInject */ (coreConfig, CORE_URLS) =>
+        CORE_URLS.agreements[coreConfig.getRegion()],
       getUpscaleInformation: /* @ngInject */ (serviceName, vpsUpgrade) => (
         planCode,
       ) =>
