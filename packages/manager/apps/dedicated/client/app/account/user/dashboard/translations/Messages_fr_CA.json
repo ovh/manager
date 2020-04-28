@@ -12,5 +12,7 @@
   "user_account_dashboard_last_bill_see": "Voir ma facture",
   "user_account_dashboard_profile": "Mon profil",
   "user_account_dashboard_profile_edit": "Éditer mon profil",
-  "user_account_dashboard_profile_support_level": "Mon niveau de support :"
+  "user_account_dashboard_profile_support_level": "Mon niveau de support :",
+  "user_account_dashboard_nichandle": "Nichandle",
+  "user_account_dashboard_customer_code": "Code client"
 }

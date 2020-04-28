@@ -487,12 +487,13 @@
                                 class="mt-4"
                                 data-translate="telephony_line_phone_order_contracts"
                             ></h3>
-                            <div
+                            <ovh-contracts-summary
                                 class="mb-4"
-                                data-ovh-contracts="PhoneOrderCtrl.order.summary.contracts"
-                                data-full-text="false"
-                                data-ovh-contracts-validated="PhoneOrderCtrl.order.isContractsAccepted"
-                            ></div>
+                                data-items="PhoneOrderCtrl.order.summary.contracts"
+                                data-model="PhoneOrderCtrl.order.isContractsAccepted"
+                                data-name="telephonyLinePhoneOrderContracts"
+                            >
+                            </ovh-contracts-summary>
 
                             <div data-ng-if="!PhoneOrderCtrl.phone">
                                 <hr />

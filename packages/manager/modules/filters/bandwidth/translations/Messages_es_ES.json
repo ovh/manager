@@ -1,0 +1,14 @@
+{
+  "unit_bits_per_sec": "{{val}} b/s",
+  "unit_kilo_bits_per_sec": "{{val}} kb/s",
+  "unit_mega_bits_per_sec": "{{val}} Mb/s",
+  "unit_giga_bits_per_sec": "{{val}} Gb/s",
+  "unit_tera_bits_per_sec": "{{val}} Tb/s",
+  "unit_peta_bits_per_sec": "{{val}} Pb/s",
+  "unit_generic_per_sec": "{{val}}",
+  "unit_kilo_generic_per_sec": "{{val}} k",
+  "unit_mega_generic_per_sec": "{{val}} M",
+  "unit_giga_generic_per_sec": "{{val}} G",
+  "unit_tera_generic_per_sec": "{{val}} T",
+  "unit_peta_generic_per_sec": "{{val}} P"
+}

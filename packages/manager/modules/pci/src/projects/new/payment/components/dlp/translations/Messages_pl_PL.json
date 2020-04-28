@@ -2,5 +2,5 @@
   "pci_project_new_payment_dlp_title": "Zasilenie Digital Launch Pad (DLP)",
   "pci_project_new_payment_dlp_info": "W ramach programu DLP posiadasz dedykowane konto przedpłacone.",
   "pci_project_new_payment_dlp_amount_available": "Kwota: {{amount}}",
-  "pci_project_new_payment_dlp_explain": "Kwota ta zostanie wykorzystana do opłacenia zużycia Twojego projektu Public Cloud. Po wyczerpaniu tej kwoty Metoda płatności zarejestrowana powyżej zostanie automatycznie użyta w celu zapewnienia ciągłości utworzonych wystąpień."
+  "pci_project_new_payment_dlp_explain": "Kwota zasilenia zostanie wykorzystana na pokrycie należności za użycie Twojego projektu Public Cloud.  Kiedy zasilenie się wyczerpie, dodany poniżej sposób płatności zostanie automatycznie użyty, aby zapewnić ciągłość działania utworzonych instancji."
 }

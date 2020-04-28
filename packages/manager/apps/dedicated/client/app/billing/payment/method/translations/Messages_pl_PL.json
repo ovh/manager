@@ -11,10 +11,11 @@
   "billing_payment_method_table_top_add_method": "Dodaj sposób płatności",
   "billing_payment_method_autorenew_guide_help": "Potrzebujesz pomocy w zakresie odnawiania usług?",
   "billing_payment_method_autorenew_guide_help_link": "Dowiedz się więcej",
-  "billing_payment_method_bank_account_pending_validation": "Dodałeś w panelu klienta konto bankowe. Czekamy na upoważnienie do obciążania rachunku. Należy przesłać je drogą pocztową.",
+  "billing_payment_method_bank_account_pending_validation": "Prosimy o wprowadzenie danych bankowych. Otrzymasz e-mail od naszego partnera Yousign, który umożliwi Ci złożenie elektronicznego podpisu na poleceniu zapłaty. Twoje konto bankowe zostanie dzięki temu zatwierdzone i stanie się aktywne.",
   "billing_payment_method_bank_account_processing_delay": "Twoje konto bankowe zostanie zatwierdzone w ciągu 24-48 godzin od uzyskania upoważnienia do obciążania rachunku.",
   "billing_payment_method_table_action_download_procedure": "Pobierz dokument i prześlij go do nas pocztą.",
   "billing_payment_method_table_action_description_edit": "Zmień opis",
   "billing_payment_method_table_action_set_default": "Ustaw tę metodę płatności jako domyślną",
-  "billing_payment_method_table_action_delete": "Usuń tę metodę płatności"
+  "billing_payment_method_table_action_delete": "Usuń tę metodę płatności",
+  "billing_payment_method_credit_card_disclaimer": "Rejestracja środka płatności jest obowiązkowa, jeśli korzystasz z usługi automatycznego odnawiania. Można to zmienić w dowolnym momencie. Jeśli nie masz usługi automatycznego odnawiania i chcesz usunąć swój środek płatności, skontaktuj się z naszym zespołem obsługi klienta, tworząc bilet."
 }

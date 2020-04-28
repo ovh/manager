@@ -21,15 +21,6 @@ export default /* @ngInject */ ($stateProvider) => {
     },
   };
 
-  $stateProvider.state(routeBase, {
-    abstract: true,
-    template: '<div ui-view></div>',
-    translations: {
-      value: ['.'],
-      format: 'json',
-    },
-  });
-
   $stateProvider.state(`${routeBase}.order`, {
     url: '/configuration/microsoft/sharepoint/order',
     template: sharepointOrderTpl,

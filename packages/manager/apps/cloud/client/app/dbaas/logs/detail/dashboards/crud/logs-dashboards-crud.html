@@ -45,37 +45,9 @@
             ></textarea>
         </oui-field>
 
-        <oui-field data-label="{{::'logs_select_options_title' | translate}}">
-            <oui-spinner data-ng-show="ctrl.options.loading"></oui-spinner>
-            <div class="oui-select" data-ng-hide="ctrl.options.loading">
-                <select
-                    class="oui-select__input"
-                    name="dashboard_option"
-                    id="dashboard_option"
-                    data-ng-model="ctrl.dashboard.data.optionId"
-                >
-                    <option value=""
-                        >{{::'logs_main_offer' | translate}} -
-                        {{ctrl.mainOffer.data.current}}/{{ctrl.mainOffer.data.max}}</option
-                    >
-                    <option
-                        data-ng-repeat="option in ctrl.options.data"
-                        value="{{option.optionId}}"
-                    >
-                        {{ option.type+', '+option.detail+' -
-                        '+option.curNbDashboard+'/'+option.maxNbDashboard }}
-                    </option>
-                </select>
-                <i
-                    class="oui-icon oui-icon-chevron-down"
-                    aria-hidden="true"
-                ></i>
-            </div>
-        </oui-field>
-
         <oui-field
             data-ng-if="ctrl.isDuplicate"
-            data-label="{{::'logs_select_options_title' | translate}}"
+            data-label="{{::'logs_dashboards_select_stream' | translate}}"
         >
             <oui-spinner data-ng-show="ctrl.streams.loading"></oui-spinner>
             <div class="oui-select" data-ng-hide="ctrl.streams.loading">
@@ -84,6 +56,7 @@
                     name="dashboard_stream"
                     id="dashboard_stream"
                     data-ng-model="ctrl.dashboard.data.streamId"
+                    title="{{::'logs_dashboards_select_stream_title' | translate}}"
                 >
                     <option
                         value=""

@@ -1,10 +1,10 @@
 import find from 'lodash/find';
 import get from 'lodash/get';
 import groupBy from 'lodash/groupBy';
-import includes from 'lodash/includes';
 import isArray from 'lodash/isArray';
 import isEmpty from 'lodash/isEmpty';
 import map from 'lodash/map';
+import 'moment';
 
 import { DASHBOARD_FEATURES } from './vps-dashboard.constants';
 import {
@@ -27,6 +27,7 @@ export default class {
     CucControllerHelper,
     CucRegionService,
     VpsService,
+    vpsUpgradeTile,
   ) {
     this.$filter = $filter;
     this.$q = $q;
@@ -38,11 +39,9 @@ export default class {
     this.CucCloudMessage = CucCloudMessage;
     this.CucRegionService = CucRegionService;
     this.VpsService = VpsService;
+    this.vpsUpgradeTile = vpsUpgradeTile;
 
     this.DASHBOARD_FEATURES = DASHBOARD_FEATURES;
-    this.plan = {};
-    this.summary = {};
-    this.vps = {};
 
     this.loaders = {
       disk: false,
@@ -54,10 +53,7 @@ export default class {
   $onInit() {
     this.initActions();
     this.initLoaders();
-
-    this.vps.load();
-    this.summary.load();
-    this.plan.load();
+    this.initUpgradePolling();
 
     this.$scope.$on('tasks.pending', (event, opt) => {
       if (opt === this.serviceName) {
@@ -67,41 +63,66 @@ export default class {
     this.$scope.$on('tasks.success', (event, opt) => {
       if (opt === this.serviceName) {
         this.loaders.polling = false;
-        this.vps.load();
+        this.$state.reload();
       }
     });
   }
 
+  $onDestroy() {
+    if (this.vpsUpgradeTask) {
+      this.vpsUpgradeTile.stopUpgradeTaskPolling();
+      this.vpsUpgradeTask = null;
+    }
+  }
+
   initLoaders() {
-    this.vps = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () => this.VpsService.getSelectedVps(this.serviceName),
-      successHandler: () => {
-        this.getRegionsGroup(this.vps.data.location.datacentre);
-        if (!this.vps.data.isExpired) {
-          this.loadIps();
-          this.hasAdditionalDiskOption();
-        }
-      },
-    });
-    this.summary = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () =>
-        this.VpsService.getTabSummary(this.serviceName, true),
-      successHandler: () => this.initOptionsActions(),
-    });
-    this.plan = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () =>
-        this.VpsService.getServiceInfos(this.serviceName).then((plan) => ({
-          ...plan,
-          creation: moment(plan.creation).format('LL'),
-          expiration: moment(plan.expiration).format('LL'),
-        })),
-    });
+    this.getRegionsGroup(this.vps.location.datacentre);
+    if (!this.vps.isExpired) {
+      this.loadIps();
+      this.hasAdditionalDiskOption();
+    }
+
+    if (!isArray(this.tabSummary) && this.tabSummary.code !== 400) {
+      this.initOptionsActions();
+    } else {
+      this.CucCloudMessage.error(
+        `${this.$translate.instant(
+          'vps_dashboard_loading_error',
+        )} ${this.tabSummary.map(({ message }) => message)}`,
+      );
+    }
+  }
+
+  initUpgradePolling() {
+    if (this.vpsUpgradeTask) {
+      this.vpsUpgradeTile.startUpgradeTaskPolling(
+        this.serviceName,
+        this.vpsUpgradeTask,
+        {
+          onItemDone: ({ state }) => {
+            this.CucCloudMessage.flushMessages();
+
+            this.goBack(
+              this.$translate.instant(`vps_dashboard_upgrade_${state}`),
+              state === 'done' ? 'success' : 'error',
+              {},
+              { reload: true },
+            );
+          },
+          onItemUpdated: () => {
+            this.CucCloudMessage.info(
+              this.$translate.instant('vps_dashboard_upgrade_doing'),
+            );
+          },
+        },
+      );
+    }
   }
 
   loadIps() {
     this.loaders.ips = true;
     this.VpsService.getIps(this.serviceName).then((ips) => {
-      this.vps.data.ipv6Gateway = get(
+      this.vps.ipv6Gateway = get(
         find(ips.results, { version: 'v6' }),
         'gateway',
       );
@@ -110,7 +131,10 @@ export default class {
   }
 
   hasAdditionalDiskOption() {
-    if (!includes(this.vps.data.availableOptions, 'ADDITIONAL_DISK')) {
+    if (
+      !this.tabSummary.additionalDisk ||
+      !this.tabSummary.additionalDisk.optionAvailable
+    ) {
       this.hasAdditionalDisk = false;
       return this.hasAdditionalDisk;
     }
@@ -155,7 +179,6 @@ export default class {
           this.$state.go('vps.detail.backup-storage', {
             serviceName: this.serviceName,
           }),
-        isAvailable: () => !this.vps.loading,
       },
       order: {
         text: this.$translate.instant('vps_common_order'),
@@ -163,20 +186,18 @@ export default class {
           this.$state.go('vps.detail.backup-storage.order', {
             serviceName: this.serviceName,
           }),
-        isAvailable: () => !this.vps.loading,
       },
       terminate: {
         text: this.$translate.instant('vps_configuration_desactivate_option'),
-        isAvailable: () => !this.vps.loading,
       },
     };
   }
 
   initSnapshotActions() {
-    this.snapshotDescription = this.summary.data.snapshot.creationDate
+    this.snapshotDescription = this.tabSummary.snapshot.creationDate
       ? `${this.$translate.instant(
           'vps_tab_SUMMARY_snapshot_creationdate',
-        )} ${moment(this.summary.data.snapshot.creationDate).format('LLL')}`
+        )} ${moment(this.tabSummary.snapshot.creationDate).format('LLL')}`
       : this.$translate.instant('vps_status_enabled');
     this.snapshotActions = {
       delete: {
@@ -184,9 +205,7 @@ export default class {
           'vps_configuration_delete_snapshot_title_button',
         ),
         isAvailable: () =>
-          !this.summary.loading &&
-          this.summary.data.snapshot.creationDate &&
-          !this.loaders.polling,
+          this.tabSummary.snapshot.creationDate && !this.loaders.polling,
       },
       order: {
         text: this.$translate.instant('vps_common_order'),
@@ -194,32 +213,27 @@ export default class {
           this.$state.go('vps.detail.snapshot.order', {
             serviceName: this.serviceName,
           }),
-        isAvailable: () =>
-          !this.summary.loading && this.summary.data.snapshot.optionAvailable,
+        isAvailable: () => this.tabSummary.snapshot.optionAvailable,
       },
       restore: {
         text: this.$translate.instant(
           'vps_configuration_snapshot_restore_title_button',
         ),
         isAvailable: () =>
-          !this.summary.loading &&
-          this.summary.data.snapshot.creationDate &&
-          !this.loaders.polling,
+          this.tabSummary.snapshot.creationDate && !this.loaders.polling,
       },
       take: {
         text: this.$translate.instant(
           'vps_configuration_snapshot_take_title_button',
         ),
         isAvailable: () =>
-          !this.summary.loading &&
-          this.summary.data.snapshot.optionActivated &&
-          !this.summary.data.snapshot.creationDate &&
+          this.tabSummary.snapshot.optionActivated &&
+          !this.tabSummary.snapshot.creationDate &&
           !this.loaders.polling,
       },
       terminate: {
         text: this.$translate.instant('vps_configuration_desactivate_option'),
-        isAvailable: () =>
-          !this.summary.loading && this.summary.data.snapshot.optionActivated,
+        isAvailable: () => this.tabSummary.snapshot.optionActivated,
       },
     };
   }
@@ -230,7 +244,6 @@ export default class {
         text: this.$translate.instant('vps_common_manage'),
         callback: () =>
           this.$state.go('vps.detail.veeam', { serviceName: this.serviceName }),
-        isAvailable: () => !this.vps.loading,
       },
       order: {
         text: this.$translate.instant('vps_common_order'),
@@ -238,11 +251,9 @@ export default class {
           this.$state.go('vps.detail.veeam.order', {
             serviceName: this.serviceName,
           }),
-        isAvailable: () => !this.vps.loading,
       },
       terminate: {
         text: this.$translate.instant('vps_configuration_desactivate_option'),
-        isAvailable: () => !this.vps.loading,
       },
     };
   }
@@ -275,14 +286,13 @@ export default class {
       .then((changeOwnerHref) => {
         this.actions = {
           changeName: {
-            text: this.$translate.instant('vps_common_edit'),
+            text: this.$translate.instant('vps_dashboard_display_name_edit'),
             callback: () =>
               this.CucControllerHelper.modal.showNameChangeModal({
                 serviceName: this.serviceName,
-                displayName: this.vps.data.displayName,
+                displayName: this.vps.displayName,
                 onSave: (newDisplayName) => this.updateName(newDisplayName),
               }),
-            isAvailable: () => !this.vps.loading,
           },
           changeOwner: {
             text: this.$translate.instant('vps_change_owner'),
@@ -293,7 +303,7 @@ export default class {
           },
           kvm: {
             text: this.$translate.instant('vps_configuration_kvm_title_button'),
-            isAvailable: () => !this.loaders.polling && !this.vps.loading,
+            isAvailable: () => !this.loaders.polling,
           },
           manageAutorenew: {
             text: this.$translate.instant('vps_common_manage'),
@@ -302,7 +312,6 @@ export default class {
               { serviceName: this.serviceName, serviceType: 'VPS' },
             ),
             isAvailable: () =>
-              !this.vps.loading &&
               !this.loaders.plan &&
               this.hasFeature(DASHBOARD_FEATURES.autorenew),
             external: !this.coreConfig.isRegion('EU'),
@@ -313,7 +322,7 @@ export default class {
               get(CONTACTS_URL, this.coreConfig.getRegion()),
               { serviceName: this.serviceName },
             ),
-            isAvailable: () => !this.vps.loading,
+            isAvailable: this.coreConfig.isRegion('EU'),
           },
           manageIps: {
             text: this.$translate.instant(
@@ -323,19 +332,18 @@ export default class {
               get(IP_URL, this.coreConfig.getRegion()),
               { serviceName: this.serviceName },
             ),
-            isAvailable: () => !this.vps.loading && !this.loaders.ip,
+            isAvailable: () => !this.loaders.ip,
           },
           displayIps: {
             text: this.$translate.instant('vps_dashboard_ips_additional'),
-            isAvailable: () => !this.vps.loading && !this.loaders.ip,
+            isAvailable: () => !this.loaders.ip,
           },
           manageSla: {
             text: this.$translate.instant('vps_common_manage'),
-            isAvailable: () => !this.vps.loading && !this.loaders.polling,
+            isAvailable: () => !this.loaders.polling,
           },
           viewIpSla: {
             text: this.$translate.instant('vps_dashboard_monitoring_sla_ips'),
-            isAvailable: () => !this.vps.loading,
           },
           orderAdditionalDiskOption: {
             text: this.$translate.instant('vps_additional_disk_add_button'),
@@ -348,14 +356,13 @@ export default class {
               this.$state.go('vps.detail.windows.order', {
                 serviceName: this.serviceName,
               }),
-            isAvailable: () =>
-              !this.summary.loading && !this.summary.windowsActivated,
+            isAvailable: () => !this.tabSummary.windows.optionActivated,
           },
           reboot: {
             text: this.$translate.instant(
               'vps_configuration_reboot_title_button',
             ),
-            isAvailable: () => !this.loaders.polling && !this.vps.loading,
+            isAvailable: () => !this.loaders.polling,
           },
           rebuild: {
             callback: () =>
@@ -364,8 +371,8 @@ export default class {
               }),
             isAvailable: () =>
               !this.loaders.polling &&
-              !this.vps.loading &&
-              this.hasFeature(DASHBOARD_FEATURES.rebuild),
+              (this.hasFeature(DASHBOARD_FEATURES.rebuild) ||
+                this.isVpsNewRange),
           },
           reinstall: {
             text: this.$translate.instant(
@@ -373,12 +380,12 @@ export default class {
             ),
             isAvailable: () =>
               !this.loaders.polling &&
-              !this.vps.loading &&
-              this.hasFeature(DASHBOARD_FEATURES.reinstall),
+              this.hasFeature(DASHBOARD_FEATURES.reinstall) &&
+              !this.isVpsNewRange,
           },
           rebootRescue: {
             text: this.$translate.instant('vps_configuration_reboot_rescue'),
-            isAvailable: () => !this.loaders.polling && !this.vps.loading,
+            isAvailable: () => !this.loaders.polling,
           },
           reverseDns: {
             text: this.$translate.instant(
@@ -388,7 +395,6 @@ export default class {
           },
           terminate: {
             callback: () => this.$state.go('vps.detail.dashboard.terminate'),
-            isAvailable: () => !this.vps.loading,
           },
           terminateAdditionalDiskOption: {
             text: this.$translate.instant(
@@ -400,8 +406,7 @@ export default class {
             text: this.$translate.instant(
               'vps_configuration_desactivate_option',
             ),
-            isAvailable: () =>
-              !this.summary.loading && this.summary.data.windowsActivated,
+            isAvailable: () => this.tabSummary.windowsActivated,
           },
           upgrade: {
             text: this.$translate.instant(
@@ -409,24 +414,20 @@ export default class {
             ),
             state: 'vps.detail.upgrade',
             stateParams: { serviceName: this.serviceName },
-            isAvailable: () => !this.loaders.polling && !this.vps.loading,
+            isAvailable: () => !this.loaders.polling && !this.isVpsNewRange,
           },
         };
       });
   }
 
   getRegionsGroup(regions) {
-    this.regionsGroup = [];
+    let detailedRegions = [];
     if (regions) {
-      this.detailedRegions = !isArray(regions)
+      detailedRegions = !isArray(regions)
         ? [this.CucRegionService.getRegion(regions)]
         : map(regions, (region) => this.CucRegionService.getRegion(region));
     }
-    this.regionsGroup = groupBy(this.detailedRegions, 'country');
-  }
-
-  hasMultipleRegions() {
-    return isArray(this.detailedRegions) && this.detailedRegions.length > 1;
+    this.regionsGroup = groupBy(detailedRegions, 'country');
   }
 
   static getActionStateParamString(params) {

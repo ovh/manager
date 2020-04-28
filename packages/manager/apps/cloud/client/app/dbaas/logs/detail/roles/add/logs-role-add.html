@@ -39,28 +39,5 @@
                 required
             />
         </oui-field>
-
-        <oui-field
-            data-label="{{::'logs_role_modal_description' | translate }}"
-        >
-            <div class="oui-select">
-                <select
-                    class="oui-select__input"
-                    name="role_modal_select"
-                    id="role_modal_select"
-                    data-ng-model="ctrl.role.optionId"
-                    data-ng-options="option.optionId as option.type+', '+option.detail+' - '+option.curNbRole+'/'+option.maxNbRole for option in ctrl.options.data"
-                >
-                    <option value=""
-                        >{{::'logs_main_offer' | translate}} -
-                        {{ctrl.quota.data.mainOfferCurrent}}/{{ctrl.quota.data.mainOfferMax}}</option
-                    >
-                </select>
-                <i
-                    class="oui-icon oui-icon-chevron-down"
-                    aria-hidden="true"
-                ></i>
-            </div>
-        </oui-field>
     </oui-modal>
 </form>

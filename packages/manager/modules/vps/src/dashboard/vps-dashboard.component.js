@@ -4,6 +4,7 @@ import template from './vps-dashboard.html';
 export default {
   bindings: {
     features: '<',
+
     goToDisplayIps: '<',
     goToKvm: '<',
     goToMonitoringSla: '<',
@@ -15,8 +16,17 @@ export default {
     goToSnapshotTake: '<',
     goToSnapshotRestore: '<',
     goToTerminateOption: '<',
+    goBack: '<',
+
+    hasBackupStorage: '<',
+    isVpsNewRange: '<',
+    plan: '<',
     serviceName: '<',
     stateVps: '<',
+    tabSummary: '<',
+    vps: '<',
+
+    vpsUpgradeTask: '<',
   },
   controller,
   name: 'ovhManagerVpsDashboard',

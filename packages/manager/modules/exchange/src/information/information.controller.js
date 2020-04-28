@@ -2,6 +2,7 @@ import get from 'lodash/get';
 import includes from 'lodash/includes';
 import isEmpty from 'lodash/isEmpty';
 import isString from 'lodash/isString';
+import 'moment';
 
 export default class ExchangeTabInformationCtrl {
   /* @ngInject */

@@ -1,3 +1,82 @@
+## [12.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@12.3.1...@ovh-ux/manager-dedicated@12.3.2) (2020-04-22)
+
+
+### Bug Fixes
+
+* **dedicated.ip:** can order ip addresses again ([e1cfc8a](https://github.com/ovh/manager/commit/e1cfc8a331adf418efbed11fbbc085d67f476f71))
+
+
+
+## [12.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@12.3.0...@ovh-ux/manager-dedicated@12.3.1) (2020-04-21)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 363] ([33e18d9](https://github.com/ovh/manager/commit/33e18d9ca00a9428eaf70f76ea2adc92c32891d6))
+* **payment:** add legal disclaimer ([#2821](https://github.com/ovh/manager/issues/2821)) ([25e248c](https://github.com/ovh/manager/commit/25e248c356be23572c0adbeae522d95dd107a45c))
+
+
+
+# [12.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@12.2.3...@ovh-ux/manager-dedicated@12.3.0) (2020-04-20)
+
+
+### Bug Fixes
+
+* **ip:** add missing annotations ([176f903](https://github.com/ovh/manager/commit/176f903be42c2697b197e4f0f3b7af369f42a75e))
+* **ip:** filter correctly vps by region ([e03bd10](https://github.com/ovh/manager/commit/e03bd10e8d7057daa0ddd11483d539ac58d18415))
+* **ip:** filter expired services ([ebf3662](https://github.com/ovh/manager/commit/ebf36626eb77480824726c3224d9f7ae65b7cf8c))
+* **ip:** use correct label for APAC ip ([d99439e](https://github.com/ovh/manager/commit/d99439e9c5736caba869603fabd1c11054f9b075))
+* **ip:** use handling method through array function ([0c0675d](https://github.com/ovh/manager/commit/0c0675dc901f46d89619a2d9be97fc34d2e9415e))
+* **vps2020:** filter list of available countries for VPS ([8ae6fa6](https://github.com/ovh/manager/commit/8ae6fa6820d023ff707c4a0cdaf0765ff087771b))
+
+
+### Features
+
+* **dedicated:** add manager models dep ([8a00966](https://github.com/ovh/manager/commit/8a00966c9e5a32aa08785f215a0184d62868416c))
+* **ip:** add vps services to agora ip order ([543416c](https://github.com/ovh/manager/commit/543416c8e51f4b0811bf4899cb011beb930bfaa1))
+* **ip:** preselect vps service from legacy order modal ([6d7d2bd](https://github.com/ovh/manager/commit/6d7d2bd17c8812ebf7eecb0a8d2c172ef614c998))
+* **ip:** redirect vps new range to agora order modal ([18b7b3a](https://github.com/ovh/manager/commit/18b7b3ae8466d0969867802c25a1931eabc95e9a))
+* **ip:** use subsidiary for ip offers ([fc9b16d](https://github.com/ovh/manager/commit/fc9b16d1d937e23b9b74f5f41cdd4aad52781294))
+* **vps:** update dependencies ([6850c3c](https://github.com/ovh/manager/commit/6850c3c47d72c38aba2e70a2c26b89dc5ba58f09))
+
+
+
+## [12.2.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@12.2.2...@ovh-ux/manager-dedicated@12.2.3) (2020-04-20)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 357] ([#2811](https://github.com/ovh/manager/issues/2811)) ([953c51b](https://github.com/ovh/manager/commit/953c51b39eee04c2b2be61269a4948a1f1b50a51))
+
+
+
+## [12.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@12.2.1...@ovh-ux/manager-dedicated@12.2.2) (2020-04-16)
+
+
+### Bug Fixes
+
+* **billing.confirm-terminate:** add missing translations ([#2784](https://github.com/ovh/manager/issues/2784)) ([74158a6](https://github.com/ovh/manager/commit/74158a6cd237b27bba815e1761042aac0bbb3f94))
+* **dedicated-cloud:** handle password denied chars ([#2759](https://github.com/ovh/manager/issues/2759)) ([8e16b0d](https://github.com/ovh/manager/commit/8e16b0d4e95d9e726025e06c8184358e265aefc6))
+* **error:** remove duplicate routing import ([#2741](https://github.com/ovh/manager/issues/2741)) ([3ca88e9](https://github.com/ovh/manager/commit/3ca88e9ce540837b8a05d9edba4b0a593484256d))
+* **i18n:** add missing translations [CDS 335] ([eae91e9](https://github.com/ovh/manager/commit/eae91e9fbf779b3c6e0a34066725d42df764639a))
+* **i18n:** add missing translations [CDS 338] ([ce7c630](https://github.com/ovh/manager/commit/ce7c630ccb50b1dc4535756b392947adbbf4c62a))
+* **i18n:** add missing translations [CDS 340] ([d9355bb](https://github.com/ovh/manager/commit/d9355bb0179b8673c4a00109899993341ed01fa2))
+* **i18n:** add missing translations [CDS 345] ([4a0673e](https://github.com/ovh/manager/commit/4a0673e9627b44076e7d9f641060a04a705be0bc))
+* **i18n:** add missing translations [CDS 351] ([c76b783](https://github.com/ovh/manager/commit/c76b783ee6ef33f08cb22361ef45eb583cff3221))
+* **i18n:** add missing translations [CDS 353] ([dd57828](https://github.com/ovh/manager/commit/dd578281ceaa43df230eb4e78aa264f78c57827b))
+* **server.interfaces:** handle legacy bare metal servers ([#2678](https://github.com/ovh/manager/issues/2678)) ([4749f66](https://github.com/ovh/manager/commit/4749f66d711c8729a54deb42da3fd3aae97d9c06))
+
+
+
+## [12.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@12.2.0...@ovh-ux/manager-dedicated@12.2.1) (2020-04-15)
+
+
+### Performance Improvements
+
+* import dynamically moment locales ([#2755](https://github.com/ovh/manager/issues/2755)) ([5f3320d](https://github.com/ovh/manager/commit/5f3320d92802a1f4a6d65baf60f74917b8e58f4a))
+
+
+
 # [12.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@12.1.0...@ovh-ux/manager-dedicated@12.2.0) (2020-04-08)
 
 

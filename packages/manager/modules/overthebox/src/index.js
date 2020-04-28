@@ -2,28 +2,32 @@ import angular from 'angular';
 import '@uirouter/angularjs';
 import 'oclazyload';
 
-import '@ovh-ux/manager-core';
+import overTheBox from './overthebox';
 
 import { OTB_AVAILABILITY } from './feature-availability/feature-availability.constants';
 
-import overTheBox from './overthebox';
+const moduleName = 'ovhManagerOverTheBoxesLazyLoading';
 
-import component from './overtheboxes.component';
-import routing from './overtheboxes.routing';
+angular.module(moduleName, ['ui.router', 'oc.lazyLoad', overTheBox]).config(
+  /* @ngInject */ ($stateProvider) => {
+    $stateProvider
+      .state('overTheBoxes', {
+        url: '/overTheBox',
+        abstract: true,
+      })
+      .state('overTheBoxes.index.**', {
+        url: '',
+        lazyLoad: ($transition$) => {
+          const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-const moduleName = 'ovhManagerOverTheBoxes';
-
-angular
-  .module(moduleName, [
-    'ui.router',
-    'ovhManagerCore',
-    'oc.lazyLoad',
-    overTheBox,
-  ])
-  .config(routing)
-  .component('ovhManagerOverTheBoxes', component)
-  .run(/* @ngTranslationsInject:json ./translations */);
-
-export { OTB_AVAILABILITY };
+          return import('./overtheboxes.module').then((mod) =>
+            $ocLazyLoad.inject(mod.default || mod),
+          );
+        },
+      });
+  },
+);
 
 export default moduleName;
+
+export { OTB_AVAILABILITY };

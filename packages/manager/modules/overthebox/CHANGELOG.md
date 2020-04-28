@@ -1,3 +1,37 @@
+## [5.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@5.3.1...@ovh-ux/manager-overthebox@5.3.2) (2020-04-20)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 357] ([#2811](https://github.com/ovh/manager/issues/2811)) ([953c51b](https://github.com/ovh/manager/commit/953c51b39eee04c2b2be61269a4948a1f1b50a51))
+
+
+
+## [5.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@5.3.0...@ovh-ux/manager-overthebox@5.3.1) (2020-04-16)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 345] ([4a0673e](https://github.com/ovh/manager/commit/4a0673e9627b44076e7d9f641060a04a705be0bc))
+* **i18n:** add missing translations [CDS 353] ([dd57828](https://github.com/ovh/manager/commit/dd578281ceaa43df230eb4e78aa264f78c57827b))
+* use ovh-contracts-summary component ([#2650](https://github.com/ovh/manager/issues/2650)) ([1bd8d23](https://github.com/ovh/manager/commit/1bd8d2390f77c7fa3b970121070bfdd234e1809a))
+
+
+
+# [5.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@5.2.3...@ovh-ux/manager-overthebox@5.3.0) (2020-04-15)
+
+
+### Features
+
+* **overthebox:** lazy load overthebox root state ([fa289f3](https://github.com/ovh/manager/commit/fa289f36e3bd096ef1173f7e945ceb0dd1d9ef22))
+
+
+### Performance Improvements
+
+* import dynamically moment locales ([#2755](https://github.com/ovh/manager/issues/2755)) ([5f3320d](https://github.com/ovh/manager/commit/5f3320d92802a1f4a6d65baf60f74917b8e58f4a))
+
+
+
 ## [5.2.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@5.2.2...@ovh-ux/manager-overthebox@5.2.3) (2020-04-03)
 
 

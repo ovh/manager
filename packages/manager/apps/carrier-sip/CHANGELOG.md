@@ -1,3 +1,12 @@
+## [1.0.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-carrier-sip-app@1.0.6...@ovh-ux/manager-carrier-sip-app@1.0.7) (2020-04-15)
+
+
+### Performance Improvements
+
+* import dynamically moment locales ([#2755](https://github.com/ovh/manager/issues/2755)) ([5f3320d](https://github.com/ovh/manager/commit/5f3320d92802a1f4a6d65baf60f74917b8e58f4a))
+
+
+
 ## [1.0.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-carrier-sip-app@1.0.5...@ovh-ux/manager-carrier-sip-app@1.0.6) (2020-03-18)
 
 

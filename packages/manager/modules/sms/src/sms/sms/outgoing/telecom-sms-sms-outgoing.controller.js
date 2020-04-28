@@ -1,9 +1,10 @@
 import angular from 'angular';
-import moment from 'moment';
 import filter from 'lodash/filter';
 import isEmpty from 'lodash/isEmpty';
 import set from 'lodash/set';
 import sortBy from 'lodash/sortBy';
+
+import 'moment';
 
 import readController from './read/telecom-sms-sms-outgoing-read.controller';
 import readTemplate from './read/telecom-sms-sms-outgoing-read.html';

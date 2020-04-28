@@ -1,0 +1,5 @@
+{
+  "vps_dashboard_upgrade_done": "La mejora de su VPS se ha completado. Recuerde reiniciar su máquina para activar la nueva configuración.",
+  "vps_dashboard_upgrade_error": "Se ha producido un error al solicitar la mejora del VPS.",
+  "vps_dashboard_upgrade_doing": "Mejorando su VPS... Recibirá un mensaje cuando pueda reiniciar el servidor para activar la nueva configuración."
+}

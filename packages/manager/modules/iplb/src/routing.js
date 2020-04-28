@@ -3,13 +3,6 @@ import iplbDetailTemplate from './iplb-detail.html';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider
-    .state('network', {
-      url: '/network',
-      template: `
-                <div data-ui-view="networkContainer"></div>
-            `,
-      abstract: true,
-    })
     .state('network.iplb', {
       url: '/iplb',
       views: {

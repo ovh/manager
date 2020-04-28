@@ -1,3 +1,12 @@
+# [1.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-nasha@1.0.3...@ovh-ux/manager-nasha@1.1.0) (2020-04-15)
+
+
+### Features
+
+* **nasha:** lazy load nasha root state ([e183650](https://github.com/ovh/manager/commit/e18365054f92c7273d2c5217063444f67d99e8c4))
+
+
+
 ## [1.0.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-nasha@1.0.2...@ovh-ux/manager-nasha@1.0.3) (2020-03-18)
 
 

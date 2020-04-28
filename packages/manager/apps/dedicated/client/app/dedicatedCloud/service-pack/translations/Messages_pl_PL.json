@@ -14,9 +14,9 @@
   "dedicatedCloudDashboardTilesOptionsServicePack_displayName_pcidss": "Payment Card Industry Data Security Standard (PCI DSS)",
   "dedicatedCloudDashboardTilesOptionsServicePack_fullDisplayName_pcidss": "Payment Card Industry Data Security Standard (PCI DSS)",
   "dedicatedCloudDashboardTilesOptionsServicePack_description_pcidss": "Dane kart płatniczych są celem licznych prób włamań i oszustw. Dzięki PCI DSS, OVH wdrożyło najbardziej zaawansowane środki bezpieczeństwa w tym obszarze, aby zapewnić najwyższy poziom bezpieczeństwa infrastruktury płatniczej.",
-  "dedicatedCloudDashboardTilesOptionsServicePack_displayName_hds": "Hosting danych medycznych (HDS)",
+  "dedicatedCloudDashboardTilesOptionsServicePack_displayName_hds": "Hosting danych medycznych i certyfikat HDS",
   "dedicatedCloudDashboardTilesOptionsServicePack_fullDisplayName_hds": "Hosting danych medycznych (HDS)",
-  "dedicatedCloudDashboardTilesOptionsServicePack_description_hds": "Dane dotyczące zdrowia i systemy informacyjne stanowią istotną część prywatności pacjentów. Zdając sobie sprawę z tych wyzwań, OVH wykorzystało całą swoją wiedzę i doświadczenie w dziedzinie bezpieczeństwa, aby zaoferować ofertę hostingu danych medycznych (HDS), która spełnia najbardziej wymagające standardy bezpieczeństwa w tej dziedzinie.",
+  "dedicatedCloudDashboardTilesOptionsServicePack_description_hds": "Ochrona danych medycznych oraz systemów IT stosowanych przez placówki służby zdrowia jest nadzorowana i podlega ścisłym regulacjom prawnym. OVHcloud oferuje rozwiązanie hostingu danych medycznych zawierające rygorystyczne mechanizmy bezpieczeństwa dostępu. Rozwiązanie to jest zgodne z przepisami obowiązującymi w wielu krajach, w tym we Francji (certyfikat HDS), Niemczech, Włoszech, Wielkiej Brytanii i Polsce.",
   "dedicatedCloudDashboardTilesOptionsServicePack_displayName_hipaa": "Health Insurance Portability and Accountability Act (HIPAA)",
   "dedicatedCloudDashboardTilesOptionsServicePack_fullDisplayName_hipaa": "Health Insurance Portability and Accountability Act (HIPAA)",
   "dedicatedCloudDashboardTilesOptionsServicePack_description_hipaa": "Payment Card Industry Data Security Standard (PCI DSS)"

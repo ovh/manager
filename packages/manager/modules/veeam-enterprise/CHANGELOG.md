@@ -1,3 +1,17 @@
+# [0.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-enterprise@0.1.3...@ovh-ux/manager-veeam-enterprise@0.2.0) (2020-04-15)
+
+
+### Features
+
+* **veeam-enterprise:** lazy load veam enterprise root state ([9d32cee](https://github.com/ovh/manager/commit/9d32ceea2255b425779dc86fd55a1d3a58df29f6))
+
+
+### Performance Improvements
+
+* import dynamically moment locales ([#2755](https://github.com/ovh/manager/issues/2755)) ([5f3320d](https://github.com/ovh/manager/commit/5f3320d92802a1f4a6d65baf60f74917b8e58f4a))
+
+
+
 ## [0.1.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-enterprise@0.1.2...@ovh-ux/manager-veeam-enterprise@0.1.3) (2020-03-04)
 
 

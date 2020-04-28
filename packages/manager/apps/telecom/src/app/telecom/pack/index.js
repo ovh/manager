@@ -1,6 +1,7 @@
 import angular from 'angular';
 
 import internetAccess from './internet-access';
+import packVoipLineActivation from './slots/voipLine/activation/pack-voipLine-activation.module';
 
 import hostedEmailDetail from './slots/hostedEmail/detail';
 
@@ -12,7 +13,7 @@ import routing from './pack.routing';
 const moduleName = 'ovhManagerTelecomPack';
 
 angular
-  .module(moduleName, [internetAccess, hostedEmailDetail])
+  .module(moduleName, [internetAccess, hostedEmailDetail, packVoipLineActivation])
   .controller('PackCtrl', controller)
   .config(routing)
   .run(templates)

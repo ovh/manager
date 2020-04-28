@@ -720,10 +720,10 @@
   "dedicatedCloud_OPERATIONS_createdby_robot": "Robot",
   "dedicatedCloud_options_security_modal_title_enabling_pcidss": "Włączenie opcji PCI DSS",
   "dedicatedCloud_options_security_modal_title_enabling_hipaa": "Włączenie opcji HIPAA",
-  "dedicatedCloud_options_security_modal_title_enabling_hds": "Włączenie opcji HDS",
+  "dedicatedCloud_options_security_modal_title_enabling_hds": "Włączenie hostingu danych medycznych i certyfikatu HDS",
   "dedicatedCloud_options_security_title": "Opcje zabezpieczeń",
   "dedicatedCloud_options_pcidss": "Payment Card Industry Data Security Standard (PCI DSS)",
-  "dedicatedCloud_options_hds": "Instalowanie danych dotyczących zdrowia (HDS)",
+  "dedicatedCloud_options_hds": "Hosting danych medycznych i certyfikat HDS",
   "dedicatedCloud_options_hipaa": "Health Insurance Portability and Accountability Act (HIPAA)",
   "dedicatedCloud_options_security_info": "Można włączyć tylko jedną opcję. ",
   "dedicatedCloud_options_security_title_tooltip": "Niniejsze zasady dotyczą opcji bezpieczeństwa (PCI DSS, HDS i HIPAA): <ul><li>Można aktywować tylko jedną opcję</li><li>Opcje NSX i vROps muszą być aktywowane.</li><li>PCC musi mieć co najmniej jeden zatwierdzony adres IP i musi mieć ograniczone prawa dostępu.</li><li>Administrator musi mieć numer telefonu komórkowego, konto e-mail i musi pełnić funkcję \"tokenu zatwierdzającego\".</li></ul>",
@@ -856,5 +856,6 @@
   "dedicatedCloud_options_zerto_waiting_vpn_message_part_one": "Aby dokończyć aktywację Zerto DRP,",
   "dedicatedCloud_options_zerto_waiting_vpn_message_part_two": "w ustawieniach DRP w sieci VPN dodaj adresy IP.",
   "dedicatedCloud_tab_host_id": "ID",
-  "dedicatedCloud_tab_datastores_id": "ID"
+  "dedicatedCloud_tab_datastores_id": "ID",
+  "dedicatedCloud_USER_change_password_denied_chars": "Nie może zawierać następujących znaków: {{chars}}"
 }

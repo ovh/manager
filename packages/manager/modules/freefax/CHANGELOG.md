@@ -1,3 +1,21 @@
+## [6.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax@6.3.0...@ovh-ux/manager-freefax@6.3.1) (2020-04-16)
+
+
+### Bug Fixes
+
+* use ovh-contracts-summary component ([#2650](https://github.com/ovh/manager/issues/2650)) ([1bd8d23](https://github.com/ovh/manager/commit/1bd8d2390f77c7fa3b970121070bfdd234e1809a))
+
+
+
+# [6.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax@6.2.2...@ovh-ux/manager-freefax@6.3.0) (2020-04-15)
+
+
+### Features
+
+* **freefax:** lazy load freefax root state ([a5ccedf](https://github.com/ovh/manager/commit/a5ccedf1a8f735966ed9f0d56f8e07a3acf4c5f0))
+
+
+
 ## [6.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax@6.2.1...@ovh-ux/manager-freefax@6.2.2) (2020-03-18)
 
 

@@ -1,0 +1,5 @@
+{
+  "vps_dashboard_upgrade_done": "A evolução do seu VPS terminou. Não se esqueça de reiniciar para ativar a nova configuração.",
+  "vps_dashboard_upgrade_error": "Ocorreu um erro durante o pedido de evolução do seu VPS.",
+  "vps_dashboard_upgrade_doing": "A evolução está em curso para o seu VPS. Receberá uma mensagem a informar quando poderá reiniciar o seu servidor para ativar a nova configuração."
+}

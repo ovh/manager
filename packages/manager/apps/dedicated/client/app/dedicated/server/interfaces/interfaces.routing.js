@@ -39,7 +39,10 @@ export default /* @ngInject */ ($stateProvider) => {
       ) => {
         // option price is only available for servers migrated to agora
         if (ola.isAvailable() && (!ola.isActivated() || !ola.isConfigured())) {
-          return DedicatedServerInterfacesService.getOlaPrice(serverName, server);
+          return DedicatedServerInterfacesService.getOlaPrice(
+            serverName,
+            server,
+          );
         }
         return [];
       },

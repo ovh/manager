@@ -82,7 +82,7 @@ module.exports = (env = {}) => {
   );
 
   // Extra config files
-  const extrasRegion = glob.sync(`./.extras-EU/**/*.js`);
+  const extrasRegion = glob.sync(`./.extras-${REGION}/**/*.js`);
   const extras = glob.sync('./.extras/**/*.js');
 
   return merge(config, {
@@ -113,6 +113,10 @@ module.exports = (env = {}) => {
       ],
     },
     plugins: [
+      new webpack.ContextReplacementPlugin(
+        /moment[/\\]locale$/,
+        /cs|de|en-gb|es|es-us|fi|fr-ca|fr|it|lt|pl|pt/,
+      ),
       new webpack.DefinePlugin({
         __WEBPACK_REGION__: `'${REGION}'`,
         __NG_APP_INJECTIONS__: getNgAppInjections(REGION),

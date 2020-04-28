@@ -1,3 +1,49 @@
+## [12.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@12.1.0...@ovh-ux/manager-telecom@12.1.1) (2020-04-28)
+
+
+### Bug Fixes
+
+* **telephony.line.phone:** fix phone config for new phones ([#2857](https://github.com/ovh/manager/issues/2857)) ([ff6fef5](https://github.com/ovh/manager/commit/ff6fef5298ed5fe35dbfec8d29c958f58ee02b52))
+
+
+
+# [12.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@12.0.4...@ovh-ux/manager-telecom@12.1.0) (2020-04-27)
+
+
+### Features
+
+* add update phone range ([#2445](https://github.com/ovh/manager/issues/2445)) ([e610b48](https://github.com/ovh/manager/commit/e610b48e0f37ef859a92f4bc6973466d6f12c310))
+
+
+
+## [12.0.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@12.0.3...@ovh-ux/manager-telecom@12.0.4) (2020-04-20)
+
+
+### Bug Fixes
+
+* **telephony.time-condition:** add condition for draft time ([#2571](https://github.com/ovh/manager/issues/2571)) ([479b5a3](https://github.com/ovh/manager/commit/479b5a36197564b0c341c6b3580615b48d834e12))
+
+
+
+## [12.0.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@12.0.2...@ovh-ux/manager-telecom@12.0.3) (2020-04-16)
+
+
+### Bug Fixes
+
+* use ovh-contracts-summary component ([#2650](https://github.com/ovh/manager/issues/2650)) ([1bd8d23](https://github.com/ovh/manager/commit/1bd8d2390f77c7fa3b970121070bfdd234e1809a))
+* **i18n:** add missing translations [CDS 337] ([94eb225](https://github.com/ovh/manager/commit/94eb225484020949ed1ef946755bdbc4f228efc8))
+
+
+
+## [12.0.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@12.0.1...@ovh-ux/manager-telecom@12.0.2) (2020-04-15)
+
+
+### Performance Improvements
+
+* import dynamically moment locales ([#2755](https://github.com/ovh/manager/issues/2755)) ([5f3320d](https://github.com/ovh/manager/commit/5f3320d92802a1f4a6d65baf60f74917b8e58f4a))
+
+
+
 ## [12.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@12.0.0...@ovh-ux/manager-telecom@12.0.1) (2020-04-01)
 
 

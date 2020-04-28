@@ -776,7 +776,7 @@
   "fidelity_header_balance": "Stand",
   "fidelity_points": "Punkt(e)",
   "fidelity_creditOrder_title": "Account aufladen",
-  "fidelity_creditOrder_step1_msg": "Sie können Ihren Account aufladen, um darüber laufende oder künftige Bestellungen zu begleichen. (1 Punkt = 0,01 {{t0}} ohne MwSt)",
+  "fidelity_creditOrder_step1_msg": "Sie können Ihren Account mit Guthaben versehen, um für Ihre Käufe zu bezahlen oder Ihre Dienstleistungen „manuell“ zu verlängern.  (1 Punkt = 0,01 {{t0}} zzgl. MwSt.)",
   "fidelity_creditOrder_step1_amount": "Betrag (in Punkten)",
   "fidelity_creditOrder_step1_erreurformat": "Der angegebene Betrag ist nicht korrekt, bitte verwenden Sie nur Ziffern.",
   "fidelity_creditOrder_step1_erreurmin": "Der Betrag für die Aufladung muss mindestens {{t0}} Punkte sein.",

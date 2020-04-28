@@ -17,7 +17,10 @@
                 <i class="oui-icon oui-icon-add pr-1" aria-hidden="true"></i> {{
                 ::'logs_tokens_add' | translate }}
             </button>
-            <oui-spinner data-ng-if="ctrl.delete.loading"></oui-spinner>
+            <oui-spinner
+                size="s"
+                data-ng-if="ctrl.delete.loading"
+            ></oui-spinner>
         </extra-top>
         <oui-column
             title="::'logs_tokens_col_name' | translate"

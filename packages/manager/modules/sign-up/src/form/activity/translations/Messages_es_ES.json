@@ -1,10 +1,21 @@
 {
-  "sign_up_activity_field_vat": "Número de IVA",
+  "sign_up_activity_field_vat": "Número de identificación",
   "sign_up_activity_field_organisation": "Organización",
   "sign_up_activity_field_corporationType": "Tipo de empresa",
   "sign_up_activity_field_nationalIdentificationNumber": "NIF",
   "sign_up_activity_field_companyNationalIdentificationNumber": "NIF",
   "sign_up_activity_field_italian_sdi": "Código del destinatario para la factura electrónica (SDI)",
   "sign_up_activity_field_vat_it": "Número de IVA",
-  "sign_up_activity_field_companyNationalIdentificationNumber_fr": "Número de identificación nacional (SIREN)"
+  "sign_up_activity_field_companyNationalIdentificationNumber_fr": "Número de identificación nacional (SIREN)",
+  "sign_up_activity_field_vat_more": "Número de identificación ({{ vatLabel }})",
+  "sign_up_activity_field_vat_association": "Número de identificación de la asociación",
+  "sign_up_activity_field_vat_association_more": "Número de identificación de la asociación ({{ vatLabel }})",
+  "sign_up_activity_field_vat_corporation": "Número de identificación de empresa",
+  "sign_up_activity_field_vat_corporation_more": "Número de identificación de empresa ({{ vatLabel }})",
+  "sign_up_activity_field_vat_personalcorporation": "Número de identificación de empresa",
+  "sign_up_activity_field_vat_personalcorporation_more": "Número de identificación de empresa ({{ vatLabel }})",
+  "sign_up_activity_field_organisation_association": "Nombre de la asociación",
+  "sign_up_activity_field_organisation_corporation": "Nombre de la empresa",
+  "sign_up_activity_field_organisation_administration": "Nombre de la administración",
+  "sign_up_activity_field_organisation_personalcorporation": "Nombre de la empresa unipersonal"
 }

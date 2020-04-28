@@ -1,3 +1,13 @@
+## [1.0.5](https://github.com/ovh-ux/manager/compare/@ovh-ux/sao-ovh-manager-app@1.0.4...@ovh-ux/sao-ovh-manager-app@1.0.5) (2020-04-16)
+
+
+### Bug Fixes
+
+* **template:** specify default character encoding ([#2714](https://github.com/ovh-ux/manager/issues/2714)) ([7ca0f00](https://github.com/ovh-ux/manager/commit/7ca0f0011d88e49dad16b5c451c6b5dd94454de6))
+* update some dependencies ([#2693](https://github.com/ovh-ux/manager/issues/2693)) ([9378d97](https://github.com/ovh-ux/manager/commit/9378d9715ada510fe02c68d47defa144bbd24536)), closes [#2551](https://github.com/ovh-ux/manager/issues/2551)
+
+
+
 ## [1.0.4](https://github.com/ovh-ux/manager/compare/@ovh-ux/sao-ovh-manager-app@1.0.3...@ovh-ux/sao-ovh-manager-app@1.0.4) (2020-01-31)
 
 

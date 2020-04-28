@@ -1,0 +1,5 @@
+{
+  "vps_dashboard_upgrade_done": "Your VPS has been upgraded. Please remember to reboot your VPS in order for the new configuration to be effective.",
+  "vps_dashboard_upgrade_error": "An error has occurred requesting to upgrade your VPS.",
+  "vps_dashboard_upgrade_doing": "Your VPS is being upgraded. You will receive a notification message once you can reboot your server to enable the new configuration."
+}

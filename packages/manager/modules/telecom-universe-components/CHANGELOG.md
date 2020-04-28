@@ -1,3 +1,21 @@
+# [4.6.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@4.5.1...@ovh-ux/ng-ovh-telecom-universe-components@4.6.0) (2020-04-27)
+
+
+### Features
+
+* add update phone range ([#2445](https://github.com/ovh/manager/issues/2445)) ([e610b48](https://github.com/ovh/manager/commit/e610b48e0f37ef859a92f4bc6973466d6f12c310))
+
+
+
+## [4.5.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@4.5.0...@ovh-ux/ng-ovh-telecom-universe-components@4.5.1) (2020-04-15)
+
+
+### Performance Improvements
+
+* import dynamically moment locales ([#2755](https://github.com/ovh/manager/issues/2755)) ([5f3320d](https://github.com/ovh/manager/commit/5f3320d92802a1f4a6d65baf60f74917b8e58f4a))
+
+
+
 # [4.5.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@4.4.2...@ovh-ux/ng-ovh-telecom-universe-components@4.5.0) (2019-12-19)
 
 

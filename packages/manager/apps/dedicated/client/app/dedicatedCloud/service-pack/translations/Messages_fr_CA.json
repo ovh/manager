@@ -19,9 +19,9 @@
   "dedicatedCloudDashboardTilesOptionsServicePack_fullDisplayName_pcidss": "Certification Payment Card Industry Data Security Standard (PCI DSS)",
   "dedicatedCloudDashboardTilesOptionsServicePack_description_pcidss": "Les données des cartes de paiement sont la cible de nombreuses tentatives de piratage et de fraudes. Grâce à PCI DSS, OVH a mis en place les mesures de sécurité les plus poussées en la matière pour assurer le meilleur niveau de sécurité pour vos infrastructures de paiement.",
 
-  "dedicatedCloudDashboardTilesOptionsServicePack_displayName_hds": "Hébergement des données de santé (HDS)",
+  "dedicatedCloudDashboardTilesOptionsServicePack_displayName_hds": "Hébergement de données de santé et certification HDS",
   "dedicatedCloudDashboardTilesOptionsServicePack_fullDisplayName_hds": "Certification Hébergement des données de santé (HDS)",
-  "dedicatedCloudDashboardTilesOptionsServicePack_description_hds": "Les données et systèmes d’information de santé constituent un élément essentiel de la vie privée des patients. Conscient de ces enjeux, OVH a mis tout son savoir-faire et son expertise en matière de sécurité pour proposer une offre d’hébergement des données de santé (HDS), respectueuse des standards de sécurité les plus exigeants du domaine.",
+  "dedicatedCloudDashboardTilesOptionsServicePack_description_hds": "La protection des données et des systèmes d’information de santé est encadrée et réglementée. OVHcloud propose une solution d’hébergement des données de santé comprenant des mesures strictes de sécurisation des accès. Cette solution est conforme à la réglementation d’un certain nombre de pays dont la France (certification HDS), l’Allemagne, l’Italie, le Royaume-Uni ou la Pologne.",
 
   "dedicatedCloudDashboardTilesOptionsServicePack_displayName_hipaa": "Health Insurance Portability and Accountability Act (HIPAA)",
   "dedicatedCloudDashboardTilesOptionsServicePack_fullDisplayName_hipaa": "Certification Health Insurance Portability and Accountability Act (HIPAA)",

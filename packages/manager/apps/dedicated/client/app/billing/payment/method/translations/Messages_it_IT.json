@@ -16,5 +16,6 @@
   "billing_payment_method_table_action_download_procedure": "Scarica la procedura da compilare e restituire via posta",
   "billing_payment_method_table_action_description_edit": "Modifica la descrizione",
   "billing_payment_method_table_action_set_default": "Imposta questo metodo di pagamento come predefinito",
-  "billing_payment_method_table_action_delete": "Elimina questo metodo di pagamento"
+  "billing_payment_method_table_action_delete": "Elimina questo metodo di pagamento",
+  "billing_payment_method_credit_card_disclaimer": "Per utilizzare il rinnovo automatico è necessario registrare un metodo di pagamento. È possibile modificarlo in qualsiasi momento. Se il rinnovo automatico non è attivo e vuoi eliminare il metodo di pagamento registrato, contatta il nostro supporto tramite ticket."
 }

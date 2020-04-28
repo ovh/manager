@@ -1,136 +1,176 @@
-angular
-  .module('managerApp')
-  .controller(
-    'TelecomTelephonyLinePhoneCtrl',
-    function TelecomTelephonyLinePhoneCtrl(
+import assign from 'lodash/assign';
+
+angular.module('managerApp').controller(
+  'TelecomTelephonyLinePhoneCtrl',
+
+  class TelecomTelephonyLinePhoneCtrl {
+    constructor(
       $q,
       $stateParams,
       $translate,
+      OvhApiTelephony,
       TelephonyMediator,
     ) {
-      const self = this;
+      this.$q = $q;
+      this.$stateParams = $stateParams;
+      this.$translate = $translate;
+      this.OvhApiTelephony = OvhApiTelephony;
+      this.TelephonyMediator = TelephonyMediator;
+    }
 
-      self.actions = null;
-      self.line = null;
-      self.billingAccount = null;
-      self.loading = {
+    /*= =====================================
+    =            INITIALIZATION            =
+    ====================================== */
+
+    $onInit() {
+      this.actions = null;
+      this.line = null;
+      this.billingAccount = null;
+      this.loading = {
         init: false,
       };
 
-      /*= =====================================
-  =            INITIALIZATION            =
-  ====================================== */
+      this.init();
+    }
 
-      function isAllowedOrder(orderName) {
-        return !!(
-          self.billingAccount.availableOrders &&
-          self.billingAccount.availableOrders.indexOf(orderName) > -1
-        );
-      }
+    /* -----  End of INITIALIZATION  ------*/
 
-      function initActions() {
-        self.actions = [
-          {
-            name: 'line_details_phon_offer',
-            sref: 'telecom.telephony.billingAccount.line.phone.details',
-            text: $translate.instant(
-              'telephony_line_phone_actions_line_details_phon_offer',
-            ),
-          },
-          {
-            name: 'line_codecs_management',
-            sref: 'telecom.telephony.billingAccount.line.phone.codec',
-            text: $translate.instant(
-              'telephony_line_phone_actions_line_codecs_management',
-            ),
-          },
-          {
-            name: 'line_plug_and_phone_custom_parameters_list',
-            disabled:
-              !self.line.phone || self.line.phone.configurations.length === 0,
-            sref: 'telecom.telephony.billingAccount.line.phone.configuration',
-            text: $translate.instant(
-              'telephony_line_phone_actions_line_plug_and_phone_custom_parameters_list',
-            ),
-          },
-          {
-            name: 'line_programmable_keys',
-            main: true,
-            disabled: !self.line.hasPhone,
-            picto: 'ovh-font-programmableKeys',
-            sref:
-              'telecom.telephony.billingAccount.line.phone.programmableKeys',
-            text: $translate.instant(
-              'telephony_line_phone_actions_line_programmable_keys',
-            ),
-          },
-          {
-            name: 'line_phone_reboot',
-            disabled: !self.line.hasPhone,
-            sref: 'telecom.telephony.billingAccount.line.phone.reboot',
-            text: $translate.instant(
-              'telephony_line_phone_actions_line_phone_reboot',
-            ),
-          },
-          {
-            name: 'line_phone_order_plug_and_phone',
-            sref: 'telecom.telephony.billingAccount.line.phone.order',
-            text: self.line.hasPhone
-              ? $translate.instant(
-                  'telephony_line_phone_actions_line_phone_change_plug_and_phone',
+    isAllowedOrder(orderName) {
+      return !!(
+        this.billingAccount.availableOrders &&
+        this.billingAccount.availableOrders.indexOf(orderName) > -1
+      );
+    }
+
+    initActions() {
+      this.actions = [
+        {
+          name: 'line_details_phon_offer',
+          sref: 'telecom.telephony.billingAccount.line.phone.details',
+          text: this.$translate.instant(
+            'telephony_line_phone_actions_line_details_phon_offer',
+          ),
+        },
+        {
+          name: 'line_codecs_management',
+          sref: 'telecom.telephony.billingAccount.line.phone.codec',
+          text: this.$translate.instant(
+            'telephony_line_phone_actions_line_codecs_management',
+          ),
+        },
+        {
+          name: 'line_plug_and_phone_custom_parameters_list',
+          disabled:
+            !this.line.phone || this.line.phone.configurations.length === 0,
+          sref: 'telecom.telephony.billingAccount.line.phone.configuration',
+          text: this.$translate.instant(
+            'telephony_line_phone_actions_line_plug_and_phone_custom_parameters_list',
+          ),
+        },
+        {
+          name: 'line_programmable_keys',
+          main: true,
+          disabled: !this.line.hasPhone,
+          picto: 'ovh-font-programmableKeys',
+          sref: 'telecom.telephony.billingAccount.line.phone.programmableKeys',
+          text: this.$translate.instant(
+            'telephony_line_phone_actions_line_programmable_keys',
+          ),
+        },
+        {
+          name: 'line_phone_reboot',
+          disabled: !this.line.hasPhone,
+          sref: 'telecom.telephony.billingAccount.line.phone.reboot',
+          text: this.$translate.instant(
+            'telephony_line_phone_actions_line_phone_reboot',
+          ),
+        },
+        {
+          name: 'line_phone_order_plug_and_phone',
+          sref: 'telecom.telephony.billingAccount.line.phone.order',
+          text: this.line.hasPhone
+            ? this.$translate.instant(
+                'telephony_line_phone_actions_line_phone_change_phone',
+              )
+            : this.$translate.instant(
+                'telephony_line_phone_actions_line_phone_order_phone',
+              ),
+        },
+        {
+          name: 'line_order_accessories',
+          sref: 'telecom.telephony.billingAccount.line.phone.accessories',
+          disabled: !(
+            this.isAllowedOrder('accessory') ||
+            this.isAllowedOrder('accessories')
+          ),
+          text: this.$translate.instant(
+            'telephony_line_phone_actions_line_order_accessories',
+          ),
+        },
+        {
+          name: 'line_phonebook',
+          main: true,
+          disabled: !this.line.hasPhone || !this.line.hasSupportsPhonebook,
+          picto: 'ovh-font-contacts',
+          sref: 'telecom.telephony.billingAccount.line.phone.phonebook',
+          text: this.$translate.instant(
+            'telephony_line_phone_actions_line_phonebook',
+          ),
+        },
+        {
+          name: 'line_phone_order_attach',
+          sref: 'telecom.telephony.billingAccount.line.phone.attach',
+          disabled:
+            (!this.line.hasPhone && this.line.isAttachedToOtherLinesPhone) ||
+            this.line.hasPhone,
+          text:
+            this.line.isAttachedToOtherLinesPhone && this.line.hasPhone
+              ? this.$translate.instant(
+                  'telephony_line_phone_actions_line_phone_order_detach',
                 )
-              : $translate.instant(
-                  'telephony_line_phone_actions_line_phone_order_plug_and_phone',
+              : this.$translate.instant(
+                  'telephony_line_phone_actions_line_phone_order_attach',
                 ),
-          },
-          {
-            name: 'line_order_accessories',
-            sref: 'telecom.telephony.billingAccount.line.phone.accessories',
-            disabled: !(
-              isAllowedOrder('accessory') || isAllowedOrder('accessories')
-            ),
-            text: $translate.instant(
-              'telephony_line_phone_actions_line_order_accessories',
-            ),
-          },
-          {
-            name: 'line_phonebook',
-            main: true,
-            disabled: !self.line.hasPhone || !self.line.hasSupportsPhonebook,
-            picto: 'ovh-font-contacts',
-            sref: 'telecom.telephony.billingAccount.line.phone.phonebook',
-            text: $translate.instant(
-              'telephony_line_phone_actions_line_phonebook',
-            ),
-          },
-        ];
-      }
+        },
+      ];
+    }
 
-      function init() {
-        self.loading.init = true;
+    init() {
+      this.loading.init = true;
 
-        return TelephonyMediator.getGroup($stateParams.billingAccount)
-          .then((group) => {
-            self.billingAccount = group;
-            self.line = self.billingAccount.getLine($stateParams.serviceName);
-
-            return $q
-              .allSettled([
-                self.line.getPhone(),
-                self.line.supportsPhonebook(),
-                self.billingAccount.getAvailableOrderNames(),
-              ])
-              .then(() => {
-                initActions();
+      return this.TelephonyMediator.getGroup(this.$stateParams.billingAccount)
+        .then((group) => {
+          this.billingAccount = group;
+          this.line = this.billingAccount.getLine(
+            this.$stateParams.serviceName,
+          );
+        })
+        .then(() =>
+          this.OvhApiTelephony.Line()
+            .v6()
+            .get({
+              billingAccount: this.line.billingAccount,
+              serviceName: this.line.serviceName,
+            })
+            .$promise.then((result) => {
+              assign(this.line, {
+                isAttachedToOtherLinesPhone: result.isAttachedToOtherLinesPhone,
               });
-          })
-          .finally(() => {
-            self.loading.init = false;
-          });
-      }
 
-      /* -----  End of INITIALIZATION  ------*/
-
-      init();
-    },
-  );
+              return this.$q
+                .allSettled([
+                  this.line.getPhone(),
+                  this.line.supportsPhonebook(),
+                  this.billingAccount.getAvailableOrderNames(),
+                ])
+                .then(() => {
+                  this.initActions();
+                });
+            }),
+        )
+        .finally(() => {
+          this.loading.init = false;
+        });
+    }
+  },
+);

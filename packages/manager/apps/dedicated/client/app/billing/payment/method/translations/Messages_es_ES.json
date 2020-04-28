@@ -16,5 +16,6 @@
   "billing_payment_method_table_action_download_procedure": "Descargar el documento que deberá enviar por correo postal",
   "billing_payment_method_table_action_description_edit": "Modificar la descripción",
   "billing_payment_method_table_action_set_default": "Establecer como forma de pago por defecto",
-  "billing_payment_method_table_action_delete": "Eliminar esta forma de pago"
+  "billing_payment_method_table_action_delete": "Eliminar esta forma de pago",
+  "billing_payment_method_credit_card_disclaimer": "Es necesario registrar una forma de pago para utilizar la renovación automática. Podrá modificarla en cualquier momento. Si no tiene activada la renovación automática y quiere eliminar su forma de pago, puede ponerse en contacto con nuestro equipo de soporte mediante un tíquet de asistencia."
 }

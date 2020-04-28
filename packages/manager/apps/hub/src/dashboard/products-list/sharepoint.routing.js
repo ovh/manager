@@ -36,5 +36,8 @@ export default /* @ngInject */ ($stateProvider) => {
         $transition$.params().pageSize,
       paginationTotalCount: /* @ngInject */ (rows) => rows.length,
     },
+    atInternet: {
+      rename: 'app::dashboard::products::ms-services-sharepoint',
+    },
   });
 };

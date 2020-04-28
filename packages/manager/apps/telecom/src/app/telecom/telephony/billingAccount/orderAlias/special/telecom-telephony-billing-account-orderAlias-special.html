@@ -139,12 +139,13 @@
                         </telecom-telephony-billing-account-order-alias-number-choice-retractation>
                     </div>
 
-                    <div
+                    <ovh-contracts-summary
                         data-ng-if="AliasOrderSpecialCtrl.contracts"
-                        data-ovh-contracts="AliasOrderSpecialCtrl.contracts"
-                        data-full-text="false"
-                        data-ovh-contracts-validated="AliasOrderSpecialCtrl.contractsAccepted"
-                    ></div>
+                        data-items="AliasOrderSpecialCtrl.contracts"
+                        data-model="AliasOrderSpecialCtrl.contractsAccepted"
+                        data-name="AliasOrderSpecialContracts"
+                    >
+                    </ovh-contracts-summary>
 
                     <!-- Accept -->
                     <button

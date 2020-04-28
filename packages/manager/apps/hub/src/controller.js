@@ -1,6 +1,9 @@
+import isString from 'lodash/isString';
+
 export default class HubController {
   /* @ngInject */
-  constructor($translate, SessionService) {
+  constructor($document, $translate, SessionService) {
+    this.$document = $document;
     this.$translate = $translate;
     this.SessionService = SessionService;
   }
@@ -11,5 +14,17 @@ export default class HubController {
     this.SessionService.getUser().then((user) => {
       this.user = user;
     });
+  }
+
+  /**
+   * Set focus on the specified element.
+   * @param  {string} id Element to locate.
+   * @return {void}
+   */
+  setFocus(id) {
+    if (isString(id)) {
+      const [element] = this.$document.find(`#${id}`);
+      element.focus();
+    }
   }
 }

@@ -4,7 +4,10 @@ import template from './vps-header.html';
 export default {
   bindings: {
     capabilities: '<',
+    hasCloudDatabaseFeature: '<',
+    hasBackupStorage: '<',
     serviceName: '<',
+    vps: '<',
   },
   controller,
   name: 'ovhManagerVpsHeader',

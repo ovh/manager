@@ -190,4 +190,81 @@ angular.module('managerApp').constant('TELEPHONY_LINE_PHONE_ADDITIONAL_INFOS', {
     },
     icon: 'ovh-font-phoneAlt',
   },
+  'phone.cisco.cp6861': {
+    img:
+      'https://www.ovhtelecom.fr/images/telephonie/2020/cisco/phone-cisco-cp6861-90-90.png',
+    additionalConfiguration: {
+      UserInterface: {
+        screens: 1,
+        keysPerScreen: 4,
+      },
+    },
+    icon: 'ovh-font-phoneAlt',
+  },
+  'phone.cisco.cp8861': {
+    img:
+      'https://www.ovhtelecom.fr/images/telephonie/2020/cisco/phone-cisco-cp8861-90-90.png',
+    additionalConfiguration: {
+      UserInterface: {
+        screens: 1,
+        keysPerScreen: 10,
+      },
+    },
+    icon: 'ovh-font-phoneAlt',
+  },
+  'phone.cisco.cp8841': {
+    img:
+      'https://www.ovhtelecom.fr/images/telephonie/2020/cisco/phone-cisco-cp8841-90-90.png',
+    additionalConfiguration: {
+      UserInterface: {
+        screens: 1,
+        keysPerScreen: 10,
+      },
+    },
+    icon: 'ovh-font-phoneAlt',
+  },
+  'phone.gigaset.maxwell3': {
+    img:
+      'https://www.ovhtelecom.fr/images/telephonie/2020/gigaset/phone-gigaset-maxwell3-90-90.png',
+    additionalConfiguration: {
+      UserInterface: {
+        screens: 1,
+        keysPerScreen: 8,
+      },
+    },
+    icon: 'ovh-font-phoneAlt',
+  },
+  'phone.yealink.t53': {
+    img:
+      'https://www.ovhtelecom.fr/images/telephonie/2020/yealink/phone-yealink-t53-90-90.png',
+    additionalConfiguration: {
+      UserInterface: {
+        screens: 3,
+        keysPerScreen: 7,
+      },
+    },
+    icon: 'ovh-font-phoneAlt',
+  },
+  'phone.yealink.t53w': {
+    img:
+      'https://www.ovhtelecom.fr/images/telephonie/2020/yealink/phone-yealink-t53w-90-90.png',
+    additionalConfiguration: {
+      UserInterface: {
+        screens: 3,
+        keysPerScreen: 7,
+      },
+    },
+    icon: 'ovh-font-phoneAlt',
+  },
+  'phone.yealink.t54w': {
+    img:
+      'https://www.ovhtelecom.fr/images/telephonie/2020/yealink/phone-yealink-t54w-90-90.png',
+    additionalConfiguration: {
+      UserInterface: {
+        screens: 3,
+        keysPerScreen: 9,
+      },
+    },
+    icon: 'ovh-font-phoneAlt',
+  },
 });

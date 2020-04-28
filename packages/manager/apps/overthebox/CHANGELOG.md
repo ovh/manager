@@ -1,3 +1,12 @@
+# [5.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox-app@5.0.2...@ovh-ux/manager-overthebox-app@5.1.0) (2020-04-15)
+
+
+### Features
+
+* **overthebox:** lazy load overthebox root state ([fa289f3](https://github.com/ovh/manager/commit/fa289f36e3bd096ef1173f7e945ceb0dd1d9ef22))
+
+
+
 ## [5.0.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox-app@5.0.1...@ovh-ux/manager-overthebox-app@5.0.2) (2020-03-18)
 
 

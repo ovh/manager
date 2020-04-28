@@ -5,7 +5,7 @@
   "pci_project_new_payment_btn_continue_bank_account": "Dodaj",
   "pci_project_new_payment_btn_continue_credit": "Zasil konto i utwórz projekt",
   "pci_project_new_payment_btn_cancel": "Anuluj",
-  "pci_project_new_payment_create_error": "Wystąpił błąd podczas dodawania Twojego sposobu płatności: {{errorMessage}}. Spróbuj ponownie później.",
-  "pci_project_new_payment_checkout_error": "Wystąpił błąd podczas tworzenia projektu Public Cloud. Spróbuj później. Spróbuj ponownie później.",
-  "pci_project_new_payment_challenge_error_payment_method_deactivated": "Weryfikacja Twojego sposobu płatności nie powiodła się. Spróbuj później. Ten został wyłączony. Wybierz inną metodę płatności, aby utworzyć nowy projekt."
+  "pci_project_new_payment_create_error": "Wystąpił błąd podczas dodawania Twojego sposobu płatności. Spróbuj ponownie później.",
+  "pci_project_new_payment_checkout_error": "Wystąpił błąd podczas tworzenia projektu Public Cloud.  Spróbuj ponownie później.",
+  "pci_project_new_payment_challenge_error_payment_method_deactivated": "Weryfikacja Twojego sposobu płatności nie powiodła się.  Został on dezaktywowany. Wybierz inny sposób płatności, aby utworzyć nowy projekt."
 }

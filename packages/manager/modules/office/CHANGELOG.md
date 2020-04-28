@@ -1,3 +1,17 @@
+# [1.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-office@1.1.4...@ovh-ux/manager-office@1.2.0) (2020-04-15)
+
+
+### Features
+
+* **office:** lazy load office root state ([1ab4e47](https://github.com/ovh/manager/commit/1ab4e4759ea490a2a44b674ba22ffa94c5262007))
+
+
+### Performance Improvements
+
+* import dynamically moment locales ([#2755](https://github.com/ovh/manager/issues/2755)) ([5f3320d](https://github.com/ovh/manager/commit/5f3320d92802a1f4a6d65baf60f74917b8e58f4a))
+
+
+
 ## [1.1.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-office@1.1.3...@ovh-ux/manager-office@1.1.4) (2019-11-13)
 
 

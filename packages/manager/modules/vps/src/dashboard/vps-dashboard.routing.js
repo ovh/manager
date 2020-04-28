@@ -1,5 +1,10 @@
-import { DASHBOARD_FEATURES } from './vps-dashboard.constants';
+import {
+  DASHBOARD_FEATURES,
+  NEW_RANGE_VERSION,
+} from './vps-dashboard.constants';
 import component from './vps-dashboard.component';
+
+import VpsConfigurationTile from './tile/configuration/service';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('vps.detail.dashboard', {
@@ -8,6 +13,7 @@ export default /* @ngInject */ ($stateProvider) => {
       'vpsContent@vps.detail': {
         component: component.name,
       },
+      'configurationTile@vps.detail.dashboard': 'vpsDashboardTileConfiguration',
     },
     resolve: {
       features: /* @ngInject */ (capabilities) =>
@@ -45,9 +51,10 @@ export default /* @ngInject */ ($stateProvider) => {
         message = false,
         type = 'success',
         data,
+        options = {},
       ) => {
         const state = 'vps.detail.dashboard';
-        const promise = $state.go(state, data);
+        const promise = $state.go(state, data, options);
         if (message) {
           promise.then(() => {
             CucCloudMessage[type]({ textHtml: message }, state);
@@ -55,6 +62,42 @@ export default /* @ngInject */ ($stateProvider) => {
         }
         return promise;
       },
+
+      availableUpgrades: /* @ngInject */ (
+        isVpsNewRange,
+        serviceName,
+        vpsUpgradeTile,
+      ) =>
+        isVpsNewRange ? vpsUpgradeTile.getAvailableUpgrades(serviceName) : [],
+
+      isVpsNewRange: /* @ngInject */ (stateVps) =>
+        stateVps.model.version === NEW_RANGE_VERSION,
+
+      vpsUpgradeTask: /* @ngInject */ (serviceName, vpsUpgradeTile) =>
+        vpsUpgradeTile.getUpgradeTask(serviceName),
+
+      configurationTile: /* @ngInject */ (
+        availableUpgrades,
+        catalog,
+        stateVps, // from apiv6
+        vps, // from 2api
+      ) => ({
+        upgrades: VpsConfigurationTile.setVps(vps, stateVps.model)
+          .setAvailableUpgrades(availableUpgrades)
+          .getAvailableUpgrades(catalog),
+        model: {
+          memory: VpsConfigurationTile.currentPlan,
+          storage: VpsConfigurationTile.currentPlan,
+        },
+      }),
+
+      getUpscaleHref: /* @ngInject */ ($state) => () =>
+        $state.href('vps.detail.upscale'),
+
+      goToUpgrade: /* @ngInject */ ($state) => (upgradeType) =>
+        $state.go(`vps.detail.dashboard.configuration.upgrade`, {
+          upgradeType,
+        }),
     },
   });
 };

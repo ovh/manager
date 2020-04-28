@@ -21,6 +21,17 @@
         class="h-100 overflow-hidden"
         id="hub-scroll-top"
     >
+        <!-- Skip to main content -->
+        <div class="skipnav">
+            <a
+                class="oui-button oui-button_link"
+                href=""
+                data-translate="manager_hub_skip_to_main_content"
+                data-ng-click="$ctrl.setFocus('maincontent')"
+            >
+            </a>
+        </div>
+        <!-- /Skip to main content -->
         <ovh-manager-navbar
             data-navbar-options="{
                 universe: 'hub',
@@ -36,6 +47,11 @@
         <div class="position-relative w-100 h-100 overflow-auto ng-cloak">
             <div class="position-absolute w-100 h-100">
                 <div class="mb-5" data-ui-view="app">
+                    <!-- Skip content target -->
+                    <div class="skiptarget">
+                        <a id="maincontent" href="">-</a>
+                    </div>
+                    <!-- /Skip content target -->
                     <div
                         class="hub-main-view hub-main-view_sidebar_expanded pt-4"
                     >

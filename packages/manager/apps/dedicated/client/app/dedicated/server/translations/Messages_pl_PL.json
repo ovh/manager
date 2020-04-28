@@ -1189,5 +1189,17 @@
   "server_error_vrack_attach": "Wystąpił błąd podczas dodawania sieci prywatnej: {{error}}.",
   "server_error_vrack_detach": "Wystąpił błąd podczas odłączania sieci prywatnej: {{error}}.",
   "server_error_bandwidth_order": "Wystąpił błąd podczas zamawiania przepustowości: {{error}}.",
-  "plan_bandwidth-1000-burst-2gbps-infra-us": "2 Gbps przepustowości do sieci publicznej - nieograniczony transfer"
+  "plan_bandwidth-1000-burst-2gbps-infra-us": "2 Gbps przepustowości do sieci publicznej - nieograniczony transfer",
+  "plan_vrack-bandwidth-1000-option-us": "Gwarantowana przepustowość do sieci prywatnej 1Gbps - Nielimitowany transfer - opcja vRack option",
+  "plan_vrack-bandwidth-3000-option-us": "Gwarantowana przepustowość do sieci prywatnej 3Gbps - Nielimitowany transfer - opcja vRack",
+  "plan_vrack-bandwidth-1000-option-infra-us": "Gwarantowana przepustowość do sieci prywatnej 1Gbps - Nielimitowany transfer - opcja vRack option",
+  "plan_vrack-bandwidth-3000-option-infra-us": "Gwarantowana przepustowość do sieci prywatnej 3Gbps - Nielimitowany transfer - opcja vRack",
+  "plan_vrack-bandwidth-4000-option-infra-us": "Gwarantowana przepustowość do sieci prywatnej 4Gbps - Nielimitowany transfer - opcja vRack",
+  "plan_vrack-bandwidth-5000-option-infra-us": "Gwarantowana przepustowość do sieci prywatnej 5Gbps - Nielimitowany transfer - opcja vRack",
+  "plan_bandwidth-1000-adv-us": "Przepustowość do sieci publicznej 1Gbps - Nielimitowany transfer",
+  "plan_bandwidth-guaranteed-1000-ultimate-2019v1-us": "Gwarantowana przepustowość do sieci publicznej 1Gbps - Nielimitowany transfer - opcja Ultimate",
+  "plan_bandwidth-guaranteed-2000-ultimate-2019v1-us": "Gwarantowana przepustowość do sieci publicznej 2Gbps - Nielimitowany transfer - opcja Ultimate",
+  "plan_bandwidth-guaranteed-3000-ultimate-2019v1-us": "Gwarantowana przepustowość do sieci publicznej 3Gbps - Nielimitowany transfer - opcja Ultimate",
+  "plan_bandwidth-guaranteed-3000-ultimate-2019v2-us": "Gwarantowana przepustowość do sieci publicznej 3Gbps - Nielimitowany transfer - opcja Ultimate",
+  "plan_bandwidth-guaranteed-4000-ultimate-2019v1-us": "Gwarantowana przepustowość do sieci publicznej 4Gbps - Nielimitowany transfer - opcja Ultimate"
 }

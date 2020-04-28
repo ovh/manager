@@ -15,6 +15,10 @@ import pricingConstants from './pricing/pricing.constants';
 import workflowConstants from './workflows/product-offers-workflow.constants';
 import extraPricingDetail from './pricing/extra-pricing-detail';
 
+import './product-offers.scss';
+
+export { pricingConstants, workflowConstants };
+
 const moduleName = 'ovhManagerProductOffers';
 
 angular

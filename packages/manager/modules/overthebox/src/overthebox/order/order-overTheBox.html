@@ -259,11 +259,12 @@
                                     class="widget-presentation-title"
                                     data-translate="order_overTheBox_offer_contracts"
                                 ></h2>
-                                <div
-                                    data-ovh-contracts="OrderOverTheBox.orderInformations.contracts"
-                                    data-full-text="false"
-                                    data-ovh-contracts-validated="OrderOverTheBox.contractsAccepted"
-                                ></div>
+                                <ovh-contracts-summary
+                                    data-items="OrderOverTheBox.orderInformations.contracts"
+                                    data-model="OrderOverTheBox.contractsAccepted"
+                                    data-name="overtheboxOrderContracts"
+                                >
+                                </ovh-contracts-summary>
                             </div>
                         </div>
 

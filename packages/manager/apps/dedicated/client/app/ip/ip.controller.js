@@ -8,6 +8,7 @@ angular.module('Module.ip.controllers').controller('IpMainCtrl', [
   '$translate',
   'Alerter',
   'coreConfig',
+  'currentUser',
   'ipFeatureAvailability',
   function IpMainCtrl(
     $scope,
@@ -17,10 +18,12 @@ angular.module('Module.ip.controllers').controller('IpMainCtrl', [
     $translate,
     Alerter,
     coreConfig,
+    currentUser,
     ipFeatureAvailability,
   ) {
     const defaultTab = 'ip';
     $scope.tabs = ['ip'];
+    $scope.currentUser = currentUser;
 
     if (ipFeatureAvailability.hasIpLoadBalancing()) {
       $scope.tabs.push('ip-lb');

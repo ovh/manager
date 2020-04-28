@@ -302,11 +302,9 @@ class LogsOptionsService {
     const offerPrefix = this.$translate.instant('log_options_pro_offer');
     const offerName = this.$translate.instant(offer.reference);
     const streams = this.$translate.instant('logs_offer_streams');
-    const dashboards = this.$translate.instant('logs_offer_tables');
     const inputs = this.$translate.instant('logs_offer_collection_tools');
     set(offer, 'name', `${offerPrefix} ${offerName}`);
     set(offer, 'streams', `${offer.maxNbStream} ${streams}`);
-    set(offer, 'dashboards', `${offer.maxNbDashboard} ${dashboards}`);
     set(offer, 'inputs', `${offer.maxNbInput} ${inputs}`);
     return offer;
   }
