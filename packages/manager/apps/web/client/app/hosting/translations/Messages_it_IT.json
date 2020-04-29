@@ -1394,5 +1394,6 @@
   "hosting_dashboard_service_email_address": "Account email",
   "hosting_dashboard_service_common_active": "Attivo",
   "hosting_dashboard_service_common_inactive": "Disattivo",
-  "hosting_dashboard_email_offer_get_error": "Impossibile recuperare l’indirizzo email"
+  "hosting_dashboard_email_offer_get_error": "Impossibile recuperare l’indirizzo email",
+  "hosting_dashboard_service_detach_email_option": "Scollega la tua opzione email"
 }
