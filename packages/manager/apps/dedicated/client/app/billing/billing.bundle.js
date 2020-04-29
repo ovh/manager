@@ -102,8 +102,6 @@ import './main/billing-main.controller';
 import './main/billing-main.routes';
 import './main/history/balance/billing-history-balance.controller';
 import './main/history/balance/billing-history-balance.routes';
-import './main/history/billing-main-history.controller';
-import './main/history/billing-main-history.routes';
 import './main/history/debt/billing-main-history-debt.routes';
 import './main/history/debt/details/billing-main-history-debt-details.controller';
 import './main/history/debt/details/billing-main-history-debt-details.routes';

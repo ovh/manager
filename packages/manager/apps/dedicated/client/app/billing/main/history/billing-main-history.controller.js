@@ -15,10 +15,7 @@ export default class BillingMainHistoryCtrl {
     Alerter,
     atInternet,
     coreConfig,
-    currentUser,
     exportCsv,
-    filters,
-    onListParamsChange,
     OvhApiMe,
     ovhPaymentMethod,
   ) {
@@ -30,9 +27,7 @@ export default class BillingMainHistoryCtrl {
     this.Alerter = Alerter;
     this.atInternet = atInternet;
     this.coreConfig = coreConfig;
-    this.currentUser = currentUser; // from app route resolve
     this.exportCsv = exportCsv;
-    this.onListParamsChange = onListParamsChange;
     this.OvhApiMe = OvhApiMe;
     this.ovhPaymentMethod = ovhPaymentMethod;
 
@@ -49,12 +44,6 @@ export default class BillingMainHistoryCtrl {
 
     this.datagridConfig = null;
     this.totalBills = 0;
-
-    this.criteria = JSON.parse(filters).map((criteria) => ({
-      property: get(criteria, 'field'),
-      operator: get(criteria, 'comparator'),
-      value: criteria.reference[0],
-    }));
   }
 
   onCriteriaChange($criteria) {
@@ -349,6 +338,12 @@ export default class BillingMainHistoryCtrl {
   }
 
   $onInit() {
+    this.criteria = JSON.parse(this.filters).map((criteria) => ({
+      property: get(criteria, 'field'),
+      operator: get(criteria, 'comparator'),
+      value: criteria.reference[0],
+    }));
+
     let postalMailOptionPromise = this.$q.when(null);
 
     this.loading.init = true;
