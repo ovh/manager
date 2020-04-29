@@ -1,3 +1,12 @@
+# [3.19.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.18.3...@ovh-ux/manager-pci@3.19.0) (2020-04-29)
+
+
+### Features
+
+* **pci.projects.data.processing:** add auto computation of memory overhead ([#2841](https://github.com/ovh/manager/issues/2841)) ([1499d96](https://github.com/ovh/manager/commit/1499d963dce71a0c63f99129bf60d784444bedc2))
+
+
+
 ## [3.18.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.18.2...@ovh-ux/manager-pci@3.18.3) (2020-04-28)
 
 
