@@ -13,7 +13,6 @@ import officeAttach from './office-attach/office-attach.service';
 import ExchangeResources from './resource/resource.service';
 import formValidation from './services/exchange.formValidation.service';
 import messaging from './services/exchange.messaging.service';
-import navigation from './services/exchange.navigation.service';
 import exchangeSelectedService from './services/exchange.selectedService.service';
 import exchangeServiceInfrastructure from './services/exchange.serviceInfrastucture.service';
 import exchangeStates from './services/exchange.state.service';
@@ -40,7 +39,6 @@ angular
   .service('ExchangeResources', ExchangeResources)
   .service('formValidation', formValidation)
   .service('messaging', messaging)
-  .service('navigation', navigation)
   .service('exchangeSelectedService', exchangeSelectedService)
   .service('exchangeServiceInfrastructure', exchangeServiceInfrastructure)
   .service('exchangeStates', exchangeStates)
