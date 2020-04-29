@@ -1,3 +1,12 @@
+# [3.1.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-at-internet-ui-router-plugin@3.0.0...@ovh-ux/ng-at-internet-ui-router-plugin@3.1.0) (2020-04-28)
+
+
+### Features
+
+* update rename hook if injections are strict ([27a053d](https://github.com/ovh/manager/commit/27a053d762ce54571fd8a1bd739f2f7f41514b37))
+
+
+
 # [3.0.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-at-internet-ui-router-plugin@2.0.4...@ovh-ux/ng-at-internet-ui-router-plugin@3.0.0) (2020-03-18)
 
 

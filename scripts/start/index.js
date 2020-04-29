@@ -1,13 +1,26 @@
 import execa from 'execa';
 import inquirer from 'inquirer';
 
-const applications = new Set([
-  '@ovh-ux/manager-hub-app',
-  '@ovh-ux/manager-dedicated',
-  '@ovh-ux/manager-cloud',
-  '@ovh-ux/manager-public-cloud',
-]);
+/**
+ * Set of applications that doesn't rely on multiple regions.
+ * @type {Set}
+ */
+const applicationWithoutRegions = new Set(['@ovh-ux/manager-telecom']);
 
+/**
+ * Regions where applications can be available.
+ * @type {Array}
+ */
+const availableRegions = [
+  { name: 'Europe', value: 'EU' },
+  { name: 'Canada', value: 'CA' },
+  { name: 'United States', value: 'US' },
+];
+
+/**
+ * Ask for both packageName and region to start the corresponding application.
+ * @todo Dynamically list all applications available from a given workspace.
+ */
 const questions = [
   {
     type: 'list',
@@ -40,24 +53,33 @@ const questions = [
       },
     ],
   },
-  // TODO: Could be deprecated as soon as we will rely on an Env Executor.
   {
     type: 'list',
     name: 'region',
     message: 'Please specify the region:',
-    choices: [
-      { name: 'Europe', value: 'EU' },
-      { name: 'Canada', value: 'CA' },
-      { name: 'United States', value: 'US' },
-    ],
+    choices({ packageName }) {
+      // Trick to remove US from the regions list (non-available).
+      if (packageName === '@ovh-ux/manager-web') {
+        availableRegions.pop();
+      }
+
+      return availableRegions;
+    },
     when({ packageName }) {
-      return applications.has(packageName);
+      return !applicationWithoutRegions.has(packageName);
     },
   },
 ];
 
 inquirer.prompt(questions).then(async ({ packageName, region = 'EU' }) => {
+  /**
+   * Region is defined as an environment variable which is used by the webpack
+   * development server.
+   *
+   * {@link https://github.com/ovh/manager/tree/master/packages/manager/tools/webpack-dev-server#env | webpack dev server }
+   */
   process.env.REGION = region;
+
   try {
     await execa('yarn', ['workspace', packageName, 'run', 'start:dev'], {
       stdio: 'inherit',

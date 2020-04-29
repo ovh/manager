@@ -87,7 +87,10 @@ export default class VpsUpgradeCtrl {
       modelVersion,
       versionInfos.year < 2018 ? '2018v3' : '2018v4',
     );
-    const mappedType = VpsUpgradeCtrl.getBillingModelType(modelType, modelVersion);
+    const mappedType = VpsUpgradeCtrl.getBillingModelType(
+      modelType,
+      modelVersion,
+    );
     const offerPlanCode = `vps_${mappedType}_${modelName}_${destVersion}`;
 
     return find(availableOffers, {
@@ -99,7 +102,10 @@ export default class VpsUpgradeCtrl {
    * Get the billing model type of the VPS
    */
   static getBillingModelType(modelType, modelVersion) {
-    if (modelType == 'ssd' && (modelVersion == '2017v1' || modelVersion == '2018v2')) {
+    if (
+      modelType === 'ssd' &&
+      (modelVersion === '2017v1' || modelVersion === '2018v2')
+    ) {
       return 'ssd-discovery';
     }
 

@@ -1,3 +1,21 @@
+## [3.18.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.18.2...@ovh-ux/manager-pci@3.18.3) (2020-04-28)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 356] ([d2ae13f](https://github.com/ovh/manager/commit/d2ae13f6679c081a2514a9dafad4955265a4d9bd))
+* **i18n:** add missing translations [CDS 357] ([409dc06](https://github.com/ovh/manager/commit/409dc06ae0fc802fe23b859a037347d60908fe4e))
+* **i18n:** add missing translations [CDS 358] ([a12d735](https://github.com/ovh/manager/commit/a12d735230a39a6a85f182a9dbc046f85bde211d))
+* **i18n:** add missing translations [CDS 362] ([2fcb068](https://github.com/ovh/manager/commit/2fcb0687ab2079f54a17cf06fe2ab0867b490e64))
+* **i18n:** add missing translations [CDS 363] ([7744b56](https://github.com/ovh/manager/commit/7744b566803e45dd7863d43b21764b5a935fd52f))
+* **i18n:** add missing translations [CDS 368] ([d6f6809](https://github.com/ovh/manager/commit/d6f6809ea899cfbd3118f1ee242e0ccc4db7ee8e))
+* **i18n:** add missing translations [CDS 369] ([38691ec](https://github.com/ovh/manager/commit/38691eccb391af0d2c9e7b700bdfd2839ef3da85))
+* **i18n:** add missing translations [CDS 370] ([10ae7f8](https://github.com/ovh/manager/commit/10ae7f8ed9db50f9596dfbf334113ce4006dfd9d))
+* **i18n:** add missing translations [CDS 372] ([ccbb995](https://github.com/ovh/manager/commit/ccbb995cbf8fd400f841297a8377d07f7d914c6c))
+* **i18n:** add missing translations [CDS 374] ([1203523](https://github.com/ovh/manager/commit/1203523a6b7e6d27f4ce72a8d36f69a923c03f69))
+
+
+
 ## [3.18.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.18.1...@ovh-ux/manager-pci@3.18.2) (2020-04-21)
 
 

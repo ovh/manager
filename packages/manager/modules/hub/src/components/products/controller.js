@@ -13,4 +13,8 @@ export default class ProductsController {
     this.expand = !this.expand;
     this.onExpand({ expand: this.expand || null });
   }
+
+  static formatProductTypeTracker(productType) {
+    return productType.toLowerCase().replace(/_/g, '-');
+  }
 }

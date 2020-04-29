@@ -1,3 +1,39 @@
+## [12.1.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@12.1.2...@ovh-ux/manager-telecom@12.1.3) (2020-04-28)
+
+
+### Bug Fixes
+
+* **telephony.line.phone.order.choice:** fix links for images and technical docs ([#2863](https://github.com/ovh/manager/issues/2863)) ([63a3acd](https://github.com/ovh/manager/commit/63a3acd13cee84a2b4d0d7ccca6e668eba587925))
+
+
+
+## [12.1.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@12.1.1...@ovh-ux/manager-telecom@12.1.2) (2020-04-28)
+
+
+### Bug Fixes
+
+* **telephony:** allow contact edition for foreign numbers ([#2785](https://github.com/ovh/manager/issues/2785)) ([31226cc](https://github.com/ovh/manager/commit/31226cc62848dd8a0982fe429df6ffb2eef5b764))
+
+
+
+## [12.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@12.1.0...@ovh-ux/manager-telecom@12.1.1) (2020-04-28)
+
+
+### Bug Fixes
+
+* **telephony.line.phone:** fix phone config for new phones ([#2857](https://github.com/ovh/manager/issues/2857)) ([ff6fef5](https://github.com/ovh/manager/commit/ff6fef5298ed5fe35dbfec8d29c958f58ee02b52))
+
+
+
+# [12.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@12.0.4...@ovh-ux/manager-telecom@12.1.0) (2020-04-27)
+
+
+### Features
+
+* add update phone range ([#2445](https://github.com/ovh/manager/issues/2445)) ([e610b48](https://github.com/ovh/manager/commit/e610b48e0f37ef859a92f4bc6973466d6f12c310))
+
+
+
 ## [12.0.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@12.0.3...@ovh-ux/manager-telecom@12.0.4) (2020-04-20)
 
 

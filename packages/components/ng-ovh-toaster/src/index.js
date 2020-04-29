@@ -13,10 +13,6 @@ import provider from './provider';
 // Define the angular module name as a string in order to export it safely.
 const moduleName = 'ngOvhToaster';
 
-angular
-  .module(moduleName, [
-    'ngSanitize',
-  ])
-  .provider('Toast', provider);
+angular.module(moduleName, ['ngSanitize']).provider('Toast', provider);
 
 export default moduleName;

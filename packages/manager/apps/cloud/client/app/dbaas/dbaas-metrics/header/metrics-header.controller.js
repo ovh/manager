@@ -40,7 +40,7 @@ import map from 'lodash/map';
         list: [
           {
             name: this.$translate.instant('metrics_guides_first-step_begin'),
-            url: this.ovhDocUrl.getDocUrl('cloud/metrics/manager'),
+            url: this.ovhDocUrl.getDocUrl('metrics/start-opentsdb'),
             external: true,
           },
         ],

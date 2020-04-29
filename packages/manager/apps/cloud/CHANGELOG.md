@@ -1,3 +1,17 @@
+# [9.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@9.1.0...@ovh-ux/manager-cloud@9.2.0) (2020-04-28)
+
+
+### Bug Fixes
+
+* **dbaas.metrics.header:** update guide URL ([#2837](https://github.com/ovh/manager/issues/2837)) ([a6a7be0](https://github.com/ovh/manager/commit/a6a7be0b4b9146fd5e8cc80c550060f5dee0f08a))
+
+
+### Features
+
+* **cloud.logs:** remove options concern from dashboards ([#2832](https://github.com/ovh/manager/issues/2832)) ([4639acc](https://github.com/ovh/manager/commit/4639acc1c2fa23ce8f608190bc9b323215cf7d87))
+
+
+
 # [9.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@9.0.3...@ovh-ux/manager-cloud@9.1.0) (2020-04-17)
 
 

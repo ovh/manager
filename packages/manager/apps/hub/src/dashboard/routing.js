@@ -36,7 +36,9 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
         product,
       ) => {
         atInternet.trackClick({
-          name: `${trackingPrefix}::product::${product}::show-all`,
+          name: `${trackingPrefix}::product::${product
+            .toLowerCase()
+            .replace(/_/g, '-')}::show-all`,
           type: 'action',
         });
         return (

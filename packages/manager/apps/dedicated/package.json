@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-dedicated",
-  "version": "12.3.2",
+  "version": "12.3.3",
   "private": true,
   "description": "OVHcloud Dedicated control panel.",
   "repository": {
@@ -43,7 +43,7 @@
     "@ovh-ux/manager-vrack": "^0.6.0",
     "@ovh-ux/mfa-enrollment": "^0.0.0 || ^1.0.0",
     "@ovh-ux/ng-at-internet": "^5.0.0",
-    "@ovh-ux/ng-at-internet-ui-router-plugin": "^3.0.0",
+    "@ovh-ux/ng-at-internet-ui-router-plugin": "^3.1.0",
     "@ovh-ux/ng-ovh-actions-menu": "^5.0.4",
     "@ovh-ux/ng-ovh-api-wrappers": "^4.0.7",
     "@ovh-ux/ng-ovh-browser-alert": "^2.0.0",
@@ -143,7 +143,6 @@
     "whatwg-fetch": "^3.0.0"
   },
   "devDependencies": {
-    "@ovh-ux/manager-models": "^0.0.0 || ^1.0.0",
     "@ovh-ux/manager-webpack-config": "^3.1.1",
     "eslint-plugin-angular": "^4.0.1",
     "glob": "^7.1.4",

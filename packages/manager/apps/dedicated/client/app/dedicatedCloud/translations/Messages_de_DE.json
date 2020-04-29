@@ -720,10 +720,10 @@
   "dedicatedCloud_OPERATIONS_createdby_robot": "Robot",
   "dedicatedCloud_options_security_modal_title_enabling_pcidss": "Aktivierung der Option PCI DSS",
   "dedicatedCloud_options_security_modal_title_enabling_hipaa": "Aktivierung der Option HIPAA",
-  "dedicatedCloud_options_security_modal_title_enabling_hds": "Aktivierung der Option HDS",
+  "dedicatedCloud_options_security_modal_title_enabling_hds": "Aktivierung des Hostings von Gesundheitsdaten und HDS-Zertifizierung",
   "dedicatedCloud_options_security_title": "Sicherheitsoptionen",
   "dedicatedCloud_options_pcidss": "Payment Card Industry Data Security Standard (PCI DSS)",
-  "dedicatedCloud_options_hds": "Hosting von Gesundheitsdaten (HDS)",
+  "dedicatedCloud_options_hds": "Hosting von Gesundheitsdaten und HDS-Zertifizierung",
   "dedicatedCloud_options_hipaa": "Health Insurance Portability and Accountability Act (HIPAA)",
   "dedicatedCloud_options_security_info": "Es kann nur eine Option aktiviert werden.",
   "dedicatedCloud_options_security_title_tooltip": "Die folgenden Regeln gelten für die Sicherheitsoptionen (PCI DSS, HDS und HIPAA): <ul><li>Es kann nur eine Option aktiviert werden.</li><li>NSX und vROps müssen aktiviert sein.</li><li> Die Private Cloud muss über mindestens eine autorisierte IP-Adresse und beschränkten Zugriff verfügen.</li><li> Der Administrator muss eine Mobilnummer und eine E-Mail-Adresse angeben und „Token Validator“ sein.</li></ul>",
@@ -856,5 +856,6 @@
   "dedicatedCloud_options_zerto_waiting_vpn_message_part_one": "Um die Aktivierung Ihres Zerto DRP abzuschließen,",
   "dedicatedCloud_options_zerto_waiting_vpn_message_part_two": "fügen Sie bitte VPN-IPs in den DRP-Einstellungen hinzu",
   "dedicatedCloud_tab_host_id": "ID",
-  "dedicatedCloud_tab_datastores_id": "ID"
+  "dedicatedCloud_tab_datastores_id": "ID",
+  "dedicatedCloud_USER_change_password_denied_chars": "Die folgenden Zeichen sind nicht zulässig: {{ chars }}"
 }

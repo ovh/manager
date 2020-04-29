@@ -28,7 +28,7 @@
         >
             <!-- organisation -->
             <oui-field
-                data-label="{{ 'sign_up_activity_field_organisation' | translate}}"
+                data-label="{{ 'sign_up_activity_field_organisation_' + $ctrl.signUpFormCtrl.model.legalform | translateDefault:'sign_up_activity_field_organisation' }}"
             >
                 <input
                     type="text"
@@ -44,9 +44,7 @@
 
         <div class="col-lg-6" data-ng-if="$ctrl.signUpFormCtrl.rules.vat">
             <!-- vat -->
-            <oui-field
-                data-label="{{ 'sign_up_activity_field_vat_' + $ctrl.signUpFormCtrl.me.ovhSubsidiary.toLowerCase() | translateDefault:'sign_up_activity_field_vat' }}"
-            >
+            <oui-field data-label="{{ $ctrl.getVatFieldLabel() }}">
                 <input
                     type="text"
                     class="oui-input"

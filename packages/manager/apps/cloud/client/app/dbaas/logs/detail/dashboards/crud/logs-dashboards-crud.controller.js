@@ -31,18 +31,6 @@ class LogsDashboardsCrudCtrl {
    * @memberof LogsDashboardsCrudCtrl
    */
   initLoaders() {
-    this.options = this.CucControllerHelper.request.getArrayLoader({
-      loaderFunction: () =>
-        this.LogsDashboardsService.getSubscribedOptions(this.serviceName),
-    });
-    this.options.load();
-
-    this.mainOffer = this.CucControllerHelper.request.getArrayLoader({
-      loaderFunction: () =>
-        this.LogsDashboardsService.getMainOffer(this.serviceName),
-    });
-    this.mainOffer.load();
-
     if (this.isDuplicate) {
       this.streams = this.CucControllerHelper.request.getArrayLoader({
         loaderFunction: () =>
