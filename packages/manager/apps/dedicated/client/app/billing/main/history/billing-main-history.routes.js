@@ -1,7 +1,4 @@
-import controller from './billing-main-history.controller';
-import template from './billing-main-history.html';
-
-angular.module('Billing').config(($stateProvider) => {
+export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.account.billing.main.history', {
     url: '/history?filters',
     params: {
@@ -10,11 +7,9 @@ angular.module('Billing').config(($stateProvider) => {
         squash: true,
       },
     },
-    template,
-    controller,
-    controllerAs: '$ctrl',
+    component: 'billingHistory',
     translations: {
-      value: ['../history', './postalMailOptions'],
+      value: ['./postalMailOptions'],
       format: 'json',
     },
     resolve: {
@@ -23,4 +18,4 @@ angular.module('Billing').config(($stateProvider) => {
         $state.go('app.account.billing.main.history', params),
     },
   });
-});
+};
