@@ -60,14 +60,17 @@ export default class DataProcessingService {
         res = res.addFilter(filter.name, filter.operator, filter.value);
       });
     }
-    return res.execute({ serviceName: projectId }).$promise.then((jobs) => {
-      return {
-        data: jobs.data.map((job) => summarizeJob(job)),
-        meta: {
-          totalCount: jobs.headers['x-pagination-elements'],
-        },
-      };
-    });
+    // The execute function will skip the cache as the job status are changing too quickly and can create an understanding problem for the service user
+    return res
+      .execute({ serviceName: projectId }, true)
+      .$promise.then((jobs) => {
+        return {
+          data: jobs.data.map((job) => summarizeJob(job)),
+          meta: {
+            totalCount: jobs.headers['x-pagination-elements'],
+          },
+        };
+      });
   }
 
   /**
@@ -77,11 +80,15 @@ export default class DataProcessingService {
    * @return {Promise<any>}
    */
   getJob(projectId, jobId) {
+    // The execute function will skip the cache as the job status are changing too quickly and can create an understanding problem for the service user
     return this.OvhApiCloudProjectDataProcessingJobs.get()
-      .execute({
-        serviceName: projectId,
-        jobId,
-      })
+      .execute(
+        {
+          serviceName: projectId,
+          jobId,
+        },
+        true,
+      )
       .$promise.then((job) => summarizeJob(job.data));
   }
 
@@ -132,12 +139,16 @@ export default class DataProcessingService {
    * @return {*}
    */
   getLogs(projectId, jobId, from) {
+    // The execute function will skip the cache as the logs are changing too quickly and can create an understanding problem for the service user
     return this.OvhApiCloudProjectDataProcessingJobs.logs()
-      .execute({
-        serviceName: projectId,
-        from,
-        jobId,
-      })
+      .execute(
+        {
+          serviceName: projectId,
+          from,
+          jobId,
+        },
+        true,
+      )
       .$promise.then((res) => res.data);
   }
 

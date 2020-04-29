@@ -9,5 +9,6 @@ export default {
     projectId: '<',
     capabilities: '<',
     goBack: '<',
+    increaseQuotaLink: '<',
   },
 };

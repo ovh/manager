@@ -1,5 +1,5 @@
 <p data-translate="data_processing_submit_job_sizing_description"></p>
-<div ng-if="!$ctrl.state.advancedSizing">
+<div data-ng-if="!$ctrl.state.advancedSizing">
     <form novalidate name="sizingForm">
         <oui-field
             data-label="{{:: 'data_processing_submit_job_stepper_spark_driver_template_label' | translate }}"
@@ -14,12 +14,12 @@
                     required
                 >
                     <option
-                        ng-repeat="template in $ctrl.driverTemplates track by template.id"
+                        data-ng-repeat="template in $ctrl.driverTemplates track by template.id"
                         value="{{ template.id }}"
                     >
                         {{ :: template.cores }} {{ ::
                         'data_processing_submit_job_sizing_template_cores_label'
-                        | translate }} - {{ :: template.memory/1e9 }} {{ ::
+                        | translate }} - {{ :: template.memory/1024 }} {{ ::
                         'data_processing_submit_job_sizing_template_memory_label'
                         | translate }}
                     </option>
@@ -43,12 +43,12 @@
                     required
                 >
                     <option
-                        ng-repeat="template in $ctrl.workerTemplates"
+                        data-ng-repeat="template in $ctrl.workerTemplates"
                         value="{{ template.id }}"
                     >
                         {{ :: template.cores }} {{ ::
                         'data_processing_submit_job_sizing_template_cores_label'
-                        | translate }} - {{ :: template.memory/1e9 }} {{ ::
+                        | translate }} - {{ :: template.memory/1024 }} {{ ::
                         'data_processing_submit_job_sizing_template_memory_label'
                         | translate }}
                     </option>
@@ -66,8 +66,8 @@
             <oui-numeric
                 name="worker-count"
                 data-model="$ctrl.state.workerCount"
-                data-min="1"
-                data-max="10"
+                data-min="$ctrl.jobParameters.executor_num.validator.min"
+                data-max="$ctrl.jobParameters.executor_num.validator.max"
             >
             </oui-numeric>
         </oui-field>
@@ -86,7 +86,7 @@
         </button>
     </form>
 </div>
-<div ng-if="$ctrl.state.advancedSizing">
+<div data-ng-if="$ctrl.state.advancedSizing">
     <form novalidate name="advancedSizingForm">
         <oui-field
             data-label="{{:: 'data_processing_submit_job_stepper_spark_driver_cores_label' | translate }}"
@@ -95,8 +95,8 @@
                 <oui-numeric
                     name="driver-cores"
                     data-model="$ctrl.state.driverCores"
-                    data-min="1"
-                    data-max="8"
+                    data-min="$ctrl.jobParameters.driver_cores.validator.min"
+                    data-max="$ctrl.jobParameters.driver_cores.validator.max"
                 >
                 </oui-numeric>
             </div>
@@ -109,12 +109,13 @@
                 <oui-numeric
                     name="driver-memory"
                     data-model="$ctrl.state.driverMemoryGb"
-                    data-min="1"
-                    data-max="30"
+                    data-min="$ctrl.jobParameters.driver_memory.validator.min / 1024"
+                    data-max="$ctrl.jobParameters.driver_memory.validator.max / 1024"
+                    data-on-change="$ctrl.onChangeDriverMemoryHandler(modelValue)"
                 >
                 </oui-numeric>
             </div>
-            <span class="sizing__advanced-units">GB</span>
+            <span class="sizing__advanced-units">GiB</span>
         </oui-field>
         <oui-field
             data-label="{{:: 'data_processing_submit_job_stepper_spark_driver_memory_overhead_label' | translate }}"
@@ -123,12 +124,25 @@
                 <oui-numeric
                     name="driver-memory-overhead"
                     data-model="$ctrl.state.driverMemoryOverheadMb"
-                    data-min="$ctrl.minMemoryOverheadMb"
-                    data-max="30000"
+                    data-min="$ctrl.jobParameters.driver_memory_overhead.validator.min"
+                    data-max="$ctrl.jobParameters.driver_memory_overhead.validator.max"
+                    data-disabled="$ctrl.state.advancedSizingDriverMemOverheadAuto"
                 >
                 </oui-numeric>
             </div>
-            <span class="sizing__advanced-units">MB</span>
+            <span class="sizing__advanced-units">MiB</span>
+            <oui-checkbox
+                class="sizing__advanced-units-checkbox"
+                name="driver-memory-overhead-auto"
+                data-model="$ctrl.state.advancedSizingDriverMemOverheadAuto"
+                data-on-change="$ctrl.onChangeAdvancedSizingDriverMemOverheadHandler(modelValue)"
+            >
+                <span
+                    >{{
+                    ::'data_processing_submit_job_stepper_spark_memory_overhead_autocompute_label'
+                    | translate}}</span
+                >
+            </oui-checkbox>
         </oui-field>
         <oui-field
             data-label="{{:: 'data_processing_submit_job_stepper_spark_worker_cores_label' | translate }}"
@@ -137,8 +151,8 @@
                 <oui-numeric
                     name="worker-cores"
                     data-model="$ctrl.state.workerCores"
-                    data-min="1"
-                    data-max="8"
+                    data-min="$ctrl.jobParameters.executor_cores.validator.min"
+                    data-max="$ctrl.jobParameters.executor_cores.validator.max"
                 >
                 </oui-numeric>
             </div>
@@ -152,12 +166,13 @@
                 <oui-numeric
                     name="worker-memory"
                     data-model="$ctrl.state.workerMemoryGb"
-                    data-min="1"
-                    data-max="30"
+                    data-min="$ctrl.jobParameters.executor_memory.validator.min / 1024"
+                    data-max="$ctrl.jobParameters.executor_memory.validator.max / 1024"
+                    data-on-change="$ctrl.onChangeWorkerMemoryHandler(modelValue)"
                 >
                 </oui-numeric>
             </div>
-            <span class="sizing__advanced-units">GB</span>
+            <span class="sizing__advanced-units">GiB</span>
         </oui-field>
         <oui-field
             data-label="{{:: 'data_processing_submit_job_stepper_spark_worker_memory_overhead_label' | translate }}"
@@ -166,12 +181,25 @@
                 <oui-numeric
                     name="worker-memory-overhead"
                     data-model="$ctrl.state.workerMemoryOverheadMb"
-                    data-min="$ctrl.minMemoryOverheadMb"
-                    data-max="30000"
+                    data-min="$ctrl.jobParameters.executor_memory_overhead.validator.min"
+                    data-max="$ctrl.jobParameters.executor_memory_overhead.validator.max"
+                    data-disabled="$ctrl.state.advancedSizingWorkerMemOverheadAuto"
                 >
                 </oui-numeric>
             </div>
-            <span class="sizing__advanced-units">MB</span>
+            <span class="sizing__advanced-units">MiB</span>
+            <oui-checkbox
+                class="sizing__advanced-units-checkbox"
+                name="worker-memory-overhead-auto"
+                data-model="$ctrl.state.advancedSizingWorkerMemOverheadAuto"
+                data-on-change="$ctrl.onChangeAdvancedSizingWorkerMemOverheadHandler(modelValue)"
+            >
+                <span
+                    >{{
+                    ::'data_processing_submit_job_stepper_spark_memory_overhead_autocompute_label'
+                    | translate}}</span
+                >
+            </oui-checkbox>
         </oui-field>
         <oui-field
             data-label="{{:: 'data_processing_submit_job_stepper_spark_worker_count_label' | translate }}"
@@ -179,8 +207,8 @@
             <oui-numeric
                 name="worker-count"
                 data-model="$ctrl.state.workerCount"
-                data-min="1"
-                data-max="10"
+                data-min="$ctrl.jobParameters.executor_num.validator.min"
+                data-max="$ctrl.jobParameters.executor_num.validator.max"
             >
             </oui-numeric>
         </oui-field>
@@ -188,7 +216,7 @@
             {{ :: 'data_processing_submit_job_stepper_spark_estimated_price' |
             translate }}
             <strong
-                ><span ng-bind="$ctrl.computePrice().toFixed(3)"></span
+                ><span data-ng-bind="$ctrl.computePrice().toFixed(3)"></span
                 >€/min</strong
             >
         </div>

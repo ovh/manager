@@ -3,6 +3,10 @@ import {
   ARGUMENTS_VALIDATION_PATTERN,
   PYTHON_ENV_FILENAME,
 } from './spark-config.constants';
+import {
+  JOB_TYPE_JAVA,
+  JOB_TYPE_PYTHON,
+} from '../../data-processing.constants';
 import { nameGenerator } from '../../data-processing.utils';
 
 export default class {
@@ -19,10 +23,13 @@ export default class {
   }
 
   $onInit() {
+    this.JOB_TYPE_PYTHON = JOB_TYPE_PYTHON;
+    this.JOB_TYPE_JAVA = JOB_TYPE_JAVA;
     this.swiftContainers = [];
     // initialize component state
     this.state = {
       arguments: [],
+      currentArgument: '',
       jobName: nameGenerator(),
       mainApplicationCodeFileNotFound: false, // used by UI to show a warning when file is not found
       mainApplicationCodeFileInvalid: false, // used by UI to show a warning when main application file is invalid
@@ -70,11 +77,13 @@ export default class {
       this.containerObjects,
       (o) => o.name === this.state.mainApplicationCode,
     );
-    // check for proper JAR
+    // check for proper JAR (just a warning, no blocking error in case MIME type is wrong in Object Storage)
     this.state.mainApplicationCodeFileInvalid =
       fileObject &&
+      this.state.jobType === 'java' &&
       fileObject.contentType !== 'application/java-archive' &&
-      this.state.jobType === 'java';
+      fileObject.contentType !== 'application/x-java-archive' &&
+      fileObject.contentType !== 'application/x-jar';
     // check if file exists
     this.state.mainApplicationCodeFileNotFound = fileObject === undefined;
     // check if environment file exists
@@ -83,12 +92,11 @@ export default class {
       (o) => o.name === PYTHON_ENV_FILENAME,
     );
     this.state.pythonEnvironmentMissing =
-      !environmentFileObject && this.state.jobType === 'python';
+      !environmentFileObject && this.state.jobType === JOB_TYPE_PYTHON;
     // check for field global validity (files exist)
     this.valid =
       !this.state.pythonEnvironmentMissing &&
-      !this.state.mainApplicationCodeFileNotFound &&
-      !this.state.mainApplicationCodeFileInvalid;
+      !this.state.mainApplicationCodeFileNotFound;
     this.onChangeHandler(this.state);
   }
 
@@ -111,7 +119,7 @@ export default class {
       this.state.arguments.push({
         title: arg,
       });
-      this.currentArgument = '';
+      this.state.currentArgument = '';
     }
     this.onChangeHandler(this.state);
   }

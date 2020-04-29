@@ -6,18 +6,12 @@ import {
 } from './data-processing.constants';
 
 const memoryConversions = {
-  k: 1000,
-  M: 1000 ** 2,
-  G: 1000 ** 3,
-  T: 1000 ** 4,
-  P: 1000 ** 5,
-  E: 1000 ** 6,
-  Ki: 1024,
-  Mi: 1024 ** 2,
-  Gi: 1024 ** 3,
-  Ti: 1024 ** 4,
-  Pi: 1024 ** 5,
-  Ei: 1024 ** 6,
+  Ki: 1024 ** -1,
+  Mi: 1,
+  Gi: 1024,
+  Ti: 1024 ** 2,
+  Pi: 1024 ** 3,
+  Ei: 1024 ** 4,
 };
 
 /**
@@ -34,27 +28,13 @@ export const formatDuration = (value) => {
 };
 
 /**
- * Parse memory values to bytes, Kubernetes style
- * @param value A kubernetes-like formatted string (eg. 20Gi)
- * @return {number} Bytes value
- */
-export const parseMemory = (value) => {
-  const unit = value.match(/^([0-9.]+)([A-Za-z]{1,2})$/);
-  if (unit) {
-    return parseFloat(unit[1]) * memoryConversions[unit[2]];
-  }
-  return parseFloat(value);
-};
-
-/**
  * Convert Kubernetes-style memory from one unit to another
- * @param value Kubernetes-style memory string
- * @param unit Kubernetes-style unit to convert to
+ * @param valueInMebiByte Memory to convert in MebiByte (MiB) long
+ * @param unit Kubernetes-style unit to convert to (limited to biBytes units)
  * @return {string} Kubernetes-style converted value
  */
-export const convertMemory = (value, unit) => {
-  const bytes = parseMemory(value);
-  return (bytes / memoryConversions[unit]).toFixed(2) + unit;
+export const convertMemory = (valueInMebiByte, unit) => {
+  return (valueInMebiByte / memoryConversions[unit]).toFixed(2) + unit;
 };
 
 /**
@@ -77,15 +57,13 @@ export const summarizeSparkJob = (job) => {
   const sparkJob = {
     ...job,
     vcores:
-      parseFloat(engineParameters.driver_cores) +
-      parseFloat(engineParameters.executor_cores) *
-        parseFloat(engineParameters.executor_num),
+      parseInt(engineParameters.driver_cores, 10) +
+      parseInt(engineParameters.executor_cores, 10) *
+        parseInt(engineParameters.executor_num, 10),
     ram: convertMemory(
-      (
-        parseMemory(engineParameters.driver_memory) +
-        parseMemory(engineParameters.executor_memory) *
-          parseFloat(engineParameters.executor_num)
-      ).toString(),
+      parseInt(engineParameters.driver_memory, 10) +
+        parseInt(engineParameters.executor_memory, 10) *
+          parseInt(engineParameters.executor_num, 10),
       'Gi',
     ),
     type: 'Spark',
@@ -537,7 +515,6 @@ export const getDataProcessingUiUrl = (region, id) => {
 };
 
 export default {
-  parseMemory,
   formatDuration,
   convertMemory,
   summarizeSparkJob,

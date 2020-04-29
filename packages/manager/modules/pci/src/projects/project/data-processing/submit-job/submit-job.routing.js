@@ -8,5 +8,9 @@ export default /* @ngInject */ ($stateProvider) =>
       capabilities: /* @ngInject */ (dataProcessingService, projectId) =>
         dataProcessingService.getCapabilities(projectId),
       goBack: /* @ngInject */ (showJobs) => showJobs,
+      increaseQuotaLink: /* @ngInject */ ($state, projectId) =>
+        $state.href('pci.projects.project.quota.increase', {
+          projectId,
+        }),
     },
   });
