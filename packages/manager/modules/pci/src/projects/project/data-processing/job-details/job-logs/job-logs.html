@@ -5,7 +5,7 @@
         >
             <div
                 class="logger__entry"
-                ng-repeat="entry in $ctrl.logger.logs.logs track by entry.id"
+                data-ng-repeat="entry in $ctrl.logger.logs.logs track by entry.id"
             >
                 <span class="logger__entry-message"
                     >{{ $ctrl.formatLogsDate(entry.id) }} {{ entry.content

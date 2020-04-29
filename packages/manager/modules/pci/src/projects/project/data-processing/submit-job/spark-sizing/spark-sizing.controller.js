@@ -1,6 +1,8 @@
 import {
   MEMORY_OVERHEAD_RATIO,
   MIN_MEMORY_OVERHEAD_MB,
+  MAX_MEMORY_TOTAL_MB,
+  GIB_IN_MIB,
 } from './spark-sizing.constants';
 
 export default class {
@@ -30,6 +32,8 @@ export default class {
       driverMemoryGb: 1,
       driverMemoryOverheadMb: MIN_MEMORY_OVERHEAD_MB,
       advancedSizing: false,
+      advancedSizingDriverMemOverheadAuto: true,
+      advancedSizingWorkerMemOverheadAuto: true,
     };
     // update overhead memory from template
     this.updateStateFromTemplate();
@@ -45,7 +49,9 @@ export default class {
     if (this.templates) {
       this.driverTemplates = this.templates;
       this.workerTemplates = this.templates;
-      this.updateStateFromTemplate();
+      if (!this.state.advancedSizing) {
+        this.updateStateFromTemplate();
+      }
     }
   }
 
@@ -60,6 +66,70 @@ export default class {
   }
 
   /**
+   * Handler for the checkbox allowing the editing of the driver memory overhead
+   */
+  onChangeAdvancedSizingDriverMemOverheadHandler(newValue) {
+    if (this.state.advancedSizing && newValue) {
+      this.updateMemoryOverHead(this.state.driverMemoryGb, newValue, 'driver');
+    }
+  }
+
+  /**
+   * Handler for the checkbox allowing the editing of the worker memory overhead
+   */
+  onChangeAdvancedSizingWorkerMemOverheadHandler(newValue) {
+    if (this.state.advancedSizing && newValue) {
+      this.updateMemoryOverHead(this.state.driverMemoryGb, newValue, 'worker');
+    }
+  }
+
+  /**
+   * Handler for the driver memory field, updating the driver memory overhead field as well if it's automatically computed
+   */
+  onChangeDriverMemoryHandler(newValue) {
+    this.updateMemoryOverHead(
+      newValue,
+      this.state.advancedSizingDriverMemOverheadAuto,
+      'driver',
+    );
+  }
+
+  /**
+   * Handler for the driver memory field, updating the driver memory overhead field as well if it's automatically computed
+   */
+  onChangeWorkerMemoryHandler(newValue) {
+    this.updateMemoryOverHead(
+      newValue,
+      this.state.advancedSizingDriverMemOverheadAuto,
+      'worker',
+    );
+  }
+
+  /**
+   * Compute, if auto computation is enabled, the memory overhead for a node
+   * @param memory memory to use as base for the computation of the overhead value
+   * @param autoComputation flag to check if auto computation is enabled
+   * @param nodeType the type of node (worker or driver) for which the computation is done
+   */
+  updateMemoryOverHead(memoryGb, autoComputation, nodeType) {
+    if (this.state.advancedSizing && autoComputation) {
+      let memOverhead = memoryGb * GIB_IN_MIB * MEMORY_OVERHEAD_RATIO; // overhead = 10% of memory in MiB
+      if (memOverhead < this.minMemoryOverheadMb) {
+        memOverhead = this.minMemoryOverheadMb;
+      } else if (memOverhead + memoryGb * GIB_IN_MIB > MAX_MEMORY_TOTAL_MB) {
+        memOverhead = parseInt(MAX_MEMORY_TOTAL_MB - memoryGb * GIB_IN_MIB, 10);
+      } else {
+        memOverhead = parseInt(memOverhead, 10);
+      }
+      if (nodeType === 'driver') {
+        this.state.driverMemoryOverheadMb = memOverhead;
+      } else if (nodeType === 'worker') {
+        this.state.workerMemoryOverheadMb = memOverhead;
+      }
+    }
+  }
+
+  /**
    * Use sizing template to update all the individual cores/memory fields of current state
    */
   updateStateFromTemplate() {
@@ -71,21 +141,27 @@ export default class {
         parseInt(this.state.workerTemplate, 10) - 1
       ];
       // compute driver overhead in Mb while ensuring Spark's minimum
-      const driverMemoryOverheadMb = Math.max(
-        (driverTpl.memory / 1e6) * MEMORY_OVERHEAD_RATIO,
+      let driverMemoryOverheadMb = Math.max(
+        driverTpl.memory * MEMORY_OVERHEAD_RATIO,
         MIN_MEMORY_OVERHEAD_MB,
       );
+      if (driverMemoryOverheadMb + workerTpl.memory > MAX_MEMORY_TOTAL_MB) {
+        driverMemoryOverheadMb = MAX_MEMORY_TOTAL_MB - workerTpl.memory;
+      }
       // compute worker overhead in Mb while ensuring Spark's minimum
-      const workerMemoryOverheadMb = Math.max(
-        (workerTpl.memory / 1e6) * MEMORY_OVERHEAD_RATIO,
+      let workerMemoryOverheadMb = Math.max(
+        workerTpl.memory * MEMORY_OVERHEAD_RATIO,
         MIN_MEMORY_OVERHEAD_MB,
       );
+      if (workerMemoryOverheadMb + workerTpl.memory > MAX_MEMORY_TOTAL_MB) {
+        workerMemoryOverheadMb = MAX_MEMORY_TOTAL_MB - workerTpl.memory;
+      }
       Object.assign(this.state, {
         driverCores: driverTpl.cores,
-        driverMemoryGb: driverTpl.memory / 1e9,
+        driverMemoryGb: driverTpl.memory / GIB_IN_MIB,
         driverMemoryOverheadMb,
         workerCores: workerTpl.cores,
-        workerMemoryGb: workerTpl.memory / 1e9,
+        workerMemoryGb: workerTpl.memory / GIB_IN_MIB,
         workerMemoryOverheadMb,
       });
     }
@@ -108,10 +184,10 @@ export default class {
     const pricePerGb = 0; // free during beta
     const pricePerCore = 0; // free during beta
     return (
-      (workerMemoryGb + workerMemoryOverheadMb / 1e3) *
+      (workerMemoryGb / GIB_IN_MIB + workerMemoryOverheadMb) *
         pricePerGb *
         workerCount +
-      (driverMemoryGb + driverMemoryOverheadMb / 1e3) * pricePerCore +
+      (driverMemoryGb / GIB_IN_MIB + driverMemoryOverheadMb) * pricePerCore +
       (driverCores + workerCores) * pricePerCore
     );
   }

@@ -9,7 +9,7 @@
             type="text"
             id="job-name"
             name="job-name"
-            ng-model="$ctrl.state.jobName"
+            data-ng-model="$ctrl.state.jobName"
             required
             minlength="3"
             maxlength="32"
@@ -27,13 +27,13 @@
                 data-ng-change="$ctrl.onContainerChangeHandler()"
                 required
             >
-                <option ng-value="undefined"
+                <option data-ng-value="undefined"
                     >{{::
                     'data_processing_submit_job_stepper_spark_swift_placeholder'
                     | translate }}
                 </option>
                 <option
-                    ng-repeat="container in $ctrl.swiftContainersInRegion"
+                    data-ng-repeat="container in $ctrl.swiftContainersInRegion"
                     value="{{ container }}"
                 >
                     {{ container }}
@@ -57,7 +57,7 @@
                 data-ng-change="$ctrl.onJobTypeChangeHandler()"
                 required
             >
-                <option ng-value="undefined"
+                <option data-ng-value="undefined"
                     >{{::
                     'data_processing_submit_job_stepper_spark_jobtype_placeholder'
                     | translate }}
@@ -76,7 +76,7 @@
         </label>
     </oui-field>
     <oui-field
-        ng-if="$ctrl.state.jobType === 'java' || $ctrl.state.jobType === 'python'"
+        ng-if="$ctrl.state.jobType === $ctrl.JOB_TYPE_JAVA || $ctrl.state.jobType === $ctrl.JOB_TYPE_PYTHON"
         data-label="{{ $ctrl.state.jobType === 'java'? 'data_processing_submit_job_stepper_spark_jar_file_label':'data_processing_submit_job_stepper_spark_python_file_label' | translate }}"
         data-help-text="{{:: 'data_processing_submit_job_stepper_spark_jar_file_help' | translate }}"
         size="xl"
@@ -91,14 +91,18 @@
             data-oui-autocomplete="$ctrl.containerObjects"
             data-oui-autocomplete-property="name"
             required
-            minlength="1"
-            maxlength="512"
+            minlength="{{ ::$ctrl.jobParameters.main_application_code.validator.min }}"
+            maxlength="{{ ::$ctrl.jobParameters.main_application_code.validator.max }}"
+            data-ng-pattern="$ctrl.jobParameters.main_application_code.validator.regex"
         />
         <div
             class="oui-field__warning-show"
             data-ng-if="$ctrl.state.mainApplicationCodeFileNotFound"
         >
-            <span ng-messages="mainApplicationCodeFileNotFound" role="alert">
+            <span
+                data-ng-messages="mainApplicationCodeFileNotFound"
+                role="alert"
+            >
                 <span
                     class="oui-icon oui-icon-warning_circle"
                     aria-hidden="true"
@@ -114,7 +118,10 @@
             class="oui-field__warning-show"
             data-ng-if="$ctrl.state.pythonEnvironmentMissing"
         >
-            <span ng-messages="pythonRequirementsFileNotFound" role="alert">
+            <span
+                data-ng-messages="pythonRequirementsFileNotFound"
+                role="alert"
+            >
                 <span
                     class="oui-icon oui-icon-warning_circle"
                     aria-hidden="true"
@@ -130,7 +137,10 @@
             class="oui-field__warning-show"
             data-ng-if="$ctrl.state.mainApplicationCodeFileInvalid"
         >
-            <span ng-messages="mainApplicationCodeFileInvalid" role="alert">
+            <span
+                data-ng-messages="mainApplicationCodeFileInvalid"
+                role="alert"
+            >
                 <span
                     class="oui-icon oui-icon-warning_circle"
                     aria-hidden="true"
@@ -157,8 +167,9 @@
             data-ng-model="$ctrl.state.mainClass"
             data-ng-change="$ctrl.onMainClassChangeHandler()"
             required
-            minlength="2"
-            maxlength="512"
+            minlength="{{ ::$ctrl.jobParameters.main_class_name.validator.min }}"
+            maxlength="{{ ::$ctrl.jobParameters.main_class_name.validator.max }}"
+            data-ng-pattern="$ctrl.jobParameters.main_class_name.validator.regex"
         />
     </oui-field>
     <span>
@@ -179,11 +190,12 @@
             type="text"
             id="argument"
             name="argument"
-            data-ng-model="$ctrl.currentArgument"
+            data-ng-model="$ctrl.state.currentArgument"
             data-ng-keyup="$event.keyCode == 13 && $ctrl.onSubmitArgumentHandler($event)"
             placeholder="{{:: 'data_processing_submit_job_stepper_spark_arguments_placeholder' | translate }}"
-            minlength="1"
-            maxlength="32"
+            minlength="{{ ::$ctrl.jobParameters.arguments.validator.min }}"
+            maxlength="{{ ::$ctrl.jobParameters.arguments.validator.max }}"
+            data-ng-pattern="$ctrl.jobParameters.arguments.validator.regex"
         />
     </oui-field>
 </form>

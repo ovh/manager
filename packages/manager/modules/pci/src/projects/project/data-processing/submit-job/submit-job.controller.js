@@ -1,5 +1,4 @@
 import { find } from 'lodash';
-import { convertMemory } from '../data-processing.utils';
 
 export default class {
   /* @ngInject */
@@ -24,6 +23,7 @@ export default class {
     this.jobSizingValidate = false;
     this.submitRetries = 0;
     this.isSubmitting = false;
+    this.badRequestErrorMessage = '';
     this.isConfigureStepValid = false;
     this.currentIndex = 0;
   }
@@ -44,6 +44,20 @@ export default class {
       name: region,
       hasEnoughQuota: () => true,
     }));
+  }
+
+  /**
+   * Fetch available job parameters from capabilities and update binding
+   */
+  updateAvailableJobParameters() {
+    const engine = find(
+      this.capabilities,
+      (e) => e.name === this.state.jobEngine.engine,
+    );
+    this.jobParameters = {};
+    engine.parameters.forEach((jobParameter) => {
+      this.jobParameters[jobParameter.name] = jobParameter;
+    });
   }
 
   /**
@@ -79,10 +93,28 @@ export default class {
     this.state.jobConfig = jobConfig;
   }
 
+  /**
+   * Parse API error responses to extract the message and make it compatible with translations
+   */
+  parseSubmitErrorMessage(errorMessage) {
+    this.badRequestErrorMessage = errorMessage
+      .replace(
+        /Client::BadRequest::|Client::UnprocessableEntity::/gi,
+        'data_processing_submit_job_error_message_',
+      )
+      .replace(/\./g, '_');
+  }
+
   onSubmitJobHandler() {
     const lastIndex = this.currentIndex;
     this.isSubmitting = true;
     let args = '';
+    if (this.state.jobConfig.currentArgument.length > 0) {
+      this.state.jobConfig.arguments.push({
+        title: this.state.jobConfig.currentArgument,
+      });
+      this.state.jobConfig.currentArgument = '';
+    }
     if (this.state.jobConfig.arguments.length > 0) {
       args = this.state.jobConfig.arguments.map((o) => o.title).join(',');
     }
@@ -104,11 +136,19 @@ export default class {
         },
         {
           name: 'driver_memory',
-          value: convertMemory(`${this.state.jobSizing.driverMemoryGb}G`, 'Gi'),
+          value: (this.state.jobSizing.driverMemoryGb * 1024).toString(),
         },
         {
           name: 'executor_memory',
-          value: convertMemory(`${this.state.jobSizing.workerMemoryGb}G`, 'Gi'),
+          value: (this.state.jobSizing.workerMemoryGb * 1024).toString(),
+        },
+        {
+          name: 'driver_memory_overhead',
+          value: this.state.jobSizing.driverMemoryOverheadMb.toString(),
+        },
+        {
+          name: 'executor_memory_overhead',
+          value: this.state.jobSizing.workerMemoryOverheadMb.toString(),
         },
         {
           name: 'driver_cores',
@@ -134,15 +174,22 @@ export default class {
         value: this.state.jobConfig.mainClass,
       });
     }
-    this.dataProcessingService.submitJob(this.projectId, payload).then(
-      () => {
+    this.dataProcessingService
+      .submitJob(this.projectId, payload)
+      .then(() => {
         this.goBack();
-      },
-      () => {
-        if (this.submitRetries < 2) {
-          this.submitRetries += 1;
+      })
+      .catch((error) => {
+        if (
+          error.status !== 400 &&
+          error.status !== 422 &&
+          this.submitRetries < 2
+        ) {
           this.onSubmitJobHandler();
         } else {
+          if (error.status === 400 || error.status === 422) {
+            this.parseSubmitErrorMessage(error.data.data.class);
+          }
           this.isSubmitting = false;
           this.currentIndex = lastIndex - 1;
           // this is a trick to circumvent limitations of the stepper component.
@@ -153,7 +200,7 @@ export default class {
             this.$scope.$apply();
           }, 0);
         }
-      },
-    );
+        this.submitRetries += 1;
+      });
   }
 }
