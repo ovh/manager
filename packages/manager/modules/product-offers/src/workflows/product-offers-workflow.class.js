@@ -50,7 +50,13 @@ export default class Workflow {
    * @return {boolean}
    */
   isFreePricing() {
-    return this.pricing && this.pricing.isFree();
+    return (
+      this.pricing &&
+      this.pricing.isFree() &&
+      (this.pricing.hasExtraPricing()
+        ? this.pricing.extraPricing.isFree()
+        : true)
+    );
   }
 
   /**
