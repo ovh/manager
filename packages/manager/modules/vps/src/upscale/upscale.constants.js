@@ -6,6 +6,7 @@ export const PRICING_MODES = {
 };
 
 export const RANGES = {
+  BESTVALUE: 'bv',
   COMFORT: 'Comfort',
   ESSENTIAL: 'Essential',
   ELITE: 'Elite',
