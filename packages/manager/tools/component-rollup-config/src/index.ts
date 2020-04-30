@@ -1,5 +1,5 @@
 import { get, isString, mergeWith } from 'lodash';
-import babel from 'rollup-plugin-babel';
+import babel from '@rollup/plugin-babel';
 import camelcase from 'camelcase';
 import commonjs from '@rollup/plugin-commonjs';
 import html from 'rollup-plugin-html';
@@ -66,6 +66,7 @@ const generateConfig = (opts, pluginsOpts) => mergeConfig({
     }),
     translationXML(),
     babel({
+      babelHelpers: 'bundled',
       babelrc: false,
       exclude: 'node_modules/**',
       plugins: [
