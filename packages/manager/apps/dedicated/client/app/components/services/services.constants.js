@@ -64,6 +64,10 @@ angular.module('App').constant('SERVICES_TARGET_URLS', {
     univers: 'dedicated',
     url: 'configuration/ip',
   },
+  '/ipLoadbalancing/{serviceName}': {
+    univers: 'dedicated',
+    url: 'network/iplb/{serviceName}',
+  },
   '/license/plesk/{serviceName}': {
     univers: 'dedicated',
     url: 'configuration/license/{serviceName}/detail',
