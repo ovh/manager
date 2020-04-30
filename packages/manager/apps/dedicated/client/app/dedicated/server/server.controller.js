@@ -4,7 +4,7 @@ import indexOf from 'lodash/indexOf';
 import isArray from 'lodash/isArray';
 import isEmpty from 'lodash/isEmpty';
 import set from 'lodash/set';
-import { ELIGIBLE_FOR_UPGRADE, URLS } from './dedicated-server.contants';
+import { ELIGIBLE_FOR_UPGRADE, URLS } from './server.constants';
 
 /* eslint-disable no-use-before-define */
 angular.module('App').controller(

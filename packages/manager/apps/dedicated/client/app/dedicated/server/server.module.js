@@ -1,4 +1,4 @@
-import './dedicated-server.less';
+import './server.less';
 
 angular
   .module('App')
