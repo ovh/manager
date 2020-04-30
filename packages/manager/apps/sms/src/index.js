@@ -1,5 +1,9 @@
-import 'script-loader!jquery'; // eslint-disable-line
-import 'script-loader!lodash'; // eslint-disable-line
+/* eslint-disable import/no-webpack-loader-syntax */
+import 'script-loader!jquery';
+import 'script-loader!lodash';
+import 'script-loader!moment/min/moment.min';
+/* eslint-enable import/no-webpack-loader-syntax */
+
 import ovhManagerSms from '@ovh-ux/manager-sms';
 import ngOvhApiWrappers from '@ovh-ux/ng-ovh-api-wrappers';
 
