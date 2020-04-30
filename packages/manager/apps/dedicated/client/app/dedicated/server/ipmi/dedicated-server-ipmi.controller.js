@@ -12,7 +12,7 @@ angular
       $translate,
       Alerter,
       coreConfig,
-      dedicatedServerFeatureAvailability,
+      DedicatedServerFeatureAvailability,
       Polling,
       Server,
       User,
@@ -774,6 +774,6 @@ angular
       });
 
       $scope.hasSOL = () =>
-        dedicatedServerFeatureAvailability.hasSerialOverLan();
+        DedicatedServerFeatureAvailability.hasSerialOverLan();
     },
   );

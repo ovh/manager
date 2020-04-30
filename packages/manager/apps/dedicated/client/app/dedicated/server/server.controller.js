@@ -23,7 +23,7 @@ export default class ServerCtrl {
     $translate,
     constants,
     coreConfig,
-    dedicatedServerFeatureAvailability,
+    DedicatedServerFeatureAvailability,
     ovhUserPref,
     Polling,
     Server,
@@ -37,7 +37,7 @@ export default class ServerCtrl {
     this.$translate = $translate;
     this.constants = constants;
     this.coreConfig = coreConfig;
-    this.dedicatedServerFeatureAvailability = dedicatedServerFeatureAvailability;
+    this.DedicatedServerFeatureAvailability = DedicatedServerFeatureAvailability;
     this.ovhUserPref = ovhUserPref;
     this.Polling = Polling;
     this.Server = Server;
@@ -58,7 +58,7 @@ export default class ServerCtrl {
 
     this.$scope.loadingServerInformations = true;
     this.$scope.loadingServerError = false;
-    this.$scope.dedicatedServerFeatureAvailability = this.dedicatedServerFeatureAvailability;
+    this.$scope.DedicatedServerFeatureAvailability = this.DedicatedServerFeatureAvailability;
 
     this.$scope.loaders = {
       autoRenew: true,
@@ -444,9 +444,9 @@ export default class ServerCtrl {
         this.$scope.serviceInfos = serviceInfos;
 
         this.$scope.tabOptions = {
-          isFirewallEnabled: this.dedicatedServerFeatureAvailability.allowDedicatedServerFirewallCiscoAsa(),
+          isFirewallEnabled: this.DedicatedServerFeatureAvailability.allowDedicatedServerFirewallCiscoAsa(),
           isIPMIDisabled: this.$scope.isHousing,
-          isUSBStorageEnabled: this.dedicatedServerFeatureAvailability.allowDedicatedServerUSBKeys(),
+          isUSBStorageEnabled: this.DedicatedServerFeatureAvailability.allowDedicatedServerUSBKeys(),
         };
 
         this.$scope.$broadcast('dedicated.server.refreshTabs');
