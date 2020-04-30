@@ -205,9 +205,10 @@ export default class OrderWorkflow extends Workflow {
 
     const autoPayWithPreferredPaymentMethod = !!this.defaultPaymentMethod;
     const checkoutParameters = {
-      autoPayWithPreferredPaymentMethod: this.isFreePricing()
-        ? true
-        : autoPayWithPreferredPaymentMethod,
+      autoPayWithPreferredPaymentMethod:
+        this.isFreePricing() && this.defaultPaymentMethod
+          ? true
+          : autoPayWithPreferredPaymentMethod,
       waiveRetractationPeriod: false,
     };
 
