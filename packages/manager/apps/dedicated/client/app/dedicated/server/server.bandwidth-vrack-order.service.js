@@ -23,7 +23,8 @@ class BaseDedicatedService {
   }
 }
 
-class BandwidthVrackOrderService extends BaseDedicatedService {
+export default class BandwidthVrackOrderService extends BaseDedicatedService {
+  /* @ngInject */
   constructor($q, $translate, Server) {
     super($q);
     this.$translate = $translate;
@@ -104,8 +105,4 @@ class BandwidthVrackOrderService extends BaseDedicatedService {
     }));
   }
 }
-
-angular
-  .module('services')
-  .service('BandwidthVrackOrderService', BandwidthVrackOrderService);
 /* eslint-enable max-classes-per-file */

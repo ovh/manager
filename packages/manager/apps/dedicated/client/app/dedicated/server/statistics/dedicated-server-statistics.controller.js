@@ -16,7 +16,7 @@ angular
       $translate,
       Alerter,
       BandwidthVrackOrderService,
-      dedicatedServerFeatureAvailability,
+      DedicatedServerFeatureAvailability,
       Server,
       ServerOrderTrafficService,
       ServerTrafficService,
@@ -96,7 +96,7 @@ angular
       /* eslint-disable no-return-assign, max-len */
 
       $scope.canOrderVrackBandwidth = () =>
-        dedicatedServerFeatureAvailability.allowDedicatedServerOrderVrackBandwidthOption() &&
+        DedicatedServerFeatureAvailability.allowDedicatedServerOrderVrackBandwidthOption() &&
         !$scope.server.isExpired &&
         $scope.server.canOrderVrackBandwith;
       $scope.canOrderMoreVrackBandwidth = () =>
@@ -105,7 +105,7 @@ angular
         $scope.bandwidthVrackOrderOptions.data.length;
 
       $scope.canOrderTraffic = () =>
-        dedicatedServerFeatureAvailability.allowDedicatedServerOrderTrafficOption() &&
+        DedicatedServerFeatureAvailability.allowDedicatedServerOrderTrafficOption() &&
         !$scope.server.isExpired &&
         $scope.server.canOrderQuota;
       $scope.canOrderMoreTraffic = () =>

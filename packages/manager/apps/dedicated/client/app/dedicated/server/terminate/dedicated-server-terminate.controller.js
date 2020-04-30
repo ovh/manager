@@ -11,7 +11,7 @@ angular.module('App').controller(
       $stateParams,
       Alerter,
       constants,
-      dedicatedServerFeatureAvailability,
+      DedicatedServerFeatureAvailability,
       Server,
     ) {
       this.$scope = $scope;
@@ -19,14 +19,14 @@ angular.module('App').controller(
       this.constants = constants;
       this.$q = $q;
       this.Server = Server;
-      this.dedicatedServerFeatureAvailability = dedicatedServerFeatureAvailability;
+      this.DedicatedServerFeatureAvailability = DedicatedServerFeatureAvailability;
       this.Alerter = Alerter;
     }
 
     $onInit() {
       this.$scope.loading = false;
       this.$scope.server = this.$scope.currentActionData;
-      this.manualRefund = this.dedicatedServerFeatureAvailability.hasDedicatedServerManualRefund();
+      this.manualRefund = this.DedicatedServerFeatureAvailability.hasDedicatedServerManualRefund();
       this.serviceInfos = get(this.$scope, 'serviceInfos', null);
       this.cancelSubscriptionForm = {
         cancelMethod: null,

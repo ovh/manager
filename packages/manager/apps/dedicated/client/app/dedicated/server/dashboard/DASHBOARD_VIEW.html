@@ -539,13 +539,13 @@
                         </dl>
                         <div
                             class="oui-tile__actions"
-                            data-ng-if="dedicatedServerFeatureAvailability.hasContactChangement() && !server.isExpired"
+                            data-ng-if="DedicatedServerFeatureAvailability.hasContactChangement() && !server.isExpired"
                         >
                             <oui-action-menu
                                 aria-label="{{:: 'menu_action_label' | translate:{t0: ('server_bandwidth_ovh_to_internet' | translate)} }}"
                                 data-align="end"
                                 data-compact
-                                data-ng-if="dedicatedServerFeatureAvailability.hasContactChangement() && !server.isExpired"
+                                data-ng-if="DedicatedServerFeatureAvailability.hasContactChangement() && !server.isExpired"
                             >
                                 <oui-action-menu-item
                                     data-text="{{:: 'contacts_management' | translate }}"
