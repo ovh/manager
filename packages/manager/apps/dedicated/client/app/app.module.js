@@ -130,7 +130,6 @@ import './dedicated/server/bandwidth/private-cancel/private-cancel.module';
 import './dedicated/server/bandwidth/private-order/private-order.module';
 import './dedicated/server/bandwidth/public-cancel/public-cancel.module';
 import './dedicated/server/bandwidth/public-order/public-order.module';
-import './dedicated/server/server.module';
 import './dedicated/server/interfaces/attach/interfaces-attach.module';
 import './dedicated/server/interfaces/detach/interfaces-detach.module';
 import './dedicated/server/interfaces/ola-activation/ola-activation.module';

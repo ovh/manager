@@ -1,7 +1,7 @@
 import controller from './server.controller';
 import template from './server.html';
 
-export const component = {
+export default {
   bindings: {
     ola: '<',
     orderPrivateBandwidthLink: '<',
@@ -14,7 +14,3 @@ export const component = {
   controller,
   template,
 };
-
-angular.module('App').component('dedicatedServer', component);
-
-export default component;

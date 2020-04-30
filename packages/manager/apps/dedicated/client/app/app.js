@@ -53,9 +53,7 @@ import errorPage from './error';
 import ovhManagerPccDashboard from './dedicatedCloud/dashboard';
 import ovhManagerPccResourceUpgrade from './dedicatedCloud/resource/upgrade';
 
-import dedicatedServerBandwidth from './dedicated/server/bandwidth/bandwidth.module';
-import dedicatedServerInterfaces from './dedicated/server/interfaces/interfaces.module';
-import dedicatedServerServers from './dedicated/server/servers/servers.module';
+import dedicatedServer from './dedicated/server';
 
 import datacenterBackup from './dedicatedCloud/datacenter/backup';
 import userContracts from './user-contracts';
@@ -77,10 +75,8 @@ angular
       contactsService,
       datacenterBackup,
       dedicatedCloudDatacenterDrp,
-      dedicatedServerBandwidth,
-      dedicatedServerInterfaces,
       dedicatedCloudDatacenterDashboardDeleteDrp,
-      dedicatedServerServers,
+      dedicatedServer,
       dedicatedUniverseComponents,
       'directives',
       errorPage,

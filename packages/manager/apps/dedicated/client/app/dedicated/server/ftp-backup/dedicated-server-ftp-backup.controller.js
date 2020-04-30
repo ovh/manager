@@ -9,7 +9,7 @@ angular.module('App').controller(
       $stateParams,
       $translate,
       Alerter,
-      dedicatedServerFeatureAvailability,
+      DedicatedServerFeatureAvailability,
       Polling,
       Server,
     ) {
@@ -18,7 +18,7 @@ angular.module('App').controller(
       this.$stateParams = $stateParams;
       this.$translate = $translate;
       this.Alerter = Alerter;
-      this.dedicatedServerFeatureAvailability = dedicatedServerFeatureAvailability;
+      this.DedicatedServerFeatureAvailability = DedicatedServerFeatureAvailability;
       this.Polling = Polling;
       this.Server = Server;
     }
@@ -40,7 +40,7 @@ angular.module('App').controller(
       };
       this.$scope.ftpBackup.model = null;
       this.$scope.loading = true;
-      this.$scope.featureAvailable = this.dedicatedServerFeatureAvailability.hasDedicatedServerBackupStorage();
+      this.$scope.featureAvailable = this.DedicatedServerFeatureAvailability.hasDedicatedServerBackupStorage();
       this.$scope.loadFtpBackupTable = this.loadFtpBackupTable.bind(this);
 
       this.$scope.$on('server.ftpbackup.reload', this.$onInit);

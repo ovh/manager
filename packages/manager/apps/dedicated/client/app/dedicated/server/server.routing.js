@@ -1,6 +1,6 @@
 import Ola from './interfaces/ola.class';
 
-angular.module('App').config(($stateProvider) => {
+export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.dedicated.server', {
     url: '/configuration/server/:productId',
     component: 'dedicatedServer',
@@ -78,4 +78,4 @@ angular.module('App').config(($stateProvider) => {
         }),
     },
   });
-});
+};
