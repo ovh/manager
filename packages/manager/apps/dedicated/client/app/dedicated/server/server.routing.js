@@ -3,8 +3,7 @@ import Ola from './interfaces/ola.class';
 angular.module('App').config(($stateProvider) => {
   $stateProvider.state('app.dedicated.server', {
     url: '/configuration/server/:productId',
-    templateUrl: 'dedicated/server/server.html',
-    controller: 'ServerCtrl',
+    component: 'dedicatedServer',
     reloadOnSearch: false,
     translations: { value: ['.'], format: 'json' },
     redirectTo: 'app.dedicated.server.dashboard',

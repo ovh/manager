@@ -4,12 +4,17 @@ import indexOf from 'lodash/indexOf';
 import isArray from 'lodash/isArray';
 import isEmpty from 'lodash/isEmpty';
 import set from 'lodash/set';
-import { ELIGIBLE_FOR_UPGRADE, URLS } from './server.constants';
 
-/* eslint-disable no-use-before-define */
-angular.module('App').controller(
-  'ServerCtrl',
-  /* @ngInject */ (
+import {
+  ELIGIBLE_FOR_UPGRADE,
+  NO_AUTORENEW_COUNTRIES,
+  URLS,
+  WEATHERMAP_URL,
+} from './server.constants';
+
+export default class ServerCtrl {
+  /* @ngInject */
+  constructor(
     $q,
     $scope,
     $state,
@@ -19,40 +24,47 @@ angular.module('App').controller(
     constants,
     coreConfig,
     dedicatedServerFeatureAvailability,
-    ola,
-    orderPrivateBandwidthLink,
-    orderPublicBandwidthLink,
     ovhUserPref,
     Polling,
-    resiliatePublicBandwidthLink,
-    resiliatePrivateBandwidthLink,
     Server,
-    server,
-    specifications,
     User,
-    NO_AUTORENEW_COUNTRIES,
-    WEATHERMAP_URL,
-  ) => {
-    const errorStatus = ['customer_error', 'ovh_error', 'error', 'cancelled'];
+  ) {
+    this.$q = $q;
+    this.$scope = $scope;
+    this.$state = $state;
+    this.$stateParams = $stateParams;
+    this.$timeout = $timeout;
+    this.$translate = $translate;
+    this.constants = constants;
+    this.coreConfig = coreConfig;
+    this.dedicatedServerFeatureAvailability = dedicatedServerFeatureAvailability;
+    this.ovhUserPref = ovhUserPref;
+    this.Polling = Polling;
+    this.Server = Server;
+    this.User = User;
+  }
 
-    $scope.$state = $state;
-    $scope.server = server;
-    $scope.specifications = specifications;
-    $scope.ola = ola;
-    $scope.orderPrivateBandwidthLink = orderPrivateBandwidthLink;
-    $scope.orderPublicBandwidthLink = orderPublicBandwidthLink;
-    $scope.resiliatePublicBandwidthLink = resiliatePublicBandwidthLink;
-    $scope.resiliatePrivateBandwidthLink = resiliatePrivateBandwidthLink;
+  $onInit() {
+    this.errorStatus = ['customer_error', 'ovh_error', 'error', 'cancelled'];
 
-    $scope.loadingServerInformations = true;
-    $scope.loadingServerError = false;
-    $scope.dedicatedServerFeatureAvailability = dedicatedServerFeatureAvailability;
+    this.$scope.$state = this.$state;
+    this.$scope.server = this.server;
+    this.$scope.specifications = this.specifications;
+    this.$scope.ola = this.ola;
+    this.$scope.orderPrivateBandwidthLink = this.orderPrivateBandwidthLink;
+    this.$scope.orderPublicBandwidthLink = this.orderPublicBandwidthLink;
+    this.$scope.resiliatePublicBandwidthLink = this.resiliatePublicBandwidthLink;
+    this.$scope.resiliatePrivateBandwidthLink = this.resiliatePrivateBandwidthLink;
 
-    $scope.loaders = {
+    this.$scope.loadingServerInformations = true;
+    this.$scope.loadingServerError = false;
+    this.$scope.dedicatedServerFeatureAvailability = this.dedicatedServerFeatureAvailability;
+
+    this.$scope.loaders = {
       autoRenew: true,
     };
 
-    $scope.disable = {
+    this.$scope.disable = {
       reboot: false,
       byOtherTask: false,
       install: false,
@@ -61,55 +73,56 @@ angular.module('App').controller(
       noDeleteMessage: false,
       usbStorageTab: false,
     };
-    $scope.urlRenew = null;
-    $scope.worldPart = coreConfig.getRegion();
+    this.$scope.urlRenew = null;
+    this.$scope.worldPart = this.coreConfig.getRegion();
 
-    $scope.bigModalDialog = false;
+    this.$scope.bigModalDialog = false;
 
-    $scope.newDisplayName = {
+    this.$scope.newDisplayName = {
       value: '',
     };
 
-    $scope.autoRenew = null;
-    $scope.autoRenewStopBother = true;
-    $scope.autoRenewable = false;
-    $scope.autoRenewGuide = null;
-    $scope.hasPaymentMean = false;
+    this.$scope.autoRenew = null;
+    this.$scope.autoRenewStopBother = true;
+    this.$scope.autoRenewable = false;
+    this.$scope.autoRenewGuide = null;
+    this.$scope.hasPaymentMean = false;
 
-    $scope.housingPhoneStopBother = true;
-    $scope.housingPhoneNumber = constants.urls.FR.housingPhoneSupport;
-    $scope.isHousing = false;
+    this.$scope.housingPhoneStopBother = true;
+    this.$scope.housingPhoneNumber = this.constants.urls.FR.housingPhoneSupport;
+    this.$scope.isHousing = false;
 
-    $scope.setToBigModalDialog = (active) => {
-      $scope.mediumModalDialog = false;
-      $scope.bigModalDialog = active;
+    this.$scope.setToBigModalDialog = (active) => {
+      this.$scope.mediumModalDialog = false;
+      this.$scope.bigModalDialog = active;
     };
 
-    $scope.resetAction = () => {
-      $scope.setAction(false);
-      $scope.setToBigModalDialog(false);
+    this.$scope.resetAction = () => {
+      this.$scope.setAction(false);
+      this.$scope.setToBigModalDialog(false);
     };
 
-    $scope.$on('$locationChangeStart', () => {
-      $scope.resetAction();
+    this.$scope.$on('$locationChangeStart', () => {
+      this.$scope.resetAction();
     });
 
-    $scope.setMessage = (message, data) => {
+    this.$scope.setMessage = (message, data) => {
       let messageToSend = message;
       let i = 0;
-      $scope.alertType = '';
+      this.$scope.alertType = '';
+
       if (data) {
         if (data.message) {
           messageToSend += ` (${data.message})`;
           switch (data.type) {
             case 'ERROR':
-              $scope.alertType = 'alert-danger';
+              this.$scope.alertType = 'alert-danger';
               break;
             case 'WARNING':
-              $scope.alertType = 'alert-warning';
+              this.$scope.alertType = 'alert-warning';
               break;
             case 'INFO':
-              $scope.alertType = 'alert-success';
+              this.$scope.alertType = 'alert-success';
               break;
             default:
               break;
@@ -118,18 +131,20 @@ angular.module('App').controller(
           if (data.messages.length > 0) {
             switch (data.state) {
               case 'ERROR':
-                $scope.alertType = 'alert-danger';
+                this.$scope.alertType = 'alert-danger';
                 break;
               case 'PARTIAL':
-                $scope.alertType = 'alert-warning';
+                this.$scope.alertType = 'alert-warning';
                 break;
               case 'OK':
-                $scope.alertType = 'alert-success';
+                this.$scope.alertType = 'alert-success';
                 break;
               default:
                 break;
             }
+
             messageToSend += ' (';
+
             for (i; i < data.messages.length; i += 1) {
               messageToSend += `${data.messages[i].id} : ${
                 data.messages[i].message
@@ -146,52 +161,53 @@ angular.module('App').controller(
             case 'paused':
             case 'ERROR':
             case 'error':
-              $scope.alertType = 'alert-danger';
+              this.$scope.alertType = 'alert-danger';
               break;
             case 'WAITING_ACK':
             case 'waitingAck':
             case 'DOING':
             case 'doing':
-              $scope.alertType = 'alert-warning';
+              this.$scope.alertType = 'alert-warning';
               break;
             case 'TODO':
             case 'todo':
             case 'DONE':
             case 'done':
-              $scope.alertType = 'alert-success';
+              this.$scope.alertType = 'alert-success';
               break;
             default:
               break;
           }
         } else if (data === 'true' || data === true) {
-          $scope.alertType = 'alert-success';
+          this.$scope.alertType = 'alert-success';
         } else if (data.type) {
           switch (data.type) {
             case 'ERROR':
-              $scope.alertType = 'alert-danger';
+              this.$scope.alertType = 'alert-danger';
               break;
             case 'WARNING':
-              $scope.alertType = 'alert-warning';
+              this.$scope.alertType = 'alert-warning';
               break;
             case 'INFO':
-              $scope.alertType = 'alert-success';
+              this.$scope.alertType = 'alert-success';
               break;
             default:
               break;
           }
         }
       } else if (data === 'false' || data === false) {
-        $scope.alertType = 'alert-danger';
+        this.$scope.alertType = 'alert-danger';
       }
-      $scope.message = messageToSend;
+
+      this.$scope.message = messageToSend;
     };
 
-    $scope.setAction = (action, data) => {
+    this.$scope.setAction = (action, data) => {
       if (action) {
-        $scope.currentAction = action;
-        $scope.currentActionData = data;
+        this.$scope.currentAction = action;
+        this.$scope.currentActionData = data;
 
-        $scope.stepPath = `dedicated/server/${$scope.currentAction}.html`;
+        this.$scope.stepPath = `dedicated/server/${this.$scope.currentAction}.html`;
 
         $('#currentAction').modal({
           keyboard: true,
@@ -199,471 +215,475 @@ angular.module('App').controller(
         });
       } else {
         $('#currentAction').modal('hide');
-        $scope.currentActionData = null;
-        $timeout(() => {
-          $scope.stepPath = '';
+        this.$scope.currentActionData = null;
+        this.$timeout(() => {
+          this.$scope.stepPath = '';
         }, 300);
       }
     };
 
-    $scope.$on('dedicated.informations.reload', () => {
-      loadServer();
+    this.$scope.$on('dedicated.informations.reload', () => {
+      this.loadServer();
     });
 
-    function load() {
-      User.getUrlOf('changeOwner').then((link) => {
-        $scope.changeOwnerUrl = link;
-      });
-
-      $scope.loaders.autoRenew = true;
-
-      $q.all({
-        user: User.getUser(),
-        paymentIds:
-          coreConfig.getRegion() !== 'US'
-            ? User.getValidPaymentMeansIds()
-            : $q.when([]),
-      })
-        .then((data) => {
-          $scope.user = data.user;
-          $scope.hasPaymentMean = data.paymentIds.length > 0;
-          $scope.hasAutoRenew();
-          checkIfStopBotherHousingPhone();
-        })
-        .finally(() => {
-          $scope.loaders.autoRenew = false;
-        });
-
-      loadServer()
-        .then(() => loadMonitoring())
-        .then(() => getTaskInProgress())
-        .finally(() => {
-          if ($scope.server.canTakeRendezVous) {
-            $state.go('app.dedicated.server.rendezvous');
-          }
-        });
-    }
-
-    function loadServer() {
-      if (!$scope.disable.noDeleteMessage) {
-        $scope.message = null;
-      } else {
-        $scope.disable.noDeleteMessage = false;
-      }
-
-      Server.getUrlRenew($stateParams.productId).then((url) => {
-        $scope.urlRenew = url;
-      });
-
-      Server.getUsbStorageInformations($stateParams.productId).then(
-        (result) => {
-          if (isArray(result) && result[1].usbKeys) {
-            $scope.disable.usbStorageTab = true;
-          }
-        },
-      );
-
-      return $q
-        .allSettled([
-          Server.getServiceInfos($stateParams.productId),
-          Server.getVrackInfos($stateParams.productId),
-        ])
-        .then((data) => {
-          const [serviceInfos, vrackInfos] = data;
-
-          const expiration = moment.utc($scope.server.expiration);
-          set(
-            $scope.server,
-            'expiration',
-            moment([
-              expiration.year(),
-              expiration.month(),
-              expiration.date(),
-            ]).toDate(),
-          );
-
-          const creation = moment.utc(serviceInfos.creation);
-          set(
-            $scope.server,
-            'creation',
-            moment([
-              creation.year(),
-              creation.month(),
-              creation.date(),
-            ]).toDate(),
-          );
-
-          /* if there is no os installed, the api return "none_64" */
-          if (/^none_\d{2}?$/.test(server.os)) {
-            $scope.server.os = null;
-          }
-
-          $scope.infoServer = {
-            dc: $scope.server.datacenter.replace('_', ' '),
-            dcImage: $scope.server.datacenter.replace(/_.*/g, ''),
-            rack: $scope.server.rack,
-            serverId: $scope.server.serverId,
-          };
-          $scope.vrackInfos = vrackInfos;
-
-          $scope.loadingServerInformations = false;
-          $scope.isHousing = isHousing(server);
-          $scope.serviceInfos = serviceInfos;
-
-          $scope.tabOptions = {
-            isFirewallEnabled: dedicatedServerFeatureAvailability.allowDedicatedServerFirewallCiscoAsa(),
-            isIPMIDisabled: $scope.isHousing,
-            isUSBStorageEnabled: dedicatedServerFeatureAvailability.allowDedicatedServerUSBKeys(),
-          };
-
-          $scope.$broadcast('dedicated.server.refreshTabs');
-
-          if (isEligibleForUpgrade()) {
-            Server.getUpgradeProductName(
-              ELIGIBLE_FOR_UPGRADE.PLAN_NAME,
-              $scope.user.ovhSubsidiary,
-            ).then((upgradeName) => {
-              $scope.upgradeName = upgradeName;
-            });
-          }
-        })
-        .catch((data) => {
-          $scope.loadingServerInformations = false;
-          $scope.loadingServerError = true;
-          set(data, 'type', 'ERROR');
-          $scope.setMessage(
-            $translate.instant('server_dashboard_loading_error'),
-            data,
-          );
-        });
-    }
-
-    function loadMonitoring() {
-      return $q
-        .all([
-          Server.getModels(),
-          Server.getAllServiceMonitoring($stateParams.productId),
-        ])
-        .then(
-          ([models, allServiceMonitoring]) => {
-            $scope.monitoringProtocolEnum =
-              models.data.models[
-                'dedicated.server.MonitoringProtocolEnum'
-              ].enum;
-            $scope.serviceMonitoring = allServiceMonitoring;
-            $scope.servicesStateLinks = {
-              weathermap: WEATHERMAP_URL,
-              vms: constants.vmsUrl,
-              travaux: constants.travauxUrl,
-            };
-          },
-          (err) => {
-            set(err, 'data.type', 'ERROR');
-            $scope.setMessage(
-              $translate.instant('server_dashboard_loading_error'),
-              err.data,
-            );
-          },
-        );
-    }
-
-    $scope.isMonitoringEnabled = (protocol) =>
-      $scope.serviceMonitoring.filter(
+    this.$scope.isMonitoringEnabled = (protocol) =>
+      this.$scope.serviceMonitoring.filter(
         (monitoring) => monitoring.enabled && monitoring.protocol === protocol,
       ).length > 0;
 
-    $scope.$on('server.monitoring.reload', loadMonitoring);
+    this.$scope.$on('server.monitoring.reload', this.loadMonitoring);
 
-    // ---------- TASKS + Polling-------------
-
-    $scope.$on('$destroy', () => {
-      Polling.addKilledScope();
+    this.$scope.$on('$destroy', () => {
+      this.Polling.addKilledScope();
     });
-
-    function getTaskInProgress() {
-      return $q
-        .all({
-          hardRebootTasks: Server.getTaskInProgress(
-            $stateParams.productId,
-            'hardReboot',
-          ),
-          resetIPMITasks: Server.getTaskInProgress(
-            $stateParams.productId,
-            'resetIPMI',
-          ),
-          reinstallServerTasks: Server.getTaskInProgress(
-            $stateParams.productId,
-            'reinstallServer',
-          ),
-        })
-        .then(({ hardRebootTasks, resetIPMITasks, reinstallServerTasks }) => {
-          if (isArray(hardRebootTasks) && !isEmpty(hardRebootTasks)) {
-            $scope.$broadcast(
-              'dedicated.informations.reboot',
-              hardRebootTasks[0],
-            );
-          }
-
-          // Do not call broadcast dedicated.ipmi.resetinterfaces
-          if (isArray(resetIPMITasks) && !isEmpty(resetIPMITasks)) {
-            initIpmiRestart(resetIPMITasks[0]);
-          }
-
-          if (isArray(reinstallServerTasks) && !isEmpty(reinstallServerTasks)) {
-            $scope.$broadcast(
-              'dedicated.informations.reinstall',
-              reinstallServerTasks[0],
-            );
-          } else if (!has(reinstallServerTasks, 'messages')) {
-            checkInstallationProgress();
-          } else {
-            $scope.$broadcast('dedicated.server.refreshTabs');
-          }
-        });
-    }
 
     // Server Restart
-    $scope.$on('dedicated.informations.reboot', (e, _task) => {
+    this.$scope.$on('dedicated.informations.reboot', (e, _task) => {
       let task = _task;
-      $scope.disable.reboot = true;
+      this.$scope.disable.reboot = true;
       task = task.data;
       task.id = task.taskId;
-      startPollRestart(task);
+      this.startPollRestart(task);
     });
-
-    function startPollRestart(task) {
-      Server.addTask($stateParams.productId, task, $scope.$id).then(
-        (state) => {
-          if (Polling.isResolve(state)) {
-            $scope.disable.reboot = false;
-            $scope.$broadcast('dedicated.informations.reboot.done');
-            $scope.setMessage(
-              $translate.instant('server_configuration_reboot_successfull', {
-                t0: $scope.server.name,
-              }),
-              true,
-            );
-          } else {
-            startPollRestart(task);
-          }
-        },
-        (data) => {
-          $scope.disable.reboot = false;
-          $scope.$broadcast('dedicated.informations.reboot.done');
-          set(data, 'type', 'ERROR');
-          $scope.setMessage(
-            $translate.instant('server_configuration_reboot_fail_task'),
-            data,
-          );
-        },
-      );
-    }
 
     // Server Install
-    $scope.$on('dedicated.informations.reinstall', (e, task) => {
-      if (!$scope.disable.install) {
-        $scope.disable.install = true;
-        checkInstallationProgress(task);
+    this.$scope.$on('dedicated.informations.reinstall', (e, task) => {
+      if (!this.$scope.disable.install) {
+        this.$scope.disable.install = true;
+        this.checkInstallationProgress(task);
       }
     });
 
-    function checkInstallationProgress(task) {
-      Server.progressInstallation($stateParams.productId)
-        .then((installationStep) => {
-          $scope.disable.installationInProgress = true;
-          $scope.disable.installationInProgressError = false;
-          angular.forEach(installationStep.progress, (value) => {
-            if (includes(errorStatus, value.status.toString().toLowerCase())) {
-              $scope.disable.installationInProgressError = true;
-              $scope.disable.install = false;
-            }
-          });
-
-          if (!$scope.disable.installationInProgressError && task) {
-            startPollReinstall(task);
-          }
-        })
-        .catch((err) => {
-          if (err.status === 404) {
-            if ($scope.disable.installationInProgress) {
-              $scope.disable.noDeleteMessage = true;
-              $scope.setMessage(
-                $translate.instant(
-                  'server_configuration_installation_progress_end',
-                ),
-                true,
-              );
-              $scope.$broadcast('dedicated.informations.reload');
-            }
-
-            $scope.disable.install = false;
-            $scope.disable.installationInProgress = false;
-            $scope.disable.installationInProgressError = false;
-            $scope.loadingServerInformations = false;
-            $scope.$broadcast('dedicated.server.refreshTabs');
-            return;
-          }
-
-          if (task) {
-            startPollReinstall(task);
-          } else {
-            $scope.setMessage(
-              $translate.instant(
-                'server_configuration_installation_fail_task',
-                { t0: $scope.server.name },
-              ),
-              false,
-            );
-          }
-        });
-    }
-
-    function startPollReinstall(task) {
-      Server.addTask($stateParams.productId, task, $scope.$id)
-        .then((state) => {
-          if (Polling.isResolve(state)) {
-            if (Polling.isDone(state)) {
-              checkInstallationProgress();
-            }
-          } else {
-            checkInstallationProgress(task);
-          }
-        })
-        .catch((data) => {
-          $scope.disable.install = false;
-          set(data, 'type', 'ERROR');
-          $scope.setMessage(
-            $translate.instant('server_configuration_installation_fail_task', {
-              t0: $scope.server.name,
-            }),
-            data,
-          );
-        });
-    }
-
     // Auto renew
-    $scope.hasAutoRenew = () => {
-      $scope.autoRenew = false;
-      if (NO_AUTORENEW_COUNTRIES.indexOf($scope.user.ovhSubsidiary) === -1) {
-        return $q
+    this.$scope.hasAutoRenew = () => {
+      this.$scope.autoRenew = false;
+      if (
+        NO_AUTORENEW_COUNTRIES.indexOf(this.$scope.user.ovhSubsidiary) === -1
+      ) {
+        return this.$q
           .all({
-            serverServiceInfo: Server.getServiceInfos($stateParams.productId),
-            isAutoRenewable: Server.isAutoRenewable($stateParams.productId),
+            serverServiceInfo: this.Server.getServiceInfos(
+              this.$stateParams.productId,
+            ),
+            isAutoRenewable: this.Server.isAutoRenewable(
+              this.$stateParams.productId,
+            ),
           })
           .then((results) => {
-            $scope.autoRenew =
+            this.$scope.autoRenew =
               results.serverServiceInfo.renew &&
               results.serverServiceInfo.renew.automatic;
-            $scope.autoRenewable = results.isAutoRenewable;
-            $scope.autoRenewGuide =
-              constants.urls[$scope.user.ovhSubsidiary].guides.autoRenew ||
-              constants.urls.FR.guides.autoRenew;
-            $scope.checkIfStopBotherAutoRenew();
+            this.$scope.autoRenewable = results.isAutoRenewable;
+            this.$scope.autoRenewGuide =
+              this.constants.urls[this.$scope.user.ovhSubsidiary].guides
+                .autoRenew || this.constants.urls.FR.guides.autoRenew;
+            this.$scope.checkIfStopBotherAutoRenew();
           });
       }
-      return $q.when(true);
+      return this.$q.when(true);
     };
 
-    $scope.stopBotherAutoRenew = () => {
-      $scope.autoRenewStopBother = true;
+    this.$scope.stopBotherAutoRenew = () => {
+      this.$scope.autoRenewStopBother = true;
       let serverArrayToStopBother = [];
 
-      ovhUserPref
+      this.ovhUserPref
         .getValue('SERVER_AUTORENEW_STOP_BOTHER')
         .then((data) => {
           serverArrayToStopBother = data;
-          return Server.getSelected($stateParams.productId);
+          return this.Server.getSelected(this.$stateParams.productId);
         })
         .then((dedicatedServer) => {
           serverArrayToStopBother.push(dedicatedServer.name);
-          return ovhUserPref.assign(
+          return this.ovhUserPref.assign(
             'SERVER_AUTORENEW_STOP_BOTHER',
             serverArrayToStopBother,
           );
         })
         .catch((error) =>
           error.status === 404
-            ? $scope.createStopBotherAutoRenewUserPref()
-            : $scope.setMessage(
-                $translate.instant('server_autorenew_stop_bother_error'),
+            ? this.$scope.createStopBotherAutoRenewUserPref()
+            : this.$scope.setMessage(
+                this.$translate.instant('server_autorenew_stop_bother_error'),
                 error.data,
               ),
         );
     };
 
-    $scope.createStopBotherAutoRenewUserPref = () => {
-      ovhUserPref.create('SERVER_AUTORENEW_STOP_BOTHER', [$scope.server.name]);
+    this.$scope.createStopBotherAutoRenewUserPref = () => {
+      this.ovhUserPref.create('SERVER_AUTORENEW_STOP_BOTHER', [
+        this.$scope.server.name,
+      ]);
     };
 
-    $scope.checkIfStopBotherAutoRenew = () =>
-      ovhUserPref
+    this.$scope.checkIfStopBotherAutoRenew = () =>
+      this.ovhUserPref
         .getValue('SERVER_AUTORENEW_STOP_BOTHER')
         .then((serverToStopBother) => {
-          $scope.autoRenewStopBother =
-            indexOf(serverToStopBother, $scope.server.name) !== -1;
+          this.$scope.autoRenewStopBother =
+            indexOf(serverToStopBother, this.$scope.server.name) !== -1;
         })
         // eslint-disable-next-line no-return-assign
         .catch((error) =>
           error.status === 404
-            ? ($scope.autoRenewStopBother = false)
-            : $q.reject(error),
+            ? (this.$scope.autoRenewStopBother = false)
+            : this.$q.reject(error),
         );
 
     // IPMI Restart (other task by tab)
-    $scope.$on('dedicated.ipmi.resetinterfaces', (e, task) => {
-      initIpmiRestart(task);
+    this.$scope.$on('dedicated.ipmi.resetinterfaces', (e, task) => {
+      this.initIpmiRestart(task);
     });
 
-    function initIpmiRestart(task) {
-      $scope.disable.byOtherTask = true;
-      startIpmiPollRestart(task);
-    }
-
-    function startIpmiPollRestart(task) {
-      $scope.disable.byOtherTask = true;
-      Server.addTaskFast($stateParams.productId, task, $scope.$id)
-        .then((state) => {
-          if (Polling.isResolve(state)) {
-            $scope.disable.byOtherTask = false;
-          } else {
-            startIpmiPollRestart(task);
-          }
-        })
-        .catch(() => {
-          $scope.disable.byOtherTask = false;
-        });
-    }
-
-    $scope.createStopBotherUserPref = () => {
-      ovhUserPref.create('HOUSING_SUPPORT_PHONE_STOP_BOTHER', true);
+    this.$scope.createStopBotherUserPref = () => {
+      this.ovhUserPref.create('HOUSING_SUPPORT_PHONE_STOP_BOTHER', true);
     };
 
-    function checkIfStopBotherHousingPhone() {
-      return ovhUserPref
-        .getValue('HOUSING_SUPPORT_PHONE_STOP_BOTHER')
-        .then((stopBother) => {
-          $scope.housingPhoneStopBother = stopBother;
-        })
-        .catch(() => {
-          $scope.housingPhoneStopBother = false;
+    this.load();
+
+    this.$scope.isEligibleForUpgrade = () => this.isEligibleForUpgrade();
+    this.$scope.URLS = URLS;
+  }
+
+  load() {
+    this.User.getUrlOf('changeOwner').then((link) => {
+      this.$scope.changeOwnerUrl = link;
+    });
+
+    this.$scope.loaders.autoRenew = true;
+
+    this.$q
+      .all({
+        user: this.User.getUser(),
+        paymentIds:
+          this.coreConfig.getRegion() !== 'US'
+            ? this.User.getValidPaymentMeansIds()
+            : this.$q.when([]),
+      })
+      .then((data) => {
+        this.$scope.user = data.user;
+        this.$scope.hasPaymentMean = data.paymentIds.length > 0;
+        this.$scope.hasAutoRenew();
+        this.checkIfStopBotherHousingPhone();
+      })
+      .finally(() => {
+        this.$scope.loaders.autoRenew = false;
+      });
+
+    this.loadServer()
+      .then(() => this.loadMonitoring())
+      .then(() => this.getTaskInProgress())
+      .finally(() => {
+        if (this.$scope.server.canTakeRendezVous) {
+          this.$state.go('app.dedicated.server.rendezvous');
+        }
+      });
+  }
+
+  loadServer() {
+    if (!this.$scope.disable.noDeleteMessage) {
+      this.$scope.message = null;
+    } else {
+      this.$scope.disable.noDeleteMessage = false;
+    }
+
+    this.Server.getUrlRenew(this.$stateParams.productId).then((url) => {
+      this.$scope.urlRenew = url;
+    });
+
+    this.Server.getUsbStorageInformations(this.$stateParams.productId).then(
+      (result) => {
+        if (isArray(result) && result[1].usbKeys) {
+          this.$scope.disable.usbStorageTab = true;
+        }
+      },
+    );
+
+    return this.$q
+      .allSettled([
+        this.Server.getServiceInfos(this.$stateParams.productId),
+        this.Server.getVrackInfos(this.$stateParams.productId),
+      ])
+      .then((data) => {
+        const [serviceInfos, vrackInfos] = data;
+        const expiration = moment.utc(this.$scope.server.expiration);
+
+        set(
+          this.$scope.server,
+          'expiration',
+          moment([
+            expiration.year(),
+            expiration.month(),
+            expiration.date(),
+          ]).toDate(),
+        );
+
+        const creation = moment.utc(serviceInfos.creation);
+
+        set(
+          this.$scope.server,
+          'creation',
+          moment([creation.year(), creation.month(), creation.date()]).toDate(),
+        );
+
+        /* if there is no os installed, the api return "none_64" */
+        if (/^none_\d{2}?$/.test(this.server.os)) {
+          this.$scope.server.os = null;
+        }
+
+        this.$scope.infoServer = {
+          dc: this.$scope.server.datacenter.replace('_', ' '),
+          dcImage: this.$scope.server.datacenter.replace(/_.*/g, ''),
+          rack: this.$scope.server.rack,
+          serverId: this.$scope.server.serverId,
+        };
+        this.$scope.vrackInfos = vrackInfos;
+
+        this.$scope.loadingServerInformations = false;
+        this.$scope.isHousing = ServerCtrl.isHousing(this.server);
+        this.$scope.serviceInfos = serviceInfos;
+
+        this.$scope.tabOptions = {
+          isFirewallEnabled: this.dedicatedServerFeatureAvailability.allowDedicatedServerFirewallCiscoAsa(),
+          isIPMIDisabled: this.$scope.isHousing,
+          isUSBStorageEnabled: this.dedicatedServerFeatureAvailability.allowDedicatedServerUSBKeys(),
+        };
+
+        this.$scope.$broadcast('dedicated.server.refreshTabs');
+
+        if (this.isEligibleForUpgrade()) {
+          this.Server.getUpgradeProductName(
+            ELIGIBLE_FOR_UPGRADE.PLAN_NAME,
+            this.$scope.user.ovhSubsidiary,
+          ).then((upgradeName) => {
+            this.$scope.upgradeName = upgradeName;
+          });
+        }
+      })
+      .catch((data) => {
+        this.$scope.loadingServerInformations = false;
+        this.$scope.loadingServerError = true;
+        set(data, 'type', 'ERROR');
+        this.$scope.setMessage(
+          this.$translate.instant('server_dashboard_loading_error'),
+          data,
+        );
+      });
+  }
+
+  loadMonitoring() {
+    return this.$q
+      .all([
+        this.Server.getModels(),
+        this.Server.getAllServiceMonitoring(this.$stateParams.productId),
+      ])
+      .then(([models, allServiceMonitoring]) => {
+        this.$scope.monitoringProtocolEnum =
+          models.data.models['dedicated.server.MonitoringProtocolEnum'].enum;
+        this.$scope.serviceMonitoring = allServiceMonitoring;
+        this.$scope.servicesStateLinks = {
+          weathermap: WEATHERMAP_URL,
+          vms: this.constants.vmsUrl,
+          travaux: this.constants.travauxUrl,
+        };
+      })
+      .catch((err) => {
+        set(err, 'data.type', 'ERROR');
+        this.$scope.setMessage(
+          this.$translate.instant('server_dashboard_loading_error'),
+          err.data,
+        );
+      });
+  }
+
+  getTaskInProgress() {
+    return this.$q
+      .all({
+        hardRebootTasks: this.Server.getTaskInProgress(
+          this.$stateParams.productId,
+          'hardReboot',
+        ),
+        resetIPMITasks: this.Server.getTaskInProgress(
+          this.$stateParams.productId,
+          'resetIPMI',
+        ),
+        reinstallServerTasks: this.Server.getTaskInProgress(
+          this.$stateParams.productId,
+          'reinstallServer',
+        ),
+      })
+      .then(({ hardRebootTasks, resetIPMITasks, reinstallServerTasks }) => {
+        if (isArray(hardRebootTasks) && !isEmpty(hardRebootTasks)) {
+          this.$scope.$broadcast(
+            'dedicated.informations.reboot',
+            hardRebootTasks[0],
+          );
+        }
+
+        // Do not call broadcast dedicated.ipmi.resetinterfaces
+        if (isArray(resetIPMITasks) && !isEmpty(resetIPMITasks)) {
+          this.initIpmiRestart(resetIPMITasks[0]);
+        }
+
+        if (isArray(reinstallServerTasks) && !isEmpty(reinstallServerTasks)) {
+          this.$scope.$broadcast(
+            'dedicated.informations.reinstall',
+            reinstallServerTasks[0],
+          );
+        } else if (!has(reinstallServerTasks, 'messages')) {
+          this.checkInstallationProgress();
+        } else {
+          this.$scope.$broadcast('dedicated.server.refreshTabs');
+        }
+      });
+  }
+
+  startPollRestart(task) {
+    this.Server.addTask(this.$stateParams.productId, task, this.$scope.$id)
+      .then((state) => {
+        if (this.Polling.isResolve(state)) {
+          this.$scope.disable.reboot = false;
+          this.$scope.$broadcast('dedicated.informations.reboot.done');
+          this.$scope.setMessage(
+            this.$translate.instant('server_configuration_reboot_successfull', {
+              t0: this.$scope.server.name,
+            }),
+            true,
+          );
+        } else {
+          this.startPollRestart(task);
+        }
+      })
+      .catch((data) => {
+        this.$scope.disable.reboot = false;
+        this.$scope.$broadcast('dedicated.informations.reboot.done');
+        set(data, 'type', 'ERROR');
+        this.$scope.setMessage(
+          this.$translate.instant('server_configuration_reboot_fail_task'),
+          data,
+        );
+      });
+  }
+
+  checkInstallationProgress(task) {
+    this.Server.progressInstallation(this.$stateParams.productId)
+      .then((installationStep) => {
+        this.$scope.disable.installationInProgress = true;
+        this.$scope.disable.installationInProgressError = false;
+        angular.forEach(installationStep.progress, (value) => {
+          if (
+            includes(this.errorStatus, value.status.toString().toLowerCase())
+          ) {
+            this.$scope.disable.installationInProgressError = true;
+            this.$scope.disable.install = false;
+          }
         });
-    }
 
-    function isHousing(dedicatedServer) {
-      return dedicatedServer.commercialRange === 'housing';
-    }
+        if (!this.$scope.disable.installationInProgressError && task) {
+          this.startPollReinstall(task);
+        }
+      })
+      .catch((err) => {
+        if (err.status === 404) {
+          if (this.$scope.disable.installationInProgress) {
+            this.$scope.disable.noDeleteMessage = true;
+            this.$scope.setMessage(
+              this.$translate.instant(
+                'server_configuration_installation_progress_end',
+              ),
+              true,
+            );
+            this.$scope.$broadcast('dedicated.informations.reload');
+          }
 
-    load();
+          this.$scope.disable.install = false;
+          this.$scope.disable.installationInProgress = false;
+          this.$scope.disable.installationInProgressError = false;
+          this.$scope.loadingServerInformations = false;
+          this.$scope.$broadcast('dedicated.server.refreshTabs');
+          return;
+        }
 
-    $scope.isEligibleForUpgrade = () => isEligibleForUpgrade();
-    $scope.URLS = URLS;
+        if (task) {
+          this.startPollReinstall(task);
+        } else {
+          this.$scope.setMessage(
+            this.$translate.instant(
+              'server_configuration_installation_fail_task',
+              { t0: this.$scope.server.name },
+            ),
+            false,
+          );
+        }
+      });
+  }
 
-    function isEligibleForUpgrade() {
-      return includes(
-        ELIGIBLE_FOR_UPGRADE.SUBSIDIARIES,
-        $scope.user.ovhSubsidiary,
-      );
-    }
-  },
-);
-/* eslint-enable no-use-before-define */
+  startPollReinstall(task) {
+    this.Server.addTask(this.$stateParams.productId, task, this.$scope.$id)
+      .then((state) => {
+        if (this.Polling.isResolve(state)) {
+          if (this.Polling.isDone(state)) {
+            this.checkInstallationProgress();
+          }
+        } else {
+          this.checkInstallationProgress(task);
+        }
+      })
+      .catch((data) => {
+        this.$scope.disable.install = false;
+        set(data, 'type', 'ERROR');
+        this.$scope.setMessage(
+          this.$translate.instant(
+            'server_configuration_installation_fail_task',
+            {
+              t0: this.$scope.server.name,
+            },
+          ),
+          data,
+        );
+      });
+  }
+
+  initIpmiRestart(task) {
+    this.$scope.disable.byOtherTask = true;
+    this.startIpmiPollRestart(task);
+  }
+
+  startIpmiPollRestart(task) {
+    this.$scope.disable.byOtherTask = true;
+
+    this.Server.addTaskFast(this.$stateParams.productId, task, this.$scope.$id)
+      .then((state) => {
+        if (this.Polling.isResolve(state)) {
+          this.$scope.disable.byOtherTask = false;
+        } else {
+          this.startIpmiPollRestart(task);
+        }
+      })
+      .catch(() => {
+        this.$scope.disable.byOtherTask = false;
+      });
+  }
+
+  checkIfStopBotherHousingPhone() {
+    return this.ovhUserPref
+      .getValue('HOUSING_SUPPORT_PHONE_STOP_BOTHER')
+      .then((stopBother) => {
+        this.$scope.housingPhoneStopBother = stopBother;
+      })
+      .catch(() => {
+        this.$scope.housingPhoneStopBother = false;
+      });
+  }
+
+  static isHousing(dedicatedServer) {
+    return dedicatedServer.commercialRange === 'housing';
+  }
+
+  isEligibleForUpgrade() {
+    return includes(
+      ELIGIBLE_FOR_UPGRADE.SUBSIDIARIES,
+      this.$scope.user.ovhSubsidiary,
+    );
+  }
+}
