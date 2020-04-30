@@ -2,22 +2,7 @@ import './server.less';
 
 angular
   .module('App')
-  .constant('WEATHERMAP_URL', 'http://weathermap.ovh.net/')
   .constant('VMS_URL', 'http://weathermap.ovh.net/')
-  .constant('NO_AUTORENEW_COUNTRIES', [
-    'ASIA',
-    'AU',
-    'CZ',
-    'PL',
-    'CA',
-    'QC',
-    'SG',
-    'WE',
-    'WS',
-    'MA',
-    'TN',
-    'SN',
-  ])
   .constant('FIREWALL_RULE_ACTIONS', {
     ALLOW: 'PERMIT',
     DENY: 'DENY',
