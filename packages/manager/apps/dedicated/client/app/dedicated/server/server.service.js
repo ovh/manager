@@ -12,257 +12,237 @@ import snakeCase from 'lodash/snakeCase';
 import sortBy from 'lodash/sortBy';
 import uniq from 'lodash/uniq';
 
-angular
-  .module('services')
-  .constant('SERVERSTATS_PERIOD_ENUM', {
-    HOURLY: {
-      standardDays: 0,
-      standardHours: 0,
-      standardMinutes: 1,
-      standardSeconds: 60,
-      millis: 60000,
-    },
-    DAILY: {
-      standardDays: 0,
-      standardHours: 0,
-      standardMinutes: 5,
-      standardSeconds: 300,
-      millis: 300000,
-    },
-    WEEKLY: {
-      standardDays: 0,
-      standardHours: 0,
-      standardMinutes: 30,
-      standardSeconds: 1800,
-      millis: 1800000,
-    },
-    MONTHLY: {
-      standardDays: 0,
-      standardHours: 2,
-      standardMinutes: 120,
-      standardSeconds: 7200,
-      millis: 7200000,
-    },
-    YEARLY: {
-      standardDays: 1,
-      standardHours: 24,
-      standardMinutes: 1440,
-      standardSeconds: 86400,
-      millis: 86400000,
-    },
-  })
-  .constant('HARDWARE_RAID_RULE_DEFAULT_NAME', 'managerHardRaid')
-  .service('Server', function serverF(
-    $http,
-    $q,
-    constants,
-    coreConfig,
-    $cacheFactory,
-    $rootScope,
-    $translate,
-    WucApi,
-    Polling,
-    OvhApiOrder,
-    OvhApiOrderCatalogPublic,
-    OvhHttp,
-    SERVERSTATS_PERIOD_ENUM,
-    HARDWARE_RAID_RULE_DEFAULT_NAME,
-  ) {
-    this.OvhApiOrderCatalogPublic = OvhApiOrderCatalogPublic;
-    this.OvhApiOrderBaremetalPublicBW = OvhApiOrder.Upgrade()
-      .BaremetalPublicBandwidth()
-      .v6();
-    this.OvhApiOrderBaremetalPrivateBW = OvhApiOrder.Upgrade()
-      .BaremetalPrivateBandwidth()
-      .v6();
+angular.module('services').service(
+  'Server',
+  class ServerF {
+    /* @ngInject */
+    constructor(
+      $cacheFactory,
+      $http,
+      $q,
+      $rootScope,
+      $translate,
+      constants,
+      coreConfig,
+      OvhApiOrder,
+      OvhApiOrderCatalogPublic,
+      OvhHttp,
+      Polling,
+      WucApi,
+    ) {
+      this.$cacheFactory = $cacheFactory;
+      this.$http = $http;
+      this.$q = $q;
+      this.$rootScope = $rootScope;
+      this.$translate = $translate;
+      this.constants = constants;
+      this.coreConfig = coreConfig;
+      this.OvhApiOrder = OvhApiOrder;
+      this.OvhApiOrderCatalogPublic = OvhApiOrderCatalogPublic;
+      this.OvhHttp = OvhHttp;
+      this.Polling = Polling;
+      this.WucApi = WucApi;
 
-    const self = this;
-    const serverCaches = {
-      ipmi: $cacheFactory('UNIVERS_DEDICATED_SERVER_IPMI'),
-      ovhTemplates: $cacheFactory(
-        'UNIVERS_DEDICATED_SERVER_INSTALLATION_OVH_TEMPLATE',
-      ),
-    };
-    const requests = {
-      serverDetails: null,
-      serverStatistics: null,
-      serverStatisticsConst: null,
-    };
-    const path = {
-      product: 'dedicated/server/{serviceName}',
-      blocks: 'module/ip/blocks',
-      installation: 'installation',
-      installationMe: 'me/installationTemplate',
-      ip: 'ip',
-      sshMe: 'me/sshKey',
-      order: 'order/dedicated/server/{serviceName}',
-      sms: 'sms',
-      proxy: 'apiv6',
-      dedicatedServer: 'apiv6/dedicated/server',
-    };
+      this.OvhApiOrderBaremetalPublicBW = OvhApiOrder.Upgrade()
+        .BaremetalPublicBandwidth()
+        .v6();
+      this.OvhApiOrderBaremetalPrivateBW = OvhApiOrder.Upgrade()
+        .BaremetalPrivateBandwidth()
+        .v6();
 
-    // TODO delete this
-    const serverCache = $cacheFactory('UNIVERS_DEDICATED_SERVER_');
+      this.serverCaches = {
+        ipmi: $cacheFactory('UNIVERS_DEDICATED_SERVER_IPMI'),
+        ovhTemplates: $cacheFactory(
+          'UNIVERS_DEDICATED_SERVER_INSTALLATION_OVH_TEMPLATE',
+        ),
+      };
 
-    function resetCache(targetedCache) {
-      if (targetedCache && targetedCache !== serverCaches.all) {
+      this.requests = {
+        serverDetails: null,
+        serverStatistics: null,
+        serverStatisticsConst: null,
+      };
+
+      this.path = {
+        product: 'dedicated/server/{serviceName}',
+        blocks: 'module/ip/blocks',
+        installation: 'installation',
+        installationMe: 'me/installationTemplate',
+        ip: 'ip',
+        sshMe: 'me/sshKey',
+        order: 'order/dedicated/server/{serviceName}',
+        sms: 'sms',
+        proxy: 'apiv6',
+        dedicatedServer: 'apiv6/dedicated/server',
+      };
+
+      this.serverCache = $cacheFactory('UNIVERS_DEDICATED_SERVER_');
+
+      /**
+       * Specific API wrapper (this.<get|put|post|delete>), @see 'WucApi' service.
+       * Extra params:
+       *   broadcast, forceRefresh
+       */
+      angular.forEach(['get', 'put', 'post', 'delete'], (operationType) => {
+        this[operationType] = function buildOperation(productId, url, _opt) {
+          const opt = _opt || {};
+
+          if (opt.forceRefresh) {
+            this.resetCache(opt.cache);
+          }
+
+          if (!productId) {
+            return $q.reject(productId);
+          }
+
+          const urlPath = URI.expand(
+            (!opt.urlPath && this.path.product) || opt.urlPath,
+            {
+              serviceName: productId,
+            },
+          ).toString();
+          const fullUrl = ['apiv6', urlPath];
+
+          const params = angular.extend(
+            {
+              cache: operationType === 'get' ? opt.cache : false, // [TRICK] Force no cache for POST|PUT|DELETE
+            },
+            opt,
+          );
+
+          // Because Play dislike URL finished by a slash...
+          return WucApi[operationType](
+            url ? fullUrl.concat(url).join('/') : fullUrl.join('/'),
+            params,
+          )
+            .then((response) => {
+              if (opt.cache && operationType !== 'get') {
+                // [TRICK] Force refresh of datas when POST|PUT|DELETE
+                this.resetCache(opt.cache);
+              }
+
+              if (opt.broadcast) {
+                if (opt.broadcastParam) {
+                  $rootScope.$broadcast(opt.broadcast, opt.broadcastParam);
+                } else {
+                  $rootScope.$broadcast(opt.broadcast, response);
+                }
+              }
+              return response;
+            })
+            .catch((response) => $q.reject(response));
+        };
+      });
+    }
+
+    resetCache(targetedCache) {
+      if (targetedCache && targetedCache !== this.serverCaches.all) {
         targetedCache.removeAll();
       } else {
-        angular.forEach(serverCaches, (_cache) => {
+        angular.forEach(this.serverCaches, (_cache) => {
           _cache.removeAll();
         });
 
-        // TODO DELETE
-        serverCache.removeAll();
-        /* eslint-disable no-restricted-syntax, no-prototype-builtins */
-        for (const request in requests) {
-          if (requests.hasOwnProperty(request)) {
-            requests[request] = null;
+        this.serverCache.removeAll();
+
+        // eslint-disable-next-line no-restricted-syntax
+        for (const request in this.requests) {
+          // eslint-disable-next-line no-prototype-builtins
+          if (this.requests.hasOwnProperty(request)) {
+            this.requests[request] = null;
           }
         }
-        /* eslint-enable no-restricted-syntax, no-prototype-builtins */
       }
     }
 
-    /**
-     * Specific API wrapper (this.<get|put|post|delete>), @see 'WucApi' service.
-     * Extra params:
-     *   broadcast, forceRefresh
-     */
-    angular.forEach(['get', 'put', 'post', 'delete'], (operationType) => {
-      self[operationType] = function buildOperation(productId, url, _opt) {
-        const opt = _opt || {};
-
-        if (opt.forceRefresh) {
-          resetCache(opt.cache);
-        }
-
-        if (!productId) {
-          return $q.reject(productId);
-        }
-
-        const urlPath = URI.expand(
-          (!opt.urlPath && path.product) || opt.urlPath,
-          {
-            serviceName: productId,
-          },
-        ).toString();
-        const fullUrl = ['apiv6', urlPath];
-
-        const params = angular.extend(
-          {
-            cache: operationType === 'get' ? opt.cache : false, // [TRICK] Force no cache for POST|PUT|DELETE
-          },
-          opt,
-        );
-
-        // Because Play dislike URL finished by a slash...
-        return WucApi[operationType](
-          url ? fullUrl.concat(url).join('/') : fullUrl.join('/'),
-          params,
-        ).then(
-          (response) => {
-            if (opt.cache && operationType !== 'get') {
-              // [TRICK] Force refresh of datas when POST|PUT|DELETE
-              resetCache(opt.cache);
-            }
-            if (opt.broadcast) {
-              if (opt.broadcastParam) {
-                $rootScope.$broadcast(opt.broadcast, opt.broadcastParam);
-              } else {
-                $rootScope.$broadcast(opt.broadcast, response);
-              }
-            }
-            return response;
-          },
-          (response) => $q.reject(response),
-        );
-      };
-    });
-
-    this.getUrlRenew = function getUrlRenew(productId) {
-      return $q.when(
-        URI.expand(constants.renew, {
+    getUrlRenew(productId) {
+      return this.$q.when(
+        URI.expand(this.constants.renew, {
           serviceName: productId,
         }).toString(),
       );
-    };
+    }
 
-    this.getTaskPath = function getTaskPath(productId, taskId) {
+    static getTaskPath(productId, taskId) {
       return `apiv6/dedicated/server/${productId}/task/${taskId}`;
-    };
+    }
 
-    this.addTaskFast = function addTaskFast(productId, task, scopeId) {
+    addTaskFast(productId, task, scopeId) {
       set(task, 'id', task.id || task.taskId);
-      const pollPromise = $q.defer();
-      Polling.addTaskFast(self.getTaskPath(productId, task.id), task, scopeId)
+      const pollPromise = this.$q.defer();
+
+      this.Polling.addTaskFast(
+        ServerF.getTaskPath(productId, task.id),
+        task,
+        scopeId,
+      )
         .then((state) => {
           pollPromise.resolve(state);
-          if (Polling.isDone(state)) {
-            $rootScope.$broadcast('tasks.update');
+          if (this.Polling.isDone(state)) {
+            this.$rootScope.$broadcast('tasks.update');
           }
         })
         .catch((data) => {
           pollPromise.reject(data);
-          $rootScope.$broadcast('tasks.update');
+          this.$rootScope.$broadcast('tasks.update');
         });
+
       return pollPromise.promise;
-    };
+    }
 
-    this.addTask = function addTask(productId, task, scopeId) {
-      const pollPromise = $q.defer();
+    addTask(productId, task, scopeId) {
+      const pollPromise = this.$q.defer();
 
-      Polling.addTask(
-        self.getTaskPath(productId, task.id || task.taskId),
+      this.Polling.addTask(
+        ServerF.getTaskPath(productId, task.id || task.taskId),
         task,
         scopeId,
-      ).then(
-        (state) => {
+      )
+        .then((state) => {
           pollPromise.resolve(state);
-          if (Polling.isDone(state)) {
-            $rootScope.$broadcast('tasks.update');
+          if (this.Polling.isDone(state)) {
+            this.$rootScope.$broadcast('tasks.update');
           }
-        },
-        (data) => {
+        })
+        .catch((data) => {
           pollPromise.reject({ type: 'ERROR', message: data.comment });
-          $rootScope.$broadcast('tasks.update');
-        },
-      );
+          this.$rootScope.$broadcast('tasks.update');
+        });
 
       return pollPromise.promise;
-    };
+    }
 
-    this.getSelected = function getSelected(serviceName) {
-      return OvhHttp.get('/sws/dedicated/server/{serviceName}', {
+    getSelected(serviceName) {
+      return this.OvhHttp.get('/sws/dedicated/server/{serviceName}', {
         rootPath: '2api',
         urlParams: {
           serviceName,
         },
         broadcast: 'dedicated.server.refreshTabs',
       });
-    };
+    }
 
-    this.reboot = function reboot(serviceName) {
-      return OvhHttp.post('/dedicated/server/{serviceName}/reboot', {
+    reboot(serviceName) {
+      return this.OvhHttp.post('/dedicated/server/{serviceName}/reboot', {
         rootPath: 'apiv6',
         urlParams: {
           serviceName,
         },
         broadcast: 'dedicated.informations.reboot',
       });
-    };
+    }
 
-    this.getNetboot = function getNetboot(serviceName) {
-      return OvhHttp.get('/sws/dedicated/server/{serviceName}/netboot', {
+    getNetboot(serviceName) {
+      return this.OvhHttp.get('/sws/dedicated/server/{serviceName}/netboot', {
         rootPath: '2api',
         urlParams: {
           serviceName,
         },
       });
-    };
+    }
 
-    this.setNetBoot = function setNetBoot(serviceName, bootId, rootDevice) {
-      return OvhHttp.put('/dedicated/server/{serviceName}', {
+    setNetBoot(serviceName, bootId, rootDevice) {
+      return this.OvhHttp.put('/dedicated/server/{serviceName}', {
         rootPath: 'apiv6',
         urlParams: {
           serviceName,
@@ -273,10 +253,10 @@ angular
         },
         broadcast: 'dedicated.informations.reload',
       });
-    };
+    }
 
-    this.updateMonitoring = function updateMonitoring(serviceName, monitoring) {
-      return OvhHttp.put('/dedicated/server/{serviceName}', {
+    updateMonitoring(serviceName, monitoring) {
+      return this.OvhHttp.put('/dedicated/server/{serviceName}', {
         rootPath: 'apiv6',
         urlParams: {
           serviceName,
@@ -286,20 +266,16 @@ angular
         },
         broadcast: 'dedicated.informations.reload',
       });
-    };
+    }
 
-    this.getRescueMail = function getRescueMail(productId) {
+    getRescueMail(productId) {
       return this.get(productId, '', {
         proxypass: true,
         broadcast: 'dedicated.informations.reload',
       });
-    };
+    }
 
-    this.updateRescueMail = function updateRescueMail(
-      productId,
-      bootId,
-      rescueMail,
-    ) {
+    updateRescueMail(productId, bootId, rescueMail) {
       return this.put(productId, '', {
         data: {
           bootId,
@@ -308,9 +284,9 @@ angular
         proxypass: true,
         broadcast: 'dedicated.informations.reload',
       });
-    };
+    }
 
-    this.removeHack = function removeHack(productId) {
+    removeHack(productId) {
       return this.put(productId, '', {
         data: {
           state: 'ok',
@@ -318,14 +294,10 @@ angular
         proxypass: true,
         broadcast: 'dedicated.informations.reload',
       });
-    };
+    }
 
-    this.updateDisplayName = function updateDisplayName({
-      serviceId,
-      serviceName,
-      displayName,
-    }) {
-      return OvhHttp.put('/service/{serviceId}', {
+    updateDisplayName({ serviceId, serviceName, displayName }) {
+      return this.OvhHttp.put('/service/{serviceId}', {
         rootPath: 'apiv6',
         urlParams: {
           serviceId,
@@ -341,14 +313,9 @@ angular
           displayName,
         },
       });
-    };
+    }
 
-    this.updateReverse = function updateReverse(
-      productId,
-      serviceName,
-      ip,
-      reverse,
-    ) {
+    updateReverse(productId, serviceName, ip, reverse) {
       return this.post(productId, '{ip}/reverse', {
         urlParams: {
           ip,
@@ -363,11 +330,11 @@ angular
           displayName: reverse,
         },
         proxypass: true,
-        urlPath: path.ip,
+        urlPath: this.path.ip,
       });
-    };
+    }
 
-    this.deleteReverse = function deleteReverse(productId, serviceName, ip) {
+    deleteReverse(productId, serviceName, ip) {
       return this.delete(productId, '{ip}/reverse/{ip}', {
         urlParams: {
           ip,
@@ -378,40 +345,37 @@ angular
           displayName: serviceName,
         },
         proxypass: true,
-        urlPath: path.ip,
+        urlPath: this.path.ip,
       });
-    };
+    }
 
-    /* ------- SECONDARY DNS -------*/
-
-    this.getSecondaryDnsList = function getSecondaryDnsList(
-      serviceName,
-      count,
-      offset,
-    ) {
-      return OvhHttp.get('/sws/dedicated/server/{serviceName}/secondaryDNS', {
-        rootPath: '2api',
-        urlParams: {
-          serviceName,
+    getSecondaryDnsList(serviceName, count, offset) {
+      return this.OvhHttp.get(
+        '/sws/dedicated/server/{serviceName}/secondaryDNS',
+        {
+          rootPath: '2api',
+          urlParams: {
+            serviceName,
+          },
+          params: {
+            count,
+            offset,
+          },
         },
-        params: {
-          count,
-          offset,
-        },
-      });
-    };
+      );
+    }
 
-    this.listIps = function listIps(serviceName) {
-      return OvhHttp.get('/ip', {
+    listIps(serviceName) {
+      return this.OvhHttp.get('/ip', {
         rootPath: 'apiv6',
         params: {
           'routedTo.serviceName': serviceName,
         },
       });
-    };
+    }
 
-    this.addSecondaryDns = function addSecondaryDns(serviceName, domain, ip) {
-      return OvhHttp.post(
+    addSecondaryDns(serviceName, domain, ip) {
+      return this.OvhHttp.post(
         '/dedicated/server/{serviceName}/secondaryDnsDomains',
         {
           rootPath: 'apiv6',
@@ -425,10 +389,10 @@ angular
           broadcast: 'dedicated.secondarydns.reload',
         },
       );
-    };
+    }
 
-    this.deleteSecondaryDns = function deleteSecondaryDns(serviceName, domain) {
-      return OvhHttp.delete(
+    deleteSecondaryDns(serviceName, domain) {
+      return this.OvhHttp.delete(
         '/dedicated/server/{serviceName}/secondaryDnsDomains/{domain}',
         {
           rootPath: 'apiv6',
@@ -439,33 +403,28 @@ angular
           broadcast: 'dedicated.secondarydns.reload',
         },
       );
-    };
+    }
 
-    this.getDomainZoneInformation = function getDomainZoneInformation(
-      productId,
-      domain,
-    ) {
+    getDomainZoneInformation(productId, domain) {
       return this.get(productId, 'secondaryDnsNameDomainToken', {
         params: {
           domain,
         },
         proxypass: true,
       });
-    };
+    }
 
-    /* ------- FTP BACKUP -------*/
-
-    this.getFtpBackup = function getFtpBackup(serviceName) {
-      return OvhHttp.get('/sws/dedicated/server/{serviceName}/backupFtp', {
+    getFtpBackup(serviceName) {
+      return this.OvhHttp.get('/sws/dedicated/server/{serviceName}/backupFtp', {
         rootPath: '2api',
         urlParams: {
           serviceName,
         },
       });
-    };
+    }
 
-    this.activateFtpBackup = function activateFtpBackup(serviceName) {
-      return OvhHttp.post(
+    activateFtpBackup(serviceName) {
+      return this.OvhHttp.post(
         '/dedicated/server/{serviceName}/features/backupFTP',
         {
           rootPath: 'apiv6',
@@ -475,10 +434,10 @@ angular
           broadcast: 'dedicated.ftpbackup.active',
         },
       );
-    };
+    }
 
-    this.deleteFtpBackup = function deleteFtpBackup(serviceName) {
-      return OvhHttp.delete(
+    deleteFtpBackup(serviceName) {
+      return this.OvhHttp.delete(
         '/dedicated/server/{serviceName}/features/backupFTP',
         {
           rootPath: 'apiv6',
@@ -488,12 +447,10 @@ angular
           broadcast: 'dedicated.ftpbackup.delete',
         },
       );
-    };
+    }
 
-    this.requestFtpBackupPassword = function requestFtpBackupPassword(
-      serviceName,
-    ) {
-      return OvhHttp.post(
+    requestFtpBackupPassword(serviceName) {
+      return this.OvhHttp.post(
         '/dedicated/server/{serviceName}/features/backupFTP/password',
         {
           rootPath: 'apiv6',
@@ -503,10 +460,10 @@ angular
           broadcast: 'dedicated.ftpbackup.password',
         },
       );
-    };
+    }
 
-    this.getFtpBackupIp = function getFtpBackupIp(serviceName, count, offset) {
-      return OvhHttp.get(
+    getFtpBackupIp(serviceName, count, offset) {
+      return this.OvhHttp.get(
         '/sws/dedicated/server/{serviceName}/backupFtp/access',
         {
           rootPath: '2api',
@@ -519,10 +476,10 @@ angular
           },
         },
       );
-    };
+    }
 
-    this.getAuthorizableBlocks = function getAuthorizableBlocks(serviceName) {
-      return OvhHttp.get(
+    getAuthorizableBlocks(serviceName) {
+      return this.OvhHttp.get(
         '/sws/dedicated/server/{serviceName}/backupFtp/access/authorizableBlocks',
         {
           rootPath: '2api',
@@ -531,16 +488,10 @@ angular
           },
         },
       );
-    };
+    }
 
-    this.postFtpBackupIp = function postFtpBackupIp(
-      serviceName,
-      ipBlocksList,
-      ftp,
-      nfs,
-      cifs,
-    ) {
-      return OvhHttp.post(
+    postFtpBackupIp(serviceName, ipBlocksList, ftp, nfs, cifs) {
+      return this.OvhHttp.post(
         '/sws/dedicated/server/{serviceName}/backupFtp/access-add',
         {
           rootPath: '2api',
@@ -556,16 +507,10 @@ angular
           broadcast: 'server.ftpBackup.refresh',
         },
       );
-    };
+    }
 
-    this.putFtpBackupIp = function putFtpBackupIp(
-      serviceName,
-      ipBlock,
-      ftp,
-      nfs,
-      cifs,
-    ) {
-      return OvhHttp.put(
+    putFtpBackupIp(serviceName, ipBlock, ftp, nfs, cifs) {
+      return this.OvhHttp.put(
         '/dedicated/server/{serviceName}/features/backupFTP/access/{ipBlock}',
         {
           rootPath: 'apiv6',
@@ -581,10 +526,10 @@ angular
           broadcast: 'server.ftpBackup.refresh',
         },
       );
-    };
+    }
 
-    this.deleteFtpBackupIp = function deleteFtpBackupIp(serviceName, ipBlock) {
-      return OvhHttp.delete(
+    deleteFtpBackupIp(serviceName, ipBlock) {
+      return this.OvhHttp.delete(
         '/dedicated/server/{serviceName}/features/backupFTP/access/{ipBlock}',
         {
           rootPath: 'apiv6',
@@ -594,10 +539,10 @@ angular
           },
         },
       );
-    };
+    }
 
-    this.getFtpBackupOrder = function getFtpBackupOrder(serviceName) {
-      return OvhHttp.get(
+    getFtpBackupOrder(serviceName) {
+      return this.OvhHttp.get(
         '/sws/dedicated/server/{serviceName}/backupFtp/order',
         {
           rootPath: '2api',
@@ -606,13 +551,10 @@ angular
           },
         },
       );
-    };
+    }
 
-    this.getFtpBackupOrderDetail = function getFtpBackupOrderDetail(
-      serviceName,
-      capacity,
-    ) {
-      return OvhHttp.get(
+    getFtpBackupOrderDetail(serviceName, capacity) {
+      return this.OvhHttp.get(
         '/sws/dedicated/server/{serviceName}/backupFtp/order/{capacity}/details',
         {
           rootPath: '2api',
@@ -622,14 +564,10 @@ angular
           },
         },
       );
-    };
+    }
 
-    this.postFtpBackupOrderDetail = function postFtpBackupOrderDetail(
-      serviceName,
-      duration,
-      capacity,
-    ) {
-      return OvhHttp.post(
+    postFtpBackupOrderDetail(serviceName, duration, capacity) {
+      return this.OvhHttp.post(
         '/order/dedicated/server/{serviceName}/backupStorage/{duration}',
         {
           rootPath: 'apiv6',
@@ -643,12 +581,10 @@ angular
           broadcast: 'server.ftpBackup.refresh',
         },
       );
-    };
+    }
 
-    /* ------- STATISTICS -------*/
-
-    this.getStatisticsConst = function getStatisticsConst() {
-      return self.getModels().then((models) => ({
+    getStatisticsConst() {
+      return this.getModels().then((models) => ({
         types: uniq(
           map(
             models.data.models['dedicated.server.MrtgTypeEnum'].enum,
@@ -661,17 +597,17 @@ angular
         ].enum.map((period) => snakeCase(period).toUpperCase()),
         defaultPeriod: 'DAILY',
       }));
-    };
+    }
 
-    this.getNetworkInterfaces = (productId) => {
+    getNetworkInterfaces(productId) {
       let serverName = '';
-      return self
-        .getSelected(productId)
+
+      return this.getSelected(productId)
         .then((server) => {
           serverName = server.name;
-          return $http.get(
+          return this.$http.get(
             [
-              path.dedicatedServer,
+              this.path.dedicatedServer,
               serverName,
               'networkInterfaceController',
             ].join('/'),
@@ -679,10 +615,10 @@ angular
         })
         .then((networkInterfaceIds) => {
           const promises = map(networkInterfaceIds.data, (networkInterfaceId) =>
-            $http
+            this.$http
               .get(
                 [
-                  path.dedicatedServer,
+                  this.path.dedicatedServer,
                   serverName,
                   'networkInterfaceController',
                   networkInterfaceId,
@@ -690,41 +626,72 @@ angular
               )
               .then((response) => response.data),
           );
-          return $q.all(promises);
+          return this.$q.all(promises);
         })
         .catch((err) => {
           if (err.status === 460) {
             return [];
           }
 
-          return $q.reject(err);
+          return this.$q.reject(err);
         });
-    };
+    }
 
-    function getPointInterval(period) {
+    static getPointInterval(period) {
       switch (period) {
         case 'HOURLY': {
-          return SERVERSTATS_PERIOD_ENUM.HOURLY;
+          return {
+            standardDays: 0,
+            standardHours: 0,
+            standardMinutes: 1,
+            standardSeconds: 60,
+            millis: 60000,
+          };
         }
         case 'DAILY': {
-          return SERVERSTATS_PERIOD_ENUM.DAILY;
+          return {
+            standardDays: 0,
+            standardHours: 0,
+            standardMinutes: 5,
+            standardSeconds: 300,
+            millis: 300000,
+          };
         }
         case 'WEEKLY': {
-          return SERVERSTATS_PERIOD_ENUM.WEEKLY;
+          return {
+            standardDays: 0,
+            standardHours: 0,
+            standardMinutes: 30,
+            standardSeconds: 1800,
+            millis: 1800000,
+          };
         }
         case 'MONTHLY': {
-          return SERVERSTATS_PERIOD_ENUM.MONTHLY;
+          return {
+            standardDays: 0,
+            standardHours: 2,
+            standardMinutes: 120,
+            standardSeconds: 7200,
+            millis: 7200000,
+          };
         }
         case 'YEARLY': {
-          return SERVERSTATS_PERIOD_ENUM.YEARLY;
+          return {
+            standardDays: 1,
+            standardHours: 24,
+            standardMinutes: 1440,
+            standardSeconds: 86400,
+            millis: 86400000,
+          };
         }
         default:
           return null;
       }
     }
 
-    function fillGaps(arrayIn) {
+    static fillGaps(arrayIn) {
       const graph = [];
+
       arrayIn.forEach((point, index, array) => {
         let value;
         let unit;
@@ -752,7 +719,7 @@ angular
       return graph;
     }
 
-    function buildMRTGResponse(arrayIn, pointInterval) {
+    static buildMRTGResponse(arrayIn, pointInterval) {
       const response = {
         state: 'OK',
         messages: [],
@@ -768,18 +735,18 @@ angular
         },
       };
 
-      response.download.values = fillGaps(arrayIn[0].data);
-      response.upload.values = fillGaps(arrayIn[1].data);
+      response.download.values = ServerF.fillGaps(arrayIn[0].data);
+      response.upload.values = ServerF.fillGaps(arrayIn[1].data);
       return response;
     }
 
-    function aggregateMRTG(productId, mac, type, period) {
-      return self.getSelected(productId).then((server) =>
-        $q
+    aggregateMRTG(productId, mac, type, period) {
+      return this.getSelected(productId).then((server) =>
+        this.$q
           .all([
-            $http.get(
+            this.$http.get(
               [
-                path.dedicatedServer,
+                this.path.dedicatedServer,
                 server.name,
                 'networkInterfaceController',
                 mac,
@@ -792,9 +759,9 @@ angular
                 },
               },
             ),
-            $http.get(
+            this.$http.get(
               [
-                path.dedicatedServer,
+                this.path.dedicatedServer,
                 server.name,
                 'networkInterfaceController',
                 mac,
@@ -809,40 +776,35 @@ angular
             ),
           ])
           .then((results) => {
-            const pointInterval = getPointInterval(period);
-            return buildMRTGResponse(results, pointInterval);
+            const pointInterval = ServerF.getPointInterval(period);
+            return ServerF.buildMRTGResponse(results, pointInterval);
           }),
       );
     }
 
-    this.getStatistics = function getStatistics(productId, mac, type, period) {
-      resetCache();
-      return aggregateMRTG(productId, mac, type, period);
-    };
+    getStatistics(productId, mac, type, period) {
+      this.resetCache();
+      return this.aggregateMRTG(productId, mac, type, period);
+    }
 
-    /* --------------INTERVENTIONS---------------*/
-
-    this.getInterventions = function getInterventions(
-      serviceName,
-      count,
-      offset,
-    ) {
-      return OvhHttp.get('/sws/dedicated/server/{serviceName}/interventions', {
-        rootPath: '2api',
-        urlParams: {
-          serviceName,
+    getInterventions(serviceName, count, offset) {
+      return this.OvhHttp.get(
+        '/sws/dedicated/server/{serviceName}/interventions',
+        {
+          rootPath: '2api',
+          urlParams: {
+            serviceName,
+          },
+          params: {
+            count,
+            offset,
+          },
         },
-        params: {
-          count,
-          offset,
-        },
-      });
-    };
+      );
+    }
 
-    /* --------------IPMI---------------*/
-
-    this.isIpmiActivated = function isIpmiActivated(serviceName) {
-      return OvhHttp.get('/dedicated/server/{serviceName}/features/ipmi', {
+    isIpmiActivated(serviceName) {
+      return this.OvhHttp.get('/dedicated/server/{serviceName}/features/ipmi', {
         rootPath: 'apiv6',
         urlParams: {
           serviceName,
@@ -856,10 +818,10 @@ angular
         }
         return err;
       });
-    };
+    }
 
-    this.ipmiStartTest = function ipmiStartTest(serviceName, type, ttl) {
-      return OvhHttp.post(
+    ipmiStartTest(serviceName, type, ttl) {
+      return this.OvhHttp.post(
         '/dedicated/server/{serviceName}/features/ipmi/test',
         {
           rootPath: 'apiv6',
@@ -872,9 +834,9 @@ angular
           },
         },
       );
-    };
+    }
 
-    this.ipmiStartConnection = function ipmiStartConnection({
+    ipmiStartConnection({
       serviceName,
       type,
       ttl,
@@ -882,30 +844,33 @@ angular
       sshKey,
       withGeolocation,
     }) {
-      let promise = $q.when(ipToAllow);
+      let promise = this.$q.when(ipToAllow);
 
       if (withGeolocation) {
         promise = this.getIpGeolocation().then(({ ip }) => ip);
       }
 
       return promise.then((ip) =>
-        OvhHttp.post('/dedicated/server/{serviceName}/features/ipmi/access', {
-          rootPath: 'apiv6',
-          urlParams: {
-            serviceName,
+        this.OvhHttp.post(
+          '/dedicated/server/{serviceName}/features/ipmi/access',
+          {
+            rootPath: 'apiv6',
+            urlParams: {
+              serviceName,
+            },
+            data: {
+              ttl,
+              type,
+              sshKey,
+              ipToAllow: ip,
+            },
           },
-          data: {
-            ttl,
-            type,
-            sshKey,
-            ipToAllow: ip,
-          },
-        }),
+        ),
       );
-    };
+    }
 
-    this.ipmiGetConnection = function ipmiGetConnection(serviceName, type) {
-      return OvhHttp.get(
+    ipmiGetConnection(serviceName, type) {
+      return this.OvhHttp.get(
         '/dedicated/server/{serviceName}/features/ipmi/access',
         {
           rootPath: 'apiv6',
@@ -917,10 +882,10 @@ angular
           },
         },
       );
-    };
+    }
 
-    this.ipmiRestart = function ipmiRestart(serviceName) {
-      return OvhHttp.post(
+    ipmiRestart(serviceName) {
+      return this.OvhHttp.post(
         '/dedicated/server/{serviceName}/features/ipmi/resetInterface',
         {
           rootPath: 'apiv6',
@@ -930,10 +895,10 @@ angular
           broadcast: 'dedicated.ipmi.resetinterfaces',
         },
       );
-    };
+    }
 
-    this.ipmiSessionsReset = function ipmiSessionsReset(serviceName) {
-      return OvhHttp.post(
+    ipmiSessionsReset(serviceName) {
+      return this.OvhHttp.post(
         '/dedicated/server/{serviceName}/features/ipmi/resetSessions',
         {
           rootPath: 'apiv6',
@@ -943,22 +908,16 @@ angular
           broadcast: 'dedicated.ipmi.resetsessions',
         },
       );
-    };
+    }
 
-    this.getIpGeolocation = function getIpGeolocation() {
-      return OvhHttp.post('/me/geolocation', {
+    getIpGeolocation() {
+      return this.OvhHttp.post('/me/geolocation', {
         rootPath: 'apiv6',
       });
-    };
+    }
 
-    /* --------------TASK---------------*/
-
-    this.getTasks = function getTasks(
-      serviceName,
-      elementsByPage,
-      elementsToSkip,
-    ) {
-      return OvhHttp.get('/sws/dedicated/server/{serviceName}/tasks', {
+    getTasks(serviceName, elementsByPage, elementsToSkip) {
+      return this.OvhHttp.get('/sws/dedicated/server/{serviceName}/tasks', {
         rootPath: '2api',
         urlParams: {
           serviceName,
@@ -968,10 +927,10 @@ angular
           offset: elementsToSkip,
         },
       });
-    };
+    }
 
-    this.getTaskInProgress = function getTaskInProgress(serviceName, type) {
-      return OvhHttp.get(
+    getTaskInProgress(serviceName, type) {
+      return this.OvhHttp.get(
         '/sws/dedicated/server/{serviceName}/tasks/uncompleted',
         {
           rootPath: '2api',
@@ -983,12 +942,10 @@ angular
           },
         },
       );
-    };
+    }
 
-    /* ------- INSTALLATION -------*/
-
-    this.getOvhTemplates = function getOvhTemplates(serviceName) {
-      return OvhHttp.get(
+    getOvhTemplates(serviceName) {
+      return this.OvhHttp.get(
         '/sws/dedicated/server/{serviceName}/installation/templates',
         {
           rootPath: '2api',
@@ -1000,10 +957,10 @@ angular
           },
         },
       );
-    };
+    }
 
-    this.getPersonalTemplates = function getPersonalTemplates(serviceName) {
-      return OvhHttp.get(
+    getPersonalTemplates(serviceName) {
+      return this.OvhHttp.get(
         '/sws/dedicated/server/{serviceName}/installation/templates',
         {
           rootPath: '2api',
@@ -1015,26 +972,19 @@ angular
           },
         },
       );
-    };
+    }
 
-    this.getPartitionSchemes = function getPartitionSchemes(
-      productId,
-      templateName,
-    ) {
+    getPartitionSchemes(productId, templateName) {
       return this.get(productId, '{templateName}/partitionScheme', {
         urlParams: {
           templateName,
         },
         proxypass: true,
-        urlPath: path.installationMe,
+        urlPath: this.path.installationMe,
       });
-    };
+    }
 
-    this.getPartitionSchemePriority = function getPartitionSchemePriority(
-      productId,
-      templateName,
-      schemeName,
-    ) {
+    getPartitionSchemePriority(productId, templateName, schemeName) {
       return this.get(
         productId,
         '{templateName}/partitionScheme/{schemeName}',
@@ -1044,18 +994,18 @@ angular
             schemeName,
           },
           proxypass: true,
-          urlPath: path.installationMe,
+          urlPath: this.path.installationMe,
         },
       );
-    };
+    }
 
-    this.getOvhPartitionSchemesTemplates = function getOvhPartitionSchemesTemplates(
+    getOvhPartitionSchemesTemplates(
       serviceName,
       template,
       lang,
       customeInstall,
     ) {
-      return OvhHttp.get(
+      return this.OvhHttp.get(
         '/sws/dedicated/server/{serviceName}/installation/{template}/{lang}/partitionSchemes',
         {
           rootPath: '2api',
@@ -1067,13 +1017,10 @@ angular
           },
         },
       );
-    };
+    }
 
-    this.getOvhPartitionSchemesTemplatesDetail = function getOvhPartitionSchemesTemplatesDetail(
-      template,
-      partitionScheme,
-    ) {
-      return OvhHttp.get(
+    getOvhPartitionSchemesTemplatesDetail(template, partitionScheme) {
+      return this.OvhHttp.get(
         '/sws/dedicated/server/installationTemplate/{template}/{partitionScheme}/partitions',
         {
           rootPath: '2api',
@@ -1083,13 +1030,9 @@ angular
           },
         },
       );
-    };
+    }
 
-    this.postAddPartition = function postAddPartition(
-      gabaritName,
-      gabaritSchemePartitionName,
-      partition,
-    ) {
+    postAddPartition(gabaritName, gabaritSchemePartitionName, partition) {
       const data = angular.copy(partition);
       data.type = camelCase(data.typePartition);
       delete data.typePartition;
@@ -1110,7 +1053,7 @@ angular
       data.mountpoint = data.mountPoint;
       delete data.mountPoint;
 
-      return OvhHttp.post(
+      return this.OvhHttp.post(
         '/me/installationTemplate/{templateName}/partitionScheme/{schemeName}/partition',
         {
           rootPath: 'apiv6',
@@ -1121,13 +1064,9 @@ angular
           data,
         },
       );
-    };
+    }
 
-    this.putSetPartition = function putSetPartition(
-      gabaritName,
-      gabaritSchemePartitionName,
-      partition,
-    ) {
+    putSetPartition(gabaritName, gabaritSchemePartitionName, partition) {
       const newPartition = angular.copy(partition);
       newPartition.filesystem = camelCase(newPartition.fileSystem);
       newPartition.mountpoint = newPartition.mountPoint;
@@ -1145,7 +1084,7 @@ angular
       delete newPartition.partitionSize;
       delete newPartition.oldMountPoint;
 
-      return OvhHttp.put(
+      return this.OvhHttp.put(
         '/me/installationTemplate/{gabaritName}/partitionScheme/{gabaritSchemePartitionName}/partition/{mountpoint}',
         {
           rootPath: 'apiv6',
@@ -1157,14 +1096,10 @@ angular
           data: newPartition,
         },
       );
-    };
+    }
 
-    this.deleteSetPartition = function deleteSetPartition(
-      gabaritName,
-      gabaritSchemePartitionName,
-      mountpoint,
-    ) {
-      return OvhHttp.delete(
+    deleteSetPartition(gabaritName, gabaritSchemePartitionName, mountpoint) {
+      return this.OvhHttp.delete(
         '/me/installationTemplate/{templateName}/partitionScheme/{schemeName}/partition/{mountpoint}',
         {
           rootPath: 'apiv6',
@@ -1175,10 +1110,10 @@ angular
           },
         },
       );
-    };
+    }
 
-    this.checkIntegrity = function checkIntegrity(gabaritName) {
-      return OvhHttp.post(
+    checkIntegrity(gabaritName) {
+      return this.OvhHttp.post(
         '/me/installationTemplate/{gabaritName}/checkIntegrity',
         {
           rootPath: 'apiv6',
@@ -1187,14 +1122,9 @@ angular
           },
         },
       );
-    };
+    }
 
-    this.putSetGabarit = function putSetGabarit(
-      productId,
-      gabaritName,
-      gabaritNameNew,
-      customization,
-    ) {
+    putSetGabarit(productId, gabaritName, gabaritNameNew, customization) {
       return this.put(productId, '{gabaritName}', {
         urlParams: {
           gabaritName,
@@ -1204,228 +1134,216 @@ angular
           customization,
         },
         proxypass: true,
-        urlPath: path.installationMe,
+        urlPath: this.path.installationMe,
       });
-    };
+    }
 
-    this.createPartitioningScheme = function createPartitioningScheme(
-      productId,
-      gabaritName,
-      newPartitioningScheme,
-    ) {
-      return self
-        .getPartitionSchemePriority(
-          productId,
-          gabaritName,
-          newPartitioningScheme.name,
-        )
+    createPartitioningScheme(productId, gabaritName, newPartitioningScheme) {
+      return this.getPartitionSchemePriority(
+        productId,
+        gabaritName,
+        newPartitioningScheme.name,
+      )
         .catch((data) =>
-          data.status === 404 ? 'no_partition' : $q.reject(data),
+          data.status === 404 ? 'no_partition' : this.$q.reject(data),
         )
         .then((status) => {
           if (status === 'no_partition') {
-            return self.post(productId, '{gabaritName}/partitionScheme', {
+            return this.post(productId, '{gabaritName}/partitionScheme', {
               urlParams: {
                 gabaritName,
               },
               data: newPartitioningScheme,
               proxypass: true,
-              urlPath: path.installationMe,
+              urlPath: this.path.installationMe,
             });
           }
+
           return null;
         });
-    };
+    }
 
-    this.cloneDefaultPartitioningScheme = function cloneDefaultPartitioningScheme(
+    cloneDefaultPartitioningScheme(
       productId,
       gabaritName,
       newPartitioningSchemeName,
     ) {
-      return self
-        .get(productId, '{gabaritName}/partitionScheme/default/partition', {
+      return this.get(
+        productId,
+        '{gabaritName}/partitionScheme/default/partition',
+        {
           urlParams: {
             gabaritName,
           },
           proxypass: true,
-          urlPath: path.installationMe,
-        })
-        .then((mountpoints) => {
-          const getMountpoints = map(mountpoints, (mountpoint) =>
-            self
-              .get(
-                productId,
-                '{gabaritName}/partitionScheme/{schemeName}/partition/{mountpoint}',
-                {
-                  urlParams: {
-                    gabaritName,
-                    schemeName: newPartitioningSchemeName,
-                    mountpoint,
+          urlPath: this.path.installationMe,
+        },
+      ).then((mountpoints) => {
+        const getMountpoints = map(mountpoints, (mountpoint) =>
+          this.get(
+            productId,
+            '{gabaritName}/partitionScheme/{schemeName}/partition/{mountpoint}',
+            {
+              urlParams: {
+                gabaritName,
+                schemeName: newPartitioningSchemeName,
+                mountpoint,
+              },
+              proxypass: true,
+              urlPath: this.path.installationMe,
+              returnErrorKey: null,
+            },
+          )
+            .catch((data) =>
+              data.status === 404 ? 'no_mountpoint' : this.$q.reject(data),
+            )
+            .then((status) => {
+              if (status === 'no_mountpoint') {
+                return this.get(
+                  productId,
+                  '{gabaritName}/partitionScheme/default/partition/{mountpoint}',
+                  {
+                    urlParams: {
+                      gabaritName,
+                      mountpoint,
+                    },
+                    proxypass: true,
+                    urlPath: this.path.installationMe,
                   },
-                  proxypass: true,
-                  urlPath: path.installationMe,
-                  returnErrorKey: null,
-                },
-              )
-              .catch((data) =>
-                data.status === 404 ? 'no_mountpoint' : $q.reject(data),
-              )
-              .then((status) => {
-                if (status === 'no_mountpoint') {
-                  return self
-                    .get(
-                      productId,
-                      '{gabaritName}/partitionScheme/default/partition/{mountpoint}',
-                      {
-                        urlParams: {
-                          gabaritName,
-                          mountpoint,
-                        },
-                        proxypass: true,
-                        urlPath: path.installationMe,
+                ).then((mountpointDetails) =>
+                  this.post(
+                    productId,
+                    '{gabaritName}/partitionScheme/{schemeName}/partition',
+                    {
+                      urlParams: {
+                        gabaritName,
+                        schemeName: newPartitioningSchemeName,
                       },
-                    )
-                    .then((mountpointDetails) =>
-                      self.post(
-                        productId,
-                        '{gabaritName}/partitionScheme/{schemeName}/partition',
-                        {
-                          urlParams: {
-                            gabaritName,
-                            schemeName: newPartitioningSchemeName,
-                          },
-                          data: {
-                            filesystem: mountpointDetails.filesystem,
-                            mountpoint: mountpointDetails.mountpoint,
-                            raid: mountpointDetails.raid,
-                            size: mountpointDetails.size.value,
-                            step: mountpointDetails.order,
-                            type: mountpointDetails.type,
-                            volumeName: mountpointDetails.volumeName,
-                          },
-                          proxypass: true,
-                          urlPath: path.installationMe,
-                        },
-                      ),
-                    );
-                }
-                return null;
-              }),
-          );
-          return $q.all(getMountpoints);
-        });
-    };
+                      data: {
+                        filesystem: mountpointDetails.filesystem,
+                        mountpoint: mountpointDetails.mountpoint,
+                        raid: mountpointDetails.raid,
+                        size: mountpointDetails.size.value,
+                        step: mountpointDetails.order,
+                        type: mountpointDetails.type,
+                        volumeName: mountpointDetails.volumeName,
+                      },
+                      proxypass: true,
+                      urlPath: this.path.installationMe,
+                    },
+                  ),
+                );
+              }
+              return null;
+            }),
+        );
 
-    this.startInstallation = function startInstallation(
-      serviceName,
-      templateName,
-      details,
-    ) {
-      return OvhHttp.post('/dedicated/server/{serviceName}/install/start', {
-        rootPath: 'apiv6',
-        urlParams: {
-          serviceName,
-        },
-        data: {
-          details,
-          templateName,
-        },
+        return this.$q.all(getMountpoints);
       });
-    };
+    }
 
-    this.deleteGabarit = function deleteGabarit(productId, gabaritName) {
+    startInstallation(serviceName, templateName, details) {
+      return this.OvhHttp.post(
+        '/dedicated/server/{serviceName}/install/start',
+        {
+          rootPath: 'apiv6',
+          urlParams: {
+            serviceName,
+          },
+          data: {
+            details,
+            templateName,
+          },
+        },
+      );
+    }
+
+    deleteGabarit(productId, gabaritName) {
       return this.delete(productId, '{gabaritName}', {
         urlParams: {
           gabaritName,
         },
         broadcast: 'dedicated.installation.gabarit.refresh',
-        urlPath: path.installationMe,
+        urlPath: this.path.installationMe,
         proxypass: true,
       });
-    };
+    }
 
-    this.hasSqlServerAvailable = function hasSqlServerAvailable(productId) {
+    hasSqlServerAvailable(productId) {
       return this.get(productId, 'installation/sqlserver', {});
-    };
+    }
 
-    this.getSshKey = function getSshKey(productId) {
+    getSshKey(productId) {
       return this.get(productId, '', {
         proxypass: true,
-        urlPath: path.sshMe,
+        urlPath: this.path.sshMe,
       });
-    };
+    }
 
-    /* ------- PRO USE -------*/
-    this.getOrderProUseDuration = function getOrderProUseDuration(productId) {
+    getOrderProUseDuration(productId) {
       return this.get(productId, 'professionalUse', {
         proxypass: true,
-        urlPath: path.order,
+        urlPath: this.path.order,
       });
-    };
+    }
 
-    this.getOrderProUseOrder = function getOrderProUseOrder(
-      productId,
-      duration,
-    ) {
+    getOrderProUseOrder(productId, duration) {
       return this.get(productId, 'professionalUse/{duration}', {
-        urlPath: path.order,
+        urlPath: this.path.order,
         urlParams: {
           duration,
         },
         proxypass: true,
       });
-    };
+    }
 
-    this.orderProUse = function orderProUse(productId, duration) {
+    orderProUse(productId, duration) {
       return this.post(productId, 'professionalUse/{duration}', {
-        urlPath: path.order,
+        urlPath: this.path.order,
         urlParams: {
           duration,
         },
         proxypass: true,
       });
-    };
+    }
 
-    /* ------- TASK -------*/
-
-    this.progressInstallation = function progressInstallation(serviceName) {
-      return OvhHttp.get('/dedicated/server/{serviceName}/install/status', {
-        rootPath: 'apiv6',
-        urlParams: {
-          serviceName,
+    progressInstallation(serviceName) {
+      return this.OvhHttp.get(
+        '/dedicated/server/{serviceName}/install/status',
+        {
+          rootPath: 'apiv6',
+          urlParams: {
+            serviceName,
+          },
+          returnErrorKey: '',
         },
-        returnErrorKey: '',
-      }).catch((error) => {
+      ).catch((error) => {
         if (error.status === 460) {
           return [];
         }
-        return $q.reject(error);
+        return this.$q.reject(error);
       });
-    };
+    }
 
-    this.getTemplateCapabilities = function getTemplateCapabilities(
-      productId,
-      templateName,
-    ) {
+    getTemplateCapabilities(productId, templateName) {
       return this.get(productId, 'install/templateCapabilities', {
         proxypass: true,
         params: {
           templateName,
         },
       });
-    };
+    }
 
-    this.cancelTask = function cancelTask(productId, taskId) {
+    cancelTask(productId, taskId) {
       return this.post(productId, 'task/{taskId}/cancel', {
         urlParams: {
           taskId,
         },
         proxypass: true,
       });
-    };
+    }
 
-    /* ------- BANDWIDTH -------*/
-    this.getBandwidth = function getBandwidth(productId) {
+    getBandwidth(productId) {
       return this.get(productId, 'specifications/network', {
         proxypass: true,
       })
@@ -1434,41 +1352,37 @@ angular
           if (err.status === 404 || err.status === 460) {
             return {};
           }
-          return $q.reject(err);
+          return this.$q.reject(err);
         });
-    };
+    }
 
-    this.getBandwidthOption = function getBandwidthOption(productId) {
-      return self
-        .get(productId, 'option/BANDWIDTH', {
-          proxypass: true,
-        })
-        .then(
-          (data) => data.state,
-          (response) => {
-            if (response.status === 404 || response.status === 460) {
-              return 'notSubscribed';
-            }
-            return $q.reject(response);
-          },
-        );
-    };
-
-    this.getBandwidthVrackOption = function getBandwidthVrackOption(productId) {
-      return self
-        .get(productId, 'option/BANDWIDTH_VRACK', {
-          proxypass: true,
-        })
+    getBandwidthOption(productId) {
+      return this.get(productId, 'option/BANDWIDTH', {
+        proxypass: true,
+      })
         .then((data) => data.state)
         .catch((response) => {
           if (response.status === 404 || response.status === 460) {
             return 'notSubscribed';
           }
-          return $q.reject(response);
+          return this.$q.reject(response);
         });
-    };
+    }
 
-    this.orderBandwidth = function orderBandwidth(productId, opt) {
+    getBandwidthVrackOption(productId) {
+      return this.get(productId, 'option/BANDWIDTH_VRACK', {
+        proxypass: true,
+      })
+        .then((data) => data.state)
+        .catch((response) => {
+          if (response.status === 404 || response.status === 460) {
+            return 'notSubscribed';
+          }
+          return this.$q.reject(response);
+        });
+    }
+
+    orderBandwidth(productId, opt) {
       return this.get(productId, 'bandwidth', {
         urlParams: {
           serviceName: opt.serviceName,
@@ -1479,61 +1393,56 @@ angular
         },
         urlPath: 'order/dedicated/server/{serviceName}',
         proxypass: true,
-      }).then(
-        (durations) => {
+      })
+        .then((durations) => {
           const promises = [];
           const returnData = [];
 
           angular.forEach(durations, (v) => {
             promises.push(
-              self
-                .get(productId, 'bandwidth/{duration}', {
-                  urlParams: {
-                    serviceName: opt.serviceName,
-                    duration: v,
-                  },
-                  params: {
-                    bandwidth: opt.bandwidth,
-                    type: opt.type,
-                  },
-                  urlPath: 'order/dedicated/server/{serviceName}',
-                  proxypass: true,
-                })
-                .then((details) => {
-                  returnData.push({
-                    durations: v,
-                    details,
-                  });
+              this.get(productId, 'bandwidth/{duration}', {
+                urlParams: {
+                  serviceName: opt.serviceName,
+                  duration: v,
+                },
+                params: {
+                  bandwidth: opt.bandwidth,
+                  type: opt.type,
+                },
+                urlPath: 'order/dedicated/server/{serviceName}',
+                proxypass: true,
+              }).then((details) => {
+                returnData.push({
+                  durations: v,
+                  details,
+                });
 
-                  return returnData;
-                }),
+                return returnData;
+              }),
             );
           });
 
-          return $q.all(promises).then(
-            () => returnData,
-            () => returnData,
-          );
-        },
-        () => null,
-      );
-    };
+          return this.$q
+            .all(promises)
+            .then(() => returnData)
+            .catch(() => returnData);
+        })
+        .catch(() => null);
+    }
 
-    this.getOrderables = function getOrderables(productId, optionName) {
+    getOrderables(productId, optionName) {
       return this.get(productId, `orderable/${optionName}`).catch((err) => {
         if (err.status === 460) {
           return {};
         }
 
-        return $q.reject(err);
+        return this.$q.reject(err);
       });
-    };
+    }
 
-    this.getOrderableDurations = function getOrderableDurations(
-      productId,
-      data,
-    ) {
+    getOrderableDurations(productId, data) {
       const dedicatedServerPath = 'order/dedicated/server/{serviceName}';
+
       return this.get(productId, data.optionName, {
         params: data.params,
         urlPath: dedicatedServerPath,
@@ -1541,31 +1450,29 @@ angular
       }).then((durations) => {
         const returnData = [];
         const promises = map(durations, (duration) =>
-          self
-            .get(productId, `${data.optionName}/{duration}`, {
-              urlParams: {
-                duration,
-              },
-              params: data.params,
-              urlPath: dedicatedServerPath,
-              proxypass: true,
-            })
-            .then((details) => {
-              returnData.push({
-                durations: duration,
-                details,
-              });
-            }),
+          this.get(productId, `${data.optionName}/{duration}`, {
+            urlParams: {
+              duration,
+            },
+            params: data.params,
+            urlPath: dedicatedServerPath,
+            proxypass: true,
+          }).then((details) => {
+            returnData.push({
+              durations: duration,
+              details,
+            });
+          }),
         );
 
-        return $q
+        return this.$q
           .all(promises)
           .then(() => returnData)
           .catch(() => returnData);
       });
-    };
+    }
 
-    this.postOptionOrder = function postOptionOrder(productId, data) {
+    postOptionOrder(productId, data) {
       return this.post(productId, `${data.optionName}/{duration}`, {
         urlParams: {
           duration: data.duration,
@@ -1574,35 +1481,34 @@ angular
         urlPath: 'order/dedicated/server/{serviceName}',
         proxypass: true,
       });
-    };
+    }
 
-    this.getOption = function getOption(productId, optionName) {
-      return self
-        .get(productId, `option/${optionName}`, {
-          proxypass: true,
-        })
+    getOption(productId, optionName) {
+      return this.get(productId, `option/${optionName}`, {
+        proxypass: true,
+      })
         .then((data) => data.state)
         .catch((response) => {
           if (response.status === 404) {
             return 'notSubscribed';
           }
-          return $q.reject(response);
+          return this.$q.reject(response);
         });
-    };
+    }
 
-    this.cancelOption = function cancelOption(productId, optionName) {
-      return self.delete(productId, `option/${optionName}`, {
+    cancelOption(productId, optionName) {
+      return this.delete(productId, `option/${optionName}`, {
         proxypass: true,
       });
-    };
+    }
 
-    this.cancelBandwidthOption = function cancelBandwidthOption(productId) {
-      return self.delete(productId, 'option/BANDWIDTH', {
+    cancelBandwidthOption(productId) {
+      return this.delete(productId, 'option/BANDWIDTH', {
         proxypass: true,
       });
-    };
+    }
 
-    this.postOrderBandwidth = function postOrderBandwidth(productId, opt) {
+    postOrderBandwidth(productId, opt) {
       return this.post(productId, 'bandwidth/{duration}', {
         urlParams: {
           serviceName: opt.serviceName,
@@ -1614,16 +1520,13 @@ angular
         },
         urlPath: 'order/dedicated/server/{serviceName}',
         proxypass: true,
-      }).then(
-        (details) => details,
-        () => null,
-      );
-    };
+      })
+        .then((details) => details)
+        .catch(() => null);
+    }
 
-    this.getValidBandwidthPlans = function getValidBandwidthPlans(
-      plans,
-      existingBandwidth,
-    ) {
+    // eslint-disable-next-line class-methods-use-this
+    getValidBandwidthPlans(plans, existingBandwidth) {
       const list = map(plans, (plan) => {
         // Not to include already included plans (existing plan)
         if (!plan.planCode.includes('included')) {
@@ -1641,23 +1544,20 @@ angular
         }
         return null;
       });
-      return compact(list);
-    };
 
-    this.getBareMetalPublicBandwidthOptions = function getBareMetalPublicBandwidthOptions(
-      serviceName,
-    ) {
+      return compact(list);
+    }
+
+    getBareMetalPublicBandwidthOptions(serviceName) {
       return this.OvhApiOrderBaremetalPublicBW.getPublicBandwidthOptions({
         serviceName,
       }).$promise;
-    };
+    }
 
-    this.getBareMetalPublicBandwidthOrder = function getBareMetalPublicBandwidthOrder(
-      serviceName,
-      planCode,
-    ) {
+    getBareMetalPublicBandwidthOrder(serviceName, planCode) {
       this.OvhApiOrderBaremetalPublicBW.resetCache();
       this.OvhApiOrderBaremetalPublicBW.resetQueryCache();
+
       return this.OvhApiOrderBaremetalPublicBW.getPublicBandwidthOrder(
         {
           serviceName,
@@ -1667,13 +1567,9 @@ angular
           quantity: 1,
         },
       ).$promise;
-    };
+    }
 
-    this.bareMetalPublicBandwidthPlaceOrder = function bareMetalPublicBandwidthPlaceOrder(
-      serviceName,
-      planCode,
-      autoPay,
-    ) {
+    bareMetalPublicBandwidthPlaceOrder(serviceName, planCode, autoPay) {
       return this.OvhApiOrderBaremetalPublicBW.postPublicBandwidthPlaceOrder(
         {
           serviceName,
@@ -1684,22 +1580,18 @@ angular
           autoPayWithPreferredPaymentMethod: autoPay,
         },
       ).$promise;
-    };
+    }
 
-    this.getBareMetalPrivateBandwidthOptions = function getBareMetalPrivateBandwidthOptions(
-      serviceName,
-    ) {
+    getBareMetalPrivateBandwidthOptions(serviceName) {
       return this.OvhApiOrderBaremetalPrivateBW.getPrivateBandwidthOptions({
         serviceName,
       }).$promise;
-    };
+    }
 
-    this.getBareMetalPrivateBandwidthOrder = function getBareMetalPrivateBandwidthOrder(
-      serviceName,
-      planCode,
-    ) {
+    getBareMetalPrivateBandwidthOrder(serviceName, planCode) {
       this.OvhApiOrderBaremetalPrivateBW.resetCache();
       this.OvhApiOrderBaremetalPrivateBW.resetQueryCache();
+
       return this.OvhApiOrderBaremetalPrivateBW.getPrivateBandwidthOrder(
         {
           serviceName,
@@ -1709,13 +1601,9 @@ angular
           quantity: 1,
         },
       ).$promise;
-    };
+    }
 
-    this.bareMetalPrivateBandwidthPlaceOrder = function bareMetalPrivateBandwidthPlaceOrder(
-      serviceName,
-      planCode,
-      autoPay,
-    ) {
+    bareMetalPrivateBandwidthPlaceOrder(serviceName, planCode, autoPay) {
       return this.OvhApiOrderBaremetalPrivateBW.postPrivateBandwidthPlaceOrder(
         {
           serviceName,
@@ -1726,78 +1614,70 @@ angular
           autoPayWithPreferredPaymentMethod: autoPay,
         },
       ).$promise;
-    };
+    }
 
-    /* ------- Order KVM -------*/
-    this.canOrderKvm = function canOrderKvm(productId) {
+    canOrderKvm(productId) {
       return this.get(productId, 'orderable/kvm', {
-        cache: serverCaches.ipmi,
+        cache: this.serverCaches.ipmi,
         proxypass: true,
-        urlPath: path.product,
+        urlPath: this.path.product,
       });
-    };
+    }
 
-    this.getKvmOrderDurations = function getKvmOrderDurations(productId) {
+    getKvmOrderDurations(productId) {
       return this.get(productId, 'kvm', {
-        urlPath: path.order,
+        urlPath: this.path.order,
         proxypass: true,
       });
-    };
+    }
 
-    this.getKvmOrderDetail = function getKvmOrderDetail(productId, duration) {
+    getKvmOrderDetail(productId, duration) {
       return this.get(productId, 'kvm/{duration}', {
-        urlPath: path.order,
+        urlPath: this.path.order,
         proxypass: true,
         urlParams: {
           duration,
         },
       });
-    };
+    }
 
-    this.getKvmOrderDetails = function getKvmOrderDetails(
-      productId,
-      durations,
-    ) {
+    getKvmOrderDetails(productId, durations) {
       const promises = [];
 
       durations.forEach((duration) => {
-        promises.push($q.when(this.getKvmOrderDetail(productId, duration)));
+        promises.push(
+          this.$q.when(this.getKvmOrderDetail(productId, duration)),
+        );
       });
 
-      return $q.all(promises);
-    };
+      return this.$q.all(promises);
+    }
 
-    this.postKvmOrderInfos = function postKvmOrderInfos(productId, duration) {
+    postKvmOrderInfos(productId, duration) {
       return this.post(productId, 'kvm/{duration}', {
-        urlPath: path.order,
+        urlPath: this.path.order,
         proxypass: true,
         urlParams: {
           duration,
         },
       });
-    };
+    }
 
-    /* ------- KVM Features -------*/
-    this.getKvmFeatures = function getKvmFeatures(productId) {
+    getKvmFeatures(productId) {
       return this.get(productId, 'features/kvm', {
-        cache: serverCaches.ipmi,
+        cache: this.serverCaches.ipmi,
         proxypass: true,
-        urlPath: path.product,
+        urlPath: this.path.product,
       });
-    };
+    }
 
-    this.getHardwareSpecifications = function getHardwareSpecifications(
-      productId,
-    ) {
+    getHardwareSpecifications(productId) {
       return this.get(productId, 'specifications/hardware', {
         proxypass: true,
       });
-    };
+    }
 
-    /* ------- USB STORAGE -------*/
-    this.getUsbStorageInformations = function getUsbStorageInformations(
-      productId,
-    ) {
+    getUsbStorageInformations(productId) {
       const orderable = this.get(productId, 'orderable/usbKey', {
         proxypass: true,
       });
@@ -1806,29 +1686,22 @@ angular
         proxypass: true,
       });
 
-      return $q.all([orderable, specification]);
-    };
+      return this.$q.all([orderable, specification]);
+    }
 
-    this.getUsbStorageDurations = function getUsbStorageDurations(
-      productId,
-      capacity,
-    ) {
+    getUsbStorageDurations(productId, capacity) {
       return this.get(productId, 'usbKey', {
-        urlPath: path.order,
+        urlPath: this.path.order,
         params: {
           capacity,
         },
         proxypass: true,
       });
-    };
+    }
 
-    this.getUsbStorageOrder = function getUsbStorageOrder(
-      productId,
-      capacity,
-      duration,
-    ) {
+    getUsbStorageOrder(productId, capacity, duration) {
       return this.get(productId, 'usbKey/{duration}', {
-        urlPath: path.order,
+        urlPath: this.path.order,
         urlParams: {
           duration,
         },
@@ -1837,15 +1710,11 @@ angular
         },
         proxypass: true,
       });
-    };
+    }
 
-    this.orderUsbStorage = function orderUsbStorage(
-      productId,
-      capacity,
-      duration,
-    ) {
+    orderUsbStorage(productId, capacity, duration) {
       return this.post(productId, 'usbKey/{duration}', {
-        urlPath: path.order,
+        urlPath: this.path.order,
         urlParams: {
           duration,
         },
@@ -1854,126 +1723,122 @@ angular
         },
         proxypass: true,
       });
-    };
+    }
 
-    this.getRtmVersion = function getRtmVersion(serviceName) {
-      return OvhHttp.get('/dedicated/server/{serviceName}/statistics', {
+    getRtmVersion(serviceName) {
+      return this.OvhHttp.get('/dedicated/server/{serviceName}/statistics', {
         rootPath: 'apiv6',
         urlParams: {
           serviceName,
         },
         returnErrorKey: '',
       });
-    };
+    }
 
-    this.getOsInformation = function getOsInformation(productId) {
-      return self.get(productId, 'statistics/os', {
+    getOsInformation(productId) {
+      return this.get(productId, 'statistics/os', {
         proxypass: true,
       });
-    };
+    }
 
-    this.getStatisticsChart = function getStatisticsChart(productId, opts) {
-      return self
-        .get(productId, 'statistics/chart', {
-          proxypass: true,
-          params: {
-            period: opts.period,
-            type: opts.type,
-          },
-        })
-        .then((results) => {
-          const { unit } = results;
-          const stats = results.values;
-          const points = [];
+    getStatisticsChart(productId, opts) {
+      return this.get(productId, 'statistics/chart', {
+        proxypass: true,
+        params: {
+          period: opts.period,
+          type: opts.type,
+        },
+      }).then((results) => {
+        const { unit } = results;
+        const stats = results.values;
+        const points = [];
 
-          angular.forEach(stats, (st) => {
-            if (st && st.value) {
-              points.push([+st.timestamp * 1000, st.value]);
-            } else {
-              points.push([+st.timestamp * 1000, 0]);
-            }
-          });
-
-          return {
-            unit,
-            points,
-          };
+        angular.forEach(stats, (st) => {
+          if (st && st.value) {
+            points.push([+st.timestamp * 1000, st.value]);
+          } else {
+            points.push([+st.timestamp * 1000, 0]);
+          }
         });
-    };
 
-    this.getStatisticsLoadavg = function getStatisticsLoadavg(productId, opts) {
+        return {
+          unit,
+          points,
+        };
+      });
+    }
+
+    getStatisticsLoadavg(productId, opts) {
       const loadavgList = ['loadavg1', 'loadavg15', 'loadavg5'];
-      const deferedObject = $q.defer();
+      const deferedObject = this.$q.defer();
       const promises = [];
       const data = {};
 
       angular.forEach(loadavgList, (loadavg) => {
         promises.push(
-          self
-            .getStatisticsChart(productId, {
-              period: opts.period,
-              type: loadavg,
-            })
-            .then((results) => {
-              data[loadavg] = results;
-            }),
+          this.getStatisticsChart(productId, {
+            period: opts.period,
+            type: loadavg,
+          }).then((results) => {
+            data[loadavg] = results;
+          }),
         );
       });
 
-      $q.all(promises).then(
-        () => {
+      this.$q
+        .all(promises)
+        .then(() => {
           deferedObject.resolve(data);
-        },
-        (rejection) => {
+        })
+        .catch((rejection) => {
           deferedObject.reject(rejection);
-        },
-      );
+        });
 
       return deferedObject.promise;
-    };
+    }
 
-    this.getMotherBoard = (productId) =>
-      self.get(productId, 'statistics/motherboard', {
+    getMotherBoard(productId) {
+      return this.get(productId, 'statistics/motherboard', {
         proxypass: true,
       });
+    }
 
-    this.getCpu = (productId) =>
-      self.get(productId, 'statistics/cpu', {
+    getCpu(productId) {
+      return this.get(productId, 'statistics/cpu', {
         proxypass: true,
       });
+    }
 
-    this.getMemory = (productId) =>
-      self.get(productId, 'statistics/memory', {
+    getMemory(productId) {
+      return this.get(productId, 'statistics/memory', {
         proxypass: true,
       });
+    }
 
-    this.getInfosServer = (productId) => {
-      const deferredObject = $q.defer();
+    getInfosServer(productId) {
+      const deferredObject = this.$q.defer();
       const promises = [];
 
       const data = {};
 
       promises.push(
-        self
-          .getMotherBoard(productId)
+        this.getMotherBoard(productId)
           .then((results) => {
             data.motherboard = results;
           })
-          .catch(() => $q.reject({})),
+          .catch(() => this.$q.reject({})),
       );
 
       promises.push(
-        self
-          .getCpu(productId)
+        this.getCpu(productId)
           .then((results) => {
             data.cpu = results;
           })
-          .catch(() => $q.reject({})),
+          .catch(() => this.$q.reject({})),
       );
 
       promises.push(
-        self
-          .getMemory(productId)
+        this.getMemory(productId)
           .then((results) => {
             data.memory = {
               total: 0,
@@ -1986,6 +1851,7 @@ angular
               if (memory.capacity) {
                 total += memory.capacity.value;
                 const key = memory.capacity.value + memory.capacity.unit;
+
                 if (data.memory.list[key]) {
                   data.memory.list[key].number += 1;
                 } else {
@@ -2000,28 +1866,27 @@ angular
 
             data.memory.totalMemory = total;
           })
-          .catch(() => $q.reject({})),
+          .catch(() => this.$q.reject({})),
       );
 
       promises.push(
-        self
-          .getRtmVersion(productId)
+        this.getRtmVersion(productId)
           .then((results) => {
             data.rtmVersion = results;
           })
-          .catch(() => $q.reject({})),
+          .catch(() => this.$q.reject({})),
       );
 
       promises.push(
-        self
-          .getOsInformation(productId)
+        this.getOsInformation(productId)
           .then((results) => {
             data.osInfo = results;
           })
-          .catch(() => $q.reject({})),
+          .catch(() => this.$q.reject({})),
       );
 
-      $q.all(promises)
+      this.$q
+        .all(promises)
         .then(() => {
           deferredObject.resolve(data);
         })
@@ -2030,10 +1895,10 @@ angular
         });
 
       return deferredObject.promise;
-    };
+    }
 
-    this.getDiskCharts = function getDiskCharts(serviceName, period) {
-      return OvhHttp.get(
+    getDiskCharts(serviceName, period) {
+      return this.OvhHttp.get(
         '/sws/dedicated/server/{serviceName}/rtm/partitions/{period}',
         {
           urlParams: {
@@ -2066,153 +1931,140 @@ angular
 
         return data;
       });
-    };
+    }
 
-    this.getLoad = function getLoad(productId) {
-      return self.get(productId, 'statistics/load', {
+    getLoad(productId) {
+      return this.get(productId, 'statistics/load', {
         proxypass: true,
       });
-    };
+    }
 
-    this.getRaidInfo = function getRaidInfo(serviceName) {
-      return OvhHttp.get('/sws/dedicated/server/{serviceName}/rtm/raid', {
+    getRaidInfo(serviceName) {
+      return this.OvhHttp.get('/sws/dedicated/server/{serviceName}/rtm/raid', {
         rootPath: '2api',
         urlParams: {
           serviceName,
         },
       });
-    };
+    }
 
-    this.getPartitions = function getPartitions(serviceName) {
-      return OvhHttp.get('/sws/dedicated/server/{serviceName}/rtm/partitions', {
-        rootPath: '2api',
-        urlParams: {
-          serviceName,
+    getPartitions(serviceName) {
+      return this.OvhHttp.get(
+        '/sws/dedicated/server/{serviceName}/rtm/partitions',
+        {
+          rootPath: '2api',
+          urlParams: {
+            serviceName,
+          },
         },
-      });
-    };
+      );
+    }
 
-    // Monitoring
+    getModels() {
+      return this.$http.get('apiv6/dedicated/server.json', { cache: true });
+    }
 
-    /**
-     * Get server models
-     */
-    this.getModels = function getModels() {
-      return $http.get('apiv6/dedicated/server.json', { cache: true });
-    };
-
-    this.getAllServiceMonitoring = function getAllServiceMonitoring(productId) {
+    getAllServiceMonitoring(productId) {
       let promises = [];
-      return self
-        .get(productId, 'serviceMonitoring', {
-          proxypass: true,
-        })
+
+      return this.get(productId, 'serviceMonitoring', {
+        proxypass: true,
+      })
         .then((ids) => {
           promises = ids.map((id) =>
-            self.get(productId, 'serviceMonitoring/{monitoringId}', {
+            this.get(productId, 'serviceMonitoring/{monitoringId}', {
               proxypass: true,
               urlParams: {
                 monitoringId: id,
               },
             }),
           );
-          return $q.all(promises);
+
+          return this.$q.all(promises);
         })
         .catch((error) => {
           if (error.status === 460) {
             return [];
           }
-          return $q.reject(error);
-        });
-    };
 
-    this.getServiceMonitoringIds = function getServiceMonitoringIds(productId) {
-      return self.get(productId, 'serviceMonitoring', {
+          return this.$q.reject(error);
+        });
+    }
+
+    getServiceMonitoringIds(productId) {
+      return this.get(productId, 'serviceMonitoring', {
         proxypass: true,
       });
-    };
+    }
 
-    this.getServiceMonitoring = function getServiceMonitoring(
-      productId,
-      monitoringId,
-    ) {
-      return self.get(productId, 'serviceMonitoring/{monitoringId}', {
+    getServiceMonitoring(productId, monitoringId) {
+      return this.get(productId, 'serviceMonitoring/{monitoringId}', {
         proxypass: true,
         urlParams: {
           monitoringId,
         },
       });
-    };
+    }
 
-    this.addServiceMonitoring = function addServiceMonitoring(productId, data) {
-      return self.post(productId, 'serviceMonitoring', {
+    addServiceMonitoring(productId, data) {
+      return this.post(productId, 'serviceMonitoring', {
         proxypass: true,
         data,
       });
-    };
+    }
 
-    this.updateServiceMonitoring = function updateServiceMonitoring(
-      productId,
-      monitoringId,
-      serviceMonitoring,
-    ) {
-      return self.put(productId, 'serviceMonitoring/{monitoringId}', {
+    updateServiceMonitoring(productId, monitoringId, serviceMonitoring) {
+      return this.put(productId, 'serviceMonitoring/{monitoringId}', {
         proxypass: true,
         urlParams: {
           monitoringId,
         },
         data: serviceMonitoring,
       });
-    };
+    }
 
-    this.deleteServiceMonitoring = function deleteServiceMonitoring(
-      productId,
-      monitoringId,
-    ) {
-      return self.delete(productId, 'serviceMonitoring/{monitoringId}', {
+    deleteServiceMonitoring(productId, monitoringId) {
+      return this.delete(productId, 'serviceMonitoring/{monitoringId}', {
         proxypass: true,
         urlParams: {
           monitoringId,
         },
       });
-    };
+    }
 
-    this.getAllServiceMonitoringNotifications = function getAllServiceMonitoringNotifications(
-      productId,
-      opts,
-    ) {
-      return self
-        .get(productId, 'serviceMonitoring/{monitoringId}/alert/{type}', {
+    getAllServiceMonitoringNotifications(productId, opts) {
+      return this.get(
+        productId,
+        'serviceMonitoring/{monitoringId}/alert/{type}',
+        {
           proxypass: true,
           urlParams: {
             monitoringId: opts.monitoringId,
             type: opts.type,
           },
-        })
-        .then((ids) => {
-          const promises = ids.map((alertId) =>
-            self.get(
-              productId,
-              'serviceMonitoring/{monitoringId}/alert/{type}/{alertId}',
-              {
-                proxypass: true,
-                urlParams: {
-                  monitoringId: opts.monitoringId,
-                  type: opts.type,
-                  alertId,
-                },
+        },
+      ).then((ids) => {
+        const promises = ids.map((alertId) =>
+          this.get(
+            productId,
+            'serviceMonitoring/{monitoringId}/alert/{type}/{alertId}',
+            {
+              proxypass: true,
+              urlParams: {
+                monitoringId: opts.monitoringId,
+                type: opts.type,
+                alertId,
               },
-            ),
-          );
-          return $q.all(promises);
-        });
-    };
+            },
+          ),
+        );
 
-    this.getServiceMonitoringNotificationsIds = function getServiceMonitoringNotificationsIds(
-      productId,
-      opts,
-    ) {
-      return self.get(
+        return this.$q.all(promises);
+      });
+    }
+
+    getServiceMonitoringNotificationsIds(productId, opts) {
+      return this.get(
         productId,
         'serviceMonitoring/{monitoringId}/alert/{type}',
         {
@@ -2223,13 +2075,10 @@ angular
           },
         },
       );
-    };
+    }
 
-    this.getServiceMonitoringNotifications = function getServiceMonitoringNotifications(
-      productId,
-      opts,
-    ) {
-      return self.get(
+    getServiceMonitoringNotifications(productId, opts) {
+      return this.get(
         productId,
         'serviceMonitoring/{monitoringId}/alert/{type}/{alertId}',
         {
@@ -2242,13 +2091,10 @@ angular
           },
         },
       );
-    };
+    }
 
-    this.deleteServiceMonitoringNotifications = function deleteServiceMonitoringNotifications(
-      productId,
-      opts,
-    ) {
-      return self.delete(
+    deleteServiceMonitoringNotifications(productId, opts) {
+      return this.delete(
         productId,
         'serviceMonitoring/{monitoringId}/alert/{type}/{alertId}',
         {
@@ -2265,13 +2111,10 @@ angular
           ].join('.'),
         },
       );
-    };
+    }
 
-    this.addServiceMonitoringNotificationEmail = function addServiceMonitoringNotificationEmail(
-      productId,
-      opts,
-    ) {
-      return self.post(
+    addServiceMonitoringNotificationEmail(productId, opts) {
+      return this.post(
         productId,
         'serviceMonitoring/{monitoringId}/alert/email',
         {
@@ -2283,13 +2126,10 @@ angular
           broadcast: 'server.monitoring.notifications.email.reload',
         },
       );
-    };
+    }
 
-    this.updateServiceMonitoringNotificationEmail = function update(
-      productId,
-      opts,
-    ) {
-      return self.put(
+    update(productId, opts) {
+      return this.put(
         productId,
         'serviceMonitoring/{monitoringId}/alert/email/{alertId}',
         {
@@ -2302,13 +2142,10 @@ angular
           broadcast: 'server.monitoring.notifications.email.reload',
         },
       );
-    };
+    }
 
-    this.addServiceMonitoringNotificationSMS = function addServiceMonitoringNotificationSMS(
-      productId,
-      opts,
-    ) {
-      return self.post(
+    addServiceMonitoringNotificationSMS(productId, opts) {
+      return this.post(
         productId,
         'serviceMonitoring/{monitoringId}/alert/sms',
         {
@@ -2320,13 +2157,10 @@ angular
           broadcast: 'server.monitoring.notifications.sms.reload',
         },
       );
-    };
+    }
 
-    this.updateServiceMonitoringNotificationSMS = function updateServiceMonitoringNotificationSMS(
-      productId,
-      opts,
-    ) {
-      return self.put(
+    updateServiceMonitoringNotificationSMS(productId, opts) {
+      return this.put(
         productId,
         'serviceMonitoring/{monitoringId}/alert/sms/{alertId}',
         {
@@ -2339,51 +2173,48 @@ angular
           broadcast: 'server.monitoring.notifications.sms.reload',
         },
       );
-    };
+    }
 
-    this.getSms = function getSms(productId) {
+    getSms(productId) {
       let promises = [];
-      if (coreConfig.getRegion() === 'CA') {
-        return $q.when([]);
+
+      if (this.coreConfig.getRegion() === 'CA') {
+        return this.$q.when([]);
       }
-      return self
-        .get(productId, '', {
-          proxypass: true,
-          urlPath: path.sms,
-        })
-        .then((ids) => {
-          promises = ids.map((smsId) =>
-            self.get(productId, '{serviceName}', {
-              proxypass: true,
-              urlPath: path.sms,
-              urlParams: {
-                serviceName: smsId,
-              },
-            }),
-          );
-          return $q.all(promises);
-        });
-    };
+      return this.get(productId, '', {
+        proxypass: true,
+        urlPath: this.path.sms,
+      }).then((ids) => {
+        promises = ids.map((smsId) =>
+          this.get(productId, '{serviceName}', {
+            proxypass: true,
+            urlPath: this.path.sms,
+            urlParams: {
+              serviceName: smsId,
+            },
+          }),
+        );
 
-    /* ------- Terminate -------*/
+        return this.$q.all(promises);
+      });
+    }
 
-    this.terminate = function terminate(serviceName) {
-      return OvhHttp.post('/dedicated/server/{serviceName}/terminate', {
+    terminate(serviceName) {
+      return this.OvhHttp.post('/dedicated/server/{serviceName}/terminate', {
         rootPath: 'apiv6',
         urlParams: {
           serviceName,
         },
       });
-    };
+    }
 
-    this.getRtmHowtoUrl = function getRtmHowtoUrl() {
+    getRtmHowtoUrl() {
       let link;
       let lang;
 
       /* Arbitrary fallback to English */
       const fallbackLang = 'GB';
-
-      const selectedLanguage = $translate.use();
+      const selectedLanguage = this.$translate.use();
 
       try {
         lang = selectedLanguage.replace(/^\w{2}_/, '').toUpperCase();
@@ -2393,70 +2224,58 @@ angular
       }
 
       if (
-        constants.urls &&
-        constants.urls[lang] &&
-        constants.urls[lang].RealTimeMonitoring
+        this.constants.urls &&
+        this.constants.urls[lang] &&
+        this.constants.urls[lang].RealTimeMonitoring
       ) {
-        link = constants.urls[lang].RealTimeMonitoring;
+        link = this.constants.urls[lang].RealTimeMonitoring;
       } else {
-        link = constants.urls[fallbackLang].RealTimeMonitoring;
+        link = this.constants.urls[fallbackLang].RealTimeMonitoring;
       }
+
       return link;
-    };
+    }
 
-    this.getVrack = function getVrack(serviceName) {
-      return self
-        .getSelected(serviceName)
-        .then((selectedServer) =>
-          $http
-            .get(`apiv6/dedicated/server/${selectedServer.name}/vrack`)
-            .then((results) => results.data),
-        );
-    };
+    getVrack(serviceName) {
+      return this.getSelected(serviceName).then((selectedServer) =>
+        this.$http
+          .get(`apiv6/dedicated/server/${selectedServer.name}/vrack`)
+          .then((results) => results.data),
+      );
+    }
 
-    this.getVrackInfos = function getVrackInfos(serviceName) {
-      return self
-        .getVrack(serviceName)
+    getVrackInfos(serviceName) {
+      return this.getVrack(serviceName)
         .then((results) => {
           const promises = results.map((vrack) =>
-            $http.get(`apiv6/vrack/${vrack}`).then(({ data }) => ({
+            this.$http.get(`apiv6/vrack/${vrack}`).then(({ data }) => ({
               serviceName: vrack,
               ...data,
             })),
           );
 
-          return $q.all(promises);
+          return this.$q.all(promises);
         })
         .catch((error) => {
           if (error.status === 404 || error.status === 460) {
-            return $q.resolve(null);
+            return this.$q.resolve(null);
           }
 
-          return $q.reject(error);
+          return this.$q.reject(error);
         });
-    };
+    }
 
-    /* ------- Hard Raid -------*/
+    getHardwareRaidProfile(serviceName) {
+      return this.getSelected(serviceName).then((selectedServer) =>
+        this.$http
+          .get(
+            `apiv6/dedicated/server/${selectedServer.name}/install/hardwareRaidProfile`,
+          )
+          .then((results) => results.data),
+      );
+    }
 
-    this.getHardwareRaidProfile = function getHardwareRaidProfile(serviceName) {
-      return self
-        .getSelected(serviceName)
-        .then((selectedServer) =>
-          $http
-            .get(
-              `apiv6/dedicated/server/${selectedServer.name}/install/hardwareRaidProfile`,
-            )
-            .then((results) => results.data),
-        );
-    };
-
-    this.postHardwareRaid = function postHardwareRaid(
-      productId,
-      templateName,
-      schemeName,
-      disks,
-      raid,
-    ) {
+    postHardwareRaid(productId, templateName, schemeName, disks, raid) {
       return this.post(
         productId,
         '{templateName}/partitionScheme/{schemeName}/hardwareRaid',
@@ -2468,22 +2287,16 @@ angular
           data: {
             disks,
             mode: raid,
-            name: HARDWARE_RAID_RULE_DEFAULT_NAME,
+            name: 'managerHardRaid',
             step: 1,
           },
           proxypass: true,
-          urlPath: path.installationMe,
+          urlPath: this.path.installationMe,
         },
       );
-    };
+    }
 
-    this.putHardwareRaid = function putHardwareRaid(
-      productId,
-      templateName,
-      schemeName,
-      disks,
-      raid,
-    ) {
+    putHardwareRaid(productId, templateName, schemeName, disks, raid) {
       return this.put(
         productId,
         '{templateName}/partitionScheme/{schemeName}/hardwareRaid/{name}',
@@ -2491,25 +2304,21 @@ angular
           urlParams: {
             templateName,
             schemeName,
-            name: HARDWARE_RAID_RULE_DEFAULT_NAME,
+            name: 'managerHardRaid',
           },
           data: {
             disks,
             mode: raid,
-            name: HARDWARE_RAID_RULE_DEFAULT_NAME,
+            name: 'managerHardRaid',
             step: 1,
           },
           proxypass: true,
-          urlPath: path.installationMe,
+          urlPath: this.path.installationMe,
         },
       );
-    };
+    }
 
-    this.getPartitionSchemeHardwareRaid = function getPartitionSchemeHardwareRaid(
-      productId,
-      templateName,
-      schemeName,
-    ) {
+    getPartitionSchemeHardwareRaid(productId, templateName, schemeName) {
       return this.get(
         productId,
         '{templateName}/partitionScheme/{schemeName}/hardwareRaid',
@@ -2519,12 +2328,13 @@ angular
             schemeName,
           },
           proxypass: true,
-          urlPath: path.installationMe,
+          urlPath: this.path.installationMe,
         },
       ).then((response) => {
-        const index = indexOf(response, HARDWARE_RAID_RULE_DEFAULT_NAME);
+        const index = indexOf(response, 'managerHardRaid');
+
         if (index !== -1) {
-          return self.get(
+          return this.get(
             productId,
             '{templateName}/partitionScheme/{schemeName}/hardwareRaid/{name}',
             {
@@ -2534,12 +2344,13 @@ angular
                 name: response[index],
               },
               proxypass: true,
-              urlPath: path.installationMe,
+              urlPath: this.path.installationMe,
             },
           );
         }
+
         if (response.length > 0) {
-          return self.get(
+          return this.get(
             productId,
             '{templateName}/partitionScheme/{schemeName}/hardwareRaid/{name}',
             {
@@ -2549,56 +2360,51 @@ angular
                 name: response[0],
               },
               proxypass: true,
-              urlPath: path.installationMe,
+              urlPath: this.path.installationMe,
             },
           );
         }
-        return $q.when();
-      });
-    };
 
-    this.isHardRaidLocationError = function isHardRaidLocationError(error) {
+        return this.$q.when();
+      });
+    }
+
+    // eslint-disable-next-line class-methods-use-this
+    isHardRaidLocationError(error) {
       return (
         error.status === 403 &&
         error.data &&
         error.data.message === 'Not available from this location'
       );
-    };
+    }
 
-    this.isHardRaidUnavailableError = function isHardRaidUnavailableError(
-      error,
-    ) {
+    // eslint-disable-next-line class-methods-use-this
+    isHardRaidUnavailableError(error) {
       return (
         error.status === 403 &&
         error.data &&
         error.data.message === 'Hardware RAID is not supported by this server'
       );
-    };
+    }
 
-    this.getHighestPriorityPartitionScheme = function getHighestPriorityPartitionScheme(
-      productId,
-      templateName,
-    ) {
-      return self
-        .getPartitionSchemes(productId, templateName)
-        .then((schemes) => {
+    getHighestPriorityPartitionScheme(productId, templateName) {
+      return this.getPartitionSchemes(productId, templateName).then(
+        (schemes) => {
           const getSchemes = map(schemes, (scheme) =>
-            self.getPartitionSchemePriority(productId, templateName, scheme),
+            this.getPartitionSchemePriority(productId, templateName, scheme),
           );
-          return $q.all(getSchemes).then((schemesDetails) => {
+
+          return this.$q.all(getSchemes).then((schemesDetails) => {
             const list = sortBy(schemesDetails, 'priority').reverse();
+
             return list[0];
           });
-        });
-    };
+        },
+      );
+    }
 
-    /**
-     * Update service infos.
-     * @param  {Object} data
-     * @return {Promise}
-     */
-    this.updateServiceInfos = (serviceName, data) =>
-      OvhHttp.put('/dedicated/server/{serviceName}/serviceInfos', {
+    updateServiceInfos(serviceName, data) {
+      return this.OvhHttp.put('/dedicated/server/{serviceName}/serviceInfos', {
         rootPath: 'apiv6',
         urlParams: {
           serviceName,
@@ -2606,26 +2412,25 @@ angular
         data,
         broadcast: 'dedicated.informations.reload',
       });
+    }
 
-    // Service info
-
-    this.getServiceInfos = function getServiceInfos(serviceName) {
-      return OvhHttp.get('/dedicated/server/{serviceName}/serviceInfos', {
+    getServiceInfos(serviceName) {
+      return this.OvhHttp.get('/dedicated/server/{serviceName}/serviceInfos', {
         rootPath: 'apiv6',
         urlParams: {
           serviceName,
         },
       });
-    };
+    }
 
-    this.isAutoRenewable = function isAutoRenewable(productId) {
+    isAutoRenewable(productId) {
       return this.getSelected(productId).then(
         (server) => moment(server.expiration).diff(moment().date(), 'days') > 0,
       );
-    };
+    }
 
-    this.getUpgradeProductName = (planName, ovhSubsidiary) =>
-      this.OvhApiOrderCatalogPublic.v6()
+    getUpgradeProductName(planName, ovhSubsidiary) {
+      return this.OvhApiOrderCatalogPublic.v6()
         .get({
           productName: 'baremetalServers',
           ovhSubsidiary,
@@ -2638,4 +2443,6 @@ angular
 
           return `${cpu.description}, ${memory.invoiceName}`;
         });
-  });
+    }
+  },
+);
