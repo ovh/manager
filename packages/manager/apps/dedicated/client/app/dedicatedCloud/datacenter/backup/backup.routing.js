@@ -8,6 +8,7 @@ import Backup from './backup.class';
 
 import {
   BACKUP_CONDITIONS_URL,
+  BACKUP_GUIDES_URL,
   BACKUP_TARIFF_URL,
   BACKUP_MINIMUM_HOST_COUNT,
 } from './backup.constants';
@@ -167,6 +168,12 @@ export default /* @ngInject */ ($stateProvider) => {
         }
         return promise;
       },
+      guideUrl: /* @ngInject */ ($translate, coreConfig) =>
+        get(
+          BACKUP_GUIDES_URL,
+          `${coreConfig.getRegion()}.${$translate.use()}`,
+          get(BACKUP_GUIDES_URL, `${coreConfig.getRegion()}.default`),
+        ),
       hosts: /* @ngInject */ (datacenterId, DedicatedCloud, productId) =>
         DedicatedCloud.getHosts(productId, datacenterId),
       operationsUrl: /* @ngInject */ ($state, datacenterId, productId) =>

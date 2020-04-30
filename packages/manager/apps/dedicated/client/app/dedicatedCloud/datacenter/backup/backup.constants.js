@@ -15,8 +15,22 @@ export const BACKUP_PROPERTIES_MAP = {
 
 export const BACKUP_MINIMUM_HOST_COUNT = 2;
 
-export const BACKUP_GUIDES_URL =
-  'https://docs.ovh.com/fr/storage/veeam-backup-replication';
+export const BACKUP_GUIDES_URL = {
+  CA: {
+    fr_FR: 'https://docs.ovh.com/fr/storage/veeam-backup-replication',
+    fr_CA: 'https://docs.ovh.com/fr/storage/veeam-backup-replication',
+    default:
+      'https://docs.ovh.com/gb/en/private-cloud/veeam-backup-as-a-service/',
+  },
+  EU: {
+    fr_FR: 'https://docs.ovh.com/fr/storage/veeam-backup-replication',
+    default:
+      'https://docs.ovh.com/gb/en/private-cloud/veeam-backup-as-a-service/',
+  },
+  US: {
+    default: 'https://support.us.ovhcloud.com/hc/en-us/articles/360013652139',
+  },
+};
 
 export const BACKUP_OFFER_NAME = {
   advanced: 'Advanced',
@@ -129,7 +143,7 @@ export const BACKUP_TARIFF_URL = {
   TN:
     'https://www.ovhcloud.com/fr-tn/enterprise/products/hosted-private-cloud/prices/',
   US:
-    'https://www.ovhcloud.com/en/enterprise/products/hosted-private-cloud/prices/',
+    'https://us.ovhcloud.com/products/hosted-private-cloud/managed-veeam-backup',
   WE:
     'https://www.ovhcloud.com/en/enterprise/products/hosted-private-cloud/prices/',
   WS:

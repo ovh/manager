@@ -1,6 +1,6 @@
 import get from 'lodash/get';
 
-import { BACKUP_GUIDES_URL, BACKUP_OFFER_NAME } from './backup.constants';
+import { BACKUP_OFFER_NAME } from './backup.constants';
 
 export default class {
   /* @ngInject */
@@ -14,8 +14,6 @@ export default class {
     this.$translate = $translate;
     this.alerter = Alerter;
     this.dedicatedCloudDatacenterBackupService = dedicatedCloudDatacenterBackupService;
-
-    this.BACKUP_GUIDES_URL = BACKUP_GUIDES_URL;
   }
 
   $onInit() {

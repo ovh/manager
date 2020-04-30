@@ -13,6 +13,7 @@ export default {
     productId: '<',
     scrollToTop: '<',
     goToDeleteBackup: '<',
+    guideUrl: '<',
   },
   controller,
   template,
