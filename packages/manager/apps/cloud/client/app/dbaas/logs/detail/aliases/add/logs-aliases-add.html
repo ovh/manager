@@ -44,27 +44,5 @@
                 required
             ></textarea>
         </oui-field>
-
-        <oui-field data-label="{{ ::'logs_select_options_title' | translate }}">
-            <oui-spinner data-ng-show="ctrl.options.loading"></oui-spinner>
-            <div class="oui-select" data-ng-hide="ctrl.options.loading">
-                <select
-                    class="oui-select__input"
-                    name="alias_option"
-                    id="alias_option"
-                    data-ng-model="ctrl.alias.data.optionId"
-                    data-ng-options="option.optionId as option.type+', '+option.detail+' - '+option.curNbAlias+'/'+option.maxNbAlias for option in ctrl.options.data"
-                >
-                    <option value=""
-                        >{{::'logs_main_offer' | translate}} -
-                        {{ctrl.mainOffer.data.current}}/{{ctrl.mainOffer.data.max}}</option
-                    >
-                </select>
-                <i
-                    class="oui-icon oui-icon-chevron-down"
-                    aria-hidden="true"
-                ></i>
-            </div>
-        </oui-field>
     </oui-modal>
 </form>

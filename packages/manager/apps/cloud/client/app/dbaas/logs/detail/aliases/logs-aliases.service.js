@@ -9,7 +9,6 @@ class LogsAliasesService {
     CucServiceHelper,
     CucCloudPoll,
     LogsHelperService,
-    LogsOptionsService,
     LogsConstants,
     CucUrlHelper,
     CucCloudMessage,
@@ -25,15 +24,11 @@ class LogsAliasesService {
     this.AliasAapiService = OvhApiDbaas.Logs()
       .Alias()
       .Aapi();
-    this.AccountingAapiService = OvhApiDbaas.Logs()
-      .Accounting()
-      .Aapi();
     this.OperationApiService = OvhApiDbaas.Logs()
       .Operation()
       .v6();
     this.CucCloudPoll = CucCloudPoll;
     this.LogsHelperService = LogsHelperService;
-    this.LogsOptionsService = LogsOptionsService;
     this.LogsConstants = LogsConstants;
     this.CucUrlHelper = CucUrlHelper;
     this.CucCloudMessage = CucCloudMessage;
@@ -187,44 +182,6 @@ class LogsAliasesService {
   }
 
   /**
-   * returns objecy containing total number of aliases and total number of aliases used
-   *
-   * @param {any} serviceName
-   * @returns quota object containing max (total number aliases)
-   *          and configured (number of aliases used)
-   * @memberof LogsAliasesService
-   */
-  getQuota(serviceName) {
-    return this.AccountingAapiService.me({ serviceName })
-      .$promise.then((me) => ({
-        max: me.total.maxNbAlias,
-        configured: me.total.curNbAlias,
-      }))
-      .catch((err) =>
-        this.LogsHelperService.handleError(
-          'logs_alias_quota_get_error',
-          err,
-          {},
-        ),
-      );
-  }
-
-  getMainOffer(serviceName) {
-    return this.AccountingAapiService.me({ serviceName })
-      .$promise.then((me) => ({
-        max: me.offer.maxNbAlias,
-        current: me.offer.curNbAlias,
-      }))
-      .catch((err) =>
-        this.LogsHelperService.handleError(
-          'logs_main_offer_get_error',
-          err,
-          {},
-        ),
-      );
-  }
-
-  /**
    * delete alias
    *
    * @param {any} serviceName
@@ -238,7 +195,6 @@ class LogsAliasesService {
       alias,
     )
       .$promise.then((operation) => {
-        this.resetAllCache();
         return this.LogsHelperService.handleOperation(
           serviceName,
           operation.data || operation,
@@ -266,12 +222,10 @@ class LogsAliasesService {
       { serviceName },
       {
         description: alias.description,
-        optionId: alias.optionId,
         suffix: alias.suffix,
       },
     )
       .$promise.then((operation) => {
-        this.resetAllCache();
         return this.LogsHelperService.handleOperation(
           serviceName,
           operation.data || operation,
@@ -299,11 +253,10 @@ class LogsAliasesService {
       { serviceName, aliasId: alias.aliasId },
       {
         description: alias.description,
-        optionId: alias.optionId,
+        optionId: alias.optionId ? alias.optionId : undefined,
       },
     )
       .$promise.then((operation) => {
-        this.resetAllCache();
         return this.LogsHelperService.handleOperation(
           serviceName,
           operation.data || operation,
@@ -420,13 +373,6 @@ class LogsAliasesService {
     };
   }
 
-  getSubscribedOptions(serviceName) {
-    return this.LogsOptionsService.getSubscribedOptionsByType(
-      serviceName,
-      this.LogsConstants.ALIAS_OPTION_REFERENCE,
-    );
-  }
-
   getElasticSearchUrl(alias) {
     const url = this.CucUrlHelper.constructor.findUrl(
       alias,
@@ -440,10 +386,6 @@ class LogsAliasesService {
       );
     }
     return url;
-  }
-
-  resetAllCache() {
-    this.AccountingAapiService.resetAllCache();
   }
 }
 

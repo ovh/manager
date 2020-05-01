@@ -10,7 +10,8 @@ class LogsInputsService {
     CucCloudPoll,
     LogsHelperService,
     LogsConstants,
-    LogsOptionsService,
+    LogsHomeService,
+    LogsOrderService,
     OvhApiDbaas,
     CucServiceHelper,
   ) {
@@ -30,7 +31,8 @@ class LogsInputsService {
       .Input()
       .v6();
     this.LogsConstants = LogsConstants;
-    this.LogsOptionsService = LogsOptionsService;
+    this.LogsHomeService = LogsHomeService;
+    this.LogsOrderService = LogsOrderService;
     this.OperationApiService = OvhApiDbaas.Logs()
       .Operation()
       .v6();
@@ -243,6 +245,7 @@ class LogsInputsService {
       .$promise.then((me) => ({
         max: me.offer.maxNbInput,
         current: me.offer.curNbInput,
+        planCode: me.offer.reference,
       }))
       .catch((err) =>
         this.LogsHelperService.handleError(
@@ -258,50 +261,19 @@ class LogsInputsService {
       data: {
         info: {
           exposedPort: this.LogsConstants.INPUT_DEFAULT_PORT,
+          nbInstance: this.LogsConstants.INPUT_DEFAULT_NB_INSTANCE,
         },
       },
       loading: false,
     };
   }
 
-  /**
-   * returns the object containing total number of inputs and total number of inputs used
-   *
-   * @param {any} serviceName
-   * @returns quota object containing total number inputs and configured number of inputs
-   * @memberof LogsInputsService
-   */
-  getQuota(serviceName) {
-    return this.AccountingAapiService.me({ serviceName })
-      .$promise.then((me) => {
-        const quota = {
-          max: me.total.maxNbInput,
-          configured: me.total.curNbInput,
-          currentUsage: (me.total.curNbInput * 100) / me.total.maxNbInput,
-        };
-        return quota;
-      })
-      .catch((err) =>
-        this.LogsHelperService.handleError(
-          'logs_inputs_quota_get_error',
-          err,
-          {},
-        ),
-      );
+  getAccountDetails(serviceName) {
+    return this.LogsHomeService.getAccountDetails(serviceName);
   }
 
-  /**
-   * returns the subscribed options
-   *
-   * @param {any} serviceName
-   * @returns array of options
-   * @memberof LogsInputsService
-   */
-  getSubscribedOptions(serviceName) {
-    return this.LogsOptionsService.getSubscribedOptionsByType(
-      serviceName,
-      this.LogsConstants.INPUT_OPTION_REFERENCE,
-    );
+  getOrderCatalog(ovhSubsidiary) {
+    return this.LogsOrderService.getOrderCatalog(ovhSubsidiary);
   }
 
   /**
@@ -651,10 +623,10 @@ class LogsInputsService {
       title: input.info.title,
       description: input.info.description,
       engineId: input.info.engineId,
+      nbInstance: input.info.nbInstance ? input.info.nbInstance : undefined,
       optionId: input.info.optionId ? input.info.optionId : undefined,
       allowedNetworks: this.allowedNetworks,
       streamId: input.info.streamId,
-      singleInstanceEnabled: input.info.singleInstanceEnabled,
       exposedPort: input.info.exposedPort.toString(),
     };
   }
