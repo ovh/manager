@@ -3,7 +3,7 @@ import mapValues from 'lodash/mapValues';
 
 import ListLayoutCtrl from './list-layout.controller';
 
-const FILTER_OPERATORS = {
+export const FILTER_OPERATORS = {
   contains: 'like',
   is: 'eq',
   isAfter: 'gt',
@@ -15,7 +15,7 @@ const FILTER_OPERATORS = {
   endsWith: 'like',
 };
 
-const mapFilterForIceberg = (comparator, reference) =>
+export const mapFilterForIceberg = (comparator, reference) =>
   reference.map((val) => {
     switch (comparator.toUpperCase()) {
       case 'CONTAINS':
@@ -128,7 +128,9 @@ export const componentBindings = mapValues(stateResolves, () => '<');
 
 export default {
   componentBindings,
+  FILTER_OPERATORS,
   ListLayoutCtrl,
+  mapFilterForIceberg,
   stateResolves,
   stateParams,
   urlQueryParams,
