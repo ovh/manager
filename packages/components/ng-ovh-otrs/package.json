@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-otrs",
-  "version": "7.1.12",
+  "version": "9.0.3",
   "description": "Manage OTRS tickets",
   "keywords": [
     "angularjs",
@@ -8,47 +8,39 @@
     "ovh",
     "tickets"
   ],
-  "repository": "ovh-ux/ng-ovh-otrs",
+  "homepage": "https://github.com/ovh/manager/tree/master/packages/components/ng-ovh-otrs#readme",
+  "bugs": {
+    "url": "https://github.com/ovh/manager/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ovh/manager.git",
+    "directory": "packages/components/ng-ovh-otrs"
+  },
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
-  "files": [
-    "dist"
-  ],
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
   "browser": "./dist/umd/ng-ovh-otrs.js",
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "build": "rollup -c",
-    "dev": "rollup -c --watch",
-    "lint": "run-p lint:css lint:js lint:md",
-    "lint:css": "stylelint 'src/**/*.less' --fix",
-    "lint:js": "eslint --quiet --fix --format=pretty src",
-    "lint:md": "eslint --quiet --fix --format=pretty --ext .md .",
-    "prepare": "rollup -c",
-    "test": "yarn run lint",
-    "version": "npx conventional-changelog-cli -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
-    "postversion": "git push && git push --tags"
+    "build": "rollup -c --environment BUILD:production",
+    "dev": "rollup -c --environment BUILD:development",
+    "dev:watch": "yarn run dev --watch",
+    "prepare": "yarn run build",
+    "start": "lerna exec --stream --scope='@ovh-ux/ng-ovh-otrs' --include-dependencies -- yarn run build",
+    "start:dev": "lerna exec --stream --scope='@ovh-ux/ng-ovh-otrs' --include-dependencies -- yarn run dev",
+    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/ng-ovh-otrs' --include-dependencies -- yarn run dev:watch"
   },
   "dependencies": {
     "draggable": "^4.2.0",
     "lodash": "^4.17.11"
   },
   "devDependencies": {
-    "@commitlint/cli": "^8.0.0",
-    "@commitlint/config-angular": "^8.0.0",
-    "@ovh-ux/component-rollup-config": "^5.0.2",
-    "bootstrap": "^3.3.6",
-    "eslint": "^5.16.0",
-    "eslint-config-airbnb-base": "^13.1.0",
-    "eslint-formatter-pretty": "^2.1.1",
-    "eslint-plugin-import": "^2.17.3",
-    "eslint-plugin-markdown": "^1.0.0",
-    "htmlhint": "^0.11.0",
-    "husky": "^2.4.1",
-    "lint-staged": "^8.2.1",
-    "npm-run-all": "^4.1.5",
-    "stylelint": "^10.1.0",
-    "stylelint-config-standard": "^18.3.0"
+    "@ovh-ux/component-rollup-config": "^7.0.0",
+    "bootstrap": "^3.3.6"
   },
   "peerDependencies": {
     "angular": "^1.7.5",
