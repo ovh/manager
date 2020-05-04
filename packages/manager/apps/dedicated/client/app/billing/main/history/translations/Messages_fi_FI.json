@@ -1,5 +1,4 @@
 {
-  "billing_main_history_title": "My bills",
   "billing_main_history_loading_errors": "An error has occurred retrieving your bills.",
   "billing_main_history_export_error": "An error has occurred exporting your bills in .csv format.",
   "billing_main_history_invoices_postal_mail": "Receive bills in paper format",

@@ -1,5 +1,4 @@
 {
-  "billing_main_history_title": "Le tue fatture",
   "billing_main_history_loading_errors": "Si è verificato un errore durante il recupero delle tue fatture.",
   "billing_main_history_export_error": "Si è verificato un errore durante l'esportazione delle tue fatture in formato CSV.",
   "billing_main_history_invoices_postal_mail": "Ricevi le tue fatture in formato cartaceo",

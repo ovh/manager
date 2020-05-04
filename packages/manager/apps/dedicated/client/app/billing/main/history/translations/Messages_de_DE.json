@@ -1,5 +1,4 @@
 {
-  "billing_main_history_title": "Meine Rechnungen",
   "billing_main_history_loading_errors": "Beim Abruf Ihrer Rechnungen ist ein Fehler aufgetreten.",
   "billing_main_history_export_error": "Beim Export Ihrer Rechnungen im CSV-Format ist ein Fehler aufgetreten.",
   "billing_main_history_invoices_postal_mail": "Rechnungen auf Papier erhalten",

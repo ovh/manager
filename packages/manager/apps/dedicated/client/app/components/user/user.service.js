@@ -37,10 +37,6 @@ angular.module('services').service('User', [
                     lastName: result.me.name,
                     billingCountry: result.me.country,
                     customerCode: result.me.customerCode,
-                    isVATNeeded:
-                      ['CA', 'QC', 'WE', 'WS'].indexOf(
-                        result.me.ovhSubsidiary,
-                      ) === -1,
                   },
                   result.certificates,
                 );
