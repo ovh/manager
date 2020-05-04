@@ -56,7 +56,7 @@
     "@ovh-ux/ng-ovh-http": "^5.0.0",
     "@ovh-ux/ng-ovh-jquery-ui-draggable": "^2.0.0",
     "@ovh-ux/ng-ovh-order-tracking": "^0.2.1",
-    "@ovh-ux/ng-ovh-otrs": "^7.1.12",
+    "@ovh-ux/ng-ovh-otrs": "^9.0.3",
     "@ovh-ux/ng-ovh-payment-method": "^6.1.0",
     "@ovh-ux/ng-ovh-proxy-request": "^2.0.0",
     "@ovh-ux/ng-ovh-request-tagger": "^1.1.0",
