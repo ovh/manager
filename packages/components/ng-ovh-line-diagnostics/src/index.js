@@ -32,11 +32,22 @@ angular
   .component('lineDiagnostics', component)
   .factory('LineDiagnosticFactory', factory)
   .provider('LineDiagnostics', provider)
-  .run(/* @ngInject */($templateCache) => {
-    $templateCache.put('/ng-ovh-line-diagnostics/steps/detection-step.html', detectionStepTemplate);
-    $templateCache.put('/ng-ovh-line-diagnostics/steps/investigation-step.html', investigationStepTemplate);
-    $templateCache.put('/ng-ovh-line-diagnostics/steps/solution-proposal-step.html', solutionProposalStepTemplate);
-  })
-  .run(/* @ngTranslationsInject ./translations */);
+  .run(
+    /* @ngInject */ ($templateCache) => {
+      $templateCache.put(
+        '/ng-ovh-line-diagnostics/steps/detection-step.html',
+        detectionStepTemplate,
+      );
+      $templateCache.put(
+        '/ng-ovh-line-diagnostics/steps/investigation-step.html',
+        investigationStepTemplate,
+      );
+      $templateCache.put(
+        '/ng-ovh-line-diagnostics/steps/solution-proposal-step.html',
+        solutionProposalStepTemplate,
+      );
+    },
+  )
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
