@@ -1,5 +1,4 @@
 {
-  "billing_main_history_title": "Faturas",
   "billing_main_history_loading_errors": "Ocorreu um erro ao recuperar as suas faturas.",
   "billing_main_history_export_error": "Ocorreu um erro ao exportar as suas faturas em formato csv.",
   "billing_main_history_invoices_postal_mail": "Receber as minhas faturas em papel",

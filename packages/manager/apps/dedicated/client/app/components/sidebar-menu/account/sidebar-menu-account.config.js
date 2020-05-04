@@ -20,7 +20,7 @@ angular
         if (coreConfig.getRegion() === 'US') {
           SidebarMenu.addMenuItem({
             name: 'billingMenu',
-            title: $translate.instant('menu_billing'),
+            title: $translate.instant('menu_bills'),
             state: 'app.account.billing.main.pay-as-you-go',
             loadOnState: 'app.account.billing.main',
             namespace: 'account',
@@ -28,7 +28,7 @@ angular
         } else {
           SidebarMenu.addMenuItem({
             name: 'billingMenu',
-            title: $translate.instant('menu_billing'),
+            title: $translate.instant('menu_bills'),
             state: 'app.account.billing.main.history',
             namespace: 'account',
           });

@@ -1,5 +1,4 @@
 {
-  "billing_main_history_title": "Mis facturas",
   "billing_main_history_loading_errors": "Se ha producido un error al cargar sus facturas.",
   "billing_main_history_export_error": "Se ha producido un error al exportar sus facturas en formato CSV.",
   "billing_main_history_invoices_postal_mail": "Recibir mis facturas en formato papel",

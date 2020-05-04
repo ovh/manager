@@ -1,11 +1,18 @@
+import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 import controller from './billing-main-history.controller';
 import template from './billing-main-history.html';
 
 export default {
   bindings: {
+    bills: '<',
     currentUser: '<',
-    filters: '<',
-    onListParamsChange: '<',
+    debtAccount: '<',
+    exportBills: '<',
+    getDebt: '<',
+    hasDefaultPaymentMethod: '<',
+    invoicesByPostalMail: '<',
+    payDebt: '<',
+    ...ListLayoutHelper.componentBindings,
   },
   controller,
   template,
