@@ -18,6 +18,6 @@ angular
     'pascalprecht.translate',
   ])
   .component('ovhMondialRelay', component)
-  .run(/* @ngTranslationsInject ./translations */);
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
