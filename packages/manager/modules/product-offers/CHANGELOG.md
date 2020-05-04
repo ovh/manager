@@ -1,3 +1,12 @@
+## [1.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-product-offers@1.1.0...@ovh-ux/manager-product-offers@1.1.1) (2020-05-04)
+
+
+### Bug Fixes
+
+* **workflow:** autopay order only if customer has payment mean ([#2881](https://github.com/ovh/manager/issues/2881)) ([5b73b3c](https://github.com/ovh/manager/commit/5b73b3c5cf4ef7388787524ea47ec7a3eff52290))
+
+
+
 # [1.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-product-offers@1.0.4...@ovh-ux/manager-product-offers@1.1.0) (2020-04-28)
 
 

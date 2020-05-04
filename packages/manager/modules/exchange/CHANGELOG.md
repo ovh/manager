@@ -1,3 +1,12 @@
+## [1.8.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@1.8.1...@ovh-ux/manager-exchange@1.8.2) (2020-05-04)
+
+
+### Bug Fixes
+
+* **exchange:** export navigation service ([#2871](https://github.com/ovh/manager/issues/2871)) ([6778070](https://github.com/ovh/manager/commit/67780700c58523edf11a25aa156dd7121ca1b2be))
+
+
+
 ## [1.8.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@1.8.0...@ovh-ux/manager-exchange@1.8.1) (2020-04-17)
 
 
