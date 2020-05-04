@@ -7,9 +7,10 @@
         </div>
 
         <div data-ng-switch-when="SERVICES_MONITORING">
-            <div
-                data-ng-include="'dedicated/server/monitoring/dedicated-server-monitoring.html'"
-            ></div>
+            <dedicated-server-monitoring
+                go-back="goToDashboard"
+                server="server"
+            ></dedicated-server-monitoring>
         </div>
 
         <div data-ng-switch-default>

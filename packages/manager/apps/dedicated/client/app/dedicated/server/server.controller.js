@@ -56,6 +56,10 @@ export default class ServerCtrl {
     this.$scope.resiliatePublicBandwidthLink = this.resiliatePublicBandwidthLink;
     this.$scope.resiliatePrivateBandwidthLink = this.resiliatePrivateBandwidthLink;
 
+    this.$scope.currentView = {
+      value: 'DASHBOARD',
+    };
+
     this.$scope.loadingServerInformations = true;
     this.$scope.loadingServerError = false;
     this.$scope.DedicatedServerFeatureAvailability = this.DedicatedServerFeatureAvailability;
@@ -95,6 +99,10 @@ export default class ServerCtrl {
     this.$scope.setToBigModalDialog = (active) => {
       this.$scope.mediumModalDialog = false;
       this.$scope.bigModalDialog = active;
+    };
+
+    this.$scope.goToDashboard = () => {
+      this.$scope.currentView.value = 'DASHBOARD';
     };
 
     this.$scope.resetAction = () => {

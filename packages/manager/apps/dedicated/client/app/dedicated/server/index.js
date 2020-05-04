@@ -6,6 +6,7 @@ import 'ovh-ui-angular';
 
 import bandwidth from './bandwidth/bandwidth.module';
 import interfaces from './interfaces/interfaces.module';
+import monitoring from './monitoring';
 import servers from './servers/servers.module';
 
 import bandwidthVrackOrderService from './server.bandwidth-vrack-order.service';
@@ -22,6 +23,7 @@ angular
   .module(moduleName, [
     bandwidth,
     interfaces,
+    monitoring,
     'oui',
     'pascalprecht.translate',
     servers,
