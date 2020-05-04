@@ -14,7 +14,7 @@ The monolithic applications can be started for a specific region
 | Application                   | Region       |
 | ----------------------------- | ------------ |
 | [Dashboard](#dashboard)       | EU / CA / US |
-| [Web](#web)                   | EU           |
+| [Web](#web)                   | EU / CA      |
 | [Server](#server)             | EU / CA / US |
 | [Public Cloud](#public-cloud) | EU / CA / US |
 | [Telecom](#telecom)           | EU           |
