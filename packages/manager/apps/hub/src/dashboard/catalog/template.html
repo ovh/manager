@@ -19,6 +19,7 @@
                     items="$ctrl.universes"
                     multiple
                     on-change="$ctrl.onUniverseChange()"
+                    data-searchable
                 >
                 </oui-select>
             </oui-field>
@@ -33,6 +34,7 @@
                     items="$ctrl.categories"
                     multiple
                     on-change="$ctrl.filterItems()"
+                    data-searchable
                 >
                 </oui-select>
             </oui-field>
