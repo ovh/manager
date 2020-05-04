@@ -23,9 +23,6 @@ angular
       NEW_RANGE,
     ) => {
       $scope.pattern = NEW_RANGE.PATTERN;
-      $scope.currentView = {
-        value: 'DASHBOARD',
-      };
 
       $scope.serverStatsLoad = {
         loading: true,
