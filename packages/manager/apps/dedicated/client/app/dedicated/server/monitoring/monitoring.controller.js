@@ -1,35 +1,20 @@
-import includes from 'lodash/includes';
 import omit from 'lodash/omit';
 import set from 'lodash/set';
 
 export default class Monitoring {
   /* @ngInject */
-  constructor(
-    $controller,
-    $q,
-    $rootScope,
-    $scope,
-    $stateParams,
-    $translate,
-    Alerter,
-    IpRange,
-    Server,
-  ) {
-    this.$controller = $controller;
+  constructor($q, $scope, $state, $stateParams, $translate, Alerter, Server) {
     this.$q = $q;
-    this.$rootScope = $rootScope;
     this.$scope = $scope;
+    this.$state = $state;
     this.$stateParams = $stateParams;
     this.$translate = $translate;
     this.Alerter = Alerter;
-    this.IpRange = IpRange;
     this.Server = Server;
   }
 
   $onInit() {
     this.currentMonitoring = { value: null };
-    this.ips = [];
-    this.sms = null;
     this.addMode = false;
     this.editMode = false;
 
@@ -46,82 +31,13 @@ export default class Monitoring {
 
     this.$scope.$on('server.monitoring.reload', this.refreshTableMonitoring);
 
-    return this.init();
-  }
-
-  static compare(x, y) {
-    return parseInt(x, 10) - parseInt(y, 10);
+    return this.refreshTableMonitoring();
   }
 
   isAllowedToMonitoringWithSms() {
     const excludedFromMonitoring = new RegExp('BHS|SGP|SYD', 'g');
 
     return this.sms && !excludedFromMonitoring.test(this.server.datacenter);
-  }
-
-  init() {
-    this.Server.getModels()
-      .then((models) => {
-        this.monitoringProtocolEnum =
-          models.data.models['dedicated.server.MonitoringProtocolEnum'].enum;
-        this.monitoringIntervalEnum = models.data.models[
-          'dedicated.server.MonitoringIntervalEnum'
-        ].enum.sort(Monitoring.compare);
-        this.languageEnum =
-          models.data.models['dedicated.server.AlertLanguageEnum'].enum;
-      })
-      .catch((err) => {
-        this.Alerter.alertFromSWS(
-          this.$translate.instant('server_tab_MONITORING_error'),
-          err.data,
-          'monitoringAlert',
-        );
-      })
-      .finally(() => {
-        this.loaders.init = false;
-      });
-
-    this.$q.allSettled([
-      this.refreshTableMonitoring(),
-      this.getSms(),
-      this.getIps(),
-    ]);
-  }
-
-  getSms() {
-    return this.Server.getSms(this.$stateParams.productId)
-      .then((sms) => {
-        this.sms = sms.filter(
-          (data) => data.status === 'enable' && data.creditsLeft > 0,
-        );
-      })
-      .catch((err) => {
-        if (err.status !== 404) {
-          this.Alerter.alertFromSWS(
-            this.$translate.instant('server_tab_MONITORING_error'),
-            err.data,
-            'monitoringAlert',
-          );
-        }
-      });
-  }
-
-  getIps() {
-    return this.Server.listIps(this.$stateParams.productId)
-      .then((ips) => {
-        ips.forEach((ip) => {
-          if (!includes(ip, ':')) {
-            this.ips = this.ips.concat(this.IpRange.getRangeForIpv4Block(ip));
-          }
-        });
-      })
-      .catch((err) => {
-        this.Alerter.alertFromSWS(
-          this.$translate.instant('server_tab_MONITORING_error'),
-          err.data,
-          'monitoringAlert',
-        );
-      });
   }
 
   toggleStatus(monitoring) {
@@ -143,7 +59,8 @@ export default class Monitoring {
       })
       .finally(() => {
         this.loaders.monitorings = false;
-        this.$rootScope.$broadcast('server.monitoring.reload');
+
+        return this.$state.reload();
       });
   }
 
