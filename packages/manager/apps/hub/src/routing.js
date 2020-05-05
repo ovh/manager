@@ -99,6 +99,7 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
           })
           .then(({ data }) => parseErrors(data)),
 
+      tickets: /* @ngInject */ (hub) => hub.support.data,
       trackingPrefix: () => 'hub::dashboard::activity::payment-status',
       feedbackUrl: /* @ngInject */ (hub) => hub.survey,
 
