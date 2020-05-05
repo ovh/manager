@@ -4,14 +4,14 @@ import '@uirouter/angularjs';
 import 'angular-translate';
 import 'ovh-ui-angular';
 
-import component from './monitoring.component';
-import routing from './monitoring.routing';
+import component from './dashboard.component';
+import routing from './dedicated.routing';
 
-const moduleName = 'ovhManagerDedicatedServerMonitoring';
+const moduleName = 'ovhManagerDedicatedServerDashboard';
 
 angular
   .module(moduleName, ['oui', 'pascalprecht.translate', 'ui.router'])
-  .component('dedicatedServerMonitoring', component)
+  .component('dedicatedServerDashboard', component)
   .config(routing)
   .run(/* @ngTranslationsInject:json ../translations */);
 
