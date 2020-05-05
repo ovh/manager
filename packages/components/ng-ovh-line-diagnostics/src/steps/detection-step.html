@@ -1,0 +1,111 @@
+<!-- PROGRESS BAR -->
+<div class="col-md-8"
+     data-ng-if="$ctrl.detectionStepProgression < 100">
+    <span data-translate="tools_lineDiagnostics_detection_step_test"></span>
+    <oui-progress>
+        <oui-progress-bar data-type="info"
+                          data-value="$ctrl.detectionStepProgression"></oui-progress-bar>
+    </oui-progress>
+</div>
+
+<div class="col-md-4"
+     data-ng-if="$ctrl.currentLineDiagnostic.status === 'waitingRobot'">
+    <oui-spinner data-size="s"></oui-spinner>
+    <span data-translate="tools_lineDiagnostics_waitingRobot"></span>
+    <span data-translate="tools_lineDiagnostics_please_wait"></span>
+</div>
+
+<div class="col-md-8"
+     data-ng-if="$ctrl.detectionStepProgression === 100 &&
+                 $ctrl.currentLineDiagnostic">
+    <div data-ng-if="$ctrl.currentLineDiagnostic.hasQuestionToAnswer('modemIsSynchronized')">
+        <form class="form-group"
+              novalidate>
+            <label class="oui-label" id="modemIsSynchronizedLabel">
+                <span data-translate="tools_lineDiagnostics_detection_step_modem_question"></span>
+                <oui-popover>
+                    <button type="button"
+                            class="oui-popover-button"
+                            oui-popover-trigger></button>
+                    <oui-popover-content>
+                        <p class="text-center"
+                            data-translate="tools_lineDiagnostics_detection_step_modem_question_help">
+                        </p>
+                        <img data-ng-src="{{:: $ctrl.assets.BROADBAND_LIGHT }}"
+                            alt=""
+                            data-ng-attr-alt="{{:: $ctrl.currentAction }}"
+                            aria-hidden="true" />
+                    </oui-popover-content>
+                </oui-popover>
+            </label>
+            <oui-radio-toggle-group class="d-inline-block"
+                                    aria-labelledby="modemIsSynchronizedLabel"
+                                    data-model="$ctrl.currentLineDiagnostic.data.answers.modemIsSynchronized"
+                                    data-on-change="$ctrl.answerQuestion('modemIsSynchronized', modelValue)"
+                                    data-ng-if="!$ctrl.loading">
+                <oui-radio data-value="true">
+                    <span data-translate="tools_lineDiagnostics_detection_step_modem_light_on"></span>
+                </oui-radio>
+                <oui-radio data-value="false">
+                    <span data-translate="tools_lineDiagnostics_detection_step_modem_light_blink"></span>
+                </oui-radio>
+                <oui-radio data-value="false">
+                    <span data-translate="tools_lineDiagnostics_detection_step_modem_light_off"></span>
+                </oui-radio>
+            </oui-radio-toggle-group>
+            <div data-ng-if="$ctrl.loading">
+                <oui-spinner data-size="s"></oui-spinner>
+                <span class="ml-2" data-translate="tools_lineDiagnostics_please_wait"></span>
+            </div>
+        </form>
+    </div>
+
+    <div data-ng-if="$ctrl.currentLineDiagnostic.faultType !== 'unknown' &&
+                     $ctrl.currentLineDiagnostic.status !== 'waitingRobot'">
+        <oui-message data-ng-if="$ctrl.currentLineDiagnostic.faultType !== 'syncLossOrLowBandwidth'"
+                     data-type="warning">
+            <p class="oui-header_5"
+               data-translate="tools_lineDiagnostics_detection_step_warning_title"></p>
+            <p data-translate="tools_lineDiagnostics_detection_step_warning"></p>
+        </oui-message>
+        <oui-message data-ng-if="$ctrl.currentLineDiagnostic.faultType === 'syncLossOrLowBandwidth'"
+                     data-dismissable="false"
+                     data-type="info">
+            <p class="oui-header_5"
+               data-translate="tools_lineDiagnostics_detection_step_info_title"></p>
+            <p data-translate="tools_lineDiagnostics_detection_step_info"
+               data-translate-values="{ 'continueButtonLabel': $ctrl.$translate.instant('tools_lineDiagnostics_detection_step_continue') }">
+            </p>
+        </oui-message>
+        <div data-ng-if="$ctrl.currentLineDiagnostic.faultType === 'noSync'">
+            <label for="unplugModem"
+                   class="oui-label">
+                <span data-translate="tools_lineDiagnostics_detection_step_modem_unplug_request"></span>
+            </label>
+            <oui-button id="unplugModem"
+                        data-variant="secondary"
+                        data-variant-nav="next"
+                        data-on-click="$ctrl.setModemUnplug('unplugModem')"
+                        data-ng-if="!$ctrl.loading">
+                <span data-translate="tools_lineDiagnostics_detection_step_modem_unplug_confirm"></span>
+            </oui-button>
+            <div data-ng-if="$ctrl.loading">
+                <oui-spinner data-size="s"></oui-spinner>
+                <span class="ml-2" data-translate="tools_lineDiagnostics_please_wait"></span>
+            </div>
+        </div>
+        <div data-ng-if="$ctrl.currentLineDiagnostic.faultType === 'alignment' ||
+                         $ctrl.currentLineDiagnostic.faultType === 'syncLossOrLowBandwidth'">
+            <oui-button data-variant="secondary"
+                        data-variant-nav="next"
+                        data-on-click="$ctrl.goToInvestigationStep()"
+                        data-ng-if="!$ctrl.loading">
+                <span data-translate="tools_lineDiagnostics_detection_step_continue"></span>
+            </oui-button>
+            <div data-ng-if="$ctrl.loading">
+                <oui-spinner data-ng-if="$ctrl.loading" data-size="s"></oui-spinner>
+                <span class="ml-2" data-translate="tools_lineDiagnostics_please_wait"></span>
+            </div>
+        </div>
+    </div>
+</div>
