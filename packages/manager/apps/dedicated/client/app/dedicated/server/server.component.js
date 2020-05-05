@@ -4,12 +4,11 @@ import template from './server.html';
 export default {
   bindings: {
     ola: '<',
-    orderPrivateBandwidthLink: '<',
-    orderPublicBandwidthLink: '<',
-    resiliatePrivateBandwidthLink: '<',
-    resiliatePublicBandwidthLink: '<',
     server: '<',
+    serviceInfos: '<',
     specifications: '<',
+    user: '<',
+    worldPart: '<',
   },
   controller,
   template,
