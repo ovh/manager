@@ -61,6 +61,7 @@ export default class HostingGeneralInformationsCtrl {
       this.$scope.pendingTasks.length === 0;
 
     this.isPrivateDatabaseDetachable =
+      this.$scope.privateDatabasesDetachable.length > 0 &&
       this.$scope.privateDatabasesDetachable[0].detachPlancodes.length > 0 &&
       this.$scope.pendingTasks.length === 0;
 
