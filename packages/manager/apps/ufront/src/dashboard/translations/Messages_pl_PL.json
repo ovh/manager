@@ -1,6 +1,0 @@
-{
-  "manager_hub_dashboard_feedback": "Nowy dashboard: zapraszamy <a href=\"{{ url }}\" target=\"_blank\" rel=\"noopener\">do przesyłania opinii</a>",
-  "manager_hub_dashboard": "Dashboard",
-  "manager_hub_dashboard_overview": "Przegląd moich projektów",
-  "manager_hub_dashboard_services": "Moje produkty i usługi"
-}
