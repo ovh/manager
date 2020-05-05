@@ -5,6 +5,7 @@ import 'angular-translate';
 import 'ovh-ui-angular';
 
 import bandwidth from './bandwidth/bandwidth.module';
+import dashboard from './dashboard';
 import interfaces from './interfaces/interfaces.module';
 import monitoring from './monitoring';
 import servers from './servers/servers.module';
@@ -22,6 +23,7 @@ const moduleName = 'ovhManagerDedicatedServer';
 angular
   .module(moduleName, [
     bandwidth,
+    dashboard,
     interfaces,
     monitoring,
     'oui',
@@ -58,9 +60,6 @@ angular
     TENSECS: '_10_S',
     ONEMIN: '_1_M',
     FIVEMINS: '_5_M',
-  })
-  .constant('NEW_RANGE', {
-    PATTERN: /^(ADV|STOR|ADVANCE|RISE|INFRA)-[1-9]$/,
   })
   .run(/* @ngTranslationsInject:json ./translations */);
 

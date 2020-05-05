@@ -5,12 +5,7 @@ import isArray from 'lodash/isArray';
 import isEmpty from 'lodash/isEmpty';
 import set from 'lodash/set';
 
-import {
-  ELIGIBLE_FOR_UPGRADE,
-  NO_AUTORENEW_COUNTRIES,
-  URLS,
-  WEATHERMAP_URL,
-} from './server.constants';
+import { NO_AUTORENEW_COUNTRIES } from './server.constants';
 
 export default class ServerCtrl {
   /* @ngInject */
@@ -22,8 +17,6 @@ export default class ServerCtrl {
     $timeout,
     $translate,
     constants,
-    coreConfig,
-    DedicatedServerFeatureAvailability,
     ovhUserPref,
     Polling,
     Server,
@@ -36,8 +29,6 @@ export default class ServerCtrl {
     this.$timeout = $timeout;
     this.$translate = $translate;
     this.constants = constants;
-    this.coreConfig = coreConfig;
-    this.DedicatedServerFeatureAvailability = DedicatedServerFeatureAvailability;
     this.ovhUserPref = ovhUserPref;
     this.Polling = Polling;
     this.Server = Server;
@@ -48,21 +39,11 @@ export default class ServerCtrl {
     this.errorStatus = ['customer_error', 'ovh_error', 'error', 'cancelled'];
 
     this.$scope.$state = this.$state;
+
     this.$scope.server = this.server;
+    this.$scope.serviceInfos = this.serviceInfos;
     this.$scope.specifications = this.specifications;
-    this.$scope.ola = this.ola;
-    this.$scope.orderPrivateBandwidthLink = this.orderPrivateBandwidthLink;
-    this.$scope.orderPublicBandwidthLink = this.orderPublicBandwidthLink;
-    this.$scope.resiliatePublicBandwidthLink = this.resiliatePublicBandwidthLink;
-    this.$scope.resiliatePrivateBandwidthLink = this.resiliatePrivateBandwidthLink;
-
-    this.$scope.currentView = {
-      value: 'DASHBOARD',
-    };
-
-    this.$scope.loadingServerInformations = true;
-    this.$scope.loadingServerError = false;
-    this.$scope.DedicatedServerFeatureAvailability = this.DedicatedServerFeatureAvailability;
+    this.$scope.worldPart = this.worldPart;
 
     this.$scope.loaders = {
       autoRenew: true,
@@ -77,14 +58,8 @@ export default class ServerCtrl {
       noDeleteMessage: false,
       usbStorageTab: false,
     };
-    this.$scope.urlRenew = null;
-    this.$scope.worldPart = this.coreConfig.getRegion();
 
     this.$scope.bigModalDialog = false;
-
-    this.$scope.newDisplayName = {
-      value: '',
-    };
 
     this.$scope.autoRenew = null;
     this.$scope.autoRenewStopBother = true;
@@ -99,10 +74,6 @@ export default class ServerCtrl {
     this.$scope.setToBigModalDialog = (active) => {
       this.$scope.mediumModalDialog = false;
       this.$scope.bigModalDialog = active;
-    };
-
-    this.$scope.goToDashboard = () => {
-      this.$scope.currentView.value = 'DASHBOARD';
     };
 
     this.$scope.resetAction = () => {
@@ -234,13 +205,6 @@ export default class ServerCtrl {
       this.loadServer();
     });
 
-    this.$scope.isMonitoringEnabled = (protocol) =>
-      this.$scope.serviceMonitoring.filter(
-        (monitoring) => monitoring.enabled && monitoring.protocol === protocol,
-      ).length > 0;
-
-    this.$scope.$on('server.monitoring.reload', this.loadMonitoring);
-
     this.$scope.$on('$destroy', () => {
       this.Polling.addKilledScope();
     });
@@ -348,23 +312,16 @@ export default class ServerCtrl {
     };
 
     this.load();
-
-    this.$scope.isEligibleForUpgrade = () => this.isEligibleForUpgrade();
-    this.$scope.URLS = URLS;
   }
 
   load() {
-    this.User.getUrlOf('changeOwner').then((link) => {
-      this.$scope.changeOwnerUrl = link;
-    });
-
     this.$scope.loaders.autoRenew = true;
 
     this.$q
       .all({
         user: this.User.getUser(),
         paymentIds:
-          this.coreConfig.getRegion() !== 'US'
+          this.worldPart !== 'US'
             ? this.User.getValidPaymentMeansIds()
             : this.$q.when([]),
       })
@@ -379,7 +336,6 @@ export default class ServerCtrl {
       });
 
     this.loadServer()
-      .then(() => this.loadMonitoring())
       .then(() => this.getTaskInProgress())
       .finally(() => {
         if (this.$scope.server.canTakeRendezVous) {
@@ -395,113 +351,45 @@ export default class ServerCtrl {
       this.$scope.disable.noDeleteMessage = false;
     }
 
-    this.Server.getUrlRenew(this.$stateParams.productId).then((url) => {
-      this.$scope.urlRenew = url;
-    });
+    const expiration = moment.utc(this.$scope.server.expiration);
 
-    this.Server.getUsbStorageInformations(this.$stateParams.productId).then(
-      (result) => {
-        if (isArray(result) && result[1].usbKeys) {
-          this.$scope.disable.usbStorageTab = true;
-        }
-      },
+    set(
+      this.$scope.server,
+      'expiration',
+      moment([
+        expiration.year(),
+        expiration.month(),
+        expiration.date(),
+      ]).toDate(),
     );
 
-    return this.$q
-      .allSettled([
-        this.Server.getServiceInfos(this.$stateParams.productId),
-        this.Server.getVrackInfos(this.$stateParams.productId),
-      ])
-      .then((data) => {
-        const [serviceInfos, vrackInfos] = data;
-        const expiration = moment.utc(this.$scope.server.expiration);
+    const creation = moment.utc(this.serviceInfos.creation);
 
-        set(
-          this.$scope.server,
-          'expiration',
-          moment([
-            expiration.year(),
-            expiration.month(),
-            expiration.date(),
-          ]).toDate(),
-        );
+    set(
+      this.$scope.server,
+      'creation',
+      moment([creation.year(), creation.month(), creation.date()]).toDate(),
+    );
 
-        const creation = moment.utc(serviceInfos.creation);
+    /* if there is no os installed, the api return "none_64" */
+    if (/^none_\d{2}?$/.test(this.server.os)) {
+      this.$scope.server.os = null;
+    }
 
-        set(
-          this.$scope.server,
-          'creation',
-          moment([creation.year(), creation.month(), creation.date()]).toDate(),
-        );
+    this.$scope.isHousing = ServerCtrl.isHousing(this.server);
 
-        /* if there is no os installed, the api return "none_64" */
-        if (/^none_\d{2}?$/.test(this.server.os)) {
-          this.$scope.server.os = null;
-        }
+    this.$scope.$broadcast('dedicated.server.refreshTabs');
 
-        this.$scope.infoServer = {
-          dc: this.$scope.server.datacenter.replace('_', ' '),
-          dcImage: this.$scope.server.datacenter.replace(/_.*/g, ''),
-          rack: this.$scope.server.rack,
-          serverId: this.$scope.server.serverId,
-        };
-        this.$scope.vrackInfos = vrackInfos;
-
-        this.$scope.loadingServerInformations = false;
-        this.$scope.isHousing = ServerCtrl.isHousing(this.server);
-        this.$scope.serviceInfos = serviceInfos;
-
-        this.$scope.tabOptions = {
-          isFirewallEnabled: this.DedicatedServerFeatureAvailability.allowDedicatedServerFirewallCiscoAsa(),
-          isIPMIDisabled: this.$scope.isHousing,
-          isUSBStorageEnabled: this.DedicatedServerFeatureAvailability.allowDedicatedServerUSBKeys(),
-        };
-
-        this.$scope.$broadcast('dedicated.server.refreshTabs');
-
-        if (this.isEligibleForUpgrade()) {
-          this.Server.getUpgradeProductName(
-            ELIGIBLE_FOR_UPGRADE.PLAN_NAME,
-            this.$scope.user.ovhSubsidiary,
-          ).then((upgradeName) => {
-            this.$scope.upgradeName = upgradeName;
-          });
-        }
-      })
-      .catch((data) => {
-        this.$scope.loadingServerInformations = false;
-        this.$scope.loadingServerError = true;
-        set(data, 'type', 'ERROR');
-        this.$scope.setMessage(
-          this.$translate.instant('server_dashboard_loading_error'),
-          data,
-        );
-      });
-  }
-
-  loadMonitoring() {
-    return this.$q
-      .all([
-        this.Server.getModels(),
-        this.Server.getAllServiceMonitoring(this.$stateParams.productId),
-      ])
-      .then(([models, allServiceMonitoring]) => {
-        this.$scope.monitoringProtocolEnum =
-          models.data.models['dedicated.server.MonitoringProtocolEnum'].enum;
-        this.$scope.serviceMonitoring = allServiceMonitoring;
-        this.$scope.servicesStateLinks = {
-          weathermap: WEATHERMAP_URL,
-          vms: this.constants.vmsUrl,
-          travaux: this.constants.travauxUrl,
-        };
-      })
-      .catch((err) => {
-        set(err, 'data.type', 'ERROR');
-        this.$scope.setMessage(
-          this.$translate.instant('server_dashboard_loading_error'),
-          err.data,
-        );
-      });
+    return this.Server.getUsbStorageInformations(
+      this.$stateParams.productId,
+    ).then((usbStorageInformations) => {
+      if (
+        isArray(usbStorageInformations) &&
+        usbStorageInformations[1].usbKeys
+      ) {
+        this.$scope.disable.usbStorageTab = true;
+      }
+    });
   }
 
   getTaskInProgress() {
@@ -565,10 +453,12 @@ export default class ServerCtrl {
       .catch((data) => {
         this.$scope.disable.reboot = false;
         this.$scope.$broadcast('dedicated.informations.reboot.done');
-        set(data, 'type', 'ERROR');
         this.$scope.setMessage(
           this.$translate.instant('server_configuration_reboot_fail_task'),
-          data,
+          {
+            ...data,
+            type: 'ERROR',
+          },
         );
       });
   }
@@ -607,7 +497,6 @@ export default class ServerCtrl {
           this.$scope.disable.install = false;
           this.$scope.disable.installationInProgress = false;
           this.$scope.disable.installationInProgressError = false;
-          this.$scope.loadingServerInformations = false;
           this.$scope.$broadcast('dedicated.server.refreshTabs');
           return;
         }
@@ -639,7 +528,6 @@ export default class ServerCtrl {
       })
       .catch((data) => {
         this.$scope.disable.install = false;
-        set(data, 'type', 'ERROR');
         this.$scope.setMessage(
           this.$translate.instant(
             'server_configuration_installation_fail_task',
@@ -647,7 +535,10 @@ export default class ServerCtrl {
               t0: this.$scope.server.name,
             },
           ),
-          data,
+          {
+            ...data,
+            type: 'ERROR',
+          },
         );
       });
   }
@@ -686,12 +577,5 @@ export default class ServerCtrl {
 
   static isHousing(dedicatedServer) {
     return dedicatedServer.commercialRange === 'housing';
-  }
-
-  isEligibleForUpgrade() {
-    return includes(
-      ELIGIBLE_FOR_UPGRADE.SUBSIDIARIES,
-      this.$scope.user.ovhSubsidiary,
-    );
   }
 }
