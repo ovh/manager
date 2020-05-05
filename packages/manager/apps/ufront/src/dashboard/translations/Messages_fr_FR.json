@@ -1,0 +1,6 @@
+{
+  "manager_hub_dashboard": "Tableau de bord",
+  "manager_hub_dashboard_feedback": "Nouveau tableau de bord : n'hésitez pas à nous <a href=\"{{ url }}\" target=\"_blank\" rel=\"noopener\">partager votre avis</a>",
+  "manager_hub_dashboard_overview": "Vue d'ensemble de mon activité",
+  "manager_hub_dashboard_services": "Mes produits et services"
+}
