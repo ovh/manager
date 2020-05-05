@@ -4,6 +4,8 @@ export default {
   bindings: {
     me: '<',
     products: '<',
+    tickets: '<',
+    trackingPrefix: '<',
   },
   template,
 };
