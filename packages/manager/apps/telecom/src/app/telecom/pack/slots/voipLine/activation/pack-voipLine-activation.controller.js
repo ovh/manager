@@ -301,7 +301,7 @@ export default class PackVoipLineActivationCtrl {
     this.orderPending = true;
     const data = [];
     this.selectedPhones.forEach((line) => {
-      if (line.quantity > 0) {
+      if (line.needShipping && line.quantity > 0) {
         for (let i = 0; i < line.quantity; i += 1) {
           data.push(
             angular.extend({ hardwareName: line.name }, this.getTransporter()),
