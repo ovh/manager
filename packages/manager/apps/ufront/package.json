@@ -57,6 +57,7 @@
     "ovh-api-services": "^9.42.0",
     "ovh-ui-angular": "^3.16.0",
     "ovh-ui-kit": "^2.41.1",
+    "postmate": "^1.5.2",
     "whatwg-fetch": "^3.0.0"
   },
   "devDependencies": {

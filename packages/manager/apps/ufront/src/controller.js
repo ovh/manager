@@ -6,7 +6,6 @@ export default class HubController {
     this.$document = $document;
     this.$translate = $translate;
     this.SessionService = SessionService;
-    this.uAppURL = $sce.trustAsResourceUrl(__U_FRONTEND_ROOT__);
   }
 
   $onInit() {
