@@ -8,6 +8,6 @@ const moduleName = 'ua.price';
 angular
   .module('ua.price', [translate])
   .filter('price', priceFilter)
-  .run(/* @ngTranslationsInject ./translations */);
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

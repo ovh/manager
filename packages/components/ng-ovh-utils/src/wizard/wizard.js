@@ -8,6 +8,6 @@ const moduleName = 'ua.wizard';
 angular
   .module(moduleName, [uaWizardStep])
   .directive('wizard', wizardDirective)
-  .run(/* @ngTranslationsInject ./translations */);
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

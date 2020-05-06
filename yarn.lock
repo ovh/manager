@@ -1943,14 +1943,6 @@
   dependencies:
     lodash "^4.17.15"
 
-"@ovh-ux/ng-ovh-utils@^14.0.6":
-  version "14.0.6"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-utils/-/ng-ovh-utils-14.0.6.tgz#34012c02afe1bf04380735430d6c3acca9bdfd77"
-  integrity sha512-q+QI+N7CYT4AIEHiOWBXEHHtV56D8ykzCj9bTrhEbpJWru3lpHtTBQk58vZmWdoPGMTdRP7zXQ6sFyYUO40r3A==
-  dependencies:
-    filesize "^3.6.1"
-    lodash "^4.17.15"
-
 "@ovh-ux/rollup-plugin-less-inject@^1.0.5":
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/@ovh-ux/rollup-plugin-less-inject/-/rollup-plugin-less-inject-1.0.5.tgz#02285367219f72056faf06deeacaeb357f16633c"

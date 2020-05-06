@@ -1,0 +1,10 @@
+{
+  "ua_contract_next": "Toliau",
+  "ua_contract_previous": "Ankstesnis",
+  "ua_download_contract": "Peržiūrėti sutartį {{name}} PDF formatu",
+  "ua_contract_help": "Norėdami patvirtinti sutartis, pereikite prie jų pabaigos.",
+  "ua_contracts_list_title": "Liko neperžiūrėta sutarčių: {{count}} ",
+  "ua_contract_list_title": "Reikia peržiūrėti 1 sutartį",
+  "ua_contracts_agree": "Sutinku su sutartimis",
+  "ua_contract_agree": "Sutinku su sutartimi"
+}

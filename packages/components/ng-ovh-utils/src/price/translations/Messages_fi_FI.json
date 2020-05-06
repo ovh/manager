@@ -1,0 +1,6 @@
+{
+  "ua_price_ht_label": "{{price}} ALV0",
+  "ua_price_ttc_label": "{{price}} sis.ALV",
+  "ua_price_free": "Sisältyy",
+  "ua_price_label_yearly": "/vuosi"
+}

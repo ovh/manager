@@ -12,6 +12,6 @@ angular
   .module(moduleName, [tooltipBox, translate])
   .service('Alerter', alerterService)
   .directive('ovhAlert', alerterDirective)
-  .run(/* @ngTranslationsInject ./translations */);
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

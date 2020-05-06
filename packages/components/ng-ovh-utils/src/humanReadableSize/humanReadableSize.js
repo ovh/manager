@@ -8,6 +8,6 @@ const moduleName = 'ua.humanReadableSize';
 angular
   .module(moduleName, [translate])
   .filter('humanReadableSize', humanReadableSizeFilter)
-  .run(/* @ngTranslationsInject ./translations */);
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

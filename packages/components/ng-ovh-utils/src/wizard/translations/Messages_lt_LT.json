@@ -1,0 +1,9 @@
+{
+  "ua_wizard_cancel": "Anuliuoti",
+  "ua_wizard_confirm": "Patvirtinti",
+  "ua_wizard_next": "Toliau",
+  "ua_wizard_previous": "Ankstesnis",
+  "ua_wizard_close": "Uždaryti",
+  "ua_wizard_breadcrumb": "Žingsnis {{ currentStep }} iš {{ stepCount }}",
+  "ua_wizard_help": "Pagalba"
+}
