@@ -5,7 +5,7 @@ import 'angular-translate';
 import 'ovh-ui-angular';
 
 import component from './dashboard.component';
-import routing from './dedicated.routing';
+import routing from './dashboard.routing';
 
 const moduleName = 'ovhManagerDedicatedServerDashboard';
 
