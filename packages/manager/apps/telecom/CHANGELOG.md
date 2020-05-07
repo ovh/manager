@@ -1,3 +1,12 @@
+## [12.1.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@12.1.3...@ovh-ux/manager-telecom@12.1.4) (2020-05-07)
+
+
+### Bug Fixes
+
+* **pack.slots.voip.line.activation:** filter down the selected phones([#2903](https://github.com/ovh/manager/issues/2903)) ([fd5d236](https://github.com/ovh/manager/commit/fd5d236a5b17c6d0a55546775752751542f102c2))
+
+
+
 ## [12.1.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@12.1.2...@ovh-ux/manager-telecom@12.1.3) (2020-04-28)
 
 
