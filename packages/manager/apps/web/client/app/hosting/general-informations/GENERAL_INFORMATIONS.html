@@ -245,19 +245,9 @@
                         ></span>
                     </oui-tile-button>
                     <oui-tile-button
-                        data-ng-if="$ctrl.userLogsToken"
+                        data-ng-if="statisticsRoute"
                         aria-label="{{ ::'hosting_tab_USER_LOGS_dashboard_stats_newtab' | translate }}"
-                        data-href="{{:: urchin  + '?token=' +  $ctrl.userLogsToken}}"
-                        data-external
-                    >
-                        <span
-                            data-translate="hosting_tab_USER_LOGS_dashboard_stats"
-                        ></span>
-                    </oui-tile-button>
-                    <oui-tile-button
-                        data-ng-if="!$ctrl.userLogsToken"
-                        aria-label="{{ ::'hosting_tab_USER_LOGS_dashboard_stats_newtab' | translate }}"
-                        data-href="{{:: urchin }}"
+                        data-href="{{:: statisticsRoute }}"
                         data-external
                     >
                         <span

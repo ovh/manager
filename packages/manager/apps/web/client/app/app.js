@@ -137,8 +137,6 @@ angular
     UNIVERSES: config.constants.UNIVERSES,
     TOP_GUIDES: config.constants.TOP_GUIDES,
     swsProxyRootPath: 'apiv6/',
-    urchin: config.constants.LOGS_URCHIN,
-    urchin_gra: config.constants.LOGS_URCHIN_GRA,
     stats_logs: config.constants.STATS_LOGS,
     stats_logs_gra: config.constants.STATS_LOGS_GRA,
     aapiHeaderName: 'X-Ovh-Session',
