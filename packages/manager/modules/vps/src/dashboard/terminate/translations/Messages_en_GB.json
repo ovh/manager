@@ -4,5 +4,6 @@
   "vps_terminate_cancel": "Cancel",
   "vps_terminate_confirm": "Confirm",
   "vps_terminate_success": "The deletion of the service has been taken into account, you will receive an email to confirm the deletion.",
-  "vps_terminate_error": "An error occurred while deleting your service."
+  "vps_terminate_error": "An error occurred while deleting your service.",
+  "vps_terminate_unavailable": "You purchased this subscription with a {{ monthCount }} month commitment. If you have any question, please contact customer support via chat or by submitting a <a href=\"{{supportLink}}\" target=\"_blank\" rel=\"noopener\">support ticket </a>. Thank you for your understanding."
 }

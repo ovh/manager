@@ -3,13 +3,23 @@
     data-title="{{:: 'vps_terminate_title' | translate }}"
     data-primary-label="{{:: 'vps_terminate_confirm' | translate }}"
     data-primary-action="$ctrl.terminate()"
+    data-primary-disabled="!$ctrl.isActionAvailable"
     data-secondary-label="{{:: 'vps_terminate_cancel' | translate }}"
     data-secondary-action="$ctrl.cancel()"
     data-type="warning"
     data-loading="$ctrl.isTerminating"
 >
     <span
+        data-ng-if="$ctrl.isActionAvailable"
         data-translate="vps_terminate_question"
         data-translate-values="{ 'vps' : $ctrl.serviceName }"
+    ></span>
+    <span
+        data-ng-if="!$ctrl.isActionAvailable"
+        data-translate="{{ $ctrl.hasManualRefund ? 'vps_terminate_unavailable' : 'common_resiliate_contact_support'}}"
+        data-translate-values="{
+          'monthCount': '<strong>' + $ctrl.constructor.getDegressivityMonthDetails($ctrl.degressivityInformation) + '</strong>',
+          'supportTicketLink': $ctrl.supportTicketLink,
+        }"
     ></span>
 </oui-modal>
