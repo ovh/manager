@@ -1,0 +1,7 @@
+{
+  "dedicated_server_dashboard_advanced_features_sgx_status_isRunning": "En cours",
+  "dedicated_server_dashboard_advanced_features_sgx_status_disabled": "Désactivé",
+  "dedicated_server_dashboard_advanced_features_sgx_status_enabled": "Activé",
+  "dedicated_server_dashboard_advanced_features_sgx_status_softwareControlled": "Software Controlled activé",
+  "dedicated_server_dashboard_advanced_features_sgx_prmrr": "Mémoire processeur réservée : {{value}} Mo"
+}
