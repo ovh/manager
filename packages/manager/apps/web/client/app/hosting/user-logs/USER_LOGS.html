@@ -21,33 +21,25 @@
             </p>
             <p data-translate="hosting_tab_USER_LOGS_dashboard_information"></p>
             <dl>
-                <dt data-translate="hosting_tab_USER_LOGS_dashboard_stats"></dt>
-                <dd>
-                    <a
-                        data-ng-href="{{ctrl.urlUrchin}}"
-                        target="_blank"
-                        title="{{hosting_tab_USER_LOGS_dashboard_stats_newtab}}"
-                        data-ng-if="!ctrl.userLogsToken"
-                    >
-                        <span data-ng-bind="ctrl.urlUrchin"></span>
-                        <span
-                            class="fa fa-external-link"
-                            aria-hidden="true"
-                        ></span>
-                    </a>
-                    <a
-                        data-ng-href="{{ctrl.urlUrchin + '?token=' + ctrl.userLogsToken}}"
-                        target="_blank"
-                        title="{{hosting_tab_USER_LOGS_dashboard_stats_newtab}}"
-                        data-ng-if="ctrl.userLogsToken"
-                    >
-                        <span data-ng-bind="ctrl.urlUrchin"></span>
-                        <span
-                            class="fa fa-external-link"
-                            aria-hidden="true"
-                        ></span>
-                    </a>
-                </dd>
+                <div data-ng-if="ctrl.statisticsRoute">
+                    <dt
+                        data-translate="hosting_tab_USER_LOGS_dashboard_stats"
+                    ></dt>
+                    <dd>
+                        <a
+                            data-ng-href="{{ctrl.statisticsRoute}}"
+                            target="_blank"
+                            rel="noopener"
+                            title="{{hosting_tab_USER_LOGS_dashboard_stats_newtab}}"
+                        >
+                            <span data-ng-bind="ctrl.statisticsRoute"></span>
+                            <span
+                                class="oui-icon oui-icon_external-link"
+                                aria-hidden="true"
+                            ></span>
+                        </a>
+                    </dd>
+                </div>
 
                 <dt data-translate="hosting_tab_USER_LOGS_dashboard_logs"></dt>
                 <dd>
