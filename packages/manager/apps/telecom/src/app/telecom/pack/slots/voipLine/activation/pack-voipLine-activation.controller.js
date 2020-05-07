@@ -302,9 +302,11 @@ export default class PackVoipLineActivationCtrl {
     const data = [];
     this.selectedPhones.forEach((line) => {
       if (line.needShipping) {
-        data.push(
-          angular.extend({ hardwareName: line.name }, this.getTransporter()),
-        );
+        for (let i = 0; i < line.quantity; i += 1) {
+          data.push(
+            angular.extend({ hardwareName: line.name }, this.getTransporter()),
+          );
+        }
       } else if (line.enabled) {
         data.push({ hardwareName: 'modem' });
       }

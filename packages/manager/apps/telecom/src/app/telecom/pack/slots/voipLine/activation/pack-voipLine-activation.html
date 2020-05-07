@@ -457,7 +457,9 @@
                         data-translate="telephony_activation_hardware_caution_label"
                     ></div>
                     <div class="col-xs-6 col-md-10 text-price font-weight-bold">
-                        <span data-ng-bind="$ctrl.phoneBill.deposit"></span>
+                        <span
+                            data-ng-bind="$ctrl.phoneBill.deposit.toFixed(2)"
+                        ></span>
                         €
                     </div>
                 </div>
@@ -467,7 +469,9 @@
                         data-translate="telephony_activation_hardware_setup_fees_label"
                     ></div>
                     <div class="col-xs-6 col-md-10 text-price font-weight-bold">
-                        <span data-ng-bind="$ctrl.phoneBill.fees"></span>
+                        <span
+                            data-ng-bind="$ctrl.phoneBill.fees.toFixed(2)"
+                        ></span>
                         €
                     </div>
                 </div>
@@ -478,7 +482,7 @@
                     ></div>
                     <div class="col-xs-6 col-md-10 text-price font-weight-bold">
                         <span
-                            data-ng-bind="$ctrl.phoneBill.transportCost"
+                            data-ng-bind="$ctrl.phoneBill.transportCost.toFixed(2)"
                         ></span>
                         €
                     </div>
@@ -489,7 +493,9 @@
                         data-translate="telephony_activation_total_price_label"
                     ></div>
                     <div class="col-xs-6 col-md-10 text-price font-weight-bold">
-                        <span data-ng-bind="$ctrl.phoneBill.total"></span>
+                        <span
+                            data-ng-bind="$ctrl.phoneBill.total.toFixed(2)"
+                        ></span>
                         €
                     </div>
                 </div>
