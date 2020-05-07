@@ -4,8 +4,11 @@ import template from './dashboard.html';
 export default {
   bindings: {
     bandwidthInformations: '<',
+    biosSettings: '<',
     changeOwnerUrl: '<',
     eligibleData: '<',
+    goToSgxIntroduction: '<',
+    goToSgxManage: '<',
     monitoringProtocolEnum: '<',
     ola: '<',
     orderPrivateBandwidthLink: '<',

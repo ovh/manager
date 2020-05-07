@@ -21,6 +21,8 @@ export default /* @ngInject */ ($stateProvider) => {
           ...specifications.ola,
           ...$stateParams,
         }),
+      schema: /* @ngInject */ (OvhApiDedicatedServer) =>
+        OvhApiDedicatedServer.v6().schema().$promise,
       server: /* @ngInject */ (Server, serverName) =>
         Server.getSelected(serverName),
       serverName: /* @ngInject */ ($transition$) =>
