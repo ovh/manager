@@ -1,3 +1,5 @@
+import { PRICING_MODES } from '../../upscale/upscale.constants';
+
 import component from './vps-terminate.component';
 
 export default /* @ngInject */ ($stateProvider) => {
@@ -38,6 +40,16 @@ export default /* @ngInject */ ($stateProvider) => {
                 ),
               ),
           ),
+      degressivityInformation: /* @ngInject */ (availableUpgrades) =>
+        availableUpgrades.find(({ prices }) =>
+          prices[0].pricingMode.includes(PRICING_MODES.DEGRESSIVITY),
+        ),
+      hasManualRefund: /* @ngInject */ (coreConfig) =>
+        coreConfig.isRegion('US'),
+      isActionAvailable: /* @ngInject */ (degressivityInformation) =>
+        degressivityInformation === undefined,
+      supportTicketLink: /* @ngInject */ (coreConfig, CORE_MANAGER_URLS) =>
+        `${CORE_MANAGER_URLS.dedicated}/#ticket`,
     },
   });
 };

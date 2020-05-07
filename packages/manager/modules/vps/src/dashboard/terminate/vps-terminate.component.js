@@ -5,7 +5,11 @@ export default {
   bindings: {
     cancel: '<',
     confirm: '<',
+    degressivityInformation: '<',
+    hasManualRefund: '<',
+    isActionAvailable: '<',
     serviceName: '<',
+    supportTicketLink: '<',
   },
   controller,
   name: 'ovhManagerVpsTerminate',
