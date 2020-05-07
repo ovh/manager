@@ -52,7 +52,6 @@
     "eslint-plugin-prettier": "^3.1.1",
     "esm": "^3.2.25",
     "execa": "^2.0.5",
-    "find-free-port": "^2.0.0",
     "get-monorepo-packages": "^1.2.0",
     "gh-pages": "^2.2.0",
     "git-raw-commits": "^2.0.2",
@@ -60,7 +59,6 @@
     "htmlhint": "^0.11.0",
     "husky": "^3.1.0",
     "inquirer": "^7.0.6",
-    "kill-port": "^1.6.0",
     "lerna": "^3.18.1",
     "lint-staged": "^9.5.0",
     "lodash": "^4.17.11",
@@ -78,7 +76,6 @@
     "stylelint-config-standard": "^19.0.0",
     "stylelint-prettier": "^1.1.2",
     "stylelint-scss": "^3.13.0",
-    "tcp-port-used": "^1.0.1",
     "vuepress": "^1.2.0"
   },
   "engines": {
