@@ -63,16 +63,13 @@ class LogsInputsHomeCtrl {
   }
 
   /**
-   * initializes the inputs and the quota
+   * initializes the inputs
    *
    * @memberof LogsInputsCtrl
    */
   initLoaders() {
     this.inputs = this.CucControllerHelper.request.getArrayLoader({
       loaderFunction: () => this.LogsInputsService.getInputs(this.serviceName),
-    });
-    this.quota = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () => this.LogsInputsService.getQuota(this.serviceName),
     });
   }
 
@@ -106,7 +103,6 @@ class LogsInputsHomeCtrl {
    */
   runLoaders() {
     this.inputs.load();
-    this.quota.load();
   }
 
   /**

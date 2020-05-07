@@ -44,26 +44,20 @@
             ></textarea>
         </oui-field>
 
-        <oui-field data-label="{{ ::'logs_select_options_title' | translate }}">
-            <oui-spinner data-ng-if="ctrl.options.loading"></oui-spinner>
-            <div class="oui-select">
-                <select
-                    class="oui-select__input"
-                    name="logs_index_modal_select"
-                    id="logs_index_modal_select"
-                    data-ng-model="ctrl.index.optionId"
-                    data-ng-options="option.optionId as option.type+', '+option.detail+' - '+option.curNbIndex+'/'+option.maxNbIndex for option in ctrl.options.data"
-                >
-                    <option value=""
-                        >{{::'logs_main_offer' | translate}} -
-                        {{ctrl.quota.data.mainOfferCurrent}}/{{ctrl.quota.data.mainOfferMax}}</option
-                    >
-                </select>
-                <i
-                    class="oui-icon oui-icon-chevron-down"
-                    aria-hidden="true"
-                ></i>
-            </div>
+        <oui-field
+            data-ng-if="!ctrl.isEdit"
+            data-label="{{ ::'logs_index_modal_nb_shard' | translate }}"
+            help-text="{{ ctrl.showIndexPrices() }}"
+        >
+            <oui-numeric
+                id="nbShard"
+                name="nbShard"
+                data-model="ctrl.index.nbShard"
+                min="ctrl.LogsConstants.NB_SHARD_MIN"
+                max="ctrl.LogsConstants.NB_SHARD_MAX"
+                required
+            >
+            </oui-numeric>
         </oui-field>
 
         <oui-field

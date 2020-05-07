@@ -3,23 +3,25 @@ class LogsIndexAddModalCtrl {
     $q,
     $stateParams,
     $uibModalInstance,
+    $translate,
     CucControllerHelper,
     indexInfo,
-    options,
-    quota,
     LogsIndexService,
+    LogsConstants,
   ) {
     this.$stateParams = $stateParams;
     this.$q = $q;
     this.CucControllerHelper = CucControllerHelper;
     this.indexInfo = indexInfo;
-    this.options = options;
-    this.quota = quota;
     this.suffixPattern = '^[a-z0-9_-]+$';
     this.LogsIndexService = LogsIndexService;
+    this.LogsConstants = LogsConstants;
     this.$uibModalInstance = $uibModalInstance;
+    this.$translate = $translate;
     this.serviceName = $stateParams.serviceName;
     this.index = this.LogsIndexService.getNewIndex();
+    this.indexPrice = { shard: { price: '' }, volume: { price: '' } };
+    this.initLoaders();
   }
 
   $onInit() {
@@ -28,7 +30,69 @@ class LogsIndexAddModalCtrl {
       this.populateIndex();
     } else {
       this.clearIndex();
+      this.accountDetails
+        .load()
+        .then(() => {
+          this.ovhSubsidiary = this.accountDetails.data.me.ovhSubsidiary;
+          return this.$q.all([this.mainOffer.load(), this.catalog.load()]);
+        })
+        .then(() => {
+          const selectedCatalog = this.catalog.data.plans.find(
+            (plan) => plan.planCode === this.mainOffer.data.planCode,
+          );
+          const selectedFamily = selectedCatalog.addonsFamily.find(
+            (addon) => addon.family === this.LogsConstants.ADD_ON_FAMILY.NEW,
+          );
+          const indexShardCapacities = selectedFamily.addons.find(
+            (add) =>
+              add.plan.planCode ===
+              this.LogsConstants.CONSUMPTION_REFERENCE.NB_SHARD,
+          );
+          const indexVolumeCapacities = selectedFamily.addons.find(
+            (add) =>
+              add.plan.planCode ===
+              this.LogsConstants.CONSUMPTION_REFERENCE.INDEXED_DOCUMENTS,
+          );
+          const indexVolume = indexVolumeCapacities.plan.details.pricings.default.find(
+            (capa) =>
+              capa.capacities.includes(this.LogsConstants.CONSUMPTION_CAPACITY),
+          );
+          const indexShard = indexShardCapacities.plan.details.pricings.default.find(
+            (capa) =>
+              capa.capacities.includes(this.LogsConstants.CONSUMPTION_CAPACITY),
+          );
+          this.indexPrice.volume.price = indexVolume.price.text;
+          this.indexPrice.shard.price = indexShard.price.text;
+        });
     }
+  }
+
+  initLoaders() {
+    this.mainOffer = this.CucControllerHelper.request.getArrayLoader({
+      loaderFunction: () =>
+        this.LogsIndexService.getMainOffer(this.serviceName),
+    });
+    this.catalog = this.CucControllerHelper.request.getArrayLoader({
+      loaderFunction: () =>
+        this.LogsIndexService.getOrderCatalog(this.ovhSubsidiary),
+    });
+    this.accountDetails = this.CucControllerHelper.request.getHashLoader({
+      loaderFunction: () =>
+        this.LogsIndexService.getAccountDetails(this.serviceName),
+    });
+  }
+
+  showIndexPrices() {
+    return this.$translate.instant(
+      'logs_index_modal_nb_shard_help',
+      {
+        t0: this.indexPrice.shard.price,
+        t1: this.indexPrice.volume.price,
+      },
+      undefined,
+      false,
+      'sceParameters', // Expose devise symbol from API without sanitization
+    );
   }
 
   clearIndex() {
@@ -36,13 +100,14 @@ class LogsIndexAddModalCtrl {
     this.index.description = '';
     this.index.alertNotifyEnabled = false;
     this.index.suffix = '';
-    this.index.optionId = null;
+    this.index.nbShard = this.LogsConstants.NB_SHARD_MIN;
   }
 
   populateIndex() {
     this.title = 'logs_index_modal_edit_title';
     this.index.description = this.indexInfo.description;
     this.index.alertNotifyEnabled = this.indexInfo.alertNotifyEnabled;
+    this.index.nbShard = this.indexInfo.nbShard;
   }
 
   static checkIsEdit(indexInfo) {

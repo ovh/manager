@@ -25,18 +25,6 @@ class LogsAliasesAddCtrl {
    * @memberof LogsAliasesAddCtrl
    */
   initLoaders() {
-    this.options = this.CucControllerHelper.request.getArrayLoader({
-      loaderFunction: () =>
-        this.LogsAliasesService.getSubscribedOptions(this.serviceName),
-    });
-    this.options.load();
-
-    this.mainOffer = this.CucControllerHelper.request.getArrayLoader({
-      loaderFunction: () =>
-        this.LogsAliasesService.getMainOffer(this.serviceName),
-    });
-    this.mainOffer.load();
-
     if (this.$stateParams.aliasId) {
       this.isEdit = true;
       this.alias = this.CucControllerHelper.request.getHashLoader({

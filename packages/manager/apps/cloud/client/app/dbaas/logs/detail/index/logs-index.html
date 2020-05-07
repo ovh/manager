@@ -3,26 +3,19 @@
         data-text="'logs_index_title' | translate"
     ></cui-page-content-title>
     <p data-translate="logs_index_description"></p>
-    <p>
-        {{ctrl.quota.data.configured}}/{{ctrl.quota.data.max}}
-        <span data-translate="logs_index_total_used"></span>
-        (<logs-upgrade-quota-link></logs-upgrade-quota-link>)
-    </p>
-
     <oui-datagrid data-rows="ctrl.indices.data">
         <extra-top>
-            <logs-add-tool
-                data-ng-if="!ctrl.quota.loading"
-                data-text="{{ ::'logs_index_add_data_feed' | translate }}"
-                data-tool-type="{{ ::'logs_index_name' | translate }}"
-                data-current-usage="ctrl.quota.data.configured"
-                data-max-usage="ctrl.quota.data.max"
-                data-callback="ctrl.add()"
+            <button
+                type="button"
+                class="oui-button oui-button_secondary"
+                data-ng-click="ctrl.add()"
             >
-            </logs-add-tool>
+                <span class="oui-icon oui-icon-add pr-1" aria-hidden="true"></span> 
+                <span data-translate="logs_index_add_data_feed"></span>
+            </button>
             <oui-spinner
                 size="s"
-                data-ng-if="ctrl.quota.loading || ctrl.delete.loading"
+                data-ng-if="ctrl.delete.loading"
             ></oui-spinner>
         </extra-top>
         <oui-column
