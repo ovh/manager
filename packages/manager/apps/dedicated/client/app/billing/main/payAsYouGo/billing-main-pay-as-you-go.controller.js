@@ -61,9 +61,10 @@ angular.module('App').controller(
         })
         .then(({ consumptions, services }) => {
           const projectPromises = map(consumptions, (consumption) => {
-            const associatedService = find(services, {
-              serviceId: consumption.serviceId,
-            });
+            const associatedService =
+              find(services, {
+                serviceId: consumption.serviceId,
+              }) || {};
 
             return this.ServicesHelper.getServiceDetails(
               associatedService,
@@ -93,7 +94,7 @@ angular.module('App').controller(
                 type: BillingMainPayAsYouGoCtrl.getConsumptionElementType(
                   consumptionElement.planCode,
                 ),
-                dueDate: consumption.service.billing.nextBillingDate,
+                dueDate: get(consumption.service, 'billing.nextBillingDate'),
                 current: consumptionElement.price,
               }));
             }),
