@@ -11,7 +11,6 @@
   "ovh_manager_hub_payment_status_tile_now": "Immediately",
   "ovh_manager_hub_payment_status_tile_before": "Before {{ date }}",
   "ovh_manager_hub_payment_status_tile_renew": "Since {{ date }}",
-  "ovh_manager_hub_payment_status_tile_manage_service": "Manage",
   "ovh_manager_hub_payment_status_tile_error": "Unable to retrieve services",
   "ovh_manager_hub_payment_status_tile_no_services": "No services"
 }
