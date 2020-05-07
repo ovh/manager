@@ -1,4 +1,3 @@
-import get from 'lodash/get';
 import head from 'lodash/head';
 import map from 'lodash/map';
 import pick from 'lodash/pick';
@@ -10,7 +9,6 @@ import { BillingService } from '@ovh-ux/manager-models';
 import {
   AUTORENEW_EVENT,
   CONTRACTS_IDS,
-  RENEW_URL,
   SERVICE_EXPIRATION,
   SERVICE_STATES,
   SERVICE_STATUS,
@@ -254,10 +252,6 @@ export default class {
       }).$promise;
   }
 
-  static getExchangeUrl(service, action, target = 'action') {
-    return `${service.url}?${target}=${action}`;
-  }
-
   getAutorenewAgreements() {
     return this.DucUserContractService.getAgreementsToValidate(
       ({ contractId }) => values(CONTRACTS_IDS).includes(contractId),
@@ -304,10 +298,6 @@ export default class {
     return !isMandatory
       ? this.enableAutorenew(renewDay)
       : this.putAutorenew({ active, renewDay });
-  }
-
-  static getRenewUrl(service, subsidiary) {
-    return `${get(RENEW_URL, subsidiary, RENEW_URL.default)}${service}`;
   }
 
   isAutomaticRenewV2Available() {

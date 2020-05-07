@@ -7,6 +7,7 @@ export default {
     services: '<',
     totalCount: '<',
     trackingPrefix: '@?',
+    user: '<',
   },
   controller,
   template,
