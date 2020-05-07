@@ -44,10 +44,12 @@ export default class {
     PrivateDatabase,
     privateDatabasesDetachable,
     privateDatabasesIds,
+    statisticsRoute,
     HOSTING_STATUS,
   ) {
     this.$scope = $scope;
     this.$scope.HOSTING_STATUS = HOSTING_STATUS;
+    this.$scope.statisticsRoute = statisticsRoute;
     this.$rootScope = $rootScope;
     this.$location = $location;
     this.$q = $q;
@@ -632,21 +634,6 @@ export default class {
     });
   }
 
-  setUrchin() {
-    if (['gra1', 'gra2'].includes(this.$scope.hostingProxy.datacenter)) {
-      // FOR GRAVELINE
-      this.$scope.urchin = URI.expand(this.constants.urchin_gra, {
-        serviceName: this.$scope.hosting.serviceName,
-        cluster: this.$scope.hostingProxy.cluster,
-      }).toString();
-    } else {
-      this.$scope.urchin = URI.expand(this.constants.urchin, {
-        serviceName: this.$scope.hosting.serviceName,
-        cluster: this.$scope.hostingProxy.cluster,
-      }).toString();
-    }
-  }
-
   getPrivateDatabases() {
     return this.$q.all(
       this.privateDatabasesIds.map((id) =>
@@ -740,7 +727,6 @@ export default class {
         this.$scope.sshUrl = `ssh://${hostingProxy.serviceManagementAccess.ssh.url}:${hostingProxy.serviceManagementAccess.ssh.port}/`;
         this.$scope.urls.hosting = hostingUrl;
         this.$scope.urlDomainOrder = domainOrderUrl;
-        this.setUrchin();
 
         return this.User.getUrlOf('guides');
       })

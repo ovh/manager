@@ -26,6 +26,7 @@ angular.module('App').controller(
 
     $onInit() {
       this.hosting = this.$scope.hosting;
+      this.statisticsRoute = this.$scope.statisticsRoute;
       this.userLogsToken = null;
 
       this.$scope.$on('hosting.userLogs.refresh', () => {
@@ -46,22 +47,11 @@ angular.module('App').controller(
       });
 
       if (['gra1', 'gra2'].includes(this.$scope.hostingProxy.datacenter)) {
-        // FOR GRAVELINE
-        this.urlUrchin = URI.expand(this.constants.urchin_gra, {
-          serviceName: this.$stateParams.productId,
-          cluster: this.$scope.hostingProxy.cluster,
-        }).toString();
-
         this.urlLogs = URI.expand(this.constants.stats_logs_gra, {
           serviceName: this.$stateParams.productId,
           cluster: this.$scope.hostingProxy.cluster,
         }).toString();
       } else {
-        this.urlUrchin = URI.expand(this.constants.urchin, {
-          serviceName: this.$stateParams.productId,
-          cluster: this.$scope.hostingProxy.cluster,
-        }).toString();
-
         this.urlLogs = URI.expand(this.constants.stats_logs, {
           serviceName: this.$stateParams.productId,
           cluster: this.$scope.hostingProxy.cluster,
