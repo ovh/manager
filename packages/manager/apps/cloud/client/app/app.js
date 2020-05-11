@@ -94,7 +94,6 @@ angular
       ngOvhJsplumb,
       'tmh.dynamicLocale',
 
-      'ovh-jquery-ui-draggable-ng',
       ngOvhJqueryUiDroppable,
       ngOvhSlider,
       ngTailLogs,

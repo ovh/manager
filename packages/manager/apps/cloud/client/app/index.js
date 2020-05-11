@@ -41,7 +41,6 @@ import 'matchmedia-ng';
 import 'ng-slide-down';
 import 'script-loader!uri.js/src/URI.min.js';
 import 'script-loader!validator-js/validator.js';
-import 'ovh-jquery-ui-draggable-ng';
 import 'script-loader!jsplumb/dist/js/jquery.jsPlumb-1.7.4-min.js';
 import 'ovh-common-style';
 import 'script-loader!messenger/build/js/messenger.js';
