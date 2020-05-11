@@ -27,6 +27,10 @@ export default class {
     this.messages = this.messageHandler.getMessages();
   }
 
+  getGuideUrl(guide) {
+    return this.PciLoadBalancerService.getGuideUrl(guide, this.user);
+  }
+
   getLoadbalancerDetails({ id: loadBalancerId }) {
     return this.PciLoadBalancerService.getLoadBalancerDetails(
       this.projectId,

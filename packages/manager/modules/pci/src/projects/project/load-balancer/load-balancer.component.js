@@ -5,6 +5,7 @@ export default {
   bindings: {
     loadBalancers: '<',
     projectId: '<',
+    user: '<',
   },
   controller,
   template,

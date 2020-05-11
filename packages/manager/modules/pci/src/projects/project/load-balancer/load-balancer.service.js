@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+
 export default class {
   /* @ngInject */
   constructor(atInternet, OvhApiCloudProject) {
@@ -23,5 +25,13 @@ export default class {
       name,
       type: 'action',
     });
+  }
+
+  getGuideUrl(guide, user) {
+    return get(
+      guide.URLS,
+      user.ovhSubsidiary.toUpperCase(),
+      get(guide.URLS, `GB`),
+    );
   }
 }

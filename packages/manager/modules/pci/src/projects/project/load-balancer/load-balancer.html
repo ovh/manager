@@ -8,7 +8,7 @@
         >
             <oui-guide-menu-item
                 data-ng-repeat="guide in $ctrl.GUIDES track by guide.id"
-                data-href="{{ guide.link }}"
+                data-href="{{ $ctrl.getGuideUrl(guide) }}"
                 data-external
                 data-on-click="$ctrl.trackGuideClick(guide)"
             >

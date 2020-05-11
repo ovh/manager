@@ -21,6 +21,7 @@ export default class {
         ...list,
         {
           ...guide,
+          link: this.PciLoadBalancerService.getGuideUrl(guide, this.user),
           title: this.$translate.instant(
             `pci_projects_project_load_balancer_onboarding_guides_${guide.id}_title`,
           ),
