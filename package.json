@@ -14,6 +14,10 @@
     "build": "node --experimental-worker scripts/build.js",
     "clean": "lerna clean -y && yarn run clean:dist && npx rimraf node_modules",
     "clean:dist": "npx rimraf \"packages/**/dist?(-EU|-CA|-US)\"",
+    "docs:build": "yarn run docs:prebuild && vuepress build docs",
+    "docs:deploy": "yarn run docs:build && gh-pages -d docs/.vuepress/dist -m \"docs: update documentation\"",
+    "docs:dev": "yarn run docs:prebuild && vuepress dev docs",
+    "docs:prebuild": "scripts/list-packages.js",
     "format": "run-p format:*",
     "format:css": "yarn run lint:css --fix",
     "format:js": "yarn run lint:js --fix",
@@ -29,11 +33,7 @@
     "split": "scripts/split.js",
     "start": "node -r esm scripts/start/index.js",
     "test": "yarn lint",
-    "version": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
-    "vuepress:build": "yarn run vuepress:prebuild && vuepress build docs",
-    "vuepress:deploy": "yarn run vuepress:build && gh-pages -d docs/.vuepress/dist -m \"docs: update documentation\"",
-    "vuepress:dev": "yarn run vuepress:prebuild && vuepress dev docs",
-    "vuepress:prebuild": "scripts/list-packages.js"
+    "version": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md"
   },
   "devDependencies": {
     "@commitlint/cli": "^8.3.3",
