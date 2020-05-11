@@ -1,0 +1,10 @@
+{
+  "ua_contract_next": "Dalej",
+  "ua_contract_previous": "Wstecz",
+  "ua_download_contract": "Otwórz umowę \"{{name}}\" w formacie PDF",
+  "ua_contract_help": "Przed zatwierdzeniem regulaminów należy je przeczytać.",
+  "ua_contracts_list_title": "Liczba umów do przeczytania: {{count}}",
+  "ua_contract_list_title": "Masz 1 regulamin do przeczytania.",
+  "ua_contracts_agree": "Akceptuję regulaminy",
+  "ua_contract_agree": "Akceptuję regulamin"
+}

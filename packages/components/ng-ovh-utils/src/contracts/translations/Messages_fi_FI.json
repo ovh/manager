@@ -1,0 +1,10 @@
+{
+  "ua_contract_next": "Seuraava",
+  "ua_contract_previous": "Edellinen",
+  "ua_download_contract": "Avaa sopimus \"{{name}}\" PDF-muodossa",
+  "ua_contract_help": "Sinun täytyy katsoa sopimusehdot ennen vahvistusta.",
+  "ua_contracts_list_title": "Katsottavia sopimuksia: {{count}}",
+  "ua_contract_list_title": "Yksi luettava sopimusehto.",
+  "ua_contracts_agree": "Hyväksyn sopimusehdot",
+  "ua_contract_agree": "Hyväksyn sopimusehdot"
+}

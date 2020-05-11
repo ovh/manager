@@ -1,0 +1,9 @@
+{
+  "ua_wizard_cancel": "Abbrechen",
+  "ua_wizard_confirm": "Bestätigen",
+  "ua_wizard_next": "Weiter",
+  "ua_wizard_previous": "Zurück",
+  "ua_wizard_close": "Schließen",
+  "ua_wizard_breadcrumb": "Schritt {{ currentStep }} von {{ stepCount }}",
+  "ua_wizard_help": "Hilfe"
+}

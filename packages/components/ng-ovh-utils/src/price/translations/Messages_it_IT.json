@@ -1,0 +1,6 @@
+{
+  "ua_price_ht_label": "{{price}} +IVA",
+  "ua_price_ttc_label": "{{price}} IVA incl.",
+  "ua_price_free": "Incluso",
+  "ua_price_label_yearly": "/anno"
+}

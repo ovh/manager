@@ -1,0 +1,9 @@
+{
+  "ua_wizard_cancel": "Peruuta",
+  "ua_wizard_confirm": "Vahvista",
+  "ua_wizard_next": "Seuraava",
+  "ua_wizard_previous": "Edellinen",
+  "ua_wizard_close": "Sulje",
+  "ua_wizard_breadcrumb": "Vaihe {{ currentStep }} / {{ stepCount }}",
+  "ua_wizard_help": "Apua"
+}
