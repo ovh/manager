@@ -32,7 +32,7 @@ import 'script-loader!jquery-ui/ui/widgets/mouse.js';
 import 'script-loader!jquery-ui/ui/widgets/sortable.js';
 import 'script-loader!jquery-ui/ui/widgets/draggable.js';
 import 'angular-ui-sortable';
-import 'script-loader!@bower_components/angular-ui-utils/ui-utils.js';
+import 'script-loader!angular-ui-utils/ui-utils.js';
 import 'angular-validation-match';
 import 'bootstrap';
 import 'script-loader!CSV-JS/csv.js';
