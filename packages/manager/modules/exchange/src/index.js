@@ -15,15 +15,52 @@ angular
   .module(moduleName, [billingAccountRenew, 'ui.router', 'oc.lazyLoad'])
   .config(
     /* @ngInject */ ($stateProvider) => {
+      const lazyLoad = ($transition$) => {
+        const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+
+        return import('./exchange.module').then((mod) =>
+          $ocLazyLoad.inject(mod.default || mod),
+        );
+      };
+
       $stateProvider.state('app.exchange.**', {
         url: '/configuration/exchange/:organization/:productId',
-        lazyLoad: ($transition$) => {
-          const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+        lazyLoad,
+      });
 
-          return import('./exchange.module').then((mod) =>
-            $ocLazyLoad.inject(mod.default || mod),
-          );
+      $stateProvider.state('app.microsoft.exchange', {
+        abstract: true,
+        template: '<div data-ui-view></div>',
+        translations: {
+          value: ['.'],
+          format: 'json',
         },
+      });
+
+      $stateProvider.state('app.microsoft.exchange.dedicated.**', {
+        url: '/configuration/exchange_dedicated/:organization/:productId?tab',
+        lazyLoad,
+      });
+
+      $stateProvider.state('app.microsoft.exchange.dedicatedCluster.**', {
+        url:
+          '/configuration/exchange_dedicatedCluster/:organization/:productId?tab',
+        lazyLoad,
+      });
+
+      $stateProvider.state('app.microsoft.exchange.hosted.**', {
+        url: '/configuration/exchange_hosted/:organization/:productId?tab',
+        lazyLoad,
+      });
+
+      $stateProvider.state('app.microsoft.exchange.provider.**', {
+        url: '/configuration/exchange_provider/:organization/:productId?tab',
+        lazyLoad,
+      });
+
+      $stateProvider.state('app.microsoft.exchange.order.**', {
+        url: '/configuration/exchange/order',
+        lazyLoad,
       });
     },
   )
