@@ -1,12 +1,9 @@
-#!/usr/bin/env node
-
-const fs = require('fs');
 const getMonorepoPackages = require('get-monorepo-packages');
 const path = require('path');
 const pick = require('lodash/pick');
 
 // Get all workspaces defined in the `package.json` file.
-const { workspaces } = require('../package.json');
+const { workspaces } = require('../../../package.json');
 
 // Keep the bare minimum entries from all package.json files.
 const entries = ['name', 'version', 'description', 'repository'];
@@ -38,11 +35,6 @@ const groupedWorkspaces = workspaces.map((workspace) => {
   };
 });
 
-// Retrieve parameter.
-const [, , param] = process.argv;
-
-// Output to a static file.
-fs.writeFileSync(
-  param || 'docs/.vuepress/public/assets/json/packages.json',
-  JSON.stringify(groupedWorkspaces),
-);
+module.exports = {
+  groupedWorkspaces,
+};
