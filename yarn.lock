@@ -894,11 +894,6 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@bower_components/angular-ui-utils@angular-ui/ui-utils#0.2.3", "@bower_components/angular-ui-utils@angular-ui/ui-utils#~0.2.3", ui-utils@angular-ui/ui-utils#~0.2.3:
-  version "0.0.0"
-  uid "125cb72d692f9f116454f338f6a5471f3088f9b9"
-  resolved "https://codeload.github.com/angular-ui/ui-utils/tar.gz/125cb72d692f9f116454f338f6a5471f3088f9b9"
-
 "@commitlint/cli@^8.3.3":
   version "8.3.3"
   resolved "https://registry.yarnpkg.com/@commitlint/cli/-/cli-8.3.3.tgz#7a301924d9f361ec3aaf8094dcabbe9e90b51ec5"
@@ -2983,6 +2978,10 @@ angular-ui-sortable@~0.14:
   version "0.14.4"
   resolved "https://registry.yarnpkg.com/angular-ui-sortable/-/angular-ui-sortable-0.14.4.tgz#6cbdd8b9781eeebac5e74633286d254e9edb9624"
   integrity sha1-bL3YuXge7rrF50YzKG0lTp7bliQ=
+
+angular-ui-utils@angular-ui/ui-utils#0.2.3:
+  version "0.0.0"
+  resolved "https://codeload.github.com/angular-ui/ui-utils/tar.gz/125cb72d692f9f116454f338f6a5471f3088f9b9"
 
 angular-ui-validate@^1.2.3, angular-ui-validate@~1.2:
   version "1.2.3"
