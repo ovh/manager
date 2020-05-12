@@ -1,0 +1,34 @@
+<oui-back-button data-on-click=":: $ctrl.goBack()">
+    <span data-translate="ovhManagerHostingDatabaseOrderPublic_title"></span>
+</oui-back-button>
+
+<ovh-manager-product-offers
+    pricing-type="$ctrl.productOffers.pricingType"
+    user=":: $ctrl.productOffers.user"
+    workflow-options=":: $ctrl.productOffers.workflowOptions"
+    workflow-type=":: $ctrl.productOffers.workflowType"
+    on-success=":: $ctrl.onSuccess(checkout)"
+    on-error=":: $ctrl.onError(error)"
+    send-current-state=":: $ctrl.getOrderState(state)"
+>
+    <oui-step-form
+        header="{{:: 'ovhManagerHostingDatabaseOrderPublic_customization_title' | translate }}"
+        editable="$ctrl.characteristics.isEditable"
+    >
+        <oui-field
+            label="{{:: 'ovhManagerHostingDatabaseOrderPublic_customization_characteristics_title' | translate }}"
+            size="xl"
+        >
+            <oui-select
+                name="characteristics"
+                model="$ctrl.characteristics.value"
+                title="{{:: 'ovhManagerHostingDatabaseOrderPublic_customization_characteristics_placeholder' | translate }}"
+                placeholder="{{:: 'ovhManagerHostingDatabaseOrderPublic_customization_characteristics_placeholder' | translate }}"
+                items="$ctrl.characteristics.values"
+                match="display"
+                required
+            >
+            </oui-select>
+        </oui-field>
+    </oui-step-form>
+</ovh-manager-product-offers>

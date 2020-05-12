@@ -1,52 +1,34 @@
 <div data-ovh-alert="{{alerts.main}}"></div>
 
-<div
-    class="alert alert-info"
-    role="alert"
-    data-ng-if="ctrlTabDatabases.hosting.offer === 'START_10_M'"
->
-    <div>
-        <p
-            data-translate="hosting_dashboard_service_change_offer_explanation"
-        ></p>
-        <ul class="mb-3">
-            <li
-                data-translate="hosting_dashboard_service_change_offer_explanation_ftp"
-            ></li>
-            <li
-                data-translate="hosting_dashboard_service_change_offer_explanation_mail"
-            ></li>
-            <li
-                data-translate="hosting_dashboard_service_change_offer_explanation_db"
-            ></li>
-        </ul>
-        <button
-            class="btn btn-info"
-            type="button"
-            data-translate="hosting_dashboard_service_change_offer_now"
-            data-ui-sref="app.hosting.upgrade({ productId: ctrlTabDatabases.hosting.serviceName })"
-        ></button>
-    </div>
+<div data-ng-if="$ctrl.hosting.offer === 'START_10_M'">
+    <p data-translate="hosting_dashboard_service_change_offer_explanation"></p>
+    <ul>
+        <li
+            data-translate="hosting_dashboard_service_change_offer_explanation_ftp"
+        ></li>
+        <li
+            data-translate="hosting_dashboard_service_change_offer_explanation_mail"
+        ></li>
+        <li
+            data-translate="hosting_dashboard_service_change_offer_explanation_db"
+        ></li>
+    </ul>
+    <a
+        class="btn btn-link"
+        data-translate="hosting_dashboard_service_change_offer_now"
+        data-ui-sref="app.hosting.upgrade({ productId: $ctrl.hosting.serviceName })"
+    ></a>
 </div>
 
-<div class="alert alert-info" role="alert" data-ng-if="!displayTabs.databases">
-    <div>
-        <p class="mb-3" data-translate="hosting_change_offer_for_service"></p>
-        <button
-            class="btn btn-info"
-            type="button"
-            data-translate="hosting_dashboard_service_change_offer"
-            data-ui-sref="app.hosting.upgrade({ productId: ctrlTabDatabases.hosting.serviceName })"
-        ></button>
-    </div>
-</div>
-
-<div data-ng-if="displayTabs.databases">
-    <div class="text-center" data-ng-if="ctrlTabDatabases.loading.init">
+<div data-ng-if="$ctrl.hosting.offer !== 'START_10_M'">
+    <div
+        class="text-center"
+        data-ng-if="$ctrl.loading.init || $ctrl.loading.orderCapabilities"
+    >
         <oui-spinner data-size="l"></oui-spinner>
     </div>
 
-    <div data-ng-if="!ctrlTabDatabases.loading.init">
+    <div data-ng-if="!$ctrl.loading.init && !$ctrl.loading.orderCapabilities">
         <p
             data-translate="hosting_tab_DATABASES_configuration_quota_info_calculation_period"
         ></p>
@@ -57,26 +39,60 @@
             data-translate="hosting_tab_DATABASES_configuration_quota_warning_resolution"
         ></p>
 
-        <div data-ng-if="!ctrlTabDatabases.hasResult">
-            <button
-                class="oui-button oui-button_secondary"
-                type="button"
-                data-translate="hosting_tab_DATABASES_configuration_create_title_button"
+        <oui-message
+            ng-if="!$ctrl.canCreateDatabase"
+            type="info"
+            dismissable="false"
+        >
+            <span
+                data-translate="hosting_tab_DATABASES_configuration_create_step1_no_db_left"
+            ></span>
+
+            <ul>
+                <li data-ng-if="$ctrl.canOrderPublic">
+                    <a
+                        data-translate="hosting_tab_DATABASES_configuration_order_title_button_public"
+                        data-ui-sref="app.hosting.database.order-public"
+                    ></a>
+                </li>
+                <li
+                    data-ng-if="hosting.sqlPriveInfo.nbDataBaseInclude > 0 && hosting.sqlPriveInfo.nbDataBaseActive < hosting.sqlPriveInfo.nbDataBaseInclude"
+                >
+                    <a
+                        data-translate="hosting_dashboard_service_privatesql_active_long"
+                        data-ui-sref="app.hosting.database.private-sql-activation"
+                    ></a>
+                </li>
+                <li>
+                    <a
+                        data-translate="hosting_tab_DATABASES_configuration_order_title_button_private"
+                        data-ui-sref="app.hosting.database.order-private"
+                    ></a>
+                </li>
+            </ul>
+        </oui-message>
+
+        <div data-ng-if="!$ctrl.hasResult">
+            <oui-button
                 data-ng-click="setAction('database/add/hosting-database-add')"
-                data-ng-disabled="!ctrlTabDatabases.canCreateDatabase"
-            ></button>
+                data-ng-if="$ctrl.canCreateDatabase"
+            >
+                <span
+                    data-translate="hosting_tab_DATABASES_configuration_create_title_button"
+                ></span>
+            </oui-button>
 
             <div
-                class="alert alert-info"
+                class="alert alert-info mt-3"
                 role="alert"
                 data-translate="hosting_tab_DATABASES_table_empty"
             ></div>
         </div>
 
-        <div class="mt-5" data-ng-if="ctrlTabDatabases.hasResult">
+        <div class="mt-5" data-ng-if="$ctrl.hasResult">
             <div class="row mb-3">
                 <div class="col-xs-6">
-                    <div class="btn-group">
+                    <div class="btn-group" data-ng-if="$ctrl.canCreateDatabase">
                         <button
                             type="button"
                             class="oui-button oui-button_dropdown mb-0"
@@ -91,19 +107,19 @@
                             ></span>
                         </button>
                         <ul class="dropdown-menu m-0 p-0">
-                            <li
-                                data-oui-tooltip="{{:: 'hosting_tab_DATABASES_configuration_create_step1_no_db_left' | translate }}"
-                                data-oui-tooltip-enable="!ctrlTabDatabases.canCreateDatabase"
-                            ></li>
                             <li>
-                                <i class="fa fa-plus" aria-hidden="true"></i>
                                 <button
                                     class="btn btn-link"
                                     type="button"
                                     data-translate="hosting_tab_DATABASES_configuration_create_title_button"
                                     data-ng-click="setAction('database/add/hosting-database-add')"
-                                    data-ng-disabled="!ctrlTabDatabases.canCreateDatabase"
                                 ></button>
+                            </li>
+                            <li data-ng-if="$ctrl.canOrderPublic">
+                                <a
+                                    data-translate="hosting_tab_DATABASES_configuration_order_title_button_public"
+                                    data-ui-sref="app.hosting.database.order-public"
+                                ></a>
                             </li>
                             <li
                                 data-ng-if="hosting.sqlPriveInfo.hasPrivateDatabaseToActivate"
@@ -116,10 +132,6 @@
                                 </a>
                             </li>
                             <li>
-                                <i
-                                    class="ovh-font ovh-font-cart"
-                                    aria-hidden="true"
-                                ></i>
                                 <a
                                     class="btn btn-link"
                                     data-translate="hosting_tab_DATABASES_configuration_order_title_button_private"
@@ -148,20 +160,20 @@
                                     id="searchDatabase"
                                     name="searchDatabase"
                                     placeholder="{{:: 'hosting_tab_DOMAINS_search_placeholder' | translate }}"
-                                    data-ng-change="ctrlTabDatabases.loadDatabases()"
-                                    data-ng-model="ctrlTabDatabases.search.value"
+                                    data-ng-change="$ctrl.loadDatabases()"
+                                    data-ng-model="$ctrl.search.value"
                                     data-ng-model-options="{ debounce: 800 }"
                                 />
                                 <div
                                     class="input-group-btn"
-                                    data-ng-if="ctrlTabDatabases.search.value"
+                                    data-ng-if="$ctrl.search.value"
                                 >
                                     <button
                                         class="btn btn-default"
                                         type="button"
                                         aria-label="{{ 'common_cancel' | translate }}"
-                                        data-ng-disabled="ctrlTabDatabases.loading.databases"
-                                        data-ng-click="ctrlTabDatabases.emptySearch()"
+                                        data-ng-disabled="$ctrl.loading.databases"
+                                        data-ng-click="$ctrl.emptySearch()"
                                     >
                                         <span
                                             class="fa fa-times"
@@ -171,7 +183,7 @@
                                 </div>
                                 <span
                                     class="input-group-addon"
-                                    data-ng-if="!ctrlTabDatabases.search.value"
+                                    data-ng-if="!$ctrl.search.value"
                                 >
                                     <span
                                         class="fa fa-search"
@@ -232,8 +244,8 @@
                                     class="btn btn-icon"
                                     type="button"
                                     title="{{ 'refresh' | translate }}"
-                                    data-ng-click="ctrlTabDatabases.loadDatabases()"
-                                    data-ng-disabled="ctrlTabDatabases.loading.databases"
+                                    data-ng-click="$ctrl.loadDatabases()"
+                                    data-ng-disabled="$ctrl.loading.databases"
                                 >
                                     <span
                                         class="fa fa-refresh"
@@ -244,7 +256,7 @@
                         </tr>
                     </thead>
 
-                    <tbody data-ng-if="ctrlTabDatabases.loading.databases">
+                    <tbody data-ng-if="$ctrl.loading.databases">
                         <tr>
                             <td class="text-center" colspan="8">
                                 <oui-spinner></oui-spinner>
@@ -253,7 +265,7 @@
                     </tbody>
 
                     <tbody
-                        data-ng-if="!ctrlTabDatabases.loading.databases && !ctrlTabDatabases.databases.details.length"
+                        data-ng-if="!$ctrl.loading.databases && !$ctrl.databases.details.length"
                     >
                         <tr>
                             <td
@@ -264,9 +276,9 @@
                         </tr>
                     </tbody>
 
-                    <tbody data-ng-if="!ctrlTabDatabases.loading.databases">
+                    <tbody data-ng-if="!$ctrl.loading.databases">
                         <tr
-                            data-ng-repeat="element in ctrlTabDatabases.databases.details track by $index"
+                            data-ng-repeat="element in $ctrl.databases.details track by $index"
                         >
                             <th scope="row" data-ng-bind="element.user"></th>
                             <td data-ng-bind="element.user"></td>
@@ -321,7 +333,7 @@
                             <td>
                                 <span data-ng-bind="element.type"></span>
                                 <span
-                                    data-ng-bind="'v' + ctrlTabDatabases.constructor.formatVersion(element.version)"
+                                    data-ng-bind="'v' + $ctrl.constructor.formatVersion(element.version)"
                                     data-ng-if="element.version"
                                 ></span>
                             </td>
@@ -340,7 +352,7 @@
                                     class="btn btn-icon"
                                     type="button"
                                     title="{{element.user}} {{:: 'hosting_tab_DATABASES_table_popover_dump_edit' | translate }}"
-                                    data-ng-click="ctrlTabDatabases.restoreDump(element)"
+                                    data-ng-click="$ctrl.restoreDump(element)"
                                     data-ng-if="element.dumpsCount > 0"
                                 >
                                     <span
@@ -368,7 +380,7 @@
                                     </oui-action-menu-item>
                                     <oui-action-menu-item
                                         data-ng-if="element.type !== 'MONGODB'"
-                                        data-on-click="ctrlTabDatabases.restoreDump(element)"
+                                        data-on-click="$ctrl.restoreDump(element)"
                                     >
                                         <span
                                             data-translate="hosting_tab_DATABASES_table_popover_dump_restore"
@@ -384,7 +396,7 @@
                                     </oui-action-menu-item>
                                     <oui-action-menu-item
                                         data-ng-if="element.type === 'MYSQL'"
-                                        data-on-click="setAction('database/restore/confirm/hosting-database-restore-confirm', { bdd: element, backupType: ctrlTabDatabases.backupType.DAILY })"
+                                        data-on-click="setAction('database/restore/confirm/hosting-database-restore-confirm', { bdd: element, backupType: $ctrl.backupType.DAILY })"
                                     >
                                         <span
                                             data-translate="hosting_tab_DATABASES_table_popover_dump_restore_yesterday"
@@ -392,7 +404,7 @@
                                     </oui-action-menu-item>
                                     <oui-action-menu-item
                                         data-ng-if="element.type === 'MYSQL'"
-                                        data-on-click="setAction('database/restore/confirm/hosting-database-restore-confirm', { bdd: element, backupType: ctrlTabDatabases.backupType.WEEKLY })"
+                                        data-on-click="setAction('database/restore/confirm/hosting-database-restore-confirm', { bdd: element, backupType: $ctrl.backupType.WEEKLY })"
                                     >
                                         <span
                                             data-translate="hosting_tab_DATABASES_table_popover_dump_restore_one_week"
@@ -400,7 +412,7 @@
                                     </oui-action-menu-item>
                                     <oui-action-menu-item
                                         data-ng-if="!hosting.isCloudWeb && element.type === 'MYSQL'"
-                                        data-on-click="ctrlTabDatabases.checkQuota(element)"
+                                        data-on-click="$ctrl.checkQuota(element)"
                                     >
                                         <span
                                             data-translate="hosting_tab_DATABASES_table_popover_check_quota"
@@ -427,7 +439,7 @@
                                     <oui-action-menu-item
                                         data-ng-if="element.type === 'MYSQL'"
                                         title="{{ 'hosting_tab_DATABASES_table_popover_new_window' | translate }}"
-                                        data-ng-href="{{ ctrlTabDatabases.getPhpMyAdminUrl(element) }}"
+                                        data-ng-href="{{ $ctrl.getPhpMyAdminUrl(element) }}"
                                         data-external
                                     >
                                         <span
@@ -441,22 +453,22 @@
                 </table>
             </div>
         </div>
-    </div>
 
-    <div class="clearfix" data-ng-if="ctrlTabDatabases.databases.ids">
-        <div
-            data-pagination-front
-            data-items="ctrlTabDatabases.databases.ids"
-            data-paginated-items="ctrlTabDatabases.databases.details"
-            data-current-page="currentPage"
-            data-nb-pages="nbPages"
-            data-items-per-page="itemsPerPage"
-            data-transform-item="ctrlTabDatabases.transformItem(item)"
-            data-on-transform-item-done="ctrlTabDatabases.onTransformItemDone(items)"
-            data-page-placeholder="{{ 'pagination_page' | translate: { current: currentPage, last: nbPages } }}"
-            data-item-per-page-placeholder="{{ 'pagination_display' | translate }}"
-            data-on-page-change="ctrlTabDatabases.loading.databases = true"
-            data-ng-show="!ctrlTabDatabases.loading.init && ctrlTabDatabases.hasResult"
-        ></div>
+        <div class="clearfix" data-ng-if="$ctrl.databases.ids">
+            <div
+                data-pagination-front
+                data-items="$ctrl.databases.ids"
+                data-paginated-items="$ctrl.databases.details"
+                data-current-page="currentPage"
+                data-nb-pages="nbPages"
+                data-items-per-page="itemsPerPage"
+                data-transform-item="$ctrl.transformItem(item)"
+                data-on-transform-item-done="$ctrl.onTransformItemDone(items)"
+                data-page-placeholder="{{ 'pagination_page' | translate: { current: currentPage, last: nbPages } }}"
+                data-item-per-page-placeholder="{{ 'pagination_display' | translate }}"
+                data-on-page-change="$ctrl.loading.databases = true"
+                data-ng-show="!$ctrl.loading.init && $ctrl.hasResult"
+            ></div>
+        </div>
     </div>
 </div>
