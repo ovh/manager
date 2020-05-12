@@ -53,12 +53,13 @@ export default /* @ngInject */ ($stateProvider) => {
       isVpsNewRange: /* @ngInject */ (stateVps) =>
         stateVps.model.version === NEW_RANGE_VERSION &&
         !~stateVps.model.name.indexOf(RANGES.BESTVALUE),
-      plan: /* @ngInject */ (serviceName, VpsService) =>
-        VpsService.getServiceInfos(serviceName).then((plan) => ({
-          ...plan,
-          creation: moment(plan.creation).format('LL'),
-          expiration: moment(plan.expiration).format('LL'),
-        })),
+      plan: /* @ngInject */ (serviceInfo) => ({
+        ...serviceInfo,
+        creation: moment(serviceInfo.creation).format('LL'),
+        expiration: moment(serviceInfo.expiration).format('LL'),
+      }),
+      serviceInfo: /* @ngInject */ (serviceName, VpsService) =>
+        VpsService.getServiceInfos(serviceName),
       serviceName: /* @ngInject */ ($transition$) =>
         $transition$.params().serviceName,
       scrollToTop: () => () => {

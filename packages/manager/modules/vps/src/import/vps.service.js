@@ -1481,4 +1481,10 @@ export default /* @ngInject */ function VpsService(
       })
       .then(({ data }) => data);
   };
+
+  this.updateServiceInfo = function updateServiceInfo(serviceInfo) {
+    return $http.put(`${swsVpsProxypass}/${serviceInfo.domain}/serviceInfos`, {
+      renew: serviceInfo.renew,
+    });
+  };
 }
