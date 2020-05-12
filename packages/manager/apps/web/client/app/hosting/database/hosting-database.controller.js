@@ -15,6 +15,7 @@ angular.module('App').controller(
       Alerter,
       Hosting,
       HostingDatabase,
+      HostingDatabaseOrderPublicService,
       WucConverterService,
     ) {
       this.$q = $q;
@@ -26,6 +27,7 @@ angular.module('App').controller(
       this.alerter = Alerter;
       this.hostingService = Hosting;
       this.hostingDatabaseService = HostingDatabase;
+      this.HostingDatabaseOrderPublicService = HostingDatabaseOrderPublicService;
       this.WucConverterService = WucConverterService;
     }
 
@@ -42,6 +44,7 @@ angular.module('App').controller(
       this.loading = {
         databases: false,
         init: true,
+        orderCapabilities: true,
       };
       this.search = {
         value: null,
@@ -81,7 +84,27 @@ angular.module('App').controller(
         this.reloadCurrentPage();
       });
 
-      this.loadDatabases();
+      return this.loadDatabases()
+        .then(() => this.loadOrderPublicCapabilities())
+        .finally(() => {
+          this.loading.init = false;
+          this.loading.databases = false;
+          this.loading.orderCapabilities = false;
+        });
+    }
+
+    loadOrderPublicCapabilities() {
+      this.loading.orderCapabilities = true;
+
+      return this.HostingDatabaseOrderPublicService.getCharacteristicsOfAvailableProducts(
+        this.hosting.serviceName,
+      )
+        .then((characteristics) => {
+          this.canOrderPublic = !isEmpty(characteristics);
+        })
+        .finally(() => {
+          this.loading.orderCapabilities = true;
+        });
     }
 
     static formatVersion(version) {
@@ -170,10 +193,7 @@ angular.module('App').controller(
           );
         })
         .finally(() => {
-          if (isEmpty(this.databases.ids)) {
-            this.loading.init = false;
-            this.loading.databases = false;
-          } else {
+          if (!isEmpty(this.databases.ids)) {
             this.hasResult = true;
           }
         });

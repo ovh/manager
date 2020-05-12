@@ -117,6 +117,7 @@ export default class {
       page: 'app.alerts.page',
       tabs: 'app.alerts.tabs',
       main: 'app.alerts.main',
+      database: 'app.alerts.database',
     };
 
     this.$scope.urlDomainOrder = null;

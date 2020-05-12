@@ -33,7 +33,6 @@ import './database/hosting-database.controller';
 import './database/hosting-database.routing';
 import './database/hosting-database.service';
 import './database/import/hosting-database-import.controller';
-import './database/order/hosting-database-order.controller';
 import './database/private-sql-activation/index';
 import './database/private-sql-activation/private-sql-activation.component';
 import './database/private-sql-activation/private-sql-activation.controller';
