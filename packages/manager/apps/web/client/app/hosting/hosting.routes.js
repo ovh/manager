@@ -112,14 +112,13 @@ export default /* @ngInject */ ($stateProvider) => {
       goToHosting: /* @ngInject */ ($state, $timeout, Alerter) => (
         message = false,
         type = 'success',
+        target = 'app.alerts.main',
       ) => {
         const promise = $state.go('app.hosting', {});
 
         if (message) {
           promise.then(() =>
-            $timeout(() =>
-              Alerter.set(`alert-${type}`, message, null, 'app.alerts.main'),
-            ),
+            $timeout(() => Alerter.set(`alert-${type}`, message, null, target)),
           );
         }
 
