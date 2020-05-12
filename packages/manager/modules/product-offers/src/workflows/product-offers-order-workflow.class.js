@@ -24,7 +24,10 @@ export default class OrderWorkflow extends Workflow {
    *  - {serviceNameToAddProduct}: Service name of which we will add product/addon.
    *  If set, the order will consist to add option to an existing service.
    *  If null, the order concerns an new product.
-   *  - {planCode}: planCode to use. Plan code example : webHosting, cloudDB.
+   *  - {getPlanCode}:
+   *  method to get the planCode to use. Allows you to set the planCode after the component has been
+   *  created.
+   *  Plan code example : webHosting, cloudDB.
    *  - {onGetConfiguration}:
    *  Method to get configuration items that will be added to the order
    *  cart, called when fetching checkout information.
@@ -80,7 +83,7 @@ export default class OrderWorkflow extends Workflow {
   getPricings() {
     this.pricing = null;
 
-    if (!this.planCode) {
+    if (!this.getPlanCode()) {
       throw new Error('ovhProductOffers-OrderWorkflow: Invalid plan code');
     }
 
@@ -94,14 +97,14 @@ export default class OrderWorkflow extends Workflow {
 
     const catalogPricings = get(
       this.catalog[this.catalogItemTypeName].find(
-        ({ planCode }) => planCode === this.planCode,
+        ({ planCode }) => planCode === this.getPlanCode(),
       ),
       'pricings',
     );
 
     if (!catalogPricings) {
       throw new Error(
-        `ovhProductOffers-OrderWorkflow: No pricing found for ${this.planCode}`,
+        `ovhProductOffers-OrderWorkflow: No pricing found for ${this.getPlanCode()}`,
       );
     }
 
@@ -142,7 +145,7 @@ export default class OrderWorkflow extends Workflow {
     const checkoutInformations = {
       product: {
         duration: pricing.getDurationISOFormat(),
-        planCode: this.planCode,
+        planCode: this.getPlanCode(),
         pricingMode: pricing.mode,
         quantity: 1,
       },
