@@ -35,6 +35,7 @@ export default class newDnsZoneCtrl {
 
     this.WORKFLOW_OPTIONS = {
       ...WORKFLOW_OPTIONS,
+      getPlanCode: () => WORKFLOW_OPTIONS.planCode,
       catalog: this.catalog,
       onGetConfiguration: () => this.getConfiguration(),
     };
