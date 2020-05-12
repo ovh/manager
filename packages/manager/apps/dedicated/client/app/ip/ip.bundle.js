@@ -63,7 +63,6 @@ import './ip/organisation/ip-ip-organisation.controller';
 import './ip/organisation/ip-ip-organisation.service';
 import './ip/organisation/view/ip-ip-organisation-view.controller';
 import './ip/reverse/add/ip-ip-reverse-add.controller';
-import './ip/reverse/constants';
 import './ip/reverse/delete/ip-ip-reverse-delete.controller';
 import './ip/reverse/ip-ip-reverse.controller';
 import './ip/reverse/ip-ip-reverse.service';
