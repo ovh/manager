@@ -4,7 +4,10 @@ import isNil from 'lodash/isNil';
 import map from 'lodash/map';
 import snakeCase from 'lodash/snakeCase';
 
-import { EXTRA_SQL_PERSO, MAX_USER_LENGTH } from './add.constants';
+import {
+  EXTRA_SQL_PERSO,
+  MAX_USER_LENGTH,
+} from './hosting-database-add.constants';
 
 angular
   .module('App')
