@@ -1,12 +1,5 @@
 {
   "sign_up_activity_field_vat": "Numero identificativo",
-  "sign_up_activity_field_organisation": "Organizzazione",
-  "sign_up_activity_field_corporationType": "Tipo di azienda",
-  "sign_up_activity_field_nationalIdentificationNumber": "Codice fiscale",
-  "sign_up_activity_field_companyNationalIdentificationNumber": "Codice fiscale",
-  "sign_up_activity_field_italian_sdi": "Codice destinatario per fatturazione elettronica (SDI)",
-  "sign_up_activity_field_vat_it": "Numero partita IVA",
-  "sign_up_activity_field_companyNationalIdentificationNumber_fr": "Numero di identificazione nazionale (SIREN)",
   "sign_up_activity_field_vat_more": "Numero identificativo ({{ vatLabel }})",
   "sign_up_activity_field_vat_association": "Numero identificativo dell’associazione",
   "sign_up_activity_field_vat_association_more": "Numero identificativo dell’associazione ({{ vatLabel }})",
@@ -17,5 +10,11 @@
   "sign_up_activity_field_organisation_association": "Nome dell'associazione",
   "sign_up_activity_field_organisation_corporation": "Nome dell'azienda",
   "sign_up_activity_field_organisation_administration": "Nome dell’amministrazione",
-  "sign_up_activity_field_organisation_personalcorporation": "Nome dell’impresa individuale"
+  "sign_up_activity_field_organisation_personalcorporation": "Nome dell’impresa individuale",
+  "sign_up_activity_field_organisation": "Organizzazione",
+  "sign_up_activity_field_corporationType": "Tipo di azienda",
+  "sign_up_activity_field_nationalIdentificationNumber": "Codice fiscale",
+  "sign_up_activity_field_companyNationalIdentificationNumber": "Codice fiscale",
+  "sign_up_activity_field_companyNationalIdentificationNumber_fr": "Numero di identificazione nazionale (SIREN)",
+  "sign_up_activity_field_italian_sdi": "Codice destinatario per fatturazione elettronica (SDI)"
 }
