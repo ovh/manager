@@ -30,8 +30,12 @@ export default class ProjectCreatingNotPaidCtrl {
     return this.projectCreating
       .cancelProjectCreation(this.projectId)
       .then(() => this.$state.go('app'))
-      .catch((error) =>
-        this.$state.go(
+      .catch((error) => {
+        if (get(error, 'status') === 460) {
+          return this.$state.go('pci.projects');
+        }
+
+        return this.$state.go(
           'pci.error',
           {
             detail: {
@@ -44,8 +48,8 @@ export default class ProjectCreatingNotPaidCtrl {
           {
             location: false,
           },
-        ),
-      )
+        );
+      })
       .finally(() => {
         this.loading.cancel = false;
       });
