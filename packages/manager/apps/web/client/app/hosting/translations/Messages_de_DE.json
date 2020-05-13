@@ -341,8 +341,6 @@
   "hosting_tab_DATABASES_table_popover_dump_edit": ": Backups bearbeiten",
   "hosting_tab_DATABASES_table_popover_dump_restore": "Backup wiederherstellen",
   "hosting_tab_DATABASES_table_popover_import": "Datei importieren",
-  "hosting_tab_DATABASES_table_popover_dump_restore_yesterday": "Backup von gestern wiederherstellen",
-  "hosting_tab_DATABASES_table_popover_dump_restore_one_week": "Backup von vor einer Woche wiederherstellen",
   "hosting_tab_DATABASES_table_popover_delete": "Die Datenbank löschen",
   "hosting_tab_DATABASES_table_popover_check_quota": "Das Quota neu berechnen",
   "hosting_tab_DATABASES_table_popover_phpmyadmin": "Zugang zu phpMyAdmin",
