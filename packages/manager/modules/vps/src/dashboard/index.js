@@ -5,23 +5,25 @@ import component from './vps-dashboard.component';
 import routing from './vps-dashboard.routing';
 
 import vpsUpgradeTileService from './tile/configuration/upgrade/service';
+import vpsMigrationService from '../migration/vps-migration.service';
 
 import vpsTileStatusItem from './vpsTileStatus/vps-tile-status.component';
 
-import ovhManagerVpsDashboardRebuild from './rebuild';
-import ovhManagerVpsDashboardTerminate from './terminate';
 import ovhManagerVpsDashboardDisplayIps from './modal/display-ips';
 import ovhManagerVpsDashboardKvm from './modal/kvm';
 import ovhManagerVpsDashboardMonitoringSla from './modal/monitoring-sla';
 import ovhManagerVpsDashboardReboot from './modal/reboot';
 import ovhManagerVpsDashboardRebootRescue from './modal/password';
+import ovhManagerVpsDashboardRebuild from './rebuild';
 import ovhManagerVpsDashboardReinstall from './modal/reinstall';
 import ovhManagerVpsDashboardReverseDns from './modal/reverse-dns';
-import ovhManagerVpsDashboardTerminateOption from './modal/terminate-option';
-import ovhManagerVpsDashboardTile from './tile';
+import ovhManagerVpsDashboardSchedule from './migration-schedule';
 import ovhManagerVpsDashboardSnapshotDelete from './modal/snapshot-delete';
 import ovhManagerVpsDashboardSnapshotRestore from './modal/snapshot-restore';
 import ovhManagerVpsDashboardSnapshotTake from './modal/snapshot-take';
+import ovhManagerVpsDashboardTerminate from './terminate';
+import ovhManagerVpsDashboardTerminateOption from './modal/terminate-option';
+import ovhManagerVpsDashboardTile from './tile';
 
 const moduleName = 'ovhManagerVpsDashboard';
 
@@ -36,6 +38,7 @@ angular
     ovhManagerVpsDashboardRebootRescue,
     ovhManagerVpsDashboardReinstall,
     ovhManagerVpsDashboardReverseDns,
+    ovhManagerVpsDashboardSchedule,
     ovhManagerVpsDashboardSnapshotDelete,
     ovhManagerVpsDashboardSnapshotRestore,
     ovhManagerVpsDashboardSnapshotTake,
@@ -44,6 +47,7 @@ angular
     'ui.router',
   ])
   .service('vpsUpgradeTile', vpsUpgradeTileService)
+  .service('VpsMigrationService', vpsMigrationService)
   .component(component.name, component)
   .component(vpsTileStatusItem.name, vpsTileStatusItem)
   .config(routing)

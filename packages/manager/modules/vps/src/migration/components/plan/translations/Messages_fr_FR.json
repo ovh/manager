@@ -1,0 +1,18 @@
+{
+  "vps_common_cancel": "Annuler",
+  "vps_common_confirm": "Confirmer",
+  "vps_migrate_schedule_title": "Migration du VPS: {{vpsName}}",
+  "vps_migrate_schedule_description": "Veuillez programmer la date et l’heure auxquelles vous souhaitez migrer votre ancien modèle de VPS vers la nouvelle gamme. Les options liées à votre VPS seront automatiquement migrées vers votre nouvelle machine.",
+  "vps_migrate_schedule_description_alert" : "Attention, les anciennes sauvegardes enregistrées ne seront pas conservées",
+  "vps_migrate_schedule_to_model": "Nouveau modèle",
+  "vps_migrate_schedule_date": "Sélectionnez la date a laquelle vous souhaitez effectuer la migration",
+  "vps_migrate_schedule_time": "Sélectionnez l'heure a laquelle vous souhaitez effectuer la migration",
+  "vps_migration_plan_price": "{{price}}{{currencySymbol}}/mois",
+  "vps_migration_plan_total_price": "Total",
+  "vps_migration_plan_date_required": "Veuillez sélectionner la date",
+  "vps_migration_plan_time_required": "Veuillez sélectionner l'heure",
+  "vps_migration_plan_save_next": "Enregistrer et suivant",
+  "vps_migration_plan_success": "La migration de votre VPS est prévu",
+  "vps_migration_plan_success_with_date": "La migration de votre VPS est prévu le {{date}} à {{time}}",
+  "vps_migration_plan_error": "Échec de la planification de la migration VPS: {{message}}"
+}
