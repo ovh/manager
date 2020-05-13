@@ -1,3 +1,4 @@
+import get from 'lodash/get';
 import has from 'lodash/has';
 import isEmpty from 'lodash/isEmpty';
 
@@ -54,7 +55,7 @@ angular.module('services').service('User', [
           return constants.urls[data.ovhSubsidiary][link];
         }
 
-        return constants.urls.FR[link];
+        return get(constants, `urls.FR.${link}`);
       });
 
     /* The new structure in constants.config.js will be ...value.subsidiary and not subsidiary.value
