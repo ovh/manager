@@ -12,7 +12,10 @@
                 ></span>
             </span>
         </strong>
-        <small data-ng-class="{ 'd-block': $ctrl.block }">
+        <small
+            data-ng-if="::!$ctrl.isUndefined($ctrl.tax)"
+            data-ng-class="{ 'd-block': $ctrl.block }"
+        >
             (<span
                 data-translate="order_catalog_price_gst_incl_label"
                 data-translate-values="{ price: $ctrl.getPriceText($ctrl.price + $ctrl.tax) }"
@@ -34,7 +37,10 @@
                 ></span>
             </span>
         </strong>
-        <small data-ng-class="{ 'd-block': $ctrl.block }">
+        <small
+            data-ng-if="::!$ctrl.isUndefined($ctrl.tax)"
+            data-ng-class="{ 'd-block': $ctrl.block }"
+        >
             (<span
                 data-translate="order_catalog_price_tax_incl_label"
                 data-translate-values="{ price: $ctrl.getPriceText($ctrl.price + $ctrl.tax) }"
