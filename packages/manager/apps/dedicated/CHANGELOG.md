@@ -1,3 +1,12 @@
+## [12.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@12.4.0...@ovh-ux/manager-dedicated@12.4.1) (2020-05-13)
+
+
+### Bug Fixes
+
+* **account.user.support-level:** use correct url for CZ,FI and LT ([#2930](https://github.com/ovh/manager/issues/2930)) ([23d2df9](https://github.com/ovh/manager/commit/23d2df98596f58e46da593865d7bf6ea2f595a14))
+
+
+
 # [12.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@12.3.3...@ovh-ux/manager-dedicated@12.4.0) (2020-05-13)
 
 
