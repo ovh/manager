@@ -341,8 +341,6 @@
   "hosting_tab_DATABASES_table_popover_dump_edit": ": editar las copias de seguridad",
   "hosting_tab_DATABASES_table_popover_dump_restore": "Restaurar una copia de seguridad",
   "hosting_tab_DATABASES_table_popover_import": "Importar un archivo",
-  "hosting_tab_DATABASES_table_popover_dump_restore_yesterday": "Restaurar la copia de seguridad de ayer",
-  "hosting_tab_DATABASES_table_popover_dump_restore_one_week": "Restaurar la copia de seguridad de hace una semana",
   "hosting_tab_DATABASES_table_popover_delete": "Eliminar la base de datos",
   "hosting_tab_DATABASES_table_popover_check_quota": "Recalcular el espacio utilizado",
   "hosting_tab_DATABASES_table_popover_phpmyadmin": "Acceder a phpMyAdmin",

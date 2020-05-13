@@ -383,22 +383,6 @@
                                         ></span>
                                     </oui-action-menu-item>
                                     <oui-action-menu-item
-                                        data-ng-if="element.type === 'MYSQL'"
-                                        data-on-click="setAction('database/restore/confirm/hosting-database-restore-confirm', { bdd: element, backupType: ctrlTabDatabases.backupType.DAILY })"
-                                    >
-                                        <span
-                                            data-translate="hosting_tab_DATABASES_table_popover_dump_restore_yesterday"
-                                        ></span>
-                                    </oui-action-menu-item>
-                                    <oui-action-menu-item
-                                        data-ng-if="element.type === 'MYSQL'"
-                                        data-on-click="setAction('database/restore/confirm/hosting-database-restore-confirm', { bdd: element, backupType: ctrlTabDatabases.backupType.WEEKLY })"
-                                    >
-                                        <span
-                                            data-translate="hosting_tab_DATABASES_table_popover_dump_restore_one_week"
-                                        ></span>
-                                    </oui-action-menu-item>
-                                    <oui-action-menu-item
                                         data-ng-if="!hosting.isCloudWeb && element.type === 'MYSQL'"
                                         data-on-click="ctrlTabDatabases.checkQuota(element)"
                                     >
