@@ -19,6 +19,7 @@ export default {
     columns: '<',
     rows: '<?',
     loadRow: '<',
+    notifications: '<',
     productType: '<',
     propertyId: '<',
   },
