@@ -1,3 +1,15 @@
+## [14.0.7](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-utils@14.0.6...@ovh-ux/ng-ovh-utils@14.0.7) (2020-05-13)
+
+
+### Bug Fixes
+
+* import missing styles ([7559e1f](https://github.com/ovh/manager/commit/7559e1f4980f651f1759aa74711cd116df32c36e))
+* **alerter:** fix details display for sws batch result ([33f5b86](https://github.com/ovh/manager/commit/33f5b8602816d6bd2d5f10bf75f73bb1d6b3b6c5))
+* **humanReadableSize:** replace service by a filter ([#35](https://github.com/ovh/manager/issues/35)) ([7c67129](https://github.com/ovh/manager/commit/7c671291b84d8d7a9fe9488da2df7ff78307c141))
+* **poll.service:** avoid crash if no api options are passed ([#46](https://github.com/ovh/manager/issues/46)) ([ffe0464](https://github.com/ovh/manager/commit/ffe046406ddafcd58a9f245fd8a258ead7dde221))
+
+
+
 ## [14.0.6](https://github.com/ovh-ux/ng-ovh-utils/compare/v14.0.5...v14.0.6) (2020-01-08)
 
 

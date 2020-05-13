@@ -1,3 +1,12 @@
+## [7.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms-app@7.2.0...@ovh-ux/manager-sms-app@7.2.1) (2020-05-13)
+
+
+### Bug Fixes
+
+* **deps:** add missing moment dependency ([#2874](https://github.com/ovh/manager/issues/2874)) ([65d471a](https://github.com/ovh/manager/commit/65d471ae00b0a1f4022fc5b28ae37c3dda6923f8))
+
+
+
 # [7.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms-app@7.1.5...@ovh-ux/manager-sms-app@7.2.0) (2020-04-15)
 
 

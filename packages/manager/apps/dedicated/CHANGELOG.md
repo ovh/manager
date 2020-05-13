@@ -1,3 +1,18 @@
+# [12.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@12.3.3...@ovh-ux/manager-dedicated@12.4.0) (2020-05-13)
+
+
+### Bug Fixes
+
+* **billing:** display pay as you go section ([#2880](https://github.com/ovh/manager/issues/2880)) ([8cda425](https://github.com/ovh/manager/commit/8cda4253003a7cda303ec1be39273ff539e03fc6))
+* **i18n:** add missing translations [CDS 383] ([a784a99](https://github.com/ovh/manager/commit/a784a999d869e4b069b7d56f33bb53048fa06bc8))
+
+
+### Features
+
+* **dedicated.cloud:** add veeam backup storage ([#2320](https://github.com/ovh/manager/issues/2320)) ([61f53d4](https://github.com/ovh/manager/commit/61f53d4b6507158941a76defbc72b7302a4206f3))
+
+
+
 ## [12.3.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@12.3.2...@ovh-ux/manager-dedicated@12.3.3) (2020-04-28)
 
 

@@ -1,3 +1,12 @@
+## [3.1.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-navbar@3.1.5...@ovh-ux/manager-navbar@3.1.6) (2020-05-13)
+
+
+### Bug Fixes
+
+* **translations:** clean translations files ([ac02afd](https://github.com/ovh/manager/commit/ac02afd7ef2f92be18ec3952f937091cc4998bea))
+
+
+
 ## [3.1.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-navbar@3.1.4...@ovh-ux/manager-navbar@3.1.5) (2020-04-28)
 
 

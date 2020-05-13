@@ -1,3 +1,21 @@
+# [3.20.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.19.0...@ovh-ux/manager-pci@3.20.0) (2020-05-13)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 385] ([b203157](https://github.com/ovh/manager/commit/b2031573f0fcb9eaa9e4affdb7b82a3504f403d9))
+* **i18n:** add missing translations [CDS 386] ([c880ca6](https://github.com/ovh/manager/commit/c880ca6b4d103159f4e69de4bbbe84dd17637f88))
+* **i18n:** add missing translations [CDS 387] ([6a864c2](https://github.com/ovh/manager/commit/6a864c26ea29e088584555c1362be86304f70940))
+* **pci:** add supported ssh key info ([#2761](https://github.com/ovh/manager/issues/2761)) ([9969b4e](https://github.com/ovh/manager/commit/9969b4e3f8b9c7c362df9060e77ec68159eb3004))
+* **pci:** avoid error loop when project is expired ([#2923](https://github.com/ovh/manager/issues/2923)) ([2b9c897](https://github.com/ovh/manager/commit/2b9c897ab21bdc47b19decc49ee6ef80e63ad568))
+
+
+### Features
+
+* **pci.project.banner:** update keystone migration alert ([#2922](https://github.com/ovh/manager/issues/2922)) ([aeedd83](https://github.com/ovh/manager/commit/aeedd83723128dd69d617fcaeba1112fa8dcb1eb)), closes [#2321](https://github.com/ovh/manager/issues/2321)
+
+
+
 # [3.19.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.18.3...@ovh-ux/manager-pci@3.19.0) (2020-04-29)
 
 

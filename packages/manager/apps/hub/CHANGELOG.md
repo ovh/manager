@@ -1,3 +1,17 @@
+# [1.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@1.2.0...@ovh-ux/manager-hub-app@1.3.0) (2020-05-13)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 379] ([395eb80](https://github.com/ovh/manager/commit/395eb800b416a4fc2dd6567c0e8ef7dccc8a979b))
+
+
+### Features
+
+* **dashboard.catalog:** add searchable attribute on catalog filters ([#2870](https://github.com/ovh/manager/issues/2870)) ([b66bdfe](https://github.com/ovh/manager/commit/b66bdfe143fcbecbf369d7dae6c9b92e1a68e0fa))
+
+
+
 # [1.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@1.1.4...@ovh-ux/manager-hub-app@1.2.0) (2020-04-28)
 
 

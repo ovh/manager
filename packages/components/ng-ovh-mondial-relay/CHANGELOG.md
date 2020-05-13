@@ -1,3 +1,27 @@
+# [7.0.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-mondial-relay@6.0.3...@ovh-ux/ng-ovh-mondial-relay@7.0.0) (2020-05-13)
+
+
+### Bug Fixes
+
+* **controller:** set loading init to false correctly ([#26](https://github.com/ovh/manager/issues/26)) ([0d8d014](https://github.com/ovh/manager/commit/0d8d0145b71cbc9dfbed9eb96895f235ba0082a1))
+
+
+### Code Refactoring
+
+* update stack with component-rollup-config ([#18](https://github.com/ovh/manager/issues/18)) ([4868e00](https://github.com/ovh/manager/commit/4868e00efacdd38f729bd3d58b1a92a35378de4d))
+
+
+### Features
+
+* **leaflet:** select radio button for clicked relay on map ([7614d6e](https://github.com/ovh/manager/commit/7614d6ece616d8af410353116878e02430fa0ed0))
+
+
+### BREAKING CHANGES
+
+* module is now named `ngOvhMondialRelay`
+
+
+
 ## [6.0.3](https://github.com/ovh-ux/ng-ovh-mondial-relay/compare/v6.0.2...v6.0.3) (2020-01-08)
 
 

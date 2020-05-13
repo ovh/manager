@@ -1,3 +1,20 @@
+# [14.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@14.2.0...@ovh-ux/manager-web@14.3.0) (2020-05-13)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 375] ([800e37c](https://github.com/ovh/manager/commit/800e37c707971448efae8ce3c2534bde24e6178b))
+* **i18n:** add missing translations [CDS 376] ([a4f0dd2](https://github.com/ovh/manager/commit/a4f0dd27790a6660c11be8c90a4f65c489b5b59e))
+* **translations:** clean translations files ([ac02afd](https://github.com/ovh/manager/commit/ac02afd7ef2f92be18ec3952f937091cc4998bea))
+
+
+### Features
+
+* **hosting:** remove main domain information ([#1935](https://github.com/ovh/manager/issues/1935)) ([e3a1e75](https://github.com/ovh/manager/commit/e3a1e75c76c15ccef89a98f6babbf6075b19adfa))
+* **web:** add detach email ([f38e95f](https://github.com/ovh/manager/commit/f38e95fff293f4bdefca8da05b61976fad60bcd3))
+
+
+
 # [14.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@14.1.0...@ovh-ux/manager-web@14.2.0) (2020-04-28)
 
 
