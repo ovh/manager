@@ -77,8 +77,10 @@ export default class LineDiagnosticsCtrl {
   animateProgressBar() {
     this.detectionStepProgression = 0;
     this.progressBarCycle = this.$interval(() => {
-      if (this.detectionStepProgression + PROGRESS_BAR.STEP
-        < PROGRESS_BAR.LIMIT) {
+      if (
+        this.detectionStepProgression + PROGRESS_BAR.STEP <
+        PROGRESS_BAR.LIMIT
+      ) {
         this.detectionStepProgression = random(
           this.detectionStepProgression,
           this.detectionStepProgression + PROGRESS_BAR.STEP,
@@ -90,47 +92,66 @@ export default class LineDiagnosticsCtrl {
   runLineDiagnostic(requestParam) {
     this.loading = true;
 
-    return this.LineDiagnosticsService.getRunDiagnostic({
-      number: this.lineNumber,
-      serviceName: this.serviceName,
-    }, requestParam).then((lineDiagnostic) => {
-      this.buildLineDiagnostic(lineDiagnostic);
-      this.checkDiagnosticStatus(lineDiagnostic);
-      this.setCurrentStep();
-      this.getNextAction();
+    return this.LineDiagnosticsService.getRunDiagnostic(
+      {
+        number: this.lineNumber,
+        serviceName: this.serviceName,
+      },
+      requestParam,
+    )
+      .then((lineDiagnostic) => {
+        this.buildLineDiagnostic(lineDiagnostic);
+        this.checkDiagnosticStatus(lineDiagnostic);
+        this.setCurrentStep();
+        this.getNextAction();
 
-      return lineDiagnostic;
-    }).catch((error) => {
-      if (!isEmpty(error)) {
-        this.checkDiagnosticStatus(error);
-        this.TucToast.error([this.$translate.instant('tools_lineDiagnostics_diagnostic_run_error'), error.message].join(' '));
-      }
-    }).finally(() => {
-      this.loading = false;
-      this.detectionStepProgression = 100;
-      if (this.progressBarCycle) {
-        this.$interval.cancel(this.progressBarCycle);
-        this.progressBarCycle = null;
-      }
-    });
+        return lineDiagnostic;
+      })
+      .catch((error) => {
+        if (!isEmpty(error)) {
+          this.checkDiagnosticStatus(error);
+          this.TucToast.error(
+            [
+              this.$translate.instant(
+                'tools_lineDiagnostics_diagnostic_run_error',
+              ),
+              error.message,
+            ].join(' '),
+          );
+        }
+      })
+      .finally(() => {
+        this.loading = false;
+        this.detectionStepProgression = 100;
+        if (this.progressBarCycle) {
+          this.$interval.cancel(this.progressBarCycle);
+          this.progressBarCycle = null;
+        }
+      });
   }
 
   cancelLineDiagnostic() {
     return this.LineDiagnosticsService.getCancelDiagnostic({
       number: this.lineNumber,
       serviceName: this.serviceName,
-    })
-      .$promise
-      .catch((error) => {
-        this.TucToast.error([this.$translate.instant('tools_lineDiagnostics_diagnostic_cancel_error'), get(error, 'data.message', '')].join(' '));
-      });
+    }).$promise.catch((error) => {
+      this.TucToast.error(
+        [
+          this.$translate.instant(
+            'tools_lineDiagnostics_diagnostic_cancel_error',
+          ),
+          get(error, 'data.message', ''),
+        ].join(' '),
+      );
+    });
   }
 
   getNextAction() {
     this.currentAction = head(
       filter(
         this.currentLineDiagnostic.getActionsToDo(),
-        (action) => !includes(this.currentLineDiagnostic.getActionsDone(), action),
+        (action) =>
+          !includes(this.currentLineDiagnostic.getActionsDone(), action),
       ),
     );
   }
@@ -145,14 +166,14 @@ export default class LineDiagnosticsCtrl {
   }
 
   getInvestigationStepQuestions() {
-    return this.currentLineDiagnostic.data.toAnswer.filter(
-      (question) => this.steps.INVESTIGATION.QUESTIONS.includes(question.name),
+    return this.currentLineDiagnostic.data.toAnswer.filter((question) =>
+      this.steps.INVESTIGATION.QUESTIONS.includes(question.name),
     );
   }
 
   getInvestigationStepSpecificQuestions() {
-    return this.currentLineDiagnostic.data.toAnswer.filter(
-      (question) => this.steps.INVESTIGATION.SPECIFIC_QUESTIONS.includes(question.name),
+    return this.currentLineDiagnostic.data.toAnswer.filter((question) =>
+      this.steps.INVESTIGATION.SPECIFIC_QUESTIONS.includes(question.name),
     );
   }
 
@@ -191,8 +212,13 @@ export default class LineDiagnosticsCtrl {
       this.startPoller();
     } else {
       this.stopPoller();
-      if (isEqual(diagnosticResult.status, STATUS.PROBLEM)
-      && !isEqual(get(diagnosticResult, 'data.error', ''), ERRORS.MONITORING_EXISTS)) {
+      if (
+        isEqual(diagnosticResult.status, STATUS.PROBLEM) &&
+        !isEqual(
+          get(diagnosticResult, 'data.error', ''),
+          ERRORS.MONITORING_EXISTS,
+        )
+      ) {
         this.cancelLineDiagnostic();
       }
     }
@@ -216,29 +242,39 @@ export default class LineDiagnosticsCtrl {
   }
 
   isOnFinalStep() {
-    return this.isDiagnosticComplete()
-      || this.hasFinalStepQuestions()
-      || this.isMonitoringAlreadyExists()
-      || isEqual(
+    return (
+      this.isDiagnosticComplete() ||
+      this.hasFinalStepQuestions() ||
+      this.isMonitoringAlreadyExists() ||
+      isEqual(
         this.currentLineDiagnostic.data.robotAction,
         ROBOT_ACTION.REQUEST_MONITORING,
-      );
+      )
+    );
   }
 
   isDiagnosticComplete() {
     const endStatus = STATUS.END;
-    return includes(endStatus, get(this.currentLineDiagnostic, 'status')) || this.isMonitoringAlreadyExists();
+    return (
+      includes(endStatus, get(this.currentLineDiagnostic, 'status')) ||
+      this.isMonitoringAlreadyExists()
+    );
   }
 
   hasFinalStepQuestions() {
-    return !isEmpty(this.currentLineDiagnostic.getQuestionsToAnswer())
-      && isEmpty(this.getInvestigationStepQuestions())
-      && isEmpty(this.getInvestigationStepSpecificQuestions())
-      && !this.currentLineDiagnostic.hasQuestionToAnswer('resolvedAfterTests');
+    return (
+      !isEmpty(this.currentLineDiagnostic.getQuestionsToAnswer()) &&
+      isEmpty(this.getInvestigationStepQuestions()) &&
+      isEmpty(this.getInvestigationStepSpecificQuestions()) &&
+      !this.currentLineDiagnostic.hasQuestionToAnswer('resolvedAfterTests')
+    );
   }
 
   isMonitoringAlreadyExists() {
-    return isEqual(get(this.currentLineDiagnostic, 'data.error', ''), ERRORS.MONITORING_EXISTS);
+    return isEqual(
+      get(this.currentLineDiagnostic, 'data.error', ''),
+      ERRORS.MONITORING_EXISTS,
+    );
   }
 
   setDefaultValue(answer) {

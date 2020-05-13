@@ -16,7 +16,7 @@
  *
  */
 
-export default /* @ngInject */ function ($uibModal) {
+export default /* @ngInject */ function($uibModal) {
   return {
     restrict: 'EA',
     link(scope, element, attrs) {
@@ -27,12 +27,15 @@ export default /* @ngInject */ function ($uibModal) {
         const clickAction = attrs.ngReallyClick;
         const clickUndo = attrs.ngReallyUndo;
 
-        let template = attrs.ngReallyTitle ? `<div class="modal-header">${attrs.ngReallyTitle}</div>` : '';
-        template += `<div class="modal-body">${attrs.ngReallyMessage}</div>`
-          + '<div class="modal-footer">'
-              + `<button type="button" class="btn btn-primary" ng-click="$close('ok')">${confirmButton}</button>`
-              + `<button type="button" class="btn btn-default btn-cancel" ng-click="$dismiss('cancel')">${cancelButton}</button>`
-          + '</div>';
+        let template = attrs.ngReallyTitle
+          ? `<div class="modal-header">${attrs.ngReallyTitle}</div>`
+          : '';
+        template +=
+          `<div class="modal-body">${attrs.ngReallyMessage}</div>` +
+          '<div class="modal-footer">' +
+          `<button type="button" class="btn btn-primary" ng-click="$close('ok')">${confirmButton}</button>` +
+          `<button type="button" class="btn btn-default btn-cancel" ng-click="$dismiss('cancel')">${cancelButton}</button>` +
+          '</div>';
 
         $uibModal
           .open({

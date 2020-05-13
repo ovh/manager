@@ -1,6 +1,6 @@
 import template from './alerter.html';
 
-export default function () {
+export default function() {
   return {
     restrict: 'A',
     scope: {
@@ -10,7 +10,10 @@ export default function () {
     template,
     link($scope, $elm, $attr) {
       function checkForGlobalOrId(id) {
-        return (!$scope.ovhAlert && !id) || ($scope.ovhAlert && id === $scope.ovhAlert);
+        return (
+          (!$scope.ovhAlert && !id) ||
+          ($scope.ovhAlert && id === $scope.ovhAlert)
+        );
       }
 
       $scope.$on('ovhAlert.show', (event, type, message, details, alertId) => {
@@ -32,7 +35,7 @@ export default function () {
         $scope.ovhAlertMessageDetails = null;
       };
 
-      $scope.expandDetails = function () {
+      $scope.expandDetails = function() {
         $scope.expand = !$scope.expand;
       };
 

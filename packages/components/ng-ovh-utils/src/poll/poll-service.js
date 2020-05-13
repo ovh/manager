@@ -3,7 +3,7 @@ import filter from 'lodash/filter';
 import find from 'lodash/find';
 import remove from 'lodash/remove';
 
-export default /* @ngInject */ function ($q, $timeout, $http) {
+export default /* @ngInject */ function($q, $timeout, $http) {
   const defaultInterval = 7e3;
 
   const tasks = [];
@@ -134,7 +134,9 @@ export default /* @ngInject */ function ($q, $timeout, $http) {
         deferredObj: $q.defer(),
         timeoutDeferredObj,
         url,
-        opts: angular.extend({}, apiOpts, { timeout: timeoutDeferredObj.promise }),
+        opts: angular.extend({}, apiOpts, {
+          timeout: timeoutDeferredObj.promise,
+        }),
         interval: defaultInterval, // Interval between polling
         lastResult: null, // Last polled result
         successRule: null, // (optional) success condition (if not a task)

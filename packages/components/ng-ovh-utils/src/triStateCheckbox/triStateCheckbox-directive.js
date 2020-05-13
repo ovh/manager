@@ -33,7 +33,7 @@
  */
 import angular from 'angular';
 
-export default /* @ngInject */ function ($timeout) {
+export default /* @ngInject */ function($timeout) {
   return {
     restrict: 'A',
     scope: {
@@ -60,7 +60,10 @@ export default /* @ngInject */ function ($timeout) {
       }
 
       function autoUpdateState() {
-        if ($scope.idsAll.length && $scope.idsAll.length === $scope.idsSelected.length) {
+        if (
+          $scope.idsAll.length &&
+          $scope.idsAll.length === $scope.idsSelected.length
+        ) {
           setStateTo(2);
         } else if ($scope.idsAll.length && $scope.idsSelected.length > 0) {
           setStateTo(1);
@@ -80,7 +83,11 @@ export default /* @ngInject */ function ($timeout) {
       }
 
       $scope.$watch('idsAll', () => {
-        if (!initialized && angular.isArray($scope.idsAll) && $scope.idsAll.length) {
+        if (
+          !initialized &&
+          angular.isArray($scope.idsAll) &&
+          $scope.idsAll.length
+        ) {
           init();
         }
       });

@@ -1,6 +1,6 @@
 import template from './contracts.html';
 
-export default function () {
+export default function() {
   return {
     restrict: 'EA',
     replace: true,
@@ -11,7 +11,8 @@ export default function () {
       agree: '=ngModel',
     },
     link($scope, $elm, $attr) {
-      $scope.fullText = $attr.fullText === 'true' || $attr.fullText === undefined;
+      $scope.fullText =
+        $attr.fullText === 'true' || $attr.fullText === undefined;
 
       const scrollToOptions = {
         easing: 'swing',
@@ -37,7 +38,7 @@ export default function () {
         $scope.disabled = true;
 
         // Fake Anchor
-        topMenu.delegate('a', 'click', function (e) {
+        topMenu.delegate('a', 'click', function(e) {
           const href = $(this).attr('data-fake-href');
 
           $('.contracts-list')
@@ -57,7 +58,9 @@ export default function () {
           }
 
           // Get container scroll position
-          const fromTop = $elm.find('.contracts-list').height() / 2 + $elm.find('.contracts-list').offset().top;
+          const fromTop =
+            $elm.find('.contracts-list').height() / 2 +
+            $elm.find('.contracts-list').offset().top;
 
           if (scrollItems === undefined) {
             scrollItems = menuItems.map(() => {
@@ -102,7 +105,10 @@ export default function () {
             $elm
               .find('.contracts-list')
               .stop()
-              .scrollTo(`#contract-${parseInt(lastId.split('-')[1], 10) - 1}`, scrollToOptions);
+              .scrollTo(
+                `#contract-${parseInt(lastId.split('-')[1], 10) - 1}`,
+                scrollToOptions,
+              );
           }
         });
 
@@ -111,7 +117,10 @@ export default function () {
             $elm
               .find('.contracts-list')
               .stop()
-              .scrollTo(`#contract-${parseInt(lastId.split('-')[1], 10) + 1}`, scrollToOptions);
+              .scrollTo(
+                `#contract-${parseInt(lastId.split('-')[1], 10) + 1}`,
+                scrollToOptions,
+              );
           }
         });
 
