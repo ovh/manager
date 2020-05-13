@@ -47,7 +47,6 @@ import './database/private-sql-activation/private-sql-activation.component';
 import './database/private-sql-activation/private-sql-activation.controller';
 import './database/private-sql-activation/private-sql-activation.routing';
 import './database/quota/hosting-database-quota.controller';
-import './database/restore/confirm/hosting-database-restore-confirm.controller';
 import './database/restore/hosting-database-restore.controller';
 import './database/update-password/hosting-database-update-password.controller';
 import './email/activate/activate.component';
