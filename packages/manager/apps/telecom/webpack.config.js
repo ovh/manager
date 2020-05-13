@@ -57,13 +57,6 @@ module.exports = (env = {}) => {
           },
           { from: foundNodeModulesFolder('angular-i18n'), to: 'angular-i18n' },
           { from: path.resolve(__dirname, './src/**/*.html'), context: 'src' },
-          {
-            from: path.resolve(
-              __dirname,
-              '../../../../node_modules/@ovh-ux/ng-ovh-line-diagnostics/dist/assets',
-            ),
-            to: 'assets',
-          },
         ],
       },
     },

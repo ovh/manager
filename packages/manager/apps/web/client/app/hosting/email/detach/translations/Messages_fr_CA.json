@@ -1,0 +1,8 @@
+{
+  "hosting_email_detach_option_title": "Délier l'option e-mail de mon hébergement",
+  "hosting_email_detach_option_description": "L‘offre {{ emailOption }} a été choisie en remplacement de l‘offre e-mail liée à l'hébergement web {{hosting}}. Délier l‘option vous permet de la renouveler de manière indépendante de votre hébergement. L‘option vous sera désormais facturée au prix standard des options e-mail.",
+  "hosting_email_detach_option_warning_irreversible": "Attention : cette action est irréversible",
+  "hosting_email_detach_option_error": "Une erreur est survenue lors du détachement de l‘option. {{error}}",
+  "hosting_email_detach_option_success_with_payment": "Le détachement de l‘option e-mail a bien été pris en compte. Votre compte {{accountId}} a bien été débité de {{price}}. <a class=\"d-block\" target=\"_blank\" href=\"{{billUrl}}\" rel=\"noopener\">Voir ma facture</a>",
+  "hosting_email_detach_option_success_with_no_payment": "Votre <a target=\"_blank\" href=\"{{billUrl}}\" rel=\"noopener\">bon de commande</a> a été généré avec succès. Le détachement de l‘option e-mail sera effectif après le paiement de celui-ci."
+}

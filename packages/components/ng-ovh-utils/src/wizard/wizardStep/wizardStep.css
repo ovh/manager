@@ -1,0 +1,18 @@
+.wizard-step-container .helpButton {
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+    display: block;color: #fff;
+    text-transform: uppercase;
+    text-align: center;
+    padding-left: 28px;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.wizard-step-container .helpButton:hover,
+.wizard-step-container .helpButton:focus {
+    color: #fff;
+}

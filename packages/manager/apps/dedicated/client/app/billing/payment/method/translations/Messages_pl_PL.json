@@ -17,5 +17,5 @@
   "billing_payment_method_table_action_description_edit": "Zmień opis",
   "billing_payment_method_table_action_set_default": "Ustaw tę metodę płatności jako domyślną",
   "billing_payment_method_table_action_delete": "Usuń tę metodę płatności",
-  "billing_payment_method_credit_card_disclaimer": "Rejestracja środka płatności jest obowiązkowa, jeśli korzystasz z usługi automatycznego odnawiania. Można to zmienić w dowolnym momencie. Jeśli nie masz usługi automatycznego odnawiania i chcesz usunąć swój środek płatności, skontaktuj się z naszym zespołem obsługi klienta, tworząc bilet."
+  "billing_payment_method_credit_card_disclaimer": "Dodanie sposobu płatności jest niezbędne, jeśli korzystasz z automatycznego odnowienia. Będziesz mógł go zmienić w dowolnym momencie. Jeśli nie korzystasz z automatycznego odnowienia i chcesz usunąć sposób płatności, wyślij zgłoszenie do naszego zespołu obsługi klienta."
 }

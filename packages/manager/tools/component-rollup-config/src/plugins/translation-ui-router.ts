@@ -20,14 +20,16 @@ const removeProperty = (code, magicString, start, end) => {
   }
 };
 
-export = (opts:any = {}) => {
+export = (opts: any = {}) => {
   const include = opts.include || '**/*.js';
   const { exclude } = opts;
   const filter = createFilter(include, exclude);
   const sourcemap = opts.sourcemap !== false;
   const subdirectory = opts.subdirectory || './';
   const filtering = opts.filtering !== false;
-  const languages = Array.isArray(opts.languages) ? opts.languages : utils.languages;
+  const languages = Array.isArray(opts.languages)
+    ? opts.languages
+    : utils.languages;
 
   return {
     name: 'translation-ui-router',
@@ -42,29 +44,23 @@ export = (opts:any = {}) => {
             magicString.addSourcemapLocation(node.end);
           }
           if (get(node, 'callee.property.name') === 'state') {
-            const props = get(
-              last(get(
-                node,
-                'arguments',
-              )),
-              'properties',
-            );
+            const props = get(last(get(node, 'arguments')), 'properties');
 
-            const translations = props && props.filter(item =>
-              item
-              && item.key.name === 'translations'
-              && item.type === 'Property'
-            )[0];
+            const translations =
+              props &&
+              props.filter(
+                (item) =>
+                  item &&
+                  item.key.name === 'translations' &&
+                  item.type === 'Property',
+              )[0];
 
             if (translations) {
               let format;
               let value;
 
               if (has(translations, 'value.elements')) {
-                value = map(
-                    get(translations, 'value.elements'),
-                    'value',
-                );
+                value = map(get(translations, 'value.elements'), 'value');
               } else {
                 const myObj = get(translations, 'value.properties');
                 format = get(
@@ -79,7 +75,10 @@ export = (opts:any = {}) => {
 
               const resolve = last(
                 get(
-                  props.filter(({ key, type }) => key.name === 'resolve' && type === 'Property')[0],
+                  props.filter(
+                    ({ key, type }) =>
+                      key.name === 'resolve' && type === 'Property',
+                  )[0],
                   'value.properties',
                 ),
               );
@@ -92,10 +91,14 @@ export = (opts:any = {}) => {
                 format,
               );
 
-              inject = `translations: ($q, $translate, asyncLoader) => { ${inject} }`;
+              inject = `translations: /* @ngInject */ ($q, $translate, asyncLoader) => { ${inject} }`;
 
-              removeProperty(code, magicString,
-                translations.start, translations.end);
+              removeProperty(
+                code,
+                magicString,
+                translations.start,
+                translations.end,
+              );
 
               if (resolve) {
                 magicString.appendRight(resolve.end, `,${inject}`);

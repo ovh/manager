@@ -25,7 +25,6 @@
     "@ovh-ux/manager-pci": "^3.0.0",
     "@ovh-ux/ng-at-internet": "^5.0.0",
     "@ovh-ux/ng-ovh-api-wrappers": "^4.0.7",
-    "@ovh-ux/ng-ovh-apiv7": "^2.0.0",
     "@ovh-ux/ng-ovh-cloud-universe-components": "^1.4.3",
     "@ovh-ux/ng-ovh-contacts": "^3.0.0",
     "@ovh-ux/ng-ovh-payment-method": "^6.0.1",

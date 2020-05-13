@@ -27,8 +27,6 @@
   "hosting_dashboard_service_home_ssh_newtab": "Acesso SSH ao cluster (novo separador)",
   "hosting_dashboard_service_boostOffer_disabled": "Desativado",
   "hosting_dashboard_service_boostOffer_unavailable": "Indisponível ",
-  "hosting_dashboard_service_main_domain": "Domínio principal",
-  "hosting_dashboard_service_main_domain_change": "Alterar o domínio principal",
   "hosting_dashboard_service_regenerate_ssl_success": "O pedido de geração / atualização do certificado foi registado.",
   "hosting_dashboard_service_regenerate_ssl_error": "Ocorreu um erro durante o pedido renovação do certificado",
   "hosting_dashboard_disk_usage": "Espaço de disco",
@@ -1394,5 +1392,6 @@
   "hosting_dashboard_service_email_address": "Endereços de e-mail",
   "hosting_dashboard_service_common_active": "Ativo",
   "hosting_dashboard_service_common_inactive": "Inativo",
-  "hosting_dashboard_email_offer_get_error": "Não é possível recuperar o endereço de e-mail"
+  "hosting_dashboard_email_offer_get_error": "Não é possível recuperar o endereço de e-mail",
+  "hosting_dashboard_service_detach_email_option": "Desassociar a minha opção de e-mail"
 }

@@ -1,0 +1,71 @@
+<!-- PROGRESS TRACKER -->
+<div class="row">
+    <div class="col-md-6">
+        <div class="oui-progress-tracker">
+            <ol class="oui-progress-tracker__steps">
+                <li class="oui-progress-tracker__step"
+                    data-ng-class="{
+                        'oui-progress-tracker__step_active': $ctrl.currentStep === 'detectionStep',
+                        'oui-progress-tracker__step_complete': $ctrl.currentStep !== 'detectionStep'
+                    }">
+                    <span class="oui-progress-tracker__status">
+                        <span class="oui-progress-tracker__label"
+                              data-translate="tools_lineDiagnostics_detection_step"></span>
+                    </span>
+                </li>
+                <li class="oui-progress-tracker__step"
+                    data-ng-class="{
+                        'oui-progress-tracker__step_active': $ctrl.currentStep === 'investigationStep',
+                        'oui-progress-tracker__step_complete': $ctrl.currentStep === 'solutionProposalStep',
+                        'oui-progress-tracker__step_disabled': $ctrl.currentStep === 'detectionStep'
+                    }">
+                    <span class="oui-progress-tracker__status">
+                        <span class="oui-progress-tracker__label"
+                              data-translate="tools_lineDiagnostics_investigation_step"></span>
+                    </span>
+                </li>
+                <li class="oui-progress-tracker__step"
+                    data-ng-class="{
+                        'oui-progress-tracker__step_active': $ctrl.currentStep === 'solutionProposalStep' && !$ctrl.isDiagnosticComplete(),
+                        'oui-progress-tracker__step_complete': $ctrl.isDiagnosticComplete(),
+                        'oui-progress-tracker__step_disabled': $ctrl.currentStep !== 'solutionProposalStep'
+                    }">
+                    <span class="oui-progress-tracker__status">
+                        <span class="oui-progress-tracker__label"
+                              data-translate="tools_lineDiagnostics_solution_proposal_step"></span>
+                    </span>
+                </li>
+            </ol>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <tuc-toast-message></tuc-toast-message>
+</div>
+
+<div class="row"
+     data-ng-if="$ctrl.currentLineDiagnostic.status !== 'problem' || $ctrl.isMonitoringAlreadyExists()">
+    <!-- INCIDENT DETECTION STEP -->
+    <div data-ng-if="$ctrl.currentStep === 'detectionStep'"
+         data-ng-include="'/ng-ovh-line-diagnostics/steps/detection-step.html'">
+    </div>
+
+    <!-- INVESTIGATION STEP-->
+    <div data-ng-if="$ctrl.currentStep === 'investigationStep'"
+         data-ng-include="'/ng-ovh-line-diagnostics/steps/investigation-step.html'">
+    </div>
+
+    <!-- SOLUTION PROPOSAL STEP -->
+    <div data-ng-if="$ctrl.currentStep === 'solutionProposalStep'"
+         data-ng-include="'/ng-ovh-line-diagnostics/steps/solution-proposal-step.html'">
+    </div>
+</div>
+
+<!-- CRITICAL PROBLEM IN DIAGNOSTIC -->
+<div data-ng-if="$ctrl.currentLineDiagnostic.status === 'problem' && !$ctrl.isMonitoringAlreadyExists()">
+    <oui-message data-type="error">
+        <p data-translate="tools_lineDiagnostics_diagnostic_critical_problem_title"></p>
+        <p data-translate="tools_lineDiagnostics_diagnostic_critical_problem"></p>
+    </oui-message>
+</div>

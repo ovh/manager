@@ -1,0 +1,30 @@
+<p
+    data-translate="dedicatedCloud_datacenter_backup_terms_of_use_description1"
+    data-translate-values="{
+        datacenter: $ctrl.datacenterId
+    }"
+></p>
+<p
+    class="mb-3"
+    data-translate="dedicatedCloud_datacenter_backup_terms_of_use_description2"
+></p>
+<div class="mt-3 mb-3">
+    <oui-checkbox
+        data-model="$ctrl.data.generalConditions"
+        data-on-change="$ctrl.updateConditions('generalConditions', modelValue)"
+    >
+        <span
+            data-translate="dedicatedCloud_datacenter_backup_terms_of_use_general_conditions"
+            data-translate-values="{ url: $ctrl.conditionsUrl }"
+        ></span>
+    </oui-checkbox>
+    <oui-checkbox
+        data-ng-if="!$ctrl.replicationDisabled"
+        data-model="$ctrl.data.dataReplication"
+        data-on-change="$ctrl.updateConditions('dataReplication', modelValue)"
+    >
+        <span
+            data-translate="dedicatedCloud_datacenter_backup_terms_of_use_data_replication"
+        ></span>
+    </oui-checkbox>
+</div>

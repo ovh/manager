@@ -1,0 +1,15 @@
+<div class="popover {{popoverTooltipPlacement}} fade"
+     ng-class="{ in: popoverTooltipIsOpen }"
+     id="{{popoverTooltipId}}">
+    <div class="arrow"></div>
+    <div class="popover-inner">
+        <div class="popover-title popover-title-input"
+             data-ng-bind="popoverTooltipTitle"></div>
+        <div class="popover-content">
+            <div data-ng-if="popoverTooltipRemote === true"
+                 data-ng-include="popoverTooltipContent"></div>
+            <div data-ng-if="popoverTooltipRemote !== true"
+                 data-ng-bind-html="popoverTooltipContent"></div>
+        </div>
+    </div>
+</div>

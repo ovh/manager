@@ -30,6 +30,7 @@ import ngTailLogs from '@ovh-ux/ng-tail-logs';
 import ngTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
 import ngOvhActionsMenu from '@ovh-ux/ng-ovh-actions-menu';
 import ngOvhCloudUniverseComponents from '@ovh-ux/ng-ovh-cloud-universe-components';
+import ngOvhJqueryUiDraggable from '@ovh-ux/ng-ovh-jquery-ui-draggable';
 import ngOvhJqueryUiDroppable from '@ovh-ux/ng-ovh-jquery-ui-droppable';
 import ngOvhResponsivePageSwitcher from '@ovh-ux/ng-ovh-responsive-page-switcher';
 import ovhManagerBanner from '@ovh-ux/manager-banner';
@@ -94,7 +95,7 @@ angular
       ngOvhJsplumb,
       'tmh.dynamicLocale',
 
-      'ovh-jquery-ui-draggable-ng',
+      ngOvhJqueryUiDraggable,
       ngOvhJqueryUiDroppable,
       ngOvhSlider,
       ngTailLogs,

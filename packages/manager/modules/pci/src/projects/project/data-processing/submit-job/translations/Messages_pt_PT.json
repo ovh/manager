@@ -10,5 +10,22 @@
   "data_processing_submit_job_stepper_submit_error_title": "Ocorreu um erro",
   "data_processing_submit_job_button_label": "Iniciar o job",
   "data_processing_submit_job_spinner_label": "lançamento em curso...",
-  "data_processing_submit_job_error_label": "Ocorreu um erro e não é possível iniciar o seu job neste momento."
+  "data_processing_submit_job_error_label": "Ocorreu um erro e não é possível iniciar o seu job neste momento.",
+  "data_processing_submit_job_error_message_odp_job_engine_unsupportedValue": "Erro ao introduzir os dados: o tipo de job solicitado não é compatível.",
+  "data_processing_submit_job_error_message_odp_job_engineVersion_unsupportedValue": "Erro ao introduzir os dados: a versão de motor solicitada não é suportada.",
+  "data_processing_submit_job_error_message_odp_job_region_unsupportedRegion": "Erro ao introduzir os dados: a região solicitada não é suportada.",
+  "data_processing_submit_job_error_message_odp_job_main_class_name_fieldMissing": "Erro ao introduzir os dados: a classe Main do seu job não foi introduzida.",
+  "data_processing_submit_job_error_message_odp_job_executorMemory_tooBig": "Erro ao introduzir os dados: a memória solicitada para os workers é demasiado elevada.",
+  "data_processing_submit_job_error_message_odp_job_executorMemory_tooSmall": "Erro ao introduzir os dados: a memória solicitada para os workers é demasiado baixa.",
+  "data_processing_submit_job_error_message_odp_job_driverMemory_tooBig": "Erro ao introduzir os dados: a memória solicitada para o driver é demasiado elevada.",
+  "data_processing_submit_job_error_message_odp_job_driverMemory_tooSmall": "Erro ao introduzir os dados: a memória solicitada para o driver é demasiado baixa.",
+  "data_processing_submit_job_error_message_odp_job_executorMemoryOverhead_tooBig": "Erro ao introduzir os dados: o overhead de memória solicitado para os workers é demasiado elevado.",
+  "data_processing_submit_job_error_message_odp_job_executorMemoryOverhead_tooSmall": "Erro ao introduzir os dados: o overhead de memória solicitado para os workers é demasiado baixo.",
+  "data_processing_submit_job_error_message_odp_job_driverMemoryOverhead_tooBig": "Erro ao introduzir os dados: o overhead de memória solicitado para o driver é demasiado elevado.",
+  "data_processing_submit_job_error_message_odp_job_driverMemoryOverhead_tooSmall": "Erro ao introduzir os dados: o overhead de memória solicitado para o driver é demasiado baixo.",
+  "data_processing_submit_job_error_message_odp_job_totalExecutorMemory_tooBig": "Erro ao introduzir os dados: a soma da memória e do overhead solicitados para os workers é demasiado elevada.",
+  "data_processing_submit_job_error_message_odp_job_totalDriverMemory_tooBig": "Erro ao introduzir os dados: a soma da memória e do overhead solicitados para o driver é demasiado elevada.",
+  "data_processing_submit_job_error_message_odp_project_notEnoughQuotas": "Erro de quotas: as quotas do seu projeto Public Cloud são insuficientes. Aceda à seguinte página para <a class=\"oui-link oui-link_icon\" href=\"{{ url }}\">gerir a sua quota Public Cloud<span class=\"oui-icon oui-icon-external_link\" aria-hidden=\"true\"></span></a>",
+  "data_processing_submit_job_error_message_odp_mainApplicationCode_notFound": "Erro ao introduzir os dados: não foi possível encontrar o ficheiro solicitado no container Object Storage que especificou.",
+  "data_processing_submit_job_error_message_odp_condaEnvironment_isRequired": "Erro ao introduzir os dados: não foi possível encontrar o ficheiro de ambiente Conda no container Object Storage que especificou."
 }

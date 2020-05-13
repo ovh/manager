@@ -46,8 +46,6 @@ import './slots/exchangeIndividual/pack-exchangeIndividual.controller';
 import './slots/exchangeLite/pack-exchangeLite.controller';
 import './slots/hostedEmail/add/pack-hostedEmail-add.controller';
 import './slots/hostedEmail/add/pack-hostedEmail-add';
-import './slots/hostedEmail/detail/pack-hostedEmail-detail.controller';
-import './slots/hostedEmail/detail/pack-hostedEmail-detail';
 import './slots/hostedEmail/pack-hostedEmail.controller';
 import './slots/hubic/activation/pack-hubic-activation.controller';
 import './slots/hubic/activation/pack-hubic-activation';

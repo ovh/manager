@@ -27,8 +27,6 @@
   "hosting_dashboard_service_home_ssh_newtab": "SSH access to cluster (new tab)",
   "hosting_dashboard_service_boostOffer_disabled": "Disabled",
   "hosting_dashboard_service_boostOffer_unavailable": "Unavailable",
-  "hosting_dashboard_service_main_domain": "Primary domain ",
-  "hosting_dashboard_service_main_domain_change": "Change primary domain ",
   "hosting_dashboard_service_regenerate_ssl_success": "Your request to regenerate a certificate has been processed. ",
   "hosting_dashboard_service_regenerate_ssl_error": "An error has occurred regenerating your certificate. ",
   "hosting_dashboard_disk_usage": "Disk space",
@@ -1381,5 +1379,6 @@
   "hosting_dashboard_service_email_address": "Email addresses",
   "hosting_dashboard_service_common_active": "Enabled",
   "hosting_dashboard_service_common_inactive": "Disabled",
-  "hosting_dashboard_email_offer_get_error": "Unable to retrieve email address"
+  "hosting_dashboard_email_offer_get_error": "Unable to retrieve email address",
+  "hosting_dashboard_service_detach_email_option": "Detach my email option"
 }

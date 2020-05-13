@@ -19,22 +19,10 @@ class LogsIndexCtrl {
   }
 
   initLoaders() {
-    this.indexOptions = this.CucControllerHelper.request.getArrayLoader({
-      loaderFunction: () =>
-        this.LogsIndexService.getSubscribedOptions(this.serviceName),
-    });
-
-    this.quota = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () => this.LogsIndexService.getQuota(this.serviceName),
-    });
-
     this.indices = this.CucControllerHelper.request.getArrayLoader({
       loaderFunction: () => this.LogsIndexService.getIndices(this.serviceName),
     });
-
-    this.quota.load();
     this.indices.load();
-    this.indexOptions.load();
   }
 
   add(info) {
@@ -49,8 +37,6 @@ class LogsIndexCtrl {
           resolve: {
             serviceName: () => this.serviceName,
             indexInfo: () => info,
-            options: () => this.indexOptions,
-            quota: () => this.quota,
           },
         },
       })

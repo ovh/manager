@@ -17,6 +17,16 @@ Releasing a new version of Manager :tada:
 
 Approximate release date: 📆 DD/MM/YY
 
+## Dashboard
+
+### :rocket: Features
+
+- [ ] Description #
+
+### :bug: Bug Fixes
+
+- [ ] Description #
+
 ## Web
 
 ### :rocket: Features

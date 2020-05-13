@@ -3,6 +3,7 @@ class LogsInputsAddEditCtrl {
     $q,
     $state,
     $stateParams,
+    $translate,
     CucCloudMessage,
     CucControllerHelper,
     LogsConstants,
@@ -12,6 +13,7 @@ class LogsInputsAddEditCtrl {
     this.$q = $q;
     this.$state = $state;
     this.$stateParams = $stateParams;
+    this.$translate = $translate;
     this.serviceName = this.$stateParams.serviceName;
     this.inputId = this.$stateParams.inputId;
     this.CucCloudMessage = CucCloudMessage;
@@ -19,9 +21,9 @@ class LogsInputsAddEditCtrl {
     this.LogsConstants = LogsConstants;
     this.LogsInputsService = LogsInputsService;
     this.LogsStreamsService = LogsStreamsService;
-
     this.editMode = Boolean(this.inputId);
     this.availableEngines = [];
+    this.inputInstancePrice = { price: '' };
     this.initLoaders();
   }
 
@@ -39,9 +41,31 @@ class LogsInputsAddEditCtrl {
         return enginesList;
       }, []);
     });
+    this.accountDetails
+      .load()
+      .then(() => {
+        this.ovhSubsidiary = this.accountDetails.data.me.ovhSubsidiary;
+        return this.$q.all([this.mainOffer.load(), this.catalog.load()]);
+      })
+      .then(() => {
+        const selectedCatalog = this.catalog.data.plans.find(
+          (plan) => plan.planCode === this.mainOffer.data.planCode,
+        );
+        const selectedFamily = selectedCatalog.addonsFamily.find(
+          (addon) => addon.family === this.LogsConstants.ADD_ON_FAMILY.NEW,
+        );
+        const inputInstanceCapacities = selectedFamily.addons.find(
+          (add) =>
+            add.plan.planCode ===
+            this.LogsConstants.CONSUMPTION_REFERENCE.NB_INSTANCE,
+        );
+        const inputInstance = inputInstanceCapacities.plan.details.pricings.default.find(
+          (capa) =>
+            capa.capacities.includes(this.LogsConstants.CONSUMPTION_CAPACITY),
+        );
+        this.inputInstancePrice.price = inputInstance.price.text;
+      });
     this.streams.load();
-    this.options.load();
-    this.mainOffer.load();
   }
 
   /**
@@ -66,22 +90,35 @@ class LogsInputsAddEditCtrl {
       loaderFunction: () =>
         this.LogsStreamsService.getStreams(this.serviceName),
     });
-    this.options = this.CucControllerHelper.request.getArrayLoader({
-      loaderFunction: () =>
-        this.LogsInputsService.getSubscribedOptions(this.serviceName),
-    });
     this.mainOffer = this.CucControllerHelper.request.getArrayLoader({
       loaderFunction: () =>
         this.LogsInputsService.getMainOffer(this.serviceName),
     });
+    this.catalog = this.CucControllerHelper.request.getArrayLoader({
+      loaderFunction: () =>
+        this.LogsInputsService.getOrderCatalog(this.ovhSubsidiary),
+    });
+    this.accountDetails = this.CucControllerHelper.request.getHashLoader({
+      loaderFunction: () =>
+        this.LogsInputsService.getAccountDetails(this.serviceName),
+    });
+  }
+
+  showInputPrices() {
+    return this.$translate.instant(
+      'inputs_logs_edit_nb_instance_help',
+      {
+        t0: this.inputInstancePrice.price,
+      },
+      undefined,
+      false,
+      'sceParameters', // Expose devise symbol from API without sanitization
+    );
   }
 
   addEditInput() {
     if (this.form.$invalid) {
       return this.$q.reject();
-    }
-    if (!this.form.$dirty) {
-      return this.gotToNextStep(this.inputId);
     }
     this.CucCloudMessage.flushChildMessage();
     this.inputAddEdit = this.CucControllerHelper.request.getHashLoader({

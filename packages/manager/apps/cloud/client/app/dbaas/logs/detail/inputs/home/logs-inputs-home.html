@@ -4,28 +4,24 @@
 
     <div data-ng-if="ctrl.quota.loading"><oui-spinner></oui-spinner></div>
 
-    <p data-ng-if="!ctrl.quota.loading">
-        {{ctrl.quota.data.configured}}/{{ctrl.quota.data.max}}
-        <span data-translate="inputs_total_used"></span>
-        (<logs-upgrade-quota-link></logs-upgrade-quota-link>)
-    </p>
-
     <oui-spinner data-ng-if="ctrl.delete.loading"></oui-spinner>
     <oui-datagrid
         data-ng-if="!(ctrl.inputs.loading || ctrl.delete.loading)"
         rows="ctrl.inputs.data"
     >
         <extra-top>
-            <logs-add-tool
-                data-ng-if="!ctrl.quota.loading"
-                text="{{ ::'inputs_add_input' | translate }}"
-                tool-type="{{ ::'inputs_name' | translate }}"
-                current-usage="ctrl.quota.data.configured"
-                max-usage="ctrl.quota.data.max"
-                callback="ctrl.add()"
+            <button
+                type="button"
+                class="oui-button oui-button_secondary"
+                data-ng-click="ctrl.add()"
             >
-            </logs-add-tool>
-            <oui-spinner size="s" data-ng-if="ctrl.quota.loading"></oui-spinner>
+                <span class="oui-icon oui-icon-add pr-1" aria-hidden="true"></span> 
+                <span data-translate="inputs_add_input"></span>
+            </button>
+            <oui-spinner
+                size="s"
+                data-ng-if="ctrl.quota.loading || ctrl.delete.loading"
+            ></oui-spinner>
         </extra-top>
         <oui-column
             title="::'inputs_col_name' | translate"
@@ -51,17 +47,6 @@
             filterable
         >
             {{ $row.info.engine.software }}
-        </oui-column>
-        <oui-column
-            title="::'inputs_linked_option' | translate"
-            property="info.optionId"
-            type="string"
-        >
-            <i
-                data-ng-if="$row.info.optionId"
-                class="oui-icon oui-icon-check_line"
-            ></i>
-            <span data-ng-if="!$row.info.optionId"> - </span>
         </oui-column>
         <oui-column
             title="::'inputs_state' | translate"

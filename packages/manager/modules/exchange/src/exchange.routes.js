@@ -34,15 +34,6 @@ export default /* @ngInject */ ($stateProvider) => {
         ),
   });
 
-  $stateProvider.state('app.microsoft.exchange', {
-    abstract: true,
-    template: '<div data-ui-view></div>',
-    translations: {
-      value: ['.'],
-      format: 'json',
-    },
-  });
-
   $stateProvider.state('app.microsoft.exchange.dedicated', {
     url: '/configuration/exchange_dedicated/:organization/:productId?tab',
     template,

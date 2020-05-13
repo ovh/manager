@@ -1,0 +1,6 @@
+{
+  "dedicatedCloud_datacenter_backup_terms_of_use_description1": "Êtes-vous sûr(e) de vouloir activer la sauvegarde dans le datacenter {{datacenter}} ?",
+  "dedicatedCloud_datacenter_backup_terms_of_use_description2": "Attention, vous serez facturé(e) selon le nombre et la taille des machines virtuelles sauvegardées.",
+  "dedicatedCloud_datacenter_backup_terms_of_use_general_conditions": "J’ai lu et j’approuve les <a target='_blank' href='{{url}}' rel='noopener'>conditions générales d’utilisation</a>",
+  "dedicatedCloud_datacenter_backup_terms_of_use_data_replication": "Je valide la réplication des données"
+}

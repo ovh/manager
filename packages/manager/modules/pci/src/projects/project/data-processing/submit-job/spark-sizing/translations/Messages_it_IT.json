@@ -1,5 +1,5 @@
 {
-  "data_processing_submit_job_sizing_template_memory_label": "GB di memoria",
+  "data_processing_submit_job_sizing_template_memory_label": "GiB di memoria",
   "data_processing_submit_job_sizing_template_cores_label": "core virtuali",
   "data_processing_submit_job_sizing_description": "Il job Spark è gestito da un nodo master (driver) che distribuisce i task ai nodi di calcolo (executor). Seleziona il numero di core, la quantità di memoria assegnata ai nodi e il numero di nodi desiderato.",
   "data_processing_submit_job_stepper_spark_driver_template_label": "Modello di driver",
@@ -15,5 +15,6 @@
   "data_processing_submit_job_stepper_spark_worker_memory_label": "Memoria dell’executor",
   "data_processing_submit_job_stepper_spark_worker_memory_description": "Seleziona la quantità di memoria per ogni executor",
   "data_processing_submit_job_stepper_spark_worker_memory_overhead_label": "Memory overhead executor",
-  "data_processing_submit_job_stepper_spark_estimated_price": "Prezzo stimato: "
+  "data_processing_submit_job_stepper_spark_estimated_price": "Prezzo stimato: ",
+  "data_processing_submit_job_stepper_spark_memory_overhead_autocompute_label": "Calcola automaticamente"
 }

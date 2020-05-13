@@ -20,19 +20,15 @@ class LogsAliasesHomeCtrl {
   }
 
   /**
-   * initializes aliases and quota object by making API call to get data
+   * initializes aliases object by making API call to get data
    *
    * @memberof LogsAliasesHomeCtrl
    */
   initLoaders() {
-    this.quota = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () => this.LogsAliasesService.getQuota(this.serviceName),
-    });
     this.aliases = this.CucControllerHelper.request.getArrayLoader({
       loaderFunction: () =>
         this.LogsAliasesService.getAliases(this.serviceName),
     });
-    this.quota.load();
     this.aliases.load();
   }
 

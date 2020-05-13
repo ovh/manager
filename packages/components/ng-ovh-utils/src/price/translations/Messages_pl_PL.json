@@ -1,0 +1,6 @@
+{
+  "ua_price_ht_label": "{{price}} netto",
+  "ua_price_ttc_label": "{{price}} brutto",
+  "ua_price_free": "W ofercie",
+  "ua_price_label_yearly": "/rok"
+}

@@ -18,8 +18,6 @@ import './cdn/order/hosting-cdn-order.controller';
 import './cdn/order/hosting-cdn-order.routing';
 import './cdn/order/hosting-cdn-order.service';
 import './cdn/terminate/hosting-cdn-terminate.controller';
-import './change-main-domain/hosting-change-domain.service';
-import './change-main-domain/hosting-change-main-domain.controller';
 import './cron/add-or-edit/hosting-cron-add-or-edit.controller';
 import './cron/delete/hosting-cron-delete.controller';
 import './cron/hosting-cron.constants';

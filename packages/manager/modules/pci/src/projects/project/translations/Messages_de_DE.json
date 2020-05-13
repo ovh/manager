@@ -13,6 +13,6 @@
   "pci_projects_project_documentation_create_and_configure_and_additional_disk_on_an_instance": "Create and configure an additional disk on an instance",
   "pci_projects_project_documentation_see_all_public_cloud_guides": "Zu den Public Cloud Anleitungen",
   "pci_projects_project_welcome": "Willkommen bei der neuen Public Cloud-Schnittstelle",
-  "pci_projects_project_keystone_upgrade": "Das Enddatum der Dienstleistung Keystone V2 wurde auf unbestimmte Zeit verschoben.  Wir möchten Sie bitten, sich auf den Übergang zu  <strong>Keystone V3</strong> einzustellen",
+  "pci_projects_project_keystone_upgrade": "Important change on June 23, 2020. Please anticipate the switch to <strong>Keystone v3</strong>.",
   "pci_projects_project_keystone_upgrade_more": "Mehr erfahren"
 }
