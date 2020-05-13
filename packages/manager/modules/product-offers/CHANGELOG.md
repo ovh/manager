@@ -1,3 +1,12 @@
+# [1.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-product-offers@1.1.1...@ovh-ux/manager-product-offers@1.2.0) (2020-05-13)
+
+
+### Features
+
+* **product-offers:** force camel case payment method param ([38917ff](https://github.com/ovh/manager/commit/38917ff88e0c56ea41badf7c233fa22b4c6b3975))
+
+
+
 ## [1.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-product-offers@1.1.0...@ovh-ux/manager-product-offers@1.1.1) (2020-05-04)
 
 

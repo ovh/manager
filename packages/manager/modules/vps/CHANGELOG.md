@@ -1,3 +1,24 @@
+# [1.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@0.6.3...@ovh-ux/manager-vps@1.0.0) (2020-05-13)
+
+
+### Bug Fixes
+
+* **translations:** clean translations files ([ac02afd](https://github.com/ovh/manager/commit/ac02afd7ef2f92be18ec3952f937091cc4998bea))
+
+
+### Code Refactoring
+
+* **routing:** remove extra translations decorator ([fea03cb](https://github.com/ovh/manager/commit/fea03cbecdbdd02a31df23c24e2134fc3dab7ca4))
+
+
+### BREAKING CHANGES
+
+* **routing:** all translations are now self-contained into the module.
+
+Signed-off-by: Antoine Leblanc <ant.leblanc@gmail.com>
+
+
+
 ## [0.6.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@0.6.2...@ovh-ux/manager-vps@0.6.3) (2020-04-28)
 
 

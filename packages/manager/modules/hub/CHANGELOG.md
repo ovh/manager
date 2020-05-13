@@ -1,3 +1,13 @@
+## [1.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@1.1.0...@ovh-ux/manager-hub@1.1.1) (2020-05-13)
+
+
+### Bug Fixes
+
+* **payment-status:** fix display for services with manual renew ([#2872](https://github.com/ovh/manager/issues/2872)) ([87fa7a9](https://github.com/ovh/manager/commit/87fa7a9885987cb7b2e0f50c97a157df062d304c))
+* **translations:** clean translations files ([ac02afd](https://github.com/ovh/manager/commit/ac02afd7ef2f92be18ec3952f937091cc4998bea))
+
+
+
 # [1.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@1.0.3...@ovh-ux/manager-hub@1.1.0) (2020-04-28)
 
 

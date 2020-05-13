@@ -1,3 +1,13 @@
+## [7.0.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/component-rollup-config@7.0.1...@ovh-ux/component-rollup-config@7.0.2) (2020-05-13)
+
+
+### Bug Fixes
+
+* **deps:** replace deprecated babel plugin by @rollup/plugin-babel ([#2879](https://github.com/ovh-ux/manager/issues/2879)) ([b81309b](https://github.com/ovh-ux/manager/commit/b81309b492b12e24baf853634e5eb18ab45ccb1f))
+* **plugin.translation-ui-router:** annotate dependency injection ([#2897](https://github.com/ovh-ux/manager/issues/2897)) ([ca5faff](https://github.com/ovh-ux/manager/commit/ca5faffe7ca1d84d621e29c7f0a0847f16488121))
+
+
+
 ## [7.0.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/component-rollup-config@7.0.0...@ovh-ux/component-rollup-config@7.0.1) (2020-03-18)
 
 

@@ -1,3 +1,12 @@
+# [9.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@9.2.0...@ovh-ux/manager-cloud@9.3.0) (2020-05-13)
+
+
+### Features
+
+* **cloud.logs:** remove options concern from inputs, index and alias ([#2909](https://github.com/ovh/manager/issues/2909)) ([f6591b1](https://github.com/ovh/manager/commit/f6591b19581eef3d7afada7b466e7d7cd221a816))
+
+
+
 # [9.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@9.1.0...@ovh-ux/manager-cloud@9.2.0) (2020-04-28)
 
 
