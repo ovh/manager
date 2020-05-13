@@ -47,10 +47,10 @@ export const URLS = {
     enterprise: 'https://www.ovhcloud.com/en-ca/support-levels/enterprise/',
   },
   CZ: {
-    standard: 'https://www.ovhcloud.com/en/support-levels/standard/',
-    premium: 'https://www.ovhcloud.com/en/support-levels/premium/',
-    business: 'https://www.ovhcloud.com/en/support-levels/business/',
-    enterprise: 'https://www.ovhcloud.com/en/support-levels/enterprise/',
+    standard: 'https://www.ovhcloud.com/en-ie/support-levels/standard/',
+    premium: 'https://www.ovhcloud.com/en-ie/support-levels/premium/',
+    business: 'https://www.ovhcloud.com/en-ie/support-levels/business/',
+    enterprise: 'https://www.ovhcloud.com/en-ie/support-levels/enterprise/',
   },
   DE: {
     standard: 'https://www.ovhcloud.com/de/support-levels/standard/',
@@ -65,10 +65,10 @@ export const URLS = {
     enterprise: 'https://www.ovhcloud.com/es-es/support-levels/enterprise/',
   },
   FI: {
-    standard: 'https://www.ovhcloud.com/en/support-levels/standard/',
-    premium: 'https://www.ovhcloud.com/en/support-levels/premium/',
-    business: 'https://www.ovhcloud.com/en/support-levels/business/',
-    enterprise: 'https://www.ovhcloud.com/en/support-levels/enterprise/',
+    standard: 'https://www.ovhcloud.com/en-ie/support-levels/standard/',
+    premium: 'https://www.ovhcloud.com/en-ie/support-levels/premium/',
+    business: 'https://www.ovhcloud.com/en-ie/support-levels/business/',
+    enterprise: 'https://www.ovhcloud.com/en-ie/support-levels/enterprise/',
   },
   FR: {
     standard: 'https://www.ovhcloud.com/fr/support-levels/standard/',
@@ -95,10 +95,10 @@ export const URLS = {
     enterprise: 'https://www.ovhcloud.com/it/support-levels/enterprise/',
   },
   LT: {
-    standard: 'https://www.ovhcloud.com/en/support-levels/standard/',
-    premium: 'https://www.ovhcloud.com/en/support-levels/premium/',
-    business: 'https://www.ovhcloud.com/en/support-levels/business/',
-    enterprise: 'https://www.ovhcloud.com/en/support-levels/enterprise/',
+    standard: 'https://www.ovhcloud.com/en-ie/support-levels/standard/',
+    premium: 'https://www.ovhcloud.com/en-ie/support-levels/premium/',
+    business: 'https://www.ovhcloud.com/en-ie/support-levels/business/',
+    enterprise: 'https://www.ovhcloud.com/en-ie/support-levels/enterprise/',
   },
   MA: {
     standard: 'https://www.ovhcloud.com/fr-ma/support-levels/standard/',
