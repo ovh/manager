@@ -8,6 +8,7 @@ export const DASHBOARD_FEATURES = {
 };
 
 export const NEW_RANGE_VERSION = '2019v1';
+export const VPS_2014_EXPIRY_DATE = '27/07/2020';
 
 export default {
   DASHBOARD_FEATURES,

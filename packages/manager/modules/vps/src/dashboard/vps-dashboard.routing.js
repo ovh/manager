@@ -1,5 +1,10 @@
+import assign from 'lodash/assign';
+import get from 'lodash/get';
+
 import { DASHBOARD_FEATURES } from './vps-dashboard.constants';
+import { MIGRATION_STATUS } from '../migration/vps-migration.constants';
 import component from './vps-dashboard.component';
+import scheduleComponent from '../migration/components/plan/plan.component';
 
 import VpsConfigurationTile from './tile/configuration/service';
 
@@ -92,6 +97,43 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.go(`vps.detail.dashboard.configuration.upgrade`, {
           upgradeType,
         }),
+
+      vpsMigration: /* @ngInject */ ($http, serviceName) =>
+        $http.get(`/vps/${serviceName}/migration2014`),
+
+      isMigrationRequired: /* @ngInject */ (vpsMigration) =>
+        get(vpsMigration, 'data.status') === MIGRATION_STATUS.TO_PLAN,
+
+      goToVpsMigration: /* @ngInject */ (
+        $state,
+        vpsMigration,
+        catalog,
+        stateVps,
+        VpsMigrationService,
+      ) => () => {
+        const migrationPlan = VpsMigrationService.constructor.getMigrationPlan(
+          catalog,
+          vpsMigration.data.model,
+        );
+        const server = assign({
+          displayName: stateVps.displayName,
+          name: stateVps.name,
+          description: VpsMigrationService.getVpsModelDescription(
+            stateVps.model,
+          ),
+          migration: VpsMigrationService.constructor.populateOptionsPrice(
+            vpsMigration.data,
+            catalog,
+          ),
+          migrationPlan,
+          migrationDescription: VpsMigrationService.getVpsModelDescription(
+            migrationPlan.description,
+          ),
+        });
+        return $state.go(`vps.detail.dashboard.schedule`, {
+          servers: [server],
+        });
+      },
     },
   });
 };

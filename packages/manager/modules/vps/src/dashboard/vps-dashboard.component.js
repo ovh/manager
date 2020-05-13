@@ -16,16 +16,17 @@ export default {
     goToSnapshotTake: '<',
     goToSnapshotRestore: '<',
     goToTerminateOption: '<',
+    goToVpsMigration: '<',
     goBack: '<',
 
     hasBackupStorage: '<',
+    isMigrationRequired: '<',
     isVpsNewRange: '<',
     plan: '<',
     serviceName: '<',
     stateVps: '<',
     tabSummary: '<',
     vps: '<',
-
     vpsUpgradeTask: '<',
   },
   controller,

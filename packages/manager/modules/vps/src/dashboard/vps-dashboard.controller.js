@@ -6,7 +6,10 @@ import isEmpty from 'lodash/isEmpty';
 import map from 'lodash/map';
 import 'moment';
 
-import { DASHBOARD_FEATURES } from './vps-dashboard.constants';
+import {
+  DASHBOARD_FEATURES,
+  VPS_2014_EXPIRY_DATE,
+} from './vps-dashboard.constants';
 import {
   CHANGE_OWNER_URL,
   CONTACTS_URL,
@@ -40,7 +43,7 @@ export default class {
     this.CucRegionService = CucRegionService;
     this.VpsService = VpsService;
     this.vpsUpgradeTile = vpsUpgradeTile;
-
+    this.VPS_2014_EXPIRY_DATE = VPS_2014_EXPIRY_DATE;
     this.DASHBOARD_FEATURES = DASHBOARD_FEATURES;
 
     this.loaders = {
