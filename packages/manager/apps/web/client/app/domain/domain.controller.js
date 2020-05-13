@@ -122,7 +122,7 @@ angular.module('App').controller(
       this.autorenewGuide = get(
         this.constants,
         `urls.${subsidiary}.guides.autoRenew`,
-        this.constants.urls.FR.guides.autoRenew,
+        get(this.constants, `urls.FR.guides.autoRenew`),
       );
       this.autorenewUrl = `${this.constants.AUTORENEW_URL}?selectedType=DOMAIN&searchText=${this.domainInfos.domain}`;
     }
