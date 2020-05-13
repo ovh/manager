@@ -17,10 +17,6 @@ angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
           currentUser: /* @ngInject */ (OvhApiMe) =>
             OvhApiMe.v6().get().$promise,
         },
-        translations: {
-          value: ['../common', '../vps'],
-          format: 'json',
-        },
       })
       .state('vps.detail.**', {
         url: '/{serviceName}',
