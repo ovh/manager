@@ -9,25 +9,27 @@ class LogsIndexService {
     LogsHelperService,
     OvhApiDbaas,
     CucServiceHelper,
-    LogsOptionsService,
     LogsConstants,
+    LogsHomeService,
+    LogsOrderService,
   ) {
     this.$q = $q;
     this.$translate = $translate;
     this.CucCloudPoll = CucCloudPoll;
-    this.CucServiceHelper = CucServiceHelper;
     this.CucControllerHelper = CucControllerHelper;
     this.LogsHelperService = LogsHelperService;
-    this.LogsOptionsService = LogsOptionsService;
+    this.CucServiceHelper = CucServiceHelper;
     this.LogsConstants = LogsConstants;
+    this.LogsHomeService = LogsHomeService;
+    this.LogsOrderService = LogsOrderService;
+    this.AccountingAapiService = OvhApiDbaas.Logs()
+      .Accounting()
+      .Aapi();
     this.IndexApiService = OvhApiDbaas.Logs()
       .Index()
       .v6();
     this.IndexAapiService = OvhApiDbaas.Logs()
       .Index()
-      .Aapi();
-    this.AccountingAapiService = OvhApiDbaas.Logs()
-      .Accounting()
       .Aapi();
     this.OperationApiService = OvhApiDbaas.Logs()
       .Operation()
@@ -35,32 +37,36 @@ class LogsIndexService {
     this.newIndex = {
       description: '',
       alertNotifyEnabled: false,
+      nbShard: this.LogsConstants.NB_SHARD_MIN,
     };
   }
 
-  getNewIndex() {
-    return this.newIndex;
-  }
-
-  getQuota(serviceName) {
+  getMainOffer(serviceName) {
     return this.AccountingAapiService.me({ serviceName })
-      .$promise.then((me) => {
-        const quota = {
-          max: me.total.maxNbIndex,
-          configured: me.total.curNbIndex,
-          currentUsage: (me.total.curNbIndex * 100) / me.total.maxNbIndex,
-          mainOfferMax: me.offer.maxNbIndex,
-          mainOfferCurrent: me.offer.curNbIndex,
-        };
-        return quota;
-      })
+      .$promise.then((me) => ({
+        max: me.offer.maxNbIndex,
+        current: me.offer.curNbIndex,
+        planCode: me.offer.reference,
+      }))
       .catch((err) =>
         this.LogsHelperService.handleError(
-          'logs_streams_quota_get_error',
+          'logs_main_offer_get_error',
           err,
           {},
         ),
       );
+  }
+
+  getAccountDetails(serviceName) {
+    return this.LogsHomeService.getAccountDetails(serviceName);
+  }
+
+  getOrderCatalog(ovhSubsidiary) {
+    return this.LogsOrderService.getOrderCatalog(ovhSubsidiary);
+  }
+
+  getNewIndex() {
+    return this.newIndex;
   }
 
   getIndices(serviceName) {
@@ -118,21 +124,14 @@ class LogsIndexService {
     });
   }
 
-  getSubscribedOptions(serviceName) {
-    return this.LogsOptionsService.getSubscribedOptionsByType(
-      serviceName,
-      this.LogsConstants.INDEX_OPTION_REFERENCE,
-    );
-  }
-
   createIndex(serviceName, object) {
     return this.IndexApiService.post(
       { serviceName },
       {
         alertNotifyEnabled: object.alertNotifyEnabled,
-        optionId: object.optionId,
         description: object.description,
         suffix: object.suffix,
+        nbShard: object.nbShard,
       },
     )
       .$promise.then((operation) => {
@@ -196,7 +195,6 @@ class LogsIndexService {
   resetAllCache() {
     this.IndexApiService.resetAllCache();
     this.IndexAapiService.resetAllCache();
-    this.AccountingAapiService.resetAllCache();
   }
 }
 

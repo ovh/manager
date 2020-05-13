@@ -75,7 +75,7 @@
             <oui-numeric
                 id="input_port"
                 name="input_port"
-                model="ctrl.input.data.info.exposedPort"
+                data-model="ctrl.input.data.info.exposedPort"
                 min="ctrl.LogsConstants.EXPOSED_PORT_MIN"
                 max="ctrl.LogsConstants.EXPOSED_PORT_MAX"
                 required
@@ -128,39 +128,19 @@
         </oui-field>
 
         <oui-field
-            label="{{ ::'inputs_logs_edit_option_field' | translate }}"
+            label="{{ ::'inputs_logs_edit_nb_instance_field' | translate }}"
             size="xl"
+            help-text="{{ ctrl.showInputPrices() }}"
         >
-            <oui-spinner data-ng-if="ctrl.options.loading"></oui-spinner>
-            <div class="oui-select" data-ng-show="!ctrl.options.loading">
-                <select
-                    class="oui-select__input"
-                    name="input_option"
-                    id="input_option"
-                    data-ng-options="option.optionId as option.type+', '+option.detail+' - '+option.curNbInput+'/'+option.maxNbInput for option in ctrl.options.data"
-                    data-ng-model="ctrl.input.data.info.optionId"
-                >
-                    <option value=""
-                        >{{::'logs_main_offer' | translate}} -
-                        {{ctrl.mainOffer.data.current}}/{{ctrl.mainOffer.data.max}}</option
-                    >
-                </select>
-                <i
-                    class="oui-icon oui-icon-chevron-down"
-                    aria-hidden="true"
-                ></i>
-            </div>
-        </oui-field>
-
-        <oui-field size="xl">
-            <oui-checkbox
-                model="ctrl.input.data.info.singleInstanceEnabled"
-                id="single_instance_enabled"
-                name="single_instance_enabled"
-                text="{{::'inputs_logs_edit_single_instance_field' | translate}}"
-                description="{{::'inputs_logs_edit_single_instance_description' | translate}}"
+            <oui-numeric
+                id="input_nbInstance"
+                name="input_nbInstance"
+                data-model="ctrl.input.data.info.nbInstance"
+                min="ctrl.LogsConstants.NB_INSTANCE_MIN"
+                max="ctrl.LogsConstants.NB_INSTANCE_MAX"
+                required
             >
-            </oui-checkbox>
+            </oui-numeric>
         </oui-field>
 
         <oui-form-actions

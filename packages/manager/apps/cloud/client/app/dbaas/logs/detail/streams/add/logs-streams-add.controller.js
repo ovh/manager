@@ -3,6 +3,7 @@ class LogsStreamsAddCtrl {
     $q,
     $state,
     $stateParams,
+    $translate,
     LogsStreamsService,
     CucControllerHelper,
     CucCloudMessage,
@@ -11,6 +12,7 @@ class LogsStreamsAddCtrl {
     this.$q = $q;
     this.$state = $state;
     this.$stateParams = $stateParams;
+    this.$translate = $translate;
     this.serviceName = this.$stateParams.serviceName;
     this.LogsStreamsService = LogsStreamsService;
     this.CucControllerHelper = CucControllerHelper;
@@ -21,7 +23,7 @@ class LogsStreamsAddCtrl {
     this.storageDurations = this.LogsStreamsService.getStorageDurations();
     this.storageTargets = this.LogsStreamsService.getStorageTargets();
     this.storageContents = this.LogsStreamsService.getStorageContents();
-    this.coldStoragePrice = { price: '' };
+    this.coldStoragePrice = { PCS: { price: '' }, PCA: { price: '' } };
     this.initLoaders();
   }
 
@@ -50,9 +52,13 @@ class LogsStreamsAddCtrl {
         this.LogsStreamsService.getAccountDetails(this.serviceName),
     });
 
-    this.accountDetails.load().then(() => {
-      this.ovhSubsidiary = this.accountDetails.data.me.ovhSubsidiary;
-      this.$q.all([this.mainOffer.load(), this.catalog.load()]).then(() => {
+    this.accountDetails
+      .load()
+      .then(() => {
+        this.ovhSubsidiary = this.accountDetails.data.me.ovhSubsidiary;
+        return this.$q.all([this.mainOffer.load(), this.catalog.load()]);
+      })
+      .then(() => {
         if (
           this.mainOffer.data.planCode === this.LogsConstants.basicOffer &&
           !this.isEdit
@@ -62,13 +68,31 @@ class LogsStreamsAddCtrl {
         const selectedCatalog = this.catalog.data.plans.find(
           (plan) => plan.planCode === this.mainOffer.data.planCode,
         );
-        const coldstorage = selectedCatalog.addonsFamily.find(
-          (addon) => addon.family === this.LogsConstants.COLDSTORAGE,
+        const selectedFamily = selectedCatalog.addonsFamily.find(
+          (addon) =>
+            addon.family === this.LogsConstants.ADD_ON_FAMILY.DEPRECATED,
         );
-        this.coldStoragePrice.price =
-          coldstorage.addons[0].plan.details.pricings.default[0].price.text;
+        const coldstoragePCACapacities = selectedFamily.addons.find(
+          (add) =>
+            add.plan.planCode ===
+            this.LogsConstants.CONSUMPTION_REFERENCE.COLDSTORAGE_PCA,
+        );
+        const coldstoragePCSCapacities = selectedFamily.addons.find(
+          (add) =>
+            add.plan.planCode ===
+            this.LogsConstants.CONSUMPTION_REFERENCE.COLDSTORAGE_PCS,
+        );
+        const coldstoragePCA = coldstoragePCACapacities.plan.details.pricings.default.find(
+          (capa) =>
+            capa.capacities.includes(this.LogsConstants.CONSUMPTION_CAPACITY),
+        );
+        const coldstoragePCS = coldstoragePCSCapacities.plan.details.pricings.default.find(
+          (capa) =>
+            capa.capacities.includes(this.LogsConstants.CONSUMPTION_CAPACITY),
+        );
+        this.coldStoragePrice.PCA.price = coldstoragePCA.price.text;
+        this.coldStoragePrice.PCS.price = coldstoragePCS.price.text;
       });
-    });
 
     if (this.$stateParams.streamId) {
       this.isEdit = true;
@@ -92,6 +116,19 @@ class LogsStreamsAddCtrl {
     } else {
       this.createStream();
     }
+  }
+
+  getColdStoragePrice() {
+    return this.$translate.instant(
+      'streams_cold_storage_price',
+      {
+        t0: this.coldStoragePrice[this.stream.data.coldStorageTarget].price,
+        t1: this.LogsConstants.COLDSTORAGE_INCREMENT,
+      },
+      undefined,
+      false,
+      'sceParameters', // Expose devise symbol from API without sanitization
+    );
   }
 
   /**
