@@ -33,11 +33,6 @@ angular.module('App').controller(
       this.hosting = this.$scope.hosting;
       this.hostingProxy = this.$scope.hostingProxy;
       this.bddTemplate = 'hosting/database/DATABASE_LIST.html';
-      this.backupType = {
-        DAILY: 'daily.1',
-        WEEKLY: 'weekly.1',
-        NOW: 'now',
-      };
       this.canCreateDatabase =
         this.hosting.databaseMax - this.hosting.databaseCount > 0;
       this.databases = {

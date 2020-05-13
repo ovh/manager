@@ -340,8 +340,6 @@
   "hosting_tab_DATABASES_table_popover_dump_edit": ": edytuj kopie zapasowe",
   "hosting_tab_DATABASES_table_popover_dump_restore": "Przywróć kopię zapasową",
   "hosting_tab_DATABASES_table_popover_import": "Zaimportuj plik",
-  "hosting_tab_DATABASES_table_popover_dump_restore_yesterday": "Przywróć kopię z wczoraj",
-  "hosting_tab_DATABASES_table_popover_dump_restore_one_week": "Przywróć kopię sprzed tygodnia",
   "hosting_tab_DATABASES_table_popover_delete": "Usuń bazę danych",
   "hosting_tab_DATABASES_table_popover_check_quota": "Przelicz rozmiar bazy",
   "hosting_tab_DATABASES_table_popover_phpmyadmin": "Dostęp do phpMyAdmin",
