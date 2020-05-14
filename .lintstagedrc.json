@@ -6,7 +6,7 @@
   ],
   "*.js": ["eslint --fix", "git add"],
   "*.{css,less,scss}": ["stylelint --fix", "git add"],
-  "!(*CHANGELOG).md": ["remark -qf ."],
+  "!(*CHANGELOG).md": ["remark -qf .", "eslint --ext .md --fix", "git add"],
   "**/package.json": ["npx sort-package-json", "git add"],
   "*.json": ["prettier --write", "git add"]
 }
