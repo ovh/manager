@@ -1,6 +1,7 @@
 import kebabCase from 'lodash/kebabCase';
 
 import { NEW_RANGE_VERSION } from './dashboard/vps-dashboard.constants';
+import { RANGES } from './upscale/upscale.constants';
 import { FEATURE_CLOUDDATABASE, PRODUCT_NAME } from './constants';
 
 import detailComponent from './detail/vps-detail.component';
@@ -50,13 +51,15 @@ export default /* @ngInject */ ($stateProvider) => {
         return tabSummary.ftpBackup.optionActivated || !isVpsNewRange;
       },
       isVpsNewRange: /* @ngInject */ (stateVps) =>
-        stateVps.model.version === NEW_RANGE_VERSION,
-      plan: /* @ngInject */ (serviceName, VpsService) =>
-        VpsService.getServiceInfos(serviceName).then((plan) => ({
-          ...plan,
-          creation: moment(plan.creation).format('LL'),
-          expiration: moment(plan.expiration).format('LL'),
-        })),
+        stateVps.model.version === NEW_RANGE_VERSION &&
+        !~stateVps.model.name.indexOf(RANGES.BESTVALUE),
+      plan: /* @ngInject */ (serviceInfo) => ({
+        ...serviceInfo,
+        creation: moment(serviceInfo.creation).format('LL'),
+        expiration: moment(serviceInfo.expiration).format('LL'),
+      }),
+      serviceInfo: /* @ngInject */ (serviceName, VpsService) =>
+        VpsService.getServiceInfos(serviceName),
       serviceName: /* @ngInject */ ($transition$) =>
         $transition$.params().serviceName,
       scrollToTop: () => () => {

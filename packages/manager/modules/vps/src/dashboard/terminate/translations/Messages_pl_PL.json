@@ -4,5 +4,18 @@
   "vps_terminate_cancel": "Anuluj",
   "vps_terminate_confirm": "Zatwierdź",
   "vps_terminate_success": "Twoje zlecenie usunięcia usługi zostało zarejestrowane. Potwierdź zlecenie, klikając link w e-mailu, który do Ciebie wysłaliśmy.",
-  "vps_terminate_error": "Wystąpił błąd podczas usuwania usługi."
+  "vps_terminate_error": "Wystąpił błąd podczas usuwania usługi.",
+  "vps_terminate_unavailable": "You purchased this subscription with a {{ monthCount }} month commitment. If you have any question, please contact customer support via chat or by submitting a <a href=\"{{supportLink}}\" target=\"_blank\" rel=\"noopener\">support ticket </a>. Thank you for your understanding.",
+  "vps_terminate_option_terminate_at_expiration": "Usuń usługę w dniu wygaśnięcia",
+  "vps_terminate_option_cancel_terminate_at_expiration": "Anuluj usuwanie usługi",
+  "vps_terminate_option_terminate_now": "Usuń usługę natychmiast",
+  "vps_terminate_option_terminate_now_description": "Otrzymasz e-mail z procedurą dotyczącą usunięcia serwera.",
+  "vps_terminate_option_terminate_now_question": "Czy chcesz kontynuować?",
+  "vps_terminate_warning_data_deletion": "Usunięcie tego elementu spowoduje trwałe usunięcie wszystkich powiązanych z nim danych.",
+  "vps_terminate_warning_no_refund": "Rezygnacja z usługi nie stanowi podstawy do zwrotu pieniędzy.",
+  "vps_terminate_warning_manual_refund": "Rezygnacja z usługi nie oznacza gwarancji zwrotu środków. W przypadku pytań dotyczących ewentualnego zwrotu skontaktuj się z Działem Obsługi Klienta OVH.",
+  "vps_terminate_activate_delete_at_expiration_success": "Żądanie usunięcia serwera w dniu wygaśnięcia jego dzierżawy zostało zaakceptowane.",
+  "vps_terminate_activate_delete_at_expiration_error": "Wystąpił błąd podczas żądania usunięcia serwera w dniu wygaśnięcia jego dzierżawy:",
+  "vps_terminate_deactivate_delete_at_expiration_success": "Żądanie usunięcia serwera w dniu wygaśnięcia jego dzierżawy zostało anulowane.",
+  "vps_terminate_deactivate_delete_at_expiration_error": "Wystąpił błąd podczas anulowania żądania usunięcia serwera w dniu wygaśnięcia jego dzierżawy."
 }

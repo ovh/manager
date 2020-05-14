@@ -1,3 +1,7 @@
+export const BOOT_MODE = {
+  RESCUE: 'RESCUE',
+};
+
 export const CHANGE_OWNER_URL = {
   EU: {
     CZ: 'https://www.ovh.cz/cgi-bin/procedure/procedureChangeOwner.cgi',
@@ -79,6 +83,7 @@ export const RENEW_URL = {
 };
 
 export default {
+  BOOT_MODE,
   CHANGE_OWNER_URL,
   CONTACTS_URL,
   FEATURE_CLOUDDATABASE,

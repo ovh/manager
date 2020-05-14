@@ -4,7 +4,7 @@
   "vps_dashboard_tile_configuration_upgrade_storage_action_title": "Améliorer le stockage de votre VPS de {{ currentStorage }} à {{ nextStorage }} Go",
   "vps_dashboard_tile_configuration_upgrade_storage_action_details": "Vous êtes sur le point d‘ajouter {{ storageQuantity }} Go de stockage à votre VPS.",
   "vps_dashboard_tile_configuration_upgrade_action_price": "Cette évolution vous sera facturée {{ price }} supplémentaire(s) par mois.",
-  "vps_dashboard_tile_configuration_upgrade_action_validation": "En validant votre choix, vous serez facturé de {{ prorataPrice }} au prorata pour le mois en cours.",
+  "vps_dashboard_tile_configuration_upgrade_action_validation": "En validant votre choix, vous serez facturé de {{ prorataPrice }} au prorata pour le mois en cours. Veuillez noter que le montant de la facture finale peut comprendre toute option additionelle dont vous pourriez disposer (ex: snapshot, backup automatisé, etc.)",
   "vps_dashboard_tile_configuration_upgrade_action_validation_with_no_payment_method_monthly": "En cliquant sur « Valider et payer », vous allez être redirigé vers un bon de commande pour régler la somme de {{ price }} due au prorata temporis.",
   "vps_dashboard_tile_configuration_upgrade_action_validation_with_no_payment_method_upfront": "En cliquant sur « Valider et payer », vous allez être redirigé vers un bon de commande pour régler la somme de {{ price }} pour le temps restant de votre engagement.",
   "vps_dashboard_tile_configuration_upgrade_action_validation_with_payment_method_upfront": "En cliquant sur « Valider et payer », vous serez facturé de {{ price }} au total pour le temps restant de votre engagement.",

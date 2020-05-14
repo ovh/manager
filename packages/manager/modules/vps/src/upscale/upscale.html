@@ -131,7 +131,7 @@
             editable="!$ctrl.loading.getUpscaleInformation || $ctrl.loading.performUpscale"
             description="{{:: $ctrl.isEliteUpgrade ? ('vps_upscale_change_configuration_details' | translate ) : '' }}"
             prevent-next="true"
-            valid="$ctrl.constructor.isRangeEliteConfigurationComplete($ctrl.rangeConfiguration)"
+            valid="$ctrl.constructor.isRangeEliteConfigurationComplete($ctrl.rangeConfiguration) && $ctrl.isNewPlanCodeDifferent"
         >
             <p data-translate="vps_upscale_change_configuration_indication"></p>
             <table class="table pr-5">
@@ -183,7 +183,6 @@
                                 class="mt-2"
                                 data-ng-init="$ctrl.setValueIfUniqueChoice($ctrl.getAvailableValuesForParameter($ctrl.range.technicals, 'memory.size'), 'memory')"
                                 data-ng-repeat="memory in $ctrl.getAvailableValuesForParameter($ctrl.range.technicals, 'memory.size') track by memory"
-                                data-disabled="$ctrl.isEliteUpgrade && !$ctrl.constructor.isValueAvailable('memory.size', memory, $ctrl.currentRangeConfiguration)"
                                 model="$ctrl.rangeConfiguration.memory"
                                 name="{{:: memory }}"
                                 label="{{:: 'vps_upscale_choice_configuration_quantity' | translate:{ unit: memory } }}"
@@ -198,7 +197,6 @@
                                 class="mt-2"
                                 data-ng-init="$ctrl.setValueIfUniqueChoice($ctrl.getAvailableValuesForParameter($ctrl.range.technicals, 'storage.disks[0].capacity'), 'storage')"
                                 data-ng-repeat="storage in $ctrl.getAvailableValuesForParameter($ctrl.range.technicals, 'storage.disks[0].capacity') track by storage"
-                                data-disabled="$ctrl.isEliteUpgrade && !$ctrl.constructor.isValueAvailable('storage.disks[0].capacity', storage, $ctrl.currentRangeConfiguration)"
                                 model="$ctrl.rangeConfiguration.storage"
                                 name="{{:: storage }}"
                                 label="{{:: 'vps_upscale_choice_configuration_quantity' | translate:{ unit: storage } }}"
@@ -241,11 +239,25 @@
             prevent-next="true"
             valid="$ctrl.agreeContracts"
         >
-            <ovh-contracts-summary
-                data-ng-if="$ctrl.order"
-                items="$ctrl.order.contracts"
-                model="$ctrl.agreeContracts"
-            ></ovh-contracts-summary>
+            <div data-ng-if="$ctrl.order">
+                <oui-checkbox
+                    model="$ctrl.agreeContracts"
+                    data-ng-if="$ctrl.order && $ctrl.agreements"
+                >
+                    <span
+                        data-translate="vps_upscale_agreements"
+                        data-translate-values="{
+                            'conditions': $ctrl.agreements.termsOfService,
+                            'policy': $ctrl.agreements.privacyPolicy
+                          }"
+                    ></span>
+                </oui-checkbox>
+                <ovh-contracts-summary
+                    data-ng-if="$ctrl.order && !$ctrl.agreements"
+                    items="$ctrl.order.contracts"
+                    model="$ctrl.agreeContracts"
+                ></ovh-contracts-summary>
+            </div>
         </oui-step-form>
         <oui-step-form
             header="{{ :: 'vps_upscale_summary' | translate }}"

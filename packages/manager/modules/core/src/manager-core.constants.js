@@ -138,6 +138,12 @@ export const REDIRECT_URLS = {
 };
 
 export const URLS = {
+  agreements: {
+    US: {
+      termsOfService: 'https://us.ovhcloud.com/legal/terms-of-service',
+      privacyPolicy: 'https://us.ovhcloud.com/legal/privacy-policy',
+    },
+  },
   changeOwner: {
     CZ: 'https://www.ovh.cz/cgi-bin/procedure/procedureChangeOwner.cgi',
     DE: 'https://www.ovh.de/cgi-bin/procedure/procedureChangeOwner.cgi',

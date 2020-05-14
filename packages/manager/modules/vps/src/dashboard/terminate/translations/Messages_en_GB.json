@@ -4,5 +4,18 @@
   "vps_terminate_cancel": "Cancel",
   "vps_terminate_confirm": "Confirm",
   "vps_terminate_success": "The deletion of the service has been taken into account, you will receive an email to confirm the deletion.",
-  "vps_terminate_error": "An error occurred while deleting your service."
+  "vps_terminate_error": "An error occurred while deleting your service.",
+  "vps_terminate_unavailable": "You purchased this subscription with a {{ monthCount }} month commitment. If you have any question, please contact customer support via chat or by submitting a <a href=\"{{supportLink}}\" target=\"_blank\" rel=\"noopener\">support ticket </a>. Thank you for your understanding.",
+  "vps_terminate_option_terminate_at_expiration": "Delete service on its expiry date",
+  "vps_terminate_option_cancel_terminate_at_expiration": "Cancel service deletion",
+  "vps_terminate_option_terminate_now": "Delete service now",
+  "vps_terminate_option_terminate_now_description": "An email containing the procedure for deleting this service will be sent to you.",
+  "vps_terminate_option_terminate_now_question": "Do you want to continue?",
+  "vps_terminate_warning_data_deletion": "The deletion of your service will permanently erase all corresponding data.",
+  "vps_terminate_warning_no_refund": "The process of deletion does not entitle you to a refund.",
+  "vps_terminate_warning_manual_refund": "Deletion of your service does not guarantee that a refund will be issued. Please contact support if you have questions regarding the eligibility of a refund for this service.",
+  "vps_terminate_activate_delete_at_expiration_success": "The deletion request for this service on its expiry date has been processed.",
+  "vps_terminate_activate_delete_at_expiration_error": "An error has occurred when submitting the deletion request for this service on its expiry date:",
+  "vps_terminate_deactivate_delete_at_expiration_success": "The deletion request for this service on its expiry date has been suspended.",
+  "vps_terminate_deactivate_delete_at_expiration_error": "An error has occurred when suspending the deletion request for this service on its expiry date:"
 }

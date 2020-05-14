@@ -7,14 +7,12 @@
     </div>
 
     <div
-        data-ng-if="!$ctrl.hasAdditionalDiskOption && !$ctrl.tabSummary.additionalDisk.optionAvailable && !$ctrl.loaders.init && !$ctrl.loaders.disk"
+        data-ng-if="!$ctrl.hasAdditionalDiskOption && !$ctrl.loaders.init && !$ctrl.loaders.disk"
     >
         <span data-translate="vps_tab_additional_disk_not_available"></span>
     </div>
 
-    <div
-        data-ng-if="($ctrl.hasAdditionalDiskOption || $ctrl.tabSummary.additionalDisk.optionAvailable) && !$ctrl.loaders.disk"
-    >
+    <div data-ng-if="$ctrl.hasAdditionalDiskOption && !$ctrl.loaders.disk">
         <p
             data-ng-if="$ctrl.canOrder()"
             data-translate="vps_tab_additional_disk_count"

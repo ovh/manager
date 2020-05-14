@@ -1326,15 +1326,6 @@ export default /* @ngInject */ function VpsService(
     );
   };
 
-  // Additional disks
-  this.hasAdditionalDiskOption = (serviceName) =>
-    this.getSelectedVps(serviceName).then((vps) => {
-      if (!includes(vps.availableOptions, 'ADDITIONAL_DISK')) {
-        return $q.reject(ADDITIONAL_DISK.HAS_NO_OPTION);
-      }
-      return this.canOrderOption(serviceName, 'additionalDisk');
-    });
-
   this.canOrderOption = (serviceName, optionName) =>
     $http.get([swsOrderProxypass, serviceName].join('/')).then((response) => {
       if (includes(response.data, optionName)) {
@@ -1489,5 +1480,11 @@ export default /* @ngInject */ function VpsService(
         },
       })
       .then(({ data }) => data);
+  };
+
+  this.updateServiceInfo = function updateServiceInfo(serviceInfo) {
+    return $http.put(`${swsVpsProxypass}/${serviceInfo.domain}/serviceInfos`, {
+      renew: serviceInfo.renew,
+    });
   };
 }

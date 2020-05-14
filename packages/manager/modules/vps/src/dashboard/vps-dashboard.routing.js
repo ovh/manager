@@ -1,7 +1,4 @@
-import {
-  DASHBOARD_FEATURES,
-  NEW_RANGE_VERSION,
-} from './vps-dashboard.constants';
+import { DASHBOARD_FEATURES } from './vps-dashboard.constants';
 import component from './vps-dashboard.component';
 
 import VpsConfigurationTile from './tile/configuration/service';
@@ -69,9 +66,6 @@ export default /* @ngInject */ ($stateProvider) => {
         vpsUpgradeTile,
       ) =>
         isVpsNewRange ? vpsUpgradeTile.getAvailableUpgrades(serviceName) : [],
-
-      isVpsNewRange: /* @ngInject */ (stateVps) =>
-        stateVps.model.version === NEW_RANGE_VERSION,
 
       vpsUpgradeTask: /* @ngInject */ (serviceName, vpsUpgradeTile) =>
         vpsUpgradeTile.getUpgradeTask(serviceName),

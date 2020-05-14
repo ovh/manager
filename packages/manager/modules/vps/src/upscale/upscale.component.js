@@ -3,6 +3,7 @@ import template from './upscale.html';
 
 export default {
   bindings: {
+    agreements: '<',
     connectedUser: '<',
     defaultPaymentMethod: '<',
     getUpscaleInformation: '<',

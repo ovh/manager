@@ -373,7 +373,7 @@ export const ORDER_URLS = {
       US: 'https://us.ovhcloud.com/order/express/#/express/review',
     },
     vps: {
-      US: 'https://us.ovhcloud.com/order/vps/#/vps/build',
+      US: 'https://us.ovhcloud.com/vps',
     },
   },
 };
