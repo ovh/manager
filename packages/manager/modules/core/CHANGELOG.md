@@ -1,3 +1,12 @@
+# [9.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@9.1.0...@ovh-ux/manager-core@9.2.0) (2020-05-14)
+
+
+### Features
+
+* **core:** add agreements url for US ([fc37080](https://github.com/ovh/manager/commit/fc37080f31e91635a2b19323270e8acc62f2dffb))
+
+
+
 # [9.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@9.0.2...@ovh-ux/manager-core@9.1.0) (2020-04-20)
 
 

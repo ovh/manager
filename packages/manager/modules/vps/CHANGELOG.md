@@ -1,3 +1,23 @@
+# [1.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@1.0.0...@ovh-ux/manager-vps@1.1.0) (2020-05-14)
+
+
+### Bug Fixes
+
+* **vps:** disable termination for degressivity suscribed vps ([e6326a8](https://github.com/ovh/manager/commit/e6326a8f7f51273636abf66eb38edc56012233ce))
+* **vps:** disable upgrade options if rescue mode ([1748329](https://github.com/ovh/manager/commit/17483292107fde628c1a501c1379ec3d83b3af0c))
+* **vps:** disallow best value vps to access new range ([8cb02d0](https://github.com/ovh/manager/commit/8cb02d0cd4f7d65466aca85d78aee0337966310d))
+* **vps:** fix additional disk init issue ([cab2e6a](https://github.com/ovh/manager/commit/cab2e6a92aa38466d4461abb49486765c22d35b0))
+* **vps:** fix elite change configuration ([4b2e11f](https://github.com/ovh/manager/commit/4b2e11f155bc0f99f6f56190b689440f1b658062))
+* **vps:** update translations once more ([d6d5202](https://github.com/ovh/manager/commit/d6d5202b5c532b8ba1656cdce0502e78e4e68697))
+* **vps:** use specific agreements for US region ([1e1ff70](https://github.com/ovh/manager/commit/1e1ff703ab375ca0a1eef1e94581b183fc85227e))
+
+
+### Features
+
+* **vps:** add option to service cancellation ([1708fc1](https://github.com/ovh/manager/commit/1708fc1933e252a12d70dae030c8435efe7cdc97))
+
+
+
 # [1.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@0.6.3...@ovh-ux/manager-vps@1.0.0) (2020-05-13)
 
 

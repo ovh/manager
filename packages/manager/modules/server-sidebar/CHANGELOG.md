@@ -1,3 +1,12 @@
+# [1.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@1.3.8...@ovh-ux/manager-server-sidebar@1.4.0) (2020-05-14)
+
+
+### Features
+
+* **sidebar:** change vps order url ([37ddaf2](https://github.com/ovh/manager/commit/37ddaf2204e4aa85c344ada2ea875a46341424de))
+
+
+
 ## [1.3.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@1.3.7...@ovh-ux/manager-server-sidebar@1.3.8) (2020-04-01)
 
 
