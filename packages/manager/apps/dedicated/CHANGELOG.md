@@ -1,3 +1,12 @@
+## [12.4.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@12.4.1...@ovh-ux/manager-dedicated@12.4.2) (2020-05-14)
+
+
+### Bug Fixes
+
+* **ip:** remove specific route use for vps ([26a476b](https://github.com/ovh/manager/commit/26a476b11a78efe9448fce8b0d73eef4c79bd02b))
+
+
+
 ## [12.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@12.4.0...@ovh-ux/manager-dedicated@12.4.1) (2020-05-13)
 
 
