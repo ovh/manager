@@ -1,7 +1,6 @@
 {
   "name": "@ovh-ux/testcafe-manager",
   "version": "0.0.0",
-  "private": true,
   "description": "Tool to run end-to-end web testing using TestCafé.",
   "repository": {
     "type": "git",
