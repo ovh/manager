@@ -27,57 +27,62 @@ import angular from 'angular';
 import ngOvhToaster from '@ovh-ux/ng-ovh-toaster';
 
 angular
-  .module('myApp', [
-    ngOvhToaster,
-  ])
-  .config(/* @ngInject */(ToastProvider) => {
-    // CSS classes
-    ToastProvider.setExtraClasses('messenger-fixed messenger-on-bottom messenger-on-right');
+  .module('myApp', [ngOvhToaster])
+  .config(
+    /* @ngInject */ (ToastProvider) => {
+      // CSS classes
+      ToastProvider.setExtraClasses(
+        'messenger-fixed messenger-on-bottom messenger-on-right',
+      );
 
-    // Graphic theme
-    ToastProvider.setTheme('air');
+      // Graphic theme
+      ToastProvider.setTheme('air');
 
-    // Set duration
-    ToastProvider.setHideAfter(42);
-  })
-  .controller('MyController', class {
-    /* @ngInject */
-    constructor($timeout, Toast) {
-      this.$timeout = $timeout;
-      this.Toast = Toast;
-    }
+      // Set duration
+      ToastProvider.setHideAfter(42);
+    },
+  )
+  .controller(
+    'MyController',
+    class {
+      /* @ngInject */
+      constructor($timeout, Toast) {
+        this.$timeout = $timeout;
+        this.Toast = Toast;
+      }
 
-    $onInit() {
-      // To add a notification, you had to inject Toast as dependency
-      // and use it like this example inside a controller
-      this.Toast.success('My Toast message');
+      $onInit() {
+        // To add a notification, you had to inject Toast as dependency
+        // and use it like this example inside a controller
+        this.Toast.success('My Toast message');
 
-      // Toast can by targetted with an ID. So, you can update a toast on-the-fly, like this:
-      this.Toast.info('Loading...', {
-        id: 42,
-        hideAfter: false,
-      });
-
-      this.$timeout(function () {
-        this.Toast.success('Done!', {
+        // Toast can by targetted with an ID. So, you can update a toast on-the-fly, like this:
+        this.Toast.info('Loading...', {
           id: 42,
+          hideAfter: false,
         });
-      }, 2000);
 
-      // Also, a main Toast fct returns the instance of the Toast created.
-      // Then you can play with it!
-      const msg = this.Toast.info('Hello!', {
-        hideAfter: false,
-      });
-
-      this.$timeout(function () {
-        this.Toast.hide(msg);
-        this.$timeout(function () {
-          this.Toast.show(msg);
+        this.$timeout(function() {
+          this.Toast.success('Done!', {
+            id: 42,
+          });
         }, 2000);
-      }, 2000);
-    }
-  });
+
+        // Also, a main Toast fct returns the instance of the Toast created.
+        // Then you can play with it!
+        const msg = this.Toast.info('Hello!', {
+          hideAfter: false,
+        });
+
+        this.$timeout(function() {
+          this.Toast.hide(msg);
+          this.$timeout(function() {
+            this.Toast.show(msg);
+          }, 2000);
+        }, 2000);
+      }
+    },
+  );
 ```
 
 ## Related

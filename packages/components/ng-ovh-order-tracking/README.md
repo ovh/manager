@@ -16,20 +16,18 @@ import angular from 'angular';
 import ngOvhOrderTracking from '@ovh-ux/ng-ovh-order-tracking';
 import uiRouter from '@uirouter/angularjs';
 
-angular
-  .module('myApp', [
-    ngOvhOrderTracking,
-    uiRouter,
-  ])
-  .config(/* @ngInject */($stateProvider) => {
+angular.module('myApp', [ngOvhOrderTracking, uiRouter]).config(
+  /* @ngInject */ ($stateProvider) => {
     $stateProvider.state('order-tracking', {
       url: '/order-tracking/{orderId}',
       component: 'ovhOrderTrackingComponent',
       resolve: {
-        orderId: /* @ngInject */  $transition$ => $transition$.params().orderId,
-      }
+        orderId: /* @ngInject */ ($transition$) =>
+          $transition$.params().orderId,
+      },
     });
-  });
+  },
+);
 ```
 
 ## Contributing

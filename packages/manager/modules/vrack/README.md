@@ -12,10 +12,7 @@ yarn add @ovh-ux/manager-vrack
 import 'angular';
 import managerVrack from '@ovh-ux/manager-vrack';
 
-angular
-  .module('myApp', [
-    managerVrack,
-  ]);
+angular.module('myApp', [managerVrack]);
 ```
 
 ## Build

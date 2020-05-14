@@ -14,13 +14,11 @@ yarn add @ovh-ux/ng-ovh-request-tagger
 import angular from 'angular';
 import ngOvhRequestTagger from '@ovh-ux/ng-ovh-request-tagger';
 
-angular
-  .module('myApp', [
-    ngOvhRequestTagger,
-  ])
-  .config(/* @ngInject */($httpProvider) => {
+angular.module('myApp', [ngOvhRequestTagger]).config(
+  /* @ngInject */ ($httpProvider) => {
     $httpProvider.interceptors.push('OvhNgRequestTaggerInterceptor');
-  });
+  },
+);
 ```
 
 ## Test

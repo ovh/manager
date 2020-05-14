@@ -22,7 +22,6 @@ const config = configGenerator({
 
 // export desired list of target(s)
 export default [
-
   // ES6 module
   config.es(),
 
@@ -119,17 +118,15 @@ class MyController {
 
   $onInit() {
     this.isLoading = true;
-    return this.$injector.invoke(
-      /* @ngTranslationsInject ./translations ./some/other/path */
-    ).finally(() => {
-      this.isLoading = false;
-    });
+    return this.$injector
+      .invoke(/* @ngTranslationsInject ./translations ./some/other/path */)
+      .finally(() => {
+        this.isLoading = false;
+      });
   }
 }
 
-angular
-  .module('myModule', [])
-  .controller('myController', MyController);
+angular.module('myModule', []).controller('myController', MyController);
 ```
 
 ### rollup-plugin-less-tilde-importer
@@ -139,20 +136,18 @@ Provides ~ (tilde) prefix to tell less compiler that it should resolve imports u
 ```js
 import configGenerator from '@ovh-ux/component-rollup-config';
 
-const config = configGenerator({
-  input: './src/my-library.js',
-}, {
-  lessTildeImporter: {
-    paths: [
-      '/foo/bar',
-      '/hello/world',
-    ],
+const config = configGenerator(
+  {
+    input: './src/my-library.js',
   },
-});
+  {
+    lessTildeImporter: {
+      paths: ['/foo/bar', '/hello/world'],
+    },
+  },
+);
 
-export default [
-  config.cjs(),
-];
+export default [config.cjs()];
 ```
 
 ```less
@@ -167,17 +162,18 @@ Regarding the translations related plugins, it's possible to only process transl
 ```js
 import configGenerator from '@ovh-ux/component-rollup-config';
 
-const config = configGenerator({
-  input: './src/my-library.js',
-}, {
-  translations: {
-    languages: ['fr_FR', 'en_EN'], // only FR and EN translations will be provided
+const config = configGenerator(
+  {
+    input: './src/my-library.js',
   },
-});
+  {
+    translations: {
+      languages: ['fr_FR', 'en_EN'], // only FR and EN translations will be provided
+    },
+  },
+);
 
-export default [
-  config.cjs(),
-];
+export default [config.cjs()];
 ```
 
 You can also specify languages without modifying your rollup config by using the cli and passing the LANGUAGES environment variable. See the example below.

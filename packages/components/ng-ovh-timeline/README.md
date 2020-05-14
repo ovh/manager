@@ -16,10 +16,7 @@ yarn add @ovh-ux/ng-ovh-timeline
 import angular from 'angular';
 import ngOvhTimeline from '@ovh-ux/ng-ovh-timeline';
 
-angular
-  .module('myApp', [
-    ngOvhTimeline,
-  ]);
+angular.module('myApp', [ngOvhTimeline]);
 ```
 
 To define a timeline, do the following (either manually or using ng-repeat on a dataset.

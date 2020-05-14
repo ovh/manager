@@ -17,10 +17,7 @@ $ yarn add @ovh-ux/ng-ovh-browser-alert
 import ovhBrowserAlert from '@ovh-ux/ng-ovh-browser-alert';
 import angular from 'angular';
 
-angular
-  .module('myApp', [
-    ovhBrowserAlert,
-  ]);
+angular.module('myApp', [ovhBrowserAlert]);
 ```
 
 ```html

@@ -17,10 +17,7 @@ yarn add @ovh-ux/ng-ovh-ui-confirm-modal
 import angular from 'angular';
 import ngOvhUiConfirmModal from '@ovh-ux/ng-ovh-ui-confirm-modal';
 
-angular
-  .module('myApp', [
-    ngOvhUiConfirmModal,
-  ]);
+angular.module('myApp', [ngOvhUiConfirmModal]);
 ```
 
 ```html

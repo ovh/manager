@@ -16,10 +16,7 @@ yarn add @ovh-ux/ng-ovh-responsive-page-switcher
 import angular from 'angular';
 import ngOvhResponsivePageSwitcher from '@ovh-ux/ng-ovh-responsive-page-switcher';
 
-angular
-  .module('myApp', [
-    ngOvhResponsivePageSwitcher,
-  ]);
+angular.module('myApp', [ngOvhResponsivePageSwitcher]);
 ```
 
 Directives `responsive-switch` and `responsive-switch-page` will be used. `responsive-switch-page` requires `responsive-switch`, so first we create this directive :

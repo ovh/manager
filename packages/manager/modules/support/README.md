@@ -14,10 +14,7 @@ yarn add @ovh-ux/manager-support
 import angular from 'angular';
 import ovhManagerSupport from '@ovh-ux/manager-support';
 
-angular
-  .module('myApp', [
-    ovhManagerSupport,
-  ]);
+angular.module('myApp', [ovhManagerSupport]);
 ```
 
 ## Build

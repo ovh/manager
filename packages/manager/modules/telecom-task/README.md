@@ -14,10 +14,7 @@ yarn add @ovh-ux/manager-telecom-task
 import angular from 'angular';
 import ovhManagerTelecomTask from '@ovh-ux/manager-telecom-task';
 
-angular
-  .module('myApp', [
-    ovhManagerTelecomTask,
-  ]);
+angular.module('myApp', [ovhManagerTelecomTask]);
 ```
 
 ## Build

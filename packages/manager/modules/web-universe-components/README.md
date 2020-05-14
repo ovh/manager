@@ -21,10 +21,7 @@ yarn add @ovh-ux/ng-ovh-web-universe-components
 import angular from 'angular';
 import ngOvhWebUniverseComponents from '@ovh-ux/ng-ovh-web-universe-components';
 
-angular
-  .module('myApp', [
-    ngOvhWebUniverseComponents,
-  ]);
+angular.module('myApp', [ngOvhWebUniverseComponents]);
 ```
 
 ## Test

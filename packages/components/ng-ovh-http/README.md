@@ -17,9 +17,8 @@ import angular from 'angular';
 import ngOvhHttp from '@ovh-ux/ng-ovh-http';
 import set from 'lodash/set';
 
-angular
-  .module('myApp', [ngOvhHttp])
-  .config(/* @ngInject */ (OvhHttpProvider, constants) => {
+angular.module('myApp', [ngOvhHttp]).config(
+  /* @ngInject */ (OvhHttpProvider, constants) => {
     // URL prefix
     set(OvhHttpProvider, 'rootPath', constants.swsRootPath);
     // Auto delete get cache (for this url) if method is in table
@@ -28,12 +27,13 @@ angular
     set(OvhHttpProvider, 'returnSuccessKey', 'data');
     // By default, request return error.data
     set(OvhHttpProvider, 'returnErrorKey', 'data');
-  });
+  },
+);
 ```
 
 ```js
 // HTTP request
-OvhHttp['get', 'put', 'post', 'delete'](URL, options);
+OvhHttp[('get', 'put', 'post', 'delete')](URL, options);
 
 // Get API schema (option only rootPath)
 OvhHttp.schema(URL, options);
@@ -91,9 +91,9 @@ const options = {
 import angular from 'angular';
 import ngOvhHttp from '@ovh-ux/ng-ovh-http';
 
-angular
-  .module('myApp', [ngOvhHttp])
-  .controller('MyCtrl', class MyCtrl {
+angular.module('myApp', [ngOvhHttp]).controller(
+  'MyCtrl',
+  class MyCtrl {
     /* @ngInject */
     constructor(OvhHttp) {
       this.OvhHttp = OvhHttp;
@@ -120,7 +120,8 @@ angular
         clearAllCache: 'hostingCache', // or ['hostingCache']
       });
     }
-  });
+  },
+);
 ```
 
 ## Test

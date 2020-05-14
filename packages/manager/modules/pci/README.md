@@ -14,10 +14,7 @@ yarn add @ovh-ux/manager-pci
 import 'angular';
 import managerPci from '@ovh-ux/manager-pci';
 
-angular
-  .module('myApp', [
-    managerPci,
-  ]);
+angular.module('myApp', [managerPci]);
 ```
 
 ## Contributing

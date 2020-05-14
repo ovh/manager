@@ -16,21 +16,21 @@ yarn add @ovh-ux/ng-ui-router-title
 import angular from 'angular';
 import '@ovh-ux/ng-ui-router-title';
 
-angular
-  .module('myApp', [
-    'ngUirouterTitle',
-  ])
-  .config(/* @ngInject */ ($stateProvider) => {
+angular.module('myApp', ['ngUirouterTitle']).config(
+  /* @ngInject */ ($stateProvider) => {
     // When declaring your ui-router state, you can add a custom $title:
     $stateProvider.state('app.item', {
       url: '/app/item',
       resolve: {
         $title($stateParams, $translate) {
-          return $translate.instant('item_description_', { name: $stateParams.id });
+          return $translate.instant('item_description_', {
+            name: $stateParams.id,
+          });
         },
       },
     });
-  });
+  },
+);
 ```
 
 ## Test

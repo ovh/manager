@@ -26,13 +26,16 @@ angular.module('myApp', [ngAtInternet]);
 *Example simple provider configuration*
 
 ```js
-app.config(['atInternetProvider', function (provider) {
-  provider.setEnabled(true); // enable tracking
-  // provider.setDebug(true);
-  provider.setDefaults({ level2: '1' }); // it is recommended to specify the level2 attribute as a default value
-  // since it is global to your project and it must be send allong with
-  // every tracking data
-}]);
+app.config([
+  'atInternetProvider',
+  function(provider) {
+    provider.setEnabled(true); // enable tracking
+    // provider.setDebug(true);
+    provider.setDefaults({ level2: '1' }); // it is recommended to specify the level2 attribute as a default value
+    // since it is global to your project and it must be send allong with
+    // every tracking data
+  },
+]);
 ```
 
 Please note that the level2 attribute must be your project ID ; configured in ATInternet manager.
@@ -40,14 +43,17 @@ Please note that the level2 attribute must be your project ID ; configured in AT
 *Exemple provider configuration with identifiedVisitor set.*
 
 ```js
-app.config(['atInternetProvider', function (provider) {
-  provider.setEnabled(true); // enable tracking
-  // provider.setDebug(true);
-  provider.setDefaults({
-    level2: '1',
-    visitorId: '123',
-  });
-}]);
+app.config([
+  'atInternetProvider',
+  function(provider) {
+    provider.setEnabled(true); // enable tracking
+    // provider.setDebug(true);
+    provider.setDefaults({
+      level2: '1',
+      visitorId: '123',
+    });
+  },
+]);
 ```
 
 Notice that visitorId is optional and set identifiedVisitor.id ATInternet Tag.
