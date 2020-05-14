@@ -1,5 +1,5 @@
 import map from 'lodash/map';
-import Service from './Service.class';
+import { Service } from '@ovh-ux/manager-models';
 import { TERMINATION_FORM_NAME } from './confirm-terminate.constants';
 
 export default class BillingTerminate {
