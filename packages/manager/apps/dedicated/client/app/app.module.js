@@ -121,7 +121,6 @@ import './components/filters.module';
 import './components/ng-ovh-contacts/ng-ovh-contacts.module';
 import './components/ovh-angular-actions-menu/ovh-angular-actions-menu.module';
 import './components/ovh-angular-http/ovh-angular-http.module';
-import './components/ovh-angular-sso-auth-modal-plugin/ovh-angular-sso-auth-modal-plugin.module';
 import './components/ovh-ui-angular/ovh-ui-angular.module';
 import './components/services.module';
 import './controllers.module';
