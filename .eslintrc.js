@@ -14,6 +14,10 @@ module.exports = {
     browser: true,
     jquery: true,
   },
+  globals: {
+    fixture: false,
+    test: false,
+  },
   rules: {
     'no-bitwise': ['error', { allow: ['~'] }],
     'import/no-extraneous-dependencies': ['error', { devDependencies: true }],

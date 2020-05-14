@@ -32,6 +32,10 @@
     "split": "scripts/split.js",
     "start": "node -r esm scripts/start/index.js",
     "test": "yarn lint",
+    "test:e2e:chromium": "npx rimraf ./reports && testcafe chromium",
+    "test:e2e:chromium:headless": "npx rimraf ./reports && testcafe chromium:headless",
+    "test:e2e:firefox": "npx rimraf ./reports && testcafe firefox",
+    "test:e2e:firefox:headless": "npx rimraf ./reports && testcafe firefox:headless",
     "version": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md"
   },
   "devDependencies": {
@@ -78,6 +82,9 @@
     "stylelint-config-standard": "^19.0.0",
     "stylelint-prettier": "^1.1.2",
     "stylelint-scss": "^3.13.0",
+    "testcafe": "^1.8.4",
+    "testcafe-angular-selectors": "^0.4.1",
+    "testcafe-reporter-html": "^1.4.6",
     "vuepress": "^1.2.0"
   },
   "engines": {
