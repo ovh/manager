@@ -1,3 +1,12 @@
+## [14.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@14.3.1...@ovh-ux/manager-web@14.3.2) (2020-05-14)
+
+
+### Bug Fixes
+
+* **hosting:** catch call to detach if customer has no subscription ([#2948](https://github.com/ovh/manager/issues/2948)) ([f47f120](https://github.com/ovh/manager/commit/f47f12090c4d6c107d1296197554811ad5171900))
+
+
+
 ## [14.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@14.3.0...@ovh-ux/manager-web@14.3.1) (2020-05-14)
 
 
