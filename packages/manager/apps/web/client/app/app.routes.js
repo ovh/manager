@@ -7,6 +7,8 @@ angular.module('App').config(($stateProvider) => {
     templateUrl: 'app.html',
     translations: { value: ['./core', './common'], format: 'json' },
     resolve: {
+      isEmailDomainAvailable: /* @ngInject */ (coreConfig) =>
+        coreConfig.isRegion('EU'),
       rootState: () => 'app.configuration',
       user: /* @ngInject */ (OvhApiMe) => OvhApiMe.v6().get().$promise,
     },
