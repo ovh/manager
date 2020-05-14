@@ -11,22 +11,7 @@ import template from './template.html';
  * Handle switch session, opens the modal
  */
 export default function ssoAuthModalPluginFct() {
-  let translationPath =
-    '../bower_components/ovh-angular-sso-auth-modal-plugin/dist/modal';
   let deferredObj;
-
-  /**
-   * @ngdoc function
-   * @name setTranslationsPath
-   * @methodOf ng-ovh-sso-auth-modal-plugin.ssoAuthModalPluginFct
-   * @description
-   * Set translation path
-   *
-   * @param {string} _translationPath translation path
-   */
-  this.setTranslationsPath = function setTranslationsPath(_translationPath) {
-    translationPath = _translationPath;
-  };
 
   this.$get = /* @ngInject */ function $get($injector) {
     return {
@@ -50,7 +35,6 @@ export default function ssoAuthModalPluginFct() {
               headers: ssoAuthentication.getHeaders(),
             },
             logoutUrl: ssoAuthentication.getLogoutUrl(),
-            translationPath,
           };
 
           if (ssoAuthentication.userId && !currentUserId) {
