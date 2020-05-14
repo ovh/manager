@@ -55,6 +55,7 @@ export default class HostingGeneralInformationsCtrl {
 
     this.goToDetachEmail = this.$scope.goToDetachEmail;
     this.isDetachEmailOptionAvailable =
+      this.$scope.emailOptionDetachInformation.length > 0 &&
       this.$scope.emailOptionDetachInformation[0].detachPlancodes.length > 0 &&
       this.$scope.pendingTasks.length === 0;
 
