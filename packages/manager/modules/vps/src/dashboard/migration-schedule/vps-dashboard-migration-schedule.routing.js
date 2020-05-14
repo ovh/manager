@@ -37,6 +37,7 @@ export default /* @ngInject */ ($stateProvider) => {
         }
         return promise;
       },
+      user: /* @ngInject */ (currentUser) => currentUser,
     },
   });
 };
