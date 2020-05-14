@@ -28,6 +28,7 @@ export default class {
     Alerter,
     Navigator,
     constants,
+    isEmailDomainAvailable,
     User,
     HostingDatabase,
     HostingDomain,
@@ -52,6 +53,7 @@ export default class {
     this.Alerter = Alerter;
     this.Navigator = Navigator;
     this.constants = constants;
+    this.isEmailDomainAvailable = isEmailDomainAvailable;
     this.User = User;
     this.HostingDatabase = HostingDatabase;
     this.HostingDomain = HostingDomain;
@@ -464,16 +466,17 @@ export default class {
           this.$scope.localSeoAvailable = true;
         }
 
-        this.tabMenu.items.push({
-          type: 'SEPARATOR',
-        });
-
-        if (!hosting.isCloudWeb) {
-          this.tabMenu.items.push({
-            label: this.$translate.instant('hosting_tab_menu_emails'),
-            target: `#/configuration/email-domain/${this.$stateParams.productId}?tab=MAILING_LIST`,
-            type: 'LINK',
-          });
+        if (!hosting.isCloudWeb && this.isEmailDomainAvailable) {
+          this.tabMenu.items.push([
+            {
+              type: 'SEPARATOR',
+            },
+            {
+              label: this.$translate.instant('hosting_tab_menu_emails'),
+              target: `#/configuration/email-domain/${this.$stateParams.productId}?tab=MAILING_LIST`,
+              type: 'LINK',
+            },
+          ]);
         }
       });
   }
