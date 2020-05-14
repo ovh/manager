@@ -14,130 +14,101 @@ yarn add @ovh-ux/manager-navbar
 import angular from 'angular';
 import ovhManagerNavbar from '@ovh-ux/manager-navbar';
 
-angular
-  .module('myApp', [
-    ovhManagerNavbar,
-  ]);
+angular.module('myApp', [ovhManagerNavbar]);
 ```
 
 ```html
 <ovh-manager-navbar></ovh-manager-navbar>
-````
+```
 
-## Options
+### Attributes
 
-### Lang
+#### lang-options
 
-Pass an object as `lang-options` to configure language menu
+Type: `object`
+
+Configure language menu.
 
 ```html
 <ovh-manager-navbar
-    data-lang-options="$ctrl.langOptions">
+    lang-options="$ctrl.langOptions">
 </ovh-manager-navbar>
 ```
 
-#### Exclude
+The supported langs are:
+- cs_CZ
+- de_DE
+- en_GB
+- es_ES
+- es_US
+- fi_FI
+- fr_CA
+- fr_FR
+- it_IT
+- lt_LT
+- pl_PL
+- pt_PT
 
-Add an `exclude` property which takes an array of langs that should be excluded
+If the given options aren't supported, an error will be thrown.
 
-```js
-{
-  exclude: ['fr_FR']
-}
-```
+When the lang is being changed, the event `lang.onChange` is emitted.
 
-Will exclude 'fr_FR' lang
+##### exclude
 
-#### Include
+Type: `string[]`
 
-Add an `include` property which takes an array of langs that should be excluded
+Array of langs that should be excluded.
 
-```js
-{
-  include: ['en_GB']
-}
-```
+##### include
 
-Will only include 'en_EN' lang
+Type: `string[]`
 
-#### Priorities
+Array of langs that should be included.
+Note: `exclude` property will override `include` property.
 
-`exclude` property will override `include` property
+#### navbar-options
 
-#### Supported langs
-
-The supported langs are
-
-* de_DE
-* en_GB
-* en_CA
-* en_US
-* en_AU
-* en_ASIA
-* en_SG
-* es_ES
-* fr_FR
-* fr_CA
-* it_IT
-* lt_LT
-* nl_NL
-* pl_PL
-* pt_PT
-* fi_FI
-* cs_CZ
-
-If the given options aren't supported, an error will be thrown
-
-#### Changing lang
-
-When the lang is being changed, the event `lang.onChange` is emitted
-
-### Other
-
-Other options will be passed through `navbar-options`
+Type: `object`
 
 ```html
 <ovh-manager-navbar
-    data-navbar-options="$ctrl.navbarOptions">
+    navbar-options="$ctrl.navbarOptions">
 </ovh-manager-navbar>
-````
-
-#### Toggle
-
-Allows to configure responsive toggler
-
-##### Event
-
-Listens to event to stop toggler loading
-
-```js
-{
-  toggle: {
-    event: 'sidebar:loaded'
-  }
-}
 ```
 
-#### universe
+##### toggle
 
-Indicate current universe
+Type: `object`
 
-```js
-{
-  universe: 'web'
-}
-```
+Allows to configure responsive toggler.
 
-#### fixed position
+###### event
 
-Indicate if fixed position should be applied to component
+Type: `string`
 
-```js
-{
-  fixed: true
-}
-```
+Listens to event to stop toggler loading.
 
+##### version
+
+Type: `string`\
+Values: `'beta'`\
+Default: `'default'`
+
+Specify universes version to display, if not passed will display default.
+
+##### universe
+
+Type: `string`\
+Values: `'hub'`, `'web'`, `'server'`, `'public-cloud'`, `'telecom'`
+
+Indicate current universe.
+
+##### fixed
+
+Type: `boolean`\
+Default: `false`
+
+Indicate if fixed position should be applied to component.
 
 ## Build
 

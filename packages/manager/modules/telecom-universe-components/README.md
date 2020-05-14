@@ -21,10 +21,7 @@ yarn add @ovh-ux/ng-ovh-telecom-universe-components
 import angular from 'angular';
 import ngOvhTelecomUniverseComponents from '@ovh-ux/ng-ovh-telecom-universe-components';
 
-angular
-  .module('myApp', [
-    ngOvhTelecomUniverseComponents,
-  ]);
+angular.module('myApp', [ngOvhTelecomUniverseComponents]);
 ```
 
 ## Test

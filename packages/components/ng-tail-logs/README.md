@@ -18,14 +18,15 @@ $ yarn add @ovh-ux/ng-tail-logs
 import angular from 'angular';
 import ngTailLogs from '@ovh-ux/ng-tail-logs';
 
-angular
-  .module('myApp', [ngTailLogs])
-  .controller('MyCtrl', /* @ngInject */ ($q, TailLogs) => {
+angular.module('myApp', [ngTailLogs]).controller(
+  'MyCtrl',
+  /* @ngInject */ ($q, TailLogs) => {
     this.logger = new TailLogs({
       source: () => $q.when('http://my-log-url'),
       delay: 2000,
     });
-  });
+  },
+);
 ```
 
 ```html

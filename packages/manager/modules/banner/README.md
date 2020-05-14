@@ -14,10 +14,7 @@ yarn add @ovh-ux/manager-banner
 import angular from 'angular';
 import ovhManagerBanner from '@ovh-ux/manager-banner';
 
-angular
-  .module('myApp', [
-    ovhManagerBanner,
-  ]);
+angular.module('myApp', [ovhManagerBanner]);
 ```
 
 ```html

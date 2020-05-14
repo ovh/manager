@@ -12,10 +12,7 @@ yarn add @ovh-ux/manager-enterprise-cloud-database
 import 'angular';
 import managerEnterpriseCloudDatabase from '@ovh-ux/manager-enterprise-cloud-database';
 
-angular
-  .module('myApp', [
-    managerEnterpriseCloudDatabase,
-  ]);
+angular.module('myApp', [managerEnterpriseCloudDatabase]);
 ```
 
 ## Build

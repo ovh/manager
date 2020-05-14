@@ -14,10 +14,7 @@ yarn add @ovh-ux/manager-sms
 import angular from 'angular';
 import ovhManagerSms from '@ovh-ux/manager-sms';
 
-angular
-  .module('myApp', [
-    ovhManagerSms,
-  ]);
+angular.module('myApp', [ovhManagerSms]);
 ```
 
 ## Build

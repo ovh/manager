@@ -14,10 +14,7 @@ yarn add @ovh-ux/manager-telecom-dashboard
 import angular from 'angular';
 import ovhManagerTelecomDashboard from '@ovh-ux/manager-telecom-dashboard';
 
-angular
-  .module('myApp', [
-    ovhManagerTelecomDashboard,
-  ]);
+angular.module('myApp', [ovhManagerTelecomDashboard]);
 ```
 
 ## Documentation

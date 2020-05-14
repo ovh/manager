@@ -14,10 +14,7 @@ yarn add @ovh-ux/sign-up
 import angular from 'angular';
 import ovhSignUp from '@ovh-ux/sign-up';
 
-angular
-  .module('myApp', [
-    ovhSignUp,
-  ]);
+angular.module('myApp', [ovhSignUp]);
 ```
 
 ## Build

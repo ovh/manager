@@ -33,7 +33,10 @@ or
 ```js
 const { Codename } = require('@ovh-ux/codename-generator');
 
-const mySample = [['A', 'B', 'C'], ['X', 'Y', 'Z']];
+const mySample = [
+  ['A', 'B', 'C'],
+  ['X', 'Y', 'Z'],
+];
 const codename = new Codename(mySample, 'B4cKT0T43FUtUR3');
 codename.encode('1985-10-26');
 // => B Z

@@ -17,11 +17,7 @@ import angular from 'angular';
 import ngUiRouterLineProgress from '@ovh-ux/ng-ui-router-line-progress';
 import uiRouter from '@uirouter/angularjs';
 
-angular
-  .module('myApp', [
-    ngUiRouterLineProgress,
-    uiRouter,
-  ]);
+angular.module('myApp', [ngUiRouterLineProgress, uiRouter]);
 ```
 
 ## Test

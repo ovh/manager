@@ -13,11 +13,7 @@ yarn add @ovh-ux/manager-sharepoint
 ```js
 import sharepoint from '@ovh-ux/manager-sharepoint';
 
-angular.module('App', [
-  '…',
-  sharepoint,
-  '…',
-])
+angular.module('App', ['…', sharepoint, '…']);
 ```
 
 

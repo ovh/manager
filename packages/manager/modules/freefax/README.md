@@ -14,10 +14,7 @@ yarn add @ovh-ux/manager-freefax
 import angular from 'angular';
 import ovhManagerFreefax from '@ovh-ux/manager-freefax';
 
-angular
-  .module('myApp', [
-    ovhManagerFreefax,
-  ]);
+angular.module('myApp', [ovhManagerFreefax]);
 ```
 
 ## Build

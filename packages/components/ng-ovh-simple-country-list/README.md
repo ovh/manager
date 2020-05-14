@@ -16,9 +16,9 @@ $ yarn add @ovh-ux/ng-ovh-simple-country-list
 import angular from 'angular';
 import ngOvhSimpleCountryList from '@ovh-ux/ng-ovh-simple-country-list';
 
-angular
-  .module('myApp', [ngOvhSimpleCountryList])
-  .controller('myController', /* @ngInject */ (OvhSimpleCountryList) => {
+angular.module('myApp', [ngOvhSimpleCountryList]).controller(
+  'myController',
+  /* @ngInject */ (OvhSimpleCountryList) => {
     // Set the desired language (default is iso/en).
     OvhSimpleCountryList.setLanguage('en_GB');
 
@@ -36,7 +36,8 @@ angular
 
     console.log(OvhSimpleCountryList.asObject);
     //= > {'AD': 'ANDORRA', 'AE': 'UNITED ARAB EMIRATES', ... }
-  });
+  },
+);
 ```
 
 ## Test

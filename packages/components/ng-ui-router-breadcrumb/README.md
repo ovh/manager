@@ -18,23 +18,19 @@ import angular from 'angular';
 import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
 import uiRouter from '@uirouter/angularjs';
 
-angular
-  .module('myApp', [
-    ngUiRouterBreadcrumb,
-    uiRouter,
-  ])
-  .config(/* @ngInject */ ($stateProvider) => {
-    $stateProvider
-      .state('foo', {
-        url: '/foo',
-        template: '<h2>Foo</h2>',
-        resolve: {
-          breadcrumb: function () {
-            return 'foo';
-          }
-        }
-      });
-  });
+angular.module('myApp', [ngUiRouterBreadcrumb, uiRouter]).config(
+  /* @ngInject */ ($stateProvider) => {
+    $stateProvider.state('foo', {
+      url: '/foo',
+      template: '<h2>Foo</h2>',
+      resolve: {
+        breadcrumb() {
+          return 'foo';
+        },
+      },
+    });
+  },
+);
 ```
 
 ### `hideBreadcrumb` resolve
@@ -46,26 +42,22 @@ import angular from 'angular';
 import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
 import uiRouter from '@uirouter/angularjs';
 
-angular
-  .module('myApp', [
-    ngUiRouterBreadcrumb,
-    uiRouter,
-  ])
-  .config(/* @ngInject */ ($stateProvider) => {
-    $stateProvider
-      .state('foo', {
-        url: '/foo',
-        template: '<h2>Foo</h2>',
-        resolve: {
-          breadcrumb: function () {
-            return 'foo';
-          },
-          hideBreadcrumb: function() {
-            return true
-          } 
-        }
-      });
-  });
+angular.module('myApp', [ngUiRouterBreadcrumb, uiRouter]).config(
+  /* @ngInject */ ($stateProvider) => {
+    $stateProvider.state('foo', {
+      url: '/foo',
+      template: '<h2>Foo</h2>',
+      resolve: {
+        breadcrumb() {
+          return 'foo';
+        },
+        hideBreadcrumb() {
+          return true;
+        },
+      },
+    });
+  },
+);
 ```
 
 ## Test

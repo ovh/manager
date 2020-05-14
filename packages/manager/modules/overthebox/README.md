@@ -14,10 +14,7 @@ yarn add @ovh-ux/manager-overthebox
 import angular from 'angular';
 import ovhManagerOverthebox from '@ovh-ux/manager-overthebox';
 
-angular
-  .module('myApp', [
-    ovhManagerOverthebox,
-  ]);
+angular.module('myApp', [ovhManagerOverthebox]);
 ```
 
 ## Build

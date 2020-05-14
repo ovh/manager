@@ -17,15 +17,13 @@ import angular from 'angular';
 import ngOvhPaymentMethod from '@ovh-ux/ng-ovh-payment-method';
 
 // add the `ngOvhPaymentMethod` module as dependency of your AngularJS project.
-angular
-  .module('myApp', [
-    ngOvhPaymentMethod,
-  ])
-  .config(/* @ngInject */(ovhPaymentMethodProvider) => {
+angular.module('myApp', [ngOvhPaymentMethod]).config(
+  /* @ngInject */ (ovhPaymentMethodProvider) => {
     // Set the url of payment method list page, where the user
     // should be redirected when he has no default payment method.
     ovhPaymentMethodProvider.setPaymentMethodPageUrl(constants.target);
-  });
+  },
+);
 ```
 
 ## Test

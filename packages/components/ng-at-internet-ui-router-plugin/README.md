@@ -37,9 +37,12 @@ Please see at-internet documentation:
 Configuring the provider:
 
 ```js
-app.config(['atInternetUiRouterPluginProvider', function (provider) {
-  provider.setTrackStateChange(true);
-}]);
+app.config([
+  'atInternetUiRouterPluginProvider',
+  function(provider) {
+    provider.setTrackStateChange(true);
+  },
+]);
 ```
 
 That's it, now every state change will send a page tracking data to ATInternet.
@@ -69,11 +72,14 @@ $stateProvider.state('your-state', {
 If you want, you can apply some filters on the states name, for example :
 
 ```js
-app.config(/* @ngInject */ (atInternetUiRouterPluginProvider) => {
-  // replace all occurrences of "foo" by "bar" in states name
-  atInternetUiRouterPluginProvider
-    .addStateNameFilter((stateName) => stateName.replace(/foo/g, 'bar'));
-});
+app.config(
+  /* @ngInject */ (atInternetUiRouterPluginProvider) => {
+    // replace all occurrences of "foo" by "bar" in states name
+    atInternetUiRouterPluginProvider.addStateNameFilter((stateName) =>
+      stateName.replace(/foo/g, 'bar'),
+    );
+  },
+);
 ```
 
 ## Test
