@@ -6,6 +6,8 @@ import optin from './optin/index';
 import webhosting from './webhosting';
 import zoneActivation from './general-informations/activateZone/activate.module';
 
+import dnsZone from '../dns-zone';
+
 import routing from './domain.routing';
 
 const moduleName = 'ovhManagerWebDomainModule';
@@ -13,6 +15,7 @@ const moduleName = 'ovhManagerWebDomainModule';
 angular
   .module(moduleName, [
     anycast,
+    dnsZone,
     emailObfuscation,
     optin,
     webhosting,
