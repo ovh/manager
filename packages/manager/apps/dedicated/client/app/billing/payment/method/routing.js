@@ -66,6 +66,8 @@ export default /* @ngInject */ (
           });
         }
       },
+
+      user: /* @ngInject */ (User) => User.getUser(),
     },
   });
 
