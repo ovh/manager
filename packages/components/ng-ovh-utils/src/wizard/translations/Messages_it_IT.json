@@ -1,8 +1,8 @@
 {
   "ua_wizard_cancel": "Annulla",
   "ua_wizard_confirm": "Conferma",
-  "ua_wizard_next": "Seguente",
-  "ua_wizard_previous": "Precedente",
+  "ua_wizard_next": "Continua",
+  "ua_wizard_previous": "Indietro",
   "ua_wizard_close": "Chiudi",
   "ua_wizard_breadcrumb": "Step {{ currentStep }} di {{ stepCount }}",
   "ua_wizard_help": "Aiuto"

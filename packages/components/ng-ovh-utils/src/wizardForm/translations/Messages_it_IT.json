@@ -1,1 +1,4 @@
-{ "ua_wizard_cancel": "Annulla", "ua_wizard_confirm": "Conferma" }
+{
+  "ua_wizard_cancel": "Annulla",
+  "ua_wizard_confirm": "Conferma"
+}
