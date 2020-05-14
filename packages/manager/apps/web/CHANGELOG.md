@@ -1,3 +1,12 @@
+## [14.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@14.3.0...@ovh-ux/manager-web@14.3.1) (2020-05-14)
+
+
+### Bug Fixes
+
+* **web:** secure test for email option detachable ([#2934](https://github.com/ovh/manager/issues/2934)) ([1c690d0](https://github.com/ovh/manager/commit/1c690d008b7b764db3df23ac703b6e55857c98b3))
+
+
+
 # [14.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@14.2.0...@ovh-ux/manager-web@14.3.0) (2020-05-13)
 
 
