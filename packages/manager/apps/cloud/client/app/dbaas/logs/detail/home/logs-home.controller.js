@@ -43,7 +43,9 @@ class LogsHomeCtrl {
             if (service.state === this.LogsConstants.SERVICE_STATE_TO_CONFIG) {
               this.goToAccountSetupPage();
             } else {
-              this.dataUsageGraphData = this.LogsConstants.DATA_USAGE_GRAPH_CONFIGURATION;
+              this.streamUsageGraphData = this.newChart('stream-axis');
+              this.archiveUsageGraphData = this.newChart('archive-axis');
+              this.indiceUsageGraphData = this.newChart('indice-axis');
               this.runLoaders().then(() => this.prepareDataUsageGraphData());
             }
             return service;
@@ -51,6 +53,36 @@ class LogsHomeCtrl {
         ),
     });
     this.service.load();
+  }
+
+  /**
+   * instanciate a new chart with default settings
+   *
+   * @memberof LogsHomeCtrl
+   */
+  newChart(yAxis) {
+    return {
+      options: {
+        tooltips: this.LogsConstants.CHART_SETTINGS.TOOLTIPS,
+        hover: this.LogsConstants.CHART_SETTINGS.HOVER,
+        scales: {
+          xAxes: [
+            {
+              ticks: {
+                maxTicksLimit: this.LogsConstants.CHART_SETTINGS
+                  .MAX_TICKS_LIMIT,
+              },
+            },
+          ],
+          yAxes: [
+            {
+              id: yAxis,
+            },
+          ],
+        },
+      },
+      colors: this.LogsConstants.CHART_SETTINGS.COLORS,
+    };
   }
 
   goToAccountSetupPage() {
@@ -77,65 +109,59 @@ class LogsHomeCtrl {
   }
 
   /**
-   * Prepares the data usage graph
+   * Prepares the three data usage graph
    *
    * @memberof LogsHomeCtrl
    */
   prepareDataUsageGraphData() {
-    const offerLimit =
-      this.account.data.offer.esStorage *
-      this.LogsConstants.OFFER_STORAGE_MULTIPLIER;
-    const maxDataReceived = max(this.storageData.data.usageData[0]);
-    this.dataUsageGraphData.labels = this.storageData.data.timestamps.map(
-      (timestamp) => moment(timestamp).format('DD MMM'),
+    this.prepareUsageGraphData(
+      this.streamUsageGraphData,
+      this.streamData,
+      'logs_home_data_stream',
     );
-    this.dataUsageGraphData.data = this.storageData.data.usageData;
-    this.dataUsageGraphData.series = [
-      this.$translate.instant('logs_home_data_received'),
-      this.$translate.instant('logs_home_number_of_documents'),
-    ];
-    if (offerLimit <= maxDataReceived * 1.5) {
-      this.dataUsageGraphData.data.push(
-        this.storageData.data.timestamps.map(() => offerLimit),
-      );
-      this.dataUsageGraphData.series.push(
-        this.$translate.instant('logs_home_offer_limit'),
-      );
-    }
-    this.dataUsageGraphData.options.scales.yAxes[0].ticks = {
+    this.prepareUsageGraphData(
+      this.archiveUsageGraphData,
+      this.archiveData,
+      'logs_home_data_archive',
+    );
+    this.prepareUsageGraphData(
+      this.indiceUsageGraphData,
+      this.indiceData,
+      'logs_home_data_index',
+    );
+  }
+
+  /**
+   * Prepares the data usage graph in detail
+   *
+   * @memberof LogsHomeCtrl
+   */
+  prepareUsageGraphData(chart, srcData, label) {
+    const updatedChart = chart;
+    updatedChart.labels = srcData.data.timestamps.map((timestamp) =>
+      moment(timestamp).format('DD MMM YY'),
+    );
+    updatedChart.data = srcData.data.usageData;
+    updatedChart.series = [this.$translate.instant(label)];
+    updatedChart.options.scales.yAxes[0].ticks = {
       suggestedMin: 0,
-      suggestedMax: maxDataReceived * 1.3 || 5,
+      suggestedMax: max(chart.data[0]) * 1.3 || 5,
       callback: (value) =>
         value % 1 === 0 ? this.bytesFilter(value, 2, true) : '',
     };
-    this.dataUsageGraphData.options.scales.yAxes[1].ticks = {
-      suggestedMin: 0,
-      suggestedMax: max(this.dataUsageGraphData.data[1]) * 1.3 || 5,
-      callback: (value) => (value % 1 === 0 ? value : ''),
-    };
-
-    this.dataUsageGraphData.options.tooltips.callbacks = {
+    updatedChart.options.tooltips.callbacks = {
       label: (tooltipItem, data) => {
         if (tooltipItem.datasetIndex > 1) {
           return '';
         }
-        let label = data.datasets[tooltipItem.datasetIndex].label || '';
-        if (label) {
-          label += ': ';
+        let newLabel = data.datasets[tooltipItem.datasetIndex].label || '';
+        if (newLabel) {
+          newLabel += ': ';
         }
-        label +=
-          tooltipItem.datasetIndex === 0
-            ? this.bytesFilter(tooltipItem.yLabel, 2, true)
-            : this.LogsHomeService.constructor.humanizeNumber(
-                tooltipItem.yLabel,
-              );
-        return label;
+        newLabel += this.bytesFilter(tooltipItem.yLabel, 2, true);
+        return newLabel;
       },
     };
-  }
-
-  editCappedPlan() {
-    return this.gotoState('dbaas.logs.detail.home.capped');
   }
 
   changeName() {
@@ -148,20 +174,6 @@ class LogsHomeCtrl {
 
   goToAllDashboards() {
     return this.gotoState('dbaas.logs.detail.dashboards');
-  }
-
-  goToChangeOffer() {
-    return this.gotoState('dbaas.logs.detail.offer');
-  }
-
-  /**
-   * takes to options UI page if account is pro else shows offer upgrade required modal
-   */
-  goToOptionsPage() {
-    if (this.LogsHelperService.isBasicOffer(this.account.data)) {
-      return this.LogsHelperService.showOfferUpgradeModal(this.serviceName);
-    }
-    return this.gotoState('dbaas.logs.detail.options');
   }
 
   /**
@@ -201,9 +213,6 @@ class LogsHomeCtrl {
     this.account = this.CucControllerHelper.request.getHashLoader({
       loaderFunction: () => this.LogsHomeService.getAccount(this.serviceName),
     });
-    this.options = this.CucControllerHelper.request.getArrayLoader({
-      loaderFunction: () => this.LogsHomeService.getOptions(this.serviceName),
-    });
     this.serviceInfos = this.CucControllerHelper.request.getHashLoader({
       loaderFunction: () =>
         this.LogsHomeService.getServiceInfos(this.serviceName),
@@ -217,13 +226,26 @@ class LogsHomeCtrl {
         loaderFunction: () =>
           this.LogsTokensService.getDefaultCluster(this.serviceName),
       });
-      this.storageData = this.CucControllerHelper.request.getHashLoader({
+      this.streamData = this.CucControllerHelper.request.getHashLoader({
         loaderFunction: () =>
-          this.LogsHomeService.getDataUsage(this.serviceName),
+          this.LogsHomeService.getDataUsage(
+            this.serviceName,
+            this.LogsConstants.DATA_STORAGE.METRICS.STREAM_SIZE,
+          ),
       });
-      this.coldStorage = this.CucControllerHelper.request.getHashLoader({
+      this.archiveData = this.CucControllerHelper.request.getHashLoader({
         loaderFunction: () =>
-          this.LogsHomeService.getColdstorage(this.serviceName),
+          this.LogsHomeService.getDataUsage(
+            this.serviceName,
+            this.LogsConstants.DATA_STORAGE.METRICS.COLD_STORAGE_TOTAL,
+          ),
+      });
+      this.indiceData = this.CucControllerHelper.request.getHashLoader({
+        loaderFunction: () =>
+          this.LogsHomeService.getDataUsage(
+            this.serviceName,
+            this.LogsConstants.DATA_STORAGE.METRICS.INDEX_SIZE,
+          ),
       });
     }
   }
@@ -256,13 +278,13 @@ class LogsHomeCtrl {
     const loaderPromises = [];
     loaderPromises.push(this.accountDetails.load());
     loaderPromises.push(this.account.load());
-    loaderPromises.push(this.options.load());
     loaderPromises.push(this.serviceInfos.load());
     if (!this.isAccountDisabled) {
       loaderPromises.push(this.tokenIds.load());
       loaderPromises.push(this.defaultCluster.load());
-      loaderPromises.push(this.storageData.load());
-      loaderPromises.push(this.coldStorage.load());
+      loaderPromises.push(this.streamData.load());
+      loaderPromises.push(this.archiveData.load());
+      loaderPromises.push(this.indiceData.load());
     }
     return this.$q.all(loaderPromises);
   }

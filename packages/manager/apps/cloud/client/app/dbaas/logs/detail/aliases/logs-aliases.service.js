@@ -253,7 +253,6 @@ class LogsAliasesService {
       { serviceName, aliasId: alias.aliasId },
       {
         description: alias.description,
-        optionId: alias.optionId ? alias.optionId : undefined,
       },
     )
       .$promise.then((operation) => {

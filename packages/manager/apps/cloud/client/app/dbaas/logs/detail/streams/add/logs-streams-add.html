@@ -48,46 +48,8 @@
             >
             </textarea>
         </oui-field>
-
-        <oui-field
-            label="{{:: 'logs_select_options_title' | translate }}"
-            size="xl"
-        >
-            <div class="oui-select">
-                <select
-                    class="oui-select__input"
-                    name="stream_option"
-                    id="stream_option"
-                    data-ng-model="ctrl.stream.data.optionId"
-                    data-ng-options="option.optionId as option.type+', '+option.detail+' - '+option.curNbStream+'/'+option.maxNbStream for option in ctrl.options.data"
-                >
-                    <option value=""
-                        >{{:: 'logs_main_offer' | translate}} -
-                        {{ctrl.mainOffer.data.current}}/{{ctrl.mainOffer.data.max}}</option
-                    >
-                </select>
-                <i
-                    class="oui-icon oui-icon-chevron-down"
-                    aria-hidden="true"
-                ></i>
-            </div>
-        </oui-field>
-
         <oui-field>
             <oui-checkbox
-                data-disabled="ctrl.mainOffer.data.planCode === ctrl.LogsConstants.basicOffer"
-                id="stream_enable_indexing"
-                name="stream_enable_indexing"
-                data-text="{{:: 'logs_streams_enable_indexing' | translate}}"
-                data-description="{{:: 'logs_streams_enable_indexing_description' | translate}}"
-                data-model="ctrl.stream.data.indexingEnabled"
-            >
-            </oui-checkbox>
-        </oui-field>
-
-        <oui-field>
-            <oui-checkbox
-                data-disabled="ctrl.mainOffer.data.planCode === ctrl.LogsConstants.basicOffer"
                 id="stream_enable_websocket"
                 name="stream_enable_websocket"
                 data-text="{{:: 'logs_streams_enable_websocket' | translate}}"
@@ -96,20 +58,78 @@
             >
             </oui-checkbox>
         </oui-field>
+        <oui-field>
+            <oui-checkbox
+                id="stream_enable_indexing"
+                name="stream_enable_indexing"
+                data-text="{{:: 'logs_streams_enable_indexing' | translate}}"
+                data-description="{{ ctrl.getIndexingPrices() }}"
+                data-model="ctrl.stream.data.indexingEnabled"
+            >
+            </oui-checkbox>
+        </oui-field>
+        <div data-ng-if="ctrl.stream.data.indexingEnabled">
+            <oui-field
+                label="{{:: 'logs_streams_select_indexing_retention' | translate }}"
+                size="xl"
+                data-ng-if="!ctrl.isEdit"
+            >
+                <div class="oui-select">
+                    <select
+                        class="oui-select__input"
+                        name="stream_indexing_retention"
+                        id="stream_indexing_retention"
+                        data-ng-model="ctrl.stream.data.retentionId"
+                        data-ng-options="retention.retentionId as retention.label for retention in ctrl.availableRetentions"
+                        required
+                    >
+                    </select>
+                    <i
+                        class="oui-icon oui-icon-chevron-down"
+                        aria-hidden="true"
+                    ></i>
+                </div>
+            </oui-field>
+            <oui-field
+                data-label="{{ ::'logs_streams_indexing_max_size' | translate }}"
+                size="xl"
+                help-text="{{ ctrl.getIndexingMaxSizeText() }}"
+            >
+                <oui-numeric
+                    id="stream_indexing_max_size"
+                    name="stream_indexing_max_size"
+                    data-model="ctrl.stream.data.indexingMaxSize"
+                >
+                </oui-numeric>
+            </oui-field>
+            <div data-ng-if="ctrl.stream.data.indexingMaxSize>=1">
+                <oui-field
+                    label="{{:: 'logs_streams_notification_title' | translate }}"
+                >
+                    <oui-checkbox
+                        name="stream_alert_notification"
+                        id="stream_alert_notification"
+                        data-model="ctrl.stream.data.indexingNotifyEnabled"
+                        data-text="{{ ctrl.getIndexingNotificationText() }}"
+                    >
+                    </oui-checkbox>
+                </oui-field>
+                <oui-field
+                    label="{{:: 'logs_streams_pause_indexing_title' | translate }}"
+                >
+                    <oui-checkbox
+                        name="stream_pause_indexing"
+                        id="stream_pause_indexing"
+                        data-model="ctrl.stream.data.pauseIndexingOnMaxSize"
+                        data-text="{{ ctrl.getIndexingPauseText() }}"
+                    >
+                    </oui-checkbox>
+                </oui-field>
+            </div>
+        </div>
 
         <oui-field>
             <oui-checkbox
-                data-ng-if="ctrl.mainOffer.data.planCode === ctrl.LogsConstants.basicOffer"
-                id="stream_enable_compression"
-                name="stream_enable_compression"
-                data-text="{{:: 'logs_streams_enable_archieve' | translate}}"
-                data-description="{{:: 'logs_streams_storage_basic_offer' | translate }}"
-                data-model="ctrl.stream.data.coldStorageEnabled"
-                data-disabled
-            >
-            </oui-checkbox>
-            <oui-checkbox
-                data-ng-if="ctrl.mainOffer.data.planCode !== ctrl.LogsConstants.basicOffer"
                 id="stream_enable_compression"
                 name="stream_enable_compression"
                 data-text="{{:: 'logs_streams_enable_archieve' | translate}}"

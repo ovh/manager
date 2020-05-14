@@ -1,43 +1,24 @@
-import isEmpty from 'lodash/isEmpty';
 import set from 'lodash/set';
 
 class LogsHomeService {
   constructor(
     $http,
-    $q,
-    $translate,
     LogsHelperService,
     LogsConstants,
-    LogsOptionsService,
     OvhApiDbaas,
     CucServiceHelper,
     SidebarMenu,
   ) {
     this.$http = $http;
-    this.$q = $q;
-    this.$translate = $translate;
     this.AccountingAapiService = OvhApiDbaas.Logs()
       .Accounting()
       .Aapi();
-    this.ContactsApiLexiService = OvhApiDbaas.Logs()
-      .Contacts()
-      .v6();
     this.DetailsAapiService = OvhApiDbaas.Logs()
       .Details()
       .Aapi();
-    this.InputsApiAapiService = OvhApiDbaas.Logs()
-      .Input()
-      .Aapi();
-    this.InputsApiLexiService = OvhApiDbaas.Logs()
-      .Input()
-      .v6();
     this.LogsLexiService = OvhApiDbaas.Logs().v6();
     this.LogsHelperService = LogsHelperService;
     this.LogsConstants = LogsConstants;
-    this.LogsOptionsService = LogsOptionsService;
-    this.OperationApiService = OvhApiDbaas.Logs()
-      .Operation()
-      .v6();
     this.CucServiceHelper = CucServiceHelper;
     this.SidebarMenu = SidebarMenu;
   }
@@ -51,7 +32,7 @@ class LogsHomeService {
    */
   getAccount(serviceName) {
     return this.AccountingAapiService.me({ serviceName })
-      .$promise.then((account) => this.transformAccount(account))
+      .$promise.then((account) => account)
       .catch(this.CucServiceHelper.errorHandler('logs_home_account_get_error'));
   }
 
@@ -75,26 +56,13 @@ class LogsHomeService {
   }
 
   /**
-   * Gets the current offer object
-   *
-   * @param {any} serviceName
-   * @returns promise which will resolve to the current offer object
-   * @memberof LogsHomeService
-   */
-  getCurrentOffer(serviceName) {
-    return this.LogsOfferService.getOffer(serviceName).then((offer) =>
-      this.transformOffer(offer),
-    );
-  }
-
-  /**
    * Gets the data usage statistics data (number of documents and data received)
    *
    * @param {any} serviceName
    * @returns promise which will resolve with the statistics data
    * @memberof LogsHomeService
    */
-  getDataUsage(serviceName) {
+  getDataUsage(serviceName, metricName) {
     return this.getAccountDetails(serviceName)
       .then((accountDetails) => {
         this.createdAt = accountDetails.service.createdAt;
@@ -114,14 +82,7 @@ class LogsHomeService {
           ),
           queries: [
             {
-              metric: this.LogsConstants.DATA_STORAGE.METRICS.SUM,
-              aggregator: this.LogsConstants.DATA_STORAGE.AGGREGATORS.ZIMSUM,
-              downsample: this.LogsConstants.DATA_STORAGE.DOWNSAMPLING_MODE[
-                '24H_MAX'
-              ],
-            },
-            {
-              metric: this.LogsConstants.DATA_STORAGE.METRICS.COUNT,
+              metric: metricName,
               aggregator: this.LogsConstants.DATA_STORAGE.AGGREGATORS.ZIMSUM,
               downsample: this.LogsConstants.DATA_STORAGE.DOWNSAMPLING_MODE[
                 '24H_MAX'
@@ -155,50 +116,6 @@ class LogsHomeService {
   }
 
   /**
-   * Gets the cold storage data volume
-   *
-   * @param {any} serviceName
-   * @returns promise which will resolve with the data volume
-   * @memberof LogsHomeService
-   */
-  getColdstorage(serviceName) {
-    return this.getAccount(serviceName).then((account) => {
-      const token = btoa(account.metrics.token);
-      return this.$http({
-        method: 'GET',
-        url: `${account.metrics.host}/api/query/last`,
-        params: {
-          timeseries: this.LogsConstants.DATA_STORAGE.METRICS
-            .COLD_STORAGE_TOTAL,
-        },
-        headers: {
-          Authorization: `Basic ${token}`,
-        },
-        preventLogout: true,
-      }).then((data) => ({
-        coldStorage:
-          data.data.length > 0 ? Math.floor(data.data[0].value) : undefined,
-      }));
-    });
-  }
-
-  /**
-   * Gets the currently subscribed options
-   *
-   * @param {any} serviceName
-   * @returns promise which will resolve to the array of subscribed options
-   * @memberof LogsHomeService
-   */
-  getOptions(serviceName) {
-    return this.LogsOptionsService.getSubscribedOptionsMap(serviceName).then(
-      (options) => {
-        options.forEach((option) => this.constructor.transformOption(option));
-        return options;
-      },
-    );
-  }
-
-  /**
    * Gets the service info
    *
    * @param {any} serviceName
@@ -210,30 +127,6 @@ class LogsHomeService {
       this.CucServiceHelper.errorHandler('logs_home_service_info_get_error'),
     );
   }
-
-  /**
-   * Converts the number to a more readable formhttps://sharepoint.corp.ovh.com/my/personal/gio-94fbba0f2de44122/_layouts/15/WopiFrame.aspx?sourcedoc={935AFCC0-72B9-4B54-AAC4-135A9AE8415D}&file=UX%20Projects%20-%20W12-13.pptx&action=default
-   *
-   * @param {any} number
-   * @returns the number in more readable form
-   * @memberof LogsHomeService
-   */
-  /* eslint-disable no-restricted-properties */
-  static humanizeNumber(number) {
-    if (number < 1000) {
-      return Math.round(number * 100) / 100;
-    }
-    const si = ['K', 'M', 'G', 'T', 'P', 'H'];
-    const exp = Math.floor(Math.log(number) / Math.log(1000));
-    let result = number / Math.pow(1000, exp);
-    result =
-      result % 1 > 1 / Math.pow(1000, exp - 1)
-        ? Math.round(result.toFixed(2) * 100) / 100
-        : result.toFixed(0);
-    const unit = si[exp - 1];
-    return `${result} ${unit}`;
-  }
-  /* eslint-enable no-restricted-properties */
 
   /**
    * Updates the current display name information
@@ -248,7 +141,6 @@ class LogsHomeService {
       { serviceName },
       {
         displayName: service.displayName,
-        isCapped: service.isCapped,
       },
     )
       .$promise.then((operation) => {
@@ -266,40 +158,6 @@ class LogsHomeService {
       .catch((err) =>
         this.LogsHelperService.handleError(
           'logs_home_display_name_update_error',
-          err,
-          {},
-        ),
-      );
-  }
-
-  /**
-   * Updates the current capped plan settings
-   *
-   * @param {any} serviceName
-   * @param {service} service
-   * @returns promise which will resolve or reject once the operation is complete
-   * @memberof LogsHomeService
-   */
-  updateCappedPlan(serviceName, service) {
-    return this.LogsLexiService.update(
-      { serviceName },
-      {
-        displayName: service.displayName,
-        isCapped: service.isCapped,
-      },
-    )
-      .$promise.then((operation) => {
-        this.resetAllCache();
-        return this.LogsHelperService.handleOperation(
-          serviceName,
-          operation.data || operation,
-          'logs_home_capped_update_success',
-          {},
-        );
-      })
-      .catch((err) =>
-        this.LogsHelperService.handleError(
-          'logs_home_capped_update_error',
           err,
           {},
         ),
@@ -413,32 +271,6 @@ class LogsHomeService {
   resetAllCache() {
     this.DetailsAapiService.resetAllCache();
     this.LogsLexiService.resetAllCache();
-  }
-
-  /**
-   * Returns the transformed account object
-   *
-   * @param {any} account
-   * @returns the transformed account object
-   * @memberof LogsHomeService
-   */
-  transformAccount(account) {
-    if (isEmpty(account.offer)) {
-      set(account, 'offer.description', '');
-    } else if (account.offer.reference === this.LogsConstants.basicOffer) {
-      set(account, 'offer.description', this.LogsConstants.offertypes.BASIC);
-    } else if (account.offer.reference === this.LogsConstants.ldpOffer) {
-      set(account, 'offer.description', this.LogsConstants.offertypes.ACCOUNT);
-    } else {
-      const dataVolume = this.$translate.instant('logs_home_data_volume');
-      const dataVolumeValue = this.$translate.instant(account.offer.reference);
-      set(
-        account,
-        'offer.description',
-        `${this.LogsConstants.offertypes.PRO} - ${dataVolume}: ${dataVolumeValue}`,
-      );
-    }
-    return account;
   }
 
   /**

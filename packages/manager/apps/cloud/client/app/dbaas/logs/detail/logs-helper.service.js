@@ -3,7 +3,6 @@ import get from 'lodash/get';
 class LogsHelperService {
   constructor(
     $translate,
-    $state,
     OvhApiDbaas,
     CucServiceHelper,
     CucCloudPoll,
@@ -13,7 +12,6 @@ class LogsHelperService {
     URLS,
   ) {
     this.$translate = $translate;
-    this.$state = $state;
     this.CucServiceHelper = CucServiceHelper;
     this.CucCloudPoll = CucCloudPoll;
     this.CucControllerModalHelper = CucControllerModalHelper;
@@ -99,24 +97,6 @@ class LogsHelperService {
   }
 
   /**
-   * shows offer upgrade required info modal
-   * @param {string} serviceName
-   */
-  showOfferUpgradeModal(serviceName) {
-    return this.CucControllerModalHelper.showInfoModal({
-      titleText: this.$translate.instant(
-        'options_upgradequotalink_increase_quota_title',
-      ),
-      text: this.$translate.instant(
-        'options_upgradequotalink_increase_quota_message',
-      ),
-      okButtonText: this.$translate.instant(
-        'options_upgradequotalink_increase_quota_upgrade',
-      ),
-    }).then(() => this.$state.go('dbaas.logs.detail.offer', { serviceName }));
-  }
-
-  /**
    * creates guide menu object having LDP and OVH guide links
    */
   initGuides() {
@@ -138,14 +118,6 @@ class LogsHelperService {
 
   getGuides() {
     return this.guides;
-  }
-
-  /**
-   * return true if account is of type basic, false otherwise
-   * @param {accountDetails} account
-   */
-  isBasicOffer(account) {
-    return !account.offer.reference.startsWith(this.LogsConstants.LOGS_PRO);
   }
 
   isAccountDisabled(account) {
