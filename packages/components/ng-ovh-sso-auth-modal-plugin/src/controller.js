@@ -53,7 +53,6 @@ export default /* @ngInject */ function SsoAuthModalController(
   }
 
   function init() {
-    $translatePartialLoader.addPart(self.data.translationPath);
     return $translate
       .refresh()
       .then(() => {
