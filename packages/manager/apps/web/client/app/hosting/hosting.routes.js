@@ -23,6 +23,7 @@ export default /* @ngInject */ ($stateProvider) => {
           emailOptionServiceInfos.map(({ serviceId }) =>
             ovhManagerProductOffersDetachService
               .getAvailableDetachPlancodes(serviceId)
+              .catch(() => [])
               .then((plancodes) => ({
                 serviceId,
                 detachPlancodes: plancodes,
