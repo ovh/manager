@@ -5,6 +5,20 @@ export const MIGRATION_STATUS = {
   TO_PLAN: 'toPlan',
 };
 export const EXPIRY_DATE = '27-07-2020';
+export const FAQ_LINK = {
+  CA: {
+    fr_FR: 'https://www.ovh.com/fr/vps/faqEol.xml',
+    fr_CA: 'https://www.ovh.com/fr/vps/faqEol.xml',
+    default: 'https://www.ovh.com/fr/vps/faqEol.xml',
+  },
+  EU: {
+    fr_FR: 'https://www.ovh.com/fr/vps/faqEol.xml',
+    default: 'https://www.ovh.com/fr/vps/faqEol.xml',
+  },
+  US: {
+    default: 'https://www.ovh.com/fr/vps/faqEol.xml',
+  },
+};
 export const NEW_RANGE_LINK = {
   CZ: 'https://www.ovh.cz/vps/',
   DE: 'https://www.ovh.de/virtual_server/',
@@ -29,6 +43,7 @@ export default {
   CACHED_OBJECT_LIST_PAGES,
   EXCLUDED_VERSIONS,
   MIGRATION_STATUS,
+  FAQ_LINK,
   NEW_RANGE_LINK,
   X_PAGINATION_MODE,
 };

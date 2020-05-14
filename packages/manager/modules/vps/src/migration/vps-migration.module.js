@@ -4,6 +4,7 @@ import '@uirouter/angularjs';
 import 'angular-translate';
 import 'ovh-api-services';
 import 'ovh-ui-angular';
+import ovhManagerCore from '@ovh-ux/manager-core';
 
 import migrationComponent from './vps-migration.component';
 import migrationPlan from './components/plan';
@@ -23,6 +24,7 @@ angular
     'ovh-api-services',
     'oui',
     migrationPlan,
+    ovhManagerCore,
   ])
   .component('ovhManagerVpsMigration', migrationComponent)
   .service('VpsMigrationService', service)

@@ -4,6 +4,7 @@ import template from './vps-migration.html';
 export default {
   bindings: {
     catalog: '<',
+    faqLink: '<',
     getAvailableMigrations: '<',
     getMigrationDetails: '<',
     getVpsDetails: '<',
