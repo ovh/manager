@@ -1,3 +1,12 @@
+## [3.3.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-webpack-config@3.3.1...@ovh-ux/manager-webpack-config@3.3.2) (2020-05-15)
+
+
+### Bug Fixes
+
+* **loaders:** fix webpack config translations loaders ([a580dfa](https://github.com/ovh-ux/manager/commit/a580dfa68c27bc3088ebc15b85e04fa0d8aa8c4f))
+
+
+
 ## [3.3.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-webpack-config@3.3.0...@ovh-ux/manager-webpack-config@3.3.1) (2020-04-15)
 
 

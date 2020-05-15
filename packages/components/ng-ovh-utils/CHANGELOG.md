@@ -1,3 +1,12 @@
+## [14.0.8](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-utils@14.0.7...@ovh-ux/ng-ovh-utils@14.0.8) (2020-05-15)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 396] ([007cf2d](https://github.com/ovh/manager/commit/007cf2dd05a372d22f3296bb4a77ce8760085f15))
+
+
+
 ## [14.0.7](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-utils@14.0.6...@ovh-ux/ng-ovh-utils@14.0.7) (2020-05-13)
 
 
