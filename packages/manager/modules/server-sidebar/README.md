@@ -14,10 +14,7 @@ yarn add @ovh-ux/manager-server-sidebar
 import angular from 'angular';
 import ovhManagerServerSidebar from '@ovh-ux/manager-server-sidebar';
 
-angular
-  .module('myApp', [
-    ovhManagerServerSidebar,
-  ]);
+angular.module('myApp', [ovhManagerServerSidebar]);
 ```
 
 ```html

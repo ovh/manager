@@ -14,10 +14,7 @@ yarn add @ovh-ux/manager-carrier-sip
 import angular from 'angular';
 import ovhManagerCarrierSip from '@ovh-ux/manager-carrier-sip';
 
-angular
-  .module('myApp', [
-    ovhManagerCarrierSip,
-  ]);
+angular.module('myApp', [ovhManagerCarrierSip]);
 ```
 
 ## Documentation

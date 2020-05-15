@@ -2,7 +2,7 @@ import angular from 'angular';
 import forIn from 'lodash/forIn';
 import merge from 'lodash/merge';
 
-export default /* @ngInject */ function () {
+export default /* @ngInject */ function() {
   let requestProxy = '$http';
   let pollingApiOptions = null;
   let pathPrefix = '';
@@ -35,9 +35,15 @@ export default /* @ngInject */ function () {
   ) {
     const lineDiagnosticsService = {};
 
-    lineDiagnosticsService.getRunDiagnostic = function getRunDiagnostic(uriParams, datas) {
+    lineDiagnosticsService.getRunDiagnostic = function getRunDiagnostic(
+      uriParams,
+      datas,
+    ) {
       const syncParam = { faultType: 'unknown' };
-      const postParams = datas && datas.faultType ? datas : angular.extend(syncParam, datas || {});
+      const postParams =
+        datas && datas.faultType
+          ? datas
+          : angular.extend(syncParam, datas || {});
 
       if (postParams && postParams.answers) {
         forIn(postParams.answers, (attribut, key) => {
@@ -47,11 +53,15 @@ export default /* @ngInject */ function () {
         });
       }
 
-      return OvhApiXdslDiagnosticLines.v6().runDiagnostic(merge(uriParams, postParams));
+      return OvhApiXdslDiagnosticLines.v6().runDiagnostic(
+        merge(uriParams, postParams),
+      );
     };
 
-    lineDiagnosticsService.getCancelDiagnostic = function getCancelDiagnostic(uriParams) {
-      return OvhApiXdslDiagnosticLines.v6().cancelDiagnostic(uriParams, { });
+    lineDiagnosticsService.getCancelDiagnostic = function getCancelDiagnostic(
+      uriParams,
+    ) {
+      return OvhApiXdslDiagnosticLines.v6().cancelDiagnostic(uriParams, {});
     };
 
     lineDiagnosticsService.deletePollDiagnostic = function deletePollDiagnostic() {

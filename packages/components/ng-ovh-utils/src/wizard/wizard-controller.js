@@ -1,6 +1,6 @@
 import angular from 'angular';
 
-export default /* @ngInject */ function ($scope, $translate) {
+export default /* @ngInject */ function($scope, $translate) {
   this.currentStep = 0;
   $scope.currentStep = this.currentStep;
 
@@ -39,27 +39,27 @@ export default /* @ngInject */ function ($scope, $translate) {
   };
 
   /*
-     *Add step to the wizard
-     */
+   *Add step to the wizard
+   */
   this.addStep = function addStep(step) {
     this.steps.push(step);
   };
 
   /*
-     *return the numbers of step
-     */
+   *return the numbers of step
+   */
   this.getStepCount = function getStepCount() {
     return $scope.stepCount;
   };
 
   /*
-     * got to the next step
-     */
+   * got to the next step
+   */
   this.nextStep = function nextStep() {
     $scope.$broadcast('wizard-stepChange');
     if (
-      (this.currentStep >= 0 && $scope.currentStep !== $scope.stepCount)
-      || ($scope.currentStep === 0 && $scope.stepCount === 0)
+      (this.currentStep >= 0 && $scope.currentStep !== $scope.stepCount) ||
+      ($scope.currentStep === 0 && $scope.stepCount === 0)
     ) {
       this.currentStep += 1;
       $scope.currentStep = this.currentStep;
@@ -86,8 +86,8 @@ export default /* @ngInject */ function ($scope, $translate) {
   });
 
   /*
-     * go to the previous step
-     */
+   * go to the previous step
+   */
   this.previousStep = function previousStep() {
     $scope.$broadcast('wizard-stepChange');
     this.currentStep -= 1;
@@ -103,8 +103,8 @@ export default /* @ngInject */ function ($scope, $translate) {
   };
 
   /*
-     *set the title
-     */
+   *set the title
+   */
   this.setTitle = function setTitle(title) {
     if (title !== undefined && title !== '') {
       $scope.wizardTitle = title;
@@ -141,7 +141,9 @@ export default /* @ngInject */ function ($scope, $translate) {
     $scope.wizardCancelButtonText = value;
   };
 
-  this.setWizardPreviousButtonText = function setWizardPreviousButtonText(value) {
+  this.setWizardPreviousButtonText = function setWizardPreviousButtonText(
+    value,
+  ) {
     $scope.wizardPreviousButtonText = value;
   };
 

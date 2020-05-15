@@ -5,8 +5,6 @@ import './wizardStep.css';
 
 const moduleName = 'ua.wizardStep';
 
-angular
-  .module(moduleName, [])
-  .directive('wizardStep', wizardStepDirective);
+angular.module(moduleName, []).directive('wizardStep', wizardStepDirective);
 
 export default moduleName;

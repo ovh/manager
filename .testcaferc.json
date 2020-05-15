@@ -1,0 +1,39 @@
+{
+  "src": "./packages/**/*.e2e.js",
+  "reporter": [
+    {
+      "name": "spec"
+    },
+    {
+      "name": "xunit",
+      "output": "./reports/report.xml"
+    },
+    {
+      "name": "json",
+      "output": "./reports/report.json"
+    },
+    {
+      "name": "html",
+      "output": "./reports/report.html"
+    }
+  ],
+  "screenshots": {
+    "path": "./reports/screenshots/",
+    "pathPattern": "${TEST_ID}/${FILE_INDEX}.png",
+    "takeOnFails": true,
+    "fullPage": true
+  },
+  "quarantineMode": false,
+  "debugMode": false,
+  "debugOnFail": false,
+  "stopOnFirstFail": false,
+  "skipJsErrors": true,
+  "skipUncaughtErrors": true,
+  "concurrency": 1,
+  "selectorTimeout": 10000,
+  "assertionTimeout": 10000,
+  "pageLoadTimeout": 10000,
+  "speed": 1,
+  "developmentMode": false,
+  "qrCode": false
+}

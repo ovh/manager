@@ -16,8 +16,7 @@ $ yarn add @ovh-ux/ng-ovh-contracts
 import angular from 'angular';
 import '@ovh-ux/ng-ovh-contracts';
 
-angular
-  .module('myApp', ['ngOvhContracts']);
+angular.module('myApp', ['ngOvhContracts']);
 ```
 
 ## Test

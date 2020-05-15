@@ -51,7 +51,7 @@ import isFinite from 'lodash/isFinite';
 
 import template from './paginationServerSide.html';
 
-export default /* @ngInject */ function ($translate) {
+export default /* @ngInject */ function($translate) {
   return {
     restrict: 'A',
     replace: true,
@@ -65,21 +65,29 @@ export default /* @ngInject */ function ($translate) {
     template,
     link($scope, $elem, $attr) {
       function checkForGlobalOrId(id) {
-        return !id || ($attr.paginationServerSide && id === $attr.paginationServerSide);
+        return (
+          !id ||
+          ($attr.paginationServerSide && id === $attr.paginationServerSide)
+        );
       }
 
       // watch datas and reload or change page if empty
-      $scope.$watch('paginationServerSideDatas.length', (newValue, oldValue) => {
-        if (oldValue && !newValue) {
-          if ($scope.paginationServerSidePaginatedStuff.pagination.length > 1) {
-            if ($scope.currentPage > 1) {
-              $scope.loadPage($scope.currentPage - 1, true);
-            } else {
-              $scope.loadPage($scope.currentPage, true);
+      $scope.$watch(
+        'paginationServerSideDatas.length',
+        (newValue, oldValue) => {
+          if (oldValue && !newValue) {
+            if (
+              $scope.paginationServerSidePaginatedStuff.pagination.length > 1
+            ) {
+              if ($scope.currentPage > 1) {
+                $scope.loadPage($scope.currentPage - 1, true);
+              } else {
+                $scope.loadPage($scope.currentPage, true);
+              }
             }
           }
-        }
-      });
+        },
+      );
 
       $elem.bind('change', '.pagination-page-input', () => {
         $elem.find('.pagination-page-goto').click();
@@ -90,8 +98,8 @@ export default /* @ngInject */ function ($translate) {
       $scope.currentPage = null;
 
       if (
-        $scope.paginationServerSidePageSizeAvailable
-        && Array.isArray($scope.paginationServerSidePageSizeAvailable)
+        $scope.paginationServerSidePageSizeAvailable &&
+        Array.isArray($scope.paginationServerSidePageSizeAvailable)
       ) {
         $scope.pageSizeAvailable = $scope.paginationServerSidePageSizeAvailable;
         [$scope.pageSize] = $scope.pageSizeAvailable;
@@ -101,7 +109,9 @@ export default /* @ngInject */ function ($translate) {
       }
 
       $scope.getSizeLabel = function getSizeLabel(size) {
-        return size === 'all' ? $translate.instant('pagination_display_all') : size;
+        return size === 'all'
+          ? $translate.instant('pagination_display_all')
+          : size;
       };
 
       // events
@@ -119,7 +129,9 @@ export default /* @ngInject */ function ($translate) {
       // /events
 
       if (localStorage != null) {
-        let itemsPerPage = localStorage.getItem('pagination_front_items_per_page');
+        let itemsPerPage = localStorage.getItem(
+          'pagination_front_items_per_page',
+        );
 
         if (!isNumber(itemsPerPage)) {
           itemsPerPage = parseInt(itemsPerPage, 10);
@@ -133,7 +145,11 @@ export default /* @ngInject */ function ($translate) {
       }
 
       $scope.$watch('pageSize', (newValue, oldValue) => {
-        if (newValue && newValue !== oldValue && !$scope.paginationServerSideTableLoading) {
+        if (
+          newValue &&
+          newValue !== oldValue &&
+          !$scope.paginationServerSideTableLoading
+        ) {
           if (newValue === 'all') {
             $scope.pageSize = $scope.paginationServerSidePaginatedStuff.count;
           } else {
@@ -150,7 +166,9 @@ export default /* @ngInject */ function ($translate) {
 
       $scope.getLastPageNumber = function getLastPageNumber() {
         if ($scope.paginationServerSidePaginatedStuff) {
-          return Math.ceil($scope.paginationServerSidePaginatedStuff.count / $scope.pageSize);
+          return Math.ceil(
+            $scope.paginationServerSidePaginatedStuff.count / $scope.pageSize,
+          );
         }
 
         return null;
@@ -164,7 +182,10 @@ export default /* @ngInject */ function ($translate) {
       };
 
       $scope.getPaginationPreviousClasses = () => {
-        if ($scope.paginationServerSideTableLoading || $scope.currentPage === 1) {
+        if (
+          $scope.paginationServerSideTableLoading ||
+          $scope.currentPage === 1
+        ) {
           return 'disabled ';
         }
         return null;
@@ -172,10 +193,11 @@ export default /* @ngInject */ function ($translate) {
 
       $scope.getPaginationNextClasses = () => {
         if (
-          $scope.paginationServerSideTableLoading
-          || ($scope.paginationServerSidePaginatedStuff
-            && Math.ceil($scope.paginationServerSidePaginatedStuff.count / $scope.pageSize)
-              === $scope.currentPage)
+          $scope.paginationServerSideTableLoading ||
+          ($scope.paginationServerSidePaginatedStuff &&
+            Math.ceil(
+              $scope.paginationServerSidePaginatedStuff.count / $scope.pageSize,
+            ) === $scope.currentPage)
         ) {
           return 'disabled ';
         }
@@ -193,9 +215,11 @@ export default /* @ngInject */ function ($translate) {
         if (page) {
           $scope.goToPage = null;
           const pageToLoad = Math.ceil(page);
-          const currentPageIsLastPage = $scope.paginationServerSidePaginatedStuff
-            && Math.ceil($scope.paginationServerSidePaginatedStuff.count / $scope.pageSize)
-              === $scope.currentPage;
+          const currentPageIsLastPage =
+            $scope.paginationServerSidePaginatedStuff &&
+            Math.ceil(
+              $scope.paginationServerSidePaginatedStuff.count / $scope.pageSize,
+            ) === $scope.currentPage;
           const nextPageIsAfterCurrentPage = pageToLoad > $scope.currentPage;
 
           if (currentPageIsLastPage && nextPageIsAfterCurrentPage) {
@@ -209,16 +233,18 @@ export default /* @ngInject */ function ($translate) {
 
           const askedPageParameterIsCorrect = pageToLoad >= 1;
 
-          const thereArePaginatedElements = $scope.paginationServerSidePaginatedStuff != null;
-          const thereIsEnoughElementsToDisplay = thereArePaginatedElements
-            && (pageToLoad - 1) * $scope.pageSize
-            <= $scope.paginationServerSidePaginatedStuff.count;
+          const thereArePaginatedElements =
+            $scope.paginationServerSidePaginatedStuff != null;
+          const thereIsEnoughElementsToDisplay =
+            thereArePaginatedElements &&
+            (pageToLoad - 1) * $scope.pageSize <=
+              $scope.paginationServerSidePaginatedStuff.count;
 
           if (
-            !pageIsLoading
-            && tableShouldLoad
-            && askedPageParameterIsCorrect
-            && (!thereArePaginatedElements || thereIsEnoughElementsToDisplay)
+            !pageIsLoading &&
+            tableShouldLoad &&
+            askedPageParameterIsCorrect &&
+            (!thereArePaginatedElements || thereIsEnoughElementsToDisplay)
           ) {
             $scope.currentPage = pageToLoad;
             $scope.paginationServerSideFunction(

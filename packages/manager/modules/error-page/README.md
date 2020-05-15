@@ -14,10 +14,7 @@ yarn add @ovh-ux/manager-error-page
 import angular from 'angular';
 import ovhManagerError from '@ovh-ux/manager-error-page';
 
-angular
-  .module('myApp', [
-    ovhManagerError,
-  ]);
+angular.module('myApp', [ovhManagerError]);
 ```
 
 ## Contributing

@@ -8,11 +8,18 @@ export = function injectTranslationsLoader(source) {
   const options = merge({ filtering: false }, getOptions(this));
   const translationInject = get(componentConfig, 'plugins.translationInject');
   const parser = Parser.extend(dynamicImport);
-
-  return get(translationInject(pick(options, ['subdirectory', 'filtering'])).transform.bind({
-    parse: (code, opts = {}) => parser.parse(code, merge({
-      ecmaVersion: 9,
-      sourceType: 'module',
-    }, opts)),
-  })(source, this.resourcePath), 'code', source);
+  return get(
+    translationInject(
+      pick(options, ['subdirectory', 'filtering']),
+    ).transform.bind({
+      parse: (code, opts = {}) =>
+        parser.parse(code, {
+          ecmaVersion: 9,
+          sourceType: 'module',
+          ...opts,
+        }),
+    })(source, this.resourcePath),
+    'code',
+    source,
+  );
 };

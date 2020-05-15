@@ -22,10 +22,7 @@ to display a modal when user switch:
 import angular from 'angular';
 import ngOvhSsoAuthModalPlugin from '@ovh-ux/ng-ovh-sso-auth-modal-plugin';
 
-angular
-  .module('myApp', [
-    ngOvhSsoAuthModalPlugin,
-  ]);
+angular.module('myApp', [ngOvhSsoAuthModalPlugin]);
 ```
 
 ## Test

@@ -14,10 +14,7 @@ yarn add @ovh-ux/manager-core
 import angular from 'angular';
 import ovhManagerCore from '@ovh-ux/manager-core';
 
-angular
-  .module('myApp', [
-    ovhManagerCore,
-  ]);
+angular.module('myApp', [ovhManagerCore]);
 ```
 
 ## Build

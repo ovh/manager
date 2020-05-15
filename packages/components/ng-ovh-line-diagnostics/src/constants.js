@@ -21,23 +21,13 @@ export const PROGRESS_BAR = {
 export const STEPS = {
   DETECTION: {
     LABEL: 'detectionStep',
-    ACTIONS: [
-      'unplugModem',
-    ],
-    QUESTIONS: [
-      'modemIsSynchronized',
-    ],
+    ACTIONS: ['unplugModem'],
+    QUESTIONS: ['modemIsSynchronized'],
   },
   INVESTIGATION: {
     LABEL: 'investigationStep',
-    ACTIONS: [
-      'modemIsSynchronized',
-      'modemStillSynchronized',
-    ],
-    ACTIONS_AS_QUESTIONS: [
-      'checkFilter',
-      'checkConnectionCable',
-    ],
+    ACTIONS: ['modemIsSynchronized', 'modemStillSynchronized'],
+    ACTIONS_AS_QUESTIONS: ['checkFilter', 'checkConnectionCable'],
     QUESTIONS: [
       'modemIsSynchronized',
       'modemStillSynchronized',
@@ -70,10 +60,7 @@ export const STEPS = {
 };
 
 export const ROBOT_ACTION = {
-  LONG_TIME_ACTIONS: [
-    'seltTest',
-    'installationCheck',
-  ],
+  LONG_TIME_ACTIONS: ['seltTest', 'installationCheck'],
   REQUEST_MONITORING: 'requestMonitoring',
 };
 
@@ -99,11 +86,7 @@ export const STATUS = {
     'waitingValidation',
     'noBandwidthFault',
   ],
-  PAUSE: [
-    'init',
-    'sleeping',
-    'waitingHuman',
-  ],
+  PAUSE: ['init', 'sleeping', 'waitingHuman'],
   PROBLEM: 'problem',
   SPECIAL: [],
   WAITING_ROBOT: 'waitingRobot',
@@ -112,10 +95,7 @@ export const STATUS = {
 export const BANDWIDTH_TEST_SITE = 'http://proof.ovh.net';
 
 export const QUESTIONS_ENUM = {
-  BANDWIDTH_TEST_UNIT: [
-    'Kbps',
-    'Mbps',
-  ],
+  BANDWIDTH_TEST_UNIT: ['Kbps', 'Mbps'],
   PROBLEM_TYPE: {
     LOW_BANDWIDTH: 'lowBandwidth',
     SYNC_LOSS: 'syncLoss',

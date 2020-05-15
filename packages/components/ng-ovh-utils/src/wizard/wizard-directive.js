@@ -3,7 +3,7 @@ import angular from 'angular';
 import wizardController from './wizard-controller';
 import template from './wizard.html';
 
-export default /* @ngInject */ function ($timeout) {
+export default /* @ngInject */ function($timeout) {
   return {
     restrict: 'A',
     controller: wizardController,
@@ -14,7 +14,9 @@ export default /* @ngInject */ function ($timeout) {
       let inputs = '';
       const konami = '38384040373937396665';
 
-      ctrl.setStepCount($elm.find('*[data-wizard-step], *[wizard-step]').length);
+      ctrl.setStepCount(
+        $elm.find('*[data-wizard-step], *[wizard-step]').length,
+      );
 
       $elm
         .find('*[data-wizard-step], *[wizard-step]')
@@ -39,8 +41,8 @@ export default /* @ngInject */ function ($timeout) {
       // console.log(focusables);
 
       /*
-             *KeyBoardManaging
-             */
+       *KeyBoardManaging
+       */
       angular.element($elm).bind('keydown', (evt) => {
         if (!$scope.keydownDisabled) {
           let i;
@@ -57,9 +59,24 @@ export default /* @ngInject */ function ($timeout) {
             const randomIdx = Math.floor(Math.random() * 16);
             let lor = lorParams;
 
-            const randomValue = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'a', 'b', 'c', 'd', 'e', 'f'][
-              randomIdx
-            ];
+            const randomValue = [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              'a',
+              'b',
+              'c',
+              'd',
+              'e',
+              'f',
+            ][randomIdx];
             lor += randomValue;
             if (lor.length === 6 || lor === '') {
               return `#${lor}`;
@@ -99,11 +116,11 @@ export default /* @ngInject */ function ($timeout) {
                   interval = null;
                   // go next step
                   if (
-                    keyCode === 13
-                    && nodeName !== 'TEXTAREA'
-                    && !isContentEditable
-                    && nodeName !== 'BUTTON'
-                    && stepValid
+                    keyCode === 13 &&
+                    nodeName !== 'TEXTAREA' &&
+                    !isContentEditable &&
+                    nodeName !== 'BUTTON' &&
+                    stepValid
                   ) {
                     $scope.$apply(() => {
                       currentStepScope.nextStep();
@@ -116,12 +133,12 @@ export default /* @ngInject */ function ($timeout) {
             }
             // enter pressed
           } else if (
-            !$attr.wizardCancelValidReturnKey
-            && keyCode === 13
-            && nodeName !== 'TEXTAREA'
-            && !isContentEditable
-            && nodeName !== 'BUTTON'
-            && stepValid
+            !$attr.wizardCancelValidReturnKey &&
+            keyCode === 13 &&
+            nodeName !== 'TEXTAREA' &&
+            !isContentEditable &&
+            nodeName !== 'BUTTON' &&
+            stepValid
           ) {
             // go next step
             $scope.$apply(() => {
@@ -136,17 +153,17 @@ export default /* @ngInject */ function ($timeout) {
         }
       });
 
-      $scope.onCancel = $attr.wizardOnCancel && angular.isFunction(
-        $scope.$eval($attr.wizardOnCancel),
-      )
-        ? $scope.$eval($attr.wizardOnCancel)
-        : angular.noop;
+      $scope.onCancel =
+        $attr.wizardOnCancel &&
+        angular.isFunction($scope.$eval($attr.wizardOnCancel))
+          ? $scope.$eval($attr.wizardOnCancel)
+          : angular.noop;
 
-      $scope.onFinish = $attr.wizardOnFinish && angular.isFunction(
-        $scope.$eval($attr.wizardOnFinish),
-      )
-        ? $scope.$eval($attr.wizardOnFinish)
-        : angular.noop;
+      $scope.onFinish =
+        $attr.wizardOnFinish &&
+        angular.isFunction($scope.$eval($attr.wizardOnFinish))
+          ? $scope.$eval($attr.wizardOnFinish)
+          : angular.noop;
 
       if ($attr.wizardTitle) {
         $scope.$watch($attr.wizardTitle, (newTitle) => {

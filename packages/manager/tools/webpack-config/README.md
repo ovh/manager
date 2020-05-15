@@ -43,15 +43,14 @@ The following configuration parameters are _optionals_:
 const { config } = require('@ovh-ux/manager-webpack-config')({
   template: './client/index.html',
   basePath: './client',
-  lessPath: [
-    './client/app',
-    './client/components',
-    './node_modules',
-  ],
+  lessPath: ['./client/app', './client/components', './node_modules'],
   root: path.resolve(__dirname, './client/app'),
   assets: {
     files: [
-      { from: path.resolve(__dirname, './client/app/common/assets'), to: 'assets' },
+      {
+        from: path.resolve(__dirname, './client/app/common/assets'),
+        to: 'assets',
+      },
     ],
   },
 });

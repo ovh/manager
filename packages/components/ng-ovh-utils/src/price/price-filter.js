@@ -1,4 +1,4 @@
-export default /* @ngInject */ function ($translate) {
+export default /* @ngInject */ function($translate) {
   const frenchTouch = {
     TTCOnly: false,
     HTOnly: false,
@@ -55,9 +55,12 @@ export default /* @ngInject */ function ($translate) {
           price: price.withoutTax.text,
         })}<small>${$translate.instant(
           'ua_price_label_yearly',
-        )}</small></b><i class="small"> (${$translate.instant('ua_price_ttc_label', {
-          price: price.withTax.text,
-        })}<small>${$translate.instant('ua_price_label_yearly')}</small>)</i>`;
+        )}</small></b><i class="small"> (${$translate.instant(
+          'ua_price_ttc_label',
+          {
+            price: price.withTax.text,
+          },
+        )}<small>${$translate.instant('ua_price_label_yearly')}</small>)</i>`;
       }
       return `<b class="red">${$translate.instant('ua_price_ht_label', {
         price: price.withoutTax.text,
@@ -68,7 +71,7 @@ export default /* @ngInject */ function ($translate) {
     return `<b class="red">${$translate.instant('ua_price_free')}</b>`;
   }
 
-  return function (price, ovhSubsidiary, frequency) {
+  return function(price, ovhSubsidiary, frequency) {
     if (price !== undefined) {
       return format(price, ovhSubsidiary, frequency);
     }

@@ -3,22 +3,28 @@ import debounce from 'lodash/debounce';
 
 import controller from './controller';
 
-export default /* @ngInject */ function ($rootScope, $timeout, $window, matchmedia) {
+export default /* @ngInject */ function(
+  $rootScope,
+  $timeout,
+  $window,
+  matchmedia,
+) {
   return {
     restrict: 'A',
     controller,
     scope: true,
     transclude: true,
     replace: true,
-    template: '<div class="responsive-switch"'
-      + ' data-ng-class="{'
-      + " 'responsive-switch_mobile' : isMobile,"
-      + " 'responsive-switch-sidebyside' : responsiveSwitchPageMode === 'sidebyside',"
-      + " 'responsive-switch-switch' : responsiveSwitchPageMode === 'switch',"
-      + " 'responsive-switch-expand' : responsiveSwitchPageMode === 'sidebyside' && activePageIndex >= 1"
-      + ' }"'
-      + ' data-ng-transclude>'
-      + '</div>',
+    template:
+      '<div class="responsive-switch"' +
+      ' data-ng-class="{' +
+      " 'responsive-switch_mobile' : isMobile," +
+      " 'responsive-switch-sidebyside' : responsiveSwitchPageMode === 'sidebyside'," +
+      " 'responsive-switch-switch' : responsiveSwitchPageMode === 'switch'," +
+      " 'responsive-switch-expand' : responsiveSwitchPageMode === 'sidebyside' && activePageIndex >= 1" +
+      ' }"' +
+      ' data-ng-transclude>' +
+      '</div>',
     link($scope, $element, attr, ctrl) {
       $scope.attr = attr;
       $scope.isMobile = false;
@@ -28,8 +34,8 @@ export default /* @ngInject */ function ($rootScope, $timeout, $window, matchmed
       $scope.pageWidth = attr.responsiveSwitchPagesWidth
         ? parseInt(attr.responsiveSwitchPagesWidth, 10)
         : 0;
-      const mobileMatchMedia = attr.responsiveSwitchMatchMedia
-        || '(max-width: 980px)';
+      const mobileMatchMedia =
+        attr.responsiveSwitchMatchMedia || '(max-width: 980px)';
       const forcedMode = attr.responsiveSwitchForceMode;
 
       /**
@@ -38,7 +44,9 @@ export default /* @ngInject */ function ($rootScope, $timeout, $window, matchmed
 
       function calculateDisplayMode() {
         $scope.isMobile = matchmedia.is(mobileMatchMedia);
-        const availableLeft = $element ? $element[0].getBoundingClientRect().left : 0;
+        const availableLeft = $element
+          ? $element[0].getBoundingClientRect().left
+          : 0;
         const availableWidth = $window.innerWidth;
 
         if ($scope.isMobile) {
@@ -70,10 +78,14 @@ export default /* @ngInject */ function ($rootScope, $timeout, $window, matchmed
       // WATCHER INITIALIZATION
       // ACTIVE PAGE INDEX WATCHER
       function initActivePageIndexWatcher() {
-        $scope.$watch('attr.responsiveSwitchActivePageIndex', (newIndex, oldIndex) => {
-          $scope.activePageIndex = oldIndex !== undefined ? parseInt(newIndex, 10) : 0;
-          ctrl.setActivePage($scope.activePageIndex);
-        });
+        $scope.$watch(
+          'attr.responsiveSwitchActivePageIndex',
+          (newIndex, oldIndex) => {
+            $scope.activePageIndex =
+              oldIndex !== undefined ? parseInt(newIndex, 10) : 0;
+            ctrl.setActivePage($scope.activePageIndex);
+          },
+        );
       }
 
       /**
@@ -91,8 +103,12 @@ export default /* @ngInject */ function ($rootScope, $timeout, $window, matchmed
 
         // Expose some functions
         $rootScope.$broadcast('responsive.switch.created', {
-          getDisplayMode() { return $scope.responsiveSwitchPageMode; },
-          getActivePage() { return $scope.activePageIndex; },
+          getDisplayMode() {
+            return $scope.responsiveSwitchPageMode;
+          },
+          getActivePage() {
+            return $scope.activePageIndex;
+          },
         });
       }
 

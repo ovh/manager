@@ -73,7 +73,7 @@ export = (opts: any = {}) => {
                 ).map(({ value: v }) => v);
               }
 
-              const resolve = last(
+              const resolve: any = last(
                 get(
                   props.filter(
                     ({ key, type }) =>

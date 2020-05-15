@@ -11,26 +11,19 @@ import isUndefined from 'lodash/isUndefined';
 import map from 'lodash/map';
 import some from 'lodash/some';
 
-import {
-  STEPS,
-  ROBOT_ACTION,
-  FAULT_TYPES,
-} from './constants';
+import { STEPS, ROBOT_ACTION, FAULT_TYPES } from './constants';
 
 export default () => {
-  const mandatoryParameters = [
-    'data',
-    'faultType',
-    'id',
-    'status',
-  ];
+  const mandatoryParameters = ['data', 'faultType', 'id', 'status'];
 
   class LineDiagnostic {
     /* @ngInject */
     constructor(lineDiagnostic) {
       forEach(mandatoryParameters, (parameter) => {
         if (!has(lineDiagnostic, parameter)) {
-          throw new Error(`${parameter} parameter must be specified when creating a new LineDiagnostic`);
+          throw new Error(
+            `${parameter} parameter must be specified when creating a new LineDiagnostic`,
+          );
         }
       });
 
@@ -41,7 +34,10 @@ export default () => {
     }
 
     isLongActionInProgress() {
-      return includes(ROBOT_ACTION.LONG_TIME_ACTIONS, get(this, 'data.robotAction', ''));
+      return includes(
+        ROBOT_ACTION.LONG_TIME_ACTIONS,
+        get(this, 'data.robotAction', ''),
+      );
     }
 
     extractBandwidthDetails() {
@@ -52,18 +48,17 @@ export default () => {
         },
         currentBandwidth: {
           up: get(this.data, 'lineDetails.connectionInfo.upstreamSync', '-'),
-          down: get(this.data, 'lineDetails.connectionInfo.downstreamSync', '-'),
+          down: get(
+            this.data,
+            'lineDetails.connectionInfo.downstreamSync',
+            '-',
+          ),
         },
       };
     }
 
     getActionsToDo() {
-      return flatten(
-        map(
-          get(this, 'data.actionsToDo', []),
-          'name',
-        ),
-      );
+      return flatten(map(get(this, 'data.actionsToDo', []), 'name'));
     }
 
     getActionsDone() {
@@ -75,12 +70,7 @@ export default () => {
     }
 
     getQuestionsToAnswer() {
-      return flatten(
-        map(
-          get(this, 'data.toAnswer', []),
-          'name',
-        ),
-      );
+      return flatten(map(get(this, 'data.toAnswer', []), 'name'));
     }
 
     hasQuestionToAnswer(questionName) {
@@ -93,18 +83,19 @@ export default () => {
     }
 
     needAppointmentDetails() {
-      const appointmentQuestions = STEPS.SOLUTION_PROPOSAL.APPOINTMENT_QUESTIONS_FORM;
+      const appointmentQuestions =
+        STEPS.SOLUTION_PROPOSAL.APPOINTMENT_QUESTIONS_FORM;
       return some(
-        filter(
-          this.getQuestionsToAnswer(),
-          (toAnswer) => includes(appointmentQuestions, toAnswer),
+        filter(this.getQuestionsToAnswer(), (toAnswer) =>
+          includes(appointmentQuestions, toAnswer),
         ),
       );
     }
 
     hasTimePeriodQuestions() {
       const timePeriodQuestions = STEPS.SOLUTION_PROPOSAL.TIME_PERIOD_QUESTIONS;
-      return !difference(timePeriodQuestions, this.getQuestionsToAnswer()).length;
+      return !difference(timePeriodQuestions, this.getQuestionsToAnswer())
+        .length;
     }
 
     getQuestionDefaultValue(questionName) {
@@ -113,7 +104,8 @@ export default () => {
     }
 
     setDefaultValue(answer) {
-      this.data.answers[answer] = this.data.answers[answer] || this.getQuestionDefaultValue(answer);
+      this.data.answers[answer] =
+        this.data.answers[answer] || this.getQuestionDefaultValue(answer);
     }
 
     convertToRequestParams() {

@@ -1,6 +1,6 @@
 import angular from 'angular';
 
-export default function () {
+export default function() {
   const defaultOptions = {
     placement: 'top',
     animation: true,
@@ -24,7 +24,10 @@ export default function () {
   };
 
   function snakeCase(name) {
-    return name.replace(/[A-Z]/g, (letter, pos) => (pos ? '-' : '') + letter.toLowerCase());
+    return name.replace(
+      /[A-Z]/g,
+      (letter, pos) => (pos ? '-' : '') + letter.toLowerCase(),
+    );
   }
 
   function getPosition(element) {
@@ -35,9 +38,9 @@ export default function () {
       angular.isFunction(el.getBoundingClientRect)
         ? el.getBoundingClientRect()
         : {
-          width: el.offsetWidth,
-          height: el.offsetHeight,
-        },
+            width: el.offsetWidth,
+            height: el.offsetHeight,
+          },
       element.offset(),
     );
   }
@@ -88,14 +91,15 @@ export default function () {
           triggers = setTriggers();
           startSym = $interpolate.startSymbol();
           endSym = $interpolate.endSymbol();
-          template = `<div data-${directiveName}-popup `
-            + `data-popover-tooltip-title="${startSym}ttTitle${endSym}"`
-            + `data-popover-tooltip-content="${startSym}ttContent${endSym}" `
-            + `data-popover-tooltip-placement="${startSym}ttPlacement${endSym}" `
-            + `data-popover-tooltip-remote="${startSym}ttRemote${endSym}" `
-            + `data-popover-tooltip-single="${startSym}ttSingle${endSym}"`
-            + 'data-popover-tooltip-is-open="tooltipIsOpen" '
-            + `data-popover-tooltip-id="${tooltipId}"></div>`;
+          template =
+            `<div data-${directiveName}-popup ` +
+            `data-popover-tooltip-title="${startSym}ttTitle${endSym}"` +
+            `data-popover-tooltip-content="${startSym}ttContent${endSym}" ` +
+            `data-popover-tooltip-placement="${startSym}ttPlacement${endSym}" ` +
+            `data-popover-tooltip-remote="${startSym}ttRemote${endSym}" ` +
+            `data-popover-tooltip-single="${startSym}ttSingle${endSym}"` +
+            'data-popover-tooltip-is-open="tooltipIsOpen" ' +
+            `data-popover-tooltip-id="${tooltipId}"></div>`;
         }
 
         return {
@@ -233,8 +237,7 @@ export default function () {
               }
             }
 
-
-            $scope.hide = function () {
+            $scope.hide = function() {
               hide();
             };
 
@@ -293,7 +296,9 @@ export default function () {
               $scope.ttContent = val;
             });
             attrs.$observe(`${prefix}Placement`, (val) => {
-              $scope.ttPlacement = angular.isDefined(val) ? val : options.placement;
+              $scope.ttPlacement = angular.isDefined(val)
+                ? val
+                : options.placement;
             });
 
             attrs.$observe(`${prefix}Trigger`, (val) => {
@@ -333,9 +338,9 @@ export default function () {
 
             $scope.$on('popover.show', (evt, elm, all) => {
               if (
-                elm !== element
-                && ($scope.ttSingle === true || all)
-                && $scope.tooltipIsOpen === true
+                elm !== element &&
+                ($scope.ttSingle === true || all) &&
+                $scope.tooltipIsOpen === true
               ) {
                 hideTooltipBind();
               }

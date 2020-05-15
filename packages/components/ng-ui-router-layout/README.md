@@ -20,10 +20,7 @@ This layout is now deprecated. Prefer using [`ouiModal` layout](ovh/manager/tree
 import angular from 'angular';
 import ngUiRouterLayout from '@ovh-ux/ng-ui-router-layout';
 
-angular
-  .module('myApp', [
-    ngUiRouterLayout,
-  ]);
+angular.module('myApp', [ngUiRouterLayout]);
 ```
 
 #### With controller and template
@@ -32,54 +29,50 @@ angular
 // routing.js
 import controller from './controller';
 import template from './template.html';
-...
 
-  $stateProvider
-    .state('state.name', {
-      url,
-      views: {
-        modal: {
-          controller,
-          template
-        },
-      },
-      layout: 'modal',
-    });
+$stateProvider.state('state.name', {
+  url,
+  views: {
+    modal: {
+      controller,
+      template,
+    },
+  },
+  layout: 'modal',
+});
 ```
 
 #### With component
 
 ```js
 // routing.js
-  $stateProvider
-    .state('state.name', {
-      url,
-      views: {
-        modal: {
-          component: 'awesomeModal',
-        },
-      },
-      layout: 'modal',
-    });
+$stateProvider.state('state.name', {
+  url,
+  views: {
+    modal: {
+      component: 'awesomeModal',
+    },
+  },
+  layout: 'modal',
+});
 ```
 
 #### With a component provider
 
 ```js
 // routing.js
-  $stateProvider
-    .state('state.name', {
-      url,
-      views: {
-        modal: {
-          componentProvider:
-            predicate => predicate
-              ? 'awesomeModalForTruePredicate'
-              : 'awesomeModalForFalsePredicate',
-        },
-      },
-      layout: 'modal',
-    });
+$stateProvider.state('state.name', {
+  url,
+  views: {
+    modal: {
+      componentProvider: (predicate) =>
+        predicate
+          ? 'awesomeModalForTruePredicate'
+          : 'awesomeModalForFalsePredicate',
+    },
+  },
+  layout: 'modal',
+});
 ```
 
 ### `ouiModal` layout

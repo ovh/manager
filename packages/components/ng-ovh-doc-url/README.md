@@ -18,23 +18,28 @@ import ngOvhDocUrl from '@ovh-ux/ng-ovh-doc-url';
 
 angular
   .module('myApp', [ngOvhDocUrl])
-  .config(/* @ngInject */(ovhDocUrlProvider, TranslateServiceProvider) => {
-    // User locale configuration
-    ovhDocUrlProvider.setUserLocale(TranslateServiceProvider.getUserLocale());
+  .config(
+    /* @ngInject */ (ovhDocUrlProvider, TranslateServiceProvider) => {
+      // User locale configuration
+      ovhDocUrlProvider.setUserLocale(TranslateServiceProvider.getUserLocale());
 
-    // Url prefix for 2api
-    ovhDocUrlProvider.setUrlPrefix('/engine/2api');
-  })
-  .controller('MyController', class {
-    /* @ngInject */
-    constructor(ovhDocUrl) {
-      this.ovhDocUrl = ovhDocUrl;
-    }
+      // Url prefix for 2api
+      ovhDocUrlProvider.setUrlPrefix('/engine/2api');
+    },
+  )
+  .controller(
+    'MyController',
+    class {
+      /* @ngInject */
+      constructor(ovhDocUrl) {
+        this.ovhDocUrl = ovhDocUrl;
+      }
 
-    $onInit() {
-      this.url = this.ovhDocUrl.getDocUrl('g1769.creating_ssh_keys');
-    }
-  });
+      $onInit() {
+        this.url = this.ovhDocUrl.getDocUrl('g1769.creating_ssh_keys');
+      }
+    },
+  );
 ```
 
 ```html

@@ -1,4 +1,4 @@
-export default /* @ngInject */ function ($rootScope) {
+export default /* @ngInject */ function($rootScope) {
   const self = this;
 
   const alertTypesHash = {
@@ -28,18 +28,22 @@ export default /* @ngInject */ function ($rootScope) {
     false: 'alert-danger',
   };
 
-  this.set = function (type, message, details, alertId) {
+  this.set = function(type, message, details, alertId) {
     $rootScope.$broadcast('ovhAlert.show', type, message, details, alertId);
   };
 
-  this.success = function (message, alertId) {
+  this.success = function(message, alertId) {
     self.set(alertTypesHash.OK, message, null, alertId);
   };
-  this.error = function (message, alertId) {
+  this.error = function(message, alertId) {
     self.set(alertTypesHash.ERROR, message, null, alertId);
   };
 
-  this.alertFromSWSBatchResult = function alertFromSWSBatchResult(messages, data, alertId) {
+  this.alertFromSWSBatchResult = function alertFromSWSBatchResult(
+    messages,
+    data,
+    alertId,
+  ) {
     let messageToSend = '';
 
     let messagesFiltered = [];
@@ -50,7 +54,10 @@ export default /* @ngInject */ function ($rootScope) {
 
     let messageDetails = null;
     if (data && data.state) {
-      messagesFiltered = $.grep(data.messages, (e) => e.type && e.type !== 'INFO');
+      messagesFiltered = $.grep(
+        data.messages,
+        (e) => e.type && e.type !== 'INFO',
+      );
 
       alertType = alertTypesHash[data.state];
       messageToSend = messages[data.state];
@@ -58,9 +65,9 @@ export default /* @ngInject */ function ($rootScope) {
         if (messagesFiltered.length > 0) {
           messageToSend += ' (';
           for (i; i < messagesFiltered.length; i += 1) {
-            messageToSend += `${messagesFiltered[i].id} : ${messagesFiltered[i].message}${
-              messagesFiltered.length === i + 1 ? ')' : ', '
-            }`;
+            messageToSend += `${messagesFiltered[i].id} : ${
+              messagesFiltered[i].message
+            }${messagesFiltered.length === i + 1 ? ')' : ', '}`;
           }
         }
       } else {
@@ -85,13 +92,16 @@ export default /* @ngInject */ function ($rootScope) {
       } else if (data.messages) {
         if (data.messages.length > 0) {
           alertType = alertTypesHash[data.state];
-          messagesFiltered = $.grep(data.messages, (e) => e.type && e.type !== 'INFO');
+          messagesFiltered = $.grep(
+            data.messages,
+            (e) => e.type && e.type !== 'INFO',
+          );
           if (messagesFiltered.length > 0) {
             messageToSend += ' (';
             for (i; i < messagesFiltered.length; i += 1) {
-              messageToSend += `${messagesFiltered[i].id} : ${messagesFiltered[i].message}${
-                messagesFiltered.length === i + 1 ? ')' : ', '
-              }`;
+              messageToSend += `${messagesFiltered[i].id} : ${
+                messagesFiltered[i].message
+              }${messagesFiltered.length === i + 1 ? ')' : ', '}`;
             }
           }
         }
@@ -104,7 +114,7 @@ export default /* @ngInject */ function ($rootScope) {
     self.set(alertType || 'alert-warning', messageToSend, null, alertId);
   };
 
-  this.resetMessage = function (alertId) {
+  this.resetMessage = function(alertId) {
     $rootScope.$broadcast('ovhAlert.resetMessage', alertId);
   };
 }

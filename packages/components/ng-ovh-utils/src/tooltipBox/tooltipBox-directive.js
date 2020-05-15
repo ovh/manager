@@ -44,7 +44,7 @@
  */
 import angular from 'angular';
 
-export default /* @ngInject */ function (
+export default /* @ngInject */ function(
   tooltipBoxConfig,
   $compile,
   $http,
@@ -70,9 +70,9 @@ export default /* @ngInject */ function (
       angular.isFunction(el.getBoundingClientRect)
         ? el.getBoundingClientRect()
         : {
-          width: el.offsetWidth,
-          height: el.offsetHeight,
-        },
+            width: el.offsetWidth,
+            height: el.offsetHeight,
+          },
       element.offset(),
     );
   }
@@ -217,10 +217,10 @@ export default /* @ngInject */ function (
        */
       function hideOnBlur(e) {
         if (
-          popover.$tip
-          && popover.$tip.is(':visible')
-          && !el.is(e.target)
-          && popover.$tip.has(e.target).length === 0
+          popover.$tip &&
+          popover.$tip.is(':visible') &&
+          !el.is(e.target) &&
+          popover.$tip.has(e.target).length === 0
         ) {
           el.popover('hide');
         }
@@ -279,8 +279,11 @@ export default /* @ngInject */ function (
         popover.hasContent = function hasContent() {
           return this.getTitle() || options.content; // fix multiple $compile()
         };
-        popover.getPosition = function () {
-          const r = $.fn.popover.Constructor.prototype.getPosition.apply(popover, args);
+        popover.getPosition = function() {
+          const r = $.fn.popover.Constructor.prototype.getPosition.apply(
+            popover,
+            args,
+          );
 
           // @todo managePlacement here!
 
@@ -299,7 +302,7 @@ export default /* @ngInject */ function (
 
           // If enabled, hide any active popover except self
           if (options.unique) {
-            $('.popover.in').each(function () {
+            $('.popover.in').each(function() {
               const $this = $(this);
 
               const currentPopover = $this.data('popover');
@@ -340,17 +343,19 @@ export default /* @ngInject */ function (
           }),
         );
 
-        popover = el.data('popover') ? el.data('popover') : el.data('bs.popover');
+        popover = el.data('popover')
+          ? el.data('popover')
+          : el.data('bs.popover');
         defineBehaviors();
 
         $rootScope.$broadcast('ovhDirectives.tooltipBox.init');
       }
 
-      $scope.show = function () {
+      $scope.show = function() {
         el.popover('show');
       };
 
-      $scope.hide = function () {
+      $scope.hide = function() {
         el.popover('hide');
       };
 

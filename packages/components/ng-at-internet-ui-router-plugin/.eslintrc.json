@@ -1,0 +1,10 @@
+{
+  "overrides": [
+    {
+      "files": ["**/*.md"],
+      "rules": {
+        "no-undef": "off"
+      }
+    }
+  ]
+}

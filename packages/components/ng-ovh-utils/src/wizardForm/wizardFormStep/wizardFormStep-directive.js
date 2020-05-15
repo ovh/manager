@@ -2,7 +2,7 @@ import angular from 'angular';
 
 import template from './wizardFormStep.html';
 
-export default /* @ngInject */ function ($translate) {
+export default /* @ngInject */ function($translate) {
   return {
     restrict: 'A',
     require: '^wizardForm',
@@ -14,10 +14,10 @@ export default /* @ngInject */ function ($translate) {
         pre($scope, $elem, $attr, $wizardCtrl) {
           $scope.stepShown = false;
 
-          $scope.onLoad = function () {
+          $scope.onLoad = function() {
             if (
-              $attr.wizardFormStepOnLoad
-              && angular.isFunction($scope[$attr.wizardFormStepOnLoad])
+              $attr.wizardFormStepOnLoad &&
+              angular.isFunction($scope[$attr.wizardFormStepOnLoad])
             ) {
               $scope[$attr.wizardFormStepOnLoad]();
             }
@@ -41,13 +41,15 @@ export default /* @ngInject */ function ($translate) {
 
           // onLoad when shown
           if (
-            $attr.wizardFormStepOnLoad
-            && angular.isFunction($scope[$attr.wizardFormStepOnLoad])
+            $attr.wizardFormStepOnLoad &&
+            angular.isFunction($scope[$attr.wizardFormStepOnLoad])
           ) {
             $scope.$watch('stepShown', (newValue, oldValue) => {
               if (
-                (oldValue === false && newValue === true)
-                || (oldValue === true && newValue === true && $scope.stepNumber === 1)
+                (oldValue === false && newValue === true) ||
+                (oldValue === true &&
+                  newValue === true &&
+                  $scope.stepNumber === 1)
               ) {
                 $scope.onLoad();
               }
@@ -94,7 +96,7 @@ export default /* @ngInject */ function ($translate) {
 
           $wizardCtrl.addStep($scope);
 
-          $scope.loadStep = function () {
+          $scope.loadStep = function() {
             $scope.onLoad();
           };
         },

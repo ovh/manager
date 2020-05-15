@@ -28,9 +28,9 @@ First, make sure `jsplumb` is ready by calling `jsPlumbService.jsplumbInit` meth
 ```js
 import angular from 'angular';
 
-angular
-  .module('myApp')
-  .controller('MyController', class {
+angular.module('myApp').controller(
+  'MyController',
+  class {
     /* @ngInject */
     constructor($scope, jsPlumbService) {
       this.$scope = $scope;
@@ -40,13 +40,12 @@ angular
     $onInit() {
       this.$scope.jsplumbReady = false;
 
-      this.jsPlumbService
-        .jsplumbInit()
-        .finally(() => {
-          this.$scope.jsplumbReady = true;
-        });
+      this.jsPlumbService.jsplumbInit().finally(() => {
+        this.$scope.jsplumbReady = true;
+      });
     }
-  });
+  },
+);
 ```
 
 Create an instance of `ng-ovh-jsplumb` with the `jsplumbInstance` directive:
