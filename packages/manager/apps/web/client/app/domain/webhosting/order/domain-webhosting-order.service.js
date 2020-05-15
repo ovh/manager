@@ -3,7 +3,6 @@ import includes from 'lodash/includes';
 import WebHostingOffer from './domain-webhosting-order-offer.class';
 import {
   CONFIGURATION_OPTIONS,
-  DEFAULT_PLANCODE,
   OPTION_QUANTITY,
   PRODUCT_QUANTITY,
   WEBHOSTING_ORDER_PRODUCT,
@@ -23,11 +22,11 @@ export default class {
     this.WucOrderCartService = WucOrderCartService;
   }
 
-  getAvailableModules(cartId) {
+  getAvailableModules(cartId, offer) {
     return this.WucOrderCartService.getProductOptions(
       cartId,
       WEBHOSTING_ORDER_PRODUCT,
-      { planCode: DEFAULT_PLANCODE },
+      { planCode: offer.planCode },
     );
   }
 
