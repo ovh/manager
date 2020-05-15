@@ -5,8 +5,8 @@ const resolve = {
   assignCart: /* @ngInject */ (WucOrderCartService) => (cartId) =>
     WucOrderCartService.assignCart(cartId),
   /* @ngInject */
-  availableModules: (cartId, WebHostingOrder) =>
-    WebHostingOrder.getAvailableModules(cartId),
+  getAvailableModules: (cartId, WebHostingOrder) => (offer) =>
+    WebHostingOrder.getAvailableModules(cartId, offer),
   availableOffers: /* @ngInject */ (cartId, user, WebHostingOrder) =>
     WebHostingOrder.getAvailableOffers(cartId, user.ovhSubsidiary),
   cartId: /* @ngInject */ (assignCart, createCart) =>
