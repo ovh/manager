@@ -47,6 +47,7 @@
   },
   "peerDependencies": {
     "@ovh-ux/ng-ovh-sso-auth": "^4.2.3",
+    "@ovh-ux/ng-translate-async-loader": "^2.1.0",
     "angular": "^1.3.x",
     "angular-translate": "^2.18.1",
     "angular-ui-bootstrap": "1.3.3",
