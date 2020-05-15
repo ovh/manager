@@ -3,7 +3,7 @@ import template from './domain-webhosting-order-steps.html';
 
 export default {
   bindings: {
-    availableModules: '<',
+    getAvailableModules: '&',
     availableOffers: '<',
     cartId: '<',
     deleteCartItems: '<',
