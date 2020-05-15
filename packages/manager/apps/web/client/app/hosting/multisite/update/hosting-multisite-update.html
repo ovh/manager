@@ -247,7 +247,10 @@
                             </label>
                         </div>
 
-                        <div class="oui-checkbox mb-0">
+                        <div
+                            class="oui-checkbox mb-0"
+                            data-ng-if="hostingProxy.countriesIp.length > 1"
+                        >
                             <input
                                 type="checkbox"
                                 class="oui-checkbox__input"
