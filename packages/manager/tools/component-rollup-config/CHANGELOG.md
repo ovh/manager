@@ -1,3 +1,12 @@
+## [7.0.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/component-rollup-config@7.0.2...@ovh-ux/component-rollup-config@7.0.3) (2020-05-15)
+
+
+### Bug Fixes
+
+* **plugins.translation-ui-router:** add type any to resolve const ([ab613c9](https://github.com/ovh-ux/manager/commit/ab613c95623c1239272744c939d288caf0a5c98b))
+
+
+
 ## [7.0.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/component-rollup-config@7.0.1...@ovh-ux/component-rollup-config@7.0.2) (2020-05-13)
 
 

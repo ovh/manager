@@ -1,3 +1,19 @@
+# [4.0.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-sso-auth-modal-plugin@3.0.4...@ovh-ux/ng-ovh-sso-auth-modal-plugin@4.0.0) (2020-05-15)
+
+
+### Code Refactoring
+
+* **provider:** remove deprecated setTranslationsPath method ([4d61f6b](https://github.com/ovh/manager/commit/4d61f6bc9a436c6dd6de05687620c153638a5eab))
+
+
+### BREAKING CHANGES
+
+* **provider:** remove `setTranslationsPath` method
+
+Signed-off-by: Antoine Leblanc <ant.leblanc@gmail.com>
+
+
+
 ## [3.0.4](https://github.com/ovh-ux/manager/compare/@ovh-ux/ng-ovh-sso-auth-modal-plugin@3.0.3...@ovh-ux/ng-ovh-sso-auth-modal-plugin@3.0.4) (2019-10-17)
 
 
