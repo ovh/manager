@@ -22,12 +22,13 @@ angular
       OvhApiTelephony,
       TucToast,
       TucToastError,
+      iceberg,
     ) {
       const self = this;
 
       this.$onInit = function $onInit() {
         self.billingAccounts = {
-          ids: [],
+          accounts: [],
           paginated: null,
           current: $stateParams.billingAccount,
           selected: null,
@@ -54,28 +55,24 @@ angular
 
         return $q
           .all({
-            billingAccounts: OvhApiTelephony.v6().query().$promise,
+            billingAccounts: iceberg('/telephony')
+              .query()
+              .expand('CachedObjectList-Pages')
+              .execute().$promise,
             numberCount: getNumberCount,
             lineCount: getLineCount,
           })
           .then(
             (result) => {
-              self.billingAccounts.ids = result.billingAccounts.map(
-                (billingAccount) => ({ id: billingAccount }),
+              self.billingAccounts.accounts = result.billingAccounts.data.filter(
+                (account) =>
+                  account.billingAccount !== self.billingAccounts.current,
               );
               self.numberCount = result.numberCount;
               self.lineCount = result.lineCount;
             },
             (err) => new TucToastError(err),
           );
-      };
-
-      self.fetchBillingAccountDetails = function fetchBillingAccountDetails(
-        billingAccount,
-      ) {
-        return OvhApiTelephony.v6().get({
-          billingAccount: billingAccount.id,
-        }).$promise;
       };
 
       self.selectBillingAccount = function selectBillingAccount(ba) {
