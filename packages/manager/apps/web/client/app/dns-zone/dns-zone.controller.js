@@ -15,6 +15,7 @@ export default class DnsZoneCtrl {
     $timeout,
     $translate,
     Alerter,
+    capabilities,
     Domain,
     currentSection,
     isEmailDomainAvailable,
@@ -24,6 +25,7 @@ export default class DnsZoneCtrl {
     this.$timeout = $timeout;
     this.$translate = $translate;
     this.Alerter = Alerter;
+    this.capabilities = capabilities;
     this.Domain = Domain;
     this.currentSection = currentSection;
     this.isEmailDomainAvailable = isEmailDomainAvailable;

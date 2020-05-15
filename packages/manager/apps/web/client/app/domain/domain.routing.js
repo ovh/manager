@@ -9,6 +9,17 @@ import glueState from './glue/domain-glue.state';
 import dnsSecState from './dnssec/domain-dnssec.state';
 import tasksState from './tasks/domain-tasks.state';
 
+export const commonResolves = {
+  zoneOption: /* @ngInject */ ($http, domainName) =>
+    $http
+      .get(`/domain/${domainName}/options`)
+      .then((options) => options.data.zone),
+  zoneCapabilities: /* @ngInject */ (DNSZoneService, zoneOption) =>
+    zoneOption
+      ? DNSZoneService.getCapabilities(zoneOption.serviceName)
+      : { dynHost: false },
+};
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.domain', {
     abstract: true,
@@ -26,6 +37,7 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     redirectTo: 'app.domain.product.information',
     resolve: {
+      ...commonResolves,
       associatedHostings: /* @ngInject */ (Domain, domainName) =>
         Domain.getAssociatedHosting(domainName),
       currentSection: () => 'domain',
@@ -79,6 +91,7 @@ export default /* @ngInject */ ($stateProvider) => {
     reloadOnSearch: false,
     redirectTo: 'app.domain.alldom.information',
     resolve: {
+      ...commonResolves,
       associatedHostings: /* @ngInject */ (Domain, domainName) =>
         Domain.getAssociatedHosting(domainName),
       currentSection: () => 'domain',
