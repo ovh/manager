@@ -208,7 +208,7 @@ export = (opts) => {
                   require.resolve('babel-plugin-angularjs-annotate'), // ng annotate
                 ],
                 shouldPrintComment: (val) =>
-                  !/@ngInject|@ngTranslationsInject/.test(val),
+                  !/@ng(Translations)?Inject/.test(val),
               },
             },
           ],
