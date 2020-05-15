@@ -20,7 +20,7 @@ const cacheLoader = {
 
 // The common webpack configuration
 
-export = opts => {
+export = (opts) => {
   const lessLoaderOptions = {
     sourceMap: true,
     plugins: [
@@ -68,14 +68,10 @@ export = opts => {
     ],
 
     resolve: {
-      modules: [
-        './node_modules',
-        path.resolve('./node_modules'),
-      ],
+      modules: ['./node_modules', path.resolve('./node_modules')],
     },
 
     resolveLoader: {
-
       // webpack module resolution paths
       modules: [
         './node_modules', // #1 check in module's relative node_module directory
@@ -85,7 +81,6 @@ export = opts => {
 
     module: {
       rules: [
-
         // load HTML files as string (raw-loader)
         {
           test: /\.html$/,
@@ -180,6 +175,28 @@ export = opts => {
           exclude: /node_modules(?!\/ovh-module)/, // we don't want babel to process vendors files
           use: [
             cacheLoader,
+            // inject translation with @ngTranslationsInject comment
+            {
+              loader: path.resolve(
+                __dirname,
+                './loaders/translation-inject.js',
+              ),
+              options: {
+                filtering: false,
+              },
+            },
+            // inject translation imports into JS source code,
+            // given proper ui-router state 'translations' property
+            {
+              loader: path.resolve(
+                __dirname,
+                './loaders/translation-ui-router.js',
+              ),
+              options: {
+                subdirectory: 'translations',
+                filtering: false,
+              },
+            },
             {
               loader: 'babel-loader', // babelify JS sources
               options: {
@@ -190,41 +207,8 @@ export = opts => {
                   require.resolve('@babel/plugin-syntax-dynamic-import'), // dynamic es6 imports
                   require.resolve('babel-plugin-angularjs-annotate'), // ng annotate
                 ],
-                shouldPrintComment: (val) => !/@ngInject/.test(val),
-              },
-            },
-          ],
-        },
-
-        // inject translation imports into JS source code,
-        // given proper ui-router state 'translations' property
-        {
-          test: /\.js$/,
-          exclude: /node_modules(?!\/ovh-module)/,
-          enforce: 'pre',
-          use: [
-            cacheLoader,
-            {
-              loader: path.resolve(__dirname, './loaders/translation-ui-router.js'),
-              options: {
-                subdirectory: 'translations',
-                filtering: false,
-              },
-            },
-          ],
-        },
-
-        // inject translation with @ngTranslationsInject comment
-        {
-          test: /\.js$/,
-          exclude: /node_modules(?!\/ovh-module)/,
-          enforce: 'pre',
-          use: [
-            cacheLoader,
-            {
-              loader: path.resolve(__dirname, './loaders/translation-inject.js'),
-              options: {
-                filtering: false,
+                shouldPrintComment: (val) =>
+                  !/@ng(Translations)?Inject/.test(val),
               },
             },
           ],
@@ -237,7 +221,6 @@ export = opts => {
       runtimeChunk: 'single',
       // bundle spliting configuration
       splitChunks: {
-
         // vendors bundle containing node_modules source code
         cacheGroups: {
           bower: {
@@ -262,7 +245,6 @@ export = opts => {
           },
         },
       },
-
     }, // \optimization
   };
 };
