@@ -4,6 +4,7 @@ import set from 'lodash/set';
 
 // peerDependencies.
 import '@ovh-ux/ng-ovh-sso-auth';
+import '@ovh-ux/ng-translate-async-loader';
 import 'angular-translate';
 import 'angular-ui-bootstrap';
 
@@ -18,6 +19,7 @@ const moduleName = 'ngOvhSsoAuthModalPlugin';
 angular
   .module(moduleName, [
     'ngOvhSsoAuth',
+    'ngTranslateAsyncLoader',
     'pascalprecht.translate',
     'ui.bootstrap',
   ])
