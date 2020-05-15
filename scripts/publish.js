@@ -37,8 +37,10 @@ execa('lerna', ['ls', '-pl', '--json', '--toposort'])
                     pkg.name,
                     '--include-dependencies',
                     '--',
-                    'yarn',
+                    'npm',
+                    'run',
                     'prepare',
+                    '--if-present',
                   ]),
                 () =>
                   execa('lerna', [
