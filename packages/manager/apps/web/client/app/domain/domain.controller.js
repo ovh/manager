@@ -22,6 +22,7 @@ angular.module('App').controller(
       orderedHosting,
       User,
       WucAllDom,
+      zoneCapabilities,
     ) {
       this.$q = $q;
       this.$rootScope = $rootScope;
@@ -40,6 +41,7 @@ angular.module('App').controller(
       this.orderedHosting = orderedHosting;
       this.User = User;
       this.WucAllDom = WucAllDom;
+      this.zoneCapabilities = zoneCapabilities;
     }
 
     $onInit() {
