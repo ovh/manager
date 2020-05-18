@@ -1,5 +1,4 @@
 import isString from 'lodash/isString';
-import startsWith from 'lodash/startsWith';
 
 angular.module('App').controller(
   'HostingTabDomainsMultisiteLogs',
@@ -33,16 +32,7 @@ angular.module('App').controller(
           params: { attachedDomain: domain.name, remoteCheck: true },
         })
           .then((result) => {
-            if (startsWith(this.$scope.hostingProxy.datacenter, 'gra')) {
-              domain.logUrl = `${URI.expand(this.constants.stats_logs_gra, {
-                cluster: this.$scope.hostingProxy.cluster,
-                serviceName: domain.ownLog,
-              }).toString()}?token=${result}`;
-            } else {
-              domain.logUrl = `${URI.expand(this.constants.stats_logs, {
-                serviceName: domain.ownLog,
-              }).toString()}?token=${result}`;
-            }
+            domain.logUrl = `${this.$scope.logs.logs}?token=${result}`;
           })
           .catch(() => {
             this.Alerter.error(
