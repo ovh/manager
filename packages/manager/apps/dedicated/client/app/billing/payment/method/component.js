@@ -9,5 +9,6 @@ export default {
     getActionHref: '<',
     guides: '<',
     paymentMethods: '<',
+    user: '<',
   },
 };
