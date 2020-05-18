@@ -76,7 +76,7 @@ export default class HostingEmailService {
       duration: price.duration,
       planCode: option.planCode,
       pricingMode: price.pricingMode,
-      quantity: price.maximumQuantity,
+      quantity: price.minimumQuantity,
     };
     return this.OrderService.addProductServiceOptionToCart(
       cart.cartId,
