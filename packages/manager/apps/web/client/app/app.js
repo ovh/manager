@@ -139,8 +139,6 @@ angular
     UNIVERSES: config.constants.UNIVERSES,
     TOP_GUIDES: config.constants.TOP_GUIDES,
     swsProxyRootPath: 'apiv6/',
-    stats_logs: config.constants.STATS_LOGS,
-    stats_logs_gra: config.constants.STATS_LOGS_GRA,
     aapiHeaderName: 'X-Ovh-Session',
     flags_options: config.constants.flags_options,
     algorithm_options: config.constants.algorithm_options,

@@ -26,7 +26,7 @@ angular.module('App').controller(
 
     $onInit() {
       this.hosting = this.$scope.hosting;
-      this.statisticsRoute = this.$scope.statisticsRoute;
+      this.logs = this.$scope.logs;
       this.userLogsToken = null;
 
       this.$scope.$on('hosting.userLogs.refresh', () => {
@@ -45,18 +45,6 @@ angular.module('App').controller(
       this.User.getUrlOf('guides').then((guides) => {
         this.guide = get(guides, 'hostingStatsLogs');
       });
-
-      if (['gra1', 'gra2'].includes(this.$scope.hostingProxy.datacenter)) {
-        this.urlLogs = URI.expand(this.constants.stats_logs_gra, {
-          serviceName: this.$stateParams.productId,
-          cluster: this.$scope.hostingProxy.cluster,
-        }).toString();
-      } else {
-        this.urlLogs = URI.expand(this.constants.stats_logs, {
-          serviceName: this.$stateParams.productId,
-          cluster: this.$scope.hostingProxy.cluster,
-        }).toString();
-      }
 
       this.refreshTableUserLogs();
     }
