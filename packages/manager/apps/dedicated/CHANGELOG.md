@@ -1,3 +1,12 @@
+## [12.4.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@12.4.2...@ovh-ux/manager-dedicated@12.4.3) (2020-05-18)
+
+
+### Bug Fixes
+
+* **payment:** update notification for bank account validation ([#2943](https://github.com/ovh/manager/issues/2943)) ([d397535](https://github.com/ovh/manager/commit/d39753574034b0dcb92a40eae68fea7b034344d5))
+
+
+
 ## [12.4.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@12.4.1...@ovh-ux/manager-dedicated@12.4.2) (2020-05-14)
 
 

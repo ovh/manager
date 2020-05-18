@@ -1,3 +1,12 @@
+## [14.3.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@14.3.2...@ovh-ux/manager-web@14.3.3) (2020-05-18)
+
+
+### Bug Fixes
+
+* **hosting:** handle broken email option service info ([#2960](https://github.com/ovh/manager/issues/2960)) ([0b9c823](https://github.com/ovh/manager/commit/0b9c8233f8db82f4ef0714db141e8206419afbfc))
+
+
+
 ## [14.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@14.3.1...@ovh-ux/manager-web@14.3.2) (2020-05-14)
 
 
