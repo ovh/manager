@@ -11,9 +11,9 @@
                 ><span data-translate="kube_service"></span>
             </oui-header-tabs-item>
             <oui-header-tabs-item
-                data-href="{{:: $ctrl.nodesLink }}"
-                data-active="$ctrl.currentActiveLink() === $ctrl.nodesLink"
-                ><span data-translate="kube_nodes"></span>
+                data-href="{{:: $ctrl.nodePoolsLink }}"
+                data-active="$ctrl.currentActiveLink().startsWith($ctrl.nodePoolsLink)"
+                ><span data-translate="kube_node_pools"></span>
             </oui-header-tabs-item>
             <oui-header-tabs-item
                 data-href="{{:: $ctrl.containersLink }}"

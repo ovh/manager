@@ -35,7 +35,7 @@
                         data-values="[flavor]"
                         data-variant="light"
                         data-on-change="$ctrl.onFlavorChange(modelValue)"
-                        data-disabled="($ctrl.region && !$ctrl.region.hasEnoughQuotaForFlavor(flavor)) || !$ctrl.hasEnoughDisk(flavor)"
+                        data-disabled="($ctrl.region && !$ctrl.region.hasEnoughQuotaForFlavors(flavor, $ctrl.flavorCount)) || !$ctrl.hasEnoughDisk(flavor)"
                         data-required
                     >
                         <oui-select-picker-section>
@@ -141,7 +141,7 @@
                             </div>
                         </oui-select-picker-section>
                         <oui-select-picker-section
-                            data-ng-if="$ctrl.region && !$ctrl.region.hasEnoughQuotaForFlavor(flavor)"
+                            data-ng-if="$ctrl.region && !$ctrl.region.hasEnoughQuotaForFlavors(flavor, $ctrl.flavorCount)"
                         >
                             <a
                                 class="oui-button oui-button_ghost"

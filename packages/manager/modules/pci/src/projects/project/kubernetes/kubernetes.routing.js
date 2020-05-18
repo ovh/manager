@@ -1,6 +1,7 @@
 import get from 'lodash/get';
 import map from 'lodash/map';
 import max from 'lodash/max';
+
 import { VERSION_ENUM_KEY } from './kubernetes.constants';
 
 export default /* @ngInject */ ($stateProvider) => {

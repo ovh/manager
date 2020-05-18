@@ -8,10 +8,9 @@ import '@ovh-ux/ui-kit';
 
 import kubernetesComponent from './component';
 import routing from './details.routing';
-import service from './service';
 
 import containersComponent from './containers/index';
-import nodesComponent from './nodes';
+import nodePools from './node-pool';
 import serviceComponent from './service/index';
 
 import './index.scss';
@@ -27,7 +26,7 @@ angular
     'ngTranslateAsyncLoader',
     'ui.router',
     containersComponent,
-    nodesComponent,
+    nodePools,
     serviceComponent,
   ])
   .config(routing)
@@ -35,7 +34,6 @@ angular
   .component(
     'ovhManagerPciProjectKubernetesDetailComponent',
     kubernetesComponent,
-  )
-  .service('Kubernetes', service);
+  );
 
 export default moduleName;

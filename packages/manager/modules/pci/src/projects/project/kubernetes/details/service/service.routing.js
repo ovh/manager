@@ -25,6 +25,12 @@ export default /* @ngInject */ ($stateProvider) => {
           projectId,
         }),
 
+      createNodePool: /* @ngInject */ ($state, kubeId, projectId) => () =>
+        $state.go('pci.projects.project.kubernetes.details.nodepools.add', {
+          kubeId,
+          projectId,
+        }),
+
       terminate: /* @ngInject */ ($state, kubeId, projectId) => () =>
         $state.go('pci.projects.project.kubernetes.details.service.terminate', {
           kubeId,

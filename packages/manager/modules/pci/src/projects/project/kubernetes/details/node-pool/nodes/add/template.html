@@ -1,0 +1,86 @@
+<h1
+    data-translate="kube_nodes_add_title"
+    data-translate-values="{ nodePoolName: $ctrl.nodePoolName }"
+></h1>
+<cui-message-container data-messages="$ctrl.messages"></cui-message-container>
+<oui-stepper>
+    <oui-step-form
+        data-header="{{:: 'kube_nodes_add_to_node_pool' | translate }}"
+        data-editable="!$ctrl.isAdding"
+        data-valid="$ctrl.flavor && !$ctrl.intanceFlavor.quotaOverflow"
+        data-navigation="$ctrl.flavor && !$ctrl.intanceFlavor.quotaOverflow"
+        data-on-focus="$ctrl.displaySelectedFlavor = false"
+        data-on-submit="$ctrl.displaySelectedFlavor = true"
+        name="node_add_configuration"
+    >
+        <oui-field
+            data-label="{{ ::'kube_nodes_add_select_nodes' | translate }}"
+            data-size="xl"
+        >
+            <oui-numeric
+                id="node-add-count"
+                name="node-add-count"
+                data-model="$ctrl.nodeAddCount"
+                min="1"
+                max="$ctrl.maxInstances"
+                required
+            >
+            </oui-numeric>
+        </oui-field>
+        <oui-field
+            data-label="{{ ::'kube_nodes_add_instance_type' | translate }}"
+            data-size="xl"
+            data-label-popover="{{ ::'kube_nodes_add_same_flavor_message' | translate }}"
+        >
+            <oui-select
+                aria-labelledby="flavor"
+                name="flavor"
+                data-model="$ctrl.intanceFlavor"
+                data-items="$ctrl.flavors"
+                data-match="displayedName"
+                data-disabled="true"
+            >
+            </oui-select>
+        </oui-field>
+
+        <oui-message
+            data-type="error"
+            data-ng-if="$ctrl.intanceFlavor.quotaOverflow"
+        >
+            <span
+                data-translate="{{ 'kube_nodes_add_flavor_' + $ctrl.intanceFlavor.quotaOverflow }}"
+            ></span>
+            <button
+                type="button"
+                class="oui-link"
+                data-ng-click="$ctrl.goToProjectQuota()"
+                data-translate="kube_nodes_add_flavor_quota_manage"
+            ></button>
+        </oui-message>
+    </oui-step-form>
+
+    <oui-step-form
+        data-header="{{:: 'kube_common_billing_type_title' | translate }}"
+        data-editable="!$ctrl.isAdding"
+        data-valid="$ctrl.intanceFlavor"
+        data-navigation="$ctrl.intanceFlavor && !$ctrl.isAdding"
+        data-submit-text="{{ ::'kube_common_save' | translate }}"
+        data-cancel-text="{{ ::'kube_common_cancel' | translate }}"
+        data-cancel-href="{{$ctrl.cancelLink}}"
+        data-on-submit="$ctrl.addNode()"
+        name="node_add_billing_info"
+    >
+        <billing-type
+            data-flavor="$ctrl.intanceFlavor"
+            data-number="$ctrl.nodeAddCount"
+            data-monthly-billing="false"
+            data-description="{{ ::'kube_add_billing_type_description' | translate }}"
+        >
+        </billing-type>
+
+        <div data-ng-if="$ctrl.isAdding" class="d-flex align-items-center">
+            <oui-spinner data-size="m"></oui-spinner>
+            <span data-translate="kube_nodes_add_adding_message"></span>
+        </div>
+    </oui-step-form>
+</oui-stepper>

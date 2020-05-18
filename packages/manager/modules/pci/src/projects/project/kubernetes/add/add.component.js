@@ -6,6 +6,7 @@ export default {
     highestVersion: '<',
     goBack: '<',
     projectId: '<',
+    quotas: '<',
     regions: '<',
     versions: '<',
   },

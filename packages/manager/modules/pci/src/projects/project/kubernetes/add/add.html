@@ -10,7 +10,7 @@
         data-valid="$ctrl.cluster.region"
         data-navigation="$ctrl.cluster.region"
         data-on-focus="$ctrl.displaySelectedRegion = false"
-        data-on-submit="$ctrl.displaySelectedRegion = true"
+        data-on-submit="$ctrl.onRegionSubmit()"
     >
         <pci-project-regions-list
             data-regions="$ctrl.regions"
@@ -35,6 +35,46 @@
         >
         </pci-project-versions-list>
     </oui-step-form>
+
+    <!-- select node pool configuration -->
+    <oui-step-form
+        data-header="{{:: 'kube_common_node_pool_title' | translate }}"
+        data-editable="!$ctrl.isAdding"
+        data-valid="$ctrl.cluster.nodePool.flavor"
+        data-navigation="$ctrl.cluster.nodePool.flavor"
+        data-on-focus="$ctrl.onNodePoolFocus()"
+        data-on-submit="$ctrl.onNodePoolSubmit()"
+        name="kubernetes_add_node_pool"
+        data-loading="$ctrl.loadingFlavors"
+    >
+        <node-pool-configuration
+            data-ng-if="$ctrl.displaySelectedRegion && !$ctrl.loadingFlavors"
+            data-region="$ctrl.cluster.region"
+            data-service-name="{{:: $ctrl.projectId }}"
+            data-selected-flavor="$ctrl.cluster.nodePool.flavor"
+            data-display-selected-flavor="$ctrl.displaySelectedFlavor"
+            data-node-count="$ctrl.cluster.nodePool.nodeCount"
+            data-flavors="$ctrl.flavors"
+        >
+        </node-pool-configuration>
+    </oui-step-form>
+
+    <oui-step-form
+        data-header="{{:: 'kube_common_billing_type_title' | translate }}"
+        data-editable="!$ctrl.isAdding"
+        data-valid="$ctrl.cluster.nodePool.flavor"
+        data-navigation="$ctrl.cluster.nodePool.flavor"
+        name="kubernetes_add_node_pool_billing_type"
+    >
+        <billing-type
+            data-flavor="$ctrl.cluster.nodePool.flavor"
+            data-number="$ctrl.cluster.nodePool.nodeCount"
+            data-monthly-billing="$ctrl.cluster.nodePool.monthlyBilling"
+            data-description="{{ ::'kubernetes_add_billing_type_description' | translate }}"
+        >
+        </billing-type>
+    </oui-step-form>
+
     <oui-step-form
         data-header="{{:: 'kubernetes_add_name_title' | translate }}"
         data-editable="!$ctrl.isAdding"

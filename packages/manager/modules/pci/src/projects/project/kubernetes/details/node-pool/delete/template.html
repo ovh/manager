@@ -1,0 +1,37 @@
+<form
+    id="kubeNodePoolDelete"
+    name="kubeNodePoolDelete"
+    data-ng-submit="kubeNodePoolDelete.$valid && $ctrl.deletePoolNode()"
+    novalidate
+>
+    <oui-modal
+        data-heading="{{:: 'kube_node_pool_delete' | translate }}"
+        data-primary-label="{{:: 'kube_common_delete' | translate }}"
+        data-secondary-label="{{:: 'kube_common_cancel' | translate }}"
+        data-secondary-action="$ctrl.goBack()"
+        data-on-dismiss="$ctrl.goBack()"
+        data-loading="$ctrl.isDeleting"
+        data-type="warning"
+    >
+        <p
+            data-translate="kube_node_pool_delete_confirmation"
+            data-translate-values="{ node: $ctrl.nodePoolName }"
+        ></p>
+        <p
+            class="oui-font-light"
+            data-translate="kube_node_pool_delete_warning"
+        ></p>
+        <oui-field
+            data-label="{{:: 'kube_node_pool_delete_enter' | translate }}"
+        >
+            <input
+                class="oui-input"
+                type="text"
+                name="kubeNodePoolDeleteConfirm"
+                data-ng-model="$ctrl.deleteConfirmation"
+                data-ng-pattern="$ctrl.DELETE_CONFIRMATION_INPUT"
+                required
+            />
+        </oui-field>
+    </oui-modal>
+</form>
