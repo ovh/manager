@@ -13,7 +13,7 @@ angular.module('services').service(
       this.OvhHttp = OvhHttp;
     }
 
-    getStatisticsInterfaceRoute(serviceName) {
+    getLogs(serviceName) {
       return this.$http
         .get(`/hosting/web/${serviceName}/ownLogs`, {
           params: {
@@ -25,7 +25,7 @@ angular.module('services').service(
             ? this.$http.get(`/hosting/web/${serviceName}/ownLogs/${data[0]}`)
             : { data: {} },
         )
-        .then(({ data: ownLog }) => ownLog.stats);
+        .then(({ data: ownLog }) => ownLog);
     }
 
     getStatisticsConstants() {
