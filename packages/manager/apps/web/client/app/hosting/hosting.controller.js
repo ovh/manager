@@ -31,6 +31,7 @@ export default class {
     emailOptionIds,
     emailOptionDetachInformation,
     isEmailDomainAvailable,
+    isLocalSeoAvailable,
     goToDetachEmail,
     goToDetachPrivateDB,
     User,
@@ -67,6 +68,7 @@ export default class {
     this.emailOptionIds = emailOptionIds;
     this.emailOptionDetachInformation = emailOptionDetachInformation;
     this.isEmailDomainAvailable = isEmailDomainAvailable;
+    this.isLocalSeoAvailable = isLocalSeoAvailable;
     this.goToDetachEmail = goToDetachEmail;
     this.goToDetachPrivateDB = goToDetachPrivateDB;
     this.User = User;
@@ -473,8 +475,11 @@ export default class {
           });
         }
 
-        if (user.ovhSubsidiary === 'FR') {
+        if (this.isLocalSeoAvailable) {
           this.tabs.splice(indexOf(this.tabs, 'FTP'), 0, 'LOCAL_SEO');
+        }
+
+        if (user.ovhSubsidiary === 'FR') {
           this.tabMenu.items.push({
             label: this.$translate.instant('hosting_tab_WEBSITE_COACH'),
             styles: 'status-beta',
