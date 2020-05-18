@@ -1,7 +1,7 @@
 export const WEB_HOSTING_SERVICE_NAME = 'webHosting';
 export const WEB_HOSTING_EMAIL_FAMILY_NAME = 'mx';
 export const WEB_HOSTING_EMAIL_PRICING_MODE_DEFAULT = 'default';
-export const WEB_HOSTING_CONF_ITEM_LEGACY_DOMAIN = 'legacy_domain';
+export const WEB_HOSTING_CONF_ITEM_LEGACY_DOMAIN = 'mx_domain';
 export const WEB_HOSTING_NOT_USABLE_DOMAINS = 'hosting.ovh.net';
 
 export default {
