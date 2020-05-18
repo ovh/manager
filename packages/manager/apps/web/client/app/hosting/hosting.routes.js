@@ -1,6 +1,8 @@
 import controller from './hosting.controller';
 import template from './hosting.html';
 
+import { LOCAL_SEO_FAMILY } from './local-seo/local-seo.constants';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.hosting', {
     url: '/configuration/hosting/:productId?tab',
@@ -12,6 +14,8 @@ export default /* @ngInject */ ($stateProvider) => {
       tab: null,
     },
     resolve: {
+      availableOptions: /* @ngInject */ (WucOrderCartService, serviceName) =>
+        WucOrderCartService.getProductServiceOptions('webHosting', serviceName),
       emailOptionIds: /* @ngInject */ (hostingEmailService, serviceName) =>
         hostingEmailService.getEmailOptionList(serviceName),
       emailOptionDetachInformation: /* @ngInject */ (
@@ -126,6 +130,8 @@ export default /* @ngInject */ ($stateProvider) => {
           configurationSelected: true,
         });
       },
+      isLocalSeoAvailable: /* @ngInject */ (availableOptions) =>
+        availableOptions.find(({ family }) => family === LOCAL_SEO_FAMILY),
     },
     translations: { value: ['.'], format: 'json' },
   });
