@@ -5,6 +5,7 @@ export default {
   controller,
   template,
   bindings: {
+    flavors: '<?',
     selectedFlavor: '=?',
     displaySelectedFlavor: '<',
     defaultFlavor: '<?',
@@ -16,5 +17,6 @@ export default {
     selectedCategory: '@?',
     serviceName: '@',
     singleFlavorWarning: '@?',
+    flavorCount: '<?',
   },
 };

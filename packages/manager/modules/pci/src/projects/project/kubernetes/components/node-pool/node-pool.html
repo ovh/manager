@@ -1,0 +1,40 @@
+<p data-translate="kubernetes_add_node_pool_description"></p>
+<oui-field
+    data-label="{{ ::'kubernetes_add_node_pool_node_count' | translate }}"
+    data-size="xl"
+>
+    <oui-numeric
+        id="node-pool-count"
+        name="node-pool-count"
+        data-model="$ctrl.nodeCount"
+        min="$ctrl.nodeMinCount"
+        max="$ctrl.nodeMaxCount"
+        required
+    >
+    </oui-numeric>
+</oui-field>
+
+<oui-message
+    data-type="warning"
+    data-ng-if="!$ctrl.displaySelectedFlavor && $ctrl.nodeCount < 3"
+>
+    <p data-translate="kubernetes_add_node_pool_warning"></p>
+</oui-message>
+
+<label
+    for="select-flavor"
+    class="oui-label"
+    data-translate="kubernetes_add_node_pool_node_type"
+></label>
+<pci-project-flavors-list
+    id="select-flavor"
+    data-region="$ctrl.region"
+    data-service-name="{{ ::$ctrl.serviceName }}"
+    data-selected-flavor="$ctrl.selectedFlavor"
+    data-display-selected-flavor="$ctrl.displaySelectedFlavor"
+    data-exclude-categories="$ctrl.excludeCategories"
+    data-default-flavor="$ctrl.defaultFlavor"
+    data-flavors="$ctrl.flavors"
+    data-flavor-count="$ctrl.nodeCount"
+>
+</pci-project-flavors-list>

@@ -12,6 +12,7 @@ import details from './details/details.module';
 import component from './kubernetes.component';
 import onboarding from './onboarding';
 import routing from './kubernetes.routing';
+import service from './service';
 
 import './index.scss';
 
@@ -31,6 +32,7 @@ angular
   ])
   .config(routing)
   .component('ovhManagerPciProjectKubernetes', component)
+  .service('Kubernetes', service)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
