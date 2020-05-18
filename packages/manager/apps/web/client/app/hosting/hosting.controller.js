@@ -39,14 +39,14 @@ export default class {
     HostingIndy,
     HostingOvhConfig,
     HostingTask,
+    logs,
     pendingTasks,
     PrivateDatabase,
-    statisticsRoute,
     HOSTING_STATUS,
   ) {
     this.$scope = $scope;
     this.$scope.HOSTING_STATUS = HOSTING_STATUS;
-    this.$scope.statisticsRoute = statisticsRoute;
+    this.$scope.logs = logs;
     this.$rootScope = $rootScope;
     this.$location = $location;
     this.$q = $q;

@@ -55,8 +55,8 @@ export default /* @ngInject */ ($stateProvider) => {
         HostingTask.getPending(serviceName).catch(() => []),
       serviceName: /* @ngInject */ ($transition$) =>
         $transition$.params().productId,
-      statisticsRoute: /* @ngInject */ (HostingStatistics, serviceName) =>
-        HostingStatistics.getStatisticsInterfaceRoute(serviceName),
+      logs: /* @ngInject */ (HostingStatistics, serviceName) =>
+        HostingStatistics.getLogs(serviceName),
       goToDetachEmail: /* @ngInject */ ($state) => () =>
         $state.go('app.hosting.detachEmail'),
       goToHosting: /* @ngInject */ ($state, $timeout, Alerter) => (

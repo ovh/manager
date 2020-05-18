@@ -11,8 +11,6 @@ module.exports = {
       'https://www.ovh.com/manager/dedicated/#/billing/payment/method',
     RENEW_URL:
       'https://eu.ovh.com/fr/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
-    STATS_LOGS: 'https://logs.ovh.net/{serviceName}/',
-    STATS_LOGS_GRA: 'https://logs.{cluster}.hosting.ovh.net/{serviceName}/',
     loginUrl: '/auth',
     UNIVERS: 'web',
     UNIVERSES: {
@@ -1151,7 +1149,6 @@ module.exports = {
     AUTORENEW_URL: 'https://ca.ovh.com/manager/dedicated/#/billing/autoRenew',
     RENEW_URL:
       'https://ca.ovh.com/fr/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
-    STATS_LOGS: 'https://logs.ovh.net/{serviceName}/',
     loginUrl: 'https://www.ovh.com/manager/web/login/',
     UNIVERS: 'web',
     UNIVERSES: {
