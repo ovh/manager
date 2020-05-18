@@ -94,8 +94,8 @@ export default /* @ngInject */ ($stateProvider) => {
           ),
       serviceName: /* @ngInject */ ($transition$) =>
         $transition$.params().productId,
-      statisticsRoute: /* @ngInject */ (HostingStatistics, serviceName) =>
-        HostingStatistics.getStatisticsInterfaceRoute(serviceName),
+      logs: /* @ngInject */ (HostingStatistics, serviceName) =>
+        HostingStatistics.getLogs(serviceName),
       goToDetachEmail: /* @ngInject */ ($state) => () =>
         $state.go('app.hosting.detachEmail'),
       goToDetachPrivateDB: /* @ngInject */ ($state) => () =>
