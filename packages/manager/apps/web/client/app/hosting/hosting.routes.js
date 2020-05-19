@@ -34,29 +34,31 @@ export default /* @ngInject */ ($stateProvider) => {
         $q,
         emailOptionIds,
         hostingEmailService,
+        isEmailDomainAvailable,
         OvhApiEmailDomain,
         serviceName,
       ) =>
-        $q
-          .all(
-            emailOptionIds.map((emailOptionId) =>
-              hostingEmailService
-                .getEmailOptionServiceInformation(serviceName, emailOptionId)
-                .then(({ resource }) =>
-                  OvhApiEmailDomain.v6()
-                    .serviceInfos({
-                      serviceName: resource.name,
-                    })
-                    .$promise.catch(() => null),
-                )
-                .catch(() => null),
-            ),
-          )
-          .then((servicesInformation) =>
-            servicesInformation
-              .filter((information) => information !== null)
-              .flatten(),
-          ),
+        (isEmailDomainAvailable
+          ? $q.all(
+              emailOptionIds.map((emailOptionId) =>
+                hostingEmailService
+                  .getEmailOptionServiceInformation(serviceName, emailOptionId)
+                  .then(({ resource }) =>
+                    OvhApiEmailDomain.v6()
+                      .serviceInfos({
+                        serviceName: resource.name,
+                      })
+                      .$promise.catch(() => null),
+                  )
+                  .catch(() => null),
+              ),
+            )
+          : $q.resolve([])
+        ).then((servicesInformation) =>
+          servicesInformation
+            .filter((information) => information !== null)
+            .flatten(),
+        ),
       pendingTasks: /* @ngInject */ (HostingTask, serviceName) =>
         HostingTask.getPending(serviceName).catch(() => []),
       privateDatabasesIds: /* @ngInject */ (HostingDatabase, serviceName) =>
