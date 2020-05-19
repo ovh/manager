@@ -73,6 +73,5 @@
   "telephony_line_phone_price": "Precio:",
   "telephony_line_phone_detail_link": "Ficha técnica",
   "telephony_line_phone_order_validate": "Confirmar mi pedido",
-  "ovh_contracts_agree": "He leído y acepto los siguientes contratos.",
-  "telephony_line_phone_choice_fees_description": "{{feesText}}: {{feesPriceText}}"
+  "ovh_contracts_agree": "He leído y acepto los siguientes contratos."
 }

@@ -125,8 +125,11 @@
                                             data-ng-if="phone.fees"
                                         >
                                             <span
-                                                data-translate="telephony_line_phone_choice_fees_description"
-                                                data-translate-values="{feesText: phone.fees.text, feesPriceText: phone.fees.priceText}"
+                                                data-ng-bind="phone.fees.text"
+                                            ></span>
+                                            :
+                                            <span
+                                                data-ng-bind="phone.fees.priceText"
                                             ></span>
                                         </div>
                                         <div
