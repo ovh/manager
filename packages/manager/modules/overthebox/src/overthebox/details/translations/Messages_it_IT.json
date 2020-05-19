@@ -42,8 +42,6 @@
   "overTheBox_action_update_label": "Aggiorna",
   "overTheBox_action_launch_success": "Il comando remoto è stata trasmesso correttamente al tuo dispositivo. L'operazione potrebbe richiedere qualche minuto.",
   "overTheBox_action_launch_error": "Il comando remoto non è stata eseguito dal tuo dispositivo. Ti preghiamo di riprovare.",
-  "overTheBox_action_upgrade_title": "Aggiorna le applicazioni",
-  "overTheBox_action_upgrade_label": "Effettua l'aggiornamento delle applicazioni OverTheBox.",
   "overTheBox_action_sysupgrade_title": "Aggiorna il sistema",
   "overTheBox_action_sysupgrade_label": "Effettua la reinstallazione e il riavvio della tua macchina con un backup della tua configurazione.",
   "overTheBox_graph_filter_last5min": "Ultimi 5 min.",
