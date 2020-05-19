@@ -9,16 +9,20 @@ import { bootstrapApplication } from '@ovh-ux/manager-core';
 
 attachPreloader();
 
-bootstrapApplication().then(({ region }) => {
-  import(`./config-${region}`)
-    .catch(() => {})
-    .then(() => import('./app.module'))
-    .then(({ default: application }) => {
-      angular.bootstrap(document.body, [application], {
-        strictDi: true,
+const bootstrapAppPromise = new Promise((resolve) => {
+  bootstrapApplication().then(({ region }) => {
+    import(`./config-${region}`)
+      .catch(() => {})
+      .then(() => import('./app.module'))
+      .then(({ default: application }) => {
+        resolve(
+          angular.bootstrap(document.body, [application], {
+            strictDi: true,
+          }),
+        );
+        detachPreloader();
       });
-      detachPreloader();
-    });
+  });
 });
 
 const handshake = new Postmate({
@@ -30,10 +34,29 @@ const handshake = new Postmate({
 
 // When parent <-> child handshake is complete, data may be requested from the child
 handshake.then((child) => {
-  window.addEventListener('hashchange', () => {
+  window.addEventListener('ovh.navigation.hashchange', () => {
     child.call('updateHash', window.location.hash);
   });
-  child.on('hashChange', (hash) => {
+
+  child.on('ovh.navigation.hashChange', (hash) => {
     window.history.replaceState(null, '', hash);
+  });
+
+  child.on('ovh.session.switch', () => {
+    bootstrapAppPromise.then((app) => {
+      app.get('ssoAuthentication').handleSwitchSession();
+    });
+  });
+
+  child.on('ovh.session.logout', () => {
+    bootstrapAppPromise.then((app) => {
+      app.get('ssoAuthentication').logout();
+    });
+  });
+
+  child.on('ovh.session.login', (url) => {
+    bootstrapAppPromise.then((app) => {
+      app.get('ssoAuthentication').goToLoginPage(url);
+    });
   });
 });

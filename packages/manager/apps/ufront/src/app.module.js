@@ -9,6 +9,7 @@ import isString from 'lodash/isString';
 import 'ovh-ui-angular';
 import ovhManagerCore from '@ovh-ux/manager-core';
 import ovhManagerNavbar from '@ovh-ux/manager-navbar';
+import ngOvhSsoAuthModalPlugin from '@ovh-ux/ng-ovh-sso-auth-modal-plugin';
 
 import get from 'lodash/get';
 
@@ -21,12 +22,13 @@ import './index.scss';
 
 Environment.setVersion(__VERSION__);
 
-const moduleName = 'managerHubApp';
+const moduleName = 'managerUFrontApp';
 
 angular
   .module(
     moduleName,
     [
+      ngOvhSsoAuthModalPlugin,
       'oui',
       ovhManagerCore,
       ovhManagerNavbar,
