@@ -8,6 +8,7 @@ export default {
     goToHosting: '<',
     me: '<',
     hosting: '<',
+    privateSqlOptions: '<',
     versions: '<',
     services: '<',
   },

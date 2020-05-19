@@ -15,7 +15,10 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     resolve: {
       availableOptions: /* @ngInject */ (WucOrderCartService, serviceName) =>
-        WucOrderCartService.getProductServiceOptions('webHosting', serviceName),
+        WucOrderCartService.getProductServiceOptions(
+          'webHosting',
+          serviceName,
+        ).catch(() => []),
       emailOptionIds: /* @ngInject */ (hostingEmailService, serviceName) =>
         hostingEmailService.getEmailOptionList(serviceName),
       emailOptionDetachInformation: /* @ngInject */ (

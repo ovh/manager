@@ -1,4 +1,3 @@
-import filter from 'lodash/filter';
 import find from 'lodash/find';
 import get from 'lodash/get';
 import includes from 'lodash/includes';
@@ -34,39 +33,25 @@ export default class PrivateSqlActivationController {
     this.loading.hosting = true;
     this.error.hosting = null;
     this.option = undefined;
-    return this.$q
-      .all([this.fetchDataCenter(), this.fetchOptions()])
+    this.options = map(this.privateSqlOptions, (option) => {
+      const price = get(
+        find(option.prices, { pricingMode: 'default' }),
+        'price.text',
+      );
+      const planLabel = this.$translate.instant(
+        `privatesql_activation_option_${option.planCode}`,
+      );
+      return {
+        value: option,
+        label: `${planLabel} - ${price}`,
+      };
+    });
+    return this.fetchDataCenter()
       .catch((error) => {
         this.error.hosting = error;
       })
       .finally(() => {
         this.loading.hosting = false;
-      });
-  }
-
-  fetchOptions() {
-    return this.WucOrderCartService.getProductServiceOptions(
-      'webHosting',
-      this.hosting,
-    )
-      .then((options) =>
-        filter(options, (option) => option.planCode.startsWith('private-sql')),
-      )
-      .then((options) => {
-        this.options = map(options, (option) => {
-          const price = get(
-            find(option.prices, { pricingMode: 'default' }),
-            'price.text',
-          );
-          const planLabel = this.$translate.instant(
-            `privatesql_activation_option_${option.planCode}`,
-          );
-          return {
-            value: option,
-            label: `${planLabel} - ${price}`,
-          };
-        });
-        return this.options;
       });
   }
 
