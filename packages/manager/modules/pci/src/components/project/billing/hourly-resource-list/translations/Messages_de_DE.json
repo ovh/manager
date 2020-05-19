@@ -8,5 +8,6 @@
   "cpbc_snapshot_detail_title": "Backup-Speicher",
   "cpbc_volume_detail_title": "Zusätzliche Festplatten",
   "cpbc_hourly_instance_trafic_title": "Aus den Instanzen ausgehender öffentlicher Datenverkehr ",
-  "cpbc_hourly_private_registry_title": "Managed Private Registry"
+  "cpbc_hourly_private_registry_title": "Managed Private Registry",
+  "cpbc_hourly_load_balancer_title": "Loadbalancer"
 }

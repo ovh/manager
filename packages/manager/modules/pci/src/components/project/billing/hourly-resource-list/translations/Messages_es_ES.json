@@ -8,5 +8,6 @@
   "cpbc_snapshot_detail_title": "Almacenamiento de copias de seguridad",
   "cpbc_volume_detail_title": "Discos adicionales",
   "cpbc_hourly_instance_trafic_title": "Tráfico público saliente de las instancias",
-  "cpbc_hourly_private_registry_title": "Managed Private Registry"
+  "cpbc_hourly_private_registry_title": "Managed Private Registry",
+  "cpbc_hourly_load_balancer_title": "Load Balancer"
 }

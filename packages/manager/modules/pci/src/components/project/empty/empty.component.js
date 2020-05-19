@@ -9,5 +9,6 @@ export default {
     imageAlt: '<',
     imageSource: '<',
     guides: '<?',
+    onGuideClick: '&?',
   },
 };

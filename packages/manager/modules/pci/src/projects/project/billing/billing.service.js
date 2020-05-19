@@ -238,36 +238,43 @@ export default class CloudProjectBillingService {
     );
   }
 
-  initPrivateRegistry() {
-    // take only registry type
-    const privateRegistryResources = flatten(
+  initResourceUsage(resourceType, resourceName) {
+    const resources = flatten(
       map(
         filter(this.data.hourlyBilling.resourcesUsage, {
-          type: 'registry',
+          type: resourceType,
         }),
         'resources',
       ),
     );
 
-    this.data.privateRegistry = flatten(
-      map(privateRegistryResources, (privateRegistryResource) => {
-        return map(privateRegistryResource.components, (resourceComponent) => {
+    this.data[resourceName] = flatten(
+      map(resources, (resource) => {
+        return map(resource.components, (resourceComponent) => {
           const component = resourceComponent;
-          component.region = privateRegistryResource.region;
+          component.region = resource.region;
           return component;
         });
       }),
     );
 
-    this.data.totals.hourly.privateRegistry = this.data.privateRegistry.reduce(
+    this.data.totals.hourly[resourceName] = this.data[resourceName].reduce(
       (total, component) => total + component.totalPrice,
       0,
     );
 
-    this.data.totals.hourly.privateRegistry = this.constructor.roundNumber(
-      this.data.totals.hourly.privateRegistry || 0,
+    this.data.totals.hourly[resourceName] = this.constructor.roundNumber(
+      this.data.totals.hourly[resourceName] || 0,
       2,
     );
+  }
+
+  initPrivateRegistry() {
+    this.initResourceUsage('registry', 'privateRegistry');
+  }
+
+  initLoadBalancer() {
+    this.initResourceUsage('loadbalancer', 'loadBalancer');
   }
 
   getConsumptionDetails(hourlyBillingInfo, monthlyBillingInfo) {
@@ -285,6 +292,7 @@ export default class CloudProjectBillingService {
           this.initVolumeList(),
           this.initInstanceBandwidth(),
           this.initPrivateRegistry(),
+          this.initLoadBalancer(),
         ])
         .then(() => {
           this.data.totals.monthly.total = this.constructor.roundNumber(
@@ -298,7 +306,8 @@ export default class CloudProjectBillingService {
               this.data.totals.hourly.archiveStorage +
               this.data.totals.hourly.volume +
               this.data.totals.hourly.bandwidth +
-              this.data.totals.hourly.privateRegistry,
+              this.data.totals.hourly.privateRegistry +
+              this.data.totals.hourly.loadBalancer,
             2,
           );
           this.data.totals.total = this.constructor.roundNumber(

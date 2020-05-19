@@ -1,0 +1,8 @@
+{
+  "pci_projects_project_load_balancer_title": "Load Balancer",
+  "pci_projects_project_load_balancer_onboarding_content": "Actuellement réservé aux utilisateurs de Managed Kubernetes Service",
+  "pci_projects_project_load_balancer_onboarding_content1": "Vous n’avez pas encore créé de Load Balancer.",
+  "pci_projects_project_load_balancer_onboarding_content2": "Partagez la charge de vos applications entre plusieurs instances.",
+  "pci_projects_project_load_balancer_onboarding_content3": "Grâce à l’OVHcloud Load Balancer, vous avez la possibilité de renforcer la scalabilité et la robustesse de vos applications. Sa création ne nécessite que deux minutes, montre en main. Il vous suffit ensuite de le configurer pour répartir la charge entre les instances concernées. De plus, vous ne payez seulement que lorsque vous l’utilisez.",
+  "pci_projects_project_load_balancer_onboarding_guides_using_load_balancer_title": "Configurer un Load Balancer dans Managed Kubernetes Service"
+}

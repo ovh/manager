@@ -1,0 +1,10 @@
+{
+  "pci_projects_project_load_balancer_list_title": "Load Balancer",
+  "pci_projects_project_load_balancer_list_name": "Surname",
+  "pci_projects_project_load_balancer_list_status": "Status",
+  "pci_projects_project_load_balancer_list_ipAddres": "IP address",
+  "pci_projects_project_load_balancer_list_healthy": "Healthy",
+  "pci_projects_project_load_balancer_list_last_applied_configuration": "Latest configuration applied",
+  "pci_projects_project_load_balancer_list_reqs": "Requests/second",
+  "pci_projects_project_load_balancer_guide_using_load_balancer": "Configure a Kubernetes service with a Load Balancer"
+}
