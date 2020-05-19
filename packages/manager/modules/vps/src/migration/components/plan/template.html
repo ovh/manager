@@ -26,7 +26,9 @@
                 data-translate="vps_migrate_schedule_description_alert"
             ></span
         ></b>
-        <section class="pt-3">
+        <p class="pt-3" data-translate="vps_migrate_schedule_description_price_update"></p>
+        <p data-translate="vps_migrate_schedule_description_windows_license_info"></p>
+        <section class="pt-1">
             <div
                 class="font-weight-normal"
                 data-translate="vps_migrate_schedule_to_model"
@@ -54,7 +56,7 @@
             >
                 <span
                     class="font-weight-bold"
-                    data-ng-bind="$ctrl.formatOption(option.vps2020code)"
+                    data-ng-bind="$ctrl.constructor.formatOption(option.vps2020code)"
                 ></span>
                 <span
                     class="pl-1"
@@ -94,8 +96,9 @@
                     id="schedule-date"
                     name="schedule-date"
                     data-model="$ctrl.scheduleDate"
+                    data-on-change="$ctrl.setMinTime(selectedDates)"
                     data-min-date="$ctrl.todaysDate"
-                    data-max-date="$ctrl.server.migration.notAfter"
+                    data-max-date="$ctrl.migrationCutoffDate"
                     data-options="$ctrl.dateOptions"
                     data-inline
                     required
@@ -111,6 +114,7 @@
                     id="schedule-time"
                     name="schedule-time"
                     data-model="$ctrl.scheduleTime"
+                    data-min-date="$ctrl.minTime"
                     data-options="$ctrl.timeOptions"
                     placeholder="HH:MM"
                     required

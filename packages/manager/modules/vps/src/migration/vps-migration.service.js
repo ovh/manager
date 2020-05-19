@@ -1,4 +1,5 @@
 import compact from 'lodash/compact';
+import filter from 'lodash/filter';
 import find from 'lodash/find';
 import map from 'lodash/map';
 import set from 'lodash/set';
@@ -6,6 +7,7 @@ import set from 'lodash/set';
 import {
   CACHED_OBJECT_LIST_PAGES,
   EXCLUDED_VERSIONS,
+  MIGRATION_STATUS,
   X_PAGINATION_MODE,
 } from './vps-migration.constants';
 
@@ -18,23 +20,33 @@ export default class VpsMigrationService {
     this.$timeout = $timeout;
   }
 
-  getVpsList() {
+  getVpsList(catalog) {
     return this.$http
       .get(`/vps`, {
         headers: {
           [X_PAGINATION_MODE]: CACHED_OBJECT_LIST_PAGES,
         },
       })
-      .then((list) =>
-        compact(
-          map(list.data, (vps) => {
-            if (EXCLUDED_VERSIONS.includes(vps.model.version)) {
-              return vps;
-            }
-            return null;
-          }),
-        ),
-      );
+      .then((list) => {
+        return this.$q
+          .all(
+            map(
+              filter(list.data, (vps) =>
+                EXCLUDED_VERSIONS.includes(vps.model.version),
+              ),
+              (vps) =>
+                this.getMigrationDetails(vps.name, catalog)
+                  .then((migrationDetails) => {
+                    return migrationDetails.status ===
+                      MIGRATION_STATUS.NOT_AVAILABLE
+                      ? null
+                      : set(vps, 'migration', migrationDetails);
+                  })
+                  .catch(() => null),
+            ),
+          )
+          .then((filteredList) => compact(filteredList));
+      });
   }
 
   getMigrationDetails(serviceName, catalog) {

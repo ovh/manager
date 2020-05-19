@@ -2,7 +2,7 @@ import forEach from 'lodash/forEach';
 import remove from 'lodash/remove';
 
 import {
-  EXPIRY_DATE,
+  AUTO_MIGRATION_CUTOFF_DATE,
   MIGRATION_STATUS,
   NEW_RANGE_LINK,
 } from './vps-migration.constants';
@@ -16,7 +16,12 @@ export default class {
     this.VpsMigrationService = VpsMigrationService;
     this.MIGRATION_STATUS = MIGRATION_STATUS;
     this.NEW_RANGE_LINK = NEW_RANGE_LINK;
-    this.expiryDate = moment(EXPIRY_DATE, 'DD-MM-YYYY').format('LL');
+    this.cutoffDate = moment(AUTO_MIGRATION_CUTOFF_DATE, 'DD-MM-YYYY').format(
+      'LL',
+    );
+    this.autoMigrationDate = moment(AUTO_MIGRATION_CUTOFF_DATE, 'DD-MM-YYYY')
+      .add(1, 'days')
+      .format('LL');
   }
 
   $onInit() {
@@ -26,28 +31,18 @@ export default class {
   }
 
   getMigrationInfo(vps) {
-    return this.getMigrationDetails(vps.name, this.catalog)
-      .then((res) => {
-        const migrationPlan = this.VpsMigrationService.constructor.getMigrationPlan(
-          this.catalog,
-          res.model,
-        );
-        return {
-          description: this.VpsMigrationService.getVpsModelDescription(
-            vps.model,
-          ),
-          migration: res,
-          migrationPlan,
-          migrationDescription: this.VpsMigrationService.getVpsModelDescription(
-            migrationPlan.description,
-          ),
-        };
-      })
-      .catch((err) => {
-        if (err.status === 460) {
-          remove(this.vpsList, { name: vps.name });
-        }
-      });
+    const migrationPlan = this.VpsMigrationService.constructor.getMigrationPlan(
+      this.catalog,
+      vps.migration.model,
+    );
+    return {
+      description: this.VpsMigrationService.getVpsModelDescription(vps.model),
+      migration: vps.migration,
+      migrationPlan,
+      migrationDescription: this.VpsMigrationService.getVpsModelDescription(
+        migrationPlan.description,
+      ),
+    };
   }
 
   // eslint-disable-next-line consistent-return
