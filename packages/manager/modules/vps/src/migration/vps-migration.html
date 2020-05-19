@@ -9,7 +9,10 @@
             >
             </cui-message-container>
         </div>
-        <p data-ng-bind-html=":: 'vps_migration_description1' | translate: { date: $ctrl.expiryDate }"></p>
+        <p data-ng-bind-html=":: 'vps_migration_description1' | translate: {
+            cutoffDate: $ctrl.cutoffDate,
+            autoMigrationDate: $ctrl.autoMigrationDate
+        }"></p>
         <p
             data-ng-bind-html=":: 'vps_migration_description2' | translate: { rangeLink: $ctrl.NEW_RANGE_LINK }"
         ></p>

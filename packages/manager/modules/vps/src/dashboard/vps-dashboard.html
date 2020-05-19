@@ -1,7 +1,7 @@
-<oui-message data-ng-if="$ctrl.isMigrationRequired" data-type="warning">
+<oui-message data-ng-if="$ctrl.canScheduleMigration" data-type="warning">
     <p
         data-translate="vps_dashboard_migration_warning"
-        data-translate-values="{date: $ctrl.VPS_2014_EXPIRY_DATE}"
+        data-translate-values="{ date: $ctrl.vps2014MigrationData.autoMigrationDate }"
     ></p>
     <button
         type="button"
@@ -9,6 +9,17 @@
         data-ng-click="$ctrl.goToVpsMigration()"
         data-translate="vps_dashboard_migration_link"
     ></button>
+</oui-message>
+<oui-message data-ng-if="$ctrl.vpsMigrationTask" data-type="warning">
+    <p
+        data-ng-if="$ctrl.vpsMigrationTask.state === 'todo'"
+        data-translate="vps_dashboard_auto_migration_warning"
+        data-translate-values="{ days: $ctrl.vps2014MigrationData.migrationScheduledInDays }"
+    ></p>
+    <p
+        data-ng-if="$ctrl.vpsMigrationTask.state !== 'todo'"
+        data-translate="vps_dashboard_migration_in_progress"
+    ></p>
 </oui-message>
 <section class="container-fluid cui-page__content cui-page__content-flex">
     <div class="row d-lg-flex">
@@ -126,7 +137,7 @@
                             type="button"
                             class="oui-button oui-button_link p-0"
                             data-ng-click="$ctrl.goToVpsMigration()"
-                            data-ng-if="$ctrl.isMigrationRequired"
+                            data-ng-if="$ctrl.canScheduleMigration"
                             data-translate="vps_dashboard_migration_link"
                         ></button>
                     </oui-tile-description>

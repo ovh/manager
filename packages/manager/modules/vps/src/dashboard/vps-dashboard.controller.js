@@ -8,6 +8,7 @@ import 'moment';
 
 import {
   DASHBOARD_FEATURES,
+  VPS_2014_AUTO_MIGRATION_DATE,
   VPS_2014_EXPIRY_DATE,
 } from './vps-dashboard.constants';
 import {
@@ -43,7 +44,16 @@ export default class {
     this.CucRegionService = CucRegionService;
     this.VpsService = VpsService;
     this.vpsUpgradeTile = vpsUpgradeTile;
-    this.VPS_2014_EXPIRY_DATE = VPS_2014_EXPIRY_DATE;
+    this.vps2014MigrationData = {
+      autoMigrationDate: moment(
+        VPS_2014_AUTO_MIGRATION_DATE,
+        'DD-MM-YYYY',
+      ).format('LL'),
+      migrationScheduledInDays:
+        this.vpsMigrationTask && this.vpsMigrationTask.date
+          ? moment(this.vpsMigrationTask.date).diff(moment(), 'days')
+          : null,
+    };
     this.DASHBOARD_FEATURES = DASHBOARD_FEATURES;
 
     this.loaders = {

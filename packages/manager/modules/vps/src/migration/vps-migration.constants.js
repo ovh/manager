@@ -4,20 +4,25 @@ export const MIGRATION_STATUS = {
   PLANNED: 'planned',
   TO_PLAN: 'toPlan',
 };
-export const EXPIRY_DATE = '27-07-2020';
+export const AUTO_MIGRATION_CUTOFF_DATE = '17-07-2020';
 export const FAQ_LINK = {
-  CA: {
-    fr_FR: 'https://www.ovh.com/fr/vps/faqEol.xml',
-    fr_CA: 'https://www.ovh.com/fr/vps/faqEol.xml',
-    default: 'https://www.ovh.com/fr/vps/faqEol.xml',
-  },
-  EU: {
-    fr_FR: 'https://www.ovh.com/fr/vps/faqEol.xml',
-    default: 'https://www.ovh.com/fr/vps/faqEol.xml',
-  },
-  US: {
-    default: 'https://www.ovh.com/fr/vps/faqEol.xml',
-  },
+  ASIA: 'https://www.ovh.com/asia/vps/faqEol.xml',
+  AU: 'https://www.ovh.com.au/vps/faqEol.xml',
+  CA: 'https://www.ovh.com/ca/fr/vps/faqEol.xml',
+  DE: 'https://www.ovh.de/virtual_server/faqEol.xml',
+  ES: 'https://www.ovh.es/vps/faqEol.xml',
+  FR: 'https://www.ovh.com/fr/vps/faqEol.xml',
+  GB: 'https://www.ovh.co.uk/vps/faqEol.xml',
+  IE: 'https://www.ovh.ie/vps/faqEol.xml',
+  IT: 'https://www.ovh.it/vps/faqEol.xml',
+  MA: 'https://www.ovh.com/ma/vps/faqEol.xml',
+  NL: 'https://www.ovh.nl/vps/faqEol.xml',
+  PL: 'https://www.ovh.pl/vps/faqEol.xml',
+  PT: 'https://www.ovh.pt/vps/faqEol.xml',
+  SG: 'https://www.ovh.com/sg/vps/faqEol.xml',
+  SN: 'https://www.ovh.sn/vps/faqEol.xml',
+  TN: 'https://www.ovh.com/tn/vps/faqEol.xml',
+  WORLD: 'https://www.ovh.com/world/vps/faqEol.xml',
 };
 export const NEW_RANGE_LINK = {
   CZ: 'https://www.ovh.cz/vps/',
@@ -40,6 +45,7 @@ export const X_PAGINATION_MODE = 'X-Pagination-Mode';
 export const CACHED_OBJECT_LIST_PAGES = 'CachedObjectList-Pages';
 
 export default {
+  AUTO_MIGRATION_CUTOFF_DATE,
   CACHED_OBJECT_LIST_PAGES,
   EXCLUDED_VERSIONS,
   MIGRATION_STATUS,

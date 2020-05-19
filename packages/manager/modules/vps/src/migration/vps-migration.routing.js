@@ -1,24 +1,37 @@
 import get from 'lodash/get';
+import head from 'lodash/head';
+import 'moment';
 
-import { FAQ_LINK } from './vps-migration.constants';
+import {
+  FAQ_LINK,
+  AUTO_MIGRATION_CUTOFF_DATE,
+} from './vps-migration.constants';
 import scheduleComponent from './components/plan/plan.component';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('vps.migration', {
     url: '/migration',
+    redirectTo: (transition) =>
+      moment().isAfter(moment(AUTO_MIGRATION_CUTOFF_DATE, 'DD-MM-YYYY'))
+        ? transition
+            .injector()
+            .getAsync('vpsList')
+            .then((servers) => ({
+              state: 'vps.detail',
+              params: {
+                serviceName: get(head(servers), 'name'),
+              },
+            }))
+        : false,
     views: {
       'vpsContainer@vps': 'ovhManagerVpsMigration',
     },
     resolve: {
       user: /* @ngInject */ (OvhApiMe) => OvhApiMe.v6().get().$promise,
-      vpsList: /* @ngInject */ (VpsMigrationService) =>
-        VpsMigrationService.getVpsList(),
-      faqLink: /* @ngInject */ ($translate, coreConfig) =>
-        get(
-          FAQ_LINK,
-          `${coreConfig.getRegion()}.${$translate.use()}`,
-          get(FAQ_LINK, `${coreConfig.getRegion()}.default`),
-        ),
+      vpsList: /* @ngInject */ (catalog, VpsMigrationService) =>
+        VpsMigrationService.getVpsList(catalog),
+      faqLink: /* @ngInject */ (user) =>
+        get(FAQ_LINK, user.ovhSubsidiary, FAQ_LINK.WORLD),
       getMigrationDetails: /* @ngInject */ (catalog, VpsMigrationService) => (
         serviceName,
       ) => VpsMigrationService.getMigrationDetails(serviceName, catalog),

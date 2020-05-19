@@ -1,6 +1,8 @@
 import get from 'lodash/get';
 import startCase from 'lodash/startCase';
 
+import { AUTO_MIGRATION_CUTOFF_DATE } from '../../vps-migration.constants';
+
 export default class PlanMigrationCtrl {
   /* @ngInject */
   constructor($translate, VpsMigrationService) {
@@ -10,29 +12,45 @@ export default class PlanMigrationCtrl {
 
   $onInit() {
     this.setServerIndex(0);
+    this.migrationCutoffDate = moment(
+      AUTO_MIGRATION_CUTOFF_DATE,
+      'DD-MM-YYYY',
+    ).toDate();
     this.initCalender();
     this.savingSchedule = false;
   }
 
+  setMinTime([selectedDate]) {
+    if (selectedDate > this.todaysDate) {
+      const minTime = new Date();
+      minTime.setHours(0);
+      minTime.setMinutes(0);
+      this.minTime = minTime;
+    } else {
+      this.minTime = this.todaysDate;
+    }
+  }
+
   initCalender() {
     this.todaysDate = new Date();
+    this.minTime = this.todaysDate;
     this.dateOptions = {
       enable: [
         {
-          from: `${this.todaysDate.getFullYear()}-${this.todaysDate.getMonth()}-${this.todaysDate.getDay()}`,
-          to: this.server.migration.notAfter,
+          from: `${this.todaysDate.getFullYear()}-${this.todaysDate.getMonth() +
+            1}-${this.todaysDate.getDate()}`,
+          to: `${this.migrationCutoffDate.getFullYear()}-${this.migrationCutoffDate.getMonth() +
+            1}-${this.migrationCutoffDate.getDate()}`,
         },
       ],
       inline: true,
     };
-    const minTime = `${this.todaysDate.getHours()}:${this.todaysDate.getMinutes()}`;
     this.timeOptions = {
       noCalendar: true,
       enableTime: true,
       dateFormat: 'H:i',
       time_24hr: true,
-      minTime,
-      defaultDate: minTime,
+      defaultDate: this.todaysDate,
     };
   }
 
@@ -41,7 +59,7 @@ export default class PlanMigrationCtrl {
     this.server = this.servers[serverIndex];
   }
 
-  formatOption(option) {
+  static formatOption(option) {
     return startCase(option);
   }
 

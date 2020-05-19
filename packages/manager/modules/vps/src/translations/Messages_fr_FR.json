@@ -42,6 +42,7 @@
   "vps_dashboard_task_getConsoleUrl": "Ouverture du KVM",
   "vps_dashboard_task_deliverVm": "Livraison du VPS",
   "vps_dashboard_task_restoreVm": "Montage ou restauration du backup",
+  "vps_dashboard_task_internalTask": "Tâche interne en cours",
   "vps_dashboard_action_doing": "Opération en cours...",
   "vps_dashboard_display_name_save": "Minimum 2 caractères",
   "vps_dashboard_display_name_edit": "Modifier le nom",
