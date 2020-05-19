@@ -1,3 +1,12 @@
+# [3.21.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.20.0...@ovh-ux/manager-pci@3.21.0) (2020-05-19)
+
+
+### Features
+
+* **pci:** add load balancer functionality ([#2468](https://github.com/ovh/manager/issues/2468)) ([662831c](https://github.com/ovh/manager/commit/662831cb70d6a7d800aec2fbab651a39619e0e31))
+
+
+
 # [3.20.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.19.0...@ovh-ux/manager-pci@3.20.0) (2020-05-13)
 
 
