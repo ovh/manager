@@ -12,8 +12,8 @@
   ],
   "scripts": {
     "build": "node --experimental-worker scripts/build.js",
-    "clean": "lerna clean -y && yarn run clean:dist && npx rimraf node_modules",
-    "clean:dist": "npx rimraf \"packages/**/dist?(-EU|-CA|-US)\"",
+    "clean": "lerna clean -y && yarn run clean:dist && rimraf node_modules",
+    "clean:dist": "rimraf \"packages/**/dist?(-EU|-CA|-US)\"",
     "docs:build": "vuepress prebuild docs && vuepress build docs",
     "docs:deploy": "yarn run docs:build && gh-pages -d docs/.vuepress/dist -m \"docs: update documentation\"",
     "docs:dev": "vuepress prebuild docs && vuepress dev docs",
@@ -33,10 +33,10 @@
     "split": "scripts/split.js",
     "start": "node -r esm scripts/start/index.js",
     "test": "yarn lint",
-    "test:e2e:chromium": "npx rimraf ./reports && testcafe chromium",
-    "test:e2e:chromium:headless": "npx rimraf ./reports && testcafe chromium:headless",
-    "test:e2e:firefox": "npx rimraf ./reports && testcafe firefox",
-    "test:e2e:firefox:headless": "npx rimraf ./reports && testcafe firefox:headless",
+    "test:e2e:chromium": "rimraf ./reports && testcafe chromium",
+    "test:e2e:chromium:headless": "rimraf ./reports && testcafe chromium:headless",
+    "test:e2e:firefox": "rimraf ./reports && testcafe firefox",
+    "test:e2e:firefox:headless": "rimraf ./reports && testcafe firefox:headless",
     "version": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md"
   },
   "devDependencies": {
@@ -77,6 +77,7 @@
     "remark-cli": "^7.0.1",
     "remark-lint": "^6.0.5",
     "remark-preset-lint-recommended": "^3.0.3",
+    "rimraf": "^3.0.2",
     "sao": "^1.7.0",
     "semver": "^5.6.0",
     "stylelint": "^12.0.0",
