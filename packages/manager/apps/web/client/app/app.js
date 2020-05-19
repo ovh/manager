@@ -129,25 +129,18 @@ angular
     aapiRootPath: config.aapiRootPath,
     target: config.target,
     renew: config.constants.RENEW_URL,
-    loginUrl: config.constants.loginUrl,
     urls: config.constants.URLS,
     comodo: config.constants.COMODO,
-    CHATBOT_URL: config.constants.CHATBOT_URL,
     AUTORENEW_URL: config.constants.AUTORENEW_URL,
-    BILLING_URL: config.constants.BILLING_URL,
-    UNIVERS: config.constants.UNIVERS,
-    UNIVERSES: config.constants.UNIVERSES,
     TOP_GUIDES: config.constants.TOP_GUIDES,
     swsProxyRootPath: 'apiv6/',
     aapiHeaderName: 'X-Ovh-Session',
     flags_options: config.constants.flags_options,
     algorithm_options: config.constants.algorithm_options,
     HOSTING: config.constants.HOSTING,
-    NO_AUTORENEW_COUNTRIES: config.constants.NO_AUTORENEW_COUNTRIES,
     DOMAIN: config.constants.DOMAIN,
     WEBSITE_URLS: config.constants.website_url,
     new_bdd_user_grant_options: config.constants.new_bdd_user_grant_options,
-    REDIRECT_URLS: config.constants.REDIRECT_URLS,
     ORDER_URL: config.constants.ORDER_URL,
   })
   .constant('LANGUAGES', config.constants.LANGUAGES)
@@ -180,9 +173,9 @@ angular
     },
   ])
   .config(
-    /* @ngInject */ (ovhPaymentMethodProvider) => {
+    /* @ngInject */ (ovhPaymentMethodProvider, RedirectionServiceProvider) => {
       ovhPaymentMethodProvider.setPaymentMethodPageUrl(
-        config.constants.PAYMENT_METHOD_URL,
+        RedirectionServiceProvider.$get().getURL('paymentMethod'),
       );
     },
   )
