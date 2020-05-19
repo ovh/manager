@@ -2,11 +2,11 @@ import template from './index.html';
 import controller from './controller';
 
 export default {
-  name: 'pciBillingPrivateRegistry',
+  name: 'pciBillingResourceUsage',
   controller,
   template,
   bindings: {
-    privateRegistry: '<',
+    resourceUsage: '<',
     currencySymbol: '<',
   },
 };

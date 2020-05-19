@@ -8,5 +8,6 @@
   "cpbc_snapshot_detail_title": "Storage di backup",
   "cpbc_volume_detail_title": "Dischi aggiuntivi",
   "cpbc_hourly_instance_trafic_title": "Traffico pubblico in uscita dalle istanze",
-  "cpbc_hourly_private_registry_title": "Managed Private Registry"
+  "cpbc_hourly_private_registry_title": "Managed Private Registry",
+  "cpbc_hourly_load_balancer_title": "Load Balancer"
 }

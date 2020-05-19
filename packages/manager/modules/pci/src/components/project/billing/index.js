@@ -10,7 +10,7 @@ import objectStorageList from './object-storage-list';
 import outgoingTrafic from './outgoing-trafic';
 import snapshotList from './snapshot-list';
 import volumeList from './volume-list';
-import privateRegistryList from './private-registry';
+import resourceUsageList from './resource-usage';
 
 const moduleName = 'ovhManagerPciComponentsProjectBilling';
 
@@ -25,7 +25,7 @@ angular.module(moduleName, [
   outgoingTrafic,
   snapshotList,
   volumeList,
-  privateRegistryList,
+  resourceUsageList,
 ]);
 
 export default moduleName;

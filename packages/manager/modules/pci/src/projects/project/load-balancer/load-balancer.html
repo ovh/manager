@@ -1,0 +1,52 @@
+<div data-ui-view>
+    <oui-page-header
+        data-heading="{{:: 'pci_projects_project_load_balancer_list_title' | translate }}"
+        class="mb-3"
+    >
+        <oui-guide-menu
+            data-text="{{:: 'pci_project_guides_header' | translate }}"
+        >
+            <oui-guide-menu-item
+                data-ng-repeat="guide in $ctrl.GUIDES track by guide.id"
+                data-href="{{ $ctrl.getGuideUrl(guide) }}"
+                data-external
+                data-on-click="$ctrl.trackGuideClick(guide)"
+            >
+                <span
+                    data-translate="{{ 'pci_projects_project_load_balancer_guide_' + guide.id.toLowerCase() }}"
+                ></span>
+            </oui-guide-menu-item>
+        </oui-guide-menu>
+    </oui-page-header>
+    <div class="container-fluid px-0">
+        <cui-message-container
+            data-messages="$ctrl.messages"
+        ></cui-message-container>
+    </div>
+
+    <oui-datagrid
+        data-rows="$ctrl.loadBalancers"
+        data-row-loader="$ctrl.getLoadbalancerDetails($row)"
+    >
+        <oui-column
+            data-title=":: 'pci_projects_project_load_balancer_list_name' | translate"
+            data-property="name"
+            data-searchable
+            data-filterable
+            data-sortable
+            data-type="string"
+        >
+        </oui-column>
+        <oui-column
+            data-title=":: 'pci_projects_project_load_balancer_list_status' | translate"
+            data-property="status"
+            data-searchable
+            data-filterable
+            data-sortable
+        ></oui-column>
+        <oui-column
+            data-title=":: 'pci_projects_project_load_balancer_list_ipAddres' | translate"
+            data-property="address.ipv4"
+        ></oui-column>
+    </oui-datagrid>
+</div>

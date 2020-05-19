@@ -51,8 +51,17 @@
     class="mx-0"
     heading="{{ ::'cpbc_hourly_private_registry_title' | translate }} ({{ $ctrl.resources.totals.hourly.privateRegistry.toFixed(2) + ' ' + $ctrl.resources.totals.currencySymbol }})"
 >
-    <pci-billing-private-registry
+    <pci-billing-resource-usage
         data-currency-symbol="$ctrl.resources.totals.currencySymbol"
-        data-private-registry="$ctrl.resources.privateRegistry"
-    ></pci-billing-private-registry>
+        data-resource-usage="$ctrl.resources.privateRegistry"
+    ></pci-billing-resource-usage>
+</oui-collapsible>
+<oui-collapsible
+    class="mx-0"
+    heading="{{ ::'cpbc_hourly_load_balancer_title' | translate }} ({{ $ctrl.resources.totals.hourly.loadBalancer.toFixed(2) + ' ' + $ctrl.resources.totals.currencySymbol }})"
+>
+    <pci-billing-resource-usage
+        data-currency-symbol="$ctrl.resources.totals.currencySymbol"
+        data-resource-usage="$ctrl.resources.loadBalancer"
+    ></pci-billing-resource-usage>
 </oui-collapsible>
