@@ -155,6 +155,5 @@ import './double-authentication/double-authentication.bundle';
 import './download/download.bundle';
 import './ip/ip.bundle';
 import './license/license.bundle';
-import './user-contracts/user-contracts.bundle';
 
 export default moduleName;

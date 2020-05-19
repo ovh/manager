@@ -57,6 +57,7 @@ import dedicatedServerInterfaces from './dedicated/server/interfaces/interfaces.
 import dedicatedServerServers from './dedicated/server/servers/servers.module';
 
 import datacenterBackup from './dedicatedCloud/datacenter/backup';
+import userContracts from './user-contracts';
 
 Environment.setVersion(__VERSION__);
 
@@ -141,6 +142,7 @@ angular
       'ui.validate',
       uiRouter,
       'UserAccount',
+      userContracts,
       'xeditable',
     ].filter(isString),
   )
