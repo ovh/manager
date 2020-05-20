@@ -12,11 +12,17 @@
                 aria-hidden="true"
             ></span>
             <a
+                data-ng-if="item.urlDetails"
                 class="oui-message__body oui-message__body_error p-0"
                 data-ng-href="{{ item.urlDetails.href }}"
+                data-ng-bind-html="item.description"
             >
-                <span data-ng-bind-html="item.description"></span>
             </a>
+            <span
+                class="oui-message__body oui-message__body_error p-0"
+                data-ng-if="!item.urlDetails"
+                data-ng-bind-html="item.description"
+            ></span>
         </div>
         <button
             class="oui-button oui-button_icon-alone"

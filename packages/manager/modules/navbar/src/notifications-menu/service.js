@@ -73,7 +73,7 @@ export default class Notifications {
       isActive: ACTIVE_STATUS === notification.status,
       isCompleted: COMPLETED_STATUS === notification.status,
       time: Notifications.formatTime(notification.date),
-      url: notification.urlDetails.href,
+      ...(notification.urlDetails ? { url: notification.urlDetails.href } : {}),
     };
   }
 
