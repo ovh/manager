@@ -30,7 +30,9 @@ import ovhManagerCatalogPrice from '@ovh-ux/manager-catalog-price';
 import ovhManagerNavbar from '@ovh-ux/manager-navbar';
 import ovhManagerProductOffers from '@ovh-ux/manager-product-offers';
 import uiRouter, { RejectType } from '@uirouter/angularjs';
-import ovhManagerServerSidebar from '@ovh-ux/manager-server-sidebar';
+import ovhManagerServerSidebar, {
+  ORDER_URLS,
+} from '@ovh-ux/manager-server-sidebar';
 import ovhManagerMfaEnrollment from '@ovh-ux/mfa-enrollment';
 import emailpro from '@ovh-ux/manager-emailpro';
 import exchange from '@ovh-ux/manager-exchange';
@@ -145,6 +147,12 @@ angular
   })
   .constant('LANGUAGES', config.constants.LANGUAGES)
   .constant('website_url', config.constants.website_url)
+  .provider(
+    'ORDER_URLS',
+    /* @ngInject */ (coreConfigProvider) => ({
+      $get: () => ORDER_URLS[coreConfigProvider.getRegion()],
+    }),
+  )
   .factory('serviceTypeInterceptor', () => ({
     // eslint-disable-next-line no-shadow
     request: (config) => {
