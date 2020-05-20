@@ -43,9 +43,14 @@ angular
   .directive('actionsMenu', directive)
   .factory('ActionsMenu', factory)
   .provider('actionsMenu', provider)
-  .run(/* @ngInject */($templateCache) => {
-    $templateCache.put('ng-ovh-actions-menu/template-inner.html', innerTemplate);
-  })
-  .run(/* @ngTranslationsInject ./translations */);
+  .run(
+    /* @ngInject */ ($templateCache) => {
+      $templateCache.put(
+        'ng-ovh-actions-menu/template-inner.html',
+        innerTemplate,
+      );
+    },
+  )
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
