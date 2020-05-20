@@ -45,7 +45,9 @@ export default class {
     PrivateDatabase,
     privateDatabasesDetachable,
     privateDatabasesIds,
+    user,
     HOSTING_STATUS,
+    ORDER_URLS,
   ) {
     this.$scope = $scope;
     this.$scope.HOSTING_STATUS = HOSTING_STATUS;
@@ -78,6 +80,8 @@ export default class {
     this.PrivateDatabase = PrivateDatabase;
     this.privateDatabasesDetachable = privateDatabasesDetachable;
     this.privateDatabasesIds = privateDatabasesIds;
+    this.user = user;
+    this.ORDER_URLS = ORDER_URLS;
   }
 
   $onInit() {
@@ -709,8 +713,8 @@ export default class {
             this.$stateParams.productId,
           ),
           hostingProxy: this.Hosting.getHosting(this.$stateParams.productId),
-          hostingUrl: this.User.getUrlOfEndsWithSubsidiary('hosting'),
-          domainOrderUrl: this.User.getUrlOf('domainOrder'),
+          hostingUrl: this.ORDER_URLS.orderHosting[this.user.ovhSubsidiary],
+          domainOrderUrl: this.ORDER_URLS.orderDomain[this.user.ovhSubsidiary],
         });
       })
       .then(({ serviceInfos, hostingProxy, hostingUrl, domainOrderUrl }) => {

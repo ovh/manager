@@ -6,9 +6,13 @@ import '@ovh-ux/ng-translate-async-loader';
 import '@ovh-ux/manager-core';
 import 'ovh-api-services';
 
+import { ORDER_URLS } from './order.constants';
+
 import sidebarComponent from './component';
 
 import './index.less';
+
+export { ORDER_URLS };
 
 const moduleName = 'ovhManagerServerSidebar';
 
