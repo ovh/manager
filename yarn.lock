@@ -1883,13 +1883,6 @@
   dependencies:
     "@types/node" ">= 8"
 
-"@ovh-ux/ng-ovh-actions-menu@^5.0.4":
-  version "5.0.4"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-actions-menu/-/ng-ovh-actions-menu-5.0.4.tgz#10cce5e9cbd768b1c79680ecc523ddc5ca52c778"
-  integrity sha512-OLNLOJ2eStRFh2JU8zoVu8tckbo1G72xPU3jCpgBk2jwINXwkmxS9MDj9xE2bj0/ddzs5+BR8/i8ZHIA+qbrBQ==
-  dependencies:
-    lodash "^4.17.15"
-
 "@ovh-ux/ng-ovh-api-wrappers@^4.0.7":
   version "4.0.7"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-api-wrappers/-/ng-ovh-api-wrappers-4.0.7.tgz#f07cff3c42ef1c9d1655e2300617528a7d8b2f4f"
