@@ -19,6 +19,7 @@ angular.module('App').controller(
       HostingOrder,
       User,
       constants,
+      ORDER_URLS,
     ) {
       this.$scope = $scope;
       this.$q = $q;
@@ -31,6 +32,7 @@ angular.module('App').controller(
       this.HostingOrder = HostingOrder;
       this.User = User;
       this.constants = constants;
+      this.ORDER_URLS = ORDER_URLS;
     }
 
     $onInit() {
@@ -76,9 +78,7 @@ angular.module('App').controller(
         .then(({ modules, offers, user }) => {
           this.model.moduleTemplates = filter(modules, { branch: 'stable' });
           this.offers = compact(offers);
-          this.hostingUrl =
-            this.constants.urls.hosting[user.ovhSubsidiary] ||
-            this.constants.urls.hosting.FR;
+          this.hostingUrl = this.ORDER_URLS.orderHosting[user.ovhSubsidiary];
         })
         .catch((err) => {
           this.Alerter.alertFromSWS(
