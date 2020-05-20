@@ -1,6 +1,6 @@
 {
   "components_mondial_relay_head": "Livraison dans le point relais colis de votre choix. Vous serez prévenu de l'arrivée de votre colis par SMS.",
-  "components_mondial_relay_city_or_zipcode_label": "Ville/Code postal",
+  "components_mondial_relay_city_or_zipcode_label": "Ville / Code postal",
   "components_mondial_relay_city_label": "Ville",
   "components_mondial_relay_zipcode_label": "Code postal",
   "components_mondial_relay_search_results": "Relais disponibles près de {{loc}}",
