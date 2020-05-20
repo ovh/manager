@@ -11,9 +11,10 @@
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
   "scripts": {
-    "build": "webpack --env.production",
+    "build": "npm run build:sms",
+    "build:sms": "cross-env APP_ROOT=/sms/ webpack --env.production",
     "dev": "webpack-dev-server --port 9001",
-    "dev:sms": "concurrently --kill-others \"yarn dev\" \"lerna exec --stream --scope='@ovh-ux/manager-sms-app' -- npm run dev\""
+    "dev:sms": "cross-env DEV_ROOT=http://localhost:9000/#!/sms/ concurrently -k -n \"frontend,microapp\" --prefix \"{name}\" -c \"bgBlue.bold,bgMagenta.bold\" \"yarn dev\" \"lerna exec --stream --scope='@ovh-ux/manager-sms-app' -- npm run dev\""
   },
   "dependencies": {
     "@ovh-ux/manager-account-sidebar": "^0.0.0 || ^1.0.0",
@@ -40,6 +41,7 @@
     "@ovh-ux/ng-translate-async-loader": "^2.1.0",
     "@ovh-ux/ng-ui-router-breadcrumb": "^1.1.0",
     "@ovh-ux/ng-ui-router-line-progress": "^1.2.0",
+    "@ovh-ux/ovh-uapp": "^0.0.0 || ^1.0.0",
     "@uirouter/angularjs": "^1.0.23",
     "angular": "^1.7.5",
     "angular-aria": "^1.7.8",
@@ -65,6 +67,7 @@
   "devDependencies": {
     "@ovh-ux/manager-webpack-config": "^3.3.0",
     "concurrently": "^5.2.0",
+    "cross-env": "^7.0.2",
     "glob": "^7.1.6",
     "lodash": "^4.17.15",
     "oui4": "npm:@ovh-ux/ui-kit",

@@ -4,6 +4,7 @@
     "__VERSION__": true,
     "moment": true,
     "__NG_APP_INJECTIONS__": true,
-    "__U_FRONTEND_ROOT__": true
+    "__APP_ROOT__": true,
+    "__DEV_ROOT__": true
   }
 }

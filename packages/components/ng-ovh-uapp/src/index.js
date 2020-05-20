@@ -1,25 +1,28 @@
 import angular from 'angular';
-import ngOvhSsoAuth from '@ovh-ux/ng-ovh-sso-auth';
-import uFrontend from '@ovh-ux/ovh-uapp';
+import '@ovh-ux/ng-ovh-sso-auth';
+import { api } from '@ovh-ux/ovh-uapp';
 
-const moduleName = 'ngOvhUApp';
-const uappModule = angular.module(moduleName, [ngOvhSsoAuth]);
+const moduleName = 'ngOvhMicroApplication';
 
-uappModule.config(($provide) => {
+api.init();
+
+angular.module(moduleName, ['ngOvhSsoAuth']).config(($provide) => {
   $provide.decorator('ssoAuthentication', ($delegate, $q) => {
-    $delegate.handleSwitchSession = () => { // eslint-disable-line
-      uFrontend.sessionSwitch();
-      return $q.defer().promise;
+    return {
+      ...$delegate,
+      handleSwitchSession: () => {
+        api.sessionSwitch();
+        return $q.defer().promise;
+      },
+      goToLoginPage: (url) => {
+        api.login(url);
+        return $q.defer().promise;
+      },
+      logout: () => {
+        api.logout();
+        return $q.defer().promise;
+      },
     };
-    $delegate.goToLoginPage = (url) => { // eslint-disable-line
-      uFrontend.login(url);
-      return $q.defer().promise;
-    };
-    $delegate.logout = () => { // eslint-disable-line
-      uFrontend.logout();
-      return $q.defer().promise;
-    };
-    return $delegate;
   });
 });
 

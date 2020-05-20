@@ -1,34 +1,44 @@
 import Postmate from 'postmate';
+import messages from './constants';
 
-const handshake = new Postmate.Model({
-  updateHash: (hash) => {
-    if (window.location.hash !== hash) {
-      window.location.hash = hash;
-    }
-  },
-});
+function bindOnce() {
+  let { handshake } = window;
 
-handshake.then((parent) => {
-  window.addEventListener('hashchange', () => {
-    parent.emit('ovh.navigation.hashChange', window.location.hash);
-  });
-  // init hash
-  parent.emit('ovh.navigation.hashChange', window.location.hash);
-});
+  if (!handshake) {
+    handshake = new Postmate.Model({
+      updateHash: (hash) => {
+        if (window.location.hash !== hash) {
+          window.location.hash = hash;
+        }
+      },
+    });
 
-const uFrontendApi = {
-  login: (url) =>
     handshake.then((parent) => {
-      parent.emit('ovh.session.login', url);
+      window.addEventListener('hashchange', () => {
+        parent.emit(messages.hashChange, window.location.hash);
+      });
+    });
+
+    window.handshake = handshake;
+  }
+
+  return handshake;
+}
+
+const api = {
+  init: () => bindOnce(),
+  login: (url) =>
+    bindOnce().then((parent) => {
+      parent.emit(messages.login, url);
     }),
   logout: () =>
-    handshake.then((parent) => {
-      parent.emit('ovh.session.logout');
+    bindOnce().then((parent) => {
+      parent.emit(messages.logout);
     }),
   sessionSwitch: () =>
-    handshake.then((parent) => {
-      parent.emit('ovh.session.switch');
+    bindOnce().then((parent) => {
+      parent.emit(messages.sessionSwitch);
     }),
 };
 
-export default uFrontendApi;
+export { api, messages };

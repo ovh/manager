@@ -6,10 +6,14 @@ import {
   detach as detachPreloader,
 } from '@ovh-ux/manager-preloader';
 import { bootstrapApplication } from '@ovh-ux/manager-core';
+import { messages } from '@ovh-ux/ovh-uapp';
 
 attachPreloader();
 
-const bootstrapAppPromise = new Promise((resolve) => {
+/**
+ * Async load the application
+ */
+const deferredApplication = new Promise((resolve) => {
   bootstrapApplication().then(({ region }) => {
     import(`./config-${region}`)
       .catch(() => {})
@@ -25,38 +29,52 @@ const bootstrapAppPromise = new Promise((resolve) => {
   });
 });
 
+/**
+ * Construct micro application URL
+ */
+const uappURL =
+  __DEV_ROOT__ === 'undefined'
+    ? new URL(`${window.location.origin}${__APP_ROOT__}`)
+    : new URL(__DEV_ROOT__);
+
+uappURL.hash =
+  __DEV_ROOT__ === 'undefined' ? window.location.hash : uappURL.hash;
+
+/**
+ * Initialize the micro-application iframe
+ */
 const handshake = new Postmate({
   container: document.getElementsByClassName('hub-main-view')[0],
-  url: __U_FRONTEND_ROOT__,
+  url: uappURL.href,
   name: 'manager',
   classListArray: ['w-100', 'h-100', 'd-block', 'border-0'],
 });
 
-// When parent <-> child handshake is complete, data may be requested from the child
+/**
+ * Once iframe is ready, implements callbacks for micro-application events
+ */
 handshake.then((child) => {
-  window.addEventListener('ovh.navigation.hashchange', () => {
+  window.addEventListener('hashchange', () => {
     child.call('updateHash', window.location.hash);
   });
 
-  child.on('ovh.navigation.hashChange', (hash) => {
+  child.on(messages.hashChange, (hash) => {
     window.history.replaceState(null, '', hash);
   });
 
-  child.on('ovh.session.switch', () => {
-    bootstrapAppPromise.then((app) => {
-      app.get('ssoAuthentication').handleSwitchSession();
-    });
-  });
+  child.on(messages.sessionSwitch, () =>
+    deferredApplication.then((app) =>
+      app.get('ssoAuthentication').handleSwitchSession(),
+    ),
+  );
 
-  child.on('ovh.session.logout', () => {
-    bootstrapAppPromise.then((app) => {
-      app.get('ssoAuthentication').logout();
-    });
-  });
+  child.on(messages.login, (url) =>
+    deferredApplication.then((app) =>
+      app.get('ssoAuthentication').goToLoginPage(url),
+    ),
+  );
 
-  child.on('ovh.session.login', (url) => {
-    bootstrapAppPromise.then((app) => {
-      app.get('ssoAuthentication').goToLoginPage(url);
-    });
-  });
+  child.on(messages.logout, () =>
+    deferredApplication.then((app) => app.get('ssoAuthentication').logout()),
+  );
 });
