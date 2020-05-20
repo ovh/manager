@@ -8,6 +8,8 @@ import 'ovh-api-services';
 
 import sidebarComponent from './component';
 
+import './index.less';
+
 const moduleName = 'ovhManagerServerSidebar';
 
 angular
