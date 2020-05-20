@@ -2,7 +2,7 @@
 
 > AngularJS module used to display a popover and adapt it to the screen dimension.
 
-[![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-ovh-responsive-popover)](https://npmjs.com/package/@ovh-ux/ng-ovh-responsive-popover) [![Dependencies](https://badgen.net/david/dep/ovh-ux/ng-ovh-responsive-popover)](https://npmjs.com/package/@ovh-ux/ng-ovh-responsive-popover?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/ng-ovh-responsive-popover)](https://npmjs.com/package/@ovh-ux/ng-ovh-responsive-popover?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
+[![npm version](https://badgen.net/npm/v/@ovh-ux/ng-ovh-responsive-popover)](https://www.npmjs.com/package/@ovh-ux/ng-ovh-responsive-popover) [![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-ovh-responsive-popover)](https://npmjs.com/package/@ovh-ux/ng-ovh-responsive-popover) [![Dependencies](https://badgen.net/david/dep/ovh/manager/packages/components/ng-ovh-responsive-popover)](https://npmjs.com/package/@ovh-ux/ng-ovh-responsive-popover?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh/manager/packages/components/ng-ovh-responsive-popover)](https://npmjs.com/package/@ovh-ux/ng-ovh-responsive-popover?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
 
 ## Install
 
@@ -81,12 +81,12 @@ Allows you to determine what app will consider as a mobile for responsive popove
 ```js
 import angular from 'angular';
 
-angular
-  .module('myApp')
-  .config(/* @ngInject */ (responsivePopoverProvider) => {
+angular.module('myApp').config(
+  /* @ngInject */ (responsivePopoverProvider) => {
     // tell to the module that we consider a mobile device with at least 800px width
     responsivePopoverProvider.setMobileMediaQuery('(max-width: 800px)');
-  });
+  },
+);
 ```
 
 ### <a name="responsivePopover_service_responsivePopover"></a>`responsivePopover` - service
@@ -118,7 +118,7 @@ $ yarn test
 
 ## Contributing
 
-Always feel free to help out! Whether it's [filing bugs and feature requests](https://github.com/ovh-ux/ng-ovh-responsive-popover/issues/new) or working on some of the [open issues](https://github.com/ovh-ux/ng-ovh-responsive-popover/issues), our [contributing guide](CONTRIBUTING.md) will help get you started.
+Always feel free to help out! Whether it's [filing bugs and feature requests](https://github.com/ovh/manager/issues/new) or working on some of the [open issues](https://github.com/ovh/manager/issues), our [contributing guide](https://github.com/ovh/manager/blob/master/CONTRIBUTING.md) will help get you started.
 
 ## License
 
