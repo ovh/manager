@@ -29,7 +29,7 @@
  */
 import angular from 'angular';
 
-export default /* @ngInject */ function (ActionsMenuItem) {
+export default /* @ngInject */ function(ActionsMenuItem) {
   /*= ==================================
     =            CONSTRUCTOR            =
     =================================== */
@@ -55,19 +55,21 @@ export default /* @ngInject */ function (ActionsMenuItem) {
   /* ----------  ACTIONS MENU ITEMS  ----------*/
 
   /**
-     *  @ngdoc method
-     *  @name actionsMenu.object:ActionsMenu#addActionItem
-     *  @methodOf actionsMenu.object:ActionsMenu
-     *
-     *  @description
-     *  Add an actions menu item into actions list.
-     *
-     *  @param {Object} actionMenuItemOptions The options for creating a new action menu item.
-     *  See ActionsMenuItem factory for available options.
-     *
-     *  @returns {ActionsMenuItem} The added actions menu item.
-     */
-  ActionsMenu.prototype.addActionItem = function addActionItem(actionMenuItemOptions) {
+   *  @ngdoc method
+   *  @name actionsMenu.object:ActionsMenu#addActionItem
+   *  @methodOf actionsMenu.object:ActionsMenu
+   *
+   *  @description
+   *  Add an actions menu item into actions list.
+   *
+   *  @param {Object} actionMenuItemOptions The options for creating a new action menu item.
+   *  See ActionsMenuItem factory for available options.
+   *
+   *  @returns {ActionsMenuItem} The added actions menu item.
+   */
+  ActionsMenu.prototype.addActionItem = function addActionItem(
+    actionMenuItemOptions,
+  ) {
     const self = this;
     const newActionItem = new ActionsMenuItem(actionMenuItemOptions);
 

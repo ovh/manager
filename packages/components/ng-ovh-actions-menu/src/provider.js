@@ -13,27 +13,28 @@
  *      });
  * </pre>
  */
-export default function () {
+export default function() {
   const self = this;
-  let translationPath = '../bower_components/ovh-angular-actions-menu/dist/ovh-angular-actions-menu';
+  let translationPath =
+    '../bower_components/ovh-angular-actions-menu/dist/ovh-angular-actions-menu';
 
   /*= ====================================
     =            CONFIGURATION            =
     ===================================== */
 
   /**
-     *  @ngdoc method
-     *  @name actionsMenu.actionsMenuProvider#setTranslationPath
-     *  @methodOf actionsMenu.actionsMenuProvider
-     *
-     *  @description
-     *  Allows you to change the default location of the translation file of the module.
-     *
-     *  @param {String} path The new path of the translation file.
-     *
-     *  @return {String} The new configured translation path.
-     */
-  self.setTranslationPath = function (path) {
+   *  @ngdoc method
+   *  @name actionsMenu.actionsMenuProvider#setTranslationPath
+   *  @methodOf actionsMenu.actionsMenuProvider
+   *
+   *  @description
+   *  Allows you to change the default location of the translation file of the module.
+   *
+   *  @param {String} path The new path of the translation file.
+   *
+   *  @return {String} The new configured translation path.
+   */
+  self.setTranslationPath = function(path) {
     if (path) {
       translationPath = path;
     }
@@ -44,24 +45,26 @@ export default function () {
   /* -----  End of CONFIGURATION  ------*/
 
   /**
-     *  @ngdoc service
-     *  @name actionsMenu.service:actionsMenu
-     *
-     *  @description
-     *  This service enable you to load translation file.
-     */
-  self.$get = /* @ngInject */ function ($translate/* , $translatePartialLoader */) {
+   *  @ngdoc service
+   *  @name actionsMenu.service:actionsMenu
+   *
+   *  @description
+   *  This service enable you to load translation file.
+   */
+  self.$get = /* @ngInject */ function(
+    $translate /* , $translatePartialLoader */,
+  ) {
     return {
       /**
-             *  @ngdoc method
-             *  @name actionsMenu.service:actionsMenu#
-             *  @methodOf actionsMenu.service:actionsMenu
-             *
-             *  @description
-             *  Load the translation file from the configured path.
-             *
-             *  @return {Promise} When the translation file is loaded.
-             */
+       *  @ngdoc method
+       *  @name actionsMenu.service:actionsMenu#
+       *  @methodOf actionsMenu.service:actionsMenu
+       *
+       *  @description
+       *  Load the translation file from the configured path.
+       *
+       *  @return {Promise} When the translation file is loaded.
+       */
       loadTranslations() {
         // $translatePartialLoader.addPart(translationPath);
         return $translate.refresh();

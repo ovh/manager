@@ -51,7 +51,7 @@
 import template from './template.html';
 import controller from './controller';
 
-export default function () {
+export default function() {
   return {
     restrict: 'E',
     transclude: true,
@@ -67,8 +67,8 @@ export default function () {
       const actionsMenuCtrl = actionsMenuCtrlParam;
 
       /**
-             *  Close actions menu popover
-             */
+       *  Close actions menu popover
+       */
       const closeActionsMenu = function closeActionsMenu() {
         actionsMenuCtrl.popoverSettings.isOpen = false;
         scope.$apply();
@@ -86,8 +86,8 @@ export default function () {
       });
 
       /**
-             *  Manage escape event on actions button element
-             */
+       *  Manage escape event on actions button element
+       */
       tElement.find('button.actions-menu-button').on('keydown', (event) => {
         if (event.keyCode === 27) {
           closeActionsMenu();
@@ -100,7 +100,9 @@ export default function () {
        */
       actionsMenuCtrl.onPageSwitch = function onPageSwitch() {
         // get visible page dom element
-        const visiblePage = tElement.find(actionsMenuCtrl.status.move ? 'div.secondary-page' : 'div.main-page');
+        const visiblePage = tElement.find(
+          actionsMenuCtrl.status.move ? 'div.secondary-page' : 'div.main-page',
+        );
 
         // insert a invisible link to it for a better focus management
         let focusHelper = visiblePage.find('a.focus-helper');
@@ -119,17 +121,35 @@ export default function () {
 
         // manage focus loop for current page
         visiblePage.on('keydown', (event) => {
-          if (event.keyCode === 9) { // tab
-            if (event.shiftKey) { // shift+tab
-              if ($(event.target).is(visiblePage.find('a:not(.focus-helper), button').first())) {
-                visiblePage.find('a:not(.focus-helper), button').last().focus();
+          if (event.keyCode === 9) {
+            // tab
+            if (event.shiftKey) {
+              // shift+tab
+              if (
+                $(event.target).is(
+                  visiblePage.find('a:not(.focus-helper), button').first(),
+                )
+              ) {
+                visiblePage
+                  .find('a:not(.focus-helper), button')
+                  .last()
+                  .focus();
                 event.preventDefault();
               }
-            } else if ($(event.target).is(visiblePage.find('a:not(.focus-helper), button').last()) || $(event.target).is(focusHelper)) {
-              visiblePage.find('a:not(.focus-helper), button').first().focus();
+            } else if (
+              $(event.target).is(
+                visiblePage.find('a:not(.focus-helper), button').last(),
+              ) ||
+              $(event.target).is(focusHelper)
+            ) {
+              visiblePage
+                .find('a:not(.focus-helper), button')
+                .first()
+                .focus();
               event.preventDefault();
             }
-          } else if (event.keyCode === 27) { // esc
+          } else if (event.keyCode === 27) {
+            // esc
             closeActionsMenu();
           }
         });

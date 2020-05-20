@@ -41,7 +41,7 @@
 import angular from 'angular';
 import isFunction from 'lodash/isFunction';
 
-export default function () {
+export default function() {
   /*= ==================================
     =            CONSTRUCTOR            =
     =================================== */
@@ -82,16 +82,16 @@ export default function () {
     ========================================= */
 
   /**
-     *  @ngdoc method
-     *  @name actionsMenu.object:ActionsMenuItem#getFullSref
-     *  @methodOf actionsMenu.object:ActionsMenuItem
-     *
-     *  @description
-     *  Get the full sref string that will be applied to item that have state defined.
-     *
-     *  @returns {String} The string representation of a state. For example:
-     *  my.manager.state({param1:1, param2:2}).
-     */
+   *  @ngdoc method
+   *  @name actionsMenu.object:ActionsMenuItem#getFullSref
+   *  @methodOf actionsMenu.object:ActionsMenuItem
+   *
+   *  @description
+   *  Get the full sref string that will be applied to item that have state defined.
+   *
+   *  @returns {String} The string representation of a state. For example:
+   *  my.manager.state({param1:1, param2:2}).
+   */
   ActionsMenuItem.prototype.getFullSref = function getFullSref() {
     const self = this;
 
@@ -101,19 +101,21 @@ export default function () {
   /* ----------  SUB ITEMS  ----------*/
 
   /**
-     *  @ngdoc method
-     *  @name actionsMenu.object:ActionsMenuItem#addSubAction
-     *  @methodOf actionsMenu.object:ActionsMenuItem
-     *
-     *  @description
-     *  Add a sub action item to current actions menu item instance.
-     *
-     *  @param {Object} subActionOptions Options for creating an actions menu sub item.
-     *  See constructor options for more details.
-     *
-     *  @returns {ActionsMenuItem} The new instance of actions menu item created.
-     */
-  ActionsMenuItem.prototype.addSubAction = function addSubAction(subActionOptions) {
+   *  @ngdoc method
+   *  @name actionsMenu.object:ActionsMenuItem#addSubAction
+   *  @methodOf actionsMenu.object:ActionsMenuItem
+   *
+   *  @description
+   *  Add a sub action item to current actions menu item instance.
+   *
+   *  @param {Object} subActionOptions Options for creating an actions menu sub item.
+   *  See constructor options for more details.
+   *
+   *  @returns {ActionsMenuItem} The new instance of actions menu item created.
+   */
+  ActionsMenuItem.prototype.addSubAction = function addSubAction(
+    subActionOptions,
+  ) {
     const self = this;
     const subAction = new ActionsMenuItem(subActionOptions);
 
@@ -123,15 +125,15 @@ export default function () {
   };
 
   /**
-     *  @ngdoc method
-     *  @name actionsMenu.object:ActionsMenuItem#hasSubActions
-     *  @methodOf actionsMenu.object:ActionsMenuItem
-     *
-     *  @description
-     *  Check if the instance of actions menu item has sub actions defined.
-     *
-     *  @returns {Boolean} true if item has subItems, false otherwise.
-     */
+   *  @ngdoc method
+   *  @name actionsMenu.object:ActionsMenuItem#hasSubActions
+   *  @methodOf actionsMenu.object:ActionsMenuItem
+   *
+   *  @description
+   *  Check if the instance of actions menu item has sub actions defined.
+   *
+   *  @returns {Boolean} true if item has subItems, false otherwise.
+   */
   ActionsMenuItem.prototype.hasSubActions = function hasSubActions() {
     const self = this;
 

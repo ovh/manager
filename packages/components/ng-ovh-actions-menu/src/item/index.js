@@ -27,9 +27,7 @@ import factory from './factory';
 const moduleName = 'ngOvhActionsMenuItem';
 
 angular
-  .module(moduleName, [
-    'ngOvhResponsivePopover',
-  ])
+  .module(moduleName, ['ngOvhResponsivePopover'])
   .directive('actionsMenuItem', directive)
   .factory('ActionsMenuItem', factory);
 
