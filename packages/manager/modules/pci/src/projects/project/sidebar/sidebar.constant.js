@@ -157,10 +157,10 @@ export const MENU = [
           state: 'pci.projects.project.serving',
         },
         title: 'Serving Engine',
-        regions: ['EU'],
+        regions: ['EU', 'CA'],
       },
     ],
-    regions: ['EU'],
+    regions: ['EU', 'CA'],
     title: 'Data & Analytics',
   },
   {
