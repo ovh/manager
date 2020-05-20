@@ -14,7 +14,7 @@
  *      });
  * </pre>
  */
-export default function () {
+export default function() {
   const self = this;
   let mobileMediaQuery = '(max-width: 980px)';
 
@@ -23,18 +23,18 @@ export default function () {
     ===================================== */
 
   /**
-     *  @ngdoc method
-     *  @name responsivePopover.responsivePopoverProvider#setMobileMediaQuery
-     *  @methodOf responsivePopover.responsivePopoverProvider
-     *
-     *  @description
-     *  Allows you to determine what app will consider as a mobile for responsive popover display.
-     *
-     *  @param {String} query The matchMedia query that will be used to detect mobile.
-     *
-     *  @return {String} The new query provided.
-     */
-  self.setMobileMediaQuery = function (query) {
+   *  @ngdoc method
+   *  @name responsivePopover.responsivePopoverProvider#setMobileMediaQuery
+   *  @methodOf responsivePopover.responsivePopoverProvider
+   *
+   *  @description
+   *  Allows you to determine what app will consider as a mobile for responsive popover display.
+   *
+   *  @param {String} query The matchMedia query that will be used to detect mobile.
+   *
+   *  @return {String} The new query provided.
+   */
+  self.setMobileMediaQuery = function(query) {
     if (query) {
       mobileMediaQuery = query;
     }
@@ -45,25 +45,25 @@ export default function () {
   /* -----  End of CONFIGURATION  ------*/
 
   /**
-     *  @ngdoc service
-     *  @name responsivePopover.service:responsivePopover
-     *
-     *  @description
-     *  This service enable you to get configured values.
-     */
-  self.$get = /* @ngInject */ function () {
+   *  @ngdoc service
+   *  @name responsivePopover.service:responsivePopover
+   *
+   *  @description
+   *  This service enable you to get configured values.
+   */
+  self.$get = /* @ngInject */ function() {
     return {
       /**
-             *  @ngdoc method
-             *  @name responsivePopover.service:responsivePopover#getMobileMediaQuery
-             *  @methodOf responsivePopover.service:responsivePopover
-             *
-             *  @description
-             *  Get the current configured media query. It is used to detect the popover display
-             *  (simple popover or full screen popover for mobile).
-             *
-             *  @return {String} The configured mediaQuery.
-             */
+       *  @ngdoc method
+       *  @name responsivePopover.service:responsivePopover#getMobileMediaQuery
+       *  @methodOf responsivePopover.service:responsivePopover
+       *
+       *  @description
+       *  Get the current configured media query. It is used to detect the popover display
+       *  (simple popover or full screen popover for mobile).
+       *
+       *  @return {String} The configured mediaQuery.
+       */
       getMobileMediaQuery() {
         return mobileMediaQuery;
       },

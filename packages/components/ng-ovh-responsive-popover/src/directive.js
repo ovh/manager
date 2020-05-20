@@ -20,6 +20,7 @@
  *  </button>
  *  </pre>
  */
-export default /* @ngInject */ ($uibTooltip) => $uibTooltip('responsivePopover', 'popover', 'click', {
-  useContentExp: true,
-});
+export default /* @ngInject */ ($uibTooltip) =>
+  $uibTooltip('responsivePopover', 'popover', 'click', {
+    useContentExp: true,
+  });

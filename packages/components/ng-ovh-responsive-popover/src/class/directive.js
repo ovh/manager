@@ -12,7 +12,7 @@
  *  **Note:** when ui-bootstrap version >= 2.0 will be used, the only thing to do should be to add
  *  a custom class with the 'popover-class' option of the uibPopover directive. To be tested.
  */
-export default /* @ngInject */ function (matchmedia, responsivePopover) {
+export default /* @ngInject */ function(matchmedia, responsivePopover) {
   return {
     restrict: 'C',
     link(scope, iElement) {
@@ -20,8 +20,11 @@ export default /* @ngInject */ function (matchmedia, responsivePopover) {
       let isMobileDetected = false;
       let mediaQueryHandler = false;
       let scrollPosition;
-      const resetFixedBody = function (scrollTo) {
-        $('body').removeClass('responsive-popover-fixed-body').css('top', '').scrollTop(scrollTo);
+      const resetFixedBody = function(scrollTo) {
+        $('body')
+          .removeClass('responsive-popover-fixed-body')
+          .css('top', '')
+          .scrollTop(scrollTo);
       };
 
       // on method returns a function that remove the media query listener
@@ -32,7 +35,9 @@ export default /* @ngInject */ function (matchmedia, responsivePopover) {
         if (isMobileDetected) {
           scrollPosition = $('body').scrollTop();
           iElement.addClass('popover-full-screen');
-          $('body').css('top', `${scrollPosition * -1}px`).addClass('responsive-popover-fixed-body');
+          $('body')
+            .css('top', `${scrollPosition * -1}px`)
+            .addClass('responsive-popover-fixed-body');
         } else {
           iElement.removeClass('popover-full-screen');
           resetFixedBody(scrollPosition);
