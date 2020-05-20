@@ -255,10 +255,22 @@ export const ORDER_URLS = {
   },
   CA: {
     orderDomain: {
-      CA: 'https://www.ovh.com/ca',
+      ASIA: 'https://www.ovh.com/asia/order/domain',
+      AU: 'https://www.ovh.com/au/order/domain',
+      CA: 'https://www.ovh.com/ca/en/order/domain',
+      QC: 'https://www.ovh.com/ca/fr/order/domain',
+      SG: 'https://www.ovh.com/sg/order/domain',
+      WE: 'https://www.ovh.com/world/order/domain',
+      WS: 'https://www.ovh.com/world/es/order/domain',
     },
     orderHosting: {
-      CA: 'https://www.ovh.com/ca',
+      ASIA: 'https://www.ovh.com/asia/web-hosting/',
+      AU: 'https://www.ovh.com/au/web-hosting/',
+      CA: 'https://www.ovh.com/ca/en/web-hosting/',
+      QC: 'https://www.ovh.com/ca/fr/hebergement-web/',
+      SG: 'https://www.ovh.com/sg/web-hosting/',
+      WE: 'http://www.ovh.com/world/web-hosting/',
+      WS: 'https://www.ovh.com/world/es/hosting/',
     },
     dedicated_cloud: {
       ASIA: 'https://www.ovh.com/asia/sddc/',
