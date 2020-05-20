@@ -8,20 +8,16 @@ import sortBy from 'lodash/sortBy';
 import uniqBy from 'lodash/uniqBy';
 
 import { Price } from '@ovh-ux/manager-models';
+import { pricingConstants } from '@ovh-ux/manager-product-offers';
+
 import UpscaleService from './upscale.service';
 import { PRICING_MODES, RANGES } from './upscale.constants';
 
 export default class UpscaleController {
   /* @ngInject */
-  constructor(
-    $translate,
-    ovhManagerProductOffersService,
-    OVH_MANAGER_PRODUCT_OFFERS_PRICING_CONSTANTS,
-  ) {
+  constructor($translate, ovhManagerProductOffersService) {
     this.$translate = $translate;
     this.ovhManagerProductOffersService = ovhManagerProductOffersService;
-    this.PRICING_CAPACITIES =
-      OVH_MANAGER_PRODUCT_OFFERS_PRICING_CONSTANTS.PRICING_CAPACITIES;
   }
 
   $onInit() {
@@ -144,7 +140,7 @@ export default class UpscaleController {
   getIndicativePricing(pricings) {
     const renewPricing = this.ovhManagerProductOffersService.constructor.getUniquePricingOfCapacity(
       pricings,
-      this.PRICING_CAPACITIES.RENEW,
+      pricingConstants.PRICING_CAPACITIES.RENEW,
     );
 
     const pricingMode = UpscaleService.convertPricingMode(

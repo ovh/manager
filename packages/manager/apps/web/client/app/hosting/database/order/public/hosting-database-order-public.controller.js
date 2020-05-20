@@ -1,34 +1,29 @@
-import { PRODUCT_NAME } from './hosting-database-order-public.constants';
+import {
+  pricingConstants,
+  workflowConstants,
+} from '@ovh-ux/manager-product-offers';
 
+import { PRODUCT_NAME } from './hosting-database-order-public.constants';
 import HostingDatabaseOrderPublic from './hosting-database-order-public.service';
 
 export default class {
   /* @ngInject */
-  constructor(
-    OVH_MANAGER_PRODUCT_OFFERS_PRICING_CONSTANTS,
-    OVH_MANAGER_PRODUCT_OFFERS_WORKFLOW_CONSTANTS,
-    HostingDatabaseOrderPublicService,
-  ) {
-    this.OVH_MANAGER_PRODUCT_OFFERS_PRICING_CONSTANTS = OVH_MANAGER_PRODUCT_OFFERS_PRICING_CONSTANTS;
-    this.OVH_MANAGER_PRODUCT_OFFERS_WORKFLOW_CONSTANTS = OVH_MANAGER_PRODUCT_OFFERS_WORKFLOW_CONSTANTS;
+  constructor(HostingDatabaseOrderPublicService) {
     this.HostingDatabaseOrderPublicService = HostingDatabaseOrderPublicService;
   }
 
   $onInit() {
     this.productOffers = {
-      pricingType: this.OVH_MANAGER_PRODUCT_OFFERS_PRICING_CONSTANTS
-        .PRICING_CAPACITIES.RENEW,
+      pricingType: pricingConstants.PRICING_CAPACITIES.RENEW,
       user: this.user,
       workflowOptions: {
         catalog: this.catalog,
-        catalogItemTypeName: this.OVH_MANAGER_PRODUCT_OFFERS_WORKFLOW_CONSTANTS
-          .CATALOG_ITEM_TYPE_NAMES.ADDON,
+        catalogItemTypeName: workflowConstants.CATALOG_ITEM_TYPE_NAMES.ADDON,
         productName: PRODUCT_NAME,
         serviceNameToAddProduct: this.serviceName,
         getPlanCode: this.getPlanCode.bind(this),
       },
-      workflowType: this.OVH_MANAGER_PRODUCT_OFFERS_WORKFLOW_CONSTANTS
-        .WORKFLOW_TYPES.ORDER,
+      workflowType: workflowConstants.WORKFLOW_TYPES.ORDER,
     };
 
     this.characteristics = {
