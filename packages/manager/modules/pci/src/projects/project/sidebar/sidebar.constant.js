@@ -131,6 +131,7 @@ export const MENU = [
           state: 'pci.projects.project.analytics-data-platform',
         },
         title: 'Analytics Data Platform',
+        regions: ['EU'],
       },
       {
         id: 'data-processing',
