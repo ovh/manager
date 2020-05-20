@@ -1,4 +1,4 @@
-export default /* @ngInject */ function ($transitions, SidebarMenu) {
+export default /* @ngInject */ function($transitions, SidebarMenu) {
   const self = this;
 
   self.loading = {
@@ -25,18 +25,20 @@ export default /* @ngInject */ function ($transitions, SidebarMenu) {
   function init() {
     self.loading.init = true;
 
-    return SidebarMenu.loadInit().then(() => {
-      initStateChangeSuccess();
-      self.items = SidebarMenu.items;
-      self.actionsOptions = SidebarMenu.actionsMenuOptions;
-      self.popoverSettings = {
-        placement: 'bottom-left',
-        class: 'order-actions-menu-popover',
-        trigger: 'outsideClick',
-      };
-    }).finally(() => {
-      self.loading.init = false;
-    });
+    return SidebarMenu.loadInit()
+      .then(() => {
+        initStateChangeSuccess();
+        self.items = SidebarMenu.items;
+        self.actionsOptions = SidebarMenu.actionsMenuOptions;
+        self.popoverSettings = {
+          placement: 'bottom-left',
+          class: 'order-actions-menu-popover',
+          trigger: 'outsideClick',
+        };
+      })
+      .finally(() => {
+        self.loading.init = false;
+      });
   }
 
   /* -----  End of INITIALIZATION  ------*/

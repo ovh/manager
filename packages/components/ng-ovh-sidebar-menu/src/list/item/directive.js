@@ -16,7 +16,7 @@ import filter from 'lodash/filter';
 
 import template from './template.html';
 
-export default /* @ngInject */ function ($compile) {
+export default /* @ngInject */ function($compile) {
   return {
     template,
     restrict: 'A',
@@ -41,7 +41,9 @@ export default /* @ngInject */ function ($compile) {
             navElement.append(cloned);
           });
         }
-        sidebarMenuListItemCtrl.groupScrollElement = $element.find('.group-scroll-content');
+        sidebarMenuListItemCtrl.groupScrollElement = $element.find(
+          '.group-scroll-content',
+        );
         // sidebarMenuListItemCtrl.groupScrollElement = $element.find(".oui-sidebar-list");
 
         if (sidebarMenuListItemCtrl.item.infiniteScroll) {
@@ -59,7 +61,12 @@ export default /* @ngInject */ function ($compile) {
     },
     bindToController: true,
     controllerAs: 'ItemMenuCtrl',
-    controller: /* @ngInject */ function controller($scope, $timeout, $sce, SidebarMenu) {
+    controller: /* @ngInject */ function controller(
+      $scope,
+      $timeout,
+      $sce,
+      SidebarMenu,
+    ) {
       const self = this;
 
       self.model = {
@@ -84,8 +91,11 @@ export default /* @ngInject */ function ($compile) {
 
       self.isSearchEnabled = function isSearchEnabled() {
         if (self.item.allowSearch) {
-          if (self.item.subItemsAdded.length > self.getMinItemsForEnablingSearch()
-            || self.item.forceDisplaySearch) {
+          if (
+            self.item.subItemsAdded.length >
+              self.getMinItemsForEnablingSearch() ||
+            self.item.forceDisplaySearch
+          ) {
             return true;
           }
 
@@ -109,12 +119,12 @@ export default /* @ngInject */ function ($compile) {
       };
 
       /**
-             * Returns scrollBar state :
-             * {
-             *     visible: is scrollbar visible?
-             *     bottom: is scrollbar is close to the bottom?
-             * }
-             */
+       * Returns scrollBar state :
+       * {
+       *     visible: is scrollbar visible?
+       *     bottom: is scrollbar is close to the bottom?
+       * }
+       */
       $scope.$watch('item', () => {
         self.item.getScrollbar = function getScrollbar() {
           const height = self.groupScrollElement.height();
@@ -141,12 +151,15 @@ export default /* @ngInject */ function ($compile) {
         self.errorVisible = false;
 
         // load sub items
-        self.item.loadSubItems().then(() => {
-          // let SidebarMenu manage toggle states
-          SidebarMenu.toggleMenuItemOpenState(self.item);
-        }).catch(() => {
-          self.errorVisible = true;
-        });
+        self.item
+          .loadSubItems()
+          .then(() => {
+            // let SidebarMenu manage toggle states
+            SidebarMenu.toggleMenuItemOpenState(self.item);
+          })
+          .catch(() => {
+            self.errorVisible = true;
+          });
         return true;
       };
 
@@ -155,7 +168,10 @@ export default /* @ngInject */ function ($compile) {
       };
 
       self.viewMore = function viewMore() {
-        if (!self.item.viewMore || !angular.isFunction(self.item.viewMore.action)) {
+        if (
+          !self.item.viewMore ||
+          !angular.isFunction(self.item.viewMore.action)
+        ) {
           return;
         }
 
@@ -172,11 +188,13 @@ export default /* @ngInject */ function ($compile) {
 
         // scroll to bottom when action is complete
         if (promiseResult) {
-          promiseResult.then(() => $timeout(() => {
-            self.groupScrollElement.animate({
-              scrollTop: self.groupScrollElement[0].scrollHeight,
-            });
-          }, 250)); // adding some delay helps to smooth the transition
+          promiseResult.then(() =>
+            $timeout(() => {
+              self.groupScrollElement.animate({
+                scrollTop: self.groupScrollElement[0].scrollHeight,
+              });
+            }, 250),
+          ); // adding some delay helps to smooth the transition
         }
       };
 

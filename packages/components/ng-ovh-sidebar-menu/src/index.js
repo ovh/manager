@@ -32,6 +32,6 @@ angular
   ])
   .provider('SidebarMenu', provider)
   .directive('sidebarMenu', directive)
-  .run(/* @ngTranslationsInject ./translations */);
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
