@@ -11,6 +11,7 @@
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
   "scripts": {
+    "build": "webpack --env.production",
     "dev": "webpack-dev-server --port 9001",
     "dev:sms": "concurrently --kill-others \"yarn dev\" \"lerna exec --stream --scope='@ovh-ux/manager-sms-app' -- npm run dev\""
   },

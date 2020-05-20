@@ -80,7 +80,7 @@ module.exports = (env = {}) => {
           ? `'${process.env.NODE_ENV}'`
           : '"development"',
         __NG_APP_INJECTIONS__: getNgAppInjections(['EU', 'CA', 'US']),
-        __U_FRONTEND_ROOT__: '"http://localhost:9000/#!/sms/sms-ls148374-1"',
+        __U_FRONTEND_ROOT__: '"/sms/#!/sms/sms-ls148374-1"',
       }),
     ],
   });
