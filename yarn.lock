@@ -1890,14 +1890,6 @@
   dependencies:
     lodash "^4.17.15"
 
-"@ovh-ux/ng-ovh-responsive-popover@^5.0.1":
-  version "5.0.1"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-responsive-popover/-/ng-ovh-responsive-popover-5.0.1.tgz#780686a8c35d96ff402a07bf09d5bf43fb83202f"
-  integrity sha512-cOV0L9Zq6h2stg0XIup+8lwqKYcda7geuPcPv2KEu6DGciYi/q8Rglt3HlzYvYqYZ0cBWdJ83lnGXmieTEdz9Q==
-  dependencies:
-    "@ovh-ux/translate-async-loader" "^1.0.8"
-    jquery "^2.1.3"
-
 "@ovh-ux/ng-ovh-sidebar-menu@^9.0.0":
   version "9.0.0"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-sidebar-menu/-/ng-ovh-sidebar-menu-9.0.0.tgz#11364fa02613c9ea3f3d7cf782850532882983f1"
