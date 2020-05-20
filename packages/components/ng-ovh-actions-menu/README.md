@@ -1,9 +1,8 @@
 # ng-ovh-actions-menu
 
-> An actions menu gives the opportunity to group a set of actions available for a specific context under a single
-menu.
+> An actions menu gives the opportunity to group a set of actions available for a specific context under a single menu.
 
-[![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-ovh-actions-menu)](https://npmjs.com/package/@ovh-ux/ng-ovh-actions-menu) [![Dependencies](https://badgen.net/david/dep/ovh-ux/ng-ovh-actions-menu)](https://npmjs.com/package/@ovh-ux/ng-ovh-actions-menu?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/ng-ovh-actions-menu)](https://npmjs.com/package/@ovh-ux/ng-ovh-actions-menu?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
+[![npm version](https://badgen.net/npm/v/@ovh-ux/ng-ovh-actions-menu)](https://www.npmjs.com/package/@ovh-ux/ng-ovh-actions-menu) [![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-ovh-actions-menu)](https://npmjs.com/package/@ovh-ux/ng-ovh-actions-menu) [![Dependencies](https://badgen.net/david/dep/ovh/manager/packages/components/ng-ovh-actions-menu)](https://npmjs.com/package/@ovh-ux/ng-ovh-actions-menu?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh/manager/packages/components/ng-ovh-actions-menu)](https://npmjs.com/package/@ovh-ux/ng-ovh-actions-menu?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
 
 ## Install
 
@@ -48,24 +47,28 @@ In your controller:
 ```js
 import angular from 'angular';
 
-angular
-  .module('myApp')
-  .controller('MyCtrl', /* @ngInject */ ($scope) => {
+angular.module('myApp').controller(
+  'MyCtrl',
+  /* @ngInject */ ($scope) => {
     $scope.popoverSettings = {
       'popover-class': 'my-custom-class',
       'popover-placement': 'bottom-right',
     };
 
-    $scope.actionsOptions = [{
-      title: 'My Beautiful title',
-      icon: 'filled-check',
-      href: 'http://www.google.be',
-    }, {
-      title: 'My Other title',
-      icon: 'filled-error',
-      state: 'my-manager.state1',
-    }];
-  });
+    $scope.actionsOptions = [
+      {
+        title: 'My Beautiful title',
+        icon: 'filled-check',
+        href: 'http://www.google.be',
+      },
+      {
+        title: 'My Other title',
+        icon: 'filled-error',
+        state: 'my-manager.state1',
+      },
+    ];
+  },
+);
 ```
 
 And in your html view:
@@ -130,17 +133,20 @@ Add an actions menu item into actions list.
 ```js
 import angular from 'angular';
 
-angular
-  .module('myApp')
-  .controller('MyCtrl', /* @ngInject */ (ActionsMenu) => {
+angular.module('myApp').controller(
+  'MyCtrl',
+  /* @ngInject */ (ActionsMenu) => {
     const actionMenu = new ActionsMenu({
-      actionsMenuItems: [{
-        title: 'My Beautiful title',
-        icon: 'filled-check',
-        href: 'http://www.google.be',
-      }],
+      actionsMenuItems: [
+        {
+          title: 'My Beautiful title',
+          icon: 'filled-check',
+          href: 'http://www.google.be',
+        },
+      ],
     });
-  });
+  },
+);
 ```
 
 ### <a name="actionsMenu_object_ActionsMenuItem"></a>`ActionsMenuItem` - object
@@ -200,15 +206,16 @@ Check if the instance of actions menu item has sub actions defined.
 ```js
 import angular from 'angular';
 
-angular
-  .module('myApp')
-  .controller('MyCtrl', /* @ngInject */ (ActionsMenuItem) => {
+angular.module('myApp').controller(
+  'MyCtrl',
+  /* @ngInject */ (ActionsMenuItem) => {
     const actionMenuItem = new ActionsMenuItem({
       title: 'My Beautiful title',
       icon: 'filled-check',
       href: 'http://www.google.be',
     });
-  });
+  },
+);
 ```
 
 ### <a name="actionsMenu_actionsMenuProvider"></a>`actionsMenuProvider` - provider
@@ -238,12 +245,10 @@ Allows you to change the default location of the translation file of the module.
 ```js
 import angular from 'angular';
 
-angular
-  .module('myApp')
-  .config((actionsMenuProvider) => {
-    // set a new path for translations of the module
-    actionsMenuProvider.setTranslationPath('/the/new/translation/path');
-  });
+angular.module('myApp').config((actionsMenuProvider) => {
+  // set a new path for translations of the module
+  actionsMenuProvider.setTranslationPath('/the/new/translation/path');
+});
 ```
 
 ### <a name="actionsMenu_service_actionsMenu"></a>`actionsMenu` - service
@@ -274,7 +279,7 @@ $ yarn test
 
 ## Contributing
 
-Always feel free to help out! Whether it's [filing bugs and feature requests](https://github.com/ovh-ux/ng-ovh-actions-menu/issues/new) or working on some of the [open issues](https://github.com/ovh-ux/ng-ovh-actions-menu/issues), our [contributing guide](CONTRIBUTING.md) will help get you started.
+Always feel free to help out! Whether it's [filing bugs and feature requests](https://github.com/ovh/manager/issues/new) or working on some of the [open issues](https://github.com/ovh/manager/issues), our [contributing guide](https://github.com/ovh/manager/blob/master/CONTRIBUTING.md) will help get you started.
 
 ## License
 
