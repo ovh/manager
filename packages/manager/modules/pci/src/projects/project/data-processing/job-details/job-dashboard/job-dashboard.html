@@ -101,6 +101,9 @@
                 title="{{ ::'data_processing_details_actions_show_ui_label' | translate }}"
                 data-href="{{ $ctrl.getDataProcessingUiUrl($ctrl.job.region, $ctrl.job.id) }}"
                 data-ng-if="$ctrl.isJobRunning()"
+                data-track-on="click"
+                data-track-name="public-cloud::pci::projects::project::data-processing::job-details::dashboard::job-user-interface"
+                data-track-type="action"
                 data-external
             >
                 {{ ::'data_processing_details_actions_show_ui_label' | translate
@@ -110,6 +113,9 @@
             <oui-tile-button
                 title="{{ ::'data_processing_details_actions_show_grafana_label' | translate }}"
                 data-on-click="$ctrl.showMetrics()"
+                data-track-on="click"
+                data-track-name="public-cloud::pci::projects::project::data-processing::job-details::dashboard::monitor"
+                data-track-type="action"
             >
                 {{ ::'data_processing_details_actions_show_grafana_label' |
                 translate }}
@@ -120,6 +126,9 @@
                 title="{{ $ctrl.containerId === null? 'data_processing_details_actions_browse_swift_unavailable_label': 'data_processing_details_actions_browse_swift_label' | translate }}"
                 disabled="$ctrl.containerId === null"
                 data-on-click="$ctrl.browseObjectStorage($ctrl.containerId)"
+                data-track-on="click"
+                data-track-name="public-cloud::pci::projects::project::data-processing::job-details::dashboard::object-container"
+                data-track-type="action"
             >
                 {{ ::'data_processing_details_actions_browse_swift_label' |
                 translate }}
@@ -128,6 +137,9 @@
             <oui-tile-button
                 title="{{ ::'data_processing_details_actions_show_billing_label' | translate }}"
                 data-on-click="$ctrl.showBillingConsole()"
+                data-track-on="click"
+                data-track-name="public-cloud::pci::projects::project::data-processing::job-details::dashboard::billing-console"
+                data-track-type="action"
             >
                 {{ ::'data_processing_details_actions_show_billing_label' |
                 translate }}
@@ -138,6 +150,9 @@
                 data-on-click="$ctrl.terminateJob()"
                 class="details__action-button__danger"
                 data-ng-if="$ctrl.isJobRunning()"
+                data-track-on="click"
+                data-track-name="public-cloud::pci::projects::project::data-processing::job-details::dashboard::kill-job"
+                data-track-type="action"
             >
                 {{ ::'data_processing_details_actions_terminate_label' |
                 translate }}

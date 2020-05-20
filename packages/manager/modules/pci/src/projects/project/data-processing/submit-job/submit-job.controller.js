@@ -3,9 +3,10 @@ import { convertMemory } from '../data-processing.utils';
 
 export default class {
   /* @ngInject */
-  constructor($scope, $state, dataProcessingService, CucRegionService) {
+  constructor($scope, $state, dataProcessingService, CucRegionService, atInternet) {
     this.$state = $state;
     this.$scope = $scope;
+    this.atInternet = atInternet;
     this.dataProcessingService = dataProcessingService;
     this.cucRegionService = CucRegionService;
     // let's do some function binding
@@ -136,6 +137,10 @@ export default class {
     }
     this.dataProcessingService.submitJob(this.projectId, payload).then(
       () => {
+        this.atInternet.trackClick({
+          name: 'public-cloud::pci::projects::project::data-processing::submit-job::submit',
+          type: 'action',
+        });
         this.goBack();
       },
       () => {

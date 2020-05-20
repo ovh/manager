@@ -110,7 +110,12 @@
                 </oui-action-menu-item>
             </oui-action-menu>
             <extra-top>
-                <oui-button data-on-click="$ctrl.submitJob()">
+                <oui-button
+                    data-on-click="$ctrl.submitJob()"
+                    data-track-on="click"
+                    data-track-name="public-cloud::pci::projects::project::data-processing::add-job"
+                    data-track-type="action"
+                >
                     <span
                         class="oui-icon oui-icon-add"
                         aria-hidden="true"
