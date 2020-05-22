@@ -3,7 +3,6 @@ import get from 'lodash/get';
 import { FeatureAvailability } from '@ovh-ux/ng-ovh-telecom-universe-components';
 import { FREEFAX_AVAILABILITY } from '@ovh-ux/manager-freefax';
 import { OTB_AVAILABILITY } from '@ovh-ux/manager-overthebox';
-import { SMS_AVAILABILITY } from '@ovh-ux/manager-sms';
 import { ALIAS_AVAILABILITY } from '../../app/telecom/orders/alias/orders-alias.constants';
 import { PACK_AVAILABILITY } from '../../app/telecom/pack/pack.constant';
 import { TELEPHONY_AVAILABILITY } from '../../app/telecom/telephony/telecom-telephony.constant';
@@ -30,6 +29,7 @@ angular
     /* @ngInject */ (
       $sce,
       $translate,
+      $q,
       atInternet,
       betaPreferenceService,
       FaxSidebar,
@@ -42,6 +42,7 @@ angular
       TelephonySidebar,
       ORDER_URLS,
       REDIRECT_URLS,
+      ovhFeatureFlipping,
     ) => {
       /*= =========================================
     =                   HELPERS                 =
@@ -88,7 +89,7 @@ angular
 
       /* ----------  SERVICES MENU ITEMS  ----------*/
 
-      function initSidebarMenuItems(count, beta) {
+      function initSidebarMenuItems(count, featuresAvailabilities, beta) {
         // add v4 button
         addV4Section();
 
@@ -103,7 +104,10 @@ angular
         }
 
         // add sidebar SMS item
-        if (get(count, 'sms', beta)) {
+        if (
+          featuresAvailabilities.isFeatureAvailable('sms') &&
+          get(count, 'sms', beta)
+        ) {
           SmsSidebar.init(beta);
         }
 
@@ -127,7 +131,7 @@ angular
     =            ACTIONS MENU OPTIONS            =
     ============================================ */
 
-      function initSidebarMenuActionsOptions(user) {
+      function initSidebarMenuActionsOptions(user, featuresAvailabilities) {
         const aliasAvailability = new FeatureAvailability(
           user,
           ALIAS_AVAILABILITY,
@@ -141,7 +145,7 @@ angular
           user,
           PACK_AVAILABILITY,
         );
-        const smsAvailability = new FeatureAvailability(user, SMS_AVAILABILITY);
+
         const telephonyAvailability = new FeatureAvailability(
           user,
           TELEPHONY_AVAILABILITY,
@@ -398,12 +402,12 @@ angular
               },
             ],
           },
-          ...(smsAvailability.isAvailable('order')
+          ...(featuresAvailabilities.isFeatureAvailable('sms:order')
             ? [
                 {
                   title: $translate.instant('telecom_sidebar_actions_menu_sms'),
                   icon: 'ovh-font ovh-font-message',
-                  ...(smsAvailability.isAvailable('hlr')
+                  ...(featuresAvailabilities.isFeatureAvailable('sms:hlr')
                     ? {
                         subActions: [
                           {
@@ -461,6 +465,8 @@ angular
     ====================================== */
 
       function init() {
+        let featuresAvailabilities;
+
         // set initialization promise
         return SidebarMenu.setInitializationPromise(
           betaPreferenceService
@@ -470,12 +476,25 @@ angular
               if (beta) {
                 return initSidebarMenuItems({}, beta);
               }
-              return TelecomMediator.initServiceCount(false).then((count) => {
-                initSidebarMenuItems(count, beta);
-              });
+              return $q
+                .all({
+                  count: TelecomMediator.initServiceCount(false),
+                  features: ovhFeatureFlipping.checkFeatureAvailability([
+                    'sms',
+                    'sms:order',
+                    'sms:hlr',
+                  ]),
+                })
+                .then(({ count, features }) => {
+                  featuresAvailabilities = features;
+
+                  initSidebarMenuItems(count, featuresAvailabilities, beta);
+                });
             })
             .then(() => OvhApiMe.v6().get().$promise)
-            .then((user) => initSidebarMenuActionsOptions(user)),
+            .then((user) =>
+              initSidebarMenuActionsOptions(user, featuresAvailabilities),
+            ),
         );
       }
 
