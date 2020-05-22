@@ -5,8 +5,6 @@ import ovhManagerCore from '@ovh-ux/manager-core';
 
 import sms from './sms';
 
-import { SMS_AVAILABILITY } from './feature-availability/feature-availability.constants';
-
 const moduleName = 'ovhManagerSmsLazyLoading';
 
 angular
@@ -32,4 +30,3 @@ angular
   );
 
 export default moduleName;
-export { SMS_AVAILABILITY };

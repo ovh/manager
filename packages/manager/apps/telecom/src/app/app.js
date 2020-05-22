@@ -36,6 +36,7 @@ import ngOvhLineDiagnostics from '@ovh-ux/ng-ovh-line-diagnostics';
 import ngOvhContact from '@ovh-ux/ng-ovh-contact';
 import ngOvhTimeline from '@ovh-ux/ng-ovh-timeline';
 import { detach as detachPreloader } from '@ovh-ux/manager-preloader';
+import ngOvhFeatureFlipping from '@ovh-ux/ng-ovh-feature-flipping';
 
 import uiRouter, { RejectType } from '@uirouter/angularjs';
 import TelecomAppCtrl from './app.controller';
@@ -128,6 +129,7 @@ angular
       telephony,
       portabilities,
       searchPage,
+      ngOvhFeatureFlipping,
       ...get(__NG_APP_INJECTIONS__, Environment.getRegion(), []),
     ].filter(isString),
   )
@@ -152,6 +154,9 @@ angular
   )
   .config((LineDiagnosticsProvider) => {
     LineDiagnosticsProvider.setPathPrefix('/xdsl/{serviceName}');
+  })
+  .config((ovhFeatureFlippingProvider) => {
+    ovhFeatureFlippingProvider.setApplicationName('telecom');
   })
   .run(
     /* @ngInject */ ($translate) => {

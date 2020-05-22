@@ -6,6 +6,7 @@ import 'angular-messages';
 import ngOvhCheckboxTable from '@ovh-ux/ng-ovh-checkbox-table';
 import '@ovh-ux/ng-pagination-front';
 import 'ovh-api-services';
+import ngOvhFeatureFlipping from '@ovh-ux/ng-ovh-feature-flipping';
 
 import 'ovh-ui-kit/dist/oui.css';
 import 'ovh-ui-kit/dist/oui-olt.css';
@@ -49,6 +50,7 @@ angular
     senders,
     sms,
     users,
+    ngOvhFeatureFlipping,
   ])
   .constant('SMS_URL', constant.SMS_URL)
   .constant('SMS_GUIDES', constant.SMS_GUIDES)
