@@ -1,7 +1,7 @@
 {
   "user_contracts_modal_title": "Terms & conditions",
   "user_contracts_modal_term_of_service_updated_text": "Our Terms & conditions have changed.",
-  "user_contracts_modal_term_of_service_updated_explanation": "To continue using any OVHcloud services, including access to the OVH Control Panel, you will need to accept the updated Terms & conditions: ",
+  "user_contracts_modal_term_of_service_updated_explanation": "To continue using any OVHcloud services, including access to the OVHcloud Control Panel, you will need to accept the updated Terms & conditions: ",
   "user_contracts_modal_checkbox_label_both": "I accept the updates to the Terms & Conditions of Use, and the Confidentiality Policy",
   "user_contracts_modal_checkbox_label_tos": "I accept the updates to the Terms & Conditions of Use",
   "user_contracts_modal_checkbox_label_pp": "I accept the updates to the Confidentiality Policy",
