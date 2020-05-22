@@ -48,7 +48,8 @@ export default /* @ngInject */ ($stateProvider) => {
                       serviceName: resource.name,
                     })
                     .$promise.catch(() => null),
-                ),
+                )
+                .catch(() => null),
             ),
           )
           .then((servicesInformation) =>
