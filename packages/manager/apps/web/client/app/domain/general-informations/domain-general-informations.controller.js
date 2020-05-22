@@ -30,15 +30,18 @@ export default class DomainTabGeneralInformationsCtrl {
     $translate,
     Alerter,
     constants,
+    detachableStart10m,
     dnsAvailableOptions,
     Domain,
+    detachFreeWebhostingLink,
     enableWebhostingLink,
     Hosting,
     HostingDomain,
-    isStart10mAvailable,
+    isStart10mOfferAvailable,
     OvhApiDomainRules,
     OvhApiScreenshot,
     RedirectionService,
+    start10mHosting,
     User,
     WucAllDom,
     DOMAIN,
@@ -53,15 +56,18 @@ export default class DomainTabGeneralInformationsCtrl {
     this.$translate = $translate;
     this.Alerter = Alerter;
     this.WucAllDom = WucAllDom;
+    this.detachableStart10m = detachableStart10m;
     this.dnsAvailableOptions = dnsAvailableOptions;
     this.Domain = Domain;
+    this.detachFreeWebhostingLink = detachFreeWebhostingLink;
     this.enableWebhostingLink = enableWebhostingLink;
     this.Hosting = Hosting;
     this.HostingDomain = HostingDomain;
-    this.isStart10mAvailable = isStart10mAvailable;
+    this.isStart10mOfferAvailable = isStart10mOfferAvailable;
     this.OvhApiDomainRules = OvhApiDomainRules;
     this.OvhApiScreenshot = OvhApiScreenshot.Aapi();
     this.RedirectionService = RedirectionService;
+    this.start10mHosting = start10mHosting;
     this.User = User;
     this.constants = constants;
     this.DOMAIN = DOMAIN;
@@ -82,7 +88,16 @@ export default class DomainTabGeneralInformationsCtrl {
     ];
     this.goToWebhostingOrder = this.$scope.ctrlDomain.goToWebhostingOrder;
     this.hasAssociatedHostings = false;
-    this.hasStart10mOffer = false;
+    this.hasStart10mOffer =
+      this.orderedHosting ===
+        this.constants.HOSTING.OFFERS.START_10_M.TYPE_VALUE ||
+      this.start10mHosting !== null;
+
+    this.isStart10mDetachable =
+      this.hasStart10mOffer &&
+      this.detachableStart10m &&
+      this.detachableStart10m.detachPlancodes.length > 0;
+
     this.isAllDom = this.$rootScope.currentSectionInformation === 'all_dom';
     this.isUK = last(this.domain.name.split('.')).toUpperCase() === 'UK';
     this.options = {};
@@ -307,9 +322,6 @@ export default class DomainTabGeneralInformationsCtrl {
       .then(({ sites, hostingInfo }) => {
         this.vm.hosting.web.sites = sites;
         this.vm.hosting.web.selected.info = hostingInfo;
-        this.hasStart10mOffer =
-          hostingInfo.offer ===
-          this.constants.HOSTING.OFFERS.START_10_M.TYPE_VALUE;
         this.displayFreeHosting = isEmpty(sites) || this.hasStart10mOffer;
       })
       .finally(() => {

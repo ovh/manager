@@ -114,7 +114,7 @@
                 <oui-tile-definition
                     data-term-popover="{{ ::'domain_configuration_web_hosting_offer_START_explain' | translate }}"
                     data-term="{{ ::'domain_dashboard_enable_web_hosting' | translate }}"
-                    ng-if="$ctrl.isStart10mAvailable"
+                    ng-if="$ctrl.isStart10mOfferAvailable || $ctrl.hasStart10mOffer"
                 >
                     <oui-tile-description>
                         <a
@@ -142,13 +142,22 @@
                     <oui-action-menu
                         data-compact
                         data-align="end"
-                        data-ng-if="ctrlDomain.canOrderHosting && ctrlDomain.isAdminOrBilling"
+                        data-ng-if="((ctrlDomain.canOrderHosting && !$ctrl.hasStart10mOffer) || $ctrl.isStart10mDetachable) && ctrlDomain.isAdminOrBilling"
                     >
                         <oui-action-menu-item
                             href="{{:: $ctrl.enableWebhostingLink }}"
+                            data-ng-if="ctrlDomain.canOrderHosting && !$ctrl.hasStart10mOffer"
                         >
                             <span
                                 data-translate="domain_configuration_action_enable"
+                            ></span>
+                        </oui-action-menu-item>
+                        <oui-action-menu-item
+                            href="{{:: $ctrl.detachFreeWebhostingLink }}"
+                            data-ng-if="$ctrl.isStart10mDetachable"
+                        >
+                            <span
+                                data-translate="domain_configuration_detach"
                             ></span>
                         </oui-action-menu-item>
                     </oui-action-menu>
