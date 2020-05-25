@@ -31,6 +31,14 @@ angular
   .constant('EMAILPRO_CONFIG_URL', EMAILPRO_CONFIG_URL)
   .constant('EMAILPRO_CONFIG', EMAILPRO_CONFIG)
   .config(routing)
+  .provider(
+    'EMAIL_CAPABILITIES',
+    /* @ngInject */ (coreConfigProvider) => ({
+      $get: () => ({
+        isEmailProAvailable: coreConfigProvider.isRegion('EU'),
+      }),
+    }),
+  )
   .run(cacheTemplate);
 
 export default moduleName;
