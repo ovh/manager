@@ -25,6 +25,7 @@ export default class EmailPro {
     constants,
     EMAILPRO_CONFIG,
     OvhHttp,
+    EMAIL_CAPABILITIES,
   ) {
     this.$cacheFactory = $cacheFactory;
     this.$location = $location;
@@ -33,6 +34,7 @@ export default class EmailPro {
     this.$stateParams = $stateParams;
     this.$timeout = $timeout;
     this.$translate = $translate;
+    this.EMAIL_CAPABILITIES = EMAIL_CAPABILITIES;
 
     this.apiRoutes = get(
       EMAILPRO_CONFIG.API_ROUTES,
@@ -1591,14 +1593,16 @@ export default class EmailPro {
   }
 
   gettingIsServiceMXPlan() {
-    return this.OvhHttp.get(
-      `/email/pro/${this.$stateParams.productId}/billingMigrated`,
-      {
-        rootPath: 'apiv6',
-      },
-    )
-      .then(() => false)
-      .catch(() => true);
+    return this.EMAIL_CAPABILITIES.isEmailProAvailable
+      ? this.OvhHttp.get(
+          `/email/pro/${this.$stateParams.productId}/billingMigrated`,
+          {
+            rootPath: 'apiv6',
+          },
+        )
+          .then(() => false)
+          .catch(() => true)
+      : this.$q.resolve(true);
   }
 
   gettingBaseAPIPath() {
