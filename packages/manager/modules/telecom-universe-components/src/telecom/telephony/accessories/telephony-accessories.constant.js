@@ -79,7 +79,6 @@ export const TELEPHONY_LINE_PHONE_ACCESSORIES = {
       'https://www.ovhtelecom.fr/images/telephonie/accessories/sl610hpro.jpg',
   },
   'cisco.ext8800': {
-    url: 'https://www.ovhtelecom.fr/telephonie/comparatif-des-accessoires.xml',
     img:
       'https://www.ovhtelecom.fr/images/telephonie/2020/cisco/accessory-cisco-ext8800-90-90.png',
   },
