@@ -1,3 +1,12 @@
+## [14.3.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@14.3.3...@ovh-ux/manager-web@14.3.4) (2020-05-25)
+
+
+### Bug Fixes
+
+* **web.hosting:** catch multiple email options error ([5069b58](https://github.com/ovh/manager/commit/5069b58cabb66b1197e9324ba1e1b15811eea0a7))
+
+
+
 ## [14.3.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@14.3.2...@ovh-ux/manager-web@14.3.3) (2020-05-18)
 
 
