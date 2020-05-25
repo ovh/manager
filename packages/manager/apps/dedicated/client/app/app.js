@@ -34,6 +34,7 @@ import ovhManagerServerSidebar from '@ovh-ux/manager-server-sidebar';
 import ovhManagerSupport from '@ovh-ux/manager-support';
 import ovhPaymentMethod from '@ovh-ux/ng-ovh-payment-method';
 import uiRouter, { RejectType } from '@uirouter/angularjs';
+import chartjs from 'angular-chart.js';
 
 import moduleExchange from '@ovh-ux/manager-exchange';
 import ovhManagerVeeamEnterprise from '@ovh-ux/manager-veeam-enterprise';
@@ -71,7 +72,7 @@ angular
       account,
       ovhManagerCore,
       'Billing',
-      'chart.js',
+      chartjs,
       'controllers',
       contactsService,
       datacenterBackup,

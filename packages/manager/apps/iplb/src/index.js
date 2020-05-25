@@ -1,7 +1,8 @@
-/* eslint-disable import/no-webpack-loader-syntax */
+/* eslint-disable import/no-webpack-loader-syntax, import/extensions */
 import 'script-loader!jquery';
 import 'script-loader!moment/min/moment-with-locales.min';
-/* eslint-enable import/no-webpack-loader-syntax */
+import 'script-loader!chart.js/dist/Chart.min.js';
+/* eslint-enable import/no-webpack-loader-syntax, import/extensions */
 
 import { Environment } from '@ovh-ux/manager-config';
 

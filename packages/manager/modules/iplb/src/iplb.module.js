@@ -12,11 +12,6 @@ import ngAtInternet from '@ovh-ux/ng-at-internet';
 import ngOvhCloudUniverseComponents from '@ovh-ux/ng-ovh-cloud-universe-components';
 import ngOvhDocUrl from '@ovh-ux/ng-ovh-doc-url';
 
-/* eslint-disable import/no-webpack-loader-syntax, import/extensions */
-import 'script-loader!chart.js/dist/Chart.js';
-import 'script-loader!angular-chart.js/dist/angular-chart.js';
-/* eslint-enable import/no-webpack-loader-syntax */
-
 import IpLoadBalancerActionService from './iplb-action.service';
 import IpLoadBalancerCipherService from './iplb-cipher.service';
 import IpLoadBalancerConstant from './iplb.constants';
