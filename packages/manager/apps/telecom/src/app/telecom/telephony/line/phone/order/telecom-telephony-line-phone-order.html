@@ -193,6 +193,9 @@
                                 class="oui-button oui-button_primary oui-button_icon-right float-right mt-2"
                                 data-ng-click="PhoneOrderCtrl.orderStep = PhoneOrderCtrl.order.phone ? 'shipping' : 'returnOnly'"
                                 data-ng-disabled="PhoneOrderCtrl.isSamePhone() || PhoneOrderCtrl.macAddress"
+                                data-track-on="click"
+                                data-track-name="telecom::telephony::billingAccount::line::phone::order::shipping"
+                                data-track-click="page"
                             >
                                 <span
                                     data-translate="telephony_line_phone_order_order_next"
@@ -263,6 +266,9 @@
                             class="oui-button oui-button_primary oui-button_icon-right float-right mt-2"
                             data-ng-disabled="!PhoneOrderCtrl.order.contact || (PhoneOrderCtrl.order.shipping.mode === 'mondialRelay' && !PhoneOrderCtrl.order.shipping.relay)"
                             data-ng-click="PhoneOrderCtrl.orderStep = 'summary'"
+                            data-track-on="click"
+                            data-track-name="telecom::telephony::billingAccount::line::phone::order::summary"
+                            data-track-click="page"
                         >
                             <span
                                 data-translate="telephony_line_phone_order_order_next"

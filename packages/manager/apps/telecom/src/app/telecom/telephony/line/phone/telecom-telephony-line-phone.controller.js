@@ -50,6 +50,7 @@ angular.module('managerApp').controller(
           text: this.$translate.instant(
             'telephony_line_phone_actions_line_details_phon_offer',
           ),
+          tracking: 'telecom::telephony::billingAccount::line::phone::details',
         },
         {
           name: 'line_codecs_management',
@@ -57,6 +58,7 @@ angular.module('managerApp').controller(
           text: this.$translate.instant(
             'telephony_line_phone_actions_line_codecs_management',
           ),
+          tracking: 'telecom::telephony::billingAccount::line::phone::codecs',
         },
         {
           name: 'line_plug_and_phone_custom_parameters_list',
@@ -66,6 +68,8 @@ angular.module('managerApp').controller(
           text: this.$translate.instant(
             'telephony_line_phone_actions_line_plug_and_phone_custom_parameters_list',
           ),
+          tracking:
+            'telecom::telephony::billingAccount::line::phone::configuration',
         },
         {
           name: 'line_programmable_keys',
@@ -76,6 +80,8 @@ angular.module('managerApp').controller(
           text: this.$translate.instant(
             'telephony_line_phone_actions_line_programmable_keys',
           ),
+          tracking:
+            'telecom::telephony::billingAccount::line::phone::programmable-keys',
         },
         {
           name: 'line_phone_reboot',
@@ -84,6 +90,7 @@ angular.module('managerApp').controller(
           text: this.$translate.instant(
             'telephony_line_phone_actions_line_phone_reboot',
           ),
+          tracking: 'telecom::telephony::billingAccount::line::phone::reboot',
         },
         {
           name: 'line_phone_order_plug_and_phone',
@@ -95,6 +102,9 @@ angular.module('managerApp').controller(
             : this.$translate.instant(
                 'telephony_line_phone_actions_line_phone_order_phone',
               ),
+          tracking: this.line.hasPhone
+            ? 'telecom::telephony::billingAccount::line::phone::change'
+            : 'telecom::telephony::billingAccount::line::phone::order',
         },
         {
           name: 'line_order_accessories',
@@ -106,6 +116,8 @@ angular.module('managerApp').controller(
           text: this.$translate.instant(
             'telephony_line_phone_actions_line_order_accessories',
           ),
+          tracking:
+            'telecom::telephony::billingAccount::line::phone::accessories',
         },
         {
           name: 'line_phonebook',
@@ -116,6 +128,8 @@ angular.module('managerApp').controller(
           text: this.$translate.instant(
             'telephony_line_phone_actions_line_phonebook',
           ),
+          tracking:
+            'telecom::telephony::billingAccount::line::phone::phonebook',
         },
         {
           name: 'line_phone_order_attach',
@@ -131,6 +145,8 @@ angular.module('managerApp').controller(
               : this.$translate.instant(
                   'telephony_line_phone_actions_line_phone_order_attach',
                 ),
+          tracking:
+            'telecom::telephony::billingAccount::line::phone::equipment',
         },
       ];
     }

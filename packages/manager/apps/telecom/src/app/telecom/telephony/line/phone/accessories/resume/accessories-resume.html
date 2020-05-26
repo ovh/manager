@@ -3,10 +3,7 @@
         <oui-spinner></oui-spinner>
     </div>
 
-    <form
-        data-ng-submit="$ctrl.process.currentView = 'finalize'"
-        data-ng-if="!$ctrl.loading.init"
-    >
+    <form data-ng-submit="$ctrl.submit()" data-ng-if="!$ctrl.loading.init">
         <div class="alert alert-danger" role="alert" data-ng-if="$ctrl.error">
             <p>
                 <span
@@ -170,7 +167,7 @@
                 type="reset"
                 class="btn btn-default"
                 data-translate="telephony_line_phone_accessories_previous"
-                data-ng-click="$ctrl.process.currentView = 'shipping'"
+                data-ng-click="$ctrl.goBack()"
             ></button>
         </div>
     </form>

@@ -15,6 +15,7 @@ export default class TelephonyLinePhoneOrderChoiceCtrl {
   constructor(
     $q,
     $scope,
+    atInternet,
     OvhApiOrder,
     OvhApiTelephony,
     TucToast,
@@ -22,6 +23,7 @@ export default class TelephonyLinePhoneOrderChoiceCtrl {
   ) {
     this.$q = $q;
     this.$scope = $scope;
+    this.atInternet = atInternet;
     this.OvhApiOrder = OvhApiOrder;
     this.OvhApiTelephony = OvhApiTelephony;
     this.TucToast = TucToast;
@@ -156,10 +158,22 @@ export default class TelephonyLinePhoneOrderChoiceCtrl {
   }
 
   nextStep() {
+    this.atInternet.trackPage({
+      name: 'telecom::telephony::billingAccount::line::phone::order::delivery',
+    });
     if (!this.isReturnPhone) {
       this.$scope.$emit('phoneSelected', this.selectedPhone);
     } else {
       this.$scope.$emit('returnPhone', this.phone);
+    }
+    if (this.phone) {
+      this.track(
+        `telecom::telephony::billingAccount::line::phone::change::${this.selectedPhone}_validate`,
+      );
+    } else {
+      this.track(
+        `telecom::telephony::billingAccount::line::phone::order::${this.selectedPhone}_validate`,
+      );
     }
   }
 
@@ -173,5 +187,12 @@ export default class TelephonyLinePhoneOrderChoiceCtrl {
       this.selectedPhone &&
       `phone.${this.selectedPhone}` === this.phone.brand
     );
+  }
+
+  track(name) {
+    this.atInternet.trackClick({
+      name,
+      type: 'action',
+    });
   }
 }
