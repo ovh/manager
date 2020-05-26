@@ -1392,5 +1392,6 @@
   "hosting_dashboard_service_common_active": "Aktywny",
   "hosting_dashboard_service_common_inactive": "Nieaktywny",
   "hosting_dashboard_email_offer_get_error": "Nie można pobrać adresu e-mail",
-  "hosting_dashboard_service_detach_email_option": "Odłącz opcję e-mail"
+  "hosting_dashboard_service_detach_email_option": "Odłącz opcję e-mail",
+  "hosting_dashbaord_service_privatesql_detach": "Odłącz"
 }

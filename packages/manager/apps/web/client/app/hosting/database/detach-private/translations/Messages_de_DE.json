@@ -1,0 +1,8 @@
+{
+  "hosting_database_private_detach_option_title": "Meine Datenbank PrivateSQL abtrennen",
+  "hosting_database_private_detach_option_description": "Ihre Datenbank PrivateSQL {{ domain }} ist derzeit mit dem Webhosting {{hosting}} verbunden. Wenn Sie Ihre Datenbank abtrennen, können Sie sie unabhängig von Ihrem Hosting erneuern. Sie wird Ihnen dann zum Standardpreis der Datenbanken PrivateSQL berechnet.",
+  "hosting_database_private_detach_option_warning_irreversible": "Achtung, diese Aktion kann nicht rückgängig gemacht werden!",
+  "hosting_database_private_detach_option_error": "Beim Abtrennen der Datenbank ist ein Fehler aufgetreten. {{error}}",
+  "hosting_database_private_detach_option_success_with_payment": "Das Abtrennen der Datenbank wurde registriert. Dein Konto {{accountId}} wurde von {{price}} abgebucht. <a class=\"d-block\" target=\"_blank\" href=\"{{billUrl}}\" rel=\"noopener\">Siehe meine Rechnung</a>",
+  "hosting_database_private_detach_option_success_with_no_payment": "Ihr <a target=\"_blank\" href=\"{{billUrl}}\" rel=\"noopener\">Kaufauftrag</a> wurde generiert. Die Abtrennung der Datenbank wird mit der Bezahlung wirksam."
+}
