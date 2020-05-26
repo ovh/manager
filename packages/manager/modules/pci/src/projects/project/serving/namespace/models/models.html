@@ -1,9 +1,4 @@
 <div>
-    <oui-message type="warning">
-        <span
-            data-translate="pci_projects_project_serving_namespace_models_warning_beta"
-        ></span>
-    </oui-message>
     <cui-message-container
         data-messages="$ctrl.messages"
     ></cui-message-container>
@@ -112,11 +107,17 @@
             </oui-action-menu-item>
         </oui-action-menu>
         <extra-top>
-            <oui-button data-on-click="$ctrl.addModel()">
+            <button
+                class="oui-button oui-button_secondary"
+                data-ng-click="$ctrl.addModel()"
+                data-track-on="click"
+                data-track-name="public-cloud::pci::projects::project::serving::namespace::infos::add-model"
+                data-track-type="action"
+            >
                 <span
                     data-translate="pci_projects_project_serving_namespace_models_deploy_model"
                 ></span>
-            </oui-button>
+            </button>
         </extra-top>
     </oui-datagrid>
 </div>
