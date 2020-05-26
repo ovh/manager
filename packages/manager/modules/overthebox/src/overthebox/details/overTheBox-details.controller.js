@@ -229,6 +229,26 @@ export default /* @ngInject */ function(
       });
   }
 
+  /**
+   * Get available release channels
+   * @returns {Promise}
+   */
+  function getAvailableReleaseChannels() {
+    self.releaseChannels = [];
+    return OvhApiOverTheBox.v6()
+      .getAvailableReleaseChannels({
+        serviceName: $stateParams.serviceName,
+      })
+      .$promise.then((channels) => {
+        channels.forEach((channel) => {
+          self.releaseChannels.push({
+            name: channel,
+            label: $translate.instant(`overTheBox_release_channel_${channel}`),
+          });
+        });
+      });
+  }
+
   function init() {
     self.loaders = {
       init: true,
@@ -260,6 +280,7 @@ export default /* @ngInject */ function(
         })
         .$promise.then((otb) => {
           self.nameEditable = otb.status === 'active';
+          self.releaseChannel = otb.releaseChannel;
           return otb;
         }),
     ]).finally(() => {
@@ -270,6 +291,7 @@ export default /* @ngInject */ function(
       getGraphData();
     });
     getAvailableAction();
+    getAvailableReleaseChannels();
   }
 
   /**
@@ -520,7 +542,7 @@ export default /* @ngInject */ function(
   };
 
   /**
-   * Cancel the résiliation of the current service
+   * Cancel the resiliation of the current service
    * @return {Promise}
    */
   self.cancelResiliation = function cancelResiliation() {
@@ -555,6 +577,33 @@ export default /* @ngInject */ function(
       })
       .finally(() => {
         self.loaders.cancellingResiliation = false;
+      });
+  };
+
+  self.changeReleaseChannel = function changeReleaseChannel() {
+    self.loaders.changingReleaseChannel = true;
+    return OvhApiOverTheBox.v6()
+      .putService(
+        {
+          serviceName: $stateParams.serviceName,
+        },
+        {
+          releaseChannel: self.releaseChannel,
+        },
+      )
+      .$promise.then(() => {
+        TucToast.success(
+          $translate.instant('overTheBox_change_release_channel_success'),
+        );
+      })
+      .catch((err) => {
+        TucToast.error(
+          $translate.instant('overTheBox_change_release_channel_error'),
+        );
+        return $q.reject(err);
+      })
+      .finally(() => {
+        self.loaders.changingReleaseChannel = false;
       });
   };
 

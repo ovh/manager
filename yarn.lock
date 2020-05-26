@@ -13782,6 +13782,12 @@ ovh-api-services@^9.44.2:
   dependencies:
     lodash "^4.17.15"
 
+"ovh-api-services@git+https://github.com/ovh-ux/ovh-api-services.git#feat/otb-release-channels":
+  version "9.42.0"
+  resolved "git+https://github.com/ovh-ux/ovh-api-services.git#d851cb7e4b5cbb819bf2592452cd662e4f76f046"
+  dependencies:
+    lodash "^4.17.15"
+
 ovh-common-style@^3.2.2, ovh-common-style@ovh-ux/ovh-common-style#^3.2.2:
   version "3.2.2"
   resolved "https://codeload.github.com/ovh-ux/ovh-common-style/tar.gz/cd9f7bea9240b7e2334ae5cd7e74529478b271d4"
