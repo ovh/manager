@@ -176,10 +176,26 @@ angular.module('Module.ip.services').service(
       return productToOrder;
     }
 
-    getVpsIpCountryAvailable(serviceName) {
-      return this.OvhHttp.get(`/vps/${serviceName}/ipCountryAvailable`, {
-        rootPath: 'apiv6',
-      });
+    getIpCountryAvailablePromise(serviceName, serviceType) {
+      return this.OvhHttp.get(
+        this.constructor.getIpCountryAvailableRoute(serviceName, serviceType),
+        {
+          rootPath: 'apiv6',
+        },
+      );
+    }
+
+    static getIpCountryAvailableRoute(serviceName, serviceType) {
+      switch (serviceType) {
+        case PRODUCT_TYPES.dedicatedServer.typeName:
+          return `/dedicated/server/${serviceName}/ipCountryAvailable`;
+        case PRODUCT_TYPES.privateCloud.typeName:
+          return `/dedicatedCloud/${serviceName}/orderableIpCountries`;
+        case PRODUCT_TYPES.vps.typeName:
+          return `/vps/${serviceName}/ipCountryAvailable`;
+        default:
+          return null;
+      }
     }
   },
 );
