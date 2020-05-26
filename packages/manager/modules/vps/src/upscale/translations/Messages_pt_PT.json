@@ -45,5 +45,6 @@
   "vps_upscale_elite_upgrade_success_monthly_with_payment_method": "A alteração da configuração foi registada. Foi faturado o montante de {{ price }} numa base pro rata temporis para o mês em curso.",
   "vps_upscale_elite_upgrade_success_upfront_with_payment_method": "A alteração da configuração foi registada. Foi faturado o montante de {{ price }} para o período restante do seu compromisso.",
   "vps_upscale_elite_upgrade_success_without_payment_method": "A sua <a class=\"oui-link\" target=\"_blank\" href=\"{{billUrl}}\" rel=\"noopener\">nota de encomenda</a> foi gerada. A alteração da configuração será efetiva quando o pagamento for efetuado.",
-  "vps_upscale_elite_upgrade_error": "Ocorreu um erro ao alterar a configuração."
+  "vps_upscale_elite_upgrade_error": "Ocorreu um erro ao alterar a configuração.",
+  "vps_upscale_agreements": "Aceito as <a target=\"_blank\" href=\"{{conditions}}\" rel=\"noopener\">condições gerais</a> e a <a target=\"_blank\" href=\"{{policy}}\" rel=\"noopener\">política de confidencialidade</a>."
 }
