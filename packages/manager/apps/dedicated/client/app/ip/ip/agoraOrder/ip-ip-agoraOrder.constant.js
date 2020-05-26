@@ -15,7 +15,34 @@ export const PRODUCT_TYPES = {
   },
 };
 
+export const IP_LOCATION_GROUPS = [
+  { label: 'CANADA', countries: ['ca'] },
+  {
+    label: 'EUROPE',
+    countries: [
+      'au',
+      'be',
+      'cz',
+      'de',
+      'es',
+      'fi',
+      'fr',
+      'gb',
+      'ie',
+      'it',
+      'lt',
+      'nl',
+      'pl',
+      'pt',
+      'sg',
+      'uk',
+    ],
+  },
+  { label: 'USA', countries: ['us'] },
+];
+
 export default {
   FETCH_PRICE_MAX_TRIES,
+  IP_LOCATION_GROUPS,
   PRODUCT_TYPES,
 };

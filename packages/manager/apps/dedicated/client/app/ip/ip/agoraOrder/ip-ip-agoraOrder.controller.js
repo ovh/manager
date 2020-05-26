@@ -2,13 +2,14 @@ import filter from 'lodash/filter';
 import find from 'lodash/find';
 import get from 'lodash/get';
 import head from 'lodash/head';
+import intersection from 'lodash/intersection';
 import last from 'lodash/last';
 import map from 'lodash/map';
 import range from 'lodash/range';
 import set from 'lodash/set';
 import uniq from 'lodash/uniq';
 
-import { PRODUCT_TYPES } from './ip-ip-agoraOrder.constant';
+import { IP_LOCATION_GROUPS, PRODUCT_TYPES } from './ip-ip-agoraOrder.constant';
 
 angular.module('Module.ip.controllers').controller(
   'agoraIpOrderCtrl',
@@ -123,6 +124,12 @@ angular.module('Module.ip.controllers').controller(
       };
     }
 
+    static getRegionsOffers(countries) {
+      return IP_LOCATION_GROUPS.filter(
+        (group) => intersection(group.countries, countries).length > 0,
+      ).map(({ label }) => label);
+    }
+
     static getRegionFromServiceName(serviceName) {
       const serviceExt = last(serviceName.split('.'));
       if (['eu', 'net'].includes(serviceExt)) {
@@ -158,23 +165,31 @@ angular.module('Module.ip.controllers').controller(
             this.model.selectedService.serviceName,
           );
         }
-        this.ipOffers = filter(ipOfferDetails, {
-          productRegion: AgoraIpOrderCtrl.getRegionFromServiceName(
-            this.model.selectedService.serviceName,
-          ),
-        });
 
         return vpsIpCountryAvailablePromise.then((countries) => {
           if (countries !== null) {
-            this.ipOffers = this.ipOffers.map((ipOffer) => {
-              set(
-                ipOffer,
-                'countries',
-                ipOffer.countries.filter(
-                  ({ code }) => countries.indexOf(code.toLowerCase()) > -1,
-                ),
-              );
-              return ipOffer;
+            const ipOffersByRegion = AgoraIpOrderCtrl.getRegionsOffers(
+              countries,
+            );
+            this.ipOffers = ipOfferDetails
+              .filter(({ productRegion }) =>
+                ipOffersByRegion.includes(productRegion),
+              )
+              .map((ipOffer) => {
+                set(
+                  ipOffer,
+                  'countries',
+                  ipOffer.countries.filter(
+                    ({ code }) => countries.indexOf(code.toLowerCase()) > -1,
+                  ),
+                );
+                return ipOffer;
+              });
+          } else {
+            this.ipOffers = filter(ipOfferDetails, {
+              productRegion: AgoraIpOrderCtrl.getRegionFromServiceName(
+                this.model.selectedService.serviceName,
+              ),
             });
           }
         });
