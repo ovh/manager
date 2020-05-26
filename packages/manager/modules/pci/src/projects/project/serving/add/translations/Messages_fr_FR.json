@@ -1,6 +1,6 @@
 {
-  "pci_projects_project_serving_add_title": "Créer un namespace Serving Engine",
-  "pci_projects_project_serving_add_region_title": "Sélectionnez une localisation",
+  "pci_projects_project_serving_add_title": "Créer un namespace ML Serving",
+  "pci_projects_project_serving_add_region_title": "Sélectionner une localisation",
   "pci_projects_project_serving_add_description_title": "Identifiant du namespace",
   "pci_projects_project_serving_add_description_help": "L'identitiant du namespace doit commencer par un caractère alphanumérique minuscule ou majuscule (de a à z et de 0 à 9) et peut comporter les signes de ponctuation suivants : « - », « _ ».",
   "pci_projects_project_serving_add_container_title": "Object Storage Container",

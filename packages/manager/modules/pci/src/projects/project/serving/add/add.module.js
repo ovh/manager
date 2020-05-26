@@ -4,6 +4,7 @@ import '@ovh-ux/ng-translate-async-loader';
 import '@ovh-ux/ng-ovh-cloud-universe-components';
 import 'angular-translate';
 import 'ovh-api-services';
+import '@ovh-ux/ng-at-internet';
 
 import component from './add.component';
 import routing from './add.routing';
@@ -20,6 +21,7 @@ angular
     'pascalprecht.translate',
     'ovh-api-services',
     'ui.router',
+    'ngAtInternet',
     ovhManagerPciStoragesContainers,
   ])
   .config(routing)

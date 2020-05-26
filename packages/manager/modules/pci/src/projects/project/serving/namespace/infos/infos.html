@@ -1,32 +1,55 @@
-<oui-message type="warning">
-    <span
-        data-translate="pci_projects_project_serving_namespace_models_warning_beta"
-    ></span>
-</oui-message>
 <cui-message-container data-messages="$ctrl.messages"></cui-message-container>
 <div class="row d-lg-flex">
     <div class="col-md-4">
         <oui-tile
             data-heading="{{ ::'pci_projects_project_serving_namespace_infos_namespace_information_management' | translate }}"
         >
-            <oui-tile-button data-on-click="$ctrl.addModel()">
+            <button
+                class="oui-tile__button oui-tile__item oui-button oui-button_link oui-button_icon-right oui-button_full-width"
+                data-ng-click="$ctrl.addModel()"
+                data-track-on="click"
+                data-track-name="public-cloud::pci::projects::project::serving::namespace::infos::add-model"
+                data-track-type="action"
+            >
                 <span
                     data-translate="pci_projects_project_serving_namespace_infos_namespace_information_management_deploy_model"
                 ></span>
-            </oui-tile-button>
-            <oui-tile-button data-on-click="$ctrl.listModels()">
+                <span
+                    class="oui-icon oui-icon-chevron-right"
+                    aria-hidden="true"
+                ></span>
+            </button>
+            <button
+                class="oui-tile__button oui-tile__item oui-button oui-button_link oui-button_icon-right oui-button_full-width"
+                data-ng-click="$ctrl.listModels()"
+                data-track-on="click"
+                data-track-name="public-cloud::pci::projects::project::serving::namespace::infos::list-models"
+                data-track-type="action"
+            >
                 <span
                     data-translate="pci_projects_project_serving_namespace_infos_namespace_information_management_list_model"
                 ></span>
-            </oui-tile-button>
-            <oui-tile-button
+                <span
+                    class="oui-icon oui-icon-chevron-right"
+                    aria-hidden="true"
+                ></span>
+            </button>
+            <button
+                class="oui-tile__button oui-tile__item oui-button oui-button_link oui-button_icon-right oui-button_full-width"
                 data-ng-if="!$ctrl.registry.custom"
-                data-on-click="$ctrl.attachRegistry()"
+                data-ng-click="$ctrl.attachRegistry()"
+                data-track-on="click"
+                data-track-name="public-cloud::pci::projects::project::serving::namespace::infos::attach-registry"
+                data-track-type="action"
             >
                 <span
                     data-translate="pci_projects_project_serving_namespace_infos_namespace_information_management_registry_attach"
                 ></span>
-            </oui-tile-button>
+                <span
+                    class="oui-icon oui-icon-chevron-right"
+                    aria-hidden="true"
+                ></span>
+            </button>
             <oui-tile-button
                 data-ng-if="$ctrl.registry.custom"
                 data-on-click="$ctrl.detachRegistry()"
@@ -35,11 +58,21 @@
                     data-translate="pci_projects_project_serving_namespace_infos_namespace_information_management_registry_detach"
                 ></span>
             </oui-tile-button>
-            <oui-tile-button data-on-click="$ctrl.deleteNamespace()">
+            <button
+                class="oui-tile__button oui-tile__item oui-button oui-button_link oui-button_icon-right oui-button_full-width"
+                data-ng-click="$ctrl.deleteNamespace()"
+                data-track-on="click"
+                data-track-name="public-cloud::pci::projects::project::serving::namespace::infos::delete"
+                data-track-type="action"
+            >
                 <span
                     data-translate="pci_projects_project_serving_delete_label"
                 ></span>
-            </oui-tile-button>
+                <span
+                    class="oui-icon oui-icon-chevron-right"
+                    aria-hidden="true"
+                ></span>
+            </button>
         </oui-tile>
     </div>
     <div class="col-md-4">

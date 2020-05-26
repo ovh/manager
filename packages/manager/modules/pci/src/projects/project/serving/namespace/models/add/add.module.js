@@ -1,4 +1,5 @@
 import angular from 'angular';
+import '@ovh-ux/ng-at-internet';
 
 import routing from './add.routing';
 import component from './add.component';
@@ -16,6 +17,7 @@ angular
     'ovh-api-services',
     'pascalprecht.translate',
     'ui.router',
+    'ngAtInternet',
     service,
     ovhManagerPciStoragesContainers,
   ])

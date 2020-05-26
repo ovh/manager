@@ -16,10 +16,12 @@ export default class PciServingNamespaceModelsAddController {
     $translate,
     OvhManagerPciServingModelsService,
     PciProjectStorageContainersService,
+    atInternet,
   ) {
     this.$translate = $translate;
     this.OvhManagerPciServingModelsService = OvhManagerPciServingModelsService;
     this.PciProjectStorageContainersService = PciProjectStorageContainersService;
+    this.atInternet = atInternet;
     this.PRESET_IMAGE = PRESET_IMAGE;
     this.BUILD_IMAGE = BUILD_IMAGE;
     this.FOLDER_MODE = FOLDER_MODE;
@@ -84,6 +86,12 @@ export default class PciServingNamespaceModelsAddController {
   }
 
   addModel() {
+    this.atInternet.trackClick({
+      name:
+        'public-cloud::pci::projects::project::serving::namespace::models:add::submit',
+      type: 'action',
+    });
+
     this.error = false;
     this.isAdding = true;
 
