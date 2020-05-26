@@ -1,15 +1,17 @@
 <section class="cui-page__content">
-    <span class="oui-header_3" data-translate="logs_roles_title"></span>
+    <h3 data-translate="logs_roles_title"></h3>
     <p data-translate="logs_roles_description"></p>
-
-    <oui-datagrid data-rows="ctrl.roles.data" data-page-size="10">
+    <oui-datagrid data-rows="ctrl.roles.data">
         <extra-top>
             <button
                 type="button"
                 class="oui-button oui-button_secondary"
                 data-ng-click="ctrl.add()"
             >
-                <span class="oui-icon oui-icon-add pr-1" aria-hidden="true"></span> 
+                <span
+                    class="oui-icon oui-icon-add pr-1"
+                    aria-hidden="true"
+                ></span>
                 <span data-translate="logs_roles_add"></span>
             </button>
             <oui-spinner

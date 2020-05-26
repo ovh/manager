@@ -23,7 +23,7 @@ class LogsDashboardsCtrl {
   }
 
   /**
-   * initializes dashboards and quota object by making API call to get data
+   * initializes dashboards object by making API call to get data
    *
    * @memberof LogsDashboardsCtrl
    */

@@ -179,8 +179,8 @@
                                         oui-popover-trigger
                                     ></button>
                                     <oui-popover-content
-                                        >{{::'logs_home_shortcuts_elasticsearch_help'|translate}}</oui-popover-content
-                                    >
+                                        >{{::'logs_home_shortcuts_elasticsearch_help'|translate}}
+                                    </oui-popover-content>
                                 </oui-popover>
                             </div>
                         </oui-tile-description>
@@ -209,29 +209,68 @@
                     class="pl-4 pr-4 pb-2"
                     data-ng-if="!ctrl.storageData.loading"
                 >
-                    <canvas
-                        id="storage-data"
-                        class="chart chart-line"
-                        data-ng-if="!ctrl.storageData.loading && ctrl.storageData.data.timestamps.length>0"
-                        chart-data="ctrl.dataUsageGraphData.data"
-                        chart-labels="ctrl.dataUsageGraphData.labels"
-                        chart-series="ctrl.dataUsageGraphData.series"
-                        chart-colors="ctrl.dataUsageGraphData.colors"
-                        chart-dataset-override="ctrl.dataUsageGraphData.datasetOverride"
-                        chart-options="ctrl.dataUsageGraphData.options"
-                    >
-                    </canvas>
-                    <p
-                        class="ml-2"
-                        data-ng-if="!ctrl.storageData.loading && ctrl.storageData.data.timestamps.length===0"
-                        data-translate="logs_home_no_usage_data"
-                    ></p>
-                    <p
-                        class="ml-2"
-                        data-ng-if="!ctrl.coldStorage.loading && ctrl.coldStorage.data.coldStorage!==undefined"
-                        data-translate="logs_home_cold_storage"
-                        data-translate-values="{ coldStorage: '{{ctrl.coldStorage.data.coldStorage | bytes: 1:true:'B'}}' }"
-                    ></p>
+                    <oui-tabs>
+                        <oui-tabs-item
+                            data-heading="{{ ::'logs_home_tab_stream' | translate }}"
+                        >
+                            <canvas
+                                id="stream"
+                                class="chart chart-line"
+                                data-ng-if="!ctrl.streamData.loading && ctrl.streamData.data.timestamps.length>0"
+                                chart-data="ctrl.streamUsageGraphData.data"
+                                chart-labels="ctrl.streamUsageGraphData.labels"
+                                chart-series="ctrl.streamUsageGraphData.series"
+                                chart-colors="ctrl.streamUsageGraphData.colors"
+                                chart-dataset-override="ctrl.streamUsageGraphData.datasetOverride"
+                                chart-options="ctrl.streamUsageGraphData.options"
+                            >
+                            </canvas>
+                            <span
+                                data-ng-if="!ctrl.streamData.loading && ctrl.streamData.data.timestamps.length===0"
+                                data-translate="logs_home_no_usage_known"
+                            ></span>
+                        </oui-tabs-item>
+                        <oui-tabs-item
+                            data-heading="{{ ::'streams_archives_title' | translate }}"
+                        >
+                            <canvas
+                                id="archive"
+                                class="chart chart-line"
+                                data-ng-if="!ctrl.archiveData.loading && ctrl.archiveData.data.timestamps.length>0"
+                                chart-data="ctrl.archiveUsageGraphData.data"
+                                chart-labels="ctrl.archiveUsageGraphData.labels"
+                                chart-series="ctrl.archiveUsageGraphData.series"
+                                chart-colors="ctrl.archiveUsageGraphData.colors"
+                                chart-dataset-override="ctrl.archiveUsageGraphData.datasetOverride"
+                                chart-options="ctrl.archiveUsageGraphData.options"
+                            >
+                            </canvas>
+                            <span
+                                data-ng-if="!ctrl.archiveData.loading && ctrl.archiveData.data.timestamps.length===0"
+                                data-translate="logs_home_no_usage_known"
+                            ></span>
+                        </oui-tabs-item>
+                        <oui-tabs-item
+                            data-heading="{{ ::'logs_tab_indices' | translate }}"
+                        >
+                            <canvas
+                                id="indice"
+                                class="chart chart-line"
+                                data-ng-if="!ctrl.indiceData.loading && ctrl.indiceData.data.timestamps.length>0"
+                                chart-data="ctrl.indiceUsageGraphData.data"
+                                chart-labels="ctrl.indiceUsageGraphData.labels"
+                                chart-series="ctrl.indiceUsageGraphData.series"
+                                chart-colors="ctrl.indiceUsageGraphData.colors"
+                                chart-dataset-override="ctrl.indiceUsageGraphData.datasetOverride"
+                                chart-options="ctrl.indiceUsageGraphData.options"
+                            >
+                            </canvas>
+                            <span
+                                data-ng-if="!ctrl.indiceData.loading && ctrl.indiceData.data.timestamps.length===0"
+                                data-translate="logs_home_no_usage_known"
+                            ></span>
+                        </oui-tabs-item>
+                    </oui-tabs>
                 </div>
             </oui-tile>
         </div>
@@ -243,6 +282,29 @@
                 data-heading="{{::'logs_home_configuration'|translate}}"
                 data-loading="ctrl.accountDetails.loading || ctrl.tokenIds.loading"
             >
+                <oui-tile-definition
+                    data-term="{{::'logs_home_cluster'|translate}}"
+                    data-description="{{ctrl.accountDetails.data.graylogEntryPoint}}"
+                >
+                </oui-tile-definition>
+                <oui-tile-definition
+                    data-term="{{::'logs_home_service'|translate}}"
+                    data-description="{{ctrl.accountDetails.data.service.username}}"
+                >
+                </oui-tile-definition>
+                <oui-tile-definition
+                    data-term="{{::'logs_home_password'|translate}}"
+                    data-description="******"
+                >
+                    <oui-action-menu data-compact data-align="end">
+                        <oui-action-menu-item
+                            data-text="{{::'common_edit'|translate}}"
+                            aria-label="{{::'common_edit'|translate}}"
+                            data-on-click="ctrl.editPassword()"
+                        >
+                        </oui-action-menu-item>
+                    </oui-action-menu>
+                </oui-tile-definition>
                 <oui-tile-definition
                     data-ng-if="ctrl.accountDetails.loading || ctrl.tokenIds.loading"
                 >
@@ -257,21 +319,6 @@
                     data-ng-if="!(ctrl.accountDetails.loading || ctrl.tokenIds.loading)"
                 >
                     <oui-tile-definition
-                        data-term="{{::'logs_home_account_name'|translate}}"
-                    >
-                        <oui-tile-description
-                            data-ng-bind="ctrl.accountDetails.data.service.displayName"
-                        ></oui-tile-description>
-                        <oui-action-menu data-compact data-align="end">
-                            <oui-action-menu-item
-                                data-text="{{::'common_edit'|translate}}"
-                                aria-label="{{::'common_edit'|translate}}"
-                                data-on-click="ctrl.changeName()"
-                            >
-                            </oui-action-menu-item>
-                        </oui-action-menu>
-                    </oui-tile-definition>
-                    <oui-tile-definition
                         data-term="{{::'logs_home_tokens'|translate}}"
                         data-term-popover="{{::'logs_home_tokens_tooltip'|translate}}"
                     >
@@ -283,29 +330,6 @@
                                 data-text="{{::'common_edit'|translate}}"
                                 aria-label="{{::'common_edit'|translate}}"
                                 data-on-click="ctrl.editTokens()"
-                            >
-                            </oui-action-menu-item>
-                        </oui-action-menu>
-                    </oui-tile-definition>
-                    <oui-tile-definition
-                        data-term="{{::'logs_home_cluster'|translate}}"
-                        data-description="{{ctrl.accountDetails.data.graylogEntryPoint}}"
-                    >
-                    </oui-tile-definition>
-                    <oui-tile-definition
-                        data-term="{{::'logs_home_service'|translate}}"
-                        data-description="{{ctrl.accountDetails.data.service.username}}"
-                    >
-                    </oui-tile-definition>
-                    <oui-tile-definition
-                        data-term="{{::'logs_home_password'|translate}}"
-                        data-description="******"
-                    >
-                        <oui-action-menu data-compact data-align="end">
-                            <oui-action-menu-item
-                                data-text="{{::'common_edit'|translate}}"
-                                aria-label="{{::'common_edit'|translate}}"
-                                data-on-click="ctrl.editPassword()"
                             >
                             </oui-action-menu-item>
                         </oui-action-menu>
@@ -339,7 +363,8 @@
                             <oui-clipboard
                                 id="directInputPEM"
                                 data-model="ctrl.defaultCluster.data.directInputPEM"
-                            ></oui-clipboard>
+                            >
+                            </oui-clipboard>
                         </oui-tile-description>
                     </oui-tile-definition>
                     <oui-tile-definition
@@ -372,10 +397,10 @@
             <oui-tile
                 class="oui-tile-h-100"
                 data-heading="{{::'logs_home_subscription'|translate}}"
-                data-loading="ctrl.account.loading || ctrl.options.loading || ctrl.accountDetails.loading || ctrl.serviceInfos.loading"
+                data-loading="ctrl.account.loading || ctrl.accountDetails.loading || ctrl.serviceInfos.loading"
             >
                 <oui-tile-definition
-                    data-ng-if="ctrl.account.loading || ctrl.options.loading || ctrl.accountDetails.loading || ctrl.serviceInfos.loading"
+                    data-ng-if="ctrl.account.loading || ctrl.accountDetails.loading || ctrl.serviceInfos.loading"
                 >
                     <oui-tile-description>
                         <oui-skeleton data-randomized></oui-skeleton>
@@ -385,76 +410,20 @@
                     </oui-tile-description>
                 </oui-tile-definition>
                 <div
-                    data-ng-if="!(ctrl.account.loading || ctrl.options.loading || ctrl.accountDetails.loading || ctrl.serviceInfos.loading)"
+                    data-ng-if="!(ctrl.account.loading || ctrl.accountDetails.loading || ctrl.serviceInfos.loading)"
                 >
                     <oui-tile-definition
-                        data-term="{{::'logs_home_offer'|translate}}"
+                        data-term="{{::'logs_home_account_name'|translate}}"
                     >
                         <oui-tile-description
-                            data-ng-bind="ctrl.account.data.offer.description"
-                        ></oui-tile-description>
-                        <oui-action-menu
-                            data-ng-if="!ctrl.isAccountDisabled"
-                            data-compact
-                            data-align="end"
+                            data-ng-bind="ctrl.accountDetails.data.service.displayName"
                         >
-                            <oui-action-menu-item
-                                data-text="{{::'common_edit'|translate}}"
-                                aria-label="{{::'common_edit'|translate}}"
-                                data-on-click="ctrl.goToChangeOffer()"
-                            >
-                            </oui-action-menu-item>
-                        </oui-action-menu>
-                    </oui-tile-definition>
-
-                    <oui-tile-definition
-                        data-term="{{::'logs_home_capped'|translate}}"
-                    >
-                        <oui-tile-description>
-                            <div>
-                                <span
-                                    data-translate="logs_accounts_enabled"
-                                    data-ng-if="ctrl.accountDetails.data.service.isCapped"
-                                ></span>
-                                <span
-                                    data-translate="logs_accounts_disabled"
-                                    data-ng-if="!ctrl.accountDetails.data.service.isCapped"
-                                ></span>
-                            </div>
                         </oui-tile-description>
                         <oui-action-menu data-compact data-align="end">
                             <oui-action-menu-item
                                 data-text="{{::'common_edit'|translate}}"
                                 aria-label="{{::'common_edit'|translate}}"
-                                data-on-click="ctrl.editCappedPlan()"
-                            >
-                            </oui-action-menu-item>
-                        </oui-action-menu>
-                    </oui-tile-definition>
-
-                    <oui-tile-definition
-                        data-term="{{::'logs_home_options'|translate}}"
-                    >
-                        <oui-tile-description>
-                            <div
-                                data-ng-if="ctrl.options.data.length === 0"
-                                data-translate="logs_home_options_empty"
-                            ></div>
-                            <div
-                                data-ng-if="ctrl.options.data.length > 0"
-                                data-ng-repeat="option in ctrl.options.data track by $index"
-                                data-ng-bind="option.description"
-                            ></div>
-                        </oui-tile-description>
-                        <oui-action-menu
-                            data-ng-if="!ctrl.isAccountDisabled"
-                            data-compact
-                            data-align="end"
-                        >
-                            <oui-action-menu-item
-                                data-text="{{::'common_edit'|translate}}"
-                                aria-label="{{::'common_edit'|translate}}"
-                                data-on-click="ctrl.goToOptionsPage()"
+                                data-on-click="ctrl.changeName()"
                             >
                             </oui-action-menu-item>
                         </oui-action-menu>
@@ -494,7 +463,8 @@
                     >
                         <oui-tile-description
                             data-ng-bind="ctrl.accountDetails.data.service.createdAt|momentFormat:'LL'"
-                        ></oui-tile-description>
+                        >
+                        </oui-tile-description>
                     </oui-tile-definition>
                 </div>
             </oui-tile>

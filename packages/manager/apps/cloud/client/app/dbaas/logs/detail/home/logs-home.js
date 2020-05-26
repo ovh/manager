@@ -10,15 +10,6 @@ angular.module('managerApp').config(($stateProvider) => {
         },
       },
     })
-    .state('dbaas.logs.detail.home.capped', {
-      url: '/capped',
-      views: {
-        logsCappedContent: {
-          controller: 'LogsHomeCappedModalCtrl',
-          controllerAs: 'ctrl',
-        },
-      },
-    })
     .state('dbaas.logs.detail.home.account', {
       url: '/account',
       views: {
