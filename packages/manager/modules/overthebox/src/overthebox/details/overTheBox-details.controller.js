@@ -300,6 +300,7 @@ export default /* @ngInject */ function(
     });
     getAvailableReleaseChannels();
     getAvailableAction();
+    getAvailableReleaseChannels();
   }
 
   /**
@@ -588,7 +589,11 @@ export default /* @ngInject */ function(
       });
   };
 
+<<<<<<< HEAD
   self.changeReleaseChannel = function changeReleaseChannel(channel) {
+=======
+  self.changeReleaseChannel = function changeReleaseChannel() {
+>>>>>>> feat(otb.details): retrieve release channels to be able to change it
     self.loaders.changingReleaseChannel = true;
     return OvhApiOverTheBox.v6()
       .putService(
@@ -596,7 +601,11 @@ export default /* @ngInject */ function(
           serviceName: $stateParams.serviceName,
         },
         {
+<<<<<<< HEAD
           releaseChannel: channel.name,
+=======
+          releaseChannel: self.releaseChannel,
+>>>>>>> feat(otb.details): retrieve release channels to be able to change it
         },
       )
       .$promise.then(() => {
@@ -606,9 +615,13 @@ export default /* @ngInject */ function(
       })
       .catch((err) => {
         TucToast.error(
+<<<<<<< HEAD
           $translate.instant('overTheBox_change_release_channel_error', {
             errorMessage: err.data.message,
           }),
+=======
+          $translate.instant('overTheBox_change_release_channel_error'),
+>>>>>>> feat(otb.details): retrieve release channels to be able to change it
         );
         return $q.reject(err);
       })
