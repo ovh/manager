@@ -1,7 +1,5 @@
 <section class="cui-page__content log-index">
-    <cui-page-content-title
-        data-text="'logs_index_title' | translate"
-    ></cui-page-content-title>
+    <h3 data-translate="logs_index_title"></h3>
     <p data-translate="logs_index_description"></p>
     <oui-datagrid data-rows="ctrl.indices.data">
         <extra-top>
@@ -10,7 +8,10 @@
                 class="oui-button oui-button_secondary"
                 data-ng-click="ctrl.add()"
             >
-                <span class="oui-icon oui-icon-add pr-1" aria-hidden="true"></span> 
+                <span
+                    class="oui-icon oui-icon-add pr-1"
+                    aria-hidden="true"
+                ></span>
                 <span data-translate="logs_index_add_data_feed"></span>
             </button>
             <oui-spinner
@@ -43,7 +44,7 @@
                 class="oui-status"
                 data-ng-if="$row.info.isShareable"
                 data-ng-class="ctrl.storageColor($row.info)"
-                data-ng-bind="($row.info.currentStorage | bytes:2) + '/' + ($row.info.maxSize | bytes:2)"
+                data-ng-bind="($row.info.currentStorage | bytes:2:true) + '/' + ($row.info.maxSize | bytes:2:true)"
             ></span>
             <span data-ng-if="!$row.info.isShareable"> - </span>
         </oui-column>

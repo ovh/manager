@@ -13,7 +13,7 @@ angular.module('managerApp').constant('LogsConstants', {
   SUCCESS: 'SUCCESS',
   suffixPattern: '^[a-z0-9_-]+$',
   ORDER_URL:
-    "/order/express/#/new/express/resume?products=~(~(planCode~'logs-basic~productId~'logs))",
+    "/order/express/#/new/express/resume?products=~(~(planCode~'logs-account~productId~'logs))",
   LOGS_DOCS_NAME: 'logs-data-platform',
   LOGS_PRODUCT_URL: '/data-platforms/logs/',
   ELASTICSEARCH_API_URL: 'ELASTICSEARCH_API',
@@ -173,10 +173,10 @@ angular.module('managerApp').constant('LogsConstants', {
     },
   },
   DATA_STORAGE: {
-    TIME_PERIOD_MONTHS: 3,
+    TIME_PERIOD_MONTHS: 10,
     METRICS: {
-      SUM: 'ldp.service.consumption.sum',
-      COUNT: 'ldp.service.consumption.count',
+      STREAM_SIZE: 'ldp.stream.size',
+      INDEX_SIZE: 'ldp.indice.size',
       COLD_STORAGE_TOTAL: 'ldp.service.coldstorage.total',
     },
     AGGREGATORS: {
@@ -187,51 +187,22 @@ angular.module('managerApp').constant('LogsConstants', {
     },
   },
   OFFER_STORAGE_MULTIPLIER: 1073741824,
-  DATA_USAGE_GRAPH_CONFIGURATION: {
-    options: {
-      scales: {
-        xAxes: [
-          {
-            gridLines: {
-              display: false,
-            },
-          },
-        ],
-        yAxes: [
-          {
-            id: 'y-axis-1',
-            type: 'linear',
-            display: true,
-            position: 'left',
-          },
-          {
-            id: 'y-axis-2',
-            type: 'linear',
-            display: true,
-            position: 'right',
-            gridLines: {
-              display: false,
-            },
-          },
-        ],
-      },
-      legend: {
-        display: true,
-        position: 'bottom',
-        labels: {
-          fontStyle: 'bold',
-        },
-      },
-      tooltips: {
-        backgroundColor: 'rgba(256,256,256,0.8)',
-        titleFontColor: '#113f6d',
-        bodyFontColor: '#113f6d',
-        borderColor: '#bbbdbf',
-        borderWidth: 1,
-        position: 'nearest',
-      },
+  CHART_SETTINGS: {
+    MAX_TICKS_LIMIT: 12,
+    TOOLTIPS: {
+      backgroundColor: 'rgba(256,256,256,0.8)',
+      titleFontColor: '#113f6d',
+      bodyFontColor: '#113f6d',
+      borderColor: '#bbbdbf',
+      borderWidth: 1,
+      mode: 'index',
+      intersect: false,
     },
-    colors: [
+    HOVER: {
+      mode: 'nearest',
+      intersect: true,
+    },
+    COLORS: [
       {
         backgroundColor: 'rgba(89,210,239, 0.4)',
         pointBackgroundColor: 'transparent',
@@ -240,27 +211,6 @@ angular.module('managerApp').constant('LogsConstants', {
         pointBorderColor: 'transparent',
         pointHoverBorderColor: '#fff',
       },
-      {
-        backgroundColor: 'transparent',
-        pointBackgroundColor: 'transparent',
-        pointHoverBackgroundColor: '#113f6d',
-        borderColor: '#113f6d',
-        pointBorderColor: 'transparent',
-        pointHoverBorderColor: '#fff',
-      },
-      {
-        backgroundColor: 'transparent',
-        pointBackgroundColor: 'transparent',
-        pointHoverBackgroundColor: 'transparent',
-        borderColor: '#ff9803',
-        pointBorderColor: 'transparent',
-        pointHoverBorderColor: 'transparent',
-      },
-    ],
-    datasetOverride: [
-      { yAxisID: 'y-axis-1' },
-      { yAxisID: 'y-axis-2' },
-      { yAxisID: 'y-axis-1' },
     ],
   },
   inputStatus: {
@@ -287,48 +237,21 @@ angular.module('managerApp').constant('LogsConstants', {
   },
   INPUT_DEFAULT_PORT: 6514,
   INPUT_DEFAULT_NB_INSTANCE: 2,
-  basicOffer: 'logs-basic',
-  ldpOffer: 'logs-account',
-  offertypes: {
-    BASIC: 'Basic',
-    ACCOUNT: 'Account',
-    PRO: 'Pro',
-  },
   ADD_ON_FAMILY: {
-    ADVANCED: 'ADVANCED',
-    DEPRECATED: 'DEPRECATED',
-    ESSENTIAL: 'ESSENTIAL',
     NEW: 'NEW',
   },
   CONSUMPTION_CAPACITY: 'consumption',
   CONSUMPTION_REFERENCE: {
-    COLDSTORAGE_PCA: 'logs-coldstorage-2go',
-    COLDSTORAGE_PCS: 'logs-coldstorage-pcs-2go',
+    COLDSTORAGE_PCA: 'logs-coldstorage-pca-in-gb',
+    COLDSTORAGE_PCS: 'logs-coldstorage-pcs-in-gb',
     NB_INSTANCE: 'logs-input-container-unit',
     NB_SHARD: 'logs-index-shards-unit',
-    INDEXED_DOCUMENTS: 'logs-index-documents-in-go',
+    INDEXED_DOCUMENTS: 'logs-index-documents-in-gb',
+    STREAM: 'logs-indexed-in-gb',
   },
-  COLDSTORAGE_INCREMENT: 2,
+  COLDSTORAGE_INCREMENT: 1,
+  INDEXING_TIERING: 100,
   productName: 'logs',
-  ALIAS_OPTION_REFERENCE: 'logs-alias',
-  DASHBOARD_OPTION_REFERENCE: 'logs-dashboard',
-  INDEX_OPTION_REFERENCE: 'logs-index',
-  INPUT_OPTION_REFERENCE: 'logs-input',
-  STREAM_OPTION_REFERENCE: 'logs-stream',
-  PRODUCT_COUNT: {
-    'logs-input-2': 2,
-    'logs-input-4': 4,
-    'logs-input-8': 8,
-    'logs-dashboard-5': 5,
-    'logs-stream-5': 5,
-    'logs-kibana-1': 1,
-    'logs-alias-5': 5,
-    'logs-index-1': 1,
-    'logs-index-2': 1,
-    'logs-index-4': 1,
-    'logs-index-8': 1,
-    'logs-index-16': 1,
-  },
   logstash: 'LOGSTASH',
   flowgger: 'FLOWGGER',
   patternRowFill: 5,

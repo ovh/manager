@@ -1,6 +1,5 @@
 import find from 'lodash/find';
 import get from 'lodash/get';
-import set from 'lodash/set';
 
 class LogsStreamsService {
   constructor(
@@ -9,7 +8,6 @@ class LogsStreamsService {
     CucCloudMessage,
     CucControllerHelper,
     LogsHomeService,
-    LogsOptionsService,
     LogsStreamsAlertsService,
     LogsStreamsArchivesService,
     LogsOrderService,
@@ -34,7 +32,6 @@ class LogsStreamsService {
       .Details()
       .Aapi();
     this.LogsHomeService = LogsHomeService;
-    this.LogsOptionsService = LogsOptionsService;
     this.LogsStreamsAlertsService = LogsStreamsAlertsService;
     this.LogsStreamsArchivesService = LogsStreamsArchivesService;
     this.CucControllerHelper = CucControllerHelper;
@@ -122,13 +119,7 @@ class LogsStreamsService {
    * @memberof LogsStreamsService
    */
   getStreams(serviceName) {
-    return this.getStreamDetails(serviceName)
-      .then((streams) =>
-        streams.map((stream) => this.transformStream(serviceName, stream)),
-      )
-      .catch((err) =>
-        this.LogsHelperService.handleError('logs_streams_get_error', err, {}),
-      );
+    return this.getStreamDetails(serviceName);
   }
 
   /**
@@ -266,7 +257,10 @@ class LogsStreamsService {
         coldStorageTarget: stream.coldStorageTarget,
         description: stream.description,
         indexingEnabled: stream.indexingEnabled,
-        optionId: stream.optionId,
+        indexingMaxSize: stream.indexingMaxSize,
+        indexingNotifyEnabled: stream.indexingNotifyEnabled,
+        pauseIndexingOnMaxSize: stream.pauseIndexingOnMaxSize,
+        retentionId: stream.retentionId,
         title: stream.title,
         webSocketEnabled: stream.webSocketEnabled,
       },
@@ -307,7 +301,9 @@ class LogsStreamsService {
         coldStorageTarget: stream.coldStorageTarget,
         description: stream.description,
         indexingEnabled: stream.indexingEnabled,
-        optionId: stream.optionId,
+        indexingMaxSize: stream.indexingMaxSize,
+        indexingNotifyEnabled: stream.indexingNotifyEnabled,
+        pauseIndexingOnMaxSize: stream.pauseIndexingOnMaxSize,
         title: stream.title,
         webSocketEnabled: stream.webSocketEnabled,
       },
@@ -339,38 +335,9 @@ class LogsStreamsService {
     return this.LogsApiService.streams({ serviceName }).$promise;
   }
 
-  /**
-   * returns objecy containing total number of streams and total number of streams used
-   *
-   * @param {any} serviceName
-   * @returns quota object containing V (total number streams)
-   *          and configured (number of streams used)
-   * @memberof LogsStreamsService
-   */
-  getQuota(serviceName) {
-    return this.AccountingAapiService.me({ serviceName })
-      .$promise.then((me) => {
-        const quota = {
-          max: me.total.maxNbStream,
-          configured: me.total.curNbStream,
-          currentUsage: (me.total.curNbStream * 100) / me.total.maxNbStream,
-        };
-        return quota;
-      })
-      .catch((err) =>
-        this.LogsHelperService.handleError(
-          'logs_streams_quota_get_error',
-          err,
-          {},
-        ),
-      );
-  }
-
   getMainOffer(serviceName) {
     return this.AccountingAapiService.me({ serviceName })
       .$promise.then((me) => ({
-        max: me.offer.maxNbStream,
-        current: me.offer.curNbStream,
         planCode: me.offer.reference,
       }))
       .catch((err) =>
@@ -398,13 +365,6 @@ class LogsStreamsService {
     return this.storageContents;
   }
 
-  getSubscribedOptions(serviceName) {
-    return this.LogsOptionsService.getSubscribedOptionsByType(
-      serviceName,
-      this.LogsConstants.STREAM_OPTION_REFERENCE,
-    );
-  }
-
   /**
    * creates new stream with default values
    *
@@ -422,6 +382,7 @@ class LogsStreamsService {
         coldStorageEnabled: false,
         webSocketEnabled: true,
         indexingEnabled: true,
+        indexingNotifyEnabled: true,
       },
       loading: false,
     };
@@ -512,37 +473,6 @@ class LogsStreamsService {
 
   getAccountDetails(serviceName) {
     return this.LogsHomeService.getAccountDetails(serviceName);
-  }
-
-  /**
-   * add additional data to stream before sending back to controller
-   * 1. asynchronously gets notifications of a stream
-   * 2. asynchronously gets archives of a stream
-   * 3. updates operationStreamMap to get number of streams assigned to each operation
-   *
-   * @param {any} serviceName
-   * @param {any} stream
-   * @returns stream object after adding notifications
-   * @memberof LogsStreamsService
-   */
-  transformStream(serviceName, stream) {
-    set(stream, 'info.notifications', []);
-    set(stream, 'info.archives', []);
-    // asynchronously fetch all notification of a stream
-    this.LogsStreamsAlertsService.getAlertIds(
-      serviceName,
-      stream.info.streamId,
-    ).then((notifications) => {
-      set(stream, 'info.notifications', notifications);
-    });
-    // asynchronously fetch all archives of a stream
-    this.LogsStreamsArchivesService.getArchiveIds(
-      serviceName,
-      stream.info.streamId,
-    ).then((archives) => {
-      set(stream, 'info.archives', archives);
-    });
-    return stream;
   }
 
   resetAllCache() {

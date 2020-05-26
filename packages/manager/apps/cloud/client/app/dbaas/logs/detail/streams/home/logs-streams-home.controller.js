@@ -7,6 +7,7 @@ class LogsStreamsHomeCtrl {
     CucControllerHelper,
     CucCloudMessage,
     CucUrlHelper,
+    bytesFilter,
   ) {
     this.$state = $state;
     this.$stateParams = $stateParams;
@@ -16,23 +17,20 @@ class LogsStreamsHomeCtrl {
     this.CucControllerHelper = CucControllerHelper;
     this.CucCloudMessage = CucCloudMessage;
     this.CucUrlHelper = CucUrlHelper;
+    this.bytesFilter = bytesFilter;
     this.initLoaders();
   }
 
   /**
-   * initializes streams and quota object by making API call to get data
+   * initializes streams object by making API call to get data
    *
    * @memberof LogsStreamsHomeCtrl
    */
   initLoaders() {
-    this.quota = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () => this.LogsStreamsService.getQuota(this.serviceName),
-    });
     this.streams = this.CucControllerHelper.request.getArrayLoader({
       loaderFunction: () =>
         this.LogsStreamsService.getStreams(this.serviceName),
     });
-    this.quota.load();
     this.streams.load();
   }
 
@@ -117,6 +115,13 @@ class LogsStreamsHomeCtrl {
       serviceName: this.serviceName,
       streamId: stream.info.streamId,
     });
+  }
+
+  storageInfo(stream) {
+    if (stream.info.isEditable && stream.info.currentStorage !== -1) {
+      return this.bytesFilter(stream.info.currentStorage, 2, true);
+    }
+    return ' - ';
   }
 
   /**

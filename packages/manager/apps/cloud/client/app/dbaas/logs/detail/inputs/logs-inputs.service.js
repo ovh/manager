@@ -624,7 +624,6 @@ class LogsInputsService {
       description: input.info.description,
       engineId: input.info.engineId,
       nbInstance: input.info.nbInstance ? input.info.nbInstance : undefined,
-      optionId: input.info.optionId ? input.info.optionId : undefined,
       allowedNetworks: this.allowedNetworks,
       streamId: input.info.streamId,
       exposedPort: input.info.exposedPort.toString(),

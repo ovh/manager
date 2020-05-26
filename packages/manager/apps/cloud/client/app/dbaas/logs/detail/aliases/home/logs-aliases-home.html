@@ -1,7 +1,5 @@
 <section class="cui-page__content log-aliases">
-    <cui-page-content-title
-        text="::'logs_aliases_title' | translate"
-    ></cui-page-content-title>
+    <h3 data-translate="logs_aliases_title"></h3>
     <p data-translate="logs_aliases_description"></p>
     <oui-datagrid rows="ctrl.aliases.data">
         <extra-top>
@@ -10,7 +8,10 @@
                 class="oui-button oui-button_secondary"
                 data-ng-click="ctrl.add()"
             >
-                <span class="oui-icon oui-icon-add pr-1" aria-hidden="true"></span> 
+                <span
+                    class="oui-icon oui-icon-add pr-1"
+                    aria-hidden="true"
+                ></span>
                 <span data-translate="logs_aliases_add"></span>
             </button>
             <oui-spinner

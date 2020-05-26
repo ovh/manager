@@ -59,23 +59,6 @@
                     </div>
                 </oui-column>
                 <oui-column
-                    data-title="::'logs_accounts_col_offer_type' | translate"
-                    data-property="quota.offerType"
-                    data-type="string"
-                    data-sortable
-                    data-searchable
-                    data-filterable
-                >
-                    <oui-spinner
-                        data-size="s"
-                        data-ng-if="$row.quota.isLoadingQuota"
-                    ></oui-spinner>
-                    <span
-                        data-ng-if="!$row.quota.isLoadingQuota && $row.quota.offerType"
-                        data-ng-bind="$row.quota.offerType"
-                    ></span>
-                </oui-column>
-                <oui-column
                     data-title="::'logs_accounts_col_entry_point' | translate"
                     data-property="cluster.hostname"
                     data-type="string"
@@ -88,63 +71,14 @@
                         data-ng-if="$row.cluster.isLoadingCluster"
                     ></oui-spinner>
                     <span
-                        data-ng-if="!$row.quota.isLoadingCluster && $row.cluster.hostname"
+                        data-ng-if="$row.cluster.hostname"
                         data-ng-bind="$row.cluster.hostname"
                     ></span>
                 </oui-column>
-                <oui-column
-                    data-title="::'logs_accounts_col_streams' | translate"
-                    data-property="quota.streams"
-                >
-                    <span
-                        data-ng-if="!$row.quota.isLoadingQuota && !$row.quota.streams"
-                        >-</span
-                    >
-                    <span
-                        data-ng-if="!$row.quota.isLoadingQuota && $row.quota.streams"
-                        >{{$row.quota.streams.current}}/{{$row.quota.streams.max}}</span
-                    >
-                </oui-column>
-                <oui-column
-                    data-title="::'logs_accounts_col_dashboards' | translate"
-                    data-property="quota.dashboards"
-                >
-                    <span
-                        data-ng-if="!$row.quota.isLoadingQuota && !$row.quota.dashboards"
-                        >-</span
-                    >
-                    <span
-                        data-ng-if="!$row.quota.isLoadingQuota && $row.quota.dashboards"
-                        >{{$row.quota.dashboards.current}}/{{$row.quota.dashboards.max}}</span
-                    >
-                </oui-column>
-                <oui-column
-                    data-title="::'logs_accounts_col_indices' | translate"
-                    data-property="quota.indices"
-                >
-                    <span
-                        data-ng-if="!$row.quota.isLoadingQuota && !$row.quota.indices"
-                        >-</span
-                    >
-                    <span
-                        data-ng-if="!$row.quota.isLoadingQuota && $row.quota.indices"
-                        >{{$row.quota.indices.current}}/{{$row.quota.indices.max}}</span
-                    >
-                </oui-column>
-                <oui-action-menu data-compact>
+                <oui-action-menu data-align="end" compact>
                     <oui-action-menu-item
                         data-text="{{ ::'logs_accounts_details' | translate }}"
                         data-ui-sref="dbaas.logs.detail({serviceName: $row.serviceName})"
-                    ></oui-action-menu-item>
-                    <oui-action-menu-item
-                        data-disabled="$row.isDisabled"
-                        data-text="{{ ::'logs_accounts_offers' | translate }}"
-                        data-on-click="ctrl.goToOfferPage($row)"
-                    ></oui-action-menu-item>
-                    <oui-action-menu-item
-                        data-disabled="$row.isDisabled"
-                        data-text="{{ ::'logs_accounts_options' | translate }}"
-                        data-on-click="ctrl.goToOptionsPage($row)"
                     ></oui-action-menu-item>
                 </oui-action-menu>
             </oui-datagrid>
