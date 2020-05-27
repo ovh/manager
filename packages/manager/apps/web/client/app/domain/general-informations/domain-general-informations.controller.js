@@ -33,6 +33,7 @@ export default class DomainTabGeneralInformationsCtrl {
     enableWebhostingLink,
     Hosting,
     HostingDomain,
+    isStart10mAvailable,
     OvhApiDomainRules,
     OvhApiScreenshot,
     User,
@@ -53,6 +54,7 @@ export default class DomainTabGeneralInformationsCtrl {
     this.enableWebhostingLink = enableWebhostingLink;
     this.Hosting = Hosting;
     this.HostingDomain = HostingDomain;
+    this.isStart10mAvailable = isStart10mAvailable;
     this.OvhApiDomainRules = OvhApiDomainRules;
     this.OvhApiScreenshot = OvhApiScreenshot.Aapi();
     this.User = User;
