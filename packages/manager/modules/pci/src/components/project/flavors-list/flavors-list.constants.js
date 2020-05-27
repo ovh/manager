@@ -56,6 +56,7 @@ export const CPU_FREQUENCY = {
   'ovh.ssd.gpu2': 3.1,
   'ovh.ssd.gpu3': 3.1,
   'ovh.raid-nvme.t1': 2.1,
+  'ovh.iops': 2,
 };
 
 export default {
