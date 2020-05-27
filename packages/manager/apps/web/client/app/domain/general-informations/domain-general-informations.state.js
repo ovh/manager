@@ -2,13 +2,16 @@ import template from './GENERAL_INFORMATIONS.html';
 
 const commonResolves = {
   availableOptions: /* @ngInject */ (
+    $q,
     domainName,
     OvhApiOrderCartServiceOption,
   ) =>
-    OvhApiOrderCartServiceOption.v6().get({
-      productName: 'domain',
-      serviceName: domainName,
-    }).$promise,
+    OvhApiOrderCartServiceOption.v6()
+      .get({
+        productName: 'domain',
+        serviceName: domainName,
+      })
+      .$promise.catch(() => $q.resolve([])),
 
   start10mOffers: /* @ngInject */ (availableOptions) =>
     availableOptions.filter(({ family }) => family === 'hosting'),
