@@ -1,3 +1,12 @@
+## [9.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@9.4.0...@ovh-ux/manager-cloud@9.4.1) (2020-05-27)
+
+
+### Bug Fixes
+
+* **components.auth:** prevent error page from looping ([#3009](https://github.com/ovh/manager/issues/3009)) ([15794fc](https://github.com/ovh/manager/commit/15794fc805b3614da2d8f90a8c5d5e95698e6610))
+
+
+
 # [9.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@9.3.0...@ovh-ux/manager-cloud@9.4.0) (2020-05-26)
 
 
