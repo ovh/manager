@@ -1,3 +1,12 @@
+# [9.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@9.3.0...@ovh-ux/manager-cloud@9.4.0) (2020-05-26)
+
+
+### Features
+
+* **cloud.logs:** remove options concern on streams ([#2975](https://github.com/ovh/manager/issues/2975)) ([65fe87b](https://github.com/ovh/manager/commit/65fe87beda346d8365631a6df36e00ec78168201))
+
+
+
 # [9.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@9.2.0...@ovh-ux/manager-cloud@9.3.0) (2020-05-13)
 
 
