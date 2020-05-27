@@ -20,6 +20,12 @@ export const definition = class SupportNewTicketService {
             label: this.$translate.instant(
               `ovhManagerSupport_new_category_${categoryId}`,
             ),
+            description:
+              categoryId === 'business'
+                ? ''
+                : this.$translate.instant(
+                    `ovhManagerSupport_new_category_description_${categoryId}`,
+                  ),
           }),
         ),
       );
