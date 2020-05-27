@@ -11,8 +11,6 @@ angular.module('managerApp').run(($transitions, ssoAuthentication) => {
         toState.authenticate !== undefined ? toState.authenticate : true;
 
       if (needToBeAuthenticate && !isLogged) {
-        // eslint-disable-next-line no-restricted-globals
-        event.preventDefault();
         ssoAuthentication.goToLoginPage();
       }
     });
