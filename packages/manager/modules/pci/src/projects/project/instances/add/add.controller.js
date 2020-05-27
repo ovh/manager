@@ -1,9 +1,11 @@
 import find from 'lodash/find';
 import filter from 'lodash/filter';
+import forEach from 'lodash/forEach';
 import get from 'lodash/get';
 import includes from 'lodash/includes';
 import isEmpty from 'lodash/isEmpty';
 import map from 'lodash/map';
+import partition from 'lodash/partition';
 import has from 'lodash/has';
 import some from 'lodash/some';
 import sortBy from 'lodash/sortBy';
@@ -43,7 +45,7 @@ export default class PciInstancesAddController {
     this.defaultInstanceName = '';
 
     this.showUserData = false;
-    this.showOnlyAvailableRegions = false;
+    this.showNonAvailableRegions = false;
 
     this.quota = null;
     this.flavor = null;
@@ -53,6 +55,7 @@ export default class PciInstancesAddController {
     this.model = {
       flavorGroup: null,
       image: null,
+      isImageCompatible: false,
       number: 1,
       location: null,
       datacenter: null,
@@ -84,6 +87,31 @@ export default class PciInstancesAddController {
       'pci_projects_project_instances_add_success_multiple_message';
   }
 
+  getFilteredRegions() {
+    this.availableRegions = {};
+    this.unavailableRegions = {};
+
+    forEach(this.regions, (locationsMap, continent) => {
+      this.availableRegions[continent] = {};
+      this.unavailableRegions[continent] = {};
+      forEach(locationsMap, (datacenters, location) => {
+        [
+          this.availableRegions[continent][location],
+          this.unavailableRegions[continent][location],
+        ] = partition(
+          datacenters,
+          (datacenter) =>
+            !datacenter.isAvailable() ||
+            this.model.flavorGroup.isAvailableInRegion(datacenter.name),
+        );
+      });
+    });
+  }
+
+  static hasRegions(locations) {
+    return some(locations, (datacenters) => datacenters.length);
+  }
+
   loadMessages() {
     this.messageHandler = this.CucCloudMessage.subscribe(
       'pci.projects.project.instances.add',
@@ -101,6 +129,7 @@ export default class PciInstancesAddController {
 
   onFlavorChange() {
     this.displaySelectedFlavor = true;
+    this.getFilteredRegions();
   }
 
   onRegionFocus() {
@@ -171,6 +200,7 @@ export default class PciInstancesAddController {
   showImageNavigation() {
     return (
       this.model.image &&
+      this.model.isImageCompatible &&
       (this.model.image.type !== 'linux' || this.model.sshKey)
     );
   }
@@ -231,15 +261,8 @@ export default class PciInstancesAddController {
 
   isRegionAvailable(datacenter) {
     return (
-      this.model.flavorGroup.isAvailableInRegion(datacenter.name) &&
       datacenter.isAvailable() &&
       datacenter.hasEnoughQuotaForFlavor(this.model.flavorGroup)
-    );
-  }
-
-  isLocationAvailable(datacenters) {
-    return some(datacenters, (datacenter) =>
-      this.isRegionAvailable(datacenter),
     );
   }
 
@@ -256,10 +279,6 @@ export default class PciInstancesAddController {
   getUnavailabilityReason(datacenter) {
     if (!datacenter.isAvailable()) {
       return 'INACTIVE';
-    }
-
-    if (!this.model.flavorGroup.isAvailableInRegion(datacenter.name)) {
-      return 'UNAVAILABLE';
     }
 
     if (has(datacenter, 'quota.instance')) {

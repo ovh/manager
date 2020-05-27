@@ -9,18 +9,14 @@
   "pci_project_flavors_category_definition_none": "Pas de modèle disponible pour cette catégorie",
   "pci_project_flavors_disk_size": "L'espace disque est inférieur à celui du modèle actuel",
 
-  "pci_project_flavors_spec_ram": "Mémoire vive :",
-  "pci_project_flavors_spec_core": "Processeur :",
+  "pci_project_flavors_spec_ram": "{{ram}} RAM",
   "pci_project_flavors_spec_core_details": "{{vcores}} vCores ({{frequency}} GHz)",
-  "pci_project_flavors_spec_disk": "Stockage :",
-  "pci_project_flavors_spec_bandwidth": "Bande passante :",
-  "pci_project_flavors_spec_bandwidth_detail": "{{ bandwidth }} Mbps",
-  "pci_project_flavors_spec_model": "Modèle :",
-  "pci_project_flavors_spec_nvme": "Stockage NVMe :",
+  "pci_project_flavors_spec_bandwidth_detail": "{{ bandwidth }} Mbit/s",
+  "pci_project_flavors_spec_nvme": "{{capacity}} NVMe",
+  "pci_project_flavors_spec_nvme_multiple": "{{count}} x {{capacity}} NVMe",
 
-  "pci_project_flavors_price_hourly": "{{price}} HT/h",
+  "pci_project_flavors_price_hourly": "{{price}} HT/heure",
   "pci_project_flavors_price_monthly": "À partir de {{price}} HT/mois",
 
   "pci_project_flavors_quota": "Augmenter mon quota"
-
 }

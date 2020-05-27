@@ -51,6 +51,11 @@ export default /* @ngInject */ ($stateProvider) => {
           projectId,
         }),
 
+      regionsLink: /* @ngInject */ ($state, projectId) =>
+        $state.href('pci.projects.project.regions', {
+          projectId,
+        }),
+
       goBack: /* @ngInject */ (goToInstances) => goToInstances,
 
       prices: /* @ngInject */ (

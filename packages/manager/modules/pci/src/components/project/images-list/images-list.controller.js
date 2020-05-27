@@ -1,6 +1,7 @@
 import filter from 'lodash/filter';
 import find from 'lodash/find';
 import first from 'lodash/first';
+import forEach from 'lodash/forEach';
 import keys from 'lodash/keys';
 import partition from 'lodash/partition';
 import reduce from 'lodash/reduce';
@@ -11,12 +12,12 @@ import { IMAGE_ASSETS } from './images.constants';
 export default class ImagesListController {
   /* @ngInject */
   constructor(
-    // $translate,
+    $q,
     OvhApiCloudProjectImage,
     OvhApiCloudProjectSnapshot,
     PciProjectImages,
   ) {
-    // this.$translate = $translate;
+    this.$q = $q;
     this.OvhApiCloudProjectImage = OvhApiCloudProjectImage;
     this.OvhApiCloudProjectSnapshot = OvhApiCloudProjectSnapshot;
     this.PciProjectImages = PciProjectImages;
@@ -28,11 +29,12 @@ export default class ImagesListController {
     this.distribution = null;
     this.image = null;
 
-    this.showOnlyAvailable = false;
+    this.showNonAvailable = false;
 
     this.isLoading = true;
 
-    return Promise.all([this.getImages(), this.getSnapshots()])
+    return this.$q
+      .all([this.getImages(), this.getSnapshots()])
       .then(() => this.findDefaultImage())
       .finally(() => {
         this.isLoading = false;
@@ -63,14 +65,43 @@ export default class ImagesListController {
       {},
     );
     this.apps = appImages;
+    this.unavailableAppsPresent = some(
+      appImages,
+      (app) => !this.isCompatible(app),
+    );
 
     this.selectedTab = first(keys(this.os));
+    this.getFilteredImages();
+  }
+
+  getFilteredImages() {
+    this.availableImages = {};
+    this.unavailableImages = {};
+
+    forEach(this.os, (distributions, imageType) => {
+      this.availableImages[imageType] = {};
+      this.unavailableImages[imageType] = {};
+      forEach(distributions, (images, distribution) => {
+        [
+          this.availableImages[imageType][distribution],
+          this.unavailableImages[imageType][distribution],
+        ] = partition(images, (image) => this.isCompatible(image));
+      });
+    });
+  }
+
+  static hasImages(distributions) {
+    return some(distributions, (images) => images.length);
   }
 
   getSnapshots() {
     return this.PciProjectImages.getSnapshots(this.serviceName).then(
       (snapshots) => {
         this.snapshots = snapshots;
+        this.unavailableSnapshotsPresent = some(
+          snapshots,
+          (snapshot) => !this.isCompatible(snapshot),
+        );
       },
     );
   }
@@ -125,25 +156,20 @@ export default class ImagesListController {
     }
   }
 
-  changeDistribution(distribution, images) {
-    if (images.length === 1) {
-      [this.image] = images;
-    } else {
-      this.image = null;
-    }
-    this.selectedImage = this.image;
-    if (this.onChange) {
-      this.onChange({ image: this.selectedImage });
-    }
-  }
-
   changeImageType() {
     this.imagesFromDistribution = [];
   }
 
-  onImageChange(image) {
-    if (image.isApp() || image.isBackup()) {
-      this.distribution = null;
+  onImageChange(image, distribution) {
+    if (distribution) {
+      this.distribution = distribution;
+    }
+    this.isImageCompatible = false;
+    if (image) {
+      if (image.isApp() || image.isBackup()) {
+        this.distribution = null;
+      }
+      this.isImageCompatible = this.isCompatible(image);
     }
     this.selectedImage = image;
     if (this.onChange) {
@@ -157,9 +183,5 @@ export default class ImagesListController {
       image.isCompatibleWithFlavor(this.flavorType) &&
       image.isCompatibleWithOsTypes(this.osTypes)
     );
-  }
-
-  isDistributionCompatible(images) {
-    return some(images, (image) => this.isCompatible(image));
   }
 }

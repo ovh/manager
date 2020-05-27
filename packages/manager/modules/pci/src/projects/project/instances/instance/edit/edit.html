@@ -116,6 +116,7 @@
                         data-default-image-id="$ctrl.instance.image.id"
                         data-on-change="$ctrl.onImageChange(image)"
                         data-selected-image="$ctrl.model.image"
+                        data-is-image-compatible="$ctrl.model.isImageCompatible"
                     >
                         <span
                             data-translate="pci_projects_project_instances_instance_edit_image_not_available"
@@ -125,7 +126,7 @@
 
                 <oui-message
                     data-type="warning"
-                    data-ng-if="$ctrl.editInstance.imageId && $ctrl.instance.image.id !== $ctrl.editInstance.imageId"
+                    data-ng-if="$ctrl.editInstance.imageId && $ctrl.instance.image.id !== $ctrl.editInstance.imageId && $ctrl.model.isImageCompatible"
                 >
                     <ul class="list-unstyled">
                         <li
@@ -144,11 +145,11 @@
                 <oui-button
                     data-variant="primary"
                     data-type="submit"
-                    data-disabled="!$ctrl.editInstance.imageId || $ctrl.instance.image.id === $ctrl.editInstance.imageId"
+                    data-disabled="!$ctrl.editInstance.imageId || $ctrl.instance.image.id === $ctrl.editInstance.imageId || !$ctrl.model.isImageCompatible"
                     ><span
                         data-translate="pci_projects_project_instances_instance_edit_image_submit_label"
-                    ></span
-                ></oui-button>
+                    ></span>
+                </oui-button>
             </fieldset>
         </form>
     </div>
