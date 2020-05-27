@@ -17,7 +17,15 @@
             data-match="label"
             data-on-change="$ctrl.onCategoryChange()"
             data-name="category"
-        ></oui-select>
+        >
+            <p data-ng-bind="$item.label"></p>
+            <span
+                class="small"
+                data-ng-bind="$item.description"
+                data-ng-if="$item.description"
+            >
+            </span>
+        </oui-select>
     </oui-field>
 
     <div data-ng-if="$ctrl.bindings.serviceType.exists">
