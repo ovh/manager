@@ -19,12 +19,14 @@ export default /* @ngInject */ ($stateProvider) => {
           .limit(1)
           .execute(null, true)
           .$promise.then((lastBill) => head(lastBill.data)),
-      shortcuts: /* @ngInject */ ($state, coreConfig) =>
+      shortcuts: /* @ngInject */ ($state, coreConfig, currentUser) =>
         USER_DASHBOARD_SHORTCUTS.filter(
-          ({ regions }) => !regions || regions.includes(coreConfig.getRegion()),
+          ({ regions, isAvailable }) =>
+            (!regions || regions.includes(coreConfig.getRegion())) &&
+            (!isAvailable || isAvailable(currentUser)),
         ).map((shortcut) => ({
           ...shortcut,
-          href: $state.href(shortcut.state),
+          href: shortcut.state ? $state.href(shortcut.state) : shortcut.href,
         })),
     },
   });
