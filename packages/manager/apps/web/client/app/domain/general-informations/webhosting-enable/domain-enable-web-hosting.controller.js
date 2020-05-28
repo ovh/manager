@@ -8,14 +8,14 @@ import { DNS_ZONE_CONFIGURATION } from './constants';
 
 export default class EnableWebHostingOrderCtrl {
   /* @ngInject */
-  constructor($translate, Alerter, ORDER_URLS) {
+  constructor($translate, Alerter, OVH_ORDER_URLS) {
     this.$translate = $translate;
     this.Alerter = Alerter;
-    this.ORDER_URLS = ORDER_URLS;
+    this.OVH_ORDER_URLS = OVH_ORDER_URLS;
   }
 
   $onInit() {
-    this.hostingUrl = this.ORDER_URLS.orderHosting[this.user.ovhSubsidiary];
+    this.hostingUrl = this.OVH_ORDER_URLS.orderHosting[this.user.ovhSubsidiary];
 
     [this.offer] = this.start10mOffers;
 
