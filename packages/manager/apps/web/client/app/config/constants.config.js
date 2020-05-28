@@ -857,9 +857,7 @@ module.exports = {
         dnssec_service: 'https://www.ovh.com/asia/domains/dnssec_service.xml',
         domainOrderChange: 'https://ca.ovh.com/en/cgi-bin/newOrder/order.cgi',
         domainOrderTrade:
-          "https://www.ovh.com/asia/order/domain/#/legacy/domain/trade/informations?options=~~(domain~~'{domain})",
-        changeOwner:
-          'https://ca.ovh.com/en/cgi-bin/procedure/procedureChangeOwner.cgi',
+          "https://www.ovh.com/asia/order/domain/#/legacy/domain/list/informations?options=~~(domain~~'{domain})",
         bulkChangeOwner:
           'https://www.ovh.com/asia/order/domain/#/legacy/domain/trade/list',
         exchangeOrder: 'https://www.ovh.com/us/emails/hosted-exchange/',
@@ -882,9 +880,7 @@ module.exports = {
         dnssec_service: 'https://www.ovh.com/au/domains/dnssec_service.xml',
         domainOrderChange: 'https://ca.ovh.com/en/cgi-bin/newOrder/order.cgi',
         domainOrderTrade:
-          "https://www.ovh.com.au/order/domain/#/legacy/domain/trade/informations?options=~~(domain~~'{domain})",
-        changeOwner:
-          'https://ca.ovh.com/en/cgi-bin/procedure/procedureChangeOwner.cgi',
+          "https://www.ovh.com.au/order/domain/#/legacy/domain/trade/list?options=~~(domain~~'{domain})",
         bulkChangeOwner:
           'https://www.ovh.com/au/order/domain/#/legacy/domain/trade/list',
         exchangeOrder: 'https://www.ovh.com/us/emails/hosted-exchange/',
@@ -908,9 +904,7 @@ module.exports = {
         dnssec_service: 'https://www.ovh.com/ca/en/domains/dnssec_service.xml',
         domainOrderChange: 'https://ca.ovh.com/en/cgi-bin/newOrder/order.cgi',
         domainOrderTrade:
-          "https://www.ovh.com/ca/en/order/domain/#/legacy/domain/trade/informations?options=~~(domain~~'{domain})",
-        changeOwner:
-          'https://ca.ovh.com/en/cgi-bin/procedure/procedureChangeOwner.cgi',
+          "https://www.ovh.com/ca/en/order/domain/#/legacy/domain/trade/list?options=~~(domain~~'{domain})",
         bulkChangeOwner:
           'https://www.ovh.com/ca/en/order/domain/#/legacy/domain/trade/list',
         exchangeOrder: 'https://www.ovh.com/ca/en/emails/hosted-exchange/',
@@ -934,9 +928,7 @@ module.exports = {
         dnssec_service: 'https://www.ovh.com/ca/fr/domaine/service_dnssec.xml',
         domainOrderChange: 'https://ca.ovh.com/fr/cgi-bin/newOrder/order.cgi',
         domainOrderTrade:
-          "https://www.ovh.com/ca/fr/order/domain/#/legacy/domain/trade/informations?options=~~(domain~~'{domain})",
-        changeOwner:
-          'https://ca.ovh.com/fr/cgi-bin/procedure/procedureChangeOwner.cgi',
+          "https://www.ovh.com/ca/fr/order/domain/#/legacy/domain/trade/list?options=~~(domain~~'{domain})",
         bulkChangeOwner:
           'https://www.ovh.com/ca/fr/order/domain/#/legacy/domain/trade/list',
         exchangeOrder: 'https://www.ovh.com/ca/fr/emails/hosted-exchange/',
@@ -959,9 +951,7 @@ module.exports = {
         dnssec_service: 'https://www.ovh.com/sg/domains/dnssec_service.xml',
         domainOrderChange: 'https://ca.ovh.com/fr/cgi-bin/newOrder/order.cgi',
         domainOrderTrade:
-          "https://www.ovh.com/sg/order/domain/#/legacy/domain/trade/informations?options=~~(domain~~'{domain})",
-        changeOwner:
-          'https://ca.ovh.com/fr/cgi-bin/procedure/procedureChangeOwner.cgi',
+          "https://www.ovh.com/sg/order/domain/#/legacy/domain/trade/list?options=~~(domain~~'{domain})",
         bulkChangeOwner:
           'https://www.ovh.com/sg/order/domain/#/legacy/domain/trade/list',
         exchangeOrder: 'https://www.ovh.com/us/emails/hosted-exchange/',
@@ -984,9 +974,7 @@ module.exports = {
         dnssec_service: 'https://www.ovh.com/world/domains/dnssec_service.xml',
         domainOrderChange: 'https://ca.ovh.com/en/cgi-bin/newOrder/order.cgi',
         domainOrderTrade:
-          "https://www.ovh.com/world/order/domain/#/legacy/domain/trade/informations?options=~~(domain~~'{domain})",
-        changeOwner:
-          'https://ca.ovh.com/en/cgi-bin/procedure/procedureChangeOwner.cgi',
+          "https://www.ovh.com/world/order/domain/#/legacy/domain/trade/list?options=~~(domain~~'{domain})",
         bulkChangeOwner:
           'https://www.ovh.com/world/order/domain/#/legacy/domain/trade/list',
         exchangeOrder: 'https://www.ovh.com/us/emails/hosted-exchange/',
@@ -1011,9 +999,7 @@ module.exports = {
           'https://www.ovh.com/world/es/domains/dnssec_service.xml',
         domainOrderChange: 'https://ca.ovh.com/en/cgi-bin/newOrder/order.cgi',
         domainOrderTrade:
-          "https://www.ovh.com/world/es/order/domain/#/legacy/domain/trade/informations?options=~~(domain~~'{domain})",
-        changeOwner:
-          'https://ca.ovh.com/en/cgi-bin/procedure/procedureChangeOwner.cgi',
+          "https://www.ovh.com/world/es/order/domain/#/legacy/domain/trade/list?options=~~(domain~~'{domain})",
         bulkChangeOwner:
           'https://www.ovh.com/world/es/order/domain/#/legacy/domain/trade/list',
         exchangeOrder: 'https://www.ovh.com/us/emails/hosted-exchange/',
