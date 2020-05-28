@@ -51,7 +51,10 @@ function unstack() {
       (dep) => !modules.done.find((el) => el.name === dep.name),
     );
 
-    if (deps.length === 0) {
+    if (
+      deps.length === 0 &&
+      (!program.numWorkers || modules.doing.length < program.numWorkers)
+    ) {
       const workerData = remove(modules.todo, (p) => p.name === pck.name)[0];
       modules.doing.push(workerData);
 
@@ -100,11 +103,16 @@ function unstack() {
 program
   .option('--dry-run', 'Launch the build script without creating dist')
   .option(
+    '--num-workers [maxWorkers]',
+    'Limit the number of worker threads',
+    parseInt,
+  )
+  .option(
     '-p, --package [package]',
     'Scope build to a specific package and its dependencies',
   )
   .action(() => {
-    execa
+    return execa
       .command(
         `lerna list -alp --json ${
           program.package
