@@ -6,4 +6,8 @@ execa
     shell: true,
   })
   .then(() => parentPort.postMessage(`done - ${workerData.name}`))
-  .catch((err) => parentPort.postMessage(`error - ${err}`));
+  .catch((err) => {
+    parentPort.postMessage(`error - ${err.message}
+${err.all}`);
+    process.exit(err.exitCode);
+  });
