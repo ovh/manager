@@ -3,7 +3,6 @@ import flatten from 'lodash/flatten';
 import get from 'lodash/get';
 import map from 'lodash/map';
 import set from 'lodash/set';
-import startsWith from 'lodash/startsWith';
 
 export default class BillingMainHistoryCtrl {
   /* @ngInject */
@@ -99,9 +98,7 @@ export default class BillingMainHistoryCtrl {
         apiv7Request = apiv7Request.addFilter(
           'billId',
           get(criteriaOperatorToApiV7Map, criteria.operator),
-          startsWith(criteria.value, 'FR')
-            ? criteria.value
-            : `FR${criteria.value}`,
+          criteria.value,
         );
       }
     });
