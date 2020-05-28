@@ -26,6 +26,12 @@ angular
     'oui',
   ])
   .component('ovhManagerServerSidebar', sidebarComponent)
+  .provider(
+    'OVH_ORDER_URLS',
+    /* @ngInject */ (coreConfigProvider) => ({
+      $get: () => ORDER_URLS[coreConfigProvider.getRegion()],
+    }),
+  )
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

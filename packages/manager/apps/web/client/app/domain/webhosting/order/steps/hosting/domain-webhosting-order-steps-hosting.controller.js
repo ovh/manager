@@ -2,8 +2,8 @@ import sortBy from 'lodash/sortBy';
 
 export default class {
   /* @ngInject */
-  constructor(ORDER_URLS) {
-    this.ORDER_URLS = ORDER_URLS;
+  constructor(OVH_ORDER_URLS) {
+    this.OVH_ORDER_URLS = OVH_ORDER_URLS;
   }
 
   $onInit() {
@@ -11,7 +11,7 @@ export default class {
     this.availableOffers = sortBy(
       this.availableOffers.map((offer) =>
         Object.assign(offer, {
-          guideUrl: this.ORDER_URLS.orderHosting[this.user.ovhSubsidiary],
+          guideUrl: this.OVH_ORDER_URLS.orderHosting[this.user.ovhSubsidiary],
         }),
       ),
       'pricing.price',
