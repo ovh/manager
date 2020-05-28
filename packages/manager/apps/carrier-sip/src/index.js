@@ -18,7 +18,6 @@ import { momentConfiguration } from './config';
 
 // Styles.
 import 'ovh-ui-kit/dist/oui.css';
-import 'ovh-ui-kit/dist/oui-olt.css';
 
 angular
   .module('carrierSipApp', [cdr, endpoints, ovhManagerCarrierSip, uiRouter])

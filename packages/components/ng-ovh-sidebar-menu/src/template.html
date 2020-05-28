@@ -1,8 +1,6 @@
 <div id="sidebar-menu">
-
     <!-- LOADER -->
-    <div class="text-center"
-        data-ng-if="sideBarCtrl.loading.init">
+    <div class="text-center" data-ng-if="sideBarCtrl.loading.init">
         <div class="oui-spinner oui-spinner_m">
             <div class="oui-spinner__container">
                 <div class="oui-spinner__image"></div>
@@ -11,18 +9,40 @@
     </div>
 
     <div data-ng-if="!sideBarCtrl.loading.init">
+        <!-- MENU TITLE -->
+        <div class="sidebar-menu-title">
+            <button
+                type="button"
+                class="navbar-button sideNavBtnClose pull-right"
+            >
+                <span class="ovh-font ovh-font-arrow-left"></span>
+            </button>
+            <span
+                class="navbar-brand navbar-toggle-title"
+                data-translate="sidebar_menu"
+            >
+            </span>
+        </div>
 
         <!-- ORDER ACTIONS MENU -->
         <div class="order-actions-menu">
-            <actions-menu data-actions-menu-options="sideBarCtrl.actionsOptions"
-                          data-actions-menu-popover-settings="sideBarCtrl.popoverSettings">
-                <span class="cart-icon ovh-font ovh-font-cart" aria-hidden="true"></span>
-
-                <span class="button-text"
-                      data-translate="sidebar_menu_order_actions">
+            <actions-menu
+                data-actions-menu-options="sideBarCtrl.actionsOptions"
+                data-actions-menu-popover-settings="sideBarCtrl.popoverSettings"
+            >
+                <span class="cart-icon">
+                    <i class="ovh-font ovh-font-cart"></i>
                 </span>
 
-                <span class="arrow-icon ovh-font ovh-font-small-arrow-down" aria-hidden="true"></span>
+                <span
+                    class="button-text"
+                    data-translate="sidebar_menu_order_actions"
+                >
+                </span>
+
+                <span class="arrow-icon">
+                    <i class="ovh-font ovh-font-small-arrow-down"></i>
+                </span>
             </actions-menu>
         </div>
 
@@ -30,9 +50,8 @@
         <sidebar-menu-list
             data-sidebar-menu-list-items="sideBarCtrl.items"
             data-sidebar-menu-list-namespace="sidebarNamespace"
-            data-sidebar-menu-list-level="1">
+            data-sidebar-menu-list-level="1"
+        >
         </sidebar-menu-list>
-
     </div>
-
 </div>

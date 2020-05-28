@@ -34,7 +34,6 @@ import ovhManagerVpsVeeam from './veeam';
 import ovhManagerVpsWindows from './windows';
 
 import 'ovh-ui-kit/dist/oui.css';
-import 'ovh-ui-kit/dist/oui-olt.css';
 import './vps.less';
 import './vps.scss';
 
