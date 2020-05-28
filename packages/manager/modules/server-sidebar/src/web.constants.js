@@ -295,7 +295,7 @@ export const WEB_ORDER_SIDEBAR_CONFIG = [
     title: 'mxplan',
     icon: 'ovh-font ovh-font-mail',
     state: 'app.mx-plan',
-    regions: ['EU', 'CA'],
+    regions: ['EU'],
     app: [WEB],
   },
   {
