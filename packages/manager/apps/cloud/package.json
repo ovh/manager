@@ -119,6 +119,7 @@
     "popper.js": "^1.16.0",
     "uri.js": "medialize/URI.js#~1.15.0",
     "validator-js": "chriso/validator.js#~3.37.0",
+    "whatwg-fetch": "^3.0.0",
     "xterm": "^3.8.1"
   },
   "devDependencies": {
