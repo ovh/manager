@@ -1,3 +1,4 @@
+import isEmpty from 'lodash/isEmpty';
 import template from './GENERAL_INFORMATIONS.html';
 
 const commonResolves = {
@@ -15,6 +16,9 @@ const commonResolves = {
 
   start10mOffers: /* @ngInject */ (availableOptions) =>
     availableOptions.filter(({ family }) => family === 'hosting'),
+
+  isStart10mAvailable: /* @ngInject */ (start10mOffers) =>
+    !isEmpty(start10mOffers),
 };
 
 export default /* @ngInject */ ($stateProvider) => {
