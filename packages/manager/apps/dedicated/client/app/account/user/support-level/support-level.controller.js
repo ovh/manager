@@ -1,12 +1,10 @@
 import find from 'lodash/find';
 import get from 'lodash/get';
 import slice from 'lodash/slice';
+import some from 'lodash/some';
 
-import {
-  FULL_SUPPORT_LEVEL_SUBSIDIARIES,
-  URLS,
-} from './support-level.constants';
-import SupportLevel from './SupportLevel.class';
+import { SupportLevel } from '@ovh-ux/manager-models';
+import { URLS } from './support-level.constants';
 
 export default class UserAccountSupportLevelCtrl {
   $onInit() {
@@ -40,8 +38,9 @@ export default class UserAccountSupportLevelCtrl {
   }
 
   areAllLevelsAvailable() {
-    return FULL_SUPPORT_LEVEL_SUBSIDIARIES.includes(
-      this.currentUser.ovhSubsidiary,
+    return some(
+      this.supportLevels,
+      (level) => !level.isAvailable(this.currentUser.ovhSubsidiary),
     );
   }
 }

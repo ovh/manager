@@ -4,6 +4,7 @@ import Certificate from './certificate/Certificate.class';
 import DebtAccount from './billing/DebtAccount.class';
 import Price from './Price/Price.class';
 import Service from './service/Service.class';
+import SupportLevel from './support/level/SupportLevel.class';
 import Ticket from './support/ticket/ticket.class';
 import User from './user/User.class';
 
@@ -14,6 +15,7 @@ export {
   DebtAccount,
   Price,
   Service,
+  SupportLevel,
   Ticket,
   User,
 };
@@ -25,6 +27,7 @@ export default {
   DebtAccount,
   Price,
   Service,
+  SupportLevel,
   Ticket,
   User,
 };

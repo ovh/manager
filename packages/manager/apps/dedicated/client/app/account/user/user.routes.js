@@ -1,5 +1,5 @@
+import { SupportLevel } from '@ovh-ux/manager-models';
 import { API_MODEL_SUPPORT_LEVEL } from './support-level/support-level.constants';
-import SupportLevel from './support-level/SupportLevel.class';
 
 import template from './user.html';
 import controller from './user.controller';
