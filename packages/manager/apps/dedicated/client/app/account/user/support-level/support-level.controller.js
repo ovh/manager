@@ -1,34 +1,55 @@
 import find from 'lodash/find';
+import findIndex from 'lodash/findIndex';
 import get from 'lodash/get';
 import slice from 'lodash/slice';
 import some from 'lodash/some';
 
 import { SupportLevel } from '@ovh-ux/manager-models';
-import { URLS } from './support-level.constants';
+import { SUBSCRIPTION, URLS } from './support-level.constants';
 
 export default class UserAccountSupportLevelCtrl {
+  /* @ngInject */
+  constructor(constants) {
+    this.constants = constants;
+  }
+
   $onInit() {
+    this.orderBaseUrl = get(
+      this.constants,
+      `urls.${this.currentUser.ovhSubsidiary}.express_order`,
+      this.constants.urls.FR.express_order,
+    );
     this.supportLevelsEnum = get(
       this.schema.models,
       'me.SupportLevel.LevelTypeEnum',
     ).enum;
-    this.supportLevels = this.supportLevelsEnum.map(
-      (level) =>
-        new SupportLevel({
-          level,
-          url: get(
-            URLS,
-            `${this.currentUser.ovhSubsidiary.toUpperCase()}.${level}`,
-            get(URLS, `FR.${level}`),
-          ),
-        }),
-    );
+    this.supportLevels = this.supportLevelsEnum
+      .map(
+        (level) =>
+          new SupportLevel({
+            level,
+            url: get(
+              URLS,
+              `${this.currentUser.ovhSubsidiary.toUpperCase()}.${level}`,
+              get(URLS, `FR.${level}`),
+            ),
+            subscriptionUrl: this.getSubscriptionUrl(level),
+          }),
+      )
+      .filter((level) => this.isLevelActive(level));
+  }
+
+  getSubscriptionUrl(supportLevel) {
+    return `${this.orderBaseUrl}review?products=${JSURL.stringify(
+      SUBSCRIPTION(supportLevel.replace('-', '_')),
+    )}`;
   }
 
   getRecommendedLevel() {
-    const currentLevelIndex = this.supportLevelsEnum.indexOf(
-      this.supportLevel.level,
-    );
+    const currentLevelIndex = findIndex(this.supportLevels, {
+      name: this.supportLevel.level,
+    });
+
     return get(
       find(slice(this.supportLevels, currentLevelIndex + 1), (level) =>
         level.isAvailable(this.currentUser.ovhSubsidiary),
@@ -38,9 +59,26 @@ export default class UserAccountSupportLevelCtrl {
   }
 
   areAllLevelsAvailable() {
-    return some(
+    return !some(
       this.supportLevels,
       (level) => !level.isAvailable(this.currentUser.ovhSubsidiary),
     );
+  }
+
+  isLevelActive(supportLevel) {
+    if (
+      this.partnerLevel.isAdvanced() ||
+      this.supportLevel.isAdvancedPremium()
+    ) {
+      return this.supportLevel.isPremium()
+        ? !supportLevel.isStandard()
+        : !supportLevel.isPremium();
+    }
+
+    return !supportLevel.isAdvancedPremium();
+  }
+
+  shouldSubscribe(supportLevel) {
+    return supportLevel.name === this.partnerLevel.requiredSupportLevel;
   }
 }

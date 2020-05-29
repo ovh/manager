@@ -1,3 +1,5 @@
+import { PartnerLevel } from '@ovh-ux/manager-models';
+
 export default /* @ngInject */ ($stateProvider) => {
   const name = 'app.account.user.support-level';
 
@@ -7,6 +9,12 @@ export default /* @ngInject */ ($stateProvider) => {
     translations: {
       format: 'json',
       value: ['./'],
+    },
+    resolve: {
+      partnerLevel: /* @ngInject */ ($http) =>
+        $http
+          .get('/me/partnerLevel')
+          .then(({ data: partnerLevel }) => new PartnerLevel(partnerLevel)),
     },
   });
 };
