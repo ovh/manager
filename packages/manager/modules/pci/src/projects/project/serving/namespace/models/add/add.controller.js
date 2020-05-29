@@ -40,7 +40,15 @@ export default class PciServingNamespaceModelsAddController {
       flavor: null,
       workflowTemplate: null,
       imageId: null,
+      autoscalingSpec: {
+        minReplicas: 1,
+        maxReplicas: 3,
+        memoryAverageUtilization: 60,
+        cpuAverageUtilization: 60,
+      },
     };
+
+    this.advancedConfigurationAutoscalerSpec = false;
 
     [this.model.flavor] = this.flavors;
 
@@ -85,6 +93,11 @@ export default class PciServingNamespaceModelsAddController {
       });
   }
 
+  onClickAdvancedConfigurationAutoscalerSpecHandler() {
+    this.advancedConfigurationAutoscalerSpec = !this
+      .advancedConfigurationAutoscalerSpec;
+  }
+
   addModel() {
     this.atInternet.trackClick({
       name:
@@ -104,6 +117,7 @@ export default class PciServingNamespaceModelsAddController {
         flavor: this.model.flavor.id,
         workflowTemplate: this.model.workflowTemplate,
         imageId: get(this.model.imageId, 'id'),
+        autoscalingSpec: this.model.autoscalingSpec,
       },
     )
       .then(() =>
