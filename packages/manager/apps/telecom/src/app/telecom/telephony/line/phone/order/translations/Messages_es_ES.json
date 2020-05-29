@@ -73,5 +73,8 @@
   "telephony_line_phone_price": "Precio:",
   "telephony_line_phone_detail_link": "Ficha técnica",
   "telephony_line_phone_order_validate": "Confirmar mi pedido",
-  "ovh_contracts_agree": "He leído y acepto los siguientes contratos."
+  "ovh_contracts_agree": "He leído y acepto los siguientes contratos.",
+  "telephony_line_phone_order_process_return_comment1": "Atención: Preste especial atención para no incluir ningún objeto personal, información o elemento que no guarde relación con la devolución del dispositivo.",
+  "telephony_line_phone_order_process_return_comment2": "En caso contrario, OVHcloud intentará ponerse en contacto con el cliente por correo electrónico para devolver aquellos elementos que hayan sido incluidos por error.",
+  "telephony_line_phone_order_process_return_comment3": "Si el cliente no contacta con OVHcloud en los treinta días siguientes al envío de este mensaje de correo electrónico, OVHcloud no se hará responsable de estos elementos."
 }
