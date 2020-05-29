@@ -1,0 +1,112 @@
+<div class="pci-project-new-payment-choose">
+    <h2
+        class="oui-heading_underline"
+        data-translate="pci_project_new_payment_choose_title"
+    ></h2>
+
+    <div class="oui-collapsible added-payment-method m-0">
+        <div class="oui-collapsible__header" aria-expanded="true">
+            <strong
+                data-translate="pci_project_new_payment_choose_added_payment_methods"
+            >
+            </strong>
+        </div>
+        <div class="oui-collapsible__wrapper">
+            <div class="oui-collapsible__body p-0">
+                <div
+                    class="oui-list oui-list_separated existing-payment-methods-list m-0"
+                >
+                    <ul class="oui-list__items">
+                        <li
+                            class="oui-list__item"
+                            data-ng-repeat="paymentMethod in $ctrl.validPaymentMethods track by $index"
+                        >
+                            <div class="oui-radio oui-radio_thumbnail">
+                                <input
+                                    class="oui-radio__input"
+                                    type="radio"
+                                    name="chooseDefault"
+                                    data-ng-attr-id="{{ 'paymentMethod-' + paymentMethod.paymentMethodId }}"
+                                    data-ng-value="paymentMethod"
+                                    data-ng-model="$ctrl.model.defaultPaymentMethod"
+                                    data-ng-change="$ctrl.onChooseDefaultPaymentMethodChange()"
+                                />
+                                <label
+                                    class="oui-radio__label-container"
+                                    data-ng-attr-for="{{ 'paymentMethod-' + paymentMethod.paymentMethodId }}"
+                                >
+                                    <span class="oui-radio__label">
+                                        <span
+                                            class="d-inline-block align-center payment-method-image-container"
+                                        >
+                                            <img
+                                                data-ng-attr-src="{{ paymentMethod.icon.data }}"
+                                                data-ng-attr-alt="{{ paymentMethod.icon.name }}"
+                                                alt
+                                            />
+                                        </span>
+
+                                        <span
+                                            data-ng-bind="paymentMethod.label"
+                                            class="mr-auto"
+                                        >
+                                        </span>
+
+                                        <span
+                                            data-ng-if="paymentMethod.experationDate"
+                                            data-translate="pci_project_new_payment_choose_payment_method_expiration"
+                                            data-translate-values="{ date: (paymentMethod.experationDate | date:'shortDate') }"
+                                        >
+                                        </span>
+                                    </span>
+                                    <span
+                                        class="oui-radio__description"
+                                        data-ng-if="$ctrl.model.defaultPaymentMethod.paymentMethodId === paymentMethod.paymentMethodId"
+                                        data-translate="pci_project_new_payment_choose_payment_method_selected"
+                                        data-translate-values="{ url: $ctrl.myServiceUrl }"
+                                    >
+                                    </span>
+                                </label>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="oui-collapsible use-new-payment-method m-0 mt-3">
+        <button
+            class="oui-button oui-collapsible__header oui-button_block"
+            data-translate-attr="{ 'aria-label': 'pci_project_new_payment_choose_use_new' }"
+            data-ng-attr-aria-expanded="{{ $ctrl.useNewPaymentMethod }}"
+            data-ng-click="$ctrl.onUseNewPaymentMethodBtnClick()"
+        >
+            <span
+                class="oui-icon oui-icon-add border border-info rounded-circle p-1"
+            >
+            </span>
+            <span
+                class="oui-button__text"
+                data-translate="pci_project_new_payment_choose_use_new"
+            >
+            </span>
+            <span
+                class="oui-icon oui-icon-chevron-down oui-collapsible__toggle-icon"
+                aria-hidden="true"
+            >
+            </span>
+        </button>
+        <div class="oui-collapsible__wrapper">
+            <div class="oui-collapsible__body">
+                <pci-project-new-payment-method-add
+                    data-registerable-payment-methods="$ctrl.registerablePaymentMethods"
+                    data-eligibility="$ctrl.eligibility"
+                    data-model="$ctrl.model"
+                    data-global-loading="$ctrl.globalLoading"
+                >
+                </pci-project-new-payment-method-add>
+            </div>
+        </div>
+    </div>
+</div>

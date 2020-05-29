@@ -7,5 +7,6 @@
   "pci_project_new_payment_btn_cancel": "Annuler",
   "pci_project_new_payment_create_error": "Une erreur est survenue lors de l'ajout de votre moyen de paiement. Veuillez réessayer.",
   "pci_project_new_payment_checkout_error": "Une erreur est survenue lors de la création de votre projet Public Cloud. Veuillez réessayer.",
-  "pci_project_new_payment_challenge_error_payment_method_deactivated": "Vous n'avez pas réussi à vérifier votre moyen de paiement. Celui-ci a été désactivé. Merci de choisir un autre moyen de paiement afin de pouvoir créer un nouveau projet."
+  "pci_project_new_payment_challenge_error_payment_method_deactivated": "Vous n'avez pas réussi à vérifier votre moyen de paiement. Celui-ci a été désactivé. Merci de choisir un autre moyen de paiement afin de pouvoir créer un nouveau projet.",
+  "pci_project_new_payment_set_default_payment_method_error": "Une erreur est survenue durant la mise à jour de votre moyen de paiement en tant que moyen de paiement par défaut."
 }
