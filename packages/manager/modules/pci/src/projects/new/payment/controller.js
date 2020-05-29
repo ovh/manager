@@ -13,7 +13,6 @@ export default class PciProjectNewPaymentCtrl {
     pciProjectNew,
     ovhPaymentMethod,
     OVH_PAYMENT_METHOD_INTEGRATION_TYPE,
-    OVH_PAYMENT_METHOD_TYPE,
   ) {
     this.$translate = $translate;
     this.$q = $q;
@@ -22,7 +21,6 @@ export default class PciProjectNewPaymentCtrl {
     this.pciProjectNew = pciProjectNew;
     this.ovhPaymentMethod = ovhPaymentMethod;
     this.OVH_PAYMENT_METHOD_INTEGRATION_TYPE = OVH_PAYMENT_METHOD_INTEGRATION_TYPE;
-    this.OVH_PAYMENT_METHOD_TYPE = OVH_PAYMENT_METHOD_TYPE;
 
     // other attributes
     this.paymentMethodUrl = get(
@@ -112,6 +110,8 @@ export default class PciProjectNewPaymentCtrl {
 
   onPaymentFormSubmit() {
     let challengePromise = Promise.resolve(true);
+    let defaultPaymentMethodPromise = Promise.resolve(true);
+    let setDefaultPaymentMethodInError = false;
 
     // call integration submit function if some
     if (
@@ -153,9 +153,38 @@ export default class PciProjectNewPaymentCtrl {
         });
     }
 
-    return challengePromise.then(() => {
-      return !this.model.challenge.error ? this.manageProjectCreation() : null;
-    });
+    if (
+      this.eligibility.isDefaultPaymentMethodChoiceRequired() &&
+      this.model.defaultPaymentMethod
+    ) {
+      this.globalLoading.setDefaultPaymentMethod = true;
+
+      defaultPaymentMethodPromise = this.ovhPaymentMethod
+        .setPaymentMethodAsDefault(this.model.defaultPaymentMethod)
+        .catch(() => {
+          this.CucCloudMessage.error(
+            this.$translate.instant(
+              'pci_project_new_payment_set_default_payment_method_error',
+            ),
+            'pci.projects.new.payment',
+          );
+
+          setDefaultPaymentMethodInError = true;
+
+          return null;
+        })
+        .finally(() => {
+          this.globalLoading.setDefaultPaymentMethod = false;
+        });
+    }
+
+    return Promise.all([challengePromise, defaultPaymentMethodPromise]).then(
+      () => {
+        return !this.model.challenge.error && !setDefaultPaymentMethodInError
+          ? this.manageProjectCreation()
+          : null;
+      },
+    );
   }
 
   /* -----  End of Events  ------ */

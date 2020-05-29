@@ -12,6 +12,7 @@ export default {
     eligibility: '<',
     model: '<',
     defaultPaymentMethod: '<',
+    validPaymentMethods: '<',
     onCartFinalized: '<',
     onAskCreditPayment: '<',
     globalLoading: '<',

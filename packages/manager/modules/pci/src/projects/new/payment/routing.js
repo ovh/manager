@@ -1,3 +1,6 @@
+import filter from 'lodash/filter';
+import find from 'lodash/find';
+
 import component from './component';
 
 export default /* @ngInject */ ($stateProvider) => {
@@ -9,10 +12,19 @@ export default /* @ngInject */ ($stateProvider) => {
       'progress@pci.projects.new.payment': 'pciProjectNewProgress',
 
       'payment@pci.projects.new.payment': {
-        componentProvider: /* @ngInject */ (defaultPaymentMethod) =>
-          defaultPaymentMethod
-            ? 'pciProjectNewPaymentDefault'
-            : 'pciProjectNewPaymentRegister',
+        componentProvider: /* @ngInject */ (
+          defaultPaymentMethod,
+          validPaymentMethods,
+        ) => {
+          if (defaultPaymentMethod) {
+            return 'pciProjectNewPaymentDefault';
+          }
+          if (validPaymentMethods.length) {
+            return 'pciProjectNewPaymentChoose';
+          }
+
+          return 'pciProjectNewPaymentRegister';
+        },
       },
 
       'credits@pci.projects.new.payment': 'pciProjectNewPaymentCreditType',
@@ -38,8 +50,24 @@ export default /* @ngInject */ ($stateProvider) => {
       paymentStatus: /* @ngInject */ ($transition$) =>
         $transition$.params().paymentStatus,
 
-      defaultPaymentMethod: /* @ngInject */ (ovhPaymentMethod) =>
-        ovhPaymentMethod.getDefaultPaymentMethod(),
+      paymentMethods: /* @ngInject */ (ovhPaymentMethod) =>
+        ovhPaymentMethod.getAllPaymentMethods(),
+
+      validPaymentMethods: /* @ngInject */ (
+        eligibility,
+        paymentMethods,
+        OVH_PAYMENT_METHOD_STATUS,
+      ) => {
+        const validPaymentMethods = filter(paymentMethods, {
+          status: OVH_PAYMENT_METHOD_STATUS.VALID,
+        });
+        // set valid payment methods of eligibility in order to centralize requirements
+        eligibility.setValidPaymentMethods(validPaymentMethods);
+        return validPaymentMethods;
+      },
+
+      defaultPaymentMethod: /* @ngInject */ (paymentMethods) =>
+        find(paymentMethods, { default: true }),
 
       registerablePaymentMethods: /* @ngInject */ (
         eligibility,
