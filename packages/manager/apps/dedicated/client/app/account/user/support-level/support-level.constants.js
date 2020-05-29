@@ -1,5 +1,13 @@
 export const API_MODEL_SUPPORT_LEVEL = 'me.SupportLevel.LevelTypeEnum';
 
+export const SUBSCRIPTION = (level) => [
+  {
+    planCode: `support_level_${level}`,
+    duration: 'P1M',
+    productId: 'support',
+  },
+];
+
 export const URLS = {
   ASIA: {
     standard: 'https://www.ovhcloud.com/asia/support-levels/standard/',
@@ -143,5 +151,6 @@ export const URLS = {
 
 export default {
   API_MODEL_SUPPORT_LEVEL,
+  SUBSCRIPTION,
   URLS,
 };
