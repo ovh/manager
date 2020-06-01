@@ -39,7 +39,6 @@
  */
 
 import angular from 'angular';
-import isFunction from 'lodash/isFunction';
 
 export default function() {
   /*= ==================================
@@ -61,7 +60,9 @@ export default function() {
       this.href = options.href;
       this.target = options.target || '_self';
       this.external = options.external || false;
-      this.onClick = isFunction(options.onClick) ? options.onClick : null;
+      this.onClick = angular.isFunction(options.onClick)
+        ? options.onClick
+        : null;
     } else if (options.state && !options.href && !options.subItems) {
       this.state = options.state;
       this.stateParams = options.stateParams || {};

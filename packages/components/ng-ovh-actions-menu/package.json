@@ -34,9 +34,6 @@
     "start:dev": "lerna exec --stream --scope='@ovh-ux/ng-ovh-actions-menu' --include-dependencies -- yarn run dev",
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/ng-ovh-actions-menu' --include-dependencies -- yarn run dev:watch"
   },
-  "dependencies": {
-    "lodash": "^4.17.15"
-  },
   "devDependencies": {
     "@ovh-ux/component-rollup-config": "^7.0.0"
   },
