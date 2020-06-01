@@ -298,9 +298,13 @@ export default /* @ngInject */ function(
       self.loaders.init = false;
       getGraphData();
     });
+<<<<<<< HEAD
     getAvailableReleaseChannels();
     getAvailableAction();
+=======
+>>>>>>> feat(otb.details): add updating for release channel
     getAvailableReleaseChannels();
+    getAvailableAction();
   }
 
   /**
@@ -590,10 +594,14 @@ export default /* @ngInject */ function(
   };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   self.changeReleaseChannel = function changeReleaseChannel(channel) {
 =======
   self.changeReleaseChannel = function changeReleaseChannel() {
 >>>>>>> feat(otb.details): retrieve release channels to be able to change it
+=======
+  self.changeReleaseChannel = function changeReleaseChannel(channel) {
+>>>>>>> feat(otb.details): add updating for release channel
     self.loaders.changingReleaseChannel = true;
     return OvhApiOverTheBox.v6()
       .putService(
@@ -602,10 +610,14 @@ export default /* @ngInject */ function(
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
           releaseChannel: channel.name,
 =======
           releaseChannel: self.releaseChannel,
 >>>>>>> feat(otb.details): retrieve release channels to be able to change it
+=======
+          releaseChannel: channel.name,
+>>>>>>> feat(otb.details): add updating for release channel
         },
       )
       .$promise.then(() => {
