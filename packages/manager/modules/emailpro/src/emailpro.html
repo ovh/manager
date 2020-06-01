@@ -135,15 +135,12 @@
                         <oui-header-tabs-divider
                             data-ng-if="item.type === 'SEPARATOR'"
                         ></oui-header-tabs-divider>
-                        <button
+                        <oui-header-tabs-item
                             data-ng-if="item.type === 'ACTION'"
-                            class="oui-header-tabs__item oui-dropdown-option p-0"
-                            type="button"
-                            data-ng-click="item.fn()"
-                            data-ng-disabled="item.disabled"
-                        >
-                            <span data-ng-bind="item.label"></span>
-                        </button>
+                            data-text="{{ item.label }}"
+                            data-disabled="item.disabled"
+                            data-on-click="item.fn()"
+                        ></oui-header-tabs-item>
                         <oui-header-tabs-item
                             data-ng-if="item.type !== 'ACTION' && item.type !== 'SEPARATOR'"
                             data-text="{{ item.label }}"

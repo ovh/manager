@@ -35,7 +35,7 @@
   },
   "devDependencies": {
     "@ovh-ux/component-rollup-config": "^7.0.0",
-    "ovh-ui-kit": "^2.42.7"
+    "ovh-ui-kit": "^2.42.8"
   },
   "peerDependencies": {
     "@ovh-ux/manager-config": "^0.4.0",
@@ -46,6 +46,6 @@
     "angular": "^1.7.8",
     "angular-translate": "^2.18.1",
     "ovh-api-services": "^9.39.1",
-    "ovh-ui-kit": "^2.42.7"
+    "ovh-ui-kit": "^2.42.8"
   }
 }
