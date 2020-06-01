@@ -39,8 +39,3 @@
 
 * **modules:** This component is just the export of the one located in web/app/components/manager-order-catalog-price.
 The web located component should be replaced by the new one (refactor will be done once this module is released)
-
-Signed-off-by: Jérémy De-Cesare <jeremy.de-cesare@corp.ovh.com>
-
-
-

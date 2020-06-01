@@ -127,8 +127,6 @@
 
 * **core:** remove ovh-api-services peer dependency
 
-Signed-off-by: frenauvh <florian.renaut@corp.ovh.com>
-
 
 
 ## [7.6.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@7.6.2...@ovh-ux/manager-core@7.6.3) (2019-12-10)

@@ -37,8 +37,6 @@
 
 * module is now named as `ngUiRouterTitle
 
-Signed-off-by: Antoine Leblanc <antoine.leblanc@corp.ovh.com>
-
 
 
 ## [4.3.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-overthebox-app@4.3.0...@ovh-ux/manager-overthebox-app@4.3.1) (2019-09-03)

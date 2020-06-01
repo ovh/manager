@@ -19,8 +19,6 @@
 
 * **v6uiswitch:** v6UISwitch is deleted, as it is replaced by oui-switch, and is now no more used
 
-Signed-off-by: Jérémy De-Cesare <jeremy.de-cesare@corp.ovh.com>
-
 
 
 # [7.4.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@7.3.0...@ovh-ux/ng-ovh-web-universe-components@7.4.0) (2020-01-24)

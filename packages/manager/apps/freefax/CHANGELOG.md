@@ -55,8 +55,6 @@
 
 * module is now named as `ngUiRouterTitle
 
-Signed-off-by: Antoine Leblanc <antoine.leblanc@corp.ovh.com>
-
 
 
 ## [4.2.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax-app@4.2.2...@ovh-ux/manager-freefax-app@4.2.3) (2019-10-25)

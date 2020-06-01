@@ -115,7 +115,6 @@
 * **hub:** init @ovh-ux/manager-account-sidebar module
 * **navbar:** Language menu is no longer available from navbar
 
-Signed-off-by: Marie JONES <marie.jones@corp.ovh.com>
 
 
 
