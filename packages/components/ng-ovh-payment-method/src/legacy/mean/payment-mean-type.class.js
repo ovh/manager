@@ -1,4 +1,4 @@
-import snakeCase from 'lodash/snakeCase';
+import { snakeCase } from 'lodash-es';
 
 import OvhPaymentMethodType from '../../payment-method-type.class';
 

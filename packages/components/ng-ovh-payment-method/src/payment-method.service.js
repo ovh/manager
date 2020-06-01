@@ -1,9 +1,4 @@
-import filter from 'lodash/filter';
-import find from 'lodash/find';
-import has from 'lodash/has';
-import map from 'lodash/map';
-import remove from 'lodash/remove';
-import some from 'lodash/some';
+import { filter, find, has, map, remove, some } from 'lodash-es';
 
 import {
   DEFAULT_OPTIONS,
