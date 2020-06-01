@@ -15,7 +15,6 @@ import ticketService from './ticket/ticket.service';
 import ticketsService from './tickets.service';
 
 import 'ovh-ui-kit/dist/oui.css';
-import 'ovh-ui-kit/dist/oui-olt.css';
 
 const moduleName = 'ovhManagerSupportTickets';
 

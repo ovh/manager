@@ -28,7 +28,6 @@ import { BILLING_REDIRECTIONS } from './constants';
 import controller from './controller';
 import routing from './routing';
 import 'ovh-ui-kit/dist/oui.css';
-import 'ovh-ui-kit/dist/oui-olt.css';
 import './index.less';
 import './index.scss';
 

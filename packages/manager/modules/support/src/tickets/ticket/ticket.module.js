@@ -13,7 +13,6 @@ import { state } from './ticket.routing';
 import service from './ticket.service';
 
 import 'ovh-ui-kit/dist/oui.css';
-import 'ovh-ui-kit/dist/oui-olt.css';
 
 const moduleName = 'ovhManagerSupportTicket';
 
