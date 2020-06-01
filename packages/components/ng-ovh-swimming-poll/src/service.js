@@ -1,9 +1,5 @@
 import angular from 'angular';
-import every from 'lodash/every';
-import filter from 'lodash/filter';
-import find from 'lodash/find';
-import remove from 'lodash/remove';
-import set from 'lodash/set';
+import { every, filter, find, remove, set } from 'lodash-es';
 
 export default /* @ngInject */ function($q, $timeout, $http) {
   const defaultInterval = 7000;
