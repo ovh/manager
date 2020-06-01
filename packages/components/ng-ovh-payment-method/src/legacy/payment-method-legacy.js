@@ -1,9 +1,4 @@
-import filter from 'lodash/filter';
-import flatten from 'lodash/flatten';
-import get from 'lodash/get';
-import has from 'lodash/has';
-import map from 'lodash/map';
-import startCase from 'lodash/startCase';
+import { filter, flatten, get, has, map, startCase } from 'lodash-es';
 
 import {
   DEFAULT_OPTIONS,

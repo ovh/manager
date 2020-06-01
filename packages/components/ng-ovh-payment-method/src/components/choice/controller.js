@@ -1,4 +1,4 @@
-import camelCase from 'lodash/camelCase';
+import { camelCase } from 'lodash-es';
 
 export default class {
   /* @ngInject */

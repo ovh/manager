@@ -1,10 +1,12 @@
-import defaults from 'lodash/defaults';
-import get from 'lodash/get';
-import isFunction from 'lodash/isFunction';
-import merge from 'lodash/merge';
-import noop from 'lodash/noop';
-import omit from 'lodash/omit';
-import values from 'lodash/values';
+import {
+  defaults,
+  get,
+  isFunction,
+  merge,
+  noop,
+  omit,
+  values,
+} from 'lodash-es';
 
 import { DEFAULT_BINDINGS_VALUES } from './constants';
 

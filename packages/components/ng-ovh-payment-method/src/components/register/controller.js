@@ -1,13 +1,15 @@
-import chunk from 'lodash/chunk';
-import find from 'lodash/find';
-import get from 'lodash/get';
-import has from 'lodash/has';
-import isFunction from 'lodash/isFunction';
-import isNil from 'lodash/isNil';
-import isObject from 'lodash/isObject';
-import map from 'lodash/map';
-import set from 'lodash/set';
-import some from 'lodash/some';
+import {
+  chunk,
+  find,
+  get,
+  has,
+  isFunction,
+  isNil,
+  isObject,
+  map,
+  set,
+  some,
+} from 'lodash-es';
 
 import {
   DEFAULT_DISPLAY_PER_LINE,
