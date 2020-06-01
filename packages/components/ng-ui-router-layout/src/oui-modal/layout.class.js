@@ -1,7 +1,4 @@
-import get from 'lodash/get';
-import isObject from 'lodash/isObject';
-import isString from 'lodash/isString';
-import merge from 'lodash/merge';
+import { get, isObject, isString, merge } from 'lodash-es';
 
 import { LAYOUT_NAME } from './constants';
 
