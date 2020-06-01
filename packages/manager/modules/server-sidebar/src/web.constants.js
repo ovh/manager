@@ -66,7 +66,7 @@ export const DOMAIN_CONFIG = {
       category: 'ZONE',
       state: 'app.domain.dns-zone',
       stateParams: ['productId'],
-      icon: 'oui-icon icon-white-background oui-icon-domain-dns',
+      icon: 'oui-icon oui-icon-domain-dns',
       app: [WEB],
       filter: {
         category: 'DOMAIN',
