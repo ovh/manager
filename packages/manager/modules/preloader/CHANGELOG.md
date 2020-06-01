@@ -18,8 +18,3 @@
 ### BREAKING CHANGES
 
 * **preloader:** add @ovh-ux/manager-preloader
-
-Signed-off-by: Cyrille Bourgois <cyrille.bourgois@corp.ovh.com>
-
-
-

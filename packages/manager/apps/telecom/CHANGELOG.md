@@ -463,8 +463,6 @@
 
 * module is now named as `ngUiRouterTitle
 
-Signed-off-by: Antoine Leblanc <antoine.leblanc@corp.ovh.com>
-
 
 
 ## [10.40.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@10.40.3...@ovh-ux/manager-telecom@10.40.4) (2019-11-08)

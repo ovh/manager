@@ -46,8 +46,6 @@
 
 * module is now named as `ngUiRouterTitle
 
-Signed-off-by: Antoine Leblanc <antoine.leblanc@corp.ovh.com>
-
 
 
 ## [4.1.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom-task-app@4.1.2...@ovh-ux/manager-telecom-task-app@4.1.3) (2019-10-25)

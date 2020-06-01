@@ -37,8 +37,6 @@
 
 * module is now named as `ngUiRouterTitle
 
-Signed-off-by: Antoine Leblanc <antoine.leblanc@corp.ovh.com>
-
 
 
 ## [4.4.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-telecom-dashboard@4.4.0...@ovh-ux/manager-telecom-dashboard@4.4.1) (2019-10-17)
