@@ -1,5 +1,4 @@
-import map from 'lodash/map';
-import set from 'lodash/set';
+import { map, set } from 'lodash-es';
 
 export default class {
   /* @ngInject */

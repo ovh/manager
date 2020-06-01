@@ -1,11 +1,13 @@
 import angular from 'angular';
-import debounce from 'lodash/debounce';
-import filter from 'lodash/filter';
-import findIndex from 'lodash/findIndex';
-import forEach from 'lodash/forEach';
-import has from 'lodash/has';
-import includes from 'lodash/includes';
-import map from 'lodash/map';
+import {
+  debounce,
+  filter,
+  findIndex,
+  forEach,
+  has,
+  includes,
+  map,
+} from 'lodash-es';
 
 import controller from './controller';
 import template from './template.html';
