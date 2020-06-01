@@ -12,7 +12,7 @@
  */
 
 import angular from 'angular';
-import filter from 'lodash/filter';
+import { filter } from 'lodash-es';
 
 import template from './template.html';
 

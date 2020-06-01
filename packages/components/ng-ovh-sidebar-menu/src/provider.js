@@ -21,20 +21,22 @@
  */
 
 import angular from 'angular';
-import assign from 'lodash/assign';
-import difference from 'lodash/difference';
-import forEach from 'lodash/forEach';
-import filter from 'lodash/filter';
-import find from 'lodash/find';
-import isArray from 'lodash/isArray';
-import isEmpty from 'lodash/isEmpty';
-import isNumber from 'lodash/isNumber';
-import isString from 'lodash/isString';
-import map from 'lodash/map';
-import omit from 'lodash/omit';
-import pick from 'lodash/pick';
-import set from 'lodash/set';
-import some from 'lodash/some';
+import {
+  assign,
+  difference,
+  forEach,
+  filter,
+  find,
+  isArray,
+  isEmpty,
+  isNumber,
+  isString,
+  map,
+  omit,
+  pick,
+  set,
+  some,
+} from 'lodash-es';
 
 import innerMenuItemTemplate from './list/item/list-item-inner.html';
 
