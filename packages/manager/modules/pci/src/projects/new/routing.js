@@ -25,6 +25,9 @@ export default /* @ngInject */ ($stateProvider) => {
       const windowPromise = transition.injector().getAsync('$window');
       const cartPromise = transition.injector().getAsync('cart');
       const eligibilityPromise = transition.injector().getAsync('eligibility');
+      const newSupportTicketLink = transition
+        .injector()
+        .get('newSupportTicketLink');
       return Promise.all([
         translatePromise,
         windowPromise,
@@ -38,20 +41,18 @@ export default /* @ngInject */ ($stateProvider) => {
         };
 
         if (eligibility.isAskIncreaseProjectsQuotaRequired()) {
-          redirectState = 'pci.error';
+          redirectState = 'pci.projects.project.error';
           redirectParams = {
             message: $translate.instant(
               'pci_project_new_error_ask_increase_projects_quota',
             ),
             code: ELIGIBILITY_ACTION_ENUM.ASK_INCREASE_PROJECTS_QUOTA,
             image: ELIGIBILITY_ERROR_IMAGES_SRC.ASK_INCREASE_PROJECTS_QUOTA,
+            projectId: get(transition.params('from'), 'projectId'),
             submitLabel: $translate.instant(
               'pci_project_new_error_contact_support',
             ),
-            submitLink: get(
-              PCI_REDIRECT_URLS,
-              `${EnvironmentService.Environment.region}.support`,
-            ),
+            submitLink: newSupportTicketLink,
           };
         } else if (eligibility.isVerifyPaypalRequired()) {
           redirectState = 'pci.error';
@@ -87,6 +88,9 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     resolve: {
       breadcrumb: () => null,
+
+      newSupportTicketLink: /* @ngInject */ (RedirectionService) =>
+        RedirectionService.getURL('createTicket'),
 
       cart: /* @ngInject */ ($transition$, me, pciProjectNew) =>
         !get($transition$.params(), 'cartId')
