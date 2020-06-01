@@ -246,6 +246,16 @@ export default /* @ngInject */ function(
             label: $translate.instant(`overTheBox_release_channel_${channel}`),
           });
         });
+
+        const result = self.releaseChannels.find(
+          (channel) => self.releaseChannel === channel.name,
+        );
+
+        if (result) {
+          self.releaseChannel = $translate.instant(
+            `overTheBox_release_channel_${self.releaseChannel}`,
+          );
+        }
       });
   }
 
@@ -290,8 +300,8 @@ export default /* @ngInject */ function(
       self.loaders.init = false;
       getGraphData();
     });
-    getAvailableAction();
     getAvailableReleaseChannels();
+    getAvailableAction();
   }
 
   /**
@@ -580,7 +590,7 @@ export default /* @ngInject */ function(
       });
   };
 
-  self.changeReleaseChannel = function changeReleaseChannel() {
+  self.changeReleaseChannel = function changeReleaseChannel(channel) {
     self.loaders.changingReleaseChannel = true;
     return OvhApiOverTheBox.v6()
       .putService(
@@ -588,7 +598,7 @@ export default /* @ngInject */ function(
           serviceName: $stateParams.serviceName,
         },
         {
-          releaseChannel: self.releaseChannel,
+          releaseChannel: channel.name,
         },
       )
       .$promise.then(() => {
