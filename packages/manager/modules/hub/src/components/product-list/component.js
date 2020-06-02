@@ -1,5 +1,5 @@
 import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
-import omit from 'lodash/omit';
+import { omit } from 'lodash-es';
 import controller from './controller';
 import template from './template.html';
 

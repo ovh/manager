@@ -1,9 +1,4 @@
-import find from 'lodash/find';
-import get from 'lodash/get';
-import head from 'lodash/head';
-import isEmpty from 'lodash/isEmpty';
-import map from 'lodash/map';
-import startCase from 'lodash/startCase';
+import { find, get, head, isEmpty, map, startCase } from 'lodash-es';
 
 import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 import { DEFAULT_NUMBER_OF_COLUMNS } from './constants';
