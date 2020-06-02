@@ -5,5 +5,14 @@
   "web_domain_zone_activation_question": "Pretende ativar o número mínimo de entradas na zona DNS?",
   "web_domain_zone_activation_template_minimized": "Sim, pretendo ativar a minha zona DNS com o número mínimo de entradas.",
   "web_domain_zone_activation_template_basic": "Não, mas pretendo ativar a minha zona DNS.",
-  "web_domain_zone_activation_success": "A nota de encomenda foi gerada com sucesso."
+  "web_domain_zone_activation_success": "A nota de encomenda foi gerada com sucesso.",
+  "web_domain_zone_activation_description": "Para responder aos pedidos DNS, o seu nome de domínio deve ser associado a uma zona DNS. Poderá configurar o endereço IP para o qual será redirecionado o seu domínio e subdomínios. A zona DNS do seu domínio está desativada. Se pretender ativá-la, valide os passos seguintes.",
+  "web_domain_zone_activation_step_header_product": "Escolha o seu produto",
+  "web_domain_zone_activation_step_header_duration": "Selecione a sua duração",
+  "web_domain_zone_activation_step_header_activation": "Ativação",
+  "web_domain_zone_activation_step_header_payment": "Pagamento",
+  "web_domain_zone_activation_step_description_activation": "Para confirmar o pedido, aceite as condições de utilização.",
+  "web_domain_zone_activation_step_description_payment": "Para confirmar o pedido, escolha o seu método de pagamento e aceite as condições de utilização.",
+  "web_domain_zone_activation_submit_pay": "Pagar",
+  "web_domain_zone_activation_error": "Ocorreu um erro aquando da encomenda de uma zona DNS: {{message}}."
 }

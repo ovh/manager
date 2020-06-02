@@ -822,5 +822,7 @@
   "domain_tab_options_delete_dnsAnycast_title": "DNS Anycast Option kündigen",
   "domain_tab_options_delete_success": "Die Option wurde gekündigt.",
   "domain_tab_options_delete_error": "Bei der Kündigung der Option ist ein Fehler aufgetreten.",
-  "domain_tab_options_delete_cancel": "Abbrechen"
+  "domain_tab_options_delete_cancel": "Abbrechen",
+  "web_domain_zone_activation_success": "Ihre Aktivierung wurde erfolgreich abgeschlossen. Ihr Produkt wird in wenigen Minuten aktiviert.",
+  "web_domain_zone_activation_order_success": "Ihr <a href=\"{{t0}}\" target=\"_blank\">Bestellformular</a> wurde erfolgreich generiert. Ihr Produkt wird aktiviert, sobald Sie es validiert haben."
 }

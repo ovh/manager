@@ -1,9 +1,18 @@
 {
-  "web_domain_zone_activation": "DNS-Zone aktivieren",
+  "web_domain_zone_activation": "Ihre DNS-Zone aktivieren",
   "web_domain_zone_activation_confirm": "Aktivieren",
   "web_domain_zone_activation_cancel": "Abbrechen",
   "web_domain_zone_activation_question": "Möchten Sie die DNS-Zone mit minimalen Einträgen aktivieren?",
   "web_domain_zone_activation_template_minimized": "Ja, ich möchte meine DNS-Zone mit minimalen Einträgen aktivieren.",
   "web_domain_zone_activation_template_basic": "Nein, aber ich möchte meine DNS-Zone aktivieren.",
-  "web_domain_zone_activation_success": "Der Bestellschein wurde erfolgreich erstellt."
+  "web_domain_zone_activation_success": "Der Bestellschein wurde erfolgreich erstellt.",
+  "web_domain_zone_activation_description": "Um auf DNS-Anfragen zu antworten, muss Ihr Domainname mit einer DNS-Zone verbunden sein. Dort können Sie einstellen, an welche IP-Adresse Ihre Domain und deren Subdomains weitergeleitet wird. Die DNS-Zone Ihrer Domain ist deaktiviert. Wenn Sie sie aktivieren möchten, bestätigen Sie bitte die folgenden Schritte.",
+  "web_domain_zone_activation_step_header_product": "Wählen Sie Ihr Produkt",
+  "web_domain_zone_activation_step_header_duration": "Wählen Sie Ihre Dauer aus",
+  "web_domain_zone_activation_step_header_activation": "Aktivierung",
+  "web_domain_zone_activation_step_header_payment": "Zahlung",
+  "web_domain_zone_activation_step_description_activation": "Um Ihre Anfrage zu bestätigen, akzeptieren Sie bitte die Nutzungsbedingungen.",
+  "web_domain_zone_activation_step_description_payment": "Um Ihre Anfrage zu bestätigen, wählen Sie bitte Ihre Zahlungsmethode und akzeptieren Sie die Nutzungsbedingungen.",
+  "web_domain_zone_activation_submit_pay": "Bezahlen",
+  "web_domain_zone_activation_error": "Bei der Bestellung einer DNS-Zone ist ein Fehler aufgetreten: {{message}}."
 }

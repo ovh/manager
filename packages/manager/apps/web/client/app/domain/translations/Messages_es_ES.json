@@ -822,5 +822,7 @@
   "domain_tab_options_delete_dnsAnycast_title": "Dar de baja la opción DNS Anycast.",
   "domain_tab_options_delete_success": "Hemos dado de baja esta opción. ",
   "domain_tab_options_delete_error": "Se ha producido un error al dar de baja la opción.",
-  "domain_tab_options_delete_cancel": "Cancelar"
+  "domain_tab_options_delete_cancel": "Cancelar",
+  "web_domain_zone_activation_success": "El producto se ha activado correctamente. El producto se activará en unos instantes.",
+  "web_domain_zone_activation_order_success": "La <a href=\"{{t0}}\" target=\"_blank\">orden de pedido</a> se ha generado correctamente. El producto se activará una vez que lo haya validado."
 }
