@@ -76,11 +76,7 @@
  */
 
 import angular from 'angular';
-import filter from 'lodash/filter';
-import map from 'lodash/map';
-import now from 'lodash/now';
-import random from 'lodash/random';
-import slice from 'lodash/slice';
+import { filter, map, now, random, slice } from 'lodash-es';
 
 export default /* @ngInject */ function($q, $timeout) {
   /*= ==================================
