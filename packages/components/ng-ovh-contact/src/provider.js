@@ -1,12 +1,14 @@
 import angular from 'angular';
-import forEach from 'lodash/forEach';
-import has from 'lodash/has';
-import keys from 'lodash/keys';
-import map from 'lodash/map';
-import reject from 'lodash/reject';
-import set from 'lodash/set';
-import snakeCase from 'lodash/snakeCase';
-import some from 'lodash/some';
+import {
+  forEach,
+  has,
+  keys,
+  map,
+  reject,
+  set,
+  snakeCase,
+  some,
+} from 'lodash-es';
 
 export default function() {
   const self = this;

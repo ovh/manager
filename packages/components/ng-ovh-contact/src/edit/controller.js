@@ -1,5 +1,5 @@
-import snakeCase from 'lodash/snakeCase';
-import startsWith from 'lodash/startsWith';
+import { snakeCase, startsWith } from 'lodash-es';
+
 import moment from 'moment';
 
 export default /* @ngInject */ function(
