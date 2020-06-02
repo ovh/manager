@@ -7,7 +7,8 @@ export default /* @ngInject */ ($stateProvider) => {
       transition
         .injector()
         .get('$q')
-        .all([transition.injector().getAsync('namespaces')])
+        .transition.injector()
+        .getAsync('namespaces')
         .then(([namespaces]) => {
           if (namespaces.length === 0) {
             return { state: 'pci.projects.project.serving.onboarding' };
