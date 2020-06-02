@@ -857,9 +857,9 @@ module.exports = {
         dnssec_service: 'https://www.ovh.com/asia/domains/dnssec_service.xml',
         domainOrderChange: 'https://ca.ovh.com/en/cgi-bin/newOrder/order.cgi',
         domainOrderTrade:
-          "https://www.ovh.com/asia/order/domain/#/legacy/domain/list/informations?options=~~(domain~~'{domain})",
+          "https://ca.ovh.com/asia/order/domain/#/legacy/domain/list/informations?options=~~(domain~~'{domain})",
         bulkChangeOwner:
-          'https://www.ovh.com/asia/order/domain/#/legacy/domain/trade/list',
+          'https://ca.ovh.com/asia/order/domain/#/legacy/domain/trade/list',
         exchangeOrder: 'https://www.ovh.com/us/emails/hosted-exchange/',
       },
       AU: {
@@ -880,9 +880,9 @@ module.exports = {
         dnssec_service: 'https://www.ovh.com/au/domains/dnssec_service.xml',
         domainOrderChange: 'https://ca.ovh.com/en/cgi-bin/newOrder/order.cgi',
         domainOrderTrade:
-          "https://www.ovh.com.au/order/domain/#/legacy/domain/trade/list?options=~~(domain~~'{domain})",
+          "https://ca.ovh.com/au/order/domain/#/legacy/domain/trade/list?options=~~(domain~~'{domain})",
         bulkChangeOwner:
-          'https://www.ovh.com/au/order/domain/#/legacy/domain/trade/list',
+          'https://ca.ovh.com/au/order/domain/#/legacy/domain/trade/list',
         exchangeOrder: 'https://www.ovh.com/us/emails/hosted-exchange/',
       },
       CA: {
@@ -904,9 +904,9 @@ module.exports = {
         dnssec_service: 'https://www.ovh.com/ca/en/domains/dnssec_service.xml',
         domainOrderChange: 'https://ca.ovh.com/en/cgi-bin/newOrder/order.cgi',
         domainOrderTrade:
-          "https://www.ovh.com/ca/en/order/domain/#/legacy/domain/trade/list?options=~~(domain~~'{domain})",
+          "https://ca.ovh.com/en/order/domain/#/legacy/domain/trade/list?options=~~(domain~~'{domain})",
         bulkChangeOwner:
-          'https://www.ovh.com/ca/en/order/domain/#/legacy/domain/trade/list',
+          'https://ca.ovh.com/en/order/domain/#/legacy/domain/trade/list',
         exchangeOrder: 'https://www.ovh.com/ca/en/emails/hosted-exchange/',
       },
       QC: {
@@ -928,9 +928,9 @@ module.exports = {
         dnssec_service: 'https://www.ovh.com/ca/fr/domaine/service_dnssec.xml',
         domainOrderChange: 'https://ca.ovh.com/fr/cgi-bin/newOrder/order.cgi',
         domainOrderTrade:
-          "https://www.ovh.com/ca/fr/order/domain/#/legacy/domain/trade/list?options=~~(domain~~'{domain})",
+          "https://ca.ovh.com/fr/order/domain/#/legacy/domain/trade/list?options=~~(domain~~'{domain})",
         bulkChangeOwner:
-          'https://www.ovh.com/ca/fr/order/domain/#/legacy/domain/trade/list',
+          'https://ca.ovh.com/ca/fr/order/domain/#/legacy/domain/trade/list',
         exchangeOrder: 'https://www.ovh.com/ca/fr/emails/hosted-exchange/',
       },
       SG: {
@@ -951,9 +951,9 @@ module.exports = {
         dnssec_service: 'https://www.ovh.com/sg/domains/dnssec_service.xml',
         domainOrderChange: 'https://ca.ovh.com/fr/cgi-bin/newOrder/order.cgi',
         domainOrderTrade:
-          "https://www.ovh.com/sg/order/domain/#/legacy/domain/trade/list?options=~~(domain~~'{domain})",
+          "https://ca.ovh.com/sg/order/domain/#/legacy/domain/trade/list?options=~~(domain~~'{domain})",
         bulkChangeOwner:
-          'https://www.ovh.com/sg/order/domain/#/legacy/domain/trade/list',
+          'https://ca.ovh.com/sg/order/domain/#/legacy/domain/trade/list',
         exchangeOrder: 'https://www.ovh.com/us/emails/hosted-exchange/',
       },
       WE: {
@@ -974,9 +974,9 @@ module.exports = {
         dnssec_service: 'https://www.ovh.com/world/domains/dnssec_service.xml',
         domainOrderChange: 'https://ca.ovh.com/en/cgi-bin/newOrder/order.cgi',
         domainOrderTrade:
-          "https://www.ovh.com/world/order/domain/#/legacy/domain/trade/list?options=~~(domain~~'{domain})",
+          "https://us.ovh.com/us/order/domain/#/legacy/domain/trade/list?options=~~(domain~~'{domain})",
         bulkChangeOwner:
-          'https://www.ovh.com/world/order/domain/#/legacy/domain/trade/list',
+          'https://us.ovh.com/us/order/domain/#/legacy/domain/trade/list',
         exchangeOrder: 'https://www.ovh.com/us/emails/hosted-exchange/',
       },
       WS: {
@@ -999,35 +999,35 @@ module.exports = {
           'https://www.ovh.com/world/es/domains/dnssec_service.xml',
         domainOrderChange: 'https://ca.ovh.com/en/cgi-bin/newOrder/order.cgi',
         domainOrderTrade:
-          "https://www.ovh.com/world/es/order/domain/#/legacy/domain/trade/list?options=~~(domain~~'{domain})",
+          "https://us.ovh.com/us/es/order/domain/#/legacy/domain/trade/list?options=~~(domain~~'{domain})",
         bulkChangeOwner:
-          'https://www.ovh.com/world/es/order/domain/#/legacy/domain/trade/list',
+          'https://us.ovh.com/us/es/order/domain/#/legacy/domain/trade/list',
         exchangeOrder: 'https://www.ovh.com/us/emails/hosted-exchange/',
       },
       express_order: {
-        ASIA: 'https://www.ovh.com/asia/order/express/',
-        AU: 'https://www.ovh.com/au/order/express/',
-        CA: 'https://www.ovh.com/ca/en/order/express/',
-        QC: 'https://www.ovh.com/ca/fr/order/express/',
-        SG: 'https://www.ovh.com/sg/order/express/',
-        WE: 'https://www.ovh.com/us/order/express/',
-        WS: 'https://www.ovh.com/world/es/order/express/',
+        ASIA: 'https://ca.ovh.com/asia/order/express/',
+        AU: 'https://ca.ovh.com/au/order/express/',
+        CA: 'https://ca.ovh.com/en/order/express/',
+        QC: 'https://ca.ovh.com/fr/order/express/',
+        SG: 'https://ca.ovh.com/sg/order/express/',
+        WE: 'https://us.ovh.com/us/order/express/',
+        WS: 'https://us.ovh.com/us/es/order/express/',
       },
       domain_order_options_service: {
         ASIA:
-          "https://www.ovh.com/asia/order/domain/#/legacy/domain/hosting/choose?options=~(~(flow~'hosting_existing_service~serviceName~'{domain}))",
+          "https://ca.ovh.com/asia/order/domain/#/legacy/domain/hosting/choose?options=~(~(flow~'hosting_existing_service~serviceName~'{domain}))",
         AU:
-          "https://www.ovh.com/au/order/domain/#/legacy/domain/hosting/choose?options=~(~(flow~'hosting_existing_service~serviceName~'{domain}))",
+          "https://ca.ovh.com/au/order/domain/#/legacy/domain/hosting/choose?options=~(~(flow~'hosting_existing_service~serviceName~'{domain}))",
         CA:
-          "https://www.ovh.com/ca/en/order/domain/#/legacy/domain/hosting/choose?options=~(~(flow~'hosting_existing_service~serviceName~'{domain}))",
+          "https://ca.ovh.com/en/order/domain/#/legacy/domain/hosting/choose?options=~(~(flow~'hosting_existing_service~serviceName~'{domain}))",
         QC:
-          "https://www.ovh.com/ca/fr/order/domain/#/legacy/domain/hosting/choose?options=~(~(flow~'hosting_existing_service~serviceName~'{domain}))",
+          "https://ca.ovh.com/fr/order/domain/#/legacy/domain/hosting/choose?options=~(~(flow~'hosting_existing_service~serviceName~'{domain}))",
         SG:
-          "https://www.ovh.com/sg/order/domain/#/legacy/domain/hosting/choose?options=~(~(flow~'hosting_existing_service~serviceName~'{domain}))",
+          "https://ca.ovh.com/sg/order/domain/#/legacy/domain/hosting/choose?options=~(~(flow~'hosting_existing_service~serviceName~'{domain}))",
         WE:
-          "https://www.ovh.com/world/order/domain/#/legacy/domain/hosting/choose?options=~(~(flow~'hosting_existing_service~serviceName~'{domain}))",
+          "https://us.ovh.com/us/order/domain/#/legacy/domain/hosting/choose?options=~(~(flow~'hosting_existing_service~serviceName~'{domain}))",
         WS:
-          "https://www.ovh.com/world/es/order/domain/#/legacy/domain/hosting/choose?options=~(~(flow~'hosting_existing_service~serviceName~'{domain}))",
+          "https://us.ovh.com/us/es/order/domain/#/legacy/domain/hosting/choose?options=~(~(flow~'hosting_existing_service~serviceName~'{domain}))",
       },
       TOOLS: {
         ZONE_CHECK: 'https://www.zonemaster.net/',
