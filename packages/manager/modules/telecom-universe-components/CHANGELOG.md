@@ -1,3 +1,28 @@
+# [5.0.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@4.6.1...@ovh-ux/ng-ovh-telecom-universe-components@5.0.0) (2020-06-02)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 415] ([206c5be](https://github.com/ovh/manager/commit/206c5be156e462a8c657346d682eeb764dae5b7f))
+* **i18n:** add missing translations [CDS 417] ([c656aed](https://github.com/ovh/manager/commit/c656aedcff9218082797d7a950d6538872ca03d6))
+* **i18n:** add missing translations [CDS 418] ([2e6cd3a](https://github.com/ovh/manager/commit/2e6cd3a40a05108683bf90c75db9a3a8cf80fd59))
+* **telephony.accessories:** fix with the good link ([#2997](https://github.com/ovh/manager/issues/2997)) ([57097b4](https://github.com/ovh/manager/commit/57097b4bb5d24bbe208affdbbdcba8739c346ded))
+
+
+### Features
+
+* **tuc-editable-service-name:** make component work with ui-header ([b623521](https://github.com/ovh/manager/commit/b6235218f2399782b0cbd6b7f436767a6df90289))
+
+
+### BREAKING CHANGES
+
+* **tuc-editable-service-name:** - "@ovh-ux/ng-ovh-telecom-universe-components" now requires "boostrap4" to work
+- "tuc-editable-service-name" attribute "tuc-editable-service-name-title" is now a two-way binding
+
+Signed-off-by: Frederic Espiau <frederic.espiau@corp.ovh.com>
+
+
+
 ## [4.6.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@4.6.0...@ovh-ux/ng-ovh-telecom-universe-components@4.6.1) (2020-04-28)
 
 

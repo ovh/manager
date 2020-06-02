@@ -1,3 +1,12 @@
+## [5.0.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-at-internet@5.0.0...@ovh-ux/ng-at-internet@5.0.1) (2020-06-02)
+
+
+### Performance Improvements
+
+* **ng-at-internet:** replace lodash with lodash-es ([#3047](https://github.com/ovh/manager/issues/3047)) ([c638090](https://github.com/ovh/manager/commit/c638090cdbce9c44b65539e43c3031e205663199))
+
+
+
 # [5.0.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-at-internet@4.0.4...@ovh-ux/ng-at-internet@5.0.0) (2020-03-18)
 
 

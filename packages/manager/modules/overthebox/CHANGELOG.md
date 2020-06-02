@@ -1,3 +1,18 @@
+# [5.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@5.3.3...@ovh-ux/manager-overthebox@5.4.0) (2020-06-02)
+
+
+### Bug Fixes
+
+* remove ui consistency ([#3029](https://github.com/ovh/manager/issues/3029)) ([34be0be](https://github.com/ovh/manager/commit/34be0bea216d575254017265d5650dace12ae582))
+* **overthebox:** remove useless update application action ([#2898](https://github.com/ovh/manager/issues/2898)) ([4bbe218](https://github.com/ovh/manager/commit/4bbe2186f124a657cd98a084adea6942d149cf2d))
+
+
+### Features
+
+* add ovhcloud light theme imports ([24d56fb](https://github.com/ovh/manager/commit/24d56fb62a949e01de5f9929c0fe53239c889a59))
+
+
+
 ## [5.3.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@5.3.2...@ovh-ux/manager-overthebox@5.3.3) (2020-04-28)
 
 

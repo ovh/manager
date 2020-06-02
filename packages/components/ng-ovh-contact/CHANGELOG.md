@@ -1,3 +1,12 @@
+## [5.0.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-contact@5.0.0...@ovh-ux/ng-ovh-contact@5.0.1) (2020-06-02)
+
+
+### Performance Improvements
+
+* **ng-ovh-contact:** replace lodash with lodash-es ([#3040](https://github.com/ovh/manager/issues/3040)) ([97638c8](https://github.com/ovh/manager/commit/97638c8d6942637d2cd1cc2dd30004f174f880b6))
+
+
+
 # [5.0.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-contact@4.0.5...@ovh-ux/ng-ovh-contact@5.0.0) (2020-04-01)
 
 

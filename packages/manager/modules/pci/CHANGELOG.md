@@ -1,3 +1,24 @@
+# [3.22.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.21.0...@ovh-ux/manager-pci@3.22.0) (2020-06-02)
+
+
+### Bug Fixes
+
+* **translations:** clean translations files ([#3038](https://github.com/ovh/manager/issues/3038)) ([57040ad](https://github.com/ovh/manager/commit/57040adfcac601cbf48f27fb804decfd60800797))
+* remove ui consistency ([#3029](https://github.com/ovh/manager/issues/3029)) ([34be0be](https://github.com/ovh/manager/commit/34be0bea216d575254017265d5650dace12ae582))
+* **i18n:** add missing translations [CDS 397] ([1e2a814](https://github.com/ovh/manager/commit/1e2a8147abfa4143876ba86edd1d50ae43ebc10a))
+* **i18n:** add missing translations [CDS 400] ([dbe36c8](https://github.com/ovh/manager/commit/dbe36c89eafe858b68e73503e8d052fd64bbb418))
+* **i18n:** add missing translations [CDS 409] ([86adc04](https://github.com/ovh/manager/commit/86adc0469a44a243bb3fb61296b284245a3b1b6e))
+* **i18n:** add missing translations [CDS 415] ([206c5be](https://github.com/ovh/manager/commit/206c5be156e462a8c657346d682eeb764dae5b7f))
+* **i18n:** add missing translations [CDS 416] ([c5054f8](https://github.com/ovh/manager/commit/c5054f82aade5e00949867f247d2629763859636))
+* **i18n:** add missing translations [CDS 418] ([2e6cd3a](https://github.com/ovh/manager/commit/2e6cd3a40a05108683bf90c75db9a3a8cf80fd59))
+
+
+### Features
+
+* add ovhcloud light theme imports ([24d56fb](https://github.com/ovh/manager/commit/24d56fb62a949e01de5f9929c0fe53239c889a59))
+
+
+
 # [3.21.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.20.0...@ovh-ux/manager-pci@3.21.0) (2020-05-19)
 
 

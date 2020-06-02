@@ -1,3 +1,27 @@
+# [14.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@14.3.4...@ovh-ux/manager-web@14.4.0) (2020-06-02)
+
+
+### Bug Fixes
+
+* **translations:** clean translations files ([#3038](https://github.com/ovh/manager/issues/3038)) ([57040ad](https://github.com/ovh/manager/commit/57040adfcac601cbf48f27fb804decfd60800797))
+* remove ui consistency ([#3029](https://github.com/ovh/manager/issues/3029)) ([34be0be](https://github.com/ovh/manager/commit/34be0bea216d575254017265d5650dace12ae582))
+* **domain.dns.sec:** allow modal to close properly ([#3001](https://github.com/ovh/manager/issues/3001)) ([0cf4d99](https://github.com/ovh/manager/commit/0cf4d99320283c9ce6b49de911ead6a3f700599f))
+* **i18n:** add missing translations [CDS 403] ([c3eeddc](https://github.com/ovh/manager/commit/c3eeddc71b8d13ff74a3e8c0c77a0b7237511148))
+* **i18n:** add missing translations [CDS 410] ([19f33b5](https://github.com/ovh/manager/commit/19f33b5f2e4893f855068f4f908aea5792a20ebe))
+* **i18n:** add missing translations [CDS 414] ([7601c89](https://github.com/ovh/manager/commit/7601c89ff863c8fbbcbe76442a1ceca13051ced4))
+* **web.hosting:** secure test if options are detachable ([cc11752](https://github.com/ovh/manager/commit/cc11752628a7826b5389a9345df35715e673a73f))
+
+
+### Features
+
+* **web:** add private db detach action ([a58a832](https://github.com/ovh/manager/commit/a58a83214d7e8c0cd684d870ee96d15a206f6d61))
+* add ovhcloud light theme imports ([24d56fb](https://github.com/ovh/manager/commit/24d56fb62a949e01de5f9929c0fe53239c889a59))
+* **domain.webhosting:** update order ([#2799](https://github.com/ovh/manager/issues/2799)) ([c740bec](https://github.com/ovh/manager/commit/c740becb652998daaa5d42e0a92ff37699318625))
+* **domain.zone:** detach zone ([af2c6b8](https://github.com/ovh/manager/commit/af2c6b8ea46aa67ceb9ccdb39ff0782bf38dfa1c))
+* **sidebar:** apply ovhcloud light theme ([cf38dc9](https://github.com/ovh/manager/commit/cf38dc9e5a788062f22fdbc1432aa36f0edbb29a))
+
+
+
 ## [14.3.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@14.3.3...@ovh-ux/manager-web@14.3.4) (2020-05-25)
 
 

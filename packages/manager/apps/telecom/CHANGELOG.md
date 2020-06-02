@@ -1,3 +1,22 @@
+# [12.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@12.2.0...@ovh-ux/manager-telecom@12.3.0) (2020-06-02)
+
+
+### Bug Fixes
+
+* **translations:** clean translations files ([#3038](https://github.com/ovh/manager/issues/3038)) ([57040ad](https://github.com/ovh/manager/commit/57040adfcac601cbf48f27fb804decfd60800797))
+* remove ui consistency ([#3029](https://github.com/ovh/manager/issues/3029)) ([34be0be](https://github.com/ovh/manager/commit/34be0bea216d575254017265d5650dace12ae582))
+* **i18n:** add missing translations [CDS 418] ([2e6cd3a](https://github.com/ovh/manager/commit/2e6cd3a40a05108683bf90c75db9a3a8cf80fd59))
+
+
+### Features
+
+* add ovhcloud light theme imports ([24d56fb](https://github.com/ovh/manager/commit/24d56fb62a949e01de5f9929c0fe53239c889a59))
+* **sidebar:** apply ovhcloud light theme ([cf38dc9](https://github.com/ovh/manager/commit/cf38dc9e5a788062f22fdbc1432aa36f0edbb29a))
+* **telephony.billingaccount.administration:** preload all groups ([#2810](https://github.com/ovh/manager/issues/2810)) ([ab384d2](https://github.com/ovh/manager/commit/ab384d27247a8d81bbcca464ca6cc1957fbf4222))
+* **telephony.order.phone:** add message for rma ([#2896](https://github.com/ovh/manager/issues/2896)) ([e65c04d](https://github.com/ovh/manager/commit/e65c04d93b792429a879dfe75fbca051658005a0))
+
+
+
 # [12.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@12.1.4...@ovh-ux/manager-telecom@12.2.0) (2020-05-13)
 
 

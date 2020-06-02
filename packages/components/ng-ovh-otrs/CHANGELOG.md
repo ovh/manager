@@ -1,3 +1,33 @@
+# [9.1.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-otrs@9.0.3...@ovh-ux/ng-ovh-otrs@9.1.0) (2020-06-02)
+
+
+### Bug Fixes
+
+* prevent the popup from sticking to the bottom of the ui ([#21](https://github.com/ovh/manager/issues/21)) ([c19faec](https://github.com/ovh/manager/commit/c19faecb17cbbcd7aaed94bf2a136b2d8dda7567))
+* **gitignore:** add tools folder in gitignore ([14be10a](https://github.com/ovh/manager/commit/14be10a37bfd491627e5bbce664f2c8c7b1df58c))
+* **i18n:** retrieve translations ([996f3dd](https://github.com/ovh/manager/commit/996f3ddcf002fed92057a303953e59c6e0d52e62))
+* **i18n:** retrieve translations ([2aefe5f](https://github.com/ovh/manager/commit/2aefe5f9bbbc3d4587cd5c91bd9c88d57ab1d1dc))
+* **i18n:** submit translations ([3acacae](https://github.com/ovh/manager/commit/3acacae3df3b9c5eba466c80ea432ec73e99517b))
+* **i18n:** submit translations ([e787383](https://github.com/ovh/manager/commit/e787383a84b99040ea5753793d6760bb70698381))
+* **otrs.popup:** update copy for US customers ([#96](https://github.com/ovh/manager/issues/96)) ([2a21576](https://github.com/ovh/manager/commit/2a21576950b8833417625d0423bd14c4d475d78e))
+* **otrs.popup:** update copy translations for US customers ([21066e5](https://github.com/ovh/manager/commit/21066e59807d0a16baedbacb743f5253bb3c75d6))
+* **pop-up:** add missing intervention request ([d930058](https://github.com/ovh/manager/commit/d930058b333fabe83c1512d3490f65688e78f1c5))
+* **pop-up.constant:** remove extra api ([2040e74](https://github.com/ovh/manager/commit/2040e74e9592ac151a78d86160bda038479fd3f8))
+* **pop-up.i18n:** add missing webcoach translation ([a20362a](https://github.com/ovh/manager/commit/a20362a5fa4dd9ae7a1647e1f3527b616627fd66))
+* **popup:** add excluded service types for us accounts ([#109](https://github.com/ovh/manager/issues/109)) ([ed633fb](https://github.com/ovh/manager/commit/ed633fba591e926807d2bffdf13ca58f0a278765))
+* **popup:** disable categories when no service ([18ca7d6](https://github.com/ovh/manager/commit/18ca7d61cda075b429cb58bae2d3695aa5e265e1))
+* **popup:** enable disk replacement ([338b81b](https://github.com/ovh/manager/commit/338b81bd7f12c7ac76a16fedaa8e074454de6012))
+* **popup:** filter service by region ([#59](https://github.com/ovh/manager/issues/59)) ([fe51f31](https://github.com/ovh/manager/commit/fe51f31ef93d850191a85d47dc10d468cc65cf3e))
+* **popup:** retrieve services only when popup is open ([12ce8ca](https://github.com/ovh/manager/commit/12ce8ca9dcd2feb4d6cdfd7d2371332aaf83ead6))
+* remove package-lock.json and add .npmrc file ([09445a8](https://github.com/ovh/manager/commit/09445a8a9334d000d5d3179805733db0e2e36ad2))
+
+
+### Features
+
+* **tracking:** add tracking on request creation ([221e873](https://github.com/ovh/manager/commit/221e8737068413ab59ca606b38b04796c77c5e2e))
+
+
+
 ## [7.1.12](https://github.com/ovh-ux/ng-ovh-otrs/compare/v7.1.11...v7.1.12) (2019-10-25)
 
 

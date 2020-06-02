@@ -1,3 +1,12 @@
+## [1.2.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ui-router-line-progress@1.2.0...@ovh-ux/ng-ui-router-line-progress@1.2.1) (2020-06-02)
+
+
+### Bug Fixes
+
+* **line-progress:** fix progress bar z-index ([da0adff](https://github.com/ovh/manager/commit/da0adffe736d3c831e8be974924ef8117a7cf4b3))
+
+
+
 # [1.2.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ui-router-line-progress@1.1.0...@ovh-ux/ng-ui-router-line-progress@1.2.0) (2020-04-06)
 
 

@@ -1,3 +1,12 @@
+# [3.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom-styles@3.1.2...@ovh-ux/manager-telecom-styles@3.2.0) (2020-06-02)
+
+
+### Features
+
+* add ovhcloud light theme imports ([24d56fb](https://github.com/ovh/manager/commit/24d56fb62a949e01de5f9929c0fe53239c889a59))
+
+
+
 ## [3.1.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom-styles@3.1.1...@ovh-ux/manager-telecom-styles@3.1.2) (2019-11-28)
 
 

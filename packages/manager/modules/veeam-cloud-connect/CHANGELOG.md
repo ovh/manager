@@ -1,3 +1,17 @@
+# [1.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-cloud-connect@1.1.0...@ovh-ux/manager-veeam-cloud-connect@1.2.0) (2020-06-02)
+
+
+### Bug Fixes
+
+* remove ui consistency ([#3029](https://github.com/ovh/manager/issues/3029)) ([34be0be](https://github.com/ovh/manager/commit/34be0bea216d575254017265d5650dace12ae582))
+
+
+### Features
+
+* add ovhcloud light theme imports ([24d56fb](https://github.com/ovh/manager/commit/24d56fb62a949e01de5f9929c0fe53239c889a59))
+
+
+
 # [1.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-cloud-connect@1.0.3...@ovh-ux/manager-veeam-cloud-connect@1.1.0) (2020-04-15)
 
 
