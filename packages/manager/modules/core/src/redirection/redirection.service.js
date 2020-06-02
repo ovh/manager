@@ -1,7 +1,5 @@
-import forOwn from 'lodash/forOwn';
-import get from 'lodash/get';
-import isString from 'lodash/isString';
-import keys from 'lodash/keys';
+import { forOwn, get, isString, keys } from 'lodash-es';
+
 import constants from './redirection.constants';
 
 export default class RedirectionService {

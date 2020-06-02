@@ -1,7 +1,4 @@
-import find from 'lodash/find';
-import get from 'lodash/get';
-import indexOf from 'lodash/indexOf';
-import map from 'lodash/map';
+import { find, get, indexOf, map } from 'lodash-es';
 
 /**
  * @ngdoc service

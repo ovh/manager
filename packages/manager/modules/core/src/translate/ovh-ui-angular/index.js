@@ -2,7 +2,7 @@ import angular from 'angular';
 import 'angular-translate';
 import 'ovh-ui-angular';
 import '@uirouter/angularjs';
-import set from 'lodash/set';
+import { set } from 'lodash-es';
 
 const moduleName = 'ovhManagerCoreOuiAngularTranslations';
 
