@@ -2,11 +2,18 @@ import { find } from 'lodash';
 
 export default class {
   /* @ngInject */
-  constructor($scope, $state, dataProcessingService, CucRegionService) {
+  constructor(
+    $scope,
+    $state,
+    dataProcessingService,
+    CucRegionService,
+    atInternet,
+  ) {
     this.$state = $state;
     this.$scope = $scope;
     this.dataProcessingService = dataProcessingService;
     this.cucRegionService = CucRegionService;
+    this.atInternet = atInternet;
     // let's do some function binding
     this.onChangeRegionHandler = this.onChangeRegionHandler.bind(this);
     this.onChangeJobTypeHandler = this.onChangeJobTypeHandler.bind(this);
@@ -26,6 +33,12 @@ export default class {
     this.badRequestErrorMessage = '';
     this.isConfigureStepValid = false;
     this.currentIndex = 0;
+  }
+
+  $onInit() {
+    this.atInternet.trackPage({
+      name: 'public-cloud::pci::projects::project::data-processing::submit-job',
+    });
   }
 
   /**
@@ -177,6 +190,11 @@ export default class {
     this.dataProcessingService
       .submitJob(this.projectId, payload)
       .then(() => {
+        this.atInternet.trackClick({
+          name:
+            'public-cloud::pci::projects::project::data-processing::submit-job::submit',
+          type: 'action',
+        });
         this.goBack();
       })
       .catch((error) => {
