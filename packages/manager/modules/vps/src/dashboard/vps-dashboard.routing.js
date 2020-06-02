@@ -1,8 +1,12 @@
 import assign from 'lodash/assign';
+import filter from 'lodash/filter';
 import get from 'lodash/get';
 import head from 'lodash/head';
 
-import { DASHBOARD_FEATURES, VPS_2014_AUTO_MIGRATION_DATE } from './vps-dashboard.constants';
+import {
+  DASHBOARD_FEATURES,
+  VPS_2014_AUTO_MIGRATION_DATE,
+} from './vps-dashboard.constants';
 import { MIGRATION_STATUS } from '../migration/vps-migration.constants';
 import component from './vps-dashboard.component';
 
@@ -78,6 +82,11 @@ export default /* @ngInject */ ($stateProvider) => {
       vpsMigrationTask: /* @ngInject */ (serviceName, VpsTaskService) =>
         VpsTaskService.getPendingTasks(serviceName, 'migrate').then((tasks) =>
           head(tasks),
+        ),
+
+      vpsMigrationTaskInError: /* @ngInject */ (serviceName, VpsService) =>
+        VpsService.getTaskInError(serviceName).then((tasks) =>
+          head(filter(tasks, { type: 'migrate' })),
         ),
 
       configurationTile: /* @ngInject */ (

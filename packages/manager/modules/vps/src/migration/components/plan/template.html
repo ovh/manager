@@ -104,6 +104,10 @@
                     required
                 >
                 </oui-calendar>
+                <strong
+                    data-ng-if="$ctrl.scheduleDate"
+                    data-ng-bind="$ctrl.scheduleDate | date: 'longDate'"
+                ></strong>
             </oui-field>
             <oui-field
                 data-size="m"

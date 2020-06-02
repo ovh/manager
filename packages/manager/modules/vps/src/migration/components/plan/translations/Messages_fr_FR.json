@@ -14,7 +14,7 @@
   "vps_migration_plan_date_required": "Veuillez sélectionner la date",
   "vps_migration_plan_time_required": "Veuillez sélectionner l'heure",
   "vps_migration_plan_save_next": "Enregistrer et suivant",
-  "vps_migration_plan_success": "La migration de votre VPS est prévu",
-  "vps_migration_plan_success_with_date": "La migration de votre VPS est prévu le {{date}} à {{time}}",
+  "vps_migration_plan_success": "La migration de votre VPS est prévue",
+  "vps_migration_plan_success_with_date": "La migration de votre VPS est prévue le {{date}} à {{time}}",
   "vps_migration_plan_error": "Échec de la planification de la migration VPS: {{message}}"
 }

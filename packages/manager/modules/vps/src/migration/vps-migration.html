@@ -11,12 +11,10 @@
         </div>
         <p data-ng-bind-html=":: 'vps_migration_description1' | translate: {
             cutoffDate: $ctrl.cutoffDate,
-            autoMigrationDate: $ctrl.autoMigrationDate
+            autoMigrationDate: $ctrl.autoMigrationDate,
+            rangeLink: $ctrl.NEW_RANGE_LINK
         }"></p>
-        <p
-            data-ng-bind-html=":: 'vps_migration_description2' | translate: { rangeLink: $ctrl.NEW_RANGE_LINK }"
-        ></p>
-        <b><span data-translate="vps_migration_description4"></span></b>
+        <b class="d-block mb-3" data-translate="vps_migration_description4"></b>
         <p data-translate="vps_migration_description5"></p>
     </div>
     <oui-message data-type="info" class="migration-info">
@@ -58,7 +56,7 @@
             data-sortable
         >
             <div>
-                <b><span data-ng-bind="$row.migrationDescription"></span></b>
+                <b data-ng-bind="$row.migrationDescription"></b>
                 <br />
                 <button
                     type="button"
@@ -90,7 +88,7 @@
         >
             <span
                 data-ng-if="$row.migration.date"
-                data-ng-bind="$row.migration.date | date:'mediumDate'"
+                data-ng-bind="$row.migration.date | date:'medium'"
             ></span>
             <span data-ng-if="!$row.migration.date">-</span>
         </oui-column>

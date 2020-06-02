@@ -2,7 +2,6 @@
   "vps_migration_title": "Migracja VPS",
   "vps_migration_button": "Zaprogramuj migrację",
   "vps_migration_description1": "Otrzymałeś komunikat informujący, że ważne jest, aby migracja VPS została przeprowadzona <b>przed {{data}}</b>. Po tym terminie, bez konieczności podejmowania działań po Twojej stronie, Twoja maszyna zostanie automatycznie wyłączona, a zawarte w niej dane zostaną usunięte bez możliwości ich odzyskania.",
-  "vps_migration_description2": "Twój obecny VPS zostanie zastąpiony maszyną z naszej <a href='{{rangeLink}}' class='oui-link oui-link_icon' rel='noopener' target='_blank'>nowej gamy<span class='oui-icon oui-icon-external_link' aria-hidden='true'></span></a>, w niższej lub równoważnej cenie.",
   "vps_migration_description4": "Opcje powiązane z VPS zostaną automatycznie przeniesione na nową maszynę. Zapisane kopie zapasowe nie zostaną jednak zachowane.",
   "vps_migration_description5": "Aby przeprowadzić migrację, zaprogramuj datę i godzinę. Migracja zostanie wówczas przeprowadzona automatycznie.",
   "vps_migration_table_status": "Status",
