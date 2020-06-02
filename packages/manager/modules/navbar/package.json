@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-navbar",
-  "version": "3.1.6",
+  "version": "3.2.0",
   "private": true,
   "description": "A navbar component shared across all control panel.",
   "homepage": "https://github.com/ovh/manager/tree/master/packages/manager/modules/navbar#readme",
@@ -41,7 +41,7 @@
     "@ovh-ux/manager-account-sidebar": "^0.0.0 || ^1.0.0",
     "@ovh-ux/manager-config": "^0.4.0",
     "@ovh-ux/manager-core": "^8.0.0 || ^9.0.0",
-    "@ovh-ux/ng-at-internet": "^5.0.0",
+    "@ovh-ux/ng-at-internet": "^5.0.1",
     "@ovh-ux/ng-ovh-sso-auth": "^4.2.3",
     "@ovh-ux/ng-ovh-user-pref": "^2.0.0",
     "@ovh-ux/ng-translate-async-loader": "^2.1.0",

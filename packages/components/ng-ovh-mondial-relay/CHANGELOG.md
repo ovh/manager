@@ -1,3 +1,13 @@
+## [7.0.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-mondial-relay@7.0.0...@ovh-ux/ng-ovh-mondial-relay@7.0.1) (2020-06-02)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 405] ([70ed18d](https://github.com/ovh/manager/commit/70ed18d223a1e23f8f792a235e51bdfb27cd95e3))
+* **i18n:** add missing translations [CDS 406] ([07d8386](https://github.com/ovh/manager/commit/07d8386a3b64403d4c838db7b57731837c9f82a1))
+
+
+
 # [7.0.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-mondial-relay@6.0.3...@ovh-ux/ng-ovh-mondial-relay@7.0.0) (2020-05-13)
 
 

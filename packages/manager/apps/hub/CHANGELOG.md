@@ -1,3 +1,21 @@
+# [1.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@1.3.0...@ovh-ux/manager-hub-app@1.4.0) (2020-06-02)
+
+
+### Bug Fixes
+
+* remove ui consistency ([#3029](https://github.com/ovh/manager/issues/3029)) ([34be0be](https://github.com/ovh/manager/commit/34be0bea216d575254017265d5650dace12ae582))
+* **i18n:** add missing translations [CDS 408] ([5cf4373](https://github.com/ovh/manager/commit/5cf43736425444537540366fe32340cd0561e368))
+* fix styles to match ui specs ([43132ff](https://github.com/ovh/manager/commit/43132ff4d6b32375deeb779621740b04cafb67c2))
+
+
+### Features
+
+* **dashboard:** inject support data from hub aapi ([aa41763](https://github.com/ovh/manager/commit/aa41763a26838afe2df0b801f0034422a19f6aa8))
+* **order-dashboard:** display assistance request ([d93683a](https://github.com/ovh/manager/commit/d93683a653db79b39365323d6fec6c60f155c022))
+* add ovhcloud light theme imports ([24d56fb](https://github.com/ovh/manager/commit/24d56fb62a949e01de5f9929c0fe53239c889a59))
+
+
+
 # [1.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@1.2.0...@ovh-ux/manager-hub-app@1.3.0) (2020-05-13)
 
 

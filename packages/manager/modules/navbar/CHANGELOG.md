@@ -1,3 +1,18 @@
+# [3.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-navbar@3.1.6...@ovh-ux/manager-navbar@3.2.0) (2020-06-02)
+
+
+### Bug Fixes
+
+* fix styles to match ui specs ([43132ff](https://github.com/ovh/manager/commit/43132ff4d6b32375deeb779621740b04cafb67c2))
+* **navbar:** notification text not visible in dark mode ([#2732](https://github.com/ovh/manager/issues/2732)) ([524bae6](https://github.com/ovh/manager/commit/524bae63b42b78dbbbd5e2c48e4bd42950d9af7d))
+
+
+### Features
+
+* **sidebar:** apply ovhcloud light theme ([cf38dc9](https://github.com/ovh/manager/commit/cf38dc9e5a788062f22fdbc1432aa36f0edbb29a))
+
+
+
 ## [3.1.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-navbar@3.1.5...@ovh-ux/manager-navbar@3.1.6) (2020-05-13)
 
 

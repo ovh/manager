@@ -1,3 +1,19 @@
+# [1.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@1.1.1...@ovh-ux/manager-vps@1.2.0) (2020-06-02)
+
+
+### Bug Fixes
+
+* remove ui consistency ([#3029](https://github.com/ovh/manager/issues/3029)) ([34be0be](https://github.com/ovh/manager/commit/34be0bea216d575254017265d5650dace12ae582))
+* **i18n:** add missing translations [CDS 415] ([206c5be](https://github.com/ovh/manager/commit/206c5be156e462a8c657346d682eeb764dae5b7f))
+* **i18n:** add missing translations [CDS 416] ([c5054f8](https://github.com/ovh/manager/commit/c5054f82aade5e00949867f247d2629763859636))
+
+
+### Features
+
+* add ovhcloud light theme imports ([24d56fb](https://github.com/ovh/manager/commit/24d56fb62a949e01de5f9929c0fe53239c889a59))
+
+
+
 ## [1.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@1.1.0...@ovh-ux/manager-vps@1.1.1) (2020-05-15)
 
 

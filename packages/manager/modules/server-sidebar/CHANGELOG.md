@@ -1,3 +1,18 @@
+# [1.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@1.4.0...@ovh-ux/manager-server-sidebar@1.5.0) (2020-06-02)
+
+
+### Bug Fixes
+
+* remove ui consistency ([#3029](https://github.com/ovh/manager/issues/3029)) ([34be0be](https://github.com/ovh/manager/commit/34be0bea216d575254017265d5650dace12ae582))
+* **server-sidebar:** fix ms-Icon hover effect ([#2983](https://github.com/ovh/manager/issues/2983)) ([4bb32cc](https://github.com/ovh/manager/commit/4bb32ccbd3e7d0e09beb4f60701d3256d7ae7727))
+
+
+### Features
+
+* **sidebar:** apply ovhcloud light theme ([cf38dc9](https://github.com/ovh/manager/commit/cf38dc9e5a788062f22fdbc1432aa36f0edbb29a))
+
+
+
 # [1.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@1.3.8...@ovh-ux/manager-server-sidebar@1.4.0) (2020-05-14)
 
 

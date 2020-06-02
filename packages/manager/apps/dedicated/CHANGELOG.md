@@ -1,3 +1,24 @@
+# [12.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@12.4.3...@ovh-ux/manager-dedicated@12.5.0) (2020-06-02)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 423] ([23a5258](https://github.com/ovh/manager/commit/23a525814da061793ec907b6939e48cca1292d5b))
+* **translations:** clean translations files ([#3038](https://github.com/ovh/manager/issues/3038)) ([57040ad](https://github.com/ovh/manager/commit/57040adfcac601cbf48f27fb804decfd60800797))
+* remove ui consistency ([#3029](https://github.com/ovh/manager/issues/3029)) ([34be0be](https://github.com/ovh/manager/commit/34be0bea216d575254017265d5650dace12ae582))
+* **i18n:** add missing translations [CDS 409] ([86adc04](https://github.com/ovh/manager/commit/86adc0469a44a243bb3fb61296b284245a3b1b6e))
+* **server-sidebar:** fix ms-Icon hover effect ([#2983](https://github.com/ovh/manager/issues/2983)) ([4bb32cc](https://github.com/ovh/manager/commit/4bb32ccbd3e7d0e09beb4f60701d3256d7ae7727))
+
+
+### Features
+
+* **billing.confirm-terminate:** revamp termination form ([faf2755](https://github.com/ovh/manager/commit/faf2755a34c41691f55f11f1ea8ca463cb9bf550))
+* add ovhcloud light theme imports ([24d56fb](https://github.com/ovh/manager/commit/24d56fb62a949e01de5f9929c0fe53239c889a59))
+* **account.contacts:** sort services consistently by name and category ([#2783](https://github.com/ovh/manager/issues/2783)) ([aa19a43](https://github.com/ovh/manager/commit/aa19a43995da924336288357202585604107999e))
+* **sidebar:** apply ovhcloud light theme ([cf38dc9](https://github.com/ovh/manager/commit/cf38dc9e5a788062f22fdbc1432aa36f0edbb29a))
+
+
+
 ## [12.4.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@12.4.2...@ovh-ux/manager-dedicated@12.4.3) (2020-05-18)
 
 

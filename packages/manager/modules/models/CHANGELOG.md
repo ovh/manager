@@ -1,3 +1,12 @@
+# [1.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-models@1.1.0...@ovh-ux/manager-models@1.2.0) (2020-06-02)
+
+
+### Features
+
+* **billing.confirm-terminate:** revamp termination form ([faf2755](https://github.com/ovh/manager/commit/faf2755a34c41691f55f11f1ea8ca463cb9bf550))
+
+
+
 # [1.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-models@1.0.1...@ovh-ux/manager-models@1.1.0) (2020-04-20)
 
 

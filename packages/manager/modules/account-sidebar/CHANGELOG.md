@@ -1,3 +1,12 @@
+## [1.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-sidebar@1.3.1...@ovh-ux/manager-account-sidebar@1.3.2) (2020-06-02)
+
+
+### Bug Fixes
+
+* fix styles to match ui specs ([43132ff](https://github.com/ovh/manager/commit/43132ff4d6b32375deeb779621740b04cafb67c2))
+
+
+
 ## [1.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-sidebar@1.3.0...@ovh-ux/manager-account-sidebar@1.3.1) (2020-04-16)
 
 

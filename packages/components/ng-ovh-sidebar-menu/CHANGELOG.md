@@ -1,3 +1,31 @@
+# [9.1.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-sidebar-menu@9.0.0...@ovh-ux/ng-ovh-sidebar-menu@9.1.0) (2020-06-02)
+
+
+### Bug Fixes
+
+* remove ui consistency ([#3029](https://github.com/ovh/manager/issues/3029)) ([34be0be](https://github.com/ovh/manager/commit/34be0bea216d575254017265d5650dace12ae582))
+* **i18n:** add missing translations [CDS 409] ([86adc04](https://github.com/ovh/manager/commit/86adc0469a44a243bb3fb61296b284245a3b1b6e))
+* **provider:** consider parent to get path item ([#115](https://github.com/ovh/manager/issues/115)) ([c1b7f7a](https://github.com/ovh/manager/commit/c1b7f7ad1fd5de9b03f63ebe9c1e11027fc3204d))
+* prefix correctly controller ([7ea016b](https://github.com/ovh/manager/commit/7ea016bc9698e75e7bdabd2487d0effd761535f8))
+* remove empty item (no link) ([1398ec3](https://github.com/ovh/manager/commit/1398ec3a08d98f4e4472b3a5d49b75312953a825))
+* set group scroll content max height ([#49](https://github.com/ovh/manager/issues/49)) ([fb929aa](https://github.com/ovh/manager/commit/fb929aa1e7fc4bfd09918796e9a09239aa054190))
+* set overflow hidden to level 3 ([f6257b4](https://github.com/ovh/manager/commit/f6257b4b03ca1527b3a2505cd191c39e1554828d))
+* turn label visible when displaying the error retry button ([#90](https://github.com/ovh/manager/issues/90)) ([241af10](https://github.com/ovh/manager/commit/241af10f180042a1398e28167537d5c09741f0ff)), closes [#89](https://github.com/ovh/manager/issues/89)
+* **bower:** add bowerrc file to use the right registry ([6ad21bb](https://github.com/ovh/manager/commit/6ad21bb1c2d51275900d96ab9e78b896db0095d3))
+* **provider:** close automatic menu item on change state ([2248c0f](https://github.com/ovh/manager/commit/2248c0f36b55b31af8cd8bcdd2d0e88fef25bb39))
+
+
+### Features
+
+* allow array of states in loadOnState ([#78](https://github.com/ovh/manager/issues/78)) ([790cb5f](https://github.com/ovh/manager/commit/790cb5fb15737eaf7eea380a5416a0e20fa54413))
+
+
+### Performance Improvements
+
+* **ng-ovh-sidebar-menu:** replace lodash with lodash-es ([#3042](https://github.com/ovh/manager/issues/3042)) ([d5b98ea](https://github.com/ovh/manager/commit/d5b98ea21a19505df2cea923416908d9650ff793))
+
+
+
 # [9.0.0](https://github.com/ovh-ux/ng-ovh-sidebar-menu/compare/v8.5.1...v9.0.0) (2020-04-24)
 
 

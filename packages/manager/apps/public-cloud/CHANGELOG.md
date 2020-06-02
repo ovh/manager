@@ -1,3 +1,19 @@
+# [3.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@3.0.1...@ovh-ux/manager-public-cloud@3.1.0) (2020-06-02)
+
+
+### Bug Fixes
+
+* **public-cloud:** fix sidebar style ([a731ba8](https://github.com/ovh/manager/commit/a731ba8cef9f1ee82cc6893df60b870ccd08e08d))
+* remove ui consistency ([#3029](https://github.com/ovh/manager/issues/3029)) ([34be0be](https://github.com/ovh/manager/commit/34be0bea216d575254017265d5650dace12ae582))
+* **navbar:** notification text not visible in dark mode ([#2732](https://github.com/ovh/manager/issues/2732)) ([524bae6](https://github.com/ovh/manager/commit/524bae63b42b78dbbbd5e2c48e4bd42950d9af7d))
+
+
+### Features
+
+* add ovhcloud light theme imports ([24d56fb](https://github.com/ovh/manager/commit/24d56fb62a949e01de5f9929c0fe53239c889a59))
+
+
+
 ## [3.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@3.0.0...@ovh-ux/manager-public-cloud@3.0.1) (2020-04-15)
 
 
