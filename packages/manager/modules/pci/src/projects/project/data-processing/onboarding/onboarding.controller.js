@@ -10,12 +10,14 @@ export default class {
     $q,
     dataProcessingService,
     PciProjectLabsService,
+    atInternet,
   ) {
     this.$translate = $translate;
     this.$state = $state;
     this.$q = $q;
     this.dataProcessingService = dataProcessingService;
     this.pciProjectLabsService = PciProjectLabsService;
+    this.atInternet = atInternet;
     this.isActivated = false;
     this.agreedLab = false;
   }
@@ -38,6 +40,9 @@ export default class {
       ],
       [],
     );
+    this.atInternet.trackPage({
+      name: 'public-cloud::pci::projects::project::data-processing::onboarding',
+    });
   }
 
   acceptLab(accepted) {
@@ -45,6 +50,11 @@ export default class {
   }
 
   authorizeService() {
+    this.atInternet.trackClick({
+      name:
+        'public-cloud::pci::projects::project::data-processing::onboarding::first-job',
+      type: 'action',
+    });
     let labPromise;
     if (this.agreedLab) {
       labPromise = this.pciProjectLabsService.activateLab(
@@ -58,6 +68,13 @@ export default class {
       this.dataProcessingService.authorize(this.projectId).then(() => {
         this.goBack();
       });
+    });
+  }
+
+  onGuideClick(guide) {
+    this.atInternet.trackClick({
+      name: guide.tracker,
+      type: 'action',
     });
   }
 }
