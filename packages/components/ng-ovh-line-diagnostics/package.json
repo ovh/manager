@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-line-diagnostics",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "description": "Module to diagnose OVH telecoms lines.",
   "keywords": [
     "angularjs",
@@ -43,7 +43,7 @@
     "@ovh-ux/component-rollup-config": "^7.0.0"
   },
   "peerDependencies": {
-    "@ovh-ux/ng-at-internet": "^5.0.0",
+    "@ovh-ux/ng-at-internet": "^5.0.1",
     "@ovh-ux/ng-ovh-telecom-universe-components": "^5.0.0",
     "@ovh-ux/ng-translate-async-loader": "^2.1.0",
     "@uirouter/angularjs": "^1.0.22",

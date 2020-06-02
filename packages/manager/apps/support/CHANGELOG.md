@@ -1,3 +1,12 @@
+## [1.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-support-app@1.0.0...@ovh-ux/manager-support-app@1.0.1) (2020-06-02)
+
+
+### Bug Fixes
+
+* **deps:** update dependencies with latest version ([#3057](https://github.com/ovh/manager/issues/3057)) ([24d06ad](https://github.com/ovh/manager/commit/24d06addfaab0716e725242beae2d3d92feb8856))
+
+
+
 # [1.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-support-app@0.1.4...@ovh-ux/manager-support-app@1.0.0) (2020-04-01)
 
 
