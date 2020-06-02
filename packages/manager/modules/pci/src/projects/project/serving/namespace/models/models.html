@@ -1,4 +1,4 @@
-<div>
+<div data-ui-view>
     <cui-message-container
         data-messages="$ctrl.messages"
     ></cui-message-container>
@@ -90,6 +90,11 @@
         >
         </oui-column>
         <oui-action-menu data-align="end" data-compact>
+            <oui-action-menu-item data-on-click="$ctrl.details($row.id)">
+                <span
+                    data-translate="pci_projects_project_serving_namespace_models_details"
+                ></span>
+            </oui-action-menu-item>
             <oui-action-menu-item data-on-click="$ctrl.generateToken($row.id)">
                 <span
                     data-translate="pci_projects_project_serving_namespace_models_gen_token"

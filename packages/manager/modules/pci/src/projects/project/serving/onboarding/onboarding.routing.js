@@ -4,14 +4,15 @@ export default /* @ngInject */ ($stateProvider) => {
     component: 'pciProjectServingOnboarding',
 
     redirectTo: (transition) =>
-      Promise.all([transition.injector().getAsync('namespaces')]).then(
-        ([namespaces]) => {
+      transition
+        .injector()
+        .getAsync('namespaces')
+        .then(([namespaces]) => {
           if (namespaces.length > 0) {
             return { state: 'pci.projects.project.serving' };
           }
           return false;
-        },
-      ),
+        }),
 
     resolve: {
       breadcrumb: () => null, // Hide breadcrumb

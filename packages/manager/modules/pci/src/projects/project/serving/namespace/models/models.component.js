@@ -12,6 +12,7 @@ export default {
     models: '<',
     projectId: '<',
     project: '<',
+    details: '<',
   },
   template,
   controller,
