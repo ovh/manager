@@ -28,6 +28,7 @@ export default {
     tabSummary: '<',
     vps: '<',
     vpsMigrationTask: '<',
+    vpsMigrationTaskInError: '<',
     vpsUpgradeTask: '<',
   },
   controller,
