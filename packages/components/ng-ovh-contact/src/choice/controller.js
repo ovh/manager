@@ -1,9 +1,4 @@
-import defaults from 'lodash/defaults';
-import filter from 'lodash/filter';
-import find from 'lodash/find';
-import head from 'lodash/head';
-import isFunction from 'lodash/isFunction';
-import sortBy from 'lodash/sortBy';
+import { defaults, filter, find, head, isFunction, sortBy } from 'lodash-es';
 
 export default /* @ngInject */ function($q, ovhContact) {
   const self = this;

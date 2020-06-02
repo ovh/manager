@@ -2,23 +2,25 @@ import angular from 'angular';
 import '@uirouter/angularjs';
 import 'angular-ui-bootstrap';
 
-import forEach from 'lodash/forEach';
-import filter from 'lodash/filter';
-import get from 'lodash/get';
-import initial from 'lodash/initial';
-import intersection from 'lodash/intersection';
-import isArray from 'lodash/isArray';
-import isFunction from 'lodash/isFunction';
-import isObject from 'lodash/isObject';
-import isString from 'lodash/isString';
-import kebabCase from 'lodash/kebabCase';
-import last from 'lodash/last';
-import map from 'lodash/map';
-import reduce from 'lodash/reduce';
-import set from 'lodash/set';
-import size from 'lodash/size';
-import startsWith from 'lodash/startsWith';
-import xor from 'lodash/xor';
+import {
+  forEach,
+  filter,
+  get,
+  initial,
+  intersection,
+  isArray,
+  isFunction,
+  isObject,
+  isString,
+  kebabCase,
+  last,
+  map,
+  reduce,
+  set,
+  size,
+  startsWith,
+  xor,
+} from 'lodash-es';
 
 import ouiModalLayoutModule from './oui-modal';
 import OuiModalLayout from './oui-modal/layout.class';

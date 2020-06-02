@@ -27,8 +27,3 @@
 ### BREAKING CHANGES
 
 * init @ovh-ux/manager-models module
-
-Signed-off-by: Marie JONES <marie.jones@corp.ovh.com>
-
-
-

@@ -1,4 +1,4 @@
-@import (less) 'ovh-ui-kit-bs/dist/ovh-ui-kit-bs.css';
+@import (less) 'ovh-ui-kit-bs/dist/ovh-ui-kit-bs.min.css';
 @import 'bootstrap/less/mixins.less';
 @import 'ovh-ui-kit/packages/oui/stylekit';
 
@@ -199,56 +199,6 @@ html {
 @media screen and (min-width: @v6-min-with) {
   .container {
     max-width: 730px;
-  }
-}
-
-/*
- * Tabs
- */
-
-.tab-container {
-  background-color: @TopTabBackground;
-  box-shadow: inset 0 -4px 7px -5px #bbb;
-
-  .nav.nav-tabs {
-    border-bottom: 0;
-    // overflow: hidden;        // Dont put overflow, coz it hide more-dropdown
-    > li {
-      a {
-        color: @TopNavBackground;
-        display: inline-block;
-        text-align: center;
-        padding: 15px 25px;
-        border: 0;
-        font-size: 12px;
-
-        i {
-          display: block;
-          font-size: 30px;
-        }
-      }
-
-      &.disabled {
-        opacity: 0.3;
-      }
-
-      &.active {
-        background-color: white;
-        box-shadow: 0 -5px 7px #bbb;
-
-        a {
-          border: 0;
-          background-color: white;
-          border-radius: 0;
-          color: @UNIVERS_SECONDARY;
-        }
-      }
-
-      &:not(.disabled) a:hover {
-        background: transparent;
-        color: @UNIVERS_SECONDARY;
-      }
-    }
   }
 }
 

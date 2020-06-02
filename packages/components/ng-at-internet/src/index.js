@@ -1,5 +1,5 @@
 import angular from 'angular';
-import set from 'lodash/set';
+import { set } from 'lodash-es';
 
 import { AT_INTERNET_CUSTOM_VARS } from './constants';
 import { atInternetClickDirective, trackOnDirective } from './directive';

@@ -2,7 +2,8 @@ import includes from 'lodash/includes';
 import map from 'lodash/map';
 import size from 'lodash/size';
 
-class UserContractsAcceptModalCtrl {
+export default class UserContractsAcceptModalCtrl {
+  /* @ngInject */
   constructor($scope, $translate, DucUserContractService) {
     this.$scope = $scope;
     this.DucUserContractService = DucUserContractService;
@@ -62,7 +63,3 @@ class UserContractsAcceptModalCtrl {
     );
   }
 }
-
-angular
-  .module('App')
-  .controller('UserContractsAcceptModalCtrl', UserContractsAcceptModalCtrl);

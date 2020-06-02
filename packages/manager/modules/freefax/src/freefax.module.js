@@ -10,7 +10,7 @@ import component from './freefaxes.component';
 import routing from './freefaxes.routing';
 
 import 'ovh-ui-kit/dist/oui.css';
-import 'ovh-ui-kit-bs/dist/ovh-ui-kit-bs.css';
+import 'ovh-ui-kit-bs/dist/ovh-ui-kit-bs.min.css';
 import './freefax/freefax.scss';
 
 const moduleName = 'ovhManagerFreeFaxes';

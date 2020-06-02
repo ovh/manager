@@ -1,6 +1,7 @@
 import filter from 'lodash/filter';
 import map from 'lodash/map';
 import uniq from 'lodash/uniq';
+import sortBy from 'lodash/sortBy';
 
 import { BillingService } from '@ovh-ux/manager-models';
 
@@ -50,7 +51,9 @@ export default class {
         const availableServices = filter(services, (service) =>
           AVAILABLE_SERVICES.includes(service.category),
         );
-        return availableServices.map((service) => new BillingService(service));
+        return sortBy(availableServices, ['serviceName', 'category']).map(
+          (service) => new BillingService(service),
+        );
       });
   }
 

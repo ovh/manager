@@ -5,15 +5,18 @@
     </div>
 
     <div class="telecom-section-header" data-ng-if="!LineCtrl.loading.init">
-        <header class="page-header" role="banner">
-            <!-- GROUP TITLE -->
-            <tuc-editable-service-name
-                data-tuc-editable-service-name-title="LineCtrl.line.getDisplayedName()"
-                data-tuc-editable-service-name-title-on-save="LineCtrl.lineNameSave"
-                data-tuc-editable-service-name-service-name="LineCtrl.line.serviceName"
-                data-maxlength="25"
-            >
-            </tuc-editable-service-name>
+        <header class="oui-page-header">
+            <div class="oui-page-header__container">
+                <div class="oui-page-header__content">
+                    <tuc-editable-service-name
+                        data-tuc-editable-service-name-title="LineCtrl.line.getDisplayedName()"
+                        data-tuc-editable-service-name-title-on-save="LineCtrl.lineNameSave"
+                        data-tuc-editable-service-name-service-name="LineCtrl.line.serviceName"
+                        data-maxlength="25"
+                    >
+                    </tuc-editable-service-name>
+                </div>
+            </div>
         </header>
 
         <!-- LINE ACTIONS -->

@@ -1,0 +1,8 @@
+{
+  "sidebar_menu": "Menú",
+  "sidebar_menu_order_actions": "Contratar",
+  "sidebar_menu_search": "Buscar",
+  "sidebar_menu_search_no_results": "No se han encontrado resultados.",
+  "sidebar_menu_search_loading": "Buscando...",
+  "sidebar_menu_error_retry": "Volver a intentarlo"
+}

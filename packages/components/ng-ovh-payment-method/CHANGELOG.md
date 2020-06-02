@@ -40,8 +40,6 @@
 
 * **components.choice:** the two-way binded model will now store an object the representing default payment method, instead of just setting a boolean value
 
-Signed-off-by: Jérémy De-Cesare <jeremy.de-cesare@corp.ovh.com>
-
 
 
 # [5.2.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-payment-method@5.1.1...@ovh-ux/ng-ovh-payment-method@5.2.0) (2019-12-20)

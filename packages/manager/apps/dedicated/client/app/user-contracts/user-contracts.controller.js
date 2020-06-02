@@ -1,6 +1,7 @@
 import includes from 'lodash/includes';
 
-class UserContractsCtrl {
+export default class UserContractsCtrl {
+  /* @ngInject */
   constructor($scope, $timeout, coreConfig, DucUserContractService, User) {
     this.$scope = $scope;
     this.$timeout = $timeout;
@@ -29,5 +30,3 @@ class UserContractsCtrl {
     }
   }
 }
-
-angular.module('App').controller('UserContractsCtrl', UserContractsCtrl);

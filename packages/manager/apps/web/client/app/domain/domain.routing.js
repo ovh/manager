@@ -79,6 +79,7 @@ export default /* @ngInject */ ($stateProvider) => {
     reloadOnSearch: false,
     redirectTo: 'app.domain.alldom.information',
     resolve: {
+      allDom: /* @ngInject */ ($transition$) => $transition$.params().allDom,
       associatedHostings: /* @ngInject */ (Domain, domainName) =>
         Domain.getAssociatedHosting(domainName),
       currentSection: () => 'domain',

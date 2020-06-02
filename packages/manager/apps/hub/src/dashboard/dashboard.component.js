@@ -16,6 +16,7 @@ export default {
     refreshBillingServices: '<',
     refreshOrder: '<',
     services: '<',
+    tickets: '<',
     trackingPrefix: '<',
   },
   template,

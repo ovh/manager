@@ -1,5 +1,4 @@
-import merge from 'lodash/merge';
-import snakeCase from 'lodash/snakeCase';
+import { merge, snakeCase } from 'lodash-es';
 
 import OvhPaymentMethod from '../../payment-method.class';
 import OvhPaymentMean from './payment-mean.class';

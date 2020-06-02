@@ -59,10 +59,45 @@ export default /* @ngInject */ ($stateProvider) => {
           ),
       pendingTasks: /* @ngInject */ (HostingTask, serviceName) =>
         HostingTask.getPending(serviceName).catch(() => []),
+      privateDatabasesIds: /* @ngInject */ (HostingDatabase, serviceName) =>
+        HostingDatabase.getPrivateDatabaseIds(serviceName).catch(() => []),
+      privateDatabasesDetachable: /* @ngInject */ (
+        $q,
+        ovhManagerProductOffersDetachService,
+        PrivateDatabase,
+        privateDatabasesIds,
+      ) =>
+        $q
+          .all(
+            privateDatabasesIds.map((id) =>
+              PrivateDatabase.getServiceInfos(id).catch(() => null),
+            ),
+          )
+          .then((privateDatabasesInformation) =>
+            privateDatabasesInformation
+              .filter((information) => information !== null)
+              .flatten(),
+          )
+          .then((privateDatabasesInformation) =>
+            $q.all(
+              privateDatabasesInformation.map(({ domain, serviceId }) =>
+                ovhManagerProductOffersDetachService
+                  .getAvailableDetachPlancodes(serviceId)
+                  .catch(() => [])
+                  .then((plancodes) => ({
+                    optionId: domain,
+                    serviceId,
+                    detachPlancodes: plancodes,
+                  })),
+              ),
+            ),
+          ),
       serviceName: /* @ngInject */ ($transition$) =>
         $transition$.params().productId,
       goToDetachEmail: /* @ngInject */ ($state) => () =>
         $state.go('app.hosting.detachEmail'),
+      goToDetachPrivateDB: /* @ngInject */ ($state) => () =>
+        $state.go('app.hosting.database.detachPrivate'),
       goToHosting: /* @ngInject */ ($state, $timeout, Alerter) => (
         message = false,
         type = 'success',

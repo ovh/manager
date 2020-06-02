@@ -10,8 +10,6 @@
 
 * module is now named as `ngUiRouterTitle
 
-Signed-off-by: Antoine Leblanc <antoine.leblanc@corp.ovh.com>
-
 
 
 # [2.0.0](https://github.com/ovh-ux/ng-uirouter-title/compare/v2.0.0-beta.3...v2.0.0) (2019-10-22)

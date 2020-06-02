@@ -42,8 +42,6 @@
   "overTheBox_action_update_label": "Update",
   "overTheBox_action_launch_success": "The remote action was successfully sent to your device. This action could take a few minutes. ",
   "overTheBox_action_launch_error": "Your device did not execute the remote action. Please start again. ",
-  "overTheBox_action_upgrade_title": "Update applications ",
-  "overTheBox_action_upgrade_label": "Update your OverTheBox applications ",
   "overTheBox_action_sysupgrade_title": "Update the system",
   "overTheBox_action_sysupgrade_label": "Reinstall and restart your machine using a backup of your configuration.",
   "overTheBox_graph_filter_last5min": "The last five minutes",

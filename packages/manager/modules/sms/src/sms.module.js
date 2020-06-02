@@ -9,7 +9,7 @@ import routing from './sms.routing';
 import component from './sms.component';
 
 import 'ovh-ui-kit/dist/oui.css';
-import 'ovh-ui-kit-bs/dist/ovh-ui-kit-bs.css';
+import 'ovh-ui-kit-bs/dist/ovh-ui-kit-bs.min.css';
 
 const moduleName = 'ovhManagerSms';
 

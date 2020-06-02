@@ -1,4 +1,4 @@
-import get from 'lodash/get';
+import { get } from 'lodash-es';
 
 import { IBAN_BIC_RULES } from './payment-method.constants';
 

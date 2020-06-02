@@ -1,3 +1,6 @@
+import get from 'lodash/get';
+/* eslint-disable import/extensions */
+import TranslateService from '@ovh-ux/manager-core/src/translate/translate.service';
 import Workflow from './product-offers-workflow.class';
 
 /**
@@ -9,8 +12,9 @@ export default class ServicesWorkflow extends Workflow {
    * @param {Object} $translate      AngularJS provider
    * @param {Object} workflowOptions Specific options
    * for this workflow, must contains the following values:
+   * - {optionId} (Optional): Option id to display information about termination date if needed
    * - {serviceId}: Id of the service on which to detach an option
-   * - {detachPlancode}: Item representing the option to detach
+   * - {detachPlancodes}: Item representing the option to detach
    * - {durationToUse}: Duration to use, will override the default pricing
    * duration.
    * @param {Object} DetachService   Service to handle request to perform a
@@ -74,6 +78,33 @@ export default class ServicesWorkflow extends Workflow {
   }
 
   /**
+   * Determines if termination details must be displayed, if pricing has extra fees
+   * @param {Object} pricing - Pricing
+   * @return {boolean}
+   */
+  static hasTerminationDetails(pricing) {
+    return pricing.hasExtraPricing() && !pricing.extraPricing.isFree();
+  }
+
+  /**
+   * Returns the termination date formatted to locale
+   * @param {Object} pricing - Pricing
+   * @param {string} locale  - Locale to use
+   * @return {boolean}
+   */
+  static getTerminationDate(pricing, locale) {
+    const bcp47language = TranslateService.convertFromOVHToBCP47(locale);
+
+    const date = new Date();
+    date.setMonth(date.getMonth() + pricing.interval);
+
+    return new Intl.DateTimeFormat(bcp47language, {
+      year: 'numeric',
+      month: 'numeric',
+    }).format(date);
+  }
+
+  /**
    * Validate the detach offer
    * Will tell to upper scope the loading state of the workflow
    * @return {Promise} Promise of the validated detach offer
@@ -81,7 +112,9 @@ export default class ServicesWorkflow extends Workflow {
   validateOffer() {
     this.updateLoadingStatus('validateOffer');
 
-    const autoPayWithPreferredPaymentMethod = !!this.defaultPaymentMethod;
+    const autoPayWithPreferredPaymentMethod =
+      !!this.defaultPaymentMethod || this.isFreePricing();
+
     let detachResult;
 
     this.validationParameters.autoPayWithPreferredPaymentMethod = autoPayWithPreferredPaymentMethod;
@@ -93,7 +126,7 @@ export default class ServicesWorkflow extends Workflow {
 
         return autoPayWithPreferredPaymentMethod
           ? this.workflowService.payDetach(
-              detachResult.orderId,
+              detachResult,
               this.defaultPaymentMethod,
             )
           : this.$q.when();
@@ -105,7 +138,10 @@ export default class ServicesWorkflow extends Workflow {
         };
 
         if (autoPayWithPreferredPaymentMethod) {
-          validatedDetach.paymentMethodLabel = this.defaultPaymentMethod.label;
+          validatedDetach.paymentMethodLabel = get(
+            this.defaultPaymentMethod,
+            'label',
+          );
         }
 
         this.onSuccess({

@@ -51,6 +51,15 @@
                 </oui-select-picker-description>
             </oui-select-picker>
         </div>
+        <p
+            class="mb-3"
+            data-ng-if="$ctrl.workflow.pricing && $ctrl.workflow.constructor.hasTerminationDetails($ctrl.workflow.pricing)"
+            data-translate="ovh_product_offers_detach_termination"
+            data-translate-values="{
+              'date': '<strong>' + $ctrl.workflow.constructor.getTerminationDate($ctrl.workflow.pricing, $ctrl.workflow.user.language),
+              'option': '<strong>' + $ctrl.workflow.optionId + '</strong>',
+            }"
+        ></p>
     </oui-step-form>
 
     <!-- Payment -->

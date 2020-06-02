@@ -1,4 +1,4 @@
-import isNull from 'lodash/isNull';
+import { isNull } from 'lodash-es';
 
 import { TYPE_INTEGRATION_ENUM } from './payment-method.constants';
 

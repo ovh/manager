@@ -8,7 +8,7 @@ import 'ovh-ui-angular';
 import component from './dashboard.component';
 
 // Styles.
-import 'ovh-ui-kit-bs/dist/ovh-ui-kit-bs.css';
+import 'ovh-ui-kit-bs/dist/ovh-ui-kit-bs.min.css';
 import './index.scss';
 
 const moduleName = 'ovhManagerCarrierSipDashboard';

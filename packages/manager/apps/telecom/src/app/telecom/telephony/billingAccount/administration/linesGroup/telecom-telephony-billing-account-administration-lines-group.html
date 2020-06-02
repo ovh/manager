@@ -48,13 +48,12 @@
                     <!-- BILLING ACCOUNT TABLE -->
 
                     <oui-datagrid
-                        data-rows="LinesGroupCtrl.billingAccounts.ids"
-                        data-row-loader="LinesGroupCtrl.fetchBillingAccountDetails($row)"
-                        page-size="5"
+                        data-rows="LinesGroupCtrl.billingAccounts.accounts"
+                        page-size="10"
                     >
                         <oui-column
                             data-title="'telephony_lines_group_telephony_group' | translate"
-                            data-property="status"
+                            data-property="description"
                             data-sortable="asc"
                             data-ng-class="{
                             'text-muted': $row.status !== 'enabled' || $row.billingAccount === LinesGroupCtrl.billingAccounts.current

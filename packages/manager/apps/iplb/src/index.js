@@ -12,7 +12,7 @@ import ovhManagerIplb from '@ovh-ux/manager-iplb';
 
 import { momentConfiguration } from './config';
 
-import 'ovh-ui-kit-bs/dist/ovh-ui-kit-bs.css';
+import 'ovh-ui-kit-bs/dist/ovh-ui-kit-bs.min.css';
 
 Environment.setRegion(__WEBPACK_REGION__);
 

@@ -4,17 +4,19 @@ import '@uirouter/angularjs';
 import 'angular-ui-bootstrap';
 import 'ovh-ui-angular';
 
-import get from 'lodash/get';
-import initial from 'lodash/initial';
-import isArray from 'lodash/isArray';
-import isFunction from 'lodash/isFunction';
-import isString from 'lodash/isString';
-import kebabCase from 'lodash/kebabCase';
-import last from 'lodash/last';
-import map from 'lodash/map';
-import merge from 'lodash/merge';
-import reduce from 'lodash/reduce';
-import set from 'lodash/set';
+import {
+  get,
+  initial,
+  isArray,
+  isFunction,
+  isString,
+  kebabCase,
+  last,
+  map,
+  merge,
+  reduce,
+  set,
+} from 'lodash-es';
 
 import { LAYOUT_NAME, WINDOW_TEMPLATE_URL } from './constants';
 

@@ -8,15 +8,18 @@
         class="telecom-section-header"
         data-ng-if="!TelecomSmsCtrl.loading.init"
     >
-        <!-- TITLE -->
-        <header class="page-header" role="banner">
-            <tuc-editable-service-name
-                data-tuc-editable-service-name-title="TelecomSmsCtrl.service.getDisplayedName()"
-                data-tuc-editable-service-name-title-on-save="TelecomSmsCtrl.serviceNameSave"
-                data-tuc-editable-service-name-service-name="TelecomSmsCtrl.service.name"
-                data-maxlength="25"
-            >
-            </tuc-editable-service-name>
+        <header class="oui-page-header">
+            <div class="oui-page-header__container">
+                <div class="oui-page-header__content">
+                    <tuc-editable-service-name
+                        data-tuc-editable-service-name-title="TelecomSmsCtrl.service.getDisplayedName()"
+                        data-tuc-editable-service-name-title-on-save="TelecomSmsCtrl.serviceNameSave"
+                        data-tuc-editable-service-name-service-name="TelecomSmsCtrl.service.name"
+                        data-maxlength="25"
+                    >
+                    </tuc-editable-service-name>
+                </div>
+            </div>
         </header>
 
         <oui-header-tabs>

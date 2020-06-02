@@ -10,7 +10,6 @@ import last from 'lodash/last';
 import map from 'lodash/map';
 import maxBy from 'lodash/maxBy';
 import reduce from 'lodash/reduce';
-import set from 'lodash/set';
 import some from 'lodash/some';
 
 import {
@@ -31,6 +30,7 @@ export default class DomainTabGeneralInformationsCtrl {
     Alerter,
     constants,
     Domain,
+    enableWebhostingLink,
     Hosting,
     HostingDomain,
     OvhApiDomainRules,
@@ -50,6 +50,7 @@ export default class DomainTabGeneralInformationsCtrl {
     this.Alerter = Alerter;
     this.WucAllDom = WucAllDom;
     this.Domain = Domain;
+    this.enableWebhostingLink = enableWebhostingLink;
     this.Hosting = Hosting;
     this.HostingDomain = HostingDomain;
     this.OvhApiDomainRules = OvhApiDomainRules;
@@ -528,19 +529,6 @@ export default class DomainTabGeneralInformationsCtrl {
       nameServers: this.nameServers,
       dnsStatus: this.dnsStatus,
     });
-  }
-
-  showWebHostingOrderWithStartOffer() {
-    const domain = angular.copy(this.domain);
-    set(
-      domain,
-      'selected.offer',
-      this.constants.HOSTING.OFFERS.START_10_M.LIST_VALUE,
-    );
-    this.$scope.setAction(
-      'webhosting-enable/domain-enable-web-hosting',
-      domain,
-    );
   }
 
   switchTheStateOfProtection() {

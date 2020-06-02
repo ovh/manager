@@ -1,68 +1,60 @@
-angular
-  .module('Billing.services')
-  .service('BillingTerminate', function BillingTerminate($q, OvhHttp) {
-    this.getServiceTypeFromPrefix = function getServiceTypeFromPrefix(
-      serviceApiPrefix,
-    ) {
-      return serviceApiPrefix
-        .replace(/^\//, '')
-        .replace(/\/\{.+$/, '')
-        .replace(/\//g, '_');
-    };
+import map from 'lodash/map';
+import { Service } from '@ovh-ux/manager-models';
+import { TERMINATION_FORM_NAME } from './confirm-terminate.constants';
 
-    this.getServiceApi = function getServiceApi(serviceId, forceRefresh) {
-      const params = {
-        rootPath: 'apiv6',
-        cache: 'billingTerminateService',
-      };
-      if (forceRefresh) {
-        delete params.cache;
-      }
-      return OvhHttp.get(`/service/${serviceId}`, params);
-    };
+export default class BillingTerminate {
+  /* @ngInject */
+  constructor(OvhApiServices, OvhHttp) {
+    this.OvhApiServices = OvhApiServices;
+    this.OvhHttp = OvhHttp;
+  }
 
-    this.getServiceInfo = function getServiceInfo(serviceId) {
-      let serviceType;
-      return this.getServiceApi(serviceId)
-        .then((serviceApi) => {
-          serviceType = this.getServiceTypeFromPrefix(serviceApi.route.path);
-          return serviceApi.route.url.replace(
-            serviceApi.resource.name,
-            window.encodeURIComponent(serviceApi.resource.name),
-          );
-        })
-        .then((url) =>
-          OvhHttp.get(`${url}/serviceInfos`, {
-            rootPath: 'apiv6',
-          }),
-        )
-        .then((serviceInfos) => ({ ...serviceInfos, serviceType }));
+  getServiceApi(serviceId, forceRefresh) {
+    const params = {
+      rootPath: 'apiv6',
+      cache: 'billingTerminateService',
     };
+    if (forceRefresh) {
+      delete params.cache;
+    }
+    return this.OvhHttp.get(`/service/${serviceId}`, params).then(
+      (service) =>
+        new Service({
+          serviceId,
+          ...service,
+        }),
+    );
+  }
 
-    this.confirmTermination = function confirmTermination(
-      serviceId,
-      serviceName,
-      futureUse,
-      reason,
-      commentary,
-      token,
-    ) {
-      return this.getServiceApi(serviceId)
-        .then((serviceApi) =>
-          serviceApi.route.url.replace(
-            serviceApi.resource.name,
-            window.encodeURIComponent(serviceApi.resource.name),
-          ),
-        )
-        .then((url) =>
-          OvhHttp.post(`${url}/confirmTermination`, {
-            rootPath: 'apiv6',
-            data: {
-              reason,
-              commentary,
-              token,
-            },
-          }),
-        );
-    };
-  });
+  confirmTermination(service, token) {
+    return this.OvhHttp.post(`${service.path}/confirmTermination`, {
+      rootPath: 'apiv6',
+      data: {
+        token,
+      },
+    });
+  }
+
+  getTerminationForm(serviceId) {
+    return this.OvhApiServices.Form()
+      .v6()
+      .get({
+        serviceId,
+        formName: TERMINATION_FORM_NAME,
+      }).$promise;
+  }
+
+  answerForm({ serviceId }, answers) {
+    return this.OvhApiServices.Form()
+      .v6()
+      .answer(
+        {
+          serviceId,
+          formName: TERMINATION_FORM_NAME,
+        },
+        {
+          answers: map(answers, (value, question) => ({ question, value })),
+        },
+      ).$promise;
+  }
+}

@@ -121,7 +121,7 @@ ovh-manager-navbar {
     &:hover,
     [aria-expanded='true'] {
       .oui-icon {
-        margin-right: 0.25rem;
+        margin-right: 0.25rem !important;
       }
 
       .navbar-small-icon {
@@ -158,8 +158,10 @@ ovh-manager-navbar {
   }
 
   .ovh-sidebar-wrapper {
-    position: absolute;
+    position: fixed;
+    top: @oui-navbar-height;
     right: 0;
+    bottom: 0;
     z-index: 99;
     overflow-x: hidden;
     transition: padding 0.1s ease-out, opacity 0.2s ease-out;

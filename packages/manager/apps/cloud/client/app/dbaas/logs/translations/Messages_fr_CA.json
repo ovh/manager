@@ -123,7 +123,6 @@
   "logs_home_cluster": "Point d'accès",
   "logs_home_service": "Nom d'utilisateur Logs Data Platform",
   "logs_home_start_date": "Date de création",
-  "logs_home_data_received": "Données reçues",
   "logs_home_number_of_documents": "Nombre de documents",
   "logs_home_no_usage_data": "Aucune donnée disponible",
   "logs_home_cold_storage": "Volume archivé: {{coldStorage}}",

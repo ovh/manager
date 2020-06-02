@@ -83,9 +83,3 @@
 ### BREAKING CHANGES
 
 * **modules:** This module initialize the component 'product-offers'
-
-Signed-off-by: Jérémy De-Cesare <jeremy.de-cesare@corp.ovh.com>
-Co-authored-by: Frédéric Espiau <frederic.espiau@corp.ovh.com>
-
-
-

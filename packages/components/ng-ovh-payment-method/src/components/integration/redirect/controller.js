@@ -1,4 +1,4 @@
-import get from 'lodash/get';
+import { get } from 'lodash-es';
 
 import { AVAILABLE_CALLBACK_STATUS_ENUM } from '../constants'; // from integration constants
 

@@ -4,6 +4,7 @@ import anycast from './anycast';
 import emailObfuscation from './email-obfuscation/index';
 import optin from './optin/index';
 import webhosting from './webhosting';
+import webhostingEnable from './general-informations/webhosting-enable/enable.module';
 import zoneActivation from './general-informations/activateZone/activate.module';
 
 import routing from './domain.routing';
@@ -16,6 +17,7 @@ angular
     emailObfuscation,
     optin,
     webhosting,
+    webhostingEnable,
     zoneActivation,
   ])
   .config(routing)

@@ -1,0 +1,6 @@
+{
+  "web_domain_zone_detach": "Detach DNS zone",
+  "web_domain_zone_detach_description": "By detaching this DNS zone, you can renew it separately from your domain. This means you can continue using your DNS zone for a domain name filed with another registry.",
+  "web_domain_zone_detach_error": "An error has occurred detaching the zone: {{ message }}",
+  "web_domain_zone_detach_success_autopay": "The zone has been detached"
+}

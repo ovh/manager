@@ -22,19 +22,9 @@ $hub-border-radius-default: 6pt;
 
 @mixin hub-link-button {
   background-color: $hub-button-bg-color;
-  display: inline-block;
   color: $hub-button-fg-color;
   border: none;
-  border-radius: 0.5rem;
-  padding: 0.25rem 0.5rem 0.25rem 0.5rem;
-  font-weight: 600;
   transition: box-shadow 0.2s ease-in;
-
-  .oui-icon {
-    color: $hub-button-fg-color;
-    font-size: 0.75rem;
-    vertical-align: middle;
-  }
 
   &:hover {
     color: $hub-button-fg-color;

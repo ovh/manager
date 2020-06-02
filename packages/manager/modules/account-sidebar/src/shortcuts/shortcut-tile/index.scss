@@ -18,7 +18,7 @@ ovh-manager-hub-shortcut-tile {
       }
     }
 
-    &_icon {
+    &__icon {
       display: flex;
       width: 4rem;
       height: 4rem;
@@ -33,7 +33,10 @@ ovh-manager-hub-shortcut-tile {
       }
     }
 
-    &_description {
+    &__description {
+      display: block;
+      margin-top: 0.25rem;
+      line-height: 1.25;
       font-size: 0.8rem;
       font-weight: 600;
     }

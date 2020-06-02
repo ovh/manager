@@ -13,7 +13,7 @@
   "billing_main_history_table_order_id": "Numéro de commande",
   "billing_main_history_table_date": "Date d'émission",
   "billing_main_history_table_total": "Montant",
-  "billing_main_history_table_total_with_VAT": "Montant avec taxes",
+  "billing_main_history_table_total_with_VAT": "Montant TTC",
   "billing_main_history_table_balance_due_amount": "Solde à payer",
   "billing_main_history_table_balance_due_date": "Date due",
   "billing_main_history_table_unavailable": "Information non-disponible",

@@ -1,3 +1,6 @@
+const URL_ACCESSORIES =
+  'https://www.ovhtelecom.fr/telephonie/comparatif-des-accessoires.xml';
+
 export const TELEPHONY_LINE_PHONE_ACCESSORIES = {
   'cisco.linksys.alim': {
     img: 'https://www.ovhtelecom.fr/images/telephonie/accessories/poe.jpg',
@@ -36,14 +39,12 @@ export const TELEPHONY_LINE_PHONE_ACCESSORIES = {
     img: 'https://www.ovhtelecom.fr/images/telephonie/accessories/rj9.jpg',
   },
   'sennheiser.dwofficephone': {
-    url:
-      'https://www.ovhtelecom.fr/telephonie/comparatif-accessoires-telephone.xml',
+    url: URL_ACCESSORIES,
     img:
       'https://www.ovhtelecom.fr/images/telephonie/accessories/sennheiser.dwofficephone.jpg',
   },
   'sennheiser.dwpro2phone': {
-    url:
-      'https://www.ovhtelecom.fr/telephonie/comparatif-accessoires-telephone.xml',
+    url: URL_ACCESSORIES,
     img:
       'https://www.ovhtelecom.fr/images/telephonie/accessories/sennheiser.dwpro2phone.jpg',
   },
@@ -56,14 +57,12 @@ export const TELEPHONY_LINE_PHONE_ACCESSORIES = {
       'https://www.ovhtelecom.fr/images/telephonie/accessories/sennheiser.hsl10.jpg',
   },
   'sennheiser.sc232': {
-    url:
-      'https://www.ovhtelecom.fr/telephonie/comparatif-accessoires-telephone.xml',
+    url: URL_ACCESSORIES,
     img:
       'https://www.ovhtelecom.fr/images/telephonie/accessories/sennheiserSC232.jpg',
   },
   'sennheiser.sc262': {
-    url:
-      'https://www.ovhtelecom.fr/telephonie/comparatif-accessoires-telephone.xml',
+    url: URL_ACCESSORIES,
     img:
       'https://www.ovhtelecom.fr/images/telephonie/accessories/sennheiser.sc262.jpg',
   },
@@ -79,14 +78,11 @@ export const TELEPHONY_LINE_PHONE_ACCESSORIES = {
       'https://www.ovhtelecom.fr/images/telephonie/accessories/sl610hpro.jpg',
   },
   'cisco.ext8800': {
-    url:
-      'https://www.ovhtelecom.fr/telephonie/comparatif-accessoires-telephone.xml/',
     img:
       'https://www.ovhtelecom.fr/images/telephonie/2020/cisco/accessory-cisco-ext8800-90-90.png',
   },
   'cisco.cp8800': {
-    url:
-      'https://www.ovhtelecom.fr/telephonie/comparatif-accessoires-telephone.xml/',
+    url: 'https://www.ovhtelecom.fr/telephonie/comparatif-des-accessoires.xml',
     img:
       'https://www.ovhtelecom.fr/images/telephonie/2020/cisco/phone-cisco-cp8800-90-90.png',
   },
@@ -103,14 +99,12 @@ export const TELEPHONY_LINE_PHONE_ACCESSORIES = {
       'https://www.ovhtelecom.fr/images/telephonie/2020/gigaset/accessory-gigaset-ext-90-90.png',
   },
   'jabra.evolve65': {
-    url:
-      'https://www.ovhtelecom.fr/telephonie/comparatif-accessoires-telephone.xml/',
+    url: URL_ACCESSORIES,
     img:
       'https://www.ovhtelecom.fr/images/telephonie/2020/jabra/accessory-jabra-evolve65-90-90.png',
   },
   'jabra.engage75': {
-    url:
-      'https://www.ovhtelecom.fr/telephonie/comparatif-accessoires-telephone.xml/',
+    url: URL_ACCESSORIES,
     img:
       'https://www.ovhtelecom.fr/images/telephonie/2020/jabra/accessory-jabra-engage75-90-90.png',
   },
@@ -127,14 +121,12 @@ export const TELEPHONY_LINE_PHONE_ACCESSORIES = {
       'https://www.ovhtelecom.fr/images/telephonie/2020/jabra/accessory-jabra-link1420143-90-90.png',
   },
   'poly.voyagerfocusuc': {
-    url:
-      'https://www.ovhtelecom.fr/telephonie/comparatif-accessoires-telephone.xml/',
+    url: URL_ACCESSORIES,
     img:
       'https://www.ovhtelecom.fr/images/telephonie/2020/poly/accessory-poly-voyagerfocusuc-90-90.png',
   },
   'poly.savi8220': {
-    url:
-      'https://www.ovhtelecom.fr/telephonie/comparatif-accessoires-telephone.xml/',
+    url: URL_ACCESSORIES,
     img:
       'https://www.ovhtelecom.fr/images/telephonie/2020/poly/accessory-poly-savi8220-90-90.png',
   },
@@ -151,56 +143,47 @@ export const TELEPHONY_LINE_PHONE_ACCESSORIES = {
       'https://www.ovhtelecom.fr/images/telephonie/2020/poly/accessory-poly-mda220-90-90.png',
   },
   'sennheiser.mbpro1': {
-    url:
-      'https://www.ovhtelecom.fr/telephonie/comparatif-accessoires-telephone.xml/',
+    url: URL_ACCESSORIES,
     img:
       'https://www.ovhtelecom.fr/images/telephonie/2020/sennheiser/accessory-sennheiser-mbpro1-90-90.png',
   },
   'sennheiser.mbpro2': {
-    url:
-      'https://www.ovhtelecom.fr/telephonie/comparatif-accessoires-telephone.xml/',
+    url: URL_ACCESSORIES,
     img:
       'https://www.ovhtelecom.fr/images/telephonie/2020/sennheiser/accessory-sennheiser-mbpro2-90-90.png',
   },
   'sennheiser.mb660': {
-    url:
-      'https://www.ovhtelecom.fr/telephonie/comparatif-accessoires-telephone.xml/',
+    url: URL_ACCESSORIES,
     img:
       'https://www.ovhtelecom.fr/images/telephonie/2020/sennheiser/accessory-sennheiser-mb660-90-90.png',
   },
   'sennheiser.sdw5036': {
-    url:
-      'https://www.ovhtelecom.fr/telephonie/comparatif-accessoires-telephone.xml/',
+    url: URL_ACCESSORIES,
     img:
       'https://www.ovhtelecom.fr/images/telephonie/2020/sennheiser/accessory-sennheiser-sdw5036-90-90.png',
   },
   'sennheiser.sdw5066': {
-    url:
-      'https://www.ovhtelecom.fr/telephonie/comparatif-accessoires-telephone.xml/',
+    url: URL_ACCESSORIES,
     img:
       'https://www.ovhtelecom.fr/images/telephonie/2020/sennheiser/accessory-sennheiser-sdw5066-90-90.png',
   },
   'sennheiser.sc268': {
-    url:
-      'https://www.ovhtelecom.fr/telephonie/comparatif-accessoires-telephone.xml/',
+    url: URL_ACCESSORIES,
     img:
       'https://www.ovhtelecom.fr/images/telephonie/2020/sennheiser/accessory-sennheiser-sc268-90-90.png',
   },
   'sennheiser.sc238': {
-    url:
-      'https://www.ovhtelecom.fr/telephonie/comparatif-accessoires-telephone.xml/',
+    url: URL_ACCESSORIES,
     img:
       'https://www.ovhtelecom.fr/images/telephonie/2020/sennheiser/accessory-sennheiser-sc238-90-90.png',
   },
   'sennheiser.sc165usb': {
-    url:
-      'https://www.ovhtelecom.fr/telephonie/comparatif-accessoires-telephone.xml/',
+    url: URL_ACCESSORIES,
     img:
       'https://www.ovhtelecom.fr/images/telephonie/2020/sennheiser/accessory-sennheiser-sc165usb-90-90.png',
   },
   'sennheiser.sc165usbc': {
-    url:
-      'https://www.ovhtelecom.fr/telephonie/comparatif-accessoires-telephone.xml/',
+    url: URL_ACCESSORIES,
     img:
       'https://www.ovhtelecom.fr/images/telephonie/2020/sennheiser/accessory-sennheiser-sc165usbc-90-90.png',
   },

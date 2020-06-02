@@ -129,7 +129,6 @@
 
 * create stable version for hub
 
-Signed-off-by: Marie JONES <marie.jones@corp.ovh.com>
 * **hub:** init @ovh-ux/manager-account-sidebar module
 
 

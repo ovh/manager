@@ -1,218 +1,59 @@
-<div>
-    <div data-ng-if="TerminateServiceCtrl.globalError">
-        <div class="oui-message oui-message_error oui-message_l" role="alert">
-            <i class="oui-message_l-icon" aria-hidden="true"></i>
-            <h1
-                class="oui-message__title"
-                data-translate="terminate_service_error"
-            ></h1>
-        </div>
-    </div>
+<oui-page-header
+    data-heading="{{:: 'billing_confirm_termination_resiliate' | translate:{
+        serviceName: $ctrl.service.name
+    } }}"
+></oui-page-header>
 
-    <div
-        data-ng-if="TerminateServiceCtrl.serviceState === 'suspending' ||
-                     TerminateServiceCtrl.serviceState === 'suspended'"
-    >
-        <div class="oui-message oui-message_success" role="alert">
-            <i
-                class="oui-icon oui-icon-success_circle oui-icon_bicolor"
-                aria-hidden="true"
-            ></i>
-            <p
-                class="oui-message__body"
-                data-translate="terminate_service_confirmation_success"
-            ></p>
-        </div>
-    </div>
+<div class="container-fluid mt-3">
+    <div class="mt-3" data-ovh-alert></div>
 
-    <div data-ng-if="TerminateServiceCtrl.error">
-        <div class="oui-message oui-message_error" role="alert">
-            <i
-                class="oui-icon oui-icon-error_circle oui-icon_bicolor"
-                aria-hidden="true"
-            ></i>
-            <p
-                class="oui-message__body"
-                data-translate="terminate_service_confirmation_error"
-            ></p>
-        </div>
-    </div>
+    <oui-message data-type="warning" data-ng-if="$ctrl.hasSpecialConditions()"
+        ><span
+            data-translate="{{:: 'billing_confirm_termination_information_text_' + $ctrl.user.ovhSubsidiary }}"
+        ></span
+    ></oui-message>
+    <oui-message data-type="warning" data-ng-if="!$ctrl.hasSpecialConditions()"
+        ><span
+            data-translate="billing_confirm_termination_information_text"
+        ></span
+    ></oui-message>
 
-    <div data-ng-if="!TerminateServiceCtrl.globalError">
-        <div class="page-header">
-            <h1 data-translate="terminate_service_title"></h1>
-        </div>
-
-        <div class="tab-content">
-            <div data-ng-if="!TerminateServiceCtrl.userLoading">
-                <oui-message
-                    data-type="warning"
-                    data-ng-if="TerminateServiceCtrl.USVersion"
-                    ><span
-                        data-translate="terminate_service_information_text"
-                    ></span
-                ></oui-message>
-                <oui-message
-                    data-type="warning"
-                    data-ng-if="!TerminateServiceCtrl.USVersion"
-                    ><span
-                        data-translate="terminate_service_information_text_non_US"
-                    ></span
-                ></oui-message>
-            </div>
-
-            <h4
-                class="oui-header_4 mt-5"
-                data-translate="terminate_service_services_title"
-            ></h4>
-
-            <div class="text-center" data-ng-if="TerminateServiceCtrl.loading">
-                <oui-spinner></oui-spinner>
-            </div>
-
-            <div
-                class="table-responsive"
-                data-ng-if="!TerminateServiceCtrl.loading"
+    <form name="terminationForm" novalidate class="mt-3">
+        <oui-field
+            data-ng-repeat="question in $ctrl.questions track by question.question"
+            data-label="{{:: 'billing_confirm_termination_question_' + question.question  | translate}}"
+        >
+            <oui-radio-group
+                data-ng-if="question.type === 'enum'"
+                data-model="$ctrl.model[question.question]"
+                name="{{ question.question }}"
             >
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <td
-                                scope="col"
-                                data-translate="terminate_service_services_service"
-                            ></td>
-                            <td
-                                scope="col"
-                                data-translate="terminate_service_services_name"
-                            ></td>
-                            <td
-                                scope="col"
-                                data-translate="terminate_service_services_renew"
-                            ></td>
-                            <td
-                                scope="col"
-                                data-translate="terminate_service_services_frequency"
-                            ></td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th
-                                scope="row"
-                                data-translate="{{ 'terminate_service_type_' + TerminateServiceCtrl.serviceInfos.serviceType }}"
-                            ></th>
-                            <td
-                                data-ng-bind="TerminateServiceCtrl.serviceInfos.domain"
-                            ></td>
-                            <td>
-                                <billing-renew-date
-                                    data-service-infos="TerminateServiceCtrl.serviceInfos"
-                                ></billing-renew-date>
-                            </td>
-                            <td>
-                                <billing-renew-label
-                                    data-service-infos="TerminateServiceCtrl.serviceInfos"
-                                ></billing-renew-label>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <div
-                class="mt-5"
-                data-ng-if="!TerminateServiceCtrl.loading &&
-                             TerminateServiceCtrl.serviceState !== 'suspending' &&
-                             TerminateServiceCtrl.serviceState !== 'suspended'"
+                <oui-radio
+                    data-ng-repeat="answer in question.answers track by answer.key"
+                    data-value="answer.key"
+                    data-required="question.mandatory"
+                >
+                    <span
+                        data-translate="{{:: 'billing_confirm_termination_' + question.question + '_' + answer.key }}"
+                    ></span>
+                </oui-radio>
+            </oui-radio-group>
+            <oui-textarea
+                data-ng-if="question.type === 'text'"
+                data-model="$ctrl.model[question.question]"
+                name="{{ question.question }}"
+                data-required="question.mandatory"
             >
-                <h4
-                    class="oui-header_4"
-                    data-translate="terminate_service_reason_title"
-                ></h4>
-
-                <div
-                    class="oui-radio"
-                    data-ng-repeat="reason in TerminateServiceCtrl.reasons"
-                >
-                    <input
-                        class="oui-radio__input"
-                        type="radio"
-                        name="reason"
-                        data-ng-click="TerminateServiceCtrl.reason = reason"
-                        data-ng-value="reason"
-                        id="reason-{{reason}}"
-                    />
-                    <label
-                        class="oui-radio__label-container"
-                        for="reason-{{reason}}"
-                    >
-                        <span
-                            class="oui-radio__label"
-                            data-translate="{{ 'terminate_service_reason_' + reason }}"
-                        ></span>
-                    </label>
-                </div>
-
-                <h4
-                    class="oui-header_4 mt-5"
-                    data-translate="terminate_service_next-steps_title"
-                ></h4>
-
-                <div
-                    class="oui-radio"
-                    data-ng-repeat="futureUse in TerminateServiceCtrl.futureUses"
-                >
-                    <input
-                        class="oui-radio__input"
-                        type="radio"
-                        name="futureUses"
-                        data-ng-click="TerminateServiceCtrl.futureUse = futureUse"
-                        data-ng-value="futureUse"
-                        id="futureUse-{{::futureUse}}"
-                    />
-                    <label
-                        class="oui-radio__label-container"
-                        for="futureUse-{{::futureUse}}"
-                    >
-                        <span
-                            class="oui-radio__label"
-                            data-translate="{{ :: 'terminate_service_futureUses_' + futureUse }}"
-                        ></span>
-                    </label>
-                </div>
-
-                <div class="oui-field mt-5">
-                    <label
-                        for="reason_text"
-                        class="oui-field__label oui-label"
-                        data-translate="terminate_service_comments"
-                    >
-                    </label>
-                    <div class="oui-field__content">
-                        <div class="oui-field-control oui-field-control_6">
-                            <textarea
-                                class="oui-textarea"
-                                id="reason_text"
-                                data-ng-model="TerminateServiceCtrl.commentary"
-                            >
-                            </textarea>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="mt-4">
-                    <button
-                        type="button"
-                        class="oui-button oui-button_primary"
-                        data-translate="terminate_service_confirm"
-                        data-ng-click="TerminateServiceCtrl.confirmTermination()"
-                        data-ng-disabled="TerminateServiceCtrl.loading ||
-                                              TerminateServiceCtrl.userLoading ||
-                                              !TerminateServiceCtrl.reason ||
-                                              TerminateServiceCtrl.terminating"
-                    ></button>
-                </div>
-            </div>
-        </div>
-    </div>
+            </oui-textarea>
+        </oui-field>
+        <oui-button
+            data-ng-if="!$ctrl.loading"
+            data-on-click="$ctrl.confirmTermination()"
+            data-variant="primary"
+            data-disabled="!terminationForm.$valid"
+        >
+            <span data-translate="billing_confirm_termination_terminate"></span>
+        </oui-button>
+        <oui-spinner data-size="s" data-ng-if="$ctrl.loading"></oui-spinner>
+    </form>
 </div>

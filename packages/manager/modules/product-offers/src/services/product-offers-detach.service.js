@@ -71,21 +71,26 @@ export default class ProductOffersDetachService {
 
   /**
    * Execute the payment to validate the detach
-   * @param  {string}  orderId       Detach order identifier
+   * @param  {Order}  order       Detach order identifier
    * @param  {string}  paymentMethod Payment method to use
    * @return {Promise}
    */
-  payDetach(orderId, paymentMethod) {
-    const paymentParameters = {
-      paymentMean: paymentMethod.paymentType,
-    };
+  payDetach(order, paymentMethod) {
+    const paymentParameters =
+      order.prices.withTax.value === 0
+        ? {
+            paymentMean: 'fidelityAccount',
+          }
+        : {
+            paymentMean: paymentMethod.paymentType,
+          };
 
     if (
       [
         this.OVH_PAYMENT_METHOD_TYPE.BANK_ACCOUNT,
         this.OVH_PAYMENT_METHOD_TYPE.CREDIT_CARD,
         this.OVH_PAYMENT_METHOD_TYPE.PAYPAL,
-      ].includes(paymentMethod.paymentType)
+      ].includes(paymentParameters.paymentMean)
     ) {
       paymentParameters.paymentMean = camelCase(paymentMethod.paymentType);
       paymentParameters.paymentMeanId = paymentMethod.paymentMeanId;
@@ -93,7 +98,7 @@ export default class ProductOffersDetachService {
 
     return this.orderService.payRegisteredPaymentMean(
       {
-        orderId,
+        orderId: order.orderId,
       },
       paymentParameters,
     ).$promise;
