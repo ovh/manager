@@ -1,6 +1,5 @@
 import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
-import get from 'lodash/get';
-import map from 'lodash/map';
+import { get, map } from 'lodash-es';
 
 export default class ManagerHubBillingProductList extends ListLayoutHelper.ListLayoutCtrl {
   $onInit() {
