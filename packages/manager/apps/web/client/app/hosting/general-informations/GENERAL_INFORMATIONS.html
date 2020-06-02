@@ -730,6 +730,7 @@
                                 data-href="{{ '#/useraccount/contacts?tab=SERVICES&serviceName=' + $ctrl.serviceName }}"
                             ></oui-action-menu-item>
                             <oui-action-menu-item
+                                ng-if="changeOwnerUrl"
                                 data-text="{{ ::'core_change_owner' | translate }}"
                                 aria-label="{{ ::'core_change_owner' | translate }}"
                                 data-href="{{ ::changeOwnerUrl }}"
