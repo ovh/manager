@@ -1,5 +1,7 @@
 {
   "vps_dashboard_upgrade_done": "L’upgrade del VPS è completato. Per attivare la nuova configurazione è necessario riavviare il VPS.",
   "vps_dashboard_upgrade_error": "Si è verificato un errore durante la richiesta di upgrade del VPS.",
-  "vps_dashboard_upgrade_doing": "Upgrade del VPS in corso... Riceverai un messaggio quando sarà possibile riavviare il server per attivare la nuova configurazione."
+  "vps_dashboard_upgrade_doing": "Upgrade del VPS in corso... Riceverai un messaggio quando sarà possibile riavviare il server per attivare la nuova configurazione.",
+  "vps_dashboard_migration_warning": "Il tuo VPS Cloud 2013/2014 verrà disattivato il {{date}}.  Per conservare il servizio, pianifica la migrazione il prima possibile.",
+  "vps_dashboard_migration_link": "Passa alla nuova gamma"
 }

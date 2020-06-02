@@ -1,5 +1,7 @@
 {
   "vps_dashboard_upgrade_done": "Ihr VPS wurde aktualisiert. Bitte denken Sie daran, Ihren VPS neu zu starten, damit die neue Konfiguration funktioniert.",
   "vps_dashboard_upgrade_error": "Bei der Anfrage für das Upgrade Ihres VPS ist ein Fehler aufgetreten.",
-  "vps_dashboard_upgrade_doing": "Ihr VPS wird aktualisiert. Sie erhalten eine Benachrichtigung, sobald Sie Ihren Server neu starten können, um die neue Konfiguration zu aktivieren."
+  "vps_dashboard_upgrade_doing": "Ihr VPS wird aktualisiert. Sie erhalten eine Benachrichtigung, sobald Sie Ihren Server neu starten können, um die neue Konfiguration zu aktivieren.",
+  "vps_dashboard_migration_warning": "Ihr VPS Cloud 2013/2014 wird am {{date}} eingestellt. Wir möchten Sie bitten, so bald wie möglich den Zeitpunkt des Wechsels zu programmieren, um Ihren Dienst beizubehalten.",
+  "vps_dashboard_migration_link": "Zur neuen Reihe wechseln"
 }
