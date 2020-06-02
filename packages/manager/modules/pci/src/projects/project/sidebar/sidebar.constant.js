@@ -134,7 +134,7 @@ export const MENU = [
       },
       {
         id: 'data-processing',
-        beta: true,
+        new: true,
         options: {
           state: 'pci.projects.project.data-processing',
         },
