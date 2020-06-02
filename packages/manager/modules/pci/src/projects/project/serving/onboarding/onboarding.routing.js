@@ -7,7 +7,7 @@ export default /* @ngInject */ ($stateProvider) => {
       transition
         .injector()
         .getAsync('namespaces')
-        .then(([namespaces]) => {
+        .then((namespaces) => {
           if (namespaces.length > 0) {
             return { state: 'pci.projects.project.serving' };
           }
