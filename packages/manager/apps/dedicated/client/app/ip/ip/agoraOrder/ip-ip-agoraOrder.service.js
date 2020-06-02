@@ -21,7 +21,7 @@ angular.module('Module.ip.services').service(
     handleErrorOrServices({ errors, results }) {
       const filteredErrors = errors.filter(({ msg }) => {
         const [errorCode] = msg.match(/\d+/);
-        return parseInt(errorCode, 10) !== 400;
+        return ![400, 404].includes(parseInt(errorCode, 10));
       });
       if (isArray(filteredErrors) && !isEmpty(filteredErrors)) {
         return this.$q.reject(filteredErrors);
