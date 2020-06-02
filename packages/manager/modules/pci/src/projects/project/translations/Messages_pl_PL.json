@@ -13,6 +13,6 @@
   "pci_projects_project_documentation_create_and_configure_and_additional_disk_on_an_instance": "Tworzenie i konfiguracja dodatkowego dysku w instancji",
   "pci_projects_project_documentation_see_all_public_cloud_guides": "Inne przewodniki dotyczące Public Cloud, które mogą Cię zainteresować…",
   "pci_projects_project_welcome": "Witamy w nowym interfejsie Public Cloud",
-  "pci_projects_project_keystone_upgrade": "Important change on June 23, 2020. Please anticipate the switch to <strong>Keystone v3</strong>.",
+  "pci_projects_project_keystone_upgrade": "W dniu 23 czerwca 2020 roku nastąpi istotna zmiana, dlatego już teraz prosimy o zaplanowanie działań związanych z aktualizacją Keystone do <strong>Keystone v3</strong>.",
   "pci_projects_project_keystone_upgrade_more": "Dowiedz się więcej"
 }
