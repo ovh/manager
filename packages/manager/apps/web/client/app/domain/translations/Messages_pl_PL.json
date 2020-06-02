@@ -822,5 +822,7 @@
   "domain_tab_options_delete_dnsAnycast_title": "Zrezygnuj z opcji DNS Anycast",
   "domain_tab_options_delete_success": "Opcja została usunięta.",
   "domain_tab_options_delete_error": "Wystąpił błąd podczas rezygnowania z opcji.",
-  "domain_tab_options_delete_cancel": "Anuluj"
+  "domain_tab_options_delete_cancel": "Anuluj",
+  "web_domain_zone_activation_success": "Aktywacja została ukończona pomyślnie. Usługa zostanie włączona za kilka minut.",
+  "web_domain_zone_activation_order_success": "Twoje <a href=\"{{t0}}\" target=\"_blank\">zamówienie</a> zostało wygenerowane. Twoja usługa zostanie włączona, kiedy ją zatwierdzisz."
 }

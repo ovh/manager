@@ -822,5 +822,7 @@
   "domain_tab_options_delete_dnsAnycast_title": "Disattiva l'opzione DNS Anycast",
   "domain_tab_options_delete_success": "L'opzione è stata disattivata",
   "domain_tab_options_delete_error": "Si è verificato un errore durante la disattivazione dell'opzione.",
-  "domain_tab_options_delete_cancel": "Annulla"
+  "domain_tab_options_delete_cancel": "Annulla",
+  "web_domain_zone_activation_success": "Attivazione eseguita correttamente La soluzione scelta sarà attiva entro pochi minuti.",
+  "web_domain_zone_activation_order_success": "Il tuo <a href=\"{{t0}}\" target=\"_blank\" rel=\"noopener\">ordine</a> è stato generato correttamente. Una volta convalidato, il servizio verrà attivato."
 }
