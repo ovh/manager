@@ -139,7 +139,7 @@ export const MENU = [
           state: 'pci.projects.project.data-processing',
         },
         title: 'Data Processing',
-        regions: ['EU'],
+        regions: ['EU', 'CA'],
       },
       {
         id: 'io-stream',
