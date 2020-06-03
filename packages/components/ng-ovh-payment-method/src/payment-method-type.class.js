@@ -1,6 +1,9 @@
 import { isNull } from 'lodash-es';
 
-import { TYPE_INTEGRATION_ENUM } from './payment-method.constants';
+import {
+  PAYMENT_METHOD_TYPE_ENUM,
+  TYPE_INTEGRATION_ENUM,
+} from './payment-method.constants';
 
 /**
  *  Describe a payment method type object.
@@ -95,5 +98,43 @@ export default class OvhPaymentMethodType {
       TYPE_INTEGRATION_ENUM.IFRAME_VANTIV,
       TYPE_INTEGRATION_ENUM.IN_CONTEXT,
     ].includes(this.integration);
+  }
+
+  /**
+   * Determine if payment method type is a Bank Account.
+   *
+   * @return {Boolean}
+   */
+  isBankAccount() {
+    return this.paymentType === PAYMENT_METHOD_TYPE_ENUM.BANK_ACCOUNT;
+  }
+
+  /**
+   * Determine if payment method type is a Credit Card.
+   *
+   * @return {Boolean}
+   */
+  isCreditCard() {
+    return this.paymentType === PAYMENT_METHOD_TYPE_ENUM.CREDIT_CARD;
+  }
+
+  /**
+   * Determine if payment method type is a Deferred Payment Account.
+   *
+   * @return {Boolean}
+   */
+  isDeferredPaymentAccount() {
+    return (
+      this.paymentType === PAYMENT_METHOD_TYPE_ENUM.DEFERRED_PAYMENT_ACCOUNT
+    );
+  }
+
+  /**
+   * Determine if payment method type is a Paypal account.
+   *
+   * @return {Boolean}
+   */
+  isPaypal() {
+    return this.paymentType === PAYMENT_METHOD_TYPE_ENUM.PAYPAL;
   }
 }
