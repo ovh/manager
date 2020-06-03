@@ -6,6 +6,7 @@ import isString from 'lodash/isString';
 import set from 'lodash/set';
 
 import { Environment } from '@ovh-ux/manager-config';
+import ovhManagerAtInternetConfiguration from '@ovh-ux/manager-at-internet-configuration';
 import ovhManagerCore from '@ovh-ux/manager-core';
 import ngAtInternet from '@ovh-ux/ng-at-internet';
 import ngAtInternetUiRouterPlugin from '@ovh-ux/ng-at-internet-ui-router-plugin';
@@ -54,6 +55,8 @@ import hostingEmailActivateModule from './hosting/email/activate';
 import './css/source.less';
 import './css/source.scss';
 
+import { TRACKING } from './at-internet.constants';
+
 Environment.setVersion(__VERSION__);
 
 const moduleName = 'App';
@@ -101,6 +104,7 @@ angular
       ngTailLogs,
       'ovh-api-services',
       ovhManagerMfaEnrollment,
+      ovhManagerAtInternetConfiguration,
       ovhManagerBanner,
       ovhManagerCatalogPrice,
       ovhManagerNavbar,
@@ -213,42 +217,17 @@ angular
       $logProvider.debugEnabled(!constants.prodMode);
     },
   ])
-  .config([
-    'atInternetProvider',
-    'atInternetUiRouterPluginProvider',
-    'constants',
-    (atInternetProvider, atInternetUiRouterPluginProvider, constants) => {
-      atInternetProvider.setEnabled(
-        constants.prodMode && window.location.port.length <= 3,
-      );
-      atInternetProvider.setDebug(!constants.prodMode);
-
-      atInternetUiRouterPluginProvider.setTrackStateChange(
-        constants.prodMode && window.location.port.length <= 3,
-      );
-      atInternetUiRouterPluginProvider.addStateNameFilter((routeName) =>
-        routeName ? routeName.replace(/^app/, 'web').replace(/\./g, '::') : '',
-      );
+  .config(
+    /* @ngInject */ (atInternetConfigurationProvider) => {
+      atInternetConfigurationProvider.setConfig(TRACKING);
+      atInternetConfigurationProvider.setReplacementRules([
+        {
+          pattern: /^app/,
+          replacement: 'web',
+        },
+      ]);
     },
-  ])
-  .constant('TRACKING', {
-    config: {
-      level2: '2',
-    },
-  })
-  .run((atInternet, TRACKING, OvhApiMe) => {
-    // eslint-disable-next-line no-shadow
-    const { config } = TRACKING;
-
-    OvhApiMe.v6()
-      .get()
-      .$promise.then((me) => {
-        config.countryCode = me.country;
-        config.currencyCode = me.currency && me.currency.code;
-        config.visitorId = me.customerCode;
-        atInternet.setDefaults(config);
-      });
-  })
+  )
   .config([
     '$locationProvider',
     ($locationProvider) => {

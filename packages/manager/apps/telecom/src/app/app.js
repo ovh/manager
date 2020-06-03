@@ -3,6 +3,7 @@ import has from 'lodash/has';
 import isString from 'lodash/isString';
 import set from 'lodash/set';
 import { Environment } from '@ovh-ux/manager-config';
+import ovhManagerAtInternetConfiguration from '@ovh-ux/manager-at-internet-configuration';
 import ovhManagerBetaPreference from '@ovh-ux/manager-beta-preference';
 import ovhManagerCore from '@ovh-ux/manager-core';
 import ovhManagerDashboard from '@ovh-ux/manager-telecom-dashboard';
@@ -54,6 +55,8 @@ import 'ovh-ui-kit-bs/dist/css/oui-bs3.css';
 import './app-scss.scss';
 import './app.less';
 
+import { TRACKING } from './at-internet.constants';
+
 Environment.setVersion(__VERSION__);
 
 const moduleName = 'managerApp';
@@ -102,6 +105,7 @@ angular
       ngOvhUiConfirmModal,
       'ovh-api-services',
       'ovh-ng-input-password',
+      ovhManagerAtInternetConfiguration,
       ovhManagerBetaPreference,
       ovhManagerCore,
       ovhManagerDashboard,
@@ -172,35 +176,11 @@ angular
       );
     },
   )
-
-  /*= =========  PAGE TRACKING  ========== */
   .config(
-    (atInternetProvider, atInternetUiRouterPluginProvider, telecomConfig) => {
-      const trackingEnabled = telecomConfig.env === 'prod';
-      atInternetProvider.setEnabled(trackingEnabled);
-      atInternetProvider.setDebug(!trackingEnabled);
-      atInternetUiRouterPluginProvider.setTrackStateChange(trackingEnabled);
-      atInternetUiRouterPluginProvider.addStateNameFilter((routeName) =>
-        routeName ? routeName.replace(/\./g, '::') : '',
-      );
+    /* @ngInject */ (atInternetConfigurationProvider) => {
+      atInternetConfigurationProvider.setConfig(TRACKING);
     },
   )
-  .run((atInternet, TRACKING, OvhApiMe) => {
-    const config = TRACKING.atInternetConfiguration;
-
-    atInternet.setDefaultsPromise(
-      OvhApiMe.v6()
-        .get()
-        .$promise.then((me) => {
-          config.nichandle = me.nichandle;
-          config.countryCode = me.country;
-          config.currencyCode = me.currency && me.currency.code;
-          config.visitorId = me.customerCode;
-          return config;
-        }),
-    );
-  })
-
   /*= =========  INTERCEPT ERROR IF NO TRANSLATION FOUND  ========== */
   .factory('translateInterceptor', ($q) => {
     const regexp = new RegExp(/Messages\w+\.json$/i);

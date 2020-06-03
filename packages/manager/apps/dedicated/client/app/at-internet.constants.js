@@ -6,12 +6,12 @@ export const TRACKING = {
   },
   CA: {
     config: {
-      level2: '85',
+      level2: '	85',
     },
   },
   US: {
     config: {
-      level2: '56',
+      level2: '57',
     },
   },
 };

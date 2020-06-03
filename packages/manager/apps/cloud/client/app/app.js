@@ -33,6 +33,7 @@ import ngOvhCloudUniverseComponents from '@ovh-ux/ng-ovh-cloud-universe-componen
 import ngOvhJqueryUiDraggable from '@ovh-ux/ng-ovh-jquery-ui-draggable';
 import ngOvhJqueryUiDroppable from '@ovh-ux/ng-ovh-jquery-ui-droppable';
 import ngOvhResponsivePageSwitcher from '@ovh-ux/ng-ovh-responsive-page-switcher';
+import ovhManagerAtInternetConfig from '@ovh-ux/manager-at-internet-configuration';
 import ovhManagerBanner from '@ovh-ux/manager-banner';
 import ovhManagerNavbar from '@ovh-ux/manager-navbar';
 import ovhManagerServerSidebar from '@ovh-ux/manager-server-sidebar';
@@ -105,6 +106,7 @@ angular
 
       ngTranslateAsyncLoader,
       cloudUniverseComponents,
+      ovhManagerAtInternetConfig,
       ovhManagerBanner,
       ovhManagerNavbar,
       ovhManagerServerSidebar,

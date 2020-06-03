@@ -24,6 +24,7 @@ import ngTailLogs from '@ovh-ux/ng-tail-logs';
 import ngTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
 import ngUirouterLineProgress from '@ovh-ux/ng-ui-router-line-progress';
 import ovhContacts from '@ovh-ux/ng-ovh-contacts';
+import ovhManagerAtInternetConfiguration from '@ovh-ux/manager-at-internet-configuration';
 import ovhManagerCore from '@ovh-ux/manager-core';
 import ovhManagerBanner from '@ovh-ux/manager-banner';
 import ovhManagerEnterpriseCloudDatabase from '@ovh-ux/manager-enterprise-cloud-database';
@@ -57,6 +58,8 @@ import dedicatedServer from './dedicated/server';
 
 import datacenterBackup from './dedicatedCloud/datacenter/backup';
 import userContracts from './user-contracts';
+
+import { TRACKING } from './at-internet.constants';
 
 Environment.setVersion(__VERSION__);
 
@@ -114,6 +117,7 @@ angular
       ngQAllSettled,
       'ovh-angular-responsive-tabs',
       'ovh-api-services',
+      ovhManagerAtInternetConfiguration,
       ovhManagerPccDashboard,
       ovhManagerIplb,
       ovhManagerPccResourceUpgrade,
@@ -185,22 +189,17 @@ angular
   .config(($urlServiceProvider) => {
     $urlServiceProvider.rules.otherwise('/configuration');
   })
-  /* ========== AT-INTERNET ========== */
-  .config((atInternetProvider, atInternetUiRouterPluginProvider, constants) => {
-    atInternetProvider.setEnabled(
-      constants.prodMode && window.location.port.length <= 3,
-    );
-    atInternetProvider.setDebug(!constants.prodMode);
-
-    atInternetUiRouterPluginProvider.setTrackStateChange(
-      constants.prodMode && window.location.port.length <= 3,
-    );
-    atInternetUiRouterPluginProvider.addStateNameFilter((routeName) =>
-      routeName
-        ? routeName.replace(/^app/, 'dedicated').replace(/\./g, '::')
-        : '',
-    );
-  })
+  .config(
+    /* @ngInject */ (atInternetConfigurationProvider) => {
+      atInternetConfigurationProvider.setConfig(TRACKING);
+      atInternetConfigurationProvider.setReplacementRules([
+        {
+          pattern: /^app/,
+          replacement: 'dedicated',
+        },
+      ]);
+    },
+  )
   .constant('REGEX', {
     ROUTABLE_BLOCK: /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\/(\d|[1-2]\d|3[0-2]))$/,
     ROUTABLE_IP: /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/,
@@ -286,20 +285,6 @@ angular
       );
     },
   )
-  .run((constants, atInternet, OvhApiMe) => {
-    const level2 = constants.target === 'US' ? '57' : '10';
-
-    OvhApiMe.v6()
-      .get()
-      .$promise.then((me) => {
-        atInternet.setDefaults({
-          level2,
-          countryCode: me.country,
-          currencyCode: me.currency && me.currency.code,
-          visitorId: me.customerCode,
-        });
-      });
-  })
   .constant('UNIVERSE', 'DEDICATED')
   .run(
     /* @ngInject */ ($rootScope, $transitions) => {
