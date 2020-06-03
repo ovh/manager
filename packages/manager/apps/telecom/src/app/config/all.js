@@ -243,9 +243,6 @@ angular
     },
     statisticsPeriodEnum: ['preview', 'daily', 'weekly', 'monthly', 'yearly'],
   })
-  .constant('TRACKING', {
-    atInternetConfiguration: { level2: '5' },
-  })
   .constant('ORDER_STATUS', {
     done: {
       class: 'success',
