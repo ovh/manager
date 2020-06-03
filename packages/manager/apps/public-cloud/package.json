@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "@ovh-ux/manager-account-sidebar": "^2.0.0 || ^3.0.0",
+    "@ovh-ux/manager-at-internet-configuration": "^0.0.0 || ^1.0.0",
     "@ovh-ux/manager-cloud-styles": "^0.4.0 || ^1.0.0",
     "@ovh-ux/manager-config": "^0.4.0 || ^1.0.0",
     "@ovh-ux/manager-core": "^10.0.0 || ^11.0.0",

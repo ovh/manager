@@ -84,6 +84,9 @@ module.exports = (env = {}) => {
         /cs|de|en-gb|es|es-us|fi|fr-ca|fr|it|lt|pl|pt/,
       ),
       new webpack.DefinePlugin({
+        __NODE_ENV__: process.env.NODE_ENV
+          ? `'${process.env.NODE_ENV}'`
+          : '"development"',
         __NG_APP_INJECTIONS__: getNgAppInjections(['EU']),
         WEBPACK_ENV: {
           production: !!env.production,
