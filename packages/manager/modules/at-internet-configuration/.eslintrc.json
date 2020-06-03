@@ -1,0 +1,5 @@
+{
+  "globals": {
+    "__NODE_ENV__": "readonly"
+  }
+}
