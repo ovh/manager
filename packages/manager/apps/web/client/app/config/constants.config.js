@@ -844,6 +844,16 @@ module.exports = {
         guides: {
           home: 'https://docs.ovh.com/asia/en/',
           all: 'https://docs.ovh.com/asia/en/',
+          hostingPrivateDatabase:
+            'https://docs.ovh.com/asia/en/hosting/getting-started-with-private-sql/',
+          hostingPrivateDatabaseDBaaS: {
+            beginner:
+              'https://docs.ovh.com/asia/en/clouddb/getting-started-with-clouddb/',
+            db:
+              'https://docs.ovh.com/asia/en/clouddb/get-started-with-mysql-and-mariadb/',
+            beginPostgre:
+              'https://docs.ovh.com/asia/en/clouddb/getting-started-with-postgresql/',
+          },
           wordpress:
             'https://codex.wordpress.org/Getting_Started_with_WordPress',
           prestashop:
@@ -867,6 +877,16 @@ module.exports = {
         guides: {
           home: 'https://docs.ovh.com/au/en/',
           all: 'https://docs.ovh.com/au/en/',
+          hostingPrivateDatabase:
+            'https://docs.ovh.com/au/en/hosting/getting-started-with-private-sql/',
+          hostingPrivateDatabaseDBaaS: {
+            beginner:
+              'https://docs.ovh.com/au/en/clouddb/getting-started-with-clouddb/',
+            db:
+              'https://docs.ovh.com/au/en/clouddb/get-started-with-mysql-and-mariadb/',
+            beginPostgre:
+              'https://docs.ovh.com/au/en/clouddb/getting-started-with-postgresql/',
+          },
           wordpress:
             'https://codex.wordpress.org/Getting_Started_with_WordPress',
           prestashop:
@@ -891,6 +911,16 @@ module.exports = {
         guides: {
           home: 'https://docs.ovh.com/ca/en/',
           all: 'https://docs.ovh.com/ca/en/',
+          hostingPrivateDatabase:
+            'https://docs.ovh.com/ca/en/hosting/getting-started-with-private-sql/',
+          hostingPrivateDatabaseDBaaS: {
+            beginner:
+              'https://docs.ovh.com/ca/en/clouddb/getting-started-with-clouddb/',
+            db:
+              'https://docs.ovh.com/ca/en/clouddb/get-started-with-mysql-and-mariadb/',
+            beginPostgre:
+              'https://docs.ovh.com/ca/en/clouddb/getting-started-with-postgresql/',
+          },
           wordpress:
             'https://codex.wordpress.org/Getting_Started_with_WordPress',
           prestashop:
@@ -915,6 +945,16 @@ module.exports = {
         guides: {
           home: 'https://docs.ovh.com/ca/fr/',
           all: 'https://docs.ovh.com/ca/fr/',
+          hostingPrivateDatabase:
+            'https://docs.ovh.com/ca/fr/hosting/premiers-pas-avec-sql-prive/',
+          hostingPrivateDatabaseDBaaS: {
+            beginner:
+              'https://docs.ovh.com/ca/fr/cloud/clouddb/debuter-avec-clouddb/',
+            db:
+              'https://docs.ovh.com/ca/fr/cloud/clouddb/demarrez-avec-mysql-et-mariadb/',
+            beginPostgre:
+              'https://docs.ovh.com/ca/fr/cloud/clouddb/demarrez-avec-postgresql/',
+          },
           wordpress:
             'https://codex.wordpress.org/fr:Premiers_pas_avec_WordPress',
           prestashop:
@@ -938,6 +978,16 @@ module.exports = {
         guides: {
           home: 'https://docs.ovh.com/sg/en/',
           all: 'https://docs.ovh.com/sg/en/',
+          hostingPrivateDatabase:
+            'https://docs.ovh.com/asia/en/hosting/getting-started-with-private-sql/',
+          hostingPrivateDatabaseDBaaS: {
+            beginner:
+              'https://docs.ovh.com/asia/en/clouddb/getting-started-with-clouddb/',
+            db:
+              'https://docs.ovh.com/asia/en/clouddb/get-started-with-mysql-and-mariadb/',
+            beginPostgre:
+              'https://docs.ovh.com/asia/en/clouddb/getting-started-with-postgresql/',
+          },
           wordpress:
             'https://codex.wordpress.org/Getting_Started_with_WordPress',
           prestashop:
@@ -961,6 +1011,16 @@ module.exports = {
         guides: {
           home: 'https://docs.ovh.com/ca/en/',
           all: 'https://docs.ovh.com/ca/en/',
+          hostingPrivateDatabase:
+            'https://docs.ovh.com/ca/en/hosting/getting-started-with-private-sql/',
+          hostingPrivateDatabaseDBaaS: {
+            beginner:
+              'https://docs.ovh.com/ca/en/clouddb/getting-started-with-clouddb/',
+            db:
+              'https://docs.ovh.com/ca/en/clouddb/get-started-with-mysql-and-mariadb/',
+            beginPostgre:
+              'https://docs.ovh.com/ca/en/clouddb/getting-started-with-postgresql/',
+          },
           wordpress:
             'https://codex.wordpress.org/Getting_Started_with_WordPress',
           prestashop:
@@ -985,6 +1045,16 @@ module.exports = {
         guides: {
           home: 'https://docs.ovh.com/us/es/',
           all: 'https://docs.ovh.com/us/es/',
+          hostingPrivateDatabase:
+            'https://docs.ovh.com/us/es/hosting/getting-started-with-private-sql/',
+          hostingPrivateDatabaseDBaaS: {
+            beginner:
+              'https://docs.ovh.com/us/es/clouddb/getting-started-with-clouddb/',
+            db:
+              'https://docs.ovh.com/us/es/clouddb/get-started-with-mysql-and-mariadb/',
+            beginPostgre:
+              'https://docs.ovh.com/us/es/clouddb/getting-started-with-postgresql/',
+          },
           wordpress:
             'https://codex.wordpress.org/Getting_Started_with_WordPress',
           prestashop:
@@ -999,9 +1069,9 @@ module.exports = {
           'https://www.ovh.com/world/es/domains/dnssec_service.xml',
         domainOrderChange: 'https://ca.ovh.com/en/cgi-bin/newOrder/order.cgi',
         domainOrderTrade:
-          "https://us.ovh.com/us/es/order/domain/#/legacy/domain/trade/list?options=~~(domain~~'{domain})",
+          "https://us.ovh.com/es/order/domain/#/legacy/domain/trade/list?options=~~(domain~~'{domain})",
         bulkChangeOwner:
-          'https://us.ovh.com/us/es/order/domain/#/legacy/domain/trade/list',
+          'https://us.ovh.com/es/order/domain/#/legacy/domain/trade/list',
         exchangeOrder: 'https://www.ovh.com/us/emails/hosted-exchange/',
       },
       express_order: {
