@@ -180,7 +180,8 @@
                     >
                         <oui-tile-description>
                             <span
-                                data-ng-bind="::(('hosting_dashboard_service_datacenter_'+ hostingProxy.datacenter | translate) == 'hosting_dashboard_service_datacenter_'+ hostingProxy.datacenter)? hostingProxy.datacenter: ('hosting_dashboard_service_datacenter_'+ hostingProxy.datacenter | translate)"
+                                data-translate="{{:: 'hosting_dashboard_service_datacenter_' + hostingProxy.datacenter }}"
+                                data-translate-default="{{:: hostingProxy.datacenter }}"
                             ></span>
                         </oui-tile-description>
                     </oui-tile-definition>
