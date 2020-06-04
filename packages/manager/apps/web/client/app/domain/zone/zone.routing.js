@@ -8,11 +8,12 @@ const commonResolves = {
     ovhManagerProductOffersDetachService,
     serviceInfos,
   ) =>
-    serviceInfos
+    (serviceInfos
       ? ovhManagerProductOffersDetachService.getAvailableDetachPlancodes(
           serviceInfos.serviceId,
         )
-      : $q.resolve([]),
+      : $q.resolve([])
+    ).catch(() => $q.resolve([])),
   serviceInfos: /* @ngInject */ ($http, $q, zoneOption) =>
     zoneOption
       ? $http
