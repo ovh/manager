@@ -16,9 +16,11 @@ export default class DomainTabZoneDnsCtrl {
     $q,
     $translate,
     activateZone,
-    orderZone,
     Alerter,
+    detachZoneLink,
+    detachZoneOptions,
     Domain,
+    orderZone,
     WucUser,
   ) {
     this.$scope = $scope;
@@ -31,6 +33,8 @@ export default class DomainTabZoneDnsCtrl {
     this.activateZone = activateZone;
     this.orderZone = orderZone;
     this.region = Environment.getRegion();
+    this.detachZoneLink = detachZoneLink;
+    this.canZoneBeDetached = !isEmpty(detachZoneOptions);
   }
 
   $onInit() {

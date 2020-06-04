@@ -452,6 +452,13 @@
                         data-ng-click="setAction('zone/delete-all/domain-zone-delete-all', ctrlDomainTabZoneDns.domain)"
                         data-ng-if="ctrlDomainTabZoneDns.allowModification"
                     ></button>
+                    <a
+                        class="oui-button oui-button_secondary oui-button_full-width mt-1"
+                        data-ng-if="ctrlDomainTabZoneDns.canZoneBeDetached"
+                        data-ng-href="{{ ctrlDomainTabZoneDns.detachZoneLink }}"
+                    >
+                        <span data-translate="domain_tab_ZONE_detach"></span>
+                    </a>
                 </div>
 
                 <div
