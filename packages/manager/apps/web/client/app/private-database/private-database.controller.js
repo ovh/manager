@@ -17,6 +17,7 @@ export default class PrivateDatabaseCtrl {
     Hosting,
     PrivateDatabase,
     PrivateDatabaseExtension,
+    RedirectionService,
     User,
   ) {
     this.$q = $q;
@@ -29,12 +30,18 @@ export default class PrivateDatabaseCtrl {
     this.hostingService = Hosting;
     this.privateDatabaseExtensionService = PrivateDatabaseExtension;
     this.privateDatabaseService = PrivateDatabase;
+    this.RedirectionService = RedirectionService;
     this.userService = User;
   }
 
   $onInit() {
     this.productId = this.$stateParams.productId;
     this.isExpired = false;
+
+    this.contactManagementLink = this.RedirectionService.getURL(
+      'contactManagement',
+      { serviceName: this.productId },
+    );
 
     this.$scope.alerts = {
       page: 'privateDataBase.alerts.page',

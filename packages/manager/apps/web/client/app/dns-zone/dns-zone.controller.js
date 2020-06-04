@@ -17,6 +17,7 @@ export default class DnsZoneCtrl {
     Alerter,
     capabilities,
     Domain,
+    contactManagementLink,
     currentSection,
     isEmailDomainAvailable,
   ) {
@@ -26,6 +27,7 @@ export default class DnsZoneCtrl {
     this.$translate = $translate;
     this.Alerter = Alerter;
     this.capabilities = capabilities;
+    this.contactManagementLink = contactManagementLink;
     this.Domain = Domain;
     this.currentSection = currentSection;
     this.isEmailDomainAvailable = isEmailDomainAvailable;

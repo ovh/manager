@@ -20,6 +20,7 @@ export default class HostingGeneralInformationsCtrl {
     HostingRuntimes,
     hostingSSLCertificate,
     OvhApiScreenshot,
+    RedirectionService,
   ) {
     this.$q = $q;
     this.$scope = $scope;
@@ -35,6 +36,7 @@ export default class HostingGeneralInformationsCtrl {
     this.HostingRuntimes = HostingRuntimes;
     this.hostingSSLCertificate = hostingSSLCertificate;
     this.OvhApiScreenshot = OvhApiScreenshot;
+    this.RedirectionService = RedirectionService;
   }
 
   $onInit() {
@@ -42,6 +44,10 @@ export default class HostingGeneralInformationsCtrl {
     this.defaultRuntime = null;
     this.availableOffers = [];
 
+    this.contactManagementLink = this.RedirectionService.getURL(
+      'contactManagement',
+      { serviceName: this.serviceName },
+    );
     this.loading = {
       defaultRuntime: true,
       localSeo: true,
