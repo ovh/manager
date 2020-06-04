@@ -1,6 +1,7 @@
 <!-- ARROW -->
 <span
     class="item-arrow"
+    aria-hidden="true"
     data-ng-class="{
           'no-sub' : !ItemMenuCtrl.item.allowSubItems
         }"
@@ -18,21 +19,30 @@
 </span>
 
 <!-- LOADING -->
-<span class="item-loading" data-ng-if="ItemMenuCtrl.item.loading">
-    <div class="oui-spinner oui-spinner_s">
-        <div class="oui-spinner__container">
-            <div class="oui-spinner__image"></div>
-        </div>
-    </div>
+<span
+    class="item-loading"
+    aria-hidden="true"
+    data-ng-if="ItemMenuCtrl.item.loading"
+>
+    <span class="oui-spinner oui-spinner_s">
+        <span class="oui-spinner__container">
+            <span class="oui-spinner__image"></span>
+        </span>
+    </span>
 </span>
 
 <!-- ITEM ICON -->
-<span class="item-icon" data-ng-if="ItemMenuCtrl.item.icon">
+<span class="item-icon" aria-hidden="true" data-ng-if="ItemMenuCtrl.item.icon">
     <i data-ng-class="ItemMenuCtrl.item.icon"></i>
 </span>
 
 <!-- ITEM PREFIX -->
-<span class="item-prefix" data-ng-bind="ItemMenuCtrl.item.prefix"> </span>
+<span
+    class="item-prefix"
+    data-ng-if="ItemMenuCtrl.item.prefix"
+    data-ng-bind="ItemMenuCtrl.item.prefix"
+>
+</span>
 
 <!-- ITEM TITLE -->
 <span class="item-title" data-ng-bind="ItemMenuCtrl.item.title"> </span>
