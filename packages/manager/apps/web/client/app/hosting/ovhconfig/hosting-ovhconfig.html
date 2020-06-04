@@ -344,7 +344,10 @@
                     data-translate="hosting_action_config_edit_container_help_values_title"
                 ></h4>
                 <p
-                    data-ng-bind-html="'hosting_action_config_edit_container_help_values_text' | translate"
+                    data-translate="hosting_action_config_edit_container_help_values_text"
+                    data-translate-values="{
+                        phpVersion: ctrl.recommendedVersion
+                    }"
                 ></p>
             </div>
         </div>
