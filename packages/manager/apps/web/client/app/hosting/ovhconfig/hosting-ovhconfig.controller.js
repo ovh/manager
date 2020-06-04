@@ -5,6 +5,8 @@ import isEmpty from 'lodash/isEmpty';
 import isString from 'lodash/isString';
 import set from 'lodash/set';
 
+import { RECOMMENDED_VERSION } from './config.constants';
+
 angular.module('App').controller(
   'HostingEditOvhConfig',
   class HostingEditOvhConfig {
@@ -48,6 +50,8 @@ angular.module('App').controller(
       this.$scope.saveConfig = () => this.saveConfig();
 
       this.initWizard();
+
+      this.recommendedVersion = RECOMMENDED_VERSION;
     }
 
     static parseLabel(label) {
