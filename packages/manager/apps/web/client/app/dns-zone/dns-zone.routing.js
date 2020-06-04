@@ -15,6 +15,10 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       capabilities: /* @ngInject */ (DNSZoneService, serviceName) =>
         DNSZoneService.getCapabilities(serviceName),
+      contactManagementLink: /* @ngInject */ (
+        RedirectionService,
+        serviceName,
+      ) => RedirectionService.getURL('contactManagement', { serviceName }),
       currentSection: () => 'zone',
       navigationInformations: /* @ngInject */ (
         currentSection,
