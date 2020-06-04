@@ -13,6 +13,28 @@ export default /* @ngInject */ ($stateProvider) => {
           $translate.instant(
             'pci_projects_project_serving_namespace_models_details',
           ),
+
+        metricsToken: /* @ngInject */ (
+          OvhManagerPciServingModelsService,
+          projectId,
+          namespaceId,
+        ) => {
+          return OvhManagerPciServingModelsService.getMetricsToken(
+            projectId,
+            namespaceId,
+          );
+        },
+        model: /* @ngInject */ (
+          OvhManagerPciServingModelsService,
+          projectId,
+          namespaceId,
+          $stateParams,
+        ) =>
+          OvhManagerPciServingModelsService.get(
+            projectId,
+            namespaceId,
+            $stateParams.modelId,
+          ),
       },
     },
   );

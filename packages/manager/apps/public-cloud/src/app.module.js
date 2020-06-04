@@ -88,26 +88,7 @@ angular
       );
     },
   )
-  .run(
-    /* @ngInject */ ($state) => {
-      $state.defaultErrorHandler((error) => {
-        if (error.type === RejectType.ERROR) {
-          $state.go(
-            'pci.error',
-            {
-              detail: {
-                message: get(error.detail, 'data.message'),
-                code: has(error.detail, 'headers')
-                  ? error.detail.headers('x-ovh-queryId')
-                  : null,
-              },
-            },
-            { location: false },
-          );
-        }
-      });
-    },
-  )
+
   .run(/* @ngTranslationsInject:json ./translations */)
   .run(
     /* @ngInject */ ($rootScope, $transitions) => {

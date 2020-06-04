@@ -7,6 +7,7 @@ import service from '../service/models.module';
 import capabilities from '../../../capabilities.service';
 
 import ovhManagerPciStoragesContainers from '../../../../storages/containers';
+import metricsChartComponent from './metrics-chart';
 
 const moduleName = 'ovhManagerPciProjectServingNamespaceModelsDetails';
 
@@ -18,6 +19,7 @@ angular
     'pascalprecht.translate',
     'ui.router',
     'ngAtInternet',
+    metricsChartComponent,
     service,
     ovhManagerPciStoragesContainers,
   ])
