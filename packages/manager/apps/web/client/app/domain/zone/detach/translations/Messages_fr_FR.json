@@ -2,5 +2,5 @@
   "web_domain_zone_detach": "Délier ma zone DNS",
   "web_domain_zone_detach_description": "Délier cette zone DNS vous permet de la renouveler de manière indépendante de votre domaine. Ceci vous permet de continuer d'utiliser votre zone DNS pour un nom de domaine déposé dans un autre registre.",
   "web_domain_zone_detach_error": "Une erreur est survenue lors du détachement de la zone. {{ message }}",
-  "web_domain_zone_detach_success_autopay": "Le détachement de la zone a bien été réalisée"
+  "web_domain_zone_detach_success_autopay": "Le détachement de la zone a bien été réalisé"
 }
