@@ -1,6 +1,6 @@
 <oui-checkbox
     name="{{:: $ctrl.name }}"
-    data-ng-if="$ctrl.contracts"
+    data-ng-if="$ctrl.contracts && $ctrl.contracts.length"
     data-model="$ctrl.model"
     data-required
 >
