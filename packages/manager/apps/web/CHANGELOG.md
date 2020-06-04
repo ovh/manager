@@ -1,3 +1,12 @@
+## [14.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@14.4.0...@ovh-ux/manager-web@14.4.1) (2020-06-04)
+
+
+### Bug Fixes
+
+* **domain.zone): revert "feat(domain.zone:** detach zone" ([#3066](https://github.com/ovh/manager/issues/3066)) ([21f6de0](https://github.com/ovh/manager/commit/21f6de06a1d71e1c91bc42c4224552602656e293))
+
+
+
 # [14.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@14.3.4...@ovh-ux/manager-web@14.4.0) (2020-06-02)
 
 
