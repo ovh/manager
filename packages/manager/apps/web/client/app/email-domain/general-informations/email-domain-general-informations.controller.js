@@ -13,6 +13,7 @@ angular.module('App').controller(
       Alerter,
       constants,
       OvhApiEmailDomain,
+      RedirectionService,
       User,
       WucEmails,
     ) {
@@ -24,6 +25,7 @@ angular.module('App').controller(
       this.Alerter = Alerter;
       this.constants = constants;
       this.OvhApiEmailDomain = OvhApiEmailDomain;
+      this.RedirectionService = RedirectionService;
       this.User = User;
       this.WucEmails = WucEmails;
     }
@@ -130,7 +132,10 @@ angular.module('App').controller(
       } else {
         this.urls.delete = `${this.constants.AUTORENEW_URL}?selectedType=EMAIL_DOMAIN&searchText=${this.$stateParams.productId}`;
       }
-      this.urls.manageContacts = `#/useraccount/contacts?tab=SERVICES&serviceName=${this.$stateParams.productId}`;
+      this.urls.manageContacts = this.RedirectionService.getURL(
+        'contactManagement',
+        { serviceName: this.$stateParams.productId },
+      );
       return this.User.getUrlOf('changeOwner')
         .then((link) => {
           this.urls.changeOwner = link;
