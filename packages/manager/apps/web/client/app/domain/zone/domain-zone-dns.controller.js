@@ -9,17 +9,7 @@ import xor from 'lodash/xor';
 
 export default class DomainTabZoneDnsCtrl {
   /* @ngInject */
-  constructor(
-    $scope,
-    $q,
-    $translate,
-    activateZone,
-    Alerter,
-    detachZoneLink,
-    detachZoneOptions,
-    Domain,
-    User,
-  ) {
+  constructor($scope, $q, $translate, activateZone, Alerter, Domain, User) {
     this.$scope = $scope;
     this.$q = $q;
     this.$translate = $translate;
@@ -28,8 +18,6 @@ export default class DomainTabZoneDnsCtrl {
     this.User = User;
 
     this.activateZone = activateZone;
-    this.detachZoneLink = detachZoneLink;
-    this.canZoneBeDetached = !isEmpty(detachZoneOptions);
   }
 
   $onInit() {
