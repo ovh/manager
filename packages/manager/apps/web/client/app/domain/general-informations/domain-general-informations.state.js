@@ -14,6 +14,12 @@ const commonResolves = {
       })
       .$promise.catch(() => $q.resolve([])),
 
+  dnsAvailableOptions: /* @ngInject */ (domainName, WucOrderCartService) =>
+    WucOrderCartService.getProductServiceOptions(
+      'dns',
+      domainName,
+    ).catch(() => []),
+
   start10mOffers: /* @ngInject */ (availableOptions) =>
     availableOptions.filter(({ family }) => family === 'hosting'),
 
