@@ -14,6 +14,8 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     resolve: {
       currentSection: () => 'zone',
+      detachZoneLink: () => null,
+      detachZoneOptions: () => [],
       navigationInformations: /* @ngInject */ (
         currentSection,
         Navigator,
