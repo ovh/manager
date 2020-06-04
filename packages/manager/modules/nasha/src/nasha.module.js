@@ -27,7 +27,9 @@ import routing from './routing';
 
 import './styles.less';
 import 'ovh-ui-kit-bs/dist/ovh-ui-kit-bs.min.css';
+import 'ovh-ui-kit-bs/dist/oui-bs3-olt.css';
 import 'ovh-ui-kit/dist/oui.css';
+import 'ovh-ui-kit/dist/oui-olt.css';
 import './add/styles.less';
 
 const moduleName = 'ovhManagerNasha';

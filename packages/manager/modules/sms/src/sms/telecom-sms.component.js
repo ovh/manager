@@ -8,7 +8,9 @@ import '@ovh-ux/ng-pagination-front';
 import 'ovh-api-services';
 
 import 'ovh-ui-kit/dist/oui.css';
+import 'ovh-ui-kit/dist/oui-olt.css';
 import 'ovh-ui-kit-bs/dist/ovh-ui-kit-bs.min.css';
+import 'ovh-ui-kit-bs/dist/oui-bs3-olt.css';
 import 'ovh-manager-webfont/dist/css/ovh-font.css';
 import 'font-awesome/css/font-awesome.css';
 

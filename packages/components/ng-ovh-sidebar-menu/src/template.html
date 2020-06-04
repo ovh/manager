@@ -9,30 +9,16 @@
     </div>
 
     <div data-ng-if="!sideBarCtrl.loading.init">
-        <!-- MENU TITLE -->
-        <div class="sidebar-menu-title">
-            <button
-                type="button"
-                class="navbar-button sideNavBtnClose pull-right"
-            >
-                <span class="ovh-font ovh-font-arrow-left"></span>
-            </button>
-            <span
-                class="navbar-brand navbar-toggle-title"
-                data-translate="sidebar_menu"
-            >
-            </span>
-        </div>
-
         <!-- ORDER ACTIONS MENU -->
         <div class="order-actions-menu">
             <actions-menu
                 data-actions-menu-options="sideBarCtrl.actionsOptions"
                 data-actions-menu-popover-settings="sideBarCtrl.popoverSettings"
             >
-                <span class="cart-icon">
-                    <i class="ovh-font ovh-font-cart"></i>
-                </span>
+                <span
+                    class="cart-icon ovh-font ovh-font-cart"
+                    aria-hidden="true"
+                ></span>
 
                 <span
                     class="button-text"
@@ -40,9 +26,10 @@
                 >
                 </span>
 
-                <span class="arrow-icon">
-                    <i class="ovh-font ovh-font-small-arrow-down"></i>
-                </span>
+                <span
+                    class="arrow-icon ovh-font ovh-font-small-arrow-down"
+                    aria-hidden="true"
+                ></span>
             </actions-menu>
         </div>
 

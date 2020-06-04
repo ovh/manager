@@ -7,7 +7,9 @@ import ngOvhUiConfirmModal from '@ovh-ux/ng-ovh-ui-confirm-modal';
 import 'ovh-api-services';
 
 import 'ovh-ui-kit/dist/oui.css';
+import 'ovh-ui-kit/dist/oui-olt.css';
 import 'ovh-ui-kit-bs/dist/ovh-ui-kit-bs.min.css';
+import 'ovh-ui-kit-bs/dist/oui-bs3-olt.css';
 
 import credit from './credit';
 import faxConfiguration from './faxConfiguration';
