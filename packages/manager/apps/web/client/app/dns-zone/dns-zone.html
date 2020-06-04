@@ -55,9 +55,10 @@
             >
             </oui-header-tabs-item>
             <oui-header-tabs-item
-                data-text="{{:: 'contacts_management' | translate }}"
-                data-href="{{:: '#/useraccount/contacts?tab=SERVICES&serviceName=' + ctrlDomain.$stateParams.productId }}"
+                ng-if="contactManagementLink"
+                href="{{:: ctrlDomain.contactManagementLink }}"
             >
+                <span data-translate="contacts_management"></span>
             </oui-header-tabs-item>
         </oui-header-tabs>
     </div>

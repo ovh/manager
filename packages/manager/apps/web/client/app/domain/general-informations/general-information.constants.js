@@ -1,3 +1,5 @@
+export const PRODUCT_TYPE = 'DOMAIN';
+
 export const DNSSEC_STATUS = {
   DISABLED: 'disabled',
   ENABLED: 'enabled',
@@ -17,5 +19,6 @@ export const PROTECTION_TYPES = {
 export default {
   DNSSEC_STATUS,
   OWNER_CHANGE_URL,
+  PRODUCT_TYPE,
   PROTECTION_TYPES,
 };

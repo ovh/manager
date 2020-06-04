@@ -724,12 +724,20 @@
                                 ></span>
                             </div>
                         </oui-tile-description>
-                        <oui-action-menu data-align="end" data-compact>
+                        <oui-action-menu
+                            data-align="end"
+                            data-compact
+                            ng-if="$ctrl.contactManagementLink || changeOwnerUrl"
+                        >
                             <oui-action-menu-item
-                                data-text="{{ ::'common_manage_contacts' | translate }}"
+                                ng-if="$ctrl.contactManagementLink"
                                 aria-label="{{ ::'common_manage_contacts' | translate }}"
-                                data-href="{{ '#/useraccount/contacts?tab=SERVICES&serviceName=' + $ctrl.serviceName }}"
-                            ></oui-action-menu-item>
+                                href="{{:: $ctrl.contactManagementLink }}"
+                            >
+                                <span
+                                    data-translate="common_manage_contacts"
+                                ></span>
+                            </oui-action-menu-item>
                             <oui-action-menu-item
                                 ng-if="changeOwnerUrl"
                                 data-text="{{ ::'core_change_owner' | translate }}"
