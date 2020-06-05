@@ -51,7 +51,7 @@
             data-editable="::false"
             data-description="{{:: ($ctrl.isOptionFree ? 'hosting_cdn_order_step_description_activation' : '') | translate }}"
             data-loading="$ctrl.checkoutLoading"
-            data-valid="$ctrl.agreeContracts"
+            data-valid="$ctrl.agreeContracts || ($ctrl.cart && !$ctrl.cart.contracts.length )"
             data-on-focus="$ctrl.prepareCheckout()"
             data-on-cancel="$ctrl.goBack()"
             data-prevent-next
