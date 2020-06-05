@@ -29,6 +29,7 @@ module.exports = ({ name }) => ({
     '@ovh-ux/ng-ovh-request-tagger': '^1.1.0',
     '@ovh-ux/ng-ovh-sso-auth': '^4.2.3',
     '@ovh-ux/ng-ovh-swimming-poll': '^5.0.0',
+    '@ovh-ux/ui-kit': '^4.1.8',
     '@uirouter/angularjs': '^1.0.23',
     angular: '^1.7.5',
     'angular-aria': '^1.7.8',
