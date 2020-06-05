@@ -44,6 +44,7 @@
   },
   "peerDependencies": {
     "@ovh-ux/ng-translate-async-loader": "^2.1.0",
+    "@ovh-ux/ui-kit": "^4.1.9",
     "angular": "^1.7.5",
     "angular-translate": "^2.18.1",
     "ovh-api-services": "^9.39.1",

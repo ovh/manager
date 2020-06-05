@@ -43,6 +43,7 @@
     "@ovh-ux/ng-translate-async-loader": "^2.1.0",
     "@ovh-ux/ng-ui-router-breadcrumb": "^1.1.0",
     "@ovh-ux/ng-ui-router-line-progress": "^1.2.1",
+    "@ovh-ux/ui-kit": "^4.1.9",
     "@uirouter/angularjs": "^1.0.23",
     "angular": "^1.7.5",
     "angular-aria": "^1.7.8",
@@ -66,6 +67,7 @@
   },
   "devDependencies": {
     "@ovh-ux/manager-webpack-config": "^3.3.0",
+    "@ovh-ux/ui-kit": "^4.1.9",
     "glob": "^7.1.6",
     "lodash": "^4.17.15",
     "oui4": "npm:@ovh-ux/ui-kit",
