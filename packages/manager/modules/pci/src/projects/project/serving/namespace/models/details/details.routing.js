@@ -9,10 +9,7 @@ export default /* @ngInject */ ($stateProvider) => {
       },
       resolve: {
         goBack: /* @ngInject */ (goToNamespaceModels) => goToNamespaceModels,
-        breadcrumb: /* @ngInject */ ($translate) =>
-          $translate.instant(
-            'pci_projects_project_serving_namespace_models_details',
-          ),
+        breadcrumb: /* @ngInject */ ($stateParams) => $stateParams.modelId,
 
         metricsToken: /* @ngInject */ (
           OvhManagerPciServingModelsService,

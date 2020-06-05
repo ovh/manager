@@ -9,6 +9,6 @@ export default {
     colors: '<',
     labels: '<',
     series: '<',
-    unit: '@',
+    unit: '<',
   },
 };

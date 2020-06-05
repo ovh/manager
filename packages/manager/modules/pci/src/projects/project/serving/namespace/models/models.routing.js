@@ -44,6 +44,13 @@ export default /* @ngInject */ ($stateProvider) => {
           modelId,
         }),
 
+      modelLink: /* @ngInject */ ($state, projectId, namespaceId) => ({ id }) =>
+        $state.href('pci.projects.project.serving.namespace.models.details', {
+          projectId,
+          namespaceId,
+          modelId: id,
+        }),
+
       models: /* @ngInject */ (
         OvhManagerPciServingModelsService,
         projectId,

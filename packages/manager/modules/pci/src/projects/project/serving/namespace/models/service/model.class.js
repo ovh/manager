@@ -13,6 +13,9 @@ export default class NamespaceModel {
     replicas,
     storagePath,
     url,
+    flavor,
+    workflowTemplateParameters,
+    autoscalingSpec,
     version,
     versionStatus,
   }) {
@@ -23,6 +26,9 @@ export default class NamespaceModel {
       replicas,
       storagePath,
       url,
+      flavor,
+      workflowTemplateParameters,
+      autoscalingSpec,
       version,
       versionStatus,
     });

@@ -21,7 +21,12 @@
             data-type="string"
             data-searchable
             data-filterable
-        ></oui-column>
+        >
+            <a
+                data-ng-href="{{:: $ctrl.modelLink($row) }}"
+                data-ng-bind="$value"
+            ></a>
+        </oui-column>
 
         <oui-column
             data-title=":: 'pci_projects_project_serving_namespace_models_version_status' | translate"

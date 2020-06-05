@@ -13,6 +13,7 @@ export default {
     projectId: '<',
     project: '<',
     details: '<',
+    modelLink: '<',
   },
   template,
   controller,

@@ -1,19 +1,11 @@
 export default class {
   $onInit() {
-    this.datasetOverride = {
-      xAxisId: 'x-axis',
-      yAxisId: 'y-axis',
-      pointRadius: 3,
-      backgroundColor: 'rgba(237,248,253,0.5)',
-      borderColor: 'rgba(2,182,219,1)',
-      type: 'line',
-      bezierCurve: false,
-    };
     this.options = {
       responsive: true,
       elements: {
         line: {
           fill: false,
+          tension: 0,
           borderWidth: 1,
         },
         point: {
@@ -31,6 +23,9 @@ export default class {
 
             if (label) {
               label += `: ${tooltipItem.yLabel}`;
+            }
+            if (this.unit) {
+              label += `${this.unit}`;
             }
             return label;
           },
@@ -54,9 +49,14 @@ export default class {
               display: true,
             },
             afterDataLimits: (axis) => {
-              // add some margin to avoid chart crop
-              axis.max += 1; // eslint-disable-line no-param-reassign
-              axis.min = 0; // eslint-disable-line no-param-reassign
+              if (this.unit === '%') {
+                axis.max = 100; // eslint-disable-line no-param-reassign
+                axis.min = 0; // eslint-disable-line no-param-reassign
+              } else {
+                // add some margin to avoid chart crop
+                axis.max += 1; // eslint-disable-line no-param-reassign
+                axis.min = 0; // eslint-disable-line no-param-reassign
+              }
             },
           },
         ],
