@@ -2,11 +2,16 @@
   "ovhManagerSupport_new_open_new_tab": "Ouvre un nouvel onglet",
 
   "ovhManagerSupport_new_category": "Thématique",
-  "ovhManagerSupport_new_category_billing": "Facturation et commande",
+  "ovhManagerSupport_new_category_billing": "Facturation et suivi de commande",
   "ovhManagerSupport_new_category_assistance": "Conseil technique",
   "ovhManagerSupport_new_category_incident": "Incident",
-  "ovhManagerSupport_new_category_account": "Gestion du compte",
+  "ovhManagerSupport_new_category_account": "Gestion du compte client",
   "ovhManagerSupport_new_category_business": "Contact commercial",
+
+  "ovhManagerSupport_new_category_description_billing": "Questions relatives à la facturation et au suivi de commande de vos produits et services",
+  "ovhManagerSupport_new_category_description_assistance": "Questions relatives à l'utilisation de vos produits et services",
+  "ovhManagerSupport_new_category_description_incident": "Questions relatives aux incidents techniques survenant sur vos produits et services et ne relevant pas d'un problème d'utilisation",
+  "ovhManagerSupport_new_category_description_account": "Questions relatives à la gestion de votre compte client, et qui ne concernent aucun produit",
 
   "ovhManagerSupport_new_urgency": "Degré de priorité",
   "ovhManagerSupport_new_urgency_low": "Faible",
