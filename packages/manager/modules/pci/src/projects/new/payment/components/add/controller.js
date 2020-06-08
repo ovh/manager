@@ -1,4 +1,3 @@
-import chunk from 'lodash/chunk';
 import filter from 'lodash/filter';
 import get from 'lodash/get';
 import head from 'lodash/head';
@@ -19,10 +18,7 @@ export default class PciProjectNewPaymentMethodAddCtrl {
     this.ovhPaymentMethodHelper = ovhPaymentMethodHelper;
 
     // other attributes
-    this.authorizedPaymentMethods = {
-      chunks: null,
-      list: null,
-    };
+    this.authorizedPaymentMethods = null;
 
     this.paymentSectionHref = get(
       PCI_REDIRECT_URLS,
@@ -39,7 +35,9 @@ export default class PciProjectNewPaymentMethodAddCtrl {
       paymentMethodType.paymentType ===
       PAYMENT_METHOD_AUTHORIZED_ENUM.CREDIT.toUpperCase()
     ) {
-      return this.$translate.instant('pci_project_new_payment_register_credit');
+      return this.$translate.instant(
+        'pci_project_new_payment_method_add_credit',
+      );
     }
 
     return this.ovhPaymentMethodHelper.getPaymentMethodTypeText(
@@ -94,7 +92,7 @@ export default class PciProjectNewPaymentMethodAddCtrl {
       (paymentType) => snakeCase(paymentType).toUpperCase(),
     );
 
-    this.authorizedPaymentMethods.list = registerablePaymentMethods.sort(
+    this.authorizedPaymentMethods = registerablePaymentMethods.sort(
       (methodA, methodB) => {
         const methodAIndex = mappedPreferredMethodOrder.indexOf(
           methodA.paymentType,
@@ -106,14 +104,9 @@ export default class PciProjectNewPaymentMethodAddCtrl {
       },
     );
 
-    this.authorizedPaymentMethods.chunks = chunk(
-      this.authorizedPaymentMethods.list,
-      2,
-    );
-
     // set payment method model
     this.model.paymentMethod = this.eligibility.isAddPaymentMethodRequired()
-      ? head(this.authorizedPaymentMethods.list)
+      ? head(this.authorizedPaymentMethods)
       : null;
   }
 

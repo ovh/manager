@@ -1,6 +1,6 @@
 import { isNull } from 'lodash-es';
 
-import { PAYMENT_METHOD_TYPE_ENUM } from './payment-method.constants';
+import OvhPaymentMethodType from './payment-method-type.class';
 
 /**
  *  Describe a payment method object.
@@ -79,10 +79,10 @@ export default class OvhPaymentMethod {
       : null;
 
     /**
-     *  Payment method type.
-     *  @type {String}
+     *  The type of the payment method.
+     *  @type {OvhPaymentMethodType}
      */
-    this.paymentType = options.paymentType;
+    this.type = new OvhPaymentMethodType(options.paymentType);
 
     /**
      *  The ID of the associated billing contact.
@@ -126,6 +126,14 @@ export default class OvhPaymentMethod {
   }
 
   /**
+   * Get the name of the payment type. For retro-compatibility.
+   * @return {String} The name of the payment type.
+   */
+  get paymentType() {
+    return this.type.paymentType;
+  }
+
+  /**
    *  Determine if payment method is a legacy one (if original attribute is setted).
    *  @return {Boolean} true if payment method is legacy, false otherwise.
    */
@@ -157,43 +165,5 @@ export default class OvhPaymentMethod {
       default:
         return 'info';
     }
-  }
-
-  /**
-   * Determine if payment method type is a Bank Account.
-   *
-   * @return {Boolean}
-   */
-  isBankAccount() {
-    return this.paymentType === PAYMENT_METHOD_TYPE_ENUM.BANK_ACCOUNT;
-  }
-
-  /**
-   * Determine if payment method type is a Credit Card.
-   *
-   * @return {Boolean}
-   */
-  isCreditCard() {
-    return this.paymentType === PAYMENT_METHOD_TYPE_ENUM.CREDIT_CARD;
-  }
-
-  /**
-   * Determine if payment method type is a Deferred Payment Account.
-   *
-   * @return {Boolean}
-   */
-  isDeferredPaymentAccount() {
-    return (
-      this.paymentType === PAYMENT_METHOD_TYPE_ENUM.DEFERRED_PAYMENT_ACCOUNT
-    );
-  }
-
-  /**
-   * Determine if payment method type is a Paypal account.
-   *
-   * @return {Boolean}
-   */
-  isPaypal() {
-    return this.paymentType === PAYMENT_METHOD_TYPE_ENUM.PAYPAL;
   }
 }
