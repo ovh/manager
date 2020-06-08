@@ -1883,21 +1883,6 @@
   dependencies:
     "@types/node" ">= 8"
 
-"@ovh-ux/manager-cloud-styles@^0.3.1":
-  version "0.3.1"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-cloud-styles/-/manager-cloud-styles-0.3.1.tgz#c4eb5175d4ef9cd246354f57e79d8e64594bea8a"
-  integrity sha512-iz4Xf38IvTHWKKgdeC9t/z5PVZVgRBpTWe5TOf7z5Rvy8k1/P8+jPx43gLS6YTDO4yrT6Im2HEdSVFzbdVE7uw==
-
-"@ovh-ux/manager-enterprise-cloud-database@^0.1.10", "@ovh-ux/manager-enterprise-cloud-database@^0.1.9":
-  version "0.1.10"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-enterprise-cloud-database/-/manager-enterprise-cloud-database-0.1.10.tgz#11682410fa8f5a3d1711aedb77fb48c339daec78"
-  integrity sha512-nJ1ON8QGfgGuVoUMTWv69gcyDKXDuLEf2EBPpNc0gXALmIgbd82L/1gOkqN/XfBnQj2jrhOsAGEbXDGDzyH4CQ==
-  dependencies:
-    flag-icon-css "^3.2.0"
-    lodash "^4.17.14"
-    moment "^2.22.2"
-    zxcvbn "^4.4.2"
-
 "@ovh-ux/ng-ovh-api-wrappers@^4.0.7":
   version "4.0.7"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-api-wrappers/-/ng-ovh-api-wrappers-4.0.7.tgz#f07cff3c42ef1c9d1655e2300617528a7d8b2f4f"
@@ -12877,11 +12862,6 @@ moment@^2.10.3, moment@^2.14.1:
   version "2.25.3"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.25.3.tgz#252ff41319cf41e47761a1a88cab30edfe9808c0"
   integrity sha512-PuYv0PHxZvzc15Sp8ybUCoQ+xpyPWvjOuK72a5ovzp2LI32rJXOiIfyoFoYvG3s6EwwrdkMyWuRiEHSZRLJNdg==
-
-moment@^2.22.2:
-  version "2.26.0"
-  resolved "https://registry.yarnpkg.com/moment/-/moment-2.26.0.tgz#5e1f82c6bafca6e83e808b30c8705eed0dcbd39a"
-  integrity sha512-oIixUO+OamkUkwjhAVE18rAMfRJNsNe/Stid/gwHSOfHrOtw9EhAY2AHvdKZ/k/MggcYELFCJz/Sn2pL8b8JMw==
 
 move-concurrently@^1.0.1:
   version "1.0.1"
