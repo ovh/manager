@@ -26,10 +26,7 @@ import './otrs.less';
 const moduleName = 'ngOvhOtrs';
 
 angular
-  .module(moduleName, [
-    'ovh-api-services',
-    'pascalprecht.translate',
-  ])
+  .module(moduleName, ['ovh-api-services', 'pascalprecht.translate'])
   .constant('OTRS_POPUP_API_ALIASES', API_ALIASES)
   .constant('OTRS_POPUP_API_EXCLUDED', API_EXCLUDED)
   .constant('OTRS_POPUP_API_EXTRAS_ENDPOINTS', API_EXTRAS_ENDPOINTS)
