@@ -7,3 +7,4 @@ docs/.vuepress/public/assets/json/packages.json
 .env
 /packages/manager/tools/testcafe/config/**/*.json
 /reports
+.eslintcache
