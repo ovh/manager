@@ -27,7 +27,7 @@ export default class {
     });
   }
 
-  getGuideUrl(guide, user) {
+  static getGuideUrl(guide, user) {
     return get(
       guide.URLS,
       user.ovhSubsidiary.toUpperCase(),
