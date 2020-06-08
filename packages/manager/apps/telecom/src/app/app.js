@@ -49,8 +49,7 @@ import navbar from '../components/navbar';
 
 import portabilities from './telecom/telephony/alias/portability/portabilities/telecom-telephony-alias-portability-portabilities.module';
 
-import 'ovh-ui-kit-bs/dist/ovh-ui-kit-bs.min.css';
-import 'ovh-ui-kit-bs/dist/oui-bs3-olt.css';
+import 'ovh-ui-kit-bs/dist/css/oui-bs3.css';
 
 import './app-scss.scss';
 import './app.less';
