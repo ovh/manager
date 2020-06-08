@@ -110,7 +110,7 @@
     "ng-slide-down": "TheRusskiy/ng-slide-down#^1.0.0",
     "office-ui-fabric-core": "^11.0.0",
     "ovh-angular-list-view": "ovh-ux/ovh-angular-list-view#^0.1.5",
-    "ovh-api-services": "^9.42.0",
+    "ovh-api-services": "^9.44.0",
     "ovh-common-style": "ovh-ux/ovh-common-style#^3.2.2",
     "ovh-manager-webfont": "^1.2.0",
     "ovh-ui-angular": "^3.16.3",
