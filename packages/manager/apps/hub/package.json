@@ -59,7 +59,7 @@
     "lodash-es": "^4.17.15",
     "moment": "^2.24.0",
     "oclazyload": "^1.1.0",
-    "ovh-api-services": "^9.42.0",
+    "ovh-api-services": "^9.44.0",
     "ovh-ui-angular": "^3.16.3",
     "ovh-ui-kit": "^2.42.8",
     "whatwg-fetch": "^3.0.0"
