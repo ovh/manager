@@ -14619,10 +14619,10 @@ ovh-ui-angular@^3.16.3:
     popper.js "^1.14.4"
     ui-select "^0.19.8"
 
-ovh-ui-kit-bs@^2.4.6:
-  version "2.4.6"
-  resolved "https://registry.yarnpkg.com/ovh-ui-kit-bs/-/ovh-ui-kit-bs-2.4.6.tgz#4ae6b2f54d1923fd1c53185841736a0d0456cc97"
-  integrity sha512-VehfAsiQTyN/iKVH5XViu8Bn3kvgk6/dPyZBPXQianND7RkC6ug5HdDGeUz8kKe6yef0L7WexucfjVNoSVgpjw==
+ovh-ui-kit-bs@^4.1.4:
+  version "4.1.4"
+  resolved "https://registry.yarnpkg.com/ovh-ui-kit-bs/-/ovh-ui-kit-bs-4.1.4.tgz#4d8531803cfaeffd08ea042b87ec7ef546caa0c4"
+  integrity sha512-FMYmo0uU8VbogsnK3KPIcWCw/NfrQSyPG4vY0oZyM1EMNFdick3X7g1x4BOxqYtkCDk+6S/Co39AvlFLvCCbbg==
 
 ovh-ui-kit@^2.42.8:
   version "2.42.8"
