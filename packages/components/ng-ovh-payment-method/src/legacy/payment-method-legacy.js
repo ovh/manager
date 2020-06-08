@@ -131,7 +131,9 @@ export default class OvhPaymentMethodLegacy {
         return map(registerablePaymentMeans, (meanTypeOptions) => {
           const meanType = new OvhPaymentMeanType(meanTypeOptions);
 
-          return options.transform ? meanType.toPaymentMethodType() : meanType;
+          return options.transform
+            ? meanType.toAvailablePaymentMethod()
+            : meanType;
         });
       });
   }

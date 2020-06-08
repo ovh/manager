@@ -1,11 +1,8 @@
 <div class="pci-project-new-payment-method-add">
-    <div
-        class="row"
-        data-ng-repeat="authorizedPaymentMethods in $ctrl.authorizedPaymentMethods.chunks track by $index"
-    >
+    <div class="row">
         <div
             class="col-md-6 mb-3"
-            data-ng-repeat="authorizedPaymentMethod in authorizedPaymentMethods track by $index"
+            data-ng-repeat="authorizedPaymentMethod in $ctrl.authorizedPaymentMethods track by $index"
         >
             <oui-radio
                 class="oui-radio_btn"
@@ -28,7 +25,7 @@
 
         <oui-message
             data-type="warning"
-            data-ng-if="$ctrl.model.paymentMethod.isBankAccount()"
+            data-ng-if="$ctrl.model.paymentMethod.type.isBankAccount()"
         >
             <span
                 data-translate="pci_project_new_payment_method_add_warning_bank_account"
