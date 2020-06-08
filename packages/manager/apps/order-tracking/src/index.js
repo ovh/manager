@@ -7,8 +7,7 @@ import ngOvhOrderTracking from '@ovh-ux/ng-ovh-order-tracking';
 
 import 'ovh-ui-kit/dist/oui.css';
 import 'ovh-ui-kit/dist/oui-olt.css';
-import 'ovh-ui-kit-bs/dist/ovh-ui-kit-bs.min.css';
-import 'ovh-ui-kit-bs/dist/oui-bs3-olt.css';
+import 'ovh-ui-kit-bs/dist/css/oui-bs3.css';
 
 angular
   .module('orderTrackingApp', [

@@ -3,8 +3,7 @@
 @import (less) 'flatpickr/dist/flatpickr.css';
 @import 'ovh-ui-kit/packages/oui/stylekit';
 @import 'ovh-ui-kit/packages/ovhcloud-light-theme/index';
-@import (less) 'ovh-ui-kit-bs/dist/ovh-ui-kit-bs.min.css';
-@import (less) 'ovh-ui-kit-bs/dist/oui-bs3-olt.css';
+@import (less) 'ovh-ui-kit-bs/dist/css/oui-bs3.css';
 @import (less) 'font-awesome/css/font-awesome.min.css';
 @import (less) 'ovh-manager-webfont/dist/css/ovh-font.css';
 @import (less) 'animate.css/animate.min.css';
@@ -91,5 +90,17 @@ td,
 th {
   .oui-tooltip {
     white-space: pre-wrap;
+  }
+}
+
+.ovh-manager-dedicated-app {
+  .page-header {
+    margin-top: rem-calc(16);
+  }
+
+  .page-header,
+  .nav.nav-tabs {
+    margin-left: rem-calc(32);
+    margin-right: rem-calc(32);
   }
 }
