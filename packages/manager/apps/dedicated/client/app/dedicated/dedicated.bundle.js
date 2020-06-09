@@ -97,8 +97,6 @@ import './server/statistics/rtm/disk/dedicated-server-statistics-rtm-disk.contro
 import './server/statistics/rtm/load-avg/dedicated-server-statistics-rtm-load-avg.controller';
 import './server/statistics/rtm/ServerStatsRtmGeneralController';
 import './server/statistics/rtm/ServerStatsRtmInfosController';
-import './server/task/dedicated-server-task.controller';
-import './server/task/dedicated-server-task.routes';
 import './server/terminate/dedicated-server-terminate.controller';
 import './server/traffic/cancel/dedicated-server-traffic-cancel.controller';
 import './server/traffic/dedicated-server-traffic.service';

@@ -913,19 +913,6 @@ export default class ServerF {
     });
   }
 
-  getTasks(serviceName, elementsByPage, elementsToSkip) {
-    return this.OvhHttp.get('/sws/dedicated/server/{serviceName}/tasks', {
-      rootPath: '2api',
-      urlParams: {
-        serviceName,
-      },
-      params: {
-        count: elementsByPage,
-        offset: elementsToSkip,
-      },
-    });
-  }
-
   getTaskInProgress(serviceName, type) {
     return this.OvhHttp.get(
       '/sws/dedicated/server/{serviceName}/tasks/uncompleted',
