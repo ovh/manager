@@ -298,11 +298,6 @@ export default /* @ngInject */ function(
       self.loaders.init = false;
       getGraphData();
     });
-<<<<<<< HEAD
-    getAvailableReleaseChannels();
-    getAvailableAction();
-=======
->>>>>>> feat(otb.details): add updating for release channel
     getAvailableReleaseChannels();
     getAvailableAction();
   }
@@ -628,12 +623,18 @@ export default /* @ngInject */ function(
       .catch((err) => {
         TucToast.error(
 <<<<<<< HEAD
+<<<<<<< HEAD
           $translate.instant('overTheBox_change_release_channel_error', {
             errorMessage: err.data.message,
           }),
 =======
           $translate.instant('overTheBox_change_release_channel_error'),
 >>>>>>> feat(otb.details): retrieve release channels to be able to change it
+=======
+          $translate.instant('overTheBox_change_release_channel_error', {
+            message: err.message,
+          }),
+>>>>>>> feat(otb.details): add explicit error message when arrives
         );
         return $q.reject(err);
       })

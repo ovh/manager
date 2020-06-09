@@ -71,7 +71,11 @@
   "overTheBox_expiration_warning_help": "Vous pouvez annuler la résiliation avant la date d'expiration.",
   "overTheBox_release_channels": "Versions disponibles",
   "overTheBox_change_release_channel_success": "Le changement de la version a été effectué avec succès.",
+<<<<<<< HEAD
   "overTheBox_change_release_channel_error": "Nous n'avons pas pu effectuer le changement de la version : {{errorMessage}}",
+=======
+  "overTheBox_change_release_channel_error": "Nous n'avons pas pu effectuer le changement de la version: {{message}}",
+>>>>>>> feat(otb.details): add explicit error message when arrives
   "overTheBox_release_channel_stable": "Version stable grand publique",
   "overTheBox_release_channel_testing": "Version beta",
   "overTheBox_release_channel_unstable": "Version alpha",
