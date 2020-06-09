@@ -103,7 +103,7 @@ export const TELEPHONY_LINE_PHONE_ACCESSORIES = {
     img:
       'https://www.ovhtelecom.fr/images/telephonie/2020/jabra/accessory-jabra-evolve65-90-90.png',
   },
-  'jabra.engage75': {
+  'jabra.engage75.v2': {
     url: URL_ACCESSORIES,
     img:
       'https://www.ovhtelecom.fr/images/telephonie/2020/jabra/accessory-jabra-engage75-90-90.png',
