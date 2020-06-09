@@ -178,6 +178,7 @@ export default class PciServingNamespaceModelsDetailsController {
         [ SWAP bucketizer.last '${d.endDate.toISOString()}' TOTIMESTAMP ${
           this.selected.period.bucketSize
         } ${this.selected.period.bucketCount} ] BUCKETIZE
+        [ 0.0 0.0 0 0.0 ] FILLVALUE
         SORT`,
       )
       .$promise.then((series) => {
@@ -218,6 +219,7 @@ export default class PciServingNamespaceModelsDetailsController {
         [ SWAP bucketizer.last '${d.endDate.toISOString()}' TOTIMESTAMP ${
           this.selected.period.bucketSize
         } ${this.selected.period.bucketCount} ] BUCKETIZE
+        [ 0.0 0.0 0 0.0 ] FILLVALUE
         SORT`,
       )
       .$promise.then((series) => {
@@ -259,6 +261,7 @@ export default class PciServingNamespaceModelsDetailsController {
         [ SWAP bucketizer.sum '${d.endDate.toISOString()}' TOTIMESTAMP ${
           this.selected.period.bucketSize
         } ${this.selected.period.bucketCount} ] BUCKETIZE
+        [ 0.0 0.0 0 0.0 ] FILLVALUE
         SORT`,
       )
       .$promise.then((series) => {
