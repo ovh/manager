@@ -632,7 +632,7 @@ export default /* @ngInject */ function(
 >>>>>>> feat(otb.details): retrieve release channels to be able to change it
 =======
           $translate.instant('overTheBox_change_release_channel_error', {
-            message: err.message,
+            errorMessage: err.data.message,
           }),
 >>>>>>> feat(otb.details): add explicit error message when arrives
         );
