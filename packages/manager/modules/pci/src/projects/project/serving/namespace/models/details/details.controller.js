@@ -258,7 +258,7 @@ export default class PciServingNamespaceModelsDetailsController {
         [ SWAP mapper.delta 0 1 0 ] MAP
         [ SWAP bucketizer.sum '${d.endDate.toISOString()}' TOTIMESTAMP ${
           this.selected.period.bucketSize
-        } ${this.selected.period.bucketCount} ] BUCKETIZE FILLPREVIOUS FILLNEXT
+        } ${this.selected.period.bucketCount} ] BUCKETIZE
         SORT`,
       )
       .$promise.then((series) => {
