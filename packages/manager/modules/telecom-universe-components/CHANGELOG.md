@@ -1,3 +1,12 @@
+## [5.0.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@5.0.0...@ovh-ux/ng-ovh-telecom-universe-components@5.0.1) (2020-06-09)
+
+
+### Bug Fixes
+
+* **telephony.accessories:** resolve accessory name with its image ([#3088](https://github.com/ovh/manager/issues/3088)) ([5427164](https://github.com/ovh/manager/commit/54271649d811538b1254640ad30b8940883696a8))
+
+
+
 # [5.0.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@4.6.1...@ovh-ux/ng-ovh-telecom-universe-components@5.0.0) (2020-06-02)
 
 
