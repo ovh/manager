@@ -1,3 +1,12 @@
+## [3.3.3](https://github.com/ovh/manager/compare/@ovh-ux/ng-ui-router-layout@3.3.2...@ovh-ux/ng-ui-router-layout@3.3.3) (2020-06-09)
+
+
+### Bug Fixes
+
+* **emailpro:** fix header tabs button ([47d208b](https://github.com/ovh/manager/commit/47d208b44dcad2fedab44b6771d4da79a80dbfc9))
+
+
+
 ## [3.3.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-ui-router-layout@3.3.1...@ovh-ux/ng-ui-router-layout@3.3.2) (2020-06-02)
 
 

@@ -1,3 +1,12 @@
+## [3.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@3.1.0...@ovh-ux/manager-public-cloud@3.1.1) (2020-06-09)
+
+
+### Bug Fixes
+
+* **emailpro:** fix header tabs button ([47d208b](https://github.com/ovh/manager/commit/47d208b44dcad2fedab44b6771d4da79a80dbfc9))
+
+
+
 # [3.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@3.0.1...@ovh-ux/manager-public-cloud@3.1.0) (2020-06-02)
 
 

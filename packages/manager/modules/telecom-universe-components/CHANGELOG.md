@@ -1,3 +1,14 @@
+## [5.0.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@5.0.1...@ovh-ux/ng-ovh-telecom-universe-components@5.0.2) (2020-06-09)
+
+
+### Bug Fixes
+
+* **emailpro:** fix header tabs button ([47d208b](https://github.com/ovh/manager/commit/47d208b44dcad2fedab44b6771d4da79a80dbfc9))
+* **i18n:** add missing translations [CDS 426] ([83560b6](https://github.com/ovh/manager/commit/83560b6ffe35a21a2f4d8abc927e45629912f5f9))
+* **i18n:** add missing translations [CDS 427] ([8d210c0](https://github.com/ovh/manager/commit/8d210c01b7ea09a0fc374b7358b054222c7389e1))
+
+
+
 ## [5.0.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@5.0.0...@ovh-ux/ng-ovh-telecom-universe-components@5.0.1) (2020-06-09)
 
 

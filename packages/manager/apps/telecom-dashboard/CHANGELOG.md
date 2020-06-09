@@ -1,3 +1,12 @@
+## [5.0.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom-dashboard-app@5.0.5...@ovh-ux/manager-telecom-dashboard-app@5.0.6) (2020-06-09)
+
+
+### Bug Fixes
+
+* **emailpro:** fix header tabs button ([47d208b](https://github.com/ovh/manager/commit/47d208b44dcad2fedab44b6771d4da79a80dbfc9))
+
+
+
 ## [5.0.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom-dashboard-app@5.0.4...@ovh-ux/manager-telecom-dashboard-app@5.0.5) (2020-06-02)
 
 

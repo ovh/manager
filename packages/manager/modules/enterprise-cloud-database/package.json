@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-enterprise-cloud-database",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "private": true,
   "description": "Enterprise Cloud Databases product.",
   "keywords": [
@@ -45,11 +45,11 @@
   "peerDependencies": {
     "@ovh-ux/manager-core": "^9.0.0",
     "@ovh-ux/ng-ovh-cloud-universe-components": "^1.5.0",
-    "@ovh-ux/ng-ovh-contracts": "^3.1.1",
-    "@ovh-ux/ng-ovh-payment-method": "^6.1.1",
+    "@ovh-ux/ng-ovh-contracts": "^3.1.2",
+    "@ovh-ux/ng-ovh-payment-method": "^6.1.2",
     "@ovh-ux/ng-ovh-toaster": "^2.0.0",
     "@ovh-ux/ng-translate-async-loader": "^2.1.0",
-    "@ovh-ux/ng-ui-router-layout": "^3.3.2",
+    "@ovh-ux/ng-ui-router-layout": "^3.3.3",
     "@uirouter/angularjs": "^1.0.15",
     "angular": "^1.7.5",
     "angular-translate": "^2.18.1",

@@ -1,3 +1,17 @@
+## [1.1.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@1.1.2...@ovh-ux/manager-hub@1.1.3) (2020-06-09)
+
+
+### Bug Fixes
+
+* **emailpro:** fix header tabs button ([47d208b](https://github.com/ovh/manager/commit/47d208b44dcad2fedab44b6771d4da79a80dbfc9))
+
+
+### Performance Improvements
+
+* **hub:** replace lodash with lodash-es ([#3051](https://github.com/ovh/manager/issues/3051)) ([a9e765d](https://github.com/ovh/manager/commit/a9e765d42402381b2836c05db71da0b17b3debd6))
+
+
+
 ## [1.1.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@1.1.1...@ovh-ux/manager-hub@1.1.2) (2020-06-02)
 
 

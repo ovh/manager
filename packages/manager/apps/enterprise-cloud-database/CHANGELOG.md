@@ -1,3 +1,12 @@
+## [0.1.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-enterprise-cloud-database-app@0.1.6...@ovh-ux/manager-enterprise-cloud-database-app@0.1.7) (2020-06-09)
+
+
+### Bug Fixes
+
+* **emailpro:** fix header tabs button ([47d208b](https://github.com/ovh/manager/commit/47d208b44dcad2fedab44b6771d4da79a80dbfc9))
+
+
+
 ## [0.1.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-enterprise-cloud-database-app@0.1.5...@ovh-ux/manager-enterprise-cloud-database-app@0.1.6) (2020-03-18)
 
 

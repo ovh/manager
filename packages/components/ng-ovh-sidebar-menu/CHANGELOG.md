@@ -1,3 +1,17 @@
+## [9.1.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-sidebar-menu@9.1.0...@ovh-ux/ng-ovh-sidebar-menu@9.1.1) (2020-06-09)
+
+
+### Bug Fixes
+
+* **server-sidebar:** fix icon zone dns ([cfa89b4](https://github.com/ovh/manager/commit/cfa89b4c46d228e27a8a6690d4f250e468720f10))
+
+
+### Reverts
+
+* Revert "fix: remove ui consistency" ([5435159](https://github.com/ovh/manager/commit/543515950323b10d054ba354ff0054c5a8a3d3d1))
+
+
+
 # [9.1.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-sidebar-menu@9.0.0...@ovh-ux/ng-ovh-sidebar-menu@9.1.0) (2020-06-02)
 
 

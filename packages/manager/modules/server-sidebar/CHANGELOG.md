@@ -1,3 +1,13 @@
+## [1.5.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@1.5.1...@ovh-ux/manager-server-sidebar@1.5.2) (2020-06-09)
+
+
+### Bug Fixes
+
+* **emailpro:** fix header tabs button ([47d208b](https://github.com/ovh/manager/commit/47d208b44dcad2fedab44b6771d4da79a80dbfc9))
+* **server-sidebar:** fix icon zone dns ([cfa89b4](https://github.com/ovh/manager/commit/cfa89b4c46d228e27a8a6690d4f250e468720f10))
+
+
+
 ## [1.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@1.5.0...@ovh-ux/manager-server-sidebar@1.5.1) (2020-06-09)
 
 

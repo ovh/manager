@@ -1,3 +1,12 @@
+## [1.0.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-support-app@1.0.1...@ovh-ux/manager-support-app@1.0.2) (2020-06-09)
+
+
+### Bug Fixes
+
+* **emailpro:** fix header tabs button ([47d208b](https://github.com/ovh/manager/commit/47d208b44dcad2fedab44b6771d4da79a80dbfc9))
+
+
+
 ## [1.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-support-app@1.0.0...@ovh-ux/manager-support-app@1.0.1) (2020-06-02)
 
 
