@@ -5,6 +5,7 @@ import routing from './service.routing';
 
 import name from './edit-name';
 import reset from './reset';
+import resetKubeconfig from './reset-kubeconfig';
 import terminate from './terminate';
 import update from './update';
 import upgradePolicy from './upgrade-policy';
@@ -18,6 +19,7 @@ angular
     'pascalprecht.translate',
     name,
     reset,
+    resetKubeconfig,
     terminate,
     update,
     upgradePolicy,
