@@ -113,7 +113,7 @@
   "tools_lineDiagnostics_solution_proposal_step_request_form_question_followBySms_title": "¿Quiere seguir el progreso de las operaciones por SMS?",
   "tools_lineDiagnostics_solution_proposal_step_request_form_question_ovhTicket_title": "Si ya hay un tíquet abierto para este fallo de funcionamiento, por favor envíenos el número.",
   "tools_lineDiagnostics_solution_proposal_step_request_form_question_comment_title": "Indique toda la información necesaria para el restablecimiento de su conexión a internet, así como su disponibilidad. (entre 5 y 200 caracteres)",
-  "tools_lineDiagnostics_solution_proposal_step_request_form_question_conditionsAccepted_title": "Acepto que se me facturen 150 € + IVA si el fallo es responsabilidad mía. He realizado todas las acciones indicadas hasta el momento.",
+  "tools_lineDiagnostics_solution_proposal_step_request_form_question_conditionsAccepted_title": "Acepto que se me facturen {{price}} € + IVA si el fallo es responsabilidad mía. He realizado todas las acciones indicadas hasta el momento.",
   "tools_lineDiagnostics_solution_proposal_step_request_form_question_modemIsSynchronized_title": "¿El módem está sincronizado? El indicador luminoso le indicará el estado de la sincronización. En caso contrario, puede consultar el estado en la interfaz del módem.",
   "tools_lineDiagnostics_solution_proposal_step_request_form_question_hasModemKeptSynchronization_title": "Acabamos de realizar una acción en su línea. ¿El módem sigue sincronizado?",
   "tools_lineDiagnostics_solution_proposal_step_request_form_question_severalInternetConnections_title": "¿Dispone de varias conexiones a internet en la misma dirección con diferentes operadores?",
