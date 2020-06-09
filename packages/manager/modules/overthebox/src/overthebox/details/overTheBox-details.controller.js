@@ -608,7 +608,9 @@ export default /* @ngInject */ function(
       })
       .catch((err) => {
         TucToast.error(
-          $translate.instant('overTheBox_change_release_channel_error'),
+          $translate.instant('overTheBox_change_release_channel_error', {
+            message: err.message,
+          }),
         );
         return $q.reject(err);
       })
