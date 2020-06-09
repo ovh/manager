@@ -913,15 +913,15 @@ export default class ServerF {
     });
   }
 
-  getTasks(serviceName, elementsByPage, elementsToSkip) {
-    return this.OvhHttp.get('/sws/dedicated/server/{serviceName}/tasks', {
-      rootPath: '2api',
-      urlParams: {
-        serviceName,
-      },
-      params: {
-        count: elementsByPage,
-        offset: elementsToSkip,
+  getTasks(serviceName, pageNumber, pageSize) {
+    return this.$http.get(`/dedicated/server/${serviceName}/task`, {
+      headers: {
+        Pragma: 'no-cache',
+        'x-pagination-mode': 'CachedObjectList-Pages',
+        'x-pagination-number': pageNumber,
+        'x-pagination-size': pageSize,
+        'x-pagination-sort': 'lastUpdate',
+        'x-pagination-sort-order': 'DESC',
       },
     });
   }

@@ -10,6 +10,7 @@ import dashboard from './dashboard';
 import interfaces from './interfaces/interfaces.module';
 import monitoring from './monitoring';
 import servers from './servers/servers.module';
+import task from './task';
 
 import bandwidthVrackOrderService from './server.bandwidth-vrack-order.service';
 import component from './server.component';
@@ -30,6 +31,7 @@ angular
     'oui',
     'pascalprecht.translate',
     servers,
+    task,
     'ui.router',
   ])
   .component('dedicatedServer', component)
