@@ -1,3 +1,17 @@
+## [5.4.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@5.4.1...@ovh-ux/manager-overthebox@5.4.2) (2020-06-09)
+
+
+### Bug Fixes
+
+* **emailpro:** fix header tabs button ([47d208b](https://github.com/ovh/manager/commit/47d208b44dcad2fedab44b6771d4da79a80dbfc9))
+
+
+### Reverts
+
+* Revert "fix: remove ui consistency" ([5435159](https://github.com/ovh/manager/commit/543515950323b10d054ba354ff0054c5a8a3d3d1))
+
+
+
 ## [5.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@5.4.0...@ovh-ux/manager-overthebox@5.4.1) (2020-06-02)
 
 

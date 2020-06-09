@@ -1,3 +1,17 @@
+# [9.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@9.2.0...@ovh-ux/manager-core@9.3.0) (2020-06-09)
+
+
+### Bug Fixes
+
+* **emailpro:** fix header tabs button ([47d208b](https://github.com/ovh/manager/commit/47d208b44dcad2fedab44b6771d4da79a80dbfc9))
+
+
+### Features
+
+* **oui-angular:** add configuration for pagination ([#3027](https://github.com/ovh/manager/issues/3027)) ([22ae217](https://github.com/ovh/manager/commit/22ae217287964a042ed214915cdd18877b8823fa))
+
+
+
 # [9.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@9.1.0...@ovh-ux/manager-core@9.2.0) (2020-05-14)
 
 

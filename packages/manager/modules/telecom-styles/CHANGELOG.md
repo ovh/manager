@@ -1,3 +1,13 @@
+## [3.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom-styles@3.2.0...@ovh-ux/manager-telecom-styles@3.2.1) (2020-06-09)
+
+
+### Bug Fixes
+
+* **emailpro:** fix header tabs button ([47d208b](https://github.com/ovh/manager/commit/47d208b44dcad2fedab44b6771d4da79a80dbfc9))
+* **telecom:** fix style of btn in table header ([a9d862f](https://github.com/ovh/manager/commit/a9d862f5b05d8e52c2152f26dd50839baa46b778))
+
+
+
 # [3.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom-styles@3.1.2...@ovh-ux/manager-telecom-styles@3.2.0) (2020-06-02)
 
 

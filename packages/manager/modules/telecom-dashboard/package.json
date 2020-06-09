@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-telecom-dashboard",
-  "version": "5.1.1",
+  "version": "5.1.2",
   "private": true,
   "description": "Telecom dashboard section.",
   "repository": {

@@ -1,3 +1,12 @@
+## [1.7.4](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@1.7.3...@ovh-ux/ng-ovh-cloud-universe-components@1.7.4) (2020-06-09)
+
+
+### Bug Fixes
+
+* **emailpro:** fix header tabs button ([47d208b](https://github.com/ovh/manager/commit/47d208b44dcad2fedab44b6771d4da79a80dbfc9))
+
+
+
 ## [1.7.3](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@1.7.2...@ovh-ux/ng-ovh-cloud-universe-components@1.7.3) (2020-04-15)
 
 

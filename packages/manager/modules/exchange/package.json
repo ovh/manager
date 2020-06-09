@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-exchange",
-  "version": "1.8.3",
+  "version": "1.8.4",
   "private": true,
   "description": "Exchange product.",
   "repository": {
@@ -19,9 +19,9 @@
     "@ovh-ux/manager-core": "^9.0.0",
     "@ovh-ux/ng-ovh-export-csv": "^2.0.0",
     "@ovh-ux/ng-ovh-http": "^5.0.0",
-    "@ovh-ux/ng-ovh-swimming-poll": "^5.0.0",
+    "@ovh-ux/ng-ovh-swimming-poll": "^5.0.1",
     "@ovh-ux/ng-ovh-user-pref": "^2.0.0",
-    "@ovh-ux/ng-ovh-utils": "^14.0.7",
+    "@ovh-ux/ng-ovh-utils": "^14.0.9",
     "@ovh-ux/ng-ovh-web-universe-components": "^8.0.0",
     "@ovh-ux/ng-translate-async-loader": "^2.1.0",
     "@uirouter/angularjs": "^1.0.20",

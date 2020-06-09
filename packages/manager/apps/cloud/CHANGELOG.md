@@ -1,3 +1,20 @@
+## [9.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@9.5.0...@ovh-ux/manager-cloud@9.5.1) (2020-06-09)
+
+
+### Bug Fixes
+
+* **emailpro:** fix header tabs button ([47d208b](https://github.com/ovh/manager/commit/47d208b44dcad2fedab44b6771d4da79a80dbfc9))
+* **i18n:** add missing translations [CDS 426] ([83560b6](https://github.com/ovh/manager/commit/83560b6ffe35a21a2f4d8abc927e45629912f5f9))
+* **i18n:** add missing translations [CDS 428] ([808b49e](https://github.com/ovh/manager/commit/808b49e86f69a07b941c8086f47168a1b5d1a813))
+* **i18n:** add missing translations [CDS 432] ([2970ae3](https://github.com/ovh/manager/commit/2970ae3324b4d9abbcc2cb4f075e1d2c59428c2f))
+
+
+### Reverts
+
+* Revert "fix: remove ui consistency" ([5435159](https://github.com/ovh/manager/commit/543515950323b10d054ba354ff0054c5a8a3d3d1))
+
+
+
 # [9.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@9.4.1...@ovh-ux/manager-cloud@9.5.0) (2020-06-02)
 
 

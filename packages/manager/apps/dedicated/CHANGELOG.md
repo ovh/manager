@@ -1,3 +1,20 @@
+## [12.5.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@12.5.1...@ovh-ux/manager-dedicated@12.5.2) (2020-06-09)
+
+
+### Bug Fixes
+
+* **account.user.dashboard:** update bill links for enterprise customer ([#3030](https://github.com/ovh/manager/issues/3030)) ([cac2593](https://github.com/ovh/manager/commit/cac25935b63d5a0a0ed59756288414c0f4fa55db))
+* **emailpro:** fix header tabs button ([47d208b](https://github.com/ovh/manager/commit/47d208b44dcad2fedab44b6771d4da79a80dbfc9))
+* **ip:** handle deleted services ([296f3a3](https://github.com/ovh/manager/commit/296f3a3ae47ff42996c95e3593252c820f5c5f07))
+* **ip:** handle ip offers region based on available countries ([ad32575](https://github.com/ovh/manager/commit/ad32575f728f883df2db677fbd3f495873b8f1cc))
+
+
+### Reverts
+
+* Revert "fix: remove ui consistency" ([5435159](https://github.com/ovh/manager/commit/543515950323b10d054ba354ff0054c5a8a3d3d1))
+
+
+
 ## [12.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@12.5.0...@ovh-ux/manager-dedicated@12.5.1) (2020-06-02)
 
 
