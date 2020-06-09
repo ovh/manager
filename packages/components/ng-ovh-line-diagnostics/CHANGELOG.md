@@ -1,3 +1,12 @@
+## [4.0.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-line-diagnostics@4.0.1...@ovh-ux/ng-ovh-line-diagnostics@4.0.2) (2020-06-09)
+
+
+### Bug Fixes
+
+* fix penalties price to be consistent with wizard ([#3032](https://github.com/ovh/manager/issues/3032)) ([ad1870e](https://github.com/ovh/manager/commit/ad1870e623b1dfbb4eff1906ed04e5ba4fd78066))
+
+
+
 ## [4.0.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-line-diagnostics@4.0.0...@ovh-ux/ng-ovh-line-diagnostics@4.0.1) (2020-06-02)
 
 
