@@ -240,12 +240,10 @@ export default /* @ngInject */ function(
         serviceName: $stateParams.serviceName,
       })
       .$promise.then((channels) => {
-        channels.forEach((channel) => {
-          self.releaseChannels.push({
-            name: channel,
-            label: $translate.instant(`overTheBox_release_channel_${channel}`),
-          });
-        });
+        self.releaseChannels = channels.map((channel) => ({
+          name: channel,
+          label: $translate.instant(`overTheBox_release_channel_${channel}`),
+        }));
 
         const result = self.releaseChannels.find(
           (channel) => self.releaseChannel === channel.name,
