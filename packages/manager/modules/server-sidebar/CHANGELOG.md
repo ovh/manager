@@ -1,3 +1,12 @@
+## [1.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@1.5.0...@ovh-ux/manager-server-sidebar@1.5.1) (2020-06-09)
+
+
+### Bug Fixes
+
+* **order.constants:** set the right dbaas_logs order URL ([#3061](https://github.com/ovh/manager/issues/3061)) ([5829276](https://github.com/ovh/manager/commit/5829276605ca4d69870f1e3c66dc2e712bc17eb0))
+
+
+
 # [1.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@1.4.0...@ovh-ux/manager-server-sidebar@1.5.0) (2020-06-02)
 
 
