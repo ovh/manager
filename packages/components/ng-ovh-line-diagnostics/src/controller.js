@@ -16,6 +16,7 @@ import {
   STATUS,
   BANDWIDTH_TEST_SITE,
   QUESTIONS_ENUM,
+  PENALTIES_PRICE,
 } from './constants';
 
 export default class LineDiagnosticsCtrl {
@@ -49,6 +50,7 @@ export default class LineDiagnosticsCtrl {
       problemType: QUESTIONS_ENUM.PROBLEM_TYPE,
     };
     this.steps = STEPS;
+    this.price = PENALTIES_PRICE;
   }
 
   $onInit() {

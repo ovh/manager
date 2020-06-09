@@ -102,6 +102,8 @@ export const QUESTIONS_ENUM = {
   },
 };
 
+export const PENALTIES_PRICE = 199;
+
 export default {
   ASSETS,
   PROGRESS_BAR,
@@ -112,4 +114,5 @@ export default {
   STATUS,
   BANDWIDTH_TEST_SITE,
   QUESTIONS_ENUM,
+  PENALTIES_PRICE,
 };
