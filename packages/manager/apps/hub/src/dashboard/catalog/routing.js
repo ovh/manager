@@ -1,6 +1,4 @@
-import filter from 'lodash/filter';
-import map from 'lodash/map';
-import uniq from 'lodash/uniq';
+import { filter, map, uniq } from 'lodash-es';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.dashboard.catalog', {

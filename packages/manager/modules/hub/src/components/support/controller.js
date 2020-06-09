@@ -1,4 +1,4 @@
-import get from 'lodash/get';
+import { get } from 'lodash-es';
 import { Ticket as SupportTicket } from '@ovh-ux/manager-models';
 import { MAX_TICKETS_TO_DISPLAY } from './constants';
 

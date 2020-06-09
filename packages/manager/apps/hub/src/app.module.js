@@ -7,7 +7,7 @@ import uiRouter, { RejectType } from '@uirouter/angularjs';
 import ngOvhUiRouterLineProgress from '@ovh-ux/ng-ui-router-line-progress';
 import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
 
-import isString from 'lodash/isString';
+import { isString, get, has } from 'lodash-es';
 
 import 'ovh-ui-angular';
 import ovhManagerCore from '@ovh-ux/manager-core';
@@ -15,9 +15,6 @@ import ovhManagerHub from '@ovh-ux/manager-hub';
 import ovhManagerNavbar from '@ovh-ux/manager-navbar';
 import ovhManagerOrderTracking from '@ovh-ux/ng-ovh-order-tracking';
 import { detach as detachPreloader } from '@ovh-ux/manager-preloader';
-
-import get from 'lodash/get';
-import has from 'lodash/has';
 
 import atInternet from './components/at-internet';
 import errorPage from './components/error-page';
@@ -28,6 +25,7 @@ import { BILLING_REDIRECTIONS } from './constants';
 import controller from './controller';
 import routing from './routing';
 import 'ovh-ui-kit/dist/oui.css';
+import 'ovh-ui-kit/dist/oui-olt.css';
 import './index.less';
 import './index.scss';
 

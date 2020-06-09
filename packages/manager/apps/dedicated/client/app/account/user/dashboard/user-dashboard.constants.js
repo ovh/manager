@@ -2,6 +2,12 @@ export const USER_DASHBOARD_SHORTCUTS = [
   {
     key: 'ALL_BILLS',
     state: 'app.account.billing.main.history',
+    isAvailable: (user) => !user.isEnterprise,
+  },
+  {
+    key: 'ALL_BILLS',
+    href: 'https://billing.us.ovhcloud.com/login',
+    isAvailable: (user) => user.isEnterprise,
   },
   {
     key: 'PAYMENT_FOLLOW_UP',

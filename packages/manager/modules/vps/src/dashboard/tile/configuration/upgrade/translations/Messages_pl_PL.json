@@ -4,7 +4,7 @@
   "vps_dashboard_tile_configuration_upgrade_storage_action_title": "Zwiększ przestrzeń dyskową serwera VPS z {{currentStorage}} do {{nextStorage}} GB",
   "vps_dashboard_tile_configuration_upgrade_storage_action_details": "Dodajesz {{memoryQuantity}} GB przestrzeni dyskowej do VPS.",
   "vps_dashboard_tile_configuration_upgrade_action_price": "Miesięczna opłata za zwiększenie zasobów wyniesie {{price}}.",
-  "vps_dashboard_tile_configuration_upgrade_action_validation": "Kiedy zatwierdzisz wybór, naliczymy proporcjonalną płatność za bieżący miesiąc w wysokości {{prorataPrice}}.",
+  "vps_dashboard_tile_configuration_upgrade_action_validation": "Kiedy zatwierdzisz wybór, naliczymy proporcjonalną płatność za bieżący miesiąc w wysokości {{prorataPrice}}. Pamiętaj, że ostateczna kwota faktury może zawierać dodatkowe opcje, które zamówisz (np. snapshot, automatyczna kopia zapasowa etc.).",
   "vps_dashboard_tile_configuration_upgrade_action_validation_with_no_payment_method_monthly": "Po kliknięciu przycisku „Zatwierdź i zapłać” zostaniesz przekierowany do zamówienia, abyś mógł zrealizować proporcjonalną płatność za bieżący miesiąc w wysokości {{price}}.",
   "vps_dashboard_tile_configuration_upgrade_action_validation_with_no_payment_method_upfront": "Po kliknięciu przycisku „Zatwierdź i zapłać” zostaniesz przekierowany do zamówienia, abyś mógł zrealizować dodatkową płatność w wysokości {{price}} za czas pozostały do końca umowy.",
   "vps_dashboard_tile_configuration_upgrade_action_validate_and_pay": "Zatwierdź i zapłać",

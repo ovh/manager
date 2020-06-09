@@ -35,12 +35,12 @@
   "devDependencies": {
     "@ovh-ux/component-rollup-config": "^7.0.0",
     "oui4": "npm:@ovh-ux/ui-kit",
-    "ovh-ui-kit": "^2.42.7"
+    "ovh-ui-kit": "^2.42.8"
   },
   "peerDependencies": {
-    "@ovh-ux/manager-account-sidebar": "^0.0.0 || ^1.0.0",
+    "@ovh-ux/manager-account-sidebar": "^1.0.0",
     "@ovh-ux/manager-config": "^0.4.0",
-    "@ovh-ux/manager-core": "^8.0.0 || ^9.0.0",
+    "@ovh-ux/manager-core": "^9.0.0",
     "@ovh-ux/ng-at-internet": "^5.0.1",
     "@ovh-ux/ng-ovh-sso-auth": "^4.2.3",
     "@ovh-ux/ng-ovh-user-pref": "^2.0.0",
@@ -50,7 +50,7 @@
     "bootstrap-tour": "^0.12.0",
     "moment": "^2.24.0",
     "ovh-api-services": "^9.39.1",
-    "ovh-ui-angular": "^3.16.2",
-    "ovh-ui-kit": "^2.42.7"
+    "ovh-ui-angular": "^3.16.3",
+    "ovh-ui-kit": "^2.42.8"
   }
 }

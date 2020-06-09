@@ -6,6 +6,7 @@
             'active' : item.isActive,
             'category-{{item.category}}' : item.category !== 'none',
             'status-{{item.status}}' : item.status !== 'none',
+            'hidden': item.shouldHide === true
         }"
         data-ng-if="(ListCtrl.namespace && item.namespace ===  ListCtrl.namespace) || (!ListCtrl.namespace && !item.namespace)"
         data-sidebar-menu-list-item="item"

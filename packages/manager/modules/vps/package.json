@@ -19,10 +19,10 @@
     "lodash": "^4.17.15"
   },
   "peerDependencies": {
-    "@ovh-ux/manager-core": "^8.0.0 || ^9.0.0",
-    "@ovh-ux/manager-filters": "^0.0.0 || ^1.0.0",
+    "@ovh-ux/manager-core": "^9.0.0",
+    "@ovh-ux/manager-filters": "^1.0.0",
     "@ovh-ux/manager-models": "^1.0.0",
-    "@ovh-ux/manager-product-offers": "^1.0.1 || 2.0.0",
+    "@ovh-ux/manager-product-offers": "^1.3.0",
     "@ovh-ux/ng-at-internet": "^5.0.1",
     "@ovh-ux/ng-ovh-cloud-universe-components": "^1.4.3",
     "@ovh-ux/ng-ovh-doc-url": "^2.0.0",
@@ -39,8 +39,8 @@
     "moment": "^2.24.0",
     "oclazyload": "^1.1.0",
     "ovh-api-services": "^9.39.1",
-    "ovh-ui-angular": "^3.16.2",
-    "ovh-ui-kit": "^2.42.7",
+    "ovh-ui-angular": "^3.16.3",
+    "ovh-ui-kit": "^2.42.8",
     "ovh-ui-kit-bs": "^2.4.6"
   }
 }

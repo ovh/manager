@@ -1,5 +1,4 @@
-import get from 'lodash/get';
-import pick from 'lodash/pick';
+import { get, pick } from 'lodash-es';
 
 import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 import { urlQueryParams, params, component, resolves } from './config';

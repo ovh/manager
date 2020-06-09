@@ -45,5 +45,6 @@
   "vps_upscale_elite_upgrade_success_monthly_with_payment_method": "Zmiana konfiguracji została przyjęta. Naliczyliśmy proporcjonalną płatność za bieżący miesiąc w wysokości {{price}}.",
   "vps_upscale_elite_upgrade_success_upfront_with_payment_method": "Zmiana konfiguracji została przyjęta. Naliczyliśmy płatność za czas pozostały do końca umowy w wysokości {{price}}.",
   "vps_upscale_elite_upgrade_success_without_payment_method": "<a class=\"oui-link\" target=\"_blank\" href=\"{{billUrl}}\" rel=\"noopener\">Zamówienie</a> zostało wygenerowane. Zmiana konfiguracji zostanie zrealizowana po zaksięgowaniu płatności.",
-  "vps_upscale_elite_upgrade_error": "Wystąpił błąd podczas modyfikowania konfiguracji."
+  "vps_upscale_elite_upgrade_error": "Wystąpił błąd podczas modyfikowania konfiguracji.",
+  "vps_upscale_agreements": "Akceptuję <a target=\"_blank\" href=\"{{conditions}}\" rel=\"noopener\">ogólen warunki korzystania z usługi</a> i <a target=\"_blank\" href=\"{{policy}}\" rel=\"noopener\">politykę poufności</a>."
 }

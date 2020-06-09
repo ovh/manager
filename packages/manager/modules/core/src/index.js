@@ -22,6 +22,7 @@ import '@ovh-ux/ng-ovh-request-tagger';
 import '@uirouter/angularjs';
 
 import coreConfig from './config';
+import ouiConfig from './oui-angular';
 import translateFactory from './translate/translate.factory';
 import translateServiceProvider from './translate/translate.service';
 import sessionService from './session/session.service';
@@ -47,6 +48,7 @@ angular
     'tmh.dynamicLocale',
     coreConfig,
     ngTranslateAsyncLoader,
+    ouiConfig,
     ovhOuiAngularTranslations,
     ngOvhHttp,
     ngOvhSsoAuth,
