@@ -3,6 +3,7 @@ import template from './dashboard.html';
 export default {
   bindings: {
     bills: '<',
+    debt: '<',
     feedbackUrl: '<',
     me: '<',
     billingServices: '<',
