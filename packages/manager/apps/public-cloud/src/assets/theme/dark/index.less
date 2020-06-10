@@ -367,11 +367,11 @@
   }
 
   .oui-datagrid__row:nth-child(odd) .oui-datagrid__cell {
-    background-color: #181818;
+    background-color: #181818 !important;
   }
 
   .oui-datagrid__row:nth-child(even) .oui-datagrid__cell {
-    background-color: #1d1d1d;
+    background-color: #1d1d1d !important;
   }
 
   .oui-datagrid__cell {
@@ -957,6 +957,28 @@
     display: none;
   }
 
+  #managerPreloader {
+    background-color: @dark-700;
+
+    .logo path {
+      fill: white;
+    }
+
+    li > * {
+      color: white;
+    }
+  }
+
+  #nprogress {
+    .bar {
+      background-color: @link !important;
+    }
+
+    .peg {
+      box-shadow: none !important;
+    }
+  }
+
   .oui-field-helper,
   .oui-field__helper {
     color: @text-color-copy;
@@ -1012,9 +1034,11 @@
       .oui-status_error {
         color: #c11b1b;
       }
+
       .oui-status_info {
         color: #4d6f92;
       }
+
       a.oui-navbar-notification__content,
       a.oui-navbar-notification__content a {
         color: @dark-900;
