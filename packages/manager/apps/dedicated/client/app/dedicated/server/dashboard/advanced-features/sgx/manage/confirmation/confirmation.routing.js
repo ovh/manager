@@ -1,3 +1,5 @@
+import snakeCase from 'lodash/snakeCase';
+
 import { STATUS } from '../../sgx.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
@@ -24,11 +26,19 @@ export default /* @ngInject */ ($stateProvider) => {
         confirm: /* @ngInject */ (
           $http,
           $translate,
+          atInternet,
           goToDashboard,
           serverName,
           type,
-        ) => (activationMode, prmrr) =>
-          $http
+        ) => (activationMode, prmrr) => {
+          atInternet.trackClick({
+            name: `dedicated::dedicated::server::sgx::manage::confirm::confirm-${snakeCase(
+              activationMode,
+            )}-${prmrr}`,
+            type: 'action',
+          });
+
+          return $http
             .post(
               `/dedicated/server/${serverName}/biosSettings/sgx/configure`,
               {
@@ -58,13 +68,17 @@ export default /* @ngInject */ ($stateProvider) => {
                   },
                 }),
               ),
-            ),
+            );
+        },
         goBack: /* @ngInject */ ($state) => (params = {}, transitionParams) =>
           $state.go(
             'app.dedicated.server.dashboard.sgx.manage',
             params,
             transitionParams,
           ),
+      },
+      atInternet: {
+        rename: 'dedicated::dedicated::server::sgx::manage::confirm',
       },
     },
   );

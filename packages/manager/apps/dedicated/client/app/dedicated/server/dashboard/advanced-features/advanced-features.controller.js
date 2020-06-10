@@ -1,6 +1,8 @@
 import isString from 'lodash/isString';
 
-import { DOCUMENTATION_BY_SUB, STATUS } from './sgx/sgx.constants';
+import SgxService from './sgx/sgx.service';
+
+import { STATUS } from './sgx/sgx.constants';
 
 export default class AdvancedFeatures {
   $onInit() {
@@ -17,7 +19,9 @@ export default class AdvancedFeatures {
   }
 
   buildSgxDocumentation() {
-    const documentationUrl = DOCUMENTATION_BY_SUB[this.user.ovhSubsidiary];
+    const documentationUrl = SgxService.getDocumentation(
+      this.user.ovhSubsidiary,
+    );
 
     return {
       exists: isString(documentationUrl),

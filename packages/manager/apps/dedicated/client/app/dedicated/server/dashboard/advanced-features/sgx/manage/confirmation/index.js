@@ -1,4 +1,6 @@
 import angular from 'angular';
+import ngAtInternet from '@ovh-ux/ng-at-internet';
+import ngAtInternetUiRouterPlugin from '@ovh-ux/ng-at-internet-ui-router-plugin';
 
 import '@ovh-ux/ng-translate-async-loader';
 import '@uirouter/angularjs';
@@ -11,7 +13,13 @@ import routing from './confirmation.routing';
 const moduleName = 'ovhManagerDedicatedServerDashboardSgxManageConfirmation';
 
 angular
-  .module(moduleName, ['oui', 'pascalprecht.translate', 'ui.router'])
+  .module(moduleName, [
+    ngAtInternet,
+    ngAtInternetUiRouterPlugin,
+    'oui',
+    'pascalprecht.translate',
+    'ui.router',
+  ])
   .component('dedicatedServerDashboardSgxManageConfirmation', component)
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */);

@@ -65,5 +65,8 @@ export default /* @ngInject */ ($stateProvider) => {
               : TYPES.ACTIVATION,
         }),
     },
+    atInternet: {
+      rename: 'dedicated::dedicated::server::sgx::manage',
+    },
   });
 };

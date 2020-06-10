@@ -9,8 +9,16 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       goBack: /* @ngInject */ ($state) => (params = {}, transitionParams) =>
         $state.go('app.dedicated.server.dashboard', params, transitionParams),
-      goToManage: /* @ngInject */ ($state) => (params = {}, transitionParams) =>
-        $state.go(
+      goToManage: /* @ngInject */ ($state, atInternet) => (
+        params = {},
+        transitionParams,
+      ) => {
+        atInternet.trackClick({
+          name: 'dedicated::dedicated::server::sgx::activate',
+          type: 'action',
+        });
+
+        return $state.go(
           'app.dedicated.server.dashboard.sgx.manage',
           {
             goBack: () =>
@@ -18,7 +26,11 @@ export default /* @ngInject */ ($stateProvider) => {
             ...params,
           },
           transitionParams,
-        ),
+        );
+      },
+    },
+    atInternet: {
+      rename: 'dedicated::dedicated::server::sgx',
     },
   });
 };

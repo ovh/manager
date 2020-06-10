@@ -120,10 +120,22 @@ export default /* @ngInject */ ($stateProvider) => {
 
         return promise;
       },
-      goToSgxIntroduction: /* @ngInject */ ($state) => () =>
-        $state.go('app.dedicated.server.dashboard.sgx.introduction'),
-      goToSgxManage: /* @ngInject */ ($state) => () =>
-        $state.go('app.dedicated.server.dashboard.sgx.manage'),
+      goToSgxIntroduction: /* @ngInject */ ($state, atInternet) => () => {
+        atInternet.trackClick({
+          name: 'dedicated::dedicated::server::dashboard::sgx::manage',
+          type: 'action',
+        });
+
+        return $state.go('app.dedicated.server.dashboard.sgx.introduction');
+      },
+      goToSgxManage: /* @ngInject */ ($state, atInternet) => () => {
+        atInternet.trackClick({
+          name: 'dedicated::dedicated::server::dashboard::sgx::manage',
+          type: 'action',
+        });
+
+        return $state.go('app.dedicated.server.dashboard.sgx.manage');
+      },
       monitoringProtocolEnum: /* @ngInject */ (Server) =>
         Server.getModels().then(
           (models) =>
