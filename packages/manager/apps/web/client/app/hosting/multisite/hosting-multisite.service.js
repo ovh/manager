@@ -7,11 +7,22 @@ import map from 'lodash/map';
 angular.module('services').service(
   'HostingDomain',
   class HostingDomain {
-    constructor($rootScope, $http, $q, Hosting, OvhHttp, Poll, constants) {
+    /* @ngInject */
+    constructor(
+      $rootScope,
+      $http,
+      $q,
+      Hosting,
+      iceberg,
+      OvhHttp,
+      Poll,
+      constants,
+    ) {
       this.$rootScope = $rootScope;
       this.$http = $http;
       this.$q = $q;
       this.Hosting = Hosting;
+      this.iceberg = iceberg;
       this.OvhHttp = OvhHttp;
       this.Poll = Poll;
       this.constants = constants;
@@ -386,6 +397,15 @@ angular.module('services').service(
 
           return this.$q.reject(error);
         });
+    }
+
+    getDetailedAttachedDomains(serviceName) {
+      return this.iceberg(`/hosting/web/${serviceName}/attachedDomain`)
+        .query()
+        .expand('CachedObjectList-Pages')
+        .limit(50000)
+        .execute()
+        .$promise.then(({ data: attachedDomains }) => attachedDomains);
     }
 
     /**
