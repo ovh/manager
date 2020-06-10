@@ -1,7 +1,8 @@
 // Vendors
+@import './_variables';
 @import (less) 'flatpickr/dist/flatpickr.min.css';
-@import 'ovh-ui-kit/packages/oui/stylekit';
-@import 'ovh-ui-kit/packages/ovhcloud-light-theme/index';
+@import (less) 'ovh-ui-kit/dist/oui.css';
+@import (less) 'ovh-ui-kit/dist/oui-olt.css';
 @import (less) 'ovh-ui-kit-bs/dist/css/oui-bs3.css';
 @import 'ovh-manager-webfont/dist/less/ovh-font';
 @import 'less/utils/variables';
@@ -26,16 +27,6 @@
 @import 'less/common/wizard';
 @import 'less/module/emails/emails';
 @import 'less/module/modules/modules';
-
-/* Paths for Icons & Fonts */
-@icon-font-path: '../fonts/';
-@oui-icon-dist-folder: '../../dist/icons';
-@oui-font-source-sans-pro-folder: '../../packages/oui-typography/fonts/source-sans-pro';
-@ovh-font-path: '../fonts';
-@fa-font-path: '../fonts';
-
-@ovh-universe-color: @oui-color-jungle;
-
 @import (less) 'angular-moment-picker/dist/angular-moment-picker.min.css';
 @import (less) 'font-awesome/css/font-awesome.min.css';
 @import (less) 'animate.css/animate.min.css';
