@@ -113,6 +113,7 @@ export default /* @ngInject */ function(AT_INTERNET_CUSTOM_VARS) {
     if ($window.ATInternet) {
       try {
         atinternetTag = new $window.ATInternet.Tracker.Tag({
+          ClientSideUserId: { clientSideMode: 'always' },
           secure: true, // force HTTPS
         });
       } catch (err) {
