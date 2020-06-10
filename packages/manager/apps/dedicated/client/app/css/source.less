@@ -1,8 +1,7 @@
-@oui-path: '../../../ovh-ui-kit';
-
+@import './_variables';
 @import (less) 'flatpickr/dist/flatpickr.css';
-@import 'ovh-ui-kit/packages/oui/stylekit';
-@import 'ovh-ui-kit/packages/ovhcloud-light-theme/index';
+@import (less) 'ovh-ui-kit/dist/oui.css';
+@import (less) 'ovh-ui-kit/dist/oui-olt.css';
 @import (less) 'ovh-ui-kit-bs/dist/css/oui-bs3.css';
 @import (less) 'font-awesome/css/font-awesome.min.css';
 @import (less) 'ovh-manager-webfont/dist/css/ovh-font.css';
@@ -60,16 +59,7 @@
 @import 'less/dedicated/housing/stats';
 @import 'less/user-contracts/user-contracts';
 
-@ovh-universe-color: @oui-color-turquoise;
-
-@icon-font-path: '../fonts/';
-@oui-icon-dist-folder: '../../dist/icons';
-@oui-font-source-sans-pro-folder: '../../packages/oui-typography/fonts/source-sans-pro';
-@fa-font-path: '../fonts';
-@ovh-font-path: '../fonts/';
-
-@actions-menu-item-link-icon-hover-bg-color: @ovh-universe-color;
-@SIDEBAR_MENU_ACTIVE_COLOR: @ovh-universe-color;
+@actions-menu-item-link-icon-hover-bg-color: @oui-color-turquoise;
 
 oui-message,
 .oui-message {
