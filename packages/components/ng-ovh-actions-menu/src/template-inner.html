@@ -1,47 +1,45 @@
 <div class="actions-menu-inner">
-
     <!-- CLOSE BUTTON FOR MOBILE -->
-    <button class="close-button visible-xs-block visible-sm-block"
-            type="button"
-            data-ng-click="$ctrl.popoverSettings.isOpen = false"
-            data-translate-attr="{ 'title': 'actions_menu_close_btn' }">
+    <button
+        class="close-button visible-xs-block visible-sm-block"
+        type="button"
+        data-ng-click="$ctrl.popoverSettings.isOpen = false"
+        data-translate-attr="{ 'title': 'actions_menu_close_btn' }"
+    >
         <i class="ovh-font ovh-font-wrong" aria-hidden="true"></i>
-    </button> <!-- CLOSE BUTTON FOR MOBILE -->
+    </button>
+    <!-- CLOSE BUTTON FOR MOBILE -->
 
-    <div class="actions-menu-pages"
-         data-ng-class="{ move: $ctrl.status.move }">
-
+    <div class="actions-menu-pages" data-ng-class="{ move: $ctrl.status.move }">
         <div class="actions-menu-page main-page">
-
             <ul class="actions-list list-unstyled">
-                <li class="actions-list-item"
+                <li
+                    class="actions-list-item"
                     data-ng-repeat="menuAction in $ctrl.actionsMenu.actions track by $index"
                     data-actions-menu-item="menuAction"
-                    data-actions-menu-item-on-click="$ctrl.onItemClick">
-                </li>
+                    data-actions-menu-item-on-click="$ctrl.onItemClick"
+                ></li>
             </ul>
-
         </div>
         <div class="actions-menu-page secondary-page">
-
             <ul class="sub-actions-list list-unstyled">
                 <li class="actions-list-item">
-                    <button class="back-btn"
-                            type="button"
-                            data-ng-click="$ctrl.onBackButtonClick()">
+                    <button
+                        class="back-btn"
+                        type="button"
+                        data-ng-click="$ctrl.onBackButtonClick()"
+                    >
                         <i class="ovh-font ovh-font-arrow-left"></i>
                         <strong data-translate="actions_menu_back_btn"></strong>
                     </button>
                 </li>
-                <li class="actions-list-item"
+                <li
+                    class="actions-list-item"
                     data-ng-repeat="menuAction in $ctrl.activeActionItem.subActions track by $index"
                     data-actions-menu-item="menuAction"
-                    data-actions-menu-item-on-click="$ctrl.onItemClick">
-                </li>
+                    data-actions-menu-item-on-click="$ctrl.onItemClick"
+                ></li>
             </ul>
-
         </div>
-
     </div>
-
 </div>

@@ -1,70 +1,63 @@
-<a class="actions-menu-item-link"
-   data-ng-href="{{ $ctrl.actionsMenuItem.href }}"
-   target="{{ $ctrl.actionsMenuItem.target }}"
-   data-ng-if="$ctrl.actionsMenuItem.href"
-   data-ng-click="$ctrl.onClick()($ctrl.actionsMenuItem)">
-
-    <span class="item-icon"
-          data-ng-if="$ctrl.actionsMenuItem.icon">
-        <i data-ng-class="$ctrl.actionsMenuItem.icon" aria-hidden>
-        </i>
+<a
+    class="actions-menu-item-link"
+    data-ng-href="{{ $ctrl.actionsMenuItem.href }}"
+    target="{{ $ctrl.actionsMenuItem.target }}"
+    data-ng-if="$ctrl.actionsMenuItem.href"
+    data-ng-click="$ctrl.onClick()($ctrl.actionsMenuItem)"
+>
+    <span class="item-icon" data-ng-if="$ctrl.actionsMenuItem.icon">
+        <i data-ng-class="$ctrl.actionsMenuItem.icon" aria-hidden> </i>
     </span>
 
-    <span class="item-icon"
-          data-ng-if="$ctrl.actionsMenuItem.svg"
-          data-ng-bind-html="$ctrl.actionsMenuItem.svg">
+    <span
+        class="item-icon"
+        data-ng-if="$ctrl.actionsMenuItem.svg"
+        data-ng-bind-html="$ctrl.actionsMenuItem.svg"
+    >
     </span>
 
     <span class="item-title">
-        <span class="item-title-text"
-              data-ng-bind="$ctrl.actionsMenuItem.title">
+        <span
+            class="item-title-text"
+            data-ng-bind="$ctrl.actionsMenuItem.title"
+        >
         </span>
 
-        <span class="external-link"
-              data-ng-if="$ctrl.actionsMenuItem.external">
+        <span class="external-link" data-ng-if="$ctrl.actionsMenuItem.external">
             <i class="ovh-font ovh-font-newtab"></i>
         </span>
     </span>
-
 </a>
 
-<a class="actions-menu-item-link"
-   data-ui-sref="{{ $ctrl.actionsMenuItem.getFullSref() }}"
-   data-ng-if="$ctrl.actionsMenuItem.state"
-   data-ng-click="$ctrl.onClick()($ctrl.actionsMenuItem)">
-
-    <span class="item-icon"
-          data-ng-if="$ctrl.actionsMenuItem.icon"
-          aria-hidden>
-        <i data-ng-class="$ctrl.actionsMenuItem.icon"
-           aria-hidden>
-        </i>
+<a
+    class="actions-menu-item-link"
+    data-ui-sref="{{ $ctrl.actionsMenuItem.getFullSref() }}"
+    data-ng-if="$ctrl.actionsMenuItem.state"
+    data-ng-click="$ctrl.onClick()($ctrl.actionsMenuItem)"
+>
+    <span class="item-icon" data-ng-if="$ctrl.actionsMenuItem.icon" aria-hidden>
+        <i data-ng-class="$ctrl.actionsMenuItem.icon" aria-hidden> </i>
     </span>
 
-    <span class="item-title"
-          data-ng-bind="$ctrl.actionsMenuItem.title">
-    </span>
-
+    <span class="item-title" data-ng-bind="$ctrl.actionsMenuItem.title"> </span>
 </a>
 
-<button class="actions-menu-item-link"
-        type="button"
-        data-ng-if="$ctrl.actionsMenuItem.hasSubActions()"
-        data-ng-click="$ctrl.onClick()($ctrl.actionsMenuItem)">
-
-    <span class="item-icon"
-          data-ng-if="$ctrl.actionsMenuItem.icon"
-          aria-hidden>
+<button
+    class="actions-menu-item-link"
+    type="button"
+    data-ng-if="$ctrl.actionsMenuItem.hasSubActions()"
+    data-ng-click="$ctrl.onClick()($ctrl.actionsMenuItem)"
+>
+    <span class="item-icon" data-ng-if="$ctrl.actionsMenuItem.icon" aria-hidden>
         <i data-ng-class="$ctrl.actionsMenuItem.icon" aria-hidden></i>
     </span>
 
-    <span class="item-icon"
-          data-ng-if="$ctrl.actionsMenuItem.svg"
-          data-ng-bind-html="$ctrl.actionsMenuItem.svg">
+    <span
+        class="item-icon"
+        data-ng-if="$ctrl.actionsMenuItem.svg"
+        data-ng-bind-html="$ctrl.actionsMenuItem.svg"
+    >
     </span>
 
-    <span class="item-title"
-          data-ng-bind="$ctrl.actionsMenuItem.title">
-    </span>
-
+    <span class="item-title" data-ng-bind="$ctrl.actionsMenuItem.title"> </span>
 </button>
