@@ -1,3 +1,12 @@
+## [3.1.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@3.1.1...@ovh-ux/manager-public-cloud@3.1.2) (2020-06-10)
+
+
+### Bug Fixes
+
+* **assets.theme:** minor enhancements for the alpha dark theme ([#3100](https://github.com/ovh/manager/issues/3100)) ([46ae63e](https://github.com/ovh/manager/commit/46ae63e5d536c39f32311e29c8f5ac5890c58144))
+
+
+
 ## [3.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@3.1.0...@ovh-ux/manager-public-cloud@3.1.1) (2020-06-09)
 
 
