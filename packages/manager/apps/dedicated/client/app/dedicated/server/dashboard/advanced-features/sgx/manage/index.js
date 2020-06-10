@@ -1,4 +1,6 @@
 import angular from 'angular';
+import ngAtInternet from '@ovh-ux/ng-at-internet';
+import ngAtInternetUiRouterPlugin from '@ovh-ux/ng-at-internet-ui-router-plugin';
 
 import '@ovh-ux/ng-translate-async-loader';
 import '@uirouter/angularjs';
@@ -15,6 +17,8 @@ const moduleName = 'ovhManagerDedicatedServerDashboardSgxManage';
 angular
   .module(moduleName, [
     confirmation,
+    ngAtInternet,
+    ngAtInternetUiRouterPlugin,
     'oui',
     'pascalprecht.translate',
     'ui.router',

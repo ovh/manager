@@ -1,3 +1,4 @@
+import atInternet from '@ovh-ux/ng-at-internet';
 import angular from 'angular';
 
 import '@ovh-ux/ng-translate-async-loader';
@@ -15,6 +16,7 @@ const moduleName = 'ovhManagerDedicatedServerDashboard';
 angular
   .module(moduleName, [
     advancedFeatures,
+    atInternet,
     'oui',
     'pascalprecht.translate',
     'ui.router',
