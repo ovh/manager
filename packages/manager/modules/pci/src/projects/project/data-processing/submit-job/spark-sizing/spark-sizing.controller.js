@@ -7,7 +7,7 @@ import {
 
 export default class {
   /* @ngInject */
-  constructor() {
+  constructor(dataProcessingService) {
     // let's do some bindings
     this.onClickAdvancedConfigurationHandler = this.onClickAdvancedConfigurationHandler.bind(
       this,
@@ -16,6 +16,7 @@ export default class {
     this.state = {};
     this.driverTemplates = null;
     this.workerTemplates = null;
+    this.dataProcessingService = dataProcessingService;
   }
 
   $onInit() {
@@ -181,14 +182,39 @@ export default class {
       driverCores,
       workerCores,
     } = this.state;
-    const pricePerGb = 0; // free during beta
-    const pricePerCore = 0; // free during beta
-    return (
-      (workerMemoryGb / GIB_IN_MIB + workerMemoryOverheadMb) *
-        pricePerGb *
+    const pricePerGiB = this.prices.memory.priceInUcents;
+    const pricePerCore = this.prices.core.priceInUcents;
+    const price =
+      (workerMemoryGb + workerMemoryOverheadMb / GIB_IN_MIB) *
+        pricePerGiB *
         workerCount +
-      (driverMemoryGb / GIB_IN_MIB + driverMemoryOverheadMb) * pricePerCore +
-      (driverCores + workerCores) * pricePerCore
-    );
+      (driverMemoryGb + driverMemoryOverheadMb / GIB_IN_MIB) * pricePerGiB +
+      (driverCores + workerCores) * pricePerCore;
+    return price;
+  }
+
+  /**
+   * Compute the estimated tax on the estimated price /min depending on job sizing.
+   * @return {number}
+   */
+  computeTax() {
+    const {
+      workerMemoryGb,
+      driverMemoryGb,
+      workerCount,
+      workerMemoryOverheadMb,
+      driverMemoryOverheadMb,
+      driverCores,
+      workerCores,
+    } = this.state;
+    const taxMemory = this.prices.memory.tax;
+    const taxCores = this.prices.core.tax;
+    const tax =
+      (workerMemoryGb + workerMemoryOverheadMb / GIB_IN_MIB) *
+        taxMemory *
+        workerCount +
+      (driverMemoryGb + driverMemoryOverheadMb / GIB_IN_MIB) * taxMemory +
+      (driverCores + workerCores) * taxCores;
+    return tax;
   }
 }

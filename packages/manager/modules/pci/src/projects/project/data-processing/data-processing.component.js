@@ -10,5 +10,6 @@ export default {
     showJob: '<',
     projectId: '<',
     terminateJob: '<',
+    getPricesFromCatalog: '<',
   },
 };
