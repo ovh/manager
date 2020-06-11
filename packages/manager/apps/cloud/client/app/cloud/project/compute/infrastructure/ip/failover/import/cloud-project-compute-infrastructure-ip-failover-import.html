@@ -22,10 +22,10 @@
                 class="oui-modal__text text-info"
                 data-translate="cpciif_import_ips_32only"
             ></p>
-            <table class="oui-table oui-table_responsive">
-                <thead class="oui-table__headers">
+            <table class="oui-datagrid oui-datagrid_responsive">
+                <thead class="oui-datagrid__headers">
                     <tr>
-                        <th class="oui-table__header">
+                        <th class="oui-datagrid__header">
                             <input
                                 type="checkbox"
                                 data-ng-hide="CPCIIpFailoverImportCtrl.loaders.table.ipsFo || !CPCIIpFailoverImportCtrl.datas.ipsFo.length"
@@ -36,16 +36,16 @@
                                 data-ng-disabled="CPCIIpFailoverImportCtrl.loaders.table.importIpsFo"
                             />
                         </th>
-                        <th class="oui-table__header">
+                        <th class="oui-datagrid__header">
                             <span translate="cpciif_import_ips"></span>
                         </th>
-                        <th class="oui-table__header">
+                        <th class="oui-datagrid__header">
                             <span translate="cpciif_import_ips_country"></span>
                         </th>
-                        <th class="oui-table__header">
+                        <th class="oui-datagrid__header">
                             <span translate="cpciif_import_routedto"></span>
                         </th>
-                        <th class="oui-table__header">
+                        <th class="oui-datagrid__header">
                             <button
                                 data-ng-click="CPCIIpFailoverImportCtrl.refreshIpsFo()"
                                 data-ng-disabled="CPCIIpFailoverImportCtrl.loaders.table.importIpsFo"
@@ -58,9 +58,9 @@
                 </thead>
                 <tbody
                     data-ng-show="CPCIIpFailoverImportCtrl.loaders.table.ipsFo"
-                    class="oui-table__body"
+                    class="oui-datagrid__body"
                 >
-                    <tr class="oui-table__row">
+                    <tr class="oui-datagrid__row">
                         <td colspan="4" class="text-center">
                             <oui-spinner size="s"></oui-spinner>
                         </td>
@@ -68,9 +68,9 @@
                 </tbody>
                 <tbody
                     data-ng-if="!CPCIIpFailoverImportCtrl.loaders.table.ipsFo && CPCIIpFailoverImportCtrl.datas.ipsFo.length === 0"
-                    class="oui-table__body"
+                    class="oui-datagrid__body"
                 >
-                    <tr class="oui-table__row">
+                    <tr class="oui-datagrid__row">
                         <td colspan="4" class="text-center">
                             <span translate="cpciif_import_ips_empty"></span>
                         </td>
@@ -78,9 +78,9 @@
                 </tbody>
                 <tbody
                     data-ng-if="!CPCIIpFailoverImportCtrl.loaders.table.ipsFo && CPCIIpFailoverImportCtrl.datas.ips === null"
-                    class="oui-table__body"
+                    class="oui-datagrid__body"
                 >
-                    <tr class="oui-table__row">
+                    <tr class="oui-datagrid__row">
                         <td colspan="4" class="text-center">
                             <i class="fa fa-bug"></i>
                             <span translate="cpciif_import_ips_error"></span>
@@ -89,14 +89,14 @@
                 </tbody>
                 <tbody
                     data-ng-hide="CPCIIpFailoverImportCtrl.loaders.table.ipsFo"
-                    class="oui-table__body"
+                    class="oui-datagrid__body"
                 >
                     <tr
-                        class="oui-table__row pointer"
+                        class="oui-datagrid__row pointer"
                         data-ng-click="CPCIIpFailoverImportCtrl.datas.selected[ipFo.ip] = !CPCIIpFailoverImportCtrl.datas.selected[ipFo.ip]"
                         data-ng-repeat="ipFo in CPCIIpFailoverImportCtrl.datas.ipsFoDetail"
                     >
-                        <td class="oui-table__cell text-center">
+                        <td class="oui-datagrid__cell text-center">
                             <input
                                 type="checkbox"
                                 data-ovh-stop-event="click"
@@ -106,17 +106,17 @@
                         </td>
                         <td
                             data-title="{{::'cpciif_import_ips' | translate}}"
-                            class="oui-table__cell word-break"
+                            class="oui-datagrid__cell word-break"
                             data-ng-bind="::ipFo.ip"
                         ></td>
                         <td
                             data-title="{{::'cpciif_import_ips' | translate}}"
-                            class="oui-table__cell word-break"
+                            class="oui-datagrid__cell word-break"
                             data-ng-bind="::ipFo.country | uppercase"
                         ></td>
                         <td
                             data-title="{{::'cpciif_import_routedto' | translate}}"
-                            class="oui-table__cell word-break"
+                            class="oui-datagrid__cell word-break"
                         >
                             <span
                                 data-ng-if="ipFo.routedTo.serviceName.length"
@@ -128,7 +128,7 @@
                                 class="opacity5"
                             ></span>
                         </td>
-                        <td class="oui-table__cell"></td>
+                        <td class="oui-datagrid__cell"></td>
                     </tr>
                 </tbody>
             </table>
