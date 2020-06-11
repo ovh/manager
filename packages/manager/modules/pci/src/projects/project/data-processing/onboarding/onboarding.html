@@ -11,15 +11,9 @@
     <p data-translate="data_processing_onboarding_content_2"></p>
     <p data-translate="data_processing_onboarding_content_3"></p>
 
-    <pci-project-lab-agreements
-        data-lab="$ctrl.lab"
-        data-ng-if="!$ctrl.isActivated"
-        data-on-accept="$ctrl.acceptLab(accepted)"
-    ></pci-project-lab-agreements>
-
     <oui-button
         data-variant="primary"
-        data-disabled="!$ctrl.agreedLab && !$ctrl.isActivated || $ctrl.isActivating"
+        data-disabled="$ctrl.isActivating"
         data-on-click="$ctrl.authorizeService()"
     >
         <span data-translate="data_processing_onboarding_action_label"></span>
