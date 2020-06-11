@@ -1,11 +1,9 @@
+@import './_variables';
+@import './_mixins';
 @import (less) 'ovh-ui-kit-bs/dist/css/oui-bs3.css';
 @import 'bootstrap/less/mixins.less';
-@import 'ovh-ui-kit/packages/oui/stylekit';
-@import 'ovh-ui-kit/packages/ovhcloud-light-theme/index';
-
-//@oui-icon-dist-folder: "../assets/ovh-ui-kit/dist/icons";
-//@oui-font-source-sans-pro-folder: "../assets/ovh-ui-kit/packages/oui-typography/fonts/source-sans-pro";
-
+@import (less) 'ovh-ui-kit/dist/oui.css';
+@import (less) 'ovh-ui-kit/dist/oui-olt.css';
 @import (less) 'ovh-angular-list-view/dist/ovh-angular-list-view.min.css';
 @import 'font-awesome/less/font-awesome.less';
 @import 'ovh-common-style/less/helpers.less';
@@ -17,15 +15,6 @@
 @import 'ovh-common-style/less/spinner/spinner.less';
 @import 'ovh-common-style/less/fonts/open-sans.less';
 @import 'ovh-manager-webfont/dist/less/ovh-font.less';
-
-/*
-@ovh-angular-slider-handle-background: #8d919c;
-@ovh-angular-slider-handle-border-color: darken(@ovh-angular-slider-handle-background, 5%);
-@ovh-angular-slider-handle-hover-background: #009fe3;
-@ovh-angular-slider-handle-hover-border-color: darken(@ovh-angular-slider-handle-background, 5%);
-@ovh-angular-slider-bubble-limit-color: #777;
-*/
-
 @import 'flag-icon-css/less/flag-icon.less';
 
 // Overide Bootstrap Params
