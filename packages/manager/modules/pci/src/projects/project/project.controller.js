@@ -28,6 +28,7 @@ export default class ProjectController {
     this.sidebarVisible = sidebarVisible;
     this.loading = false;
     this.user = user;
+    this.region = coreConfig.getRegion();
 
     this.actions = ACTIONS.filter(
       ({ regions }) =>

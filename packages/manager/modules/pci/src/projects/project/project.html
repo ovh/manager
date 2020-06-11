@@ -12,7 +12,10 @@
         >
         </cloud-sidebar>
         <div class="h-100 position-relative p-0 col-lg-10 d-flex flex-column">
-            <div class="pci-project-banner d-flex justify-content-between p-2">
+            <div
+                class="pci-project-banner d-flex justify-content-between p-2"
+                data-ng-if="$ctrl.region !== 'US'"
+            >
                 <div class="d-none d-md-block">
                     <span
                         class="oui-icon oui-icon-warning_extra-thin oui-color-warning-dark float-left mx-2"
