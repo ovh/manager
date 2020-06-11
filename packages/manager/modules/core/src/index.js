@@ -1,13 +1,12 @@
 import { Environment } from '@ovh-ux/manager-config';
 
 import angular from 'angular';
-import set from 'lodash/set';
+import { set, kebabCase } from 'lodash-es';
 
 import 'angular-aria';
 import 'angular-sanitize';
 import 'angular-resource';
 
-import kebabCase from 'lodash/kebabCase';
 import ngTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
 import ngOvhHttp from '@ovh-ux/ng-ovh-http';
 import ngOvhSsoAuth from '@ovh-ux/ng-ovh-sso-auth';
