@@ -197,67 +197,67 @@
         </form>
 
         <!-- SNAPSHOT TABLE -->
-        <table class="oui-table oui-table_responsive">
-            <thead class="oui-table oui-table__headers">
+        <table class="oui-datagrid oui-datagrid_responsive">
+            <thead class="oui-datagrid__headers">
                 <tr>
                     <th
-                        class="oui-table__header oui-table__cell_sortable"
+                        class="oui-datagrid__header oui-datagrid__cell_sortable"
                         tabindex="0"
                         data-ng-click="CloudProjectComputeSnapshotCtrl.orderBy('name')"
-                        data-ng-class="{'oui-table__cell_sortable-asc oui-table__cell_sorted' : CloudProjectComputeSnapshotCtrl.order.by === 'name' && !CloudProjectComputeSnapshotCtrl.order.reverse, 'oui-table__cell_sortable-desc oui-table__cell_sorted' : CloudProjectComputeSnapshotCtrl.order.by === 'name' && CloudProjectComputeSnapshotCtrl.order.reverse}"
+                        data-ng-class="{'oui-datagrid__cell_sortable-asc oui-datagrid__cell_sorted' : CloudProjectComputeSnapshotCtrl.order.by === 'name' && !CloudProjectComputeSnapshotCtrl.order.reverse, 'oui-datagrid__cell_sortable-desc oui-datagrid__cell_sorted' : CloudProjectComputeSnapshotCtrl.order.by === 'name' && CloudProjectComputeSnapshotCtrl.order.reverse}"
                     >
                         <span translate="cpc_snapshot_name"></span>
                     </th>
                     <th
-                        class="oui-table__header oui-table__cell_sortable"
+                        class="oui-datagrid__header oui-datagrid__cell_sortable"
                         tabindex="0"
                         data-ng-click="CloudProjectComputeSnapshotCtrl.orderBy('region')"
-                        data-ng-class="{'oui-table__cell_sortable-asc oui-table__cell_sorted' : CloudProjectComputeSnapshotCtrl.order.by === 'region' && !CloudProjectComputeSnapshotCtrl.order.reverse, 'oui-table__cell_sortable-desc oui-table__cell_sorted' : CloudProjectComputeSnapshotCtrl.order.by === 'region' && CloudProjectComputeSnapshotCtrl.order.reverse}"
+                        data-ng-class="{'oui-datagrid__cell_sortable-asc oui-datagrid__cell_sorted' : CloudProjectComputeSnapshotCtrl.order.by === 'region' && !CloudProjectComputeSnapshotCtrl.order.reverse, 'oui-datagrid__cell_sortable-desc oui-datagrid__cell_sorted' : CloudProjectComputeSnapshotCtrl.order.by === 'region' && CloudProjectComputeSnapshotCtrl.order.reverse}"
                     >
                         <span translate="cpc_snapshot_region"></span>
                     </th>
                     <th
-                        class="oui-table__header oui-table__cell_sortable"
+                        class="oui-datagrid__header oui-datagrid__cell_sortable"
                         tabindex="0"
                         data-ng-click="CloudProjectComputeSnapshotCtrl.orderBy('type')"
-                        data-ng-class="{'oui-table__cell_sortable-asc oui-table__cell_sorted' : CloudProjectComputeSnapshotCtrl.order.by === 'type' && !CloudProjectComputeSnapshotCtrl.order.reverse, 'oui-table__cell_sortable-desc oui-table__cell_sorted' : CloudProjectComputeSnapshotCtrl.order.by === 'type' && CloudProjectComputeSnapshotCtrl.order.reverse}"
+                        data-ng-class="{'oui-datagrid__cell_sortable-asc oui-datagrid__cell_sorted' : CloudProjectComputeSnapshotCtrl.order.by === 'type' && !CloudProjectComputeSnapshotCtrl.order.reverse, 'oui-datagrid__cell_sortable-desc oui-datagrid__cell_sorted' : CloudProjectComputeSnapshotCtrl.order.by === 'type' && CloudProjectComputeSnapshotCtrl.order.reverse}"
                     >
                         <span translate="cpc_snapshot_type"></span>
                     </th>
                     <th
-                        class="oui-table__header oui-table__cell_sortable"
+                        class="oui-datagrid__header oui-datagrid__cell_sortable"
                         tabindex="0"
                         data-ng-click="CloudProjectComputeSnapshotCtrl.orderBy('size')"
-                        data-ng-class="{'oui-table__cell_sortable-asc oui-table__cell_sorted' : CloudProjectComputeSnapshotCtrl.order.by === 'size' && !CloudProjectComputeSnapshotCtrl.order.reverse, 'oui-table__cell_sortable-desc oui-table__cell_sorted' : CloudProjectComputeSnapshotCtrl.order.by === 'size' && CloudProjectComputeSnapshotCtrl.order.reverse}"
+                        data-ng-class="{'oui-datagrid__cell_sortable-asc oui-datagrid__cell_sorted' : CloudProjectComputeSnapshotCtrl.order.by === 'size' && !CloudProjectComputeSnapshotCtrl.order.reverse, 'oui-datagrid__cell_sortable-desc oui-datagrid__cell_sorted' : CloudProjectComputeSnapshotCtrl.order.by === 'size' && CloudProjectComputeSnapshotCtrl.order.reverse}"
                     >
                         <span translate="cpc_snapshot_min_disk"></span>
                     </th>
                     <th
-                        class="oui-table__header oui-table__cell_sortable"
+                        class="oui-datagrid__header oui-datagrid__cell_sortable"
                         tabindex="0"
                         data-ng-click="CloudProjectComputeSnapshotCtrl.orderBy('price.value')"
-                        data-ng-class="{'oui-table__cell_sortable-asc oui-table__cell_sorted' : CloudProjectComputeSnapshotCtrl.order.by === 'price.value' && !CloudProjectComputeSnapshotCtrl.order.reverse, 'oui-table__cell_sortable-desc oui-table__cell_sorted' : CloudProjectComputeSnapshotCtrl.order.by === 'price.value' && CloudProjectComputeSnapshotCtrl.order.reverse}"
+                        data-ng-class="{'oui-datagrid__cell_sortable-asc oui-datagrid__cell_sorted' : CloudProjectComputeSnapshotCtrl.order.by === 'price.value' && !CloudProjectComputeSnapshotCtrl.order.reverse, 'oui-datagrid__cell_sortable-desc oui-datagrid__cell_sorted' : CloudProjectComputeSnapshotCtrl.order.by === 'price.value' && CloudProjectComputeSnapshotCtrl.order.reverse}"
                     >
                         <span translate="cpc_snapshot_price"></span>
                     </th>
                     <th
-                        class="oui-table__header oui-table__cell_sortable"
+                        class="oui-datagrid__header oui-datagrid__cell_sortable"
                         tabindex="0"
                         data-ng-click="CloudProjectComputeSnapshotCtrl.orderBy('creationDate')"
-                        data-ng-class="{'oui-table__cell_sortable-asc oui-table__cell_sorted' : CloudProjectComputeSnapshotCtrl.order.by === 'creationDate' && !CloudProjectComputeSnapshotCtrl.order.reverse, 'oui-table__cell_sortable-desc oui-table__cell_sorted' : CloudProjectComputeSnapshotCtrl.order.by === 'creationDate' && CloudProjectComputeSnapshotCtrl.order.reverse}"
+                        data-ng-class="{'oui-datagrid__cell_sortable-asc oui-datagrid__cell_sorted' : CloudProjectComputeSnapshotCtrl.order.by === 'creationDate' && !CloudProjectComputeSnapshotCtrl.order.reverse, 'oui-datagrid__cell_sortable-desc oui-datagrid__cell_sorted' : CloudProjectComputeSnapshotCtrl.order.by === 'creationDate' && CloudProjectComputeSnapshotCtrl.order.reverse}"
                     >
                         <span translate="cpc_snapshot_creation_date"></span>
                     </th>
                     <th
-                        class="oui-table__header oui-table__cell_sortable"
+                        class="oui-datagrid__header oui-datagrid__cell_sortable"
                         tabindex="0"
                         data-ng-click="CloudProjectComputeSnapshotCtrl.orderBy('status')"
-                        data-ng-class="{'oui-table__cell_sortable-asc oui-table__cell_sorted' : CloudProjectComputeSnapshotCtrl.order.by === 'status' && !CloudProjectComputeSnapshotCtrl.order.reverse, 'oui-table__cell_sortable-desc oui-table__cell_sorted' : CloudProjectComputeSnapshotCtrl.order.by === 'status' && CloudProjectComputeSnapshotCtrl.order.reverse}"
+                        data-ng-class="{'oui-datagrid__cell_sortable-asc oui-datagrid__cell_sorted' : CloudProjectComputeSnapshotCtrl.order.by === 'status' && !CloudProjectComputeSnapshotCtrl.order.reverse, 'oui-datagrid__cell_sortable-desc oui-datagrid__cell_sorted' : CloudProjectComputeSnapshotCtrl.order.by === 'status' && CloudProjectComputeSnapshotCtrl.order.reverse}"
                     >
                         <span translate="cpc_snapshot_status"></span>
                     </th>
                     <th
-                        class="oui-table__header oui-table__cell_action text-center"
+                        class="oui-datagrid__header oui-datagrid__cell_action text-center"
                         tabindex="0"
                         data-ng-click="CloudProjectComputeSnapshotCtrl.getSnapshot(true)"
                         write-right-required
@@ -268,9 +268,9 @@
             </thead>
             <tbody
                 data-ng-show="CloudProjectComputeSnapshotCtrl.loaders.table.snapshot"
-                class="oui-table__body"
+                class="oui-datagrid__body"
             >
-                <tr class="oui-table__row" tabindex="0">
+                <tr class="oui-datagrid__row" tabindex="0">
                     <td colspan="9" class="text-center">
                         <oui-spinner></oui-spinner>
                     </td>
@@ -278,9 +278,9 @@
             </tbody>
             <tbody
                 data-ng-if="!CloudProjectComputeSnapshotCtrl.loaders.table.snapshot && CloudProjectComputeSnapshotCtrl.table.snapshot.length === 0"
-                class="oui-table__body"
+                class="oui-datagrid__body"
             >
-                <tr class="oui-table__row" tabindex="0">
+                <tr class="oui-datagrid__row" tabindex="0">
                     <td colspan="9" class="text-center">
                         <span translate="cpc_snapshot_empty"></span>
                     </td>
@@ -288,9 +288,9 @@
             </tbody>
             <tbody
                 data-ng-if="!CloudProjectComputeSnapshotCtrl.loaders.table.snapshot && CloudProjectComputeSnapshotCtrl.table.snapshot === null"
-                class="oui-table__body"
+                class="oui-datagrid__body"
             >
-                <tr class="oui-table__row" tabindex="0">
+                <tr class="oui-datagrid__row" tabindex="0">
                     <td colspan="9" class="text-center">
                         <i class="fa fa-bug"></i>
                         <span translate="cpc_snapshot_error"></span>
@@ -301,9 +301,9 @@
                 data-ng-if="!CloudProjectComputeSnapshotCtrl.loaders.table.snapshot
                             && CloudProjectComputeSnapshotCtrl.table.snapshot.length
                             && !CloudProjectComputeSnapshotCtrl.table.snapshotFilterPage.length"
-                class="oui-table__body"
+                class="oui-datagrid__body"
             >
-                <tr class="oui-table__row" tabindex="0">
+                <tr class="oui-datagrid__row" tabindex="0">
                     <td colspan="9" class="text-center">
                         <i class="fa fa-search"></i>
                         <span translate="cpc_snapshot_empty_search"></span>
@@ -312,16 +312,16 @@
             </tbody>
             <tbody
                 data-ng-hide="CloudProjectComputeSnapshotCtrl.loaders.table.snapshot"
-                class="oui-table__body"
+                class="oui-datagrid__body"
             >
                 <tr
                     data-ng-repeat="snapshot in CloudProjectComputeSnapshotCtrl.table.snapshotFilterPage track by snapshot.id"
-                    class="oui-table__row"
+                    class="oui-datagrid__row"
                     tabindex="0"
                 >
                     <td
                         data-title="{{::'cpc_snapshot_name' | translate}}"
-                        class="oui-table__cell"
+                        class="oui-datagrid__cell"
                     >
                         <label
                             data-ng-class="{'opacity2-leave' : CloudProjectComputeSnapshotCtrl.toggle.snapshotDeleteId === snapshot.id,
@@ -345,7 +345,7 @@
                     </td>
                     <td
                         data-title="{{::'cpc_snapshot_region' | translate}}"
-                        class="oui-table__cell"
+                        class="oui-datagrid__cell"
                     >
                         <label
                             data-ng-class="{'opacity2-leave' : CloudProjectComputeSnapshotCtrl.toggle.snapshotDeleteId === snapshot.id,
@@ -358,7 +358,7 @@
                     </td>
                     <td
                         data-title="{{::'cpc_snapshot_type' | translate}}"
-                        class="oui-table__cell"
+                        class="oui-datagrid__cell"
                     >
                         <span
                             data-ng-class="{'opacity2-leave' : CloudProjectComputeSnapshotCtrl.toggle.snapshotDeleteId === snapshot.id,
@@ -369,7 +369,7 @@
                     </td>
                     <td
                         data-title="{{::'cpc_snapshot_min_disk' | translate}}"
-                        class="oui-table__cell"
+                        class="oui-datagrid__cell"
                     >
                         <span
                             data-ng-class="{'opacity2-leave' : CloudProjectComputeSnapshotCtrl.toggle.snapshotDeleteId === snapshot.id,
@@ -381,7 +381,7 @@
                     </td>
                     <td
                         data-title="{{::'cpc_snapshot_price' | translate}}"
-                        class="oui-table__cell"
+                        class="oui-datagrid__cell"
                     >
                         <span
                             data-ng-class="{'opacity2-leave' : CloudProjectComputeSnapshotCtrl.toggle.snapshotDeleteId === snapshot.id,
@@ -393,7 +393,7 @@
                     </td>
                     <td
                         data-title="{{::'cpc_snapshot_creation_date' | translate}}"
-                        class="oui-table__cell"
+                        class="oui-datagrid__cell"
                     >
                         <span
                             data-ng-class="{'opacity2-leave' : CloudProjectComputeSnapshotCtrl.toggle.snapshotDeleteId === snapshot.id,
@@ -404,7 +404,7 @@
                     </td>
                     <td
                         data-title="{{::'cpc_snapshot_status' | translate}}"
-                        class="oui-table__cell"
+                        class="oui-datagrid__cell"
                     >
                         <span
                             class="ip-text text-center"
@@ -421,7 +421,7 @@
                     </td>
 
                     <td
-                        class="oui-table__cell oui-table__cell_action"
+                        class="oui-datagrid__cell oui-datagrid__cell_action"
                         write-right-required
                     >
                         <div
