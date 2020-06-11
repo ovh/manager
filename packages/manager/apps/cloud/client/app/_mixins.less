@@ -1,0 +1,72 @@
+// Legacy UI Kit mixins (TODO: replace CUI by OUI)
+@import (reference) './_variables';
+
+#oui {
+  .base-font() {
+    font-family: @oui-global-base-font-family;
+    line-height: @oui-global-base-line-height;
+    letter-spacing: @oui-global-base-letter-spacing;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .text-ellipsis() {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .animate-fast-out-slow-in(@duration: @oui-animation-default-timing) {
+    transition-duration: @duration;
+    transition-timing-function: @oui-animation-fast-out-slow-in;
+  }
+
+  .animate(@duration: @oui-animation-default-timing) {
+    transition-duration: @duration;
+    transition-timing-function: @oui-animation-default;
+  }
+
+  /* stylelint-disable indentation */
+  .button-hollow(
+  @background-color: @oui-button-hollow-background-color,
+  @background-color_hover: @oui-button-hollow-background-color_hover,
+  @border-color: @oui-button-hollow-border-color,
+  @border-color_hover: @oui-button-hollow-border-color_hover,
+  @border-color_disabled: @oui-button-hollow-border-color_disabled,
+  @background-color_disabled: @oui-button-hollow-background-color_disabled,
+  @box-shadow_active: @oui-button-hollow-box-shadow_active,
+  @box-shadow_focus: @oui-button-hollow-box-shadow_focus,
+  @font-color_disabled: @oui-button-hollow-font-color_disabled,
+  @padding: @oui-button-hollow-padding
+) {
+    padding: @padding;
+    background-color: @background-color;
+    border: 1px solid @border-color;
+
+    &:hover,
+    &:focus {
+      background-color: @background-color_hover;
+      border-color: @border-color_hover;
+    }
+
+    &:focus {
+      box-shadow: @box-shadow_focus;
+    }
+
+    &:active {
+      box-shadow: @box-shadow_active;
+    }
+
+    &:disabled,
+    &:disabled:active {
+      color: @font-color_disabled;
+      border-color: @border-color_disabled;
+      background-color: @background-color_disabled;
+      cursor: auto;
+    }
+  }
+  /* stylelint-enable indentation */
+}

@@ -172,7 +172,7 @@
   @table-cell-action-tablet-padding: @oui-table-cell-action-tablet-padding
 ) {
     /* stylelint-disable indentation */
-    .tablet({
+    @media screen and (max-width: (@oui-responsive-breakpoint-tablet - 1px)) {
       .@{selector}__headers {
         position: absolute;
         left: -9999em;
@@ -250,7 +250,7 @@
           }
         }
       }
-    });
+    }
 
     .phone({
       .@{selector}__body {
