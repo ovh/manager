@@ -25,7 +25,9 @@
   &__cell_action-menu {
     width: 80px;
 
-    .tablet({width: 100%;});
+    @media screen and (max-width: (@oui-responsive-breakpoint-tablet - 1px)) {
+      width: 100%;
+    }
   }
 
   &__cell_component {

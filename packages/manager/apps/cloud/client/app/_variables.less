@@ -1,0 +1,111 @@
+// Legacy UI Kit variables (TODO: migrate to tokens)
+
+// Settings - Global
+@oui-global-base-z-index: 0;
+@oui-global-base-font-family-fallback: sans-serif;
+@oui-global-base-font-family-icon: 'Oui Icons';
+@oui-global-base-font-family: 'Source Sans Pro',
+  @oui-global-base-font-family-fallback;
+@oui-global-base-font-size: rem-calc(16);
+@oui-global-base-font-weight: 400;
+@oui-global-base-line-height: 1.5;
+@oui-global-base-letter-spacing: 0.007em;
+@oui-global-base-margin: 0 0 rem-calc(15);
+@oui-global-base-radius: 3px;
+@oui-global-base-radius-medium: @oui-global-base-radius * 2;
+
+// Animations
+@oui-animation-fast-out-slow-in: cubic-bezier(0.4, 0, 0.2, 1);
+@oui-animation-default: @oui-animation-fast-out-slow-in;
+@oui-animation-default-timing: 0.2s;
+
+/* Button - Hollow */
+@oui-button-hollow-background-color: #fff;
+@oui-button-hollow-background-color_hover: @oui-color-concrete;
+@oui-button-hollow-border-color: #bdbec0;
+@oui-button-hollow-border-color_hover: @oui-color-dusty;
+@oui-button-hollow-border-color_disabled: @oui-color-concrete;
+@oui-button-hollow-background-color_disabled: @oui-color-concrete;
+@oui-button-hollow-box-shadow_active: inset 2px 2px 1px 0
+  fade(@oui-color-silver, 30%);
+@oui-button-hollow-box-shadow_focus: 0 0 3px 1px rgba(0, 0, 0, 0.15);
+@oui-button-hollow-font-color_disabled: @oui-color-silver;
+@oui-button-hollow-padding-base: rem-calc(7);
+@oui-button-hollow-padding: @oui-button-hollow-padding-base rem-calc(20);
+
+// General Colors
+@oui-color-sapphire: #113f6d;
+@oui-color-silver: #bbbdbf;
+@oui-color-concrete: #f2f2f2;
+@oui-color-zodiac: #122844;
+@oui-color-turquoise: #59d2ef;
+@oui-color-turquoise-a15: fade(@oui-color-turquoise, 15%);
+@oui-color-pacific: #00a2bf;
+@oui-color-nurse: #e9ebe7;
+@oui-color-nurse2: #e1e3df;
+@oui-color-gothic: #7991a3;
+@oui-color-foam: #e0f6fd;
+@oui-color-rhino: #273b54;
+@oui-color-fiord: #3f5167;
+@oui-color-shuttle: #59697d;
+@oui-color-regent: #818b99;
+@oui-color-mischka: #d5dae0;
+@oui-color-dusty: #999;
+@oui-color-polar: #f5fcfd;
+@oui-color-white: #fff;
+@oui-color-charlotte: #c6eff9;
+@oui-color-iron: #cfd0d2;
+@oui-color-ironlight: #dddedf;
+@oui-color-alabaster: #fafafa;
+@oui-color-affair: #884994;
+
+// Product Colors
+@oui-color-jungle: #27b9a2;
+@oui-color-jungle-a15: fade(@oui-color-jungle, 15%);
+@oui-color-dodger: #32acff;
+@oui-color-supernova: #fc0;
+@oui-color-supernova-a15: fade(@oui-color-supernova, 15%);
+@oui-color-pomegranate: #ee4036;
+@oui-color-iceberg: #ddf4f2;
+@oui-color-milkpunch: #fff7d8;
+@oui-color-california: #ff9803;
+@oui-color-atlantis: #88c424;
+@oui-color-flirt: #ad0067;
+@oui-color-claret: #701447;
+
+// Message Colors
+@oui-color-info-dark: #3f5167;
+@oui-color-info-medium: #7d8da1;
+@oui-color-info-light: #b3becc;
+@oui-color-info-fade: #dfeaf8;
+@oui-color-success-dark: #57710e;
+@oui-color-success-medium: #b0ca67;
+@oui-color-success-light: #b0ca67;
+@oui-color-success-fade: #e0eac2;
+@oui-color-warning-dark: #8a5300;
+@oui-color-warning-medium: #d9ae00;
+@oui-color-warning-light: #e3cd4d;
+@oui-color-warning-fade: #faefa0;
+@oui-color-error-dark: #b04020;
+@oui-color-error-medium: #e36947;
+@oui-color-error-light: #eca490;
+@oui-color-error-fade: #f5e0da;
+
+// Colors
+@oui-color-brand: @oui-color-sapphire;
+@oui-color-primary: @oui-color-zodiac;
+@oui-color-secondary: @oui-color-turquoise;
+@oui-color-tertiary: @oui-color-pacific;
+
+// Typography - Font
+@oui-font-extra-light: 200;
+@oui-font-light: 300;
+@oui-font-regular: 400;
+@oui-font-semibold: 600;
+@oui-font-bold: 700;
+@oui-font-black: 900;
+
+// Breakpoints
+@oui-responsive-breakpoint-phone: 768px;
+@oui-responsive-breakpoint-tablet: 1024px;
+@oui-responsive-breakpoint-medium: 1200px;
