@@ -8,7 +8,7 @@ import dataProcessingJobDetailsComponent from './job-details.component';
 import jobDashboard from './job-dashboard';
 import jobLogs from './job-logs';
 
-const moduleName = 'ovhManagerPciProjectDataProcessingSubmitJob';
+const moduleName = 'ovhManagerPciProjectDataProcessingJobDetails';
 
 angular
   .module(moduleName, ['ui.router', angularTranslate, jobDashboard, jobLogs])
