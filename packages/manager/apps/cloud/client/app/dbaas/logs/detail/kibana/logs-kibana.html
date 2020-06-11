@@ -1,7 +1,7 @@
-<section class="cui-page__content log-index">
-    <h3 data-translate="logs_index_title"></h3>
-    <p data-translate="logs_index_description"></p>
-    <oui-datagrid data-rows="ctrl.indices.data">
+<section class="cui-page__content log-kibana">
+    <h3 data-translate="logs_kibana_title"></h3>
+    <p data-translate="logs_kibana_description"></p>
+    <oui-datagrid data-rows="ctrl.kibanas.data">
         <extra-top>
             <button
                 type="button"
@@ -12,7 +12,7 @@
                     class="oui-icon oui-icon-add pr-1"
                     aria-hidden="true"
                 ></span>
-                <span data-translate="logs_index_add_data_feed"></span>
+                <span data-translate="logs_kibana_add_data_feed"></span>
             </button>
             <oui-spinner
                 size="s"
@@ -20,7 +20,7 @@
             ></oui-spinner>
         </extra-top>
         <oui-column
-            data-title=":: 'logs_index_name_text' | translate"
+            data-title=":: 'logs_kibana_name_text' | translate"
             data-property="info.name"
             data-sortable="asc"
             data-type="string"
@@ -28,7 +28,7 @@
             data-filterable
         ></oui-column>
         <oui-column
-            data-title=":: 'logs_index_col_description' | translate"
+            data-title=":: 'logs_kibana_col_description' | translate"
             data-property="info.description"
             data-type="string"
             data-sortable
@@ -36,17 +36,21 @@
             data-filterable
         ></oui-column>
         <oui-column
-            data-title="::'logs_index_col_free_space' | translate"
-            data-type="number"
-            data-property="info.currentStorage"
+            title="::'logs_kibana_col_status' | translate"
+            property="info.deliveryStatus"
+            data-type="string"
+            searchable
+            filterable
         >
             <span
                 class="oui-status"
-                data-ng-if="$row.info.isEditable"
-                data-ng-class="ctrl.storageColor($row.info)"
-                data-ng-bind="($row.info.currentStorage | bytes:2:true) + '/' + ($row.info.maxSize | bytes:2:true)"
-            ></span>
-            <span data-ng-if="!$row.info.isEditable"> - </span>
+                data-translate="{{ ::'logs_kibabana_deliveryStatus_' + $row.info.deliveryStatus }}"
+                data-ng-class="{
+                    'oui-status_info': $row.info.stateType === 'info',
+                    'oui-status_success': $row.info.stateType === 'success',
+                    'oui-status_warning': $row.info.stateType === 'warning'}"
+            >
+            </span>
         </oui-column>
         <oui-column
             data-title=":: 'logs_col_last_modified' | translate"
@@ -57,9 +61,9 @@
             {{ $row.updatedAt | momentFormat:'L'}}
         </oui-column>
         <oui-column
-            data-title=":: 'logs_index_col_shared' | translate"
+            data-title=":: 'logs_kibana_col_shared' | translate"
             data-sortable
-            type="string"
+            data-type="string"
             data-property="info.isEditable"
         >
             <span
@@ -76,7 +80,7 @@
             ></oui-action-menu-item>
             <oui-action-menu-item
                 data-ng-repeat="url in $row.urls"
-                data-text="{{ ::'logs_index_access_' + url.type | translate }}"
+                data-text="{{ ::'logs_kibana_access_' + url.type | translate }}"
                 href="{{ url.address }}"
                 data-external
             ></oui-action-menu-item>
