@@ -10,5 +10,8 @@ export default {
     validate: '<',
     templates: '<',
     jobParameters: '<',
+    projectId: '<',
+    prices: '<',
+    user: '<',
   },
 };
