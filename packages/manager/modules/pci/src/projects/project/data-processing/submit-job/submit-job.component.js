@@ -10,5 +10,7 @@ export default {
     capabilities: '<',
     goBack: '<',
     increaseQuotaLink: '<',
+    prices: '<',
+    user: '<',
   },
 };

@@ -12,5 +12,8 @@ export default /* @ngInject */ ($stateProvider) =>
         $state.href('pci.projects.project.quota.increase', {
           projectId,
         }),
+      prices: /* @ngInject */ (dataProcessingService, projectId) =>
+        dataProcessingService.getPricesFromCatalog(projectId),
+      user: /* @ngInject */ (SessionService) => SessionService.getUser(),
     },
   });

@@ -1,5 +1,5 @@
 import angular from 'angular';
-import angularTranslate from 'angular-translate';
+import 'angular-translate';
 import '@ovh-ux/ng-ovh-swimming-poll';
 
 import routing from './data-processing.routing';
@@ -17,7 +17,7 @@ const moduleName = 'ovhManagerPciProjectDataProcessing';
 
 angular
   .module(moduleName, [
-    angularTranslate,
+    'pascalprecht.translate',
     'ngOvhSwimmingPoll',
     submitJob,
     jobDetails,
