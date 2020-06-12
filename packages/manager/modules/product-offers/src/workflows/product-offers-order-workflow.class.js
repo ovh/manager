@@ -184,7 +184,10 @@ export default class OrderWorkflow extends Workflow {
         ),
       )
       .then(() => this.WucOrderCartService.getCheckoutInformations(this.cartId))
-      .then(({ contracts, prices }) => {
+      .then(({ contracts, prices, details }) => {
+        this.prorataDurationDate = this.constructor.getDurationProrataDate(
+          details,
+        );
         this.contracts = contracts;
         this.prices = prices;
       })
