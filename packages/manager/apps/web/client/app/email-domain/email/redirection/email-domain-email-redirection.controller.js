@@ -1,5 +1,3 @@
-import map from 'lodash/map';
-
 angular.module('App').controller(
   'EmailDomainEmailRedirectionCtrl',
   class EmailDomainEmailRedirectionCtrl {
@@ -10,15 +8,15 @@ angular.module('App').controller(
      * @param $q
      * @param $translate
      * @param Alerter
-     * @param WucEmails
+     * @param iceberg
      */
-    constructor($scope, $stateParams, $q, $translate, Alerter, WucEmails) {
+    constructor($scope, $stateParams, $q, $translate, Alerter, iceberg) {
       this.$scope = $scope;
       this.$stateParams = $stateParams;
       this.$q = $q;
       this.$translate = $translate;
       this.Alerter = Alerter;
-      this.WucEmails = WucEmails;
+      this.iceberg = iceberg;
     }
 
     $onInit() {
@@ -45,13 +43,25 @@ angular.module('App').controller(
         ],
       ];
 
-      return this.$q
-        .all(
-          map(this.redirections, ({ id }) =>
-            this.WucEmails.getRedirection(this.$stateParams.productId, id),
-          ),
-        )
-        .then((data) => dataToExport.concat(map(data, (d) => [d.from, d.to])))
+      return this.iceberg('/email/domain/:domain/redirection')
+        .query()
+        .expand('CachedObjectList-Pages')
+        .execute({
+          domain: this.$stateParams.productId,
+        })
+        .$promise.then((result) => {
+          result.data
+            .sort((a, b) => {
+              if (a.from === b.from) {
+                return a.to > b.to ? 1 : -1;
+              }
+              return a.from > b.from ? 1 : -1;
+            })
+            .forEach((redirection) => {
+              dataToExport.push([redirection.from, redirection.to]);
+            });
+          return dataToExport;
+        })
         .finally(() => {
           this.loading.exportCSV = false;
         });
@@ -61,9 +71,19 @@ angular.module('App').controller(
       this.loading.redirections = true;
       this.redirections = null;
 
-      return this.WucEmails.getRedirections(this.$stateParams.productId)
-        .then((data) => {
-          this.redirections = data.map((id) => ({ id }));
+      return this.iceberg('/email/domain/:domain/redirection')
+        .query()
+        .expand('CachedObjectList-Pages')
+        .execute({
+          domain: this.$stateParams.productId,
+        })
+        .$promise.then((result) => {
+          this.redirections = result.data.sort((a, b) => {
+            if (a.from === b.from) {
+              return a.to > b.to ? 1 : -1;
+            }
+            return a.from > b.from ? 1 : -1;
+          });
         })
         .catch((err) =>
           this.Alerter.alertFromSWS(
@@ -75,10 +95,6 @@ angular.module('App').controller(
         .finally(() => {
           this.loading.redirections = false;
         });
-    }
-
-    transformItem({ id }) {
-      return this.WucEmails.getRedirection(this.$stateParams.productId, id);
     }
   },
 );

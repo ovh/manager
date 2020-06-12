@@ -1,16 +1,24 @@
 import get from 'lodash/get';
-import map from 'lodash/map';
 import set from 'lodash/set';
 
 export default class EmailMXPlanEmailRedirectionCtrl {
   /* @ngInject */
-  constructor($scope, $stateParams, $q, $translate, Alerter, WucEmails) {
+  constructor(
+    $scope,
+    $stateParams,
+    $q,
+    $translate,
+    Alerter,
+    WucEmails,
+    iceberg,
+  ) {
     this.$scope = $scope;
     this.$stateParams = $stateParams;
     this.$q = $q;
     this.$translate = $translate;
     this.Alerter = Alerter;
     this.WucEmails = WucEmails;
+    this.iceberg = iceberg;
   }
 
   $onInit() {
@@ -58,16 +66,25 @@ export default class EmailMXPlanEmailRedirectionCtrl {
       ],
     ];
 
-    return this.$q
-      .all(
-        map(this.redirections, ({ id }) =>
-          this.WucEmails.getRedirection(
-            get(this.$scope, 'exchange.associatedDomainName'),
-            id,
-          ),
-        ),
-      )
-      .then((data) => dataToExport.concat(map(data, (d) => [d.from, d.to])))
+    return this.iceberg('/email/domain/:domain/redirection')
+      .query()
+      .expand('CachedObjectList-Pages')
+      .execute({
+        domain: get(this.$scope, 'exchange.associatedDomainName'),
+      })
+      .$promise.then((result) => {
+        result.data
+          .sort((a, b) => {
+            if (a.from === b.from) {
+              return a.to > b.to ? 1 : -1;
+            }
+            return a.from > b.from ? 1 : -1;
+          })
+          .forEach((redirection) => {
+            dataToExport.push([redirection.from, redirection.to]);
+          });
+        return dataToExport;
+      })
       .finally(() => {
         this.loading.exportCSV = false;
       });
@@ -77,11 +94,19 @@ export default class EmailMXPlanEmailRedirectionCtrl {
     this.loading.redirections = true;
     this.redirections = null;
 
-    return this.WucEmails.getRedirections(
-      get(this.$scope, 'exchange.associatedDomainName'),
-    )
-      .then((data) => {
-        this.redirections = data.map((id) => ({ id }));
+    return this.iceberg('/email/domain/:domain/redirection')
+      .query()
+      .expand('CachedObjectList-Pages')
+      .execute({
+        domain: get(this.$scope, 'exchange.associatedDomainName'),
+      })
+      .$promise.then((result) => {
+        this.redirections = result.data.sort((a, b) => {
+          if (a.from === b.from) {
+            return a.to > b.to ? 1 : -1;
+          }
+          return a.from > b.from ? 1 : -1;
+        });
       })
       .catch((err) =>
         this.Alerter.alertFromSWS(
@@ -93,12 +118,5 @@ export default class EmailMXPlanEmailRedirectionCtrl {
       .finally(() => {
         this.loading.redirections = false;
       });
-  }
-
-  transformItem({ id }) {
-    return this.WucEmails.getRedirection(
-      get(this.$scope, 'exchange.associatedDomainName'),
-      id,
-    );
   }
 }
