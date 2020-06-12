@@ -10,8 +10,7 @@ import '@ovh-ux/ng-tail-logs';
 import 'ovh-angular-responsive-tabs';
 import ngOvhUiConfirmModal from '@ovh-ux/ng-ovh-ui-confirm-modal';
 
-import 'ovh-ui-kit/dist/oui.css';
-import 'ovh-ui-kit/dist/oui-olt.css';
+import '@ovh-ux/ui-kit/dist/css/oui.css';
 import 'ovh-ui-kit-bs/dist/css/oui-bs3.css';
 import 'ovh-manager-webfont/dist/css/ovh-font.css';
 

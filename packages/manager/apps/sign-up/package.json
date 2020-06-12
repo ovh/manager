@@ -36,10 +36,14 @@
     "angular-cookies": "^1.7.8",
     "angular-sanitize": "^1.7.8",
     "angular-translate": "^2.18.1",
+    "bloodhound-js": "^1.2.3",
     "bootstrap4": "twbs/bootstrap#v4.0.0",
+    "clipboard": "^2.0.4",
+    "flatpickr": "^4.6.3",
     "lodash": "^4.17.15",
-    "ovh-ui-angular": "^3.16.3",
-    "ovh-ui-kit": "^2.42.8"
+    "ovh-ui-kit": "^2.42.8",
+    "popper.js": "^1.16.1",
+    "ui-select": "^0.19.8"
   },
   "devDependencies": {
     "@ovh-ux/manager-webpack-config": "^3.0.7",

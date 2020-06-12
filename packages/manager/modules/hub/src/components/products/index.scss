@@ -1,5 +1,5 @@
 hub-products {
-  @import 'oui4/dist/scss/_tokens';
+  @import '@ovh-ux/ui-kit/dist/scss/_tokens';
 
   .oui-list__item:nth-child(2) {
     opacity: 0.75;

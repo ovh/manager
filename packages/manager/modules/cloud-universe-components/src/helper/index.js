@@ -3,7 +3,7 @@ import '@ovh-ux/ng-translate-async-loader';
 import 'angular-translate';
 import 'angular-ui-bootstrap';
 import 'ovh-api-services';
-import 'ovh-ui-angular';
+import '@ovh-ux/ui-kit';
 
 import cucConfig from '../config';
 import cuiModal from '../cui/modal';

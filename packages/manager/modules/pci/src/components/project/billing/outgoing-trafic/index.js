@@ -4,7 +4,7 @@ import '@ovh-ux/ng-ovh-cloud-universe-components';
 import '@ovh-ux/ng-translate-async-loader';
 import 'angular-translate';
 import 'ovh-api-services';
-import 'ovh-ui-angular';
+import '@ovh-ux/ui-kit';
 
 import component from './component';
 

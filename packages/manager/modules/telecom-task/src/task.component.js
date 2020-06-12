@@ -6,8 +6,7 @@ import '@ovh-ux/ng-ui-router-title';
 import 'angular-ui-bootstrap';
 import 'ovh-api-services';
 
-import 'ovh-ui-kit/dist/oui.css';
-import 'ovh-ui-kit/dist/oui-olt.css';
+import '@ovh-ux/ui-kit/dist/css/oui.css';
 import 'ovh-ui-kit-bs/dist/css/oui-bs3.css';
 import 'ovh-manager-webfont/dist/css/ovh-font.css';
 

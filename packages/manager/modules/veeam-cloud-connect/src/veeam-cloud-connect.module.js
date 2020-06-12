@@ -7,7 +7,7 @@ import '@uirouter/angularjs';
 import 'angular-translate';
 import 'angular-ui-bootstrap';
 import 'ovh-api-services';
-import 'ovh-ui-angular';
+import '@ovh-ux/ui-kit';
 
 import component from './component';
 import routing from './routing';
@@ -20,8 +20,7 @@ import updateOffer from './dashboard/update-offer/veeam-update-offer.component';
 
 import './index.less';
 
-import 'ovh-ui-kit/dist/oui.css';
-import 'ovh-ui-kit/dist/oui-olt.css';
+import '@ovh-ux/ui-kit/dist/css/oui.css';
 
 const moduleName = 'ovhManagerVeeamCloudConnect';
 
