@@ -2,7 +2,7 @@ import angular from 'angular';
 import '@uirouter/angularjs';
 import '@ovh-ux/ng-translate-async-loader';
 import 'angular-translate';
-import 'ovh-ui-angular';
+import '@ovh-ux/ui-kit';
 import 'ovh-api-services';
 import '@ovh-ux/ng-ovh-swimming-poll';
 

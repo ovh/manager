@@ -1,6 +1,6 @@
 import angular from 'angular';
 import 'angular-translate';
-import 'ovh-ui-angular';
+import '@ovh-ux/ui-kit';
 import ovhManagerCatalogPrice from '@ovh-ux/manager-catalog-price';
 import ngOvhContracts from '@ovh-ux/ng-ovh-contracts';
 import ngOvhPaymentMethod from '@ovh-ux/ng-ovh-payment-method';

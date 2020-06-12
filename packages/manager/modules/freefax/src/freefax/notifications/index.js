@@ -3,7 +3,7 @@ import angular from 'angular';
 import '@uirouter/angularjs';
 import 'angular-translate';
 import 'ovh-api-services';
-import 'ovh-ui-angular';
+import '@ovh-ux/ui-kit';
 
 import { MAX_NOTIFICATIONS } from './freefax-notifications.constants';
 import controller from './freefax-notifications.controller';

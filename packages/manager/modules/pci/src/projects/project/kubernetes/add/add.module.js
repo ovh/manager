@@ -3,7 +3,7 @@ import angular from 'angular';
 import '@ovh-ux/ng-ovh-cloud-universe-components';
 import '@ovh-ux/ng-ovh-swimming-poll';
 import 'ovh-api-services';
-import 'ovh-ui-angular';
+import '@ovh-ux/ui-kit';
 
 import regionsList from '../../../../components/project/regions-list';
 import versionsList from './versions-list';

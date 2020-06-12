@@ -2,7 +2,7 @@ import angular from 'angular';
 import productOffers from '@ovh-ux/manager-product-offers';
 import '@uirouter/angularjs';
 import 'angular-translate';
-import 'ovh-ui-angular';
+import '@ovh-ux/ui-kit';
 
 import component from './component';
 import routing from './routing';
