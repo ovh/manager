@@ -2,8 +2,12 @@ import isEqual from 'lodash/isEqual';
 import some from 'lodash/some';
 import sortBy from 'lodash/sortBy';
 
+/* eslint-disable import/extensions */
+import TranslateService from '@ovh-ux/manager-core/src/translate/translate.service';
 import Pricing from '../pricing/pricing.class';
 import ProductOffersService from '../services/product-offers.service';
+
+import { CHECKOUT_DETAILS_TYPE } from './product-offers-workflow.constants';
 import { PRICING_CAPACITIES } from '../pricing/pricing.constants';
 
 /**
@@ -204,5 +208,38 @@ export default class Workflow {
    */
   static convertPricingObject(pricing) {
     return new Pricing(pricing);
+  }
+
+  static getDurationDetails(details) {
+    return details.find(
+      ({ detailType }) => detailType === CHECKOUT_DETAILS_TYPE.DURATION,
+    );
+  }
+
+  static formatDateToLocale(date, locale, formatOptions) {
+    const bcp47language = TranslateService.convertFromOVHToBCP47(locale);
+    return new Intl.DateTimeFormat(bcp47language, formatOptions).format(date);
+  }
+
+  static getProrataTemporisDateFromDescription(detail) {
+    const descriptionDateMatch = detail.description.match(
+      /\d{2,4}([/.-])\d{2}\1\d{2,4}/g,
+    );
+
+    return descriptionDateMatch ? descriptionDateMatch[0] : null;
+  }
+
+  static getDurationProrataDate(details) {
+    const durationDetails = Workflow.getDurationDetails(details);
+
+    if (durationDetails) {
+      const date = Workflow.getProrataTemporisDateFromDescription(
+        durationDetails,
+      );
+
+      return date;
+    }
+
+    return null;
   }
 }
