@@ -5,7 +5,7 @@ import '@ovh-ux/manager-core';
 import '@ovh-ux/manager-account-sidebar';
 import 'moment';
 import 'ovh-api-services';
-import 'ovh-ui-angular';
+import '@ovh-ux/ui-kit';
 
 import languageMenu from './language-menu';
 import notificationsMenu from './notifications-menu';

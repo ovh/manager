@@ -9,7 +9,7 @@ import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
 
 import { isString, get, has } from 'lodash-es';
 
-import 'ovh-ui-angular';
+import '@ovh-ux/ui-kit';
 import ovhManagerCore from '@ovh-ux/manager-core';
 import ovhManagerHub from '@ovh-ux/manager-hub';
 import ovhManagerNavbar from '@ovh-ux/manager-navbar';
@@ -24,8 +24,7 @@ import { BILLING_REDIRECTIONS } from './constants';
 
 import controller from './controller';
 import routing from './routing';
-import 'ovh-ui-kit/dist/oui.css';
-import 'ovh-ui-kit/dist/oui-olt.css';
+import '@ovh-ux/ui-kit/dist/css/oui.css';
 import './index.less';
 import './index.scss';
 

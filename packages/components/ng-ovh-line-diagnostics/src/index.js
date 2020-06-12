@@ -4,7 +4,7 @@ import '@ovh-ux/ng-ovh-telecom-universe-components';
 import '@ovh-ux/ng-at-internet';
 import '@uirouter/angularjs';
 import 'ovh-api-services';
-import 'ovh-ui-angular';
+import '@ovh-ux/ui-kit';
 
 import component from './component';
 import factory from './factory';

@@ -4,7 +4,7 @@ import '@ovh-ux/manager-core';
 import '@ovh-ux/ng-ovh-api-wrappers'; // should be a peer dependency of ovh-api-services
 import 'angular-translate';
 import 'ovh-api-services';
-import 'ovh-ui-angular';
+import '@ovh-ux/ui-kit';
 
 import analyticsDataPlatform from './analytics-data-platform';
 import baremetal from './baremetal';

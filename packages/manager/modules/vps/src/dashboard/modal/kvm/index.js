@@ -1,6 +1,6 @@
 import angular from 'angular';
 import '@uirouter/angularjs';
-import 'ovh-ui-angular';
+import '@ovh-ux/ui-kit';
 
 import routing from './vps-kvm.routing';
 import component from './vps-kvm.component';

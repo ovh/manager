@@ -1,11 +1,11 @@
 import angular from 'angular';
-import 'ovh-ui-angular';
+import '@ovh-ux/ui-kit';
 import '@ovh-ux/ng-translate-async-loader';
 import 'angular-translate';
 
 // templates for ui-select
-import uiSelectTpl from 'ovh-ui-angular/packages/oui-select/src/templates/select.html';
-import uiSelectChoicesTpl from 'ovh-ui-angular/packages/oui-select/src/templates/choices.html';
+import uiSelectTpl from './ui-select-oui-kit/select.html';
+import uiSelectChoicesTpl from './ui-select-oui-kit/choices.html';
 import uiSelectMatchTpl from './ui-select-oui-kit/match.tpl.html';
 
 import component from './details.component';

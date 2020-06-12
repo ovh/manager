@@ -54,7 +54,7 @@ import 'script-loader!jsurl/lib/jsurl.js';
 import 'moment-duration-format';
 import 'script-loader!xterm/dist/xterm.js';
 import 'script-loader!xterm/dist/addons/fit/fit.js';
-import 'ovh-ui-angular';
+import '@ovh-ux/ui-kit';
 import 'script-loader!popper.js/dist/umd/popper.js';
 import 'angular-translate-loader-pluggable';
 

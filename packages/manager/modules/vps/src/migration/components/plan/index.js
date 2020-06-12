@@ -2,7 +2,7 @@ import angular from 'angular';
 
 import '@uirouter/angularjs';
 import 'angular-translate';
-import 'ovh-ui-angular';
+import '@ovh-ux/ui-kit';
 
 import component from './plan.component';
 

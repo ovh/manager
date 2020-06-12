@@ -4,7 +4,7 @@ import managerCore from '@ovh-ux/manager-core';
 import ngTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
 import uiRouter from '@uirouter/angularjs';
 import angularTranslate from 'angular-translate';
-import 'ovh-ui-angular';
+import '@ovh-ux/ui-kit';
 
 import message from './message';
 
@@ -12,8 +12,7 @@ import component from './ticket.component';
 import { state } from './ticket.routing';
 import service from './ticket.service';
 
-import 'ovh-ui-kit/dist/oui.css';
-import 'ovh-ui-kit/dist/oui-olt.css';
+import '@ovh-ux/ui-kit/dist/css/oui.css';
 
 const moduleName = 'ovhManagerSupportTicket';
 

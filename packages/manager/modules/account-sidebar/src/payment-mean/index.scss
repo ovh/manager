@@ -1,6 +1,6 @@
 ovh-manager-hub-payment-mean {
   .manager-hub-payment-mean {
-    @import 'oui4/dist/scss/_tokens';
+    @import '@ovh-ux/ui-kit/dist/scss/_tokens';
     @import '@ovh-ux/manager-hub/src/variables.scss';
 
     > a {

@@ -10,7 +10,7 @@ import '@uirouter/angularjs';
 import 'angular-translate';
 import 'angular-ui-bootstrap';
 import 'ovh-api-services';
-import 'ovh-ui-angular';
+import '@ovh-ux/ui-kit';
 
 import NashaCtrl from './controller';
 import NashaAddCtrl from './add/nasha-add.controller';
@@ -27,8 +27,7 @@ import routing from './routing';
 
 import './styles.less';
 import 'ovh-ui-kit-bs/dist/css/oui-bs3.css';
-import 'ovh-ui-kit/dist/oui.css';
-import 'ovh-ui-kit/dist/oui-olt.css';
+import '@ovh-ux/ui-kit/dist/css/oui.css';
 import './add/styles.less';
 
 const moduleName = 'ovhManagerNasha';

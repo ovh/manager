@@ -59,7 +59,7 @@ import 'ovh-angular-responsive-tabs';
 import 'ng-slide-down';
 import 'script-loader!angularjs-scroll-glue/src/scrollglue.js';
 import 'ovh-ng-input-password';
-import 'ovh-ui-angular';
+import '@ovh-ux/ui-kit';
 import 'angular-translate-loader-pluggable';
 import '@ovh-ux/manager-telecom-styles';
 import 'script-loader!bootstrap-tour/build/js/bootstrap-tour-standalone.min.js';

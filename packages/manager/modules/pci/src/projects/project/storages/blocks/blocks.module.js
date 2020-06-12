@@ -5,7 +5,7 @@ import '@ovh-ux/ng-translate-async-loader';
 import '@uirouter/angularjs';
 import 'angular-translate';
 import 'oclazyload';
-import 'ovh-ui-angular';
+import '@ovh-ux/ui-kit';
 import 'ovh-api-services';
 import 'angular-ui-bootstrap';
 import '@ovh-ux/ng-ovh-user-pref';

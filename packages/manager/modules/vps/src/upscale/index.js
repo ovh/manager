@@ -3,7 +3,7 @@ import 'angular-translate';
 import ngTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
 import productOffers from '@ovh-ux/manager-product-offers';
 import '@uirouter/angularjs';
-import 'ovh-ui-angular';
+import '@ovh-ux/ui-kit';
 import filters from '@ovh-ux/manager-filters';
 
 import component from './upscale.component';
