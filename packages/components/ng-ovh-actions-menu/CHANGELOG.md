@@ -1,3 +1,12 @@
+## [5.0.6](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-actions-menu@5.0.5...@ovh-ux/ng-ovh-actions-menu@5.0.6) (2020-06-15)
+
+
+### Bug Fixes
+
+* fix actions menu colors ([#3107](https://github.com/ovh/manager/issues/3107)) ([6b66467](https://github.com/ovh/manager/commit/6b6646735ad0021d4b28a7df0704e9c507a3ea3f))
+
+
+
 ## [5.0.5](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-actions-menu@5.0.4...@ovh-ux/ng-ovh-actions-menu@5.0.5) (2020-06-02)
 
 

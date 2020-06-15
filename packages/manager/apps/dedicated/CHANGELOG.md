@@ -1,3 +1,12 @@
+## [12.5.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@12.5.2...@ovh-ux/manager-dedicated@12.5.3) (2020-06-15)
+
+
+### Bug Fixes
+
+* **dedicatedcloud:** change the way to fetch the catalog ([#3116](https://github.com/ovh/manager/issues/3116)) ([a272cee](https://github.com/ovh/manager/commit/a272cee7653c34444cd3a3378e090264096ea549))
+
+
+
 ## [12.5.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@12.5.1...@ovh-ux/manager-dedicated@12.5.2) (2020-06-09)
 
 
