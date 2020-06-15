@@ -1,0 +1,16 @@
+<oui-modal
+    data-on-dismiss="$ctrl.goBack()"
+    data-heading="{{ $ctrl.title }}"
+    data-type="warning"
+    primary-label="{{ ::($ctrl.project.hasPendingDebt()
+            ? ('pci_projects_project_pay_bill' | translate)
+            : ($ctrl.project.isSuspended() ? ('pci_projects_project_inactive_close' | translate) : '')
+        ) }}"
+    primary-action="$ctrl.project.hasPendingDebt() ? $ctrl.goToBilling() : $ctrl.goBack()"
+    secondary-label="{{ ::(($ctrl.project.hasPendingDebt() && !$ctrl.project.isSuspended()) ? ('pci_projects_project_view' | translate) : '') }}"
+    secondary-action="$ctrl.goToProject({ project_id: $ctrl.project.projectId })"
+>
+    <p data-ng-bind="::$ctrl.description"></p>
+</oui-modal>
+
+<div class="oui-modal-backdrop"></div>
