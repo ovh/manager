@@ -35,12 +35,6 @@ export default class {
     this.currentIndex = 0;
   }
 
-  $onInit() {
-    this.atInternet.trackPage({
-      name: 'public-cloud::pci::projects::project::data-processing::submit-job',
-    });
-  }
-
   /**
    * Fetch available regions from capabilities and update binding
    */
