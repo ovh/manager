@@ -119,7 +119,8 @@ export default class BackupService {
 
   getCatalog(ovhSubsidiary) {
     return this.$http
-      .get(`2api/sws/dedicatedcloud/catalog`, {
+      .get('/sws/dedicatedcloud/catalog', {
+        serviceType: 'aapi',
         params: {
           ovhSubsidiary,
         },
