@@ -9,12 +9,13 @@
 
 // COLORS
 @actions-menu-item-border-color: #d7d7d7;
-@actions-menu-item-link-color: #a0a0a0;
+@actions-menu-item-link-color: #2859c0;
 @actions-menu-item-link-icon-color: @actions-menu-item-link-color;
-@actions-menu-item-link-icon-hover-bg-color: #333;
+@actions-menu-item-link-icon-hover-bg-color: #2859c0;
 @actions-menu-item-link-icon-hover-color: #fff;
 @actions-menu-item-link-text-color: @actions-menu-item-link-color;
-@actions-menu-item-link-hover-bg-color: #f3f3f3;
+@actions-menu-item-link-hover-text-color: #2859c0;
+@actions-menu-item-link-hover-bg-color: #e6f5fc;
 
 .ovh-angular-actions-menu {
   font-family: inherit !important;
@@ -88,6 +89,7 @@
                 &:hover,
                 &:focus {
                   background-color: @actions-menu-item-link-hover-bg-color;
+                  color: @actions-menu-item-link-hover-text-color;
 
                   .item-title .external-link {
                     display: inline-block;
@@ -132,6 +134,25 @@
                       font-size: 36px;
                       transition: transform 0.3s ease-in-out;
                     }
+
+                    .oui-icon {
+                      display: inline;
+                      color: inherit;
+                    }
+                  }
+
+                  .item-title {
+                    color: @actions-menu-item-link-text-color;
+                    font-weight: 600;
+                    display: block;
+                    line-height: 1.25;
+                  }
+
+                  .item-title .external-link {
+                    display: none;
+                    position: absolute;
+                    top: 1rem;
+                    right: 1rem;
                   }
 
                   &:active,
@@ -152,15 +173,8 @@
                     }
 
                     .item-title .external-link {
-                      position: absolute;
-                      top: 10px;
-                      right: 10px;
+                      display: inline;
                     }
-                  }
-
-                  .item-title {
-                    display: block;
-                    line-height: 26px;
                   }
                 }
 
@@ -206,17 +220,19 @@
           &.secondary-page ul.sub-actions-list > li.actions-list-item {
             button.back-btn {
               color: @actions-menu-item-link-text-color;
-              font-size: 14px;
-              padding: 8px 12px;
+              font-size: 1rem;
+              padding: 0.5rem 1rem;
               width: 100%;
               text-align: left;
               font-weight: 700;
-              line-height: 32px;
+              line-height: 1.25;
               background-color: transparent;
               border: none;
               text-decoration: none;
 
               > i {
+                color: inherit;
+                font-size: 0.75rem;
                 margin-right: 8px;
               }
 
@@ -224,26 +240,15 @@
               &:hover,
               &:focus {
                 background-color: @actions-menu-item-link-hover-bg-color;
-
-                strong {
-                  text-decoration: underline;
-                }
+                color: @actions-menu-item-link-hover-text-color;
               }
             }
 
             .actions-menu-item-link {
               display: block;
-              padding: 4px 12px;
-              font-weight: 700;
-              line-height: 32px;
-
-              &:active,
-              &:hover,
-              &:focus {
-                .item-title .item-title-text {
-                  text-decoration: underline;
-                }
-              }
+              padding: 0.5rem 1rem;
+              font-weight: 600;
+              line-height: 1;
             }
           }
 
