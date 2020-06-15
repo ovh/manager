@@ -79,10 +79,6 @@ export default class {
     });
     // start metrics retrieval
     this.queryMetrics();
-    this.atInternet.trackPage({
-      name:
-        'public-cloud::pci::projects::project::data-processing::job-details::dashboard',
-    });
   }
 
   $onDestroy() {
