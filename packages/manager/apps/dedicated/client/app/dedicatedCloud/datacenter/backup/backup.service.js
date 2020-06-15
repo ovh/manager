@@ -17,14 +17,15 @@ import BackupOffer from './backup-offer.class';
 export default class BackupService {
   /* @ngInject */
   constructor(
+    $http,
     $q,
     OvhApiDedicatedCloudDatacenter,
     OvhApiOrder,
     WucOrderCartService,
   ) {
+    this.$http = $http;
     this.$q = $q;
     this.backupApi = OvhApiDedicatedCloudDatacenter.Backup().v6();
-    this.catalogApi = OvhApiOrder.CatalogFormatted().v6();
     this.cartApi = OvhApiOrder.Cart().v6();
     this.WucOrderCartService = WucOrderCartService;
   }
@@ -117,8 +118,14 @@ export default class BackupService {
   }
 
   getCatalog(ovhSubsidiary) {
-    return this.catalogApi.get({ catalogName: 'privateCloud', ovhSubsidiary })
-      .$promise;
+    return this.$http
+      .get('/sws/dedicatedcloud/catalog', {
+        serviceType: 'aapi',
+        params: {
+          ovhSubsidiary,
+        },
+      })
+      .then((data) => get(data, 'data'));
   }
 
   getBackupOffers(serviceName, datacenterId, ovhSubsidiary) {

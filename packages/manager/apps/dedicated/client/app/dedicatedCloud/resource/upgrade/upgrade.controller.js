@@ -1,5 +1,6 @@
 import filter from 'lodash/filter';
 import find from 'lodash/find';
+import get from 'lodash/get';
 import head from 'lodash/head';
 
 import { ORDER_PARAMETERS, RESOURCE_UPGRADE_TYPES } from './upgrade.constants';
@@ -7,6 +8,7 @@ import { ORDER_PARAMETERS, RESOURCE_UPGRADE_TYPES } from './upgrade.constants';
 export const controller = class {
   /* @ngInject */
   constructor(
+    $http,
     $q,
     $scope,
     $stateParams,
@@ -14,17 +16,16 @@ export const controller = class {
     $window,
     Alerter,
     OvhApiDedicatedCloud,
-    OvhApiOrder,
     User,
   ) {
     this.$q = $q;
+    this.$http = $http;
     this.$scope = $scope;
     this.$stateParams = $stateParams;
     this.$translate = $translate;
     this.$window = $window;
     this.Alerter = Alerter;
     this.OvhApiDedicatedCloud = OvhApiDedicatedCloud;
-    this.OvhApiOrder = OvhApiOrder;
     this.User = User;
   }
 
@@ -45,12 +46,14 @@ export const controller = class {
   fetchCatalog() {
     return this.$q
       .all({
-        catalog: this.OvhApiOrder.CatalogFormatted()
-          .v6()
-          .get({
-            catalogName: ORDER_PARAMETERS.productId,
-            ovhSubsidiary: this.ovhSubsidiary,
-          }).$promise,
+        catalog: this.$http
+          .get('/sws/dedicatedcloud/catalog', {
+            serviceType: 'aapi',
+            params: {
+              ovhSubsidiary: this.ovhSubsidiary,
+            },
+          })
+          .then((data) => get(data, 'data')),
         expressURL: this.User.getUrlOf('express_order'),
         service: this.OvhApiDedicatedCloud.v6().get({
           serviceName: this.$stateParams.productId,

@@ -1,3 +1,12 @@
+## [9.1.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-sidebar-menu@9.1.1...@ovh-ux/ng-ovh-sidebar-menu@9.1.2) (2020-06-15)
+
+
+### Bug Fixes
+
+* fix actions menu colors ([#3107](https://github.com/ovh/manager/issues/3107)) ([6b66467](https://github.com/ovh/manager/commit/6b6646735ad0021d4b28a7df0704e9c507a3ea3f))
+
+
+
 ## [9.1.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-sidebar-menu@9.1.0...@ovh-ux/ng-ovh-sidebar-menu@9.1.1) (2020-06-09)
 
 
