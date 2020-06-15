@@ -9,6 +9,11 @@ import glueState from './glue/domain-glue.state';
 import dnsSecState from './dnssec/domain-dnssec.state';
 import tasksState from './tasks/domain-tasks.state';
 
+const commonResolves = {
+  associatedHostings: /* @ngInject */ (Domain, domainName) =>
+    Domain.getAssociatedHosting(domainName).catch(() => []),
+};
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.domain', {
     abstract: true,
@@ -26,8 +31,7 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     redirectTo: 'app.domain.product.information',
     resolve: {
-      associatedHostings: /* @ngInject */ (Domain, domainName) =>
-        Domain.getAssociatedHosting(domainName),
+      ...commonResolves,
       currentSection: () => 'domain',
       domain: /* @ngInject */ (Domain, domainName) =>
         Domain.getSelected(domainName),
@@ -79,9 +83,8 @@ export default /* @ngInject */ ($stateProvider) => {
     reloadOnSearch: false,
     redirectTo: 'app.domain.alldom.information',
     resolve: {
+      ...commonResolves,
       allDom: /* @ngInject */ ($transition$) => $transition$.params().allDom,
-      associatedHostings: /* @ngInject */ (Domain, domainName) =>
-        Domain.getAssociatedHosting(domainName),
       currentSection: () => 'domain',
       domain: /* @ngInject */ (Domain, domainName) =>
         Domain.getSelected(domainName),

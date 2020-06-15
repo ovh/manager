@@ -1,5 +1,4 @@
-import find from 'lodash/find';
-import startsWith from 'lodash/startsWith';
+import { find, startsWith } from 'lodash-es';
 
 import { HEADER_LOCALE, ROUTES_PREFIX } from './translate.constants';
 

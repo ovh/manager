@@ -17,7 +17,9 @@ export default class {
   // TODO: Find a way to inject ovh-api-services depending on the service category
   getServiceInfos(service) {
     return this.OvhHttp.get(
-      `${service.path}/${service.serviceName}/serviceInfos`,
+      `${service.path}/${window.encodeURIComponent(
+        service.serviceName,
+      )}/serviceInfos`,
       {
         rootPath: 'apiv6',
       },
