@@ -143,7 +143,7 @@ export default class PciServingNamespaceModelsDetailsController {
     const remainder =
       this.selected.period.round - (now.minute() % this.selected.period.round);
     const end = moment(now)
-      .add(remainder, 'minutes')
+      .subtract(remainder, 'minutes')
       .set({ seconds: 0, milliseconds: 0 });
 
     return {
@@ -152,6 +152,7 @@ export default class PciServingNamespaceModelsDetailsController {
         this.selected.period.unit,
       ),
       endDate: moment(end),
+      now,
     };
   }
 
@@ -218,7 +219,7 @@ export default class PciServingNamespaceModelsDetailsController {
         FETCH
         [ SWAP bucketizer.last '${d.endDate.toISOString()}' TOTIMESTAMP ${
           this.selected.period.bucketSize
-        } ${this.selected.period.bucketCount} ] BUCKETIZE
+        } ${this.selected.period.bucketCount} ] BUCKETIZE FILLNEXT
         [ 0.0 0.0 0 0.0 ] FILLVALUE
         SORT`,
       )
@@ -260,7 +261,7 @@ export default class PciServingNamespaceModelsDetailsController {
         [ SWAP mapper.delta 0 1 0 ] MAP
         [ SWAP bucketizer.sum '${d.endDate.toISOString()}' TOTIMESTAMP ${
           this.selected.period.bucketSize
-        } ${this.selected.period.bucketCount} ] BUCKETIZE
+        } ${this.selected.period.bucketCount} ] BUCKETIZE FILLNEXT
         [ 0.0 0.0 0 0.0 ] FILLVALUE
         SORT`,
       )
