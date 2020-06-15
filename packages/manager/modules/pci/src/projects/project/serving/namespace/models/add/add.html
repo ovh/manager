@@ -255,6 +255,15 @@
                             data-values="[flavor]"
                             data-required
                         >
+                            <oui-select-picker-description>
+                                <ovh-manager-catalog-price
+                                    data-price="$ctrl.getPrice(flavor.id)"
+                                    data-tax="$ctrl.getTax(flavor.id)"
+                                    data-user="$ctrl.user"
+                                    data-interval="day"
+                                >
+                                </ovh-manager-catalog-price>
+                            </oui-select-picker-description>
                         </oui-select-picker>
                     </div>
                 </div>

@@ -17,6 +17,7 @@ export default class PciServingNamespaceModelsAddController {
     OvhManagerPciServingModelsService,
     PciProjectStorageContainersService,
     atInternet,
+    SessionService,
   ) {
     this.$translate = $translate;
     this.OvhManagerPciServingModelsService = OvhManagerPciServingModelsService;
@@ -27,6 +28,7 @@ export default class PciServingNamespaceModelsAddController {
     this.FOLDER_MODE = FOLDER_MODE;
     this.FILE_MODE = FILE_MODE;
     this.COMPATIBILITY_GUIDE_URL = COMPATIBILITY_GUIDE_URL;
+    this.user = SessionService.getUser();
   }
 
   $onInit() {
@@ -137,5 +139,14 @@ export default class PciServingNamespaceModelsAddController {
 
   resetMode() {
     this.model.storagePath = null;
+  }
+
+  getPrice(id) {
+    return this.pricesCatalog[`ai-serving-engine.${id}.minute.consumption`]
+      .priceInUcents;
+  }
+
+  getTax(id) {
+    return this.pricesCatalog[`ai-serving-engine.${id}.minute.consumption`].tax;
   }
 }

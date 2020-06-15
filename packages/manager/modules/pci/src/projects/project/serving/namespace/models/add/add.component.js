@@ -8,6 +8,7 @@ export default {
     namespace: '<',
     presetImages: '<',
     flavors: '<',
+    pricesCatalog: '<',
     goToContainer: '<',
     projectId: '<',
   },
