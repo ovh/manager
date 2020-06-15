@@ -4,13 +4,7 @@ import { GUIDES, SPARK_URL } from './onboarding.constants';
 
 export default class {
   /* @ngInject */
-  constructor(
-    $translate,
-    $state,
-    $q,
-    dataProcessingService,
-    atInternet,
-  ) {
+  constructor($translate, $state, $q, dataProcessingService, atInternet) {
     this.$translate = $translate;
     this.$state = $state;
     this.$q = $q;
@@ -35,9 +29,6 @@ export default class {
       ],
       [],
     );
-    this.atInternet.trackPage({
-      name: 'public-cloud::pci::projects::project::data-processing::onboarding',
-    });
   }
 
   authorizeService() {

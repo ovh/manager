@@ -50,4 +50,7 @@ export default /* @ngInject */ ($stateProvider) =>
       lab: /* @ngInject */ (PciProjectLabsService, projectId) =>
         PciProjectLabsService.getLabByName(projectId, 'dataProcessing'),
     },
+    atInternet: {
+      rename: 'public-cloud::pci::projects::project::data-processing',
+    },
   });

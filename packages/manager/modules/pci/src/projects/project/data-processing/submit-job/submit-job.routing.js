@@ -16,4 +16,8 @@ export default /* @ngInject */ ($stateProvider) =>
         dataProcessingService.getPricesFromCatalog(projectId),
       user: /* @ngInject */ (SessionService) => SessionService.getUser(),
     },
+    atInternet: {
+      rename:
+        'public-cloud::pci::projects::project::data-processing::submit-job',
+    },
   });

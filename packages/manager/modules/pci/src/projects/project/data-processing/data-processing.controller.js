@@ -28,9 +28,6 @@ export default class {
 
   $onInit() {
     this.subscribeToMessages();
-    this.atInternet.trackPage({
-      name: 'public-cloud::pci::projects::project::data-processing',
-    });
   }
 
   refreshMessage() {
