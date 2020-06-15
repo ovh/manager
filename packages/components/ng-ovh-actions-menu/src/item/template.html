@@ -1,13 +1,12 @@
-<a class="actions-menu-item-link"
-   data-ng-href="{{ $ctrl.actionsMenuItem.href }}"
-   target="{{ $ctrl.actionsMenuItem.target }}"
-   data-ng-if="$ctrl.actionsMenuItem.href"
-   data-ng-click="$ctrl.onClick()($ctrl.actionsMenuItem)">
-
-    <span class="item-icon"
-          data-ng-if="$ctrl.actionsMenuItem.icon">
-        <i data-ng-class="$ctrl.actionsMenuItem.icon" aria-hidden>
-        </i>
+<a
+    class="actions-menu-item-link oui-link_icon"
+    data-ng-href="{{ $ctrl.actionsMenuItem.href }}"
+    target="{{ $ctrl.actionsMenuItem.target }}"
+    data-ng-if="$ctrl.actionsMenuItem.href"
+    data-ng-click="$ctrl.onClick()($ctrl.actionsMenuItem)"
+>
+    <span class="item-icon" data-ng-if="$ctrl.actionsMenuItem.icon">
+        <i data-ng-class="$ctrl.actionsMenuItem.icon" aria-hidden> </i>
     </span>
 
     <span class="item-icon"
@@ -20,9 +19,8 @@
               data-ng-bind="$ctrl.actionsMenuItem.title">
         </span>
 
-        <span class="external-link"
+        <span class="external-link oui-icon oui-icon-external_link"
               data-ng-if="$ctrl.actionsMenuItem.external">
-            <i class="ovh-font ovh-font-newtab"></i>
         </span>
     </span>
 
