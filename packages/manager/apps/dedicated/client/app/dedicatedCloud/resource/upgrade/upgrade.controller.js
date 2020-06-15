@@ -47,7 +47,8 @@ export const controller = class {
     return this.$q
       .all({
         catalog: this.$http
-          .get(`2api/sws/dedicatedcloud/catalog`, {
+          .get('/sws/dedicatedcloud/catalog', {
+            serviceType: 'aapi',
             params: {
               ovhSubsidiary: this.ovhSubsidiary,
             },

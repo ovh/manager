@@ -152,7 +152,8 @@ export const ServicePackService = class ServicePack {
 
   getCatalog(ovhSubsidiary) {
     return this.$http
-      .get(`2api/sws/dedicatedcloud/catalog`, {
+      .get('/sws/dedicatedcloud/catalog', {
+        serviceType: 'aapi',
         params: {
           ovhSubsidiary,
         },
