@@ -6,5 +6,8 @@ export default /* @ngInject */ ($stateProvider) => {
       goBack: /* @ngInject */ (showJobs) => showJobs,
       breadcrumb: () => null, // Hide breadcrumb,
     },
+    atInternet: {
+      name: 'public-cloud::pci::projects::project::data-processing::onboarding',
+    },
   });
 };
