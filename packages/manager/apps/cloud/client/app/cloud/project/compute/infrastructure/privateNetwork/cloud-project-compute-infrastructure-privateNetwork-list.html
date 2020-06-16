@@ -28,7 +28,7 @@
                     data-ng-if="$ctrl.canGotoVrack()"
                 >
                     <i
-                        class="private-networks__header-edit-vrack-button oui-icon oui-icon-external_link"
+                        class="private-networks__header-edit-vrack-button oui-icon oui-icon-external-link"
                         aria-hidden="true"
                     ></i>
                 </a>
@@ -56,8 +56,7 @@
                 data-ng-if="$ctrl.orderUrl && !$ctrl.hasPendingLoaders()"
                 data-disabled="$ctrl.loaders.vracks.get"
                 data-on-click="$ctrl.addVRack()"
-                data-text="{{ ::'private_network_activate_title' | translate }}"
-            >
+                ><span data-translate="private_network_activate_title"></span>
             </oui-button>
             <oui-progress data-ng-if="$ctrl.hasPendingLoaders()">
                 <oui-progress-bar

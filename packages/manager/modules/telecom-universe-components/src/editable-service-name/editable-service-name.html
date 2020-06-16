@@ -6,7 +6,7 @@
         data-ng-hide="$ctrl.inEdition"
         data-ng-class="{ 'd-flex': !$ctrl.inEdition }"
     >
-        <h1 class="oui-page-header__title" data-ng-bind="$ctrl.title"></h1>
+        <h1 class="oui-header__title" data-ng-bind="$ctrl.title"></h1>
 
         <span data-ng-if="!$ctrl.inEdition">
             <button
@@ -16,7 +16,7 @@
                 data-ng-disabled="$ctrl.disabled"
             >
                 <span
-                    class="oui-icon oui-icon-pen_line oui-icon_small"
+                    class="oui-icon oui-icon_small oui-icon-pen_concept"
                     aria-hidden="true"
                 ></span>
                 <span
@@ -76,7 +76,7 @@
     </div>
 
     <h2
-        class="oui-page-header__description"
+        class="oui-header__description"
         data-ng-bind=":: $ctrl.serviceName"
     ></h2>
 </form>

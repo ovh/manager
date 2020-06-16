@@ -5,24 +5,24 @@
         data-rows-loader="$ctrl.loadDatagridTasks($config)"
         data-row-loader="$ctrl.transformItem($row)"
     >
-        <oui-column
+        <oui-datagrid-column
             data-title=":: 'housing_configuration_task_last_action' | translate"
         >
             <span data-ng-bind="$row.lastUpdate | date: 'medium'"></span>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title=":: 'housing_configuration_task_function' | translate"
         >
             <span
                 data-ng-bind="('housing_configuration_task_'+ $row.function) translateAlt: $row.function"
             ></span>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title=":: 'housing_configuration_task_comment' | translate"
         >
             <span data-ng-bind="$row.comment || '-'"></span>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title=":: 'housing_configuration_task_status' | translate"
         >
             <span
@@ -36,6 +36,6 @@
                   }"
             >
             </span>
-        </oui-column>
+        </oui-datagrid-column>
     </oui-datagrid>
 </div>

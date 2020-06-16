@@ -25,7 +25,7 @@
                     <oui-datagrid
                         data-rows="TollfreeHistoryCtrl.consumptionData"
                     >
-                        <oui-column
+                        <oui-datagrid-column
                             data-title="'telephony_group_billing_tollfree_history_list_date' | translate"
                             data-property="date"
                             data-sortable="desc"
@@ -35,8 +35,8 @@
                                 data-ng-bind="$row.date | date:'shortDate'"
                             >
                             </span>
-                        </oui-column>
-                        <oui-column
+                        </oui-datagrid-column>
+                        <oui-datagrid-column
                             data-title="'telephony_group_billing_tollfree_history_list_price' | translate"
                             data-property="date"
                             data-sortable
@@ -46,9 +46,9 @@
                                 data-ng-bind="$row.price.text.replace('-', '')"
                             >
                             </span>
-                        </oui-column>
+                        </oui-datagrid-column>
 
-                        <oui-action-menu data-align="end" data-compact>
+                        <oui-action-menu data-compact data-placement="end">
                             <oui-action-menu-item
                                 on-click="TollfreeHistoryCtrl.download($row)"
                             >

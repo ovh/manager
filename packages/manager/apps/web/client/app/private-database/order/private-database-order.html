@@ -44,7 +44,7 @@
                             data-ng-options="version as ((('privateDatabase_dashboard_version_' + version.replace('.', '') | translate) == 'privateDatabase_dashboard_version_' + version.replace('.', ''))? version: ('privateDatabase_dashboard_version_' + version.replace('.', '') | translate)) for version in orderCtrl.list.versions track by version"
                         >
                             <option
-                                value=""
+                                value
                                 disabled
                                 data-translate="select_option"
                             ></option>
@@ -71,7 +71,7 @@
                             data-ng-options="ramSize + ('unit_size_MB' | translate) for ramSize in (orderCtrl.list.ramSize | orderBy: sortRam) track by ramSize"
                         >
                             <option
-                                value=""
+                                value
                                 disabled
                                 data-translate="select_option"
                             ></option>
@@ -105,7 +105,7 @@
                                 data-ng-model="orderCtrl.selectedHosting.value"
                             >
                                 <option
-                                    value=""
+                                    value
                                     disabled
                                     data-translate="select_option"
                                 ></option>
@@ -145,7 +145,7 @@
                                 data-ng-options="('privateDatabase_order_datacenter_' + datacenter | translate) for datacenter in (orderCtrl.list.datacenters | orderBy) track by datacenter"
                             >
                                 <option
-                                    value=""
+                                    value
                                     disabled
                                     data-translate="select_option"
                                 ></option>
@@ -310,7 +310,7 @@
 
                             <div class="mt-5">
                                 <button
-                                    class="btn btn-primary oui-button_large-height"
+                                    class="btn btn-primary oui-button_l"
                                     type="button"
                                     data-ng-click="orderCtrl.generateBc()"
                                     data-ng-disabled="(orderCtrl.durations.details[orderCtrl.selectedOrder.duration].contracts.length != 0 && !orderCtrl.selectedOrder.contractsValidated) || orderCtrl.loading.bc"
@@ -348,7 +348,7 @@
                             </p>
                             <div class="mt-5">
                                 <button
-                                    class="btn btn-primary oui-button_large-height"
+                                    class="btn btn-primary oui-button_l"
                                     type="button"
                                     data-translate="privateDatabase_order_step3_pay_button"
                                     data-ng-click="orderCtrl.openBc()"

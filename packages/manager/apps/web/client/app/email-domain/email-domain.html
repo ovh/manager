@@ -6,15 +6,16 @@
 
 <div data-ng-if="!ctrlEmailDomain.loading.init">
     <div data-ng-controller="EmailDomainTabsCtrl as ctrlEmailDomainTabs">
-        <oui-page-header data-heading="{{ domain.displayName }}">
+        <oui-header data-heading="{{ domain.displayName }}">
             <oui-header-tabs>
                 <oui-header-tabs-item
                     data-ng-repeat="tab in ctrlEmailDomainTabs.tabs track by $index"
-                    data-text="{{:: 'email_tab_' + tab | translate }}"
                     data-href="{{:: ctrlEmailDomainTabs.$state.href('app.email.domain', { 'tab': tab }) }}"
                     data-active="ctrlEmailDomainTabs.selectedTab === tab"
                     data-on-click="ctrlEmailDomainTabs.setSelectedTab(tab)"
-                >
+                    ><span
+                        data-ng-bind=":: 'email_tab_' + tab | translate"
+                    ></span>
                 </oui-header-tabs-item>
                 <oui-header-tabs-dropdown
                     data-ng-if="ctrlEmailDomainTabs.tabMenu"
@@ -22,13 +23,12 @@
                 >
                     <oui-header-tabs-item
                         data-ng-repeat="item in ctrlEmailDomainTabs.tabMenu.items track by item.label"
-                        data-text="{{:: item.label }}"
                         data-href="{{:: item.target }}"
-                    >
+                        ><span data-ng-bind=":: item.label"></span>
                     </oui-header-tabs-item>
                 </oui-header-tabs-dropdown>
             </oui-header-tabs>
-        </oui-page-header>
+        </oui-header>
         <div class="tab-content">
             <div data-ovh-alert="{{alerts.tabs}}"></div>
             <div class="tab-pane active" data-ui-view>

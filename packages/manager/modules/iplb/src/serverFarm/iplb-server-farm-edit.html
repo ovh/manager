@@ -1,7 +1,8 @@
 <div class="cui-page__content">
     <oui-back-button
-        data-heading="{{ ::(ctrl.edition ? 'iplb_farm_update_title' : 'iplb_farm_add_title') | translate: { farmId: ctrl.farm.farmId } }}"
-    >
+        ><span
+            data-ng-bind="::(ctrl.edition ? 'iplb_farm_update_title' : 'iplb_farm_add_title') | translate: { farmId: ctrl.farm.farmId }"
+        ></span>
     </oui-back-button>
 
     <form novalidate name="ctrl.form">
@@ -37,10 +38,11 @@
                 >
                     <oui-radio
                         data-ng-repeat="protocol in ctrl.protocols track by $index"
-                        data-text="{{ ::('iplb_farm_protocol_' + protocol) | translate }}"
                         data-value="protocol"
                         data-disabled="ctrl.isProtocolDisabled(protocol)"
-                    >
+                        ><span
+                            data-ng-bind="::('iplb_farm_protocol_' + protocol) | translate"
+                        ></span>
                     </oui-radio>
                 </oui-radio-toggle-group>
             </div>
@@ -169,9 +171,10 @@
                     <oui-radio-toggle-group data-model="ctrl.farm.balance">
                         <oui-radio
                             data-ng-repeat="balance in ctrl.balances track by $index"
-                            data-text="{{ ::('iplb_farm_balance_' + balance) | translate }}"
                             data-value="balance"
-                        >
+                            ><span
+                                data-ng-bind="::('iplb_farm_balance_' + balance) | translate"
+                            ></span>
                         </oui-radio>
                     </oui-radio-toggle-group>
                 </div>
@@ -187,9 +190,10 @@
                     <oui-radio-toggle-group data-model="ctrl.farm.stickiness">
                         <oui-radio
                             data-ng-repeat="stickiness in ctrl.availableStickinesses track by $index"
-                            data-text="{{ ::('iplb_farm_stickiness_' + stickiness) | translate }}"
                             data-value="stickiness"
-                        >
+                            ><span
+                                data-ng-bind="::('iplb_farm_stickiness_' + stickiness) | translate"
+                            ></span>
                         </oui-radio>
                     </oui-radio-toggle-group>
                 </div>
@@ -247,7 +251,7 @@
                     data-ng-hide="ctrl.edition"
                 ></button>
                 <a
-                    class="oui-button oui-button_link"
+                    class="oui-button oui-button_ghost"
                     data-translate="iplb_farm_edit_cancel"
                     data-ui-sref="network.iplb.detail.server-farm"
                 ></a>

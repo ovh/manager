@@ -47,7 +47,7 @@
                                 data-ng-options="account for account in ctrl.accountIds track by account"
                             >
                                 <option
-                                    value=""
+                                    value
                                     disabled
                                     data-translate="select_placeholder"
                                 ></option>
@@ -82,7 +82,7 @@
                 <div class="row mt-5">
                     <div class="col-md-8 col-md-offset-4">
                         <button
-                            class="oui-button oui-button_primary oui-button_large-height"
+                            class="oui-button oui-button_primary oui-button_l"
                             type="submit"
                             data-ng-disabled="ctrl.diagnosticForm.$invalid || ctrl.loaders.diagnosticInProgress"
                         >
@@ -115,12 +115,12 @@
                 data-ng-if="ctrl.state === ctrl.states.DISPLAYING_DIAGNOSTIC_RESULT"
             >
                 <button
-                    class="oui-button oui-button_primary oui-button_icon-left oui-button_large-height mt-4"
+                    class="oui-button oui-button_primary oui-button_icon-left mt-4 oui-button_l"
                     type="button"
                     data-ng-click="ctrl.requestNewDiagnostic()"
                 >
                     <span
-                        class="oui-icon oui-icon-add oui-icon_circle"
+                        class="oui-icon oui-icon-add"
                         aria-hidden="true"
                     ></span>
                     <span
@@ -192,7 +192,7 @@
                         data-translate="exchange_DIAGNOSTICS_create_ticket"
                     ></span>
                     <span
-                        class="oui-icon oui-icon-external_link"
+                        class="oui-icon oui-icon-external-link"
                         aria-hidden="true"
                     ></span>
                     <span class="sr-only" data-translate="common_newtab"></span>

@@ -111,7 +111,7 @@
                             <!-- Define filters -->
                             <oui-dropdown
                                 class="d-flex justify-content-end"
-                                align="end"
+                                data-placement="end"
                             >
                                 <oui-dropdown-trigger
                                     text="{{ ::'telephony_activation_choice_filter_price' | translate }}"
@@ -155,7 +155,6 @@
                                             >
                                                 <oui-radio
                                                     thumbnail
-                                                    variant="light"
                                                     data-value="sipLine"
                                                 >
                                                     <div
@@ -204,7 +203,6 @@
                                             >
                                                 <oui-radio
                                                     thumbnail
-                                                    variant="light"
                                                     data-value="phone.name"
                                                 >
                                                     <div>{{phone.label}}</div>

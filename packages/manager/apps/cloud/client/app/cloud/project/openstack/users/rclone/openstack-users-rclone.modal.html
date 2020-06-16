@@ -1,11 +1,11 @@
 <form name="form" data-ng-submit="form.$valid && $ctrl.confirm()" novalidate>
     <oui-modal
-        data-title="{{::'cpou_rclone_modal_title' | translate }}"
         data-primary-label="{{ ::'common_confirm' | translate }}"
         data-secondary-action="$ctrl.cancel()"
         data-secondary-label="{{ ::'common_cancel' | translate }}"
         data-on-dismiss="$ctrl.cancel()"
         data-loading="$ctrl.isModalLoading()"
+        data-heading="{{::'cpou_rclone_modal_title' | translate }}"
     >
         <span data-translate="cpou_rclone_modal_explanation"></span>
         <a
@@ -18,7 +18,7 @@
                 data-translate="cpou_rclone_modal_explanation_more_info_link_text"
             ></span>
             <span
-                class="oui-icon oui-icon-external_link"
+                class="oui-icon oui-icon-external-link"
                 aria-hidden="true"
             ></span>
         </a>

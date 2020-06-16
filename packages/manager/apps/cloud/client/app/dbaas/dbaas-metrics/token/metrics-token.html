@@ -1,6 +1,6 @@
 <div class="metrics__token cui-page__content" data-ui-view="metricsSubContent">
     <div class="metrics__row">
-        <h3 class="oui-header_3" data-translate="metrics_token_title"></h3>
+        <h3 class="oui-heading_3" data-translate="metrics_token_title"></h3>
         <p
             data-translate="metrics_token_explain"
             data-translate-values="{guidesUrl: MetricsTokenCtrl.getGuides()}"
@@ -8,7 +8,7 @@
     </div>
     <div class="metrics__row">
         <oui-datagrid data-rows="MetricsTokenCtrl.tokens">
-            <extra-top>
+            <oui-datagrid-topbar>
                 <button
                     data-ng-if="!MetricsTokenCtrl.loading"
                     class="oui-button oui-button_secondary"
@@ -20,8 +20,8 @@
                 <oui-spinner
                     data-ng-if="MetricsTokenCtrl.loading"
                 ></oui-spinner>
-            </extra-top>
-            <oui-column
+            </oui-datagrid-topbar>
+            <oui-datagrid-column
                 data-title=":: 'metrics_table_name' | translate"
                 data-sortable="asc"
                 data-property="description"
@@ -29,8 +29,8 @@
                 data-searchable
             >
                 <span data-ng-bind="$row.description || '-'"></span
-            ></oui-column>
-            <oui-column
+            ></oui-datagrid-column>
+            <oui-datagrid-column
                 data-title=":: 'metrics_token_labels' | translate"
                 data-type="string"
                 data-property="labels"
@@ -65,8 +65,8 @@
                         </div>
                     </oui-dropdown-content>
                 </oui-dropdown>
-            </oui-column>
-            <oui-column
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 data-title=":: 'metrics_token_permission' | translate"
                 data-property="permission"
                 data-type="string"
@@ -76,25 +76,25 @@
                 <span
                     data-ng-bind="'metrics_token_permission_' + $row.permission | translate"
                 ></span>
-            </oui-column>
-            <oui-column
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 data-title=":: 'metrics_table_token' | translate"
                 data-property="access"
             >
                 <oui-clipboard data-model="$row.access"></oui-clipboard>
-            </oui-column>
-            <oui-action-menu data-align="end" data-compact>
+            </oui-datagrid-column>
+            <oui-action-menu data-compact data-placement="end">
                 <oui-action-menu-item
-                    data-text="{{ ::'metrics_token_show_preview' | translate }}"
                     data-on-click="MetricsTokenCtrl.showPreview($row.id)"
+                    ><span data-translate="metrics_token_show_preview"></span
                 ></oui-action-menu-item>
                 <oui-action-menu-item
-                    data-text="{{ ::'metrics_token_edit' | translate }}"
                     data-on-click="MetricsTokenCtrl.edit($row.id, $row.description)"
+                    ><span data-translate="metrics_token_edit"></span
                 ></oui-action-menu-item>
                 <oui-action-menu-item
-                    data-text="{{ ::'metrics_token_delete' | translate }}"
                     data-on-click="MetricsTokenCtrl.delete($row.id)"
+                    ><span data-translate="metrics_token_delete"></span
                 ></oui-action-menu-item>
             </oui-action-menu>
         </oui-datagrid>

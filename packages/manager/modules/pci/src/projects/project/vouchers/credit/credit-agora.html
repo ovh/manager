@@ -4,12 +4,12 @@
     data-ng-submit="($ctrl.amount >= $ctrl.orderLimits.min && $ctrl.amount <= $ctrl.orderLimits.max) && $ctrl.order()"
 >
     <oui-modal
-        data-title="{{:: 'cpb_vouchers_add_credit_title' | translate }}"
         data-primary-label="{{:: 'cpb_vouchers_add_credit_valid' | translate }}"
         data-secondary-action="$ctrl.cancel()"
         data-secondary-label="{{:: 'common_cancel' | translate }}"
         data-on-dismiss="$ctrl.cancel()"
         data-loading="$ctrl.loading"
+        data-heading="{{:: 'cpb_vouchers_add_credit_title' | translate }}"
     >
         <oui-field
             data-label="{{:: 'cpb_vouchers_add_credit_amount' | translate: { currency: $ctrl.price.currencyCode } }}"

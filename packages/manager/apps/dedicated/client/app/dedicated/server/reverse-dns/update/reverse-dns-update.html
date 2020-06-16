@@ -5,13 +5,13 @@
         data-ng-submit="$ctrl.onUpdateReverseDNSFormSubmit()"
     >
         <oui-modal
-            data-title="{{:: 'server_reversedns_update_title' | translate }}"
             data-primary-label="{{($ctrl.actionEnabled ? 'common_change' : 'global_OK') | translate }}"
             data-secondary-label="{{$ctrl.actionEnabled ? ('common_cancel' | translate) : '' }}"
             data-secondary-action="$ctrl.$state.go('^')"
             data-on-dismiss="$ctrl.$state.go('^')"
             data-loading="$ctrl.loading.init || $ctrl.loading.update"
             data-type="{{ !$ctrl.actionEnabled ? 'warning' : '' }}"
+            data-heading="{{:: 'server_reversedns_update_title' | translate }}"
         >
             <p
                 data-translate="server_reversedns_update_loading_error"

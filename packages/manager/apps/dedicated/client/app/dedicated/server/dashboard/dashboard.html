@@ -4,7 +4,7 @@
             <!-- GENERAL INFORMATIONS -->
             <div class="oui-tile mb-5 h-100">
                 <h4
-                    class="oui-header_4 oui-tile__title"
+                    class="oui-tile__title oui-heading_4"
                     data-translate="server_informations_general"
                 ></h4>
                 <div class="oui-tile__body">
@@ -25,8 +25,8 @@
                         >
                             <oui-action-menu
                                 aria-label="{{:: 'menu_action_label' | translate:{ t0: ('server_configuration_displayname' | translate) } }}"
-                                data-align="end"
                                 data-compact
+                                data-placement="end"
                             >
                                 <oui-action-menu-item
                                     data-ui-sref="app.dedicated.server.dashboard.edit-display-name"
@@ -78,7 +78,7 @@
                                         data-ng-bind="$ctrl.upgradeName"
                                     ></span>
                                     <span
-                                        class="oui-icon oui-icon-external_link"
+                                        class="oui-icon oui-icon-external-link"
                                         aria-hidden="true"
                                     ></span>
                                 </a>
@@ -97,7 +97,7 @@
                                     data-ng-bind="$ctrl.server.os"
                                 ></span>
                                 <span
-                                    class="oui-status oui-status_warning"
+                                    class="oui-badge oui-badge_warning"
                                     data-ng-if="!$ctrl.server.os"
                                     data-translate="server_configuration_distribution_none"
                                 >
@@ -110,8 +110,8 @@
                         >
                             <oui-action-menu
                                 aria-label="{{:: 'menu_action_label' | translate:{ t0: ('server_configuration_distribution' | translate) } }}"
-                                data-align="end"
                                 data-compact
+                                data-placement="end"
                             >
                                 <oui-action-menu-item
                                     data-on-click="$ctrl.dedicatedServer.$scope.setAction('installation/progress/dedicated-server-installation-progress', $ctrl.server)"
@@ -172,8 +172,8 @@
                         >
                             <oui-action-menu
                                 aria-label="{{:: 'menu_action_label' | translate:{ t0: ('server_configuration_boot' | translate) } }}"
-                                data-align="end"
                                 data-compact
+                                data-placement="end"
                             >
                                 <oui-action-menu-item
                                     data-on-click="$ctrl.dedicatedServer.$scope.setAction('netboot/dedicated-server-netboot')"
@@ -234,7 +234,7 @@
             <!-- STATE -->
             <div class="oui-tile mb-5 h-100">
                 <h4
-                    class="oui-header_4 oui-tile__title"
+                    class="oui-tile__title oui-heading_4"
                     data-translate="server_services_state"
                 ></h4>
                 <div class="oui-tile__body">
@@ -246,7 +246,7 @@
                             ></dt>
                             <dd class="oui-tile__description">
                                 <span
-                                    class="oui-status"
+                                    class="oui-badge"
                                     data-ng-class="{
                                           'oui-status_success': $ctrl.server.state === 'OK',
                                           'oui-status_warning': $ctrl.server.state === 'ERROR',
@@ -261,7 +261,7 @@
                             <oui-action-menu
                                 data-compact
                                 aria-label="{{:: 'menu_action_label' | translate:{ t0: ('server_configuration_state_title' | translate)} }}"
-                                data-align="end"
+                                data-placement="end"
                             >
                                 <oui-action-menu-item
                                     data-on-click="$ctrl.rebootServer()"
@@ -300,7 +300,7 @@
                             ></dt>
                             <dd class="oui-tile__description">
                                 <span
-                                    class="oui-status"
+                                    class="oui-badge"
                                     data-ng-class="{
                                           'oui-status_success': $ctrl.server.monitored,
                                           'oui-status_error': !$ctrl.server.monitored
@@ -317,8 +317,8 @@
                         >
                             <oui-action-menu
                                 aria-label="{{:: 'menu_action_label' | translate:{t0: ('server_configuration_monitoring' | translate)} }}"
-                                data-align="end"
                                 data-compact
+                                data-placement="end"
                             >
                                 <oui-action-menu-item
                                     data-ui-sref="app.dedicated.server.dashboard.monitoringUpdate"
@@ -347,7 +347,7 @@
                             ></dt>
                             <dd class="oui-tile__description">
                                 <span
-                                    class="oui-status"
+                                    class="oui-badge"
                                     data-ng-repeat="monitoringProtocol in $ctrl.monitoringProtocolEnum"
                                     data-ng-class="$ctrl.isMonitoringEnabled(monitoringProtocol) ? 'oui-status_success' : 'oui-status_warning'"
                                     data-ng-bind="monitoringProtocol"
@@ -360,8 +360,8 @@
                         >
                             <oui-action-menu
                                 aria-label="{{:: 'menu_action_label' | translate:{t0: ('server_configuration_monitoring_services' | translate)}"
-                                data-align="end"
                                 data-compact
+                                data-placement="end"
                             >
                                 <oui-action-menu-item
                                     data-on-click="$ctrl.goToMonitoring()"
@@ -384,7 +384,7 @@
                                     <ul class="oui-list__items">
                                         <li class="oui-list__item">
                                             <a
-                                                class="oui-list__link oui-button_link"
+                                                class="oui-list__link oui-button_ghost"
                                                 href="{{:: $ctrl.servicesStateLinks.weathermap}}"
                                                 target="_blank"
                                                 rel="noopener"
@@ -393,7 +393,7 @@
                                                     data-translate="server_configuration_services_state_links_weathermap"
                                                 ></span>
                                                 <span
-                                                    class="oui-icon oui-icon-external_link"
+                                                    class="oui-icon oui-icon-external-link"
                                                     aria-hidden="true"
                                                 ></span>
                                                 <span
@@ -404,7 +404,7 @@
                                         </li>
                                         <li class="oui-list__item">
                                             <a
-                                                class="oui-list__link oui-button_link"
+                                                class="oui-list__link oui-button_ghost"
                                                 href="{{:: $ctrl.servicesStateLinks.vms}}"
                                                 target="_blank"
                                                 rel="noopener"
@@ -413,7 +413,7 @@
                                                     data-translate="server_configuration_services_state_links_vms"
                                                 ></span>
                                                 <span
-                                                    class="oui-icon oui-icon-external_link"
+                                                    class="oui-icon oui-icon-external-link"
                                                     aria-hidden="true"
                                                 ></span>
                                                 <span
@@ -424,7 +424,7 @@
                                         </li>
                                         <li class="oui-list__item">
                                             <a
-                                                class="oui-list__link oui-button_link"
+                                                class="oui-list__link oui-button_ghost"
                                                 href="{{:: $ctrl.servicesStateLinks.travaux }}"
                                                 target="_blank"
                                                 rel="noopener"
@@ -433,7 +433,7 @@
                                                     data-translate="server_configuration_services_state_links_travaux"
                                                 ></span>
                                                 <span
-                                                    class="oui-icon oui-icon-external_link"
+                                                    class="oui-icon oui-icon-external-link"
                                                     aria-hidden="true"
                                                 ></span>
                                                 <span
@@ -461,7 +461,7 @@
                                     <ul class="oui-list__items">
                                         <li class="oui-list__item">
                                             <a
-                                                class="oui-list__link oui-button_link"
+                                                class="oui-list__link oui-button_ghost"
                                                 data-ui-sref="app.dedicated.server.dashboard.ovh-tasks"
                                                 data-translate="dedicated_server_dashboard_ovhTasks_description"
                                             ></a>
@@ -479,7 +479,7 @@
             <!-- SUBSCRIPTION -->
             <div class="oui-tile mb-5 h-100">
                 <h4
-                    class="oui-header_4 oui-tile__title"
+                    class="oui-tile__title oui-heading_4"
                     data-translate="server_subscription"
                 ></h4>
                 <div class="oui-tile__body">
@@ -554,14 +554,16 @@
                         >
                             <oui-action-menu
                                 aria-label="{{:: 'menu_action_label' | translate:{t0: ('server_bandwidth_ovh_to_internet' | translate)} }}"
-                                data-align="end"
                                 data-compact
                                 data-ng-if="$ctrl.DedicatedServerFeatureAvailability.hasContactChangement() && !$ctrl.server.isExpired"
+                                data-placement="end"
                             >
                                 <oui-action-menu-item
-                                    data-text="{{:: 'contacts_management' | translate }}"
                                     aria-label="{{:: 'contacts_management' | translate }}"
                                     data-ui-sref="app.account.contacts.services({ serviceName: $ctrl.server.name })"
+                                    ><span
+                                        data-translate="contacts_management"
+                                    ></span
                                 ></oui-action-menu-item>
                                 <oui-action-menu-item
                                     data-href="{{:: $ctrl.changeOwnerUrl }}"
@@ -598,7 +600,7 @@
                             ></dt>
                             <dd class="oui-tile__description">
                                 <span
-                                    class="oui-status"
+                                    class="oui-badge"
                                     data-ng-class="{
                                           'oui-status_success': $ctrl.server.hasProfessionalUse,
                                           'oui-status_error': !$ctrl.server.hasProfessionalUse
@@ -608,7 +610,7 @@
                                 </span>
 
                                 <span
-                                    class="oui-icon oui-icon-info_circle"
+                                    class="oui-icon oui-icon-info-circle"
                                     data-aria-hidden="true"
                                     data-ng-if="!$ctrl.server.hasProfessionalUse"
                                     data-oui-tooltip="{{:: 'server_configuration_profesionnal_use_info' | translate}}"
@@ -622,8 +624,8 @@
                         >
                             <oui-action-menu
                                 aria-label="{{:: 'menu_action_label' | translate:{ t0: ('server_configuration_profesionnal_use' | translate) } }}"
-                                data-align="end"
                                 data-compact
+                                data-placement="end"
                             >
                                 <oui-action-menu-item
                                     data-on-click="$ctrl.dedicatedServer.$scope.setAction('pro-use/order/dedicated-server-pro-use-order', $ctrl.server.name)"
@@ -662,8 +664,8 @@
                     </oui-tile-description>
                     <oui-action-menu
                         aria-label="{{:: 'menu_action_label' | translate:{t0: ('server_configuration_ipv4' | translate)} }}"
-                        data-align="end"
                         data-compact
+                        data-placement="end"
                     >
                         <oui-action-menu-item
                             data-ui-sref="app.ip({serviceName: $ctrl.server.name})"
@@ -702,8 +704,8 @@
                         </oui-tile-description>
                         <oui-action-menu
                             aria-label="{{:: 'menu_action_label' | translate:{ t0: ('server_configuration_reverse' | translate) } }}"
-                            data-align="end"
                             data-compact
+                            data-placement="end"
                         >
                             <oui-action-menu-item
                                 data-ui-sref="app.dedicated.server.update-reverse-dns"
@@ -762,8 +764,8 @@
                         <oui-action-menu
                             aria-label="{{:: 'menu_action_label' | translate:{ t0: ('server_traffic' | translate) } }}"
                             data-ng-if="($ctrl.trafficInformations.traffic.hasQuota && canOrderTraffic() && canOrderMoreTraffic()) || (!$ctrl.server.isExpired && trafficOption === 'subscribed')"
-                            data-align="end"
                             data-compact
+                            data-placement="end"
                         >
                             <oui-action-menu-item
                                 data-on-click="$ctrl.dedicatedServer.$scope.setAction('traffic/order/dedicated-server-traffic-order', $ctrl.server.name)"
@@ -803,8 +805,8 @@
                         </oui-tile-description>
                         <oui-action-menu
                             aria-label="{{:: 'menu_action_label' | translate:{ t0: ('server_traffic' | translate) } }}"
-                            data-align="end"
                             data-compact
+                            data-placement="end"
                         >
                             <oui-action-menu-item
                                 data-ng-if="!$ctrl.ola.isActivated()"
@@ -899,7 +901,7 @@
     <!-- MRTG -->
     <div class="oui-tile mb-5" data-ng-if="!$ctrl.server.isExpired">
         <h4
-            class="oui-header_4 oui-tile__title"
+            class="oui-tile__title oui-heading_4"
             data-translate="server_tab_stats_legend_mrtg"
         ></h4>
         <p

@@ -2,7 +2,7 @@
     class="cui-page__content cui-page__content-flex cui-page__content-narrow"
 >
     <oui-back-button
-        data-title="{{ ::'cpciiac_view_title' | translate }}"
+        ><span data-translate="cpciiac_view_title"></span
     ></oui-back-button>
     <p data-translate="cpciiac_view_intro"></p>
     <div class="row">
@@ -15,19 +15,20 @@
                     class="img-circle img-circle-bordered d-block mx-auto mb-5"
                     width="75"
                     height="75"
-                    alt=""
+                    alt
                     data-ng-attr-alt="{{ stack.name }}"
                     data-ng-src="assets/images/cloud/apps/{{ stack.name }}.png"
                 />
                 <oui-button
-                    data-text="{{ 'cpciiac_view_stack_' + stack.name | translate }}"
                     data-id="stack_{{ stack.uuid }}"
                     data-model="$ctrl.model.stack"
                     data-value="stack"
                     data-ng-click="$ctrl.viewStack(stack)"
                     data-required
                     data-thumbnail
-                >
+                    ><span
+                        data-ng-bind="'cpciiac_view_stack_' + stack.name | translate"
+                    ></span>
                 </oui-button>
             </div>
         </div>

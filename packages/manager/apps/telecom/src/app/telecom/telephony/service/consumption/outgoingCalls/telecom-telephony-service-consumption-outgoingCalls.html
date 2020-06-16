@@ -78,7 +78,7 @@
                         required
                     >
                         <option
-                            value=""
+                            value
                             data-translate="telephony_service_consumption_destination_any"
                         ></option>
                         <option
@@ -99,7 +99,7 @@
         </div>
 
         <oui-datagrid data-rows="OutgoingCallsCtrl.consumption.sorted">
-            <oui-column
+            <oui-datagrid-column
                 data-title="'telephony_service_consumption_date' | translate"
                 data-property="creationDatetime"
                 data-sortable="desc"
@@ -110,17 +110,17 @@
                 <span
                     data-ng-bind="::$row.creationDatetime | date: 'HH:mm:ss'"
                 ></span>
-            </oui-column>
+            </oui-datagrid-column>
 
-            <oui-column
+            <oui-datagrid-column
                 data-title="'telephony_service_consumption_dialed' | translate"
                 data-property="dialed"
                 data-sortable
             >
                 <span data-ng-bind="::$row.dialed | tucPhoneNumber"></span>
-            </oui-column>
+            </oui-datagrid-column>
 
-            <oui-column
+            <oui-datagrid-column
                 data-title="'telephony_service_consumption_duration' | translate"
                 data-property="durationAsDate"
                 data-sortable
@@ -128,9 +128,9 @@
                 <span
                     data-ng-bind="::$row.durationAsDate | date: 'HH:mm:ss': 'UTC'"
                 ></span>
-            </oui-column>
+            </oui-datagrid-column>
 
-            <oui-column
+            <oui-datagrid-column
                 data-title="'telephony_service_consumption_type' | translate"
                 data-property="wayType"
                 data-sortable
@@ -138,9 +138,9 @@
                 <span
                     data-ng-bind="::'telephony_service_consumption_type_' + $row.wayType | translate"
                 ></span>
-            </oui-column>
+            </oui-datagrid-column>
 
-            <oui-column
+            <oui-datagrid-column
                 data-title="'telephony_service_consumption_destination' | translate"
                 data-property="destinationType"
                 data-sortable
@@ -148,15 +148,15 @@
                 <span
                     data-ng-bind="::'telephony_service_consumption_destination_' + $row.destinationType | translate"
                 ></span>
-            </oui-column>
+            </oui-datagrid-column>
 
-            <oui-column
+            <oui-datagrid-column
                 data-title="'telephony_service_consumption_price_ht' | translate"
                 data-property="priceWithoutTax.value"
                 data-sortable
             >
                 <span data-ng-bind="::$row.priceWithoutTax.text || '-'"></span>
-            </oui-column>
+            </oui-datagrid-column>
         </oui-datagrid>
     </div>
     <!-- /.widget-presentation -->

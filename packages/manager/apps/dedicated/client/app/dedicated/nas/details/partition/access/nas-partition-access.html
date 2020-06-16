@@ -16,17 +16,16 @@
     <div class="row">
         <div class="col-md-9">
             <oui-datagrid data-rows-loader="$ctrl.loadDatagridAccess($config)">
-                <oui-column data-title="'nas_access_ip' | translate">
+                <oui-datagrid-column data-title="'nas_access_ip' | translate">
                     <span data-ng-bind="$row"></span>
-                </oui-column>
-                <oui-action-menu data-align="end" data-compact>
+                </oui-datagrid-column>
+                <oui-action-menu data-compact data-placement="end">
                     <oui-action-menu-item
-                        data-text="{{ :: 'common_delete' | translate }}"
                         data-ng-click="setAction('dedicated/nas/details/partition/access/delete/nas-partition-access-delete.html', {
                                               partitionName: $ctrl.partitionName,
                                               access: $row
                                           })"
-                    >
+                        ><span data-translate="common_delete"></span>
                     </oui-action-menu-item>
                 </oui-action-menu>
             </oui-datagrid>

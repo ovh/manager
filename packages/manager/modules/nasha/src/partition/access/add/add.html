@@ -45,16 +45,16 @@
                 name="permission"
                 data-model="NashaPartitionAccessAddCtrl.data.type"
                 value="'readwrite'"
-                text="{{ ::'nasha_partitions_access_readwrite' | translate }}"
-            >
+                ><span
+                    data-translate="nasha_partitions_access_readwrite"
+                ></span>
             </oui-radio>
             <oui-radio
                 name="permission"
                 data-model="NashaPartitionAccessAddCtrl.data.type"
                 value="'readonly'"
-                text="{{ ::'nasha_partitions_access_readonly' | translate }}"
                 data-disabled="NashaPartitionAccessAddCtrl.partitionDetails.protocol !== 'NFS'"
-            >
+                ><span data-translate="nasha_partitions_access_readonly"></span>
             </oui-radio>
         </oui-field>
     </oui-modal>

@@ -38,7 +38,6 @@
                         data-title="{{:: 'telecom_pack_migration_building_details_select_a_stair' | translate}}"
                         placeholder="{{:: 'telecom_pack_migration_building_details_select_a_stair' | translate}}"
                         data-items="$ctrl.model.selectedBuilding.stairs"
-                        data-align="start"
                         data-match="stair.label"
                         data-on-change="$ctrl.changeSelection(true)"
                     >
@@ -56,7 +55,6 @@
                         data-title="{{:: 'telecom_pack_migration_building_details_select_a_floor' | translate}}"
                         placeholder="{{:: 'telecom_pack_migration_building_details_select_a_floor' | translate}}"
                         data-items="$ctrl.model.selectedStair.floors"
-                        data-align="start"
                         data-match="label"
                     >
                         <span data-ng-bind="$item.label"></span>

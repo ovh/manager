@@ -8,7 +8,7 @@
         <div class="col-md-4 mb-3">
             <div class="oui-tile h-100">
                 <h3
-                    class="oui-header_3 oui-tile__title"
+                    class="oui-tile__title oui-heading_3"
                     data-translate="sms_actions"
                 ></h3>
                 <div class="oui-tile__body">
@@ -17,7 +17,7 @@
                         data-ng-repeat="action in SmsDashboardCtrl.actions track by $index"
                     >
                         <a
-                            class="oui-tile__button oui-button oui-button_link oui-button_icon-right oui-button_full-width"
+                            class="oui-tile__button oui-button oui-button_icon-right oui-button_ghost oui-button_block"
                             data-ui-sref="{{ action.sref }}"
                         >
                             <span data-ng-bind="action.text"></span>
@@ -33,7 +33,7 @@
         <div class="col-md-4 mb-3">
             <div class="oui-tile h-100">
                 <h3
-                    class="oui-header_3 oui-tile__title"
+                    class="oui-tile__title oui-heading_3"
                     data-translate="sms_consumed"
                 ></h3>
                 <div class="oui-tile__body">
@@ -80,7 +80,7 @@
         <div class="col-md-4 mb-3">
             <div class="oui-tile h-100">
                 <h3
-                    class="oui-header_3 oui-tile__title"
+                    class="oui-tile__title oui-heading_3"
                     data-translate="sms_statistics_title"
                 ></h3>
                 <div
@@ -105,7 +105,7 @@
                                     data-ng-disabled="SmsDashboardCtrl.loading.stats"
                                 >
                                     <option
-                                        value=""
+                                        value
                                         data-translate="sms_statistics_filter_month"
                                     >
                                     </option>
@@ -129,7 +129,7 @@
                                     data-ng-disabled="SmsDashboardCtrl.loading.stats"
                                 >
                                     <option
-                                        value=""
+                                        value
                                         data-translate="sms_statistics_filter_sender"
                                     >
                                     </option>

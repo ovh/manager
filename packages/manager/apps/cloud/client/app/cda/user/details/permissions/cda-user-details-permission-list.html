@@ -17,36 +17,36 @@
     <oui-spinner></oui-spinner>
 </div>
 <oui-datagrid data-rows="CdaUserDetailsPermissionListCtrl.datas.poolsDisplay">
-    <oui-column
+    <oui-datagrid-column
         data-title="'cda_user_details_permissions_table_col_poolname' | translate"
         data-property="poolName"
         data-sortable="asc"
-    ></oui-column>
-    <oui-column
+    ></oui-datagrid-column>
+    <oui-datagrid-column
         data-title="'cda_user_details_permissions_table_col_read' | translate"
         data-property="read"
         data-sortable
     >
         <i data-ng-if="$row.read" class="glyphicon glyphicon-ok-circle"></i>
         <span class="sr-only" data-ng-bind="$row.read"></span>
-    </oui-column>
-    <oui-column
+    </oui-datagrid-column>
+    <oui-datagrid-column
         data-title="'cda_user_details_permissions_table_col_write' | translate"
         data-property="write"
         data-sortable
     >
         <i data-ng-if="$row.write" class="glyphicon glyphicon-ok-circle"></i>
         <span class="sr-only" data-ng-bind="$row.write"></span>
-    </oui-column>
-    <oui-column
+    </oui-datagrid-column>
+    <oui-datagrid-column
         data-title="'cda_user_details_permissions_table_col_execute' | translate"
         data-property="execute"
         data-sortable
     >
         <i data-ng-if="$row.execute" class="glyphicon glyphicon-ok-circle"></i>
         <span class="sr-only" data-ng-bind="$row.execute"></span>
-    </oui-column>
-    <oui-column
+    </oui-datagrid-column>
+    <oui-datagrid-column
         data-title="'cda_user_details_permissions_table_col_classread' | translate"
         data-property="classRead"
         data-sortable
@@ -56,8 +56,8 @@
             class="glyphicon glyphicon-ok-circle"
         ></i>
         <span class="sr-only" data-ng-bind="$row.classRead"></span>
-    </oui-column>
-    <oui-column
+    </oui-datagrid-column>
+    <oui-datagrid-column
         data-title="'cda_user_details_permissions_table_col_classwrite' | translate"
         data-property="classWrite"
         data-sortable
@@ -67,7 +67,7 @@
             class="glyphicon glyphicon-ok-circle"
         ></i>
         <span class="sr-only" data-ng-bind="$row.classWrite"></span>
-    </oui-column>
+    </oui-datagrid-column>
 </oui-datagrid>
 
 <div data-ui-view="cdaDetails"></div>

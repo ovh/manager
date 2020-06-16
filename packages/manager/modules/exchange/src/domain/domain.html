@@ -214,14 +214,14 @@
                             >
                                 <div data-ng-if="domain.domainValidated">
                                     <button
-                                        class="oui-status oui-status_error"
+                                        class="oui-badge oui-badge_error"
                                         type="button"
                                         data-translate="exchange_tab_domain_diagnostic_mx"
                                         data-ng-click="setAction('exchange/domain/mx-autoconfig/domain-mx-autoconfig', domain)"
                                         data-ng-if="!domain.mxValid"
                                     ></button>
                                     <button
-                                        class="oui-status oui-status_success"
+                                        class="oui-badge oui-badge_success"
                                         type="button"
                                         data-translate="exchange_tab_domain_diagnostic_mx"
                                         data-ng-if="domain.mxValid"
@@ -231,14 +231,14 @@
                                         data-simplepopover-single="true"
                                     ></button>
                                     <button
-                                        class="oui-status oui-status_error"
+                                        class="oui-badge oui-badge_error"
                                         type="button"
                                         data-translate="exchange_tab_domain_diagnostic_srv"
                                         data-ng-click="setAction('exchange/domain/srv-autoconfig/domain-srv-autoconfig', domain)"
                                         data-ng-if="!domain.srvValid"
                                     ></button>
                                     <button
-                                        class="oui-status oui-status_success"
+                                        class="oui-badge oui-badge_success"
                                         type="button"
                                         data-translate="exchange_tab_domain_diagnostic_srv"
                                         data-ng-if="domain.srvValid"
@@ -250,7 +250,7 @@
                                 </div>
 
                                 <button
-                                    class="oui-status oui-status_error"
+                                    class="oui-badge oui-badge_error"
                                     type="button"
                                     data-translate="exchange_tab_domain_diagnostic_cname"
                                     data-ng-if="!domain.domainValidated && domain.cname"
@@ -268,12 +268,12 @@
                                     data-ng-if="ctrl.services.exchangeStates.constructor.isOk(domain)"
                                 >
                                     <span
-                                        class="oui-status oui-status_success"
+                                        class="oui-badge oui-badge_success"
                                         data-translate="global_OK"
                                         data-ng-if="!domain.taskInProgress"
                                     ></span>
                                     <span
-                                        class="oui-status oui-status_info"
+                                        class="oui-badge oui-badge_info"
                                         data-translate="exchange_tab_domain_task_in_progress"
                                         data-ng-if="domain.taskInProgress"
                                     ></span>
@@ -282,17 +282,17 @@
                                     data-ng-if="ctrl.services.exchangeStates.constructor.isCreating(domain) || ctrl.services.exchangeStates.constructor.isDeleting(domain)"
                                 >
                                     <span
-                                        class="oui-status oui-status_info"
+                                        class="oui-badge oui-badge_info"
                                         data-translate="exchange_tab_domain_validation"
                                         data-ng-if="!domain.domainValidated && domain.cname"
                                     ></span>
                                     <span
-                                        class="oui-status oui-status_info"
+                                        class="oui-badge oui-badge_info"
                                         data-translate="exchange_tab_ACCOUNTS_state_CREATING"
                                         data-ng-if="ctrl.services.exchangeStates.constructor.isCreating(domain) && domain.cname == null"
                                     ></span>
                                     <span
-                                        class="oui-status oui-status_error"
+                                        class="oui-badge oui-badge_error"
                                         data-translate="exchange_tab_ACCOUNTS_state_DELETING"
                                         data-ng-if="ctrl.services.exchangeStates.constructor.isDeleting(domain)"
                                     ></span>
@@ -305,8 +305,8 @@
                             >
                                 <oui-action-menu
                                     data-compact
-                                    data-align="end"
                                     data-disabled="!ctrl.services.exchangeStates.constructor.isOk(domain)"
+                                    data-placement="end"
                                 >
                                     <oui-action-menu-item
                                         data-on-click="setAction('exchange/domain/update/domain-update', domain)"

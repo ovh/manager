@@ -40,7 +40,6 @@
                     <div data-ng-if="!$ctrl.associateExchange">
                         <oui-message
                             data-type="info"
-                            data-dismissable="false"
                             data-ng-if="!$ctrl.isReseller && $ctrl.canAssociateExchange()"
                         >
                             <span
@@ -68,7 +67,6 @@
                     >
                         <oui-message
                             data-type="info"
-                            data-dismissable="false"
                             data-ng-if="$ctrl.canOrderProvider()"
                         >
                             <span
@@ -101,11 +99,11 @@
                             data-selectable-rows
                             data-empty-placeholder="{{:: 'sharepoint_accounts_empty' | translate }}"
                         >
-                            <oui-column
+                            <oui-datagrid-column
                                 data-title=":: 'sharepoint_accounts_userPrincipalName' | translate"
                                 data-property="primaryEmailAddress"
                             >
-                            </oui-column>
+                            </oui-datagrid-column>
                         </oui-datagrid>
                     </div>
 

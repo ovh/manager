@@ -5,15 +5,15 @@
 </div>
 
 <div data-ng-if="!ctrlDomain.loading.domainInfos && ctrlDomain.domain">
-    <div class="oui-page-header">
-        <div class="oui-page-header__container">
-            <div class="oui-page-header__content">
+    <div class="oui-header">
+        <div class="oui-header__container">
+            <div class="oui-header__content">
                 <div class="row">
                     <div class="col-sm-9">
                         <div class="mb-2">
                             <span data-ng-if="ctrlDomain.isAllDom">AllDom</span>
                             <h1
-                                class="oui-page-header__title word-break mb-0"
+                                class="word-break mb-0 oui-header__title"
                                 data-ng-bind="ctrlDomain.domain.displayName"
                             ></h1>
                         </div>
@@ -109,61 +109,52 @@
 
         <oui-header-tabs data-ng-if="!ctrlDomain.domain.isExpired">
             <oui-header-tabs-item
-                data-text="{{:: 'domain_tab_GENERAL_INFORMATIONS' | translate }}"
                 data-state="{{:: ctrlDomain.getState() + '.information' }}"
                 data-state-params="ctrlDomain.$stateParams"
-            >
+                ><span data-translate="domain_tab_GENERAL_INFORMATIONS"></span>
             </oui-header-tabs-item>
             <oui-header-tabs-item
-                data-text="{{:: 'domain_tab_ZONE' | translate }}"
                 data-state="{{:: ctrlDomain.getState() + '.zone' }}"
                 data-state-params="ctrlDomain.$stateParams"
-            >
+                ><span data-translate="domain_tab_ZONE"></span>
             </oui-header-tabs-item>
             <oui-header-tabs-item
-                data-text="{{:: 'domain_tab_DNS' | translate }}"
                 data-state="{{:: ctrlDomain.getState() + '.dns' }}"
                 data-state-params="ctrlDomain.$stateParams"
-            >
+                ><span data-translate="domain_tab_DNS"></span>
             </oui-header-tabs-item>
             <oui-header-tabs-item
-                data-text="{{:: 'domain_tab_REDIRECTION' | translate }}"
                 data-state="{{:: ctrlDomain.getState() + '.redirection' }}"
                 data-state-params="ctrlDomain.$stateParams"
-            >
+                ><span data-translate="domain_tab_REDIRECTION"></span>
             </oui-header-tabs-item>
             <oui-header-tabs-item
                 data-ng-if="ctrlDomain.hasZoneDns && ctrlDomain.zoneCapabilities.dynHost"
-                data-text="{{:: 'domain_tab_DYNHOST' | translate }}"
                 data-state="{{:: ctrlDomain.getState() + '.dynhost' }}"
                 data-state-params="ctrlDomain.$stateParams"
-            >
+                ><span data-translate="domain_tab_DYNHOST"></span>
             </oui-header-tabs-item>
             <oui-header-tabs-item
-                data-text="{{:: 'domain_tab_GLUE' | translate }}"
                 data-state="{{:: ctrlDomain.getState() + '.glue' }}"
                 data-state-params="ctrlDomain.$stateParams"
-            >
+                ><span data-translate="domain_tab_GLUE"></span>
             </oui-header-tabs-item>
             <oui-header-tabs-item
                 data-ng-if="!ctrlDomain.domain.managedByOvh"
-                data-text="{{:: 'domain_tab_DNSSEC' | translate }}"
                 data-state="{{:: ctrlDomain.getState() + '.dnssec' }}"
                 data-state-params="ctrlDomain.$stateParams"
-            >
+                ><span data-translate="domain_tab_DNSSEC"></span>
             </oui-header-tabs-item>
             <oui-header-tabs-item
-                data-text="{{:: 'domain_tab_TASKS' | translate }}"
                 data-state="{{:: ctrlDomain.getState() + '.tasks' }}"
                 data-state-params="ctrlDomain.$stateParams"
-            >
+                ><span data-translate="domain_tab_TASKS"></span>
             </oui-header-tabs-item>
             <oui-header-tabs-item
                 data-ng-if="ctrlDomain.isEmailDomainTabAvailable"
-                data-text="{{:: 'hosting_tab_menu_emails' | translate }}"
                 data-href="{{ '#/configuration/email-domain/' + ctrlDomain.domain.name + '?tab=MAILING_LIST' }}"
                 data-state-params="ctrlDomain.$stateParams"
-            >
+                ><span data-translate="hosting_tab_menu_emails"></span>
             </oui-header-tabs-item>
         </oui-header-tabs>
     </div>

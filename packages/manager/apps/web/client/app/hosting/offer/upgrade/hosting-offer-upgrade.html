@@ -18,7 +18,6 @@
             data-ng-if="!$ctrl.loading.availableOffers
                       && !$ctrl.loading.validation
                       && $ctrl.availableOffers.length === 0"
-            data-dismissable="false"
         >
             <span data-translate="hosting_order_upgrade_no_offer"></span>
         </oui-message>
@@ -52,7 +51,6 @@
                 </oui-field>
                 <oui-message
                     data-type="info"
-                    data-dismissable="false"
                     data-ng-if="$ctrl.hosting.isCloudWeb"
                 >
                     <span
@@ -66,8 +64,9 @@
                     <oui-checkbox
                         data-required
                         data-model="$ctrl.model.downgradeAgree"
-                        data-text="{{:: 'hosting_dashboard_service_offer_downgrade_KIMSUFI_2015_agree' | translate }}"
-                    >
+                        ><span
+                            data-translate="hosting_dashboard_service_offer_downgrade_KIMSUFI_2015_agree"
+                        ></span>
                     </oui-checkbox>
                 </oui-field>
             </oui-step-form>
@@ -122,7 +121,7 @@
                         data-ng-bind="$ctrl.formatTime($ctrl.model.startTime)"
                     ></p>
                 </oui-field>
-                <oui-message data-type="info" data-dismissable="false">
+                <oui-message data-type="info">
                     <span
                         data-translate="hosting_order_upgrade_start_time_info"
                     ></span>
@@ -186,7 +185,7 @@
                         </tr>
                     </tfoot>
                 </table>
-                <oui-message data-type="info" data-dismissable="false">
+                <oui-message data-type="info">
                     <span
                         data-translate="hosting_order_upgrade_do_order"
                         data-ng-if="!$ctrl.hosting.isCloudWeb"
@@ -198,7 +197,6 @@
                 </oui-message>
                 <oui-message
                     data-type="warning"
-                    data-dismissable="false"
                     data-ng-if="!$ctrl.hosting.isCloudWeb"
                 >
                     <strong

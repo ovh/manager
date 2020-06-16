@@ -1,9 +1,7 @@
 <div class="module-useraccount-sections-agreements-container">
     <div class="tab-content">
-        <oui-back-button
-            data-href="{{ ctrl.$state.href('^') }}"
-            data-heading="{{:: 'user_agreement_details_title' | translate }}"
-        >
+        <oui-back-button data-href="{{ ctrl.$state.href('^') }}"
+            ><span data-translate="user_agreement_details_title"></span>
         </oui-back-button>
 
         <div data-ovh-alert="agreements_details_alerter"></div>

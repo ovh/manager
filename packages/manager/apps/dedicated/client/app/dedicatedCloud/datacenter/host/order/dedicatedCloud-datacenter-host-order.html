@@ -1,9 +1,7 @@
 <oui-spinner data-ng-if="$ctrl.loading"> </oui-spinner>
 <div data-ng-if="!$ctrl.loading">
-    <oui-back-button
-        data-href="{{:: $ctrl.getBackUrl() }}"
-        data-heading="{{ :: 'dedicatedCloud_host_order_title' | translate }}"
-    >
+    <oui-back-button data-href="{{:: $ctrl.getBackUrl() }}"
+        ><span data-translate="dedicatedCloud_host_order_title"></span>
     </oui-back-button>
     <div data-ovh-alert></div>
     <oui-message
@@ -16,43 +14,42 @@
     <p data-translate="dedicatedCloud_host_order_info"></p>
     <p data-translate="dedicatedCloud_host_order_select"></p>
     <oui-datagrid data-rows-loader="$ctrl.fetchDatagridOffers()">
-        <oui-column
+        <oui-datagrid-column
             data-title=":: 'dedicatedCloud_host_order_host' | translate"
         >
             <oui-radio
-                data-text="{{ $row.productName }}"
                 data-name="selectedOffer"
                 data-model="$ctrl.selectedOffer"
                 data-value="$row"
-            >
+                ><span data-ng-bind="$row.productName"></span>
             </oui-radio>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title=":: 'dedicatedCloud_host_order_speed' | translate"
         >
             <span
                 data-ng-bind="$row.profile.cpu.value + ' ' + $row.profile.cpu.unit"
             ></span>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title=":: 'dedicatedCloud_host_order_memory' | translate"
         >
             <span
                 data-ng-bind="$row.profile.ram.value + ' ' + $row.profile.ram.unit"
             ></span>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title=":: 'dedicatedCloud_host_order_cores' | translate"
         >
             <span data-ng-bind="$row.profile.core"></span>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title=":: 'dedicatedCloud_host_order_price' | translate"
         >
             <span data-ng-bind="$row.prices[0].price.text"></span>
             <br />
             <small data-ng-bind="$row.prices[0].description"></small>
-        </oui-column>
+        </oui-datagrid-column>
     </oui-datagrid>
     <p data-translate="dedicatedCloud_host_order_quantity"></p>
     <oui-numeric
@@ -66,8 +63,7 @@
             data-variant="primary"
             data-disabled="!$ctrl.selectedOffer"
             data-ng-if="!$ctrl.selectedOffer"
-            data-text="{{ :: 'dedicatedCloud_host_order_confirm' | translate }}"
-        >
+            ><span data-translate="dedicatedCloud_host_order_confirm"></span>
         </oui-button>
         <a
             class="btn btn-primary"

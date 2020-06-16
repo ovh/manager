@@ -1,4 +1,4 @@
-<oui-page-header
+<oui-header
     class="job-title__header"
     data-heading="{{ $ctrl.job.name }}"
     data-description="{{ $ctrl.job.id }}"
@@ -13,18 +13,18 @@
 
     <oui-header-tabs>
         <oui-header-tabs-item
-            data-text="{{ ::'data_processing_details_dashboard_label' | translate }}"
             data-state="pci.projects.project.data-processing.job-details.dashboard"
             data-state-params="{ jobId: $ctrl.job.id }"
             data-active
-        >
+            ><span
+                data-translate="data_processing_details_dashboard_label"
+            ></span>
         </oui-header-tabs-item>
         <oui-header-tabs-item
-            data-text="{{ ::'data_processing_details_logs_label' | translate }}"
             data-state="pci.projects.project.data-processing.job-details.logs"
             data-state-params="{ jobId: $ctrl.job.id, projectId: $ctrl.projectId, jobName: $ctrl.jobName }"
-        >
+            ><span data-translate="data_processing_details_logs_label"></span>
         </oui-header-tabs-item>
     </oui-header-tabs>
-</oui-page-header>
+</oui-header>
 <div data-ui-view></div>

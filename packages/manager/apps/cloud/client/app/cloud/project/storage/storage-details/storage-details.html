@@ -1,6 +1,6 @@
 <section class="cui-page__content" data-ng-init="getPage();">
     <a
-        class="oui-button oui-button_link oui-button_icon-left"
+        class="oui-button oui-button_icon-left oui-button_ghost"
         data-ui-sref="iaas.pci-project.compute.storage"
     >
         <i class="oui-icon oui-icon-chevron-left" aria-hidden="true"></i>
@@ -31,7 +31,7 @@
         <div class="pull-left" data-ng-if="storage.shortcut">
             <img
                 class="storage-details-logo"
-                alt=""
+                alt
                 data-ng-src="assets/images/add/storage/{{ storage.shortcut }}.svg"
             />
         </div>
@@ -74,7 +74,8 @@
                 <i
                     class="glyphicon glyphicon-question-sign pointer"
                     data-ng-click="openDNSHelp()"
-                />
+                >
+                </i>
             </dd>
             <div
                 data-ng-if="storage.shortcut === 'pca'"

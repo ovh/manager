@@ -4,12 +4,12 @@
     novalidate
 >
     <oui-modal
-        data-title="{{ :: 'billing_main_history_debt_pay_title' | translate }}"
         data-primary-label="{{ :: 'billing_main_history_debt_pay_confirm' | translate }}"
         data-secondary-label="{{ :: 'wizard_cancel' | translate }}"
         data-secondary-action="$ctrl.$state.go('app.account.billing.main.history')"
         data-on-dismiss="$ctrl.$state.go('app.account.billing.main.history')"
         data-loading="$ctrl.loading.init || $ctrl.loading.pay"
+        data-heading="{{ :: 'billing_main_history_debt_pay_title' | translate }}"
     >
         <p data-translate="billing_main_history_debt_pay_explanation"></p>
     </oui-modal>

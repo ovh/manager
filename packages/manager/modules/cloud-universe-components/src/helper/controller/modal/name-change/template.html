@@ -1,11 +1,11 @@
 <form id="nameChangeForm" data-ng-submit="$ctrl.confirm()">
     <oui-modal
-        data-title="{{:: 'cuc_helper_name_change_modal_title' | translate}}"
         data-on-dismiss="$ctrl.cancel()"
         data-primary-label="{{:: 'cuc_helper_edit' | translate}}"
         data-secondary-action="$ctrl.cancel()"
         data-secondary-label="{{:: 'cuc_helper_cancel' | translate}}"
         data-loading="$ctrl.isModalLoading()"
+        data-heading="{{:: 'cuc_helper_name_change_modal_title' | translate}}"
     >
         <p>
             <span

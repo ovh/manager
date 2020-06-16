@@ -5,13 +5,13 @@
     novalidate
 >
     <oui-modal
-        data-title="{{ ::'pci_projects_project_kubernetes_service_reset' | translate }}"
         data-primary-label="{{ ::'pci_projects_project_kubernetes_service_reset_common_confirm' | translate }}"
         data-secondary-action="$ctrl.goBack()"
         data-secondary-label="{{ ::'pci_projects_project_kubernetes_service_reset_common_cancel' | translate }}"
         data-on-dismiss="$ctrl.goBack()"
         data-loading="$ctrl.isReseting"
         data-type="warning"
+        data-heading="{{ ::'pci_projects_project_kubernetes_service_reset' | translate }}"
     >
         <oui-message data-type="warning">
             <span

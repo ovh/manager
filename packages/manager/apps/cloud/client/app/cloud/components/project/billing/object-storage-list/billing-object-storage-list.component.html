@@ -2,15 +2,15 @@
     data-rows="$ctrl.storages"
     class="datagrid-without-pagination objectStorageList"
 >
-    <oui-column
+    <oui-datagrid-column
         data-title="::'cpbc_object_storage_col_location' | translate"
         data-property="region"
     >
         <span
             data-ng-bind=":: $ctrl.CucRegionService.getTranslatedMicroRegion($row.region)"
         ></span>
-    </oui-column>
-    <oui-column
+    </oui-datagrid-column>
+    <oui-datagrid-column
         data-title="::'cpbc_object_storage_col_consumption' | translate"
     >
         <span
@@ -27,8 +27,8 @@
             class="sr-only"
             data-ng-bind=":: $ctrl.getStorageVolumeInfoTooltip($row)"
         ></span>
-    </oui-column>
-    <oui-column
+    </oui-datagrid-column>
+    <oui-datagrid-column
         data-title="::'cpbc_object_storage_col_output_traffic' | translate"
     >
         <span
@@ -45,5 +45,5 @@
             class="sr-only"
             data-ng-bind=":: $ctrl.getStorageBandwidthInfoTooltip($row)"
         ></span>
-    </oui-column>
+    </oui-datagrid-column>
 </oui-datagrid>

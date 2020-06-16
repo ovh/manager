@@ -1,5 +1,5 @@
 <div data-ui-view>
-    <oui-page-header
+    <oui-header
         data-heading="{{:: 'pci_projects_project_failoverip_title' | translate }}"
         class="mb-3"
     >
@@ -12,13 +12,13 @@
                 ></span>
             </oui-guide-menu-item>
         </oui-guide-menu>
-    </oui-page-header>
+    </oui-header>
     <div>
         <cui-message-container
             data-messages="$ctrl.messages"
         ></cui-message-container>
         <oui-datagrid data-rows="$ctrl.failoverIps">
-            <extra-top>
+            <oui-datagrid-topbar>
                 <oui-action-menu
                     data-text="{{:: 'pci_projects_project_failoverip_actions' | translate }}"
                 >
@@ -38,38 +38,38 @@
                         ></span>
                     </oui-action-menu-item>
                 </oui-action-menu>
-            </extra-top>
-            <oui-column
+            </oui-datagrid-topbar>
+            <oui-datagrid-column
                 data-title=":: 'pci_projects_project_failoverip_ip' | translate"
                 data-property="ip"
                 data-type="string"
                 data-searchable
                 data-filterable
             >
-            </oui-column>
-            <oui-column
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 data-title=":: 'pci_projects_project_failoverip_block' | translate"
                 data-property="block"
                 data-type="string"
                 data-searchable
                 data-filterable
             >
-            </oui-column>
-            <oui-column
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 data-title=":: 'pci_projects_project_failoverip_geoloc' | translate"
                 data-property="geoloc"
                 data-type="string"
                 data-searchable
                 data-filterable
             >
-            </oui-column>
-            <oui-column
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 data-title=":: 'pci_projects_project_failoverip_id' | translate"
                 data-property="id"
                 data-type="string"
             >
-            </oui-column>
-            <oui-column
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 data-title=":: 'pci_projects_project_failoverip_routedTo' | translate"
                 data-property="instance.name"
                 data-type="string"
@@ -81,8 +81,8 @@
                     data-ui-sref="pci.projects.project.instances.instance({projectId : $ctrl.projectId, instanceId: $row.instance.id})"
                     data-ng-bind="$row.instance.name"
                 ></a>
-            </oui-column>
-            <oui-action-menu data-align="end" data-compact>
+            </oui-datagrid-column>
+            <oui-action-menu data-compact data-placement="end">
                 <oui-action-menu-item
                     data-ui-sref="pci.projects.project.failover-ips.edit({ projectId: $ctrl.projectId, serviceName: $row.id })"
                 >

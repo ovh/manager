@@ -88,47 +88,53 @@
                 data-rows-loader="$ctrl.loadDatagridPartitions($config)"
                 data-row-loader="$ctrl.transformItem($row)"
             >
-                <oui-column
+                <oui-datagrid-column
                     data-title=":: 'nas_partitions_name' | translate"
                     data-property="partitionName"
                 >
-                </oui-column>
-                <oui-column
+                </oui-datagrid-column>
+                <oui-datagrid-column
                     data-title=":: 'nas_partitions_protocol' | translate"
                 >
                     <span
                         data-translate="{{ 'nas_partitions_protocol_' + $row.protocol }}"
                     ></span>
-                </oui-column>
-                <oui-column data-title=":: 'nas_partitions_size' | translate">
+                </oui-datagrid-column>
+                <oui-datagrid-column
+                    data-title=":: 'nas_partitions_size' | translate"
+                >
                     <span data-ng-bind="$row.size"></span>
                     <span data-translate="unit_size_GB"></span>
-                </oui-column>
-                <oui-action-menu data-align="end" data-compact>
+                </oui-datagrid-column>
+                <oui-action-menu data-compact data-placement="end">
                     <oui-action-menu-item
-                        data-text="{{ :: 'nas_partitions_action_update' | translate }}"
                         data-ng-click="$ctrl.data.nas.canCreatePartition && setAction('dedicated/nas/details/partition/update/nas-partition-update.html', {
                                               partition: $row,
                                               currentNas: $ctrl.data.nas
                                           })"
-                    >
+                        ><span
+                            data-translate="nas_partitions_action_update"
+                        ></span>
                     </oui-action-menu-item>
                     <oui-action-menu-item
-                        data-text="{{ :: 'nas_partitions_action_display_access' | translate }}"
                         data-ng-click="$ctrl.displayAccess($row)"
-                    >
+                        ><span
+                            data-translate="nas_partitions_action_display_access"
+                        ></span>
                     </oui-action-menu-item>
                     <oui-action-menu-item
-                        data-text="{{ :: 'nas_partitions_action_display_snapshot' | translate }}"
                         data-ng-if="$ctrl.isNasha()"
                         data-ng-click="$ctrl.displaySnapshots($row)"
-                    >
+                        ><span
+                            data-translate="nas_partitions_action_display_snapshot"
+                        ></span>
                     </oui-action-menu-item>
                     <oui-action-menu-item
-                        data-text="{{ :: 'nas_partitions_action_delete' | translate }}"
                         data-ng-if="$ctrl.data.nas.canCreatePartition"
                         data-on-click="$ctrl.data.nas.canCreatePartition && setAction('dedicated/nas/details/partition/delete/nas-partition-delete.html', $row)"
-                    >
+                        ><span
+                            data-translate="nas_partitions_action_delete"
+                        ></span>
                     </oui-action-menu-item>
                 </oui-action-menu>
             </oui-datagrid>

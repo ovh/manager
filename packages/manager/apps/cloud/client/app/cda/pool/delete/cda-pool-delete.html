@@ -1,7 +1,7 @@
 <div class="oui-modal oui-modal_shadow">
     <div class="oui-modal__header">
         <button
-            class="oui-icon oui-icon-close_thin oui-modal__close-button"
+            class="oui-icon oui-modal__close-button oui-icon-close"
             type="button"
             aria-label="Exit"
             data-ng-click="CdaPoolDeleteCtrl.closeModal()"
@@ -18,10 +18,7 @@
     </div>
 
     <div class="oui-modal__body" data-ng-if="!CdaPoolDeleteCtrl.saving">
-        <i
-            class="oui-icon oui-icon-help_circle oui-icon_bicolor"
-            aria-hidden="true"
-        ></i>
+        <i class="oui-icon oui-icon-help-circle" aria-hidden="true"></i>
         <h2
             class="oui-modal__title"
             data-translate="cda_pool_delete_title"

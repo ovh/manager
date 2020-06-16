@@ -10,9 +10,8 @@
         <tuc-toast-message></tuc-toast-message>
 
         <oui-back-button
-            data-heading="{{:: 'telephony_options_group_title' | translate }}"
             data-href="{{ OptionsGroupCtrl.$state.href('telecom.telephony.billingAccount.administration') }}"
-        >
+            ><span data-translate="telephony_options_group_title"></span>
         </oui-back-button>
 
         <form
@@ -23,23 +22,29 @@
             <oui-field>
                 <oui-checkbox
                     name="hiddenExternalNumber"
-                    data-text="{{:: 'telephony_billing_account_administration_options_group_hiddenExternalNumber_label' | translate }}"
                     data-model="OptionsGroupCtrl.optionsGroupForm.telephony.hiddenExternalNumber"
+                    ><span
+                        data-translate="telephony_billing_account_administration_options_group_hiddenExternalNumber_label"
+                    ></span
                 ></oui-checkbox>
             </oui-field>
             <oui-field>
                 <oui-checkbox
                     name="overrideDisplayedNumber"
                     data-description="{{:: 'telephony_billing_account_administration_options_group_overrideDisplayedNumber_info' | translate }}"
-                    data-text="{{:: 'telephony_billing_account_administration_options_group_overrideDisplayedNumber_label' | translate }}"
                     data-model="OptionsGroupCtrl.optionsGroupForm.telephony.overrideDisplayedNumber"
+                    ><span
+                        data-translate="telephony_billing_account_administration_options_group_overrideDisplayedNumber_label"
+                    ></span
                 ></oui-checkbox>
             </oui-field>
             <oui-field>
                 <oui-checkbox
                     name="displayOnIncomingCall"
-                    data-text="{{:: 'telephony_billing_account_administration_options_group_displayOnIncomingCall_label' | translate }}"
                     data-model="OptionsGroupCtrl.optionsGroupForm.user.lineDescriptionPolicies.displayOnIncomingCall"
+                    ><span
+                        data-translate="telephony_billing_account_administration_options_group_displayOnIncomingCall_label"
+                    ></span
                 ></oui-checkbox>
             </oui-field>
 

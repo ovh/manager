@@ -5,13 +5,13 @@
     data-ng-submit="$ctrl.onCdnSslUpdateFormSubmit()"
 >
     <oui-modal
-        data-title="{{ :: 'cdn_dedicated_ssl_update' | translate }}"
         data-primary-label="{{ ($ctrl.actionEnabled ? 'wizard_confirm' : 'global_OK') | translate }}"
         data-secondary-label="{{ $ctrl.actionEnabled ? ('wizard_cancel' | translate) : '' }}"
         data-secondary-action="$ctrl.$state.go('^')"
         data-on-dismiss="$ctrl.$state.go('^')"
         data-loading="$ctrl.loading.init || $ctrl.loading.update"
         data-type="{{ !$ctrl.actionEnabled ? 'warning' : '' }}"
+        data-heading="{{ :: 'cdn_dedicated_ssl_update' | translate }}"
     >
         <div data-ng-if="!$ctrl.actionEnabled">
             <p

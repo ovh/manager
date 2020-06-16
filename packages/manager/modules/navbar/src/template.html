@@ -18,11 +18,10 @@
             <oui-navbar-link
                 data-ng-if="!$ctrl.isLoading"
                 name="{{:: link.name }}"
-                text="{{:: link.title }}"
                 href="{{:: link.url }}"
                 variant="{{:: link.isPrimary ? 'primary' : 'secondary' }}"
                 on-click="$ctrl.onUniverseChange(link.name)"
-            >
+                ><span data-ng-bind=":: link.title"></span>
             </oui-navbar-link>
         </div>
     </oui-navbar-main>
@@ -33,7 +32,7 @@
             data-ng-if="$ctrl.globalSearchLink"
         >
             <span
-                class="navbar-small-icon oui-icon oui-icon-search_extra-thin mr-0"
+                class="navbar-small-icon oui-icon mr-0 oui-icon-search"
                 aria-hidden="true"
             ></span>
             <span class="sr-only" data-translate="navbar_search"></span>

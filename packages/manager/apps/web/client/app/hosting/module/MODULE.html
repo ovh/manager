@@ -92,11 +92,11 @@
                         data-rows="ctrlHostingTabModules.modules"
                         data-row-loader="ctrlHostingTabModules.transformItem($row)"
                     >
-                        <oui-column
+                        <oui-datagrid-column
                             data-title="'hosting_configuration_tab_modules_module_name' | translate"
                             data-property="template.name"
-                        ></oui-column>
-                        <oui-column
+                        ></oui-datagrid-column>
+                        <oui-datagrid-column
                             data-title="'hosting_configuration_tab_modules_module_path' | translate"
                             data-property="path"
                         >
@@ -105,36 +105,40 @@
                                 data-ng-href="{{$row.href}}"
                                 target="_blank"
                             ></a>
-                        </oui-column>
-                        <oui-column
+                        </oui-datagrid-column>
+                        <oui-datagrid-column
                             data-title="'hosting_configuration_tab_modules_module_version' | translate"
                             data-property="template.version"
-                        ></oui-column>
-                        <oui-column
+                        ></oui-datagrid-column>
+                        <oui-datagrid-column
                             data-title="'hosting_configuration_tab_modules_module_login' | translate"
                             data-property="adminName"
-                        ></oui-column>
-                        <oui-action-menu data-align="end" data-compact>
+                        ></oui-datagrid-column>
+                        <oui-action-menu data-compact data-placement="end">
                             <oui-action-menu-item
-                                data-text="{{:: 'hosting_configuration_tab_modules_module_access' | translate }}"
                                 data-ng-click="ctrlHostingTabModules.goToHref($row.href)"
-                            >
+                                ><span
+                                    data-translate="hosting_configuration_tab_modules_module_access"
+                                ></span>
                             </oui-action-menu-item>
                             <oui-action-menu-item
-                                data-text="{{:: 'hosting_configuration_tab_modules_module_access_admin' | translate }}"
                                 data-ng-click="ctrlHostingTabModules.goToHref($row.adminHref)"
-                            >
+                                ><span
+                                    data-translate="hosting_configuration_tab_modules_module_access_admin"
+                                ></span>
                             </oui-action-menu-item>
                             <oui-action-menu-item
-                                data-text="{{:: 'hosting_configuration_tab_modules_module_change_password' | translate }}"
                                 data-ng-click="setAction('module/update-password/hosting-module-update-password', $row)"
                                 data-ng-if="module.template.branch !== 'old'"
-                            >
+                                ><span
+                                    data-translate="hosting_configuration_tab_modules_module_change_password"
+                                ></span>
                             </oui-action-menu-item>
                             <oui-action-menu-item
-                                data-text="{{:: 'hosting_configuration_tab_modules_module_delete' | translate }}"
                                 data-ng-click="setAction('module/delete/hosting-module-delete', $row)"
-                            >
+                                ><span
+                                    data-translate="hosting_configuration_tab_modules_module_delete"
+                                ></span>
                             </oui-action-menu-item>
                         </oui-action-menu>
                     </oui-datagrid>

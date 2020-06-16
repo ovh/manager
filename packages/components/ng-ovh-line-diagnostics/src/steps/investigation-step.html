@@ -4,7 +4,7 @@
 >
     <div class="form-group">
         <p
-            class="oui-header_5"
+            class="oui-heading_5"
             data-translate="tools_lineDiagnostics_header_investigation_step_title"
         ></p>
         <p
@@ -83,7 +83,7 @@
                         ></p>
                         <img
                             data-ng-src="{{:: $ctrl.assets.ADSL_FILTER }}"
-                            alt=""
+                            alt
                             data-ng-attr-alt="{{:: $ctrl.currentAction }}"
                         />
                     </oui-popover-content>
@@ -240,7 +240,6 @@
                                 placeholder="{{:: 'tools_lineDiagnostics_investigation_step_question_bandwidthTestUnit_placeholder' | translate }}"
                                 data-model="$ctrl.currentLineDiagnostic.data.answers.bandwidthTestUnit"
                                 data-items="$ctrl.enumQuestions.bandwidthTestUnit"
-                                data-align="start"
                                 data-required
                             >
                                 <span data-ng-bind="$item"></span>
@@ -294,7 +293,7 @@
     data-ng-if="$ctrl.currentLineDiagnostic.hasQuestionToAnswer('resolvedAfterTests') && !$ctrl.loading"
 >
     <p
-        class="oui-header_6"
+        class="oui-heading_6"
         data-translate="tools_lineDiagnostics_investigation_step_action_is_problem_solved"
     ></p>
     <oui-radio-toggle-group
@@ -318,7 +317,7 @@
 >
     <oui-spinner></oui-spinner>
     <p
-        class="oui-header_6"
+        class="oui-heading_6"
         data-translate="tools_lineDiagnostics_header_investigation_step_selt_test_title"
     ></p>
     <p

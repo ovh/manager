@@ -87,8 +87,9 @@
                         id="advancedMode"
                         name="advancedMode"
                         data-model="advancedMode.value"
-                        data-text="{{:: 'hosting_configuration_tab_modules_create_step1_module_advanced_mode' | translate }}"
-                    >
+                        ><span
+                            data-translate="hosting_configuration_tab_modules_create_step1_module_advanced_mode"
+                        ></span>
                     </oui-checkbox>
                     <div class="alert alert-info" role="alert">
                         <div>
@@ -158,7 +159,7 @@
                             data-ng-value="db"
                         ></option>
                         <option
-                            value=""
+                            value
                             data-translate="hosting_configuration_tab_modules_create_step2_db_custom"
                         ></option>
                     </select>
@@ -568,7 +569,7 @@
                                 data-ng-options="lang as ('language_' + lang.toLowerCase() | translate) for lang in model.templateSelected.language track by lang"
                             >
                                 <option
-                                    value=""
+                                    value
                                     disabled
                                     data-translate="select_placeholder"
                                 ></option>

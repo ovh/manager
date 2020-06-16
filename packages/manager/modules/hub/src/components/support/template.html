@@ -17,7 +17,7 @@
     <div class="manager-hub-support" data-ng-if="!$ctrl.error">
         <div
             data-ng-if="$ctrl.tickets.length > 0 || $ctrl.isLoading"
-            class="oui-datagrid-responsive-container"
+            class="oui-datagrid-responsive"
         >
             <div class="oui-datagrid-responsive-container__sticky-container">
                 <div
@@ -41,7 +41,7 @@
                                 ></td>
                                 <td class="oui-datagrid__cell">
                                     <span
-                                        class="oui-status align-middle"
+                                        class="align-middle oui-badge"
                                         data-ng-class=":: 'oui-status_' + ticket.getStateCategory()"
                                         data-ng-bind=":: ('hub_support_state_' + ticket.state) | translate"
                                     >
@@ -92,10 +92,7 @@
                 data-track-name="{{ $ctrl.trackingPrefix + '::activity::assistance::guide-welcome::go-to-docs' }}"
             >
                 <span data-translate="hub_support_help"></span>
-                <span
-                    class="oui-icon oui-icon-arrow-right_extra-thin"
-                    aria-hidden="true"
-                >
+                <span class="oui-icon oui-icon-arrow-right" aria-hidden="true">
                 </span>
             </a>
         </div>

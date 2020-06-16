@@ -3,7 +3,7 @@
         <div class="oui-tile mb-5 h-100">
             <div class="oui-tile__body">
                 <h2
-                    class="oui-header_3 oui-tile__title"
+                    class="oui-tile__title oui-heading_3"
                     data-translate="cdn_domain_tab_statistics"
                 ></h2>
                 <div class="oui-tile__item">
@@ -26,7 +26,7 @@
         <div class="oui-tile mb-5 h-100">
             <div class="oui-tile__body">
                 <h2
-                    class="oui-header_3 oui-tile__title"
+                    class="oui-tile__title oui-heading_3"
                     data-translate="cdn_network"
                 ></h2>
                 <div class="oui-tile__item">
@@ -43,19 +43,23 @@
                     <div class="oui-tile__actions" data-ng-if="domain">
                         <oui-action-menu
                             aria-label="{{ :: 'cdn_domain_configuration_title_button' | translate }}"
-                            data-align="end"
                             data-compact
                             data-title="{{ :: 'cdn_domain_configuration_title_button' | translate }}"
+                            data-placement="end"
                         >
                             <oui-action-menu-item
                                 aria-label="{{ domain.mode === 'ON' ? ('cdn_domain_configuration_bypass_title_button' | translate) : ('cdn_domain_configuration_reactive_title_button' | translate) }}"
-                                data-text="{{ domain.mode === 'ON' ? ('cdn_domain_configuration_bypass_title_button' | translate) : ('cdn_domain_configuration_reactive_title_button' | translate) }}"
                                 data-on-click="setAction('domain/update/cdn-dedicated-domain-domain', domain)"
+                                ><span
+                                    data-translate="cdn_domain_configuration_bypass_title_button"
+                                ></span
                             ></oui-action-menu-item>
                             <oui-action-menu-item
                                 aria-label="{{ :: 'cdn_domain_configuration_delete_title_button' | translate }}"
-                                data-text="{{ :: 'cdn_domain_configuration_delete_title_button' | translate }}"
                                 data-on-click="setAction('domain/delete/cdn-dedicated-domain-delete')"
+                                ><span
+                                    data-translate="cdn_domain_configuration_delete_title_button"
+                                ></span
                             ></oui-action-menu-item>
                         </oui-action-menu>
                     </div>
@@ -86,14 +90,16 @@
                     <div class="oui-tile__actions">
                         <oui-action-menu
                             aria-label="{{ :: 'cdn_domain_configuration_change_backend_title_button' | translate }}"
-                            data-align="end"
                             data-compact
                             data-title="{{ :: 'cdn_domain_configuration_change_backend_title_button' | translate }}"
+                            data-placement="end"
                         >
                             <oui-action-menu-item
                                 aria-label="{{ :: 'cdn_domain_configuration_change_backend_title_button' | translate }}"
-                                data-text="{{ :: 'cdn_domain_configuration_change_backend_title_button' | translate }}"
                                 data-on-click="setAction('domain/backend/update/cdn-dedicated-domain-backend-update')"
+                                ><span
+                                    data-translate="cdn_domain_configuration_change_backend_title_button"
+                                ></span
                             ></oui-action-menu-item>
                         </oui-action-menu>
                     </div>

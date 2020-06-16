@@ -15,36 +15,36 @@
             ></button>
         </div>
         <oui-datagrid data-rows-loader="$ctrl.loadHosts($config)">
-            <oui-column
+            <oui-datagrid-column
                 data-title=":: 'dedicatedCloud_tab_host_id' | translate"
                 data-property="hostId"
             >
-            </oui-column>
-            <oui-column
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 data-title=":: 'dedicatedCloud_tab_host_name' | translate"
                 data-property="name"
             >
-            </oui-column>
-            <oui-column
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 data-title=":: 'dedicatedCloud_tab_host_profile' | translate"
                 data-property="profile"
             >
-            </oui-column>
-            <oui-column
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 data-title=":: 'dedicatedCloud_tab_host_billing' | translate"
             >
                 <span
                     data-translate="{{ 'dedicatedCloud_tab_host_billing_' + $row.billingType }}"
                 ></span>
-            </oui-column>
-            <oui-column
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 data-title=":: 'dedicatedCloud_tab_host_status' | translate"
             >
                 <span
                     data-translate="{{ 'dedicatedCloud_tab_host_status_' + $row.status }}"
                 ></span>
-            </oui-column>
-            <oui-column
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 data-title=":: 'dedicatedCloud_tab_host_consumption' | translate"
             >
                 <span
@@ -68,29 +68,33 @@
                         data-oui-tooltip-placement="top"
                     ></span>
                 </span>
-            </oui-column>
+            </oui-datagrid-column>
             <oui-action-menu
-                data-align="end"
                 data-compact
                 data-ng-if="$row.billingType === $ctrl.RESOURCE_BILLING_TYPES.hourly && $row.status === 'DELIVERED'"
+                data-placement="end"
             >
                 <oui-action-menu-item
-                    data-text="{{:: 'dedicatedCloud_updateResource_toMonthly' | translate }}"
                     data-ng-if="$ctrl.currentService.usesLegacyOrder"
                     data-on-click="setAction('resource/upgradeLegacy/dedicatedCloud-resource-upgradeLegacy', {
                         upgradeType: datacenter.model.isUpgradable && 'demoToMonthly' || 'hourlyToMonthly',
                         type: $ctrl.RESOURCE_UPGRADE_TYPES.host,
                         id: $row.hostId
                     })"
+                    ><span
+                        data-translate="dedicatedCloud_updateResource_toMonthly"
+                    ></span
                 ></oui-action-menu-item>
 
                 <oui-action-menu-item
-                    data-text="{{:: 'dedicatedCloud_updateResource_toMonthly' | translate }}"
                     data-ng-if="!$ctrl.currentService.usesLegacyOrder"
                     data-ui-sref=".resourceUpgrade({
                         id: $row.hostId,
                         type: $ctrl.RESOURCE_UPGRADE_TYPES.host
                     })"
+                    ><span
+                        data-translate="dedicatedCloud_updateResource_toMonthly"
+                    ></span
                 ></oui-action-menu-item>
             </oui-action-menu>
         </oui-datagrid>

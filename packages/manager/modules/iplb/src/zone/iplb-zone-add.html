@@ -1,6 +1,6 @@
 <section class="cui-page__content">
     <oui-back-button
-        data-heading="{{ ::'iplb_zone_add_title' | translate }}"
+        ><span data-translate="iplb_zone_add_title"></span
     ></oui-back-button>
     <p data-translate="iplb_zone_add_intro_text"></p>
     <form novalidate name="$ctrl.form">
@@ -14,11 +14,11 @@
             <div data-ng-if="!$ctrl.isLoading()">
                 <oui-button
                     data-variant="primary"
-                    data-text="{{::'iplb_add' | translate}}"
                     data-on-click="$ctrl.submit()"
+                    ><span data-translate="iplb_add"></span
                 ></oui-button>
                 <a
-                    class="oui-button oui-button_link"
+                    class="oui-button oui-button_ghost"
                     data-translate="iplb_cancel"
                     data-ui-sref="network.iplb.detail.home"
                 ></a>

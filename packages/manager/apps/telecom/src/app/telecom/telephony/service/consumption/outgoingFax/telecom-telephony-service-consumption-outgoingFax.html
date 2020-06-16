@@ -63,7 +63,7 @@
         </div>
 
         <oui-datagrid data-rows="$ctrl.consumption.sorted">
-            <oui-column
+            <oui-datagrid-column
                 data-title="'telephony_service_consumption_date' | translate"
                 data-property="creationDatetime"
                 data-sortable="desc"
@@ -74,16 +74,16 @@
                 <span
                     data-ng-bind="::$row.creationDatetime | date: 'HH:mm:ss'"
                 ></span>
-            </oui-column>
+            </oui-datagrid-column>
 
-            <oui-column
+            <oui-datagrid-column
                 data-title="'telephony_service_consumption_outgoing_fax_pages' | translate"
                 data-property="pages"
             >
                 <span data-ng-bind="$row.pages"></span>
-            </oui-column>
+            </oui-datagrid-column>
 
-            <oui-column
+            <oui-datagrid-column
                 data-title="'telephony_service_consumption_type' | translate"
                 data-property="wayType"
                 data-sortable
@@ -91,23 +91,23 @@
                 <span
                     data-ng-bind="::'telephony_service_consumption_type_' + $row.wayType | translate"
                 ></span>
-            </oui-column>
+            </oui-datagrid-column>
 
-            <oui-column
+            <oui-datagrid-column
                 data-title="'telephony_service_consumption_destination' | translate"
                 data-property="called"
                 data-sortable
             >
                 <span data-ng-bind="::$row.called"></span>
-            </oui-column>
+            </oui-datagrid-column>
 
-            <oui-column
+            <oui-datagrid-column
                 data-title="'telephony_service_consumption_price_ht' | translate"
                 data-property="priceWithoutTax.value"
                 data-sortable
             >
                 <span data-ng-bind="::$row.priceWithoutTax.text || '-'"></span>
-            </oui-column>
+            </oui-datagrid-column>
         </oui-datagrid>
     </div>
     <!-- /.widget-presentation -->

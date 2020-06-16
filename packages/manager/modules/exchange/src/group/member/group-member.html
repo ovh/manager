@@ -7,14 +7,15 @@
     ></h2>
 
     <oui-datagrid data-rows-loader="ctrl.getMembersByGroup($config)">
-        <oui-column
+        <oui-datagrid-column
             data-title="'exchange_tab_GROUPS_all_table_user' | translate"
             data-property="displayAddress"
-        ></oui-column>
-        <oui-action-menu data-align="end" data-compact>
-            <oui-action-menu-item
-                data-text="{{'exchange_tab_account_delete_account' | translate}}"
-                data-on-click="ctrl.removeMember($row)"
+        ></oui-datagrid-column>
+        <oui-action-menu data-compact data-placement="end">
+            <oui-action-menu-item data-on-click="ctrl.removeMember($row)"
+                ><span
+                    data-translate="exchange_tab_account_delete_account"
+                ></span
             ></oui-action-menu-item>
         </oui-action-menu>
     </oui-datagrid>

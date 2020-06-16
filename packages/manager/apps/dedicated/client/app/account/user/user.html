@@ -1,47 +1,41 @@
 <div class="user-account">
-    <oui-page-header
-        data-heading="{{ :: 'user_account_title_infos' | translate }}"
-    >
+    <oui-header data-heading="{{ :: 'user_account_title_infos' | translate }}">
         <oui-header-tabs>
             <oui-header-tabs-item
-                data-text="{{ 'user_account_title_dashboard' | translate }}"
                 data-href="{{ $ctrl.$state.href('app.account.user.dashboard') }}"
                 data-active="$ctrl.$state.includes('app.account.user.dashboard')"
-            >
+                ><span data-translate="user_account_title_dashboard"></span>
             </oui-header-tabs-item>
             <oui-header-tabs-item
-                data-text="{{ 'user_account_security_title' | translate }}"
                 data-href="{{ $ctrl.$state.href('app.account.user.security') }}"
                 data-active="$ctrl.$state.includes('app.account.user.security')"
-            >
+                ><span data-translate="user_account_security_title"></span>
             </oui-header-tabs-item>
             <oui-header-tabs-item
-                data-text="{{ 'user_account_emails_title' | translate }}"
                 data-href="{{ $ctrl.$state.href('app.account.user.emails') }}"
                 data-active="$ctrl.$state.includes('app.account.user.emails')"
-            >
+                ><span data-translate="user_account_emails_title"></span>
             </oui-header-tabs-item>
             <oui-header-tabs-item
-                data-text="{{ 'user_account_support_level_title' | translate }}"
                 data-href="{{ $ctrl.$state.href('app.account.user.support-level') }}"
                 data-active="$ctrl.$state.includes('app.account.user.support-level')"
                 data-ng-if="$ctrl.supportLevel"
-            >
+                ><span data-translate="user_account_support_level_title"></span>
             </oui-header-tabs-item>
             <oui-header-tabs-item
-                data-text="{{ 'user_account_users_management_title' | translate }}"
                 data-href="{{ $ctrl.$state.href('app.account.user.users') }}"
                 data-active="$ctrl.$state.includes('app.account.user.users')"
-            >
+                ><span
+                    data-translate="user_account_users_management_title"
+                ></span>
             </oui-header-tabs-item>
             <oui-header-tabs-item
-                data-text="{{ 'user_account_advanced_title' | translate }}"
                 data-href="{{ $ctrl.$state.href('app.account.user.advanced') }}"
                 data-active="$ctrl.$state.includes('app.account.user.advanced')"
-            >
+                ><span data-translate="user_account_advanced_title"></span>
             </oui-header-tabs-item>
         </oui-header-tabs>
-    </oui-page-header>
+    </oui-header>
 
     <div class="tab-content" data-ui-view></div>
 

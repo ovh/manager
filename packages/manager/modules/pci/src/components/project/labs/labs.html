@@ -10,14 +10,14 @@
     <span data-ng-repeat="contract in $ctrl.lab.contracts track by id">
         <a
             data-ng-href="{{ contract.pdf }}"
-            href=""
+            href
             target="_blank"
             class="oui-link_icon"
             rel="noopener"
         >
             <span data-ng-bind="contract.name"></span>
             <span
-                class="oui-icon oui-icon-external_link"
+                class="oui-icon oui-icon-external-link"
                 aria-hidden="true"
             ></span>
         </a>

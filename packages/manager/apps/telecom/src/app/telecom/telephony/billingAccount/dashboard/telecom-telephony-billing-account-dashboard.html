@@ -12,7 +12,7 @@
         <div class="col-xs-12 col-md-4">
             <div class="oui-tile h-100 mb-5">
                 <h3
-                    class="oui-header_3 oui-tile__title"
+                    class="oui-tile__title oui-heading_3"
                     data-translate="group_dashboard_actions"
                 ></h3>
                 <div class="oui-tile__body">
@@ -21,7 +21,7 @@
                         data-ng-repeat="action in DashboardCtrl.actions track by $index"
                     >
                         <a
-                            class="oui-tile__button oui-button oui-button_link oui-button_icon-right oui-button_full-width"
+                            class="oui-tile__button oui-button oui-button_icon-right oui-button_ghost oui-button_block"
                             data-ui-sref="{{ action.sref }}"
                         >
                             <span data-ng-bind="action.text"></span>
@@ -33,7 +33,7 @@
                     </div>
                     <div class="oui-tile__item oui-tile__item_button">
                         <a
-                            class="oui-tile__button oui-button oui-button_link oui-button_icon-right oui-button_full-width"
+                            class="oui-tile__button oui-button oui-button_icon-right oui-button_ghost oui-button_block"
                             data-ui-sref="telecom.telephony.billingAccount.alias.portabilities({ serviceName: 'default'})"
                         >
                             <span
@@ -61,7 +61,7 @@
                     </div>
                     <div class="oui-tile__item oui-tile__item_button">
                         <a
-                            class="oui-tile__button oui-button oui-button_link oui-button_icon-right oui-button_full-width"
+                            class="oui-tile__button oui-button oui-button_icon-right oui-button_ghost oui-button_block"
                             data-ui-sref="telecom.telephony.billingAccount.portabilityOrder"
                         >
                             <span
@@ -75,7 +75,7 @@
                     </div>
                     <div class="oui-tile__item oui-tile__item_button">
                         <a
-                            class="oui-tile__button oui-button oui-button_link oui-button_icon-right oui-button_full-width"
+                            class="oui-tile__button oui-button oui-button_icon-right oui-button_ghost oui-button_block"
                             data-ui-sref="telecom.telephony.billingAccount.fax.fax.convertToVoicefax({ serviceName: 'null' })"
                         >
                             <span
@@ -94,7 +94,7 @@
         <div class="col-xs-12 col-md-4">
             <div class="oui-tile h-100 mb-5">
                 <h3
-                    class="oui-header_3 oui-tile__title"
+                    class="oui-tile__title oui-heading_3"
                     data-translate="telephony_group_billing_dashboard_information_title"
                 ></h3>
                 <div class="oui-tile__body">
@@ -177,7 +177,7 @@
         <div class="col-xs-12 col-md-4">
             <div class="oui-tile h-100 mb-5">
                 <h3
-                    class="oui-header_3 oui-tile__title"
+                    class="oui-tile__title oui-heading_3"
                     data-translate="telephony_group_billing_dashboard_consumption_title"
                 ></h3>
                 <div class="oui-tile__body">
@@ -210,7 +210,7 @@
         data-ng-if="!DashboardCtrl.loading.init && DashboardCtrl.group && DashboardCtrl.group.lines.length"
     >
         <h3
-            class="oui-header_3 oui-tile__title"
+            class="oui-tile__title oui-heading_3"
             data-translate="telephony_group_billing_dashboard_network_title"
         ></h3>
         <div class="oui-tile__body">
@@ -297,7 +297,7 @@
 
     <div class="oui-tile mb-5">
         <h3
-            class="oui-header_3 oui-tile__title"
+            class="oui-tile__title oui-heading_3"
             data-translate="telephony_group_billing_dashboard_bill_title"
         ></h3>
         <div class="oui-tile__body">
@@ -306,21 +306,21 @@
                     data-rows="DashboardCtrl.bills"
                     data-page-size="5"
                 >
-                    <oui-column
+                    <oui-datagrid-column
                         data-title="'telephony_group_billing_dashboard_bill_date' | translate"
                         data-property="date"
                         data-sortable="desc"
                     >
                         <span data-ng-bind="$row.date | date"></span>
-                    </oui-column>
-                    <oui-column
+                    </oui-datagrid-column>
+                    <oui-datagrid-column
                         data-title="'telephony_group_billing_dashboard_bill_amount' | translate"
                         data-property="price.text"
                         data-sortable
                     >
                         <span data-ng-bind="$row.price.text"></span>
-                    </oui-column>
-                    <oui-column
+                    </oui-datagrid-column>
+                    <oui-datagrid-column
                         data-title="'telephony_group_billing_dashboard_bill_paid' | translate"
                         data-property="status"
                         data-sortable
@@ -330,9 +330,9 @@
                             data-ng-bind="($row.status === 'done' ? 'yes' : 'no') | translate"
                         >
                         </span>
-                    </oui-column>
+                    </oui-datagrid-column>
 
-                    <oui-action-menu data-align="end" data-compact>
+                    <oui-action-menu data-compact data-placement="end">
                         <oui-action-menu-item
                             on-click="DashboardCtrl.download($row, 'pdf')"
                         >

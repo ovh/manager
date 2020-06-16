@@ -2,7 +2,7 @@
     <div class="row d-lg-flex">
         <div class="col-xm-12">
             <h1
-                class="oui-header_1"
+                class="oui-heading_1"
                 data-translate="vps_configuration_activate_snapshot_title"
             ></h1>
             <oui-stepper data-on-init="$ctrl.loadVps()">
@@ -26,11 +26,12 @@
                         data-translate="vps_configuration_activate_snapshot_step1_id"
                     ></div>
                     <oui-checkbox
-                        data-text="{{ ::'vps_configuration_activate_snapshot_step1_contracts' | translate }}"
                         id="contractsValidated"
                         name="contractsValidated"
                         data-model="$ctrl.model.contractsValidated"
-                    >
+                        ><span
+                            data-translate="vps_configuration_activate_snapshot_step1_contracts"
+                        ></span>
                     </oui-checkbox>
                     <ul>
                         <li
@@ -45,7 +46,7 @@
                             >
                                 <span data-ng-bind="contract.name"></span>
                                 <span
-                                    class="oui-icon oui-icon-external_link"
+                                    class="oui-icon oui-icon-external-link"
                                     aria-hidden="true"
                                 ></span>
                             </a>

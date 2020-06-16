@@ -13,11 +13,11 @@
         data-rows="extensionCtrl.extensions"
         data-row-loader="extensionCtrl.transformItem($row)"
     >
-        <oui-column
+        <oui-datagrid-column
             data-title="'privateDatabase_tabs_list_extensions_extension' | translate"
             data-property="extensionName"
-        ></oui-column>
-        <oui-column
+        ></oui-datagrid-column>
+        <oui-datagrid-column
             data-title="'privateDatabase_tabs_list_extensions_enabled' | translate"
             data-property="status"
         >
@@ -32,10 +32,10 @@
                 <i class="oui-icon oui-icon-success" aria-hidden="true"></i>
                 <i class="oui-icon oui-icon-error" aria-hidden="true"></i>
             </label>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title="'privateDatabase_tabs_list_extensions_description' | translate"
             data-property="description"
-        ></oui-column>
+        ></oui-datagrid-column>
     </oui-datagrid>
 </div>

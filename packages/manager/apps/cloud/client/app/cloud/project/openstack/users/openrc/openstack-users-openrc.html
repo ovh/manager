@@ -6,7 +6,7 @@
 >
     <div class="oui-modal__header">
         <button
-            class="oui-icon oui-icon-close_thin oui-modal__close-button"
+            class="oui-icon oui-modal__close-button oui-icon-close"
             type="button"
             aria-label="Exit"
             data-ng-click="OpenstackUsersOpenrcCtrl.cancel()"
@@ -68,9 +68,10 @@
                 <oui-field>
                     <oui-checkbox
                         name="version"
-                        data-text="{{ ::'cpou_openrc_form_version3' | translate }}"
                         data-model="OpenstackUsersOpenrcCtrl.data.v3"
-                    >
+                        ><span
+                            data-translate="cpou_openrc_form_version3"
+                        ></span>
                     </oui-checkbox>
                 </oui-field>
             </div>
