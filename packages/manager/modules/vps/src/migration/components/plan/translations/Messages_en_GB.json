@@ -14,5 +14,7 @@
   "vps_migration_plan_save_next": "Save and continue",
   "vps_migration_plan_success": "Your VPS migration is scheduled",
   "vps_migration_plan_success_with_date": "Your VPS migration is scheduled on {{date}} at {{time}}",
-  "vps_migration_plan_error": "Failed to schedule VPS migration: {{message}}"
+  "vps_migration_plan_error": "Failed to schedule VPS migration: {{message}}",
+  "vps_migrate_schedule_description_price_update": "The new price of your VPS, with its options and licences, will be applied on its renewal date.",
+  "vps_migrate_schedule_description_windows_license_info": "If you have a Windows licence, it will become paid within the new range."
 }

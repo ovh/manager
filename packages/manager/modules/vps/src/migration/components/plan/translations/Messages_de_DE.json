@@ -14,5 +14,7 @@
   "vps_migration_plan_save_next": "Speichern und weiter",
   "vps_migration_plan_success": "Der Wechsel Ihres VPS ist geplant",
   "vps_migration_plan_success_with_date": "Der Wechsel Ihres VPS ist für den {{date}} um {{time}} geplant",
-  "vps_migration_plan_error": "Die Planung des Wechsels Ihres VPS ist fehlgeschlagen: {{message}}"
+  "vps_migration_plan_error": "Die Planung des Wechsels Ihres VPS ist fehlgeschlagen: {{message}}",
+  "vps_migrate_schedule_description_price_update": "Der neue Preis Ihres VPS einschließlich seiner Optionen und Lizenzen wird an seinem Jahrestag berechnet.",
+  "vps_migrate_schedule_description_windows_license_info": "Wenn Sie eine Windows Lizenz hatten, so wird diese im Rahmen der neuen Server-Reihe kostenpflichtig."
 }
