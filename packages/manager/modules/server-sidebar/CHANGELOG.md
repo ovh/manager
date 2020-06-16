@@ -1,3 +1,20 @@
+# [1.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@1.5.2...@ovh-ux/manager-server-sidebar@1.6.0) (2020-06-16)
+
+
+### Bug Fixes
+
+* update order url for CA ([e663d02](https://github.com/ovh/manager/commit/e663d028a10dd51b47b0034b5d3e7667dbffeec4))
+* **server-sidebar:** update web constants for CA ([#2826](https://github.com/ovh/manager/issues/2826)) ([4499849](https://github.com/ovh/manager/commit/4499849f87b7d556dcf23286b05225c924094d37))
+* **web.order:** disable standalone email for CA ([#3024](https://github.com/ovh/manager/issues/3024)) ([16563c6](https://github.com/ovh/manager/commit/16563c63ea2495bf72038cf80bbcd9d601c7aa13))
+
+
+### Features
+
+* add guides and order url for CA ([3b488cb](https://github.com/ovh/manager/commit/3b488cbcda5d3ad51fcf2adb04add073182749fd))
+* **server-sidebar:** enable web in CA ([988f9d9](https://github.com/ovh/manager/commit/988f9d99fe58909f61f0df5be983150a467026df))
+
+
+
 ## [1.5.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@1.5.1...@ovh-ux/manager-server-sidebar@1.5.2) (2020-06-09)
 
 

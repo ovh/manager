@@ -1,3 +1,12 @@
+# [5.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@5.4.2...@ovh-ux/manager-overthebox@5.5.0) (2020-06-16)
+
+
+### Features
+
+* **details:** add release channels ([#3045](https://github.com/ovh/manager/issues/3045)) ([28e6f08](https://github.com/ovh/manager/commit/28e6f08b7086ca4dbca9ccd6e3f9602a88c58ecd))
+
+
+
 ## [5.4.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@5.4.1...@ovh-ux/manager-overthebox@5.4.2) (2020-06-09)
 
 

@@ -1,3 +1,12 @@
+# [8.1.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@8.0.2...@ovh-ux/ng-ovh-web-universe-components@8.1.0) (2020-06-16)
+
+
+### Features
+
+* **guides:** add guides url for CA ([#3050](https://github.com/ovh/manager/issues/3050)) ([b50284e](https://github.com/ovh/manager/commit/b50284e37774cf34c1e88a5a4cc9c249cfa637a8))
+
+
+
 ## [8.0.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@8.0.1...@ovh-ux/ng-ovh-web-universe-components@8.0.2) (2020-06-09)
 
 

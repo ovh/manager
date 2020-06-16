@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-cloud",
-  "version": "9.5.1",
+  "version": "9.5.2",
   "private": true,
   "description": "OVHcloud Cloud control panel.",
   "repository": {
@@ -31,7 +31,7 @@
     "@ovh-ux/manager-server-sidebar": "^1.0.0",
     "@ovh-ux/ng-at-internet": "^5.0.1",
     "@ovh-ux/ng-at-internet-ui-router-plugin": "^3.1.0",
-    "@ovh-ux/ng-ovh-actions-menu": "^5.0.5",
+    "@ovh-ux/ng-ovh-actions-menu": "^5.0.6",
     "@ovh-ux/ng-ovh-api-wrappers": "^4.0.7",
     "@ovh-ux/ng-ovh-browser-alert": "^2.0.0",
     "@ovh-ux/ng-ovh-checkbox-table": "^2.0.0",
@@ -48,7 +48,7 @@
     "@ovh-ux/ng-ovh-responsive-page-switcher": "^2.0.0",
     "@ovh-ux/ng-ovh-responsive-popover": "^5.0.2",
     "@ovh-ux/ng-ovh-responsive-tabs": "^6.0.2",
-    "@ovh-ux/ng-ovh-sidebar-menu": "^9.1.1",
+    "@ovh-ux/ng-ovh-sidebar-menu": "^9.1.2",
     "@ovh-ux/ng-ovh-slider": "^2.0.0",
     "@ovh-ux/ng-ovh-sso-auth": "^4.2.3",
     "@ovh-ux/ng-ovh-sso-auth-modal-plugin": "^4.0.0",

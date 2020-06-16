@@ -1,3 +1,12 @@
+## [12.5.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@12.5.3...@ovh-ux/manager-dedicated@12.5.4) (2020-06-16)
+
+
+### Bug Fixes
+
+* **account.contacts.service:** url encode servicename ([#3077](https://github.com/ovh/manager/issues/3077)) ([a31dc09](https://github.com/ovh/manager/commit/a31dc0966169a825294d04ec7e5a284223b5b929))
+
+
+
 ## [12.5.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@12.5.2...@ovh-ux/manager-dedicated@12.5.3) (2020-06-15)
 
 

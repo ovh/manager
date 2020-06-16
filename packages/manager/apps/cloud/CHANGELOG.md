@@ -1,3 +1,13 @@
+## [9.5.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@9.5.1...@ovh-ux/manager-cloud@9.5.2) (2020-06-16)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 435] ([d398416](https://github.com/ovh/manager/commit/d3984165ab706783325f2a5113981bc95a31b6d2))
+* **i18n:** add missing translations [CDS 442] ([01919d0](https://github.com/ovh/manager/commit/01919d088e1b9017365d88a70b662ebff90b482c))
+
+
+
 ## [9.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@9.5.0...@ovh-ux/manager-cloud@9.5.1) (2020-06-09)
 
 
