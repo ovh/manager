@@ -160,17 +160,17 @@
                                     data-ng-if="!$ctrl.editMode"
                                 >
                                     <span
-                                        class="oui-status oui-status_success"
+                                        class="oui-badge oui-badge_success"
                                         data-translate="domain_tab_DNS_state_activated"
                                         data-ng-if="dnsItem.isUsed && !dnsItem.toDelete"
                                     ></span>
                                     <span
-                                        class="oui-status oui-status_info"
+                                        class="oui-badge oui-badge_info"
                                         data-translate="domain_tab_DNS_state_adding"
                                         data-ng-if="!dnsItem.isUsed && !dnsItem.toDelete"
                                     ></span>
                                     <span
-                                        class="oui-status oui-status_error"
+                                        class="oui-badge oui-badge_error"
                                         data-translate="domain_tab_DNS_state_deleting"
                                         data-ng-if="dnsItem.toDelete"
                                     ></span>

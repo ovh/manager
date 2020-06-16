@@ -1,5 +1,5 @@
 <div data-ui-view>
-    <oui-page-header data-heading="{{ ::'data_processing_jobs' | translate }}">
+    <oui-header data-heading="{{ ::'data_processing_jobs' | translate }}">
         <oui-guide-menu
             data-text="{{:: 'pci_project_guides_header' | translate }}"
         >
@@ -9,7 +9,7 @@
                 ></span>
             </oui-guide-menu-item>
         </oui-guide-menu>
-    </oui-page-header>
+    </oui-header>
     <div>
         <!-- cui messages -->
         <cui-message-container
@@ -19,7 +19,7 @@
             data-rows-loader="$ctrl.getJobs($config)"
             data-refreshable
         >
-            <oui-column
+            <oui-datagrid-column
                 data-title="::'data_processing_job_name' | translate"
                 data-property="name"
                 data-sortable
@@ -33,8 +33,8 @@
                 >
                     <span data-ng-bind="::$row.name"></span>
                 </oui-button>
-            </oui-column>
-            <oui-column
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 data-title="::'data_processing_region' | translate"
                 data-property="region"
                 data-type="string"
@@ -45,8 +45,8 @@
                 <span
                     data-ng-bind="::$ctrl.cucRegionService.getTranslatedMicroRegion($row.region)"
                 ></span>
-            </oui-column>
-            <oui-column
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 data-title="::'data_processing_job_type' | translate"
                 data-property="type"
                 data-sortable
@@ -54,8 +54,8 @@
                 data-filterable
             >
                 <span data-ng-bind="::$row.type"></span>
-            </oui-column>
-            <oui-column
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 data-title="::'data_processing_job_cores_ram' | translate"
                 data-property="vcores"
                 data-sortable
@@ -65,8 +65,8 @@
                     'data_processing_job_cores_abbreviation' | translate }}/{{
                     $row.ram }}</span
                 >
-            </oui-column>
-            <oui-column
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 data-title="::'data_processing_job_creation_date' | translate"
                 data-property="creationDate"
                 data-sortable="desc"
@@ -74,8 +74,8 @@
                 <span title="{{ $ctrl.formatDate($row.creationDate) }}"
                     >{{ $ctrl.formatDateFromNow($row.creationDate) }}</span
                 >
-            </oui-column>
-            <oui-column
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 data-title="::'data_processing_job_status' | translate"
                 data-property="status"
                 data-sortable
@@ -83,8 +83,8 @@
                 <pci-project-data-processing-job-status
                     data-status="$row.status"
                 ></pci-project-data-processing-job-status>
-            </oui-column>
-            <oui-action-menu data-align="end" data-compact>
+            </oui-datagrid-column>
+            <oui-action-menu data-compact data-placement="end">
                 <oui-action-menu-item data-on-click="$ctrl.showJob($row.id)">
                     <span
                         data-translate="data_processing_list_button_job_details"
@@ -109,7 +109,7 @@
                     ></span>
                 </oui-action-menu-item>
             </oui-action-menu>
-            <extra-top>
+            <oui-datagrid-topbar>
                 <oui-button data-on-click="$ctrl.submitJob()">
                     <span
                         class="oui-icon oui-icon-add"
@@ -119,7 +119,7 @@
                         data-translate="data_processing_create_button_label"
                     ></span>
                 </oui-button>
-            </extra-top>
+            </oui-datagrid-topbar>
         </oui-datagrid>
     </div>
 </div>

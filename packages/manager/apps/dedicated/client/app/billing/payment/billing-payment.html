@@ -1,56 +1,49 @@
 <div class="billing-payment">
-    <oui-page-header
-        data-heading="{{ :: 'billing_payment_title' | translate }}"
-    >
+    <oui-header data-heading="{{ :: 'billing_payment_title' | translate }}">
         <oui-header-tabs>
             <oui-header-tabs-item
-                data-text="{{ 'billing_payment_method_title' | translate }}"
                 data-href="{{ $ctrl.$state.href('app.account.billing.payment.method') }}"
                 data-active="$ctrl.$state.includes('app.account.billing.payment.method')"
-            >
+                ><span data-translate="billing_payment_method_title"></span>
             </oui-header-tabs-item>
             <oui-header-tabs-item
                 data-ng-if="$ctrl.coreConfig.getRegion() !== 'US'"
-                data-text="{{ 'billing_payment_ovhaccount_title' | translate }}"
                 data-href="{{ $ctrl.$state.href('app.account.billing.payment.ovhaccount') }}"
                 data-active="$ctrl.$state.includes('app.account.billing.payment.ovhaccount')"
-            >
+                ><span data-translate="billing_payment_ovhaccount_title"></span>
             </oui-header-tabs-item>
             <oui-header-tabs-item
                 data-ng-if="$ctrl.coreConfig.getRegion() !== 'US'"
-                data-text="{{ 'billing_payment_vouchers_title' | translate }}"
                 data-href="{{ $ctrl.$state.href('app.account.billing.payment.vouchers') }}"
                 data-active="$ctrl.$state.includes('app.account.billing.payment.vouchers')"
-            >
+                ><span data-translate="billing_payment_vouchers_title"></span>
             </oui-header-tabs-item>
             <oui-header-tabs-item
-                data-text="{{ 'billing_payment_refunds_title' | translate }}"
                 data-href="{{ $ctrl.$state.href('app.account.billing.payment.refunds') }}"
                 data-active="$ctrl.$state.includes('app.account.billing.payment.refunds')"
-            >
+                ><span data-translate="billing_payment_refunds_title"></span>
             </oui-header-tabs-item>
             <oui-header-tabs-item
                 data-ng-if="$ctrl.coreConfig.getRegion() === 'EU'"
-                data-text="{{ 'billing_payment_fidelity_title' | translate }}"
                 data-href="{{ $ctrl.$state.href('app.account.billing.payment.fidelity') }}"
                 data-active="$ctrl.$state.includes('app.account.billing.payment.fidelity')"
-            >
+                ><span data-translate="billing_payment_fidelity_title"></span>
             </oui-header-tabs-item>
             <oui-header-tabs-item
-                data-text="{{ 'billing_payment_credits_title' | translate }}"
                 data-href="{{ $ctrl.$state.href('app.account.billing.payment.credits') }}"
                 data-active="$ctrl.$state.includes('app.account.billing.payment.credits')"
-            >
+                ><span data-translate="billing_payment_credits_title"></span>
             </oui-header-tabs-item>
             <oui-header-tabs-item
                 data-ng-if="$ctrl.coreConfig.getRegion() === 'EU'"
-                data-text="{{ 'billing_payment_transations_title' | translate }}"
                 data-href="{{ $ctrl.$state.href('app.account.billing.payment.transactions') }}"
                 data-active="$ctrl.$state.includes('app.account.billing.payment.transactions')"
-            >
+                ><span
+                    data-translate="billing_payment_transations_title"
+                ></span>
             </oui-header-tabs-item>
         </oui-header-tabs>
-    </oui-page-header>
+    </oui-header>
 
     <div class="tab-content" data-ui-view></div>
 </div>

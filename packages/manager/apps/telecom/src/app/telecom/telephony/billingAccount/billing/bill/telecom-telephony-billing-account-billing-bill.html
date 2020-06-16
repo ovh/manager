@@ -18,21 +18,21 @@
             ></h2>
 
             <oui-datagrid data-rows="BillingAccountBillCtrl.consumption.raw">
-                <oui-column
+                <oui-datagrid-column
                     data-title="'telephony_group_billing_bill_date' | translate"
                     data-property="date"
                     data-sortable="desc"
                 >
                     <span data-ng-bind="$row.date | date"></span>
-                </oui-column>
-                <oui-column
+                </oui-datagrid-column>
+                <oui-datagrid-column
                     data-title="'telephony_group_billing_bill_amount' | translate"
                     data-property="price.value"
                     data-sortable
                 >
                     <span data-ng-bind="$row.price.text"></span>
-                </oui-column>
-                <oui-column
+                </oui-datagrid-column>
+                <oui-datagrid-column
                     data-title="'telephony_group_billing_bill_paid' | translate"
                     data-property="status"
                     data-sortable
@@ -42,9 +42,9 @@
                         data-ng-bind="($row.status === 'done' ? 'yes' : 'no') | translate"
                     >
                     </span>
-                </oui-column>
+                </oui-datagrid-column>
 
-                <oui-action-menu data-align="end" data-compact>
+                <oui-action-menu data-compact data-placement="end">
                     <oui-action-menu-item
                         on-click="BillingAccountBillCtrl.download($row, 'pdf')"
                     >

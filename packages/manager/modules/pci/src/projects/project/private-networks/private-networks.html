@@ -1,5 +1,5 @@
 <div data-ui-view>
-    <oui-page-header
+    <oui-header
         data-heading="{{:: 'pci_projects_project_network_private' | translate }}"
         class="mb-3"
     >
@@ -12,7 +12,7 @@
                 ></span>
             </oui-guide-menu-item>
         </oui-guide-menu>
-    </oui-page-header>
+    </oui-header>
     <cui-message-container
         data-messages="$ctrl.messages"
     ></cui-message-container>
@@ -35,7 +35,7 @@
         data-row-loader="$ctrl.getCIDR($row)"
         data-ng-if="$ctrl.privateNetworks.length > 0"
     >
-        <extra-top>
+        <oui-datagrid-topbar>
             <button
                 class="oui-button oui-button_secondary oui-button_icon-left mb-2"
                 data-ng-click="$ctrl.createNetwork()"
@@ -49,15 +49,15 @@
                     data-translate="pci_projects_project_network_private_create"
                 ></span>
             </button>
-        </extra-top>
-        <oui-column
+        </oui-datagrid-topbar>
+        <oui-datagrid-column
             data-title=":: 'pci_projects_project_network_private_name' | translate"
             data-property="name"
             data-searchable
             data-type="string"
             data-filterable
-        ></oui-column>
-        <oui-column
+        ></oui-datagrid-column>
+        <oui-datagrid-column
             data-title=":: 'pci_projects_project_network_private_region' | translate"
             data-property="formattedRegions"
             data-type="string"
@@ -70,19 +70,19 @@
                 data-oui-popover="{{ $row.formattedRegions }}"
                 type="button"
             ></button>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title=":: 'pci_projects_project_network_private_vlan_id' | translate"
             data-property="vlanId"
             data-type="string"
             data-searchable
             data-filterable
-        ></oui-column>
-        <oui-column
+        ></oui-datagrid-column>
+        <oui-datagrid-column
             data-title=":: 'pci_projects_project_network_private_address' | translate"
             property="address"
-        ></oui-column>
-        <oui-action-menu data-align="end" data-compact>
+        ></oui-datagrid-column>
+        <oui-action-menu data-compact data-placement="end">
             <oui-action-menu-item on-click="$ctrl.deleteNetwork($row.id)">
                 <span
                     data-translate="pci_projects_project_network_private_delete"

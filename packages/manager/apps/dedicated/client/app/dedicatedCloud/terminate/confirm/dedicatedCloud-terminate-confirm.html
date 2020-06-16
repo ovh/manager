@@ -5,13 +5,13 @@
     data-ng-submit="$ctrl.onTerminateConfirmFormSubmit()"
 >
     <oui-modal
-        data-title="{{ :: 'dedicatedCloud_confirm_close_service' | translate }}"
         data-on-dismiss="$ctrl.onModalDismiss()"
         data-primary-label="{{ :: 'dedicatedCloud_confirm_close_confirm' | translate }}"
         data-primary-action="$ctrl.onModalPrimaryBtnClick()"
         data-secondary-label="{{ :: 'dedicatedCloud_confirm_close_cancel' | translate }}"
         data-secondary-action="$ctrl.onModalSecondaryBtnClick()"
         data-loading="$ctrl.loading.confirm"
+        data-heading="{{ :: 'dedicatedCloud_confirm_close_service' | translate }}"
     >
         <oui-field
             label="{{ :: 'dedicatedCloud_confirm_close_question' | translate }}"
@@ -19,10 +19,11 @@
             <oui-radio
                 data-ng-repeat="reason in $ctrl.reasons track by $index"
                 name="reasons"
-                data-text="{{ :: ('dedicatedCloud_confirm_close_reason_' + reason.toLowerCase()) | translate }}"
                 data-model="$ctrl.model.reason"
                 data-value="reason"
-            >
+                ><span
+                    data-ng-bind=":: ('dedicatedCloud_confirm_close_reason_' + reason.toLowerCase()) | translate"
+                ></span>
             </oui-radio>
         </oui-field>
 

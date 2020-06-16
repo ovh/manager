@@ -22,9 +22,9 @@
 
     <div data-ng-if="!Pack.loader.page && !Pack.inError">
         <div class="telecom-section-header">
-            <header class="oui-page-header">
-                <div class="oui-page-header__container">
-                    <div class="oui-page-header__content">
+            <header class="oui-header">
+                <div class="oui-header__container">
+                    <div class="oui-header__content">
                         <tuc-editable-service-name
                             data-tuc-editable-service-name-title="Pack.pack.description || Pack.pack.offerDescription"
                             data-tuc-editable-service-name-service-name="Pack.pack.packName"
@@ -70,7 +70,7 @@
                         data-ng-repeat="service in row track by service.name"
                     >
                         <div class="oui-tile h-100 mb-5">
-                            <h3 class="oui-header_3 oui-tile__title">
+                            <h3 class="oui-tile__title oui-heading_3">
                                 <span
                                     data-translate="{{ service.name }}"
                                 ></span>

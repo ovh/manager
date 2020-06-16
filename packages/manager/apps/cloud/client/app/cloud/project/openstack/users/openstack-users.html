@@ -13,17 +13,17 @@
 
 <!-- OPENSTACK USERS TABLE -->
 <oui-datagrid data-rows="CloudProjectOpenstackUsersCtrl.table.users">
-    <oui-column
+    <oui-datagrid-column
         data-title="'openstackusers_users_userlist_username_cols' | translate"
         data-property="username"
         data-sortable="asc"
-    ></oui-column>
-    <oui-column
+    ></oui-datagrid-column>
+    <oui-datagrid-column
         data-title="'openstackusers_users_userlist_description_cols' | translate"
         data-property="description"
         data-sortable
-    ></oui-column>
-    <oui-column
+    ></oui-datagrid-column>
+    <oui-datagrid-column
         data-title="'openstackusers_users_userlist_password_cols' | translate"
         data-property="id"
     >
@@ -68,9 +68,9 @@
                 ></oui-spinner>
             </button>
         </div>
-    </oui-column>
+    </oui-datagrid-column>
 
-    <oui-column
+    <oui-datagrid-column
         data-title="'openstackusers_users_userlist_status_cols' | translate"
         data-property="status"
         data-sortable
@@ -87,27 +87,31 @@
         >
             {{ $row.status }}
         </span>
-    </oui-column>
-    <oui-action-menu data-align="end" data-compact>
+    </oui-datagrid-column>
+    <oui-action-menu data-compact data-placement="end">
         <oui-action-menu-item
-            data-text="{{'openstackusers_users_go_to_horizon_button' | translate}}"
             data-on-click="CloudProjectOpenstackUsersCtrl.openHorizon($row)"
+            ><span
+                data-translate="openstackusers_users_go_to_horizon_button"
+            ></span
         ></oui-action-menu-item>
         <oui-action-menu-item
-            data-text="{{'cpou_openrc_title' | translate}}"
             data-on-click="CloudProjectOpenstackUsersCtrl.downloadOpenrcFile($row)"
+            ><span data-translate="cpou_openrc_title"></span
         ></oui-action-menu-item>
         <oui-action-menu-item
-            data-text="{{'cpou_rclone_modal_title' | translate}}"
             data-on-click="CloudProjectOpenstackUsersCtrl.downloadRcloneFile($row)"
+            ><span data-translate="cpou_rclone_modal_title"></span
         ></oui-action-menu-item>
         <oui-action-menu-item
-            data-text="{{'cpou_token_title' | translate}}"
             data-on-click="CloudProjectOpenstackUsersCtrl.generateToken($row)"
+            ><span data-translate="cpou_token_title"></span
         ></oui-action-menu-item>
         <oui-action-menu-item
-            data-text="{{'openstackusers_users_userlist_delete_submit' | translate}}"
             data-on-click="CloudProjectOpenstackUsersCtrl.openDeleteUser($row)"
+            ><span
+                data-translate="openstackusers_users_userlist_delete_submit"
+            ></span
         ></oui-action-menu-item>
     </oui-action-menu>
 </oui-datagrid>

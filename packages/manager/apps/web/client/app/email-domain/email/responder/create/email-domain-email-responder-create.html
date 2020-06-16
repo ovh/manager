@@ -98,7 +98,7 @@
                                     data-ng-options="account for account in ctrl.accountsNotUsed track by account"
                                 >
                                     <option
-                                        value=""
+                                        value
                                         disabled
                                         data-translate="select_placeholder"
                                     ></option>
@@ -302,8 +302,9 @@
                             id="responderKeepCopy"
                             name="responderKeepCopy"
                             data-model="ctrl.model.responderKeepCopy"
-                            data-text="{{ (ctrl.model.responderType === 'typeFree' ? 'email_tab_modal_create_responder_copy' : 'email_tab_modal_create_responder_delete_message') | translate }}"
-                        >
+                            ><span
+                                data-ng-bind="(ctrl.model.responderType === 'typeFree' ? 'email_tab_modal_create_responder_copy' : 'email_tab_modal_create_responder_delete_message') | translate"
+                            ></span>
                         </oui-checkbox>
                         <div
                             class="alert alert-warning"
@@ -335,7 +336,7 @@
                                     data-ng-options="account for account in ctrl.accounts track by account"
                                 >
                                     <option
-                                        value=""
+                                        value
                                         disabled
                                         data-translate="select_placeholder"
                                     ></option>

@@ -9,9 +9,10 @@
     >
         <oui-radio
             data-ng-repeat="(scale, value) in ctrl.scales track by $index"
-            data-text="{{ ::('iplb_graph_scape_' + scale) | translate }}"
             data-value="scale"
-        >
+            ><span
+                data-ng-bind="::('iplb_graph_scape_' + scale) | translate"
+            ></span>
         </oui-radio>
     </oui-radio-toggle-group>
 

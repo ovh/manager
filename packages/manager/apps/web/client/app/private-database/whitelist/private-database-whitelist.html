@@ -19,12 +19,12 @@
                 data-rows="listCtrl.whitelistIps"
                 data-row-loader="listCtrl.transformItem($row)"
             >
-                <oui-column
+                <oui-datagrid-column
                     data-title="'privateDatabase_tabs_whitelist_list_ip_network' | translate"
                     data-property="ip"
                     data-sortable
-                ></oui-column>
-                <oui-column
+                ></oui-datagrid-column>
+                <oui-datagrid-column
                     data-title="'privateDatabase_tabs_whitelist_list_service' | translate"
                     data-property="service"
                 >
@@ -33,8 +33,8 @@
                         data-ng-show="$row.service"
                         aria-hidden="true"
                     ></i>
-                </oui-column>
-                <oui-column
+                </oui-datagrid-column>
+                <oui-datagrid-column
                     data-title="'privateDatabase_tabs_whitelist_list_sftp' | translate"
                     data-property="sftp"
                 >
@@ -43,8 +43,8 @@
                         data-ng-show="$row.sftp"
                         aria-hidden="true"
                     ></i>
-                </oui-column>
-                <oui-column
+                </oui-datagrid-column>
+                <oui-datagrid-column
                     data-title="'privateDatabase_tabs_whitelist_list_status' | translate"
                     data-property="name"
                 >
@@ -64,17 +64,19 @@
                         data-translate="privateDatabase_tabs_whitelist_list_status_deleting"
                     ></span>
                     {{ $row.name | wucSliceContent: 50 }}
-                </oui-column>
-                <oui-action-menu data-align="end" data-compact>
+                </oui-datagrid-column>
+                <oui-action-menu data-compact data-placement="end">
                     <oui-action-menu-item
-                        data-text="{{:: 'privateDatabase_tabs_whitelist_list_popover_edit' | translate }}"
                         data-on-click="listCtrl.editWhitelist($row)"
-                    >
+                        ><span
+                            data-translate="privateDatabase_tabs_whitelist_list_popover_edit"
+                        ></span>
                     </oui-action-menu-item>
                     <oui-action-menu-item
-                        data-text="{{:: 'privateDatabase_tabs_whitelist_list_popover_delete' | translate }}"
                         data-on-click="listCtrl.deleteWhitelist($row)"
-                    >
+                        ><span
+                            data-translate="privateDatabase_tabs_whitelist_list_popover_delete"
+                        ></span>
                     </oui-action-menu-item>
                 </oui-action-menu>
             </oui-datagrid>

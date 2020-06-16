@@ -1,6 +1,5 @@
 <div class="cdn-dedicated-ssl-delete">
     <oui-modal
-        data-title="{{ :: 'cdn_dedicated_ssl_delete_title' | translate }}"
         data-primary-label="{{($ctrl.actionEnabled ? 'wizard_yes' : 'global_OK') | translate}}"
         data-primary-action="$ctrl.onPrimaryActionBtnClick()"
         data-secondary-label="{{$ctrl.actionEnabled ? ('wizard_no' | translate) : ''}}"
@@ -8,6 +7,7 @@
         data-on-dismiss="$ctrl.$state.go('^')"
         data-loading="$ctrl.loading.init || $ctrl.loading.delete"
         data-type="{{ !$ctrl.actionEnabled ? 'warning' : '' }}"
+        data-heading="{{ :: 'cdn_dedicated_ssl_delete_title' | translate }}"
     >
         <div data-ng-if="!$ctrl.actionEnabled">
             <p

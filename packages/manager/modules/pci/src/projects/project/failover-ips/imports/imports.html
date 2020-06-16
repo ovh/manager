@@ -2,29 +2,29 @@
     <h1 data-translate="pci_projects_project_failoverip_imports_title"></h1>
     <div>
         <oui-datagrid data-rows="$ctrl.ips">
-            <oui-column
+            <oui-datagrid-column
                 data-title=":: 'pci_projects_project_failoverip_imports_block' | translate"
                 data-property="ip"
                 data-type="string"
                 data-searchable
             >
-            </oui-column>
-            <oui-column
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 data-title=":: 'pci_projects_project_failoverip_imports_geoloc' | translate"
                 data-property="country"
                 data-type="string"
                 data-searchable
             >
                 <span class="text-uppercase" data-ng-bind="$value"></span>
-            </oui-column>
-            <oui-column
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 data-title=":: 'pci_projects_project_failoverip_imports_id' | translate"
                 data-property="routedTo.serviceName"
                 data-type="string"
                 data-searchable
             >
-            </oui-column>
-            <oui-action-menu data-align="end" data-compact>
+            </oui-datagrid-column>
+            <oui-action-menu data-compact data-placement="end">
                 <oui-action-menu-item
                     data-ui-sref="pci.projects.project.failover-ips.imports.import({ projectId: $ctrl.projectId, serviceName: $row.ip })"
                 >

@@ -1,8 +1,6 @@
 <div data-ng-controller="EmailsMigrateAccountCtrl as ctrl">
-    <oui-back-button
-        data-heading="{{:: 'email_tab_modal_migrate_title' | translate }}"
-        data-on-click="ctrlEmailDomainEmail.displayEmailsList()"
-    >
+    <oui-back-button data-on-click="ctrlEmailDomainEmail.displayEmailsList()"
+        ><span data-translate="email_tab_modal_migrate_title"></span>
     </oui-back-button>
 
     <p>
@@ -16,7 +14,7 @@
                 data-translate="email_tab_modal_migrate_configuration_guides_button"
             ></span>
             <span
-                class="oui-icon oui-icon-external_link"
+                class="oui-icon oui-icon-external-link"
                 aria-hidden="true"
             ></span>
         </a>
@@ -79,11 +77,11 @@
                     >
                         <oui-select-picker
                             name="serviceType"
-                            data-text="{{::serviceType}}"
                             data-placeholder="{{:: 'select_placeholder' | translate }}"
                             data-model="ctrl.migrate.destinationService"
                             data-match="name"
                             data-values="destinationService"
+                            data-label="{{::serviceType}}"
                         >
                         </oui-select-picker>
                     </div>
@@ -106,7 +104,7 @@
             <div data-ng-if="ctrl.migrate.destinationEmail">
                 <!-- Before -->
                 <p
-                    class="oui-header_4"
+                    class="oui-heading_4"
                     data-translate="email_tab_modal_migrate_informations_before_title"
                 ></p>
                 <p>
@@ -126,7 +124,7 @@
 
                 <!-- While -->
                 <p
-                    class="oui-header_4"
+                    class="oui-heading_4"
                     data-translate="email_tab_modal_migrate_informations_while_title"
                 ></p>
                 <p>
@@ -144,7 +142,7 @@
 
                 <!-- After -->
                 <p
-                    class="oui-header_4"
+                    class="oui-heading_4"
                     data-translate="email_tab_modal_migrate_informations_after_title"
                 ></p>
                 <p>
@@ -177,9 +175,10 @@
                     <oui-checkbox
                         name="aknowledge"
                         required
-                        data-text="{{:: 'email_tab_modal_migrate_aknowledge' | translate }}"
                         data-model="ctrl.migrate.aknowledge"
-                    >
+                        ><span
+                            data-translate="email_tab_modal_migrate_aknowledge"
+                        ></span>
                     </oui-checkbox>
                 </oui-field>
                 <!-- /Aknowledge Checkbox -->

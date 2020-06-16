@@ -176,7 +176,7 @@
                                                 data-ng-options="zoneEntryType for zoneEntryType in ctrlDomainTabZoneDns.zone.fieldsTypes track by zoneEntryType"
                                             >
                                                 <option
-                                                    value=""
+                                                    value
                                                     data-translate="domain_tab_ZONE_type_all"
                                                 ></option>
                                             </select>
@@ -367,16 +367,20 @@
                                     <td class="text-right">
                                         <oui-action-menu
                                             data-compact
-                                            data-align="end"
                                             data-ng-if="!(record.fieldType === 'NS' && !record.subDomain) && ctrlDomainTabZoneDns.allowModification"
+                                            data-placement="end"
                                         >
                                             <oui-action-menu-item
-                                                data-text="{{:: 'table_modify_entry' | translate }}"
                                                 data-on-click="setAction('zone/record/edit/domain-zone-record-edit', { domain: ctrlDomainTabZoneDns.domain, fieldTypes: ctrlDomainTabZoneDns.zone.fieldsTypes, edit: record })"
+                                                ><span
+                                                    data-translate="table_modify_entry"
+                                                ></span
                                             ></oui-action-menu-item>
                                             <oui-action-menu-item
-                                                data-text="{{:: 'table_delete_entry' | translate }}"
                                                 data-on-click="setAction('zone/record/delete/domain-zone-record-delete', record)"
+                                                ><span
+                                                    data-translate="table_delete_entry"
+                                                ></span
                                             ></oui-action-menu-item>
                                         </oui-action-menu>
                                     </td>

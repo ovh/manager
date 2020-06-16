@@ -12,7 +12,7 @@
     <span data-ng-if="$ctrl.loading">…</span>
     <div data-ng-if="$ctrl.order && !$ctrl.loading">
         <a
-            class="oui-status oui-status_info mb-2"
+            class="mb-2 oui-badge oui-badge_info"
             data-ng-if="$ctrl.orderTrackingLink"
             data-ng-href="{{:: $ctrl.orderTrackingLink }}"
             data-translate="hub_order_tracking_order_id"
@@ -22,7 +22,7 @@
         ></a>
         <span
             data-ng-if="!$ctrl.orderTrackingLink"
-            class="oui-status oui-status_info"
+            class="oui-badge oui-badge_info"
             data-ng-bind="$ctrl.order.orderId"
         ></span>
         <div class="mb-3 d-flex justify-content-center flex-wrap">
@@ -51,10 +51,7 @@
             data-navi-id="lastOrder-go-to-orders"
         >
             <span data-translate="hub_order_tracking_see_all"></span>
-            <span
-                class="oui-icon oui-icon-arrow-right_extra-thin"
-                aria-hidden="true"
-            >
+            <span class="oui-icon oui-icon-arrow-right" aria-hidden="true">
             </span>
         </a>
     </div>

@@ -46,48 +46,45 @@
         </dl>
         <oui-button
             data-ng-if="$ctrl.actions.activateVrack.isAvailable()"
-            data-text="{{::$ctrl.actions.activateVrack.text}}"
             data-on-click="$ctrl.actions.activateVrack.callback()"
             data-variant="secondary"
-        >
+            ><span data-ng-bind="::$ctrl.actions.activateVrack.text"></span>
         </oui-button>
         <oui-button
             data-ng-if="$ctrl.actions.deActivateVrack.isAvailable()"
-            data-text="{{::$ctrl.actions.deActivateVrack.text}}"
             data-on-click="$ctrl.actions.deActivateVrack.callback()"
             data-variant="secondary"
-        >
+            ><span data-ng-bind="::$ctrl.actions.deActivateVrack.text"></span>
         </oui-button>
     </div>
     <oui-button
-        data-text="{{::$ctrl.actions.addPrivateNetwork.text}}"
         data-on-click="$ctrl.actions.addPrivateNetwork.callback()"
         data-disabled="$ctrl.actions.addPrivateNetwork.isAvailable && !$ctrl.actions.addPrivateNetwork.isAvailable()"
         data-variant="secondary"
-    >
+        ><span data-ng-bind="::$ctrl.actions.addPrivateNetwork.text"></span>
     </oui-button>
     <oui-datagrid data-rows="$ctrl.privateNetworks.data">
-        <oui-column
+        <oui-datagrid-column
             data-title="'iplb_vrack_list_col_private_network' | translate"
             data-property="displayName"
             data-sortable
-        ></oui-column>
-        <oui-column
+        ></oui-datagrid-column>
+        <oui-datagrid-column
             data-title="'iplb_vrack_list_col_vlan_id' | translate"
             data-property="vlan"
             data-sortable
-        ></oui-column>
-        <oui-column
+        ></oui-datagrid-column>
+        <oui-datagrid-column
             data-title="'iplb_vrack_list_col_subnet' | translate"
             data-property="subnet"
             data-sortable
-        ></oui-column>
-        <oui-column
+        ></oui-datagrid-column>
+        <oui-datagrid-column
             data-title="'iplb_vrack_list_col_nat_ip' | translate"
             data-property="natIp"
             data-sortable
-        ></oui-column>
-        <oui-column
+        ></oui-datagrid-column>
+        <oui-datagrid-column
             data-title="'iplb_vrack_list_col_farms' | translate"
             data-property="farmId"
         >
@@ -96,15 +93,19 @@
                 data-ng-repeat="farm in $row.farmId track by $index"
                 data-ng-bind="farm.displayName || farm.farmId"
             ></span>
-        </oui-column>
-        <oui-action-menu data-align="end" data-compact>
+        </oui-datagrid-column>
+        <oui-action-menu data-compact data-placement="end">
             <oui-action-menu-item
-                data-text="{{ $ctrl.actions.editPrivateNetwork.text }}"
                 data-on-click="$ctrl.actions.editPrivateNetwork.callback($row)"
+                ><span
+                    data-ng-bind="$ctrl.actions.editPrivateNetwork.text"
+                ></span
             ></oui-action-menu-item>
             <oui-action-menu-item
-                data-text="{{ $ctrl.actions.deletePrivateNetwork.text }}"
                 data-on-click="$ctrl.actions.deletePrivateNetwork.callback($row)"
+                ><span
+                    data-ng-bind="$ctrl.actions.deletePrivateNetwork.text"
+                ></span
             ></oui-action-menu-item>
         </oui-action-menu>
     </oui-datagrid>

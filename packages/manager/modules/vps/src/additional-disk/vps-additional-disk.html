@@ -28,26 +28,26 @@
             data-ng-if="!$ctrl.canOrder()"
             data-rows="$ctrl.additionnalDisks"
         >
-            <oui-column
+            <oui-datagrid-column
                 data-title="'vps_tab_additional_disk_header_id' | translate"
                 data-property="id"
             >
                 <span data-ng-bind="$row.id"></span>
-            </oui-column>
-            <oui-column
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 data-title="'vps_tab_additional_disk_header_size' | translate"
                 data-property="size"
             >
                 <span data-ng-bind="$row.size"></span>
-            </oui-column>
-            <oui-column
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 data-title="'vps_tab_additional_disk_header_state' | translate"
                 data-property="state"
             >
                 <span
                     data-ng-bind="'vps_tab_additional_disk_state_' + $row.state | translate"
                 ></span>
-            </oui-column>
+            </oui-datagrid-column>
         </oui-datagrid>
     </div>
 </section>

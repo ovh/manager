@@ -12,13 +12,10 @@
                 <oui-spinner></oui-spinner>
             </div>
 
-            <div
-                class="oui-datagrid-topbar__actions"
-                data-ng-if="!$ctrl.isLoading"
-            >
+            <div class="oui-criteria__actions" data-ng-if="!$ctrl.isLoading">
                 <button
                     type="button"
-                    class="oui-button oui-button_secondary oui-button_icon-only oui-button_small-width"
+                    class="oui-button oui-button_secondary oui-button_icon-only oui-button_s"
                     data-ng-click="$ctrl.refresh()"
                     title="{{'common_refresh' | translate}}"
                 >
@@ -30,17 +27,17 @@
                 data-row-loader="$ctrl.transformItem($row.id)"
                 data-ng-if="!$ctrl.isLoading"
             >
-                <oui-column
+                <oui-datagrid-column
                     data-title="::'xdsl_tasks_id' | translate"
                     data-property="id"
                     data-sortable
-                ></oui-column>
-                <oui-column
+                ></oui-datagrid-column>
+                <oui-datagrid-column
                     data-title="::'xdsl_tasks_name' | translate"
                     data-property="function"
                     data-sortable="asc"
-                ></oui-column>
-                <oui-column
+                ></oui-datagrid-column>
+                <oui-datagrid-column
                     data-title="::'xdsl_tasks_status' | translate"
                     data-property="status"
                     data-sortable
@@ -58,8 +55,8 @@
                             data-ng-bind="::'xdsl_tasks_status_' + $row.status | translate"
                         ></span>
                     </span>
-                </oui-column>
-                <oui-column
+                </oui-datagrid-column>
+                <oui-datagrid-column
                     data-title="::'xdsl_tasks_update_date' | translate"
                     data-property="updateDate"
                     data-sortable
@@ -67,7 +64,7 @@
                     <span
                         data-ng-bind="$value | date:'dd/MM/yyyy HH:mm:ss'"
                     ></span>
-                </oui-column>
+                </oui-datagrid-column>
             </oui-datagrid>
         </div>
     </div>

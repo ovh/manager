@@ -1,8 +1,6 @@
 <div data-ng-controller="IpOrganisationCtrl as $ctrl">
-    <oui-back-button
-        data-heading="{{ :: 'ip_organisation_title' | translate }}"
-        data-on-click="$ctrl.hideOrganisation()"
-    >
+    <oui-back-button data-on-click="$ctrl.hideOrganisation()"
+        ><span data-translate="ip_organisation_title"></span>
     </oui-back-button>
     <button
         class="btn btn-default mb-4"
@@ -80,11 +78,12 @@
                     </td>
                     <td data-ng-bind="organisation.abuse_mailbox"></td>
                     <td>
-                        <oui-action-menu data-align="end" data-compact>
+                        <oui-action-menu data-compact data-placement="end">
                             <oui-action-menu-item
-                                data-text="{{ :: 'ip_organisation_edit' | translate }}"
                                 data-on-click="setAction('ip/organisation/add-or-edit/ip-ip-organisation-add-or-edit', organisation)"
-                            >
+                                ><span
+                                    data-translate="ip_organisation_edit"
+                                ></span>
                             </oui-action-menu-item>
                         </oui-action-menu>
                     </td>

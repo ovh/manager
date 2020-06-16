@@ -1,6 +1,5 @@
 <oui-modal
     class="my-0"
-    data-title="{{:: 'vps_terminate_title' | translate }}"
     data-primary-label="{{:: 'vps_terminate_confirm' | translate }}"
     data-primary-action="$ctrl.terminate()"
     data-primary-disabled="!$ctrl.isActionAvailable || !$ctrl.terminateOption"
@@ -8,6 +7,7 @@
     data-secondary-action="$ctrl.cancel()"
     data-type="warning"
     data-loading="$ctrl.isTerminating"
+    data-heading="{{:: 'vps_terminate_title' | translate }}"
 >
     <div data-ng-if="$ctrl.isActionAvailable">
         <p>

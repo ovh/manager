@@ -1,11 +1,11 @@
 <oui-modal
-    data-title="{{ ::'iplb_ssl_update_title' | translate }}"
     data-primary-label="{{ ::'iplb_ssl_update_confirm' | translate }}"
     data-primary-action="IpLoadBalancerSslCertificateUpdateCtrl.update()"
     data-secondary-action="IpLoadBalancerSslCertificateUpdateCtrl.dismiss()"
     data-secondary-label="{{ ::'iplb_ssl_update_cancel' | translate }}"
     data-on-dismiss="IpLoadBalancerSslCertificateUpdateCtrl.dismiss()"
     data-loading="IpLoadBalancerSslCertificateUpdateCtrl.updateSsl.loading"
+    data-heading="{{ ::'iplb_ssl_update_title' | translate }}"
 >
     <oui-field data-label="{{ ::'iplb_ssl_edit_name' | translate }}">
         <input

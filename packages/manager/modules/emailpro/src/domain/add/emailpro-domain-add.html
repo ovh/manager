@@ -62,7 +62,7 @@
                                 data-ng-click="resetSearchValue()"
                             >
                                 <span
-                                    class="oui-icon oui-icon-trash_line oui-icon_small"
+                                    class="oui-icon oui-icon_small oui-icon-bin_concept"
                                     aria-hidden="true"
                                 ></span>
                             </button>
@@ -248,8 +248,9 @@
                         id="srvParam"
                         name="srvParam"
                         data-model="model.srvParam"
-                        data-text="{{:: 'emailpro_tab_domain_add_step2_srv_checkbox' | translate }}"
-                    >
+                        ><span
+                            data-translate="emailpro_tab_domain_add_step2_srv_checkbox"
+                        ></span>
                     </oui-checkbox>
                     <div
                         class="alert alert-info"
@@ -261,8 +262,9 @@
                         id="mxParam"
                         name="mxParam"
                         data-model="model.mxParam"
-                        data-text="{{:: 'emailpro_tab_domain_add_step2_mx_checkbox' | translate }}"
-                    >
+                        ><span
+                            data-translate="emailpro_tab_domain_add_step2_mx_checkbox"
+                        ></span>
                     </oui-checkbox>
                     <div
                         class="alert alert-warning"

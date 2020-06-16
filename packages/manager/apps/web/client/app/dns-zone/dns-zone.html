@@ -21,38 +21,33 @@
         </dl>
     </div>
 
-    <div class="oui-page-header" data-ng-if="!ctrlDomain.domain.isExpired">
+    <div class="oui-header" data-ng-if="!ctrlDomain.domain.isExpired">
         <oui-header-tabs>
             <oui-header-tabs-item
-                data-text="{{:: 'domain_tab_ZONE' | translate }}"
                 data-state="app.domain.dns-zone.dashboard"
                 data-state-params="ctrlDomain.$stateParams"
-            >
+                ><span data-translate="domain_tab_ZONE"></span>
             </oui-header-tabs-item>
             <oui-header-tabs-item
-                data-text="{{:: 'domain_tab_REDIRECTION' | translate }}"
                 data-state="app.domain.dns-zone.redirection"
                 data-state-params="ctrlDomain.$stateParams"
-            >
+                ><span data-translate="domain_tab_REDIRECTION"></span>
             </oui-header-tabs-item>
             <oui-header-tabs-item
                 data-ng-if="ctrlDomain.hasZoneDns && ctrlDomain.capabilities.dynHost"
-                data-text="{{:: 'domain_tab_DYNHOST' | translate }}"
                 data-state="app.domain.dns-zone.dynhost"
                 data-state-params="ctrlDomain.$stateParams"
-            >
+                ><span data-translate="domain_tab_DYNHOST"></span>
             </oui-header-tabs-item>
             <oui-header-tabs-item
-                data-text="{{:: 'domain_tab_TASKS' | translate }}"
                 data-state="app.domain.dns-zone.tasks"
                 data-state-params="ctrlDomain.$stateParams"
-            >
+                ><span data-translate="domain_tab_TASKS"></span>
             </oui-header-tabs-item>
             <oui-header-tabs-item
                 data-ng-if="ctrlDomain.isEmailDomainAvailable"
-                data-text="{{:: 'domain_tab_menu_emails' | translate }}"
                 data-href="{{:: '#/configuration/email-domain/' + ctrlDomain.$stateParams.productId + '?tab=MAILING_LIST'}}"
-            >
+                ><span data-translate="domain_tab_menu_emails"></span>
             </oui-header-tabs-item>
             <oui-header-tabs-item
                 ng-if="contactManagementLink"

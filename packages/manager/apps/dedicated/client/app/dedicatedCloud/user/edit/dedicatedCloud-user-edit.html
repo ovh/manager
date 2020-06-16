@@ -1,11 +1,11 @@
 <form name="userEditForm" data-ng-submit="$ctrl.editUser()" novalidate>
     <oui-modal
-        data-title="{{:: 'dedicatedCloud_USER_modify' | translate }}"
         data-primary-label="{{:: 'wizard_confirm' | translate }}"
         data-secondary-label="{{:: 'wizard_close' | translate }}"
         data-secondary-action="$ctrl.$state.go('^')"
         data-on-dismiss="$ctrl.$state.go('^')"
         data-loading="$ctrl.loading"
+        data-heading="{{:: 'dedicatedCloud_USER_modify' | translate }}"
     >
         <oui-field
             data-label="{{:: 'dedicatedCloud_USER_firstname' | translate }}"

@@ -1,8 +1,7 @@
 <div class="billing-statements-details">
     <oui-back-button
-        data-heading="{{ :: ('billing_history_details' | translate) }}"
         data-href="{{ $ctrl.$state.href('app.account.billing.main.history') }}"
-    >
+        ><span data-translate="billing_history_details"></span>
     </oui-back-button>
 
     <div data-ng-if="$ctrl.loading.init" class="text-center">
@@ -10,58 +9,61 @@
     </div>
 
     <oui-datagrid data-ng-if="!$ctrl.loading.init" data-rows="$ctrl.operations">
-        <oui-column
+        <oui-datagrid-column
             data-title=":: 'billing_history_details_table_header_date' | translate"
         >
             <span data-ng-bind="$row.date | date:'mediumDate'"></span>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title=":: 'billing_history_details_table_header_operation' | translate"
         >
             <span
                 data-translate="{{ :: 'billing_history_details_type_' + $row.type.toLowerCase() }}"
                 data-translate-default="-"
             ></span>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title=":: 'billing_history_details_table_header_status' | translate"
         >
             <span
                 data-translate="{{ :: 'billing_history_details_status_' + $row.status.toLowerCase() }}"
             ></span>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title=":: 'billing_history_details_table_header_amount' | translate"
             data-property="amount.text"
         >
-        </oui-column>
+        </oui-datagrid-column>
         <oui-action-menu
             data-ng-if="$row.type === 'ORDER'"
-            data-align="end"
             data-compact
+            data-placement="end"
         >
             <oui-action-menu-item
                 data-ng-if="!$ctrl.bill"
-                data-text="{{ 'billing_history_details_table_order_link' | translate }}"
                 data-href="{{ :: $ctrl.order.url }}"
                 data-external
-            >
+                ><span
+                    data-translate="billing_history_details_table_order_link"
+                ></span>
             </oui-action-menu-item>
 
             <oui-action-menu-item
                 data-ng-if="$ctrl.bill"
-                data-text="{{ 'billing_history_details_table_bill_html_link' | translate }}"
                 data-href="{{ :: $ctrl.bill.url }}"
                 data-external
-            >
+                ><span
+                    data-translate="billing_history_details_table_bill_html_link"
+                ></span>
             </oui-action-menu-item>
 
             <oui-action-menu-item
                 data-ng-if="$ctrl.bill"
-                data-text="{{ 'billing_history_details_table_bill_pdf_link' | translate }}"
                 data-href="{{ :: $ctrl.bill.pdfUrl }}"
                 data-external
-            >
+                ><span
+                    data-translate="billing_history_details_table_bill_pdf_link"
+                ></span>
             </oui-action-menu-item>
         </oui-action-menu>
     </oui-datagrid>

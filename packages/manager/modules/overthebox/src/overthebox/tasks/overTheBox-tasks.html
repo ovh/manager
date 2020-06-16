@@ -12,17 +12,17 @@
                 data-rows="OverTheBoxTasks.taskIds"
                 data-row-loader="OverTheBoxTasks.transformItem($row)"
             >
-                <oui-column
+                <oui-datagrid-column
                     data-title="'overTheBox_tasks_name' | translate"
                     data-property="name"
                     data-sortable="asc"
-                ></oui-column>
-                <oui-column
+                ></oui-datagrid-column>
+                <oui-datagrid-column
                     data-title="'overTheBox_tasks_id' | translate"
                     data-property="taskId"
                     data-sortable
-                ></oui-column>
-                <oui-column
+                ></oui-datagrid-column>
+                <oui-datagrid-column
                     data-title="'overTheBox_tasks_status' | translate"
                     data-property="status"
                     data-sortable
@@ -40,7 +40,7 @@
                             data-ng-bind="'overTheBox_tasks_status_' + $row.status | translate"
                         ></span>
                     </span>
-                </oui-column>
+                </oui-datagrid-column>
             </oui-datagrid>
         </div>
     </div>

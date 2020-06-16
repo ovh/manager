@@ -1,6 +1,6 @@
 <div class="cui-page">
-    <oui-page-header data-heading="{{::'nasha_order_title' | translate}}">
-    </oui-page-header>
+    <oui-header data-heading="{{::'nasha_order_title' | translate}}">
+    </oui-header>
 
     <!-- init loading... -->
     <cui-message-container
@@ -17,7 +17,7 @@
             <!--Step One-->
             <div>
                 <h2
-                    class="oui-header_2"
+                    class="oui-heading_2"
                     data-translate="nasha_order_step_1_configure"
                 ></h2>
             </div>
@@ -45,7 +45,7 @@
                                         data-ng-options="datacenter as ('nasha_order_datacenter_' + datacenter | translate) for datacenter in NashaAddCtrl.datacenters.data"
                                     >
                                         <option
-                                            value=""
+                                            value
                                             data-translate="nasha_order_select_placeholder"
                                         ></option>
                                     </select>
@@ -75,7 +75,7 @@
                                         data-ng-options="offer.planCode as offer.productName + ' - ' + offer.prices[0].price.text + '/' + ('nas_order_month' | translate) for offer in NashaAddCtrl.offers.data | orderBy: 'prices[0].priceInUcents'"
                                     >
                                         <option
-                                            value=""
+                                            value
                                             data-translate="nasha_order_select_placeholder"
                                         ></option>
                                     </select>
@@ -105,7 +105,7 @@
                                         data-ng-options="duration.value as duration.text for duration in NashaAddCtrl.durations.data | orderBy : 'value'"
                                     >
                                         <option
-                                            value=""
+                                            value
                                             data-translate="nasha_order_select_placeholder"
                                         ></option>
                                     </select>

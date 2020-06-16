@@ -21,11 +21,10 @@
                         class="cloud-billing-accordion-heading-title"
                         data-translate="cpbc_monthly_instance_detail_title"
                     ></span>
-                    <span class="cloud-billing-accordion-heading-price">{{
-                        $ctrl.resources.totals.monthly.instance.toFixed(2) +
-                            ' ' +
-                            $ctrl.resources.totals.currencySymbol
-                    }}</span>
+                    <span class="cloud-billing-accordion-heading-price"
+                        >{{ $ctrl.resources.totals.monthly.instance.toFixed(2) +
+                        ' ' + $ctrl.resources.totals.currencySymbol }}</span
+                    >
                 </button>
             </uib-accordion-heading>
             <span

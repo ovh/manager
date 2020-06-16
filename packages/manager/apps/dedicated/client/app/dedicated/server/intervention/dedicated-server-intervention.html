@@ -4,16 +4,16 @@
         <oui-spinner></oui-spinner>
     </div>
     <oui-datagrid data-rows-loader="$ctrl.loadInterventions($config)">
-        <oui-column
+        <oui-datagrid-column
             data-title="::'server_configuration_intervention_date' | translate"
         >
             <span data-ng-bind="$row.date | date:'medium'"></span>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title="::'server_configuration_intervention_type' | translate"
             data-property="type"
             data-type="text"
         >
-        </oui-column>
+        </oui-datagrid-column>
     </oui-datagrid>
 </div>

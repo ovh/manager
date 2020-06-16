@@ -51,7 +51,7 @@
                         data-rows="LinesGroupCtrl.billingAccounts.accounts"
                         page-size="10"
                     >
-                        <oui-column
+                        <oui-datagrid-column
                             data-title="'telephony_lines_group_telephony_group' | translate"
                             data-property="description"
                             data-sortable="asc"
@@ -71,9 +71,9 @@
                                 data-ng-bind=":: '(' + $row.status + ')'"
                             >
                             </span>
-                        </oui-column>
+                        </oui-datagrid-column>
 
-                        <oui-column
+                        <oui-datagrid-column
                             data-property="billingAccount"
                             data-ng-class="{
                                         'text-muted': ba.status !== 'enabled' || ba.billingAccount === LinesGroupCtrl.billingAccounts.current
@@ -84,7 +84,7 @@
                                 data-ng-bind=":: $row.billingAccount"
                             >
                             </em>
-                        </oui-column>
+                        </oui-datagrid-column>
                     </oui-datagrid>
                 </div>
 

@@ -8,10 +8,12 @@
         data-translate="dedicatedCloud_configuration_add_datacenter_title"
     ></button>
     <oui-datagrid data-rows-loader="$ctrl.loadDatacenters($config)">
-        <oui-column data-title=":: 'dedicatedCloud_tab_datacenter' | translate">
+        <oui-datagrid-column
+            data-title=":: 'dedicatedCloud_tab_datacenter' | translate"
+        >
             <span data-ng-bind="$row.name"></span>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title=":: 'dedicatedCloud_DATACENTERS_CPU' | translate"
         >
             <span
@@ -23,8 +25,8 @@
                 data-ng-bind="$row.cpuSize.value + ' ' + ('unit_frequency_' + $row.cpuSize.unit | translate)"
             >
             </span>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title=":: 'dedicatedCloud_DATACENTERS_RAM' | translate"
         >
             <span
@@ -36,8 +38,8 @@
                 data-ng-bind="$row.ramSize.value + ' ' + ('unit_size_' + $row.ramSize.unit | translate)"
             >
             </span>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title=":: 'dedicatedCloud_DATACENTERS_DISK' | translate"
         >
             <span
@@ -49,19 +51,17 @@
                 data-ng-bind="$row.filerSize.value + ' ' + ('unit_size_' + $row.filerSize.unit | translate)"
             >
             </span>
-        </oui-column>
-        <oui-action-menu data-align="end" data-compact>
+        </oui-datagrid-column>
+        <oui-action-menu data-compact data-placement="end">
             <oui-action-menu-item
-                data-text="{{ :: 'dedicatedCloud_order_Host' | translate }}"
                 data-disabled="getRight('host') && $ctrl.currentService.usesLegacyOrder"
                 data-ng-click="$ctrl.orderHost($row)"
-            >
+                ><span data-translate="dedicatedCloud_order_Host"></span>
             </oui-action-menu-item>
             <oui-action-menu-item
-                data-text="{{ :: 'dedicatedCloud_order_Datastore' | translate }}"
                 data-ng-disabled="getRight('filer') && $ctrl.currentService.usesLegacyOrder"
                 data-ng-click="$ctrl.orderDatastore($row)"
-            >
+                ><span data-translate="dedicatedCloud_order_Datastore"></span>
             </oui-action-menu-item>
         </oui-action-menu>
     </oui-datagrid>

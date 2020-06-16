@@ -1,5 +1,5 @@
 <div data-ui-view>
-    <oui-page-header
+    <oui-header
         class="mb-2"
         data-heading="{{ ::'enterprise_cloud_database_title' | translate }}"
     >
@@ -7,13 +7,14 @@
             data-text="{{ ::'enterprise_cloud_database_guides' | translate }}"
         >
             <oui-guide-menu-item
-                data-text="{{ ::'enterprise_cloud_database_guides_main' | translate }}"
                 data-href="{{:: $ctrl.GUIDELINK }}"
                 data-external
-            >
+                ><span
+                    data-translate="enterprise_cloud_database_guides_main"
+                ></span>
             </oui-guide-menu-item>
         </oui-guide-menu>
-    </oui-page-header>
+    </oui-header>
     <div class="container-fluid w-100 h-100 pt-4 pb-4 px-3 px-md-5">
         <!-- error messages -->
         <oui-back-button data-state="enterprise-cloud-database">

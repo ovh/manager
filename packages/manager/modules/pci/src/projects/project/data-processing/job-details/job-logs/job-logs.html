@@ -24,9 +24,11 @@
             <oui-button
                 class="logs__downloadbutton"
                 data-variant="primary"
-                data-text="{{ ::'data_processing_details_logs_swift_download_label' | translate }}"
                 data-on-click="$ctrl.downloadLogs()"
                 disabled="$ctrl.isDownloadButtonDisabled"
+                ><span
+                    data-translate="data_processing_details_logs_swift_download_label"
+                ></span
             ></oui-button>
         </div>
         <div

@@ -56,21 +56,25 @@
                 data-rows="$ctrl.veeamTab.data"
                 data-ng-if="!$ctrl.veeamTab.loading && $ctrl.veeamTab.data"
             >
-                <oui-column
+                <oui-datagrid-column
                     data-title="'vps_tab_VEEAM_dashboard_table_header_date' | translate"
                     data-property="id"
                     data-sortable
                 >
                     <span data-ng-bind="$row.creationDate"></span>
-                </oui-column>
-                <oui-action-menu data-align="end" data-compact>
+                </oui-datagrid-column>
+                <oui-action-menu data-compact data-placement="end">
                     <oui-action-menu-item
-                        data-text="{{'vps_tab_VEEAM_dashboard_table_header_restore' | translate}}"
                         data-on-click="$ctrl.goToVeeamRestore($row.id)"
+                        ><span
+                            data-translate="vps_tab_VEEAM_dashboard_table_header_restore"
+                        ></span
                     ></oui-action-menu-item>
                     <oui-action-menu-item
-                        data-text="{{'vps_tab_VEEAM_dashboard_table_header_mount' | translate}}"
                         data-on-click="$ctrl.goToVeeamMount($row.id, true)"
+                        ><span
+                            data-translate="vps_tab_VEEAM_dashboard_table_header_mount"
+                        ></span
                     ></oui-action-menu-item>
                 </oui-action-menu>
             </oui-datagrid>

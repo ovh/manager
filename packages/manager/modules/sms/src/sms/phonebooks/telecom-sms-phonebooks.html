@@ -304,7 +304,7 @@
                         data-ng-click="PhonebooksCtrl.deleteSelectedPhonebookContact()"
                     >
                         <span
-                            class="oui-icon oui-icon-trash_line mr-2"
+                            class="oui-icon mr-2 oui-icon-bin_concept"
                             aria-hidden="true"
                             data-ng-if="!PhonebooksCtrl.phonebookContact.isDeleting"
                         >
@@ -535,7 +535,7 @@
                                         data-ng-bind="contact.group || '-' | limitTo:25"
                                     ></span>
                                     <span
-                                        class="oui-icon oui-icon-help_circle small"
+                                        class="oui-icon small oui-icon-help-circle"
                                         data-ng-if="contact.group.length > 25"
                                         data-oui-tooltip="{{:: contact.group }}"
                                     ></span>

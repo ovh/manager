@@ -36,15 +36,15 @@
                 data-rows="hostingBoosts"
                 data-row-loader="transformItem($row)"
             >
-                <oui-column
+                <oui-datagrid-column
                     data-title="'hosting_tab_BOOST_history_table_header_id' | translate"
                     data-property="accountId"
-                ></oui-column>
-                <oui-column
+                ></oui-datagrid-column>
+                <oui-datagrid-column
                     data-title="'hosting_tab_BOOST_history_table_header_offer' | translate"
                     data-property="offer"
-                ></oui-column>
-                <oui-column
+                ></oui-datagrid-column>
+                <oui-datagrid-column
                     data-title="'hosting_tab_BOOST_history_table_header_boost_offer' | translate"
                     data-property="boostOffer"
                 >
@@ -56,18 +56,18 @@
                             data-ng-if="$row.boostOffer !== null"
                         ></span>
                         <span
-                            class="oui-status oui-status_error"
+                            class="oui-badge oui-badge_error"
                             data-translate="hosting_tab_BOOST_history_table_boost_history_disabled"
                             data-ng-if="$row.boostOffer === null"
                         ></span>
                     </span>
-                </oui-column>
-                <oui-column
+                </oui-datagrid-column>
+                <oui-datagrid-column
                     data-title="'hosting_tab_BOOST_history_table_header_date' | translate"
                     data-property="date"
                 >
                     <span data-ng-bind="$row.date | date:'medium'"></span>
-                </oui-column>
+                </oui-datagrid-column>
             </oui-datagrid>
         </div>
 

@@ -1,10 +1,8 @@
 <section
     class="cui-page__content cui-page__content-flex cui-page__content-narrow"
 >
-    <oui-back-button
-        data-heading="{{ ::'vps_configuration_upgradevps_title' | translate }}"
-        data-on-click="$ctrl.cancel()"
-    >
+    <oui-back-button data-on-click="$ctrl.cancel()"
+        ><span data-translate="vps_configuration_upgradevps_title"></span>
     </oui-back-button>
 
     <oui-stepper
@@ -28,12 +26,11 @@
                         id="{{upgrade.model + ':' + upgrade.name}}"
                         name="{{upgrade.model + ':' + upgrade.name}}"
                         data-model="$ctrl.selectedModel.model"
-                        data-text="{{ upgrade.name }}"
                         data-value="upgrade.model + ':' + upgrade.name"
                         data-thumbnail="true"
                         data-disabled="!upgrade.isAvailable || upgrade.isCurrentModel"
                         required
-                    >
+                        ><span data-ng-bind="upgrade.name"></span>
                         <span class="oui-radio__section">
                             <span class="d-flex flex-wrap">
                                 <span
@@ -92,18 +89,17 @@
                 >
                     <span data-ng-bind="contract.name"></span>
                     <span
-                        class="oui-icon oui-icon-external_link"
+                        class="oui-icon oui-icon-external-link"
                         aria-hidden="true"
                     ></span>
                 </a>
             </div>
             <oui-checkbox
-                data-text="{{ ::'contracts_agree' | translate }}"
                 id="contractsValidated"
                 name="contractsValidated"
                 data-model="$ctrl.conditionsAgree"
                 required
-            >
+                ><span data-translate="contracts_agree"></span>
             </oui-checkbox>
         </oui-step-form>
         <oui-step-form

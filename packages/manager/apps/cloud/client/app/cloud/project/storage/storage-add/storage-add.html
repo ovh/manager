@@ -1,6 +1,8 @@
 <div class="cui-page">
     <section class="cui-page__content">
-        <oui-back-button data-heading="{{ ::contentTitle }}"></oui-back-button>
+        <oui-back-button
+            ><span data-ng-bind="::contentTitle"></span
+        ></oui-back-button>
 
         <div data-ng-show="!loaders.init">
             <form role="form" name="addForm" novalidate="novalidate">

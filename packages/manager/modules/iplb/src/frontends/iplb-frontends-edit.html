@@ -1,7 +1,8 @@
 <div class="cui-page__content">
     <oui-back-button
-        data-heading="{{ ::(ctrl.edition ? 'iplb_frontend_update_title' : 'iplb_frontend_add_title') | translate: { frontendId: ctrl.frontend.frontendId } }}"
-    >
+        ><span
+            data-ng-bind="::(ctrl.edition ? 'iplb_frontend_update_title' : 'iplb_frontend_add_title') | translate: { frontendId: ctrl.frontend.frontendId }"
+        ></span>
     </oui-back-button>
 
     <form novalidate name="ctrl.form">
@@ -37,10 +38,11 @@
                 >
                     <oui-radio
                         data-ng-repeat="protocol in ctrl.protocols track by $index"
-                        data-text="{{ ::('iplb_frontend_add_protocol_' + protocol) | translate }}"
                         data-value="protocol"
                         data-disabled="ctrl.isProtocolDisabled(protocol)"
-                    >
+                        ><span
+                            data-ng-bind="::('iplb_frontend_add_protocol_' + protocol) | translate"
+                        ></span>
                     </oui-radio>
                 </oui-radio-toggle-group>
             </div>
@@ -290,11 +292,10 @@
             >
                 <div class="oui-field__content">
                     <div class="oui-field-control">
-                        <oui-checkbox
-                            text="{{ 'iplb_frontend_add_hsts_tip' | translate }}"
-                            name="hsts"
-                            model="ctrl.frontend.hsts"
-                        >
+                        <oui-checkbox name="hsts" model="ctrl.frontend.hsts"
+                            ><span
+                                data-translate="iplb_frontend_add_hsts_tip"
+                            ></span>
                         </oui-checkbox>
                     </div>
                 </div>
@@ -319,7 +320,7 @@
                     data-ng-hide="ctrl.edition"
                 ></button>
                 <a
-                    class="oui-button oui-button_link"
+                    class="oui-button oui-button_ghost"
                     data-translate="iplb_frontend_add_cancel"
                     data-ui-sref="network.iplb.detail.frontends"
                 ></a>

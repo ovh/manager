@@ -64,7 +64,7 @@
                             <img
                                 data-ng-src="{{'images/support-level/' + supportLevel.supportType + '.png'}}"
                                 class="d-block w-75 mx-auto mb-4"
-                                alt=""
+                                alt
                             />
 
                             <p
@@ -73,7 +73,7 @@
                         </div>
                         <a
                             data-ng-if="$ctrl.shouldSubscribe(supportLevel) || supportLevel.url"
-                            class="oui-button oui-button_secondary oui-button_icon-right oui-button_full-width my-5 align-self-end"
+                            class="oui-button oui-button_secondary oui-button_icon-right my-5 align-self-end oui-button_block"
                             data-ng-href="{{:: $ctrl.shouldSubscribe(supportLevel) ? supportLevel.subscriptionUrl : supportLevel.url }}"
                             target="_blank"
                             rel="noopener"
@@ -84,7 +84,7 @@
                                 data-translate="{{:: $ctrl.shouldSubscribe(supportLevel) ? 'user_account_support_level_section_subscribe' : 'user_account_support_level_section_discover' }}"
                             ></span>
                             <span
-                                class="oui-icon oui-icon_circle oui-icon-chevron-right"
+                                class="oui-icon oui-icon-chevron-right"
                                 aria-hidden="true"
                             ></span>
                         </a>

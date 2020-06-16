@@ -4,12 +4,12 @@
     data-ng-submit="form.$valid && VeeamCloudConnectStorageUpdateQuotaCtrl.confirm()"
 >
     <oui-modal
-        data-title="{{:: 'veeam_storage_update_quota_title' | translate}}"
         data-primary-label="{{ ::'veeam_storage_update_quota_confirm' | translate }}"
         data-secondary-action="VeeamCloudConnectStorageUpdateQuotaCtrl.cancel()"
         data-secondary-label="{{ ::'veeam_common_cancel' | translate }}"
         data-on-dismiss="VeeamCloudConnectStorageUpdateQuotaCtrl.cancel()"
         data-loading="VeeamCloudConnectStorageUpdateQuotaCtrl.capabilities.loading || VeeamCloudConnectStorageUpdateQuotaCtrl.updateQuota.loading"
+        data-heading="{{:: 'veeam_storage_update_quota_title' | translate}}"
     >
         <p
             class="oui-modal__text"

@@ -1,7 +1,7 @@
 <oui-modal
-    data-title="{{:: 'vps_configuration_kvm_title' | translate}}"
     data-on-dismiss="$ctrl.close()"
     data-loading="$ctrl.kvmUrlLoader.loading || $ctrl.kvmLoader.loading"
+    data-heading="{{:: 'vps_configuration_kvm_title' | translate}}"
 >
     <dedicated-vps-kvm-novnc
         data-ng-if="$ctrl.noVNC && $ctrl.kvm.host && $ctrl.kvm.port && $ctrl.kvm.password"
@@ -29,7 +29,7 @@
     ></p>
     <div class="vps-kvm-link" data-ng-if="$ctrl.consoleUrl">
         <a
-            class="oui-button oui-button_link oui-button_icon-right"
+            class="oui-button oui-button_icon-right oui-button_ghost"
             data-ng-href="{{$ctrl.consoleUrl}}"
             target="_blank"
             rel="noopener"

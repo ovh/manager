@@ -44,14 +44,10 @@
                     class="oui-datagrid__cell text-right"
                     data-title="{{ :: 'cpbc_archive_storage_col_consumption' | translate }}"
                 >
-                    <span>{{
-                        (storage.stored
-                            ? storage.stored.totalPrice
-                            : 0
-                        ).toFixed(2) +
-                            ' ' +
-                            $ctrl.currencySymbol
-                    }}</span>
+                    <span
+                        >{{ (storage.stored ? storage.stored.totalPrice : 0
+                        ).toFixed(2) + ' ' + $ctrl.currencySymbol }}</span
+                    >
                     <i
                         class="fa fa-question-circle left-space-m4"
                         data-oui-tooltip="{{ :: $ctrl.getStorageVolumeInfoTooltip(storage) }}"
@@ -63,14 +59,11 @@
                     class="oui-datagrid__cell"
                     data-title="{{ :: 'cpbc_archive_storage_col_input_traffic' | translate }}"
                 >
-                    <span>{{
-                        (storage.incomingBandwidth
-                            ? storage.incomingBandwidth.totalPrice
-                            : 0
-                        ).toFixed(2) +
-                            ' ' +
-                            $ctrl.currencySymbol
-                    }}</span>
+                    <span
+                        >{{ (storage.incomingBandwidth ?
+                        storage.incomingBandwidth.totalPrice : 0 ).toFixed(2) +
+                        ' ' + $ctrl.currencySymbol }}</span
+                    >
                     <i
                         class="fa fa-question-circle left-space-m4"
                         data-oui-tooltip="{{:: $ctrl.getStorageIncomingBandwidthInfoTooltip(storage) }}"
@@ -82,14 +75,11 @@
                     class="oui-datagrid__cell"
                     data-title="{{ :: 'cpbc_archive_storage_col_output_traffic' | translate }}"
                 >
-                    <span>{{
-                        (storage.outgoingBandwidth
-                            ? storage.outgoingBandwidth.totalPrice
-                            : 0
-                        ).toFixed(2) +
-                            ' ' +
-                            $ctrl.currencySymbol
-                    }}</span>
+                    <span
+                        >{{ (storage.outgoingBandwidth ?
+                        storage.outgoingBandwidth.totalPrice : 0 ).toFixed(2) +
+                        ' ' + $ctrl.currencySymbol }}</span
+                    >
                     <i
                         class="fa fa-question-circle left-space-m4"
                         data-oui-tooltip="{{:: $ctrl.getStorageOutgoingBandwidthInfoTooltip(storage) }}"

@@ -1,4 +1,4 @@
-<oui-page-header
+<oui-header
     data-heading="{{:: 'cpbc_billing_control' | translate }}"
     class="mb-3"
 >
@@ -6,21 +6,18 @@
         <oui-header-tabs-item
             data-href="{{:: BillingCtrl.billingLink }}"
             data-active="BillingCtrl.currentActiveLink() === BillingCtrl.billingLink"
-            data-text="{{:: 'cpbc_tab_consumption' | translate }}"
-        >
+            ><span data-translate="cpbc_tab_consumption"></span>
             <span data-translate="cpbc_tab_consumption"></span>
         </oui-header-tabs-item>
         <oui-header-tabs-item
             data-href="{{:: BillingCtrl.estimateLink }}"
             data-active="BillingCtrl.currentActiveLink() === BillingCtrl.estimateLink"
-            data-text="{{:: 'cpbc_tab_forecast' | translate }}"
-        >
+            ><span data-translate="cpbc_tab_forecast"></span>
         </oui-header-tabs-item>
         <oui-header-tabs-item
             data-href="{{:: BillingCtrl.historyLink }}"
             data-active="BillingCtrl.currentActiveLink() === BillingCtrl.historyLink"
-            data-text="{{:: 'cpbc_tab_history' | translate }}"
-        >
+            ><span data-translate="cpbc_tab_history"></span>
         </oui-header-tabs-item>
     </oui-header-tabs>
     <oui-guide-menu data-text="{{:: 'pci_project_guides_header' | translate }}">
@@ -28,7 +25,7 @@
             <span data-translate="pci_project_guides_header_all_guides"></span>
         </oui-guide-menu-item>
     </oui-guide-menu>
-</oui-page-header>
+</oui-header>
 
 <div class="mt-4">
     <cui-message-container

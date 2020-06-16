@@ -17,37 +17,34 @@
     ></a>
 
     <oui-datagrid data-rows="ctrl.certificates">
-        <oui-column
+        <oui-datagrid-column
             data-title="'iplb_ssl_certificate' | translate"
             data-property="id"
             data-sortable="asc"
         >
             {{ $row.displayName || $row.id }}
             <span data-ng-show="$row.displayName">({{ $row.id }})</span>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title="'iplb_ssl_subject' | translate"
             data-property="subject"
             data-sortable
-        ></oui-column>
-        <oui-column
+        ></oui-datagrid-column>
+        <oui-datagrid-column
             data-title="'iplb_ssl_type' | translate"
             data-property="type"
             data-sortable
-        ></oui-column>
-        <oui-action-menu data-align="end" data-compact>
-            <oui-action-menu-item
-                data-text="{{'iplb_ssl_see' | translate}}"
-                data-on-click="ctrl.preview($row)"
+        ></oui-datagrid-column>
+        <oui-action-menu data-compact data-placement="end">
+            <oui-action-menu-item data-on-click="ctrl.preview($row)"
+                ><span data-translate="iplb_ssl_see"></span
             ></oui-action-menu-item>
             <oui-action-menu-divider></oui-action-menu-divider>
-            <oui-action-menu-item
-                data-text="{{'iplb_ssl_update' | translate}}"
-                data-on-click="ctrl.update($row)"
+            <oui-action-menu-item data-on-click="ctrl.update($row)"
+                ><span data-translate="iplb_ssl_update"></span
             ></oui-action-menu-item>
-            <oui-action-menu-item
-                data-text="{{'iplb_ssl_delete' | translate}}"
-                data-on-click="ctrl.delete($row)"
+            <oui-action-menu-item data-on-click="ctrl.delete($row)"
+                ><span data-translate="iplb_ssl_delete"></span
             ></oui-action-menu-item>
         </oui-action-menu>
     </oui-datagrid>

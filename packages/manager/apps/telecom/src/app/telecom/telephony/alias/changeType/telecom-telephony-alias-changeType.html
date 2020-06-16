@@ -7,7 +7,7 @@
 
     <div class="row">
         <h2
-            class="col-lg-5 oui-header_2"
+            class="col-lg-5 oui-heading_2"
             data-translate="telephony_alias_change_type_title"
         ></h2>
     </div>
@@ -47,12 +47,14 @@
                     data-values="[{ id: 'redirect', name: $ctrl.$translate.instant('telephony_alias_config_change_type_desc_redirect') }]"
                     data-variant="light"
                 >
-                    <span class="transclude-image-container">
+                    <oui-select-picker-section
+                        class="transclude-image-container"
+                    >
                         <img
                             src="assets/images/aliasFeature/schema-redirect.svg"
                             alt="schema-redirect.svg"
                         />
-                    </span>
+                    </oui-select-picker-section>
                 </oui-select-picker>
             </div>
             <div class="col-lg-4 col-sm-12 mb-4">
@@ -64,12 +66,14 @@
                     data-values="[{ id: 'contactCenterSolution', name: $ctrl.$translate.instant('telephony_alias_config_change_type_desc_contactCenterSolution') }]"
                     data-variant="light"
                 >
-                    <span class="transclude-image-container">
+                    <oui-select-picker-section
+                        class="transclude-image-container"
+                    >
                         <img
                             src="assets/images/aliasFeature/schema-easyHunting.svg"
                             alt="schema-easyHunting.svg"
                         />
-                    </span>
+                    </oui-select-picker-section>
                 </oui-select-picker>
             </div>
         </div>
@@ -83,12 +87,14 @@
                     data-values="[{ id: 'cloudIvr', name: $ctrl.$translate.instant('telephony_alias_config_change_type_desc_cloudIvr') }]"
                     data-variant="light"
                 >
-                    <span class="transclude-image-container">
+                    <oui-select-picker-section
+                        class="transclude-image-container"
+                    >
                         <img
                             src="assets/images/aliasFeature/schema-cloudIvr.svg"
                             alt="schema-cloudIvr.svg"
                         />
-                    </span>
+                    </oui-select-picker-section>
                 </oui-select-picker>
             </div>
             <div class="col-lg-4 col-sm-12 mb-4">
@@ -100,12 +106,14 @@
                     data-values="[{ id: 'conference', name: $ctrl.$translate.instant('telephony_alias_config_change_type_desc_conference') }]"
                     data-variant="light"
                 >
-                    <span class="transclude-image-container">
+                    <oui-select-picker-section
+                        class="transclude-image-container"
+                    >
                         <img
                             src="assets/images/aliasFeature/schema-conference.svg"
                             alt="schema-conference.svg"
                         />
-                    </span>
+                    </oui-select-picker-section>
                 </oui-select-picker>
             </div>
         </div>

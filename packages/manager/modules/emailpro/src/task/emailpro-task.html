@@ -7,7 +7,7 @@
     ></div>
 
     <oui-datagrid data-rows-loader="loadPaginated($config)">
-        <oui-column
+        <oui-datagrid-column
             data-title="'emailpro_tab_TASKS_table_function' | translate"
         >
             <span
@@ -22,8 +22,10 @@
                 data-ng-if="$row.action.includes(redirection)"
                 data-ng-bind-html="'emailpro_tab_TASKS_redirection' | translate"
             ></span>
-        </oui-column>
-        <oui-column data-title="'emailpro_tab_TASKS_table_state' | translate">
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title="'emailpro_tab_TASKS_table_state' | translate"
+        >
             <div
                 data-ng-if="$row.status == stateDoing || $row.status == stateTodo"
             >
@@ -58,20 +60,20 @@
                 data-ng-if="$row.action"
                 data-ng-bind-html="'emailpro_tab_TASKS_todo' | translate"
             ></span>
-        </oui-column>
+        </oui-datagrid-column>
 
-        <oui-column
+        <oui-datagrid-column
             data-title="'emailpro_tab_TASKS_table_start_date' | translate"
             data-property="todoDate"
             data-sortable="desc"
         >
             <span data-ng-bind="::$row.todoDate | date:'short'"></span>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title="'emailpro_tab_TASKS_table_finish_date' | translate"
             data-property="finishDate"
         >
             <span data-ng-bind="::$row.finishDate | date:'short'"></span>
-        </oui-column>
+        </oui-datagrid-column>
     </oui-datagrid>
 </div>

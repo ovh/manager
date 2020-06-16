@@ -20,20 +20,20 @@
         ></span>
     </p>
     <oui-datagrid data-rows="$ctrl.models">
-        <oui-column
+        <oui-datagrid-column
             data-title=":: 'pci_projects_project_serving_namespace_models_id' | translate"
             data-property="id"
             data-type="string"
             data-searchable
             data-filterable
-        ></oui-column>
+        ></oui-datagrid-column>
 
-        <oui-column
+        <oui-datagrid-column
             data-title=":: 'pci_projects_project_serving_namespace_models_version_status' | translate"
             data-property="versionStatus"
         >
             <span
-                class="oui-status"
+                class="oui-badge"
                 data-ng-class="{
                         'oui-status_success' : $row.isDeployed(),
                         'oui-status_warning' : $row.isProcessing(),
@@ -42,13 +42,13 @@
                 data-translate="{{:: 'pci_projects_project_serving_namespace_models_version_status_' + $row.versionStatus }}"
             >
             </span>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title=":: 'pci_projects_project_serving_namespace_models_api_status' | translate"
             data-property="apiStatus"
         >
             <span
-                class="oui-status"
+                class="oui-badge"
                 data-ng-class="{
                     'oui-status_success' : $row.isRunning(),
                     'oui-status_warning' : !$row.isRunning()
@@ -56,8 +56,8 @@
                 data-translate="{{:: 'pci_projects_project_serving_namespace_models_api_status_' + $row.apiStatus }}"
             >
             </span>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title=":: 'pci_projects_project_serving_namespace_models_url' | translate"
             data-property="url"
             data-type="string"
@@ -70,31 +70,31 @@
                 rel="noopener"
                 data-ng-bind="$row.url"
             ></a>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title=":: 'pci_projects_project_serving_namespace_models_date' | translate"
             data-property="createdAt"
             data-type="date"
         >
             <span data-ng-bind="$row.createdAt | date : 'short'"></span>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title=":: 'pci_projects_project_serving_namespace_models_version' | translate"
             data-property="version"
             data-type="number"
             data-searchable
             data-filterable
         >
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title=":: 'pci_projects_project_serving_namespace_models_replicas' | translate"
             data-property="replicas"
             data-type="number"
             data-searchable
             data-filterable
         >
-        </oui-column>
-        <oui-action-menu data-align="end" data-compact>
+        </oui-datagrid-column>
+        <oui-action-menu data-compact data-placement="end">
             <oui-action-menu-item data-on-click="$ctrl.generateToken($row.id)">
                 <span
                     data-translate="pci_projects_project_serving_namespace_models_gen_token"
@@ -111,12 +111,12 @@
                 ></span>
             </oui-action-menu-item>
         </oui-action-menu>
-        <extra-top>
+        <oui-datagrid-topbar>
             <oui-button data-on-click="$ctrl.addModel()">
                 <span
                     data-translate="pci_projects_project_serving_namespace_models_deploy_model"
                 ></span>
             </oui-button>
-        </extra-top>
+        </oui-datagrid-topbar>
     </oui-datagrid>
 </div>

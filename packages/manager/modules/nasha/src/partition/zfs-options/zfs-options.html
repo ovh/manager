@@ -9,18 +9,19 @@
         data-secondary-label="{{ ::'nasha_common_cancel' | translate }}"
         data-on-dismiss="NashaPartitionZFSOptionsCtrl.dismiss()"
         data-loading="NashaPartitionZFSOptionsCtrl.loaders"
-        data-title="{{::'nasha_partitions_zfs_title' | translate}}"
+        data-heading="{{::'nasha_partitions_zfs_title' | translate}}"
     >
         <oui-field
             data-label="{{::'nasha_partitions_zfs_atime_label' | translate}}"
         >
             <oui-checkbox
-                data-text="{{ ::'nasha_partitions_zfs_atime_disable' | translate }}"
                 data-description="{{ ::'nasha_partitions_zfs_atime_description' | translate  }}"
                 id="nasha-zfs-atime"
                 name="nasha-zfs-atime"
                 data-model="NashaPartitionZFSOptionsCtrl.model.atime"
-            >
+                ><span
+                    data-translate="nasha_partitions_zfs_atime_disable"
+                ></span>
             </oui-checkbox>
         </oui-field>
 

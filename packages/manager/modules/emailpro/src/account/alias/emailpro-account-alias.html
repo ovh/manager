@@ -5,26 +5,28 @@
         </oui-back-button>
 
         <oui-datagrid data-rows-loader="getAliases($config)">
-            <oui-column
+            <oui-datagrid-column
                 data-title="'emailpro_tab_ALIAS_header' | translate"
                 data-property="displayName"
-            ></oui-column>
-            <oui-column
+            ></oui-datagrid-column>
+            <oui-datagrid-column
                 data-title="'emailpro_tab_ACCOUNTS_table_status' | translate"
                 data-property="taskPendingId"
             >
                 <span
-                    class="oui-status oui-status_info"
+                    class="oui-badge oui-badge_info"
                     data-translate="emailpro_tab_ALIAS_state_TASK_ON_DOING"
                     data-ng-if="$row.taskPendingId"
                     data-oui-tooltip="{{:: 'emailpro_tab_ALIAS_state_TASK_ON_DOING_tooltip' | translate }}"
                 ></span>
-            </oui-column>
-            <oui-action-menu data-align="end" data-compact>
+            </oui-datagrid-column>
+            <oui-action-menu data-compact data-placement="end">
                 <oui-action-menu-item
-                    data-text="{{ 'emailpro_tab_ALIAS_delete_tooltip' | translate }}"
                     data-on-click="deleteAlias($row)"
                     data-disabled="$row.taskPendingId"
+                    ><span
+                        data-translate="emailpro_tab_ALIAS_delete_tooltip"
+                    ></span
                 ></oui-action-menu-item>
             </oui-action-menu>
         </oui-datagrid>

@@ -20,13 +20,13 @@
     </div>
 
     <oui-datagrid data-rows-loader="$ctrl.loadPayments($config)">
-        <oui-column
+        <oui-datagrid-column
             data-title=":: 'payments_table_head_id' | translate"
             data-property="depositId"
             data-sortable
         >
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-property="date"
             data-title=":: 'payments_table_head_date' | translate"
             data-type="date"
@@ -34,8 +34,8 @@
             data-filterable
         >
             <span data-ng-bind="$row.date | date:'mediumDate'"></span>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-property="amount.value"
             data-type="number"
             data-sortable
@@ -43,8 +43,8 @@
             data-title=":: 'payments_table_head_amount' | translate"
         >
             <span data-ng-bind="$row.amount.text"></span>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-property="paymentInfo.paymentType"
             data-type="options"
             data-type-options="{
@@ -61,8 +61,8 @@
             <span
                 data-ng-bind=":: $ctrl.getTranslatedPaiementType($row)"
             ></span>
-        </oui-column>
-        <extra-top>
+        </oui-datagrid-column>
+        <oui-datagrid-topbar>
             <button
                 type="button"
                 class="btn btn-default"
@@ -72,33 +72,30 @@
             >
                 <span data-translate="billing_export_csv"></span>
             </button>
-        </extra-top>
+        </oui-datagrid-topbar>
         <oui-action-menu
             data-ng-if="$ctrl.displayActionsCol()"
-            data-align="end"
             data-compact
+            data-placement="end"
         >
             <oui-action-menu-item
-                data-text="{{:: 'table_download_html' | translate }}"
                 data-href="{{ $row.htmlUrl || $row.url }}"
                 data-ng-if="($row.url || $row.htmlUrl) && $ctrl.shouldDisplayDepositsLinks()"
                 data-external
                 data-ng-click="$ctrl.trackPaymentDetailOpening()"
-            >
+                ><span data-translate="table_download_html"></span>
             </oui-action-menu-item>
             <oui-action-menu-item
-                data-text="{{:: 'table_download_pdf' | translate }}"
                 data-href="{{ :: $row.pdfUrl }}"
                 data-ng-if="$row.pdfUrl && $ctrl.shouldDisplayDepositsLinks()"
                 data-external
                 data-ng-click="$ctrl.trackPaymentDetailOpening()"
-            >
+                ><span data-translate="table_download_pdf"></span>
             </oui-action-menu-item>
             <oui-action-menu-item
-                data-text="{{:: 'payments_details_link' | translate }}"
                 data-href="{{ $ctrl.depositDetailsHref($row) }}"
                 data-ng-click="$ctrl.trackPaymentDetailOpening()"
-            >
+                ><span data-translate="payments_details_link"></span>
             </oui-action-menu-item>
         </oui-action-menu>
     </oui-datagrid>

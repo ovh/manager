@@ -6,7 +6,7 @@
         term="{{ ::'vps_dashboard_name' | translate }}"
         description="{{:: $ctrl.vps.displayName || $ctrl.vps.name }}"
     >
-        <oui-action-menu compact align="end">
+        <oui-action-menu compact data-placement="end">
             <oui-action-menu-item
                 aria-label="{{::$ctrl.actions.changeName.text}}"
                 on-click="$ctrl.actions.changeName.callback()"
@@ -39,8 +39,8 @@
     >
         <oui-action-menu
             compact
-            align="end"
             ng-if="$ctrl.action.rebootRescue.isAvailable() || $ctrl.actions.reboot.isAvailable()"
+            data-placement="end"
         >
             <oui-action-menu-item
                 on-click="$ctrl.goToReboot()"
@@ -62,8 +62,8 @@
     >
         <oui-action-menu
             compact
-            align="end"
             ng-if="$ctrl.actions.reinstall.isAvailable() || $ctrl.actions.rebuild.isAvailable()"
+            data-placement="end"
         >
             <oui-action-menu-item
                 data-on-click="$ctrl.goToReinstall()"

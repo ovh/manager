@@ -2,21 +2,21 @@
     <div class="veeam__row">
         <a
             ui-sref="veeam-cloud-connect.detail.dashboard({ serviceName: VeeamCloudConnectStorageCtrl.$stateParams.serviceName })"
-            class="oui-button oui-button_link oui-button_icon-left"
+            class="oui-button oui-button_icon-left oui-button_ghost"
         >
             <i class="oui-icon oui-icon-chevron-left" aria-hidden="true"></i
             ><span data-translate="veeam_storage_back"></span>
         </a>
     </div>
     <div class="veeam__row">
-        <h3 class="oui-header_3" data-translate="veeam_storage_title"></h3>
+        <h3 class="oui-heading_3" data-translate="veeam_storage_title"></h3>
     </div>
     <div class="veeam__row">
         <oui-datagrid
             data-rows="VeeamCloudConnectStorageCtrl.storageInfos.data"
             class="datagrid-without-pagination"
         >
-            <extra-top>
+            <oui-datagrid-topbar>
                 <button
                     class="oui-button oui-button_secondary"
                     data-ng-if="!VeeamCloudConnectStorageCtrl.actions.loading"
@@ -26,15 +26,15 @@
                 <oui-spinner
                     data-ng-if="VeeamCloudConnectStorageCtrl.actions.loading"
                 ></oui-spinner>
-            </extra-top>
-            <oui-column
+            </oui-datagrid-topbar>
+            <oui-datagrid-column
                 data-title="::'veeam_table_storage' | translate"
                 data-property="inventoryName"
                 data-sortable="asc"
                 data-type="string"
                 data-searchable
-            ></oui-column>
-            <oui-column
+            ></oui-datagrid-column>
+            <oui-datagrid-column
                 data-title="::'veeam_table_usage' | translate"
                 data-property="quotaUsed.value"
             >
@@ -43,33 +43,32 @@
                     data-ng-bind="$row.quotaUsed.value | cucBytes:2:false:$row.quotaUsed.unit"
                 ></span>
                 <span data-ng-if="!$row.quotaUsed">0 B</span>
-            </oui-column>
-            <oui-column
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 data-title="::'veeam_quota' | translate"
                 data-property="quota.value"
             >
                 <span
                     data-ng-bind="$row.quota.value | cucBytes:2:false:$row.quota.unit"
                 ></span>
-            </oui-column>
-            <oui-column
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 data-title="::'veeam_table_datacenter' | translate"
                 data-property="replicationZone"
             >
                 <span
                     data-ng-bind="VeeamCloudConnectStorageCtrl.getRegionText($row.replicationZone)"
                 ></span>
-            </oui-column>
+            </oui-datagrid-column>
             <oui-action-menu
-                data-align="end"
                 data-compact
                 data-ng-if="!VeeamCloudConnectStorageCtrl.capabilities.loading"
+                data-placement="end"
             >
                 <oui-action-menu-item
-                    data-text="{{ ::'veeam_storage_update_title' | translate }}"
                     data-on-click="VeeamCloudConnectStorageCtrl.updateQuota($row.inventoryName)"
                     data-disabled="(VeeamCloudConnectStorageCtrl.capabilities.data.maxQuota | cucBytes:0:false:'GB':true) <= (VeeamCloudConnectStorageCtrl.capabilities.data.defaultQuota | cucBytes:0:false:'GB':true)"
-                >
+                    ><span data-translate="veeam_storage_update_title"></span>
                 </oui-action-menu-item>
             </oui-action-menu>
         </oui-datagrid>

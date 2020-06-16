@@ -1,5 +1,5 @@
 <div data-ui-view>
-    <oui-page-header
+    <oui-header
         data-heading="{{:: 'cpb_project_management_credit_vouchers' | translate }}"
         class="mb-3"
     >
@@ -12,7 +12,7 @@
                 ></span>
             </oui-guide-menu-item>
         </oui-guide-menu>
-    </oui-page-header>
+    </oui-header>
 
     <cui-message-container
         data-messages="$ctrl.messages"
@@ -22,7 +22,7 @@
     <p class="mb-4" data-translate="cpb_vouchers_credit_comment"></p>
 
     <oui-datagrid data-rows="$ctrl.vouchers">
-        <extra-top>
+        <oui-datagrid-topbar>
             <a
                 class="oui-button oui-button_secondary mb-2"
                 data-ui-sref="pci.projects.project.vouchers.add"
@@ -35,8 +35,8 @@
                 data-translate="cpb_vouchers_add_credit_button"
             >
             </a>
-        </extra-top>
-        <oui-column
+        </oui-datagrid-topbar>
+        <oui-datagrid-column
             data-title="'cpb_vouchers_name_cell' | translate"
             data-property="id"
             data-sortable
@@ -47,43 +47,43 @@
                 data-translate="cpb_vouchers_bill_ref"
                 data-translate-values="{ url : $row.pdfUrl, billId : $row.bill }"
             ></div>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title="'cpb_vouchers_products_cell' | translate"
             data-property="products"
             data-sortable
         >
             {{ :: $row.products.length ? $row.products.join(', ') :
             ('cpb_vouchers_products_all' | translate) }}
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title="'cpb_vouchers_voucher_cell' | translate"
             data-property="voucher"
             data-sortable
-        ></oui-column>
-        <oui-column
+        ></oui-datagrid-column>
+        <oui-datagrid-column
             data-title="'cpb_vouchers_validity_from_cell' | translate"
             data-property="validity.from"
             data-sortable
         >
             {{ :: $row.validity.from | date:'medium' }}
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title="'cpb_vouchers_total_credit_cell' | translate"
             data-property="total_credit.text"
             data-sortable
-        ></oui-column>
-        <oui-column
+        ></oui-datagrid-column>
+        <oui-datagrid-column
             title="'cpb_vouchers_validity_to_cell' | translate"
             data-property="validity.to"
             data-sortable
         >
             {{ :: $row.validity.to | date:'medium' }}
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title="'cpb_vouchers_available_credit_cell' | translate"
             data-property="available_credit.text"
             data-sortable
-        ></oui-column>
+        ></oui-datagrid-column>
     </oui-datagrid>
 </div>

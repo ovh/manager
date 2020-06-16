@@ -1,11 +1,11 @@
 <oui-modal
-    data-title="{{ ::'iplb_frontend_delete_title' | translate }}"
     data-primary-label="{{ ::'iplb_frontend_delete_button' | translate }}"
     data-primary-action="IpLoadBalancerFrontendDeleteCtrl.confirm()"
     data-secondary-action="IpLoadBalancerFrontendDeleteCtrl.cancel()"
     data-secondary-label="{{ ::'iplb_cancel' | translate }}"
     data-on-dismiss="IpLoadBalancerFrontendDeleteCtrl.cancel()"
     data-loading="$ctrl.delete.loading"
+    data-heading="{{ ::'iplb_frontend_delete_title' | translate }}"
 >
     <p
         class="oui-modal__text"

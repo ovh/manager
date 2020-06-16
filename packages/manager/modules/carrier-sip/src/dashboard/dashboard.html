@@ -1,29 +1,30 @@
-<oui-page-header
+<oui-header
     class="mb-3"
     data-heading="{{:: $ctrl.carrierSip.description || $ctrl.carrierSip.serviceName }}"
     data-description="{{:: $ctrl.carrierSip.description ? $ctrl.carrierSip.serviceName : null }}"
 >
     <oui-header-tabs>
         <oui-header-tabs-item
-            data-text="{{:: 'carrier_sip_dashboard_header_dashboard' | translate }}"
             data-href="{{:: $ctrl.dashboardLink }}"
             data-active="$ctrl.currentActiveLink() === $ctrl.dashboardLink"
-        >
+            ><span
+                data-translate="carrier_sip_dashboard_header_dashboard"
+            ></span>
         </oui-header-tabs-item>
         <oui-header-tabs-item
-            data-text="{{:: 'carrier_sip_dashboard_header_endpoints' | translate }}"
             data-href="{{:: $ctrl.endpointsLink }}"
             data-active="$ctrl.currentActiveLink() === $ctrl.endpointsLink"
-        >
+            ><span
+                data-translate="carrier_sip_dashboard_header_endpoints"
+            ></span>
         </oui-header-tabs-item>
         <oui-header-tabs-item
-            data-text="{{:: 'carrier_sip_dashboard_header_cdr' | translate }}"
             data-href="{{:: $ctrl.cdrsLink }}"
             data-active="$ctrl.currentActiveLink() === $ctrl.cdrsLink"
-        >
+            ><span data-translate="carrier_sip_dashboard_header_cdr"></span>
         </oui-header-tabs-item>
     </oui-header-tabs>
-</oui-page-header>
+</oui-header>
 <section class="px-3 px-md-5 py-4">
     <div data-ui-view class="container-fluid">
         <div class="row">

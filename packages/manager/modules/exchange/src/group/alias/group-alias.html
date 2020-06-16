@@ -15,11 +15,11 @@
         ></div>
 
         <oui-datagrid data-rows-loader="ctrl.getAliases($config)">
-            <oui-column
+            <oui-datagrid-column
                 data-title="'exchange_tab_ALIAS_header' | translate"
                 data-property="displayName"
-            ></oui-column>
-            <oui-column
+            ></oui-datagrid-column>
+            <oui-datagrid-column
                 data-title="'exchange_tab_ACCOUNTS_table_status' | translate"
             >
                 <span
@@ -28,11 +28,13 @@
                     data-ng-if="$row.taskPendingId"
                     data-oui-tooltip="{{'exchange_tab_ALIAS_state_TASK_ON_DOING_tooltip' | translate}}"
                 ></span>
-            </oui-column>
-            <oui-action-menu data-align="end" data-compact>
+            </oui-datagrid-column>
+            <oui-action-menu data-compact data-placement="end">
                 <oui-action-menu-item
-                    data-text="{{'exchange_tab_ALIAS_delete_tooltip' | translate}}"
                     data-on-click="ctrl.deleteGroupAlias($row)"
+                    ><span
+                        data-translate="exchange_tab_ALIAS_delete_tooltip"
+                    ></span
                 ></oui-action-menu-item>
             </oui-action-menu>
         </oui-datagrid>

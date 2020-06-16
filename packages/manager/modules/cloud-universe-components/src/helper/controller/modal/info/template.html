@@ -1,10 +1,10 @@
 <oui-modal
-    data-title="{{:: $ctrl.params.titleText}}"
     data-on-dismiss="$ctrl.dismissModal()"
     data-primary-action="$ctrl.closeModal()"
     data-primary-label="{{:: $ctrl.params.okButtonText || ('cuc_helper_modal_ok' | translate) }}"
     data-secondary-action="$ctrl.dismissModal()"
     data-secondary-label="{{:: $ctrl.params.cancelButtonText || ('cuc_helper_modal_cancel' | translate) }}"
+    data-heading="{{:: $ctrl.params.titleText}}"
 >
     <span
         data-ng-if="$ctrl.params.text"

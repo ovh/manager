@@ -2,7 +2,7 @@
     <div class="oui-modal__header">
         <button
             type="button"
-            class="oui-icon oui-icon-close_thin oui-modal__close-button"
+            class="oui-icon oui-modal__close-button oui-icon-close"
             aria-label="{{:: 'wizard_close' | translate }}"
             data-ng-click="$ctrl.onCancelBtnClick()"
         ></button>
@@ -21,17 +21,17 @@
 
             <div data-ng-if="!$ctrl.bindings.isLoading">
                 <oui-datagrid data-rows=":: $ctrl.bindings.offers.value">
-                    <oui-column
+                    <oui-datagrid-column
                         data-title=":: 'dedicatedCloud_tab_license_type' | translate"
                     >
                         <oui-radio
-                            data-text="{{:: $row.productName }}"
                             data-name="selectedOffer"
                             data-model="$ctrl.bindings.offers.selected"
                             data-value="$row"
+                            ><span data-ng-bind=":: $row.productName"></span
                         ></oui-radio>
-                    </oui-column>
-                    <oui-column
+                    </oui-datagrid-column>
+                    <oui-datagrid-column
                         data-title=":: 'dedicatedCloud_tab_license_price' | translate"
                     >
                         <div data-ng-bind=":: $row.prices[0].price.text"></div>
@@ -39,7 +39,7 @@
                             class="small"
                             data-ng-bind=":: $row.prices[0].description"
                         ></div>
-                    </oui-column>
+                    </oui-datagrid-column>
                 </oui-datagrid>
 
                 <div

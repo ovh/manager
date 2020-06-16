@@ -15,7 +15,10 @@
             data-ng-if="($ctrl.phoneOffers.length > 1 || $ctrl.merchandise.length)"
         >
             <!-- Define filters -->
-            <oui-dropdown class="d-flex justify-content-end" align="end">
+            <oui-dropdown
+                class="d-flex justify-content-end"
+                data-placement="end"
+            >
                 <oui-dropdown-trigger
                     text="{{ ::'telephony_line_phone_filter_price' | translate }}"
                 >
@@ -51,11 +54,7 @@
                                 data-model="$ctrl.phoneToOrder"
                                 data-on-change="$ctrl.returnPhone()"
                             >
-                                <oui-radio
-                                    thumbnail
-                                    variant="light"
-                                    data-value=""
-                                >
+                                <oui-radio thumbnail data-value>
                                     <div
                                         data-translate="telephony_line_phone_order_return_phone"
                                         data-translate-values="{ phone: $ctrl.phone.description }"
@@ -64,7 +63,7 @@
                                         <img
                                             class="sized"
                                             data-ng-if="phone.img"
-                                            alt=""
+                                            alt
                                             data-ng-alt="{{phone.description}}"
                                             data-ng-src="{{phone.img}}"
                                         />
@@ -84,11 +83,7 @@
                                 data-model="$ctrl.phoneToOrder"
                                 data-on-change="$ctrl.selectPhone()"
                             >
-                                <oui-radio
-                                    thumbnail
-                                    variant="light"
-                                    data-value="phone.brand"
-                                >
+                                <oui-radio thumbnail data-value="phone.brand">
                                     <div>
                                         <span
                                             data-ng-bind="phone.description"
