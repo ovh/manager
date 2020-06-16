@@ -44,7 +44,7 @@
                         ></p>
                         <img
                             data-ng-src="{{:: $ctrl.assets.BROADBAND_LIGHT }}"
-                            alt=""
+                            alt
                             data-ng-attr-alt="{{:: $ctrl.currentAction }}"
                             aria-hidden="true"
                         />
@@ -93,7 +93,7 @@
             data-type="warning"
         >
             <p
-                class="oui-header_5"
+                class="oui-heading_5"
                 data-translate="tools_lineDiagnostics_detection_step_warning_title"
             ></p>
             <p
@@ -102,11 +102,10 @@
         </oui-message>
         <oui-message
             data-ng-if="$ctrl.currentLineDiagnostic.faultType === 'syncLossOrLowBandwidth'"
-            data-dismissable="false"
             data-type="info"
         >
             <p
-                class="oui-header_5"
+                class="oui-heading_5"
                 data-translate="tools_lineDiagnostics_detection_step_info_title"
             ></p>
             <p

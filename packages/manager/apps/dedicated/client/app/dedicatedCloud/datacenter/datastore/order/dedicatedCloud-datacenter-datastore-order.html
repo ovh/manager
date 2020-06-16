@@ -1,9 +1,7 @@
 <oui-spinner data-ng-if="$ctrl.loading"> </oui-spinner>
 <div data-ng-if="!$ctrl.loading">
-    <oui-back-button
-        data-href="{{:: $ctrl.getBackUrl() }}"
-        data-heading="{{ :: 'dedicatedCloud_datastore_order_title' | translate }}"
-    >
+    <oui-back-button data-href="{{:: $ctrl.getBackUrl() }}"
+        ><span data-translate="dedicatedCloud_datastore_order_title"></span>
     </oui-back-button>
     <div data-ovh-alert></div>
     <oui-message
@@ -16,24 +14,23 @@
     <p data-translate="dedicatedCloud_datastore_order_info"></p>
     <p data-translate="dedicatedCloud_datastore_order_select"></p>
     <oui-datagrid data-rows-loader="$ctrl.fetchDatagridOffers()">
-        <oui-column
+        <oui-datagrid-column
             data-title=":: 'dedicatedCloud_datastore_order_type' | translate"
         >
             <oui-radio
-                data-text="{{ $row.productName }}"
                 data-name="selectedOffer"
                 data-model="$ctrl.selectedOffer"
                 data-value="$row"
-            >
+                ><span data-ng-bind="$row.productName"></span>
             </oui-radio>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title=":: 'dedicatedCloud_datastore_order_price' | translate"
         >
             <span data-ng-bind="$row.prices[0].price.text"></span>
             <br />
             <small data-ng-bind="$row.prices[0].description"></small>
-        </oui-column>
+        </oui-datagrid-column>
     </oui-datagrid>
     <p data-translate="dedicatedCloud_datastore_order_quantity"></p>
     <oui-numeric
@@ -47,8 +44,9 @@
             data-variant="primary"
             data-disabled="!$ctrl.selectedOffer"
             data-ng-if="!$ctrl.selectedOffer"
-            data-text="{{ :: 'dedicatedCloud_datastore_order_confirm' | translate }}"
-        >
+            ><span
+                data-translate="dedicatedCloud_datastore_order_confirm"
+            ></span>
         </oui-button>
         <a
             class="btn btn-primary"

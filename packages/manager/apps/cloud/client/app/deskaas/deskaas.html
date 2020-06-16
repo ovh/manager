@@ -1,7 +1,5 @@
 <div ui-view class="cui-page">
-    <oui-page-header
-        data-heading="{{ ::'vdi_header' | translate }}"
-    ></oui-page-header>
+    <oui-header data-heading="{{ ::'vdi_header' | translate }}"></oui-header>
 
     <div class="cui-page__content">
         <oui-spinner
@@ -11,7 +9,7 @@
             data-ng-hide="DeskaasCtrl.flags.initializing"
             data-rows="DeskaasCtrl.services"
         >
-            <oui-column
+            <oui-datagrid-column
                 data-title="'vdi_hdr_status' | translate"
                 data-property="details.displayName"
                 data-sortable="asc"
@@ -21,18 +19,18 @@
                     data-ng-bind="$row.details.displayName"
                 >
                 </a>
-            </oui-column>
-            <oui-column
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 data-title="'vdi_hdr_name' | translate"
                 data-property="user.displayName"
                 data-sortable
-            ></oui-column>
-            <oui-column
+            ></oui-datagrid-column>
+            <oui-datagrid-column
                 data-title="'vdi_hdr_user' | translate"
                 data-property="details.ip"
                 data-sortable
-            ></oui-column>
-            <oui-column
+            ></oui-datagrid-column>
+            <oui-datagrid-column
                 data-title="'vdi_hdr_ip' | translate"
                 data-property="details.url"
                 data-sortable
@@ -42,8 +40,8 @@
                     data-ng-bind="$row.details.url"
                     target="_blank"
                 ></a>
-            </oui-column>
-            <oui-column
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 data-title="'vdi_hdr_connection' | translate"
                 data-property="serviceInfo.status"
                 data-sortable
@@ -58,7 +56,7 @@
                     data-ng-bind="$row.serviceInfo.status"
                 >
                 </span>
-            </oui-column>
+            </oui-datagrid-column>
         </oui-datagrid>
     </div>
 </div>

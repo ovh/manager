@@ -2,7 +2,7 @@
     <h3 data-translate="logs_aliases_title"></h3>
     <p data-translate="logs_aliases_description"></p>
     <oui-datagrid rows="ctrl.aliases.data">
-        <extra-top>
+        <oui-datagrid-topbar>
             <button
                 type="button"
                 class="oui-button oui-button_secondary"
@@ -18,24 +18,24 @@
                 size="s"
                 data-ng-if="ctrl.delete.loading"
             ></oui-spinner>
-        </extra-top>
-        <oui-column
+        </oui-datagrid-topbar>
+        <oui-datagrid-column
             title="::'logs_aliases_col_title' | translate"
             property="info.name"
             sortable="asc"
             type="string"
             searchable
             filterable
-        ></oui-column>
-        <oui-column
+        ></oui-datagrid-column>
+        <oui-datagrid-column
             title="::'logs_aliases_col_description' | translate"
             property="info.description"
             sortable
             type="string"
             searchable
             filterable
-        ></oui-column>
-        <oui-column
+        ></oui-datagrid-column>
+        <oui-datagrid-column
             title="::'logs_aliases_col_streams' | translate"
             property="streams.length"
             sortable
@@ -45,10 +45,11 @@
             <span
                 data-ng-if="$row.streams.length"
                 data-ng-bind="$row.streams.length"
-            />
-            <span data-ng-if="!$row.streams.length"> - </span>
-        </oui-column>
-        <oui-column
+            >
+                <span data-ng-if="!$row.streams.length"> - </span>
+            </span></oui-datagrid-column
+        >
+        <oui-datagrid-column
             title="::'logs_aliases_col_indices' | translate"
             property="indexes.length"
             sortable
@@ -58,18 +59,19 @@
             <span
                 data-ng-if="$row.indexes.length"
                 data-ng-bind="$row.indexes.length"
-            />
-            <span data-ng-if="!$row.indexes.length"> - </span>
-        </oui-column>
-        <oui-column
+            >
+                <span data-ng-if="!$row.indexes.length"> - </span>
+            </span></oui-datagrid-column
+        >
+        <oui-datagrid-column
             title="::'logs_col_last_modified' | translate"
             property="info.updatedAt"
             sortable
             type="date"
         >
             {{ $row.info.updatedAt | momentFormat:'L'}}
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             title="::'logs_aliases_col_shared' | translate"
             property="info.isEditable"
             sortable
@@ -79,27 +81,27 @@
                 >{{ ::'common_yes' | translate }}</span
             >
             <span data-ng-if="$row.info.isEditable"> - </span>
-        </oui-column>
-        <oui-action-menu data-align="end" compact>
+        </oui-datagrid-column>
+        <oui-action-menu compact data-placement="end">
             <oui-action-menu-item
                 disabled="!$row.info.isEditable"
-                text="{{ ::'common_edit' | translate }}"
                 on-click="ctrl.edit($row.info)"
+                ><span data-translate="common_edit"></span
             ></oui-action-menu-item>
             <oui-action-menu-item
                 disabled="!$row.info.isEditable"
-                text="{{ ::'logs_aliases_attach_content' | translate }}"
                 on-click="ctrl.attachContent($row)"
+                ><span data-translate="logs_aliases_attach_content"></span
             ></oui-action-menu-item>
             <oui-action-menu-item
-                text="{{ ::'logs_aliases_elasticsearch_access' | translate }}"
                 href="{{ctrl.getElasticSearchUrl($row)}}"
                 external
+                ><span data-translate="logs_aliases_elasticsearch_access"></span
             ></oui-action-menu-item>
             <oui-action-menu-item
                 disabled="!$row.info.isEditable"
-                text="{{ ::'common_delete' | translate }}"
                 on-click="ctrl.showDeleteConfirm($row.info)"
+                ><span data-translate="common_delete"></span
             ></oui-action-menu-item>
         </oui-action-menu>
     </oui-datagrid>

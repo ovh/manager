@@ -14,34 +14,33 @@
     </button>
 
     <oui-datagrid data-ng-if="!reload" rows-loader="loadSecondaryDns($config)">
-        <oui-column
+        <oui-datagrid-column
             title=":: 'server_configuration_secondarydns_domain_header' | translate"
             property="domain"
             type="text"
         >
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             title=":: 'server_configuration_secondarydns_dns' | translate"
             property="dns"
             type="text"
         >
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             title=":: 'server_configuration_secondarydns_ip' | translate"
             property="ip"
             type="text"
         >
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             title=":: 'server_configuration_secondarydns_creationdate' | translate"
         >
             <span data-ng-bind="$row.creationDate | date:'longDate'"></span>
-        </oui-column>
-        <oui-action-menu align="end" compact>
+        </oui-datagrid-column>
+        <oui-action-menu compact data-placement="end">
             <oui-action-menu-item
-                text="{{:: 'common_delete' | translate }}"
                 on-click="setAction('dns/delete/dedicated-server-dns-delete', $row)"
-            >
+                ><span data-translate="common_delete"></span>
             </oui-action-menu-item>
         </oui-action-menu>
     </oui-datagrid>

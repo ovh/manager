@@ -5,7 +5,7 @@
 >
     <div class="oui-modal__header">
         <button
-            class="oui-icon oui-icon-close_thin oui-modal__close-button"
+            class="oui-icon oui-modal__close-button oui-icon-close"
             type="button"
             aria-label="{{:: 'common_modal_exit' | translate }}"
             data-ng-click="$ctrl.cancel()"
@@ -17,7 +17,7 @@
         data-ng-class="{ 'oui-modal__body_no-icon': $ctrl.loading || $ctrl.instances.length }"
     >
         <span
-            class="oui-icon oui-icon-warning_circle oui-icon_bicolor"
+            class="oui-icon oui-icon-warning-circle"
             aria-hidden="true"
             data-ng-if="!$ctrl.loading && !$ctrl.instances.length"
         >

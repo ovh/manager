@@ -1,7 +1,8 @@
 <section class="cui-page__content">
     <oui-back-button
-        data-heading="{{ ::($ctrl.editing() ? 'iplb_vrack_private_network_edit_title' : 'iplb_vrack_private_network_add_title') | translate }}"
-    >
+        ><span
+            data-ng-bind="::($ctrl.editing() ? 'iplb_vrack_private_network_edit_title' : 'iplb_vrack_private_network_add_title') | translate"
+        ></span>
     </oui-back-button>
     <oui-spinner data-ng-if="$ctrl.isLoading()"></oui-spinner>
     <form data-ng-if="!$ctrl.isLoading()" novalidate name="$ctrl.form">
@@ -103,7 +104,7 @@
                                         ng-options="farm.farmId as farm.displayName for farm in $ctrl.getAvailableFarm(associatedFarm.farmId)"
                                     >
                                         <option
-                                            value=""
+                                            value
                                             data-translate="iplb_select"
                                         ></option>
                                     </select>

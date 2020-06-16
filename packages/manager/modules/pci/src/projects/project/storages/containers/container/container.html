@@ -1,9 +1,9 @@
 <div data-ui-view>
-    <header class="oui-page-header mb-3">
-        <div class="oui-page-header__container">
-            <div class="oui-page-header__content text-truncate">
+    <header class="mb-3 oui-header">
+        <div class="oui-header__container">
+            <div class="text-truncate oui-header__content">
                 <h1
-                    class="oui-page-header__title"
+                    class="oui-header__title"
                     data-ng-bind="$ctrl.container.name"
                 ></h1>
             </div>
@@ -99,7 +99,7 @@
             data-rows="$ctrl.container.objects"
             data-columns-parameters="$ctrl.columnsParameters"
         >
-            <oui-column
+            <oui-datagrid-column
                 data-title=":: 'pci_projects_project_storages_containers_container_name_label' | translate"
                 data-property="name"
                 data-type="string"
@@ -108,8 +108,8 @@
                 data-filterable
             >
                 <span data-ng-bind="::$value" class="text-truncate"></span>
-            </oui-column>
-            <oui-column
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 data-title=":: 'pci_projects_project_storages_containers_container_lastModified_label' | translate"
                 data-property="lastModified"
                 data-type="date"
@@ -117,23 +117,23 @@
                 data-filterable
             >
                 <span data-ng-bind="$value | date:'medium'"></span>
-            </oui-column>
-            <oui-column
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 data-title=":: 'pci_projects_project_storages_containers_container_size_label' | translate"
                 data-property="size"
                 data-type="number"
                 data-sortable
             >
                 <span data-ng-bind="$value | RAUnitsBits"></span>
-            </oui-column>
-            <oui-column
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 data-title=":: 'pci_projects_project_storages_containers_container_contentType_label' | translate"
                 data-property="contentType"
                 data-sortable
                 data-type="string"
             >
-            </oui-column>
-            <oui-column
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 name="retrievalState"
                 data-title=":: 'pci_projects_project_storages_containers_container_retrievalState_label' | translate"
                 data-property="retrievalState"
@@ -148,9 +148,9 @@
                     data-ng-if="$row.retrievalState === 'unsealing'"
                     data-ng-bind="$row.retrievalDate | date:'medium'"
                 ></span>
-            </oui-column>
+            </oui-datagrid-column>
 
-            <oui-action-menu data-align="end" data-compact>
+            <oui-action-menu data-compact data-placement="end">
                 <oui-action-menu-item
                     data-on-click="$ctrl.downloadObject($row)"
                     data-ng-if="!$ctrl.archive || $row.retrievalState === 'unsealed'"
@@ -174,7 +174,7 @@
                 </oui-action-menu-item>
             </oui-action-menu>
 
-            <extra-top>
+            <oui-datagrid-topbar>
                 <oui-button data-on-click="$ctrl.addObject()">
                     <span
                         class="oui-icon oui-icon-add pr-1"
@@ -184,7 +184,7 @@
                         data-ng-bind=":: 'pci_projects_project_storages_containers_container_add_' + ($ctrl.archive ? 'archive' : 'object') + '_label' | translate"
                     ></span>
                 </oui-button>
-            </extra-top>
+            </oui-datagrid-topbar>
         </oui-datagrid>
     </div>
 </div>

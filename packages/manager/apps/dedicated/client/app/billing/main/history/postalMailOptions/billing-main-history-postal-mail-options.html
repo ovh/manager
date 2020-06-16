@@ -1,6 +1,5 @@
 <div class="billing-main-history-postal-mail-options">
     <oui-modal
-        data-title="{{ :: 'billing_main_history_postal_mail_options_title' | translate }}"
         data-primary-label="{{ :: 'common_yes' | translate }}"
         data-primary-action="$ctrl.confirmChoice()"
         data-secondary-label="{{ :: 'common_no' | translate }}"
@@ -8,6 +7,7 @@
         data-on-dismiss="$ctrl.$uibModalInstance.dismiss()"
         data-loading="$ctrl.loading.update"
         data-type="help"
+        data-heading="{{ :: 'billing_main_history_postal_mail_options_title' | translate }}"
     >
         <p
             data-translate="{{ $ctrl.postalMailOptionsActivated ? 'billing_main_history_postal_mail_options_activation' : 'billing_main_history_postal_mail_options_desactivation' }}"

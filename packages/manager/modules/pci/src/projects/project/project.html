@@ -19,24 +19,24 @@
                 <ui-router-breadcrumb></ui-router-breadcrumb>
                 <div class="pci-project-view mt-3 pb-4" data-ui-view>
                     <div data-ng-if="$ctrl.project">
-                        <oui-page-header
-                            heading="{{ ::$ctrl.project.description }}"
-                        >
+                        <oui-header heading="{{ ::$ctrl.project.description }}">
                             <oui-header-tabs class="mt-3">
                                 <oui-header-tabs-item
-                                    text="{{ ::'pci_projects_project_home' | translate }}"
                                     ui-sref="pci.projects.project({ serviceName: $ctrl.project.project_id })"
                                     active="$ctrl.$state.is('pci.projects.project')"
-                                >
+                                    ><span
+                                        data-translate="pci_projects_project_home"
+                                    ></span>
                                 </oui-header-tabs-item>
                                 <oui-header-tabs-item
-                                    text="{{ ::'pci_projects_project_parameters' | translate }}"
                                     ui-sref="pci.projects.project.edit({ serviceName: $ctrl.project.project_id })"
                                     active="$ctrl.$state.is('pci.projects.project.edit', { serviceName: $ctrl.project.project_id })"
-                                >
+                                    ><span
+                                        data-translate="pci_projects_project_parameters"
+                                    ></span>
                                 </oui-header-tabs-item>
                             </oui-header-tabs>
-                        </oui-page-header>
+                        </oui-header>
                         <div class="py-5" data-ui-view="contentTab">
                             <div class="container-fluid px-0">
                                 <div class="row">

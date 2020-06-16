@@ -1,4 +1,4 @@
-<div data-ng-controller="RA.add.storage.stepRegionCtrl" data-scroll-here="">
+<div data-ng-controller="RA.add.storage.stepRegionCtrl" data-scroll-here>
     <h3
         id="step_region"
         class="counter-step"
@@ -16,9 +16,9 @@
                 data-model="model.region"
                 data-values="[region]"
                 data-picture="storage-region-flag flag-icon {{:: regionService.getRegionIconFlag(region) }} flag"
-                data-text="{{:: regionService.getTranslatedMicroRegion(region)}}"
                 data-on-change="clickOnRegion(region)"
                 data-variant="light"
+                data-label="{{:: regionService.getTranslatedMicroRegion(region)}}"
             >
             </oui-select-picker>
         </div>
@@ -33,15 +33,15 @@
                 data-name="region_{{ region.name }}"
                 data-values="[region.name]"
                 data-picture="storage-region-flag flag-icon {{:: regionService.getRegionIconFlag(region.name) }} flag"
-                data-text="{{:: regionService.getTranslatedMicroRegion(region.name)}}"
                 data-on-change="clickOnRegion(region.name)"
                 data-variant="light"
                 data-disabled="true"
+                data-label="{{:: regionService.getTranslatedMicroRegion(region.name)}}"
             >
                 <oui-select-picker-section>
                     <!-- region not activated, show link to activate it -->
                     <a
-                        class="oui-button oui-button_link"
+                        class="oui-button oui-button_ghost"
                         data-ui-sref="iaas.pci-project.compute.regions"
                     >
                         <span data-translate="cpci_add_regions_activate"></span>

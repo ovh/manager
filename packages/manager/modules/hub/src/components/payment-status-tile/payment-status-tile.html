@@ -21,7 +21,7 @@
     ></p>
 
     <div
-        class="oui-datagrid-responsive-container"
+        class="oui-datagrid-responsive"
         data-ng-if="$ctrl.services || $ctrl.loading"
     >
         <div class="oui-datagrid-responsive-container__sticky-container">
@@ -59,7 +59,7 @@
                             >
                                 <div class="d-block d-md-inline mb-1">
                                     <span
-                                        class="oui-status oui-status_error"
+                                        class="oui-badge oui-badge_error"
                                         data-ng-if="service.hasDebt()"
                                         data-translate="ovh_manager_hub_payment_status_tile_status_pending_debt"
                                     >
@@ -68,7 +68,7 @@
                                         >-</span
                                     >
                                     <span
-                                        class="oui-status mw-100"
+                                        class="mw-100 oui-badge"
                                         data-ng-class="{
                                                 'oui-status_error': $ctrl.SERVICE_STATES.error.includes(service.getRenew()),
                                                 'oui-status_warning': $ctrl.SERVICE_STATES.warning.includes(service.getRenew()),

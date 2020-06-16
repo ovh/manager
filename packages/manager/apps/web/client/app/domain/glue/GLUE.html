@@ -16,24 +16,22 @@
                 data-rows="ctrlDomainGlue.glueHosts"
                 row-loader="ctrlDomainGlue.transformItem($row)"
             >
-                <oui-column
+                <oui-datagrid-column
                     data-property="hostToDisplay"
                     data-title="'domain_tab_GLUE_host' | translate"
-                ></oui-column>
-                <oui-column
+                ></oui-datagrid-column>
+                <oui-datagrid-column
                     data-property="ips"
                     data-title="'domain_tab_GLUE_ip' | translate"
-                ></oui-column>
-                <oui-action-menu data-align="end" data-compact>
+                ></oui-datagrid-column>
+                <oui-action-menu data-compact data-placement="end">
                     <oui-action-menu-item
-                        data-text="{{ 'table_modify_entry' | translate }}"
                         data-on-click="setAction('glue/add/domain-glue-add-or-edit', { editedGlueRecord: $row, domain: ctrlDomainGlue.domain })"
-                    >
+                        ><span data-translate="table_modify_entry"></span>
                     </oui-action-menu-item>
                     <oui-action-menu-item
-                        data-text="{{ 'table_delete_entry' | translate }}"
                         data-on-click="setAction('glue/delete/domain-glue-delete', $row)"
-                    >
+                        ><span data-translate="table_delete_entry"></span>
                     </oui-action-menu-item>
                 </oui-action-menu>
             </oui-datagrid>

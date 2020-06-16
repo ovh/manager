@@ -5,12 +5,12 @@
     class="vps-reinstall"
 >
     <oui-modal
-        data-title="{{:: 'vps_configuration_reinstall_title' | translate}}"
         data-primary-label="{{ ::'vps_common_confirm' | translate }}"
         data-secondary-action="$ctrl.cancel()"
         data-secondary-label="{{ ::'vps_common_cancel' | translate }}"
         data-on-dismiss="$ctrl.cancel()"
         data-loading="$ctrl.loaders.init || $ctrl.loaders.template || $ctrl.loaders.save"
+        data-heading="{{:: 'vps_configuration_reinstall_title' | translate}}"
     >
         <!-- distribution -->
         <oui-field
@@ -28,7 +28,7 @@
                     required
                 >
                     <option
-                        value=""
+                        value
                         disabled
                         selected
                         data-translate="vps_configuration_reinstall_step1_os"
@@ -97,7 +97,7 @@
                     data-ng-model="$ctrl.template.language"
                 >
                     <option
-                        value=""
+                        value
                         disabled
                         selected
                         data-translate="vps_configuration_reinstall_step1_language"
@@ -132,7 +132,7 @@
                     data-ng-model="$ctrl.template.sshKeys"
                     data-ng-if="$ctrl.userSshKeys.length > 0"
                 >
-                    <option value="" disabled selected></option>
+                    <option value disabled selected></option>
                 </select>
             </div>
             <span
@@ -148,12 +148,13 @@
         <!-- send password -->
         <oui-checkbox
             data-ng-if="$ctrl.template.sshKeys && $ctrl.template.sshKeys.length > 0 && !$ctrl.constructor.isWindows($ctrl.template.value)"
-            data-text="{{ 'vps_configuration_reinstall_step1_sendPassword' | translate }}"
             data-description="{{ 'vps_configuration_reinstall_step2_alert2' | translate }}"
             id="sendPassword"
             name="sendPassword"
             data-model="$ctrl.template.sendPassword"
-        >
+            ><span
+                data-translate="vps_configuration_reinstall_step1_sendPassword"
+            ></span>
         </oui-checkbox>
     </oui-modal>
 </form>

@@ -1,4 +1,4 @@
-<header class="oui-page-header" role="banner">
+<header class="oui-header" role="banner">
     <div class="d-flex ml-5 pt-4">
         <h1
             class="word-break mb-0 oui-header-2"
@@ -12,7 +12,7 @@
             data-ui-sref="app.dedicated.server.dashboard.edit-display-name"
         >
             <span
-                class="oui-icon oui-icon-pen_line oui-icon_small"
+                class="oui-icon oui-icon_small oui-icon-pen_concept"
                 aria-hidden="true"
             ></span>
         </button>
@@ -24,51 +24,51 @@
 
     <oui-header-tabs>
         <oui-header-tabs-item
-            data-text="{{:: 'server_informations_general' | translate }}"
             data-href="{{:: $ctrl.getTabItemUrl('dashboard') }}"
+            ><span data-translate="server_informations_general"></span
         ></oui-header-tabs-item>
         <oui-header-tabs-item
-            data-text="{{:: 'server_tab_interfaces' | translate }}"
             data-href="{{:: $ctrl.getTabItemUrl('interfaces') }}"
             data-disabled="server.isExpired"
+            ><span data-translate="server_tab_interfaces"></span
         ></oui-header-tabs-item>
         <oui-header-tabs-item
-            data-text="{{:: 'server_tab_dns' | translate }}"
             data-href="{{:: $ctrl.getTabItemUrl('dns') }}"
             data-disabled="server.isExpired"
+            ><span data-translate="server_tab_dns"></span
         ></oui-header-tabs-item>
         <oui-header-tabs-item
-            data-text="{{:: 'server_tab_ftp_backup' | translate }}"
             data-href="{{:: $ctrl.getTabItemUrl('ftpBackup') }}"
             data-disabled="server.isExpired"
             data-ng-if="worldPart !== 'US'"
+            ><span data-translate="server_tab_ftp_backup"></span
         ></oui-header-tabs-item>
         <oui-header-tabs-item
-            data-text="{{:: 'server_tab_intervention' | translate }}"
             data-href="{{:: $ctrl.getTabItemUrl('intervention') }}"
             data-disabled="server.isExpired"
+            ><span data-translate="server_tab_intervention"></span
         ></oui-header-tabs-item>
         <oui-header-tabs-item
-            data-text="{{:: 'server_tab_firewall' | translate }}"
             data-href="{{:: $ctrl.getTabItemUrl('firewall') }}"
             data-disabled="server.isExpired"
             data-ng-if="worldPart !== 'US'"
+            ><span data-translate="server_tab_firewall"></span
         ></oui-header-tabs-item>
         <oui-header-tabs-item
-            data-text="{{:: 'server_tab_ipmi' | translate }}"
             data-href="{{:: $ctrl.getTabItemUrl('ipmi') }}"
             data-disabled="server.isExpired"
+            ><span data-translate="server_tab_ipmi"></span
         ></oui-header-tabs-item>
         <oui-header-tabs-item
             data-ng-if="disable.usbStorageTab"
-            data-text="{{:: 'server_tab_usb_storage' | translate }}"
             data-href="{{:: $ctrl.getTabItemUrl('usbStorage') }}"
             data-disabled="server.isExpired"
+            ><span data-translate="server_tab_usb_storage"></span
         ></oui-header-tabs-item>
         <oui-header-tabs-item
-            data-text="{{:: 'server_tab_task' | translate }}"
             data-href="{{:: $ctrl.getTabItemUrl('task') }}"
             data-disabled="server.isExpired"
+            ><span data-translate="server_tab_task"></span
         ></oui-header-tabs-item>
     </oui-header-tabs>
 </header>

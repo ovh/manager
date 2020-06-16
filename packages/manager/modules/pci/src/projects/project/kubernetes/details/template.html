@@ -1,27 +1,24 @@
 <div data-ui-view>
-    <oui-page-header
+    <oui-header
         class="mb-3"
         data-heading="{{:: $ctrl.cluster.name }}"
         data-description="{{::$ctrl.cluster.id }}"
     >
         <oui-header-tabs>
             <oui-header-tabs-item
-                data-text="{{:: 'kube_service' | translate }}"
                 data-href="{{:: $ctrl.serviceLink }}"
                 data-active="$ctrl.currentActiveLink() === $ctrl.serviceLink"
-            >
+                ><span data-translate="kube_service"></span>
             </oui-header-tabs-item>
             <oui-header-tabs-item
-                data-text="{{:: 'kube_nodes' | translate }}"
                 data-href="{{:: $ctrl.nodesLink }}"
                 data-active="$ctrl.currentActiveLink() === $ctrl.nodesLink"
-            >
+                ><span data-translate="kube_nodes"></span>
             </oui-header-tabs-item>
             <oui-header-tabs-item
-                data-text="{{:: 'kube_containers_and_services' | translate }}"
                 data-href="{{:: $ctrl.containersLink }}"
                 data-active="$ctrl.currentActiveLink() === $ctrl.containersLink"
-            >
+                ><span data-translate="kube_containers_and_services"></span>
             </oui-header-tabs-item>
         </oui-header-tabs>
         <oui-guide-menu
@@ -33,6 +30,6 @@
                 ></span>
             </oui-guide-menu-item>
         </oui-guide-menu>
-    </oui-page-header>
+    </oui-header>
     <div class="container-fluid" data-ui-view="kubernetesView"></div>
 </div>

@@ -61,8 +61,9 @@
                                 id="chk-filter-active"
                                 name="filterActive"
                                 data-model="ctrl.filter.active"
-                                data-text="{{:: 'email_tab_modal_filter_create_active' | translate }}"
-                            >
+                                ><span
+                                    data-translate="email_tab_modal_filter_create_active"
+                                ></span>
                             </oui-checkbox>
                         </div>
                     </fieldset>
@@ -93,7 +94,7 @@
                                         data-ng-options="header as ('email_tab_modal_filter_create_header_' + header | translate) for header in ctrl.headers track by header"
                                     >
                                         <option
-                                            value=""
+                                            value
                                             disabled
                                             data-translate="email_tab_modal_filter_create_header"
                                         ></option>
@@ -145,7 +146,7 @@
                                         data-ng-options="operand as ('email_tab_modal_filter_create_rule_' + operand | translate) for operand in ctrl.operands track by operand"
                                     >
                                         <option
-                                            value=""
+                                            value
                                             disabled
                                             data-translate="email_tab_modal_filter_create_rule"
                                         ></option>
@@ -223,7 +224,7 @@
                                         data-ng-options="action as ('email_tab_modal_filter_create_action_' + action | translate) for action in ctrl.actions track by action"
                                     >
                                         <option
-                                            value=""
+                                            value
                                             disabled
                                             data-translate="select_placeholder"
                                         ></option>

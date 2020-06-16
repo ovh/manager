@@ -29,7 +29,7 @@
 
             <!-- Define filters -->
             <div class="d-flex justify-content-end">
-                <oui-dropdown align="end">
+                <oui-dropdown data-placement="end">
                     <oui-dropdown-trigger
                         text="{{ ::'telephony_line_phone_accessories_filter_price' | translate }}"
                     >
@@ -51,7 +51,7 @@
                         </oui-dropdown-item>
                     </oui-dropdown-content>
                 </oui-dropdown>
-                <oui-dropdown data-ng-if="$ctrl.phone" align="end">
+                <oui-dropdown data-ng-if="$ctrl.phone" data-placement="end">
                     <oui-dropdown-trigger
                         text="{{ ::'telephony_line_phone_accessories_filter_compatibility' | translate }}"
                     >
@@ -95,7 +95,7 @@
                                         class="sized"
                                         data-ng-if="accessory.img"
                                         ng-attr-alt="{{accessory.description}}"
-                                        alt=""
+                                        alt
                                         data-ng-src="{{accessory.img}}"
                                     />
                                     <span

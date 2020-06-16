@@ -54,7 +54,6 @@
                             data-items="configuration.availableValues"
                             data-match="text"
                             required
-                            data-align="start"
                         >
                             <span data-ng-bind="$item.text"></span>
                         </oui-select>
@@ -74,8 +73,8 @@
                         >
                             <oui-radio
                                 data-ng-repeat="item in configuration.availableValues track by item.id"
-                                data-text="{{:: item.text}}"
                                 data-value="item.id"
+                                ><span data-ng-bind=":: item.text"></span
                             ></oui-radio>
                         </oui-radio-toggle-group>
                     </oui-field>

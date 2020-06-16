@@ -75,7 +75,7 @@
                                     data-ng-options="lang as ('language_' + lang | translate) for lang in ctrl.languages track by lang"
                                 >
                                     <option
-                                        value=""
+                                        value
                                         disabled
                                         data-translate="select_placeholder"
                                     ></option>
@@ -262,8 +262,9 @@
                             id="chk-ml-only-subscribers"
                             name="mlSubscribersModeration"
                             data-model="ctrl.mailingList.options.subscribeByModerator"
-                            data-text="{{:: 'mailing_list_tab_modal_create_list_only_subscribers_moderator' | translate }}"
-                        >
+                            ><span
+                                data-translate="mailing_list_tab_modal_create_list_only_subscribers_moderator"
+                            ></span>
                         </oui-checkbox>
                         <div
                             class="font-italic"

@@ -35,7 +35,7 @@
                                     data-ng-options="offer as (('hosting_dashboard_service_offer_' + offer.offer | translate)  + ' - ' + offer.price.text) for offer in (product.availableBoostOffer | orderBy:'offer') track by offer.offer"
                                 >
                                     <option
-                                        value=""
+                                        value
                                         disabled
                                         data-translate="select_placeholder"
                                     ></option>
@@ -52,11 +52,10 @@
                         data-translate="hosting_tab_BOOST_request_description"
                     ></p>
 
-                    <oui-checkbox
-                        id="acceptCGV"
-                        data-model="acceptCGV.value"
-                        data-text="{{:: 'hosting_tab_BOOST_accept_cgv' | translate }}"
-                    >
+                    <oui-checkbox id="acceptCGV" data-model="acceptCGV.value"
+                        ><span
+                            data-translate="hosting_tab_BOOST_accept_cgv"
+                        ></span>
                     </oui-checkbox>
                 </form>
             </div>

@@ -21,7 +21,7 @@
                 data-rows="domainsCtrl.upnSuffixesIds"
                 data-row-loader="domainsCtrl.onTranformItem($row.id)"
             >
-                <oui-column
+                <oui-datagrid-column
                     data-title="'sharepoint_exchange_tab_domain_domain' | translate"
                 >
                     <span data-ng-bind="$row.displayName || $row.suffix"></span>
@@ -30,21 +30,21 @@
                         aria-hidden="true"
                         data-ng-if="$row.taskPendingId"
                     ></span>
-                </oui-column>
-                <oui-column
+                </oui-datagrid-column>
+                <oui-datagrid-column
                     data-title="'sharepoint_exchange_tab_domain_diagnostic' | translate"
                 >
                     <span data-ng-if="$row.ownershipValidated === false">
                         <i
-                            class="oui-icon oui-icon-info_circle"
+                            class="oui-icon oui-icon-info-circle"
                             data-ng-click="domainsCtrl.showMoreInformation($row)"
                         ></i>
                         <span
                             data-translate="sharepoint_domains_cname_check_info1"
                         ></span>
                     </span>
-                </oui-column>
-                <oui-column
+                </oui-datagrid-column>
+                <oui-datagrid-column
                     data-title="'sharepoint_exchange_tab_domain_status' | translate"
                 >
                     <span
@@ -67,17 +67,21 @@
                         data-translate="sharepoint_domains_state_deleting"
                         data-ng-if="$row.state === 'deleting'"
                     ></span>
-                </oui-column>
-                <oui-action-menu data-align="end" data-compact>
+                </oui-datagrid-column>
+                <oui-action-menu data-compact data-placement="end">
                     <oui-action-menu-item
-                        data-text="{{ 'sharepoint_domains_delete_tooltips' | translate }}"
                         data-on-click="setAction('domain/delete/sharepoint-domain-delete', $row)"
                         data-disabled="$row.taskPendingId"
+                        ><span
+                            data-translate="sharepoint_domains_delete_tooltips"
+                        ></span
                     ></oui-action-menu-item>
                     <oui-action-menu-item
-                        data-text="{{ 'sharepoint_domains_more_details' | translate }}"
                         data-ng-click="domainsCtrl.showMoreInformation($row)"
                         data-ng-if="$row.ownershipValidated === false"
+                        ><span
+                            data-translate="sharepoint_domains_more_details"
+                        ></span
                     ></oui-action-menu-item>
                 </oui-action-menu>
             </oui-datagrid>

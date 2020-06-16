@@ -1,8 +1,7 @@
 <div class="cui-page__content">
     <oui-back-button
-        data-heading="{{ ::'iplb_ssl_add_title' | translate }}"
         data-on-click="ctrl.$state.go('network.iplb.detail.ssl-certificate')"
-    >
+        ><span data-translate="iplb_ssl_add_title"></span>
     </oui-back-button>
 
     <form novalidate name="ctrl.form" data-ng-submit="ctrl.create()">

@@ -1,6 +1,5 @@
-<oui-back-button
-    data-ui-sref="app.dedicated.server"
-    data-title="{{:: 'dedicated_server_ovhTasks_backButton' | translate }}"
+<oui-back-button data-ui-sref="app.dedicated.server"
+    ><span data-translate="dedicated_server_ovhTasks_backButton"></span
 ></oui-back-button>
 
 <div data-ng-if="$ctrl.isLoading" class="text-center">
@@ -20,7 +19,7 @@
         >
             <span data-ng-bind=":: task.title"></span>
             <span
-                class="oui-icon oui-icon-external_link"
+                class="oui-icon oui-icon-external-link"
                 aria-hidden="true"
             ></span>
             <span class="sr-only" data-translate="core_new_window"></span>

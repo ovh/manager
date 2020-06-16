@@ -30,7 +30,7 @@
         data-rows="$ctrl.cloudDatabases"
         data-empty-placeholder="{{:: 'vps_tab_cloud_database_table_empty' | translate }}"
     >
-        <oui-column
+        <oui-datagrid-column
             data-title="::'vps_tab_cloud_database_header_name' | translate"
             data-property="name"
             data-type="string"
@@ -39,8 +39,8 @@
             data-filterable
         >
             <span data-ng-bind="$row.name"></span>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title="::'vps_tab_cloud_database_header_version' | translate"
             data-property="version"
             data-type="string"
@@ -51,8 +51,8 @@
             <span
                 data-ng-bind="'vps_database_version_' + $row.version.replace('.', '') | translate"
             ></span>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title="::'vps_tab_cloud_database_header_vps_authorized' | translate"
             data-property="vpsAuthorized"
             data-type="boolean"
@@ -61,13 +61,13 @@
             data-filterable
         >
             <span
-                class="oui-icon oui-icon-success_circle"
+                class="oui-icon oui-icon-success-circle"
                 aria-hidden="true"
                 data-ng-if="$row.vpsAuthorized"
             >
             </span>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title="::'vps_tab_cloud_database_header_status' | translate"
             data-property="state"
             data-sortable
@@ -77,42 +77,39 @@
             data-type-options="$ctrl.statusFilterOptions"
         >
             <span
-                class="oui-status oui-status_info"
+                class="oui-badge oui-badge_info"
                 data-ng-bind="'vps_database_status_' + $row.state | translate"
             >
             </span>
-        </oui-column>
-        <oui-action-menu data-align="end" data-compact>
+        </oui-datagrid-column>
+        <oui-action-menu data-compact data-placement="end">
             <oui-action-menu-item
                 data-ng-if="!$row.vpsAuthorized"
-                data-text="{{:: 'vps_tab_cloud_database_add_authorized_ip' | translate }}"
                 data-on-click="$ctrl.addAuthorizedIp($row)"
-            >
+                ><span
+                    data-translate="vps_tab_cloud_database_add_authorized_ip"
+                ></span>
             </oui-action-menu-item>
             <oui-action-menu-item
                 data-ng-if="$row.vpsAuthorized"
-                data-text="{{:: 'vps_tab_cloud_database_remove_authorized_ip' | translate }}"
                 data-on-click="$ctrl.removeAuthorizedIp($row)"
-            >
+                ><span
+                    data-translate="vps_tab_cloud_database_remove_authorized_ip"
+                ></span>
             </oui-action-menu-item>
-            <oui-action-menu-item
-                data-text="{{:: 'vps_tab_cloud_database_manage' | translate }}"
-                data-on-click="$ctrl.goToCloudDatabase($row)"
-            >
+            <oui-action-menu-item data-on-click="$ctrl.goToCloudDatabase($row)"
+                ><span data-translate="vps_tab_cloud_database_manage"></span>
             </oui-action-menu-item>
         </oui-action-menu>
-        <extra-top>
+        <oui-datagrid-topbar>
             <button
                 class="oui-button oui-button_primary"
                 type="button"
                 data-ui-sref="vps.detail.cloud-database.order"
             >
-                <span
-                    aria-hidden="true"
-                    class="oui-icon oui-icon_circle oui-icon-add"
-                ></span>
+                <span aria-hidden="true" class="oui-icon oui-icon-add"></span>
                 <span data-translate="vps_tab_cloud_database_order"></span>
             </button>
-        </extra-top>
+        </oui-datagrid-topbar>
     </oui-datagrid>
 </section>

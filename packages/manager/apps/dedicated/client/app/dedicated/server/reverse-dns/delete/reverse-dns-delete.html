@@ -5,13 +5,13 @@
         data-ng-submit="$ctrl.onDeleteReverseDNSFormSubmit()"
     >
         <oui-modal
-            data-title="{{:: 'server_reversedns_delete_title' | translate }}"
             data-primary-label="{{($ctrl.actionEnabled ? 'server_reversedns_delete_confirm' : 'global_OK') | translate }}"
             data-secondary-label="{{$ctrl.actionEnabled ? ('common_cancel' | translate) : '' }}"
             data-secondary-action="$ctrl.$state.go('^')"
             data-on-dismiss="$ctrl.$state.go('^')"
             data-loading="$ctrl.loading.init || $ctrl.loading.delete"
             data-type="{{ !$ctrl.actionEnabled ? 'warning' : '' }}"
+            data-heading="{{:: 'server_reversedns_delete_title' | translate }}"
         >
             <p
                 data-translate="server_reversedns_delete_loading_error"

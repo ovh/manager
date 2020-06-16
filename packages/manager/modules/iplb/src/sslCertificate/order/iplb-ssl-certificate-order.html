@@ -1,8 +1,7 @@
 <div class="cui-page__content">
     <oui-back-button
-        data-heading="{{ ::'iplb_ssl_add_title' | translate }}"
         data-on-click="ctrl.$state.go('network.iplb.detail.ssl-certificate')"
-    >
+        ><span data-translate="iplb_ssl_add_title"></span>
     </oui-back-button>
 
     <form novalidate name="ctrl.form">
@@ -15,9 +14,10 @@
                 <oui-radio-toggle-group data-model="ctrl.newSsl.type">
                     <oui-radio
                         data-ng-repeat="type in ctrl.sslTypes track by $index"
-                        data-text="{{ ::('iplb_ssl_order_type_' + type) | translate }}"
                         data-value="type"
-                    >
+                        ><span
+                            data-ng-bind="::('iplb_ssl_order_type_' + type) | translate"
+                        ></span>
                     </oui-radio>
                 </oui-radio-toggle-group>
             </div>
@@ -41,7 +41,7 @@
 
         <div data-ng-if="ctrl.newSsl.type === 'iplb_ssl_ev_single'">
             <h3
-                class="oui-header_3"
+                class="oui-heading_3"
                 data-translate="iplb_ssl_order_contact"
             ></h3>
 
@@ -297,7 +297,7 @@
                 </div>
             </div>
 
-            <h3 class="oui-header_3" data-translate="iplb_ssl_order_joi"></h3>
+            <h3 class="oui-heading_3" data-translate="iplb_ssl_order_joi"></h3>
 
             <div
                 class="oui-field"
@@ -381,7 +381,7 @@
                 data-ng-disabled="ctrl.form.$submitted && ctrl.form.$invalid"
             ></button>
             <a
-                class="oui-button oui-button_link"
+                class="oui-button oui-button_ghost"
                 data-translate="iplb_ssl_order_cancel"
                 data-ui-sref="network.iplb.detail.ssl-certificate.home"
             ></a>

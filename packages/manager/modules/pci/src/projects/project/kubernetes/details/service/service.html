@@ -1,9 +1,5 @@
 <cui-message-container data-messages="$ctrl.messages"></cui-message-container>
-<oui-message
-    data-type="warning"
-    data-dismissable="false"
-    data-ng-if="!$ctrl.isVersionSupported"
->
+<oui-message data-type="warning" data-ng-if="!$ctrl.isVersionSupported">
     <p data-translate="kube_service_cluster_version_not_supported_message"></p>
     <oui-button
         data-variant="primary"
@@ -21,7 +17,6 @@
 </oui-message>
 <oui-message
     data-type="info"
-    data-dismissable="false"
     data-ng-if="!$ctrl.cluster.hasLatestPatchVersion() && !$ctrl.cluster.isUpdating()"
 >
     <p
@@ -110,7 +105,7 @@
             >
                 <oui-tile-description>
                     <span
-                        class="oui-status"
+                        class="oui-badge"
                         data-ng-class="{
                                     'oui-status_success' : $ctrl.cluster.status === $ctrl.STATUS.READY,
                                     'oui-status_warning' : $ctrl.Kubernetes.constructor.isProcessing($ctrl.cluster.status),
@@ -185,7 +180,7 @@
                                         data-translate="kube_service_file_more_information"
                                     ></span>
                                     <span
-                                        class="oui-icon oui-icon-external_link"
+                                        class="oui-icon oui-icon-external-link"
                                         aria-hidden="true"
                                     ></span>
                                 </a>

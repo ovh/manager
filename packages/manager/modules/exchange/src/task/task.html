@@ -21,13 +21,13 @@
     ></div>
 
     <oui-datagrid data-rows-loader="ctrl.loadPaginated($config)">
-        <oui-column
+        <oui-datagrid-column
             data-title="'exchange_tab_TASKS_table_function' | translate"
             data-property="function"
         >
             {{('exchange_tab_TASKS_' + $row.function) | translate}}
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title="'exchange_tab_TASKS_table_state' | translate"
             data-property="status"
         >
@@ -44,18 +44,18 @@
                 data-ng-bind="('exchange_tab_TASKS_'+ $row.status) | translate"
                 data-ng-if="$row.status === ctrl.states.done"
             ></span>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title="'exchange_tab_TASKS_table_start_date' | translate"
             data-property="todoDate"
         >
             <span data-ng-bind="::$row.todoDate | date:'short'"></span>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title="'exchange_tab_TASKS_table_finish_date' | translate"
             data-property="finishDate"
         >
             <span data-ng-bind="::$row.finishDate | date:'short'"></span>
-        </oui-column>
+        </oui-datagrid-column>
     </oui-datagrid>
 </div>

@@ -1,7 +1,6 @@
 <div class="cui-page__content">
-    <oui-back-button
-        data-heading="{{ ::'cpc_loadbalancer_configure_title' | translate }}"
-        data-on-click="$ctrl.back()"
+    <oui-back-button data-on-click="$ctrl.back()"
+        ><span data-translate="cpc_loadbalancer_configure_title"></span
     ></oui-back-button>
 
     <div data-ng-if="$ctrl.loaders.loadbalancer" class="text-center">
@@ -119,19 +118,22 @@
             ></p>
 
             <oui-datagrid rows="$ctrl.table.server">
-                <oui-column>
+                <oui-datagrid-column>
                     <oui-checkbox
                         data-name="server{{$row.ip}}"
                         data-id="server{{$row.ip}}"
                         data-model="$ctrl.form.servers[$row.ip]"
                     >
                     </oui-checkbox>
-                </oui-column>
-                <oui-column
+                </oui-datagrid-column>
+                <oui-datagrid-column
                     data-title="'cpc_loadbalancer_configure_server_name' | translate"
                     data-property="label"
-                ></oui-column>
-                <oui-column data-title="'IP'" data-property="ip"></oui-column>
+                ></oui-datagrid-column>
+                <oui-datagrid-column
+                    data-title="'IP'"
+                    data-property="ip"
+                ></oui-datagrid-column>
             </oui-datagrid>
 
             <div
@@ -154,11 +156,12 @@
         ></p>
         <oui-field>
             <oui-checkbox
-                data-text="{{ 'cpc_loadbalancer_configure_openstack_activation' | translate }}"
                 id="openstack"
                 name="openstack"
                 data-model="$ctrl.form.openstack"
-            >
+                ><span
+                    data-translate="cpc_loadbalancer_configure_openstack_activation"
+                ></span>
             </oui-checkbox>
         </oui-field>
 

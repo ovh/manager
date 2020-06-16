@@ -7,7 +7,7 @@
             <div class="oui-navbar-menu__back h-100">
                 <button
                     type="button"
-                    class="oui-button oui-button_link oui-button_icon-left"
+                    class="oui-button oui-button_icon-left oui-button_ghost"
                     data-ng-click="$ctrl.onClick()"
                     id="sidebar-focus"
                 >
@@ -48,7 +48,7 @@
                 <div class="my-auto">
                     <button
                         type="button"
-                        class="oui-button oui-button_primary oui-button_small-width rounded-circle project-list-toggle"
+                        class="oui-button oui-button_primary rounded-circle project-list-toggle oui-button_s"
                         data-ng-click="$ctrl.toggleProjectsList()"
                     >
                         <span
@@ -104,12 +104,12 @@
                                         ></span>
                                         <span
                                             data-ng-if="subitem.alpha"
-                                            class="oui-status oui-status_alpha ml-2"
+                                            class="oui-status_alpha ml-2 oui-badge"
                                             data-translate="cloud_sidebar_alpha_project"
                                         ></span>
                                         <span
                                             data-ng-if="subitem.beta"
-                                            class="oui-status oui-status_beta ml-2"
+                                            class="oui-status_beta ml-2 oui-badge"
                                             data-translate="cloud_sidebar_beta_project"
                                         ></span>
                                     </a>
@@ -125,7 +125,7 @@
                                             data-ng-bind=":: subitem.title"
                                         ></span>
                                         <span
-                                            class="oui-icon oui-icon-external_link"
+                                            class="oui-icon oui-icon-external-link"
                                             aria-hidden="true"
                                         ></span>
                                     </a>
@@ -147,7 +147,7 @@
         <div class="my-auto">
             <button
                 type="button"
-                class="oui-button oui-button_secondary oui-button_small-width rounded-circle project-list-toggle"
+                class="oui-button oui-button_secondary rounded-circle project-list-toggle oui-button_s"
                 data-ng-click="$ctrl.toggleProjectsList()"
             >
                 <span
@@ -176,7 +176,7 @@
         <div class="oui-navbar-menu__back h-100">
             <button
                 type="button"
-                class="oui-button oui-button_link oui-button_icon-left"
+                class="oui-button oui-button_icon-left oui-button_ghost"
                 data-ng-click="$ctrl.toggleProjectsList()"
             >
                 <span

@@ -5,12 +5,12 @@
     novalidate
 >
     <oui-modal
-        data-title="{{ ::'kube_service_upgrade_policy_model_title' | translate }}"
         data-primary-label="{{ ::'kube_service_common_confirm' | translate }}"
         data-secondary-action="$ctrl.goBack()"
         data-secondary-label="{{ ::'kube_service_common_cancel' | translate }}"
         data-on-dismiss="$ctrl.goBack()"
         data-loading="$ctrl.isUpgrading"
+        data-heading="{{ ::'kube_service_upgrade_policy_model_title' | translate }}"
     >
         <oui-field>
             <oui-radio-group data-model="$ctrl.updatePolicy">

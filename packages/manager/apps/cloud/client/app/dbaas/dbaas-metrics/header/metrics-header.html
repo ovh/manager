@@ -1,17 +1,17 @@
-<header class="oui-page-header">
-    <div class="oui-page-header__container">
-        <div class="oui-page-header__content">
+<header class="oui-header">
+    <div class="oui-header__container">
+        <div class="oui-header__content">
             <oui-spinner
                 data-size="m"
                 data-ng-if="MetricsDetailCtrl.loadingService"
             ></oui-spinner>
             <h1
-                class="oui-page-header__title"
+                class="oui-header__title"
                 data-ng-if="!MetricsDetailCtrl.loadingService"
                 data-ng-bind="MetricsDetailCtrl.service.description || MetricsDetailCtrl.serviceName"
             ></h1>
             <h2
-                class="oui-page-header__description"
+                class="oui-header__description"
                 data-ng-if="!MetricsDetailCtrl.loadingService && MetricsDetailCtrl.service.description !== MetricsDetailCtrl.serviceName"
                 data-ng-bind="MetricsDetailCtrl.serviceName"
             ></h2>
@@ -23,39 +23,36 @@
             >
                 <oui-guide-menu-item
                     data-ng-repeat="guideItem in section.list track by guideItem.url"
-                    data-text="{{ ::guideItem.name }}"
                     data-href="{{ ::guideItem.url }}"
                     data-external="guideItem.external"
-                >
+                    ><span data-ng-bind="::guideItem.name"></span>
                 </oui-guide-menu-item>
             </oui-guide-menu-group>
             <oui-guide-menu-divider></oui-guide-menu-divider>
             <oui-guide-menu-item
-                data-text="{{ ::MetricsHeaderCtrl.guides.footer.name }}"
                 data-href="{{ ::MetricsHeaderCtrl.guides.footer.url }}"
                 data-external="MetricsHeaderCtrl.guides.footer.external"
-            >
+                ><span
+                    data-ng-bind="::MetricsHeaderCtrl.guides.footer.name"
+                ></span>
             </oui-guide-menu-item>
         </oui-guide-menu>
     </div>
     <oui-header-tabs>
         <oui-header-tabs-item
-            data-text="{{ ::'metrics_tab_dashboard' | translate }}"
             data-state="dbaas.metrics.detail.dashboard"
             data-state-params="{ serviceName: MetricsHeaderCtrl.serviceName }"
-        >
+            ><span data-translate="metrics_tab_dashboard"></span>
         </oui-header-tabs-item>
         <oui-header-tabs-item
-            data-text="{{ ::'metrics_tab_token' | translate }}"
             data-state="dbaas.metrics.detail.token"
             data-state-params="{ serviceName: MetricsHeaderCtrl.serviceName }"
-        >
+            ><span data-translate="metrics_tab_token"></span>
         </oui-header-tabs-item>
         <oui-header-tabs-item
-            data-text="{{ ::'metrics_tab_platform' | translate }}"
             data-state="dbaas.metrics.detail.platform"
             data-state-params="{ serviceName: MetricsHeaderCtrl.serviceName }"
-        >
+            ><span data-translate="metrics_tab_platform"></span>
         </oui-header-tabs-item>
     </oui-header-tabs>
 </header>

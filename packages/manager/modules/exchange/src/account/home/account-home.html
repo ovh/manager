@@ -8,7 +8,7 @@
         rel="noopener"
     >
         https://<span data-ng-bind=":: $ctrl.webUrl"></span>
-        <span class="oui-icon oui-icon-external_link" aria-hidden="true"></span>
+        <span class="oui-icon oui-icon-external-link" aria-hidden="true"></span>
         <span class="sr-only" data-translate="common_newtab"></span>
     </a>
 </p>
@@ -27,7 +27,6 @@
 <oui-message
     data-ng-if="$ctrl.isMfaAvailable && $ctrl.exchangeServer && !$ctrl.exchangeServer.owaMfa"
     data-type="info"
-    data-dismissable="false"
 >
     <p>
         <span data-translate="exchange_tab_ACCOUNTS_owa_mfa_disabled"></span>
@@ -45,7 +44,7 @@
     data-columns-parameters="$ctrl.getColumnParameters()"
     data-on-columns-parameters-change="$ctrl.onColumnsParametersChange(id, columns)"
 >
-    <oui-column
+    <oui-datagrid-column
         data-title=":: 'exchange_tab_ACCOUNTS_table_email' | translate"
         data-property="emailAddress"
         data-type="string"
@@ -58,8 +57,8 @@
         data-filterable
         data-sortable="asc"
         data-prevent-customization
-    ></oui-column>
-    <oui-column
+    ></oui-datagrid-column>
+    <oui-datagrid-column
         data-title=":: 'exchange_tab_ACCOUNTS_table_type' | translate"
         data-property="accountLicense"
         data-type="options"
@@ -70,15 +69,15 @@
         <span
             data-ng-bind=":: $ctrl.exchangeAccountTypes.getDisplayValue($value)"
         ></span>
-    </oui-column>
-    <oui-column
+    </oui-datagrid-column>
+    <oui-datagrid-column
         data-title=":: 'exchange_tab_ACCOUNTS_table_company' | translate"
         data-property="company"
         data-type="string"
         data-sortable
         data-filterable
-    ></oui-column>
-    <oui-column
+    ></oui-datagrid-column>
+    <oui-datagrid-column
         data-title=":: 'exchange_tab_ACCOUNTS_table_size' | translate"
         data-property="size"
     >
@@ -109,27 +108,27 @@
                 ></span>
             </div>
         </div>
-    </oui-column>
-    <oui-column
+    </oui-datagrid-column>
+    <oui-datagrid-column
         data-title=":: 'exchange_tab_ACCOUNTS_table_alias' | translate"
         data-property="numberOfAliases"
         data-type="number"
         data-sortable
-    ></oui-column>
-    <oui-column
+    ></oui-datagrid-column>
+    <oui-datagrid-column
         data-title=":: 'exchange_tab_ACCOUNTS_table_outlook' | translate"
         data-property="outlookStatus"
         data-type="string"
     >
         <span data-ng-bind="$value.displayValue"></span>
-    </oui-column>
-    <oui-column
+    </oui-datagrid-column>
+    <oui-datagrid-column
         data-title=":: 'exchange_tab_ACCOUNTS_table_status' | translate"
         data-property="status"
         data-type="string"
     >
-    </oui-column>
-    <oui-column
+    </oui-datagrid-column>
+    <oui-datagrid-column
         data-title=":: 'exchange_tab_ACCOUNTS_table_mfa' | translate"
         data-property="mfa"
         data-type="boolean"
@@ -139,8 +138,8 @@
             data-ng-if="$ctrl.isMfaAvailable"
             data-translate="{{ 'exchange_tab_ACCOUNTS_table_mfa_' + $value.status }}"
         ></span>
-    </oui-column>
-    <oui-action-menu data-compact data-align="bottom-end">
+    </oui-datagrid-column>
+    <oui-action-menu data-compact data-placement="bottom-end">
         <oui-action-menu-item
             data-on-click="$ctrl.displayDialog('exchange/account/update/account-update', $row)"
             data-disabled="!$ctrl.exchangeAccount.isEditable($row) || !$ctrl.atLeastOneDomainIsAssociatedToCurrentExchangeService"
@@ -278,13 +277,12 @@
             <span data-translate="exchange_tab_ACCOUNTS_menu_delete"></span>
         </oui-action-menu-item>
     </oui-action-menu>
-    <extra-top
+    <oui-datagrid-topbar
         data-ng-if="!$ctrl.initialLoading"
         data-ng-disabled="$ctrl.initialAccountRetrieval"
     >
         <oui-action-menu
             data-text="{{:: 'exchange_tab_ACCOUNTS_actions' | translate }}"
-            data-align="start"
         >
             <oui-action-menu-item
                 data-ng-if="$ctrl.userCanSubscribeToOfficeAttach"
@@ -337,5 +335,5 @@
                 ></span>
             </oui-action-menu-item>
         </oui-action-menu>
-    </extra-top>
+    </oui-datagrid-topbar>
 </oui-datagrid>

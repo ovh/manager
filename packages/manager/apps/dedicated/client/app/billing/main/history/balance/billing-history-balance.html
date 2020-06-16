@@ -1,8 +1,6 @@
 <div class="billing-main-history-balance-pay">
-    <oui-back-button
-        data-heading="{{ :: ('billing_history_balance_title' | translate) }}"
-        data-href="{{ $ctrl.$state.href('^') }}"
-    >
+    <oui-back-button data-href="{{ $ctrl.$state.href('^') }}"
+        ><span data-translate="billing_history_balance_title"></span>
     </oui-back-button>
 
     <div

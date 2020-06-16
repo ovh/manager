@@ -197,14 +197,14 @@
                             >
                                 <div data-ng-if="domain.domainValidated">
                                     <button
-                                        class="oui-status oui-status_error"
+                                        class="oui-badge oui-badge_error"
                                         type="button"
                                         data-translate="emailpro_tab_domain_diagnostic_mx"
                                         data-ng-click="setAction('emailpro/domain/mx-autoconfig/emailpro-domain-mx-autoconfig', domain)"
                                         data-ng-if="!domain.mxValid"
                                     ></button>
                                     <button
-                                        class="oui-status oui-status_success"
+                                        class="oui-badge oui-badge_success"
                                         type="button"
                                         data-translate="emailpro_tab_domain_diagnostic_mx"
                                         data-ng-if="domain.mxValid"
@@ -214,14 +214,14 @@
                                         data-simplepopover-single="true"
                                     ></button>
                                     <button
-                                        class="oui-status oui-status_error"
+                                        class="oui-badge oui-badge_error"
                                         type="button"
                                         data-translate="emailpro_tab_domain_diagnostic_srv"
                                         data-ng-click="setAction('emailpro/domain/srv-autoconfig/emailpro-domain-srv-autoconfig', domain)"
                                         data-ng-if="!domain.srvValid && !exchange.isMXPlan"
                                     ></button>
                                     <button
-                                        class="oui-status oui-status_success"
+                                        class="oui-badge oui-badge_success"
                                         type="button"
                                         data-translate="emailpro_tab_domain_diagnostic_srv"
                                         data-ng-if="domain.srvValid && !exchange.isMXPlan"
@@ -232,7 +232,7 @@
                                     ></button>
                                 </div>
                                 <button
-                                    class="oui-status oui-status_error"
+                                    class="oui-badge oui-badge_error"
                                     type="button"
                                     data-translate="emailpro_tab_domain_diagnostic_cname"
                                     data-ng-if="!domain.domainValidated && domain.cname"
@@ -248,12 +248,12 @@
                             >
                                 <div data-ng-if="domain.state === stateOk">
                                     <span
-                                        class="oui-status oui-status_success"
+                                        class="oui-badge oui-badge_success"
                                         data-translate="global_OK"
                                         data-ng-if="!domain.taskInProgress"
                                     ></span>
                                     <span
-                                        class="oui-status oui-status_info"
+                                        class="oui-badge oui-badge_info"
                                         data-translate="emailpro_tab_domain_task_in_progress"
                                         data-ng-if="domain.taskInProgress"
                                     ></span>
@@ -262,17 +262,17 @@
                                     data-ng-if="domain.state === stateCreating || domain.state === stateDeleting"
                                 >
                                     <span
-                                        class="oui-status oui-status_info"
+                                        class="oui-badge oui-badge_info"
                                         data-ng-if="!domain.domainValidated && domain.cname"
                                         data-translate="emailpro_tab_domain_validation"
                                     ></span>
                                     <span
-                                        class="oui-status oui-status_info"
+                                        class="oui-badge oui-badge_info"
                                         data-ng-if="domain.state === stateCreating && domain.cname == null"
                                         data-translate="emailpro_tab_ACCOUNTS_state_CREATING"
                                     ></span>
                                     <span
-                                        class="oui-status oui-status_error"
+                                        class="oui-badge oui-badge_error"
                                         data-ng-if="domain.state === stateDeleting"
                                         data-translate="emailpro_tab_ACCOUNTS_state_DELETING"
                                     ></span>
@@ -282,7 +282,10 @@
                                 class="text-center text-nowrap"
                                 data-ng-if="!domain.partial"
                             >
-                                <oui-action-menu data-compact data-align="end">
+                                <oui-action-menu
+                                    data-compact
+                                    data-placement="end"
+                                >
                                     <oui-action-menu-item
                                         data-on-click="updateDomain(domain)"
                                         data-disabled="isEditDisabled(domain)"

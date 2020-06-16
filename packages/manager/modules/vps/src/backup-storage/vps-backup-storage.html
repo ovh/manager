@@ -94,35 +94,35 @@
             data-rows="$ctrl.backup.data.list.results"
             data-ng-hide="$ctrl.backup.loading"
         >
-            <oui-column
+            <oui-datagrid-column
                 data-title="'vps_tab_backup_storage_table_ip' | translate"
                 data-property="ipBlock"
                 data-sortable
             >
                 <span data-ng-bind="$row.ipBlock"></span>
-            </oui-column>
-            <oui-column
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 data-title="'vps_tab_backup_storage_table_cifs' | translate"
                 data-property="cifs"
                 data-sortable
             >
                 <span data-ng-bind="$row.cifs"></span>
-            </oui-column>
-            <oui-column
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 data-title="'vps_tab_backup_storage_table_ftp' | translate"
                 data-property="ftp"
                 data-sortable
             >
                 <span data-ng-bind="$row.ftp"></span>
-            </oui-column>
-            <oui-column
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 data-title="'vps_tab_backup_storage_table_nfs' | translate"
                 data-property="nfs"
                 data-sortable
             >
                 <span data-ng-bind="$row.nfs"></span>
-            </oui-column>
-            <oui-column
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 data-title="'vps_tab_backup_storage_table_status' | translate"
                 data-property="isApplied"
                 data-sortable
@@ -135,15 +135,15 @@
                     data-ng-hide="$row.isApplied"
                     data-translate="vps_tab_backup_storage_table_ip_disable"
                 ></span>
-            </oui-column>
-            <oui-action-menu data-align="end" data-compact>
+            </oui-datagrid-column>
+            <oui-action-menu data-compact data-placement="end">
                 <oui-action-menu-item
-                    data-text="{{'vps_common_edit' | translate}}"
                     data-on-click="$ctrl.goToEditBackupStorage($row)"
+                    ><span data-translate="vps_common_edit"></span
                 ></oui-action-menu-item>
                 <oui-action-menu-item
-                    data-text="{{'vps_common_delete' | translate}}"
                     data-on-click="$ctrl.goToDeleteBackupStorage($row.ipBlock)"
+                    ><span data-translate="vps_common_delete"></span
                 ></oui-action-menu-item>
             </oui-action-menu>
         </oui-datagrid>

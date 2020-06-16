@@ -1,9 +1,9 @@
 <section>
     <!-- page header -->
-    <oui-page-header
+    <oui-header
         class="mb-2"
         data-heading="{{ ::'data_processing_submit_job_title' | translate }}"
-    ></oui-page-header>
+    ></oui-header>
     <!-- page content -->
     <p data-translate="data_processing_submit_job_description_1"></p>
     <p data-translate="data_processing_submit_job_description_2"></p>
@@ -79,7 +79,7 @@
         class="submitjob__error"
         data-ng-if="$ctrl.submitRetries>0 && !$ctrl.isSubmitting"
     >
-        <span class="oui-icon oui-icon-error_circle"></span>
+        <span class="oui-icon oui-icon-error-circle"></span>
         <span
             class="submitjob__errormessage"
             data-ng-if="$ctrl.badRequestErrorMessage.length == 0"

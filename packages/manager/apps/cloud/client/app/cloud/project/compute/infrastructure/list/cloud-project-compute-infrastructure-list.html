@@ -30,7 +30,7 @@
             class="col-xs-12"
             data-rows="ComputeInfrastructureListCtrl.table.items"
         >
-            <extra-top>
+            <oui-datagrid-topbar>
                 <oui-action-menu
                     data-text="{{ ::'common_actions' | translate }}"
                     data-disabled="ComputeInfrastructureDiagramCtrl.loaders.vRack"
@@ -38,49 +38,47 @@
                 >
                     <oui-action-menu-item
                         data-ui-sref="iaas.pci-project.compute.infrastructure.vm-add()"
-                        data-text="{{ ::'cpci_add_server' | translate }}"
                         data-write-right-required
                         data-on-click="ComputeInfrastructureListCtrl.trackOnClick('cloud-project::cloud-project-compute::cloud-project-compute-infrastructure-add-virtual-machine')"
-                    >
+                        ><span data-translate="cpci_add_server"></span>
                     </oui-action-menu-item>
                     <oui-action-menu-item
-                        data-text="{{ ::'cpci_volume_add' | translate }}"
                         data-write-right-required
                         data-on-click="ComputeInfrastructureListCtrl.addVolume()"
-                    >
+                        ><span data-translate="cpci_volume_add"></span>
                     </oui-action-menu-item>
                     <oui-action-menu-divider></oui-action-menu-divider>
                     <oui-action-menu-item
-                        data-text="{{ ::'cpci_view_iac' | translate }}"
                         data-ui-sref="iaas.pci-project.compute.infrastructure.iac-view"
                         data-on-click="ComputeInfrastructureListCtrl.trackOnClick('cloud-project::cloud-project-compute::cloud-project-compute-infrastructure-add-view')"
-                    >
+                        ><span data-translate="cpci_view_iac"></span>
                     </oui-action-menu-item>
                     <oui-action-menu-divider></oui-action-menu-divider>
                     <oui-action-menu-item
-                        data-text="{{ ::'cpci_buy_ip_failover' | translate }}"
                         data-on-click="ComputeInfrastructureListCtrl.buyIpFailOver()"
-                    >
+                        ><span data-translate="cpci_buy_ip_failover"></span>
                     </oui-action-menu-item>
                     <oui-action-menu-divider
                         data-ng-if="ComputeInfrastructureListCtrl.region === 'US'"
                     ></oui-action-menu-divider>
                     <oui-action-menu-item
                         data-ng-if="ComputeInfrastructureListCtrl.region === 'US'"
-                        data-text="{{ ::'cpb_vouchers_add_credit_title' | translate }}"
                         data-on-click="ComputeInfrastructureListCtrl.InfrastructureService.orderCredit()"
-                    >
+                        ><span
+                            data-translate="cpb_vouchers_add_credit_title"
+                        ></span>
                     </oui-action-menu-item>
                     <oui-action-menu-divider></oui-action-menu-divider>
                     <oui-action-menu-item
-                        data-text="{{ ::'cpb_details_project_delete' | translate }}"
                         data-ng-click="ComputeInfrastructureListCtrl.openDeleteProjectModal()"
                         data-write-right-required
-                    >
+                        ><span
+                            data-translate="cpb_details_project_delete"
+                        ></span>
                     </oui-action-menu-item>
                 </oui-action-menu>
-            </extra-top>
-            <oui-column
+            </oui-datagrid-topbar>
+            <oui-datagrid-column
                 title="'cpci_vm_name' | translate"
                 data-property="name"
                 data-type="string"
@@ -88,8 +86,8 @@
                 data-filterable
                 data-sortable="asc"
             >
-            </oui-column>
-            <oui-column
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 data-title="'cpci_vm_region' | translate"
                 data-property="macroRegion"
                 data-type="options"
@@ -99,8 +97,8 @@
                 <span
                     data-ng-bind="ComputeInfrastructureListCtrl.CucRegionService.getTranslatedMicroRegion($row.region)"
                 ></span>
-            </oui-column>
-            <oui-column
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 data-title="'cpci_vm_flavor_category' | translate"
                 data-property="flavorTranslated"
                 data-type="string"
@@ -108,24 +106,24 @@
                 data-sortable
                 data-filterable
             >
-            </oui-column>
-            <oui-column
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 data-title="'ipv4'"
                 data-property="ipv4"
                 data-type="string"
                 data-searchable
                 data-filterable
             >
-            </oui-column>
-            <oui-column
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 data-title="'ipv6'"
                 data-property="ipv6"
                 data-type="string"
                 data-searchable
                 data-filterable
             >
-            </oui-column>
-            <oui-column
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 data-title="'cpci_vm_hdd' | translate"
                 data-property="volumes"
             >
@@ -137,8 +135,8 @@
                     data-ng-bind="$row.volumes[0].name + ' (' + ($row.volumes[0].size | bytes:2:true:'GiB') + ')'"
                     data-ng-if="$row.volumes.length === 1"
                 ></span>
-            </oui-column>
-            <oui-column
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 data-title="'cpci_vm_price' | translate"
                 data-property="price.price.value"
                 data-sortable
@@ -155,8 +153,8 @@
                     data-translate-values="{ price: $row.price.monthlyPrice.text || $row.price.price.text || '?' }"
                 >
                 </span>
-            </oui-column>
-            <oui-column
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 data-title="'cpci_vm_status' | translate"
                 data-property="statusToTranslate"
                 data-type="options"
@@ -164,129 +162,118 @@
                 data-filterable
             >
                 <span
-                    class="oui-status oui-status_success"
+                    class="oui-badge oui-badge_success"
                     data-translate="cpci_vm_status_OK"
                     data-ng-if="$row.statusToTranslate === 'OK'"
                 ></span>
                 <span
-                    class="oui-status oui-status_info"
+                    class="oui-badge oui-badge_info"
                     data-translate="cpci_vm_status_UPDATING"
                     data-ng-if="$row.statusToTranslate === 'UPDATING'"
                 ></span>
                 <span
-                    class="oui-status oui-status_info"
+                    class="oui-badge oui-badge_info"
                     data-translate="cpci_vm_status_REBOOT"
                     data-ng-if="$row.statusToTranslate === 'REBOOT'"
                 ></span>
                 <span
-                    class="oui-status oui-status_info"
+                    class="oui-badge oui-badge_info"
                     data-translate="cpci_vm_status_{{ $row.statusToTranslate }}"
                     data-ng-if="$row.statusToTranslate === 'BUILD' || $row.statusToTranslate === 'REBUILD'"
                 ></span>
                 <span
-                    class="oui-status oui-status_warning"
+                    class="oui-badge oui-badge_warning"
                     data-translate="cpci_vm_status_{{ $row.statusToTranslate }}"
                     data-ng-if="$row.statusToTranslate === 'RESCUE' || $row.statusToTranslate === 'SNAPSHOTTING'"
                 ></span>
                 <span
-                    class="oui-status oui-status_error"
+                    class="oui-badge oui-badge_error"
                     data-translate="cpci_vm_status_{{ $row.statusToTranslate }}"
                     data-ng-if="$row.statusToTranslate === 'ERROR' || $row.statusToTranslate === 'DELETING'"
                 ></span>
-            </oui-column>
-            <oui-action-menu data-align="end" data-compact>
+            </oui-datagrid-column>
+            <oui-action-menu data-compact data-placement="end">
                 <oui-action-menu-item
-                    data-text="{{ 'cpci_vm_action_edit' | translate }}"
                     data-on-click="ComputeInfrastructureListCtrl.InfrastructureService.editVirtualMachine($row.id)"
                     data-ng-if="$row.status === 'ACTIVE'"
-                >
+                    ><span data-translate="cpci_vm_action_edit"></span>
                 </oui-action-menu-item>
                 <oui-action-menu-item
-                    data-text="{{ 'cpci_vm_action_monitoring' | translate }}"
                     data-on-click="ComputeInfrastructureListCtrl.InfrastructureService.monitorVirtualMachine($row.id)"
                     data-ng-if="$row.status === 'ACTIVE'"
-                >
+                    ><span data-translate="cpci_vm_action_monitoring"></span>
                 </oui-action-menu-item>
                 <oui-action-menu-item
-                    data-text="{{ 'cpci_vm_action_monthly' | translate }}"
                     data-on-click="ComputeInfrastructureListCtrl.InfrastructureService.openMonthlyConfirmation($row)"
                     data-ng-if="$row.status === 'ACTIVE' && !$row.monthlyBilling"
-                >
+                    ><span data-translate="cpci_vm_action_monthly"></span>
                 </oui-action-menu-item>
                 <oui-action-menu-item
-                    data-text="{{ 'cpci_vm_action_create_snapshot' | translate }}"
                     data-on-click="ComputeInfrastructureListCtrl.InfrastructureService.openSnapshotWizard($row)"
                     data-ng-if="$row.status === 'ACTIVE'"
-                >
+                    ><span
+                        data-translate="cpci_vm_action_create_snapshot"
+                    ></span>
                 </oui-action-menu-item>
                 <oui-action-menu-divider
                     data-ng-if="$row.status === 'ACTIVE'"
                 ></oui-action-menu-divider>
                 <oui-action-menu-item
-                    data-text="{{ 'cpci_vm_action_auth_info' | translate }}"
                     data-on-click="ComputeInfrastructureListCtrl.InfrastructureService.openLoginInformations($row)"
                     data-ng-if="$row.status === 'ACTIVE'"
-                >
+                    ><span data-translate="cpci_vm_action_auth_info"></span>
                 </oui-action-menu-item>
                 <oui-action-menu-item
-                    data-text="{{ 'cpci_vm_action_vnc' | translate }}"
                     data-on-click="ComputeInfrastructureListCtrl.InfrastructureService.openVnc($row)"
                     data-ng-if="$row.status === 'ACTIVE' || ($row.status === 'RESCUE' && $row.getStatusGroup() === 'OPENSTACK')"
-                >
+                    ><span data-translate="cpci_vm_action_vnc"></span>
                 </oui-action-menu-item>
                 <oui-action-menu-divider
                     data-ng-if="$row.status === 'ACTIVE'"
                 ></oui-action-menu-divider>
                 <oui-action-menu-item
-                    data-text="{{ 'cpci_vm_action_rescue' | translate }}"
                     data-on-click="ComputeInfrastructureListCtrl.InfrastructureService.rescueMode($row)"
                     data-ng-if="$row.status === 'ACTIVE'"
-                >
+                    ><span data-translate="cpci_vm_action_rescue"></span>
                 </oui-action-menu-item>
                 <oui-action-menu-divider
                     data-ng-if="$row.status === 'ACTIVE'"
                 ></oui-action-menu-divider>
                 <oui-action-menu-item
-                    data-text="{{ 'cpci_vm_action_reboot' | translate }}"
                     data-on-click="ComputeInfrastructureListCtrl.InfrastructureService.rebootVirtualMachine($row, 'soft')"
                     data-ng-if="$row.status === 'ACTIVE'"
-                >
+                    ><span data-translate="cpci_vm_action_reboot"></span>
                 </oui-action-menu-item>
                 <oui-action-menu-item
-                    data-text="{{ 'cpci_vm_action_reboot_hard' | translate }}"
                     data-on-click="ComputeInfrastructureListCtrl.InfrastructureService.rebootVirtualMachine($row, 'hard')"
                     data-ng-if="$row.status === 'ACTIVE'"
-                >
+                    ><span data-translate="cpci_vm_action_reboot_hard"></span>
                 </oui-action-menu-item>
                 <oui-action-menu-divider
                     data-ng-if="$row.status === 'ACTIVE'"
                 ></oui-action-menu-divider>
                 <oui-action-menu-item
-                    data-text="{{ 'cpci_vm_action_reinstall' | translate }}"
                     data-on-click="ComputeInfrastructureListCtrl.InfrastructureService.reinstallVirtualMachine($row)"
                     data-ng-if="$row.status === 'ACTIVE'"
-                >
+                    ><span data-translate="cpci_vm_action_reinstall"></span>
                 </oui-action-menu-item>
 
                 <oui-action-menu-item
-                    data-text="{{ 'cpci_vm_action_rescue_end' | translate }}"
                     data-on-click="ComputeInfrastructureListCtrl.InfrastructureService.stopRescueMode($row, false)"
                     data-ng-if="$row.status === 'RESCUE' && $row.getStatusGroup() === 'OPENSTACK'"
-                >
+                    ><span data-translate="cpci_vm_action_rescue_end"></span>
                 </oui-action-menu-item>
                 <oui-action-menu-item
-                    data-text="{{ 'cpci_vm_action_resume' | translate }}"
                     data-on-click="ComputeInfrastructureListCtrl.InfrastructureService.resumeVirtualMachine($row)"
                     data-ng-if="$row.status === 'SUSPENDED' && $row.getStatusGroup() === 'OPENSTACK'"
-                >
+                    ><span data-translate="cpci_vm_action_resume"></span>
                 </oui-action-menu-item>
                 <oui-action-menu-divider
                     data-ng-if="$row.status === 'RESCUE' || $row.status === 'SUSPENDED'"
                 ></oui-action-menu-divider>
                 <oui-action-menu-item
-                    data-text="{{ 'cpci_vm_action_delete' | translate }}"
                     data-on-click="ComputeInfrastructureListCtrl.InfrastructureService.deleteVirtualMachine($row)"
-                >
+                    ><span data-translate="cpci_vm_action_delete"></span>
                 </oui-action-menu-item>
             </oui-action-menu>
         </oui-datagrid>

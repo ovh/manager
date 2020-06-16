@@ -1,14 +1,13 @@
 <div class="cui-page">
-    <oui-page-header data-heading="{{:: $ctrl.serviceName }}">
+    <oui-header data-heading="{{:: $ctrl.serviceName }}">
         <oui-header-tabs>
             <oui-header-tabs-item
-                data-text="{{:: 'veeam_enterprise_tab_dashboard' | translate}}"
                 data-state="veeam-enterprise.dashboard"
                 data-state-params="{ serviceName: $ctrl.serviceName }"
-            >
+                ><span data-translate="veeam_enterprise_tab_dashboard"></span>
             </oui-header-tabs-item>
         </oui-header-tabs>
-    </oui-page-header>
+    </oui-header>
     <cui-message-container
         data-messages="$ctrl.VeeamEnterpriseService.unitOfWork.messages"
         data-dismissable-types="['error', 'warning', 'info', 'success']"

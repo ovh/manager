@@ -1,6 +1,6 @@
 <section class="cui-page__content cui-page__content-narrow">
     <oui-back-button
-        data-heading="{{ ::'cpcivm_add_title' | translate }}"
+        ><span data-translate="cpcivm_add_title"></span
     ></oui-back-button>
     <oui-stepper
         data-on-init="$ctrl.initProject()"
@@ -37,10 +37,10 @@
                                 data-name="imageType"
                                 data-placeholder="{{ 'cpcivm_add_step1_distribution_choose' | translate }}"
                                 data-picture="assets/images/cloud/os/{{ distribution }}_50.png"
-                                data-text="{{:: 'cpcivm_add_distribution_' + distribution | translate }}{{ imageType === 'windows' ? ' *' : '' }}"
                                 data-values="images"
                                 data-on-change="$ctrl.onSelectChange()"
                                 data-variant="light"
+                                data-label="{{:: 'cpcivm_add_distribution_' + distribution | translate }}{{ imageType === 'windows' ? ' *' : '' }}"
                             >
                             </oui-select-picker>
                         </div>
@@ -73,9 +73,9 @@
                                 data-name="imageType"
                                 data-placeholder="{{ 'cpcivm_add_step1_distribution_choose' | translate }}"
                                 data-picture="assets/images/cloud/apps/{{ app.applications[0] || 'unknown' }}.png"
-                                data-text="{{ app.appName }}"
                                 data-values="[app]"
                                 data-variant="light"
+                                data-label="{{ app.appName }}"
                             >
                             </oui-select-picker>
                         </div>
@@ -97,9 +97,9 @@
                                 data-model="$ctrl.model.imageType"
                                 data-name="snapshot"
                                 data-picture="fa fa-2x fa-{{ snapshot.type }}"
-                                data-text="{{ snapshot.name }}"
                                 data-values="[snapshot]"
                                 data-variant="light"
+                                data-label="{{ snapshot.name }}"
                             >
                             </oui-select-picker>
                         </div>
@@ -118,9 +118,9 @@
                         data-model="$ctrl.model.imageType"
                         data-name="imageTypeSelected"
                         data-picture="assets/images/cloud/{{ $ctrl.model.imageType.apps ? 'apps/' + ($ctrl.model.imageType.applications[0] || 'unknown') : 'os/' + $ctrl.model.imageType.distribution + '_50' }}.png"
-                        data-text="{{:: $ctrl.model.imageType.apps ? $ctrl.model.imageType.appName : 'cpcivm_add_distribution_' + $ctrl.model.imageType.distribution | translate }}"
                         data-values="[$ctrl.model.imageType]"
                         data-variant="light"
+                        data-label="{{:: $ctrl.model.imageType.apps ? $ctrl.model.imageType.appName : 'cpcivm_add_distribution_' + $ctrl.model.imageType.distribution | translate }}"
                     >
                     </oui-select-picker>
                     <oui-select-picker
@@ -129,9 +129,9 @@
                         data-model="$ctrl.model.imageType"
                         data-name="snapshotSelected"
                         data-picture="fa fa-2x fa-{{ $ctrl.model.imageType.type }}"
-                        data-text="{{ $ctrl.model.imageType.name }}"
                         data-values="[$ctrl.model.imageType]"
                         data-variant="light"
+                        data-label="{{ $ctrl.model.imageType.name }}"
                     >
                     </oui-select-picker>
                 </div>
@@ -157,7 +157,7 @@
                                     data-ng-options="sshKey.name for sshKey in $ctrl.displayedSshKeys track by sshKey.id"
                                 >
                                     <option
-                                        value=""
+                                        value
                                         disabled
                                         data-translate="common_select"
                                     ></option>
@@ -174,9 +174,10 @@
                         >
                             <oui-button
                                 data-variant="secondary"
-                                data-text="{{ 'cpcivm_add_step1_sshKey_add' | translate }}"
                                 data-on-click="$ctrl.addingSshKey = true"
-                            >
+                                ><span
+                                    data-translate="cpcivm_add_step1_sshKey_add"
+                                ></span>
                             </oui-button>
                         </div>
                     </div>
@@ -215,16 +216,16 @@
                     <oui-button
                         data-variant="secondary"
                         data-type="submit"
-                        data-text="{{ 'cpcivm_add_step1_sshKey_adding' | translate }}"
                         data-on-click="$ctrl.addSshKey()"
                         data-disabled="$ctrl.loaders.addingSsh"
-                    >
+                        ><span
+                            data-translate="cpcivm_add_step1_sshKey_adding"
+                        ></span>
                     </oui-button>
                     <oui-button
                         data-variant="link"
-                        data-text="{{ 'common_cancel' | translate }}"
                         data-on-click="$ctrl.resetAddingSshKey()"
-                    >
+                        ><span data-translate="common_cancel"></span>
                     </oui-button>
                     <oui-spinner
                         data-ng-if="$ctrl.loaders.addingSsh"
@@ -261,9 +262,9 @@
                                 data-on-change="$ctrl.setImageId()"
                                 data-picture="flag-icon flag-icon-{{ region.macroRegion.code | lowercase }}"
                                 data-placeholder="{{ 'cpcivm_add_step2_datacenter_choose' | translate }}"
-                                data-text="{{region.macroRegion.text}}"
                                 data-values="region.dataCenters"
                                 data-variant="light"
+                                data-label="{{region.macroRegion.text}}"
                             >
                                 <oui-select-picker-section
                                     data-ng-if="region.dataCenters.length === 1 ? region.dataCenters[0].disabled : $ctrl.model.region.disabled"
@@ -273,7 +274,7 @@
                                     >
                                         <!-- region not activated, show link to activate it -->
                                         <a
-                                            class="oui-button oui-button_link"
+                                            class="oui-button oui-button_ghost"
                                             data-ng-switch-when="INACTIVE"
                                             data-ui-sref="iaas.pci-project.compute.regions"
                                         >
@@ -284,7 +285,7 @@
                                         <!-- SSH key not available for this region, show link to add the SSH key -->
                                         <button
                                             type="button"
-                                            class="oui-button oui-button_link"
+                                            class="oui-button oui-button_ghost"
                                             data-ng-switch-when="SSH_KEY"
                                             data-ng-click="$ctrl.updateSshKeyRegion()"
                                         >
@@ -324,9 +325,9 @@
                                 data-on-change="$ctrl.setImageId()"
                                 data-picture="flag-icon flag-icon-{{ region.macroRegion.code | lowercase }} flag"
                                 data-placeholder="{{ 'cpcivm_add_step2_datacenter_choose' | translate }}"
-                                data-text="{{ region.macroRegion.text }}"
                                 data-values="region.dataCenters"
                                 data-variant="light"
+                                data-label="{{ region.macroRegion.text }}"
                             >
                                 <oui-select-picker-section
                                     data-ng-if="region.dataCenters.length === 1 ? region.dataCenters[0].disabled : $ctrl.model.region.disabled"
@@ -336,7 +337,7 @@
                                     >
                                         <!-- region not activated, show link to activate the button -->
                                         <a
-                                            class="oui-button oui-button_link"
+                                            class="oui-button oui-button_ghost"
                                             data-ng-switch-when="INACTIVE"
                                             data-ui-sref="iaas.pci-project.compute.regions"
                                         >
@@ -347,7 +348,7 @@
                                         <!-- SSH key not available for this region, show link to add the SSH key -->
                                         <button
                                             type="button"
-                                            class="oui-button oui-button_link"
+                                            class="oui-button oui-button_ghost"
                                             data-ng-switch-when="SSH_KEY"
                                             data-ng-click="$ctrl.updateSshKeyRegion()"
                                         >
@@ -379,9 +380,9 @@
                         data-model="$ctrl.model.region"
                         data-name="regionSelected"
                         data-picture="flag-icon flag-icon-{{ $ctrl.model.region.macroRegion.code | lowercase }} flag"
-                        data-text="{{ $ctrl.model.region.macroRegion.text }}"
                         data-values="[$ctrl.model.region]"
                         data-variant="light"
+                        data-label="{{ $ctrl.model.region.macroRegion.text }}"
                     >
                     </oui-select-picker>
                 </div>
@@ -425,7 +426,6 @@
                                     data-id="flavor_{{ flavor.id }}"
                                     data-disabled="flavor.disabled"
                                     data-thumbnail
-                                    data-variant="light"
                                     data-value="flavor"
                                 >
                                     {{ flavor.formattedName }}
@@ -489,38 +489,43 @@
                                     >
                                         <oui-button
                                             data-variant="link"
-                                            data-text="{{'cpcivm_add_step3_disabled_NOT_AVAILABLE' | translate}}"
                                             data-on-click="$ctrl.VirtualMachineAddService.openQuotaModal('NOT_AVAILABLE', { regions: flavor.regions.join(', ') })"
                                             data-ng-if="flavor.disabled === 'NOT_AVAILABLE'"
-                                        >
+                                            ><span
+                                                data-translate="cpcivm_add_step3_disabled_NOT_AVAILABLE"
+                                            ></span>
                                         </oui-button>
                                         <oui-button
                                             data-variant="link"
-                                            data-text="{{'cpcivm_add_step3_disabled_QUOTA_RAM' | translate}}"
                                             data-on-click="$ctrl.VirtualMachineAddService.openQuotaModal('QUOTA_RAM', { quota: $ctrl.CloudFlavorService.getQuotaRam(flavor, $ctrl.quota) })"
                                             data-ng-if="flavor.disabled === 'QUOTA_RAM'"
-                                        >
+                                            ><span
+                                                data-translate="cpcivm_add_step3_disabled_QUOTA_RAM"
+                                            ></span>
                                         </oui-button>
                                         <oui-button
                                             data-variant="link"
-                                            data-text="{{'cpcivm_add_step3_disabled_QUOTA_VCPUS' | translate}}"
                                             data-on-click="$ctrl.VirtualMachineAddService.openQuotaModal('QUOTA_VCPUS', { quota: $ctrl.CloudFlavorService.constructor.getQuotaCore(flavor, $ctrl.quota) })"
                                             data-ng-if="flavor.disabled === 'QUOTA_VCPUS'"
-                                        >
+                                            ><span
+                                                data-translate="cpcivm_add_step3_disabled_QUOTA_VCPUS"
+                                            ></span>
                                         </oui-button>
                                         <oui-button
                                             data-variant="link"
-                                            data-text="{{'cpcivm_add_step3_disabled_QUOTA_MINDISK' | translate}}"
                                             data-on-click="$ctrl.VirtualMachineAddService.openQuotaModal('QUOTA_MINDISK', $ctrl.CloudFlavorService.getRequirements(flavor, $ctrl.model.imageId))"
                                             data-ng-if="flavor.disabled === 'QUOTA_MINDISK'"
-                                        >
+                                            ><span
+                                                data-translate="cpcivm_add_step3_disabled_QUOTA_MINDISK"
+                                            ></span>
                                         </oui-button>
                                         <oui-button
                                             data-variant="link"
-                                            data-text="{{'cpcivm_add_step3_disabled_QUOTA_MINRAM' | translate}}"
                                             data-on-click="$ctrl.VirtualMachineAddService.openQuotaModal('QUOTA_MINRAM', $ctrl.CloudFlavorService.getRequirements(flavor, $ctrl.model.imageId))"
                                             data-ng-if="flavor.disabled === 'QUOTA_MINRAM'"
-                                        >
+                                            ><span
+                                                data-translate="cpcivm_add_step3_disabled_QUOTA_MINRAM"
+                                            ></span>
                                         </oui-button>
                                     </span>
                                 </oui-radio>
@@ -540,7 +545,6 @@
                         data-name="flavorSelected"
                         data-value="$ctrl.model.flavor"
                         data-thumbnail
-                        data-variant="light"
                     >
                         {{ $ctrl.model.flavor.formattedName }}
                         <span class="oui-radio__section">
@@ -701,7 +705,7 @@
                         data-ng-model="$ctrl.model.networkId"
                     >
                         <option
-                            value=""
+                            value
                             disabled
                             data-translate="common_select"
                         ></option>
@@ -748,7 +752,6 @@
                             data-id="period_{{period}}"
                             data-thumbnail
                             data-value="period"
-                            data-variant="light"
                         >
                             {{:: 'cpcivm_add_step5_billing_period_' + period |
                             translate}}
@@ -775,13 +778,13 @@
             >
                 <div class="cui-grid-cell">
                     <oui-radio
-                        data-text="{{:: 'cpcivm_add_step5_billing_period_' + $ctrl.model.billingPeriod | translate}}"
                         data-model="$ctrl.model.billingPeriod"
                         data-name="billingPeriodSelected"
                         data-value="$ctrl.model.billingPeriod"
                         data-thumbnail
-                        data-variant="light"
-                    >
+                        ><span
+                            data-ng-bind=":: 'cpcivm_add_step5_billing_period_' + $ctrl.model.billingPeriod | translate"
+                        ></span>
                         <span
                             class="oui-radio__section"
                             data-translate="cpci_vm_flavor_price"

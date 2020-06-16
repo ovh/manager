@@ -2,7 +2,6 @@
     <oui-message
         data-ng-if="$ctrl.minimumNodesRequired > $ctrl.quota.instance.maxInstances"
         data-type="error"
-        data-dismissable="false"
     >
         <span
             data-translate="analytics_data_platform_deploy_nodes_quota_min_servers_error"
@@ -23,7 +22,6 @@
     <oui-message
         data-ng-if="$ctrl.minimumNodesRequired <= $ctrl.quota.instance.maxInstances"
         data-type="info"
-        data-dismissable="false"
     >
         <span
             data-translate="analytics_data_platform_deploy_nodes_quota_msg"

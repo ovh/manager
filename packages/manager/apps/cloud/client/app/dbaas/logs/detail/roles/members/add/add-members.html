@@ -1,12 +1,12 @@
 <form novalidate name="ctrl.form">
     <oui-modal
-        data-title="{{ ::ctrl.title | translate }}"
         data-primary-action="ctrl.addMember()"
         data-primary-label="{{ ::'common_save' | translate }}"
         data-secondary-action="ctrl.cancel()"
         data-secondary-label="{{ ::'common_cancel' | translate }}"
         data-on-dismiss="ctrl.cancel()"
         data-loading="ctrl.isLoading || ctrl.saving.loading"
+        data-heading="{{ ::ctrl.title | translate }}"
     >
         <oui-field
             data-label="{{::'logs_roles_members_modal_user' | translate}}"

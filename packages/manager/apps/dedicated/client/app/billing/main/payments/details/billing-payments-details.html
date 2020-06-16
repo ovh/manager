@@ -1,9 +1,7 @@
 <div data-ovh-alert></div>
 
-<oui-back-button
-    data-ng-href="{{ $ctrl.paymentsHref() }}"
-    data-title="{{:: 'payment_details_return_to_payments' | translate }}"
->
+<oui-back-button data-ng-href="{{ $ctrl.paymentsHref() }}"
+    ><span data-translate="payment_details_return_to_payments"></span>
 </oui-back-button>
 
 <dl class="dl-horizontal mt-4">
@@ -19,35 +17,35 @@
     data-rows-loader="$ctrl.loadBills($config)"
     data-row-loader="$ctrl.loadDetails($row)"
 >
-    <oui-column
+    <oui-datagrid-column
         data-title=":: 'payment_details_table_header_id' | translate"
         data-property="billId"
     >
-    </oui-column>
-    <oui-column data-title=":: 'payment_details_table_header_date' | translate">
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title=":: 'payment_details_table_header_date' | translate"
+    >
         <span data-ng-bind="$row.date | date:'mediumDate'"></span>
-    </oui-column>
-    <oui-column
+    </oui-datagrid-column>
+    <oui-datagrid-column
         data-title=":: 'payment_details_table_header_payment' | translate"
         data-property="payment"
     >
-    </oui-column>
-    <oui-column
+    </oui-datagrid-column>
+    <oui-datagrid-column
         data-title=":: 'payment_details_table_header_document' | translate"
     >
-    </oui-column>
-    <oui-action-menu data-align="end" data-compact>
-        <oui-action-menu-item
-            data-text="{{:: 'statements_details_table_invoice_html_link' | translate }}"
-            data-href="{{ $row.url }}"
-            data-external
-        >
+    </oui-datagrid-column>
+    <oui-action-menu data-compact data-placement="end">
+        <oui-action-menu-item data-href="{{ $row.url }}" data-external
+            ><span
+                data-translate="statements_details_table_invoice_html_link"
+            ></span>
         </oui-action-menu-item>
-        <oui-action-menu-item
-            data-text="{{:: 'statements_details_table_invoice_pdf_link' | translate }}"
-            data-href="{{ $row.pdfUrl }}"
-            data-external
-        >
+        <oui-action-menu-item data-href="{{ $row.pdfUrl }}" data-external
+            ><span
+                data-translate="statements_details_table_invoice_pdf_link"
+            ></span>
         </oui-action-menu-item>
     </oui-action-menu>
 </oui-datagrid>

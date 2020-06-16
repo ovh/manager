@@ -1,5 +1,4 @@
 <oui-modal
-    data-title="{{:: 'dedicatedCloud_datacenter_backup_delete_title' | translate }}"
     data-on-dismiss="$ctrl.goToBackup()"
     data-primary-action="$ctrl.delete()"
     data-secondary-action="$ctrl.goToBackup()"
@@ -8,6 +7,7 @@
     data-secondary-label="{{:: 'dedicatedCloud_datacenter_backup_delete_cancel' | translate }}"
     data-loading="$ctrl.deleting"
     data-primary-disabled="!$ctrl.backup.isActive()"
+    data-heading="{{:: 'dedicatedCloud_datacenter_backup_delete_title' | translate }}"
 >
     <p
         data-translate="dedicatedCloud_datacenter_backup_delete_description_1"

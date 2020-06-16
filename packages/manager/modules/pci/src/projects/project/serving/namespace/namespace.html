@@ -1,26 +1,26 @@
 <div data-ui-view="content">
-    <oui-page-header
-        class="mb-3"
-        data-heading="{{:: $ctrl.namespace.description }}"
-    >
+    <oui-header class="mb-3" data-heading="{{:: $ctrl.namespace.description }}">
         <oui-header-tabs>
             <oui-header-tabs-item
-                data-text="{{:: 'pci_projects_project_serving_namespace_infos' | translate }}"
                 data-href="{{:: $ctrl.infosLink }}"
                 data-active="$ctrl.currentActiveLink() === $ctrl.infosLink"
-            >
+                ><span
+                    data-translate="pci_projects_project_serving_namespace_infos"
+                ></span>
             </oui-header-tabs-item>
             <oui-header-tabs-item
-                data-text="{{:: 'pci_projects_project_serving_namespace_models' | translate }}"
                 data-href="{{:: $ctrl.modelsLink }}"
                 data-active="$ctrl.currentActiveLink() === $ctrl.modelsLink"
-            >
+                ><span
+                    data-translate="pci_projects_project_serving_namespace_models"
+                ></span>
             </oui-header-tabs-item>
             <oui-header-tabs-item
-                data-text="{{:: 'pci_projects_project_serving_namespace_tokens' | translate }}"
                 data-href="{{:: $ctrl.tokensLink }}"
                 data-active="$ctrl.currentActiveLink() === $ctrl.tokensLink"
-            >
+                ><span
+                    data-translate="pci_projects_project_serving_namespace_tokens"
+                ></span>
             </oui-header-tabs-item>
         </oui-header-tabs>
         <oui-guide-menu
@@ -32,6 +32,6 @@
                 ></span>
             </oui-guide-menu-item>
         </oui-guide-menu>
-    </oui-page-header>
+    </oui-header>
     <div class="container-fluid" data-ui-view="servingView"></div>
 </div>

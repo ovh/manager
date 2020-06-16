@@ -53,10 +53,12 @@
                             data-values="[preset]"
                             data-required
                         >
-                            <span class="oui-select-picker__section">
+                            <oui-select-picker-section
+                                class="oui-select-picker__section"
+                            >
                                 <a
                                     target="_blank"
-                                    class="oui-button oui-button_link"
+                                    class="oui-button oui-button_ghost"
                                     rel="noopener"
                                     data-ng-href="{{:: preset.link }}"
                                 >
@@ -64,11 +66,11 @@
                                         data-translate="pci_projects_project_serving_namespace_models_add_model_preset_info"
                                     ></span>
                                     <i
-                                        class="oui-icon oui-icon-external_link"
+                                        class="oui-icon oui-icon-external-link"
                                         aria-hidden="true"
                                     ></i>
                                 </a>
-                            </span>
+                            </oui-select-picker-section>
                         </oui-select-picker>
                     </div>
                 </div>
@@ -131,7 +133,7 @@
                     </oui-field>
                 </div>
                 <button
-                    class="oui-button oui-button_link"
+                    class="oui-button oui-button_ghost"
                     type="button"
                     ng-click="$ctrl.goToContainer()"
                     data-ng-if="!$ctrl.files.length && !$ctrl.folders.length"

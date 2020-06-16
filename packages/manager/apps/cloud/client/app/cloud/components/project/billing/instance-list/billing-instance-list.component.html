@@ -2,7 +2,7 @@
     data-rows="$ctrl.instanceConsumptionDetails"
     class="cloud-billing-instance-list"
 >
-    <oui-column
+    <oui-datagrid-column
         data-title=":: $ctrl.instanceColName | translate"
         data-sortable
         data-property="instanceName"
@@ -15,14 +15,14 @@
             data-ng-click="$ctrl.rowSelected = $row"
             data-oui-popover-placement="top"
         ></span>
-    </oui-column>
-    <oui-column
+    </oui-datagrid-column>
+    <oui-datagrid-column
         data-title=":: $ctrl.instanceColTotal | translate"
         data-property="total"
         data-sortable
     >
-    </oui-column>
-    <oui-column
+    </oui-datagrid-column>
+    <oui-datagrid-column
         data-ng-if="$ctrl.showSwitchToMonthlyBillingOption || $ctrl.showAdditionalInstanceDetails"
     >
         <span
@@ -107,5 +107,5 @@
                 ></span>
             </oui-button>
         </div>
-    </oui-column>
+    </oui-datagrid-column>
 </oui-datagrid>

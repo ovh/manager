@@ -1,12 +1,12 @@
 <form novalidate name="ctrl.form">
     <oui-modal
-        data-title="{{ ::'logs_tokens_add' | translate }}"
         data-primary-action="ctrl.createToken()"
         data-primary-label="{{ ::'common_save' | translate }}"
         data-secondary-action="ctrl.cancel()"
         data-secondary-label="{{ ::'common_cancel' | translate }}"
         data-on-dismiss="ctrl.cancel()"
         data-loading="ctrl.saving.loading"
+        data-heading="{{ ::'logs_tokens_add' | translate }}"
     >
         <oui-field data-label="{{ ::'logs_tokens_col_name' | translate }}">
             <input
@@ -33,7 +33,7 @@
                     required
                 >
                     <option
-                        value=""
+                        value
                         disabled
                         selected
                         data-translate="logs_tokens_select_cluster"

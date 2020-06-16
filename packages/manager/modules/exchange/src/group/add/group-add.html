@@ -108,8 +108,9 @@
                         id="receiveSizeUnlimited"
                         data-model="ctrl.groupToAdd.receiveSizeUnlimited"
                         data-on-change="ctrl.onReceiveSizeChange()"
-                        data-text="{{::'exchange_GROUPS_add_group_size_unlimited' | translate}}"
-                    >
+                        ><span
+                            data-translate="exchange_GROUPS_add_group_size_unlimited"
+                        ></span>
                     </oui-checkbox>
                 </div>
 
@@ -143,8 +144,9 @@
                         id="sentSizeUnlimited"
                         data-model="ctrl.groupToAdd.sentSizeUnlimited"
                         data-on-change="ctrl.onSentSizeChange()"
-                        data-text="{{::'exchange_GROUPS_add_group_size_unlimited' | translate}}"
-                    >
+                        ><span
+                            data-translate="exchange_GROUPS_add_group_size_unlimited"
+                        ></span>
                     </oui-checkbox>
                 </div>
 
@@ -165,7 +167,7 @@
                             data-ng-options="('exchange_GROUPS_add_group_retriction_' + restriction) | translate for restriction in ctrl.optionsToCreateANewGroup.availableJoinRestrictions"
                         >
                             <option
-                                value=""
+                                value
                                 disabled
                                 data-translate="select_placeholder"
                             ></option>
@@ -204,15 +206,17 @@
                 <oui-checkbox
                     id="hiddenFromGAL"
                     data-model="ctrl.groupToAdd.hiddenFromGAL"
-                    data-text="{{::'exchange_GROUPS_add_group_hide_label' | translate}}"
-                >
+                    ><span
+                        data-translate="exchange_GROUPS_add_group_hide_label"
+                    ></span>
                 </oui-checkbox>
 
                 <oui-checkbox
                     id="senderAuthentification"
                     data-model="ctrl.groupToAdd.auth"
-                    data-text="{{::'exchange_GROUPS_add_group_auth_label' | translate}}"
-                >
+                    ><span
+                        data-translate="exchange_GROUPS_add_group_auth_label"
+                    ></span>
                 </oui-checkbox>
             </form>
 

@@ -1,11 +1,9 @@
 <div class="cui-page__content alerts-home">
-    <oui-back-button
-        data-heading="{{ ::'streams_alerts_title' | translate }}"
-        data-on-click="ctrl.back()"
-    >
+    <oui-back-button data-on-click="ctrl.back()"
+        ><span data-translate="streams_alerts_title"></span>
     </oui-back-button>
 
-    <h6 class="oui-header_6">
+    <h6 class="oui-heading_6">
         {{'streams_alerts_current_title' | translate}}
         {{ctrl.stream.data.title}}
     </h6>
@@ -38,14 +36,14 @@
         data-page-size="25"
         class="mt-5"
     >
-        <extra-top>
+        <oui-datagrid-topbar>
             <oui-spinner data-ng-if="ctrl.delete.loading"></oui-spinner>
-        </extra-top>
-        <oui-column
+        </oui-datagrid-topbar>
+        <oui-datagrid-column
             title="'streams_alerts_name' | translate"
             property="title"
-        ></oui-column>
-        <oui-column
+        ></oui-datagrid-column>
+        <oui-datagrid-column
             title="'streams_alerts_condition' | translate"
             property="title"
         >
@@ -54,14 +52,14 @@
                 data-translate-values="{{$row}}"
             >
             </span>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             title="'streams_alerts_grace_period' | translate"
             property="grace"
         >
             {{$row.grace}}
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             title="'streams_alerts_repeat_notification' | translate"
             property="repeatNotificationsEnabled"
         >
@@ -70,15 +68,13 @@
                 class="glyphicon glyphicon-ok"
             ></i>
             <span data-ng-hide="$row.repeatNotificationsEnabled"> - </span>
-        </oui-column>
-        <oui-action-menu data-align="end" compact>
-            <oui-action-menu-item
-                text="{{ ::'common_edit' | translate }}"
-                on-click="ctrl.editAlert($row)"
+        </oui-datagrid-column>
+        <oui-action-menu compact data-placement="end">
+            <oui-action-menu-item on-click="ctrl.editAlert($row)"
+                ><span data-translate="common_edit"></span
             ></oui-action-menu-item>
-            <oui-action-menu-item
-                text="{{ ::'common_delete' | translate }}"
-                on-click="ctrl.showDeleteConfirm($row)"
+            <oui-action-menu-item on-click="ctrl.showDeleteConfirm($row)"
+                ><span data-translate="common_delete"></span
             ></oui-action-menu-item>
         </oui-action-menu>
     </oui-datagrid>

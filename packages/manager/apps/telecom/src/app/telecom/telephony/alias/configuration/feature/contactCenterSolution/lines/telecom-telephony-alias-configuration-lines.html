@@ -35,10 +35,10 @@
             data-ng-if="!$ctrl.updatingAgents && $ctrl.agents.length > 0"
         >
             <oui-datagrid class="row-height-limited" data-rows="$ctrl.agents">
-                <oui-column>
+                <oui-datagrid-column>
                     <button
                         type="button"
-                        class="oui-button oui-button_link d-block py-0"
+                        class="oui-button d-block py-0 oui-button_ghost"
                         data-ng-if="!$row.$first"
                         data-ng-click="$ctrl.moveLineOrder($row, 'up')"
                     >
@@ -49,7 +49,7 @@
                     </button>
                     <button
                         type="button"
-                        class="oui-button oui-button_link d-block py-0"
+                        class="oui-button d-block py-0 oui-button_ghost"
                         data-ng-if="!$row.$last"
                         data-ng-click="$ctrl.moveLineOrder($row, 'down')"
                     >
@@ -58,26 +58,26 @@
                             aria-hidden="true"
                         ></span>
                     </button>
-                </oui-column>
-                <oui-column
+                </oui-datagrid-column>
+                <oui-datagrid-column
                     data-title="'telephony_alias_config_contactCenterSolution_lines_type' | translate"
                     data-property="type"
                 >
                     <span
                         data-translate="{{:: 'telephony_alias_config_contactCenterSolution_lines_type_' + $value }}"
                     ></span>
-                </oui-column>
-                <oui-column
+                </oui-datagrid-column>
+                <oui-datagrid-column
                     data-title="'telephony_alias_config_contactCenterSolution_lines_number' | translate"
                     data-property="number"
                 >
                     <span data-ng-bind="::$value | tucPhoneNumber"></span>
-                </oui-column>
-                <oui-column
+                </oui-datagrid-column>
+                <oui-datagrid-column
                     data-title="'telephony_alias_config_contactCenterSolution_lines_name' | translate"
                     data-property="description"
-                ></oui-column>
-                <oui-column
+                ></oui-datagrid-column>
+                <oui-datagrid-column
                     data-title="'telephony_alias_config_contactCenterSolution_lines_timeout' | translate"
                     data-property="timeout"
                 >
@@ -85,8 +85,8 @@
                         data-translate="telephony_alias_config_contactCenterSolution_lines_seconds"
                         data-translate-values="{ 'amount': $value }"
                     ></span>
-                </oui-column>
-                <oui-column
+                </oui-datagrid-column>
+                <oui-datagrid-column
                     data-title="'telephony_alias_config_contactCenterSolution_lines_wrapUpTime' | translate"
                     data-property="wrapUpTime"
                 >
@@ -94,27 +94,26 @@
                         data-translate="telephony_alias_config_contactCenterSolution_lines_seconds"
                         data-translate-values="{ 'amount': $value }"
                     ></span>
-                </oui-column>
-                <oui-column
+                </oui-datagrid-column>
+                <oui-datagrid-column
                     data-title="'telephony_alias_config_contactCenterSolution_lines_simultaneous_lines' | translate"
                     data-property="simultaneousLines"
-                ></oui-column>
-                <oui-column
+                ></oui-datagrid-column>
+                <oui-datagrid-column
                     data-title="'telephony_alias_config_contactCenterSolution_lines_status' | translate"
                     data-property="status"
                 >
                     <span
                         data-translate="{{:: 'telephony_alias_config_contactCenterSolution_lines_status_' + $value }}"
                     ></span>
-                </oui-column>
-                <oui-action-menu data-align="end" data-compact>
-                    <oui-action-menu-item
-                        data-text="{{:: 'modify' | translate }}"
-                        data-on-click="$ctrl.updateLine($row)"
+                </oui-datagrid-column>
+                <oui-action-menu data-compact data-placement="end">
+                    <oui-action-menu-item data-on-click="$ctrl.updateLine($row)"
+                        ><span data-translate="modify"></span
                     ></oui-action-menu-item>
                     <oui-action-menu-item
-                        data-text="{{:: 'delete' | translate }}"
                         data-on-click="$ctrl.deleteLineOpenModal($row)"
+                        ><span data-translate="delete"></span
                     ></oui-action-menu-item>
                 </oui-action-menu>
             </oui-datagrid>

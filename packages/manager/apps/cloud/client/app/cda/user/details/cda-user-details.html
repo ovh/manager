@@ -1,13 +1,13 @@
 <section class="cda-user-details">
     <a
-        class="oui-button oui-button_link oui-button_icon-left"
+        class="oui-button oui-button_icon-left oui-button_ghost"
         data-ui-sref="paas.cda.cda-details.cda-user.cda-user-list"
     >
         <i class="oui-icon oui-icon-chevron-left" aria-hidden="true"></i>
         {{ "cda_user_details_btn_back" | translate }}
     </a>
     <header>
-        <h3 class="oui-header_3" data-ui-view="cdaUserDetailsTitle"></h3>
+        <h3 class="oui-heading_3" data-ui-view="cdaUserDetailsTitle"></h3>
         <dl>
             <dd data-translate="cda_user_details_username"></dd>
             <dt data-ng-bind="CdaUserDetailsCtrl.userName"></dt>

@@ -6,7 +6,7 @@
     </div>
     <div class="row">
         <section class="cui-page__content log-welcome col-md-offset-2 col-md-8">
-            <h2 class="oui-header_2" data-translate="logs_welcome_title"></h2>
+            <h2 class="oui-heading_2" data-translate="logs_welcome_title"></h2>
             <p
                 class="oui-paragraph"
                 data-translate="logs_welcome_description_1"
@@ -55,7 +55,7 @@
                 data-translate="logs_welcome_description_2"
             ></p>
             <a
-                class="oui-button oui-button_full-width oui-button_primary mt-5"
+                class="oui-button oui-button_primary mt-5 oui-button_block"
                 target="_blank"
                 ng-href="{{ctrl.urls.orderURL}}"
                 data-translate="logs_welcome_try"
@@ -64,7 +64,7 @@
             <div class="text-center mt-4">
                 <span ng-if="ctrl.region !== 'CA'">
                     <a
-                        class="oui-button_link p-2"
+                        class="p-2 oui-button_ghost"
                         ng-href="{{ctrl.urls.productURL}}"
                         target="_blank"
                         data-translate="logs_welcome_product_page"
@@ -72,14 +72,14 @@
                     |
                 </span>
                 <a
-                    class="oui-button_link p-2"
+                    class="p-2 oui-button_ghost"
                     ng-href="{{ctrl.urls.docsUrl}}"
                     target="_blank"
                     data-translate="logs_welcome_documentation"
                 ></a>
                 |
                 <a
-                    class="oui-button_link p-2"
+                    class="p-2 oui-button_ghost"
                     href="https://community.ovh.com/c/mobile-hosting/data-plateforms-lab"
                     target="_blank"
                     data-translate="logs_welcome_forum"

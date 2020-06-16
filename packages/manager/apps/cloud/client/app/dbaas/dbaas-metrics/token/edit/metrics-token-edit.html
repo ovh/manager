@@ -5,11 +5,11 @@
 >
     <oui-modal
         data-secondary-action="$ctrl.cancel()"
-        data-title="{{ ::'metrics_token_edit_title' | translate }}"
         data-secondary-label="{{ ::'metrics_token_edit_cancel' | translate }}"
         data-primary-label="{{ ::'metrics_token_edit_confirm' | translate}}"
         data-on-dismiss="$ctrl.cancel()"
         data-loading="$ctrl.deletToken.loading"
+        data-heading="{{ ::'metrics_token_edit_title' | translate }}"
     >
         <oui-field data-label="{{ ::'metrics_token_edit_name' | translate }}">
             <input

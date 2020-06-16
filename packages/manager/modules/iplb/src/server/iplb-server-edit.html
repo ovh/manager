@@ -84,11 +84,10 @@
             <div class="oui-field">
                 <div class="oui-field__content">
                     <div class="oui-field-control oui-field-control_4">
-                        <oui-checkbox
-                            text="{{ 'iplb_server_edit_backup' | translate }}"
-                            name="backup"
-                            model="ctrl.server.backup"
-                        >
+                        <oui-checkbox name="backup" model="ctrl.server.backup"
+                            ><span
+                                data-translate="iplb_server_edit_backup"
+                            ></span>
                         </oui-checkbox>
                     </div>
                 </div>
@@ -97,11 +96,10 @@
             <div class="oui-field">
                 <div class="oui-field__content">
                     <div class="oui-field-control oui-field-control_4">
-                        <oui-checkbox
-                            text="{{ 'iplb_server_edit_probe' | translate }}"
-                            name="probe"
-                            model="ctrl.server.probe"
-                        >
+                        <oui-checkbox name="probe" model="ctrl.server.probe"
+                            ><span
+                                data-translate="iplb_server_edit_probe"
+                            ></span>
                         </oui-checkbox>
                     </div>
                 </div>
@@ -110,11 +108,8 @@
             <div class="oui-field">
                 <div class="oui-field__content">
                     <div class="oui-field-control oui-field-control_4">
-                        <oui-checkbox
-                            text="{{ 'iplb_server_edit_ssl' | translate }}"
-                            name="ssl"
-                            model="ctrl.server.ssl"
-                        >
+                        <oui-checkbox name="ssl" model="ctrl.server.ssl"
+                            ><span data-translate="iplb_server_edit_ssl"></span>
                         </oui-checkbox>
                     </div>
                 </div>
@@ -249,7 +244,7 @@
                     data-ng-hide="ctrl.edition"
                 ></button>
                 <a
-                    class="oui-button oui-button_link"
+                    class="oui-button oui-button_ghost"
                     data-translate="iplb_server_edit_cancel"
                     data-ui-sref="network.iplb.detail.server-farm"
                 ></a>

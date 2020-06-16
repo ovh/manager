@@ -22,7 +22,6 @@
                 data-thumbnail
                 data-value="paymentMethodType"
                 data-model="$ctrl.model.selectedPaymentMethodType"
-                data-variant="light"
             >
                 <div
                     data-ng-bind="$ctrl.ovhPaymentMethodHelper.getPaymentMethodTypeText(paymentMethodType)"
@@ -32,7 +31,7 @@
                     data-ng-if="paymentMethodType.icon.data"
                     data-ng-src="{{ paymentMethodType.icon.data }}"
                     data-ng-attr-alt="{{ :: paymentMethodType.paymentType.text }}"
-                    alt=""
+                    alt
                 />
             </oui-radio>
         </div>
