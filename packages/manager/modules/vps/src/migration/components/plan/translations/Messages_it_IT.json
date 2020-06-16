@@ -13,6 +13,8 @@
   "vps_migration_plan_time_required": "Seleziona l'orario",
   "vps_migration_plan_save_next": "Salva e continua",
   "vps_migration_plan_success": "La migrazione del tuo VPS è pianificata",
-  "vps_migration_plan_success_with_date": "La migrazione del tuo VPS è pianificata il {{date}} alle {{time}}",
-  "vps_migration_plan_error": "La pianificazione della migrazione del VPS non è andata a buon fine: {{message}}"
+  "vps_migration_plan_success_with_date": "La migrazione del tuo VPS è pianificata per il {{date}} alle {{time}}",
+  "vps_migration_plan_error": "La pianificazione della migrazione del VPS non è andata a buon fine: {{message}}",
+  "vps_migrate_schedule_description_price_update": "Il nuovo prezzo del VPS, con opzioni e licenze, verrà applicato alla data di rinnovo del servizio.",
+  "vps_migrate_schedule_description_windows_license_info": "Se disponi di una licenza Windows, diventerà a pagamento nella nuova gamma."
 }

@@ -1,7 +1,7 @@
 {
   "vps_migration_title": "Migración de VPS",
   "vps_migration_button": "Programar la migración",
-  "vps_migration_description1": "Le hemos enviado un mensaje sobre la importancia de migrar su VPS <b>antes del {{date}}</b>. Si no realiza ninguna acción antes de esa fecha, la máquina se dará de baja de forma automática y los datos que contiene se eliminarán sin que sea posible recuperarlos.",
+  "vps_migration_description1": "Le hemos enviado un mensaje sobre la importancia de migrar su VPS <b>antes del {{cutoffDate}}</b>. Si no realiza ninguna acción antes de esa fecha, su máquina será migrada de forma automática a partir del {{autoMigrationDate}}.",
   "vps_migration_description4": "Las opciones asociadas a su VPS serán migradas de forma automática hacia la nueva máquina. Tenga en cuenta que no conservará el historial de copias de seguridad.",
   "vps_migration_description5": "Para realizar la migración, solo tendrá que programar la fecha y la hora elegidas. La migración se realizará automáticamente.",
   "vps_migration_table_status": "Estado",
@@ -11,8 +11,9 @@
   "vps_migration_info2": "Más información sobre la migración",
   "vps_migration_unit_size_MB": "MB",
   "vps_migration_unit_size_GB": "GB",
-  "vps_migration_status_toPlan": "Por realizar",
+  "vps_migration_status_toPlan": "No programada",
   "vps_migration_status_planned": "Programada",
   "vps_migration_table_vps_link": "Ver mi servicio",
-  "vps_migration_table_planned_date": "Fecha prevista"
+  "vps_migration_table_planned_date": "Fecha prevista",
+  "vps_migration_description2": "El VPS actual será sustituido por una máquina de nuestra <a href='{{rangeLink}}' class='oui-link oui-link_icon' rel='noopener' target='_blank'>nueva gama<span class='oui-icon oui-icon-external_link' aria-hidden='true'></span></a>, a un precio inferior o equivalente."
 }

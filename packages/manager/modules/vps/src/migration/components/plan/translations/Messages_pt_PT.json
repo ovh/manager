@@ -14,5 +14,7 @@
   "vps_migration_plan_save_next": "Registar e seguinte",
   "vps_migration_plan_success": "A migração do seu VPS está programada",
   "vps_migration_plan_success_with_date": "A migração do seu VPS está programada para {{date}} às {{time}}",
-  "vps_migration_plan_error": "Erro ao programar a migração VPS: {{message}}"
+  "vps_migration_plan_error": "Erro ao programar a migração VPS: {{message}}",
+  "vps_migrate_schedule_description_price_update": "O novo preço do seu VPS, com opções e licenças, será aplicado na data de renovação do serviço.",
+  "vps_migrate_schedule_description_windows_license_info": "Se possuir uma licença Windows, esta tornar-se-á paga na nova gama."
 }
