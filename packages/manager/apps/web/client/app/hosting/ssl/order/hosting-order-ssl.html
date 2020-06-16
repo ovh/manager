@@ -66,6 +66,18 @@
                                 ></span>
                             </label>
                         </div>
+                        <oui-field
+                            ng-if="$ctrl.hostingSSLCertificateType.constructor.isPaid($ctrl.selectedCertificateType)"
+                            label="{{:: 'hosting_dashboard_add_or_order_step1_attach' | translate }}"
+                        >
+                            <oui-select
+                                items="$ctrl.availableDomains"
+                                model="$ctrl.selectedDomain"
+                                match="domain"
+                                name="associatedDomain"
+                            >
+                            </oui-select>
+                        </oui-field>
                         <div class="oui-radio">
                             <input
                                 type="radio"

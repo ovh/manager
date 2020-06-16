@@ -152,7 +152,7 @@
             >
             </oui-header-tabs-item>
             <oui-header-tabs-item
-                data-ng-if="ctrlDomain.hasZoneDns"
+                data-ng-if="ctrlDomain.hasZoneDns && ctrlDomain.zoneCapabilities.dynHost"
                 data-text="{{:: 'domain_tab_DYNHOST' | translate }}"
                 data-state="{{:: ctrlDomain.getState() + '.dynhost' }}"
                 data-state-params="ctrlDomain.$stateParams"
@@ -178,6 +178,7 @@
             >
             </oui-header-tabs-item>
             <oui-header-tabs-item
+                data-ng-if="ctrlDomain.isEmailDomainAvailable"
                 data-text="{{:: 'hosting_tab_menu_emails' | translate }}"
                 data-href="{{ '#/configuration/email-domain/' + ctrlDomain.domain.name + '?tab=MAILING_LIST' }}"
                 data-state-params="ctrlDomain.$stateParams"

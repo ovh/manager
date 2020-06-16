@@ -61,6 +61,7 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
           transformBillingServices(billingServices),
         ),
       bills: /* @ngInject */ (hub) => hub.bills,
+      debt: /* @ngInject */ (hub) => hub.debt,
       catalog: /* @ngInject */ (hub) => hub.catalog,
       certificates: /* @ngInject */ (hub) => hub.certificates.data,
       me: /* @ngInject */ (certificates, hub) =>

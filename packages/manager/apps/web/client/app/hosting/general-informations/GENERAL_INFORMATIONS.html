@@ -180,7 +180,8 @@
                     >
                         <oui-tile-description>
                             <span
-                                data-ng-bind="::(('hosting_dashboard_service_datacenter_'+ hostingProxy.datacenter | translate) == 'hosting_dashboard_service_datacenter_'+ hostingProxy.datacenter)? hostingProxy.datacenter: ('hosting_dashboard_service_datacenter_'+ hostingProxy.datacenter | translate)"
+                                data-translate="{{:: 'hosting_dashboard_service_datacenter_' + hostingProxy.datacenter }}"
+                                data-translate-default="{{:: hostingProxy.datacenter }}"
                             ></span>
                         </oui-tile-description>
                     </oui-tile-definition>
@@ -221,19 +222,9 @@
                         ></span>
                     </oui-tile-button>
                     <oui-tile-button
-                        data-ng-if="$ctrl.userLogsToken"
+                        data-ng-if="logs"
                         aria-label="{{ ::'hosting_tab_USER_LOGS_dashboard_stats_newtab' | translate }}"
-                        data-href="{{:: urchin  + '?token=' +  $ctrl.userLogsToken}}"
-                        data-external
-                    >
-                        <span
-                            data-translate="hosting_tab_USER_LOGS_dashboard_stats"
-                        ></span>
-                    </oui-tile-button>
-                    <oui-tile-button
-                        data-ng-if="!$ctrl.userLogsToken"
-                        aria-label="{{ ::'hosting_tab_USER_LOGS_dashboard_stats_newtab' | translate }}"
-                        data-href="{{:: urchin }}"
+                        data-href="{{:: logs.stats }}"
                         data-external
                     >
                         <span
@@ -733,13 +724,22 @@
                                 ></span>
                             </div>
                         </oui-tile-description>
-                        <oui-action-menu data-align="end" data-compact>
+                        <oui-action-menu
+                            data-align="end"
+                            data-compact
+                            ng-if="$ctrl.contactManagementLink || changeOwnerUrl"
+                        >
                             <oui-action-menu-item
-                                data-text="{{ ::'common_manage_contacts' | translate }}"
+                                ng-if="$ctrl.contactManagementLink"
                                 aria-label="{{ ::'common_manage_contacts' | translate }}"
-                                data-href="{{ '#/useraccount/contacts?tab=SERVICES&serviceName=' + $ctrl.serviceName }}"
-                            ></oui-action-menu-item>
+                                href="{{:: $ctrl.contactManagementLink }}"
+                            >
+                                <span
+                                    data-translate="common_manage_contacts"
+                                ></span>
+                            </oui-action-menu-item>
                             <oui-action-menu-item
+                                ng-if="changeOwnerUrl"
                                 data-text="{{ ::'core_change_owner' | translate }}"
                                 aria-label="{{ ::'core_change_owner' | translate }}"
                                 data-href="{{ ::changeOwnerUrl }}"

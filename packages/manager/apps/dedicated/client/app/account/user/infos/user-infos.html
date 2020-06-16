@@ -29,18 +29,28 @@
                         >
                         </span>
                     </p>
-                    <p class="mb-3"
-                       data-translate="user_account_email_validation_help" data-translate-values="{ t0: user.email }">
-                    </p>
-                    <oui-button data-variant="primary"
-                                data-on-click="validateTaskWithToken()">
-                        <span data-translate="user_account_email_token_received"></span>
+                    <p
+                        class="mb-3"
+                        data-translate="user_account_email_validation_help"
+                        data-translate-values="{ t0: user.email }"
+                    ></p>
+                    <oui-button
+                        data-variant="primary"
+                        data-on-click="validateTaskWithToken()"
+                    >
+                        <span
+                            data-translate="user_account_email_token_received"
+                        ></span>
                     </oui-button>
-                    <oui-button data-variant="secondary"
-                                class="ml-2"
-                                data-disabled="requestingToken"
-                                data-on-click="requestChangeEmailToken(controls.taskEmailChangeTodo.newEmail)">
-                        <span data-translate="user_account_email_token_resend"></span>
+                    <oui-button
+                        data-variant="secondary"
+                        class="ml-2"
+                        data-disabled="requestingToken"
+                        data-on-click="requestChangeEmailToken(controls.taskEmailChangeTodo.newEmail)"
+                    >
+                        <span
+                            data-translate="user_account_email_token_resend"
+                        ></span>
                     </oui-button>
                 </div>
             </div>

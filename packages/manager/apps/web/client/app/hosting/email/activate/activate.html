@@ -38,10 +38,11 @@
             data-on-cancel="$ctrl.cancel()"
             data-on-submit="$ctrl.activate()"
             data-editable="!$ctrl.checkoutCartInProgress"
-            data-prevent-next="!$ctrl.contractsAccepted || !$ctrl.order"
+            data-prevent-next="!$ctrl.order || (!$ctrl.contractsAccepted && $ctrl.order.contracts && $ctrl.order.contracts.length)"
             data-valid="$ctrl.contractsAccepted"
         >
             <p
+                data-ng-if="$ctrl.order.contracts && $ctrl.order.contracts.length"
                 data-translate="hosting_email_address_activate_contracts_accept"
             ></p>
             <ovh-contracts-summary

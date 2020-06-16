@@ -148,13 +148,14 @@
                         </li>
                         <li
                             class="dropdown-divider"
-                            data-ng-if="!ctrl.isExpired"
+                            data-ng-if="!ctrl.isExpired && (changeOwnerUrl || ctrl.contactManagementLink)"
                         >
                             <i
                                 class="oui-icon oui-icon-user_line"
                                 aria-hidden="true"
                             ></i>
                             <a
+                                data-ng-if="changeOwnerUrl"
                                 class="btn btn-link"
                                 title="{{:: 'core_change_owner' | translate }} ({{:: 'core_new_window' | translate }})"
                                 target="_blank"
@@ -163,14 +164,14 @@
                             >
                             </a>
                         </li>
-                        <li>
+                        <li data-ng-if="ctrl.contactManagementLink">
                             <i
                                 class="oui-icon oui-icon-gear_line"
                                 aria-hidden="true"
                             ></i>
                             <a
                                 class="btn btn-link"
-                                data-ng-href="{{ '#/useraccount/contacts?tab=SERVICES&serviceName=' + database.serviceName }}"
+                                data-ng-href="{{:: ctrl.contactManagementLink }}"
                                 data-translate="contacts_management"
                                 data-ng-hide="database.isExpired"
                             >

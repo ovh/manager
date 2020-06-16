@@ -286,6 +286,24 @@ export const ORDER_URLS = {
     },
   },
   CA: {
+    orderDomain: {
+      ASIA: 'https://ca.ovh.com/asia/order/domain',
+      AU: 'https://ca.ovh.com/au/order/domain',
+      CA: 'https://ca.ovh.com/en/order/domain',
+      QC: 'https://ca.ovh.com/fr/order/domain',
+      SG: 'https://ca.ovh.com/sg/order/domain',
+      WE: 'https://us.ovh.com/us/order/domain',
+      WS: 'https://us.ovh.com/us/es/order/domain',
+    },
+    orderHosting: {
+      ASIA: 'https://www.ovh.com/asia/web-hosting/',
+      AU: 'https://www.ovh.com/au/web-hosting/',
+      CA: 'https://www.ovh.com/ca/en/web-hosting/',
+      QC: 'https://www.ovh.com/ca/fr/hebergement-web/',
+      SG: 'https://www.ovh.com/sg/web-hosting/',
+      WE: 'http://www.ovh.com/world/web-hosting/',
+      WS: 'https://www.ovh.com/world/es/hosting/',
+    },
     dedicated_cloud: {
       ASIA: 'https://www.ovh.com/asia/sddc/',
       AU: 'https://www.ovh.com.au/sddc/',

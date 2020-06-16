@@ -170,27 +170,6 @@ angular.module('services').service(
     }
 
     /**
-     * Restore database from a dynamic backup
-     * @param {string} serviceName
-     * @param {string} name
-     * @param {string} backupType
-     * @param {boolean} sendEmail
-     */
-    restoreBDDBackup(serviceName, name, backupType, sendEmail) {
-      return this.OvhHttp.post(
-        `/hosting/web/${serviceName}/database/${name}/restore`,
-        {
-          rootPath: 'apiv6',
-          data: {
-            date: backupType,
-            sendEmail,
-          },
-          broadcast: 'hosting.databases.backup.restore',
-        },
-      );
-    }
-
-    /**
      * Get database stats
      * @param {string} serviceName
      * @param {string} name

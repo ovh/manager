@@ -1,17 +1,30 @@
+import isEmpty from 'lodash/isEmpty';
 import template from './GENERAL_INFORMATIONS.html';
 
 const commonResolves = {
   availableOptions: /* @ngInject */ (
+    $q,
     domainName,
     OvhApiOrderCartServiceOption,
   ) =>
-    OvhApiOrderCartServiceOption.v6().get({
-      productName: 'domain',
-      serviceName: domainName,
-    }).$promise,
+    OvhApiOrderCartServiceOption.v6()
+      .get({
+        productName: 'domain',
+        serviceName: domainName,
+      })
+      .$promise.catch(() => $q.resolve([])),
+
+  dnsAvailableOptions: /* @ngInject */ (domainName, WucOrderCartService) =>
+    WucOrderCartService.getProductServiceOptions(
+      'dns',
+      domainName,
+    ).catch(() => []),
 
   start10mOffers: /* @ngInject */ (availableOptions) =>
     availableOptions.filter(({ family }) => family === 'hosting'),
+
+  isStart10mAvailable: /* @ngInject */ (start10mOffers) =>
+    !isEmpty(start10mOffers),
 };
 
 export default /* @ngInject */ ($stateProvider) => {
