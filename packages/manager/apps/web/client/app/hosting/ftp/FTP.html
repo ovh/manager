@@ -200,31 +200,18 @@
                                         >
                                             <span class="oui-checkbox__label">
                                                 <span
-                                                    data-translate="common_activated"
-                                                    data-ng-if="element.sshState === 'sftponly'"
-                                                ></span>
-                                                <span
-                                                    data-translate="common_desactivated"
-                                                    data-ng-if="element.sshState === 'none'"
-                                                ></span>
-                                                <span
                                                     class="oui-checkbox__icon"
+                                                ></span>
+                                                <span
+                                                    class="oui-checkbox__text"
                                                 >
                                                     <span
-                                                        class="oui-icon oui-icon-checkbox-unchecked"
-                                                        aria-hidden="true"
+                                                        data-translate="common_activated"
+                                                        data-ng-if="element.sshState === 'sftponly'"
                                                     ></span>
                                                     <span
-                                                        class="oui-icon oui-icon-checkbox-checked"
-                                                        aria-hidden="true"
-                                                    ></span>
-                                                    <span
-                                                        class="oui-icon oui-icon-checkbox-checkmark"
-                                                        aria-hidden="true"
-                                                    ></span>
-                                                    <span
-                                                        class="oui-icon oui-icon-checkbox-indeterminate"
-                                                        aria-hidden="true"
+                                                        data-translate="common_desactivated"
+                                                        data-ng-if="element.sshState === 'none'"
                                                     ></span>
                                                 </span>
                                             </span>
@@ -262,31 +249,18 @@
                                         >
                                             <span class="oui-checkbox__label">
                                                 <span
-                                                    data-translate="common_activated"
-                                                    data-ng-if="element.state === 'rw'"
-                                                ></span>
-                                                <span
-                                                    data-translate="common_desactivated"
-                                                    data-ng-if="element.state === 'off'"
-                                                ></span>
-                                                <span
                                                     class="oui-checkbox__icon"
+                                                ></span>
+                                                <span
+                                                    class="oui-checkbox__text"
                                                 >
                                                     <span
-                                                        class="oui-icon oui-icon-checkbox-unchecked"
-                                                        aria-hidden="true"
+                                                        data-translate="common_activated"
+                                                        data-ng-if="element.state === 'rw'"
                                                     ></span>
                                                     <span
-                                                        class="oui-icon oui-icon-checkbox-checked"
-                                                        aria-hidden="true"
-                                                    ></span>
-                                                    <span
-                                                        class="oui-icon oui-icon-checkbox-checkmark"
-                                                        aria-hidden="true"
-                                                    ></span>
-                                                    <span
-                                                        class="oui-icon oui-icon-checkbox-indeterminate"
-                                                        aria-hidden="true"
+                                                        data-translate="common_desactivated"
+                                                        data-ng-if="element.state === 'off'"
                                                     ></span>
                                                 </span>
                                             </span>
@@ -597,7 +571,7 @@
                                     <td>
                                         <span
                                             class="oui-badge"
-                                            data-ng-class="{'oui-status_success': element.sshState === 'sftponly', 'oui-status_error': element.sshState === 'none'}"
+                                            data-ng-class="{'oui-badge_success': element.sshState === 'sftponly', 'oui-badge_error': element.sshState === 'none'}"
                                             data-ng-bind="(('hosting_tab_FTP_multiftp_table_ssh_state_' + element.sshState | translate) == 'hosting_tab_FTP_multiftp_table_ssh_state_' + element.sshState)? element.sshState: ('hosting_tab_FTP_multiftp_table_ssh_state_' + element.sshState | translate)"
                                             data-ng-if="element.sshState !== 'active'"
                                         ></span>

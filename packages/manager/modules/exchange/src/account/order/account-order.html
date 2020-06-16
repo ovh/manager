@@ -77,24 +77,27 @@
                                 for="payTypeGroup-{{$index}}"
                             >
                                 <span class="oui-radio__label">
-                                    <span
-                                        data-ng-bind-html="('exchange_ACTION_order_accounts_step1_pay_type_' + orderAvailable.duration) | translate"
-                                    ></span>
-                                    (<span
-                                        data-ng-if="!ctrl.showPriceWithTaxOnly"
-                                        class="text-danger"
-                                        data-translate="exchange_ACTION_order_accounts_step1_price"
-                                        data-translate-values="{ t0: orderAvailable.prices.withoutTax.text, t1: orderAvailable.prices.withTax.text }"
-                                    >
+                                    <span class="oui-radio__icon"></span>
+                                    <span class="oui-radio__text">
+                                        <span
+                                            data-ng-bind-html="('exchange_ACTION_order_accounts_step1_pay_type_' + orderAvailable.duration) | translate"
+                                        ></span>
+                                        (<span
+                                            data-ng-if="!ctrl.showPriceWithTaxOnly"
+                                            class="text-danger"
+                                            data-translate="exchange_ACTION_order_accounts_step1_price"
+                                            data-translate-values="{ t0: orderAvailable.prices.withoutTax.text, t1: orderAvailable.prices.withTax.text }"
+                                        >
+                                        </span>
+                                        <span
+                                            data-ng-if="ctrl.showPriceWithTaxOnly"
+                                            class="text-danger"
+                                            data-translate="exchange_ACTION_order_accounts_step1_price_with_tax_only"
+                                            data-translate-values="{ t0: orderAvailable.prices.withTax.localizedText }"
+                                        >
+                                        </span
+                                        >)
                                     </span>
-                                    <span
-                                        data-ng-if="ctrl.showPriceWithTaxOnly"
-                                        class="text-danger"
-                                        data-translate="exchange_ACTION_order_accounts_step1_price_with_tax_only"
-                                        data-translate-values="{ t0: orderAvailable.prices.withTax.localizedText }"
-                                    >
-                                    </span
-                                    >)
                                 </span>
                             </label>
                         </div>

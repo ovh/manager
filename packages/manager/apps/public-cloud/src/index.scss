@@ -3,13 +3,13 @@
 @import '~bootstrap4/scss/_mixins';
 @import '~bootstrap4/scss/_utilities.scss';
 
-.oui-page-header {
+.oui-header {
   background: #fff;
 }
 
 a.oui-tile,
 .oui-link,
-.oui-button_link {
+.oui-button_ghost {
   color: rgb(40, 89, 192);
 }
 

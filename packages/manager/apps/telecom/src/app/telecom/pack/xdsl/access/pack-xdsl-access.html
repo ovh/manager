@@ -833,19 +833,11 @@
                                                 data-translate="xdsl_details_mac_address"
                                                 class="oui-tile__term"
                                             ></span>
-                                            <oui-popover>
-                                                <button
-                                                    type="button"
-                                                    class="oui-popover-button"
-                                                    data-oui-popover-trigger
-                                                ></button>
-                                                <oui-popover-content
-                                                    >{{::
-                                                    'xdsl_details_mac_address_description'
-                                                    | translate
-                                                    }}</oui-popover-content
-                                                >
-                                            </oui-popover>
+                                            <button
+                                                type="button"
+                                                class="oui-popover-button"
+                                                data-oui-popover="{{:: 'xdsl_details_mac_address_description' | translate }}"
+                                            ></button>
                                         </div>
                                         <div
                                             class="oui-tile__description"

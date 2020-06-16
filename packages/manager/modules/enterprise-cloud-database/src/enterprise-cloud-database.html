@@ -104,7 +104,7 @@
             >
                 <span
                     class="oui-badge"
-                    data-ng-class="'oui-status_' + $ctrl.enterpriseCloudDatabaseService.constructor.getStatusGroup($row.details.status)"
+                    data-ng-class="'oui-badge_' + $ctrl.enterpriseCloudDatabaseService.constructor.getStatusGroup($row.details.status)"
                     data-ng-bind=":: ('enterprise_cloud_database_common_status_' + $row.details.status) | translate"
                 ></span>
             </oui-datagrid-column>

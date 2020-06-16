@@ -104,9 +104,9 @@
                         <span
                             class="oui-badge"
                             data-ng-class="{
-                                'oui-status_success': $row.status === 'enabled',
-                                'oui-status_error': $row.status === 'disabled',
-                                'oui-status_warning': $row.status === 'suspended'
+                                'oui-badge_success': $row.status === 'enabled',
+                                'oui-badge_error': $row.status === 'disabled',
+                                'oui-badge_warning': $row.status === 'suspended'
                             }"
                             data-ng-bind=":: 'hosting_tab_CRON_table_status_' + $row.status | translate"
                         >

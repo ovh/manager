@@ -40,17 +40,17 @@
   /* Typography */
 
   h1,
-  .oui-page-header h1 {
+  .oui-header h1 {
     color: @white;
   }
 
   h2,
-  .oui-page-header h2 {
+  .oui-header h2 {
     color: @white;
   }
 
   h3,
-  .oui-page-header h3 {
+  .oui-header h3 {
     color: @white;
   }
 
@@ -65,7 +65,7 @@
 
   a,
   .oui-link,
-  .oui-button_link {
+  .oui-button_ghost {
     color: #4bb2f6;
   }
 
@@ -175,7 +175,7 @@
     color: #4bb2f6;
   }
 
-  cloud-sidebar .oui-input-group_clipboard .oui-icon {
+  cloud-sidebar .oui-clipboard .oui-icon {
     color: #4bb2f6;
   }
 
@@ -263,7 +263,7 @@
     background-color: #101010;
   }
 
-  .oui-button_link .oui-icon,
+  .oui-button_ghost .oui-icon,
   .oui-file-selector__button_link .oui-icon {
     color: #4bb2f6;
   }
@@ -308,7 +308,7 @@
 
   /* Clipboard */
 
-  .oui-input-group_clipboard .oui-icon {
+  .oui-clipboard .oui-icon {
     color: @text-color-copy;
   }
 
@@ -379,16 +379,8 @@
     border-bottom-color: #404040;
   }
 
-  .oui-datagrid-responsive-container__sticky-container .oui-datagrid__cell-sticky:last-child {
-    right: 1px;
-  }
-
   .oui-datagrid__cell a {
     color: #4bb2f6;
-  }
-
-  .oui-datagrid-responsive-container__sticky-container::before {
-    border-left-color: #181818;
   }
 
   /* Dropdown */
@@ -551,19 +543,19 @@
     color: @status-success-color;
   }
 
-  .oui-message_info .oui-icon-info_circle {
+  .oui-message_info .oui-icon-info-circle {
     color: #157eea;
   }
 
-  .oui-message_error .oui-icon-info_circle {
+  .oui-message_error .oui-icon-info-circle {
     color: #c11b1b;
   }
 
-  .oui-message_success .oui-icon-info_circle {
+  .oui-message_success .oui-icon-info-circle {
     color: #268403;
   }
 
-  .oui-message_warning .oui-icon-info_circle {
+  .oui-message_warning .oui-icon-info-circle {
     color: #fa9b3e;
   }
 
@@ -627,22 +619,22 @@
 
   /* Status */
 
-  .oui-status_error {
+  .oui-badge_error {
     background-color: @status-error-background-color;
     color: @status-error-color;
   }
 
-  .oui-status_info {
+  .oui-badge_info {
     background-color: @status-info-background-color;
     color: @status-info-color;
   }
 
-  .oui-status_success {
+  .oui-badge_success {
     background-color: @status-success-background-color;
     color: @status-success-color;
   }
 
-  .oui-status_warning {
+  .oui-badge_warning {
     background-color: @status-warning-background-color;
     color: @status-warning-color;
   }
@@ -681,7 +673,7 @@
     border-bottom-color: #4bb2f6;
   }
 
-  .oui-input-group_search .oui-icon {
+  .oui-search .oui-icon {
     color: @text-color-copy;
   }
 
@@ -704,15 +696,15 @@
 
   /* Page Header */
 
-  .oui-page-header {
+  .oui-header {
     background-color: inherit;
   }
 
-  .oui-page-header .oui-header-tabs__container {
+  .oui-header .oui-header-tabs__container {
     border-bottom-color: #404040;
   }
 
-  .oui-page-header :not(.oui-header-tabs__dropdown-container) > .oui-header-tabs__item_active > a {
+  .oui-header :not(.oui-header-tabs__dropdown-container) > .oui-header-tabs__item_active > a {
     border-color: #4bb2f6;
   }
 
@@ -908,7 +900,7 @@
     border-bottom-color: #404040;
   }
 
-  .oui-tile .oui-button_link {
+  .oui-tile .oui-button_ghost {
     color: #4bb2f6;
   }
 
@@ -1031,11 +1023,11 @@
     border: 1px solid @notification-bcg-color;
 
     .oui-navbar-notification {
-      .oui-status_error {
+      .oui-badge_error {
         color: #c11b1b;
       }
 
-      .oui-status_info {
+      .oui-badge_info {
         color: #4d6f92;
       }
 

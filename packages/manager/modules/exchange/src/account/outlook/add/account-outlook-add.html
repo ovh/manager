@@ -43,10 +43,13 @@
                                 class="oui-radio__label-container"
                                 for="duration-{{$index}}"
                             >
-                                <span
-                                    class="oui-radio__label"
-                                    data-ng-bind="('exchange_ACTION_add_outlook_duration_type_' + option.duration.duration) | translate"
-                                ></span>
+                                <span class="oui-radio__label">
+                                    <span class="oui-radio__icon"></span>
+                                    <span
+                                        class="oui-radio__text"
+                                        data-ng-bind="('exchange_ACTION_add_outlook_duration_type_' + option.duration.duration) | translate"
+                                    ></span>
+                                </span>
                             </label>
                         </div>
                     </div>

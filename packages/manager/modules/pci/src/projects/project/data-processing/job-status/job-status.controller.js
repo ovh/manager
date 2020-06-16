@@ -24,7 +24,7 @@ export default class {
    * Get a CSS class name from component job status
    * @return {string|any}
    */
-  getClassFromStatus(baseName = 'oui-status_') {
+  getClassFromStatus(baseName = 'oui-badge_') {
     const normalizedStatus = this.status.toUpperCase();
     if (normalizedStatus in DATA_PROCESSING_STATUS_TO_CLASS) {
       return baseName + DATA_PROCESSING_STATUS_TO_CLASS[normalizedStatus];

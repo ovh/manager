@@ -46,8 +46,8 @@
                             class="oui-badge"
                             data-ng-bind="'hosting_tab_AUTOMATED_EMAILS_status_' + ctrl.automatedEmails.state | translate"
                             data-ng-class="{
-                                'oui-status_success': ctrl.automatedEmails.state === 'ok' || ctrl.automatedEmails.state === 'force',
-                                'oui-status_error': ctrl.automatedEmails.state !== 'ok' && ctrl.automatedEmails.state !== 'force'}"
+                                'oui-badge_success': ctrl.automatedEmails.state === 'ok' || ctrl.automatedEmails.state === 'force',
+                                'oui-badge_error': ctrl.automatedEmails.state !== 'ok' && ctrl.automatedEmails.state !== 'force'}"
                         >
                         </span>
                         <oui-spinner

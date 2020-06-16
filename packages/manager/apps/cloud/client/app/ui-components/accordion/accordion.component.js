@@ -14,7 +14,7 @@ angular
                 <div class="cui-accordion__header">
                     <div class="cui-accordion__header-text">
                         <h5 role="button" tabindex="0"
-                            class="oui-header_5 cui-accordion__header-title"
+                            class="oui-heading_5 cui-accordion__header-title"
                             data-ng-bind="$ctrl.title"
                             data-ng-click="$ctrl.toggle()"></h5>
                         <div class="cui-accordion__header-subtitle" data-ng-bind="$ctrl.text"></div>

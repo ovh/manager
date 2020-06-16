@@ -154,7 +154,7 @@
                                     class="oui-tile__button oui-button oui-link_icon oui-button_ghost"
                                     data-ng-class="{
                                         'oui-link_disabled': !ctrl.canAccessToElasticsearch,
-                                        'oui-button_full-width': ctrl.canAccessToElasticsearch
+                                        'oui-button_block': ctrl.canAccessToElasticsearch
                                    }"
                                     rel="noopener"
                                     target="_blank"
@@ -167,18 +167,12 @@
                                         aria-hidden="true"
                                     ></i>
                                 </a>
-                                <oui-popover
+                                <button
+                                    type="button"
+                                    class="oui-popover-button"
                                     data-ng-if="!ctrl.canAccessToElasticsearch"
-                                >
-                                    <button
-                                        type="button"
-                                        class="oui-popover__help-button"
-                                        oui-popover-trigger
-                                    ></button>
-                                    <oui-popover-content
-                                        >{{::'logs_home_shortcuts_elasticsearch_help'|translate}}
-                                    </oui-popover-content>
-                                </oui-popover>
+                                    data-oui-popover="{{::'logs_home_shortcuts_elasticsearch_help'|translate}}"
+                                ></button>
                             </div>
                         </oui-tile-description>
                     </oui-tile-definition>

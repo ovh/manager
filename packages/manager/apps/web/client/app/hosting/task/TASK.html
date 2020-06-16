@@ -40,9 +40,9 @@
         >
             <span
                 class="oui-badge"
-                data-ng-class="{ 'oui-status_info': $row.status !== 'ERROR' && $row.status !== 'DONE',
-                                   'oui-status_error': $row.status === 'ERROR',
-                                   'oui-status_success': $row.status === 'DONE'}"
+                data-ng-class="{ 'oui-badge_info': $row.status !== 'ERROR' && $row.status !== 'DONE',
+                                   'oui-badge_error': $row.status === 'ERROR',
+                                   'oui-badge_success': $row.status === 'DONE'}"
                 data-ng-bind="'hosting_tab_TASKS_status_' +  $row.status | translate"
             >
             </span>

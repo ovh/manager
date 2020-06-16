@@ -44,9 +44,9 @@
                 class="oui-badge"
                 data-ng-bind="'hosting_tab_RUNTIMES_table_status_' + $row.status | translate"
                 data-ng-class="{
-                    'oui-status_success': $row.status === 'created',
-                    'oui-status_error': $row.status === 'deleting',
-                    'oui-status_warning': $row.status !== 'created' && $row.status !== 'deleting'
+                    'oui-badge_success': $row.status === 'created',
+                    'oui-badge_error': $row.status === 'deleting',
+                    'oui-badge_warning': $row.status !== 'created' && $row.status !== 'deleting'
                 }"
             >
             </span>

@@ -32,10 +32,10 @@
                 class="oui-badge"
                 data-ng-bind="'sharepoint_tabs_tasks_status_' + $row.status | translate"
                 data-ng-class="{
-                    'oui-status_success' : $row.status === 'done',
-                    'oui-status_info': $row.status === 'doing' || $row.status === 'todo',
-                    'oui-status_error': $row.status === 'error',
-                    'oui-status_warning': $row.status === 'cancelled'
+                    'oui-badge_success' : $row.status === 'done',
+                    'oui-badge_info': $row.status === 'doing' || $row.status === 'todo',
+                    'oui-badge_error': $row.status === 'error',
+                    'oui-badge_warning': $row.status === 'cancelled'
                   }"
                 data-ng-if="$row.status"
             ></span>

@@ -27,7 +27,7 @@
                 <oui-tile-description>
                     <span
                         class="oui-badge"
-                        data-ng-class="'oui-status_' + $ctrl.enterpriseCloudDatabaseService.constructor.getStatusGroup($ctrl.clusterDetails.status)"
+                        data-ng-class="'oui-badge_' + $ctrl.enterpriseCloudDatabaseService.constructor.getStatusGroup($ctrl.clusterDetails.status)"
                         data-ng-bind=":: ('enterprise_cloud_database_common_status_' + $ctrl.clusterDetails.status) | translate"
                     ></span>
                 </oui-tile-description>
@@ -179,8 +179,8 @@
                     <span
                         class="oui-badge"
                         data-ng-class="{
-                              'oui-status_success' : $ctrl.clusterDetails.autoBackup,
-                              'oui-status_warning' : !$ctrl.clusterDetails.autoBackup,
+                              'oui-badge_success' : $ctrl.clusterDetails.autoBackup,
+                              'oui-badge_warning' : !$ctrl.clusterDetails.autoBackup,
                           }"
                         data-ng-bind=":: ('enterprise_cloud_database_common_status_' + $ctrl.AUTO_BACKUP[$ctrl.clusterDetails.autoBackup]) | translate"
                     >

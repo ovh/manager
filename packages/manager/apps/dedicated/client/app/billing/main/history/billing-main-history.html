@@ -108,9 +108,9 @@
         >
             <span
                 data-ng-class="{
-                    'oui-status': $row.isDue(),
-                    'oui-status_warning': $row.isDue() && !$row.isUnpaid(),
-                    'oui-status_error': $row.isUnpaid()
+                    'oui-badge': $row.isDue(),
+                    'oui-badge_warning': $row.isDue() && !$row.isUnpaid(),
+                    'oui-badge_error': $row.isUnpaid()
                 }"
                 data-ng-bind=":: $row.debt.dueAmount.text"
             >
@@ -123,9 +123,9 @@
         >
             <span
                 data-ng-class="{
-                'oui-status': $row.isDue(),
-                'oui-status_warning': $row.isDue() && !$row.isUnpaid(),
-                'oui-status_error': $row.isUnpaid()
+                'oui-badge': $row.isDue(),
+                'oui-badge_warning': $row.isDue() && !$row.isUnpaid(),
+                'oui-badge_error': $row.isUnpaid()
             }"
                 data-translate="{{:: 'billing_main_history_table_balance_status_' + $row.debt.status }}"
             >

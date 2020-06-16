@@ -32,9 +32,9 @@
                 class="oui-badge"
                 data-ng-if="$row.status"
                 data-ng-class="{
-                    'oui-status_info': $row.status !== 'ERROR' && $row.status !== 'DONE',
-                    'oui-status_error': $row.status === 'ERROR',
-                    'oui-status_success': $row.status === 'DONE' }"
+                    'oui-badge_info': $row.status !== 'ERROR' && $row.status !== 'DONE',
+                    'oui-badge_error': $row.status === 'ERROR',
+                    'oui-badge_success': $row.status === 'DONE' }"
                 data-ng-bind="'email_tab_TASK_status_' + $row.status | translate"
             ></span>
             <span
