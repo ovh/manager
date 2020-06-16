@@ -45,9 +45,9 @@
             <span
                 class="oui-badge"
                 data-ng-class="{
-                    'oui-status_success': ($value === 'active'),
-                    'oui-status_warning': (['creating', 'toCreate', 'toDelete'].includes($value)),
-                    'oui-status_error': (['deleted', 'suspended'].include($value)),
+                    'oui-badge_success': ($value === 'active'),
+                    'oui-badge_warning': (['creating', 'toCreate', 'toDelete'].includes($value)),
+                    'oui-badge_error': (['deleted', 'suspended'].include($value)),
                 }"
                 data-ng-bind="'overtheboxes_status_label_' + $value | translate"
             ></span>

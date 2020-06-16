@@ -39,12 +39,12 @@ export default /* @ngInject */ (
     switch (state) {
       case 'CREATING':
       case 'REOPENING':
-        return 'oui-status_info';
+        return 'oui-badge_info';
       case 'DELETING':
-        return 'oui-status_warning';
+        return 'oui-badge_warning';
       case 'SUSPENDED':
       case 'SUSPENDING':
-        return 'oui-status_error';
+        return 'oui-badge_error';
       default:
     }
     return null;

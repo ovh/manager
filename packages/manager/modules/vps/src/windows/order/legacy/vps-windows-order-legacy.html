@@ -34,10 +34,13 @@
                             class="oui-radio__label-container"
                             for="{{duration}}"
                         >
-                            <span
-                                class="oui-radio__label"
-                                data-ng-bind="$ctrl.durations.details[duration].label"
-                            ></span>
+                            <span class="oui-radio__label">
+                                <span class="oui-radio__icon"></span>
+                                <span
+                                    class="oui-radio__text"
+                                    data-ng-bind="$ctrl.durations.details[duration].label"
+                                ></span>
+                            </span>
                             <span class="oui-radio__description">
                                 <span
                                     data-translate="vps_order_windows_order_price_HT"

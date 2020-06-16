@@ -67,9 +67,9 @@
                 <span
                     class="oui-badge"
                     data-ng-class="{
-                    'oui-status_success': $ctrl.constructor.toUpperSnakeCase($value) === 'OK',
-                    'oui-status_warning': $ctrl.constructor.toUpperSnakeCase($value) === 'ERROR',
-                    'oui-status_error': $ctrl.constructor.toUpperSnakeCase($value) === 'HACKED' || $ctrl.constructor.toUpperSnakeCase($value) === 'HACKED_BLOCKED'
+                    'oui-badge_success': $ctrl.constructor.toUpperSnakeCase($value) === 'OK',
+                    'oui-badge_warning': $ctrl.constructor.toUpperSnakeCase($value) === 'ERROR',
+                    'oui-badge_error': $ctrl.constructor.toUpperSnakeCase($value) === 'HACKED' || $ctrl.constructor.toUpperSnakeCase($value) === 'HACKED_BLOCKED'
                     }"
                     data-translate="{{:: 'server_configuration_state_' + $ctrl.constructor.toUpperSnakeCase($value) }}"
                 ></span>

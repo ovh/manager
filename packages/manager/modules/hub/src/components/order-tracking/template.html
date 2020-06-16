@@ -38,8 +38,8 @@
                 class="oui-icon"
                 aria-hidden="true"
                 data-ng-class="{
-                    'oui-icon-close_extra-thin': $ctrl.ERROR_STATUS.includes($ctrl.currentStatus.label),
-                    'oui-icon-ok_extra-thin': !$ctrl.ERROR_STATUS.includes($ctrl.currentStatus.label) && !$ctrl.isWaitingPayment
+                    'oui-icon-close': $ctrl.ERROR_STATUS.includes($ctrl.currentStatus.label),
+                    'oui-icon-ok': !$ctrl.ERROR_STATUS.includes($ctrl.currentStatus.label) && !$ctrl.isWaitingPayment
                 }"
             ></span>
         </div>

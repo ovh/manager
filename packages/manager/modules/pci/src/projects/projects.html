@@ -25,10 +25,10 @@
                 <span
                     class="oui-badge"
                     data-ng-class="{
-                    'oui-status_info': $row.isCreating(),
-                    'oui-status_error': $row.isDeleted() || $row.isSuspended(),
-                    'oui-status_success': $row.isActive(),
-                    'oui-status_warning': $row.isDeleting(),
+                    'oui-badge_info': $row.isCreating(),
+                    'oui-badge_error': $row.isDeleted() || $row.isSuspended(),
+                    'oui-badge_success': $row.isActive(),
+                    'oui-badge_warning': $row.isDeleting(),
                 }"
                     data-ng-bind=":: ('pci_projects_status_' + $row.status) | translate"
                 >

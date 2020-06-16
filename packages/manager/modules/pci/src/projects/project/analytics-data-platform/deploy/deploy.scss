@@ -25,19 +25,3 @@ analytics-data-platform-deploy-component {
     border-bottom: inherit;
   }
 }
-
-oui-modal {
-  .analytics-data-platform-quota-info {
-    padding-left: 6.7rem;
-
-    .analytics-data-platform-quota-info-container {
-      &::after {
-        width: 6.7rem;
-      }
-
-      .oui-datagrid__cell-sticky:first-child {
-        width: 6.7rem;
-      }
-    }
-  }
-}

@@ -108,9 +108,9 @@
                         <span
                             class="oui-badge"
                             data-ng-class="{
-                                'oui-status_success': freedom.status === 'ok',
-                                'oui-status_error': freedom.status === 'blockedByCustomer' || freedom.status === 'blockedBySystem',
-                                'oui-status_info': freedom.status === 'preset'}"
+                                'oui-badge_success': freedom.status === 'ok',
+                                'oui-badge_error': freedom.status === 'blockedByCustomer' || freedom.status === 'blockedBySystem',
+                                'oui-badge_info': freedom.status === 'preset'}"
                             data-ng-bind=":: 'hosting_tab_FREEDOM_status_' + freedom.status | translate"
                         ></span>
                     </td>

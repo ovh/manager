@@ -131,7 +131,7 @@ angular
   .controller('IpLoadBalancerServerDeleteCtrl', IpLoadBalancerServerDeleteCtrl)
   .component('iplbServerStatus', {
     template: `
-            <span class="oui-status" data-ng-class="'oui-status_'+$ctrl.iconType" data-ng-bind="$ctrl.iconType"></span>
+            <span class="oui-badge" data-ng-class="'oui-badge_'+$ctrl.iconType" data-ng-bind="$ctrl.iconType"></span>
         `,
     controller: IpblServerStatusController,
     bindings: {

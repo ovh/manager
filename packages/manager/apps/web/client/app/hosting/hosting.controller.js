@@ -232,11 +232,11 @@ export default class {
     this.$scope.getStateBadgeClass = () => {
       switch (get(this.$scope.hosting, 'serviceState')) {
         case 'ACTIVE':
-          return 'oui-status_success';
+          return 'oui-badge_success';
         case 'MAINTENANCE':
-          return 'oui-status_warning';
+          return 'oui-badge_warning';
         case 'BLOQUED':
-          return 'oui-status_error';
+          return 'oui-badge_error';
         default:
           return null;
       }

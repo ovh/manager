@@ -208,10 +208,12 @@
                                 class="oui-radio__label-container"
                                 for="ruleAction-{{ $index }}"
                             >
-                                <span
-                                    class="oui-radio__label"
-                                    data-translate="{{ 'voip_time_condition_slots_redirect_popover_redirect_type_' + slotType }}"
-                                >
+                                <span class="oui-radio__label">
+                                    <span class="oui-radio__icon"></span>
+                                    <span
+                                        class="oui-radio__text"
+                                        data-translate="{{ 'voip_time_condition_slots_redirect_popover_redirect_type_' + slotType }}"
+                                    ></span>
                                 </span>
                                 <span
                                     class="oui-radio__description"
@@ -276,10 +278,12 @@
                                 class="oui-radio__label-container"
                                 for="ruleNumber-{{ service.serviceName }}"
                             >
-                                <span
-                                    class="oui-radio__label"
-                                    data-ng-bind="service.getDisplayedName()"
-                                >
+                                <span class="oui-radio__label">
+                                    <span class="oui-radio__icon"></span>
+                                    <span
+                                        class="oui-radio__text"
+                                        data-ng-bind="service.getDisplayedName()"
+                                    ></span>
                                 </span>
                                 <span class="oui-radio__description">
                                     <i

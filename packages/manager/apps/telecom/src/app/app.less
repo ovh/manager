@@ -1,6 +1,5 @@
 @import './_variables';
 @import (less) '~@ovh-ux/ui-kit/dist/css/oui.css';
-@import (less) '~angular-flash-alert/dist/angular-flash.css'; /* needs to be before ovh-ui-kit-bs or it will override style */
 @import '~ovh-ui-kit-bs/dist/less/bootstrap/_variables';
 @import '~ovh-manager-webfont/dist/less/ovh-font';
 @import '~font-awesome/less/font-awesome.less';
@@ -31,10 +30,13 @@
 #content {
   padding: 0;
 
+  .oui-header,
   .page-header {
     margin-top: rem-calc(16);
   }
 
+  .oui-header,
+  .oui-header + .oui-header-tabs,
   .page-header,
   .nav.nav-tabs {
     margin-left: rem-calc(32);

@@ -44,7 +44,7 @@
             <span
                 class="oui-badge"
                 data-translate="{{ $row.info.indexingEnabled ? 'logs_streams_enabled' : 'logs_streams_disabled' }}"
-                data-ng-class="$row.info.indexingEnabled ? 'oui-status_success' : 'oui-status_warning'"
+                data-ng-class="$row.info.indexingEnabled ? 'oui-badge_success' : 'oui-badge_warning'"
             >
             </span>
         </oui-datagrid-column>
@@ -56,7 +56,7 @@
             filterable
         >
             <span
-                class="oui-badge"
+                class="oui-badge oui-badge_info"
                 data-ng-bind="ctrl.storageInfo($row)"
             ></span>
         </oui-datagrid-column>

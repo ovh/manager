@@ -472,10 +472,12 @@
                                 class="oui-radio__label-container"
                                 for="ruleAction-{{ $index }}"
                             >
-                                <span
-                                    class="oui-radio__label"
-                                    data-ng-bind="action.label"
-                                >
+                                <span class="oui-radio__label">
+                                    <span class="oui-radio__icon"></span>
+                                    <span
+                                        class="oui-radio__text"
+                                        data-ng-bind="action.label"
+                                    ></span>
                                 </span>
                                 <span
                                     class="oui-radio__description"
@@ -548,10 +550,12 @@
                                 class="oui-radio__label-container"
                                 for="ruleNumber-{{ service.serviceName }}"
                             >
-                                <span
-                                    class="oui-radio__label"
-                                    data-ng-bind="service.getDisplayedName()"
-                                >
+                                <span class="oui-radio__label">
+                                    <span class="oui-radio__icon"></span>
+                                    <span
+                                        class="oui-radio__text"
+                                        data-ng-bind="service.getDisplayedName()"
+                                    ></span>
                                 </span>
                                 <span class="oui-radio__description">
                                     <i
@@ -647,10 +651,12 @@
                                 class="oui-radio__label-container"
                                 for="ruleAction-{{ $index }}"
                             >
-                                <span
-                                    class="oui-radio__label"
-                                    data-ng-bind="queue.description || queue.queueId"
-                                >
+                                <span class="oui-radio__label">
+                                    <span class="oui-radio__icon"></span>
+                                    <span
+                                        class="oui-radio__text"
+                                        data-ng-bind="queue.description || queue.queueId"
+                                    ></span>
                                 </span>
                             </label>
                         </div>
@@ -743,10 +749,12 @@
                                 class="oui-radio__label-container"
                                 for="ruleAction-{{ $index }}"
                             >
-                                <span
-                                    class="oui-radio__label"
-                                    data-ng-bind="tts.text"
-                                >
+                                <span class="oui-radio__label">
+                                    <span class="oui-radio__icon"></span>
+                                    <span
+                                        class="oui-radio__text"
+                                        data-ng-bind="tts.text"
+                                    ></span>
                                 </span>
                                 <span
                                     class="oui-radio__description"

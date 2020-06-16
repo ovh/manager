@@ -124,6 +124,8 @@
                   text-align: center;
 
                   .item-icon {
+                    line-height: 1;
+                    font-size: 36px;
                     display: inline-block;
                     color: @actions-menu-item-link-icon-color;
                     padding: 10px;
@@ -131,12 +133,18 @@
 
                     i,
                     svg {
-                      font-size: 36px;
+                      width: 36px;
+                      height: 36px;
+                      display: block;
+                      font-size: inherit;
                       transition: transform 0.3s ease-in-out;
                     }
 
                     .oui-icon {
-                      display: inline;
+                      width: 36px;
+                      height: 36px;
+                      margin: 0;
+                      display: block;
                       color: inherit;
                     }
                   }

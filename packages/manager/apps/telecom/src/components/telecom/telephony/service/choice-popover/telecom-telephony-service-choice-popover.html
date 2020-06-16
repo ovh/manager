@@ -67,10 +67,14 @@
                                         class="oui-radio__label-container"
                                         for="ruleNumber-{{ service.serviceName }}"
                                     >
-                                        <span
-                                            class="oui-radio__label"
-                                            data-ng-bind="service.getDisplayedName()"
-                                        >
+                                        <span class="oui-radio__label">
+                                            <span
+                                                class="oui-radio__icon"
+                                            ></span>
+                                            <span
+                                                class="oui-radio__text"
+                                                data-ng-bind="service.getDisplayedName()"
+                                            ></span>
                                         </span>
                                         <span class="oui-radio__description">
                                             <i

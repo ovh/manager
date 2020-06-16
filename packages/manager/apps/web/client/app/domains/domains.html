@@ -182,7 +182,7 @@
                                         <span
                                             class="oui-badge"
                                             data-ng-bind=":: 'domains_dashboard_table_dnssec_status_' + domain.dnssecStatus | translate"
-                                            data-ng-class="{'oui-status_success': domain.dnssecStatus === 'ENABLED', 'oui-status_error': domain.dnssecStatus === 'DISABLED', 'oui-status_info': domain.dnssecStatus !== 'ENABLED' && domain.dnssecStatus !== 'DISABLED'}"
+                                            data-ng-class="{'oui-badge_success': domain.dnssecStatus === 'ENABLED', 'oui-badge_error': domain.dnssecStatus === 'DISABLED', 'oui-badge_info': domain.dnssecStatus !== 'ENABLED' && domain.dnssecStatus !== 'DISABLED'}"
                                             data-ng-if="domain.dnssecSupported && domain.dnssecStatus !== null"
                                         ></span>
                                         <span

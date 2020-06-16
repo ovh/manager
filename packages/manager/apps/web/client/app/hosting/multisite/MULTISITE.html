@@ -170,8 +170,8 @@
                                         class="oui-badge"
                                         data-ng-bind="(('hosting_tab_DOMAINS_table_cdn_state_' + (domain.ownLog ? 'ACTIVE' : 'NONE') | translate) == 'hosting_tab_DOMAINS_table_cdn_state_' + (domain.ownLog ? 'ACTIVE' : 'NONE'))? domain.ownLog: ('hosting_tab_DOMAINS_table_cdn_state_' + (domain.ownLog ? 'ACTIVE' : 'NONE') | translate)"
                                         data-ng-class="{
-                                            'oui-status_success': domain.ownLog,
-                                            'oui-status_error': domain.ownLog === 'NONE' || !domain.ownLog
+                                            'oui-badge_success': domain.ownLog,
+                                            'oui-badge_error': domain.ownLog === 'NONE' || !domain.ownLog
                                         }"
                                     >
                                     </span>
@@ -181,8 +181,8 @@
                                         class="oui-badge"
                                         data-ng-bind="(('hosting_tab_DOMAINS_table_firewall_state_' + domain.firewall | translate) == 'hosting_tab_DOMAINS_table_firewall_state_' + domain.firewall)? domain.firewall: ('hosting_tab_DOMAINS_table_firewall_state_' + domain.firewall | translate)"
                                         data-ng-class="{
-                                            'oui-status_success': domain.firewall === 'ACTIVE',
-                                            'oui-status_error': domain.firewall === 'NONE'
+                                            'oui-badge_success': domain.firewall === 'ACTIVE',
+                                            'oui-badge_error': domain.firewall === 'NONE'
                                         }"
                                     >
                                     </span>
@@ -195,8 +195,8 @@
                                         class="oui-badge"
                                         data-ng-bind="(('hosting_tab_DOMAINS_table_cdn_state_' + domain.cdn | translate) == 'hosting_tab_DOMAINS_table_cdn_state_' + domain.cdn)? domain.cdn: ('hosting_tab_DOMAINS_table_cdn_state_' + domain.cdn | translate)"
                                         data-ng-class="{
-                                            'oui-status_success': domain.cdn === 'ACTIVE',
-                                            'oui-status_error': domain.cdn === 'NONE'
+                                            'oui-badge_success': domain.cdn === 'ACTIVE',
+                                            'oui-badge_error': domain.cdn === 'NONE'
                                         }"
                                     >
                                     </span>
@@ -205,7 +205,7 @@
                                     <span
                                         class="oui-badge"
                                         data-ng-bind="(('hosting_tab_DOMAINS_table_ssl_state_' + domain.ssl | translate) == 'hosting_tab_DOMAINS_table_ssl_state_' + domain.ssl)? domain.ssl: ('hosting_tab_DOMAINS_table_ssl_state_' + domain.ssl | translate)"
-                                        data-ng-class="{'oui-status_success': domain.ssl === 2, 'oui-status_error': domain.ssl === 0, 'oui-status_warning': domain.ssl === 1}"
+                                        data-ng-class="{'oui-badge_success': domain.ssl === 2, 'oui-badge_error': domain.ssl === 0, 'oui-badge_warning': domain.ssl === 1}"
                                         data-oui-tooltip="{{ domain.ssl === 1 ? ('hosting_tab_DOMAINS_table_ssl_state_1_tooltip' | translate) : '' }}"
                                     >
                                     </span>
