@@ -19,7 +19,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "rollup -c --environment BUILD:production",
+    "build": "echo 'skip'",
     "dev": "rollup -c --environment BUILD:development",
     "dev:watch": "yarn run dev --watch",
     "prepare": "yarn run build",
@@ -27,7 +27,9 @@
     "start:dev": "lerna exec --stream --scope='@ovh-ux/ovh-ufrontend' --include-dependencies -- yarn run dev",
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/ovh-ufrontend' --include-dependencies -- yarn run dev:watch"
   },
-  "dependencies": {},
+  "dependencies": {
+    "whatwg-fetch": "^3.0.0"
+  },
   "devDependencies": {},
   "peerDependencies": {
     "@ovh-ux/manager-core": "^9.0.0"
