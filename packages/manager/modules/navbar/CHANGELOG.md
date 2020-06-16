@@ -1,3 +1,12 @@
+# [3.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-navbar@3.2.1...@ovh-ux/manager-navbar@3.3.0) (2020-06-16)
+
+
+### Features
+
+* allow notifications without links ([#2985](https://github.com/ovh/manager/issues/2985)) ([ded2c2f](https://github.com/ovh/manager/commit/ded2c2ffef57d7dcd3d3d2cca3a02a9e8db6be6c))
+
+
+
 ## [3.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-navbar@3.2.0...@ovh-ux/manager-navbar@3.2.1) (2020-06-09)
 
 

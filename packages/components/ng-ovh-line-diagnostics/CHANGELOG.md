@@ -1,3 +1,12 @@
+## [4.0.4](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-line-diagnostics@4.0.3...@ovh-ux/ng-ovh-line-diagnostics@4.0.4) (2020-06-16)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 438] ([aa410be](https://github.com/ovh/manager/commit/aa410beb8ae8f69cc792b7dd64e83cd7f54b93cd))
+
+
+
 ## [4.0.3](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-line-diagnostics@4.0.2...@ovh-ux/ng-ovh-line-diagnostics@4.0.3) (2020-06-09)
 
 

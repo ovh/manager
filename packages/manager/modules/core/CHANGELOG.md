@@ -1,3 +1,17 @@
+# [9.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@9.3.0...@ovh-ux/manager-core@9.4.0) (2020-06-16)
+
+
+### Features
+
+* use redirection service for contact management ([6efbb2b](https://github.com/ovh/manager/commit/6efbb2b7e43d19daf5416ba603700d461955de50))
+
+
+### Performance Improvements
+
+* replace lodash with lodash-es ([#3052](https://github.com/ovh/manager/issues/3052)) ([2945475](https://github.com/ovh/manager/commit/2945475fe7c14db407973ddd5b2dde0bf2739489))
+
+
+
 # [9.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@9.2.0...@ovh-ux/manager-core@9.3.0) (2020-06-09)
 
 

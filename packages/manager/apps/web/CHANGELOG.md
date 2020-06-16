@@ -1,3 +1,49 @@
+# [14.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@14.4.2...@ovh-ux/manager-web@14.5.0) (2020-06-16)
+
+
+### Bug Fixes
+
+* **constants:** remove changeOwner for CA ([59bfb7d](https://github.com/ovh/manager/commit/59bfb7de3e694ee785c37d9f4cbfd45834188875))
+* **domain:** add missing constants ([668f21f](https://github.com/ovh/manager/commit/668f21f1a3881a38b48f8021c9bf3cc93f0ec1a6))
+* **domain:** prevent dahsboard crash if call fails ([#3109](https://github.com/ovh/manager/issues/3109)) ([89ccb76](https://github.com/ovh/manager/commit/89ccb76277f7f6d35c05736174287529a7434629))
+* **domain:** prevent error if guide for FR subsidiary is not declared ([3b968f6](https://github.com/ovh/manager/commit/3b968f60560d5c416e4779ff6c53a537b10cc820))
+* **domain.general-informations:** prevent blocking dashboard ([de4e3a7](https://github.com/ovh/manager/commit/de4e3a72be8d5fecf6e1b895fadd63dbf9eb32d5))
+* **hosting:** fetch email service info only if available ([#2971](https://github.com/ovh/manager/issues/2971)) ([e345d71](https://github.com/ovh/manager/commit/e345d7107644b38e44240bf34dd3d1a56f4b8ccf))
+* **hosting:** update recommended php version ([2e0f624](https://github.com/ovh/manager/commit/2e0f6245f3e8911ee5249d35d77266e7aa326e55))
+* **hosting.cdn:** prevent blocking if there is no contracts ([c4bcf13](https://github.com/ovh/manager/commit/c4bcf137b5b4e5d3ae44924b13f37adc7f60ef7e))
+* **hosting.email.activate:** update cart information ([#2974](https://github.com/ovh/manager/issues/2974)) ([8e91477](https://github.com/ovh/manager/commit/8e914775ca20bb39dcdc944981085eb86a6881d4))
+* **hosting.general-information:** hide owner change if there is no url ([b335e78](https://github.com/ovh/manager/commit/b335e788d393dc87c2443fba37fe99a5e8746fac))
+* **hosting.logs:** use API log url instead of constant ([#2973](https://github.com/ovh/manager/issues/2973)) ([b1c57ff](https://github.com/ovh/manager/commit/b1c57ffd4fdec908df660d4d699f0ba843702817))
+* **hosting.ssl.order:** use domain picked by user ([#3078](https://github.com/ovh/manager/issues/3078)) ([353b155](https://github.com/ovh/manager/commit/353b1557bbd6f4ceed2da83bd548b80fc050276a))
+* **i18n:** add missing translations [CDS 407] ([5db3369](https://github.com/ovh/manager/commit/5db3369ff341db293582421f74a67dea931c69a1))
+* **i18n:** add missing translations [CDS 421] ([ceb1a65](https://github.com/ovh/manager/commit/ceb1a65578adf1e997d3dba6703d60baa0df822f))
+* update order url for CA ([e663d02](https://github.com/ovh/manager/commit/e663d028a10dd51b47b0034b5d3e7667dbffeec4))
+* **user:** prevent error if url is not specified for FR subsidiary ([76c32e5](https://github.com/ovh/manager/commit/76c32e51b7aa39851d1d820f5098952d3738af44))
+
+
+### Features
+
+* **domain:** deactivate anycast if not available ([c6a892d](https://github.com/ovh/manager/commit/c6a892d3f6c48b689cac40ac86388505f6fdb1ef))
+* prevent displaying contracts if there is none ([d58885c](https://github.com/ovh/manager/commit/d58885c4d543d1a5334ce983cf8c08202e05a57a))
+* use redirection service for contact management ([6efbb2b](https://github.com/ovh/manager/commit/6efbb2b7e43d19daf5416ba603700d461955de50))
+* **configuration:** redirect to help center for all subs ([#3044](https://github.com/ovh/manager/issues/3044)) ([f3a24a2](https://github.com/ovh/manager/commit/f3a24a205e72c28dec725d32afb0015312407495))
+* **dns-zone:** add capabilities for dynHost ([#2945](https://github.com/ovh/manager/issues/2945)) ([6c0c936](https://github.com/ovh/manager/commit/6c0c9368c08c6447a7038f48f9e8e48e4f52392a))
+* **domain.dashboard:** display start10m offer according to API ([#3022](https://github.com/ovh/manager/issues/3022)) ([f17435e](https://github.com/ovh/manager/commit/f17435eb23b525e9e9b5094656ce746fa6e73218))
+* **domain.dashboard:** hide owner change url if not defined ([#3019](https://github.com/ovh/manager/issues/3019)) ([29096e2](https://github.com/ovh/manager/commit/29096e2cb8b63e3f4dff1bf08d49861796c4776e))
+* **domain.webhosting:** display available modules depending on offer ([#2944](https://github.com/ovh/manager/issues/2944)) ([7f2caa3](https://github.com/ovh/manager/commit/7f2caa3396a442859101051cc5f23c6b23149e73))
+* **hosting:** add datacenter translation ([c0b27c2](https://github.com/ovh/manager/commit/c0b27c2cf1bde9f1a55325484f2783b193311b0c))
+* **hosting.cron:** display translated email value ([#3000](https://github.com/ovh/manager/issues/3000)) ([6cc0474](https://github.com/ovh/manager/commit/6cc04748d7260a3466448d12b264d5e4b58b1101))
+* **hosting.cron:** reword email log choice ([#2972](https://github.com/ovh/manager/issues/2972)) ([8a7b192](https://github.com/ovh/manager/commit/8a7b192b29556862a0946d30f871ebbb208fa52c))
+* **hosting.database:** remove backup restore ([#2925](https://github.com/ovh/manager/issues/2925)) ([4c27eeb](https://github.com/ovh/manager/commit/4c27eeb199bd8164aff1e8a62c2470522ecdb448))
+* **hosting.multisite:** hide ip change if there is no change possible ([461e660](https://github.com/ovh/manager/commit/461e66031cb087ae5f1d4c4cbc9a2e291d1fbc03))
+* **private-database:** display owner change only if available ([2ccfd44](https://github.com/ovh/manager/commit/2ccfd442772a92ba0a225a70f798422f854a3812))
+* **private-databse:** add guides ([5c28a6c](https://github.com/ovh/manager/commit/5c28a6cd82aa423208c5a9a137fc358a0c30e295))
+* add guides and order url for CA ([3b488cb](https://github.com/ovh/manager/commit/3b488cbcda5d3ad51fcf2adb04add073182749fd))
+* **web.hosting:** get statistics route through api call ([5d1ca03](https://github.com/ovh/manager/commit/5d1ca0312f3fb82d1221e40b210385fc313dfb54))
+* remove mailing list tab for CA ([b6438ff](https://github.com/ovh/manager/commit/b6438ffc37d8344e8e734d6197016031c0ebc04e))
+
+
+
 ## [14.4.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@14.4.1...@ovh-ux/manager-web@14.4.2) (2020-06-09)
 
 

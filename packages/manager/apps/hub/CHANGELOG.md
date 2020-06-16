@@ -1,3 +1,12 @@
+## [1.4.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@1.4.1...@ovh-ux/manager-hub-app@1.4.2) (2020-06-16)
+
+
+### Performance Improvements
+
+* **hub:** remove unecessary debt api call ([#3104](https://github.com/ovh/manager/issues/3104)) ([08830f1](https://github.com/ovh/manager/commit/08830f1b0451859652a2e1061a43258d5e4ac8d7))
+
+
+
 ## [1.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@1.4.0...@ovh-ux/manager-hub-app@1.4.1) (2020-06-09)
 
 
