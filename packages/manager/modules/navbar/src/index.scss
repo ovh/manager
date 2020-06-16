@@ -1,5 +1,10 @@
 .oui-navbar {
   @import '~oui4/dist/scss/_tokens';
+  @import '~bootstrap/scss/_functions';
+  @import '~bootstrap/scss/_variables';
+  @import '~bootstrap/scss/_mixins';
+  @import '~bootstrap/scss/_utilities.scss';
+  @import '~bootstrap/scss/_grid.scss';
 
   background-color: $p-000-white;
   box-shadow: $base-box-shadow-primary;

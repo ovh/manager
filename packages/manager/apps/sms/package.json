@@ -35,6 +35,7 @@
     "@ovh-ux/ng-ovh-telecom-universe-components": "^5.0.0",
     "@ovh-ux/ng-ovh-ui-confirm-modal": "^2.0.0",
     "@ovh-ux/ng-pagination-front": "^9.0.0",
+    "@ovh-ux/ovh-ufrontend": "^0.0.0 | ^1.0.0",
     "@uirouter/angularjs": "^1.0.23",
     "CSV-JS": "^1.2.0",
     "angular": "^1.7.5",
@@ -53,6 +54,7 @@
     "oclazyload": "^1.1.0",
     "ovh-api-services": "^9.44.2",
     "ovh-ngstrap": "^4.0.2",
+    "ovh-ui-kit": "^2.42.8",
     "validator-js": "^0.2.1"
   },
   "devDependencies": {

@@ -5,7 +5,6 @@ const webpackConfig = require('@ovh-ux/manager-webpack-config');
 module.exports = (env = {}) => {
   const { config } = webpackConfig(
     {
-      template: './src/index.html',
       basePath: './src',
       root: path.resolve(__dirname, './src'),
     },
