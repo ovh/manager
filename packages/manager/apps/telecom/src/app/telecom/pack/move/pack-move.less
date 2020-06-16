@@ -1,4 +1,34 @@
 .telecom-pack-move {
+  .card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 0.25rem;
+    margin: 15px;
+
+    .meeting {
+      height: 250px;
+    }
+  }
+
+  .card-body {
+    flex: 1 1 auto;
+    padding: 1.25rem;
+  }
+
+  .card-title {
+    margin-bottom: 0.75rem;
+  }
+
+  .text-small {
+    font-size: 80%;
+  }
+
   .meeting-calendar {
     overflow-y: hidden;
 
@@ -147,5 +177,83 @@
   &__lineNumber {
     font-size: @font-size-base;
     color: @p-700;
+  }
+}
+
+.pack-move-offers {
+  .table-comparison {
+    &__property {
+      &-name {
+        text-align: left;
+        font-weight: bold;
+
+        &--sublevel {
+          text-align: left;
+          font-weight: 400;
+        }
+      }
+
+      &-icon {
+        font-size: 1.5rem;
+        color: #28aaff;
+        margin-right: 8px;
+      }
+    }
+
+    &--item-base {
+      background-color: @gray-lighter;
+    }
+
+    &__cell {
+      border: none;
+      vertical-align: middle;
+      color: @gray-dark;
+
+      &--border {
+        border-bottom: solid 1px #eaeaea;
+      }
+
+      &--head {
+        border-bottom: 2px solid #eaeaea;
+        text-align: center;
+      }
+
+      &--empty {
+        border-top: solid 1px #eaeaea;
+      }
+
+      .text-price {
+        font-weight: bold;
+        font-size: @font-size-h3;
+      }
+
+      .text-small {
+        font-size: 80%;
+
+        .text-price {
+          font-size: 1.5em;
+        }
+      }
+
+      strong {
+        font-size: @font-size-base;
+
+        &:not(.text-muted) {
+          color: #28aaff;
+        }
+      }
+    }
+
+    &__value {
+      text-align: center;
+    }
+  }
+
+  .text-asterisk {
+    &::before {
+      display: inline-block;
+      content: '*';
+      padding-right: 4px;
+    }
   }
 }
