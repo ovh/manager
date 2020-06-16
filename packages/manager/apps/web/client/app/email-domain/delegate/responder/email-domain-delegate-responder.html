@@ -104,8 +104,8 @@
                             <span
                                 class="oui-badge"
                                 data-ng-class="{
-                                    'oui-status_success': !ctrlEmailDelegateResponder.constructor.isExpired(responder),
-                                    'oui-status_error': ctrlEmailDelegateResponder.constructor.isExpired(responder)}"
+                                    'oui-badge_success': !ctrlEmailDelegateResponder.constructor.isExpired(responder),
+                                    'oui-badge_error': ctrlEmailDelegateResponder.constructor.isExpired(responder)}"
                                 data-ng-bind="'email_tab_responders_status_expired_' + ctrlEmailDelegateResponder.constructor.isExpired(responder) | translate"
                             ></span>
                         </td>

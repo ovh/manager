@@ -21,9 +21,9 @@
                                     <div
                                         class="oui-badge"
                                         data-ng-class="{
-                                         'oui-status_error': stateCtrl.database.state === 'detached',
-                                         'oui-status_warning' : stateCtrl.database.state === 'restartPending' || stateCtrl.database.state === 'stopPending' || database.state === 'stopped',
-                                         'oui-status_success' : stateCtrl.database.state === 'startPending' || stateCtrl.database.state === 'started' }"
+                                         'oui-badge_error': stateCtrl.database.state === 'detached',
+                                         'oui-badge_warning' : stateCtrl.database.state === 'restartPending' || stateCtrl.database.state === 'stopPending' || database.state === 'stopped',
+                                         'oui-badge_success' : stateCtrl.database.state === 'startPending' || stateCtrl.database.state === 'started' }"
                                         data-ng-bind="'privateDatabase_dashboard_' + stateCtrl.database.state | translate"
                                     ></div>
                                 </oui-tile-description>
@@ -67,7 +67,7 @@
                                     <div
                                         class="oui-badge"
                                         data-ng-bind="::stateCtrl.database.ram.value + ('unit_size_' + stateCtrl.database.ram.unit | translate)"
-                                        data-ng-class="stateCtrl.database.oom.realList.length >= stateCtrl.database.oom.nbOomError ? 'oui-status_error' : (stateCtrl.database.oom.realList.length > 0 ? 'oui-status_warning' : 'oui-status_success')"
+                                        data-ng-class="stateCtrl.database.oom.realList.length >= stateCtrl.database.oom.nbOomError ? 'oui-badge_error' : (stateCtrl.database.oom.realList.length > 0 ? 'oui-badge_warning' : 'oui-badge_success')"
                                     ></div>
                                     <button
                                         class="btn btn-icon btn-xs d-block text-wrap text-left"

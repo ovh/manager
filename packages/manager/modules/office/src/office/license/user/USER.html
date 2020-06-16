@@ -51,9 +51,9 @@
                         data-ng-if="!$row.isVirtual && $row.status"
                         data-ng-bind="'microsoft_office_license_user_status_' + $row.status | translate"
                         data-ng-class="{
-                            'oui-status_success': $row.status === 'ok',
-                            'oui-status_error': $row.status === 'deleting' || $row.status === 'error',
-                            'oui-status_info': $row.status === 'creating' || $row.status === 'updating'}"
+                            'oui-badge_success': $row.status === 'ok',
+                            'oui-badge_error': $row.status === 'deleting' || $row.status === 'error',
+                            'oui-badge_info': $row.status === 'creating' || $row.status === 'updating'}"
                     >
                     </span>
                     <span

@@ -248,9 +248,9 @@
                                 <span
                                     class="oui-badge"
                                     data-ng-class="{
-                                          'oui-status_success': $ctrl.server.state === 'OK',
-                                          'oui-status_warning': $ctrl.server.state === 'ERROR',
-                                          'oui-status_error': $ctrl.server.state === 'HACKED' || $ctrl.server.state === 'HACKED_BLOCKED'
+                                          'oui-badge_success': $ctrl.server.state === 'OK',
+                                          'oui-badge_warning': $ctrl.server.state === 'ERROR',
+                                          'oui-badge_error': $ctrl.server.state === 'HACKED' || $ctrl.server.state === 'HACKED_BLOCKED'
                                       }"
                                     data-translate="{{:: 'server_configuration_state_' + $ctrl.server.state}}"
                                 >
@@ -302,8 +302,8 @@
                                 <span
                                     class="oui-badge"
                                     data-ng-class="{
-                                          'oui-status_success': $ctrl.server.monitored,
-                                          'oui-status_error': !$ctrl.server.monitored
+                                          'oui-badge_success': $ctrl.server.monitored,
+                                          'oui-badge_error': !$ctrl.server.monitored
                                       }"
                                     data-translate="{{'server_configuration_monitoring_' + ($ctrl.server.monitored && 'activated' || 'disabled')}}"
                                     data-oui-tooltip="{{ ($ctrl.server.monitored && 'server_configuration_monitoring_activate_information' | translate) || ('server_configuration_monitoring_deactivate_information' | translate) }}"
@@ -349,7 +349,7 @@
                                 <span
                                     class="oui-badge"
                                     data-ng-repeat="monitoringProtocol in $ctrl.monitoringProtocolEnum"
-                                    data-ng-class="$ctrl.isMonitoringEnabled(monitoringProtocol) ? 'oui-status_success' : 'oui-status_warning'"
+                                    data-ng-class="$ctrl.isMonitoringEnabled(monitoringProtocol) ? 'oui-badge_success' : 'oui-badge_warning'"
                                     data-ng-bind="monitoringProtocol"
                                 ></span>
                             </dd>
@@ -602,8 +602,8 @@
                                 <span
                                     class="oui-badge"
                                     data-ng-class="{
-                                          'oui-status_success': $ctrl.server.hasProfessionalUse,
-                                          'oui-status_error': !$ctrl.server.hasProfessionalUse
+                                          'oui-badge_success': $ctrl.server.hasProfessionalUse,
+                                          'oui-badge_error': !$ctrl.server.hasProfessionalUse
                                       }"
                                     data-translate="{{'server_configuration_monitoring_' + ($ctrl.server.hasProfessionalUse &amp;&amp; 'activated' || 'disabled') | translate}}"
                                 >

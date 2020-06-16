@@ -75,8 +75,8 @@
                     <span
                         class="oui-badge"
                         data-ng-class="{
-                            'oui-status_success': !$ctrl.constructor.isExpired($row),
-                            'oui-status_error': $ctrl.constructor.isExpired($row)
+                            'oui-badge_success': !$ctrl.constructor.isExpired($row),
+                            'oui-badge_error': $ctrl.constructor.isExpired($row)
                             }"
                         data-ng-bind=":: 'email_tab_responders_status_expired_' + $ctrl.constructor.isExpired($row) | translate"
                     ></span>

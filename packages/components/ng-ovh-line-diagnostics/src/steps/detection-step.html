@@ -31,25 +31,28 @@
                 <span
                     data-translate="tools_lineDiagnostics_detection_step_modem_question"
                 ></span>
-                <oui-popover>
-                    <button
-                        type="button"
-                        class="oui-popover-button"
-                        oui-popover-trigger
-                    ></button>
-                    <oui-popover-content>
-                        <p
-                            class="text-center"
-                            data-translate="tools_lineDiagnostics_detection_step_modem_question_help"
-                        ></p>
-                        <img
-                            data-ng-src="{{:: $ctrl.assets.BROADBAND_LIGHT }}"
-                            alt
-                            data-ng-attr-alt="{{:: $ctrl.currentAction }}"
-                            aria-hidden="true"
-                        />
-                    </oui-popover-content>
-                </oui-popover>
+                <button
+                    type="button"
+                    class="oui-popover-button"
+                    data-oui-popover
+                    data-oui-popover-scope="$ctrl"
+                    data-oui-popover-template="tools_lineDiagnostics_detection_step_modem_question_help.html"
+                ></button>
+                <script
+                    type="text/ng-template"
+                    id="tools_lineDiagnostics_detection_step_modem_question_help.html"
+                >
+                    <p
+                        class="text-center"
+                        data-translate="tools_lineDiagnostics_detection_step_modem_question_help"
+                    ></p>
+                    <img
+                        data-ng-src="{{:: $ctrl.assets.BROADBAND_LIGHT }}"
+                        alt
+                        data-ng-attr-alt="{{:: $ctrl.currentAction }}"
+                        aria-hidden="true"
+                    />
+                </script>
             </label>
             <oui-radio-toggle-group
                 class="d-inline-block"

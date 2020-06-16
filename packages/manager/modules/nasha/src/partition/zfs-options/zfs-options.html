@@ -63,10 +63,13 @@
                     class="oui-radio__label-container"
                     for="syncs-{{sync.label}}"
                 >
-                    <span
-                        class="oui-radio__label"
-                        data-ng-bind="'nasha_partitions_zfs_sync_' + sync.label | translate"
-                    ></span>
+                    <span class="oui-radio__label">
+                        <span class="oui-radio__icon"></span>
+                        <span
+                            class="oui-radio__text"
+                            data-ng-bind="'nasha_partitions_zfs_sync_' + sync.label | translate"
+                        ></span>
+                    </span>
                     <span class="oui-radio__description">
                         <span
                             data-ng-bind="'nasha_partitions_zfs_sync_description_' + sync.label | translate"

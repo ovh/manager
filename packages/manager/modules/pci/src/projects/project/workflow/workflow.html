@@ -90,10 +90,10 @@
                     data-ng-if="$row.executions && $row.executions.length"
                     data-ng-init="execution = $row.executions[$row.executions.length - 1]"
                     data-ng-class="{
-                        'oui-status_success': execution.state === 'SUCCESS',
-                        'oui-status_warning': execution.state === 'PAUSED',
-                        'oui-status_error': execution.state === 'ERROR',
-                        'oui-status_info': execution.state === execution.status,
+                        'oui-badge_success': execution.state === 'SUCCESS',
+                        'oui-badge_warning': execution.state === 'PAUSED',
+                        'oui-badge_error': execution.state === 'ERROR',
+                        'oui-badge_info': execution.state === execution.status,
                     }"
                 >
                     <span

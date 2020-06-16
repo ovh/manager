@@ -136,7 +136,7 @@
                         </a>
                         <span
                             class="oui-badge"
-                            data-ng-class="{ 'oui-status_error': !$ctrl.hasStart10mOffer, 'oui-status_success': $ctrl.hasStart10mOffer }"
+                            data-ng-class="{ 'oui-badge_error': !$ctrl.hasStart10mOffer, 'oui-badge_success': $ctrl.hasStart10mOffer }"
                             data-ng-bind="::($ctrl.hasStart10mOffer ? 'common_activated' : 'common_desactivated') | translate"
                             data-ng-if="!(ctrlDomain.canOrderHosting && ctrlDomain.isAdminOrBilling && !$ctrl.hasStart10mOffer)"
                         >
@@ -282,9 +282,9 @@
                             data-ng-if="!$ctrl.isSwitchingProtectionStatus"
                             data-translate="{{ 'domain_dashboard_protection_' + $ctrl.domain.protection }}"
                             data-ng-class="{
-                              'oui-status_success': $ctrl.vm.protection.enabled,
-                              'oui-status_warning': $ctrl.vm.protection.isUnavailable,
-                              'oui-status_error': !$ctrl.vm.protection.enabled && !$ctrl.vm.protection.isUnavailable
+                              'oui-badge_success': $ctrl.vm.protection.enabled,
+                              'oui-badge_warning': $ctrl.vm.protection.isUnavailable,
+                              'oui-badge_error': !$ctrl.vm.protection.enabled && !$ctrl.vm.protection.isUnavailable
                             }"
                         ></span>
                         <oui-spinner
@@ -339,9 +339,9 @@
                             data-ng-if="!$ctrl.isSwitchingDnssecStatus"
                             data-translate="{{ 'domain_configuration_dnssec_' + $ctrl.domain.dnssecStatus }}"
                             data-ng-class="{
-                              'oui-status_success': $ctrl.vm.dnssec.enabled,
-                              'oui-status_warning': $ctrl.vm.dnssec.isUnavailable,
-                              'oui-status_error': !$ctrl.vm.dnssec.enabled && !$ctrl.vm.dnssec.isUnavailable
+                              'oui-badge_success': $ctrl.vm.dnssec.enabled,
+                              'oui-badge_warning': $ctrl.vm.dnssec.isUnavailable,
+                              'oui-badge_error': !$ctrl.vm.dnssec.enabled && !$ctrl.vm.dnssec.isUnavailable
                             }"
                         ></span>
                         <oui-spinner

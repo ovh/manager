@@ -14,12 +14,12 @@ angular
         case 'REMOVING':
         case 'CREATING':
         case 'UPLOADING':
-          return 'oui-status_warning';
+          return 'oui-badge_warning';
         case 'ERROR':
         case 'OFF':
-          return 'oui-status_error';
+          return 'oui-badge_error';
         case 'ON':
-          return 'oui-status_success';
+          return 'oui-badge_success';
         default:
           return '';
       }

@@ -35,9 +35,9 @@
             <span
                 class="oui-badge"
                 data-ng-class="{
-                        'oui-status_success' : $row.isDeployed(),
-                        'oui-status_warning' : $row.isProcessing(),
-                        'oui-status_error' : $row.isInError()
+                        'oui-badge_success' : $row.isDeployed(),
+                        'oui-badge_warning' : $row.isProcessing(),
+                        'oui-badge_error' : $row.isInError()
                     }"
                 data-translate="{{:: 'pci_projects_project_serving_namespace_models_version_status_' + $row.versionStatus }}"
             >
@@ -50,8 +50,8 @@
             <span
                 class="oui-badge"
                 data-ng-class="{
-                    'oui-status_success' : $row.isRunning(),
-                    'oui-status_warning' : !$row.isRunning()
+                    'oui-badge_success' : $row.isRunning(),
+                    'oui-badge_warning' : !$row.isRunning()
                     }"
                 data-translate="{{:: 'pci_projects_project_serving_namespace_models_api_status_' + $row.apiStatus }}"
             >

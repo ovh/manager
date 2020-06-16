@@ -30,9 +30,9 @@
             <span
                 class="oui-badge"
                 data-ng-class="{
-                    'oui-status_info': $row.status === 'TODO' || $row.status === 'DOING' || $row.status === 'CANCELLED',
-                    'oui-status_error': $row.status === 'ERROR',
-                    'oui-status_success': $row.status === 'DONE'
+                    'oui-badge_info': $row.status === 'TODO' || $row.status === 'DOING' || $row.status === 'CANCELLED',
+                    'oui-badge_error': $row.status === 'ERROR',
+                    'oui-badge_success': $row.status === 'DONE'
                   }"
                 data-ng-bind="'domain_tab_TASKS_status_' +  $row.status | translate"
             >

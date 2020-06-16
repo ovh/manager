@@ -26,18 +26,11 @@
                 <span
                     data-translate="telephony_alias_config_conference_customized_announcement"
                 ></span>
-                <oui-popover>
-                    <button
-                        class="oui-popover-button"
-                        type="button"
-                        data-oui-popover-trigger
-                    ></button>
-                    <oui-popover-content>
-                        <span
-                            data-translate="telephony_alias_config_conference_customized_announcement_help"
-                        ></span>
-                    </oui-popover-content>
-                </oui-popover>
+                <button
+                    class="oui-popover-button"
+                    type="button"
+                    data-oui-popover="{{:: 'telephony_alias_config_conference_customized_announcement_help' | translate }}"
+                ></button>
             </dt>
             <dd
                 data-ng-if="!$ctrl.newFile"

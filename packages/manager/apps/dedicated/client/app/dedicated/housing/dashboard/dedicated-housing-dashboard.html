@@ -27,9 +27,9 @@
                             <span
                                 class="oui-badge"
                                 data-ng-class="{
-                                    'oui-status_success': housing.status === 'ok',
-                                    'oui-status_warning': housing.status === 'error',
-                                    'oui-status_error': housing.status === 'hacked' || housing.status === 'hacked_blocked'
+                                    'oui-badge_success': housing.status === 'ok',
+                                    'oui-badge_warning': housing.status === 'error',
+                                    'oui-badge_error': housing.status === 'hacked' || housing.status === 'hacked_blocked'
                                   }"
                                 data-ng-bind="('housing_status_' + housing.status) | translate"
                             >

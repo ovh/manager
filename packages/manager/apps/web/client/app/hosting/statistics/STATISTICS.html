@@ -83,24 +83,7 @@
                             for="hostingStatisticsResponseTime"
                         >
                             <span class="oui-checkbox__label">
-                                <span class="oui-checkbox__icon">
-                                    <span
-                                        class="oui-icon oui-icon-checkbox-unchecked"
-                                        aria-hidden="true"
-                                    ></span>
-                                    <span
-                                        class="oui-icon oui-icon-checkbox-checked"
-                                        aria-hidden="true"
-                                    ></span>
-                                    <span
-                                        class="oui-icon oui-icon-checkbox-checkmark"
-                                        aria-hidden="true"
-                                    ></span>
-                                    <span
-                                        class="oui-icon oui-icon-checkbox-indeterminate"
-                                        aria-hidden="true"
-                                    ></span>
-                                </span>
+                                <span class="oui-checkbox__icon"></span>
                             </span>
                         </label>
                     </div>
@@ -159,10 +142,13 @@
                     class="oui-radio__label-container"
                     for="aggregateModes-{{$index}}"
                 >
-                    <span
-                        class="oui-radio__label"
-                        data-ng-bind="'hosting_tab_STATISTICS_aggregate_' + option | translate"
-                    ></span>
+                    <span class="oui-radio__label">
+                        <span class="oui-radio__icon"></span>
+                        <span
+                            class="oui-radio__text"
+                            data-ng-bind="'hosting_tab_STATISTICS_aggregate_' + option | translate"
+                        ></span>
+                    </span>
                 </label>
             </div>
         </div>

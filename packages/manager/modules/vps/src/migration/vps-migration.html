@@ -77,8 +77,8 @@
         >
             <span
                 data-ng-class="{
-                    'oui-status oui-status_error': $row.migration.status === $ctrl.MIGRATION_STATUS.TO_PLAN,
-                    'oui-status oui-status_success': $row.migration.status === $ctrl.MIGRATION_STATUS.PLANNED
+                    'oui-badge oui-badge_error': $row.migration.status === $ctrl.MIGRATION_STATUS.TO_PLAN,
+                    'oui-badge oui-badge_success': $row.migration.status === $ctrl.MIGRATION_STATUS.PLANNED
                 }"
                 data-ng-bind="'vps_migration_status_' + $row.migration.status | translate"
             >

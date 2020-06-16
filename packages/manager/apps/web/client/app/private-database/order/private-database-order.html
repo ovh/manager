@@ -210,17 +210,20 @@
                                     for="durationRadio-{{$index}}"
                                 >
                                     <span class="oui-radio__label">
-                                        <span
-                                            data-ng-bind="duration | wucDuration:'longDate'"
-                                        ></span
-                                        >&nbsp;:
-                                        <span
-                                            data-ng-bind-html="orderCtrl.durations.details[duration].prices | price:orderCtrl.user.ovhSubsidiary"
-                                        ></span>
-                                        <oui-spinner
-                                            data-size="s"
-                                            data-ng-if="!orderCtrl.durations.details[duration]"
-                                        ></oui-spinner>
+                                        <span class="oui-radio__icon"></span>
+                                        <span class="oui-radio__text">
+                                            <span
+                                                data-ng-bind="duration | wucDuration:'longDate'"
+                                            ></span
+                                            >&nbsp;:
+                                            <span
+                                                data-ng-bind-html="orderCtrl.durations.details[duration].prices | price:orderCtrl.user.ovhSubsidiary"
+                                            ></span>
+                                            <oui-spinner
+                                                data-size="s"
+                                                data-ng-if="!orderCtrl.durations.details[duration]"
+                                            ></oui-spinner>
+                                        </span>
                                     </span>
                                 </label>
                             </div>
@@ -283,26 +286,12 @@
                                     >
                                         <span class="oui-checkbox__label">
                                             <span
+                                                class="oui-checkbox__icon"
+                                            ></span>
+                                            <span
+                                                class="oui-checkbox__text"
                                                 data-translate="privateDatabase_order_step3_contracts_check"
                                             ></span>
-                                            <span class="oui-checkbox__icon">
-                                                <span
-                                                    class="oui-icon oui-icon-checkbox-unchecked"
-                                                    aria-hidden="true"
-                                                ></span>
-                                                <span
-                                                    class="oui-icon oui-icon-checkbox-checked"
-                                                    aria-hidden="true"
-                                                ></span>
-                                                <span
-                                                    class="oui-icon oui-icon-checkbox-checkmark"
-                                                    aria-hidden="true"
-                                                ></span>
-                                                <span
-                                                    class="oui-icon oui-icon-checkbox-indeterminate"
-                                                    aria-hidden="true"
-                                                ></span>
-                                            </span>
                                         </span>
                                     </label>
                                 </div>

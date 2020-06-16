@@ -26,10 +26,10 @@
             class="oui-badge"
             data-translate="{{ 'server_configuration_task_status_' + $row.status }}"
             data-ng-class="{
-                      'oui-status_success': $row.status === $ctrl.TASK_STATUS.DONE,
-                      'oui-status_info': $row.status === $ctrl.TASK_STATUS.DOING,
-                      'oui-status_danger': $row.status === $ctrl.TASK_STATUS.OVH_ERROR || $row.status === $ctrl.TASK_STATUS.CUSTOMER_ERROR,
-                      'oui-status_warning': $row.status === $ctrl.TASK_STATUS.INIT || $row.status === $ctrl.TASK_STATUS.TODO
+                      'oui-badge_success': $row.status === $ctrl.TASK_STATUS.DONE,
+                      'oui-badge_info': $row.status === $ctrl.TASK_STATUS.DOING,
+                      'oui-badge_danger': $row.status === $ctrl.TASK_STATUS.OVH_ERROR || $row.status === $ctrl.TASK_STATUS.CUSTOMER_ERROR,
+                      'oui-badge_warning': $row.status === $ctrl.TASK_STATUS.INIT || $row.status === $ctrl.TASK_STATUS.TODO
                   }"
         >
         </span>
