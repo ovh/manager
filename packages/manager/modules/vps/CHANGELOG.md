@@ -1,3 +1,22 @@
+# [1.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@1.2.1...@ovh-ux/manager-vps@1.3.0) (2020-06-17)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 424] ([7d04b0a](https://github.com/ovh/manager/commit/7d04b0acadaa75082d272b22c17c0fbd3f141162))
+* **i18n:** add missing translations [CDS 441] ([4fcdba3](https://github.com/ovh/manager/commit/4fcdba3d39236d6a2df917497ef496a8478aa14c))
+* **i18n:** add missing translations [CDS 443] ([77ce6b1](https://github.com/ovh/manager/commit/77ce6b1b4edddec8836badc3eab580d3530c6a29))
+* vps migration message ([4265b99](https://github.com/ovh/manager/commit/4265b9945a01314d13ce8940090a82d1379f8064))
+
+
+### Features
+
+* **vps:** ui bug fixes ([e8d3c75](https://github.com/ovh/manager/commit/e8d3c75ceea4336f2c72f99d3822f15707bfd5c3))
+* **vps:** update faq link ([fbe025e](https://github.com/ovh/manager/commit/fbe025e66f0bd33af2907b91e818085d511d683d))
+* **vps:** vps migration schedule ([4bced19](https://github.com/ovh/manager/commit/4bced1952a3722e87078dce1f90b70a6a46e2d01))
+
+
+
 ## [1.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@1.2.0...@ovh-ux/manager-vps@1.2.1) (2020-06-09)
 
 

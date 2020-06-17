@@ -1,3 +1,12 @@
+# [1.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@1.2.0...@ovh-ux/manager-hub@1.3.0) (2020-06-17)
+
+
+### Features
+
+* **hub:** add vps migration banner ([9f1c619](https://github.com/ovh/manager/commit/9f1c6195415d48acf6abd498a581b76127ddfcc7))
+
+
+
 # [1.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@1.1.3...@ovh-ux/manager-hub@1.2.0) (2020-06-16)
 
 

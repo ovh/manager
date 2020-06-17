@@ -1,3 +1,12 @@
+## [12.5.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@12.5.4...@ovh-ux/manager-dedicated@12.5.5) (2020-06-17)
+
+
+### Bug Fixes
+
+* **dedicated.configuration:** update US doc link ([#3111](https://github.com/ovh/manager/issues/3111)) ([2299ffb](https://github.com/ovh/manager/commit/2299ffb03d19c90c64d58d0663f7286aac9dbe32))
+
+
+
 ## [12.5.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@12.5.3...@ovh-ux/manager-dedicated@12.5.4) (2020-06-16)
 
 
