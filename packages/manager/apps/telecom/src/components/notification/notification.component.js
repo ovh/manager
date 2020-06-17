@@ -213,12 +213,18 @@ angular.module('managerApp').component('notificationList', {
       // get the SMS accounts
       OvhApiSms.Aapi()
         .query({})
-        .$promise.then(
-          (data) => {
-            self.accounts = data;
-          },
-          (err) => self.processError(err),
-        );
+        .$promise.then((data) => {
+          self.accounts = data;
+          // get the SMS remaining credits by accounts
+          OvhApiSms.Aapi()
+            .detail({
+              smsIds: data,
+            })
+            .$promise.then((smsDetails) => {
+              self.smsDetails = smsDetails;
+            });
+        })
+        .catch((err) => self.processError(err));
 
       // Get the Notifications
       $scope.$watch(
