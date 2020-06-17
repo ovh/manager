@@ -1,4 +1,5 @@
 import kebabCase from 'lodash/kebabCase';
+import 'moment';
 
 import { NEW_RANGE_VERSION } from './dashboard/vps-dashboard.constants';
 import { RANGES } from './upscale/upscale.constants';

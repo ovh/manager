@@ -844,6 +844,8 @@ module.exports = {
         guides: {
           home: 'https://docs.ovh.com/asia/en/',
           all: 'https://docs.ovh.com/asia/en/',
+          dnsForExternalDomain:
+            'https://docs.ovh.com/asia/en/domains/create_a_dns_zone_for_a_domain_which_is_not_registered_at_ovh/',
           hostingPrivateDatabase:
             'https://docs.ovh.com/asia/en/hosting/getting-started-with-private-sql/',
           hostingPrivateDatabaseDBaaS: {
@@ -877,6 +879,8 @@ module.exports = {
         guides: {
           home: 'https://docs.ovh.com/au/en/',
           all: 'https://docs.ovh.com/au/en/',
+          dnsForExternalDomain:
+            'https://docs.ovh.com/au/en/domains/create_a_dns_zone_for_a_domain_which_is_not_registered_at_ovh/',
           hostingPrivateDatabase:
             'https://docs.ovh.com/au/en/hosting/getting-started-with-private-sql/',
           hostingPrivateDatabaseDBaaS: {
@@ -911,6 +915,8 @@ module.exports = {
         guides: {
           home: 'https://docs.ovh.com/ca/en/',
           all: 'https://docs.ovh.com/ca/en/',
+          dnsForExternalDomain:
+            'https://docs.ovh.com/ca/en/domains/create_a_dns_zone_for_a_domain_which_is_not_registered_at_ovh/',
           hostingPrivateDatabase:
             'https://docs.ovh.com/ca/en/hosting/getting-started-with-private-sql/',
           hostingPrivateDatabaseDBaaS: {
@@ -945,6 +951,8 @@ module.exports = {
         guides: {
           home: 'https://docs.ovh.com/ca/fr/',
           all: 'https://docs.ovh.com/ca/fr/',
+          dnsForExternalDomain:
+            'https://docs.ovh.com/ca/fr/domains/creer-une-zone-dns-pour-un-domaine-externe/',
           hostingPrivateDatabase:
             'https://docs.ovh.com/ca/fr/hosting/premiers-pas-avec-sql-prive/',
           hostingPrivateDatabaseDBaaS: {
@@ -978,6 +986,8 @@ module.exports = {
         guides: {
           home: 'https://docs.ovh.com/sg/en/',
           all: 'https://docs.ovh.com/sg/en/',
+          dnsForExternalDomain:
+            'https://docs.ovh.com/sg/en/domains/create_a_dns_zone_for_a_domain_which_is_not_registered_at_ovh/',
           hostingPrivateDatabase:
             'https://docs.ovh.com/asia/en/hosting/getting-started-with-private-sql/',
           hostingPrivateDatabaseDBaaS: {
@@ -1011,6 +1021,8 @@ module.exports = {
         guides: {
           home: 'https://docs.ovh.com/ca/en/',
           all: 'https://docs.ovh.com/ca/en/',
+          dnsForExternalDomain:
+            'https://docs.ovh.com/ca/en/domains/create_a_dns_zone_for_a_domain_which_is_not_registered_at_ovh/',
           hostingPrivateDatabase:
             'https://docs.ovh.com/ca/en/hosting/getting-started-with-private-sql/',
           hostingPrivateDatabaseDBaaS: {
@@ -1045,6 +1057,8 @@ module.exports = {
         guides: {
           home: 'https://docs.ovh.com/us/es/',
           all: 'https://docs.ovh.com/us/es/',
+          dnsForExternalDomain:
+            'https://docs.ovh.com/us/es/domains/create_a_dns_zone_for_a_domain_which_is_not_registered_at_ovh/',
           hostingPrivateDatabase:
             'https://docs.ovh.com/us/es/hosting/getting-started-with-private-sql/',
           hostingPrivateDatabaseDBaaS: {

@@ -1,5 +1,6 @@
 import isArray from 'lodash/isArray';
 import isEmpty from 'lodash/isEmpty';
+import isString from 'lodash/isString';
 
 angular.module('App').controller(
   'configurationCtrl',
@@ -24,6 +25,9 @@ angular.module('App').controller(
     }
 
     getURLFromSection(section) {
+      if (isString(section)) {
+        return section;
+      }
       return section[this.currentLanguage] || section[this.fallbackLanguage];
     }
 

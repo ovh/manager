@@ -16,29 +16,31 @@ yarn add @ovh-ux/ng-ovh-otrs
 import angular from 'angular';
 import '@ovh-ux/ng-ovh-otrs';
 
-angular
-  .module('myApp', ['ngOvhOtrs'])
-  .config(/* @ngInject */ (OtrsPopupProvider) => {
+angular.module('myApp', ['ngOvhOtrs']).config(
+  /* @ngInject */ (OtrsPopupProvider) => {
     // Inject it to manager-navbar at app.config:
     OtrsPopupProvider.setBaseUrlTickets('…');
-  });
+  },
+);
 ```
 
 ```js
-const assistanceMenu = [{
-  title: $translate.instant('otrs_menu_new_ticket'),
-  click: (callback) => {
-    if (!OtrsPopupService.isLoaded()) {
-      OtrsPopupService.init();
-    } else {
-      OtrsPopupService.toggle();
-    }
+const assistanceMenu = [
+  {
+    title: $translate.instant('otrs_menu_new_ticket'),
+    click: (callback) => {
+      if (!OtrsPopupService.isLoaded()) {
+        OtrsPopupService.init();
+      } else {
+        OtrsPopupService.toggle();
+      }
 
-    if (_.isFunction(callback)) {
-      callback();
-    }
+      if (_.isFunction(callback)) {
+        callback();
+      }
+    },
   },
-}];
+];
 ```
 
 ## Test

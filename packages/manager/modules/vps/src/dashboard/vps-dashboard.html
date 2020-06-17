@@ -1,3 +1,35 @@
+<oui-message data-ng-if="$ctrl.canScheduleMigration" data-type="warning">
+    <p
+        data-translate="vps_dashboard_migration_warning"
+        data-translate-values="{ date: $ctrl.vps2014MigrationData.autoMigrationDate }"
+    ></p>
+    <button
+        type="button"
+        class="oui-button oui-button_link p-0"
+        data-ng-click="$ctrl.goToVpsMigration()"
+        data-translate="vps_dashboard_migration_link"
+    ></button>
+</oui-message>
+<oui-message
+    data-ng-if="$ctrl.vpsMigrationTask && $ctrl.vps2014MigrationData.inAutoMigrationPhase"
+    data-type="warning"
+>
+    <p
+        data-ng-if="$ctrl.vpsMigrationTask.state === 'todo'"
+        data-translate="vps_dashboard_auto_migration_warning"
+        data-translate-values="{ days: $ctrl.vps2014MigrationData.migrationScheduledInDays }"
+    ></p>
+    <p
+        data-ng-if="$ctrl.vpsMigrationTask.state !== 'todo'"
+        data-translate="vps_dashboard_migration_in_progress"
+    ></p>
+</oui-message>
+<oui-message
+    data-ng-if="$ctrl.vpsMigrationTaskInError"
+    data-type="error"
+>
+    <p data-translate="vps_dashboard_migration_in_error"></p>
+</oui-message>
 <section class="container-fluid cui-page__content cui-page__content-flex">
     <div class="row d-lg-flex">
         <div class="col-xm-12 col-md-4" data-ng-if="$ctrl.isVpsNewRange">
@@ -74,7 +106,7 @@
                 </div>
                 <div
                     class="oui-tile__item oui-tile__item_button"
-                    data-ng-if="$ctrl.hasFeature($ctrl.DASHBOARD_FEATURES.upgrade) && $ctrl.actions.upgrade.state"
+                    data-ng-if="$ctrl.hasFeature($ctrl.DASHBOARD_FEATURES.upgrade) && $ctrl.actions.upgrade.state && $ctrl.actions.upgrade.isAvailable()"
                 >
                     <a
                         class="oui-tile__button oui-button oui-link_icon oui-button_link oui-button_full-width"
@@ -104,8 +136,20 @@
             >
                 <oui-tile-definition
                     data-term="{{ ::'vps_dashboard_name' | translate }}"
-                    data-description="{{ $ctrl.vps.displayName || $ctrl.vps.name }}"
                 >
+                    <oui-tile-description>
+                        <span
+                            data-ng-bind="$ctrl.vps.displayName || $ctrl.vps.name"
+                        ></span>
+                        <br />
+                        <button
+                            type="button"
+                            class="oui-button oui-button_link p-0"
+                            data-ng-click="$ctrl.goToVpsMigration()"
+                            data-ng-if="$ctrl.canScheduleMigration"
+                            data-translate="vps_dashboard_migration_link"
+                        ></button>
+                    </oui-tile-description>
                     <oui-action-menu data-compact data-align="end">
                         <oui-action-menu-item
                             data-text="{{::$ctrl.actions.changeName.text}}"
@@ -571,39 +615,11 @@
                     </oui-tile-definition>
                     <oui-tile-definition
                         data-term="{{ ::'vps_order_windows_title' | translate }}"
+                        data-ng-if="$ctrl.tabSummary.windows.optionActivated"
                     >
                         <oui-tile-description>
-                            <span
-                                data-ng-if="$ctrl.tabSummary.windows.optionAvailable"
-                                data-translate="{{ 'vps_status_' + ($ctrl.tabSummary.windows.optionActivated ? 'enabled' : 'disabled') }}"
-                            >
-                            </span>
-                            <span
-                                data-ng-if="!$ctrl.tabSummary.windows.optionAvailable"
-                                data-translate="vps_option_unavailable"
-                            >
-                            </span>
+                            <span data-translate="vps_status_enabled"></span>
                         </oui-tile-description>
-                        <oui-action-menu
-                            data-compact
-                            data-align="end"
-                            data-ng-if="$ctrl.tabSummary.windows.optionAvailable"
-                        >
-                            <oui-action-menu-item
-                                data-text="{{::$ctrl.actions.terminateWindows.text}}"
-                                aria-label="{{::$ctrl.actions.terminateWindows.text}}"
-                                data-ng-if="$ctrl.tabSummary.windows.optionActivated && $ctrl.actions.terminateWindows.isAvailable()"
-                                data-on-click="$ctrl.goToTerminateOption('windows')"
-                            >
-                            </oui-action-menu-item>
-                            <oui-action-menu-item
-                                data-text="{{::$ctrl.actions.orderWindows.text}}"
-                                aria-label="{{::$ctrl.actions.orderWindows.text}}"
-                                data-ng-if="!$ctrl.tabSummary.windows.optionActivated && $ctrl.actions.orderWindows.isAvailable()"
-                                data-on-click="$ctrl.actions.orderWindows.callback()"
-                            >
-                            </oui-action-menu-item>
-                        </oui-action-menu>
                     </oui-tile-definition>
                 </div>
             </oui-tile>
