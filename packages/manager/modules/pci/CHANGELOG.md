@@ -1,3 +1,12 @@
+## [3.22.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.22.1...@ovh-ux/manager-pci@3.22.2) (2020-06-17)
+
+
+### Bug Fixes
+
+* **pci:** remove keystone warning for US region ([#3112](https://github.com/ovh/manager/issues/3112)) ([59e2249](https://github.com/ovh/manager/commit/59e224948886ffe2f6ae3b816342cd483527090a))
+
+
+
 ## [3.22.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.22.0...@ovh-ux/manager-pci@3.22.1) (2020-06-09)
 
 
