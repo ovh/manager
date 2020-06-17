@@ -26,7 +26,6 @@ import controller from './index.controller';
 import { SANITIZATION } from './constants';
 
 // styles
-import './assets/theme/index.less';
 import '@ovh-ux/ui-kit/dist/css/oui.css';
 import './index.scss';
 

@@ -36,13 +36,14 @@
       position: initial;
 
       .ui-select-match {
-        height: 2.4rem;
+        padding-top: 0;
+        padding-bottom: 0;
+        border-right: none;
       }
     }
 
     .oui-input_phone {
       overflow: hidden;
-      box-shadow: 0 0 0 transparent, 1px 0 0 rgba(40, 89, 192, 0.2);
     }
   }
 }
