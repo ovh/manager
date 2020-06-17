@@ -1,30 +1,53 @@
-import { bootstrapApplication } from '@ovh-ux/manager-core';
-import { fetchConfig } from './config';
+import template from './template.html';
+
+const HOSTNAME_REGIONS = {
+  'www.ovh.com': 'EU',
+  'ca.ovh.com': 'CA',
+  'us.ovhcloud.com': 'US',
+};
+
+const bootstrapApplication = () => {
+  document.body.innerHTML = template;
+
+  return fetch('/engine/2api/configuration', {
+    headers: {
+      'Content-Type': 'application/json;charset=utf-8',
+      Accept: 'application/json',
+    },
+    credentials: 'same-origin',
+  })
+    .then((response) => {
+      if (response.status === 401) {
+        window.location.assign(
+          `/auth?action=disconnect&onsuccess=${encodeURIComponent(
+            window.location.href,
+          )}`,
+        );
+      }
+      return response.json();
+    })
+    .catch(() => ({
+      region: HOSTNAME_REGIONS[window.location.hostname],
+    }))
+    .then((config) => ({
+      ...config,
+      template,
+    }));
+};
 
 function fetchFragments(config) {
-  return Promise.all(
-    config.fragments.map((fragment) =>
-      fragment.fetch().then((loaded) => ({
-        ...fragment,
-        loaded,
-      })),
-    ),
-  ).then((fragments) => ({
+  const fragments = Array.from(
+    document.querySelectorAll('[data-fragment]'),
+  ).map((element) => element.getAttribute('data-fragment'));
+  fragments.forEach((fragment) => {
+    const script = document.createElement('script');
+    script.src = `/fragment/${fragment}.js`;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  });
+  return {
     ...config,
     fragments,
-  }));
-}
-
-function injectTemplate(config) {
-  document.body.innerHTML = config.template;
-  config.fragments
-    .filter(({ loaded }) => loaded)
-    .forEach((fragment) => {
-      const element = document.querySelector(`[data-fragment=${fragment.id}]`);
-      if (element) {
-        fragment.bootstrap(fragment, element);
-      }
-    });
+  };
 }
 
 function frontendAPI() {
@@ -46,11 +69,17 @@ function frontendAPI() {
 
 function boot() {
   return bootstrapApplication()
-    .then(fetchConfig)
     .then(fetchFragments)
-    .then(injectTemplate)
     .then(frontendAPI);
 }
 
-export default boot;
-export { boot };
+const FragmentApi = {
+  register: (id, installFragment) => {
+    const element = document.querySelector(`[data-fragment=${id}]`);
+    if (element && installFragment instanceof Function) {
+      installFragment(element);
+    }
+  },
+};
+
+export { boot, FragmentApi };

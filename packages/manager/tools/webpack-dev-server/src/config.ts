@@ -12,7 +12,7 @@ export = (env) => {
     process.env.npm_package_config_region ||
     'eu'
   ).toLowerCase();
-  const proxy = [serverProxy.v6(region)];
+  const proxy: any[] = [serverProxy.v6(region)];
   const sso = new Sso(region);
 
   if (yn(env.local2API) || yn(process.env.npm_package_config_local2API)) {
@@ -21,6 +21,17 @@ export = (env) => {
   if (env.dev) {
     proxy.unshift(...env.dev.map((config) => serverProxy.dev(config)));
   }
+
+  proxy.unshift({
+    context: ['/fragment'],
+    changeOrigin: true,
+    target: 'http://localhost:9001',
+    logLevel: 'debug',
+    pathRewrite: {
+      '^/fragment': '/',
+    },
+  });
+
   return {
     mode: 'development',
     plugins: [
