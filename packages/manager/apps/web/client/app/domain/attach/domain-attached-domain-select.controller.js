@@ -29,7 +29,9 @@ angular.module('App').controller(
 
     getAttachedDomains() {
       this.loading = true;
-      return this.HostingDomain.getAttachedDomains(this.domainName)
+      return this.HostingDomain.getAttachedDomains(
+        this.$scope.currentActionData.hosting,
+      )
         .then((data) => {
           if (isArray(data) && data.length > 0) {
             this.attachedDomains = data;
