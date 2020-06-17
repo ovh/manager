@@ -3,17 +3,15 @@ import isString from 'lodash/isString';
 import angular from 'angular';
 import 'moment';
 
-import {
-  DEFAULT_TARGET,
-  RENEW_URL,
-  TERMINATION_URL,
-} from './service-expiration-date.component.constant';
+import { RENEW_URL } from './service-expiration-date.component.constant';
 
 export default class {
   /* @ngInject */
-  constructor($scope, $rootScope, OvhApiMe) {
+  constructor($scope, $rootScope, coreConfig, OvhApiMe, RedirectionService) {
     $scope.tr = $rootScope.tr;
+    this.coreConfig = coreConfig;
     this.OvhApiMe = OvhApiMe;
+    this.RedirectionService = RedirectionService;
   }
 
   $onInit() {
@@ -28,11 +26,9 @@ export default class {
       .get()
       .$promise.then(({ ovhSubsidiary }) => {
         this.subsidiary = ovhSubsidiary;
-        this.orderUrl = `${get(
-          RENEW_URL,
-          ovhSubsidiary,
-          RENEW_URL[DEFAULT_TARGET],
-        )}${this.serviceInfos.domain}`;
+        this.orderUrl = `${RENEW_URL[this.coreConfig.getRegion()]}${
+          this.serviceInfos.domain
+        }`;
       })
       .finally(() => {
         this.loading = false;
@@ -40,11 +36,9 @@ export default class {
   }
 
   getCancelTerminationUrl() {
-    const url = `${get(
-      TERMINATION_URL,
-      this.subsidiary,
-      TERMINATION_URL[DEFAULT_TARGET],
-    )}?searchText=${this.serviceName}`;
+    const url = `${this.RedirectionService.getURL('autorenew')}?searchText=${
+      this.serviceName
+    }`;
     if (isString(this.serviceType)) {
       return `${url}&selectedType=${this.serviceType}`;
     }
