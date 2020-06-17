@@ -1181,7 +1181,7 @@
   "hosting_action_config_edit_container_version_enum_jessie_i386": "jessie.i386",
   "hosting_action_config_edit_container_help_main_title": "Configuración del alojamiento",
   "hosting_action_config_edit_container_help_values_title": "Valores recomendados:",
-  "hosting_action_config_edit_container_help_values_text": "Entorno de ejecución: stable <br/> Versión de PHP: 7.0 <br/> Motor: PHP <br/> Modo: producción <br/> Firewall de aplicación: desactivado",
+  "hosting_action_config_edit_container_help_values_text": "Entorno de ejecución: stable <br/> Versión de PHP: {{ phpVersion }} <br/> Motor: PHP <br/> Modo: producción <br/> Firewall de aplicación: desactivado",
   "hosting_action_config_edit_engine_version": "Versión de PHP",
   "hosting_action_config_edit_environment": "Modo",
   "hosting_action_config_edit_environment_help": "En modo de desarrollo, la caché de los archivos no está activa. ",
@@ -1376,5 +1376,6 @@
   "hosting_dashboard_service_common_inactive": "Inactivo",
   "hosting_dashboard_email_offer_get_error": "No se ha podido cargar la dirección de correo.",
   "hosting_dashboard_service_detach_email_option": "Desvincular mi opción de correo",
-  "hosting_dashbaord_service_privatesql_detach": "Desvincular"
+  "hosting_dashbaord_service_privatesql_detach": "Desvincular",
+  "hosting_dashboard_service_datacenter_bhs1": "Beauharnois 1"
 }
