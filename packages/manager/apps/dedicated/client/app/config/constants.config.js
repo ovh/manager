@@ -1224,6 +1224,8 @@ const constants = {
       },
     },
     TOP_GUIDES: {
+      all:
+        'https://support.us.ovhcloud.com/hc/en-us/categories/115000423390-Dedicated-Servers',
       sd: {
         en_GB: [
           {
