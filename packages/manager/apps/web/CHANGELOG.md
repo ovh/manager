@@ -1,3 +1,12 @@
+## [14.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@14.6.0...@ovh-ux/manager-web@14.6.1) (2020-06-17)
+
+
+### Bug Fixes
+
+* **domain.attach:** use hosting as param instead of domain ([#3025](https://github.com/ovh/manager/issues/3025)) ([84aad95](https://github.com/ovh/manager/commit/84aad95a2c637bc84563bb96c73ba2d3c0bdb8ef))
+
+
+
 # [14.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@14.5.0...@ovh-ux/manager-web@14.6.0) (2020-06-17)
 
 

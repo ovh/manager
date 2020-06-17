@@ -1,3 +1,12 @@
+## [8.1.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@8.1.0...@ovh-ux/ng-ovh-web-universe-components@8.1.1) (2020-06-17)
+
+
+### Bug Fixes
+
+* **service-expiration:** use Redirection service to get url ([#3132](https://github.com/ovh/manager/issues/3132)) ([80d82e0](https://github.com/ovh/manager/commit/80d82e0fc70cf6e5d71fb7c29531f4a75eb61d47))
+
+
+
 # [8.1.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@8.0.2...@ovh-ux/ng-ovh-web-universe-components@8.1.0) (2020-06-16)
 
 
