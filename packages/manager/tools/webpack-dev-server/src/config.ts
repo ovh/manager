@@ -23,12 +23,12 @@ export = (env) => {
   }
 
   proxy.unshift({
-    context: ['/fragment'],
+    context: ['/ufrontend'],
     changeOrigin: true,
     target: 'http://localhost:9001',
     logLevel: 'debug',
     pathRewrite: {
-      '^/fragment': '/',
+      '^/ufrontend': '/',
     },
   });
 

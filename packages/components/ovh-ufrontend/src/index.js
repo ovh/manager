@@ -1,39 +1,24 @@
-import template from './template.html';
+import { fetchConfiguration } from '@ovh-ux/manager-config';
 
-const HOSTNAME_REGIONS = {
-  'www.ovh.com': 'EU',
-  'ca.ovh.com': 'CA',
-  'us.ovhcloud.com': 'US',
-};
+if (!window.ovhMicroFrontend) {
+  window.ovhMicroFrontend = {};
+}
 
 const bootstrapApplication = () => {
-  document.body.innerHTML = template;
-
-  return fetch('/engine/2api/configuration', {
-    headers: {
-      'Content-Type': 'application/json;charset=utf-8',
-      Accept: 'application/json',
-    },
-    credentials: 'same-origin',
-  })
-    .then((response) => {
-      if (response.status === 401) {
-        window.location.assign(
-          `/auth?action=disconnect&onsuccess=${encodeURIComponent(
-            window.location.href,
-          )}`,
-        );
-      }
-      return response.json();
-    })
-    .catch(() => ({
-      region: HOSTNAME_REGIONS[window.location.hostname],
-    }))
-    .then((config) => ({
-      ...config,
-      template,
-    }));
+  return fetchConfiguration().then((config) => {
+    window.ovhMicroFrontend.config = config;
+    return config;
+  });
 };
+
+function fetchTemplate(config) {
+  return fetch('/ufrontend/template/index.html')
+    .then((response) => response.text())
+    .then((template) => {
+      document.body.innerHTML = template;
+    })
+    .then(() => config);
+}
 
 function fetchFragments(config) {
   const fragments = Array.from(
@@ -41,7 +26,7 @@ function fetchFragments(config) {
   ).map((element) => element.getAttribute('data-fragment'));
   fragments.forEach((fragment) => {
     const script = document.createElement('script');
-    script.src = `/fragment/${fragment}.js`;
+    script.src = `/ufrontend/${fragment}/index.js`;
     document.getElementsByTagName('head')[0].appendChild(script);
   });
   return {
@@ -69,6 +54,7 @@ function frontendAPI() {
 
 function boot() {
   return bootstrapApplication()
+    .then(fetchTemplate)
     .then(fetchFragments)
     .then(frontendAPI);
 }
@@ -77,7 +63,7 @@ const FragmentApi = {
   register: (id, installFragment) => {
     const element = document.querySelector(`[data-fragment=${id}]`);
     if (element && installFragment instanceof Function) {
-      installFragment(element);
+      installFragment(element, window.ovhMicroFrontend.config);
     }
   },
 };
