@@ -100,25 +100,25 @@ const getFragmentApi = () => ({
   },
 });
 
-const getApplicationApi = () => ({
-  installAngularJSApplication: (appModules, appTemplate) => {
+const createApplicationApi = () => ({
+  installAngularJSApplication: ({ angular, modules, template }) => {
     const container = document.querySelector('[data-application]');
     const appRoot = document.createElement('div');
     appRoot.setAttribute('data-ng-app', 'app');
-    appRoot.innerHTML = appTemplate;
+    appRoot.innerHTML = template;
     container.appendChild(appRoot);
-    angular.module('app', appModules);
+    angular.module('app', [].concat(modules));
     angular.bootstrap(appRoot, ['app']);
     ovhMicroFrontend.notifyPartLoaded();
   },
   messenger: getMessenger('application'),
 });
 
-function boot() {
+function getApplicationApi() {
   return bootstrapApplication()
     .then(fetchTemplate)
     .then(fetchFragments)
-    .then(getApplicationApi);
+    .then(createApplicationApi);
 }
 
-export { boot, getFragmentApi };
+export { getApplicationApi, getFragmentApi };

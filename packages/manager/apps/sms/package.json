@@ -54,7 +54,6 @@
     "oclazyload": "^1.1.0",
     "ovh-api-services": "^9.44.2",
     "ovh-ngstrap": "^4.0.2",
-    "ovh-ui-kit": "^2.42.8",
     "validator-js": "^0.2.1"
   },
   "devDependencies": {

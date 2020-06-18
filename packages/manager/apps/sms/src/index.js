@@ -4,20 +4,22 @@ import 'script-loader!lodash';
 import 'script-loader!moment/min/moment.min';
 /* eslint-enable import/no-webpack-loader-syntax */
 
-import 'ovh-ui-kit/dist/oui.css';
-import 'ovh-ui-kit/dist/oui-olt.css';
+import angular from 'angular';
 import ngOvhApiWrappers from '@ovh-ux/ng-ovh-api-wrappers';
 import ovhManagerSms from '@ovh-ux/manager-sms';
 
-import { boot } from '@ovh-ux/manager-ufrontend';
+import { getApplicationApi } from '@ovh-ux/manager-ufrontend';
 
-boot().then((api) => {
-  api.installAngularJSApplication(
-    [ovhManagerSms, ngOvhApiWrappers],
-    '<div data-ui-view></div>',
-  );
+getApplicationApi().then((api) => {
+  api.installAngularJSApplication({
+    angular,
+    modules: [ovhManagerSms, ngOvhApiWrappers],
+    template: '<div data-ui-view></div>',
+  });
+
   api.messenger.on('navbar.ready', () => {
     console.log('application received navbar.ready');
   });
+
   api.messenger.emit('ready');
 });
