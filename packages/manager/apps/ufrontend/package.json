@@ -2,7 +2,7 @@
   "name": "@ovh-ux/ufrontend",
   "version": "0.0.0",
   "private": true,
-  "description": "OVHcloud micro-frontend.",
+  "description": "OVHcloud micro-frontend dependencies",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ovh/manager.git",
@@ -14,14 +14,11 @@
     "dist"
   ],
   "scripts": {
-    "build": "npm-run-all build:navbar copy:navbar build:template",
-    "build:navbar": "lerna run --scope '@ovh-ux/fragment-navbar' build",
-    "build:template": "mkdir -p dist/template/ && cp src/template/*.html dist/template/",
-    "copy:navbar": "mkdir -p dist/navbar/ && cp ../../modules/fragment-navbar/dist/index.js dist/navbar/index.js",
+    "build": "node build.js",
     "dev": "http-server dist -p 9001"
   },
   "dependencies": {
-    "@ovh-ux/ovh-ufrontend": "^0.0.0"
+    "@ovh-ux/manager-ufrontend": "^0.0.0"
   },
   "devDependencies": {
     "@ovh-ux/component-rollup-config": "^7.0.0",

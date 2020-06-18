@@ -9,7 +9,7 @@ import 'ovh-ui-kit/dist/oui-olt.css';
 import ngOvhApiWrappers from '@ovh-ux/ng-ovh-api-wrappers';
 import ovhManagerSms from '@ovh-ux/manager-sms';
 
-import { boot } from '@ovh-ux/ovh-ufrontend';
+import { boot } from '@ovh-ux/manager-ufrontend';
 
 boot().then((api) => {
   api.installAngularJSApplication(

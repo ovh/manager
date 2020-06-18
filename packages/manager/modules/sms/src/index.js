@@ -12,6 +12,11 @@ const moduleName = 'ovhManagerSmsLazyLoading';
 angular
   .module(moduleName, ['ui.router', 'oc.lazyLoad', sms, ovhManagerCore])
   .config(
+    /* @ngInject */ ($urlRouterProvider) => {
+      $urlRouterProvider.otherwise('/sms');
+    },
+  )
+  .config(
     /* @ngInject */ ($stateProvider) => {
       $stateProvider
         .state('sms', {

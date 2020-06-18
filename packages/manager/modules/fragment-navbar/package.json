@@ -20,7 +20,7 @@
   "devDependencies": {
     "@babel/core": "^7.7.2",
     "@babel/preset-react": "^7.7.0",
-    "@ovh-ux/ovh-ufrontend": "^0.0.0",
+    "@ovh-ux/manager-ufrontend": "^0.0.0",
     "rollup": "^1.27.4",
     "rollup-plugin-babel": "^4.3.3",
     "rollup-plugin-commonjs": "^10.1.0",

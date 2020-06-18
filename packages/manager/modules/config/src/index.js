@@ -1,4 +1,5 @@
 import _Environment from './environment';
+import 'whatwg-fetch';
 
 export const HOSTNAME_REGIONS = {
   'www.ovh.com': 'EU',
@@ -28,9 +29,5 @@ export const fetchConfiguration = () => {
     })
     .catch(() => ({
       region: HOSTNAME_REGIONS[window.location.hostname],
-    }))
-    .then((configuration) => {
-      Environment.setRegion(configuration.region);
-      return configuration;
-    });
+    }));
 };

@@ -258,4 +258,8 @@ angular
 
 export default moduleName;
 
-export const bootstrapApplication = () => fetchConfiguration();
+export const bootstrapApplication = () =>
+  fetchConfiguration().then((configuration) => {
+    Environment.setRegion(configuration.region);
+    return configuration;
+  });
