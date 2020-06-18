@@ -24,7 +24,14 @@ const ovhMicroFrontend = window.ovhMicroFrontend || {
 window.ovhMicroFrontend = ovhMicroFrontend;
 
 function fetchManifest() {
-  return fetch('/ufrontend/manifest.json').then((response) => response.json());
+  return fetch('/ufrontend/manifest.json').then((response) => {
+    if (response.ok) {
+      return response.json();
+    }
+    throw new Error(
+      `Cannot fetch 'manifest.json', is '@ovh-ux/manager-ufrontend' application started?`,
+    );
+  });
 }
 
 const bootstrapApplication = () => {
