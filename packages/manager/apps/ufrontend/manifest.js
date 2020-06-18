@@ -1,4 +1,3 @@
-const child_process = require('child_process'); // eslint-disable-line
 const fs = require('fs');
 const path = require('path');
 

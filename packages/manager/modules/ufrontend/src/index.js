@@ -1,11 +1,27 @@
 import { fetchConfiguration } from '@ovh-ux/manager-config';
 import EventEmitter from 'eventemitter3';
 
-if (!window.ovhMicroFrontend) {
-  window.ovhMicroFrontend = {
-    events: new EventEmitter(),
-  };
-}
+const ovhMicroFrontend = window.ovhMicroFrontend || {
+  events: new EventEmitter(),
+  pendingMessages: [],
+  partsLoading: 1,
+  notifyLoadPart: () => {
+    ovhMicroFrontend.partsLoading += 1;
+  },
+  notifyPartLoaded: () => {
+    ovhMicroFrontend.partsLoading -= 1;
+    if (ovhMicroFrontend.partsLoading === 0) {
+      ovhMicroFrontend.flushPendingMessages();
+    }
+  },
+  isLoaded: () => ovhMicroFrontend.partsLoading === 0,
+  flushPendingMessages: () => {
+    ovhMicroFrontend.pendingMessages.forEach(({ id, message, data }) => {
+      ovhMicroFrontend.events.emit(`${id}.${message}`, data);
+    });
+  },
+};
+window.ovhMicroFrontend = ovhMicroFrontend;
 
 function fetchManifest() {
   return fetch('/ufrontend/manifest.json').then((response) => response.json());
@@ -23,7 +39,7 @@ const bootstrapApplication = () => {
       return config;
     })
     .then((config) => {
-      window.ovhMicroFrontend.config = config;
+      ovhMicroFrontend.config = config;
       return config;
     });
 };
@@ -45,6 +61,7 @@ function fetchFragments(config) {
     const script = document.createElement('script');
     script.src = config.manifest.fragment[fragment];
     document.querySelector('head').appendChild(script);
+    ovhMicroFrontend.notifyLoadPart();
   });
   return {
     ...config,
@@ -54,13 +71,14 @@ function fetchFragments(config) {
 
 const getMessenger = (id) => ({
   on: (message, callback) => {
-    window.ovhMicroFrontend.events.on(message, callback);
+    ovhMicroFrontend.events.on(message, callback);
   },
   emit: (message, data) => {
-    window.ovhMicroFrontend.events.emit(message, {
-      id,
-      data,
-    });
+    if (ovhMicroFrontend.isLoaded()) {
+      ovhMicroFrontend.events.emit(`${id}.${message}`, data);
+    } else {
+      ovhMicroFrontend.pendingMessages.push({ id, message, data });
+    }
   },
 });
 
@@ -68,11 +86,9 @@ const getFragmentApi = () => ({
   register: (id, installFragment) => {
     const element = document.querySelector(`[data-fragment=${id}]`);
     if (element && installFragment instanceof Function) {
-      installFragment(
-        element,
-        window.ovhMicroFrontend.config,
-        getMessenger(id),
-      );
+      Promise.resolve(
+        installFragment(element, ovhMicroFrontend.config, getMessenger(id)),
+      ).then(ovhMicroFrontend.notifyPartLoaded);
     }
   },
 });
@@ -86,10 +102,9 @@ const getApplicationApi = () => ({
     container.appendChild(appRoot);
     angular.module('app', appModules);
     angular.bootstrap(appRoot, ['app']);
+    ovhMicroFrontend.notifyPartLoaded();
   },
-  setApplicationTitle: (title) => {
-    document.title = title;
-  },
+  messenger: getMessenger('application'),
 });
 
 function boot() {

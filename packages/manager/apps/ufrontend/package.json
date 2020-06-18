@@ -14,14 +14,18 @@
     "dist"
   ],
   "scripts": {
-    "build": "node build.js",
-    "dev": "http-server dist -p 9001"
+    "build": "npm-run-all build:navbar build:manifest",
+    "build:manifest": "node manifest.js",
+    "build:navbar": "lerna run --scope '@ovh-ux/fragment-navbar' build",
+    "dev": "concurrently \"node watch.js\" \"http-server dist -p 9001\""
   },
   "dependencies": {
     "@ovh-ux/manager-ufrontend": "^0.0.0"
   },
   "devDependencies": {
     "@ovh-ux/component-rollup-config": "^7.0.0",
+    "chokidar": "^3.4.0",
+    "concurrently": "^5.2.0",
     "http-server": "^0.12.3",
     "npm-run-all": "^4.1.5"
   }

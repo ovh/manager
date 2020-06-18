@@ -16,5 +16,8 @@ boot().then((api) => {
     [ovhManagerSms, ngOvhApiWrappers],
     '<div data-ui-view></div>',
   );
-  api.setApplicationTitle('OVHcloud - SMS');
+  api.messenger.on('navbar.ready', () => {
+    console.log('application received navbar.ready');
+  });
+  api.messenger.emit('ready');
 });
