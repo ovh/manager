@@ -8,6 +8,13 @@ export default class OvhPaymentMeanType {
     this.registerable = options.registerable;
   }
 
+  /**
+   * @deprecated: use toAvailablePaymentMethod instead.
+   */
+  toPaymentMethodType() {
+    return this.toAvailablePaymentMethod();
+  }
+
   toAvailablePaymentMethod() {
     return new OvhAvailablePaymentMethod({
       paymentType: snakeCase(this.meanType).toUpperCase(),
