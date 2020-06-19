@@ -4,6 +4,7 @@ import ngAtInternet from '@ovh-ux/ng-at-internet';
 import managerCore from '@ovh-ux/manager-core';
 import uiRouterAngularJs from '@uirouter/angularjs';
 import oclazyload from 'oclazyload';
+import 'ovh-api-services';
 
 import { state } from './support.routing';
 
@@ -14,8 +15,14 @@ angular
     managerCore,
     ngAtInternet,
     oclazyload,
+    'ovh-api-services',
     uiRouterAngularJs,
   ])
+  .config(
+    /* @ngInject */ ($urlRouterProvider) => {
+      $urlRouterProvider.otherwise('/support/tickets');
+    },
+  )
   .config(
     /* @ngInject */ ($stateProvider) => {
       $stateProvider.state('support.**', {

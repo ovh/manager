@@ -10,7 +10,7 @@
   },
   "scripts": {
     "build": "webpack",
-    "dev": "webpack-dev-server",
+    "dev": "concurrently \"lerna run --scope='@ovh-ux/ufrontend' dev\" \"webpack-dev-server\"",
     "dev:watch": "yarn run dev",
     "start": "lerna exec --stream --scope='@ovh-ux/manager-support-app' --include-dependencies -- npm run build --if-present",
     "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-support-app' --include-dependencies -- npm run dev --if-present",
@@ -22,6 +22,7 @@
     "@ovh-ux/manager-core": "^9.0.0",
     "@ovh-ux/manager-navbar": "^3.0.0",
     "@ovh-ux/manager-support": "^0.6.0",
+    "@ovh-ux/manager-ufrontend": "^0.0.0",
     "@ovh-ux/ng-at-internet": "^5.0.1",
     "@ovh-ux/ng-ovh-api-wrappers": "^4.0.7",
     "@ovh-ux/ng-ovh-request-tagger": "^1.1.0",

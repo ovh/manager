@@ -30,6 +30,10 @@ export class Sidebar extends React.Component {
           universe: 'freefax',
           url: '/freefax',
         });
+        universes.push({
+          universe: 'support',
+          url: '/support',
+        });
         return universes;
       })
       .then((data) => this.setState({ universes: data }));
