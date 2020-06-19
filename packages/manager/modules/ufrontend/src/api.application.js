@@ -1,3 +1,7 @@
+import {
+  attach as attachPreloader,
+  detach as detachPreloader,
+} from '@ovh-ux/manager-preloader';
 import { fetchConfiguration as fetch2APIConfig } from '@ovh-ux/manager-config';
 import getFrontend from './frontend';
 import getMessenger from './messenger';
@@ -87,6 +91,9 @@ const createApplicationApi = (app, template) => ({
 });
 
 function registerApplication(app, callback) {
+  attachPreloader();
+  frontend.isLoaded().then(detachPreloader);
+
   if (!(callback instanceof Function)) {
     throw new Error(
       `Given callback to install application '${app}' is not a function`,
