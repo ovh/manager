@@ -10,7 +10,9 @@
     "dist"
   ],
   "scripts": {
-    "build": "rollup -c",
+    "build": "rollup -c --environment BUILD:production",
+    "dev": "rollup -c --environment BUILD:development",
+    "dev:watch": "yarn run dev --watch",
     "prepare": "npm run build"
   },
   "dependencies": {

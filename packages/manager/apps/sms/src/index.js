@@ -8,17 +8,19 @@ import angular from 'angular';
 import ngOvhApiWrappers from '@ovh-ux/ng-ovh-api-wrappers';
 import ovhManagerSms from '@ovh-ux/manager-sms';
 
-import { getApplicationApi } from '@ovh-ux/manager-ufrontend';
+import { registerApplication } from '@ovh-ux/manager-ufrontend';
 
-getApplicationApi().then((api) => {
+registerApplication('sms', ({ api }) => {
   api.installAngularJSApplication({
     angular,
     modules: [ovhManagerSms, ngOvhApiWrappers],
     template: '<div data-ui-view></div>',
   });
 
-  api.messenger.on('navbar.ready', () => {
-    console.log('application received navbar.ready');
+  api.messenger.on('ready', ({ from }) => {
+    if (from !== 'sms') {
+      console.log('application received ready from', from);
+    }
   });
 
   api.messenger.emit('ready');

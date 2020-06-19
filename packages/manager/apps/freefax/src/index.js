@@ -5,4 +5,12 @@ import angular from 'angular';
 import ngOvhApiWrappers from '@ovh-ux/ng-ovh-api-wrappers';
 import ovhManagerFreeFax from '@ovh-ux/manager-freefax';
 
-angular.module('freefaxApp', [ngOvhApiWrappers, ovhManagerFreeFax]);
+import { registerApplication } from '@ovh-ux/manager-ufrontend';
+
+registerApplication('sms', ({ api }) => {
+  api.installAngularJSApplication({
+    angular,
+    modules: [ovhManagerFreeFax, ngOvhApiWrappers],
+    template: '<div data-ui-view></div>',
+  });
+});
