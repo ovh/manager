@@ -25,9 +25,6 @@ class LogsStreamsService {
     this.StreamsAapiService = OvhApiDbaas.Logs()
       .Stream()
       .Aapi();
-    this.AccountingAapiService = OvhApiDbaas.Logs()
-      .Accounting()
-      .Aapi();
     this.DetailsAapiService = OvhApiDbaas.Logs()
       .Details()
       .Aapi();
@@ -134,24 +131,6 @@ class LogsStreamsService {
     return this.getStreamDetails(serviceName)
       .then((streams) =>
         streams.filter((aapiStream) => aapiStream.info.isEditable),
-      )
-      .catch((err) =>
-        this.LogsHelperService.handleError('logs_streams_get_error', err, {}),
-      );
-  }
-
-  /**
-   * returns array of shareable streams with details of logged in user
-   *
-   * @param {any} serviceName
-   * @returns promise which will be resolve to array of streams.
-   *          each stream will have all details populated.
-   * @memberof LogsStreamsService
-   */
-  getShareableStreams(serviceName) {
-    return this.getStreamDetails(serviceName)
-      .then((streams) =>
-        streams.filter((aapiStream) => aapiStream.info.isShareable),
       )
       .catch((err) =>
         this.LogsHelperService.handleError('logs_streams_get_error', err, {}),
@@ -335,20 +314,6 @@ class LogsStreamsService {
     return this.LogsApiService.streams({ serviceName }).$promise;
   }
 
-  getMainOffer(serviceName) {
-    return this.AccountingAapiService.me({ serviceName })
-      .$promise.then((me) => ({
-        planCode: me.offer.reference,
-      }))
-      .catch((err) =>
-        this.LogsHelperService.handleError(
-          'logs_main_offer_get_error',
-          err,
-          {},
-        ),
-      );
-  }
-
   getCompressionAlgorithms() {
     return this.compressionAlgorithms;
   }
@@ -479,7 +444,6 @@ class LogsStreamsService {
     this.LogsApiService.resetAllCache();
     this.StreamsApiService.resetAllCache();
     this.StreamsAapiService.resetAllCache();
-    this.AccountingAapiService.resetAllCache();
     // refresh home page last modified stream
     this.DetailsAapiService.resetAllCache();
   }

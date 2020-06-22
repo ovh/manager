@@ -44,10 +44,6 @@ class LogsStreamsAddCtrl {
       loaderFunction: () =>
         this.LogsTokensService.getDefaultCluster(this.serviceName),
     });
-    this.mainOffer = this.CucControllerHelper.request.getArrayLoader({
-      loaderFunction: () =>
-        this.LogsStreamsService.getMainOffer(this.serviceName),
-    });
     this.catalog = this.CucControllerHelper.request.getArrayLoader({
       loaderFunction: () =>
         this.LogsStreamsService.getOrderCatalog(this.ovhSubsidiary),
@@ -60,11 +56,11 @@ class LogsStreamsAddCtrl {
       .load()
       .then(() => {
         this.ovhSubsidiary = this.accountDetails.data.me.ovhSubsidiary;
-        return this.$q.all([this.mainOffer.load(), this.catalog.load()]);
+        return this.catalog.load();
       })
       .then(() => {
         const selectedCatalog = this.catalog.data.plans.find(
-          (plan) => plan.planCode === this.mainOffer.data.planCode,
+          (plan) => plan.planCode === this.LogsConstants.LDP_PLAN_CODE,
         );
         const selectedFamily = selectedCatalog.addonsFamily.find(
           (addon) => addon.family === this.LogsConstants.ADD_ON_FAMILY.NEW,

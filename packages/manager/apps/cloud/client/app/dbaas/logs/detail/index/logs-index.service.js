@@ -22,9 +22,6 @@ class LogsIndexService {
     this.LogsConstants = LogsConstants;
     this.LogsHomeService = LogsHomeService;
     this.LogsOrderService = LogsOrderService;
-    this.AccountingAapiService = OvhApiDbaas.Logs()
-      .Accounting()
-      .Aapi();
     this.IndexApiService = OvhApiDbaas.Logs()
       .Index()
       .v6();
@@ -41,22 +38,6 @@ class LogsIndexService {
     };
   }
 
-  getMainOffer(serviceName) {
-    return this.AccountingAapiService.me({ serviceName })
-      .$promise.then((me) => ({
-        max: me.offer.maxNbIndex,
-        current: me.offer.curNbIndex,
-        planCode: me.offer.reference,
-      }))
-      .catch((err) =>
-        this.LogsHelperService.handleError(
-          'logs_main_offer_get_error',
-          err,
-          {},
-        ),
-      );
-  }
-
   getAccountDetails(serviceName) {
     return this.LogsHomeService.getAccountDetails(serviceName);
   }
@@ -69,9 +50,13 @@ class LogsIndexService {
     return this.newIndex;
   }
 
+  getIndicesIds(serviceName) {
+    return this.IndexApiService.query({ serviceName }).$promise;
+  }
+
   getIndices(serviceName) {
-    return this.IndexApiService.query({ serviceName })
-      .$promise.then((indices) => {
+    return this.getIndicesIds(serviceName)
+      .then((indices) => {
         const promises = indices.map((indexId) =>
           this.getIndexDetails(serviceName, indexId),
         );
@@ -85,14 +70,6 @@ class LogsIndexService {
   getOwnIndices(serviceName) {
     return this.getIndices(serviceName)
       .then((indices) => indices.filter((index) => index.info.isEditable))
-      .catch((err) =>
-        this.LogsHelperService.handleError('logs_index_get_error', err, {}),
-      );
-  }
-
-  getShareableIndices(serviceName) {
-    return this.getIndices(serviceName)
-      .then((indices) => indices.filter((index) => index.info.isShareable))
       .catch((err) =>
         this.LogsHelperService.handleError('logs_index_get_error', err, {}),
       );

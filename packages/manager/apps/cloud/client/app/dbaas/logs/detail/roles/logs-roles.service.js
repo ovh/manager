@@ -10,6 +10,7 @@ class LogsRolesService {
     LogsIndexService,
     LogsConstants,
     LogsStreamsService,
+    LogsKibanaService,
     OvhApiDbaas,
     CucServiceHelper,
   ) {
@@ -21,6 +22,7 @@ class LogsRolesService {
     this.LogsAliasesService = LogsAliasesService;
     this.LogsIndexService = LogsIndexService;
     this.LogsStreamsService = LogsStreamsService;
+    this.LogsKibanaService = LogsKibanaService;
     this.LogsHelperService = LogsHelperService;
 
     this.LogsConstants = LogsConstants;
@@ -49,44 +51,70 @@ class LogsRolesService {
       description: '',
       name: '',
     };
-    this.permissions = {
+    this.readOnlyPermissions = {
       dashboard: [],
       alias: [],
       index: [],
       stream: [],
+      kibana: [],
+    };
+    this.readWritePermissions = {
+      dashboard: [],
+      alias: [],
+      index: [],
+      stream: [],
+      kibana: [],
     };
   }
 
-  getNewPermissions() {
-    this.permissions.dashboard.length = 0;
-    this.permissions.alias.length = 0;
-    this.permissions.index.length = 0;
-    this.permissions.stream.length = 0;
-    return this.permissions;
+  getNewReadOnlyPermissions() {
+    this.readOnlyPermissions.dashboard.length = 0;
+    this.readOnlyPermissions.alias.length = 0;
+    this.readOnlyPermissions.index.length = 0;
+    this.readOnlyPermissions.stream.length = 0;
+    this.readOnlyPermissions.kibana.length = 0;
+    return this.readOnlyPermissions;
+  }
+
+  getNewReadWritePermissions() {
+    this.readWritePermissions.dashboard.length = 0;
+    this.readWritePermissions.alias.length = 0;
+    this.readWritePermissions.index.length = 0;
+    this.readWritePermissions.stream.length = 0;
+    this.readWritePermissions.kibana.length = 0;
+    return this.readWritePermissions;
   }
 
   getAllStreams(serviceName) {
-    return this.LogsStreamsService.getShareableStreams(serviceName);
+    return this.LogsStreamsService.getOwnStreams(serviceName);
   }
 
   getAllAliases(serviceName) {
-    return this.LogsAliasesService.getShareableAliases(serviceName);
+    return this.LogsAliasesService.getOwnAliases(serviceName);
   }
 
   getAllDashboards(serviceName) {
-    return this.LogsDashboardsService.getShareableDashboards(serviceName);
+    return this.LogsDashboardsService.getOwnDashboards(serviceName);
   }
 
   getAllIndices(serviceName) {
-    return this.LogsIndexService.getShareableIndices(serviceName);
+    return this.LogsIndexService.getOwnIndices(serviceName);
+  }
+
+  getAllKibanas(serviceName) {
+    return this.LogsKibanaService.getOwnKibanas(serviceName);
   }
 
   addAlias(serviceName, roleId, alias) {
-    return this.PermissionsApiService.addAlias({
-      serviceName,
-      roleId,
-      aliasId: alias.aliasId,
-    })
+    return this.PermissionsApiService.addAlias(
+      {
+        serviceName,
+        roleId,
+      },
+      {
+        aliasId: alias.aliasId,
+      },
+    )
       .$promise.then((operation) => {
         this.RolesAapiService.resetAllCache();
         return this.LogsHelperService.handleOperation(
@@ -101,12 +129,17 @@ class LogsRolesService {
       );
   }
 
-  addDashboard(serviceName, roleId, dashboard) {
-    return this.PermissionsApiService.addDashboard({
-      serviceName,
-      roleId,
-      dashboardId: dashboard.dashboardId,
-    })
+  addDashboard(serviceName, roleId, dashboard, permissionType) {
+    return this.PermissionsApiService.addDashboard(
+      {
+        serviceName,
+        roleId,
+      },
+      {
+        dashboardId: dashboard.dashboardId,
+        permissionType,
+      },
+    )
       .$promise.then((operation) => {
         this.RolesAapiService.resetAllCache();
         return this.LogsHelperService.handleOperation(
@@ -123,12 +156,17 @@ class LogsRolesService {
       );
   }
 
-  addIndex(serviceName, roleId, index) {
-    return this.PermissionsApiService.addIndex({
-      serviceName,
-      roleId,
-      indexId: index.indexId,
-    })
+  addIndex(serviceName, roleId, index, permissionType) {
+    return this.PermissionsApiService.addIndex(
+      {
+        serviceName,
+        roleId,
+      },
+      {
+        indexId: index.indexId,
+        permissionType,
+      },
+    )
       .$promise.then((operation) => {
         this.RolesAapiService.resetAllCache();
         return this.LogsHelperService.handleOperation(
@@ -144,11 +182,15 @@ class LogsRolesService {
   }
 
   addStream(serviceName, roleId, stream) {
-    return this.PermissionsApiService.addStream({
-      serviceName,
-      roleId,
-      streamId: stream.streamId,
-    })
+    return this.PermissionsApiService.addStream(
+      {
+        serviceName,
+        roleId,
+      },
+      {
+        streamId: stream.streamId,
+      },
+    )
       .$promise.then((operation) => {
         this.RolesAapiService.resetAllCache();
         return this.LogsHelperService.handleOperation(
@@ -159,6 +201,31 @@ class LogsRolesService {
       .catch((err) =>
         this.LogsHelperService.handleError('logs_roles_add_stream_error', err, {
           tokenName: stream.title,
+        }),
+      );
+  }
+
+  addKibana(serviceName, roleId, kibana, permissionType) {
+    return this.PermissionsApiService.addKibana(
+      {
+        serviceName,
+        roleId,
+      },
+      {
+        kibanaId: kibana.kibanaId,
+        permissionType,
+      },
+    )
+      .$promise.then((operation) => {
+        this.RolesAapiService.resetAllCache();
+        return this.LogsHelperService.handleOperation(
+          serviceName,
+          operation.data || operation,
+        );
+      })
+      .catch((err) =>
+        this.LogsHelperService.handleError('logs_roles_add_kibana_error', err, {
+          tokenName: kibana.name,
         }),
       );
   }
