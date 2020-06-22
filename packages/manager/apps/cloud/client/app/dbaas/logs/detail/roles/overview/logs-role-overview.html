@@ -26,7 +26,10 @@
         <dd class="preview-list__definition">
             <div data-ng-if="ctrl.role.permissions.length > 0">
                 <div data-ng-if="ctrl.permissions.stream.length > 0">
-                    <span class="pl-0 preview-list__list-heading">Stream</span>
+                    <span
+                        class="pl-0 preview-list__list-heading"
+                        data-translate="logs_streams_title"
+                    ></span>
                     <ul>
                         <li
                             data-ng-repeat="stream in ctrl.permissions.stream track by $index"
@@ -35,8 +38,24 @@
                         </li>
                     </ul>
                 </div>
+                <div data-ng-if="ctrl.permissions.dashboard.length > 0">
+                    <span
+                        class="pl-0 preview-list__list-heading"
+                        data-translate="logs_dashboards_title"
+                    ></span>
+                    <ul>
+                        <li
+                            data-ng-repeat="dashboard in ctrl.permissions.dashboard track by $index"
+                        >
+                            {{dashboard.title}}
+                        </li>
+                    </ul>
+                </div>
                 <div data-ng-if="ctrl.permissions.index.length > 0">
-                    <span class="pl-0 preview-list__list-heading">Index</span>
+                    <span
+                        class="pl-0 preview-list__list-heading"
+                        data-translate="logs_index_title"
+                    ></span>
                     <ul>
                         <li
                             data-ng-repeat="index in ctrl.permissions.index track by $index"
@@ -46,7 +65,10 @@
                     </ul>
                 </div>
                 <div data-ng-if="ctrl.permissions.alias.length > 0">
-                    <span class="pl-0 preview-list__list-heading">Alias</span>
+                    <span
+                        class="pl-0 preview-list__list-heading"
+                        data-translate="logs_aliases_title"
+                    ></span>
                     <ul>
                         <li
                             data-ng-repeat="alias in ctrl.permissions.alias track by $index"
@@ -55,15 +77,16 @@
                         </li>
                     </ul>
                 </div>
-                <div data-ng-if="ctrl.permissions.dashboard.length > 0">
-                    <span class="pl-0 preview-list__list-heading"
-                        >Dashboard</span
-                    >
+                <div data-ng-if="ctrl.permissions.kibana.length > 0">
+                    <span
+                        class="pl-0 preview-list__list-heading"
+                        data-translate="logs_kibana_title"
+                    ></span>
                     <ul>
                         <li
-                            data-ng-repeat="dashboard in ctrl.permissions.dashboard track by $index"
+                            data-ng-repeat="kibana in ctrl.permissions.kibana track by $index"
                         >
-                            {{dashboard.title}}
+                            {{kibana.name}}
                         </li>
                     </ul>
                 </div>

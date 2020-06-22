@@ -52,28 +52,6 @@ class LogsDashboardsService {
   }
 
   /**
-   * returns array of shareable dashboards with details of logged in user
-   *
-   * @param {any} serviceName
-   * @returns promise which will be resolve to array of dashboards.
-   *          Each stream will have all details populated.
-   * @memberof LogsStreamsService
-   */
-  getShareableDashboards(serviceName) {
-    return this.getDashboardsDetails(serviceName)
-      .then((dashboards) =>
-        dashboards.filter((dashboard) => dashboard.info.isShareable),
-      )
-      .catch((err) =>
-        this.LogsHelperService.handleError(
-          'logs_dashboards_get_error',
-          err,
-          {},
-        ),
-      );
-  }
-
-  /**
    * gets details for each dashboard in array
    *
    * @param {any} serviceName

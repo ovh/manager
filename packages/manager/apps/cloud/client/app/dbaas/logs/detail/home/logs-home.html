@@ -73,7 +73,7 @@
                             </a>
                             <span
                                 data-ng-if="!ctrl.accountDetails.data.last_stream"
-                                data-translate="logs-reader-1"
+                                data-translate="logs_none"
                             >
                             </span>
                             <button
@@ -108,7 +108,7 @@
                             </a>
                             <span
                                 data-ng-if="!ctrl.accountDetails.data.last_dashboard"
-                                data-translate="logs-reader-1"
+                                data-translate="logs_none"
                             ></span>
                             <button
                                 type="button"
@@ -156,8 +156,8 @@
                                     data-ng-href="{{ ctrl.accountDetails.data.elasticSearchApiUrl }}"
                                     class="oui-tile__button oui-button oui-link_icon oui-button_link"
                                     data-ng-class="{
-                                        'oui-link_disabled': !(ctrl.account.data.total.maxNbIndex > 0 || ctrl.account.data.total.maxNbAlias > 0),
-                                        'oui-button_full-width': (ctrl.account.data.total.maxNbIndex > 0 || ctrl.account.data.total.maxNbAlias > 0)
+                                        'oui-link_disabled': !ctrl.canAccessToElasticsearch,
+                                        'oui-button_full-width': ctrl.canAccessToElasticsearch
                                    }"
                                     rel="noopener"
                                     target="_blank"
@@ -171,7 +171,7 @@
                                     ></i>
                                 </a>
                                 <oui-popover
-                                    data-ng-if="!(ctrl.account.data.total.maxNbIndex > 0 || ctrl.account.data.total.maxNbAlias > 0)"
+                                    data-ng-if="!ctrl.canAccessToElasticsearch"
                                 >
                                     <button
                                         type="button"
