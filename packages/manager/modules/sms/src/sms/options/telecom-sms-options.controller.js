@@ -12,7 +12,7 @@ export default class {
         sref: 'sms.service.options.manage',
         text: this.$translate.instant('sms_options_manage'),
       },
-      ...(this.smsFeatureAvailability.isAvailable('response')
+      ...(this.smsFeatureAvailability.isFeatureAvailable('sms:response')
         ? [
             {
               name: 'options_response',
