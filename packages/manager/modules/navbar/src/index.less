@@ -1,36 +1,22 @@
 ovh-manager-navbar {
-  @import 'oui4/dist/less/_tokens';
-  @import '~ovh-ui-kit/packages/oui/_settings';
-  @import '~ovh-ui-kit/packages/oui-icons/_icons';
-  @import '~ovh-ui-kit/packages/oui-navbar/_variables';
-  @import '~ovh-ui-kit/packages/oui-typography/_variables';
+  @import '~@ovh-ux/ui-kit/dist/less/_tokens';
   @import '~@ovh-ux/manager-account-sidebar/src/variables.less';
-
-  .oui-navbar-link_active {
-    .oui-navbar-link::after {
-      content: @oui-icon-index-chevron-left;
-    }
-  }
 
   .oui-navbar-menu_toggle {
     button.oui-navbar-link::after {
       content: @oui-icon-index-chevron-right;
-      font-family: @oui-global-base-font-family-icon;
-      font-size: @oui-navbar-arrow-size;
-      color: @oui-navbar-arrow-color;
+      font-family: @base-font-family-icon;
+      font-size: rem-calc(16);
+      color: @p-800;
       padding: 0;
       position: absolute;
       top: 50%;
-      right: @oui-navbar-arrow-size;
+      right: rem-calc(16);
       transform: translateY(-50%);
     }
   }
 
   .oui-navbar-menu {
-    @navbar-menu-content-shadow-color: rgba(0, 14, 156, 0.1);
-
-    top: @oui-navbar-height;
-
     &_panel {
       background-color: @p-075;
     }
@@ -41,19 +27,6 @@ ovh-manager-navbar {
 
       &__header {
         max-width: 8rem;
-        letter-spacing: @earth-letter-spacing;
-        line-height: @earth-line-height;
-      }
-
-      &__description {
-        max-height: none;
-        font-weight: @venus-font-weight;
-        line-height: @venus-line-height;
-        letter-spacing: @venus-letter-spacing;
-      }
-
-      &__content {
-        color: @p-800-text;
       }
     }
 
@@ -111,7 +84,7 @@ ovh-manager-navbar {
 
   @media screen and (max-width: (@device-breakpoint-medium - 1px)) {
     .oui-navbar-link_icon {
-      padding: @oui-navbar-link-padding-h 0;
+      padding: rem-calc(12) 0;
     }
   }
 
@@ -159,13 +132,13 @@ ovh-manager-navbar {
 
   .ovh-sidebar-wrapper {
     position: fixed;
-    top: @oui-navbar-height;
+    top: rem-calc(44);
     right: 0;
     bottom: 0;
     z-index: 99;
     overflow-x: hidden;
     transition: padding 0.1s ease-out, opacity 0.2s ease-out;
-    box-shadow: @oui-navbar-menu-box-shadow;
+    box-shadow: @base-box-shadow-secondary;
     opacity: 0;
     padding-left: @ovh-sidebar-width;
     pointer-events: none;
