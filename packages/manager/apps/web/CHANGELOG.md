@@ -1,3 +1,16 @@
+## [14.6.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@14.6.1...@ovh-ux/manager-web@14.6.2) (2020-06-23)
+
+
+### Bug Fixes
+
+* **configuration:** retrieve allGuides url from constants ([#3150](https://github.com/ovh/manager/issues/3150)) ([653bef1](https://github.com/ovh/manager/commit/653bef1ab807a47013ab50fba2887b328474525f)), closes [#3044](https://github.com/ovh/manager/issues/3044) [/github.com/ovh/manager/pull/3044/files#diff-4f73df14987aa9d88c0c32eebcd2a1e7L26](https://github.com//github.com/ovh/manager/pull/3044/files/issues/diff-4f73df14987aa9d88c0c32eebcd2a1e7L26)
+* **i18n:** add missing translations [CDS 444] ([543f8a9](https://github.com/ovh/manager/commit/543f8a965f0431a9fbe47e2cbc8346ae39f0bf23))
+* **i18n:** add missing translations [CDS 445] ([67f8ca1](https://github.com/ovh/manager/commit/67f8ca188a1e4426037ee0129a662da2f660553b))
+* **i18n:** add missing translations [CDS 451] ([11f0e7e](https://github.com/ovh/manager/commit/11f0e7ec2df60d6bf109e258ba904a8b3d81cec4))
+* **private.database:** update graph label information ([#3144](https://github.com/ovh/manager/issues/3144)) ([1c25e12](https://github.com/ovh/manager/commit/1c25e123154cb4fb9c971ca1fb0655159ee09589))
+
+
+
 ## [14.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@14.6.0...@ovh-ux/manager-web@14.6.1) (2020-06-17)
 
 

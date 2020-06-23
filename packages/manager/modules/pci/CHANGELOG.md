@@ -1,3 +1,17 @@
+# [3.23.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.22.2...@ovh-ux/manager-pci@3.23.0) (2020-06-23)
+
+
+### Bug Fixes
+
+* **pci.project:** update US doc links ([#3110](https://github.com/ovh/manager/issues/3110)) ([c818506](https://github.com/ovh/manager/commit/c81850680bef94fa746cfabed8550169786bbbed))
+
+
+### Features
+
+* **private.registry:** select medium plan as default ([#3149](https://github.com/ovh/manager/issues/3149)) ([c5b0445](https://github.com/ovh/manager/commit/c5b04458bb7b04c6f1be79c84049106dd5c9a51d))
+
+
+
 ## [3.22.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.22.1...@ovh-ux/manager-pci@3.22.2) (2020-06-17)
 
 
