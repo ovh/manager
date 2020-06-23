@@ -17,7 +17,11 @@
             >
                 <oui-tile
                     class="py-0 h-100"
-                    data-ng-class="{'support-level-selected' : supportLevel.name === $ctrl.supportLevel.level && supportLevel.isAvailable($ctrl.currentUser.ovhSubsidiary)}"
+                    data-ng-class="{
+                        'support-level-selected' : supportLevel.name === $ctrl.supportLevel.level && supportLevel.isAvailable($ctrl.currentUser.ovhSubsidiary),
+                        'support-level-highlight': $ctrl.shouldSubscribe(supportLevel) ||
+                            (!$ctrl.partnerLevel.isActive() && $ctrl.getRecommendedLevel() === supportLevel.name),
+                    }"
                     loading="$ctrl.loading"
                 >
                     <div
@@ -28,24 +32,26 @@
                                 class="mb-4 border-bottom"
                                 data-translate="{{ 'user_account_support_level_section_' + supportLevel.name }}"
                             ></h4>
-                            <span
-                                class="oui-chip support-level-current"
-                                data-ng-if="supportLevel.name === $ctrl.supportLevel.level && supportLevel.isAvailable($ctrl.currentUser.ovhSubsidiary)"
-                                data-translate="user_account_support_level_section_enabled"
-                            >
-                            </span>
-                            <span
-                                class="oui-chip"
+                            <div
                                 data-ng-if="!$ctrl.partnerLevel.isActive() && $ctrl.getRecommendedLevel() === supportLevel.name"
-                                data-translate="user_account_support_level_section_recommended"
+                                class="text-center mb-2"
                             >
-                            </span>
-                            <span
-                                class="oui-chip"
+                                <span
+                                    class="oui-chip support-level-chip-highlight"
+                                    data-translate="user_account_support_level_section_recommended"
+                                >
+                                </span>
+                            </div>
+                            <div
                                 data-ng-if="$ctrl.shouldSubscribe(supportLevel)"
-                                data-translate="user_account_support_level_section_required"
+                                class="text-center mb-2"
                             >
-                            </span>
+                                <span
+                                    class="oui-chip support-level-chip-highlight"
+                                    data-translate="user_account_support_level_section_required"
+                                >
+                                </span>
+                            </div>
                             <p
                                 class="oui-chip"
                                 data-ng-if="!supportLevel.isAvailable($ctrl.currentUser.ovhSubsidiary)"
