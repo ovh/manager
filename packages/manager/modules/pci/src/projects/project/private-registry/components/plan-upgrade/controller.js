@@ -37,7 +37,10 @@ export default class {
           ),
           'registryLimits.imageStorage',
         );
-        [this.selectedPlan] = this.detailedPlans;
+        this.selectedPlan =
+          find(this.detailedPlans, {
+            name: this.PLAN_CONSTANT.MEDIUM,
+          }) || this.detailedPlans[0];
         this.onSelected(this.selectedPlan);
       })
       .finally(() => {
