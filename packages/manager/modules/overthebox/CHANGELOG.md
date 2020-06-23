@@ -1,3 +1,12 @@
+## [5.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@5.5.0...@ovh-ux/manager-overthebox@5.5.1) (2020-06-23)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 444] ([543f8a9](https://github.com/ovh/manager/commit/543f8a965f0431a9fbe47e2cbc8346ae39f0bf23))
+
+
+
 # [5.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@5.4.2...@ovh-ux/manager-overthebox@5.5.0) (2020-06-16)
 
 

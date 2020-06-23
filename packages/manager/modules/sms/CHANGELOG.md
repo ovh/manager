@@ -1,3 +1,12 @@
+# [7.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@7.7.2...@ovh-ux/manager-sms@7.8.0) (2020-06-23)
+
+
+### Features
+
+* use feature flipping module ([3a202dd](https://github.com/ovh/manager/commit/3a202dd9f2e0ff2e4422e022aaab54d46b98cab4))
+
+
+
 ## [7.7.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@7.7.1...@ovh-ux/manager-sms@7.7.2) (2020-06-09)
 
 

@@ -1,3 +1,13 @@
+# [12.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@12.3.3...@ovh-ux/manager-telecom@12.4.0) (2020-06-23)
+
+
+### Features
+
+* **xdsl.profile:** load profiles for constistent tooltip with list ([#2990](https://github.com/ovh/manager/issues/2990)) ([69aa1c6](https://github.com/ovh/manager/commit/69aa1c698285076bae468b7e87e82a2c32004044))
+* use feature flipping module ([3a202dd](https://github.com/ovh/manager/commit/3a202dd9f2e0ff2e4422e022aaab54d46b98cab4))
+
+
+
 ## [12.3.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@12.3.2...@ovh-ux/manager-telecom@12.3.3) (2020-06-15)
 
 

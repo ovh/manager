@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-line-diagnostics",
-  "version": "4.0.4",
+  "version": "4.0.5",
   "description": "Module to diagnose OVH telecoms lines.",
   "keywords": [
     "angularjs",
