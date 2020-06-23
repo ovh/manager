@@ -12,7 +12,12 @@ angular.module('App').controller(
       this.subsidiary = this.user.ovhSubsidiary;
       this.helpCenterURL = get(
         this.constants,
-        `urls.${this.user.ovhSubsidiary}.support`,
+        `urls.${this.subsidiary}.support`,
+      );
+      this.allGuides = get(
+        this.constants,
+        `urls.${this.subsidiary}.guides.all`,
+        this.constants.urls.FR.guides.all,
       );
     }
   },
