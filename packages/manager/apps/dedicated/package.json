@@ -76,7 +76,7 @@
     "@ovh-ux/ng-ui-router-layout": "^3.3.3",
     "@ovh-ux/ng-ui-router-line-progress": "^1.2.1",
     "@uirouter/angularjs": "^1.0.23",
-    "angular": "1.7.x",
+    "angular": "1.8.x",
     "angular-aria": "1.7.x",
     "angular-chart.js": "^1.1.1",
     "angular-cookies": "1.7.x",
