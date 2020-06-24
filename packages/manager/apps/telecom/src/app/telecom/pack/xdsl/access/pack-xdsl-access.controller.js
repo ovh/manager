@@ -10,6 +10,7 @@ import set from 'lodash/set';
 import {
   XDSL_NO_INCIDENT_CODE,
   XDSL_EXCHANGE_MODEM,
+  VDSL_PROFILE,
 } from './pack-xdsl-access.constants';
 
 export default class XdslAccessCtrl {
@@ -383,6 +384,10 @@ export default class XdslAccessCtrl {
               this.$scope.access.xdsl = assign(access, {
                 isFiber: includes(this.PACK.fiberAccess, access.accessType),
               });
+              this.$scope.access.xdsl.isNotSdsl = true;
+              if (this.$scope.access.xdsl.accessType === 'sdsl') {
+                this.$scope.access.xdsl.isNotSdsl = false;
+              }
               this.setStatusLabel(this.$scope.access.xdsl.status);
               return this.$scope.access.xdsl;
             },
@@ -563,17 +568,33 @@ export default class XdslAccessCtrl {
       .$promise.then((profiles) => {
         let profilesTemplate = '';
         profiles.forEach((profile) => {
-          profilesTemplate = `${profilesTemplate}<p data-translate="xdsl_access_profile_tooltip_${profile.name.toLowerCase()}"></p>`;
+          if (!profilesTemplate && profile.name.includes('VDSL')) {
+            profilesTemplate =
+              '<p data-translate="xdsl_access_profile_tooltip_description"></p>';
+          }
+          if (
+            (profile.name.includes('VDSL') && profile.name.includes('SAFE2')) ||
+            profile.name.includes('PERF1') ||
+            profile.name.includes('PERF2')
+          ) {
+            let translateVdslValues = '';
+            if (profile.name.includes('SAFE2')) {
+              translateVdslValues = `{ profile: '${profile.name}', snr: '${VDSL_PROFILE.safe2}' }`;
+            } else if (profile.name.includes('PERF1')) {
+              translateVdslValues = `{ profile: '${profile.name}', snr: '${VDSL_PROFILE.perf1}' }`;
+            } else {
+              translateVdslValues = `{ profile: '${profile.name}', snr: '${VDSL_PROFILE.perf2}' }`;
+            }
+
+            profilesTemplate = `${profilesTemplate}<p data-translate="xdsl_access_profile_tooltip_vdsl_other" data-translate-values="${translateVdslValues}"></p>`;
+          } else {
+            const translateValues = `{ profile: '${profile.name}' }`;
+            profilesTemplate = `${profilesTemplate}<p data-translate="xdsl_access_profile_tooltip_${profile.name.toLowerCase()}" data-translate-values="${translateValues}"></p>`;
+          }
         });
         this.$templateCache.put(
           'pack-xdsl-access-tooltip-dslamProfile.html',
           `<div class="text-left">${profilesTemplate}<p class="text-warning" data-translate="xdsl_access_profile_tooltip_time"></p></div>`,
-        );
-      })
-      .catch((err) => {
-        return new this.TucToastError(
-          err,
-          'xdsl_access_dslam_an_error_ocurred',
         );
       });
   }
