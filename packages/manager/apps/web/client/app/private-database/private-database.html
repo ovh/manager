@@ -133,10 +133,6 @@
                     </button>
                     <ul class="dropdown-menu dropdown-menu-right">
                         <li data-ng-if="!ctrl.isExpired">
-                            <i
-                                class="oui-icon oui-icon-power_concept"
-                                aria-hidden="true"
-                            ></i>
                             <button
                                 class="btn btn-link"
                                 type="button"
@@ -150,10 +146,6 @@
                             class="dropdown-divider"
                             data-ng-if="!ctrl.isExpired && (changeOwnerUrl || ctrl.contactManagementLink)"
                         >
-                            <i
-                                class="oui-icon oui-icon-user_concept"
-                                aria-hidden="true"
-                            ></i>
                             <a
                                 data-ng-if="changeOwnerUrl"
                                 class="btn btn-link"
@@ -165,10 +157,6 @@
                             </a>
                         </li>
                         <li data-ng-if="ctrl.contactManagementLink">
-                            <i
-                                class="oui-icon oui-icon-gear_concept"
-                                aria-hidden="true"
-                            ></i>
                             <a
                                 class="btn btn-link"
                                 data-ng-href="{{:: ctrl.contactManagementLink }}"
