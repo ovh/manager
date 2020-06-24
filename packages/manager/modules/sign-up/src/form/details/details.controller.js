@@ -149,6 +149,10 @@ export default class SignUpDetailsCtrl {
     }
   }
 
+  callFormCtrlGetRules() {
+    return this.signUpFormCtrl.getRules();
+  }
+
   /* -----  End of Helpers  ------ */
 
   /* =============================
@@ -169,7 +173,7 @@ export default class SignUpDetailsCtrl {
   ================================= */
 
   onCountryChange() {
-    return this.signUpFormCtrl.getRules().then(() => {
+    return this.callFormCtrlGetRules().then(() => {
       if (this.canChangePhoneCountry()) {
         this.signUpFormCtrl.model.phoneCountry = this.signUpFormCtrl.model.country;
       }
@@ -180,7 +184,7 @@ export default class SignUpDetailsCtrl {
   }
 
   onAreaChange() {
-    return this.signUpFormCtrl.getRules().then(() => {
+    return this.callFormCtrlGetRules().then(() => {
       this.refocusOnField('zip');
     });
   }
@@ -190,7 +194,7 @@ export default class SignUpDetailsCtrl {
   }
 
   onPhoneCountryChange() {
-    return this.signUpFormCtrl.getRules().then(() => {
+    return this.callFormCtrlGetRules().then(() => {
       // When phone country change, the pattern change too.
       // But... the validation is not done automatically.
       // So... be sure that the phone validation is done.
