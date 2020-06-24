@@ -117,13 +117,13 @@
             </div>
 
             <div class="col-md-3 d-flex">
-                <div class="btn-group ml-auto mt-4">
+                <div class="btn-group ml-auto mt-4" data-uib-dropdown>
                     <button
                         type="button"
                         class="oui-button oui-button_dropdown mb-0"
                         aria-expanded="false"
                         aria-haspopup="true"
-                        data-toggle="dropdown"
+                        data-uib-dropdown-toggle
                     >
                         <span data-translate="common_actions"></span>
                         <span
@@ -131,7 +131,10 @@
                             aria-hidden="true"
                         ></span>
                     </button>
-                    <ul class="dropdown-menu dropdown-menu-right">
+                    <ul
+                        class="dropdown-menu dropdown-menu-right"
+                        data-uib-dropdown-menu
+                    >
                         <li data-ng-if="!ctrl.isExpired">
                             <button
                                 class="btn btn-link"
