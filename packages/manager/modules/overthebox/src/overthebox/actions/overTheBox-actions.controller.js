@@ -8,10 +8,6 @@ export default class OverTheBoxActionsCtrl {
   }
 
   $onInit() {
-    this.loaders = {
-      init: true,
-    };
-
     this.actionIds = [];
     this.filter = {
       perPage: PAGINATION_PER_PAGE,
