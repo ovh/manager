@@ -14561,11 +14561,6 @@ osenv@0, osenv@^0.1.4, osenv@^0.1.5:
     os-homedir "^1.0.0"
     os-tmpdir "^1.0.0"
 
-"oui4@npm:@ovh-ux/ui-kit":
-  version "4.1.8"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ui-kit/-/ui-kit-4.1.8.tgz#be835b6e904f37c4b0804d81c17bbf5733b05f82"
-  integrity sha512-KXZDAIY2oINC7ekMLDGqTRpwk1CcYT9LO0EBQCLePTK1gzxsLYOYXrk6v2JzmoVwew9XVkmLsM0nl/v2DJpuQw==
-
 ovh-angular-list-view@ovh-ux/ovh-angular-list-view#^0.1.5:
   version "0.1.5"
   resolved "https://codeload.github.com/ovh-ux/ovh-angular-list-view/tar.gz/e0b8ed735bc2431f10f32f73d665d78da93dd77a"
@@ -14612,13 +14607,6 @@ ovh-ui-kit-bs@^4.1.4:
   version "4.1.4"
   resolved "https://registry.yarnpkg.com/ovh-ui-kit-bs/-/ovh-ui-kit-bs-4.1.4.tgz#4d8531803cfaeffd08ea042b87ec7ef546caa0c4"
   integrity sha512-FMYmo0uU8VbogsnK3KPIcWCw/NfrQSyPG4vY0oZyM1EMNFdick3X7g1x4BOxqYtkCDk+6S/Co39AvlFLvCCbbg==
-
-ovh-ui-kit@^2.42.8:
-  version "2.42.8"
-  resolved "https://registry.yarnpkg.com/ovh-ui-kit/-/ovh-ui-kit-2.42.8.tgz#847342c49c51daf0fe3b3ffc681c7535d92af6b2"
-  integrity sha512-bNkJsSP5f6zRd7jPiLI8gCIwH3y3B2mm99Q02W9LTaZT9D0LYTXOr0ht/HZiHrCLGxfhkG/JlFpV6f71lfXwTw==
-  dependencies:
-    less-plugin-remcalc "^0.1.0"
 
 p-defer@^1.0.0:
   version "1.0.0"

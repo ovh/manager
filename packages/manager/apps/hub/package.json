@@ -63,7 +63,6 @@
     "moment": "^2.24.0",
     "oclazyload": "^1.1.0",
     "ovh-api-services": "^9.46.0",
-    "ovh-ui-kit": "^2.42.8",
     "popper.js": "^1.16.1",
     "ui-select": "^0.19.8",
     "whatwg-fetch": "^3.0.0"
