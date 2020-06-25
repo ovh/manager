@@ -28,6 +28,8 @@ export default class BillingPaymentMethodAddCtrl {
     this.loading = {
       redirecting: false,
     };
+
+    this.hostname = window.location.hostname;
   }
 
   /* ================================

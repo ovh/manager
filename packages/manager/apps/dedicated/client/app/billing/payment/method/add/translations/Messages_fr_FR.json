@@ -27,5 +27,7 @@
   "billing_payment_method_add_vantiv_recoverable_credit_card_error": "Une erreur est survenue lors de l'ajout de votre moyen de paiement. Veuillez vérifier le numéro de votre carte bancaire puis le ressaisir.",
   "billing_payment_method_add_vantiv_recoverable_card_validation_number_error": "Une erreur est survenue lors de l'ajout de votre moyen de paiement. Veuillez vérifier le numéro de validation de votre carte bancaire puis le ressaisir.",
   "billing_payment_method_add_success": "Votre nouveau moyen de paiement a bien été ajouté.",
-  "billing_payment_method_add_error": "Une erreur est survenue lors de l'ajout de votre moyen de paiement : {{ errorMessage }}"
+  "billing_payment_method_add_error": "Une erreur est survenue lors de l'ajout de votre moyen de paiement : {{ errorMessage }}",
+  "billing_payment_method_add_alert_add_method": "Si vous rencontrez un problème pour ajouter un nouveau moyen de paiement, veuillez ajouter une exception à votre bloqueur de publicités pour {{ hostname }}, ou veuillez vous connecter via le mode incognito de votre navigateur, puis réessayez. Nous n'afficherons jamais de publicités dans l'espace client. Sachez que votre bloqueur de publicités peut interférer avec notre système de paiement.",
+  "billing_payment_method_add_alert_first_payment_failure": "En outre, si votre premier paiement échoue à être pris en compte, essayez de créer un nouveau moyen de paiement avec la même carte que vous venez d'utiliser. Notre système facturera automatiquement la nouvelle carte."
 }
