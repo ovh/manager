@@ -1,6 +1,5 @@
 @import '~bootstrap/less/variables.less';
-@import '~ovh-ui-kit/packages/oui-color/_variables.less';
-@import '~ovh-ui-kit/packages/oui-typography/_variables.less';
+@import '~@ovh-ux/ui-kit/dist/less/_tokens';
 
 /* stylelint-disable no-descending-specificity */
 @service-button-bg-color: @gray-lighter;
@@ -37,7 +36,7 @@
     .service-button-description {
       .action-icon {
         font-size: 32px;
-        color: @oui-color-dodger;
+        color: #32acff;
       }
     }
   }
@@ -121,7 +120,7 @@
 
     .link-name,
     .ovh-font {
-      color: @oui-link-font-color_hover;
+      color: #113f6d;
     }
 
     .ovh-font-arrow-right {
@@ -138,14 +137,14 @@
   }
 
   .ovh-font {
-    color: @oui-color-brand;
+    color: @p-700;
 
     &.text-success {
-      color: @oui-color-success-dark;
+      color: @as-500;
     }
 
     &.text-danger {
-      color: @oui-color-error-dark;
+      color: @ae-500;
     }
   }
 
@@ -167,7 +166,7 @@
     }
 
     .description-subtext {
-      color: @oui-color-dodger;
+      color: #32acff;
     }
   }
 

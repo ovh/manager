@@ -17,15 +17,15 @@
     padding: 1.25rem;
     font-style: italic;
     text-align: center;
-    border-radius: @oui-global-base-radius;
-    background-color: @oui-color-concrete;
+    border-radius: @base-border-radius-small;
+    background-color: #f2f2f2;
     color: #000;
   }
 
   &__cell_action-menu {
     width: 80px;
 
-    @media screen and (max-width: (@oui-responsive-breakpoint-tablet - 1px)) {
+    @media screen and (max-width: @device-breakpoint-tablet-max-width) {
       width: 100%;
     }
   }
@@ -45,7 +45,7 @@
 }
 
 .oui-badge_help {
-  background-color: @oui-color-info-fade;
+  background-color: @p-075;
 }
 
 .oui-radio-toggle-group {

@@ -1,11 +1,11 @@
-@import 'ovh-ui-kit/packages/oui-responsive/_variables.less';
-@import '@ovh-ux/manager-account-sidebar/src/variables.less';
+@import '@ovh-ux/manager-account-sidebar/src/variables';
+@import '@ovh-ux/ui-kit/dist/less/_tokens';
 
 .hub-main-view_sidebar_expanded {
   margin-right: @ovh-sidebar-width;
 }
 
-@media screen and (max-width: (@oui-responsive-breakpoint-medium - 1px)) {
+@media screen and (max-width: @device-breakpoint-medium-max-width) {
   .hub-main-view {
     margin-right: 0;
   }

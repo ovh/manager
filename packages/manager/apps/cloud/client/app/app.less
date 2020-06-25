@@ -1,5 +1,3 @@
-@import './_variables';
-@import './_mixins';
 @import (less) 'ovh-ui-kit-bs/dist/css/oui-bs3.css';
 @import 'bootstrap/less/mixins.less';
 @import (less) '@ovh-ux/ui-kit/dist/css/oui.css';
@@ -19,13 +17,13 @@
 // Overide Bootstrap Params
 @screen-xs-max: @v6-max-with;
 @screen-sm-min: @v6-min-with;
-@screen-sm-max: (@oui-responsive-breakpoint-tablet - 1px);
-@screen-md-min: @oui-responsive-breakpoint-tablet;
-@screen-md-max: (@oui-responsive-breakpoint-medium - 1px);
-@screen-lg-min: @oui-responsive-breakpoint-medium;
+@screen-sm-max: @device-breakpoint-tablet-max-width;
+@screen-md-min: @device-breakpoint-tablet;
+@screen-md-max: @device-breakpoint-medium-max-width;
+@screen-lg-min: @device-breakpoint-medium;
 
 @component-offset-horizontal: 200px;
-@modal-backdrop-bg: @oui-color-shuttle;
+@modal-backdrop-bg: #59697d;
 
 // Params use by bootstrap and app
 @v6-min-with: 801px;
