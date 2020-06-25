@@ -73,5 +73,8 @@
   "telephony_line_phone_price": "Price:",
   "telephony_line_phone_detail_link": "Technical specifications",
   "telephony_line_phone_order_validate": "Confirm order",
-  "ovh_contracts_agree": "I confirm that I have read and understood the contracts above."
+  "ovh_contracts_agree": "I confirm that I have read and understood the contracts above.",
+  "telephony_line_phone_order_process_return_comment1": "Important: When returning hardware, please ensure that you remove any personal items and elements from the hardware and packaging that are not related to the hardware you are returning.",
+  "telephony_line_phone_order_process_return_comment2": "Otherwise, OVHcloud will try to contact the customer via post in order to return goods that do not belong to OVHcloud.",
+  "telephony_line_phone_order_process_return_comment3": "After 30 calendar days of the letter being sent, if no reply is received from the customer, OVHcloud will destroy the aforementioned goods."
 }
