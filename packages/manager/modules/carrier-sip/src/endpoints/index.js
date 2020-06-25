@@ -7,6 +7,9 @@ import 'ovh-ui-angular';
 // Components.
 import component from './endpoints.component';
 
+// Styles
+import './endpoints.scss';
+
 const moduleName = 'ovhManagerCarrierSipEndpoints';
 
 angular
