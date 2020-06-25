@@ -1,5 +1,6 @@
 {
-  "carrier_sip_endpoints": "SIP Endpoints",
+  "carrier_sip_endpoints_list_IP": "Liste d'adresses IP autorisées pour les appels sortants",
+  "carrier_sip_endpoints_with_incoming_call_enabled": "Routage d'appels entrants",
   "carrier_sip_endpoints_id": "ID",
   "carrier_sip_endpoints_protocol": "Protocol",
   "carrier_sip_endpoints_protocol_tcp": "TCP",

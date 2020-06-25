@@ -3,6 +3,10 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '/endpoints',
     component: 'carrierSipEndpoints',
     resolve: {
+      endpointIpList: /* @ngInject */ (endpoints) =>
+        endpoints.map(({ ip }) => ip),
+      endpointsWithIncomingCallsAllowed: /* @ngInject */ (endpoints) =>
+        endpoints.filter(({ enableIncomingCalls }) => enableIncomingCalls),
       endpoints: /* @ngInject */ (
         billingAccount,
         CarrierSipService,
