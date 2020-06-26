@@ -1,3 +1,17 @@
+# [9.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@9.5.2...@ovh-ux/manager-cloud@9.6.0) (2020-06-26)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 456] ([1d41cac](https://github.com/ovh/manager/commit/1d41cac5df758a6369ba0848743050d00dddce8f))
+
+
+### Features
+
+* **dbaas.logs:** hosted kibana view ([#3129](https://github.com/ovh/manager/issues/3129)) ([7fb3fb8](https://github.com/ovh/manager/commit/7fb3fb89d453c1132052231b5e033a995f874caf))
+
+
+
 ## [9.5.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@9.5.1...@ovh-ux/manager-cloud@9.5.2) (2020-06-16)
 
 
