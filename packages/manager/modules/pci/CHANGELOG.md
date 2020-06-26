@@ -1,3 +1,12 @@
+## [3.23.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.23.0...@ovh-ux/manager-pci@3.23.1) (2020-06-26)
+
+
+### Bug Fixes
+
+* **dataprocessing:** disable button on activation ([#3161](https://github.com/ovh/manager/issues/3161)) ([3efc10b](https://github.com/ovh/manager/commit/3efc10bc3781e8249560ded287fede77c48e6b88))
+
+
+
 # [3.23.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.22.2...@ovh-ux/manager-pci@3.23.0) (2020-06-23)
 
 
