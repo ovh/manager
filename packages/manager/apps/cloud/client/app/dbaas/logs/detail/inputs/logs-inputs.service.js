@@ -16,9 +16,6 @@ class LogsInputsService {
     CucServiceHelper,
   ) {
     this.$q = $q;
-    this.AccountingAapiService = OvhApiDbaas.Logs()
-      .Accounting()
-      .Aapi();
     this.DetailsAapiService = OvhApiDbaas.Logs()
       .Details()
       .Aapi();
@@ -238,22 +235,6 @@ class LogsInputsService {
       );
       return this.$q.all(promises);
     });
-  }
-
-  getMainOffer(serviceName) {
-    return this.AccountingAapiService.me({ serviceName })
-      .$promise.then((me) => ({
-        max: me.offer.maxNbInput,
-        current: me.offer.curNbInput,
-        planCode: me.offer.reference,
-      }))
-      .catch((err) =>
-        this.LogsHelperService.handleError(
-          'logs_inputs_main_offer_get_error',
-          err,
-          {},
-        ),
-      );
   }
 
   getNewInput() {
@@ -593,7 +574,6 @@ class LogsInputsService {
   resetAllCache() {
     this.InputsApiAapiService.resetAllCache();
     this.InputsApiLexiService.resetAllCache();
-    this.AccountingAapiService.resetAllCache();
   }
 
   static transformDetails(details) {

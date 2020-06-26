@@ -9,8 +9,10 @@ class LogsHomeCtrl {
     $translate,
     bytesFilter,
     CucControllerHelper,
+    LogsAliasesService,
     LogsConstants,
     LogsHomeService,
+    LogsIndexService,
     LogsTokensService,
     LogsHelperService,
     LogsDetailService,
@@ -23,11 +25,14 @@ class LogsHomeCtrl {
     this.$translate = $translate;
     this.bytesFilter = bytesFilter;
     this.CucControllerHelper = CucControllerHelper;
+    this.LogsAliasesService = LogsAliasesService;
     this.LogsHomeService = LogsHomeService;
+    this.LogsIndexService = LogsIndexService;
     this.LogsTokensService = LogsTokensService;
     this.LogsHelperService = LogsHelperService;
     this.LogsDetailService = LogsDetailService;
     this.LogsConstants = LogsConstants;
+    this.canAccessToElasticsearch = false;
   }
 
   $onInit() {
@@ -46,7 +51,11 @@ class LogsHomeCtrl {
               this.streamUsageGraphData = this.newChart('stream-axis');
               this.archiveUsageGraphData = this.newChart('archive-axis');
               this.indiceUsageGraphData = this.newChart('indice-axis');
-              this.runLoaders().then(() => this.prepareDataUsageGraphData());
+              this.runLoaders().then(() => {
+                this.prepareDataUsageGraphData();
+                this.canAccessToElasticsearch =
+                  this.indexIds.data.length + this.aliasIds.data.length > 0;
+              });
             }
             return service;
           },
@@ -247,6 +256,14 @@ class LogsHomeCtrl {
             this.LogsConstants.DATA_STORAGE.METRICS.INDEX_SIZE,
           ),
       });
+      this.indexIds = this.CucControllerHelper.request.getArrayLoader({
+        loaderFunction: () =>
+          this.LogsIndexService.getIndicesIds(this.serviceName),
+      });
+      this.aliasIds = this.CucControllerHelper.request.getArrayLoader({
+        loaderFunction: () =>
+          this.LogsAliasesService.getAliasesIds(this.serviceName),
+      });
     }
   }
 
@@ -285,6 +302,8 @@ class LogsHomeCtrl {
       loaderPromises.push(this.streamData.load());
       loaderPromises.push(this.archiveData.load());
       loaderPromises.push(this.indiceData.load());
+      loaderPromises.push(this.indexIds.load());
+      loaderPromises.push(this.aliasIds.load());
     }
     return this.$q.all(loaderPromises);
   }

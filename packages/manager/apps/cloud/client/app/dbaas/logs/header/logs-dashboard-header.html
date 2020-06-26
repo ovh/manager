@@ -76,6 +76,13 @@
         >
         </oui-header-tabs-item>
         <oui-header-tabs-item
+            data-text="{{ ::'logs_tab_kibana' | translate }}"
+            data-state="dbaas.logs.detail.kibana"
+            data-disabled="ctrl.disableTabs"
+            data-state-params="{ serviceName: ctrl.serviceName }"
+        >
+        </oui-header-tabs-item>
+        <oui-header-tabs-item
             data-text="{{ ::'logs_tab_roles' | translate }}"
             data-state="dbaas.logs.detail.roles"
             data-disabled="ctrl.disableTabs"

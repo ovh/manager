@@ -1,5 +1,6 @@
 /* eslint-disable no-useless-escape */
 angular.module('managerApp').constant('LogsConstants', {
+  LDP_PLAN_CODE: 'logs-account',
   COLDSTORAGE: 'COLDSTORAGE',
   DESCRIPTION_MIN_LENGTH: 3,
   EXPOSED_PORT_MIN: 514,
@@ -106,6 +107,10 @@ angular.module('managerApp').constant('LogsConstants', {
     CAP_N_PROTO: 'Cap’n’Proto',
     BEATS: 'Beats',
   },
+  PERMISSION_TYPES: {
+    RO: 'READ_ONLY',
+    RW: 'READ_WRITE',
+  },
   URL_TYPES: {
     TCP_TLS_GELF: {
       PORT: 'TCP_TLS',
@@ -175,8 +180,8 @@ angular.module('managerApp').constant('LogsConstants', {
   DATA_STORAGE: {
     TIME_PERIOD_MONTHS: 10,
     METRICS: {
-      STREAM_SIZE: 'ldp.stream.size',
-      INDEX_SIZE: 'ldp.indice.size',
+      STREAM_SIZE: 'ldp.service.stream.total',
+      INDEX_SIZE: 'ldp.service.indice.total',
       COLD_STORAGE_TOTAL: 'ldp.service.coldstorage.total',
     },
     AGGREGATORS: {
@@ -235,6 +240,11 @@ angular.module('managerApp').constant('LogsConstants', {
     running: 'success',
     unknown: 'error',
   },
+  kibanaStateType: {
+    DELIVERING: 'info',
+    READY: 'success',
+    DELETING: 'warning',
+  },
   INPUT_DEFAULT_PORT: 6514,
   INPUT_DEFAULT_NB_INSTANCE: 2,
   ADD_ON_FAMILY: {
@@ -247,6 +257,7 @@ angular.module('managerApp').constant('LogsConstants', {
     NB_INSTANCE: 'logs-input-container-unit',
     NB_SHARD: 'logs-index-shards-unit',
     INDEXED_DOCUMENTS: 'logs-index-documents-in-gb',
+    KIBANA: 'logs-kibana-unit',
     STREAM: 'logs-indexed-in-gb',
   },
   COLDSTORAGE_INCREMENT: 1,
