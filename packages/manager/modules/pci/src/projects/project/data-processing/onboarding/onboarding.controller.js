@@ -18,6 +18,7 @@ export default class {
     this.pciProjectLabsService = PciProjectLabsService;
     this.isActivated = false;
     this.agreedLab = false;
+    this.isActivating = false;
   }
 
   $onInit() {
@@ -45,6 +46,7 @@ export default class {
   }
 
   authorizeService() {
+    this.isActivating = true;
     let labPromise;
     if (this.agreedLab) {
       labPromise = this.pciProjectLabsService.activateLab(
@@ -55,9 +57,14 @@ export default class {
       labPromise = this.$q.resolve();
     }
     return labPromise.then(() => {
-      this.dataProcessingService.authorize(this.projectId).then(() => {
-        this.goBack();
-      });
+      this.dataProcessingService
+        .authorize(this.projectId)
+        .then(() => {
+          this.goBack();
+        })
+        .finally(() => {
+          this.isActivating = false;
+        });
     });
   }
 }
