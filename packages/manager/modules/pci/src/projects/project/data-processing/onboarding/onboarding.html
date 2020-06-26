@@ -18,9 +18,12 @@
 
     <oui-button
         data-variant="primary"
-        data-disabled="!$ctrl.agreedLab && !$ctrl.isActivated"
+        data-disabled="!$ctrl.agreedLab && !$ctrl.isActivated || $ctrl.isActivating"
         data-on-click="$ctrl.authorizeService()"
     >
         <span data-translate="data_processing_onboarding_action_label"></span>
+        <span data-ng-if="$ctrl.isActivating">
+            ...
+        </span>
     </oui-button>
 </pci-project-empty>
