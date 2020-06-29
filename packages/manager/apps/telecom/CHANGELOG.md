@@ -1,3 +1,17 @@
+# [12.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@12.4.0...@ovh-ux/manager-telecom@12.5.0) (2020-06-29)
+
+
+### Bug Fixes
+
+* **pack.migration:** fix with correct call api for building details ([#3160](https://github.com/ovh/manager/issues/3160)) ([a6d46ff](https://github.com/ovh/manager/commit/a6d46fff195da51fb37371bfd7163d9f78dc060d))
+
+
+### Features
+
+* **xdsl.profiles:** translate vdsl profiles, not display sdsl profile ([#3157](https://github.com/ovh/manager/issues/3157)) ([3d5930e](https://github.com/ovh/manager/commit/3d5930ee486fd3d61ae3324742cda1aff74169b7))
+
+
+
 # [12.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@12.3.3...@ovh-ux/manager-telecom@12.4.0) (2020-06-23)
 
 
