@@ -1,5 +1,7 @@
 import head from 'lodash/head';
 
+import template from './pack-xdsl.html';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('telecom.packs.pack.xdsl-redirection', {
     url: '/xdsl/:serviceName',
@@ -28,7 +30,7 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '/xdsl/:serviceName/lines/:number',
     views: {
       'packView@telecom.packs': {
-        templateUrl: 'app/telecom/pack/xdsl/pack-xdsl.html',
+        template,
         controller: 'PackXdslCtrl',
         controllerAs: 'PackXdslCtrl',
       },
