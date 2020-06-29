@@ -3,6 +3,8 @@ const commonResolves = {
     WucOrderCartService.createNewCart(user.ovhSubsidiary).then((cart) =>
       WucOrderCartService.assignCart(cart.cartId).then(() => cart),
     ),
+  defaultPaymentMethod: /* @ngInject */ (ovhPaymentMethod) =>
+    ovhPaymentMethod.getDefaultPaymentMethod(),
   addOption: /* @ngInject */ (cart, domainName, WebhostingEnableService) => (
     item,
     offer,
@@ -18,9 +20,13 @@ const commonResolves = {
 
   getCheckout: /* @ngInject */ (cart, WucOrderCartService) => () =>
     WucOrderCartService.getCheckoutInformations(cart.cartId),
-  order: /* @ngInject */ (cart, WucOrderCartService) => () =>
+  order: /* @ngInject */ (
+    cart,
+    defaultPaymentMethod,
+    WucOrderCartService,
+  ) => () =>
     WucOrderCartService.checkoutCart(cart.cartId, {
-      autoPayWithPreferredPaymentMethod: true,
+      autoPayWithPreferredPaymentMethod: !!defaultPaymentMethod,
       waiveRetractationPeriod: true,
     }),
   goBack: /* @ngInject */ (goToDashboard) => goToDashboard,
