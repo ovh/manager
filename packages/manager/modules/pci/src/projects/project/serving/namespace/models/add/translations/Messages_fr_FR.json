@@ -26,6 +26,7 @@
   "pci_projects_project_serving_namespace_models_add_file_mode": "Fichier",
   "pci_projects_project_serving_namespace_models_add_custom_info": "Retrouvez la liste des formats compatibles dans notre documentation",
   "pci_projects_project_serving_namespace_models_scale_advanced_configuration": "Configuration avancée",
-  "pci_projects_project_serving_namespace_models_scale_advanced_configuration_memory": "Memory",
-  "pci_projects_project_serving_namespace_models_scale_advanced_configuration_cpu": "CPU"
+  "pci_projects_project_serving_namespace_models_scale_advanced_configuration_memory": "% Utilisation Mémoire",
+  "pci_projects_project_serving_namespace_models_scale_advanced_configuration_cpu": "% Utilisation CPU",
+  "pci_projects_project_serving_namespace_models_add_price_unit": "heure"
 }

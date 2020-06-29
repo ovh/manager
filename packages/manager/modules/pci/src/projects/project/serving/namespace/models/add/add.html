@@ -246,19 +246,25 @@
                         <oui-select-picker
                             data-name="{{:: flavor.id }}"
                             data-model="$ctrl.model.flavor"
-                            data-label="{{:: flavor.description }}"
+                            data-label="{{:: flavor.id }}"
                             data-variant="light"
                             data-values="[flavor]"
                             data-required
                         >
                             <oui-select-picker-description>
-                                <ovh-manager-catalog-price
-                                    data-price="$ctrl.getPrice(flavor.id)"
-                                    data-tax="$ctrl.getTax(flavor.id)"
-                                    data-user="$ctrl.user"
-                                    data-interval="day"
-                                >
-                                </ovh-manager-catalog-price>
+                                {{ flavor.description }}
+                                <p>
+                                    <ovh-manager-catalog-price
+                                        data-price="$ctrl.getPrice(flavor.id)"
+                                        data-tax="$ctrl.getTax(flavor.id)"
+                                        data-user="$ctrl.user"
+                                    >
+                                    </ovh-manager-catalog-price>
+                                    /
+                                    <span
+                                        data-translate="pci_projects_project_serving_namespace_models_add_price_unit"
+                                    ></span>
+                                </p>
                             </oui-select-picker-description>
                         </oui-select-picker>
                     </div>

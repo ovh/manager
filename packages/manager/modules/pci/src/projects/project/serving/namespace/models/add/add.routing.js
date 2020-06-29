@@ -7,6 +7,7 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     resolve: {
       goBack: /* @ngInject */ (goToNamespaceModels) => goToNamespaceModels,
+      user: /* @ngInject */ (SessionService) => SessionService.getUser(),
       flavors: /* @ngInject */ (
         OvhManagerPciServingNamespaceModelsAddServiceCapabilities,
         projectId,
