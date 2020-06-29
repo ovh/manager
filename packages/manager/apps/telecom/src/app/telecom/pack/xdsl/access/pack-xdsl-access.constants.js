@@ -7,7 +7,14 @@ export const XDSL_EXCHANGE_MODEM = {
   errorCodeSDSL: 'ERR004',
 };
 
+export const VDSL_PROFILE = {
+  safe2: 'SNR 16',
+  perf1: 'SNR 3',
+  perf2: 'SNR 1',
+};
+
 export default {
   XDSL_NO_INCIDENT_CODE,
   XDSL_EXCHANGE_MODEM,
+  VDSL_PROFILE,
 };

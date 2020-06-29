@@ -759,31 +759,31 @@
                                             ></span>
                                         </div>
 
-                                        <div
-                                            class="my-2"
-                                            data-ng-if="access.xdsl.capabilities.canChangeDslamProfile"
-                                        >
-                                            <label>
-                                                <a
-                                                    href="https://www.ovh.com/fr/a1649.adsl-vdsl-quel-profil-box"
-                                                    target="_blank"
-                                                    data-tooltip-append-to-body="true"
-                                                    data-tooltip-placement="right"
-                                                    data-uib-tooltip-template="'pack-xdsl-access-tooltip-dslamProfile.html'"
-                                                >
-                                                    <span
-                                                        data-translate="xdsl_details_profile"
-                                                    ></span>
-                                                    <i
-                                                        class="ovh-font ovh-font-question ml-1"
-                                                        aria-hidden="true"
-                                                    ></i>
-                                                </a>
-                                            </label>
+                                        <div data-ng-if="access.xdsl.isNotSdsl">
                                             <div
-                                                class="oui-tile__description"
-                                                data-ng-include="'app/telecom/pack/xdsl/access/profil/pack-xdsl-access-profil.html'"
-                                            ></div>
+                                                class="my-2"
+                                                data-ng-if="access.xdsl.capabilities.canChangeDslamProfile"
+                                            >
+                                                <label>
+                                                    <div
+                                                        data-tooltip-append-to-body="true"
+                                                        data-tooltip-placement="right"
+                                                        data-uib-tooltip-template="'pack-xdsl-access-tooltip-dslamProfile.html'"
+                                                    >
+                                                        <span
+                                                            data-translate="xdsl_details_profile"
+                                                        ></span>
+                                                        <i
+                                                            class="ovh-font ovh-font-question ml-1"
+                                                            aria-hidden="true"
+                                                        ></i>
+                                                    </div>
+                                                </label>
+                                                <div
+                                                    class="oui-tile__description"
+                                                    data-ng-include="'app/telecom/pack/xdsl/access/profil/pack-xdsl-access-profil.html'"
+                                                ></div>
+                                            </div>
                                         </div>
 
                                         <div
