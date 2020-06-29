@@ -10,6 +10,7 @@ export default class CoreConfig {
   }
 
   isRegion(region) {
+    console.log(region);
     const regions = Array.isArray(region) ? region : [region];
     return regions.indexOf(this.region) >= 0;
   }
