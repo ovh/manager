@@ -9,7 +9,7 @@
   background-repeat: no-repeat;
   background-size: cover;
   color: $p-000-white;
-  font-weight: bold;
+  font-weight: 600;
   text-align: center;
   border-radius: $hub-tile-border-radius;
   padding: $hub-tile-padding;
@@ -25,7 +25,6 @@
 
   .oui-icon {
     color: $p-000-white;
-    font-weight: bold;
   }
 
   p,
@@ -43,24 +42,34 @@
     margin: auto;
     padding: 0 1rem;
 
-    button {
-      background-color: transparent;
-      border-color: $p-000-white;
-      border-width: 2px;
-      border-radius: 0.25rem;
-      color: $p-000-white;
+    .ui-select-match {
+      &,
+      &:hover,
+      &:focus,
+      &[aria-expanded="'true'"] {
+        background-color: transparent;
+        border-color: $p-000-white;
+        border-width: 2px;
+        border-radius: 0.25rem;
+        color: $p-000-white;
+        font-weight: 600;
+
+        .ui-select-match-icon {
+          color: inherit;
+        }
+      }
     }
 
     .ui-select-dropdown {
       background-color: $bg-color;
-      border-color: $p-000-white;
-      border-width: 2px;
-      box-shadow: none;
+      border: 2px solid $p-000-white;
+      border-top: none;
       width: calc(100% - 2rem);
       left: 1rem;
 
       .ui-select-choices-row {
-        border-radius: 0;
+        color: $p-000-white;
+        background-color: transparent;
         font-weight: 600;
 
         &:hover {
@@ -69,15 +78,6 @@
         }
       }
     }
-
-    .oui-icon::before {
-      color: $p-000-white;
-    }
-  }
-
-  .ui-select-match:hover {
-    background-color: transparent;
-    border-color: $p-000-white;
   }
 
   &__bill-total {
@@ -85,6 +85,10 @@
     font-size: calc(2rem + 1vw);
     white-space: nowrap;
     display: block;
+  }
+
+  &__bill-status .oui-icon {
+    font-size: 1.5rem;
   }
 }
 

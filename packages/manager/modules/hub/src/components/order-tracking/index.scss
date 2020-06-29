@@ -16,19 +16,12 @@
     margin-top: 1rem;
   }
 
-  > h3 {
-    font-size: $jupiter-font-size;
-    font-weight: $jupiter-font-weight;
-    margin-bottom: 0.25rem;
-  }
-
-  a {
-    color: $p-000-white;
-  }
-
   a.oui-badge {
-    padding: 0.5rem;
+    line-height: 1rem;
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
     text-decoration: none;
+    font-size: 0.75rem;
     background-color: $p-100;
 
     &:hover {
