@@ -6,11 +6,11 @@ angular.module('managerApp').controller(
     constructor(
       $translate,
       TucPackMigrationProcess,
-      OvhApiConnectivityEligibility,
+      OvhApiConnectivityEligibilitySearch,
     ) {
       this.$translate = $translate;
       this.TucPackMigrationProcess = TucPackMigrationProcess;
-      this.OvhApiConnectivityEligibility = OvhApiConnectivityEligibility;
+      this.OvhApiConnectivityEligibilitySearch = OvhApiConnectivityEligibilitySearch;
     }
 
     /*= =====================================
@@ -47,7 +47,7 @@ angular.module('managerApp').controller(
           building: building.reference,
         };
 
-        this.OvhApiConnectivityEligibility.v6()
+        this.OvhApiConnectivityEligibilitySearch.v6()
           .buildingDetails({}, params)
           .$promise.then((buildingDetails) => {
             if (has(buildingDetails, 'result.stairs')) {
@@ -177,7 +177,7 @@ angular.module('managerApp').controller(
           const params = {
             building: this.model.selectedBuilding.reference,
           };
-          this.OvhApiConnectivityEligibility.v6()
+          this.OvhApiConnectivityEligibilitySearch.v6()
             .buildingDetails({}, params)
             .$promise.then((buildingDetails) => {
               if (has(buildingDetails, 'result.stairs')) {
