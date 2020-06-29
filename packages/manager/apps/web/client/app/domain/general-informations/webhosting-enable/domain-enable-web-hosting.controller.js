@@ -35,7 +35,9 @@ export default class EnableWebHostingOrderCtrl {
   }
 
   getPricings() {
-    this.pricings = this.offer.prices;
+    this.pricings = this.offer.prices.filter(
+      ({ maximumRepeat }) => !maximumRepeat,
+    );
     [this.price] = this.pricings;
   }
 
