@@ -1,6 +1,6 @@
 <div data-ui-view>
     <div
-        class="hub-banner px-3 py-2"
+        class="hub-banner"
         data-track-on="click"
         data-track-name="{{:: $ctrl.trackingPrefix + '::action::feedback' }}"
     >
@@ -9,7 +9,7 @@
             data-translate-values="{ url: $ctrl.feedbackUrl }"
         ></span>
     </div>
-    <div class="mt-5 mt-md-2 pb-5">
+    <div class="hub-dashboard-content">
         <hub-dashboard-welcome
             data-name="$ctrl.me.firstname"
         ></hub-dashboard-welcome>

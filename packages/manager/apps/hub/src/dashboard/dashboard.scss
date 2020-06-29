@@ -1,12 +1,21 @@
 hub-dashboard {
+  .hub-dashboard-content {
+    padding-bottom: 3rem;
+  }
+
   .hub-banner {
     background-color: #f5feff;
     color: #4d5592;
+    padding: 0.5rem 1rem;
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     z-index: 1;
+
+    + .hub-dashboard-content {
+      margin-top: 2.5rem;
+    }
   }
 
   .hub-dashboard-product {
