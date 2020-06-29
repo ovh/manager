@@ -1,7 +1,5 @@
 import head from 'lodash/head';
 
-import template from './pack-xdsl.html';
-
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('telecom.packs.pack.xdsl-redirection', {
     url: '/xdsl/:serviceName',
@@ -29,12 +27,12 @@ export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('telecom.packs.pack.xdsl', {
     url: '/xdsl/:serviceName/lines/:number',
     views: {
-      'packView@telecom.packs': {
-        template,
-        controller: 'PackXdslCtrl',
-        controllerAs: 'PackXdslCtrl',
+      'packView@telecom.packs': 'packXdsl',
+      'xdslView@telecom.packs.pack.xdsl': {
+        controller: 'XdslAccessCtrl',
+        controllerAs: 'XdslAccess',
+        templateUrl: 'app/telecom/pack/xdsl/access/pack-xdsl-access.html',
       },
-      'xdslView@telecom.packs.pack.xdsl': 'packXdslAccess',
     },
     translations: {
       value: [
@@ -54,7 +52,11 @@ export default /* @ngInject */ ($stateProvider) => {
       format: 'json',
     },
     resolve: {
-      $title(translations, $translate, $stateParams, OvhApiXdsl) {
+      packName: /* @ngInject */ ($transition$) =>
+        $transition$.params().packName,
+      serviceName: /* @ngInject */ ($transition$) =>
+        $transition$.params().serviceName,
+      $title($translate, $stateParams, OvhApiXdsl) {
         return OvhApiXdsl.v6()
           .get({
             xdslId: $stateParams.serviceName,
@@ -71,6 +73,9 @@ export default /* @ngInject */ ($stateProvider) => {
           .catch(() =>
             $translate('xdsl_page_title', { name: $stateParams.serviceName }),
           );
+      },
+      goBack: /* @ngInject */ ($state) => (backState) => {
+        $state.go(backState);
       },
     },
   });
