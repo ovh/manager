@@ -17,7 +17,7 @@
   "data_processing_job_status_completed": "Finished",
   "data_processing_job_status_unknown": "Unknown",
   "data_processing_create_button_label": "Start a new job",
-  "data_processing_job_name": "Surname",
+  "data_processing_job_name": "Name",
   "data_processing_list_button_job_details": "Job details",
   "data_processing_list_button_job_ui": "Access the graphical interface for the job",
   "data_processing_list_button_job_monitoring": "Access monitoring",
