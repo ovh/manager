@@ -474,7 +474,7 @@ angular
             .then((beta) => $translate.refresh().then(() => beta))
             .then((beta) => {
               if (beta) {
-                return initSidebarMenuItems({}, beta);
+                return initSidebarMenuItems({}, featuresAvailabilities, beta);
               }
               return $q
                 .all({
