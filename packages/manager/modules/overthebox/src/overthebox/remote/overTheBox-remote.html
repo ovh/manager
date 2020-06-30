@@ -13,7 +13,7 @@
                 <table
                     class="table"
                     data-ng-class="{
-                           'table-hover table-striped': OverTheBoxRemote.remotes.length > 1
+                           'table-hover table-striped': $ctrl.remotes.length > 1
                        }"
                 >
                     <thead>
@@ -37,13 +37,13 @@
                             <th scope="col"></th>
                         </tr>
                     </thead>
-                    <tbody data-ng-if="OverTheBoxRemote.remotes.length === 0">
-                        <tr data-ng-show="OverTheBoxRemote.loading">
+                    <tbody data-ng-if="$ctrl.remotes.length === 0">
+                        <tr data-ng-show="$ctrl.loading">
                             <td colspan="5" class="text-center">
                                 <oui-spinner data-size="s"></oui-spinner>
                             </td>
                         </tr>
-                        <tr data-ng-hide="OverTheBoxRemote.loading">
+                        <tr data-ng-hide="$ctrl.loading">
                             <td
                                 class="text-center"
                                 colspan="5"
@@ -52,7 +52,7 @@
                         </tr>
                     </tbody>
                     <tbody
-                        data-ng-repeat="remote in OverTheBoxRemote.paginatedRemotes track by remote.remoteAccessId"
+                        data-ng-repeat="remote in $ctrl.paginatedRemotes track by remote.remoteAccessId"
                     >
                         <tr>
                             <td>
@@ -93,7 +93,7 @@
                                     class="btn btn-link"
                                     data-ng-if="!remote.accepted"
                                     data-ng-disabled="remote.busy"
-                                    data-ng-really-click="OverTheBoxRemote.authorize(remote)"
+                                    data-ng-really-click="$ctrl.authorize(remote)"
                                     data-ng-really-message="{{ 'overTheBox_remote_authorize_confirm' | translate: {port:remote.exposedPort} }}"
                                     data-ng-really-confirm="{{ 'ok' | translate }}"
                                     data-ng-really-cancel="{{ 'cancel' | translate }}"
@@ -107,7 +107,7 @@
                                     class="btn btn-link"
                                     data-ng-hide="remote.status !== 'active'"
                                     data-ng-disabled="remote.busy"
-                                    data-ng-really-click="OverTheBoxRemote.remove(remote)"
+                                    data-ng-really-click="$ctrl.remove(remote)"
                                     data-ng-really-message="{{ 'overTheBox_remote_authorize_delete_confirm' | translate: {port:remote.exposedPort, remoteAccessId:remote.remoteAccessId} }}"
                                     data-ng-really-confirm="{{ 'ok' | translate }}"
                                     data-ng-really-cancel="{{ 'cancel' | translate }}"
@@ -161,13 +161,13 @@
                                     >
                                         <pre
                                             data-ng-if="remote.exposedPort===22"
-                                            data-ng-bind="OverTheBoxRemote.getSshConnectionHelp(remote)"
+                                            data-ng-bind="$ctrl.getSshConnectionHelp(remote)"
                                         ></pre>
                                         <a
                                             data-ng-if="remote.exposedPort===443"
-                                            href="{{OverTheBoxRemote.getHttpConnectionHelp(remote)}}"
+                                            href="{{$ctrl.getHttpConnectionHelp(remote)}}"
                                             target="_blank"
-                                            data-ng-bind="OverTheBoxRemote.getHttpConnectionHelp(remote)"
+                                            data-ng-bind="$ctrl.getHttpConnectionHelp(remote)"
                                         ></a>
                                         <span
                                             data-ng-if="(remote.exposedPort!==443) && (remote.exposedPort!==22)"
@@ -186,12 +186,12 @@
 
             <div
                 class="mt-2"
-                data-ng-show="OverTheBoxRemote.remotes > OverTheBoxRemote.paginatedRemotes"
+                data-ng-show="$ctrl.remotes > $ctrl.paginatedRemotes"
                 data-pagination-front
                 data-go-to-page="false"
-                data-items="OverTheBoxRemote.remotes"
-                data-paginated-items="OverTheBoxRemote.paginatedRemotes"
-                data-items-per-page="OverTheBoxRemote.filter.perPage"
+                data-items="$ctrl.remotes"
+                data-paginated-items="$ctrl.paginatedRemotes"
+                data-items-per-page="$ctrl.filter.perPage"
                 data-page-placeholder="{{ 'common_pagination_go_to_page' | translate }}"
                 data-item-per-page-placeholder="{{'common_pagination_show_by_page' |translate }}"
             ></div>
@@ -208,7 +208,7 @@
                 <div class="col-md-6">
                     <form
                         name="overTheBoxAdd"
-                        data-ng-submit="OverTheBoxRemote.addRemote()"
+                        data-ng-submit="$ctrl.addRemote()"
                     >
                         <div
                             class="form-group"
@@ -227,10 +227,10 @@
                                 class="form-control"
                                 id="allowedIp"
                                 type="text"
-                                data-ng-model="OverTheBoxRemote.newRemote.allowedIp"
-                                data-ui-validate="'OverTheBoxRemote.isIpValid($value) || !$value'"
+                                data-ng-model="$ctrl.newRemote.allowedIp"
+                                data-ui-validate="'$ctrl.isIpValid($value) || !$value'"
                                 data-maxlength="50"
-                                data-ng-disabled="OverTheBoxRemote.adding"
+                                data-ng-disabled="$ctrl.adding"
                                 data-translate-attr="{ 'placeholder': 'overTheBox_remote_placeholder_ip' }"
                             />
                             <span
@@ -264,10 +264,10 @@
                                 class="form-control"
                                 id="exposedPort"
                                 type="number"
-                                data-ng-model="OverTheBoxRemote.newRemote.exposedPort"
+                                data-ng-model="$ctrl.newRemote.exposedPort"
                                 data-required
-                                data-ui-validate="$value && OverTheBoxRemote.validator.isInt($value)"
-                                data-ng-disabled="OverTheBoxRemote.adding"
+                                data-ui-validate="$value && $ctrl.validator.isInt($value)"
+                                data-ng-disabled="$ctrl.adding"
                                 data-maxlength="50"
                             />
                             <span
@@ -301,23 +301,23 @@
                                     name="expirationDate"
                                     class="form-control"
                                     data-uib-datepicker-popup="dd/MM/yyyy"
-                                    data-datepicker-options="OverTheBoxRemote.datepickerOptions"
-                                    data-ng-model="OverTheBoxRemote.newRemote.expirationDate"
-                                    data-ng-focus="OverTheBoxRemote.openDatePicker($event)"
-                                    data-ui-validate="{date: 'OverTheBoxRemote.validator.isDate($value) || !$value', future: 'OverTheBoxRemote.isInFuture($value)'}"
-                                    data-ng-disabled="OverTheBoxRemote.adding"
-                                    data-is-open="OverTheBoxRemote.pickerOpened"
+                                    data-datepicker-options="$ctrl.datepickerOptions"
+                                    data-ng-model="$ctrl.newRemote.expirationDate"
+                                    data-ng-focus="$ctrl.openDatePicker($event)"
+                                    data-ui-validate="{date: '$ctrl.validator.isDate($value) || !$value', future: '$ctrl.isInFuture($value)'}"
+                                    data-ng-disabled="$ctrl.adding"
+                                    data-is-open="$ctrl.pickerOpened"
                                     data-show-button-bar="false"
                                     data-current-text="{{:: 'today' | translate }}"
                                     data-clear-text="{{:: 'reset' | translate }}"
                                     data-close-text="{{:: 'close' | translate }}"
-                                    placeholder="{{ OverTheBoxRemote.datepickerOptions.minDate | date:'dd/MM/yyyy'}}"
+                                    placeholder="{{ $ctrl.datepickerOptions.minDate | date:'dd/MM/yyyy'}}"
                                 />
                                 <span class="input-group-btn">
                                     <button
                                         type="button"
                                         class="btn btn-link btn-xs"
-                                        data-ng-click="OverTheBoxRemote.openDatePicker($event)"
+                                        data-ng-click="$ctrl.openDatePicker($event)"
                                     >
                                         <i
                                             class="ovh-font ovh-font-scheduled"
@@ -347,7 +347,7 @@
                         <div class="form-group">
                             <label for="publicKey" class="control-label">
                                 <a
-                                    href="{{OverTheBoxRemote.publicKeyHelperUrl}}"
+                                    href="{{$ctrl.publicKeyHelperUrl}}"
                                     target="_blank"
                                     rel="noopener"
                                     data-uib-tooltip="{{ 'overTheBox_remote_public_key_tooltip' | translate }}"
@@ -360,8 +360,8 @@
                                 id="publicKey"
                                 name="publicKey"
                                 placeholder="ssh-rsa…"
-                                data-ng-model="OverTheBoxRemote.newRemote.publicKey"
-                                data-ng-disabled="OverTheBoxRemote.adding"
+                                data-ng-model="$ctrl.newRemote.publicKey"
+                                data-ng-disabled="$ctrl.adding"
                             >
                             </textarea>
                         </div>
@@ -370,7 +370,7 @@
                             <button
                                 type="submit"
                                 class="btn btn-primary"
-                                data-ng-disabled="OverTheBoxRemote.adding || overTheBoxAdd.$invalid"
+                                data-ng-disabled="$ctrl.adding || overTheBoxAdd.$invalid"
                                 data-translate="submit"
                             ></button>
                             <oui-spinner

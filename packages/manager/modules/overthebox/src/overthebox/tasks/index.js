@@ -1,24 +1,14 @@
 import angular from 'angular';
-import controller from './overTheBox-tasks.controller';
-import template from './overTheBox-tasks.html';
+
+import component from './overTheBox-tasks.component';
+import routing from './overTheBox-tasks.routing';
 
 const moduleName = 'ovhManagerOtbTasks';
 
-angular.module(moduleName, []).config(($stateProvider) => {
-  $stateProvider.state('overTheBoxes.overTheBox.tasks', {
-    url: '/tasks',
-    views: {
-      otbView: {
-        template,
-        controller,
-        controllerAs: 'OverTheBoxTasks',
-      },
-    },
-    translations: {
-      value: ['.'],
-      format: 'json',
-    },
-  });
-});
+angular
+  .module(moduleName, [])
+  .component('overTheBoxTasks', component)
+  .config(routing)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
