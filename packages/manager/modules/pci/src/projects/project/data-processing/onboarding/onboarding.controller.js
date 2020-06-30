@@ -39,9 +39,14 @@ export default class {
         'public-cloud::pci::projects::project::data-processing::onboarding::first-job',
       type: 'action',
     });
-    this.dataProcessingService.authorize(this.projectId).then(() => {
-      this.goBack();
-    });
+    this.dataProcessingService
+      .authorize(this.projectId)
+      .then(() => {
+        this.goBack();
+      })
+      .finally(() => {
+        this.isActivating = false;
+      });
   }
 
   onGuideClick(guide) {
