@@ -469,27 +469,24 @@ angular
 
         // set initialization promise
         return SidebarMenu.setInitializationPromise(
-          betaPreferenceService
-            .isBetaActive()
-            .then((beta) => $translate.refresh().then(() => beta))
-            .then((beta) => {
+          $q
+            .all({
+              beta: betaPreferenceService.isBetaActive(),
+              features: ovhFeatureFlipping.checkFeatureAvailability([
+                'sms',
+                'sms:order',
+                'sms:hlr',
+              ]),
+            })
+            .then((results) => $translate.refresh().then(() => results))
+            .then(({ beta, features }) => {
+              featuresAvailabilities = features;
               if (beta) {
-                return initSidebarMenuItems({}, beta);
+                return initSidebarMenuItems({}, featuresAvailabilities, beta);
               }
-              return $q
-                .all({
-                  count: TelecomMediator.initServiceCount(false),
-                  features: ovhFeatureFlipping.checkFeatureAvailability([
-                    'sms',
-                    'sms:order',
-                    'sms:hlr',
-                  ]),
-                })
-                .then(({ count, features }) => {
-                  featuresAvailabilities = features;
-
-                  initSidebarMenuItems(count, featuresAvailabilities, beta);
-                });
+              return TelecomMediator.initServiceCount(false).then((count) => {
+                initSidebarMenuItems(count, featuresAvailabilities, beta);
+              });
             })
             .then(() => OvhApiMe.v6().get().$promise)
             .then((user) =>
