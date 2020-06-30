@@ -155,6 +155,7 @@
   "hosting_dashboard_service_privatesql_active_long": "Włączenie prywatnej bazy SQL",
   "hosting_dashboard_service_privatesql_active_remaining": "Liczba niewłączonych prywatnych baz danych SQL: {{ count }}",
   "hosting_dashboard_service_privatesql_active_doing": "Trwa aktywacja...",
+  "hosting_dashbaord_service_privatesql_detach": "Odłącz",
   "hosting_dashboard_service_web_info_1": "na 1 zalecaną",
   "hosting_dashboard_service_web_info_other": "na {{t0}} zalecanych",
   "hosting_dashboard_service_renew": "Odnów",
@@ -486,7 +487,6 @@
   "hosting_tab_DOMAINS_configuration_modify_step1_domain_name": "Nazwa domeny",
   "hosting_tab_DOMAINS_configuration_modify_step1_domain_name_www_question": "Zmień również ustawienia subdomeny {{t0}}.",
   "hosting_tab_DOMAINS_configuration_modify_step1_home": "Katalog główny",
-  "hosting_tab_DOMAINS_configuration_modify_step1_runtime": "Framework",
   "hosting_tab_DOMAINS_configuration_modify_step1_cdn": "Włącz CDN",
   "hosting_tab_DOMAINS_configuration_modify_step2_summary": "Czy chcesz wprowadzić te zmiany dla następujących domen?",
   "hosting_tab_DOMAINS_configuration_modify_step2_domain_name": "Nazwa domeny",
@@ -1370,10 +1370,9 @@
   "hosting_dashboard_access": "Dostęp",
   "common_api_hostingWeb-1": "Nie możesz wybrać tej oferty, ponieważ Twój obecny pakiet zawiera więcej kont e-mail niż oferta, którą chciałeś wybrać.",
   "hosting_dashboard_service_activate_email": "Włącz mój pakiet e-mail",
+  "hosting_dashboard_service_detach_email_option": "Odłącz opcję e-mail",
   "hosting_dashboard_service_email_address": "Adresy e-mail",
   "hosting_dashboard_service_common_active": "Aktywny",
   "hosting_dashboard_service_common_inactive": "Nieaktywny",
-  "hosting_dashboard_email_offer_get_error": "Nie można pobrać adresu e-mail",
-  "hosting_dashboard_service_detach_email_option": "Odłącz opcję e-mail",
-  "hosting_dashbaord_service_privatesql_detach": "Odłącz"
+  "hosting_dashboard_email_offer_get_error": "Nie można pobrać adresu e-mail"
 }

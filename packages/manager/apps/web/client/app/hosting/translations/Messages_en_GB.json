@@ -155,6 +155,7 @@
   "hosting_dashboard_service_privatesql_active_long": "Enable a Private SQL database",
   "hosting_dashboard_service_privatesql_active_remaining": "{{ count }} Private SQL databases not enabled",
   "hosting_dashboard_service_privatesql_active_doing": "Activating...",
+  "hosting_dashbaord_service_privatesql_detach": "Detach",
   "hosting_dashboard_service_web_info_1": "on 1 recommended",
   "hosting_dashboard_service_web_info_other": "on {{t0}} recommended",
   "hosting_dashboard_service_renew": "Renew",
@@ -475,7 +476,6 @@
   "hosting_tab_DOMAINS_configuration_modify_step1_domain_name": "Domain name",
   "hosting_tab_DOMAINS_configuration_modify_step1_domain_name_www_question": "Also modify the {{t0}} sub-domain",
   "hosting_tab_DOMAINS_configuration_modify_step1_home": "Root folder",
-  "hosting_tab_DOMAINS_configuration_modify_step1_runtime": "Runtime software application",
   "hosting_tab_DOMAINS_configuration_modify_step1_cdn": "Activate the CDN",
   "hosting_tab_DOMAINS_configuration_modify_step2_summary": "Are you sure to want to carry out these modifications on the following domains?",
   "hosting_tab_DOMAINS_configuration_modify_step2_domain_name": "Domain name",
@@ -1358,10 +1358,9 @@
   "hosting_dashboard_access": "Access",
   "common_api_hostingWeb-1": "You cannot migrate to this solution, because your current solution has more email capacity than the solution you have selected.",
   "hosting_dashboard_service_activate_email": "Enable email solution",
+  "hosting_dashboard_service_detach_email_option": "Detach my email option",
   "hosting_dashboard_service_email_address": "Email addresses",
   "hosting_dashboard_service_common_active": "Enabled",
   "hosting_dashboard_service_common_inactive": "Disabled",
-  "hosting_dashboard_email_offer_get_error": "Unable to retrieve email address",
-  "hosting_dashboard_service_detach_email_option": "Detach my email option",
-  "hosting_dashbaord_service_privatesql_detach": "Detach"
+  "hosting_dashboard_email_offer_get_error": "Unable to retrieve email address"
 }

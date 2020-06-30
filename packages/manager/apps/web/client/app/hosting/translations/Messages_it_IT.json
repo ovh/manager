@@ -155,6 +155,7 @@
   "hosting_dashboard_service_privatesql_active_long": "Attiva un database SQL Privato",
   "hosting_dashboard_service_privatesql_active_remaining": "{{ count }} database SQL Privati non attivati",
   "hosting_dashboard_service_privatesql_active_doing": "Attivazione in corso",
+  "hosting_dashbaord_service_privatesql_detach": "Scollega",
   "hosting_dashboard_service_web_info_1": "su 1 consigliato",
   "hosting_dashboard_service_web_info_other": "sui {{t0}} consigliati",
   "hosting_dashboard_service_renew": "Rinnova",
@@ -178,6 +179,7 @@
   "hosting_dashboard_service_datacenter_p19": "Parigi",
   "hosting_dashboard_service_datacenter_gra1": "Gravelines 1",
   "hosting_dashboard_service_datacenter_gra2": "Gravelines 2",
+  "hosting_dashboard_service_datacenter_bhs1": "Beauharnois 1",
   "hosting_dashboard_service_default_runtime": "Programma d'esecuzione di default",
   "hosting_dashboard_available_space": "Spazio disponibile",
   "hosting_tab_DOMAINS_OLD": "Siti Web",
@@ -487,7 +489,6 @@
   "hosting_tab_DOMAINS_configuration_modify_step1_domain_name": "Dominio",
   "hosting_tab_DOMAINS_configuration_modify_step1_domain_name_www_question": "Modifica anche il sottodominio {{t0}}",
   "hosting_tab_DOMAINS_configuration_modify_step1_home": "Cartella di root",
-  "hosting_tab_DOMAINS_configuration_modify_step1_runtime": "Programma d'esecuzione",
   "hosting_tab_DOMAINS_configuration_modify_step1_cdn": "Attiva la CDN",
   "hosting_tab_DOMAINS_configuration_modify_step2_summary": "Vuoi davvero effettuare queste modifiche sui domini che seguono?",
   "hosting_tab_DOMAINS_configuration_modify_step2_domain_name": "Dominio",
@@ -1371,11 +1372,9 @@
   "hosting_dashboard_access": "Accesso",
   "common_api_hostingWeb-1": "Non è possibile effettuare la migrazione verso questa offerta perché il servizio corrente dispone di un numero maggiore di email rispetto alla nuova soluzione scelta.",
   "hosting_dashboard_service_activate_email": "Attiva il tuo servizio di posta",
+  "hosting_dashboard_service_detach_email_option": "Scollega la tua opzione email",
   "hosting_dashboard_service_email_address": "Account email",
   "hosting_dashboard_service_common_active": "Attivo",
   "hosting_dashboard_service_common_inactive": "Disattivo",
-  "hosting_dashboard_email_offer_get_error": "Impossibile recuperare l’indirizzo email",
-  "hosting_dashboard_service_detach_email_option": "Scollega la tua opzione email",
-  "hosting_dashbaord_service_privatesql_detach": "Scollega",
-  "hosting_dashboard_service_datacenter_bhs1": "Beauharnois 1"
+  "hosting_dashboard_email_offer_get_error": "Impossibile recuperare l’indirizzo email"
 }

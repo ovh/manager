@@ -155,6 +155,7 @@
   "hosting_dashboard_service_privatesql_active_long": "Activar una base de datos SQL privada",
   "hosting_dashboard_service_privatesql_active_remaining": "{{ count }} base(s) de datos SQL privada(s) no activa(s)",
   "hosting_dashboard_service_privatesql_active_doing": "Activando...",
+  "hosting_dashbaord_service_privatesql_detach": "Desvincular",
   "hosting_dashboard_service_web_info_1": "de 1 recomendado",
   "hosting_dashboard_service_web_info_other": "de {{t0}} recomendados",
   "hosting_dashboard_service_renew": "Renovar",
@@ -178,6 +179,7 @@
   "hosting_dashboard_service_datacenter_p19": "París",
   "hosting_dashboard_service_datacenter_gra1": "Gravelines 1",
   "hosting_dashboard_service_datacenter_gra2": "Gravelines 2",
+  "hosting_dashboard_service_datacenter_bhs1": "Beauharnois 1",
   "hosting_dashboard_service_default_runtime": "Motor de ejecución por defecto",
   "hosting_dashboard_available_space": "Espacio disponible",
   "hosting_tab_DOMAINS_OLD": "Sitios web",
@@ -487,7 +489,6 @@
   "hosting_tab_DOMAINS_configuration_modify_step1_domain_name": "Dominio",
   "hosting_tab_DOMAINS_configuration_modify_step1_domain_name_www_question": "Editar también el subdominio {{t0}}",
   "hosting_tab_DOMAINS_configuration_modify_step1_home": "Carpeta raíz",
-  "hosting_tab_DOMAINS_configuration_modify_step1_runtime": "Motor de ejecución",
   "hosting_tab_DOMAINS_configuration_modify_step1_cdn": "Activar la CDN",
   "hosting_tab_DOMAINS_configuration_modify_step2_summary": "¿Seguro que quiere aplicar los cambios en los siguientes dominios?",
   "hosting_tab_DOMAINS_configuration_modify_step2_domain_name": "Dominio",
@@ -1371,11 +1372,9 @@
   "hosting_dashboard_access": "Acceso",
   "common_api_hostingWeb-1": "No puede migrar a esta opción, ya que su solución actual dispone de más cuentas de correo que la opción seleccionada.",
   "hosting_dashboard_service_activate_email": "Activar mi solución de correo",
+  "hosting_dashboard_service_detach_email_option": "Desvincular mi opción de correo",
   "hosting_dashboard_service_email_address": "Direcciones de correo",
   "hosting_dashboard_service_common_active": "Activo",
   "hosting_dashboard_service_common_inactive": "Inactivo",
-  "hosting_dashboard_email_offer_get_error": "No se ha podido cargar la dirección de correo.",
-  "hosting_dashboard_service_detach_email_option": "Desvincular mi opción de correo",
-  "hosting_dashbaord_service_privatesql_detach": "Desvincular",
-  "hosting_dashboard_service_datacenter_bhs1": "Beauharnois 1"
+  "hosting_dashboard_email_offer_get_error": "No se ha podido cargar la dirección de correo."
 }
