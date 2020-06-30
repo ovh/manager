@@ -1,9 +1,7 @@
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.serving.namespace.infos', {
     url: '/infos',
-    views: {
-      servingView: 'ovhManagerPciProjectServingNamespaceInfosComponent',
-    },
+    component: 'ovhManagerPciProjectServingNamespaceInfosComponent',
     resolve: {
       breadcrumb: () => false,
       registry: /* @ngInject */ (

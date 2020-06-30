@@ -1,17 +1,16 @@
-import controller from './add.controller';
-import template from './add.html';
+import controller from './details.controller';
+import template from './details.html';
+import './details.scss';
 
 export default {
   bindings: {
     goBack: '<',
     namespaceId: '<',
     namespace: '<',
-    presetImages: '<',
-    flavors: '<',
-    user: '<',
-    pricesCatalog: '<',
     goToContainer: '<',
     projectId: '<',
+    model: '<',
+    metricsToken: '<',
   },
   template,
   controller,

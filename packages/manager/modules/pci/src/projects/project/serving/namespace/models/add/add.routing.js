@@ -7,11 +7,19 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     resolve: {
       goBack: /* @ngInject */ (goToNamespaceModels) => goToNamespaceModels,
+      user: /* @ngInject */ (SessionService) => SessionService.getUser(),
       flavors: /* @ngInject */ (
         OvhManagerPciServingNamespaceModelsAddServiceCapabilities,
         projectId,
       ) =>
         OvhManagerPciServingNamespaceModelsAddServiceCapabilities.getFlavors(
+          projectId,
+        ),
+      pricesCatalog: /* @ngInject */ (
+        OvhManagerPciServingNamespaceModelsAddServiceCapabilities,
+        projectId,
+      ) =>
+        OvhManagerPciServingNamespaceModelsAddServiceCapabilities.getPricesFromCatalog(
           projectId,
         ),
       presetImages: /* @ngInject */ (

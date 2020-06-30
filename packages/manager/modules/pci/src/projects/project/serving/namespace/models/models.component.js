@@ -12,6 +12,8 @@ export default {
     models: '<',
     projectId: '<',
     project: '<',
+    details: '<',
+    modelLink: '<',
   },
   template,
   controller,
