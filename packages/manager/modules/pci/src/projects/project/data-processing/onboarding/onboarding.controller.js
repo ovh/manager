@@ -10,6 +10,7 @@ export default class {
     this.$q = $q;
     this.dataProcessingService = dataProcessingService;
     this.atInternet = atInternet;
+    this.isActivating = false;
   }
 
   $onInit() {
@@ -32,14 +33,20 @@ export default class {
   }
 
   authorizeService() {
+    this.isActivating = true;
     this.atInternet.trackClick({
       name:
         'public-cloud::pci::projects::project::data-processing::onboarding::first-job',
       type: 'action',
     });
-    this.dataProcessingService.authorize(this.projectId).then(() => {
-      this.goBack();
-    });
+    this.dataProcessingService
+      .authorize(this.projectId)
+      .then(() => {
+        this.goBack();
+      })
+      .finally(() => {
+        this.isActivating = false;
+      });
   }
 
   onGuideClick(guide) {

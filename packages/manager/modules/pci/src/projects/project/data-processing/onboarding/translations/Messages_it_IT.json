@@ -5,5 +5,6 @@
   "data_processing_onboarding_action_label": "Avvia il primo job",
   "data_processing_onboarding_guides_overview_title": "Presentazione di Data Processing",
   "data_processing_onboarding_guides_quick_start_title": "Avvia il primo job Spark",
-  "data_processing_onboarding_guides_monitor_job_title": "Monitora i tuoi job"
+  "data_processing_onboarding_guides_monitor_job_title": "Monitora i tuoi job",
+  "data_processing_onboarding_activation": "Attivazione in corso..."
 }

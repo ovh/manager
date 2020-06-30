@@ -13,8 +13,13 @@
 
     <oui-button
         data-variant="primary"
+        data-ng-if="!$ctrl.isActivating"
         data-on-click="$ctrl.authorizeService()"
     >
         <span data-translate="data_processing_onboarding_action_label"></span>
     </oui-button>
+    <div class="text-center" data-ng-if="$ctrl.isActivating">
+        <oui-spinner></oui-spinner>
+        <p data-translate="data_processing_onboarding_activation"></p>
+    </div>
 </pci-project-empty>
