@@ -1,3 +1,12 @@
+## [12.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@12.5.0...@ovh-ux/manager-telecom@12.5.1) (2020-06-30)
+
+
+### Bug Fixes
+
+* **sidebar:** inject feature flipping for beta mode ([#3171](https://github.com/ovh/manager/issues/3171)) ([f9ebf09](https://github.com/ovh/manager/commit/f9ebf09bfc5c84a1047d6a330922804e177e870b))
+
+
+
 # [12.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@12.4.0...@ovh-ux/manager-telecom@12.5.0) (2020-06-29)
 
 

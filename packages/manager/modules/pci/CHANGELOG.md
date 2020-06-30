@@ -1,3 +1,12 @@
+## [3.23.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.23.1...@ovh-ux/manager-pci@3.23.2) (2020-06-30)
+
+
+### Bug Fixes
+
+* **pci.project:** remove outdated keystone banner ([#3172](https://github.com/ovh/manager/issues/3172)) ([578785e](https://github.com/ovh/manager/commit/578785e077f8d899d595f57cf4cf944e3d428c21))
+
+
+
 ## [3.23.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.23.0...@ovh-ux/manager-pci@3.23.1) (2020-06-26)
 
 
