@@ -1,15 +1,15 @@
 import angular from 'angular';
 import '@ovh-ux/ng-at-internet';
 
-import ovhManagerCatalogPrice from '@ovh-ux/manager-catalog-price';
-import routing from './add.routing';
-import component from './add.component';
+import routing from './details.routing';
+import component from './details.component';
 import service from '../service/models.module';
 import capabilities from '../../../capabilities.service';
 
 import ovhManagerPciStoragesContainers from '../../../../storages/containers';
+import metricsChartComponent from './metrics-chart';
 
-const moduleName = 'ovhManagerPciProjectServingNamespaceModelsAdd';
+const moduleName = 'ovhManagerPciProjectServingNamespaceModelsDetails';
 
 angular
   .module(moduleName, [
@@ -19,18 +19,18 @@ angular
     'pascalprecht.translate',
     'ui.router',
     'ngAtInternet',
+    metricsChartComponent,
     service,
     ovhManagerPciStoragesContainers,
-    ovhManagerCatalogPrice,
   ])
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */)
   .component(
-    'ovhManagerPciProjectServingNamespaceModelsAddComponent',
+    'ovhManagerPciProjectServingNamespaceModelsDetailsComponent',
     component,
   )
   .service(
-    'OvhManagerPciServingNamespaceModelsAddServiceCapabilities',
+    'OvhManagerPciServingNamespaceModelsDetailsServiceCapabilities',
     capabilities,
   );
 

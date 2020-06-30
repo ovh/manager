@@ -28,5 +28,6 @@
   "pci_projects_project_serving_namespace_models_update": "Actualiser",
   "pci_projects_project_serving_namespace_models_deploy_model": "Déployer un modèle",
   "pci_projects_project_serving_namespace_models_gen_token": "Générer un token",
-  "pci_projects_project_serving_namespace_models_date": "Date de création"
+  "pci_projects_project_serving_namespace_models_date": "Date de création",
+  "pci_projects_project_serving_namespace_models_details": "Détails"
 }

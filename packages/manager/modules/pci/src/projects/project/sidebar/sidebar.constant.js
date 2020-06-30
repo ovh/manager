@@ -152,11 +152,11 @@ export const MENU = [
       },
       {
         id: 'serving',
-        beta: true,
+        new: true,
         options: {
           state: 'pci.projects.project.serving',
         },
-        title: 'Serving Engine',
+        title: 'ML Serving',
         regions: ['EU'],
       },
     ],

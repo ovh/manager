@@ -7,19 +7,16 @@
     <p data-translate="pci_projects_project_serving_onboarding_content2"></p>
     <p data-translate="pci_projects_project_serving_onboarding_content3"></p>
 
-    <pci-project-lab-agreements
-        data-lab="$ctrl.lab"
-        data-ng-if="!$ctrl.lab.isActivated()"
-        data-on-accept="$ctrl.acceptLab(accepted)"
-    ></pci-project-lab-agreements>
-
-    <oui-button
-        data-variant="primary"
-        data-disabled="!$ctrl.labAccepted"
-        data-on-click="$ctrl.addNamespace()"
+    <button
+        type="button"
+        class="oui-button oui-button_primary"
+        data-ng-click="$ctrl.addNamespace()"
+        data-track-on="click"
+        data-track-name="public-cloud::pci::projects::project::serving::onboarding::first-namespace"
+        data-track-type="action"
     >
         <span
             data-translate="pci_projects_project_serving_onboarding_action_label"
         ></span>
-    </oui-button>
+    </button>
 </pci-project-empty>

@@ -1,5 +1,6 @@
 import angular from 'angular';
 import 'angular-translate';
+import '@ovh-ux/ng-at-internet';
 
 import routing from './infos.routing';
 
@@ -18,6 +19,7 @@ angular
     'ovh-api-services',
     'pascalprecht.translate',
     'ui.router',
+    'ngAtInternet',
     registry,
     attachRegistry,
     detachRegistry,

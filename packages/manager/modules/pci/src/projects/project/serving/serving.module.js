@@ -6,6 +6,7 @@ import '@uirouter/angularjs';
 import 'angular-translate';
 import 'ovh-ui-angular';
 import 'ovh-api-services';
+import '@ovh-ux/ng-at-internet';
 
 import labs from '../../../components/project/labs';
 
@@ -25,6 +26,7 @@ angular
     'ngOvhCloudUniverseComponents',
     'ngTranslateAsyncLoader',
     'oui',
+    'ngAtInternet',
     'ovh-api-services',
     'ovhManagerCore',
     'pascalprecht.translate',

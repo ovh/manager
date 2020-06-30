@@ -1,7 +1,8 @@
 export default class OvhManagerPciServingNamespaceModelsAddServiceCapabilities {
   /* @ngInject */
-  constructor(OvhApiCloudProjectAi) {
+  constructor(OvhApiCloudProjectAi, CucPriceHelper) {
     this.OvhApiCloudProjectAi = OvhApiCloudProjectAi;
+    this.CucPriceHelper = CucPriceHelper;
   }
 
   getFlavors(serviceName) {
@@ -22,5 +23,9 @@ export default class OvhManagerPciServingNamespaceModelsAddServiceCapabilities {
       .query({
         serviceName,
       }).$promise;
+  }
+
+  getPricesFromCatalog(projectId) {
+    return this.CucPriceHelper.getPrices(projectId);
   }
 }

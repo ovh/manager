@@ -170,20 +170,15 @@
             data-editable="!$ctrl.isAdding"
             data-loading="$ctrl.isAdding"
         >
-            <span
-                data-translate="pci_projects_project_serving_namespace_models_add_autoscaling_info"
-            ></span>
-
             <oui-field
                 data-label="{{:: 'pci_projects_project_serving_namespace_models_storage_scale_min' | translate }}"
                 data-size="auto"
             >
                 <oui-numeric
                     min="1"
-                    max="1"
-                    data-model="$ctrl.scale_min"
-                    name="scale_min"
-                    disabled
+                    max="20"
+                    data-model="$ctrl.model.autoscalingSpec.minReplicas"
+                    name="minReplicas"
                 >
                 </oui-numeric>
             </oui-field>
@@ -192,11 +187,45 @@
                 data-size="auto"
             >
                 <oui-numeric
-                    min="3"
-                    max="3"
-                    data-model="$ctrl.scale_max"
-                    name="scale_max"
-                    disabled
+                    min="2"
+                    max="20"
+                    data-model="$ctrl.model.autoscalingSpec.maxReplicas"
+                    name="maxReplicas"
+                >
+                </oui-numeric>
+            </oui-field>
+            <button
+                class="oui-button oui-button_link sizing__advanced-button"
+                type="button"
+                data-ng-click="$ctrl.onClickAdvancedConfigurationAutoscalerSpecHandler()"
+            >
+                {{ ::
+                'pci_projects_project_serving_namespace_models_scale_advanced_configuration'
+                | translate }}
+            </button>
+            <oui-field
+                data-label="{{:: 'pci_projects_project_serving_namespace_models_scale_advanced_configuration_memory' | translate }}"
+                data-size="auto"
+                data-ng-if="$ctrl.advancedConfigurationAutoscalerSpec"
+            >
+                <oui-numeric
+                    min="30"
+                    max="95"
+                    data-model="$ctrl.model.autoscalingSpec.memoryAverageUtilization"
+                    name="memoryAverageUtilization"
+                >
+                </oui-numeric>
+            </oui-field>
+            <oui-field
+                data-label="{{:: 'pci_projects_project_serving_namespace_models_scale_advanced_configuration_cpu' | translate }}"
+                data-size="auto"
+                data-ng-if="$ctrl.advancedConfigurationAutoscalerSpec"
+            >
+                <oui-numeric
+                    min="30"
+                    max="100"
+                    data-model="$ctrl.model.autoscalingSpec.cpuAverageUtilization"
+                    name="cpuAverageUtilization"
                 >
                 </oui-numeric>
             </oui-field>
@@ -208,10 +237,6 @@
             data-editable="!$ctrl.isAdding"
             data-loading="$ctrl.isAdding"
         >
-            <span
-                data-translate="pci_projects_project_serving_namespace_models_add_instances_info"
-            ></span>
-
             <div class="container-fluid px-0">
                 <div class="row">
                     <div
@@ -221,11 +246,26 @@
                         <oui-select-picker
                             data-name="{{:: flavor.id }}"
                             data-model="$ctrl.model.flavor"
-                            data-label="{{:: flavor.description }}"
+                            data-label="{{:: flavor.id }}"
                             data-variant="light"
                             data-values="[flavor]"
                             data-required
                         >
+                            <oui-select-picker-description>
+                                {{ flavor.description }}
+                                <p>
+                                    <ovh-manager-catalog-price
+                                        data-price="$ctrl.getPrice(flavor.id)"
+                                        data-tax="$ctrl.getTax(flavor.id)"
+                                        data-user="$ctrl.user"
+                                    >
+                                    </ovh-manager-catalog-price>
+                                    /
+                                    <span
+                                        data-translate="pci_projects_project_serving_namespace_models_add_price_unit"
+                                    ></span>
+                                </p>
+                            </oui-select-picker-description>
                         </oui-select-picker>
                     </div>
                 </div>
