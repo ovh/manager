@@ -1,9 +1,4 @@
-import filter from 'lodash/filter';
-import get from 'lodash/get';
-import groupBy from 'lodash/groupBy';
-import map from 'lodash/map';
-import reverse from 'lodash/reverse';
-import sortBy from 'lodash/sortBy';
+import { filter, get, groupBy, map, reverse, sortBy } from 'lodash-es';
 
 export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
   $stateProvider.state('app.dashboard', {

@@ -20,62 +20,47 @@
                 </a>
             </p>
             <p data-translate="hosting_tab_USER_LOGS_dashboard_information"></p>
-            <dl>
-                <dt data-translate="hosting_tab_USER_LOGS_dashboard_stats"></dt>
-                <dd>
-                    <a
-                        data-ng-href="{{ctrl.urlUrchin}}"
-                        target="_blank"
-                        title="{{hosting_tab_USER_LOGS_dashboard_stats_newtab}}"
-                        data-ng-if="!ctrl.userLogsToken"
-                    >
-                        <span data-ng-bind="ctrl.urlUrchin"></span>
-                        <span
-                            class="fa fa-external-link"
-                            aria-hidden="true"
-                        ></span>
-                    </a>
-                    <a
-                        data-ng-href="{{ctrl.urlUrchin + '?token=' + ctrl.userLogsToken}}"
-                        target="_blank"
-                        title="{{hosting_tab_USER_LOGS_dashboard_stats_newtab}}"
-                        data-ng-if="ctrl.userLogsToken"
-                    >
-                        <span data-ng-bind="ctrl.urlUrchin"></span>
-                        <span
-                            class="fa fa-external-link"
-                            aria-hidden="true"
-                        ></span>
-                    </a>
-                </dd>
-
-                <dt data-translate="hosting_tab_USER_LOGS_dashboard_logs"></dt>
-                <dd>
-                    <a
-                        data-ng-href="{{ctrl.urlLogs}}"
-                        target="_blank"
-                        title="{{hosting_tab_USER_LOGS_dashboard_logs_link}} {{ 'common_newtab' | translate }}"
-                        data-ng-if="!ctrl.userLogsToken"
-                    >
-                        <span data-ng-bind="ctrl.urlLogs"></span>
-                        <span
-                            class="fa fa-external-link"
-                            aria-hidden="true"
-                        ></span>
-                    </a>
-                    <a
-                        data-ng-href="{{ ctrl.urlLogs + '?token=' +  ctrl.userLogsToken}}"
-                        target="_blank"
-                        title="{{hosting_tab_USER_LOGS_dashboard_logs_link}} {{ 'common_newtab' | translate }}"
-                        data-ng-if="ctrl.userLogsToken"
-                    >
-                        <span data-ng-bind="ctrl.urlLogs"></span>
-                        <span
-                            class="fa fa-external-link"
-                            aria-hidden="true"
-                        ></span>
-                    </a>
-                </dd>
+            <dl data-ng-if="ctrl.logs">
+                <div data-ng-if="ctrl.logs.stats">
+                    <dt
+                        data-translate="hosting_tab_USER_LOGS_dashboard_stats"
+                    ></dt>
+                    <dd>
+                        <a
+                            class="oui-link_icon"
+                            data-ng-href="{{ctrl.logs.stats}}"
+                            target="_blank"
+                            rel="noopener"
+                            title="{{hosting_tab_USER_LOGS_dashboard_stats_newtab}}"
+                        >
+                            <span data-ng-bind="ctrl.logs.stats"></span>
+                            <span
+                                class="oui-icon oui-icon-external_link"
+                                aria-hidden="true"
+                            ></span>
+                        </a>
+                    </dd>
+                </div>
+                <div data-ng-if="ctrl.logs.logs">
+                    <dt
+                        data-translate="hosting_tab_USER_LOGS_dashboard_logs"
+                    ></dt>
+                    <dd>
+                        <a
+                            class="oui-link_icon"
+                            data-ng-href="{{ctrl.userLogsToken ? ctrl.logs.logs + '?token=' +  ctrl.userLogsToken : ctrl.logs.logs }}"
+                            target="_blank"
+                            rel="noopener"
+                            title="{{hosting_tab_USER_LOGS_dashboard_logs_link}} {{ 'common_newtab' | translate }}"
+                        >
+                            <span data-ng-bind="ctrl.logs.logs"></span>
+                            <span
+                                class="oui-icon oui-icon-external_link"
+                                aria-hidden="true"
+                            ></span>
+                        </a>
+                    </dd>
+                </div>
             </dl>
 
             <div class="mt-5">

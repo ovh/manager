@@ -125,6 +125,16 @@ export const EMAILPRO_CONFIG = {
       },
     },
   },
+  API_ROUTES: {
+    CA: {},
+    EU: {
+      TASKS_REDIRECTION: '/email/domain/{domain}/task/redirection',
+      TASKS_MAILING_LIST: '/email/domain/{domain}/task/mailinglist',
+      TASK_MAILING_LIST: '/email/domain/{domain}/task/mailinglist/{id}',
+      TASK_REDIRECTION: '/email/domain/{domain}/task/redirection/{id}',
+    },
+    US: {},
+  },
 };
 
 export default {

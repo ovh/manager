@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/mfa-enrollment",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "private": true,
   "description": "Multi-factor authentication enrollment component.",
   "repository": {
@@ -17,8 +17,8 @@
     "lodash": "^4.17.15"
   },
   "peerDependencies": {
-    "@ovh-ux/manager-core": "^8.0.0 || ^9.0.0",
-    "@ovh-ux/ng-at-internet": "^5.0.0",
+    "@ovh-ux/manager-core": "^9.0.0",
+    "@ovh-ux/ng-at-internet": "^5.0.1",
     "@uirouter/angularjs": "^1.0.23",
     "angular": "^1.7.5",
     "angular-aria": "^1.7.5",
@@ -26,7 +26,7 @@
     "angular-i18n": "~1.5.x",
     "angular-sanitize": "^1.7.5",
     "angular-translate": "^2.18.1",
-    "ovh-ui-angular": "^3.16.2",
-    "ovh-ui-kit": "^2.42.7"
+    "ovh-ui-angular": "^3.16.3",
+    "ovh-ui-kit": "^2.42.8"
   }
 }

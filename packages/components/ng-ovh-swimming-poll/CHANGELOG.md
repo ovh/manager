@@ -1,3 +1,12 @@
+## [5.0.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-swimming-poll@5.0.0...@ovh-ux/ng-ovh-swimming-poll@5.0.1) (2020-06-02)
+
+
+### Performance Improvements
+
+* **ng-ovh-swimming-poll:** replace lodash with lodash-es ([#3049](https://github.com/ovh/manager/issues/3049)) ([76d7de8](https://github.com/ovh/manager/commit/76d7de89d5109d52bd91908fc467611d94b7f09a))
+
+
+
 # [5.0.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-swimming-poll@4.0.2...@ovh-ux/ng-ovh-swimming-poll@5.0.0) (2020-04-01)
 
 

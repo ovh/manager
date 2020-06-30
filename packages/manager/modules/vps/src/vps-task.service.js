@@ -55,7 +55,8 @@ export default class VpsTaskService {
       pollFunction: (task) => this.getTask(serviceName, task.id),
       stopCondition: (task) => includes(['done', 'error'], task.state),
       onItemUpdated: (task) => this.manageMessage(containerName, task),
-      onItemDone: () => this.manageSuccess(serviceName, containerName),
+      onItemDone: (task) =>
+        this.manageSuccess(serviceName, containerName, task),
     });
   }
 
@@ -65,8 +66,8 @@ export default class VpsTaskService {
     }
   }
 
-  manageSuccess(serviceName, containerName) {
-    this.flushMessages(containerName);
+  manageSuccess(serviceName, containerName, task) {
+    this.flushMessages(containerName, task);
     this.$rootScope.$broadcast('tasks.success', serviceName);
     this.CucCloudMessage.success(
       this.$translate.instant('vps_dashboard_task_finish'),
@@ -95,10 +96,9 @@ export default class VpsTaskService {
 
   flushMessages(containerName, task) {
     forEach(this.CucCloudMessage.getMessages(containerName), (message) => {
-      if (message.class === 'task') {
-        set(message, 'dismissed', true);
-      }
       if (task && task.id === message.id) {
+        set(message, 'dismissed', true);
+      } else if (!task && message.class === 'task') {
         set(message, 'dismissed', true);
       }
     });

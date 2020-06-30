@@ -1,3 +1,21 @@
+## [6.0.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-responsive-tabs@6.0.1...@ovh-ux/ng-ovh-responsive-tabs@6.0.2) (2020-06-09)
+
+
+### Bug Fixes
+
+* **emailpro:** fix header tabs button ([47d208b](https://github.com/ovh/manager/commit/47d208b44dcad2fedab44b6771d4da79a80dbfc9))
+
+
+
+## [6.0.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-responsive-tabs@6.0.0...@ovh-ux/ng-ovh-responsive-tabs@6.0.1) (2020-06-02)
+
+
+### Performance Improvements
+
+* **ng-ovh-responsive-tabs:** replace lodash with lodash-es ([#3043](https://github.com/ovh/manager/issues/3043)) ([5b20820](https://github.com/ovh/manager/commit/5b208201a9bf0628187e3df5e8c3c3376d4b2e87))
+
+
+
 # [6.0.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-responsive-tabs@5.0.3...@ovh-ux/ng-ovh-responsive-tabs@6.0.0) (2020-04-01)
 
 

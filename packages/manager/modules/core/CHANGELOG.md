@@ -1,3 +1,31 @@
+# [9.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@9.3.0...@ovh-ux/manager-core@9.4.0) (2020-06-16)
+
+
+### Features
+
+* use redirection service for contact management ([6efbb2b](https://github.com/ovh/manager/commit/6efbb2b7e43d19daf5416ba603700d461955de50))
+
+
+### Performance Improvements
+
+* replace lodash with lodash-es ([#3052](https://github.com/ovh/manager/issues/3052)) ([2945475](https://github.com/ovh/manager/commit/2945475fe7c14db407973ddd5b2dde0bf2739489))
+
+
+
+# [9.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@9.2.0...@ovh-ux/manager-core@9.3.0) (2020-06-09)
+
+
+### Bug Fixes
+
+* **emailpro:** fix header tabs button ([47d208b](https://github.com/ovh/manager/commit/47d208b44dcad2fedab44b6771d4da79a80dbfc9))
+
+
+### Features
+
+* **oui-angular:** add configuration for pagination ([#3027](https://github.com/ovh/manager/issues/3027)) ([22ae217](https://github.com/ovh/manager/commit/22ae217287964a042ed214915cdd18877b8823fa))
+
+
+
 # [9.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@9.1.0...@ovh-ux/manager-core@9.2.0) (2020-05-14)
 
 
@@ -126,8 +154,6 @@
 ### BREAKING CHANGES
 
 * **core:** remove ovh-api-services peer dependency
-
-Signed-off-by: frenauvh <florian.renaut@corp.ovh.com>
 
 
 

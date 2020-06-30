@@ -1,3 +1,80 @@
+## [3.23.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.23.1...@ovh-ux/manager-pci@3.23.2) (2020-06-30)
+
+
+### Bug Fixes
+
+* **pci.project:** remove outdated keystone banner ([#3172](https://github.com/ovh/manager/issues/3172)) ([578785e](https://github.com/ovh/manager/commit/578785e077f8d899d595f57cf4cf944e3d428c21))
+
+
+
+## [3.23.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.23.0...@ovh-ux/manager-pci@3.23.1) (2020-06-26)
+
+
+### Bug Fixes
+
+* **dataprocessing:** disable button on activation ([#3161](https://github.com/ovh/manager/issues/3161)) ([3efc10b](https://github.com/ovh/manager/commit/3efc10bc3781e8249560ded287fede77c48e6b88))
+
+
+
+# [3.23.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.22.2...@ovh-ux/manager-pci@3.23.0) (2020-06-23)
+
+
+### Bug Fixes
+
+* **pci.project:** update US doc links ([#3110](https://github.com/ovh/manager/issues/3110)) ([c818506](https://github.com/ovh/manager/commit/c81850680bef94fa746cfabed8550169786bbbed))
+
+
+### Features
+
+* **private.registry:** select medium plan as default ([#3149](https://github.com/ovh/manager/issues/3149)) ([c5b0445](https://github.com/ovh/manager/commit/c5b04458bb7b04c6f1be79c84049106dd5c9a51d))
+
+
+
+## [3.22.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.22.1...@ovh-ux/manager-pci@3.22.2) (2020-06-17)
+
+
+### Bug Fixes
+
+* **pci:** remove keystone warning for US region ([#3112](https://github.com/ovh/manager/issues/3112)) ([59e2249](https://github.com/ovh/manager/commit/59e224948886ffe2f6ae3b816342cd483527090a))
+
+
+
+## [3.22.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.22.0...@ovh-ux/manager-pci@3.22.1) (2020-06-09)
+
+
+### Bug Fixes
+
+* **emailpro:** fix header tabs button ([47d208b](https://github.com/ovh/manager/commit/47d208b44dcad2fedab44b6771d4da79a80dbfc9))
+* **i18n:** add missing translations [CDS 426] ([83560b6](https://github.com/ovh/manager/commit/83560b6ffe35a21a2f4d8abc927e45629912f5f9))
+
+
+### Reverts
+
+* Revert "fix: remove ui consistency" ([5435159](https://github.com/ovh/manager/commit/543515950323b10d054ba354ff0054c5a8a3d3d1))
+
+
+
+# [3.22.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.21.0...@ovh-ux/manager-pci@3.22.0) (2020-06-02)
+
+
+### Bug Fixes
+
+* **translations:** clean translations files ([#3038](https://github.com/ovh/manager/issues/3038)) ([57040ad](https://github.com/ovh/manager/commit/57040adfcac601cbf48f27fb804decfd60800797))
+* remove ui consistency ([#3029](https://github.com/ovh/manager/issues/3029)) ([34be0be](https://github.com/ovh/manager/commit/34be0bea216d575254017265d5650dace12ae582))
+* **i18n:** add missing translations [CDS 397] ([1e2a814](https://github.com/ovh/manager/commit/1e2a8147abfa4143876ba86edd1d50ae43ebc10a))
+* **i18n:** add missing translations [CDS 400] ([dbe36c8](https://github.com/ovh/manager/commit/dbe36c89eafe858b68e73503e8d052fd64bbb418))
+* **i18n:** add missing translations [CDS 409] ([86adc04](https://github.com/ovh/manager/commit/86adc0469a44a243bb3fb61296b284245a3b1b6e))
+* **i18n:** add missing translations [CDS 415] ([206c5be](https://github.com/ovh/manager/commit/206c5be156e462a8c657346d682eeb764dae5b7f))
+* **i18n:** add missing translations [CDS 416] ([c5054f8](https://github.com/ovh/manager/commit/c5054f82aade5e00949867f247d2629763859636))
+* **i18n:** add missing translations [CDS 418] ([2e6cd3a](https://github.com/ovh/manager/commit/2e6cd3a40a05108683bf90c75db9a3a8cf80fd59))
+
+
+### Features
+
+* add ovhcloud light theme imports ([24d56fb](https://github.com/ovh/manager/commit/24d56fb62a949e01de5f9929c0fe53239c889a59))
+
+
+
 # [3.21.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.20.0...@ovh-ux/manager-pci@3.21.0) (2020-05-19)
 
 

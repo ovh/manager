@@ -17,8 +17,6 @@ export const DATABASE_ISOLATION_TYPES = {
   SHARED: 'shared',
 };
 
-export const DEFAULT_PLANCODE = 'cloudweb1';
-
 export const DISK_SIZE_MULTIPLE = {
   THOUSAND: 1000,
   MILLION: 1000000,
@@ -44,7 +42,6 @@ export const WEBHOSTING_ORDER_PRODUCT = 'webHosting';
 export default {
   CONFIGURATION_OPTIONS,
   DATABASE_ISOLATION_TYPES,
-  DEFAULT_PLANCODE,
   DISK_SIZE_MULTIPLE,
   DISK_SIZE_UNIT,
   HIGHLIGHTS,

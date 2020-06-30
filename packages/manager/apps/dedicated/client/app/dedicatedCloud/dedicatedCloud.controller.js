@@ -100,17 +100,6 @@ angular.module('App').controller(
       return this.loadDedicatedCloud();
     }
 
-    loadNewPrices() {
-      return this.DedicatedCloud.getNewPrices(this.$stateParams.productId).then(
-        (newPrices) => {
-          this.$scope.newPriceInformation = newPrices.resources;
-          this.$scope.hasChangePrices =
-            newPrices.resources.filter((resource) => resource.changed === true)
-              .length > 0;
-        },
-      );
-    }
-
     loadUserInfo() {
       return this.User.getUser().then((user) => {
         this.$scope.dedicatedCloud.email = user.email;
@@ -138,7 +127,6 @@ angular.module('App').controller(
               this.$scope.dedicatedCloud.description,
             );
 
-            this.loadNewPrices();
             this.loadUserInfo();
           })
           .catch((data) => {

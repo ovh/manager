@@ -1,6 +1,7 @@
 import isNull from 'lodash/isNull';
 import kebabCase from 'lodash/kebabCase';
 import toUpper from 'lodash/toUpper';
+import { Environment } from '@ovh-ux/manager-config';
 
 export default /* @ngInject */ (
   $scope,
@@ -15,8 +16,12 @@ export default /* @ngInject */ (
     'INFORMATION',
     'DOMAIN',
     'ACCOUNT',
-    $scope.exchange.isMXPlan ? 'MAILING_LIST' : null,
-    $scope.exchange.isMXPlan ? 'REDIRECTION' : null,
+    Environment.getRegion() === 'EU' && $scope.exchange.isMXPlan
+      ? 'MAILING_LIST'
+      : null,
+    Environment.getRegion() === 'EU' && $scope.exchange.isMXPlan
+      ? 'REDIRECTION'
+      : null,
     'EXTERNAL_CONTACT',
   ].filter((tab) => !isNull(tab));
 
@@ -28,11 +33,13 @@ export default /* @ngInject */ (
         target: 'DISCLAIMER',
         type: 'SWITCH_TABS',
       },
-      {
-        label: $translate.instant('emailpro_tab_TASKS'),
-        target: 'TASK',
-        type: 'SWITCH_TABS',
-      },
+      Environment.getRegion() === 'EU'
+        ? {
+            label: $translate.instant('emailpro_tab_TASKS'),
+            target: 'TASK',
+            type: 'SWITCH_TABS',
+          }
+        : null,
       {
         type: 'SEPARATOR',
       },

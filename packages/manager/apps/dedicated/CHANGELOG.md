@@ -1,3 +1,77 @@
+## [12.5.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@12.5.4...@ovh-ux/manager-dedicated@12.5.5) (2020-06-17)
+
+
+### Bug Fixes
+
+* **dedicated.configuration:** update US doc link ([#3111](https://github.com/ovh/manager/issues/3111)) ([2299ffb](https://github.com/ovh/manager/commit/2299ffb03d19c90c64d58d0663f7286aac9dbe32))
+
+
+
+## [12.5.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@12.5.3...@ovh-ux/manager-dedicated@12.5.4) (2020-06-16)
+
+
+### Bug Fixes
+
+* **account.contacts.service:** url encode servicename ([#3077](https://github.com/ovh/manager/issues/3077)) ([a31dc09](https://github.com/ovh/manager/commit/a31dc0966169a825294d04ec7e5a284223b5b929))
+
+
+
+## [12.5.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@12.5.2...@ovh-ux/manager-dedicated@12.5.3) (2020-06-15)
+
+
+### Bug Fixes
+
+* **dedicatedcloud:** change the way to fetch the catalog ([#3116](https://github.com/ovh/manager/issues/3116)) ([a272cee](https://github.com/ovh/manager/commit/a272cee7653c34444cd3a3378e090264096ea549))
+
+
+
+## [12.5.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@12.5.1...@ovh-ux/manager-dedicated@12.5.2) (2020-06-09)
+
+
+### Bug Fixes
+
+* **account.user.dashboard:** update bill links for enterprise customer ([#3030](https://github.com/ovh/manager/issues/3030)) ([cac2593](https://github.com/ovh/manager/commit/cac25935b63d5a0a0ed59756288414c0f4fa55db))
+* **emailpro:** fix header tabs button ([47d208b](https://github.com/ovh/manager/commit/47d208b44dcad2fedab44b6771d4da79a80dbfc9))
+* **ip:** handle deleted services ([296f3a3](https://github.com/ovh/manager/commit/296f3a3ae47ff42996c95e3593252c820f5c5f07))
+* **ip:** handle ip offers region based on available countries ([ad32575](https://github.com/ovh/manager/commit/ad32575f728f883df2db677fbd3f495873b8f1cc))
+
+
+### Reverts
+
+* Revert "fix: remove ui consistency" ([5435159](https://github.com/ovh/manager/commit/543515950323b10d054ba354ff0054c5a8a3d3d1))
+
+
+
+## [12.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@12.5.0...@ovh-ux/manager-dedicated@12.5.1) (2020-06-02)
+
+
+### Bug Fixes
+
+* **deps:** update dependencies with latest version ([#3057](https://github.com/ovh/manager/issues/3057)) ([24d06ad](https://github.com/ovh/manager/commit/24d06addfaab0716e725242beae2d3d92feb8856))
+
+
+
+# [12.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@12.4.3...@ovh-ux/manager-dedicated@12.5.0) (2020-06-02)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 423] ([23a5258](https://github.com/ovh/manager/commit/23a525814da061793ec907b6939e48cca1292d5b))
+* **translations:** clean translations files ([#3038](https://github.com/ovh/manager/issues/3038)) ([57040ad](https://github.com/ovh/manager/commit/57040adfcac601cbf48f27fb804decfd60800797))
+* remove ui consistency ([#3029](https://github.com/ovh/manager/issues/3029)) ([34be0be](https://github.com/ovh/manager/commit/34be0bea216d575254017265d5650dace12ae582))
+* **i18n:** add missing translations [CDS 409] ([86adc04](https://github.com/ovh/manager/commit/86adc0469a44a243bb3fb61296b284245a3b1b6e))
+* **server-sidebar:** fix ms-Icon hover effect ([#2983](https://github.com/ovh/manager/issues/2983)) ([4bb32cc](https://github.com/ovh/manager/commit/4bb32ccbd3e7d0e09beb4f60701d3256d7ae7727))
+
+
+### Features
+
+* **billing.confirm-terminate:** revamp termination form ([faf2755](https://github.com/ovh/manager/commit/faf2755a34c41691f55f11f1ea8ca463cb9bf550))
+* add ovhcloud light theme imports ([24d56fb](https://github.com/ovh/manager/commit/24d56fb62a949e01de5f9929c0fe53239c889a59))
+* **account.contacts:** sort services consistently by name and category ([#2783](https://github.com/ovh/manager/issues/2783)) ([aa19a43](https://github.com/ovh/manager/commit/aa19a43995da924336288357202585604107999e))
+* **sidebar:** apply ovhcloud light theme ([cf38dc9](https://github.com/ovh/manager/commit/cf38dc9e5a788062f22fdbc1432aa36f0edbb29a))
+
+
+
 ## [12.4.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@12.4.2...@ovh-ux/manager-dedicated@12.4.3) (2020-05-18)
 
 

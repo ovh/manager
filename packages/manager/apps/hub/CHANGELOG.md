@@ -1,3 +1,49 @@
+## [1.4.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@1.4.1...@ovh-ux/manager-hub-app@1.4.2) (2020-06-16)
+
+
+### Performance Improvements
+
+* **hub:** remove unecessary debt api call ([#3104](https://github.com/ovh/manager/issues/3104)) ([08830f1](https://github.com/ovh/manager/commit/08830f1b0451859652a2e1061a43258d5e4ac8d7))
+
+
+
+## [1.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@1.4.0...@ovh-ux/manager-hub-app@1.4.1) (2020-06-09)
+
+
+### Bug Fixes
+
+* **emailpro:** fix header tabs button ([47d208b](https://github.com/ovh/manager/commit/47d208b44dcad2fedab44b6771d4da79a80dbfc9))
+
+
+### Performance Improvements
+
+* **hub:** replace lodash with lodash-es ([#3051](https://github.com/ovh/manager/issues/3051)) ([a9e765d](https://github.com/ovh/manager/commit/a9e765d42402381b2836c05db71da0b17b3debd6))
+
+
+### Reverts
+
+* Revert "fix: remove ui consistency" ([5435159](https://github.com/ovh/manager/commit/543515950323b10d054ba354ff0054c5a8a3d3d1))
+
+
+
+# [1.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@1.3.0...@ovh-ux/manager-hub-app@1.4.0) (2020-06-02)
+
+
+### Bug Fixes
+
+* remove ui consistency ([#3029](https://github.com/ovh/manager/issues/3029)) ([34be0be](https://github.com/ovh/manager/commit/34be0bea216d575254017265d5650dace12ae582))
+* **i18n:** add missing translations [CDS 408] ([5cf4373](https://github.com/ovh/manager/commit/5cf43736425444537540366fe32340cd0561e368))
+* fix styles to match ui specs ([43132ff](https://github.com/ovh/manager/commit/43132ff4d6b32375deeb779621740b04cafb67c2))
+
+
+### Features
+
+* **dashboard:** inject support data from hub aapi ([aa41763](https://github.com/ovh/manager/commit/aa41763a26838afe2df0b801f0034422a19f6aa8))
+* **order-dashboard:** display assistance request ([d93683a](https://github.com/ovh/manager/commit/d93683a653db79b39365323d6fec6c60f155c022))
+* add ovhcloud light theme imports ([24d56fb](https://github.com/ovh/manager/commit/24d56fb62a949e01de5f9929c0fe53239c889a59))
+
+
+
 # [1.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@1.2.0...@ovh-ux/manager-hub-app@1.3.0) (2020-05-13)
 
 

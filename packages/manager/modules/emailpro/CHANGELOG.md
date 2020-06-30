@@ -1,3 +1,32 @@
+# [1.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@1.7.1...@ovh-ux/manager-emailpro@1.8.0) (2020-06-16)
+
+
+### Bug Fixes
+
+* do not allow plus addressing ([#3106](https://github.com/ovh/manager/issues/3106)) ([bedce05](https://github.com/ovh/manager/commit/bedce050ad7b6f654718c5059eb661fc5a64035b))
+* **domain.update:** display values according to region ([5e9ab6a](https://github.com/ovh/manager/commit/5e9ab6ad22e3118b2248d3baab93868e46afe15a))
+* **emailpro:** canada api calls ([747e3cf](https://github.com/ovh/manager/commit/747e3cf6d10b8d5be49737f0d488c694f6360270))
+
+
+### Features
+
+* prevent calling /email/pro APIs in CA ([#2981](https://github.com/ovh/manager/issues/2981)) ([6ab3b97](https://github.com/ovh/manager/commit/6ab3b97fbe6bfad3c6f7d7e71dc632887bbf3b46))
+* **emailpro:** disable mailing list for CA region ([53f751f](https://github.com/ovh/manager/commit/53f751f8d717c37563170124f87fe1acfb740c87))
+* **emailpro:** disable redirections for CA region ([a74b46a](https://github.com/ovh/manager/commit/a74b46a8f659e1c3635612834f9bea20fbfa1f42))
+* **emailpro:** disable tasks for CA region ([a0ef478](https://github.com/ovh/manager/commit/a0ef4783e9bc7ca2ad88823fe15a828f35c61023))
+* **web-mxplan:** hide dashboard options for canada ([13a76fd](https://github.com/ovh/manager/commit/13a76fd6233a5e9d146a025f7d6d87393cffc2df))
+
+
+
+## [1.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@1.7.0...@ovh-ux/manager-emailpro@1.7.1) (2020-06-09)
+
+
+### Bug Fixes
+
+* **emailpro:** fix header tabs button ([47d208b](https://github.com/ovh/manager/commit/47d208b44dcad2fedab44b6771d4da79a80dbfc9))
+
+
+
 # [1.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@1.6.0...@ovh-ux/manager-emailpro@1.7.0) (2020-04-15)
 
 

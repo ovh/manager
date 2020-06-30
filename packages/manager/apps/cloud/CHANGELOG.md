@@ -1,3 +1,78 @@
+# [9.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@9.5.2...@ovh-ux/manager-cloud@9.6.0) (2020-06-26)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 456] ([1d41cac](https://github.com/ovh/manager/commit/1d41cac5df758a6369ba0848743050d00dddce8f))
+
+
+### Features
+
+* **dbaas.logs:** hosted kibana view ([#3129](https://github.com/ovh/manager/issues/3129)) ([7fb3fb8](https://github.com/ovh/manager/commit/7fb3fb89d453c1132052231b5e033a995f874caf))
+
+
+
+## [9.5.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@9.5.1...@ovh-ux/manager-cloud@9.5.2) (2020-06-16)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 435] ([d398416](https://github.com/ovh/manager/commit/d3984165ab706783325f2a5113981bc95a31b6d2))
+* **i18n:** add missing translations [CDS 442] ([01919d0](https://github.com/ovh/manager/commit/01919d088e1b9017365d88a70b662ebff90b482c))
+
+
+
+## [9.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@9.5.0...@ovh-ux/manager-cloud@9.5.1) (2020-06-09)
+
+
+### Bug Fixes
+
+* **emailpro:** fix header tabs button ([47d208b](https://github.com/ovh/manager/commit/47d208b44dcad2fedab44b6771d4da79a80dbfc9))
+* **i18n:** add missing translations [CDS 426] ([83560b6](https://github.com/ovh/manager/commit/83560b6ffe35a21a2f4d8abc927e45629912f5f9))
+* **i18n:** add missing translations [CDS 428] ([808b49e](https://github.com/ovh/manager/commit/808b49e86f69a07b941c8086f47168a1b5d1a813))
+* **i18n:** add missing translations [CDS 432] ([2970ae3](https://github.com/ovh/manager/commit/2970ae3324b4d9abbcc2cb4f075e1d2c59428c2f))
+
+
+### Reverts
+
+* Revert "fix: remove ui consistency" ([5435159](https://github.com/ovh/manager/commit/543515950323b10d054ba354ff0054c5a8a3d3d1))
+
+
+
+# [9.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@9.4.1...@ovh-ux/manager-cloud@9.5.0) (2020-06-02)
+
+
+### Bug Fixes
+
+* **translations:** clean translations files ([#3038](https://github.com/ovh/manager/issues/3038)) ([57040ad](https://github.com/ovh/manager/commit/57040adfcac601cbf48f27fb804decfd60800797))
+* remove ui consistency ([#3029](https://github.com/ovh/manager/issues/3029)) ([34be0be](https://github.com/ovh/manager/commit/34be0bea216d575254017265d5650dace12ae582))
+
+
+### Features
+
+* add ovhcloud light theme imports ([24d56fb](https://github.com/ovh/manager/commit/24d56fb62a949e01de5f9929c0fe53239c889a59))
+* **sidebar:** apply ovhcloud light theme ([cf38dc9](https://github.com/ovh/manager/commit/cf38dc9e5a788062f22fdbc1432aa36f0edbb29a))
+
+
+
+## [9.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@9.4.0...@ovh-ux/manager-cloud@9.4.1) (2020-05-27)
+
+
+### Bug Fixes
+
+* **components.auth:** prevent error page from looping ([#3009](https://github.com/ovh/manager/issues/3009)) ([15794fc](https://github.com/ovh/manager/commit/15794fc805b3614da2d8f90a8c5d5e95698e6610))
+
+
+
+# [9.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@9.3.0...@ovh-ux/manager-cloud@9.4.0) (2020-05-26)
+
+
+### Features
+
+* **cloud.logs:** remove options concern on streams ([#2975](https://github.com/ovh/manager/issues/2975)) ([65fe87b](https://github.com/ovh/manager/commit/65fe87beda346d8365631a6df36e00ec78168201))
+
+
+
 # [9.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@9.2.0...@ovh-ux/manager-cloud@9.3.0) (2020-05-13)
 
 

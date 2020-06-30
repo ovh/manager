@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-vrack-app",
-  "version": "0.4.0",
+  "version": "0.4.2",
   "private": true,
   "description": "vRack standalone application.",
   "repository": {
@@ -19,19 +19,19 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-vrack-app' --include-dependencies -- npm run dev:watch --if-present"
   },
   "dependencies": {
-    "@ovh-ux/manager-cloud-styles": "^0.3.1",
+    "@ovh-ux/manager-cloud-styles": "^0.4.0",
     "@ovh-ux/manager-config": "^0.4.0",
-    "@ovh-ux/manager-core": "^8.0.0 || ^9.0.0",
-    "@ovh-ux/manager-vrack": "^0.6.0",
+    "@ovh-ux/manager-core": "^9.0.0",
+    "@ovh-ux/manager-vrack": "^0.7.0",
     "@ovh-ux/ng-ovh-api-wrappers": "^4.0.7",
     "@ovh-ux/ng-ovh-cloud-universe-components": "^1.5.0",
-    "@ovh-ux/ng-ovh-contracts": "^3.1.1",
+    "@ovh-ux/ng-ovh-contracts": "^3.1.2",
     "@ovh-ux/ng-ovh-form-flat": "^5.0.0",
     "@ovh-ux/ng-ovh-http": "^5.0.0",
     "@ovh-ux/ng-ovh-proxy-request": "^2.0.0",
     "@ovh-ux/ng-ovh-request-tagger": "^1.1.0",
     "@ovh-ux/ng-ovh-sso-auth": "^4.2.3",
-    "@ovh-ux/ng-ovh-swimming-poll": "^5.0.0",
+    "@ovh-ux/ng-ovh-swimming-poll": "^5.0.1",
     "@ovh-ux/ng-ovh-toaster": "^2.0.0",
     "@ovh-ux/ng-ovh-user-pref": "^2.0.0",
     "@ovh-ux/ng-translate-async-loader": "^2.1.0",
@@ -47,10 +47,10 @@
     "lodash": "^4.17.15",
     "messenger": "HubSpot/messenger#~1.4.1",
     "oclazyload": "^1.1.0",
-    "ovh-api-services": "^9.42.0",
+    "ovh-api-services": "^9.46.0",
     "ovh-manager-webfont": "^1.2.0",
-    "ovh-ui-angular": "^3.16.2",
-    "ovh-ui-kit": "^2.42.7"
+    "ovh-ui-angular": "^3.16.3",
+    "ovh-ui-kit": "^2.42.8"
   },
   "devDependencies": {
     "@ovh-ux/manager-webpack-config": "^3.0.8",

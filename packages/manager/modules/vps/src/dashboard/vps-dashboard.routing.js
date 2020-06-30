@@ -1,4 +1,13 @@
-import { DASHBOARD_FEATURES } from './vps-dashboard.constants';
+import assign from 'lodash/assign';
+import filter from 'lodash/filter';
+import get from 'lodash/get';
+import head from 'lodash/head';
+
+import {
+  DASHBOARD_FEATURES,
+  VPS_2014_AUTO_MIGRATION_DATE,
+} from './vps-dashboard.constants';
+import { MIGRATION_STATUS } from '../migration/vps-migration.constants';
 import component from './vps-dashboard.component';
 
 import VpsConfigurationTile from './tile/configuration/service';
@@ -70,6 +79,16 @@ export default /* @ngInject */ ($stateProvider) => {
       vpsUpgradeTask: /* @ngInject */ (serviceName, vpsUpgradeTile) =>
         vpsUpgradeTile.getUpgradeTask(serviceName),
 
+      vpsMigrationTask: /* @ngInject */ (serviceName, VpsTaskService) =>
+        VpsTaskService.getPendingTasks(serviceName, 'migrate').then((tasks) =>
+          head(tasks),
+        ),
+
+      vpsMigrationTaskInError: /* @ngInject */ (serviceName, VpsService) =>
+        VpsService.getTaskInError(serviceName).then((tasks) =>
+          head(filter(tasks, { type: 'migrate' })),
+        ),
+
       configurationTile: /* @ngInject */ (
         availableUpgrades,
         catalog,
@@ -92,6 +111,44 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.go(`vps.detail.dashboard.configuration.upgrade`, {
           upgradeType,
         }),
+
+      vpsMigration: /* @ngInject */ ($http, serviceName) =>
+        $http.get(`/vps/${serviceName}/migration2014`),
+
+      canScheduleMigration: /* @ngInject */ (vpsMigration) =>
+        get(vpsMigration, 'data.status') === MIGRATION_STATUS.TO_PLAN &&
+        moment().isBefore(moment(VPS_2014_AUTO_MIGRATION_DATE, 'DD/MM/YYYY')),
+
+      goToVpsMigration: /* @ngInject */ (
+        $state,
+        vpsMigration,
+        catalog,
+        stateVps,
+        VpsMigrationService,
+      ) => () => {
+        const migrationPlan = VpsMigrationService.constructor.getMigrationPlan(
+          catalog,
+          vpsMigration.data.model,
+        );
+        const server = assign({
+          displayName: stateVps.displayName,
+          name: stateVps.name,
+          description: VpsMigrationService.getVpsModelDescription(
+            stateVps.model,
+          ),
+          migration: VpsMigrationService.constructor.populateOptionsPrice(
+            vpsMigration.data,
+            catalog,
+          ),
+          migrationPlan,
+          migrationDescription: VpsMigrationService.getVpsModelDescription(
+            migrationPlan.description,
+          ),
+        });
+        return $state.go(`vps.detail.dashboard.schedule`, {
+          servers: [server],
+        });
+      },
     },
   });
 };

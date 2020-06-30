@@ -1,3 +1,36 @@
+# [3.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-navbar@3.2.1...@ovh-ux/manager-navbar@3.3.0) (2020-06-16)
+
+
+### Features
+
+* allow notifications without links ([#2985](https://github.com/ovh/manager/issues/2985)) ([ded2c2f](https://github.com/ovh/manager/commit/ded2c2ffef57d7dcd3d3d2cca3a02a9e8db6be6c))
+
+
+
+## [3.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-navbar@3.2.0...@ovh-ux/manager-navbar@3.2.1) (2020-06-09)
+
+
+### Bug Fixes
+
+* **emailpro:** fix header tabs button ([47d208b](https://github.com/ovh/manager/commit/47d208b44dcad2fedab44b6771d4da79a80dbfc9))
+
+
+
+# [3.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-navbar@3.1.6...@ovh-ux/manager-navbar@3.2.0) (2020-06-02)
+
+
+### Bug Fixes
+
+* fix styles to match ui specs ([43132ff](https://github.com/ovh/manager/commit/43132ff4d6b32375deeb779621740b04cafb67c2))
+* **navbar:** notification text not visible in dark mode ([#2732](https://github.com/ovh/manager/issues/2732)) ([524bae6](https://github.com/ovh/manager/commit/524bae63b42b78dbbbd5e2c48e4bd42950d9af7d))
+
+
+### Features
+
+* **sidebar:** apply ovhcloud light theme ([cf38dc9](https://github.com/ovh/manager/commit/cf38dc9e5a788062f22fdbc1432aa36f0edbb29a))
+
+
+
 ## [3.1.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-navbar@3.1.5...@ovh-ux/manager-navbar@3.1.6) (2020-05-13)
 
 
@@ -115,7 +148,6 @@
 * **hub:** init @ovh-ux/manager-account-sidebar module
 * **navbar:** Language menu is no longer available from navbar
 
-Signed-off-by: Marie JONES <marie.jones@corp.ovh.com>
 
 
 

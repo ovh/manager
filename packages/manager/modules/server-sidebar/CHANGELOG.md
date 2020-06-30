@@ -1,3 +1,54 @@
+# [1.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@1.5.2...@ovh-ux/manager-server-sidebar@1.6.0) (2020-06-16)
+
+
+### Bug Fixes
+
+* update order url for CA ([e663d02](https://github.com/ovh/manager/commit/e663d028a10dd51b47b0034b5d3e7667dbffeec4))
+* **server-sidebar:** update web constants for CA ([#2826](https://github.com/ovh/manager/issues/2826)) ([4499849](https://github.com/ovh/manager/commit/4499849f87b7d556dcf23286b05225c924094d37))
+* **web.order:** disable standalone email for CA ([#3024](https://github.com/ovh/manager/issues/3024)) ([16563c6](https://github.com/ovh/manager/commit/16563c63ea2495bf72038cf80bbcd9d601c7aa13))
+
+
+### Features
+
+* add guides and order url for CA ([3b488cb](https://github.com/ovh/manager/commit/3b488cbcda5d3ad51fcf2adb04add073182749fd))
+* **server-sidebar:** enable web in CA ([988f9d9](https://github.com/ovh/manager/commit/988f9d99fe58909f61f0df5be983150a467026df))
+
+
+
+## [1.5.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@1.5.1...@ovh-ux/manager-server-sidebar@1.5.2) (2020-06-09)
+
+
+### Bug Fixes
+
+* **emailpro:** fix header tabs button ([47d208b](https://github.com/ovh/manager/commit/47d208b44dcad2fedab44b6771d4da79a80dbfc9))
+* **server-sidebar:** fix icon zone dns ([cfa89b4](https://github.com/ovh/manager/commit/cfa89b4c46d228e27a8a6690d4f250e468720f10))
+
+
+
+## [1.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@1.5.0...@ovh-ux/manager-server-sidebar@1.5.1) (2020-06-09)
+
+
+### Bug Fixes
+
+* **order.constants:** set the right dbaas_logs order URL ([#3061](https://github.com/ovh/manager/issues/3061)) ([5829276](https://github.com/ovh/manager/commit/5829276605ca4d69870f1e3c66dc2e712bc17eb0))
+
+
+
+# [1.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@1.4.0...@ovh-ux/manager-server-sidebar@1.5.0) (2020-06-02)
+
+
+### Bug Fixes
+
+* remove ui consistency ([#3029](https://github.com/ovh/manager/issues/3029)) ([34be0be](https://github.com/ovh/manager/commit/34be0bea216d575254017265d5650dace12ae582))
+* **server-sidebar:** fix ms-Icon hover effect ([#2983](https://github.com/ovh/manager/issues/2983)) ([4bb32cc](https://github.com/ovh/manager/commit/4bb32ccbd3e7d0e09beb4f60701d3256d7ae7727))
+
+
+### Features
+
+* **sidebar:** apply ovhcloud light theme ([cf38dc9](https://github.com/ovh/manager/commit/cf38dc9e5a788062f22fdbc1432aa36f0edbb29a))
+
+
+
 # [1.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@1.3.8...@ovh-ux/manager-server-sidebar@1.4.0) (2020-05-14)
 
 

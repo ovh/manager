@@ -15,6 +15,8 @@ const URI = {
   autorenew: '#/billing/autorenew',
   billing: '#/billing/history',
   catalog: '#/catalog',
+  contactManagement:
+    '#/contacts/services?serviceName=:serviceName&category=:category',
   contacts: '#/contacts/services',
   debtPay: '#/billing/history/debt/all/pay',
   domain: '#/configuration/domain/:domain',
@@ -34,6 +36,7 @@ export default {
     autorenew: `${managerRoot.EU}/${universes.dedicated}/${URI.autorenew}`,
     billing: `${managerRoot.EU}/${universes.dedicated}/${URI.billing}`,
     catalog: `${managerRoot.EU}/${URI.catalog}`,
+    contactManagement: `${managerRoot.EU}/${universes.dedicated}/${URI.contactManagement}`,
     contacts: `${managerRoot.EU}/${universes.dedicated}/${URI.contacts}`,
     debtPay: `${managerRoot.EU}/${universes.dedicated}/${URI.debtPay}`,
     guides: {
@@ -84,6 +87,7 @@ export default {
     autorenew: `${managerRoot.CA}/${universes.dedicated}/${URI.autorenew}`,
     billing: `${managerRoot.CA}/${universes.dedicated}/${URI.billing}`,
     catalog: `${managerRoot.CA}/${URI.catalog}`,
+    contactManagement: '',
     contacts: '',
     debtPay: `${managerRoot.CA}/${universes.dedicated}/${URI.debtPay}`,
     guides: {
@@ -121,6 +125,7 @@ export default {
     billing: `${managerRoot.US}/${universes.dedicated}/${URI.billing}`,
     billingEnterprise: 'https://billing.us.ovhcloud.com/login',
     catalog: `${managerRoot.US}/${URI.catalog}`,
+    contactManagement: '',
     contacts: '',
     debtPay: `${managerRoot.US}/${universes.dedicated}/${URI.debtPay}`,
     domain: '',

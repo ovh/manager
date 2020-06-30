@@ -1,3 +1,21 @@
+## [5.0.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom-dashboard-app@5.0.5...@ovh-ux/manager-telecom-dashboard-app@5.0.6) (2020-06-09)
+
+
+### Bug Fixes
+
+* **emailpro:** fix header tabs button ([47d208b](https://github.com/ovh/manager/commit/47d208b44dcad2fedab44b6771d4da79a80dbfc9))
+
+
+
+## [5.0.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom-dashboard-app@5.0.4...@ovh-ux/manager-telecom-dashboard-app@5.0.5) (2020-06-02)
+
+
+### Bug Fixes
+
+* **deps:** update dependencies with latest version ([#3057](https://github.com/ovh/manager/issues/3057)) ([24d06ad](https://github.com/ovh/manager/commit/24d06addfaab0716e725242beae2d3d92feb8856))
+
+
+
 ## [5.0.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom-dashboard-app@5.0.3...@ovh-ux/manager-telecom-dashboard-app@5.0.4) (2020-03-18)
 
 
@@ -45,8 +63,6 @@
 ### BREAKING CHANGES
 
 * module is now named as `ngUiRouterTitle
-
-Signed-off-by: Antoine Leblanc <antoine.leblanc@corp.ovh.com>
 
 
 

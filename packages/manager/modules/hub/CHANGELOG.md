@@ -1,3 +1,44 @@
+# [1.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@1.2.0...@ovh-ux/manager-hub@1.3.0) (2020-06-17)
+
+
+### Features
+
+* **hub:** add vps migration banner ([9f1c619](https://github.com/ovh/manager/commit/9f1c6195415d48acf6abd498a581b76127ddfcc7))
+
+
+
+# [1.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@1.1.3...@ovh-ux/manager-hub@1.2.0) (2020-06-16)
+
+
+### Features
+
+* allow notifications without links ([#2985](https://github.com/ovh/manager/issues/2985)) ([ded2c2f](https://github.com/ovh/manager/commit/ded2c2ffef57d7dcd3d3d2cca3a02a9e8db6be6c))
+
+
+
+## [1.1.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@1.1.2...@ovh-ux/manager-hub@1.1.3) (2020-06-09)
+
+
+### Bug Fixes
+
+* **emailpro:** fix header tabs button ([47d208b](https://github.com/ovh/manager/commit/47d208b44dcad2fedab44b6771d4da79a80dbfc9))
+
+
+### Performance Improvements
+
+* **hub:** replace lodash with lodash-es ([#3051](https://github.com/ovh/manager/issues/3051)) ([a9e765d](https://github.com/ovh/manager/commit/a9e765d42402381b2836c05db71da0b17b3debd6))
+
+
+
+## [1.1.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@1.1.1...@ovh-ux/manager-hub@1.1.2) (2020-06-02)
+
+
+### Bug Fixes
+
+* fix styles to match ui specs ([43132ff](https://github.com/ovh/manager/commit/43132ff4d6b32375deeb779621740b04cafb67c2))
+
+
+
 ## [1.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@1.1.0...@ovh-ux/manager-hub@1.1.1) (2020-05-13)
 
 
@@ -129,7 +170,6 @@
 
 * create stable version for hub
 
-Signed-off-by: Marie JONES <marie.jones@corp.ovh.com>
 * **hub:** init @ovh-ux/manager-account-sidebar module
 
 

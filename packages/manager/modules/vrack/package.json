@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-vrack",
-  "version": "0.6.0",
+  "version": "0.7.1",
   "private": true,
   "description": "vRack product.",
   "keywords": [
@@ -31,8 +31,8 @@
     "bootstrap": "~3.3.7"
   },
   "peerDependencies": {
-    "@ovh-ux/manager-cloud-styles": "^0.3.1",
-    "@ovh-ux/manager-core": "^8.0.0 || ^9.0.0",
+    "@ovh-ux/manager-cloud-styles": "^0.4.0",
+    "@ovh-ux/manager-core": "^9.0.0",
     "@ovh-ux/ng-ovh-cloud-universe-components": "^1.5.0",
     "@ovh-ux/ng-ovh-toaster": "^2.0.0",
     "@uirouter/angularjs": "^1.0.15",
@@ -42,8 +42,8 @@
     "oclazyload": "^1.1.0",
     "ovh-api-services": "^9.39.1",
     "ovh-manager-webfont": "^1.2.0",
-    "ovh-ui-angular": "^3.16.2",
-    "ovh-ui-kit": "^2.42.7",
+    "ovh-ui-angular": "^3.16.3",
+    "ovh-ui-kit": "^2.42.8",
     "ovh-ui-kit-bs": "^2.4.6"
   }
 }

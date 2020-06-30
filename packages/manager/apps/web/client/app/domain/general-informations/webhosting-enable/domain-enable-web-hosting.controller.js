@@ -8,16 +8,14 @@ import { DNS_ZONE_CONFIGURATION } from './constants';
 
 export default class EnableWebHostingOrderCtrl {
   /* @ngInject */
-  constructor($translate, Alerter, constants) {
+  constructor($translate, Alerter, OVH_ORDER_URLS) {
     this.$translate = $translate;
     this.Alerter = Alerter;
-    this.constants = constants;
+    this.OVH_ORDER_URLS = OVH_ORDER_URLS;
   }
 
   $onInit() {
-    this.hostingUrl =
-      this.constants.urls.hosting[this.user.ovhSubsidiary] ||
-      this.constants.urls.hosting.FR;
+    this.hostingUrl = this.OVH_ORDER_URLS.orderHosting[this.user.ovhSubsidiary];
 
     [this.offer] = this.start10mOffers;
 
@@ -37,7 +35,9 @@ export default class EnableWebHostingOrderCtrl {
   }
 
   getPricings() {
-    this.pricings = this.offer.prices;
+    this.pricings = this.offer.prices.filter(
+      ({ maximumRepeat }) => !maximumRepeat,
+    );
     [this.price] = this.pricings;
   }
 

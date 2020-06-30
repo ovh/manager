@@ -204,6 +204,7 @@
                         data-ng-options="area.value as area.label for area in $ctrl.signUpFormCtrl.rules.area.in"
                         data-ng-model="$ctrl.signUpFormCtrl.model.area"
                         data-ng-required="$ctrl.signUpFormCtrl.rules.area.mandatory"
+                        data-ng-change="$ctrl.onAreaChange()"
                     >
                     </select>
                     <span

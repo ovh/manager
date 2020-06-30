@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-swimming-poll",
-  "version": "5.0.0",
+  "version": "5.0.1",
   "description": "A poller to swim easily to success status!",
   "keywords": [
     "angularjs",
@@ -39,7 +39,7 @@
     "set-value": "^2.0.1"
   },
   "dependencies": {
-    "lodash": "^4.17.15"
+    "lodash-es": "^4.17.15"
   },
   "devDependencies": {
     "@ovh-ux/component-rollup-config": "^7.0.0"

@@ -17,10 +17,12 @@ angular.module('App').controller(
       Domain,
       associatedHostings,
       goToWebhostingOrder,
+      isEmailDomainAvailable,
       Hosting,
       orderedHosting,
       User,
       WucAllDom,
+      zoneCapabilities,
     ) {
       this.$q = $q;
       this.$rootScope = $rootScope;
@@ -34,10 +36,12 @@ angular.module('App').controller(
       this.Domain = Domain;
       this.associatedHostings = associatedHostings;
       this.goToWebhostingOrder = goToWebhostingOrder;
+      this.isEmailDomainAvailable = isEmailDomainAvailable;
       this.Hosting = Hosting;
       this.orderedHosting = orderedHosting;
       this.User = User;
       this.WucAllDom = WucAllDom;
+      this.zoneCapabilities = zoneCapabilities;
     }
 
     $onInit() {
@@ -122,7 +126,7 @@ angular.module('App').controller(
       this.autorenewGuide = get(
         this.constants,
         `urls.${subsidiary}.guides.autoRenew`,
-        this.constants.urls.FR.guides.autoRenew,
+        get(this.constants, `urls.FR.guides.autoRenew`),
       );
       this.autorenewUrl = `${this.constants.AUTORENEW_URL}?selectedType=DOMAIN&searchText=${this.domainInfos.domain}`;
     }

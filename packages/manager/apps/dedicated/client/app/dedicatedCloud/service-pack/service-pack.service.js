@@ -16,6 +16,7 @@ export const name = 'ovhManagerPccServicePackService';
 export const ServicePackService = class ServicePack {
   /* @ngInject */
   constructor(
+    $http,
     $q,
     $translate,
     DedicatedCloud,
@@ -24,6 +25,7 @@ export const ServicePackService = class ServicePack {
     ovhManagerPccServicePackOptionService,
     ovhUserPref,
   ) {
+    this.$http = $http;
     this.$q = $q;
     this.$translate = $translate;
     this.DedicatedCloud = DedicatedCloud;
@@ -149,12 +151,14 @@ export const ServicePackService = class ServicePack {
   }
 
   getCatalog(ovhSubsidiary) {
-    return this.OvhApiOrder.CatalogFormatted()
-      .v6()
-      .get({
-        catalogName: 'privateCloud',
-        ovhSubsidiary,
-      }).$promise;
+    return this.$http
+      .get('/sws/dedicatedcloud/catalog', {
+        serviceType: 'aapi',
+        params: {
+          ovhSubsidiary,
+        },
+      })
+      .then((catalog) => catalog.data);
   }
 
   static getAddonsFromCatalogForFamilyName(catalog, family) {

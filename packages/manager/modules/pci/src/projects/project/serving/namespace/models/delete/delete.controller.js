@@ -2,9 +2,10 @@ import get from 'lodash/get';
 
 export default class PciServingNamespaceModelsDeleteController {
   /* @ngInject */
-  constructor($translate, OvhManagerPciServingModelsService) {
+  constructor($translate, OvhManagerPciServingModelsService, atInternet) {
     this.$translate = $translate;
     this.OvhManagerPciServingModelsService = OvhManagerPciServingModelsService;
+    this.atInternet = atInternet;
   }
 
   $onInit() {
@@ -12,6 +13,10 @@ export default class PciServingNamespaceModelsDeleteController {
   }
 
   deleteModel() {
+    this.atInternet.trackClick({
+      name: 'public-cloud::pci::projects::project::serving::delete::submit',
+      type: 'action',
+    });
     this.isDeleting = true;
     return this.OvhManagerPciServingModelsService.delete(
       this.projectId,

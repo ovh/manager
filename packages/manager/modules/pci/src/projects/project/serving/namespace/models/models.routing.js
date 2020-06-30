@@ -1,9 +1,7 @@
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.serving.namespace.models', {
     url: '/models',
-    views: {
-      servingView: 'ovhManagerPciProjectServingNamespaceModelsComponent',
-    },
+    component: 'ovhManagerPciProjectServingNamespaceModelsComponent',
     resolve: {
       addModel: /* @ngInject */ ($state, projectId, namespaceId) => () =>
         $state.go('pci.projects.project.serving.namespace.models.add', {
@@ -37,6 +35,20 @@ export default /* @ngInject */ ($stateProvider) => {
           namespaceId,
           modelId,
           resource: modelId,
+        }),
+
+      details: /* @ngInject */ ($state, projectId, namespaceId) => (modelId) =>
+        $state.go('pci.projects.project.serving.namespace.models.details', {
+          projectId,
+          namespaceId,
+          modelId,
+        }),
+
+      modelLink: /* @ngInject */ ($state, projectId, namespaceId) => ({ id }) =>
+        $state.href('pci.projects.project.serving.namespace.models.details', {
+          projectId,
+          namespaceId,
+          modelId: id,
         }),
 
       models: /* @ngInject */ (

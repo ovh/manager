@@ -1,7 +1,7 @@
 {
-  "pci_projects_project_serving_title": "Serving Engine",
-  "pci_projects_project_serving_onboarding_content1": "Passer vos modèles de Machine Learning du développement à la production n'a jamais été aussi simple.",
-  "pci_projects_project_serving_onboarding_content2": "Déployer sans effort en production vos modèles de Machine Learning issus de nombreux frameworks comme Tensorflow ou Scikit-Learn et formats de sérialisations comme PMML ou ONNX.",
-  "pci_projects_project_serving_onboarding_content3": "Nous vous fournissons en quelques minutes une API REST, le Swagger associé ainsi que la scalabilité pour vos modèles.",
+  "pci_projects_project_serving_title": "ML Serving",
+  "pci_projects_project_serving_onboarding_content1": "Passer du développement à la production n'a jamais été aussi simple pour vos modèles de machine learning",
+  "pci_projects_project_serving_onboarding_content2": "Sans effort, déployez en production vos modèles de machine learning issus de nombreux frameworks, comme TensorFlow ou Scikit-Learn, et formats de sérialisation, tels que PMML ou ONNX.",
+  "pci_projects_project_serving_onboarding_content3": "Nous vous fournissons en quelques minutes une API REST, le Swagger associé, ainsi que la scalabilité pour vos modèles.",
   "pci_projects_project_serving_onboarding_action_label": "Créer un namespace"
 }

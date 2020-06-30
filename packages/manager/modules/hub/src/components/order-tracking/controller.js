@@ -2,7 +2,7 @@ import {
   WAITING_PAYMENT_LABEL,
   ERROR_STATUS,
 } from '@ovh-ux/ng-ovh-order-tracking';
-import maxBy from 'lodash/maxBy';
+import { maxBy } from 'lodash-es';
 
 export default class ManagerHubBillingSummaryCtrl {
   /* @ngInject */

@@ -1,3 +1,21 @@
+# [3.2.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-contracts@3.1.2...@ovh-ux/ng-ovh-contracts@3.2.0) (2020-06-16)
+
+
+### Features
+
+* prevent displaying contracts if there is none ([d58885c](https://github.com/ovh/manager/commit/d58885c4d543d1a5334ce983cf8c08202e05a57a))
+
+
+
+## [3.1.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-contracts@3.1.1...@ovh-ux/ng-ovh-contracts@3.1.2) (2020-06-09)
+
+
+### Bug Fixes
+
+* **emailpro:** fix header tabs button ([47d208b](https://github.com/ovh/manager/commit/47d208b44dcad2fedab44b6771d4da79a80dbfc9))
+
+
+
 ## [3.1.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-contracts@3.1.0...@ovh-ux/ng-ovh-contracts@3.1.1) (2020-01-08)
 
 

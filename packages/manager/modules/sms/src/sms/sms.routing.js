@@ -1,6 +1,3 @@
-import { FeatureAvailability } from '@ovh-ux/ng-ovh-telecom-universe-components';
-import { SMS_AVAILABILITY } from '../feature-availability/feature-availability.constants';
-
 import controller from './telecom-sms.controller';
 import smsView from './telecom-sms.html';
 
@@ -25,8 +22,11 @@ export default /* @ngInject */ ($stateProvider) => {
         );
         return $q.when({ init: true });
       },
-      smsFeatureAvailability: /* @ngInject */ (user) =>
-        new FeatureAvailability(user, SMS_AVAILABILITY),
+      smsFeatureAvailability: /* @ngInject */ (ovhFeatureFlipping) =>
+        ovhFeatureFlipping.checkFeatureAvailability([
+          'sms:hlr',
+          'sms:response',
+        ]),
       user: /* @ngInject */ (OvhApiMe) => OvhApiMe.v6().get().$promise,
       $title: (translations, $translate, OvhApiSms, $stateParams) =>
         OvhApiSms.v6()

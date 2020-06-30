@@ -6,7 +6,11 @@ import isEmpty from 'lodash/isEmpty';
 import map from 'lodash/map';
 import 'moment';
 
-import { DASHBOARD_FEATURES } from './vps-dashboard.constants';
+import {
+  DASHBOARD_FEATURES,
+  VPS_2014_AUTO_MIGRATION_DATE,
+  VPS_2014_EXPIRY_DATE,
+} from './vps-dashboard.constants';
 import {
   CHANGE_OWNER_URL,
   CONTACTS_URL,
@@ -40,7 +44,6 @@ export default class {
     this.CucRegionService = CucRegionService;
     this.VpsService = VpsService;
     this.vpsUpgradeTile = vpsUpgradeTile;
-
     this.DASHBOARD_FEATURES = DASHBOARD_FEATURES;
 
     this.loaders = {
@@ -51,6 +54,21 @@ export default class {
   }
 
   $onInit() {
+    this.vps2014MigrationData = {
+      autoMigrationDate: moment(
+        VPS_2014_AUTO_MIGRATION_DATE,
+        'DD-MM-YYYY',
+      ).format('LL'),
+      inAutoMigrationPhase: moment().isSameOrAfter(
+        moment(VPS_2014_AUTO_MIGRATION_DATE, 'DD/MM/YYYY'),
+      ),
+      migrationScheduledInDays:
+        this.vpsMigrationTask && this.vpsMigrationTask.date
+          ? moment(this.vpsMigrationTask.date).diff(moment(), 'days')
+          : null,
+    };
+    this.isMigrationInProgress =
+      this.vpsMigrationTask && this.vpsMigrationTask.state !== 'todo';
     this.initActions();
     this.initLoaders();
     this.initUpgradePolling();
@@ -94,7 +112,7 @@ export default class {
   }
 
   initUpgradePolling() {
-    if (this.vpsUpgradeTask) {
+    if (this.vpsUpgradeTask && !this.vpsMigrationTask) {
       this.vpsUpgradeTile.startUpgradeTaskPolling(
         this.serviceName,
         this.vpsUpgradeTask,
@@ -205,7 +223,9 @@ export default class {
           'vps_configuration_delete_snapshot_title_button',
         ),
         isAvailable: () =>
-          this.tabSummary.snapshot.creationDate && !this.loaders.polling,
+          this.tabSummary.snapshot.creationDate &&
+          !this.loaders.polling &&
+          !this.isMigrationInProgress,
       },
       order: {
         text: this.$translate.instant('vps_common_order'),
@@ -213,14 +233,18 @@ export default class {
           this.$state.go('vps.detail.snapshot.order', {
             serviceName: this.serviceName,
           }),
-        isAvailable: () => this.tabSummary.snapshot.optionAvailable,
+        isAvailable: () =>
+          this.tabSummary.snapshot.optionAvailable &&
+          !this.isMigrationInProgress,
       },
       restore: {
         text: this.$translate.instant(
           'vps_configuration_snapshot_restore_title_button',
         ),
         isAvailable: () =>
-          this.tabSummary.snapshot.creationDate && !this.loaders.polling,
+          this.tabSummary.snapshot.creationDate &&
+          !this.loaders.polling &&
+          !this.isMigrationInProgress,
       },
       take: {
         text: this.$translate.instant(
@@ -229,11 +253,14 @@ export default class {
         isAvailable: () =>
           this.tabSummary.snapshot.optionActivated &&
           !this.tabSummary.snapshot.creationDate &&
-          !this.loaders.polling,
+          !this.loaders.polling &&
+          !this.isMigrationInProgress,
       },
       terminate: {
         text: this.$translate.instant('vps_configuration_desactivate_option'),
-        isAvailable: () => this.tabSummary.snapshot.optionActivated,
+        isAvailable: () =>
+          this.tabSummary.snapshot.optionActivated &&
+          !this.isMigrationInProgress,
       },
     };
   }
@@ -297,13 +324,15 @@ export default class {
           changeOwner: {
             text: this.$translate.instant('vps_change_owner'),
             atInternetClickTag: 'VPS-Actions-ChangeOwner',
-            isAvailable: () => !isEmpty(changeOwnerHref),
+            isAvailable: () =>
+              !isEmpty(changeOwnerHref) && !this.isMigrationInProgress,
             href: changeOwnerHref,
             isExternal: true,
           },
           kvm: {
             text: this.$translate.instant('vps_configuration_kvm_title_button'),
-            isAvailable: () => !this.loaders.polling,
+            isAvailable: () =>
+              !this.loaders.polling && !this.isMigrationInProgress,
           },
           manageAutorenew: {
             text: this.$translate.instant('vps_common_manage'),
@@ -313,7 +342,8 @@ export default class {
             ),
             isAvailable: () =>
               !this.loaders.plan &&
-              this.hasFeature(DASHBOARD_FEATURES.autorenew),
+              this.hasFeature(DASHBOARD_FEATURES.autorenew) &&
+              !this.isMigrationInProgress,
             external: !this.coreConfig.isRegion('EU'),
           },
           manageContact: {
@@ -322,7 +352,8 @@ export default class {
               get(CONTACTS_URL, this.coreConfig.getRegion()),
               { serviceName: this.serviceName },
             ),
-            isAvailable: this.coreConfig.isRegion('EU'),
+            isAvailable:
+              this.coreConfig.isRegion('EU') && !this.isMigrationInProgress,
           },
           manageIps: {
             text: this.$translate.instant(
@@ -332,15 +363,16 @@ export default class {
               get(IP_URL, this.coreConfig.getRegion()),
               { serviceName: this.serviceName },
             ),
-            isAvailable: () => !this.loaders.ip,
+            isAvailable: () => !this.loaders.ip && !this.isMigrationInProgress,
           },
           displayIps: {
             text: this.$translate.instant('vps_dashboard_ips_additional'),
-            isAvailable: () => !this.loaders.ip,
+            isAvailable: () => !this.loaders.ip && !this.isMigrationInProgress,
           },
           manageSla: {
             text: this.$translate.instant('vps_common_manage'),
-            isAvailable: () => !this.loaders.polling,
+            isAvailable: () =>
+              !this.loaders.polling && !this.isMigrationInProgress,
           },
           viewIpSla: {
             text: this.$translate.instant('vps_dashboard_monitoring_sla_ips'),
@@ -348,7 +380,10 @@ export default class {
           orderAdditionalDiskOption: {
             text: this.$translate.instant('vps_additional_disk_add_button'),
             callback: () => this.$state.go('vps.detail.additional-disk.order'),
-            isAvailable: () => !this.loaders.disk && this.canOrderDisk,
+            isAvailable: () =>
+              !this.loaders.disk &&
+              this.canOrderDisk &&
+              !this.isMigrationInProgress,
           },
           orderWindows: {
             text: this.$translate.instant('vps_common_order'),
@@ -356,13 +391,16 @@ export default class {
               this.$state.go('vps.detail.windows.order', {
                 serviceName: this.serviceName,
               }),
-            isAvailable: () => !this.tabSummary.windows.optionActivated,
+            isAvailable: () =>
+              !this.tabSummary.windows.optionActivated &&
+              !this.isMigrationInProgress,
           },
           reboot: {
             text: this.$translate.instant(
               'vps_configuration_reboot_title_button',
             ),
-            isAvailable: () => !this.loaders.polling,
+            isAvailable: () =>
+              !this.loaders.polling && !this.isMigrationInProgress,
           },
           rebuild: {
             callback: () =>
@@ -371,6 +409,7 @@ export default class {
               }),
             isAvailable: () =>
               !this.loaders.polling &&
+              !this.isMigrationInProgress &&
               (this.hasFeature(DASHBOARD_FEATURES.rebuild) ||
                 this.isVpsNewRange),
           },
@@ -381,17 +420,19 @@ export default class {
             isAvailable: () =>
               !this.loaders.polling &&
               this.hasFeature(DASHBOARD_FEATURES.reinstall) &&
-              !this.isVpsNewRange,
+              !this.isVpsNewRange &&
+              !this.isMigrationInProgress,
           },
           rebootRescue: {
             text: this.$translate.instant('vps_configuration_reboot_rescue'),
-            isAvailable: () => !this.loaders.polling,
+            isAvailable: () =>
+              !this.loaders.polling && !this.isMigrationInProgress,
           },
           reverseDns: {
             text: this.$translate.instant(
               'vps_configuration_reversedns_title_button',
             ),
-            isAvailable: () => !this.loaders.ip,
+            isAvailable: () => !this.loaders.ip && !this.isMigrationInProgress,
           },
           terminate: {
             callback: () => this.$state.go('vps.detail.dashboard.terminate'),
@@ -400,13 +441,17 @@ export default class {
             text: this.$translate.instant(
               'vps_configuration_desactivate_option',
             ),
-            isAvailable: () => !this.loaders.disk && !this.canOrderDisk,
+            isAvailable: () =>
+              !this.loaders.disk &&
+              !this.canOrderDisk &&
+              !this.isMigrationInProgress,
           },
           terminateWindows: {
             text: this.$translate.instant(
               'vps_configuration_desactivate_option',
             ),
-            isAvailable: () => this.tabSummary.windowsActivated,
+            isAvailable: () =>
+              this.tabSummary.windowsActivated && !this.isMigrationInProgress,
           },
           upgrade: {
             text: this.$translate.instant(
@@ -414,7 +459,10 @@ export default class {
             ),
             state: 'vps.detail.upgrade',
             stateParams: { serviceName: this.serviceName },
-            isAvailable: () => !this.loaders.polling && !this.isVpsNewRange,
+            isAvailable: () =>
+              !this.loaders.polling &&
+              !this.isVpsNewRange &&
+              !this.isMigrationInProgress,
           },
         };
       });

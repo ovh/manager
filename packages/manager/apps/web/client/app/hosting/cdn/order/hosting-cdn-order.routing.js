@@ -1,3 +1,4 @@
+import find from 'lodash/find';
 import get from 'lodash/get';
 
 export default /* @ngInject */ ($stateProvider) => {
@@ -96,15 +97,9 @@ export default /* @ngInject */ ($stateProvider) => {
       serviceName: /* @ngInject */ ($transition$) =>
         $transition$.params().productId,
 
-      serviceOption: /* @ngInject */ (
-        goBackWithError,
-        serviceName,
-        $translate,
-        HostingCdnOrderService,
-      ) =>
-        HostingCdnOrderService.getServiceOption(serviceName).catch((error) =>
-          goBackWithError(get(error, 'data.message', error)),
-        ),
+      serviceOption: /* @ngInject */ (availableOptions, goBackWithError) =>
+        find(availableOptions, { family: 'cdn' }) ||
+        goBackWithError('No serviceOption found'),
     },
   });
 };

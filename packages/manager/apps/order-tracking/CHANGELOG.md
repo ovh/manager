@@ -1,3 +1,31 @@
+## [1.1.1](https://github.com/ovh/manager/compare/@ovh-ux/order-tracking-app@1.1.0...@ovh-ux/order-tracking-app@1.1.1) (2020-06-09)
+
+
+### Bug Fixes
+
+* **emailpro:** fix header tabs button ([47d208b](https://github.com/ovh/manager/commit/47d208b44dcad2fedab44b6771d4da79a80dbfc9))
+
+
+### Reverts
+
+* Revert "fix: remove ui consistency" ([5435159](https://github.com/ovh/manager/commit/543515950323b10d054ba354ff0054c5a8a3d3d1))
+
+
+
+# [1.1.0](https://github.com/ovh/manager/compare/@ovh-ux/order-tracking-app@1.0.4...@ovh-ux/order-tracking-app@1.1.0) (2020-06-02)
+
+
+### Bug Fixes
+
+* remove ui consistency ([#3029](https://github.com/ovh/manager/issues/3029)) ([34be0be](https://github.com/ovh/manager/commit/34be0bea216d575254017265d5650dace12ae582))
+
+
+### Features
+
+* add ovhcloud light theme imports ([24d56fb](https://github.com/ovh/manager/commit/24d56fb62a949e01de5f9929c0fe53239c889a59))
+
+
+
 ## [1.0.4](https://github.com/ovh/manager/compare/@ovh-ux/order-tracking-app@1.0.3...@ovh-ux/order-tracking-app@1.0.4) (2020-03-18)
 
 

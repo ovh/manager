@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-contact",
-  "version": "5.0.0",
+  "version": "5.0.1",
   "description": "Helps you dealing with OVHcloud contacts from /me/contact API.",
   "keywords": [
     "angularjs",
@@ -35,7 +35,7 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/ng-ovh-contact' --include-dependencies -- yarn run dev:watch"
   },
   "dependencies": {
-    "lodash": "^4.17.15"
+    "lodash-es": "^4.17.15"
   },
   "devDependencies": {
     "@ovh-ux/component-rollup-config": "^7.0.0"

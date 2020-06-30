@@ -32,7 +32,7 @@ angular.module('controllers').controller(
       return this.DomainsDnsSec.updateDnssecState(newState, [this.domain.name])
         .then((data) => {
           if (data.state !== 'OK') {
-            this.Alerter.alertFromSWS(
+            return this.Alerter.alertFromSWS(
               this.$translate.instant(
                 `domain_configuration_dnssec_error_${newState}`,
               ),
@@ -41,7 +41,13 @@ angular.module('controllers').controller(
             );
           }
 
-          return this.$state.reload();
+          return this.Alerter.alertFromSWS(
+            this.$translate.instant(
+              `domain_configuration_dnssec_ok_${newState}`,
+            ),
+            data,
+            this.$scope.alerts.main,
+          );
         })
         .catch((err) =>
           this.Alerter.alertFromSWS(

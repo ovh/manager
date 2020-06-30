@@ -18,8 +18,3 @@
 ### BREAKING CHANGES
 
 * Init module
-
-Signed-off-by: Marie JONES <marie.jones@corp.ovh.com>
-
-
-

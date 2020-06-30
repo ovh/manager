@@ -2,7 +2,7 @@ import template from './domain-webhosting-order.html';
 
 export default {
   bindings: {
-    availableModules: '<',
+    getAvailableModules: '<',
     availableOffers: '<',
     cartId: '<',
     deleteCartItems: '<',

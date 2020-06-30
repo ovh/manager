@@ -1,3 +1,21 @@
+## [1.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-error-page@1.3.1...@ovh-ux/manager-error-page@1.3.2) (2020-06-09)
+
+
+### Bug Fixes
+
+* **emailpro:** fix header tabs button ([47d208b](https://github.com/ovh/manager/commit/47d208b44dcad2fedab44b6771d4da79a80dbfc9))
+
+
+
+## [1.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-error-page@1.3.0...@ovh-ux/manager-error-page@1.3.1) (2020-06-02)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 409] ([86adc04](https://github.com/ovh/manager/commit/86adc0469a44a243bb3fb61296b284245a3b1b6e))
+
+
+
 # [1.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-error-page@1.2.0...@ovh-ux/manager-error-page@1.3.0) (2020-01-16)
 
 

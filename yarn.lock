@@ -1890,13 +1890,6 @@
   dependencies:
     lodash "^4.17.15"
 
-"@ovh-ux/ng-ovh-sidebar-menu@^9.0.0":
-  version "9.0.0"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-sidebar-menu/-/ng-ovh-sidebar-menu-9.0.0.tgz#11364fa02613c9ea3f3d7cf782850532882983f1"
-  integrity sha512-V+ovaHsfVESiuXGWYRILJiccfJoZZAWBIFhocKAjzOLFHdW2c9HH0uASBWnKeLD2ocu3YIY6zyBw/bvnpeWsHw==
-  dependencies:
-    lodash "^4.17.15"
-
 "@ovh-ux/rollup-plugin-less-inject@^1.0.5":
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/@ovh-ux/rollup-plugin-less-inject/-/rollup-plugin-less-inject-1.0.5.tgz#02285367219f72056faf06deeacaeb357f16633c"
@@ -11821,6 +11814,11 @@ locate-path@^5.0.0:
   dependencies:
     p-locate "^4.1.0"
 
+lodash-es@^4.17.11, lodash-es@^4.17.15:
+  version "4.17.15"
+  resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.17.15.tgz#21bd96839354412f23d7a10340e5eac6ee455d78"
+  integrity sha512-rlrc3yU3+JNOpZ9zj5pQtxnx2THmvRykwL4Xlxoa8I9lHBlVbbyPhgyPMioxVZ4NqyxaVVtaJnzsyOidQIhyyQ==
+
 lodash._basecopy@^3.0.0:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/lodash._basecopy/-/lodash._basecopy-3.0.1.tgz#8da0e6a876cf344c0ad8a54882111dd3c5c7ca36"
@@ -13777,10 +13775,10 @@ ovh-angular-responsive-tabs@^4.0.0:
   resolved "https://registry.yarnpkg.com/ovh-angular-responsive-tabs/-/ovh-angular-responsive-tabs-4.0.0.tgz#85b66d7032612c3ed1a14cb29f83d1331b50c1df"
   integrity sha1-hbZtcDJhLD7RoUyyn4PRMxtQwd8=
 
-ovh-api-services@^9.42.0:
-  version "9.42.0"
-  resolved "https://registry.yarnpkg.com/ovh-api-services/-/ovh-api-services-9.42.0.tgz#8935f1ea27328ea39cf4701f3a9f7ec995245baf"
-  integrity sha512-z4NhXJnEuhv75xQoqmnBrrlBUMOiB1dl01NfAfBabxP7DhiAeneQkZ35YaP9FIu7Kd799MCaOb75ENkexksTEA==
+ovh-api-services@^9.46.0:
+  version "9.46.0"
+  resolved "https://registry.yarnpkg.com/ovh-api-services/-/ovh-api-services-9.46.0.tgz#b24f3ec72269b246e30c5e30934f9b688e4143f7"
+  integrity sha512-UHb2OUKZaomppc23G8TTOV2RU6dv4nZ66P86KivLJVK3UDvG0sYpKDKAnsd4eb2GGuTTCGm4oNXdswixCVCPiQ==
   dependencies:
     lodash "^4.17.15"
 
@@ -13807,10 +13805,10 @@ ovh-ngstrap@^4.0.2:
   resolved "https://registry.yarnpkg.com/ovh-ngstrap/-/ovh-ngstrap-4.0.2.tgz#059291bfb9f59b78df991e476dd2ede0507cb3c9"
   integrity sha1-BZKRv7n1m3jfmR5HbdLt4FB8s8k=
 
-ovh-ui-angular@^3.16.2:
-  version "3.16.2"
-  resolved "https://registry.yarnpkg.com/ovh-ui-angular/-/ovh-ui-angular-3.16.2.tgz#55cadb033df3a8859c1c7ddece0ab3782242a62d"
-  integrity sha512-B2L6iOwIo/08ScxfcMMZ++N2Q6CFu1DxTBs5h+hVQsxbrrZsabVlcLhoHA3CrB2gWv8Cn4m2+w4b4vaLnDBa7A==
+ovh-ui-angular@^3.16.3:
+  version "3.16.3"
+  resolved "https://registry.yarnpkg.com/ovh-ui-angular/-/ovh-ui-angular-3.16.3.tgz#75ebd321afd3e56eacfc567997d257bfebfcbeb9"
+  integrity sha512-HNlmQc4kcJ0RT5U/NPUodSwItRUB9apK+fHD6iwA8GHp3mZPbPRgmUWzNdfyj51fMG0RBM+90lHhg7HWJkj6uQ==
   dependencies:
     bloodhound-js "^1.2.3"
     clipboard "^2.0.1"
@@ -13835,10 +13833,10 @@ ovh-ui-kit@^2.35.3:
   dependencies:
     less-plugin-remcalc "^0.1.0"
 
-ovh-ui-kit@^2.42.7:
-  version "2.42.7"
-  resolved "https://registry.yarnpkg.com/ovh-ui-kit/-/ovh-ui-kit-2.42.7.tgz#2fbfca100bf1681abc2ea9ba7bd2e20cd8805f72"
-  integrity sha512-g04XGr2FSzto9n6SFbYkgw+i5N/2gIh3y7v+XWf1t9u2C8KS+MxrSNMxfuvLTF4QZt4E21/PkMOrnRXphhy+ow==
+ovh-ui-kit@^2.42.8:
+  version "2.42.8"
+  resolved "https://registry.yarnpkg.com/ovh-ui-kit/-/ovh-ui-kit-2.42.8.tgz#847342c49c51daf0fe3b3ffc681c7535d92af6b2"
+  integrity sha512-bNkJsSP5f6zRd7jPiLI8gCIwH3y3B2mm99Q02W9LTaZT9D0LYTXOr0ht/HZiHrCLGxfhkG/JlFpV6f71lfXwTw==
   dependencies:
     less-plugin-remcalc "^0.1.0"
 
@@ -19592,9 +19590,9 @@ websocket-driver@>=0.5.1:
     websocket-extensions ">=0.1.1"
 
 websocket-extensions@>=0.1.1:
-  version "0.1.3"
-  resolved "https://registry.yarnpkg.com/websocket-extensions/-/websocket-extensions-0.1.3.tgz#5d2ff22977003ec687a4b87073dfbbac146ccf29"
-  integrity sha512-nqHUnMXmBzT0w570r2JpJxfiSD1IzoI+HGVdd3aZ0yNi3ngvQ4jv1dtHt5VGxfI2yj5yqImPhOK4vmIh2xMbGg==
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/websocket-extensions/-/websocket-extensions-0.1.4.tgz#7f8473bc839dfd87608adb95d7eb075211578a42"
+  integrity sha512-OqedPIGOfsDlo31UNwYbCFMSaO9m9G/0faIHj5/dZFDMFqPTcx6UwqyOy3COEaEOg/9VsGIpdqn62W5KhoKSpg==
 
 whatwg-fetch@^3.0.0:
   version "3.0.0"

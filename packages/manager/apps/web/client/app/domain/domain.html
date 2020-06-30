@@ -86,25 +86,6 @@
                                         ></span>
                                     </button>
                                 </li>
-                                <li
-                                    class="dropdown-divider"
-                                    data-ng-if="ctrlDomain.hostings.length"
-                                >
-                                    <i
-                                        class="oui-icon oui-icon-gear_line"
-                                        aria-hidden="true"
-                                    ></i>
-                                    <a
-                                        data-ng-href="{{'#/website/configuration?domain=' + ctrlDomain.domain.name}}"
-                                        data-track-on="click"
-                                        data-track-name="web::domain::website-configuration"
-                                        data-track-click="action"
-                                    >
-                                        <span
-                                            data-translate="domain_configuration_create_site"
-                                        ></span>
-                                    </a>
-                                </li>
                                 <li>
                                     <button
                                         class="btn btn-link"
@@ -152,7 +133,7 @@
             >
             </oui-header-tabs-item>
             <oui-header-tabs-item
-                data-ng-if="ctrlDomain.hasZoneDns"
+                data-ng-if="ctrlDomain.hasZoneDns && ctrlDomain.zoneCapabilities.dynHost"
                 data-text="{{:: 'domain_tab_DYNHOST' | translate }}"
                 data-state="{{:: ctrlDomain.getState() + '.dynhost' }}"
                 data-state-params="ctrlDomain.$stateParams"
@@ -178,6 +159,7 @@
             >
             </oui-header-tabs-item>
             <oui-header-tabs-item
+                data-ng-if="ctrlDomain.isEmailDomainAvailable"
                 data-text="{{:: 'hosting_tab_menu_emails' | translate }}"
                 data-href="{{ '#/configuration/email-domain/' + ctrlDomain.domain.name + '?tab=MAILING_LIST' }}"
                 data-state-params="ctrlDomain.$stateParams"

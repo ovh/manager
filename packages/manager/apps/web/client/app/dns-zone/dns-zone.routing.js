@@ -13,6 +13,12 @@ export default /* @ngInject */ ($stateProvider) => {
       tab: null,
     },
     resolve: {
+      capabilities: /* @ngInject */ (DNSZoneService, serviceName) =>
+        DNSZoneService.getCapabilities(serviceName),
+      contactManagementLink: /* @ngInject */ (
+        RedirectionService,
+        serviceName,
+      ) => RedirectionService.getURL('contactManagement', { serviceName }),
       currentSection: () => 'zone',
       navigationInformations: /* @ngInject */ (
         currentSection,
@@ -25,6 +31,8 @@ export default /* @ngInject */ ($stateProvider) => {
           configurationSelected: true,
         });
       },
+      serviceName: /* @ngInject */ ($transition$) =>
+        $transition$.params().productId,
     },
     redirectTo: 'app.domain.dns-zone.dashboard',
     translations: { value: ['../domain'], format: 'json' },

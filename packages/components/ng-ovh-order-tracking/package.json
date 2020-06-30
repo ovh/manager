@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-order-tracking",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "OVH order tracking",
   "keywords": [
     "angularjs",
@@ -47,7 +47,7 @@
     "angular": "^1.7.5",
     "angular-translate": "^2.18.1",
     "ovh-api-services": "^9.39.1",
-    "ovh-ui-angular": "^3.16.2",
-    "ovh-ui-kit": "^2.42.7"
+    "ovh-ui-angular": "^3.16.3",
+    "ovh-ui-kit": "^2.42.8"
   }
 }

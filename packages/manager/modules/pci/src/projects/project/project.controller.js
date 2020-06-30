@@ -28,12 +28,16 @@ export default class ProjectController {
     this.sidebarVisible = sidebarVisible;
     this.loading = false;
     this.user = user;
+    this.region = coreConfig.getRegion();
 
-    this.actions = ACTIONS.filter(
-      ({ regions }) =>
-        isNil(regions) || regions.includes(coreConfig.getRegion()),
-    );
-    this.links = LINKS;
+    const filterByRegion = (list) =>
+      list.filter(
+        ({ regions }) =>
+          isNil(regions) || regions.includes(coreConfig.getRegion()),
+      );
+
+    this.actions = filterByRegion(ACTIONS);
+    this.links = filterByRegion(LINKS);
   }
 
   $onInit() {

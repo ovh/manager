@@ -32,6 +32,7 @@ export const DOMAIN_CONFIG = {
       stateParams: ['productId'],
       loadOnStateParams: ['allDom'],
       app: [WEB],
+      regions: ['EU'],
       icon: 'ovh-font ovh-font-domain',
       types: [
         {
@@ -66,7 +67,7 @@ export const DOMAIN_CONFIG = {
       category: 'ZONE',
       state: 'app.domain.dns-zone',
       stateParams: ['productId'],
-      icon: 'oui-icon icon-white-background oui-icon-domain-dns',
+      icon: 'oui-icon oui-icon-domain-dns',
       app: [WEB],
       filter: {
         category: 'DOMAIN',
@@ -83,7 +84,7 @@ export const DOMAIN_CONFIG = {
   ],
   icon: 'ovh-font ovh-font-domain',
   app: [WEB],
-  regions: ['EU'],
+  regions: ['EU', 'CA'],
 };
 
 export const HOSTING_CONFIG = {
@@ -101,7 +102,7 @@ export const HOSTING_CONFIG = {
   ],
   icon: 'ovh-font ovh-font-hosting',
   app: [WEB],
-  regions: ['EU'],
+  regions: ['EU', 'CA'],
 };
 
 export const PRIVATE_DATABASE_CONFIG = {
@@ -119,7 +120,7 @@ export const PRIVATE_DATABASE_CONFIG = {
   ],
   icon: 'ovh-font ovh-font-database',
   app: [WEB],
-  regions: ['EU'],
+  regions: ['EU', 'CA'],
 };
 
 export const EMAIL_PRO_CONFIG = {
@@ -151,6 +152,7 @@ export const EMAIL_CONFIG = {
       stateParams: ['productId'],
       icon: 'ovh-font ovh-font-mail',
       app: [WEB],
+      regions: ['EU'],
     },
     {
       path: '/email/mxplan',
@@ -160,6 +162,7 @@ export const EMAIL_CONFIG = {
       loadOnState: 'app.email.mxplan',
       icon: 'ovh-font ovh-font-mail',
       app: [WEB],
+      regions: ['EU', 'CA'],
     },
     {
       path: '/email/domain/delegatedAccount',
@@ -169,11 +172,12 @@ export const EMAIL_CONFIG = {
       loadOnState: 'app.email.delegate',
       icon: 'ovh-font ovh-font-mail',
       app: [WEB],
+      regions: ['EU'],
     },
   ],
   icon: 'ovh-font ovh-font-mail',
   app: [WEB],
-  regions: ['EU'],
+  regions: ['EU', 'CA'],
 };
 
 export const MICROSOFT_CONFIG = {
@@ -240,6 +244,7 @@ export const WEB_SIDEBAR_CONFIG = [
   EMAIL_CONFIG,
   MICROSOFT_CONFIG,
 ];
+
 export const WEB_ORDER_SIDEBAR_CONFIG = [
   {
     id: 'orderDomain',
@@ -248,14 +253,14 @@ export const WEB_ORDER_SIDEBAR_CONFIG = [
     linkId: 'orderDomain',
     target: '_blank',
     app: [WEB],
-    regions: ['EU'],
+    regions: ['EU', 'CA'],
   },
   {
     id: 'orderZone',
     title: 'zone',
     icon: 'oui-icon oui-icon-domain-dns',
     state: 'app.dns-zone-new',
-    regions: ['EU'],
+    regions: ['EU', 'CA'],
     app: [WEB],
   },
   {
@@ -265,7 +270,7 @@ export const WEB_ORDER_SIDEBAR_CONFIG = [
     linkId: 'orderHosting',
     target: '_blank',
     app: [WEB],
-    regions: ['EU'],
+    regions: ['EU', 'CA'],
   },
   {
     id: 'orderCloudWeb',

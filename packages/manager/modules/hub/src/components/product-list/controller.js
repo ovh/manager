@@ -1,6 +1,5 @@
 import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
-import get from 'lodash/get';
-import map from 'lodash/map';
+import { get, filter, map } from 'lodash-es';
 
 export default class ManagerHubBillingProductList extends ListLayoutHelper.ListLayoutCtrl {
   $onInit() {
@@ -8,6 +7,10 @@ export default class ManagerHubBillingProductList extends ListLayoutHelper.ListL
     this.defaultFilterColumn = this.propertyId;
 
     this.getDisplayedColumns(this.columns);
+
+    this.filteredNotifications = filter(this.notifications, {
+      type: this.productType,
+    });
 
     super.$onInit();
   }

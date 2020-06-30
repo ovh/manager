@@ -91,6 +91,5 @@ import './email-domain/email-domain.bundle';
 import './hosting/hosting.bundle';
 import './incident/incident.bundle';
 import './private-database/private-database.bundle';
-import './website/website.bundle';
 
 export default moduleName;

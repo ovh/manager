@@ -1,3 +1,12 @@
+## [1.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-nasha-app@1.1.0...@ovh-ux/manager-nasha-app@1.1.1) (2020-06-09)
+
+
+### Bug Fixes
+
+* **emailpro:** fix header tabs button ([47d208b](https://github.com/ovh/manager/commit/47d208b44dcad2fedab44b6771d4da79a80dbfc9))
+
+
+
 # [1.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-nasha-app@1.0.3...@ovh-ux/manager-nasha-app@1.1.0) (2020-04-15)
 
 

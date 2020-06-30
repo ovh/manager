@@ -11,14 +11,7 @@ export const TICKET_CATEGORIES = {
       'web-billing',
       'web-other',
     ],
-    TELECOM: [
-      'adsl',
-      'voip',
-      'fax',
-      'sms',
-      'telecom-billing',
-      'telecom-other',
-    ],
+    TELECOM: ['adsl', 'voip', 'fax', 'sms', 'telecom-billing', 'telecom-other'],
     DEDICATED: [
       'dedicated',
       'dedicatedcloud',
@@ -26,9 +19,7 @@ export const TICKET_CATEGORIES = {
       'dedicated-other',
       'dedicated-billing',
     ],
-    CLOUD: [
-      'publiccloud',
-    ],
+    CLOUD: ['publiccloud'],
   },
   DEFAULT: 'billing',
 };

@@ -1,13 +1,12 @@
 import { Environment } from '@ovh-ux/manager-config';
 
 import angular from 'angular';
-import set from 'lodash/set';
+import { set, kebabCase } from 'lodash-es';
 
 import 'angular-aria';
 import 'angular-sanitize';
 import 'angular-resource';
 
-import kebabCase from 'lodash/kebabCase';
 import ngTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
 import ngOvhHttp from '@ovh-ux/ng-ovh-http';
 import ngOvhSsoAuth from '@ovh-ux/ng-ovh-sso-auth';
@@ -22,6 +21,7 @@ import '@ovh-ux/ng-ovh-request-tagger';
 import '@uirouter/angularjs';
 
 import coreConfig from './config';
+import ouiConfig from './oui-angular';
 import translateFactory from './translate/translate.factory';
 import translateServiceProvider from './translate/translate.service';
 import sessionService from './session/session.service';
@@ -47,6 +47,7 @@ angular
     'tmh.dynamicLocale',
     coreConfig,
     ngTranslateAsyncLoader,
+    ouiConfig,
     ovhOuiAngularTranslations,
     ngOvhHttp,
     ngOvhSsoAuth,

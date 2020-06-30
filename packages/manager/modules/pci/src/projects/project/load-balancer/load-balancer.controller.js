@@ -28,7 +28,10 @@ export default class {
   }
 
   getGuideUrl(guide) {
-    return this.PciLoadBalancerService.getGuideUrl(guide, this.user);
+    return this.PciLoadBalancerService.constructor.getGuideUrl(
+      guide,
+      this.user,
+    );
   }
 
   getLoadbalancerDetails({ id: loadBalancerId }) {

@@ -125,15 +125,6 @@ angular
         clearAllCache: dedicatedCloudCache.all,
       });
 
-    this.getNewPrices = (serviceName) =>
-      OvhHttp.get('/dedicatedCloud/{serviceName}/newPrices', {
-        rootPath: 'apiv6',
-        urlParams: {
-          serviceName,
-        },
-        cache: 'UNIVERS_DEDICATED_CLOUD_NEW_PRICES',
-      });
-
     /* ------- DATACENTER -------*/
 
     this.getDatacenters = (serviceName) =>

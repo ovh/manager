@@ -68,5 +68,13 @@
   "overTheBox_resiliation_cancel_error": "¡Vaya! No se ha podido cancelar la baja del servicio {{service}}.",
   "overTheBox_cancel_resiliation_success": "Se ha cancelado la baja del servicio {{service}}.",
   "overTheBox_statistics_bits_per_sec_legend": "bits/s",
-  "overTheBox_expiration_warning_help": "Puede cancelar la baja del servicio antes de la fecha de expiración."
+  "overTheBox_expiration_warning_help": "Puede cancelar la baja del servicio antes de la fecha de expiración.",
+  "overTheBox_release_channels": "Versiones disponibles ",
+  "overTheBox_change_release_channel_success": "La versión se ha modificado correctamente.",
+  "overTheBox_change_release_channel_error": "No ha sido posible modificar la versión: {{errorMessage}}",
+  "overTheBox_release_channel_stable": "Versión estable gran público",
+  "overTheBox_release_channel_testing": "Versión beta",
+  "overTheBox_release_channel_unstable": "Versión alpha",
+  "overTheBox_release_channel_develop": "Versión de desarrollo",
+  "overTheBox_release_channel_rpi3": "Versión para Raspberry 3"
 }

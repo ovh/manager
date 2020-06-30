@@ -1,3 +1,21 @@
+## [0.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-styles@0.4.0...@ovh-ux/manager-cloud-styles@0.4.1) (2020-06-09)
+
+
+### Bug Fixes
+
+* **emailpro:** fix header tabs button ([47d208b](https://github.com/ovh/manager/commit/47d208b44dcad2fedab44b6771d4da79a80dbfc9))
+
+
+
+# [0.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-styles@0.3.1...@ovh-ux/manager-cloud-styles@0.4.0) (2020-06-02)
+
+
+### Features
+
+* **sidebar:** apply ovhcloud light theme ([cf38dc9](https://github.com/ovh/manager/commit/cf38dc9e5a788062f22fdbc1432aa36f0edbb29a))
+
+
+
 ## [0.3.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-cloud-styles@0.3.0...@ovh-ux/manager-cloud-styles@0.3.1) (2019-10-17)
 
 

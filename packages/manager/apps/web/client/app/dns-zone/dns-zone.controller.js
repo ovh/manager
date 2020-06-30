@@ -15,16 +15,22 @@ export default class DnsZoneCtrl {
     $timeout,
     $translate,
     Alerter,
+    capabilities,
     Domain,
+    contactManagementLink,
     currentSection,
+    isEmailDomainAvailable,
   ) {
     this.$scope = $scope;
     this.$stateParams = $stateParams;
     this.$timeout = $timeout;
     this.$translate = $translate;
     this.Alerter = Alerter;
+    this.capabilities = capabilities;
+    this.contactManagementLink = contactManagementLink;
     this.Domain = Domain;
     this.currentSection = currentSection;
+    this.isEmailDomainAvailable = isEmailDomainAvailable;
   }
 
   $onInit() {

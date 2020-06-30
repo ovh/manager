@@ -1,3 +1,13 @@
+## [5.0.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-responsive-popover@5.0.1...@ovh-ux/ng-ovh-responsive-popover@5.0.2) (2020-06-02)
+
+
+### Bug Fixes
+
+* add module entry ([e9617d2](https://github.com/ovh/manager/commit/e9617d279d6bbef27d5d2c646f1721a739d34691))
+* **grunt:** package templates ([950db1f](https://github.com/ovh/manager/commit/950db1f705e452b6df5836800e8724e4a5267c73))
+
+
+
 ## [5.0.1](https://github.com/ovh-ux/ng-ovh-responsive-popover/compare/v5.0.0...v5.0.1) (2020-01-07)
 
 

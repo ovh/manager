@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-contacts",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Helpers for managing OVH Contacts",
   "keywords": [
     "contacts",
@@ -52,8 +52,8 @@
     "flag-icon-css": "^3.2.1",
     "moment": "^2.20.1",
     "ovh-api-services": "^9.0.0",
-    "ovh-ui-angular": "^3.16.2",
-    "ovh-ui-kit": "^2.42.7",
+    "ovh-ui-angular": "^3.16.3",
+    "ovh-ui-kit": "^2.42.8",
     "ui-select": "^0.19.8"
   }
 }

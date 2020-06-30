@@ -68,5 +68,13 @@
   "overTheBox_resiliation_cancel_error": "Oups ! Nous n'avons pas pu annuler la résiliation en cours du service {{service}}.",
   "overTheBox_cancel_resiliation_success": "La résiliation de votre service {{service}} vient d'être annulée.",
   "overTheBox_statistics_bits_per_sec_legend": "bits/s",
-  "overTheBox_expiration_warning_help": "Vous pouvez annuler la résiliation avant la date d'expiration."
+  "overTheBox_expiration_warning_help": "Vous pouvez annuler la résiliation avant la date d'expiration.",
+  "overTheBox_release_channels": "Versions disponibles",
+  "overTheBox_change_release_channel_success": "Le changement de la version a été effectué avec succès.",
+  "overTheBox_change_release_channel_error": "Nous n'avons pas pu effectuer le changement de la version : {{errorMessage}}",
+  "overTheBox_release_channel_stable": "Version stable grand publique",
+  "overTheBox_release_channel_testing": "Version beta",
+  "overTheBox_release_channel_unstable": "Version alpha",
+  "overTheBox_release_channel_develop": "Version de développement",
+  "overTheBox_release_channel_rpi3": "Version pour Raspberry 3"
 }

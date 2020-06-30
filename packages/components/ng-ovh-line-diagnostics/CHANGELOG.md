@@ -1,3 +1,50 @@
+## [4.0.5](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-line-diagnostics@4.0.4...@ovh-ux/ng-ovh-line-diagnostics@4.0.5) (2020-06-23)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 446] ([cdbbbf0](https://github.com/ovh/manager/commit/cdbbbf01121ed9b6d40d0dfb21b93ec383ef61fd))
+* **i18n:** add missing translations [CDS 449] ([451095e](https://github.com/ovh/manager/commit/451095e6d64b99a61151e5d870f43e23585c37b2))
+* **i18n:** add missing translations [CDS 451] ([11f0e7e](https://github.com/ovh/manager/commit/11f0e7ec2df60d6bf109e258ba904a8b3d81cec4))
+
+
+
+## [4.0.4](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-line-diagnostics@4.0.3...@ovh-ux/ng-ovh-line-diagnostics@4.0.4) (2020-06-16)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 438] ([aa410be](https://github.com/ovh/manager/commit/aa410beb8ae8f69cc792b7dd64e83cd7f54b93cd))
+
+
+
+## [4.0.3](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-line-diagnostics@4.0.2...@ovh-ux/ng-ovh-line-diagnostics@4.0.3) (2020-06-09)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 426] ([83560b6](https://github.com/ovh/manager/commit/83560b6ffe35a21a2f4d8abc927e45629912f5f9))
+
+
+
+## [4.0.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-line-diagnostics@4.0.1...@ovh-ux/ng-ovh-line-diagnostics@4.0.2) (2020-06-09)
+
+
+### Bug Fixes
+
+* fix penalties price to be consistent with wizard ([#3032](https://github.com/ovh/manager/issues/3032)) ([ad1870e](https://github.com/ovh/manager/commit/ad1870e623b1dfbb4eff1906ed04e5ba4fd78066))
+
+
+
+## [4.0.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-line-diagnostics@4.0.0...@ovh-ux/ng-ovh-line-diagnostics@4.0.1) (2020-06-02)
+
+
+### Bug Fixes
+
+* **deps:** update dependencies with latest version ([#3057](https://github.com/ovh/manager/issues/3057)) ([24d06ad](https://github.com/ovh/manager/commit/24d06addfaab0716e725242beae2d3d92feb8856))
+
+
+
 # [4.0.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-line-diagnostics@3.0.4...@ovh-ux/ng-ovh-line-diagnostics@4.0.0) (2020-05-13)
 
 

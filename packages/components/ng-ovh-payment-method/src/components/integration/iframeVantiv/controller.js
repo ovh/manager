@@ -1,6 +1,4 @@
-import get from 'lodash/get';
-import merge from 'lodash/merge';
-import snakeCase from 'lodash/snakeCase';
+import { get, merge, snakeCase } from 'lodash-es';
 
 import { VANTIV_IFRAME_CONFIGURATION, VANTIV_RESPONSE_CODE } from './constants';
 

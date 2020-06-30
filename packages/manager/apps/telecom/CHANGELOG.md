@@ -1,3 +1,87 @@
+## [12.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@12.5.0...@ovh-ux/manager-telecom@12.5.1) (2020-06-30)
+
+
+### Bug Fixes
+
+* **sidebar:** inject feature flipping for beta mode ([#3171](https://github.com/ovh/manager/issues/3171)) ([f9ebf09](https://github.com/ovh/manager/commit/f9ebf09bfc5c84a1047d6a330922804e177e870b))
+
+
+
+# [12.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@12.4.0...@ovh-ux/manager-telecom@12.5.0) (2020-06-29)
+
+
+### Bug Fixes
+
+* **pack.migration:** fix with correct call api for building details ([#3160](https://github.com/ovh/manager/issues/3160)) ([a6d46ff](https://github.com/ovh/manager/commit/a6d46fff195da51fb37371bfd7163d9f78dc060d))
+
+
+### Features
+
+* **xdsl.profiles:** translate vdsl profiles, not display sdsl profile ([#3157](https://github.com/ovh/manager/issues/3157)) ([3d5930e](https://github.com/ovh/manager/commit/3d5930ee486fd3d61ae3324742cda1aff74169b7))
+
+
+
+# [12.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@12.3.3...@ovh-ux/manager-telecom@12.4.0) (2020-06-23)
+
+
+### Features
+
+* **xdsl.profile:** load profiles for constistent tooltip with list ([#2990](https://github.com/ovh/manager/issues/2990)) ([69aa1c6](https://github.com/ovh/manager/commit/69aa1c698285076bae468b7e87e82a2c32004044))
+* use feature flipping module ([3a202dd](https://github.com/ovh/manager/commit/3a202dd9f2e0ff2e4422e022aaab54d46b98cab4))
+
+
+
+## [12.3.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@12.3.2...@ovh-ux/manager-telecom@12.3.3) (2020-06-15)
+
+
+### Bug Fixes
+
+* fix actions menu colors ([#3107](https://github.com/ovh/manager/issues/3107)) ([6b66467](https://github.com/ovh/manager/commit/6b6646735ad0021d4b28a7df0704e9c507a3ea3f))
+
+
+
+## [12.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@12.3.1...@ovh-ux/manager-telecom@12.3.2) (2020-06-09)
+
+
+### Bug Fixes
+
+* **emailpro:** fix header tabs button ([47d208b](https://github.com/ovh/manager/commit/47d208b44dcad2fedab44b6771d4da79a80dbfc9))
+
+
+### Reverts
+
+* Revert "fix: remove ui consistency" ([5435159](https://github.com/ovh/manager/commit/543515950323b10d054ba354ff0054c5a8a3d3d1))
+
+
+
+## [12.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@12.3.0...@ovh-ux/manager-telecom@12.3.1) (2020-06-02)
+
+
+### Bug Fixes
+
+* **deps:** update dependencies with latest version ([#3057](https://github.com/ovh/manager/issues/3057)) ([24d06ad](https://github.com/ovh/manager/commit/24d06addfaab0716e725242beae2d3d92feb8856))
+
+
+
+# [12.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@12.2.0...@ovh-ux/manager-telecom@12.3.0) (2020-06-02)
+
+
+### Bug Fixes
+
+* **translations:** clean translations files ([#3038](https://github.com/ovh/manager/issues/3038)) ([57040ad](https://github.com/ovh/manager/commit/57040adfcac601cbf48f27fb804decfd60800797))
+* remove ui consistency ([#3029](https://github.com/ovh/manager/issues/3029)) ([34be0be](https://github.com/ovh/manager/commit/34be0bea216d575254017265d5650dace12ae582))
+* **i18n:** add missing translations [CDS 418] ([2e6cd3a](https://github.com/ovh/manager/commit/2e6cd3a40a05108683bf90c75db9a3a8cf80fd59))
+
+
+### Features
+
+* add ovhcloud light theme imports ([24d56fb](https://github.com/ovh/manager/commit/24d56fb62a949e01de5f9929c0fe53239c889a59))
+* **sidebar:** apply ovhcloud light theme ([cf38dc9](https://github.com/ovh/manager/commit/cf38dc9e5a788062f22fdbc1432aa36f0edbb29a))
+* **telephony.billingaccount.administration:** preload all groups ([#2810](https://github.com/ovh/manager/issues/2810)) ([ab384d2](https://github.com/ovh/manager/commit/ab384d27247a8d81bbcca464ca6cc1957fbf4222))
+* **telephony.order.phone:** add message for rma ([#2896](https://github.com/ovh/manager/issues/2896)) ([e65c04d](https://github.com/ovh/manager/commit/e65c04d93b792429a879dfe75fbca051658005a0))
+
+
+
 # [12.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@12.1.4...@ovh-ux/manager-telecom@12.2.0) (2020-05-13)
 
 
@@ -462,8 +546,6 @@
 ### BREAKING CHANGES
 
 * module is now named as `ngUiRouterTitle
-
-Signed-off-by: Antoine Leblanc <antoine.leblanc@corp.ovh.com>
 
 
 

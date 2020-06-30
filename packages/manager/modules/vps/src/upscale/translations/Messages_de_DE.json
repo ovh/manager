@@ -45,5 +45,6 @@
   "vps_upscale_elite_upgrade_success_monthly_with_payment_method": "Die Änderung der Konfiguration wurde registriert. Ihnen wurde(n) anteilig {{ price }} für den laufenden Monat berechnet.",
   "vps_upscale_elite_upgrade_success_upfront_with_payment_method": "Die Änderung der Konfiguration wurde registriert. Ihnen wurde(n) anteilig {{ price }} für die verbleibende Zeit Ihres Abonnements berechnet.",
   "vps_upscale_elite_upgrade_success_without_payment_method": "Ihr<a class=\"oui-link\" target=\"_blank\" href=\"{{billUrl}}\" rel=\"noopener\">Bestellschein</a> wurde erstellt. Die Änderung der Konfiguration wird mit getätigter Zahlung aktiv.",
-  "vps_upscale_elite_upgrade_error": "Bei der Änderung der Konfiguration ist ein Fehler aufgetreten."
+  "vps_upscale_elite_upgrade_error": "Bei der Änderung der Konfiguration ist ein Fehler aufgetreten.",
+  "vps_upscale_agreements": "Ich nehme die <a target=\"_blank\" href=\"{{conditions}}\" rel=\"noopener\">allgemeinen Geschäftsbedingungen</a> und die <a target=\"_blank\" href=\"{{policy}}\" rel=\"noopener\">Datenschutzbestimmungen</a> an."
 }

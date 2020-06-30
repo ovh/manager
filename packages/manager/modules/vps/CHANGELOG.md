@@ -1,3 +1,53 @@
+# [1.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@1.2.1...@ovh-ux/manager-vps@1.3.0) (2020-06-17)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 424] ([7d04b0a](https://github.com/ovh/manager/commit/7d04b0acadaa75082d272b22c17c0fbd3f141162))
+* **i18n:** add missing translations [CDS 441] ([4fcdba3](https://github.com/ovh/manager/commit/4fcdba3d39236d6a2df917497ef496a8478aa14c))
+* **i18n:** add missing translations [CDS 443] ([77ce6b1](https://github.com/ovh/manager/commit/77ce6b1b4edddec8836badc3eab580d3530c6a29))
+* vps migration message ([4265b99](https://github.com/ovh/manager/commit/4265b9945a01314d13ce8940090a82d1379f8064))
+
+
+### Features
+
+* **vps:** ui bug fixes ([e8d3c75](https://github.com/ovh/manager/commit/e8d3c75ceea4336f2c72f99d3822f15707bfd5c3))
+* **vps:** update faq link ([fbe025e](https://github.com/ovh/manager/commit/fbe025e66f0bd33af2907b91e818085d511d683d))
+* **vps:** vps migration schedule ([4bced19](https://github.com/ovh/manager/commit/4bced1952a3722e87078dce1f90b70a6a46e2d01))
+
+
+
+## [1.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@1.2.0...@ovh-ux/manager-vps@1.2.1) (2020-06-09)
+
+
+### Bug Fixes
+
+* **emailpro:** fix header tabs button ([47d208b](https://github.com/ovh/manager/commit/47d208b44dcad2fedab44b6771d4da79a80dbfc9))
+* **i18n:** add missing translations [CDS 426] ([83560b6](https://github.com/ovh/manager/commit/83560b6ffe35a21a2f4d8abc927e45629912f5f9))
+
+
+### Reverts
+
+* Revert "fix: remove ui consistency" ([5435159](https://github.com/ovh/manager/commit/543515950323b10d054ba354ff0054c5a8a3d3d1))
+
+
+
+# [1.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@1.1.1...@ovh-ux/manager-vps@1.2.0) (2020-06-02)
+
+
+### Bug Fixes
+
+* remove ui consistency ([#3029](https://github.com/ovh/manager/issues/3029)) ([34be0be](https://github.com/ovh/manager/commit/34be0bea216d575254017265d5650dace12ae582))
+* **i18n:** add missing translations [CDS 415] ([206c5be](https://github.com/ovh/manager/commit/206c5be156e462a8c657346d682eeb764dae5b7f))
+* **i18n:** add missing translations [CDS 416] ([c5054f8](https://github.com/ovh/manager/commit/c5054f82aade5e00949867f247d2629763859636))
+
+
+### Features
+
+* add ovhcloud light theme imports ([24d56fb](https://github.com/ovh/manager/commit/24d56fb62a949e01de5f9929c0fe53239c889a59))
+
+
+
 ## [1.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@1.1.0...@ovh-ux/manager-vps@1.1.1) (2020-05-15)
 
 

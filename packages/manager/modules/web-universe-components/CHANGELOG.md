@@ -1,3 +1,30 @@
+## [8.1.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@8.1.0...@ovh-ux/ng-ovh-web-universe-components@8.1.1) (2020-06-17)
+
+
+### Bug Fixes
+
+* **service-expiration:** use Redirection service to get url ([#3132](https://github.com/ovh/manager/issues/3132)) ([80d82e0](https://github.com/ovh/manager/commit/80d82e0fc70cf6e5d71fb7c29531f4a75eb61d47))
+
+
+
+# [8.1.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@8.0.2...@ovh-ux/ng-ovh-web-universe-components@8.1.0) (2020-06-16)
+
+
+### Features
+
+* **guides:** add guides url for CA ([#3050](https://github.com/ovh/manager/issues/3050)) ([b50284e](https://github.com/ovh/manager/commit/b50284e37774cf34c1e88a5a4cc9c249cfa637a8))
+
+
+
+## [8.0.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@8.0.1...@ovh-ux/ng-ovh-web-universe-components@8.0.2) (2020-06-09)
+
+
+### Bug Fixes
+
+* **emailpro:** fix header tabs button ([47d208b](https://github.com/ovh/manager/commit/47d208b44dcad2fedab44b6771d4da79a80dbfc9))
+
+
+
 ## [8.0.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@8.0.0...@ovh-ux/ng-ovh-web-universe-components@8.0.1) (2020-04-15)
 
 
@@ -18,8 +45,6 @@
 ### BREAKING CHANGES
 
 * **v6uiswitch:** v6UISwitch is deleted, as it is replaced by oui-switch, and is now no more used
-
-Signed-off-by: Jérémy De-Cesare <jeremy.de-cesare@corp.ovh.com>
 
 
 

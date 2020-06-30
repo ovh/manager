@@ -1,3 +1,12 @@
+## [1.0.3](https://github.com/ovh/manager/compare/@ovh-ux/mfa-enrollment@1.0.2...@ovh-ux/mfa-enrollment@1.0.3) (2020-06-09)
+
+
+### Bug Fixes
+
+* **emailpro:** fix header tabs button ([47d208b](https://github.com/ovh/manager/commit/47d208b44dcad2fedab44b6771d4da79a80dbfc9))
+
+
+
 ## [1.0.2](https://github.com/ovh/manager/compare/@ovh-ux/mfa-enrollment@1.0.1...@ovh-ux/mfa-enrollment@1.0.2) (2020-04-01)
 
 

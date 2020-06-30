@@ -2,13 +2,14 @@ import filter from 'lodash/filter';
 import find from 'lodash/find';
 import get from 'lodash/get';
 import head from 'lodash/head';
+import intersection from 'lodash/intersection';
 import last from 'lodash/last';
 import map from 'lodash/map';
 import range from 'lodash/range';
 import set from 'lodash/set';
 import uniq from 'lodash/uniq';
 
-import { PRODUCT_TYPES } from './ip-ip-agoraOrder.constant';
+import { IP_LOCATION_GROUPS, PRODUCT_TYPES } from './ip-ip-agoraOrder.constant';
 
 angular.module('Module.ip.controllers').controller(
   'agoraIpOrderCtrl',
@@ -123,6 +124,14 @@ angular.module('Module.ip.controllers').controller(
       };
     }
 
+    static getRegionsOffers(countries) {
+      return IP_LOCATION_GROUPS.filter(
+        (group) => intersection(group.countries, countries).length > 0,
+      )
+        .map(({ labels }) => labels)
+        .flatten();
+    }
+
     static getRegionFromServiceName(serviceName) {
       const serviceExt = last(serviceName.split('.'));
       if (['eu', 'net'].includes(serviceExt)) {
@@ -140,44 +149,54 @@ angular.module('Module.ip.controllers').controller(
 
       this.model.params = {};
 
-      let vpsIpCountryAvailablePromise = this.$q.when(null);
-
       const ipOffersPromise = this.IpAgoraOrder.getIpOffers(
         this.user.ovhSubsidiary,
       ).then((ipOffers) => {
         let ipOfferDetails = ipOffers.map(this.createOfferDto.bind(this));
-        if (
-          this.model.selectedService &&
-          this.model.selectedService.type === PRODUCT_TYPES.vps.typeName
-        ) {
+        if (this.model.selectedService.type === PRODUCT_TYPES.vps.typeName) {
           ipOfferDetails = ipOfferDetails.filter(({ productShortName }) =>
             productShortName.includes('failover'),
           );
-
-          vpsIpCountryAvailablePromise = this.IpAgoraOrder.getVpsIpCountryAvailable(
-            this.model.selectedService.serviceName,
-          );
         }
-        this.ipOffers = filter(ipOfferDetails, {
-          productRegion: AgoraIpOrderCtrl.getRegionFromServiceName(
-            this.model.selectedService.serviceName,
-          ),
-        });
 
-        return vpsIpCountryAvailablePromise.then((countries) => {
-          if (countries !== null) {
-            this.ipOffers = this.ipOffers.map((ipOffer) => {
-              set(
-                ipOffer,
-                'countries',
-                ipOffer.countries.filter(
-                  ({ code }) => countries.indexOf(code.toLowerCase()) > -1,
-                ),
+        const ipCountryAvailablePromise = this.IpAgoraOrder.getIpCountryAvailablePromise(
+          this.model.selectedService.serviceName,
+          this.model.selectedService.type,
+        );
+
+        return ipCountryAvailablePromise
+          .then((countries) => {
+            if (countries.length > 0) {
+              const ipOffersByRegion = AgoraIpOrderCtrl.getRegionsOffers(
+                countries,
               );
-              return ipOffer;
-            });
-          }
-        });
+              this.ipOffers = ipOfferDetails
+                .filter(({ productRegion }) =>
+                  ipOffersByRegion.includes(productRegion),
+                )
+                .map((ipOffer) => {
+                  set(
+                    ipOffer,
+                    'countries',
+                    ipOffer.countries.filter(
+                      ({ code }) => countries.indexOf(code.toLowerCase()) > -1,
+                    ),
+                  );
+                  return ipOffer;
+                });
+            } else {
+              this.ipOffers = AgoraIpOrderCtrl.filterOfferDetailsFromServiceName(
+                ipOfferDetails,
+                this.model.selectedService.serviceName,
+              );
+            }
+          })
+          .catch(() => {
+            this.ipOffers = AgoraIpOrderCtrl.filterOfferDetailsFromServiceName(
+              ipOfferDetails,
+              this.model.selectedService.serviceName,
+            );
+          });
       });
 
       const ipOrganisationPromise = this.IpOrganisation.getIpOrganisation().then(
@@ -196,6 +215,12 @@ angular.module('Module.ip.controllers').controller(
         .finally(() => {
           this.loading.ipOffers = false;
         });
+    }
+
+    static filterOfferDetailsFromServiceName(offerDetails, serviceName) {
+      return filter(offerDetails, {
+        productRegion: AgoraIpOrderCtrl.getRegionFromServiceName(serviceName),
+      });
     }
 
     getIpOfferRegions() {

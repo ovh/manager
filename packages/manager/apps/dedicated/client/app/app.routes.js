@@ -1,12 +1,9 @@
-import { User as UserModel } from '@ovh-ux/manager-models';
-
 angular.module('App').config(
   /* @ngInject */ ($stateProvider) => {
     $stateProvider.state('app', {
       abstract: true,
       resolve: {
-        currentUser: /* @ngInject */ (User) =>
-          User.getUser().then((user) => new UserModel(user)),
+        currentUser: /* @ngInject */ (User) => User.getUser(),
         rootState: () => 'app.configuration',
       },
       templateUrl: 'app.html',

@@ -1,8 +1,4 @@
-import groupBy from 'lodash/groupBy';
-import includes from 'lodash/includes';
-import isEmpty from 'lodash/isEmpty';
-import map from 'lodash/map';
-import uniq from 'lodash/uniq';
+import { groupBy, includes, isEmpty, map, uniq } from 'lodash-es';
 
 export default class CatalogController {
   $onInit() {

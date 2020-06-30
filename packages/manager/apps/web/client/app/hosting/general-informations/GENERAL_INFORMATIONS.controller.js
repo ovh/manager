@@ -20,6 +20,7 @@ export default class HostingGeneralInformationsCtrl {
     HostingRuntimes,
     hostingSSLCertificate,
     OvhApiScreenshot,
+    RedirectionService,
   ) {
     this.$q = $q;
     this.$scope = $scope;
@@ -35,6 +36,7 @@ export default class HostingGeneralInformationsCtrl {
     this.HostingRuntimes = HostingRuntimes;
     this.hostingSSLCertificate = hostingSSLCertificate;
     this.OvhApiScreenshot = OvhApiScreenshot;
+    this.RedirectionService = RedirectionService;
   }
 
   $onInit() {
@@ -42,6 +44,10 @@ export default class HostingGeneralInformationsCtrl {
     this.defaultRuntime = null;
     this.availableOffers = [];
 
+    this.contactManagementLink = this.RedirectionService.getURL(
+      'contactManagement',
+      { serviceName: this.serviceName },
+    );
     this.loading = {
       defaultRuntime: true,
       localSeo: true,
@@ -54,9 +60,15 @@ export default class HostingGeneralInformationsCtrl {
     };
 
     this.goToDetachEmail = this.$scope.goToDetachEmail;
+    this.goToDetachPrivateDB = this.$scope.goToDetachPrivateDB;
     this.isDetachEmailOptionAvailable =
       this.$scope.emailOptionDetachInformation.length > 0 &&
       this.$scope.emailOptionDetachInformation[0].detachPlancodes.length > 0 &&
+      this.$scope.pendingTasks.length === 0;
+
+    this.isPrivateDatabaseDetachable =
+      this.$scope.privateDatabasesDetachable.length > 0 &&
+      this.$scope.privateDatabasesDetachable[0].detachPlancodes.length > 0 &&
       this.$scope.pendingTasks.length === 0;
 
     const quotaUsed = this.$scope.convertBytesSize(

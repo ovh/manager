@@ -1,13 +1,15 @@
 import angular from 'angular';
-import isEmpty from 'lodash/isEmpty';
-import slice from 'lodash/slice';
-import map from 'lodash/map';
-import forOwn from 'lodash/forOwn';
-import has from 'lodash/has';
-import each from 'lodash/each';
-import indexOf from 'lodash/indexOf';
-import isUndefined from 'lodash/isUndefined';
-import isNumber from 'lodash/isNumber';
+import {
+  isEmpty,
+  slice,
+  map,
+  forOwn,
+  has,
+  each,
+  indexOf,
+  isUndefined,
+  isNumber,
+} from 'lodash-es';
 
 /**
  * @ngdoc service

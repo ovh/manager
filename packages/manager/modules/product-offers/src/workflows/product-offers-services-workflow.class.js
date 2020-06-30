@@ -1,4 +1,6 @@
 import get from 'lodash/get';
+/* eslint-disable import/extensions */
+import TranslateService from '@ovh-ux/manager-core/src/translate/translate.service';
 import Workflow from './product-offers-workflow.class';
 
 /**
@@ -10,6 +12,7 @@ export default class ServicesWorkflow extends Workflow {
    * @param {Object} $translate      AngularJS provider
    * @param {Object} workflowOptions Specific options
    * for this workflow, must contains the following values:
+   * - {optionId} (Optional): Option id to display information about termination date if needed
    * - {serviceId}: Id of the service on which to detach an option
    * - {detachPlancodes}: Item representing the option to detach
    * - {durationToUse}: Duration to use, will override the default pricing
@@ -72,6 +75,33 @@ export default class ServicesWorkflow extends Workflow {
       .finally(() => {
         this.updateLoadingStatus('getOfferValidationInformation');
       });
+  }
+
+  /**
+   * Determines if termination details must be displayed, if pricing has extra fees
+   * @param {Object} pricing - Pricing
+   * @return {boolean}
+   */
+  static hasTerminationDetails(pricing) {
+    return pricing.hasExtraPricing() && !pricing.extraPricing.isFree();
+  }
+
+  /**
+   * Returns the termination date formatted to locale
+   * @param {Object} pricing - Pricing
+   * @param {string} locale  - Locale to use
+   * @return {boolean}
+   */
+  static getTerminationDate(pricing, locale) {
+    const bcp47language = TranslateService.convertFromOVHToBCP47(locale);
+
+    const date = new Date();
+    date.setMonth(date.getMonth() + pricing.interval);
+
+    return new Intl.DateTimeFormat(bcp47language, {
+      year: 'numeric',
+      month: 'numeric',
+    }).format(date);
   }
 
   /**

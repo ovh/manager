@@ -1,0 +1,8 @@
+{
+  "sidebar_menu": "Menu",
+  "sidebar_menu_order_actions": "Encomendar",
+  "sidebar_menu_search": "Pesquisar",
+  "sidebar_menu_search_no_results": "Não foram encontrados resultados para os termos pesquisados",
+  "sidebar_menu_search_loading": "Procura em curso...",
+  "sidebar_menu_error_retry": "Tentar novamente"
+}

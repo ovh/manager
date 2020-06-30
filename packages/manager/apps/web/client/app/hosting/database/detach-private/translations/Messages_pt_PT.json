@@ -1,0 +1,8 @@
+{
+  "hosting_database_private_detach_option_title": "Desassociar a minha base de dados PrivateSQL",
+  "hosting_database_private_detach_option_description": "A sua base de dados PrivateSQL {{ domain }} está associada ao alojamento web {{hosting}}. Desassociar a sua base de dados permite-lhe renová-la de forma independente do seu alojamento. Será faturada ao preço standard das bases de dados PrivateSQL.",
+  "hosting_database_private_detach_option_warning_irreversible": "Atenção: esta ação é irreversível",
+  "hosting_database_private_detach_option_error": "Ocorreu um erro ao desassociar a base de dados: {{error}}",
+  "hosting_database_private_detach_option_success_with_payment": "O pedido de dissociação da base de dados foi registado. O montante {{price}} foi corretamente debitado da sua conta {{accountId}}. <a class=\"d-block\" target=\"_blank\" href=\"{{billUrl}}\" rel=\"noopener\">Ver a minha fatura</a>",
+  "hosting_database_private_detach_option_success_with_no_payment": "A sua <a target=\"_blank\" href=\"{{billUrl}}\" rel=\"noopener\">nota de encomenda</a> foi gerada com êxito. A dissociação da base de dados será efetiva após o respetivo pagamento."
+}

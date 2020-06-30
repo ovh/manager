@@ -23,7 +23,10 @@ export default class OtrsPopupInterventionService {
   }
 
   static canHotSwap(serverInfo, hardwareInfo) {
-    return serverInfo.commercialRange.toUpperCase() === 'HG' && includes(['2U', '4U'], hardwareInfo.formFactor.toUpperCase());
+    return (
+      serverInfo.commercialRange.toUpperCase() === 'HG' &&
+      includes(['2U', '4U'], hardwareInfo.formFactor.toUpperCase())
+    );
   }
 
   static hasMegaRaidCard(hardwareInfo) {
@@ -32,7 +35,10 @@ export default class OtrsPopupInterventionService {
 
   static slotInfo(serverInfo, hardwareInfo) {
     const canUseSlotId = serverInfo.commercialRange.toUpperCase() === 'HG';
-    const slotsCount = hardwareInfo.formFactor && hardwareInfo.formFactor.toUpperCase() === '4U' ? 24 : 12;
+    const slotsCount =
+      hardwareInfo.formFactor && hardwareInfo.formFactor.toUpperCase() === '4U'
+        ? 24
+        : 12;
 
     return {
       canUseSlotId,
@@ -47,24 +53,34 @@ export default class OtrsPopupInterventionService {
       diskToSend.comment = 'No message';
     }
 
-    return this.OvhApiDedicatedServer.v6().askHardDiskDriveReplacement({
-      serverName: serviceName,
-    }, {
-      comment: diskToSend.comment,
-      disks: diskToSend.disks,
-      inverse: diskToSend.inverse,
-    }).$promise;
+    return this.OvhApiDedicatedServer.v6().askHardDiskDriveReplacement(
+      {
+        serverName: serviceName,
+      },
+      {
+        comment: diskToSend.comment,
+        disks: diskToSend.disks,
+        inverse: diskToSend.inverse,
+      },
+    ).$promise;
   }
 
   getServerInterventionInfo(serviceName) {
-    return this.$q.all({
-      serverInfo: this.getServerInfo(serviceName),
-      hardwareInfo: this.getHardwareInfo(serviceName),
-    })
-      .then(results => ({
-        canHotSwap: this.constructor.canHotSwap(results.serverInfo, results.hardwareInfo),
+    return this.$q
+      .all({
+        serverInfo: this.getServerInfo(serviceName),
+        hardwareInfo: this.getHardwareInfo(serviceName),
+      })
+      .then((results) => ({
+        canHotSwap: this.constructor.canHotSwap(
+          results.serverInfo,
+          results.hardwareInfo,
+        ),
         hasMegaRaid: this.constructor.hasMegaRaidCard(results.hardwareInfo),
-        slotInfo: this.constructor.slotInfo(results.serverInfo, results.hardwareInfo),
+        slotInfo: this.constructor.slotInfo(
+          results.serverInfo,
+          results.hardwareInfo,
+        ),
       }));
   }
 }

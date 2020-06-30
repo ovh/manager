@@ -5,6 +5,7 @@ const webpackConfig = require('@ovh-ux/manager-webpack-config');
 const webpack = require('webpack');
 
 module.exports = (env = {}) => {
+  Object.assign(env, process.env.REGION ? { region: process.env.REGION } : {});
   const { config } = webpackConfig(
     {
       template: './src/index.html',
@@ -19,13 +20,21 @@ module.exports = (env = {}) => {
             ),
             to: 'flag-icon-css/flags/4x3',
           },
-          { from: path.resolve(__dirname, 'src/assets/img'), to: 'assets/img' },
+          {
+            from: path.resolve(
+              __dirname,
+              `src/assets/img/logo${
+                env.region && env.region.toUpperCase() === 'US'
+                  ? '/trademark'
+                  : '/classic'
+              }`,
+            ),
+            to: 'assets/img/logo',
+          },
         ],
       },
     },
-    process.env.REGION
-      ? Object.assign(env, { region: process.env.REGION })
-      : env,
+    env,
   );
 
   // Extra config files

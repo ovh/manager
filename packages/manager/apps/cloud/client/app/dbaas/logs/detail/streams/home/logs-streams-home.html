@@ -1,32 +1,22 @@
 <section class="cui-page__content log-streams">
-    <cui-page-content-title
-        text="::'logs_streams_title' | translate"
-    ></cui-page-content-title>
+    <h3 data-translate="logs_streams_title"></h3>
     <p data-translate="logs_streams_description"></p>
-
-    <p>
-        {{ctrl.quota.data.configured}}/{{ctrl.quota.data.max}}
-        <span data-translate="logs_streams_total_used"></span>
-        (<logs-upgrade-quota-link></logs-upgrade-quota-link>)
-    </p>
-
-    <oui-datagrid
-        data-ng-if="!ctrl.quota.loading || ctrl.streams.loading || ctrl.delete.loading"
-        rows="ctrl.streams.data"
-    >
+    <oui-datagrid rows="ctrl.streams.data">
         <extra-top>
-            <logs-add-tool
-                data-ng-if="!ctrl.quota.loading"
-                text="{{ ::'logs_streams_add_data_feed' | translate }}"
-                tool-type="{{ ::'logs_streams_name' | translate }}"
-                current-usage="ctrl.quota.data.configured"
-                max-usage="ctrl.quota.data.max"
-                callback="ctrl.add()"
+            <button
+                type="button"
+                class="oui-button oui-button_secondary"
+                data-ng-click="ctrl.add()"
             >
-            </logs-add-tool>
+                <span
+                    class="oui-icon oui-icon-add pr-1"
+                    aria-hidden="true"
+                ></span>
+                <span data-translate="logs_streams_add_data_feed"></span>
+            </button>
             <oui-spinner
                 size="s"
-                data-ng-if="ctrl.quota.loading || ctrl.delete.loading"
+                data-ng-if="ctrl.delete.loading"
             ></oui-spinner>
         </extra-top>
         <oui-column
@@ -46,47 +36,6 @@
             filterable
         ></oui-column>
         <oui-column
-            data-title="::'logs_streams_col_archives' | translate"
-            property="info.archives.length"
-            sortable
-            type="number"
-            filterable
-        >
-            <span
-                data-ng-if="$row.info.coldStorageEnabled"
-                data-ng-bind="$row.info.archives.length"
-            />
-            <span data-ng-if="!$row.info.coldStorageEnabled">
-                {{ $row.info.nbArchive || "-" }}
-            </span>
-        </oui-column>
-        <oui-column
-            data-title="::'logs_streams_col_notifications' | translate"
-            property="info.notifications.length"
-            sortable
-            type="number"
-            filterable
-        >
-            <span
-                data-ng-if="$row.info.notifications.length"
-                data-ng-bind="$row.info.notifications.length"
-            />
-            <span data-ng-if="!$row.info.notifications.length"> - </span>
-        </oui-column>
-        <oui-column
-            data-title="::'logs_streams_col_linked_option' | translate"
-            property="info.optionId"
-            sortable
-            type="string"
-        >
-            <i
-                data-ng-if="$row.info.optionId"
-                class="oui-icon oui-icon-check_line"
-                aria-hidden="true"
-            ></i>
-            <span data-ng-if="!$row.info.optionId"> - </span>
-        </oui-column>
-        <oui-column
             data-title="::'logs_streams_col_indexing' | translate"
             property="info.indexingEnabled"
             sortable
@@ -98,6 +47,46 @@
                 data-ng-class="$row.info.indexingEnabled ? 'oui-status_success' : 'oui-status_warning'"
             >
             </span>
+        </oui-column>
+        <oui-column
+            data-title="::'logs_streams_col_storage' | translate"
+            sortable
+            data-type="number"
+            data-property="info.currentStorage"
+            filterable
+        >
+            <span
+                class="oui-status"
+                data-ng-bind="ctrl.storageInfo($row)"
+            ></span>
+        </oui-column>
+        <oui-column
+            data-title="::'logs_streams_col_archives' | translate"
+            property="info.nbArchive"
+            sortable
+            type="number"
+            filterable
+        >
+            <span
+                data-ng-if="$row.info.coldStorageEnabled"
+                data-ng-bind="$row.info.nbArchive"
+            />
+            <span data-ng-if="!$row.info.coldStorageEnabled">
+                {{ $row.info.nbArchive || "-" }}
+            </span>
+        </oui-column>
+        <oui-column
+            data-title="::'logs_streams_col_notifications' | translate"
+            property="info.nbAlertCondition"
+            sortable
+            type="number"
+            filterable
+        >
+            <span
+                data-ng-if="$row.info.nbAlertCondition"
+                data-ng-bind="$row.info.nbAlertCondition"
+            />
+            <span data-ng-if="!$row.info.nbAlertCondition"> - </span>
         </oui-column>
         <oui-column
             data-title="::'logs_col_last_modified' | translate"

@@ -1,6 +1,8 @@
 import controller from './hosting.controller';
 import template from './hosting.html';
 
+import { LOCAL_SEO_FAMILY } from './local-seo/local-seo.constants';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.hosting', {
     url: '/configuration/hosting/:productId?tab',
@@ -12,6 +14,11 @@ export default /* @ngInject */ ($stateProvider) => {
       tab: null,
     },
     resolve: {
+      availableOptions: /* @ngInject */ (WucOrderCartService, serviceName) =>
+        WucOrderCartService.getProductServiceOptions(
+          'webHosting',
+          serviceName,
+        ).catch(() => []),
       emailOptionIds: /* @ngInject */ (hostingEmailService, serviceName) =>
         hostingEmailService.getEmailOptionList(serviceName),
       emailOptionDetachInformation: /* @ngInject */ (
@@ -34,34 +41,74 @@ export default /* @ngInject */ ($stateProvider) => {
         $q,
         emailOptionIds,
         hostingEmailService,
+        isEmailDomainAvailable,
         OvhApiEmailDomain,
         serviceName,
       ) =>
-        $q
-          .all(
-            emailOptionIds.map((emailOptionId) =>
-              hostingEmailService
-                .getEmailOptionServiceInformation(serviceName, emailOptionId)
-                .then(({ resource }) =>
-                  OvhApiEmailDomain.v6()
-                    .serviceInfos({
-                      serviceName: resource.name,
-                    })
-                    .$promise.catch(() => null),
-                ),
-            ),
-          )
-          .then((servicesInformation) =>
-            servicesInformation
-              .filter((information) => information !== null)
-              .flatten(),
-          ),
+        (isEmailDomainAvailable
+          ? $q.all(
+              emailOptionIds.map((emailOptionId) =>
+                hostingEmailService
+                  .getEmailOptionServiceInformation(serviceName, emailOptionId)
+                  .then(({ resource }) =>
+                    OvhApiEmailDomain.v6()
+                      .serviceInfos({
+                        serviceName: resource.name,
+                      })
+                      .$promise.catch(() => null),
+                  )
+                  .catch(() => null),
+              ),
+            )
+          : $q.resolve([])
+        ).then((servicesInformation) =>
+          servicesInformation
+            .filter((information) => information !== null)
+            .flatten(),
+        ),
       pendingTasks: /* @ngInject */ (HostingTask, serviceName) =>
         HostingTask.getPending(serviceName).catch(() => []),
+      privateDatabasesIds: /* @ngInject */ (HostingDatabase, serviceName) =>
+        HostingDatabase.getPrivateDatabaseIds(serviceName).catch(() => []),
+      privateDatabasesDetachable: /* @ngInject */ (
+        $q,
+        ovhManagerProductOffersDetachService,
+        PrivateDatabase,
+        privateDatabasesIds,
+      ) =>
+        $q
+          .all(
+            privateDatabasesIds.map((id) =>
+              PrivateDatabase.getServiceInfos(id).catch(() => null),
+            ),
+          )
+          .then((privateDatabasesInformation) =>
+            privateDatabasesInformation
+              .filter((information) => information !== null)
+              .flatten(),
+          )
+          .then((privateDatabasesInformation) =>
+            $q.all(
+              privateDatabasesInformation.map(({ domain, serviceId }) =>
+                ovhManagerProductOffersDetachService
+                  .getAvailableDetachPlancodes(serviceId)
+                  .catch(() => [])
+                  .then((plancodes) => ({
+                    optionId: domain,
+                    serviceId,
+                    detachPlancodes: plancodes,
+                  })),
+              ),
+            ),
+          ),
       serviceName: /* @ngInject */ ($transition$) =>
         $transition$.params().productId,
+      logs: /* @ngInject */ (HostingStatistics, serviceName) =>
+        HostingStatistics.getLogs(serviceName),
       goToDetachEmail: /* @ngInject */ ($state) => () =>
         $state.go('app.hosting.detachEmail'),
+      goToDetachPrivateDB: /* @ngInject */ ($state) => () =>
+        $state.go('app.hosting.database.detachPrivate'),
       goToHosting: /* @ngInject */ ($state, $timeout, Alerter) => (
         message = false,
         type = 'success',
@@ -86,6 +133,8 @@ export default /* @ngInject */ ($stateProvider) => {
           configurationSelected: true,
         });
       },
+      isLocalSeoAvailable: /* @ngInject */ (availableOptions) =>
+        availableOptions.find(({ family }) => family === LOCAL_SEO_FAMILY),
     },
     translations: { value: ['.'], format: 'json' },
   });

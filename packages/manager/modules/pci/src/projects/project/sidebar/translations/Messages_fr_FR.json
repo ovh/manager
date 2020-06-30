@@ -31,5 +31,6 @@
   "cloud_sidebar_public_cloud_project_toggle": "Ouvre la liste des projets",
   "cloud_sidebar_public_cloud_project_toggle_close": "Retour au menu",
   "cloud_sidebar_alpha_project": "Alpha",
-  "cloud_sidebar_beta_project": "Bêta"
+  "cloud_sidebar_beta_project": "Bêta",
+  "cloud_sidebar_new_project": "Nouveau"
 }

@@ -34,11 +34,11 @@ class LogsIndexAddModalCtrl {
         .load()
         .then(() => {
           this.ovhSubsidiary = this.accountDetails.data.me.ovhSubsidiary;
-          return this.$q.all([this.mainOffer.load(), this.catalog.load()]);
+          return this.catalog.load();
         })
         .then(() => {
           const selectedCatalog = this.catalog.data.plans.find(
-            (plan) => plan.planCode === this.mainOffer.data.planCode,
+            (plan) => plan.planCode === this.LogsConstants.LDP_PLAN_CODE,
           );
           const selectedFamily = selectedCatalog.addonsFamily.find(
             (addon) => addon.family === this.LogsConstants.ADD_ON_FAMILY.NEW,
@@ -68,10 +68,6 @@ class LogsIndexAddModalCtrl {
   }
 
   initLoaders() {
-    this.mainOffer = this.CucControllerHelper.request.getArrayLoader({
-      loaderFunction: () =>
-        this.LogsIndexService.getMainOffer(this.serviceName),
-    });
     this.catalog = this.CucControllerHelper.request.getArrayLoader({
       loaderFunction: () =>
         this.LogsIndexService.getOrderCatalog(this.ovhSubsidiary),

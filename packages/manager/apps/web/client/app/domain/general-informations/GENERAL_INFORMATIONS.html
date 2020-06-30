@@ -101,7 +101,7 @@
                     <oui-action-menu
                         data-compact
                         data-align="end"
-                        data-ng-if="!$ctrl.domain.hasDnsAnycast"
+                        data-ng-if="!$ctrl.domain.hasDnsAnycast && $ctrl.domain.dnsAvailableOptions.length"
                     >
                         <oui-action-menu-item
                             data-text="{{ ::'domain_configuration_dnsanycast_title_button' | translate }}"
@@ -114,6 +114,7 @@
                 <oui-tile-definition
                     data-term-popover="{{ ::'domain_configuration_web_hosting_offer_START_explain' | translate }}"
                     data-term="{{ ::'domain_dashboard_enable_web_hosting' | translate }}"
+                    ng-if="$ctrl.isStart10mAvailable"
                 >
                     <oui-tile-description>
                         <a
@@ -468,10 +469,13 @@
                     </oui-tile-description>
                     <oui-action-menu data-compact data-align="end">
                         <oui-action-menu-item
-                            data-text="{{ ::$ctrl.actions.manageContact.text }}"
+                            ng-if="$ctrl.actions.manageContact.href"
                             aria-label="{{ ::$ctrl.actions.manageContact.text }}"
-                            data-href="{{ ::$ctrl.actions.manageContact.href }}"
+                            href="{{ ::$ctrl.actions.manageContact.href }}"
                         >
+                            <span
+                                data-ng-bind="::$ctrl.actions.manageContact.text"
+                            ></span>
                         </oui-action-menu-item>
                         <oui-spinner
                             size="s"
@@ -482,7 +486,7 @@
                             data-text="{{ ::$ctrl.actions.changeOwner.text }}"
                             aria-label="{{ ::$ctrl.actions.changeOwner.text }}"
                             data-href="{{ ::$ctrl.actions.changeOwner.href }}"
-                            data-ng-if="$ctrl.actions.changeOwner.isAvailable && !$ctrl.loading.changeOwner"
+                            data-ng-if="$ctrl.actions.changeOwner.href && !$ctrl.loading.changeOwner"
                             data-external
                         >
                         </oui-action-menu-item>

@@ -1,3 +1,12 @@
+## [1.2.5](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@1.2.4...@ovh-ux/sign-up@1.2.5) (2020-06-09)
+
+
+### Bug Fixes
+
+* **emailpro:** fix header tabs button ([47d208b](https://github.com/ovh/manager/commit/47d208b44dcad2fedab44b6771d4da79a80dbfc9))
+
+
+
 ## [1.2.4](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@1.2.3...@ovh-ux/sign-up@1.2.4) (2020-05-13)
 
 

@@ -1,3 +1,49 @@
+# [7.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@7.7.2...@ovh-ux/manager-sms@7.8.0) (2020-06-23)
+
+
+### Features
+
+* use feature flipping module ([3a202dd](https://github.com/ovh/manager/commit/3a202dd9f2e0ff2e4422e022aaab54d46b98cab4))
+
+
+
+## [7.7.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@7.7.1...@ovh-ux/manager-sms@7.7.2) (2020-06-09)
+
+
+### Bug Fixes
+
+* **emailpro:** fix header tabs button ([47d208b](https://github.com/ovh/manager/commit/47d208b44dcad2fedab44b6771d4da79a80dbfc9))
+
+
+### Reverts
+
+* Revert "fix: remove ui consistency" ([5435159](https://github.com/ovh/manager/commit/543515950323b10d054ba354ff0054c5a8a3d3d1))
+
+
+
+## [7.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@7.7.0...@ovh-ux/manager-sms@7.7.1) (2020-06-02)
+
+
+### Bug Fixes
+
+* **deps:** update dependencies with latest version ([#3057](https://github.com/ovh/manager/issues/3057)) ([24d06ad](https://github.com/ovh/manager/commit/24d06addfaab0716e725242beae2d3d92feb8856))
+
+
+
+# [7.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@7.6.1...@ovh-ux/manager-sms@7.7.0) (2020-06-02)
+
+
+### Bug Fixes
+
+* remove ui consistency ([#3029](https://github.com/ovh/manager/issues/3029)) ([34be0be](https://github.com/ovh/manager/commit/34be0bea216d575254017265d5650dace12ae582))
+
+
+### Features
+
+* add ovhcloud light theme imports ([24d56fb](https://github.com/ovh/manager/commit/24d56fb62a949e01de5f9929c0fe53239c889a59))
+
+
+
 ## [7.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@7.6.0...@ovh-ux/manager-sms@7.6.1) (2020-04-16)
 
 

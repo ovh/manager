@@ -1,5 +1,4 @@
-import get from 'lodash/get';
-import set from 'lodash/set';
+import { get, set } from 'lodash-es';
 
 import controller from './controller';
 import template from './index.html';

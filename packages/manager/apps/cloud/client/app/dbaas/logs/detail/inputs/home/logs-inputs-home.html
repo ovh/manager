@@ -1,26 +1,22 @@
 <div class="cui-page__content inputs-home">
-    <span class="oui-header_3" data-translate="inputs_title"></span>
+    <h3 data-translate="inputs_title"></h3>
     <p class="oui-paragraph" data-translate="inputs_intro_text"></p>
-
-    <div data-ng-if="ctrl.quota.loading"><oui-spinner></oui-spinner></div>
-
-    <oui-spinner data-ng-if="ctrl.delete.loading"></oui-spinner>
-    <oui-datagrid
-        data-ng-if="!(ctrl.inputs.loading || ctrl.delete.loading)"
-        rows="ctrl.inputs.data"
-    >
+    <oui-datagrid rows="ctrl.inputs.data">
         <extra-top>
             <button
                 type="button"
                 class="oui-button oui-button_secondary"
                 data-ng-click="ctrl.add()"
             >
-                <span class="oui-icon oui-icon-add pr-1" aria-hidden="true"></span> 
+                <span
+                    class="oui-icon oui-icon-add pr-1"
+                    aria-hidden="true"
+                ></span>
                 <span data-translate="inputs_add_input"></span>
             </button>
             <oui-spinner
                 size="s"
-                data-ng-if="ctrl.quota.loading || ctrl.delete.loading"
+                data-ng-if="ctrl.delete.loading"
             ></oui-spinner>
         </extra-top>
         <oui-column

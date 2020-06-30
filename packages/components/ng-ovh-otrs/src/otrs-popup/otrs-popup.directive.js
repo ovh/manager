@@ -4,7 +4,7 @@ import controller from './otrs-popup.controller';
 import template from './otrs-popup.html';
 import './otrs-popup.less';
 
-export default function () {
+export default function() {
   return {
     restrict: 'A',
     scope: {},
@@ -62,20 +62,23 @@ export default function () {
       $scope.$on('otrs.popup.open', $scope.open);
       $scope.$on('otrs.popup.close', $scope.close);
 
-      const maximizeWatch = $scope.$watch('status.maximize', () => (
+      const maximizeWatch = $scope.$watch('status.maximize', () =>
         $scope.status.maximize
           ? $element.addClass('maximize')
-          : $element.removeClass('maximize')));
+          : $element.removeClass('maximize'),
+      );
 
-      const minimizeWatch = $scope.$watch('status.minimize', () => (
+      const minimizeWatch = $scope.$watch('status.minimize', () =>
         $scope.status.minimize
           ? $element.addClass('minimize')
-          : $element.removeClass('minimize')));
+          : $element.removeClass('minimize'),
+      );
 
-      const closeWatch = $scope.$watch('status.close', () => (
+      const closeWatch = $scope.$watch('status.close', () =>
         $scope.status.close
           ? $element.addClass('close')
-          : $element.removeClass('close')));
+          : $element.removeClass('close'),
+      );
 
       $element.addClass('otrs-container');
       $element.addClass('initial-setting');
@@ -90,14 +93,17 @@ export default function () {
           delete dragData.actualStartPosition;
           if (element.classList.contains('initial-setting')) {
             const boundingBox = element.getBoundingClientRect();
-            dragData.actualStartPosition = { x: boundingBox.left, y: boundingBox.top };
+            dragData.actualStartPosition = {
+              x: boundingBox.left,
+              y: boundingBox.top,
+            };
             element.classList.remove('initial-setting');
           }
         },
         limit: (currX, currY, x0, y0) => {
-          const position = (dragData.actualStartPosition
+          const position = dragData.actualStartPosition
             ? { x: currX, y: currY - (y0 - dragData.actualStartPosition.y) }
-            : { x: currX, y: currY });
+            : { x: currX, y: currY };
           // Prevent pop-up to be dragged above the window
           position.y = position.y < 0 ? 0 : position.y;
           return position;
