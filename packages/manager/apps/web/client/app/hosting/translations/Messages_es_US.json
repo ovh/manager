@@ -463,7 +463,6 @@
   "hosting_tab_DOMAINS_configuration_modify_step1_domain_name": "Nombre del dominio",
   "hosting_tab_DOMAINS_configuration_modify_step1_domain_name_www_question": "Editar también el subdominio {{t0}}",
   "hosting_tab_DOMAINS_configuration_modify_step1_home": "Carpeta raíz",
-  "hosting_tab_DOMAINS_configuration_modify_step1_runtime": "Unidad funcional",
   "hosting_tab_DOMAINS_configuration_modify_step1_cdn": "Activar el CDN",
   "hosting_tab_DOMAINS_configuration_modify_step2_summary": "¿Seguro que desea aplicar los cambios en los siguientes dominios?",
   "hosting_tab_DOMAINS_configuration_modify_step2_domain_name": "Nombre del dominio",

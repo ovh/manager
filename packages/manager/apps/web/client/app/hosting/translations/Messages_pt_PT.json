@@ -155,6 +155,7 @@
   "hosting_dashboard_service_privatesql_active_long": "Encomendar uma base de dados SQL privada",
   "hosting_dashboard_service_privatesql_active_remaining": "{{ count }} Base(s) de dados SQL privada(s) não activada(s)",
   "hosting_dashboard_service_privatesql_active_doing": "Ativação em curso",
+  "hosting_dashbaord_service_privatesql_detach": "Desassociar",
   "hosting_dashboard_service_web_info_1": "de 1 recomendado",
   "hosting_dashboard_service_web_info_other": "de {{t0}} recomendados",
   "hosting_dashboard_service_renew": "Renovar",
@@ -487,7 +488,6 @@
   "hosting_tab_DOMAINS_configuration_modify_step1_domain_name": "Domínio",
   "hosting_tab_DOMAINS_configuration_modify_step1_domain_name_www_question": "Modificar também o subdomínio {{t0}}",
   "hosting_tab_DOMAINS_configuration_modify_step1_home": "Pasta raiz",
-  "hosting_tab_DOMAINS_configuration_modify_step1_runtime": "Aplicativo de software em tempo de execução",
   "hosting_tab_DOMAINS_configuration_modify_step1_cdn": "Ativar o CDN",
   "hosting_tab_DOMAINS_configuration_modify_step2_summary": "Deseja realmente levar a cabo estas alterações para os nomes de domínio seguintes?",
   "hosting_tab_DOMAINS_configuration_modify_step2_domain_name": "Domínio",
@@ -1371,10 +1371,9 @@
   "hosting_dashboard_access": "Acesso",
   "common_api_hostingWeb-1": "Não é possível migrar para esta oferta, porque a sua oferta atual dispõe de mais e-mails do que a oferta selecionada.",
   "hosting_dashboard_service_activate_email": "Ativar a minha oferta de e-mail",
+  "hosting_dashboard_service_detach_email_option": "Desassociar a minha opção de e-mail",
   "hosting_dashboard_service_email_address": "Endereços de e-mail",
   "hosting_dashboard_service_common_active": "Ativo",
   "hosting_dashboard_service_common_inactive": "Inativo",
-  "hosting_dashboard_email_offer_get_error": "Não é possível recuperar o endereço de e-mail",
-  "hosting_dashboard_service_detach_email_option": "Desassociar a minha opção de e-mail",
-  "hosting_dashbaord_service_privatesql_detach": "Desassociar"
+  "hosting_dashboard_email_offer_get_error": "Não é possível recuperar o endereço de e-mail"
 }

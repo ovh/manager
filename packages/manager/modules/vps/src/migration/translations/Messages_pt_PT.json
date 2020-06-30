@@ -14,6 +14,5 @@
   "vps_migration_status_toPlan": "Não programada",
   "vps_migration_status_planned": "Programada",
   "vps_migration_table_vps_link": "Ver o meu serviço",
-  "vps_migration_table_planned_date": "Data prevista",
-  "vps_migration_description2": "O seu VPS atual será substituído por uma máquina da nossa <a href='{{rangeLink}}' class='oui-link oui-link_icon' rel='noopener' target='_blank'>nova gama<span class='oui-icon oui-icon-external_link' aria-hidden='true'></span></a>, a um preço inferior ou equivalente."
+  "vps_migration_table_planned_date": "Data prevista"
 }

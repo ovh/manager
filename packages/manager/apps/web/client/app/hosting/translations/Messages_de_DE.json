@@ -155,6 +155,7 @@
   "hosting_dashboard_service_privatesql_active_long": "Eine private SQL Datenbank aktivieren",
   "hosting_dashboard_service_privatesql_active_remaining": "{{ count }} nicht aktivierte private SQL Datenbank(en)",
   "hosting_dashboard_service_privatesql_active_doing": "Wird aktiviert",
+  "hosting_dashbaord_service_privatesql_detach": "Abtrennen",
   "hosting_dashboard_service_web_info_1": "von 1 empfohlenen",
   "hosting_dashboard_service_web_info_other": "von {{t0}} empfohlenen",
   "hosting_dashboard_service_renew": "Verlängern",
@@ -487,7 +488,6 @@
   "hosting_tab_DOMAINS_configuration_modify_step1_domain_name": "Domainname",
   "hosting_tab_DOMAINS_configuration_modify_step1_domain_name_www_question": "Auch die Subdomain {{t0}} ändern",
   "hosting_tab_DOMAINS_configuration_modify_step1_home": "Wurzelverzeichnis",
-  "hosting_tab_DOMAINS_configuration_modify_step1_runtime": "Runtime Engine",
   "hosting_tab_DOMAINS_configuration_modify_step1_cdn": "CDN aktivieren",
   "hosting_tab_DOMAINS_configuration_modify_step2_summary": "Möchten Sie diese Änderungen wirklich auf folgende Domains anwenden?",
   "hosting_tab_DOMAINS_configuration_modify_step2_domain_name": "Domainname",
@@ -1371,10 +1371,9 @@
   "hosting_dashboard_access": "Zugriff",
   "common_api_hostingWeb-1": "Sie können nicht zu diesem Angebot wechseln, da Ihr aktuelles Angebot mehr E-Mail-Adressen umfasst, als das gerade gewählte Angebot.",
   "hosting_dashboard_service_activate_email": "Mein E-Mail Angebot aktivieren",
+  "hosting_dashboard_service_detach_email_option": "Meine E-Mail-Option abtrennen",
   "hosting_dashboard_service_email_address": "E-Mail-Adressen",
   "hosting_dashboard_service_common_active": "Aktiv",
   "hosting_dashboard_service_common_inactive": "Inaktiv",
-  "hosting_dashboard_email_offer_get_error": "Es ist unmöglich, die E-Mail-Adresse wiederherzustellen.",
-  "hosting_dashboard_service_detach_email_option": "Meine E-Mail-Option abtrennen",
-  "hosting_dashbaord_service_privatesql_detach": "Abtrennen"
+  "hosting_dashboard_email_offer_get_error": "Es ist unmöglich, die E-Mail-Adresse wiederherzustellen."
 }

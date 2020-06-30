@@ -14,6 +14,5 @@
   "vps_migration_status_toPlan": "Not scheduled",
   "vps_migration_status_planned": "Scheduled",
   "vps_migration_table_vps_link": "View my service",
-  "vps_migration_table_planned_date": "Scheduled date",
-  "vps_migration_description2": "Your current VPS will be replaced with a server from our <a href='{{rangeLink}}' class='oui-link oui-link_icon' rel='noopener' target='_blank'>new range<span class='oui-icon oui-icon-external_link' aria-hidden='true'></span></a>, at an equal or lower price."
+  "vps_migration_table_planned_date": "Scheduled date"
 }
