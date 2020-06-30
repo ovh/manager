@@ -4,20 +4,22 @@ import path from 'path';
 import slash from 'slash';
 import startsWith from 'lodash/startsWith';
 
-const ALL_LANGUAGES = [
-  'cs_CZ',
-  'de_DE',
-  'en_GB',
-  'es_ES',
-  'es_US',
-  'fi_FI',
-  'fr_CA',
-  'fr_FR',
-  'it_IT',
-  'lt_LT',
-  'pl_PL',
-  'pt_PT',
-];
+const ALL_LANGUAGES = process.env.OVH_BUILD_LANGUAGES
+  ? process.env.OVH_BUILD_LANGUAGES.split(',')
+  : [
+      'cs_CZ',
+      'de_DE',
+      'en_GB',
+      'es_ES',
+      'es_US',
+      'fi_FI',
+      'fr_CA',
+      'fr_FR',
+      'it_IT',
+      'lt_LT',
+      'pl_PL',
+      'pt_PT',
+    ];
 
 const normalizePath = p => (startsWith(p, '.') ? slash(p) : `./${slash(p)}`);
 
