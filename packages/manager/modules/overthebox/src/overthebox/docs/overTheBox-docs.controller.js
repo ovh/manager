@@ -1,40 +1,42 @@
 import forEach from 'lodash/forEach';
 import snakeCase from 'lodash/snakeCase';
 
-export default /* @ngInject */ function($translate, OVER_THE_BOX) {
-  const self = this;
+export default class OverTheBoxDocsCtrl {
+  /* @ngInject */
+  constructor($translate, OVER_THE_BOX) {
+    this.$translate = $translate;
+    this.OVER_THE_BOX = OVER_THE_BOX;
+  }
 
-  function injectTitleInUrl(descriptor, lang) {
+  injectTitleInUrl(descriptor, lang) {
     if (descriptor.url && descriptor.url[lang]) {
       // eslint-disable-next-line no-param-reassign
       descriptor.url[lang] = descriptor.url[lang].replace(
         '{title}',
-        snakeCase($translate.instant(descriptor.label)),
+        snakeCase(this.$translate.instant(descriptor.label)),
       );
     }
     if (descriptor.subs) {
       forEach(descriptor.subs, (sub) => {
-        injectTitleInUrl(sub, lang);
+        this.injectTitleInUrl(sub, lang);
       });
     }
   }
 
-  function init() {
+  $onInit() {
     // Checking configuration (registered or from browser)
     if (localStorage['univers-selected-language']) {
-      self.language = localStorage['univers-selected-language'].replace(
+      this.language = localStorage['univers-selected-language'].replace(
         /-.*$|_.*$/,
         '',
       );
     } else if (navigator.language || navigator.userLanguage) {
-      self.language = (navigator.language || navigator.userLanguage).replace(
+      this.language = (navigator.language || navigator.userLanguage).replace(
         /-.*$|_.*$/,
         '',
       );
     }
-    self.docs = OVER_THE_BOX;
-    injectTitleInUrl(self.docs, self.language);
+    this.docs = this.OVER_THE_BOX;
+    this.injectTitleInUrl(this.docs, this.language);
   }
-
-  init();
 }

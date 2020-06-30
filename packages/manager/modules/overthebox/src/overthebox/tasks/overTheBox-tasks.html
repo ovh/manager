@@ -9,8 +9,8 @@
             ></h2>
 
             <oui-datagrid
-                data-rows="OverTheBoxTasks.taskIds"
-                data-row-loader="OverTheBoxTasks.transformItem($row)"
+                data-rows="$ctrl.taskIds"
+                data-row-loader="$ctrl.transformItem($row)"
             >
                 <oui-datagrid-column
                     data-title="'overTheBox_tasks_name' | translate"
@@ -28,12 +28,12 @@
                     data-sortable
                 >
                     <span
-                        class="label"
+                        class="oui-status"
                         data-ng-class="{
-                                'label-success': $row.status === 'done',
-                                'label-danger': $row.status === 'error',
-                                'label-info': $row.status === 'doing',
-                                'label-primary': $row.status === 'todo'
+                                'oui-status_success': $row.status === 'done',
+                                'oui-status_danger': $row.status === 'error',
+                                'oui-status_info': $row.status === 'doing',
+                                'oui-status_warning': $row.status === 'todo'
                             }"
                     >
                         <span
