@@ -1,3 +1,12 @@
+# [7.1.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/component-rollup-config@7.0.3...@ovh-ux/component-rollup-config@7.1.0) (2020-06-30)
+
+
+### Features
+
+* allow usage of global env to set languages for building apps ([#3186](https://github.com/ovh-ux/manager/issues/3186)) ([4b5c35a](https://github.com/ovh-ux/manager/commit/4b5c35ad849bb76bc61baaac8bfe38e2dc8a9749))
+
+
+
 ## [7.0.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/component-rollup-config@7.0.2...@ovh-ux/component-rollup-config@7.0.3) (2020-05-15)
 
 
