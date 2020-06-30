@@ -24,8 +24,6 @@ angular
   .component('overTheBoxDetails', component)
   .constant('OVERTHEBOX_DETAILS', constant)
   .config(routing)
-  .service('OverTheBoxGraphService', overTheBoxGraphService)
-  .run(/* @ngTranslationsInject:json ./translations */)
-  .run(/* @ngTranslationsInject:json ../remote/translations */);
+  .service('OverTheBoxGraphService', overTheBoxGraphService);
 
 export default moduleName;

@@ -4,9 +4,9 @@ export default /* @ngInject */ ($stateProvider) => {
     views: {
       otbView: 'overTheBoxDetails',
     },
-    resolve: {
-      serviceName: /* @ngInject */ ($transition$) =>
-        $transition$.params().serviceName,
+    translations: {
+      value: ['.', '../remote'],
+      format: 'json',
     },
   });
 };

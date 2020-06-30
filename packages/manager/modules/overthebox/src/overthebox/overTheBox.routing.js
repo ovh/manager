@@ -1,20 +1,21 @@
-const commonResolves = {
-  service: /* @ngInject */ (OvhApiOverTheBox, serviceName) =>
-    OvhApiOverTheBox.v6()
-      .get({ serviceName })
-      .$promise.then((service) => service),
-};
-
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('overTheBoxes.overTheBox', {
     url: '/:serviceName',
     abstract: true,
     component: 'ovhManagerOverTheBoxComponent',
     resolve: {
-      ...commonResolves,
+      service: /* @ngInject */ (OvhApiOverTheBox, $stateParams) =>
+        OvhApiOverTheBox.v6()
+          .get({ serviceName: $stateParams.serviceName })
+          .$promise.then((service) => service),
       serviceName: /* @ngInject */ ($transition$) =>
         $transition$.params().serviceName,
-      $title(translations, $translate, $stateParams, OvhApiOverTheBox) {
+      $title: /* @ngInject */ (
+        translations,
+        $translate,
+        $stateParams,
+        OvhApiOverTheBox,
+      ) => {
         return OvhApiOverTheBox.v6()
           .get({
             serviceName: $stateParams.serviceName,
@@ -34,6 +35,10 @@ export default /* @ngInject */ ($stateProvider) => {
             }),
           );
       },
+    },
+    translations: {
+      value: ['.', './details', './warning', './remote'],
+      format: 'json',
     },
   });
 };

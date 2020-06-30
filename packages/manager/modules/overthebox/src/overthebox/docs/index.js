@@ -8,7 +8,6 @@ const moduleName = 'ovhManagerOtbDocs';
 angular
   .module(moduleName, [])
   .component('overTheBoxDocs', component)
-  .config(routing)
-  .run(/* @ngTranslationsInject:json ./translations */);
+  .config(routing);
 
 export default moduleName;
