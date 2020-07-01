@@ -8,7 +8,6 @@ const moduleName = 'ovhManagerOtbLogs';
 angular
   .module(moduleName, [])
   .component('overTheBoxLogs', component)
-  .config(routing)
-  .run(/* @ngTranslationsInject:json ./translations */);
+  .config(routing);
 
 export default moduleName;

@@ -10,10 +10,6 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '/:serviceName',
     abstract: true,
     component: 'ovhManagerOverTheBoxComponent',
-    translations: {
-      value: ['.', './details', './warning', './remote'],
-      format: 'json',
-    },
     resolve: {
       ...commonResolve,
       serviceName: /* @ngInject */ ($transition$) =>
@@ -38,6 +34,10 @@ export default /* @ngInject */ ($stateProvider) => {
             }),
           );
       },
+    },
+    translations: {
+      value: ['.', './details', './warning', './remote'],
+      format: 'json',
     },
   });
 };

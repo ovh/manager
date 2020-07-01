@@ -11,7 +11,6 @@ const moduleName = 'ovhManagerOtbOrder';
 angular
   .module(moduleName, ['ngOvhContracts', ovhManagerOtbWarning])
   .component('overTheBoxOrder', component)
-  .config(routing)
-  .run(/* @ngTranslationsInject:json ./translations */);
+  .config(routing);
 
 export default moduleName;

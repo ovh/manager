@@ -8,7 +8,6 @@ const moduleName = 'ovhManagerOtbTasks';
 angular
   .module(moduleName, [])
   .component('overTheBoxTasks', component)
-  .config(routing)
-  .run(/* @ngTranslationsInject:json ./translations */);
+  .config(routing);
 
 export default moduleName;
