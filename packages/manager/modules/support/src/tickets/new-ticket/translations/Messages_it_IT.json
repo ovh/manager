@@ -1,10 +1,10 @@
 {
   "ovhManagerSupport_new_open_new_tab": "Apre una nuova scheda",
   "ovhManagerSupport_new_category": "Soggetto",
-  "ovhManagerSupport_new_category_billing": "Fatturazione e ordini",
+  "ovhManagerSupport_new_category_billing": "Fatturazione e stato dell'ordine",
   "ovhManagerSupport_new_category_assistance": "Consulenza tecnica",
   "ovhManagerSupport_new_category_incident": "Incidente",
-  "ovhManagerSupport_new_category_account": "Gestione dell’account",
+  "ovhManagerSupport_new_category_account": "Gestione dell’account cliente",
   "ovhManagerSupport_new_category_business": "Contatto commerciale",
   "ovhManagerSupport_new_urgency": "Livello di priorità",
   "ovhManagerSupport_new_urgency_low": "Basso",
@@ -27,7 +27,7 @@
   "ovhManagerSupport_new_serviceType_vps": "VPS",
   "ovhManagerSupport_new_serviceType_xdsl": "xDSL",
   "ovhManagerSupport_new_serviceType_vrack": "vRack",
-  "ovhManagerSupport_new_serviceType_domain": "Domini",
+  "ovhManagerSupport_new_serviceType_domain": "Dominio",
   "ovhManagerSupport_new_serviceType_carrier_sip": "Operatore SIP",
   "ovhManagerSupport_new_serviceType_cdn_webstorage": "CDN WebStorage",
   "ovhManagerSupport_new_serviceType_cdn_website": "CDN WebSite",
@@ -113,5 +113,9 @@
   "ovhManagerSupport_new_business_cloud": "Cloud",
   "ovhManagerSupport_new_business_1": "Hai un progetto da analizzare?",
   "ovhManagerSupport_new_business_2": "Descrivi in modo dettagliato le tue esigenze inviandoci un’email all’indirizzo:",
-  "ovhManagerSupport_new_business_3": "Le richieste di supporto ricevute a questo indirizzo non verranno prese in carico."
+  "ovhManagerSupport_new_business_3": "Le richieste di supporto ricevute a questo indirizzo non verranno prese in carico.",
+  "ovhManagerSupport_new_category_description_billing": "Domande sulla fatturazione e lo stato dell'ordine dei tuoi prodotti e servizi",
+  "ovhManagerSupport_new_category_description_assistance": "Domande sull’utilizzo dei tuoi prodotti e servizi",
+  "ovhManagerSupport_new_category_description_incident": "Domande sugli incidenti tecnici con impatto sui tuoi prodotti e servizi e non associate a problemi di utilizzo",
+  "ovhManagerSupport_new_category_description_account": "Domande sulla gestione del tuo account cliente e non relative ai prodotti"
 }
