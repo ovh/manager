@@ -1,10 +1,10 @@
 {
   "ovhManagerSupport_new_open_new_tab": "Abre um novo separador",
   "ovhManagerSupport_new_category": "Categoria",
-  "ovhManagerSupport_new_category_billing": "Faturação e encomenda",
+  "ovhManagerSupport_new_category_billing": "Faturação e seguimento de pedidos",
   "ovhManagerSupport_new_category_assistance": "Conselhos técnicos",
   "ovhManagerSupport_new_category_incident": "Incidente",
-  "ovhManagerSupport_new_category_account": "Gestão da conta",
+  "ovhManagerSupport_new_category_account": "Gestão da conta de cliente",
   "ovhManagerSupport_new_category_business": "Contacto comercial",
   "ovhManagerSupport_new_urgency": "Nível de prioridade",
   "ovhManagerSupport_new_urgency_low": "Baixo",
@@ -113,5 +113,9 @@
   "ovhManagerSupport_new_business_cloud": "Cloud",
   "ovhManagerSupport_new_business_1": "Quer iniciar um projeto?",
   "ovhManagerSupport_new_business_2": "Explique-nos aquilo de que precisa através do seguinte endereço:",
-  "ovhManagerSupport_new_business_3": "Os pedidos de assistência recebidos neste endereço não serão tratados."
+  "ovhManagerSupport_new_business_3": "Os pedidos de assistência recebidos neste endereço não serão tratados.",
+  "ovhManagerSupport_new_category_description_billing": "Questões relativas à faturação e seguimento de pedidos dos seus produtos e serviços",
+  "ovhManagerSupport_new_category_description_assistance": "Questões relativas à utilização dos seus produtos e serviços",
+  "ovhManagerSupport_new_category_description_incident": "Questões relativas aos incidentes técnicos ocorridos nos seus produtos e serviços, não relacionadas com a sua utilização",
+  "ovhManagerSupport_new_category_description_account": "Questões relativas à gestão da sua conta de cliente, não relacionadas com qualquer produto"
 }

@@ -1,10 +1,10 @@
 {
   "ovhManagerSupport_new_open_new_tab": "Öffnet einen neuen Tab",
   "ovhManagerSupport_new_category": "Kategorie",
-  "ovhManagerSupport_new_category_billing": "Abrechnung und Bestellung",
+  "ovhManagerSupport_new_category_billing": "Abrechnung und Nachverfolgung der Bestellung",
   "ovhManagerSupport_new_category_assistance": "Technische Beratung",
   "ovhManagerSupport_new_category_incident": "Störung",
-  "ovhManagerSupport_new_category_account": "Accountverwaltung",
+  "ovhManagerSupport_new_category_account": "Verwaltung des Kunden-Accounts",
   "ovhManagerSupport_new_category_business": "Vertriebskontakt",
   "ovhManagerSupport_new_urgency": "Priorität",
   "ovhManagerSupport_new_urgency_low": "Gering",
@@ -113,5 +113,9 @@
   "ovhManagerSupport_new_business_cloud": "Cloud",
   "ovhManagerSupport_new_business_1": "Sie wünschen Beratung zu einem Projekt?",
   "ovhManagerSupport_new_business_2": "Bitte senden Sie uns eine E-Mail mit ausführlichen Informationen an die Adresse",
-  "ovhManagerSupport_new_business_3": "Support-Anfragen, die an diese Adresse versendet werden, werden nicht bearbeitet."
+  "ovhManagerSupport_new_business_3": "Support-Anfragen, die an diese Adresse versendet werden, werden nicht bearbeitet.",
+  "ovhManagerSupport_new_category_description_billing": "Fragen zur Abrechnung und zur Nachverfolgung der Bestellung von Produkten und Dienstleistungen",
+  "ovhManagerSupport_new_category_description_assistance": "Fragen zur Verwendung Ihrer Produkte und Dienstleistungen",
+  "ovhManagerSupport_new_category_description_incident": "Fragen zu technischen Störungen Ihrer Produkte und Dienstleistungen, die nicht auf ein Problem bei der Verwendung zurückzuführen sind",
+  "ovhManagerSupport_new_category_description_account": "Fragen zur Verwaltung Ihres Kunden-Accounts, die in keinem Zusammenhang mit einem Produkt stehen"
 }

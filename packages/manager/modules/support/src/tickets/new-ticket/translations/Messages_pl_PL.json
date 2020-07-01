@@ -1,10 +1,10 @@
 {
   "ovhManagerSupport_new_open_new_tab": "Otwórz nową zakładkę",
   "ovhManagerSupport_new_category": "Rodzaj zgłoszenia",
-  "ovhManagerSupport_new_category_billing": "Faktura i zamówienie",
+  "ovhManagerSupport_new_category_billing": "Fakturowanie i śledzenie zamówień",
   "ovhManagerSupport_new_category_assistance": "Pomoc techniczna",
   "ovhManagerSupport_new_category_incident": "Awaria",
-  "ovhManagerSupport_new_category_account": "Zarządzanie kontem",
+  "ovhManagerSupport_new_category_account": "Zarządzanie kontem OVHcloud",
   "ovhManagerSupport_new_category_business": "Zapytanie handlowe",
   "ovhManagerSupport_new_urgency": "Priorytet",
   "ovhManagerSupport_new_urgency_low": "Niski",
@@ -28,7 +28,7 @@
   "ovhManagerSupport_new_serviceType_xdsl": "xDSL",
   "ovhManagerSupport_new_serviceType_vrack": "vRack",
   "ovhManagerSupport_new_serviceType_domain": "Domena",
-  "ovhManagerSupport_new_serviceType_carrier_sip": "",
+  "ovhManagerSupport_new_serviceType_carrier_sip": "Operator SIP",
   "ovhManagerSupport_new_serviceType_cdn_webstorage": "CDN WebStorage",
   "ovhManagerSupport_new_serviceType_cdn_website": "CDN WebSite",
   "ovhManagerSupport_new_serviceType_cdn_dedicated": "CDN dedykowany",
@@ -113,5 +113,9 @@
   "ovhManagerSupport_new_business_cloud": "Cloud",
   "ovhManagerSupport_new_business_1": "Masz projekt, który chcesz przeanalizować?",
   "ovhManagerSupport_new_business_2": "Prosimy szczegółowo opisać potrzeby dotyczące projektu i wysłać do nas wiadomość na adres:",
-  "ovhManagerSupport_new_business_3": "Zgłoszenia wysłane na ten adres nie będą przetwarzane."
+  "ovhManagerSupport_new_business_3": "Zgłoszenia wysłane na ten adres nie będą przetwarzane.",
+  "ovhManagerSupport_new_category_description_billing": "Pytania dotyczące fakturowania i śledzenia zamówień ",
+  "ovhManagerSupport_new_category_description_assistance": "Pytanie dotyczące korzystania z produktów i usług",
+  "ovhManagerSupport_new_category_description_incident": "Pytania dotyczące nieprawidłowości w działaniu produktów i usług, które nie wynikają z niewłaściwego użytkowania ",
+  "ovhManagerSupport_new_category_description_account": "Pytania dotyczące zarządzania kontem klienta, niedotyczące żadnego produktu "
 }
