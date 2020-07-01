@@ -1,4 +1,4 @@
-const commonResolves = {
+const commonResolve = {
   service: /* @ngInject */ (OvhApiOverTheBox, serviceName) =>
     OvhApiOverTheBox.v6()
       .get({ serviceName })
@@ -10,8 +10,12 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '/:serviceName',
     abstract: true,
     component: 'ovhManagerOverTheBoxComponent',
+    translations: {
+      value: ['.', './details', './warning', './remote'],
+      format: 'json',
+    },
     resolve: {
-      ...commonResolves,
+      ...commonResolve,
       serviceName: /* @ngInject */ ($transition$) =>
         $transition$.params().serviceName,
       $title(translations, $translate, $stateParams, OvhApiOverTheBox) {
