@@ -80,7 +80,7 @@ export default class {
    */
   onChangeAdvancedSizingWorkerMemOverheadHandler(newValue) {
     if (this.state.advancedSizing && newValue) {
-      this.updateMemoryOverHead(this.state.driverMemoryGb, newValue, 'worker');
+      this.updateMemoryOverHead(this.state.workerMemoryGb, newValue, 'worker');
     }
   }
 
@@ -189,7 +189,7 @@ export default class {
         pricePerGiB *
         workerCount +
       (driverMemoryGb + driverMemoryOverheadMb / GIB_IN_MIB) * pricePerGiB +
-      (driverCores + workerCores) * pricePerCore;
+      (driverCores + workerCores * workerCount) * pricePerCore;
     return price;
   }
 
@@ -214,7 +214,7 @@ export default class {
         taxMemory *
         workerCount +
       (driverMemoryGb + driverMemoryOverheadMb / GIB_IN_MIB) * taxMemory +
-      (driverCores + workerCores) * taxCores;
+      (driverCores + workerCores * workerCount) * taxCores;
     return tax;
   }
 }
