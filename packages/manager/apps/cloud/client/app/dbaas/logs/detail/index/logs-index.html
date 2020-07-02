@@ -36,6 +36,14 @@
             data-filterable
         ></oui-column>
         <oui-column
+            data-title="::'logs_index_col_nb_shard' | translate"
+            data-property="info.nbShard"
+            data-sortable
+            data-type="number"
+        >
+            {{:: $row.info.nbShard || "-" }}
+        </oui-column>
+        <oui-column
             data-title="::'logs_index_col_free_space' | translate"
             data-type="number"
             data-property="info.currentStorage"

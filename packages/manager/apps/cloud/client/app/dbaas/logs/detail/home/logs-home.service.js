@@ -10,9 +10,6 @@ class LogsHomeService {
     SidebarMenu,
   ) {
     this.$http = $http;
-    this.AccountingAapiService = OvhApiDbaas.Logs()
-      .Accounting()
-      .Aapi();
     this.DetailsAapiService = OvhApiDbaas.Logs()
       .Details()
       .Aapi();
@@ -21,19 +18,6 @@ class LogsHomeService {
     this.LogsConstants = LogsConstants;
     this.CucServiceHelper = CucServiceHelper;
     this.SidebarMenu = SidebarMenu;
-  }
-
-  /**
-   * Gets the transformed account object
-   *
-   * @param {any} serviceName
-   * @returns promise which will resolve to the account object
-   * @memberof LogsHomeService
-   */
-  getAccount(serviceName) {
-    return this.AccountingAapiService.me({ serviceName })
-      .$promise.then((account) => account)
-      .catch(this.CucServiceHelper.errorHandler('logs_home_account_get_error'));
   }
 
   /**
@@ -65,11 +49,7 @@ class LogsHomeService {
   getDataUsage(serviceName, metricName) {
     return this.getAccountDetails(serviceName)
       .then((accountDetails) => {
-        this.createdAt = accountDetails.service.createdAt;
-        return this.getAccount(serviceName);
-      })
-      .then((account) => {
-        const token = btoa(account.metrics.token);
+        const token = btoa(accountDetails.metrics.token);
         const query = {
           start: Math.max(
             moment()
@@ -78,7 +58,7 @@ class LogsHomeService {
                 'month',
               )
               .unix() * 1000,
-            moment(this.createdAt).unix() * 1000,
+            moment(accountDetails.service.createdAt).unix() * 1000,
           ),
           queries: [
             {
@@ -92,7 +72,7 @@ class LogsHomeService {
         };
         return this.$http({
           method: 'POST',
-          url: `${account.metrics.host}/api/query`,
+          url: `${accountDetails.metrics.host}/api/query`,
           headers: {
             Authorization: `Basic ${token}`,
           },

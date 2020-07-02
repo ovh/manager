@@ -6,6 +6,7 @@ class LogsRoleOverviewCtrl {
       alias: [],
       index: [],
       stream: [],
+      kibana: [],
     };
     this.role = role;
     this.sortPermissions();
@@ -24,6 +25,9 @@ class LogsRoleOverviewCtrl {
       }
       if (permission.dashboard) {
         this.permissions.dashboard.push(permission.dashboard);
+      }
+      if (permission.kibana) {
+        this.permissions.kibana.push(permission.kibana);
       }
     });
   }

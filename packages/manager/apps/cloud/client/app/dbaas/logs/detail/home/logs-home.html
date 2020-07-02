@@ -34,11 +34,9 @@
             <oui-tile
                 class="oui-tile-h-100"
                 data-heading="{{::'logs_home_shortcuts'|translate}}"
-                data-loading="ctrl.accountDetails.loading || ctrl.account.loading"
+                data-loading="ctrl.accountDetails.loading"
             >
-                <oui-tile-definition
-                    data-ng-if="ctrl.accountDetails.loading || ctrl.account.loading"
-                >
+                <oui-tile-definition data-ng-if="ctrl.accountDetails.loading">
                     <oui-tile-description>
                         <oui-skeleton data-randomized></oui-skeleton>
                         <oui-skeleton data-randomized></oui-skeleton>
@@ -49,9 +47,7 @@
                         <oui-skeleton data-randomized></oui-skeleton>
                     </oui-tile-description>
                 </oui-tile-definition>
-                <div
-                    data-ng-if="!(ctrl.accountDetails.loading || ctrl.account.loading)"
-                >
+                <div data-ng-if="!ctrl.accountDetails.loading">
                     <oui-tile-definition
                         data-term="{{::'logs_home_shortcuts_last_stream'|translate}}"
                     >
@@ -151,7 +147,7 @@
                                     aria-hidden="true"
                                 ></i>
                             </a>
-                            <div data-ng-if="ctrl.account.data">
+                            <div data-ng-if="ctrl.accountDetails.data">
                                 <a
                                     data-ng-href="{{ ctrl.accountDetails.data.elasticSearchApiUrl }}"
                                     class="oui-tile__button oui-button oui-link_icon oui-button_link"
@@ -397,10 +393,10 @@
             <oui-tile
                 class="oui-tile-h-100"
                 data-heading="{{::'logs_home_subscription'|translate}}"
-                data-loading="ctrl.account.loading || ctrl.accountDetails.loading || ctrl.serviceInfos.loading"
+                data-loading="ctrl.accountDetails.loading || ctrl.serviceInfos.loading"
             >
                 <oui-tile-definition
-                    data-ng-if="ctrl.account.loading || ctrl.accountDetails.loading || ctrl.serviceInfos.loading"
+                    data-ng-if="ctrl.accountDetails.loading || ctrl.serviceInfos.loading"
                 >
                     <oui-tile-description>
                         <oui-skeleton data-randomized></oui-skeleton>
@@ -410,7 +406,7 @@
                     </oui-tile-description>
                 </oui-tile-definition>
                 <div
-                    data-ng-if="!(ctrl.account.loading || ctrl.accountDetails.loading || ctrl.serviceInfos.loading)"
+                    data-ng-if="!(ctrl.accountDetails.loading || ctrl.serviceInfos.loading)"
                 >
                     <oui-tile-definition
                         data-term="{{::'logs_home_account_name'|translate}}"

@@ -127,7 +127,6 @@
   "logs_home_cold_storage": "Volume archiviato: {{coldStorage}}",
   "logs_home_display_name_update_success": "Il nome è stato modificato correttamente",
   "logs_home_account_details_get_error": "Si è verificato un errore durante il caricamento dell'account: {{message}}",
-  "logs_home_account_get_error": "Si è verificato un errore durante il caricamento dell'account: {{message}}",
   "logs_home_contacts_get_error": "Si è verificato un errore durante il caricamento dei contatti: {{message}}",
   "logs_home_contact_get_error": "Si è verificato un errore durante il caricamento di un contatto: {{message}}",
   "logs_home_display_name_update_error": "Si è verificato un errore durante la modifica del nome: {{message}}",

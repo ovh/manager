@@ -62,6 +62,14 @@
             </span>
         </oui-column>
         <oui-column
+            data-title="::'inputs_nb_instance' | translate"
+            data-property="info.nbInstance"
+            data-sortable
+            data-type="number"
+        >
+            {{ $row.info.nbInstance || "-" }}
+        </oui-column>
+        <oui-column
             title="::'logs_col_last_modified' | translate"
             property="info.updatedAt"
             sortable

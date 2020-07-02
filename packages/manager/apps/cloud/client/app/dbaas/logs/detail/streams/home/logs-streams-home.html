@@ -49,6 +49,12 @@
             </span>
         </oui-column>
         <oui-column
+            data-title="::'logs_streams_col_retention' | translate"
+            data-property="info.retentionId"
+        >
+            {{ ctrl.retentionInfo($row) || "-" }}
+        </oui-column>
+        <oui-column
             data-title="::'logs_streams_col_storage' | translate"
             sortable
             data-type="number"
@@ -67,13 +73,7 @@
             type="number"
             filterable
         >
-            <span
-                data-ng-if="$row.info.coldStorageEnabled"
-                data-ng-bind="$row.info.nbArchive"
-            />
-            <span data-ng-if="!$row.info.coldStorageEnabled">
-                {{ $row.info.nbArchive || "-" }}
-            </span>
+            {{ $row.info.nbArchive || "-" }}
         </oui-column>
         <oui-column
             data-title="::'logs_streams_col_notifications' | translate"
@@ -82,11 +82,7 @@
             type="number"
             filterable
         >
-            <span
-                data-ng-if="$row.info.nbAlertCondition"
-                data-ng-bind="$row.info.nbAlertCondition"
-            />
-            <span data-ng-if="!$row.info.nbAlertCondition"> - </span>
+            {{ $row.info.nbAlertCondition || "-" }}
         </oui-column>
         <oui-column
             data-title="::'logs_col_last_modified' | translate"

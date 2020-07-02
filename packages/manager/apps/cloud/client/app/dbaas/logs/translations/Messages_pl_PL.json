@@ -127,7 +127,6 @@
   "logs_home_cold_storage": "Zarchiwizowany wolumen: {{coldStorage}}",
   "logs_home_display_name_update_success": "Nazwa została zmieniona.",
   "logs_home_account_details_get_error": "Wystąpił błąd podczas ładowania konta: {{message}}.",
-  "logs_home_account_get_error": "Wystąpił błąd podczas ładowania konta: {{message}}.",
   "logs_home_contacts_get_error": "Wystąpił błąd podczas ładowania kontaktów: {{message}}.",
   "logs_home_contact_get_error": "Wystąpił błąd podczas ładowania kontaktu:{{message}}.",
   "logs_home_display_name_update_error": "Wystąpił błąd podczas zmiany nazwy: {{message}}.",
