@@ -30,7 +30,7 @@
     "@ovh-ux/manager-navbar": "^3.0.0",
     "@ovh-ux/manager-office": "^1.0.0",
     "@ovh-ux/manager-preloader": "^1.0.0",
-    "@ovh-ux/manager-product-offers": "^1.0.3",
+    "@ovh-ux/manager-product-offers": "^1.3.1 || ^2.0.0",
     "@ovh-ux/manager-server-sidebar": "^1.0.0",
     "@ovh-ux/manager-sharepoint": "^1.0.0",
     "@ovh-ux/mfa-enrollment": "^1.0.0",
