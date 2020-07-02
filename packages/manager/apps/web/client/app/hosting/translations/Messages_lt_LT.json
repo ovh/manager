@@ -160,7 +160,7 @@
   "hosting_dashboard_service_web_info_other": "on {{t0}} recommended",
   "hosting_dashboard_service_renew": "Renew",
   "hosting_dashboard_service_change_offer": "Upgrade",
-  "hosting_dashboard_service_change_offer_explanation": "Switch to a paid hosting plan in order to create a database quickly and with no interruption in service. Our services provide you with: ",
+  "hosting_dashboard_service_change_offer_explanation": "You current solution does not enable database creation. To create databases, you will need to upgrade to a paid hosting plan. The upgrade process is quick, and does not result in any downtime. With our higher plans, you can get:",
   "hosting_dashboard_service_change_offer_explanation_ftp": "An FTP of at least 1GB",
   "hosting_dashboard_service_change_offer_explanation_mail": "A minimum of 2 5GB email addresses",
   "hosting_dashboard_service_change_offer_explanation_db": "A database starting at 100MB",
@@ -1362,5 +1362,6 @@
   "hosting_dashboard_service_email_address": "Email addresses",
   "hosting_dashboard_service_common_active": "Enabled",
   "hosting_dashboard_service_common_inactive": "Disabled",
-  "hosting_dashboard_email_offer_get_error": "Unable to retrieve email address"
+  "hosting_dashboard_email_offer_get_error": "Unable to retrieve email address",
+  "hosting_tab_DATABASES_configuration_order_title_button_public": "Order a Start SQL database"
 }
