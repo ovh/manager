@@ -279,7 +279,9 @@ export default class SupportNewIssuesFormController {
       !this.bindings.issue.value.hasChildren &&
       this.bindings.issue.value.selfCareResources.length > 0;
     this.bindings.buttons.exists =
-      this.bindings.issue.value && !this.bindings.issue.value.hasChildren;
+      this.bindings.issue.value &&
+      !this.bindings.issue.value.readOnly &&
+      !this.bindings.issue.value.hasChildren;
     this.bindings.buttons.choice.exists =
       this.bindings.buttons.exists &&
       this.bindings.issue.value.selfCareResources.length > 0;
