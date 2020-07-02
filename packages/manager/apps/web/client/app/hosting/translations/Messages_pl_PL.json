@@ -160,7 +160,7 @@
   "hosting_dashboard_service_web_info_other": "na {{t0}} zalecanych",
   "hosting_dashboard_service_renew": "Odnów",
   "hosting_dashboard_service_change_offer": "Zmień ofertę",
-  "hosting_dashboard_service_change_offer_explanation": "Przejdź na płatny hosting, aby utworzyć bazę danych. Zmień ofertę szybko i bez przerwy w działaniu. Nasza oferta to:",
+  "hosting_dashboard_service_change_offer_explanation": "Twój aktualny pakiet nie pozwala na tworzenie baz danych. Abyś mógł tworzyć bazy danych, zmień ofertę na płatny hosting. Operacja jest szybka i nie powoduje przerw w działaniu usługi. Nasze pakiety pozwolą Ci uzyskać:",
   "hosting_dashboard_service_change_offer_explanation_ftp": "Przestrzeń FTP co najmniej 1 GB",
   "hosting_dashboard_service_change_offer_explanation_mail": "Minimum 2 konta e-mail o pojemności 5 GB",
   "hosting_dashboard_service_change_offer_explanation_db": "Baza danych od 100 MB",
@@ -1374,5 +1374,6 @@
   "hosting_dashboard_service_email_address": "Adresy e-mail",
   "hosting_dashboard_service_common_active": "Aktywny",
   "hosting_dashboard_service_common_inactive": "Nieaktywny",
-  "hosting_dashboard_email_offer_get_error": "Nie można pobrać adresu e-mail"
+  "hosting_dashboard_email_offer_get_error": "Nie można pobrać adresu e-mail",
+  "hosting_tab_DATABASES_configuration_order_title_button_public": "Zamów bazę Start SQL"
 }

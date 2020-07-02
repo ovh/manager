@@ -160,7 +160,7 @@
   "hosting_dashboard_service_web_info_other": "de {{t0}} recomendados",
   "hosting_dashboard_service_renew": "Renovar",
   "hosting_dashboard_service_change_offer": "Cambiar de plan",
-  "hosting_dashboard_service_change_offer_explanation": "Cambie a un alojamiento de pago para crear una base de datos. Es rápido y sin cortes. Nuestros planes de hosting le permitirán disfrutar de:",
+  "hosting_dashboard_service_change_offer_explanation": "Su solución no permite crear bases de datos. Para poder crear bases de datos, puede migrar a un plan de hosting de pago. ¡Rápido y sin interrupciones! Con nuestras soluciones disfrutará de:",
   "hosting_dashboard_service_change_offer_explanation_ftp": "Un espacio FTP de al menos 1 GB",
   "hosting_dashboard_service_change_offer_explanation_mail": "Un mínimo de 2 direcciones de correo de 5 GB",
   "hosting_dashboard_service_change_offer_explanation_db": "Una base de datos de 100 MB o más",
@@ -1376,5 +1376,6 @@
   "hosting_dashboard_service_email_address": "Direcciones de correo",
   "hosting_dashboard_service_common_active": "Activo",
   "hosting_dashboard_service_common_inactive": "Inactivo",
-  "hosting_dashboard_email_offer_get_error": "No se ha podido cargar la dirección de correo."
+  "hosting_dashboard_email_offer_get_error": "No se ha podido cargar la dirección de correo.",
+  "hosting_tab_DATABASES_configuration_order_title_button_public": "Solicitar una base de datos Start SQL"
 }

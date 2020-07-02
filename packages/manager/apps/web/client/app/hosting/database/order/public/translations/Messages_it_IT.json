@@ -1,0 +1,11 @@
+{
+  "ovhManagerHostingDatabaseOrderPublic_title": "Ordina un database Start SQL",
+  "ovhManagerHostingDatabaseOrderPublic_customization_title": "Personalizzazione",
+  "ovhManagerHostingDatabaseOrderPublic_customization_characteristics_title": "Seleziona le caratteristiche desiderate",
+  "ovhManagerHostingDatabaseOrderPublic_customization_characteristics_placeholder": "Seleziona",
+  "ovhManagerHostingDatabaseOrderPublic_customization_characteristics_display_1": "{{quantity}} database da {{diskSpace}} MB",
+  "ovhManagerHostingDatabaseOrderPublic_customization_characteristics_display_+": "{{quantity}} database da {{diskSpace}} MB",
+  "ovhManagerHostingDatabaseOrderPublic_success_noCheckout": "L’ordine è stato preso in carico La soluzione scelta sarà attiva entro pochi minuti.",
+  "ovhManagerHostingDatabaseOrderPublic_success_checkout": "L’<a href=\"{{ bcUrl }}\" target=\"_blank\" rel=\"noopener\">ordine</a> è stato generato correttamente. Una volta convalidato, il servizio verrà attivato.",
+  "ovhManagerHostingDatabaseOrderPublic_error": "Si è verificato un errore durante l'ordine del database SQL: {{message}}"
+}

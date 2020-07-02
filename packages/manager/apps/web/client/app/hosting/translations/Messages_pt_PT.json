@@ -160,7 +160,7 @@
   "hosting_dashboard_service_web_info_other": "de {{t0}} recomendados",
   "hosting_dashboard_service_renew": "Renovar",
   "hosting_dashboard_service_change_offer": "Mudar de oferta",
-  "hosting_dashboard_service_change_offer_explanation": "Migrar para um alojamento pago a fim de poder criar uma base de dados. É rápido e sem cortes. As nossas ofertas permitem usufruir de:",
+  "hosting_dashboard_service_change_offer_explanation": "O seu plano atual não lhe permite criar bases de dados. Para poder criar bases de dados, pode migrar para um alojamento pago. É rápido e sem interrupções. Com as nossas ofertas, poderá obter:",
   "hosting_dashboard_service_change_offer_explanation_ftp": "Um espaço FTP de pelo menos 1 GB",
   "hosting_dashboard_service_change_offer_explanation_mail": "Um mínimo de 2 endereços de e-mail de 5 GB",
   "hosting_dashboard_service_change_offer_explanation_db": "Uma base de dados de 100 MB ou mais",
@@ -1375,5 +1375,6 @@
   "hosting_dashboard_service_email_address": "Endereços de e-mail",
   "hosting_dashboard_service_common_active": "Ativo",
   "hosting_dashboard_service_common_inactive": "Inativo",
-  "hosting_dashboard_email_offer_get_error": "Não é possível recuperar o endereço de e-mail"
+  "hosting_dashboard_email_offer_get_error": "Não é possível recuperar o endereço de e-mail",
+  "hosting_tab_DATABASES_configuration_order_title_button_public": "Encomendar uma base de dados Start SQL"
 }
