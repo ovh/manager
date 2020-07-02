@@ -99,20 +99,22 @@ angular.module('App').controller(
           allDom: this.isAllDom
             ? this.WucAllDom.getServiceInfos(this.$stateParams.allDom)
             : null,
-          alldomOrder: !this.isAllDom
-            ? this.User.getUrlOf('alldomOrder')
-            : null,
         })
-        .then(({ user, domain, allDom, alldomOrder }) => {
+        .then(({ user, domain, allDom }) => {
           this.isAdminOrBilling =
             domain.contactAdmin === user.nichandle ||
             domain.contactBilling === user.nichandle;
           this.domainInfos = domain;
+          const alldomOrder = get(
+            this.constants,
+            `urls.${user.ovhSubsidiary}.alldomOrder`,
+          );
+          this.alldomURL =
+            !this.isAllDom && alldomOrder && `${alldomOrder}${domain.domain}`;
+
           if (this.isAllDom) {
             this.allDom = this.$stateParams.allDom;
             this.allDomInfos = allDom;
-          } else if (alldomOrder) {
-            this.alldomURL = `${alldomOrder}${domain.domain}`;
           }
           this.getGuides(user.ovhSubsidiary);
         })
