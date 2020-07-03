@@ -25,5 +25,9 @@
   "pci_projects_project_serving_namespace_models_add_model_preset_info": "More information",
   "pci_projects_project_serving_namespace_models_add_folder_mode": "Folder",
   "pci_projects_project_serving_namespace_models_add_file_mode": "File",
-  "pci_projects_project_serving_namespace_models_add_custom_info": "You can find the list of compatible formats in our documentation"
+  "pci_projects_project_serving_namespace_models_add_custom_info": "You can find the list of compatible formats in our documentation",
+  "pci_projects_project_serving_namespace_models_scale_advanced_configuration": "Advanced configuration",
+  "pci_projects_project_serving_namespace_models_scale_advanced_configuration_memory": "% Memory Usage",
+  "pci_projects_project_serving_namespace_models_scale_advanced_configuration_cpu": "% CPU Usage",
+  "pci_projects_project_serving_namespace_models_add_price_unit": "hour"
 }

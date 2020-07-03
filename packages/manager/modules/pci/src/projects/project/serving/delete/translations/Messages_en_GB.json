@@ -2,7 +2,7 @@
   "pci_projects_project_serving_delete": "Delete a namespace",
   "pci_projects_project_serving_delete_common_delete": "Delete",
   "pci_projects_project_serving_delete_common_cancel": "Cancel",
-  "pci_projects_project_serving_delete_warning": "Important! You are about to delete your namespace. All of the models and tokens attached to it will also be deleted.",
+  "pci_projects_project_serving_delete_warning": "Important! You are about to delete your namespace. All of the models and associated tokens will also be deleted.",
   "pci_projects_project_serving_delete_success": "Your {{ name }} namespace has been deleted.",
   "pci_projects_project_serving_delete_error": "An error has occurred deleting your namespace: {{ errorMessage }}"
 }

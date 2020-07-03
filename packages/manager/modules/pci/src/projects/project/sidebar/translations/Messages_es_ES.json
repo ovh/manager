@@ -1,7 +1,7 @@
 {
   "cloud_sidebar_public_cloud": "Public Cloud",
   "cloud_sidebar_compute": "Compute",
-  "cloud_sidebar_compute_instance": "Instances",
+  "cloud_sidebar_compute_instance": "Instancias",
   "cloud_sidebar_storage": "Storage",
   "cloud_sidebar_storage_block_storage": "Block Storage",
   "cloud_sidebar_storage_object_storage": "Object Storage",
@@ -31,5 +31,6 @@
   "cloud_sidebar_public_cloud_project_toggle": "Ver los proyectos",
   "cloud_sidebar_public_cloud_project_toggle_close": "Volver al menú",
   "cloud_sidebar_alpha_project": "Alpha",
-  "cloud_sidebar_beta_project": "Beta"
+  "cloud_sidebar_beta_project": "Beta",
+  "cloud_sidebar_new_project": "Novedad"
 }

@@ -1,0 +1,8 @@
+{
+  "pci_projects_project_serving_delete": "Eliminação do namespace",
+  "pci_projects_project_serving_delete_common_delete": "Eliminar",
+  "pci_projects_project_serving_delete_common_cancel": "Cancelar",
+  "pci_projects_project_serving_delete_warning": "Atenção! Está prestes a eliminar o seu namespace. Todos os modelos e tokens associados também serão eliminados.",
+  "pci_projects_project_serving_delete_success": "O seu namespace {{ name }} foi eliminado com êxito.",
+  "pci_projects_project_serving_delete_error": "Ocorreu um erro durante a eliminação do namespace: {{ errorMessage }}"
+}

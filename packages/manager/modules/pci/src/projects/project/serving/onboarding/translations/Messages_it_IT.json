@@ -1,0 +1,7 @@
+{
+  "pci_projects_project_serving_title": "ML Serving",
+  "pci_projects_project_serving_onboarding_content1": "Passare dallo sviluppo alla produzione non è mai stato così semplice per i tuoi modelli di Machine Learning",
+  "pci_projects_project_serving_onboarding_content2": "Esegui facilmente il deploy in produzione dei modelli di Machine Learning generati con diversi framework, come TensorFlow o Scikit-Learn, e formati di serializzazione, come PMML o ONNX. ",
+  "pci_projects_project_serving_onboarding_content3": "In pochi minuti mettiamo a disposizione un’API REST, lo Swagger associato e la scalabilità necessaria ai tuoi modelli.",
+  "pci_projects_project_serving_onboarding_action_label": "Crea un namespace"
+}
