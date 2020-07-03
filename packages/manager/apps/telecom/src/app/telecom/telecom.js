@@ -14,9 +14,6 @@ angular.module('managerApp').config(($stateProvider) => {
         TelecomMediator.initVipStatus();
         return $q.when({});
       },
-      serviceCount(TelecomMediator) {
-        return TelecomMediator.initServiceCount();
-      },
     },
   });
 });
