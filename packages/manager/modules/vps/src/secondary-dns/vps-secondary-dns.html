@@ -4,19 +4,21 @@
     </div>
 
     <div data-ng-if="!$ctrl.loaders.init">
-        <oui-button
-            data-type="button"
-            data-variant="secondary"
-            data-on-click="$ctrl.goToAddSecondaryDns()"
-        >
-            <span
-                data-translate="vps_configuration_secondarydns_add_title_button"
-            ></span>
-        </oui-button>
         <oui-datagrid
             data-ng-if="!$ctrl.loaders.init"
             data-rows="$ctrl.secondaryDns.list.results"
         >
+            <oui-datagrid-topbar>
+                <oui-button
+                    data-type="button"
+                    data-variant="secondary"
+                    data-on-click="$ctrl.goToAddSecondaryDns()"
+                >
+                    <span
+                        data-translate="vps_configuration_secondarydns_add_title_button"
+                    ></span>
+                </oui-button>
+            </oui-datagrid-topbar>
             <oui-datagrid-column
                 data-title="'vps_tab_SECONDARY_DNS_table_domain' | translate"
                 data-property="domain"

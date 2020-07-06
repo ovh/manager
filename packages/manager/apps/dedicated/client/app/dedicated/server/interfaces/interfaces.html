@@ -1,20 +1,22 @@
 <div data-ovh-alert></div>
 
 <div class="row">
-    <h1
+    <h2
         data-translate="dedicated_server_interfaces_title"
         class="col-auto mr-auto"
-    ></h1>
-    <oui-guide-menu
-        text="{{::'dedicated_server_interfaces_guides' | translate}}"
-        class="col-auto px-5"
-    >
-        <oui-guide-menu-item data-href="{{ $ctrl.guideUrl }}" external>
-            <span
-                data-translate="dedicated_server_interfaces_guides_ola"
-            ></span>
-        </oui-guide-menu-item>
-    </oui-guide-menu>
+    ></h2>
+    <div class="col-auto">
+        <oui-guide-menu
+            data-placement="end"
+            data-text="{{::'dedicated_server_interfaces_guides' | translate}}"
+        >
+            <oui-guide-menu-item data-href="{{ $ctrl.guideUrl }}" external>
+                <span
+                    data-translate="dedicated_server_interfaces_guides_ola"
+                ></span>
+            </oui-guide-menu-item>
+        </oui-guide-menu>
+    </div>
 </div>
 
 <p data-translate="dedicated_server_interfaces_introduction"></p>
