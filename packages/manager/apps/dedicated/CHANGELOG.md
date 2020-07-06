@@ -1,3 +1,19 @@
+# [12.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@12.5.5...@ovh-ux/manager-dedicated@12.6.0) (2020-07-06)
+
+
+### Bug Fixes
+
+* **billing.history.legacy:** fix search by reference ([b92a131](https://github.com/ovh/manager/commit/b92a131433c60283d8f7d5290c1e5e18d806de24))
+* **i18n:** add missing translations [CDS 460] ([f11fb75](https://github.com/ovh/manager/commit/f11fb75bf6b9d2ee268da624131722657c57aa44))
+
+
+### Features
+
+* **billing.history:** remove category column ([199fa2a](https://github.com/ovh/manager/commit/199fa2ac5eb0b63ba7cc50b6049a24d695006c08))
+* **billing.history:** revamp history display ([d38f4a9](https://github.com/ovh/manager/commit/d38f4a96fabeaf15163f303780d5f3df4000b78d))
+
+
+
 ## [12.5.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@12.5.4...@ovh-ux/manager-dedicated@12.5.5) (2020-06-17)
 
 
