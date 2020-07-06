@@ -1,3 +1,12 @@
+# [1.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-ng-layout-helpers@1.0.1...@ovh-ux/manager-ng-layout-helpers@1.1.0) (2020-07-06)
+
+
+### Features
+
+* **list:** export constants and utility function ([91ca587](https://github.com/ovh/manager/commit/91ca587505bfecb4fa8993aa2d41836c328fc66d))
+
+
+
 ## [1.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-ng-layout-helpers@1.0.0...@ovh-ux/manager-ng-layout-helpers@1.0.1) (2020-04-01)
 
 

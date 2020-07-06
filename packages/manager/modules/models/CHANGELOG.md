@@ -1,3 +1,12 @@
+# [1.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-models@1.2.0...@ovh-ux/manager-models@1.3.0) (2020-07-06)
+
+
+### Features
+
+* **billing.history:** revamp history display ([d38f4a9](https://github.com/ovh/manager/commit/d38f4a96fabeaf15163f303780d5f3df4000b78d))
+
+
+
 # [1.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-models@1.1.0...@ovh-ux/manager-models@1.2.0) (2020-06-02)
 
 
