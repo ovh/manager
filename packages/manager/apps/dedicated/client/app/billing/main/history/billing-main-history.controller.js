@@ -101,7 +101,6 @@ export default class BillingMainHistoryCtrl extends ListLayoutHelper.ListLayoutC
     this.columnsConfig = [
       { name: 'billId', sortable: this.getSorting('billId') },
       { name: 'orderId', sortable: this.getSorting('orderId') },
-      { name: 'category', sortable: this.getSorting('category') },
       { name: 'date', sortable: this.getSorting('date') },
       {
         name: 'priceWithoutTax.value',
