@@ -92,7 +92,7 @@ export default class ManagerHubBillingSummaryCtrl {
   getBillingURL() {
     const url = this.RedirectionService.getURL('billing');
     const separator = url.indexOf('?') >= 0 ? '&' : '?';
-    return `${url}${separator}filters=${encodeURIComponent(
+    return `${url}${separator}filter=${encodeURIComponent(
       JSON.stringify(this.periodFilter),
     )}`;
   }

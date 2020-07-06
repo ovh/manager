@@ -5,6 +5,7 @@ import ovhManagerCore from '@ovh-ux/manager-core';
 
 import autorenew from './autoRenew/autorenew.module';
 import featureAvailability from './billing-feature-availability';
+import history from './main/history/history.module';
 import order from './order/billing-order-tracking.module';
 import orders from './orders/orders.module';
 import sla from './sla/sla.module';
@@ -23,6 +24,7 @@ angular
     'Billing.directives',
     'Billing.filters',
     'Billing.services',
+    history,
     'ngRoute',
     'ngSanitize',
     order,
