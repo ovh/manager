@@ -1,0 +1,8 @@
+{
+  "dedicated_server_dashboard_advanced_features_heading": "Funzionalità avanzate",
+  "dedicated_server_dashboard_advanced_features_sgx_heading": "Sicurezza - Intel SGX (Software Guard Extensions)",
+  "dedicated_server_dashboard_advanced_features_sgx_menu_activate": "Attiva SGX",
+  "dedicated_server_dashboard_advanced_features_sgx_menu_manage": "Modifica SGX",
+  "dedicated_server_dashboard_advanced_features_sgx_menu_documentation": "Documentazione",
+  "dedicated_server_dashboard_advanced_features_sgx_menu_documentation_new_tab": "Questo link si aprirà in una nuova pagina"
+}
