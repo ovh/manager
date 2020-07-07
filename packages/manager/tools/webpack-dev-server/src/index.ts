@@ -1,5 +1,4 @@
-import sso from './sso';
-import proxy from './proxy';
+import { proxy, sso } from '@ovh-ux/manager-dev-server-config';
 import config from './config';
 
 export = {

@@ -26,12 +26,9 @@
     "test": "eslint --quiet src"
   },
   "dependencies": {
-    "base64url": "^3.0.0",
-    "cookie": "^0.3.1",
+    "@ovh-ux/manager-dev-server-config": "^0.0.0 || ^1.0.0",
     "duplicate-package-checker-webpack-plugin": "^3.0.0",
     "friendly-errors-webpack-plugin": "^1.7.0",
-    "lodash": "^4.17.15",
-    "request": "^2.88.0",
     "webpack-dev-server": "^3.8.2",
     "yn": "^3.1.1"
   },
