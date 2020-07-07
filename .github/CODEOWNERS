@@ -1,4 +1,8 @@
+# Default owners
+* @ovh/team-manager-dev
+
 # Documentation
+*.md
 /docs/ @ovh/team-manager-documentation
 
 # Components
