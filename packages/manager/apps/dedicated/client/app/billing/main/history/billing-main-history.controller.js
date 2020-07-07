@@ -57,7 +57,7 @@ export default class BillingMainHistoryCtrl extends ListLayoutHelper.ListLayoutC
       .catch((error) => {
         this.Alerter.error(
           [
-            this.$translate.instant('billing_main_history_export_error'),
+            this.$translate.instant('billing_main_history_table_export_error'),
             get(error, 'data.message'),
           ].join(' '),
           'billing_main_alert',
