@@ -1,3 +1,13 @@
+## [12.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@12.6.0...@ovh-ux/manager-dedicated@12.6.1) (2020-07-07)
+
+
+### Bug Fixes
+
+* **billing.history:** display correct translation for total with VAT ([996c1de](https://github.com/ovh/manager/commit/996c1de168f26bd916485f29f8fcd76a350b88d2))
+* **billing.history:** use correct error message ([40b69fb](https://github.com/ovh/manager/commit/40b69fb425a64c3170ae38daa1685f93ab28a3ab))
+
+
+
 # [12.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@12.5.5...@ovh-ux/manager-dedicated@12.6.0) (2020-07-06)
 
 
