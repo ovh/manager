@@ -1,9 +1,7 @@
+import { sso as Sso, proxy as serverProxy } from '@ovh-ux/manager-dev-server-config';
 import DuplicatePackageCheckerPlugin from 'duplicate-package-checker-webpack-plugin';
 import FriendlyErrorsWebpackPlugin from 'friendly-errors-webpack-plugin';
 import yn from 'yn';
-
-import Sso from './sso';
-import serverProxy from './proxy';
 
 export = (env) => {
   const region = (
