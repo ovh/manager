@@ -1,3 +1,12 @@
+## [12.6.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@12.6.1...@ovh-ux/manager-dedicated@12.6.2) (2020-07-07)
+
+
+### Bug Fixes
+
+* **billing.history:** disable revamp for all regions ([#3206](https://github.com/ovh/manager/issues/3206)) ([3420b4c](https://github.com/ovh/manager/commit/3420b4c56db158458b714410eeea2ce84492d984))
+
+
+
 ## [12.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@12.6.0...@ovh-ux/manager-dedicated@12.6.1) (2020-07-07)
 
 
