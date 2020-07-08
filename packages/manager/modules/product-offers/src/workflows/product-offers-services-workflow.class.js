@@ -1,6 +1,5 @@
 import get from 'lodash/get';
 /* eslint-disable import/extensions */
-import TranslateService from '@ovh-ux/manager-core/src/translate/translate.service';
 import Workflow from './product-offers-workflow.class';
 
 /**
@@ -93,15 +92,13 @@ export default class ServicesWorkflow extends Workflow {
    * @return {boolean}
    */
   static getTerminationDate(pricing, locale) {
-    const bcp47language = TranslateService.convertFromOVHToBCP47(locale);
-
     const date = new Date();
     date.setMonth(date.getMonth() + pricing.interval);
 
-    return new Intl.DateTimeFormat(bcp47language, {
+    return Workflow.formatDateToLocale(date, locale, {
       year: 'numeric',
       month: 'numeric',
-    }).format(date);
+    });
   }
 
   /**

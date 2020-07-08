@@ -3,6 +3,10 @@ export const CATALOG_ITEM_TYPE_NAMES = {
   PLAN: 'plans',
 };
 
+export const CHECKOUT_DETAILS_TYPE = {
+  DURATION: 'DURATION',
+};
+
 export const WORKFLOW_TYPES = {
   ORDER: 'order',
   SERVICES: 'services',
@@ -10,5 +14,6 @@ export const WORKFLOW_TYPES = {
 
 export default {
   CATALOG_ITEM_TYPE_NAMES,
+  CHECKOUT_DETAILS_TYPE,
   WORKFLOW_TYPES,
 };

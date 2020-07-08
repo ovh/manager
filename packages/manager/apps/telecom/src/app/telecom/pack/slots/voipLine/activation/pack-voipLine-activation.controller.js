@@ -17,6 +17,7 @@ export default class PackVoipLineActivationCtrl {
     $scope,
     $q,
     $translate,
+    atInternet,
     costs,
     OvhApiPackXdsl,
     OvhApiPackXdslVoipLine,
@@ -28,6 +29,7 @@ export default class PackVoipLineActivationCtrl {
     this.costs = costs;
     this.$q = $q;
     this.$translate = $translate;
+    this.atInternet = atInternet;
     this.TucToastError = TucToastError;
   }
 
@@ -332,6 +334,10 @@ export default class PackVoipLineActivationCtrl {
       .finally(() => {
         this.orderPending = false;
       });
+    this.atInternet.trackClick({
+      name: 'telecom::packs::pack::voipLine-activation::validate',
+      type: 'action',
+    });
   }
 
   initializeBrandList() {

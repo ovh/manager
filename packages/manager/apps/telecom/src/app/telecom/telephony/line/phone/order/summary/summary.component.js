@@ -5,7 +5,8 @@ export default {
   controller,
   template,
   bindings: {
-    order: '<',
     isStepLoading: '<',
+    order: '<',
+    phone: '<',
   },
 };

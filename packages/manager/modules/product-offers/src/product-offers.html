@@ -78,7 +78,11 @@
         <div data-ng-if="!$ctrl.workflow.isFreePricing()">
             <div class="row">
                 <dl
-                    class="oui-description oui-description_horizontal oui-heading_underline col-md-2"
+                    class="oui-description oui-description_horizontal oui-heading_underline"
+                    data-ng-class="{
+                      'col-md-2': $ctrl.workflow.prorataDurationDate === null,
+                      'col-md-3': $ctrl.workflow.prorataDurationDate !== null
+                    }"
                 >
                     <dt
                         data-translate="ovh_product_offers_total_price_without_tax"
@@ -91,10 +95,22 @@
                     ></dt>
                     <dd data-ng-bind="$ctrl.workflow.prices.withTax.text"></dd>
                     <div data-ng-if="$ctrl.workflow.pricing.interval !== 0">
-                        <dt data-translate="ovh_product_offers_duration"></dt>
-                        <dd
-                            data-ng-bind="('ovh_product_offers_pricing_' + $ctrl.workflow.pricing.intervalUnit + ($ctrl.workflow.pricing.interval === 1 ? '' : 's') | translate:{ number: $ctrl.workflow.pricing.interval })"
-                        ></dd>
+                        <div data-ng-if="!$ctrl.workflow.prorataDurationDate">
+                            <dt
+                                data-translate="ovh_product_offers_duration"
+                            ></dt>
+                            <dd
+                                data-ng-bind="('ovh_product_offers_pricing_' + $ctrl.workflow.pricing.intervalUnit + ($ctrl.workflow.pricing.interval === 1 ? '' : 's') | translate:{ number: $ctrl.workflow.pricing.interval })"
+                            ></dd>
+                        </div>
+                        <div data-ng-if="$ctrl.workflow.prorataDurationDate">
+                            <dt
+                                data-translate="ovh_product_offers_duration_prorata_up_to"
+                            ></dt>
+                            <dd
+                                data-ng-bind="$ctrl.workflow.prorataDurationDate"
+                            ></dd>
+                        </div>
                     </div>
                 </dl>
             </div>

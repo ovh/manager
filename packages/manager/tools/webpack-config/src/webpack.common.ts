@@ -187,6 +187,9 @@ export = opts => {
                   require.resolve('@babel/preset-env'), // babel preset configuration
                 ],
                 plugins: [
+                  require.resolve('@babel/plugin-proposal-class-properties'), // class properties
+                  require.resolve('@babel/plugin-proposal-optional-chaining'), // optional chaining
+                  require.resolve('@babel/plugin-proposal-private-methods'), // private methods
                   require.resolve('@babel/plugin-syntax-dynamic-import'), // dynamic es6 imports
                   require.resolve('babel-plugin-angularjs-annotate'), // ng annotate
                 ],

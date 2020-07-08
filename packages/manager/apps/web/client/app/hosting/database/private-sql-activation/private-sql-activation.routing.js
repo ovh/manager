@@ -1,3 +1,4 @@
+import filter from 'lodash/filter';
 import head from 'lodash/head';
 import map from 'lodash/map';
 import orderBy from 'lodash/orderBy';
@@ -22,6 +23,10 @@ export default /* @ngInject */ ($stateProvider) => {
       me: /* @ngInject */ (user) => user,
       hosting: /* @ngInject */ ($transition$) =>
         $transition$.params().productId,
+      privateSqlOptions: /* @ngInject */ (availableOptions) =>
+        filter(availableOptions, (option) =>
+          option.planCode.startsWith('private-sql'),
+        ),
       services: /* @ngInject */ (OvhApiHostingWeb) =>
         OvhApiHostingWeb.v6()
           .query()

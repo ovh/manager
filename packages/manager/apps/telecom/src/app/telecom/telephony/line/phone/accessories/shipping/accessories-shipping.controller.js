@@ -4,8 +4,9 @@ import filterContact from './accessories-shipping.service';
 
 export default class TelecomTelephonyLinePhoneAccessoriesShippingCtrl {
   /* @ngInject */
-  constructor($q, TucTelephonyAccessoriesOrderProcess) {
+  constructor($q, atInternet, TucTelephonyAccessoriesOrderProcess) {
     this.$q = $q;
+    this.atInternet = atInternet;
     this.TucTelephonyAccessoriesOrderProcess = TucTelephonyAccessoriesOrderProcess;
   }
 
@@ -48,5 +49,26 @@ export default class TelecomTelephonyLinePhoneAccessoriesShippingCtrl {
      ================================ */
   onShippingModeInitialized() {
     this.loading.init = false;
+  }
+
+  submit() {
+    this.track(
+      'telecom::telephony::billingAccount::line::phone::accessories::delivery::next',
+    );
+    this.process.currentView = 'resume';
+  }
+
+  goBack() {
+    this.track(
+      'telecom::telephony::billingAccount::line::phone::accessories::delivery::previous',
+    );
+    this.process.currentView = 'choice';
+  }
+
+  track(name) {
+    this.atInternet.trackClick({
+      name,
+      type: 'action',
+    });
   }
 }

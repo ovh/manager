@@ -1,5 +1,6 @@
 import angular from 'angular';
 
+import find from 'lodash/find';
 import get from 'lodash/get';
 import has from 'lodash/has';
 import isEmpty from 'lodash/isEmpty';
@@ -32,7 +33,6 @@ export default class {
 
   $onInit() {
     this.isLoading = true;
-    this.brand = this.buildBrand();
     this.isSidebarVisible = false;
 
     this.$rootScope.$on('ovh::sidebar::hide', () => {
@@ -57,6 +57,7 @@ export default class {
     return this.getUser()
       .then(() => this.$translate.refresh())
       .then(() => this.buildMainLinks())
+      .then(() => this.buildBrand())
       .then(() => this.buildResponsiveLinks())
       .finally(() => {
         this.$scope.$emit('navbar.loaded');
@@ -71,9 +72,21 @@ export default class {
   }
 
   buildBrand() {
-    return {
+    const url = get(
+      find(this.mainLinks, { name: 'hub' }),
+      'url',
+      `${this.$window.location.origin}${this.$window.location.pathname}`,
+    );
+    this.brand = {
       label: this.brandLabel,
-      url: `${this.$window.location.origin}${this.$window.location.pathname}`,
+      url,
+      click: () => {
+        this.atInternet.trackClick({
+          name: `navbar::entry::logo`,
+          type: 'action',
+        });
+        this.$window.location.href = url;
+      },
       ...BRAND,
     };
   }

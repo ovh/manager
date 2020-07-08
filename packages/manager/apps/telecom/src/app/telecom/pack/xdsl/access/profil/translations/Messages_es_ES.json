@@ -1,5 +1,22 @@
 {
   "xdsl_access_profile_tooltip_time": "El cambio se aplicará en los próximos 1-5 minutos.",
   "xdsl_access_dslam_an_error_ocurred": "DSLAM: Se ha producido un error.",
-  "xdsl_access_profile_doing": "Cambiando el perfil..."
+  "xdsl_access_profile_doing": "Cambiando el perfil...",
+  "xdsl_access_profile_tooltip_description": "Cuanto más grande sea la cifra del SNR (relación señal-ruido), mayor será la estabilidad de la línea, pero más reducido será el caudal.",
+  "xdsl_access_profile_tooltip_adsl_24m": "<b>{{profile}}:</b> Caudal máximo de 24000 / 1024 señal a ruido de 6 dB",
+  "xdsl_access_profile_tooltip_adsl_2m": "<b>{{profile}}:</b> Caudal máximo de 2432 / 1024 señal a ruido superior a 6 dB",
+  "xdsl_access_profile_tooltip_adsl_512k": "<b>{{profile}}:</b> Caudal máximo de 608 / 160 señal a ruido superior a 6 dB",
+  "xdsl_access_profile_tooltip_adsl_safe1": "<b>{{profile}}:</b> Caudal máximo de 16128 / 1024 señal a ruido de 10 dB",
+  "xdsl_access_profile_tooltip_adsl_safe2": "<b>{{profile}}:</b> Caudal máximo de 16128 / 1024 señal a ruido de 16 dB",
+  "xdsl_access_profile_tooltip_adsl_perf1": "<b>{{profile}}:</b> Caudal máximo de 24000 / 1024 señal a ruido de 3 dB",
+  "xdsl_access_profile_tooltip_adsl_perf2": "<b>{{profile}}:</b> Caudal máximo de 24000 / 1024 señal a ruido de 1 dB",
+  "xdsl_access_profile_tooltip_vdsl_24m": "<b>{{profile}}:</b> SNR 6 sin límite de caudal",
+  "xdsl_access_profile_tooltip_vdsl_2m": "<b>{{profile}}:</b> SNR 6 con un límite de caudal de 2 M",
+  "xdsl_access_profile_tooltip_vdsl_512k": "<b>{{profile}}:</b> SNR 6 con un límite de caudal de 512 K",
+  "xdsl_access_profile_tooltip_vdsl_safe1": "<b>{{profile}}:</b> SNR 10",
+  "xdsl_access_profile_tooltip_vdsl_other": "<b>{{profile}}:</b> {{snr}}",
+  "xdsl_access_profile_tooltip_vdsl_17a": "<b>{{profile}}:</b> SNR 8",
+  "xdsl_access_profile_tooltip_vdsl_17a_safe1": "<b>{{profile}}:</b> SNR 12",
+  "xdsl_access_profile_tooltip_vdsl_8b": "<b>{{profile}}:</b> SNR 8",
+  "xdsl_access_profile_tooltip_vdsl_8b_safe1": "<b>{{profile}}:</b> SNR 12"
 }

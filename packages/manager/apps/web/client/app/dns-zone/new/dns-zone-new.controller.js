@@ -5,6 +5,7 @@ import {
   pricingConstants,
   workflowConstants,
 } from '@ovh-ux/manager-product-offers';
+
 import { WORKFLOW_OPTIONS } from './dns-zone-new.constants';
 import { TEMPLATES } from '../../domain/zone/activate/activate.constants';
 
@@ -35,6 +36,7 @@ export default class newDnsZoneCtrl {
 
     this.WORKFLOW_OPTIONS = {
       ...WORKFLOW_OPTIONS,
+      getPlanCode: () => WORKFLOW_OPTIONS.planCode,
       catalog: this.catalog,
       onGetConfiguration: () => this.getConfiguration(),
     };

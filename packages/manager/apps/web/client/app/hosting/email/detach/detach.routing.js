@@ -1,5 +1,10 @@
 import get from 'lodash/get';
 
+import {
+  pricingConstants,
+  workflowConstants,
+} from '@ovh-ux/manager-product-offers';
+
 import component from './detach.component';
 
 export default /* @ngInject */ ($stateProvider) => {
@@ -15,21 +20,12 @@ export default /* @ngInject */ ($stateProvider) => {
         $translate.instant(
           `hosting_change_main_domain_${emailOptionDetachInformation[0].detachPlancodes[0].planCode}`,
         ),
-      pricingType: /* @ngInject */ (
-        OVH_MANAGER_PRODUCT_OFFERS_PRICING_CONSTANTS,
-      ) =>
-        OVH_MANAGER_PRODUCT_OFFERS_PRICING_CONSTANTS.PRICING_CAPACITIES.DETACH,
-      workflow: /* @ngInject */ (
-        emailOptionDetachInformation,
-        emailOptionIds,
-        serviceName,
-        OVH_MANAGER_PRODUCT_OFFERS_WORKFLOW_CONSTANTS,
-      ) => ({
+      pricingType: () => pricingConstants.PRICING_CAPACITIES.DETACH,
+      workflow: /* @ngInject */ (emailOptionDetachInformation) => ({
         options: {
           ...emailOptionDetachInformation[0],
         },
-        type:
-          OVH_MANAGER_PRODUCT_OFFERS_WORKFLOW_CONSTANTS.WORKFLOW_TYPES.SERVICES,
+        type: workflowConstants.WORKFLOW_TYPES.SERVICES,
       }),
 
       onError: ($translate, Alerter) => (error) => {

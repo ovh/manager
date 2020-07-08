@@ -113,6 +113,7 @@
                     data-ng-if="$ctrl.orderStep === 'shipping'"
                 >
                     <shipping
+                        phone="$ctrl.phone"
                         order="$ctrl.order"
                         is-step-loading="$ctrl.isStepLoading"
                     ></shipping>
@@ -176,6 +177,7 @@
                     data-ng-if="$ctrl.orderStep === 'summary'"
                 >
                     <phone-summary
+                        phone="$ctrl.phone"
                         order="$ctrl.order"
                         is-step-loading="$ctrl.isStepLoading"
                     >

@@ -34,6 +34,7 @@ import ovhManagerServerSidebar from '@ovh-ux/manager-server-sidebar';
 import ovhManagerSupport from '@ovh-ux/manager-support';
 import ovhPaymentMethod from '@ovh-ux/ng-ovh-payment-method';
 import uiRouter, { RejectType } from '@uirouter/angularjs';
+import chartjs from 'angular-chart.js';
 
 import moduleExchange from '@ovh-ux/manager-exchange';
 import ovhManagerVeeamEnterprise from '@ovh-ux/manager-veeam-enterprise';
@@ -52,9 +53,7 @@ import errorPage from './error';
 import ovhManagerPccDashboard from './dedicatedCloud/dashboard';
 import ovhManagerPccResourceUpgrade from './dedicatedCloud/resource/upgrade';
 
-import dedicatedServerBandwidth from './dedicated/server/bandwidth/bandwidth.module';
-import dedicatedServerInterfaces from './dedicated/server/interfaces/interfaces.module';
-import dedicatedServerServers from './dedicated/server/servers/servers.module';
+import dedicatedServer from './dedicated/server';
 
 import datacenterBackup from './dedicatedCloud/datacenter/backup';
 import userContracts from './user-contracts';
@@ -71,15 +70,13 @@ angular
       account,
       ovhManagerCore,
       'Billing',
-      'chart.js',
+      chartjs,
       'controllers',
       contactsService,
       datacenterBackup,
       dedicatedCloudDatacenterDrp,
-      dedicatedServerBandwidth,
-      dedicatedServerInterfaces,
       dedicatedCloudDatacenterDashboardDeleteDrp,
-      dedicatedServerServers,
+      dedicatedServer,
       dedicatedUniverseComponents,
       'directives',
       errorPage,

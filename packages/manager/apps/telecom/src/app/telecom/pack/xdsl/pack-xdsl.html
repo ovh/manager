@@ -1,22 +1,25 @@
 <section class="telecom-pack-xdsl">
-    <div class="text-center" data-ng-if="PackXdslCtrl.loading.init">
+    <div class="text-center" data-ng-if="$ctrl.loading.init">
         <oui-spinner></oui-spinner>
     </div>
 
-    <div class="telecom-section-header" data-ng-if="!PackXdslCtrl.loading.init">
+    <div class="telecom-section-header" data-ng-if="!$ctrl.loading.init">
         <header class="oui-page-header">
             <div class="oui-page-header__container">
                 <div class="oui-page-header__content">
-                    <tuc-section-back-link
-                        data-ng-if="PackXdslCtrl.content.back.state && PackXdslCtrl.content.status === 'active'"
-                        data-ng-click="PackXdslCtrl.backState()"
-                        data-tuc-section-back-link-title="{{ PackXdslCtrl.pack.general.description || PackXdslCtrl.pack.general.packName || PackXdslCtrl.access.description || PackXdslCtrl.access.accessName }}"
-                    ></tuc-section-back-link>
+                    <oui-back-button
+                        data-on-click="::$ctrl.goBack($ctrl.content.back.state)"
+                        data-ng-if="$ctrl.content.back.state && $ctrl.content.status === 'active'"
+                    >
+                        <span
+                            data-ng-bind="$ctrl.pack.general.description || $ctrl.pack.general.packName || $ctrl.access.description || $ctrl.access.accessName"
+                        ></span>
+                    </oui-back-button>
 
                     <tuc-editable-service-name
-                        data-tuc-editable-service-name-title="PackXdslCtrl.access.description || PackXdslCtrl.access.accessName"
-                        data-tuc-editable-service-name-service-name="PackXdslCtrl.access.accessName"
-                        data-tuc-editable-service-name-title-on-save="PackXdslCtrl.accessDescriptionSave"
+                        data-tuc-editable-service-name-title="$ctrl.access.description || $ctrl.access.accessName"
+                        data-tuc-editable-service-name-service-name="$ctrl.access.accessName"
+                        data-tuc-editable-service-name-title-on-save="$ctrl.accessDescriptionSave"
                     ></tuc-editable-service-name>
                 </div>
             </div>
@@ -32,8 +35,8 @@
                 </responsive-tab>
                 <responsive-tab
                     data-state="telecom.packs.pack.xdsl.modem"
-                    disabled="PackXdslCtrl.disabledModem"
-                    data-ng-if="PackXdslCtrl.isModemTabAvailable()"
+                    disabled="$ctrl.disabledModem"
+                    data-ng-if="$ctrl.isModemTabAvailable()"
                     data-dropdown-title="{{ 'xdsl_tabs_modem' | translate }}"
                 >
                     <span data-translate="xdsl_tabs_modem"></span>
@@ -60,8 +63,8 @@
 
     <div
         class="telecom-section-content ui-view-container"
-        data-ng-class="PackXdslCtrl.content.back.class"
-        data-ng-if="!PackXdslCtrl.loading.init"
+        data-ng-class="$ctrl.content.back.class"
+        data-ng-if="!$ctrl.loading.init"
         data-ui-view="xdslView"
     ></div>
     <!-- .telecom-section-content -->

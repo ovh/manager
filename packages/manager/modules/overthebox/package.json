@@ -29,6 +29,7 @@
     "@ovh-ux/ng-ui-router-title": "^3.0.0",
     "@uirouter/angularjs": "^1.0.15",
     "angular": "^1.7.5",
+    "angular-translate": "^2.11.0",
     "angularjs-scroll-glue": "^2.2.0",
     "bootstrap4": "twbs/bootstrap#v4.0.0",
     "moment": "^2.24.0",

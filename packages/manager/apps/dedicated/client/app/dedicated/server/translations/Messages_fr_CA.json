@@ -1,5 +1,4 @@
 {
-  "server_dashboard_loading_error": "Une erreur est survenue lors du chargement des informations de votre service.",
   "server_configuration_doing": "[En cours]",
   "server_tab_IP": "IP et Sécurité",
   "server_tab_IP_block": "Bloc :",
@@ -582,6 +581,7 @@
   "server_configuration_task_VIRTUAL_MAC_DELETE": "Suppression de Mac virtuelle",
   "server_configuration_task_REMOVE_VIRTUAL_MAC": "Suppression de Mac virtuelle",
   "server_configuration_task_INFRA_002_VIRTUAL_NETWORK_INTERFACE": "Modification des interfaces réseau",
+  "server_configuration_task_IPMI_CONFIGURE_SGX": "Modification de l'option SGX",
   "server_configuration_task_status_CANCELLED": "Annulée",
   "server_configuration_task_status_CUSTOMER_ERROR": "Erreur client",
   "server_configuration_task_status_DOING": "En cours",

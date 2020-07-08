@@ -4,6 +4,7 @@ import template from './support-level.html';
 export default {
   bindings: {
     currentUser: '<',
+    partnerLevel: '<',
     schema: '<',
     supportLevel: '<',
   },

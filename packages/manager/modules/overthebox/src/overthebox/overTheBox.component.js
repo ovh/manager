@@ -20,6 +20,7 @@ import constant from './overTheBox.constant';
 import controller from './overTheBox.controller';
 import template from './overTheBox.html';
 
+import actions from './actions';
 import configure from './configure';
 import details from './details';
 import docs from './docs';
@@ -39,6 +40,7 @@ angular
     'ngOvhTelecomUniverseComponents',
     'ngUiRouterTitle',
     ngOvhUiConfirmModal,
+    actions,
     configure,
     details,
     docs,
