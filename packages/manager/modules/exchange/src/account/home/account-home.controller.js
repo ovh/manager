@@ -557,10 +557,12 @@ export default class ExchangeAccountHomeController {
   }
 
   savingDatagridColumnParameters() {
-    return this.ovhUserPref.assign(
-      DATAGRID_COLUMN_PARAMETERS_PREFERENCE_NAME,
-      this.gridParameters.columnParameters.current,
-    );
+    return this.ovhUserPref
+      .assign(
+        DATAGRID_COLUMN_PARAMETERS_PREFERENCE_NAME,
+        this.gridParameters.columnParameters.current,
+      )
+      .catch(() => {});
   }
 
   openAllAccountsMFACreateDialog() {
