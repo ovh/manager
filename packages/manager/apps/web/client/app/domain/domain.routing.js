@@ -12,6 +12,11 @@ import tasksState from './tasks/domain-tasks.state';
 const commonResolves = {
   associatedHostings: /* @ngInject */ (Domain, domainName) =>
     Domain.getAssociatedHosting(domainName).catch(() => []),
+  hasEmailDomain: /* @ngInject */ ($http, domainName) =>
+    $http
+      .get(`/email/domain/${domainName}`)
+      .then(() => true)
+      .catch(() => false),
   zoneOption: /* @ngInject */ ($http, domainName) =>
     $http
       .get(`/domain/${domainName}/options`)
