@@ -36,11 +36,11 @@ export default class TelecomAppCtrl {
 
   openSidebar() {
     this.displayFallbackMenu = true;
-    $('#sidebar-menu').addClass('displayFallbackMenu');
+    $('#sidebar-menu').addClass('nav-open');
   }
 
   closeSidebar() {
     this.displayFallbackMenu = false;
-    $('#sidebar-menu').removeClass('displayFallbackMenu');
+    $('#sidebar-menu').removeClass('nav-open');
   }
 }
