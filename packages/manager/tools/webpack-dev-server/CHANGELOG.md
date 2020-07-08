@@ -1,3 +1,12 @@
+# [2.7.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-webpack-dev-server@2.6.0...@ovh-ux/manager-webpack-dev-server@2.7.0) (2020-07-08)
+
+
+### Features
+
+* **webpack-dev-server:** use manager-dev-server-config ([c235d26](https://github.com/ovh-ux/manager/commit/c235d269b405dadcdeef8268983c5a43814e3569))
+
+
+
 # [2.6.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-webpack-dev-server@2.5.0...@ovh-ux/manager-webpack-dev-server@2.6.0) (2020-04-01)
 
 

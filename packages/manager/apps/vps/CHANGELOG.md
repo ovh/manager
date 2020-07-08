@@ -1,3 +1,12 @@
+## [0.4.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps-app@0.4.1...@ovh-ux/manager-vps-app@0.4.2) (2020-07-08)
+
+
+### Bug Fixes
+
+* **deps:** set correct package version ([cb0f926](https://github.com/ovh/manager/commit/cb0f926ed109a13a36a9f6d56d4caf31665860cb))
+
+
+
 ## [0.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps-app@0.4.0...@ovh-ux/manager-vps-app@0.4.1) (2020-06-09)
 
 

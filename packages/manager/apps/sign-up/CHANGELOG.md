@@ -1,3 +1,12 @@
+## [1.6.2](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@1.6.1...@ovh-ux/sign-up-app@1.6.2) (2020-07-08)
+
+
+### Bug Fixes
+
+* **signup:** update images to trademark logos ([08c2fb7](https://github.com/ovh/manager/commit/08c2fb7d92bd22e526a27d15024cafad30f98a6e))
+
+
+
 ## [1.6.1](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@1.6.0...@ovh-ux/sign-up-app@1.6.1) (2020-06-09)
 
 

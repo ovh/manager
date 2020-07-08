@@ -1,3 +1,12 @@
+# [3.4.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-webpack-config@3.3.4...@ovh-ux/manager-webpack-config@3.4.0) (2020-07-08)
+
+
+### Features
+
+* **webpack-config:** add es6 proposals ([7faf233](https://github.com/ovh-ux/manager/commit/7faf233314af544f89f0ece3e9730bb931b21c8c))
+
+
+
 ## [3.3.4](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-webpack-config@3.3.3...@ovh-ux/manager-webpack-config@3.3.4) (2020-05-18)
 
 

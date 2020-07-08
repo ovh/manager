@@ -1,3 +1,12 @@
+## [1.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@1.6.0...@ovh-ux/manager-server-sidebar@1.6.1) (2020-07-08)
+
+
+### Bug Fixes
+
+* **order:** fix webhosting order for AU sub ([#3210](https://github.com/ovh/manager/issues/3210)) ([84a139d](https://github.com/ovh/manager/commit/84a139d7744c29ae3e8c8daa5949f4ec90c75d50))
+
+
+
 # [1.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@1.5.2...@ovh-ux/manager-server-sidebar@1.6.0) (2020-06-16)
 
 

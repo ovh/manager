@@ -1,3 +1,12 @@
+# [5.1.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@5.0.2...@ovh-ux/ng-ovh-telecom-universe-components@5.1.0) (2020-07-08)
+
+
+### Features
+
+* add tracking to order and update phone range ([#3004](https://github.com/ovh/manager/issues/3004)) ([88f832a](https://github.com/ovh/manager/commit/88f832a9c143b1092d24ba23740f019c3945244f))
+
+
+
 ## [5.0.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@5.0.1...@ovh-ux/ng-ovh-telecom-universe-components@5.0.2) (2020-06-09)
 
 

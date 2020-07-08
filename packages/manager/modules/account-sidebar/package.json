@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-account-sidebar",
-  "version": "1.3.3",
+  "version": "1.3.4",
   "private": true,
   "description": "A sidebar component shared across all control panel.",
   "repository": {

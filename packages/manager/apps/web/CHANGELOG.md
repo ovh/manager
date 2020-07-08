@@ -1,3 +1,25 @@
+# [14.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@14.6.3...@ovh-ux/manager-web@14.7.0) (2020-07-08)
+
+
+### Bug Fixes
+
+* **deps:** set correct package version ([cb0f926](https://github.com/ovh/manager/commit/cb0f926ed109a13a36a9f6d56d4caf31665860cb))
+* **dns-zone.new:** replace planCode property usage by new callback ([53d0b7a](https://github.com/ovh/manager/commit/53d0b7acd296c8b4c82f3a09a05ec358df74cec8))
+* **domain.webhosting:** filter pricings to avoid duplicate duration ([#3169](https://github.com/ovh/manager/issues/3169)) ([3645ca7](https://github.com/ovh/manager/commit/3645ca7b892f6d6ba821e476ee26fd3f37b13976))
+* **i18n:** add missing translations [CDS 455] ([2433224](https://github.com/ovh/manager/commit/2433224be49dbe4ecd6d214e10287a8b7eb0795c))
+* **i18n:** add missing translations [CDS 458] ([c8fabb7](https://github.com/ovh/manager/commit/c8fabb78492857dad17af6d55a4881025c53e48e))
+* **i18n:** add missing translations [CDS 464] ([fcd58eb](https://github.com/ovh/manager/commit/fcd58ebdee83e74f6957ba2c35f506141e290c5b))
+* **i18n:** restore CDS translations commit [CDS 467] ([ca4a5e2](https://github.com/ovh/manager/commit/ca4a5e2cf353a064e70fb2527cd0557563d72f98))
+* **translations:** clean translations files ([#3174](https://github.com/ovh/manager/issues/3174)) ([6d8759d](https://github.com/ovh/manager/commit/6d8759d11c18d15fac90bee76e40e774a9efe8a2))
+
+
+### Features
+
+* **hosting:** display local SEO tab according to API capabilities ([99820ba](https://github.com/ovh/manager/commit/99820ba346936aa3ebfb01adb58bb963bc6550de))
+* **hosting.database.order.public:** make it possible ([18995db](https://github.com/ovh/manager/commit/18995dbbca6c48a3a376c288a2bca9ff0c88b2dc))
+
+
+
 ## [14.6.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@14.6.2...@ovh-ux/manager-web@14.6.3) (2020-06-29)
 
 

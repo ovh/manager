@@ -1,3 +1,12 @@
+## [0.4.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@0.4.1...@ovh-ux/manager-iplb@0.4.2) (2020-07-08)
+
+
+### Bug Fixes
+
+* prevent angular-chart.js from being instanciated twice ([#2996](https://github.com/ovh/manager/issues/2996)) ([6da0a0b](https://github.com/ovh/manager/commit/6da0a0b9bb1a5a25efafb2b92dd21967b104ed25))
+
+
+
 ## [0.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@0.4.0...@ovh-ux/manager-iplb@0.4.1) (2020-06-09)
 
 

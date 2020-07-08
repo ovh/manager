@@ -1,3 +1,24 @@
+# [0.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@0.6.1...@ovh-ux/manager-support@0.7.0) (2020-07-08)
+
+
+### Bug Fixes
+
+* **dedicated:** ticket creation labels update ([3d32720](https://github.com/ovh/manager/commit/3d327200ec037b7b42ba2e7a1ebc0b5dc3d17aad))
+* **i18n:** add missing translations [CDS 465] ([5d8f7b7](https://github.com/ovh/manager/commit/5d8f7b7f8af95fed38917a7a8b749701adcf8542))
+* **i18n:** add missing translations [CDS 466] ([ac508bd](https://github.com/ovh/manager/commit/ac508bd80723a7bb9ee236187c819dd8a8340b86))
+* **support:** add serviceTypes translations ([ae9042d](https://github.com/ovh/manager/commit/ae9042d7a129f8a45ddb37d13ad68d9f5dc32d5b))
+* **support:** filter serviceTypes with own services ([2d95cea](https://github.com/ovh/manager/commit/2d95ceab1fc49e6dbe31d24eaa312ec663038eab))
+* **support:** rename csp2 service type ([8bfd40c](https://github.com/ovh/manager/commit/8bfd40c83e7b858b8ab43e4108678b9932dc5f84))
+* **support:** translation update ([949fd1b](https://github.com/ovh/manager/commit/949fd1be163ea2eb1cd56070c3083eeee1e833ca))
+* **support:** update ticket serviceType labels ([83b3029](https://github.com/ovh/manager/commit/83b3029639c8148aab8bda883e091a75547f7f8b))
+
+
+### Features
+
+* **support:** handle issue readOnly attribute ([#3054](https://github.com/ovh/manager/issues/3054)) ([1a35fd5](https://github.com/ovh/manager/commit/1a35fd5bde4adeae835a451cab551d7939de00ca))
+
+
+
 ## [0.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@0.6.0...@ovh-ux/manager-support@0.6.1) (2020-06-09)
 
 

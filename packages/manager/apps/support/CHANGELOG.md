@@ -1,3 +1,12 @@
+## [1.0.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-support-app@1.0.2...@ovh-ux/manager-support-app@1.0.3) (2020-07-08)
+
+
+### Bug Fixes
+
+* **deps:** set right semver range ([#3192](https://github.com/ovh/manager/issues/3192)) ([bd57faa](https://github.com/ovh/manager/commit/bd57faa72cd3f09140363425f360c2069c496d6e)), closes [#3054](https://github.com/ovh/manager/issues/3054)
+
+
+
 ## [1.0.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-support-app@1.0.1...@ovh-ux/manager-support-app@1.0.2) (2020-06-09)
 
 

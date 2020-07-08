@@ -1,3 +1,12 @@
+## [1.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@1.3.0...@ovh-ux/manager-vps@1.3.1) (2020-07-08)
+
+
+### Bug Fixes
+
+* **translations:** clean translations files ([#3174](https://github.com/ovh/manager/issues/3174)) ([6d8759d](https://github.com/ovh/manager/commit/6d8759d11c18d15fac90bee76e40e774a9efe8a2))
+
+
+
 # [1.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@1.2.1...@ovh-ux/manager-vps@1.3.0) (2020-06-17)
 
 
