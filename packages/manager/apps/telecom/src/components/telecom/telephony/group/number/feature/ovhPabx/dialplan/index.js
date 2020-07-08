@@ -10,6 +10,9 @@ import extension from './extension';
 
 import component from './dialplan.component';
 
+import './dialplan.less';
+import './dialplan-horizontal.less';
+
 const moduleName =
   'ovhManagerTelecomComponentsTelecomTelephonyGroupNumberFeatureOvhPabxDiaplplan';
 

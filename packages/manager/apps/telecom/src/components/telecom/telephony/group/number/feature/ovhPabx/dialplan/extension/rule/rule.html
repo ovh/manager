@@ -2,22 +2,6 @@
     class="ovh-pabx-dialplan-extension-rule voip-plan__step voip-plan__step--point"
 >
     <!-- RULE BLOCK -->
-    <!-- POSITION -->
-    <div
-        class="voip-plan__step-icon voip-plan__step-icon--grip hover-grip rule-grip"
-        data-tuc-jsplumb-endpoint="$ctrl.numberCtrl.jsPlumbEndpointsOptions.topLeft"
-    >
-        <span
-            data-tuc-jsplumb-connection="!$ctrl.extension.enabled ? $ctrl.numberCtrl.jsPlumbConnectionsOptions.disabled : null"
-            data-tuc-jsplumb-connection-target="{{ $ctrl.rule.negativeAction ? $ctrl.extensionCtrl.uuid + '-condition' : $ctrl.extensionCtrl.uuid }}"
-            data-ng-if="!$ctrl.extensionCtrl.extension.collapsed"
-            data-ng-class="$ctrl.isLoading() ? 'fa fa-spinner fa-pulse' :'ovh-font ovh-font-grip'"
-            aria-hidden="true"
-        >
-        </span>
-    </div>
-    <!-- POSITION -->
-
     <!-- RULE ACTION -->
     <div
         class="voip-plan__step-content"
@@ -25,12 +9,12 @@
         data-popover-placement="right"
         data-popover-trigger="none"
         data-popover-is-open="$ctrl.popoverStatus.isOpen"
-        data-popover-class="pretty-popover telephony-number-feature-popover telephony-number-ovh-pabx-actions-popup"
+        data-popover-class="pretty-popover telephony-number-feature-popover telephony-number-ovh-pabx-actions-popup popover-rule-edit"
         data-ng-class="{ 'voip-plan__step-content--delete-anim': $ctrl.deletePending }"
         data-tuc-hide-outside-click="$ctrl.onRuleOutsideClick()"
     >
         <div
-            class="voip-plan__step-description"
+            class="voip-plan__step-description-pabx"
             data-ng-switch="$ctrl.getActionFamily()"
         >
             <span
@@ -130,7 +114,7 @@
             </button>
             <!-- ACTIONS LIST -->
             <ul
-                class="dropdown-menu ovh-dropdown-menu"
+                class="dropdown-menu ovh-dropdown-menu voip-plan__dialplan-extension-rule--dropdown"
                 data-uib-dropdown-menu
                 role="menu"
                 aria-labelledby="extension-rule-{{ $ctrl.rule.ruleId }}-actions"
@@ -150,7 +134,7 @@
                 <li role="menuitem">
                     <button
                         type="button"
-                        class="btn btn-link w-100"
+                        class="btn btn-link w-100 text-danger"
                         data-translate="telephony_number_feature_ovh_pabx_step_rule_action_delete"
                         data-ng-click="$ctrl.deletePending = true"
                     ></button>

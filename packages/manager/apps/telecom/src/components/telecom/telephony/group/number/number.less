@@ -1,20 +1,7 @@
 @import '~ovh-ui-kit-bs/dist/less/bootstrap/_variables';
 @import '../../../../../app/common/less/mixins.less';
 
-// COLORS
-@voip-plan-main-color: @p-500;
-@voip-plan-secondary-color: #59697d;
-@voip-plan-border-color: #d5dae0;
-@voip-plan-secondary-background-color: #e0f6fd;
-@voip-plan-disabled-color: @voip-plan-secondary-color;
-@voip-plan-disabled-background-color: #d5dae0;
-@voip-plan-disabled-border-color: #d5dae0;
-
-// SIZES
-@voip-plan-main-elements-size: 40px;
-@voip-plan-radio-size: 20px;
-@voip-plan-icons-font-size: 16px;
-@voip-plan-icons-main-font-size: 20px;
+@import './variables.less';
 
 .voip-plan {
   width: 100%;
@@ -168,6 +155,13 @@
       white-space: nowrap;
     }
 
+    &-description-pabx {
+      display: inline-block;
+      width: 200px;
+      flex-shrink: 0;
+      padding: 8px 16px;
+    }
+
     &-name {
       display: block;
       font-size: @font-size-base;
@@ -225,6 +219,7 @@
         border: solid 1px @p-300;
         background-color: transparent;
         border-radius: 50%;
+        padding: 0;
 
         &:hover,
         &:focus,

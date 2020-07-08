@@ -2,7 +2,6 @@
     data-ng-controller="telephonyNumberOvhPabxDialplanExtensionEditCtrl as $ctrl"
     class="telephony-number-ovh-pabx-extension-edit popover-pages"
     data-ng-form="extensionConditionsForm"
-    data-tuc-hide-outside-click="$ctrl.onCancelBtnClick()"
 >
     <div
         class="popover-pages-wrapper"
@@ -324,7 +323,7 @@
                             <div class="btn-group w-100">
                                 <button
                                     type="button"
-                                    class="btn btn-default"
+                                    class="oui-button"
                                     data-ng-repeat="day in conditionsGroup.dayModel track by $index"
                                     data-ng-model="day.selected"
                                     data-ng-click="$ctrl.onDayBtnClick(day, conditionsGroup)"
@@ -445,9 +444,10 @@
                                         data-ng-disabled="!$ctrl.isConditionGroupValid(conditionsGroup)"
                                         data-ng-click="$ctrl.onConditionAddBtnClick(conditionsGroup)"
                                     >
-                                        <i
-                                            class="ovh-font ovh-font-ajouter"
-                                        ></i>
+                                        <!-- Button for checking if time slots entered is correct  -->
+                                        <span
+                                            class="oui-icon oui-icon-success group-number__dialplan--check-btn"
+                                        ></span>
                                     </button>
                                 </div>
                             </div>
