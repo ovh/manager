@@ -1,5 +1,6 @@
 import get from 'lodash/get';
 import isArray from 'lodash/isArray';
+import remove from 'lodash/remove';
 
 angular.module('Module.license').controller('LicenseCtrl', [
   '$scope',
@@ -84,23 +85,28 @@ angular.module('Module.license').controller('LicenseCtrl', [
         },
       })
         .then((licenses) => {
+          const results = remove(licenses.list.results, null);
           if (isArray(get(licenses, 'availableTypes'))) {
             licenses.availableTypes.push('ALL_TYPE');
           }
-          angular.forEach(licenses.list.results, (value, idx) => {
+          angular.forEach(results, (value, idx) => {
             if (value.expiration !== null) {
-              // eslint-disable-next-line no-param-reassign
-              licenses.list.results[idx].isExpired = moment().isAfter(
+              results[idx].isExpired = moment().isAfter(
                 moment(value.expiration, 'YYYY-MM-DDTHH:mm:ss.SSSZZ'),
               );
-              // eslint-disable-next-line no-param-reassign
-              licenses.list.results[idx].expireSoon = moment()
+              results[idx].expireSoon = moment()
                 .add(1, 'months')
                 .isAfter(moment(value.expiration, 'YYYY-MM-DDTHH:mm:ss.SSSZZ'));
             }
           });
           $scope.licenses = licenses;
-          return licenses;
+          return {
+            ...licenses,
+            list: {
+              ...licenses.list,
+              results,
+            },
+          };
         })
         .finally(() => {
           $scope.licencesTableLoading = false;
