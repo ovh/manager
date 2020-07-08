@@ -20,7 +20,7 @@
 
   "ovhManagerSupport_new_serviceType": "Produit",
   "ovhManagerSupport_all_serviceType": "Afficher plus de produits",
-  "ovhManagerSupport_new_serviceType_ai_serving": "ML Serving",
+  "ovhManagerSupport_new_serviceType_ml_serving": "ML Serving",
   "ovhManagerSupport_new_serviceType_DEDICATED": "Dédié",
   "ovhManagerSupport_new_serviceType_data_processing_jobs": "Data processing",
   "ovhManagerSupport_new_serviceType_email_exchange": "Exchange",
