@@ -52,7 +52,6 @@ import '@ovh-ux/ng-ovh-actions-menu';
 import 'script-loader!matchmedia-ng/matchmedia-ng.js';
 import 'angular-aria';
 import 'script-loader!chart.js/dist/Chart.min.js';
-import 'script-loader!angular-chart.js/dist/angular-chart.min.js';
 import 'ovh-angular-responsive-tabs';
 import 'ckeditor';
 import 'script-loader!messenger/build/js/messenger.min.js';
