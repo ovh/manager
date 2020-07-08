@@ -297,7 +297,7 @@ export const ORDER_URLS = {
     },
     orderHosting: {
       ASIA: 'https://www.ovh.com/asia/web-hosting/',
-      AU: 'https://www.ovh.com/au/web-hosting/',
+      AU: 'https://www.ovh.com.au/web-hosting/',
       CA: 'https://www.ovh.com/ca/en/web-hosting/',
       QC: 'https://www.ovh.com/ca/fr/hebergement-web/',
       SG: 'https://www.ovh.com/sg/web-hosting/',
