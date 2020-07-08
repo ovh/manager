@@ -9,7 +9,11 @@ import range from 'lodash/range';
 import set from 'lodash/set';
 import uniq from 'lodash/uniq';
 
-import { IP_LOCATION_GROUPS, PRODUCT_TYPES } from './ip-ip-agoraOrder.constant';
+import {
+  IP_LOCATION_GROUPS,
+  PRODUCT_TYPES,
+  VPS_MAX_QUANTITY,
+} from './ip-ip-agoraOrder.constant';
 
 angular.module('Module.ip.controllers').controller(
   'agoraIpOrderCtrl',
@@ -154,9 +158,14 @@ angular.module('Module.ip.controllers').controller(
       ).then((ipOffers) => {
         let ipOfferDetails = ipOffers.map(this.createOfferDto.bind(this));
         if (this.model.selectedService.type === PRODUCT_TYPES.vps.typeName) {
-          ipOfferDetails = ipOfferDetails.filter(({ productShortName }) =>
-            productShortName.includes('failover'),
-          );
+          ipOfferDetails = ipOfferDetails
+            .filter(({ productShortName }) =>
+              productShortName.includes('failover'),
+            )
+            .map((offer) => ({
+              ...offer,
+              quantities: range(1, VPS_MAX_QUANTITY + 1),
+            }));
         }
 
         const ipCountryAvailablePromise = this.IpAgoraOrder.getIpCountryAvailablePromise(
