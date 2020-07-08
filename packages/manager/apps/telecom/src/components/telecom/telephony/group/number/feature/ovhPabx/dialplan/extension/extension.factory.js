@@ -18,8 +18,8 @@ export default /* @ngInject */ (
   VoipTimeConditionCondition,
 ) => {
   /*= ==================================
-    =            CONSTRUCTOR            =
-    =================================== */
+=            CONSTRUCTOR            =
+=================================== */
 
   function TelephonyGroupNumberOvhPabxDialplanExtension(extensionOptionsParam) {
     let extensionOptions = extensionOptionsParam;
@@ -75,8 +75,8 @@ export default /* @ngInject */ (
   /* -----  End of CONSTRUCTOR  ------*/
 
   /*= ========================================
-    =            PROTOTYPE METHODS            =
-    ========================================= */
+=            PROTOTYPE METHODS            =
+========================================= */
 
   TelephonyGroupNumberOvhPabxDialplanExtension.prototype.setInfos = function setInfos(
     extensionOptionsParam,

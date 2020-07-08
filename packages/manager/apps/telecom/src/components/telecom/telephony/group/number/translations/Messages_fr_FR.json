@@ -1,9 +1,12 @@
 {
-  "telephony_number_incoming_calls": "Appels entrants",
+  "telephony_number_incoming_calls": "Appels reçus",
   "telephony_number_save_error": "Oups une erreur est survenue lors de la sauvegarde de la configuration de votre numéro.",
   "telephony_number_save_doing": "Modification en cours",
   "telephony_number_action_change_type": "Modifier le type de numéro",
   "telephony_number_action_scheduler": "Gérer les créneaux exceptionnels",
+  "telephony_number_action_layout": "Changer la disposition de l'affichage",
+  "telephony_number_action_layout_vertical": "Affichage vertical",
+  "telephony_number_action_layout_horizontal": "Affichage horizontal",
   "telephony_number_feature_redirect_to": "Rediriger vers",
   "telephony_number_feature_redirect_add_conditions": "Ajouter des conditions",
   "telephony_number_feature_redirect_not_set": "Aucune destination sélectionnée.",

@@ -2,7 +2,7 @@
     data-ng-controller="telephonyNumberOvhPabxDialplanExtensionRuleEditCtrl as $ctrl"
     class="telephony-number-ovh-pabx-extension-rule-edit popover-pages"
     data-ng-form="$ctrl.extensionRuleForm"
-    data-tuc-hide-outside-click="$ctrl.onCancelBtnClick()"
+    id="ruleEdit"
 >
     <div
         class="popover-pages-wrapper"
@@ -526,7 +526,7 @@
                 <!-- Search result -->
                 <div
                     class="section-group"
-                    data-ng-repeat="group in $ctrl.groups | filter:$ctrl.filterDisplayedGroup track by $index"
+                    data-ng-repeat="group in $ctrl.groupsFiltered track by $index"
                 >
                     <div class="group-title">
                         <span data-ng-bind="group.getDisplayedName()"></span>
@@ -611,7 +611,6 @@
                         <telephony-number-ovh-pabx-menu-list
                             data-ng-model="$ctrl.rule.actionParam"
                             data-with-choice="true"
-                            data-on-menu-selected="$ctrl.onIvrMenuSelectedChange"
                         >
                         </telephony-number-ovh-pabx-menu-list>
                         <!-- END OF MENUS LIST -->
