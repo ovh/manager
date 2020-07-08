@@ -72,10 +72,29 @@ angular.module('managerApp').controller(
     refreshStats() {
       return this.$q
         .all({
-          agentsStatus: this.tucVoipServiceAlias.fetchContactCenterSolutionNumberAgentsStatus(
-            this.serviceInfos,
-            this.queue.queueId,
-          ),
+          agentsStatus: this.tucVoipServiceAlias
+            .fetchContactCenterSolutionNumberAgentsStatus(
+              this.serviceInfos,
+              this.queue.queueId,
+            )
+            .then((agentsStatus) =>
+              this.$q.all(
+                agentsStatus.map((agentStatus) =>
+                  this.OvhApiTelephony.EasyHunting()
+                    .Hunting()
+                    .Agent()
+                    .v6()
+                    .get({
+                      ...this.serviceInfos,
+                      agentId: agentStatus.agentId,
+                    })
+                    .$promise.then((agentInfo) => ({
+                      ...agentInfo,
+                      ...agentStatus,
+                    })),
+                ),
+              ),
+            ),
           calls: this.tucVoipServiceAlias.fetchContactCenterSolutionNumberQueueCalls(
             this.serviceInfos,
             this.queue.queueId,
