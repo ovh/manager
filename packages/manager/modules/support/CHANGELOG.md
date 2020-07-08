@@ -1,3 +1,12 @@
+## [0.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@0.7.0...@ovh-ux/manager-support@0.7.1) (2020-07-08)
+
+
+### Bug Fixes
+
+* **tickets.new:** add missing translations ([#3216](https://github.com/ovh/manager/issues/3216)) ([c402b95](https://github.com/ovh/manager/commit/c402b955530fe61370bf7e874ae4a75a3109be99))
+
+
+
 # [0.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@0.6.1...@ovh-ux/manager-support@0.7.0) (2020-07-08)
 
 
