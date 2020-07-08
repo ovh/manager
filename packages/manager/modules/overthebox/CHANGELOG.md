@@ -1,3 +1,19 @@
+# [5.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@5.5.1...@ovh-ux/manager-overthebox@5.6.0) (2020-07-08)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 455] ([2433224](https://github.com/ovh/manager/commit/2433224be49dbe4ecd6d214e10287a8b7eb0795c))
+* **i18n:** add missing translations [CDS 461] ([687d928](https://github.com/ovh/manager/commit/687d9280f4d64235f951c54b6b8a531e2454159c))
+* **i18n:** add missing translations [CDS 471] ([9a5acb0](https://github.com/ovh/manager/commit/9a5acb0deca3ad60146dd6f34da31cb5c5c1435b))
+
+
+### Features
+
+* **otb.actions:** add actions list ([#3046](https://github.com/ovh/manager/issues/3046)) ([0610788](https://github.com/ovh/manager/commit/0610788f69da06ce9a23c14d8ae5ca10861fa693))
+
+
+
 ## [5.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@5.5.0...@ovh-ux/manager-overthebox@5.5.1) (2020-06-23)
 
 

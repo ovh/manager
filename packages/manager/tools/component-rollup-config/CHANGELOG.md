@@ -1,3 +1,12 @@
+# [7.2.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/component-rollup-config@7.1.0...@ovh-ux/component-rollup-config@7.2.0) (2020-07-08)
+
+
+### Features
+
+* **component-rollup-config:** add es6 proposals ([e77ac87](https://github.com/ovh-ux/manager/commit/e77ac874ac3e5a962bc4666a35c112f71f572a32))
+
+
+
 # [7.1.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/component-rollup-config@7.0.3...@ovh-ux/component-rollup-config@7.1.0) (2020-06-30)
 
 

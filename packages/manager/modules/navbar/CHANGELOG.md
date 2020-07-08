@@ -1,3 +1,12 @@
+## [3.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-navbar@3.3.0...@ovh-ux/manager-navbar@3.3.1) (2020-07-08)
+
+
+### Bug Fixes
+
+* **navbar:** change brand link to dashboard ([#2877](https://github.com/ovh/manager/issues/2877)) ([399a18a](https://github.com/ovh/manager/commit/399a18a5f05c18c5d05055ce11f8c41c5d3cbbd7))
+
+
+
 # [3.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-navbar@3.2.1...@ovh-ux/manager-navbar@3.3.0) (2020-06-16)
 
 

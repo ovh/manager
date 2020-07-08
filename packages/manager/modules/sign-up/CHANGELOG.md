@@ -1,3 +1,13 @@
+## [1.2.6](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@1.2.5...@ovh-ux/sign-up@1.2.6) (2020-07-08)
+
+
+### Bug Fixes
+
+* **signup:** autoselect language if only one choice ([ab0f6c0](https://github.com/ovh/manager/commit/ab0f6c07080d9f61980ba8fcb61f1f99067df60f))
+* **signup:** update validity of zip if change country or area ([83a10a7](https://github.com/ovh/manager/commit/83a10a7b7371b3a440f9719f8e6d51b7a2dac9af))
+
+
+
 ## [1.2.5](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@1.2.4...@ovh-ux/sign-up@1.2.5) (2020-06-09)
 
 

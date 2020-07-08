@@ -1,3 +1,21 @@
+# [12.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@12.5.1...@ovh-ux/manager-telecom@12.6.0) (2020-07-08)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 455] ([2433224](https://github.com/ovh/manager/commit/2433224be49dbe4ecd6d214e10287a8b7eb0795c))
+* **i18n:** add missing translations [CDS 477] ([31f2ccc](https://github.com/ovh/manager/commit/31f2ccc722424f549443f673fdda3a2596ad0c3c))
+* **telephony:** remove unused service count call ([#3198](https://github.com/ovh/manager/issues/3198)) ([26861ff](https://github.com/ovh/manager/commit/26861ffde06ed9ca2d4e90649341076f9618de62))
+* **xdsl.access:** fix error for loading access detail ([4bc809c](https://github.com/ovh/manager/commit/4bc809c5371f41f77f86213fb32ac870907eae15))
+* **xdsl.modem:** fix the message displayed for the correct action ([cc52e12](https://github.com/ovh/manager/commit/cc52e12e82c000ea929cc1d8b3c106cd16b8c15e))
+
+
+### Features
+
+* add tracking to order and update phone range ([#3004](https://github.com/ovh/manager/issues/3004)) ([88f832a](https://github.com/ovh/manager/commit/88f832a9c143b1092d24ba23740f019c3945244f))
+
+
+
 ## [12.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@12.5.0...@ovh-ux/manager-telecom@12.5.1) (2020-06-30)
 
 

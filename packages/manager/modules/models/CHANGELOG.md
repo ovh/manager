@@ -1,3 +1,12 @@
+# [1.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-models@1.3.0...@ovh-ux/manager-models@1.4.0) (2020-07-08)
+
+
+### Features
+
+* **account.user.support:** add display for partners ([694cafc](https://github.com/ovh/manager/commit/694cafc5208bb5573d3ccd0e5076a57f44e8f342))
+
+
+
 # [1.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-models@1.2.0...@ovh-ux/manager-models@1.3.0) (2020-07-06)
 
 

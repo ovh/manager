@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/sign-up-app",
-  "version": "1.6.1",
+  "version": "1.6.2",
   "private": true,
   "description": "Sign-up form application.",
   "repository": {

@@ -1,3 +1,26 @@
+# [2.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-product-offers@1.3.1...@ovh-ux/manager-product-offers@2.0.0) (2020-07-08)
+
+
+### Bug Fixes
+
+* **i18n:** restore CDS translations commit [CDS 467] ([ca4a5e2](https://github.com/ovh/manager/commit/ca4a5e2cf353a064e70fb2527cd0557563d72f98))
+* **product-offers:** add prorata duration date ([aaa56c7](https://github.com/ovh/manager/commit/aaa56c7a592f9d58bb5030c136722c6044cff2e4))
+
+
+### Features
+
+* **product-offer:** allow changing plan code dynamically ([727281a](https://github.com/ovh/manager/commit/727281aa1a47291741d08afdce6708b865285a67))
+
+
+### BREAKING CHANGES
+
+* **product-offer:** - allow changing plan code dynamically for Order workflow
+- remove possibility to have set the planCode by a property
+
+Signed-off-by: Frederic Espiau <frederic.espiau@corp.ovh.com>
+
+
+
 ## [1.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-product-offers@1.3.0...@ovh-ux/manager-product-offers@1.3.1) (2020-06-09)
 
 

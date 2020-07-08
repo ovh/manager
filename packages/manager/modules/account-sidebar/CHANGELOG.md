@@ -1,3 +1,13 @@
+## [1.3.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-sidebar@1.3.3...@ovh-ux/manager-account-sidebar@1.3.4) (2020-07-08)
+
+
+### Bug Fixes
+
+* **account-sidebar:** rename accredited support level ([220d3e8](https://github.com/ovh/manager/commit/220d3e8534eff18c6a8ee26856e2c3b1af7e37a8))
+* **i18n:** add missing translations [CDS 479] ([c547aef](https://github.com/ovh/manager/commit/c547aef25a90f5e155242a76441a228ab31c9a6d))
+
+
+
 ## [1.3.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-sidebar@1.3.2...@ovh-ux/manager-account-sidebar@1.3.3) (2020-06-09)
 
 

@@ -1,3 +1,26 @@
+# [12.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@12.6.2...@ovh-ux/manager-dedicated@12.7.0) (2020-07-08)
+
+
+### Bug Fixes
+
+* **billing.payment.method:** add missing translations ([#3211](https://github.com/ovh/manager/issues/3211)) ([5ac7a73](https://github.com/ovh/manager/commit/5ac7a7348e4b58a429ba161655a021d9f234b643)), closes [#3156](https://github.com/ovh/manager/issues/3156)
+* **dedicated:** handle case of null license ([#3209](https://github.com/ovh/manager/issues/3209)) ([7713039](https://github.com/ovh/manager/commit/77130390b9ad71ae75549ad7700c908ffcf42691))
+* **deps:** set right semver range ([#3192](https://github.com/ovh/manager/issues/3192)) ([bd57faa](https://github.com/ovh/manager/commit/bd57faa72cd3f09140363425f360c2069c496d6e)), closes [#3054](https://github.com/ovh/manager/issues/3054)
+* **i18n:** add missing translations [CDS 475] ([5c5eb12](https://github.com/ovh/manager/commit/5c5eb1243570dd7029f7883c8cf2e8225b9f970a))
+* **i18n:** add missing translations [CDS 478] ([5030f68](https://github.com/ovh/manager/commit/5030f68195ea3b5cc19654fb4d0ea6a5f42c898d))
+* **i18n:** add missing translations [CDS 479] ([c547aef](https://github.com/ovh/manager/commit/c547aef25a90f5e155242a76441a228ab31c9a6d))
+* prevent angular-chart.js from being instanciated twice ([#2996](https://github.com/ovh/manager/issues/2996)) ([6da0a0b](https://github.com/ovh/manager/commit/6da0a0b9bb1a5a25efafb2b92dd21967b104ed25))
+
+
+### Features
+
+* **account.user.support:** add display for partners ([694cafc](https://github.com/ovh/manager/commit/694cafc5208bb5573d3ccd0e5076a57f44e8f342))
+* **billing:** add warning on payment method add page ([4598fac](https://github.com/ovh/manager/commit/4598facfca763234b5f325002e8f885353dfd178))
+* **dedicated:** handle sgx advanced option ([39123d2](https://github.com/ovh/manager/commit/39123d2da1d068ed9b51111595db220fef7583a8))
+* **sgx:** add tracking ([8b3cfd1](https://github.com/ovh/manager/commit/8b3cfd1d8fff0de31b11e57bc1922a0154af11a2))
+
+
+
 ## [12.6.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@12.6.1...@ovh-ux/manager-dedicated@12.6.2) (2020-07-07)
 
 
