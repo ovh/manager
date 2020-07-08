@@ -1,3 +1,12 @@
+## [0.7.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@0.7.1...@ovh-ux/manager-support@0.7.2) (2020-07-08)
+
+
+### Bug Fixes
+
+* **support.new:** fix key ([#3222](https://github.com/ovh/manager/issues/3222)) ([cc478e3](https://github.com/ovh/manager/commit/cc478e3db5ec9511c2efb499007a97962d9fe0e8))
+
+
+
 ## [0.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@0.7.0...@ovh-ux/manager-support@0.7.1) (2020-07-08)
 
 
