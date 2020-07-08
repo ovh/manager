@@ -12,7 +12,7 @@
   "ovhManagerSupport_new_urgency_high": "Wysoki",
   "ovhManagerSupport_new_serviceType": "Produkt",
   "ovhManagerSupport_new_serviceType_DEDICATED": "Serwery dedykowane",
-  "ovhManagerSupport_new_serviceType_data_processing_jobs": "Data processing",
+  "ovhManagerSupport_new_serviceType_data_processing": "Data processing",
   "ovhManagerSupport_new_serviceType_ml_serving": "ML Serving",
   "ovhManagerSupport_new_serviceType_email_exchange": "Exchange",
   "ovhManagerSupport_new_serviceType_email_mxplan": "Oferta MX Plan",
