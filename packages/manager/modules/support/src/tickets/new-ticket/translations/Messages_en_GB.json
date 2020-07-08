@@ -12,6 +12,8 @@
   "ovhManagerSupport_new_urgency_high": "High",
   "ovhManagerSupport_new_serviceType": "Product",
   "ovhManagerSupport_new_serviceType_DEDICATED": "Dedicated",
+  "ovhManagerSupport_new_serviceType_data_processing_jobs": "Data processing",
+  "ovhManagerSupport_new_serviceType_ml_serving": "ML Serving",
   "ovhManagerSupport_new_serviceType_email_exchange": "Exchange",
   "ovhManagerSupport_new_serviceType_email_mxplan": "MX Plan Email",
   "ovhManagerSupport_new_serviceType_email_pro": "Email Pro",
