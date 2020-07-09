@@ -1,3 +1,12 @@
+## [3.23.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.23.3...@ovh-ux/manager-pci@3.23.4) (2020-07-09)
+
+
+### Bug Fixes
+
+* **instance.edit:** display flex tooltip help message ([#3214](https://github.com/ovh/manager/issues/3214)) ([91c778b](https://github.com/ovh/manager/commit/91c778b2cdd7c4b1bad0d420b1a1755abaa1fb86))
+
+
+
 ## [3.23.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.23.2...@ovh-ux/manager-pci@3.23.3) (2020-07-08)
 
 

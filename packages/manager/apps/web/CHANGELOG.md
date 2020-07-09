@@ -1,3 +1,12 @@
+## [14.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@14.7.0...@ovh-ux/manager-web@14.7.1) (2020-07-09)
+
+
+### Bug Fixes
+
+* **domain:** hide email domain tab if not available ([#3225](https://github.com/ovh/manager/issues/3225)) ([0f248a5](https://github.com/ovh/manager/commit/0f248a5d671bcfb03b343cafcdee4f32d799cb86))
+
+
+
 # [14.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@14.6.3...@ovh-ux/manager-web@14.7.0) (2020-07-08)
 
 

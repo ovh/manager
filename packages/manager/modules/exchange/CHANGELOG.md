@@ -1,3 +1,12 @@
+## [1.8.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@1.8.4...@ovh-ux/manager-exchange@1.8.5) (2020-07-09)
+
+
+### Bug Fixes
+
+* **exchange.accounts:** catch user preference assignment ([#3226](https://github.com/ovh/manager/issues/3226)) ([bd5db51](https://github.com/ovh/manager/commit/bd5db515d0935893194b194256cad57a03ab7710))
+
+
+
 ## [1.8.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@1.8.3...@ovh-ux/manager-exchange@1.8.4) (2020-06-09)
 
 

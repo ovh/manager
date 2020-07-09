@@ -1,3 +1,13 @@
+## [12.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@12.6.0...@ovh-ux/manager-telecom@12.6.1) (2020-07-09)
+
+
+### Bug Fixes
+
+* **telecom:** fix sidebar not displayed on mobile ([8b5c108](https://github.com/ovh/manager/commit/8b5c108fcdba25f1a0f239111c6c130b8d789362))
+* **telephony.alias.statistics:** use agent line number and description ([49e4bdb](https://github.com/ovh/manager/commit/49e4bdb3e210674ed152f724e631c8686cb8869d))
+
+
+
 # [12.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@12.5.1...@ovh-ux/manager-telecom@12.6.0) (2020-07-08)
 
 
