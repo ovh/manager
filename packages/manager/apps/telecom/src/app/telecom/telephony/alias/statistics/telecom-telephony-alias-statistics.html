@@ -154,7 +154,11 @@
         <oui-datagrid class="my-5" data-rows="$ctrl.agentsStatus">
             <oui-column
                 data-title="::'telephony_alias_statistics_calls_agent_queue' | translate"
-                data-property="agentId"
+                data-property="number"
+            ></oui-column>
+            <oui-column
+                data-title=":: 'telephony_alias_statistics_calls_agent_description' | translate"
+                data-property="description"
             ></oui-column>
             <oui-column
                 data-title="::'telephony_alias_statistics_agent_status' | translate"

@@ -17,6 +17,7 @@ angular.module('App').controller(
       Domain,
       associatedHostings,
       goToWebhostingOrder,
+      hasEmailDomain,
       isEmailDomainAvailable,
       Hosting,
       orderedHosting,
@@ -36,7 +37,7 @@ angular.module('App').controller(
       this.Domain = Domain;
       this.associatedHostings = associatedHostings;
       this.goToWebhostingOrder = goToWebhostingOrder;
-      this.isEmailDomainAvailable = isEmailDomainAvailable;
+      this.isEmailDomainTabAvailable = isEmailDomainAvailable && hasEmailDomain;
       this.Hosting = Hosting;
       this.orderedHosting = orderedHosting;
       this.User = User;
