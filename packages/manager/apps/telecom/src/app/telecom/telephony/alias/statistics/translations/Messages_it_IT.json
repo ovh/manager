@@ -22,6 +22,7 @@
   "telephony_alias_statistics_calls_queue_time": "Entrato nella coda",
   "telephony_alias_statistics_calls_time": "Prise d'appel",
   "telephony_alias_statistics_calls_agent_queue": "Ligne de la file (Agents)",
+  "telephony_alias_statistics_calls_agent_description": "Description",
   "telephony_alias_statistics_agents_ongoing": "Numero di agenti al telefono",
   "telephony_alias_statistics_agents_pending": "Numero di agenti in attesa",
   "telephony_alias_statistics_calls_agent_updated": "Dernier changement de statut",

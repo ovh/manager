@@ -39,8 +39,11 @@ export const IP_LOCATION_GROUPS = [
   { labels: ['USA'], countries: ['us'] },
 ];
 
+export const VPS_MAX_QUANTITY = 16;
+
 export default {
   FETCH_PRICE_MAX_TRIES,
   IP_LOCATION_GROUPS,
   PRODUCT_TYPES,
+  VPS_MAX_QUANTITY,
 };
