@@ -1,3 +1,12 @@
+## [1.8.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@1.8.0...@ovh-ux/manager-emailpro@1.8.1) (2020-07-09)
+
+
+### Bug Fixes
+
+* **emailpro:** wrong guide urls for en subsidiary ([#3221](https://github.com/ovh/manager/issues/3221)) ([788db6f](https://github.com/ovh/manager/commit/788db6f830bc83b317cb15796e9907aac6de23a2))
+
+
+
 # [1.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@1.7.1...@ovh-ux/manager-emailpro@1.8.0) (2020-06-16)
 
 
