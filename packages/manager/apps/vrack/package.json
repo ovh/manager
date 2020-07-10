@@ -19,10 +19,10 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-vrack-app' --include-dependencies -- npm run dev:watch --if-present"
   },
   "dependencies": {
-    "@ovh-ux/manager-cloud-styles": "^0.4.0",
+    "@ovh-ux/manager-cloud-styles": "^0.4.0 || ^1.0.0",
     "@ovh-ux/manager-config": "^0.4.0",
-    "@ovh-ux/manager-core": "^9.0.0",
-    "@ovh-ux/manager-vrack": "^0.7.0",
+    "@ovh-ux/manager-core": "^9.0.0 || ^10.0.0",
+    "@ovh-ux/manager-vrack": "^0.7.0 || ^1.0.0",
     "@ovh-ux/ng-ovh-api-wrappers": "^4.0.7",
     "@ovh-ux/ng-ovh-cloud-universe-components": "^1.5.0",
     "@ovh-ux/ng-ovh-contracts": "^3.1.2",

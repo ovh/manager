@@ -12,11 +12,11 @@
   "author": "OVH SAS",
   "main": "src/index.js",
   "devDependencies": {
-    "@ovh-ux/manager-hub": "^1.0.0",
+    "@ovh-ux/manager-hub": "^1.0.0 || ^2.0.0",
     "lodash": "^4.17.15"
   },
   "peerDependencies": {
-    "@ovh-ux/manager-core": "^8.0.0",
+    "@ovh-ux/manager-core": "^9.0.0 || ^10.0.0",
     "@ovh-ux/ng-at-internet": "^5.0.1",
     "@ovh-ux/ng-ovh-api-wrappers": "^3.0.0",
     "@ovh-ux/ng-ovh-order-tracking": "^0.2.2",
