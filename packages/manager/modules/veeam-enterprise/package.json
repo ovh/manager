@@ -18,7 +18,7 @@
     "bootstrap4": "twbs/bootstrap#v4.0.0"
   },
   "peerDependencies": {
-    "@ovh-ux/manager-core": "^9.0.0",
+    "@ovh-ux/manager-core": "^9.0.0 || ^10.0.0",
     "@ovh-ux/ng-ovh-cloud-universe-components": "^1.4.3",
     "@ovh-ux/ng-ui-router-layout": "^3.3.3",
     "@ovh-ux/ui-kit": "^4.1.9",

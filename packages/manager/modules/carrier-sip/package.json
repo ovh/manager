@@ -17,8 +17,8 @@
     "moment": "^2.24.0"
   },
   "peerDependencies": {
-    "@ovh-ux/manager-core": "^9.0.0",
-    "@ovh-ux/ng-ovh-telecom-universe-components": "^5.0.0",
+    "@ovh-ux/manager-core": "^9.0.0 || ^10.0.0",
+    "@ovh-ux/ng-ovh-telecom-universe-components": "^5.0.0 || ^6.0.0",
     "@ovh-ux/ui-kit": "^4.1.9",
     "angular": "^1.7.8",
     "angular-translate": "^2.18.1",

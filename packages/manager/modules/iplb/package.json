@@ -16,7 +16,7 @@
     "lodash": "^4.17.15"
   },
   "peerDependencies": {
-    "@ovh-ux/manager-core": "^9.0.0",
+    "@ovh-ux/manager-core": "^9.0.0 || ^10.0.0",
     "@ovh-ux/ng-at-internet": "^5.0.1",
     "@ovh-ux/ng-ovh-actions-menu": "^5.0.6",
     "@ovh-ux/ng-ovh-cloud-universe-components": "^1.4.0",

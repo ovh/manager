@@ -37,9 +37,9 @@
     "@ovh-ux/ui-kit": "^4.1.9"
   },
   "peerDependencies": {
-    "@ovh-ux/manager-account-sidebar": "^1.0.0",
+    "@ovh-ux/manager-account-sidebar": "^1.0.0 || ^2.0.0",
     "@ovh-ux/manager-config": "^0.4.0",
-    "@ovh-ux/manager-core": "^9.0.0",
+    "@ovh-ux/manager-core": "^9.0.0 || ^10.0.0",
     "@ovh-ux/ng-at-internet": "^5.0.1",
     "@ovh-ux/ng-ovh-sso-auth": "^4.2.3",
     "@ovh-ux/ng-ovh-user-pref": "^2.0.0",

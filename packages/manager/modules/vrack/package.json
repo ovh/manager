@@ -31,8 +31,8 @@
     "bootstrap": "~3.3.7"
   },
   "peerDependencies": {
-    "@ovh-ux/manager-cloud-styles": "^0.4.0",
-    "@ovh-ux/manager-core": "^9.0.0",
+    "@ovh-ux/manager-cloud-styles": "^0.4.0 || ^1.0.0",
+    "@ovh-ux/manager-core": "^9.0.0 || ^10.0.0",
     "@ovh-ux/ng-ovh-cloud-universe-components": "^1.5.0",
     "@ovh-ux/ng-ovh-toaster": "^2.0.0",
     "@ovh-ux/ui-kit": "^4.1.9",

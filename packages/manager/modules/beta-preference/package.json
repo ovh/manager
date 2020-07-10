@@ -12,7 +12,7 @@
   "author": "OVH SAS",
   "main": "./src/index.js",
   "peerDependencies": {
-    "@ovh-ux/manager-core": "^9.0.0",
+    "@ovh-ux/manager-core": "^9.0.0 || ^10.0.0",
     "@ovh-ux/ng-ovh-user-pref": "^2.0.0",
     "angular": "^1.7.5",
     "angular-translate": "^2.18.1"
