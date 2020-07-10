@@ -72,6 +72,12 @@ export default class OvhManagerAccountSidebarCtrl {
       },
       {
         href: this.RedirectionService.getURL('support'),
+        tracking: `${trackingPrefix}::go-to-tickets`,
+        icon: 'oui-icon oui-icon-envelop_concept',
+        label: this.$translate.instant('hub_links_tickets'),
+      },
+      {
+        href: this.RedirectionService.getURL('createTicket'),
         tracking: `${trackingPrefix}::go-to-create-ticket`,
         icon: 'oui-icon oui-icon-user-support_concept',
         label: this.$translate.instant('hub_links_create_ticket'),
