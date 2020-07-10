@@ -1,4 +1,4 @@
-import { Environment } from '@ovh-ux/manager-config';
+import { Environment, fetchConfiguration } from '@ovh-ux/manager-config';
 
 import angular from 'angular';
 import { set, kebabCase } from 'lodash-es';
@@ -29,7 +29,6 @@ import redirectionFilter from './redirection/redirection.filter';
 import redirectionService from './redirection/redirection.service';
 
 import {
-  HOSTNAME_REGIONS,
   LANGUAGES,
   MANAGER_URLS,
   REDIRECT_URLS,
@@ -259,29 +258,4 @@ angular
 
 export default moduleName;
 
-export const bootstrapApplication = () => {
-  return fetch('/engine/2api/configuration', {
-    headers: {
-      'Content-Type': 'application/json;charset=utf-8',
-      Accept: 'application/json',
-    },
-    credentials: 'same-origin',
-  })
-    .then((response) => {
-      if (response.status === 401) {
-        window.location.assign(
-          `/auth?action=disconnect&onsuccess=${encodeURIComponent(
-            window.location.href,
-          )}`,
-        );
-      }
-      return response.json();
-    })
-    .catch(() => ({
-      region: HOSTNAME_REGIONS[window.location.hostname],
-    }))
-    .then((configuration) => {
-      Environment.setRegion(configuration.region);
-      return configuration;
-    });
-};
+export const bootstrapApplication = () => fetchConfiguration();
