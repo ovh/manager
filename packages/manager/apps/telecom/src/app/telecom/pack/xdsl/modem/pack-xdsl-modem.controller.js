@@ -19,6 +19,7 @@ angular
         })
         .$promise.then((access) => {
           self.serviceName = access.description || access.packName;
+          self.isZyxelBrand = access.brandName === 'Zyxel';
           return access;
         })
         .catch((err) => {
