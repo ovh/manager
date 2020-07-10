@@ -1,3 +1,12 @@
+## [3.23.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.23.4...@ovh-ux/manager-pci@3.23.5) (2020-07-10)
+
+
+### Bug Fixes
+
+* **instances.add:** typo in translations file for extra bandwith ([#3236](https://github.com/ovh/manager/issues/3236)) ([c5cf703](https://github.com/ovh/manager/commit/c5cf7033f8499b8777b93e281ed5a34cdf6de3b0))
+
+
+
 ## [3.23.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.23.3...@ovh-ux/manager-pci@3.23.4) (2020-07-09)
 
 
