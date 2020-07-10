@@ -1,12 +1,8 @@
-angular.module('managerApp').config(($stateProvider) => {
+export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('telecom.packs.pack.xdsl.modem', {
     url: '/modem',
     views: {
-      'xdslView@telecom.packs.pack.xdsl': {
-        templateUrl: 'app/telecom/pack/xdsl/modem/pack-xdsl-modem.html',
-        controller: 'XdslModemCtrl',
-        controllerAs: 'XdslModem',
-      },
+      'xdslView@telecom.packs.pack.xdsl': 'packXdslModem',
       'bridgeModeView@telecom.packs.pack.xdsl.modem': {
         templateUrl:
           'app/telecom/pack/xdsl/modem/bridgeMode/pack-xdsl-modem-bridgeMode.html',
@@ -102,6 +98,9 @@ angular.module('managerApp').config(($stateProvider) => {
         controllerAs: '$ctrl',
       },
     },
+    resolve: {
+      number: /* @ngInject */ ($transition$) => $transition$.params().number,
+    },
     translations: {
       value: [
         '.',
@@ -125,4 +124,4 @@ angular.module('managerApp').config(($stateProvider) => {
       format: 'json',
     },
   });
-});
+};

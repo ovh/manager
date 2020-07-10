@@ -101,7 +101,6 @@ import './xdsl/modem/managedByOvh/pack-xdsl-modem-managedByOvh.controller';
 import './xdsl/modem/mtu/pack-xdsl-modem-mtu.controller';
 import './xdsl/modem/pack-xdsl-modem.constant';
 import './xdsl/modem/pack-xdsl-modem.controller';
-import './xdsl/modem/pack-xdsl-modem';
 import './xdsl/modem/reboot/pack-xdsl-modem-reboot.controller';
 import './xdsl/modem/reset/pack-xdsl-modem-reset.controller';
 import './xdsl/modem/router/dhcp/bdhcp/pack-xdsl-modem-dhcp-bdhcp.controller';
