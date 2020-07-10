@@ -39,7 +39,7 @@
   },
   "peerDependencies": {
     "@ovh-ux/manager-config": "^0.4.0",
-    "@ovh-ux/manager-core": "^9.0.0",
+    "@ovh-ux/manager-core": "^9.0.0 || ^10.0.0",
     "@ovh-ux/ng-ovh-cloud-universe-components": "^1.5.0",
     "@ovh-ux/ng-ovh-sidebar-menu": "^9.1.2",
     "@ovh-ux/ng-translate-async-loader": "^2.1.0",
