@@ -1,4 +1,8 @@
-import { Environment, LANGUAGES } from '@ovh-ux/manager-config';
+import {
+  Environment,
+  LANGUAGES,
+  fetchConfiguration,
+} from '@ovh-ux/manager-config';
 
 import angular from 'angular';
 import { set, kebabCase } from 'lodash-es';
@@ -27,12 +31,7 @@ import sessionService from './session/session.service';
 import redirectionFilter from './redirection/redirection.filter';
 import redirectionService from './redirection/redirection.service';
 
-import {
-  HOSTNAME_REGIONS,
-  MANAGER_URLS,
-  REDIRECT_URLS,
-  URLS,
-} from './manager-core.constants';
+import { MANAGER_URLS, REDIRECT_URLS, URLS } from './manager-core.constants';
 
 const moduleName = 'ovhManagerCore';
 
@@ -247,32 +246,4 @@ angular
 
 export default moduleName;
 
-export const bootstrapApplication = () => {
-  return fetch('/engine/2api/configuration', {
-    headers: {
-      'Content-Type': 'application/json;charset=utf-8',
-      Accept: 'application/json',
-    },
-    credentials: 'same-origin',
-  })
-    .then((response) => {
-      if (response.status === 401) {
-        window.location.assign(
-          `/auth?action=disconnect&onsuccess=${encodeURIComponent(
-            window.location.href,
-          )}`,
-        );
-      }
-      return response.json();
-    })
-    .catch(() => ({
-      region: HOSTNAME_REGIONS[window.location.hostname],
-    }))
-    .then((configuration) => {
-      Environment.setRegion(configuration.region);
-      return {
-        ...configuration,
-        locale: Environment.getUserLocale(),
-      };
-    });
-};
+export const bootstrapApplication = () => fetchConfiguration();
