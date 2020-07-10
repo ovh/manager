@@ -185,6 +185,20 @@ angular.module('managerApp').component('telecomTelephonyAliasLiveCalls', {
                 })
                 .$promise.then((agentStatus) => {
                   set(agentStatus, 'agentId', agentId);
+
+                  // Retrieve agent number
+                  self.apiEndpoint
+                    .Hunting()
+                    .Agent()
+                    .v6()
+                    .get({
+                      billingAccount: $stateParams.billingAccount,
+                      serviceName: $stateParams.serviceName,
+                      agentId,
+                    })
+                    .$promise.then((agent) => {
+                      set(agentStatus, 'agentNumber', agent.number);
+                    });
                   return agentStatus;
                 }),
             ),

@@ -1,4 +1,4 @@
-angular.module('managerApp').constant('PACK_XDSL_MODEM', {
+export const PACK_XDSL_MODEM = {
   mtu: {
     default: 1492,
     values: [
@@ -13,4 +13,6 @@ angular.module('managerApp').constant('PACK_XDSL_MODEM', {
       },
     ],
   },
-});
+};
+
+export default { PACK_XDSL_MODEM };
