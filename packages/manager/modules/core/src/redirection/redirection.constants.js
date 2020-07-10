@@ -18,13 +18,14 @@ const URI = {
   contactManagement:
     '#/contacts/services?serviceName=:serviceName&category=:category',
   contacts: '#/contacts/services',
+  createTicket: '#/support/tickets/new',
   debtPay: '#/billing/history/debt/all/pay',
   domain: '#/configuration/domain/:domain',
   order: '#/billing/order/:orderId',
   orders: '#/billing/orders',
   paymentMethod: '#/billing/payment/method',
   services: '#/billing/autoRenew',
-  support: '#/ticket',
+  support: '#/support/tickets',
   supportLevel: '#/useraccount/support/level',
   ticket: '#/support/tickets/:ticketId',
   userAccount: '#/useraccount/dashboard',
@@ -38,6 +39,7 @@ export default {
     catalog: `${managerRoot.EU}/${URI.catalog}`,
     contactManagement: `${managerRoot.EU}/${universes.dedicated}/${URI.contactManagement}`,
     contacts: `${managerRoot.EU}/${universes.dedicated}/${URI.contacts}`,
+    createTicket: `${managerRoot.EU}/${universes.dedicated}/${URI.createTicket}`,
     debtPay: `${managerRoot.EU}/${universes.dedicated}/${URI.debtPay}`,
     guides: {
       home: {
@@ -89,6 +91,7 @@ export default {
     catalog: `${managerRoot.CA}/${URI.catalog}`,
     contactManagement: '',
     contacts: '',
+    createTicket: `${managerRoot.CA}/${universes.dedicated}/${URI.createTicket}`,
     debtPay: `${managerRoot.CA}/${universes.dedicated}/${URI.debtPay}`,
     guides: {
       home: {
@@ -127,6 +130,7 @@ export default {
     catalog: `${managerRoot.US}/${URI.catalog}`,
     contactManagement: '',
     contacts: '',
+    createTicket: `${managerRoot.US}/${universes.dedicated}/${URI.createTicket}`,
     debtPay: `${managerRoot.US}/${universes.dedicated}/${URI.debtPay}`,
     domain: '',
     guides: {
