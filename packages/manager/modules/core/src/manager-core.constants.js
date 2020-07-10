@@ -540,14 +540,7 @@ export const MANAGER_URLS = {
   },
 };
 
-export const HOSTNAME_REGIONS = {
-  'www.ovh.com': 'EU',
-  'ca.ovh.com': 'CA',
-  'us.ovhcloud.com': 'US',
-};
-
 export default {
-  HOSTNAME_REGIONS,
   MANAGER_URLS,
   REDIRECT_URLS,
   URLS,
