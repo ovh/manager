@@ -8,7 +8,8 @@
     "packages/components/*",
     "packages/manager/apps/*",
     "packages/manager/modules/*",
-    "packages/manager/tools/*"
+    "packages/manager/tools/*",
+    "packages/manager/fragments/*"
   ],
   "scripts": {
     "build": "node --experimental-worker scripts/build.js",
