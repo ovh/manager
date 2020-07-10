@@ -1,0 +1,31 @@
+.navbar {
+  padding-right: 2rem;
+}
+
+.dropdownMenu {
+  background-color: #fff;
+  padding: 1rem;
+  box-shadow: 0 4px 6px 0 rgba(0, 14, 156, 0.2);
+}
+
+.hamburgerOpen {
+  visibility: visible !important;
+  transform: translateX(0) !important;
+}
+
+.languageTitle {
+  display: block;
+  padding: 0 1.25rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.navbarLink {
+  color: green;
+}
+
+.navbarLink:disabled {
+  opacity: 0.5;
+}
