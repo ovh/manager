@@ -29,6 +29,7 @@
   },
   "peerDependencies": {
     "@ovh-ux/ng-ovh-api-wrappers": "^4.0.6",
+    "@ovh-ux/ui-kit": "^4.2.0",
     "angular": "^1.7.9"
   }
 }
