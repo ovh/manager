@@ -9,7 +9,7 @@ module.exports = (
   path,
   region = defaultRegion,
   port = defautPort,
-  { local2API = false, localRegistry = false },
+  { local2API = false, localRegistry = false, registryUrl },
 ) => {
   const sso = new Sso(region);
 
@@ -24,7 +24,10 @@ module.exports = (
     app.use(proxy.aapi.context, createProxyMiddleware(proxy.aapi));
   }
 
-  const registryProxy = proxy.registry(region, localRegistry);
+  const registryProxy = proxy.registry(region, {
+    local: localRegistry,
+    registryUrl,
+  });
   app.use(createProxyMiddleware(registryProxy.context, registryProxy));
 
   const v6Proxy = proxy.v6(region);
