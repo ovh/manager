@@ -25,7 +25,8 @@
   "dependencies": {
     "axios": "^0.19.2",
     "commander": "^4.0.0",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "semver": "^7.3.2"
   },
   "engines": {
     "node": ">=12.13",
