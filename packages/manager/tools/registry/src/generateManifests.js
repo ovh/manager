@@ -4,16 +4,39 @@ const path = require('path');
 const util = require('util');
 
 const writeFile = util.promisify(fs.writeFile);
+const mkdir = util.promisify(fs.mkdir);
 
 const manifestBuilder = require('./builder/manifest');
-const { readInfos } = require('./storage/static-storage');
+const staticStorage = require('./storage/static-storage');
+const remoteStorage = require('./storage/remote-storage');
+const mergeInfos = require('./storage/merge-infos');
+
 const {
   REGISTRY_FILE,
   FRAGMENT_DEFINITION_FILE,
 } = require('./storage/constants');
 
-module.exports = (rootPath) =>
-  readInfos(rootPath)
+const writeFragmentManifest = (rootPath, fragment, infos) =>
+  mkdir(path.resolve(rootPath, fragment.name), {
+    recursive: true,
+  }).then(() =>
+    writeFile(
+      path.resolve(rootPath, fragment.name, FRAGMENT_DEFINITION_FILE),
+      JSON.stringify(
+        manifestBuilder.buildFragmentManifest(infos, fragment.name),
+      ),
+      'UTF-8',
+    ),
+  );
+
+module.exports = (rootPath, { fallbackRegistry }) =>
+  Promise.all([
+    staticStorage.readInfos(rootPath),
+    fallbackRegistry ? remoteStorage.readInfos(fallbackRegistry) : [],
+  ])
+    .then(([staticInfos, fallbackInfos]) =>
+      mergeInfos(fallbackInfos, staticInfos),
+    )
     .then((infos) =>
       Promise.all([
         writeFile(
@@ -22,17 +45,16 @@ module.exports = (rootPath) =>
           'UTF-8',
         ),
         ...infos.map((fragment) =>
-          writeFile(
-            path.resolve(rootPath, fragment.name, FRAGMENT_DEFINITION_FILE),
-            JSON.stringify(
-              manifestBuilder.buildFragmentManifest(infos, fragment.name),
-            ),
-            'UTF-8',
-          ),
+          writeFragmentManifest(rootPath, fragment, infos),
         ),
       ]),
     )
-    .then(() =>
-      console.log(`Manifests are generated for static registry in ${rootPath}`),
-    );
+    .then(() => {
+      const fallbackInfos = fallbackRegistry
+        ? ` with fallback informations from ${fallbackRegistry}`
+        : '';
+      console.log(
+        `Manifests are generated for static registry in ${rootPath}${fallbackInfos}`,
+      );
+    });
 /* eslint-enable no-console */
