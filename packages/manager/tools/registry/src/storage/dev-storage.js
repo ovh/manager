@@ -28,6 +28,11 @@ const getFragmentVersion = (rootPath, fragment) => {
     .then((content) => JSON.parse(content));
 };
 
+const hasFragmentVersion = (rootPath, fragment, version) =>
+  getFragmentVersion(rootPath, fragment)
+    .then(({ version: manifestVersion }) => manifestVersion === version)
+    .catch(() => false);
+
 const readInfos = (rootPath) => {
   return listFragments(rootPath).then((fragments) => {
     return Promise.all(
@@ -43,4 +48,5 @@ const readInfos = (rootPath) => {
 
 module.exports = {
   readInfos,
+  hasFragmentVersion,
 };
