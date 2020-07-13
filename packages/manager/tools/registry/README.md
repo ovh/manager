@@ -20,28 +20,29 @@ yarn add @ovh-ux/manager-registry
 
 ### CLI
 
-#### Help
-
 ```sh
 manager-registry --help
 Usage: manager-registry [options] [command]
 
 Options:
-  -V, --version  output the version number
-  -h, --help     output usage information
+  -V, --version          output the version number
+  -h, --help             output usage information
 
 Commands:
-  dev <path>     Dev server for local fragments
-  help [cmd]     display help for [cmd]
+  dev <fragmentsPath>    Dev server for local fragments
+  static <registryPath>  Static registry commands
+  help [cmd]             display help for [cmd]
 
 ```
 
-##### Common Options
+*Common Options*
 
 * `-V, --version` : Display version number
 * `-h, --help`: Display help
 
 #### Dev
+
+> Help to serve a registry from dev fragments environment
 
 ```sh
 manager-registry dev --help
@@ -54,9 +55,11 @@ Options:
 
 ```
 
-##### Options
+*Options*
 
 * `-p, --port <port>` : Server port (default: 8888)
+
+*Examples*
 
 ```sh
 $ manager-registry dev ./packages/manager/fragments
@@ -64,6 +67,67 @@ Serve: ./packages/manager/fragments - localhost:8888
 
 $ manager-registry dev ./packages/manager/fragments -p 1234
 Serve: ./packages/manager/fragments - localhost:1234
+```
+
+#### Static
+
+> Help to manage a static registry
+
+```sh
+manager-registry static --help
+Usage: manager-registry-static [options] [command]
+
+Options:
+  -V, --version                      output the version number
+  -h, --help                         output usage information
+
+Commands:
+  generate-manifests <registryPath>  Generate manifest for static registry
+  serve <registryPath>               Serve a static registry
+  help [cmd]                         display help for [cmd]
+
+```
+
+##### Generate Manifests
+
+> Will generate and write manifest for registry and fragments.
+
+```sh
+$ manager-registry static generate-manifests --help
+Usage: manager-registry-static-generate-manifests [options] <registryPath>
+
+Options:
+  -V, --version  output the version number
+  -h, --help     output usage information
+```
+
+*Examples*
+
+```sh
+$ manager-registry static generate-manifests ./path/to/static/registry
+Manifests are generated for static registry in ./path/to/static/registry
+```
+
+
+##### Serve
+
+> Will serve a static registry
+
+```sh
+$ manager-registry static serve --help
+Usage: manager-registry-static-serve [options] <registryPath>
+
+Options:
+  -V, --version      output the version number
+  -p, --port <port>  server port (default: 8888)
+  -h, --help         output usage information
+```
+
+*Examples*
+
+```sh
+$ manager-registry static serve ./path/to/static/registry -p 1234
+Serve: ./path/to/static/registry - localhost:1234
 ```
 
 ## Related
