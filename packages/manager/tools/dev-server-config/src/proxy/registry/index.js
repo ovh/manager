@@ -5,14 +5,15 @@ const TARGET = {
   local: 'http://localhost:8888',
 };
 
-module.exports = (region, local = false) => ({
-  target: TARGET[local ? 'local' : region.toLowerCase()],
+module.exports = (region, { local = false, registryUrl }) => ({
+  target: registryUrl || TARGET[local ? 'local' : region.toLowerCase()],
   context: '/manager/fragments',
-  pathRewrite: local
-    ? {
-        '^/manager/fragments/': '/',
-      }
-    : {},
+  pathRewrite:
+    local || registryUrl
+      ? {
+          '^/manager/fragments/': '/',
+        }
+      : {},
   changeOrigin: true,
   logLevel: 'silent',
 });
