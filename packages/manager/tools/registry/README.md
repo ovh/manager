@@ -93,6 +93,7 @@ Options:
 Commands:
   generate-manifests <registryPath>  Generate manifest for static registry
   serve <registryPath>               Serve a static registry
+  add <registryPath> <fragmentPath>  Add a fragment in static registry
   help [cmd]                         display help for [cmd]
 
 ```
@@ -150,6 +151,36 @@ Options:
 $ manager-registry static serve ./path/to/static/registry -p 1234
 Serve: ./path/to/static/registry - localhost:1234
 ```
+
+##### Add fragment
+
+> Add a fragment dist to a static registry
+
+```sh
+$ manager-registry static add --help
+Usage: manager-registry-static-add [options] <registryPath> <fragmentPath>
+
+Options:
+  -V, --version  output the version number
+  -h, --help     output usage information
+```
+
+*Examples*
+
+Add a fragment dist (containing a `manifest.json`) in a static registry:
+
+```sh
+$ manager-registry static add ./path/to/static/registry ./path/to/fragment/dist
+Fragment "fragment@1.0.O" added in registry ./path/to/static/registry
+```
+
+Trying to add an existant fragment version in a static registry:
+
+```sh
+$ manager-registry static add ./path/to/static/registry ./path/to/fragment/dist
+Fragment "fragment@1.0.O" already exists in ./path/to/static/registry
+```
+
 
 ## Related
 
