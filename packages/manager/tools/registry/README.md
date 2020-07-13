@@ -49,15 +49,17 @@ manager-registry dev --help
 Usage: manager-registry-dev [options] <fragmentsPath>
 
 Options:
-  -V, --version      output the version number
-  -p, --port <port>  server port (default: 8888)
-  -h, --help         output usage information
+  -V, --version                          output the version number
+  -p, --port <port>                      server port (default: 8888)
+  --fallbackRegistry <fallbackRegistry>  Fallback server registry url
+  -h, --help                             output usage information
 
 ```
 
 *Options*
 
 * `-p, --port <port>` : Server port (default: 8888)
+* `--fallbackRegistry <fallbackRegistry>` : Fallback server registry url
 
 *Examples*
 
@@ -67,6 +69,13 @@ Serve: ./packages/manager/fragments - localhost:8888
 
 $ manager-registry dev ./packages/manager/fragments -p 1234
 Serve: ./packages/manager/fragments - localhost:1234
+```
+
+To serve fragments from dev environmment, and fallback missing fragments to another registry:
+```sh
+$ manager-registry dev ./packages/manager/fragments --fallbackRegistry http://localhost:1234
+Serve: ./packages/manager/fragments  - localhost:8888
+Fallback registry: http://localhost:1234
 ```
 
 #### Static
