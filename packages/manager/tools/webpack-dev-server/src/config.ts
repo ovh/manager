@@ -15,10 +15,13 @@ export = (env) => {
   ).toLowerCase();
   const proxy = [
     serverProxy.v6(region),
-    serverProxy.registry(
-      region,
-      yn(env.localRegistry) || yn(process.env.npm_package_config_localRegistry),
-    ),
+    serverProxy.registry(region, {
+      local:
+        yn(env.localRegistry) ||
+        yn(process.env.npm_package_config_localRegistry),
+      registryUrl:
+        env.registryUrl || process.env.npm_package_config_registryUrl,
+    }),
   ];
 
   const sso = new Sso(region);
