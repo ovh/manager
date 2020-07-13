@@ -9,7 +9,13 @@ const generateManifests = require('../src/generateManifests');
 program
   .version(pkg.version)
   .arguments('<registryPath>')
-  .action((registryPath) => {
-    generateManifests(path.resolve(registryPath));
+  .option(
+    '--fallbackRegistry <fallbackRegistry>',
+    'Fallback server registry url',
+  )
+  .action((registryPath, cmd) => {
+    generateManifests(path.resolve(registryPath), {
+      fallbackRegistry: cmd.fallbackRegistry,
+    });
   })
   .parse(process.argv);
