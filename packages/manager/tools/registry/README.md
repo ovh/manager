@@ -106,15 +106,27 @@ $ manager-registry static generate-manifests --help
 Usage: manager-registry-static-generate-manifests [options] <registryPath>
 
 Options:
-  -V, --version  output the version number
-  -h, --help     output usage information
+  -V, --version                          output the version number
+  --fallbackRegistry <fallbackRegistry>  Fallback server registry url
+  -h, --help                             output usage information
 ```
+
+*Options*
+
+* `--fallbackRegistry <fallbackRegistry>` : Fallback server registry url
 
 *Examples*
 
 ```sh
 $ manager-registry static generate-manifests ./path/to/static/registry
 Manifests are generated for static registry in ./path/to/static/registry
+```
+
+To generate manifests with static fragments and fallback registry informations:
+
+```sh
+$ manager-registry static generate-manifests ./path/to/static/registry --fallbackRegistry http://localhost:1234
+Manifests are generated for static registry in ./path/to/static/registry with fallback informations from http://localhost:1234
 ```
 
 
