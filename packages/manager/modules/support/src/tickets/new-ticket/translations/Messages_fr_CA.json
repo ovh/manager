@@ -54,7 +54,7 @@
   "ovhManagerSupport_new_serviceType_email_domain": "Email MX Plan (ancienne infrastructure)",
   "ovhManagerSupport_new_serviceType_stack_mis": "Infrastructure managée",
   "ovhManagerSupport_new_serviceType_over_the_box": "OverTheBox",
-  "ovhManagerSupport_new_serviceType_CSP2": "Revendeur Office",
+  "ovhManagerSupport_new_serviceType_CSP2": "Revendeur Microsoft 365 et Office 365",
   "ovhManagerSupport_new_serviceType_ms_services_sharepoint": "SharePoint",
   "ovhManagerSupport_new_serviceType_all_dom": "Packs de Domaines",
   "ovhManagerSupport_new_serviceType_cluster_hadoop": "Analytics Data Platform",
