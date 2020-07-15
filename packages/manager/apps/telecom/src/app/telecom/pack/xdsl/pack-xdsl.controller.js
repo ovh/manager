@@ -26,6 +26,8 @@ export default class PackXdslCtrl {
     this.smoothScroll = smoothScroll;
     this.TucToast = TucToast;
     this.TucToastError = TucToastError;
+
+    this.accessDescriptionSave = this.accessDescriptionSave.bind(this);
   }
 
   $onInit() {
