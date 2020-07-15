@@ -114,7 +114,7 @@
                                 data-compact
                             >
                                 <oui-action-menu-item
-                                    data-on-click="$ctrl.dedicatedServer.$scope.setAction('installation/progress/dedicated-server-installation-progress', server)"
+                                    data-on-click="$ctrl.dedicatedServer.$scope.setAction('installation/progress/dedicated-server-installation-progress', $ctrl.server)"
                                     data-disabled="$ctrl.dedicatedServer.$scope.disable.reboot || $ctrl.dedicatedServer.$scope.disable.byOtherTask"
                                     data-ng-if="$ctrl.dedicatedServer.$scope.disable.installationInProgress"
                                 >
@@ -123,7 +123,7 @@
                                     ></span>
                                 </oui-action-menu-item>
                                 <oui-action-menu-item
-                                    data-on-click="$ctrl.dedicatedServer.$scope.setAction('installation/choice/dedicated-server-installation-choice', server)"
+                                    data-on-click="$ctrl.dedicatedServer.$scope.setAction('installation/choice/dedicated-server-installation-choice', $ctrl.server)"
                                     data-disabled="$ctrl.dedicatedServer.$scope.disable.reboot || $ctrl.dedicatedServer.$scope.disable.byOtherTask"
                                     data-ng-if="$ctrl.server.os && !$ctrl.dedicatedServer.$scope.disable.installationInProgress"
                                 >
@@ -132,7 +132,7 @@
                                     ></span>
                                 </oui-action-menu-item>
                                 <oui-action-menu-item
-                                    data-on-click="$ctrl.dedicatedServer.$scope.setAction('installation/choice/dedicated-server-installation-choice', server)"
+                                    data-on-click="$ctrl.dedicatedServer.$scope.setAction('installation/choice/dedicated-server-installation-choice', $ctrl.server)"
                                     data-disabled="$ctrl.dedicatedServer.$scope.disable.reboot || $ctrl.dedicatedServer.$scope.disable.byOtherTask"
                                     data-ng-if="!$ctrl.server.os && !$ctrl.dedicatedServer.$scope.disable.installationInProgress"
                                 >
@@ -282,7 +282,7 @@
                                     ></span>
                                 </oui-action-menu-item>
                                 <oui-action-menu-item
-                                    data-ng-click="$ctrl.dedicatedServer.$scope.setAction('terminate/dedicated-server-terminate', server)"
+                                    data-ng-click="$ctrl.dedicatedServer.$scope.setAction('terminate/dedicated-server-terminate', $ctrl.server)"
                                     data-if="!$ctrl.server.isExpired"
                                 >
                                     <span
