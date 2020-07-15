@@ -48,6 +48,14 @@ class OvhFragment extends HTMLElement {
       }
     }
   }
+
+  instanciateFragment(fragmentCallback, config) {
+    const shadow = this.attachShadow({ mode: 'open' });
+    fragmentCallback({
+      parent: shadow,
+      config,
+    });
+  }
 }
 
 export default OvhFragment;

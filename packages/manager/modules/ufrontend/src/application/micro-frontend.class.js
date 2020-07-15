@@ -10,6 +10,7 @@ class OvhMicroFrontend {
   init() {
     return fetch2APIConfig().then((config) => {
       this.config.resolve(config);
+      return config;
     });
   }
 
@@ -25,8 +26,8 @@ class OvhMicroFrontend {
     const fragment = this.fragments[id];
     if (fragment.isPending()) {
       Promise.all([this.getConfig(), fragment.resolve()]).then(
-        ([config, fragmentElement]) => {
-          callback({ element: fragmentElement }, config);
+        ([config, resolvedFragment]) => {
+          resolvedFragment.instanciateFragment(callback, config);
         },
       );
     }

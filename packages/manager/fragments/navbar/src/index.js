@@ -1,7 +1,7 @@
-import { fragmentRegister } from '@ovh-ux/ufrontend';
+import registerFragment from '@ovh-ux/ufrontend/fragment'; // eslint-disable-line
 
-fragmentRegister('navbar', ({ element }) => {
+registerFragment('navbar').then(({ parent, config }) => {
   const template = document.createElement('div');
-  template.innerHTML = 'hello world';
-  element.appendChild(template);
+  template.innerHTML = `Hello ${config.region}`;
+  parent.appendChild(template);
 });
