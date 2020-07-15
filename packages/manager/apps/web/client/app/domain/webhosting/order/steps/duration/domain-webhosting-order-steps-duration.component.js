@@ -4,6 +4,7 @@ import template from './domain-webhosting-order-steps-duration.html';
 export default {
   bindings: {
     user: '<',
+    stepperPosition: '@',
   },
   controller,
   name: 'ovhManagerWebDomainWebhostingOrderStepsDuration',
