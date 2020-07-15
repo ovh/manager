@@ -1,3 +1,12 @@
+## [12.7.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@12.7.1...@ovh-ux/manager-dedicated@12.7.2) (2020-07-15)
+
+
+### Bug Fixes
+
+* **dedicated.server:** installation ([#3254](https://github.com/ovh/manager/issues/3254)) ([5d6e9b0](https://github.com/ovh/manager/commit/5d6e9b00d7fb79f711e50ffa9488b87da759afdd))
+
+
+
 ## [12.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@12.7.0...@ovh-ux/manager-dedicated@12.7.1) (2020-07-09)
 
 
