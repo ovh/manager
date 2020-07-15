@@ -4,6 +4,7 @@ import template from './domain-webhosting-order-steps-module.html';
 export default {
   bindings: {
     getAvailableModules: '&',
+    stepperPosition: '@',
   },
   controller,
   name: 'ovhManagerWebDomainWebhostingOrderStepsModule',

@@ -5,6 +5,7 @@ export default {
   bindings: {
     availableOffers: '<',
     user: '<',
+    stepperPosition: '@',
   },
   controller,
   name: 'ovhManagerWebDomainWebhostingOrderStepsHosting',
