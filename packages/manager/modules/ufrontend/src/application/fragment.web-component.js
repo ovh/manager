@@ -5,6 +5,7 @@ import semverMaxSatisfaying from 'semver/ranges/max-satisfying';
 class OvhFragment extends HTMLElement {
   constructor() {
     super();
+    // fragment code is a dynamic
     this.scriptElement = null;
   }
 
@@ -23,6 +24,7 @@ class OvhFragment extends HTMLElement {
     // connectedCallback may be called once your element is no longer connected,
     // use Node.isConnected to make sure.
     if (this.isConnected) {
+      // load the fragment manisfest
       fetch(`/manager/fragments/${this.id}/manifest.json`)
         .then((response) => response.json())
         .catch(() => {
@@ -30,11 +32,13 @@ class OvhFragment extends HTMLElement {
             `Unable to fetch manifest '/manager/fragments/${this.id}/manifest.json'`,
           );
         })
+        // find matching version
         .then(
           ({ versions }) =>
             semverMaxSatisfaying(versions, this.version) || // satisfying version ...
             versions.sort(semverReverseCompare)[0], // or latest
         )
+        // dynamically load fragment
         .then((version) => {
           if (!version) {
             throw new Error(
@@ -65,7 +69,9 @@ class OvhFragment extends HTMLElement {
   }
 
   instanciateFragment(fragmentCallback, config) {
+    // use shadow dom to ensure scoped fragment
     const shadow = this.attachShadow({ mode: 'open' });
+    // call the fragment init function
     fragmentCallback({
       parent: shadow,
       config,
