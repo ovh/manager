@@ -25,14 +25,29 @@ class OvhFragment extends HTMLElement {
     if (this.isConnected) {
       fetch(`/manager/fragments/${this.id}/manifest.json`)
         .then((response) => response.json())
+        .catch(() => {
+          throw new Error(
+            `Unable to fetch manifest '/manager/fragments/${this.id}/manifest.json'`,
+          );
+        })
         .then(
           ({ versions }) =>
             semverMaxSatisfaying(versions, this.version) || // satisfying version ...
             versions.sort(semverReverseCompare)[0], // or latest
         )
         .then((version) => {
+          if (!version) {
+            throw new Error(
+              `No version found for fragment '${this.id}@${this.version}'`,
+            );
+          }
           this.scriptElement = document.createElement('script');
           this.scriptElement.src = `/manager/fragments/${this.id}/${version}/index.js`;
+          this.scriptElement.onerror = () => {
+            throw new Error(
+              `Unable to fetch script '/manager/fragments/${this.id}/${version}/index.js'`,
+            );
+          };
           document.querySelector('head').appendChild(this.scriptElement);
           window.ovhMicroFrontend.onFragmentRegister(this);
         });

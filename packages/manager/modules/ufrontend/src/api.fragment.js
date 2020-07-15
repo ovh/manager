@@ -1,8 +1,9 @@
 export default function registerFragment(fragmentId) {
-  return new Promise((resolve) => {
+  return new Promise((resolve, reject) => {
     window.ovhMicroFrontend.onFragmentLoaded({
       id: fragmentId,
-      callback: resolve,
+      resolve,
+      reject,
     });
   });
 }

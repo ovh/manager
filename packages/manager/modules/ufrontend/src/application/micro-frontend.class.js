@@ -22,14 +22,14 @@ class OvhMicroFrontend {
     this.fragments[fragment.id] = new Deferred(fragment);
   }
 
-  onFragmentLoaded({ id, callback }) {
+  onFragmentLoaded({ id, resolve, reject }) {
     const fragment = this.fragments[id];
     if (fragment.isPending()) {
-      Promise.all([this.getConfig(), fragment.resolve()]).then(
-        ([config, resolvedFragment]) => {
-          resolvedFragment.instanciateFragment(callback, config);
-        },
-      );
+      Promise.all([this.getConfig(), fragment.resolve()])
+        .then(([config, resolvedFragment]) => {
+          resolvedFragment.instanciateFragment(resolve, config);
+        })
+        .catch(reject);
     }
   }
 
