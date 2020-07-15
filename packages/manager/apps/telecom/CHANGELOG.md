@@ -1,3 +1,12 @@
+## [12.6.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@12.6.1...@ovh-ux/manager-telecom@12.6.2) (2020-07-15)
+
+
+### Bug Fixes
+
+* **pack.xdsl.notifications:** retrieve successfully notifications ([#3247](https://github.com/ovh/manager/issues/3247)) ([e861d1f](https://github.com/ovh/manager/commit/e861d1ff837d7d748288805966fda0c9cce02623))
+
+
+
 ## [12.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@12.6.0...@ovh-ux/manager-telecom@12.6.1) (2020-07-09)
 
 
