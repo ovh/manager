@@ -20,12 +20,13 @@ export default /* @ngInject */ ($stateProvider) => {
       apiPath: /* @ngInject */ () => '/vrack',
       schema: /* @ngInject */ ($http, apiPath) =>
         $http.get(`${apiPath}.json`).then(({ data }) => data),
-      rows: /* @ngInject */ ($http) =>
+      resources: /* @ngInject */ ($http) =>
         $http
           .get('/vracks', {
             serviceType: 'aapi',
           })
           .then(({ data }) => data),
+      staticResources: () => true,
       paginationNumber: /* @ngInject */ ($transition$) =>
         $transition$.paramsChanged().filter &&
         !$transition$.paramsChanged().page
@@ -33,7 +34,7 @@ export default /* @ngInject */ ($stateProvider) => {
           : $transition$.params().page,
       paginationSize: /* @ngInject */ ($transition$) =>
         $transition$.params().pageSize,
-      paginationTotalCount: /* @ngInject */ (rows) => rows.length,
+      paginationTotalCount: /* @ngInject */ (resources) => resources.length,
       loadRow: /* @ngInject */ (products) => (service) => ({
         ...service,
         serviceName: service.id,
