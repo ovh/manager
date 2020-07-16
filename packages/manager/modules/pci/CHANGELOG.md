@@ -1,3 +1,12 @@
+## [3.25.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.25.0...@ovh-ux/manager-pci@3.25.1) (2020-07-16)
+
+
+### Bug Fixes
+
+* **data-processing:** remove lab check ([#3278](https://github.com/ovh/manager/issues/3278)) ([0c5285a](https://github.com/ovh/manager/commit/0c5285aab7e317a5c5d64da3995b3e493cd7256a)), closes [#3128](https://github.com/ovh/manager/issues/3128)
+
+
+
 # [3.25.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.24.0...@ovh-ux/manager-pci@3.25.0) (2020-07-16)
 
 
