@@ -1,3 +1,18 @@
+# [3.24.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.23.5...@ovh-ux/manager-pci@3.24.0) (2020-07-16)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 470] ([810b5e3](https://github.com/ovh/manager/commit/810b5e3ad2589fb6001514060f9ba810dc36acf8))
+* **pci.project.sidebar:** enable ML Serving for CA region ([#2988](https://github.com/ovh/manager/issues/2988)) ([4308e55](https://github.com/ovh/manager/commit/4308e55e0658c1277c8f82d0c593422f806fbe9f))
+
+
+### Features
+
+* enhance ML Serving section ([#3120](https://github.com/ovh/manager/issues/3120)) ([d9f174d](https://github.com/ovh/manager/commit/d9f174d04de5603f8f37f79ae23cec24ec4cdfb7))
+
+
+
 ## [3.23.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.23.4...@ovh-ux/manager-pci@3.23.5) (2020-07-10)
 
 
