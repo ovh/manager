@@ -1,5 +1,7 @@
 import angular from 'angular';
+import '@ovh-ux/ng-at-internet';
 
+import ovhManagerCatalogPrice from '@ovh-ux/manager-catalog-price';
 import routing from './add.routing';
 import component from './add.component';
 import service from '../service/models.module';
@@ -16,8 +18,10 @@ angular
     'ovh-api-services',
     'pascalprecht.translate',
     'ui.router',
+    'ngAtInternet',
     service,
     ovhManagerPciStoragesContainers,
+    ovhManagerCatalogPrice,
   ])
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */)

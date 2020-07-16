@@ -1,0 +1,13 @@
+{
+  "pci_projects_project_serving_add_title": "Criar um namespace ML Serving",
+  "pci_projects_project_serving_add_region_title": "Selecionar uma localização",
+  "pci_projects_project_serving_add_description_title": "Identificação do namespace",
+  "pci_projects_project_serving_add_description_help": "A identificação do namespace deve começar por um carácter alfanumérico em minúscula ou maiúscula (de A a Z e de 0 a 9) e pode conter os seguintes símbolos de pontuação: “_” e “-”.",
+  "pci_projects_project_serving_add_container_title": "Object Storage Container",
+  "pci_projects_project_serving_add_container_help": "Nome do novo container privado",
+  "pci_projects_project_serving_add_success": "O seu namespace {{ name }} foi criado com êxito.",
+  "pci_projects_project_serving_add_error": "Ocorreu um erro durante a criação do namespace: {{ errorMessage }}",
+  "pci_projects_project_serving_add_container_attach": "Associar a um container existente",
+  "pci_projects_project_serving_attach_container_help": "Escolha um container na lista",
+  "pci_projects_project_serving_add_container_new": "Criar um container"
+}

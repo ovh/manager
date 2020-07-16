@@ -25,8 +25,9 @@
   "pci_projects_project_serving_namespace_models_version": "Version",
   "pci_projects_project_serving_namespace_models_replicas": "Instances",
   "pci_projects_project_serving_namespace_models_delete": "Delete",
-  "pci_projects_project_serving_namespace_models_update": "Refresh",
+  "pci_projects_project_serving_namespace_models_update": "Update",
   "pci_projects_project_serving_namespace_models_deploy_model": "Deploy a model",
   "pci_projects_project_serving_namespace_models_gen_token": "Generate a token",
-  "pci_projects_project_serving_namespace_models_date": "Creation date"
+  "pci_projects_project_serving_namespace_models_date": "Creation date",
+  "pci_projects_project_serving_namespace_models_details": "Details"
 }

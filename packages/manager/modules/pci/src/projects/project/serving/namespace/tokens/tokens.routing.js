@@ -4,9 +4,7 @@ export default /* @ngInject */ ($stateProvider) => {
     params: {
       jwtToken: null,
     },
-    views: {
-      servingView: 'ovhManagerPciProjectServingNamespaceTokens',
-    },
+    component: 'ovhManagerPciProjectServingNamespaceTokens',
     resolve: {
       jwtToken: /* @ngInject */ ($stateParams) => $stateParams.jwtToken,
       addToken: /* @ngInject */ ($state, projectId, namespaceId) => () =>

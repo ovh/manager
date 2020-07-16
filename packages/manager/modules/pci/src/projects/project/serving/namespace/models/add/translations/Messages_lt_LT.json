@@ -11,7 +11,6 @@
   "pci_projects_project_serving_namespace_models_add_name_help": "The model name must start with a lower-case letter (a-z), can contain numbers and the punctuation symbol “-”, and must finish with an alphanumeric character (e.g. ‘my-name’ or ‘abc-123’).",
   "pci_projects_project_serving_namespace_models_add_model": "Model",
   "pci_projects_project_serving_namespace_models_add_instances": "Configuring instances",
-  "pci_projects_project_serving_namespace_models_add_instances_info": "For the beta-testing phase, only one instance type is available. Additional instance types will be created to adapt to specific needs.",
   "pci_projects_project_serving_namespace_models_add_autoscaling": "Auto-scaling",
   "pci_projects_project_serving_namespace_models_add_storage_path_info_file": "Select the pathway for your model’s file in Object Storage. Your file must have the extension: h5 / pmml or onnx",
   "pci_projects_project_serving_namespace_models_add_storage_path_info_folder": "Select the pathway to the repository containing your model in Object Storage.",
@@ -26,5 +25,9 @@
   "pci_projects_project_serving_namespace_models_add_model_preset_info": "More information",
   "pci_projects_project_serving_namespace_models_add_folder_mode": "Folder",
   "pci_projects_project_serving_namespace_models_add_file_mode": "File",
-  "pci_projects_project_serving_namespace_models_add_custom_info": "You can find the list of compatible formats in our documentation"
+  "pci_projects_project_serving_namespace_models_add_custom_info": "You can find the list of compatible formats in our documentation",
+  "pci_projects_project_serving_namespace_models_scale_advanced_configuration": "Advanced configuration",
+  "pci_projects_project_serving_namespace_models_scale_advanced_configuration_memory": "% Memory Usage",
+  "pci_projects_project_serving_namespace_models_scale_advanced_configuration_cpu": "% CPU Usage",
+  "pci_projects_project_serving_namespace_models_add_price_unit": "hour"
 }

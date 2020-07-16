@@ -73,4 +73,14 @@ export default class OvhManagerPciServingModelService {
         null,
       ).$promise;
   }
+
+  getMetricsToken(projectId, namespaceId) {
+    return this.OvhApiCloudProjectAi.Serving()
+      .Metrics()
+      .v6()
+      .query({
+        serviceName: projectId,
+        namespaceId,
+      }).$promise;
+  }
 }

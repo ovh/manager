@@ -1,0 +1,8 @@
+{
+  "pci_projects_project_serving_delete": "Löschen des Namespace",
+  "pci_projects_project_serving_delete_common_delete": "Löschen",
+  "pci_projects_project_serving_delete_common_cancel": "Abbrechen",
+  "pci_projects_project_serving_delete_warning": "Achtung! Sie sind dabei, Ihren Namespace zu löschen. Alle zugehörigen Modelle und Token werden ebenfalls gelöscht.",
+  "pci_projects_project_serving_delete_success": "Ihr Namespace {{ name }} wurde erfolgreich gelöscht.",
+  "pci_projects_project_serving_delete_error": "Beim Löschen des Namespace ist ein Fehler aufgetreten: {{ errorMessage }}"
+}

@@ -1,4 +1,5 @@
 import angular from 'angular';
+import '@ovh-ux/ng-at-internet';
 
 import routing from './delete.routing';
 
@@ -14,6 +15,7 @@ angular
     'ovh-api-services',
     'pascalprecht.translate',
     'ui.router',
+    'ngAtInternet',
     service,
   ])
   .config(routing)

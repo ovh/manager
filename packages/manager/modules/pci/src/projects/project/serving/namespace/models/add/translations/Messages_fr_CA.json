@@ -11,7 +11,6 @@
   "pci_projects_project_serving_namespace_models_add_name_help": "Le nom du modèle doit commencer par une lettre minuscule (a-z), peut comporter des chiffres et le signe de ponctuation \"-\" et doit finir par un caractère alphanumérique. (ex. 'mon-name',  or 'abc-123')",
   "pci_projects_project_serving_namespace_models_add_model": "Modèle",
   "pci_projects_project_serving_namespace_models_add_instances": "Configuration des instances",
-  "pci_projects_project_serving_namespace_models_add_instances_info": "Pendant la phase de découverte un seul type d'instance est disponible. Des types d'instance additionnels seront créés pour s'adapter aux besoins spécifiques.",
   "pci_projects_project_serving_namespace_models_add_autoscaling": "Auto Scaling",
   "pci_projects_project_serving_namespace_models_add_storage_path_info_file": "Sélectionnez le chemin vers le fichier de votre modèle dans l'Object Storage. Votre fichier doit avoir l'extension : h5 / pmml or onnx",
   "pci_projects_project_serving_namespace_models_add_storage_path_info_folder": "Sélectionnez le chemin vers le répertoire contenant votre modèle dans l'Object Storage",
@@ -22,9 +21,12 @@
   "pci_projects_project_serving_namespace_models_storage_path": "Répertoire Object Storage",
   "pci_projects_project_serving_namespace_models_storage_scale_min": "Instances minimum",
   "pci_projects_project_serving_namespace_models_storage_scale_max": "Instances maximum",
-  "pci_projects_project_serving_namespace_models_add_autoscaling_info": "Pendant la phase de découverte la configuration de l'auto-scaling n'est pas personnalisable.",
   "pci_projects_project_serving_namespace_models_add_model_preset_info": "Plus d'informations",
   "pci_projects_project_serving_namespace_models_add_folder_mode": "Dossier",
   "pci_projects_project_serving_namespace_models_add_file_mode": "Fichier",
-  "pci_projects_project_serving_namespace_models_add_custom_info": "Retrouvez la liste des formats compatibles dans notre documentation"
+  "pci_projects_project_serving_namespace_models_add_custom_info": "Retrouvez la liste des formats compatibles dans notre documentation",
+  "pci_projects_project_serving_namespace_models_scale_advanced_configuration": "Configuration avancée",
+  "pci_projects_project_serving_namespace_models_scale_advanced_configuration_memory": "% Utilisation Mémoire",
+  "pci_projects_project_serving_namespace_models_scale_advanced_configuration_cpu": "% Utilisation CPU",
+  "pci_projects_project_serving_namespace_models_add_price_unit": "heure"
 }

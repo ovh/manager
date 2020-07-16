@@ -2,7 +2,7 @@
   "pci_projects_project_serving_delete": "Suppression du namespace",
   "pci_projects_project_serving_delete_common_delete": "Supprimer",
   "pci_projects_project_serving_delete_common_cancel": "Annuler",
-  "pci_projects_project_serving_delete_warning": "Attention ! Vous vous apprêtez à supprimer votre namespace. L'ensemble des modèles et tokens associés seront égalements supprimés.",
+  "pci_projects_project_serving_delete_warning": "Attention ! Vous vous apprêtez à supprimer votre namespace. L’ensemble des modèles et tokens associés sera également effacé.",
   "pci_projects_project_serving_delete_success": "Votre namespace {{ name }} a été supprimé avec succès.",
   "pci_projects_project_serving_delete_error": "Une erreur est survenue durant la suppression du namespace : {{ errorMessage }}"
 }
