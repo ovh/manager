@@ -1,3 +1,12 @@
+## [14.7.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@14.7.1...@ovh-ux/manager-web@14.7.2) (2020-07-16)
+
+
+### Bug Fixes
+
+* **hosting.database:** remove extra backup restore options ([#3265](https://github.com/ovh/manager/issues/3265)) ([25fb1dc](https://github.com/ovh/manager/commit/25fb1dccfbc76b326a1d0d355dd579b0f29417af)), closes [#3248](https://github.com/ovh/manager/issues/3248) [#2925](https://github.com/ovh/manager/issues/2925)
+
+
+
 ## [14.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@14.7.0...@ovh-ux/manager-web@14.7.1) (2020-07-09)
 
 
