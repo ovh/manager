@@ -1,3 +1,28 @@
+# [3.25.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.24.0...@ovh-ux/manager-pci@3.25.0) (2020-07-16)
+
+
+### Bug Fixes
+
+* **dataprocessing:** activation spinner added ([b92692e](https://github.com/ovh/manager/commit/b92692ed7da24a8afbb6b4521d1e4260a74a0840))
+* **dataprocessing:** minute pricing precision added ([40f65e6](https://github.com/ovh/manager/commit/40f65e6a004860dc4fa000a5a103d6262c66e77d))
+* **i18n:** add missing translations [CDS 450] ([bbd965b](https://github.com/ovh/manager/commit/bbd965b32d8987549bd8ff7b5d7c60b51a9a20ad))
+* **pci.dataprocessing:** added missing tracking ([797e744](https://github.com/ovh/manager/commit/797e744c4479236deaebd6a5895d34bda26380c3))
+* **pci.dataprocessing:** wrong module name ([6f64e08](https://github.com/ovh/manager/commit/6f64e08abd5507bb71efa95693be84307c01cdbb))
+
+
+### Features
+
+* **pci.dataprocessing:** added missing tracking ([c6feccc](https://github.com/ovh/manager/commit/c6feccc607c94b8dd4b771570da466e2d40f7fdd))
+* **pci.dataprocessing:** added price computation ([766e0aa](https://github.com/ovh/manager/commit/766e0aa7e0366bf5d21ec2c6ee447f508729fcf1))
+* **pci.dataprocessing:** added warning on args ([bb39e4d](https://github.com/ovh/manager/commit/bb39e4d365fc33357c3c7dc5aea01781339d01a9))
+* **pci.dataprocessing:** changed beta to new in sidebar ([42a1ffe](https://github.com/ovh/manager/commit/42a1ffe0e20b7409300588b5eeed7d8665a7647c))
+* **pci.dataprocessing:** make service available in CA ([d3c6b13](https://github.com/ovh/manager/commit/d3c6b1332ba80f0a429345e921f4ed6e48b24dab))
+* **pci.dataprocessing:** removed beta contract signup ([bf4628e](https://github.com/ovh/manager/commit/bf4628e0e0ed24a2009c554c98edd927a7e7df8e))
+* **pci.dataprocessing:** updated logo ([f889dc8](https://github.com/ovh/manager/commit/f889dc8ebc400c1a83f38ddb699b76af0111c1e4))
+* **sidebar:** enable data analytics section in CA ([#3260](https://github.com/ovh/manager/issues/3260)) ([31f4cfa](https://github.com/ovh/manager/commit/31f4cfad4c048bb0b1ac8b6dac1bb9b45a902d0c))
+
+
+
 # [3.24.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.23.5...@ovh-ux/manager-pci@3.24.0) (2020-07-16)
 
 

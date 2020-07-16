@@ -1,3 +1,12 @@
+# [1.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-price@1.1.0...@ovh-ux/manager-catalog-price@1.2.0) (2020-07-16)
+
+
+### Features
+
+* **catalog-price:** precision parameters added ([4491e89](https://github.com/ovh/manager/commit/4491e894686ec59ee42a686e0094e1ee3b73554b))
+
+
+
 # [1.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-price@1.0.2...@ovh-ux/manager-catalog-price@1.1.0) (2020-05-13)
 
 
