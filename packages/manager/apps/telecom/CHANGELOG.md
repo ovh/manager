@@ -1,3 +1,12 @@
+## [12.6.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@12.6.2...@ovh-ux/manager-telecom@12.6.3) (2020-07-16)
+
+
+### Bug Fixes
+
+* **pack.xdsl:** update access restriction ([#3264](https://github.com/ovh/manager/issues/3264)) ([2dce069](https://github.com/ovh/manager/commit/2dce06933de9467eaaf7a9112c7bcfef778b8128))
+
+
+
 ## [12.6.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@12.6.1...@ovh-ux/manager-telecom@12.6.2) (2020-07-15)
 
 
