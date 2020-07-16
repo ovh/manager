@@ -1,3 +1,20 @@
+/**
+ * Deferred object, implementing behavior similar to promises.
+ * examples:
+ *
+ * // without initial value
+ * const foo = Deferred();
+ * foo.isPending(); // true
+ * foo.resolve('bar');
+ * foo.isPending(); // false
+ * foo.promise.then(x => ...) // x = 'bar'
+ *
+ * // with initial value
+ * const hello = Deferred('value');
+ * hello.isPending(); // true
+ * hello.resolve();
+ * hello.promise.then(x => ...) // x = 'value'
+ */
 export default function Deferred(result) {
   const defer = {};
   let isPending = true;

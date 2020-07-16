@@ -1,21 +1,52 @@
 import { fetchConfiguration as fetch2APIConfig } from '@ovh-ux/manager-config';
-import Deferred from './deferred.class';
+import Deferred from './utils/deferred.class';
+import pollValue from './utils/pollvalue';
+import OvhMicroFrontendApplicationAPI from './api.application.class';
+import OvhMicroFrontendFragmentAPI from './api.fragment.class';
 
 class OvhMicroFrontend {
   constructor() {
     this.fragments = {};
+    this.shared = {};
     this.config = new Deferred();
   }
 
   init() {
     return fetch2APIConfig().then((config) => {
       this.config.resolve(config);
-      return config;
+      return {
+        config,
+        ufrontend: new OvhMicroFrontendApplicationAPI(this),
+      };
     });
   }
 
   getConfig() {
     return this.config.promise;
+  }
+
+  shareFragmentData({ fragment, data }) {
+    this.shared[fragment.id] = data;
+  }
+
+  shareApplicationData(data) {
+    this.shared.application = data;
+  }
+
+  getFragmentSharedData(id, timeout = 0) {
+    return pollValue({
+      getValue: () => this.shared[id],
+      timeout,
+      timeoutError: new Error(`getFragmentSharedData '${id}' timeout`),
+    });
+  }
+
+  getApplicationSharedData(timeout = 0) {
+    return pollValue({
+      getValue: () => this.shared.application,
+      timeout,
+      timeoutError: new Error(`getApplicationSharedData timeout`),
+    });
   }
 
   /** Called by fragment web-components at initialization */
@@ -41,6 +72,7 @@ class OvhMicroFrontend {
           resolve({
             parent: resolvedFragment,
             config,
+            ufrontend: new OvhMicroFrontendFragmentAPI(this, resolvedFragment),
           });
         })
         .catch(reject);
