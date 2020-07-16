@@ -51,7 +51,7 @@ export const params = {
   ...ListLayoutHelper.stateParams,
 };
 
-export const component = 'hubProductListing';
+export const component = 'managerListLayout';
 
 export const resolves = {
   products: /* @ngInject */ (productType, services) =>
@@ -99,7 +99,22 @@ export const resolves = {
   hideBreadcrumb: () => false,
   breadcrumb: /* @ngInject */ ($translate, productType) =>
     $translate.instant(`manager_hub_products_${productType}`),
-  onParamsChange: ListLayoutHelper.stateResolves.onListParamsChange,
+  id: /* @ngInject */ (productType) => productType,
+  defaultFilterColumn: /* @ngInject */ (propertyId) => propertyId,
+  header: /* @ngInject */ ($translate, productType) =>
+    $translate.instant(`manager_hub_products_${productType}`),
+
+  description: /* @ngInject */ (notifications, productType) => {
+    const filteredNotifications = notifications.filter(
+      ({ type }) => type === productType,
+    );
+    return `<ovh-manager-hub-carousel
+        class="w-100"
+        data-ng-if="${filteredNotifications.length}"
+        data-items="${filteredNotifications}"
+    ></ovh-manager-hub-carousel>`;
+  },
+  customizableColumns: () => true,
 };
 
 export default {
