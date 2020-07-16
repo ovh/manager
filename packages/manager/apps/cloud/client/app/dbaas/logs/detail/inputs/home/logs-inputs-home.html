@@ -62,6 +62,14 @@
             </span>
         </oui-datagrid-column>
         <oui-datagrid-column
+            title="::'inputs_nb_instance' | translate"
+            property="info.nbInstance"
+            sortable
+            type="number"
+        >
+            {{ $row.info.nbInstance || "-" }}
+        </oui-datagrid-column>
+        <oui-datagrid-column
             title="::'logs_col_last_modified' | translate"
             property="info.updatedAt"
             sortable

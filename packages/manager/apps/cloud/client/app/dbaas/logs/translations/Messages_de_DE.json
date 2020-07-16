@@ -127,7 +127,6 @@
   "logs_home_cold_storage": "Archivierte Datenmenge: {{coldStorage}}",
   "logs_home_display_name_update_success": "Der Name wurde erfolgreich geändert.",
   "logs_home_account_details_get_error": "Beim Laden des Accounts ist ein Fehler aufgetreten: {{message}}",
-  "logs_home_account_get_error": "Beim Laden des Accounts ist ein Fehler aufgetreten: {{message}}",
   "logs_home_contacts_get_error": "Beim Laden der Kontakte ist ein Fehler aufgetreten: {{message}}",
   "logs_home_contact_get_error": "Beim Laden eines Kontakts ist ein Fehler aufgetreten: {{message}}",
   "logs_home_display_name_update_error": "Beim Ändern des Namens ist ein Fehler aufgetreten: {{message}}",

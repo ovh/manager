@@ -219,9 +219,6 @@ class LogsHomeCtrl {
       loaderFunction: () =>
         this.LogsHomeService.getAccountDetails(this.serviceName),
     });
-    this.account = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () => this.LogsHomeService.getAccount(this.serviceName),
-    });
     this.serviceInfos = this.CucControllerHelper.request.getHashLoader({
       loaderFunction: () =>
         this.LogsHomeService.getServiceInfos(this.serviceName),
@@ -294,7 +291,6 @@ class LogsHomeCtrl {
   runLoaders() {
     const loaderPromises = [];
     loaderPromises.push(this.accountDetails.load());
-    loaderPromises.push(this.account.load());
     loaderPromises.push(this.serviceInfos.load());
     if (!this.isAccountDisabled) {
       loaderPromises.push(this.tokenIds.load());

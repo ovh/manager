@@ -188,8 +188,11 @@ angular.module('managerApp').constant('LogsConstants', {
       ZIMSUM: 'zimsum',
     },
     DOWNSAMPLING_MODE: {
-      '24H_MAX': '24h-avg-none',
+      '24H_MAX': '24h-max-none',
     },
+  },
+  RETENTION: {
+    FORTY_FIVE_DAYS: 'P45D',
   },
   OFFER_STORAGE_MULTIPLIER: 1073741824,
   CHART_SETTINGS: {

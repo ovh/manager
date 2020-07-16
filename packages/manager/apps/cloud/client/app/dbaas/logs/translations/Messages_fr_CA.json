@@ -134,7 +134,6 @@
   "logs_home_cold_storage": "Volume archivé: {{coldStorage}}",
   "logs_home_display_name_update_success": "Le nom a été modifié avec succès",
   "logs_home_account_details_get_error": "Une erreur est survenue lors du chargement du compte: {{message}}",
-  "logs_home_account_get_error": "Une erreur est survenue lors du chargement du compte: {{message}}",
   "logs_home_contacts_get_error": "Une erreur est survenue lors du chargement des contacts: {{message}}",
   "logs_home_contact_get_error": "Une erreur est survenue lors du chargement d'un contact: {{message}}",
   "logs_home_display_name_update_error": "Une erreur est survenue lors de la modification du nom: {{message}}",
