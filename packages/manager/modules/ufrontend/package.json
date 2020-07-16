@@ -14,7 +14,8 @@
   "module": "./src/index.js",
   "files": [
     "application.js",
-    "fragment.js"
+    "fragment.js",
+    "src/**/*"
   ],
   "dependencies": {
     "@ovh-ux/manager-config": "^1.0.0 || ^2.0.0",
