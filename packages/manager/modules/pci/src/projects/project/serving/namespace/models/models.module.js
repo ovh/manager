@@ -7,6 +7,7 @@ import service from './service/models.module';
 import add from './add';
 import deleteModule from './delete';
 import update from './update';
+import details from './details';
 
 const moduleName = 'ovhManagerPciProjectServingNamespaceModels';
 
@@ -21,6 +22,7 @@ angular
     add,
     deleteModule,
     update,
+    details,
   ])
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */)

@@ -1,0 +1,11 @@
+{
+  "pci_projects_project_serving_title": "ML Serving",
+  "pci_projects_project_serving_description_label": "Descrizione",
+  "pci_projects_project_serving_region_label": "Region",
+  "pci_projects_project_serving_container_label": "Object Storage Container",
+  "pci_projects_project_serving_add_label": "Crea un namespace",
+  "pci_projects_project_serving_view_label": "Dettagli",
+  "pci_projects_project_serving_list_models_label": "Elenco dei modelli",
+  "pci_projects_project_serving_deploy_model_label": "Implementa un modello",
+  "pci_projects_project_serving_delete_label": "Elimina"
+}

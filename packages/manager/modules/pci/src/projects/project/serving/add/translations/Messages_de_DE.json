@@ -1,0 +1,13 @@
+{
+  "pci_projects_project_serving_add_title": "ML-Serving-Namespace erstellen",
+  "pci_projects_project_serving_add_region_title": "Standort auswählen",
+  "pci_projects_project_serving_add_description_title": "Namespace-ID",
+  "pci_projects_project_serving_add_description_help": "Die Namespace-ID darf nur mit Zahlen, Klein- oder Großbuchstaben beginnen (von a bis z und 0 bis 9) und kann folgende Satzzeichen enthalten: „-“, „_“.",
+  "pci_projects_project_serving_add_container_title": "Object Storage Container",
+  "pci_projects_project_serving_add_container_help": "Name des neuen privaten Containers",
+  "pci_projects_project_serving_add_success": "Ihr Namespace {{ name }} wurde erfolgreich erstellt.",
+  "pci_projects_project_serving_add_error": "Bei der Erstellung des Namespace ist ein Fehler aufgetreten: {{ errorMessage }}",
+  "pci_projects_project_serving_add_container_attach": "Vorhandenen Container anhängen",
+  "pci_projects_project_serving_attach_container_help": "Bitte wählen Sie einen Container aus der Liste aus",
+  "pci_projects_project_serving_add_container_new": "Container erstellen"
+}

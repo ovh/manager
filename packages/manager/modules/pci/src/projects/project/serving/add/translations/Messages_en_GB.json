@@ -1,6 +1,6 @@
 {
-  "pci_projects_project_serving_add_title": "Create a Serving Engine namespace",
-  "pci_projects_project_serving_add_region_title": "Select a region",
+  "pci_projects_project_serving_add_title": "Create an ML Serving namespace",
+  "pci_projects_project_serving_add_region_title": "Select a location",
   "pci_projects_project_serving_add_description_title": "Namespace ID",
   "pci_projects_project_serving_add_description_help": "The namespace ID must begin with a lower-case or upper-case alphanumeric character (a-z and 0-9), and may include the following punctuation marks: “-” and “_”.",
   "pci_projects_project_serving_add_container_title": "Object Storage Container",

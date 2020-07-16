@@ -16,10 +16,12 @@ export default class PciServingNamespaceModelsAddController {
     $translate,
     OvhManagerPciServingModelsService,
     PciProjectStorageContainersService,
+    atInternet,
   ) {
     this.$translate = $translate;
     this.OvhManagerPciServingModelsService = OvhManagerPciServingModelsService;
     this.PciProjectStorageContainersService = PciProjectStorageContainersService;
+    this.atInternet = atInternet;
     this.PRESET_IMAGE = PRESET_IMAGE;
     this.BUILD_IMAGE = BUILD_IMAGE;
     this.FOLDER_MODE = FOLDER_MODE;
@@ -38,7 +40,15 @@ export default class PciServingNamespaceModelsAddController {
       flavor: null,
       workflowTemplate: null,
       imageId: null,
+      autoscalingSpec: {
+        minReplicas: 1,
+        maxReplicas: 3,
+        memoryAverageUtilization: 60,
+        cpuAverageUtilization: 60,
+      },
     };
+
+    this.advancedConfigurationAutoscalerSpec = false;
 
     [this.model.flavor] = this.flavors;
 
@@ -83,7 +93,18 @@ export default class PciServingNamespaceModelsAddController {
       });
   }
 
+  onClickAdvancedConfigurationAutoscalerSpecHandler() {
+    this.advancedConfigurationAutoscalerSpec = !this
+      .advancedConfigurationAutoscalerSpec;
+  }
+
   addModel() {
+    this.atInternet.trackClick({
+      name:
+        'public-cloud::pci::projects::project::serving::namespace::models:add::submit',
+      type: 'action',
+    });
+
     this.error = false;
     this.isAdding = true;
 
@@ -96,6 +117,7 @@ export default class PciServingNamespaceModelsAddController {
         flavor: this.model.flavor.id,
         workflowTemplate: this.model.workflowTemplate,
         imageId: get(this.model.imageId, 'id'),
+        autoscalingSpec: this.model.autoscalingSpec,
       },
     )
       .then(() =>
@@ -115,5 +137,14 @@ export default class PciServingNamespaceModelsAddController {
 
   resetMode() {
     this.model.storagePath = null;
+  }
+
+  getPrice(id) {
+    return this.pricesCatalog[`ai-serving-engine.${id}.hour.consumption`]
+      .priceInUcents;
+  }
+
+  getTax(id) {
+    return this.pricesCatalog[`ai-serving-engine.${id}.hour.consumption`].tax;
   }
 }

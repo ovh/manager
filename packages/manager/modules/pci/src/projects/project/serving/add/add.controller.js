@@ -10,11 +10,13 @@ export default class PciServingAddController {
     PciProjectStorageContainersService,
     CucCloudMessage,
     CucRegionService,
+    atInternet,
   ) {
     this.$translate = $translate;
     this.PciProjectStorageContainersService = PciProjectStorageContainersService;
     this.CucCloudMessage = CucCloudMessage;
     this.CucRegionService = CucRegionService;
+    this.atInternet = atInternet;
   }
 
   $onInit() {
@@ -89,6 +91,11 @@ export default class PciServingAddController {
   }
 
   onStepperFinish() {
+    this.atInternet.trackClick({
+      name: 'public-cloud::pci::projects::project::serving::add::submit',
+      type: 'action',
+    });
+
     this.loading = true;
 
     const container =

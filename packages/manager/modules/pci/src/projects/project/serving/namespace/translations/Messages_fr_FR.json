@@ -1,6 +1,5 @@
 {
   "pci_projects_project_serving_namespace_models": "Modèles",
   "pci_projects_project_serving_namespace_infos": "Informations",
-  "pci_projects_project_serving_namespace_tokens": "Token",
-  "pci_projects_project_serving_namespace_models_warning_beta": "Nous nous réservons le droit de supprimer les modèles pendant la Beta (en particulier en cas d'inactivité)"
+  "pci_projects_project_serving_namespace_tokens": "Token"
 }

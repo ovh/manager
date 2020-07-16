@@ -1,0 +1,7 @@
+{
+  "pci_projects_project_serving_title": "ML Serving",
+  "pci_projects_project_serving_onboarding_content1": "Der Übergang von der Entwicklung zur Produktion Ihrer Machine-Learning-Modelle war noch nie so einfach.",
+  "pci_projects_project_serving_onboarding_content2": "Deployen Sie Ihre Machine-Learning-Modelle aus verschiedenen Frameworks wie TensorFlow oder Scikit-Learn und Serialisierungsformaten wie PMML oder ONNX problemlos in Produktion.",
+  "pci_projects_project_serving_onboarding_content3": "Wir liefern Ihnen innerhalb weniger Minuten eine REST-API, die zugehörige Swagger-API sowie die nötige Skalierbarkeit für Ihre Modelle.",
+  "pci_projects_project_serving_onboarding_action_label": "Namespace erstellen"
+}
