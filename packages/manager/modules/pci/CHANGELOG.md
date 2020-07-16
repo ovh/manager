@@ -1,3 +1,12 @@
+## [3.25.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.25.1...@ovh-ux/manager-pci@3.25.2) (2020-07-16)
+
+
+### Bug Fixes
+
+* **serving.namespace.models.add:** update pricing precision ([#3282](https://github.com/ovh/manager/issues/3282)) ([3c5ade6](https://github.com/ovh/manager/commit/3c5ade6af19efc2c8c83595bdfa16ea1c862cdcc)), closes [#3182](https://github.com/ovh/manager/issues/3182)
+
+
+
 ## [3.25.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.25.0...@ovh-ux/manager-pci@3.25.1) (2020-07-16)
 
 
