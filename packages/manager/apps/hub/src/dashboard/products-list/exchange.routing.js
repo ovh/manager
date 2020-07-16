@@ -20,12 +20,13 @@ export default /* @ngInject */ ($stateProvider) => {
       apiPath: /* @ngInject */ () => '/email/exchange',
       schema: /* @ngInject */ ($http, apiPath) =>
         $http.get(`${apiPath}.json`).then(({ data }) => data),
-      rows: /* @ngInject */ ($http) =>
+      resources: /* @ngInject */ ($http) =>
         $http
           .get('/exchanges', {
             serviceType: 'aapi',
           })
           .then(({ data }) => data),
+      staticResources: () => true,
       paginationNumber: /* @ngInject */ ($transition$) =>
         $transition$.paramsChanged().filter &&
         !$transition$.paramsChanged().page
@@ -33,7 +34,7 @@ export default /* @ngInject */ ($stateProvider) => {
           : $transition$.params().page,
       paginationSize: /* @ngInject */ ($transition$) =>
         $transition$.params().pageSize,
-      paginationTotalCount: /* @ngInject */ (rows) => rows.length,
+      paginationTotalCount: /* @ngInject */ (resources) => resources.length,
     },
     atInternet: {
       rename: 'app::dashboard::products::email-exchange-service',
