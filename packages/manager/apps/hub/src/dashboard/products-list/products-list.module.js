@@ -2,6 +2,7 @@ import angular from 'angular';
 
 import atInternet from '@ovh-ux/ng-at-internet';
 import ovhManagerHub from '@ovh-ux/manager-hub';
+import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 
 import ngAtInternetUiRouterPlugin from '@ovh-ux/ng-at-internet-ui-router-plugin';
 
@@ -16,7 +17,12 @@ import routing from './routing';
 const moduleName = 'ovhManagerHubProductListingPage';
 
 angular
-  .module(moduleName, [atInternet, ngAtInternetUiRouterPlugin, ovhManagerHub])
+  .module(moduleName, [
+    atInternet,
+    ngAtInternetUiRouterPlugin,
+    ovhManagerHub,
+    ListLayoutHelper.moduleName,
+  ])
   .config(routing)
   .config(dedicatedCloudRouting)
   .config(exchangeRouting)
