@@ -49,6 +49,12 @@
             </span>
         </oui-datagrid-column>
         <oui-datagrid-column
+            data-title="::'logs_streams_col_retention' | translate"
+            data-property="info.retentionId"
+        >
+            {{ ctrl.retentionInfo($row) || "-" }}
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title="::'logs_streams_col_storage' | translate"
             sortable
             data-type="number"
@@ -67,15 +73,8 @@
             type="number"
             filterable
         >
-            <span
-                data-ng-if="$row.info.coldStorageEnabled"
-                data-ng-bind="$row.info.nbArchive"
-            >
-                <span data-ng-if="!$row.info.coldStorageEnabled">
-                    {{ $row.info.nbArchive || "-" }}
-                </span>
-            </span></oui-datagrid-column
-        >
+            {{ $row.info.nbArchive || "-" }}
+        </oui-datagrid-column>
         <oui-datagrid-column
             data-title="::'logs_streams_col_notifications' | translate"
             property="info.nbAlertCondition"
@@ -83,13 +82,8 @@
             type="number"
             filterable
         >
-            <span
-                data-ng-if="$row.info.nbAlertCondition"
-                data-ng-bind="$row.info.nbAlertCondition"
-            >
-                <span data-ng-if="!$row.info.nbAlertCondition"> - </span>
-            </span></oui-datagrid-column
-        >
+            {{ $row.info.nbAlertCondition || "-" }}
+        </oui-datagrid-column>
         <oui-datagrid-column
             data-title="::'logs_col_last_modified' | translate"
             property="info.updatedAt"

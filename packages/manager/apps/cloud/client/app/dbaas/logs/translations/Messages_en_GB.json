@@ -127,7 +127,6 @@
   "logs_home_cold_storage": "Volume archived: {{coldStorage}}",
   "logs_home_display_name_update_success": "The name has been modified",
   "logs_home_account_details_get_error": "An error has occurred loading the account: {{message}}",
-  "logs_home_account_get_error": "An error has occurred loading the account: {{message}}",
   "logs_home_contacts_get_error": "An error has occurred loading contacts: {{message}}",
   "logs_home_contact_get_error": "An error has occurred loading a contact: {{message}}",
   "logs_home_display_name_update_error": "An error has occurred modifying the name: {{message}}",

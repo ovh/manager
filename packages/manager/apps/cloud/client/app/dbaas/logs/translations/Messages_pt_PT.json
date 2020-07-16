@@ -127,7 +127,6 @@
   "logs_home_cold_storage": "Volume arquivado: {{coldStorage}}",
   "logs_home_display_name_update_success": "O nome foi modificado com êxito",
   "logs_home_account_details_get_error": "Ocorreu um erro durante o carregamento da conta: {{message}}",
-  "logs_home_account_get_error": "Ocorreu um erro durante o carregamento da conta: {{message}}",
   "logs_home_contacts_get_error": "Ocorreu um erro durante o carregamento dos contactos: {{message}}",
   "logs_home_contact_get_error": "Ocorreu um erro durante o carregamento de um contacto: {{message}}",
   "logs_home_display_name_update_error": "Ocorreu um erro durante a modificação do nome: {{message}}",

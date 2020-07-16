@@ -1,19 +1,28 @@
+import find from 'lodash/find';
+
 class LogsStreamsHomeCtrl {
+  /* @ngInject */
   constructor(
+    $q,
     $state,
     $stateParams,
     $translate,
+    LogsConstants,
     LogsStreamsService,
+    LogsHomeService,
     CucControllerHelper,
     CucCloudMessage,
     CucUrlHelper,
     bytesFilter,
   ) {
+    this.$q = $q;
     this.$state = $state;
     this.$stateParams = $stateParams;
     this.$translate = $translate;
     this.serviceName = this.$stateParams.serviceName;
+    this.LogsConstants = LogsConstants;
     this.LogsStreamsService = LogsStreamsService;
+    this.LogsHomeService = LogsHomeService;
     this.CucControllerHelper = CucControllerHelper;
     this.CucCloudMessage = CucCloudMessage;
     this.CucUrlHelper = CucUrlHelper;
@@ -27,11 +36,22 @@ class LogsStreamsHomeCtrl {
    * @memberof LogsStreamsHomeCtrl
    */
   initLoaders() {
+    this.retentions = [];
+    this.accountDetails = this.CucControllerHelper.request.getHashLoader({
+      loaderFunction: () =>
+        this.LogsHomeService.getAccountDetails(this.serviceName),
+    });
     this.streams = this.CucControllerHelper.request.getArrayLoader({
       loaderFunction: () =>
         this.LogsStreamsService.getStreams(this.serviceName),
     });
-    this.streams.load();
+    this.runLoaders().then(() => {
+      this.loadRetentions();
+    });
+  }
+
+  runLoaders() {
+    return this.$q.all([this.accountDetails.load(), this.streams.load()]);
   }
 
   /**
@@ -117,11 +137,38 @@ class LogsStreamsHomeCtrl {
     });
   }
 
+  loadRetentions() {
+    this.retentions = this.accountDetails.data.clusters
+      .map(({ retentions }) => retentions)
+      .flat();
+  }
+
   storageInfo(stream) {
     if (stream.info.isEditable && stream.info.currentStorage !== -1) {
       return this.bytesFilter(stream.info.currentStorage, 2, true);
     }
     return ' - ';
+  }
+
+  findRetention(stream) {
+    return find(
+      this.retentions,
+      (retention) => retention.retentionId === stream.info.retentionId,
+    );
+  }
+
+  retentionInfo(stream) {
+    const foundRetention = this.findRetention(stream);
+    if (foundRetention.duration) {
+      if (
+        foundRetention.duration === this.LogsConstants.RETENTION.FORTY_FIVE_DAYS
+      ) {
+        // moment convert 45 days to a month and we need to be accurate here
+        return this.$translate.instant('streams_45_days');
+      }
+      return moment.duration(foundRetention.duration).humanize();
+    }
+    return this.$translate.instant('streams_disk_full');
   }
 
   /**
