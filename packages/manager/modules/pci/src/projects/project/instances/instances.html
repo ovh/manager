@@ -119,7 +119,7 @@
                     'oui-badge_success': ($row.statusGroup === 'ACTIVE'),
                     'oui-badge_warning': ($row.statusGroup === 'PENDING'),
                     'oui-badge_error': ($row.statusGroup === 'ERROR'),
-                    'oui-badge_info': ($row.statusGroup === $row.status),
+                    'oui-badge_info': ($row.statusGroup === $row.status && !['ACTIVE', 'PENDING', 'ERROR'].includes($row.statusGroup)),
                 }"
             >
                 <span

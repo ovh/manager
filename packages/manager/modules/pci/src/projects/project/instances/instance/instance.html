@@ -131,7 +131,7 @@
                                 'oui-badge_success': ($ctrl.instance.statusGroup === 'ACTIVE'),
                                 'oui-badge_warning': ($ctrl.instance.statusGroup === 'PENDING'),
                                 'oui-badge_error': ($ctrl.instance.statusGroup === 'ERROR'),
-                                'oui-badge_info': ($ctrl.instance.statusGroup === $ctrl.instance.status),
+                                'oui-badge_info': ($ctrl.instance.statusGroup === $ctrl.instance.status && !['ACTIVE', 'PENDING', 'ERROR'].includes($ctrl.instance.statusGroup)),
                             }"
                         >
                             <span
