@@ -13,11 +13,13 @@ export default class {
     CucCloudMessage,
     dataProcessingService,
     CucRegionService,
+    atInternet,
   ) {
     this.$state = $state;
     this.cucCloudMessage = CucCloudMessage;
     this.dataProcessingService = dataProcessingService;
     this.cucRegionService = CucRegionService;
+    this.atInternet = atInternet;
     this.isJobRunning = isJobRunning;
     this.getClassFromStatus = getClassFromStatus;
     this.guideUrl = DATA_PROCESSING_GUIDE_URL;
@@ -73,5 +75,13 @@ export default class {
   formatDateFromNow(dt) {
     // this method needs to use current instance of moment, so it cannot static
     return moment(dt).fromNow();
+  }
+
+  onSubmitClick() {
+    this.atInternet.trackClick({
+      name: 'public-cloud::pci::projects::project::data-processing::add-job',
+      type: 'action',
+    });
+    this.submitJob();
   }
 }

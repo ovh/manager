@@ -43,10 +43,13 @@
             data-on-submit="$ctrl.onSubmitJobSizingHandler(form)"
         >
             <pci-project-data-processing-submit-job-spark-sizing
+                data-project-id="$ctrl.projectId"
                 data-templates="$ctrl.state.jobEngine.templates"
                 data-values="$ctrl.state.jobSizing"
                 data-validate="$ctrl.jobSizingValidate"
                 data-job-parameters="$ctrl.jobParameters"
+                data-prices="$ctrl.prices"
+                data-user="$ctrl.user"
             >
             </pci-project-data-processing-submit-job-spark-sizing>
         </oui-step-form>

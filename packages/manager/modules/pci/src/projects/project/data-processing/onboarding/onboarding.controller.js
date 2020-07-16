@@ -4,26 +4,17 @@ import { GUIDES, SPARK_URL } from './onboarding.constants';
 
 export default class {
   /* @ngInject */
-  constructor(
-    $translate,
-    $state,
-    $q,
-    dataProcessingService,
-    PciProjectLabsService,
-  ) {
+  constructor($translate, $state, $q, dataProcessingService, atInternet) {
     this.$translate = $translate;
     this.$state = $state;
     this.$q = $q;
     this.dataProcessingService = dataProcessingService;
-    this.pciProjectLabsService = PciProjectLabsService;
-    this.isActivated = false;
-    this.agreedLab = false;
+    this.atInternet = atInternet;
     this.isActivating = false;
   }
 
   $onInit() {
     this.illustration = illustration;
-    this.isActivated = this.lab.isActivated();
     this.sparkUrl = SPARK_URL;
     this.guides = reduce(
       GUIDES,
@@ -41,30 +32,27 @@ export default class {
     );
   }
 
-  acceptLab(accepted) {
-    this.agreedLab = accepted;
-  }
-
   authorizeService() {
     this.isActivating = true;
-    let labPromise;
-    if (this.agreedLab) {
-      labPromise = this.pciProjectLabsService.activateLab(
-        this.projectId,
-        this.lab,
-      );
-    } else {
-      labPromise = this.$q.resolve();
-    }
-    return labPromise.then(() => {
-      this.dataProcessingService
-        .authorize(this.projectId)
-        .then(() => {
-          this.goBack();
-        })
-        .finally(() => {
-          this.isActivating = false;
-        });
+    this.atInternet.trackClick({
+      name:
+        'public-cloud::pci::projects::project::data-processing::onboarding::first-job',
+      type: 'action',
+    });
+    this.dataProcessingService
+      .authorize(this.projectId)
+      .then(() => {
+        this.goBack();
+      })
+      .finally(() => {
+        this.isActivating = false;
+      });
+  }
+
+  onGuideClick(guide) {
+    this.atInternet.trackClick({
+      name: guide.tracker,
+      type: 'action',
     });
   }
 }

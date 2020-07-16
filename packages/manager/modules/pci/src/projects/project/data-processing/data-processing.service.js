@@ -3,9 +3,10 @@ import { summarizeJob } from './data-processing.utils';
 
 export default class DataProcessingService {
   /* @ngInject */
-  constructor($q, OvhApiCloudProjectDataProcessing) {
+  constructor($q, CucPriceHelper, OvhApiCloudProjectDataProcessing) {
     this.logs = [];
     this.$q = $q;
+    this.CucPriceHelper = CucPriceHelper;
     this.OvhApiCloudProjectDataProcessingJobs = OvhApiCloudProjectDataProcessing.Jobs().iceberg();
     this.OvhApiCloudProjectDataProcessingCapabilities = OvhApiCloudProjectDataProcessing.Capabilities().iceberg();
     this.OvhApiCloudProjectDataProcessingAuthorization = OvhApiCloudProjectDataProcessing.Authorization().iceberg();
@@ -154,12 +155,26 @@ export default class DataProcessingService {
 
   /**
    * Retrieve metrics token for the given project
-   * @param projectId
+   * @param projectId string Id of the project
    * @return {*}
    */
   getMetricsToken(projectId) {
     return this.OvhApiCloudProjectDataProcessingMetrics.query().execute({
       serviceName: projectId,
     }).$promise;
+  }
+
+  /**
+   * Retrieve the data processing cores and memory prices from the catalog
+   * @param projectId string Id of the project
+   * @returns {Promise<{core: *, memory: *}>}
+   */
+  getPricesFromCatalog(projectId) {
+    return this.CucPriceHelper.getPrices(projectId).then((prices) => {
+      return {
+        core: prices[`data-processing-job.core.minute.consumption`],
+        memory: prices[`data-processing-job.memory-gib.minute.consumption`],
+      };
+    });
   }
 }

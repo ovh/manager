@@ -15,5 +15,6 @@
   "data_processing_submit_job_stepper_spark_arguments_placeholder": "Premi il tasto <Entrer> per aggiungere un argomento",
   "data_processing_submit_job_stepper_spark_invalid_jar_label": "Attenzione: Questo file non sembra essere un JAR valido (il tipo MIME non corrisponde a quello di un JAR).",
   "data_processing_submit_job_stepper_spark_not_found_file_label": "Questo file non sembra esistere nel container selezionato.",
-  "data_processing_submit_job_stepper_spark_no_python_environment_label": "Il file delle variabili d’ambiente Python 'environment.yml' non esiste nel container selezionato."
+  "data_processing_submit_job_stepper_spark_no_python_environment_label": "Il file delle variabili d’ambiente Python 'environment.yml' non esiste nel container selezionato.",
+  "data_processing_submit_job_stepper_spark_arguments_warning": "Attenzione: Per l’archiviazione di dati confidenziali come credenziali, suggeriamo di utilizzare un file di configurazione."
 }

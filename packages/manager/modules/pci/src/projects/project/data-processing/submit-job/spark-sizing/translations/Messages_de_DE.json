@@ -16,5 +16,6 @@
   "data_processing_submit_job_stepper_spark_worker_memory_description": "Wählen Sie die Menge an Arbeitsspeicher pro Executor",
   "data_processing_submit_job_stepper_spark_worker_memory_overhead_label": "Arbeitsspeicher-Overhead Executor",
   "data_processing_submit_job_stepper_spark_estimated_price": "Geschätzter Preis: ",
+  "data_processing_submit_job_stepper_spark_free": "Kostenlos",
   "data_processing_submit_job_stepper_spark_memory_overhead_autocompute_label": "Automatisch berechnen"
 }

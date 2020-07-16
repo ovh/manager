@@ -15,5 +15,6 @@
   "data_processing_submit_job_stepper_spark_arguments_placeholder": "Drücken Sie <Entrer>, um ein Argument hinzuzufügen",
   "data_processing_submit_job_stepper_spark_invalid_jar_label": "Achtung: Anscheinend ist diese Datei keine gültige JAR-Datei (die Dateiart MIME entspricht nicht der Dateiart JAR).",
   "data_processing_submit_job_stepper_spark_not_found_file_label": "Anscheinend existiert diese Datei nicht im ausgewählten Container.",
-  "data_processing_submit_job_stepper_spark_no_python_environment_label": "Die Datei „environment.yml“ für die Python-Umgebung existiert nicht im ausgewählten Container."
+  "data_processing_submit_job_stepper_spark_no_python_environment_label": "Die Datei „environment.yml“ für die Python-Umgebung existiert nicht im ausgewählten Container.",
+  "data_processing_submit_job_stepper_spark_arguments_warning": "Achtung: Um vertrauliche Daten (Zugangsdaten usw.) zu speichern, empfiehlt sich die Verwendung einer Konfigurationsdatei."
 }

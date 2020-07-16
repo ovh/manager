@@ -51,5 +51,9 @@ export default /* @ngInject */ ($stateProvider) =>
         breadcrumb: /* @ngInject */ ($translate) =>
           $translate.instant('data_processing_details_dashboard_label'), // update breadcrumb with "Dashboard"
       },
+      atInternet: {
+        name:
+          'public-cloud::pci::projects::project::data-processing::job-details::dashboard',
+      },
     },
   );
