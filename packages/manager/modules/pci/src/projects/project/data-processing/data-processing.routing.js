@@ -3,15 +3,14 @@ export default /* @ngInject */ ($stateProvider) =>
     url: '/data-processing',
     component: 'pciProjectDataProcessing',
     redirectTo: (transition) =>
-      Promise.all([
-        transition.injector().getAsync('authorization'),
-        transition.injector().getAsync('lab'),
-      ]).then(([authorization, lab]) => {
-        if (!authorization.data.authorized || !lab.isActivated()) {
-          return { state: 'pci.projects.project.data-processing.onboarding' };
-        }
-        return false;
-      }),
+      Promise.all([transition.injector().getAsync('authorization')]).then(
+        ([authorization]) => {
+          if (!authorization.data.authorized) {
+            return { state: 'pci.projects.project.data-processing.onboarding' };
+          }
+          return false;
+        },
+      ),
     resolve: {
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('data_processing_title'),
