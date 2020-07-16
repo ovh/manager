@@ -2,8 +2,8 @@
   "data_processing_submit_job_sizing_template_memory_label": "GiB memory",
   "data_processing_submit_job_sizing_template_cores_label": "virtual cores",
   "data_processing_submit_job_sizing_description": "Your Spark job is managed by a master node (driver) distributing tasks to the computing nodes (executor). Select the number of cores and the quantity of memory allocated to your nodes, as well as the number of nodes you want.",
-  "data_processing_submit_job_stepper_spark_driver_template_label": "Driver template",
-  "data_processing_submit_job_stepper_spark_worker_template_label": "Executor template",
+  "data_processing_submit_job_stepper_spark_driver_template_label": "Driver model",
+  "data_processing_submit_job_stepper_spark_worker_template_label": "Executor model",
   "data_processing_submit_job_stepper_spark_worker_count_label": "Number of executors",
   "data_processing_submit_job_stepper_spark_worker_count_description": "Select the number of executors for your job",
   "data_processing_submit_job_stepper_spark_advanced": "Advanced configuration",
@@ -16,5 +16,6 @@
   "data_processing_submit_job_stepper_spark_worker_memory_description": "Select the quantity of memory per executor",
   "data_processing_submit_job_stepper_spark_worker_memory_overhead_label": "Executor memory overhead",
   "data_processing_submit_job_stepper_spark_estimated_price": "Estimated price: ",
+  "data_processing_submit_job_stepper_spark_free": "Free",
   "data_processing_submit_job_stepper_spark_memory_overhead_autocompute_label": "Calculate automatically"
 }

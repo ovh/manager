@@ -16,5 +16,6 @@
   "data_processing_submit_job_stepper_spark_worker_memory_description": "Seleccione la cantidad de memoria por executor",
   "data_processing_submit_job_stepper_spark_worker_memory_overhead_label": "Memoria overhead del executor",
   "data_processing_submit_job_stepper_spark_estimated_price": "Precio estimado: ",
+  "data_processing_submit_job_stepper_spark_free": "Gratuito",
   "data_processing_submit_job_stepper_spark_memory_overhead_autocompute_label": "Calcular automáticamente"
 }

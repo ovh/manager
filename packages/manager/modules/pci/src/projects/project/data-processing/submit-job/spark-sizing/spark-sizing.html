@@ -74,7 +74,22 @@
         <div class="sizing__pricing">
             {{ :: 'data_processing_submit_job_stepper_spark_estimated_price' |
             translate }}
-            <strong>{{ $ctrl.computePrice().toFixed(3) }}€/min</strong>
+
+            <strong data-ng-if="::$ctrl.computePrice()">
+                <ovh-manager-catalog-price
+                    data-price="$ctrl.computePrice()"
+                    data-tax="$ctrl.computeTax()"
+                    data-user="$ctrl.user"
+                    data-perform-rounding="false"
+                    data-maximum-fraction-digits="5"
+                >
+                </ovh-manager-catalog-price>
+                /min
+            </strong>
+            <strong
+                data-ng-if="::!$ctrl.computePrice()"
+                data-translate="data_processing_submit_job_stepper_spark_free"
+            />
         </div>
         <button
             class="oui-button oui-button_link sizing__advanced-button"
@@ -215,10 +230,21 @@
         <div class="sizing__pricing">
             {{ :: 'data_processing_submit_job_stepper_spark_estimated_price' |
             translate }}
+            <strong data-ng-if="::$ctrl.computePrice()">
+                <ovh-manager-catalog-price
+                    data-price="$ctrl.computePrice()"
+                    data-tax="$ctrl.computeTax()"
+                    data-user="$ctrl.user"
+                    data-perform-rounding="false"
+                    data-maximum-fraction-digits="5"
+                >
+                </ovh-manager-catalog-price>
+                /min
+            </strong>
             <strong
-                ><span data-ng-bind="$ctrl.computePrice().toFixed(3)"></span
-                >€/min</strong
-            >
+                data-ng-if="::!$ctrl.computePrice()"
+                data-translate="data_processing_submit_job_stepper_spark_free"
+            />
         </div>
         <button
             class="oui-button oui-button_link sizing__advanced-button"

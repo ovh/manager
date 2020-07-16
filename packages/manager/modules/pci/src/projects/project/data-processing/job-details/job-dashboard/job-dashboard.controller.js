@@ -16,13 +16,16 @@ export default class {
     $resource,
     $timeout,
     $uibModal,
+    $window,
     CucCloudMessage,
     dataProcessingService,
     CucRegionService,
     PciStoragesContainersService,
+    atInternet,
   ) {
     this.$scope = $scope;
     this.$timeout = $timeout;
+    this.$window = $window;
     this.cucCloudMessage = CucCloudMessage;
     this.dataProcessingService = dataProcessingService;
     this.cucRegionService = CucRegionService;
@@ -31,6 +34,7 @@ export default class {
     this.JOB_TYPE_PYTHON = JOB_TYPE_PYTHON;
     this.getDataProcessingUiUrl = getDataProcessingUiUrl;
     this.containerService = PciStoragesContainersService;
+    this.atInternet = atInternet;
     this.containerId = null;
     this.metricsTimer = null;
     // setup metrics retrieval
@@ -212,5 +216,53 @@ export default class {
   formatDateToCalendar(dt) {
     // this method needs to use current instance of moment, so it cannot static
     return moment(dt).calendar();
+  }
+
+  onSparkUIClick() {
+    this.atInternet.trackClick({
+      name:
+        'public-cloud::pci::projects::project::data-processing::job-details::dashboard::job-user-interface',
+      type: 'action',
+    });
+    this.$window.open(
+      getDataProcessingUiUrl(this.job.region, this.job.id),
+      '_blank',
+    );
+  }
+
+  onMetricsClick() {
+    this.atInternet.trackClick({
+      name:
+        'public-cloud::pci::projects::project::data-processing::job-details::dashboard::monitor',
+      type: 'action',
+    });
+    this.showMetrics();
+  }
+
+  onObjectContainerClick() {
+    this.atInternet.trackClick({
+      name:
+        'public-cloud::pci::projects::project::data-processing::job-details::dashboard::object-container',
+      type: 'action',
+    });
+    this.browseObjectStorage(this.containerId);
+  }
+
+  onBillingConsoleClick() {
+    this.atInternet.trackClick({
+      name:
+        'public-cloud::pci::projects::project::data-processing::job-details::dashboard::billing-console',
+      type: 'action',
+    });
+    this.showBillingConsole();
+  }
+
+  onTerminateClick() {
+    this.atInternet.trackClick({
+      name:
+        'public-cloud::pci::projects::project::data-processing::job-details::dashboard::kill-job',
+      type: 'action',
+    });
+    this.terminateJob();
   }
 }

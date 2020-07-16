@@ -135,12 +135,12 @@ export const MENU = [
       },
       {
         id: 'data-processing',
-        beta: true,
+        new: true,
         options: {
           state: 'pci.projects.project.data-processing',
         },
         title: 'Data Processing',
-        regions: ['EU'],
+        regions: ['EU', 'CA'],
       },
       {
         id: 'io-stream',

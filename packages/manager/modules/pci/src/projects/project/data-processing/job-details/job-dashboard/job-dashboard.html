@@ -99,8 +99,8 @@
             <!-- Tile item :: Job UI -->
             <oui-tile-button
                 title="{{ ::'data_processing_details_actions_show_ui_label' | translate }}"
-                data-href="{{ $ctrl.getDataProcessingUiUrl($ctrl.job.region, $ctrl.job.id) }}"
                 data-ng-if="$ctrl.isJobRunning()"
+                data-on-click="$ctrl.onSparkUIClick()"
                 data-external
             >
                 {{ ::'data_processing_details_actions_show_ui_label' | translate
@@ -109,7 +109,7 @@
             <!-- Tile item :: Grafana -->
             <oui-tile-button
                 title="{{ ::'data_processing_details_actions_show_grafana_label' | translate }}"
-                data-on-click="$ctrl.showMetrics()"
+                data-on-click="$ctrl.onMetricsClick()"
             >
                 {{ ::'data_processing_details_actions_show_grafana_label' |
                 translate }}
@@ -119,7 +119,7 @@
                 class="actions-tile__browse-btn"
                 title="{{ $ctrl.containerId === null? 'data_processing_details_actions_browse_swift_unavailable_label': 'data_processing_details_actions_browse_swift_label' | translate }}"
                 disabled="$ctrl.containerId === null"
-                data-on-click="$ctrl.browseObjectStorage($ctrl.containerId)"
+                data-on-click="$ctrl.onObjectContainerClick()"
             >
                 {{ ::'data_processing_details_actions_browse_swift_label' |
                 translate }}
@@ -127,7 +127,7 @@
             <!-- Tile item :: Show billing -->
             <oui-tile-button
                 title="{{ ::'data_processing_details_actions_show_billing_label' | translate }}"
-                data-on-click="$ctrl.showBillingConsole()"
+                data-on-click="$ctrl.onBillingConsoleClick()"
             >
                 {{ ::'data_processing_details_actions_show_billing_label' |
                 translate }}
@@ -135,7 +135,7 @@
             <!-- Tile item :: Terminate job -->
             <oui-tile-button
                 title="{{ ::'data_processing_details_actions_terminate_label' | translate }}"
-                data-on-click="$ctrl.terminateJob()"
+                data-on-click="$ctrl.onTerminateClick()"
                 class="details__action-button__danger"
                 data-ng-if="$ctrl.isJobRunning()"
             >
