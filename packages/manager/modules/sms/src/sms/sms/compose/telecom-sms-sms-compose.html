@@ -17,8 +17,8 @@
         <tuc-toast-message></tuc-toast-message>
 
         <div class="row">
-            <div class="col-md-3 float-right">
-                <div class="oui-tile">
+            <div class="col-md-3 col-md-push-9">
+                <div class="oui-tile mb-4">
                     <h3
                         class="oui-tile__title oui-heading_3"
                         data-translate="sms_sms_compose_tips_title"
@@ -69,7 +69,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-9">
+            <div class="col-md-9 col-md-pull-3">
                 <div
                     class="alert alert-warning"
                     role="alert"
@@ -112,7 +112,7 @@
                             >
                             </label>
                             <div class="row">
-                                <div class="col-md-8">
+                                <div class="col-md-8 mb-2">
                                     <select
                                         name="sender"
                                         id="sender"
@@ -165,7 +165,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <a
-                                        class="d-inline-block mt-2"
+                                        class="d-inline-block"
                                         data-ng-href="{{:: $ctrl.sendersLink() }}"
                                         data-translate="sms_sms_compose_sender_manage"
                                         data-translate-attr="{ title: 'sms_sms_compose_sender_manage' }"
