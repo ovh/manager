@@ -1,12 +1,12 @@
 <oui-modal
     data-ng-if="!$ctrl.preview"
-    data-title="{{:: $ctrl.title}}"
     data-primary-action="$ctrl.confirm()"
     data-primary-label="{{ ::'vps_common_confirm' | translate }}"
     data-secondary-action="$ctrl.cancel()"
     data-secondary-label="{{ ::'vps_common_cancel' | translate }}"
     data-on-dismiss="$ctrl.cancel()"
     data-loading="$ctrl.selectedVps.loading || $ctrl.save.loading"
+    data-heading="{{:: $ctrl.title}}"
 >
     <span data-translate="vps_dashboard_monitoring_sla"></span> :
     <span
@@ -21,21 +21,18 @@
 
 <oui-modal
     data-ng-if="$ctrl.preview"
-    data-title="{{:: $ctrl.title}}"
     data-secondary-action="$ctrl.cancel()"
     data-secondary-label="{{ ::'vps_common_close' | translate }}"
     data-on-dismiss="$ctrl.cancel()"
     data-loading="$ctrl.selectedVps.loading || $ctrl.save.loading"
+    data-heading="{{:: $ctrl.title}}"
 >
     <div
         class="oui-message oui-message_info oui-message_icon-m"
         role="alert"
         data-ng-if="$ctrl.state"
     >
-        <i
-            class="oui-icon oui-icon-info_circle oui-icon_bicolor"
-            aria-hidden="true"
-        ></i>
+        <i class="oui-icon oui-icon-info-circle" aria-hidden="true"></i>
         <p class="oui-message__body">
             <span
                 data-translate="vps_dashboard_monitoring_sla_ips_tooltip"

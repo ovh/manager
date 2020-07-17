@@ -11,13 +11,13 @@
         data-rows="ctrlDumps.databaseDumps"
         data-row-loader="ctrlDumps.transformItem($row)"
     >
-        <oui-column
+        <oui-datagrid-column
             data-title="'database_tabs_dumps_snapshot_date' | translate"
             data-property="snapshotDate"
         >
             <span data-ng-bind="$row.snapshotDate | date:'mediumDate'"></span>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title="'database_tabs_dumps_creation_date' | translate"
             data-property="creationDate"
         >
@@ -35,52 +35,51 @@
                 data-translate="common_delete_in_progress"
                 data-ng-if="$row.waitDelete"
             ></span>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title="'database_tabs_dumps_deletion_date' | translate"
             data-property="deletionDate"
             data-sortable
         >
             <span data-ng-bind="$row.deletionDate | date:'medium'"></span>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title="'database_tabs_dumps_status' | translate"
             data-property="status"
             data-sortable
         >
             <span
-                class="oui-status"
+                class="oui-badge"
                 data-ng-bind="'database_tabs_dumps_status_' + $row.status | translate"
                 data-ng-class="{
-                    'oui-status_success': $row.status === 'created',
-                    'oui-status_error': $row.status === 'deleting',
-                    'oui-status_warning': $row.status !== 'created' && $row.status !== 'deleting'
+                    'oui-badge_success': $row.status === 'created',
+                    'oui-badge_error': $row.status === 'deleting',
+                    'oui-badge_warning': $row.status !== 'created' && $row.status !== 'deleting'
                   }"
             >
             </span>
-        </oui-column>
+        </oui-datagrid-column>
         <oui-action-menu
-            data-align="end"
             data-compact
             data-ng-if="$row.status === 'created'"
+            data-placement="end"
         >
             <oui-action-menu-item
-                data-text="{{ 'database_tabs_dumps_download_dump' | translate }}"
                 data-ng-click="ctrlDumps.goTo($row.url, '_blank')"
                 data-ng-if="!$row.waitDelete"
-            >
+                ><span
+                    data-translate="database_tabs_dumps_download_dump"
+                ></span>
             </oui-action-menu-item>
             <oui-action-menu-item
-                data-text="{{ 'database_tabs_dumps_restore_dump' | translate }}"
                 data-ng-click="setAction('database/restore/hosting-database-restore', { bdd:bdd, dump:$row })"
                 data-ng-if="!bdd.waitRestore && !$row.waitDelete"
-            >
+                ><span data-translate="database_tabs_dumps_restore_dump"></span>
             </oui-action-menu-item>
             <oui-action-menu-item
-                data-text="{{ 'database_tabs_dumps_delete_dump' | translate }}"
                 data-ng-click="setAction('database/dump/delete/hosting-database-dump-delete', { database:bdd, dump:$row })"
                 data-ng-if="!$row.waitDelete"
-            >
+                ><span data-translate="database_tabs_dumps_delete_dump"></span>
             </oui-action-menu-item>
         </oui-action-menu>
     </oui-datagrid>

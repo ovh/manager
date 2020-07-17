@@ -2,7 +2,7 @@
     data-rows="$ctrl.subscriptions"
     data-row-loader="$ctrl.getSubscriptionDetails($row)"
 >
-    <oui-column
+    <oui-datagrid-column
         data-title=":: 'pci_projects_project_streams_stream_subscriptions_name_label' | translate"
         data-property="name"
         data-type="string"
@@ -10,9 +10,9 @@
         data-filterable
         data-sortable="asc"
     >
-    </oui-column>
+    </oui-datagrid-column>
 
-    <oui-column
+    <oui-datagrid-column
         data-title=":: 'pci_projects_project_streams_stream_subscriptions_lag_label' | translate"
         data-property="stats.lag"
         data-type="number"
@@ -20,22 +20,22 @@
         data-filterable
     >
         <span data-ng-bind="{{:: $row.stats.lag.toFixed(2) }}"></span>
-    </oui-column>
+    </oui-datagrid-column>
 
-    <oui-action-menu data-align="left-start" data-compact>
-        <oui-action-menu-item
-            data-text="{{:: 'pci_projects_project_streams_stream_subscriptions_reset_label' | translate }}"
-            data-on-click="$ctrl.resetSubscription($row)"
-        >
+    <oui-action-menu data-compact data-placement="left-start">
+        <oui-action-menu-item data-on-click="$ctrl.resetSubscription($row)"
+            ><span
+                data-translate="pci_projects_project_streams_stream_subscriptions_reset_label"
+            ></span>
         </oui-action-menu-item>
-        <oui-action-menu-item
-            data-text="{{:: 'pci_projects_project_streams_stream_subscriptions_delete_label' | translate }}"
-            data-on-click="$ctrl.deleteSubscription($row)"
-        >
+        <oui-action-menu-item data-on-click="$ctrl.deleteSubscription($row)"
+            ><span
+                data-translate="pci_projects_project_streams_stream_subscriptions_delete_label"
+            ></span>
         </oui-action-menu-item>
     </oui-action-menu>
 
-    <extra-top>
+    <oui-datagrid-topbar>
         <a
             data-ng-href="{{ $ctrl.addSubscribtionLink }}"
             class="oui-button oui-button_secondary oui-button_icon-left"
@@ -45,5 +45,5 @@
                 data-translate="pci_projects_project_streams_stream_subscriptions_add_label"
             ></span>
         </a>
-    </extra-top>
+    </oui-datagrid-topbar>
 </oui-datagrid>

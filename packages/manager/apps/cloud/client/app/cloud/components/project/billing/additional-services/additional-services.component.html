@@ -41,19 +41,19 @@
                 data-rows="instances"
                 data-ng-if="instances.length > 0"
             >
-                <oui-column
+                <oui-datagrid-column
                     data-title=" ::'cpbc_volume_col_name' | translate "
                     data-property="name"
                 >
-                </oui-column>
-                <oui-column
+                </oui-datagrid-column>
+                <oui-datagrid-column
                     data-title=" ::'cpbc_volume_col_consumption' | translate "
                     data-property="totalPrice"
                 >
                     <span
                         data-ng-bind="$ctrl.getAditionalServicePrice($row)"
                     ></span>
-                </oui-column>
+                </oui-datagrid-column>
             </oui-datagrid>
         </uib-accordion-group>
     </uib-accordion>

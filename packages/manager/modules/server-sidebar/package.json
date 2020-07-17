@@ -35,17 +35,17 @@
   },
   "devDependencies": {
     "@ovh-ux/component-rollup-config": "^7.0.0",
-    "ovh-ui-kit": "^2.42.8"
+    "@ovh-ux/ui-kit": "^4.1.12"
   },
   "peerDependencies": {
     "@ovh-ux/manager-config": "^0.4.0",
-    "@ovh-ux/manager-core": "^9.0.0",
+    "@ovh-ux/manager-core": "^9.0.0 || ^10.0.0",
     "@ovh-ux/ng-ovh-cloud-universe-components": "^1.5.0",
     "@ovh-ux/ng-ovh-sidebar-menu": "^9.1.2",
     "@ovh-ux/ng-translate-async-loader": "^2.1.0",
+    "@ovh-ux/ui-kit": "^4.1.12",
     "angular": "^1.7.8",
     "angular-translate": "^2.18.1",
-    "ovh-api-services": "^9.39.1",
-    "ovh-ui-kit": "^2.42.8"
+    "ovh-api-services": "^9.39.1"
   }
 }

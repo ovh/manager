@@ -41,12 +41,11 @@
     "@ovh-ux/component-rollup-config": "^7.0.0"
   },
   "peerDependencies": {
+    "@ovh-ux/ui-kit": "^4.1.12",
     "angular": "^1.6.10",
     "angular-translate": "^2.17.0",
     "angular-ui-bootstrap": "~1.3.3",
     "bootstrap": "^4.0.0",
-    "jquery": "^2.1.3",
-    "ovh-ui-angular": "^3.16.3",
-    "ovh-ui-kit": "^2.42.8"
+    "jquery": "^2.1.3"
   }
 }

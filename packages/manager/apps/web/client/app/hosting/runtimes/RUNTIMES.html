@@ -13,82 +13,83 @@
         data-rows="$ctrl.runtimes"
         data-page-size="10"
     >
-        <oui-column
+        <oui-datagrid-column
             data-title="'hosting_tab_RUNTIMES_table_header_default' | translate"
             data-property="isDefault"
             data-type="string"
         >
             <oui-checkbox data-model="$row.isDefault" disabled></oui-checkbox>
-        </oui-column>
+        </oui-datagrid-column>
 
-        <oui-column
+        <oui-datagrid-column
             data-title="'hosting_tab_RUNTIMES_table_header_name' | translate"
             data-property="name"
             data-type="string"
-        ></oui-column>
-        <oui-column
+        ></oui-datagrid-column>
+        <oui-datagrid-column
             data-title="'hosting_tab_RUNTIMES_table_header_language' | translate"
             data-property="type"
             data-type="string"
-        ></oui-column>
-        <oui-column
+        ></oui-datagrid-column>
+        <oui-datagrid-column
             data-title="'hosting_tab_RUNTIMES_table_header_number_multisite' | translate"
             data-property="countAttachedDomains"
             data-type="string"
-        ></oui-column>
-        <oui-column
+        ></oui-datagrid-column>
+        <oui-datagrid-column
             data-title="'hosting_tab_ENVVARS_table_header_status' | translate"
             data-property="status"
         >
             <span
-                class="oui-status"
+                class="oui-badge"
                 data-ng-bind="'hosting_tab_RUNTIMES_table_status_' + $row.status | translate"
                 data-ng-class="{
-                    'oui-status_success': $row.status === 'created',
-                    'oui-status_error': $row.status === 'deleting',
-                    'oui-status_warning': $row.status !== 'created' && $row.status !== 'deleting'
+                    'oui-badge_success': $row.status === 'created',
+                    'oui-badge_error': $row.status === 'deleting',
+                    'oui-badge_warning': $row.status !== 'created' && $row.status !== 'deleting'
                 }"
             >
             </span>
-        </oui-column>
+        </oui-datagrid-column>
 
-        <oui-action-menu data-align="end" data-compact>
+        <oui-action-menu data-compact data-placement="end">
             <oui-action-menu-item
-                data-text="{{ 'hosting_tab_RUNTIMES_table_popover_modify' | translate }}"
                 data-on-click="setAction('runtimes/edit/hosting-runtimes-edit', { runtime: $row })"
                 data-disabled="$row.status !== 'created'"
-            >
+                ><span
+                    data-translate="hosting_tab_RUNTIMES_table_popover_modify"
+                ></span>
             </oui-action-menu-item>
 
             <oui-action-menu-item
-                data-text="{{ 'hosting_tab_RUNTIMES_table_popover_set_default' | translate }}"
                 data-on-click="setAction('runtimes/set-default/hosting-runtimes-set-default', { runtime: $row })"
                 data-disabled="$row.status !== 'created' || $row.isDefault"
-            >
+                ><span
+                    data-translate="hosting_tab_RUNTIMES_table_popover_set_default"
+                ></span>
             </oui-action-menu-item>
 
             <oui-action-menu-divider></oui-action-menu-divider>
 
             <oui-action-menu-item
-                data-text="{{ 'hosting_tab_RUNTIMES_table_popover_delete' | translate }}"
                 data-on-click="setAction('runtimes/delete/hosting-runtimes-delete', { runtime: $row })"
                 data-disabled="!$row.isDeletable"
-            >
+                ><span
+                    data-translate="hosting_tab_RUNTIMES_table_popover_delete"
+                ></span>
             </oui-action-menu-item>
         </oui-action-menu>
 
-        <extra-top>
+        <oui-datagrid-topbar>
             <oui-action-menu
                 data-text="{{ 'hosting_tab_RUNTIMES_actions' | translate }}"
-                data-align="start"
             >
                 <oui-action-menu-item
-                    data-text="{{ 'hosting_tab_RUNTIMES_add' | translate }}"
                     data-on-click="setAction('runtimes/add/hosting-runtimes-add')"
                     data-disabled="!$ctrl.canAddRuntime()"
-                >
+                    ><span data-translate="hosting_tab_RUNTIMES_add"></span>
                 </oui-action-menu-item>
             </oui-action-menu>
-        </extra-top>
+        </oui-datagrid-topbar>
     </oui-datagrid>
 </div>

@@ -19,12 +19,12 @@
     "popper.js": "^1.14.7"
   },
   "peerDependencies": {
+    "@ovh-ux/ui-kit": "^4.1.12",
     "angular": "^1.7.5",
     "angular-aria": "^1.7.5",
     "angular-dynamic-locale": "^0.1.37",
     "angular-i18n": "~1.5.x",
     "angular-sanitize": "^1.7.5",
-    "angular-translate": "^2.18.1",
-    "ovh-ui-angular": "^3.16.3"
+    "angular-translate": "^2.18.1"
   }
 }

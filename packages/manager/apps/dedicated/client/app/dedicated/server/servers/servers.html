@@ -1,7 +1,7 @@
 <div class="dedicated-servers">
-    <oui-page-header
+    <oui-header
         data-heading="{{ :: 'dedicated_servers_title' | translate }}"
-    ></oui-page-header>
+    ></oui-header>
     <div class="container-fluid my-5">
         <oui-datagrid
             id="dg-servers"
@@ -13,7 +13,7 @@
             data-on-sort-change="$ctrl.onSortChange($sort)"
             data-columns="$ctrl.columnsConfig"
         >
-            <oui-column
+            <oui-datagrid-column
                 data-title=":: 'dedicated_servers_name' | translate"
                 data-property="name"
                 data-searchable
@@ -24,8 +24,8 @@
                 <a data-ng-href="{{ $ctrl.getServerDashboardLink($row) }}"
                     >{{$value}}</a
                 >
-            </oui-column>
-            <oui-column
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 data-title=":: 'dedicated_servers_reverse' | translate"
                 data-property="reverse"
                 data-searchable
@@ -33,8 +33,8 @@
                 data-sortable
                 data-type="string"
             >
-            </oui-column>
-            <oui-column
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 title=":: 'dedicated_servers_model' | translate"
                 data-property="commercialRange"
                 data-searchable
@@ -42,8 +42,8 @@
                 data-sortable
                 data-type="string"
             >
-            </oui-column>
-            <oui-column
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 data-title=":: 'dedicated_servers_localization' | translate"
                 data-property="datacenter"
                 data-searchable
@@ -55,8 +55,8 @@
                 <span
                     data-translate="{{:: 'server_datacenter_' + $ctrl.constructor.toUpperSnakeCase($value) }}"
                 ></span>
-            </oui-column>
-            <oui-column
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 data-title=":: 'dedicated_servers_status' | translate"
                 data-property="state"
                 data-filterable
@@ -65,16 +65,16 @@
                 data-type-options="$ctrl.stateEnumFilter"
             >
                 <span
-                    class="oui-status"
+                    class="oui-badge"
                     data-ng-class="{
-                    'oui-status_success': $ctrl.constructor.toUpperSnakeCase($value) === 'OK',
-                    'oui-status_warning': $ctrl.constructor.toUpperSnakeCase($value) === 'ERROR',
-                    'oui-status_error': $ctrl.constructor.toUpperSnakeCase($value) === 'HACKED' || $ctrl.constructor.toUpperSnakeCase($value) === 'HACKED_BLOCKED'
+                    'oui-badge_success': $ctrl.constructor.toUpperSnakeCase($value) === 'OK',
+                    'oui-badge_warning': $ctrl.constructor.toUpperSnakeCase($value) === 'ERROR',
+                    'oui-badge_error': $ctrl.constructor.toUpperSnakeCase($value) === 'HACKED' || $ctrl.constructor.toUpperSnakeCase($value) === 'HACKED_BLOCKED'
                     }"
                     data-translate="{{:: 'server_configuration_state_' + $ctrl.constructor.toUpperSnakeCase($value) }}"
                 ></span>
-            </oui-column>
-            <extra-top>
+            </oui-datagrid-column>
+            <oui-datagrid-topbar>
                 <a
                     class="oui-button oui-button_secondary oui-button_icon-right"
                     data-track-on="click"
@@ -86,11 +86,11 @@
                 >
                     <span data-translate="dedicated_servers_order"></span>
                     <span
-                        class="oui-icon  oui-icon-external_link"
+                        class="oui-icon oui-icon-external-link"
                         aria-hidden="true"
                     ></span>
                 </a>
-            </extra-top>
+            </oui-datagrid-topbar>
         </oui-datagrid>
     </div>
 </div>

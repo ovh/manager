@@ -8,34 +8,40 @@
         data-rows="ctrlEmailsTabTasksCtrl.taskIds"
         data-row-loader="ctrlEmailsTabTasksCtrl.transformItem($row)"
     >
-        <oui-column
+        <oui-datagrid-column
             data-title="'email_tab_TASK_table_function' | translate"
             data-property="action"
-        ></oui-column>
-        <oui-column data-title="'email_tab_TASK_table_account' | translate">
+        ></oui-datagrid-column>
+        <oui-datagrid-column
+            data-title="'email_tab_TASK_table_account' | translate"
+        >
             <span data-ng-bind="($row.account || $row.name)"></span>
-        </oui-column>
-        <oui-column data-property="domain"></oui-column>
-        <oui-column data-title="'email_tab_TASK_table_start_date' | translate">
+        </oui-datagrid-column>
+        <oui-datagrid-column data-property="domain"></oui-datagrid-column>
+        <oui-datagrid-column
+            data-title="'email_tab_TASK_table_start_date' | translate"
+        >
             <span
                 data-ng-bind="($row.date || $row.timestamp) | date:'medium'"
             ></span>
-        </oui-column>
-        <oui-column data-title="'email_tab_TASK_table_state' | translate">
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title="'email_tab_TASK_table_state' | translate"
+        >
             <span
-                class="oui-status"
+                class="oui-badge"
                 data-ng-if="$row.status"
                 data-ng-class="{
-                    'oui-status_info': $row.status !== 'ERROR' && $row.status !== 'DONE',
-                    'oui-status_error': $row.status === 'ERROR',
-                    'oui-status_success': $row.status === 'DONE' }"
+                    'oui-badge_info': $row.status !== 'ERROR' && $row.status !== 'DONE',
+                    'oui-badge_error': $row.status === 'ERROR',
+                    'oui-badge_success': $row.status === 'DONE' }"
                 data-ng-bind="'email_tab_TASK_status_' + $row.status | translate"
             ></span>
             <span
-                class="oui-status oui-status_info"
+                class="oui-badge oui-badge_info"
                 data-ng-if="!$row.status"
                 data-translate="email_tab_TASK_status_DOING"
             ></span>
-        </oui-column>
+        </oui-datagrid-column>
     </oui-datagrid>
 </div>

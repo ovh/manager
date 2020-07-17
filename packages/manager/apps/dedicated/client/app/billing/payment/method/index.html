@@ -37,7 +37,7 @@
             <span
                 data-translate="billing_payment_method_autorenew_guide_help_link"
             ></span>
-            <span class="oui-icon oui-icon-external_link" aria-hidden="true">
+            <span class="oui-icon oui-icon-external-link" aria-hidden="true">
             </span>
             <span class="sr-only" data-translate="common_new_tab"></span>
         </a>
@@ -46,7 +46,7 @@
     <h2 data-translate="billing_payment_method_title"></h2>
 
     <oui-datagrid data-rows="$ctrl.paymentMethods">
-        <oui-column
+        <oui-datagrid-column
             data-title=":: 'billing_payment_method_table_type' | translate"
             data-property="paymentType"
             data-type="options"
@@ -57,8 +57,8 @@
             <span
                 data-ng-bind="$ctrl.ovhPaymentMethodHelper.getPaymentMethodTypeText($row)"
             ></span>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title=":: 'billing_payment_method_table_label' | translate"
             data-property="label"
             data-type="string"
@@ -67,8 +67,8 @@
             data-filterable
         >
             <span data-ng-bind="$row.label || '-'"></span>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title=":: 'billing_payment_method_table_expiration_date' | translate"
             data-property="expirationDate"
         >
@@ -77,8 +77,8 @@
                 data-ng-bind="$row.expirationDate ? ($row.expirationDate | date:'shortDate') : '-'"
             >
             </span>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title=":: 'billing_payment_method_table_description' | translate"
             data-property="description"
             data-type="string"
@@ -94,22 +94,22 @@
             </span>
             <span data-ng-bind="$row.description" data-ng-if="$row.description">
             </span>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title=":: 'billing_payment_method_table_default' | translate"
             data-property="default"
         >
             <span
-                class="oui-status"
+                class="oui-badge"
                 data-ng-class="{
-                      'oui-status_success': $row.default,
-                      'oui-status_error': !$row.default
+                      'oui-badge_success': $row.default,
+                      'oui-badge_error': !$row.default
                   }"
                 data-translate="{{ $row.default ? 'common_yes' : 'common_no' }}"
             >
             </span>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title=":: 'billing_payment_method_table_state' | translate"
             data-property="status"
             data-type="options"
@@ -120,9 +120,9 @@
             <span
                 data-ng-bind="$ctrl.ovhPaymentMethodHelper.getPaymentMethodStatusText($row)"
             ></span>
-        </oui-column>
+        </oui-datagrid-column>
 
-        <oui-action-menu data-align="end" data-compact>
+        <oui-action-menu data-compact data-placement="end">
             <oui-action-menu-item
                 data-aria-label="{{ :: ('billing_payment_method_table_action_download_procedure' | translate) + ' ' + ('billing_common_link_new_window' | translate) }}"
                 data-href="{{ $row.original.validationDocumentLink }}"
@@ -165,14 +165,14 @@
             </oui-action-menu-item>
         </oui-action-menu>
 
-        <extra-top>
+        <oui-datagrid-topbar>
             <a
                 class="oui-button oui-button_secondary"
                 data-ng-href="{{ $ctrl.getActionHref('add') }}"
                 data-translate="billing_payment_method_table_top_add_method"
             >
             </a>
-        </extra-top>
+        </oui-datagrid-topbar>
     </oui-datagrid>
 
     <div data-ui-view></div>

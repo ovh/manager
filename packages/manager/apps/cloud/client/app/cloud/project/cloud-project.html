@@ -7,15 +7,15 @@
         class="cloud-project-compute-content"
         data-ng-if="!CloudProjectCtrl.loaders.project"
     >
-        <header class="oui-page-header">
-            <div class="oui-page-header__container">
-                <div class="oui-page-header__content">
+        <header class="oui-header">
+            <div class="oui-header__container">
+                <div class="oui-header__content">
                     <cloud-project-rename
                         data-ng-if="CloudProjectCtrl.model.project.description"
                         data-project-id="CloudProjectCtrl.model.project.project_id"
                     ></cloud-project-rename>
                     <h2
-                        class="oui-page-header__description"
+                        class="oui-header__description"
                         data-ng-bind="::CloudProjectCtrl.model.project.project_id"
                     ></h2>
                 </div>
@@ -26,81 +26,83 @@
                     data-text="{{ ::'cpc_header_tab_compute' | translate }}"
                 >
                     <oui-header-tabs-item
-                        data-text="{{ ::'cpc_tab_infra' | translate }}"
                         data-state="iaas.pci-project.compute.infrastructure.diagram"
                         data-on-click="CloudProjectCtrl.trackTab(CloudProjectCtrl.TRACKING_CLOUD.pci_menu_header_instances)"
                         data-state-params="{ serviceName: CloudProjectCtrl.serviceName }"
+                        ><span data-translate="cpc_tab_infra"></span
                     ></oui-header-tabs-item>
                     <oui-header-tabs-item
-                        data-text="{{ ::'cpc_tab_ssh' | translate }}"
                         data-state="iaas.pci-project.compute.ssh"
                         data-on-click="CloudProjectCtrl.trackTab(CloudProjectCtrl.TRACKING_CLOUD.pci_menu_header_ssh_keys)"
                         data-state-params="{ serviceName: CloudProjectCtrl.serviceName }"
+                        ><span data-translate="cpc_tab_ssh"></span
                     ></oui-header-tabs-item>
                     <oui-header-tabs-item
-                        data-text="{{ ::'cpc_tab_snapshot' | translate }}"
                         data-state="iaas.pci-project.compute.snapshot"
                         data-on-click="CloudProjectCtrl.trackTab(CloudProjectCtrl.TRACKING_CLOUD.pci_menu_header_snapshots)"
                         data-state-params="{ serviceName: CloudProjectCtrl.serviceName }"
+                        ><span data-translate="cpc_tab_snapshot"></span
                     ></oui-header-tabs-item>
                     <oui-header-tabs-item
-                        data-text="{{ ::'cpc_tab_volume' | translate }}"
                         data-state="iaas.pci-project.compute.volume"
                         data-on-click="CloudProjectCtrl.trackTab(CloudProjectCtrl.TRACKING_CLOUD.pci_menu_header_volume)"
                         data-state-params="{ serviceName: CloudProjectCtrl.serviceName }"
+                        ><span data-translate="cpc_tab_volume"></span
                     ></oui-header-tabs-item>
                 </oui-header-tabs-dropdown>
                 <oui-header-tabs-item
-                    data-text="{{ ::'cloud_sidebar_pci_object_storage' | translate }}"
                     data-state="iaas.pci-project.compute.storage"
                     data-on-click="CloudProjectCtrl.trackTab(CloudProjectCtrl.TRACKING_CLOUD.pci_menu_header_storage)"
                     data-state-params="{ serviceName: CloudProjectCtrl.serviceName }"
+                    ><span
+                        data-translate="cloud_sidebar_pci_object_storage"
+                    ></span
                 ></oui-header-tabs-item>
                 <oui-header-tabs-dropdown
                     data-text="{{ ::'cpc_header_tab_tech_mgmt' | translate }}"
                 >
                     <oui-header-tabs-item
-                        data-text="{{ ::'cpc_header_tab_openstack' | translate }}"
                         data-state="iaas.pci-project.compute.openstack"
                         data-on-click="CloudProjectCtrl.trackTab(CloudProjectCtrl.TRACKING_CLOUD.pci_menu_header_openstack_users)"
                         data-state-params="{ serviceName: CloudProjectCtrl.serviceName }"
+                        ><span data-translate="cpc_header_tab_openstack"></span
                     ></oui-header-tabs-item>
                     <oui-header-tabs-item
-                        data-text="{{ ::'cpb_tab_quota' | translate }}"
                         data-on-click="CloudProjectCtrl.trackTab(CloudProjectCtrl.TRACKING_CLOUD.pci_menu_header_quota)"
                         data-state="iaas.pci-project.compute.quota"
+                        ><span data-translate="cpb_tab_quota"></span
                     ></oui-header-tabs-item>
                     <oui-header-tabs-item
-                        data-text="{{ ::'cpc_header_tab_regions' | translate }}"
                         data-state="iaas.pci-project.compute.regions"
                         data-on-click="CloudProjectCtrl.trackTab(CloudProjectCtrl.TRACKING_CLOUD.pci_menu_header_regions)"
                         data-state-params="{ serviceName: CloudProjectComputeCtrl.serviceName }"
+                        ><span data-translate="cpc_header_tab_regions"></span
                     ></oui-header-tabs-item>
                 </oui-header-tabs-dropdown>
                 <oui-header-tabs-dropdown
                     data-text="{{ ::'cpb_header_tab_admin_mgmt' | translate }}"
                 >
                     <oui-header-tabs-item
-                        data-text="{{ ::'cpb_tab_consumption' | translate }}"
                         data-on-click="CloudProjectCtrl.trackTab(CloudProjectCtrl.TRACKING_CLOUD.pci_menu_header_consumption)"
                         data-state="iaas.pci-project.billing.consumption.current"
+                        ><span data-translate="cpb_tab_consumption"></span
                     ></oui-header-tabs-item>
                     <oui-header-tabs-item
-                        data-text="{{ ::'cpb_tab_history' | translate }}"
                         data-on-click="CloudProjectCtrl.trackTab(CloudProjectCtrl.TRACKING_CLOUD.pci_menu_header_billing_history)"
                         data-state="iaas.pci-project.billing.history"
+                        ><span data-translate="cpb_tab_history"></span
                     ></oui-header-tabs-item>
                     <oui-header-tabs-item
-                        data-text="{{ ::'cpb_tab_vouchers' | translate }}"
                         data-ng-if="region !== 'US'"
                         data-on-click="CloudProjectCtrl.trackTab(CloudProjectCtrl.TRACKING_CLOUD.pci_menu_header_credits)"
                         data-state="iaas.pci-project.billing.vouchers"
+                        ><span data-translate="cpb_tab_vouchers"></span
                     ></oui-header-tabs-item>
                     <oui-header-tabs-item
-                        data-text="{{ ::'cpb_tab_rights' | translate }}"
                         data-ng-if="region !== 'US'"
                         data-on-click="CloudProjectCtrl.trackTab(CloudProjectCtrl.TRACKING_CLOUD.pci_menu_header_contracts)"
                         data-state="iaas.pci-project.billing.rights"
+                        ><span data-translate="cpb_tab_rights"></span
                     ></oui-header-tabs-item>
                 </oui-header-tabs-dropdown>
             </oui-header-tabs>

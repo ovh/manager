@@ -1,24 +1,24 @@
 <div>
     <span data-translate="analytics_data_platform_service_activity_desc"></span>
     <oui-datagrid data-rows="$ctrl.activities" class="mt-3">
-        <extra-top>
+        <oui-datagrid-topbar>
             <button
                 type="button"
-                class="float-right oui-button oui-button_secondary oui-button_icon-only oui-button_small-width"
+                class="float-right oui-button oui-button_secondary oui-button_icon-only oui-button_s"
                 title="{{:: 'analytics_data_platform_service_activity_refresh' | translate }}"
                 data-ng-click="$ctrl.refresh()"
             >
                 <span class="fa fa-refresh" aria-hidden="true"></span>
             </button>
-        </extra-top>
-        <oui-column
+        </oui-datagrid-topbar>
+        <oui-datagrid-column
             data-title="::'analytics_data_platform_service_activity_table_timestamp' | translate"
             data-property="timestamp"
             data-sortable="asc"
         >
             <span data-ng-bind="$row.timestamp | date: 'medium'"></span>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title="::'analytics_data_platform_service_activity_table_desc' | translate"
             data-property="description"
             data-sortable
@@ -26,16 +26,16 @@
             data-searchable
             data-filterable
         >
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title="::'analytics_data_platform_service_activity_table_user' | translate"
             data-property="user"
             data-sortable
             data-type="string"
             data-filterable
         >
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title="::'analytics_data_platform_common_status' | translate"
             data-property="status"
             data-sortable
@@ -43,10 +43,10 @@
             data-filterable
         >
             <span
-                class="oui-status"
-                data-ng-class="'oui-status_' + $ctrl.ANALYTICS_DATA_PLATFORM_STATUS_MAP[$row.status]"
+                class="oui-badge"
+                data-ng-class="'oui-badge_' + $ctrl.ANALYTICS_DATA_PLATFORM_STATUS_MAP[$row.status]"
                 data-ng-bind=":: 'analytics_data_platform_common_status_' +$row.status | translate"
             ></span>
-        </oui-column>
+        </oui-datagrid-column>
     </oui-datagrid>
 </div>

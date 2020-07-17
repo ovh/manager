@@ -3,7 +3,7 @@ import angular from 'angular';
 // Peer dependencies.
 import '@ovh-ux/ng-ovh-telecom-universe-components';
 import 'ovh-api-services';
-import 'ovh-ui-angular';
+import '@ovh-ux/ui-kit';
 
 // Components.
 import component from './cdr.component';

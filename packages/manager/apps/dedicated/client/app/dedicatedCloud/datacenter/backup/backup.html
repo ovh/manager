@@ -151,10 +151,12 @@
                     </oui-checkbox>
                     <oui-button
                         data-variant="primary"
-                        data-text="{{ ::'dedicatedCloud_datacenter_backup_capability_update' | translate }}"
                         data-disabled="!backupCapabilitiesForm.$dirty || $ctrl.backupOffersUnderProcess"
                         type="submit"
                         data-ng-if="!$ctrl.loader.updatingCapabilities"
+                        ><span
+                            data-translate="dedicatedCloud_datacenter_backup_capability_update"
+                        ></span
                     ></oui-button>
                     <oui-spinner
                         data-size="m"

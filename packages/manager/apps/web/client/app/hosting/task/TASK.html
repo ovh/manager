@@ -14,7 +14,7 @@
     </div>
 
     <oui-datagrid data-rows-loader="ctrl.loadPaginated($config)">
-        <oui-column
+        <oui-datagrid-column
             data-title="'hosting_tab_TASKS_table_state' | translate"
             data-property="function"
         >
@@ -33,31 +33,31 @@
                 class="oui-tile__term"
                 data-translate="hosting_tab_TASKS_status_backup_FTP"
             ></div>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title="'hosting_tab_TASKS_table_start_date' | translate"
             data-property="status"
         >
             <span
-                class="oui-status"
-                data-ng-class="{ 'oui-status_info': $row.status !== 'ERROR' && $row.status !== 'DONE',
-                                   'oui-status_error': $row.status === 'ERROR',
-                                   'oui-status_success': $row.status === 'DONE'}"
+                class="oui-badge"
+                data-ng-class="{ 'oui-badge_info': $row.status !== 'ERROR' && $row.status !== 'DONE',
+                                   'oui-badge_error': $row.status === 'ERROR',
+                                   'oui-badge_success': $row.status === 'DONE'}"
                 data-ng-bind="'hosting_tab_TASKS_status_' +  $row.status | translate"
             >
             </span>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title="'hosting_tab_TASKS_table_function' | translate"
             data-property="startDate"
         >
             <span data-ng-bind="$row.startDate | date:'short'"></span>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title="'hosting_tab_TASKS_table_finish_date' | translate"
             data-property="doneDate"
         >
             <span data-ng-bind="$row.doneDate | date: 'short'"></span>
-        </oui-column>
+        </oui-datagrid-column>
     </oui-datagrid>
 </div>

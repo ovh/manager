@@ -1,9 +1,9 @@
 <div class="cui-page__content archives-home">
     <oui-back-button
-        data-heading="{{ ::'streams_archives_title' | translate }}"
+        ><span data-translate="streams_archives_title"></span
     ></oui-back-button>
 
-    <h6 class="oui-header_6">
+    <h6 class="oui-heading_6">
         {{::'streams_archives_current_title' | translate}}
         {{::ctrl.stream.data.title}}
     </h6>
@@ -26,17 +26,17 @@
         rows-loader="ctrl.loadArchives($config)"
         page-size="25"
     >
-        <oui-column
+        <oui-datagrid-column
             data-title="::'streams_archives_file_name' | translate"
             data-property="filename"
-        ></oui-column>
-        <oui-column
+        ></oui-datagrid-column>
+        <oui-datagrid-column
             data-title="::'streams_archives_size' | translate"
             data-property="size"
         >
             {{$row.size | bytes: 1:true:"B"}}
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title="::'streams_archives_signatures' | translate"
             data-property="sha256"
         >
@@ -48,35 +48,33 @@
                 data-translate="streams_archives_sha256_value"
                 data-translate-values="{{$row}}"
             ></div>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title="::'streams_archives_status' | translate"
             data-property="retrievalState"
         >
             <span
-                class="oui-status"
+                class="oui-badge"
                 data-translate="{{'streams_archives_' + $row.retrievalState}}"
                 data-ng-class="{
-                    'oui-status_info': $row.retrievalStateType === 'info',
-                    'oui-status_success': $row.retrievalStateType === 'success',
-                    'oui-status_warning': $row.retrievalStateType === 'warning'}"
+                    'oui-badge_info': $row.retrievalStateType === 'info',
+                    'oui-badge_success': $row.retrievalStateType === 'success',
+                    'oui-badge_warning': $row.retrievalStateType === 'warning'}"
             >
             </span>
-        </oui-column>
-        <oui-action-menu data-align="end" compact>
+        </oui-datagrid-column>
+        <oui-action-menu compact data-placement="end">
             <oui-action-menu-item
                 data-ng-if="$row.retrievalState !== ctrl.LogsConstants.state.UNSEALED"
-                text="{{::'streams_archives_unfreeze' | translate}}"
                 on-click="ctrl.unfreeze($row)"
                 disabled="$row.retrievalState === ctrl.LogsConstants.state.UNSEALING || ctrl.archiveReload.loading"
-            >
+                ><span data-translate="streams_archives_unfreeze"></span>
             </oui-action-menu-item>
             <oui-action-menu-item
                 data-ng-if="$row.retrievalState === ctrl.LogsConstants.state.UNSEALED"
-                text="{{::'streams_archives_download' | translate}}"
                 on-click="ctrl.download($row)"
                 disabled="ctrl.archiveDownload.loading"
-            >
+                ><span data-translate="streams_archives_download"></span>
             </oui-action-menu-item>
         </oui-action-menu>
     </oui-datagrid>

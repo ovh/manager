@@ -12,10 +12,7 @@
                     class="sr-only"
                     data-translate="cpb_details_project_rename"
                 ></span>
-                <i
-                    class="oui-icon oui-icon-pen_line oui-icon_small"
-                    aria-hidden="true"
-                ></i>
+                <i class="oui-icon oui-icon-pen_concept" aria-hidden="true"></i>
             </button>
         </h1>
     </div>
@@ -35,38 +32,39 @@
             novalidate
         >
             <div class="input-group">
-                <label for="description" class="sr-only" />
-                <input
-                    id="description"
-                    title="{{ :: 'cpb_details_project_description' | translate }}"
-                    class="form-control"
-                    type="text"
-                    name="projectDescription"
-                    data-ng-model="ctrl.editing.description"
-                    cuc-autofocus
-                    cuc-autoselect
-                />
-                <div class="input-group-btn">
-                    <button
-                        role="button"
-                        class="btn"
-                        type="reset"
-                        data-ng-click="ctrl.editing.description = null"
-                    >
-                        <span
-                            class="sr-only"
-                            data-translate="cpb_details_project_rename_reset"
-                        ></span>
-                        <i class="fa fa-times" aria-hidden="true"></i>
-                    </button>
-                    <button role="button" class="btn" type="submit">
-                        <span
-                            class="sr-only"
-                            data-translate="cpb_details_project_rename_ok"
-                        ></span>
-                        <i class="fa fa-check" aria-hidden="true"></i>
-                    </button>
-                </div>
+                <label for="description" class="sr-only">
+                    <input
+                        id="description"
+                        title="{{ :: 'cpb_details_project_description' | translate }}"
+                        class="form-control"
+                        type="text"
+                        name="projectDescription"
+                        data-ng-model="ctrl.editing.description"
+                        cuc-autofocus
+                        cuc-autoselect
+                    />
+                    <div class="input-group-btn">
+                        <button
+                            role="button"
+                            class="btn"
+                            type="reset"
+                            data-ng-click="ctrl.editing.description = null"
+                        >
+                            <span
+                                class="sr-only"
+                                data-translate="cpb_details_project_rename_reset"
+                            ></span>
+                            <i class="fa fa-times" aria-hidden="true"></i>
+                        </button>
+                        <button role="button" class="btn" type="submit">
+                            <span
+                                class="sr-only"
+                                data-translate="cpb_details_project_rename_ok"
+                            ></span>
+                            <i class="fa fa-check" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </label>
             </div>
         </form>
     </div>

@@ -1,18 +1,19 @@
 <div data-ui-view>
-    <oui-page-header
+    <oui-header
         data-heading="{{ ::'enterprise_cloud_database_title' | translate }}"
     >
         <oui-guide-menu
             data-text="{{ ::'enterprise_cloud_database_guides' | translate }}"
         >
             <oui-guide-menu-item
-                data-text="{{ ::'enterprise_cloud_database_guides_main' | translate }}"
                 data-href="{{:: $ctrl.GUIDELINK }}"
                 data-external
-            >
+                ><span
+                    data-translate="enterprise_cloud_database_guides_main"
+                ></span>
             </oui-guide-menu-item>
         </oui-guide-menu>
-    </oui-page-header>
+    </oui-header>
     <div class="container-fluid w-100 h-100 pt-4 px-3 px-md-5">
         <!-- error messages -->
         <cui-message-container
@@ -26,7 +27,7 @@
             data-rows="$ctrl.clusters"
             data-row-loader="$ctrl.loadRow($row)"
         >
-            <oui-column
+            <oui-datagrid-column
                 data-title=":: 'enterprise_cloud_database_list_service_name' | translate"
                 data-property="details.name"
                 data-sortable="asc"
@@ -41,8 +42,8 @@
                 >
                     <span data-ng-bind="::$row.details.name"></span>
                 </oui-button>
-            </oui-column>
-            <oui-column
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 data-title=":: 'enterprise_cloud_database_list_endpoint' | translate"
                 data-property="endpoints"
             >
@@ -54,8 +55,8 @@
                         data-ng-bind="endpoint.port"
                     ></span>
                 </div>
-            </oui-column>
-            <oui-column
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 data-title=":: 'enterprise_cloud_database_list_database_engine' | translate"
                 data-property="details.offerType"
                 data-type="string"
@@ -64,14 +65,14 @@
                 <span
                     data-ng-bind="$ctrl.DATABASE_CONSTANTS[$row.details.offerType].name + ' ' + $row.details.version"
                 ></span>
-            </oui-column>
-            <oui-column
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 data-title=":: 'enterprise_cloud_database_list_region' | translate"
                 data-property="details.regionName"
                 data-type="string"
                 data-sortable
-            ></oui-column>
-            <oui-column
+            ></oui-datagrid-column>
+            <oui-datagrid-column
                 data-title=":: 'enterprise_cloud_database_list_ram_title' | translate"
                 data-property="offer.memory.size"
                 data-type="string"
@@ -81,8 +82,8 @@
                     data-translate="enterprise_cloud_database_list_ram_size"
                     data-translate-values="{ size: $row.offer.memory.size }"
                 ></span>
-            </oui-column>
-            <oui-column
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 data-title=":: 'enterprise_cloud_database_list_storage_title' | translate"
                 data-property="offer.storage.size"
                 data-type="string"
@@ -92,8 +93,8 @@
                     data-ng-bind="$row.offer.storage.usableSize | cucBytes:2:false:'GB'"
                 ></span>
                 <span data-ng-bind="$row.offer.storage.type"></span>
-            </oui-column>
-            <oui-column
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 data-title=":: 'enterprise_cloud_database_common_status' | translate"
                 data-property="details.status"
                 data-type="string"
@@ -102,15 +103,15 @@
                 data-searchable
             >
                 <span
-                    class="oui-status"
-                    data-ng-class="'oui-status_' + $ctrl.enterpriseCloudDatabaseService.constructor.getStatusGroup($row.details.status)"
+                    class="oui-badge"
+                    data-ng-class="'oui-badge_' + $ctrl.enterpriseCloudDatabaseService.constructor.getStatusGroup($row.details.status)"
                     data-ng-bind=":: ('enterprise_cloud_database_common_status_' + $row.details.status) | translate"
                 ></span>
-            </oui-column>
+            </oui-datagrid-column>
             <oui-action-menu
-                data-align="end"
                 data-compact
                 data-disabled="$ctrl.STATUS.SUSPENDING === $row.details.status || $ctrl.enterpriseCloudDatabaseService.constructor.isError($row.details.status)"
+                data-placement="end"
             >
                 <oui-action-menu-item
                     data-ng-if="$row.user"
@@ -136,7 +137,7 @@
                     ></span>
                 </oui-action-menu-item>
             </oui-action-menu>
-            <extra-top>
+            <oui-datagrid-topbar>
                 <oui-button
                     data-variant="primary"
                     data-on-click="$ctrl.createCluster()"
@@ -146,7 +147,7 @@
                     ></span>
                 </oui-button>
                 <button
-                    class="float-right oui-button oui-button_secondary oui-button_icon-only oui-button_small-width"
+                    class="float-right oui-button oui-button_secondary oui-button_icon-only oui-button_s"
                     type="button"
                     data-title="{{:: 'enterprise_cloud_database_common_refresh' | translate }}"
                     data-ng-click="$ctrl.refreshing=true; $ctrl.refreshClusterList()"
@@ -154,7 +155,7 @@
                 >
                     <span class="fa fa-refresh" aria-hidden="true"></span>
                 </button>
-            </extra-top>
+            </oui-datagrid-topbar>
         </oui-datagrid>
     </div>
 </div>

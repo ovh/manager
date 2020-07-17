@@ -9,10 +9,11 @@
         <div data-ng-if="$ctrl.postalMailOptions.enabled">
             <oui-checkbox
                 class="d-inline-block ml-3"
-                data-text="{{ :: 'billing_main_history_legacy_invoices_postal_mail' | translate }}"
                 data-on-change="$ctrl.onPostalMailOptionsChange()"
                 data-model="$ctrl.postalMailOptions.activated"
-            >
+                ><span
+                    data-translate="billing_main_history_legacy_invoices_postal_mail"
+                ></span>
             </oui-checkbox>
         </div>
 
@@ -54,15 +55,15 @@
             data-on-criteria-change="$ctrl.onCriteriaChange($criteria)"
             data-criteria="$ctrl.criteria"
         >
-            <oui-column
+            <oui-datagrid-column
                 data-title=":: 'billing_main_history_legacy_table_id' | translate"
                 data-property="billId"
                 data-searchable
                 data-type="string"
                 data-sortable
             >
-            </oui-column>
-            <oui-column
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 data-title=":: 'billing_main_history_legacy_table_date' | translate"
                 data-property="date"
                 data-sortable="desc"
@@ -79,8 +80,8 @@
                     data-translate="billing_main_history_legacy_table_unavailable"
                 >
                 </span>
-            </oui-column>
-            <oui-column
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 data-title=":: $ctrl.currentUser.isVATNeeded ? 'billing_main_history_legacy_table_total_with_VAT' : 'billing_main_history_legacy_table_total' | translate"
                 data-property="priceWithTax.value"
                 data-sortable
@@ -100,48 +101,51 @@
                     data-translate="billing_main_history_legacy_table_unavailable"
                 >
                 </span>
-            </oui-column>
-            <oui-action-menu data-align="end" data-compact>
+            </oui-datagrid-column>
+            <oui-action-menu data-compact data-placement="end">
                 <oui-action-menu-item
                     data-ng-if="$row.htmlUrl || $row.url"
-                    data-text="{{ :: 'billing_main_history_legacy_table_download_html' | translate }}"
                     data-href="{{ :: $row.htmlUrl || $row.url }}"
                     data-external
                     data-on-click="$ctrl.trackInvoiceOpening()"
-                >
+                    ><span
+                        data-translate="billing_main_history_legacy_table_download_html"
+                    ></span>
                 </oui-action-menu-item>
                 <oui-action-menu-item
                     data-ng-if="$row.pdfUrl"
-                    data-text="{{ :: 'billing_main_history_legacy_table_download_pdf' | translate }}"
                     data-href="{{ :: $row.pdfUrl }}"
                     data-external
                     data-on-click="$ctrl.trackInvoiceOpening()"
-                >
+                    ><span
+                        data-translate="billing_main_history_legacy_table_download_pdf"
+                    ></span>
                 </oui-action-menu-item>
                 <oui-action-menu-item
                     data-ng-if="$row.pdfBetaUrl"
-                    data-text="{{ :: 'billing_main_history_legacy_table_download_pdf_beta' | translate }}"
                     data-href="{{ :: $row.pdfBetaUrl }}"
                     data-external
                     data-on-click="$ctrl.trackInvoiceOpening()"
-                >
+                    ><span
+                        data-translate="billing_main_history_legacy_table_download_pdf_beta"
+                    ></span>
                 </oui-action-menu-item>
             </oui-action-menu>
 
-            <extra-top>
+            <oui-datagrid-topbar>
                 <oui-action-menu
                     data-text="{{ :: 'billing_main_history_legacy_table_actions' | translate }}"
                     data-aria-label="{{ :: 'billing_main_history_legacy_table_actions_title' | translate }}"
-                    data-align="start"
                 >
                     <oui-action-menu-item
-                        data-text="{{ :: 'billing_main_history_legacy_table_action_export' | translate }}"
                         data-aria-label="{{ :: 'billing_main_history_legacy_table_action_export_title' | translate }}"
                         data-on-click="$ctrl.exportToCsv()"
-                    >
+                        ><span
+                            data-translate="billing_main_history_legacy_table_action_export"
+                        ></span>
                     </oui-action-menu-item>
                 </oui-action-menu>
-            </extra-top>
+            </oui-datagrid-topbar>
         </oui-datagrid>
 
         <oui-datagrid
@@ -150,15 +154,15 @@
             data-on-criteria-change="$ctrl.onCriteriaChange($criteria)"
             data-criteria="$ctrl.criteria"
         >
-            <oui-column
+            <oui-datagrid-column
                 data-title=":: 'billing_main_history_legacy_table_id' | translate"
                 data-property="billId"
                 data-searchable
                 data-type="string"
                 data-sortable
             >
-            </oui-column>
-            <oui-column
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 data-title=":: 'billing_main_history_legacy_table_date' | translate"
                 data-property="date"
                 data-sortable="desc"
@@ -175,8 +179,8 @@
                     data-translate="billing_main_history_legacy_table_unavailable"
                 >
                 </span>
-            </oui-column>
-            <oui-column
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 data-title=":: $ctrl.currentUser.isVATNeeded ? 'billing_main_history_legacy_table_total_with_VAT' : 'billing_main_history_legacy_table_total' | translate"
                 data-property="priceWithTax.value"
                 data-sortable
@@ -196,8 +200,8 @@
                     data-translate="billing_main_history_legacy_table_unavailable"
                 >
                 </span>
-            </oui-column>
-            <oui-column
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 data-title=":: 'billing_main_history_legacy_table_balance_due_amount' | translate"
             >
                 <span
@@ -210,8 +214,8 @@
                     data-translate="billing_main_history_legacy_table_unavailable"
                 >
                 </span>
-            </oui-column>
-            <oui-column
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 data-title=":: 'billing_main_history_legacy_table_balance_due_date' | translate"
             >
                 <span
@@ -224,82 +228,91 @@
                     data-translate="billing_main_history_legacy_table_unavailable"
                 >
                 </span>
-            </oui-column>
-            <oui-action-menu data-align="end" data-compact>
+            </oui-datagrid-column>
+            <oui-action-menu data-compact data-placement="end">
                 <oui-action-menu-item
                     data-ng-if="$row.htmlUrl || $row.url"
-                    data-text="{{ :: 'billing_main_history_legacy_table_download_html' | translate }}"
                     data-href="{{ :: $row.htmlUrl || $row.url }}"
                     data-external
-                >
+                    ><span
+                        data-translate="billing_main_history_legacy_table_download_html"
+                    ></span>
                 </oui-action-menu-item>
                 <oui-action-menu-item
                     data-ng-if="$row.pdfUrl"
-                    data-text="{{ :: 'billing_main_history_legacy_table_download_pdf' | translate }}"
                     data-href="{{ :: $row.pdfUrl }}"
                     data-external
-                >
+                    ><span
+                        data-translate="billing_main_history_legacy_table_download_pdf"
+                    ></span>
                 </oui-action-menu-item>
                 <oui-action-menu-item
                     data-ng-if="$row.pdfBetaUrl"
-                    data-text="{{ :: 'billing_main_history_legacy_table_download_pdf_beta' | translate }}"
                     data-href="{{ :: $row.pdfBetaUrl }}"
                     data-external
-                >
+                    ><span
+                        data-translate="billing_main_history_legacy_table_download_pdf_beta"
+                    ></span>
                 </oui-action-menu-item>
                 <oui-action-menu-item
                     data-ng-if="$row.debt"
-                    data-text="{{ :: 'billing_main_history_legacy_table_debt_detail' | translate }}"
                     data-href="{{ :: $ctrl.$state.href('app.account.billing.main.history.debt.details', { debtId: $row.debt.debtId }) }}"
-                >
+                    ><span
+                        data-translate="billing_main_history_legacy_table_debt_detail"
+                    ></span>
                 </oui-action-menu-item>
                 <oui-action-menu-item
                     data-ng-if="$row.debt && $row.debt.dueAmount.value > 0 && !$row.debt.paymentOrder.url && $ctrl.coreConfig.getRegion() !== 'US'"
-                    data-text="{{ :: 'billing_main_history_legacy_table_debt_pay' | translate }}"
                     data-href="{{ :: $ctrl.$state.href('app.account.billing.main.history.pay-debt', { debtId: $row.debt.debtId }) }}"
-                >
+                    ><span
+                        data-translate="billing_main_history_legacy_table_debt_pay"
+                    ></span>
                 </oui-action-menu-item>
                 <oui-action-menu-item
                     data-ng-if="$row.debt && $row.debt.dueAmount.value > 0  && !$row.debt.paymentOrder.url && $ctrl.coreConfig.getRegion() === 'US'"
-                    data-text="{{ :: 'billing_main_history_legacy_table_debt_pay' | translate }}"
                     data-href="{{ :: $ctrl.$state.href('app.account.billing.main.history.balance') }}"
-                >
+                    ><span
+                        data-translate="billing_main_history_legacy_table_debt_pay"
+                    ></span>
                 </oui-action-menu-item>
                 <oui-action-menu-item
                     data-ng-if="$row.debt && $row.debt.todoAmount.value > 0 && !$row.debt.paymentOrder.url"
-                    data-text="{{ :: 'billing_main_history_legacy_table_debt_pay' | translate }}"
                     data-href="{{ :: $ctrl.$state.href('historyLine.debt.paymentOrder.url') }}"
-                >
+                    ><span
+                        data-translate="billing_main_history_legacy_table_debt_pay"
+                    ></span>
                 </oui-action-menu-item>
             </oui-action-menu>
-            <extra-top>
+            <oui-datagrid-topbar>
                 <oui-action-menu
                     data-text="{{ :: 'billing_main_history_legacy_table_actions' | translate }}"
                     data-aria-label="{{ :: 'billing_main_history_legacy_table_actions_title' | translate }}"
-                    data-align="start"
                 >
                     <oui-action-menu-item
-                        data-text="{{ :: 'billing_main_history_legacy_table_action_pay_debt' | translate }}"
                         data-aria-label="{{ :: 'billing_main_history_legacy_table_action_pay_debt_title' | translate }}"
                         data-href="{{ :: $ctrl.$state.href('app.account.billing.main.history.pay-debt', { debtId: 'all' }) }}"
                         data-ng-if="$ctrl.debtAccount.active && ($ctrl.debtAccount.dueAmount.value > 0 || $ctrl.debtAccount.todoAmount.value > 0) && $ctrl.coreConfig.getRegion() !== 'US'"
-                    >
+                        ><span
+                            data-translate="billing_main_history_legacy_table_action_pay_debt"
+                        ></span>
                     </oui-action-menu-item>
                     <oui-action-menu-item
-                        data-text="{{ :: 'billing_main_history_legacy_table_action_pay_debt' | translate }}"
                         data-aria-label="{{ :: 'billing_main_history_legacy_table_action_pay_debt_title' | translate }}"
                         data-href="{{ :: $ctrl.$state.href('app.account.billing.main.history.balance') }}"
                         data-ng-if="$ctrl.debtAccount.active && ($ctrl.debtAccount.dueAmount.value > 0 || $ctrl.debtAccount.todoAmount.value > 0) && $ctrl.coreConfig.getRegion() === 'US'"
-                    >
+                        ><span
+                            data-translate="billing_main_history_legacy_table_action_pay_debt"
+                        ></span>
                     </oui-action-menu-item>
                     <oui-action-menu-item
-                        data-text="{{ :: 'billing_main_history_legacy_table_action_export' | translate }}"
                         data-aria-label="{{ :: 'billing_main_history_legacy_table_action_export_title' | translate }}"
                         data-on-click="$ctrl.exportToCsv()"
-                    >
+                        ><span
+                            data-translate="billing_main_history_legacy_table_action_export"
+                        ></span>
                     </oui-action-menu-item>
                 </oui-action-menu>
-            </extra-top>
+            </oui-datagrid-topbar>
         </oui-datagrid>
     </div>
 </div>

@@ -1,13 +1,13 @@
-<div class="h-100 d-flex flex-column">
+<div class="cloud-sidebar-menu h-100 d-flex flex-column">
     <div class="oui-navbar-menu__header bg-white px-3">
         <div
             class="oui-navbar-menu__header-container"
             data-ng-if="$ctrl.isOpen"
         >
-            <div class="oui-navbar-menu__back h-100">
+            <div class="oui-navbar-menu__back">
                 <button
                     type="button"
-                    class="oui-button oui-button_link oui-button_icon-left"
+                    class="oui-button oui-button_primary oui-button_s"
                     data-ng-click="$ctrl.onClick()"
                     id="sidebar-focus"
                 >
@@ -21,7 +21,7 @@
                     ></span>
                 </button>
             </div>
-            <div class="w-100 text-truncate">
+            <div class="text-truncate">
                 <h3
                     class="oui-navbar-menu__title"
                     data-ng-bind="$ctrl.UNIVERSE"
@@ -48,7 +48,7 @@
                 <div class="my-auto">
                     <button
                         type="button"
-                        class="oui-button oui-button_primary oui-button_small-width rounded-circle project-list-toggle"
+                        class="oui-button oui-button_primary oui-button_s project-list-toggle"
                         data-ng-click="$ctrl.toggleProjectsList()"
                     >
                         <span
@@ -104,17 +104,17 @@
                                         ></span>
                                         <span
                                             data-ng-if="subitem.alpha"
-                                            class="oui-status oui-status_alpha ml-2"
+                                            class="oui-badge oui-badge_s oui-badge_alpha ml-2"
                                             data-translate="cloud_sidebar_alpha_project"
                                         ></span>
                                         <span
                                             data-ng-if="subitem.beta"
-                                            class="oui-status oui-status_beta ml-2"
+                                            class="oui-badge oui-badge_s oui-badge_beta ml-2"
                                             data-translate="cloud_sidebar_beta_project"
                                         ></span>
                                         <span
                                             data-ng-if="subitem.new"
-                                            class="oui-status oui-status_beta oui-badge_new ml-2"
+                                            class="oui-badge_beta oui-badge_new ml-2 oui-badge"
                                             data-translate="cloud_sidebar_new_project"
                                         ></span>
                                     </a>
@@ -130,7 +130,7 @@
                                             data-ng-bind=":: subitem.title"
                                         ></span>
                                         <span
-                                            class="oui-icon oui-icon-external_link"
+                                            class="oui-icon oui-icon-external-link"
                                             aria-hidden="true"
                                         ></span>
                                     </a>
@@ -152,7 +152,7 @@
         <div class="my-auto">
             <button
                 type="button"
-                class="oui-button oui-button_secondary oui-button_small-width rounded-circle project-list-toggle"
+                class="oui-button oui-button_primary oui-button_s project-list-toggle"
                 data-ng-click="$ctrl.toggleProjectsList()"
             >
                 <span
@@ -181,7 +181,7 @@
         <div class="oui-navbar-menu__back h-100">
             <button
                 type="button"
-                class="oui-button oui-button_link oui-button_icon-left"
+                class="oui-button oui-button_icon-left oui-button_ghost"
                 data-ng-click="$ctrl.toggleProjectsList()"
             >
                 <span

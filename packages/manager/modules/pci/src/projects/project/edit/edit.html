@@ -18,10 +18,11 @@
     <oui-field>
         <oui-checkbox
             name="isDefault"
-            text="{{ ::'pci_projects_project_edit_default_project' | translate }}"
             description="{{ ::'pci_projects_project_edit_default_project_description' | translate }}"
             model="$ctrl.isDefault"
-        >
+            ><span
+                data-translate="pci_projects_project_edit_default_project"
+            ></span>
         </oui-checkbox>
     </oui-field>
     <oui-button variant="primary" type="submit" disabled="$ctrl.loading.submit">

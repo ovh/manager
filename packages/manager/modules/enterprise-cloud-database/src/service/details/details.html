@@ -1,48 +1,61 @@
-<oui-page-header
+<oui-header
     data-heading="{{ $ctrl.clusterDetails.name }}"
     data-description="{{ $ctrl.clusterDetails.id }}"
 >
     <oui-guide-menu
         data-text="{{ ::'enterprise_cloud_database_guides' | translate }}"
     >
-        <oui-guide-menu-item
-            data-text="{{ ::'enterprise_cloud_database_guides_main' | translate }}"
-            data-href="{{:: $ctrl.GUIDELINK }}"
-            data-external
-        >
+        <oui-guide-menu-item data-href="{{:: $ctrl.GUIDELINK }}" data-external
+            ><span
+                data-translate="enterprise_cloud_database_guides_main"
+            ></span>
         </oui-guide-menu-item>
     </oui-guide-menu>
     <oui-header-tabs>
         <oui-header-tabs-item
-            data-text="{{ ::'enterprise_cloud_database_service_details_overview' | translate }}"
             data-state="enterprise-cloud-database.service.details.overview"
+            ><span
+                data-translate="enterprise_cloud_database_service_details_overview"
+            ></span
         ></oui-header-tabs-item>
         <oui-header-tabs-item
-            data-text="{{ ::'enterprise_cloud_database_service_details_backups' | translate }}"
             data-state="enterprise-cloud-database.service.details.backups"
+            ><span
+                data-translate="enterprise_cloud_database_service_details_backups"
+            ></span
         ></oui-header-tabs-item>
         <oui-header-tabs-item
-            data-text="{{ ::'enterprise_cloud_database_service_details_restored_instances' | translate }}"
             data-state="enterprise-cloud-database.service.details.restored-instances"
+            ><span
+                data-translate="enterprise_cloud_database_service_details_restored_instances"
+            ></span
         ></oui-header-tabs-item>
         <oui-header-tabs-item
-            data-text="{{ ::'enterprise_cloud_database_service_details_cluster_nodes' | translate }}"
             data-state="enterprise-cloud-database.service.details.cluster-nodes"
+            ><span
+                data-translate="enterprise_cloud_database_service_details_cluster_nodes"
+            ></span
         ></oui-header-tabs-item>
         <oui-header-tabs-item
-            data-text="{{ ::'enterprise_cloud_database_service_details_insights' | translate }}"
             data-state="enterprise-cloud-database.service.details.insights"
+            ><span
+                data-translate="enterprise_cloud_database_service_details_insights"
+            ></span
         ></oui-header-tabs-item>
         <oui-header-tabs-item
-            data-text="{{ ::'enterprise_cloud_database_service_details_logs' | translate }}"
             data-state="enterprise-cloud-database.service.details.logs"
+            ><span
+                data-translate="enterprise_cloud_database_service_details_logs"
+            ></span
         ></oui-header-tabs-item>
         <oui-header-tabs-item
-            data-text="{{ ::'enterprise_cloud_database_service_details_settings' | translate }}"
             data-state="enterprise-cloud-database.service.details.settings"
+            ><span
+                data-translate="enterprise_cloud_database_service_details_settings"
+            ></span
         ></oui-header-tabs-item>
     </oui-header-tabs>
-</oui-page-header>
+</oui-header>
 <div class="container-fluid w-100 h-100 pt-4 px-3 px-md-5">
     <oui-message data-ng-if="!$ctrl.clusterUser" data-type="warning">
         <p

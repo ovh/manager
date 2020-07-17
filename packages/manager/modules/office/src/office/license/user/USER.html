@@ -22,19 +22,19 @@
                 data-rows="usersCtrl.users"
                 data-row-loader="usersCtrl.transformItem($row)"
             >
-                <oui-column
+                <oui-datagrid-column
                     data-title="'microsoft_office_license_detail_user_firstname' | translate"
                     data-property="firstName"
-                ></oui-column>
-                <oui-column
+                ></oui-datagrid-column>
+                <oui-datagrid-column
                     data-title="'microsoft_office_license_detail_user_lastname' | translate"
                     data-property="lastName"
-                ></oui-column>
-                <oui-column
+                ></oui-datagrid-column>
+                <oui-datagrid-column
                     data-title="'microsoft_office_license_detail_user_activationEmail' | translate"
                     data-property="activationEmail"
-                ></oui-column>
-                <oui-column
+                ></oui-datagrid-column>
+                <oui-datagrid-column
                     data-title="'microsoft_office_license_detail_user_licenses' | translate"
                     data-property="licences"
                 >
@@ -42,45 +42,51 @@
                         data-ng-repeat="licence in $row.licences track by $index"
                         data-ng-bind="licence"
                     ></span>
-                </oui-column>
-                <oui-column
+                </oui-datagrid-column>
+                <oui-datagrid-column
                     data-title="'microsoft_office_license_detail_user_status' | translate"
                 >
                     <span
-                        class="oui-status"
+                        class="oui-badge"
                         data-ng-if="!$row.isVirtual && $row.status"
                         data-ng-bind="'microsoft_office_license_user_status_' + $row.status | translate"
                         data-ng-class="{
-                            'oui-status_success': $row.status === 'ok',
-                            'oui-status_error': $row.status === 'deleting' || $row.status === 'error',
-                            'oui-status_info': $row.status === 'creating' || $row.status === 'updating'}"
+                            'oui-badge_success': $row.status === 'ok',
+                            'oui-badge_error': $row.status === 'deleting' || $row.status === 'error',
+                            'oui-badge_info': $row.status === 'creating' || $row.status === 'updating'}"
                     >
                     </span>
                     <span
-                        class="oui-status oui-status_info"
+                        class="oui-badge oui-badge_info"
                         data-ng-if="$row.isVirtual"
                         data-ng-bind-html="($row.taskPendingId ? 'microsoft_office_license_user_status_creating' : 'microsoft_office_license_detail_user_not_configure') | translate"
                     >
                     </span>
-                </oui-column>
+                </oui-datagrid-column>
                 <oui-action-menu
-                    data-align="end"
                     data-compact
                     data-ng-if="!$row.isLoading"
+                    data-placement="end"
                 >
                     <oui-action-menu-item
-                        data-text="{{ 'microsoft_office_license_user_change_password' | translate }}"
                         data-on-click="setAction('edit/password/microsoft-office-edit-password', {'user': $row, 'licenseId': currentLicense, 'license': $row.license})"
                         data-ng-if="!$row.isVirtual"
+                        ><span
+                            data-translate="microsoft_office_license_user_change_password"
+                        ></span
                     ></oui-action-menu-item>
                     <oui-action-menu-item
-                        data-text="{{ 'microsoft_office_license_user_update' | translate }}"
                         data-on-click="setAction('user/update/microsoft-office-license-user-update', {'user': $row, 'licenseId': currentLicense, 'license': $row.license})"
+                        ><span
+                            data-translate="microsoft_office_license_user_update"
+                        ></span
                     ></oui-action-menu-item>
                     <oui-action-menu-item
-                        data-text="{{ 'microsoft_office_license_user_delete' | translate }}"
                         data-on-click="setAction('user/delete/microsoft-office-license-user-delete', {'user': $row, 'license': currentLicense})"
                         data-ng-if="!$row.isVirtual"
+                        ><span
+                            data-translate="microsoft_office_license_user_delete"
+                        ></span
                     ></oui-action-menu-item>
                 </oui-action-menu>
             </oui-datagrid>

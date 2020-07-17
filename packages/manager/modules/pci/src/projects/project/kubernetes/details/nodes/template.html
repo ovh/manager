@@ -14,29 +14,29 @@
         data-rows="$ctrl.nodes"
         data-row-loader="$ctrl.loadRowData($row)"
     >
-        <oui-column
+        <oui-datagrid-column
             data-title=":: 'kube_nodes_name' | translate"
             data-property="name"
             data-type="string"
             data-searchable
             data-filterable
-        ></oui-column>
-        <oui-column
+        ></oui-datagrid-column>
+        <oui-datagrid-column
             data-title=":: 'kube_nodes_node' | translate"
             data-property="id"
             data-type="string"
             data-searchable
             data-filterable
-        ></oui-column>
-        <oui-column
+        ></oui-datagrid-column>
+        <oui-datagrid-column
             data-title=":: 'kube_nodes_flavor' | translate"
             data-property="formattedFlavor"
             data-type="string"
             data-searchable
             data-filterable
         >
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title=":: 'kube_nodes_billing_type' | translate"
             data-property="billingType"
             data-type="string"
@@ -47,52 +47,51 @@
                 data-ng-if="$row.billingType"
                 data-translate="{{ :: 'kube_nodes_billing_' + $row.billingType }}"
             ></span>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title=":: 'kube_service_cluster_status' | translate"
             data-property="status"
         >
             <span
-                class="oui-status"
+                class="oui-badge"
                 data-ng-class="{
-                    'oui-status_success' : $row.status === $ctrl.STATUS.READY,
-                    'oui-status_warning' : $ctrl.Kubernetes.constructor.isProcessing($row.status),
-                    'oui-status_error' : $row.status === $ctrl.STATUS.ERROR
+                    'oui-badge_success' : $row.status === $ctrl.STATUS.READY,
+                    'oui-badge_warning' : $ctrl.Kubernetes.constructor.isProcessing($row.status),
+                    'oui-badge_error' : $row.status === $ctrl.STATUS.ERROR
                     }"
                 data-translate="{{:: 'kube_nodes_status_' + $row.status }}"
             >
             </span>
-        </oui-column>
+        </oui-datagrid-column>
         <oui-action-menu
             data-disabled="$ctrl.Kubernetes.constructor.isProcessing($row.status) || $ctrl.Kubernetes.constructor.isProcessing($ctrl.cluster.status)"
-            data-align="end"
             data-compact
+            data-placement="end"
         >
-            <oui-action-menu-item
-                data-text="{{:: 'kube_nodes_common_delete' | translate }}"
-                data-on-click="$ctrl.deleteNode($row.id)"
+            <oui-action-menu-item data-on-click="$ctrl.deleteNode($row.id)"
+                ><span data-translate="kube_nodes_common_delete"></span
             ></oui-action-menu-item>
             <oui-action-menu-item
                 data-ng-if="$row.billingType === 'hourly'"
-                data-text="{{ ::'kube_nodes_switch_to_monthly_billing_title' | translate }}"
                 data-on-click="$ctrl.switchBillingType($row.id, $row.name, $row.instanceId)"
-            >
+                ><span
+                    data-translate="kube_nodes_switch_to_monthly_billing_title"
+                ></span>
             </oui-action-menu-item>
         </oui-action-menu>
-        <extra-top>
+        <oui-datagrid-topbar>
             <oui-button
                 data-aria-label="{{:: 'kube_nodes_add_button' | translate }}"
-                data-text="{{:: 'kube_nodes_add_button' | translate }}"
                 data-on-click="$ctrl.addNode()"
-            >
+                ><span data-translate="kube_nodes_add_button"></span>
             </oui-button>
             <button
-                class="float-right oui-button oui-button_secondary oui-button_icon-only oui-button_small-width"
+                class="float-right oui-button oui-button_secondary oui-button_icon-only oui-button_s"
                 data-title="{{:: 'kube_nodes_refresh' | translate }}"
                 data-ng-click="$ctrl.refreshNodes()"
             >
                 <span class="fa fa-refresh" aria-hidden="true"></span>
             </button>
-        </extra-top>
+        </oui-datagrid-topbar>
     </oui-datagrid>
 </div>

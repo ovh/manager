@@ -7,7 +7,7 @@
     >
         <div class="oui-modal__header">
             <button
-                class="oui-icon oui-icon-close_thin oui-modal__close-button"
+                class="oui-icon oui-modal__close-button oui-icon-close"
                 type="button"
                 aria-label="Exit"
                 data-ng-click="NashaPartitionAddCtrl.dismiss()"
@@ -96,10 +96,13 @@
                                     class="oui-radio__label-container"
                                     for="protocols-{{protocol}}"
                                 >
-                                    <span class="oui-radio__label"
-                                        >{{'nasha_partitions_action_add_desc_' +
-                                        protocol | translate}}</span
-                                    >
+                                    <span class="oui-radio__label">
+                                        <span class="oui-radio__icon"></span>
+                                        <span class="oui-radio__text"
+                                            >{{'nasha_partitions_action_add_desc_'
+                                            + protocol | translate}}
+                                        </span>
+                                    </span>
                                 </label>
                             </div>
                         </div>

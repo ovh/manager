@@ -4,7 +4,7 @@ import get from 'lodash/get';
 import ngTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
 import uiRouter from '@uirouter/angularjs';
 import angularTranslate from 'angular-translate';
-import 'ovh-ui-angular';
+import '@ovh-ux/ui-kit';
 
 import component from './new-ticket.component';
 import creationFormComponent from './creation-form/creation-form.component';
@@ -18,8 +18,7 @@ import {
   definition as serviceDefinition,
 } from './new-ticket.service';
 
-import 'ovh-ui-kit/dist/oui.css';
-import 'ovh-ui-kit/dist/oui-olt.css';
+import '@ovh-ux/ui-kit/dist/css/oui.css';
 
 const moduleName = 'ovhManagerSupportTicketsNew';
 

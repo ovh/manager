@@ -1,5 +1,5 @@
 <oui-datagrid data-rows="$ctrl.volumeConsumptionDetails">
-    <oui-column
+    <oui-datagrid-column
         data-title="::'cpbc_volume_col_name' | translate"
         data-property="name"
         data-sortable
@@ -12,8 +12,8 @@
             data-ng-click="$ctrl.rowSelected = $row"
             data-oui-popover-placement="top"
         ></span>
-    </oui-column>
-    <oui-column
+    </oui-datagrid-column>
+    <oui-datagrid-column
         data-title="::'cpbc_volume_col_consumption' | translate"
         data-property="totalPrice"
         data-sortable
@@ -26,5 +26,5 @@
             aria-hidden="true"
         >
         </i>
-    </oui-column>
+    </oui-datagrid-column>
 </oui-datagrid>

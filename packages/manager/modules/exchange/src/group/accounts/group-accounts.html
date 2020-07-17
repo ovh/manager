@@ -23,14 +23,14 @@
             data-row-loader="$ctrl.applySelection($row)"
             id="group-accounts"
         >
-            <oui-column
+            <oui-datagrid-column
                 data-title=":: 'exchange_GROUPS_delegation_step1_email_header' | translate"
                 data-type="string"
                 data-searchable
             >
                 <p data-ng-if="$row.message">
                     <span
-                        class="oui-icon oui-icon-warning_circle mr-2"
+                        class="oui-icon mr-2 oui-icon-warning-circle"
                         aria-hidden="true"
                     ></span>
                     <span
@@ -43,8 +43,8 @@
                     class="word-break"
                     data-ng-bind="$row.displayAddress | wucSliceContent: 150"
                 ></span>
-            </oui-column>
-            <oui-column
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 data-title=":: 'exchange_tab_GROUPS_all_table_manager' | translate"
             >
                 <oui-checkbox
@@ -53,8 +53,8 @@
                     data-disabled="$row.type === 'CONTACT'"
                     data-on-change="$ctrl.updateManagersList(modelValue, $row)"
                 ></oui-checkbox>
-            </oui-column>
-            <oui-column
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 data-title=":: 'exchange_tab_GROUPS_all_table_user' | translate"
             >
                 <oui-checkbox
@@ -62,8 +62,8 @@
                     data-model="$row.member"
                     data-on-change="$ctrl.updateMembersList(modelValue, $row)"
                 ></oui-checkbox>
-            </oui-column>
-            <extra-top>
+            </oui-datagrid-column>
+            <oui-datagrid-topbar>
                 <form class="form-inline d-md-flex justify-content-md-end mb-3">
                     <oui-spinner
                         data-size="s"
@@ -75,13 +75,12 @@
                         data-model="$ctrl.selectedDomain"
                         data-items="$ctrl.availableDomains"
                         data-match="displayName"
-                        data-align="start"
                         data-on-change="$ctrl.onDomainValueChange(modelValue)"
                     >
                         <span data-ng-bind="$item.displayName"></span>
                     </oui-select>
                 </form>
-            </extra-top>
+            </oui-datagrid-topbar>
         </oui-datagrid>
 
         <oui-message data-type="info">

@@ -2,7 +2,7 @@
     <div class="row d-lg-flex">
         <div class="col-xm-12">
             <h1
-                class="oui-header_1"
+                class="oui-heading_1"
                 data-translate="vps_order_windows_title"
             ></h1>
             <oui-stepper data-on-init="$ctrl.getDurations()">
@@ -34,10 +34,13 @@
                             class="oui-radio__label-container"
                             for="{{duration}}"
                         >
-                            <span
-                                class="oui-radio__label"
-                                data-ng-bind="$ctrl.durations.details[duration].label"
-                            ></span>
+                            <span class="oui-radio__label">
+                                <span class="oui-radio__icon"></span>
+                                <span
+                                    class="oui-radio__text"
+                                    data-ng-bind="$ctrl.durations.details[duration].label"
+                                ></span>
+                            </span>
                             <span class="oui-radio__description">
                                 <span
                                     data-translate="vps_order_windows_order_price_HT"

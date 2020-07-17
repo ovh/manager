@@ -1,5 +1,5 @@
 <div data-ui-view>
-    <oui-page-header
+    <oui-header
         data-heading="{{:: 'pci_projects_project_users_title' | translate }}"
         class="mb-3"
     >
@@ -12,14 +12,14 @@
                 ></span>
             </oui-guide-menu-item>
         </oui-guide-menu>
-    </oui-page-header>
+    </oui-header>
 
     <cui-message-container
         data-messages="$ctrl.messages"
     ></cui-message-container>
 
     <oui-datagrid data-rows="$ctrl.users">
-        <oui-column
+        <oui-datagrid-column
             title=":: 'pci_projects_project_users_username_label' | translate"
             data-property="username"
             data-type="string"
@@ -27,13 +27,13 @@
             data-filterable
             data-sortable="asc"
         >
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title=":: 'pci_projects_project_users_description_label' | translate"
             data-property="description"
         >
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title=":: 'pci_projects_project_users_role_label' | translate"
             data-property="roles"
         >
@@ -42,25 +42,25 @@
                 data-ng-repeat="role in $row.roles track by role.id"
                 data-ng-bind="::role.description"
             ></span>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title=":: 'pci_projects_project_users_status_label' | translate"
             data-property="status"
         >
             <span
-                class="oui-status"
+                class="oui-badge"
                 data-ng-class="{
-                    'oui-status_success': ($row.status === 'ok'),
-                    'oui-status_warning': ($row.status !== 'ok'),
+                    'oui-badge_success': ($row.status === 'ok'),
+                    'oui-badge_warning': ($row.status !== 'ok'),
                 }"
             >
                 <span
                     data-ng-bind=":: 'pci_projects_project_users_status_' + $row.status | translate"
                 ></span>
             </span>
-        </oui-column>
+        </oui-datagrid-column>
 
-        <oui-action-menu data-align="end" data-compact>
+        <oui-action-menu data-compact data-placement="end">
             <oui-action-menu-item
                 data-href="{{ $ctrl.openStackHorizonLink($row) }}"
                 data-external
@@ -107,14 +107,14 @@
             </oui-action-menu-item>
         </oui-action-menu>
 
-        <extra-top>
+        <oui-datagrid-topbar>
             <oui-button data-on-click="$ctrl.addUser()">
                 <i class="oui-icon oui-icon-add pr-1" aria-hidden="true"></i>
                 <span
                     data-translate="pci_projects_project_users_add_label"
                 ></span>
             </oui-button>
-        </extra-top>
+        </oui-datagrid-topbar>
     </oui-datagrid>
 
     <oui-button

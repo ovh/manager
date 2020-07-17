@@ -24,13 +24,13 @@
                                 data-ng-repeat="image in $ctrl.imageSlider.list track by $index"
                                 data-ng-src="{{ image }}"
                                 data-ng-if="$index === $ctrl.imageSlider.currentIndex"
-                                alt=""
+                                alt
                             />
                         </div>
                         <div class="spinner mx-auto">
                             <svg
                                 data-ng-repeat="svg in [0,1,2] track by $index"
-                                viewBox="0 0 66 66"
+                                viewbox="0 0 66 66"
                                 xmlns="http://www.w3.org/2000/svg"
                             >
                                 <circle
@@ -40,7 +40,7 @@
                                     cx="33"
                                     cy="33"
                                     r="28"
-                                ></circle>
+                                />
                             </svg>
                         </div>
                     </div>
@@ -88,7 +88,7 @@
                             >
                             </span>
                             <span
-                                class="oui-icon oui-icon-folder_extra-thin d-inline-block vertical-middle"
+                                class="oui-icon d-inline-block vertical-middle oui-icon-folder"
                                 aria-hidden="true"
                             >
                             </span>

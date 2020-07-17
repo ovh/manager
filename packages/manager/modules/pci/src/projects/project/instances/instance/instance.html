@@ -1,17 +1,19 @@
-<oui-page-header data-heading="{{ $ctrl.instance.name }}">
+<oui-header data-heading="{{ $ctrl.instance.name }}">
     <oui-header-tabs>
         <oui-header-tabs-item
-            data-text="{{ 'pci_projects_project_instances_instance_dashboard_title' | translate }}"
             data-href="{{ $ctrl.instanceLink }}"
             data-active="$ctrl.currentActiveLink() === $ctrl.instanceLink"
-        >
+            ><span
+                data-translate="pci_projects_project_instances_instance_dashboard_title"
+            ></span>
         </oui-header-tabs-item>
         <oui-header-tabs-item
             data-ng-if="!$ctrl.vncDisabled"
-            data-text="{{ 'pci_projects_project_instances_instance_vnc_title' | translate }}"
             data-href="{{ $ctrl.consoleLink }}"
             data-active="$ctrl.currentActiveLink() === $ctrl.consoleLink"
-        >
+            ><span
+                data-translate="pci_projects_project_instances_instance_vnc_title"
+            ></span>
         </oui-header-tabs-item>
     </oui-header-tabs>
     <oui-guide-menu data-text="{{:: 'pci_project_guides_header' | translate }}">
@@ -19,7 +21,7 @@
             <span data-translate="pci_project_guides_header_all_guides"></span>
         </oui-guide-menu-item>
     </oui-guide-menu>
-</oui-page-header>
+</oui-header>
 
 <div class="mt-4">
     <cui-message-container
@@ -124,12 +126,12 @@
                 >
                     <oui-tile-description>
                         <span
-                            class="oui-status"
+                            class="oui-badge"
                             data-ng-class="{
-                                'oui-status_success': ($ctrl.instance.statusGroup === 'ACTIVE'),
-                                'oui-status_warning': ($ctrl.instance.statusGroup === 'PENDING'),
-                                'oui-status_error': ($ctrl.instance.statusGroup === 'ERROR'),
-                                'oui-status_info': ($ctrl.instance.statusGroup === $ctrl.instance.status),
+                                'oui-badge_success': ($ctrl.instance.statusGroup === 'ACTIVE'),
+                                'oui-badge_warning': ($ctrl.instance.statusGroup === 'PENDING'),
+                                'oui-badge_error': ($ctrl.instance.statusGroup === 'ERROR'),
+                                'oui-badge_info': ($ctrl.instance.statusGroup === $ctrl.instance.status && !['ACTIVE', 'PENDING', 'ERROR'].includes($ctrl.instance.statusGroup)),
                             }"
                         >
                             <span
@@ -218,13 +220,14 @@
 
                     <oui-action-menu
                         data-compact
-                        data-align="end"
                         data-ng-if="!$ctrl.instance.isMonthlyBillingActivated()"
+                        data-placement="end"
                     >
                         <oui-action-menu-item
-                            text="{{:: 'pci_projects_project_instances_instance_price_action_activeMonthlyBilling_label' | translate }}"
                             data-on-click="$ctrl.enableMonthlyBillingInstance()"
-                        >
+                            ><span
+                                data-translate="pci_projects_project_instances_instance_price_action_activeMonthlyBilling_label"
+                            ></span>
                         </oui-action-menu-item>
                     </oui-action-menu>
                 </oui-tile-definition>
@@ -247,17 +250,19 @@
                         <span>-</span>
                     </oui-tile-description>
 
-                    <oui-action-menu data-compact data-align="end">
+                    <oui-action-menu data-compact data-placement="end">
                         <oui-action-menu-item
-                            text="{{:: 'pci_projects_project_instances_instance_volumes_action_manage_label' | translate }}"
                             data-on-click="$ctrl.goToBlockStorages()"
-                        >
+                            ><span
+                                data-translate="pci_projects_project_instances_instance_volumes_action_manage_label"
+                            ></span>
                         </oui-action-menu-item>
                         <oui-action-menu-item
-                            data-text="{{:: 'pci_projects_project_instances_instance_volumes_action_attach_label' | translate }}"
                             data-disabled="!$ctrl.instance.canAttachVolume()"
                             data-on-click="$ctrl.attachVolume()"
-                        >
+                            ><span
+                                data-translate="pci_projects_project_instances_instance_volumes_action_attach_label"
+                            ></span>
                         </oui-action-menu-item>
                     </oui-action-menu>
                 </oui-tile-definition>
@@ -279,13 +284,14 @@
 
                     <oui-action-menu
                         data-compact
-                        data-align="end"
                         data-ng-if="$ctrl.instance.isApplicationImage()"
+                        data-placement="end"
                     >
                         <oui-action-menu-item
-                            text="{{:: 'pci_projects_project_instances_instance_image_action_application_access_label' | translate }}"
                             data-on-click="$ctrl.applicationAccess()"
-                        >
+                            ><span
+                                data-translate="pci_projects_project_instances_instance_image_action_application_access_label"
+                            ></span>
                         </oui-action-menu-item>
                     </oui-action-menu>
                 </oui-tile-definition>
@@ -341,7 +347,7 @@
                         </dd>
                     </dl>
                     <div class="oui-tile__actions">
-                        <oui-action-menu data-compact data-align="end">
+                        <oui-action-menu data-compact data-placement="end">
                             <oui-action-menu-item
                                 data-href="{{:: $ctrl.reverseDnsLink }}"
                                 data-external
@@ -413,7 +419,7 @@
                         </dd>
                     </dl>
                     <div class="oui-tile__actions">
-                        <oui-action-menu data-compact data-align="end">
+                        <oui-action-menu data-compact data-placement="end">
                             <oui-action-menu-item
                                 data-href="{{:: $ctrl.reverseDnsLink }}"
                                 data-external
@@ -455,17 +461,19 @@
                     >
                         <span data-ng-bind="network.name"></span>
                     </oui-tile-description>
-                    <oui-action-menu data-compact data-align="end">
+                    <oui-action-menu data-compact data-placement="end">
                         <oui-action-menu-item
-                            text="{{:: 'pci_projects_project_instances_instance_private_networks_action_manage_label' | translate }}"
                             data-on-click="$ctrl.gotToNetworks()"
-                        >
+                            ><span
+                                data-translate="pci_projects_project_instances_instance_private_networks_action_manage_label"
+                            ></span>
                         </oui-action-menu-item>
                         <oui-action-menu-item
-                            text="{{:: 'pci_projects_project_instances_instance_private_networks_action_attach_label' | translate }}"
                             data-disabled="$ctrl.disablePrivateNetworks"
                             data-on-click="$ctrl.attachPrivateNetwork()"
-                        >
+                            ><span
+                                data-translate="pci_projects_project_instances_instance_private_networks_action_attach_label"
+                            ></span>
                         </oui-action-menu-item>
                     </oui-action-menu>
                 </oui-tile-definition>

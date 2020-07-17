@@ -74,10 +74,13 @@
                             class="oui-radio__label-container"
                             for="{{type}}"
                         >
-                            <span
-                                class="oui-radio__label"
-                                data-ng-bind="'hosting_tab_DATABASES_configuration_create_sgbd_' + type | translate"
-                            ></span>
+                            <span class="oui-radio__label">
+                                <span class="oui-radio__icon"></span>
+                                <span
+                                    class="oui-radio__text"
+                                    data-ng-bind="'hosting_tab_DATABASES_configuration_create_sgbd_' + type | translate"
+                                ></span>
+                            </span>
                         </label>
                     </div>
                 </fieldset>
@@ -103,10 +106,13 @@
                             class="oui-radio__label-container"
                             for="{{version}}"
                         >
-                            <span
-                                class="oui-radio__label"
-                                data-ng-bind="version"
-                            ></span>
+                            <span class="oui-radio__label">
+                                <span class="oui-radio__icon"></span>
+                                <span
+                                    class="oui-radio__text"
+                                    data-ng-bind="version"
+                                ></span>
+                            </span>
                         </label>
                     </div>
                 </fieldset>

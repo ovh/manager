@@ -15,24 +15,24 @@
 
         <div class="telecom-section-content">
             <oui-datagrid data-rows="OrdersCtrl.ordersRaw">
-                <oui-column
+                <oui-datagrid-column
                     data-title="'telephony_line_assist_orders_column_date' | translate"
                     data-property="date"
                     data-sortable="desc"
                 >
                     <span data-ng-bind="$row.date | date:'mediumDate'"></span>
-                </oui-column>
-                <oui-column
+                </oui-datagrid-column>
+                <oui-datagrid-column
                     data-title="'telephony_line_assist_orders_column_id' | translate"
                 >
                     <span data-ng-bind="$row.orderId"></span>
-                </oui-column>
-                <oui-column
+                </oui-datagrid-column>
+                <oui-datagrid-column
                     data-title="'telephony_line_assist_orders_column_status' | translate"
                 >
                     <span data-ng-bind="$row.statusText"></span>
-                </oui-column>
-                <oui-column class="text-right">
+                </oui-datagrid-column>
+                <oui-datagrid-column class="text-right">
                     <a
                         class="btn btn-default pull-right"
                         target="_blank"
@@ -48,7 +48,7 @@
                         >
                         </span>
                     </a>
-                </oui-column>
+                </oui-datagrid-column>
             </oui-datagrid>
         </div>
         <!-- /.telecom-section-content -->

@@ -1,5 +1,5 @@
-<h1 data-translate="manager_hub_catalog"></h1>
-<form novalidate class="d-flex flex-column align-items-start oui-box px-3 py-2">
+<h1 class="oui-heading_2" data-translate="manager_hub_catalog"></h1>
+<form novalidate class="d-flex flex-column align-items-start oui-box mb-3 px-3 py-2">
     <div
         class="d-md-flex justify-content-md-between align-items-center align-content-end flex-wrap w-100"
     >
@@ -9,9 +9,8 @@
                 data-translate="manager_hub_catalog_filter"
             ></p>
             <oui-field
-                label="{{:: 'manager_hub_catalog_universe' | translate }}"
                 size="m"
-                class="mr-3"
+                class="mb-4 mb-md-0 mr-3"
             >
                 <oui-select
                     name="universe"
@@ -19,12 +18,12 @@
                     items="$ctrl.universes"
                     multiple
                     on-change="$ctrl.onUniverseChange()"
+                    data-placeholder="{{:: 'manager_hub_catalog_universe' | translate }}"
                     data-searchable
                 >
                 </oui-select>
             </oui-field>
             <oui-field
-                label="{{:: 'manager_hub_catalog_category' | translate }}"
                 size="m"
                 class="mb-4 mb-md-0 mr-3"
             >
@@ -34,21 +33,23 @@
                     items="$ctrl.categories"
                     multiple
                     on-change="$ctrl.filterItems()"
+                    data-placeholder="{{:: 'manager_hub_catalog_category' | translate }}"
                     data-searchable
                 >
                 </oui-select>
             </oui-field>
-            <div class="oui-search mb-4 mb-md-0 mt-1">
-                <div
-                    class="oui-input-group oui-input-group_m oui-input-group_search mb-0"
-                >
+            <oui-field
+                size="m"
+                class="mb-4 mb-md-0"
+            >
+                <div class="oui-input-overlay">
                     <input
                         type="text"
                         class="oui-input"
                         data-ng-model="$ctrl.searchText"
                     />
                     <button
-                        class="oui-button right-0"
+                        class="oui-button"
                         type="button"
                         data-ng-click="$ctrl.filterItems()"
                     >
@@ -62,7 +63,7 @@
                         ></span>
                     </button>
                 </div>
-            </div>
+            </oui-field>
         </div>
         <oui-button data-variant="link" on-click="$ctrl.reset()">
             <span data-translate="manager_hub_catalog_reset"></span>

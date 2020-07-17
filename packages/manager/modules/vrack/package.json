@@ -31,10 +31,11 @@
     "bootstrap": "~3.3.7"
   },
   "peerDependencies": {
-    "@ovh-ux/manager-cloud-styles": "^0.4.0",
-    "@ovh-ux/manager-core": "^9.0.0",
+    "@ovh-ux/manager-cloud-styles": "^0.4.0 || ^1.0.0",
+    "@ovh-ux/manager-core": "^9.0.0 || ^10.0.0",
     "@ovh-ux/ng-ovh-cloud-universe-components": "^1.5.0",
     "@ovh-ux/ng-ovh-toaster": "^2.0.0",
+    "@ovh-ux/ui-kit": "^4.1.12",
     "@uirouter/angularjs": "^1.0.15",
     "angular": "^1.7.5",
     "angular-ui-bootstrap": "~1.3.3",
@@ -42,8 +43,6 @@
     "oclazyload": "^1.1.0",
     "ovh-api-services": "^9.39.1",
     "ovh-manager-webfont": "^1.2.0",
-    "ovh-ui-angular": "^3.16.3",
-    "ovh-ui-kit": "^2.42.8",
-    "ovh-ui-kit-bs": "^2.4.6"
+    "ovh-ui-kit-bs": "^4.1.5"
   }
 }

@@ -16,13 +16,14 @@
     "lodash": "^4.17.15"
   },
   "peerDependencies": {
-    "@ovh-ux/manager-core": "^9.0.0",
+    "@ovh-ux/manager-core": "^9.0.0 || ^10.0.0",
     "@ovh-ux/ng-at-internet": "^5.0.1",
     "@ovh-ux/ng-ovh-actions-menu": "^5.0.6",
     "@ovh-ux/ng-ovh-cloud-universe-components": "^1.4.0",
     "@ovh-ux/ng-ovh-doc-url": "^2.0.0",
     "@ovh-ux/ng-ovh-responsive-popover": "^5.0.2",
     "@ovh-ux/ng-ovh-sidebar-menu": "^9.1.2",
+    "@ovh-ux/ui-kit": "^4.1.12",
     "@uirouter/angularjs": "^1.0.23",
     "angular": "^1.7.5",
     "angular-chart.js": "^1.1.1",
@@ -33,8 +34,6 @@
     "moment": "^2.24.0",
     "oclazyload": "^1.1.0",
     "ovh-api-services": "^9.39.1",
-    "ovh-ui-angular": "^3.16.3",
-    "ovh-ui-kit": "^2.42.8",
-    "ovh-ui-kit-bs": "^2.4.6"
+    "ovh-ui-kit-bs": "^4.1.5"
   }
 }

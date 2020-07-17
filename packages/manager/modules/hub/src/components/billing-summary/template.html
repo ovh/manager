@@ -1,5 +1,5 @@
 <div class="manager-hub-billing-summary" data-navi-id="totalBills-block">
-    <h3 data-translate="hub_billing_summary_title"></h3>
+    <h3 class="oui-heading_4" data-translate="hub_billing_summary_title"></h3>
     <hub-tile-error
         data-ng-if="!$ctrl.bills && !$ctrl.loading"
         data-message="{{:: 'hub_billing_summary_display_bills_error' | translate }}"
@@ -25,10 +25,11 @@
         >
         </span>
         <p
+            class="manager-hub-billing-summary__bill-status"
             data-ng-if="$ctrl.bills.total > 0 && $ctrl.debt.dueAmount.value === 0"
         >
             <span
-                class="oui-icon oui-icon-check-circle_line align-middle mr-2"
+                class="oui-icon align-middle mr-2 oui-icon-success-circle"
                 aria-hidden="true"
             >
             </span>
@@ -66,7 +67,7 @@
         >
             <span data-translate="hub_billing_summary_display_bills"></span>
             <span
-                class="oui-icon oui-icon-arrow-right_extra-thin"
+                class="oui-icon oui-icon-arrow-right"
                 aria-hidden="true"
             ></span>
         </a>

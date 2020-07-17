@@ -9,21 +9,21 @@
     class="datagrid-without-pagination"
     data-ng-if="$ctrl.regions.length > 0"
 >
-    <oui-column
+    <oui-datagrid-column
         data-title="::'cpbc_hourly_instance_trafic_region' | translate"
         data-property="region"
     >
         <span
             data-ng-bind=":: $ctrl.CucRegionService.getTranslatedMicroRegion($row.region)"
         ></span>
-    </oui-column>
-    <oui-column
+    </oui-datagrid-column>
+    <oui-datagrid-column
         data-title="::'cpbc_hourly_instance_trafic_trafic' | translate"
         data-property="outgoingBandwidth"
     >
         <span data-ng-bind="$ctrl.getTrafficByRegion($row)"></span>
-    </oui-column>
-    <oui-column
+    </oui-datagrid-column>
+    <oui-datagrid-column
         data-title="::'cpbc_hourly_instance_trafic_price' | translate"
         data-property="outgoingBandwidth"
     >
@@ -35,5 +35,5 @@
             data-ng-if="!$ctrl.currency.loading"
             data-ng-bind="$ctrl.getPriceByRegion($row)"
         ></span>
-    </oui-column>
+    </oui-datagrid-column>
 </oui-datagrid>

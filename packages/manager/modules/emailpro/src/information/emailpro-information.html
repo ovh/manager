@@ -10,7 +10,7 @@
                 <div class="col-sm-6 mb-5">
                     <div class="oui-tile h-100">
                         <h3
-                            class="oui-tile__title oui-header_4"
+                            class="oui-tile__title oui-heading_4"
                             data-translate="emailpro_tab_INFORMATIONS_summary"
                         ></h3>
                         <div class="oui-tile__body">
@@ -40,8 +40,8 @@
                                         >
                                             <span
                                                 data-ng-if="!exchange.offer == !accountTypeProvider"
-                                                data-ng-class="{'oui-status oui-status_success': exchange.serverDiagnostic.isAValid,
-                                                              'oui-status oui-status_error': !exchange.serverDiagnostic.isAValid}"
+                                                data-ng-class="{'oui-badge oui-badge_success': exchange.serverDiagnostic.isAValid,
+                                                              'oui-badge oui-badge_error': !exchange.serverDiagnostic.isAValid}"
                                                 data-simplepopover="{{exchange.serverDiagnostic.aTooltip}}"
                                                 data-simplepopover-title="{{ 'emailpro_dashboard_diag_a_tooltip_title' | translate }}"
                                                 data-simplepopover-placement="right"
@@ -50,8 +50,8 @@
                                             ></span>
                                             <span
                                                 data-ng-if="exchange.offer == accountTypeDedicated"
-                                                data-ng-class="{'oui-status oui-status_success': exchange.serverDiagnostic.isAaaaValid,
-                                                              'oui-status oui-status_error': !exchange.serverDiagnostic.isAaaaValid}"
+                                                data-ng-class="{'oui-badge oui-badge_success': exchange.serverDiagnostic.isAaaaValid,
+                                                              'oui-badge oui-badge_error': !exchange.serverDiagnostic.isAaaaValid}"
                                                 data-simplepopover="{{exchange.serverDiagnostic.aaaaTooltip}}"
                                                 data-simplepopover-title="{{ 'emailpro_dashboard_diag_aaaa_tooltip_title' | translate }}"
                                                 data-simplepopover-placement="bottom"
@@ -60,8 +60,8 @@
                                             ></span>
                                             <span
                                                 data-ng-if="exchange.offer == accountTypeDedicated"
-                                                data-ng-class="{'oui-status oui-status_success': exchange.serverDiagnostic.isPtrValid,
-                                                              'oui-status oui-status_error': !exchange.serverDiagnostic.isPtrValid}"
+                                                data-ng-class="{'oui-badge oui-badge_success': exchange.serverDiagnostic.isPtrValid,
+                                                              'oui-badge oui-badge_error': !exchange.serverDiagnostic.isPtrValid}"
                                                 data-simplepopover="{{exchange.serverDiagnostic.ptrTooltip}}"
                                                 data-simplepopover-title="{{ 'emailpro_dashboard_diag_ptr_tooltip_title' | translate }}"
                                                 data-simplepopover-placement="bottom"
@@ -70,8 +70,8 @@
                                             ></span>
                                             <span
                                                 data-ng-if="exchange.offer == accountTypeDedicated"
-                                                data-ng-class="{'oui-status oui-status_success': exchange.serverDiagnostic.isPtrV6Valid,
-                                                              'oui-status oui-status_error': !exchange.serverDiagnostic.isPtrV6Valid}"
+                                                data-ng-class="{'oui-badge oui-badge_success': exchange.serverDiagnostic.isPtrV6Valid,
+                                                              'oui-badge oui-badge_error': !exchange.serverDiagnostic.isPtrV6Valid}"
                                                 data-simplepopover="{{exchange.serverDiagnostic.ptrv6Tooltip}}"
                                                 data-simplepopover-title="{{ 'emailpro_dashboard_diag_ptrv6_tooltip_title' | translate }}"
                                                 data-simplepopover-placement="bottom"
@@ -152,7 +152,7 @@
                 <div class="col-sm-6 mb-5">
                     <div class="oui-tile h-100">
                         <h3
-                            class="oui-tile__title oui-header_4"
+                            class="oui-tile__title oui-heading_4"
                             data-translate="emailpro_tab_INFORMATIONS_stats"
                         ></h3>
                         <div class="oui-tile__body">
@@ -191,7 +191,7 @@
                                             <oui-action-menu
                                                 data-ng-if="exchange.isMXPlan && exchange.accountsNumber <= 100 && !currentRegionCA"
                                                 data-compact
-                                                data-align="end"
+                                                data-placement="end"
                                             >
                                                 <oui-action-menu-item
                                                     data-href="{{ $ctrl.upgradeLink }}"
@@ -310,7 +310,7 @@
         <div class="col-md-3">
             <div class="oui-tile mb-5">
                 <h3
-                    class="oui-tile__title oui-header_4"
+                    class="oui-tile__title oui-heading_4"
                     data-translate="emailpro_tab_INFORMATIONS_connexion"
                 ></h3>
                 <div class="oui-tile__body">
@@ -343,7 +343,7 @@
                                         data-ng-bind="'https://' + exchange.webUrl"
                                     ></span>
                                     <span
-                                        class="oui-icon oui-icon-external_link"
+                                        class="oui-icon oui-icon-external-link"
                                         aria-hidden="true"
                                     ></span>
                                     <span
@@ -372,7 +372,7 @@
                                         data-translate="emailpro_dashboard_guides_url"
                                     ></span>
                                     <span
-                                        class="oui-icon oui-icon-external_link"
+                                        class="oui-icon oui-icon-external-link"
                                         aria-hidden="true"
                                     ></span>
                                     <span
@@ -387,7 +387,7 @@
             </div>
             <div class="oui-tile mb-5" data-ng-if="sharepoint">
                 <h3
-                    class="oui-tile__title oui-header_4"
+                    class="oui-tile__title oui-heading_4"
                     data-translate="emailpro_tab_INFORMATIONS_sharepoint"
                 ></h3>
                 <div class="oui-tile__body">

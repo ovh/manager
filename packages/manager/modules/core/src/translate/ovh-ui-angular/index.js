@@ -1,6 +1,6 @@
 import angular from 'angular';
 import 'angular-translate';
-import 'ovh-ui-angular';
+import '@ovh-ux/ui-kit';
 import '@uirouter/angularjs';
 import { set } from 'lodash-es';
 

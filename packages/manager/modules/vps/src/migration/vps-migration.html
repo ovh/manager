@@ -9,11 +9,13 @@
             >
             </cui-message-container>
         </div>
-        <p data-ng-bind-html=":: 'vps_migration_description1' | translate: {
+        <p
+            data-ng-bind-html=":: 'vps_migration_description1' | translate: {
             cutoffDate: $ctrl.cutoffDate,
             autoMigrationDate: $ctrl.autoMigrationDate,
             rangeLink: $ctrl.NEW_RANGE_LINK
-        }"></p>
+        }"
+        ></p>
         <b class="d-block mb-3" data-translate="vps_migration_description4"></b>
         <p data-translate="vps_migration_description5"></p>
     </div>
@@ -27,7 +29,7 @@
         >
             <span data-translate="vps_migration_info2"></span>
             <span
-                class="oui-icon oui-icon-external_link"
+                class="oui-icon oui-icon-external-link"
                 aria-hidden="true"
             ></span>
         </a>
@@ -39,7 +41,7 @@
         data-selectable-rows
         data-on-row-select="$ctrl.onRowSelect($row, $rows)"
     >
-        <extra-top>
+        <oui-datagrid-topbar>
             <oui-button
                 class="mb-3"
                 data-type="button"
@@ -49,8 +51,8 @@
             >
                 <span data-translate="vps_migration_button"></span>
             </oui-button>
-        </extra-top>
-        <oui-column
+        </oui-datagrid-topbar>
+        <oui-datagrid-column
             data-title="'vps_migration_table_detail' | translate"
             data-property="displayName"
             data-sortable
@@ -60,29 +62,29 @@
                 <br />
                 <button
                     type="button"
-                    class="oui-button oui-button_link p-0"
+                    class="oui-button p-0 oui-button_ghost"
                     data-ng-click="$ctrl.vpsDetailsPage($row.name)"
                 >
                     <span data-ng-bind="$row.displayName"></span> -
                     <span data-ng-bind="$row.description"></span>
                 </button>
             </div>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title="'vps_migration_table_status' | translate"
             data-property="migration.status"
             data-sortable
         >
             <span
                 data-ng-class="{
-                    'oui-status oui-status_error': $row.migration.status === $ctrl.MIGRATION_STATUS.TO_PLAN,
-                    'oui-status oui-status_success': $row.migration.status === $ctrl.MIGRATION_STATUS.PLANNED
+                    'oui-badge oui-badge_error': $row.migration.status === $ctrl.MIGRATION_STATUS.TO_PLAN,
+                    'oui-badge oui-badge_success': $row.migration.status === $ctrl.MIGRATION_STATUS.PLANNED
                 }"
                 data-ng-bind="'vps_migration_status_' + $row.migration.status | translate"
             >
             </span>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title="'vps_migration_table_planned_date' | translate"
             data-property="migration.date"
         >
@@ -91,8 +93,8 @@
                 data-ng-bind="$row.migration.date | date:'medium'"
             ></span>
             <span data-ng-if="!$row.migration.date">-</span>
-        </oui-column>
-        <oui-action-menu data-align="end" data-compact>
+        </oui-datagrid-column>
+        <oui-action-menu data-compact data-placement="end">
             <oui-action-menu-item
                 data-on-click="$ctrl.migrate($row)"
                 data-ng-if="$row.migration.status === $ctrl.MIGRATION_STATUS.TO_PLAN"
@@ -104,7 +106,7 @@
             >
                 <button
                     type="button"
-                    class="oui-button oui-button_link p-0"
+                    class="oui-button p-0 oui-button_ghost"
                     data-ng-click="$ctrl.vpsDetailsPage($row.name)"
                     data-translate="vps_migration_table_vps_link"
                 ></button>

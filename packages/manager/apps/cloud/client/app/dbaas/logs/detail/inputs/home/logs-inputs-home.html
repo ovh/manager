@@ -2,7 +2,7 @@
     <h3 data-translate="inputs_title"></h3>
     <p class="oui-paragraph" data-translate="inputs_intro_text"></p>
     <oui-datagrid rows="ctrl.inputs.data">
-        <extra-top>
+        <oui-datagrid-topbar>
             <button
                 type="button"
                 class="oui-button oui-button_secondary"
@@ -18,24 +18,24 @@
                 size="s"
                 data-ng-if="ctrl.delete.loading"
             ></oui-spinner>
-        </extra-top>
-        <oui-column
+        </oui-datagrid-topbar>
+        <oui-datagrid-column
             title="::'inputs_col_name' | translate"
             property="info.title"
             sortable
             type="string"
             searchable
             filterable
-        ></oui-column>
-        <oui-column
+        ></oui-datagrid-column>
+        <oui-datagrid-column
             title="::'inputs_description' | translate"
             property="info.description"
             sortable
             type="string"
             searchable
             filterable
-        ></oui-column>
-        <oui-column
+        ></oui-datagrid-column>
+        <oui-datagrid-column
             title="::'inputs_software' | translate"
             property="info.engine.software"
             type="string"
@@ -43,8 +43,8 @@
             filterable
         >
             {{ $row.info.engine.software }}
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             title="::'inputs_state' | translate"
             property="info.state"
             type="string"
@@ -52,57 +52,56 @@
             filterable
         >
             <span
-                class="oui-status"
+                class="oui-badge"
                 data-translate="{{ ::'inputs_state_' + $row.info.state }}"
                 data-ng-class="{
-                    'oui-status_info': $row.info.stateType === 'info',
-                    'oui-status_success': $row.info.stateType === 'success',
-                    'oui-status_warning': $row.info.stateType === 'warning'}"
+                    'oui-badge_info': $row.info.stateType === 'info',
+                    'oui-badge_success': $row.info.stateType === 'success',
+                    'oui-badge_warning': $row.info.stateType === 'warning'}"
             >
             </span>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             title="::'logs_col_last_modified' | translate"
             property="info.updatedAt"
             sortable
             type="date"
         >
             {{ $row.info.updatedAt | momentFormat:'L'}}
-        </oui-column>
-        <oui-action-menu data-align="end" compact>
+        </oui-datagrid-column>
+        <oui-action-menu compact data-placement="end">
             <oui-action-menu-item
-                text="{{ ::'inputs_edit' | translate }}"
                 on-click="ctrl.edit($row)"
                 disabled="$row.info.status === ctrl.LogsConstants.inputStatus.PROCESSING"
+                ><span data-translate="inputs_edit"></span
+            ></oui-action-menu-item>
+            <oui-action-menu-item on-click="ctrl.info($row)"
+                ><span data-translate="inputs_info_title"></span
             ></oui-action-menu-item>
             <oui-action-menu-item
-                text="{{ ::'inputs_info_title' | translate }}"
-                on-click="ctrl.info($row)"
-            ></oui-action-menu-item>
-            <oui-action-menu-item
-                text="{{ ::'inputs_start' | translate }}"
                 on-click="ctrl.startInput($row)"
                 disabled="!$row.actionsMap.START || $row.info.status === ctrl.LogsConstants.inputStatus.PROCESSING"
+                ><span data-translate="inputs_start"></span
             ></oui-action-menu-item>
             <oui-action-menu-item
-                text="{{ ::'inputs_restart' | translate }}"
                 on-click="ctrl.restartInput($row)"
                 disabled="!$row.actionsMap.RESTART || $row.info.status === ctrl.LogsConstants.inputStatus.PROCESSING"
+                ><span data-translate="inputs_restart"></span
             ></oui-action-menu-item>
             <oui-action-menu-item
-                text="{{ ::'inputs_stop' | translate }}"
                 on-click="ctrl.stopInput($row)"
                 disabled="!$row.actionsMap.END || $row.info.status === ctrl.LogsConstants.inputStatus.PROCESSING"
+                ><span data-translate="inputs_stop"></span
             ></oui-action-menu-item>
             <oui-action-menu-item
-                text="{{ ::'inputs_standard_output' | translate }}"
                 on-click="ctrl.standardOutput($row)"
                 disabled="!$row.actionsMap.LOG"
+                ><span data-translate="inputs_standard_output"></span
             ></oui-action-menu-item>
             <oui-action-menu-item
-                text="{{ ::'common_delete' | translate }}"
                 on-click="ctrl.showDeleteConfirm($row)"
                 disabled="!$row.actionsMap.DESTROY || $row.info.status === ctrl.LogsConstants.inputStatus.PROCESSING"
+                ><span data-translate="common_delete"></span
             ></oui-action-menu-item>
         </oui-action-menu>
     </oui-datagrid>

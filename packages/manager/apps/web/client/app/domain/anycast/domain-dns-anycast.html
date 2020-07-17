@@ -47,45 +47,30 @@
                     for="contractsValidated"
                 >
                     <span class="oui-checkbox__label">
-                        <span
-                            data-translate="domain_configuration_dnsanycast_step2_contracts"
-                        ></span>
-                        <span
-                            data-ng-repeat="contract in $ctrl.optionDetails.contracts track by $index"
-                        >
+                        <span class="oui-checkbox__icon"></span>
+                        <span class="oui-checkbox__text">
                             <span
-                                data-translate="domain_configuration_dnsanycast_step2_contracts_and"
-                                data-ng-if="!$last"
+                                data-translate="domain_configuration_dnsanycast_step2_contracts"
                             ></span>
                             <span
-                                data-translate="domain_configuration_dnsanycast_step2_contracts_of"
-                            ></span>
-                            <a
-                                data-ng-href="{{contract.url}}"
-                                target="_blank"
-                                title="{{contract.name}} ({{ 'common_newtab' | translate }})"
-                                data-ng-bind="contract.name"
-                            ></a
-                            ><span data-ng-if="!$last">, </span
-                            ><span data-ng-if="$last">.</span>
-                        </span>
-                        <span class="oui-checkbox__icon">
-                            <span
-                                class="oui-icon oui-icon-checkbox-unchecked"
-                                aria-hidden="true"
-                            ></span>
-                            <span
-                                class="oui-icon oui-icon-checkbox-checked"
-                                aria-hidden="true"
-                            ></span>
-                            <span
-                                class="oui-icon oui-icon-checkbox-checkmark"
-                                aria-hidden="true"
-                            ></span>
-                            <span
-                                class="oui-icon oui-icon-checkbox-indeterminate"
-                                aria-hidden="true"
-                            ></span>
+                                data-ng-repeat="contract in $ctrl.optionDetails.contracts track by $index"
+                            >
+                                <span
+                                    data-translate="domain_configuration_dnsanycast_step2_contracts_and"
+                                    data-ng-if="!$last"
+                                ></span>
+                                <span
+                                    data-translate="domain_configuration_dnsanycast_step2_contracts_of"
+                                ></span>
+                                <a
+                                    data-ng-href="{{contract.url}}"
+                                    target="_blank"
+                                    title="{{contract.name}} ({{ 'common_newtab' | translate }})"
+                                    data-ng-bind="contract.name"
+                                ></a
+                                ><span data-ng-if="!$last">, </span
+                                ><span data-ng-if="$last">.</span>
+                            </span>
                         </span>
                     </span>
                 </label>

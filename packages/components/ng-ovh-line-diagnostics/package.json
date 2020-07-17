@@ -44,14 +44,13 @@
   },
   "peerDependencies": {
     "@ovh-ux/ng-at-internet": "^5.0.1",
-    "@ovh-ux/ng-ovh-telecom-universe-components": "^5.0.0",
+    "@ovh-ux/ng-ovh-telecom-universe-components": "^5.0.0 || ^6.0.0",
     "@ovh-ux/ng-translate-async-loader": "^2.1.0",
+    "@ovh-ux/ui-kit": "^4.1.12",
     "@uirouter/angularjs": "^1.0.22",
     "angular": "^1.7.8",
     "angular-translate": "^2.18.1",
     "angular-ui-bootstrap": "~1.3.3",
-    "ovh-api-services": "^9.2.0",
-    "ovh-ui-angular": "^3.7.2",
-    "ovh-ui-kit": "^2.33.4"
+    "ovh-api-services": "^9.2.0"
   }
 }

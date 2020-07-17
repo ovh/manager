@@ -16,20 +16,20 @@
                 data-rows="oomCtrl.oomList"
                 data-row-loader="oomCtrl.transformItem($row)"
             >
-                <oui-column
+                <oui-datagrid-column
                     data-title="'privateDatabase_modale_oom_tab_event_date' | translate"
                     data-property="date"
                 >
                     <span data-ng-bind="$row.date | date:'medium'"></span>
-                </oui-column>
-                <oui-column
+                </oui-datagrid-column>
+                <oui-datagrid-column
                     data-title="'privateDatabase_modale_oom_tab_size_reached' | translate"
                 >
                     <span
                         data-ng-bind="$row.overflow.value + ('unit_size_' + $row.overflow.symbol | translate)"
                     ></span>
-                </oui-column>
-                <oui-column
+                </oui-datagrid-column>
+                <oui-datagrid-column
                     data-title="'privateDatabase_modale_oom_tab_uptime' | translate"
                     data-property="uptime"
                 >
@@ -40,7 +40,7 @@
                     <span class="text-center" data-ng-if="$row.uptime === -1"
                         >-</span
                     >
-                </oui-column>
+                </oui-datagrid-column>
             </oui-datagrid>
 
             <div

@@ -14,10 +14,7 @@
                      TerminateServiceCtrl.serviceState === 'suspended'"
     >
         <div class="oui-message oui-message_success" role="alert">
-            <i
-                class="oui-icon oui-icon-success_circle oui-icon_bicolor"
-                aria-hidden="true"
-            ></i>
+            <i class="oui-icon oui-icon-success-circle" aria-hidden="true"></i>
             <p
                 class="oui-message__body"
                 data-translate="terminate_service_legacy_confirmation_success"
@@ -27,10 +24,7 @@
 
     <div data-ng-if="TerminateServiceCtrl.error">
         <div class="oui-message oui-message_error" role="alert">
-            <i
-                class="oui-icon oui-icon-error_circle oui-icon_bicolor"
-                aria-hidden="true"
-            ></i>
+            <i class="oui-icon oui-icon-error-circle" aria-hidden="true"></i>
             <p
                 class="oui-message__body"
                 data-translate="terminate_service_legacy_confirmation_error"
@@ -62,7 +56,7 @@
             </div>
 
             <h4
-                class="oui-header_4 mt-5"
+                class="mt-5 oui-heading_4"
                 data-translate="terminate_service_legacy_services_title"
             ></h4>
 
@@ -126,7 +120,7 @@
                              TerminateServiceCtrl.serviceState !== 'suspended'"
             >
                 <h4
-                    class="oui-header_4"
+                    class="oui-heading_4"
                     data-translate="terminate_service_legacy_reason_title"
                 ></h4>
 
@@ -146,15 +140,18 @@
                         class="oui-radio__label-container"
                         for="reason-{{reason}}"
                     >
-                        <span
-                            class="oui-radio__label"
-                            data-translate="{{ 'terminate_service_legacy_reason_' + reason }}"
-                        ></span>
+                        <span class="oui-radio__label">
+                            <span class="oui-radio__icon"></span>
+                            <span
+                                class="oui-radio__text"
+                                data-translate="{{ 'terminate_service_legacy_reason_' + reason }}"
+                            ></span>
+                        </span>
                     </label>
                 </div>
 
                 <h4
-                    class="oui-header_4 mt-5"
+                    class="mt-5 oui-heading_4"
                     data-translate="terminate_service_legacy_next-steps_title"
                 ></h4>
 
@@ -174,10 +171,13 @@
                         class="oui-radio__label-container"
                         for="futureUse-{{::futureUse}}"
                     >
-                        <span
-                            class="oui-radio__label"
-                            data-translate="{{ :: 'terminate_service_legacy_futureUses_' + futureUse }}"
-                        ></span>
+                        <span class="oui-radio__label">
+                            <span class="oui-radio__icon"></span>
+                            <span
+                                class="oui-radio__text"
+                                data-translate="{{ :: 'terminate_service_legacy_futureUses_' + futureUse }}"
+                            ></span>
+                        </span>
                     </label>
                 </div>
 

@@ -1,12 +1,6 @@
-@import (less) 'ovh-ui-kit-bs/dist/ovh-ui-kit-bs.min.css';
-@import (less) 'ovh-ui-kit-bs/dist/oui-bs3-olt.css';
+@import (less) 'ovh-ui-kit-bs/dist/css/oui-bs3.css';
 @import 'bootstrap/less/mixins.less';
-@import 'ovh-ui-kit/packages/oui/stylekit';
-@import 'ovh-ui-kit/packages/ovhcloud-light-theme/index';
-
-//@oui-icon-dist-folder: "../assets/ovh-ui-kit/dist/icons";
-//@oui-font-source-sans-pro-folder: "../assets/ovh-ui-kit/packages/oui-typography/fonts/source-sans-pro";
-
+@import (less) '@ovh-ux/ui-kit/dist/css/oui.css';
 @import (less) 'ovh-angular-list-view/dist/ovh-angular-list-view.min.css';
 @import 'font-awesome/less/font-awesome.less';
 @import 'ovh-common-style/less/helpers.less';
@@ -18,27 +12,18 @@
 @import 'ovh-common-style/less/spinner/spinner.less';
 @import 'ovh-common-style/less/fonts/open-sans.less';
 @import 'ovh-manager-webfont/dist/less/ovh-font.less';
-
-/*
-@ovh-angular-slider-handle-background: #8d919c;
-@ovh-angular-slider-handle-border-color: darken(@ovh-angular-slider-handle-background, 5%);
-@ovh-angular-slider-handle-hover-background: #009fe3;
-@ovh-angular-slider-handle-hover-border-color: darken(@ovh-angular-slider-handle-background, 5%);
-@ovh-angular-slider-bubble-limit-color: #777;
-*/
-
 @import 'flag-icon-css/less/flag-icon.less';
 
 // Overide Bootstrap Params
 @screen-xs-max: @v6-max-with;
 @screen-sm-min: @v6-min-with;
-@screen-sm-max: (@oui-responsive-breakpoint-tablet - 1px);
-@screen-md-min: @oui-responsive-breakpoint-tablet;
-@screen-md-max: (@oui-responsive-breakpoint-medium - 1px);
-@screen-lg-min: @oui-responsive-breakpoint-medium;
+@screen-sm-max: @device-breakpoint-tablet-max-width;
+@screen-md-min: @device-breakpoint-tablet;
+@screen-md-max: @device-breakpoint-medium-max-width;
+@screen-lg-min: @device-breakpoint-medium;
 
 @component-offset-horizontal: 200px;
-@modal-backdrop-bg: @oui-color-shuttle;
+@modal-backdrop-bg: #59697d;
 
 // Params use by bootstrap and app
 @v6-min-with: 801px;
@@ -168,8 +153,17 @@ html {
 #content {
   padding: 0;
 
+  .oui-header,
   .page-header {
-    margin-top: 0;
+    margin-top: rem-calc(16);
+  }
+
+  .oui-header,
+  .oui-header + .oui-header-tabs,
+  .page-header,
+  .nav.nav-tabs {
+    margin-left: rem-calc(32);
+    margin-right: rem-calc(32);
   }
 }
 
@@ -287,20 +281,9 @@ html {
 @import 'ui-components/icons/button-action.less';
 @import 'ui-components/inline-adder/inline-adder.less';
 @import 'ui-components/input/key-value.less';
-//@import "ui-components/labels/labels.less";
 @import 'ui-components/panel/panel.less';
 @import 'ui-components/preview-list/_variables.less';
 @import 'ui-components/preview-list/preview-list.less';
-//@import "ui-components/skeleton/skeleton.less";
-//@import "ui-components/table/_mixins.less";
-@import 'ui-components/table/_normalize.less';
-@import 'ui-components/table/_variables.less';
-@import 'ui-components/table/table.less';
-//@import "ui-components/tile/_mixins.less";
-//@import "ui-components/tile/_variables.less";
-//@import "ui-components/tile/custom/definition/cui-tile-definition-description-region.less";
-//@import "ui-components/tile/custom/item/cui-tile-item-status.less";
-//@import "ui-components/tile/tile.less";
 @import '../components/cloud-ui/autocomplete/autocomplete.less';
 @import '../components/cloud-ui/button/button.less';
 @import '../components/cloud-ui/constants.less';
@@ -309,13 +292,11 @@ html {
 @import '../components/cloud-ui/mixins.less';
 @import '../components/cloud-ui/search/search.less';
 @import '../components/cloud-ui/switch/switch.less';
-@import '../components/cloud-ui/table/table.less';
 @import 'cloud/components/region.less';
 @import '../components/manager-preload/manager-preload.less';
 @import '../components/ovh-ui/button/button.less';
 @import '../components/ovh-ui/constants.less';
 @import '../components/ovh-ui/mixins.less';
-@import '../components/ovh-ui/table/table.less';
 @import 'cloud/components/runabove/modal/modal.less';
 @import 'cloud/components/runabove/promise-task-state/promise-task-state.less';
 @import 'cloud/components/runabove/runabove.less';

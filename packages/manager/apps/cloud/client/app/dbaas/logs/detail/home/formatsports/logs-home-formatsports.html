@@ -1,55 +1,55 @@
 <oui-modal
-    data-title="{{ 'logs_home_formatsports_title' | translate : {entryPoint: ctrl.accountDetails.graylogEntryPoint} }}"
     data-on-dismiss="ctrl.cancel()"
     class="modal-lg"
+    data-heading="{{ 'logs_home_formatsports_title' | translate : {entryPoint: ctrl.accountDetails.graylogEntryPoint} }}"
 >
     <oui-datagrid
-        class="table-without-pagination"
+        class="datagrid-without-pagination"
         data-rows="ctrl.accountDetails.portsAndMessages"
     >
-        <oui-column
+        <oui-datagrid-column
             data-title="'logs_home_formatsports_name' | translate"
             data-property="name"
-        ></oui-column>
-        <oui-column
+        ></oui-datagrid-column>
+        <oui-datagrid-column
             data-title="ctrl.LogsConstants.MESSAGE_TYPES.RFC5424"
             data-property="RFC5424"
         >
             {{$row.RFC5424 || 'logs_home_formatsports_not_supported' |
             translate}}
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title="ctrl.LogsConstants.MESSAGE_TYPES.GELF"
             data-property="GELF"
         >
             {{$row.GELF || 'logs_home_formatsports_not_supported' | translate}}
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title="ctrl.LogsConstants.MESSAGE_TYPES.LTSV_LINE"
             data-property="LTSV_LINE"
         >
             {{$row.LTSV_LINE || 'logs_home_formatsports_not_supported' |
             translate}}
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title="ctrl.LogsConstants.MESSAGE_TYPES.LTSV_NUL"
             data-property="LTSV_NUL"
         >
             {{$row.LTSV_NUL || 'logs_home_formatsports_not_supported' |
             translate}}
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title="ctrl.LogsConstants.MESSAGE_TYPES.CAP_N_PROTO"
             data-property="CAP_N_PROTO"
         >
             {{$row.CAP_N_PROTO || 'logs_home_formatsports_not_supported' |
             translate}}
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title="ctrl.LogsConstants.MESSAGE_TYPES.BEATS"
             data-property="BEATS"
         >
             {{$row.BEATS || 'logs_home_formatsports_not_supported' | translate}}
-        </oui-column>
+        </oui-datagrid-column>
     </oui-datagrid>
 </oui-modal>

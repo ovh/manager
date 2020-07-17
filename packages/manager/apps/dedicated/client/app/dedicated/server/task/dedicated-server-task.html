@@ -2,32 +2,36 @@
 <div data-ovh-alert="taskAlert"></div>
 
 <oui-datagrid data-rows-loader="$ctrl.loadDatagridTasks($config)">
-    <oui-column
+    <oui-datagrid-column
         data-title=":: 'server_configuration_task_last_action' | translate"
     >
         <span data-ng-bind="$row.lastUpdate | date: 'medium'"></span>
-    </oui-column>
-    <oui-column
+    </oui-datagrid-column>
+    <oui-datagrid-column
         data-title=":: 'server_configuration_task_function' | translate"
     >
         <span
             data-ng-bind="('server_configuration_task_'+ $row.function) | ducTranslateAlt: $row.function"
         ></span>
-    </oui-column>
-    <oui-column data-title=":: 'server_configuration_task_comment' | translate">
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title=":: 'server_configuration_task_comment' | translate"
+    >
         <span data-ng-bind="$row.comment"></span>
-    </oui-column>
-    <oui-column data-title=":: 'server_configuration_task_status' | translate">
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title=":: 'server_configuration_task_status' | translate"
+    >
         <span
-            class="oui-status"
-            data-translate="{{ 'server_configuration_task_status_' + $row.status }}"
+            class="oui-badge"
+            data-translate="{{ 'server_configuration_task_status_' + $row.status }}"
             data-ng-class="{
-                      'oui-status_success': $row.status === $ctrl.TASK_STATUS.DONE,
-                      'oui-status_info': $row.status === $ctrl.TASK_STATUS.DOING,
-                      'oui-status_danger': $row.status === $ctrl.TASK_STATUS.OVH_ERROR || $row.status === $ctrl.TASK_STATUS.CUSTOMER_ERROR,
-                      'oui-status_warning': $row.status === $ctrl.TASK_STATUS.INIT || $row.status === $ctrl.TASK_STATUS.TODO
+                      'oui-badge_success': $row.status === $ctrl.TASK_STATUS.DONE,
+                      'oui-badge_info': $row.status === $ctrl.TASK_STATUS.DOING,
+                      'oui-badge_danger': $row.status === $ctrl.TASK_STATUS.OVH_ERROR || $row.status === $ctrl.TASK_STATUS.CUSTOMER_ERROR,
+                      'oui-badge_warning': $row.status === $ctrl.TASK_STATUS.INIT || $row.status === $ctrl.TASK_STATUS.TODO
                   }"
         >
         </span>
-    </oui-column>
+    </oui-datagrid-column>
 </oui-datagrid>

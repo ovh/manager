@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@ovh-ux/manager-config": "^0.4.0",
-    "@ovh-ux/manager-core": "^9.0.0",
+    "@ovh-ux/manager-core": "^9.0.0 || ^10.0.0",
     "@ovh-ux/manager-sms": "^7.0.4",
     "@ovh-ux/manager-telecom-styles": "^3.1.0",
     "@ovh-ux/ng-at-internet": "^5.0.1",
@@ -33,7 +33,7 @@
     "@ovh-ux/ng-ovh-request-tagger": "^1.1.0",
     "@ovh-ux/ng-ovh-sso-auth": "^4.2.3",
     "@ovh-ux/ng-ovh-swimming-poll": "^5.0.1",
-    "@ovh-ux/ng-ovh-telecom-universe-components": "^5.0.0",
+    "@ovh-ux/ng-ovh-telecom-universe-components": "^5.0.0 || ^6.0.0",
     "@ovh-ux/ng-ovh-ui-confirm-modal": "^2.0.0",
     "@ovh-ux/ng-pagination-front": "^9.0.0",
     "@uirouter/angularjs": "^1.0.23",

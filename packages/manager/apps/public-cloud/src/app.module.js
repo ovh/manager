@@ -11,7 +11,7 @@ import 'jquery-ui/ui/widgets/mouse';
 import 'jquery-ui/ui/widgets/draggable';
 import 'script-loader!moment/min/moment.min.js';
 import 'script-loader!angular-ui-validate/dist/validate.js';
-import 'ovh-ui-angular';
+import '@ovh-ux/ui-kit';
 import 'script-loader!bootstrap-tour/build/js/bootstrap-tour-standalone.min';
 /* eslint-enable import/no-webpack-loader-syntax, import/extensions */
 
@@ -28,11 +28,9 @@ import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
 import ngUiRouterLineProgress from '@ovh-ux/ng-ui-router-line-progress';
 import { detach as detachPreloader } from '@ovh-ux/manager-preloader';
 
-import 'ovh-ui-kit/dist/oui.css';
-import 'ovh-ui-kit/dist/oui-olt.css';
+import '@ovh-ux/ui-kit/dist/css/oui.css';
 
-import 'ovh-ui-kit-bs/dist/ovh-ui-kit-bs.min.css';
-import 'ovh-ui-kit-bs/dist/oui-bs3-olt.css';
+import 'ovh-ui-kit-bs/dist/css/oui-bs3.css';
 
 import atInternet from './components/at-internet';
 import darkMode from './components/dark-mode';

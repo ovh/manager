@@ -1,7 +1,7 @@
 <oui-message
     data-type="info"
     data-ng-if="!$ctrl.loading && $ctrl.serviceInfos && $ctrl.isAutorenewAllowed && !$ctrl.isInAutorenew() && !$ctrl.isExpired() && $ctrl.shouldAskAboutAutorenewSubscription()"
-    data-on-dismissed="$ctrl.stopBotheringWithAutorenew()"
+    data-on-dismiss="$ctrl.stopBotheringWithAutorenew()"
 >
     <span
         data-translate="autorenew_alert"
@@ -22,7 +22,7 @@
         data-ng-if="!$ctrl.hasPaymentMean"
     >
         <span data-translate="autorenew_guide"></span>
-        <span class="oui-icon oui-icon-external_link" aria-hidden="true"></span>
+        <span class="oui-icon oui-icon-external-link" aria-hidden="true"></span>
         <span class="sr-only" data-translate="autorenew_new_tab"></span>
     </a>
 </oui-message>

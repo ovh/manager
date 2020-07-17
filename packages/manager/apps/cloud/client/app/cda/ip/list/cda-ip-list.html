@@ -14,17 +14,17 @@
         </button>
     </div>
     <oui-datagrid data-rows="CdaIpListCtrl.datas.ips">
-        <oui-column
+        <oui-datagrid-column
             data-title="'cda_ip_table_col_network' | translate"
             data-property="network"
             data-sortable="asc"
         >
             {{ $row.network }} / {{ $row.netmask }}
-        </oui-column>
-        <oui-action-menu data-align="end" data-compact>
+        </oui-datagrid-column>
+        <oui-action-menu data-compact data-placement="end">
             <oui-action-menu-item
-                data-text="{{'cda_ip_delete_button_text' | translate}}"
                 data-on-click="CdaIpListCtrl.openDeleteModal($row)"
+                ><span data-translate="cda_ip_delete_button_text"></span
             ></oui-action-menu-item>
         </oui-action-menu>
     </oui-datagrid>

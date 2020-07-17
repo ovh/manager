@@ -1,5 +1,5 @@
 <div data-ui-view>
-    <oui-page-header
+    <oui-header
         data-heading="{{:: 'pci_projects_project_load_balancer_list_title' | translate }}"
         class="mb-3"
     >
@@ -17,7 +17,7 @@
                 ></span>
             </oui-guide-menu-item>
         </oui-guide-menu>
-    </oui-page-header>
+    </oui-header>
     <div class="container-fluid px-0">
         <cui-message-container
             data-messages="$ctrl.messages"
@@ -28,7 +28,7 @@
         data-rows="$ctrl.loadBalancers"
         data-row-loader="$ctrl.getLoadbalancerDetails($row)"
     >
-        <oui-column
+        <oui-datagrid-column
             data-title=":: 'pci_projects_project_load_balancer_list_name' | translate"
             data-property="name"
             data-searchable
@@ -36,17 +36,17 @@
             data-sortable
             data-type="string"
         >
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title=":: 'pci_projects_project_load_balancer_list_status' | translate"
             data-property="status"
             data-searchable
             data-filterable
             data-sortable
-        ></oui-column>
-        <oui-column
+        ></oui-datagrid-column>
+        <oui-datagrid-column
             data-title=":: 'pci_projects_project_load_balancer_list_ipAddres' | translate"
             data-property="address.ipv4"
-        ></oui-column>
+        ></oui-datagrid-column>
     </oui-datagrid>
 </div>

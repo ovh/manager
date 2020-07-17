@@ -7,13 +7,13 @@
 >
     <!-- icon -->
     <span
-        class="oui-icon oui-icon_bicolor oui-navbar-notification__icon"
+        class="oui-icon oui-navbar-notification__icon"
         data-ng-class=":: {
             'oui-icon_bicolor': menuLink.level !== 'incident',
-            'oui-icon-error_circle': menuLink.level === 'error',
-            'oui-icon-success_circle': menuLink.level === 'success',
-            'oui-icon-info_circle': menuLink.level === 'info',
-            'oui-icon-warning_circle': menuLink.level === 'warning',
+            'oui-icon-error-circle': menuLink.level === 'error',
+            'oui-icon-success-circle': menuLink.level === 'success',
+            'oui-icon-info-circle': menuLink.level === 'info',
+            'oui-icon-warning-circle': menuLink.level === 'warning',
             'oui-icon-clock-wait': menuLink.level === 'incident'
         }"
         aria-hidden="true"
@@ -55,10 +55,10 @@
     </div>
 
     <button
-        class="oui-status"
+        class="oui-badge"
         data-ng-class="{
-                'oui-status_info': !menuLink.isActive,
-                'oui-status_error': menuLink.isActive
+                'oui-badge_info': !menuLink.isActive,
+                'oui-badge_error': menuLink.isActive
             }"
         type="button"
         data-ng-if="!menuLink.isCompleted"

@@ -1,7 +1,7 @@
 import angular from 'angular';
 import 'angular-translate';
 import 'ovh-api-services';
-import 'ovh-ui-angular';
+import '@ovh-ux/ui-kit';
 
 import ovhContactsProvider from './ovh-contacts.provider';
 import ovhContactFormDirective from './form/ovh-contacts-form.directive';

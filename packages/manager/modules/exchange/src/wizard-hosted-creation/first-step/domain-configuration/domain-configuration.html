@@ -6,7 +6,7 @@
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
             <h1
-                class="oui-header_6"
+                class="oui-heading_6"
                 data-ng-bind-html="'exchange_wizardHostedCreation_addDomainName_subtext' | translate"
             ></h1>
         </div>
@@ -14,7 +14,7 @@
 </div>
 
 <h1
-    class="oui-header_3 oui-header_underline title-underlined mt-5"
+    class="oui-header_underline title-underlined mt-5 oui-heading_3"
     data-ng-bind="'exchange_wizardHostedCreation_addDomainName_header' | translate"
 ></h1>
 
@@ -53,8 +53,9 @@
                         id="domainFromAnother"
                         data-model="$ctrl.homepage.domainIsNotManagedByCurrentNIC"
                         data-on-change="$ctrl.onAnotherDomainCheckboxClick()"
-                        data-text="{{::'exchange_wizardHostedCreation_addDomainName_domainNameSelection_domainNotInList' | translate}}"
-                    >
+                        ><span
+                            data-translate="exchange_wizardHostedCreation_addDomainName_domainNameSelection_domainNotInList"
+                        ></span>
                     </oui-checkbox>
                     <form
                         name="$ctrl.domainNameForm"
@@ -127,7 +128,7 @@
                             data-ng-change="$ctrl.onDomainNameSelectionChange()"
                         >
                             <option
-                                value=""
+                                value
                                 disabled
                                 selected
                                 data-ng-bind="'exchange_wizardHostedCreation_addDomainName_domainNameSelection_placeholder' | translate"
@@ -170,10 +171,13 @@
                     class="oui-radio__label-container"
                     for="forExchangeOnlyTrue"
                 >
-                    <span
-                        class="oui-radio__label"
-                        data-ng-bind="'exchange_wizardHostedCreation_addDomainName_domainNameSelection_ovhDomain_isExchangeOnly' | translate"
-                    ></span>
+                    <span class="oui-radio__label">
+                        <span class="oui-radio__icon"></span>
+                        <span
+                            class="oui-radio__text"
+                            data-ng-bind="'exchange_wizardHostedCreation_addDomainName_domainNameSelection_ovhDomain_isExchangeOnly' | translate"
+                        ></span>
+                    </span>
                 </label>
             </div>
             <div class="oui-radio">
@@ -191,10 +195,13 @@
                     class="oui-radio__label-container"
                     for="forExchangeOnlyFalse"
                 >
-                    <span
-                        class="oui-radio__label"
-                        data-ng-bind="'exchange_wizardHostedCreation_addDomainName_domainNameSelection_ovhDomain_isNotExchangeOnly' | translate"
-                    ></span>
+                    <span class="oui-radio__label">
+                        <span class="oui-radio__icon"></span>
+                        <span
+                            class="oui-radio__text"
+                            data-ng-bind="'exchange_wizardHostedCreation_addDomainName_domainNameSelection_ovhDomain_isNotExchangeOnly' | translate"
+                        ></span>
+                    </span>
                 </label>
             </div>
 
@@ -218,10 +225,13 @@
                         class="oui-radio__label-container"
                         for="isAssociatedToEmailServiceCheckbox"
                     >
-                        <span
-                            class="oui-radio__label"
-                            data-ng-bind="'exchange_wizardHostedCreation_addDomainName_domainNameSelection_ovhDomain_isUsedByMails' | translate"
-                        ></span>
+                        <span class="oui-radio__label">
+                            <span class="oui-radio__icon"></span>
+                            <span
+                                class="oui-radio__text"
+                                data-ng-bind="'exchange_wizardHostedCreation_addDomainName_domainNameSelection_ovhDomain_isUsedByMails' | translate"
+                            ></span>
+                        </span>
                     </label>
                 </div>
                 <div class="oui-radio">
@@ -238,18 +248,21 @@
                         for="isNotAssociatedToEmailServiceCheckbox"
                     >
                         <span class="oui-radio__label">
-                            <span
-                                data-ng-bind="'exchange_wizardHostedCreation_addDomainName_domainNameSelection_ovhDomain_isNotUsedByMails' | translate"
-                            ></span>
-                            <span
-                                class="small"
-                                data-oui-tooltip="{{::$ctrl.mxRelayTooltip}}"
-                                data-oui-tooltip-placement="left"
-                            >
+                            <span class="oui-radio__icon"></span>
+                            <span class="oui-radio__text">
                                 <span
-                                    class="fa fa-question-circle"
-                                    aria-hidden="true"
+                                    data-ng-bind="'exchange_wizardHostedCreation_addDomainName_domainNameSelection_ovhDomain_isNotUsedByMails' | translate"
                                 ></span>
+                                <span
+                                    class="small"
+                                    data-oui-tooltip="{{::$ctrl.mxRelayTooltip}}"
+                                    data-oui-tooltip-placement="left"
+                                >
+                                    <span
+                                        class="fa fa-question-circle"
+                                        aria-hidden="true"
+                                    ></span>
+                                </span>
                             </span>
                         </span>
                     </label>
@@ -335,10 +348,13 @@
                         class="oui-radio__label-container"
                         for="automaticConfigurationCheckbox"
                     >
-                        <span
-                            class="oui-radio__label"
-                            data-ng-bind="'exchange_wizardHostedCreation_addDomainName_domainNameSelection_ovhDomain_dnsZone_auto' | translate"
-                        ></span>
+                        <span class="oui-radio__label">
+                            <span class="oui-radio__icon"></span>
+                            <span
+                                class="oui-radio__text"
+                                data-ng-bind="'exchange_wizardHostedCreation_addDomainName_domainNameSelection_ovhDomain_dnsZone_auto' | translate"
+                            ></span>
+                        </span>
                     </label>
                 </div>
                 <div class="oui-radio">
@@ -354,10 +370,13 @@
                         class="oui-radio__label-container"
                         for="manualConfigurationCheckbox"
                     >
-                        <span
-                            class="oui-radio__label"
-                            data-ng-bind="'exchange_wizardHostedCreation_addDomainName_domainNameSelection_ovhDomain_dnsZone_manual' | translate"
-                        ></span>
+                        <span class="oui-radio__label">
+                            <span class="oui-radio__icon"></span>
+                            <span
+                                class="oui-radio__text"
+                                data-ng-bind="'exchange_wizardHostedCreation_addDomainName_domainNameSelection_ovhDomain_dnsZone_manual' | translate"
+                            ></span>
+                        </span>
                         <p class="oui-radio__description">
                             <span
                                 data-ng-bind="'exchange_wizardHostedCreation_addDomainName_domainNameSelection_ovhDomain_dnsZone_manual_explanation1' | translate"
@@ -398,7 +417,7 @@
             ></button>
 
             <button
-                class="oui-button oui-button_link"
+                class="oui-button oui-button_ghost"
                 type="submit"
                 data-ng-disabled="$ctrl.loaders.IsWaitingForDomainAssociation"
                 data-ng-click="$ctrl.addingDomainAndClosing()"
@@ -421,7 +440,7 @@
 
         <!-- Non OVH domain or OVH domain managed by another NIC-->
         <div data-ng-show="$ctrl.homepage.domainHasBeenAssociated">
-            <h1 class="oui-header_3 oui-header_underline mt-3">
+            <h1 class="oui-header_underline mt-3 oui-heading_3">
                 <span
                     data-ng-bind="'exchange_wizardHostedCreation_addDomainName_domainNameSelection_nonOvhDomain_header' | translate"
                 ></span>

@@ -5,7 +5,6 @@
     novalidate
 >
     <oui-modal
-        data-title="{{ ::'kube_service_terminate_title' | translate }}"
         data-primary-label="{{ ::'kube_service_terminate_common_confirm' | translate }}"
         data-primary-disabled="!$ctrl.terminateConfirmation"
         data-secondary-action="$ctrl.goBack()"
@@ -13,6 +12,7 @@
         data-on-dismiss="$ctrl.goBack()"
         data-loading="$ctrl.isDeleting"
         data-type="warning"
+        data-heading="{{ ::'kube_service_terminate_title' | translate }}"
     >
         <p
             data-translate="kube_service_terminate_description"

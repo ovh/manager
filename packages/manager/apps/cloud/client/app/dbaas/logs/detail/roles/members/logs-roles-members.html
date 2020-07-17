@@ -1,7 +1,6 @@
 <div class="cui-page__content">
-    <oui-back-button
-        data-ui-sref="dbaas.logs.detail.roles"
-        data-heading="{{ ::'logs_roles_members_title' | translate }}"
+    <oui-back-button data-ui-sref="dbaas.logs.detail.roles"
+        ><span data-translate="logs_roles_members_title"></span
     ></oui-back-button>
 
     <p
@@ -11,7 +10,7 @@
     <p data-translate="logs_roles_members_description"></p>
 
     <oui-datagrid rows="ctrl.roleDetails.data.members">
-        <extra-top>
+        <oui-datagrid-topbar>
             <button
                 type="button"
                 class="oui-button oui-button_secondary"
@@ -23,34 +22,33 @@
             </button>
             <oui-spinner data-size="m" data-ng-if="ctrl.delete.loading">
             </oui-spinner>
-        </extra-top>
-        <oui-column
+        </oui-datagrid-topbar>
+        <oui-datagrid-column
             title=":: 'logs_roles_members_user_account' | translate"
             property="username"
             sortable="asc"
             type="string"
             searchable
             filterable
-        ></oui-column>
-        <oui-column
+        ></oui-datagrid-column>
+        <oui-datagrid-column
             title=":: 'logs_roles_members_note' | translate"
             property="note"
             sortable
             type="string"
             searchable
             filterable
-        ></oui-column>
-        <oui-column
+        ></oui-datagrid-column>
+        <oui-datagrid-column
             title=":: 'logs_roles_members_date_added' | translate"
             property="createdAt"
             type="date"
         >
             {{ $row.createdAt | momentFormat:'L'}}
-        </oui-column>
-        <oui-action-menu data-align="end" compact>
-            <oui-action-menu-item
-                text="{{ ::'logs_roles_members_revoke' | translate }}"
-                on-click="ctrl.revoke($row)"
+        </oui-datagrid-column>
+        <oui-action-menu compact data-placement="end">
+            <oui-action-menu-item on-click="ctrl.revoke($row)"
+                ><span data-translate="logs_roles_members_revoke"></span
             ></oui-action-menu-item>
         </oui-action-menu>
     </oui-datagrid>

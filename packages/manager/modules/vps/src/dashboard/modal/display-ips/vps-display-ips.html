@@ -1,9 +1,9 @@
 <oui-modal
-    data-title="{{:: 'vps_dashboard_ips_additional' | translate}}"
     data-secondary-action="$ctrl.cancel()"
     data-secondary-label="{{ ::'vps_common_close' | translate }}"
     data-on-dismiss="$ctrl.cancel()"
     data-loading="$ctrl.ipsLoader.loading"
+    data-heading="{{:: 'vps_dashboard_ips_additional' | translate}}"
 >
     <div
         data-ng-repeat="ip in $ctrl.ips | orderBy:'type':true | filter: { version: 'v4'} track by ip.ipAddress"

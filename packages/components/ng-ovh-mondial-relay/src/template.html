@@ -86,21 +86,24 @@
                                     for="oui-radio-{{$index}}"
                                 >
                                     <span class="oui-radio__label">
-                                        <span
-                                            class="mondial-marker"
-                                            data-ng-bind="relay.marker"
-                                        >
+                                        <span class="oui-radio__icon"></span>
+                                        <span class="oui-radio__text">
+                                            <span
+                                                class="mondial-marker"
+                                                data-ng-bind="relay.marker"
+                                            >
+                                            </span>
+                                            <strong
+                                                class="mondial-relay-name"
+                                                data-ng-bind="relay.name"
+                                            >
+                                            </strong>
+                                            <span
+                                                class="mondial-relay-caret glyphicon"
+                                                data-ng-class="'glyphicon-menu-' + (relay.selected? 'up': 'down')"
+                                                aria-hidden="true"
+                                            ></span>
                                         </span>
-                                        <strong
-                                            class="mondial-relay-name"
-                                            data-ng-bind="relay.name"
-                                        >
-                                        </strong>
-                                        <span
-                                            class="mondial-relay-caret glyphicon"
-                                            data-ng-class="'glyphicon-menu-' + (relay.selected? 'up': 'down')"
-                                            aria-hidden="true"
-                                        ></span>
                                     </span>
                                     <span class="radio-description">
                                         <span class="radio-description-relay">

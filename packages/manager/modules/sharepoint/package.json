@@ -19,12 +19,11 @@
   },
   "peerDependencies": {
     "@ovh-ux/ng-ovh-utils": "^14.0.9",
+    "@ovh-ux/ui-kit": "^4.1.12",
     "@ovh-ux/web-universe-components": "^7.0.0",
     "@uirouter/angularjs": "^1.0.15",
     "angular": "^1.7.5",
     "oclazyload": "^1.1.0",
-    "ovh-api-services": "^9.39.1",
-    "ovh-ui-angular": "^3.16.3",
-    "ovh-ui-kit": "^2.42.8"
+    "ovh-api-services": "^9.39.1"
   }
 }

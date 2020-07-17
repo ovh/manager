@@ -1,17 +1,17 @@
-<header class="oui-page-header">
-    <div class="oui-page-header__container">
-        <div class="oui-page-header__content">
+<header class="oui-header">
+    <div class="oui-header__container">
+        <div class="oui-header__content">
             <oui-spinner
                 data-size="m"
                 data-ng-if="ctrl.configuration.loading"
             ></oui-spinner>
             <h1
-                class="oui-page-header__title"
+                class="oui-header__title"
                 data-ng-if="!ctrl.configuration.loading"
                 data-ng-bind="ctrl.title"
             ></h1>
             <h2
-                class="oui-page-header__description"
+                class="oui-header__description"
                 data-ng-if="!ctrl.configuration.loading && ctrl.title !== ctrl.serviceName"
                 data-ng-bind="ctrl.serviceName"
             ></h2>
@@ -19,75 +19,66 @@
         <oui-guide-menu data-text="{{ ::ctrl.guides.title }}">
             <oui-guide-menu-item
                 data-ng-repeat="guideItem in ctrl.guides.list track by guideItem.url"
-                data-text="{{ ::guideItem.name }}"
                 data-href="{{ ::guideItem.url }}"
                 data-external="guideItem.external"
-            >
+                ><span data-ng-bind="::guideItem.name"></span>
             </oui-guide-menu-item>
             <oui-guide-menu-divider></oui-guide-menu-divider>
             <oui-guide-menu-item
-                data-text="{{ ::ctrl.guides.footer.name }}"
                 data-href="{{ ::ctrl.guides.footer.url }}"
                 data-external="ctrl.guides.footer.external"
-            >
+                ><span data-ng-bind="::ctrl.guides.footer.name"></span>
             </oui-guide-menu-item>
         </oui-guide-menu>
     </div>
     <oui-header-tabs>
         <oui-header-tabs-item
-            data-text="{{ ::'logs_tab_home' | translate }}"
             data-state="dbaas.logs.detail.home"
             data-state-params="{ serviceName: ctrl.serviceName }"
-        >
+            ><span data-translate="logs_tab_home"></span>
         </oui-header-tabs-item>
         <oui-header-tabs-item
-            data-text="{{ ::'logs_tab_streams' | translate }}"
             data-state="dbaas.logs.detail.streams"
             data-disabled="ctrl.disableTabs"
             data-state-params="{ serviceName: ctrl.serviceName }"
-        >
+            ><span data-translate="logs_tab_streams"></span>
         </oui-header-tabs-item>
         <oui-header-tabs-item
-            data-text="{{ ::'logs_tab_dashboards' | translate }}"
             data-state="dbaas.logs.detail.dashboards"
             data-disabled="ctrl.disableTabs"
             data-state-params="{ serviceName: ctrl.serviceName }"
-        >
+            ><span data-translate="logs_tab_dashboards"></span>
         </oui-header-tabs-item>
         <oui-header-tabs-item
-            data-text="{{ ::'logs_tab_inputs' | translate }}"
             data-state="dbaas.logs.detail.inputs"
             data-disabled="ctrl.disableTabs"
             data-state-params="{ serviceName: ctrl.serviceName }"
-        >
+            ><span data-translate="logs_tab_inputs"></span>
         </oui-header-tabs-item>
         <oui-header-tabs-item
-            data-text="{{ ::'logs_tab_indices' | translate }}"
             data-state="dbaas.logs.detail.indices"
             data-disabled="ctrl.disableTabs"
             data-state-params="{ serviceName: ctrl.serviceName }"
-        >
+            ><span data-translate="logs_tab_indices"></span>
         </oui-header-tabs-item>
         <oui-header-tabs-item
-            data-text="{{ ::'logs_tab_alias' | translate }}"
             data-state="dbaas.logs.detail.aliases"
             data-disabled="ctrl.disableTabs"
             data-state-params="{ serviceName: ctrl.serviceName }"
-        >
+            ><span data-translate="logs_tab_alias"></span>
         </oui-header-tabs-item>
         <oui-header-tabs-item
-            data-text="{{ ::'logs_tab_kibana' | translate }}"
             data-state="dbaas.logs.detail.kibana"
             data-disabled="ctrl.disableTabs"
             data-state-params="{ serviceName: ctrl.serviceName }"
-        >
+            ><span data-translate="logs_tab_kibana"></span>
         </oui-header-tabs-item>
         <oui-header-tabs-item
-            data-text="{{ ::'logs_tab_roles' | translate }}"
             data-state="dbaas.logs.detail.roles"
             data-disabled="ctrl.disableTabs"
             data-state-params="{ serviceName: ctrl.serivceName }"
-        >
+            ><span data-translate="logs_tab_roles"></span
+            ><span data-translate="logs_tab_roles"></span>
         </oui-header-tabs-item>
     </oui-header-tabs>
 </header>

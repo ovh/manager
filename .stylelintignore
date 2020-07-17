@@ -1,6 +1,4 @@
-packages/manager/apps/cloud/client/app/ui-components/table/_mixins.less
 packages/manager/apps/dedicated/client/app/account/user/components/directives/checkboxSwitch/checkboxSwitch.css
 packages/manager/apps/dedicated/client/app/account/user/components/directives/checkboxSwitch/checkboxSwitch-2.css
 packages/manager/apps/dedicated/client/app/css/less/common/buttonIcons.less
 packages/manager/apps/public-cloud/src/assets/theme/dark/index.less
-packages/manager/modules/cloud-styles/src/ui-components/table/_mixins.less

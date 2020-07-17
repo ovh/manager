@@ -8,11 +8,11 @@
 </div>
 
 <div
-    class="oui-page-header"
+    class="oui-header"
     data-ng-if="!loadingHostingInformations && !loadingHostingError"
 >
-    <div class="oui-page-header__container">
-        <div class="oui-page-header__content">
+    <div class="oui-header__container">
+        <div class="oui-header__content">
             <div class="row">
                 <div class="col-sm-9">
                     <form name="formEditDisplayName" novalidate>
@@ -36,7 +36,7 @@
                                     data-ng-if="!hosting.isExpired"
                                 >
                                     <span
-                                        class="oui-icon oui-icon-pen_line oui-icon_small"
+                                        class="oui-icon oui-icon-pen_concept"
                                         aria-hidden="true"
                                     ></span>
                                 </button>
@@ -62,25 +62,25 @@
                                     data-ng-model="newDisplayName.value"
                                 />
                                 <button
-                                    class="oui-button oui-button_small-width"
+                                    class="oui-button oui-button_s"
                                     type="button"
                                     aria-label="{{ 'common_confirm' | translate }}"
                                     data-ng-click="saveDisplayName()"
                                     data-ng-disabled="!formEditDisplayName.txtDisplayName.$dirty || formEditDisplayName.$invalid"
                                 >
                                     <span
-                                        class="oui-icon oui-icon-success oui-icon_small"
+                                        class="oui-icon oui-icon-success"
                                         aria-hidden="true"
                                     ></span>
                                 </button>
                                 <button
-                                    class="oui-button oui-button_small-width"
+                                    class="oui-button oui-button_s"
                                     type="button"
                                     aria-label="{{ 'common_cancel' | translate }}"
                                     data-ng-click="resetDisplayName()"
                                 >
                                     <span
-                                        class="oui-icon oui-icon-error oui-icon_small"
+                                        class="oui-icon oui-icon-error"
                                         aria-hidden="true"
                                     ></span>
                                 </button>
@@ -106,13 +106,13 @@
                     </form>
                 </div>
                 <div class="col-sm-3 d-flex" data-ng-if="!hosting.isExpired">
-                    <div class="btn-group ml-auto mt-4">
+                    <div class="btn-group ml-auto mt-4" data-uib-dropdown>
                         <button
                             type="button"
                             class="oui-button oui-button_dropdown mb-0"
                             aria-haspopup="true"
                             aria-expanded="false"
-                            data-toggle="dropdown"
+                            data-uib-dropdown-toggle
                         >
                             <span data-translate="common_actions"></span>
                             <span
@@ -120,12 +120,11 @@
                                 aria-hidden="true"
                             ></span>
                         </button>
-                        <ul class="dropdown-menu dropdown-menu-right m-0 p-0">
+                        <ul
+                            class="dropdown-menu dropdown-menu-right"
+                            data-uib-dropdown-menu
+                        >
                             <li data-ng-if="urlDomainOrder">
-                                <span
-                                    class="fa fa-plus"
-                                    aria-hidden="true"
-                                ></span>
                                 <button
                                     class="btn btn-link"
                                     type="button"
@@ -145,17 +144,18 @@
             </div>
         </div>
     </div>
-    <div class="oui-page-header__tabs">
+    <div class="oui-header__tabs">
         <!-- Adapted header-tabs for the old use. Need to refactor hosting routing afterwards -->
         <oui-header-tabs>
             <oui-header-tabs-item
                 data-ng-if="$ctrl.tabs"
                 data-ng-repeat="tab in $ctrl.tabs"
-                data-text="{{:: 'hosting_tab_' + tab | translate }}"
                 data-href="{{:: $ctrl.$state.href('app.hosting', { 'tab': tab }) }}"
                 data-active="$ctrl.selectedTab === tab"
                 data-on-click="$ctrl.setSelectedTab(tab)"
-            >
+                ><span
+                    data-ng-bind=":: 'hosting_tab_' + tab | translate"
+                ></span>
             </oui-header-tabs-item>
             <oui-header-tabs-dropdown
                 data-ng-if="$ctrl.tabMenu"
@@ -164,24 +164,21 @@
                 <oui-header-tabs-item
                     data-ng-repeat-start="item in $ctrl.tabMenu.items track by item.target"
                     data-ng-if="item.type === 'SWITCH_TABS'"
-                    data-text="{{:: item.label }}"
                     data-href="{{:: $ctrl.$state.href('app.hosting', { 'tab': item.target }) }}"
                     data-active="$ctrl.selectedTab === item.target"
                     data-on-click="$ctrl.setSelectedTab(item.target)"
-                >
+                    ><span data-ng-bind=":: item.label"></span>
                 </oui-header-tabs-item>
                 <oui-header-tabs-item
                     data-ng-if="item.type === 'STATE'"
-                    data-text="{{:: item.label }}"
                     data-state="{{:: item.state }}"
                     data-on-click="$ctrl.selectedTab = item.target"
-                >
+                    ><span data-ng-bind=":: item.label"></span>
                 </oui-header-tabs-item>
                 <oui-header-tabs-item
                     data-ng-if="item.type === 'LINK'"
-                    data-text="{{:: item.label }}"
                     data-href="{{:: item.target }}"
-                >
+                    ><span data-ng-bind=":: item.label"></span>
                 </oui-header-tabs-item>
                 <oui-header-tabs-divider
                     data-ng-if="item.type === 'SEPARATOR'"

@@ -8,8 +8,8 @@
         name="$ctrl.newAccountForm"
     >
         <oui-back-button
-            data-heading="{{:: 'exchange_account_add_back_button' | translate }}"
             data-on-click="$ctrl.messaging.resetMessages(); $ctrl.hide()"
+            ><span data-translate="exchange_account_add_back_button"></span
         ></oui-back-button>
 
         <div
@@ -51,7 +51,7 @@
                         data-ng-bind=":: 'exchange_account_add_accountType_tooltip' | translate"
                     ></span>
                     <span
-                        class="oui-icon oui-icon-help_circle ml-4 mt-3"
+                        class="oui-icon ml-4 mt-3 oui-icon-help-circle"
                         data-oui-tooltip="{{:: 'exchange_account_add_accountType_tooltip' | translate }}"
                         aria-hidden="true"
                     ></span>
@@ -215,7 +215,7 @@
                 data-ng-bind=":: 'exchange_account_add_password_label' | translate"
             ></label>
             <div class="oui-field__control oui-field__control_m">
-                <div class="mb-0 oui-input-group oui-input-group_button">
+                <div class="mb-0 oui-input-overlay">
                     <input
                         class="oui-input"
                         data-ng-attr-type="{{ $ctrl.shouldDisplayPasswordInput ? 'password' : 'text' }}"
@@ -235,7 +235,7 @@
                         data-ng-click="$ctrl.switchBetweenPasswordAndTextInput()"
                     >
                         <span
-                            class="oui-icon oui-icon-eye"
+                            class="oui-icon oui-icon-eye-open"
                             aria-hidden="true"
                         ></span>
                     </button>
@@ -247,7 +247,7 @@
                         data-ng-click="$ctrl.switchBetweenPasswordAndTextInput()"
                     >
                         <span
-                            class="oui-icon oui-icon-eye-blocked"
+                            class="oui-icon oui-icon-eye-closed"
                             aria-hidden="true"
                         ></span>
                     </button>
@@ -361,10 +361,10 @@
         </div>
 
         <oui-field data-size="xl">
-            <oui-checkbox
-                name="acceptsConditions"
-                data-text="{{:: 'exchange_ACTION_add_account_legal_warning' | translate }}"
-                required
+            <oui-checkbox name="acceptsConditions" required
+                ><span
+                    data-translate="exchange_ACTION_add_account_legal_warning"
+                ></span
             ></oui-checkbox>
         </oui-field>
 

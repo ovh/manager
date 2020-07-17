@@ -1,7 +1,7 @@
 import angular from 'angular';
 import 'angular-translate';
 import ngOvhTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
-import 'ovh-ui-angular';
+import '@ovh-ux/ui-kit';
 
 import component from './information.component';
 

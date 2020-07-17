@@ -35,7 +35,7 @@
                         >
                             <span data-ng-bind="ctrl.logs.stats"></span>
                             <span
-                                class="oui-icon oui-icon-external_link"
+                                class="oui-icon oui-icon-external-link"
                                 aria-hidden="true"
                             ></span>
                         </a>
@@ -55,7 +55,7 @@
                         >
                             <span data-ng-bind="ctrl.logs.logs"></span>
                             <span
-                                class="oui-icon oui-icon-external_link"
+                                class="oui-icon oui-icon-external-link"
                                 aria-hidden="true"
                             ></span>
                         </a>
@@ -68,41 +68,44 @@
                     data-rows="ctrl.userLogs"
                     data-row-loader="ctrl.transformItem($row)"
                 >
-                    <oui-column
+                    <oui-datagrid-column
                         data-title="'hosting_tab_USER_LOGS_table_header_login' | translate"
                         data-property="login"
                     >
                         {{ $row.login | wucSliceContent: 50 }}
-                    </oui-column>
-                    <oui-column
+                    </oui-datagrid-column>
+                    <oui-datagrid-column
                         data-title="'hosting_tab_USER_LOGS_table_header_description' | translate"
                         data-property="description"
                     >
                         {{ $row.description | wucSliceContent: 50 }}
-                    </oui-column>
-                    <oui-column
+                    </oui-datagrid-column>
+                    <oui-datagrid-column
                         data-title="'hosting_tab_USER_LOGS_table_header_creationDate' | translate"
                         data-property="creationDate"
                     >
                         <span
                             data-ng-bind="$row.creationDate | date: 'medium'"
                         ></span>
-                    </oui-column>
-                    <oui-action-menu data-align="end" data-compact>
+                    </oui-datagrid-column>
+                    <oui-action-menu data-compact data-placement="end">
                         <oui-action-menu-item
-                            data-text="{{:: 'hosting_tab_USER_LOGS_table_popover_modify' | translate }}"
                             data-on-click="setAction('user-logs/update/hosting-user-logs-update', $row)"
-                        >
+                            ><span
+                                data-translate="hosting_tab_USER_LOGS_table_popover_modify"
+                            ></span>
                         </oui-action-menu-item>
                         <oui-action-menu-item
-                            data-text="{{:: 'hosting_tab_USER_LOGS_table_popover_update_password' | translate }}"
                             data-on-click="setAction('user-logs/password-update/hosting-user-logs-update-password', $row.login)"
-                        >
+                            ><span
+                                data-translate="hosting_tab_USER_LOGS_table_popover_update_password"
+                            ></span>
                         </oui-action-menu-item>
                         <oui-action-menu-item
-                            data-text="{{:: 'hosting_tab_USER_LOGS_table_popover_delete' | translate }}"
                             data-on-click="setAction('user-logs/delete/hosting-user-logs-delete', $row.login)"
-                        >
+                            ><span
+                                data-translate="hosting_tab_USER_LOGS_table_popover_delete"
+                            ></span>
                         </oui-action-menu-item>
                     </oui-action-menu>
                 </oui-datagrid>

@@ -1,3 +1,5 @@
+@import '@ovh-ux/ui-kit/dist/less/_tokens';
+
 .oui-navbar {
   // Logo
   &__brand {
@@ -8,11 +10,11 @@
 
   // Universes
   &-list_main {
-    .navbar-universe(web, @oui-color-jungle);
-    .navbar-universe(cloud, @oui-color-supernova);
-    .navbar-universe(telecom, @oui-color-dodger);
-    .navbar-universe(sunrise, @oui-color-california);
-    .navbar-universe(gamma, @oui-color-california);
+    .navbar-universe(web, #27b9a2);
+    .navbar-universe(cloud, #fc0);
+    .navbar-universe(telecom, #32acff);
+    .navbar-universe(sunrise, #ff9803);
+    .navbar-universe(gamma, #ff9803);
 
     .navbar-universe(@universe-selector, @universe-color) {
       .@{universe-selector} > .oui-navbar-link {
@@ -31,17 +33,17 @@
       &,
       &:hover,
       &:active {
-        background-color: @oui-navbar-menu-background-color_hover;
+        background-color: @p-075;
       }
 
       .oui-navbar-link::after {
-        content: @oui-icon-index-check_line;
+        content: @oui-icon-index-success;
         display: inline-block;
         margin-left: 1.25rem;
         margin-top: -0.1875rem;
         vertical-align: middle;
         font-family: 'Oui Icons', sans-serif;
-        font-size: @oui-navbar-external-size;
+        font-size: rem-calc(14);
         color: inherit;
       }
     }
@@ -87,7 +89,7 @@
     &:focus,
     &_active {
       font-weight: 600;
-      color: @oui-color-error-dark;
+      color: @ae-500;
     }
   }
 }
@@ -113,7 +115,7 @@
     outline-color: initial !important;
     outline-offset: -2px !important;
     background-color: #fff;
-    z-index: 1100;
+    z-index: @base-z-index-tooltip;
   }
 }
 

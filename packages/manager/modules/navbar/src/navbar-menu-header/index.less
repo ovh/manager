@@ -1,9 +1,5 @@
 ovh-manager-navbar {
-  @import '~ovh-ui-kit/packages/oui-color/_variables';
-  @import '~ovh-ui-kit/packages/oui-icons/_icons';
-  @import '~ovh-ui-kit/packages/oui-navbar/_variables';
-  @import '~ovh-ui-kit/packages/oui-responsive/_mixins';
-  @import '~ovh-ui-kit/packages/oui-typography/_variables';
+  @import '~@ovh-ux/ui-kit/dist/less/_tokens';
 
   .oui-navbar {
     .oui-navbar-link {
@@ -39,7 +35,9 @@ ovh-manager-navbar {
       margin: 0 0 0 5px;
       align-self: center;
 
-      .medium({font-size: 10px;});
+      @media screen and (max-width: @device-breakpoint-tablet-max-width) {
+        font-size: 10px;
+      }
     }
 
     .transition() {

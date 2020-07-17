@@ -15,8 +15,8 @@
                 >
                     <oui-tile-description>
                         <span
-                            class="oui-status"
-                            data-ng-class="{'oui-status_success': ctrlTabGeneralInformations.domain.status === 'ok', 'oui-status_error': ctrlTabGeneralInformations.domain.status !== 'ok'}"
+                            class="oui-badge"
+                            data-ng-class="{'oui-badge_success': ctrlTabGeneralInformations.domain.status === 'ok', 'oui-badge_error': ctrlTabGeneralInformations.domain.status !== 'ok'}"
                             data-ng-bind="'email_tab_domain_status_' + ctrlTabGeneralInformations.domain.status | translate"
                             data-ng-if="ctrlTabGeneralInformations.domain.status"
                         ></span>
@@ -34,7 +34,7 @@
                     data-term="{{ ::'email_tab_domain_dns_filter' | translate }}"
                     data-description="{{ 'email_tab_domain_dns_filter_' + (ctrlTabGeneralInformations.dnsFilter || 'NO_FILTERING') | translate }}"
                 >
-                    <oui-action-menu data-compact data-align="end">
+                    <oui-action-menu data-compact data-placement="end">
                         <oui-action-menu-item
                             data-on-click="setAction('email-domain/email/filter/edit-dns/email-domain-email-filter-edit-dns', ctrlTabGeneralInformations.dnsFilter)"
                         >
@@ -95,7 +95,7 @@
                     data-term="{{ ::'email_tab_domain_offer' | translate }}"
                     data-description="{{ ::ctrlTabGeneralInformations.domain.offer || '-' }}"
                 >
-                    <oui-action-menu data-compact data-align="end">
+                    <oui-action-menu data-compact data-placement="end">
                         <oui-action-menu-item
                             data-on-click="ctrlTabGeneralInformations.goToUpgrade()"
                         >
@@ -140,7 +140,7 @@
                             ></span>
                         </p>
                     </oui-tile-description>
-                    <oui-action-menu data-compact data-align="end">
+                    <oui-action-menu data-compact data-placement="end">
                         <oui-action-menu-item
                             data-href="{{ ::ctrlTabGeneralInformations.urls.manageContacts }}"
                         >
@@ -160,7 +160,7 @@
                     data-term="{{ ::'common_creation_date' | translate }}"
                     data-description="{{ ::ctrlTabGeneralInformations.domain.creationDate | date : 'mediumDate' }}"
                 >
-                    <oui-action-menu data-compact data-align="end">
+                    <oui-action-menu data-compact data-placement="end">
                         <oui-action-menu-item
                             data-href="{{ ::ctrlTabGeneralInformations.urls.delete }}"
                         >

@@ -23,12 +23,12 @@
             >
                 <oui-tile-description>
                     <span
-                        class="oui-status"
-                        data-ng-class="'oui-status_' + $ctrl.ANALYTICS_DATA_PLATFORM_STATUS_MAP[$ctrl.platformDetails.status]"
+                        class="oui-badge"
+                        data-ng-class="'oui-badge_' + $ctrl.ANALYTICS_DATA_PLATFORM_STATUS_MAP[$ctrl.platformDetails.status]"
                         data-ng-bind=":: 'analytics_data_platform_common_status_' +$ctrl.platformDetails.status | translate"
                     ></span>
                 </oui-tile-description>
-                <oui-action-menu data-compact data-align="end">
+                <oui-action-menu data-compact data-placement="end">
                     <oui-action-menu-item on-click="$ctrl.terminate()">
                         <span
                             data-translate="analytics_data_platform_service_terminate"
@@ -59,7 +59,7 @@
             >
                 <oui-tile-description>
                     <a
-                        class="oui-button oui-button_link pl-0"
+                        class="oui-button pl-0 oui-button_ghost"
                         data-ng-bind="$ctrl.publicCloudDetails.description"
                         data-ui-sref="pci.projects.project.instances({ projectId: $ctrl.publicCloudDetails.project_id })"
                     >

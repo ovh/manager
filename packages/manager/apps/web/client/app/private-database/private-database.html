@@ -30,7 +30,7 @@
                             data-ng-if="!ctrl.isExpired"
                         >
                             <span
-                                class="oui-icon oui-icon-pen_line oui-icon_small"
+                                class="oui-icon oui-icon-pen_concept"
                                 aria-hidden="true"
                             ></span>
                             <span
@@ -117,13 +117,13 @@
             </div>
 
             <div class="col-md-3 d-flex">
-                <div class="btn-group ml-auto mt-4">
+                <div class="btn-group ml-auto mt-4" data-uib-dropdown>
                     <button
                         type="button"
                         class="oui-button oui-button_dropdown mb-0"
                         aria-expanded="false"
                         aria-haspopup="true"
-                        data-toggle="dropdown"
+                        data-uib-dropdown-toggle
                     >
                         <span data-translate="common_actions"></span>
                         <span
@@ -131,12 +131,11 @@
                             aria-hidden="true"
                         ></span>
                     </button>
-                    <ul class="dropdown-menu dropdown-menu-right">
+                    <ul
+                        class="dropdown-menu dropdown-menu-right"
+                        data-uib-dropdown-menu
+                    >
                         <li data-ng-if="!ctrl.isExpired">
-                            <i
-                                class="oui-icon oui-icon-power_line"
-                                aria-hidden="true"
-                            ></i>
                             <button
                                 class="btn btn-link"
                                 type="button"
@@ -150,10 +149,6 @@
                             class="dropdown-divider"
                             data-ng-if="!ctrl.isExpired && (changeOwnerUrl || ctrl.contactManagementLink)"
                         >
-                            <i
-                                class="oui-icon oui-icon-user_line"
-                                aria-hidden="true"
-                            ></i>
                             <a
                                 data-ng-if="changeOwnerUrl"
                                 class="btn btn-link"
@@ -165,10 +160,6 @@
                             </a>
                         </li>
                         <li data-ng-if="ctrl.contactManagementLink">
-                            <i
-                                class="oui-icon oui-icon-gear_line"
-                                aria-hidden="true"
-                            ></i>
                             <a
                                 class="btn btn-link"
                                 data-ng-href="{{:: ctrl.contactManagementLink }}"

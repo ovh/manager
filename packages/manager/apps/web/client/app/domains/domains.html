@@ -166,13 +166,13 @@
                                     ></td>
                                     <td class="text-center">
                                         <span
-                                            class="oui-status oui-status_warning"
+                                            class="oui-badge oui-badge_warning"
                                             data-translate="common_not_supported"
                                             data-ng-if="!domain.optinIsAvailable"
                                         >
                                         </span>
                                         <span
-                                            class="oui-status oui-status_success"
+                                            class="oui-badge oui-badge_success"
                                             data-translate="domains_dashboard_whois_configurable"
                                             data-ng-if="domain.optinIsAvailable"
                                         >
@@ -180,30 +180,30 @@
                                     </td>
                                     <td class="text-center">
                                         <span
-                                            class="oui-status"
+                                            class="oui-badge"
                                             data-ng-bind=":: 'domains_dashboard_table_dnssec_status_' + domain.dnssecStatus | translate"
-                                            data-ng-class="{'oui-status_success': domain.dnssecStatus === 'ENABLED', 'oui-status_error': domain.dnssecStatus === 'DISABLED', 'oui-status_info': domain.dnssecStatus !== 'ENABLED' && domain.dnssecStatus !== 'DISABLED'}"
+                                            data-ng-class="{'oui-badge_success': domain.dnssecStatus === 'ENABLED', 'oui-badge_error': domain.dnssecStatus === 'DISABLED', 'oui-badge_info': domain.dnssecStatus !== 'ENABLED' && domain.dnssecStatus !== 'DISABLED'}"
                                             data-ng-if="domain.dnssecSupported && domain.dnssecStatus !== null"
                                         ></span>
                                         <span
-                                            class="oui-status oui-status_warning"
+                                            class="oui-badge oui-badge_warning"
                                             data-translate="common_not_supported"
                                             data-ng-if="!domain.dnssecSupported"
                                         ></span>
                                     </td>
                                     <td class="text-center">
                                         <span
-                                            class="oui-status oui-status_success"
+                                            class="oui-badge oui-badge_success"
                                             data-translate="common_activated"
                                             data-ng-if="domain.hasDnsAnycast"
                                         ></span>
                                         <span
-                                            class="oui-status oui-status_error"
+                                            class="oui-badge oui-badge_error"
                                             data-translate="common_desactivated"
                                             data-ng-if="domain.hasDnsAnycast === false"
                                         ></span>
                                         <span
-                                            class="oui-status oui-status_warning"
+                                            class="oui-badge oui-badge_warning"
                                             data-translate="common_not_available"
                                             data-ng-if="domain.hasDnsAnycast == null"
                                         ></span>
@@ -211,7 +211,7 @@
                                     <td class="text-right">
                                         <oui-action-menu
                                             data-compact
-                                            data-align="end"
+                                            data-placement="end"
                                         >
                                             <oui-action-menu-item
                                                 data-on-click="$ctrl.setAction('renew/domains-renew', 'domains/', domain)"
@@ -264,21 +264,21 @@
             </div>
             <div class="col-md-3 mt-5 mt-lg-0">
                 <button
-                    class="oui-button oui-button_secondary oui-button_full-width mb-2"
+                    class="oui-button oui-button_secondary mb-2 oui-button_block"
                     type="button"
                     data-translate="domains_dashboard_button_renew"
                     data-ng-click="setActionMultiple('renew/domains-renew')"
                     data-ng-disabled="!$ctrl.atLeastOneSelected"
                 ></button>
                 <button
-                    class="oui-button oui-button_secondary oui-button_full-width mb-2"
+                    class="oui-button oui-button_secondary mb-2 oui-button_block"
                     type="button"
                     data-translate="domains_dashboard_button_dnssec"
                     data-ng-click="setActionMultiple('dnssec/batch/domains-dnssec-batch')"
                     data-ng-disabled="!$ctrl.atLeastOneSelected"
                 ></button>
                 <button
-                    class="oui-button oui-button_secondary oui-button_full-width mb-2"
+                    class="oui-button oui-button_secondary mb-2 oui-button_block"
                     type="button"
                     data-ng-click="setActionMultiple('export-csv/domains-export-to-csv')"
                     data-ng-disabled="$ctrl.loading.domainsExportCsv"
@@ -294,7 +294,7 @@
                     ></span>
                 </button>
                 <a
-                    class="oui-button oui-button_secondary oui-button_icon-right oui-button_full-width mb-2"
+                    class="oui-button oui-button_secondary oui-button_icon-right mb-2 oui-button_block"
                     target="_blank"
                     rel="noopener"
                     data-ng-href="{{ $ctrl.urlBulkChangeOwner }}"
@@ -302,7 +302,7 @@
                 >
                     <span data-translate="domains_change_owner"></span>
                     <span
-                        class="oui-icon oui-icon-external_link"
+                        class="oui-icon oui-icon-external-link"
                         aria-hidden="true"
                     ></span>
                     <span

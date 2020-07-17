@@ -6,12 +6,12 @@
 </div>
 
 <div data-ng-if="!$ctrl.loadingInformations">
-    <header class="oui-page-header">
-        <div class="oui-page-header__container">
-            <div class="oui-page-header__content">
+    <header class="oui-header">
+        <div class="oui-header__container">
+            <div class="oui-header__content">
                 <div class="d-flex">
                     <h1
-                        class="oui-page-header__title"
+                        class="oui-header__title"
                         data-ng-bind="datacenterName.model || 'dedicatedCloud_datacenter_no_name' | translate:{ t0: datacenter.id }"
                     ></h1>
                     <button
@@ -20,7 +20,7 @@
                         data-ng-click=":: editDescription(datacenterName.model, 'dedicatedCloud_datacenter_name')"
                     >
                         <span
-                            class="oui-icon oui-icon-pen_line oui-icon_small"
+                            class="oui-icon oui-icon-pen_concept"
                             aria-hidden="true"
                         ></span>
                         <span
@@ -32,7 +32,7 @@
 
                 <div class="d-flex">
                     <h2
-                        class="oui-page-header__description"
+                        class="oui-header__description"
                         data-ng-bind="datacenterDescription.model || ('dedicatedCloud_datacenter_no_description' | translate)"
                     ></h2>
 
@@ -42,7 +42,7 @@
                         data-ng-click=":: editDescription(datacenterDescription.model, 'dedicatedCloud_datacenter_description')"
                     >
                         <span
-                            class="oui-icon oui-icon-pen_line oui-icon_small"
+                            class="oui-icon oui-icon-pen_concept"
                             aria-hidden="true"
                         ></span>
                         <span
@@ -57,23 +57,20 @@
         <oui-header-tabs>
             <oui-header-tabs-item
                 state="app.dedicatedClouds.datacenter.dashboard"
-                text="{{:: 'dedicatedCloud_tab_dashboard' | translate }}"
+                ><span data-translate="dedicatedCloud_tab_dashboard"></span
             ></oui-header-tabs-item>
-            <oui-header-tabs-item
-                state="app.dedicatedClouds.datacenter.hosts"
-                text="{{:: 'dedicatedCloud_tab_host' | translate }}"
+            <oui-header-tabs-item state="app.dedicatedClouds.datacenter.hosts"
+                ><span data-translate="dedicatedCloud_tab_host"></span
             ></oui-header-tabs-item>
             <oui-header-tabs-item
                 state="app.dedicatedClouds.datacenter.datastores"
-                text="{{:: 'dedicatedCloud_tab_datastore' | translate }}"
+                ><span data-translate="dedicatedCloud_tab_datastore"></span
             ></oui-header-tabs-item>
-            <oui-header-tabs-item
-                state="app.dedicatedClouds.datacenter.backup"
-                text="{{:: 'dedicatedCloud_tab_backup' | translate }}"
+            <oui-header-tabs-item state="app.dedicatedClouds.datacenter.backup"
+                ><span data-translate="dedicatedCloud_tab_backup"></span
             ></oui-header-tabs-item>
-            <oui-header-tabs-item
-                state="app.dedicatedClouds.datacenter.drp"
-                text="{{:: 'dedicatedCloud_tab_drp' | translate }}"
+            <oui-header-tabs-item state="app.dedicatedClouds.datacenter.drp"
+                ><span data-translate="dedicatedCloud_tab_drp"></span
             ></oui-header-tabs-item>
         </oui-header-tabs>
     </header>

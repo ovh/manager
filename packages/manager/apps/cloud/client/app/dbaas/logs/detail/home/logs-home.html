@@ -15,10 +15,7 @@
         role="alert"
         data-ng-if="ctrl.isAccountDisabled"
     >
-        <i
-            class="oui-icon oui-icon-warning_circle oui-icon_bicolor"
-            aria-hidden="true"
-        ></i>
+        <i class="oui-icon oui-icon-warning-circle" aria-hidden="true"></i>
         <p
             class="oui-message__body font-weight-bold"
             data-translate="logs_home_account_disabled_title"
@@ -59,7 +56,7 @@
                             <a
                                 data-ng-if="ctrl.accountDetails.data.last_stream"
                                 data-ng-href="{{ ctrl.accountDetails.data.last_stream.graylogWebuiUrl }}"
-                                class="oui-tile__button oui-button oui-link_icon oui-button_link oui-button_full-width"
+                                class="oui-tile__button oui-button oui-link_icon oui-button_ghost oui-button_block"
                                 rel="noopener"
                                 target="_blank"
                             >
@@ -67,7 +64,7 @@
                                     data-ng-bind="ctrl.accountDetails.data.last_stream.info.title"
                                 ></span>
                                 <i
-                                    class="oui-icon oui-icon-external_link"
+                                    class="oui-icon oui-icon-external-link"
                                     aria-hidden="true"
                                 ></i>
                             </a>
@@ -78,7 +75,7 @@
                             </span>
                             <button
                                 type="button"
-                                class="oui-tile__button oui-button oui-button_link oui-button_full-width"
+                                class="oui-tile__button oui-button oui-button_ghost oui-button_block"
                                 data-ng-click="ctrl.goToAllStreams()"
                             >
                                 <span
@@ -94,7 +91,7 @@
                             <a
                                 data-ng-if="ctrl.accountDetails.data.last_dashboard"
                                 data-ng-href="{{ ctrl.accountDetails.data.last_dashboard.graylogWebuiUrl }}"
-                                class="oui-tile__button oui-button oui-link_icon oui-button_link oui-button_full-width"
+                                class="oui-tile__button oui-button oui-link_icon oui-button_ghost oui-button_block"
                                 rel="noopener"
                                 target="_blank"
                             >
@@ -102,7 +99,7 @@
                                     data-ng-bind="ctrl.accountDetails.data.last_dashboard.info.title"
                                 ></span>
                                 <i
-                                    class="oui-icon oui-icon-external_link"
+                                    class="oui-icon oui-icon-external-link"
                                     aria-hidden="true"
                                 ></i>
                             </a>
@@ -112,7 +109,7 @@
                             ></span>
                             <button
                                 type="button"
-                                class="oui-tile__button oui-button oui-button_link oui-button_full-width"
+                                class="oui-tile__button oui-button oui-button_ghost oui-button_block"
                                 data-ng-click="ctrl.goToAllDashboards()"
                             >
                                 <span
@@ -125,7 +122,7 @@
                         <oui-tile-description>
                             <a
                                 data-ng-href="{{ ctrl.accountDetails.data.graylogWebuiUrl }}"
-                                class="oui-tile__button oui-button oui-link_icon oui-button_link oui-button_full-width"
+                                class="oui-tile__button oui-button oui-link_icon oui-button_ghost oui-button_block"
                                 rel="noopener"
                                 target="_blank"
                             >
@@ -133,13 +130,13 @@
                                     data-translate="logs_home_shortcuts_graylog"
                                 ></span>
                                 <i
-                                    class="oui-icon oui-icon-external_link"
+                                    class="oui-icon oui-icon-external-link"
                                     aria-hidden="true"
                                 ></i>
                             </a>
                             <a
                                 data-ng-href="{{ ctrl.accountDetails.data.graylogApiUrl }}"
-                                class="oui-tile__button oui-button oui-link_icon oui-button_link oui-button_full-width"
+                                class="oui-tile__button oui-button oui-link_icon oui-button_ghost oui-button_block"
                                 rel="noopener"
                                 target="_blank"
                             >
@@ -147,17 +144,17 @@
                                     data-translate="logs_home_shortcuts_graylog_api"
                                 ></span>
                                 <i
-                                    class="oui-icon oui-icon-external_link"
+                                    class="oui-icon oui-icon-external-link"
                                     aria-hidden="true"
                                 ></i>
                             </a>
                             <div data-ng-if="ctrl.account.data">
                                 <a
                                     data-ng-href="{{ ctrl.accountDetails.data.elasticSearchApiUrl }}"
-                                    class="oui-tile__button oui-button oui-link_icon oui-button_link"
+                                    class="oui-tile__button oui-button oui-link_icon oui-button_ghost"
                                     data-ng-class="{
                                         'oui-link_disabled': !ctrl.canAccessToElasticsearch,
-                                        'oui-button_full-width': ctrl.canAccessToElasticsearch
+                                        'oui-button_block': ctrl.canAccessToElasticsearch
                                    }"
                                     rel="noopener"
                                     target="_blank"
@@ -166,22 +163,16 @@
                                         data-translate="logs_home_shortcuts_elasticsearch"
                                     ></span>
                                     <i
-                                        class="oui-icon oui-icon-external_link"
+                                        class="oui-icon oui-icon-external-link"
                                         aria-hidden="true"
                                     ></i>
                                 </a>
-                                <oui-popover
+                                <button
+                                    type="button"
+                                    class="oui-popover-button"
                                     data-ng-if="!ctrl.canAccessToElasticsearch"
-                                >
-                                    <button
-                                        type="button"
-                                        class="oui-popover__help-button"
-                                        oui-popover-trigger
-                                    ></button>
-                                    <oui-popover-content
-                                        >{{::'logs_home_shortcuts_elasticsearch_help'|translate}}
-                                    </oui-popover-content>
-                                </oui-popover>
+                                    data-oui-popover="{{::'logs_home_shortcuts_elasticsearch_help'|translate}}"
+                                ></button>
                             </div>
                         </oui-tile-description>
                     </oui-tile-definition>
@@ -296,12 +287,11 @@
                     data-term="{{::'logs_home_password'|translate}}"
                     data-description="******"
                 >
-                    <oui-action-menu data-compact data-align="end">
+                    <oui-action-menu data-compact data-placement="end">
                         <oui-action-menu-item
-                            data-text="{{::'common_edit'|translate}}"
                             aria-label="{{::'common_edit'|translate}}"
                             data-on-click="ctrl.editPassword()"
-                        >
+                            ><span data-translate="common_edit"></span>
                         </oui-action-menu-item>
                     </oui-action-menu>
                 </oui-tile-definition>
@@ -325,12 +315,11 @@
                         <oui-tile-description
                             data-ng-bind="ctrl.tokenIds.data.length"
                         ></oui-tile-description>
-                        <oui-action-menu data-compact data-align="end">
+                        <oui-action-menu data-compact data-placement="end">
                             <oui-action-menu-item
-                                data-text="{{::'common_edit'|translate}}"
                                 aria-label="{{::'common_edit'|translate}}"
                                 data-on-click="ctrl.editTokens()"
-                            >
+                                ><span data-translate="common_edit"></span>
                             </oui-action-menu-item>
                         </oui-action-menu>
                     </oui-tile-definition>
@@ -381,7 +370,7 @@
                         <oui-tile-description>
                             <button
                                 type="button"
-                                class="oui-tile__button oui-button oui-button_link oui-button_full-width"
+                                class="oui-tile__button oui-button oui-button_ghost oui-button_block"
                                 data-ng-click="ctrl.openMessagesAndPorts()"
                             >
                                 <span
@@ -419,12 +408,11 @@
                             data-ng-bind="ctrl.accountDetails.data.service.displayName"
                         >
                         </oui-tile-description>
-                        <oui-action-menu data-compact data-align="end">
+                        <oui-action-menu data-compact data-placement="end">
                             <oui-action-menu-item
-                                data-text="{{::'common_edit'|translate}}"
                                 aria-label="{{::'common_edit'|translate}}"
                                 data-on-click="ctrl.changeName()"
-                            >
+                                ><span data-translate="common_edit"></span>
                             </oui-action-menu-item>
                         </oui-action-menu>
                     </oui-tile-definition>

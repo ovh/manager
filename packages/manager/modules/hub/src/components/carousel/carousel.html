@@ -1,46 +1,27 @@
 <div
     data-ng-repeat="item in $ctrl.items track by $index"
     role="alert"
-    class="oui-message oui-message_error pl-3"
+    class="oui-message oui-message_error"
     data-ng-if="$index === $ctrl.index"
     data-navi-id="alert-message-block"
 >
-    <div class="d-flex justify-content-between align-items-center">
-        <div class="d-flex align-items-center w-100 minw-0">
-            <span
-                class="oui-icon oui-icon_bicolor oui-icon-warning_extra-thin mr-2"
-                aria-hidden="true"
-            ></span>
-            <a
-                data-ng-if="item.urlDetails"
-                class="oui-message__body oui-message__body_error p-0"
-                data-ng-href="{{ item.urlDetails.href }}"
-                data-ng-bind-html="item.description"
-            >
-            </a>
-            <span
-                class="oui-message__body oui-message__body_error p-0"
-                data-ng-if="!item.urlDetails"
-                data-ng-bind-html="item.description"
-            ></span>
-        </div>
-        <button
-            class="oui-button oui-button_icon-alone"
-            type="button"
-            data-ng-if="$ctrl.items.length > 1"
+    <span
+        class="oui-message__icon oui-icon oui-icon-warning"
+        aria-hidden="true"
+    ></span>
+    <div class="oui-message__body">
+        <a
+            data-ng-if="item.urlDetails"
+            data-ng-href="{{ item.urlDetails.href }}"
+            data-ng-bind-html="item.description"
         >
-            <span
-                class="oui-icon oui-icon-arrow-right_extra-thin align-middle"
-                aria-hidden="true"
-                data-ng-click="$ctrl.nextAlert()"
-            ></span>
-            <span
-                class="sr-only"
-                data-translate="manager_hub_carousel_see_next"
-            ></span>
-        </button>
+        </a>
+        <span
+            data-ng-if="!item.urlDetails"
+            data-ng-bind-html="item.description"
+        ></span>
     </div>
-    <div class="w-100 text-center" data-ng-if="$ctrl.items.length > 1">
+    <div class="oui-message__bullets" data-ng-if="$ctrl.items.length > 1">
         <button
             type="button"
             data-ng-repeat="el in $ctrl.items track by $index"
@@ -51,4 +32,19 @@
             data-ng-click="$ctrl.switchToAlert($index)"
         ></button>
     </div>
+    <button
+        class="oui-message__next oui-button oui-button_s"
+        type="button"
+        data-ng-if="$ctrl.items.length > 1"
+    >
+        <span
+            class="oui-icon oui-icon-arrow-right"
+            aria-hidden="true"
+            data-ng-click="$ctrl.nextAlert()"
+        ></span>
+        <span
+            class="sr-only"
+            data-translate="manager_hub_carousel_see_next"
+        ></span>
+    </button>
 </div>

@@ -1,4 +1,3 @@
-@import '~/ovh-ui-kit/packages/oui-responsive/_variables';
 @import './_variables';
 
 /* stylelint-disable no-descending-specificity */
@@ -298,13 +297,14 @@
 }
 
 //mobile
-@media (max-width: @screen-sm-max) {
+@media (max-width: @device-breakpoint-tablet-max-width) {
   #sidebar-menu {
     max-width: @sidebar-max-width;
     left: -@sidebar-max-width;
     width: 75%;
     -webkit-transition: left 2s; /* For Safari 3.1 to 6.0 */
     transition: left 0.15s linear;
+    z-index: @sidebar-z-index_fixed;
 
     &.nav-open {
       left: 0;

@@ -10,25 +10,25 @@
     data-ng-if="!loadingEmailProInformations && !loadingEmailProError"
 >
     <div
-        class="oui-page-header"
+        class="oui-header"
         data-ng-if="!loadingEmailProInformations && !loadingEmailProError"
     >
-        <div class="oui-page-header__container">
-            <div class="oui-page-header__content">
+        <div class="oui-header__container">
+            <div class="oui-header__content">
                 <form name="formEditDisplayName" novalidate>
                     <div class="d-flex" data-ng-if="!edit.active">
                         <h1
-                            class="oui-page-header__title"
+                            class="oui-header__title"
                             data-ng-bind="exchange.displayName"
                         ></h1>
                         <button
                             type="button"
-                            class="oui-button oui-button_icon-alone my-auto ml-2"
+                            class="oui-button oui-button_s my-auto ml-2"
                             data-ng-click="edit.active = !edit.active"
                             aria-label="{{:: 'wizard_modify' | translate }}"
                         >
                             <span
-                                class="oui-icon oui-icon-pen_line oui-icon_small"
+                                class="oui-icon oui-icon-pen_concept"
                                 aria-hidden="true"
                             ></span>
                         </button>
@@ -46,7 +46,7 @@
                             />
 
                             <button
-                                class="oui-button oui-button_small-width"
+                                class="oui-button oui-button_s"
                                 type="submit"
                                 aria-label="{{ 'common_confirm' | translate }}"
                                 title="{{ 'common_confirm' | translate }}"
@@ -54,19 +54,19 @@
                                 data-ng-disabled="formEditDisplayName.$invalid"
                             >
                                 <span
-                                    class="oui-icon oui-icon-success oui-icon_small"
+                                    class="oui-icon oui-icon-success"
                                     aria-hidden="true"
                                 ></span>
                             </button>
                             <button
-                                class="oui-button oui-button_small-width"
+                                class="oui-button oui-button_s"
                                 type="button"
                                 aria-label="{{ 'common_cancel' | translate }}"
                                 title="{{ 'common_cancel' | translate }}"
                                 data-ng-click="edit.active = false"
                             >
                                 <span
-                                    class="oui-icon oui-icon-error oui-icon_small"
+                                    class="oui-icon oui-icon-error"
                                     aria-hidden="true"
                                 ></span>
                             </button>
@@ -75,15 +75,15 @@
                 </form>
 
                 <h2
-                    class="oui-page-header__description"
+                    class="oui-header__description"
                     data-ng-bind="exchange.domain"
                     data-ng-if="exchange.displayName != null && exchange.displayName !== exchange.domain"
                 ></h2>
             </div>
             <oui-action-menu
                 data-ng-if="!currentRegionCA"
-                data-align="end"
                 data-text="{{:: 'common_actions' | translate }}"
+                data-placement="end"
             >
                 <div data-ng-if="!exchange.isMXPlan">
                     <oui-action-menu-item
@@ -125,11 +125,12 @@
             <oui-header-tabs>
                 <oui-header-tabs-item
                     data-ng-repeat="tab in tabs track by $index"
-                    data-text="{{:: 'emailpro_tab_' + tab | translate }}"
                     data-href="{{ $ctrl.getTabLink(tab) }}"
                     data-active="selectedTab === tab"
                     data-on-click="setSelectedTab(tab)"
-                >
+                    ><span
+                        data-ng-bind=":: 'emailpro_tab_' + tab | translate"
+                    ></span>
                 </oui-header-tabs-item>
                 <oui-header-tabs-dropdown data-text="{{ tabMenu.title }}">
                     <div
@@ -142,16 +143,16 @@
                         ></oui-header-tabs-divider>
                         <oui-header-tabs-item
                             data-ng-if="item.type === 'ACTION'"
-                            data-text="{{ item.label }}"
                             data-disabled="item.disabled"
                             data-on-click="item.fn()"
+                            ><span data-ng-bind="item.label"></span
                         ></oui-header-tabs-item>
                         <oui-header-tabs-item
                             data-ng-if="item.type !== 'ACTION' && item.type !== 'SEPARATOR'"
-                            data-text="{{ item.label }}"
                             data-disabled="item.disabled"
                             data-href="{{ $ctrl.getTabLink(item.target) }}"
                             data-on-click="setSelectedTab(item.target)"
+                            ><span data-ng-bind="item.label"></span
                         ></oui-header-tabs-item>
                     </div>
                 </oui-header-tabs-dropdown>

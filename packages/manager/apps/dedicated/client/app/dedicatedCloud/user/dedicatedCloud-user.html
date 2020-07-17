@@ -62,32 +62,32 @@
         data-ng-if="!$ctrl.loading"
         data-row-loader="$ctrl.loadUser($row)"
     >
-        <oui-column
+        <oui-datagrid-column
             data-title=":: 'dedicatedCloud_USER_name' | translate"
             data-property="name"
         >
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title=":: 'dedicatedCloud_USER_firstname' | translate"
             data-property="firstName"
         >
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title=":: 'dedicatedCloud_USER_lastname' | translate"
             data-property="lastName"
         >
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title=":: 'dedicatedCloud_USER_mail' | translate"
             data-property="email"
         >
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title=":: 'dedicatedCloud_USER_phone' | translate"
             data-property="phoneNumber"
         >
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title=":: 'dedicatedCloud_USER_token_validator' | translate"
         >
             <span
@@ -100,8 +100,10 @@
                 data-ng-if="!$row.isTokenValidator"
             >
             </span>
-        </oui-column>
-        <oui-column data-title=":: 'dedicatedCloud_USER_ip' | translate">
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'dedicatedCloud_USER_ip' | translate"
+        >
             <span
                 data-translate="common_yes"
                 data-ng-if="$row.canManageNetwork"
@@ -112,8 +114,10 @@
                 data-ng-if="!$row.canManageNetwork"
             >
             </span>
-        </oui-column>
-        <oui-column data-title=":: 'dedicatedCloud_USER_ipfo' | translate">
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'dedicatedCloud_USER_ipfo' | translate"
+        >
             <span
                 data-translate="common_yes"
                 data-ng-if="$row.canManageIpFailOvers"
@@ -124,8 +128,8 @@
                 data-ng-if="!$row.canManageIpFailOvers"
             >
             </span>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title=":: 'dedicatedCloud_USER_nsx' | translate"
             data-ng-if="nsxOptions === 'enabled'"
         >
@@ -133,8 +137,8 @@
             </span>
             <span data-translate="common_no" data-ng-if="!$row.nsxRight">
             </span>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title=":: 'dedicatedCloud_USER_connection_type' | translate"
         >
             <span
@@ -186,56 +190,50 @@
                 >
                 </span>
             </span>
-        </oui-column>
+        </oui-datagrid-column>
         <oui-action-menu
-            data-align="end"
             data-compact
             data-ng-if="$row.state === 'DELIVERED'"
+            data-placement="end"
         >
-            <oui-action-menu-item
-                data-text="{{:: 'dedicatedCloud_USER_modify' | translate }}"
-                data-on-click="$ctrl.editUser($row)"
-            >
+            <oui-action-menu-item data-on-click="$ctrl.editUser($row)"
+                ><span data-translate="dedicatedCloud_USER_modify"></span>
+            </oui-action-menu-item>
+            <oui-action-menu-item data-on-click="$ctrl.modifyUserRights($row)"
+                ><span
+                    data-translate="dedicatedCloud_USER_view_modify_rights_by_DC"
+                ></span>
             </oui-action-menu-item>
             <oui-action-menu-item
-                data-text="{{:: 'dedicatedCloud_USER_view_modify_rights_by_DC' | translate }}"
-                data-on-click="$ctrl.modifyUserRights($row)"
-            >
-            </oui-action-menu-item>
-            <oui-action-menu-item
-                data-text="{{:: 'dedicatedCloud_USER_change_password' | translate }}"
                 data-on-click="setAction('user/password/reset/dedicatedCloud-user-password-reset', {user: $row, passwordPolicy: passwordPolicy})"
-            >
+                ><span
+                    data-translate="dedicatedCloud_USER_change_password"
+                ></span>
             </oui-action-menu-item>
             <oui-action-menu-item
-                data-text="{{:: 'dedicatedCloud_USER_delete' | translate }}"
                 data-ng-if="dedicatedCloud.solution !== 'SYSTEMCENTER' && $row.name !== 'infraadmin'"
                 data-on-click="setAction('user/delete/dedicatedCloud-user-delete', $row)"
-            >
+                ><span data-translate="dedicatedCloud_USER_delete"></span>
             </oui-action-menu-item>
             <oui-action-menu-item
-                data-text="{{:: 'dedicatedCloud_USER_delete' | translate }}"
                 data-ng-if="dedicatedCloud.solution !== 'SYSTEMCENTER' && $row.name === 'infraadmin'"
                 data-on-click="setAction('user/delete/dedicatedCloud-user-delete', $row)"
-            >
+                ><span data-translate="dedicatedCloud_USER_delete"></span>
             </oui-action-menu-item>
             <oui-action-menu-item
-                data-text="{{:: 'dedicatedCloud_USER_delete' | translate }}"
                 data-ng-if="dedicatedCloud.solution === 'SYSTEMCENTER' && $row.name !== 'infraadmin'"
                 data-on-click="setAction('user/delete/dedicatedCloud-user-delete', $row)"
-            >
+                ><span data-translate="dedicatedCloud_USER_delete"></span>
             </oui-action-menu-item>
             <oui-action-menu-item
-                data-text="{{:: 'dedicatedCloud_USER_enable' | translate }}"
                 data-ng-if="dedicatedCloud.solution === 'SYSTEMCENTER' && $row.name === 'infraadmin' && $row.activationState === 'DISABLED'"
                 data-on-click="setAction('user/enable/dedicatedCloud-user-enable', $row)"
-            >
+                ><span data-translate="dedicatedCloud_USER_enable"></span>
             </oui-action-menu-item>
             <oui-action-menu-item
-                data-text="{{:: 'dedicatedCloud_USER_disable' | translate }}"
                 data-ng-if="dedicatedCloud.solution === 'SYSTEMCENTER' && $row.name === 'infraadmin' && $row.activationState === 'ENABLED'"
                 data-on-click="setAction('user/disable/dedicatedCloud-user-disable', $row)"
-            >
+                ><span data-translate="dedicatedCloud_USER_disable"></span>
             </oui-action-menu-item>
         </oui-action-menu>
     </oui-datagrid>

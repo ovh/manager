@@ -19,7 +19,7 @@
             <!-- SLOT NOT DEFINED -->
             <div data-ng-if="!$ctrl.getSlotDetail('number')">
                 <button
-                    class="oui-button_link p-0"
+                    class="p-0 oui-button_ghost"
                     aria-label="{{:: 'voip_time_condition_slots_configure' | translate }}"
                     data-ng-if="::!!$ctrl.isScheduler"
                     data-ng-click="$ctrl.$state.go('^')"
@@ -64,7 +64,7 @@
     >
         <button
             type="button"
-            class="oui-button oui-button_icon-alone"
+            class="oui-button oui-button_s"
             aria-label="{{:: 'modify' | translate }}"
             data-ng-disabled="$ctrl.timeCondition.status === 'SAVING'"
             data-responsive-popover="'components/telecom/telephony/timeCondition/slot/edit/telephony-time-condition-slot-edit.html'"

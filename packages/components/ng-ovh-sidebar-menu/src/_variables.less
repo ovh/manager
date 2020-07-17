@@ -1,4 +1,4 @@
-@screen-sm-max: (@oui-responsive-breakpoint-tablet - 1px);
+@import '@ovh-ux/ui-kit/dist/less/_tokens';
 
 @sidebar-background-color: #fff;
 @sidebar-background-color_level-1: #fff;
@@ -11,7 +11,8 @@
 @sidebar-max-width: rem-calc(300);
 @sidebar-offset-top: rem-calc(44);
 @sidebar-padding: 0 rem-calc(10);
-@sidebar-z-index: 1031;
+@sidebar-z-index: @base-z-index-sidebar;
+@sidebar-z-index_fixed: @base-z-index-panel;
 
 // Actions
 @sidebar-actions-margin: rem-calc(12) rem-calc(6);

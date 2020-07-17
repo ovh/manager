@@ -2,13 +2,13 @@
     data-ng-controller="DedicatedServerFtpBackupAccessDeleteController as $ctrl"
 >
     <oui-modal
-        data-title="{{:: 'server_configuration_ftpbackup_access_delete' | translate }}"
         data-primary-action="$ctrl.deleteFtpBackupAccess()"
         data-primary-label="{{:: 'wizard_confirm' | translate }}"
         data-secondary-action="resetAction()"
         data-secondary-label="{{:: 'wizard_cancel' | translate }}"
         data-on-dismiss="resetAction()"
         data-loading="$ctrl.isDeleting"
+        data-heading="{{:: 'server_configuration_ftpbackup_access_delete' | translate }}"
     >
         <p
             data-translate="server_configuration_ftpbackup_access_delete_question"

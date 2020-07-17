@@ -8,37 +8,37 @@
         data-rows="taskCtrl.tasksIds"
         data-row-loader="taskCtrl.onTransformItem($row.id)"
     >
-        <oui-column
+        <oui-datagrid-column
             data-title="'sharepoint_tabs_tasks_function' | translate"
             data-property="function"
-        ></oui-column>
-        <oui-column
+        ></oui-datagrid-column>
+        <oui-datagrid-column
             data-title="'sharepoint_tabs_tasks_todoDate' | translate"
             data-property="todoDate"
         >
             <span data-ng-bind="::$row.todoDate | date:'medium'"></span>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title="'sharepoint_tabs_tasks_finishDate' | translate"
             data-property="finishDate"
         >
             <span data-ng-bind="::$row.finishDate | date:'medium'"></span>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title="'sharepoint_tabs_tasks_status' | translate"
             data-property="status"
         >
             <span
-                class="oui-status"
+                class="oui-badge"
                 data-ng-bind="'sharepoint_tabs_tasks_status_' + $row.status | translate"
                 data-ng-class="{
-                    'oui-status_success' : $row.status === 'done',
-                    'oui-status_info': $row.status === 'doing' || $row.status === 'todo',
-                    'oui-status_error': $row.status === 'error',
-                    'oui-status_warning': $row.status === 'cancelled'
+                    'oui-badge_success' : $row.status === 'done',
+                    'oui-badge_info': $row.status === 'doing' || $row.status === 'todo',
+                    'oui-badge_error': $row.status === 'error',
+                    'oui-badge_warning': $row.status === 'cancelled'
                   }"
                 data-ng-if="$row.status"
             ></span>
-        </oui-column>
+        </oui-datagrid-column>
     </oui-datagrid>
 </div>

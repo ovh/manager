@@ -13,34 +13,37 @@
         data-rows="dumpCtrl.dumps"
         data-row-loader="dumpCtrl.transformItem($row)"
     >
-        <oui-column
+        <oui-datagrid-column
             data-title="'privateDatabase_tabs_dumps_creation_date' | translate"
             data-property="creationDate"
         >
             <span data-ng-bind="$row.creationDate | date:'medium'"></span>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title="'privateDatabase_tabs_dumps_deletion_date' | translate"
             data-property="deletionDate"
         >
             <span data-ng-bind="$row.deletionDate | date:'medium'"></span>
-        </oui-column>
-        <oui-action-menu data-align="end" data-compact>
+        </oui-datagrid-column>
+        <oui-action-menu data-compact data-placement="end">
             <oui-action-menu-item
-                data-text="{{:: 'privateDatabase_tabs_dumps_download_dump' | translate }}"
                 data-on-click="dumpCtrl.goTo($row.url, '_blank')"
-            >
+                ><span
+                    data-translate="privateDatabase_tabs_dumps_download_dump"
+                ></span>
             </oui-action-menu-item>
             <oui-action-menu-item
-                data-text="{{:: 'privateDatabase_tabs_dumps_restore_dump' | translate }}"
                 data-on-click="setAction('database/restore/private-database-database-restore', { bdd:dumpCtrl.database, dump:$row })"
                 data-ng-if="!dumpCtrl.dumpIdRestoring"
-            >
+                ><span
+                    data-translate="privateDatabase_tabs_dumps_restore_dump"
+                ></span>
             </oui-action-menu-item>
             <oui-action-menu-item
-                data-text="{{:: 'privateDatabase_tabs_dumps_delete' | translate }}"
                 data-on-click="setAction('database/dump/delete/private-database-database-dump-delete', { bdd:dumpCtrl.database, dump:$row })"
-            >
+                ><span
+                    data-translate="privateDatabase_tabs_dumps_delete"
+                ></span>
             </oui-action-menu-item>
         </oui-action-menu>
     </oui-datagrid>

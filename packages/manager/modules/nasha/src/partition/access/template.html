@@ -2,9 +2,8 @@
     class="top-space-m20 bottom-space-m20 nasha-partition nasha-partition-access"
 >
     <oui-back-button
-        data-heading="{{ ::'nasha_partitions_action_change_access' | translate }}"
         data-on-click="NashaPartitionAccessCtrl.$state.go('nasha.nasha-partitions')"
-    >
+        ><span data-translate="nasha_partitions_action_change_access"></span>
     </oui-back-button>
 
     <p
@@ -25,12 +24,12 @@
         data-rows="NashaPartitionAccessCtrl.table.accessIps"
         data-row-loader="NashaPartitionAccessCtrl.transformItem($row)"
     >
-        <oui-column
+        <oui-datagrid-column
             data-property="ip"
             data-title="'nasha_access_ip' | translate"
             data-sortable="asc"
-        ></oui-column>
-        <oui-column
+        ></oui-datagrid-column>
+        <oui-datagrid-column
             data-property="type"
             data-title="'nasha_partitions_access_permissions' | translate"
             data-sortable
@@ -39,19 +38,18 @@
                 >{{ ::'nasha_partitions_access_' + $row.type | translate
                 }}</span
             >
-        </oui-column>
-        <oui-column>
+        </oui-datagrid-column>
+        <oui-datagrid-column>
             <oui-spinner
                 data-size="s"
                 data-ng-show="NashaPartitionAccessCtrl.hasTaskInProgress($row)"
             ></oui-spinner>
-        </oui-column>
-        <oui-action-menu data-align="end" data-compact>
+        </oui-datagrid-column>
+        <oui-action-menu data-compact data-placement="end">
             <oui-action-menu-item
-                data-text="{{ 'nasha_common_remove' | translate }}"
                 data-on-click="NashaPartitionAccessCtrl.goToPartitionAccessDeletePage($row)"
                 data-disabled="NashaPartitionAccessCtrl.hasTaskInProgress($row)"
-            >
+                ><span data-translate="nasha_common_remove"></span>
             </oui-action-menu-item>
         </oui-action-menu>
     </oui-datagrid>

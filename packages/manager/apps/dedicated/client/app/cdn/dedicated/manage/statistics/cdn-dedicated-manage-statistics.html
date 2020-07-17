@@ -2,14 +2,14 @@
     <div class="col-md-4">
         <div class="oui-tile mb-5 h-100">
             <h2
-                class="oui-header_4 oui-tile__title"
+                class="oui-tile__title oui-heading_4"
                 data-translate="cdn_configuration_shortcut_title"
             ></h2>
             <div class="oui-tile__body">
                 <div class="oui-tile__item oui-tile__item_button">
                     <button
                         type="button"
-                        class="oui-tile__button oui-button oui-button_link oui-button_icon-right oui-button_full-width"
+                        class="oui-tile__button oui-button oui-button_icon-right oui-button_ghost oui-button_block"
                         data-ng-click="setAction('domain/add/cdn-dedicated-domain-add')"
                         data-translate="cdn_configuration_add_domain_title_button"
                     ></button>
@@ -17,7 +17,7 @@
                 <div class="oui-tile__item oui-tile__item_button">
                     <button
                         type="button"
-                        class="oui-tile__button oui-button oui-button_link oui-button_icon-right oui-button_full-width"
+                        class="oui-tile__button oui-button oui-button_icon-right oui-button_ghost oui-button_block"
                         data-ng-click="setAction('domain/rule/order/cdn-dedicated-domain-rule-order')"
                         data-translate="cdn_configuration_cacherules_upgrade_title_button"
                     ></button>
@@ -25,7 +25,7 @@
                 <div class="oui-tile__item oui-tile__item_button">
                     <button
                         type="button"
-                        class="oui-tile__button oui-button oui-button_link oui-button_icon-right oui-button_full-width"
+                        class="oui-tile__button oui-button oui-button_icon-right oui-button_ghost oui-button_block"
                         data-ng-click="setAction('quota/order/cdn-dedicated-quota-order')"
                         data-translate="cdn_configuration_order_quota_title"
                     ></button>
@@ -37,7 +37,7 @@
     <div class="col-md-4">
         <div class="oui-tile mb-5 h-100">
             <h2
-                class="oui-header_4 oui-tile__title"
+                class="oui-tile__title oui-heading_4"
                 data-translate="cdn_configuration_statistics_title"
             ></h2>
             <div class="oui-tile__body">
@@ -108,13 +108,15 @@
                     <div class="oui-tile__actions">
                         <oui-action-menu
                             aria-label="{{:: 'menu_action_label' | translate:{t0: ('cdn_configuration_domains' | translate)} }}"
-                            data-align="end"
                             data-compact
+                            data-placement="end"
                         >
                             <oui-action-menu-item
-                                data-text="{{ :: 'cdn_configuration_order_quota_title' | translate }}"
                                 aria-label="{{ :: 'cdn_configuration_order_quota_title' | translate }}"
                                 data-on-click="setAction('quota/order/cdn-dedicated-quota-order')"
+                                ><span
+                                    data-translate="cdn_configuration_order_quota_title"
+                                ></span
                             ></oui-action-menu-item>
                         </oui-action-menu>
                     </div>
@@ -169,7 +171,7 @@
     <div class="col-md-4">
         <div class="oui-tile mb-5 h-100">
             <h2
-                class="oui-header_4 oui-tile__title"
+                class="oui-tile__title oui-heading_4"
                 data-translate="cdn_configuration_info_title"
             ></h2>
             <div class="oui-tile__body">
@@ -195,13 +197,15 @@
                     <div class="oui-tile__actions">
                         <oui-action-menu
                             aria-label="{{:: 'menu_action_label' | translate:{t0: ('cdn_configuration_domains' | translate)} }}"
-                            data-align="end"
                             data-compact
+                            data-placement="end"
                         >
                             <oui-action-menu-item
-                                data-text="{{ :: 'cdn_configuration_add_domain_title_button' | translate }}"
                                 aria-label="{{ :: 'cdn_configuration_add_domain_title_button' | translate }}"
                                 data-on-click="setAction('domain/add/cdn-dedicated-domain-add')"
+                                ><span
+                                    data-translate="cdn_configuration_add_domain_title_button"
+                                ></span
                             ></oui-action-menu-item>
                         </oui-action-menu>
                     </div>

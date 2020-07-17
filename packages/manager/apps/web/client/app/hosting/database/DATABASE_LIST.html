@@ -39,11 +39,7 @@
             data-translate="hosting_tab_DATABASES_configuration_quota_warning_resolution"
         ></p>
 
-        <oui-message
-            ng-if="!$ctrl.canCreateDatabase"
-            type="info"
-            dismissable="false"
-        >
+        <oui-message ng-if="!$ctrl.canCreateDatabase" type="info">
             <span
                 data-translate="hosting_tab_DATABASES_configuration_create_step1_no_db_left"
             ></span>
@@ -92,13 +88,13 @@
         <div class="mt-5" data-ng-if="$ctrl.hasResult">
             <div class="row mb-3">
                 <div class="col-xs-6">
-                    <div class="btn-group" data-ng-if="$ctrl.canCreateDatabase">
+                    <div class="btn-group" data-ng-if="$ctrl.canCreateDatabase" data-uib-dropdown>
                         <button
                             type="button"
                             class="oui-button oui-button_dropdown mb-0"
                             aria-haspopup="true"
                             aria-expanded="false"
-                            data-toggle="dropdown"
+                            data-uib-dropdown-toggle
                         >
                             <span data-translate="common_actions">Actions</span>
                             <span
@@ -106,7 +102,7 @@
                                 aria-hidden="true"
                             ></span>
                         </button>
-                        <ul class="dropdown-menu m-0 p-0">
+                        <ul class="dropdown-menu" data-uib-dropdown-menu>
                             <li>
                                 <button
                                     class="btn btn-link"
@@ -343,8 +339,8 @@
                             ></td>
                             <td class="text-center">
                                 <span
-                                    class="oui-status"
-                                    data-ng-class="{'oui-status_success': element.dumpsCount > 0, 'oui-status_info': element.dumpsCount <= 0}"
+                                    class="oui-badge"
+                                    data-ng-class="{'oui-badge_success': element.dumpsCount > 0, 'oui-badge_info': element.dumpsCount <= 0}"
                                     data-ng-bind="element.dumpsCount"
                                 >
                                 </span>
@@ -362,7 +358,10 @@
                                 </button>
                             </td>
                             <td class="text-center">
-                                <oui-action-menu data-compact data-align="end">
+                                <oui-action-menu
+                                    data-compact
+                                    data-placement="end"
+                                >
                                     <oui-action-menu-item
                                         data-on-click="setAction('database/update-password/hosting-database-update-password', element.name)"
                                     >

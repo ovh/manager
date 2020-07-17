@@ -1,13 +1,13 @@
-<header class="oui-page-header">
-    <div class="oui-page-header__container">
-        <h1 class="oui-page-header__title">
+<header class="oui-header">
+    <div class="oui-header__container">
+        <h1 class="oui-header__title">
             <span data-ng-bind="$ctrl.domain.domain"></span>
             <span
-                class="label d-inline-block align-middle ml-3 oui-status"
+                class="align-middle ml-3 oui-badge"
                 data-ng-bind="$ctrl.domain.mode"
                 data-ng-class="{
-                    'oui-status_success': $ctrl.domain.mode === 'ON',
-                    'oui-status_error': $ctrl.domain.mode ==='OFF'
+                    'oui-badge_success': $ctrl.domain.mode === 'ON',
+                    'oui-badge_error': $ctrl.domain.mode ==='OFF'
                 }"
             >
             </span>
@@ -15,16 +15,14 @@
     </div>
     <oui-header-tabs>
         <oui-header-tabs-item
-            text="{{:: 'cdn_domain_tab_statistics' | translate }}"
             state="app.networks.cdn.dedicated.domain.statistics"
+            ><span data-translate="cdn_domain_tab_statistics"></span
         ></oui-header-tabs-item>
-        <oui-header-tabs-item
-            text="{{:: 'cdn_domain_tab_rule' | translate }}"
-            state="app.networks.cdn.dedicated.domain.rule"
+        <oui-header-tabs-item state="app.networks.cdn.dedicated.domain.rule"
+            ><span data-translate="cdn_domain_tab_rule"></span
         ></oui-header-tabs-item>
-        <oui-header-tabs-item
-            text="{{:: 'cdn_domain_tab_logs' | translate }}"
-            state="app.networks.cdn.dedicated.domain.logs"
+        <oui-header-tabs-item state="app.networks.cdn.dedicated.domain.logs"
+            ><span data-translate="cdn_domain_tab_logs"></span
         ></oui-header-tabs-item>
     </oui-header-tabs>
 </header>

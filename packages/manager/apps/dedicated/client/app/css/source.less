@@ -1,10 +1,6 @@
-@oui-path: '../../../ovh-ui-kit';
-
-@import (less) 'flatpickr/dist/flatpickr.css';
-@import 'ovh-ui-kit/packages/oui/stylekit';
-@import 'ovh-ui-kit/packages/ovhcloud-light-theme/index';
-@import (less) 'ovh-ui-kit-bs/dist/ovh-ui-kit-bs.min.css';
-@import (less) 'ovh-ui-kit-bs/dist/oui-bs3-olt.css';
+@import '@ovh-ux/ui-kit/dist/less/_tokens';
+@import (less) '@ovh-ux/ui-kit/dist/css/oui.css';
+@import (less) 'ovh-ui-kit-bs/dist/css/oui-bs3.css';
 @import (less) 'font-awesome/css/font-awesome.min.css';
 @import (less) 'ovh-manager-webfont/dist/css/ovh-font.css';
 @import (less) 'animate.css/animate.min.css';
@@ -61,16 +57,7 @@
 @import 'less/dedicated/housing/stats';
 @import 'less/user-contracts/user-contracts';
 
-@ovh-universe-color: @oui-color-turquoise;
-
-@icon-font-path: '../fonts/';
-@oui-icon-dist-folder: '../../dist/icons';
-@oui-font-source-sans-pro-folder: '../../packages/oui-typography/fonts/source-sans-pro';
-@fa-font-path: '../fonts';
-@ovh-font-path: '../fonts/';
-
-@actions-menu-item-link-icon-hover-bg-color: @ovh-universe-color;
-@SIDEBAR_MENU_ACTIVE_COLOR: @ovh-universe-color;
+@actions-menu-item-link-icon-hover-bg-color: #59d2ef;
 
 oui-message,
 .oui-message {
@@ -91,5 +78,20 @@ td,
 th {
   .oui-tooltip {
     white-space: pre-wrap;
+  }
+}
+
+.ovh-manager-dedicated-app {
+  .oui-header,
+  .page-header {
+    margin-top: rem-calc(16);
+  }
+
+  .oui-header,
+  .oui-header + .oui-header-tabs,
+  .page-header,
+  .nav.nav-tabs {
+    margin-left: rem-calc(32);
+    margin-right: rem-calc(32);
   }
 }

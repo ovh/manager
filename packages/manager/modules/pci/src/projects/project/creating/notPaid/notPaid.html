@@ -39,7 +39,6 @@
                     <oui-message
                         aria-close-button-label="{{ :: 'common_close' | translate }}"
                         data-type="warning"
-                        data-dismissable="false"
                     >
                         <span
                             data-translate="pci_projects_project_creating_not_paid"
@@ -72,14 +71,14 @@
                                 data-translate="pci_projects_project_creating_finalize"
                             ></span>
                             <span
-                                class="oui-icon oui-icon_circle oui-icon-chevron-right"
+                                class="oui-icon oui-icon-chevron-right"
                                 aria-hidden="true"
                             >
                             </span>
                         </a>
 
                         <button
-                            class="oui-button oui-button_link"
+                            class="oui-button oui-button_ghost"
                             type="button"
                             data-translate="pci_projects_project_creating_cancel"
                             data-translate-attr="{ title: 'pci_projects_project_creating_cancel_title' }"

@@ -4,7 +4,7 @@
 >
     <div class="form-group">
         <p
-            class="oui-header_5"
+            class="oui-heading_5"
             data-translate="tools_lineDiagnostics_header_investigation_step_title"
         ></p>
         <p
@@ -49,18 +49,12 @@
                 <span
                     data-translate="{{:: 'tools_lineDiagnostics_investigation_step_action_' + $ctrl.currentAction + '_title' }}"
                 ></span>
-                <oui-popover
+                <button
+                    type="button"
+                    class="oui-popover-button"
                     data-ng-if="$ctrl.currentAction === 'bePreparedToCheckModemSynchronization'"
-                >
-                    <button
-                        type="button"
-                        class="oui-popover-button"
-                        oui-popover-trigger
-                    ></button>
-                    <oui-popover-content
-                        data-translate="tools_lineDiagnostics_detection_step_modem_question_help"
-                    ></oui-popover-content>
-                </oui-popover>
+                    data-oui-popover="{{:: 'tools_lineDiagnostics_detection_step_modem_question_help' | translate}}"
+                ></button>
                 <a
                     class="oui-link oui-link_icon"
                     data-ng-if="$ctrl.currentAction === 'changeProfile'"
@@ -70,24 +64,28 @@
                         data-translate="tools_lineDiagnostics_investigation_step_action_changeProfile_link"
                     ></span>
                 </a>
-                <oui-popover data-ng-if="$ctrl.currentAction === 'checkFilter'">
-                    <button
-                        type="button"
-                        class="oui-popover-button"
-                        oui-popover-trigger
-                    ></button>
-                    <oui-popover-content>
-                        <p
-                            class="text-center"
-                            data-translate="tools_lineDiagnostics_investigation_step_action_checkFilter_example"
-                        ></p>
-                        <img
-                            data-ng-src="{{:: $ctrl.assets.ADSL_FILTER }}"
-                            alt=""
-                            data-ng-attr-alt="{{:: $ctrl.currentAction }}"
-                        />
-                    </oui-popover-content>
-                </oui-popover>
+                <button
+                    type="button"
+                    class="oui-popover-button"
+                    data-ng-if="$ctrl.currentAction === 'checkFilter'"
+                    data-oui-popover
+                    data-oui-popover-scope="$ctrl"
+                    data-oui-popover-template="tools_lineDiagnostics_investigation_step_action_checkFilter_example.html"
+                ></button>
+                <script
+                    type="text/ng-template"
+                    id="tools_lineDiagnostics_investigation_step_action_checkFilter_example.html"
+                >
+                    <p
+                        class="text-center"
+                        data-translate="tools_lineDiagnostics_investigation_step_action_checkFilter_example"
+                    ></p>
+                    <img
+                        data-ng-src="{{:: $ctrl.assets.ADSL_FILTER }}"
+                        alt
+                        data-ng-attr-alt="{{:: $ctrl.currentAction }}"
+                    />
+                </script>
             </label>
             <oui-button
                 data-variant="secondary"
@@ -240,7 +238,6 @@
                                 placeholder="{{:: 'tools_lineDiagnostics_investigation_step_question_bandwidthTestUnit_placeholder' | translate }}"
                                 data-model="$ctrl.currentLineDiagnostic.data.answers.bandwidthTestUnit"
                                 data-items="$ctrl.enumQuestions.bandwidthTestUnit"
-                                data-align="start"
                                 data-required
                             >
                                 <span data-ng-bind="$item"></span>
@@ -294,7 +291,7 @@
     data-ng-if="$ctrl.currentLineDiagnostic.hasQuestionToAnswer('resolvedAfterTests') && !$ctrl.loading"
 >
     <p
-        class="oui-header_6"
+        class="oui-heading_6"
         data-translate="tools_lineDiagnostics_investigation_step_action_is_problem_solved"
     ></p>
     <oui-radio-toggle-group
@@ -318,7 +315,7 @@
 >
     <oui-spinner></oui-spinner>
     <p
-        class="oui-header_6"
+        class="oui-heading_6"
         data-translate="tools_lineDiagnostics_header_investigation_step_selt_test_title"
     ></p>
     <p

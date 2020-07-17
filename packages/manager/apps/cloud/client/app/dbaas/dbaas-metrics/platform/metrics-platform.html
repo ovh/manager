@@ -1,6 +1,6 @@
 <div class="metrics__platform">
     <div class="metrics__row">
-        <h3 class="oui-header_3" data-translate="metrics_platform_title"></h3>
+        <h3 class="oui-heading_3" data-translate="metrics_platform_title"></h3>
         <p>
             <span data-translate="metrics_endpoint_intro_1"></span>
             <span data-translate="metrics_endpoint_intro_2"></span>
@@ -9,18 +9,18 @@
     </div>
     <div class="metrics__row">
         <oui-datagrid data-rows="MetricsPlatformCtrl.platforms">
-            <oui-column
+            <oui-datagrid-column
                 data-title="'metrics_platform_proto' | translate"
                 data-property="proto"
                 data-sortable="asc"
-            ></oui-column>
-            <oui-column
+            ></oui-datagrid-column>
+            <oui-datagrid-column
                 data-title="'metrics_platform_address' | translate"
                 data-property="address"
             >
                 <oui-clipboard data-model="$row.address"></oui-clipboard>
-            </oui-column>
-            <oui-column
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 data-title="'metrics_platform_doc' | translate"
                 data-property="doc"
             >
@@ -32,7 +32,7 @@
                     <span data-translate="metrics_guide"></span>
                     <i class="fa fa-icon fa-external-link"></i>
                 </a>
-            </oui-column>
+            </oui-datagrid-column>
         </oui-datagrid>
     </div>
 </div>

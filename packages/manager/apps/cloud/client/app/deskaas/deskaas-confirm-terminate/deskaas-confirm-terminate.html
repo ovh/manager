@@ -5,11 +5,11 @@
 >
     <oui-modal
         data-secondary-action="$ctrl.cancel()"
-        data-title="{{ ::'vdi_cancel_title' | translate }}"
         data-secondary-label="{{ ::'common_modal_cancel' | translate }}"
         data-primary-label="{{ ::'common_modal_ok' | translate}}"
         data-on-dismiss="$ctrl.cancel()"
         data-loading="DeskaasConfirmTerminateCtrl.flags.init"
+        data-heading="{{ ::'vdi_cancel_title' | translate }}"
     >
         <oui-field data-label="{{ ::'Token' | translate }}">
             <input
@@ -36,7 +36,7 @@
                 >
                     <option
                         selected
-                        value=""
+                        value
                         data-translate="common_select"
                     ></option>
                     <option

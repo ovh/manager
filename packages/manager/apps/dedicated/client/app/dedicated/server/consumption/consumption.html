@@ -1,9 +1,9 @@
 <div data-ng-controller="ServerConsumptionCtrl as ctrl">
     <div class="oui-tile">
-        <h4 class="oui-header_4 oui-tile__title">
+        <h4 class="oui-tile__title oui-heading_4">
             <span data-translate="server_consumption_label"></span>
             <span
-                class="oui-icon oui-icon-help_circle oui-tooltip__trigger"
+                class="oui-icon oui-tooltip__trigger oui-icon-help-circle"
                 oui-tooltip="{{'server_consumption_explanation' | translate}}"
             ></span>
         </h4>
@@ -81,14 +81,16 @@
                 >
                     <oui-action-menu
                         aria-label="{{:: 'menu_action_label' | translate:{ t0: ('server_consumption_current_period_label' | translate)} }}"
-                        data-align="end"
                         data-compact
+                        data-placement="end"
                     >
                         <oui-action-menu-item
-                            data-text="{{ (ctrl.trafficOption.data !== 'subscribed' ? 'server_traffic_order_button' : 'server_traffic_change_button') | translate }}"
                             data-aria-label="{{'server_traffic_order_button' | translate}}"
                             data-on-click="setAction('traffic/order/dedicated-server-traffic-order', ctrl.server.data.name)"
                             data-disabled="ctrl.server.data.state === 'HACKED' || ctrl.server.data.state === 'HACKED_BLOCKED'"
+                            ><span
+                                data-ng-bind="(ctrl.trafficOption.data !== 'subscribed' ? 'server_traffic_order_button' : 'server_traffic_change_button') | translate"
+                            ></span
                         ></oui-action-menu-item>
                     </oui-action-menu>
                 </div>

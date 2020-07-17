@@ -16,19 +16,19 @@
                     <oui-action-menu
                         aria-label="{{:: 'menu_action_label' | translate:{ t0: ('common_change' | translate) } }}"
                         data-compact
-                        data-align="end"
+                        data-placement="end"
                     >
                         <oui-action-menu-item
                             aria-label="{{:: 'common_change' | translate }}"
-                            data-text="{{:: 'common_change' | translate }}"
                             data-ng-click="editDescription(datacenterName.model, 'dedicatedCloud_datacenter_name')"
-                        >
+                            ><span data-translate="common_change"></span>
                         </oui-action-menu-item>
                         <oui-action-menu-item
                             aria-label="{{:: 'dedicatedCloud_datacenter_delete' | translate }}"
-                            data-text="{{:: 'dedicatedCloud_datacenter_delete' | translate }}"
                             data-on-click="setAction('datacenter/delete/dedicatedCloud-datacenter-delete', datacenter.model.id)"
-                        >
+                            ><span
+                                data-translate="dedicatedCloud_datacenter_delete"
+                            ></span>
                         </oui-action-menu-item>
                     </oui-action-menu>
                 </oui-tile-definition>
@@ -39,13 +39,12 @@
                     <oui-action-menu
                         aria-label="{{:: 'menu_action_label' | translate:{ t0: ('dedicatedCloud_description' | translate) } }}"
                         data-compact
-                        data-align="end"
+                        data-placement="end"
                     >
                         <oui-action-menu-item
                             aria-label="{{:: 'common_change' | translate }}"
-                            data-text="{{:: 'common_change' | translate }}"
                             data-ng-click="editDescription(datacenterDescription.model, 'dedicatedCloud_datacenter_description')"
-                        >
+                            ><span data-translate="common_change"></span>
                         </oui-action-menu-item>
                     </oui-action-menu>
                 </oui-tile-definition>
@@ -70,11 +69,11 @@
                 >
                     <oui-tile-description>
                         <span
-                            class="oui-status"
+                            class="oui-badge"
                             data-ng-class="{
-                                  'oui-status_error': $ctrl.drpGlobalStatus.error,
-                                  'oui-status_warning': $ctrl.drpGlobalStatus.warning,
-                                  'oui-status_success': $ctrl.drpGlobalStatus.success
+                                  'oui-badge_error': $ctrl.drpGlobalStatus.error,
+                                  'oui-badge_warning': $ctrl.drpGlobalStatus.warning,
+                                  'oui-badge_success': $ctrl.drpGlobalStatus.success
                             }"
                         >
                             <span
@@ -89,8 +88,8 @@
                     </oui-tile-description>
                     <oui-action-menu
                         data-ng-if="::$ctrl.isDrpActionPossible"
-                        data-align="end"
                         data-compact
+                        data-placement="end"
                     >
                         <oui-action-menu-item
                             data-ui-sref="app.dedicatedClouds.datacenter.drp"

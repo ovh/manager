@@ -1,19 +1,21 @@
-<oui-page-header data-heading="{{:: $ctrl.stream.name }}">
+<oui-header data-heading="{{:: $ctrl.stream.name }}">
     <oui-header-tabs>
         <oui-header-tabs-item
-            data-text="{{:: 'pci_projects_project_streams_stream_dashboard_title' | translate }}"
             data-href="{{:: $ctrl.streamLink }}"
             data-active="$ctrl.currentActiveLink() === $ctrl.streamLink"
-        >
+            ><span
+                data-translate="pci_projects_project_streams_stream_dashboard_title"
+            ></span>
         </oui-header-tabs-item>
         <oui-header-tabs-item
-            data-text="{{:: 'pci_projects_project_streams_stream_subscriptions_title' | translate }}"
             data-href="{{:: $ctrl.subscriptionsLink }}"
             data-active="$ctrl.currentActiveLink() === $ctrl.subscriptionsLink"
-        >
+            ><span
+                data-translate="pci_projects_project_streams_stream_subscriptions_title"
+            ></span>
         </oui-header-tabs-item>
     </oui-header-tabs>
-</oui-page-header>
+</oui-header>
 
 <div class="mt-4">
     <cui-message-container
@@ -75,11 +77,11 @@
                 >
                     <oui-tile-description>
                         <span
-                            class="oui-status"
+                            class="oui-badge"
                             data-ng-class="{
-                                'oui-status_success': $ctrl.stream.isRunning(),
-                                'oui-status_warning': $ctrl.stream.isInstalling(),
-                                'oui-status_error': $ctrl.stream.isInError(),
+                                'oui-badge_success': $ctrl.stream.isRunning(),
+                                'oui-badge_warning': $ctrl.stream.isInstalling(),
+                                'oui-badge_error': $ctrl.stream.isInError(),
                             }"
                         >
                             <span

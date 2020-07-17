@@ -12,7 +12,7 @@
             data-rows-loader="$ctrl.getTransactions($config)"
             data-row-loader="$ctrl.getTransaction($row)"
         >
-            <oui-column
+            <oui-datagrid-column
                 data-title=":: 'billing_payment_transactions_table_date' | translate"
                 data-property="creationDate"
                 data-type="date"
@@ -21,15 +21,15 @@
                 <span
                     data-ng-bind="$row.creationDate | date:'mediumDate'"
                 ></span>
-            </oui-column>
-            <oui-column
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 data-title=":: 'billing_payment_transactions_table_amount' | translate"
                 data-property="amount.value"
                 data-type="number"
             >
                 <span data-ng-bind="$row.amount.text"></span>
-            </oui-column>
-            <oui-column
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 data-title=":: 'billing_payment_transactions_table_type' | translate"
                 data-property="type"
                 data-type="string"
@@ -37,15 +37,15 @@
                 <span
                     data-translate="{{ 'billing_payment_transactions_type_' + $row.type.toLowerCase() }}"
                 ></span>
-            </oui-column>
-            <oui-column
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 data-title=":: 'billing_payment_transactions_table_status' | translate"
                 data-property="status"
             >
                 <span
                     data-translate="{{ 'billing_payment_transactions_status_' + $row.status.toLowerCase() }}"
                 ></span>
-            </oui-column>
+            </oui-datagrid-column>
         </oui-datagrid>
     </div>
 </div>

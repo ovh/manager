@@ -44,7 +44,7 @@
                             data-ng-options="version as ((('privateDatabase_dashboard_version_' + version.replace('.', '') | translate) == 'privateDatabase_dashboard_version_' + version.replace('.', ''))? version: ('privateDatabase_dashboard_version_' + version.replace('.', '') | translate)) for version in orderCtrl.list.versions track by version"
                         >
                             <option
-                                value=""
+                                value
                                 disabled
                                 data-translate="select_option"
                             ></option>
@@ -71,7 +71,7 @@
                             data-ng-options="ramSize + ('unit_size_MB' | translate) for ramSize in (orderCtrl.list.ramSize | orderBy: sortRam) track by ramSize"
                         >
                             <option
-                                value=""
+                                value
                                 disabled
                                 data-translate="select_option"
                             ></option>
@@ -105,7 +105,7 @@
                                 data-ng-model="orderCtrl.selectedHosting.value"
                             >
                                 <option
-                                    value=""
+                                    value
                                     disabled
                                     data-translate="select_option"
                                 ></option>
@@ -145,7 +145,7 @@
                                 data-ng-options="('privateDatabase_order_datacenter_' + datacenter | translate) for datacenter in (orderCtrl.list.datacenters | orderBy) track by datacenter"
                             >
                                 <option
-                                    value=""
+                                    value
                                     disabled
                                     data-translate="select_option"
                                 ></option>
@@ -210,17 +210,20 @@
                                     for="durationRadio-{{$index}}"
                                 >
                                     <span class="oui-radio__label">
-                                        <span
-                                            data-ng-bind="duration | wucDuration:'longDate'"
-                                        ></span
-                                        >&nbsp;:
-                                        <span
-                                            data-ng-bind-html="orderCtrl.durations.details[duration].prices | price:orderCtrl.user.ovhSubsidiary"
-                                        ></span>
-                                        <oui-spinner
-                                            data-size="s"
-                                            data-ng-if="!orderCtrl.durations.details[duration]"
-                                        ></oui-spinner>
+                                        <span class="oui-radio__icon"></span>
+                                        <span class="oui-radio__text">
+                                            <span
+                                                data-ng-bind="duration | wucDuration:'longDate'"
+                                            ></span
+                                            >&nbsp;:
+                                            <span
+                                                data-ng-bind-html="orderCtrl.durations.details[duration].prices | price:orderCtrl.user.ovhSubsidiary"
+                                            ></span>
+                                            <oui-spinner
+                                                data-size="s"
+                                                data-ng-if="!orderCtrl.durations.details[duration]"
+                                            ></oui-spinner>
+                                        </span>
                                     </span>
                                 </label>
                             </div>
@@ -283,26 +286,12 @@
                                     >
                                         <span class="oui-checkbox__label">
                                             <span
+                                                class="oui-checkbox__icon"
+                                            ></span>
+                                            <span
+                                                class="oui-checkbox__text"
                                                 data-translate="privateDatabase_order_step3_contracts_check"
                                             ></span>
-                                            <span class="oui-checkbox__icon">
-                                                <span
-                                                    class="oui-icon oui-icon-checkbox-unchecked"
-                                                    aria-hidden="true"
-                                                ></span>
-                                                <span
-                                                    class="oui-icon oui-icon-checkbox-checked"
-                                                    aria-hidden="true"
-                                                ></span>
-                                                <span
-                                                    class="oui-icon oui-icon-checkbox-checkmark"
-                                                    aria-hidden="true"
-                                                ></span>
-                                                <span
-                                                    class="oui-icon oui-icon-checkbox-indeterminate"
-                                                    aria-hidden="true"
-                                                ></span>
-                                            </span>
                                         </span>
                                     </label>
                                 </div>
@@ -310,7 +299,7 @@
 
                             <div class="mt-5">
                                 <button
-                                    class="btn btn-primary oui-button_large-height"
+                                    class="btn btn-primary oui-button_l"
                                     type="button"
                                     data-ng-click="orderCtrl.generateBc()"
                                     data-ng-disabled="(orderCtrl.durations.details[orderCtrl.selectedOrder.duration].contracts.length != 0 && !orderCtrl.selectedOrder.contractsValidated) || orderCtrl.loading.bc"
@@ -348,7 +337,7 @@
                             </p>
                             <div class="mt-5">
                                 <button
-                                    class="btn btn-primary oui-button_large-height"
+                                    class="btn btn-primary oui-button_l"
                                     type="button"
                                     data-translate="privateDatabase_order_step3_pay_button"
                                     data-ng-click="orderCtrl.openBc()"

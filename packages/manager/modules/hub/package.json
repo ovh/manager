@@ -15,12 +15,12 @@
     "@ovh-ux/manager-models": "^1.0.0"
   },
   "devDependencies": {
+    "@ovh-ux/ui-kit": "^4.1.12",
     "bootstrap": "^4.4.1",
-    "lodash-es": "^4.17.15",
-    "oui4": "npm:@ovh-ux/ui-kit"
+    "lodash-es": "^4.17.15"
   },
   "peerDependencies": {
-    "@ovh-ux/manager-core": "^9.0.0",
+    "@ovh-ux/manager-core": "^9.0.0 || ^10.0.0",
     "@ovh-ux/manager-ng-layout-helpers": "^1.0.0",
     "@ovh-ux/ng-at-internet": "^5.0.1",
     "@ovh-ux/ng-ovh-api-wrappers": "^3.0.0",
@@ -29,11 +29,10 @@
     "@ovh-ux/ng-ovh-sso-auth": "^4.2.3",
     "@ovh-ux/ng-ovh-swimming-poll": "^5.0.1",
     "@ovh-ux/ng-translate-async-loader": "^2.1.0",
+    "@ovh-ux/ui-kit": "^4.1.12",
     "@uirouter/angularjs": "^1.0.23",
     "angular": "^1.7.5",
     "angular-translate": "^2.18.1",
-    "ovh-api-services": "^9.39.1",
-    "ovh-ui-angular": "^3.16.3",
-    "ovh-ui-kit": "^2.42.8"
+    "ovh-api-services": "^9.39.1"
   }
 }

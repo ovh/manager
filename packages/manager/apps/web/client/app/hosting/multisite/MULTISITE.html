@@ -167,22 +167,22 @@
                                 ></td>
                                 <td class="text-center">
                                     <span
-                                        class="oui-status"
+                                        class="oui-badge"
                                         data-ng-bind="(('hosting_tab_DOMAINS_table_cdn_state_' + (domain.ownLog ? 'ACTIVE' : 'NONE') | translate) == 'hosting_tab_DOMAINS_table_cdn_state_' + (domain.ownLog ? 'ACTIVE' : 'NONE'))? domain.ownLog: ('hosting_tab_DOMAINS_table_cdn_state_' + (domain.ownLog ? 'ACTIVE' : 'NONE') | translate)"
                                         data-ng-class="{
-                                            'oui-status_success': domain.ownLog,
-                                            'oui-status_error': domain.ownLog === 'NONE' || !domain.ownLog
+                                            'oui-badge_success': domain.ownLog,
+                                            'oui-badge_error': domain.ownLog === 'NONE' || !domain.ownLog
                                         }"
                                     >
                                     </span>
                                 </td>
                                 <td class="text-center">
                                     <span
-                                        class="oui-status"
+                                        class="oui-badge"
                                         data-ng-bind="(('hosting_tab_DOMAINS_table_firewall_state_' + domain.firewall | translate) == 'hosting_tab_DOMAINS_table_firewall_state_' + domain.firewall)? domain.firewall: ('hosting_tab_DOMAINS_table_firewall_state_' + domain.firewall | translate)"
                                         data-ng-class="{
-                                            'oui-status_success': domain.firewall === 'ACTIVE',
-                                            'oui-status_error': domain.firewall === 'NONE'
+                                            'oui-badge_success': domain.firewall === 'ACTIVE',
+                                            'oui-badge_error': domain.firewall === 'NONE'
                                         }"
                                     >
                                     </span>
@@ -192,20 +192,20 @@
                                     data-ng-if="hosting.hasCdn"
                                 >
                                     <span
-                                        class="oui-status"
+                                        class="oui-badge"
                                         data-ng-bind="(('hosting_tab_DOMAINS_table_cdn_state_' + domain.cdn | translate) == 'hosting_tab_DOMAINS_table_cdn_state_' + domain.cdn)? domain.cdn: ('hosting_tab_DOMAINS_table_cdn_state_' + domain.cdn | translate)"
                                         data-ng-class="{
-                                            'oui-status_success': domain.cdn === 'ACTIVE',
-                                            'oui-status_error': domain.cdn === 'NONE'
+                                            'oui-badge_success': domain.cdn === 'ACTIVE',
+                                            'oui-badge_error': domain.cdn === 'NONE'
                                         }"
                                     >
                                     </span>
                                 </td>
                                 <td class="text-center">
                                     <span
-                                        class="oui-status"
+                                        class="oui-badge"
                                         data-ng-bind="(('hosting_tab_DOMAINS_table_ssl_state_' + domain.ssl | translate) == 'hosting_tab_DOMAINS_table_ssl_state_' + domain.ssl)? domain.ssl: ('hosting_tab_DOMAINS_table_ssl_state_' + domain.ssl | translate)"
-                                        data-ng-class="{'oui-status_success': domain.ssl === 2, 'oui-status_error': domain.ssl === 0, 'oui-status_warning': domain.ssl === 1}"
+                                        data-ng-class="{'oui-badge_success': domain.ssl === 2, 'oui-badge_error': domain.ssl === 0, 'oui-badge_warning': domain.ssl === 1}"
                                         data-oui-tooltip="{{ domain.ssl === 1 ? ('hosting_tab_DOMAINS_table_ssl_state_1_tooltip' | translate) : '' }}"
                                     >
                                     </span>
@@ -222,7 +222,7 @@
                                         data-domain-index="{{$index}}"
                                     >
                                         <span
-                                            class="oui-icon oui-icon-gear_line oui-icon_small"
+                                            class="oui-icon oui-icon-gear_concept"
                                             aria-hidden="true"
                                         ></span>
                                     </button>
@@ -302,14 +302,14 @@
             <div class="mb-5">
                 <button
                     type="button"
-                    class="oui-button oui-button_full-width oui-button_secondary"
+                    class="oui-button oui-button_secondary oui-button_block"
                     title="{{ 'hosting_tab_DOMAINS_configuration_attachDomain_title_button' | translate }}"
                     data-translate="hosting_tab_DOMAINS_configuration_attachDomain_title_button"
                     data-ng-click="setAction('multisite/add/hosting-multisite-add', {domains: domains})"
                 ></button>
                 <button
                     type="button"
-                    class="oui-button oui-button_full-width oui-button_secondary mt-2"
+                    class="oui-button oui-button_secondary mt-2 oui-button_block"
                     data-ng-click="setAction('ssl/order/hosting-order-ssl')"
                     data-ng-disabled="sslCertificate && isSSLCertificateOperationInProgress(sslCertificate)"
                 >
@@ -323,7 +323,7 @@
                 </button>
                 <button
                     type="button"
-                    class="oui-button oui-button_full-width oui-button_secondary mt-2"
+                    class="oui-button oui-button_secondary mt-2 oui-button_block"
                     data-ng-click="setAction('ssl/regenerate/hosting-ssl-regenerate')"
                     data-ng-disabled="sslCertificate
                         && isLetsEncryptCertificate(sslCertificate)

@@ -1,9 +1,5 @@
 <cui-message-container data-messages="$ctrl.messages"></cui-message-container>
-<oui-message
-    data-type="warning"
-    data-dismissable="false"
-    data-ng-if="!$ctrl.isVersionSupported"
->
+<oui-message data-type="warning" data-ng-if="!$ctrl.isVersionSupported">
     <p data-translate="kube_service_cluster_version_not_supported_message"></p>
     <oui-button
         data-variant="primary"
@@ -21,7 +17,6 @@
 </oui-message>
 <oui-message
     data-type="info"
-    data-dismissable="false"
     data-ng-if="!$ctrl.cluster.hasLatestPatchVersion() && !$ctrl.cluster.isUpdating()"
 >
     <p
@@ -110,11 +105,11 @@
             >
                 <oui-tile-description>
                     <span
-                        class="oui-status"
+                        class="oui-badge"
                         data-ng-class="{
-                                    'oui-status_success' : $ctrl.cluster.status === $ctrl.STATUS.READY,
-                                    'oui-status_warning' : $ctrl.Kubernetes.constructor.isProcessing($ctrl.cluster.status),
-                                    'oui-status_error' : $ctrl.Kubernetes.constructor.isError($ctrl.cluster.status),
+                                    'oui-badge_success' : $ctrl.cluster.status === $ctrl.STATUS.READY,
+                                    'oui-badge_warning' : $ctrl.Kubernetes.constructor.isProcessing($ctrl.cluster.status),
+                                    'oui-badge_error' : $ctrl.Kubernetes.constructor.isError($ctrl.cluster.status),
                                     }"
                         data-translate="{{ 'kube_service_cluster_status_' + $ctrl.cluster.status }}"
                     >
@@ -165,32 +160,35 @@
                 <dl class="oui-tile__definition">
                     <dt class="oui-tile__term">
                         <span data-translate="kube_service_file"></span>
-                        <oui-popover data-oui-popover-placement="auto">
-                            <button
-                                type="button"
-                                class="oui-popover-button"
-                                data-oui-popover-trigger
-                            ></button>
-                            <oui-popover-content>
+                        <button
+                            type="button"
+                            class="oui-popover-button"
+                            data-oui-popover
+                            data-oui-popover-scope="$ctrl"
+                            data-oui-popover-template="kube_service_file_help.html"
+                        ></button>
+                        <script
+                            type="text/ng-template"
+                            id="kube_service_file_help.html"
+                        >
+                            <span
+                                data-translate="kube_service_file_help"
+                            ></span>
+                            <a
+                                class="oui-link oui-link_icon"
+                                href="{{:: $ctrl.KUBECONFIG_URL}}"
+                                target="_blank"
+                                rel="noopener"
+                            >
                                 <span
-                                    data-translate="kube_service_file_help"
+                                    data-translate="kube_service_file_more_information"
                                 ></span>
-                                <a
-                                    class="oui-link oui-link_icon"
-                                    href="{{:: $ctrl.KUBECONFIG_URL}}"
-                                    target="_blank"
-                                    rel="noopener"
-                                >
-                                    <span
-                                        data-translate="kube_service_file_more_information"
-                                    ></span>
-                                    <span
-                                        class="oui-icon oui-icon-external_link"
-                                        aria-hidden="true"
-                                    ></span>
-                                </a>
-                            </oui-popover-content>
-                        </oui-popover>
+                                <span
+                                    class="oui-icon oui-icon-external-link"
+                                    aria-hidden="true"
+                                ></span>
+                            </a>
+                        </script>
                     </dt>
                     <dd class="oui-tile__description d-flex align-items-center">
                         <oui-button

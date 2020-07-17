@@ -1,6 +1,4 @@
-@import '~ovh-ui-kit/packages/oui-color/_variables';
-@import '~ovh-ui-kit/packages/oui-responsive/responsive';
-@import '~ovh-ui-kit/packages/oui-typography/_constants.less';
+@import '~@ovh-ux/ui-kit/dist/less/_tokens';
 
 @primary-color: rgb(40, 89, 192);
 @secondary-color: rgb(71, 255, 250);
@@ -15,7 +13,7 @@
   }
 
   .oui-font-semibold {
-    font-weight: @oui-font-semibold;
+    font-weight: 600;
   }
 
   .walkme-close {
@@ -26,15 +24,15 @@
   .walkme-title {
     .popover-title {
       background-color: @secondary-color;
-      font-weight: @oui-font-semibold;
-      color: @oui-color-brand;
+      font-weight: 600;
+      color: @p-700;
       font-size: 1rem;
       border-radius: 12px;
     }
   }
 
   .walkme-indicator {
-    background-color: @oui-color-iron;
+    background-color: #cfd0d2;
     border-radius: 50%;
     height: 8px;
     width: 8px;
@@ -46,12 +44,12 @@
     background-color: @primary-color;
   }
 
-  .popover-navigation .oui-button_icon-alone {
+  .popover-navigation .oui-button_s {
     line-height: 1;
   }
 }
 
-@media screen and (min-width: @oui-responsive-breakpoint-tablet) {
+@media screen and (min-width: @device-breakpoint-tablet) {
   .tour-public-cloud-walkme {
     margin-left: 100px;
   }

@@ -1,19 +1,8 @@
-@oui-path: 'ovh-ui-kit';
-
-@import '~ovh-ui-kit-bs/src/bootstrap/_variables';
+@import '~ovh-ui-kit-bs/dist/less/bootstrap/_variables';
 @import '~bootstrap/less/mixins';
 @import '~bootstrap/less/utilities';
 @import '~bootstrap/less/glyphicons';
-@import '~ovh-ui-kit/packages/oui-responsive/_mixins';
-@import '~ovh-ui-kit/packages/oui-color/_variables';
-@import '~ovh-ui-kit/packages/oui-navbar/_variables';
-@import '~ovh-ui-kit/packages/oui-typography/_variables';
-@import '~ovh-ui-kit/packages/oui-typography/_mixins';
-@import '~ovh-ui-kit/packages/oui-icons/_variables';
-@import '~ovh-ui-kit/packages/oui/_settings';
-@import '~ovh-ui-kit/packages/oui-button/_variables';
-@import '~ovh-ui-kit/packages/oui-button/_mixins';
-@import '~ovh-ui-kit/packages/oui-animation/_mixins';
+@import '~@ovh-ux/ui-kit/dist/less/_tokens';
 @import '~font-awesome/less/mixins';
 @import '~font-awesome/less/variables';
 @import '~ovh-common-style/less/helpers';
@@ -61,19 +50,6 @@
         }
       }
     }
-  }
-
-  div.cloud-compute-infra-primary-actions {
-    > button.oui-button_dropdown {
-      > span.oui-icon.oui-icon-chevron-down {
-        line-height: 1.5rem;
-        font-size: 1.5rem;
-      }
-    }
-  }
-
-  i.oui-icon.oui-icon-pen_line.oui-icon_small {
-    font-size: 1.5rem;
   }
 
   @import './cda/cda';
@@ -177,10 +153,6 @@
   @import './ui-components/panel/panel';
   @import './ui-components/preview-list/_variables';
   @import './ui-components/preview-list/preview-list';
-  @import './ui-components/table/_normalize';
-  @import './ui-components/table/_variables';
-  @import './ui-components/table/_mixins';
-  @import './ui-components/table/table';
   @import './veeam/veeam';
   @import './vps/dashboard/vps-tile-status';
   @import './vps/modal/shortcut/kvm/vps-kvm';

@@ -68,7 +68,7 @@
                     data-rows="SummaryCtrl.consumptionDetails.raw"
                     data-page-size="10"
                 >
-                    <oui-column
+                    <oui-datagrid-column
                         class="text-left"
                         data-title="'telephony_group_billing_summary_consumption_service_label' | translate"
                         data-property="description"
@@ -80,29 +80,29 @@
                             data-ng-bind="$row.service"
                         >
                         </small>
-                    </oui-column>
-                    <oui-column
+                    </oui-datagrid-column>
+                    <oui-datagrid-column
                         data-title="'telephony_group_billing_summary_consumption_total_label' | translate"
                         data-property="total"
                         data-sortable
                     >
                         <span data-ng-bind="$row.total"></span>
-                    </oui-column>
-                    <oui-column
+                    </oui-datagrid-column>
+                    <oui-datagrid-column
                         data-title="'telephony_group_billing_summary_consumption_incoming_label' | translate"
                         data-property="incoming"
                         data-sortable
-                    ></oui-column>
-                    <oui-column
+                    ></oui-datagrid-column>
+                    <oui-datagrid-column
                         data-title="'telephony_group_billing_summary_consumption_outgoing_label' | translate"
                         data-property="outgoing"
                         data-sortable
-                    ></oui-column>
-                    <oui-column
+                    ></oui-datagrid-column>
+                    <oui-datagrid-column
                         data-title="'telephony_group_billing_summary_consumption_transfer_label' | translate"
                         data-property="transfer"
                         data-sortable
-                    ></oui-column>
+                    ></oui-datagrid-column>
                 </oui-datagrid>
             </div>
         </div>

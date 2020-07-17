@@ -1,5 +1,5 @@
 <div id="billing-payment-retraction" class="billing-orders">
-    <oui-page-header data-heading="{{ :: 'orders_page_title' | translate }}">
+    <oui-header data-heading="{{ :: 'orders_page_title' | translate }}">
         <oui-guide-menu
             data-text="{{:: 'orders_guides' | translate }}"
             data-ng-if="$ctrl.billingGuideUrl"
@@ -11,13 +11,11 @@
                 <span data-translate="orders_billing"></span>
             </oui-guide-menu-item>
         </oui-guide-menu>
-    </oui-page-header>
+    </oui-header>
 
     <div class="m-4">
-        <oui-back-button
-            data-on-click="$ctrl.goToOrders()"
-            data-title="{{:: 'orders_retract_title' | translate }}"
-        >
+        <oui-back-button data-on-click="$ctrl.goToOrders()"
+            ><span data-translate="orders_retract_title"></span>
         </oui-back-button>
 
         <div data-ng-if="$ctrl.success">

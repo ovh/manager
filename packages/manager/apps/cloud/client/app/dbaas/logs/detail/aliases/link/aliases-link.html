@@ -1,12 +1,11 @@
 <div class="cui-page__content">
     <oui-back-button
         data-state="dbaas.logs.detail.aliases"
-        data-heading="{{ ::'logs_aliases_link_title' | translate }}"
         data-state-params="{ serviceName: ctrl.serviceName}"
-    >
+        ><span data-translate="logs_aliases_link_title"></span>
     </oui-back-button>
 
-    <h6 data-ng-if="!ctrl.alias.loading" class="oui-header_6">
+    <h6 data-ng-if="!ctrl.alias.loading" class="oui-heading_6">
         {{ctrl.alias.data.info.name}}
     </h6>
     <p
@@ -17,9 +16,8 @@
         <oui-radio-toggle-group data-model="ctrl.selectedContent">
             <oui-radio
                 data-ng-repeat="content in ctrl.contents track by $index"
-                data-text="{{ ::content.name | translate }}"
                 data-value="content.value"
-            >
+                ><span data-ng-bind="::content.name | translate"></span>
             </oui-radio>
         </oui-radio-toggle-group>
         <div

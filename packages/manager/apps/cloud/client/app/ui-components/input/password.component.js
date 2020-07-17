@@ -30,7 +30,7 @@ angular.module('managerApp').directive('cuiPassword', ($compile) => ({
       buttons.appendTo(parent);
     } else if (includes(parent.classList, 'oui-field-control')) {
       const container = angular.element(
-        '<div class="oui-input-group oui-input-group_button"></div>',
+        '<div class="oui-input-overlay"></div>',
       );
       container.appendTo(parent);
       $element.appendTo(container);

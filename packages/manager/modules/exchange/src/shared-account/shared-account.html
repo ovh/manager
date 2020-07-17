@@ -135,42 +135,42 @@
                             ></td>
                             <td class="text-center">
                                 <span
-                                    class="oui-status oui-status_warning"
+                                    class="oui-badge oui-badge_warning"
                                     data-ng-if="account.state === ctrl.stateTaskError"
                                     data-oui-tooltip="{{:: 'exchange_tab_ACCOUNTS_state_TASK_ON_ERROR' | translate}}"
                                 ></span>
                                 <span
-                                    class="oui-status oui-status_warning"
+                                    class="oui-badge oui-badge_warning"
                                     data-ng-if="account.state === ctrl.stateTaskDoing"
                                     data-oui-tooltip="{{:: 'exchange_tab_ACCOUNTS_state_TASK_ON_DOING' | translate}}"
                                 ></span>
                                 <span
-                                    class="oui-status oui-status_success"
+                                    class="oui-badge oui-badge_success"
                                     data-ng-if="account.state == ctrl.stateOk"
                                     data-translate="exchange_tab_ACCOUNTS_state_OK"
                                 ></span>
                                 <span
-                                    class="oui-status oui-status_info"
+                                    class="oui-badge oui-badge_info"
                                     data-ng-if="account.state === ctrl.stateCreating"
                                     data-translate="exchange_tab_ACCOUNTS_state_CREATING"
                                 ></span>
                                 <span
-                                    class="oui-status oui-status_info"
+                                    class="oui-badge oui-badge_info"
                                     data-ng-if="account.state === ctrl.stateDeleting"
                                     data-translate="exchange_tab_ACCOUNTS_state_DELETING"
                                 ></span>
                                 <span
-                                    class="oui-status oui-status_info"
+                                    class="oui-badge oui-badge_info"
                                     data-ng-if="account.info === ctrl.stateSuspended"
                                     data-translate="exchange_tab_ACCOUNTS_state_SUSPENDED"
                                 ></span>
                                 <span
-                                    class="oui-status oui-status_info"
+                                    class="oui-badge oui-badge_info"
                                     data-ng-if="account.state === ctrl.stateSuspending"
                                     data-translate="exchange_tab_ACCOUNTS_state_SUSPENDING"
                                 ></span>
                                 <span
-                                    class="oui-status oui-status_info"
+                                    class="oui-badge oui-badge_info"
                                     data-ng-if="account.state === ctrl.stateReopening"
                                     data-translate="exchange_tab_ACCOUNTS_state_REOPENING"
                                 ></span>
@@ -179,8 +179,8 @@
                             <td class="text-center text-nowrap">
                                 <oui-action-menu
                                     data-compact
-                                    data-align="end"
                                     data-disabled="!ctrl.isConfigurable(account)"
+                                    data-placement="end"
                                 >
                                     <oui-action-menu-item
                                         data-on-click="ctrl.editAccount(account)"

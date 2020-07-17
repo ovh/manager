@@ -5,24 +5,24 @@
     <p data-translate="iplb_task_intro_text"></p>
 
     <oui-datagrid data-rows="ctrl.tasks.data">
-        <oui-column
+        <oui-datagrid-column
             data-title="'iplb_task_list_col_creation_date' | translate"
             data-property="creationDate"
             data-sortable="desc"
         >
             {{ $row.creationDateFormated }}
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title="'iplb_task_list_col_task' | translate"
             data-property="action"
             data-sortable
             ng-cloak
-        ></oui-column>
-        <oui-column
+        ></oui-datagrid-column>
+        <oui-datagrid-column
             data-title="'iplb_task_list_col_progress' | translate"
             data-property="progress"
             data-sortable
-            class="oui-table__cell_component"
+            class="oui-datagrid__cell_component"
         >
             <oui-progress data-compact>
                 <oui-progress-bar
@@ -31,16 +31,15 @@
                 >
                 </oui-progress-bar>
             </oui-progress>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title="'iplb_task_list_col_status' | translate"
             data-property="status"
             data-sortable
-        ></oui-column>
-        <oui-action-menu data-align="end" data-compact>
-            <oui-action-menu-item
-                data-text="{{'iplb_preview_see' | translate}}"
-                data-on-click="ctrl.showTaskPreview($row)"
+        ></oui-datagrid-column>
+        <oui-action-menu data-compact data-placement="end">
+            <oui-action-menu-item data-on-click="ctrl.showTaskPreview($row)"
+                ><span data-translate="iplb_preview_see"></span
             ></oui-action-menu-item>
         </oui-action-menu>
     </oui-datagrid>

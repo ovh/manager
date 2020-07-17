@@ -3,7 +3,7 @@ import angular from 'angular';
 import '@uirouter/angularjs';
 import 'angular-translate';
 import 'ovh-api-services';
-import 'ovh-ui-angular';
+import '@ovh-ux/ui-kit';
 import ovhManagerCore from '@ovh-ux/manager-core';
 
 import migrationComponent from './vps-migration.component';

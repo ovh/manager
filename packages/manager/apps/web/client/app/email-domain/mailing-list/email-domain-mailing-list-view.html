@@ -211,7 +211,7 @@
                                     data-ng-click="ctrlTabView.setCurrentView('moderatorsView', mailingList)"
                                 >
                                     <span
-                                        class="oui-icon oui-icon-user_line oui-icon_small"
+                                        class="oui-icon oui-icon-user_concept"
                                         aria-hidden="true"
                                     ></span>
                                 </button>
@@ -224,13 +224,16 @@
                                     data-ng-click="ctrlTabView.setCurrentView('subscribersView', mailingList)"
                                 >
                                     <span
-                                        class="oui-icon oui-icon-user_line oui-icon_small"
+                                        class="oui-icon oui-icon-user_concept"
                                         aria-hidden="true"
                                     ></span>
                                 </button>
                             </td>
                             <td class="text-center">
-                                <oui-action-menu data-compact data-align="end">
+                                <oui-action-menu
+                                    data-compact
+                                    data-placement="end"
+                                >
                                     <oui-action-menu-item
                                         data-on-click="setAction('email-domain/mailing-list/update/email-domain-mailing-list-update', mailingList)"
                                     >

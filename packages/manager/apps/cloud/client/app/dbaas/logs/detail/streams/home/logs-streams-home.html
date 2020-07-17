@@ -2,7 +2,7 @@
     <h3 data-translate="logs_streams_title"></h3>
     <p data-translate="logs_streams_description"></p>
     <oui-datagrid rows="ctrl.streams.data">
-        <extra-top>
+        <oui-datagrid-topbar>
             <button
                 type="button"
                 class="oui-button oui-button_secondary"
@@ -18,37 +18,37 @@
                 size="s"
                 data-ng-if="ctrl.delete.loading"
             ></oui-spinner>
-        </extra-top>
-        <oui-column
+        </oui-datagrid-topbar>
+        <oui-datagrid-column
             data-title="::'logs_streams_col_title' | translate"
             property="info.title"
             sortable="asc"
             type="string"
             searchable
             filterable
-        ></oui-column>
-        <oui-column
+        ></oui-datagrid-column>
+        <oui-datagrid-column
             data-title="::'logs_streams_col_description' | translate"
             property="info.description"
             sortable
             type="string"
             searchable
             filterable
-        ></oui-column>
-        <oui-column
+        ></oui-datagrid-column>
+        <oui-datagrid-column
             data-title="::'logs_streams_col_indexing' | translate"
             property="info.indexingEnabled"
             sortable
             type="string"
         >
             <span
-                class="oui-status"
+                class="oui-badge"
                 data-translate="{{ $row.info.indexingEnabled ? 'logs_streams_enabled' : 'logs_streams_disabled' }}"
-                data-ng-class="$row.info.indexingEnabled ? 'oui-status_success' : 'oui-status_warning'"
+                data-ng-class="$row.info.indexingEnabled ? 'oui-badge_success' : 'oui-badge_warning'"
             >
             </span>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title="::'logs_streams_col_storage' | translate"
             sortable
             data-type="number"
@@ -56,11 +56,11 @@
             filterable
         >
             <span
-                class="oui-status"
+                class="oui-badge oui-badge_info"
                 data-ng-bind="ctrl.storageInfo($row)"
             ></span>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title="::'logs_streams_col_archives' | translate"
             property="info.nbArchive"
             sortable
@@ -70,12 +70,13 @@
             <span
                 data-ng-if="$row.info.coldStorageEnabled"
                 data-ng-bind="$row.info.nbArchive"
-            />
-            <span data-ng-if="!$row.info.coldStorageEnabled">
-                {{ $row.info.nbArchive || "-" }}
-            </span>
-        </oui-column>
-        <oui-column
+            >
+                <span data-ng-if="!$row.info.coldStorageEnabled">
+                    {{ $row.info.nbArchive || "-" }}
+                </span>
+            </span></oui-datagrid-column
+        >
+        <oui-datagrid-column
             data-title="::'logs_streams_col_notifications' | translate"
             property="info.nbAlertCondition"
             sortable
@@ -85,18 +86,19 @@
             <span
                 data-ng-if="$row.info.nbAlertCondition"
                 data-ng-bind="$row.info.nbAlertCondition"
-            />
-            <span data-ng-if="!$row.info.nbAlertCondition"> - </span>
-        </oui-column>
-        <oui-column
+            >
+                <span data-ng-if="!$row.info.nbAlertCondition"> - </span>
+            </span></oui-datagrid-column
+        >
+        <oui-datagrid-column
             data-title="::'logs_col_last_modified' | translate"
             property="info.updatedAt"
             sortable
             type="date"
         >
             {{ $row.info.updatedAt | momentFormat:'L'}}
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title="::'logs_streams_col_shared' | translate"
             property="info.isEditable"
             sortable
@@ -106,43 +108,43 @@
                 >{{ ::'common_yes' | translate }}</span
             >
             <span data-ng-if="$row.info.isEditable"> - </span>
-        </oui-column>
-        <oui-action-menu data-align="end" compact>
+        </oui-datagrid-column>
+        <oui-action-menu compact data-placement="end">
             <oui-action-menu-item
                 disabled="!$row.info.isEditable"
-                text="{{ ::'common_edit' | translate }}"
                 on-click="ctrl.edit($row)"
+                ><span data-translate="common_edit"></span
             ></oui-action-menu-item>
             <oui-action-menu-item
                 disabled="!$row.info.indexingEnabled"
-                text="{{ ::'logs_streams_graylog_access' | translate }}"
                 href="{{ctrl.getGraylogUrl($row)}}"
                 external
+                ><span data-translate="logs_streams_graylog_access"></span
             ></oui-action-menu-item>
             <oui-action-menu-item
                 disabled="!$row.info.isEditable"
-                text="{{ ::'logs_streams_copy_token' | translate }}"
                 on-click="ctrl.copyToken($row)"
+                ><span data-translate="logs_streams_copy_token"></span
             ></oui-action-menu-item>
             <oui-action-menu-item
                 disabled="!$row.info.webSocketEnabled"
-                text="{{ ::'logs_streams_follow_live' | translate }}"
                 on-click="ctrl.followLive($row)"
+                ><span data-translate="logs_streams_follow_live"></span
             ></oui-action-menu-item>
             <oui-action-menu-item
                 disabled="!$row.info.canAlert"
-                text="{{ ::'logs_streams_manage_alerts' | translate }}"
                 on-click="ctrl.manageAlerts($row)"
+                ><span data-translate="logs_streams_manage_alerts"></span
             ></oui-action-menu-item>
             <oui-action-menu-item
                 disabled="!$row.info.coldStorageEnabled && $row.info.nbArchive === 0"
-                text="{{ ::'logs_streams_archives' | translate }}"
                 on-click="ctrl.gotoArchives($row)"
+                ><span data-translate="logs_streams_archives"></span
             ></oui-action-menu-item>
             <oui-action-menu-item
                 disabled="!$row.info.isEditable"
-                text="{{ ::'common_delete' | translate }}"
                 on-click="ctrl.showDeleteConfirm($row)"
+                ><span data-translate="common_delete"></span
             ></oui-action-menu-item>
         </oui-action-menu>
     </oui-datagrid>

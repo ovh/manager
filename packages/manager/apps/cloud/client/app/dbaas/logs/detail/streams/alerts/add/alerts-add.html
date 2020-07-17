@@ -1,8 +1,8 @@
 <div class="cui-page__content">
-    <oui-back-button
-        data-on-click="ctrl.cancel()"
-        data-heading="{{ ::(ctrl.editMode ? 'edit_alert_title_' + ctrl.alertType.toLowerCase() : 'add_alert_title_' + ctrl.alertType.toLowerCase()) | translate }}"
-    >
+    <oui-back-button data-on-click="ctrl.cancel()"
+        ><span
+            data-ng-bind="::(ctrl.editMode ? 'edit_alert_title_' + ctrl.alertType.toLowerCase() : 'add_alert_title_' + ctrl.alertType.toLowerCase()) | translate"
+        ></span>
     </oui-back-button>
 
     <p
@@ -210,9 +210,8 @@
                 data-model="ctrl.alert.data.repeatNotificationsEnabled"
                 id="notification"
                 name="notification"
-                data-text="{{::'add_alert_notification_field' | translate}}"
                 data-description="{{::'add_alert_notification_field_description' | translate}}"
-            >
+                ><span data-translate="add_alert_notification_field"></span>
             </oui-checkbox>
         </oui-field>
 

@@ -48,10 +48,13 @@
                                 class="oui-radio__label-container"
                                 for="responderType-attached"
                             >
-                                <span
-                                    class="oui-radio__label"
-                                    data-translate="email_tab_modal_create_responder_type_attached"
-                                ></span>
+                                <span class="oui-radio__label">
+                                    <span class="oui-radio__icon"></span>
+                                    <span
+                                        class="oui-radio__text"
+                                        data-translate="email_tab_modal_create_responder_type_attached"
+                                    ></span>
+                                </span>
                             </label>
                         </div>
                         <div class="oui-radio">
@@ -68,10 +71,13 @@
                                 class="oui-radio__label-container"
                                 for="responderType-free"
                             >
-                                <span
-                                    class="oui-radio__label"
-                                    data-translate="email_tab_modal_create_responder_type_free"
-                                ></span>
+                                <span class="oui-radio__label">
+                                    <span class="oui-radio__icon"></span>
+                                    <span
+                                        class="oui-radio__text"
+                                        data-translate="email_tab_modal_create_responder_type_free"
+                                    ></span>
+                                </span>
                             </label>
                         </div>
                     </div>
@@ -98,7 +104,7 @@
                                     data-ng-options="account for account in ctrl.accountsNotUsed track by account"
                                 >
                                     <option
-                                        value=""
+                                        value
                                         disabled
                                         data-translate="select_placeholder"
                                     ></option>
@@ -191,10 +197,13 @@
                                 class="oui-radio__label-container"
                                 for="responderDuration-temporary"
                             >
-                                <span
-                                    class="oui-radio__label"
-                                    data-translate="email_tab_modal_create_responder_temporary"
-                                ></span>
+                                <span class="oui-radio__label">
+                                    <span class="oui-radio__icon"></span>
+                                    <span
+                                        class="oui-radio__text"
+                                        data-translate="email_tab_modal_create_responder_temporary"
+                                    ></span>
+                                </span>
                             </label>
                         </div>
                         <div class="oui-radio">
@@ -211,10 +220,13 @@
                                 class="oui-radio__label-container"
                                 for="responderDuration-permanent"
                             >
-                                <span
-                                    class="oui-radio__label"
-                                    data-translate="email_tab_modal_create_responder_permanent"
-                                ></span>
+                                <span class="oui-radio__label">
+                                    <span class="oui-radio__icon"></span>
+                                    <span
+                                        class="oui-radio__text"
+                                        data-translate="email_tab_modal_create_responder_permanent"
+                                    ></span>
+                                </span>
                             </label>
                         </div>
                     </div>
@@ -302,8 +314,9 @@
                             id="responderKeepCopy"
                             name="responderKeepCopy"
                             data-model="ctrl.model.responderKeepCopy"
-                            data-text="{{ (ctrl.model.responderType === 'typeFree' ? 'email_tab_modal_create_responder_copy' : 'email_tab_modal_create_responder_delete_message') | translate }}"
-                        >
+                            ><span
+                                data-ng-bind="(ctrl.model.responderType === 'typeFree' ? 'email_tab_modal_create_responder_copy' : 'email_tab_modal_create_responder_delete_message') | translate"
+                            ></span>
                         </oui-checkbox>
                         <div
                             class="alert alert-warning"
@@ -335,7 +348,7 @@
                                     data-ng-options="account for account in ctrl.accounts track by account"
                                 >
                                     <option
-                                        value=""
+                                        value
                                         disabled
                                         data-translate="select_placeholder"
                                     ></option>

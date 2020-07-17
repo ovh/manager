@@ -6,7 +6,7 @@
         <oui-spinner></oui-spinner>
     </div>
     <h1
-        class="text-center oui-header_1"
+        class="text-center oui-heading_1"
         data-translate="cloud_offer_ready"
     ></h1>
     <div class="row two-block-page-container">
@@ -88,7 +88,7 @@
                     </fieldset>
                     <div data-ng-if="CloudOfferCtrl.data.order">
                         <h5
-                            class="oui-header_5"
+                            class="oui-heading_5"
                             data-translate="cloud_offer_no_offer"
                         ></h5>
                         <p
@@ -112,7 +112,7 @@
                     </div>
                     <div data-ng-if="CloudOfferCtrl.data.defaultPayment">
                         <h5
-                            class="oui-header_5"
+                            class="oui-heading_5"
                             data-translate="cloud_offer_payment_label"
                         ></h5>
                         <div
@@ -178,7 +178,7 @@
                     </div>
                     <h5
                         data-ng-if="CloudOfferCtrl.data.agreements.length"
-                        class="oui-header_5"
+                        class="oui-heading_5"
                         data-translate="cloud_offer_agreement_label"
                     ></h5>
                     <div>
@@ -199,27 +199,11 @@
                                     for="{{ 'agreement_' + agreement.id }}"
                                 >
                                     <span class="oui-checkbox__label">
+                                        <span class="oui-checkbox__icon"></span>
                                         <span
+                                            class="oui-checkbox__text"
                                             data-ng-bind-html="'cloud_offer_agreement_accept' | translate: { url: agreement.pdf, name: agreement.name }"
                                         ></span>
-                                        <span class="oui-checkbox__icon">
-                                            <i
-                                                class="oui-icon oui-icon-checkbox-unchecked"
-                                                aria-hidden="true"
-                                            ></i>
-                                            <i
-                                                class="oui-icon oui-icon-checkbox-checked"
-                                                aria-hidden="true"
-                                            ></i>
-                                            <i
-                                                class="oui-icon oui-icon-checkbox-checkmark"
-                                                aria-hidden="true"
-                                            ></i>
-                                            <i
-                                                class="oui-icon oui-icon-checkbox-indeterminate"
-                                                aria-hidden="true"
-                                            ></i>
-                                        </span>
                                     </span>
                                 </label>
                             </div>

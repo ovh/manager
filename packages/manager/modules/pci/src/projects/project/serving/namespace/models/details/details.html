@@ -17,10 +17,10 @@
                 >
                     <oui-tile-description>
                         <span
-                            class="oui-status"
+                            class="oui-badge"
                             data-ng-class="{
-                            'oui-status_success' : $ctrl.model.isRunning(),
-                            'oui-status_warning' : !$ctrl.model.isRunning()
+                            'oui-badge_success' : $ctrl.model.isRunning(),
+                            'oui-badge_warning' : !$ctrl.model.isRunning()
                         }"
                             data-translate="{{:: 'pci_projects_project_serving_namespace_models_api_status_' + $ctrl.model.apiStatus }}"
                         >
@@ -32,11 +32,11 @@
                 >
                     <oui-tile-description>
                         <span
-                            class="oui-status"
+                            class="oui-badge"
                             data-ng-class="{
-                        'oui-status_success' : $ctrl.model.isDeployed(),
-                        'oui-status_warning' : $ctrl.model.isProcessing(),
-                        'oui-status_error' : $ctrl.model.isInError()
+                        'oui-badge_success' : $ctrl.model.isDeployed(),
+                        'oui-badge_warning' : $ctrl.model.isProcessing(),
+                        'oui-badge_error' : $ctrl.model.isInError()
                     }"
                             data-translate="{{:: 'pci_projects_project_serving_namespace_models_version_status_' + $ctrl.model.versionStatus }}"
                         >

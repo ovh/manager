@@ -37,18 +37,21 @@
                 </oui-radio>
             </oui-radio-toggle-group>
 
-            <oui-popover class="mt-2">
-                <button
-                    type="button"
-                    class="oui-popover-button"
-                    oui-popover-trigger
-                ></button>
-                <oui-popover-content>
-                    <div
-                        data-ng-bind-html="'exchange_ACTION_configure_help_mfa_text' | translate"
-                    ></div>
-                </oui-popover-content>
-            </oui-popover>
+            <button
+                type="button"
+                class="oui-popover-button mt-2"
+                data-oui-popover
+                data-oui-popover-scope="$ctrl"
+                data-oui-popover-template="exchange_ACTION_configure_help_mfa_text.html"
+            ></button>
+            <script
+                type="text/ng-template"
+                id="exchange_ACTION_configure_help_mfa_text.html"
+            >
+                <div
+                    data-ng-bind-html="'exchange_ACTION_configure_help_mfa_text' | translate"
+                ></div>
+            </script>
         </div>
 
         <h2
@@ -74,18 +77,21 @@
                     data-max="14"
                 >
                 </oui-numeric>
-                <oui-popover class="mt-2">
-                    <button
-                        type="button"
-                        class="oui-popover-button"
-                        data-oui-popover-trigger
-                    ></button>
-                    <oui-popover-content>
-                        <div
-                            data-ng-bind-html="'exchange_ACTION_configure_help_lockoutThreshold_text' | translate"
-                        ></div>
-                    </oui-popover-content>
-                </oui-popover>
+                <button
+                    type="button"
+                    class="oui-popover-button mt-2"
+                    data-oui-popover
+                    data-oui-popover-scope="$ctrl"
+                    data-oui-popover-template="exchange_ACTION_configure_help_lockoutThreshold_text.html"
+                ></button>
+                <script
+                    type="text/ng-template"
+                    id="exchange_ACTION_configure_help_lockoutThreshold_text.html"
+                >
+                    <div
+                        data-ng-bind-html="'exchange_ACTION_configure_help_lockoutThreshold_text' | translate"
+                    ></div>
+                </script>
             </oui-field>
         </div>
 
@@ -108,18 +114,21 @@
                     data-max="ctrl.service.lockoutDuration != null && ctrl.service.lockoutDuration < 90 ? ctrl.service.lockoutDuration : 90"
                 >
                 </oui-numeric>
-                <oui-popover class="mt-2">
-                    <button
-                        type="button"
-                        class="oui-popover-button"
-                        data-oui-popover-trigger
-                    ></button>
-                    <oui-popover-content>
-                        <div
-                            data-ng-bind-html="'exchange_ACTION_configure_help_lockoutObservationWindow_text' | translate"
-                        ></div>
-                    </oui-popover-content>
-                </oui-popover>
+                <button
+                    type="button"
+                    class="oui-popover-button mt-2"
+                    data-oui-popover
+                    data-oui-popover-scope="$ctrl"
+                    data-oui-popover-template="exchange_ACTION_configure_help_lockoutObservationWindow_text.html"
+                ></button>
+                <script
+                    type="text/ng-template"
+                    id="exchange_ACTION_configure_help_lockoutObservationWindow_text.html"
+                >
+                    <div
+                        data-ng-bind-html="'exchange_ACTION_configure_help_lockoutObservationWindow_text' | translate"
+                    ></div>
+                </script>
             </oui-field>
         </div>
 
@@ -142,18 +151,21 @@
                     data-max="90"
                 >
                 </oui-numeric>
-                <oui-popover class="mt-2">
-                    <button
-                        type="button"
-                        class="oui-popover-button"
-                        data-oui-popover-trigger
-                    ></button>
-                    <oui-popover-content>
-                        <div
-                            data-ng-bind-html="'exchange_ACTION_configure_help_lockoutDuration_text' | translate"
-                        ></div>
-                    </oui-popover-content>
-                </oui-popover>
+                <button
+                    type="button"
+                    class="oui-popover-button mt-2"
+                    data-oui-popover
+                    data-oui-popover-scope="$ctrl"
+                    data-oui-popover-template="exchange_ACTION_configure_help_lockoutDuration_text.html"
+                ></button>
+                <script
+                    type="text/ng-template"
+                    id="exchange_ACTION_configure_help_lockoutDuration_text.html"
+                >
+                    <div
+                        data-ng-bind-html="'exchange_ACTION_configure_help_lockoutDuration_text' | translate"
+                    ></div>
+                </script>
             </oui-field>
         </div>
 
@@ -164,8 +176,9 @@
             id="complexityEnabled"
             name="complexityEnabled"
             data-model="ctrl.service.complexityEnabled"
-            data-text="{{::'exchange_ACTION_configure_services_label_complexityEnabled' | translate}}"
-        >
+            ><span
+                data-translate="exchange_ACTION_configure_services_label_complexityEnabled"
+            ></span>
         </oui-checkbox>
 
         <!-- Min password Age -->
@@ -186,18 +199,21 @@
                     data-max="90"
                 >
                 </oui-numeric>
-                <oui-popover class="mt-2">
-                    <button
-                        type="button"
-                        class="oui-popover-button"
-                        data-oui-popover-trigger
-                    ></button>
-                    <oui-popover-content>
-                        <div
-                            data-ng-bind-html="'exchange_ACTION_configure_help_minPasswordAge_text' | translate"
-                        ></div>
-                    </oui-popover-content>
-                </oui-popover>
+                <button
+                    type="button"
+                    class="oui-popover-button mt-2"
+                    data-oui-popover
+                    data-oui-popover-scope="$ctrl"
+                    data-oui-popover-template="exchange_ACTION_configure_help_minPasswordAge_text.html"
+                ></button>
+                <script
+                    type="text/ng-template"
+                    id="exchange_ACTION_configure_help_minPasswordAge_text.html"
+                >
+                    <div
+                        data-ng-bind-html="'exchange_ACTION_configure_help_minPasswordAge_text' | translate"
+                    ></div>
+                </script>
             </oui-field>
         </div>
 
@@ -219,18 +235,13 @@
                     data-max="90"
                 >
                 </oui-numeric>
-                <oui-popover class="mt-2">
-                    <button
-                        type="button"
-                        class="oui-popover-button"
-                        data-oui-popover-trigger
-                    ></button>
-                    <oui-popover-content>
-                        <div
-                            data-ng-bind-html="'exchange_ACTION_configure_help_maxPasswordAge_text' | translate"
-                        ></div>
-                    </oui-popover-content>
-                </oui-popover>
+                <button
+                    type="button"
+                    class="oui-popover-button mt-2"
+                    data-oui-popover
+                    data-oui-popover-scope="$ctrl"
+                    data-oui-popover-template="exchange_ACTION_configure_help_maxPasswordAge_text.html"
+                ></button>
             </oui-field>
         </div>
 
@@ -253,18 +264,21 @@
                     data-max="100"
                 >
                 </oui-numeric>
-                <oui-popover class="mt-2">
-                    <button
-                        type="button"
-                        class="oui-popover-button"
-                        data-oui-popover-trigger
-                    ></button>
-                    <oui-popover-content>
-                        <div
-                            data-ng-bind-html="'exchange_ACTION_configure_help_minPasswordLength_text' | translate"
-                        ></div>
-                    </oui-popover-content>
-                </oui-popover>
+                <button
+                    type="button"
+                    class="oui-popover-button mt-2"
+                    data-oui-popover
+                    data-oui-popover-scope="$ctrl"
+                    data-oui-popover-template="exchange_ACTION_configure_help_minPasswordLength_text.html"
+                ></button>
+                <script
+                    type="text/ng-template"
+                    id="exchange_ACTION_configure_help_minPasswordLength_text.html"
+                >
+                    <div
+                        data-ng-bind-html="'exchange_ACTION_configure_help_minPasswordLength_text' | translate"
+                    ></div>
+                </script>
             </oui-field>
         </div>
 
@@ -286,18 +300,21 @@
                     data-max="14"
                 >
                 </oui-numeric>
-                <oui-popover class="mt-2">
-                    <button
-                        type="button"
-                        class="oui-popover-button"
-                        data-oui-popover-trigger
-                    ></button>
-                    <oui-popover-content>
-                        <div
-                            data-ng-bind-html="'exchange_ACTION_configure_help_minPasswordLength_text' | translate"
-                        ></div>
-                    </oui-popover-content>
-                </oui-popover>
+                <button
+                    type="button"
+                    class="oui-popover-button mt-2"
+                    data-oui-popover
+                    data-oui-popover-scope="$ctrl"
+                    data-oui-popover-template="exchange_ACTION_configure_help_minPasswordLength_text.html"
+                ></button>
+                <script
+                    type="text/ng-template"
+                    id="exchange_ACTION_configure_help_minPasswordLength_text.html"
+                >
+                    <div
+                        data-ng-bind-html="'exchange_ACTION_configure_help_minPasswordLength_text' | translate"
+                    ></div>
+                </script>
             </oui-field>
         </div>
 
@@ -313,42 +330,50 @@
                     id="checkDKIM"
                     class="float-left"
                     data-model="ctrl.service.spamAndVirusConfiguration.checkDKIM"
-                    data-text="{{::'exchange_ACTION_configure_services_label_dkim' | translate}}"
-                >
+                    ><span
+                        data-translate="exchange_ACTION_configure_services_label_dkim"
+                    ></span>
                 </oui-checkbox>
-                <oui-popover class="mt-2">
-                    <button
-                        type="button"
-                        class="oui-popover-button"
-                        oui-popover-trigger
-                    ></button>
-                    <oui-popover-content>
-                        <div
-                            data-ng-bind-html="'exchange_ACTION_configure_help_dkim_text' | translate"
-                        ></div>
-                    </oui-popover-content>
-                </oui-popover>
+                <button
+                    type="button"
+                    class="oui-popover-button mt-2"
+                    data-oui-popover
+                    data-oui-popover-scope="$ctrl"
+                    data-oui-popover-template="exchange_ACTION_configure_help_dkim_text.html"
+                ></button>
+                <script
+                    type="text/ng-template"
+                    id="exchange_ACTION_configure_help_dkim_text.html"
+                >
+                    <div
+                        data-ng-bind-html="'exchange_ACTION_configure_help_dkim_text' | translate"
+                    ></div>
+                </script>
             </div>
             <div class="clearfix">
                 <oui-checkbox
                     id="checkSPF"
                     class="float-left"
                     data-model="ctrl.service.spamAndVirusConfiguration.checkSPF"
-                    data-text="{{::'exchange_ACTION_configure_services_label_spf' | translate}}"
-                >
+                    ><span
+                        data-translate="exchange_ACTION_configure_services_label_spf"
+                    ></span>
                 </oui-checkbox>
-                <oui-popover class="mt-2">
-                    <button
-                        type="button"
-                        class="oui-popover-button"
-                        oui-popover-trigger
-                    ></button>
-                    <oui-popover-content>
-                        <div
-                            data-ng-bind-html="'exchange_ACTION_configure_help_spf_text' | translate"
-                        ></div>
-                    </oui-popover-content>
-                </oui-popover>
+                <button
+                    type="button"
+                    class="oui-popover-button mt-2"
+                    data-oui-popover
+                    data-oui-popover-scope="$ctrl"
+                    data-oui-popover-template="exchange_ACTION_configure_help_spf_text.html"
+                ></button>
+                <script
+                    type="text/ng-template"
+                    id="exchange_ACTION_configure_help_spf_text.html"
+                >
+                    <div
+                        data-ng-bind-html="'exchange_ACTION_configure_help_spf_text' | translate"
+                    ></div>
+                </script>
             </div>
         </div>
 
@@ -362,42 +387,50 @@
                     id="tagSpam"
                     class="float-left"
                     data-model="ctrl.service.spamAndVirusConfiguration.tagSpam"
-                    data-text="{{::'exchange_ACTION_configure_services_label_tag_spam' | translate}}"
-                >
+                    ><span
+                        data-translate="exchange_ACTION_configure_services_label_tag_spam"
+                    ></span>
                 </oui-checkbox>
-                <oui-popover class="mt-2">
-                    <button
-                        type="button"
-                        class="oui-popover-button"
-                        oui-popover-trigger
-                    ></button>
-                    <oui-popover-content>
-                        <div
-                            data-ng-bind-html="'exchange_ACTION_configure_help_spam_text' | translate"
-                        ></div>
-                    </oui-popover-content>
-                </oui-popover>
+                <button
+                    type="button"
+                    class="oui-popover-button mt-2"
+                    data-oui-popover
+                    data-oui-popover-scope="$ctrl"
+                    data-oui-popover-template="exchange_ACTION_configure_help_spam_text.html"
+                ></button>
+                <script
+                    type="text/ng-template"
+                    id="exchange_ACTION_configure_help_spam_text.html"
+                >
+                    <div
+                        data-ng-bind-html="'exchange_ACTION_configure_help_spam_text' | translate"
+                    ></div>
+                </script>
             </div>
             <div class="clearfix">
                 <oui-checkbox
                     id="putInJunk"
                     class="float-left"
                     data-model="ctrl.service.spamAndVirusConfiguration.putInJunk"
-                    data-text="{{::'exchange_ACTION_configure_services_label_putinjunk' | translate}}"
-                >
+                    ><span
+                        data-translate="exchange_ACTION_configure_services_label_putinjunk"
+                    ></span>
                 </oui-checkbox>
-                <oui-popover class="mt-2">
-                    <button
-                        type="button"
-                        class="oui-popover-button"
-                        oui-popover-trigger
-                    ></button>
-                    <oui-popover-content>
-                        <div
-                            data-ng-bind-html="'exchange_ACTION_configure_help_putinjunk_text' | translate"
-                        ></div>
-                    </oui-popover-content>
-                </oui-popover>
+                <button
+                    type="button"
+                    class="oui-popover-button mt-2"
+                    data-oui-popover
+                    data-oui-popover-scope="$ctrl"
+                    data-oui-popover-template="exchange_ACTION_configure_help_putinjunk_text.html"
+                ></button>
+                <script
+                    type="text/ng-template"
+                    id="exchange_ACTION_configure_help_putinjunk_text.html"
+                >
+                    <div
+                        data-ng-bind-html="'exchange_ACTION_configure_help_putinjunk_text' | translate"
+                    ></div>
+                </script>
             </div>
         </div>
         <oui-button

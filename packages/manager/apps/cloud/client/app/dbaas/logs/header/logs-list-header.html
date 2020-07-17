@@ -1,18 +1,16 @@
-<oui-page-header data-heading="{{ ::'logs_title' | translate }}">
+<oui-header data-heading="{{ ::'logs_title' | translate }}">
     <oui-guide-menu data-text="{{ ::ctrl.guides.title }}">
         <oui-guide-menu-item
             data-ng-repeat="guideItem in ctrl.guides.list track by guideItem.url"
-            data-text="{{ ::guideItem.name }}"
             data-href="{{ ::guideItem.url }}"
             data-external="guideItem.external"
-        >
+            ><span data-ng-bind="::guideItem.name"></span>
         </oui-guide-menu-item>
         <oui-guide-menu-divider></oui-guide-menu-divider>
         <oui-guide-menu-item
-            data-text="{{ ::ctrl.guides.footer.name }}"
             data-href="{{ ::ctrl.guides.footer.url }}"
             data-external="ctrl.guides.footer.external"
-        >
+            ><span data-ng-bind="::ctrl.guides.footer.name"></span>
         </oui-guide-menu-item>
     </oui-guide-menu>
-</oui-page-header>
+</oui-header>

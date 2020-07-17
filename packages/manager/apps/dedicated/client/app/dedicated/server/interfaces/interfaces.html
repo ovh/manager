@@ -1,20 +1,22 @@
 <div data-ovh-alert></div>
 
 <div class="row">
-    <h1
+    <h2
         data-translate="dedicated_server_interfaces_title"
         class="col-auto mr-auto"
-    ></h1>
-    <oui-guide-menu
-        text="{{::'dedicated_server_interfaces_guides' | translate}}"
-        class="col-auto px-5"
-    >
-        <oui-guide-menu-item data-href="{{ $ctrl.guideUrl }}" external>
-            <span
-                data-translate="dedicated_server_interfaces_guides_ola"
-            ></span>
-        </oui-guide-menu-item>
-    </oui-guide-menu>
+    ></h2>
+    <div class="col-auto">
+        <oui-guide-menu
+            data-placement="end"
+            data-text="{{::'dedicated_server_interfaces_guides' | translate}}"
+        >
+            <oui-guide-menu-item data-href="{{ $ctrl.guideUrl }}" external>
+                <span
+                    data-translate="dedicated_server_interfaces_guides_ola"
+                ></span>
+            </oui-guide-menu-item>
+        </oui-guide-menu>
+    </div>
 </div>
 
 <p data-translate="dedicated_server_interfaces_introduction"></p>
@@ -31,7 +33,7 @@
         <span
             data-translate="dedicated_server_interfaces_vrack_information_link_label"
         ></span>
-        <span class="oui-icon oui-icon-external_link" aria-hidden="true"></span>
+        <span class="oui-icon oui-icon-external-link" aria-hidden="true"></span>
         <span
             class="sr-only"
             data-translate="dedicated_server_interfaces_new_tab"
@@ -77,7 +79,7 @@
                             data-translate="dedicated_server_interfaces_ola_alert_configuration_needed_link"
                         ></span>
                         <span
-                            class="oui-icon oui-icon-external_link"
+                            class="oui-icon oui-icon-external-link"
                             aria-hidden="true"
                         ></span>
                         <span
@@ -104,7 +106,7 @@
                         data-translate="server_ola_mode_{{ $ctrl.ola.getCurrentMode() }}"
                     ></span>
                 </oui-tile-description>
-                <oui-action-menu data-align="end" data-compact>
+                <oui-action-menu data-compact data-placement="end">
                     <oui-action-menu-item
                         data-ui-sref="app.dedicated.server.interfaces.ola-configuration"
                     >
@@ -145,7 +147,7 @@
 <h2 data-translate="dedicated_server_interfaces_list_title"></h2>
 
 <div data-ng-if="$ctrl.loading">
-    <oui-message data-type="info" data-dismissable="false">
+    <oui-message data-type="info">
         <span
             data-translate="dedicated_server_interfaces_loading_message"
         ></span>
@@ -157,27 +159,27 @@
 </div>
 
 <oui-datagrid data-rows="$ctrl.interfaces" data-ng-if="!$ctrl.loading">
-    <oui-column
+    <oui-datagrid-column
         data-title="::'dedicated_server_interfaces_name_label' | translate"
         data-property="name"
     >
         <span data-ng-bind="$row.name"></span>
-    </oui-column>
-    <oui-column
+    </oui-datagrid-column>
+    <oui-datagrid-column
         data-title="::'dedicated_server_interfaces_type_label' | translate"
         data-property="type"
     >
         <span
             data-translate="{{ 'dedicated_server_interfaces_type_' + $row.type + '_label' }}"
         ></span>
-    </oui-column>
-    <oui-column
+    </oui-datagrid-column>
+    <oui-datagrid-column
         data-title="::'dedicated_server_interfaces_mac_label' | translate"
         data-property="mac"
     >
         <span data-ng-bind="$row.mac"></span>
-    </oui-column>
-    <oui-column
+    </oui-datagrid-column>
+    <oui-datagrid-column
         data-title="::'dedicated_server_interfaces_bandwidth_outgoing_label' | translate"
     >
         <div data-ng-if="$row.isPublic()">
@@ -192,8 +194,8 @@
                 data-ng-bind="$ctrl.specifications.vrack.bandwidth | ducBandwidth"
             ></span>
         </div>
-    </oui-column>
-    <oui-column
+    </oui-datagrid-column>
+    <oui-datagrid-column
         data-title="::'dedicated_server_interfaces_bandwidth_incoming_label' | translate"
     >
         <div data-ng-if="$row.isPublic()">
@@ -208,8 +210,8 @@
                 data-ng-bind="$ctrl.specifications.vrack.bandwidth | ducBandwidth"
             ></span>
         </div>
-    </oui-column>
-    <oui-column
+    </oui-datagrid-column>
+    <oui-datagrid-column
         data-title="::'dedicated_server_interfaces_ip_label' | translate"
     >
         <oui-clipboard
@@ -219,8 +221,8 @@
         >
         </oui-clipboard>
         <span data-ng-if="!$row.isPublic()">-</span>
-    </oui-column>
-    <oui-column
+    </oui-datagrid-column>
+    <oui-datagrid-column
         data-title="::'dedicated_server_interfaces_failover_ip_label' | translate"
     >
         <span
@@ -228,16 +230,16 @@
             data-ng-bind="$ctrl.failoverIps.length"
         ></span>
         <span data-ng-if="!$row.isPublic()">-</span>
-    </oui-column>
-    <oui-column
+    </oui-datagrid-column>
+    <oui-datagrid-column
         data-title="::'dedicated_server_interfaces_vrack_label' | translate"
         data-property="vrack"
     >
         <span data-ng-if="$row.hasVrack()" data-ng-bind="$row.vrack"></span>
         <span data-ng-if="!$row.hasVrack()">-</span>
-    </oui-column>
+    </oui-datagrid-column>
 
-    <oui-action-menu data-align="top-end" data-compact>
+    <oui-action-menu data-compact data-placement="top-end">
         <oui-action-menu-item
             data-ui-sref="app.dedicated.server.interfaces.rename({ interface: $row })"
             data-ng-if="$row.isVirtual()"

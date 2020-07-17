@@ -6,8 +6,6 @@ import 'ovh-api-services';
 
 import component from './roles-matrix.component';
 
-import './roles-matrix.less';
-
 const moduleName = 'ovhManagerPciUsersRolesMatrix';
 
 angular

@@ -32,7 +32,7 @@
 <div class="text-center">
     <button
         type="button"
-        class="oui-button oui-button_link oui-button_icon-right"
+        class="oui-button oui-button_icon-right oui-button_ghost"
         data-ng-if="$ctrl.products.length > $ctrl.DEFAULT_DISPLAYED_TILES"
         data-ng-click="$ctrl.toggleExpand()"
         data-track-on="click"
@@ -45,8 +45,8 @@
             class="oui-icon"
             aria-hidden="true"
             data-ng-class="{
-                'oui-icon-chevron-up_extra-thin' : $ctrl.expand,
-                'oui-icon-chevron-down_extra-thin': !$ctrl.expand
+                'oui-icon-chevron-up' : $ctrl.expand,
+                'oui-icon-chevron-down': !$ctrl.expand
             }"
         ></span>
     </button>

@@ -1,8 +1,7 @@
 <div class="cui-page__content">
     <oui-back-button
-        data-heading="{{ ::'metrics_token_add_token' | translate }}"
         data-on-click="$ctrl.$state.go('dbaas.metrics.detail.token')"
-    >
+        ><span data-translate="metrics_token_add_token"></span>
     </oui-back-button>
 
     <form name="MetricsTokenAddForm" data-ng-submit="$ctrl.confirm()">
@@ -27,9 +26,8 @@
                     <oui-radio-toggle-group data-model="$ctrl.token.permission">
                         <oui-radio
                             data-ng-repeat="permission in $ctrl.permissions"
-                            data-text="{{ permission.text }}"
                             value="permission.value"
-                        >
+                            ><span data-ng-bind="permission.text"></span>
                         </oui-radio>
                     </oui-radio-toggle-group>
                 </div>

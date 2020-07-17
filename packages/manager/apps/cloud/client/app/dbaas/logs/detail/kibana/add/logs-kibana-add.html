@@ -1,12 +1,12 @@
 <form novalidate name="ctrl.form">
     <oui-modal
-        data-title="{{ ::ctrl.title | translate }}"
         data-primary-action="ctrl.save()"
         data-primary-label="{{ ::ctrl.isEdit ? 'common_save' : 'common_order' | translate }}"
         data-secondary-action="ctrl.cancel()"
         data-secondary-label="{{ ::'common_cancel' | translate }}"
         data-on-dismiss="ctrl.cancel()"
         data-loading="ctrl.saving.loading"
+        data-heading="{{ ::ctrl.title | translate }}"
     >
         <oui-field
             data-label="{{ ::'logs_kibana_modal_description' | translate }}"

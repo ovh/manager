@@ -77,11 +77,11 @@
                     data-rows="$ctrl.accountIds"
                     data-row-loader="$ctrl.onTranformItem($row.accountId)"
                 >
-                    <oui-column
+                    <oui-datagrid-column
                         data-title="'sharepoint_accounts_userPrincipalName' | translate"
                         data-property="userPrincipalName"
-                    ></oui-column>
-                    <oui-column
+                    ></oui-datagrid-column>
+                    <oui-datagrid-column
                         data-title="'sharepoint_accounts_one_drive_space' | translate"
                     >
                         <span data-ng-if="!$row.activated">-</span>
@@ -113,8 +113,8 @@
                                 ></span>
                             </div>
                         </div>
-                    </oui-column>
-                    <oui-column
+                    </oui-datagrid-column>
+                    <oui-datagrid-column
                         data-title="'sharepoint_accounts_administrator' | translate"
                         data-property="accessRights"
                     >
@@ -128,8 +128,8 @@
                         >
                             -
                         </span>
-                    </oui-column>
-                    <oui-column
+                    </oui-datagrid-column>
+                    <oui-datagrid-column
                         data-title="'sharepoint_accounts_user' | translate"
                         data-property="accessRights"
                     >
@@ -143,8 +143,8 @@
                             data-ng-if="$row.accessRights"
                         ></span>
                         <span data-ng-if="!$row.accessRights"> - </span>
-                    </oui-column>
-                    <oui-column
+                    </oui-datagrid-column>
+                    <oui-datagrid-column
                         data-title="'sharepoint_accounts_license_office' | translate"
                         data-property="officeLicense"
                     >
@@ -154,46 +154,60 @@
                             data-ng-if="$row.officeLicense"
                         ></span>
                         <span data-ng-if="!$row.officeLicense"> - </span>
-                    </oui-column>
-                    <oui-action-menu data-align="end" data-compact>
+                    </oui-datagrid-column>
+                    <oui-action-menu data-compact data-placement="end">
                         <oui-action-menu-item
-                            data-text="{{ 'sharepoint_accounts_action_change_configuration' | translate }}"
                             data-on-click="$ctrl.updateAccount($row)"
                             data-disabled="$row.taskPendingId"
                             data-ng-if="$ctrl.isStandAlone"
+                            ><span
+                                data-translate="sharepoint_accounts_action_change_configuration"
+                            ></span
                         ></oui-action-menu-item>
                         <oui-action-menu-item
-                            data-text="{{ 'sharepoint_accounts_action_change_password' | translate }}"
                             data-on-click="$ctrl.updatePassword($row)"
                             data-disabled="$row.taskPendingId"
                             data-ng-if="$row.accessRights"
+                            ><span
+                                data-translate="sharepoint_accounts_action_change_password"
+                            ></span
                         ></oui-action-menu-item>
                         <oui-action-menu-item
-                            data-text="{{ 'sharepoint_accounts_action_admin_add' | translate }}"
                             data-on-click="$ctrl.activateSharepointAdmin($row)"
                             data-disabled="$row.taskPendingId"
                             data-ng-if="$row.accessRights && $row.accessRights === 'user'"
+                            ><span
+                                data-translate="sharepoint_accounts_action_admin_add"
+                            ></span
                         ></oui-action-menu-item>
                         <oui-action-menu-item
-                            data-text="{{ 'sharepoint_accounts_action_admin_remove' | translate }}"
                             data-on-click="$ctrl.activateSharepointUser($row)"
                             data-disabled="$row.taskPendingId"
                             data-ng-if="$row.accessRights && $row.accessRights === 'administrator'"
+                            ><span
+                                data-translate="sharepoint_accounts_action_admin_remove"
+                            ></span
                         ></oui-action-menu-item>
                         <oui-action-menu-item
-                            data-text="{{ 'sharepoint_accounts_action_sharepoint_activate' | translate }}"
                             data-on-click="$ctrl.activateSharepoint($row)"
                             data-ng-if="!$row.activated"
+                            ><span
+                                data-translate="sharepoint_accounts_action_sharepoint_activate"
+                            ></span
                         ></oui-action-menu-item>
                         <oui-action-menu-item
-                            data-text="{{ 'sharepoint_accounts_action_office_upgrade' | translate }}"
                             data-on-click="$ctrl.activateOffice($row)"
                             data-ng-if="!$row.officeLicense"
+                            ><span
+                                data-translate="sharepoint_accounts_action_office_upgrade"
+                            ></span
                         ></oui-action-menu-item>
                         <oui-action-menu-item
-                            data-text="{{ 'sharepoint_accounts_action_sharepoint_remove' | translate }}"
                             data-on-click="$ctrl.deactivateSharepoint($row)"
                             data-disabled="$row.taskPendingId"
+                            ><span
+                                data-translate="sharepoint_accounts_action_sharepoint_remove"
+                            ></span
                         ></oui-action-menu-item>
                     </oui-action-menu>
                 </oui-datagrid>

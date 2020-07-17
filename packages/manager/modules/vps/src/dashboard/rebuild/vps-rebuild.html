@@ -1,6 +1,5 @@
 <oui-modal
     class="my-0"
-    data-title="{{:: 'vps_configuration_reinstall_title' | translate}}"
     data-primary-label="{{:: 'vps_configuration_rebuild_confirm' | translate }}"
     data-primary-action="$ctrl.rebuildVps($ctrl.vpsOptions)"
     data-primary-disabled="$ctrl.rebuild.$invalid"
@@ -8,6 +7,7 @@
     data-secondary-label="{{:: 'vps_configuration_rebuild_cancel' | translate }}"
     data-on-dismiss="$ctrl.goBack()"
     data-loading="$ctrl.isLoading"
+    data-heading="{{:: 'vps_configuration_reinstall_title' | translate}}"
 >
     <form novalidate name="$ctrl.rebuild">
         <oui-field

@@ -29,22 +29,22 @@
         data-translate="enterprise_cloud_database_service_details_cluster_nodes_nodes"
     ></h6>
     <oui-datagrid data-rows="$ctrl.hosts" data-page-size="10">
-        <oui-column
+        <oui-datagrid-column
             data-title=":: 'enterprise_cloud_database_service_details_cluster_nodes_node_name' | translate"
             data-property="name"
             data-sortable="asc"
             data-type="string"
             data-searchable
             data-filterable
-        ></oui-column>
-        <oui-column
+        ></oui-datagrid-column>
+        <oui-datagrid-column
             data-title=":: 'enterprise_cloud_database_list_ram_title' | translate"
             data-property="ram"
             data-type="number"
         >
             <span data-ng-bind="$row.ram | cucBytes:2:false:'GB'"></span>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title=":: 'enterprise_cloud_database_list_storage_title' | translate"
             data-property="storage.usableSize"
             data-type="number"
@@ -53,8 +53,8 @@
                 data-ng-bind="$row.storage.usableSize | cucBytes:2:false:'GB'"
             ></span>
             <span data-ng-bind="$row.storage.type"></span>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title=":: 'enterprise_cloud_database_common_status' | translate"
             data-property="status"
             data-type="string"
@@ -62,12 +62,12 @@
             data-filterable
         >
             <span
-                class="oui-status"
-                data-ng-class="'oui-status_' + $ctrl.enterpriseCloudDatabaseService.constructor.getStatusGroup($row.status)"
+                class="oui-badge"
+                data-ng-class="'oui-badge_' + $ctrl.enterpriseCloudDatabaseService.constructor.getStatusGroup($row.status)"
                 data-ng-bind=":: ('enterprise_cloud_database_common_status_' + $row.status) | translate"
             ></span>
-        </oui-column>
-        <extra-top>
+        </oui-datagrid-column>
+        <oui-datagrid-topbar>
             <oui-action-menu
                 data-text="{{ ::'enterprise_cloud_database_common_actions' | translate }}"
             >
@@ -86,13 +86,13 @@
                 </oui-action-menu-item>
             </oui-action-menu>
             <button
-                class="float-right oui-button oui-button_secondary oui-button_icon-only oui-button_small-width"
+                class="float-right oui-button oui-button_secondary oui-button_icon-only oui-button_s"
                 data-title="{{:: 'enterprise_cloud_database_service_details_cluster_nodes_refresh' | translate }}"
                 data-ng-click="$ctrl.refreshing=true; $ctrl.refreshNodes()"
                 data-ng-disabled="$ctrl.refreshing"
             >
                 <span class="fa fa-refresh" aria-hidden="true"></span>
             </button>
-        </extra-top>
+        </oui-datagrid-topbar>
     </oui-datagrid>
 </div>

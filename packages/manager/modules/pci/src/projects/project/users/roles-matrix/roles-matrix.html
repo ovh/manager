@@ -1,10 +1,10 @@
 <div class="d-none d-md-block">
-    <div class="oui-datagrid-topbar__actions">
-        <div class="oui-criteria-adder oui-datagrid-parameters mb-2">
-            <oui-dropdown data-align="end" data-arrow data-persistent>
+    <div class="oui-criteria__actions">
+        <div class="oui-criteria-adder oui-table-parameters mb-2">
+            <oui-dropdown data-arrow data-persistent data-placement="end">
                 <button
                     type="button"
-                    class="oui-datagrid-parameters__button oui-button oui-button_secondary oui-button_small-width"
+                    class="oui-table-parameters__button oui-button oui-button_secondary oui-button_s"
                     oui-dropdown-trigger
                 >
                     <span
@@ -17,12 +17,12 @@
                     ></span>
                 </button>
                 <oui-dropdown-content>
-                    <div class="oui-datagrid-parameters__body pt-1">
+                    <div class="oui-table-parameters__body pt-1">
                         <div
-                            class="oui-datagrid-parameters__column"
+                            class="oui-table-parameters__column"
                             data-ng-repeat="role in ::$ctrl.roles.roles|orderBy:description track by role.id"
                         >
-                            <div class="oui-datagrid-parameters__column-column">
+                            <div class="oui-table-parameters__column-column">
                                 <oui-checkbox
                                     data-model="$ctrl.columns[role.id]"
                                 >
@@ -37,82 +37,72 @@
             </oui-dropdown>
         </div>
     </div>
-    <div
-        class="users-roles-matrix oui-datagrid-responsive-container oui-datagrid-responsive-container_sticky-checkbox"
-    >
-        <div
-            class="oui-datagrid-responsive-container__sticky-container oui-datagrid-responsive-container__sticky-container_scroll-begin oui-datagrid-responsive-container__sticky-container_scroll-end"
-        >
-            <div class="oui-datagrid-responsive-container__overflow-container">
-                <table class="oui-datagrid">
-                    <thead class="oui-datagrid__headers">
-                        <tr>
-                            <th
-                                scope="col"
-                                class="oui-datagrid__header oui-datagrid__cell-sticky users-roles-matrix__service"
-                            ></th>
-                            <th
-                                scope="col"
-                                class="oui-datagrid__header oui-datagrid__cell-sticky users-roles-matrix__permission"
-                            ></th>
-                            <th
-                                class="oui-datagrid__header text-center"
-                                data-ng-repeat="role in $ctrl.roles.roles|orderBy:description track by role.id"
-                                data-ng-bind="role.description"
-                                data-ng-if="$ctrl.columns[role.id]"
-                                scope="col"
-                            ></th>
-                        </tr>
-                    </thead>
-                    <tbody
-                        data-ng-repeat="service in ::$ctrl.roles.services track by service.name"
+    <div class="users-roles-matrix oui-table-responsive">
+        <table class="oui-table">
+            <thead class="oui-table__headers">
+                <tr>
+                    <th
+                        scope="col"
+                        class="oui-table__header users-roles-matrix__service"
+                    ></th>
+                    <th
+                        scope="col"
+                        class="oui-table__header users-roles-matrix__permission"
+                    ></th>
+                    <th
+                        class="oui-table__header text-center"
+                        data-ng-repeat="role in $ctrl.roles.roles|orderBy:description track by role.id"
+                        data-ng-bind="role.description"
+                        data-ng-if="$ctrl.columns[role.id]"
+                        scope="col"
+                    ></th>
+                </tr>
+            </thead>
+            <tbody
+                data-ng-repeat="service in ::$ctrl.roles.services track by service.name"
+            >
+                <tr
+                    class="oui-table__row"
+                    data-ng-repeat="permission in ::service.permissions track by permission.name"
+                >
+                    <td
+                        class="oui-table__cell users-roles-matrix__service"
+                        data-ng-if="$first"
+                        rowspan="{{service.permissions.length}}"
                     >
-                        <tr
-                            class="oui-datagrid__row"
-                            data-ng-repeat="permission in ::service.permissions track by permission.name"
-                        >
-                            <td
-                                class="oui-datagrid__cell oui-datagrid__cell-sticky users-roles-matrix__service"
-                                data-ng-if="$first"
-                                rowspan="{{service.permissions.length}}"
-                            >
-                                <span data-ng-bind="::service.name"></span>
-                            </td>
-                            <td
-                                class="oui-datagrid__cell oui-datagrid__cell-sticky users-roles-matrix__permission"
-                            >
-                                {{ permission.name }}
-                            </td>
+                        <span data-ng-bind="::service.name"></span>
+                    </td>
+                    <td class="oui-table__cell users-roles-matrix__permission">
+                        {{ permission.name }}
+                    </td>
 
-                            <td
-                                class="text-center oui-datagrid__cell"
-                                data-ng-repeat="permissionRole in ::permission.roles track by permissionRole.id"
-                                data-ng-if="$ctrl.columns[permissionRole.id]"
-                            >
-                                <span
-                                    class="oui-icon oui-icon_bicolor"
-                                    data-ng-class="{
-                                    'oui-icon-success_circle oui-color-success-dark' : permissionRole.active,
-                                    'oui-icon-error_circle oui-color-error-dark' : !permissionRole.active,
-                                    }"
-                                    aria-hidden="true"
-                                ></span>
-                                <span
-                                    class="sr-only"
-                                    data-ng-if="permissionRole.active"
-                                    data-translate="pci_projects_project_users_roles_matrix_permission_active"
-                                ></span>
-                                <span
-                                    class="sr-only"
-                                    data-ng-if="!permissionRole.active"
-                                    data-translate="pci_projects_project_users_roles_matrix_permission_inactive"
-                                ></span>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
+                    <td
+                        class="text-center oui-table__cell"
+                        data-ng-repeat="permissionRole in ::permission.roles track by permissionRole.id"
+                        data-ng-if="$ctrl.columns[permissionRole.id]"
+                    >
+                        <span
+                            class="oui-icon"
+                            data-ng-class="{
+                            'oui-icon-success-circle oui-color-as-500' : permissionRole.active,
+                            'oui-icon-error-circle oui-color-ae-500' : !permissionRole.active,
+                            }"
+                            aria-hidden="true"
+                        ></span>
+                        <span
+                            class="sr-only"
+                            data-ng-if="permissionRole.active"
+                            data-translate="pci_projects_project_users_roles_matrix_permission_active"
+                        ></span>
+                        <span
+                            class="sr-only"
+                            data-ng-if="!permissionRole.active"
+                            data-translate="pci_projects_project_users_roles_matrix_permission_inactive"
+                        ></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </div>
 <div class="d-md-none">
@@ -125,59 +115,57 @@
         data-placeholder="{{:: 'pci_projects_project_users_roles_matrix_permission_select' | translate }}"
     >
     </oui-select>
-    <div class="oui-datagrid-responsive-container" data-ng-if="$ctrl.role">
-        <div class="oui-datagrid-responsive-container__overflow-container">
-            <table class="oui-datagrid">
-                <thead class="oui-datagrid__headers">
-                    <tr>
-                        <th class="oui-datagrid__header"></th>
-                        <th
-                            class="oui-datagrid__header"
-                            data-translate="pci_projects_project_users_roles_matrix_authorization"
-                        ></th>
-                    </tr>
-                </thead>
-                <tbody
-                    data-ng-repeat="service in $ctrl.services track by service.name"
+    <div class="oui-table-responsive" data-ng-if="$ctrl.role">
+        <table class="oui-table">
+            <thead class="oui-table__headers">
+                <tr>
+                    <th class="oui-table__header"></th>
+                    <th
+                        class="oui-table__header"
+                        data-translate="pci_projects_project_users_roles_matrix_authorization"
+                    ></th>
+                </tr>
+            </thead>
+            <tbody
+                data-ng-repeat="service in $ctrl.services track by service.name"
+            >
+                <tr class="oui-table__row">
+                    <td class="oui-table__cell" colspan="2">
+                        <span
+                            class="font-weight-bold"
+                            data-ng-bind="::service.name"
+                        ></span>
+                    </td>
+                </tr>
+                <tr
+                    class="oui-table__row"
+                    data-ng-repeat="permission in service.permissions track by permission.name"
                 >
-                    <tr class="oui-datagrid__row">
-                        <td class="oui-datagrid__cell" colspan="2">
-                            <span
-                                class="font-weight-bold"
-                                data-ng-bind="::service.name"
-                            ></span>
-                        </td>
-                    </tr>
-                    <tr
-                        class="oui-datagrid__row"
-                        data-ng-repeat="permission in service.permissions track by permission.name"
-                    >
-                        <td class="oui-datagrid__cell">
-                            {{ permission.name }}
-                        </td>
-                        <td class="oui-datagrid__cell">
-                            <span
-                                class="oui-icon oui-icon_bicolor"
-                                data-ng-class="{
-                                    'oui-icon-success_circle oui-color-success-dark' : permission.role.active,
-                                    'oui-icon-error_circle oui-color-error-dark' : !permission.role.active,
-                                    }"
-                                aria-hidden="true"
-                            ></span>
-                            <span
-                                class="sr-only"
-                                data-ng-if="permission.role.active"
-                                data-translate="pci_projects_project_users_roles_matrix_permission_active"
-                            ></span>
-                            <span
-                                class="sr-only"
-                                data-ng-if="!permission.role.active"
-                                data-translate="pci_projects_project_users_roles_matrix_permission_inactive"
-                            ></span>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+                    <td class="oui-table__cell">
+                        {{ permission.name }}
+                    </td>
+                    <td class="oui-table__cell">
+                        <span
+                            class="oui-icon"
+                            data-ng-class="{
+                                'oui-icon-success-circle oui-color-as-500' : permission.role.active,
+                                'oui-icon-error-circle oui-color-ae-500' : !permission.role.active,
+                                }"
+                            aria-hidden="true"
+                        ></span>
+                        <span
+                            class="sr-only"
+                            data-ng-if="permission.role.active"
+                            data-translate="pci_projects_project_users_roles_matrix_permission_active"
+                        ></span>
+                        <span
+                            class="sr-only"
+                            data-ng-if="!permission.role.active"
+                            data-translate="pci_projects_project_users_roles_matrix_permission_inactive"
+                        ></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </div>

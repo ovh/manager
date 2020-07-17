@@ -5,7 +5,7 @@
     >
         <div class="oui-modal__header">
             <a
-                class="oui-icon oui-icon-close_thin oui-modal__close-button"
+                class="oui-icon oui-modal__close-button oui-icon-close"
                 aria-label="{{ 'wizard_close' | translate }}"
                 data-ui-sref="^"
             >
@@ -23,11 +23,7 @@
             class="oui-modal__body"
             data-ng-if="!$ctrl.loading.init && !$ctrl.canSubscribe"
         >
-            <i
-                class="oui-icon oui-icon-warning_circle oui-icon_bicolor"
-                aria-hidden="true"
-            >
-            </i>
+            <i class="oui-icon oui-icon-warning-circle" aria-hidden="true"> </i>
 
             <div class="oui-modal__body-text">
                 <h2

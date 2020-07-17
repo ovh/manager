@@ -1,6 +1,6 @@
 import angular from 'angular';
 import '@ovh-ux/ng-translate-async-loader';
-import 'ovh-ui-angular';
+import '@ovh-ux/ui-kit';
 import 'angular-translate';
 
 import ovhManagerCatalogPrice from '@ovh-ux/manager-catalog-price';

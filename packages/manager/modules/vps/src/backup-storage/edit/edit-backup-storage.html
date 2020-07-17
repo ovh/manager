@@ -1,36 +1,33 @@
 <form novalidate name="form" data-ng-submit="form.$valid && $ctrl.confirm()">
     <oui-modal
-        data-title="{{:: 'vps_tab_backup_storage_table_ip_edit' | translate}}"
         data-primary-label="{{ ::'vps_common_confirm' | translate }}"
         data-secondary-action="$ctrl.cancel()"
         data-secondary-label="{{ ::'vps_common_cancel' | translate }}"
         data-on-dismiss="$ctrl.cancel()"
         data-loading="$ctrl.loader.loading"
+        data-heading="{{:: 'vps_tab_backup_storage_table_ip_edit' | translate}}"
     >
         <p
             class="oui-modal__text"
             data-translate="vps_backup_storage_access_add_authorization"
         ></p>
         <oui-checkbox
-            data-text="{{ ::'vps_tab_backup_storage_table_cifs' | translate }}"
             id="acces-cifs"
             name="acces-cifs"
             data-model="$ctrl.model.cifs"
-        >
+            ><span data-translate="vps_tab_backup_storage_table_cifs"></span>
         </oui-checkbox>
         <oui-checkbox
-            data-text="{{ ::'vps_tab_backup_storage_table_ftp' | translate }}"
             id="acces-ftp"
             name="acces-ftp"
             data-model="$ctrl.model.ftp"
-        >
+            ><span data-translate="vps_tab_backup_storage_table_ftp"></span>
         </oui-checkbox>
         <oui-checkbox
-            data-text="{{ ::'vps_tab_backup_storage_table_nfs' | translate }}"
             id="acces-nfs"
             name="acces-nfs"
             data-model="$ctrl.model.nfs"
-        >
+            ><span data-translate="vps_tab_backup_storage_table_nfs"></span>
         </oui-checkbox>
     </oui-modal>
 </form>

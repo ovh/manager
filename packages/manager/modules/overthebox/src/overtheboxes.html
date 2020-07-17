@@ -1,6 +1,6 @@
-<oui-page-header
+<oui-header
     data-heading="{{ :: 'overtheboxes_title' | translate }}"
-></oui-page-header>
+></oui-header>
 
 <div class="container-fluid my-5">
     <oui-datagrid
@@ -13,7 +13,7 @@
         data-on-sort-change="$ctrl.onSortChange($sort)"
         data-columns="$ctrl.columnsConfig"
     >
-        <oui-column
+        <oui-datagrid-column
             data-title=":: 'overtheboxes_name_label' | translate"
             data-property="serviceName"
             data-searchable
@@ -25,16 +25,16 @@
                 data-ng-href="{{ $ctrl.getOvertheboxLink($row) }}"
                 data-ng-bind="$value"
             ></a>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title=":: 'overtheboxes_description_label' | translate"
             data-property="customerDescription"
             data-type="string"
             data-filterable
             data-sortable
         >
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title=":: 'overtheboxes_status_label' | translate"
             data-property="status"
             data-sortable
@@ -43,20 +43,20 @@
             data-type-options="$ctrl.filtersOptions.status"
         >
             <span
-                class="oui-status"
+                class="oui-badge"
                 data-ng-class="{
-                    'oui-status_success': ($value === 'active'),
-                    'oui-status_warning': (['creating', 'toCreate', 'toDelete'].includes($value)),
-                    'oui-status_error': (['deleted', 'suspended'].include($value)),
+                    'oui-badge_success': ($value === 'active'),
+                    'oui-badge_warning': (['creating', 'toCreate', 'toDelete'].includes($value)),
+                    'oui-badge_error': (['deleted', 'suspended'].include($value)),
                 }"
                 data-ng-bind="'overtheboxes_status_label_' + $value | translate"
             ></span>
-        </oui-column>
-        <oui-action-menu data-align="left-start" data-compact>
-            <oui-action-menu-item
-                data-text="{{:: 'overtheboxes_view_overthebox_label' | translate }}"
-                data-on-click="$ctrl.viewOverthebox($row)"
-            >
+        </oui-datagrid-column>
+        <oui-action-menu data-compact data-placement="left-start">
+            <oui-action-menu-item data-on-click="$ctrl.viewOverthebox($row)"
+                ><span
+                    data-translate="overtheboxes_view_overthebox_label"
+                ></span>
             </oui-action-menu-item>
         </oui-action-menu>
     </oui-datagrid>

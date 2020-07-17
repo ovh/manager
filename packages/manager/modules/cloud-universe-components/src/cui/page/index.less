@@ -1,7 +1,5 @@
-@import '~bootstrap/less/variables.less';
-@import '~ovh-ui-kit/packages/oui-color/_variables.less';
-@import '~ovh-ui-kit/packages/oui-typography/_variables.less';
-@import '~ovh-ui-kit/packages/oui-typography/_mixins.less';
+@import '~bootstrap/less/variables';
+@import '~@ovh-ux/ui-kit/dist/less/_tokens';
 
 @spacing-top: 32px;
 @spacing-side_s: 32px;
@@ -11,7 +9,6 @@
 @page-header-background-color: #e9ebe7;
 
 .cui-page {
-  #oui > .base-font();
   @message-selector: oui-message;
 
   .@{message-selector} {
@@ -73,7 +70,7 @@
 .cui-page-header {
   &__title {
     margin: 0;
-    color: @oui-color-sapphire;
+    color: #113f6d;
     font-size: 2.25rem;
     font-weight: 300;
   }
@@ -81,7 +78,7 @@
   &__subtitle  {
     margin-top: 0;
     margin-bottom: 0;
-    color: @oui-color-dusty;
+    color: #999;
     font-size: inherit;
     font-weight: 300;
   }

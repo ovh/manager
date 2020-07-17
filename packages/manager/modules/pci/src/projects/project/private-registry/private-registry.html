@@ -1,5 +1,5 @@
 <div data-ui-view>
-    <oui-page-header data-heading="{{ 'private_registry_title' | translate}}">
+    <oui-header data-heading="{{ 'private_registry_title' | translate}}">
         <oui-guide-menu
             data-text="{{:: 'pci_project_guides_header' | translate }}"
         >
@@ -14,7 +14,7 @@
                 ></span>
             </oui-guide-menu-item>
         </oui-guide-menu>
-    </oui-page-header>
+    </oui-header>
 
     <div class="container-fluid px-0 mt-3">
         <cui-message-container
@@ -26,29 +26,29 @@
             data-rows="$ctrl.registries"
             data-row-loader="$ctrl.getRegistryPlan($row)"
         >
-            <oui-column
+            <oui-datagrid-column
                 data-title=":: 'private_registry_name' | translate"
                 data-property="name"
                 data-type="string"
                 data-searchable
                 data-sortable="asc"
-            ></oui-column>
-            <oui-column
+            ></oui-datagrid-column>
+            <oui-datagrid-column
                 data-title=":: 'private_registry_plan' | translate"
                 data-property="plan.displayName"
                 data-searchable
                 data-sortable
                 data-type="string"
             >
-            </oui-column>
-            <oui-column
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 data-title=":: 'private_registry_harbor_version' | translate"
                 data-property="version"
                 data-type="string"
                 data-searchable
                 data-sortable
-            ></oui-column>
-            <oui-column
+            ></oui-datagrid-column>
+            <oui-datagrid-column
                 data-title=":: 'private_registry_status' | translate"
                 data-property="status"
                 data-type="string"
@@ -56,13 +56,13 @@
                 data-sortable
             >
                 <span
-                    class="oui-status"
-                    data-ng-class="'oui-status_' + $ctrl.PRIVATE_REGISTRY_STATUS_MAP[$row.status]"
+                    class="oui-badge"
+                    data-ng-class="'oui-badge_' + $ctrl.PRIVATE_REGISTRY_STATUS_MAP[$row.status]"
                     data-ng-bind=":: ('private_registry_common_status_' + $row.status) | translate"
                 >
                 </span>
-            </oui-column>
-            <oui-column
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 data-title=":: 'private_registry_consumption' | translate"
             >
                 <span
@@ -72,11 +72,11 @@
                         limit: ($row.limit | cucBytes)
                     }"
                 ></span>
-            </oui-column>
+            </oui-datagrid-column>
             <oui-action-menu
-                data-align="end"
                 data-compact
                 data-ng-if="$row.status !== $ctrl.PRIVATE_REGISTRY_STATUS.DELETING"
+                data-placement="end"
             >
                 <oui-action-menu-item
                     data-disabled="$row.plan.displayName === 'L' || $ctrl.pciPrivateRegistryService.isDeploymentInProgress($row)"
@@ -120,7 +120,7 @@
                     ></span>
                 </oui-action-menu-item>
             </oui-action-menu>
-            <extra-top>
+            <oui-datagrid-topbar>
                 <a
                     class="oui-button oui-button_secondary oui-button_icon-left"
                     data-ng-href="{{ $ctrl.createLink }}"
@@ -138,13 +138,13 @@
                 </a>
                 <button
                     type="button"
-                    class="float-right oui-button oui-button_secondary oui-button_icon-only oui-button_small-width"
+                    class="float-right oui-button oui-button_secondary oui-button_icon-only oui-button_s"
                     data-title="{{:: 'private_registry_refresh' | translate }}"
                     data-ng-click="$ctrl.refreshRegistryList()"
                 >
                     <span class="fa fa-refresh" aria-hidden="true"></span>
                 </button>
-            </extra-top>
+            </oui-datagrid-topbar>
         </oui-datagrid>
     </div>
 </div>

@@ -43,11 +43,11 @@
                 data-rows="$ctrl.responders"
                 data-row-loader="$ctrl.transformItem($row)"
             >
-                <oui-column
+                <oui-datagrid-column
                     data-title=":: 'email_tab_responders_name' | translate"
                     data-property="account"
-                ></oui-column>
-                <oui-column
+                ></oui-datagrid-column>
+                <oui-datagrid-column
                     data-title=":: 'emails_common_date_from' | translate"
                     data-property="from"
                 >
@@ -55,8 +55,8 @@
                         data-ng-bind="::$row.from | date: 'medium'"
                         data-ng-if="$row.from"
                     ></span>
-                </oui-column>
-                <oui-column
+                </oui-datagrid-column>
+                <oui-datagrid-column
                     data-title=":: 'emails_common_date_to' | translate"
                     data-property="to"
                 >
@@ -68,53 +68,57 @@
                         data-ng-if="!$row.to && !$row.from"
                         data-translate="email_tab_modal_create_responder_permanent"
                     ></span>
-                </oui-column>
-                <oui-column data-title=":: 'emails_common_status' | translate">
+                </oui-datagrid-column>
+                <oui-datagrid-column
+                    data-title=":: 'emails_common_status' | translate"
+                >
                     <span
-                        class="oui-status"
+                        class="oui-badge"
                         data-ng-class="{
-                            'oui-status_success': !$ctrl.constructor.isExpired($row),
-                            'oui-status_error': $ctrl.constructor.isExpired($row)
+                            'oui-badge_success': !$ctrl.constructor.isExpired($row),
+                            'oui-badge_error': $ctrl.constructor.isExpired($row)
                             }"
                         data-ng-bind=":: 'email_tab_responders_status_expired_' + $ctrl.constructor.isExpired($row) | translate"
                     ></span>
-                </oui-column>
-                <oui-column
+                </oui-datagrid-column>
+                <oui-datagrid-column
                     data-title=":: 'emails_common_copy_to' | translate"
                     data-property="copyTo"
-                ></oui-column>
-                <oui-column data-title="">
+                ></oui-datagrid-column>
+                <oui-datagrid-column data-title>
                     <span
                         data-ng-if="$row.actionsDisabled"
                         class="fa fa-hourglass-half"
                         aria-hidden="true"
                     ></span>
-                </oui-column>
+                </oui-datagrid-column>
                 <oui-action-menu
-                    data-align="end"
                     data-compact
                     data-disabled="$row.actionsDisabled"
+                    data-placement="end"
                 >
                     <oui-action-menu-item
-                        data-text="{{:: 'email_tab_popover_responder_update' | translate }}"
                         data-on-click="setAction('email-domain/email/responder/update/email-domain-email-responder-update', { responder: $row })"
-                    >
+                        ><span
+                            data-translate="email_tab_popover_responder_update"
+                        ></span>
                     </oui-action-menu-item>
                     <oui-action-menu-item
-                        data-text="{{:: 'email_tab_popover_responder_delete' | translate }}"
                         data-on-click="setAction('email-domain/email/responder/delete/email-domain-email-responder-delete', { responder: $row })"
-                    >
+                        ><span
+                            data-translate="email_tab_popover_responder_delete"
+                        ></span>
                     </oui-action-menu-item>
                 </oui-action-menu>
-                <extra-top>
+                <oui-datagrid-topbar>
                     <button
-                        class="float-right oui-button oui-button_secondary oui-button_icon-only oui-button_small-width"
+                        class="float-right oui-button oui-button_secondary oui-button_icon-only oui-button_s"
                         data-title="{{:: 'email_tab_table_header_refresh' | translate }}"
                         data-ng-click="$ctrl.refreshTableResponders()"
                     >
                         <span class="fa fa-refresh" aria-hidden="true"></span>
                     </button>
-                </extra-top>
+                </oui-datagrid-topbar>
             </oui-datagrid>
         </div>
     </div>

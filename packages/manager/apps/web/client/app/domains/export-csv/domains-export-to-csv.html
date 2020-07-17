@@ -18,9 +18,10 @@
                     disabled="opt.mustBeDisabled"
                     data-ng-repeat="opt in ctrlDomainsToCsv.csvExportOptions track by $index"
                     data-model="opt.checked"
-                    data-text="{{ 'domains_action_export_csv_form_' + opt.label + '_label' | translate }}"
                     data-description="{{:: 'domains_action_export_csv_form_' + opt.label + '_help' | translate }}"
-                >
+                    ><span
+                        data-ng-bind="'domains_action_export_csv_form_' + opt.label + '_label' | translate"
+                    ></span>
                 </oui-checkbox>
             </form>
 

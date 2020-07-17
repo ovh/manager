@@ -1,6 +1,5 @@
 .iplb {
-  @import 'ovh-ui-kit/packages/oui-color/_variables.less';
-  @import 'ovh-ui-kit/packages/oui/_settings.less';
+  @import '@ovh-ux/ui-kit/dist/less/_tokens';
   @import '@ovh-ux/manager-cloud-styles/src/ui-components/preview-list/preview-list.less';
   @import '@ovh-ux/manager-cloud-styles/src/ui-components/panel/panel.less';
   @import '@ovh-ux/manager-cloud-styles/src/ui-components/form/form.less';
@@ -11,7 +10,7 @@
     font-style: italic;
   }
 
-  .oui-status_help {
-    background-color: @oui-color-info-fade;
+  .oui-badge_help {
+    background-color: @p-075;
   }
 }

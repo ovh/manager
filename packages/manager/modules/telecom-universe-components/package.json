@@ -12,16 +12,17 @@
   "author": "OVH SAS",
   "main": "./src/index.js",
   "dependencies": {
+    "@ovh-ux/ui-kit": "^4.1.12",
     "bootstrap": "^3.4.1",
     "bootstrap4": "twbs/bootstrap#v4.0.0",
-    "lodash": "^4.17.15",
-    "ovh-ui-kit": "^2.42.8"
+    "lodash": "^4.17.15"
   },
   "peerDependencies": {
     "@ovh-ux/ng-ovh-checkbox-table": "^2.0.0",
     "@ovh-ux/ng-ovh-mondial-relay": "^7.0.1",
     "@ovh-ux/ng-ovh-swimming-poll": "^5.0.1",
     "@ovh-ux/ng-translate-async-loader": "^2.1.0",
+    "@ovh-ux/ui-kit": "^4.1.12",
     "@uirouter/angularjs": "^1.0.20",
     "CSV-JS": "^1.2.0",
     "angular": "^1.7.5",
@@ -36,7 +37,6 @@
     "ng-csv": "^0.3.6",
     "ovh-api-services": "^9.39.1",
     "ovh-ngstrap": "^4.0.2",
-    "ovh-ui-angular": "^3.16.3",
     "punycode": "^1.4.1",
     "validator": "^11.1.0",
     "validator-js": "^0.2.1"

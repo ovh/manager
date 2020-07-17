@@ -1,5 +1,5 @@
 <div class="billing-orders">
-    <oui-page-header data-heading="{{ :: 'orders_page_title' | translate }}">
+    <oui-header data-heading="{{ :: 'orders_page_title' | translate }}">
         <oui-guide-menu
             data-text="{{:: 'orders_guides' | translate }}"
             data-ng-if="$ctrl.billingGuideUrl"
@@ -11,7 +11,7 @@
                 <span data-translate="orders_billing"></span>
             </oui-guide-menu-item>
         </oui-guide-menu>
-    </oui-page-header>
+    </oui-header>
     <oui-datagrid
         class="m-4"
         data-page-size="10"
@@ -20,7 +20,7 @@
         data-criteria=":: $ctrl.criteria"
         data-on-criteria-change=":: $ctrl.onCriteriaChange($criteria)"
     >
-        <oui-column
+        <oui-datagrid-column
             data-title=":: 'orders_date' | translate"
             data-property="date"
             data-type="date"
@@ -28,8 +28,8 @@
             data-sortable="desc"
         >
             <span data-ng-bind="$value | date: 'mediumDate'"></span>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title=":: 'orders_id' | translate"
             data-property="orderId"
             data-type="string"
@@ -37,8 +37,8 @@
             data-filterable
             data-sortable
         >
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title=":: 'orders_status' | translate"
             data-property="status"
             data-type="options"
@@ -51,17 +51,17 @@
                 data-translate-attr="{ title: 'orders_tracking' }"
             >
                 <span
-                    class="oui-status"
+                    class="oui-badge"
                     data-ng-class="{
-                        'oui-status_error': $value === 'cancelled'
+                        'oui-badge_error': $value === 'cancelled'
                                          || $value === 'notPaid'
                                          || $value === 'notPaid',
-                        'oui-status_info': $value === 'cancelling'
+                        'oui-badge_info': $value === 'cancelling'
                                         || $value === 'checking'
                                         || $value === 'delivering',
-                        'oui-status_warning': $value === 'documentsRequested'
+                        'oui-badge_warning': $value === 'documentsRequested'
                                            || $value === 'unknown',
-                        'oui-status_success': $value === 'delivered',
+                        'oui-badge_success': $value === 'delivered',
                       }"
                     data-ng-bind="('orders_order_status_' + $value) | translate"
                 >
@@ -69,24 +69,24 @@
             </a>
 
             <span
-                class="oui-status"
+                class="oui-badge"
                 data-ng-if="!$ctrl.allowOrderTracking"
                 data-ng-class="{
-                    'oui-status_error': $value === 'cancelled'
+                    'oui-badge_error': $value === 'cancelled'
                                      || $value === 'notPaid'
                                      || $value === 'notPaid',
-                    'oui-status_info': $value === 'cancelling'
+                    'oui-badge_info': $value === 'cancelling'
                                     || $value === 'checking'
                                     || $value === 'delivering',
-                    'oui-status_warning': $value === 'documentsRequested'
+                    'oui-badge_warning': $value === 'documentsRequested'
                                        || $value === 'unknown',
-                    'oui-status_success': $value === 'delivered',
+                    'oui-badge_success': $value === 'delivered',
                   }"
                 data-ng-bind="('orders_order_status_' + $value) | translate"
             >
             </span>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title=":: 'orders_taxes_included' | translate"
             data-property="priceWithTax.value"
             data-type="number"
@@ -94,33 +94,27 @@
             data-filterable
         >
             <span data-ng-bind="$row.priceWithTax.text"></span>
-        </oui-column>
-        <oui-action-menu data-align="end" data-compact>
+        </oui-datagrid-column>
+        <oui-action-menu data-compact data-placement="end">
             <oui-action-menu-item
-                data-text="{{:: 'orders_tracking' | translate }}"
                 data-ng-if="$ctrl.allowOrderTracking"
                 data-on-click="$ctrl.goToOrder($row, $ctrl.filter)"
-            >
+                ><span data-translate="orders_tracking"></span>
+            </oui-action-menu-item>
+            <oui-action-menu-item data-ng-href="{{ $row.url }}" data-external
+                ><span data-translate="orders_url"></span>
             </oui-action-menu-item>
             <oui-action-menu-item
-                data-text="{{:: 'orders_url' | translate }}"
-                data-ng-href="{{ $row.url }}"
-                data-external
-            >
-            </oui-action-menu-item>
-            <oui-action-menu-item
-                data-text="{{:: 'orders_bill_url' | translate }}"
                 data-ng-if="$row.bill"
                 data-ng-href="{{ $row.bill.url }}"
                 data-external
-            >
+                ><span data-translate="orders_bill_url"></span>
             </oui-action-menu-item>
             <oui-action-menu-item
-                data-text="{{:: 'orders_bill_url_pdf' | translate }}"
                 data-ng-if="$row.bill"
                 data-ng-href="{{ $row.bill.pdfUrl }}"
                 data-external
-            >
+                ><span data-translate="orders_bill_url_pdf"></span>
             </oui-action-menu-item>
             <oui-action-menu-item
                 data-ng-if="$row.canRetract"

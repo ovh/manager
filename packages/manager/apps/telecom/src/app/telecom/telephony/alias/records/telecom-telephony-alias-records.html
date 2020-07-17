@@ -122,31 +122,31 @@
             data-selectable-rows
             data-page-size="5"
         >
-            <oui-column
+            <oui-datagrid-column
                 data-title="::'telephony_alias_contactCenterSolution_records_list_call_begin' | translate"
                 data-property="callStart"
                 data-sortable
             >
                 <span data-ng-bind="::$row.callStart | date:'short'"></span>
-            </oui-column>
-            <oui-column
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 data-title="::'telephony_alias_contactCenterSolution_records_list_call_end' | translate"
                 data-property="callEnd"
                 data-sortable
             >
                 <span data-ng-bind="::$row.callEnd | date:'short'"></span>
-            </oui-column>
-            <oui-column
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 data-title="::'telephony_alias_contactCenterSolution_records_list_call_number' | translate"
                 data-property="callerIdNumber"
                 data-sortable
-            ></oui-column>
-            <oui-column
+            ></oui-datagrid-column>
+            <oui-datagrid-column
                 data-title="::'telephony_alias_contactCenterSolution_records_list_agent' | translate"
                 data-property="agent"
                 data-sortable
-            ></oui-column>
-            <extra-top>
+            ></oui-datagrid-column>
+            <oui-datagrid-topbar>
                 <oui-dropdown class="mb-3">
                     <oui-dropdown-trigger
                         data-text="{{:: 'common_actions' | translate }}"
@@ -188,7 +188,7 @@
                     data-translate="common_delete_selected_items_count"
                     data-translate-values="{ count: $selectedRows.length }"
                 ></p>
-            </extra-top>
+            </oui-datagrid-topbar>
         </oui-datagrid>
     </div>
 </div>

@@ -86,17 +86,15 @@
             <oui-button
                 data-variant="secondary"
                 data-type="button"
-                data-text="{{ 'pci_project_instance_ssh_add' | translate }}"
                 data-on-click="$ctrl.addKey()"
                 data-disabled="$ctrl.loaders.isAdding"
-            >
+                ><span data-translate="pci_project_instance_ssh_add"></span>
             </oui-button>
             <oui-button
                 data-variant="link"
                 data-ng-if="$ctrl.availableKeys.length > 0"
-                data-text="{{ 'pci_project_instance_ssh_cancel' | translate }}"
                 data-on-click="$ctrl.hideAddForm()"
-            >
+                ><span data-translate="pci_project_instance_ssh_cancel"></span>
             </oui-button>
         </div>
     </div>
