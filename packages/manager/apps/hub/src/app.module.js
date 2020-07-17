@@ -15,7 +15,6 @@ import ovhManagerCore from '@ovh-ux/manager-core';
 import ovhManagerHub from '@ovh-ux/manager-hub';
 import ovhManagerNavbar from '@ovh-ux/manager-navbar';
 import ovhManagerOrderTracking from '@ovh-ux/ng-ovh-order-tracking';
-import { detach as detachPreloader } from '@ovh-ux/manager-preloader';
 import ovhNotificationsSidebar from '@ovh-ux/manager-notifications-sidebar';
 
 import atInternet from './components/at-internet';
@@ -26,7 +25,6 @@ import { BILLING_REDIRECTIONS } from './constants';
 
 import controller from './controller';
 import routing from './routing';
-import '@ovh-ux/ui-kit/dist/css/oui.css';
 import './index.less';
 import './index.scss';
 
@@ -112,14 +110,6 @@ angular
       }
     },
   )
-  .run(/* @ngTranslationsInject:json ./translations */)
-  .run(
-    /* @ngInject */ ($rootScope, $transitions) => {
-      const unregisterHook = $transitions.onSuccess({}, () => {
-        detachPreloader();
-        unregisterHook();
-      });
-    },
-  );
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

@@ -21,6 +21,11 @@
         class="h-100 overflow-hidden"
         id="hub-scroll-top"
     >
+        <ovh-fragment
+            fragment-id="navbar"
+            fragment-version="1.0.0"
+            ng-non-bindable
+        ></ovh-fragment>
         <!-- Skip to main content -->
         <div class="skipnav">
             <a
@@ -32,18 +37,6 @@
             </a>
         </div>
         <!-- /Skip to main content -->
-        <ovh-manager-navbar
-            data-navbar-options="{
-                universe: 'hub',
-                version: 'beta',
-                toggle: {
-                    event: 'sidebar:loaded',
-                },
-            }"
-            data-sidebar-expand="true"
-            data-sidebar-links="{}"
-        >
-        </ovh-manager-navbar>
         <ovh-manager-account-sidebar expand="true" me="$ctrl.user">
         </ovh-manager-account-sidebar>
         <ovh-manager-notifications-sidebar> </ovh-manager-notifications-sidebar>
