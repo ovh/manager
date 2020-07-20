@@ -1,4 +1,5 @@
 /* eslint-disable import/extensions, import/no-webpack-loader-syntax */
+import 'babel-polyfill';
 import 'script-loader!jquery';
 import 'script-loader!moment/min/moment-with-locales.min';
 import 'script-loader!jsurl/lib/jsurl';
