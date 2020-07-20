@@ -7,11 +7,7 @@
     data-ng-if="!NotificationListCtrl.loading"
     data-ng-repeat="smsDetail in NotificationListCtrl.smsDetails track by smsDetail.name"
 >
-    <oui-message
-        type="warning"
-        data-ng-if="smsDetail.creditsLeft === 0"
-        dismissable="false"
-    >
+    <oui-message type="warning" data-ng-if="smsDetail.creditsLeft === 0">
         <span
             data-translate="components_notification_sms_detail_warning"
             data-translate-values="{smsAccount: smsDetail.name}"
