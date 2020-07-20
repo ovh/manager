@@ -1,67 +1,76 @@
-<div class="manager-hub-user-panel">
-    <div class="mb-3">
-        <ovh-manager-hub-user-infos
-            data-me="$ctrl.me"
-            data-support-level="$ctrl.supportLevel"
-        >
-        </ovh-manager-hub-user-infos>
-    </div>
-    <div data-ng-if="!$ctrl.me.isEnterprise" class="mb-4">
-        <ovh-manager-hub-payment-mean> </ovh-manager-hub-payment-mean>
-    </div>
-    <div class="mb-4">
-        <ovh-manager-hub-shortcuts
-            data-me="::$ctrl.me"
-            data-notifications="$ctrl.notifications"
-        >
-        </ovh-manager-hub-shortcuts>
-    </div>
-    <div
-        data-ng-if="$ctrl.links"
-        class="manager-hub-user-panel_links mb-5"
-        data-navi-id="account-sidebar-usefulLinks-block"
-    >
-        <h3 data-translate="hub_links_title"></h3>
-        <div data-ng-repeat="link in $ctrl.links track by $index">
-            <span
-                class="manager-hub-user-panel_divider"
-                data-ng-if="link.href || link.action"
-                aria-hidden="true"
+<div
+    class="ovh-account-sidebar-wrapper"
+    data-ng-if="$ctrl.me"
+    data-ng-class="{
+         'sidebar-expand': $ctrl.expand,
+     }"
+    data-ng-attr-aria-expanded="{{ $ctrl.isSidebarVisible }}"
+>
+    <div class="manager-hub-user-panel">
+        <div class="mb-3">
+            <ovh-manager-hub-user-infos
+                data-me="$ctrl.me"
+                data-support-level="$ctrl.supportLevel"
             >
-            </span>
-            <a
-                class="d-flex"
-                target="_blank"
-                rel="noopener"
-                data-ng-if="link.href"
-                data-ng-href="{{:: link.href }}"
-                data-track-on="click"
-                data-track-name="{{:: link.tracking }}"
-                data-track-type="navigation"
+            </ovh-manager-hub-user-infos>
+        </div>
+        <div data-ng-if="!$ctrl.me.isEnterprise" class="mb-4">
+            <ovh-manager-hub-payment-mean> </ovh-manager-hub-payment-mean>
+        </div>
+        <div class="mb-4">
+            <ovh-manager-hub-shortcuts
+                data-me="::$ctrl.me"
+                data-notifications="$ctrl.notifications"
             >
+            </ovh-manager-hub-shortcuts>
+        </div>
+        <div
+            data-ng-if="$ctrl.links"
+            class="manager-hub-user-panel_links mb-5"
+            data-navi-id="account-sidebar-usefulLinks-block"
+        >
+            <h3 data-translate="hub_links_title"></h3>
+            <div data-ng-repeat="link in $ctrl.links track by $index">
                 <span
-                    data-ng-if="link.icon"
-                    class="{{:: link.icon }}"
+                    class="manager-hub-user-panel_divider"
+                    data-ng-if="link.href || link.action"
                     aria-hidden="true"
                 >
                 </span>
-                <span data-ng-bind=":: link.label"></span>
-            </a>
-            <button
-                class="btn btn-link d-flex"
-                type="button"
-                role="button"
-                data-ng-if="link.action"
-                data-ng-click="link.action()"
-            >
-                <span
-                    data-ng-if="link.icon"
-                    class="{{:: link.icon }}"
-                    aria-hidden="true"
+                <a
+                    class="d-flex"
+                    target="_blank"
+                    rel="noopener"
+                    data-ng-if="link.href"
+                    data-ng-href="{{:: link.href }}"
+                    data-track-on="click"
+                    data-track-name="{{:: link.tracking }}"
+                    data-track-type="navigation"
                 >
-                </span>
-                <span data-ng-bind=":: link.label"></span>
-            </button>
+                    <span
+                        data-ng-if="link.icon"
+                        class="{{:: link.icon }}"
+                        aria-hidden="true"
+                    >
+                    </span>
+                    <span data-ng-bind=":: link.label"></span>
+                </a>
+                <button
+                    class="btn btn-link d-flex"
+                    type="button"
+                    role="button"
+                    data-ng-if="link.action"
+                    data-ng-click="link.action()"
+                >
+                    <span
+                        data-ng-if="link.icon"
+                        class="{{:: link.icon }}"
+                        aria-hidden="true"
+                    >
+                    </span>
+                    <span data-ng-bind=":: link.label"></span>
+                </button>
+            </div>
         </div>
     </div>
 </div>
