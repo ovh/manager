@@ -666,5 +666,9 @@
   "logs_role_selected_kibana": "Ausgewählte Instanz(en)",
   "logs_role_empty_kibana": "Alle Instanzen wurden ausgewählt",
   "logs_role_empty_selected_kibana": "Es wurde keine Instanz ausgewählt",
-  "logs_roles_add_kibana_error": "Beim Hinzufügen der Kibana-Instanz zur Berechtigung '{{tokenName}}' ist ein Fehler aufgetreten: {{message}}"
+  "logs_roles_add_kibana_error": "Beim Hinzufügen der Kibana-Instanz zur Berechtigung '{{tokenName}}' ist ein Fehler aufgetreten: {{message}}",
+  "logs_streams_col_retention": "Speicherzeit",
+  "streams_45_days": "45 Tage",
+  "inputs_nb_instance": "Instanzen",
+  "logs_index_col_nb_shard": "Partitionen"
 }

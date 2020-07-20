@@ -666,5 +666,9 @@
   "logs_role_selected_kibana": "Instâncias selecionadas",
   "logs_role_empty_kibana": "Todas as instâncias foram selecionadas.",
   "logs_role_empty_selected_kibana": "Nenhuma instância selecionada.",
-  "logs_roles_add_kibana_error": "Ocorreu um erro ao adicionar a instância Kibana à permissão '{{tokenName}}': {{message}}"
+  "logs_roles_add_kibana_error": "Ocorreu um erro ao adicionar a instância Kibana à permissão '{{tokenName}}': {{message}}",
+  "logs_streams_col_retention": "Retenção",
+  "streams_45_days": "45 dias",
+  "inputs_nb_instance": "Instâncias",
+  "logs_index_col_nb_shard": "Partições"
 }

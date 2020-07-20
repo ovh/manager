@@ -666,5 +666,9 @@
   "logs_role_selected_kibana": "Instances selected",
   "logs_role_empty_kibana": "All instances selected",
   "logs_role_empty_selected_kibana": "No instances selected",
-  "logs_roles_add_kibana_error": "An error has occurred adding the Kibana instance to the '{{tokenName}}' permission: {{message}}"
+  "logs_roles_add_kibana_error": "An error has occurred adding the Kibana instance to the '{{tokenName}}' permission: {{message}}",
+  "logs_streams_col_retention": "Retention",
+  "streams_45_days": " days",
+  "inputs_nb_instance": "Instances",
+  "logs_index_col_nb_shard": "Partitions"
 }
