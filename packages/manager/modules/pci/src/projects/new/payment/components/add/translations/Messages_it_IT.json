@@ -1,0 +1,8 @@
+{
+  "pci_project_new_payment_method_add_explain": "Per utilizzare questo servizio è necessario salvare un metodo di pagamento. Non vengono eseguiti addebiti o prelievi se non vengono utilizzate risorse.",
+  "pci_project_new_payment_method_add_info_credit_card": "Clicca su “Crea il tuo progetto” per essere reindirizzato all'interfaccia sicura in cui sarà possibile salvare una nuova carta bancaria. Per verificare il numero e la validità della carta inserita verrà effettuato un tentativo di prelievo presso il tuo istituto bancario.  L'importo non verrà addebitato.",
+  "pci_project_new_payment_method_add_info_paypal": "Clicca su “PayPal” per essere reindirizzato all'interfaccia di pagamento sicura PayPal, in cui sarà possibile registrare il tuo conto.",
+  "pci_project_new_payment_method_add_info_bank_account": "Cliccando su \"Aggiungi\" verrai reindirizzato alla sezione <a href=\"{{ paymentMethodSection }}\">I tuoi metodi di pagamento</a> dello Spazio Cliente.",
+  "pci_project_new_payment_method_add_warning_bank_account": "Il conto bancario sarà convalidato entro 24-48 ore a partire dalla ricezione dell’autorizzazione al prelievo. A convalida avvenuta sarà possibile creare un progetto Public Cloud.",
+  "pci_project_new_payment_method_add_credit": "Aggiungi crediti:"
+}

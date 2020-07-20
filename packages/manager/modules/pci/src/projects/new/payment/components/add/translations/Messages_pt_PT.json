@@ -1,0 +1,8 @@
+{
+  "pci_project_new_payment_method_add_explain": "O registo de um método de pagamento é necessário para validar a sua identidade. Enquanto não existirem consumos, nenhum valor lhe será debitado.",
+  "pci_project_new_payment_method_add_info_credit_card": "Ao clicar em “Criar o meu projeto”, será redirecionado para a interface segura do nosso fornecedor para registar um novo cartão de crédito. Será efetuada uma tentativa de débito junto do seu banco, de forma a verificar a validade dos seus dados bancários. Não será debitado qualquer montante.",
+  "pci_project_new_payment_method_add_info_paypal": "Ao clicar em “PayPal”, será redirecionado para a interface segura do PayPal para registar a sua conta.",
+  "pci_project_new_payment_method_add_info_bank_account": "Ao clicar no botão \"Adicionar\", será redirecionado para a secção <a href=\"{{ paymentMethodSection }}\">“Métodos de pagamento”</a> da Área de Cliente.",
+  "pci_project_new_payment_method_add_warning_bank_account": "A sua conta bancária será aprovada nas 24 a 48 horas a seguir à receção da sua autorização de débito direto, que deverá reenviar por correio. Após essa validação, poderá criar um projeto Public Cloud.",
+  "pci_project_new_payment_method_add_credit": "Adicionar créditos"
+}

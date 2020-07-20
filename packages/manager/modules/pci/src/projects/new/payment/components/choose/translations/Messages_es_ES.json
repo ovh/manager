@@ -1,0 +1,7 @@
+{
+  "pci_project_new_payment_choose_title": "Establecer una forma de pago",
+  "pci_project_new_payment_choose_added_payment_methods": "Formas de pago registradas",
+  "pci_project_new_payment_choose_payment_method_expiration": "Caduca el {{ date }}",
+  "pci_project_new_payment_choose_payment_method_selected": "Esta forma de pago se utilizará para abonar el pago automático de sus servicios.  Puede modificarla y configurar la renovación de sus soluciones en cualquier momento desde la sección <a href=\"{{ url }}\" target=\"_blank\" rel=\"noopener\">«Mis servicios»</a> de su área de cliente. Antes de cada vencimiento recibirá una notificación por correo electrónico.",
+  "pci_project_new_payment_choose_use_new": "Utilizar una nueva forma de pago"
+}

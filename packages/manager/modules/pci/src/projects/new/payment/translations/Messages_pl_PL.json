@@ -7,5 +7,6 @@
   "pci_project_new_payment_btn_cancel": "Anuluj",
   "pci_project_new_payment_create_error": "Wystąpił błąd podczas dodawania Twojego sposobu płatności. Spróbuj ponownie później.",
   "pci_project_new_payment_checkout_error": "Wystąpił błąd podczas tworzenia projektu Public Cloud.  Spróbuj ponownie później.",
-  "pci_project_new_payment_challenge_error_payment_method_deactivated": "Weryfikacja Twojego sposobu płatności nie powiodła się.  Został on dezaktywowany. Wybierz inny sposób płatności, aby utworzyć nowy projekt."
+  "pci_project_new_payment_challenge_error_payment_method_deactivated": "Weryfikacja Twojego sposobu płatności nie powiodła się.  Został on dezaktywowany. Wybierz inny sposób płatności, aby utworzyć nowy projekt.",
+  "pci_project_new_payment_set_default_payment_method_error": "Wystąpił błąd podczas ustawienia Twojego sposobu płatności jako domyślnego sposobu płatności."
 }

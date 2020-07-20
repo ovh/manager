@@ -1,0 +1,7 @@
+{
+  "pci_project_new_payment_choose_title": "Zahlungsmittel festlegen",
+  "pci_project_new_payment_choose_added_payment_methods": "Ihre hinterlegten Zahlungsmittel",
+  "pci_project_new_payment_choose_payment_method_expiration": "Läuft ab am {{ date }}",
+  "pci_project_new_payment_choose_payment_method_selected": "Dieses Zahlungsmittel wird für die automatische Bezahlung Ihrer Dienste verwendet werden. Sie können jederzeit das Zahlungsmittel ändern und die Verlängerung Ihrer Lösungen konfigurieren. Gehen Sie hierzu in den Bereich <a href=\"{{ url }}\" target=\"_blank\" rel=\"noopener\">„Meine Dienste“</a> in Ihrem Kundencenter. Darüber hinaus erhalten Sie vor jeder Verlängerung eine E-Mail-Benachrichtigung.",
+  "pci_project_new_payment_choose_use_new": "Neues Zahlungsmittel verwenden"
+}
