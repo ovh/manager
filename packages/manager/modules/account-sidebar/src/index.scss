@@ -1,13 +1,14 @@
 ovh-manager-account-sidebar {
   .manager-hub-user-panel {
-    @import 'bootstrap4/scss/_functions.scss';
-    @import 'bootstrap4/scss/_variables.scss';
-    @import 'bootstrap4/scss/_mixins.scss';
-    @import 'bootstrap4/scss/_utilities.scss';
-    @import 'bootstrap4/scss/_grid.scss';
-    @import 'bootstrap4/scss/_buttons.scss';
-    @import 'bootstrap4/scss/_button-group.scss';
-    @import '@ovh-ux/manager-hub/src/variables.scss';
+    @import '~@ovh-ux/ui-kit/dist/scss/_tokens.scss';
+    @import '~bootstrap4/scss/_functions.scss';
+    @import '~bootstrap4/scss/_variables.scss';
+    @import '~bootstrap4/scss/_mixins.scss';
+    @import '~bootstrap4/scss/_utilities.scss';
+    @import '~bootstrap4/scss/_grid.scss';
+    @import '~bootstrap4/scss/_buttons.scss';
+    @import '~bootstrap4/scss/_button-group.scss';
+    @import '~@ovh-ux/manager-hub/src/variables.scss';
 
     background-color: $p-075;
     height: 100%;
