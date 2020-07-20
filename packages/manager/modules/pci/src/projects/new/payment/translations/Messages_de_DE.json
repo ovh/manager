@@ -7,5 +7,6 @@
   "pci_project_new_payment_btn_cancel": "Abbrechen",
   "pci_project_new_payment_create_error": "Beim Hinzufügen des Zahlungsmittels ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.",
   "pci_project_new_payment_checkout_error": "Bei der Erstellung Ihres Public Cloud Projekts ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.",
-  "pci_project_new_payment_challenge_error_payment_method_deactivated": "Sie konnten Ihr Zahlungsmittel konnte nicht bestätigen.  Es wurde deaktiviert. Bitte wählen Sie ein anderes Zahlungsmittel, um ein neues Projekt erstellen zu können."
+  "pci_project_new_payment_challenge_error_payment_method_deactivated": "Sie konnten Ihr Zahlungsmittel konnte nicht bestätigen.  Es wurde deaktiviert. Bitte wählen Sie ein anderes Zahlungsmittel, um ein neues Projekt erstellen zu können.",
+  "pci_project_new_payment_set_default_payment_method_error": "Bei der Aktualisierung Ihres Zahlungsmittels als Standardzahlungsmittel ist ein Fehler aufgetreten."
 }

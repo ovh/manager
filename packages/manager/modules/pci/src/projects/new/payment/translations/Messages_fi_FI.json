@@ -7,5 +7,6 @@
   "pci_project_new_payment_btn_cancel": "Cancel",
   "pci_project_new_payment_create_error": "An error has occurred adding the payment method. Please try again.",
   "pci_project_new_payment_checkout_error": "An error has occurred creating your Public Cloud project. Please try again.",
-  "pci_project_new_payment_challenge_error_payment_method_deactivated": "Payment method verification unsuccessful. It has been disabled. Please choose another payment method to create a new project."
+  "pci_project_new_payment_challenge_error_payment_method_deactivated": "Payment method verification unsuccessful. It has been disabled. Please choose another payment method to create a new project.",
+  "pci_project_new_payment_set_default_payment_method_error": "An error has occurred updating your payment method as a default payment method."
 }

@@ -1,0 +1,8 @@
+{
+  "pci_project_new_payment_method_add_explain": "You need to register a payment method to validate your identity.  You will not be debited and nothing will be withdrawn until you consume resources. ",
+  "pci_project_new_payment_method_add_info_credit_card": "By clicking ‘Create my project’, you will be redirected to our service provider's secure interface to save a new bank card. A small amount is deducted from your bank account to confirm your card's validity, and verify that your details have been entered correctly. Nothing will be charged to your account.",
+  "pci_project_new_payment_method_add_info_paypal": "By clicking ‘PayPal’, you will be redirected to the PayPal secure interface to register your account.",
+  "pci_project_new_payment_method_add_info_bank_account": "By clicking ‘Add’, you will be redirected to the <a href=\"{{ paymentMethodSection }}\">”My payment methods</a> section of the OVHcloud Control Panel.",
+  "pci_project_new_payment_method_add_warning_bank_account": "Your payment card will be validated between 24 and 48 hours after we have received your direct debit authorisation, which needs to be sent by post. After it has been validated, you can create a Public Cloud project.",
+  "pci_project_new_payment_method_add_credit": "Add credits"
+}

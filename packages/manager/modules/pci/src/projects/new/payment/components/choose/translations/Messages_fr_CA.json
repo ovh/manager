@@ -1,0 +1,7 @@
+{
+  "pci_project_new_payment_choose_title": "Définir un moyen de paiement",
+  "pci_project_new_payment_choose_added_payment_methods": "Vos moyens de paiement enregistrés",
+  "pci_project_new_payment_choose_payment_method_expiration": "Exp. {{ date }}",
+  "pci_project_new_payment_choose_payment_method_selected": "Ce moyen de paiement sera utilisé pour le règlement automatique de vos services. Vous pouvez le modifier et configurer le renouvellement de vos solutions à tout moment, depuis la section <a href=\"{{ url }}\" target=\"_blank\" rel=\"noopener\">« Mes services »</a> de votre espace client. De plus, vous serez notifié par e-mail avant chaque nouvelle échéance.",
+  "pci_project_new_payment_choose_use_new": "Utiliser un nouveau moyen de paiement"
+}

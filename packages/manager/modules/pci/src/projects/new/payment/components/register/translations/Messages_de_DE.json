@@ -1,5 +1,5 @@
 {
-  "pci_project_new_payment_register_title": "Zahlungsmittel hinterlegen",
+  "pci_project_new_payment_register_title": "Eine Zahlungsart eintragen",
   "pci_project_new_payment_register_explain": "Um Ihre Identität zu bestätigen, ist die Eintragung eines Zahlungsmittels erforderlich. Es erfolgt keine Abbuchung oder Belastung, solange Sie nichts verbrauchen.",
   "pci_project_new_payment_register_info_credit_card": "Wenn Sie auf „Mein Projekt erstellen“ klicken, werden Sie auf das gesicherte Interface unseres Dienstleisters weitergeleitet, um eine neue Kreditkarte zu hinterlegen. Es wird eine Testabbuchung bei Ihrem Bankinstitut vorgenommen, um Eingabe und Gültigkeit Ihrer Karte zu überprüfen. Es wird kein Betrag abgebucht.",
   "pci_project_new_payment_register_info_paypal": "Wenn Sie auf „Paypal“ klicken, werden Sie zum gesicherten Paypal-Interface weitergeleitet, um Ihr Konto zu registrieren.",

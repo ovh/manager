@@ -7,5 +7,6 @@
   "pci_project_new_payment_btn_cancel": "Cancelar",
   "pci_project_new_payment_create_error": "Se ha producido un error al añadir su forma de pago. Por favor, vuelva a intentarlo.",
   "pci_project_new_payment_checkout_error": "Se ha producido un error al crear el proyecto de Public Cloud. Por favor, vuelva a intentarlo.",
-  "pci_project_new_payment_challenge_error_payment_method_deactivated": "No ha sido posible verificar su forma de pago. Esta forma de pago se ha desactivado. Por favor, seleccione una nueva forma de pago para poder crear un nuevo proyecto."
+  "pci_project_new_payment_challenge_error_payment_method_deactivated": "No ha sido posible verificar su forma de pago. Esta forma de pago se ha desactivado. Por favor, seleccione una nueva forma de pago para poder crear un nuevo proyecto.",
+  "pci_project_new_payment_set_default_payment_method_error": "Se ha producido un error al actualizar su forma de pago por defecto."
 }

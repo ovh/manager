@@ -1,0 +1,7 @@
+{
+  "pci_project_new_payment_choose_title": "Definir um método de pagamento",
+  "pci_project_new_payment_choose_added_payment_methods": "Os seus métodos de pagamento registados",
+  "pci_project_new_payment_choose_payment_method_expiration": "Expira a {{ date }}",
+  "pci_project_new_payment_choose_payment_method_selected": "Este método de pagamento será utilizado para o pagamento automático dos seus serviços. Pode alterá-lo e configurar a renovação das suas soluções a qualquer momento na secção <a href=\"{{ url }}\" target=\"_blank\" rel=\"noopener\">”Serviços”</a> da sua Área de Cliente. Além disso, receberá uma notificação por e-mail antes de cada prazo de pagamento.",
+  "pci_project_new_payment_choose_use_new": "Utilizar um novo método de pagamento"
+}
