@@ -666,5 +666,9 @@
   "logs_role_selected_kibana": "Wybrane instancje",
   "logs_role_empty_kibana": "Wybrane zostały wszystkie instancje",
   "logs_role_empty_selected_kibana": "Nie wybrano żadnej instancji ",
-  "logs_roles_add_kibana_error": "Wystąpił błąd podczas dodawania instancji Kibana do tokena '{{tokenName}}': {{message}}."
+  "logs_roles_add_kibana_error": "Wystąpił błąd podczas dodawania instancji Kibana do tokena '{{tokenName}}': {{message}}.",
+  "logs_streams_col_retention": "Retencja",
+  "streams_45_days": "45 dni",
+  "inputs_nb_instance": "Instancje",
+  "logs_index_col_nb_shard": "Partycje"
 }
