@@ -848,10 +848,14 @@
                                             class="oui-tile__term"
                                             data-translate="xdsl_details_modem_model"
                                         ></div>
-                                        <div
-                                            class="oui-tile__description"
-                                            data-ng-bind="$ctrl.modem.model"
-                                        ></div>
+                                        <div class="oui-tile__description">
+                                            <span
+                                                data-ng-bind="$ctrl.modem.brandName"
+                                            ></span>
+                                            <span
+                                                data-ng-bind="$ctrl.modem.model"
+                                            ></span>
+                                        </div>
                                     </div>
                                 </div>
                             </li>
