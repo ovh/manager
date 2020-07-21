@@ -1,0 +1,4 @@
+{
+  "carrier_sip_endpoints_list_IP": "Lista de endereços IP autorizados para as chamadas de saída",
+  "carrier_sip_endpoints_with_incoming_call_enabled": "Roteamento de chamadas de entrada"
+}
