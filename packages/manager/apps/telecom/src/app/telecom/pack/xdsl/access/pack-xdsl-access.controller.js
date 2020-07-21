@@ -573,9 +573,10 @@ export default class XdslAccessCtrl {
               '<p data-translate="xdsl_access_profile_tooltip_description"></p>';
           }
           if (
-            (profile.name.includes('VDSL') && profile.name.includes('SAFE2')) ||
-            profile.name.includes('PERF1') ||
-            profile.name.includes('PERF2')
+            profile.name.includes('VDSL') &&
+            (profile.name.includes('SAFE2') ||
+              profile.name.includes('PERF1') ||
+              profile.name.includes('PERF2'))
           ) {
             let translateVdslValues = '';
             if (profile.name.includes('SAFE2')) {
