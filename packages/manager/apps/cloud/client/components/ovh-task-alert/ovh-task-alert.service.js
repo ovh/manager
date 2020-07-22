@@ -1,3 +1,5 @@
+import { Environment } from '@ovh-ux/manager-config';
+
 import forEach from 'lodash/forEach';
 import get from 'lodash/get';
 import map from 'lodash/map';
@@ -10,14 +12,12 @@ class OvhTaskAlertsService {
     CucCloudMessage,
     OvhApiMeAlertsAapi,
     $http,
-    TranslateService,
   ) {
     this.$translate = $translate;
     this.$http = $http;
     this.CucControllerHelper = CucControllerHelper;
     this.CucCloudMessage = CucCloudMessage;
     this.UserAlertsAapi = OvhApiMeAlertsAapi;
-    this.TranslateService = TranslateService;
   }
 
   getTaskInfo() {
@@ -61,7 +61,7 @@ class OvhTaskAlertsService {
   }
 
   sendAlert(alert, tasks) {
-    const language = this.TranslateService.getGeneralLanguage();
+    const language = Environment.getUserLanguage() === 'fr' ? 'fr' : 'en';
     const locale = language === 'en' ? 'en_GB' : 'fr_FR';
     const text = alert[locale];
     const message = {

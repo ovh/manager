@@ -1,7 +1,7 @@
-export const momentConfiguration = /* @ngInject */ (
-  TranslateServiceProvider,
-) => {
-  const defaultLanguage = TranslateServiceProvider.getUserLocale(true);
+import { Environment } from '@ovh-ux/manager-config';
+
+export const momentConfiguration = /* @ngInject */ () => {
+  const defaultLanguage = Environment.getUserLanguage();
   moment.locale(defaultLanguage);
 };
 

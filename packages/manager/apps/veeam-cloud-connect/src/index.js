@@ -11,8 +11,8 @@ Environment.setRegion(__WEBPACK_REGION__);
 angular
   .module('veeamCloudConnectApp', [ovhManagerCore, ovhManagerVeeamCloudConnect])
   .config(
-    /* @ngInject */ (TranslateServiceProvider) => {
-      const defaultLanguage = TranslateServiceProvider.getUserLocale(true);
+    /* @ngInject */ () => {
+      const defaultLanguage = Environment.getUserLanguage();
       moment.locale(defaultLanguage);
     },
   );

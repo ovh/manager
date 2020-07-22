@@ -9,7 +9,6 @@ export default class IpLoadBalancerDashboardHeaderCtrl {
     IpLoadBalancerHomeService,
     ovhDocUrl,
     SidebarMenu,
-    TranslateService,
   ) {
     this.$stateParams = $stateParams;
     this.$translate = $translate;
@@ -18,7 +17,6 @@ export default class IpLoadBalancerDashboardHeaderCtrl {
     this.ovhDocUrl = ovhDocUrl;
     this.SidebarMenu = SidebarMenu;
     this.serviceName = $stateParams.serviceName;
-    this.TranslateService = TranslateService;
 
     //  No error handling since we don't want to break anything for a title.
     this.configuration = this.CucControllerHelper.request.getHashLoader({
