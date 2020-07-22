@@ -1,4 +1,4 @@
-import { Environment } from '@ovh-ux/manager-config';
+import { Environment, LANGUAGES } from '@ovh-ux/manager-config';
 
 import angular from 'angular';
 import { set, kebabCase } from 'lodash-es';
@@ -30,7 +30,6 @@ import redirectionService from './redirection/redirection.service';
 
 import {
   HOSTNAME_REGIONS,
-  LANGUAGES,
   MANAGER_URLS,
   REDIRECT_URLS,
   URLS,
