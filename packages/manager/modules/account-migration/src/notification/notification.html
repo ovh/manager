@@ -1,0 +1,154 @@
+<oui-message
+    data-type="success"
+    data-ng-if="$ctrl.migrationDetail && !$ctrl.migrationDetail.isPending()"
+>
+    <span
+        data-translate="ovh_manager_account_migration_pending_contracts_success"
+    ></span>
+    <a
+        target="_blank"
+        class="oui-link_icon"
+        rel="noopener"
+        data-ng-href="{{:: $ctrl.faqLink }}"
+        data-ng-click="$ctrl.trackClick('faq')"
+    >
+        <span data-translate="ovh_manager_account_migration_faq_text"></span>
+        <span
+            class="oui-icon oui-icon-external-link"
+            aria-hidden="true"
+        ></span> </a
+    >.
+</oui-message>
+
+<oui-message data-type="warning" data-ng-if="$ctrl.migrationDetail.isPending()">
+    <span
+        data-translate="ovh_manager_account_migration_pending_contracts1"
+        data-translate-values="{ date: ($ctrl.migrationDetail.hasOnlyContractsPending() ? $ctrl.migrationStartDate : $ctrl.migrationEndDate) }"
+    ></span>
+    <span
+        data-ng-if="!$ctrl.migrationDetail.hasOnlyContractsPending()"
+        data-translate="ovh_manager_account_migration_accept_contracts"
+    ></span>
+    <a
+        data-ng-if="$ctrl.migrationDetail.hasOnlyContractsPending()"
+        data-translate="ovh_manager_account_migration_accept_all_contracts"
+        data-ng-click="$ctrl.trackClick('alert::notifications::go-to-faq-agreement')"
+        data-ng-href="{{ ::$ctrl.AGREEMENTS_URL }}"
+    ></a>
+    <span
+        data-translate="ovh_manager_account_migration_pending_contracts2"
+    ></span>
+    <a
+        target="_blank"
+        class="oui-link_icon"
+        rel="noopener"
+        data-ng-href="{{:: $ctrl.faqLink }}"
+        data-ng-click="$ctrl.trackClick('faq')"
+    >
+        <span data-translate="ovh_manager_account_migration_faq_text"></span>
+        <span
+            class="oui-icon oui-icon-external-link"
+            aria-hidden="true"
+        ></span> </a
+    >.
+    <span data-ng-if="!$ctrl.migrationDetail.hasOnlyContractsPending()">
+        <span
+            data-ng-if="$ctrl.migrationDetail.hasDebtPending() && !$ctrl.migrationDetail.hasOrderPending() && !$ctrl.migrationDetail.hasNicPending()"
+        >
+            <span
+                data-translate="ovh_manager_account_migration_pending_debts1"
+                data-translate-values="{
+                    debt: $ctrl.migrationDetail.getPendingDebt()
+                }"
+            ></span>
+            <a
+                data-translate="ovh_manager_account_migration_billing_link_text"
+                data-ng-href="{{:: $ctrl.RedirectionService.getURL('debtPay') }}"
+                data-ng-click="$ctrl.trackClick('debt')"
+            ></a>
+            <span
+                data-translate="ovh_manager_account_migration_pending_debts2"
+            ></span>
+        </span>
+        <span
+            data-ng-if="$ctrl.migrationDetail.hasOrderPending() && !$ctrl.migrationDetail.hasNicPending() && !$ctrl.migrationDetail.hasDebtPending()"
+            data-ng-bind-html=":: 'ovh_manager_account_migration_pending_order' | translate: {
+                orderUrl: $ctrl.ORDERS_URL
+            }"
+        ></span>
+        <span
+            data-ng-if="$ctrl.migrationDetail.hasNicPending() && !$ctrl.migrationDetail.hasOrderPending() && !$ctrl.migrationDetail.hasDebtPending()"
+            data-ng-bind-html=":: 'ovh_manager_account_migration_pending_contact' | translate: {
+                contactsUrl: $ctrl.CONTACTS_URL
+            }"
+        ></span>
+        <span
+            data-ng-if="$ctrl.migrationDetail.hasDebtPending() && $ctrl.migrationDetail.hasOrderPending() && !$ctrl.migrationDetail.hasNicPending()"
+        >
+            <span
+                data-translate="ovh_manager_account_migration_pending_debts_and_order1"
+                data-translate-values="{
+                    debt: $ctrl.migrationDetail.getPendingDebt()
+                }"
+            ></span>
+            <a
+                data-translate="ovh_manager_account_migration_billing_link_text"
+                data-ng-href="{{:: $ctrl.RedirectionService.getURL('debtPay') }}"
+                data-ng-click="$ctrl.trackClick('debt')"
+            ></a>
+            <span
+                data-ng-bind-html=":: 'ovh_manager_account_migration_pending_debts_and_order2' | translate: {
+                    orderUrl: $ctrl.ORDERS_URL
+                }"
+            ></span>
+        </span>
+        <span
+            data-ng-if="$ctrl.migrationDetail.hasDebtPending() && $ctrl.migrationDetail.hasNicPending() && !$ctrl.migrationDetail.hasOrderPending()"
+        >
+            <span
+                data-translate="ovh_manager_account_migration_pending_debts_and_contact1"
+                data-translate-values="{
+                    debt: $ctrl.migrationDetail.getPendingDebt()
+                }"
+            ></span>
+            <a
+                data-translate="ovh_manager_account_migration_billing_link_text"
+                data-ng-href="{{:: $ctrl.RedirectionService.getURL('debtPay') }}"
+                data-ng-click="$ctrl.trackClick('debt')"
+            ></a>
+            <span
+                data-ng-bind-html=":: 'ovh_manager_account_migration_pending_debts_and_contact2' | translate: {
+                    contactsUrl: $ctrl.CONTACTS_URL
+                }"
+            ></span>
+        </span>
+        <span
+            data-ng-if="$ctrl.migrationDetail.hasOrderPending() && $ctrl.migrationDetail.hasNicPending() && !$ctrl.migrationDetail.hasDebtPending()"
+            data-ng-bind-html=":: 'ovh_manager_account_migration_pending_order_and_contact' | translate: {
+                orderUrl: $ctrl.ORDERS_URL,
+                contactsUrl: $ctrl.CONTACTS_URL
+            }"
+        ></span>
+        <span
+            data-ng-if="$ctrl.migrationDetail.hasDebtPending() && $ctrl.migrationDetail.hasOrderPending() && $ctrl.migrationDetail.hasNicPending()"
+        >
+            <span
+                data-translate="ovh_manager_account_migration_pending_debts_order_and_contact1"
+                data-translate-values="{
+                    debt: $ctrl.migrationDetail.getPendingDebt()
+                }"
+            ></span>
+            <a
+                data-translate="ovh_manager_account_migration_billing_link_text"
+                data-ng-href="{{:: $ctrl.RedirectionService.getURL('debtPay') }}"
+                data-ng-click="$ctrl.trackClick('debt')"
+            ></a>
+            <span
+                data-ng-bind-html=":: 'ovh_manager_account_migration_pending_debts_order_and_contact2' | translate: {
+                    orderUrl: $ctrl.ORDERS_URL,
+                    contactsUrl: $ctrl.CONTACTS_URL
+                }"
+            ></span>
+        </span>
+    </span>
+</oui-message>
