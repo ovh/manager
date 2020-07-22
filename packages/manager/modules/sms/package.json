@@ -12,6 +12,7 @@
   "author": "OVH SAS",
   "main": "./src/index.js",
   "dependencies": {
+    "@ovh-ux/manager-product-listing-configuration": "^0.0.0 || ^1.0.0",
     "bootstrap4": "twbs/bootstrap#v4.0.0",
     "lodash": "^4.17.15"
   },
@@ -36,6 +37,7 @@
     "@uirouter/angularjs": "^1.0.15",
     "angular": "^1.7.5",
     "angular-messages": "^1.7.6",
+    "angular-translate": "^2.18.3",
     "angular-ui-validate": "^1.2.3",
     "font-awesome": "4.7.0",
     "moment": "^2.24.0",
