@@ -1,0 +1,8 @@
+{
+  "sms_name_label": "Nom",
+  "sms_name_description": "Description",
+  "sms_status": "Statut",
+  "sms_see_details": "Détails",
+  "sms_status_enable": "OK",
+  "sms_status_disable": "Désactivé"
+}

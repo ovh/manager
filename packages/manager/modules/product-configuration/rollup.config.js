@@ -1,0 +1,15 @@
+import rollupConfig from '@ovh-ux/component-rollup-config';
+
+const config = rollupConfig({
+  input: 'src/index.js',
+  plugins: [rollupConfig.plugins.translationi18next()],
+});
+
+const outputs = [config.es()];
+
+if (process.env.BUILD === 'production') {
+  outputs.push(config.cjs());
+  outputs.push(config.umd());
+}
+
+export default outputs;

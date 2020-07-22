@@ -39,12 +39,14 @@ export default class ListLayoutCtrl {
   }
 
   getDisplayedColumns(columns) {
-    this.displayedColumns = JSON.stringify(
-      map(
-        columns.filter(({ hidden }) => !hidden),
-        ({ name, property }) => name || property,
-      ),
-    );
+    this.displayedColumns = columns
+      ? JSON.stringify(
+          map(
+            columns.filter(({ hidden }) => !hidden),
+            ({ name, property }) => name || property,
+          ),
+        )
+      : [];
   }
 
   onPageChange({ pageSize, offset }) {
