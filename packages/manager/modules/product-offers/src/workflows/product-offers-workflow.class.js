@@ -2,8 +2,8 @@ import isEqual from 'lodash/isEqual';
 import some from 'lodash/some';
 import sortBy from 'lodash/sortBy';
 
-/* eslint-disable import/extensions */
-import TranslateService from '@ovh-ux/manager-core/src/translate/translate.service';
+import { convertLanguageFromOVHToBCP47 } from '@ovh-ux/manager-config';
+
 import Pricing from '../pricing/pricing.class';
 import ProductOffersService from '../services/product-offers.service';
 
@@ -217,7 +217,7 @@ export default class Workflow {
   }
 
   static formatDateToLocale(date, locale, formatOptions) {
-    const bcp47language = TranslateService.convertFromOVHToBCP47(locale);
+    const bcp47language = convertLanguageFromOVHToBCP47(locale);
     return new Intl.DateTimeFormat(bcp47language, formatOptions).format(date);
   }
 
