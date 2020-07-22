@@ -26,6 +26,7 @@
     "xterm": "^3.14.5"
   },
   "peerDependencies": {
+    "@ovh-ux/manager-account-migration": "^0.0.0 || ^1.0.0",
     "@ovh-ux/manager-catalog-price": "^1.2.0",
     "@ovh-ux/manager-cloud-styles": "^0.4.0 || ^1.0.0",
     "@ovh-ux/manager-config": "^0.4.0 || ^1.0.0",
