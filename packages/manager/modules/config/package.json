@@ -28,6 +28,9 @@
     "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-config' --include-dependencies -- yarn run dev",
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-config' --include-dependencies -- yarn run dev:watch"
   },
+  "dependencies": {
+    "lodash-es": "^4.17.15"
+  },
   "devDependencies": {
     "@ovh-ux/component-rollup-config": "^7.0.0"
   }
