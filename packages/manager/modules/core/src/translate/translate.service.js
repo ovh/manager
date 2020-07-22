@@ -1,4 +1,8 @@
-import { find, get, indexOf, map } from 'lodash-es';
+import {
+  Environment,
+  detectUserLocale,
+  findLanguage,
+} from '@ovh-ux/manager-config';
 
 /**
  * @ngdoc service
@@ -6,17 +10,6 @@ import { find, get, indexOf, map } from 'lodash-es';
  * @description Manage translations
  */
 export default class TranslateServiceProvider {
-  /* @ngInject */
-
-  constructor(CORE_LANGUAGES, coreConfigProvider) {
-    this.LANGUAGES = CORE_LANGUAGES;
-    this.coreConfigProvider = coreConfigProvider;
-    this.storageKey = 'univers-selected-language';
-    this.localeRegex = /^([a-zA-Z]+)(?:[_-]([a-zA-Z]+))?$/;
-    this.availableLangsKeys = map(this.LANGUAGES.available, 'key');
-    this.currentLanguage = this.LANGUAGES.defaultLoc;
-  }
-
   /**
    * @ngdoc function
    * @methodOf managerApp.service:TranslateService
@@ -24,31 +17,9 @@ export default class TranslateServiceProvider {
    * @description Set current user locale (in localStorage)
    * @param  {String} locale - (optional) Force to set the given locale identifier
    */
+  // eslint-disable-next-line class-methods-use-this
   setUserLocale(locale) {
-    let definedLocale = locale;
-    if (!definedLocale) {
-      if (localStorage[this.storageKey]) {
-        definedLocale = localStorage[this.storageKey];
-      } else if (navigator.language || navigator.userLanguage) {
-        definedLocale = navigator.language || navigator.userLanguage;
-      } else {
-        definedLocale = this.LANGUAGES.defaultLoc;
-      }
-    }
-    const splittedLocale = definedLocale.match(this.localeRegex);
-    if (splittedLocale) {
-      // Format the value
-      const language = splittedLocale[1];
-      const country = splittedLocale[2]
-        ? splittedLocale[2]
-        : this.preferredCountry(language);
-      this.currentLanguage = this.findLanguage(language, country);
-    } else {
-      // Incorrect value
-      this.currentLanguage = this.currentLanguage || this.LANGUAGES.defaultLoc;
-    }
-    // Save it!
-    localStorage[this.storageKey] = this.currentLanguage;
+    Environment.setUserLocale(locale || detectUserLocale());
   }
 
   /**
@@ -59,11 +30,9 @@ export default class TranslateServiceProvider {
    * @param  {Boolean} min - (optional) Return the base locale only
    * @return {String}      - Current locale
    */
+  // eslint-disable-next-line class-methods-use-this
   getUserLocale(min) {
-    if (min) {
-      return this.currentLanguage.split('_')[0];
-    }
-    return this.currentLanguage;
+    return min ? Environment.getUserLanguage() : Environment.getUserLocale();
   }
 
   /**
@@ -74,48 +43,10 @@ export default class TranslateServiceProvider {
    * @return {String}      - Current locale
    */
   getGeneralLanguage() {
-    if (/fr/i.test(this.currentLanguage.split('_')[0])) {
+    if (/fr/i.test(this.getUserLocale().split('_')[0])) {
       return 'fr';
     }
     return 'en';
-  }
-
-  preferredCountry(language) {
-    if (indexOf(['FR', 'EN'], language.toUpperCase() > -1)) {
-      const customLanguage = get(
-        this.LANGUAGES.preferred,
-        `${language}.${this.coreConfigProvider.getRegion()}`,
-      );
-      if (customLanguage) {
-        return customLanguage;
-      }
-    }
-    return language;
-  }
-
-  findLanguage(language, country) {
-    const locale = `${language.toLowerCase()}_${country.toUpperCase()}`;
-    if (this.availableLangsKeys.indexOf(locale) > -1) {
-      return locale;
-    }
-    // Not found: Try to find another country with same base language
-    const similarLanguage = find(
-      this.availableLangsKeys,
-      (val) =>
-        this.localeRegex.test(val) &&
-        val.match(this.localeRegex)[1] === language,
-    );
-    if (similarLanguage) {
-      return similarLanguage;
-    }
-
-    if (language === 'nl') {
-      this.setUserLocale('en_GB');
-      return 'en_GB';
-    }
-
-    // Not found
-    return this.LANGUAGES.defaultLoc;
   }
 
   /**
@@ -132,6 +63,7 @@ export default class TranslateServiceProvider {
       getUserLocale: (locale) => this.getUserLocale(locale),
       getGeneralLanguage: () => this.getGeneralLanguage(),
       setUserLocale: (min) => this.setUserLocale(min),
+      findLanguage: (language, country) => findLanguage(language, country),
     };
   }
 }
