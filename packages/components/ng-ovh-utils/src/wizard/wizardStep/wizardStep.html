@@ -33,7 +33,7 @@
 
         <button
             type="button"
-            class="btn"
+            class="btn btn-lg"
             data-ng-bind="wizardPreviousButtonText"
             data-ng-click="previousStep()"
             data-ng-show="getCurrentStep() > 1 && wizardPreviousButton"
@@ -41,7 +41,7 @@
 
         <button
             type="button"
-            class="btn btn-primary"
+            class="btn btn-lg btn-primary"
             data-ng-bind="wizardNextButtonText"
             data-ng-click="nextStep()"
             data-ng-disabled="!stepValid"
@@ -50,7 +50,7 @@
 
         <button
             type="button"
-            class="btn btn-primary"
+            class="btn btn-lg btn-primary"
             data-ng-bind="wizardConfirmButtonText"
             data-ng-click="nextStep()"
             data-ng-disabled="!stepValid"
