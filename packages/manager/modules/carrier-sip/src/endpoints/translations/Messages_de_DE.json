@@ -1,0 +1,4 @@
+{
+  "carrier_sip_endpoints_list_IP": "Liste der für ausgehende Anrufe zugelassenen IP Adressen",
+  "carrier_sip_endpoints_with_incoming_call_enabled": "Routing der eingehenden Anrufe"
+}
