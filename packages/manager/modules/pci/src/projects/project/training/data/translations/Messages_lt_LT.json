@@ -1,0 +1,17 @@
+{
+  "pci_projects_project_training_data_id": "ID",
+  "pci_projects_project_training_data_name": "Name",
+  "pci_projects_project_training_data_region": "Region",
+  "pci_projects_project_training_data_created": "Created",
+  "pci_projects_project_training_data_user": "User",
+
+  "pci_projects_project_training_data_list_message_1": "Here are all data created on your project :",
+  "pci_projects_project_training_data_list_message_2": "If you want to access more informations about these data just run the following command in client : ",
+  "pci_projects_project_training_data_list_add": "Attach object storage container",
+
+  "pci_projects_project_training_data_add_select_region": "Select a Region",
+  "pci_projects_project_training_data_add_select_obj_container": "Select a storage container to sync with data",
+  "pci_projects_project_training_data_add_select_obj_container_tips": "Select storage container",
+  "pci_projects_project_training_data_add_select_user": "Select a User",
+  "pci_projects_project_training_data_add_select_user_tips": "Select the user on which to launch the submit order"
+}

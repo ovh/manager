@@ -160,6 +160,15 @@ export const MENU = [
         title: 'ML Serving',
         regions: ['EU', 'CA'],
       },
+      {
+        id: 'training',
+        new: true,
+        options: {
+          state: 'pci.projects.project.training',
+        },
+        title: 'ML Training',
+        regions: ['EU'],
+      },
     ],
     regions: ['EU', 'CA'],
     title: 'Data & Analytics',

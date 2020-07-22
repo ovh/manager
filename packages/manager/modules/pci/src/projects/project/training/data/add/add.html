@@ -1,0 +1,60 @@
+<div class="pci-projects-project-training-data-add">
+    <h2>{{:: 'pci_projects_project_training_data_list_add' | translate }}</h2>
+    <oui-stepper data-on-finish="$ctrl.onStepperFinish()">
+        <oui-step-form
+            data-header="{{:: 'pci_projects_project_training_data_add_select_region' | translate }}"
+            data-on-submit="$ctrl.onRegionSubmit()"
+            data-editable="$ctrl.allContainersLoaded"
+            data-loading="!$ctrl.allContainersLoaded"
+        >
+            <pci-project-regions-list
+                data-regions="$ctrl.regions"
+                data-selected-region="$ctrl.data.region"
+            >
+            </pci-project-regions-list>
+        </oui-step-form>
+        <oui-step-form
+            data-header="{{:: 'pci_projects_project_training_data_add_select_obj_container' | translate }}"
+            data-editable="$ctrl.allContainersLoaded"
+            data-loading="!$ctrl.allContainersLoaded"
+        >
+            <oui-field
+                data-size="xl"
+                data-help-text="{{:: 'pci_projects_project_training_data_add_select_obj_container_tips' | translate }}"
+            >
+                <oui-select
+                    id="container-select"
+                    name="container-select"
+                    data-model="$ctrl.data.container"
+                    data-items="$ctrl.filteredContainers"
+                    data-match="description"
+                    data-searchable
+                    data-required
+                >
+                </oui-select>
+            </oui-field>
+        </oui-step-form>
+        <oui-step-form
+            data-header="{{:: 'pci_projects_project_training_data_add_select_user' | translate }}"
+            data-editable="$ctrl.allUsersLoaded"
+            data-loading="!$ctrl.allUsersLoaded"
+        >
+            <oui-field
+                data-size="xl"
+                data-help-text="{{:: 'pci_projects_project_training_data_add_select_user_tips' | translate }}"
+                data-on-submit="$ctrl.onUserSubmit()"
+            >
+                <oui-select
+                    id="user-select"
+                    name="user-select"
+                    data-model="$ctrl.data.user"
+                    data-items="$ctrl.users"
+                    data-match="description"
+                    data-searchable
+                    data-required
+                >
+                </oui-select>
+            </oui-field>
+        </oui-step-form>
+    </oui-stepper>
+</div>

@@ -1,0 +1,95 @@
+<p>
+    {{:: 'pci_projects_project_training_jobs_list_message_1' | translate }}
+</p>
+
+<p>
+    {{:: 'pci_projects_project_training_jobs_list_message_2' | translate }}
+    <code
+        >{{:: 'pci_projects_project_training_parter_cli_name' | translate }} job
+        ls</code
+    >
+</p>
+
+<oui-datagrid
+    id="publicCloudTrainingJobsDatagrid"
+    data-rows="$ctrl.jobList"
+    data-row-loader="$row"
+>
+    <oui-column
+        data-title=":: 'pci_projects_project_training_jobs_id' | translate"
+        data-property="id"
+        data-type="string"
+        data-searchable
+        data-filterable
+        data-sortable
+    >
+        <span data-ng-bind="$value"></span>
+    </oui-column>
+    <oui-column
+        data-title=":: 'pci_projects_project_training_jobs_region' | translate"
+        data-property="region"
+        data-type="string"
+        data-searchable
+        data-filterable
+        data-sortable
+    >
+        <span data-ng-bind="$value"></span>
+    </oui-column>
+    <oui-column
+        data-title=":: 'pci_projects_project_training_jobs_image' | translate"
+        data-property="image"
+        data-type="string"
+        data-searchable
+        data-filterable
+        data-sortable
+    >
+        <span data-ng-bind="$value"></span>
+    </oui-column>
+    <oui-column
+        data-title=":: 'pci_projects_project_training_jobs_creator' | translate"
+        data-property="user"
+        data-type="string"
+        data-searchable
+        data-filterable
+        data-sortable
+    >
+        <span data-ng-bind="$value"></span>
+    </oui-column>
+    <oui-column
+        data-title=":: 'pci_projects_project_training_jobs_state' | translate"
+        data-property="state"
+        data-type="string"
+        data-searchable
+        data-filterable
+        data-sortable
+    >
+        <span
+            class="oui-status"
+            data-ng-class="{
+                'oui-status_success': ($row.state === 'SUCCEEDED'),
+                'oui-status_warning': ($row.state === 'QUEUING'),
+                'oui-status_error': ($row.state === 'FAILED')
+            }"
+        >
+            <span data-ng-bind=":: $row.state"></span>
+        </span>
+    </oui-column>
+    <oui-action-menu data-align="end" data-compact>
+        <oui-action-menu-item data-on-click="$ctrl.jobInfo($row.id)">
+            <span
+                data-translate="pci_projects_project_training_jobs_info"
+            ></span>
+        </oui-action-menu-item>
+    </oui-action-menu>
+    <extra-top>
+        <a
+            data-ng-href="{{ $ctrl.submitJobLink }}"
+            class="oui-button oui-button_secondary oui-button_icon-left"
+        >
+            <span class="oui-icon oui-icon-add pr-1" aria-hidden="true"></span>
+            <span
+                data-translate="{{:: 'pci_projects_project_training_jobs_list_submit' | translate  }}"
+            ></span>
+        </a>
+    </extra-top>
+</oui-datagrid>

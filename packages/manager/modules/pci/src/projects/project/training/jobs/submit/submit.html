@@ -1,0 +1,221 @@
+<div class="pci-projects-project-training-jobs-submit">
+    <h2>
+        {{:: 'pci_projects_project_training_jobs_list_submit' | translate }}
+    </h2>
+    <oui-stepper data-on-finish="$ctrl.onStepperFinish()">
+        <oui-step-form
+            data-header="{{:: 'pci_projects_project_training_jobs_submit_select_region' | translate  }}"
+        >
+            <pci-project-regions-list
+                data-regions="$ctrl.regions"
+                data-selected-region="$ctrl.job.region"
+            >
+            </pci-project-regions-list>
+        </oui-step-form>
+        <oui-step-form
+            data-header="{{:: 'pci_projects_project_training_jobs_submit_select_user' | translate  }}"
+            data-editable="$ctrl.allUsersLoaded"
+            data-loading="!$ctrl.allUsersLoaded"
+        >
+            <oui-field
+                data-size="xl"
+                data-help-text="{{:: 'pci_projects_project_training_jobs_submit_select_user_tips' | translate  }}"
+            >
+                <oui-select
+                    id="user-select"
+                    name="user-select"
+                    data-model="$ctrl.job.user"
+                    data-items="$ctrl.users"
+                    data-match="description"
+                    data-searchable
+                    data-required
+                >
+                </oui-select>
+            </oui-field>
+        </oui-step-form>
+
+        <oui-step-form
+            data-header="{{:: 'pci_projects_project_training_jobs_submit_select_image' | translate  }}"
+        >
+            <oui-field
+                data-size="xl"
+                data-help-text="{{:: 'pci_projects_project_training_jobs_submit_select_image_tips' | translate  }}"
+            >
+                <input
+                    class="oui-input"
+                    type="text"
+                    id="image"
+                    name="image"
+                    data-ng-model="$ctrl.job.image"
+                    data-required
+                />
+            </oui-field>
+        </oui-step-form>
+
+        <oui-step-form
+            data-header="{{:: 'pci_projects_project_training_jobs_submit_select_resources' | translate  }}"
+        >
+            <p
+                data-translate="{{:: 'pci_projects_project_training_jobs_submit_select_resources_tips' | translate  }}"
+            ></p>
+
+            <div class="row d-lg-flex">
+                <div class="col-md-6">
+                    <oui-field
+                        data-label="{{:: 'pci_projects_project_training_jobs_submit_select_resources_tips_cpu' | translate  }}"
+                        data-size="auto"
+                    >
+                        <oui-numeric
+                            min="1"
+                            max="16"
+                            data-model="$ctrl.resources.cpu"
+                            name="cpu"
+                        >
+                        </oui-numeric>
+                    </oui-field>
+                    <oui-field
+                        data-label="{{:: 'pci_projects_project_training_jobs_submit_select_resources_ram' | translate  }}"
+                        data-size="auto"
+                    >
+                        <oui-numeric
+                            min="1"
+                            max="32"
+                            data-model="$ctrl.resources.mem"
+                            name="mem"
+                        >
+                        </oui-numeric>
+                    </oui-field>
+                    <oui-field
+                        data-label="{{:: 'pci_projects_project_training_jobs_submit_select_resources_gpu' | translate  }}"
+                        data-size="auto"
+                    >
+                        <oui-numeric
+                            min="0"
+                            max="1"
+                            data-model="$ctrl.resources.gpu"
+                            name="gpu"
+                        >
+                        </oui-numeric>
+                    </oui-field>
+                </div>
+                <div class="col-md-6">
+                    <oui-tile
+                        class="h-100"
+                        data-heading="{{:: 'pci_projects_project_training_jobs_submit_select_resources_tips_price' | translate  }}"
+                    >
+                        <oui-tile-definition
+                            data-term="{{:: 'pci_projects_project_training_jobs_submit_select_resources_tips_per_minutes' | translate  }}"
+                        >
+                            <oui-tile-description>
+                                <h2>
+                                    {{ $ctrl.computePricePerMinute() }} {{::
+                                    'pci_projects_project_training_jobs_submit_select_resources_tips_per_minutes_short'
+                                    | translate }}
+                                </h2>
+                            </oui-tile-description>
+                        </oui-tile-definition>
+                        <oui-tile-definition
+                            data-term="{{:: 'pci_projects_project_training_jobs_submit_select_resources_tips_per_hour' | translate  }}"
+                        >
+                            <oui-tile-description>
+                                <h2>
+                                    {{ $ctrl.computePricePerHour() }} {{::
+                                    'pci_projects_project_training_jobs_submit_select_resources_tips_per_hour_short'
+                                    | translate }}
+                                </h2>
+                            </oui-tile-description>
+                        </oui-tile-definition>
+                    </oui-tile>
+                </div>
+            </div>
+        </oui-step-form>
+
+        <oui-step-form
+            data-header="{{:: 'pci_projects_project_training_jobs_submit_validation' | translate  }}"
+        >
+            <div class="row d-lg-flex">
+                <div class="col-md-8">
+                    <oui-tile
+                        class="h-100"
+                        data-heading="{{:: 'pci_projects_project_training_jobs_submit_validation_job_summary' | translate  }}"
+                    >
+                        <oui-tile-definition
+                            data-term="{{:: 'pci_projects_project_training_jobs_image' | translate  }}"
+                        >
+                            <oui-tile-description
+                                data-ng-bind="$ctrl.job.image"
+                            ></oui-tile-description>
+                        </oui-tile-definition>
+                        <oui-tile-definition
+                            data-term="{{:: 'pci_projects_project_training_jobs_region' | translate  }}"
+                        >
+                            <oui-tile-description
+                                data-ng-bind="$ctrl.job.region.name"
+                            ></oui-tile-description>
+                        </oui-tile-definition>
+                        <oui-tile-definition
+                            data-term="{{:: 'pci_projects_project_training_jobs_submit_validation_equivalent_command' | translate  }}"
+                        >
+                            <oui-tile-description>
+                                <pre>
+{{:: 'pci_projects_project_training_parter_cli_name' | translate  }} {{ $ctrl.cliCommand() }}</pre
+                                >
+                            </oui-tile-description>
+                        </oui-tile-definition>
+                    </oui-tile>
+                </div>
+                <div class="col-md-4">
+                    <oui-tile
+                        class="h-100"
+                        data-heading="{{:: 'pci_projects_project_training_jobs_info_title_3' | translate  }}"
+                    >
+                        <oui-tile-definition
+                            data-term="{{:: 'pci_projects_project_training_jobs_cpu' | translate  }}"
+                        >
+                            <oui-tile-description
+                                data-ng-bind="$ctrl.job.resources.cpu"
+                            ></oui-tile-description>
+                        </oui-tile-definition>
+                        <oui-tile-definition
+                            data-term="{{:: 'pci_projects_project_training_jobs_ram' | translate  }}"
+                        >
+                            <oui-tile-description
+                                data-ng-bind="$ctrl.job.resources.mem"
+                            ></oui-tile-description>
+                        </oui-tile-definition>
+                        <oui-tile-definition
+                            data-term="{{:: 'pci_projects_project_training_jobs_gpu' | translate  }}"
+                        >
+                            <oui-tile-description
+                                data-ng-bind="$ctrl.job.resources.gpu"
+                            ></oui-tile-description>
+                        </oui-tile-definition>
+                        <oui-tile-definition
+                            data-term="{{:: 'pci_projects_project_training_jobs_submit_select_resources_tips_per_minutes' | translate  }}"
+                        >
+                            <oui-tile-description>
+                                <h2>
+                                    {{ $ctrl.computePricePerMinute() }} {{::
+                                    'pci_projects_project_training_jobs_submit_select_resources_tips_per_minutes_short'
+                                    | translate }}
+                                </h2>
+                            </oui-tile-description>
+                        </oui-tile-definition>
+                        <oui-tile-definition
+                            data-term="{{:: 'pci_projects_project_training_jobs_submit_select_resources_tips_per_hour' | translate  }}"
+                        >
+                            <oui-tile-description>
+                                <h2>
+                                    {{ $ctrl.computePricePerHour() }} {{::
+                                    'pci_projects_project_training_jobs_submit_select_resources_tips_per_hour_short'
+                                    | translate }}
+                                </h2>
+                            </oui-tile-description>
+                        </oui-tile-definition>
+                    </oui-tile>
+                </div>
+            </div>
+            <p></p>
+        </oui-step-form>
+    </oui-stepper>
+</div>
