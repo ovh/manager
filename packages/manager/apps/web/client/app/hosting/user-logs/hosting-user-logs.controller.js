@@ -27,19 +27,9 @@ angular.module('App').controller(
     $onInit() {
       this.hosting = this.$scope.hosting;
       this.logs = this.$scope.logs;
-      this.userLogsToken = null;
 
       this.$scope.$on('hosting.userLogs.refresh', () => {
         this.refreshTableUserLogs();
-      });
-
-      this.Hosting.getUserLogsToken(this.$stateParams.productId, {
-        params: {
-          remoteCheck: true,
-          ttl: 3600,
-        },
-      }).then((token) => {
-        this.userLogsToken = token;
       });
 
       this.User.getUrlOf('guides').then((guides) => {

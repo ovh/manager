@@ -28,7 +28,7 @@
                     <dd>
                         <a
                             class="oui-link_icon"
-                            data-ng-href="{{ctrl.logs.stats}}"
+                            data-ng-href="{{ctrl.logs.statsUrl}}"
                             target="_blank"
                             rel="noopener"
                             title="{{hosting_tab_USER_LOGS_dashboard_stats_newtab}}"
@@ -48,7 +48,7 @@
                     <dd>
                         <a
                             class="oui-link_icon"
-                            data-ng-href="{{ctrl.userLogsToken ? ctrl.logs.logs + '?token=' +  ctrl.userLogsToken : ctrl.logs.logs }}"
+                            data-ng-href="{{ctrl.logs.logsUrl }}"
                             target="_blank"
                             rel="noopener"
                             title="{{hosting_tab_USER_LOGS_dashboard_logs_link}} {{ 'common_newtab' | translate }}"
