@@ -7,13 +7,11 @@ angular
     '$scope',
     '$translate',
     'URLS',
-    'TranslateService',
     'OvhApiMe',
     function RAAddStorageStepContainerTypeCtrl(
       $scope,
       $translate,
       URLS,
-      TranslateService,
       OvhApiMe,
     ) {
       const self = this;
