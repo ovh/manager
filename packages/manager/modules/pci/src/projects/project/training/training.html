@@ -1,0 +1,46 @@
+<div data-ui-view="content">
+    <oui-header
+        class="mb-3"
+        data-heading="{{:: 'pci_projects_project_training_title' | translate }}"
+    >
+        <oui-header-tabs>
+            <oui-header-tabs-item
+                data-active="$ctrl.currentActiveLink() === $ctrl.dashboardLink"
+                data-href="{{:: $ctrl.dashboardLink }}"
+            >
+                <span
+                    data-translate="pci_projects_project_training_dashboard_title"
+                ></span>
+            </oui-header-tabs-item>
+            <oui-header-tabs-item
+                data-href="{{:: $ctrl.jobsLink }}"
+                data-active="$ctrl.currentActiveLink() === $ctrl.jobsLink"
+            >
+                <span
+                    data-translate="pci_projects_project_training_jobs_title"
+                ></span>
+            </oui-header-tabs-item>
+            <oui-header-tabs-item
+                data-text="{{:: 'pci_projects_project_training_data_title' | translate }}"
+                data-href="{{:: $ctrl.dataLink }}"
+                data-active="$ctrl.currentActiveLink() === $ctrl.dataLink"
+            >
+                <span
+                    data-translate="pci_projects_project_training_data_title"
+                ></span>
+            </oui-header-tabs-item>
+        </oui-header-tabs>
+
+        <oui-guide-menu
+            data-text="{{:: 'pci_project_guides_header' | translate }}"
+        >
+            <oui-guide-menu-item data-href="{{ $ctrl.guideUrl }}" data-external>
+                <span
+                    data-translate="pci_project_guides_header_all_guides"
+                ></span>
+            </oui-guide-menu-item>
+        </oui-guide-menu>
+    </oui-header>
+
+    <div class="container-fluid" data-ui-view></div>
+</div>

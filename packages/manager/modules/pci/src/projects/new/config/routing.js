@@ -20,12 +20,6 @@ export default /* @ngInject */ ($stateProvider) => {
     onEnter: /* @ngInject */ (activeStep, step) => {
       activeStep(step.name);
     },
-    redirectTo: (transition) =>
-      transition
-        .injector()
-        .getAsync('summary')
-        .then(() => false)
-        .catch(() => 'pci.projects'),
     resolve: {
       getActionHref: /* @ngInject */ ($state) => (action) => {
         const actionState =
