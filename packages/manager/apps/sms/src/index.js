@@ -5,8 +5,13 @@ import 'script-loader!moment/min/moment.min';
 /* eslint-enable import/no-webpack-loader-syntax */
 
 import angular from 'angular';
+import 'angular-translate';
 
 import ngOvhApiWrappers from '@ovh-ux/ng-ovh-api-wrappers';
 import ovhManagerSms from '@ovh-ux/manager-sms';
 
-angular.module('smsApp', [ngOvhApiWrappers, ovhManagerSms]);
+angular
+  .module('smsApp', [ngOvhApiWrappers, ovhManagerSms])
+  .config(
+    /* @ngInject */ ($urlRouterProvider) => $urlRouterProvider.when('', '/sms'),
+  );
