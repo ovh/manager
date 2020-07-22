@@ -1,0 +1,165 @@
+<cui-message-container data-messages="$ctrl.messages"></cui-message-container>
+<div class="container-fluid" data-ui-view>
+    <p>
+        <span
+            data-translate="pci_projects_project_training_data_list_message_1"
+        >
+        </span>
+    </p>
+    <p>
+        {{:: 'pci_projects_project_training_data_list_message_2' | translate }}
+        <code
+            >{{:: 'pci_projects_project_training_parter_cli_name' | translate }}
+            data ls</code
+        >
+    </p>
+
+    <oui-datagrid
+        id="publicCloudTrainingDataDatagrid"
+        data-rows="$ctrl.allDataList"
+        data-row-loader="$row"
+    >
+        <oui-datagrid-column
+            data-title=":: 'pci_projects_project_training_data_id' | translate"
+            data-property="id"
+            data-type="string"
+            data-searchable
+            data-filterable
+            data-sortable
+        >
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_projects_project_training_data_region' | translate"
+            data-property="region"
+            data-type="string"
+            data-searchable
+            data-filterable
+            data-sortable
+        >
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_projects_project_training_data_name' | translate"
+            data-property="name"
+            data-type="string"
+            data-searchable
+            data-filterable
+            data-sortable
+        >
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_projects_project_training_data_container' | translate"
+            data-property="container"
+            data-type="string"
+            data-searchable
+            data-filterable
+            data-sortable
+        >
+            <span
+                ><a data-ng-click="$ctrl.goToContainer($row.containerLink)"
+                    >{{ $value }}</a
+                ></span
+            >
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_projects_project_training_data_user' | translate"
+            data-property="user"
+            data-type="string"
+            data-searchable
+            data-filterable
+            data-sortable
+        >
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_projects_project_training_data_created' | translate"
+            data-property="created"
+            data-type="string"
+            data-searchable
+            data-filterable
+            data-sortable
+        >
+            <span data-ng-bind="$value | date:'medium'"></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_projects_project_training_data_pull_status' | translate"
+            data-property="pullStatus"
+            data-type="string"
+            data-searchable
+            data-filterable
+            data-sortable
+        >
+            <span
+                class="oui-status"
+                data-ng-class="{
+                'oui-status_success': ($value === 'done'),
+                'oui-status_warning': ($value === 'running'),
+                'oui-status_error': ($value === 'error'),
+                'oui-status_info': (!$value)
+            }"
+                ><span
+                    data-translate="{{:: 'pci_projects_project_training_data_status_' + $value }}"
+                    oui-tooltip="{{:: $row.pullDate | date:'medium' }}"
+                    oui-tooltip-placement="top"
+                >
+                </span>
+            </span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_projects_project_training_data_push_status' | translate"
+            data-property="pushStatus"
+            data-type="string"
+            data-searchable
+            data-filterable
+            data-sortable
+        >
+            <span
+                class="oui-status"
+                data-ng-class="{
+                'oui-status_success': ($value === 'done'),
+                'oui-status_warning': ($value === 'running'),
+                'oui-status_error': ($value === 'error'),
+                'oui-status_info': (!$value)
+            }"
+                ><span
+                    data-translate="{{:: 'pci_projects_project_training_data_status_' + $value }}"
+                    oui-tooltip="{{:: $row.pushDate | date:'medium' }}"
+                    oui-tooltip-placement="top"
+                >
+                </span>
+            </span>
+        </oui-datagrid-column>
+        <oui-action-menu data-align="end" data-compact>
+            <oui-action-menu-item
+                data-on-click="$ctrl.dataSync($row.id)"
+                data-disabled="!$row.container"
+            >
+                <span
+                    data-translate="pci_projects_project_training_data_sync"
+                ></span>
+            </oui-action-menu-item>
+        </oui-action-menu>
+        <oui-datagrid-topbar>
+            <a
+                data-ng-href="{{ $ctrl.addDataLink }}"
+                class="oui-button oui-button_secondary oui-button_icon-left"
+                data-track-on="click"
+                data-track-name="public-cloud::pci::projects::project::training::data::add-container"
+                data-track-type="action"
+            >
+                <span
+                    class="oui-icon oui-icon-add pr-1"
+                    aria-hidden="true"
+                ></span>
+                <span
+                    data-translate="{{:: 'pci_projects_project_training_data_list_add' | translate }}"
+                ></span>
+            </a>
+            <button
+                class="float-right oui-button oui-button_secondary oui-button_icon-only oui-button_s"
+                data-title="{{:: 'pci_projects_project_training_jobs_refresh' | translate }}"
+                data-ng-click="$ctrl.refreshState()"
+            >
+                <span class="fa fa-refresh" aria-hidden="true"></span>
+            </button>
+        </oui-datagrid-topbar>
+    </oui-datagrid>
+</div>

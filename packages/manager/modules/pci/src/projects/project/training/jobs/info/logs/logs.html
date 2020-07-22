@@ -1,0 +1,20 @@
+<p data-translate="pci_projects_project_training_job_logs_text_1"></p>
+
+<p>
+    {{:: 'pci_projects_project_training_job_logs_text_2' | translate }}
+    <code
+        >{{:: 'pci_projects_project_training_parter_cli_name' | translate }} job
+        logs {{ $ctrl.job.id }}</code
+    >
+</p>
+<div class="logger" data-scroll-glue>
+    <div
+        class="logger__entry"
+        data-ng-repeat="entry in $ctrl.jobLog.logs track by $index"
+    >
+        <span class="logger__entry-message">
+            {{ entry.content }}
+        </span>
+    </div>
+    <i class="logger__cursor">_</i>
+</div>
