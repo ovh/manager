@@ -11,9 +11,9 @@ import 'script-loader!messenger/build/js/messenger-theme-flat.js';
 import angular from 'angular';
 import '@uirouter/angularjs';
 
-import './index.scss';
-
 import ovhManagerEnterpriseCloudDatabase from '@ovh-ux/manager-enterprise-cloud-database';
+
+import './index.scss';
 
 angular.module('enterpriseCloudDatabaseApp', [
   'ui.router',
