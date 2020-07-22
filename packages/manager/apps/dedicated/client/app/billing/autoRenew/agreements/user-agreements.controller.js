@@ -3,13 +3,15 @@ import get from 'lodash/get';
 angular.module('UserAccount').controller('UserAccount.controllers.agreements', [
   '$scope',
   '$translate',
-  'UserAccount.services.agreements',
   'Alerter',
+  'gotoAcceptAllAgreements',
+  'UserAccountServicesAgreements',
   function UserAccountAgreementsController(
     $scope,
     $translate,
-    Service,
     Alerter,
+    gotoAcceptAllAgreements,
+    Service,
   ) {
     function init() {
       $scope.loading = true;
@@ -26,6 +28,8 @@ angular.module('UserAccount').controller('UserAccount.controllers.agreements', [
     $scope.toActivate = [];
 
     $scope.agreed = {};
+
+    $scope.gotoAcceptAllAgreements = gotoAcceptAllAgreements;
 
     $scope.loadAgreementsList = function loadAgreementsList(count, offset) {
       init();
@@ -67,18 +71,31 @@ angular.module('UserAccount').controller('UserAccount.controllers.agreements', [
       );
     };
 
-    $scope.accept = function accept(contractId) {
-      $scope.loaders[`accept_${contractId}`] = true;
+    $scope.accept = function accept(contract) {
+      $scope.loaders[`accept_${contract.id}`] = true;
 
-      Service.accept(contractId).then(
-        () => {
-          $scope.getToValidate();
-          $scope.$broadcast('paginationServerSide.reload', 'agreementsList');
-        },
-        (d) => {
-          Alerter.set('alert alert-danger', d, d, 'agreements_alerter');
-        },
-      );
+      Service.accept(contract)
+        .then(
+          () => {
+            $scope.getToValidate();
+            $scope.$broadcast('paginationServerSide.reload', 'agreementsList');
+          },
+          (d) => {
+            Alerter.set(
+              'alert-danger',
+              `${$translate.instant('user_agreement_details_error')} ${get(
+                d,
+                'data.message',
+                d,
+              )}`,
+              null,
+              'agreements_alerter',
+            );
+          },
+        )
+        .finally(() => {
+          $scope.loaders[`accept_${contract.id}`] = false;
+        });
     };
 
     $scope.resetMessages = function resetMessages() {

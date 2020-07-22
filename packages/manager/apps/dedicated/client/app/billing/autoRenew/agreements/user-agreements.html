@@ -16,7 +16,18 @@
     </div>
 
     <div data-ng-if="toActivate.count || (loading && loaders.toActivate)">
-        <h2 data-translate="user_agreements_to_validate"></h2>
+        <div class="row">
+            <h2 class="col" data-translate="user_agreements_to_validate"></h2>
+            <div class="col">
+                <oui-button
+                    class="d-block text-right"
+                    data-ng-if="!loaders.toActivate"
+                    data-on-click="gotoAcceptAllAgreements(toActivate.list.results)"
+                >
+                    <span data-translate="user_agreements_accept_all"></span>
+                </oui-button>
+            </div>
+        </div>
 
         <table class="table table-hover">
             <thead>
@@ -67,7 +78,7 @@
                                     <button
                                         type="button"
                                         class="btn btn-link"
-                                        data-ng-click="accept(agreement.id)"
+                                        data-ng-click="accept(agreement)"
                                         data-translate="user_agreements_accept"
                                         title="{{ 'user_agreements_accept_title' | translate:{ t0: agreement.name } }}"
                                     ></button>
