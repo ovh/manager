@@ -11,21 +11,23 @@
             data-loading="$ctrl.isAdding"
         >
             <oui-radio
+                class="mb-3"
                 data-ng-repeat="workflowTemplate in $ctrl.workflowTemplates track by $index"
-                data-model="$ctrl.model.workflowTemplate"
-                data-name="workflowTemplate"
-                data-value="workflowTemplate"
-                data-required
+                model="$ctrl.model.workflowTemplate"
+                name="workflowTemplate"
+                value="workflowTemplate"
+                required
             >
-                <span
-                    data-translate="{{:: 'pci_projects_project_serving_namespace_models_add_type_' + workflowTemplate.toLowerCase() }}"
-                ></span>
-                <button
-                    type="button"
-                    class="oui-popover-button"
-                    data-oui-popover="{{:: 'pci_projects_project_serving_namespace_models_add_type_' + workflowTemplate.toLowerCase() + '_popover' | translate }}"
-                    data-oui-popover-placement="auto"
-                ></button>
+                <oui-radio-label>
+                    <span
+                        data-translate="{{:: 'pci_projects_project_serving_namespace_models_add_type_' + workflowTemplate.toLowerCase() }}"
+                    ></span>
+                </oui-radio-label>
+                <oui-radio-description>
+                    <span
+                        data-translate="{{:: 'pci_projects_project_serving_namespace_models_add_type_' + workflowTemplate.toLowerCase() + '_popover' }}"
+                    ></span>
+                </oui-radio-description>
             </oui-radio>
         </oui-step-form>
 
