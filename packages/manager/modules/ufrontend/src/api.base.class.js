@@ -3,19 +3,27 @@ class OvhMicroFrontendBaseAPI {
     this.ufrontend = ufrontend;
   }
 
-  get(id, timeout = 30) {
-    if (id === 'application') {
-      return this.ufrontend.getApplicationSharedData(timeout).then((data) => ({
-        ...data,
-      }));
+  listen(arg0, arg1) {
+    if (arg1) {
+      const [listenId, callback] = [arg0, arg1];
+      return this.ufrontend.addListener(({ id, ...data }) => {
+        if (id === listenId) {
+          callback(data);
+        }
+      });
     }
-    return this.ufrontend.getFragmentSharedData(id, timeout).then((data) => ({
-      ...data,
-    }));
+    const callback = arg0;
+    return this.ufrontend.addListener(callback);
   }
 
-  share() {
-    throw new Error(`Unimplemented method OvhMicroFrontendBaseAPI.share`, this);
+  emit(data, opts) {
+    return this.ufrontend.emitMessage(
+      {
+        ...data,
+        origin: null,
+      },
+      opts,
+    );
   }
 }
 

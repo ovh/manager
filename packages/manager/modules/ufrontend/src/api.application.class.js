@@ -1,8 +1,14 @@
 import OvhMicroFrontendBaseAPI from './api.base.class';
 
 class OvhMicroFrontendApplicationAPI extends OvhMicroFrontendBaseAPI {
-  share(data) {
-    this.ufrontend.shareApplicationData(data);
+  emit(data, opts) {
+    this.ufrontend.emitMessage(
+      {
+        ...data,
+        origin: 'application',
+      },
+      opts,
+    );
   }
 }
 
