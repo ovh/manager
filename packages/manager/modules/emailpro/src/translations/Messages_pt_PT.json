@@ -34,7 +34,6 @@
   "emailpro_resilitation_cancel_action_intro": "O cancelamento do serviço E-mail Pro \"{0}\" está programado para o final do período de subscrição. <br /><br />Tem a certeza que deseja anular este cancelamento? O serviço passará para renovação automática.",
   "emailpro-mxplan_resilitation_cancel_action_intro": "A rescisão do serviço E-mail Pro \"{0}\" está programado para a data de expiração. <br /><br />Tem a certeza de que quer anular esta rescisão? O serviço passará para renovação automática.",
   "emailpro_tab_domain_no_domains_1": "Adicione um domínio para poder criar contas de E-mail Pro. Clique",
-  "emailpro-mxplan_tab_domain_no_domains_1": "Adicione um domínio para criar contas MX Plan. Clique",
   "emailpro_tab_domain_diagnostic_mx_no_antispam": "Se usar o modo não-autoritário (Exchange + outro sistema de e-mail) com um sistema de e-mail não alojado na OVH:",
   "emailpro-mxplan_tab_domain_diagnostic_mx_no_antispam": "Se utilizar o modo autoritário (E-mail MX Plan + outro sistema de correio) com um sistema de mensagens não alojado pela OVH:",
   "emailpro_tab_domain_diagnostic_mx_antispam": "Se usar o modo autoritário (só com Exchange) ou não autoritário com um sistema de e-mail alojado na OVH:",
@@ -855,5 +854,6 @@
   "emailpro_tab_MAILING_LIST": "Mailing lists",
   "emailpro_tab_REDIRECTION": "Reencaminhamentos",
   "emailpro_navigation_more": "Mais",
-  "emailpro_tab_INFORMATIONS_server": "Servidor"
+  "emailpro_tab_INFORMATIONS_server": "Servidor",
+  "emailpro-mxplan_tab_domain_no_domains": "Não foram encontrados resultados para os termos pesquisados"
 }

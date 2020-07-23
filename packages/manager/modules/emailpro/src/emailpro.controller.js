@@ -182,7 +182,11 @@ export default /* @ngInject */ function EmailProCtrl(
           loadPtrv6Tooltip($scope.exchange);
         }
 
-        if (!$scope.exchange.domainsNumber && initialLoad) {
+        if (
+          !$scope.exchange.domainsNumber &&
+          !$scope.exchange.isMXPlan &&
+          initialLoad
+        ) {
           initialLoad = false;
           $timeout(() => {
             $scope.setAction('emailpro/domain/add/emailpro-domain-add', {
