@@ -6,11 +6,14 @@ class OvhMicroFrontendFragmentAPI extends OvhMicroFrontendBaseAPI {
     this.fragment = fragment;
   }
 
-  share(data) {
-    this.ufrontend.shareFragmentData({
-      fragment: this.fragment,
-      data,
-    });
+  emit(data, opts) {
+    this.ufrontend.emitMessage(
+      {
+        ...data,
+        origin: this.fragment.id,
+      },
+      opts,
+    );
   }
 }
 
