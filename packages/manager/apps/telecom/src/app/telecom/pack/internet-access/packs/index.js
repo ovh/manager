@@ -1,13 +1,12 @@
 import angular from 'angular';
 
-import component from './packs.component';
+import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 import routing from './packs.routing';
 
 const moduleName = 'ovhManagerTelecomPackInternetAccessPacks';
 
 angular
-  .module(moduleName, [])
-  .component('telecomPackInternetAccessPacks', component)
+  .module(moduleName, [ListLayoutHelper.moduleName])
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */);
 

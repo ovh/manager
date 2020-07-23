@@ -1,8 +1,13 @@
 import './i18n';
-import sms from './sms/sms';
+import packXdsl from './pack-xdsl';
+import sms from './sms';
 
-export { sms };
+export {
+  packXdsl,
+  sms,
+};
 
 export default {
+  packXdsl,
   sms,
 };
