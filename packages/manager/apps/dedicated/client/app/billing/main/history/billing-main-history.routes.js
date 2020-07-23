@@ -59,7 +59,12 @@ export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
       },
       component: 'billingHistory',
       resolve: {
-        ...omit(ListLayoutHelper.stateResolves, ['resources']),
+        ...omit(ListLayoutHelper.stateResolves, [
+          'resources',
+          'columns',
+          'formatters',
+          'mappings',
+        ]),
         bills: /* @ngInject */ (OvhApiMe) =>
           OvhApiMe.Bill()
             .v6()
