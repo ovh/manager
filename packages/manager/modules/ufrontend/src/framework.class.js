@@ -1,13 +1,13 @@
 import { fetchConfiguration as fetch2APIConfig } from '@ovh-ux/manager-config';
 import Deferred from './utils/deferred.class';
-import pollValue from './utils/pollvalue';
 import OvhMicroFrontendApplicationAPI from './api.application.class';
 import OvhMicroFrontendFragmentAPI from './api.fragment.class';
 
 class OvhMicroFrontend {
   constructor() {
     this.fragments = {};
-    this.shared = {};
+    this.messages = [];
+    this.listeners = [];
     this.config = new Deferred();
   }
 
@@ -25,28 +25,41 @@ class OvhMicroFrontend {
     return this.config.promise;
   }
 
-  shareFragmentData({ fragment, data }) {
-    this.shared[fragment.id] = data;
+  addListener(callback) {
+    this.listeners.push(callback);
+    this.processMessageQueue();
+    return function unlisten() {
+      const index = this.listeners.indexOf(callback);
+      if (index >= 0) {
+        this.listeners.splice(index, 1);
+      }
+    };
   }
 
-  shareApplicationData(data) {
-    this.shared.application = data;
-  }
-
-  getFragmentSharedData(id, timeout = 0) {
-    return pollValue({
-      getValue: () => this.shared[id],
-      timeout,
-      timeoutError: new Error(`getFragmentSharedData '${id}' timeout`),
+  emitMessage(data, { timeout } = { timeout: 5000 }) {
+    const now = new Date().getTime();
+    this.messages.push({
+      data,
+      isExpired: () => new Date().getTime() > now + timeout,
+      sent: [],
     });
+    this.processMessageQueue();
   }
 
-  getApplicationSharedData(timeout = 0) {
-    return pollValue({
-      getValue: () => this.shared.application,
-      timeout,
-      timeoutError: new Error(`getApplicationSharedData timeout`),
+  processMessageQueue() {
+    const pendingMessages = [];
+    this.messages.forEach((message) => {
+      if (!message.isExpired()) {
+        pendingMessages.push(message);
+        this.listeners.forEach((callback) => {
+          if (!message.sent.includes(callback)) {
+            callback(message.data);
+            message.sent.push(callback);
+          }
+        });
+      }
     });
+    this.messages = pendingMessages;
   }
 
   /** Called by fragment web-components at initialization */
