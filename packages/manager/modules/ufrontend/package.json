@@ -14,6 +14,7 @@
   "module": "./src/index.js",
   "files": [
     "application.js",
+    "communication.js",
     "fragment.js",
     "src/**/*"
   ],
