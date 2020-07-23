@@ -50,6 +50,7 @@
         selectable-rows
         on-row-select="$ctrl.onRowSelect($rows)"
         columns="$ctrl.columnsConfig"
+        page="{{ $ctrl.paginationNumber }}"
     >
         <oui-datagrid-column
             title=":: 'billing_main_history_table_id' | translate"
