@@ -6,7 +6,7 @@ import '@ovh-ux/manager-telecom-styles';
 
 import '@ovh-ux/manager-core';
 
-import component from './freefaxes.component';
+import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 import routing from './freefaxes.routing';
 
 import '@ovh-ux/ui-kit/dist/css/oui.css';
@@ -16,9 +16,14 @@ import './freefax/freefax.scss';
 const moduleName = 'ovhManagerFreeFaxes';
 
 angular
-  .module(moduleName, ['oc.lazyLoad', 'ovhManagerCore', 'oui', 'ui.router'])
+  .module(moduleName, [
+    'oc.lazyLoad',
+    'ovhManagerCore',
+    'oui',
+    'ui.router',
+    ListLayoutHelper.moduleName,
+  ])
   .config(routing)
-  .component('ovhManagerFreefaxes', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
