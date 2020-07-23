@@ -16,7 +16,10 @@
                 data-ng-bind="MetricsDetailCtrl.serviceName"
             ></h2>
         </div>
-        <oui-guide-menu data-text="{{ ::MetricsHeaderCtrl.guides.title }}">
+        <oui-guide-menu
+            data-text="{{ ::MetricsHeaderCtrl.guides.title }}"
+            placement="end"
+        >
             <oui-guide-menu-group
                 data-ng-repeat="section in MetricsHeaderCtrl.guides.sections track by section.title"
                 data-label="{{ ::section.title }}"
