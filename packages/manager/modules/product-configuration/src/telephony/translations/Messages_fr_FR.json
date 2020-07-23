@@ -1,0 +1,12 @@
+{
+  "telephony_billing_account_label": "Groupe de facturation",
+  "telephony_description_label": "Description",
+  "telephony_num_service_label": "Services",
+  "telephony_current_outplan_label": "Hors forfait",
+  "telephony_security_deposit_label": "Dépôt de garantie",
+  "telephony_status_label": "Statut",
+  "telephony_status_label_closed": "Clôturé",
+  "telephony_status_label_deleted": "Supprimé",
+  "telephony_status_label_enabled": "OK",
+  "telephony_status_label_expired": "Expiré"
+}

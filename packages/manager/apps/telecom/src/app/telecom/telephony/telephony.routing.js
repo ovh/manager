@@ -1,5 +1,5 @@
-import get from 'lodash/get';
 import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
+import { telephony } from '@ovh-ux/manager-product-listing-configuration';
 import template from './telecom-telephony.html';
 
 export default /* @ngInject */ ($stateProvider) => {
@@ -17,7 +17,7 @@ export default /* @ngInject */ ($stateProvider) => {
     url: `?${ListLayoutHelper.urlQueryParams}`,
     views: {
       'telephonyView@telecom.telephony': {
-        component: 'telecomTelephony',
+        component: 'managerListLayout',
       },
     },
     params: ListLayoutHelper.stateParams,
@@ -36,19 +36,40 @@ export default /* @ngInject */ ($stateProvider) => {
 
       schema: /* @ngInject */ (OvhApiTelephony) =>
         OvhApiTelephony.v6().schema().$promise,
-      telephonyStatusTypes: /* @ngInject */ (schema) =>
-        get(schema.models, 'telephony.BillingAccountStatusEnum').enum,
 
-      getBillingAccountLink: /* @ngInject */ ($state) => ({ billingAccount }) =>
+      dataModel: /* @ngInject */ (schema) =>
+        schema.models['telephony.BillingAccount'],
+
+      columnConfig: () => telephony.getConfig(),
+      header: /* @ngInject */ ($translate) =>
+        $translate.instant('telephony_title'),
+
+      id: () => 'telephony-billingAccounts',
+      defaultFilterProperty: () => 'billingAccount',
+
+      getServiceNameLink: /* @ngInject */ ($state) => ({ billingAccount }) =>
         $state.href('telecom.telephony.billingAccount', {
           billingAccount,
         }),
-      getBillingAccountServicesLink: /* @ngInject */ ($state) => ({
-        billingAccount,
-      }) =>
-        $state.href('telecom.telephony.billingAccount.services', {
-          billingAccount,
-        }),
+
+      options: /* @ngInject */ (
+        $translate,
+        viewBillingAccount,
+        viewBillingAccountServices,
+      ) => [
+        {
+          id: 'details',
+          label: $translate.instant('telephony_view_billing_account_label'),
+          callback: (value) => viewBillingAccount(value),
+        },
+        {
+          id: 'servicesDetails',
+          label: $translate.instant(
+            'telephony_view_billing_account_service_services',
+          ),
+          callback: (value) => viewBillingAccountServices(value),
+        },
+      ],
 
       viewBillingAccount: /* @ngInject */ ($state) => ({ billingAccount }) =>
         $state.go('telecom.telephony.billingAccount', {

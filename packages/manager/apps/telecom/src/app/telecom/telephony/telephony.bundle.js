@@ -171,9 +171,6 @@ import './billingAccount/phonebook/remove/telecom-telephony-billing-account-phon
 import './billingAccount/phonebook/telecom-telephony-billing-account-phonebook.controller';
 import './billingAccount/phonebook/telecom-telephony-billing-account-phonebook';
 import './billingAccount/services/index';
-import './billingAccount/services/services.component';
-import './billingAccount/services/services.controller';
-import './billingAccount/services/services.routing';
 import './billingAccount/telecom-telephony-billing-account.controller';
 import './carrierSip/dashboard/cdr/cdr.module';
 import './carrierSip/dashboard/cdr/cdr.routing';
@@ -372,7 +369,4 @@ import './service/voicemail/management/telecom-telephony-service-voicemail-manag
 import './service/voicemail/options/telecom-telephony-service-voicemail-options.controller';
 import './service/voicemail/password/telecom-telephony-service-voicemail-password.controller';
 import './telecom-telephony.constant';
-import './telephony.component';
-import './telephony.controller';
 import './telephony.routing';
-import './telephony.service';

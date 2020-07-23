@@ -1,14 +1,13 @@
 import angular from 'angular';
+import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 
-import component from './services.component';
 import routing from './services.routing';
 
 const moduleName = 'ovhManagerTelecomTelephonyBillingAccountServices';
 
 angular
-  .module(moduleName, [])
+  .module(moduleName, [ListLayoutHelper.moduleName])
   .config(routing)
-  .component('telecomTelephonyBillingAccountServices', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
