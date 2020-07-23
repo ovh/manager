@@ -1,12 +1,12 @@
 import { pick } from 'lodash-es';
 
 import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
-import { urlQueryParams, params, component, resolves } from './config';
+import { component, resolves } from './config';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.dashboard.email_exchange_service', {
-    url: `email_exchange_service?${urlQueryParams}`,
-    params,
+    url: `email_exchange_service?${ListLayoutHelper.urlQueryParams}`,
+    params: ListLayoutHelper.stateParams,
     component,
     resolve: {
       ...resolves,
@@ -15,6 +15,7 @@ export default /* @ngInject */ ($stateProvider) => {
         'filter',
         'sort',
         'sortOrder',
+        'columns',
       ]),
       productType: /* @ngInject */ () => 'EMAIL_EXCHANGE_SERVICE',
       apiPath: /* @ngInject */ () => '/email/exchange',

@@ -1,12 +1,12 @@
 import { get, pick } from 'lodash-es';
 
 import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
-import { urlQueryParams, params, component, resolves } from './config';
+import { component, resolves } from './config';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.dashboard.vrack', {
-    url: `vrack?${urlQueryParams}`,
-    params,
+    url: `vrack?${ListLayoutHelper.urlQueryParams}`,
+    params: ListLayoutHelper.stateParams,
     component,
     resolve: {
       ...resolves,
@@ -15,6 +15,7 @@ export default /* @ngInject */ ($stateProvider) => {
         'filter',
         'sort',
         'sortOrder',
+        'columns',
       ]),
       productType: /* @ngInject */ () => 'VRACK',
       apiPath: /* @ngInject */ () => '/vrack',
@@ -35,14 +36,12 @@ export default /* @ngInject */ ($stateProvider) => {
       paginationSize: /* @ngInject */ ($transition$) =>
         $transition$.params().pageSize,
       paginationTotalCount: /* @ngInject */ (resources) => resources.length,
-      loadRow: /* @ngInject */ (products) => (service) => ({
-        ...service,
-        serviceName: service.id,
-        managerLink: get(
+
+      getServiceNameLink: /* @ngInject */ (products) => (service) =>
+        get(
           products.find(({ resource }) => resource.name === service.id),
           'url',
         ),
-      }),
     },
     atInternet: {
       rename: 'app::dashboard::products::vrack',

@@ -1,12 +1,12 @@
 import { pick } from 'lodash-es';
 
 import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
-import { urlQueryParams, params, component, resolves } from './config';
+import { component, resolves } from './config';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.dashboard.ms_services_sharepoint', {
-    url: `ms_services_sharepoint?${urlQueryParams}`,
-    params,
+    url: `ms_services_sharepoint?${ListLayoutHelper.urlQueryParams}`,
+    params: ListLayoutHelper.stateParams,
     component,
     resolve: {
       ...resolves,
@@ -15,6 +15,7 @@ export default /* @ngInject */ ($stateProvider) => {
         'filter',
         'sort',
         'sortOrder',
+        'columns',
       ]),
       productType: () => 'MS_SERVICES_SHAREPOINT',
       apiPath: () => '/msServices',
