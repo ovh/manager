@@ -87,8 +87,6 @@ export default class BillingMainHistoryCtrl extends ListLayoutHelper.ListLayoutC
   }
 
   $onInit() {
-    this.datagridId = 'dg-billing-history';
-    this.defaultFilterColumn = 'billId';
     this.selectedBills = [];
 
     super.$onInit();
