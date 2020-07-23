@@ -314,7 +314,6 @@
         <oui-field
             data-ng-if="!$ctrl.disablePrivateNetworks"
             data-label="{{ :: 'pci_projects_project_instances_add_privateNetwork_label' | translate }}"
-            data-size="xl"
         >
             <oui-select
                 data-name="privateNetwork"
@@ -325,7 +324,17 @@
                 data-searchable
             >
             </oui-select>
+            <p>
+                <span
+                    data-translate="pci_projects_project_instances_add_privateNetwork_description"
+                ></span>
+                <a
+                    data-ng-href="{{:: $ctrl.addPrivateNetworksLink }}"
+                    data-translate="pci_projects_project_instances_add_privateNetwork_add"
+                ></a>
+            </p>
         </oui-field>
+
         <div data-ng-if="$ctrl.automatedBackup.available">
             <oui-checkbox
                 class="mb-4"
