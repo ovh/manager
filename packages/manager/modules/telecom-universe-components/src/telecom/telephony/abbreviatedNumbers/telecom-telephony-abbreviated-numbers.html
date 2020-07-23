@@ -77,21 +77,20 @@
                         data-translate="telephony_abbreviated_numbers_common_add"
                     ></span>
                 </oui-action-menu-item>
-                <div role="menuitem" class="oui-action-menu__item">
-                    <button
-                        type="button"
-                        class="oui-button oui-button_action-menu"
-                        data-ng-csv="$ctrl.abbreviatedNumbers"
-                        data-csv-header="$ctrl.getCsvHeader()"
-                        data-csv-column-order="$ctrl.getCsvOrder()"
-                        data-ng-disabled="$ctrl.loading.init || !$ctrl.abbreviatedNumbers.length"
-                        data-filename="{{ $ctrl.exportFilename || 'abbreviated-numbers.csv' }}"
-                    >
-                        <span
-                            data-translate="telephony_abbreviated_numbers_download_label"
-                        ></span>
-                    </button>
-                </div>
+                <button
+                    type="button"
+                    class="oui-dropdown-option"
+                    role="menuitem"
+                    data-ng-csv="$ctrl.abbreviatedNumbers"
+                    data-csv-column-order="$ctrl.getCsvOrder()"
+                    data-csv-header="$ctrl.getCsvHeader()"
+                    data-ng-disabled="$ctrl.loading.init || !$ctrl.abbreviatedNumbers.length"
+                    data-filename="{{ $ctrl.exportFilename || 'abbreviated-numbers.csv' }}"
+                >
+                    <span
+                        data-translate="telephony_abbreviated_numbers_download_label"
+                    ></span>
+                </button>
                 <oui-action-menu-item
                     data-on-click="$ctrl.openImport()"
                     data-disabled="$ctrl.loading.init"
