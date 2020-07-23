@@ -18,6 +18,7 @@ export default {
     prices: '<',
     quotaLink: '<',
     regionsLink: '<',
+    addPrivateNetworksLink: '<',
     selectedCategory: '@?',
   },
   controller,
