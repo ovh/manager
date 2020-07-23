@@ -103,8 +103,23 @@ export default /* @ngInject */ ($stateProvider) => {
           ),
       serviceName: /* @ngInject */ ($transition$) =>
         $transition$.params().productId,
-      logs: /* @ngInject */ (HostingStatistics, serviceName) =>
-        HostingStatistics.getLogs(serviceName),
+      logs: /* @ngInject */ (HostingStatistics, serviceName, userLogsToken) =>
+        HostingStatistics.getLogs(serviceName).then((logs) => ({
+          ...logs,
+          statsUrl: userLogsToken
+            ? `${logs.stats}?token=${userLogsToken}`
+            : logs.stats,
+          logsUrl: userLogsToken
+            ? `${logs.logs}?token=${userLogsToken}`
+            : logs.logs,
+        })),
+      userLogsToken: /* @ngInject */ (Hosting, serviceName) =>
+        Hosting.getUserLogsToken(serviceName, {
+          params: {
+            remoteCheck: true,
+            ttl: 3600,
+          },
+        }).catch(() => null),
       goToDetachEmail: /* @ngInject */ ($state) => () =>
         $state.go('app.hosting.detachEmail'),
       goToDetachPrivateDB: /* @ngInject */ ($state) => () =>

@@ -89,7 +89,6 @@ export default class HostingGeneralInformationsCtrl {
     );
     return this.$q
       .all([
-        this.getUserLogsToken(),
         this.getScreenshot(),
         this.retrievingSSLCertificate(),
         this.retrievingAvailableOffers(this.serviceName),
@@ -116,17 +115,6 @@ export default class HostingGeneralInformationsCtrl {
     }
 
     return this.$q.when();
-  }
-
-  getUserLogsToken() {
-    return this.Hosting.getUserLogsToken(this.serviceName, {
-      params: {
-        remoteCheck: true,
-        ttl: 3600,
-      },
-    }).then((userLogsToken) => {
-      this.userLogsToken = userLogsToken;
-    });
   }
 
   initializeLocalSeo(serviceName) {
