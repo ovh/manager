@@ -2603,9 +2603,9 @@
   integrity sha512-8yEhPeRTSxtEO9ODXRYZw6pzRQiV5ULCTi8mIzt39m/b9N2TcIF4ILTPsaa8xpE4npHKa/iYgL9z0HJUFi2LGQ==
 
 "@ovh-ux/ui-kit@^4.1.12":
-  version "4.2.0"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ui-kit/-/ui-kit-4.2.0.tgz#4e44ba0fca9ba8c49af1b4a33a60067166d69558"
-  integrity sha512-6JCF84mRfGvomHXMOMT8FOqYBGQgUvhWSRr8ujNcCeMoBltjLCnlfspBs6Hycq1MiVl0GhDvKowhsYcLLmNu3w==
+  version "4.2.2"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ui-kit/-/ui-kit-4.2.2.tgz#71aad9a4d41eb7becfaa3e14e95f89f42892c82a"
+  integrity sha512-F6cK1mrr+r87wGkGveNN0lNevxn0abbghS8eKytRt5ELG2Fo3HpsZiTcruocUt9Laf508Nryts/h+0TswpxaJA==
 
 "@rollup/plugin-babel@^5.0.0":
   version "5.0.0"
