@@ -1,0 +1,10 @@
+{
+  "kube_node_pool_name": "Pool-Name",
+  "kube_node_pool_creation_date": "Erstellungsdatum",
+  "kube_node_pool_node_count": "Node-Anzahl",
+  "kube_node_pool_edit": "Pool bearbeiten",
+  "kube_node_pool_delete": "Pool löschen",
+  "kube_node_pool_add": "Node-Pool hinzufügen",
+  "kube_node_pool_refreh": "Tabelle neu laden",
+  "kube_node_pool_title": "Node-Pools"
+}

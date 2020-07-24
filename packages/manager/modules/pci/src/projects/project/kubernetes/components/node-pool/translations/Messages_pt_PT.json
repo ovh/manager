@@ -1,0 +1,6 @@
+{
+  "kubernetes_add_node_pool_description": "Configure um primeiro pool de nós desde a criação do cluster. Um pool de nós designa um conjunto de nós de trabalho do mesmo tipo. De seguida, poderá criar múltiplos pools de nós, eliminá-los ou redimensioná-los.",
+  "kubernetes_add_node_pool_warning": "Recomenda-se a configuração de um pool de 3 nós, no mínimo, para otimizar o rolling upgrade durante as atualizações de segurança (patch updates) ou de versão menor.",
+  "kubernetes_add_node_pool_node_count": "Número de nós no pool",
+  "kubernetes_add_node_pool_node_type": "Tipo de nós"
+}

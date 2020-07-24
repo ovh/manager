@@ -1,10 +1,11 @@
 {
   "kubernetes_add": "Criar um cluster Kubernetes",
   "kubernetes_add_success": "O seu cluster foi criado com êxito",
-  "kubernetes_add_error": "Ocorreu um erro ao criar o seu cluster {{ message }}",
+  "kubernetes_add_error": "Ocorreu um erro ao criar o seu cluster: {{ message }}",
   "kubernetes_add_loading": "A criação do cluster está em curso",
   "kubernetes_add_region_title": "Selecione uma localização",
   "kubernetes_add_version_title": "Selecione a versão menor de Kubernetes que deseja",
   "kubernetes_add_name_title": "Dê um nome ao seu projeto",
-  "kubernetes_add_name": "Nome"
+  "kubernetes_add_name": "Nome",
+  "kubernetes_add_billing_type_description": "Após a implementação do seu cluster, poderá passar da faturação à hora para a faturação mensal editando o pool de nós."
 }

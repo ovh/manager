@@ -1,0 +1,8 @@
+{
+  "kube_add_node_pool_config_title": "Allgemeine Konfiguration",
+  "kube_add_node_pool_name_label": "Name des Node-Pools",
+  "kube_add_node_pool_creating": "Erstellung eines Node-Pools",
+  "kube_add_node_pool_success": "Der Node-Pool '{{nodePoolName}}' wurde erfolgreich erstellt.",
+  "kube_add_node_pool_error": "Der Node-Pool '{{nodePoolName}}' kann nicht erstellt werden: {{ message }}",
+  "kube_add_billing_type_description": "In der Node-Pool-Editieransicht können Sie für jeden Node von der stündlichen auf die monatliche Abrechnung wechseln."
+}

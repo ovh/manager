@@ -1,9 +1,10 @@
 {
- "kube_guides": "Guide",
- "kube_guides_kubernetes": "Kubernetes",
- "kube_error": "Si è verificato un errore durante il caricamento delle informazioni: {{message}}",
- "kube_service": "Servizio",
- "kube_nodes": "Nodi",
- "kube_flavor": "{{ name }} ({{ cpuNumber }} CPU {{ ramCapacity }} GB RAM {{ diskCapacity }} GB disco)",
- "kube_containers_and_services": "Container e servizi"
+  "kube_guides": "Guide",
+  "kube_guides_kubernetes": "Kubernetes",
+  "kube_error": "Si è verificato un errore durante il caricamento delle informazioni: {{message}}",
+  "kube_service": "Servizio",
+  "kube_nodes": "Nodi",
+  "kube_flavor": "{{ name }} ({{ cpuNumber }} CPU {{ ramCapacity }} GB RAM {{ diskCapacity }} GB disco)",
+  "kube_containers_and_services": "Container e servizi",
+  "kube_node_pools": "Pool di nodi"
 }

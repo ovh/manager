@@ -1,9 +1,16 @@
 {
- "kube_list_title": "Kubernetes",
- "kube_list_name": "Nome del cluster",
- "kube_list_region": "Region",
- "kube_list_version": "Versione",
- "kube_list_cluster_manage": "Gestisci il cluster",
- "kube_list_cluster_create": "Crea un cluster Kubernetes",
- "kube_list_error": "Si è verificato un errore durante il caricamento dei tuoi cluster"
+  "kube_list_title": "Kubernetes",
+  "kube_list_name": "Nome del cluster",
+  "kube_list_region": "Region",
+  "kube_list_version": "Versione",
+  "kube_list_cluster_manage": "Gestisci il cluster",
+  "kube_list_cluster_create": "Crea un cluster Kubernetes",
+  "kube_list_error": "Si è verificato un errore durante il caricamento dei tuoi cluster",
+  "kube_common_save": "Salva",
+  "kube_common_cancel": "Annulla",
+  "kube_common_delete": "Elimina",
+  "kube_common_node_pool_title": "Configura il pool di nodi",
+  "kube_common_billing_type_title": "Modalità di fatturazione",
+  "kube_common_create_node_pool": "Crea un pool di nodi",
+  "kube_common_flavor_load_error": "Caricamento dei nodi non andato a buon fine: {{message}}"
 }

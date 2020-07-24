@@ -1,0 +1,8 @@
+{
+  "kube_add_node_pool_config_title": "Configuração geral",
+  "kube_add_node_pool_name_label": "Nome do pool de nós",
+  "kube_add_node_pool_creating": "Criação de um pool de nós",
+  "kube_add_node_pool_success": "O pool de nós '{{nodePoolName}}' foi criado com êxito",
+  "kube_add_node_pool_error": "Não foi possível criar o pool de nós '{{ nodePoolName }}': {{ message }}",
+  "kube_add_billing_type_description": "Na vista de edição do pool de nós, poderá passar da faturação à hora para a faturação mensal para cada nó."
+}

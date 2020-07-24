@@ -19,5 +19,11 @@
   "kube_nodes_add_flavor_quota_manage": "Zarządzaj limitami",
   "kube_nodes_add_error": "Wystąpił błąd podczas dodawania węzła: {{message}}",
   "kube_flavor": "{{ name }} ({{ cpuNumber }} CPU {{ ramCapacity }}GB RAM {{ diskCapacity }} GB Dysk)",
-  "kube_flavor_price": "{{price}} netto/godz."
+  "kube_flavor_price": "{{price}} netto/godz.",
+  "kube_nodes_add_title": "{{nodePoolName}}: Dodaj węzły",
+  "kube_nodes_add_to_node_pool": "Dodaj węzły do istniejącej puli węzłów",
+  "kube_nodes_add_same_flavor_message": "Możesz wybrać tylko ten typ instancji, ponieważ pula węzłów może składać się tylko z węzłów tego samego typu.",
+  "kube_nodes_add_select_nodes": "Wybierz liczbę nowych węzłów, które mają zostać dodane",
+  "kube_nodes_add_instance_type": "Typ instancji",
+  "kube_nodes_add_adding_message": "Zmiana wielkości puli"
 }

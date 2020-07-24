@@ -6,8 +6,8 @@
   "kube_nodes_delete_confirmation": "Are you sure you want to delete {{ node }}?",
   "kube_nodes_delete_warning": "This action cannot be reversed.",
   "kube_nodes_delete_enter": "Type DELETE in the following field to confirm your action.",
-  "kube_nodes_delete_success": "Deleting node",
-  "kube_nodes_delete_error": "An error has occurred deleting the node: {{ message }}",
+  "kube_nodes_delete_success": "Deleting nodes",
+  "kube_nodes_delete_error": "An error occurred while deleting nodes: {{ message }}",
   "kube_nodes_node": "Node",
   "kube_nodes_error": "An error has occurred loading nodes",
   "kube_nodes_refresh": "Reload table",
@@ -41,5 +41,7 @@
   "kube_nodes_switch_to_monthly_billing_desc": "Are you sure you want to switch the billing type to monthly for the '{{ instanceName }}' node?",
   "kube_nodes_switch_to_monthly_billing_info": "You will be billed immediately on a pro rata basis for the remaining days of the current month.",
   "kube_nodes_switch_billing_type_success": "The billing for the node has been switched to monthly billing",
-  "kube_nodes_switch_billing_type_error": "Unable to switch to monthly billing: {{ message }}"
+  "kube_nodes_switch_billing_type_error": "Unable to switch to monthly billing: {{ message }}",
+  "kube_nodes_delete_many": "Delete nodes",
+  "kube_nodes_delete_select_nodes": "Select the number of nodes to delete"
 }
