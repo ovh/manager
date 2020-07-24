@@ -1,10 +1,11 @@
 {
   "kubernetes_add": "Crea un cluster Kubernetes",
   "kubernetes_add_success": "Il tuo cluster è stato creato correttamente",
-  "kubernetes_add_error": "Si è verificato un errore durante la creazione del tuo cluster: {{ message }}",
+  "kubernetes_add_error": "Si è verificato un errore durante la creazione del cluster: {{ message }}",
   "kubernetes_add_loading": "Creazione del cluster in corso...",
   "kubernetes_add_region_title": "Seleziona una localizzazione",
   "kubernetes_add_version_title": "Seleziona una versione minor di Kubernetes",
   "kubernetes_add_name_title": "Assegna un nome al tuo cluster",
-  "kubernetes_add_name": "Nome"
+  "kubernetes_add_name": "Nome",
+  "kubernetes_add_billing_type_description": "Dopo il deploy del cluster è possibile modificare il pool di nodi per passare dalla fatturazione oraria al forfait mensile."
 }

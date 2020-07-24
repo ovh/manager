@@ -19,5 +19,11 @@
   "kube_nodes_add_flavor_quota_manage": "Mein Quota verwalten.",
   "kube_nodes_add_error": "Beim Hinzufügen des Node ist ein Fehler aufgetreten: {{message}}",
   "kube_flavor": "{{ name }} ({{ cpuNumber }} CPU {{ ramCapacity }} GB RAM {{ diskCapacity }} GB Festplatte)",
-  "kube_flavor_price": "{{price}} / Stunde (zzgl. MwSt.)"
+  "kube_flavor_price": "{{price}} / Stunde (zzgl. MwSt.)",
+  "kube_nodes_add_title": "{{ nodePoolName }}: Nodes hinzufügen",
+  "kube_nodes_add_to_node_pool": "Nodes zu einem vorhandenen Node-Pool hinzufügen",
+  "kube_nodes_add_same_flavor_message": "Sie können nur diesen Instanz-Typ auswählen, da der Node-Pool nur aus Nodes desselben Instanz-Typs bestehen kann.",
+  "kube_nodes_add_select_nodes": "Wählen Sie die Anzahl der neu hinzuzufügenden Nodes aus",
+  "kube_nodes_add_instance_type": "Instanz-Typ",
+  "kube_nodes_add_adding_message": "Größenanpassung des Pools"
 }

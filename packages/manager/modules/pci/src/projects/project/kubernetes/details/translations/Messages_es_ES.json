@@ -1,9 +1,10 @@
 {
- "kube_guides": "Guías",
- "kube_guides_kubernetes": "Kubernetes",
- "kube_error": "Se ha producido un error al cargar la información: {{ message }}.",
- "kube_service": "Servicio",
- "kube_nodes": "Nodos",
- "kube_flavor": "{{ name }} ({{ cpuNumber }} CPU {{ ramCapacity }} GB RAM {{ diskCapacity }} GB disco)",
- "kube_containers_and_services": "Contenedores y servicios"
+  "kube_guides": "Guías",
+  "kube_guides_kubernetes": "Kubernetes",
+  "kube_error": "Se ha producido un error al cargar la información: {{ message }}.",
+  "kube_service": "Servicio",
+  "kube_nodes": "Nodos",
+  "kube_flavor": "{{ name }} ({{ cpuNumber }} CPU {{ ramCapacity }} GB RAM {{ diskCapacity }} GB disco)",
+  "kube_containers_and_services": "Contenedores y servicios",
+  "kube_node_pools": "Pools de nodos"
 }

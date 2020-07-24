@@ -1,0 +1,6 @@
+{
+  "kubernetes_add_node_pool_description": "Una vez creado el cluster, ya puede configurar un primer pool de nodos. Un pool de nodos consiste en un conjunto de nodos de trabajo del mismo tipo. A continuación, podrá crear múltiples pools de nodos, eliminarlos o redimensionarlos.",
+  "kubernetes_add_node_pool_warning": "Le recomendamos que configure un pool de 3 nodos como mínimo para optimizar el «rolling upgrade» durante las actualizaciones de seguridad («patch updates») o de versión menor.",
+  "kubernetes_add_node_pool_node_count": "Número de nodos en el pool",
+  "kubernetes_add_node_pool_node_type": "Tipo de nodos"
+}

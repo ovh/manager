@@ -1,9 +1,16 @@
 {
- "kube_list_title": "Kubernetes",
- "kube_list_name": "Nazwa klastra",
- "kube_list_region": "Region",
- "kube_list_version": "Wersja",
- "kube_list_cluster_manage": "Zarządzaj klastrem",
- "kube_list_cluster_create": "Utwórz klaster Kubernetes",
- "kube_list_error": "Wystąpił błąd podczas pobierania klastrów."
+  "kube_list_title": "Kubernetes",
+  "kube_list_name": "Nazwa klastra",
+  "kube_list_region": "Region",
+  "kube_list_version": "Wersja",
+  "kube_list_cluster_manage": "Zarządzaj klastrem",
+  "kube_list_cluster_create": "Utwórz klaster Kubernetes",
+  "kube_list_error": "Wystąpił błąd podczas pobierania klastrów.",
+  "kube_common_save": "Zapisz",
+  "kube_common_cancel": "Anuluj",
+  "kube_common_delete": "Usuń",
+  "kube_common_node_pool_title": "Skonfiguruj pulę węzłów",
+  "kube_common_billing_type_title": "Model rozliczenia",
+  "kube_common_create_node_pool": "Utwórz pulę węzłów",
+  "kube_common_flavor_load_error": "Błąd podczas pobierania węzłów: {{message}}"
 }

@@ -19,5 +19,11 @@
   "kube_nodes_add_flavor_quota_manage": "Gerir o meu limite.",
   "kube_nodes_add_error": "Ocorreu um erro ao adicionar o nó: {{ message }}",
   "kube_flavor": "{{ name }} ({{ cpuNumber }} CPU {{ ramCapacity }} GB RAM {{ diskCapacity }} GB disco)",
-  "kube_flavor_price": "{{price}} s/IVA/h"
+  "kube_flavor_price": "{{price}} s/IVA/h",
+  "kube_nodes_add_title": "{{ nodePoolName }}: Adicionar nós",
+  "kube_nodes_add_to_node_pool": "Adicionar nós a um pool de nós existente",
+  "kube_nodes_add_same_flavor_message": "Só é possível escolher este tipo de instância, porque o pool de nós só pode ser composto por nós do mesmo tipo de instância.",
+  "kube_nodes_add_select_nodes": "Selecione o número de novos nós que pretende adicionar",
+  "kube_nodes_add_instance_type": "Tipo de instância",
+  "kube_nodes_add_adding_message": "Redimensionamento do pool"
 }

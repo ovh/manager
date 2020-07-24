@@ -6,8 +6,8 @@
   "kube_nodes_delete_confirmation": "Czy na pewno chcesz usunąć {{ node}} ?",
   "kube_nodes_delete_warning": "Operacja ta jest nieodwracalna.",
   "kube_nodes_delete_enter": "Aby potwierdzić, wprowadź \"DELETE\" w poniższym polu",
-  "kube_nodes_delete_success": "Trwa usuwanie węzła",
-  "kube_nodes_delete_error": "Wystąpił błąd podczas usuwania węzła: {{message}}",
+  "kube_nodes_delete_success": "Usuwanie węzłów",
+  "kube_nodes_delete_error": "Wystąpił błąd podczas usuwania węzłów: {{message}}.",
   "kube_nodes_node": "Węzeł",
   "kube_nodes_error": "Wystąpił błąd podczas pobierania węzłów: {{message}}",
   "kube_nodes_refresh": "Odśwież tabelę",
@@ -41,5 +41,7 @@
   "kube_nodes_switch_to_monthly_billing_desc": "Czy na pewno chcesz zmienić płatność za węzeł '{{instanceName}}' na płatność miesięczną?",
   "kube_nodes_switch_to_monthly_billing_info": "Otrzymasz natychmiast fakturę opiewającą na kwotę odpowiadającą liczbie dni do końca miesiąca.",
   "kube_nodes_switch_billing_type_success": "Sposób rozliczania za użycie węzła został zmieniony na płatność miesięczną",
-  "kube_nodes_switch_billing_type_error": "Nie można zmienić płatności na miesięczną: {{ message }}."
+  "kube_nodes_switch_billing_type_error": "Nie można zmienić płatności na miesięczną: {{ message }}.",
+  "kube_nodes_delete_many": "Usuń pule",
+  "kube_nodes_delete_select_nodes": "Wybierz liczbę węzłów, które mają zostać usunięte"
 }

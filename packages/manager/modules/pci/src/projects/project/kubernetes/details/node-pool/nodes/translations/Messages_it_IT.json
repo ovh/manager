@@ -6,8 +6,8 @@
   "kube_nodes_delete_confirmation": "Vuoi davvero eliminare il nodo {{ node}}?",
   "kube_nodes_delete_warning": "Questa operazione è irreversibile.",
   "kube_nodes_delete_enter": "Inserisci \"DELETE\" in questo campo per confermare l’operazione",
-  "kube_nodes_delete_success": "Eliminazione del nodo in corso...",
-  "kube_nodes_delete_error": "Si è verificato un errore durante l'eliminazione del nodo {{message}}",
+  "kube_nodes_delete_success": "Eliminazione dei nodi",
+  "kube_nodes_delete_error": "Si è verificato un errore durante l'eliminazione dei nodi: {{ message }}",
   "kube_nodes_node": "Nodo",
   "kube_nodes_error": "Si è verificato un errore durante il caricamento dei nodi",
   "kube_nodes_refresh": "Ricarica la tabella ",
@@ -41,5 +41,7 @@
   "kube_nodes_switch_to_monthly_billing_desc": "Vuoi davvero attivare la fatturazione mensile sul nodo '{{ instanceName }}'?",
   "kube_nodes_switch_to_monthly_billing_info": "Ti invieremo subito una fattura del pro rata corrispondente ai  giorni restanti del mese in corso.",
   "kube_nodes_switch_billing_type_success": "Il tipo di fatturazione del nodo è stata modificata in fatturazione mensile.",
-  "kube_nodes_switch_billing_type_error": "Impossibile attivare la fatturazione mensile: {{ message }}"
+  "kube_nodes_switch_billing_type_error": "Impossibile attivare la fatturazione mensile: {{ message }}",
+  "kube_nodes_delete_many": "Elimina nodi",
+  "kube_nodes_delete_select_nodes": "Seleziona il numero di nodi da eliminare"
 }

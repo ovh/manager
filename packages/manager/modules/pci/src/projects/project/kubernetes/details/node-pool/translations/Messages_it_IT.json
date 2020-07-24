@@ -1,0 +1,10 @@
+{
+  "kube_node_pool_name": "Nome del pool",
+  "kube_node_pool_creation_date": "Data di creazione",
+  "kube_node_pool_node_count": "Numero di nodi",
+  "kube_node_pool_edit": "Modifica il pool",
+  "kube_node_pool_delete": "Elimina il pool",
+  "kube_node_pool_add": "Aggiungi un pool di nodi",
+  "kube_node_pool_refreh": "Ricarica la tabella ",
+  "kube_node_pool_title": "Pool di nodi"
+}

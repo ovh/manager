@@ -1,10 +1,11 @@
 {
   "kubernetes_add": "Crear un cluster Kubernetes",
   "kubernetes_add_success": "El cluster se ha creado correctamente.",
-  "kubernetes_add_error": "¡Vaya! Se ha producido un error al eliminar el cluster: {{ message }}.",
+  "kubernetes_add_error": "¡Vaya! Se ha producido un error al crear el cluster: {{ message }}",
   "kubernetes_add_loading": "Creando el cluster...",
   "kubernetes_add_region_title": "Seleccione una localización",
   "kubernetes_add_version_title": "Seleccione la versión menor de Kubernetes que desee",
   "kubernetes_add_name_title": "Asigne un nombre a su cluster",
-  "kubernetes_add_name": "Nombre"
+  "kubernetes_add_name": "Nombre",
+  "kubernetes_add_billing_type_description": "Tras el despliegue del cluster, podrá editar el pool de nodos para pasar de facturación por horas a facturación mensual."
 }

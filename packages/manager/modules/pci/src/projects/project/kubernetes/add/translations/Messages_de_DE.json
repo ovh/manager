@@ -6,5 +6,6 @@
   "kubernetes_add_region_title": "Wählen Sie einen Standort aus",
   "kubernetes_add_version_title": "Wählen Sie die gewünschte Kubernetes-Nebenversion aus",
   "kubernetes_add_name_title": "Benennen Sie Ihr Cluster",
-  "kubernetes_add_name": "Name"
+  "kubernetes_add_name": "Name",
+  "kubernetes_add_billing_type_description": "Sie können nach dem Deployment Ihres Clusters von der stündlichen auf die monatliche Abrechnung wechseln, indem Sie den Node-Pool bearbeiten."
 }

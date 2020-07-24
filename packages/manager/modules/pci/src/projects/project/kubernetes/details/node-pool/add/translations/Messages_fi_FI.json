@@ -1,0 +1,8 @@
+{
+  "kube_add_node_pool_config_title": "General configuration",
+  "kube_add_node_pool_name_label": "Name of node pool",
+  "kube_add_node_pool_creating": "Creating a node pool",
+  "kube_add_node_pool_success": "The '{{nodePoolName}}' node pool has been created.",
+  "kube_add_node_pool_error": "Unable to create '{{ nodePoolName }}' node pool: {{ message }}",
+  "kube_add_billing_type_description": "You can switch from hourly billing to monthly billing for each node in the node pool edit view."
+}

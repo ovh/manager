@@ -19,5 +19,11 @@
   "kube_nodes_add_flavor_quota_manage": "Manage quotas",
   "kube_nodes_add_error": "An error has occurred adding the node: {{ message }}",
   "kube_flavor": "{{ name }} ({{ cpuNumber }} CPU {{ ramCapacity }} GB RAM {{ diskCapacity }} GB disk)",
-  "kube_flavor_price": "{{price}} ex. VAT/hour"
+  "kube_flavor_price": "{{price}} ex. VAT/hour",
+  "kube_nodes_add_title": "{{ nodePoolName }}: Add nodes",
+  "kube_nodes_add_to_node_pool": "Add nodes to an existing node pool",
+  "kube_nodes_add_same_flavor_message": "You can only choose this type of instance as the node pool can only contain nodes of the same instance type.",
+  "kube_nodes_add_select_nodes": "Select the number of new nodes to add",
+  "kube_nodes_add_instance_type": "Flavor",
+  "kube_nodes_add_adding_message": "Resize pool"
 }

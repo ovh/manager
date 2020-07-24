@@ -19,5 +19,11 @@
   "kube_nodes_add_flavor_quota_manage": "Gestisci la tua quota",
   "kube_nodes_add_error": "Si è verificato un errore durante l'aggiunta del nodo: {{message}}",
   "kube_flavor": "{{ name }} ({{ cpuNumber }} CPU {{ ramCapacity }} GB RAM {{ diskCapacity }} GB disco)",
-  "kube_flavor_price": "{{price}} + IVA/ora"
+  "kube_flavor_price": "{{price}} + IVA/ora",
+  "kube_nodes_add_title": "{{ nodePoolName }}: Aggiungi nodi",
+  "kube_nodes_add_to_node_pool": "Aggiungi nodi a un pool di nodi esistente",
+  "kube_nodes_add_same_flavor_message": "È possibile scegliere esclusivamente questo tipo di istanza perché il pool di nodi può essere composto solamente da nodi dello stesso tipo.",
+  "kube_nodes_add_select_nodes": "Seleziona il numero di nuovi nodi da aggiungere",
+  "kube_nodes_add_instance_type": "Tipo di istanza",
+  "kube_nodes_add_adding_message": "Ridimensionamento del pool"
 }
