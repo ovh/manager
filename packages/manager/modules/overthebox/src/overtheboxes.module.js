@@ -5,7 +5,7 @@ import 'ovh-api-services';
 
 import '@ovh-ux/manager-core';
 
-import component from './overtheboxes.component';
+import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 import routing from './overtheboxes.routing';
 
 import '@ovh-ux/ui-kit/dist/css/oui.css';
@@ -19,9 +19,9 @@ angular
     'ovhManagerCore',
     'oc.lazyLoad',
     'ovh-api-services',
+    ListLayoutHelper.moduleName,
   ])
   .config(routing)
-  .component('ovhManagerOverTheBoxes', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
