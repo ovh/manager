@@ -34,7 +34,6 @@
   "emailpro_resilitation_cancel_action_intro": "Zakończenie usługi E-mail Pro \"{0}\" jest zaplanowane na dzień wygaśnięcia. <br /><br />Czy chcesz anulować zakończenie usługi?  Włączone wówczas zostanie automatyczne odnawianie usługi.",
   "emailpro-mxplan_resilitation_cancel_action_intro": "Zakończenie usługi E-mail MX Plan \"{0}\" jest zaplanowane na dzień wygaśnięcia.  <br /><br />Czy chcesz anulować zakończenie usługi?  Włączone wówczas zostanie automatyczne odnawianie usługi.",
   "emailpro_tab_domain_no_domains_1": "Dodaj domenę, aby tworzyć konta E-mail Pro.  Kliknij",
-  "emailpro-mxplan_tab_domain_no_domains_1": "Dodaj domenę, aby utworzyć konta MX Plan. Kliknij",
   "emailpro_tab_domain_diagnostic_mx_no_antispam": "Jeśli korzystasz z trybu nieautorytatywnego (Exchange + inny system poczty elektronicznej) z systemem poczty elektronicznej nieobsługiwanej przez OVH:",
   "emailpro-mxplan_tab_domain_diagnostic_mx_no_antispam": "Jeśli używasz trybu autorytatywnego (E-mail MX Plan + inny system poczty elektronicznej) z systemem poczty elektronicznej nie hostowanym przez OVH:",
   "emailpro_tab_domain_diagnostic_mx_antispam": "Jeśli korzystasz z trybu autorytatywnego (wyłącznie Exchange) lub nieautorytatywnego z systemem poczty elektronicznej obługiwanym przez OVH (e-mail na hostingu):",
@@ -855,5 +854,6 @@
   "emailpro_tab_MAILING_LIST": "Listy mailingowe",
   "emailpro_tab_REDIRECTION": "Przekierowania",
   "emailpro_navigation_more": "Więcej",
-  "emailpro_tab_INFORMATIONS_server": "Serwer"
+  "emailpro_tab_INFORMATIONS_server": "Serwer",
+  "emailpro-mxplan_tab_domain_no_domains": "Brak wyników"
 }
